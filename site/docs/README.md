@@ -3,10 +3,10 @@ home: true
 heroImage: /logo.jpg
 actions:
   - text: Get Started
-    link: /guide/getting-started.html
+    link: /guide/getting-started.md
     type: primary
   - text: Introduction
-    link: /guide/
+    link: /guide/introduction.md
     type: secondary
 features:
   - title: Easy to Use
@@ -28,9 +28,11 @@ permalink: /
   'easy peasy lemon squeezY'
 ][Math.floor(Math.random() * 6)] }}.</h6>
 
-## Example
+## Quickstart
 
 Bots are written in [TypeScript](https://www.typescriptlang.org) (or JavaScript) and run on various platforms, including [Node.js](https://nodejs.org).
+
+`npm install grammy` and paste the following code:
 
 <CodeGroup>
   <CodeGroupItem title="TS" active>

@@ -1,11 +1,12 @@
 ---
-prev: ./
+prev: ./introduction.md
+next: ./context.md
 ---
 
-# Getting Started
+# Getting started
 
 > This guide assumes that you have [Node.js](https://nodejs.org) installed, and `npm` should come with it.
-> If you don't know what these things are, check out our [Introduction](./README.md)!
+> If you don't know what these things are, check out our [Introduction](./introduction.md)!
 
 Create a new TypeScript project and install the `grammY` package:
 
