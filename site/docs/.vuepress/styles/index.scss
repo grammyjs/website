@@ -1,0 +1,11 @@
+// apply justify to all articles ...
+.theme-default-content {
+  text-align: justify;
+}
+// ... and to the features on the front page
+.feature {
+  p {
+    text-align: justify;
+    text-align-last: justify;
+  }
+}

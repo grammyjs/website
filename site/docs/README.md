@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: /logo.jpg
+heroImage: /Y.png
 actions:
   - text: Get Started
     link: /guide/getting-started.md
@@ -10,7 +10,7 @@ actions:
     type: secondary
 features:
   - title: Easy to Use
-    details: grammY makes writing Telegram bots so simple you already know how to do it.
+    details: grammY makes creating Telegram bots so simple you already know how to do it.
   - title: Flexible
     details: grammY is open and can be extended by plugins to make it fit exactly your needs.
   - title: Scalable

@@ -15,7 +15,7 @@ Create a new TypeScript project and install the `grammY` package:
 mkdir my-bot
 cd my-bot
 
-# Create tsconfig.json (skip if you use JavaScript)
+# Set up TypeScript (skip if you use JavaScript)
 npm install -D typescript
 npx tsc --init
 
@@ -40,7 +40,7 @@ Talk to [@BotFather](https://telegram.me/BotFather) to do this.
 The bot token looks like `123456:aBcDeF_gHiJkLmNoP-q`.
 
 Got the token? You can now code your bot in the `bot.ts` file.
-You can copy the following example bot into that file, and replace the dummy token by the real one you got:
+You can copy the following example bot into that file, and pass your token to the `Bot` constructor:
 
 <CodeGroup>
  <CodeGroupItem title="TS">

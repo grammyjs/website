@@ -1,5 +1,5 @@
 ---
-prev: ./
+prev: /guide/
 next: ./getting-started.md
 ---
 
@@ -36,7 +36,7 @@ Simply put, if you want the bot to be online all the time, you have to keep a co
 Because you most likely don't want to do that with your laptop, you should upload your code to a _hosting provider_ (in other words, someone else's computer, also known as _server_), and let those people run it for you.
 
 There are countless companies that let you run your Telegram bot for free.
-This documentation covers a number of different hosting providers that we know work well with grammY.
+This documentation covers a number of different hosting providers that we know work well with grammY (check the Resources).
 In the end, however, the choice of which provider to pick is up to you.
 Remember that running your code somewhere else means that whoever owns that “somewhere” has access to all your messages and the data of your users, so you should pick a provider that you can trust.
 
@@ -78,11 +78,11 @@ Here are a few interesting things about programming—things that are essential 
 
 In the next section, you will create a bot by writing a text file that contains source code in the programming language [TypeScript](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html).
 The grammY documentation will not teach you how to program, so we expect you to teach yourself.
-Remember, though: creating a Telegram bot is actually a good project to learn coding :rocket:
+Remember, though: creating a Telegram bot with grammY is actually a good way to learn coding :rocket:
 
 ::: tip Learning how to code
 You can start learning TypeScript with the [official tutorial](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html) written by the TypeScript team, and then move on from there.
-Don't spend more than 30 minutes reading things on the internet, then come back here and [get started](./getting-started.md).
+Don't spend more than 30 minutes reading things on the internet, then come back here, (read the rest of the section) and [get started](./getting-started.md).
 
 If you get an error message that you don't understand, google it—the solution is already on the internet (e.g. on StackOverflow).
 :::

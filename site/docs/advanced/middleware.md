@@ -3,4 +3,4 @@ prev: ./
 next: ./structuring.md
 ---
 
-# Middleware Redux
+# Middleware redux

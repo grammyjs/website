@@ -6,7 +6,7 @@ export default defineUserConfig<DefaultThemeOptions>({
   description: "The Telegram Bot Framework.",
 
   themeConfig: {
-    logo: "/logo.jpg",
+    logo: "/Y.png",
     repo: "https://github.com/grammyjs/grammY",
     docsRepo: "https://github.com/grammyjs/grammy-website",
     docsDir: "site",
@@ -26,7 +26,7 @@ export default defineUserConfig<DefaultThemeOptions>({
         text: "Learn",
         children: [
           {
-            text: "Basics",
+            text: "Guide",
             children: [
               {
                 text: "Overview",
@@ -49,7 +49,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                 link: "/guide/api.md",
               },
               {
-                text: "Filter Queries and bot.on()",
+                text: "Filter queries and bot.on()",
                 link: "/guide/filter-queries.md",
               },
               {
@@ -94,7 +94,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                 link: "/advanced/README.md",
               },
               {
-                text: "Middleware Redux",
+                text: "Middleware redux",
                 link: "/advanced/middleware.md",
               },
               {
@@ -114,6 +114,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                 link: "/advanced/transformers.md",
               },
               {
+                text: "Proxy Support",
+                link: "/advanced/proxies.md",
+              },
+              {
                 text: "Deployment Checklist",
                 link: "/advanced/deployment.md",
               },
@@ -131,8 +135,8 @@ export default defineUserConfig<DefaultThemeOptions>({
           {
             text: "Demo",
             children: [
-              { text: "Browser Demo", link: "/demo/demo.md" },
-              { text: "Example Bots Demo", link: "/demo/examples.md" },
+              { text: "Browser Demo", link: "/demo/README.md" },
+              { text: "Example Bots", link: "/demo/examples.md" },
               { text: "Community Showlounge", link: "/demo/showlounge.md" },
             ],
           },
@@ -172,6 +176,15 @@ export default defineUserConfig<DefaultThemeOptions>({
               {
                 text: "Bot API Reference",
                 link: "https://core.telegram.org/bots/api",
+              },
+            ],
+          },
+          {
+            text: "Hosting",
+            children: [
+              {
+                text: "Google Cloud Functions",
+                link: "/hosting/gcf.md",
               },
             ],
           },
