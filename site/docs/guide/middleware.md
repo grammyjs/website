@@ -1,5 +1,5 @@
 ---
-prev: ./filter-queries.md
+prev: ./commands.md
 next: ./errors.md
 ---
 
@@ -9,7 +9,7 @@ The listener functions that are being passed to `bot.on()`, `bot.command()`, and
 While it is not wrong that they are listening for updates, calling them just listeners is a simplification.
 
 > This section explains what middleware is, and uses grammY as an example to illustrate how it can be used.
-> If you are looking for the documentation about what is special about grammY's implementation of middleware, and how this system is more powerful than existing alternatives, check out [Middleware redux](/advanced/middleware.md) in the advanced section of the docs.
+> If you are looking for the documentation about what is special about grammY's implementation of middleware, check out [Middleware redux](/advanced/middleware.md) in the advanced section of the docs.
 
 ## The middleware stack
 
@@ -55,7 +55,7 @@ Middleware can be a function or an object.
 We only used functions so far, so let's ignore middleware objects for now, and dig deeper into the `MiddlewareFn` type ([reference](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#MiddlewareFn)):
 
 ```ts
-// omitted type parameters again, and inlined type of `next`
+// omitted type parameters again
 type MiddlewareFn = (ctx: Context, next: NextFunction) => MaybePromise<unknown>;
 // with
 type NextFunction = () => Promise<void>;
@@ -63,6 +63,7 @@ type NextFunction = () => Promise<void>;
 
 So, middleware takes two parameters!
 We [already know](./context.md) what `ctx` is, but we also see a function called `next`.
+In order to understand what `next` is, we have to look at all middleware that you install on your bot as a whole.
 
 You can view all installed middleware functions as a number of layers that are on top of each other.
 The first middleware (`session` in our example) is the uppermost layer, hence receiving each update first.
@@ -85,13 +86,14 @@ Let's inspect what happens:
 
 1. You send `'/start'` to the bot.
 2. The `':text'` middleware receives the update and checks for text, which succeeds because commands are text messages.
-   The middleware is handled immediately and “Text!” is replied.
+   The update is handled immediately by the first middleware and your bot replies with “Text!”.
 
 The message is never even checked for containing the `/start` command!
 The order in which you register your middleware matters, because it determines the order of the layers in the _middleware stack_.
 You can fix the issue by flipping the order of lines 3 and 4.
 
 **The `bot.use()` function simply registers middleware that receives all updates.**
+This is why `session()` is installed via `bot.use()`—we want it to operate on all updates, no matter what data is contained.
 
 Having a middleware stack is an extremely powerful property of any web framework, and this pattern is widely popular (not just for Telegram bots).
 
@@ -99,7 +101,7 @@ Let's write our own little piece of middleware to illustrate even better how it 
 
 ## Writing custom middleware
 
-We will illustrate the concept of middleware by writing a simple middleware function that can measure the response time of your bot.
+We will illustrate the concept of middleware by writing a simple middleware function that can measure the response time of your bot, i.e. how long it takes your bot to handle a message.
 
 Here is the function signature for our middleware.
 You can compare it to the middleware type from above, and convince yourself that we actually have middleware here.
@@ -126,7 +128,7 @@ Here is what we want to do:
 1. Once an update arrives, we store `Date.now()` in a variable.
 2. We invoke the downstream middleware, hence let all message handling happen.
    This includes command matching, replying, and everything else your bot does.
-3. We take `Date.now()` again and compare it to the old value, `console.log`ging the time difference.
+3. We take `Date.now()` again, compare it to the old value, and `console.log` the time difference.
 
 It is important to install our `responseTime` middleware _at first_ on the bot to make sure that all operations are included in the measurement.
 
@@ -150,6 +152,9 @@ bot.use(responseTime);
 ```
 
 Complete, and works! :heavy_check_mark:
+
+Feel free to use this middleware on your bot, register more listeners, and play around with the example.
+It helps a lot to really understand what middleware is.
 
 ::: danger DANGER: Always make sure to await next!
 If you ever call `next()` without the `await` keyword, several things will break:
@@ -180,9 +185,8 @@ If you want to error, you can simply `throw` the error.
 Furthermore, it does not matter how many arguments your middleware takes: `() => {}` will be handled exactly as `(ctx) => {}`, or as `(ctx, next) => {}`.
 
 There are two types of middleware: functions and objects.
-middleware objects are simply a wrapper for middleware functions.
-
-This is mostly used internally, but can sometimes also help third-party libraries, or in advanced use cases:
+Middleware objects are simply a wrapper for middleware functions.
+They are mostly used internally, but can sometimes also help third-party libraries, or be used in advanced use cases, such as with [Composer](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Composer):
 
 ```ts
 const bot = new Bot("<token>");
@@ -190,11 +194,11 @@ const bot = new Bot("<token>");
 bot.use(/*...*/);
 bot.use(/*...*/);
 
-const composer = new Composer()
-composer.use(/*...*/)
-composer.use(/*...*/)
-composer.use(/*...*/)
-bot.use(composer)
+const composer = new Composer();
+composer.use(/*...*/);
+composer.use(/*...*/);
+composer.use(/*...*/);
+bot.use(composer); // composer is a middleware object!
 
 bot.use(/*...*/);
 bot.use(/*...*/);

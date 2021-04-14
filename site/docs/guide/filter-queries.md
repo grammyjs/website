@@ -1,11 +1,13 @@
 ---
 prev: ./api.md
-next: ./middleware.md
+next: ./commands.md
 ---
 
 # Filter queries and `bot.on()`
 
 The first argument of `bot.on()` is a string called _filter query_.
+
+## Introduction
 
 Most (all?) other bot frameworks allow you to perform a primitive form of filtering for updates, e.g. only `on("message")` and the like.
 Quite the contrary, **grammY ships with its own query language** that you can use in order to **filter for exactly the messages** you want.
@@ -84,6 +86,52 @@ bot.on("callback_query:game_short_name"); // game query (HTML5 games platform)
 
 bot.on("message:new_chat_members:is_bot"); // a bot joined the chat
 bot.on("message:left_chat_member:me"); // your bot left a chat (was removed)
+```
+
+## Combining multiple queries
+
+You can combine any number of filter queries with AND as well as OR operations.
+
+### Combine with OR
+
+If you want to install some piece of middleware behind the OR concatenation of two queries, you can pass both of them to `bot.on()` in an array.
+
+```ts
+// Runs if the update is about a message OR an edit to a message
+bot.on(["message", "edited_message"], (ctx) => {});
+// Runs if a hashtag OR email OR mention entity is found in text or caption
+bot.on(["::hashtag", "::email", "::mention"], (ctx) => {});
+```
+
+The middleware will be executed if _any of the provided queries_ matches.
+The order of the queries does not matter.
+
+### Combine with AND
+
+If you want to install some piece of middleware behind the AND concatenation of two queries, you can chain the calls to `bot.on()`.
+
+```ts
+// Matches forwarded URLs
+bot.on("::url").on(":forward_date", (ctx) => {});
+// Matches photos that contain a hashtag in a photo's caption
+bot.on(":photo").on("::hashtag", (ctx) => {});
+```
+
+The middleware will be executed if _all of the provided queries_ match.
+The order of the queries does not matter.
+
+### Building complex queries
+
+It is technically possible to combine filter queries to more complicated formulas if they are in [CNF](https://en.wikipedia.org/wiki/Conjunctive_normal_form), even though this seems to be rarely useful.
+
+```ts
+bot
+  // Matches all channel posts and forwarded messages ...
+  .on(["channel_post", ":forward_date"])
+  // ... that contain text ...
+  .on(":text")
+  // ... with at least one URL, hashtag, or cashtag.
+  .on(["::url", "::hashtag", "::cashtag"], (ctx) => {});
 ```
 
 ## The query language

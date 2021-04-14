@@ -53,6 +53,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                 link: "/guide/filter-queries.md",
               },
               {
+                text: "Commands",
+                link: "/guide/commands.md",
+              },
+              {
                 text: "Middleware",
                 link: "/guide/middleware.md",
               },
