@@ -27,6 +27,6 @@ You can see it as a collection of all the useful explanations that you find in t
 Some central topics of grammY have brief outlines in the API Reference, too.
 
 ::: tip Join the community!
-We have a friendly [community chat](https://t.me/grammyjs) on Telegram that welcomes all new members.
+We have a friendly [community chat](https://telegram.me/grammyjs) on Telegram that welcomes all new members.
 Join us to get assistance, ask questions, and learn tips and tricks for your next bot project.
 :::

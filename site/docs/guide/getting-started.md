@@ -1,6 +1,6 @@
 ---
 prev: ./introduction.md
-next: ./context.md
+next: ./basics.md
 ---
 
 # Getting started

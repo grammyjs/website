@@ -41,6 +41,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                 link: "/guide/getting-started.md",
               },
               {
+                text: "Sending and receiving messages",
+                link: "/guide/basics.md",
+              },
+              {
                 text: "Context",
                 link: "/guide/context.md",
               },
@@ -114,6 +118,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                 link: "/advanced/runner.md",
               },
               {
+                text: "Lazy sessions",
+                link: "/advanced/lazy-sessions.md",
+              },
+              {
                 text: "Bot API Transformers",
                 link: "/advanced/transformers.md",
               },
@@ -154,7 +162,7 @@ export default defineUserConfig<DefaultThemeOptions>({
             children: [
               {
                 text: "Community Chat",
-                link: "https://t.me/grammyjs",
+                link: "https://telegram.me/grammyjs",
               },
               {
                 text: "Example Bots Repository",
@@ -162,7 +170,7 @@ export default defineUserConfig<DefaultThemeOptions>({
               },
               {
                 text: "News",
-                link: "https://t.me/grammyjs_news",
+                link: "https://telegram.me/grammyjs_news",
               },
               {
                 text: "FAQ",

@@ -60,14 +60,14 @@ const keyboard = new Keyboard()
 
 #### Example 3
 
-Three buttons in one column can be built like this:
+Four buttons in a grid can be built like this:
 
 ##### Code
 
 ```ts
 const keyboard = new Keyboard()
-    .text("A").text("B").row()
-    .text("C").text("D");
+  .text("A").text("B").row()
+  .text("C").text("D");
 ```
 
 ##### Result
@@ -81,7 +81,6 @@ You can send a keyboard directly along a message, no matter whether you use `bot
 ```ts
 // Send keyboard with message:
 await ctx.reply(text, {
-  // or bot.api.sendMessage
   reply_markup: keyboard,
 });
 ```
@@ -108,12 +107,6 @@ Naturally, all other methods that send messages other than text messages support
 grammY has a simple and intuitive way to build up the inline keyboards that your bot can send along with a message.
 It provides a class called `InlineKeyboard` for this.
 
-Every `text` button has a string as callback data attached.
-If you don't attach callback data, grammY will use the button's text as data.
-
-Once a user clicks a text button, your bot will receive an update the corresponding button's callback data.
-You can listed for callback data via `bot.callbackQuery()`, and for game queries via `bot.gameQuery()`.
-
 > Both `switchInline` and `switchInlineCurrent` buttons start inline queries.
 > Check out the section about [Inline queries](./inline-queries.md) for more information about how they work.
 
@@ -121,7 +114,7 @@ You can listed for callback data via `bot.callbackQuery()`, and for game queries
 
 Here are three examples how to build an inline keyboard with `text` buttons.
 
-You can also use other methods like `url` to open a URL, and more options as listed in the [grammY API Reference for InlineKeyboard](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#InlineKeyboard) as well as the [Telegram Bot API Reference](https://core.telegram.org/bots/api#inlinekeyboardbutton).
+You can also use other methods like `url` to let the Telegram clients open a URL, and many more options as listed in the [grammY API Reference](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#InlineKeyboard) as well as the [Telegram Bot API Reference](https://core.telegram.org/bots/api#inlinekeyboardbutton) for `InlineKeyboard`.
 
 #### Example 1
 
@@ -182,7 +175,6 @@ You can send an inline keyboard directly along a message, no matter whether you 
 ```ts
 // Send inline keyboard with message:
 await ctx.reply(text, {
-  // or bot.api.sendMessage
   reply_markup: inlineKeyboard,
 });
 ```
@@ -201,3 +193,41 @@ await ctx.reply(textWithHtml, {
 ```
 
 Naturally, all other methods that send messages other than text messages support the same options, as specified by the [Telegram Bot API Reference](https://core.telegram.org/bots/api).
+
+### Responding to clicks
+
+Every `text` button has a string as callback data attached.
+If you don't attach callback data, grammY will use the button's text as data.
+
+Once a user clicks a text button, your bot will receive an update containing the corresponding button's callback data.
+You can listen for callback data via `bot.callbackQuery()`.
+
+```ts
+// Send a keyboard along a message
+bot.command("start", async (ctx) => {
+  const inlineKeyboard = new InlineKeyboard().text("click", "click-payload");
+  await ctx.reply("Curious? Click me!", { reply_markup: inlineKeyboard });
+});
+
+// Wait for click events with specific callback data
+bot.callbackQuery("click-payload", async (ctx) => {
+  await ctx.answerCallbackQuery("You were curious, indeed!");
+});
+```
+
+::: tip Answering all callback queries
+`bot.callbackQuery()` is useful to listen for click events of specific buttons.
+You can use `bot.on('callback_query:data')` to listen for events of any button.
+
+```ts
+bot.callbackQuery("click-payload" /* ... */);
+
+bot.on("callback_query:data", async (ctx) => {
+  console.log("Unknown button event with payload", ctx.callbackQuery.data);
+  await ctx.answerCallbackQuery(); // remove loading animation
+});
+```
+
+It makes sense to define `bot.on('callback_query:data')` at last to always answer all other callback queries that your previous listeners did not handle.
+Otherwise, some clients may display a loading animation for up to a minute when a user presses a button that your bot does not want to react to.
+:::

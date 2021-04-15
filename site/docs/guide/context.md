@@ -1,5 +1,5 @@
 ---
-prev: ./getting-started.md
+prev: ./basics.md
 next: ./api.md
 ---
 
@@ -121,6 +121,22 @@ Neat! :tada:
 
 Under the hood, the context _already knows its chat identifier_ (namely `ctx.msg.chat.id`), so it gives you the `reply` method to just send a message back to the same chat.
 Internally, `reply` again calls `sendMessage` with the chat ID pre-filled for you.
+
+::: tip Telegram reply feature
+Even though the method is called `ctx.reply` in grammY (and many other frameworks), it does not use the reply feature of Telegram where a previous message is linked.
+
+If you look up what `sendMessage` can do in the [Telegram Bot API Reference](https://core.telegram.org/bots/api#sendmessage), you will see a number of options, such as `parse_mode`, `disable_web_page_preview`, and `reply_to_message_id`.
+The latter can be used to make a message a reply:
+
+```ts
+await ctx.reply("^ This is a message!", {
+  reply_to_message_id: ctx.msg.message_id,
+});
+```
+
+The same options object can be passed to `bot.api.sendMessage` and `ctx.api.sendMessage`.
+Use auto-complete to see the available options right in your editor.
+:::
 
 Naturally, every other method on `ctx.api` has a shortcut with the correct pre-filled values, such as `ctx.replyWithPhoto` to reply with a photo, or `ctx.exportChatInviteLink` to get an invite link for the respective chat. If you want to get an overview over what shortcuts exist, then auto-complete is your friend, along with the [grammY API Reference](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Context).
 
