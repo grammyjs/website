@@ -153,6 +153,10 @@ export default defineUserConfig<DefaultThemeOptions>({
             text: "grammY",
             children: [
               {
+                text: "Community Chat",
+                link: "https://t.me/grammyjs",
+              },
+              {
                 text: "Example Bots Repository",
                 link: "https://github.com/grammyjs/examples#readme",
               },
@@ -161,8 +165,8 @@ export default defineUserConfig<DefaultThemeOptions>({
                 link: "https://t.me/grammyjs_news",
               },
               {
-                text: "Community Chat",
-                link: "https://t.me/grammyjs",
+                text: "FAQ",
+                link: "/resources/faq.md",
               },
             ],
           },

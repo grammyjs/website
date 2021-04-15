@@ -10,6 +10,8 @@ The first argument of `bot.on()` is a string called _filter query_.
 ## Introduction
 
 Most (all?) other bot frameworks allow you to perform a primitive form of filtering for updates, e.g. only `on("message")` and the like.
+Other filtering of messages is left to library users, which often leads to endless `if` statements in their code.
+
 Quite the contrary, **grammY ships with its own query language** that you can use in order to **filter for exactly the messages** you want.
 
 This allows for over 400 different filters to be used, and we may add more over time.
@@ -54,17 +56,14 @@ Sub-filters that go one level deeper:
 
 ```ts
 bot.on("message:entities:url"); // messages that contain a URL
-bot.on("message:entities:code"); // messages that contain a code block
+bot.on("message:entities:code"); // messages that contain a code snippet
 bot.on("edited_message:entities"); // edited message with any kind of entities
 ```
 
 ### Omit values
 
-Leaving out the _first_ value matches both messages and channel posts.
-[Remember](./context.html#available-actions) that `ctx.msg` gives you access to both messages or channel posts, whatever is matched by the query.
-
-Leaving out the _second_ value matches both entities and caption entities.
-You can leave out both the first and the second part at the same time.
+You can omit some values in the filter queries.
+grammY will then search through different values to match your query.
 
 ```ts
 bot.on(":text"); // all text messages and all text channel posts
@@ -72,18 +71,18 @@ bot.on("message::url"); // messages with URL in text or caption (photos, etc)
 bot.on("::email"); // messages or channel posts with email in text or caption
 ```
 
-### Useful tips
+Leaving out the _first_ value matches both messages and channel posts.
+[Remember](./context.html#available-actions) that `ctx.msg` gives you access to both messages or channel posts, whatever is matched by the query.
 
-Make sure to use `callback_query:data` for inline keyboard buttons.
+Leaving out the _second_ value matches both entities and caption entities.
+You can leave out both the first and the second part at the same time.
+
+### Useful tips
 
 You can detect bots in queries with the `:is_bot` query part.
 The syntactic sugar `:me` can be used to refer to your bot from within a query, which will compare the user identifiers for you.
 
 ```ts
-bot.on("callback_query"); // any kind of callback query
-bot.on("callback_query:data"); // callback query with data (inline keyboard)
-bot.on("callback_query:game_short_name"); // game query (HTML5 games platform)
-
 bot.on("message:new_chat_members:is_bot"); // a bot joined the chat
 bot.on("message:left_chat_member:me"); // your bot left a chat (was removed)
 ```
@@ -133,6 +132,9 @@ bot
   // ... with at least one URL, hashtag, or cashtag.
   .on(["::url", "::hashtag", "::cashtag"], (ctx) => {});
 ```
+
+The type inference of `ctx` will scan through the entire call chain and inspect every element of all three `.on` calls.
+As an example, it can detect that `ctx.msg.text` is a required property for the above code snippet.
 
 ## The query language
 
