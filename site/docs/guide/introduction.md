@@ -27,7 +27,7 @@ You're kinda done now …
 
 ## How to keep a bot running
 
-> Skip this section if you only want to play around with bots, and [continue down here with the prerequisites](./#prerequisites-to-getting-started) to getting started.
+> Skip this section if you only want to play around with bots, and [continue down here with the prerequisites](#prerequisites-to-getting-started) to getting started.
 
 … except, if you are serious about your bot project, you're not.
 If you stop your bot (or shut down your computer), your bot becomes unresponsive, so it will no longer react to any messages.

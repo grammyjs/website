@@ -7,7 +7,7 @@ next: ./router.md
 
 While you can always just write you own code to connect to a data storage of your choice, grammY supports a very convenient storage pattern called _sessions_.
 
-> Jump down if you know how sessions work.
+> [Jump down](#how-to-use-sessions) if you know how sessions work.
 
 ## Why must we think about storage?
 
