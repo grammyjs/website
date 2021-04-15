@@ -17,3 +17,6 @@ node_modules/
 # Caches
 .temp
 .cache
+
+# dist directory
+dist/
