@@ -90,9 +90,9 @@ In that case, you have to use `keyboard.build()` when passing it to your custom 
 
 ```ts
 await ctx.reply(textWithHtml, {
+  parse_mode: "HTML", // in order to pass value for `parse_mode`
   reply_markup: {
     // have to create custom `reply_markup` object
-    parse_mode: "HTML", // in order to pass value for `parse_mode`
     keyboard: keyboard.build(), // note the `build` call
   },
 });
@@ -184,9 +184,9 @@ In that case, you have to use `inlineKeyboard.build()` when passing it to your c
 
 ```ts
 await ctx.reply(textWithHtml, {
+  parse_mode: "HTML", // in order to pass value for `parse_mode`
   reply_markup: {
     // have to create custom `reply_markup` object
-    parse_mode: "HTML", // in order to pass value for `parse_mode`
     inline_keyboard: inlineKeyboard.build(), // note the `build` call
   },
 });
