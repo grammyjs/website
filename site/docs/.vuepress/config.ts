@@ -159,6 +159,24 @@ export default defineUserConfig<DefaultThemeOptions>({
         ],
       },
       {
+        text: "Plugins",
+        children: [
+          {
+            text: "Official",
+            children: [
+              { text: "runner", link: "/advanced/runner.md" },
+              { text: "Internationalization (i18n)", link: "/packages/i18n.md" },
+            ],
+          },
+          {
+            text: "Third-party",
+            children: [
+              { text: "[Submit your PR!]", link: "/community-packages/README.md" },
+            ],
+          },
+        ],
+      },
+      {
         text: "Resources",
         children: [
           {
