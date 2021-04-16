@@ -8,8 +8,9 @@ export default defineUserConfig<DefaultThemeOptions>({
   themeConfig: {
     logo: "/Y.png",
     repo: "https://github.com/grammyjs/grammY",
-    docsRepo: "https://github.com/grammyjs/grammy-website",
-    docsDir: "site",
+    docsRepo: "https://github.com/grammyjs/website",
+    docsDir: "site/docs",
+    docsBranch: "main",
     editLink: true,
     editLinkText: "Edit this page on GitHub",
     editLinkPattern: ":repo/edit/:branch/:path",
