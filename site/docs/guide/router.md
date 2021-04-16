@@ -17,8 +17,8 @@ const router = new Router(ctx => {
   return 'key'
 })
 
-router.on('key',       ctx => { ... })
-router.on('other-key', ctx => { ... })
+router.route('key',       ctx => { ... })
+router.route('other-key', ctx => { ... })
 router.otherwise(ctx => { ... }) // called if no route matches
 
 bot.use(router)
@@ -81,7 +81,7 @@ of your birthday as a number!");
 // Use router
 const router = new Router<MyContext>((ctx) => ctx.session?.step ?? "idle");
 
-router.on("day", async (ctx, next) => {
+router.route("day", async (ctx, next) => {
   ctx.session ??= {};
   const day = parseInt(ctx.msg?.text ?? "", 10);
   if (isNaN(day) || day < 1 || 31 < day) {
@@ -102,7 +102,7 @@ router.on("day", async (ctx, next) => {
   ctx.session.step = "month";
 });
 
-router.on("month", async (ctx) => {
+router.route("month", async (ctx) => {
   // should not happen, unless session data is corrupted
   if (!ctx.session?.dayOfMonth) {
     await ctx.reply("I need your day of month!");
@@ -129,7 +129,7 @@ That is in ${diff} days!`,
   ctx.session.step = "idle";
 });
 
-router.on("idle", async (ctx) => {
+router.route("idle", async (ctx) => {
   await ctx.reply("Send /birthday to find out how long you have to wait.");
 });
 
@@ -183,7 +183,7 @@ of your birthday as a number!");
 // Use router
 const router = new Router((ctx) => ctx.session?.step ?? "idle");
 
-router.on("day", async (ctx, next) => {
+router.route("day", async (ctx, next) => {
   ctx.session ??= {};
   const day = parseInt(ctx.msg?.text ?? "", 10);
   if (isNaN(day) || day < 1 || 31 < day) {
@@ -204,7 +204,7 @@ router.on("day", async (ctx, next) => {
   ctx.session.step = "month";
 });
 
-router.on("month", async (ctx) => {
+router.route("month", async (ctx) => {
   // should not happen, unless session data is corrupted
   if (!ctx.session?.dayOfMonth) {
     await ctx.reply("I need your day of month!");
@@ -231,7 +231,7 @@ That is in ${diff} days!`,
   ctx.session.step = "idle";
 });
 
-router.on("idle", async (ctx) => {
+router.route("idle", async (ctx) => {
   await ctx.reply("Send /birthday to find out how long you have to wait.");
 });
 
@@ -298,7 +298,7 @@ of your birthday as a number!");
 // Use router
 const router = new Router<MyContext>((ctx) => ctx.session?.step ?? "idle");
 
-router.on("day", async (ctx, next) => {
+router.route("day", async (ctx, next) => {
   ctx.session ??= {};
   const day = parseInt(ctx.msg?.text ?? "", 10);
   if (isNaN(day) || day < 1 || 31 < day) {
@@ -319,7 +319,7 @@ router.on("day", async (ctx, next) => {
   ctx.session.step = "month";
 });
 
-router.on("month", async (ctx) => {
+router.route("month", async (ctx) => {
   // should not happen, unless session data is corrupted
   if (!ctx.session?.dayOfMonth) {
     await ctx.reply("I need your day of month!");
@@ -346,7 +346,7 @@ That is in ${diff} days!`,
   ctx.session.step = "idle";
 });
 
-router.on("idle", async (ctx) => {
+router.route("idle", async (ctx) => {
   await ctx.reply("Send /birthday to find out how long you have to wait.");
 });
 
