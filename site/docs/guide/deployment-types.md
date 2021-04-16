@@ -58,11 +58,33 @@ If you own a server with a public URL, you can give that URL to Telegram and it 
 If you want to run grammY with webhooks, you can integrate your bot into a web server.
 Every grammY bot can be converted to middleware for a number of web frameworks, including `express`, `koa`/`oak`, and more.
 
-```ts
+
+
+<CodeGroup>
+ <CodeGroupItem title="Node">
+
+```js
 const app = express(); // or whatever you're using
 
-app.use(webhookCallback(bot, "express")); // 'express' is also the default
+app.use(webhookCallback(bot, "express")); 
+// 'express' is also used as default if no argument is given
 ```
+
+ </CodeGroupItem>
+
+ <CodeGroupItem title="Deno">
+
+```ts
+import { Application } from "https://deno.land/x/oak/mod.ts"; //specific to oak
+
+const app = new Application(); //creating a new instance of class Application
+
+app.use(webhookCallback(bot, "oak")); // 'oak' is the recommended for deno deployments
+// 'express' is also used as default if no argument is given
+```
+
+ </CodeGroupItem>
+</CodeGroup>
 
 Be sure to read [Marvin's Marvellous Guide to All Things Webhook](https://core.telegram.org/bots/webhooks) written by the Telegram team if you consider running your bot on webhooks.
 
