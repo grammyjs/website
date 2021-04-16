@@ -1,4 +1,5 @@
 // apply justify to all articles
-.theme-default-content {
+.theme-default-content p,
+.theme-default-content li {
   text-align: justify;
 }
