@@ -58,29 +58,40 @@ If you own a server with a public URL, you can give that URL to Telegram and it 
 If you want to run grammY with webhooks, you can integrate your bot into a web server.
 Every grammY bot can be converted to middleware for a number of web frameworks, including `express`, `koa`/`oak`, and more.
 
-
-
 <CodeGroup>
- <CodeGroupItem title="Node">
+ <CodeGroupItem title="TS">
 
-```js
+```ts
+import express from "express";
+
 const app = express(); // or whatever you're using
 
-app.use(webhookCallback(bot, "express")); 
 // 'express' is also used as default if no argument is given
+app.use(webhookCallback(bot, "express"));
 ```
 
  </CodeGroupItem>
+ <CodeGroupItem title="JS">
 
+```js
+const express = require("express");
+
+const app = express(); // or whatever you're using
+
+// 'express' is also used as default if no argument is given
+app.use(webhookCallback(bot, "express"));
+```
+
+ </CodeGroupItem>
  <CodeGroupItem title="Deno">
 
 ```ts
-import { Application } from "https://deno.land/x/oak/mod.ts"; //specific to oak
+import { Application } from "https://deno.land/x/oak/mod.ts";
 
-const app = new Application(); //creating a new instance of class Application
+const app = new Application(); // or whatever you're using
 
-app.use(webhookCallback(bot, "oak")); // 'oak' is the recommended for deno deployments
-// 'express' is also used as default if no argument is given
+// make sure to specify the framework you use
+app.use(webhookCallback(bot, "oak"));
 ```
 
  </CodeGroupItem>
