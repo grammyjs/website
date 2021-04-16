@@ -10,6 +10,9 @@ export default defineUserConfig<DefaultThemeOptions>({
     repo: "https://github.com/grammyjs/grammY",
     docsRepo: "https://github.com/grammyjs/grammy-website",
     docsDir: "site",
+    editLink: true,
+    editLinkText: "Edit this page on GitHub",
+    editLinkPattern: ":repo/edit/:branch/:path",
     repoLabel: "GitHub",
     notFound: [
       "Not Found",
