@@ -28,7 +28,7 @@ bot.command('start', (ctx) => { ... });
 bot.hears(/echo (.+)?/, (ctx) => { ... });
 ```
 
-You can use auto-complete in your editor to see all available options, or check out [all methods](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Composer) of the `Composer` class.
+You can use auto-complete in your editor to see all available options, or check out [all methods](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Bot) of the `Bot` class.
 
 > [Read more](./filter-queries.md) about filtering for specific message types with `bot.on()`.
 
