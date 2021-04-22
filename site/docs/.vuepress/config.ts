@@ -165,13 +165,19 @@ export default defineUserConfig<DefaultThemeOptions>({
             text: "Official",
             children: [
               { text: "runner", link: "/advanced/runner.md" },
-              { text: "Internationalization (i18n)", link: "/packages/i18n.md" },
+              {
+                text: "Internationalization (i18n)",
+                link: "/packages/i18n.md",
+              },
             ],
           },
           {
             text: "Third-party",
             children: [
-              { text: "[Submit your PR!]", link: "/community-packages/README.md" },
+              {
+                text: "[Submit your PR!]",
+                link: "/community-packages/README.md",
+              },
             ],
           },
         ],
@@ -230,4 +236,15 @@ export default defineUserConfig<DefaultThemeOptions>({
       },
     ],
   },
+  plugins: [
+    [
+      "@vuepress/plugin-docsearch",
+      {
+        apiKey: "17b3527aa6f36e8d3fe2276b0f4d9633",
+        indexName: "grammy",
+        placeholder: "Search",
+        algoliaOptions: { facetFilters: ["lang:en-US"] },
+      },
+    ],
+  ],
 });

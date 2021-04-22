@@ -55,7 +55,7 @@ Check out the [BotError](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#B
 ## The `GrammyError` object
 
 If an API method like `sendMessage` fails, grammY will throw a `GrammyError`.
-Note that also `GrammyError` instances will be wrapped in `BotError` objects if they are thrown middleware.
+Note that also `GrammyError` instances will be wrapped in `BotError` objects if they are thrown in middleware.
 
 A thrown `GrammyError` indicates that the corresponding API request failed.
 The error provides access to the error code returned by the Telegram backend, as well as the description.
