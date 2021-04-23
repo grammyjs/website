@@ -50,7 +50,7 @@ bot.on("edited_message", (ctx) => {
 ```
 
 Moreover, you can get access to the raw `Update` object ([Telegram Bot API Reference](https://core.telegram.org/bots/api#update)) that Telegram sends to your bot.
-This update contains all the data that sources `ctx.message` and the like.
+This update object (`ctx.update`) contains all the data that sources `ctx.message` and the like.
 
 The context object always contains information about your bot, accessible via `ctx.me`.
 
@@ -97,13 +97,14 @@ bot.on("message", async (ctx) => {
 You can notice two things that are not optimal about this:
 
 1. We must have access to the `bot` object.
-   This means that we have to pass the `bot` object all around our code base in order to respond, which is annoying when you have more than one source file.
+   This means that we have to pass the `bot` object all around our code base in order to respond, which is annoying when you have more than one source file and you define your listener somewhere else.
 2. We have to take out the chat identifier of the context, and explicitly pass it to `sendMessage` again.
    This is annoying, too, because you most likely always want to respond to the same user that sent a message.
    Imagine how often you would type the same thing over and over again!
 
 Regarding point 1., the context object simply provides you access to the same API object that you find on `bot.api`, it is called `ctx.api`.
 You could now write `ctx.api.sendMessage` instead and you no longer have to pass around your `bot` object.
+Easy.
 
 However, the real strength is to fix point 2.
 The context object lets you simply send a reply like this:
@@ -120,7 +121,7 @@ bot.on("message", (ctx) => ctx.reply("Gotcha!"));
 Neat! :tada:
 
 Under the hood, the context _already knows its chat identifier_ (namely `ctx.msg.chat.id`), so it gives you the `reply` method to just send a message back to the same chat.
-Internally, `reply` again calls `sendMessage` with the chat ID pre-filled for you.
+Internally, `reply` again calls `sendMessage` with the chat identifier pre-filled for you.
 
 ::: tip Telegram reply feature
 Even though the method is called `ctx.reply` in grammY (and many other frameworks), it does not use the reply feature of Telegram where a previous message is linked.
@@ -149,6 +150,8 @@ The same context object for one update will be shared by all installed middlewar
 
 ## Customizing the context object
 
+> If you are new to context objects, you don't need to worry about the rest of this page.
+
 You can install your own properties on the context object if you want.
 This is possible in two ways:
 
@@ -158,7 +161,6 @@ This is possible in two ways:
 If you choose option 1., you must specify the custom context as a type parameter (skip for JavaScript):
 
 <CodeGroup>
-
   <CodeGroupItem title="Node" active>
 
 ```ts
@@ -166,7 +168,7 @@ import { Bot, Context } from "grammy";
 
 // Define custom context type
 interface MyContext extends Context {
-  customProp: string | number;
+  customProp: string | number | undefined;
 }
 
 // Pass custom context type to `Bot` constructor
@@ -179,7 +181,6 @@ bot.on("message", (ctx) => {
 ```
 
   </CodeGroupItem>
-
   <CodeGroupItem title="Deno">
 
 ```ts
@@ -187,7 +188,7 @@ import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 
 // Define custom context type
 interface MyContext extends Context {
-  customProp: string | number;
+  customProp: string | number | undefined;
 }
 
 // Pass custom context type to `Bot` constructor
@@ -200,11 +201,12 @@ bot.on("message", (ctx) => {
 ```
 
   </CodeGroupItem>
-
 </CodeGroup>
 
-Some middleware (e.g. [session middleware](./sessions.md)) requires you to mix in the correct types on the context object.
-This will be explained in the respective sections, whenever necessary.
+Naturally, just because the context _type_ now has new properties, this does not mean that there will actually be _values_ behind them.
+You have to make sure that a plugin (or your own middleware) sets all properties correctly to conform with the type you specified.
+
+> Some middleware (e.g. [session middleware](./sessions.md)) requires you to mix in the correct types on the context object, which can be done by _flavoring_ your context as explained [down here](#context-flavors).
 
 If you choose option 2., this is how you set a custom context constructor that will be used to instantiate the context objects.
 Note that your class must extend `Context`.
@@ -311,3 +313,47 @@ bot.start();
 ::: tip Related
 [Middleware](./middleware.md) refers to a function that receives a context object as parameter, such as installed listeners.
 :::
+
+## Context flavors
+
+Context flavors are a way to tell TypeScript about new properties on your context object.
+
+As an example, when you have [session data](./sessions.md), you must register `ctx.session` on the `Context` type.
+Otherwise,
+
+1. you cannot install the built-in sessions plugin, and
+2. you don't have access to `ctx.session` in your listeners.
+
+> Even though we'll use sessions as an example here, similar things apply for lots of other things.
+> In fact, most plugins will give you a context flavor that you need to use.
+
+A context flavor is simply a small new type that defines the properties that should be added to the context type.
+Let's look at an example for a flavor.
+
+```ts
+interface SessionFlavor<S> {
+  session: S;
+}
+```
+
+The `SessionFlavor` type ([API Reference](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#SessionFlavor)) is straightforward: it defines only the property `session`.
+It takes a type parameter that will define the actual structure of the session data.
+
+How is that useful?
+This is how you can flavor your context with session data:
+
+```ts
+import { Context, SessionFlavor } from "grammy";
+
+// Declare `ctx.session` to be of type `string`
+type MyContext = Context & SessionFlavor<string>;
+```
+
+You can now use the session plugin, and you have access to `ctx.session`:
+
+```ts
+bot.on("message", (ctx) => {
+  // Now `str` is of type `string`
+  const str = ctx.session;
+});
+```

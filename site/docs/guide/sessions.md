@@ -47,37 +47,37 @@ In our example, we would have access to the pizza count _of the corresponding ch
 
 You can add session support to grammY by using the built-in session middleware.
 
-Here is an example how that counts messages containing a pizza emoji :pizza::
+Here is an example bot that counts messages containing a pizza emoji :pizza::
 
 <CodeGroup>
  <CodeGroupItem title="TS">
 
 ```ts
-import { Bot, session, SessionContext } from "grammy";
+import { Bot, Context, session, SessionFlavor } from "grammy";
 
 // define shape of our session
 interface SessionData {
   pizzaCount: number;
 }
 
-// adjust the context type to include sessions
-type MyContext = SessionContext<SessionData>;
+// flavor the context type to include sessions
+type MyContext = Context & SessionFlavor<SessionData>;
 
 const bot = new Bot<MyContext>("");
 
-// install session middleware, and define how to resolve a session key
-bot.use(session({ getSessionKey: (ctx) => ctx.chat?.id.toString() }));
+// install session middleware, and define the initial session value
+bot.use(session({
+  initial(): SessionData {
+    return { pizzaCount: 0 };
+  },
+}));
 
 bot.command("hunger", async (ctx) => {
-  const count = ctx.session?.pizzaCount ?? 0;
+  const count = ctx.session.pizzaCount;
   await ctx.reply(`Your hunger level is ${count}!`);
 });
 
-bot.on(":text", (ctx) => {
-  // Make sure to initialize the session data
-  ctx.session ??= { pizzaCount: 0 };
-  if (ctx.msg.text.includes("🍕")) ctx.session.pizzaCount++;
-});
+bot.hears(".*🍕.*", (ctx) => ctx.session.pizzaCount++);
 
 bot.start();
 ```
@@ -88,21 +88,21 @@ bot.start();
 ```js
 const { Bot, session } = require("grammy");
 
-const bot = new Bot() < MyContext > "";
+const bot = new Bot("");
 
-// install session middleware, and define how to resolve a session key
-bot.use(session({ getSessionKey: (ctx) => ctx.chat?.id.toString() }));
+// install session middleware, and define the initial session value
+bot.use(session({
+  initial() {
+    return { pizzaCount: 0 };
+  },
+}));
 
 bot.command("hunger", async (ctx) => {
-  const count = ctx.session?.pizzaCount ?? 0;
+  const count = ctx.session.pizzaCount;
   await ctx.reply(`Your hunger level is ${count}!`);
 });
 
-bot.on(":text", (ctx) => {
-  // Make sure to initialize the session data
-  ctx.session ??= { pizzaCount: 0 };
-  if (ctx.msg.text.includes("🍕")) ctx.session.pizzaCount++;
-});
+bot.hears(".*🍕.*", (ctx) => ctx.session.pizzaCount++);
 
 bot.start();
 ```
@@ -113,8 +113,9 @@ bot.start();
 ```ts
 import {
   Bot,
+  Context,
   session,
-  SessionContext,
+  SessionFlavor,
 } from "https://deno.land/x/grammy/mod.ts";
 
 // define shape of our session
@@ -122,24 +123,24 @@ interface SessionData {
   pizzaCount: number;
 }
 
-// adjust the context type to include sessions
-type MyContext = SessionContext<SessionData>;
+// flavor the context type to include sessions
+type MyContext = Context & SessionFlavor<SessionData>;
 
 const bot = new Bot<MyContext>("");
 
-// install session middleware, and define how to resolve a session key
-bot.use(session({ getSessionKey: (ctx) => ctx.chat?.id.toString() }));
+// install session middleware, and define the initial session value
+bot.use(session({
+  initial(): SessionData {
+    return { pizzaCount: 0 };
+  },
+}));
 
 bot.command("hunger", async (ctx) => {
-  const count = ctx.session?.pizzaCount ?? 0;
+  const count = ctx.session.pizzaCount;
   await ctx.reply(`Your hunger level is ${count}!`);
 });
 
-bot.on(":text", (ctx) => {
-  // Make sure to initialize the session data
-  ctx.session ??= { pizzaCount: 0 };
-  if (ctx.msg.text.includes("🍕")) ctx.session.pizzaCount++;
-});
+bot.hears(".*🍕.*", (ctx) => ctx.session.pizzaCount++);
 
 bot.start();
 ```
@@ -148,6 +149,10 @@ bot.start();
 </CodeGroup>
 
 Note how we also have to [adjust the context type](./context.md#customizing-the-context-object) to make the session available on it.
+The context flavor is called `SessionFlavor`.
+
+It is important (but optional) that you specify the `inital` option for the session middleware.
+Pass a function that generates a new object with inital session data for new chats.
 
 You can specify which session key to use by passing a function called `getSessionKey` to the [options](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#SessionOptions).
 Whenever `getSessionKey` returns `undefined`, `ctx.session` will be `undefined`.
@@ -157,14 +162,8 @@ This is convenient when you develop your bot or if you run automatic tests (no d
 In production, you should use the `storageAdapter` option of the session middleware to connect it to your datastore.
 There may be a third-party storage adapter written for grammY that you can use.
 
-::: warning Sessions and webhooks
-When you are running your bot on webhooks, you should always use `getSessionKey` from the example above, i.e.
+::: warning Session keys and webhooks
+When you are running your bot on webhooks, you should avoid using the option `getSessionKey`.
 
-```ts
-function getSessionKey(ctx) {
-  return ctx.chat?.id.toString();
-}
-```
-
-If you need to use a different function (which is totally possible), you should first make sure you understand the consequences of that by reading [this](./deployment-types.md) and [this](/advanced/runner.md) article.
+If you need to use the option (which is totally possible), and if the function you pass does not depend on `ctx.chat.id` in some way, you should first make sure you understand the consequences of that by reading [this](./deployment-types.md) article and also [this](/advanced/runner.md) one.
 :::
