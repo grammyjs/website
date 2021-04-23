@@ -1,6 +1,6 @@
 ---
 prev: ./inline-queries.md
-next: ./sessions.md
+next: ./deployment-types.md
 ---
 
 # File handling

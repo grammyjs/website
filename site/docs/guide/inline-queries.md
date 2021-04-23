@@ -1,5 +1,5 @@
 ---
-prev: ./keyboards.md
+prev: ./errors.md
 next: ./files.md
 ---
 

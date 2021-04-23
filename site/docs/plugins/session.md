@@ -1,8 +1,3 @@
----
-prev: ./files.md
-next: ./router.md
----
-
 # Sessions and storing data
 
 While you can always just write you own code to connect to a data storage of your choice, grammY supports a very convenient storage pattern called _sessions_.
@@ -148,7 +143,7 @@ bot.start();
  </CodeGroupItem>
 </CodeGroup>
 
-Note how we also have to [adjust the context type](./context.md#customizing-the-context-object) to make the session available on it.
+Note how we also have to [adjust the context type](/guide/context.md#customizing-the-context-object) to make the session available on it.
 The context flavor is called `SessionFlavor`.
 
 It is important (but optional) that you specify the `inital` option for the session middleware.
@@ -165,5 +160,5 @@ There may be a third-party storage adapter written for grammY that you can use.
 ::: warning Session keys and webhooks
 When you are running your bot on webhooks, you should avoid using the option `getSessionKey`.
 
-If you need to use the option (which is totally possible), and if the function you pass does not depend on `ctx.chat.id` in some way, you should first make sure you understand the consequences of that by reading [this](./deployment-types.md) article and also [this](/advanced/runner.md) one.
+If you need to use the option (which is totally possible), and if the function you pass does not depend on `ctx.chat.id` in some way, you should first make sure you understand the consequences of that by reading [this](/guide/deployment-types.md) article and also [this](/plugins/runner.md) one.
 :::

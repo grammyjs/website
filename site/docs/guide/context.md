@@ -206,7 +206,7 @@ bot.on("message", (ctx) => {
 Naturally, just because the context _type_ now has new properties, this does not mean that there will actually be _values_ behind them.
 You have to make sure that a plugin (or your own middleware) sets all properties correctly to conform with the type you specified.
 
-> Some middleware (e.g. [session middleware](./sessions.md)) requires you to mix in the correct types on the context object, which can be done by _flavoring_ your context as explained [down here](#context-flavors).
+> Some middleware (e.g. [session middleware](/plugins/session.md)) requires you to mix in the correct types on the context object, which can be done by _flavoring_ your context as explained [down here](#context-flavors).
 
 If you choose option 2., this is how you set a custom context constructor that will be used to instantiate the context objects.
 Note that your class must extend `Context`.
@@ -318,7 +318,7 @@ bot.start();
 
 Context flavors are a way to tell TypeScript about new properties on your context object.
 
-As an example, when you have [session data](./sessions.md), you must register `ctx.session` on the `Context` type.
+As an example, when you have [session data](/plugins/session.md), you must register `ctx.session` on the `Context` type.
 Otherwise,
 
 1. you cannot install the built-in sessions plugin, and

@@ -31,4 +31,4 @@ That being said, TypeScript has a few advantages over Python when it comes to de
 3. Again, the documentation is better for grammY than for PTB, even though the PTB team is doing a much better job than the rest of the JavaScript ecosystem with their libaries that preceded grammY.
 
 The main advantage of PTB over grammY is the size of its community.
-grammY is still a very young project, and even though we have a [small but friendly community chat](https://telegram.me/grammyjs), it cannot reach up to the impressive number of engaged developers that PTB has.
+grammY is still a very young project, and even though we have a [small but friendly community chat](https://telegram.me/grammyjs), it cannot reach up to the impressive number of engaged users that PTB has.

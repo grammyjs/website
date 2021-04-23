@@ -1,5 +1,5 @@
 ---
-prev: ./router.md
+prev: ./files.md
 next: /advanced/
 ---
 
@@ -37,7 +37,7 @@ to run your bot with a very simple form of long polling.
 It processes all updates sequentially.
 This makes your bot very easy to debug, and all behavior very predictable, because there is no concurrency involved.
 
-If you want your messages to be handled concurrently by grammY, or you worry about throughput, check out the section about [grammY runner](/advanced/runner.md).
+If you want your messages to be handled concurrently by grammY, or you worry about throughput, check out the section about [grammY runner](/plugins/runner.md).
 
 ## Webhooks
 
@@ -56,6 +56,8 @@ If you own a server with a public URL, you can give that URL to Telegram and it 
 ### How to use
 
 If you want to run grammY with webhooks, you can integrate your bot into a web server.
+We therefore expect you to be able to start a simple web server with a framework of your choice.
+
 Every grammY bot can be converted to middleware for a number of web frameworks, including `express`, `koa`/`oak`, and more.
 
 <CodeGroup>

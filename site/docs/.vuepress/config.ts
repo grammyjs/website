@@ -25,7 +25,6 @@ export default defineUserConfig<DefaultThemeOptions>({
     backToHome: "Take me hoooooooome",
     navbar: [
       { text: "Guide", link: "/guide/" },
-      { text: "Getting started", link: "/guide/getting-started.md" },
       {
         text: "Learn",
         children: [
@@ -73,24 +72,12 @@ export default defineUserConfig<DefaultThemeOptions>({
                 link: "/guide/errors.md",
               },
               {
-                text: "Keyboards and Inline Keyboards",
-                link: "/guide/keyboards.md",
-              },
-              {
                 text: "Inline Queries",
                 link: "/guide/inline-queries.md",
               },
               {
                 text: "File handling",
                 link: "/guide/files.md",
-              },
-              {
-                text: "Sessions and storing data",
-                link: "/guide/sessions.md",
-              },
-              {
-                text: "Router",
-                link: "/guide/router.md",
               },
               {
                 text: "Long Polling vs. Webhooks",
@@ -118,12 +105,8 @@ export default defineUserConfig<DefaultThemeOptions>({
                 link: "/advanced/scaling.md",
               },
               {
-                text: "Concurrency (grammY runner)",
-                link: "/advanced/runner.md",
-              },
-              {
-                text: "Lazy sessions",
-                link: "/advanced/lazy-sessions.md",
+                text: "Scaling Up III: Reliability",
+                link: "/advanced/reliability.md",
               },
               {
                 text: "Bot API Transformers",
@@ -142,8 +125,61 @@ export default defineUserConfig<DefaultThemeOptions>({
         ],
       },
       {
-        text: "API Reference",
-        link: "https://doc.deno.land/https/deno.land/x/grammy/mod.ts",
+        text: "Plugins",
+        children: [
+          {
+            text: "Introduction",
+            children: [
+              {
+                text: "About Plugins",
+                link: "/plugins/README.md",
+              },
+            ],
+          },
+          {
+            text: "Built-in",
+            children: [
+              {
+                text: "Sessions and storing data",
+                link: "/plugins/session.md",
+              },
+              {
+                text: "Keyboards and Inline Keyboards",
+                link: "/plugins/keyboard.md",
+              },
+              {
+                text: "Webhooks",
+                link: "/plugins/webhook.md",
+              },
+            ],
+          },
+          {
+            text: "Official",
+            children: [
+              {
+                text: "Concurrency (runner)",
+                link: "/plugins/runner.md",
+              },
+              {
+                text: "Router",
+                link: "/plugins/router.md",
+              },
+              {
+                text: "Internationalization (i18n)",
+                link: "/plugins/i18n.md",
+              },
+            ],
+          },
+          {
+            text: "Third-party",
+            children: [
+              {
+                text: "[Submit your PR!]",
+                link: "/plugins/README.md#submitting-your-own-package-to-the-docs",
+              },
+            ],
+          },
+        ],
       },
       {
         text: "Demo",
@@ -154,30 +190,6 @@ export default defineUserConfig<DefaultThemeOptions>({
               { text: "Browser Demo", link: "/demo/README.md" },
               { text: "Example Bots", link: "/demo/examples.md" },
               { text: "Community Showlounge", link: "/demo/showlounge.md" },
-            ],
-          },
-        ],
-      },
-      {
-        text: "Plugins",
-        children: [
-          {
-            text: "Official",
-            children: [
-              { text: "runner", link: "/advanced/runner.md" },
-              {
-                text: "Internationalization (i18n)",
-                link: "/packages/i18n.md",
-              },
-            ],
-          },
-          {
-            text: "Third-party",
-            children: [
-              {
-                text: "[Submit your PR!]",
-                link: "/community-packages/README.md",
-              },
             ],
           },
         ],
@@ -233,6 +245,10 @@ export default defineUserConfig<DefaultThemeOptions>({
             ],
           },
         ],
+      },
+      {
+        text: "API Reference",
+        link: "https://doc.deno.land/https/deno.land/x/grammy/mod.ts",
       },
     ],
   },

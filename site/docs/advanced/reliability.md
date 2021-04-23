@@ -1,8 +1,8 @@
 ---
-prev: ./runner.md
+prev: ./scaling.md
 next: ./transformers.md
 ---
 
-# Lazy sessions
+# Scaling Up III: Reliability
 
 Coming soon, please come back later.

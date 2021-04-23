@@ -162,7 +162,7 @@ If you ever call `next()` without the `await` keyword, several things will break
 - :x: Your middleware stack will be executed in the wrong order.
 - :x: If an error happens, your error handler will not be called for it.
   Instead, you will see that an `UnhandledPromiseRejectionWarning` will occur, which may crash the Node.js process
-- :x: The backpressure mechanism of [grammY runner](/advanced/runner.md) breaks, which protects your server from too high load, such as during load spikes.
+- :x: The backpressure mechanism of [grammY runner](/plugins/runner.md) breaks, which protects your server from too high load, such as during load spikes.
 - :skull: Sometimes it also kills all your innocent kittens.
 
 :::

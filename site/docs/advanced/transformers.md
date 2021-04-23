@@ -1,5 +1,5 @@
 ---
-prev: ./lazy-sessions.md
+prev: ./reliability.md
 next: ./proxies.md
 ---
 

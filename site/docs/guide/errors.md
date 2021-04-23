@@ -1,6 +1,6 @@
 ---
 prev: ./middleware.md
-next: ./keyboards.md
+next: ./inline-queries.md
 ---
 
 # Error handling
@@ -14,7 +14,7 @@ It depends on your setup how to catch errors.
 
 ### Long polling
 
-If you run your bot via `bot.start()`, or if you are using [grammY runner](/advanced/runner.md), then you should **install an error handler via `bot.catch`**.
+If you run your bot via `bot.start()`, or if you are using [grammY runner](/plugins/runner.md), then you should **install an error handler via `bot.catch`**.
 
 grammY has a default error handler installed that stops the bot if it was started by `bot.start()`.
 It then rethrows the error.

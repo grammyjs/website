@@ -1,104 +1,6 @@
----
-prev: ./errors.md
-next: ./inline-queries.md
----
-
 # Keyboards and Inline Keyboards
 
-Your bot may send a number of buttons, either to [replace the user's keyboard](#keyboards), or to be [displayed underneath a message](#inline-keyboards).
-
-## Keyboards
-
-> Revisit the keyboard section in the [Introduction for Developers](https://core.telegram.org/bots#keyboards) written by the Telegram team.
-
-grammY has a simple and intuitive way to build up the reply keyboards that your bot can use to replace the user's keyboard.
-It provides a class called `Keyboard` for this.
-
-Once a user clicks a text button, your bot will receive the sent text as a plain text message.
-Remember that you can listed for text message via `bot.on('message:text')`.
-
-### Building a keyboard
-
-Here are three examples how to build a keyboard with `text` buttons.
-
-You can also request the phone number with `requestContact`, the location with `requestLocation`, and a poll with `requestPoll`.
-
-#### Example 1
-
-Three buttons in one column can be built like this:
-
-##### Code
-
-```ts
-const keyboard = new Keyboard()
-  .text("Yes, they certainly are").row()
-  .text("I'm not quite sure").row()
-  .text("No. 😈");
-```
-
-##### Result
-
-![Example 1](https://core.telegram.org/file/811140184/1/5YJxx-rostA/ad3f74094485fb97bd)
-
-#### Example 2
-
-A calculator keyboard can be built like this:
-
-##### Code
-
-```ts
-const keyboard = new Keyboard()
-  .text("7").text("8").text("9").text("*").row()
-  .text("4").text("5").text("6").text("/").row()
-  .text("1").text("2").text("3").text("-").row()
-  .text("0").text(".").text("=").text("+");
-```
-
-##### Result
-
-![Example 2](https://core.telegram.org/file/811140880/1/jS-YSVkDCNQ/b397dfcefc6da0dc70)
-
-#### Example 3
-
-Four buttons in a grid can be built like this:
-
-##### Code
-
-```ts
-const keyboard = new Keyboard()
-  .text("A").text("B").row()
-  .text("C").text("D");
-```
-
-##### Result
-
-![Example 3](https://core.telegram.org/file/811140733/2/KoysqJKQ_kI/a1ee46a377796c3961)
-
-### Sending a keyboard
-
-You can send a keyboard directly along a message, no matter whether you use `bot.api.sendMessage`, `ctx.api.sendMessage`, or `ctx.reply`:
-
-```ts
-// Send keyboard with message:
-await ctx.reply(text, {
-  reply_markup: keyboard,
-});
-```
-
-If you want to specify further options with your message, you may need to create your own `reply_markup` object.
-In that case, you have to use `keyboard.build()` when passing it to your custom object.
-
-```ts
-await ctx.reply(textWithHtml, {
-  parse_mode: "HTML", // in order to pass value for `parse_mode`
-  reply_markup: {
-    // have to create custom `reply_markup` object
-    keyboard: keyboard.build(), // note the `build` call
-  },
-});
-```
-
-Naturally, all other methods that send messages other than text messages support the same options, as specified by the [Telegram Bot API Reference](https://core.telegram.org/bots/api).
+Your bot may send a number of buttons, either to be [displayed underneath a message](#inline-keyboards), or to [replace the user's keyboard](#keyboards).
 
 ## Inline Keyboards
 
@@ -108,7 +10,7 @@ grammY has a simple and intuitive way to build up the inline keyboards that your
 It provides a class called `InlineKeyboard` for this.
 
 > Both `switchInline` and `switchInlineCurrent` buttons start inline queries.
-> Check out the section about [Inline queries](./inline-queries.md) for more information about how they work.
+> Check out the section about [Inline queries](/guide/inline-queries.md) for more information about how they work.
 
 ### Building an inline keyboard
 
@@ -231,3 +133,97 @@ bot.on("callback_query:data", async (ctx) => {
 It makes sense to define `bot.on('callback_query:data')` at last to always answer all other callback queries that your previous listeners did not handle.
 Otherwise, some clients may display a loading animation for up to a minute when a user presses a button that your bot does not want to react to.
 :::
+
+
+## Keyboards
+
+> Revisit the keyboard section in the [Introduction for Developers](https://core.telegram.org/bots#keyboards) written by the Telegram team.
+
+grammY has a simple and intuitive way to build up the reply keyboards that your bot can use to replace the user's keyboard.
+It provides a class called `Keyboard` for this.
+
+Once a user clicks a text button, your bot will receive the sent text as a plain text message.
+Remember that you can listed for text message via `bot.on('message:text')`.
+
+### Building a keyboard
+
+Here are three examples how to build a keyboard with `text` buttons.
+
+You can also request the phone number with `requestContact`, the location with `requestLocation`, and a poll with `requestPoll`.
+
+#### Example 1
+
+Three buttons in one column can be built like this:
+
+##### Code
+
+```ts
+const keyboard = new Keyboard()
+  .text("Yes, they certainly are").row()
+  .text("I'm not quite sure").row()
+  .text("No. 😈");
+```
+
+##### Result
+
+![Example 1](https://core.telegram.org/file/811140184/1/5YJxx-rostA/ad3f74094485fb97bd)
+
+#### Example 2
+
+A calculator keyboard can be built like this:
+
+##### Code
+
+```ts
+const keyboard = new Keyboard()
+  .text("7").text("8").text("9").text("*").row()
+  .text("4").text("5").text("6").text("/").row()
+  .text("1").text("2").text("3").text("-").row()
+  .text("0").text(".").text("=").text("+");
+```
+
+##### Result
+
+![Example 2](https://core.telegram.org/file/811140880/1/jS-YSVkDCNQ/b397dfcefc6da0dc70)
+
+#### Example 3
+
+Four buttons in a grid can be built like this:
+
+##### Code
+
+```ts
+const keyboard = new Keyboard()
+  .text("A").text("B").row()
+  .text("C").text("D");
+```
+
+##### Result
+
+![Example 3](https://core.telegram.org/file/811140733/2/KoysqJKQ_kI/a1ee46a377796c3961)
+
+### Sending a keyboard
+
+You can send a keyboard directly along a message, no matter whether you use `bot.api.sendMessage`, `ctx.api.sendMessage`, or `ctx.reply`:
+
+```ts
+// Send keyboard with message:
+await ctx.reply(text, {
+  reply_markup: keyboard,
+});
+```
+
+If you want to specify further options with your message, you may need to create your own `reply_markup` object.
+In that case, you have to use `keyboard.build()` when passing it to your custom object.
+
+```ts
+await ctx.reply(textWithHtml, {
+  parse_mode: "HTML", // in order to pass value for `parse_mode`
+  reply_markup: {
+    // have to create custom `reply_markup` object
+    keyboard: keyboard.build(), // note the `build` call
+  },
+});
+```
+
+Naturally, all other methods that send messages other than text messages support the same options, as specified by the [Telegram Bot API Reference](https://core.telegram.org/bots/api).

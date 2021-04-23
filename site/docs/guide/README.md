@@ -19,6 +19,7 @@ If you know how to write an application in Node.js or even already created a Tel
 There are two main parts of this documentation.
 The first one (you're looking at it!) introduces the concepts behind both grammY and bots in general, and helps you understand how grammY makes your life easier.
 Check our the Learn section to see what sections are available.
+You may also want to read up about our great plugins that help you with building rich menus, storing data, translating your bot to multiple languages, and much more.
 
 The second part is the grammY [API Reference](https://doc.deno.land/https/deno.land/x/grammy/mod.ts), linked at the top of the page.
 This is a detailed overview over every single bit of code and every option that grammY provides to you.

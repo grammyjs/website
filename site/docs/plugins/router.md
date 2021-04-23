@@ -1,8 +1,3 @@
----
-prev: ./sessions.md
-next: ./deployment-types.md
----
-
 # Router
 
 The `Router` class ([grammY API Reference](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Router)) provides a way to structure your bot by routing context objects to different parts of your code.
@@ -26,7 +21,7 @@ bot.use(router)
 
 ## Combining routers with sessions
 
-Routers work well together with [sessions](./sessions.md).
+Routers work well together with [sessions](./session.md).
 As an example, combining the two concepts allows you to re-create forms in the chat interface.
 
 Let's say that you want to build a bot that tells users how many days are left until it is their birthday.
