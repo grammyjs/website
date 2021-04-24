@@ -1,4 +1,4 @@
-# Keyboards and Inline Keyboards
+# Keyboards and Inline Keyboards (built-in)
 
 Your bot may send a number of buttons, either to be [displayed underneath a message](#inline-keyboards), or to [replace the user's keyboard](#keyboards).
 

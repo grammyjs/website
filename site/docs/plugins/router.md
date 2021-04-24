@@ -1,4 +1,4 @@
-# Router
+# Router (`router`)
 
 The `Router` class ([grammY API Reference](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Router)) provides a way to structure your bot by routing context objects to different parts of your code.
 

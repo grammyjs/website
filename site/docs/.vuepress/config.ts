@@ -137,36 +137,27 @@ export default defineUserConfig<DefaultThemeOptions>({
             ],
           },
           {
-            text: "Built-in",
+            text: "Official",
             children: [
               {
-                text: "Sessions and storing data",
+                text: "Sessions and storing data (built-in)",
                 link: "/plugins/session.md",
               },
               {
-                text: "Keyboards and Inline Keyboards",
+                text: "Keyboards and Inline Keyboards (built-in)",
                 link: "/plugins/keyboard.md",
               },
-              {
-                text: "Webhooks",
-                link: "/plugins/webhook.md",
-              },
-            ],
-          },
-          {
-            text: "Official",
-            children: [
               {
                 text: "Concurrency (runner)",
                 link: "/plugins/runner.md",
               },
               {
-                text: "Router",
-                link: "/plugins/router.md",
-              },
-              {
                 text: "Internationalization (i18n)",
                 link: "/plugins/i18n.md",
+              },
+              {
+                text: "Router (router)",
+                link: "/plugins/router.md",
               },
             ],
           },
