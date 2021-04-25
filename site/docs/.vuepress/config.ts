@@ -148,6 +148,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                 link: "/plugins/keyboard.md",
               },
               {
+                text: "Interactive menus (menu)",
+                link: "/plugins/menu.md",
+              },
+              {
                 text: "Concurrency (runner)",
                 link: "/plugins/runner.md",
               },
