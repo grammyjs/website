@@ -3,6 +3,6 @@ prev: ./
 next: ./showlounge.md
 ---
 
-# Example Bots Demo
+# Example Bots
 
 Coming soon, please come back later.

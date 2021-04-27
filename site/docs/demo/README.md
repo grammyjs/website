@@ -2,6 +2,6 @@
 next: ./examples.md
 ---
 
-# Browser Demo
+# Live Browser Demo
 
 Coming soon, please come back later.
