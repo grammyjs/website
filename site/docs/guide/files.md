@@ -45,7 +45,7 @@ Instances of `InputFile` can be passed to all methods that accept sending files 
 
 ::: warning InputFile constructor types
 Note that the [grammY API Reference](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#InputFile) for `InputFile` lists only the types that are available on Deno.
-If you use grammY on Node.js or in the browser, check out the respective type definitions or implementation.
+If you use grammY on Node.js, check out the respective type definition or implementation, or trust TypeScript.
 :::
 
 ## File size limits

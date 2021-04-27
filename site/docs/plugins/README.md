@@ -4,12 +4,12 @@ grammY supports installing plugins via adding new [middleware](/guide/middleware
 
 ## Categories of plugins
 
-Some plugins are right **built-in** into the grammY core library because we assume that many bots needs them.
+Some plugins are right **built-in** into the grammY core library because we assume that many bots need them.
 This makes it easier for new users to use them, without having to install a new package first.
 
 Most plugins are published alongside the core package of grammY, we call them **official** plugins.
 They are installed from `@grammyjs/*` on npm, and they are published under the [@grammyjs](https://github.com/grammyjs) organization on GitHub.
-We coordinates their releases with the releases of grammY, and we make sure that everything works well together.
+We coordinate their releases with the releases of grammY, and we make sure that everything works well together.
 
 > If you want to publish your own package as an officially supported plugin, just ping us in the [community chat](https://telegram.me/grammyjs) and let us know what you're planning, then we can grant you publish access to GitHub and npm.
 > You will be responsible for maintaining your code (but maybe others want to join in).

@@ -109,12 +109,16 @@ export default defineUserConfig<DefaultThemeOptions>({
                 link: "/advanced/reliability.md",
               },
               {
+                text: "Scaling Up IV: Flood Limits",
+                link: "/advanced/flood.md",
+              },
+              {
                 text: "Bot API Transformers",
                 link: "/advanced/transformers.md",
               },
               {
                 text: "Proxy Support",
-                link: "/advanced/proxies.md",
+                link: "/advanced/proxy.md",
               },
               {
                 text: "Deployment Checklist",

@@ -13,7 +13,7 @@ While it is not wrong that they are listening for updates, calling them just lis
 
 ## The middleware stack
 
-Assume you write a bot like this:
+Suppose you write a bot like this:
 
 ```ts
 const bot = new Bot("<token>");
@@ -40,7 +40,7 @@ When an update with a regular text message arrives, these steps will be performe
 
 The update is **not** checked for a photo content, because the middleware at `(*)` already handled the update.
 
-How, how does this work?
+Now, how does this work?
 Let's find out.
 
 We can inspect the `Middleware` type in grammY's reference [here](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Middleware):
@@ -52,7 +52,7 @@ type Middleware = MiddlewareFn | MiddlewareObj;
 
 Aha.
 Middleware can be a function or an object.
-We only used functions so far, so let's ignore middleware objects for now, and dig deeper into the `MiddlewareFn` type ([reference](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#MiddlewareFn)):
+We only used functions (`(ctx) => { ... }`) so far, so let's ignore middleware objects for now, and dig deeper into the `MiddlewareFn` type ([reference](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#MiddlewareFn)):
 
 ```ts
 // omitted type parameters again
@@ -62,13 +62,31 @@ type NextFunction = () => Promise<void>;
 ```
 
 So, middleware takes two parameters!
-We [already know](./context.md) what `ctx` is, but we also see a function called `next`.
+We only used one so far, the context object `ctx`.
+We [already know](./context.md) what `ctx` is, but we also see a function with the name `next`.
 In order to understand what `next` is, we have to look at all middleware that you install on your bot as a whole.
 
-You can view all installed middleware functions as a number of layers that are on top of each other.
+You can view all installed middleware functions as a number of layers that are stacked on top of each other.
 The first middleware (`session` in our example) is the uppermost layer, hence receiving each update first.
 It can then decide if it wants to handle the update, or pass it down to the next layer (the `/start` command handler).
 The function `next` can be used to invoke the subsequent middleware, often called _downstream middleware_.
+This also means that if you don't call `next` in your middleware, the underlying layers of middleware will not be invoked.
+
+This stack of functions is the _middleware stack_.
+
+```asciiart:no-line-numbers
+ (ctx, next) = ...    |
+ (ctx, next) = ...    |—————upstream middleware of X
+ (ctx, next) = ...    |
+ (ctx, next) = ...       <— middleware X. Call `next` to pass down updates
+ (ctx, next) = ...    |
+ (ctx, next) = ...    |—————downstream middleware of X
+ (ctx, next) = ...    |
+```
+
+Looking back at our example earlier, we now know why `bot.on(":photo")` was never even checked: the middleware in `bot.(":text", (ctx) => { ... })` already handled the update, and it did not call `next`.
+In fact, it did not even specify `next` as a parameter.
+It simply ignored `next`, hence not passing on the update.
 
 Let's try out something else with our new knowledge!
 
@@ -81,7 +99,7 @@ bot.command("start", (ctx) => ctx.reply("Command!"));
 bot.start();
 ```
 
-If you run the above bot, and send `/start`, you will never get to see a response saying “Command!”.
+If you run the above bot, and send `/start`, you will never get to see a response saying `Command!`.
 Let's inspect what happens:
 
 1. You send `'/start'` to the bot.
@@ -89,11 +107,12 @@ Let's inspect what happens:
    The update is handled immediately by the first middleware and your bot replies with “Text!”.
 
 The message is never even checked for containing the `/start` command!
-The order in which you register your middleware matters, because it determines the order of the layers in the _middleware stack_.
+The order in which you register your middleware matters, because it determines the order of the layers in the middleware stack.
 You can fix the issue by flipping the order of lines 3 and 4.
+If you would call `next` in line 3, two responses would be sent.
 
 **The `bot.use()` function simply registers middleware that receives all updates.**
-This is why `session()` is installed via `bot.use()`—we want it to operate on all updates, no matter what data is contained.
+This is why `session()` is installed via `bot.use()`—we want the plugin to operate on all updates, no matter what data is contained.
 
 Having a middleware stack is an extremely powerful property of any web framework, and this pattern is widely popular (not just for Telegram bots).
 
@@ -110,7 +129,7 @@ You can compare it to the middleware type from above, and convince yourself that
 /** Measure the response time of the bot, and logs it to `console` */
 async function responseTime(
   ctx: Context,
-  next: () => Promise<void>
+  next: NextFunction // is an alias for: () => Promise<void>
 ): Promise<void> {
   // TODO implement
 }
@@ -133,10 +152,10 @@ Here is what we want to do:
 It is important to install our `responseTime` middleware _at first_ on the bot to make sure that all operations are included in the measurement.
 
 ```ts
-/** Measure the response time of the bot, and logs it to `console` */
+/** Measure the response time of the bot, and log it */
 async function responseTime(
   ctx: Context,
-  next: () => Promise<void>
+  next: NextFunction
 ): Promise<void> {
   // take time before
   const before = Date.now(); // milliseconds
@@ -168,6 +187,7 @@ If you ever call `next()` without the `await` keyword, several things will break
 :::
 
 The rule that you should use `await` is actually not just true for `next()`, but for any expression that returns a `Promise` in general.
+This includes `bot.api.sendMessage`, `ctx.reply`, and all other network calls.
 If your project is important to you, then you use linting tools that warn you if you ever forget to use `await` on a `Promise`.
 
 ::: tip Enable no-floating-promises
@@ -182,7 +202,7 @@ In grammY, middleware may return a `Promise` (which will be `await`ed), but it c
 In contrast to other middleware systems (such as the one from `express`), you cannot pass error values to `next`.
 `next` does not take any arguments.
 If you want to error, you can simply `throw` the error.
-Furthermore, it does not matter how many arguments your middleware takes: `() => {}` will be handled exactly as `(ctx) => {}`, or as `(ctx, next) => {}`.
+Another difference is that it does not matter how many arguments your middleware takes: `() => {}` will be handled exactly as `(ctx) => {}`, or as `(ctx, next) => {}`.
 
 There are two types of middleware: functions and objects.
 Middleware objects are simply a wrapper for middleware functions.
