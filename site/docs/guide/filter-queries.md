@@ -168,9 +168,9 @@ In this case you will still be provided with helpful error messages.
 
 ### Performance
 
-**grammY can check every filter query in (amortized) constant time per update**, independent of the structure of the query or the incoming update.
+**grammY can check every filter query in (amortised) constant time per update**, independent of the structure of the query or the incoming update.
 
-The validation of the filter queries happens only once, when the bot is intialized and `bot.on()` is called.
+The validation of the filter queries happens only once, when the bot is intialised and `bot.on()` is called.
 
 At startup, grammY derives a predicate function from the filter query by splitting it into its query parts.
 Every part will be mapped to a function that performs a single `in` check, or two checks if the part is omitted and two values need to be checked.

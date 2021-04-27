@@ -206,7 +206,7 @@ bot.on("message", (ctx) => {
 Naturally, just because the context _type_ now has new properties, this does not mean that there will actually be _values_ behind them.
 You have to make sure that a plugin (or your own middleware) sets all properties correctly to conform with the type you specified.
 
-> Some middleware (e.g. [session middleware](/plugins/session.md)) requires you to mix in the correct types on the context object, which can be done by _flavoring_ your context as explained [down here](#context-flavors).
+> Some middleware (e.g. [session middleware](/plugins/session.md)) requires you to mix in the correct types on the context object, which can be done by _flavouring_ your context as explained [down here](#context-flavours).
 
 If you choose option 2., this is how you set a custom context constructor that will be used to instantiate the context objects.
 Note that your class must extend `Context`.
@@ -314,9 +314,9 @@ bot.start();
 [Middleware](./middleware.md) refers to a function that receives a context object as parameter, such as installed listeners.
 :::
 
-## Context flavors
+## Context flavours
 
-Context flavors are a way to tell TypeScript about new properties on your context object.
+Context flavours are a way to tell TypeScript about new properties on your context object.
 
 As an example, when you have [session data](/plugins/session.md), you must register `ctx.session` on the `Context` type.
 Otherwise,
@@ -325,10 +325,10 @@ Otherwise,
 2. you don't have access to `ctx.session` in your listeners.
 
 > Even though we'll use sessions as an example here, similar things apply for lots of other things.
-> In fact, most plugins will give you a context flavor that you need to use.
+> In fact, most plugins will give you a context flavour that you need to use.
 
-A context flavor is simply a small new type that defines the properties that should be added to the context type.
-Let's look at an example for a flavor.
+A context flavour is simply a small new type that defines the properties that should be added to the context type.
+Let's look at an example for a flavour.
 
 ```ts
 interface SessionFlavor<S> {
@@ -340,7 +340,7 @@ The `SessionFlavor` type ([API Reference](https://doc.deno.land/https/deno.land/
 It takes a type parameter that will define the actual structure of the session data.
 
 How is that useful?
-This is how you can flavor your context with session data:
+This is how you can flavour your context with session data:
 
 ```ts
 import { Context, SessionFlavor } from "grammy";

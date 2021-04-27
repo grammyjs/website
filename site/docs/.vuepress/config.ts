@@ -181,12 +181,12 @@ export default defineUserConfig<DefaultThemeOptions>({
         ],
       },
       {
-        text: "Demo",
+        text: "Examples",
         children: [
           {
-            text: "Demo",
+            text: "Examples",
             children: [
-              { text: "Browser Demo", link: "/demo/README.md" },
+              { text: "Live Browser Demo", link: "/demo/README.md" },
               { text: "Example Bots", link: "/demo/examples.md" },
               { text: "Community Showlounge", link: "/demo/showlounge.md" },
             ],

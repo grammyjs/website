@@ -4,4 +4,46 @@ prev: ./proxy.md
 
 # Deployment Checklist
 
-Coming soon, please come back later.
+Here is a list of things that you may want to keep in mind when hosting a large bot.
+
+## Errors
+
+1. [Install an error handler with `bot.catch`.](/guide/errors.html)
+2. [Install an error handler with `bot.catch`.](/guide/errors.html)
+3. Also, don't forget to [install an error handler with `bot.catch`.](/guide/errors.html)
+4. Use `await` on all promises, and installed linting tools that make sure you cannot forget this.
+
+## Message sending
+
+1. Send files by path or `Buffer` instead of by stream, or at least make sure you [know the pitfalls](./transformers.html#use-cases-of-transformer-functions).
+2. Use `bot.on('callback_query:data')` as the fallback handler to [react to all callback queries](/plugins/keyboard.html#responding-to-clicks).
+
+## Scaling
+
+This depends on your deployment type.
+
+### Long polling
+
+1. [Use grammY runner.](/plugins/runner.html)
+2. [Use sequatialize with the same session key resolver function as your session middleware.](./scaling.html#concurrency-is-hard)
+3. Go through the configuration options of `run` ([API reference](https://doc.deno.land/https/deno.land/x/grammy_runner/mod.ts#run)) and make sure they fit your needs, or even consider composing your own runner out of sources and sinks.
+
+### Webhooks
+
+1. If you adjusted the `getSessionKey` option for your session, [use sequatialize with the same session key resolver function as your session middleware.](./scaling.html#concurrency-is-hard)
+2. Make yourself familiar with the configuration of `webhookCallback` [API refenece](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#webhookCallback).
+3. If you are running on a serverless or autoscaling platform, [set the bot information](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#BotConfig) to prevent excessive `getMe` calls.
+
+## Sessions
+
+1. Consider using `lazySessions` as explained [here](/plugins/session.html#lazy-sessions).
+2. Use the `storage` option to set your storage adapter, otherwise all data will be lost when the bot process stops.
+
+## Testing
+
+Write tests for your bot.
+This can be done with grammY like so:
+
+1. Mock outgoing API requests using [transformer functions](./transformers.html).
+2. Define and send sample update objects to your bot via `bot.handleUpdate` (API reference).
+   Consider to take some inspiration from [these update objects](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates) provided by the Telegram team.

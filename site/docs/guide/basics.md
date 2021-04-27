@@ -25,7 +25,7 @@ However, there are a number of other ways to filter for messages, too.
 bot.command('start', (ctx) => { ... });
 
 // Matches the message text against a string or a regular expression
-bot.hears(/echo (.+)?/, (ctx) => { ... });
+bot.hears(/echo *(.+)?/, (ctx) => { ... });
 ```
 
 You can use auto-complete in your editor to see all available options, or check out [all methods](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Bot) of the `Bot` class.

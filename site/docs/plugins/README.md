@@ -1,6 +1,6 @@
 # Plugins in grammY
 
-grammY supports installing plugins via adding new [middleware](/guide/middleware.md).
+grammY supports installing plugins, most of them via adding new [middleware](/guide/middleware.md).
 
 ## Categories of plugins
 

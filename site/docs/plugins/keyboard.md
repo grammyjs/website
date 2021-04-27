@@ -45,7 +45,7 @@ An inline keyboard with share button can be built like this:
 
 ```ts
 const inlineKeyboard = new InlineKeyboard()
-  .text("Get random music", "random")
+  .text("Get random music", "random").row()
   .switchInline("Send music to friends");
 ```
 
@@ -81,19 +81,6 @@ await ctx.reply(text, {
 });
 ```
 
-If you want to specify further options with your message, you may need to create your own `reply_markup` object.
-In that case, you have to use `inlineKeyboard.build()` when passing it to your custom object.
-
-```ts
-await ctx.reply(textWithHtml, {
-  parse_mode: "HTML", // in order to pass value for `parse_mode`
-  reply_markup: {
-    // have to create custom `reply_markup` object
-    inline_keyboard: inlineKeyboard.build(), // note the `build` call
-  },
-});
-```
-
 Naturally, all other methods that send messages other than text messages support the same options, as specified by the [Telegram Bot API Reference](https://core.telegram.org/bots/api).
 
 ### Responding to clicks
@@ -105,9 +92,11 @@ Once a user clicks a text button, your bot will receive an update containing the
 You can listen for callback data via `bot.callbackQuery()`.
 
 ```ts
+// Construct a keyboard
+const inlineKeyboard = new InlineKeyboard().text("click", "click-payload");
+
 // Send a keyboard along a message
 bot.command("start", async (ctx) => {
-  const inlineKeyboard = new InlineKeyboard().text("click", "click-payload");
   await ctx.reply("Curious? Click me!", { reply_markup: inlineKeyboard });
 });
 
@@ -133,7 +122,6 @@ bot.on("callback_query:data", async (ctx) => {
 It makes sense to define `bot.on('callback_query:data')` at last to always answer all other callback queries that your previous listeners did not handle.
 Otherwise, some clients may display a loading animation for up to a minute when a user presses a button that your bot does not want to react to.
 :::
-
 
 ## Keyboards
 
@@ -218,9 +206,9 @@ In that case, you have to use `keyboard.build()` when passing it to your custom 
 
 ```ts
 await ctx.reply(textWithHtml, {
-  parse_mode: "HTML", // in order to pass value for `parse_mode`
   reply_markup: {
     // have to create custom `reply_markup` object
+    one_time_keyboard: true,
     keyboard: keyboard.build(), // note the `build` call
   },
 });

@@ -13,13 +13,13 @@ A _transformer function_ is a function that handles outgoing data, i.e.
 - a method name of the Bot API to call, and
 - a payload object that matches the method.
 
-Instead of having `next` as the last argument to invoke downstream middleware, you receive `prev` as the first argument to utilize upstream transformer functions.
+Instead of having `next` as the last argument to invoke downstream middleware, you receive `prev` as the first argument to utilise upstream transformer functions.
 Looking at the type signature of `Transformer` ([grammY API Reference](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Transformer)), we can see how it reflects that.
 Note that `Opts<M>` refers to the payload object that has to match the given method, and that `ReturnType<Telegram[M]>` is the return type of the invoked method.
 
 The last invoked transformer function is a built-in caller that does things like JSON serialization of certain fields, and eventually calling `fetch`.
 
-There is no equivalent of a `Composer` class for transformer functions because that's probably overkill, but if you need it, you can write your own. PR welcome :wink:
+There is no equivalent of a `Composer` class for transformer functions because that's probably overkill, but if you need it, you can write your own. PR welcome! :wink:
 
 ## Installing a transformer function
 

@@ -150,7 +150,7 @@ bot.start();
 </CodeGroup>
 
 Note how we also have to [adjust the context type](/guide/context.md#customizing-the-context-object) to make the session available on it.
-The context flavor is called `SessionFlavor`.
+The context flavour is called `SessionFlavor`.
 
 It is important (but optional) that you specify the `inital` option for the session middleware.
 Pass a function that generates a new object with inital session data for new chats.
@@ -222,7 +222,7 @@ As a result, we achieve minimal read and write operations, but you can use sessi
 So what is necessary to use lazy sessions instead of the default (strict) ones?
 You mainly have to do three things:
 
-1. Flavor your context with `LazySessionFlavor` instead of `SessionFlavor`.
+1. Flavour your context with `LazySessionFlavor` instead of `SessionFlavor`.
    They work the same way, just that `ctx.session` is wrapped inside a promise for the lazy variant.
 2. Use `lazySession` instead of `session` to register your session middleware.
 3. Always put an inline `await ctx.session` instead of `ctx.session` everywhere in your middleware, for both reads and writes.
