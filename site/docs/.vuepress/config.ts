@@ -160,7 +160,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                 link: "/plugins/runner.md",
               },
               {
-                text: "Internationalization (i18n)",
+                text: "Internationalisation (i18n)",
                 link: "/plugins/i18n.md",
               },
               {
