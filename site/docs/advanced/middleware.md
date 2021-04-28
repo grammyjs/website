@@ -84,7 +84,7 @@ This is made possible by creating a new instance of `Composer` every time you ca
 ## Concatenating `use` calls
 
 If we only used `use`, this would not be too useful (pun intended).
-It get's more interesting as soon as e.g. `filter` comes into play.
+It gets more interesting as soon as e.g. `filter` comes into play.
 
 Check this out:
 
