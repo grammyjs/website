@@ -38,8 +38,7 @@ bot.on("message", (ctx) => ctx.reply("Got your message."));
 
 // Run it concurrently!
 run(bot);
-
-````
+```
 
  </CodeGroupItem>
 
@@ -57,7 +56,7 @@ bot.on("message", (ctx) => ctx.reply("Got your message."));
 
 // Run it concurrently!
 run(bot);
-````
+```
 
  </CodeGroupItem>
 
