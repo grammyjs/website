@@ -33,7 +33,7 @@ Every bot has its own set of `file_id`s for the files that it can access.
 You cannot give the `file_id` to your friend's bot to download it there, as another bot will use a different identifier for the same file.
 This implies that you cannot simply guess a `file_id` and access some random person's file, because Telegram keeps track of what `file_id`s are valid for your bot.
 
-On the other hand, it can happen that the same file is identified by different `file_id`s.
+On the other hand, it can happen that the same file is identified by different `file_id`s even for the same bot.
 That means that you cannot reliably compare `file_id`s to check if two files are the same.
 In cases where you do need to identify the same file over time and across bots, you should use the value for `file_unique_id` that your bot receives along with every `file_id`.
 The `file_unique_id` cannot be used to download files.
