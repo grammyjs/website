@@ -11,7 +11,7 @@ This involves handling the files that are attached to the messages.
 ## How files work for Telegram bots
 
 > This section explains how files work for Telegram bots.
-> If you want to know how you can work with files in grammY scroll down for [downloading](#receiving-files) and [uploading](sending-files) files.
+> If you want to know how you can work with files in grammY scroll down for [downloading](#receiving-files) and [uploading](#sending-files) files.
 
 Files are stored seperately from messages.
 A file on the Telegram servers is identified by a `file_id`, which is just a long string of characters.
