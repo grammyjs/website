@@ -26,8 +26,8 @@ Note that the URL is only valid for at least 60 minutes, then it may expire and 
 When a bot **sends** a message, it can specify a `file_id` that is has seen before.
 This will then send the identified file.
 (You can also upload your own files, [scroll down](#sending-files) to see how.)
-You can reused the same `file_id` as often as you want, so you could send the same file to five different chats, always with the same `file_id`.
-Make sure to use the correct method—you cannot use a `file_id` that identifies a photo when calling [`sendVideo`](https://core.telegram.org/bots/api#sendvideo).
+You can reuse the same `file_id` as often as you want, so you could send the same file to five different chats, always with the same `file_id`.
+Make sure to use the correct method—for instance, you cannot use a `file_id` that identifies a photo when calling [`sendVideo`](https://core.telegram.org/bots/api#sendvideo).
 
 Every bot has its own set of `file_id`s for the files that it can access.
 You cannot give the `file_id` to your friend's bot to download it there, as another bot will use a different identifier for the same file.
