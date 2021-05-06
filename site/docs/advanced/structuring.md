@@ -20,7 +20,7 @@ That being said, a straightforward and proven strategy to structure your code is
    Every single one of these parts exposes middleware that will handle the designated messages.
 2. Create a bot instance centrally that merges all middleware by installing it onto the bot.
 3. (Optional.) Pre-filter the updates centrally, and sends down updates the right way only.
-   You may also want to check out the [router plugin](/plugins/router.html) for that.
+   You may also want to check out the [router plugin](/plugins/router.md) for that.
 
 ## Example structure
 
@@ -58,7 +58,7 @@ bot.use(lists)
 bot.start()
 ```
 
-Optionally, you can use the [router plugin](/plugins/router.html) or to bundle up the different modules, if you're able to determine which middleware is responsible upfront.
+Optionally, you can use the [router plugin](/plugins/router.md) or to bundle up the different modules, if you're able to determine which middleware is responsible upfront.
 
 However, remember that the exact way of how to structure your bot is very hard to say generically.
 As always in software, do it in a way that makes the most sense :wink:

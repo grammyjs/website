@@ -80,7 +80,7 @@ The error objects holds information about why the request failed, which is acces
 
 You will rarely see this kind of error, unless your network infrastructure is unstable, or the Bot API server of your bot is temporarily unavailable.
 
-Note that if the Bot API server can be contacted, but it returns `ok: false` for a given method call, a [`GrammyError`](/guide/errors.html#the-grammyerror-object) is thrown instead.
+Note that if the Bot API server can be contacted, but it returns `ok: false` for a given method call, a [`GrammyError`](/guide/errors.md#the-grammyerror-object) is thrown instead.
 
 Check out the [GrammyError](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#HttpError) class in the grammY API Reference.
 
@@ -133,7 +133,7 @@ In the above example, the `boundaryHandler` handler will be invoked for
 1. all middleware that is passed to `bot.errorBoundary` after `boundaryHandler` (i.e. `Q`), and
 2. all middleware that is installed on subsequently installed composer instances (i.e. `X`, `Y`, and `Z`).
 
-> Regarding point 2, you may want to skip ahead to [the advanced explanation](/advanced/middleware.html) of middleware to learn how chaining works in grammY.
+> Regarding point 2, you may want to skip ahead to [the advanced explanation](/advanced/middleware.md) of middleware to learn how chaining works in grammY.
 
 If you actively want the error to cross a boundary (that is, pass it outside), you can rethrow the error inside your error handler.
 The error will then be passed to the next surrounding boundary.

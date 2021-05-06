@@ -61,7 +61,7 @@ Thus, calls to `ctx.api` will be transformed by both those transformers on `ctx.
 
 Transformer functions are as flexible as middleware, and they have just as many different applications.
 
-For instance, the [grammY menu plugin](/plugins/menu.html) installs a transformer function to turn outgoing menu instances into the correct payload.
+For instance, the [grammY menu plugin](/plugins/menu.md) installs a transformer function to turn outgoing menu instances into the correct payload.
 You can also use them to
 
 - implement flood control,

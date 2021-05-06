@@ -115,4 +115,4 @@ Refer to the official documentation about this [here](https://core.telegram.org/
 Hosting a Bot API server has in itself nothing to do with grammY.
 However, grammY supports all necessary methods that you need to invoke when configuring your bot to use it.
 
-Also, you may want to revisit an earlier chapter of this guide about the setup of the Bot API [here](./api.html).
+Also, you may want to revisit an earlier chapter of this guide about the setup of the Bot API [here](./api.md).

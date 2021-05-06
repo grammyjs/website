@@ -72,7 +72,7 @@ bot.on("::email"); // messages or channel posts with email in text or caption
 ```
 
 Leaving out the _first_ value matches both messages and channel posts.
-[Remember](./context.html#available-actions) that `ctx.msg` gives you access to both messages or channel posts, whatever is matched by the query.
+[Remember](./context.md#available-actions) that `ctx.msg` gives you access to both messages or channel posts, whatever is matched by the query.
 
 Leaving out the _second_ value matches both entities and caption entities.
 You can leave out both the first and the second part at the same time.

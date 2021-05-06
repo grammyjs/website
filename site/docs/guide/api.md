@@ -40,7 +40,7 @@ Example: `sendMessage` in the [Telegram Bot API Reference](https://core.telegram
 
 ### Calling a method
 
-You can call API methods via `bot.api`, or [equivalently](./context.html#available-actions) via `ctx.api`:
+You can call API methods via `bot.api`, or [equivalently](./context.md#available-actions) via `ctx.api`:
 
 ```ts
 async function sendHelloTo12345() {

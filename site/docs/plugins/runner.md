@@ -1,8 +1,8 @@
 # Concurrency with grammY runner (`runner`)
 
-This package can be used if you run your bot [using long polling](/guide/deployment-types.html#long-polling), and you want messages to be processed concurrently.
+This package can be used if you run your bot [using long polling](/guide/deployment-types.md#long-polling), and you want messages to be processed concurrently.
 
-> Make sure to understand [Scaling Up II](/advanced/scaling.html#long-polling) before you use grammY runner.
+> Make sure to understand [Scaling Up II](/advanced/scaling.md#long-polling) before you use grammY runner.
 
 ## Why we need a bot runner
 
@@ -131,10 +131,10 @@ Check out the [API reference](https://doc.deno.land/https/deno.land/x/grammy_run
 ## Sequential processing where necessary
 
 Most likely, you want to be guaranteed that messages from the same chat are processed in order.
-This is useful when installing [session middleware](./session.html), but it also makes sure that your bot does not confuse the order of messages in the same chat.
+This is useful when installing [session middleware](./session.md), but it also makes sure that your bot does not confuse the order of messages in the same chat.
 
 grammY runner exports the `sequetialize` middleware that takes care of this.
-You can check out [this section](/advanced/scaling.html#concurrency-is-hard) to learn how to use it.
+You can check out [this section](/advanced/scaling.md#concurrency-is-hard) to learn how to use it.
 
 We are now going to look at more advanced usage of the plugin.
 
