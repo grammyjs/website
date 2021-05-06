@@ -8,6 +8,16 @@ next: ./inline-queries.md
 Every single error caused by your middleware will be caught by grammY.
 You should install a custom error handler to handle errors.
 
+First, this section will teach you [how to catch errors](#catching-errors) that can be thrown.
+
+Afterwards, we will look at all three types of errors that your bot can encounter.
+
+| Name                                     | Purpose                                                                                                   |
+| ---------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| [`BotError`](#the-boterror-object)       | Error object that wraps any error thrown in your middleware (for example, the two errors below)           |
+| [`GrammyError`](#the-grammyerror-object) | Thrown if the Bot API server returns `ok: false`, indicating that your API request was invalid and failed |
+| [`HttpError`](#the-httperror-object)     | Thrown if the Bot API server could not be reached                                                         |
+
 ## Catching errors
 
 It depends on your setup how to catch errors.
@@ -61,3 +71,71 @@ A thrown `GrammyError` indicates that the corresponding API request failed.
 The error provides access to the error code returned by the Telegram backend, as well as the description.
 
 Check out the [GrammyError](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#GrammyError) class in the grammY API Reference.
+
+## The `HttpError` object
+
+An `HttpError` is thrown if a network request fails.
+This means that grammY was unable to contact the Bot API server.
+The error objects holds information about why the request failed, which is accessible under the `error` property.
+
+You will rarely see this kind of error, unless your network infrastructure is unstable, or the Bot API server of your bot is temporarily unavailable.
+
+Note that if the Bot API server can be contacted, but it returns `ok: false` for a given method call, a [`GrammyError`](/guide/errors.html#the-grammyerror-object) is thrown instead.
+
+Check out the [GrammyError](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#HttpError) class in the grammY API Reference.
+
+## Error boundaries
+
+> This is an advanced topic that is mostly useful for larger bots.
+> If you are relatively new to grammY, simply skip the remainder of this section.
+
+If you divide your code base into different parts, _error boundaries_ allow you install different error handlers for different parts of your middleware.
+They achieve this by letting you fence errors in a part of your middleware.
+In other words, if an error is thrown in a specially protected part of middleware, it will not be able to escape from that part of the middleware system.
+Instead, a dedicated error handler is invoked, and the middleware completes successfully.
+
+Optionally, you may chose to instead let the middleware execution resume normally, continuing right outside the error boundary.
+In that case, the middleware does not only complete successfully, but it also passes on the control flow to the next middleware that was installed after the error boundary.
+
+```ts
+const bot = new Bot("");
+
+bot.use(/* A */);
+bot.use(/* B */);
+
+const composer = new Compser();
+composer.use(/* X */);
+composer.use(/* Y */);
+composer.use(/* Z */);
+bot.errorBoundary(boundaryHandler /* Q */).use(composer);
+
+bot.use(/* C */);
+bot.use(/* D */);
+
+bot.catch(errorHandler);
+
+function boundaryHandler(err: BotError, next: NextFunction): Promise<void> {
+  console.error("Error in Q, X, Y, or Z!", err);
+  /*
+   * You could call `next` if you want to run
+   * the middleware at C in case of an error:
+   */
+  // await next()
+}
+
+function errorHandler(err: BotError) {
+  console.error("Error in A, B, C, or D!", err);
+}
+```
+
+In the above example, the `boundaryHandler` handler will be invoked for
+
+1. all middleware that is passed to `bot.errorBoundary` after `boundaryHandler` (i.e. `Q`), and
+2. all middleware that is installed on subsequently installed composer instances (i.e. `X`, `Y`, and `Z`).
+
+> Regarding point 2, you may want to skip ahead to [the advanced explanation](/advanced/middleware.html) of middleware to learn how chaining works in grammY.
+
+If you actively want the error to cross a boundary (that is, pass it outside), you can rethrow the error inside your error handler.
+The error will then be passed to the next surrounding boundary.
+
+In a sense, you can regard the error handler installed via `bot.catch` as the outermost error boundary.
