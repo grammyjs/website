@@ -15,7 +15,7 @@ This section outlines some of the advantages and disadvantes of using one or the
 
 Polling describes the process of continuously asking for updates every few milliseconds or so.
 On the other hand, long polling sends a request that will be blocked by the server until a new message arrives, and then it returns.
-Long polling resets the connection every now and then to avoid a number of [technical problems](https://tools.ietf.org/id/draft-loreto-http-bidirectional-07.md#timeouts).
+Long polling resets the connection every now and then to avoid a number of [technical problems](https://tools.ietf.org/id/draft-loreto-http-bidirectional-07.html#timeouts).
 
 ### Advantages
 
