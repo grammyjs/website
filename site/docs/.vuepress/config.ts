@@ -1,9 +1,18 @@
+import path from "path";
 import { defineUserConfig } from "vuepress";
 import type { DefaultThemeOptions } from "vuepress";
 
 export default defineUserConfig<DefaultThemeOptions>({
   title: "grammY",
   description: "The Telegram Bot Framework.",
+
+  bundlerConfig: {
+    configureWebpack: () => ({
+      experiments: {
+        topLevelAwait: true,
+      },
+    }),
+  },
 
   themeConfig: {
     logo: "/Y.png",
@@ -160,6 +169,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                 link: "/plugins/runner.md",
               },
               {
+                text: "Retry API requests (auto-retry)",
+                link: "/plugins/auto-retry.md",
+              },
+              {
                 text: "Internationalisation (i18n)",
                 link: "/plugins/i18n.md",
               },
@@ -174,7 +187,8 @@ export default defineUserConfig<DefaultThemeOptions>({
             children: [
               {
                 text: "[Submit your PR!]",
-                link: "/plugins/README.md#submitting-your-own-package-to-the-docs",
+                link:
+                  "/plugins/README.md#submitting-your-own-package-to-the-docs",
               },
             ],
           },
@@ -252,6 +266,12 @@ export default defineUserConfig<DefaultThemeOptions>({
     ],
   },
   plugins: [
+    [
+      "@vuepress/register-components",
+      {
+        componentsDir: path.resolve(__dirname, "./components"),
+      },
+    ],
     [
       "@vuepress/plugin-docsearch",
       {
