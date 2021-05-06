@@ -42,20 +42,22 @@ In `list.ts`, you would then do something like this:
 export const lists = new Composer();
 
 // Register some handlers here that handle your middleware the usual way
-composer.on('message', ctx => { ... });
+lists.on('message', ctx => { ... });
 ```
+
+Optionally, you can use an [error boundary](/guide/errors.md#error-boundaries) to handle all errors that happen inside your module.
 
 Now, in `bot.ts`, you can install this module like so:
 
 ```ts
-import { lists } from './todo/list'
+import { lists } from "./todo/list";
 
 const bot = new Bot("<token>");
 
-bot.use(lists)
+bot.use(lists);
 // ... maybe more modules like `todo` here
 
-bot.start()
+bot.start();
 ```
 
 Optionally, you can use the [router plugin](/plugins/router.md) or to bundle up the different modules, if you're able to determine which middleware is responsible upfront.
