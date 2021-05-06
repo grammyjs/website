@@ -160,6 +160,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                 link: "/plugins/runner.md",
               },
               {
+                text: "Retry API requests (auto-retry)",
+                link: "/plugins/auto-retry.md",
+              },
+              {
                 text: "Internationalisation (i18n)",
                 link: "/plugins/i18n.md",
               },
