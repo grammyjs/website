@@ -25,12 +25,12 @@ This depends on your deployment type.
 ### Long polling
 
 1. [Use grammY runner.](/plugins/runner.md)
-2. [Use sequatialize with the same session key resolver function as your session middleware.](./scaling.md#concurrency-is-hard)
+2. [Use `sequentialize` with the same session key resolver function as your session middleware.](./scaling.md#concurrency-is-hard)
 3. Go through the configuration options of `run` ([API reference](https://doc.deno.land/https/deno.land/x/grammy_runner/mod.ts#run)) and make sure they fit your needs, or even consider composing your own runner out of sources and sinks.
 
 ### Webhooks
 
-1. If you adjusted the `getSessionKey` option for your session, [use sequatialize with the same session key resolver function as your session middleware.](./scaling.md#concurrency-is-hard)
+1. If you adjusted the `getSessionKey` option for your session, [use `sequentialize` with the same session key resolver function as your session middleware.](./scaling.md#concurrency-is-hard)
 2. Make yourself familiar with the configuration of `webhookCallback` [API refenece](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#webhookCallback).
 3. If you are running on a serverless or autoscaling platform, [set the bot information](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#BotConfig) to prevent excessive `getMe` calls.
 

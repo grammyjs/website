@@ -17,7 +17,7 @@ As a result, there are a few things you cannot do with bots:
 Basically, it boils down to the fact that **a bot only has access to the information of the currently incoming update** (e.g. message), i.e. the information that is available on the context object `ctx`.
 
 Consequently, if you _do want to access_ old data, you have to store it as soon as it arrives.
-This means that you must have a data storage, such as a file, a data base, or an in-memory storage.
+This means that you must have a data storage, such as a file, a database, or an in-memory storage.
 Of course you don't have to host this yourself, there are plenty of services that offer data storage as a service, i.e. other people will host your database for you.
 
 ## What are sessions?
@@ -30,7 +30,7 @@ When our pizza bot receives a message, it has to remember how many times it saw 
 The pizza count should of course not change when your sister adds the pizza bot to her group chat, so what we really want is to store _one counter per chat_.
 
 Sessions are an elegant way to store data _per chat_.
-You would use the chat identifier as the key in your data base, and a counter as the value.
+You would use the chat identifier as the key in your database, and a counter as the value.
 In this case, we would call the chat identifier the _session key_.
 
 We can install middleware on the bot that will provide a chat's session data on `ctx.session` for every update by loading it from the database before our middleware runs.
@@ -226,7 +226,7 @@ You mainly have to do three things:
    They work the same way, just that `ctx.session` is wrapped inside a promise for the lazy variant.
 2. Use `lazySession` instead of `session` to register your session middleware.
 3. Always put an inline `await ctx.session` instead of `ctx.session` everywhere in your middleware, for both reads and writes.
-   Don't worry: you can `await` the promise with your session data as many times as you want, but you will always refer to the same value, so there is never going to be duplicate reads for an update.
+   Don't worry: you can `await` the promise with your session data as many times as you want, but you will always refer to the same value, so there are never going to be duplicate reads for an update.
 
 Note: with lazy sessions, you can assign both objects and promises of objects to `ctx.session`.
 If you set `ctx.session` to be a promise, it will be `await`ed before writing the data back to the data storage.
