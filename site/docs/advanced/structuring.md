@@ -19,7 +19,7 @@ That being said, a straightforward and proven strategy to structure your code is
 1. Group things that semantically belong together in the same file (or, depending on the code size, directory).
    Every single one of these parts exposes middleware that will handle the designated messages.
 2. Create a bot instance centrally that merges all middleware by installing it onto the bot.
-3. (Optional.) Pre-filter the updates centrally, and sends down updates the right way only.
+3. (Optional.) Pre-filter the updates centrally, and send down updates the right way only.
    You may also want to check out the [router plugin](/plugins/router.md) for that.
 
 ## Example structure
