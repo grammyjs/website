@@ -15,9 +15,9 @@ grammY provides special handling for commands (e.g. `/start` and `/help`).
 You can directly register listeners for certain commands via `bot.command()`.
 
 ```ts
-// Reacts to /start commands
+// React to /start commands
 bot.command("start" /* ... */);
-// Reacts to /help commands
+// React to /help commands
 bot.command("help" /* ... */);
 // React to /a, /b, /c, and /d commands
 bot.command(["a", "b", "c", "d"] /* ... */);
