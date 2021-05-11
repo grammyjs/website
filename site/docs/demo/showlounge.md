@@ -11,4 +11,4 @@ Include a description what it does and a link to GitHub—and of course a link t
 
 ## Bot list
 
-Nothing here yet. Submit your own!
+[Deezer History](https://t.me/DeezerHistoryBot) - [Source Code](https://github.com/rojserbest/deezer_history) - Tell others what you were listening to on Deezer.
