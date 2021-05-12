@@ -53,8 +53,9 @@ bot.on("message:voice", async (ctx) => {
   const fileId = voice.file_id;
   await ctx.reply("The file identifier of your voice note is: " + fileId);
 
-  const downloadUrl = await ctx.getFile(fileId);
-  await ctx.reply("Download your own file again: " + downloadUrl);
+  const file = await ctx.getFile(fileId);
+  const url = file.file_path // valid for 1 hour
+  await ctx.reply("Download your own file again: " + url);
 });
 ```
 
