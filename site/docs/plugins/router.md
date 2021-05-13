@@ -40,18 +40,29 @@ This is how a bot like that could be implemented:
   <CodeGroupItem title="TS" active>
 
 ```ts
-import { Bot, Keyboard, Router, session, SessionContext } from "grammy";
+import { Bot, Keyboard, Router, session, SessionFlavor, Context } from "grammy";
 
 interface SessionData {
-  step?: "idle" | "month" | "day"; // what step of the form we are at
-  month?: number; // birthday month
-  dayOfMonth?: number; // birthday date
+  step: "default" | "idle" | "month" | "day"; // what step of the form we are at
+  month: number; // birthday month
+  dayOfMonth: number; // birthday date
 }
-type MyContext = SessionContext<SessionData>;
+export type MyContext = Context &
+  SessionFlavor<SessionData>
 
 const bot = new Bot<MyContext>("");
 // Use session
-bot.use(session({ getSessionKey: (ctx) => ctx.from?.id.toString() }));
+bot.use(
+  session({
+    initial(): SessionData {
+      return {
+        step: "default",
+        month: 0,
+        dayOfMonth: 0,
+      };
+    },
+  })
+);
 
 // Define some commands
 bot.command("start", async (ctx) => {
@@ -61,12 +72,12 @@ Send /birthday to start`);
   ctx.session = { step: "idle" };
 });
 bot.command("birthday", async (ctx) => {
-  const day = ctx.session?.dayOfMonth;
-  const month = ctx.session?.month;
-  if (day !== undefined && month !== undefined) { // already set up!
+  const day = ctx.session.dayOfMonth;
+  const month = ctx.session.month;
+  if (day !== 0 && month !== 0) { // already set up!
     await ctx.reply(`Your birthday is in ${getDays(month, day)} days!`);
   } else { // have to ask for birthday first!
-    ctx.session ??= {};
+    //ctx.session ??= {}; //Not needed anymore? 
     ctx.session.step = "day";
     await ctx.reply("Please send me the day of month \
 of your birthday as a number!");
@@ -74,10 +85,10 @@ of your birthday as a number!");
 });
 
 // Use router
-const router = new Router<MyContext>((ctx) => ctx.session?.step ?? "idle");
+const router = new Router<MyContext>((ctx) => ctx.session.step ?? "idle");
 
 router.route("day", async (ctx, next) => {
-  ctx.session ??= {};
+  //ctx.session ??= {}; //Not needed anymore? 
   const day = parseInt(ctx.msg?.text ?? "", 10);
   if (isNaN(day) || day < 1 || 31 < day) {
     await ctx.reply("That is not a valid day, try again!");
@@ -99,9 +110,9 @@ router.route("day", async (ctx, next) => {
 
 router.route("month", async (ctx) => {
   // should not happen, unless session data is corrupted
-  if (!ctx.session?.dayOfMonth) {
+  if (!ctx.session.dayOfMonth) {
     await ctx.reply("I need your day of month!");
-    ctx.session ??= {};
+    //ctx.session ??= {}; //Not needed anymore? 
     ctx.session.step = "day";
     return;
   }
