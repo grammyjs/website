@@ -28,7 +28,7 @@ Here is an example for a transformer function that does nothing:
 
 ```ts
 // Pass-through transformer function
-bot.api.use((prev, method, payload) => prev(method, payload));
+bot.api.config.use((prev, method, payload) => prev(method, payload));
 
 // Comparison with pass-through middleware
 bot.use((ctx, next) => next());
@@ -38,7 +38,7 @@ Here is an example of a transformer function that prevents all API calls from ha
 
 ```ts
 // Incorrectly return undefined instead of the respective object types
-bot.api.use((prev, method, payload) => undefined as any);
+bot.api.config.use((prev, method, payload) => undefined as any);
 ```
 
 You can also install transformer functions on the context object's API object.
