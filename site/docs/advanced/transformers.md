@@ -50,7 +50,7 @@ As soon as the respective middleware completes, the transformer function is disc
 ```ts
 bot.on("message", (ctx) => {
   // Install on all context objects that process messages
-  ctx.api.use((prev, method, payload) => prev(method, payload));
+  ctx.api.config.use((prev, method, payload) => prev(method, payload));
 });
 ```
 
