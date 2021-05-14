@@ -40,50 +40,56 @@ This is how a bot like that could be implemented:
   <CodeGroupItem title="TS" active>
 
 ```ts
-import { Bot, Keyboard, Router, session, SessionContext } from "grammy";
+import { Bot, Context, Keyboard, session, SessionFlavor } from "grammy";
+import { Router } from '@grammyjs/router'
 
 interface SessionData {
-  step?: "idle" | "month" | "day"; // what step of the form we are at
-  month?: number; // birthday month
+  step: "idle" | "day" | "month"; // what step of the form we are at
   dayOfMonth?: number; // birthday date
+  month?: number; // birthday month
 }
-type MyContext = SessionContext<SessionData>;
+type MyContext = Context & SessionFlavor<SessionData>;
 
 const bot = new Bot<MyContext>("");
 // Use session
-bot.use(session({ getSessionKey: (ctx) => ctx.from?.id.toString() }));
+bot.use(session({ initial: (): SessionData => ({ step: "idle" }) }));
 
 // Define some commands
 bot.command("start", async (ctx) => {
   await ctx.reply(`Welcome!
 I can tell you in how many days it is your birthday!
 Send /birthday to start`);
-  ctx.session = { step: "idle" };
 });
+
 bot.command("birthday", async (ctx) => {
-  const day = ctx.session?.dayOfMonth;
-  const month = ctx.session?.month;
-  if (day !== undefined && month !== undefined) { // already set up!
+  const day = ctx.session.dayOfMonth;
+  const month = ctx.session.month;
+  if (day !== undefined && month !== undefined) {
+    // Information already provided!
     await ctx.reply(`Your birthday is in ${getDays(month, day)} days!`);
-  } else { // have to ask for birthday first!
-    ctx.session ??= {};
+  } else {
+    // Missing information, enter router-based form
     ctx.session.step = "day";
-    await ctx.reply("Please send me the day of month \
-of your birthday as a number!");
+    await ctx.reply(
+      "Please send me the day of month \
+of your birthday as a number!"
+    );
   }
 });
 
 // Use router
-const router = new Router<MyContext>((ctx) => ctx.session?.step ?? "idle");
+const router = new Router<MyContext>((ctx) => ctx.session.step);
 
+// Define step that handles the day
 router.route("day", async (ctx, next) => {
-  ctx.session ??= {};
   const day = parseInt(ctx.msg?.text ?? "", 10);
   if (isNaN(day) || day < 1 || 31 < day) {
     await ctx.reply("That is not a valid day, try again!");
     return;
   }
   ctx.session.dayOfMonth = day;
+  // Advance form to step for month
+  ctx.session.step = "month";
   await ctx.reply("Got it! Now, send me the month!", {
     reply_markup: {
       one_time_keyboard: true,
@@ -94,27 +100,27 @@ router.route("day", async (ctx, next) => {
         .text("Oct").text("Nov").text("Dec").build(),
     },
   });
-  ctx.session.step = "month";
 });
 
 router.route("month", async (ctx) => {
   // should not happen, unless session data is corrupted
-  if (!ctx.session?.dayOfMonth) {
+  const day = ctx.session.dayOfMonth
+  if (day === undefined) {
     await ctx.reply("I need your day of month!");
-    ctx.session ??= {};
     ctx.session.step = "day";
     return;
   }
 
   const month = months.indexOf(ctx.msg?.text ?? "");
   if (month === -1) {
-    await ctx.reply("That is not a valid month, \
-please use one of the buttons!");
+    await ctx.reply(
+      "That is not a valid month, \
+please use one of the buttons!"
+    );
     return;
   }
 
   ctx.session.month = month;
-  const day = ctx.session.dayOfMonth;
   const diff = getDays(month, day);
   await ctx.reply(
     `Your birthday is on ${months[month]} ${day}.
@@ -149,43 +155,49 @@ function getDays(month: number, day: number) {
   <CodeGroupItem title="JS">
 
 ```js
-const { Bot, Keyboard, Router, session } = require("grammy");
+import { Bot, Context, Keyboard, session, SessionFlavor } from "grammy";
+import { Router } from '@grammyjs/router'
 
 const bot = new Bot("");
 // Use session
-bot.use(session({ getSessionKey: (ctx) => ctx.from?.id.toString() }));
+bot.use(session({ initial: () => ({ step: "idle" }) }));
 
 // Define some commands
 bot.command("start", async (ctx) => {
   await ctx.reply(`Welcome!
 I can tell you in how many days it is your birthday!
 Send /birthday to start`);
-  ctx.session = { step: "idle" };
 });
+
 bot.command("birthday", async (ctx) => {
-  const day = ctx.session?.dayOfMonth;
-  const month = ctx.session?.month;
-  if (day !== undefined && month !== undefined) { // already set up!
+  const day = ctx.session.dayOfMonth;
+  const month = ctx.session.month;
+  if (day !== undefined && month !== undefined) {
+    // Information already provided!
     await ctx.reply(`Your birthday is in ${getDays(month, day)} days!`);
-  } else { // have to ask for birthday first!
-    ctx.session ??= {};
+  } else {
+    // Missing information, enter router-based form
     ctx.session.step = "day";
-    await ctx.reply("Please send me the day of month \
-of your birthday as a number!");
+    await ctx.reply(
+      "Please send me the day of month \
+of your birthday as a number!"
+    );
   }
 });
 
 // Use router
-const router = new Router((ctx) => ctx.session?.step ?? "idle");
+const router = new Router((ctx) => ctx.session.step);
 
+// Define step that handles the day
 router.route("day", async (ctx, next) => {
-  ctx.session ??= {};
   const day = parseInt(ctx.msg?.text ?? "", 10);
   if (isNaN(day) || day < 1 || 31 < day) {
     await ctx.reply("That is not a valid day, try again!");
     return;
   }
   ctx.session.dayOfMonth = day;
+  // Advance form to step for month
+  ctx.session.step = "month";
   await ctx.reply("Got it! Now, send me the month!", {
     reply_markup: {
       one_time_keyboard: true,
@@ -196,27 +208,27 @@ router.route("day", async (ctx, next) => {
         .text("Oct").text("Nov").text("Dec").build(),
     },
   });
-  ctx.session.step = "month";
 });
 
 router.route("month", async (ctx) => {
   // should not happen, unless session data is corrupted
-  if (!ctx.session?.dayOfMonth) {
+  const day = ctx.session.dayOfMonth
+  if (day === undefined) {
     await ctx.reply("I need your day of month!");
-    ctx.session ??= {};
     ctx.session.step = "day";
     return;
   }
 
   const month = months.indexOf(ctx.msg?.text ?? "");
   if (month === -1) {
-    await ctx.reply("That is not a valid month, \
-please use one of the buttons!");
+    await ctx.reply(
+      "That is not a valid month, \
+please use one of the buttons!"
+    );
     return;
   }
 
   ctx.session.month = month;
-  const day = ctx.session.dayOfMonth;
   const diff = getDays(month, day);
   await ctx.reply(
     `Your birthday is on ${months[month]} ${day}.
@@ -252,55 +264,61 @@ function getDays(month, day) {
 
 ```ts
 import {
-    Bot,
-    Keyboard,
-    Router,
-    session,
-    SessionContext
+  Bot,
+  Context,
+  Keyboard,
+  session,
+  SessionFlavor,
 } from "https://deno.land/x/grammy/mod.ts";
+import { Router } from "https://deno.land/x/grammy_router/mod.ts";
 
 interface SessionData {
-  step?: "idle" | "month" | "day"; // what step of the form we are at
-  month?: number; // birthday month
+  step: "idle" | "day" | "month"; // what step of the form we are at
   dayOfMonth?: number; // birthday date
+  month?: number; // birthday month
 }
-type MyContext = SessionContext<SessionData>;
+type MyContext = Context & SessionFlavor<SessionData>;
 
 const bot = new Bot<MyContext>("");
 // Use session
-bot.use(session({ getSessionKey: (ctx) => ctx.from?.id.toString() }));
+bot.use(session({ initial: (): SessionData => ({ step: "idle" }) }));
 
 // Define some commands
 bot.command("start", async (ctx) => {
   await ctx.reply(`Welcome!
 I can tell you in how many days it is your birthday!
 Send /birthday to start`);
-  ctx.session = { step: "idle" };
 });
+
 bot.command("birthday", async (ctx) => {
-  const day = ctx.session?.dayOfMonth;
-  const month = ctx.session?.month;
-  if (day !== undefined && month !== undefined) { // already set up!
+  const day = ctx.session.dayOfMonth;
+  const month = ctx.session.month;
+  if (day !== undefined && month !== undefined) {
+    // Information already provided!
     await ctx.reply(`Your birthday is in ${getDays(month, day)} days!`);
-  } else { // have to ask for birthday first!
-    ctx.session ??= {};
+  } else {
+    // Missing information, enter router-based form
     ctx.session.step = "day";
-    await ctx.reply("Please send me the day of month \
-of your birthday as a number!");
+    await ctx.reply(
+      "Please send me the day of month \
+of your birthday as a number!"
+    );
   }
 });
 
 // Use router
-const router = new Router<MyContext>((ctx) => ctx.session?.step ?? "idle");
+const router = new Router<MyContext>((ctx) => ctx.session.step);
 
+// Define step that handles the day
 router.route("day", async (ctx, next) => {
-  ctx.session ??= {};
   const day = parseInt(ctx.msg?.text ?? "", 10);
   if (isNaN(day) || day < 1 || 31 < day) {
     await ctx.reply("That is not a valid day, try again!");
     return;
   }
   ctx.session.dayOfMonth = day;
+  // Advance form to step for month
+  ctx.session.step = "month";
   await ctx.reply("Got it! Now, send me the month!", {
     reply_markup: {
       one_time_keyboard: true,
@@ -311,27 +329,27 @@ router.route("day", async (ctx, next) => {
         .text("Oct").text("Nov").text("Dec").build(),
     },
   });
-  ctx.session.step = "month";
 });
 
 router.route("month", async (ctx) => {
   // should not happen, unless session data is corrupted
-  if (!ctx.session?.dayOfMonth) {
+  const day = ctx.session.dayOfMonth
+  if (day === undefined) {
     await ctx.reply("I need your day of month!");
-    ctx.session ??= {};
     ctx.session.step = "day";
     return;
   }
 
   const month = months.indexOf(ctx.msg?.text ?? "");
   if (month === -1) {
-    await ctx.reply("That is not a valid month, \
-please use one of the buttons!");
+    await ctx.reply(
+      "That is not a valid month, \
+please use one of the buttons!"
+    );
     return;
   }
 
   ctx.session.month = month;
-  const day = ctx.session.dayOfMonth;
   const diff = getDays(month, day);
   await ctx.reply(
     `Your birthday is on ${months[month]} ${day}.
