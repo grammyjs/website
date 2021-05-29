@@ -1,0 +1,21 @@
+{
+  "name": "grammydocsbot",
+  "version": "1.0.0",
+  "description": "The [@grammydocsbot](https://telegram.me/grammydocsbot) is a Telegram bot that can be used to quickly search and send links to the documentation website of the grammY bot framework",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "KnorpelSenf",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^15.6.1",
+    "typescript": "^4.3.2"
+  },
+  "dependencies": {
+    "algoliasearch": "^4.9.1",
+    "grammy": "^1.1.6"
+  }
+}
