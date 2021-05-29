@@ -5,7 +5,7 @@ This plugin enqueues outgoing API requests instance via [Bottleneck](https://git
 ## Usage
 
 Here is an example of how to use this plugin with the default options.
-Note that the default options are aligned with the actualy rate limits enforced by Telegram, so they should be good to go.
+Note that the default options are aligned with the actual rate limits enforced by Telegram, so they should be good to go.
 
 <CodeGroup>
 
