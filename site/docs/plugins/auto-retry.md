@@ -1,5 +1,7 @@
 # Retry API Requests (`auto-retry`)
 
+> Consider using [the throttler plugin](./transformer-throttler.md) instead.
+
 This plugin is an [API transformer function](/advanced/transformers.md), which means that it let's you intercept and modify outgoing HTTP requests on the fly.
 More specifically, this plugin will automatically detect if an API requests fails with a `retry_after` value. i.e. because of rate limiting.
 It will then catch the error, wait the specified period of time, and then retry the request.

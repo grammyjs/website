@@ -174,6 +174,6 @@ The validation of the filter queries happens only once, when the bot is intialis
 
 At startup, grammY derives a predicate function from the filter query by splitting it into its query parts.
 Every part will be mapped to a function that performs a single `in` check, or two checks if the part is omitted and two values need to be checked.
-These function are then combined to form a predicate that only has to check for as many values as are relevant for the query, without iterating over object keys of `Update`.
+These functions are then combined to form a predicate that only has to check for as many values as are relevant for the query, without iterating over object keys of `Update`.
 
 This system uses less operations than what some competing libraries need which perform containment checks in arrays when routing updates, even though grammY's filter query system is much more powerful.

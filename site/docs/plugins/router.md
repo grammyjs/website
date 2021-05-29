@@ -1,6 +1,7 @@
 # Router (`router`)
 
-The `Router` class ([grammY API Reference](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Router)) provides a way to structure your bot by routing context objects to different parts of your code.
+The `Router` class ([API Reference](https://doc.deno.land/https/deno.land/x/grammy_router/router.ts)) provides a way to structure your bot by routing context objects to different parts of your code.
+It is a more sophisticated version of `bot.route` on `Composer` ([grammY API Reference](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Composer))
 
 ## Example
 
@@ -270,7 +271,7 @@ import {
   session,
   SessionFlavor,
 } from "https://deno.land/x/grammy/mod.ts";
-import { Router } from "https://deno.land/x/grammy_router/mod.ts";
+import { Router } from "https://deno.land/x/grammy_router/router.ts";
 
 interface SessionData {
   step: "idle" | "day" | "month"; // what step of the form we are at
