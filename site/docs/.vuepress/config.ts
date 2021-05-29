@@ -164,6 +164,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                 link: "/plugins/auto-retry.md",
               },
               {
+                text: "Flood control (transformer-throttler)",
+                link: "/plugins/transformer-throttler.md",
+              },
+              {
                 text: "Internationalisation (i18n)",
                 link: "/plugins/i18n.md",
               },
