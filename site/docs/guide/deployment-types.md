@@ -46,7 +46,7 @@ If you own a server with a public URL, you can give that URL to Telegram and it 
 ### Advantages
 
 1. **It is more efficient.**
-   If a webhook request comes it, it delivers a message and can take back the response.
+   If a webhook request comes it, it delivers a message and [can take back the response](#webhook-reply).
    Long polling always needs two requests for this, and it needs an open connection all the time, and it makes a lot of superfluous requests when no messages are sent to your bot. As a result, depending on the provider, hosting with webhooks can be cheaper.
 2. **It is more reliable in other cases.**
    With webhooks, you can host your bots on serverless platforms.
@@ -68,6 +68,7 @@ You can import the `webhookCallback` function from grammY to convert your bot to
 import express from "express";
 
 const app = express(); // or whatever you're using
+app.use(express.json()); // parse the JSON request body
 
 // 'express' is also used as default if no argument is given
 app.use(webhookCallback(bot, "express"));
@@ -80,6 +81,7 @@ app.use(webhookCallback(bot, "express"));
 const express = require("express");
 
 const app = express(); // or whatever you're using
+app.use(express.json()); // parse the JSON request body
 
 // 'express' is also used as default if no argument is given
 app.use(webhookCallback(bot, "express"));
@@ -101,6 +103,28 @@ app.use(webhookCallback(bot, "oak"));
 </CodeGroup>
 
 Be sure to read [Marvin's Marvellous Guide to All Things Webhook](https://core.telegram.org/bots/webhooks) written by the Telegram team if you consider running your bot on webhooks.
+
+### Webhook reply
+
+When a webhook request is received, your bot can call up to one method in the response.
+As a benefit, this saves your bot from making up to one HTTP request per update. However, there are a number of drawbacks to using this:
+
+1. You will not be able to handle potential errors of the respective API call.
+2. More importantly, you also won't have access to the response object, so e.g. calling `sendMessage` will not give you access to the message you send.
+3. Furthermore, it is not possible to cancel the request. The `AbortSignal` will be disregarded.
+4. Note also that the types in grammY do not reflect the consequences of a performed webhook callback!
+   For instance, they indicate that you always receive a response object, so it is your own responsibility to make sure you're not screwing up while using this minor performance optimisation.
+
+If you want to use webhook replies, you can specify the `canUseWebhookReply` option in the `client` option of your `BotConfig` ([API reference](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#BotConfig)).
+Pass a function that determines whether or not to use webhook reply for the given request, identified by method.
+
+```ts
+const bot = new Bot(token, {
+  client: {
+    canUseWebhookReply: (method) => method === "sendChatAction",
+  },
+});
+```
 
 ## I have still no idea what to use
 
