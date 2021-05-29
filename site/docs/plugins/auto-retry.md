@@ -67,3 +67,9 @@ autoRetry({
   maxDelaySeconds: 5, // fail immediately if we must wait 6+ seconds
 });
 ```
+
+## Plugin summary
+
+- Name: `auto-retry`
+- Source: <https://github.com/grammyjs/auto-retry>
+- Reference: <https://doc.deno.land/https/raw.githubusercontent.com%2Fgrammyjs%2Fauto-retry%2Fmain%2Fsrc%2Findex.ts>

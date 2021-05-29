@@ -114,3 +114,9 @@ const outConfig = {
   minTime: 1000,    // Wait this many milliseconds to be ready, after a job
 };
 ```
+
+## Plugin summary
+
+- Name: `transformer-throttler`
+- Source: <https://github.com/grammyjs/transformer-throttler>
+- Reference: <https://doc.deno.land/https/deno.land/x/grammy_transformer_throttler/mod.ts>

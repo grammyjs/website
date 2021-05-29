@@ -2,4 +2,8 @@
 
 Coming soon, please come back later.
 
-<https://github.com/grammyjs/menu>
+## Plugin summary
+
+- Name: `menu`
+- Source: <https://github.com/grammyjs/menu>
+- Reference: tbd

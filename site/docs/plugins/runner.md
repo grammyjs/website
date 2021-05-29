@@ -160,3 +160,9 @@ grammY runner will resolve all necessary constraints on the fly and block those 
 
 The implementation of this is very efficient.
 It needs constant memory (unless you specify infinite concurrency), and it needs (amortised) constant processing time per update.
+
+## Plugin summary
+
+- Name: `runner`
+- Source: <https://github.com/grammyjs/runner>
+- Reference: <https://doc.deno.land/https/deno.land/x/grammy_runner/mod.ts>

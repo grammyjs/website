@@ -42,7 +42,7 @@ This is how a bot like that could be implemented:
 
 ```ts
 import { Bot, Context, Keyboard, session, SessionFlavor } from "grammy";
-import { Router } from '@grammyjs/router'
+import { Router } from "@grammyjs/router";
 
 interface SessionData {
   step: "idle" | "day" | "month"; // what step of the form we are at
@@ -105,7 +105,7 @@ router.route("day", async (ctx, next) => {
 
 router.route("month", async (ctx) => {
   // should not happen, unless session data is corrupted
-  const day = ctx.session.dayOfMonth
+  const day = ctx.session.dayOfMonth;
   if (day === undefined) {
     await ctx.reply("I need your day of month!");
     ctx.session.step = "day";
@@ -156,8 +156,8 @@ function getDays(month: number, day: number) {
   <CodeGroupItem title="JS">
 
 ```js
-import { Bot, Context, Keyboard, session, SessionFlavor } from "grammy";
-import { Router } from '@grammyjs/router'
+const { Bot, Context, Keyboard, session, SessionFlavor } = require("grammy");
+const { Router } = require("@grammyjs/router");
 
 const bot = new Bot("");
 // Use session
@@ -213,7 +213,7 @@ router.route("day", async (ctx, next) => {
 
 router.route("month", async (ctx) => {
   // should not happen, unless session data is corrupted
-  const day = ctx.session.dayOfMonth
+  const day = ctx.session.dayOfMonth;
   if (day === undefined) {
     await ctx.reply("I need your day of month!");
     ctx.session.step = "day";
@@ -334,7 +334,7 @@ router.route("day", async (ctx, next) => {
 
 router.route("month", async (ctx) => {
   // should not happen, unless session data is corrupted
-  const day = ctx.session.dayOfMonth
+  const day = ctx.session.dayOfMonth;
   if (day === undefined) {
     await ctx.reply("I need your day of month!");
     ctx.session.step = "day";
@@ -392,3 +392,9 @@ You can read more about how to scale your codebase in [this advanced section](/a
 Note how the session has a property `step` that stores the step of the form, i.e. which value is currently being filled.
 The router is used to jump between different middleware that completes both the `month` and the `dayOfMonth` fields on the session.
 If both values are known, the bot computes the remaining days and sends it back to the user.
+
+## Plugin summary
+
+- Name: `router`
+- Source: <https://github.com/grammyjs/router>
+- Reference: <https://doc.deno.land/https/deno.land/x/grammy_router/router.ts>
