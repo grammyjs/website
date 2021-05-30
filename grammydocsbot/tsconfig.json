@@ -1,0 +1,4 @@
+{
+  "compilerOptions": { "esModuleInterop": true },
+  "files": ["./bot.ts"]
+}

@@ -1,13 +1,9 @@
+import express from "express";
 import algoliasearch from "algoliasearch";
-import { Bot } from "grammy";
+import { Bot, InlineKeyboard, webhookCallback } from "grammy";
 
 const client = algoliasearch("BH4D9OD16A", "17b3527aa6f36e8d3fe2276b0f4d9633");
 const index = client.initIndex("grammy");
-
-index
-  .search("context")
-  .then((...x: any[]) => console.log(JSON.stringify(x)))
-  .catch(console.error);
 
 const token = process.env.BOT_TOKEN;
 if (token === undefined) throw new Error("Missing BOT_TOKEN");
@@ -15,7 +11,9 @@ if (token === undefined) throw new Error("Missing BOT_TOKEN");
 const bot = new Bot(token);
 
 bot.on("message", (ctx) =>
-  ctx.reply("I can search for grammY documentation inline.")
+  ctx.reply("I can search for grammY documentation inline.", {
+    reply_markup: new InlineKeyboard().switchInline("Search"),
+  })
 );
 
 bot.on("inline_query", async (ctx) => {
@@ -30,34 +28,43 @@ bot.on("inline_query", async (ctx) => {
       description:
         getTitle(h) + ": " + (h.content ?? "Title matches the search query"),
       input_message_content: {
-        message_text: getText(h, !h.content),
+        message_text: getText(h, !h.hierarchy.lvl2),
         parse_mode: "HTML",
       },
     })),
     {
-      cache_time: 1,
+      cache_time: 24 * 60 * 60, // 24 hours (algolia re-indexing)
     }
   );
 });
 
-bot.catch(console.error);
-
-bot.start();
+if (process.env.DEBUG) {
+  bot.catch(console.error);
+  bot.start();
+} else {
+  const port = process.env.PORT || 8080;
+  const app = express();
+  app.use(express.json());
+  app.use(webhookCallback(bot));
+  app.listen(port, () =>
+    bot.api.setWebhook("https://grammydocsbot.herokuapp.com/", {
+      drop_pending_updates: true,
+    })
+  );
+}
 
 function getTitle(hit: any) {
-  console.log(JSON.stringify(hit));
   const h = hit.hierarchy;
   const headers = [h.lvl0, h.lvl1, h.lvl2, h.lvl3, h.lvl4, h.lvl5, h.lvl6];
   return headers.filter((t) => t!!).join(" / ");
 }
 
 function getText(hit: any, strip: boolean) {
-  return (
-    "<b>" +
-    getTitle(hit) +
-    "</b>\n\n" +
-    (strip ? stripAnchor(hit.url) : hit.url)
-  );
+  const title = getTitle(hit);
+  const url = strip ? stripAnchor(hit.url) : hit.url;
+  return `<b>${title}</b>
+
+${url}`;
 }
 
 function stripAnchor(url: string) {
