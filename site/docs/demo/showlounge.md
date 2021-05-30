@@ -12,3 +12,4 @@ Include a description what it does and a link to GitHub—and of course a link t
 ## Bot list
 
 [Deezer History](https://t.me/DeezerHistoryBot) - [Source Code](https://github.com/rojserbest/deezer_history) - Tell others what you were listening to on Deezer.
+[grammY Documentation Search](https://t.me/grammydocsbot) - [Source Code](https://github.com/grammyjs/website/tree/main/grammydocsbot) - Search and share grammY docs right inside Telegram.
