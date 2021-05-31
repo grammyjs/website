@@ -56,7 +56,7 @@ if (process.env.DEBUG) {
 function getTitle(hit: any) {
   const h = hit.hierarchy;
   const headers = [h.lvl1, h.lvl2, h.lvl3, h.lvl4, h.lvl5, h.lvl6];
-  return headers.filter((t) => t!!).join(" / ");
+  return headers.filter((t) => !!t).join(" / ");
 }
 
 function getText(hit: any, strip: boolean) {
