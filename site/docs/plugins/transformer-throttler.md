@@ -15,7 +15,7 @@ Note that the default options are aligned with the actual rate limits enforced b
 import { Bot } from "grammy";
 import { apiThrottler } from "@grammyjs/transformer-throttler";
 
-const botToken = Deno.env.get("BOT_TOKEN");
+const botToken = process.env.BOT_TOKEN;
 if (!botToken) {
   throw Error("BOT_TOKEN is required");
 }
@@ -36,7 +36,7 @@ bot.start();
 const { Bot } = require("grammy");
 const { apiThrottler } = require("@grammyjs/transformer-throttler");
 
-const botToken = Deno.env.get("BOT_TOKEN");
+const botToken = process.env.BOT_TOKEN;
 if (!botToken) {
   throw Error("BOT_TOKEN is required");
 }
