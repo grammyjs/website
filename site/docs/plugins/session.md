@@ -152,8 +152,8 @@ bot.start();
 Note how we also have to [adjust the context type](/guide/context.md#customizing-the-context-object) to make the session available on it.
 The context flavour is called `SessionFlavor`.
 
-It is important (but optional) that you specify the `inital` option for the session middleware.
-Pass a function that generates a new object with inital session data for new chats.
+It is important (but optional) that you specify the `initial` option for the session middleware.
+Pass a function that generates a new object with initial session data for new chats.
 
 You can specify which session key to use by passing a function called `getSessionKey` to the [options](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#SessionOptions).
 Whenever `getSessionKey` returns `undefined`, `ctx.session` will be `undefined`.
@@ -228,8 +228,18 @@ You mainly have to do three things:
 3. Always put an inline `await ctx.session` instead of `ctx.session` everywhere in your middleware, for both reads and writes.
    Don't worry: you can `await` the promise with your session data as many times as you want, but you will always refer to the same value, so there are never going to be duplicate reads for an update.
 
-Note: with lazy sessions, you can assign both objects and promises of objects to `ctx.session`.
+Note that with lazy sessions, you can assign both objects and promises of objects to `ctx.session`.
 If you set `ctx.session` to be a promise, it will be `await`ed before writing the data back to the data storage.
+This would allow for the following code:
+
+```ts
+bot.command("reset", (ctx) => {
+  // Much shorter then having to `await ctx.session` first:
+  ctx.session = ctx.session.then((stats) => { stats.counter = 0; });
+});
+```
+
+One may argue well that explicitly using `await` is preferable over assigning a promise to `ctx.session`, the point is that you _could_ do this if you like that style better for some reason.
 
 ::: tip Plugins that need sessions
 Plugin developers that make use of `ctx.session` should always allow users to pass `SessionFlavor | LazySessionFlavor` and hence support both modi.
