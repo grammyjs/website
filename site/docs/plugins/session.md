@@ -11,7 +11,7 @@ As a result, there are a few things you cannot do with bots:
 
 1. You cannot access old messages that your bot received.
 2. You cannot access old messages that your bot sent.
-3. You cannot get a list of all chats of you bot.
+3. You cannot get a list of all chats with your bot.
 4. More things, e.g. no media overview, etc
 
 Basically, it boils down to the fact that **a bot only has access to the information of the currently incoming update** (e.g. message), i.e. the information that is available on the context object `ctx`.
