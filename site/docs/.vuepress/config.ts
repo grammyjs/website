@@ -16,8 +16,6 @@ export default defineUserConfig<DefaultThemeOptions>({
     editLink: true,
     editLinkText: "Edit this page on GitHub",
     editLinkPattern: ":repo/edit/:branch/:path",
-    contributors: true,
-    contributorsText: 'Written by',
     repoLabel: "GitHub",
     notFound: [
       "Not Found",
