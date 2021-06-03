@@ -5,6 +5,8 @@ export default defineUserConfig<DefaultThemeOptions>({
   title: "grammY",
   description: "The Telegram Bot Framework.",
 
+  shouldPrefetch: true,
+
   themeConfig: {
     logo: "/Y.png",
     repo: "https://github.com/grammyjs/grammY",
