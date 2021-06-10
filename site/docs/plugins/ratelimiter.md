@@ -1,4 +1,4 @@
-# Rate limiting users (`ratelimiter`)
+# Rate limit users (`ratelimiter`)
 
 Coming soon, please come back later.
 
