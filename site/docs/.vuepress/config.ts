@@ -170,7 +170,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                 link: "/plugins/transformer-throttler.md",
               },
               {
-                text: "Rate limiting users (ratelimiter)",
+                text: "Rate limit users (ratelimiter)",
                 link: "/plugins/ratelimiter.md",
               },
               {
