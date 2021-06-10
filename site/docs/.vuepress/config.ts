@@ -170,6 +170,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                 link: "/plugins/transformer-throttler.md",
               },
               {
+                text: "Rate limiting users (ratelimiter)",
+                link: "/plugins/ratelimiter.md",
+              },
+              {
                 text: "Internationalisation (i18n)",
                 link: "/plugins/i18n.md",
               },
