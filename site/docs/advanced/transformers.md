@@ -64,9 +64,9 @@ Transformer functions are as flexible as middleware, and they have just as many 
 For instance, the [grammY menu plugin](/plugins/menu.md) installs a transformer function to turn outgoing menu instances into the correct payload.
 You can also use them to
 
-- implement flood control,
+- implement [flood control](/plugins/transformer-throttler.md),
 - mock API requests during testing,
-- add retry behaviour, or
+- add [retry behaviour](/plugins/auto-retry.md), or
 - more.
 
 Note however that retrying an API call can have odd side-effects: if you call `sendDocument` and pass a readable stream instance to `InputFile`, then the stream will be read the first time the request is tried.
