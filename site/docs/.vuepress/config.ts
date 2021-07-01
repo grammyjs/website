@@ -273,6 +273,7 @@ export default defineUserConfig<DefaultThemeOptions>({
         indexName: "grammy",
         placeholder: "Search",
         algoliaOptions: { facetFilters: ["lang:en-US"] },
+        sitemaps: ['https://grammy.dev/sitemap.xml']
       },
     ],
   ],
