@@ -187,8 +187,8 @@ export default defineUserConfig<DefaultThemeOptions>({
             text: "Third-party",
             children: [
               {
-                text: "Middleware console time",
-                link: "/plugins/middleware-console-time.md",
+                text: "Console time",
+                link: "/plugins/console-time.md",
               },
               {
                 text: "[Submit your PR!]",
