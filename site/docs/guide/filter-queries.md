@@ -14,7 +14,7 @@ Other filtering of messages is left to library users, which often leads to endle
 
 Quite the contrary, **grammY ships with its own query language** that you can use in order to **filter for exactly the messages** you want.
 
-This allows for over 400 different filters to be used, and we may add more over time.
+This allows for over 500 different filters to be used, and we may add more over time.
 Every valid filter can be auto-completed in your text editor.
 Hence, you can simply type `bot.on('')`, open auto-complete, and search through all queries by typing somthing.
 
@@ -76,6 +76,20 @@ Leaving out the _first_ value matches both messages and channel posts.
 
 Leaving out the _second_ value matches both entities and caption entities.
 You can leave out both the first and the second part at the same time.
+
+### Shortcuts
+
+The query engine of grammY allows to define neat shortcuts that group related queries together.
+Currently, only one of these shortcuts is defined, namely for edits:
+
+```ts
+bot.on("edit"); // all edits of messages or channel posts
+bot.on("edit:text"); // edits of text messages
+bot.on("edit::url"); // edits of messages or channel posts with URL
+bot.on("edit:location"); // live location updated
+```
+
+This is equivalent to listening for both `'edited_message'` and `'edited_channel_post'` events.
 
 ### Useful tips
 
