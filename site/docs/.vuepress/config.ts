@@ -181,6 +181,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                 text: "Router (router)",
                 link: "/plugins/router.md",
               },
+              {
+                text: "Command filtering (command-fiter)",
+                link: "/plugins/command-filter.md",
+              },
             ],
           },
           {
