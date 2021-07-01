@@ -187,6 +187,10 @@ export default defineUserConfig<DefaultThemeOptions>({
             text: "Third-party",
             children: [
               {
+                text: "Middleware console time",
+                link: "/plugins/middleware-console-time.md",
+              },
+              {
                 text: "[Submit your PR!]",
                 link: "/plugins/README.md#submitting-your-own-package-to-the-docs",
               },
