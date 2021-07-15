@@ -51,7 +51,7 @@ import { Bot } from 'grammy'
 // Create an instance of the `Bot` class and pass your bot token to it.
 const bot = new Bot('') // <-- put your bot token between the ''
 
-// You can now register listeners for on your bot object `bot`.
+// You can now register listeners on your bot object `bot`.
 // grammY will call the listeners when users send messages to your bot.
 
 // React to /start command
@@ -75,7 +75,7 @@ const { Bot } = require('grammy')
 // Create an instance of the `Bot` class and pass your bot token to it.
 const bot = new Bot('') // <-- put your bot token between the ''
 
-// You can now register listeners for on your bot object `bot`.
+// You can now register listeners on your bot object `bot`.
 // grammY will call the listeners when users send messages to your bot.
 
 // React to /start command
@@ -99,7 +99,7 @@ import { Bot } from 'https://deno.land/x/grammy/mod.ts'
 // Create an instance of the `Bot` class and pass your bot token to it.
 const bot = new Bot('') // <-- put your bot token between the ''
 
-// You can now register listeners for on your bot object `bot`.
+// You can now register listeners on your bot object `bot`.
 // grammY will call the listeners when users send messages to your bot.
 
 // React to /start command
