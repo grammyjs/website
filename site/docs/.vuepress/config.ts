@@ -263,6 +263,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                 text: "Google Cloud Functions",
                 link: "/hosting/gcf.md",
               },
+              {
+                text: "Heroku",
+                link: "/hosting/heroku.md",
+              },
             ],
           },
         ],
