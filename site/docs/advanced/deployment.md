@@ -9,9 +9,8 @@ Here is a list of things that you may want to keep in mind when hosting a large 
 ## Errors
 
 1. [Install an error handler with `bot.catch`.](/guide/errors.md)
-2. [Install an error handler with `bot.catch`.](/guide/errors.md)
-3. Also, don't forget to [install an error handler with `bot.catch`.](/guide/errors.md)
-4. Use `await` on all promises, and installed **linting** tools that make sure you cannot forget this.
+2. Also, don't forget to [install an error handler with `bot.catch`.](/guide/errors.md)
+3. Use `await` on all promises, and installed **linting** tools that make sure you cannot forget this.
 
 ## Message sending
 
