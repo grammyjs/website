@@ -27,8 +27,8 @@ npx tsc --init
 ```
 
 We will store our TypeScript files inside a folder `src`, and our compiled files in a folder `dist`.
-Create the folders in our root directory project.
-Then inside folder `src`, create new file named `bot.ts`.
+Create the folders in the project's root directory.
+Then, inside folder `src`, create a new file named `bot.ts`.
 Our folder structure should now look like this:
 
 ```asciiart:no-line-numbers
