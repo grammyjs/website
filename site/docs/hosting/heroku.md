@@ -8,7 +8,7 @@ We also assume that you have a Heroku account already.
 
 ## Prerequisites
 
-First, install some dependecies:
+First, install some dependencies:
 
 ```bash
 # Create a project directory
