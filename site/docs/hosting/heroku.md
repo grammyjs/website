@@ -138,7 +138,7 @@ Let's take a look at our code above:
 ::: tip ⚡ Optimisation (optional)
 `bot.api.setWebhook` at line 14 will always run when Heroku starts your server again.
 For low traffic bots, this will be for every request.
-Howver, we do not need this code to run everytime a request is coming.
+However, we do not need this code to run everytime a request is coming.
 Therefore, we can delete this part completely, and execute the `GET` only once manually.
 Open this link on your web browser after deploying our bot:
 
@@ -306,7 +306,7 @@ Here is the link for the installation:
 - [Git installation instructions](https://git-scm.com/download/)
 - [Heroku CLI installation instructions](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
 
-Assuming that you already have them in your machine and, and you have a terminal open in the root of our project's directory.
+Assuming that you already have them in your machine, and you have a terminal open in the root of our project's directory.
 Now initialise a local git repository by running this code in your terminal:
 
 ```bash
@@ -374,7 +374,7 @@ git commit -m "My first commit"
 
 ### Set up a Heroku Remote
 
-If you have already created [Heroku app](https://dashboard.heroku.com/apps/), pass your `Existing app`'s name in `<myApp>` below then run the code.
+If you have already created [Heroku app](https://dashboard.heroku.com/apps/), pass your `Existing app`'s name in `<myApp>` below, then run the code.
 Otherwise, run `New app`.
 
 <CodeGroup>
