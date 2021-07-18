@@ -318,6 +318,12 @@ bot.start();
 
 Context flavours are a way to tell TypeScript about new properties on your context object.
 
+### Additive context flavours
+
+There are two different kinds of context flavours.
+The basic one is called _additive context flavor_, and whenver we talk about context flavouring, we just mean this basic form.
+Let's look at how it works.
+
 As an example, when you have [session data](/plugins/session.md), you must register `ctx.session` on the `Context` type.
 Otherwise,
 
@@ -357,3 +363,47 @@ bot.on("message", (ctx) => {
   const str = ctx.session;
 });
 ```
+
+### Transformative context flavors
+
+The other kind of context flavor is more powerful.
+Instead of installing it with the `&` operator, they need to be installed like so:
+
+```ts
+import { Context } from "grammy";
+import { SomeFlavorA } from "my-plugin";
+
+type MyContext = SomeFlavorA<Context>;
+```
+
+Everything else works the same way.
+
+Every (official) plugin states in its documentation whether it must be used via additive or via transformative context flavour.
+
+### Combining different context flavours
+
+If you have different [additive context flavours](#additive-context-flavours), you can just install them like this:
+
+```ts
+type MyContext = Context & FlavorA & FlavorB & FlavorC;
+```
+
+Multiple [transformative context flavours](#transformative-context-flavours) can also be combined:
+
+```ts
+type MyContext = FlavorX<FlavorY<FlavorZ<Context>>>;
+```
+
+You can even mix additive and transformative flavours:
+
+```ts
+type MyContext = FlavorX<
+  FlavorY<
+    FlavorZ<
+      Context & FlavorA & FlavorB & FlavorC
+    >
+  >
+>;
+```
+
+The order of context flavours does not matter, you can combine them in any order you like.
