@@ -22,6 +22,8 @@ That being said, a straightforward and proven strategy to structure your code is
 3. (Optional.) Pre-filter the updates centrally, and send down updates the right way only.
    You may also want to check out `bot.route` ([API Reference](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Composer)) or alternatively the [router plugin](/plugins/router.md) for that.
 
+A runnable example that implements the above strategy can be found in the [Example Bot repository](https://github.com/grammyjs/examples/tree/main/scaling).
+
 ## Example structure
 
 For a very simple bot that manages a TODO list, you could imagine this structure.
