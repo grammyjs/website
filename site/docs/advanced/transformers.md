@@ -72,3 +72,38 @@ You can also use them to
 Note, however, that retrying an API call can have odd side-effects: if you call `sendDocument` and pass a readable stream instance to `InputFile`, then the stream will be read the first time the request is tried.
 If you invoke `prev` again, the stream may already be (partially) consumed, hence leading to broken files.
 It is therefore a more reliable way to pass file paths to `InputFile`, so grammY can recreate the stream as necessary.
+
+## API Flavouring
+
+grammY features [context flavours](/guide/context.md#context-flavours) that can be used to adjust the context type.
+This includes API methods—both those that are directly on the context object such as `ctx.reply`, and all methods in `ctx.api` and `ctx.api.raw`.
+However, you cannot adjust the types of `bot.api` and `bot.api.raw` via context flavours.
+
+This is why grammY supports _API flavours_.
+They solve this problem:
+
+```ts
+import { Api, Bot, Context } from "grammy";
+import { somePlugin, someContextFlavor, SomeApiFlavor } from "some-plugin";
+
+// Context flavoring
+type MyContext = Context & SomeContextFlavor;
+// API flavoring
+type MyApi = Api & SomeApiFlavor;
+
+// Use both flavors
+const bot = new Bot<MyContext, MyApi>("my-token");
+
+// Install plugin
+bot.api.config.use(somePlugin());
+
+// Now call `bot.api` with adjusted types from API flavor
+bot.api.somePluginMethod();
+
+// Also use adjusted context type from context flavor
+bot.on("message", (ctx) => ctx.api.somePluginMethod());
+```
+
+API flavours work exactly anaolgously to context flavours.
+There are both additive and transformative API flavours, and multiple API flavours can be combined the same way as you would do with context flavours.
+If you are unsure how this works, head back to [the section about context flavours](/guide/context.md#context-flavours) in the guide.
