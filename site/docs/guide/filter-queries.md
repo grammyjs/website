@@ -87,6 +87,24 @@ bot.on("message:new_chat_members:is_bot"); // a bot joined the chat
 bot.on("message:left_chat_member:me"); // your bot left a chat (was removed)
 ```
 
+::: tip Filter by user properties
+
+If you want to filter by other properties of a user, you need to perform an additional request, e.g. `await ctx.getAuthor()` for the author of the message.
+Filter queries will not secretly perform further API requests for you.
+It is still simple to perform this kind of filtering:
+
+```ts
+bot.on("message").filter(
+  async (ctx) => {
+    const user = await ctx.getAuthor();
+    return user.status === "creator" || user.status === "administrator";
+  },
+  (ctx) => {
+    // handles messages from creators and admins
+  }
+);
+```
+
 ## Combining multiple queries
 
 You can combine any number of filter queries with AND as well as OR operations.
