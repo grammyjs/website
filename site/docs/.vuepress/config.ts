@@ -178,6 +178,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                 link: "/plugins/ratelimiter.md",
               },
               {
+                text: "Files (files)",
+                link: "/plugins/files.md",
+              },
+              {
                 text: "Internationalisation (i18n)",
                 link: "/plugins/i18n.md",
               },
