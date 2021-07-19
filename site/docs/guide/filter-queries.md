@@ -105,6 +105,8 @@ bot.on("message").filter(
 );
 ```
 
+:::
+
 ## Combining multiple queries
 
 You can combine any number of filter queries with AND as well as OR operations.
