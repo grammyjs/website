@@ -75,7 +75,7 @@ grammY allows you to specify objects consistently across the API, and makes sure
 
 ### Making raw API calls
 
-There may be times when you want to want to use the original function signatures, but still rely on the convenience of the grammY API (e.g. JSON serializing where appropriate).
+There may be times when you want to want to use the original function signatures, but still rely on the convenience of the grammY API (e.g. JSON serialising where appropriate).
 grammY supports this via the `bot.api.raw` (or the `ctx.api.raw`) properties.
 
 You can call the raw methods like this:
