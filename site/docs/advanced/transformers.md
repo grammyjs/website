@@ -69,6 +69,6 @@ You can also use them to
 - add [retry behaviour](/plugins/auto-retry.md), or
 - more.
 
-Note however that retrying an API call can have odd side-effects: if you call `sendDocument` and pass a readable stream instance to `InputFile`, then the stream will be read the first time the request is tried.
+Note, however, that retrying an API call can have odd side-effects: if you call `sendDocument` and pass a readable stream instance to `InputFile`, then the stream will be read the first time the request is tried.
 If you invoke `prev` again, the stream may already be (partially) consumed, hence leading to broken files.
 It is therefore a more reliable way to pass file paths to `InputFile`, so grammY can recreate the stream as necessary.
