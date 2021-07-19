@@ -8,7 +8,6 @@ Here is an example of how to use this plugin with the default options.
 Note that the default options are aligned with the actual rate limits enforced by Telegram, so they should be good to go.
 
 <CodeGroup>
-
   <CodeGroupItem title="TS" active>
 
 ```ts
@@ -29,7 +28,6 @@ bot.start();
 ```
 
  </CodeGroupItem>
-
  <CodeGroupItem title="JS">
 
 ```js
@@ -50,7 +48,6 @@ bot.start();
 ```
 
  </CodeGroupItem>
-
  <CodeGroupItem title="Deno">
 
 ```ts
@@ -71,7 +68,6 @@ bot.start();
 ```
 
  </CodeGroupItem>
-
 </CodeGroup>
 
 ## Configuration

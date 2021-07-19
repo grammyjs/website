@@ -135,7 +135,6 @@ run(bot);
 ```
 
  </CodeGroupItem>
-
  <CodeGroupItem title="Deno">
 
 ```ts
@@ -162,7 +161,6 @@ run(bot);
 ```
 
  </CodeGroupItem>
-
 </CodeGroup>
 
 Feel free to join the [Telegram chat](https://t.me/grammjs) to discuss how to use grammY runner with your bot.

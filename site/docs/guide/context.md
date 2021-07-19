@@ -212,7 +212,6 @@ If you choose option 2., this is how you set a custom context constructor that w
 Note that your class must extend `Context`.
 
 <CodeGroup>
-
   <CodeGroupItem title="TS" active>
 
 ```ts
@@ -243,7 +242,6 @@ bot.start();
 ```
 
   </CodeGroupItem>
-
   <CodeGroupItem title="JS" active>
 
 ```ts
@@ -273,7 +271,6 @@ bot.start();
 ```
 
   </CodeGroupItem>
-
   <CodeGroupItem title="Deno">
 
 ```ts
@@ -307,7 +304,6 @@ bot.start();
 ```
 
   </CodeGroupItem>
-
 </CodeGroup>
 
 ::: tip Related

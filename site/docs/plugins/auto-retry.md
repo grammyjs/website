@@ -26,7 +26,6 @@ bot.api.config.use(autoRetry());
 ```
 
  </CodeGroupItem>
-
  <CodeGroupItem title="JS">
 
 ```js
@@ -37,7 +36,6 @@ bot.api.config.use(autoRetry());
 ```
 
  </CodeGroupItem>
-
  <CodeGroupItem title="Deno">
 
 ```ts
@@ -48,7 +46,6 @@ bot.api.config.use(autoRetry());
 ```
 
  </CodeGroupItem>
-
 </CodeGroup>
 
 If you now call e.g. `sendMessage` and run into a rate limit, it will look like the request just takes unusually long.

@@ -49,7 +49,6 @@ bot.start()
 ```
 
  </CodeGroupItem>
-
  <CodeGroupItem title="JS">
 
 ```ts
@@ -64,7 +63,6 @@ bot.start()
 ```
 
  </CodeGroupItem>
-
  <CodeGroupItem title="Deno">
 
 ```ts
@@ -79,7 +77,6 @@ bot.start()
 ```
 
  </CodeGroupItem>
-
 </CodeGroup>
 
 Works! :tada:

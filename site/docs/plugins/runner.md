@@ -42,7 +42,6 @@ run(bot);
 ```
 
  </CodeGroupItem>
-
  <CodeGroupItem title="JS">
 
 ```ts
@@ -60,7 +59,6 @@ run(bot);
 ```
 
  </CodeGroupItem>
-
  <CodeGroupItem title="Deno">
 
 ```ts
@@ -78,7 +76,6 @@ run(bot);
 ```
 
  </CodeGroupItem>
-
 </CodeGroup>
 
 Of course, while this looks very simple, a lot is going on under the hood.
