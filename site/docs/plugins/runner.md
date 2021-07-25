@@ -134,7 +134,7 @@ Check out the [API reference](https://doc.deno.land/https/deno.land/x/grammy_run
 Most likely, you want to be guaranteed that messages from the same chat are processed in order.
 This is useful when installing [session middleware](./session.md), but it also makes sure that your bot does not confuse the order of messages in the same chat.
 
-grammY runner exports the `sequetialize` middleware that takes care of this.
+grammY runner exports the `sequentialize` middleware that takes care of this.
 You can check out [this section](/advanced/scaling.md#concurrency-is-hard) to learn how to use it.
 
 We are now going to look at more advanced usage of the plugin.
