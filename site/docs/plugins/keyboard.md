@@ -102,7 +102,9 @@ bot.command("start", async (ctx) => {
 
 // Wait for click events with specific callback data
 bot.callbackQuery("click-payload", async (ctx) => {
-  await ctx.answerCallbackQuery("You were curious, indeed!");
+  await ctx.answerCallbackQuery({
+    text: "You were curious, indeed!"
+  });
 });
 ```
 
