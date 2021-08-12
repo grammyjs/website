@@ -28,7 +28,7 @@ Telegraf is an amazing library, and grammY would not be where it is without it.
 However, Telegraf used to be written in JavaScript.
 The rare (manually added) type annotations were imcomplete, incorrect, and outdated.
 Strong type annotations are a crucial aspect of any serious library for the tooling support they enable, and because it allows you to iterate significantly faster on your code base.
-Many people prefer too have type safety when developing a complex bot, and for some it's a deal-breaker not to offer it.
+Many people prefer to have type safety when developing a complex bot, and for some it's a deal-breaker not to offer it.
 
 Telegraf v4 attempted to fix this by migrating the entire code base to TypeScript.
 This process revealed countless oddities ([example](https://github.com/telegraf/telegraf/issues/1076)) in the code base that made it painful to find correct typings for the existing code.
