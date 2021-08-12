@@ -125,7 +125,7 @@ Given that you're still reading, you may want to know why grammY is written in T
 
 This section will outline how TypeScript has a few advantages over other languages when it comes to developing Telegram bots.
 The main other language that is used to develop chat bots for Telegram is Python, so we will limit ourselves to this for now.
-Some of the following point are rather personal opinions than objective facts.
+Some of the following points are rather personal opinions than objective facts.
 People have different taste, so take this section with a grain of salt.
 
 1. **Better editor tooling.**
