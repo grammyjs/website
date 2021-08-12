@@ -2,33 +2,20 @@
 
 ## General
 
+### What is grammY?
+
+grammY is a piece of software that you can use when you want to program your own chat bot for [the Telegram messenger](https://telegram.org).
+When you make bots, you will notice that some parts of this process are tedious and always the same.
+grammY does the heavy lifting for you and makes it super simple to create a bot.
+
 ### When was grammY created?
 
 The first publish of grammY code was in late March, 2021.
+It reached the first stable version a few weeks later.
 
-### How does grammY compare to other JavaScript bot frameworks?
+### How is grammY developed?
 
-It has a documentation.
+grammY is completely free and open source software, developed by a team of voluteers.
+Its code is available on GitHub.
 
-Also, grammY learns from the experiences and mistakes of a rich ecosystem of Telegram bot frameworks, picks out the best ideas from several libraries, and develops them further.
-grammY features also some original ideas that are not found anywhere else.
-
-Naturally, this FAQ is biased.
-With that out of the way, it is safe to say that there is hardly any reason to use another JavaScript bot framework over grammY when creating new bots.
-
-### What if I like Python better?
-
-First of all: that's fine.
-The most important thing is that you like working with your tools and languages.
-
-That being said, TypeScript has a few advantages over Python when it comes to developing Telegram bots.
-
-1. **Better editor tooling.** The type annotations of grammY are outstanding.
-   While Python did introduce types in its 3.5 release, they are not used as commonly in the ecosystem as it is the case with JavaScript/TypeScript.
-   Hence, they cannot compare to what you get out of the box with grammY and its accompanying libraries.
-   With the types come auto-completion at every step of development, as well as helpful tooltips with explanations and links.
-2. **`async`/`await` support.** The largest bot framework for python, PTB, [announced its migration](https://telegram.me/pythontelegrambotchannel/94) to asynchronous programming in January 2021, which is expected to maybe take “2 years”. grammY is already there.
-3. Again, the documentation is better for grammY than for PTB, even though the PTB team is doing a much better job than the rest of the JavaScript ecosystem with their libaries that preceded grammY.
-
-The main advantage of PTB over grammY is the size of its community.
-grammY is still a very young project, and even though we have a [small but friendly community chat](https://telegram.me/grammyjs), it cannot reach up to the impressive number of engaged users that PTB has.
+You're welcome to [join us](https://telegram.me/grammyjs)!

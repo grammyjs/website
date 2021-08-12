@@ -241,6 +241,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                 text: "FAQ",
                 link: "/resources/faq.md",
               },
+              {
+                text: "Comparison to other frameworks",
+                link: "/resources/comparison.md",
+              },
             ],
           },
           {
