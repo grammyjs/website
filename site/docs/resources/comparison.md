@@ -115,7 +115,7 @@ You don't want that.
 Do you think that your favourite framework is better than grammY in some respect?
 Feel free to edit this page and add a comparison—or tell us what you think in the [group chat](https://telegram.me/grammyjs)!
 
-## Comparison with frameworks in other programming lanuages
+## Comparison with frameworks in other programming languages
 
 There are reasons to favour a different programming language over TypeScript.
 The most important thing is that you like working with your tools and languages.
