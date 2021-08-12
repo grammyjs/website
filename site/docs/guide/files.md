@@ -1,6 +1,6 @@
 ---
 prev: ./inline-queries.md
-next: ./deployment-types.md
+next: ./games.md
 ---
 
 # File handling
