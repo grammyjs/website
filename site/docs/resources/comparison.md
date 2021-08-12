@@ -119,7 +119,7 @@ Feel free to edit this page and add a comparison—or tell us what you think in 
 
 There are reasons to favour a different programming language over TypeScript.
 The most important thing is that you like working with your tools and languages.
-If are determined to stick with something else, then you can stop reading here.
+If you are determined to stick with something else, then you can stop reading here.
 
 Given that you're still reading, you may want to know why grammY is written in TypeScript, and why you should maybe consider picking this language for your bot, too.
 
