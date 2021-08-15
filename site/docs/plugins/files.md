@@ -116,8 +116,8 @@ If you need these calls, you should also install an [API flavour](/advanced/tran
 import { Api, Bot, Context } from "grammy";
 import { hydrateFiles, FileFlavor, FileApiFlavor } from "@grammyjs/files";
 
-type MyContext = Context & FileFlavor;
-type MyApi = Api & FileApiFlavor;
+type MyContext = FileFlavor<Context>;
+type MyApi = FileApiFlavor<Api>;
 
 const bot = new Bot<MyContext, MyApi>("");
 // etc
