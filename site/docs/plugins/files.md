@@ -15,7 +15,7 @@ Example:
 import { Bot, Context } from "grammy";
 import { hydrateFiles, FileFlavor } from "@grammyjs/files";
 
-// Transformative API flavor
+// Transformative Context flavor
 type MyContext = FileFlavor<Context>;
 
 // Create bot
@@ -69,7 +69,7 @@ import {
   FileFlavor,
 } from "https://deno.land/x/grammy_files/mod.ts";
 
-// Transformative API flavor
+// Transformative Context flavor
 type MyContext = FileFlavor<Context>;
 
 // Create bot
@@ -96,14 +96,14 @@ You can pass a string with a file path to `download` if you don't want to create
 
 If you only want to get the URL of the file so you can download it yourself, use `file.getUrl`. This will return a https link to your file that is valid for at least one hour.
 
-### Local Bot API server
+## Local Bot API server
 
 If you are using a local Bot API server, then the `getFile` call effectively downloads the file to your disk already.
 
 In turn, you can call `file.getUrl()` to access that file path.
 Note that `await file.download()` will now simply copy that locally present file to a temporary location (or to the given path if speciffied).
 
-### Supporting `bot.api` calls
+## Supporting `bot.api` calls
 
 By default, the results of `await bot.api.getFile()` will also be equipped with `download` and `getUrl` methods.
 However, this is not reflected in the types.
