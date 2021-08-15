@@ -166,6 +166,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                 link: "/plugins/runner.md",
               },
               {
+                text: "Hydration (hydrate)",
+                link: "/plugins/hydrate.md",
+              },
+              {
                 text: "Retry API requests (auto-retry)",
                 link: "/plugins/auto-retry.md",
               },
