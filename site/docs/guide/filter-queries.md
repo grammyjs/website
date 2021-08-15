@@ -80,7 +80,20 @@ You can leave out both the first and the second part at the same time.
 ### Shortcuts
 
 The query engine of grammY allows to define neat shortcuts that group related queries together.
-Currently, only one of these shortcuts is defined, namely for edits:
+
+#### `msg`
+
+The `msg` shortcut groups new messages and new channel posts.
+In other words, using `msg` is equivalent to listening for both `'message'` and `'channel_post'` events.
+
+```ts
+bot.on("msg"); // all messages or channel posts
+bot.on("msg:text"); // exactly the same as `:text`
+```
+
+#### `edit`
+
+This `edit` shortcut groups edited messages and edited channel posts.
 
 ```ts
 bot.on("edit"); // all edits of messages or channel posts
@@ -89,7 +102,25 @@ bot.on("edit::url"); // edits of messages or channel posts with URL
 bot.on("edit:location"); // live location updated
 ```
 
-This is equivalent to listening for both `'edited_message'` and `'edited_channel_post'` events.
+#### `:media`
+
+The `:media` shortcut groups photo and video messages.
+
+```ts
+bot.on("message:media"); // photo messages and video messages
+bot.on("edited_channel_post:media"); // edited channel posts with media
+bot.on(":media"); // new media messages or media channel posts
+```
+
+#### `:file`
+
+The `:file` shortcut groups all messages that contain a file.
+Hence, you can be sure that `await ctx.getFile()` will give you a file object.
+
+```ts
+bot.on(":file"); // files in messages or channel posts
+bot.on("edit:file"); // edits to file messages or file channel posts
+```
 
 ### Useful tips
 
