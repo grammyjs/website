@@ -20,22 +20,22 @@ As an example, the [grammY runner](./runner.md) plugin (`runner`) needs to be in
 You may decide to publish your package independently as a **third party**.
 In that case, we can still offer you a prominent place on this website:
 
-## Submitting your own package to the docs
+## Submitting your own plugin to the docs
 
 If you are the author of a library that can help other users of grammY, you can submit a PR on GitHub that adds a page for it to the official website of grammY (this one).
 This will enable other users to find it, and it gives you a simple way to have a good documentation.
 
-Here are a few things that we expect from your package if you want it to be displayed here.
+Here are a few things that we expect from your plugin if you want it to be displayed here.
 
 1. It has a README file on GitHub (and npm) with instructions how to use it.
 2. Your PR adds a page that includes meaningful content about
 
-   - what problem your package solves, and
+   - what problem your plugin solves, and
    - how to use it.
 
    In the simplest case, you can copy the text from your README file.
 
 3. It is open source software that is published under a permissive license, preferably MIT (like grammY), or ISC.
 
-It would be cool if your package also runs on Deno, and we will move those plugins to the top of the list.
+It would be cool if your plugin also runs on Deno, and we will move those plugins to the top of the list.
 However, Deno support is not a strict requirement.
