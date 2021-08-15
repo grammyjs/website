@@ -13,8 +13,15 @@ This is best illustrated by an example.
 ```ts
 bot.on(":photo", async (ctx) => {
   const statusMessage = await ctx.reply("Processing");
-  await doWork(); // some long image processing
-  await ctx.api.deleteMessage(statusMessage.message_id);
+  await doWork(ctx.photo); // some long image processing
+  await ctx.api.editMessageText(statusMessage.message_id, "Done!");
+  setTimeout(
+    () =>
+      ctx.api.deleteMessage(statusMessage.message_id).catch(() => {
+        // do nothing on error
+      }),
+    3000
+  );
 });
 ```
 
@@ -23,8 +30,9 @@ bot.on(":photo", async (ctx) => {
 ```ts
 bot.on(":photo", async (ctx) => {
   const statusMessage = await ctx.reply("Processing");
-  await doWork(); // some long image processing
-  await statusMessage.delete(); // so easy!
+  await doWork(ctx.photo); // some long image processing
+  await statusMessage.editText("Done!"); // so easy!
+  setTimeout(() => statusMessage.delete().catch(() => {}), 3000);
 });
 ```
 
@@ -152,6 +160,23 @@ bot.api.config.use(hydrateApi());
 
  </CodeGroupItem>
 </CodeGroup>
+
+## What objects are hydrated
+
+This plugin currently hydrates
+
+- messages and channel posts
+- edited messages and edited channel posts
+- callback queries
+- inline queries
+- pre-checkout and shipping queries
+
+All objects are hydrated on
+
+- the context object `ctx`,
+- the update object `ctx.update` inside the context,
+- shortcuts on the context object such as `ctx.msg`, and
+- API call results where applicable.
 
 ## Plugin summary
 
