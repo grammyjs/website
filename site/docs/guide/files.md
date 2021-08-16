@@ -53,13 +53,21 @@ bot.on("message:voice", async (ctx) => {
   const fileId = voice.file_id;
   await ctx.reply("The file identifier of your voice note is: " + fileId);
 
-  const file = await ctx.getFile(fileId);
-  const url = file.file_path // valid for 1 hour
-  await ctx.reply("Download your own file again: " + url);
+  const file = await ctx.getFile(fileId); // valid for 1 hour
+  const path = file.file_path; // file path on Bot API server
+  await ctx.reply("Download your own file again: " + path);
 });
 ```
 
-You can use the download URL to save the file to your disk.
+> Check out [the `:media` and `:file` shortcuts](/guide/filter-queries.md#shortcuts) for filter queries if you want to receive any kind of file.
+
+You can use the file path to know where on the Telegram Bot API servers your file resides.
+You can then download it again using the URL `https://api.telegram.org/file/bot<token>/<file_path>` where `<token>` must be replaced by your bot token, and `<file_path>` must be replaced by the file path.
+
+::: tip Files plugin
+grammY does not ship its own file downloader, but you can install it using [the official files plugin](/plugins/files.md).
+It allows you to download files via `await file.download()`, and to obtain their URL via `file.getUrl()`.
+:::
 
 ## Sending files
 
