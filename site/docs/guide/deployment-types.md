@@ -1,5 +1,5 @@
 ---
-prev: ./games.md
+prev: ./files.md
 next: /advanced/
 ---
 

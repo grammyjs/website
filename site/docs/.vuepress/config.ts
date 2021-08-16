@@ -82,10 +82,6 @@ export default defineUserConfig<DefaultThemeOptions>({
                 link: "/guide/files.md",
               },
               {
-                text: "Games",
-                link: "/guide/games.md",
-              },
-              {
                 text: "Long Polling vs. Webhooks",
                 link: "/guide/deployment-types.md",
               },
