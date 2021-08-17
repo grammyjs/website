@@ -8,11 +8,13 @@ next: ./deployment-types.md
 ## Introduction
 
 Telegram games features is a very interesting one and one of my favourites to play with.
-What can you do with it? The answer is anything, any HTML 5 game that you have developed you can provide that to users on telegram with the help of this feature.
+What can you do with it?
+The answer is anything, any HTML 5 game that you have developed you can provide that to users on telegram with the help of this feature.
 
 ## Setting up a game with your bot on Bot Father
 
-For simplicity i am assuming that by now you must have set up a bot and a game associated with your bot on Bot father if not? Refer this [article](https://core.telegram.org/bots/games) by Telegram.
+For simplicity i am assuming that by now you must have set up a bot and a game associated with your bot on Bot father if not?
+Refer this [article](https://core.telegram.org/bots/games) by Telegram.
 
 > _Note: We will only learn the bot side development and the game is entirely up to the developer all we need here is a link of the HTML 5 game hosted on the internet._
 
@@ -43,7 +45,8 @@ An advantage of using the `api.sendGame` method is you can specify the `chat.id`
    });
    ```
 
-> You can also specify a custom inline keyboard for the game to show buttons. By default it will be sent with a button with name as `Play my_game` where my_game is the name of your game.
+> You can also specify a custom inline keyboard for the game to show buttons.
+By default it will be sent with a button with name as `Play my_game` where my_game is the name of your game.
 
 ```ts
 // Define a new inline keyboard and you can write any text to be shown on button but the first button should always be the play button
