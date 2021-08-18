@@ -21,7 +21,7 @@ You're welcome to [join us](https://telegram.me/grammyjs)!
 ## What programming language does grammY use?
 
 grammY is written from the ground up in TypeScript, a superset of JavaScript.
-It can therefore run on Mode.js.
+It can therefore run on Node.js.
 However, grammY can also run on Deno, which positions itself as the successor of Node.js.
 (Technically, you can actually run grammY in modern browsers, even though this will rarely be useful.)
 
