@@ -89,7 +89,7 @@ bot.on("callback_query:game_short_name", async (ctx) => {
 });
 
 bot.command("start", (ctx) => {
-  const chatId = ctx.from.id;
+  
   await ctx.replyWithGame("my_game", {
     reply_markup: keyboard,
     // or you can use the api method here according to 
