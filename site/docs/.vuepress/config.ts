@@ -194,6 +194,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                 link: "/plugins/router.md",
               },
               {
+                text: "Parse Mode (parse-mode)",
+                link: "/plugins/parse-mode.md",
+              },
+              {
                 text: "Command filtering (command-fiter)",
                 link: "/plugins/command-filter.md",
               },
@@ -301,7 +305,7 @@ export default defineUserConfig<DefaultThemeOptions>({
         indexName: "grammy",
         placeholder: "Search",
         algoliaOptions: { facetFilters: ["lang:en-US"] },
-        sitemaps: ['https://grammy.dev/sitemap.xml']
+        sitemaps: ["https://grammy.dev/sitemap.xml"],
       },
     ],
   ],
