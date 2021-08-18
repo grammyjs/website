@@ -1,4 +1,4 @@
-# Parse Mode plugin for grammY
+# Parse Mode plugin
 
 This plugin provides a transformer for setting default `parse_mode`, and a middleware for hydrating `Context` with familiar `reply` variant methods - i.e. `replyWithHTML`, `replyWithMarkdown`, etc.
 
