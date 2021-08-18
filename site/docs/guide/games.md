@@ -56,7 +56,7 @@ An advantage of using the `api.sendGame` method is you can specify the `chat.id`
 // on the button, but make sure that the first button should always
 // be the play button!
 
-const keyboard = new InlineKeyboard().game("Start my_hame");
+const keyboard = new InlineKeyboard().game("Start my_game");
 
 // Notice that we have used game() unlike a normal inline keyboard
 // where we use url() or text()
@@ -80,6 +80,25 @@ bot.on("callback_query:game_short_name", async (ctx) => {
   await ctx.answerCallbackQuery({ url: "your_game_url" });
 });
 ```
+___
+### Our final code should look something like this
+
+```ts
+bot.on("callback_query:game_short_name", async (ctx) => {
+  await ctx.answerCallbackQuery({ url: "your_game_url" });
+});
+
+bot.command("start", (ctx) => {
+  
+  await ctx.replyWithGame("my_game", {
+    reply_markup: keyboard,
+    // or you can use the api method here according to 
+    // your needs
+  });
+});
+
+```
+
 
 > Remember to add proper [error handling](/guide/errors.md) to your bot before going live.
 
