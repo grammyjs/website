@@ -63,7 +63,7 @@ Asked about another pack of ice-cream (don't they ever refill those freezers?), 
 Unfortunately, no ice-cream is in stock.
 But because it's a long polling shop assistant, he won't tell you that.
 Instead, you just stand and wait patiently for three long days and nights until the shop is supplied with new products again.
-Once one the restocking is done at a demolishing 5 AM on Friday morning, the employee returns from the storage room.
+Once the restocking is done at a demolishing 5 AM on Friday morning, the employee returns from the storage room.
 “Good news”, you hear from a degenerated employee that started to grow a beard, “we do have ice-cream!”
 An exhausted smile plays on his dry lips, and his tired eyes are flashing for a moment as his shaking hands hand you a tactlessly shiny pack of salted caramel.
 
