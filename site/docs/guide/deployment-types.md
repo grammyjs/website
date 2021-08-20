@@ -22,16 +22,16 @@ Your bot can either pull them in (long polling), or the Telegram servers can pus
 
 ## How does long polling work?
 
-Imagine you're buying a box of ice-cream in a store.
+_Imagine you're buying a box of ice-cream in a store.
 You can't find your favourite type of ice-cream, so you ask an employee to check if they have some in their storage.
 The employee leaves, and comes back to you, telling you that they are out of stock.
 
 The next day, you're craving that delicious ice-cream again, so you go back to the same store.
 You find the freezer to still be empty, but maybe they restocked over night?
 Once again, you send the employee to the storage rooms, and voila, they can bring you three packs of best-in-town salted cararmel ice-cream.
-Yummy.
+Yummy._
 
-_Polling_ means that grammY proactively sends a request to Telegram, asking for new updates (=messages).
+**Polling** means that grammY proactively sends a request to Telegram, asking for new updates (=messages).
 If no messages are there, Telegram will return an empty list, indicating that no new messages were sent to your bot since the last time you asked.
 
 When grammY sends a request to Telegram and new messages have been sent to your bot in the meantime, Telegram will return them as an array of up to 100 update objects.
@@ -55,17 +55,17 @@ It is immediately obvious that this has some drawbacks.
 You can only get new ice-cream once every day (which is pretty bad), and your bot only receives new messages every few seconds or so (which is worse).
 Instead of deciding to spam the Telegram servers with a request every few milliseconds to get the latest updates, we will use _long polling_ instead of just _polling_.
 
-_Long polling_ means that grammY proactively sends a request to Telegram, asking for new updates.
+**Long polling** means that grammY proactively sends a request to Telegram, asking for new updates.
 If no messages are there, Telegram will keep the connection open until new messages arrive, and then respond to the request with those new messages.
 
-Your trusted shop assistant already greets you with your first name by now.
+_Your trusted shop assistant already greets you with your first name by now.
 Asked about another pack of ice-cream (don't they ever refill those freezers?), the employee walks back to the storage.
 Unfortunately, no ice-cream is in stock.
 But because it's a long polling shop assistant, he won't tell you that.
 Instead, you just stand and wait patiently for three long days and nights until the shop is supplied with new products again.
 Once the restocking is done at a demolishing 5 AM on Friday morning, the employee returns from the storage room.
 “Good news”, you hear from a degenerated employee that started to grow a beard, “we do have ice-cream!”
-An exhausted smile plays on his dry lips, and his tired eyes are flashing for a moment as his shaking hands hand you a tactlessly shiny pack of salted caramel.
+An exhausted smile plays on his dry lips, and his tired eyes are flashing for a moment as his shaking hands hand you a tactlessly shiny pack of salted caramel._
 
 And it is at this point that you know you have go to a different shop next time and make sure that long polling is only applied to grammY bot development.
 Not to shop assistants.
@@ -92,17 +92,17 @@ ______________                                   _____________
 
 ## How do webhooks work?
 
-After this terrifying experience (three days without ice-cream!), you'd prefer not to go to the store at all anymore.
-Wouldn't it be cool if the ice-cream could come to you?
+_After this terrifying experience (three days without ice-cream!), you'd prefer not to go to the store at all anymore.
+Wouldn't it be cool if the ice-cream could come to you?_
 
-Setting up a _webhook_ means that you will provide Telegram with a URL that is accessible from the public internet.
+Setting up a **webhook** means that you will provide Telegram with a URL that is accessible from the public internet.
 Whenever a new message is sent to your bot, Telegram (and not you!) will take the initiative and send a request with the update object to your server.
 Nice, heh?
 
-You decide to walk to the shop one last time.
+_You decide to walk to the shop one last time.
 You tell your well-rested shop buddy where you live.
 He promises to head over to your apartment personally whenever new ice-cream is there (because it would melt in the mail).
-Cool guy.
+Cool guy._
 
 ```asciiart:no-line-numbers
 ______________                                   _____________
