@@ -24,9 +24,9 @@ Your bot can either pull them in (long polling), or the Telegram servers can pus
 
 _Imagine you're buying a box of ice-cream in a store.
 You can't find your favourite type of ice-cream, so you ask an employee to check if they have some in their storage.
-The employee leaves, and comes back to you, telling you that they are out of stock.
+The employee leaves, and comes back to you, telling you that they are out of stock._
 
-The next day, you're craving that delicious ice-cream again, so you go back to the same store.
+_The next day, you're craving that delicious ice-cream again, so you go back to the same store.
 You find the freezer to still be empty, but maybe they restocked over night?
 Once again, you send the employee to the storage rooms, and voila, they can bring you three packs of best-in-town salted cararmel ice-cream.
 Yummy._
