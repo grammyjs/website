@@ -224,6 +224,7 @@ export default defineUserConfig<DefaultThemeOptions>({
           {
             text: "Examples",
             children: [
+              { text: "Examples Bots Repository", link: "https://github.com/grammyjs/examples" },
               { text: "Live Browser Demo", link: "/demo/README.md" },
               { text: "Example Bots", link: "/demo/examples.md" },
               { text: "Community Showlounge", link: "/demo/showlounge.md" },
@@ -242,8 +243,8 @@ export default defineUserConfig<DefaultThemeOptions>({
                 link: "https://telegram.me/grammyjs",
               },
               {
-                text: "Example Bots Repository",
-                link: "https://github.com/grammyjs/examples#readme",
+                text: "Awesome grammY",
+                link: "https://github.com/grammyjs/awesome-grammY",
               },
               {
                 text: "News",
