@@ -242,8 +242,8 @@ export default defineUserConfig<DefaultThemeOptions>({
                 link: "https://telegram.me/grammyjs",
               },
               {
-                text: "Example Bots Repository",
-                link: "https://github.com/grammyjs/examples#readme",
+                text: "Awesome grammY",
+                link: "https://github.com/grammyjs/awesome-grammY",
               },
               {
                 text: "News",
