@@ -78,7 +78,7 @@ There are two ways to do this, as described in [the section about formatting opt
 Send your message with markdown in the text, and specify `parse_mode: 'MarkdownV2'`.
 
 ```ts
-await bot.api.sendMessage(12345, "**Hi!** Welcome to grammY.", {
+await bot.api.sendMessage(12345, "**Hi\!** Welcome to grammY.", {
   parse_mode: "MarkdownV2",
 });
 ```
