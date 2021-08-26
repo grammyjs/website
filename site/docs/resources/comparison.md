@@ -101,7 +101,7 @@ For example:
 
 ##### Advantages of grammY
 
-- Easier to use than Telegraf 3
+- Easier to use than Telegraf 3 and 4
 - Proper TypeScript support
 - Has both a documentation and a generated API reference
 - Significantly faster on long polling (with grammY runner)
