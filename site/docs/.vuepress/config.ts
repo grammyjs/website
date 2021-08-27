@@ -224,7 +224,10 @@ export default defineUserConfig<DefaultThemeOptions>({
           {
             text: "Examples",
             children: [
-              { text: "Example Bots Repository", link: "https://github.com/grammyjs/examples" },
+              {
+                text: "Example Bots Repository",
+                link: "https://github.com/grammyjs/examples",
+              },
               { text: "Live Browser Demo", link: "/demo/README.md" },
               { text: "Example Bots", link: "/demo/examples.md" },
               { text: "Community Showlounge", link: "/demo/showlounge.md" },
@@ -309,5 +312,40 @@ export default defineUserConfig<DefaultThemeOptions>({
         sitemaps: ["https://grammy.dev/sitemap.xml"],
       },
     ],
+    [
+      {
+        name: "break-long-inline-code-snippets",
+        extendsMarkdown: (md) => {
+          const inlineRenderer = md.renderer.rules.code_inline;
+          md.renderer.rules.code_inline = (tokens, idx, options, env, slf) => {
+            const html = inlineRenderer(tokens, idx, options, env, slf);
+            const inner = html.substring(
+              "<code>".length,
+              html.length - "</code>".length
+            );
+            const breakable = insertWbrTags(inner);
+            return `<code>${breakable}</code>`;
+          };
+        },
+      },
+    ],
   ],
 });
+
+function insertWbrTags(url: string) {
+  // Adapted from https://css-tricks.com/better-line-breaks-for-long-urls/
+  return url
+    .split("//")
+    .map(
+      (str) =>
+        // Insert a word break opportunity after a colon
+        str
+          .replace(/(?<after>:)/giu, "$1<wbr>")
+          // Before a single slash, tilde, period, comma, hyphen, underline, question mark, number sign, or percent symbol
+          .replace(/(?<before>[/~.,\-_?#%])/giu, "<wbr>$1")
+          // Before and after an equals sign or ampersand
+          .replace(/(?<beforeAndAfter>[=&])/giu, "<wbr>$1<wbr>")
+      // Reconnect the strings with word break opportunities after double slashes
+    )
+    .join("//<wbr>");
+}
