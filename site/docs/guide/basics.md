@@ -55,7 +55,7 @@ Check out the [next section](./context.md) to learn how the context object of a 
 You can use the Telegram reply-to feature by specifying the message identifier to reply to.
 
 ```ts
-await bot.hears("ping", (ctx) => {
+await bot.hears("ping", async (ctx) => {
   // `reply` is an alias for `sendMessage` in the same chat (see next section)
   await ctx.reply("pong", {
     // `reply_to_message_id` specifies the actual reply feature
