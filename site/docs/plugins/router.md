@@ -82,7 +82,7 @@ of your birthday as a number!"
 const router = new Router<MyContext>((ctx) => ctx.session.step);
 
 // Define step that handles the day
-router.route("day", async (ctx, next) => {
+router.route("day", async (ctx) => {
   const day = parseInt(ctx.msg?.text ?? "", 10);
   if (isNaN(day) || day < 1 || 31 < day) {
     await ctx.reply("That is not a valid day, try again!");
@@ -190,7 +190,7 @@ of your birthday as a number!"
 const router = new Router((ctx) => ctx.session.step);
 
 // Define step that handles the day
-router.route("day", async (ctx, next) => {
+router.route("day", async (ctx) => {
   const day = parseInt(ctx.msg?.text ?? "", 10);
   if (isNaN(day) || day < 1 || 31 < day) {
     await ctx.reply("That is not a valid day, try again!");
@@ -311,7 +311,7 @@ of your birthday as a number!"
 const router = new Router<MyContext>((ctx) => ctx.session.step);
 
 // Define step that handles the day
-router.route("day", async (ctx, next) => {
+router.route("day", async (ctx) => {
   const day = parseInt(ctx.msg?.text ?? "", 10);
   if (isNaN(day) || day < 1 || 31 < day) {
     await ctx.reply("That is not a valid day, try again!");
