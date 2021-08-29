@@ -316,21 +316,36 @@ export default defineUserConfig<DefaultThemeOptions>({
       {
         name: "break-long-inline-code-snippets",
         extendsMarkdown: (md) => {
-          const inlineRenderer = md.renderer.rules.code_inline;
-          md.renderer.rules.code_inline = (tokens, idx, options, env, slf) => {
-            const html = inlineRenderer(tokens, idx, options, env, slf);
-            const inner = html.substring(
-              "<code>".length,
-              html.length - "</code>".length
-            );
-            const breakable = insertWbrTags(inner);
-            return `<code>${breakable}</code>`;
+          md.renderer.rules.code_inline = (tokens, idx, _opts, _env, slf) => {
+            const token = tokens[idx];
+            const attributes = slf.renderAttrs(token);
+            const withBreaks = insertWbrTags(token.content);
+            const escaped = escapeHtml(withBreaks);
+            return `<code${attributes}>${escaped}</code>`;
           };
         },
       },
     ],
   ],
 });
+
+// Adapted from original `code_inline` implementation of markdown-it
+const HTML_ESCAPE_TEST_RE = /&|<(?!wbr>)|(?<!<wbr)>/;
+const HTML_ESCAPE_REPLACE_RE = /&|<(?!wbr>)|(?<!<wbr)>/g;
+const HTML_REPLACEMENTS = {
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  '"': "&quot;",
+};
+function replaceUnsafeChar(ch: string) {
+  return HTML_REPLACEMENTS[ch];
+}
+function escapeHtml(str: string) {
+  return HTML_ESCAPE_TEST_RE.test(str)
+    ? str.replace(HTML_ESCAPE_REPLACE_RE, replaceUnsafeChar)
+    : str;
+}
 
 function insertWbrTags(url: string) {
   // Adapted from https://css-tricks.com/better-line-breaks-for-long-urls/
