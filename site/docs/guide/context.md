@@ -143,6 +143,11 @@ Use auto-complete to see the available options right in your editor.
 
 Naturally, every other method on `ctx.api` has a shortcut with the correct pre-filled values, such as `ctx.replyWithPhoto` to reply with a photo, or `ctx.exportChatInviteLink` to get an invite link for the respective chat. If you want to get an overview over what shortcuts exist, then auto-complete is your friend, along with the [grammY API Reference](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Context).
 
+Note that you may not want to react in the same chat always.
+In this case, you can just fall back to using `ctx.api.sendMessage` and the like, and specify all options when calling the methods.
+For example, if you receive a message from Alice and want to react by sending a message to Bob, then you cannot use `ctx.reply` because it will always only work inside the chat with Alice.
+Instead, call `ctx.api.sendMessage` and specify the chat identifier of Bob.
+
 ## How context objects are created
 
 A fresh context object is created exactly once for every incoming update.
