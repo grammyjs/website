@@ -61,7 +61,7 @@ There are a number of shortcuts installed on the context object.
 | Shortcut              | Description                                                                         |
 | --------------------- | ----------------------------------------------------------------------------------- |
 | `ctx.msg`             | Gets the message object, also edited ones                                           |
-| `ctx.chat`            | Gets the chat object out of `ctx.msg`                                               |
+| `ctx.chat`            | Gets the chat object                                                                |
 | `ctx.senderChat`      | Gets the sender chat object out of `ctx.msg` (for anonymous channel/group messages) |
 | `ctx.from`            | Gets the author of the message, callback query, or other things                     |
 | `ctx.inlineMessageId` | Gets the inline message identifier for callback queries or chosen inline results    |
@@ -78,6 +78,8 @@ bot.on("edited_message", (ctx) => {
   const editedText = ctx.msg.text;
 });
 ```
+
+Hence, if you want to, you can forget about `ctx.message` and `ctx.channelPost` and `ctx.editedMessage` and so on and so forth, and just always use `ctx.msg` instead.
 
 ## Available actions
 
