@@ -67,3 +67,11 @@ When a user visits `https://t.me/your_bot_name?start=payload`, then the Telegram
 This payload is not going to be displayed in the UI of the Telegram clients, however, your bot can receive it.
 grammY extracts this data for you, and provides it under `ctx.match`.
 In our example, `ctx.match` would contain the string `'payload'`.
+
+Deep linking is useful if you want to build a referral system.
+For example, your bot could send a channel post with an [inline query](/plugins/keyboard.html#inline-keyboards) button.
+The button contains a URL like the one above, e.g. `https://t.me/your_bot_name?start=awesome-channel-post-12345`.
+When a user clicks on the button underneath the post, the Telegram client is going to open a chat with your bot, and display the START button described above.
+That way, your bot can identify where a user came from, and that they clicked the button underneath a specific channel post.
+
+Naturally, you can also embed this link anywhere else in the web, in messages, in QR codes, or wherever.
