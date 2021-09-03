@@ -257,5 +257,6 @@ If you published your own storage adapter, please edit this page and link it her
 - Google Firestore (Node.js): <https://github.com/grammyjs/storage-firestore>
 
 ### Third-party
+- Redis (Node.js): <https://github.com/Satont/grammy-redis-storage>
 
 - Submit your own by editing this page!
