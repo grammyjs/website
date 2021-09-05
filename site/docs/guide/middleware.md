@@ -75,13 +75,13 @@ This also means that if you don't call `next` in your middleware, the underlying
 This stack of functions is the _middleware stack_.
 
 ```asciiart:no-line-numbers
- (ctx, next) = ...    |
- (ctx, next) = ...    |—————upstream middleware of X
- (ctx, next) = ...    |
- (ctx, next) = ...       <— middleware X. Call `next` to pass down updates
- (ctx, next) = ...    |
- (ctx, next) = ...    |—————downstream middleware of X
- (ctx, next) = ...    |
+ (ctx, next) => ...    |
+ (ctx, next) => ...    |—————upstream middleware of X
+ (ctx, next) => ...    |
+ (ctx, next) => ...       <— middleware X. Call `next` to pass down updates
+ (ctx, next) => ...    |
+ (ctx, next) => ...    |—————downstream middleware of X
+ (ctx, next) => ...    |
 ```
 
 Looking back at our example earlier, we now know why `bot.on(":photo")` was never even checked: the middleware in `bot.(":text", (ctx) => { ... })` already handled the update, and it did not call `next`.
