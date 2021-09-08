@@ -254,6 +254,7 @@ If you published your own storage adapter, please edit this page and link it her
 
 ### Official
 
+- Supabase: <https://github.com/grammyjs/storage-supabase>
 - Google Firestore (Node.js): <https://github.com/grammyjs/storage-firestore>
 
 ### Third-party
