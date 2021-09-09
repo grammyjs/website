@@ -17,20 +17,21 @@ grammY is a library that makes it super simple to write such a bot.
 Before you begin creating your bot, make yourself familiar with what Telegram bots can and cannot do.
 Check out the [Introduction for Developers](https://core.telegram.org/bots) by the Telegram team.
 
-In making your Telegram bot, you will create a text file with the source code of your bot (or copy one of our example files).
+In making your Telegram bot, you will create a text file with the source code of your bot.
+(You can also copy one of our example files.)
 It defines _what your bot actually does_, i.e. “when a user sends this message, respond with that”, and so on.
 
 You can then run that source file.
-You bot is working now, until you stop your program again.
+Your bot is working now, until you stop your program again.
 
 You're kinda done now …
 
 ## How to keep a bot running
 
-> Skip this section if you only want to play around with bots, and [continue down here with the prerequisites](#prerequisites-to-getting-started) to getting started.
-
 … except, if you are serious about your bot project, you're not.
 If you stop your bot (or shut down your computer), your bot becomes unresponsive, so it will no longer react to any messages.
+
+> Skip this section if you only want to play around with bots, and [continue down here with the prerequisites](#prerequisites-to-getting-started) to getting started.
 
 Simply put, if you want the bot to be online all the time, you have to keep a computer running 24 hours every day.
 Because you most likely don't want to do that with your laptop, you should upload your code to a _hosting provider_ (in other words, someone else's computer, also known as _server_), and let those people run it for you.
@@ -66,19 +67,19 @@ Similarly, your bot can make HTTP requests to the Telegram servers to send messa
 Bots interact with Telegram via HTTP requests.
 Everytime your bot sends or receives messages, HTTP requests go back and forth between the Telegram servers and your server/computer.
 
-In its core, grammY implements all the communication things for you, so you can simply type `sendMessage` and a message will be sent.
+In its core, grammY implements all the communication things for you, so you can simply type `sendMessage` in your code and a message will be sent.
 In addition, there are a variety of other helpful things that grammY does to make it simpler to create your bot.
 You will get to know them as you go.
 
 ## Prerequisites to getting started
 
-> Skip the rest of this page if you already know how to develop a Node.js application, and [get started](./getting-started.md).
+> Skip the rest of this page if you already know how to develop a Deno or a Node.js application, and [get started](./getting-started.md).
 
 Here are a few interesting things about programming—things that are essential to coding yet rarely explained because the developers think they are self-evident.
 
 In the next section, you will create a bot by writing a text file that contains source code in the programming language [TypeScript](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html).
 The grammY documentation will not teach you how to program, so we expect you to teach yourself.
-Remember, though: creating a Telegram bot with grammY is actually a good way to learn coding :rocket:
+Remember, though: creating a Telegram bot with grammY is actually a good way to learn coding! :rocket:
 
 ::: tip Learning how to code
 You can start learning TypeScript with the [official tutorial](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html) written by the TypeScript team, and then move on from there.
@@ -91,20 +92,71 @@ If you see unfamiliar syntax in the docs, or if you get an error message that yo
 Save yourself some time by watching [this 34 second long video](https://youtu.be/8RtGlWmXGhA).
 :::
 
-Once you have a source file (e.g. called `bot.ts`), you are going to _compile_ it to JavaScript.
-You will then have two files: your original `bot.ts`, and a generated `bot.js`, which can in turn be run.
+By picking grammY, you have already decided on a programming language, namely TypeScript.
+But what happens if you created your TypeScript code, i.e. how will it start running?
+For that, you need to install some software which is able to _execute_ your code.
+This type of software is called a _runtime environment_.
+It takes in your source code files and actually does whatever is programmed in them.
+
+For us, there are two runtime environments to choose from, called [Deno](https://deno.land) and [Node.js](https://nodejs.org).
+(If you see people call it _Node_, they are just too lazy to type “.js”, but they mean the same thing.)
+
+> The rest of this section helps you decide between these two platforms.
+> If you already know what you want to use, jump down to the [prerequisites for Node.js](#prerequisites-for-node-js) or [those for Deno](#prerequisites-for-deno).
+
+Node.js is the older, more mature technology.
+If you need to connect to a funky database or do other low-level system-related things, chances are extremely high that you can do it with Node.js.
+Deno is relatively new, so it is sometimes still lacking support for some advanced things.
+Today, most servers use Node.js.
+
+On the other hand side, Deno is significantly easier to learn and to use.
+If you don't have much experience with programming yet, **it makes sense to start with Deno**.
+
+Even if you have written code for Node.js before, you should consider giving Deno a go.
+Many things that are hard under Node.js are a no-brainer under Deno.
+It has
+
+- no `package.json` file to configure,
+- no `node_modules` to maintain,
+- superior, built-in development tools,
+- substatially better security, and
+- many more advantages that do not fit this list.
+
+Developing code under Deno is a lot more fun.
+At least that's our opinion.
+
+However, if you have a reason to use Node.js, for example because you already know it well, then that is completely fine!
+We are making sure that grammY is working equally well on both platforms, and we are not cutting any corners.
+Please choose what you think is best for you.
+
+### Prerequisites for Deno
+
+[Install Deno](https://deno.land/#installation) if you have not done that already.
+When you have created your bot, for example in a file called `bot.ts`, you can run it via `deno run --allow-net bot.ts`.
+You can stop it again with `Ctrl+C`.
+
+Ready?
+[Get started](./gettings-started.md#getting-started-on-deno)! :robot:
+
+### Prerequisites for Node.js
+
+You are going to write your bot in TypeScript, but in opposite to Deno, Node.js cannot actually run TypeScript.
+Instead, once you have a source file (e.g. called `bot.ts`), you are going to _compile_ it to JavaScript.
+You will then have two files: your original `bot.ts`, and a generated `bot.js`, which can in turn be run by Node.js.
 The exact commands for all of that will be introduced in the next section when you actually create a bot, but it is important to know that these steps are necessary.
 
 In order to run the `bot.js` file, you have to have [Node.js](https://nodejs.org/en/) installed.
-Node.js is a software that can execute your code, hence making your bot run.
-That's why Node.js is called a _runtime environment_.
 
-**In summary:**
+In summary, this is what you have to do for Node.js:
 
 1. Create a source file `bot.ts` with TypeScript code, e.g. using [VSCode](https://code.visualstudio.com/) (or any other text editor).
 2. Compile the code by typing a command into your terminal. This generates a file called `bot.js`.
 3. Run `bot.js` using Node.js, again from your terminal.
 
-Every time you modify your code in `bot.ts`, you have to repeat steps 2 and 3.
+Every time you modify your code in `bot.ts`, you need to restart the Node.js process.
+Hit `Ctrl+C` in your terminal to stop the process.
+This will stop your bot.
+Then, you need to repeat steps 2 and 3.
 
-Are you ready? :robot:
+Are you ready?
+[Get started](./gettings-started.md#getting-started-on-deno)! :robot:
