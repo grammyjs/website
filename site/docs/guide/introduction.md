@@ -61,6 +61,21 @@ _________        sends a         ____________                    ____________
 Similarly, your bot can make HTTP requests to the Telegram servers to send messages back to Alice.
 (If you never heard of HTTP, you can think of it as the data packages that are sent through the internet for now.)
 
+## Motivation for using Deno
+
+Writing code for Deno is fun. It's so much simpler.
+
+If you have tried it, you know what we mean.
+
+If not, here is how you develop for Deno: Don't wait for TypeScript to
+transpile. Just run it. Don't wait for unit tests. They are truly fast. Linting?
+It is always instant. Zero configuration files. The tooling is standardised,
+built-in, and works well together. No `package.json` to tediously fill out. No
+more “did you try `rm -rf node_modules`?” Everything just works out of the box.
+What a relief.
+
+Try it, and you will know what we mean.
+
 ## What grammY does for you
 
 Bots interact with Telegram via HTTP requests.

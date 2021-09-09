@@ -28,3 +28,29 @@ However, grammY can also run on Deno, which positions itself as the successor of
 ## How does grammY compare to its competitors?
 
 If you're coming from a different programming language or a different JavaScript framework, you can check out our [detailed comparison](./comparison.md) between frameworks.
+
+## Is there anything specific that people like about deno compared to node?
+
+> See [this](https://t.me/grammyjs/15273) and [this](https://t.me/grammyjs/15280)
+
+- The builtin API's are nicer
+- The libraries are of higher quality
+- Pretty much everything is TypeScript
+- It's faster and simpler to get started
+- Libraries can be hosted anywhere without hassle
+- Formatting, Linting, bundling, compiling to executable are much simpler
+- Also read this [Motivation](/guide/introduction.html#motivation-for-using-deno)
+
+## Where can i host a deno app?
+
+Because deno is new and its ecosystem small, the number of places where you can host a deno app are small.
+Here's a small list of places you can host your deno app(see <https://t.me/grammyjs/15260>):
+
+1. [Cloudflare workers](https://workers.dev)
+1. [Deno Deploy](https://deno.com/deploy)
+1. Heroku, [read here](https://dev.to/ms314006/deploy-your-deno-apps-to-heroku-375h)
+
+## Any resources?
+
+1. Video
+   - [10 Things I Regret About Node.js - Ryan Dahl - JSConf EU](https://youtu.be/M3BM9TB-8yA)
