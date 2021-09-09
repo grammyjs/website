@@ -29,28 +29,28 @@ However, grammY can also run on Deno, which positions itself as the successor of
 
 If you're coming from a different programming language or a different JavaScript framework, you can check out our [detailed comparison](./comparison.md) between frameworks.
 
-## Is there anything specific that people like about deno compared to node?
+## Why do you support Deno?
 
-> See [this](https://t.me/grammyjs/15273) and [this](https://t.me/grammyjs/15280)
+Some important reasons for why we like Deno better than Node are:
 
-- The builtin API's are nicer
-- The libraries are of higher quality
-- Pretty much everything is TypeScript
-- It's faster and simpler to get started
-- Libraries can be hosted anywhere without hassle
-- Formatting, Linting, bundling, compiling to executable are much simpler
-- Also read this [Motivation](/guide/introduction.html#motivation-for-using-deno)
+- It's simpler and faster to get started.
+- The tooling is substantially better.
+- It natively executes TypeScript.
+- No need to maintain `package.json` or `node_modules`.
+- It has a reviewed standard library.
 
-## Where can i host a deno app?
+> Deno was founded by Ry the same person that invented Node.
+> He summarised his 10 regrets about Node in [this video](https://youtu.be/M3BM9TB-8yA).
 
-Because deno is new and its ecosystem small, the number of places where you can host a deno app are small.
-Here's a small list of places you can host your deno app(see <https://t.me/grammyjs/15260>):
+grammY is actually written Deno-first, and backported to support Node.
 
-1. [Cloudflare workers](https://workers.dev)
-1. [Deno Deploy](https://deno.com/deploy)
-1. Heroku, [read here](https://dev.to/ms314006/deploy-your-deno-apps-to-heroku-375h)
+You may also want to watch [10 Things I Regret About Node.js - Ryan Dahl - JSConf EU](https://youtu.be/M3BM9TB-8yA).
 
-## Any resources?
+## Where can I host a Deno app?
 
-1. Video
-   - [10 Things I Regret About Node.js - Ryan Dahl - JSConf EU](https://youtu.be/M3BM9TB-8yA)
+Because deno is new and its ecosystem is small, the number of places where you can host a Deno app are fewer than the ones for Node.js.
+Here's are some options to where you can host your Deno app:
+
+1. [Cloudflare Workers](https://workers.dev)
+2. [Deno Deploy](https://deno.com/deploy)
+3. Heroku, [read here](https://dev.to/ms314006/deploy-your-deno-apps-to-heroku-375h)
