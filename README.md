@@ -4,6 +4,7 @@
 Contributions are welcome!
 
 The `logos/` directory only contains the logos of grammY, all website-related things are in `site/`.
+The `grammYdocsbot/` directory contains the code for [@grammYdocsbot](https://telegram.me/grammYdocsbot).
 
 ## Building the website locally
 
