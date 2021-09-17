@@ -2,10 +2,10 @@
 
 This plugin enqueues outgoing API requests instance via [Bottleneck](https://github.com/SGrondin/bottleneck) in order to prevent your bot from hitting [rate limits](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this) as described in [this advanced section](/advanced/flood.md) of the documentation.
 
-::: warning Undocumented api limits exists
-Telegram implements unspecified and undocumented rate limits for some api calls.
+::: warning Undocumented API limits exists
+Telegram implements unspecified and undocumented rate limits for some API calls.
 These undocumented limits are **not accounted for** by the throttler.
-Consider using the [auto-retry plugin](./auto-retry.md) together with this plugin, if you are experiencing floodwait errors for certain api calls.
+Consider using the [auto-retry plugin](./auto-retry.md) together with this plugin, if you are experiencing floodwait errors for certain API calls, such as `api.sendContact`.
 :::
 
 ## Usage
