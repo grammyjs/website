@@ -14,10 +14,10 @@ This is best illustrated by an example.
 bot.on(":photo", async (ctx) => {
   const statusMessage = await ctx.reply("Processing");
   await doWork(ctx.msg.photo); // some long image processing
-  await ctx.api.editMessageText(statusMessage.message_id, "Done!");
+  await ctx.api.editMessageText(ctx.chat.id, statusMessage.message_id, "Done!");
   setTimeout(
     () =>
-      ctx.api.deleteMessage(statusMessage.message_id).catch(() => {
+      ctx.api.deleteMessage(ctx.chat.id, statusMessage.message_id).catch(() => {
         // do nothing on error
       }),
     3000
