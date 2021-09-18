@@ -117,6 +117,7 @@ If you use grammY on Node.js, check out the respective type definition or implem
 
 grammY itself can send files without size limit, however, Telegram restricts the file size as they document [here](https://core.telegram.org/bots/api#sending-files).
 This means that your bot cannot download files larger than 20 MB, and it cannot upload files larger than 50 MB.
+Some file types have even stricter limits, such as photos.
 
 If you want to support files up to 2000 MB (maximal file size on Telegram) for both uploading and downloading, you must host your own Bot API server in addition to your bot.
 Refer to the official documentation about this [here](https://core.telegram.org/bots/api#using-a-local-bot-api-server).
