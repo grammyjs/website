@@ -162,6 +162,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                 link: "/plugins/menu.md",
               },
               {
+                text: "Stateless Question (stateless-question)",
+                link: "/plugins/stateless-question.md",
+              },
+              {
                 text: "Concurrency (runner)",
                 link: "/plugins/runner.md",
               },
