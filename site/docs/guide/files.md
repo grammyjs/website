@@ -40,7 +40,7 @@ The `file_unique_id` cannot be used to download files.
 
 ## Receiving files
 
-You can receives all files just like any other message.
+You can receive all files just like any other message.
 For instance, if you want to listen for voice messages, you can do this:
 
 ```ts
