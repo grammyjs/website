@@ -53,11 +53,16 @@ bot.on("message:voice", async (ctx) => {
   const fileId = voice.file_id;
   await ctx.reply("The file identifier of your voice note is: " + fileId);
 
-  const file = await ctx.getFile(fileId); // valid for 1 hour
+  const file = await ctx.getFile(); // valid for 1 hour
   const path = file.file_path; // file path on Bot API server
   await ctx.reply("Download your own file again: " + path);
 });
 ```
+
+::: tip Passing file_id to `getFile`
+On context object `getFile` is [a shortcut](/guide/context.md#shortcuts) that will get you a file from current message.
+If you want to get another file while handling a message - use `ctx.api.getFile(file_id)`.
+:::
 
 > Check out [the `:media` and `:file` shortcuts](/guide/filter-queries.md#shortcuts) for filter queries if you want to receive any kind of file.
 
