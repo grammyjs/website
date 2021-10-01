@@ -5,7 +5,7 @@ next: ./basics.md
 
 # Getting started
 
-Create your first bot in minutes. Scroll [down](#getting-started-on-deno) a Deno guide.
+Create your first bot in minutes. (Scroll [down](#getting-started-on-deno) for a Deno guide.)
 
 ## Getting started on Node.js
 
