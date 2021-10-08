@@ -367,7 +367,7 @@ bot.on("message", (ctx) => {
 });
 ```
 
-### Transformative context flavors
+### Transformative context flavours
 
 The other kind of context flavor is more powerful.
 Instead of installing it with the `&` operator, they need to be installed like so:
