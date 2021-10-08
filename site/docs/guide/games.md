@@ -25,7 +25,7 @@ If you haven't already, check out this [article](https://core.telegram.org/bots/
 
 We can send the game in grammY via the `replyWithGame` method which takes the name of the game you created with BotFather as argument.
 Alternatively, we can also use the `api.sendGame` method (grammY provides all the official [Bot API](https://core.telegram.org/bots/api) methods).
-An advantage of using the `api.sendGame` method is you can specify the `chat.id` of a speicifc user to send it to.
+An advantage of using the `api.sendGame` method is you can specify the `chat.id` of a specific user to send it to.
 
 1. Sending Game via `replyWithGame`
 
