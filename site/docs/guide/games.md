@@ -70,7 +70,7 @@ await ctx.api.sendGame(chatid, "my_game", { reply_markup: keyboard });
 
 ## Listening to the callback of our game button
 
-For providing logic to the button when it is pressed, and to redirect our users to our game and many more, we listen to the event `callback_query:game_short_name` which tells us that a game button has been pressed by the user
+For providing logic to the button when it is pressed, and to redirect our users to our game and many more, we listen to the event `callback_query:game_short_name` which tells us that a game button has been pressed by the user.
 All we need to do is:
 
 ```ts
