@@ -261,4 +261,5 @@ If you published your own storage adapter, please edit this page and link it her
 
 - Redis (Node.js): <https://github.com/Satont/grammy-redis-storage>
 - TypeORM (Node.js): <https://github.com/Satont/grammy-typeorm-storage>
+- MongoDB (Node.js and Deno): <https://github.com/Satont/grammy-mongodb-storage>
 - Submit your own by editing this page!
