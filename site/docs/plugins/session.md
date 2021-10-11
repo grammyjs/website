@@ -255,11 +255,11 @@ If you published your own storage adapter, please edit this page and link it her
 ### Official
 
 - Supabase: <https://github.com/grammyjs/storage-supabase>
-- Google Firestore (Node.js): <https://github.com/grammyjs/storage-firestore>
+- Google Firestore (Node.js-only): <https://github.com/grammyjs/storage-firestore>
 
 ### Third-party
 
-- Redis (Node.js): <https://github.com/Satont/grammy-redis-storage>
-- TypeORM (Node.js): <https://github.com/Satont/grammy-typeorm-storage>
-- MongoDB (Node.js and Deno): <https://github.com/Satont/grammy-mongodb-storage>
+- MongoDB: <https://github.com/Satont/grammy-mongodb-storage>
+- Redis (Node.js-only): <https://github.com/Satont/grammy-redis-storage>
+- TypeORM (Node.js-only): <https://github.com/Satont/grammy-typeorm-storage>
 - Submit your own by editing this page!
