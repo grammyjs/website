@@ -16,7 +16,7 @@ You should note that this package **DOES NOT** rate limit the incoming requests 
 
 ## Customizability
 
-This plugin exposes 5 customizable options:
+This plugin exposes 5 customisable options:
 
 - `timeFrame`: The time frame during which the requests will be monitored (defaults to `1000` ms).
 - `limit`: The number of requests allowed within each `timeFrame` (defaults to `1`).
