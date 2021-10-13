@@ -12,7 +12,7 @@ They are installed from `@grammyjs/*` on npm, and they are published under the [
 We coordinate their releases with the releases of grammY, and we make sure that everything works well together.
 Every section of the plugin docs for an official plugin has the package name in its title.
 As an example, the [grammY runner](./runner.md) plugin (`runner`) needs to be installed via `npm install @grammyjs/runner`.
-(If you are using Deno and not Node.js, you should import the plugin from <https://deno.land/x/> instead, so from the `grammy_runner` package's `mod.ts` file.)
+(If you are using Deno and not Node.js, you should import the plugin from <https://deno.land/x/> instead, so from the `grammy_runner` module's `mod.ts` file.)
 
 > If you want to publish your own package as an officially supported plugin, just ping us in the [community chat](https://telegram.me/grammyjs) and let us know what you're planning, then we can grant you publish access to GitHub and npm.
 > You will be responsible for maintaining your code (but maybe others want to join in).
