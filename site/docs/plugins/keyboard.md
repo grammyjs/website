@@ -103,7 +103,7 @@ bot.command("start", async (ctx) => {
 // Wait for click events with specific callback data
 bot.callbackQuery("click-payload", async (ctx) => {
   await ctx.answerCallbackQuery({
-    text: "You were curious, indeed!"
+    text: "You were curious, indeed!",
   });
 });
 ```
@@ -203,17 +203,63 @@ await ctx.reply(text, {
 });
 ```
 
+Naturally, all other methods that send messages other than text messages support the same options, as specified by the [Telegram Bot API Reference](https://core.telegram.org/bots/api).
+
 If you want to specify further options with your message, you may need to create your own `reply_markup` object.
 In that case, you have to use `keyboard.build()` when passing it to your custom object.
 
+#### Resize keyboard
+
+You can specify the `resize_keyboard` option if you want the keyboard to be resized according to the buttons it contains.
+This will effectively make the keyboard smaller.
+(Usually, the keyboard will always have the size of the app's standard keyboard.)
+
 ```ts
-await ctx.reply(textWithHtml, {
+await ctx.reply(text, {
   reply_markup: {
-    // have to create custom `reply_markup` object
-    one_time_keyboard: true,
-    keyboard: keyboard.build(), // note the `build` call
+    resize_keyboard: true,
+    keyboard: keyboard.build(),
   },
 });
 ```
 
-Naturally, all other methods that send messages other than text messages support the same options, as specified by the [Telegram Bot API Reference](https://core.telegram.org/bots/api).
+#### One-time keyboards
+
+You can specify the `one_time_keyboard` option if you want the keyboard to be hidden immediately after the first button was pressed.
+
+```ts
+await ctx.reply(text, {
+  reply_markup: {
+    one_time_keyboard: true,
+    keyboard: keyboard.build(),
+  },
+});
+```
+
+#### Input field placeholder
+
+You can specify the `input_field_placehoder` option if you want a placeholder to be shown in the input field as long as the keyboard is visible.
+
+```ts
+const keyboard = new Keyboard().text("LEFT").text("RIGHT");
+
+await ctx.reply(text, {
+  reply_markup: {
+    input_field_placehoder: "Send LEFT or RIGHT",
+    keyboard: keyboard.build(),
+  },
+});
+```
+
+#### Selectively send keyboard
+
+You can specify the `selective` option if you want to show the keyboard to only those users that are @-mentioned in the text of the message object, and to the sender of the original message in case your message is a reply.
+
+```ts
+await ctx.reply(text, {
+  reply_markup: {
+    selective: true,
+    keyboard: keyboard.build(),
+  },
+});
+```
