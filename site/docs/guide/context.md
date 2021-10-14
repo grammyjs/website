@@ -324,7 +324,7 @@ Context flavours are a way to tell TypeScript about new properties on your conte
 ### Additive context flavours
 
 There are two different kinds of context flavours.
-The basic one is called _additive context flavor_, and whenver we talk about context flavouring, we just mean this basic form.
+The basic one is called _additive context flavor_, and whenever we talk about context flavouring, we just mean this basic form.
 Let's look at how it works.
 
 As an example, when you have [session data](/plugins/session.md), you must register `ctx.session` on the `Context` type.
