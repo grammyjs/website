@@ -1,0 +1,19 @@
+{
+  "fmt": {
+    "options": { "proseWrap": "preserve" },
+    "files": {
+      "exclude": [
+        "./grammydocsbot/node_modules/",
+        "./grammydocsbot/package-lock.json",
+        "./site/node_modules/",
+        "./site/docs/.vuepress/dist/",
+        "./site/package-lock.json"
+      ]
+    }
+  },
+  "lint": {
+    "files": {
+      "include": ["./grammydocsbot/bot.ts"]
+    }
+  }
+}
