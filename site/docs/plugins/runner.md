@@ -26,7 +26,7 @@ Here is a simple example.
 
 <CodeGroup>
   <CodeGroupItem title="TS" active>
-  
+
 ```ts
 import { Bot } from "grammy";
 import { run } from "@grammyjs/runner";
@@ -41,7 +41,7 @@ bot.on("message", (ctx) => ctx.reply("Got your message."));
 run(bot);
 ```
 
- </CodeGroupItem>
+</CodeGroupItem>
  <CodeGroupItem title="JS">
 
 ```ts
@@ -58,7 +58,7 @@ bot.on("message", (ctx) => ctx.reply("Got your message."));
 run(bot);
 ```
 
- </CodeGroupItem>
+</CodeGroupItem>
  <CodeGroupItem title="Deno">
 
 ```ts
@@ -75,7 +75,7 @@ bot.on("message", (ctx) => ctx.reply("Got your message."));
 run(bot);
 ```
 
- </CodeGroupItem>
+</CodeGroupItem>
 </CodeGroup>
 
 Of course, while this looks very simple, a lot is going on under the hood.
@@ -143,9 +143,9 @@ As an example, you could return both the chat identifier, and the user identifie
 
 ```ts
 bot.use(sequentialize((ctx) => {
-  const chat = ctx.chat?.id.toString()
-  const user = ctx.from?.id.toString()
-  return [chat, user].filter(con => con !== undefined)
+  const chat = ctx.chat?.id.toString();
+  const user = ctx.from?.id.toString();
+  return [chat, user].filter((con) => con !== undefined);
 }));
 ```
 

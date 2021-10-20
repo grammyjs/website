@@ -108,7 +108,7 @@ Imagine this:
 ```ts
 const composer = new Composer();
 
-composer.filter(/* 1 */).filter(/* 2 */).use(/* A */)
+composer.filter(/* 1 */).filter(/* 2 */).use(/* A */);
 ```
 
 `2` will only be checked if `1` holds, and `A` will only be run if `2` (and thus `1`) holds.

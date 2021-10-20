@@ -83,7 +83,7 @@ It will then avoid the above race condition by slowing down those (and only thos
 
 <CodeGroup>
   <CodeGroupItem title="TS" active>
-  
+
 ```ts
 import { Bot, Context, session } from "grammy";
 import { run, sequentialize } from "@grammyjs/runner";
@@ -107,9 +107,9 @@ bot.on("message", (ctx) => ctx.reply("Got your message."));
 run(bot);
 ```
 
- </CodeGroupItem>
- 
- <CodeGroupItem title="JS">
+</CodeGroupItem>
+
+<CodeGroupItem title="JS">
 
 ```ts
 const { Bot, Context, session } = require("grammy";)
@@ -134,7 +134,7 @@ bot.on("message", (ctx) => ctx.reply("Got your message."));
 run(bot);
 ```
 
- </CodeGroupItem>
+</CodeGroupItem>
  <CodeGroupItem title="Deno">
 
 ```ts
@@ -160,7 +160,7 @@ bot.on("message", (ctx) => ctx.reply("Got your message."));
 run(bot);
 ```
 
- </CodeGroupItem>
+</CodeGroupItem>
 </CodeGroup>
 
 Feel free to join the [Telegram chat](https://t.me/grammjs) to discuss how to use grammY runner with your bot.

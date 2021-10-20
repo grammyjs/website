@@ -187,7 +187,7 @@ app.use(express.json()); // parse the JSON request body
 app.use(webhookCallback(bot, "express"));
 ```
 
- </CodeGroupItem>
+</CodeGroupItem>
  <CodeGroupItem title="JS">
 
 ```js
@@ -200,7 +200,7 @@ app.use(express.json()); // parse the JSON request body
 app.use(webhookCallback(bot, "express"));
 ```
 
- </CodeGroupItem>
+</CodeGroupItem>
  <CodeGroupItem title="Deno">
 
 ```ts
@@ -212,7 +212,7 @@ const app = new Application(); // or whatever you're using
 app.use(webhookCallback(bot, "oak"));
 ```
 
- </CodeGroupItem>
+</CodeGroupItem>
 </CodeGroup>
 
 Be sure to read [Marvin's Marvellous Guide to All Things Webhook](https://core.telegram.org/bots/webhooks) written by the Telegram team if you consider running your bot on webhooks on a VPS.

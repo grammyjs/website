@@ -75,13 +75,13 @@ This also means that if you don't call `next` in your middleware, the underlying
 This stack of functions is the _middleware stack_.
 
 ```asciiart:no-line-numbers
- (ctx, next) => ...    |
- (ctx, next) => ...    |—————upstream middleware of X
- (ctx, next) => ...    |
- (ctx, next) => ...       <— middleware X. Call `next` to pass down updates
- (ctx, next) => ...    |
- (ctx, next) => ...    |—————downstream middleware of X
- (ctx, next) => ...    |
+(ctx, next) => ...    |
+(ctx, next) => ...    |—————upstream middleware of X
+(ctx, next) => ...    |
+(ctx, next) => ...       <— middleware X. Call `next` to pass down updates
+(ctx, next) => ...    |
+(ctx, next) => ...    |—————downstream middleware of X
+(ctx, next) => ...    |
 ```
 
 Looking back at our example earlier, we now know why `bot.on(":photo")` was never even checked: the middleware in `bot.(":text", (ctx) => { ... })` already handled the update, and it did not call `next`.
@@ -129,7 +129,7 @@ You can compare it to the middleware type from above, and convince yourself that
 /** Measure the response time of the bot, and logs it to `console` */
 async function responseTime(
   ctx: Context,
-  next: NextFunction // is an alias for: () => Promise<void>
+  next: NextFunction, // is an alias for: () => Promise<void>
 ): Promise<void> {
   // TODO implement
 }
@@ -155,7 +155,7 @@ It is important to install our `responseTime` middleware _at first_ on the bot t
 /** Measure the response time of the bot, and log it */
 async function responseTime(
   ctx: Context,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<void> {
   // take time before
   const before = Date.now(); // milliseconds

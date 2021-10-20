@@ -25,7 +25,7 @@ import { autoRetry } from "@grammyjs/auto-retry";
 bot.api.config.use(autoRetry());
 ```
 
- </CodeGroupItem>
+</CodeGroupItem>
  <CodeGroupItem title="JS">
 
 ```js
@@ -35,7 +35,7 @@ const { autoRetry } = require("@grammyjs/auto-retry");
 bot.api.config.use(autoRetry());
 ```
 
- </CodeGroupItem>
+</CodeGroupItem>
  <CodeGroupItem title="Deno">
 
 ```ts
@@ -45,7 +45,7 @@ import { autoRetry } from "https://cdn.skypack.dev/@grammyjs/auto-retry?dts";
 bot.api.config.use(autoRetry());
 ```
 
- </CodeGroupItem>
+</CodeGroupItem>
 </CodeGroup>
 
 If you now call e.g. `sendMessage` and run into a rate limit, it will look like the request just takes unusually long.

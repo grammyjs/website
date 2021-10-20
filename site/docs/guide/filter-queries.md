@@ -146,7 +146,7 @@ bot.on("message").filter(
   },
   (ctx) => {
     // handles messages from creators and admins
-  }
+  },
 );
 ```
 

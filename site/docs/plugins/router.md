@@ -72,8 +72,8 @@ bot.command("birthday", async (ctx) => {
     // Missing information, enter router-based form
     ctx.session.step = "day";
     await ctx.reply(
-      "Please send me the day of month \
-of your birthday as a number!"
+"Please send me the day of month \
+of your birthday as a number!",
     );
   }
 });
@@ -115,8 +115,8 @@ router.route("month", async (ctx) => {
   const month = months.indexOf(ctx.msg?.text ?? "");
   if (month === -1) {
     await ctx.reply(
-      "That is not a valid month, \
-please use one of the buttons!"
+"That is not a valid month, \
+please use one of the buttons!",
     );
     return;
   }
@@ -126,7 +126,7 @@ please use one of the buttons!"
   await ctx.reply(
     `Your birthday is on ${months[month]} ${day}.
 That is in ${diff} days!`,
-    { reply_markup: { remove_keyboard: true } }
+    { reply_markup: { remove_keyboard: true } },
   );
   ctx.session.step = "idle";
 });
@@ -152,7 +152,7 @@ function getDays(month: number, day: number) {
 }
 ```
 
-  </CodeGroupItem>
+</CodeGroupItem>
   <CodeGroupItem title="JS">
 
 ```js
@@ -180,8 +180,8 @@ bot.command("birthday", async (ctx) => {
     // Missing information, enter router-based form
     ctx.session.step = "day";
     await ctx.reply(
-      "Please send me the day of month \
-of your birthday as a number!"
+"Please send me the day of month \
+of your birthday as a number!",
     );
   }
 });
@@ -223,8 +223,8 @@ router.route("month", async (ctx) => {
   const month = months.indexOf(ctx.msg?.text ?? "");
   if (month === -1) {
     await ctx.reply(
-      "That is not a valid month, \
-please use one of the buttons!"
+"That is not a valid month, \
+please use one of the buttons!",
     );
     return;
   }
@@ -234,7 +234,7 @@ please use one of the buttons!"
   await ctx.reply(
     `Your birthday is on ${months[month]} ${day}.
 That is in ${diff} days!`,
-    { reply_markup: { remove_keyboard: true } }
+    { reply_markup: { remove_keyboard: true } },
   );
   ctx.session.step = "idle";
 });
@@ -260,7 +260,7 @@ function getDays(month, day) {
 }
 ```
 
-  </CodeGroupItem>
+</CodeGroupItem>
   <CodeGroupItem title="Deno">
 
 ```ts
@@ -301,8 +301,8 @@ bot.command("birthday", async (ctx) => {
     // Missing information, enter router-based form
     ctx.session.step = "day";
     await ctx.reply(
-      "Please send me the day of month \
-of your birthday as a number!"
+"Please send me the day of month \
+of your birthday as a number!",
     );
   }
 });
@@ -344,8 +344,8 @@ router.route("month", async (ctx) => {
   const month = months.indexOf(ctx.msg?.text ?? "");
   if (month === -1) {
     await ctx.reply(
-      "That is not a valid month, \
-please use one of the buttons!"
+"That is not a valid month, \
+please use one of the buttons!",
     );
     return;
   }
@@ -355,7 +355,7 @@ please use one of the buttons!"
   await ctx.reply(
     `Your birthday is on ${months[month]} ${day}.
 That is in ${diff} days!`,
-    { reply_markup: { remove_keyboard: true } }
+    { reply_markup: { remove_keyboard: true } },
   );
   ctx.session.step = "idle";
 });
@@ -381,7 +381,7 @@ function getDays(month: number, day: number) {
 }
 ```
 
- </CodeGroupItem>
+</CodeGroupItem>
 </CodeGroup>
 
 ::: tip Breaking up the code

@@ -187,7 +187,7 @@ bot.on("message", (ctx) => {
 });
 ```
 
-  </CodeGroupItem>
+</CodeGroupItem>
   <CodeGroupItem title="Deno">
 
 ```ts
@@ -207,7 +207,7 @@ bot.on("message", (ctx) => {
 });
 ```
 
-  </CodeGroupItem>
+</CodeGroupItem>
 </CodeGroup>
 
 Naturally, just because the context _type_ now has new properties, this does not mean that there will actually be _values_ behind them.
@@ -248,7 +248,7 @@ bot.on("message", (ctx) => {
 bot.start();
 ```
 
-  </CodeGroupItem>
+</CodeGroupItem>
   <CodeGroupItem title="JS" active>
 
 ```ts
@@ -277,7 +277,7 @@ bot.on("message", (ctx) => {
 bot.start();
 ```
 
-  </CodeGroupItem>
+</CodeGroupItem>
   <CodeGroupItem title="Deno">
 
 ```ts
@@ -310,7 +310,7 @@ bot.on("message", (ctx) => {
 bot.start();
 ```
 
-  </CodeGroupItem>
+</CodeGroupItem>
 </CodeGroup>
 
 ::: tip Related

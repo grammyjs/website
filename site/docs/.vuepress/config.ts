@@ -216,7 +216,8 @@ export default defineUserConfig<DefaultThemeOptions>({
               },
               {
                 text: "[Submit your PR!]",
-                link: "/plugins/README.md#submitting-your-own-package-to-the-docs",
+                link:
+                  "/plugins/README.md#submitting-your-own-package-to-the-docs",
               },
             ],
           },
@@ -232,9 +233,15 @@ export default defineUserConfig<DefaultThemeOptions>({
                 text: "Example Bots Repository",
                 link: "https://github.com/grammyjs/examples",
               },
-              { text: "Live Browser Demo", link: "/demo/README.md" },
+              {
+                text: "Live Browser Demo",
+                link: "/demo/README.md",
+              },
               { text: "Example Bots", link: "/demo/examples.md" },
-              { text: "Community Showlounge", link: "/demo/showlounge.md" },
+              {
+                text: "Community Showlounge",
+                link: "/demo/showlounge.md",
+              },
             ],
           },
         ],
@@ -320,7 +327,13 @@ export default defineUserConfig<DefaultThemeOptions>({
       {
         name: "break-long-inline-code-snippets",
         extendsMarkdown: (md) => {
-          md.renderer.rules.code_inline = (tokens, idx, _opts, _env, slf) => {
+          md.renderer.rules.code_inline = (
+            tokens,
+            idx,
+            _opts,
+            _env,
+            slf,
+          ) => {
             const token = tokens[idx];
             const attributes = slf.renderAttrs(token);
             const withBreaks = insertWbrTags(token.content);
@@ -363,7 +376,7 @@ function insertWbrTags(url: string) {
           // Before a single slash, tilde, period, comma, hyphen, underline, question mark, number sign, or percent symbol
           .replace(/(?<before>[/~.,\-_?#%])/giu, "<wbr>$1")
           // Before and after an equals sign or ampersand
-          .replace(/(?<beforeAndAfter>[=&])/giu, "<wbr>$1<wbr>")
+          .replace(/(?<beforeAndAfter>[=&])/giu, "<wbr>$1<wbr>"),
       // Reconnect the strings with word break opportunities after double slashes
     )
     .join("//<wbr>");

@@ -36,47 +36,47 @@ Bots are written in [TypeScript](https://www.typescriptlang.org) (or JavaScript)
 
 <CodeGroup>
   <CodeGroupItem title="TS" active>
-  
-```ts
-import { Bot } from 'grammy'
 
-const bot = new Bot('') // <-- put your bot token here (https://t.me/BotFather)
+```ts
+import { Bot } from "grammy";
+
+const bot = new Bot(""); // <-- put your bot token here (https://t.me/BotFather)
 
 // Reply to all messages with 'Hi there!'
-bot.on('message', ctx => ctx.reply('Hi there!'))
+bot.on("message", (ctx) => ctx.reply("Hi there!"));
 
-bot.start()
+bot.start();
 ```
 
- </CodeGroupItem>
+</CodeGroupItem>
  <CodeGroupItem title="JS">
 
 ```ts
-const { Bot } = require('grammy')
+const { Bot } = require("grammy");
 
-const bot = new Bot('') // <-- put your bot token here (https://t.me/BotFather)
+const bot = new Bot(""); // <-- put your bot token here (https://t.me/BotFather)
 
 // Reply to all messages with 'Hi there!'
-bot.on('message', ctx => ctx.reply('Hi there!'))
+bot.on("message", (ctx) => ctx.reply("Hi there!"));
 
-bot.start()
+bot.start();
 ```
 
- </CodeGroupItem>
+</CodeGroupItem>
  <CodeGroupItem title="Deno">
 
 ```ts
-import { Bot } from 'https://deno.land/x/grammy/mod.ts'
+import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
-const bot = new Bot('') // <-- put your bot token here (https://t.me/BotFather)
+const bot = new Bot(""); // <-- put your bot token here (https://t.me/BotFather)
 
 // Reply to all messages with 'Hi there!'
-bot.on('message', ctx => ctx.reply('Hi there!'))
+bot.on("message", (ctx) => ctx.reply("Hi there!"));
 
-bot.start()
+bot.start();
 ```
 
- </CodeGroupItem>
+</CodeGroupItem>
 </CodeGroup>
 
 Works! :tada:

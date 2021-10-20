@@ -13,7 +13,7 @@ Example:
 
 ```ts
 import { Bot, Context } from "grammy";
-import { hydrateFiles, FileFlavor } from "@grammyjs/files";
+import { FileFlavor, hydrateFiles } from "@grammyjs/files";
 
 // Transformative Context flavor
 type MyContext = FileFlavor<Context>;
@@ -35,7 +35,7 @@ bot.on([":video", ":animation"], async (ctx) => {
 });
 ```
 
- </CodeGroupItem>
+</CodeGroupItem>
  <CodeGroupItem title="JS">
 
 ```js
@@ -59,14 +59,14 @@ bot.on([":video", ":animation"], async (ctx) => {
 });
 ```
 
- </CodeGroupItem>
+</CodeGroupItem>
  <CodeGroupItem title="Deno">
 
 ```ts
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
-  hydrateFiles,
   FileFlavor,
+  hydrateFiles,
 } from "https://deno.land/x/grammy_files/mod.ts";
 
 // Transformative Context flavor
@@ -89,7 +89,7 @@ bot.on([":video", ":animation"], async (ctx) => {
 });
 ```
 
- </CodeGroupItem>
+</CodeGroupItem>
 </CodeGroup>
 
 You can pass a string with a file path to `download` if you don't want to create a temporary file. Just do `await file.download('/path/to/file')`.
@@ -114,7 +114,7 @@ If you need these calls, you should also install an [API flavour](/advanced/tran
 
 ```ts
 import { Api, Bot, Context } from "grammy";
-import { hydrateFiles, FileFlavor, FileApiFlavor } from "@grammyjs/files";
+import { FileApiFlavor, FileFlavor, hydrateFiles } from "@grammyjs/files";
 
 type MyContext = FileFlavor<Context>;
 type MyApi = FileApiFlavor<Api>;
@@ -123,15 +123,15 @@ const bot = new Bot<MyContext, MyApi>("");
 // etc
 ```
 
-  </CodeGroupItem>
+</CodeGroupItem>
   <CodeGroupItem title="Deno">
 
 ```ts
 import { Api, Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
-  hydrateFiles,
-  FileFlavor,
   FileApiFlavor,
+  FileFlavor,
+  hydrateFiles,
 } from "https://deno.land/x/grammy_files/mod.ts";
 
 type MyContext = FileFlavor<Context>;
@@ -141,7 +141,7 @@ const bot = new Bot<MyContext, MyApi>("");
 // etc
 ```
 
-  </CodeGroupItem>
+</CodeGroupItem>
 </CodeGroup>
 
 ## Plugin summary

@@ -33,7 +33,7 @@ bot.command("/example", (ctx) => ctx.reply("I am throttled"));
 bot.start();
 ```
 
- </CodeGroupItem>
+</CodeGroupItem>
  <CodeGroupItem title="JS">
 
 ```js
@@ -53,7 +53,7 @@ bot.command("/example", (ctx) => ctx.reply("I am throttled"));
 bot.start();
 ```
 
- </CodeGroupItem>
+</CodeGroupItem>
  <CodeGroupItem title="Deno">
 
 ```ts
@@ -73,7 +73,7 @@ bot.command("/example", (ctx) => ctx.reply("I am throttled"));
 bot.start();
 ```
 
- </CodeGroupItem>
+</CodeGroupItem>
 </CodeGroup>
 
 ## Configuration
@@ -83,8 +83,8 @@ The throttler accepts a single optional argument of the following form:
 ```ts
 type ThrottlerOptions = {
   global?: Bottleneck.ConstructorOptions; // For throttling all api calls
-  group?: Bottleneck.ConstructorOptions;  // For throttling outgoing group messages
-  out?: Bottleneck.ConstructorOptions;    // For throttling outgoing private messages
+  group?: Bottleneck.ConstructorOptions; // For throttling outgoing group messages
+  out?: Bottleneck.ConstructorOptions; // For throttling outgoing private messages
 };
 ```
 
@@ -96,24 +96,24 @@ The default configuration are as follows:
 ```ts
 // Outgoing Global Throttler
 const globalConfig = {
-  reservoir: 30,                  // Number of new jobs that throttler will accept at start
-  reservoirRefreshAmount: 30,     // Number of jobs that throttler will accept after refresh
+  reservoir: 30, // Number of new jobs that throttler will accept at start
+  reservoirRefreshAmount: 30, // Number of jobs that throttler will accept after refresh
   reservoirRefreshInterval: 1000, // Interval in milliseconds where reservoir will refresh
 };
 
 // Outgoing Group Throttler
 const groupConfig = {
-  maxConcurrent: 1,                // Only 1 job at a time
-  minTime: 1000,                   // Wait this many milliseconds to be ready, after a job
-  reservoir: 20,                   // Number of new jobs that throttler will accept at start
-  reservoirRefreshAmount: 20,      // Number of jobs that throttler will accept after refresh
+  maxConcurrent: 1, // Only 1 job at a time
+  minTime: 1000, // Wait this many milliseconds to be ready, after a job
+  reservoir: 20, // Number of new jobs that throttler will accept at start
+  reservoirRefreshAmount: 20, // Number of jobs that throttler will accept after refresh
   reservoirRefreshInterval: 60000, // Interval in milliseconds where reservoir will refresh
 };
 
 // Outgoing Private Throttler
 const outConfig = {
   maxConcurrent: 1, // Only 1 job at a time
-  minTime: 1000,    // Wait this many milliseconds to be ready, after a job
+  minTime: 1000, // Wait this many milliseconds to be ready, after a job
 };
 ```
 

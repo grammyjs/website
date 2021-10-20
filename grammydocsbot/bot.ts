@@ -10,10 +10,12 @@ if (token === undefined) throw new Error("Missing BOT_TOKEN");
 
 const bot = new Bot(token);
 
-bot.on("message", (ctx) =>
-  ctx.reply("I can search for grammY documentation inline.", {
-    reply_markup: new InlineKeyboard().switchInline("Search"),
-  })
+bot.on(
+  "message",
+  (ctx) =>
+    ctx.reply("I can search for grammY documentation inline.", {
+      reply_markup: new InlineKeyboard().switchInline("Search"),
+    }),
 );
 
 bot.on("inline_query", async (ctx) => {
@@ -25,8 +27,8 @@ bot.on("inline_query", async (ctx) => {
       id: h.objectID,
       type: "article",
       title: getTitle(h),
-      description:
-        getTitle(h) + ": " + (h.content ?? "Title matches the search query"),
+      description: getTitle(h) + ": " +
+        (h.content ?? "Title matches the search query"),
       input_message_content: {
         message_text: getText(h, !h.hierarchy.lvl2),
         parse_mode: "HTML",
@@ -34,7 +36,7 @@ bot.on("inline_query", async (ctx) => {
     })),
     {
       cache_time: 24 * 60 * 60, // 24 hours (algolia re-indexing)
-    }
+    },
   );
 });
 
@@ -46,10 +48,12 @@ if (process.env.DEBUG) {
   const app = express();
   app.use(express.json());
   app.use(webhookCallback(bot));
-  app.listen(port, () =>
-    bot.api.setWebhook("https://grammydocsbot.herokuapp.com/", {
-      drop_pending_updates: true,
-    })
+  app.listen(
+    port,
+    () =>
+      bot.api.setWebhook("https://grammydocsbot.herokuapp.com/", {
+        drop_pending_updates: true,
+      }),
   );
 }
 

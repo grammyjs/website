@@ -66,7 +66,7 @@ bot.use(
     initial(): SessionData {
       return { pizzaCount: 0 };
     },
-  })
+  }),
 );
 
 bot.command("hunger", async (ctx) => {
@@ -79,7 +79,7 @@ bot.hears(/.*🍕.*/, (ctx) => ctx.session.pizzaCount++);
 bot.start();
 ```
 
- </CodeGroupItem>
+</CodeGroupItem>
  <CodeGroupItem title="JS">
 
 ```js
@@ -93,7 +93,7 @@ bot.use(
     initial() {
       return { pizzaCount: 0 };
     },
-  })
+  }),
 );
 
 bot.command("hunger", async (ctx) => {
@@ -106,7 +106,7 @@ bot.hears(/.*🍕.*/, (ctx) => ctx.session.pizzaCount++);
 bot.start();
 ```
 
- </CodeGroupItem>
+</CodeGroupItem>
  <CodeGroupItem title="Deno">
 
 ```ts
@@ -133,7 +133,7 @@ bot.use(
     initial(): SessionData {
       return { pizzaCount: 0 };
     },
-  })
+  }),
 );
 
 bot.command("hunger", async (ctx) => {
@@ -146,7 +146,7 @@ bot.hears(/.*🍕.*/, (ctx) => ctx.session.pizzaCount++);
 bot.start();
 ```
 
- </CodeGroupItem>
+</CodeGroupItem>
 </CodeGroup>
 
 Note how we also have to [adjust the context type](/guide/context.md#customising-the-context-object) to make the session available on it.
@@ -235,7 +235,9 @@ This would allow for the following code:
 ```ts
 bot.command("reset", (ctx) => {
   // Much shorter then having to `await ctx.session` first:
-  ctx.session = ctx.session.then((stats) => { stats.counter = 0; });
+  ctx.session = ctx.session.then((stats) => {
+    stats.counter = 0;
+  });
 });
 ```
 

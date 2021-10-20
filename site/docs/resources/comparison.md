@@ -5,7 +5,7 @@ In other words, it does not use any code of competing projects, but it will stil
 
 > Please assume that this comparison is biased, even though we're trying to provide you with an objective description of the advantages and disadvantages of using grammY over using other libraries.
 > We are trying to keep things in this article up-to-date.
-> If you notice that anything is outdated, please edit this page using the link  at the bottom.
+> If you notice that anything is outdated, please edit this page using the link at the bottom.
 
 ## Comparison with other JavaScript frameworks
 

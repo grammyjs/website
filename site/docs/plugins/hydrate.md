@@ -14,13 +14,19 @@ This is best illustrated by an example.
 bot.on(":photo", async (ctx) => {
   const statusMessage = await ctx.reply("Processing");
   await doWork(ctx.msg.photo); // some long image processing
-  await ctx.api.editMessageText(ctx.chat.id, statusMessage.message_id, "Done!");
+  await ctx.api.editMessageText(
+    ctx.chat.id,
+    statusMessage.message_id,
+    "Done!",
+  );
   setTimeout(
     () =>
-      ctx.api.deleteMessage(ctx.chat.id, statusMessage.message_id).catch(() => {
-        // do nothing on error
-      }),
-    3000
+      ctx.api.deleteMessage(ctx.chat.id, statusMessage.message_id).catch(
+        () => {
+          // do nothing on error
+        },
+      ),
+    3000,
   );
 });
 ```
@@ -60,7 +66,7 @@ const bot = new Bot<MyContext>("");
 bot.use(hydrate());
 ```
 
- </CodeGroupItem>
+</CodeGroupItem>
  <CodeGroupItem title="JS">
 
 ```js
@@ -72,7 +78,7 @@ const bot = new Bot("");
 bot.use(hydrate());
 ```
 
- </CodeGroupItem>
+</CodeGroupItem>
  <CodeGroupItem title="Deno">
 
 ```ts
@@ -89,7 +95,7 @@ const bot = new Bot<MyContext>("");
 bot.use(hydrate());
 ```
 
- </CodeGroupItem>
+</CodeGroupItem>
 </CodeGroup>
 
 ### Advanced installation
@@ -109,10 +115,10 @@ Note that you now also have to install an [API flavour](/advanced/transformers.h
 ```ts
 import { Api, Bot, Context } from "grammy";
 import {
-  hydrateContext,
-  HydrateFlavor,
   hydrateApi,
   HydrateApiFlavor,
+  hydrateContext,
+  HydrateFlavor,
 } from "@grammyjs/hydrate";
 
 type MyContext = HydrateFlavor<Context>;
@@ -124,12 +130,12 @@ bot.use(hydrateContext());
 bot.api.config.use(hydrateApi());
 ```
 
- </CodeGroupItem>
+</CodeGroupItem>
  <CodeGroupItem title="JS">
 
 ```js
 import { Bot } from "grammy";
-import { hydrateContext, hydrateApi } from "@grammyjs/hydrate";
+import { hydrateApi, hydrateContext } from "@grammyjs/hydrate";
 
 const bot = new Bot("");
 
@@ -137,16 +143,16 @@ bot.use(hydrateContext());
 bot.api.config.use(hydrateApi());
 ```
 
- </CodeGroupItem>
+</CodeGroupItem>
  <CodeGroupItem title="Deno">
 
 ```ts
 import { Api, Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
-  hydrateContext,
-  HydrateFlavor,
   hydrateApi,
   HydrateApiFlavor,
+  hydrateContext,
+  HydrateFlavor,
 } from "https://deno.land/x/grammy_hydrate/mod.ts";
 
 type MyContext = HydrateFlavor<Context>;
@@ -158,7 +164,7 @@ bot.use(hydrateContext());
 bot.api.config.use(hydrateApi());
 ```
 
- </CodeGroupItem>
+</CodeGroupItem>
 </CodeGroup>
 
 ## What objects are hydrated

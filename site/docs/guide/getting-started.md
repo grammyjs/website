@@ -71,7 +71,7 @@ bot.on("message", (ctx) => ctx.reply("Got another message!"));
 bot.start();
 ```
 
- </CodeGroupItem>
+</CodeGroupItem>
  <CodeGroupItem title="JS">
 
 ```js
@@ -95,7 +95,7 @@ bot.on("message", (ctx) => ctx.reply("Got another message!"));
 bot.start();
 ```
 
- </CodeGroupItem>
+</CodeGroupItem>
 </CodeGroup>
 
 Compile the code by running

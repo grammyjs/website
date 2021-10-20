@@ -229,8 +229,9 @@ import { Bot } from "grammy";
 if (process.env.BOT_TOKEN == null) throw new Error("BOT_TOKEN is missing.");
 const bot = new Bot(process.env.BOT_TOKEN);
 
-bot.command("start", (ctx) =>
-  ctx.reply("I'm running on Heroku using long polling!")
+bot.command(
+  "start",
+  (ctx) => ctx.reply("I'm running on Heroku using long polling!"),
 );
 
 bot.start();
@@ -262,13 +263,13 @@ For the time being, `Heroku` has several [types of dynos](https://devcenter.hero
 Two of them are:
 
 - **Web dynos**:
-  <br>_Web dynos_ are dynos of the “web” process that receive HTTP traffic from routers.
+  <br> _Web dynos_ are dynos of the “web” process that receive HTTP traffic from routers.
   This kind of dyno has a timeout of 30 seconds for executing code.
   Also, it will sleep if there is no request to handle within a 30 minutes period.
   This type of dyno is quite suitable for _webhooks_.
 
 - **Worker dynos**:
-  <br>_Worker dynos_ are typically used for background jobs.
+  <br> _Worker dynos_ are typically used for background jobs.
   It does NOT have a timeout, and will NOT sleep if it does not handle any web requests.
   It fits _long polling_.
 
@@ -288,14 +289,14 @@ For our case it should be:
 web: node dist/app.js
 ```
 
-  </CodeGroupItem>
+</CodeGroupItem>
   <CodeGroupItem title="Long Polling">
 
 ```
 worker: node dist/bot.js
 ```
 
-  </CodeGroupItem>
+</CodeGroupItem>
 </CodeGroup>
 
 ### Set up Git
@@ -325,7 +326,7 @@ tsconfig.json
 
 Our final folder structure should now look like this:
 <CodeGroup>
-  <CodeGroupItem title="Webhook" active>
+<CodeGroupItem title="Webhook" active>
 
 ```asciiart:no-line-numbers
 .
@@ -344,7 +345,7 @@ Our final folder structure should now look like this:
 └── .gitignore
 ```
 
-  </CodeGroupItem>
+</CodeGroupItem>
   <CodeGroupItem title="Long Polling">
 
 ```asciiart:no-line-numbers
@@ -362,7 +363,7 @@ Our final folder structure should now look like this:
 └── .gitignore
 ```
 
-  </CodeGroupItem>
+</CodeGroupItem>
 </CodeGroup>
 
 Commit files to our git repository:
@@ -385,14 +386,14 @@ heroku create
 git remote -v
 ```
 
-  </CodeGroupItem>
+</CodeGroupItem>
   <CodeGroupItem title="Existing app" active>
 
 ```bash
 heroku git:remote -a <myApp>
 ```
 
-  </CodeGroupItem>
+</CodeGroupItem>
 </CodeGroup>
 
 ### Deploying code

@@ -62,7 +62,7 @@ URL buttons can be built like this:
 ```ts
 const inlineKeyboard = new InlineKeyboard().url(
   "Read on TechCrunch",
-  "https://techcrunch.com/2016/04/11/this-is-the-htc-10/"
+  "https://techcrunch.com/2016/04/11/this-is-the-htc-10/",
 );
 ```
 
