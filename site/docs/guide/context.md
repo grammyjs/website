@@ -150,6 +150,9 @@ Instead, call `ctx.api.sendMessage` and specify the chat identifier of Bob.
 
 ## How context objects are created
 
+Whenever your bot receives a new message from Telegram, it is wrapped in an update object.
+In fact, update objects can not only contain new messages, but also all other sorts of things, such as edits to messages, poll answers, and [much more](https://core.telegram.org/bots/api#update).
+
 A fresh context object is created exactly once for every incoming update.
 Contexts for different updates are completely unrelated objects, they only reference the same bot information via `ctx.me`.
 
