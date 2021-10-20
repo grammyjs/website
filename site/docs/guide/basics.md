@@ -103,7 +103,7 @@ await bot.api.sendMessage(12345, "<b>Hi!</b> Welcome to grammY.", {
 
 > This can be useful if your bot is running in [privacy mode](https://core.telegram.org/bots#privacy-mode) in group chats.
 
-When you send a message, you can make the user's Telegram client automatically specify the emessage as reply.
+When you send a message, you can make the user's Telegram client automatically specify the message as reply.
 That means that the user will reply to your bot's message automatically (unless they remove the reply again).
 As a result, your bot will receive the user's message even when running in [privacy mode](https://core.telegram.org/bots#privacy-mode) in group chats.
 
