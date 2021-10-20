@@ -139,8 +139,20 @@ bot.use(router); // register the router
 bot.start();
 
 // Date conversion utils:
-const months = ["Jan","Feb","Mar","Apr","May","Jun",
-                "Jul","Aug","Sep","Oct","Nov","Dec"];
+const months = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
 function getDays(month: number, day: number) {
   const bday = new Date();
   const now = Date.now();
@@ -247,8 +259,20 @@ bot.use(router); // register the router
 bot.start();
 
 // Date conversion utils:
-const months = ["Jan","Feb","Mar","Apr","May","Jun",
-                "Jul","Aug","Sep","Oct","Nov","Dec"];
+const months = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
 function getDays(month, day) {
   const bday = new Date();
   const now = Date.now();
@@ -368,8 +392,20 @@ bot.use(router); // register the router
 bot.start();
 
 // Date conversion utils:
-const months = ["Jan","Feb","Mar","Apr","May","Jun",
-                "Jul","Aug","Sep","Oct","Nov","Dec"];
+const months = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
 function getDays(month: number, day: number) {
   const bday = new Date();
   const now = Date.now();
