@@ -52,7 +52,7 @@ Check out the [next section](./context.md) to learn how the context object of a 
 
 ## Sending messages with reply
 
-You can use the Telegram reply-to feature by specifying the message identifier to reply to.
+You can use the Telegram reply-to feature by specifying the message identifier to reply to using `reply_to_message_id`.
 
 ```ts
 await bot.hears("ping", async (ctx) => {
@@ -63,6 +63,10 @@ await bot.hears("ping", async (ctx) => {
   });
 });
 ```
+
+> Note that only sending a message via `ctx.reply` does **NOT** mean you are automatically replying to anything.
+> Instead, you should specify `reply_to_message_id` for this.
+> The function `ctx.reply` is just an alias for `ctx.api.sendMessage`, see [the next section](./context.md#available-actions).
 
 ## Sending message with formatting
 
@@ -92,5 +96,24 @@ Send your message with HTML elements in the text, and specify `parse_mode: 'HTML
 ```ts
 await bot.api.sendMessage(12345, "<b>Hi!</b> Welcome to grammY.", {
   parse_mode: "HTML",
+});
+```
+
+## Force reply
+
+> This can be useful if your bot is running in [privacy mode](https://core.telegram.org/bots#privacy-mode) in group chats.
+
+When you send a message, you can make the user's Telegram client automatically specify the emessage as reply.
+That means that the user will reply to your bot's message automatically (unless they remove the reply again).
+As a result, your bot will receive the user's message even when running in [privacy mode](https://core.telegram.org/bots#privacy-mode) in group chats.
+
+You can force a reply like this:
+
+```ts
+await bot.command("start", async (ctx) => {
+  await ctx.reply("Hi! I can only read messages that explicitly reply to me!", {
+    // force Telegram client to open the reply feature
+    reply_markup: { force_reply: true },
+  });
 });
 ```
