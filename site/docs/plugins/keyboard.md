@@ -263,3 +263,23 @@ await ctx.reply(text, {
   },
 });
 ```
+
+### Removing a keyboard
+
+Unless you specify `one_time_keyboard` as described
+[above](#one-time-keyboards), the keyboard will remain open for the user (but
+the user can minimise it).
+
+You can only remove a keyboard when you send a new message in the chat, just
+like you can only specify a new keyboard by sending a message. Pass
+`{ remove_keyboard: true }` as `reply_markup` like so:
+
+```ts
+await ctx.reply(text, {
+  reply_markup: { remove_keyboard: true },
+});
+```
+
+Next to `remove_keyboard`, you can again set `selective: true` in order to
+remove the keyboard for selected users only. This works analogously to
+[selectively sending a keyboard](#selectively-send-keyboard).
