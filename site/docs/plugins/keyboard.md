@@ -82,6 +82,8 @@ await ctx.reply(text, {
 ```
 
 Naturally, all other methods that send messages other than text messages support the same options, as specified by the [Telegram Bot API Reference](https://core.telegram.org/bots/api).
+For example, you can edit a keybaord by calling `editMessageReplyMarkup`, and passing the new `InlineKeyboard` instance as `reply_markup`.
+Specify an empty inline keyboard to remove all buttons underneath a message.
 
 ### Responding to clicks
 
