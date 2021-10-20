@@ -370,14 +370,14 @@ function insertWbrTags(url: string) {
     .split("//")
     .map(
       (str) =>
-        // Insert a word break opportunity after a colon
         str
+          // Insert a word break opportunity after a colon
           .replace(/(?<after>:)/giu, "$1<wbr>")
           // Before a single slash, tilde, period, comma, hyphen, underline, question mark, number sign, or percent symbol
           .replace(/(?<before>[/~.,\-_?#%])/giu, "<wbr>$1")
           // Before and after an equals sign or ampersand
           .replace(/(?<beforeAndAfter>[=&])/giu, "<wbr>$1<wbr>"),
-      // Reconnect the strings with word break opportunities after double slashes
     )
+    // Reconnect the strings with word break opportunities after double slashes
     .join("//<wbr>");
 }
