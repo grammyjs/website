@@ -261,6 +261,7 @@ If you published your own storage adapter, please edit this page and link it her
 
 ### Third-party
 
+- Files: <https://github.com/Satont/grammy-file-storage>
 - MongoDB: <https://github.com/Satont/grammy-mongodb-storage>
 - Redis (Node.js-only): <https://github.com/Satont/grammy-redis-storage>
 - TypeORM (Node.js-only): <https://github.com/Satont/grammy-typeorm-storage>
