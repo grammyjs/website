@@ -136,7 +136,7 @@ When you have created your bot, for example in a file called `bot.ts`, you can r
 You can stop it again with `Ctrl+C`.
 
 Ready?
-[Get started](./gettings-started.md#getting-started-on-deno)! :robot:
+[Get started](./getting-started.md#getting-started-on-deno)! :robot:
 
 ### Prerequisites for Node.js
 
@@ -159,4 +159,4 @@ This will stop your bot.
 Then, you need to repeat steps 2 and 3.
 
 Are you ready?
-[Get started](./gettings-started.md#getting-started-on-deno)! :robot:
+[Get started](./getting-started.md#getting-started-on-node-js)! :robot:
