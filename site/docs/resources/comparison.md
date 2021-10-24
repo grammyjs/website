@@ -136,7 +136,7 @@ You don't want that.
 ### Other frameworks
 
 Do you think that your favourite framework is better than grammY in some respect?
-Feel free to edit this page and add a comparison—or tell us what you think in the [group chat](https://telegram.me/grammyjs)!
+Feel free to edit this page and add a comparison—or tell us what you think in the [group chat](https://t.me/grammyjs)!
 
 ## Comparison with frameworks in other programming languages
 
@@ -167,7 +167,7 @@ People have different taste, so take this section with a grain of salt.
 5. **`async`/`await` support.**
    This is a very popular programming pattern to tame concurrency.
    The recent years show a strong trend towards asynchronous programming.
-   The largest bot framework for Python, PTB, [announced its migration](https://telegram.me/pythontelegrambotchannel/94) to asynchronous programming in January 2021, which is expected to maybe take “2 years”.
+   The largest bot framework for Python, PTB, [announced its migration](https://t.me/pythontelegrambotchannel/94) to asynchronous programming in January 2021, which is expected to maybe take “2 years”.
    grammY is already there.
    (Other, less known Python frameworks may be faster at transitioning.
    Disregard this point if you are using a Python framework that has support for `async`/`await`.)
@@ -175,7 +175,7 @@ People have different taste, so take this section with a grain of salt.
 ## How to disagree with this comparison
 
 If you think that something is wrong on this page, don't despair!
-Please let us know in the [group chat](https://telegram.me/grammyjs)!
+Please let us know in the [group chat](https://t.me/grammyjs)!
 We'd love for you to educate us about your perspective.
 Naturally, you can also just edit this page on GitHub, or file an issue there to point out mistakes or suggest other things.
 This page will always have room to be more objective, and more fair.

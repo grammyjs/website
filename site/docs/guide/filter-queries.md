@@ -10,13 +10,13 @@ The first argument of `bot.on()` is a string called _filter query_.
 ## Introduction
 
 Most (all?) other bot frameworks allow you to perform a primitive form of filtering for updates, e.g. only `on("message")` and the like.
-Other filtering of messages is left to library users, which often leads to endless `if` statements in their code.
+Other filtering of messages is left to the users, which often leads to endless `if` statements in their code.
 
-Quite the contrary, **grammY ships with its own query language** that you can use in order to **filter for exactly the messages** you want.
+On the contrary, **grammY ships with its own query language** that you can use in order to **filter for exactly the messages** you want.
 
 This allows for over 500 different filters to be used, and we may add more over time.
-Every valid filter can be auto-completed in your text editor.
-Hence, you can simply type `bot.on('')`, open auto-complete, and search through all queries by typing somthing.
+Every valid filter can be auto-completed in your code editor.
+Hence, you can simply type `bot.on('')`, open auto-complete, and search through all queries by typing something.
 
 ![Filter Query Search](/filter-query-search.png)
 
@@ -72,7 +72,7 @@ bot.on("::email"); // messages or channel posts with email in text or caption
 ```
 
 Leaving out the _first_ value matches both messages and channel posts.
-[Remember](./context.md#available-actions) that `ctx.msg` gives you access to both messages or channel posts, whatever is matched by the query.
+[Remember](./context.md#available-actions) that `ctx.msg` gives you access to both messages or channel posts, whichever is matched by the query.
 
 Leaving out the _second_ value matches both entities and caption entities.
 You can leave out both the first and the second part at the same time.
@@ -186,7 +186,7 @@ The order of the queries does not matter.
 
 ### Building complex queries
 
-It is technically possible to combine filter queries to more complicated formulas if they are in [CNF](https://en.wikipedia.org/wiki/Conjunctive_normal_form), even though this seems to be rarely useful.
+It is technically possible to combine filter queries to more complicated formulas if they are in [CNF](https://en.wikipedia.org/wiki/Conjunctive_normal_form), even though this is unlikely to be useful.
 
 ```ts
 bot
@@ -211,7 +211,7 @@ Every query consists of up to three query parts.
 Depending on how many query parts a query has, we differentiate between L1, L2, and L3 queries, such as `'message'`, `'message:entities'`, and `'message:entities:url'`, respectively.
 
 The query parts are separated by colons (`:`).
-We refer to the part up the the first colon or the end of the query string as the _L1 part_ of a query.
+We refer to the part up to the first colon or the end of the query string as the _L1 part_ of a query.
 We refer to the part from the first colon to the second colon or to the end of the query string as the _L2 part_ of the query.
 We refer to the part from the second colon to the end of the query string as the _L3 part_ of the query.
 
@@ -227,18 +227,18 @@ Example:
 
 Even though the type system should catch all invalid filter queries at compile time, grammY also checks all passed filter queries at runtime during setup.
 Every passed filter query is matched against a validation structure that checks if it is valid.
-Not only is it good to fail immediately during setup instead of at runtime, it has also happened before that bugs in TypeScript cause serious problems to the sophisticated type inference system that powers filter queries.
-If this happens again in the future, this will prevent caveats that might occur.
-In this case you will still be provided with helpful error messages.
+Not only is it good to fail immediately during setup instead of at runtime, it has also happened before that bugs in TypeScript cause serious problems with the sophisticated type inference system that powers filter queries.
+If this happens again in the future, this will prevent issues that could otherwise occur.
+In this case, you will be provided with helpful error messages.
 
 ### Performance
 
-**grammY can check every filter query in (amortised) constant time per update**, independent of the structure of the query or the incoming update.
+**grammY can check every filter query in (amortized) constant time per update**, independent of the structure of the query or the incoming update.
 
-The validation of the filter queries happens only once, when the bot is intialised and `bot.on()` is called.
+The validation of the filter queries happens only once, when the bot is initialized and `bot.on()` is called.
 
-At startup, grammY derives a predicate function from the filter query by splitting it into its query parts.
+On start-up, grammY derives a predicate function from the filter query by splitting it into its query parts.
 Every part will be mapped to a function that performs a single `in` check, or two checks if the part is omitted and two values need to be checked.
-These functions are then combined to form a predicate that only has to check for as many values as are relevant for the query, without iterating over object keys of `Update`.
+These functions are then combined to form a predicate that only has to check for as many values as are relevant for the query, without iterating over the object keys of `Update`.
 
-This system uses less operations than what some competing libraries need which perform containment checks in arrays when routing updates, even though grammY's filter query system is much more powerful.
+This system uses less operations than some competing libraries, which need to perform containment checks in arrays when routing updates. grammY's filter query system is much more powerful and performant.

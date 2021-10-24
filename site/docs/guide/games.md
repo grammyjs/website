@@ -14,7 +14,7 @@ The answer is anything, any HTML5 game that you have developed you can provide t
 
 ## Setting up a game with your bot via @BotFather
 
-For simplicity, let's assume that by now you must have set up a bot and a game associated with your bot on [@BotFather](https://telegram.me/BotFather).
+For simplicity, let's assume that by now you must have set up a bot and a game associated with your bot on [@BotFather](https://t.me/BotFather).
 If you haven't already, check out this [article](https://core.telegram.org/bots/games) by the Telegram team.
 
 > Note: We will only learn the bot side development.

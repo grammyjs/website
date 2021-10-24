@@ -1,7 +1,7 @@
 {
   "name": "grammydocsbot",
   "version": "1.0.0",
-  "description": "The [@grammydocsbot](https://telegram.me/grammydocsbot) is a Telegram bot that can be used to quickly search and send links to the documentation website of the grammY bot framework",
+  "description": "The [@grammYdocsbot](https://t.me/grammYdocsbot) is a Telegram bot that can be used to quickly search and send links to the documentation website of the grammY bot framework",
   "main": "index.js",
   "private": true,
   "scripts": {

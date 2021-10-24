@@ -254,7 +254,7 @@ export default defineUserConfig<DefaultThemeOptions>({
             children: [
               {
                 text: "Community Chat",
-                link: "https://telegram.me/grammyjs",
+                link: "https://t.me/grammyjs",
               },
               {
                 text: "Awesome grammY",
@@ -262,7 +262,7 @@ export default defineUserConfig<DefaultThemeOptions>({
               },
               {
                 text: "News",
-                link: "https://telegram.me/grammyjs_news",
+                link: "https://t.me/grammyjs_news",
               },
               {
                 text: "FAQ",

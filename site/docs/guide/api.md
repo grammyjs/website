@@ -8,7 +8,7 @@ next: ./filter-queries.md
 ## General information
 
 Telegram bots are communicating via HTTP requests with the Telegram servers.
-The Telegram Bot API is the specification of this interface, i.e. a [long list](https://core.telegram.org/bots/api) of methods and data types, commonly called reference.
+The Telegram Bot API is the specification of this interface, i.e. a [long list](https://core.telegram.org/bots/api) of methods and data types, commonly called a reference.
 It defines everything that Telegram bots can do.
 You can find it linked under the Resources tab.
 
@@ -24,7 +24,7 @@ This server will translate the request to Telegram's native protocol called MTPr
 Analogously, whenever a user responds, the inverse path is taken.
 
 ::: tip Circumventing file size limits
-The Telegram backend allows your bot to [send files](./files.md) of any size.
+The Telegram backend allows your bot to [send files](./files.md) up to 2000 MB.
 However, the Bot API server that is responsible for translating the requests to HTTP restricts the file size to 50 MB for downloads and 20 MB for uploads.
 
 Hence, if you circumvent the Bot API server that Telegram runs for you, and simply [host your own Bot API server](https://core.telegram.org/bots/api#using-a-local-bot-api-server), you can allow your bot to send files up to 2000 MB.
@@ -69,7 +69,7 @@ async function sendHelloTo12345() {
 ```
 
 Moreover, grammY takes care of numerous technical details to simplify the API usage.
-As an example, some specific properties in some specific methods have to be `JSON.stringify`ed before sending them.
+As an example, some specific properties in some specific methods have to be `JSON.stringify`ed before they are sent.
 This is easy to forget, hard to debug, and it breaks type inference.
 grammY allows you to specify objects consistently across the API, and makes sure that the right properties are serialised on the fly before sending them.
 

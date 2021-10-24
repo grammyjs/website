@@ -48,7 +48,7 @@ You'd basically have to create a [sink](https://doc.deno.land/https/deno.land/x/
 You'd then have to create a [source](https://doc.deno.land/https/deno.land/x/grammy_runner/mod.ts#UpdateSource) that pulls from the message queue again.
 You will effectively run two different instances of the grammY runner.
 This vague draft described above has only been sketched but not implemented, according to our knowledge.
-Please [take contact with the Telegram group](https://telegram.me/grammyjs) if you have any question or if you attempt this and can share your progress.
+Please [take contact with the Telegram group](https://t.me/grammyjs) if you have any question or if you attempt this and can share your progress.
 
 On the other hand, if your bot is under heavy load and the update polling is slowed down due to [the automatic load constraints](/plugins/runner.md#sink), chances are increasing that some updates will be fetched again, which leads to duplicate messages again.
 Thus, the price of full concurrency is that neither _at least once_ nor _at most once_ processing can be guaranteed.

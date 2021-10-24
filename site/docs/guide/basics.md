@@ -5,7 +5,7 @@ next: ./context.md
 
 # Sending and receiving messages
 
-As soon as you started your bot with `bot.start()`, grammY will supply your listeners with the messages that users send to your bot.
+As soon as you start your bot with `bot.start()`, grammY will supply your listeners with the messages that users send to your bot.
 grammY also provides methods to easily reply to these messages.
 
 ## Receiving messages
@@ -18,7 +18,7 @@ bot.on("message", (ctx) => {
 });
 ```
 
-However, there are a number of other ways to filter for messages, too.
+However, there are a number of other options too.
 
 ```ts
 // Handles commands, such as /start
@@ -28,7 +28,7 @@ bot.command('start', (ctx) => { ... });
 bot.hears(/echo *(.+)?/, (ctx) => { ... });
 ```
 
-You can use auto-complete in your editor to see all available options, or check out [all methods](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Bot) of the `Bot` class.
+You can use auto-complete in your code editor to see all available options, or check out [all methods](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Bot) of the `Bot` class.
 
 > [Read more](./filter-queries.md) about filtering for specific message types with `bot.on()`.
 
@@ -46,7 +46,7 @@ const me = await bot.api.getMe();
 // etc
 ```
 
-You can use auto-complete in your editor to see all available options, or check out [all methods](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Api) of the `Api` class.
+You can use auto-complete in your code editor to see all available options, or check out [all methods](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Api) of the `Api` class.
 
 Check out the [next section](./context.md) to learn how the context object of a listener makes sending messages a breeze!
 
@@ -55,7 +55,7 @@ Check out the [next section](./context.md) to learn how the context object of a 
 You can use the Telegram reply-to feature by specifying the message identifier to reply to using `reply_to_message_id`.
 
 ```ts
-await bot.hears("ping", async (ctx) => {
+bot.hears("ping", async (ctx) => {
   // `reply` is an alias for `sendMessage` in the same chat (see next section)
   await ctx.reply("pong", {
     // `reply_to_message_id` specifies the actual reply feature
@@ -77,7 +77,7 @@ There are two ways to do this, as described in [the section about formatting opt
 
 ### Markdown
 
-> Also confer <https://core.telegram.org/bots/api#markdownv2-style>
+> Also see <https://core.telegram.org/bots/api#markdownv2-style>
 
 Send your message with markdown in the text, and specify `parse_mode: 'MarkdownV2'`.
 
@@ -89,9 +89,9 @@ await bot.api.sendMessage(12345, "**Hi\!** Welcome to grammY.", {
 
 ### HTML
 
-> Also confer <https://core.telegram.org/bots/api#html-style>
+> Also see <https://core.telegram.org/bots/api#html-style>
 
-Send your message with HTML elements in the text, and specify `parse_mode: 'HTML'`..
+Send your message with HTML elements in the text, and specify `parse_mode: 'HTML'`.
 
 ```ts
 await bot.api.sendMessage(12345, "<b>Hi!</b> Welcome to grammY.", {
@@ -104,13 +104,13 @@ await bot.api.sendMessage(12345, "<b>Hi!</b> Welcome to grammY.", {
 > This can be useful if your bot is running in [privacy mode](https://core.telegram.org/bots#privacy-mode) in group chats.
 
 When you send a message, you can make the user's Telegram client automatically specify the message as reply.
-That means that the user will reply to your bot's message automatically (unless they remove the reply again).
+That means that the user will reply to your bot's message automatically (unless they remove the reply manually).
 As a result, your bot will receive the user's message even when running in [privacy mode](https://core.telegram.org/bots#privacy-mode) in group chats.
 
 You can force a reply like this:
 
 ```ts
-await bot.command("start", async (ctx) => {
+bot.command("start", async (ctx) => {
   await ctx.reply("Hi! I can only read messages that explicitly reply to me!", {
     // force Telegram client to open the reply feature
     reply_markup: { force_reply: true },

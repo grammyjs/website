@@ -156,7 +156,7 @@ In a sense, you can therefore specify a graph of dependencies between updates.
 grammY runner will resolve all necessary constraints on the fly and block those updates as long as necessary to ensure correct message ordering.
 
 The implementation of this is very efficient.
-It needs constant memory (unless you specify infinite concurrency), and it needs (amortised) constant processing time per update.
+It needs constant memory (unless you specify infinite concurrency), and it needs (amortized) constant processing time per update.
 
 ## Plugin summary
 
