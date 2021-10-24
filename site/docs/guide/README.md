@@ -24,7 +24,7 @@ You may also want to read up about our great plugins that help you with building
 The second part is the grammY [API Reference](https://doc.deno.land/https/deno.land/x/grammy/mod.ts), linked at the top of the page.
 This is a detailed overview of every single bit of code and every option that grammY provides.
 It is automatically generated from the code and contains detailed descriptions about every part of the library.
-You can see it as a complete collection of all of the useful "tooltip explanations", normally found by hovering your cursor over any element of grammY in a code editor.
+You can see it as a complete collection of all of the useful “tooltip explanations”, normally found by hovering your cursor over any element of grammY in a code editor.
 Some central topics of grammY have brief outlines in the API Reference too.
 
 ::: tip Join the community!

@@ -75,7 +75,7 @@ You will get to know them as you go.
 
 > Skip the rest of this page if you already know how to develop a Deno or a Node.js application, and [get started](./getting-started.md).
 
-Here are a few interesting things about programming—things that are essential to coding, yet rarely explained because some developers think they are self-evident.
+Here are a few interesting things about programming—things that are essential to coding, yet rarely explained because most developers think they are self-evident.
 
 In the next section, you will create a bot by writing a text file that contains source code in the programming language [TypeScript](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html).
 The grammY documentation will not teach you how to program, so we expect you to teach yourself.
