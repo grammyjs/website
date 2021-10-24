@@ -76,7 +76,7 @@ Can you see it?
 As you can guess, all middleware will be run in order from `A` to `L`.
 
 Other libraries would internally flatten this code to be equivalent to `composer.use(/* A */).use(/* B */).use(/* C */).use(/* D */)...` and so on.
-Quite the contrary, grammY preserves the tree you specified: one root node (`composer`) has five children (`A`, `B`, `D`, `H`, `J`), while the child `B` has one other child, `C`, etc.
+On the contrary, grammY preserves the tree you specified: one root node (`composer`) has five children (`A`, `B`, `D`, `H`, `J`), while the child `B` has one other child, `C`, etc.
 This tree will then be traversed by every update in depth-first order, hence effectively passing through `A` to `L` in linear order, much like what you know from other systems.
 
 This is made possible by creating a new instance of `Composer` every time you call `use` that will in turn be extended (as explained above).
