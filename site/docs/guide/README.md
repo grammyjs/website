@@ -18,7 +18,7 @@ If you know how to write an application in Node.js or have already created a Tel
 
 There are two main parts of this documentation.
 The first one (you're looking at it!) introduces the concepts behind both grammY and Telegram bots in general, and helps you understand how grammY makes your life easier.
-Check out the Learn dropdown to see what sections are available.
+Check out the Learn section to see the available information.
 You may also want to read up about our great plugins that help you with building rich menus, storing data, translating your bot to multiple languages, and much more.
 
 The second part is the grammY [API Reference](https://doc.deno.land/https/deno.land/x/grammy/mod.ts), linked at the top of the page.

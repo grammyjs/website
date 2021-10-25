@@ -244,7 +244,7 @@ If you think it is too easy, check out our [Deployment Checklist](/advanced/depl
 
 ## Deployment
 
-Nope … our _Rocket Bot_ is not ready to launch yet.
+Nope… our _Rocket Bot_ is not ready to launch yet.
 Complete these stages first!
 
 ### Compile Files
@@ -308,7 +308,7 @@ Here is the link for the installation:
 - [Heroku CLI installation instructions](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
 
 Assuming that you already have them in your machine, and you have a terminal open in the root of our project's directory.
-Now initialize a local git repository by running this code in your terminal:
+Now initialise a local git repository by running this code in your terminal:
 
 ```bash
 git init
