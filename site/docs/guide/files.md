@@ -3,12 +3,12 @@ prev: ./inline-queries.md
 next: ./games.md
 ---
 
-# File handling
+# File Handling
 
 Telegram bots cannot only send and receive text messages, but also all other kinds of messages, such as photos and videos.
 This involves handling the files that are attached to the messages.
 
-## How files work for Telegram bots
+## How Files Work for Telegram Bots
 
 > This section explains how files work for Telegram bots.
 > If you want to know how you can work with files in grammY scroll down for [downloading](#receiving-files) and [uploading](#sending-files) files.
@@ -38,7 +38,7 @@ That means that you cannot reliably compare `file_id`s to check if two files are
 In cases where you do need to identify the same file over time and across bots, you should use the value for `file_unique_id` that your bot receives along with every `file_id`.
 The `file_unique_id` cannot be used to download files.
 
-## Receiving files
+## Receiving Files
 
 You can receive all files just like any other message.
 For instance, if you want to listen for voice messages, you can do this:
@@ -74,7 +74,7 @@ grammY does not ship its own file downloader, but you can install it using [the 
 It allows you to download files via `await file.download()`, and to obtain their URL via `file.getUrl()`.
 :::
 
-## Sending files
+## Sending Files
 
 Telegram bots have [three ways](https://core.telegram.org/bots/api#sending-files) to send files:
 
@@ -82,7 +82,7 @@ Telegram bots have [three ways](https://core.telegram.org/bots/api#sending-files
 2. Via URL, i.e. by passing a public file URL to Telegram that will in turn download and send the file.
 3. Via uploading your own file.
 
-### Via file_id or URL
+### Via `file_id` or URL
 
 The first two means are simple: you just pass the respective value as `string` and you're done.
 
@@ -96,7 +96,7 @@ await ctx.replyWithPhoto("https://avatars.githubusercontent.com/u/81446018");
 // or use bot.api.sendPhoto() or ctx.api.sendPhoto()
 ```
 
-### Uploading your own file
+### Uploading Your Own File
 
 grammY has good support for uploading your own files.
 You can do this by importing and using the `InputFile` class ([grammY API Reference](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#InputFile)).
@@ -118,7 +118,7 @@ Note that the [grammY API Reference](https://doc.deno.land/https/deno.land/x/gra
 If you use grammY on Node.js, check out the respective type definition or implementation, or trust TypeScript.
 :::
 
-## File size limits
+## File Size Limits
 
 grammY itself can send files without size limit, however, Telegram restricts the file size as they document [here](https://core.telegram.org/bots/api#sending-files).
 This means that your bot cannot download files larger than 20 MB, and it cannot upload files larger than 50 MB.

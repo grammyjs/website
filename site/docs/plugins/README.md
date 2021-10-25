@@ -2,7 +2,7 @@
 
 grammY supports installing plugins, most of them via adding new [middleware](/guide/middleware.md) or [transformer functions](/advanced/transformers.md).
 
-## Categories of plugins
+## Categories of Plugins
 
 Some plugins are right **built-in** into the grammY core library because we assume that many bots need them.
 This makes it easier for new users to use them, without having to install a new package first.
@@ -20,7 +20,7 @@ As an example, the [grammY runner](./runner.md) plugin (`runner`) needs to be in
 You may decide to publish your package independently as a **third party**.
 In that case, we can still offer you a prominent place on this website:
 
-## Submitting your own plugin to the docs
+## Submitting Your Own Plugin to the Docs
 
 If you are the author of a library that can help other users of grammY, you can submit a PR on GitHub that adds a page for it to the official website of grammY (this one).
 This will enable other users to find it, and it gives you a simple way to have a good documentation.

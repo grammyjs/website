@@ -9,9 +9,9 @@ The listener functions that are being passed to `bot.on()`, `bot.command()`, and
 While it is not wrong that they are listening for updates, calling them just listeners is a simplification.
 
 > This section explains what middleware is, and uses grammY as an example to illustrate how it can be used.
-> If you are looking for the documentation about what is special about grammY's implementation of middleware, check out [Middleware redux](/advanced/middleware.md) in the advanced section of the docs.
+> If you are looking for the documentation about what is special about grammY's implementation of middleware, check out [Middleware Redux](/advanced/middleware.md) in the advanced section of the docs.
 
-## The middleware stack
+## The Middleware Stack
 
 Suppose you write a bot like this:
 
@@ -118,7 +118,7 @@ Having a middleware stack is an extremely powerful property of any web framework
 
 Let's write our own little piece of middleware to illustrate even better how it works.
 
-## Writing custom middleware
+## Writing Custom Middleware
 
 We will illustrate the concept of middleware by writing a simple middleware function that can measure the response time of your bot, i.e. how long it takes your bot to handle a message.
 
@@ -195,7 +195,7 @@ Consider using [ESLint](https://eslint.org/) and configure it to use the [no-flo
 This will make sure that you never forget to use `await` (by yelling at you).
 :::
 
-## Properties of middleware in grammY
+## Properties of Middleware in grammY
 
 In grammY, middleware may return a `Promise` (which will be `await`ed), but it can also be synchronous.
 
@@ -225,4 +225,4 @@ bot.use(/*...*/);
 // ...
 ```
 
-If you want to dig deeper into how grammY implements middleware, check out [Middleware redux](/advanced/middleware.md) in the advanced section of the docs.
+If you want to dig deeper into how grammY implements middleware, check out [Middleware Redux](/advanced/middleware.md) in the advanced section of the docs.

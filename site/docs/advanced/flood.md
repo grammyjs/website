@@ -9,7 +9,7 @@ Telegram restricts how many messages your bot can send per second, confer the [B
 You should always make sure to stay below these limits, otherwise your bot gets rate limited.
 If you ignore these errors, your bot may eventually be banned.
 
-## The simple solution
+## The Simple Solution
 
 :::warning Not a real solution
 This section solves your problem short-term, but if you are building a bot that should actually scale well, read [the next subsection](#the-real-solution-recommended) instead.
@@ -25,7 +25,7 @@ This could lead to a ban.
 Moreover, as requests might be tried several times, your server will consume more RAM and bandwidth than necessary.
 Instead of fixing the problem after the fact, it is much better to enqueue all API requests and only send them at the permitted speed:
 
-## The real solution (recommended)
+## The Real Solution (recommended)
 
 grammY provides you with [the throttler plugin](/plugins/transformer-throttler.md) that automatically makes your bot respect all rate limits by enqueuing the outgoing requests of your bot in a message queue.
 This plugin is just as simple to set up but does a much better job at flood control.

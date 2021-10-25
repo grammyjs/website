@@ -3,11 +3,11 @@ prev: ./introduction.md
 next: ./basics.md
 ---
 
-# Getting started
+# Getting Started
 
 Create your first bot in minutes. (Scroll [down](#getting-started-on-deno) for a Deno guide.)
 
-## Getting started on Node.js
+## Getting Started on Node.js
 
 > This guide assumes that you have [Node.js](https://nodejs.org) installed, and `npm` should come with it.
 > If you don't know what these things are, check out our [Introduction](./introduction.md)!
@@ -129,7 +129,7 @@ in your terminal before you execute `node bot.js`.
 This makes it easier to debug your bot.
 :::
 
-## Getting started on Deno
+## Getting Started on Deno
 
 > This guide assumes that you have [Deno](https://deno.land) installed.
 

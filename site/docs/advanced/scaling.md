@@ -3,12 +3,12 @@ prev: ./structuring.md
 next: ./reliability.md
 ---
 
-# Scaling Up II: High load
+# Scaling Up II: High Load
 
 Making your bot able to handle high load depends on whether you run your bot [via long polling or via webhooks](/guide/deployment-types.md).
 Either way, you should read up on some pitfalls [below](#concurrency-is-hard).
 
-## Long polling
+## Long Polling
 
 Most bots never need to process more than a handful of messages per minute (during “peak load”).
 In other words, scalability is not a concern for them.
@@ -50,7 +50,7 @@ This means that you still have to be aware of some consequences of concurrency, 
 
 Telegram will deliver updates from the same chat in sequence, but updates from different chats concurrently ([source](https://github.com/tdlib/telegram-bot-api/issues/75#issuecomment-755436496)).
 
-## Concurrency is hard
+## Concurrency Is Hard
 
 If your bot processes all updates concurrently, this can cause a number of problems that need special attention.
 For example, if two messages from the same chat end up being received by the same `getUpdates` call, they would be processed concurrently.

@@ -3,12 +3,12 @@ prev: ./middleware.md
 next: ./scaling.md
 ---
 
-# Scaling Up I: Large codebase
+# Scaling Up I: Large Codebase
 
 As soon as your bot grows in complexity, you are going to face the challenge of how to structure your application code base.
 Naturally, you can split it across files.
 
-## Possible solution
+## Possible Solution
 
 > grammY is still pretty young and does not provide any official integrations with DI containers yet.
 > Subscribe to [@grammyjs_news](https://t.me/grammyjs_news) to be notified as soon as we support this.
@@ -24,7 +24,7 @@ That being said, a straightforward and proven strategy to structure your code is
 
 A runnable example that implements the above strategy can be found in the [Example Bot repository](https://github.com/grammyjs/examples/tree/main/scaling).
 
-## Example structure
+## Example Structure
 
 For a very simple bot that manages a TODO list, you could imagine this structure.
 

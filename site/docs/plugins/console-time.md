@@ -1,4 +1,4 @@
-# Console logging while Debugging
+# Console Logging While Debugging
 
 If you are familiar with JavaScript / TypeScript you probably used [`console.log`](https://developer.mozilla.org/en-US/docs/Web/API/Console/log) or [`console.time`](https://developer.mozilla.org/en-US/docs/Web/API/Console/time) to check what is happening while debugging something.
 While working on your bot or middleware you might want to check something similar: What happened, and how long took it?
@@ -9,7 +9,7 @@ For example: while debugging why `/start` fails you will check the individual Te
 In a production context you are more interested in all `/start` messages that are happening.
 This library is intended to help with individual updates.
 
-## Debug your implementation
+## Debug Your Implementation
 
 ```ts
 import {generateUpdateMiddleware} from 'telegraf-middleware-console-time';
@@ -37,7 +37,7 @@ The number before the commands is the total length of the content. This is helpf
 
 The content itself is shortened in order to prevent log spamming.
 
-## Debug your middleware
+## Debug Your Middleware
 
 When you create your own middleware or assume slow timings of another middleware you can use these middlewares to create a timing profile
 
@@ -71,6 +71,6 @@ This will output something like this:
 
 This indicates the checked middleware alone took 800ms and isn't as performant as maybe needed.
 
-## Plugin summary
+## Plugin Summary
 
 - Source: <https://github.com/EdJoPaTo/telegraf-middleware-console-time>

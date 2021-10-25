@@ -14,7 +14,7 @@ It can be used from TypeScript and JavaScript and runs on Node.js, Deno, and in 
 
 Check out the [Introduction](./introduction.md) if you're new to writing Telegram bots, especially if you have little coding experience.
 
-If you know how to write an application in Node.js or have already created a Telegram bot with another JavaScript framework, get up and running in minutes with our [Getting started](./getting-started.md) guide.
+If you know how to write an application in Node.js or have already created a Telegram bot with another JavaScript framework, get up and running in minutes with our [Getting Started](./getting-started.md) guide.
 
 There are two main parts of this documentation.
 The first one (you're looking at it!) introduces the concepts behind both grammY and Telegram bots in general, and helps you understand how grammY makes your life easier.

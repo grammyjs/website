@@ -65,7 +65,7 @@ autoRetry({
 });
 ```
 
-## Plugin summary
+## Plugin Summary
 
 - Name: `auto-retry`
 - Source: <https://github.com/grammyjs/auto-retry>

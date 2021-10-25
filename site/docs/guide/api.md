@@ -5,7 +5,7 @@ next: ./filter-queries.md
 
 # Bot API
 
-## General information
+## General Information
 
 Telegram bots are communicating via HTTP requests with the Telegram servers.
 The Telegram Bot API is the specification of this interface, i.e. a [long list](https://core.telegram.org/bots/api) of methods and data types, commonly called a reference.
@@ -38,7 +38,7 @@ Hence, if you circumvent the Bot API server that Telegram runs for you, and simp
 Every single method of the Bot API has an equivalent in grammY.
 Example: `sendMessage` in the [Telegram Bot API Reference](https://core.telegram.org/bots/api#sendmessage) and in the [grammY API Reference](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Api).
 
-### Calling a method
+### Calling a Method
 
 You can call API methods via `bot.api`, or [equivalently](./context.md#available-actions) via `ctx.api`:
 
@@ -73,7 +73,7 @@ As an example, some specific properties in some specific methods have to be `JSO
 This is easy to forget, hard to debug, and it breaks type inference.
 grammY allows you to specify objects consistently across the API, and makes sure that the right properties are serialized on the fly before sending them.
 
-### Making raw API calls
+### Making Raw API Calls
 
 There may be times when you want to use the original function signatures, but still rely on the convenience of the grammY API (e.g. JSON serialising where appropriate).
 grammY supports this via the `bot.api.raw` (or the `ctx.api.raw`) properties.

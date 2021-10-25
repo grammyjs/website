@@ -59,7 +59,7 @@ bot.command("add", (ctx) => {
 
 Note that you can always access the entire message's text via `ctx.msg.text`.
 
-## Deep linking support
+## Deep Linking Support
 
 > Revisit the deep linking section in the [Introduction for Developers](https://core.telegram.org/bots#deep-linking) written by the Telegram team.
 

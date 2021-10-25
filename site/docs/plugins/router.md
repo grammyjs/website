@@ -20,7 +20,7 @@ router.otherwise(ctx => { ... }) // called if no route matches
 bot.use(router)
 ```
 
-## Combining routers with sessions
+## Combining Routers With Sessions
 
 Routers work well together with [sessions](./session.md).
 As an example, combining the two concepts allows you to re-create forms in the chat interface.
@@ -429,7 +429,7 @@ Note how the session has a property `step` that stores the step of the form, i.e
 The router is used to jump between different middleware that completes both the `month` and the `dayOfMonth` fields on the session.
 If both values are known, the bot computes the remaining days and sends it back to the user.
 
-## Plugin summary
+## Plugin Summary
 
 - Name: `router`
 - Source: <https://github.com/grammyjs/router>

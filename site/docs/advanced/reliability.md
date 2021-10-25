@@ -16,7 +16,7 @@ As you are going to stop your instance during operation at some point again, you
 
 That's basically all there is to reliability, your instance should:registered: never:tm: crash now.
 
-## Reliability guarantees
+## Reliability Guarantees
 
 What if your bot is processing financial transactions and you must consider a `kill -9` scenario where the CPU physically breaks or there is a power outage in the data center?
 If for some reason someone or something actually hard-kills the process, it gets a bit more complicated.

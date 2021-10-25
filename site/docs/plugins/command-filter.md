@@ -1,8 +1,8 @@
-# Command filtering (`command-filter`)
+# Command Filtering (`command-filter`)
 
 Coming soon, please come back later.
 
-## Plugin summary
+## Plugin Summary
 
 - Name: `command-filter`
 - Source: tbd

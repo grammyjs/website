@@ -3,7 +3,7 @@ prev: ./middleware.md
 next: ./inline-queries.md
 ---
 
-# Error handling
+# Error Handling
 
 Every single error caused by your middleware will be caught by grammY.
 You should install a custom error handler to handle errors.
@@ -20,11 +20,11 @@ Afterwards, we will look at all three types of errors that your bot can encounte
 
 A more advanced error handling mechanism can be found [down here](#error-boundaries).
 
-## Catching errors
+## Catching Errors
 
 It depends on your setup how to catch errors.
 
-### Long polling
+### Long Polling
 
 If you run your bot via `bot.start()`, or if you are using [grammY runner](/plugins/runner.md), then you should **install an error handler via `bot.catch`**.
 
@@ -55,7 +55,7 @@ bot.catch((err) => {
 If you run your bot via webhooks, grammY will pass the error on to the web framework that you use, e.g. `express`.
 You should handle errors according to the conventions of that framework.
 
-## The `BotError` object
+## The `BotError` Object
 
 The `BotError` object bundles up a thrown error with the corresponding [context object](/guide/context.md) that caused the error to be thrown.
 This works as follows.
@@ -69,7 +69,7 @@ You can access the respective context object via `err.ctx`.
 
 Check out the `BotError` class in the [grammY API Reference](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#BotError).
 
-## The `GrammyError` object
+## The `GrammyError` Object
 
 If an API method like `sendMessage` fails, grammY will throw a `GrammyError`.
 Note that also `GrammyError` instances will be wrapped in `BotError` objects if they are thrown in middleware.
@@ -79,7 +79,7 @@ The error provides access to the error code returned by the Telegram backend, as
 
 Check out the `GrammyError` class in the [grammY API Reference](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#GrammyError).
 
-## The `HttpError` object
+## The `HttpError` Object
 
 An `HttpError` is thrown if a network request fails.
 This means that grammY was unable to contact the Bot API server.
@@ -91,7 +91,7 @@ You will rarely see this kind of error, unless your network infrastructure is un
 
 Check out the `HttpError` class in the [grammY API Reference](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#HttpError).
 
-## Error boundaries
+## Error Boundaries
 
 > This is an advanced topic that is mostly useful for larger bots.
 > If you are relatively new to grammY, simply skip the remainder of this section.

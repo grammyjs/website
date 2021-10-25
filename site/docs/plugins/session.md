@@ -1,10 +1,10 @@
-# Sessions and storing data (built-in)
+# Sessions and Storing Data (built-in)
 
 While you can always just write you own code to connect to a data storage of your choice, grammY supports a very convenient storage pattern called _sessions_.
 
 > [Jump down](#how-to-use-sessions) if you know how sessions work.
 
-## Why must we think about storage?
+## Why Must We Think About Storage?
 
 In opposite to regular user accounts on Telegram, bots have [limited cloud storage](https://core.telegram.org/bots#4-how-are-bots-different-from-humans) in the Telegram cloud.
 As a result, there are a few things you cannot do with bots:
@@ -20,7 +20,7 @@ Consequently, if you _do want to access_ old data, you have to store it as soon 
 This means that you must have a data storage, such as a file, a database, or an in-memory storage.
 Of course you don't have to host this yourself, there are plenty of services that offer data storage as a service, i.e. other people will host your database for you.
 
-## What are sessions?
+## What Are Sessions?
 
 It is a very common thing for bots to store some piece of data per chat.
 For example, let's say we want to build a bot that counts the number of times that a message contains the pizza emoji :pizza: in its text.
@@ -38,7 +38,7 @@ It would also make sure that the session data is written back to the database on
 
 In our example, we would have access to the pizza count _of the corresponding chat_ on the session object `ctx.session`.
 
-## How to use sessions
+## How to Use Sessions
 
 You can add session support to grammY by using the built-in session middleware.
 
@@ -169,7 +169,7 @@ When you are running your bot on webhooks, you should avoid using the option `ge
 If you need to use the option (which is totally possible), and if the function you pass does not depend on `ctx.chat.id` in some way, you should first make sure you understand the consequences of that by reading [this](/guide/deployment-types.md) article and also [this](/plugins/runner.md) one.
 :::
 
-## Lazy sessions
+## Lazy Sessions
 
 Lazy sessions is an alternative implementation of sessions that can significantly reduce the database traffic of your bot by skipping superfluous read and write operations.
 
@@ -248,7 +248,7 @@ Plugin developers that make use of `ctx.session` should always allow users to pa
 In the plugin code, simply await `ctx.session` all the time: if a non-promise object is passed, this will simply be evaluated to itself, so you effectively only write code for lazy sessions and thus support strict sessions automatically.
 :::
 
-## Known storage adapters
+## Known Storage Adapters
 
 By default, sessions will be stored in your memory by the built-in storage adapter.
 Here is a list of storage adapters that we are aware of, and that allow you to store your session data in other places.
@@ -259,7 +259,7 @@ If you published your own storage adapter, please edit this page and link it her
 - Supabase: <https://github.com/grammyjs/storage-supabase>
 - Google Firestore (Node.js-only): <https://github.com/grammyjs/storage-firestore>
 
-### Third-party
+### Third-Party
 
 - Files: <https://github.com/Satont/grammy-file-storage>
 - MongoDB: <https://github.com/Satont/grammy-mongodb-storage>

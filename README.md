@@ -6,7 +6,7 @@ Contributions are welcome!
 The `logos/` directory only contains the logos of grammY, all website-related things are in `site/`.
 The `grammydocsbot/` directory contains the code for [@grammYdocsbot](https://t.me/grammYdocsbot).
 
-## Building the website locally
+## Building the Website Locally
 
 Setup (once): `cd` into `site/` and run `npm install`.
 

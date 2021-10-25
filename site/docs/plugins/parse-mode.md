@@ -1,4 +1,4 @@
-# Parse Mode plugin
+# Parse Mode Plugin
 
 This plugin provides a transformer for setting default `parse_mode`, and a middleware for hydrating `Context` with familiar `reply` variant methods - i.e. `replyWithHTML`, `replyWithMarkdown`, etc.
 
@@ -98,7 +98,7 @@ bot.start();
 </CodeGroupItem>
 </CodeGroup>
 
-## Plugin summary
+## Plugin Summary
 
 - Name: `parse-mode`
 - Source: <https://github.com/grammyjs/parse-mode>

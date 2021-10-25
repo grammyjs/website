@@ -1,4 +1,4 @@
-# Hydration plugin for grammY
+# Hydration Plugin for grammY
 
 This plugin installs useful methods on two types of objects, namely
 
@@ -48,7 +48,7 @@ Neat, right?
 
 There are two ways to install this plugin.
 
-### Simple installation
+### Simple Installation
 
 This plugin can be installed in a straightforward way that should be enough for most users.
 
@@ -98,7 +98,7 @@ bot.use(hydrate());
 </CodeGroupItem>
 </CodeGroup>
 
-### Advanced installation
+### Advanced Installation
 
 When using the simple installation, only the API call results that go through `ctx.api` will be hydrated, e.g. `ctx.reply`.
 These are most calls for most bots.
@@ -167,7 +167,7 @@ bot.api.config.use(hydrateApi());
 </CodeGroupItem>
 </CodeGroup>
 
-## What objects are hydrated
+## What Objects are Hydrated
 
 This plugin currently hydrates
 
@@ -184,7 +184,7 @@ All objects are hydrated on
 - shortcuts on the context object such as `ctx.msg`, and
 - API call results where applicable.
 
-## Plugin summary
+## Plugin Summary
 
 - Name: `hydrate`
 - Source: <https://github.com/grammyjs/hydrate>

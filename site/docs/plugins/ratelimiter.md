@@ -1,10 +1,10 @@
-# Rate limit users (`ratelimiter`)
+# Rate Limit Users (`ratelimiter`)
 
 rateLimiter is a rate-limiting middleware for Telegram bots made with GrammY or [Telegraf](https://github.com/telegraf/telegraf) bot frameworks. In simple terms, it is a plugin that helps you deflect heavy spamming in your bots. To understand rateLimiter better, you can take a look at the following illustration:
 
 ![rateLimiter's role in deflecting spam](/rateLimiter-role.png)
 
-## How does it work exactly?
+## How Does It Work Exactly?
 
 Under normal circumstances every request will be processed and answered by your bot which means spamming it will not be that difficult. Each user might send multiple requests per second and your script has to process each request, but how can you stop it? with rateLimiter!
 
@@ -24,7 +24,7 @@ This plugin exposes 5 customisable options:
 - `onLimitExceeded`: A function that describes what to do if the user exceeds the limit (ignores the extra requests by default).
 - `keyGenerator`: A function that returns a unique key generated for each user (it uses `from.id` by default). This key is used to identify the user, therefore it should be unique, user specific and in string format.
 
-### About storageClient
+### About `storageClient`
 
 The `MEMORY_STORE` or the in-memory tracking is suitable for most bots, however if you implement clustering for your bot you will not be able to use the in-memory storage effectively. That's why the Redis option is provided as well. You can pass a Redis client from [ioredis](https://github.com/luin/ioredis) or [redis](https://deno.land/x/redis) in case you use deno. In reality any Redis driver that implements the `incr` and `pexpire` methods should work just fine. rateLimiter is driver agnostic.
 
@@ -129,7 +129,7 @@ app.listen(3000, () => {
 
 In this example, I have used `chat.id` as the unique key for rate-limiting.
 
-## Plugin summary
+## Plugin Summary
 
 - Name: `ratelimiter`
 - Source: <https://github.com/grammyjs/rateLimiter>

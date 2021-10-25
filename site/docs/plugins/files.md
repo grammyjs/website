@@ -1,8 +1,8 @@
-# File handling simplified in grammY
+# File Handling Simplified in grammY
 
 This plugin allows you to easily download files from Telegram servers, and to obtain a URL so you can download the file yourself.
 
-## Downloading files
+## Downloading Files
 
 You need to pass your bot token to this plugin becuase it must authenticate as your bot when it downloads files.
 This plugin then installs the `download` method on `getFile` call results.
@@ -98,14 +98,14 @@ Just do `await file.download('/path/to/file')`.
 If you only want to get the URL of the file so you can download it yourself, use `file.getUrl`.
 This will return an HTTPS link to your file that is valid for at least one hour.
 
-## Local Bot API server
+## Local Bot API Server
 
 If you are using a local Bot API server, then the `getFile` call effectively downloads the file to your disk already.
 
 In turn, you can call `file.getUrl()` to access that file path.
 Note that `await file.download()` will now simply copy that locally present file to a temporary location (or to the given path if speciffied).
 
-## Supporting `bot.api` calls
+## Supporting `bot.api` Calls
 
 By default, the results of `await bot.api.getFile()` will also be equipped with `download` and `getUrl` methods.
 However, this is not reflected in the types.
@@ -146,7 +146,7 @@ const bot = new Bot<MyContext, MyApi>("");
 </CodeGroupItem>
 </CodeGroup>
 
-## Plugin summary
+## Plugin Summary
 
 - Name: `files`
 - Source: <https://github.com/grammyjs/files>

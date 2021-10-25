@@ -10,9 +10,9 @@ grammY has a simple and intuitive way to build up the inline keyboards that your
 It provides a class called `InlineKeyboard` for this.
 
 > Both `switchInline` and `switchInlineCurrent` buttons start inline queries.
-> Check out the section about [Inline queries](/guide/inline-queries.md) for more information about how they work.
+> Check out the section about [Inline Queries](/guide/inline-queries.md) for more information about how they work.
 
-### Building an inline keyboard
+### Building an Inline Keyboard
 
 Here are three examples how to build an inline keyboard with `text` buttons.
 
@@ -70,7 +70,7 @@ const inlineKeyboard = new InlineKeyboard().url(
 
 ![Example 3](https://core.telegram.org/file/811140999/1/2JSoUVlWKa0/4fad2e2743dc8eda04)
 
-### Sending an inline keyboard
+### Sending an Inline Keyboard
 
 You can send an inline keyboard directly along a message, no matter whether you use `bot.api.sendMessage`, `ctx.api.sendMessage`, or `ctx.reply`:
 
@@ -85,7 +85,7 @@ Naturally, all other methods that send messages other than text messages support
 For example, you can edit a keybaord by calling `editMessageReplyMarkup`, and passing the new `InlineKeyboard` instance as `reply_markup`.
 Specify an empty inline keyboard to remove all buttons underneath a message.
 
-### Responding to clicks
+### Responding to Clicks
 
 Every `text` button has a string as callback data attached.
 If you don't attach callback data, grammY will use the button's text as data.
@@ -137,7 +137,7 @@ It provides a class called `Keyboard` for this.
 Once a user clicks a text button, your bot will receive the sent text as a plain text message.
 Remember that you can listed for text message via `bot.on('message:text')`.
 
-### Building a keyboard
+### Building a Keyboard
 
 Here are three examples how to build a keyboard with `text` buttons.
 
@@ -194,7 +194,7 @@ const keyboard = new Keyboard()
 
 ![Example 3](https://core.telegram.org/file/811140733/2/KoysqJKQ_kI/a1ee46a377796c3961)
 
-### Sending a keyboard
+### Sending a Keyboard
 
 You can send a keyboard directly along a message, no matter whether you use `bot.api.sendMessage`, `ctx.api.sendMessage`, or `ctx.reply`:
 
@@ -210,7 +210,7 @@ Naturally, all other methods that send messages other than text messages support
 If you want to specify further options with your message, you may need to create your own `reply_markup` object.
 In that case, you have to use `keyboard.build()` when passing it to your custom object.
 
-#### Resize keyboard
+#### Resize Keyboard
 
 You can specify the `resize_keyboard` option if you want the keyboard to be resized according to the buttons it contains.
 This will effectively make the keyboard smaller.
@@ -225,7 +225,7 @@ await ctx.reply(text, {
 });
 ```
 
-#### One-time keyboards
+#### One-Time Keyboards
 
 You can specify the `one_time_keyboard` option if you want the keyboard to be hidden immediately after the first button was pressed.
 
@@ -238,7 +238,7 @@ await ctx.reply(text, {
 });
 ```
 
-#### Input field placeholder
+#### Input Field Placeholder
 
 You can specify the `input_field_placehoder` option if you want a placeholder to be shown in the input field as long as the keyboard is visible.
 
@@ -253,7 +253,7 @@ await ctx.reply(text, {
 });
 ```
 
-#### Selectively send keyboard
+#### Selectively Send Keyboard
 
 You can specify the `selective` option if you want to show the keyboard to only those users that are @-mentioned in the text of the message object, and to the sender of the original message in case your message is a reply.
 
@@ -266,7 +266,7 @@ await ctx.reply(text, {
 });
 ```
 
-### Removing a keyboard
+### Removing a Keyboard
 
 Unless you specify `one_time_keyboard` as described
 [above](#one-time-keyboards), the keyboard will remain open for the user (but
