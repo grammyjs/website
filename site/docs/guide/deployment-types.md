@@ -88,7 +88,7 @@ ______________                                   _____________
 
 > Note that in reality, no connection would be kept open for days.
 > Long polling requests have a default timeout of 30 seconds (in order to avoid a number of [technical problems](https://tools.ietf.org/id/draft-loreto-http-bidirectional-07.html#timeouts)).
-> If no new messages are returned after this period of time, then the request will be cancelled and resent.
+> If no new messages are returned after this period of time, then the request will be canceled and resent.
 
 ## How do webhooks work?
 
