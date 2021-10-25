@@ -3,7 +3,7 @@ prev: ./
 next: ./structuring.md
 ---
 
-# Middleware redux
+# Middleware Redux
 
 In the Guide, [we introduced middleware](/guide/middleware.md) as a stack of functions.
 While it is not wrong that you can use middleware in this linear fashion (also in grammY), calling it just a stack is a simplification.
@@ -81,7 +81,7 @@ This tree will then be traversed by every update in depth-first order, hence eff
 
 This is made possible by creating a new instance of `Composer` every time you call `use` that will in turn be extended (as explained above).
 
-## Concatenating `use` calls
+## Concatenating `use` Calls
 
 If we only used `use`, this would not be too useful (pun intended).
 It gets more interesting as soon as e.g. `filter` comes into play.

@@ -1,4 +1,4 @@
-# How grammY compares to other bot frameworks
+# How Grammy Compares to Other Bot Frameworks
 
 While grammY uses some concepts known from other bot frameworks (and web frameworks), it was written from scratch for optimal readability and performance.
 In other words, it does not use any code of competing projects, but it will still feel familiar to users of some frameworks.
@@ -7,7 +7,7 @@ In other words, it does not use any code of competing projects, but it will stil
 > We are trying to keep things in this article up-to-date.
 > If you notice that anything is outdated, please edit this page using the link at the bottom.
 
-## Comparison with other JavaScript frameworks
+## Comparison With Other JavaScript Frameworks
 
 ::: tip Choose your programming language first
 Given that you're reading the docs of a framework within the JavaScript ecosystem, you are likely looking for something to run on Node.js (or Deno).
@@ -22,7 +22,7 @@ We will focus on them for now, but we (or you?) may add other comparisons in the
 
 grammY has its roots in Telegraf, so here is a brief summary of how these frameworks relate historically.
 
-#### Some history
+#### Some History
 
 Telegraf is an amazing library, and grammY would not be where it is without it.
 However, Telegraf used to be written in JavaScript (in v3).
@@ -133,12 +133,12 @@ Unfortunately, NTBA fails horribly at doing that.
 Any code base with more than 50 lines that uses NTBA ends up being a terrible mess of spaghetti-like cross-references.
 You don't want that.
 
-### Other frameworks
+### Other Frameworks
 
 Do you think that your favorite framework is better than grammY in some respect?
 Feel free to edit this page and add a comparison—or tell us what you think in the [group chat](https://t.me/grammyjs)!
 
-## Comparison with frameworks in other programming languages
+## Comparison With Frameworks in Other Programming Languages
 
 There are reasons to favor a different programming language over TypeScript.
 The most important thing is that you like working with your tools and languages.
@@ -172,7 +172,7 @@ People have different taste, so take this section with a grain of salt.
    (Other, less known Python frameworks may be faster at transitioning.
    Disregard this point if you are using a Python framework that has support for `async`/`await`.)
 
-## How to disagree with this comparison
+## How to Disagree With This Comparison
 
 If you think that something is wrong on this page, don't despair!
 Please let us know in the [group chat](https://t.me/grammyjs)!

@@ -3,7 +3,7 @@ prev: ./api.md
 next: ./commands.md
 ---
 
-# Filter queries and `bot.on()`
+# Filter Queries and `bot.on()`
 
 The first argument of `bot.on()` is a string called _filter query_.
 
@@ -36,11 +36,11 @@ bot.on("message:text", (ctx) => {
 
 In a sense, grammY implements the filter queries both at runtime, and on the type level.
 
-## Example queries
+## Example Queries
 
 Here are some example queries:
 
-### Regular queries
+### Regular Queries
 
 Simple filters for updates, and sub-filters:
 
@@ -50,7 +50,7 @@ bot.on("message:text"); // only text messages
 bot.on("message:photo"); // only photo messages
 ```
 
-### Filter for entities
+### Filter for Entities
 
 Sub-filters that go one level deeper:
 
@@ -60,7 +60,7 @@ bot.on("message:entities:code"); // messages that contain a code snippet
 bot.on("edited_message:entities"); // edited message with any kind of entities
 ```
 
-### Omit values
+### Omit Values
 
 You can omit some values in the filter queries.
 grammY will then search through different values to match your query.
@@ -122,7 +122,7 @@ bot.on(":file"); // files in messages or channel posts
 bot.on("edit:file"); // edits to file messages or file channel posts
 ```
 
-### Useful tips
+### Useful Tips
 
 You can detect bots in queries with the `:is_bot` query part.
 The syntactic sugar `:me` can be used to refer to your bot from within a query, which will compare the user identifiers for you.
@@ -152,11 +152,11 @@ bot.on("message").filter(
 
 :::
 
-## Combining multiple queries
+## Combining Multiple Queries
 
 You can combine any number of filter queries with AND as well as OR operations.
 
-### Combine with OR
+### Combine With OR
 
 If you want to install some piece of middleware behind the OR concatenation of two queries, you can pass both of them to `bot.on()` in an array.
 
@@ -170,7 +170,7 @@ bot.on(["::hashtag", "::email", "::mention"], (ctx) => {});
 The middleware will be executed if _any of the provided queries_ matches.
 The order of the queries does not matter.
 
-### Combine with AND
+### Combine With AND
 
 If you want to install some piece of middleware behind the AND concatenation of two queries, you can chain the calls to `bot.on()`.
 
@@ -184,7 +184,7 @@ bot.on(":photo").on("::hashtag", (ctx) => {});
 The middleware will be executed if _all of the provided queries_ match.
 The order of the queries does not matter.
 
-### Building complex queries
+### Building Complex Queries
 
 It is technically possible to combine filter queries to more complicated formulas if they are in [CNF](https://en.wikipedia.org/wiki/Conjunctive_normal_form), even though this is unlikely to be useful.
 
@@ -201,11 +201,11 @@ bot
 The type inference of `ctx` will scan through the entire call chain and inspect every element of all three `.on` calls.
 As an example, it can detect that `ctx.msg.text` is a required property for the above code snippet.
 
-## The query language
+## The Query Language
 
 > This section is meant for users who want to have a deeper understanding of filter queries in grammY, but it does not contain any knowledge required to create a bot.
 
-### Query structure
+### Query Structure
 
 Every query consists of up to three query parts.
 Depending on how many query parts a query has, we differentiate between L1, L2, and L3 queries, such as `'message'`, `'message:entities'`, and `'message:entities:url'`, respectively.
@@ -223,7 +223,7 @@ Example:
 | `'message:entities'`         | `'message'` | `'entities'` | `undefined` |
 | `'message:entities:mention'` | `'message'` | `'entities'` | `'mention'` |
 
-### Query validation
+### Query Validation
 
 Even though the type system should catch all invalid filter queries at compile time, grammY also checks all passed filter queries at runtime during setup.
 Every passed filter query is matched against a validation structure that checks if it is valid.

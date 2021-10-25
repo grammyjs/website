@@ -2,7 +2,7 @@
 next: ./middleware.md
 ---
 
-# Overview: Advanced topics
+# Overview: Advanced Topics
 
 When your bot becomes more popular, you may run into more complex issues than just making your bot work at all.
 

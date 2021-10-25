@@ -21,7 +21,7 @@ The last invoked transformer function is a built-in caller that does things like
 
 There is no equivalent of a `Composer` class for transformer functions because that's probably overkill, but if you need it, you can write your own. PR welcome! :wink:
 
-## Installing a transformer function
+## Installing a Transformer Function
 
 Transformer functions can be installed on `bot.api`.
 Here is an example for a transformer function that does nothing:
@@ -57,7 +57,7 @@ bot.on("message", (ctx) => {
 Transformer functions installed on `bot.api` will be pre-installed on every `ctx.api` object.
 Thus, calls to `ctx.api` will be transformed by both those transformers on `ctx.api`, as well as those transformers installed on `bot.api`.
 
-## Use cases of transformer functions
+## Use Cases of Transformer Functions
 
 Transformer functions are as flexible as middleware, and they have just as many different applications.
 

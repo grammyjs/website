@@ -1,10 +1,10 @@
-# Concurrency with grammY runner (`runner`)
+# Concurrency With grammY runner (`runner`)
 
 This package can be used if you run your bot [using long polling](/guide/deployment-types.md#long-polling), and you want messages to be processed concurrently.
 
 > Make sure to understand [Scaling Up II](/advanced/scaling.md#long-polling) before you use grammY runner.
 
-## Why we need a bot runner
+## Why We Need a Bot Runner
 
 If you are hosting your bot using long polling and you want to make it scale up, there is no way around processing updates concurrently as sequential update processing is way too slow.
 As a result, bots face a number of challenges.
@@ -80,7 +80,7 @@ run(bot);
 
 Of course, while this looks very simple, a lot is going on under the hood.
 
-## How it works behind the scenes
+## How It Works Behind the Scenes
 
 Every runner consists of three different parts.
 
@@ -126,7 +126,7 @@ For instance, it allows you start and stop it, or obtain a promise that resolves
 (This handle is also returned by `run`.)
 Check out the [API reference](https://doc.deno.land/https/deno.land/x/grammy_runner/mod.ts#RunnerHandle) of the `RunnerHandle`.
 
-## Sequential processing where necessary
+## Sequential Processing Where Necessary
 
 Most likely, you want to be guaranteed that messages from the same chat are processed in order.
 This is useful when installing [session middleware](./session.md), but it also makes sure that your bot does not confuse the order of messages in the same chat.
@@ -158,7 +158,7 @@ grammY runner will resolve all necessary constraints on the fly and block those 
 The implementation of this is very efficient.
 It needs constant memory (unless you specify infinite concurrency), and it needs (amortized) constant processing time per update.
 
-## Plugin summary
+## Plugin Summary
 
 - Name: `runner`
 - Source: <https://github.com/grammyjs/runner>

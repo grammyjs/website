@@ -20,7 +20,7 @@ Your bot can either pull them in (long polling), or the Telegram servers can pus
 
 > If you already know how these things work, scroll down to see how to use [long polling](#how-to-use-long-polling) or [webhooks](#how-to-use-webhooks) with grammY.
 
-## How does long polling work?
+## How Does Long Polling Work?
 
 _Imagine you're buying a box of ice-cream in a store.
 You can't find your favorite type of ice-cream, so you ask an employee to check if they have some in their storage.
@@ -90,7 +90,7 @@ ______________                                   _____________
 > Long polling requests have a default timeout of 30 seconds (in order to avoid a number of [technical problems](https://tools.ietf.org/id/draft-loreto-http-bidirectional-07.html#timeouts)).
 > If no new messages are returned after this period of time, then the request will be cancelled and resent.
 
-## How do webhooks work?
+## How Do Webhooks Work?
 
 _After this terrifying experience (three days without ice-cream!), you'd prefer not to go to the store at all anymore.
 Wouldn't it be cool if the ice-cream could come to you?_
@@ -143,7 +143,7 @@ Places where webhooks work well include:
 - on hosted “frontend” instances that scale according to their load, and
 - on serverless platforms, such as cloud functions.
 
-## I have still no idea what to use
+## I Have Still No Idea What to Use
 
 Then go for long polling.
 If you don't have a good reason to use webhooks, then note that there are no major drawbacks to long polling, and—according to our experience—you will spend much less time fixing things.
@@ -152,7 +152,7 @@ Webhooks can be a bit nasty from time to time.
 Whatever you choose, if you ever run into serious problems, it should not be too hard to switch to the other deployment type after the fact.
 With grammY, you only have to touch a few lines of code.
 
-## How to use long polling
+## How to Use Long Polling
 
 Call
 
@@ -166,7 +166,7 @@ This makes your bot very easy to debug, and all behavior very predictable, becau
 
 If you want your messages to be handled concurrently by grammY, or you worry about throughput, check out the section about [grammY runner](/plugins/runner.md).
 
-## How to use webhooks
+## How to Use Webhooks
 
 If you want to run grammY with webhooks, you can integrate your bot into a web server.
 We therefore expect you to be able to start a simple web server with a framework of your choice.
@@ -217,7 +217,7 @@ app.use(webhookCallback(bot, "oak"));
 
 Be sure to read [Marvin's Marvellous Guide to All Things Webhook](https://core.telegram.org/bots/webhooks) written by the Telegram team if you consider running your bot on webhooks on a VPS.
 
-### Webhook reply
+### Webhook Reply
 
 When a webhook request is received, your bot can call up to one method in the response.
 As a benefit, this saves your bot from making up to one HTTP request per update. However, there are a number of drawbacks to using this:

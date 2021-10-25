@@ -15,7 +15,7 @@ Here is a list of things that you may want to keep in mind when hosting a large 
 2. Also, don't forget to [install an error handler with `bot.catch`.](/guide/errors.md)
 3. Use `await` on all promises, and installed **linting** tools that make sure you cannot forget this.
 
-## Message sending
+## Message Sending
 
 1. Send files by path or `Buffer` instead of by stream, or at least make sure you [know the pitfalls](./transformers.md#use-cases-of-transformer-functions).
 2. Use `bot.on('callback_query:data')` as the fallback handler to [react to all callback queries](/plugins/keyboard.md#responding-to-clicks).
@@ -25,7 +25,7 @@ Here is a list of things that you may want to keep in mind when hosting a large 
 
 This depends on your deployment type.
 
-### Long polling
+### Long Polling
 
 1. [Use grammY runner.](/plugins/runner.md)
 2. [Use `sequentialize` with the same session key resolver function as your session middleware.](./scaling.md#concurrency-is-hard)

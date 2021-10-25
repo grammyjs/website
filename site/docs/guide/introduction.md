@@ -12,7 +12,7 @@ Anyone can create a Telegram bot, the only prerequisite is that you know a littl
 
 grammY is a library that makes it super simple to write such a bot.
 
-## How to write a bot
+## How to Write a Bot
 
 Before you begin creating your bot, make yourself familiar with what Telegram bots can and cannot do.
 Check out the [Introduction for Developers](https://core.telegram.org/bots) by the Telegram team.
@@ -26,7 +26,7 @@ Your bot will now work, until you stop running it.
 
 You're kinda done now…
 
-## How to keep a bot running
+## How to Keep a Bot Running
 
 …except, if you are serious about your bot project.
 If you stop your bot (or shut down your computer), your bot becomes unresponsive, so it will no longer react to any messages.
@@ -62,7 +62,7 @@ _________        sends a         ____________                    ____________
 Similarly, your bot can make HTTP requests to the Telegram servers to send messages back to Alice.
 (If you have never heard of HTTP, you can think of it as the data packages that are sent through the internet, for now.)
 
-## What grammY does for you
+## What grammY Does for You
 
 Bots interact with Telegram via HTTP requests.
 Every time your bot sends or receives messages, HTTP requests go back and forth between the Telegram servers and your server/computer.
@@ -71,7 +71,7 @@ At its core, grammY implements all of this communication for you, so you can sim
 In addition, there are a variety of other helpful things that grammY does to make it simpler to create your bot.
 You will get to know them as you go.
 
-## Prerequisites to getting started
+## Prerequisites to Getting Started
 
 > Skip the rest of this page if you already know how to develop a Deno or a Node.js application, and [get started](./getting-started.md).
 
@@ -138,7 +138,7 @@ You can stop it again with `Ctrl+C`.
 Ready?
 [Get started](./getting-started.md#getting-started-on-deno)! :robot:
 
-### Prerequisites for Node.js
+### Prerequisites for Node.Js
 
 You are going to write your bot in TypeScript, but, contrary to Deno, Node.js cannot actually run TypeScript.
 Instead, once you have a source file (e.g. called `bot.ts`), you are going to _compile_ it to JavaScript.

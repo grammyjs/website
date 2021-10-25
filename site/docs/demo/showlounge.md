@@ -9,7 +9,7 @@ If you created a bot that you want to show to others, edit this page on GitHub t
 Include a description what it does and a link to GitHub—and of course a link to try it out!
 :::
 
-## Bot list
+## Bot List
 
 - [ChannelHashBot](https://t.me/ChannelHashBot) - [Source Code](https://github.com/AndrewLaneX/ChannelHashBot) - Keep track of hashtags that are sent to your group by forwarding them to a channel.
 - [Deezer History](https://t.me/DeezerHistoryBot) - [Source Code](https://github.com/rojserbest/deezer_history) - Tell others what you were listening to on Deezer.

@@ -12,7 +12,7 @@ What can you do with it?
 The answer is anything, any HTML5 game that you have developed you can provide to users on Telegram with the help of this feature.
 (Yes, this means that you will have to develop a real website-based game that is publicly accessible on the internet before you can integrate it into your Telegram bot.)
 
-## Setting up a game with your bot via @BotFather
+## Setting Up a Game With Your Bot via @Botfather
 
 For simplicity, let's assume that by now you must have set up a bot and a game associated with your bot on [@BotFather](https://t.me/BotFather).
 If you haven't already, check out this [article](https://core.telegram.org/bots/games) by the Telegram team.
@@ -21,7 +21,7 @@ If you haven't already, check out this [article](https://core.telegram.org/bots/
 > Developing the game is entirely up to the developer.
 > All we need here is a link of the HTML5 game hosted on the internet.
 
-## Sending the game via a bot
+## Sending the Game via a Bot
 
 We can send the game in grammY via the `replyWithGame` method which takes the name of the game you created with BotFather as argument.
 Alternatively, we can also use the `api.sendGame` method (grammY provides all the official [Bot API](https://core.telegram.org/bots/api) methods).
@@ -68,7 +68,7 @@ await ctx.replyWithGame("my_game", { reply_markup: keyboard });
 await ctx.api.sendGame(chatid, "my_game", { reply_markup: keyboard });
 ```
 
-## Listening to the callback of our game button
+## Listening to the Callback of Our Game Button
 
 For providing logic to the button when it is pressed, and to redirect our users to our game and many more, we listen to the event `callback_query:game_short_name` which tells us that a game button has been pressed by the user.
 All we need to do is:
@@ -83,7 +83,7 @@ bot.on("callback_query:game_short_name", async (ctx) => {
 
 ---
 
-### Our final code should look something like this
+### Our Final Code Should Look Something Like This
 
 ```ts
 bot.on("callback_query:game_short_name", async (ctx) => {

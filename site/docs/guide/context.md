@@ -22,7 +22,7 @@ You can use the context object to
 
 Note that context objects are commonly called `ctx`.
 
-## Available information
+## Available Information
 
 When a user sends a message to your bot, you can access it via `ctx.message`.
 As an example, to get the message text, you can do this:
@@ -81,7 +81,7 @@ bot.on("edited_message", (ctx) => {
 
 Hence, if you want to, you can forget about `ctx.message` and `ctx.channelPost` and `ctx.editedMessage` and so on and so forth, and just always use `ctx.msg` instead.
 
-## Available actions
+## Available Actions
 
 If you want to respond to a message from a user, you could write this:
 
@@ -148,7 +148,7 @@ In this case, you can just fall back to using `ctx.api` methods, and specify all
 For example, if you receive a message from Alice and want to react by sending a message to Bob, then you cannot use `ctx.reply` because it will always send messages to the chat with Alice.
 Instead, call `ctx.api.sendMessage` and specify the chat identifier of Bob.
 
-## How context objects are created
+## How Context Objects Are Created
 
 Whenever your bot receives a new message from Telegram, it is wrapped in an update object.
 In fact, update objects can not only contain new messages, but also all other sorts of things, such as edits to messages, poll answers, and [much more](https://core.telegram.org/bots/api#update).
@@ -158,7 +158,7 @@ Contexts for different updates are completely unrelated objects, they only refer
 
 The same context object for one update will be shared by all installed middleware ([docs](./middleware.md)) on the bot.
 
-## Customising the context object
+## Customising the Context Object
 
 > If you are new to context objects, you don't need to worry about the rest of this page.
 
@@ -320,11 +320,11 @@ bot.start();
 [Middleware](./middleware.md) refers to a function that receives a context object as parameter, such as installed listeners.
 :::
 
-## Context flavors
+## Context Flavors
 
 Context flavors are a way to tell TypeScript about new properties on your context object.
 
-### Additive context flavors
+### Additive Context Flavors
 
 There are two different kinds of context flavors.
 The basic one is called _additive context flavor_, and whenever we talk about context flavoring, we just mean this basic form.
@@ -370,7 +370,7 @@ bot.on("message", (ctx) => {
 });
 ```
 
-### Transformative context flavors
+### Transformative Context Flavors
 
 The other kind of context flavor is more powerful.
 Instead of being installed with the `&` operator, they need to be installed like so:
@@ -386,7 +386,7 @@ Everything else works the same way.
 
 Every (official) plugin states in its documentation whether it must be used via additive or via transformative context flavor.
 
-### Combining different context flavors
+### Combining Different Context Flavors
 
 If you have different [additive context flavors](#additive-context-flavors), you can just install them like this:
 
