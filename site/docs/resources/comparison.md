@@ -70,7 +70,7 @@ As a result, there is no reliable support for auto-complete or spell-checking bo
 Experience shows that you often have to run your bot to find out whether your code works.
 
 In contrast, grammY is written in pure TypeScript.
-This allows your code editor (e.g. VSCode) to analyse your code while you are typing, and assist you.
+This allows your code editor (e.g. VSCode) to analyze your code while you are typing, and assist you.
 In addition, it can show the complete Telegram Bot API inline—the website's documentation will be available right at your fingertips when hovering your mouse over any name or element of your code.
 
 Another remarkable advantage is that you are finally able to **write your own bots in TypeScript**.
@@ -135,12 +135,12 @@ You don't want that.
 
 ### Other frameworks
 
-Do you think that your favourite framework is better than grammY in some respect?
+Do you think that your favorite framework is better than grammY in some respect?
 Feel free to edit this page and add a comparison—or tell us what you think in the [group chat](https://t.me/grammyjs)!
 
 ## Comparison with frameworks in other programming languages
 
-There are reasons to favour a different programming language over TypeScript.
+There are reasons to favor a different programming language over TypeScript.
 The most important thing is that you like working with your tools and languages.
 If you are determined to stick with something else, then you can stop reading here.
 

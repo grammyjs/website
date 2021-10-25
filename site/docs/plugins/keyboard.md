@@ -270,7 +270,7 @@ await ctx.reply(text, {
 
 Unless you specify `one_time_keyboard` as described
 [above](#one-time-keyboards), the keyboard will remain open for the user (but
-the user can minimise it).
+the user can minimize it).
 
 You can only remove a keyboard when you send a new message in the chat, just
 like you can only specify a new keyboard by sending a message. Pass

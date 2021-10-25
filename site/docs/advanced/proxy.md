@@ -32,7 +32,7 @@ const bot = new Bot("", {
 });
 ```
 
-> Note that specifying `compress: true` is an optional performance optimisation.
+> Note that specifying `compress: true` is an optional performance optimization.
 > It has nothing to do with proxy support.
 > It is part of the default value for `baseFetchConfig`, so if you still want it, you should specify it again.
 

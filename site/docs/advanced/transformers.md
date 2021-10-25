@@ -13,11 +13,11 @@ A _transformer function_ is a function that handles outgoing data, i.e.
 - a method name of the Bot API to call, and
 - a payload object that matches the method.
 
-Instead of having `next` as the last argument to invoke downstream middleware, you receive `prev` as the first argument to utilise upstream transformer functions.
+Instead of having `next` as the last argument to invoke downstream middleware, you receive `prev` as the first argument to utilize upstream transformer functions.
 Looking at the type signature of `Transformer` ([grammY API Reference](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Transformer)), we can see how it reflects that.
 Note that `Payload<M, R>` refers to the payload object that has to match the given method, and that `ApiResponse<ApiCallResult<M, R>>` is the return type of the invoked method.
 
-The last invoked transformer function is a built-in caller that does things like JSON serialisation of certain fields, and eventually calling `fetch`.
+The last invoked transformer function is a built-in caller that does things like JSON serialization of certain fields, and eventually calling `fetch`.
 
 There is no equivalent of a `Composer` class for transformer functions because that's probably overkill, but if you need it, you can write your own. PR welcome! :wink:
 
@@ -66,20 +66,20 @@ You can also use them to
 
 - implement [flood control](/plugins/transformer-throttler.md),
 - mock API requests during testing,
-- add [retry behaviour](/plugins/auto-retry.md), or
+- add [retry behavior](/plugins/auto-retry.md), or
 - more.
 
 Note, however, that retrying an API call can have odd side-effects: if you call `sendDocument` and pass a readable stream instance to `InputFile`, then the stream will be read the first time the request is tried.
 If you invoke `prev` again, the stream may already be (partially) consumed, hence leading to broken files.
 It is therefore a more reliable way to pass file paths to `InputFile`, so grammY can recreate the stream as necessary.
 
-## API Flavouring
+## API Flavoring
 
-grammY features [context flavours](/guide/context.md#context-flavours) that can be used to adjust the context type.
+grammY features [context flavors](/guide/context.md#context-flavors) that can be used to adjust the context type.
 This includes API methods—both those that are directly on the context object such as `ctx.reply`, and all methods in `ctx.api` and `ctx.api.raw`.
-However, you cannot adjust the types of `bot.api` and `bot.api.raw` via context flavours.
+However, you cannot adjust the types of `bot.api` and `bot.api.raw` via context flavors.
 
-This is why grammY supports _API flavours_.
+This is why grammY supports _API flavors_.
 They solve this problem:
 
 ```ts
@@ -104,6 +104,6 @@ bot.api.somePluginMethod();
 bot.on("message", (ctx) => ctx.api.somePluginMethod());
 ```
 
-API flavours work exactly anaolgously to context flavours.
-There are both additive and transformative API flavours, and multiple API flavours can be combined the same way as you would do with context flavours.
-If you are unsure how this works, head back to [the section about context flavours](/guide/context.md#context-flavours) in the guide.
+API flavors work exactly anaolgously to context flavors.
+There are both additive and transformative API flavors, and multiple API flavors can be combined the same way as you would do with context flavors.
+If you are unsure how this works, head back to [the section about context flavors](/guide/context.md#context-flavors) in the guide.

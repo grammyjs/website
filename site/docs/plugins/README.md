@@ -8,7 +8,7 @@ Some plugins are right **built-in** into the grammY core library because we assu
 This makes it easier for new users to use them, without having to install a new package first.
 
 Most plugins are published alongside the core package of grammY, we call them **official** plugins.
-They are installed from `@grammyjs/*` on npm, and they are published under the [@grammyjs](https://github.com/grammyjs) organisation on GitHub.
+They are installed from `@grammyjs/*` on npm, and they are published under the [@grammyjs](https://github.com/grammyjs) organization on GitHub.
 We coordinate their releases with the releases of grammY, and we make sure that everything works well together.
 Every section of the plugin docs for an official plugin has the package name in its title.
 As an example, the [grammY runner](./runner.md) plugin (`runner`) needs to be installed via `npm install @grammyjs/runner`.

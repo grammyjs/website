@@ -102,7 +102,7 @@ The source is an async iterator of update batches, but it can be active or inact
 
 ### Sink
 
-grammY runner ships with three possible sink implementations, a sequential one (same behaviour as `bot.start()`), a batched one (mainly useful for backwards compatibility with other frameworks), and a fully concurrent one (used by `run`).
+grammY runner ships with three possible sink implementations, a sequential one (same behavior as `bot.start()`), a batched one (mainly useful for backwards compatibility with other frameworks), and a fully concurrent one (used by `run`).
 All of them operate on `UpdateConsumer` objects ([API reference](https://doc.deno.land/https/deno.land/x/grammy_runner/mod.ts#UpdateConsumer)) which are straightforward to create from a bot instance.
 If you want make one yourself, be sure to check out `handleUpdate` on the `Bot` instance of grammY ([API reference](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Bot)).
 
@@ -156,7 +156,7 @@ In a sense, you can therefore specify a graph of dependencies between updates.
 grammY runner will resolve all necessary constraints on the fly and block those updates as long as necessary to ensure correct message ordering.
 
 The implementation of this is very efficient.
-It needs constant memory (unless you specify infinite concurrency), and it needs (amortised) constant processing time per update.
+It needs constant memory (unless you specify infinite concurrency), and it needs (amortized) constant processing time per update.
 
 ## Plugin summary
 
