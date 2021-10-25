@@ -135,7 +135,7 @@ Let's take a look at our code above:
   For creating [Environment Variables in Heroku](https://www.freecodecamp.org/news/using-environment-variables-the-right-way/), head over to [this guide](https://devcenter.heroku.com/articles/config-vars).
 - `secretPath`: It could be our `BOT_TOKEN` or any random string. It is best practice to hide our bot path as [explained by Telegram](https://core.telegram.org/bots/api#setwebhook).
 
-::: tip ⚡ Optimisation (optional)
+::: tip ⚡ Optimization (optional)
 `bot.api.setWebhook` at line 14 will always run when Heroku starts your server again.
 For low traffic bots, this will be for every request.
 However, we do not need this code to run everytime a request is coming.
@@ -155,7 +155,7 @@ https://api.telegram.org/botabcd:1234/setWebhook?url=https%3A%2F%2Fgrammybot.her
 
 :::
 
-::: tip ⚡ Optimisation (optional)
+::: tip ⚡ Optimization (optional)
 Use [Webhook Reply](/guide/deployment-types.html#webhook-reply) for more efficiency.
 :::
 
@@ -175,10 +175,10 @@ bot.on("message", (ctx) => ctx.reply("Got another message!"));
 
 Good!
 We have now finished coding our main files.
-But before we go to the deployment steps, we can optimise our bot a little bit.
+But before we go to the deployment steps, we can optimize our bot a little bit.
 As usual, this is optional.
 
-::: tip ⚡ Optimisation (optional)
+::: tip ⚡ Optimization (optional)
 Every time your server starts up, grammY will request [information about the bot](https://core.telegram.org/bots/api#getme) from Telegram in order to provide it on the [context object](/guide/context.md) under `ctx.me`.
 We can set the [bot information](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#BotConfig) to prevent excessive `getMe` calls.
 

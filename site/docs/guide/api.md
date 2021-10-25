@@ -12,7 +12,7 @@ The Telegram Bot API is the specification of this interface, i.e. a [long list](
 It defines everything that Telegram bots can do.
 You can find it linked under the Resources tab.
 
-The setup can be visualised like this:
+The setup can be visualized like this:
 
 ```asciiart:no-line-numbers
 ( ( ( Telegram ) MTProto API ) Bot HTTP API ) <-- bot connects here
@@ -71,7 +71,7 @@ async function sendHelloTo12345() {
 Moreover, grammY takes care of numerous technical details to simplify the API usage.
 As an example, some specific properties in some specific methods have to be `JSON.stringify`ed before they are sent.
 This is easy to forget, hard to debug, and it breaks type inference.
-grammY allows you to specify objects consistently across the API, and makes sure that the right properties are serialised on the fly before sending them.
+grammY allows you to specify objects consistently across the API, and makes sure that the right properties are serialized on the fly before sending them.
 
 ### Making raw API calls
 

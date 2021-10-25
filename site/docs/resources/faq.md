@@ -40,7 +40,7 @@ Some important reasons for why we like Deno better than Node are:
 - It has a reviewed standard library.
 
 > Deno was founded by Ry the same person that invented Node.
-> He summarised his 10 regrets about Node in [this video](https://youtu.be/M3BM9TB-8yA).
+> He summarized his 10 regrets about Node in [this video](https://youtu.be/M3BM9TB-8yA).
 
 grammY is actually written Deno-first, and backported to support Node.
 

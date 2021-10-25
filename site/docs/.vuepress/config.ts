@@ -190,7 +190,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                 link: "/plugins/files.md",
               },
               {
-                text: "Internationalisation (i18n)",
+                text: "Internationalization (i18n)",
                 link: "/plugins/i18n.md",
               },
               {

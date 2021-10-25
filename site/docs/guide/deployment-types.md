@@ -229,7 +229,7 @@ As a benefit, this saves your bot from making up to one HTTP request per update.
 3. Furthermore, it is not possible to cancel the request.
    The `AbortSignal` will be disregarded.
 4. Note also that the types in grammY do not reflect the consequences of a performed webhook callback!
-   For instance, they indicate that you always receive a response object, so it is your own responsibility to make sure you're not screwing up while using this minor performance optimisation.
+   For instance, they indicate that you always receive a response object, so it is your own responsibility to make sure you're not screwing up while using this minor performance optimization.
 
 If you want to use webhook replies, you can specify the `canUseWebhookReply` option in the `client` option of your `BotConfig` ([API reference](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#BotConfig)).
 Pass a function that determines whether or not to use webhook reply for the given request, identified by method.

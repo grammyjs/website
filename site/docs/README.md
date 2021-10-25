@@ -84,4 +84,4 @@ Works! :tada:
 ---
 
 grammY supports the Telegram Bot API 5.3 which was [released](https://core.telegram.org/bots/api#june-25-2021) on June 25, 2021.
-(Last highlight: Personalised Commands)
+(Last highlight: Personalized Commands)
