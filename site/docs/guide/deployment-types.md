@@ -23,7 +23,7 @@ Your bot can either pull them in (long polling), or the Telegram servers can pus
 ## How does long polling work?
 
 _Imagine you're buying a box of ice-cream in a store.
-You can't find your favourite type of ice-cream, so you ask an employee to check if they have some in their storage.
+You can't find your favorite type of ice-cream, so you ask an employee to check if they have some in their storage.
 The employee leaves, and comes back to you, telling you that they are out of stock._
 
 _The next day, you're craving that delicious ice-cream again, so you go back to the same store.
@@ -162,7 +162,7 @@ bot.start();
 
 to run your bot with a very simple form of long polling.
 It processes all updates sequentially.
-This makes your bot very easy to debug, and all behaviour very predictable, because there is no concurrency involved.
+This makes your bot very easy to debug, and all behavior very predictable, because there is no concurrency involved.
 
 If you want your messages to be handled concurrently by grammY, or you worry about throughput, check out the section about [grammY runner](/plugins/runner.md).
 

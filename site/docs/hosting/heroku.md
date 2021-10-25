@@ -206,7 +206,7 @@ Straight to [Deployment Section](#deployment) everyone! :muscle:
 ## Long Polling
 
 ::: warning Your script will run continuously when using long polling.
-Unless you know how to handle this behaviour, make sure you have enough [dyno hours](https://devcenter.heroku.com/articles/free-dyno-hours).
+Unless you know how to handle this behavior, make sure you have enough [dyno hours](https://devcenter.heroku.com/articles/free-dyno-hours).
 :::
 
 > Consider using webhooks?
@@ -308,7 +308,7 @@ Here is the link for the installation:
 - [Heroku CLI installation instructions](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
 
 Assuming that you already have them in your machine, and you have a terminal open in the root of our project's directory.
-Now initialise a local git repository by running this code in your terminal:
+Now initialize a local git repository by running this code in your terminal:
 
 ```bash
 git init

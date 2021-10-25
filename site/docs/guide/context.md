@@ -216,7 +216,7 @@ bot.on("message", (ctx) => {
 Naturally, just because the context _type_ now has new properties, this does not mean that there will actually be _values_ behind them.
 You have to make sure that a plugin (or your own middleware) sets all properties correctly to satisfy the type you specified.
 
-> Some middleware (e.g. [session middleware](/plugins/session.md)) requires you to mix in the correct types on the context object, which can be done by _flavouring_ your context as explained [down here](#context-flavours).
+> Some middleware (e.g. [session middleware](/plugins/session.md)) requires you to mix in the correct types on the context object, which can be done by _flavoring_ your context as explained [down here](#context-flavors).
 
 If you choose option 2., this is how you set a custom context constructor that will be used to instantiate the context objects.
 Note that your class must extend `Context`.
@@ -320,14 +320,14 @@ bot.start();
 [Middleware](./middleware.md) refers to a function that receives a context object as parameter, such as installed listeners.
 :::
 
-## Context flavours
+## Context flavors
 
-Context flavours are a way to tell TypeScript about new properties on your context object.
+Context flavors are a way to tell TypeScript about new properties on your context object.
 
-### Additive context flavours
+### Additive context flavors
 
-There are two different kinds of context flavours.
-The basic one is called _additive context flavor_, and whenever we talk about context flavouring, we just mean this basic form.
+There are two different kinds of context flavors.
+The basic one is called _additive context flavor_, and whenever we talk about context flavoring, we just mean this basic form.
 Let's look at how it works.
 
 As an example, when you have [session data](/plugins/session.md), you must register `ctx.session` on the `Context` type.
@@ -337,10 +337,10 @@ Otherwise,
 2. you don't have access to `ctx.session` in your listeners.
 
 > Even though we'll use sessions as an example here, similar things apply for lots of other things.
-> In fact, most plugins will give you a context flavour that you need to use.
+> In fact, most plugins will give you a context flavor that you need to use.
 
-A context flavour is simply a small new type that defines the properties that should be added to the context type.
-Let's look at an example for a flavour.
+A context flavor is simply a small new type that defines the properties that should be added to the context type.
+Let's look at an example for a flavor.
 
 ```ts
 interface SessionFlavor<S> {
@@ -352,7 +352,7 @@ The `SessionFlavor` type ([API Reference](https://doc.deno.land/https/deno.land/
 It takes a type parameter that will define the actual structure of the session data.
 
 How is that useful?
-This is how you can flavour your context with session data:
+This is how you can flavor your context with session data:
 
 ```ts
 import { Context, SessionFlavor } from "grammy";
@@ -370,7 +370,7 @@ bot.on("message", (ctx) => {
 });
 ```
 
-### Transformative context flavours
+### Transformative context flavors
 
 The other kind of context flavor is more powerful.
 Instead of being installed with the `&` operator, they need to be installed like so:
@@ -384,23 +384,23 @@ type MyContext = SomeFlavorA<Context>;
 
 Everything else works the same way.
 
-Every (official) plugin states in its documentation whether it must be used via additive or via transformative context flavour.
+Every (official) plugin states in its documentation whether it must be used via additive or via transformative context flavor.
 
-### Combining different context flavours
+### Combining different context flavors
 
-If you have different [additive context flavours](#additive-context-flavours), you can just install them like this:
+If you have different [additive context flavors](#additive-context-flavors), you can just install them like this:
 
 ```ts
 type MyContext = Context & FlavorA & FlavorB & FlavorC;
 ```
 
-Multiple [transformative context flavours](#transformative-context-flavours) can also be combined:
+Multiple [transformative context flavors](#transformative-context-flavors) can also be combined:
 
 ```ts
 type MyContext = FlavorX<FlavorY<FlavorZ<Context>>>;
 ```
 
-You can even mix additive and transformative flavours:
+You can even mix additive and transformative flavors:
 
 ```ts
 type MyContext = FlavorX<
@@ -412,4 +412,4 @@ type MyContext = FlavorX<
 >;
 ```
 
-The order of context flavours does not matter, you can combine them in any order you like.
+The order of context flavors does not matter, you can combine them in any order you like.
