@@ -107,7 +107,7 @@ That means everytime Telegram (or anyone else) visits our site, `express` decide
 This is useful when you are deploying both website and bot in the same domain.
 Also, by splitting codes to different files, it make our code look tidy. :sparkles:
 
-### Express and Its Middleware
+### Express and its Middleware
 
 Now create `app.ts` inside folder `src` and write this code inside:
 

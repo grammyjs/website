@@ -143,7 +143,7 @@ Places where webhooks work well include:
 - on hosted “frontend” instances that scale according to their load, and
 - on serverless platforms, such as cloud functions.
 
-## I Have Still No Idea What to Use
+## I Still Have No Idea What to Use
 
 Then go for long polling.
 If you don't have a good reason to use webhooks, then note that there are no major drawbacks to long polling, and—according to our experience—you will spend much less time fixing things.
