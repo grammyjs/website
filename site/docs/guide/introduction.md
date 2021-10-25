@@ -138,7 +138,7 @@ You can stop it again with `Ctrl+C`.
 Ready?
 [Get started](./getting-started.md#getting-started-on-deno)! :robot:
 
-### Prerequisites for Node.Js
+### Prerequisites for Node.js
 
 You are going to write your bot in TypeScript, but, contrary to Deno, Node.js cannot actually run TypeScript.
 Instead, once you have a source file (e.g. called `bot.ts`), you are going to _compile_ it to JavaScript.
