@@ -12,7 +12,7 @@ What can you do with it?
 The answer is anything, any HTML5 game that you have developed you can provide to users on Telegram with the help of this feature.
 (Yes, this means that you will have to develop a real website-based game that is publicly accessible on the internet before you can integrate it into your Telegram bot.)
 
-## Setting Up a Game With Your Bot via @Botfather
+## Setting Up a Game With Your Bot via @BotFather
 
 For simplicity, let's assume that by now you must have set up a bot and a game associated with your bot on [@BotFather](https://t.me/BotFather).
 If you haven't already, check out this [article](https://core.telegram.org/bots/games) by the Telegram team.
