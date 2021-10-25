@@ -42,7 +42,7 @@ await bot.api.setMyCommands([
 
 to make Telegram clients display a list of suggested commands in the text field.
 
-Alternatively, you can configure this when talking to [@BotFather](https://telegram.me/BotFather).
+Alternatively, you can configure this when talking to [@BotFather](https://t.me/BotFather).
 :::
 
 ## Arguments

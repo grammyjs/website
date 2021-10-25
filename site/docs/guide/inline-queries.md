@@ -8,7 +8,7 @@ next: ./files.md
 Users can type `@your_bot_name` in a text field, and query your bot for suggestions.
 If they pick one of the options you specify, your bot can send a single message in a chat of which it need not be a member.
 
-Note that you have to enable inline mode for you bot by contacting [@BotFather](https://telegram.me/BotFather) first.
+Note that you have to enable inline mode for your bot by contacting [@BotFather](https://t.me/BotFather) first.
 
 > Revisit the Inline mode section in the [Introduction for Developers](https://core.telegram.org/bots#inline-mode) written by the Telegram team.
 > Further resources are their [detailed description](https://core.telegram.org/bots/inline) of inline bots, as well as the [original blog post](https://telegram.org/blog/inline-bots) announcing the feature, and the Inline mode section in the [Telegram Bot API Reference](https://core.telegram.org/bots/api#inline-mode).

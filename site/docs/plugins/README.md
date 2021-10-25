@@ -14,7 +14,7 @@ Every section of the plugin docs for an official plugin has the package name in 
 As an example, the [grammY runner](./runner.md) plugin (`runner`) needs to be installed via `npm install @grammyjs/runner`.
 (If you are using Deno and not Node.js, you should import the plugin from <https://deno.land/x/> instead, so from the `grammy_runner` module's `mod.ts` file.)
 
-> If you want to publish your own package as an officially supported plugin, just ping us in the [community chat](https://telegram.me/grammyjs) and let us know what you're planning, then we can grant you publish access to GitHub and npm.
+> If you want to publish your own package as an officially supported plugin, just ping us in the [community chat](https://t.me/grammyjs) and let us know what you're planning, then we can grant you publish access to GitHub and npm.
 > You will be responsible for maintaining your code (but maybe others want to join in).
 
 You may decide to publish your package independently as a **third party**.

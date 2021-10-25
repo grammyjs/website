@@ -35,9 +35,9 @@ bot.on("message", (ctx) => {
 });
 ```
 
-Similarly, you can access other properties of the message object, e.g. `ctx.message.chat` for information about the chat.
-Check out the [part about `Message`s in the Telegram Bot API Reference](https://core.telegram.org/bots/api#message) to read which data is available.
-Alternatively, you can simply use autocomplete in your text editor to see the possible options.
+Similarly, you can access other properties of the message object, e.g. `ctx.message.chat` for information about the chat where the message was sent.
+Check out the [part about `Message`s in the Telegram Bot API Reference](https://core.telegram.org/bots/api#message) to see which data is available.
+Alternatively, you can simply use autocomplete in your code editor to see the possible options.
 
 If you register your listener for other types, `ctx` will also give you information about those.
 Example:
@@ -138,14 +138,14 @@ await ctx.reply("^ This is a message!", {
 ```
 
 The same options object can be passed to `bot.api.sendMessage` and `ctx.api.sendMessage`.
-Use auto-complete to see the available options right in your editor.
+Use auto-complete to see the available options right in your code editor.
 :::
 
 Naturally, every other method on `ctx.api` has a shortcut with the correct pre-filled values, such as `ctx.replyWithPhoto` to reply with a photo, or `ctx.exportChatInviteLink` to get an invite link for the respective chat. If you want to get an overview over what shortcuts exist, then auto-complete is your friend, along with the [grammY API Reference](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Context).
 
 Note that you may not want to react in the same chat always.
-In this case, you can just fall back to using `ctx.api.sendMessage` and the like, and specify all options when calling the methods.
-For example, if you receive a message from Alice and want to react by sending a message to Bob, then you cannot use `ctx.reply` because it will always only work inside the chat with Alice.
+In this case, you can just fall back to using `ctx.api` methods, and specify all options when calling them.
+For example, if you receive a message from Alice and want to react by sending a message to Bob, then you cannot use `ctx.reply` because it will always send messages to the chat with Alice.
 Instead, call `ctx.api.sendMessage` and specify the chat identifier of Bob.
 
 ## How context objects are created
@@ -214,7 +214,7 @@ bot.on("message", (ctx) => {
 </CodeGroup>
 
 Naturally, just because the context _type_ now has new properties, this does not mean that there will actually be _values_ behind them.
-You have to make sure that a plugin (or your own middleware) sets all properties correctly to conform with the type you specified.
+You have to make sure that a plugin (or your own middleware) sets all properties correctly to satisfy the type you specified.
 
 > Some middleware (e.g. [session middleware](/plugins/session.md)) requires you to mix in the correct types on the context object, which can be done by _flavouring_ your context as explained [down here](#context-flavours).
 
@@ -373,7 +373,7 @@ bot.on("message", (ctx) => {
 ### Transformative context flavours
 
 The other kind of context flavor is more powerful.
-Instead of installing it with the `&` operator, they need to be installed like so:
+Instead of being installed with the `&` operator, they need to be installed like so:
 
 ```ts
 import { Context } from "grammy";

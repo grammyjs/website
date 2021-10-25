@@ -244,7 +244,7 @@ If you think it is too easy, check out our [Deployment Checklist](/advanced/depl
 
 ## Deployment
 
-Nope … our _Rocket Bot_ is not ready to launch yet.
+Nope… our _Rocket Bot_ is not ready to launch yet.
 Complete these stages first!
 
 ### Compile Files

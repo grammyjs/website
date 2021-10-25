@@ -37,4 +37,4 @@ const bot = new Bot("", {
 > It is part of the default value for `baseFetchConfig`, so if you still want it, you should specify it again.
 
 Getting a proxy to work can be difficult.
-Contact us in the [Telegram chat](https://telegram.me/grammyjs) if you run into issues, or if you need grammY to support further configuration options.
+Contact us in the [Telegram chat](https://t.me/grammyjs) if you run into issues, or if you need grammY to support further configuration options.

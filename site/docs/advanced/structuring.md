@@ -11,7 +11,7 @@ Naturally, you can split it across files.
 ## Possible solution
 
 > grammY is still pretty young and does not provide any official integrations with DI containers yet.
-> Subscribe to [@grammyjs_news](https://telegram.me/grammyjs_news) to be notified as soon as we support this.
+> Subscribe to [@grammyjs_news](https://t.me/grammyjs_news) to be notified as soon as we support this.
 
 You are free to structure your code however you like, and there is no one-size-fits-all solution.
 That being said, a straightforward and proven strategy to structure your code is the following.
