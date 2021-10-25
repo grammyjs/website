@@ -9,7 +9,7 @@ The listener functions that are being passed to `bot.on()`, `bot.command()`, and
 While it is not wrong that they are listening for updates, calling them just listeners is a simplification.
 
 > This section explains what middleware is, and uses grammY as an example to illustrate how it can be used.
-> If you are looking for the documentation about what is special about grammY's implementation of middleware, check out [Middleware redux](/advanced/middleware.md) in the advanced section of the docs.
+> If you are looking for the documentation about what is special about grammY's implementation of middleware, check out [Middleware Redux](/advanced/middleware.md) in the advanced section of the docs.
 
 ## The Middleware Stack
 
@@ -225,4 +225,4 @@ bot.use(/*...*/);
 // ...
 ```
 
-If you want to dig deeper into how grammY implements middleware, check out [Middleware redux](/advanced/middleware.md) in the advanced section of the docs.
+If you want to dig deeper into how grammY implements middleware, check out [Middleware Redux](/advanced/middleware.md) in the advanced section of the docs.
