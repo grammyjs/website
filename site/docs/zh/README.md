@@ -20,12 +20,12 @@ permalink: /zh/
 ---
 
 <h6 align="right">… {{ [
-  'think of the whY',
-  'a new era of bot development',
-  'runs faster than you',
-  'one update ahead',
-  'can do anything except dishes',
-  'easy peasy lemon squeezY'
+  '想到了什么？',
+  'bot 开发的新时代',
+  '运行更快',
+  '及时更新',
+  '除了洗碗，我都能做',
+  '像做柠檬汁一样简单'
 ][Math.floor(Math.random() * 6)] }}.</h6>
 
 ## 快速开始
