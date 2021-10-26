@@ -321,7 +321,7 @@ export default defineUserConfig<DefaultThemeOptions>({
         ],
       },
       "/zh/": {
-        // selectLanguageText: "TODO translate Languages",
+        selectLanguageText: "语言",
         selectLanguageName: "简体中文",
         editLinks: true,
         editLinkText: "在 GitHub 上编辑此页！",
