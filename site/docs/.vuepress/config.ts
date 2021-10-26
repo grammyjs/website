@@ -332,7 +332,7 @@ export default defineUserConfig<DefaultThemeOptions>({
           "无",
           "抱歉，这里还不存在内容。",
           "Error 404/ 页面不存在，但一只小可爱替代了他~",
-          "你来到了乡间小道。",
+          "回家吧，回到最初的美好。",
         ],
         backToHome: "回到首页",
         navbar: [
