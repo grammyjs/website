@@ -5,10 +5,26 @@ export default defineUserConfig<DefaultThemeOptions>({
   title: "grammY",
   description: "The Telegram Bot Framework.",
 
+  locales: {
+    "/": {
+      lang: "en-US",
+      title: "grammY",
+      description: "The Telegram Bot Framework.",
+    },
+    "/zh/": {
+      lang: "zh-CN",
+      title: "grammY",
+      description: "The Telegram Bot Framework.",
+    },
+  },
   shouldPrefetch: true,
 
   themeConfig: {
     logo: "/Y.png",
+    locales: {
+      "/": { selectLanguageName: "English" },
+      "/zh/": { selectLanguageName: "简体中文" },
+    },
     repo: "https://github.com/grammyjs/grammY",
     docsRepo: "https://github.com/grammyjs/website",
     docsDir: "site/docs",
