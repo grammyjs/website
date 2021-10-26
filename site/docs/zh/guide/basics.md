@@ -10,7 +10,7 @@ grammY还提供了方便回复的方法。
 
 ## 接收信息
 
-最简单的方式去监听信息是像这样：
+最简单的方式去监听信息，像是这样：
 
 ```ts
 bot.on("message", (ctx) => {
@@ -70,7 +70,7 @@ bot.hears("ping", async (ctx) => {
 
 ## 发送格式化的信息
 
-> 查看Telegram团队编写的Telegram Bot API Reference中的[关于格式化选项的部分](https://core.telegram.org/bots/api#formatting-options)。
+> 查看 Telegram 团队编写的 Telegram Bot API Reference 中的[关于格式化选项的部分](https://core.telegram.org/bots/api#formatting-options)。
 
 你可以通过 **加粗** 或 _斜体_ 文字，使用超链接以及其他。
 有两种方法可以做到这一点，如[关于格式化选项的部分](https://core.telegram.org/bots/api#formatting-options)所述，即 Markdown 和 HTML 。
