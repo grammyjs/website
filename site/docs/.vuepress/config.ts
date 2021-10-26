@@ -643,7 +643,7 @@ export default defineUserConfig<DefaultThemeOptions>({
         apiKey: "17b3527aa6f36e8d3fe2276b0f4d9633",
         indexName: "grammy",
         placeholder: "Search",
-        algoliaOptions: { facetFilters: ["lang:en-US"] },
+        locales: { "/zh/": { placeholder: "搜索文档" } },
         sitemaps: ["https://grammy.dev/sitemap.xml"],
       },
     ],
