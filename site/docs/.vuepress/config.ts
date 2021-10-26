@@ -321,8 +321,11 @@ export default defineUserConfig<DefaultThemeOptions>({
         ],
       },
       "/zh/": {
+        selectLanguageText: "TODO translate Languages",
         selectLanguageName: "简体中文",
         editLinkText: "TODO translate Edit this page on GitHub",
+        contributorsText: "TODO translate Contributors",
+        lastUpdatedText: "TODO translate Last Updated",
         notFound: [
           "TODO translate Not Found",
           "TODO translate Nope.",
@@ -332,7 +335,7 @@ export default defineUserConfig<DefaultThemeOptions>({
         ],
         backToHome: "TODO translate Take me hoooooooome",
         navbar: [
-          { text: "TODO translate Guide", link: "/guide/" },
+          { text: "TODO translate Guide", link: "/zh/guide/" },
           {
             text: "TODO translate Learn",
             children: [
@@ -341,59 +344,59 @@ export default defineUserConfig<DefaultThemeOptions>({
                 children: [
                   {
                     text: "TODO translate Overview",
-                    link: "/guide/README.md",
+                    link: "/zh/guide/README.md",
                   },
                   {
                     text: "TODO translate Introduction",
-                    link: "/guide/introduction.md",
+                    link: "/zh/guide/introduction.md",
                   },
                   {
                     text: "TODO translate Getting started",
-                    link: "/guide/getting-started.md",
+                    link: "/zh/guide/getting-started.md",
                   },
                   {
                     text: "TODO translate Sending and receiving messages",
-                    link: "/guide/basics.md",
+                    link: "/zh/guide/basics.md",
                   },
                   {
                     text: "TODO translate Context",
-                    link: "/guide/context.md",
+                    link: "/zh/guide/context.md",
                   },
                   {
                     text: "TODO translate Bot API",
-                    link: "/guide/api.md",
+                    link: "/zh/guide/api.md",
                   },
                   {
                     text: "TODO translate Filter queries and bot.on()",
-                    link: "/guide/filter-queries.md",
+                    link: "/zh/guide/filter-queries.md",
                   },
                   {
                     text: "TODO translate Commands",
-                    link: "/guide/commands.md",
+                    link: "/zh/guide/commands.md",
                   },
                   {
                     text: "TODO translate Middleware",
-                    link: "/guide/middleware.md",
+                    link: "/zh/guide/middleware.md",
                   },
                   {
                     text: "TODO translate Error handling",
-                    link: "/guide/errors.md",
+                    link: "/zh/guide/errors.md",
                   },
                   {
                     text: "TODO translate Inline Queries",
-                    link: "/guide/inline-queries.md",
+                    link: "/zh/guide/inline-queries.md",
                   },
                   {
                     text: "TODO translate File handling",
-                    link: "/guide/files.md",
+                    link: "/zh/guide/files.md",
                   },
                   {
                     text: "TODO translate Games",
-                    link: "/guide/games.md",
+                    link: "/zh/guide/games.md",
                   },
                   {
                     text: "TODO translate Long Polling vs. Webhooks",
-                    link: "/guide/deployment-types.md",
+                    link: "/zh/guide/deployment-types.md",
                   },
                 ],
               },
@@ -402,39 +405,39 @@ export default defineUserConfig<DefaultThemeOptions>({
                 children: [
                   {
                     text: "TODO translate Overview",
-                    link: "/advanced/README.md",
+                    link: "/zh/advanced/README.md",
                   },
                   {
                     text: "TODO translate Middleware redux",
-                    link: "/advanced/middleware.md",
+                    link: "/zh/advanced/middleware.md",
                   },
                   {
                     text: "TODO translate Scaling Up I: Large codebase",
-                    link: "/advanced/structuring.md",
+                    link: "/zh/advanced/structuring.md",
                   },
                   {
                     text: "TODO translate Scaling Up II: High load",
-                    link: "/advanced/scaling.md",
+                    link: "/zh/advanced/scaling.md",
                   },
                   {
                     text: "TODO translate Scaling Up III: Reliability",
-                    link: "/advanced/reliability.md",
+                    link: "/zh/advanced/reliability.md",
                   },
                   {
                     text: "TODO translate Scaling Up IV: Flood Limits",
-                    link: "/advanced/flood.md",
+                    link: "/zh/advanced/flood.md",
                   },
                   {
                     text: "TODO translate Bot API Transformers",
-                    link: "/advanced/transformers.md",
+                    link: "/zh/advanced/transformers.md",
                   },
                   {
                     text: "TODO translate Proxy Support",
-                    link: "/advanced/proxy.md",
+                    link: "/zh/advanced/proxy.md",
                   },
                   {
                     text: "TODO translate Deployment Checklist",
-                    link: "/advanced/deployment.md",
+                    link: "/zh/advanced/deployment.md",
                   },
                 ],
               },
@@ -448,7 +451,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                 children: [
                   {
                     text: "TODO translate About Plugins",
-                    link: "/plugins/README.md",
+                    link: "/zh/plugins/README.md",
                   },
                 ],
               },
@@ -457,59 +460,62 @@ export default defineUserConfig<DefaultThemeOptions>({
                 children: [
                   {
                     text: "TODO translate Sessions and storing data (built-in)",
-                    link: "/plugins/session.md",
+                    link: "/zh/plugins/session.md",
                   },
                   {
-                    text: "TODO translate Keyboards and Inline Keyboards (built-in)",
-                    link: "/plugins/keyboard.md",
+                    text:
+                      "TODO translate Keyboards and Inline Keyboards (built-in)",
+                    link: "/zh/plugins/keyboard.md",
                   },
                   {
                     text: "TODO translate Interactive menus (menu)",
-                    link: "/plugins/menu.md",
+                    link: "/zh/plugins/menu.md",
                   },
                   {
-                    text: "TODO translate Stateless Question (stateless-question)",
-                    link: "/plugins/stateless-question.md",
+                    text:
+                      "TODO translate Stateless Question (stateless-question)",
+                    link: "/zh/plugins/stateless-question.md",
                   },
                   {
                     text: "TODO translate Concurrency (runner)",
-                    link: "/plugins/runner.md",
+                    link: "/zh/plugins/runner.md",
                   },
                   {
                     text: "TODO translate Hydration (hydrate)",
-                    link: "/plugins/hydrate.md",
+                    link: "/zh/plugins/hydrate.md",
                   },
                   {
                     text: "TODO translate Retry API requests (auto-retry)",
-                    link: "/plugins/auto-retry.md",
+                    link: "/zh/plugins/auto-retry.md",
                   },
                   {
-                    text: "TODO translate Flood control (transformer-throttler)",
-                    link: "/plugins/transformer-throttler.md",
+                    text:
+                      "TODO translate Flood control (transformer-throttler)",
+                    link: "/zh/plugins/transformer-throttler.md",
                   },
                   {
                     text: "TODO translate Rate limit users (ratelimiter)",
-                    link: "/plugins/ratelimiter.md",
+                    link: "/zh/plugins/ratelimiter.md",
                   },
                   {
                     text: "TODO translate Files (files)",
-                    link: "/plugins/files.md",
+                    link: "/zh/plugins/files.md",
                   },
                   {
                     text: "TODO translate Internationalization (i18n)",
-                    link: "/plugins/i18n.md",
+                    link: "/zh/plugins/i18n.md",
                   },
                   {
                     text: "TODO translate Router (router)",
-                    link: "/plugins/router.md",
+                    link: "/zh/plugins/router.md",
                   },
                   {
                     text: "TODO translate Parse Mode (parse-mode)",
-                    link: "/plugins/parse-mode.md",
+                    link: "/zh/plugins/parse-mode.md",
                   },
                   {
                     text: "TODO translate Command filtering (command-fiter)",
-                    link: "/plugins/command-filter.md",
+                    link: "/zh/plugins/command-filter.md",
                   },
                 ],
               },
@@ -518,7 +524,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                 children: [
                   {
                     text: "TODO translate Console time",
-                    link: "/plugins/console-time.md",
+                    link: "/zh/plugins/console-time.md",
                   },
                   {
                     text: "TODO translate [Submit your PR!]",
@@ -537,16 +543,19 @@ export default defineUserConfig<DefaultThemeOptions>({
                 children: [
                   {
                     text: "TODO translate Example Bots Repository",
-                    link: "https://github.com/grammyjs/examples",
+                    link: "/zh/ttps://github.com/grammyjs/examples",
                   },
                   {
                     text: "TODO translate Live Browser Demo",
-                    link: "/demo/README.md",
+                    link: "/zh/demo/README.md",
                   },
-                  { text: "TODO translate Example Bots", link: "/demo/examples.md" },
+                  {
+                    text: "TODO translate Example Bots",
+                    link: "/zh/demo/examples.md",
+                  },
                   {
                     text: "TODO translate Community Showlounge",
-                    link: "/demo/showlounge.md",
+                    link: "/zh/demo/showlounge.md",
                   },
                 ],
               },
@@ -560,23 +569,23 @@ export default defineUserConfig<DefaultThemeOptions>({
                 children: [
                   {
                     text: "TODO translate Community Chat",
-                    link: "https://t.me/grammyjs",
+                    link: "/zh/ttps://t.me/grammyjs",
                   },
                   {
                     text: "TODO translate Awesome grammY",
-                    link: "https://github.com/grammyjs/awesome-grammY",
+                    link: "/zh/ttps://github.com/grammyjs/awesome-grammY",
                   },
                   {
                     text: "TODO translate News",
-                    link: "https://t.me/grammyjs_news",
+                    link: "/zh/ttps://t.me/grammyjs_news",
                   },
                   {
                     text: "TODO translate FAQ",
-                    link: "/resources/faq.md",
+                    link: "/zh/resources/faq.md",
                   },
                   {
                     text: "TODO translate Comparison to other frameworks",
-                    link: "/resources/comparison.md",
+                    link: "/zh/resources/comparison.md",
                   },
                 ],
               },
@@ -585,15 +594,15 @@ export default defineUserConfig<DefaultThemeOptions>({
                 children: [
                   {
                     text: "TODO translate Introduction for Developers",
-                    link: "https://core.telegram.org/bots",
+                    link: "/zh/ttps://core.telegram.org/bots",
                   },
                   {
                     text: "TODO translate Bots FAQ",
-                    link: "https://core.telegram.org/bots/faq",
+                    link: "/zh/ttps://core.telegram.org/bots/faq",
                   },
                   {
                     text: "TODO translate Bot API Reference",
-                    link: "https://core.telegram.org/bots/api",
+                    link: "/zh/ttps://core.telegram.org/bots/api",
                   },
                 ],
               },
@@ -602,11 +611,11 @@ export default defineUserConfig<DefaultThemeOptions>({
                 children: [
                   {
                     text: "TODO translate Heroku",
-                    link: "/hosting/heroku.md",
+                    link: "/zh/hosting/heroku.md",
                   },
                   {
                     text: "TODO translate Google Cloud Functions",
-                    link: "/hosting/gcf.md",
+                    link: "/zh/hosting/gcf.md",
                   },
                 ],
               },
