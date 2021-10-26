@@ -24,7 +24,7 @@ bot.on("message", (ctx) => {
 // 处理 commands, 比如 /start
 bot.command('start', (ctx) => { ... });
 
-// 将信息文本与一个字符串或正则表达式相匹配
+// 把信息文本与一个字符串或正则表达式相匹配
 bot.hears(/echo *(.+)?/, (ctx) => { ... });
 ```
 
