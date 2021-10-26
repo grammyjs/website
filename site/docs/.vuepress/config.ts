@@ -14,7 +14,7 @@ export default defineUserConfig<DefaultThemeOptions>({
     "/zh/": {
       lang: "zh-CN",
       title: "grammY",
-      description: "The Telegram Bot Framework.",
+      description: "Telegram Bot 框架",
     },
   },
   shouldPrefetch: true,
@@ -321,122 +321,123 @@ export default defineUserConfig<DefaultThemeOptions>({
         ],
       },
       "/zh/": {
-        selectLanguageText: "TODO translate Languages",
+        // selectLanguageText: "TODO translate Languages",
         selectLanguageName: "简体中文",
-        editLinkText: "TODO translate Edit this page on GitHub",
-        contributorsText: "TODO translate Contributors",
-        lastUpdatedText: "TODO translate Last Updated",
+        editLinks: true,
+        editLinkText: "在 GitHub 上编辑此页！",
+        contributorsText: "贡献者",
+        lastUpdatedText: "最近更新时间",
         notFound: [
-          "TODO translate Not Found",
-          "TODO translate Nope.",
-          "TODO translate nothin' here for ya, sorry",
-          "TODO translate Error 404/ This Page Could Not Be Found But/ A Haiku Instead",
-          "TODO translate Country rooooaaaads,",
+          "糟糕！这个页面不存在。",
+          "无",
+          "抱歉，这里还不存在内容。",
+          "Error 404/ 页面不存在，但一只小可爱替代了他~",
+          "你来到了乡间小道。",
         ],
-        backToHome: "TODO translate Take me hoooooooome",
+        backToHome: "回到首页",
         navbar: [
-          { text: "TODO translate Guide", link: "/zh/guide/" },
+          { text: "基础", link: "/zh/guide/" },
           {
-            text: "TODO translate Learn",
+            text: "了解",
             children: [
               {
-                text: "TODO translate Guide",
+                text: "基础",
                 children: [
                   {
-                    text: "TODO translate Overview",
+                    text: "概述",
                     link: "/zh/guide/README.md",
                   },
                   {
-                    text: "TODO translate Introduction",
+                    text: "简介",
                     link: "/zh/guide/introduction.md",
                   },
                   {
-                    text: "TODO translate Getting started",
+                    text: "入门",
                     link: "/zh/guide/getting-started.md",
                   },
                   {
-                    text: "TODO translate Sending and receiving messages",
+                    text: "发送和接收消息",
                     link: "/zh/guide/basics.md",
                   },
                   {
-                    text: "TODO translate Context",
+                    text: "上下文",
                     link: "/zh/guide/context.md",
                   },
                   {
-                    text: "TODO translate Bot API",
+                    text: "Bot API",
                     link: "/zh/guide/api.md",
                   },
                   {
-                    text: "TODO translate Filter queries and bot.on()",
+                    text: "过滤式查询与 bot.on()",
                     link: "/zh/guide/filter-queries.md",
                   },
                   {
-                    text: "TODO translate Commands",
+                    text: "Commands",
                     link: "/zh/guide/commands.md",
                   },
                   {
-                    text: "TODO translate Middleware",
+                    text: "中间件",
                     link: "/zh/guide/middleware.md",
                   },
                   {
-                    text: "TODO translate Error handling",
+                    text: "错误捕获",
                     link: "/zh/guide/errors.md",
                   },
                   {
-                    text: "TODO translate Inline Queries",
+                    text: "内联查询",
                     link: "/zh/guide/inline-queries.md",
                   },
                   {
-                    text: "TODO translate File handling",
+                    text: "文件管理",
                     link: "/zh/guide/files.md",
                   },
                   {
-                    text: "TODO translate Games",
+                    text: "游戏",
                     link: "/zh/guide/games.md",
                   },
                   {
-                    text: "TODO translate Long Polling vs. Webhooks",
+                    text: "长轮询 vs. Webhooks",
                     link: "/zh/guide/deployment-types.md",
                   },
                 ],
               },
               {
-                text: "TODO translate Advanced",
+                text: "进阶",
                 children: [
                   {
-                    text: "TODO translate Overview",
+                    text: "概述",
                     link: "/zh/advanced/README.md",
                   },
                   {
-                    text: "TODO translate Middleware redux",
+                    text: "重构中间件",
                     link: "/zh/advanced/middleware.md",
                   },
                   {
-                    text: "TODO translate Scaling Up I: Large codebase",
+                    text: "I: 巨量的代码",
                     link: "/zh/advanced/structuring.md",
                   },
                   {
-                    text: "TODO translate Scaling Up II: High load",
+                    text: "II: 高负载",
                     link: "/zh/advanced/scaling.md",
                   },
                   {
-                    text: "TODO translate Scaling Up III: Reliability",
+                    text: "III: 可靠性",
                     link: "/zh/advanced/reliability.md",
                   },
                   {
-                    text: "TODO translate Scaling Up IV: Flood Limits",
+                    text: "IV: 极限控制",
                     link: "/zh/advanced/flood.md",
                   },
                   {
-                    text: "TODO translate Bot API Transformers",
+                    text: "可定制的 Bot API",
                     link: "/zh/advanced/transformers.md",
                   },
                   {
-                    text: "TODO translate Proxy Support",
+                    text: "代理支持",
                     link: "/zh/advanced/proxy.md",
                   },
                   {
-                    text: "TODO translate Deployment Checklist",
+                    text: "部署",
                     link: "/zh/advanced/deployment.md",
                   },
                 ],
@@ -444,90 +445,90 @@ export default defineUserConfig<DefaultThemeOptions>({
             ],
           },
           {
-            text: "TODO translate Plugins",
+            text: "插件",
             children: [
               {
-                text: "TODO translate Introduction",
+                text: "简介",
                 children: [
                   {
-                    text: "TODO translate About Plugins",
+                    text: "关于插件",
                     link: "/zh/plugins/README.md",
                   },
                 ],
               },
               {
-                text: "TODO translate Official",
+                text: "官方维护",
                 children: [
                   {
-                    text: "TODO translate Sessions and storing data (built-in)",
+                    text: "会话与数据储存（内置）",
                     link: "/zh/plugins/session.md",
                   },
                   {
                     text:
-                      "TODO translate Keyboards and Inline Keyboards (built-in)",
+                      "按键与内联式按键（内置）",
                     link: "/zh/plugins/keyboard.md",
                   },
                   {
-                    text: "TODO translate Interactive menus (menu)",
+                    text: "互动菜单（menu）",
                     link: "/zh/plugins/menu.md",
                   },
                   {
                     text:
-                      "TODO translate Stateless Question (stateless-question)",
+                      "无状态问题 (stateless-question)",
                     link: "/zh/plugins/stateless-question.md",
                   },
                   {
-                    text: "TODO translate Concurrency (runner)",
+                    text: "并发 (runner)",
                     link: "/zh/plugins/runner.md",
                   },
                   {
-                    text: "TODO translate Hydration (hydrate)",
+                    text: "Hydration (hydrate)",
                     link: "/zh/plugins/hydrate.md",
                   },
                   {
-                    text: "TODO translate Retry API requests (auto-retry)",
+                    text: "可重试的 API 请求 (auto-retry)",
                     link: "/zh/plugins/auto-retry.md",
                   },
                   {
                     text:
-                      "TODO translate Flood control (transformer-throttler)",
+                      "顶峰控制 (transformer-throttler)",
                     link: "/zh/plugins/transformer-throttler.md",
                   },
                   {
-                    text: "TODO translate Rate limit users (ratelimiter)",
+                    text: "用户守卫 (ratelimiter)",
                     link: "/zh/plugins/ratelimiter.md",
                   },
                   {
-                    text: "TODO translate Files (files)",
+                    text: "文件助手 (files)",
                     link: "/zh/plugins/files.md",
                   },
                   {
-                    text: "TODO translate Internationalization (i18n)",
+                    text: "国际化 (i18n)",
                     link: "/zh/plugins/i18n.md",
                   },
                   {
-                    text: "TODO translate Router (router)",
+                    text: "路由 (router)",
                     link: "/zh/plugins/router.md",
                   },
                   {
-                    text: "TODO translate Parse Mode (parse-mode)",
+                    text: "解析模式 (parse-mode)",
                     link: "/zh/plugins/parse-mode.md",
                   },
                   {
-                    text: "TODO translate Command filtering (command-fiter)",
+                    text: "指令过滤 (command-fiter)",
                     link: "/zh/plugins/command-filter.md",
                   },
                 ],
               },
               {
-                text: "TODO translate Third-party",
+                text: "第三方",
                 children: [
                   {
-                    text: "TODO translate Console time",
+                    text: "Console time",
                     link: "/zh/plugins/console-time.md",
                   },
                   {
-                    text: "TODO translate [Submit your PR!]",
+                    text: "[等待你的 PR!]",
                     link:
                       "/plugins/README.md#submitting-your-own-package-to-the-docs",
                   },
@@ -536,25 +537,25 @@ export default defineUserConfig<DefaultThemeOptions>({
             ],
           },
           {
-            text: "TODO translate Examples",
+            text: "示例",
             children: [
               {
-                text: "TODO translate Examples",
+                text: "示例",
                 children: [
                   {
-                    text: "TODO translate Example Bots Repository",
+                    text: "示例 Bots 仓库",
                     link: "/zh/ttps://github.com/grammyjs/examples",
                   },
                   {
-                    text: "TODO translate Live Browser Demo",
+                    text: "在线 Demo",
                     link: "/zh/demo/README.md",
                   },
                   {
-                    text: "TODO translate Example Bots",
+                    text: "示例 Bots",
                     link: "/zh/demo/examples.md",
                   },
                   {
-                    text: "TODO translate Community Showlounge",
+                    text: "社区示例",
                     link: "/zh/demo/showlounge.md",
                   },
                 ],
@@ -562,29 +563,29 @@ export default defineUserConfig<DefaultThemeOptions>({
             ],
           },
           {
-            text: "TODO translate Resources",
+            text: "资源",
             children: [
               {
-                text: "TODO translate grammY",
+                text: "grammY",
                 children: [
                   {
-                    text: "TODO translate Community Chat",
+                    text: "社区聊天",
                     link: "/zh/ttps://t.me/grammyjs",
                   },
                   {
-                    text: "TODO translate Awesome grammY",
+                    text: "Awesome grammY",
                     link: "/zh/ttps://github.com/grammyjs/awesome-grammY",
                   },
                   {
-                    text: "TODO translate News",
+                    text: "咨询",
                     link: "/zh/ttps://t.me/grammyjs_news",
                   },
                   {
-                    text: "TODO translate FAQ",
+                    text: "FAQ",
                     link: "/zh/resources/faq.md",
                   },
                   {
-                    text: "TODO translate Comparison to other frameworks",
+                    text: "与其他框架的比较",
                     link: "/zh/resources/comparison.md",
                   },
                 ],
@@ -593,28 +594,28 @@ export default defineUserConfig<DefaultThemeOptions>({
                 text: "TODO translate Telegram",
                 children: [
                   {
-                    text: "TODO translate Introduction for Developers",
+                    text: "面向开发者的介绍",
                     link: "/zh/ttps://core.telegram.org/bots",
                   },
                   {
-                    text: "TODO translate Bots FAQ",
+                    text: "Bots FAQ",
                     link: "/zh/ttps://core.telegram.org/bots/faq",
                   },
                   {
-                    text: "TODO translate Bot API Reference",
+                    text: "Bot API 概览",
                     link: "/zh/ttps://core.telegram.org/bots/api",
                   },
                 ],
               },
               {
-                text: "TODO translate Hosting",
+                text: "托管服务",
                 children: [
                   {
-                    text: "TODO translate Heroku",
+                    text: "Heroku",
                     link: "/zh/hosting/heroku.md",
                   },
                   {
-                    text: "TODO translate Google Cloud Functions",
+                    text: "Google Cloud Functions",
                     link: "/zh/hosting/gcf.md",
                   },
                 ],
@@ -622,7 +623,7 @@ export default defineUserConfig<DefaultThemeOptions>({
             ],
           },
           {
-            text: "TODO translate API Reference",
+            text: "API 参考",
             link: "https://doc.deno.land/https/deno.land/x/grammy/mod.ts",
           },
         ],
