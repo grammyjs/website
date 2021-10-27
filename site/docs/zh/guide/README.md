@@ -4,7 +4,7 @@ next: ./introduction.md
 
 ![logo](/grammY.png)
 
-# 简介
+# 概述
 
 欢迎来到 grammY！相信我，你找到了正确的 Bot 框架。
 
