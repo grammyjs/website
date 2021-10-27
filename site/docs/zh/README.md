@@ -3,10 +3,10 @@ home: true
 heroImage: /Y.png
 actions:
   - text: 立刻开始
-    link: /guide/getting-started.md
+    link: /zh/guide/getting-started.md
     type: primary
   - text: 介绍
-    link: /guide/introduction.md
+    link: /zh/guide/introduction.md
     type: secondary
 features:
   - title: 易用
