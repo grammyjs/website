@@ -40,12 +40,12 @@ npm install grammy
 └── tsconfig.json
 ```
 
-现在，是时候打开 Telegram 创建一个机器人账户，并为其获得一个认证令牌。
+现在，是时候打开 Telegram 创建一个 bot 账户，并为其获得一个认证令牌。
 与 [@BotFather](https://t.me/BotFather) 对话来完成这件事。
 认证令牌看起来将类似于 `123456:aBcDeF_gHiJkLmNoP-q` 。
 
-拿到了令牌？你现在可以在 `bot.ts` 文件中编写你的机器人代码。
-你可以把下面这个机器人的例子复制到该文件中，并把你的令牌传给 `Bot` 构造函数。
+拿到了令牌？你现在可以在 `bot.ts` 文件中编写你的 bot 代码。
+你可以把下面这个 bot 的例子复制到该文件中，并把你的令牌传给 `Bot` 构造函数。
 
 <CodeGroup>
  <CodeGroupItem title="TS">
@@ -57,7 +57,7 @@ import { Bot } from "grammy";
 const bot = new Bot(""); // <-- 把你的认证令牌放在""之间
 
 // 你现在可以在你的 bot 对象 `bot` 上注册监听器。
-// 当用户向你的机器人发送消息时， grammY 将调用已注册的监听器。
+// 当用户向你的 bot 发送消息时， grammY 将调用已注册的监听器。
 
 // 对 /start 命令作出反应
 bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
@@ -81,7 +81,7 @@ const { Bot } = require("grammy");
 const bot = new Bot(""); // <-- 把你的认证令牌放在""之间
 
 // 你现在可以在你的 bot 对象 `bot` 上注册监听器。
-// 当用户向你的机器人发送消息时， grammY 将调用已注册的监听器。
+// 当用户向你的 bot 发送消息时， grammY 将调用已注册的监听器。
 
 // 对 /start 命令作出反应
 bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
@@ -107,7 +107,7 @@ npx tsc
 在你的终端中。
 这将生成 JavaScript 文件 `bot.js` 。
 
-现在你可以通过执行以下命令在终端来运行这个机器人
+现在你可以通过执行以下命令在终端来运行这个 bot
 
 ```bash
 node bot.js
@@ -115,7 +115,7 @@ node bot.js
 
 完成！ :tada:
 
-到 Telegram 去看你的机器人对信息的回应吧!
+到 Telegram 去看你的 bot 对信息的回应吧!
 
 ::: tip 启用日志记录功能
 你可以通过运行以下程序来启用基本日志记录
@@ -125,7 +125,7 @@ export DEBUG='grammy*'
 ```
 
 在你执行`node bot.js`之前，先在你的终端机上使用`node bot.js`。
-这使你更容易调试你的机器人。
+这使你更容易调试你的 bot 。
 :::
 
 ## 通过 Deno 开始
@@ -134,12 +134,12 @@ export DEBUG='grammy*'
 
 在某个地方创建一个新的目录，并在其中创建一个新的空文本文件，例如，称为 `bot.ts` 。
 
-现在，是时候打开 Telegram 创建一个机器人账户，并为其获得一个认证令牌。
+现在，是时候打开 Telegram 创建一个 bot 账户，并为其获得一个认证令牌。
 与 [@BotFather](https://t.me/BotFather) 对话来完成这件事。
 认证令牌看起来将类似于 `123456:aBcDeF_gHiJkLmNoP-q` 。
 
-拿到了令牌？你现在可以在 `bot.ts` 文件中编写你的机器人代码。
-你可以把下面这个机器人的例子复制到该文件中，并把你的令牌传给 `Bot` 构造函数。
+拿到了令牌？你现在可以在 `bot.ts` 文件中编写你的 bot 代码。
+你可以把下面这个 bot 的例子复制到该文件中，并把你的令牌传给 `Bot` 构造函数。
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -148,7 +148,7 @@ import { Bot } from "https://deno.land/x/grammy/mod.ts";
 const bot = new Bot(""); // <-- 把你的认证令牌放在""之间
 
 // 你现在可以在你的 bot 对象 `bot` 上注册监听器。
-// 当用户向你的机器人发送消息时， grammY 将调用已注册的监听器。
+// 当用户向你的 bot 发送消息时， grammY 将调用已注册的监听器。
 
 // 对 /start 命令作出反应
 bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
@@ -170,7 +170,7 @@ deno run --allow-net bot.ts
 
 完成！ :tada:
 
-到 Telegram 去看你的机器人对信息的回应吧!
+到 Telegram 去看你的 bot 对信息的回应吧!
 
 ::: tip 启用日志记录功能
 你可以通过运行以下程序来启用基本日志记录
@@ -180,7 +180,7 @@ export DEBUG='grammy*'
 ```
 
 在你执行`node bot.js`之前，先在你的终端机上使用`node bot.js`。
-这使你更容易调试你的机器人。
+这使你更容易调试你的 bot 。
 
 你现在需要用以下方法来运行 bot
 

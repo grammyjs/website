@@ -10,7 +10,7 @@ actions:
     type: secondary
 features:
   - title: 易用
-    details: grammY 使创建Telegram机器人变得如此简单！
+    details: grammY 使创建 Telegram Bot 变得如此简单！
   - title: 灵活
     details: grammY 是开放的，通过插件让它完全适合你的需要。
   - title: 可扩展
@@ -30,7 +30,7 @@ permalink: /zh/
 
 ## 快速开始
 
-机器人是用 [TypeScript](https://www.typescriptlang.org)（或JavaScript）编写的，并在各种平台上运行，包括 [Node.js](https://nodejs.org) 。
+bot 是用 [TypeScript](https://www.typescriptlang.org)（或JavaScript）编写的，并在各种平台上运行，包括 [Node.js](https://nodejs.org) 。
 
 `npm install grammy` 并粘贴以下代码：
 

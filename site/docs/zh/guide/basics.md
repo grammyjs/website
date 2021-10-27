@@ -5,7 +5,7 @@ next: ./context.md
 
 # 发送和接收信息
 
-一旦你用`bot.start()`启动你的机器人，grammY将为你的监听器提供用户发送给你的机器人的信息。
+一旦你用`bot.start()`启动你的 bot，grammY将为你的监听器提供用户发送给你的 bot 的信息。
 grammY还提供了方便回复的方法。
 
 ## 接收信息
@@ -34,13 +34,13 @@ bot.hears(/echo *(.+)?/, (ctx) => { ... });
 
 ## 发送信息
 
-[机器人可以使用的所有方法](https://core.telegram.org/bots/api#available-methods)都可以通过 `bot.api` 对象上使用。
+[bot 可以使用的所有方法](https://core.telegram.org/bots/api#available-methods)都可以通过 `bot.api` 对象上使用。
 
 ```ts
 // 向用户 12345 发送一条短信
 await bot.api.sendMessage(12345, "Hi!");
 
-// 获取有关机器人本身的信息
+// 获取有关 bot 本身的信息
 const me = await bot.api.getMe();
 
 // 及其他
@@ -101,11 +101,11 @@ await bot.api.sendMessage(12345, "<b>Hi!</b> Welcome to grammY.", {
 
 ## 强行回复
 
-> 如果你的机器人在群聊中以[隐私模式](https://core.telegram.org/bots#privacy-mode)运行，这可能很有用。
+> 如果你的 bot 在群聊中以[隐私模式](https://core.telegram.org/bots#privacy-mode)运行，这可能很有用。
 
 当你发送消息时，你可以让用户的Telegram客户端自动指定该消息为回复。
-这意味着，用户会自动回复你的机器人的消息（除非他们手动删除回复）。
-因此，即使在群聊中以[隐私模式](https://core.telegram.org/bots#privacy-mode)运行，你的机器人也会收到用户的信息。
+这意味着，用户会自动回复你 bot 的消息（除非他们手动删除回复）。
+因此，即使在群聊中以[隐私模式](https://core.telegram.org/bots#privacy-mode)运行，你的 bot 也会收到用户的信息。
 
 你可以像这样强行回复：
 
