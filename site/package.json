@@ -5,6 +5,8 @@
   "main": "index.js",
   "private": true,
   "scripts": {
+    "fmt": "deno fmt --config ../deno.json",
+    "lint": "deno lint --config ../deno.json",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs"
   },
