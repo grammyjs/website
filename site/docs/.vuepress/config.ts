@@ -464,8 +464,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/zh/plugins/session.md",
                   },
                   {
-                    text:
-                      "按键与内联式按键（内置）",
+                    text: "按键与内联式按键（内置）",
                     link: "/zh/plugins/keyboard.md",
                   },
                   {
@@ -473,8 +472,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/zh/plugins/menu.md",
                   },
                   {
-                    text:
-                      "无状态问题 (stateless-question)",
+                    text: "无状态问题 (stateless-question)",
                     link: "/zh/plugins/stateless-question.md",
                   },
                   {
@@ -490,8 +488,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/zh/plugins/auto-retry.md",
                   },
                   {
-                    text:
-                      "顶峰控制 (transformer-throttler)",
+                    text: "顶峰控制 (transformer-throttler)",
                     link: "/zh/plugins/transformer-throttler.md",
                   },
                   {

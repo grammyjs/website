@@ -36,7 +36,7 @@ bot.on("message", (ctx) => {
 ```
 
 同样，你也可以访问消息对象的其他属性，例如 `ctx.message.chat` ，以了解消息发送地的聊天信息。
-请查看[ Telegram Bot API 参考 中关于 `Message' 的部分](https://core.telegram.org/bots/api#message)，看看哪些数据是可用的。
+请查看[Telegram Bot API 参考 中关于 `Message' 的部分](https://core.telegram.org/bots/api#message)，看看哪些数据是可用的。
 另外，你可以简单地在你的代码编辑器中使用自动完成功能来查看可能的选项。
 
 如果你为其他类型的监听器注册监听，`ctx` 也会给你关于这些的信息。
@@ -49,7 +49,7 @@ bot.on("edited_message", (ctx) => {
 });
 ```
 
-此外，你可以访问 Telegram 发送给你的 bot 的原始 `Update` 对象（[ Telegram Bot API 参考](https://core.telegram.org/bots/api#update)）。
+此外，你可以访问 Telegram 发送给你的 bot 的原始 `Update` 对象（[Telegram Bot API 参考](https://core.telegram.org/bots/api#update)）。
 这个更新对象（ `ctx.update` ）包含了 `ctx.message` 之类的所有数据来源。
 
 上下文对象包含关于你的机器人的信息，可以通过 `ctx.me` 访问。
@@ -58,13 +58,13 @@ bot.on("edited_message", (ctx) => {
 
 在上下文对象上安装了一些快捷方式。
 
-| 快捷方式                | 描述                                                                                  |
-| --------------------- | ----------------------------------------------------------------------------------- |
-| `ctx.msg`             | 获取 `message` 对象，包括已编辑的信息对象                                                 |
-| `ctx.chat`            | 获取 `chat` 对象                                                                      |
-| `ctx.senderChat`      | 从 `ctx.msg` 中获取发送者聊天对象（用于匿名通道/群组消息）。                                  |
-| `ctx.from`            | 获取消息的作者，回调查询，或其他东西的作者                                                  |
-| `ctx.inlineMessageId` | 获取回调查询的内联信息标识符或选择的内联结果                                                  |
+| 快捷方式                  | 描述                                   |
+| --------------------- | ------------------------------------ |
+| `ctx.msg`             | 获取 `message` 对象，包括已编辑的信息对象           |
+| `ctx.chat`            | 获取 `chat` 对象                         |
+| `ctx.senderChat`      | 从 `ctx.msg` 中获取发送者聊天对象（用于匿名通道/群组消息）。 |
+| `ctx.from`            | 获取消息的作者，回调查询，或其他东西的作者                |
+| `ctx.inlineMessageId` | 获取回调查询的内联信息标识符或选择的内联结果               |
 
 换句话说，你也可以这样做：
 
@@ -141,7 +141,7 @@ await ctx.reply("^ This is a message!", {
 在你的代码编辑器中使用自动完成来查看可用的选项。
 :::
 
-当然，`ctx.api` 上的每一个其他方法都有一个快捷方式，都有正确的预填值，比如 `ctx.replyWithPhoto` 用来回复照片，或者 `ctx.exportChatInviteLink` 用来获取相应聊天的邀请链接。如果你想了解存在哪些快捷方式，那么自动完成是你的伙伴，还有[ API 参考](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Context)。
+当然，`ctx.api` 上的每一个其他方法都有一个快捷方式，都有正确的预填值，比如 `ctx.replyWithPhoto` 用来回复照片，或者 `ctx.exportChatInviteLink` 用来获取相应聊天的邀请链接。如果你想了解存在哪些快捷方式，那么自动完成是你的伙伴，还有[API 参考](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Context)。
 
 请注意，你可能不希望总是在同一个聊天中做出回复。
 在这种情况下，你可以退回到使用 `ctx.api` 方法，并在调用它们时指定所有选项。
@@ -156,7 +156,7 @@ await ctx.reply("^ This is a message!", {
 对于每一个传入的更新，一个新的 `Context` 对象被精确地创建一次。
 不同更新的上下文是完全不相关的对象，它们只是通过 `ctx.me` 引用相同的 bot 信息。
 
-一个更新的相同上下文对象将被 bot 上所有安装的中间件（[ docs ](./middleware.md)）共享。
+一个更新的相同上下文对象将被 bot 上所有安装的中间件（[docs](./middleware.md)）共享。
 
 ## 定制你的上下文对象
 
@@ -348,7 +348,7 @@ interface SessionFlavor<S> {
 }
 ```
 
-`SessionFlavor` 类型（[ API 参考](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#SessionFlavor)）是清晰的：它只定义了属性 `session` 。
+`SessionFlavor` 类型（[API 参考](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#SessionFlavor)）是清晰的：它只定义了属性 `session` 。
 它需要一个类型参数，用来定义会话数据的实际结构。
 
 这有什么用呢？
