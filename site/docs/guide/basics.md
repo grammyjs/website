@@ -82,7 +82,7 @@ There are two ways to do this, as described in [the section about formatting opt
 Send your message with markdown in the text, and specify `parse_mode: 'MarkdownV2'`.
 
 ```ts
-await bot.api.sendMessage(12345, "**Hi\\!** Welcome to grammY\\.", {
+await bot.api.sendMessage(12345, "*Hi\\!* _Welcome_ to [grammY](https://grammy.dev)\\.", {
   parse_mode: "MarkdownV2",
 });
 ```
@@ -94,7 +94,7 @@ await bot.api.sendMessage(12345, "**Hi\\!** Welcome to grammY\\.", {
 Send your message with HTML elements in the text, and specify `parse_mode: 'HTML'`.
 
 ```ts
-await bot.api.sendMessage(12345, "<b>Hi!</b> Welcome to grammY.", {
+await bot.api.sendMessage(12345, "<b>Hi!</b> <i>Welcome</i> to <a href=\"https://grammy.dev\">grammY</a>.", {
   parse_mode: "HTML",
 });
 ```
