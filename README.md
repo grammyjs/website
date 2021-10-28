@@ -20,7 +20,7 @@ to view the documentation in your browser.
 
 ## Checking correct formatting of docs
 
-In addition to the VSCode extension that lint the Markdown,
+In addition to the VSCode extension that lints the Markdown,
 [Deno](https://deno.land/) formatting is used to check the formatting of
 markdown files and the TypeScript and JavaScript code contained in them. You can
 use the following two commands.
