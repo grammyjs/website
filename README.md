@@ -18,7 +18,7 @@ npm run docs:dev
 
 to view the documentation in your browser.
 
-## Checking correct formatting of docs
+## Checking Correct Formatting of Docs
 
 In addition to the VSCode extension that lints the Markdown,
 [Deno](https://deno.land/) formatting is used to check the formatting of
