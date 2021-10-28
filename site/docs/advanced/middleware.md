@@ -96,9 +96,9 @@ composer.filter(/* 1 */, /* A */).use(/* B */)
 composer.filter(/* 2 */).use(/* C */, /* D */)
 ```
 
-In line 3, we register `A` behind a predicate function `1`.
+On line 3, we register `A` behind a predicate function `1`.
 `A` will only be evaluated for updates which pass the condition `1`.
-However, `filter` returns a `Composer` instance that we augment with the `use` call in line 3, so `B` is still guarded by `1`, even though it is installed in a completely different `use` call.
+However, `filter` returns a `Composer` instance that we augment with the `use` call on line 3, so `B` is still guarded by `1`, even though it is installed in a completely different `use` call.
 
 Line 5 is equivalent to line 3 in the respect that both `C` and `D` will only be run if `2` holds.
 
