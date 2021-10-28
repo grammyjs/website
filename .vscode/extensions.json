@@ -2,6 +2,7 @@
   "recommendations": [
     "esbenp.prettier-vscode",
     "davidanson.vscode-markdownlint",
-    "bierner.markdown-checkbox"
+    "bierner.markdown-checkbox",
+    "denoland.vscode-deno"
   ]
 }
