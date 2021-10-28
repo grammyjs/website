@@ -82,9 +82,11 @@ bot.hears("ping", async (ctx) => {
 发送你的信息时，在文本中加入 markdown ，并指定 `parse_mode: 'MarkdownV2'`。
 
 ```ts
-await bot.api.sendMessage(12345, "**Hi\!** Welcome to grammY.", {
-  parse_mode: "MarkdownV2",
-});
+await bot.api.sendMessage(
+  12345,
+  "*Hi\\!* _Welcome_ to [grammY](https://grammy.dev)\\.",
+  { parse_mode: "MarkdownV2" },
+);
 ```
 
 ### HTML
@@ -94,9 +96,11 @@ await bot.api.sendMessage(12345, "**Hi\!** Welcome to grammY.", {
 发送你的信息，文本中含有 HTML 元素，并指定 `parse_mode: 'HTML'`。
 
 ```ts
-await bot.api.sendMessage(12345, "<b>Hi!</b> Welcome to grammY.", {
-  parse_mode: "HTML",
-});
+await bot.api.sendMessage(
+  12345,
+  '<b>Hi!</b> <i>Welcome</i> to <a href="https://grammy.dev">grammY</a>.',
+  { parse_mode: "HTML" },
+);
 ```
 
 ## 强行回复
