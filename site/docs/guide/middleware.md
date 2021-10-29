@@ -6,10 +6,10 @@ next: ./errors.md
 # Middleware
 
 The listener functions that are being passed to `bot.on()`, `bot.command()`, and their siblings, are called _middleware_.
-While it is not wrong that they are listening for updates, calling them just listeners is a simplification.
+While it is not wrong to say that they are listening for updates, calling them “listeners” is a simplification.
 
 > This section explains what middleware is, and uses grammY as an example to illustrate how it can be used.
-> If you are looking for the documentation about what is special about grammY's implementation of middleware, check out [Middleware Redux](/advanced/middleware.md) in the advanced section of the docs.
+> If you are looking for specific documentation about what makes grammY's implementation of middleware special, check out [Middleware Redux](/advanced/middleware.md) in the advanced section of the docs.
 
 ## The Middleware Stack
 
@@ -64,7 +64,7 @@ type NextFunction = () => Promise<void>;
 So, middleware takes two parameters!
 We only used one so far, the context object `ctx`.
 We [already know](./context.md) what `ctx` is, but we also see a function with the name `next`.
-In order to understand what `next` is, we have to look at all middleware that you install on your bot as a whole.
+In order to understand what `next` is, we have to look at all middleware that you install on your bot object as a whole.
 
 You can view all installed middleware functions as a number of layers that are stacked on top of each other.
 The first middleware (`session` in our example) is the uppermost layer, hence receiving each update first.
@@ -84,7 +84,7 @@ This stack of functions is the _middleware stack_.
 (ctx, next) => ...    |
 ```
 
-Looking back at our example earlier, we now know why `bot.on(":photo")` was never even checked: the middleware in `bot.(":text", (ctx) => { ... })` already handled the update, and it did not call `next`.
+Looking back at our earlier example, we now know why `bot.on(":photo")` was never even checked: the middleware in `bot.(":text", (ctx) => { ... })` already handled the update, and it did not call `next`.
 In fact, it did not even specify `next` as a parameter.
 It simply ignored `next`, hence not passing on the update.
 
@@ -106,17 +106,17 @@ Let's inspect what happens:
 2. The `':text'` middleware receives the update and checks for text, which succeeds because commands are text messages.
    The update is handled immediately by the first middleware and your bot replies with “Text!”.
 
-The message is never even checked for containing the `/start` command!
+The message is never even checked for if it contains the `/start` command!
 The order in which you register your middleware matters, because it determines the order of the layers in the middleware stack.
 You can fix the issue by flipping the order of lines 3 and 4.
-If you would call `next` in line 3, two responses would be sent.
+If you called `next` on line 3, two responses would be sent.
 
 **The `bot.use()` function simply registers middleware that receives all updates.**
 This is why `session()` is installed via `bot.use()`—we want the plugin to operate on all updates, no matter what data is contained.
 
 Having a middleware stack is an extremely powerful property of any web framework, and this pattern is widely popular (not just for Telegram bots).
 
-Let's write our own little piece of middleware to illustrate even better how it works.
+Let's write our own little piece of middleware to better illustrate how it works.
 
 ## Writing Custom Middleware
 
@@ -126,7 +126,7 @@ Here is the function signature for our middleware.
 You can compare it to the middleware type from above, and convince yourself that we actually have middleware here.
 
 ```ts
-/** Measure the response time of the bot, and logs it to `console` */
+/** Measures the response time of the bot, and logs it to `console` */
 async function responseTime(
   ctx: Context,
   next: NextFunction, // is an alias for: () => Promise<void>
@@ -149,13 +149,13 @@ Here is what we want to do:
    This includes command matching, replying, and everything else your bot does.
 3. We take `Date.now()` again, compare it to the old value, and `console.log` the time difference.
 
-It is important to install our `responseTime` middleware _at first_ on the bot to make sure that all operations are included in the measurement.
+It is important to install our `responseTime` middleware _first_ on the bot (at the top of the middleware stack) to make sure that all operations are included in the measurement.
 
 ```ts
-/** Measure the response time of the bot, and log it */
+/** Measures the response time of the bot, and logs it to `console` */
 async function responseTime(
   ctx: Context,
-  next: NextFunction,
+  next: NextFunction, // is an alias for: () => Promise<void>
 ): Promise<void> {
   // take time before
   const before = Date.now(); // milliseconds
@@ -172,17 +172,17 @@ bot.use(responseTime);
 
 Complete, and works! :heavy_check_mark:
 
-Feel free to use this middleware on your bot, register more listeners, and play around with the example.
-It helps a lot to really understand what middleware is.
+Feel free to use this middleware on your bot object, register more listeners, and play around with the example.
+Doing so will help you to fully understand what middleware is.
 
 ::: danger DANGER: Always make sure to await next!
 If you ever call `next()` without the `await` keyword, several things will break:
 
 - :x: Your middleware stack will be executed in the wrong order.
 - :x: If an error happens, your error handler will not be called for it.
-  Instead, you will see that an `UnhandledPromiseRejectionWarning` will occur, which may crash the Node.js process
-- :x: The backpressure mechanism of [grammY runner](/plugins/runner.md) breaks, which protects your server from too high load, such as during load spikes.
-- :skull: Sometimes it also kills all your innocent kittens.
+  Instead, you will see that an `UnhandledPromiseRejectionWarning` will occur, which may crash your bot process
+- :x: The backpressure mechanism of [grammY runner](/plugins/runner.md) breaks, which protects your server from overly-high load, such as during load spikes.
+- :skull: Sometimes, it also kills all of your innocent kittens.
 
 :::
 
