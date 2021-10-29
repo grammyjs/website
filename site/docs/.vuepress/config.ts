@@ -413,7 +413,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/zh/advanced/middleware.md",
                   },
                   {
-                    text: "I: 巨量的代码",
+                    text: "I: 代码组织",
                     link: "/zh/advanced/structuring.md",
                   },
                   {
