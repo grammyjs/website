@@ -3,9 +3,9 @@ prev: ./api.md
 next: ./commands.md
 ---
 
-# filter 参数与 `bot.on()`
+# Filter 参数与 `bot.on()`
 
-`bot.on()` 的第一个参数是一个叫做 _filter query_ 的字符串。
+`bot.on()` 的第一个参数是一个叫做 _filter 参数_ 的字符串。
 
 ## 简介
 
@@ -18,7 +18,7 @@ next: ./commands.md
 每个有效的 filter 都可以在你的代码编辑器中自动完成。
 因此，你可以简单地输入 `bot.on('')` ，打开自动完成，并通过输入一些东西来搜索所有的查询。
 
-![Filter 参数查询](/zh/filter-query-search.png)
+![Filter 参数查询](/filter-query-search.png)
 
 `bot.on()` 的类型推理将理解你挑选的 filter。
 因此，它在上下文中浓缩了一些已知存在的类型。
