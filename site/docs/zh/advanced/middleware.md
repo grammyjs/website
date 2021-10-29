@@ -5,7 +5,7 @@ next: ./structuring.md
 
 # 重构中间件
 
-在指南中，[我们介绍了中间件](/guide/middleware.md) 作为一个函数栈。
+在指南中，[我们介绍了中间件](/zh/guide/middleware.md) 作为一个函数栈。
 
 你可以以线性方式去使用中间件（也可以在 grammY 中使用），而称它是一个栈也仅仅是一种简化。
 
@@ -36,7 +36,7 @@ bot.start();
 
 此外，你应该知道 `Composer` 的每个方法都会在内部调用 `use` 方法。
 
-举个栗子，`filter` 方法会在一些分支中间件中调用 `use` 方法，而 `on` 方法会再次调用 `filter` 方法，传入回调函数来根据给定的 [筛选条件]((/guide/filter-queries.md)) 去匹配更新。
+举个栗子，`filter` 方法会在一些分支中间件中调用 `use` 方法，而 `on` 方法会再次调用 `filter` 方法，传入回调函数来根据给定的 [筛选条件](/zh/guide/filter-queries.md) 去匹配更新。
 
 我们可以因此把注意力限制在 `use` 方法上，其余部分如下。
 
@@ -128,7 +128,7 @@ composer.filter(/* 1 */).filter(/* 2 */).use(/* A */);
 
 只有 `1` 的条件满足时 `2` 才会被检查， 并且 `A` 只有同时满足 `1` 和 `2` 的时候才会去运行。
 
-用你所学的新知识去重温一下这个章节 [结合过滤查询](/guide/filter-queries.md#combining-multiple-queries) 并且感受一下你所学到的新能力。
+用你所学的新知识去重温一下这个章节 [结合过滤查询](/zh/guide/filter-queries.md#组合多个查询) 并且感受一下你所学到的新能力。
 
 一个特殊的例子是 `fork`，它开启了两个并行的计算。交替在事件循环中。
 
