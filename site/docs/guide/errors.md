@@ -116,7 +116,7 @@ const composer = new Compser();
 composer.use(/* X */);
 composer.use(/* Y */);
 composer.use(/* Z */);
-bot.errorBoundary(boundaryHandler /* Q */).use(composer);
+bot.errorBoundary(boundaryHandler /* , Q */).use(composer);
 
 bot.use(/* C */);
 bot.use(/* D */);
