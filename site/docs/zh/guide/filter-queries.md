@@ -186,7 +186,7 @@ bot.on(":photo").on("::hashtag", (ctx) => {});
 
 ### 构建复杂的查询
 
-从技术上讲，如果 filter 查询是在 [CNF](https://en.wikipedia.org/wiki/Conjunctive_normal_form) 中进行的，就有可能将其与更复杂的公式相结合，尽管这可能不太有用。
+从技术上讲，如果 filter 查询是在 [CNF](https://zh.wikipedia.org/wiki/%E5%90%88%E5%8F%96%E8%8C%83%E5%BC%8F) 中进行的，就有可能将其与更复杂的公式相结合，尽管这可能不太有用。
 
 ```ts
 bot
