@@ -13,7 +13,7 @@ next: ./errors.md
 
 ## 中间件栈
 
-假设你写一个这样的 bot: 
+假设你写一个这样的 bot:
 
 ```ts
 const bot = new Bot("<token>");
