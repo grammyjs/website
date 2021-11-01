@@ -19,7 +19,7 @@ next: ./reliability.md
 
 这是操作的顺序：
 
-1. 通过 `getUpdates`  ([Telegram Bot API Reference](https://core.telegram.org/bots/api#getupdates)) 获取超过100个更新 。
+1. 通过 `getUpdates` ([Telegram Bot API Reference](https://core.telegram.org/bots/api#getupdates)) 获取超过100个更新 。
 2. 对于每一次更新， `等待` 中间件去堆栈。
 
 不过，如果你的 bot 在高负载期间每秒钟处理一条信息（或者在类似这样的场景下），这可能会对响应造成负面影响。
@@ -81,7 +81,7 @@ Telegram 将按顺序传送来自同一聊天的更新，但也同时并发传�
 5. Bot 开始处理消息 B
 6. Bot 从数据库中为 Alice 读 session 的数据
 7. Bot 完成处理消息 A ，并且写入新的 session 到数据库中。
-8. Bot  完成处理消息B， 并且写入新的 session到数据库中，并且覆盖掉在处理消息 A 期间执行的操作。
+8. Bot 完成处理消息B， 并且写入新的 session到数据库中，并且覆盖掉在处理消息 A 期间执行的操作。
    数据因为读后写而丢失掉了！
 
 > Note: 你可以尝试使用数据库事务对 session 进行处理 ，但你只能检测到风险而不能阻止它。
@@ -96,9 +96,9 @@ Telegram 将按顺序传送来自同一聊天的更新，但也同时并发传�
 
 因此，为了避免这些危险的竞态风险，我们必须确保访问相同的 session 数据的更新是按顺序的。
 
-grammY runner 中封装了 `sequentialize()`  中间件来确保发生冲突的更新可以被按顺序处理。
+grammY runner 中封装了 `sequentialize()` 中间件来确保发生冲突的更新可以被按顺序处理。
 
-你可以将其配置为与确定 session 密钥相同的功能  。
+你可以将其配置为与确定 session 密钥相同的功能 。
 
 它将通过减慢那些（也仅仅是那些）可能引起冲突的更新来避免上述所说的竞态。
 
@@ -184,6 +184,6 @@ run(bot);
 </CodeGroupItem>
 </CodeGroup>
 
-加入  [Telegram chat](https://t.me/grammjs) 自由的讨论怎样在你的 bot 中使用 grammY 。
+加入 [Telegram chat](https://t.me/grammjs) 自由的讨论怎样在你的 bot 中使用 grammY 。
 
-我们总是很高兴收到维护大型 bot 项目的朋友的来信，我们可以根据他们的经验来不断改进 grammY。  
+我们总是很高兴收到维护大型 bot 项目的朋友的来信，我们可以根据他们的经验来不断改进 grammY。
