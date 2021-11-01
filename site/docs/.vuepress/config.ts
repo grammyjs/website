@@ -464,7 +464,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/zh/plugins/session.md",
                   },
                   {
-                    text: "按键与内联式按键（内置）",
+                    text: "Keyboards 与 Inline Keyboards（内置）",
                     link: "/zh/plugins/keyboard.md",
                   },
                   {
