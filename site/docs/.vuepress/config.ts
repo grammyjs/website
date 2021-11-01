@@ -368,7 +368,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/zh/guide/api.md",
                   },
                   {
-                    text: "过滤式查询与 bot.on()",
+                    text: "Filter 查询与 bot.on()",
                     link: "/zh/guide/filter-queries.md",
                   },
                   {
