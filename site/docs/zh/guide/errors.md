@@ -6,7 +6,7 @@ next: ./inline-queries.md
 # 错误处理
 
 由中间件造成的每一个错误都会被 grammY 捕获。
-你应该安装一个专用的错误处理器去处理这些错误
+你应该安装一个专用的错误处理器去处理这些错误。
 
 最重要的是, 这个章节会教你 [如何处理抛出的错误](#错误捕捉)。
 
@@ -18,7 +18,7 @@ next: ./inline-queries.md
 | [`Grammy Errors`](#grammyerror-对象) | 当 Bot API 返回 `ok: false` 时抛出, 表示你的API请求是无效的或失败的 |
 | [`Http Errors`](#httperror-对象)     | 当 BOT API 服务器无法连接时抛出                            |
 
-更高级的错误处理机制 [链接](#error-边界).
+更高级的错误处理机制 [链接](#error-边界)。
 
 ## 错误捕捉
 
@@ -26,7 +26,7 @@ next: ./inline-queries.md
 
 ### 长轮询
 
-如果你运行 bot 通过 `bot.start()` 或者你使用 [grammY runner](/zh/plugins/runner.md)运行, 那么然后你应该**通过 `bot.catch` 安装一个错误处理器**.
+如果你运行 bot 通过 `bot.start()` 或者你使用 [grammY runner](/zh/plugins/runner.md)运行, 那么然后你应该**通过 `bot.catch` 安装一个错误处理器**。
 
 如果通过 `bot.start()` 启动， grammY 会安装一个默认的错误处理器。
 他会重新抛出错误，取决于接下来会在平台上发生什么。
