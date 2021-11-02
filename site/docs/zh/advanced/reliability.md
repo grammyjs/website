@@ -51,7 +51,7 @@ grammY 没有为你做这些工作，但是如果你认为其他人可以从中�
 
 不过，至少有一次处理是可以被保证的。
 
-如果你在并发模式使用 [grammY runner](/plugins/runner.md) ， 下一次的 `getUpdates` 调用可能会在你的中间件处理当前批处理的第一个更新之前执行。
+如果你在并发模式使用 [grammY runner](/zh/plugins/runner.md) ， 下一次的 `getUpdates` 调用可能会在你的中间件处理当前批处理的第一个更新之前执行。
 
 因此，更新偏移量被提前 [确认](https://core.telegram.org/bots/api#getupdates) 。
 
@@ -73,6 +73,6 @@ grammY 没有为你做这些工作，但是如果你认为其他人可以从中�
 
 如果你有问题或者你想尝试并分享你的进展，请 [联系 Telegram group](https://t.me/grammyjs) 。
 
-另一方面，如果你的 bot 出于高负载并且更新轮循由于 [自动加载限制](/plugins/runner.md#sink) 而减慢，那么再次获取更新的机会将会更加，这将导致再次重复发送消息。
+另一方面，如果你的 bot 出于高负载并且更新轮循由于 [自动加载限制](/zh/plugins/runner.md#sink) 而减慢，那么再次获取更新的机会将会更加，这将导致再次重复发送消息。
 
 因此，完全并发的代价是既不能保证 _至少一次处理，也不能保证_ 最多一次处理。
