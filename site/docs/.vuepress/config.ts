@@ -380,7 +380,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/zh/guide/middleware.md",
                   },
                   {
-                    text: "错误捕获",
+                    text: "错误处理",
                     link: "/zh/guide/errors.md",
                   },
                   {
