@@ -92,7 +92,6 @@ npx tsc --init
 上面我们已经提到，我们有两个选择来接收 Telegram 的数据，webhooks 和长轮询。
 你可以在 [这里](/zh/guide/deployment-types.md) 了解更多关于两者之间的优缺点，再决定使用哪一个。
 
-
 ## Webhooks
 
 > 如果你决定使用长轮询，你可以跳过本节，跳转到 [关于长轮询的章节](#长轮询)。:rocket:
@@ -133,7 +132,7 @@ app.listen(Number(process.env.PORT), async () => {
 让我们看一下上面的代码：
 
 - `process.env`：请记住，千万不要在我们的代码中存储凭证！
-   关于如何 [在 Heroku 中创建环境变量](https://www.freecodecamp.org/news/using-environment-variables-the-right-way/)，请前往 [这个指南](https://devcenter.heroku.com/articles/config-vars)。
+  关于如何 [在 Heroku 中创建环境变量](https://www.freecodecamp.org/news/using-environment-variables-the-right-way/)，请前往 [这个指南](https://devcenter.heroku.com/articles/config-vars)。
 - `secretPath`：它可以是我们的 `BOT_TOKEN` 或者任何随机字符串。最好的做法是按照 [Telegram 的解释](https://core.telegram.org/bots/api#setwebhook) 来隐藏我们的 bot 的路径。
 
 ::: tip ⚡ 优化（可选）
@@ -267,7 +266,7 @@ npx tsc
   <br> _Web dynos_ 是接收来自路由器和 HTTP 流量的 “web” 进程。
   这种类型的 dyno 在执行代码时有 30 秒的超时限制。
   另外，如果在 30 分钟内没有需要处理的请求，它就会休眠。
-  这种类型的 dyno 非常适合  _webhooks_。
+  这种类型的 dyno 非常适合 _webhooks_。
 
 - **Worker dynos**:
   <br> _Worker dynos_ 通常用于后台工作。
