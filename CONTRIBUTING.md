@@ -5,7 +5,10 @@
 You're free to edit the documentation in any way you like, and suggest the changes in a PR.
 If we merge it, they'll go live immediately.
 
-If you are planning on adding completely new pages, you may want to ask in [the group chat](https://t.me/grammyjs) if those changes are be welcome.
+If you are planning on adding completely new pages, you may want to ask in [the group chat](https://t.me/grammyjs) if those changes are welcome.
+
+Remember that you can edit a page directly in the browser by clicking the link at the bottom of each page.
+That makes it very easy to fix typos and other small things, as you don't even have to clone this repository.
 
 ## Translations
 
