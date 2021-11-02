@@ -10,7 +10,7 @@ next: ./scaling.md
 
 ## 可能有效的做法
 
-> grammY 这个库目前很年轻，而且暂时还没有提供任何跟DI容器相关的官方集成。
+> grammY 这个库目前很年轻，而且暂时还没有提供任何跟 DI 容器相关的官方集成。
 >
 > 你可以订阅 [@grammyjs_news](https://t.me/grammyjs_news) ，一旦我们支持之后就会通知你。
 
@@ -42,13 +42,9 @@ src/
     └── list.ts
 ```
 
-`item.ts` just defines some stuff about TODO items, and these code parts are used in `list.ts`.
-
 `item.ts` 只是用来定义一些关于 TODO 项内容的东西，里面的代码会在 `list.ts` 中使用。
 
 在 `list.ts` 中，你可以像下面这样做：
-
-In `list.ts`, you would then do something like this:
 
 ```ts
 export const lists = new Composer();
