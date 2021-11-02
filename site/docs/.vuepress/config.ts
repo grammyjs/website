@@ -527,7 +527,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                   {
                     text: "[等待你的 PR!]",
                     link:
-                      "/plugins/README.md#submitting-your-own-package-to-the-docs",
+                      "/zh/plugins/README.md#%E5%90%91%E6%96%87%E6%A1%A3%E6%8F%90%E4%BA%A4%E4%BD%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E6%8F%92%E4%BB%B6",
                   },
                 ],
               },
@@ -588,7 +588,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                 ],
               },
               {
-                text: "TODO translate Telegram",
+                text: "Telegram",
                 children: [
                   {
                     text: "面向开发者的介绍",
