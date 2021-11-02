@@ -7,7 +7,7 @@ next: ./flood.md
 
 如果你确保你的 bot 有正确的 [错误处理](/guide/errors.md) ，基本就可以运行了。
 
-所有可能发生的错误(失败的API调用、失败的网络请求、失败的数据库查询、失败的中间件，等等) 都被捕获。 
+所有可能发生的错误(失败的API调用、失败的网络请求、失败的数据库查询、失败的中间件，等等) 都被捕获。
 
 你应当确保总是去 `等待` 所有的 Promise， 或者如果你不想等待的事情，至少也要调用 `catch` 去捕获错误。
 
@@ -15,7 +15,7 @@ next: ./flood.md
 
 对于使用了长轮询的 bot，还有更多的事要去考虑。
 
-当你打算在某个操作期间再次停止你的实例，你应该去考虑捕获  `SIGTERM` 和 `SIGINT` 事件，并调用 `bot.stop` （长轮询内置的） 方法或者通过它的 [处理]((https://doc.deno.land/https/deno.land/x/grammy_runner/mod.ts#RunnerHandle)) （grammY runner）来停止你的 bot。
+当你打算在某个操作期间再次停止你的实例，你应该去考虑捕获 `SIGTERM` 和 `SIGINT` 事件，并调用 `bot.stop` （长轮询内置的） 方法或者通过它的 [处理]((https://doc.deno.land/https/deno.land/x/grammy_runner/mod.ts#RunnerHandle)) （grammY runner）来停止你的 bot。
 
 这就是基本的对可靠性所做的东西，你的实例现在将 :registered: 永远 :tm: 不会崩溃了。
 
@@ -25,13 +25,11 @@ next: ./flood.md
 
 如果因为一些原因，某人或者某事真的很难处理这过程，它将会变得更加复杂。
 
-本质上，bot 不能保证你的中间件只执行一次。  
+本质上，bot 不能保证你的中间件只执行一次。
 
 阅读一下 [GitHub上的这个讨论](https://github.com/tdlib/telegram-bot-api/issues/126) 去了解更多为什么你的 bot 在某些极端情况下会重复发送信息（或者根本不发送）。
 
 本章剩下的部分主要是详细解释 grammY 在这些不常见的情况下会怎样表现，并且怎样去处理这些情况。
-
-
 
 > 如果你只关心怎样去编写一个 Telegram bot 的代码？[跳过本章剩下的部分](/advanced/flood.md)。
 
@@ -49,7 +47,7 @@ grammY 没有为你做这些工作 ， 但是如果你认为某些人可能会�
 
 换句话说，你将不会错过任何的更新，不过，你可能会重新处理多达100个以前见过的更新。
 
-由于对 `sendMessage ` 的调用不是幂等的，用户可能会从你的 bot 收到重复的消息。
+由于对 `sendMessage` 的调用不是幂等的，用户可能会从你的 bot 收到重复的消息。
 
 不过，至少有一次处理是可以被保证的。
 
@@ -75,6 +73,6 @@ grammY 没有为你做这些工作 ， 但是如果你认为某些人可能会�
 
 如果你有问题或者你想尝试并分享你的进展，请 [联系 Telegram group](https://t.me/grammyjs) 。
 
-另一方面，如果你的 bot 出于高负载并且更新轮循由于 [自动加载限制 ](/plugins/runner.md#sink) 而减慢，那么再次获取更新的机会将会更加，这将导致再次重复发送消息。
+另一方面，如果你的 bot 出于高负载并且更新轮循由于 [自动加载限制](/plugins/runner.md#sink) 而减慢，那么再次获取更新的机会将会更加，这将导致再次重复发送消息。
 
 因此，完全并发的代价是既不能保证_至少一次处理，也不能保证_最多一次处理。
