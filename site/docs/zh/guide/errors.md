@@ -28,7 +28,7 @@ next: ./inline-queries.md
 
 ### 长轮询
 
-如果你运行 bot 通过 `bot.start()` 或者 你使用 [grammY runner](/plugins/runner.md)运行, 那么然后你应该**安装一个错误处理器通过 `bot.catch`**.
+如果你运行 bot 通过 `bot.start()` 或者你使用 [grammY runner](/zh/plugins/runner.md)运行, 那么然后你应该**安装一个错误处理器通过 `bot.catch`**.
 
 如果通过 `bot.start()` 启动， grammY 会安装一个默认的错误处理器。
 他会重新抛出错误，取决于接下来会在平台上发生什么
@@ -89,7 +89,7 @@ grammY 不会以任何方式触及抛出的错误，而是把它包装成一个 
 
 除非你的网络不可用了或者 你的 Bot API 服务器暂时下线了， 否则你很少能看到这种类型的错误。
 
-> 需要注意的是如果  Bot API 服务器能被链接，但是方法回调返回了 `ok: false`， 这时就会抛出[`GrammyError`](/guide/errors.md#GrammyError对象) 作为代替。
+> 需要注意的是如果  Bot API 服务器能被链接，但是方法回调返回了 `ok: false`， 这时就会抛出[`GrammyError`](/zh/guide/errors.md#GrammyError对象) 作为代替。
 
 了解 `HttpError` 类在 [grammY API 指南](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#HttpError).
 
