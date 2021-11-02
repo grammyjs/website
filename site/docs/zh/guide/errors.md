@@ -15,9 +15,9 @@ next: ./inline-queries.md
 
 | 名称                                | 用途                                                                 |
 | ----------------------------------- | -------------------------------------------------------------------- |
-| [`Bot Errors`](#BotError对象)       | 包含所有插件抛出的错误对象 (比如下面这两种错误)                      |
-| [`Grammy Errors`](#GrammyError对象) | 当 Bot API 返回 `ok: false` 时抛出,  表示你的API请求是无效的或失败的 |
-| [`Http Errors`](#HttpError对象)     | 当 BOT API 服务器无法连接时抛出                                      |
+| [`Bot Errors`](#BotError-对象)       | 包含所有插件抛出的错误对象 (比如下面这两种错误)                      |
+| [`Grammy Errors`](#GrammyError-对象) | 当 Bot API 返回 `ok: false` 时抛出,  表示你的API请求是无效的或失败的 |
+| [`Http Errors`](#HttpError-对象)     | 当 BOT API 服务器无法连接时抛出                                      |
 
 
 更高级的错误处理机制 [链接](#error-边界).
@@ -56,7 +56,7 @@ bot.catch((err) => {
 如果你通过网站机制来运行你的机器人， grammY 会传递错误到你所用的网络框架中， 例如`express`.
 你应该更加框架的习惯来处理错误
 
-##  BotError对象
+##  BotError 对象
 
 `BotError` 对象包含了一个抛出的有错误发生上下文内容的对象。
 
@@ -69,9 +69,9 @@ grammY 不会以任何方式触及抛出的错误，而是把它包装成一个 
 会给你一个名为 `err` 的对象， 你可以找到最根本的错误通过 `err.error`，
 同样，你可以到达相应的上下文对象通过 `err.ctx`。
 
-了解 `BotError` 类 在[grammY API 指引](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#BotError).
+了解 `BotError` 类在 [grammY API 指引](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#BotError).
 
-## GrammyError对象
+## GrammyError 对象
 
 如果一个 API 方法 像 `sendMessage` 失败了，grammY 会抛出一个 `GrammyError` 错误，
 同样需要注意的是如果一个 `GrammyError` 错误示例是被插件抛出，那么它同样会被封装成 `BotError` 对象。
@@ -81,7 +81,7 @@ grammY 不会以任何方式触及抛出的错误，而是把它包装成一个 
 
 了解 `GrammyError` 类在 [grammY API 指引](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#GrammyError)。
 
-## HttpError对象
+## HttpError 对象
 
 如果一个网络请求失败了，那么一个 `HttpError` 会被抛出，
 这意味着 grammY 不能连接到 Bot API 服务器。
