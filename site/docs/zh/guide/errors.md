@@ -8,17 +8,15 @@ next: ./inline-queries.md
 由中间件造成的每一个错误都会被 grammY 捕获。
 你应该安装一个专用的错误处理器去处理这些错误
 
-
 最重要的是, 这个章节会教你[如何处理抛出的错误](#错误捕捉).
 
 然后，我们会把你遇到的错误分为三个种类
 
-| 名称                                | 用途                                                                 |
-| ----------------------------------- | -------------------------------------------------------------------- |
-| [`Bot Errors`](#BotError-对象)       | 包含所有插件抛出的错误对象 (比如下面这两种错误)                      |
-| [`Grammy Errors`](#GrammyError-对象) | 当 Bot API 返回 `ok: false` 时抛出,  表示你的API请求是无效的或失败的 |
-| [`Http Errors`](#HttpError-对象)     | 当 BOT API 服务器无法连接时抛出                                      |
-
+| 名称                                 | 用途                                              |
+| ---------------------------------- | ----------------------------------------------- |
+| [`Bot Errors`](#BotError-对象)       | 包含所有插件抛出的错误对象 (比如下面这两种错误)                       |
+| [`Grammy Errors`](#GrammyError-对象) | 当 Bot API 返回 `ok: false` 时抛出, 表示你的API请求是无效的或失败的 |
+| [`Http Errors`](#HttpError-对象)     | 当 BOT API 服务器无法连接时抛出                            |
 
 更高级的错误处理机制 [链接](#error-边界).
 
@@ -56,7 +54,7 @@ bot.catch((err) => {
 如果你通过网站机制来运行你的机器人， grammY 会传递错误到你所用的网络框架中， 例如`express`.
 你应该更加框架的习惯来处理错误
 
-##  BotError 对象
+## BotError 对象
 
 `BotError` 对象包含了一个抛出的有错误发生上下文内容的对象。
 
@@ -89,7 +87,7 @@ grammY 不会以任何方式触及抛出的错误，而是把它包装成一个 
 
 除非你的网络不可用了或者 你的 Bot API 服务器暂时下线了， 否则你很少能看到这种类型的错误。
 
-> 需要注意的是如果  Bot API 服务器能被链接，但是方法回调返回了 `ok: false`， 这时就会抛出[`GrammyError`](/zh/guide/errors.md#GrammyError对象) 作为代替。
+> 需要注意的是如果 Bot API 服务器能被链接，但是方法回调返回了 `ok: false`， 这时就会抛出[`GrammyError`](/zh/guide/errors.md#GrammyError对象) 作为代替。
 
 了解 `HttpError` 类在 [grammY API 指南](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#HttpError).
 
