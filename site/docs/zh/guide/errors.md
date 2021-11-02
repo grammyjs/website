@@ -14,7 +14,7 @@ next: ./inline-queries.md
 
 | 名称                                 | 用途                                              |
 | ---------------------------------- | ----------------------------------------------- |
-| [`Bot Errors`](#boterror-对象)       | 包含所有插件抛出的错误对象（比如下面这两种错误）                       |
+| [`Bot Errors`](#boterror-对象)       | 包含所有插件抛出的错误对象（比如下面这两种错误）                        |
 | [`Grammy Errors`](#grammyerror-对象) | 当 Bot API 返回 `ok: false` 时抛出, 表示你的API请求是无效的或失败的 |
 | [`Http Errors`](#httperror-对象)     | 当 BOT API 服务器无法连接时抛出                            |
 
