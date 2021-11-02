@@ -3,7 +3,6 @@
     "options": { "proseWrap": "preserve" },
     "files": {
       "exclude": [
-        "./site/docs/zh/guide/basics.md",
         "./grammydocsbot/node_modules/",
         "./grammydocsbot/package-lock.json",
         "./site/node_modules/",
