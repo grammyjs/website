@@ -4,14 +4,14 @@
 
 你想在 [启用 Telegrams 隐私模式（默认）](https://core.telegram.org/bots#privacy-mode) 的情况下，保护用户的隐私，向用户发送他们所使用的语言的问题，并且不保存用户当前状态？
 
-这个插件想解决这个问题。
+这个插件想要解决这个问题。
 
 基本思路是在发送你的问题时，在结尾处添加一个 [特殊文本](https://en.wikipedia.org/wiki/Zero-width_non-joiner)。
 这个文本对用户来说是不可见的，但对你的 bot 来说仍然可见。
-当用户回复信息时，会检查这个信息。
+当用户回复消息时，会检查这个消息。
 如果它在结尾处含有这种特殊的文本，说明这条回复是对这个问题的回答。
 这样，你就可以像有翻译时那样，为同样的问题准备多个不同的特殊文本。
-你只需要确保 `uniqueIdentifier` 在你的 bot 中时唯一的。
+你只需要确保 `uniqueIdentifier` 在你的 bot 中是唯一的。
 
 ## 使用方法
 
@@ -21,7 +21,7 @@ import {StatelessQuestion} from '@grammyjs/stateless-question';
 const bot = new Bot(token);
 
 const unicornQuestion = new StatelessQuestion('unicorns', ctx => {
-	console.log('User thinks unicorns are doing:', ctx.message)
+    console.log('User thinks unicorns are doing:', ctx.message)
 })
 
 // 不要忘记使用中间件
