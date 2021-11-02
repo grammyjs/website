@@ -141,15 +141,15 @@ function errorHandler(err: BotError) {
 }
 ```
 
-在上面的例子里， `boundaryHandler` 错误处理器将被调用为了下面两种：
+在上面的例子里， `boundaryHandler` 错误处理器将在下面两种中间件中被调用：
 
 1. 在`bot.errorBoundary`（即 `Q` ）之后传递给 `boundaryHandler` 的所有中间件
 2. 安装在随后安装的 composer 实例（即 `X`, `Y`, 和 `Z`）上的所有中间件。
 
-> 关于 point 2，你可能想要跳转去中间件的[高级解释](/advanced/middleware.md)去学习如何链接中间件在 grammY 中
+> 关于 point 2，你可能想要跳转去中间件的[高级解释](/zh/advanced/middleware.md)去学习如何链接中间件在 grammY 中
 
-如果你还是想要你的错误穿越错误边界（到达边界外）， 你可以重新在你的错误处理器里面抛出这个错误。
+如果你还是想要你的错误穿越错误边界（到达边界外），你可以重新在你的错误处理器里面抛出这个错误。
 
 这个错误会被传递到下一个包围边界。
 
-在这种情景中， 你可以将通过 `bot.catch` 安装的错误处理器视为最外围的错误边界
+在这种情景中， 你可以将通过 `bot.catch` 安装的错误处理器视为最外围的错误边界。
