@@ -541,7 +541,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                 children: [
                   {
                     text: "示例 Bots 仓库",
-                    link: "/zh/ttps://github.com/grammyjs/examples",
+                    link: "https://github.com/grammyjs/examples",
                   },
                   {
                     text: "在线 Demo",
