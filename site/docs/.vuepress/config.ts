@@ -1,5 +1,5 @@
-import { defineUserConfig } from "vuepress";
-import type { DefaultThemeOptions } from "vuepress";
+import { defineUserConfig } from "vuepress-vite";
+import type { DefaultThemeOptions } from "vuepress-vite";
 
 export default defineUserConfig<DefaultThemeOptions>({
   title: "grammY",
@@ -527,7 +527,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                   {
                     text: "[等待你的 PR!]",
                     link:
-                      "/plugins/README.md#submitting-your-own-package-to-the-docs",
+                      "/zh/plugins/README.md#%E5%90%91%E6%96%87%E6%A1%A3%E6%8F%90%E4%BA%A4%E4%BD%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E6%8F%92%E4%BB%B6",
                   },
                 ],
               },
@@ -567,15 +567,15 @@ export default defineUserConfig<DefaultThemeOptions>({
                 children: [
                   {
                     text: "社区聊天",
-                    link: "/zh/ttps://t.me/grammyjs",
+                    link: "https://t.me/grammyjs",
                   },
                   {
                     text: "Awesome grammY",
-                    link: "/zh/ttps://github.com/grammyjs/awesome-grammY",
+                    link: "https://github.com/grammyjs/awesome-grammY",
                   },
                   {
                     text: "咨询",
-                    link: "/zh/ttps://t.me/grammyjs_news",
+                    link: "https://t.me/grammyjs_news",
                   },
                   {
                     text: "FAQ",
@@ -588,19 +588,19 @@ export default defineUserConfig<DefaultThemeOptions>({
                 ],
               },
               {
-                text: "TODO translate Telegram",
+                text: "Telegram",
                 children: [
                   {
                     text: "面向开发者的介绍",
-                    link: "/zh/ttps://core.telegram.org/bots",
+                    link: "https://core.telegram.org/bots",
                   },
                   {
                     text: "Bots FAQ",
-                    link: "/zh/ttps://core.telegram.org/bots/faq",
+                    link: "https://core.telegram.org/bots/faq",
                   },
                   {
                     text: "Bot API 概览",
-                    link: "/zh/ttps://core.telegram.org/bots/api",
+                    link: "https://core.telegram.org/bots/api",
                   },
                 ],
               },
