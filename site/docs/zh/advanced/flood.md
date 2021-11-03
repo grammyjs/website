@@ -5,7 +5,7 @@ next: ./transformers.md
 
 # 关注点四：流量限制
 
-Telegram 对你的 bot 每秒钟能发送多少条信息进行了限制， 详见 [Bot FAQ](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this) 。
+Telegram 对你的 bot 每秒钟能发送多少条信息进行了限制，详见 [Bot FAQ](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this) 。
 
 你应当总是确保在限制线之下，否则你的 bot 会达到速率限制。
 
