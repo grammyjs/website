@@ -18,7 +18,7 @@ prev: ./proxy.md
 ## 发送消息
 
 1. 通过 path 或 `Buffer` 发送文件而不是通过 stream流，或者至少确保你 [了解这些风险](./transformers.md#use-cases-of-transformer-functions)。
-2. 使用 `bot.on('callback_query:data')` 作为回调处理 [响应所有回调查询](/plugins/keyboard.md#responding-to-clicks)
+2. 使用 `bot.on('callback_query:data')` 作为回调处理 [响应所有回调查询](/zh/plugins/keyboard.md#响应点击)。
 
 3. 使用 [`transformer-throttler` 插件](/zh/plugins/transformer-throttler.md) 去避免到达速率限制。
 
@@ -30,7 +30,7 @@ prev: ./proxy.md
 
 1. [使用 grammY runner](/zh/plugins/runner.md)
 
-2. [使用相同的 session 密钥处理函数作为 session 中间件来进行 `sequentialize`](./scaling.md#concurrency-is-hard)
+2. [使用相同的 session 密钥处理函数作为 session 中间件来进行 `sequentialize`](./scaling.md#并发是困难的)
 
 3. 通过 `run` （[参考API](https://doc.deno.land/https/deno.land/x/grammy_runner/mod)）方法的配置选项并确保它们适合你的需求，或者甚至可以考虑用外部的资源和插槽来组成你自己的 runner 。
 
@@ -42,7 +42,7 @@ prev: ./proxy.md
 
 ### Webhooks
 
-1. 如果你对你的 session 调整过 `getSessionKey` 选项，[使用相同的 session 密钥处理函数作为 session 中间件来进行 `sequentialize`](./scaling.md#concurrency-is-hard)。
+1. 如果你对你的 session 调整过 `getSessionKey` 选项，[使用相同的 session 密钥处理函数作为 session 中间件来进行 `sequentialize`](./scaling.md#并发是困难的)。
 
 2. 让你自己熟悉 `webhookCallback` （[API参考](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#webhookCallback)）的配置。
 3. 如果你在一个 serverless 或者 autoscaling 平台上运行，[设置 bot 信息](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#BotConfig) 来阻止过多的 `getMe` 调用。
@@ -50,7 +50,7 @@ prev: ./proxy.md
 
 ## Sessions
 
-1. 请考虑使用 [这里](/zh/plugins/session.md#lazy-sessions) 解释的 `lazySessions`。
+1. 请考虑使用 [这里](/zh/plugins/session.md#懒会话) 解释的 `lazySessions`。
 2. 使用 `storage` 选项去设置你的 storage（存储） 适配器，否则当 bot 进程关闭的时候所有的数据都将会丢失。
 
 ## 测试

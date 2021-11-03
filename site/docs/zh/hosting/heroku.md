@@ -240,7 +240,7 @@ bot.start();
 就是这样！
 我们已经准备好去部署它了。
 看起来是不是非常简单？:smiley:
-如果你觉得这太简单了，可以查看我们的 [部署检查表](/zh/advanced/deployment.md#long-polling)！:rocket:
+如果你觉得这太简单了，可以查看我们的 [部署清单](/zh/advanced/deployment.md#长轮询)！:rocket:
 
 ## 部署
 
