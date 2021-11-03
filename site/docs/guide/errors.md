@@ -22,14 +22,14 @@ A more advanced error handling mechanism can be found [down here](#error-boundar
 
 ## Catching Errors
 
-It depends on your setup how to catch errors.
+How you catch errors will depend on your setup.
 
 ### Long Polling
 
 If you run your bot via `bot.start()`, or if you are using [grammY runner](/plugins/runner.md), then you should **install an error handler via `bot.catch`**.
 
 grammY has a default error handler installed that stops the bot if it was started by `bot.start()`.
-It then rethrows the error.
+It then re-throws the error.
 It depends on the platform what will happen next.
 That is why **you should install an error handler via `bot.catch`**.
 
@@ -100,11 +100,11 @@ If you divide your code base into different parts, _error boundaries_ allow you 
 They achieve this by letting you fence errors in a part of your middleware.
 In other words, if an error is thrown in a specially protected part of middleware, it will not be able to escape from that part of the middleware system.
 Instead, a dedicated error handler is invoked, and the surrounded part of the middleware pretends to complete successfully.
-This is a feature of grammY's middleware system, so error boundaries don't care whether you're running your bot on webhooks or long polling.
+This is a feature of grammY's middleware system, so error boundaries don't care whether you're running your bot with webhooks or long polling.
 
-Optionally, you may chose to instead let the middleware execution _resume_ normally after the error was handled, continuing right outside the error boundary.
+Optionally, you may choose to instead let the middleware execution _resume_ normally after the error was handled, continuing right outside the error boundary.
 In that case, the fenced middleware does not only act as if it had completed successfully, but it also passes on the control flow to the next middleware that was installed after the error boundary.
-Thus, it looks like the middleware inside the error boundary had called `next`.
+Thus, it looks like the middleware inside the error boundary has called `next`.
 
 ```ts
 const bot = new Bot("");
@@ -144,7 +144,7 @@ In the above example, the `boundaryHandler` handler will be invoked for
 
 > Regarding point 2, you may want to skip ahead to [the advanced explanation](/advanced/middleware.md) of middleware to learn how chaining works in grammY.
 
-If you actively want the error to cross a boundary (that is, pass it outside), you can rethrow the error inside your error handler.
+If you actively want the error to cross a boundary (that is, pass it outside), you can re-throw the error inside your error handler.
 The error will then be passed to the next surrounding boundary.
 
 In a sense, you can regard the error handler installed via `bot.catch` as the outermost error boundary.
