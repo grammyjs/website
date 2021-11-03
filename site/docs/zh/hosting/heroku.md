@@ -3,7 +3,7 @@
 > 我们假设你有关于如何使用 grammY 创建 bot 的基本知识。
 > 如果你还没有准备好，不要犹豫，请查看我们十分友好的 [指南](/zh/guide) ！ :rocket:
 
-本教程将指导你如何通过 [webhooks](/zh/guide/deployment-types.md#webhooks) 或者 [长轮询](/zh/guide/deployment-types.md#long-polling) 将 Telegram bot 部署到 [Heroku](https://heroku.com/)。
+本教程将指导你如何通过 [webhooks](/zh/guide/deployment-types.md#webhooks) 或者 [长轮询](/zh/guide/deployment-types.md#长轮询) 将 Telegram bot 部署到 [Heroku](https://heroku.com/)。
 我们还假设你已经有了一个 Heroku 账户。
 
 ## 前提条件
@@ -11,7 +11,7 @@
 首先，安装一些依赖：
 
 ```bash
-# 创建一个项目目录
+# 创建项目目录
 mkdir grammy-bot
 cd grammy-bot
 npm init --y
@@ -26,7 +26,7 @@ npm install -D typescript @types/express @types/node
 npx tsc --init
 ```
 
-我们将 TypeScript 文件存放在 `src` 文件夹中，编译文件则放在 `dist` 文件夹中。
+我们将 TypeScript 文件放在 `src` 文件夹中，编译文件放在 `dist` 文件夹中。
 在项目的根目录下创建文件夹。
 然后，在 `src` 文件夹中创建一个名为 `bot.ts` 的新文件。
 现在，我们的文件夹目录结构应该是这样的：
@@ -89,7 +89,7 @@ npx tsc --init
 }
 ```
 
-上面我们已经提到，我们有两个选择来接收 Telegram 的数据，webhooks 和长轮询。
+上面我们提到了，我们有两个选择来接收 Telegram 的数据，webhooks 和长轮询。
 你可以在 [这里](/zh/guide/deployment-types.md) 了解更多关于两者之间的优缺点，再决定使用哪一个。
 
 ## Webhooks
@@ -139,7 +139,7 @@ app.listen(Number(process.env.PORT), async () => {
 第 14 行的 `bot.api.setWebhook` 将会在每次 Heroku 再次启动你的服务器时运行。
 对于低流量的 bot，每次请求都会触发。
 然而，我们并不需要在每次有请求时都运行这段代码。
-因此，我们可以完全删除这一部分，只手动执行一次 `GET`。
+因此，我们完全可以删除这一部分，只需要手动执行一次 `GET`。
 在部署我们的 bot 之后，在你的浏览器上打开这个链接：
 
 ```asciiart:no-line-numbers
@@ -147,7 +147,7 @@ https://api.telegram.org/bot<bot_token>/setWebhook?url=<webhook_url>
 ```
 
 请注意，有些浏览器要求你在传递 `webhook_url` 前手动 [编码](https://en.wikipedia.org/wiki/Percent-encoding#Reserved_characters)。
-例如，如果我的有 bot 令牌 `abcd:1234` 和网址 `https://grammybot.herokuapp.com/secret_path`，那么我们的链接应该看起来像这样：
+举个例子，如果我的有 bot 令牌 `abcd:1234` 和网址 `https://grammybot.herokuapp.com/secret_path`，那么我们的链接应该像这样：
 
 ```asciiart:no-line-numbers
 https://api.telegram.org/botabcd:1234/setWebhook?url=https%3A%2F%2Fgrammybot.herokuapp.com%2Fsecret_path
@@ -176,7 +176,7 @@ bot.on("message", (ctx) => ctx.reply("Got another message!"));
 很好！
 我们现在完成了主要部分的代码。
 但在我们进行部署之前，我们可以对我们的 bot 进行一点优化。
-像刚刚一样，这是可选的。
+和刚才一样，这是可选的。
 
 ::: tip ⚡ 优化（可选）
 每次你的服务器启动时，grammY 会向 Telegram 请求 [bot 的信息](https://core.telegram.org/bots/api#getme)，以便在 `ctx.me` 下的 [上下文对象](/zh/guide/context.md) 提供 bot 的信息。
@@ -214,9 +214,9 @@ export const bot = new Bot(`${process.env.BOT_TOKEN}`, {
 
 在你的服务器上使用长轮询并不总是一个坏主意。
 有些时候它适用于不需要快速响应和处理大量数据的数据收集 bot。
-如果你想每个小时运行一次，你可以很容易做到这一点。
+你可以通过长轮询的方式来每个小时运行一次来获取消息。
 这是你没办法用 webhook 控制的。
-如果你的 bot 被大量的消息淹没，你会看到大量的 webhook 请求，然而你可以使用长轮询来限制更新速度并且处理它们。
+如果你的 bot 收到大量的消息，你会看到大量的 webhook 请求，但是如果你使用的是长轮询，你可以限制更新速度再处理它们。
 
 ### 创建 `bot.ts`
 
@@ -244,7 +244,7 @@ bot.start();
 
 ## 部署
 
-不...我们的 _Rocket Bot_ 还没有准备好发射。
+等一下...我们的 _Rocket Bot_ 还没有准备好发射。
 请先完成下面这些步骤！
 
 ### 编译文件
@@ -263,7 +263,7 @@ npx tsc
 其中两个是：
 
 - **Web dynos**:
-  <br> _Web dynos_ 是接收来自路由器和 HTTP 流量的 “web” 进程。
+  <br> _Web dynos_ 是接收来自路由器的 HTTP 流量的 “web” 进程。
   这种类型的 dyno 在执行代码时有 30 秒的超时限制。
   另外，如果在 30 分钟内没有需要处理的请求，它就会休眠。
   这种类型的 dyno 非常适合 _webhooks_。
@@ -274,7 +274,7 @@ npx tsc
   它适合 _长轮询_。
 
 在项目根目录下创建没有扩展名的 `Procfile` 文件。
-例如，`Procfile.txt` 和 `procfile` 是无效的。
+也就是说，`Procfile.txt` 和 `procfile` 是无效的。
 然后以下面这个格式写入单行代码：
 
 ```
@@ -314,7 +314,7 @@ worker: node dist/bot.js
 git init
 ```
 
-接下来，我们需要避免不必要的文件上传到我们的生产服务器（在这篇教程里指的是 `Heroku`）。
+接下来，我们需要避免不必要的文件上传到我们的生产服务器（在这篇教程里生产服务器指的是 `Heroku`）。
 在项目的根目录下创建一个名为 `.gitignore` 的文件。
 然后添加下列内容：
 
