@@ -13,9 +13,9 @@ next: ./middleware.md
 - 如果你的代码变得非常复杂，请阅读 [第一章节](./structuring.md)
 - 如果你必须要处理大量消息时，请阅读 [第二章节](./scaling.md)
 - 如果你担心 bot 的可靠性，请阅读 [第三章节](./reliability.md)
-- 如果你达到了比例限制，即获得了 429 个报错，请阅读 [第四章节](./flood.md)
+- 如果你达到了速率限制，即获得了 429 个报错，请阅读 [第四章节](./flood.md)
 
-如果你需要实时拦截和转换 API 请求，grammY 给你提供了 [transformer函数](./transformers.md) 去进行该操作。
+如果你需要实时拦截和转换 API 请求，grammY 给你提供了 [transformer 函数](./transformers.md) 去进行该操作。
 
 grammY 同样支持 [代理](./proxy.md)。
 

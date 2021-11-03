@@ -425,7 +425,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/zh/advanced/reliability.md",
                   },
                   {
-                    text: "IV: 极限控制",
+                    text: "IV: 流量限制",
                     link: "/zh/advanced/flood.md",
                   },
                   {
