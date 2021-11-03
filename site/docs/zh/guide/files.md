@@ -25,7 +25,7 @@ Telegram 服务器上的文件由 `文件id` 标识，它是一个长字符串�
 当一个机器人**发送**一条消息，它可以指定一个以前用过的 `file_id`。
 这就会发送那个被识别到的文件。
 (你也可以上传你自己的文件, [滚动](#发送文件) 去查看如何实现.)
-你可以非常频繁的重用同样的 `file_id` ，从而你可以发送同样的文件到五个不同的聊天室通过同样的 `file_id`。
+你可以非常频繁的重用同样的 `file_id`，从而你可以发送同样的文件到五个不同的聊天室通过同样的 `file_id`。
 保证你使用了正确的对应的方法实例，你不可以用一个识别图片的 `file_id` 来调用[`sendVideo`](https://core.telegram.org/bots/api#sendvideo)。
 
 每一个机器人都有它独立的 `file_id` 集合，集合包含了所有它自己能触达到的文件。
@@ -34,7 +34,7 @@ Telegram 服务器上的文件由 `文件id` 标识，它是一个长字符串�
 
 另一方面，同一个文件被定义为不同的 `file_id` 即使在同一个机器人身上的情况也是会发生的。
 这意味你不能通过可靠的比较他们的 `file_id` 来辨别他们两个文件是否一致。
-因此如果你需要在一定时间内跨机器人比较你的两个文件是否相同，你需要使用 随每一个 `file_id` 一起接收的 `file_unique_id`。
+因此如果你需要在一定时间内跨机器人比较你的两个文件是否相同，你需要使用随每一个 `file_id` 一起接收的 `file_unique_id`。
 `file_unique_id` 不能用于下载文件。
 
 ## 接收文件
@@ -59,7 +59,7 @@ bot.on("message:voice", async (ctx) => {
 ```
 
 ::: 提示将 file_id 传递去 `getFile` 方法
-上下文对象中的 `getFile` 是一个[快捷方式](/guide/context.md#shortcuts)，它可以在当前的消息中给你文件。
+对象中的 `getFile` 是一个[快捷方式](/guide/context.md#shortcuts)，它可以在当前的消息中下载文件。
 如果你想要在处理消息的时候拿到另一个文件 - 使用 `ctx.api.getFile(file_id)`。
 :::
 
@@ -124,7 +124,7 @@ grammY 本身可以发送没有大小限制的文件，然而 Telegram 重新规
 一个文件类型有着更加严格的限制，比如图片。
 
 如果你想要同时支持上传和下载超过 2000 MB 的文件(最大的文件大小在 Telegram)，除了机器人程序之外，您还必须托管自己的Bot API服务器。
-请参阅有关此问题的官方文档[链接](https://core.telegram.org/bots/api#using-a-local-bot-api-server).
+请参阅有关此问题的官方文档[链接](https://core.telegram.org/bots/api#using-a-local-bot-api-server)。
 
 托管一个 Bot API 服务器与 grammY 无关。
 然而，grammY支持在配置bot以使用它时需要调用的所有必要方法。
