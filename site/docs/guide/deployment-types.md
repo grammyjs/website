@@ -319,7 +319,7 @@ This means that you can handle the error in your web framework.
 If you don't have that error handling, Telegram will still send the same update again—but at least you have error logs now that tell you that something is wrong.
 
 Note that that the update handling will probably not be much faster the second time the update is processed.
-As a reuslt, it will timeout once again, sending the update once again.
+As a result, it will timeout once again, sending the update once again.
 Thus, your bot will not just see the update two times, but a few dozen times, until Telegram stops retrying.
 You will observe that your bot starts spamming users because it tries to handle all those updates (that are in fact the same every time).
 
