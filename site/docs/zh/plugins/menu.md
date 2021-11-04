@@ -4,6 +4,6 @@
 
 ## 插件概述
 
-- 名字: `menu`
-- 源码: <https://github.com/grammyjs/menu>
-- 参考: tbd
+- 名字：`menu`
+- 源码：<https://github.com/grammyjs/menu>
+- 参考：tbd

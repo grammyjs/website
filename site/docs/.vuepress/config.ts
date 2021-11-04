@@ -484,7 +484,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/zh/plugins/hydrate.md",
                   },
                   {
-                    text: "可重试的 API 请求 (auto-retry)",
+                    text: "重试 API 请求 (auto-retry)",
                     link: "/zh/plugins/auto-retry.md",
                   },
                   {
