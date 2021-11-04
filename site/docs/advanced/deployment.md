@@ -12,7 +12,7 @@ Here is a list of things that you may want to keep in mind when hosting a large 
 ## Errors
 
 1. [Install an error handler with `bot.catch` (long polling) or on your web framework (webhooks).](/guide/errors.md)
-2. Use `await` on all promises, and installed **linting** tools that make sure you cannot forget this.
+2. Use `await` on all promises and install **linting**, with rules that enforce this, so that you never forget.
 
 ## Message Sending
 
@@ -38,10 +38,10 @@ This depends on your deployment type.
 ### Webhooks
 
 1. Make sure you do not perform any long-running operations in your middleware, such as large file transfers.
-   This leads to timeout errors for the webhooks, and duplicate update processing because Telegram re-sends the updates.
-   Consider using a third-party task queue instead.
+   This leads to timeout errors for the webhooks, and duplicate update processing as Telegram will re-send non-acknowledged updates.
+   Consider using a task queuing system instead.
 2. Make yourself familiar with the configuration of `webhookCallback` [API refenece](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#webhookCallback).
-3. If you adjusted the `getSessionKey` option for your session, [use `sequentialize` with the same session key resolver function as your session middleware.](./scaling.md#concurrency-is-hard)
+3. If you adjusted the `getSessionKey` option for your session, [use `sequentialize` with the same session key resolver function as your session middleware](./scaling.md#concurrency-is-hard).
 4. If you are running on a serverless or autoscaling platform, [set the bot information](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#BotConfig) to prevent excessive `getMe` calls.
 5. Consider using [webhook replies](/guide/deployment-types.html#webhook-reply).
 
@@ -62,5 +62,5 @@ This can be done with grammY like so:
 ::: tip Contribute a testing framework
 While grammY provides the necessary hooks to start writing tests, it would be very helpful to have a testing framework for bots.
 This is novel territory, such testing frameworks largely do not exist.
-We are looking forward to your contribution!
+We look forward to your contributions!
 :::
