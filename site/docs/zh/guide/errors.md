@@ -29,7 +29,7 @@ next: ./inline-queries.md
 如果你运行 bot 通过 `bot.start()` 或者你使用 [grammY runner](/zh/plugins/runner.md)运行, 那么然后你应该**通过 `bot.catch` 安装一个错误处理器**。
 
 如果通过 `bot.start()` 启动， grammY 会安装一个默认的错误处理器。
-他会重新抛出错误，取决于接下来会在平台上发生什么。
+你的设置会决定程序如何捕捉错误。
 这就是为什么 **你要应该要通过 `bot.catch` 安装一个错误处理器**。
 
 示例:
