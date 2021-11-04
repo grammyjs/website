@@ -36,10 +36,13 @@ This depends on your deployment type.
 
 ### Webhooks
 
-1. If you adjusted the `getSessionKey` option for your session, [use `sequentialize` with the same session key resolver function as your session middleware.](./scaling.md#concurrency-is-hard)
+1. Make sure you do not perform any long-running operations in your middleware, such as large file transfers.
+   [This leads to timeout errors](/guide/deployment-types.html#ending-webhook-requests-in-time) for the webhooks, and duplicate update processing because Telegram re-sends the updates.
+   Consider using a third-party task queue instead.
 2. Make yourself familiar with the configuration of `webhookCallback` [API refenece](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#webhookCallback).
 3. If you are running on a serverless or autoscaling platform, [set the bot information](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#BotConfig) to prevent excessive `getMe` calls.
-4. Consider using [webhook replies](/guide/deployment-types.html#webhook-reply).
+4. If you adjusted the `getSessionKey` option for your session, [use `sequentialize` with the same session key resolver function as your session middleware.](./scaling.md#concurrency-is-hard)
+5. Consider using [webhook replies](/guide/deployment-types.html#webhook-reply).
 
 ## Sessions
 

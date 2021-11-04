@@ -161,7 +161,7 @@ Places where webhooks work well include:
 
 Then go for long polling.
 If you don't have a good reason to use webhooks, then note that there are no major drawbacks to long polling, and—according to our experience—you will spend much less time fixing things.
-Webhooks can be a bit nasty from time to time.
+Webhooks can be a bit nasty from time to time (see [below](#ending-webhook-requests-in-time)).
 
 Whatever you choose, if you ever run into serious problems, it should not be too hard to switch to the other deployment type after the fact.
 With grammY, you only have to touch a few lines of code.
@@ -257,3 +257,130 @@ const bot = new Bot(token, {
   },
 });
 ```
+
+This is how webhook replies work under the hood.
+
+```asciiart:no-line-numbers
+______________                                   _____________
+|            |                                   |           |
+|            |                                   |           |
+|            |                                   |           |
+|            |         *both waiting*            |           |
+|            |                                   |           |
+|  Telegram  |                                   |    Bot    |
+|            |                                   |           |
+|            |                                   |           |
+|            |    ---  hi, new message   --->    |           |
+|            | <--- okay, and sendChatAction --- |           |
+|____________|                                   |___________|
+```
+
+### Ending Webhook Requests in Time
+
+> You can ignore the rest of this page if all your middleware completes fast, i.e. within a few seconds.
+> This section is for example for people who want to do file transfers or other operations that need more time.
+
+When Telegram sends an update from one chat to your bot, it will wait for you to end the request before delivering the next update that belongs to that chat.
+In other words, Telegram will deliver updates from the same chat in sequence, and updates from different chats are sent concurrently.
+(The source of this information is [here](https://github.com/tdlib/telegram-bot-api/issues/75#issuecomment-755436496).)
+
+Telegram tries to make sure that your bot receives all updates.
+That means that if an update delivery fails for a chat, the subsequent updates will be queued until the first update succeeds.
+
+#### Why Not Ending a Webhook Request Is Dangerous
+
+Telegram has a timeout when sending an update to your webhook endpoint.
+If don't end a webhook request early enough, Telegram will resend the corresponding update, assuming it could not be delivered.
+As a result, your bot will process the same update multiple times.
+This means that it will perform all update handling twice, send all messages twice, and do everything else twice.
+
+```asciiart:no-line-numbers
+______________                                   _____________
+|            |                                   |           |
+|            | ---    hi, new message    --->    |           |
+|            |                              .    |           |
+|            |        *bot processing*      .    |           |
+|            |                              .    |           |
+|  Telegram  | --- I said new message!!! --->    |    Bot    |
+|            |                              ..   |           |
+|            |    *bot processing twice*    ..   |           |
+|            |                              ..   |           |
+|            | ---      HEEELLLOOOO      --->    |           |
+|            |                              ...  |           |
+|            |   *bot processing thrice*    ...  |           |
+|____________|                              ...  |___________|
+```
+
+This is why grammY has its own, shorter timeout inside `webhookCallback` (default: 10 seconds).
+If your middleware finishes before that, the function `webhookCallback` will respond to the webhook automatically.
+In that case, everything is fine.
+However, if your middleware does not finish before grammY's timeout, `webhookCallback` will throw an error.
+This means that you can handle the error in your web framework.
+If you don't have that error handling, Telegram will still send the same update again—but at least you have error logs now that tell you that something is wrong.
+
+Note that that the update handling will probably not be much faster the second time the update is processed.
+As a reuslt, it will timeout once again, sending the update once again.
+Thus, your bot will not just see the update two times, but a few dozen times, until Telegram stops retrying.
+You will observe that your bot starts spamming users because it tries to handle all those updates (that are in fact the same every time).
+
+#### Why Ending a Webhook Request Early Is Also Dangerous
+
+You can configure `webhookCallback` to not throw an error after the timeout, but to simply end the webhook request early, even though the middleware is still running.
+You can do this by passing `'return'` as a third argument to `webhookCallback`, instead of the default value `'throw'`.
+However, while this behavior has its valid use cases, such a solution usually causes more problems than it solves.
+
+Remember that once you respond to the webhook request, Telegram will send the next update for the same chat.
+However, if your old update is still processing, that means that suddenly two updates are processed in parallel that were processed sequentially before.
+This is going to lead to race conditions.
+For example, the session plugin will break inevitably due to WAR hazards.
+**This causes data loss!**
+Other plugins and even your own middleware may break, too.
+The extent of this is unknown and depends on your bot.
+
+#### How to Solve This Problem
+
+This answer is very simple to say, but it can be hard to implement.
+**It is your job to make sure that your middleware finishes early enough.**
+Don't use long-running middleware.
+Yes, we know that you perhaps want to have long-running tasks.
+Still.
+Don't do it.
+Not in your middleware.
+
+Instead, take a queue (there are plenty of queuing systems out there, from very simple to very sophisticated).
+Instead of performing all the work in the small timeout window, just append the task to the queue, and let your middleware complete.
+The queue can use all the time it wants.
+When it's done, it can send a message back to the chat.
+This is straightforward to do if you just use a simple in-memory queue.
+It can be a little more challenging if you're using fault-tolerant external queuing systems that persist the state of all tasks and retry things even if your server suddenly dies.
+
+```asciiart:no-line-numbers
+______________                                   _____________
+|            |                                   |           |
+|            |   ---   hi, new message    --->   |           |
+|            |  <---     thanks dude      ---.   |           |
+|            |                               .   |           |
+|            |                               .   |           |
+|  Telegram  |     *bot queue working*       .   |    Bot    |
+|            |                               .   |           |
+|            |                               .   |           |
+|            |  <--- message with result  ---    |           |
+|            |   ---       alrighty       --->   |           |
+|____________|                                   |___________|
+```
+
+#### Why `'return'` Generally Is Worse Than `'throw'`
+
+You may be wondering why the default action of `webhookCallback` is to throw an error, instead of ending the request successfully.
+This design choice has the following reasons.
+
+Race conditions are very hard to reproduce and may occur extremely rarely.
+The solution to all of this is to _make sure not to run into timeouts_ in the first place.
+But if you do, you should really want to know that this is happening, and investigate the problem!
+For that reason, you want the error to occur in your logs.
+Setting the timeout handler to `'return'`, hence suppressing the timeout, and pretending like nothing happened, is exactly the opposite of what should happen.
+
+If you do this, you're in some sense using the update queue in Telegram's webhook delivery as your task queue.
+This is a bad idea for all the reasons described above.
+Just because grammY _can_ suppress errors that make you lose your data, does not mean you _should_ use it.
+This configuration setting is not meant for the cases where your middleware takes too much time to complete.
