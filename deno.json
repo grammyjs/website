@@ -7,8 +7,9 @@
         "./grammydocsbot/node_modules/",
         "./grammydocsbot/package-lock.json",
         "./site/node_modules/",
-        "./site/docs/.vuepress/dist/",
+        "./site/docs/.vuepress/.cache/",
         "./site/docs/.vuepress/.temp/",
+        "./site/docs/.vuepress/dist/",
         "./site/package-lock.json"
       ]
     }

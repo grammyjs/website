@@ -30,7 +30,7 @@ prev: ./proxy.md
 
 1. [使用 grammY runner](/zh/plugins/runner.md)
 
-2. [使用相同的 session 密钥处理函数作为 session 中间件来进行 `sequentialize`](./scaling.md#concurrency-is-hard)
+2. [使用相同的 session 密钥处理函数作为 session 中间件来进行 `sequentialize`](./scaling.md#并发是困难的)
 
 3. 通过 `run` （[参考API](https://doc.deno.land/https/deno.land/x/grammy_runner/mod)）方法的配置选项并确保它们适合你的需求，或者甚至可以考虑用外部的资源和插槽来组成你自己的 runner 。
 
@@ -60,7 +60,7 @@ prev: ./proxy.md
 
 ## Sessions
 
-1. 请考虑使用 [这里](/zh/plugins/session.md#lazy-sessions) 解释的 `lazySessions`。
+1. 请考虑使用 [这里](/zh/plugins/session.md#懒会话) 解释的 `lazySessions`。
 2. 使用 `storage` 选项去设置你的 storage（存储） 适配器，否则当 bot 进程关闭的时候所有的数据都将会丢失。
 
 ## 测试
