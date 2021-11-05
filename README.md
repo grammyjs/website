@@ -38,7 +38,7 @@ deno fmt --config deno.json
 In the `site/` directory, you can also run
 
 ```bash
-npm run fmt
+npm run docs:fmt
 ```
 
 to perform the formatting. Note that you still need to have Deno installed.
