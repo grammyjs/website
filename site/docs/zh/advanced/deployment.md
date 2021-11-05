@@ -12,7 +12,7 @@ prev: ./proxy.md
 
 ## 错误
 
-1. [安装一个错误处理器 `bot.catch`（长轮询）或者在你的 web 框架（webhooks）中](/zh/guide/errors.md)。
+1. [使用 `bot.catch`在长轮询或者 webhooks 中安装错误处理器](/zh/guide/errors.md)。
 2. 使用 `await` 去等待所有的 Promise，并且安装 **lint** 工具去确保你不会忘记做这件事。
 
 ## 发送消息
@@ -34,7 +34,7 @@ prev: ./proxy.md
 
 3. 通过 `run` （[参考API](https://doc.deno.land/https/deno.land/x/grammy_runner/mod)）方法的配置选项并确保它们适合你的需求，或者甚至可以考虑用外部的资源和插槽来组成你自己的 runner 。
 
-   主要考虑的事情就是你想给你的服务器应用的最大负载，例如会有多少更新会在同一时间内被处理。
+   主要考虑的事情就是你想给你的服务器应用的最大负载，例如会有多少 update 会在同一时间内被处理。
 
 4. 当你想要结束你的 bot 的时候（或者切换版本的时候），为了优雅去停用你的 bot 可以考虑监听 `SIGINT` 和 `SIGTERM` 事件。
 
@@ -46,7 +46,7 @@ prev: ./proxy.md
 
 1. 确保你没有在你的中间件中执行任何长时间的操作，例如大文件的转换。
 
-   这将导致 webhooks 的超时错误，并且 Telegram 将会重复发送未确认的更新处理。
+   这将导致 webhooks 的超时错误，并且 Telegram 将会重复发送未确认的 update。
 
    考虑用任何队列来代替。
 
@@ -70,7 +70,7 @@ prev: ./proxy.md
 可以使用 grammY 像这样做：
 
 1. 对外部的 API 请求使用 [transformer 函数](./transformers.md) 来进行Mock。
-2. 通过 `bot.handleUpdate` （参考API）定义并发送一些测试更新对象到你的 bot 。考虑从 Telegram 团队提供的 [这些更新对象](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates) 来获取一些灵感。
+2. 通过 `bot.handleUpdate` （参考API）定义并发送一些测试 update 对象到你的 bot 。考虑从 Telegram 团队提供的 [这些 update 对象](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates) 来获取一些灵感。
 
 ::: tip 贡献测试框架
 
