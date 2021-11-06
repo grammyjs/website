@@ -94,7 +94,7 @@ You can learn more about the both advantages and then decide which ones is suita
 
 ## Webhooks
 
-> If you decide to use long polling instead, you can skip this section and jump down to the [section about long lolling](#long-polling). :rocket:
+> If you decide to use long polling instead, you can skip this section and jump down to the [section about long polling](#long-polling). :rocket:
 
 In short, unlike long polling, webhook do not run continuously for checking incoming messages from Telegram.
 This will reduce server load and save us a lot of [dyno hours](https://devcenter.heroku.com/articles/free-dyno-hours), especially when you are using the free tier. :grin:
