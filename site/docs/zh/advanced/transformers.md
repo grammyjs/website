@@ -12,13 +12,13 @@ grammY 为你提供了和中间件相反的功能。
 transformer 是一个可以处理输出的数据的函数，例如：
 
 - 一个用来调用 Bot API 的方法名
-- 一个可以匹配方法的载荷对象
+- 一个可以匹配方法的 payload 对象
 
 你接收 `prev` 作为使用上游 transformer 函数的第一个参数，而不是 将 `next` 作为调用下游中间件的最后一个参数。
 
 查看 `Transformer` （[grammY API 参考](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Transformer)）的类型签名，我们可以看见是如何映射的。
 
-注意 `Payload<M, R>` 指的是载荷对象必须匹配给定的方法，并且 `ApiResponse<ApiCallResult<M, R>>` 是调用方法的返回类型。
+注意 `Payload<M, R>` 指的是 payload 对象必须匹配给定的方法，并且 `ApiResponse<ApiCallResult<M, R>>` 是调用方法的返回类型。
 
 最后调用的 transformer 函数是一个内置的调用者，它可以对某些字段进行 JSON 序列化，并在最后调用 `fetch`。
 
@@ -70,7 +70,7 @@ bot.on("message", (ctx) => {
 
 Transformer 函数像中间件一样灵活，并且他们也有很多不同的应用。
 
-例如，[grammY munu 插件]((/zh/plugins/menu.md)) 使用了一个 transformer 函数来将 menu 实例转换成一个正确的载荷。
+例如，[grammY munu 插件]((/zh/plugins/menu.md)) 使用了一个 transformer 函数来将 menu 实例转换成一个正确的 payload 。
 
 你也可以用它们来
 
