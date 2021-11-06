@@ -70,7 +70,7 @@ bot.on("message", (ctx) => {
 
 Transformer 函数像中间件一样灵活，并且他们也有很多不同的应用。
 
-例如，[grammY munu 插件]((/zh/plugins/menu.md)) 使用了一个 transformer 函数来将 menu 实例转换成一个正确的 payload 。
+例如，[grammY menu 插件]((/zh/plugins/menu.md)) 使用了一个 transformer 函数来将 menu 实例转换成一个正确的 payload 。
 
 你也可以用它们来
 
