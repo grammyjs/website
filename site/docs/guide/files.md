@@ -59,7 +59,7 @@ bot.on("message:voice", async (ctx) => {
 });
 ```
 
-::: tip Passing file_id to `getFile`
+::: tip Passing file_id to getFile
 On context object `getFile` is [a shortcut](/guide/context.md#shortcuts) that will get you a file from current message.
 If you want to get another file while handling a message - use `ctx.api.getFile(file_id)`.
 :::
@@ -69,7 +69,7 @@ If you want to get another file while handling a message - use `ctx.api.getFile(
 You can use the file path to know where on the Telegram Bot API servers your file resides.
 You can then download it again using the URL `https://api.telegram.org/file/bot<token>/<file_path>` where `<token>` must be replaced by your bot token, and `<file_path>` must be replaced by the file path.
 
-::: tip Files plugin
+::: tip Files Plugin
 grammY does not ship its own file downloader, but you can install it using [the official files plugin](/plugins/files.md).
 It allows you to download files via `await file.download()`, and to obtain their URL via `file.getUrl()`.
 :::
@@ -113,7 +113,7 @@ grammY will automatically convert all file formats to `Uint8Array` objects inter
 All you need to remember is: **create an instance of `InputFile` and pass it to any method to send a file**.
 Instances of `InputFile` can be passed to all methods that accept sending files by upload.
 
-::: warning InputFile constructor types
+::: warning InputFile Constructor Types
 Note that the [grammY API Reference](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#InputFile) for `InputFile` lists only the types that are available on Deno.
 If you use grammY on Node.js, check out the respective type definition or implementation, or trust TypeScript.
 :::

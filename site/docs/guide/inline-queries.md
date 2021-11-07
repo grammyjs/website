@@ -8,7 +8,7 @@ next: ./files.md
 With inline queries, users can search for, browse, and send content suggested by your bot in any chat, even if it is not a member there.
 To do this, they start a message with `@your_bot_name` and choose one of the results.
 
-::: tip Enable inline mode
+::: tip Enable Inline Mode
 By default, support for inline mode is disabled. You must contact [@BotFather](https://t.me/BotFather) and enable inline mode for your bot, to start receiving inline queries.
 :::
 

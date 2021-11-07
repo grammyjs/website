@@ -27,7 +27,7 @@ It is automatically generated from the code and contains detailed descriptions a
 You can see it as a complete collection of all of the useful “tooltip explanations”, normally found by hovering your cursor over any element of grammY in a code editor.
 Some central topics of grammY have brief outlines in the API Reference too.
 
-::: tip Join the community!
+::: tip Join the Community!
 We have a friendly [community chat](https://t.me/grammyjs) on Telegram that welcomes all new members.
 Join us to get assistance, ask questions, and learn tips and tricks for your next bot project.
 :::

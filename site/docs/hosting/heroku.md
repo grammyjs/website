@@ -135,7 +135,7 @@ Let's take a look at our code above:
   For creating [Environment Variables in Heroku](https://www.freecodecamp.org/news/using-environment-variables-the-right-way/), head over to [this guide](https://devcenter.heroku.com/articles/config-vars).
 - `secretPath`: It could be our `BOT_TOKEN` or any random string. It is best practice to hide our bot path as [explained by Telegram](https://core.telegram.org/bots/api#setwebhook).
 
-::: tip ⚡ Optimization (optional)
+::: tip ⚡ Optimization (Optional)
 `bot.api.setWebhook` at line 14 will always run when Heroku starts your server again.
 For low traffic bots, this will be for every request.
 However, we do not need this code to run everytime a request is coming.
@@ -155,7 +155,7 @@ https://api.telegram.org/botabcd:1234/setWebhook?url=https%3A%2F%2Fgrammybot.her
 
 :::
 
-::: tip ⚡ Optimization (optional)
+::: tip ⚡ Optimization (Optional)
 Use [Webhook Reply](/guide/deployment-types.html#webhook-reply) for more efficiency.
 :::
 
@@ -178,7 +178,7 @@ We have now finished coding our main files.
 But before we go to the deployment steps, we can optimize our bot a little bit.
 As usual, this is optional.
 
-::: tip ⚡ Optimization (optional)
+::: tip ⚡ Optimization (Optional)
 Every time your server starts up, grammY will request [information about the bot](https://core.telegram.org/bots/api#getme) from Telegram in order to provide it on the [context object](/guide/context.md) under `ctx.me`.
 We can set the [bot information](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#BotConfig) to prevent excessive `getMe` calls.
 
@@ -205,7 +205,7 @@ Straight to [Deployment Section](#deployment) everyone! :muscle:
 
 ## Long Polling
 
-::: warning Your script will run continuously when using long polling.
+::: warning Your Script Will Run Continuously When Using Long Polling
 Unless you know how to handle this behavior, make sure you have enough [dyno hours](https://devcenter.heroku.com/articles/free-dyno-hours).
 :::
 

@@ -125,7 +125,7 @@ Neat! :tada:
 Under the hood, the context _already knows its chat identifier_ (namely `ctx.msg.chat.id`), so it gives you the `reply` method to just send a message back to the same chat.
 Internally, `reply` again calls `sendMessage` with the chat identifier pre-filled for you.
 
-::: tip Telegram reply feature
+::: tip Telegram Reply Feature
 Even though the method is called `ctx.reply` in grammY (and many other frameworks), it does not use the reply feature of Telegram where a previous message is linked.
 
 If you look up what `sendMessage` can do in the [Telegram Bot API Reference](https://core.telegram.org/bots/api#sendmessage), you will see a number of options, such as `parse_mode`, `disable_web_page_preview`, and `reply_to_message_id`.

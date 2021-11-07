@@ -420,7 +420,7 @@ function getDays(month: number, day: number) {
 </CodeGroupItem>
 </CodeGroup>
 
-::: tip Breaking up the code
+::: tip Breaking Up the Code
 If you feel like your code gets too complex, you can split it across several files.
 You can read more about how to scale your codebase in [this advanced section](/advanced/structuring.md).
 :::

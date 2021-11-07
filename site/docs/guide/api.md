@@ -23,7 +23,7 @@ This server will translate the request to Telegram's native protocol called MTPr
 
 Analogously, whenever a user responds, the inverse path is taken.
 
-::: tip Circumventing file size limits
+::: tip Circumventing File Size Limits
 The Telegram backend allows your bot to [send files](./files.md) up to 2000 MB.
 However, the Bot API server that is responsible for translating the requests to HTTP restricts the file size to 50 MB for downloads and 20 MB for uploads.
 
