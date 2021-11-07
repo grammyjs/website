@@ -35,7 +35,7 @@ bot.command("start", async (ctx) => {
   await ctx.reply("Check out this menu:", { reply_markup: menu });
 });
 
-bot.start()
+bot.start();
 ```
 
 </CodeGroupItem>
@@ -61,7 +61,7 @@ bot.command("start", async (ctx) => {
   await ctx.reply("Check out this menu:", { reply_markup: menu });
 });
 
-bot.start()
+bot.start();
 ```
 
 </CodeGroupItem>
@@ -87,7 +87,7 @@ bot.command("start", async (ctx) => {
   await ctx.reply("Check out this menu:", { reply_markup: menu });
 });
 
-bot.start()
+bot.start();
 ```
 
 </CodeGroupItem>
