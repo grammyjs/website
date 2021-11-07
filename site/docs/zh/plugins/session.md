@@ -267,3 +267,11 @@ bot.command("reset", (ctx) => {
 - Redis: <https://github.com/Satont/grammy-redis-storage>
 - TypeORM (Node.js-only): <https://github.com/Satont/grammy-typeorm-storage>
 - Submit your own by editing this page!
+
+## 插件概述
+
+这个插件是内置在 grammY 的核心中的。
+你不需要安装任何东西来使用它。
+只需要导入 grammY 即可。
+
+并且，这个插件的文档和 API 参考都与核心包一致。
