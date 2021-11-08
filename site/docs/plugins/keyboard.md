@@ -90,7 +90,7 @@ Specify an empty inline keyboard to remove all buttons underneath a message.
 ::: tip Menu Plugin
 The keyboard plugin gives you raw access to the update objects that Telegram is sending.
 However, responding to clicks that way can be tedious.
-If you are looking for a more high-level implementation of inline keybaords, check out [the menu plugin](./menu.md).
+If you are looking for a more high-level implementation of inline keyboards, check out [the menu plugin](./menu.md).
 It makes it simple to create interactive menus.
 :::
 
