@@ -253,7 +253,7 @@ Instead of using `submenu` and `back` buttons to navigate between pages, you can
 This function takes the menu identifier string, and will perform navigation lazily.
 Analogously, backwards navigation works via `ctx.menu.back()`.
 
-Next, you need to link the menu instances by registering one at the other.
+Next, you need to link the menus by registering them to one another.
 Registering a menu to another implies their hierarchy. The menu that is being registered to is the parent, and the registered menu is the child.
 Below, `main` is the parent of `settings`, unless a different parent is explicitly defined.
 The parent menu is used when backwards navigation is performed.
