@@ -18,7 +18,7 @@ bot.on("message", (ctx) => {
 });
 ```
 
-However, there are a number of other options too.
+However, there are a number of other options, too.
 
 ```ts
 // Handles commands, such as /start

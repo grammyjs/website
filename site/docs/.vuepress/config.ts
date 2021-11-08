@@ -429,7 +429,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/zh/advanced/flood.md",
                   },
                   {
-                    text: "可定制的 Bot API",
+                    text: "Bot API Transformers",
                     link: "/zh/advanced/transformers.md",
                   },
                   {
