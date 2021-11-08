@@ -1,3 +1,9 @@
-# [command-filter.md](/plugins/command-filter.md)
+# 指令过滤（`command-filter`）
 
-期待你的翻译，我们需要一份中文翻译让文档更好。
+即将推出，请稍后再来。
+
+## 插件概述
+
+- 名字：`command-filter`
+- 源码：tbd
+- 参考：tbd

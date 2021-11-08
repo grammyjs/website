@@ -285,3 +285,11 @@ await ctx.reply(text, {
 Next to `remove_keyboard`, you can again set `selective: true` in order to
 remove the keyboard for selected users only. This works analogously to
 [selectively sending a keyboard](#selectively-send-keyboard).
+
+## Plugin Summary
+
+This plugin is built-in into the core of grammY.
+You don't need to install anything to use it.
+Simply import everything from grammY itself.
+
+Also, both the documentation and the API reference of this plugin are unified with the core package.

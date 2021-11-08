@@ -1,3 +1,8 @@
-# [examples.md](/demo/examples.md)
+---
+prev: ./
+next: ./showlounge.md
+---
 
-期待你的翻译，我们需要一份中文翻译让文档更好。
+# 示例 Bots
+
+即将推出，请稍后再来。

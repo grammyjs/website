@@ -425,11 +425,11 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/zh/advanced/reliability.md",
                   },
                   {
-                    text: "IV: 极限控制",
+                    text: "IV: 流量限制",
                     link: "/zh/advanced/flood.md",
                   },
                   {
-                    text: "可定制的 Bot API",
+                    text: "Bot API Transformers",
                     link: "/zh/advanced/transformers.md",
                   },
                   {
@@ -484,7 +484,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/zh/plugins/hydrate.md",
                   },
                   {
-                    text: "可重试的 API 请求 (auto-retry)",
+                    text: "重试 API 请求 (auto-retry)",
                     link: "/zh/plugins/auto-retry.md",
                   },
                   {
@@ -541,7 +541,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                 children: [
                   {
                     text: "示例 Bots 仓库",
-                    link: "/zh/ttps://github.com/grammyjs/examples",
+                    link: "https://github.com/grammyjs/examples",
                   },
                   {
                     text: "在线 Demo",

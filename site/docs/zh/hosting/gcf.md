@@ -1,3 +1,3 @@
-# [gcf.md](/hosting/gcf.md)
+# 托管：Google Cloud Functions
 
-期待你的翻译，我们需要一份中文翻译让文档更好。
+即将推出，请稍后再来。
