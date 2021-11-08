@@ -175,7 +175,7 @@ Complete, and works! :heavy_check_mark:
 Feel free to use this middleware on your bot object, register more listeners, and play around with the example.
 Doing so will help you to fully understand what middleware is.
 
-::: danger DANGER: Always make sure to await next!
+::: danger DANGER: Always Make Sure to await next!
 If you ever call `next()` without the `await` keyword, several things will break:
 
 - :x: Your middleware stack will be executed in the wrong order.
