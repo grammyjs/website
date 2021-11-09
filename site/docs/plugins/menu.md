@@ -298,7 +298,7 @@ const menu = new Menu("pun-intended")
 
 bot.use(menu);
 bot.command("menu", async (ctx) => {
-  await ctx.reply("You summoned a demenu!", { reply_markup: menu });
+  await ctx.reply("I created a menu!", { reply_markup: menu });
 });
 ```
 
