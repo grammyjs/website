@@ -492,7 +492,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/zh/plugins/transformer-throttler.md",
                   },
                   {
-                    text: "用户守卫 (ratelimiter)",
+                    text: "限制用户速率 (ratelimiter)",
                     link: "/zh/plugins/ratelimiter.md",
                   },
                   {
