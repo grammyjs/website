@@ -488,11 +488,11 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/zh/plugins/auto-retry.md",
                   },
                   {
-                    text: "顶峰控制 (transformer-throttler)",
+                    text: "流量控制 (transformer-throttler)",
                     link: "/zh/plugins/transformer-throttler.md",
                   },
                   {
-                    text: "用户守卫 (ratelimiter)",
+                    text: "限制用户速率 (ratelimiter)",
                     link: "/zh/plugins/ratelimiter.md",
                   },
                   {

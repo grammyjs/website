@@ -29,7 +29,7 @@ Telegram supports sending targeted commands to bots, i.e. commands that end with
 grammY handles this automatically for you, so `bot.command('start')` will match messages with `/start` and with `/start@your_bot_name` as commands.
 You can choose to match only targeted commands by specifying `bot.command('start@your_bot_name')`.
 
-::: tip Suggest commands to users
+::: tip Suggest Commands to Users
 You can call
 
 ```ts

@@ -1,4 +1,4 @@
-# Hydration Plugin for grammY
+# Hydration Plugin for grammY (`hydrate`)
 
 This plugin installs useful methods on two types of objects, namely
 

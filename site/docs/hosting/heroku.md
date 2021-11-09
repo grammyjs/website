@@ -205,7 +205,7 @@ Straight to [Deployment Section](#deployment) everyone! :muscle:
 
 ## Long Polling
 
-::: warning Your script will run continuously when using long polling.
+::: warning Your Script Will Run Continuously When Using Long Polling
 Unless you know how to handle this behavior, make sure you have enough [dyno hours](https://devcenter.heroku.com/articles/free-dyno-hours).
 :::
 

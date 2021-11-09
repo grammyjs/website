@@ -163,7 +163,7 @@ This is convenient when you develop your bot or if you run automatic tests (no d
 In production, you should use the `storage` option of the session middleware to connect it to your datastore.
 There may already be storage adapter written for grammY that you can use (see below), but if not, it usually only takes 5 lines of code to implement one yourself.
 
-::: warning Session keys and webhooks
+::: warning Session Keys and Webhooks
 When you are running your bot on webhooks, you should avoid using the option `getSessionKey`.
 
 If you need to use the option (which is totally possible), and if the function you pass does not depend on `ctx.chat.id` in some way, you should first make sure you understand the consequences of that by reading [this](/guide/deployment-types.md) article and also [this](/plugins/runner.md) one.
@@ -243,7 +243,7 @@ bot.command("reset", (ctx) => {
 
 One may argue well that explicitly using `await` is preferable over assigning a promise to `ctx.session`, the point is that you _could_ do this if you like that style better for some reason.
 
-::: tip Plugins that need sessions
+::: tip Plugins That Need Sessions
 Plugin developers that make use of `ctx.session` should always allow users to pass `SessionFlavor | LazySessionFlavor` and hence support both modi.
 In the plugin code, simply await `ctx.session` all the time: if a non-promise object is passed, this will simply be evaluated to itself, so you effectively only write code for lazy sessions and thus support strict sessions automatically.
 :::

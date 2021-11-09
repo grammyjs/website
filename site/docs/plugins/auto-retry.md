@@ -6,7 +6,7 @@ This plugin is an [API transformer function](/advanced/transformers.md), which m
 More specifically, this plugin will automatically detect if an API requests fails with a `retry_after` value. i.e. because of rate limiting.
 It will then catch the error, wait the specified period of time, and then retry the request.
 
-::: warning Be gentle with the Bot API server
+::: warning Be Gentle With the Bot Api Server
 Telegram is generously providing information about how long your bot must wait before the next request.
 Using the `auto-retry` plugin will allow your bot to perform better during load spikes, as the requests will not simply fail because of the flood limit.
 However, **auto-retry should not be used** if you want to avoid hitting rate limits on a regular basis.

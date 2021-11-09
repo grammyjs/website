@@ -59,7 +59,7 @@ This can be done with grammY like so:
 2. Define and send sample update objects to your bot via `bot.handleUpdate` (API reference).
    Consider to take some inspiration from [these update objects](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates) provided by the Telegram team.
 
-::: tip Contribute a testing framework
+::: tip Contribute a Testing Framework
 While grammY provides the necessary hooks to start writing tests, it would be very helpful to have a testing framework for bots.
 This is novel territory, such testing frameworks largely do not exist.
 We look forward to your contributions!

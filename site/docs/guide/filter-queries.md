@@ -132,7 +132,7 @@ bot.on("message:new_chat_members:is_bot"); // a bot joined the chat
 bot.on("message:left_chat_member:me"); // your bot left a chat (was removed)
 ```
 
-::: tip Filter by user properties
+::: tip Filter by User Properties
 
 If you want to filter by other properties of a user, you need to perform an additional request, e.g. `await ctx.getAuthor()` for the author of the message.
 Filter queries will not secretly perform further API requests for you.
