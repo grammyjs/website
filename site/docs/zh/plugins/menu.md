@@ -299,7 +299,7 @@ const menu = new Menu("pun-intended")
 
 bot.use(menu);
 bot.command("menu", async (ctx) => {
-  await ctx.reply("You summoned a demenu!", { reply_markup: menu });
+  await ctx.reply("I created a menu!", { reply_markup: menu });
 });
 ```
 
@@ -324,7 +324,7 @@ Payloads 也能和动态范围一起使用。
 `MenuRange` 为你提供了菜单的所有功能，但是它没有标识符，并且不能被注册。
 
 ```ts
-function getRandomInt(min: number, max: number) {
+function getRandomInt(minInclusive: number, maxExclusive: number) {
   return min + Math.floor(Math.random() * (max - min));
 }
 
@@ -333,7 +333,7 @@ const menu = new Menu("random");
 
 menu.dynamic((_ctx) => {
   const range = new MenuRange();
-  const buttonCount = getRandomInt(2, 10);
+  const buttonCount = getRandomInt(2, 9); // 2-8 buttons
   for (let i = 0; i < buttonCount; i++) {
     range
       .text(i.toString(), (ctx) => ctx.reply(`${i} selected`))
