@@ -323,7 +323,7 @@ The easiest way to create a dynamic range is by using the `MenuRange` class that
 A `MenuRange` provides you with exactly the same functions as a menu, but it does not have an identifier, and it cannot be registered.
 
 ```ts
-function getRandomInt(min: number, max: number) {
+function getRandomInt(minInclusive: number, maxExclusive: number) {
   return min + Math.floor(Math.random() * (max - min));
 }
 
@@ -332,7 +332,7 @@ const menu = new Menu("random");
 
 menu.dynamic((_ctx) => {
   const range = new MenuRange();
-  const buttonCount = getRandomInt(2, 10);
+  const buttonCount = getRandomInt(2, 9); // 2-8 buttons
   for (let i = 0; i < buttonCount; i++) {
     range
       .text(i.toString(), (ctx) => ctx.reply(`${i} selected`))
