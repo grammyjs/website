@@ -152,7 +152,7 @@ new InputFile({ url: "https://grammy.dev/Y.png" }); // equivalent
 
 // send blobs
 const blob = new Blob("ABC", { type: "text/plain" });
-new InputFile(blob)
+new InputFile(blob);
 // send buffers and byte arrays
 const buffer = Uint8Array.from([65, 66, 67]);
 new InputFile(buffer); // "ABC"
