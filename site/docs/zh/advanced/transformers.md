@@ -87,11 +87,11 @@ Transformer 函数像中间件一样灵活，并且他们也有很多不同的�
 
 ## API 风格
 
-grammY 具有 [上下文风格](/zh/guide/context.md#context-flavors) 可以用于调整上下文类型
+grammY 具有 [上下文调味剂](/zh/guide/context.md#上下文调味剂) 可以用于调整上下文类型
 
 这包括 API 方法 — 包括那些直接包含在上下文对象中的像 `ctx.reply` ，并且在 `ctx.api` 和 `ctx.api.raw` 中的方法。
 
-不过你不能通过上下文风格来调整 `bot.api` 和 `bot.api.raw` 的类型。
+不过你不能通过上下文调味剂来调整 `bot.api` 和 `bot.api.raw` 的类型。
 
 这是为什么 grammY 支持 API 风格
 
@@ -101,26 +101,26 @@ grammY 具有 [上下文风格](/zh/guide/context.md#context-flavors) 可以用�
 import { Api, Bot, Context } from "grammy";
 import { SomeApiFlavor, someContextFlavor, somePlugin } from "some-plugin";
 
-// Context 风格
+// 调味上下文
 type MyContext = Context & SomeContextFlavor;
-// API 风格
+// 调味 API
 type MyApi = Api & SomeApiFlavor;
 
-// 同时使用两个风格
+// 同时使用两个调味剂
 const bot = new Bot<MyContext, MyApi>("my-token");
 
 // 使用插件
 bot.api.config.use(somePlugin());
 
-// 现在用从 API 风格调整过的类型调用 `bot.api`
+// 现在用从 API 调味剂调整过的类型调用 `bot.api`
 bot.api.somePluginMethod();
 
-// 还可以使用根据上下文风格调整的上下文类型
+// 还可以使用根据上下文调味剂调整的上下文类型
 bot.on("message", (ctx) => ctx.api.somePluginMethod());
 ```
 
-API风格与上下文风格的工作方式完全相似。
+API 调味剂与上下文调味剂的工作方式完全相似。
 
-这里有附加的和变革性的 API 风格，可以像处理上下文风格一样组合多个 API 风格。
+这里有附加的和变革性的 API 调味剂，可以像处理上下文调味剂一样组合多个 API 调味剂。
 
-如果你还不太清楚这是如何工作的，去查看这里面的指导信息 [关于上下文风格的小节](/zh/guide/context.md#context-flavors) 。
+如果你还不太清楚这是如何工作的，去查看这里面的指导信息 [关于上下文调味剂的小节](/zh/guide/context.md#上下文调味剂) 。
