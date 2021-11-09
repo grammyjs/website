@@ -220,7 +220,7 @@ This is called _lazy updating_.
 If you edit the message itself later on, the plugin can simply use the same API call to also update the buttons.
 This is very efficient, and ensures that both the message and the keyboard are updated at the same time.
 
-Naturally, if you called `ctx.menu.update()` but you never perform any edits to the message, the menu plugin makes sure to update your buttons before you middleware completes.
+Naturally, if you call `ctx.menu.update()` but you never request any edits to the message, the menu plugin will update the keyboard by itself, before your middleware completes.
 
 You can force the menu to update immediately with `await ctx.menu.update({ immediate: true })`.
 Note that `ctx.menu.update()` will then return a promise, so you need to use `await`!
