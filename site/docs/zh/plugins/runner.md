@@ -160,6 +160,6 @@ grammY runner 将在运行时自动解决所有必要的约束，并在必要时
 
 ## 插件概述
 
-- 名字: `runner`
-- 源码: <https://github.com/grammyjs/runner>
-- 参考: <https://doc.deno.land/https/deno.land/x/grammy_runner/mod.ts>
+- 名字：`runner`
+- 源码：<https://github.com/grammyjs/runner>
+- 参考：<https://doc.deno.land/https/deno.land/x/grammy_runner/mod.ts>
