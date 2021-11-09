@@ -309,8 +309,8 @@ Payloads also work well together with dynamic ranges.
 So far, we've only seen how to change the text on a button dynamically.
 You can also dynamically adjust the structure of a menu in order to add and remove buttons on the fly.
 
-::: danger Never Change a Menu During Message Handling
-You cannot create or change menus your during message handling.
+::: danger Changing a Menu During Message Handling
+You cannot create or change your menus during message handling.
 All menus must be fully created and registered before your bot starts.
 
 Adding new menus while your bot is running would cause a memory leak.
