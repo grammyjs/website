@@ -8,10 +8,8 @@ rateLimiter is a rate-limiting middleware for Telegram bots made with GrammY or 
 
 Under normal circumstances every request will be processed and answered by your bot which means spamming it will not be that difficult. Each user might send multiple requests per second and your script has to process each request, but how can you stop it? with rateLimiter!
 
-::: warning rate-limiting users, not Telegram servers!
-
+::: warning Rate-Limiting Users, Not Telegram Servers!
 You should note that this package **DOES NOT** rate limit the incoming requests from telegram servers, instead, it tracks the incoming requests by `from.id` and dismisses them on arrival so no further processing load is added to your servers.
-
 :::
 
 ## Customizability

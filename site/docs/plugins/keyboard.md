@@ -117,7 +117,7 @@ bot.callbackQuery("click-payload", async (ctx) => {
 });
 ```
 
-::: tip Answering all callback queries
+::: tip Answering All Callback Queries
 `bot.callbackQuery()` is useful to listen for click events of specific buttons.
 You can use `bot.on('callback_query:data')` to listen for events of any button.
 

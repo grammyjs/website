@@ -118,7 +118,7 @@ Done! :tada:
 
 Head over to Telegram to watch your bot respond to messages!
 
-::: tip Enabling logging
+::: tip Enabling Logging
 You can enable basic logging by running
 
 ```bash
@@ -174,7 +174,7 @@ Done! :tada:
 
 Head over to Telegram to watch your bot respond to messages!
 
-::: tip Enabling logging
+::: tip Enabling Logging
 You can enable basic logging by running
 
 ```bash

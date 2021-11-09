@@ -9,9 +9,9 @@ In other words, it does not use any code of competing projects, but it will stil
 
 ## Comparison With Other JavaScript Frameworks
 
-::: tip Choose your programming language first
+::: tip Choose Your Programming Language First
 Given that you're reading the docs of a framework within the JavaScript ecosystem, you are likely looking for something to run on Node.js (or Deno).
-However, if that's not you, scroll down for a comparison of what programming languages are suited for bot development.
+However, if that's not you, [scroll down](#comparison-with-frameworks-in-other-programming-languages) for a comparison of what programming languages are suited for bot development.
 Naturally, you will also find a brief comparison against frameworks of other languages (mainly Python).
 :::
 
