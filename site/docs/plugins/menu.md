@@ -385,7 +385,7 @@ You would have to use so many API calls for this that Telegram would rate-limit 
 You would also require a lot of storage to remember all of the message identifiers of every menu, across all chats.
 This is not practical.
 
-The solution to this is to check if a menu is outdated before performing any actions.
+The solution, is to check if a menu is outdated _before_ performing any actions.
 This way, we will only update old menus if a user actually starts clicking the buttons on them.
 The menu plugin handles this automatically for you, so you don't need to worry about it.
 
