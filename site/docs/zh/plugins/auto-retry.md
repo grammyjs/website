@@ -1,4 +1,4 @@
-# 重试 API 请求 (`auto-retry`)
+# 重试 API 请求（`auto-retry`）
 
 > 请考虑使用 [流量控制插件](./transformer-throttler.md) 替代。
 
