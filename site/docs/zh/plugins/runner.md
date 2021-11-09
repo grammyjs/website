@@ -20,7 +20,7 @@
 而是使用 [grammY runner](https://github.com/grammyjs/runner)。
 它有自己的 [API 参考](https://doc.deno.land/https/deno.land/x/grammy_runner/mod.ts)。
 
-## 使用
+## 使用方法
 
 这里是一个简单的例子。
 
