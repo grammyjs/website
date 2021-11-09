@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-explicit-any
 import express from "express";
 import algoliasearch from "algoliasearch";
 import { Bot, InlineKeyboard, webhookCallback } from "grammy";
