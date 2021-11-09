@@ -344,7 +344,7 @@ menu.dynamic((_ctx) => {
 menu.text("Generate New", (ctx) => ctx.menu.update());
 ```
 
-The range builder function that you pass to `dynamic` may be `async`, so you can even perform API calls or do database communication.
+The range builder function that you pass to `dynamic` may be `async`, so you can even perform API calls or do database communication before returning your new menu range.
 
 Moreover, the range builder function takes a context object as the first argument.
 (This is unused in the example above).
