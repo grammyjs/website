@@ -521,13 +521,13 @@ export default defineUserConfig<DefaultThemeOptions>({
                 text: "第三方",
                 children: [
                   {
-                    text: "Console time",
+                    text: "调试时输出日志",
                     link: "/zh/plugins/console-time.md",
                   },
                   {
                     text: "[等待你的 PR!]",
                     link:
-                      "/zh/plugins/README.md#%E5%90%91%E6%96%87%E6%A1%A3%E6%8F%90%E4%BA%A4%E4%BD%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E6%8F%92%E4%BB%B6",
+                      "/zh/plugins/README.md#向文档提交你自己的插件",
                   },
                 ],
               },
