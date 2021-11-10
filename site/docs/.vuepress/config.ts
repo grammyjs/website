@@ -526,8 +526,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                   },
                   {
                     text: "[等待你的 PR!]",
-                    link:
-                      "/zh/plugins/README.md#向文档提交你自己的插件",
+                    link: "/zh/plugins/README.md#向文档提交你自己的插件",
                   },
                 ],
               },
