@@ -71,9 +71,7 @@ bot.command("birthday", async (ctx) => {
   } else {
     // 缺少信息，进入路由器的表单
     ctx.session.step = "day";
-    await ctx.reply(
-"请把你生日的日期以数字形式发送给我～",
-    );
+    await ctx.reply("请把你生日的日期以数字形式发送给我～");
   }
 });
 
@@ -113,9 +111,7 @@ router.route("month", async (ctx) => {
 
   const month = months.indexOf(ctx.msg?.text ?? "");
   if (month === -1) {
-    await ctx.reply(
-"啊哦，月份好像无效捏，请使用按钮发送～",
-    );
+    await ctx.reply("啊哦，月份好像无效捏，请使用按钮发送～");
     return;
   }
 
@@ -189,9 +185,7 @@ bot.command("birthday", async (ctx) => {
   } else {
     // 缺少信息，进入路由器的表单
     ctx.session.step = "day";
-    await ctx.reply(
-"请把你生日的日期以数字形式发送给我～",
-    );
+    await ctx.reply("请把你生日的日期以数字形式发送给我～");
   }
 });
 
@@ -231,9 +225,7 @@ router.route("month", async (ctx) => {
 
   const month = months.indexOf(ctx.msg?.text ?? "");
   if (month === -1) {
-    await ctx.reply(
-"啊哦，月份好像无效捏，请使用按钮发送～",
-    );
+    await ctx.reply("啊哦，月份好像无效捏，请使用按钮发送～");
     return;
   }
 
@@ -320,9 +312,7 @@ bot.command("birthday", async (ctx) => {
   } else {
     // 缺少信息，进入路由器的表单
     ctx.session.step = "day";
-    await ctx.reply(
-"请把你生日的日期以数字形式发送给我～",
-    );
+    await ctx.reply("请把你生日的日期以数字形式发送给我～");
   }
 });
 
@@ -362,9 +352,7 @@ router.route("month", async (ctx) => {
 
   const month = months.indexOf(ctx.msg?.text ?? "");
   if (month === -1) {
-    await ctx.reply(
-"啊哦，月份好像无效捏，请使用按钮发送～",
-    );
+    await ctx.reply("啊哦，月份好像无效捏，请使用按钮发送～");
     return;
   }
 
