@@ -423,7 +423,6 @@ const menu2 = new Menu("id", { onMenuOutdated: false });
 有可能会出现这种情况，你的菜单可能会改变，但是上面的所有东西都会保持不变。
 通常不会出现这种情况，但是如果你创建了一个这样的菜单，你应该使用一个指纹函数。
 
-
 ```ts
 function ident(ctx: Context): string {
   // 返回一个字符串，当你的菜单改变时，它将会改变
