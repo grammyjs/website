@@ -1,3 +1,106 @@
-# [parse-mode.md](/plugins/parse-mode.md)
+# 解析模式（`parse-mode`）
 
-期待你的翻译，我们需要一份中文翻译让文档更好。
+This plugin provides a transformer for setting default `parse_mode`, and a middleware for hydrating `Context` with familiar `reply` variant methods - i.e. `replyWithHTML`, `replyWithMarkdown`, etc.
+这个插件提供了一个设置默认的 `parse_mode` 的 transformer，以及一个中间件，用于将 `Context` 中的 `reply` 方法转换成常用的 `replyWithHTML`, `replyWithMarkdown`, 等等方法。
+
+## 使用方法
+
+<CodeGroup>
+  <CodeGroupItem title="TS" active>
+
+```ts
+import { Bot, Composer } from "grammy";
+import { hydrateReply, parseMode } from "parse-mode";
+
+import type { ParseModeContext } from "parse-mode";
+
+const bot = new Bot<ParseModeContext>("");
+
+// 安装常用的 reply 方法到 ctx 中
+bot.use(hydrateReply);
+
+// 为 ctx.reply 设置默认解析模式
+bot.api.config.use(parseMode("MarkdownV2"));
+
+bot.command("demo", async (ctx) => {
+  await ctx.reply("*This* is _the_ default `formatting`");
+  await ctx.replyWithHTML(
+    "<b>This</b> is <i>withHTML</i> <code>formatting</code>",
+  );
+  await ctx.replyWithMarkdown("*This* is _withMarkdown_ `formatting`");
+  await ctx.replyWithMarkdownV1("*This* is _withMarkdownV1_ `formatting`");
+  await ctx.replyWithMarkdownV2("*This* is _withMarkdownV2_ `formatting`");
+});
+
+bot.start();
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JS">
+
+```js
+import { Bot, Composer } from "grammy";
+import { hydrateReply, parseMode } from "parse-mode";
+
+const bot = new Bot("");
+
+// 安装常用的 reply 方法到 ctx 中
+bot.use(hydrateReply);
+
+// 为 ctx.reply 设置默认解析模式
+bot.api.config.use(parseMode("MarkdownV2"));
+
+bot.command("demo", async (ctx) => {
+  await ctx.reply("*This* is _the_ default `formatting`");
+  await ctx.replyWithHTML(
+    "<b>This</b> is <i>withHTML</i> <code>formatting</code>",
+  );
+  await ctx.replyWithMarkdown("*This* is _withMarkdown_ `formatting`");
+  await ctx.replyWithMarkdownV1("*This* is _withMarkdownV1_ `formatting`");
+  await ctx.replyWithMarkdownV2("*This* is _withMarkdownV2_ `formatting`");
+});
+
+bot.start();
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="Deno">
+
+```ts
+import { Bot, Composer } from "https://deno.land/x/grammy/mod.ts";
+import {
+  hydrateReply,
+  parseMode,
+} from "https://deno.land/x/grammy_parse_mode/mod.ts";
+
+import type { ParseModeContext } from "https://deno.land/x/grammy_parse_mode/mod.ts";
+
+const bot = new Bot<ParseModeContext>("");
+
+// 安装常用的 reply 方法到 ctx 中
+bot.use(hydrateReply);
+
+// 为 ctx.reply 设置默认解析模式
+bot.api.config.use(parseMode("MarkdownV2"));
+
+bot.command("demo", async (ctx) => {
+  await ctx.reply("*This* is _the_ default `formatting`");
+  await ctx.replyWithHTML(
+    "<b>This</b> is <i>withHTML</i> <code>formatting</code>",
+  );
+  await ctx.replyWithMarkdown("*This* is _withMarkdown_ `formatting`");
+  await ctx.replyWithMarkdownV1("*This* is _withMarkdownV1_ `formatting`");
+  await ctx.replyWithMarkdownV2("*This* is _withMarkdownV2_ `formatting`");
+});
+
+bot.start();
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+## 插件概述
+
+- 名字：`parse-mode`
+- 源码：<https://github.com/grammyjs/parse-mode>
+- 参考：<https://doc.deno.land/https/deno.land/x/grammy_parse_mode/mod.ts>
