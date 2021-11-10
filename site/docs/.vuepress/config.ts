@@ -504,7 +504,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/zh/plugins/i18n.md",
                   },
                   {
-                    text: "路由 (router)",
+                    text: "路由器 (router)",
                     link: "/zh/plugins/router.md",
                   },
                   {
