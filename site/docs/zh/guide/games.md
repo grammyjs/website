@@ -49,7 +49,7 @@ Telegram 游戏是一个非常有趣的功能，它是非常有趣的游戏。
    ```
 
 > 你也可以为你的游戏按钮自定义一个 [inline keyboard](/zh/plugins/keyboard.md#inline-keyboards)。
-> 默认情况下，发送时会有一个名为 `Play my_game ` 的按钮，其中 my_game 是你游戏的名称。
+> 默认情况下，发送时会有一个名为 `Play my_game` 的按钮，其中 my_game 是你游戏的名称。
 
 ```ts
 // 定义一个新的 inline keyboard 。您可以编写任何要显示的文本
