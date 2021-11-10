@@ -39,7 +39,7 @@ The content itself is shortened in order to prevent log spamming.
 
 ## Debug Your Middleware
 
-When you create your own middleware or assume slow timings of another middleware you can use these middlewares to create a timing profile
+When you create your own middleware or assume slow timings of another middleware you can use these middlewares to create a timing profile.
 
 ```ts
 import {generateBeforeMiddleware, generateAfterMiddleware} from 'telegraf-middleware-console-time';
