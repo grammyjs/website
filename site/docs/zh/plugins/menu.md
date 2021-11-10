@@ -7,8 +7,8 @@
 一个 inline keyboard 是一条消息下面的按钮数组。
 grammY 有一个 [内置插件](./keyboard.md#inline-keyboards) 可以创建基本的 inline keybaords。
 
-这个菜单插件将这个想法更进一步，让你在聊天里创建精美的菜单。
-它们可以有互动按钮，有多个页面之间的导航，以及这些等等。
+这个菜单插件将这个想法更进一步，让你能够在聊天里创建精美的菜单。
+它们可以有交互的按钮，多个页面之间的导航，以及更多。
 
 这里是一个简单的例子，不言自明。
 
@@ -101,10 +101,9 @@ const menu = new Menu<MyContext>("id");
 
 ## 添加按钮
 
-菜单插件将你的 keyboards 布局与 [inline keyboards 插件的布局](./keyboard.md#building-an-inline-keyboard) 相同。
-`Menu` 类替换了 `InlineKeyboard` 类。
+菜单插件会像 [inline keyboard 插件](./keyboard.md#inline-keyboards) 一样布局你的键盘。
+`InlineKeyboard` 类替换为 `Menu` 类。
 
-Here is an example for a menu that has four buttons in a 1-2-1 row shape.
 下面是一个菜单的例子，它有四个按钮，按钮的布局是 1-2-1。
 
 ```ts
@@ -118,10 +117,10 @@ const menu = new Menu("movements")
 使用 `text` 来添加新的文本按钮。
 你可以传递一个标签和一个处理函数。
 
-使用 `row` 来添加一个“换行”，这样所有的下一个按钮都会放在新的一行。
+使用 `row` 来结束当前行，并将所有后续按钮添加到新的一行。
 
 还有许多可用的按钮类型，例如打开 URL。
-请查看 [这个插件的 API 参考](https://doc.deno.land/https/deno.land/x/grammy_menu/mod.ts#MenuRange)，以及 [Telegram Bot API 参考](https://core.telegram.org/bots/api#inlinekeyboardbutton)。
+请查看 [这个插件的 API 参考](https://doc.deno.land/https/deno.land/x/grammy_menu/mod.ts#MenuRange)，以及 [Telegram Bot API 参考](https://core.telegram.org/bots/api#inlinekeyboardbutton) 了解更多关于 `InlineKeyboardButton`。
 
 ## 发送菜单
 
@@ -142,7 +141,7 @@ bot.command("menu", async (ctx) => {
 
 ## 动态标签
 
-当你在按钮上放置标签字符串时，你也可以传递一个函数 `(ctx: Context) => string` 来在按钮上获取一个动态的标签。
+当你在按钮上放置标签字符串时，你也可以传递一个函数 `(ctx: Context) => string` 来在获取按钮上的动态标签。
 这个函数可能是也可能不是 `async` 的（即异步）。
 
 ```ts
@@ -192,7 +191,7 @@ const menu = new Menu("toggle")
 
 如果你想重新渲染菜单，你可以调用 `ctx.menu.update()`。
 这只会在你安装在你的菜单上的处理函数中生效。
-它不会在其他中间件中生效，因为它不能确定应该更新哪个菜单。
+当从其他中间件调用时，它将不会生效，因为它不能确定应该更新 _哪个_ 菜单。
 
 ```ts
 const menu = new Menu("time")
@@ -212,8 +211,8 @@ const menu = new Menu("time")
   );
 ```
 
-菜单会自动检测你是否编辑了消息的文本，并且使用这个机会来更新按钮。
-因此，你可以通过跳过 `ctx.menu.update()` 调用来简化代码。
+菜单将自动检测你想要编辑消息的文本，并利用这个机会来更新按钮。
+因此，你可以通过自动更新菜单来避免显式调用 `ctx.menu.update()`。
 
 调用 `ctx.menu.update()` 不会立即更新菜单。
 相反，它只设置了一个标志并在中间件执行期间更新它。
@@ -245,7 +244,7 @@ const main = new Menu("root-menu")
 
 const settings = new Menu("credits-menu")
   .text("Show Credits", (ctx) => ctx.reply("Powered by grammY"))
-  .back("Go Home");
+  .back("Go Back");
 ```
 
 这两个按钮可以接受中间件处理函数，以便你可以响应导航事件。
@@ -255,9 +254,9 @@ const settings = new Menu("credits-menu")
 类似地，向后导航通过 `ctx.menu.back()` 进行。
 
 接下来，你需要将菜单实例连接起来，通过注册一个在另一个上。
-这也将设置 `main` 作为 `settings` 的父级。
+将菜单注册到另一个菜单中，会自动设置它们的层级关系。正在注册的菜单是父菜单，注册的菜单是子菜单。
+下面，`main` 是 `settings` 的父菜单，除非你显式地指定了另一个父菜单。
 在向后导航时，将使用父级菜单。
-你也可以设置不同的父级。
 
 ```ts
 // 注册设置菜单到主菜单
@@ -269,7 +268,7 @@ main.register(settings, "back-from-settings-menu");
 你可以注册任意多个菜单，并且可以嵌套任意深度。
 菜单标识可以让你快速跳转到任何页面。
 
-**请注意，你只需要给你的结构菜单设置一个交互即可。**
+**请注意，你只需要给你的嵌套菜单设置一个交互即可。**
 例如，只需要传递根菜单给 `bot.use`。
 
 ```ts
@@ -283,18 +282,18 @@ bot.use(settings);
 
 ## Payloads
 
-你可以将短文本与所有文本和导航按钮一起存储。
+你可以将短文本 payload 与所有文本按钮和导航按钮一起存储。
 当相应的处理程序被调用时，payload 将在 `ctx.match` 中可用。
 这是非常有用的，因为它让你可以在菜单中存储一些数据。
 
 这里是一个记住创建者的菜单的例子。
-其他的用例可能是存储索引在分页中。
+其他用例可能是，例如，存储分页菜单的索引。
 
 ```ts
 const menu = new Menu("pun-intended")
   .text(
     { text: "I know my creator", payload: (ctx) => ctx.from.first_name },
-    (ctx) => ctx.reply(`I was once created by ${ctx.match}!`),
+    (ctx) => ctx.reply(`I was created by ${ctx.match}!`),
   );
 
 bot.use(menu);
@@ -342,7 +341,7 @@ menu.dynamic((_ctx) => {
   return range;
 });
 
-menu.text("Generate new", (ctx) => ctx.menu.update());
+menu.text("Generate New", (ctx) => ctx.menu.update());
 ```
 
 The range builder function that you pass to `dynamic` may be `async`, so you can even perform API calls or do database communication.
@@ -382,16 +381,16 @@ const menu = new Menu("id", { autoAnswer: false });
 现在，如果用户发送 `/settings` 两次，他们将会得到相同的菜单两次。
 但是，改变第一个消息中的通知设置将不会更新第二个消息！
 
-很明显，我们不能在聊天中跟踪所有设置消息，并更新聊天历史中的所有菜单。
+很明显，我们不能在聊天中跟踪所有设置消息，并在整个聊天历史中更新所有菜单。
 你需要使用很多 API 调用来实现这个，以至于 Telegram 会限制你的 bot。
-你还需要花费很多存储来记住所有菜单的所有聊天的所有消息标识符。
+你还需要大量存储来记住所有聊天中的每个菜单的所有消息标识符。
 这是不现实的。
 
 解决这个问题的办法是，在执行任何操作之前检查菜单是否过时。
-这意味着，只有当用户开始点击菜单上的按钮时，才会更新过时的菜单。
-菜单插件会自动检查这个，所以你不需要担心它。
+这样，只有当用户真正开始点击菜单上的按钮时，我们才会更新过时的菜单。
+菜单插件会自动为你处理这个问题，所以你不需要担心它。
 
-你可以配置当检测到过时菜单时会发生什么。
+你可以精确地配置当检测到过时菜单时会发生什么。
 默认情况下，用户将会看到一条消息“菜单已过时，请重试！”，并且菜单将会被更新。
 你可以在配置中的 `onMenuOutdated` 下定义自定义行为。
 
@@ -410,7 +409,7 @@ const menu2 = new Menu("id", { onMenuOutdated: false });
 ```
 
 我们有一个检测菜单是否过时的技巧。
-它将会查看
+它将会查看：
 
 - 菜单的标识符，
 - 菜单的形状，
@@ -421,8 +420,9 @@ const menu2 = new Menu("id", { onMenuOutdated: false });
 这些数据被压缩成一个 4 字节的哈希，并且存储在每个按钮中。
 然后，在任何处理程序运行之前，它将被比较以检查菜单是否过时。
 
-可想而知，你的菜单可能会改变，但是上面的所有东西都会保持不变。
-通常情况下不是这样的，但是如果你创建了一个这样的菜单，你应该使用一个指纹函数。
+有可能会出现这种情况，你的菜单可能会改变，但是上面的所有东西都会保持不变。
+通常不会出现这种情况，但是如果你创建了一个这样的菜单，你应该使用一个指纹函数。
+
 
 ```ts
 function ident(ctx: Context): string {
@@ -459,9 +459,9 @@ const menu = new Menu("id", { fingerprint: (ctx) => ident(ctx) });
 当你在一个大型层次结构中注册菜单以导航时，它们实际上不存储这些引用。
 在内部，所有这个结构的菜单都被添加到同一个大型池中，并且这个池在所有包含的实例中共享。
 每个菜单都对索引中的每个其他菜单负责，并且它们可以互相处理和渲染。
-（大多数情况下，只有根菜单被传递给 `bot.use` 并且接收任何 update。
+（大多数情况下，只有根菜单被传递给 `bot.use` 并且接收所有 update。
 在这种情况下，这个实例将负责整个的池。）
-因此，你能够在任意的菜单之间无限制地浏览，并且这个更新处理可以在`O（1）`中发生，因为不需要在层次结构中搜索到正确的菜单来处理按钮点击。
+因此，你能够在任意的菜单之间无限制地浏览，并且这个更新处理可以在 [`O(1)` 时间复杂度](https://en.wikipedia.org/wiki/Time_complexity#Constant_time)中发生，因为不需要在层次结构中搜索到正确的菜单来处理按钮点击。
 
 ## 插件概述
 
