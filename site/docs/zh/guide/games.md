@@ -23,8 +23,8 @@ Telegram 游戏是一个非常有趣的功能，它是非常有趣的游戏。
 
 ## 通过 bot 发送游戏
 
-我们可以通过 replyWithGame 方法在 grammY 发送游戏，该方法以你用 BotFather 创建的游戏的名称作为参数。
-或者，我们也可以使用 `API.sendGame` 方法( grammY 提供了所有官方的 [Bot API](https://core.telegram.org/bots/api)方法）。
+我们可以通过 `replyWithGame` 方法在 grammY 发送游戏，该方法以你用 BotFather 创建的游戏的名称作为参数。
+或者，我们也可以使用 `api.sendGame` 方法( grammY 提供了所有官方的 [Bot API](https://core.telegram.org/bots/api)方法）。
 使用 `api.sendGame` 方法的一个优点是，您可以指定要将其发送给特定用户的 `chat.id`。
 
 1. 使用 `replyWithGame` 发送信息
