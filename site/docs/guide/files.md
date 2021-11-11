@@ -126,11 +126,13 @@ This is how you can construct `InputFile`s.
 ```ts
 import { createReadStream } from "fs";
 import { URL } from "url";
+
 // send a local file
 new InputFile("/path/to/file");
 // download a file, and stream the response to Telegram
 new InputFile(new URL("https://grammy.dev/Y.png"));
 new InputFile({ url: "https://grammy.dev/Y.png" }); // equivalent
+
 // send buffers and byte arrays
 const buffer = Uint8Array.from([65, 66, 67]);
 new InputFile(buffer); // "ABC"
@@ -152,6 +154,7 @@ new InputFile(Deno.open("/path/to/file"));
 // download a file, and stream the response to Telegram
 new InputFile(new URL("https://grammy.dev/Y.png"));
 new InputFile({ url: "https://grammy.dev/Y.png" }); // equivalent
+
 // send blobs
 const blob = new Blob("ABC", { type: "text/plain" });
 new InputFile(blob);
