@@ -108,7 +108,7 @@ Here is an example for a menu that has four buttons in a 1-2-1 row shape.
 
 ```ts
 const menu = new Menu("movements")
-  .text("^", (ctx) => ctx.reply("Forward")).row()
+  .text("^", (ctx) => ctx.reply("Forward!")).row()
   .text("<", (ctx) => ctx.reply("Left!"))
   .text(">", (ctx) => ctx.reply("Right!")).row()
   .text("v", (ctx) => ctx.reply("Backwards!"));

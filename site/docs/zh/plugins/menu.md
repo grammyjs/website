@@ -108,7 +108,7 @@ const menu = new Menu<MyContext>("id");
 
 ```ts
 const menu = new Menu("movements")
-  .text("^", (ctx) => ctx.reply("Forward")).row()
+  .text("^", (ctx) => ctx.reply("Forward!")).row()
   .text("<", (ctx) => ctx.reply("Left!"))
   .text(">", (ctx) => ctx.reply("Right!")).row()
   .text("v", (ctx) => ctx.reply("Backwards!"));
