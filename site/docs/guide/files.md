@@ -113,10 +113,61 @@ grammY will automatically convert all file formats to `Uint8Array` objects inter
 All you need to remember is: **create an instance of `InputFile` and pass it to any method to send a file**.
 Instances of `InputFile` can be passed to all methods that accept sending files by upload.
 
-::: warning InputFile Constructor Types
-Note that the [grammY API Reference](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#InputFile) for `InputFile` lists only the types that are available on Deno.
-If you use grammY on Node.js, check out the respective type definition or implementation, or trust TypeScript.
-:::
+This is how you can construct `InputFile`s.
+
+<CodeGroup>
+  <CodeGroupItem title="Node" active>
+
+```ts
+import { createReadStream } from "fs";
+import { URL } from "url";
+
+// send a local file
+new InputFile("/path/to/file");
+// download a file, and stream the response to Telegram
+new InputFile(new URL("https://grammy.dev/Y.png"));
+new InputFile({ url: "https://grammy.dev/Y.png" }); // equivalent
+
+// send buffers and byte arrays
+const buffer = Uint8Array.from([65, 66, 67]);
+new InputFile(buffer); // "ABC"
+// send streams and iterables
+new InputFile(createReadStream("/path/to/file"));
+new InputFile(function* () {
+  // "ABCABCABCABC"
+  for (let i = 0; i < 4; i++) yield buffer;
+});
+```
+
+</CodeGroupItem>
+  <CodeGroupItem title="Deno">
+
+```ts
+// send a local file
+new InputFile("/path/to/file");
+new InputFile(Deno.open("/path/to/file"));
+// download a file, and stream the response to Telegram
+new InputFile(new URL("https://grammy.dev/Y.png"));
+new InputFile({ url: "https://grammy.dev/Y.png" }); // equivalent
+
+// send blobs
+const blob = new Blob("ABC", { type: "text/plain" });
+new InputFile(blob);
+// send buffers and byte arrays
+const buffer = Uint8Array.from([65, 66, 67]);
+new InputFile(buffer); // "ABC"
+// send streams and iterables
+new InputFile(Deno.open("/path/to/file"));
+new InputFile(function* () {
+  // "ABCABCABCABC"
+  for (let i = 0; i < 4; i++) yield buffer;
+});
+```
+
+Note that you can also pass a `Promise` of any of the values to `InputFile`.
+
+</CodeGroupItem>
+</CodeGroup>
 
 ## File Size Limits
 
