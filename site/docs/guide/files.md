@@ -96,7 +96,7 @@ The first two methods are simple: you just pass the respective value as a `strin
 await ctx.replyWithPhoto(existingFileId);
 
 // Sending via URL
-await ctx.replyWithPhoto("https://avatars.githubusercontent.com/u/81446018");
+await ctx.replyWithPhoto("https://grammy.dev/Y.png");
 
 // alternatively, use bot.api.sendPhoto() or ctx.api.sendPhoto()
 ```
