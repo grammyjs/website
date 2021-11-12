@@ -72,126 +72,124 @@ _冰淇淋时间又到了！
 服务员现在对你已经非常熟悉，
 当被问及你最喜欢的那种冰淇淋时，这位员工对你的微笑僵在脸上。
 你的问题仍然没有被回复。
-In fact, you don't get any response at all.
-So you decide to wait, firmly smiling back.
-And you wait.
-And wait.
-Some hours before the next sunrise, a truck of a local food delivery company arrives and brings a couple of large boxes into the parlor's storage room.
-They read_ ice cream _on the outside.
-The employee finally starts to move again.
-“Of course we have salted caramel!
-Two scoops with sprinkles, the usual?”
-As if nothing had happened, you enjoy your ice cream while leaving the world's most unrealistic ice cream parlor._
+然后你等待。
+接着等待。
+直到在下一个日出之前的几个小时，当地一家外卖公司的卡车来了，把几个大箱子送到大厅旁的储藏室。
+他们在里面交谈着有关 _冰淇淋_ 的事情。
+终于，服务员动了起来！
+“我们当然有咸焦糖种类的，
+两勺带糖的，老样子?”
+就好像什么都没发生过一样，你享受着你的冰淇淋，离开了世界上最不真实的冰淇淋店。_
 
 ```asciiart:no-line-numbers
 ______________                                   _____________
 |            |                                   |           |
-|            |   <--- are there messages? ---    |           |
+|            |   <--- 这里有什么新消息吗？    ---    |           |
 |            |   .                               |           |
 |            |   .                               |           |
-|            |   .     *both waiting*            |           |
+|            |   .     *一同等待*                  |           |
 |  Telegram  |   .                               |    Bot    |
 |            |   .                               |           |
 |            |   .                               |           |
-|            |    ---  yes, here you go   --->   |           |
+|            |    ---  是的，我们有新消息！   --->   |           |
 |            |                                   |           |
 |____________|                                   |___________|
 ```
 
-> Note that in reality, no connection would be kept open for hours.
-> Long polling requests have a default timeout of 30 seconds (in order to avoid a number of [technical problems](https://tools.ietf.org/id/draft-loreto-http-bidirectional-07.html#timeouts)).
-> If no new messages are returned after this period of time, then the request will be cancelled and resent—but the general concept stays the same.
+> 请注意，在现实中，没有连接将保持数小时。
+> 长轮询请求的默认超时时间为 30 秒（为了避免一些[技术问题](https://tools.ietf.org/id/draft-loreto-http-bidirectional-07.html#timeouts)）
+> 如果在这段时间之后没有返回任何新消息，那么请求将被取消并重新执行ー但总体信息保持不变。
 
-Using long polling, you don't need to spam Telegram's servers, and still you get new messages immediately!
-Nifty.
-This is what grammY does by default when you run `bot.start()`.
+使用长轮询，你不需要污染 Telegram 的服务器，你仍然可以立即得到新的信息！
+漂亮。
+这就是当你运行 `bot.start ()` 时，默认情况下 grammY 会做的事情。
 
-## How Do Webhooks Work?
+## Webhooks 是如何工作的？
 
-_After this terrifying experience (a whole night without ice cream!), you'd prefer not to ask anyone about ice cream at all anymore.
-Wouldn't it be cool if the ice cream could come to you?_
+_在这次可怕的经历之后(一整晚都没有冰淇淋!)，你不再问任何人关于冰淇淋的事。
+但如果冰淇淋可以送到你面前，那不是很酷吗_
 
-Setting up a **webhook** means that you will provide Telegram with a URL that is accessible from the public internet.
-Whenever a new message is sent to your bot, Telegram (and not you!) will take the initiative and send a request with the update object to your server.
-Nice, heh?
+建立一个 webhook 意味着你将为 Telegram 提供一个可以从公共互联网上访问的 URL。
+无论何时，只要有新的信息发送到你的 bot，Telegram (而不是你!) 将采取主动，并发送一个请求与更新对象到您的服务器。
+很方便，不是吗？
 
-_You decide to walk to the ice cream parlor one very last time.
-You tell your friend behind the counter where you live.
-He promises to head over to your apartment personally whenever new ice cream is there (because it would melt in the mail).
-Cool guy._
+_你决定最后一次走到冰淇淋店。
+你告诉柜台后面的朋友你住在哪里。
+他承诺，只要有新的冰淇淋，他就会亲自到你的公寓(因为邮寄时冰淇淋会化掉)。
+很热心的人。_
 
 ```asciiart:no-line-numbers
 ______________                                   _____________
 |            |                                   |           |
 |            |                                   |           |
 |            |                                   |           |
-|            |         *both waiting*            |           |
+|            |         *一同等待*                  |           |
 |            |                                   |           |
 |  Telegram  |                                   |    Bot    |
 |            |                                   |           |
 |            |                                   |           |
-|            |    ---  hi, new message   --->    |           |
-|            |   <---    thanks dude     ---     |           |
+|            |    ---  你好，新的信息！   --->      |           |
+|            |   <---    谢谢你，兄弟      ---     |           |
 |____________|                                   |___________|
 ```
 
-## Comparison
+## 比较
 
-**The main advantage of long polling over webhooks is that it is simpler.**
-You don't need a domain or a public URL.
-You don't need to fiddle around with setting up SSL certificates in case you're running your bot on a VPS.
-Use `bot.start()` and everything will work, no further configuration required.
-Under load, you are in complete control of how many messages you can process.
+**长轮询相比于 Webhooks 的主要优势在于它更简单**
+你不再需要一个域名或是可以访问的 URL。
+当你在 VPS 上运行你的 bot 时不需要在设置 SSL 证书上浪费时间。
+使用 `bot.start ()`，一切都会正常工作，不需要进一步配置。
+在负载下，您可以完全控制需要处理消息的个数。
 
-Places where long polling works well include:
+长轮询可以在这些地方良好运行：
 
-- during development on your local machine,
-- on all VPS', and
-- on hosted “backend” instances, i.e. machines that actively run your bot 24/7.
+- 可以在你的本地，
+- 所有的 VPS，或是
+- 在后端运行的 bot 示例上（即一个全天候运行的机器）都可以良好运行。
 
-**The main advantage of webhooks over long polling is that they are cheaper.**
-You save a ton of superfluous requests.
-You don't need to keep a network connection open at all times.
-You can use services that automatically scale your infrastructure down to zero when no requests are coming.
-If you want to, you can even [make an API call when responding to the Telegram request](#webhook-reply), even though this has [a number of drawbacks](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#ApiClientOptions).
+**Webhooks 比长轮询的主要优势在于它们更”便宜“。**
+你省下了一大堆多余的请求。
+你不需要一直让 bot 与 Telegram 保持连接。
+当没有请求时，您可以使用自动将基础结构收敛为零消耗的服务。
+如果你愿意， 你甚至可以 [在响应 Telegram 请求时调用 API](#webhook-reply), 即使这样有[很多缺点](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#ApiClientOptions)。
 
-Places where webhooks work well include:
+Webhooks 可以在这些地方良好运行：
 
-- on VPS' with SSL certificate,
-- on hosted “frontend” instances that scale according to their load, and
-- on serverless platforms, such as cloud functions or programmable edge networks.
+- 在一台有着 SSL 证书的 VPS 上,
+- 在一台可以前端运行的，拥有可以负载伸缩的主机上, 或者
+- 在 serverless 平台， 比如云函数或者可编程边缘网络。
 
-## I Still Have No Idea What to Use
+## 我还是不知道该用什么
 
-Then go for long polling.
-If you don't have a good reason to use webhooks, then note that there are no major drawbacks to long polling, and—according to our experience—you will spend much less time fixing things.
-Webhooks can be a bit nasty from time to time (see [below](#ending-webhook-requests-in-time)).
+那就选择长轮询吧。
+如果你没有充分的理由使用 Webhooks，那么请注意，长轮询没有重大的缺点，而且---- 根据我们的经验---- 你花在修理东西上的时间会少得多。
+Webhooks 有时候可能会有点令人讨厌 (见[下文](#及时结束-webhook-请求)).
 
-Whatever you choose, if you ever run into serious problems, it should not be too hard to switch to the other deployment type after the fact.
-With grammY, you only have to touch a few lines of code.
-The setup of your [middleware](./middleware.md) is the same.
+无论您选择什么，如果遇到严重问题，在事后切换到其他部署类型应该不会太难。
+使用 grammY，这都只需要接触几行代码。
+关于你[中间件](./middleware.md)的设置也是一样的。
 
-## How to Use Long Polling
+## 如何使用长轮询
 
-Call
+使用
 
 ```ts
 bot.start();
 ```
 
-to run your bot with a very simple form of long polling.
-It processes all updates sequentially.
-This makes your bot very easy to debug, and all behavior very predictable, because there is no concurrency involved.
+你使用一个非常简单的长轮询运行你的 bot。
+它按顺序处理所有更新。
+这使得你的 bot 代码很容易调试，而且所有的行为都是可预测的，因为这里面没有并发性。
 
-If you want your messages to be handled concurrently by grammY, or you worry about throughput, check out the section about [grammY runner](/plugins/runner.md).
+如果你希望你的消息能够被 grammY 并发处理，或者你担心吞吐量，请查看关于[并发](/zh/plugins/runner.md)的信息.
 
-## How to Use Webhooks
+## 如何使用长轮询 Webhooks
 
-If you want to run grammY with webhooks, you can integrate your bot into a web server.
-We therefore expect you to be able to start a simple web server with a framework of your choice.
+如果你想运行 grammY Webhooks，你可以把你的 bot 集成到一个网络服务器上。
+因此，我们希望您能够选择一个合适的框架，去启动一个简单的 web 服务器。
 
-Every grammY bot can be converted to middleware for a number of web frameworks, including `express`, `koa`/`oak`, and more.
-You can import the `webhookCallback` function from grammY to convert your bot to middleware for the respective framework.
+每个 grammY bot 都可以转换为许多 web 框架的中间件，包括 `express`、`koa`/`oak` 等等。
+你可以从 grammY 中导入 webhookCallback 函数，将你的 bot 服务转换成相应框架的中间件。
 
 <CodeGroup>
  <CodeGroupItem title="TS">
@@ -199,10 +197,10 @@ You can import the `webhookCallback` function from grammY to convert your bot to
 ```ts
 import express from "express";
 
-const app = express(); // or whatever you're using
-app.use(express.json()); // parse the JSON request body
+const app = express(); // 或者其它你正在使用的
+app.use(express.json()); // 解析 JSON 请求
 
-// 'express' is also used as default if no argument is given
+// 如果没有给出参数，则使用 'express' 作为默认值
 app.use(webhookCallback(bot, "express"));
 ```
 
@@ -212,10 +210,10 @@ app.use(webhookCallback(bot, "express"));
 ```js
 const express = require("express");
 
-const app = express(); // or whatever you're using
-app.use(express.json()); // parse the JSON request body
+const app = express(); // 或者其它你正在使用的
+app.use(express.json()); // 解析 JSON 请求
 
-// 'express' is also used as default if no argument is given
+// 如果没有给出参数，则使用 'express' 作为默认值
 app.use(webhookCallback(bot, "express"));
 ```
 
@@ -225,167 +223,166 @@ app.use(webhookCallback(bot, "express"));
 ```ts
 import { Application } from "https://deno.land/x/oak/mod.ts";
 
-const app = new Application(); // or whatever you're using
+const app = new Application(); // 或者其它你正在使用的
 
-// make sure to specify the framework you use
+// 确保指定你使用的框架
 app.use(webhookCallback(bot, "oak"));
 ```
 
 </CodeGroupItem>
 </CodeGroup>
 
-Be sure to read [Marvin's Marvellous Guide to All Things Webhook](https://core.telegram.org/bots/webhooks) written by the Telegram team if you consider running your bot on webhooks on a VPS.
+如果你考虑在 VPS 上使用 webhooks 运行你的 bot，请确保你阅读了 Telegram 团队写的 [Marvin's Marvellous Guide to All Things Webhook](https://core.telegram.org/bots/webhooks)。
 
 ### Webhook Reply
 
-When a webhook request is received, your bot can call up to one method in the response.
-As a benefit, this saves your bot from making up to one HTTP request per update. However, there are a number of drawbacks to using this:
+当收到一个 webhook 请求时，您的 bot 可以在响应中调用一个方法。
+这样做的一个好处是，每次更新都可以节省一个 HTTP 请求的 bot。然而，使用这种方法也有一些缺点:
 
-1. You will not be able to handle potential errors of the respective API call.
-   This includes rate limiting errors, so you won't actually be guaranteed that your request has any effect.
-2. More importantly, you also won't have access to the response object.
-   For example, calling `sendMessage` will not give you access to the message you send.
-3. Furthermore, it is not possible to cancel the request.
-   The `AbortSignal` will be disregarded.
-4. Note also that the types in grammY do not reflect the consequences of a performed webhook callback!
-   For instance, they indicate that you always receive a response object, so it is your own responsibility to make sure you're not screwing up while using this minor performance optimization.
+1. 您将无法处理各个 API 调用的潜在错误。
+   这包括速率限制错误，因此实际上不能保证您的请求有任何效果。
+2. 更重要的是，您也无法访问响应对象。
+   例如，调用 `sendMessage` 将不能使您访问您发送的消息。
+3. 此外，不可能取消请求。
+   `abotsignal` 将被忽略。
+4. 还要注意的是，grammY 中的类型并不反映所执行的 webhook 回调的结果！
+   例如，它们表明您总是接收到一个响应对象，但确保在使用这个次要的性能优化时，您将自己责任，努力让他不会出错。
 
-If you want to use webhook replies, you can specify the `canUseWebhookReply` option in the `client` option of your `BotConfig` ([API reference](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#BotConfig)).
-Pass a function that determines whether or not to use webhook reply for the given request, identified by method.
+如果你想使用 webhook reply，你可以在你的 `BotConfig` 的 `client` 选项中指定 `canUseWebhookReply` 选项([API reference](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#BotConfig))。
+传递一个函数，该函数决定是否对给定的请求使用 webhook 应答(由方法标识)。
 
 ```ts
 const bot = new Bot(token, {
   client: {
-    // We accept the drawback of webhook replies for typing status
+    // 如果你愿意在某些方法上使用 webhook reply
     canUseWebhookReply: (method) => method === "sendChatAction",
   },
 });
 ```
 
-This is how webhook replies work under the hood.
+这就是 webhook 在引擎盖下的工作原理。
 
 ```asciiart:no-line-numbers
 ______________                                   _____________
 |            |                                   |           |
 |            |                                   |           |
 |            |                                   |           |
-|            |         *both waiting*            |           |
+|            |         *一同等待*                  |           |
 |            |                                   |           |
 |  Telegram  |                                   |    Bot    |
 |            |                                   |           |
 |            |                                   |           |
-|            |    ---  hi, new message   --->    |           |
-|            | <--- okay, and sendChatAction --- |           |
+|            |    --- 你好！这里有一条新消息 --->    |           |
+|            | <--- 好的，执行 sendChatAction ---  |           |
 |____________|                                   |___________|
 ```
 
-### Ending Webhook Requests in Time
+### 及时结束 Webhook 请求
 
-> You can ignore the rest of this page if all your middleware completes fast, i.e. within a few seconds.
-> This section is primarily for people who want to do file transfers in response to messages, or other operations that need more time.
+> 如果所有中间件都很快完成，也就是在几秒钟内完成，则可以忽略本页面的其余部分。
+> 本节主要为那些希望进行文件传输以响应消息或其他需要更多时间的操作的用户服务。
 
-When Telegram sends an update from one chat to your bot, it will wait for you to end the request before delivering the next update that belongs to that chat.
-In other words, Telegram will deliver updates from the same chat in sequence, and updates from different chats are sent concurrently.
-(The source of this information is [here](https://github.com/tdlib/telegram-bot-api/issues/75#issuecomment-755436496).)
+当 Telegram 服务从一个聊天发送更新到你的 bot 服务器时，它会等待你结束请求，然后再发送属于该聊天的下一个更新。
+换句话说，Telegram 将按顺序发送来自同一聊天的更新，来自不同聊天的更新将同时发送。
+(这条消息的来源是[这里](https://github.com/tdlib/telegram-bot-api/issues/75#issuecomment-755436496).)
 
-Telegram tries to make sure that your bot receives all updates.
-That means that if an update delivery fails for a chat, the subsequent updates will be queued until the first update succeeds.
+Telegram 试图确保你的 bot 收到所有更新。
+这意味着，如果某个聊天的更新传递失败，后续的更新将被排队，直到第一次更新成功。
 
-#### Why Not Ending a Webhook Request Is Dangerous
+#### 为什么不停止一个 Webhook 请求是危险的
 
-Telegram has a timeout for each update that it sends to your webhook endpoint.
-If you don't end a webhook request fast enough, Telegram will re-send the update, assuming that it was not delivered.
-As a result, your bot can unexpectedly process the same update multiple times.
-This means that it will perform all update handling, including the sending of any response messages, multiple times.
+对于每次发送到你的 webhook 端点的更新，Telegram 都有一个超时时间。
+如果你不尽快结束一个 webhook 请求，Telegram 将假设它没有发送，于是重新发送了更新。
+因此，你的 bot 可能会意外地多次处理同一个更新。
+这意味着它将多次执行所有更新处理，包括发送任何响应消息。
 
 ```asciiart:no-line-numbers
 ______________                                   _____________
 |            |                                   |           |
-|            | ---    hi, new message    --->    |           |
+|            | ---    你好，我这里有新信息    --->   |           |
 |            |                              .    |           |
-|            |        *bot processing*      .    |           |
+|            |        *bot 处理*             .    |           |
 |            |                              .    |           |
-|  Telegram  | --- I said new message!!! --->    |    Bot    |
+|  Telegram  | --- 我说了有新消息！！！ --->         |    Bot    |
 |            |                              ..   |           |
-|            |    *bot processing twice*    ..   |           |
+|            |        *bot 处理了第二次*      ..   |           |
 |            |                              ..   |           |
-|            | ---      HEEELLLOOOO      --->    |           |
+|            | ---      你好！！！！       --->    |           |
 |            |                              ...  |           |
-|            |   *bot processing thrice*    ...  |           |
+|            |        *bot 处理了第三次*      ...  |           |
 |____________|                              ...  |___________|
 ```
 
-This is why grammY has its own, shorter timeout inside `webhookCallback` (default: 10 seconds).
-If your middleware finishes before that, the function `webhookCallback` will respond to the webhook automatically.
-In that case, everything is fine.
-However, if your middleware does not finish before grammY's timeout, `webhookCallback` will throw an error.
-This means that you can handle the error in your web framework.
-If you don't have that error handling, Telegram will send the same update again—but at least you will have error logs now, to tell you that something is wrong.
+这就是为什么 grammY 在 `webhookCallback` 中有着更短的超时时间(默认值: 10 秒) 。
+如果您的中间件在此之前完成，`webhookCallback` 函数将自动响应 webhook。
+那样的话，一切都很好。
+但是，如果你的中间件在 grammY 超时之前没有完成，`webhookCallback` 会抛出一个错误。
+这意味着您可以处理 web 框架中的错误。
+如果你没有处理那个错误，Telegram 将会再次发送同样的更新---- 但至少你现在有了错误日志，告诉你有什么地方出错了。
 
-Once Telegram sends an update to your bot for the second time, it is unlikely that your handling of it will be faster than the first time.
-As a result, it will likely timeout again, and Telegram will send the update again.
-Thus, your bot will not just see the update two times, but a few dozen times, until Telegram stops retrying.
-You may observe that your bot starts spamming users as it tries to handle all of those updates (that are in fact the same every time).
+一旦 Telegram 第二次向你的 bot 发送更新，你处理它的速度不可能比第一次快。
+因此，它可能会再次超时，而 Telegram 将再次发送更新。
+因此，你的 bot 不仅会看到两次更新，而是几十次，直到 Telegram 停止重新尝试。
+你可能会发现你的 bot 开始给用户发送垃圾邮件，因为它试图处理所有这些更新(实际上每次都是一样的)。
 
-#### Why Ending a Webhook Request Early Is Also Dangerous
+#### 为什么提前终止一个 Webhook 请求也是危险的
 
-You can configure `webhookCallback` to not throw an error after the timeout, but instead end the webhook request early, even though your middleware is still running.
-You can do this by passing `'return'` as a third argument to `webhookCallback`, instead of the default value `'throw'`.
-However, while this behavior has some valid use cases, such a solution usually causes more problems than it solves.
+你可以配置 `webhookCallback` 在超时后不抛出错误，而是提前结束 webhook 请求，即使你的中间件仍然在运行。
+你可以通过传递 `return` 作为第三个参数到 `webhookCallback`，而不是默认使用 `throw` 来实现。
+然而，尽管这种行为有一些有效的用例，但这种解决方案通常会导致比它解决的问题更多的问题。
 
-Remember that once you respond to a webhook request, Telegram will send the next update for that chat.
-However, as the old update is still being processed, two updates which were previously processed sequentially, are suddenly processed in parallel.
-This can lead to race conditions.
-For example, the session plugin will inevitably break due to [WAR](https://en.wikipedia.org/wiki/Hazard_(computer_architecture)#Write_after_read_(WAR)) hazards.
-**This causes data loss!**
-Other plugins and even your own middleware may break too.
-The extent of this is unknown and depends on your bot.
+请记住，一旦你响应了一个 webhook 请求，Telegram 将发送该聊天的下一个更新。
+但是，由于旧的更新仍在处理中，先前顺序处理的两个更新突然并行处理。
+这可能导致竞态效应。
+例如，插件将不可避免地由于 [WAR](https://en.wikipedia.org/wiki/Hazard_(computer_architecture)#Write_after_read_(WAR)) 的危险而中段.
+**这会导致数据丢失！**
+其他插件，甚至你自己的中间件也可能崩溃。
+这种情况的程度是未知的，取决于你的 bot。
 
-#### How to Solve This Problem
+#### 如何解决这个问题
 
-This answer is easier said than done.
-**It is your job to make sure that your middleware finishes fast enough.**
-Don't use long-running middleware.
-Yes, we know that you perhaps _want_ to have long-running tasks.
-Still.
-Don't do it.
-Not in your middleware.
+这个答案说起来容易做起来难。
+**确保您的中间件以足够快的速度完成是必要的。**
+不要使用长时间运行的中间件。
+是的，我们知道您可能希望拥有长时间运行的任务。
+不过。
+不要在你的中间件中这样做。
 
-Instead, use a queue (there are plenty of queuing systems out there, from very simple to very sophisticated).
-Instead of trying to perform all of the work in the small webhook timeout window, just append the task to the queue to be handled separately, and let your middleware complete.
-The queue can use all the time it wants.
-When it's done, it can send a message back to the chat.
-This is straightforward to do if you just use a simple in-memory queue.
-It can be a little more challenging if you're using a fault-tolerant external queuing system, that persists the state of all tasks, and can retry things even if your server suddenly dies.
+相反，使用一个队列(有很多队列库，从非常简单到非常复杂)。
+与其尝试在 webhook 容易超时的窗口中执行所有工作，不如将任务附加到要单独处理的队列中，并让您的中间件完成。
+队列可以随时使用它想用的时间。
+当它完成后，它可以发送一个消息回到聊天。
+如果您只是使用一个简单的内存中队列，那么这是很容易做到的。
+如果您使用的是容错的外部队列系统，这种系统将持久保存所有任务的状态，并且即使服务器突然宕机也可以重试。
 
 ```asciiart:no-line-numbers
 ______________                                   _____________
 |            |                                   |           |
-|            |   ---   hi, new message    --->   |           |
-|            |  <---     thanks dude      ---.   |           |
+|            |   ---   你好，有新消息        --->   |           |
+|            |  <---     谢谢你兄弟         ---.   |           |
 |            |                               .   |           |
 |            |                               .   |           |
-|  Telegram  |      *bot queue working*      .   |    Bot    |
+|  Telegram  |      *bot 队列工作中*           .   |    Bot    |
 |            |                               .   |           |
 |            |                               .   |           |
-|            |  <--- message with result  ---    |           |
-|            |   ---       alrighty       --->   |           |
+|            |  <---   返回了结果消息       ---     |           |
+|            |   ---       好的           --->   |           |
 |____________|                                   |___________|
 ```
 
-#### Why `'return'` Is Generally Worse Than `'throw'`
+#### 为什么 `return` 比 `throw` 更糟糕
 
-You may be wondering why the default action of `webhookCallback` is to throw an error, instead of ending the request successfully.
-This design choice was made for the following reasons.
+你可能想知道为什么 `webhookCallback` 的默认操作是 throw 错误，而不是成功结束请求。
+这个设计的选择是基于以下原因。
 
-Race conditions are very hard to reproduce and may occur extremely rarely or sporadically.
-The solution to this is to _make sure not to run into timeouts_ in the first place.
-But, if you do, you really want to know that this is happening, so that you can investigate and fix the problem!
-For that reason, you want the error to occur in your logs.
-Setting the timeout handler to `'return'`, hence suppressing the timeout and pretending that nothing happened, is exactly the opposite of useful behavior.
+竞态效应极少或偶尔发生。
+解决这个问题的方法是首先确保不会遇到超时。
+不过，如果你这样做了，你将知道这正在发生，这样你就可以调查并解决问题！
+由于这个原因，您希望错误可以被记录在日志中。
+将超时处理程序设置为“ return”，从而抑制超时并假装什么都没有发生，这与有用的行为恰恰相反。
 
-If you do this, you're in some sense using the update queue in Telegram's webhook delivery as your task queue.
-This is a bad idea for all of the reasons described above.
-Just because grammY _can_ suppress errors that can make you lose your data, does not mean you _should_ tell it to.
-This configuration setting should not be used in cases where your middleware simply takes too much time to complete.
-Take the time to correctly fix this issue, and your future self (and users) will thank you.
+如果你这样做，在某种意义上，你是在使用 Telegram 的 webhook 传递中的更新队列作为你的任务队列。
+由于上述所有原因，这是一个坏主意。
+仅仅因为 grammY 可以抑制可能导致你丢失数据的错误，但这并不意味着你应该告诉它。
+在您的中间件需要花费太多时间才能完成的情况下，不应该使用此配置设置。
+花点时间正确地解决这个问题，你未来的自己(和用户)会感谢你的。
