@@ -384,7 +384,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/zh/guide/errors.md",
                   },
                   {
-                    text: "内联查询",
+                    text: "Inline Queries",
                     link: "/zh/guide/inline-queries.md",
                   },
                   {
