@@ -174,7 +174,7 @@ bot.api.config.use(hydrateApi());
 - 消息和频道消息
 - 编辑过的消息和编辑过的频道消息
 - 回调查询
-- 内联查询
+- Inline Queries
 - 预付款和配送查询
 
 所有对象都会被 hydrated 在
