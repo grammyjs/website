@@ -16,7 +16,7 @@ This involves handling the files that are attached to the messages.
 Files are stored separately from messages.
 A file on the Telegram servers is identified by a `file_id`, which is just a long string of characters.
 
-`AgADBAADZRAxGyhM3FKSE4qKa-RODckQHxsoABDHe0BDC1GzpGACAAEC` is an example of a Telegram `file_id`.
+`AgADBAADZRAxGyhM3FKSE4qKa-RODckQHxsoABDHe0BDC1GzpGACAAEC` is an example of a `file_id`.
 
 Whenever your bot **receives** a message with a file, it will in fact not directly receive the complete file data, but only the `file_id` instead.
 If your bot actually wants to download the file, then it can do so by calling the `getFile` method ([Telegram Bot API reference](https://core.telegram.org/bots/api#getfile)).
