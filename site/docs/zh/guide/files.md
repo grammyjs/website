@@ -15,7 +15,7 @@ Telegram bot 不仅仅可以发送和接受文本，并且可以发送任何其�
 
 文件与消息是分开存储的。
 Telegram 服务器上的文件由 `file_id` 标识，它是一个长字符串。
-比如 `AgADBAADZRAxGyhM3FKSE4qKa-RODckQHxsoABDHe0BDC1GzpGACAAEC` 就是一个 `file_id` 的例子。
+比如 `AgADBAADZRAxGyhM3FKSE4qKa-RODckQHxsoABDHe0BDC1GzpGACAAEC` 就是一个 Telegram `file_id` 的例子。
 
 当你的 bot **接收**一条伴有文件的消息，它不会直接接受完整的文件数据，会先用 `file_id` 作为代替。
 如果你的 bot 确实想要下载这个文件，那么你可以使用 `getFile` 方法来实现（[Telegram Bot API 指南](https://core.telegram.org/bots/api#getfile)）。
