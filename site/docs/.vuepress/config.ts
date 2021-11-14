@@ -210,7 +210,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/plugins/parse-mode.md",
                   },
                   {
-                    text: "Command Filtering (command-fiter)",
+                    text: "Command Filtering (command-filter)",
                     link: "/plugins/command-filter.md",
                   },
                 ],
