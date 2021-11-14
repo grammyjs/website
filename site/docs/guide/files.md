@@ -39,7 +39,7 @@ Note that in some cases it _is_ technically possible that a `file_id` from anoth
 So, always ensure that any `file_id`s you use were originally for your bot.
 :::
 
-On the other hand, it _is_ possible that a bot eventually sees the same file identified by different `file_id`s.
+On the other hand, it is possible that a bot eventually sees the same file identified by different `file_id`s.
 This means that you cannot rely on comparing `file_id`s to check if two files are the same.
 If you need to identify the same file over time (or across multiple bots), you should use the `file_unique_id` value that your bot receives along with every `file_id`.
 The `file_unique_id` cannot be used to download files, but will be the same for any given file, across every bot.
