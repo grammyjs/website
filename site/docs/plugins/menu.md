@@ -301,7 +301,7 @@ bot.command("menu", async (ctx) => {
 });
 ```
 
-Payloads also work well together with dynamic ranges.
+Payloads also work well together with dynamic ranges. Payloads can only be of the type text.
 
 ## Dynamic Ranges
 
