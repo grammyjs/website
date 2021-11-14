@@ -12,12 +12,12 @@ next: ./files.md
 默认情况下，对 inline mode 的支持是关闭的。你必须和 [@BotFather](https://t.me/BotFather) 联系为你的 bot 开启 inline mode，去开始接受 inline queries。
 :::
 
-> 再次阅读 Telegram 团队所写[开发者手册](https://core.telegram.org/bots#inline-mode)中关于 Inline mode 的部分。
-> 进一步的资源是他们的 inline bot 的[详细描述](https://core.telegram.org/bots/Inline)，以及宣布该功能的[原始博客文章](https://telegram.org/blog/Inline-bots)，以及 [Telegram bot API 参考](https://core.telegram.org/bots/API#Inline-mode) 中的 inline bot 部分。
+> 再次阅读 Telegram 团队所写 [开发者手册](https://core.telegram.org/bots#inline-mode) 中关于 Inline mode 的部分。
+> 进一步的资源是他们的 inline bot 的 [详细描述](https://core.telegram.org/bots/Inline)，以及宣布该功能的 [原始博客文章](https://telegram.org/blog/Inline-bots)，以及 [Telegram bot API 参考](https://core.telegram.org/bots/API#Inline-mode) 中的 inline bot 部分。
 > 当你想在 bot 上开启 inline queries 前，它们都值得一读。
 
-一旦用户触发了一个 inline queries ，即在文本输入框中输入“@你机器人的名字”来启动一条消息，你的 bot 就会收到这方面的 update。
-grammY 对于通过 `bot.inlineQuery()` 方法处理 inline queries 有特殊的支持，正如在 [grammY API 参考](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Composer)中 `Composer` 类中所记录的那样。
+一旦用户触发了一个 inline queries，即在文本输入框中输入“@你机器人的名字”来启动一条消息，你的 bot 就会收到这方面的 update。
+grammY 对于通过 `bot.inlineQuery()` 方法处理 inline queries 有特殊的支持，正如在 [grammY API 参考](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Composer) 中 `Composer` 类中所记录的那样。
 它允许你监听匹配字符串或正则表达式的特定 inline queries。
 如果你想通用地处理所有的 inline queries，可以使用 `bot.on('inline_query’)`。
 
@@ -54,4 +54,4 @@ bot.on("inline_query", (ctx) => ctx.answerInlineQuery([]));
 ```
 
 grammY 可以自动完成上面结构中的所有字段。
-另外，一定要查看 [Telegram bot API](https://core.telegram.org/bots/api#inlinequeryresult) 参考文献中的关于 inline queries 结果的确切规范.
+另外，一定要查看 [Telegram bot API](https://core.telegram.org/bots/api#inlinequeryresult) 参考文献中的关于 inline queries 结果的确切规范。

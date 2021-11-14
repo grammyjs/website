@@ -16,7 +16,7 @@ next: ./commands.md
 
 这允许使用超过 500 种不同的 filter 进行筛选，而且我们可能会随着时间的推移增加更多的过滤器。
 每个有效的 filter 都可以在你的代码编辑器中自动完成。
-因此，你可以简单地输入 `bot.on('')` ，打开自动完成，并通过输入一些东西来搜索所有的查询。
+因此，你可以简单地输入 `bot.on('')`，打开自动完成，并通过输入一些东西来搜索所有的查询。
 
 ![Filter 参数查询](/filter-query-search.png)
 
@@ -25,7 +25,7 @@ next: ./commands.md
 
 ```ts
 bot.on("message", (ctx) => {
-  // 照片信息的文本可能未被定义!
+  // 照片信息的文本可能未被定义！
   const text: string | undefined = ctx.msg.text;
 });
 bot.on("message:text", (ctx) => {
@@ -74,7 +74,7 @@ bot.on("::email"); // 所有信息、channel post 的标题或内容中包括的
 省去 _filter 第一个参数_ ，可以同时匹配消息和 channel posts 。
 [记住](./context.md#available-actions)，`ctx.msg` 让你可以访问消息或 channel posts ，它们都是符合匹配规则的，可以放心使用。
 
-遗漏 _第二_ 个值可以同时匹配 Entities 和 标题 entities 。
+遗漏 _第二_ 个值可以同时匹配 Entities 和标题 entities。
 你可以同时省略第一和第二部分。
 
 ### 快捷方式
@@ -88,7 +88,7 @@ grammY 的查询引擎允许定义整齐的快捷方式，将相关的查询组�
 
 ```ts
 bot.on("msg"); // 所有的信息和 channel posts
-bot.on("msg:text"); // 与`:text`完全一致
+bot.on("msg:text"); // 与 `:text` 完全一致
 ```
 
 #### `edit`
@@ -109,13 +109,13 @@ bot.on("edit:location"); // 实时位置更新
 ```ts
 bot.on("message:media"); // 照片和视频
 bot.on("edited_channel_post:media"); // 已编辑的 channel posts 中带有照片或视频的部分
-bot.on(":media"); // 新的信息中包括照片或视频的部分。新的信息包括普通信息与 channel posts 。
+bot.on(":media"); // 新的信息中包括照片或视频的部分。新的信息包括普通信息与 channel posts。
 ```
 
 #### `:file`
 
-`:file`快捷方式将所有包含文件的归纳。
-因此，`await ctx.getFile()`将会会返回给你一个文件对象。
+`:file` 快捷方式将所有包含文件的归纳。
+因此，`await ctx.getFile()` 将会会返回给你一个文件对象。
 
 ```ts
 bot.on(":file"); // 在信息或 channel posts 包含文件的部分
@@ -124,7 +124,7 @@ bot.on("edit:file"); // 在信息或 channel posts 包含文件的部分且已�
 
 ### 实用技巧！
 
-你可以通过 `:is_bot` 的查询部分来检测信息来源是否是 bot 。
+你可以通过 `:is_bot` 的查询部分来检测信息来源是否是 bot。
 语法糖 `:me` 可以用来在查询中指代你的 bot ，它将在内部为你比对用户标识符来实现这个效果。
 
 ```ts
@@ -158,12 +158,12 @@ bot.on("message").filter(
 
 ### 使用 OR 进行组合
 
-如果你想在两个查询的 OR 串联后面安装一些中间件，你可以把这两个查询以数组的形式传递给 `bot.on()` 。
+如果你想在两个查询的 OR 串联后面安装一些中间件，你可以把这两个查询以数组的形式传递给 `bot.on()`。
 
 ```ts
 // 如果更新是关于一个消息或对一个消息的编辑，则运行。
 bot.on(["message", "edited_message"], (ctx) => {});
-// 如果在文本或标题中发现 hashtag 或电子邮件，或提及 entity ，则运行。
+// 如果在文本或标题中发现 hashtag 或电子邮件，或提及 entity，则运行。
 bot.on(["::hashtag", "::email", "::mention"], (ctx) => {});
 ```
 
@@ -172,7 +172,7 @@ bot.on(["::hashtag", "::email", "::mention"], (ctx) => {});
 
 ### 使用 AND 进行组合
 
-如果你想在两个查询的 AND 串联后面安装一些中间件，你可以连锁调用 `bot.on()` 。
+如果你想在两个查询的 AND 串联后面安装一些中间件，你可以连锁调用 `bot.on()`。
 
 ```ts
 // 匹配转发的 URL
@@ -194,7 +194,7 @@ bot
   .on(["channel_post", ":forward_date"])
   // ......，包含文本......。
   .on(":text")
-  // ...至少有一个 URL 、 hashtag 或 cashtag 。
+  // ...至少有一个 URL 、 hashtag 或 cashtag。
   .on(["::url", "::hashtag", "::cashtag"], (ctx) => {});
 ```
 
@@ -208,7 +208,7 @@ bot
 ### 查询结构
 
 每个查询由最多三个查询部分组成。
-根据一个查询有多少个查询部分，我们区分了 L1 、 L2 和 L3 查询，如 `message` 、`message:entities` 和 `message:entities:url` 。我们能很清晰的分辨出这三个等级。
+根据一个查询有多少个查询部分，我们区分了 L1 、 L2 和 L3 查询，如 `message` 、`message:entities` 和 `message:entities:url`。我们能很清晰的分辨出这三个等级。
 
 查询部分由冒号(`:`)分隔。
 我们把第一个冒号之前的部分或查询字符串的末尾称为查询的 _L1 部分_。

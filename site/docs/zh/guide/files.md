@@ -20,7 +20,7 @@ Telegram 服务器上的文件由 `file_id` 标识，它是一个长字符串。
 当你的 bot **接收**一条消息，它不会直接接受完整的文件数据，会先用 `file_id` 作为代替。
 如果你的 bot 确实想要下载这个文件，那么你可以使用 `getFile` 方法来实现（[Telegram Bot API 指南](https://core.telegram.org/bots/api#getfile)）。
 这个方法返回给你一个下载这些文件数据的 URL。
-需要注意的是这个 URL 的有效时间只有 60 分钟，之后它可能会失效，你得重新调用 `getFile` 方法获取一个新的链接。
+需要注意的是这个 URL 只有 60 分钟的有效期。失效后，你需要重新调用 `getFile` 方法获取一个新的链接。
 
 当一个 bot **发送**一条消息，它可以指定一个以前用过的 `file_id`。
 这就会发送那个被识别到的文件。
@@ -83,7 +83,7 @@ Telegram bot 有 [三种方法](https://core.telegram.org/bots/api#sending-files
 
 ### 通过 `file_id` 或者 URL
 
-前两种方法很简单：只需将各自的值作为 `string` 传递，就完成了。
+前两种方法很简单：只需将各自的值作为 `string` 传递即可。
 
 ```ts
 // 通过 file_id 发送
@@ -107,13 +107,13 @@ await ctx.replyWithPhoto(new InputFile("/tmp/picture.jpg"));
 // 使用 bot.api.sendPhoto() 或者 ctx.api.sendPhoto()
 ```
 
-`InputFile` 构建器不仅仅能适用于文件路径，也可以适用流，`Buffer`对象，异步迭代器，这取决于你所使用的平台。
+`InputFile` 构建器不仅仅能适用于文件路径，也可以适用流，`Buffer` 对象，异步迭代器，这取决于你所使用的平台。
 grammY 会自动的在内部转化所有的文件格式成 `Uint8Array` 对象，构建一个 multipart/form-data 数据流。
 所以你需要记住的是：**创造一个 `InputFile` 实例，并且把它传递到任何发送文件的方法**。
 `InputFile` 实例能够传递到所有发送上传文件的方法中。
 
-::: warning InputFile 构建器 类型
-需要注意的是 [grammY API 指南](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#InputFile) 中对于 `InputFile`，只列出在 Deno 上可用的类型。
+::: warning InputFile 构建器类型
+需要注意的是 [grammY API 参考](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#InputFile) 中对于 `InputFile`，只列出在 Deno 上可用的类型。
 如果你在 Node.js 中使用 grammY，检查相应的类型定义或实现，或者相信 TypeScript。
 :::
 
@@ -123,7 +123,7 @@ grammY 本身可以不受限制地发送文件，但是 Telegram 在他们的 [�
 这意味着你的 bot 不可以下载大小超过 20 MB 的文件也不能上传超过 50 MB 的文件。
 一些文件类型有着更加严格的限制，比如图片。
 
-如果你想要同时支持上传和下载超过 2000 MB 的文件(Telegram 上的最大文件大小)，除了 bot 程序之外，您还必须托管自己的 Bot API 服务器。
+如果你想要同时支持上传和下载超过 2000 MB 的文件（Telegram 上的最大文件大小），除了 bot 程序之外，您还必须托管自己的 Bot API 服务器。
 请参阅有关此问题的官方文档 [链接](https://core.telegram.org/bots/api#using-a-local-bot-api-server)。
 
 托管一个 Bot API 服务器与 grammY 无关。
