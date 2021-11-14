@@ -50,11 +50,11 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/guide/introduction.md",
                   },
                   {
-                    text: "Getting started",
+                    text: "Getting Started",
                     link: "/guide/getting-started.md",
                   },
                   {
-                    text: "Sending and receiving messages",
+                    text: "Sending and Receiving Messages",
                     link: "/guide/basics.md",
                   },
                   {
@@ -66,7 +66,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/guide/api.md",
                   },
                   {
-                    text: "Filter queries and bot.on()",
+                    text: "Filter Queries and bot.on()",
                     link: "/guide/filter-queries.md",
                   },
                   {
@@ -78,7 +78,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/guide/middleware.md",
                   },
                   {
-                    text: "Error handling",
+                    text: "Error Handling",
                     link: "/guide/errors.md",
                   },
                   {
@@ -86,7 +86,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/guide/inline-queries.md",
                   },
                   {
-                    text: "File handling",
+                    text: "File Handling",
                     link: "/guide/files.md",
                   },
                   {
@@ -107,15 +107,15 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/advanced/README.md",
                   },
                   {
-                    text: "Middleware redux",
+                    text: "Middleware Redux",
                     link: "/advanced/middleware.md",
                   },
                   {
-                    text: "Scaling Up I: Large codebase",
+                    text: "Scaling Up I: Large Codebase",
                     link: "/advanced/structuring.md",
                   },
                   {
-                    text: "Scaling Up II: High load",
+                    text: "Scaling Up II: High Load",
                     link: "/advanced/scaling.md",
                   },
                   {
@@ -158,7 +158,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                 text: "Official",
                 children: [
                   {
-                    text: "Sessions and storing data (built-in)",
+                    text: "Sessions and Storing Data (built-in)",
                     link: "/plugins/session.md",
                   },
                   {
@@ -166,7 +166,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/plugins/keyboard.md",
                   },
                   {
-                    text: "Interactive menus (menu)",
+                    text: "Interactive Menus (menu)",
                     link: "/plugins/menu.md",
                   },
                   {
@@ -182,15 +182,15 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/plugins/hydrate.md",
                   },
                   {
-                    text: "Retry API requests (auto-retry)",
+                    text: "Retry API Requests (auto-retry)",
                     link: "/plugins/auto-retry.md",
                   },
                   {
-                    text: "Flood control (transformer-throttler)",
+                    text: "Flood Control (transformer-throttler)",
                     link: "/plugins/transformer-throttler.md",
                   },
                   {
-                    text: "Rate limit users (ratelimiter)",
+                    text: "Rate Limit Users (ratelimiter)",
                     link: "/plugins/ratelimiter.md",
                   },
                   {
@@ -210,7 +210,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/plugins/parse-mode.md",
                   },
                   {
-                    text: "Command filtering (command-fiter)",
+                    text: "Command Filtering (command-fiter)",
                     link: "/plugins/command-filter.md",
                   },
                 ],
@@ -219,7 +219,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                 text: "Third-party",
                 children: [
                   {
-                    text: "Console time",
+                    text: "Console Time",
                     link: "/plugins/console-time.md",
                   },
                   {
@@ -277,7 +277,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/resources/faq.md",
                   },
                   {
-                    text: "Comparison to other frameworks",
+                    text: "Comparison to Other Frameworks",
                     link: "/resources/comparison.md",
                   },
                 ],
