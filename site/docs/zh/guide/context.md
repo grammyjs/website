@@ -5,7 +5,7 @@ next: ./api.md
 
 # 上下文
 
-`Context` 对象（[API参考](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Context)）是 grammY 的一个重要部分。
+`Context` 对象（[grammY API 参考](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Context)）是 grammY 的一个重要部分。
 
 每当你在你的 bot 对象上注册一个监听器时，这个监听器将收到一个上下文对象。
 
@@ -20,7 +20,7 @@ bot.on("message", (ctx) => {
 - [访问有关聊天信息的内容](#available-information)
 - [对信息进行响应的行动](#available-actions).
 
-注意，上下文对象通常被称为 " ctx "。
+注意，上下文对象通常被称为 `ctx`。
 
 ## 可用信息
 
@@ -29,7 +29,7 @@ bot.on("message", (ctx) => {
 
 ```ts
 bot.on("message", (ctx) => {
-  // `txt' 是信息中的文本字符串部分。
+  // `txt` 是信息中的文本字符串部分。
   // 对于用于照片、贴纸和其他信息，它将为 `undefined`
   const txt = ctx.message.text;
 });
@@ -50,7 +50,7 @@ bot.on("edited_message", (ctx) => {
 ```
 
 此外，你可以访问 Telegram 发送给你的 bot 的原始 `Update` 对象（[Telegram Bot API 参考](https://core.telegram.org/bots/api#update)）。
-这个更新对象（ `ctx.update` ）包含了 `ctx.message` 之类的所有数据来源。
+这个更新对象（`ctx.update`）包含了 `ctx.message` 之类的所有数据来源。
 
 上下文对象包含关于你的机器人的信息，可以通过 `ctx.me` 访问。
 
@@ -100,7 +100,7 @@ bot.on("message", async (ctx) => {
 
 1. 我们必须能够访问 `bot` 对象。
    这意味着我们必须在我们的代码库中传递 `bot` 对象，以便做出反应，当你有多个源文件，并且在其他地方定义了你的监听器时，这就很烦人。
-2. 我们必须取出上下文的聊天标识符，并再次明确将其传递给 `sendMessage` 。
+2. 我们必须取出上下文的聊天标识符，并再次明确将其传递给 `sendMessage`。
    这也很烦人，因为你很可能总是想回复发出信息的同一个用户。
    想象一下！你会有多频繁地一遍又一遍，一遍又一遍打出同样的东西
 
@@ -128,8 +128,8 @@ bot.on("message", (ctx) => ctx.reply("Gotcha!"));
 ::: tip Telegram 的回复功能
 尽管该方法在 grammY （和许多其他框架）中被称为 `ctx.reply`，但它并没有使用 Telegram 的回复功能，因为在 Telegram 中，前一条信息是被链接的。
 
-如果你在 [Telegram Bot API 参考](https://core.telegram.org/bots/api#sendmessage) 中查看 `sendMessage` 能做什么，你会看到一些选项，如`parse_mode` ，`disable_web_page_preview`，和 `reply_to_message_id`。
-后者可以用来使一条消息成为回复。
+如果你在 [Telegram Bot API 参考](https://core.telegram.org/bots/api#sendmessage) 中查看 `sendMessage` 能做什么，你会看到一些选项，比如`parse_mode`，`disable_web_page_preview` 和 `reply_to_message_id`。
+最后的那个选项可以使一条消息成为回复：
 
 ```ts
 await ctx.reply("^ This is a message!", {
@@ -141,7 +141,7 @@ await ctx.reply("^ This is a message!", {
 在你的代码编辑器中使用自动完成来查看可用的选项。
 :::
 
-当然，`ctx.api` 上的每一个其他方法都有一个快捷方式，都有正确的预填值，比如 `ctx.replyWithPhoto` 用来回复照片，或者 `ctx.exportChatInviteLink` 用来获取相应聊天的邀请链接。如果你想了解存在哪些快捷方式，那么自动完成是你的伙伴，还有 [API 参考](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Context)。
+当然，`ctx.api` 上的每一个其他方法都有一个快捷方式，并且有正确的预填值，比如 `ctx.replyWithPhoto` 用来回复照片，或者 `ctx.exportChatInviteLink` 用来获取相应聊天的邀请链接。如果你想了解存在哪些快捷方式，那么自动完成是你的伙伴，还有 [grammY API 参考](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Context)。
 
 请注意，你可能不希望总是在同一个聊天中做出回复。
 在这种情况下，你可以退回到使用 `ctx.api` 方法，并在调用它们时指定所有选项。
@@ -150,13 +150,13 @@ await ctx.reply("^ This is a message!", {
 
 ## 上下文对象是如何被创造的？
 
-每当你的机器人从 Telegram 收到一条新消息时，它就会被包裹在一个更新对象中。
-事实上，更新对象不仅可以包含新的消息，还可以包含所有其他种类的东西，例如对消息的编辑、投票的回答，以及 [更多](https://core.telegram.org/bots/api#update)。
+每当你的机器人从 Telegram 收到一条新消息时，它就会被包裹在一个 update 对象中。
+事实上，update 对象不仅可以包含新的消息，还可以包含所有其他种类的东西，例如对消息的编辑、投票的回答，以及 [更多](https://core.telegram.org/bots/api#update)。
 
-对于每一个传入的更新，一个新的 `Context` 对象被精确地创建一次。
-不同更新的上下文是完全不相关的对象，它们只是通过 `ctx.me` 引用相同的 bot 信息。
+对于每一个传入的 update，都会精确地创建一个新的 `Context` 对象。
+不同 update 的上下文是完全不相关的对象，它们只是通过 `ctx.me` 引用相同的 bot 信息。
 
-一个更新的相同上下文对象将被 bot 上所有安装的中间件（[docs](./middleware.md)）共享。
+一个 update 的相同上下文对象将被 bot 上所有安装的中间件（[docs](./middleware.md)）共享。
 
 ## 定制你的上下文对象
 
@@ -168,7 +168,7 @@ await ctx.reply("^ This is a message!", {
 1. 安装修改上下文的[中间件](./middleware.md)（推荐），或
 2. 设置一个自定义的上下文构造函数。
 
-如果你选择选项1.，你必须指定自定义上下文作为一个类型参数（JavaScript 可以忽略这条）。
+如果你选择选项 1，你必须指定自定义上下文作为一个类型参数（JavaScript 可以忽略这条）。
 
 <CodeGroup>
   <CodeGroupItem title="Node" active>
@@ -181,7 +181,7 @@ interface MyContext extends Context {
   customProp: string | number | undefined;
 }
 
-// 向 "Bot" 构造函数传递自定义上下文类型
+// 向 `Bot` 构造函数传递自定义上下文类型
 const bot = new Bot<MyContext>("<token>");
 
 bot.on("message", (ctx) => {
@@ -201,7 +201,7 @@ interface MyContext extends Context {
   customProp: string | number | undefined;
 }
 
-// 向 "Bot" 构造函数传递自定义上下文类型
+// 向 `Bot` 构造函数传递自定义上下文类型
 const bot = new Bot<MyContext>("<token>");
 
 bot.on("message", (ctx) => {
@@ -213,7 +213,7 @@ bot.on("message", (ctx) => {
 </CodeGroupItem>
 </CodeGroup>
 
-自然地，仅仅因为现在上下文 _类型_ 有了新的属性，这并不意味着它们背后会有实际的 _价值_。
+自然地，仅仅因为现在上下文 _类型_ 有了新的属性，这并不意味着它们背后会有实际的 _值_。
 你必须确保一个插件（或你自己的中间件）正确设置所有属性，以满足你指定的类型。
 
 > 一些中间件（例如 [会话中间件](/zh/plugins/session.md)）要求你在上下文对象中混入正确的类型，这可以通过 _调味_ 你的上下文来完成，正如 [在下面](#上下文调味剂) 所解释的。
@@ -317,7 +317,7 @@ bot.start();
 </CodeGroup>
 
 ::: tip 相关
-[中间件](./middleware.md) 指的是接收上下文对象作为参数的函数，如已安装的监听器。
+[中间件](./middleware.md) 指的是接收上下文对象作为参数的函数，比如已安装的监听器。
 :::
 
 ## 上下文调味剂
