@@ -13,7 +13,7 @@ It reached the first stable version a few weeks later.
 
 ## How is grammY developed?
 
-grammY is completely free and open source software, developed by a team of volunteers.
+grammY is completely free and open-source software, developed by a team of volunteers.
 Its code is available on GitHub.
 
 You're welcome to [join us](https://t.me/grammyjs)!
