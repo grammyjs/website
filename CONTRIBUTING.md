@@ -35,7 +35,6 @@ Anyone who wants to start a new language should ask themselves the following que
    Many people only come here for a few months (and that's fine!) but if you translate everything and then stop developing bots and stop updating the articles, we'll have to remove that language again.
    Then it was a waste of time for you.
    So if you don't want to commit long-term, don't start.
-
 3. How many hours per week can you spend in the beginning?
    It's understandable that a first PR doesn't contain translations for all pages immediately.
    However, if you can only work on it rarely, it's going to take a very long time until you're done.
