@@ -48,7 +48,7 @@ You may also want to watch [10 Things I Regret About Node.js - Ryan Dahl - JSCon
 
 ## Where can I host a Deno app?
 
-Because deno is new and its ecosystem is small, the number of places where you can host a Deno app are fewer than the ones for Node.js.
+Because Deno is new and its ecosystem is small, the number of places where you can host a Deno app are fewer than the ones for Node.js.
 Here's are some options to where you can host your Deno app:
 
 1. [Cloudflare Workers](https://workers.dev)
