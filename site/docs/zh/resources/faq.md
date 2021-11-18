@@ -42,7 +42,7 @@ grammY 是由 TypeScript 编写的，一个 JavaScript 的超集。
 > Deno 是由发明 Node 的同一个人 Ry 创造的。
 > 他在 [这个视频]](https://youtu.be/M3BM9TB-8yA) 里总结了他对 Node 的 10 个遗憾。
 
-grammY 实际上是以 Deno 优来编写的，然后再支持 Node。
+grammY 实际上在编写时优先考虑 Deno，然后再支持 Node。
 
 ## 我在哪里可以托管 Deno 程序？
 
@@ -51,5 +51,5 @@ grammY 实际上是以 Deno 优来编写的，然后再支持 Node。
 
 1. [Cloudflare Workers](https://workers.dev)
 2. [Deno Deploy](https://deno.com/deploy)
-3. Heroku, [参考此文](https://dev.to/ms314006/deploy-your-deno-apps-to-heroku-375h)
+3. Heroku，[参考此文](https://dev.to/ms314006/deploy-your-deno-apps-to-heroku-375h)
 4. [Vercel](https://github.com/vercel-community/deno)
