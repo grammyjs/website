@@ -34,7 +34,7 @@ Telegraf v4 attempted to fix this by migrating the entire code base to TypeScrip
 Unfortunately, many of the resulting types were so complex that they were too hard to understand (but correct).
 Moreover, the migration revealed countless oddities ([example](https://github.com/telegraf/telegraf/issues/1076)) in the code base that made it painful to even find correct typings for the existing code at all.
 
-As a result, even though version 4.0 tried to _improve_ correctness and tooling support, it ended up making Telegraf substatially _harder to use_ than its untyped predecessor.
+As a result, even though version 4.0 tried to _improve_ correctness and tooling support, it ended up making Telegraf substantially _harder to use_ than its untyped predecessor.
 Understandably, many existing users of Telegraf 3 were unwilling to upgrade.
 It also got harder for new users to get started.
 

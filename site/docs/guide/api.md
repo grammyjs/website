@@ -7,7 +7,7 @@ next: ./filter-queries.md
 
 ## General Information
 
-Telegram bots are communicating via HTTP requests with the Telegram servers.
+Telegram bots communicate with the Telegram servers via HTTP requests.
 The Telegram Bot API is the specification of this interface, i.e. a [long list](https://core.telegram.org/bots/api) of methods and data types, commonly called a reference.
 It defines everything that Telegram bots can do.
 You can find it linked under the Resources tab.

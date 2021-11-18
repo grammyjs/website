@@ -54,3 +54,4 @@ Here's are some options to where you can host your Deno app:
 1. [Cloudflare Workers](https://workers.dev)
 2. [Deno Deploy](https://deno.com/deploy)
 3. Heroku, [read here](https://dev.to/ms314006/deploy-your-deno-apps-to-heroku-375h)
+4. [Vercel](https://github.com/vercel-community/deno)
