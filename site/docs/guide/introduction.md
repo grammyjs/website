@@ -99,7 +99,7 @@ This type of software is called a _runtime environment_.
 It takes in your source code files and actually does whatever is programmed in them.
 
 For us, there are two runtime environments to choose from, called [Deno](https://deno.land) and [Node.js](https://nodejs.org).
-(If you see people call it _Node_, they are just too lazy to type “.js”, but they mean the same thing.)
+(If you see people call it _Node.js_, they are just too lazy to type “.js”, but they mean the same thing.)
 
 > The rest of this section helps you decide between these two platforms.
 > If you already know what you want to use, jump down to the [prerequisites for Node.js](#prerequisites-for-node-js) or [those for Deno](#prerequisites-for-deno).

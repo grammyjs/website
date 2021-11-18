@@ -112,7 +112,7 @@ However, this is not reflected in the types.
 If you need these calls, you should also install an [API flavor](/advanced/transformers.html#api-flavoring) on the bot object called `FileApiFlavor`:
 
 <CodeGroup>
-  <CodeGroupItem title="Node" active>
+  <CodeGroupItem title="Node.js" active>
 
 ```ts
 import { Api, Bot, Context } from "grammy";

@@ -121,7 +121,7 @@ Instances of `InputFile` can be passed to all methods that accept sending files 
 This is how you can construct `InputFile`s.
 
 <CodeGroup>
-  <CodeGroupItem title="Node" active>
+  <CodeGroupItem title="Node.js" active>
 
 ```ts
 import { createReadStream } from "fs";

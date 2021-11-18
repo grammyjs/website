@@ -31,7 +31,7 @@ If you're coming from a different programming language or a different JavaScript
 
 ## Why do you support Deno?
 
-Some important reasons for why we like Deno better than Node are:
+Some important reasons for why we like Deno better than Node.js are:
 
 - It's simpler and faster to get started.
 - The tooling is substantially better.
@@ -39,10 +39,10 @@ Some important reasons for why we like Deno better than Node are:
 - No need to maintain `package.json` or `node_modules`.
 - It has a reviewed standard library.
 
-> Deno was founded by Ryan Dahl—the same person that invented Node.
-> He summarized his 10 regrets about Node in [this video](https://youtu.be/M3BM9TB-8yA).
+> Deno was founded by Ryan Dahl—the same person that invented Node.js.
+> He summarized his 10 regrets about Node.js in [this video](https://youtu.be/M3BM9TB-8yA).
 
-grammY is actually written Deno-first, and backported to support Node.
+grammY is actually written Deno-first, and backported to support Node.js.
 
 You may also want to watch [10 Things I Regret About Node.js - Ryan Dahl - JSConf EU](https://youtu.be/M3BM9TB-8yA).
 

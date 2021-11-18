@@ -171,7 +171,7 @@ This is possible in two ways:
 If you choose option 1., you must specify the custom context as a type parameter (skip for JavaScript):
 
 <CodeGroup>
-  <CodeGroupItem title="Node" active>
+  <CodeGroupItem title="Node.js" active>
 
 ```ts
 import { Bot, Context } from "grammy";
