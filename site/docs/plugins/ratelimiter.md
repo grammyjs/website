@@ -1,6 +1,6 @@
 # Rate Limit Users (`ratelimiter`)
 
-rateLimiter is a rate-limiting middleware for Telegram bots made with GrammY or [Telegraf](https://github.com/telegraf/telegraf) bot frameworks. In simple terms, it is a plugin that helps you deflect heavy spamming in your bots. To understand rateLimiter better, you can take a look at the following illustration:
+rateLimiter is a rate-limiting middleware for Telegram bots made with grammY or [Telegraf](https://github.com/telegraf/telegraf) bot frameworks. In simple terms, it is a plugin that helps you deflect heavy spamming in your bots. To understand rateLimiter better, you can take a look at the following illustration:
 
 ![rateLimiter's role in deflecting spam](/rateLimiter-role.png)
 
@@ -40,20 +40,20 @@ There are two ways of using rateLimiter:
 The following example uses [express](https://github.com/expressjs/express) as the webserver and [webhooks](https://grammy.dev/guide/deployment-types.html) for our small bot. This snippet demonstrates the easiest way of using rateLimiter which is accepting the default behavior:
 
 ```ts
-import express from "express";
-import { Bot } from "grammy";
-import { limit } from "@grammyjs/ratelimiter";
+import express from "express"
+import { Bot } from "grammy"
+import { limit } from "@grammyjs/ratelimiter"
 
-const app = express();
-const bot = new Bot("YOUR BOT TOKEN HERE");
+const app = express()
+const bot = new Bot("YOUR BOT TOKEN HERE")
 
-app.use(express.json());
-bot.use(limit());
+app.use(express.json())
+bot.use(limit())
 
 app.listen(3000, () => {
-  bot.api.setWebhook("YOUR DOMAIN HERRE", { drop_pending_updates: true });
-  console.log("The application is listening on port 3000!");
-});
+  bot.api.setWebhook("YOUR DOMAIN HERRE", { drop_pending_updates: true })
+  console.log("The application is listening on port 3000!")
+})
 ```
 
 ### Manual Configuration
@@ -61,38 +61,40 @@ app.listen(3000, () => {
 As mentioned before, you can pass an `Options` object to the `limit()` method to alter rateLimiter's behaviors. In the following snippet, I have decided to use Redis as my storage option:
 
 ```ts
-import express from "express";
-import { Bot } from "grammy";
-import { limit } from "@grammyjs/ratelimiter";
-import Redis from "ioredis";
+import express from "express"
+import { Bot } from "grammy"
+import { limit } from "@grammyjs/ratelimiter"
+import Redis from "ioredis"
 
-const app = express();
-const bot = new Bot("YOUR BOT TOKEN HERE");
-const redis = new Redis();
+const app = express()
+const bot = new Bot("YOUR BOT TOKEN HERE")
+const redis = new Redis()
 
-app.use(express.json());
-bot.use(limit({
-  timeFrame: 2000,
+app.use(express.json())
+bot.use(
+  limit({
+    timeFrame: 2000,
 
-  limit: 3,
+    limit: 3,
 
-  // "MEMORY_STORAGE" is the default mode. Therefore if you want to use Redis, do not pass storageClient at all.
-  storageClient: redis,
+    // "MEMORY_STORAGE" is the default mode. Therefore if you want to use Redis, do not pass storageClient at all.
+    storageClient: redis,
 
-  onLimitExceeded: (ctx) => {
-    ctx?.reply("Please refrain from sending too many requests!");
-  },
+    onLimitExceeded: (ctx) => {
+      ctx?.reply("Please refrain from sending too many requests!")
+    },
 
-  // Note that the key should be a number in string format such as "123456789"
-  keyGenerator: (ctx) => {
-    return ctx.from?.id.toString();
-  },
-}));
+    // Note that the key should be a number in string format such as "123456789"
+    keyGenerator: (ctx) => {
+      return ctx.from?.id.toString()
+    },
+  })
+)
 
 app.listen(3000, () => {
-  bot.api.setWebhook("YOUR DOMAIN HERRE", { drop_pending_updates: true });
-  console.log("The application is listening on port 3000!");
-});
+  bot.api.setWebhook("YOUR DOMAIN HERRE", { drop_pending_updates: true })
+  console.log("The application is listening on port 3000!")
+})
 ```
 
 As you can see in the example above, each user is allowed to send 3 requests every 2 seconds. If said user sends more requests, the bot replies with _Please refrain from sending too many requests_. That request will not travel further and dies immediately as we do not call [next()](/guide/middleware.html#the-middleware-stack) in the middleware.
@@ -102,27 +104,29 @@ As you can see in the example above, each user is allowed to send 3 requests eve
 Another use case would be limiting the incoming requests from a chat instead of a specific user:
 
 ```ts
-import express from "express";
-import { Bot } from "grammy";
-import { limit } from "@grammyjs/ratelimiter";
+import express from "express"
+import { Bot } from "grammy"
+import { limit } from "@grammyjs/ratelimiter"
 
-const app = express();
-const bot = new Bot("YOUR BOT TOKEN HERE");
+const app = express()
+const bot = new Bot("YOUR BOT TOKEN HERE")
 
-app.use(express.json());
-bot.use(limit({
-  keyGenerator: (ctx) => {
-    if (ctx.chat?.type === "group" || ctx.chat?.type === "supergroup") {
-      // Note that the key should be a number in string format such as "123456789"
-      return ctx.chat.id.toString();
-    }
-  },
-}));
+app.use(express.json())
+bot.use(
+  limit({
+    keyGenerator: (ctx) => {
+      if (ctx.chat?.type === "group" || ctx.chat?.type === "supergroup") {
+        // Note that the key should be a number in string format such as "123456789"
+        return ctx.chat.id.toString()
+      }
+    },
+  })
+)
 
 app.listen(3000, () => {
-  bot.api.setWebhook("YOUR DOMAIN HERRE", { drop_pending_updates: true });
-  console.log("The application is listening on port 3000!");
-});
+  bot.api.setWebhook("YOUR DOMAIN HERRE", { drop_pending_updates: true })
+  console.log("The application is listening on port 3000!")
+})
 ```
 
 In this example, I have used `chat.id` as the unique key for rate-limiting.
