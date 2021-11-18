@@ -35,7 +35,7 @@ Here are a few things that we expect from your plugin if you want it to be displ
 
    In the simplest case, you can copy the text from your README file.
 
-3. It is open source software that is published under a permissive license, preferably MIT (like grammY), or ISC.
+3. It is open-source software that is published under a permissive license, preferably MIT (like grammY), or ISC.
 
 It would be cool if your plugin also runs on Deno, and we will move those plugins to the top of the list.
 However, Deno support is not a strict requirement.
