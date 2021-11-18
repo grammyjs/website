@@ -18,19 +18,19 @@ import { FileFlavor, hydrateFiles } from "@grammyjs/files";
 // Transformative Context flavor
 type MyContext = FileFlavor<Context>;
 
-// Create bot
+// Create a bot.
 const bot = new Bot<MyContext>("");
 
-// Install plugin
+// Use the plugin.
 bot.api.config.use(hydrateFiles(bot.token));
 
-// Download videos and GIFs to temporary files
+// Download videos and GIFs to temporary locations.
 bot.on([":video", ":animation"], async (ctx) => {
-  // Prepare file for download
+  // Prepare the file for download.
   const file = await ctx.getFile();
-  // Download file to temporary location on your disk
+  // Download the file to a temporary location.
   const path = await file.download();
-  // Print file path
+  // Print the file path.
   console.log("File saved at", path);
 });
 ```
@@ -42,19 +42,19 @@ bot.on([":video", ":animation"], async (ctx) => {
 import { Bot } from "grammy";
 import { hydrateFiles } from "@grammyjs/files";
 
-// Create bot
+// Create a bot.
 const bot = new Bot("");
 
-// Install plugin
+// Use the plugin.
 bot.api.config.use(hydrateFiles(bot.token));
 
-// Download videos and GIFs to temporary files
+// Download videos and GIFs to temporary locations.
 bot.on([":video", ":animation"], async (ctx) => {
-  // Prepare file for download
+  // Prepare the file for download.
   const file = await ctx.getFile();
-  // Download file to temporary location on your disk
+  // Download the file to a temporary location.
   const path = await file.download();
-  // Print file path
+  // Print the file path.
   console.log("File saved at", path);
 });
 ```
@@ -72,19 +72,19 @@ import {
 // Transformative Context flavor
 type MyContext = FileFlavor<Context>;
 
-// Create bot
+// Create a bot.
 const bot = new Bot<MyContext>("");
 
-// Install plugin
+// Use the plugin.
 bot.api.config.use(hydrateFiles(bot.token));
 
-// Download videos and GIFs to temporary files
+// Download videos and GIFs to temporary locations.
 bot.on([":video", ":animation"], async (ctx) => {
-  // Prepare file for download
+  // Prepare the file for download.
   const file = await ctx.getFile();
-  // Download file to temporary location on your disk
+  // Download the file to a temporary location.
   const path = await file.download();
-  // Print file path
+  // Print the file path.
   console.log("File saved at", path);
 });
 ```
@@ -122,7 +122,7 @@ type MyContext = FileFlavor<Context>;
 type MyApi = FileApiFlavor<Api>;
 
 const bot = new Bot<MyContext, MyApi>("");
-// etc
+// ...
 ```
 
 </CodeGroupItem>
@@ -140,7 +140,7 @@ type MyContext = FileFlavor<Context>;
 type MyApi = FileApiFlavor<Api>;
 
 const bot = new Bot<MyContext, MyApi>("");
-// etc
+// ...
 ```
 
 </CodeGroupItem>

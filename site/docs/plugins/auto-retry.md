@@ -21,7 +21,7 @@ You can install this plugin on the `bot.api` object:
 ```ts
 import { autoRetry } from "@grammyjs/auto-retry";
 
-// Install the plugin
+// Use the plugin.
 bot.api.config.use(autoRetry());
 ```
 
@@ -31,7 +31,7 @@ bot.api.config.use(autoRetry());
 ```js
 const { autoRetry } = require("@grammyjs/auto-retry");
 
-// Install the plugin
+// Use the plugin
 bot.api.config.use(autoRetry());
 ```
 
@@ -41,7 +41,7 @@ bot.api.config.use(autoRetry());
 ```ts
 import { autoRetry } from "https://cdn.skypack.dev/@grammyjs/auto-retry?dts";
 
-// Install the plugin
+// Use the plugin.
 bot.api.config.use(autoRetry());
 ```
 
@@ -60,8 +60,8 @@ Similarly, if the request ever fails with `retry_after` larger than what is spec
 
 ```ts
 autoRetry({
-  maxRetryAttempts: 1, // only repeat requests once
-  maxDelaySeconds: 5, // fail immediately if we must wait 6+ seconds
+  maxRetryAttempts: 1, // Repeat requests once, only.
+  maxDelaySeconds: 5, // Fall immediately if we have to wait more than 6 seconds.
 });
 ```
 

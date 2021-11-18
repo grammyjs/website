@@ -88,7 +88,7 @@ It will then avoid the above race condition by slowing down those (and only thos
 import { Bot, Context, session } from "grammy";
 import { run, sequentialize } from "@grammyjs/runner";
 
-// Create bot
+// Create a bot.
 const bot = new Bot("<token>");
 
 /** Resolves the session key for a context object */
@@ -115,7 +115,7 @@ run(bot);
 const { Bot, Context, session } = require("grammy";)
 const { run, sequentialize } = require("@grammyjs/runner";)
 
-// Create bot
+// Create a bot.
 const bot = new Bot("<token>");
 
 /** Resolves the session key for a context object */
@@ -141,7 +141,7 @@ run(bot);
 import { Bot, Context, session } from "https://deno.land/x/grammy/mod.ts";
 import { run, sequentialize } from "https://deno.land/x/grammy_runner/mod.ts";
 
-// Create bot
+// Create a bot.
 const bot = new Bot("<token>");
 
 /** Resolves the session key for a context object */

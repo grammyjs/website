@@ -13,7 +13,7 @@ This is best illustrated by an example.
 ```ts
 bot.on(":photo", async (ctx) => {
   const statusMessage = await ctx.reply("Processing");
-  await doWork(ctx.msg.photo); // some long image processing
+  await doWork(ctx.msg.photo); // Some long image processing
   await ctx.api.editMessageText(
     ctx.chat.id,
     statusMessage.message_id,
@@ -23,7 +23,7 @@ bot.on(":photo", async (ctx) => {
     () =>
       ctx.api.deleteMessage(ctx.chat.id, statusMessage.message_id).catch(
         () => {
-          // do nothing on error
+          // Do nothing on error.
         },
       ),
     3000,
@@ -36,8 +36,8 @@ bot.on(":photo", async (ctx) => {
 ```ts
 bot.on(":photo", async (ctx) => {
   const statusMessage = await ctx.reply("Processing");
-  await doWork(ctx.msg.photo); // some long image processing
-  await statusMessage.editText("Done!"); // so easy!
+  await doWork(ctx.msg.photo); // Some long image processing
+  await statusMessage.editText("Done!"); // So easy!
   setTimeout(() => statusMessage.delete().catch(() => {}), 3000);
 });
 ```

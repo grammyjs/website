@@ -12,14 +12,14 @@ This library is intended to help with individual updates.
 ## Debug Your Implementation
 
 ```ts
-import {generateUpdateMiddleware} from 'telegraf-middleware-console-time';
+import { generateUpdateMiddleware } from "telegraf-middleware-console-time";
 
-if (process.env['NODE_ENV'] !== 'production') {
-    bot.use(generateUpdateMiddleware());
+if (process.env["NODE_ENV"] !== "production") {
+  bot.use(generateUpdateMiddleware());
 }
 
 // Your implementation
-bot.command('start', …);
+bot.command("start" /* ... */);
 ```
 
 which will output stuff like this:
@@ -44,20 +44,20 @@ When you create your own middleware or assume slow timings of another middleware
 ```ts
 import {generateBeforeMiddleware, generateAfterMiddleware} from 'telegraf-middleware-console-time';
 
-const bot = new Bot(…);
+const bot = new Bot(/* ... */);
 
-// Use BeforeMiddleware before loading the to be tested middleware
+// Use BeforeMiddleware before loading the tested middleware.
 bot.use(generateBeforeMiddleware('foo'))
 
 // Middleware to be tested
-bot.use(…)
+bot.use(/* ... */)
 
-// Use AfterMiddleware after loading the to be tested middleware (with the same label)
+// Use AfterMiddleware after loading the tested middleware (with the same label).
 bot.use(generateAfterMiddleware('foo'))
 
-// Other middlewares / implementations (they will take the 'inner' amount of time when used)
-bot.use(…)
-bot.on(…, …)
+// Other middleware/implementations (they will take the 'inner' amount of time when used).
+bot.use(/* ... */)
+bot.on(/* ... */, /* ... */)
 ```
 
 This will output something like this:

@@ -94,7 +94,7 @@ type MyApi = Api & SomeApiFlavor;
 // Use both flavors
 const bot = new Bot<MyContext, MyApi>("my-token");
 
-// Install plugin
+// Use the plugin.
 bot.api.config.use(somePlugin());
 
 // Now call `bot.api` with adjusted types from API flavor
