@@ -5,12 +5,12 @@ next: ./basics.md
 
 # 入门
 
-在几分钟内创建你的第一个 bot。（滚动[向下](#通过-deno-开始)查看 Deno 指南）。
+在几分钟内创建你的第一个 bot。（[向下滚动](#通过-deno-开始) 查看 Deno 指南）。
 
 ## 通过 Node.js 开始
 
-> 本指南假定你已经安装了 [Node.js](https://nodejs.org) ，并且 `npm` 应该是自带的。
-> 如果你不知道这些东西是什么，请查看我们的 [简介](./introduction.md)!
+> 本指南假定你已经安装了 [Node.js](https://nodejs.org)，并且 `npm` 应该是自带的。
+> 如果你不知道这些东西是什么，请查看我们的 [简介](./introduction.md)！
 
 创建一个新的 TypeScript 项目并安装 `grammy` 包。
 通过打开终端并键入以下内容来完成。

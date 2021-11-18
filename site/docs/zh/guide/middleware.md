@@ -186,7 +186,7 @@ bot.use(responseTime);
 
 :::
 
-你应该使用 `await`的规则实际上不仅仅适用于 `next()` ，而是适用于任何返回 `Promise` 的表达式。
+你应该使用 `await`的规则实际上不仅仅适用于 `next()`，而是适用于任何返回 `Promise` 的表达式。
 这包括 `bot.api.sendMessage`，`ctx.reply`，以及所有其他网络调用。
 如果你的项目对你很重要，那么你就会使用提示工具，如果你忘记在 `Promise` 上使用 `await`，工具会警告你。
 

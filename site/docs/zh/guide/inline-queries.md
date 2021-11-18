@@ -9,7 +9,7 @@ next: ./files.md
 你可以通过发送给 `@你的bot名字` 一条信息然后选择其中一条结果。
 
 ::: tip 开启 Inline Mode
-默认情况下，对 inline mode 的支持是关闭的。你必须和 [@BotFather](https://t.me/BotFather) 联系为你的 bot 开启 inline mode，去开始接受 inline queries。
+默认情况下，对 inline mode 的支持是关闭的。你必须和 [@BotFather](https://t.me/BotFather) 联系，为你的 bot 开启 inline mode 并开始接受 inline queries。
 :::
 
 > 再次阅读 Telegram 团队所写 [开发者手册](https://core.telegram.org/bots#inline-mode) 中关于 Inline mode 的部分。

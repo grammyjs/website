@@ -57,7 +57,7 @@ Sub-filters 带来了更强的能力与新的可能性。
 ```ts
 bot.on("message:entities:url"); // 含有一个URL的信息
 bot.on("message:entities:code"); // 含有代码片断的信息
-bot.on("edited_message:entities"); // 编辑的信息与任何Entities
+bot.on("edited_message:entities"); // 编辑的信息与任何 Entities
 ```
 
 ### 缺省值
@@ -74,7 +74,7 @@ bot.on("::email"); // 所有信息、channel post 的标题或内容中包括的
 省去 _filter 第一个参数_ ，可以同时匹配消息和 channel posts 。
 [记住](./context.md#available-actions)，`ctx.msg` 让你可以访问消息或 channel posts ，它们都是符合匹配规则的，可以放心使用。
 
-遗漏 _第二_ 个值可以同时匹配 Entities 和标题 entities。
+遗漏 _第二_ 个值可以同时匹配 entities 和标题 entities。
 你可以同时省略第一和第二部分。
 
 ### 快捷方式
@@ -192,9 +192,9 @@ bot.on(":photo").on("::hashtag", (ctx) => {});
 bot
   // 匹配所有频道的帖子和转发的信息 ...
   .on(["channel_post", ":forward_date"])
-  // ......，包含文本......。
+  // ... 包含文本. ...
   .on(":text")
-  // ...至少有一个 URL 、 hashtag 或 cashtag。
+  // ... 至少有一个 URL，hashtag 或 cashtag。
   .on(["::url", "::hashtag", "::cashtag"], (ctx) => {});
 ```
 
@@ -208,7 +208,7 @@ bot
 ### 查询结构
 
 每个查询由最多三个查询部分组成。
-根据一个查询有多少个查询部分，我们区分了 L1 、 L2 和 L3 查询，如 `message` 、`message:entities` 和 `message:entities:url`。我们能很清晰的分辨出这三个等级。
+根据一个查询有多少个查询部分，我们区分了 L1，L2 和 L3 查询，如 `message`，`message:entities` 和 `message:entities:url`。我们能很清晰的分辨出这三个等级。
 
 查询部分由冒号(`:`)分隔。
 我们把第一个冒号之前的部分或查询字符串的末尾称为查询的 _L1 部分_。
