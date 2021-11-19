@@ -14,17 +14,18 @@ Create your first bot in minutes. (Scroll [down](#getting-started-on-deno) for a
 
 Create a new TypeScript project and install the `grammy` package.
 Do this by opening a terminal and typing:
+my-bot
 
 ```bash
-# Create a new directory and change into it
+# Create a new directory and go into it.
 mkdir my-bot
 cd my-bot
 
-# Set up TypeScript (skip if you use JavaScript)
+# Set up TypeScript (skip if you use JavaScript).
 npm install -D typescript
 npx tsc --init
 
-# Install grammY
+# Install grammY.
 npm install grammy
 ```
 
@@ -59,15 +60,15 @@ const bot = new Bot(""); // <-- put your authentication token between the ""
 // You can now register listeners on your bot object `bot`.
 // grammY will call the listeners when users send messages to your bot.
 
-// React to /start command
+// Respond to the /start command.
 bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
-// Handle other messages
+// Handle other messages.
 bot.on("message", (ctx) => ctx.reply("Got another message!"));
 
 // Now that you specified how to handle messages, you can start your bot.
 // This will connect to the Telegram servers and wait for messages.
 
-// Start your bot
+// Start the bot.
 bot.start();
 ```
 
@@ -83,15 +84,15 @@ const bot = new Bot(""); // <-- put your authentication token between the ""
 // You can now register listeners on your bot object `bot`.
 // grammY will call the listeners when users send messages to your bot.
 
-// React to /start command
+// Respond to the /start command.
 bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
-// Handle other messages
+// Handle other messages.
 bot.on("message", (ctx) => ctx.reply("Got another message!"));
 
 // Now that you specified how to handle messages, you can start your bot.
 // This will connect to the Telegram servers and wait for messages.
 
-// Start your bot
+// Start the bot.
 bot.start();
 ```
 
@@ -151,15 +152,15 @@ const bot = new Bot(""); // <-- put your authentication token between the ""
 // You can now register listeners on your bot object `bot`.
 // grammY will call the listeners when users send messages to your bot.
 
-// React to /start command
+// Respond to the /start command.
 bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
-// Handle other messages
+// Handle other messages.
 bot.on("message", (ctx) => ctx.reply("Got another message!"));
 
 // Now that you specified how to handle messages, you can start your bot.
 // This will connect to the Telegram servers and wait for messages.
 
-// Start your bot
+// Start the bot.
 bot.start();
 ```
 

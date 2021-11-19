@@ -11,7 +11,7 @@ Whenever you register a listener on your bot object, this listener will receive 
 
 ```ts
 bot.on("message", (ctx) => {
-  // `ctx` is a context object
+  // `ctx` is the `Context` object.
 });
 ```
 
@@ -29,8 +29,8 @@ As an example, to get the message text, you can do this:
 
 ```ts
 bot.on("message", (ctx) => {
-  // `txt` is a `string` for text messages,
-  // and `undefined` for photos, stickers, and other messages
+  // `text` is a `string` which is the text of the received message,
+  // it will be `undefined` if the received message does not have text.
   const txt = ctx.message.text;
 });
 ```
@@ -44,7 +44,7 @@ Example:
 
 ```ts
 bot.on("edited_message", (ctx) => {
-  // Get new text of edited message
+  // Get the new text of the message.
   const editedText = ctx.editedMessage.text;
 });
 ```
@@ -70,11 +70,12 @@ In other words, you can also do this:
 
 ```ts
 bot.on("message", (ctx) => {
-  // Get text of new message
+  // Get the text of the received message.
   const text = ctx.msg.text;
 });
+
 bot.on("edited_message", (ctx) => {
-  // Get new text of edited message
+  // Get the new of the received message.
   const editedText = ctx.msg.text;
 });
 ```
@@ -87,11 +88,11 @@ If you want to respond to a message from a user, you could write this:
 
 ```ts
 bot.on("message", async (ctx) => {
-  // Get the chat identifier
+  // Get the chat identifier.
   const chatId = ctx.msg.chat.id;
-  // Define reply text
+  // The text to reply with
   const text = "I got your message!";
-  // Send reply
+  // Send the reply.
   await bot.api.sendMessage(chatId, text);
 });
 ```
@@ -116,7 +117,7 @@ bot.on("message", async (ctx) => {
   await ctx.reply("I got your message!");
 });
 
-// or even shorter:
+// Or even shorter
 bot.on("message", (ctx) => ctx.reply("Gotcha!"));
 ```
 
@@ -171,21 +172,21 @@ This is possible in two ways:
 If you choose option 1., you must specify the custom context as a type parameter (skip for JavaScript):
 
 <CodeGroup>
-  <CodeGroupItem title="Node" active>
+  <CodeGroupItem title="Node.js" active>
 
 ```ts
 import { Bot, Context } from "grammy";
 
-// Define custom context type
+// Define a custom `Context` type.
 interface MyContext extends Context {
   customProp: string | number | undefined;
 }
 
-// Pass custom context type to `Bot` constructor
+// Pass the custom `Context` type to the `Bot` constructor.
 const bot = new Bot<MyContext>("<token>");
 
 bot.on("message", (ctx) => {
-  // `ctx` is now of type `MyContext`
+  // `ctx` is now of type `MyContext`!
   const prop = ctx.customProp;
 });
 ```
@@ -196,16 +197,16 @@ bot.on("message", (ctx) => {
 ```ts
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 
-// Define custom context type
+// Define a custom `Context` type.
 interface MyContext extends Context {
   customProp: string | number | undefined;
 }
 
-// Pass custom context type to `Bot` constructor
+// Pass the custom `Context` type to the `Bot` constructor.
 const bot = new Bot<MyContext>("<token>");
 
 bot.on("message", (ctx) => {
-  // `ctx` is now of type `MyContext`
+  // `ctx` is now of type `MyContext`!
   const prop = ctx.customProp;
 });
 ```
@@ -228,23 +229,24 @@ Note that your class must extend `Context`.
 import { Bot, Context } from "grammy";
 import type { Update, UserFromGetMe } from "@grammyjs/types";
 
-// Define custom context class
+// Define a custom `Context` class.
 class MyContext extends Context {
-  // custom properties on context
+  // Some custom properties
   public readonly customProp: number;
+
   constructor(update: Update, api: Api, me: UserFromGetMe) {
     super(update, api, me);
     this.customProp = me.username.length * 42;
   }
 }
 
-// Pass the constructor of the custom context class as an option
+// Pass the constructor of the custom `Context` class as an option.
 const bot = new Bot("<token>", {
   ContextConstructor: MyContext,
 });
 
 bot.on("message", (ctx) => {
-  // `ctx` is now of type `MyContext`
+  // `ctx` is now of type `MyContext`.
   const prop = ctx.customProp;
 });
 
@@ -257,23 +259,24 @@ bot.start();
 ```ts
 const { Bot, Context } = require("grammy");
 
-// Define custom context class
+// Define a custom `Context` class.
 class MyContext extends Context {
-  // custom properties on context
+  // Some custom properties
   public readonly customProp;
+
   constructor(update, api, me) {
     super(update, api, me);
     this.customProp = me.username.length * 42;
   }
 }
 
-// Pass the constructor of the custom context class as an option
+// Pass the constructor of the custom `Context` class as an option.
 const bot = new Bot("<token>", {
   ContextConstructor: MyContext,
 });
 
 bot.on("message", (ctx) => {
-  // `ctx` is now of type `MyContext`
+  // `ctx` is now of type `MyContext`.
   const prop = ctx.customProp;
 });
 
@@ -290,23 +293,24 @@ import type {
   UserFromGetMe,
 } from "https://cdn.skypack.dev/@grammyjs/types?dts";
 
-// Define custom context class
+// Define a custom `Context` class.
 class MyContext extends Context {
-  // custom properties on context
+  // Some custom properties
   public readonly customProp: number;
+
   constructor(update: Update, api: Api, me: UserFromGetMe) {
     super(update, api, me);
     this.customProp = me.username.length * 42;
   }
 }
 
-// Pass the constructor of the custom context class as an option
+// Pass the constructor of the custom `Context` class as an option.
 const bot = new Bot("<token>", {
   ContextConstructor: MyContext,
 });
 
 bot.on("message", (ctx) => {
-  // `ctx` is now of type `MyContext`
+  // `ctx` is now of type `MyContext`.
   const prop = ctx.customProp;
 });
 
@@ -357,7 +361,7 @@ This is how you can flavor your context with session data:
 ```ts
 import { Context, SessionFlavor } from "grammy";
 
-// Declare `ctx.session` to be of type `string`
+// Declare `ctx.session` to be of type `string`.
 type MyContext = Context & SessionFlavor<string>;
 ```
 
@@ -365,7 +369,7 @@ You can now use the session plugin, and you have access to `ctx.session`:
 
 ```ts
 bot.on("message", (ctx) => {
-  // Now `str` is of type `string`
+  // Now `str` is of type `string`.
   const str = ctx.session;
 });
 ```

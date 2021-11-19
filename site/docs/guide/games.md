@@ -30,9 +30,9 @@ An advantage of using the `api.sendGame` method is you can specify the `chat.id`
 1. Sending Game via `replyWithGame`
 
    ```ts
-   // We will be using the start command to invoke the game reply method
+   // We will be using the start command to invoke the game reply method.
    bot.command("start", async (ctx) => {
-     // Pass the name of the game you created in BotFather, for example "my_game"
+     // Pass the name of the game you created in BotFather, for example "my_game".
      await ctx.replyWithGame("my_game");
    });
    ```
@@ -41,7 +41,7 @@ An advantage of using the `api.sendGame` method is you can specify the `chat.id`
 
    ```ts
    bot.command("start", async (ctx) => {
-     // You can get the chat identifier of the user to send your game to with `ctx.from.id`
+     // You can get the chat identifier of the user to send your game to with `ctx.from.id`.
      // which gives you the chat identifier of the user who invoked the start command.
      const chatId = ctx.from.id;
      await ctx.api.sendGame(chatid, "my_game");
@@ -61,11 +61,11 @@ const keyboard = new InlineKeyboard().game("Start my_game");
 // Notice that we have used game() unlike a normal inline keyboard
 // where we use url() or text()
 
-// Via replyWithGame method
+// Via the `replyWithGame` method
 await ctx.replyWithGame("my_game", { reply_markup: keyboard });
 
-// Via api.sendGame method
-await ctx.api.sendGame(chatid, "my_game", { reply_markup: keyboard });
+// Via the `api.sendGame` method
+await ctx.api.sendGame(chatId, "my_game", { reply_markup: keyboard });
 ```
 
 ## Listening to the Callback of Our Game Button
@@ -93,8 +93,7 @@ bot.on("callback_query:game_short_name", async (ctx) => {
 bot.command("start", (ctx) => {
   await ctx.replyWithGame("my_game", {
     reply_markup: keyboard,
-    // or you can use the api method here according to
-    // your needs
+    // Or you can use the api method here, according to your needs.
   });
 });
 ```

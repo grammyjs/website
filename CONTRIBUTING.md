@@ -26,10 +26,19 @@ A good translation is hard and it takes time. We don't want partial or outdated 
 
 Anyone who wants to start a new language should ask themselves the following questions before putting any work into docs.
 
-1. How much of the documentation do you want to translate? If the answer isn't to get to 100 % eventually, don't start.
-
-2. How long are you going to stick around in bot development? grammY is young. It evolves quickly and there are many articles that get changed often. The translations must be kept in sync with the English original. Outdated and wrong docs are much worse than no docs. Many people only come here for a few months (and that's fine!) but if you translate everything and then stop developing bots and stop updating the articles, we'll have to remove that language again. Then it was a waste of time for you. So if you don't want to commit long-term, don't start.
-
-3. How many hours per week can you spend in the beginning? It's understandable that a first PR doesn't contain translations for all pages immediately. However, if you can only work on it rarely, it's going to take a very long time until you're done. We don't want to end up with 15 languages and none of them is done for months. If you can't set aside enough free time to get this done, don't start.
+1. How much of the documentation do you want to translate?
+   If the answer isn't to get to 100 % eventually, don't start.
+2. How long are you going to stick around in bot development? grammY is young.
+   It evolves quickly and there are many articles that get changed often.
+   The translations must be kept in sync with the English original.
+   Outdated and wrong docs are much worse than no docs.
+   Many people only come here for a few months (and that's fine!) but if you translate everything and then stop developing bots and stop updating the articles, we'll have to remove that language again.
+   Then it was a waste of time for you.
+   So if you don't want to commit long-term, don't start.
+3. How many hours per week can you spend in the beginning?
+   It's understandable that a first PR doesn't contain translations for all pages immediately.
+   However, if you can only work on it rarely, it's going to take a very long time until you're done.
+   We don't want to end up with 15 languages and none of them is done for months.
+   If you can't set aside enough free time to get this done, don't start.
 
 We are looking forward to your contributions!

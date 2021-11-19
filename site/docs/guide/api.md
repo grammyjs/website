@@ -44,10 +44,10 @@ You can call API methods via `bot.api`, or [equivalently](./context.md#available
 
 ```ts
 async function sendHelloTo12345() {
-  // Send a message to 12345
+  // Send a message to 12345.
   await bot.api.sendMessage(12345, "Hello!");
 
-  // Send a message and get the sent message object back
+  // Send a message and get an instance of it.
   const sentMessage = await bot.api.sendMessage(12345, "Hello again!");
   console.log(sentMessage.message_id);
 }

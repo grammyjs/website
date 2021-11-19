@@ -33,7 +33,7 @@ It supports all of the above out of the box, and it is extremely simple to use.
 // Previously
 bot.start();
 
-// With grammY runner (which exports `run`)
+// With grammY runner which exports `run`.
 run(bot);
 ```
 
@@ -88,10 +88,10 @@ It will then avoid the above race condition by slowing down those (and only thos
 import { Bot, Context, session } from "grammy";
 import { run, sequentialize } from "@grammyjs/runner";
 
-// Create bot
+// Create a bot.
 const bot = new Bot("<token>");
 
-/** Resolves the session key for a context object */
+// Build a unique identifier for the `Context` object.
 function getSessionKey(ctx: Context) {
   return ctx.chat?.id.toString();
 }
@@ -100,7 +100,7 @@ function getSessionKey(ctx: Context) {
 bot.use(sequentialize(getSessionKey));
 bot.use(session({ getSessionKey }));
 
-// Add the usual middleware, now with safe session support
+// Add the usual middleware, now with safe session support.
 bot.on("message", (ctx) => ctx.reply("Got your message."));
 
 // Still run it concurrently!
@@ -115,10 +115,10 @@ run(bot);
 const { Bot, Context, session } = require("grammy";)
 const { run, sequentialize } = require("@grammyjs/runner";)
 
-// Create bot
+// Create a bot.
 const bot = new Bot("<token>");
 
-/** Resolves the session key for a context object */
+// Build a unique identifier for the `Context` object.
 function getSessionKey(ctx) {
   return ctx.chat?.id.toString();
 }
@@ -127,7 +127,7 @@ function getSessionKey(ctx) {
 bot.use(sequentialize(getSessionKey));
 bot.use(session({ getSessionKey }));
 
-// Add the usual middleware, now with safe session support
+// Add the usual middleware, now with safe session support.
 bot.on("message", (ctx) => ctx.reply("Got your message."));
 
 // Still run it concurrently!
@@ -141,10 +141,10 @@ run(bot);
 import { Bot, Context, session } from "https://deno.land/x/grammy/mod.ts";
 import { run, sequentialize } from "https://deno.land/x/grammy_runner/mod.ts";
 
-// Create bot
+// Create a bot.
 const bot = new Bot("<token>");
 
-/** Resolves the session key for a context object */
+// Build a unique identifier for the `Context` object.
 function getSessionKey(ctx: Context) {
   return ctx.chat?.id.toString();
 }
@@ -153,7 +153,7 @@ function getSessionKey(ctx: Context) {
 bot.use(sequentialize(getSessionKey));
 bot.use(session({ getSessionKey }));
 
-// Add the usual middleware, now with safe session support
+// Add the usual middleware, now with safe session support.
 bot.on("message", (ctx) => ctx.reply("Got your message."));
 
 // Still run it concurrently!

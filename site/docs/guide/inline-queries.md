@@ -22,8 +22,8 @@ It allows you to listen for specific inline queries that match strings or regula
 If you want to handle all inline queries generically, use `bot.on('inline_query')`.
 
 ```ts
-// Shameless self-advertising in a project's documentation
-// is the best kind of advertising
+// Shameless self-advertising in one project's documentation
+// is the best kind of advertising.
 bot.inlineQuery(/best bot (framework|library)/, async (ctx) => {
   await ctx.answerInlineQuery(
     [
@@ -49,7 +49,7 @@ They even have a pretty website! 👇",
   );
 });
 
-// Return empty result list for other queries
+// Return empty result list for other queries.
 bot.on("inline_query", (ctx) => ctx.answerInlineQuery([]));
 ```
 

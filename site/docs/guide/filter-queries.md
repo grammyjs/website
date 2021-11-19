@@ -25,11 +25,11 @@ It therefore tightens a few types on the context that are known to exist.
 
 ```ts
 bot.on("message", (ctx) => {
-  // text could be undefined for photo messages!
+  // Could be undefined if the received message has no text.
   const text: string | undefined = ctx.msg.text;
 });
 bot.on("message:text", (ctx) => {
-  // text is known to be present for text messages!
+  // Text is always defined because this handler is called when a text message is received.
   const text: string = ctx.msg.text;
 });
 ```
@@ -45,7 +45,7 @@ Here are some example queries:
 Simple filters for updates, and sub-filters:
 
 ```ts
-bot.on("message"); // called for all messages
+bot.on("message"); // called for any type of message
 bot.on("message:text"); // only text messages
 bot.on("message:photo"); // only photo messages
 ```
@@ -55,9 +55,9 @@ bot.on("message:photo"); // only photo messages
 Sub-filters that go one level deeper:
 
 ```ts
-bot.on("message:entities:url"); // messages that contain a URL
-bot.on("message:entities:code"); // messages that contain a code snippet
-bot.on("edited_message:entities"); // edited message with any kind of entities
+bot.on("message:entities:url"); // messages containing a URL
+bot.on("message:entities:code"); // messages containing a code snippet
+bot.on("edited_message:entities"); // edited messages with any kind of entities
 ```
 
 ### Omit Values
@@ -66,7 +66,7 @@ You can omit some values in the filter queries.
 grammY will then search through different values to match your query.
 
 ```ts
-bot.on(":text"); // all text messages and all text channel posts
+bot.on(":text"); // any text messages and any text post of channels
 bot.on("message::url"); // messages with URL in text or caption (photos, etc)
 bot.on("::email"); // messages or channel posts with email in text or caption
 ```
@@ -87,7 +87,7 @@ The `msg` shortcut groups new messages and new channel posts.
 In other words, using `msg` is equivalent to listening for both `'message'` and `'channel_post'` events.
 
 ```ts
-bot.on("msg"); // all messages or channel posts
+bot.on("msg"); // any message or channel post
 bot.on("msg:text"); // exactly the same as `:text`
 ```
 
@@ -96,7 +96,7 @@ bot.on("msg:text"); // exactly the same as `:text`
 This `edit` shortcut groups edited messages and edited channel posts.
 
 ```ts
-bot.on("edit"); // all edits of messages or channel posts
+bot.on("edit"); // any message or channel post edit
 bot.on("edit:text"); // edits of text messages
 bot.on("edit::url"); // edits of messages or channel posts with URL
 bot.on("edit:location"); // live location updated
@@ -107,9 +107,9 @@ bot.on("edit:location"); // live location updated
 The `:media` shortcut groups photo and video messages.
 
 ```ts
-bot.on("message:media"); // photo messages and video messages
+bot.on("message:media"); // photo and video messages
 bot.on("edited_channel_post:media"); // edited channel posts with media
-bot.on(":media"); // new media messages or media channel posts
+bot.on(":media"); // new media message or channel posts
 ```
 
 #### `:file`
@@ -129,7 +129,7 @@ The syntactic sugar `:me` can be used to refer to your bot from within a query, 
 
 ```ts
 bot.on("message:new_chat_members:is_bot"); // a bot joined the chat
-bot.on("message:left_chat_member:me"); // your bot left a chat (was removed)
+bot.on("message:left_chat_member:me"); // your bot left a chat (or was removed)
 ```
 
 ::: tip Filter by User Properties
@@ -145,7 +145,7 @@ bot.on("message").filter(
     return user.status === "creator" || user.status === "administrator";
   },
   (ctx) => {
-    // handles messages from creators and admins
+    // Handles messages from creators and admins.
   },
 );
 ```

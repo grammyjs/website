@@ -56,7 +56,7 @@ They both have a [middleware system](/guide/middleware.md) in their core.
 They also share a lot of their basic syntax:
 
 ```ts
-// works with both grammY and Telegraf
+// Works with both grammY and Telegraf.
 bot.on("message", (ctx) => ctx.reply("Hi!"));
 ```
 
@@ -169,7 +169,7 @@ People have different taste, so take this section with a grain of salt.
    The recent years show a strong trend towards asynchronous programming.
    The largest bot framework for Python, PTB, [announced its migration](https://t.me/pythontelegrambotchannel/94) to asynchronous programming in January 2021, which is expected to maybe take “2 years”.
    grammY is already there.
-   (Other, less known Python frameworks may be faster at transitioning.
+   (Other less-known Python frameworks may be faster at transitioning.
    Disregard this point if you are using a Python framework that has support for `async`/`await`.)
 
 ## How to Disagree With This Comparison
