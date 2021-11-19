@@ -107,7 +107,7 @@ bot.use(hydrate());
 在这种情况下，你应该使用高级安装。
 
 它将会在你的 bot 中分别集成上下文 hydration 和 API 调用结果 hydration。
-请注意，你还需要安装一个 [API 调味剂](/advanced/transformers.html#api-flavoring)。
+请注意，你还需要安装一个 [API 调味剂](/zh/advanced/transformers.html#api-调味剂)。
 
 <CodeGroup>
   <CodeGroupItem title="TS" active>
