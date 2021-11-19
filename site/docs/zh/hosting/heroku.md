@@ -156,7 +156,7 @@ https://api.telegram.org/botabcd:1234/setWebhook?url=https%3A%2F%2Fgrammybot.her
 :::
 
 ::: tip ⚡ 优化（可选）
-使用 [Webhook 回复](/zh/guide/deployment-types.html#webhook-reply) 以提高效率。
+使用 [Webhook Reply](/zh/guide/deployment-types.html#webhook-reply) 以提高效率。
 :::
 
 ### 创建 `bot.ts`
