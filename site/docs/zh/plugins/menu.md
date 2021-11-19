@@ -182,7 +182,7 @@ const menu = new Menu("toggle")
 上面的例子展示了如何使用菜单插件。
 将用户设置储存在一个 `Set` 对象中并不是一个好主意，因为这样当你停止服务器时所有的数据都会丢失。
 
-相反，如果你想储存数据，请考虑使用数据库或 [session 插件](./session.md)。
+相反，如果你想储存数据，请考虑使用数据库或 [会话插件](./session.md)。
 :::
 
 ## 更新或关闭菜单
@@ -223,7 +223,7 @@ const menu = new Menu("time")
 当然，如果你调用了 `ctx.menu.update()` 但是你没有编辑消息，菜单插件会在中间件执行完成之前自动更新按钮。
 
 你可以使用 `ctx.menu.update({ immediate: true })` 来强制更新菜单。
-请注意，`ctx.menu.update()` 将会返回一个 Promise，所以你需要使用 `await`!
+请注意，`ctx.menu.update()` 将会返回一个 Promise，所以你需要使用 `await`！
 使用 `immediate` 标志也可以用于所有你可以在 `ctx.menu` 上调用的操作。
 这只在必要时使用。
 
@@ -332,7 +332,7 @@ const menu = new Menu("random");
 
 menu.dynamic((_ctx) => {
   const range = new MenuRange();
-  const buttonCount = getRandomInt(2, 9); // 2-8 buttons
+  const buttonCount = getRandomInt(2, 9); // 2-8 按钮
   for (let i = 0; i < buttonCount; i++) {
     range
       .text(i.toString(), (ctx) => ctx.reply(`${i} selected`))
@@ -344,7 +344,6 @@ menu.dynamic((_ctx) => {
 menu.text("Generate New", (ctx) => ctx.menu.update());
 ```
 
-The range builder function that you pass to `dynamic` may be `async`, so you can even perform API calls or do database communication.
 你传递给 `dynamic` 的范围构造器可以是 `async`，所以你可以甚至进行 API 调用或数据库交互。
 
 此外，范围构造器的第一个参数是上下文对象。
@@ -414,7 +413,7 @@ const menu2 = new Menu("id", { onMenuOutdated: false });
 - 菜单的标识符，
 - 菜单的形状，
 - 被按下的按钮的位置，
-- payload，如果指定的话。
+- payload，如果指定的话，
 - 被按下的按钮的文本。
 
 这些数据被压缩成一个 4 字节的哈希，并且存储在每个按钮中。

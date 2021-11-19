@@ -203,7 +203,7 @@ const keyboard = new Keyboard()
 
 ### 发送一个 Keyboard
 
-不论你是用 `bot.api.sendMessage` 、 `ctx.api.sendMessage` 还是 `ctx.reply`，你都可以直接发送 keyboard：
+不论你是用 `bot.api.sendMessage`，`ctx.api.sendMessage` 还是 `ctx.reply`，你都可以直接发送 keyboard：
 
 ```ts
 // 和消息一起发送 keyboard：

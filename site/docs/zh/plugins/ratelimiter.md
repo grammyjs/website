@@ -17,14 +17,14 @@ rateLimiter 是用 grammY 或 [Telegraf](https://github.com/telegraf/telegraf) b
 这个插件可以定制的选项有 5 个：
 
 - `timeFrame`：对请求进行监测的时间范围（默认为 `1000` 毫秒）。
-- `limit`： 在每个 `timeFrame` 内允许的请求数量（默认为 `1`）。
-- `storageClient`： 一个用于跟踪用户和他们的请求的存储类型。默认值是 `MEMORY_STORE`，它使用内存中的 [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)，但你也可以传入 Redis 客户端（更多信息在 [关于 storageClient](#关于-storageclient) 中）。
-- `onLimitExceeded`： 如果用户超出限制，则执行的函数（默认值是忽略额外的请求）。
-- `keyGenerator`： 用于生成每个用户的唯一键的函数（默认值是使用 `from.id`）。这个键用于标识用户，因此它应该是唯一的，用户特定的，并且是字符串格式。
+- `limit`：在每个 `timeFrame` 内允许的请求数量（默认为 `1`）。
+- `storageClient`：一个用于跟踪用户和他们的请求的存储类型。默认值是 `MEMORY_STORE`，它使用内存中的 [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)，但你也可以传入 Redis 客户端（更多信息在 [关于 storageClient](#关于-storageclient) 中）。
+- `onLimitExceeded`：如果用户超出限制，则执行的函数（默认值是忽略额外的请求）。
+- `keyGenerator`：用于生成每个用户的唯一键的函数（默认值是使用 `from.id`）。这个键用于标识用户，因此它应该是唯一的，用户特定的，并且是字符串格式。
 
 ### 关于 `storageClient`
 
-`MEMORY_STORE` 或者内存中的跟踪是适用于大多数 bot 的，但如果你实现了 bot 集群，你将无法有效地使用内存存储。这就是为什么也提供了 Redis 选项。如果你使用 deno，你可以传入 [ioredis](https://github.com/luin/ioredis) 或 [redis](https://deno.land/x/redis) 的客户端。任何实现了 `incr` 和 `pexpire` 方法的 Redis 驱动器都可以正常工作。rateLimiter 与驱动器无关。
+`MEMORY_STORE` 或者内存中的跟踪是适用于大多数 bot 的，但如果你实现了 bot 集群，你将无法有效地使用内存存储。这就是为什么也提供了 Redis 选项。如果你使用 Deno，你可以传入 [ioredis](https://github.com/luin/ioredis) 或 [redis](https://deno.land/x/redis) 的客户端。任何实现了 `incr` 和 `pexpire` 方法的 Redis 驱动器都可以正常工作。rateLimiter 与驱动器无关。
 
 > 请注意：如果你使用 Redis 存储类型，你必须在你的服务器上安装 Redis-server 2.6.0 及以上版本。不支持老版本的 Redis。
 

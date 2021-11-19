@@ -266,7 +266,7 @@ bot.command("reset", (ctx) => {
 - MongoDB: <https://github.com/Satont/grammy-mongodb-storage>
 - Redis: <https://github.com/Satont/grammy-redis-storage>
 - TypeORM (Node.js-only): <https://github.com/Satont/grammy-typeorm-storage>
-- Submit your own by editing this page!
+- 通过编辑本页面提交你自己的适配器！
 
 ## 插件概述
 
