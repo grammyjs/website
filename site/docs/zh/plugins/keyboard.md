@@ -16,7 +16,7 @@ grammY 有一个简单且直观的方式来构建 inline keyboard，让你的 bo
 
 这里有三个例子来演示如何构建带有 `text` 按钮的 inline keyboard。
 
-你也可以使用其他方法，比如 `url`，让 Telegram 客户端打开一个 URL，或者 [grammY API Reference](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#InlineKeyboard) 和 [Telegram Bot API Reference](https://core.telegram.org/bots/api#inlinekeyboardbutton) 中列出的提供给 `InlineKeyboard` 方法。
+你也可以使用其他方法，比如 `url`，让 Telegram 客户端打开一个 URL，或者 [grammY API 参考](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#InlineKeyboard) 和 [Telegram Bot API 参考](https://core.telegram.org/bots/api#inlinekeyboardbutton) 中列出的提供给 `InlineKeyboard` 方法。
 
 #### 示例 1
 
@@ -81,7 +81,7 @@ await ctx.reply(text, {
 });
 ```
 
-当然，除了文本消息以外，其他发送消息的方法都支持相同的选项，即 [Telegram Bot API Reference](https://core.telegram.org/bots/api) 中所规定的。
+当然，除了文本消息以外，其他发送消息的方法都支持相同的选项，即 [Telegram Bot API 参考](https://core.telegram.org/bots/api) 中所规定的。
 比如说，你可以通过调用 `editMessageReplyMarkup` 来编辑一个按键，并将新的 `InlineKeyboard` 实例作为 `reply_markup` 来传递。
 指定一个空的 inline keyboard 可以移除信息下方的所有按钮。
 
@@ -212,7 +212,7 @@ await ctx.reply(text, {
 });
 ```
 
-当然，除了文本消息以外，其他发送消息的方法都支持相同的选项，即 [Telegram Bot API Reference](https://core.telegram.org/bots/api) 中所规定的。
+当然，除了文本消息以外，其他发送消息的方法都支持相同的选项，即 [Telegram Bot API 参考](https://core.telegram.org/bots/api) 中所规定的。
 
 如果你想在你的信息中指定更多选项，你可能需要创建你自己的 `reply_markup` 对象。
 在这种情况下，你必须在传递你的自定义对象时使用 `keyboard.build()`。

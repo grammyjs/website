@@ -15,7 +15,7 @@ next: ./reliability.md
 为了便于预测，grammY 会按顺序处理更新。
 这是操作的顺序：
 
-1. 通过 `getUpdates` ([Telegram Bot API Reference](https://core.telegram.org/bots/api#getupdates)) 获取超过100个 update。
+1. 通过 `getUpdates` ([Telegram Bot API 参考](https://core.telegram.org/bots/api#getupdates)) 获取超过100个 update。
 2. 对于每一次更新， `等待` 中间件去堆栈。
 
 不过，如果你的 bot 在高负载期间每秒钟处理一条信息（或者在类似这样的场景下），这可能会对响应造成负面影响。
