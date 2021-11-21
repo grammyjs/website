@@ -5,6 +5,8 @@
 You're free to edit the documentation in any way you like, and suggest the changes in a PR.
 If we merge it, they'll go live immediately.
 
+> **IMPORTANT:** Please write exactly one sentence per line in order to preserve readable `git diff`s.
+
 If you are planning on adding completely new pages, you may want to ask in [the group chat](https://t.me/grammyjs) if those changes are welcome.
 
 Remember that you can edit a page directly in the browser by clicking the link at the bottom of each page.
