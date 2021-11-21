@@ -5,7 +5,8 @@ Easily create interactive menus.
 ## Introduction
 
 An inline keyboard is an array of buttons underneath a message.
-grammY has [a built-in plugin](./keyboard.md#inline-keyboards) to create basic inline keybaords.
+grammY has [a built-in plugin](./keyboard.md#inline-keyboards)
+to create basic inline keyboards.
 
 The menu plugin takes this idea further and lets you create rich menus right inside the chat.
 They can have interactive buttons, multiple pages with navigation between them, and more.
