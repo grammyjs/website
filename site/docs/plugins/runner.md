@@ -158,6 +158,12 @@ grammY runner will resolve all necessary constraints on the fly and block those 
 The implementation of this is very efficient.
 It needs constant memory (unless you specify infinite concurrency), and it needs (amortized) constant processing time per update.
 
+## Graceful shutdown
+
+In order for the bot to complete it's work correctly you
+[should signal](/advanced/reliability.html#using-grammy-runner)
+it to stop when the Node process is about to be destroyed.
+
 ## Plugin Summary
 
 - Name: `runner`
