@@ -14,7 +14,7 @@ The easiest way to listen for messages is via
 
 ```ts
 bot.on("message", (ctx) => {
-  const message = ctx.message; // the `Message` object
+  const message = ctx.message; // the message object
 });
 ```
 

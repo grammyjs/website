@@ -129,7 +129,7 @@ The syntactic sugar `:me` can be used to refer to your bot from within a query, 
 
 ```ts
 bot.on("message:new_chat_members:is_bot"); // a bot joined the chat
-bot.on("message:left_chat_member:me"); // your bot left a chat (or was removed)
+bot.on("message:left_chat_member:me"); // your bot left a chat (was removed)
 ```
 
 ::: tip Filter by User Properties

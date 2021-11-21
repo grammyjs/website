@@ -14,7 +14,6 @@ Create your first bot in minutes. (Scroll [down](#getting-started-on-deno) for a
 
 Create a new TypeScript project and install the `grammy` package.
 Do this by opening a terminal and typing:
-my-bot
 
 ```bash
 # Create a new directory and go into it.
