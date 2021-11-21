@@ -160,9 +160,7 @@ It needs constant memory (unless you specify infinite concurrency), and it needs
 
 ## Graceful shutdown
 
-In order for the bot to complete it's work correctly you
-[should signal](/advanced/reliability.html#using-grammy-runner)
-it to stop when the Node process is about to be destroyed.
+In order for the bot to complete it's work correctly you [should signal](/advanced/reliability.html#using-grammy-runner) it to stop when the Node process is about to be destroyed.
 
 ## Plugin Summary
 

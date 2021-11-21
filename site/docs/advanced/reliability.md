@@ -14,11 +14,7 @@ Use a linting rule to make sure you cannot forget this.
 ## Graceful shutdown
 
 For bots that are using long polling, there is one more thing to consider.
-As you are going to stop your instance during operation at some point again,
-you should consider catching `SIGTERM` and `SIGINT` events, and call `bot.stop`
-(built-in long polling) or stop your bot via its
-[handle](https://doc.deno.land/https/deno.land/x/grammy_runner/mod.ts#RunnerHandle)
-(grammY runner):
+As you are going to stop your instance during operation at some point again, you should consider catching `SIGTERM` and `SIGINT` events, and call `bot.stop` (built-in long polling) or stop your bot via its [handle](https://doc.deno.land/https/deno.land/x/grammy_runner/mod.ts#RunnerHandle) (grammY runner):
 
 ### Simple long polling
 
