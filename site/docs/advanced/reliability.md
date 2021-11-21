@@ -33,9 +33,8 @@ const bot = new Bot("<token>");
 
 // Stopping the bot when Node process
 // is about to be terminated
-['SIGTERM', 'SIGINT'].forEach(signal =>
-  process.once(signal, () => bot.stop())
-);
+process.once('SIGINT', () => bot.stop());
+process.once('SIGTERM', () => bot.stop());
 
 await bot.start();
 ```
@@ -51,9 +50,8 @@ const bot = new Bot("<token>");
 
 // Stopping the bot when Node process
 // is about to be terminated
-['SIGTERM', 'SIGINT'].forEach(signal =>
-  process.once(signal, () => bot.stop())
-);
+process.once('SIGINT', () => bot.stop());
+process.once('SIGTERM', () => bot.stop());
 
 await bot.start();
 ```
@@ -69,9 +67,8 @@ const bot = new Bot("<token>");
 
 // Stopping the bot when Node process
 // is about to be terminated
-['SIGTERM', 'SIGINT'].forEach(signal =>
-  process.once(signal, () => bot.stop())
-);
+Deno.addSignalListener('SIGINT', () => bot.stop());
+Deno.addSignalListener('SIGTERM', () => bot.stop());
 
 await bot.start();
 ```
@@ -95,9 +92,9 @@ const runner = run(bot);
 
 // Stopping the bot when Node process
 // is about to be terminated
-['SIGTERM', 'SIGINT'].forEach(signal =>
-  process.once(signal, () => runner.isRunning() && runner.stop())
-);
+const stopRunner = () => runner.isRunning() && runner.stop();
+process.once('SIGINT', stopRunner);
+process.once('SIGTERM', stopRunner);
 ```
 
 </CodeGroupItem>
@@ -114,9 +111,9 @@ const runner = run(bot);
 
 // Stopping the bot when Node process
 // is about to be terminated
-['SIGTERM', 'SIGINT'].forEach(signal =>
-  process.once(signal, () => runner.isRunning() && runner.stop())
-);
+const stopRunner = () => runner.isRunning() && runner.stop();
+process.once('SIGINT', stopRunner);
+process.once('SIGTERM', stopRunner);
 ```
 
 </CodeGroupItem>
@@ -132,9 +129,9 @@ const runner = run(bot);
 
 // Stopping the bot when Node process
 // is about to be terminated
-['SIGTERM', 'SIGINT'].forEach(signal =>
-  process.once(signal, () => runner.isRunning() && runner.stop())
-);
+const stopRunner = () => runner.isRunning() && runner.stop();
+Deno.addSignalListener('SIGINT', stopRunner);
+Deno.addSignalListener('SIGTERM', stopRunner);
 ```
 
 </CodeGroupItem>
