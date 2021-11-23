@@ -51,7 +51,7 @@ Because Deno is new and its ecosystem is small, the number of places where you c
 
 Here are some places where you can host your Deno app:
 
-1. [Deno Deploy](https://deno.com/deploy)
-2. [Cloudflare Workers](https://workers.dev)
-3. [Vercel](https://github.com/vercel-community/deno)
-4. [Heroku](https://dev.to/ms314006/deploy-your-deno-apps-to-heroku-375h)
+1. [Cloudflare Workers](https://workers.dev)
+2. [Deno Deploy](https://deno.com/deploy)
+3. [Heroku](https://dev.to/ms314006/deploy-your-deno-apps-to-heroku-375h)
+4. [Vercel](https://github.com/vercel-community/deno)

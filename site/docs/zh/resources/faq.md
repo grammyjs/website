@@ -51,5 +51,5 @@ grammY 实际上在编写时优先考虑 Deno，然后再支持 Node.js。
 
 1. [Cloudflare Workers](https://workers.dev)
 2. [Deno Deploy](https://deno.com/deploy)
-3. Heroku，[参考此文](https://dev.to/ms314006/deploy-your-deno-apps-to-heroku-375h)
+3. [Heroku](https://dev.to/ms314006/deploy-your-deno-apps-to-heroku-375h)
 4. [Vercel](https://github.com/vercel-community/deno)
