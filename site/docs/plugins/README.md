@@ -39,3 +39,7 @@ Here are a few things that we expect from your plugin if you want it to be displ
 
 It would be cool if your plugin also runs on Deno, and we will move those plugins to the top of the list.
 However, Deno support is not a strict requirement.
+
+## Ideas for More Plugins
+
+We are collecting ideas for new plugins [on GitHub in this issue](https://github.com/grammyjs/grammY/issues/110).
