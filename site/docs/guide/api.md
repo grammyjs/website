@@ -47,7 +47,7 @@ async function sendHelloTo12345() {
   // Send a message to 12345.
   await bot.api.sendMessage(12345, "Hello!");
 
-  // Send a message and get an instance of it.
+  // Send a message and store the response, which contains info about the sent message.
   const sentMessage = await bot.api.sendMessage(12345, "Hello again!");
   console.log(sentMessage.message_id);
 }

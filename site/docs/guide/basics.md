@@ -116,7 +116,7 @@ You can force a reply like this:
 ```ts
 bot.command("start", async (ctx) => {
   await ctx.reply("Hi! I can only read messages that explicitly reply to me!", {
-    // This forces Telegram clients so that the next message sent by the user is a direct reply to this message.
+    // Make Telegram clients automatically show a reply interface to the user.
     reply_markup: { force_reply: true },
   });
 });

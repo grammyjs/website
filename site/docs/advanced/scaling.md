@@ -33,7 +33,7 @@ It supports all of the above out of the box, and it is extremely simple to use.
 // Previously
 bot.start();
 
-// With grammY runner which exports `run`.
+// With grammY runner, which exports `run`.
 run(bot);
 ```
 

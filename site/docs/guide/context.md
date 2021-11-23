@@ -29,8 +29,9 @@ As an example, to get the message text, you can do this:
 
 ```ts
 bot.on("message", (ctx) => {
-  // `text` is a `string` which is the text of the received message,
-  // it will be `undefined` if the received message does not have text.
+  // `txt` will be a `string` when processing text messages.
+  // It will be `undefined` if the received message does not have any message text,
+  // e.g. photos, stickers, and other messages.
   const txt = ctx.message.text;
 });
 ```
@@ -44,7 +45,7 @@ Example:
 
 ```ts
 bot.on("edited_message", (ctx) => {
-  // Get the new text of the message.
+  // Get the new, edited, text of the message.
   const editedText = ctx.editedMessage.text;
 });
 ```
@@ -70,12 +71,12 @@ In other words, you can also do this:
 
 ```ts
 bot.on("message", (ctx) => {
-  // Get the text of the received message.
+  // Get the text of the message.
   const text = ctx.msg.text;
 });
 
 bot.on("edited_message", (ctx) => {
-  // Get the new of the received message.
+  // Get the new, edited, text of the message.
   const editedText = ctx.msg.text;
 });
 ```
@@ -231,7 +232,7 @@ import type { Update, UserFromGetMe } from "@grammyjs/types";
 
 // Define a custom context class.
 class MyContext extends Context {
-  // Some custom properties
+  // Set some custom properties.
   public readonly customProp: number;
 
   constructor(update: Update, api: Api, me: UserFromGetMe) {
@@ -261,7 +262,7 @@ const { Bot, Context } = require("grammy");
 
 // Define a custom context class.
 class MyContext extends Context {
-  // Some custom properties
+  // Set some custom properties.
   public readonly customProp;
 
   constructor(update, api, me) {
@@ -295,7 +296,7 @@ import type {
 
 // Define a custom context class.
 class MyContext extends Context {
-  // Some custom properties
+  // Set some custom properties.
   public readonly customProp: number;
 
   constructor(update: Update, api: Api, me: UserFromGetMe) {
