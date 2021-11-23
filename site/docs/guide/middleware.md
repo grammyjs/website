@@ -131,7 +131,7 @@ async function responseTime(
   ctx: Context,
   next: NextFunction, // is an alias for: () => Promise<void>
 ): Promise<void> {
-  // TODO implement
+  // TODO: implement
 }
 ```
 

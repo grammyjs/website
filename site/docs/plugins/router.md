@@ -15,7 +15,7 @@ const router = new Router(ctx => {
 
 router.route('key',       ctx => { ... })
 router.route('other-key', ctx => { ... })
-router.otherwise(ctx => { ... }) // Called if no route matches.
+router.otherwise(ctx => { ... }) // called if no route matches
 
 bot.use(router)
 ```
@@ -71,7 +71,7 @@ bot.command("birthday", async (ctx) => {
     // Information already provided!
     await ctx.reply(`Your birthday is in ${getDays(month, day)} days!`);
   } else {
-    // Missing information, enter router-based form
+    // Missing information, enter router-based form.
     ctx.session.step = "day";
     await ctx.reply(
 "Please send me the day of month \
@@ -193,7 +193,7 @@ bot.command("birthday", async (ctx) => {
     // Information already provided!
     await ctx.reply(`Your birthday is in ${getDays(month, day)} days!`);
   } else {
-    // Missing information, enter router-based form
+    // Missing information, enter router-based form.
     ctx.session.step = "day";
     await ctx.reply(
 "Please send me the day of month \
@@ -259,7 +259,7 @@ router.route("idle", async (ctx) => {
   await ctx.reply("Send /birthday to find out how long you have to wait.");
 });
 
-bot.use(router); // Register the router.
+bot.use(router); // register the router
 bot.start();
 
 // Date conversion utils
