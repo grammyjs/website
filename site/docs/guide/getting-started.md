@@ -16,7 +16,7 @@ Create a new TypeScript project and install the `grammy` package.
 Do this by opening a terminal and typing:
 
 ```bash
-# Create a new directory and go into it.
+# Create a new directory and change into it.
 mkdir my-bot
 cd my-bot
 
