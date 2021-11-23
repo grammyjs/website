@@ -667,7 +667,7 @@ export default defineUserConfig<DefaultThemeOptions>({
   ],
 });
 
-// Adapted from original `code_inline` implementation of markdown-it
+// Adapted from original `code_inline` implementation of markdown-it.
 const HTML_ESCAPE_TEST_RE = /&|<(?!wbr>)|(?<!<wbr)>/;
 const HTML_ESCAPE_REPLACE_RE = /&|<(?!wbr>)|(?<!<wbr)>/g;
 const HTML_REPLACEMENTS = {
