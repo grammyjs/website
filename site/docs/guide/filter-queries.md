@@ -45,7 +45,7 @@ Here are some example queries:
 Simple filters for updates, and sub-filters:
 
 ```ts
-bot.on("message"); // called for any type of message
+bot.on("message"); // called when any message is received
 bot.on("message:text"); // only text messages
 bot.on("message:photo"); // only photo messages
 ```

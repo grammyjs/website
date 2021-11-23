@@ -126,7 +126,7 @@ bot.callbackQuery("click-payload" /* ... */);
 
 bot.on("callback_query:data", async (ctx) => {
   console.log("Unknown button event with payload", ctx.callbackQuery.data);
-  await ctx.answerCallbackQuery(); // Remove loading animation.
+  await ctx.answerCallbackQuery(); // remove loading animation
 });
 ```
 
