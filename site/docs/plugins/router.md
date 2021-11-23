@@ -137,7 +137,7 @@ router.route("idle", async (ctx) => {
   await ctx.reply("Send /birthday to find out how long you have to wait.");
 });
 
-bot.use(router); // Register the router.
+bot.use(router); // register the router
 bot.start();
 
 // Date conversion utils
@@ -393,7 +393,7 @@ router.route("idle", async (ctx) => {
   await ctx.reply("Send /birthday to find out how long you have to wait.");
 });
 
-bot.use(router); // Register the router.
+bot.use(router); // register the router
 bot.start();
 
 // Date conversion utils

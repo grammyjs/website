@@ -109,7 +109,7 @@ The `:media` shortcut groups photo and video messages.
 ```ts
 bot.on("message:media"); // photo and video messages
 bot.on("edited_channel_post:media"); // edited channel posts with media
-bot.on(":media"); // new media message or channel posts
+bot.on(":media"); // media messages or channel posts
 ```
 
 #### `:file`
