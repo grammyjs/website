@@ -118,7 +118,7 @@ bot.on("message", async (ctx) => {
   await ctx.reply("I got your message!");
 });
 
-// Or even shorter
+// Or, even shorter:
 bot.on("message", (ctx) => ctx.reply("Gotcha!"));
 ```
 
