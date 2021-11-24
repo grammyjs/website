@@ -142,7 +142,7 @@ grammY has a simple and intuitive way to build up the reply keyboards that your 
 It provides a class called `Keyboard` for this.
 
 Once a user clicks a text button, your bot will receive the sent text as a plain text message.
-Remember that you can listed for text message via `bot.on('message:text')`.
+Remember that you can listen for text message via `bot.on('message:text')`.
 
 ### Building a Keyboard
 
