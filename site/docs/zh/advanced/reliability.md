@@ -13,9 +13,105 @@ next: ./flood.md
 
 可以使用 lint 规则去确保你不会忘记这些。
 
+
+## 优雅关闭
+
 对于使用了长轮询的 bot，还有更多的事要去考虑。
 
 当你打算在某个操作期间再次停止你的实例，你应该去考虑捕获 `SIGTERM` 和 `SIGINT` 事件，并调用 `bot.stop` （长轮询内置的） 方法或者通过它的 [处理]((https://doc.deno.land/https/deno.land/x/grammy_runner/mod.ts#RunnerHandle)) （grammY runner）来停止你的 bot。
+
+### 简单的长轮询
+
+<CodeGroup>
+
+<CodeGroupItem title="TS" active>
+
+```ts
+import { Bot } from "grammy";
+const bot = new Bot("<token>");
+// 当 Node 进程将要被终止时，停止你的 bot。
+process.once("SIGINT", () => bot.stop());
+process.once("SIGTERM", () => bot.stop());
+await bot.start();
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="JS">
+
+```js
+const { Bot } = require("grammy");
+const bot = new Bot("<token>");
+// 当 Node 进程将要被终止时，停止你的 bot。
+process.once("SIGINT", () => bot.stop());
+process.once("SIGTERM", () => bot.stop());
+await bot.start();
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="Deno">
+
+```ts
+import { Bot } from "https://deno.land/x/grammy/mod.ts";
+const bot = new Bot("<token>");
+// 当 Node 进程将要被终止时，停止你的 bot。
+Deno.addSignalListener("SIGINT", () => bot.stop());
+Deno.addSignalListener("SIGTERM", () => bot.stop());
+await bot.start();
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+### 使用 grammY runner
+
+<CodeGroup>
+
+<CodeGroupItem title="TS" active>
+
+```ts
+import { Bot } from "grammy";
+import { run } from "@grammyjs/runner";
+const bot = new Bot("<token>");
+const runner = run(bot);
+// 当 Node 进程将要被终止时，停止你的 bot。
+const stopRunner = () => runner.isRunning() && runner.stop();
+process.once("SIGINT", stopRunner);
+process.once("SIGTERM", stopRunner);
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="JS">
+
+```js
+const { Bot } = require("grammy");
+const { run } = require("@grammyjs/runner");
+const bot = new Bot("<token>");
+const runner = run(bot);
+// 当 Node 进程将要被终止时，停止你的 bot。
+const stopRunner = () => runner.isRunning() && runner.stop();
+process.once("SIGINT", stopRunner);
+process.once("SIGTERM", stopRunner);
+```
+
+</CodeGroupItem>
+<CodeGroupItem title="Deno">
+
+```ts
+import { Bot } from "https://deno.land/x/grammy/mod.ts";
+import { run } from "https://deno.land/x/grammy_runner/mod.ts";
+const bot = new Bot("<token>");
+const runner = run(bot);
+// 当 Node 进程将要被终止时，停止你的 bot。
+const stopRunner = () => runner.isRunning() && runner.stop();
+Deno.addSignalListener("SIGINT", stopRunner);
+Deno.addSignalListener("SIGTERM", stopRunner);
+```
+
+</CodeGroupItem>
+</CodeGroup>
 
 这就是基本的对可靠性所做的东西，你的实例现在将 :registered: 永远 :tm: 不会崩溃了。
 

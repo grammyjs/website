@@ -158,6 +158,10 @@ grammY runner 将在运行时自动解决所有必要的约束，并在必要时
 这是一个非常高效的实现。
 它只需要常量内存（除非你指定无限并发），并且它只需要（平均）常量处理时间每个 update。
 
+## 优雅关闭
+
+为了让 bot 正确地完成工作，你应该在 Node 进程即将被销毁时，[发出信号](/advanced/reliability.html#使用-grammy-runner) 让 bot 停止。
+
 ## 插件概述
 
 - 名字：`runner`
