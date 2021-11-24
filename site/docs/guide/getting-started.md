@@ -59,7 +59,7 @@ const bot = new Bot(""); // <-- put your authentication token between the ""
 // You can now register listeners on your bot object `bot`.
 // grammY will call the listeners when users send messages to your bot.
 
-// Respond to the /start command.
+// Handle the /start command.
 bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
 // Handle other messages.
 bot.on("message", (ctx) => ctx.reply("Got another message!"));
@@ -83,7 +83,7 @@ const bot = new Bot(""); // <-- put your authentication token between the ""
 // You can now register listeners on your bot object `bot`.
 // grammY will call the listeners when users send messages to your bot.
 
-// Respond to the /start command.
+// Handle the /start command.
 bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
 // Handle other messages.
 bot.on("message", (ctx) => ctx.reply("Got another message!"));
@@ -151,7 +151,7 @@ const bot = new Bot(""); // <-- put your authentication token between the ""
 // You can now register listeners on your bot object `bot`.
 // grammY will call the listeners when users send messages to your bot.
 
-// Respond to the /start command.
+// Handle the /start command.
 bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
 // Handle other messages.
 bot.on("message", (ctx) => ctx.reply("Got another message!"));
