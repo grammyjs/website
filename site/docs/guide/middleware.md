@@ -57,7 +57,7 @@ We only used functions (`(ctx) => { ... }`) so far, so let's ignore middleware o
 ```ts
 // Omitted type parameters again.
 type MiddlewareFn = (ctx: Context, next: NextFunction) => MaybePromise<unknown>;
-// With
+// with
 type NextFunction = () => Promise<void>;
 ```
 
