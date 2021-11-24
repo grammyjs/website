@@ -19,12 +19,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 // Your implementation
-bot.command(
-  "start",
-  () => {
-    /* ... */
-  },
-);
+bot.command("start" /* , ... */);
 ```
 
 which will output stuff like this:

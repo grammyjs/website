@@ -122,7 +122,7 @@ bot.callbackQuery("click-payload", async (ctx) => {
 You can use `bot.on('callback_query:data')` to listen for events of any button.
 
 ```ts
-bot.callbackQuery("click-payload" /* ... */);
+bot.callbackQuery("click-payload" /* , ... */);
 
 bot.on("callback_query:data", async (ctx) => {
   console.log("Unknown button event with payload", ctx.callbackQuery.data);

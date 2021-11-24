@@ -16,11 +16,11 @@ grammY 为命令（例如 `/start` 和 `/help` ）提供了特殊处理。
 
 ```ts
 // 对 /start command 做出反应
-bot.command("start" /* ... */);
+bot.command("start" /* , ... */);
 // 对 /help commands 做出反应
-bot.command("help" /* ... */);
+bot.command("help" /* , ... */);
 // 对 /a, /b, /c 和 /d commands 作出反应
-bot.command(["a", "b", "c", "d"] /* ... */);
+bot.command(["a", "b", "c", "d"] /* , ... */);
 ```
 
 请注意，只有那些在消息开头的命令才会被处理，所以如果一个用户发送 "请不要向那个 bot 发送 /start ！"，那么你的监听器将不会被调用，即使"/start" command _是_ 包含在消息中。
