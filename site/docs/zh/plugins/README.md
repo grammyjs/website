@@ -42,4 +42,4 @@ grammY 支持安装插件，其中大部分插件是通过添加新的 [中间�
 
 ## 关于更多插件的想法
 
-我们正在 [GitHub 上的这个 issue](https://github.com/grammyjs/grammY/issues/110) 上收集更多的关于新插件的想法。
+我们正在 [GitHub 上的这个 issue](https://github.com/grammyjs/grammY/issues/110) 中收集更多的关于新插件的想法。
