@@ -60,7 +60,7 @@ Similarly, if the request ever fails with `retry_after` larger than what is spec
 
 ```ts
 autoRetry({
-  maxRetryAttempts: 1, // repeat requests only once
+  maxRetryAttempts: 1, // only repeat requests once
   maxDelaySeconds: 5, // fail immediately if we have to wait >5 seconds
 });
 ```
