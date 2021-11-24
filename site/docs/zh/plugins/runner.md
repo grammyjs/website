@@ -160,7 +160,7 @@ grammY runner 将在运行时自动解决所有必要的约束，并在必要时
 
 ## 优雅关闭
 
-为了让 bot 正确地完成工作，你应该在 Node 进程即将被销毁时，[发出信号](/advanced/reliability.html#使用-grammy-runner) 让 bot 停止。
+为了让 bot 正确地完成工作，你应该在 Node 进程即将被销毁时，[发出信号](/zh/advanced/reliability.html#使用-grammy-runner) 让 bot 停止。
 
 ## 插件概述
 
