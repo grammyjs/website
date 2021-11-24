@@ -16,11 +16,11 @@ You can directly register listeners for certain commands via `bot.command()`.
 
 ```ts
 // Respond to the command /start.
-bot.command("start", (ctx) => {});
+bot.command("start" /* , ... */);
 // Respond to the command /help.
-bot.command("help", (ctx) => {});
+bot.command("help" /* , ... */);
 // Respond to the commands /a, /b, /c, and /d.
-bot.command(["a", "b", "c", "d"], (ctx) => {});
+bot.command(["a", "b", "c", "d"] /* , ... */);
 ```
 
 Note that only those commands that are in the beginning of a message are handled, so if a user sends `'Please do not send /start to that bot!'`, then your listener will not be called, even though the `/start` command _is_ contained in the message.

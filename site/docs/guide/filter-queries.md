@@ -162,9 +162,9 @@ If you want to install some piece of middleware behind the OR concatenation of t
 
 ```ts
 // Runs if the update is about a message OR an edit to a message
-bot.on(["message", "edited_message"], (ctx) => {});
+bot.on(["message", "edited_message"] /* , ... */);
 // Runs if a hashtag OR email OR mention entity is found in text or caption
-bot.on(["::hashtag", "::email", "::mention"], (ctx) => {});
+bot.on(["::hashtag", "::email", "::mention"] /* , ... */);
 ```
 
 The middleware will be executed if _any of the provided queries_ matches.
@@ -176,9 +176,9 @@ If you want to install some piece of middleware behind the AND concatenation of 
 
 ```ts
 // Matches forwarded URLs
-bot.on("::url").on(":forward_date", (ctx) => {});
+bot.on("::url").on(":forward_date" /* , ... */);
 // Matches photos that contain a hashtag in a photo's caption
-bot.on(":photo").on("::hashtag", (ctx) => {});
+bot.on(":photo").on("::hashtag" /* , ... */);
 ```
 
 The middleware will be executed if _all of the provided queries_ match.
@@ -195,7 +195,7 @@ bot
   // ... that contain text ...
   .on(":text")
   // ... with at least one URL, hashtag, or cashtag.
-  .on(["::url", "::hashtag", "::cashtag"], (ctx) => {});
+  .on(["::url", "::hashtag", "::cashtag"] /* , ... */);
 ```
 
 The type inference of `ctx` will scan through the entire call chain and inspect every element of all three `.on` calls.

@@ -162,9 +162,9 @@ bot.on("message").filter(
 
 ```ts
 // 如果更新是关于一个消息或对一个消息的编辑，则运行。
-bot.on(["message", "edited_message"], (ctx) => {});
+bot.on(["message", "edited_message"] /* , ... */);
 // 如果在文本或标题中发现 hashtag 或电子邮件，或提及 entity ，则运行。
-bot.on(["::hashtag", "::email", "::mention"], (ctx) => {});
+bot.on(["::hashtag", "::email", "::mention"] /* , ... */);
 ```
 
 你所提供的 _任何查询匹配_，中间件都将被执行。
@@ -176,9 +176,9 @@ bot.on(["::hashtag", "::email", "::mention"], (ctx) => {});
 
 ```ts
 // 匹配转发的 URL
-bot.on("::url").on(":forward_date", (ctx) => {});
+bot.on("::url").on(":forward_date" /* , ... */);
 // 匹配在标题中含有标签的照片
-bot.on(":photo").on("::hashtag", (ctx) => {});
+bot.on(":photo").on("::hashtag" /* , ... */);
 ```
 
 你所提供的 _任何查询匹配_，中间件都将被执行。
@@ -195,7 +195,7 @@ bot
   // ......，包含文本......。
   .on(":text")
   // ...至少有一个 URL 、 hashtag 或 cashtag 。
-  .on(["::url", "::hashtag", "::cashtag"], (ctx) => {});
+  .on(["::url", "::hashtag", "::cashtag"] /* , ... */);
 ```
 
 `ctx` 的类型推理将扫描整个调用链并检查所有三个 `.on` 调用的每个元素。
