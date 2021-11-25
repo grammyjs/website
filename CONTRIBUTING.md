@@ -22,7 +22,7 @@ They should receive as much love as the English version.
 
 For example, Google Translate is already built into Google Chrome.
 Don't bother using software to create translations of the docs.
-If we create a translation of the docs for a new language, then because we want high quality translations written by native speakers or near native speakers.
+If we create a translation of the docs for a new language, then because we want high quality translations written by native speakers or near-native speakers.
 Examples and real-world comparisons must be replaced by equivalents in the culture of the respective country.
 A good translation is hard and it takes time. We don't want partial or outdated translations.
 
