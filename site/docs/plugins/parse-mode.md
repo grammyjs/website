@@ -38,8 +38,8 @@ bot.start();
  <CodeGroupItem title="JS">
 
 ```js
-import { Bot, Composer } from "grammy";
-import { hydrateReply, parseMode } from "parse-mode";
+const { Bot, Composer } = require("grammy");
+const { hydrateReply, parseMode } = require("@grammyjs/parse-mode");
 
 const bot = new Bot("");
 
