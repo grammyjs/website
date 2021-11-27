@@ -112,7 +112,7 @@ bot.on([":video", ":animation"], async (ctx) => {
 如果你需要这些调用，你应该也安装一个叫作 `FileApiFlavor` 的 [API flavor](/advanced/transformers.html#api-flavoring) 在 bot 对象上。
 
 <CodeGroup>
-  <CodeGroupItem title="Node" active>
+  <CodeGroupItem title="Node.js" active>
 
 ```ts
 import { Api, Bot, Context } from "grammy";

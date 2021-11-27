@@ -37,7 +37,7 @@ bot.use((ctx, next) => next());
 Here is an example of a transformer function that prevents all API calls from happening:
 
 ```ts
-// Incorrectly return undefined instead of the respective object types
+// Incorrectly return undefined instead of the respective object types.
 bot.api.config.use((prev, method, payload) => undefined as any);
 ```
 
@@ -49,7 +49,7 @@ As soon as the respective middleware completes, the transformer function is disc
 
 ```ts
 bot.on("message", (ctx) => {
-  // Install on all context objects that process messages
+  // Install on all context objects that process messages.
   ctx.api.config.use((prev, method, payload) => prev(method, payload));
 });
 ```
@@ -91,16 +91,16 @@ type MyContext = Context & SomeContextFlavor;
 // API flavoring
 type MyApi = Api & SomeApiFlavor;
 
-// Use both flavors
+// Use both flavors.
 const bot = new Bot<MyContext, MyApi>("my-token");
 
-// Install plugin
+// Use a plugin.
 bot.api.config.use(somePlugin());
 
-// Now call `bot.api` with adjusted types from API flavor
+// Now call `bot.api` with adjusted types from API flavor.
 bot.api.somePluginMethod();
 
-// Also use adjusted context type from context flavor
+// Also, use adjusted context type from context flavor.
 bot.on("message", (ctx) => ctx.api.somePluginMethod());
 ```
 

@@ -31,7 +31,7 @@ Here is a simple example.
 import { Bot } from "grammy";
 import { run } from "@grammyjs/runner";
 
-// Create bot
+// Create a bot.
 const bot = new Bot("<token>");
 
 // Add the usual middleware, yada yada
@@ -48,7 +48,7 @@ run(bot);
 const { Bot } = require("grammy");
 const { run } = require("@grammyjs/runner");
 
-// Create bot
+// Create a bot.
 const bot = new Bot("<token>");
 
 // Add the usual middleware, yada yada
@@ -65,7 +65,7 @@ run(bot);
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { run } from "https://deno.land/x/grammy_runner/mod.ts";
 
-// Create bot
+// Create a bot.
 const bot = new Bot("<token>");
 
 // Add the usual middleware, yada yada

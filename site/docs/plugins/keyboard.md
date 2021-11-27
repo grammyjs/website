@@ -75,7 +75,7 @@ const inlineKeyboard = new InlineKeyboard().url(
 You can send an inline keyboard directly along a message, no matter whether you use `bot.api.sendMessage`, `ctx.api.sendMessage`, or `ctx.reply`:
 
 ```ts
-// Send inline keyboard with message:
+// Send inline keyboard with message.
 await ctx.reply(text, {
   reply_markup: inlineKeyboard,
 });
@@ -101,15 +101,15 @@ Once a user clicks a text button, your bot will receive an update containing the
 You can listen for callback data via `bot.callbackQuery()`.
 
 ```ts
-// Construct a keyboard
+// Construct a keyboard.
 const inlineKeyboard = new InlineKeyboard().text("click", "click-payload");
 
-// Send a keyboard along a message
+// Send a keyboard along with a message.
 bot.command("start", async (ctx) => {
   await ctx.reply("Curious? Click me!", { reply_markup: inlineKeyboard });
 });
 
-// Wait for click events with specific callback data
+// Wait for click events with specific callback data.
 bot.callbackQuery("click-payload", async (ctx) => {
   await ctx.answerCallbackQuery({
     text: "You were curious, indeed!",
@@ -122,7 +122,7 @@ bot.callbackQuery("click-payload", async (ctx) => {
 You can use `bot.on('callback_query:data')` to listen for events of any button.
 
 ```ts
-bot.callbackQuery("click-payload" /* ... */);
+bot.callbackQuery("click-payload" /* , ... */);
 
 bot.on("callback_query:data", async (ctx) => {
   console.log("Unknown button event with payload", ctx.callbackQuery.data);
@@ -206,7 +206,7 @@ const keyboard = new Keyboard()
 You can send a keyboard directly along a message, no matter whether you use `bot.api.sendMessage`, `ctx.api.sendMessage`, or `ctx.reply`:
 
 ```ts
-// Send keyboard with message:
+// Send keyboard with message.
 await ctx.reply(text, {
   reply_markup: keyboard,
 });

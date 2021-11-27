@@ -141,9 +141,9 @@ Under load, you are in complete control of how many messages you can process.
 
 Places where long polling works well include:
 
-- during development on your local machine,
-- on all VPS', and
-- on hosted “backend” instances, i.e. machines that actively run your bot 24/7.
+- During development on your local machine.
+- On majority of servers.
+- On hosted "backend" instances, i.e. machines that actively run your bot 24/7.
 
 **The main advantage of webhooks over long polling is that they are cheaper.**
 You save a ton of superfluous requests.
@@ -153,9 +153,9 @@ If you want to, you can even [make an API call when responding to the Telegram r
 
 Places where webhooks work well include:
 
-- on VPS' with SSL certificate,
-- on hosted “frontend” instances that scale according to their load, and
-- on serverless platforms, such as cloud functions or programmable edge networks.
+- On servers with SSL certificates.
+- On hosted "frontend" instances that scale according to their load.
+- On serverless platforms, such as cloud functions or programmable edge networks.
 
 ## I Still Have No Idea What to Use
 
@@ -198,7 +198,7 @@ import express from "express";
 const app = express(); // or whatever you're using
 app.use(express.json()); // parse the JSON request body
 
-// 'express' is also used as default if no argument is given
+// 'express' is also used as default if no argument is given.
 app.use(webhookCallback(bot, "express"));
 ```
 
@@ -211,7 +211,7 @@ const express = require("express");
 const app = express(); // or whatever you're using
 app.use(express.json()); // parse the JSON request body
 
-// 'express' is also used as default if no argument is given
+// 'express' is also used as default if no argument is given.
 app.use(webhookCallback(bot, "express"));
 ```
 
@@ -223,7 +223,7 @@ import { Application } from "https://deno.land/x/oak/mod.ts";
 
 const app = new Application(); // or whatever you're using
 
-// make sure to specify the framework you use
+// Make sure to specify the framework you use.
 app.use(webhookCallback(bot, "oak"));
 ```
 
@@ -252,7 +252,7 @@ Pass a function that determines whether or not to use webhook reply for the give
 ```ts
 const bot = new Bot(token, {
   client: {
-    // We accept the drawback of webhook replies for typing status
+    // We accept the drawback of webhook replies for typing status.
     canUseWebhookReply: (method) => method === "sendChatAction",
   },
 });
