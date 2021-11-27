@@ -11,7 +11,7 @@ next: ./api.md
 
 ```ts
 bot.on("message", (ctx) => {
-  // `ctx` 是一个上下文对象
+  // `ctx` 是一个 `Context` 对象。
 });
 ```
 
@@ -29,8 +29,9 @@ bot.on("message", (ctx) => {
 
 ```ts
 bot.on("message", (ctx) => {
-  // `txt` 是信息中的文本字符串部分。
-  // 对于用于照片、贴纸和其他信息，它将为 `undefined`
+  // `txt` 在处理文本信息时将是一个 `string'。
+  // 如果收到的信息没有任何信息文本，它将是 `undefined'。
+  // 例如，照片、贴纸和其他信息。
   const txt = ctx.message.text;
 });
 ```
@@ -44,7 +45,7 @@ bot.on("message", (ctx) => {
 
 ```ts
 bot.on("edited_message", (ctx) => {
-  // 获取编辑过的信息的新文本
+  // 获得新的、经过编辑的信息文本。
   const editedText = ctx.editedMessage.text;
 });
 ```
@@ -70,11 +71,11 @@ bot.on("edited_message", (ctx) => {
 
 ```ts
 bot.on("message", (ctx) => {
-  // 获取新信息的文本
+  // 获取接收到的信息的文本。
   const text = ctx.msg.text;
 });
 bot.on("edited_message", (ctx) => {
-  // 获取编辑过的信息的新文本
+  // 获得新的、经过编辑的信息文本。
   const editedText = ctx.msg.text;
 });
 ```
@@ -87,11 +88,11 @@ bot.on("edited_message", (ctx) => {
 
 ```ts
 bot.on("message", async (ctx) => {
-  // 获取聊天 id
+  // 获取聊天 id。
   const chatId = ctx.msg.chat.id;
-  // 定义回复内容
+  // 要回复的文本。
   const text = "I got your message!";
-  // 发送回复
+  // 发送回复。
   await bot.api.sendMessage(chatId, text);
 });
 ```
@@ -176,16 +177,16 @@ await ctx.reply("^ This is a message!", {
 ```ts
 import { Bot, Context } from "grammy";
 
-// 定义一个上下文类型参数
+// 自定义一个上下文类型。
 interface MyContext extends Context {
   customProp: string | number | undefined;
 }
 
-// 向 `Bot` 构造函数传递自定义上下文类型
+// 向 `Bot` 构造函数传入自定义的上下文类型。
 const bot = new Bot<MyContext>("<token>");
 
 bot.on("message", (ctx) => {
-  // `ctx` 现在是 `MyContext` 类型。
+  // `ctx` 现在是 `MyContext` 类型！
   const prop = ctx.customProp;
 });
 ```
@@ -196,16 +197,16 @@ bot.on("message", (ctx) => {
 ```ts
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 
-// 定义一个上下文类型参数
+// 自定义一个上下文类型。
 interface MyContext extends Context {
   customProp: string | number | undefined;
 }
 
-// 向 `Bot` 构造函数传递自定义上下文类型
+// 向 `Bot` 构造函数传入自定义的上下文类型。
 const bot = new Bot<MyContext>("<token>");
 
 bot.on("message", (ctx) => {
-  // `ctx` 现在成为 `MyContext` 类型。
+  // `ctx` 现在成为 `MyContext` 类型！
   const prop = ctx.customProp;
 });
 ```
@@ -228,9 +229,9 @@ bot.on("message", (ctx) => {
 import { Bot, Context } from "grammy";
 import type { Update, UserFromGetMe } from "@grammyjs/types";
 
-// 定义自定义上下文类
+// 自定义一个上下文类。
 class MyContext extends Context {
-  // 自定义属性
+  // 自定义一些属性
   public readonly customProp: number;
   constructor(update: Update, api: Api, me: UserFromGetMe) {
     super(update, api, me);
@@ -238,7 +239,7 @@ class MyContext extends Context {
   }
 }
 
-// 作为一个选项，传递自定义上下文类的构造函数
+// 作为一个选项，传入自定义上下文类的构造函数。
 const bot = new Bot("<token>", {
   ContextConstructor: MyContext,
 });
@@ -257,9 +258,9 @@ bot.start();
 ```ts
 const { Bot, Context } = require("grammy");
 
-// 定义自定义上下文类
+// 自定义一个上下文类。
 class MyContext extends Context {
-  // 自定义属性
+  // 自定义一些属性
   public readonly customProp;
   constructor(update, api, me) {
     super(update, api, me);
@@ -267,13 +268,13 @@ class MyContext extends Context {
   }
 }
 
-// 作为一个选项，传递自定义上下文类的构造函数
+// 作为一个选项，传入自定义 上下文类的构造函数。
 const bot = new Bot("<token>", {
   ContextConstructor: MyContext,
 });
 
 bot.on("message", (ctx) => {
-  // `ctx` 现在成为了 `MyContext` 类型
+  // `ctx` 现在成为了 `MyContext` 类型。
   const prop = ctx.customProp;
 });
 
@@ -290,9 +291,9 @@ import type {
   UserFromGetMe,
 } from "https://cdn.skypack.dev/@grammyjs/types?dts";
 
-// 定义自定义上下文类
+// 自定义一个上下文类
 class MyContext extends Context {
-  // 自定义属性
+  // 自定义一些属性。
   public readonly customProp: number;
   constructor(update: Update, api: Api, me: UserFromGetMe) {
     super(update, api, me);
@@ -300,13 +301,13 @@ class MyContext extends Context {
   }
 }
 
-// 作为一个选项，传递自定义上下文类的构造函数
+// 作为一个选项，传递自定义上下文类的构造函数。
 const bot = new Bot("<token>", {
   ContextConstructor: MyContext,
 });
 
 bot.on("message", (ctx) => {
-  // `ctx` 现在成为了 `MyContext` 类型
+  // `ctx` 现在成为了 `MyContext` 类型。
   const prop = ctx.customProp;
 });
 
@@ -330,7 +331,7 @@ bot.start();
 基本的一种被称为 _添加式上下文调味剂_，而且每当我们谈论 _给上下文烹饪调味_ 时，我们一般指这种基本形式。
 让我们来看看它是如何工作的：
 
-举个例子，当你有 [会话数据](/plugins/session.md) 时，你必须在 `Context` 类型上注册 `ctx.session`。
+举个例子，当你有 [会话数据](/plugins/session.md) 时，你必须在上下文类型上注册 `ctx.session`。
 否则：
 
 1. 你不能安装内置的 session 插件
@@ -357,7 +358,7 @@ interface SessionFlavor<S> {
 ```ts
 import { Context, SessionFlavor } from "grammy";
 
-// 声明 `ctx.session` 为 `string` 类型
+// 声明 `ctx.session` 为 `string` 类型。
 type MyContext = Context & SessionFlavor<string>;
 ```
 

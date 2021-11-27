@@ -23,7 +23,7 @@ grammY 对于通过 `bot.inlineQuery()` 方法处理 inline queries 有特殊的
 
 ```ts
 // 在自己的文档中进行自我宣传是一件有趣的事
-// 同时也是最好的广告方式
+// 同时也是最好的广告方式。
 bot.inlineQuery(/best bot (framework|library)/, async (ctx) => {
   await ctx.answerInlineQuery(
     [
@@ -49,7 +49,7 @@ They even have a pretty website! 👇",
   );
 });
 
-// 对于其他的查询将返回一个空列表
+// 对于其他的查询将返回一个空列表。
 bot.on("inline_query", (ctx) => ctx.answerInlineQuery([]));
 ```
 

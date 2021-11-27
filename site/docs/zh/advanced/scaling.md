@@ -33,7 +33,7 @@ next: ./reliability.md
 // 之前的写法
 bot.start();
 
-// 使用 grammY runner 的写法 (从中导出的 `run`)
+// 使用 grammY runner 中导出的 `run`
 run(bot);
 ```
 
@@ -88,10 +88,10 @@ grammY runner 中封装了 `sequentialize()` 中间件来确保发生冲突的�
 import { Bot, Context, session } from "grammy";
 import { run, sequentialize } from "@grammyjs/runner";
 
-// 创建一个 bot
+// 创建一个 bot。
 const bot = new Bot("<token>");
 
-/** 解析上下文对象的 session key */
+// 为 `Context` 对象构建唯一标识符。
 function getSessionKey(ctx: Context) {
   return ctx.chat?.id.toString();
 }
@@ -100,7 +100,7 @@ function getSessionKey(ctx: Context) {
 bot.use(sequentialize(getSessionKey));
 bot.use(session({ getSessionKey }));
 
-// 添加常用中间件，现在提供了安全的 session 支持
+// 添加常用中间件，现在提供了安全的 session 支持。
 bot.on("message", (ctx) => ctx.reply("Got your message."));
 
 // 仍然让它并发运行！
@@ -115,10 +115,10 @@ run(bot);
 const { Bot, Context, session } = require("grammy";)
 const { run, sequentialize } = require("@grammyjs/runner";)
 
-// 创建一个 bot
+// 创建一个 bot。
 const bot = new Bot("<token>");
 
-/** 解析上下文对象的 session key */
+// 为 `Context` 对象构建唯一标识符。
 function getSessionKey(ctx) {
   return ctx.chat?.id.toString();
 }
@@ -127,7 +127,7 @@ function getSessionKey(ctx) {
 bot.use(sequentialize(getSessionKey));
 bot.use(session({ getSessionKey }));
 
-// 添加常用中间件，现在提供了安全的 session 支持
+// 添加常用中间件，现在提供了安全的 session 支持。
 bot.on("message", (ctx) => ctx.reply("Got your message."));
 
 // 仍然让它并发运行！
@@ -141,10 +141,10 @@ run(bot);
 import { Bot, Context, session } from "https://deno.land/x/grammy/mod.ts";
 import { run, sequentialize } from "https://deno.land/x/grammy_runner/mod.ts";
 
-// 创建一个 bot
+// 创建一个 bot。
 const bot = new Bot("<token>");
 
-/** 解析上下文对象的 session key */
+// 为 `Context` 对象构建唯一标识符。
 function getSessionKey(ctx: Context) {
   return ctx.chat?.id.toString();
 }
@@ -153,7 +153,7 @@ function getSessionKey(ctx: Context) {
 bot.use(sequentialize(getSessionKey));
 bot.use(session({ getSessionKey }));
 
-// 添加常用中间件，现在提供了安全的 session 支持
+// 添加常用中间件，现在提供了安全的 session 支持。
 bot.on("message", (ctx) => ctx.reply("Got your message."));
 
 // 仍然让它并发运行！

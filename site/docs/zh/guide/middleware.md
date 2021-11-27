@@ -46,7 +46,7 @@ bot.start();
 我们可以在 grammY 的参考资料中查看 `Middleware` [类型](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Middleware)。
 
 ```ts
-// 为了简洁起见，省略了一些类型参数
+// 为了简洁起见，省略了一些类型参数。
 type Middleware = MiddlewareFn | MiddlewareObj;
 ```
 
@@ -55,7 +55,7 @@ type Middleware = MiddlewareFn | MiddlewareObj;
 我们只用了函数（`(ctx) => { ... }`），所以我们暂时忽略中间件对象，深入挖掘 `MiddlewareFn` 类型（[参考](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#MiddlewareFn)）。
 
 ```ts
-// 再次省略了类型参数
+// 再次省略了类型参数。
 type MiddlewareFn = (ctx: Context, next: NextFunction) => MaybePromise<unknown>;
 // 和
 type NextFunction = () => Promise<void>;
@@ -131,7 +131,7 @@ async function responseTime(
   ctx: Context,
   next: NextFunction, // 这是 `() => Promise<void>` 的一个别名
 ): Promise<void> {
-  // TODO
+  // TODO：实现
 }
 ```
 

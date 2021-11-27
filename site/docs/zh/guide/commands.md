@@ -15,12 +15,12 @@ grammY 为命令（例如 `/start` 和 `/help` ）提供了特殊处理。
 你可以通过 `bot.command()` 直接为某些命令注册监听器。
 
 ```ts
-// 对 /start 命令做出反应
-bot.command("start" /* ... */);
-// 对 /help 命令做出反应
-bot.command("help" /* ... */);
-// 对 /a, /b, /c 和 /d 命令作出反应
-bot.command(["a", "b", "c", "d"] /* ... */);
+// 响应 /start 命令。
+bot.command("start" /* , ... */);
+// 响应 /help 命令。
+bot.command("help" /* , ... */);
+// 响应 /a, /b, /c 和 /d 命令。
+bot.command(["a", "b", "c", "d"] /* , ... */);
 ```
 
 请注意，只有那些在消息开头的命令才会被处理，所以如果一个用户发送 `请不要向那个 bot 发送 /start ！`，那么你的监听器将不会被调用，即使 `/start` 命令 _是_ 包含在消息中。
@@ -52,7 +52,7 @@ await bot.api.setMyCommands([
 
 ```ts
 bot.command("add", (ctx) => {
-  // `item` 将被赋值为 `apple pie` ， 如果一个用户输入了 `/add apple pie`
+  // `item` 将被赋值为 `apple pie` ， 如果一个用户输入了 `/add apple pie`。
   const item = ctx.match;
 });
 ```

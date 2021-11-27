@@ -37,7 +37,7 @@ bot.use((ctx, next) => next());
 这是一个 transformer 函数从发生时阻止所有 API 调用的例子：
 
 ```ts
-// 错误的返回 undefined 而不是各自的对象类型
+// 错误的返回 undefined 而不是各自的对象类型。
 bot.api.config.use((prev, method, payload) => undefined as any);
 ```
 
@@ -49,7 +49,7 @@ bot.api.config.use((prev, method, payload) => undefined as any);
 
 ```ts
 bot.on("message", (ctx) => {
-  // 安装所有处理消息的上下文对象
+  // 安装所有处理消息的上下文对象。
   ctx.api.config.use((prev, method, payload) => prev(method, payload));
 });
 ```
@@ -91,16 +91,16 @@ type MyContext = Context & SomeContextFlavor;
 // 调味 API
 type MyApi = Api & SomeApiFlavor;
 
-// 同时使用两个调味剂
+// 同时使用两个调味剂。
 const bot = new Bot<MyContext, MyApi>("my-token");
 
-// 使用插件
+// 使用一个插件。
 bot.api.config.use(somePlugin());
 
-// 现在用从 API 调味剂调整过的类型调用 `bot.api`
+// 现在用从 API 调味剂调整过的类型调用 `bot.api`。
 bot.api.somePluginMethod();
 
-// 还可以使用根据上下文调味剂调整的上下文类型
+// 还可以使用根据上下文调味剂调整的上下文类型。
 bot.on("message", (ctx) => ctx.api.somePluginMethod());
 ```
 

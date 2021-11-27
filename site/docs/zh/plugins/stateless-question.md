@@ -24,7 +24,7 @@ const unicornQuestion = new StatelessQuestion('unicorns', ctx => {
     console.log('User thinks unicorns are doing:', ctx.message)
 })
 
-// 不要忘记使用中间件
+// 不要忘记使用中间件。
 bot.use(unicornQuestion.middleware())
 
 bot.command('rainbows', async ctx => {
@@ -38,7 +38,7 @@ bot.command('rainbows', async ctx => {
     return unicornQuestion.replyWithMarkdown(ctx, text)
 })
 
-// 或者手动发送你的问题（请确保使用 parse_mode 和 force_reply ！）
+// 或者手动发送你的问题（请确保使用 parse_mode 和 force_reply！）。
 bot.command('unicorn', async ctx => ctx.replyWithMarkdown('What are unicorns doing?' + unicornQuestion.messageSuffixMarkdown(), {parse_mode: 'Markdown', reply_markup: {force_reply: true}})
 bot.command('unicorn', async ctx => ctx.replyWithHTML(    'What are unicorns doing?' + unicornQuestion.messageSuffixHTML(),     {parse_mode: 'HTML',     reply_markup: {force_reply: true}})
 ```

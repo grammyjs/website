@@ -75,7 +75,7 @@ const inlineKeyboard = new InlineKeyboard().url(
 不论你是用 `bot.api.sendMessage` 、 `ctx.api.sendMessage` 还是 `ctx.reply`，你都可以直接发送 inline keyboard：
 
 ```ts
-// 和消息一起发送 inline keyboard：
+// 和消息一起发送 inline keyboard。
 await ctx.reply(text, {
   reply_markup: inlineKeyboard,
 });
@@ -101,15 +101,15 @@ keyboard 插件让你可以获取到 Telegram 发送的 update 对象。
 你可以通过 `bot.callbackQuery()` 来监听回调数据。
 
 ```ts
-// 构建一个 keyboard
+// 构建一个 keyboard。
 const inlineKeyboard = new InlineKeyboard().text("click", "click-payload");
 
-// 和消息一起发送 keyboard
+// 和消息一起发送 keyboard。
 bot.command("start", async (ctx) => {
   await ctx.reply("Curious? Click me!", { reply_markup: inlineKeyboard });
 });
 
-// 等待具有特定回调数据的点击事件
+// 等待具有特定回调数据的点击事件。
 bot.callbackQuery("click-payload", async (ctx) => {
   await ctx.answerCallbackQuery({
     text: "You were curious, indeed!",
@@ -122,7 +122,7 @@ bot.callbackQuery("click-payload", async (ctx) => {
 你也可以使用 `bot.on('callback_query:data')` 来监听所有按钮的点击事件。
 
 ```ts
-bot.callbackQuery("click-payload" /* ... */);
+bot.callbackQuery("click-payload" /* , ... */);
 
 bot.on("callback_query:data", async (ctx) => {
   console.log("Unknown button event with payload", ctx.callbackQuery.data);
@@ -206,7 +206,7 @@ const keyboard = new Keyboard()
 不论你是用 `bot.api.sendMessage`，`ctx.api.sendMessage` 还是 `ctx.reply`，你都可以直接发送 keyboard：
 
 ```ts
-// 和消息一起发送 keyboard：
+// 和消息一起发送 keyboard。
 await ctx.reply(text, {
   reply_markup: keyboard,
 });

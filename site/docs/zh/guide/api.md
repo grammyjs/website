@@ -44,10 +44,10 @@ Bot API 的每一个方法在 grammY 中都有对应的方法。
 
 ```ts
 async function sendHelloTo12345() {
-  // 发送消息给 12345
+  // 发送消息给 12345。
   await bot.api.sendMessage(12345, "Hello!");
 
-  // 发送一个消息并获得已发送的消息对象的回复
+  // 发送一个消息并存储响应，响应中包含关于所发送消息的信息。
   const sentMessage = await bot.api.sendMessage(12345, "Hello again!");
   console.log(sentMessage.message_id);
 }

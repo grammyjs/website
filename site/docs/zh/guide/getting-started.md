@@ -16,7 +16,7 @@ next: ./basics.md
 通过打开终端并键入以下内容来完成。
 
 ```bash
-# 创建一个新的目录，并进入该目录
+# 创建一个新的目录，并进入该目录.
 mkdir my-bot
 cd my-bot
 
@@ -24,7 +24,7 @@ cd my-bot
 npm install -D typescript
 npx tsc --init
 
-# 安装 grammY
+# 安装 grammY。
 npm install grammy
 ```
 
@@ -59,15 +59,15 @@ const bot = new Bot(""); // <-- 把你的认证令牌放在 "" 之间
 // 你现在可以在你的 bot 对象 `bot` 上注册监听器。
 // 当用户向你的 bot 发送消息时，grammY 将调用已注册的监听器。
 
-// 对 /start 命令作出反应
+// 处理 /start 命令。
 bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
-// 处理其他的消息
+// 处理其他的消息。
 bot.on("message", (ctx) => ctx.reply("Got another message!"));
 
 // 现在，你已经确定了将如何处理信息，可以开始运行你的 bot。
 // 这将连接到 Telegram 服务器并等待消息。
 
-// 启动你的 bot
+// 启动 bot。
 bot.start();
 ```
 
@@ -83,15 +83,15 @@ const bot = new Bot(""); // <-- 把你的认证令牌放在 "" 之间
 // 你现在可以在你的 bot 对象 `bot` 上注册监听器。
 // 当用户向你的 bot 发送消息时， grammY 将调用已注册的监听器。
 
-// 对 /start 命令作出反应
+// 处理 /start 命令。
 bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
-// 处理其他的消息
+// 处理其他的消息。
 bot.on("message", (ctx) => ctx.reply("Got another message!"));
 
 // 现在，你已经确定了将如何处理信息，可以开始运行你的 bot。
 // 这将连接到 Telegram 服务器并等待消息。
 
-// 启动你的 bot
+// 启动 bot。
 bot.start();
 ```
 

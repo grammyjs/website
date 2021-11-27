@@ -19,19 +19,19 @@ grammY 有一个 [内置插件](./keyboard.md#inline-keyboards) 可以创建基�
 import { Bot } from "grammy";
 import { Menu } from "@grammyjs/menu";
 
-// 创建 bot
+// 创建一个 bot。
 const bot = new Bot("token");
 
-// 创建一个简单的菜单
+// 创建一个简单的菜单。
 const menu = new Menu("my-menu-identifier")
   .text("A", (ctx) => ctx.reply("You pressed A!")).row()
   .text("B", (ctx) => ctx.reply("You pressed B!"));
 
-// 使其具有互动性
+// 使其具有互动性。
 bot.use(menu);
 
 bot.command("start", async (ctx) => {
-  // 发送菜单：
+  // 发送菜单。
   await ctx.reply("Check out this menu:", { reply_markup: menu });
 });
 
@@ -45,19 +45,19 @@ bot.start();
 const { Bot } = require("grammy");
 const { Menu } = require("@grammyjs/menu");
 
-// 创建 bot
+// 创建一个 bot。
 const bot = new Bot("token");
 
-// 创建一个简单的菜单
+// 创建一个简单的菜单。
 const menu = new Menu("my-menu-identifier")
   .text("A", (ctx) => ctx.reply("You pressed A!")).row()
   .text("B", (ctx) => ctx.reply("You pressed B!"));
 
-// 使其具有互动性
+// 使其具有互动性。
 bot.use(menu);
 
 bot.command("start", async (ctx) => {
-  // 发送菜单：
+  // 发送菜单。
   await ctx.reply("Check out this menu:", { reply_markup: menu });
 });
 
@@ -71,19 +71,19 @@ bot.start();
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { Menu } from "https://deno.land/x/grammy_menu/mod.ts";
 
-// 创建 bot
+// 创建一个 bot。
 const bot = new Bot("token");
 
-// 创建一个简单的菜单
+// 创建一个简单的菜单。
 const menu = new Menu("my-menu-identifier")
   .text("A", (ctx) => ctx.reply("You pressed A!")).row()
   .text("B", (ctx) => ctx.reply("You pressed B!"));
 
-// 使其具有互动性
+// 使其具有互动性。
 bot.use(menu);
 
 bot.command("start", async (ctx) => {
-  // 发送菜单：
+  // 发送菜单。
   await ctx.reply("Check out this menu:", { reply_markup: menu });
 });
 
@@ -145,7 +145,7 @@ bot.command("menu", async (ctx) => {
 这个函数可能是也可能不是 `async` 的（即异步）。
 
 ```ts
-// 创建一个带有用户名的按钮，并且问候他们
+// 创建一个带有用户名字的按钮，按下后会向他们问好。
 const menu = new Menu("greet-me")
   .text(
     (ctx) => `Greet ${ctx.from.first_name}!`, // 动态标签
@@ -160,7 +160,7 @@ const menu = new Menu("greet-me")
 调用 `ctx.menu.update()` 来确保你的菜单会被重新渲染。
 
 ```ts
-// 已启用通知的用户标识符集合
+// 已启用通知的用户标识符集合。
 const notifications = new Set<number>();
 
 function toggleNotifications(id: number) {
@@ -259,9 +259,9 @@ const settings = new Menu("credits-menu")
 在向后导航时，将使用父级菜单。
 
 ```ts
-// 注册设置菜单到主菜单
+// 注册设置菜单到主菜单。
 main.register(settings);
-// 可选择设置不同的父级
+// 可选择设置不同的父级。
 main.register(settings, "back-from-settings-menu");
 ```
 
@@ -327,7 +327,7 @@ function getRandomInt(minInclusive: number, maxExclusive: number) {
   return min + Math.floor(Math.random() * (max - min));
 }
 
-// 创建一个包含随机数量的按钮的菜单
+// 创建一个包含随机数量的按钮的菜单。
 const menu = new Menu("random");
 
 menu.dynamic((_ctx) => {
@@ -403,7 +403,7 @@ const menu1 = new Menu("id", {
     await ctx.reply("Here is a fresh menu", { reply_markup: menu1 });
   },
 });
-// 完全禁用过时检测（可能运行错误的按钮处理程序）
+// 完全禁用过时检测（可能运行错误的按钮处理程序）。
 const menu2 = new Menu("id", { onMenuOutdated: false });
 ```
 
@@ -424,7 +424,7 @@ const menu2 = new Menu("id", { onMenuOutdated: false });
 
 ```ts
 function ident(ctx: Context): string {
-  // 返回一个字符串，当你的菜单改变时，它将会改变
+  // 返回一个字符串，当你的菜单改变时，它将会改变。
 }
 const menu = new Menu("id", { fingerprint: (ctx) => ident(ctx) });
 ```

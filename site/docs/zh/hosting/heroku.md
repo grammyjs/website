@@ -11,18 +11,18 @@
 首先，安装一些依赖：
 
 ```bash
-# 创建项目目录
+# 创建项目目录。
 mkdir grammy-bot
 cd grammy-bot
 npm init --y
 
-# 安装主要依赖
+# 安装主要依赖。
 npm install grammy express
 
-# 安装开发依赖
+# 安装开发依赖。
 npm install -D typescript @types/express @types/node
 
-# 为 TypeScript 创建配置文件
+# 创建 TypeScript 配置文件。
 npx tsc --init
 ```
 

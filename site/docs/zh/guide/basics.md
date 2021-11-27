@@ -14,17 +14,17 @@ grammY 还提供了方便回复的方法。
 
 ```ts
 bot.on("message", (ctx) => {
-  const message = ctx.message; // message 对象
+  const message = ctx.message; // 消息对象
 });
 ```
 
 当然，也有一些其他选择：
 
 ```ts
-// 处理 commands, 比如 /start
+// 处理 commands, 比如 /start。
 bot.command('start', (ctx) => { ... });
 
-// 把信息文本与一个字符串或正则表达式相匹配
+// 把信息文本与一个字符串或正则表达式相匹配。
 bot.hears(/echo *(.+)?/, (ctx) => { ... });
 ```
 
@@ -37,10 +37,10 @@ bot.hears(/echo *(.+)?/, (ctx) => { ... });
 [bot 可以使用的所有方法](https://core.telegram.org/bots/api#available-methods) 都可以通过 `bot.api` 对象上使用。
 
 ```ts
-// 向用户 12345 发送一条短信
+// 向用户 12345 发送一条消息。
 await bot.api.sendMessage(12345, "Hi!");
 
-// 获取有关 bot 本身的信息
+// 获取有关 bot 本身的信息。
 const me = await bot.api.getMe();
 
 // 及其他
@@ -116,7 +116,7 @@ await bot.api.sendMessage(
 ```ts
 bot.command("start", async (ctx) => {
   await ctx.reply("Hi！ 我只能收到明确回复我的信息！", {
-    // 强制 Telegram 客户端打开回复功能
+    // 让 Telegram 客户端自动向用户显示回复界面。
     reply_markup: { force_reply: true },
   });
 });

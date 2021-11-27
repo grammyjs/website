@@ -140,10 +140,10 @@ ______________                                   _____________
 使用 `bot.start ()`，一切都会正常工作，不需要进一步配置。
 在负载下，你可以完全控制需要处理消息的个数。
 
-长轮询可以在这些地方良好运行：
+长轮询可以在这些地方良好地运行：
 
-- 可以在你的本地，
-- 所有的 VPS，或是
+- 在你的本地机器上。
+- 在大多数服务器上。
 - 在后端运行的 bot 示例上（即一个全天候运行的机器）都可以良好运行。
 
 **Webhooks 比长轮询的主要优势在于它们更“便宜”。**
@@ -154,8 +154,8 @@ ______________                                   _____________
 
 Webhooks 可以在这些地方良好运行：
 
-- 在一台有着 SSL 证书的 VPS 上,
-- 在一台可以前端运行的，拥有可以负载伸缩的主机上, 或者
+- 在有着 SSL 证书的服务器上。
+- 在一台可以前端运行的，拥有可以负载伸缩的主机上。
 - 在 serverless 平台， 比如云函数或者可编程边缘网络。
 
 ## 我还是不知道该用什么
@@ -199,7 +199,7 @@ import express from "express";
 const app = express(); // 或者其它你正在使用的
 app.use(express.json()); // 解析 JSON 请求
 
-// 如果没有给出参数，则使用 'express' 作为默认值
+// 如果没有给出参数，则使用 'express' 作为默认值。
 app.use(webhookCallback(bot, "express"));
 ```
 
@@ -212,7 +212,7 @@ const express = require("express");
 const app = express(); // 或者其它你正在使用的
 app.use(express.json()); // 解析 JSON 请求
 
-// 如果没有给出参数，则使用 'express' 作为默认值
+// 如果没有给出参数，则使用 'express' 作为默认值。
 app.use(webhookCallback(bot, "express"));
 ```
 
@@ -224,7 +224,7 @@ import { Application } from "https://deno.land/x/oak/mod.ts";
 
 const app = new Application(); // 或者其它你正在使用的
 
-// 确保指定你使用的框架
+// 确保指定你使用的框架。
 app.use(webhookCallback(bot, "oak"));
 ```
 
@@ -253,7 +253,7 @@ app.use(webhookCallback(bot, "oak"));
 ```ts
 const bot = new Bot(token, {
   client: {
-    // 如果你愿意在某些方法上使用 webhook reply
+    // 如果你愿意在某些方法上使用 webhook reply。
     canUseWebhookReply: (method) => method === "sendChatAction",
   },
 });

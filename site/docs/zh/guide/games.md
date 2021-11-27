@@ -30,9 +30,9 @@ Telegram 游戏是一个非常有趣的功能，很好玩。
 1. 使用 `replyWithGame` 发送信息
 
    ```ts
-   // 我们将使用 start 命令来调用游戏回复方法
+   // 我们将使用 start 命令来调用游戏回复方法。
    bot.command("start", async (ctx) => {
-     // 传递在 BotFather 中创建的游戏的名称，例如 “my_game”
+     // 传递在 BotFather 中创建的游戏的名称，例如 “my_game”。
      await ctx.replyWithGame("my_game");
    });
    ```
@@ -41,7 +41,7 @@ Telegram 游戏是一个非常有趣的功能，很好玩。
 
    ```ts
    bot.command("start", async (ctx) => {
-     // 你可以通过 `ctx.from.id` 获得用户发送游戏的聊天标识符
+     // 你可以通过 `ctx.from.id` 获得用户发送游戏的聊天标识符。
      // 它提供了调用 start 命令的用户的聊天标识符。
      const chatId = ctx.from.id;
      await ctx.api.sendGame(chatid, "my_game");
@@ -61,11 +61,11 @@ const keyboard = new InlineKeyboard().game("Start my_game");
 // 注意，我们使用的 game() 不同于普通的 inline keyboard
 // 在我们使用 url() 或 text() 的时候
 
-// 使用 replyWithGame 方法
+// 使用 `replyWithGame` 方法
 await ctx.replyWithGame("my_game", { reply_markup: keyboard });
 
-// 使用 api.sendGame 方法
-await ctx.api.sendGame(chatid, "my_game", { reply_markup: keyboard });
+// 使用 `api.sendGame` 方法
+await ctx.api.sendGame(chatId, "my_game", { reply_markup: keyboard });
 ```
 
 ## 监听我们游戏按钮的回调
@@ -93,8 +93,7 @@ bot.on("callback_query:game_short_name", async (ctx) => {
 bot.command("start", (ctx) => {
   await ctx.replyWithGame("my_game", {
     reply_markup: keyboard,
-    // 或者你可以在这里根据你的需要
-    // 使用 api 方法
+    // 或者你可以在这里根据你的需要使用 api 方法
   });
 });
 ```

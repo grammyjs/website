@@ -50,17 +50,17 @@
 ```ts
 import { Bot, Context, session, SessionFlavor } from "grammy";
 
-// 定义我们的会话
+// 定义我们的会话。
 interface SessionData {
   pizzaCount: number;
 }
 
-// 对上下文类型进行修饰以包含会话
+// 对上下文类型进行修饰以包含会话。
 type MyContext = Context & SessionFlavor<SessionData>;
 
 const bot = new Bot<MyContext>("");
 
-// 安装会话中间件，并定义会话初始值
+// 安装会话中间件，并定义会话初始值。
 bot.use(
   session({
     initial(): SessionData {
@@ -87,7 +87,7 @@ const { Bot, session } = require("grammy");
 
 const bot = new Bot("");
 
-// 安装会话中间件，并定义会话初始值
+// 安装会话中间件，并定义会话初始值。
 bot.use(
   session({
     initial() {
@@ -117,17 +117,17 @@ import {
   SessionFlavor,
 } from "https://deno.land/x/grammy/mod.ts";
 
-// 定义我们的会话
+// 定义我们的会话。
 interface SessionData {
   pizzaCount: number;
 }
 
-// 对上下文类型进行修饰以包含会话
+// 对上下文类型进行修饰以包含会话。
 type MyContext = Context & SessionFlavor<SessionData>;
 
 const bot = new Bot<MyContext>("");
 
-// 安装会话中间件，并定义会话初始值
+// 安装会话中间件，并定义会话初始值。
 bot.use(
   session({
     initial(): SessionData {

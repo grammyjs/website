@@ -71,23 +71,25 @@ const bot = new Bot("YOUR BOT TOKEN HERE");
 const redis = new Redis();
 
 app.use(express.json());
-bot.use(limit({
-  timeFrame: 2000,
+bot.use(
+  limit({
+    timeFrame: 2000,
 
-  limit: 3,
+    limit: 3,
 
-  // "MEMORY_STORAGE" 是默认的存储模式。如果你想使用 Redis，请不要忘记传入 storageClient。
-  storageClient: redis,
+    // "MEMORY_STORAGE" 是默认的存储模式。如果你想使用 Redis，请不要忘记传入 storageClient。
+    storageClient: redis,
 
-  onLimitExceeded: (ctx) => {
-    ctx?.reply("Please refrain from sending too many requests!");
-  },
+    onLimitExceeded: (ctx) => {
+      ctx?.reply("Please refrain from sending too many requests!");
+    },
 
-  // 请注意，这个键应该是一个字符串格式的数字，如 "123456789"
-  keyGenerator: (ctx) => {
-    return ctx.from?.id.toString();
-  },
-}));
+    // 请注意，这个键应该是一个字符串格式的数字，如 "123456789"
+    keyGenerator: (ctx) => {
+      return ctx.from?.id.toString();
+    },
+  })
+);
 
 app.listen(3000, () => {
   bot.api.setWebhook("YOUR DOMAIN HERRE", { drop_pending_updates: true });
@@ -110,14 +112,16 @@ const app = express();
 const bot = new Bot("YOUR BOT TOKEN HERE");
 
 app.use(express.json());
-bot.use(limit({
-  keyGenerator: (ctx) => {
-    if (ctx.chat?.type === "group" || ctx.chat?.type === "supergroup") {
-      // 请注意，这个键应该是一个字符串格式的数字，如 "123456789"
-      return ctx.chat.id.toString();
-    }
-  },
-}));
+bot.use(
+    limit({
+      keyGenerator: (ctx) => {
+        if (ctx.chat?.type === "group" || ctx.chat?.type === "supergroup") {
+          // 请注意，这个键应该是一个字符串格式的数字，如 "123456789"
+          return ctx.chat.id.toString();
+        }
+      },
+  })
+);
 
 app.listen(3000, () => {
   bot.api.setWebhook("YOUR DOMAIN HERRE", { drop_pending_updates: true });

@@ -21,7 +21,7 @@ Telegram 不像别的服务那样直接限制你的请求，它会告诉你，�
 ```ts
 import { autoRetry } from "@grammyjs/auto-retry";
 
-// 安装插件
+// 使用插件。
 bot.api.config.use(autoRetry());
 ```
 
@@ -31,7 +31,7 @@ bot.api.config.use(autoRetry());
 ```js
 const { autoRetry } = require("@grammyjs/auto-retry");
 
-// 安装插件
+// 使用插件。
 bot.api.config.use(autoRetry());
 ```
 
@@ -61,7 +61,7 @@ bot.api.config.use(autoRetry());
 ```ts
 autoRetry({
   maxRetryAttempts: 1, // 只重复请求一次
-  maxDelaySeconds: 5, // 如果我们必须等待 6 秒以上，则立即失败
+  maxDelaySeconds: 5, // 如果我们必须等待大于 5 秒以上，则立即失败
 });
 ```
 

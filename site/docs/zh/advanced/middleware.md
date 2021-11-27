@@ -44,7 +44,7 @@ bot.start();
 你可以在一个 `Composer` 实例上安装更多中间件尽管已经在某处安装了 `Composer` 它本身。
 
 ```ts
-const bot = new Bot("<token>"); // `Composer` 的子类！
+const bot = new Bot("<token>"); // `Composer` 的子类
 
 const composer = new Composer();
 bot.use(composer);

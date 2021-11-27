@@ -10,9 +10,9 @@ next: ./commands.md
 ## 简介
 
 大多数（所有？）其他机器人框架允许你对更新进行原始形式的筛选，例如，只有 `on("message")` 之类的。
-其他的信息筛选是留给开发人员的，这往往导致他们的代码中出现无休止的 `if` 语句。
+其他消息筛选是留给开发人员的，这往往导致他们的代码中出现无休止的 `if` 语句。
 
-相反，**grammY 带有自己的查询语言**，你可以用它来**筛选你想要的信息**。
+相反，**grammY 带有自己的查询语言**，你可以用它来**筛选你想要的消息**。
 
 这允许使用超过 500 种不同的 filter 进行筛选，而且我们可能会随着时间的推移增加更多的过滤器。
 每个有效的 filter 都可以在你的代码编辑器中自动完成。
@@ -25,11 +25,11 @@ next: ./commands.md
 
 ```ts
 bot.on("message", (ctx) => {
-  // 照片信息的文本可能未被定义！
+  // 如果收到的消息没有文本，则可能是未定义的。
   const text: string | undefined = ctx.msg.text;
 });
 bot.on("message:text", (ctx) => {
-  // 文本出现在文字信息中是可知的！
+  // 文本总是被定义的，因为当收到一个文本消息时，这个处理程序被调用。
   const text: string = ctx.msg.text;
 });
 ```
@@ -45,9 +45,9 @@ bot.on("message:text", (ctx) => {
 简单的更新 filter，以及 sub-filter 的应用。
 
 ```ts
-bot.on("message"); // 对所有的信息都进行调用
-bot.on("message:text"); // 只有文本信息才会被调用
-bot.on("message:photo"); // 只有图片信息才会被调用
+bot.on("message"); // 当收到任何消息时被调用
+bot.on("message:text"); // 只有文本消息才会被调用
+bot.on("message:photo"); // 只有图片消息才会被调用
 ```
 
 ### 可用于 Entities 的 Filter
@@ -55,9 +55,9 @@ bot.on("message:photo"); // 只有图片信息才会被调用
 Sub-filters 带来了更强的能力与新的可能性。
 
 ```ts
-bot.on("message:entities:url"); // 含有一个URL的信息
-bot.on("message:entities:code"); // 含有代码片断的信息
-bot.on("edited_message:entities"); // 编辑的信息与任何 Entities
+bot.on("message:entities:url"); // 包含一个 URL 的消息
+bot.on("message:entities:code"); // 包含一个代码片断的消息
+bot.on("edited_message:entities"); // 编辑的消息与任何 entities
 ```
 
 ### 缺省值
@@ -66,9 +66,9 @@ bot.on("edited_message:entities"); // 编辑的信息与任何 Entities
 然后，grammY 将通过不同的值来搜索，以匹配你的查询。
 
 ```ts
-bot.on(":text"); // 所有文本信息和 channel 中的所有的文本 post
-bot.on("message::url"); // 消息中带有URL的文字或标题（照片等）。
-bot.on("::email"); // 所有信息、channel post 的标题或内容中包括的 email（有时你确实会对某一类信息这样执着）。
+bot.on(":text"); // 任何文本消息和 channel 中的所有文本 post
+bot.on("message::url"); // 消息中带有 URL 的文字或标题（照片等）。
+bot.on("::email"); // 所有消息、channel post 的标题或内容中包括的 email（有时你确实会对某一类消息这样执着）。
 ```
 
 省去 _filter 第一个参数_ ，可以同时匹配消息和 channel posts 。
@@ -83,33 +83,33 @@ grammY 的查询引擎允许定义整齐的快捷方式，将相关的查询组�
 
 #### `msg`
 
-`msg` 快捷键将新消息和 channel posts 归纳其中。
+`msg` 快捷键将新消息和频道 posts 归纳其中。
 换句话说，使用 `msg` 相当于同时监听 `message` 和 `channel_post` 事件。
 
 ```ts
-bot.on("msg"); // 所有的信息和 channel posts
+bot.on("msg"); // 任何的消息或者频道 post
 bot.on("msg:text"); // 与 `:text` 完全一致
 ```
 
 #### `edit`
 
-这个 `edit` 快捷方式将编辑过的信息和编辑过的 channel posts 归纳其中。
+这个 `edit` 快捷方式将编辑过的消息和编辑过的频道 posts 归纳其中。
 
 ```ts
-bot.on("edit"); // 所有编辑过的信息和编辑过的 channel posts
-bot.on("edit:text"); // 已编辑过的文字信息
-bot.on("edit::url"); // 所有编辑过的信息和编辑过的 channel posts 中带有 URL 的部分
+bot.on("edit"); // 任何编辑过的消息和编辑过的频道 post
+bot.on("edit:text"); // 已编辑过的文字消息
+bot.on("edit::url"); // 所有编辑过的消息和编辑过的 channel posts 中带有 URL 的部分
 bot.on("edit:location"); // 实时位置更新
 ```
 
 #### `:media`
 
-`:media` 快捷方式将照片和视频信息归纳其中。
+`:media` 快捷方式将照片和视频消息归纳其中。
 
 ```ts
-bot.on("message:media"); // 照片和视频
-bot.on("edited_channel_post:media"); // 已编辑的 channel posts 中带有照片或视频的部分
-bot.on(":media"); // 新的信息中包括照片或视频的部分。新的信息包括普通信息与 channel posts。
+bot.on("message:media"); // 照片和视频消息
+bot.on("edited_channel_post:media"); // 已编辑的频道 posts 中带有媒体的部分
+bot.on(":media"); // 媒体消息或者频道 posts
 ```
 
 #### `:file`
@@ -118,13 +118,13 @@ bot.on(":media"); // 新的信息中包括照片或视频的部分。新的信�
 因此，`await ctx.getFile()` 将会会返回给你一个文件对象。
 
 ```ts
-bot.on(":file"); // 在信息或 channel posts 包含文件的部分
-bot.on("edit:file"); // 在信息或 channel posts 包含文件的部分且已被编辑的部分
+bot.on(":file"); // 消息或频道 posts 包含文件的部分
+bot.on("edit:file"); // 在消息或频道 posts 包含文件的部分且已被编辑的部分
 ```
 
 ### 实用技巧！
 
-你可以通过 `:is_bot` 的查询部分来检测信息来源是否是 bot。
+你可以通过 `:is_bot` 的查询部分来检测消息来源是否是 bot。
 语法糖 `:me` 可以用来在查询中指代你的 bot ，它将在内部为你比对用户标识符来实现这个效果。
 
 ```ts
@@ -145,7 +145,7 @@ bot.on("message").filter(
     return user.status === "creator" || user.status === "administrator";
   },
   (ctx) => {
-    // 处理来自 creator 和 administrator 的信息
+    // 处理来自 creator 和 administrator 的消息
   },
 );
 ```
@@ -162,9 +162,9 @@ bot.on("message").filter(
 
 ```ts
 // 如果更新是关于一个消息或对一个消息的编辑，则运行。
-bot.on(["message", "edited_message"], (ctx) => {});
+bot.on(["message", "edited_message"] /* , ... */);
 // 如果在文本或标题中发现 hashtag 或电子邮件，或提及 entity，则运行。
-bot.on(["::hashtag", "::email", "::mention"], (ctx) => {});
+bot.on(["::hashtag", "::email", "::mention"] /* , ... */);
 ```
 
 你所提供的 _任何查询匹配_，中间件都将被执行。
@@ -190,12 +190,12 @@ bot.on(":photo").on("::hashtag" /* , ... */);
 
 ```ts
 bot
-  // 匹配所有频道的帖子和转发的信息 ...
+  // 匹配所有频道的帖子和转发的消息 ...
   .on(["channel_post", ":forward_date"])
   // ... 包含文本. ...
   .on(":text")
   // ... 至少有一个 URL，hashtag 或 cashtag。
-  .on(["::url", "::hashtag", "::cashtag"], (ctx) => {});
+  .on(["::url", "::hashtag", "::cashtag"] /* , ... */);
 ```
 
 `ctx` 的类型推理将扫描整个调用链并检查所有三个 `.on` 调用的每个元素。
@@ -229,7 +229,7 @@ bot
 每个通过的过滤器查询都会与一个验证结构相匹配，以检查它是否有效。
 在设置过程中立即失败而不是在运行时失败不仅是好事，以前也发生过 TypeScript 中的错误导致复杂的类型推理系统出现严重问题的情况。
 如果将来再发生这种情况，查询前验证将防止可能发生的问题。
-在这种情况下，你将会得到有用的错误信息。
+在这种情况下，你将会得到有用的错误消息。
 
 ### 性能
 
