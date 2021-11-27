@@ -88,7 +88,7 @@ bot.use(
     keyGenerator: (ctx) => {
       return ctx.from?.id.toString();
     },
-  })
+  }),
 );
 
 app.listen(3000, () => {
@@ -113,14 +113,14 @@ const bot = new Bot("YOUR BOT TOKEN HERE");
 
 app.use(express.json());
 bot.use(
-    limit({
-      keyGenerator: (ctx) => {
-        if (ctx.chat?.type === "group" || ctx.chat?.type === "supergroup") {
-          // 请注意，这个键应该是一个字符串格式的数字，如 "123456789"
-          return ctx.chat.id.toString();
-        }
-      },
-  })
+  limit({
+    keyGenerator: (ctx) => {
+      if (ctx.chat?.type === "group" || ctx.chat?.type === "supergroup") {
+        // 请注意，这个键应该是一个字符串格式的数字，如 "123456789"
+        return ctx.chat.id.toString();
+      }
+    },
+  }),
 );
 
 app.listen(3000, () => {
