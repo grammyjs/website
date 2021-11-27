@@ -31,7 +31,7 @@ Here is a simple example.
 import { Bot } from "grammy";
 import { run } from "@grammyjs/runner";
 
-// Create bot
+// Create a bot.
 const bot = new Bot("<token>");
 
 // Add the usual middleware, yada yada
@@ -48,7 +48,7 @@ run(bot);
 const { Bot } = require("grammy");
 const { run } = require("@grammyjs/runner");
 
-// Create bot
+// Create a bot.
 const bot = new Bot("<token>");
 
 // Add the usual middleware, yada yada
@@ -65,7 +65,7 @@ run(bot);
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { run } from "https://deno.land/x/grammy_runner/mod.ts";
 
-// Create bot
+// Create a bot.
 const bot = new Bot("<token>");
 
 // Add the usual middleware, yada yada
@@ -157,6 +157,10 @@ grammY runner will resolve all necessary constraints on the fly and block those 
 
 The implementation of this is very efficient.
 It needs constant memory (unless you specify infinite concurrency), and it needs (amortized) constant processing time per update.
+
+## Graceful shutdown
+
+In order for the bot to complete it's work correctly you [should signal](/advanced/reliability.html#using-grammy-runner) it to stop when the Node process is about to be destroyed.
 
 ## Plugin Summary
 

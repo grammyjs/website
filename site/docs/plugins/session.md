@@ -50,17 +50,17 @@ Here is an example bot that counts messages containing a pizza emoji :pizza::
 ```ts
 import { Bot, Context, session, SessionFlavor } from "grammy";
 
-// define shape of our session
+// Define the shape of our session.
 interface SessionData {
   pizzaCount: number;
 }
 
-// flavor the context type to include sessions
+// Flavor the context type to include sessions.
 type MyContext = Context & SessionFlavor<SessionData>;
 
 const bot = new Bot<MyContext>("");
 
-// install session middleware, and define the initial session value
+// Install session middleware, and define the initial session value.
 bot.use(
   session({
     initial(): SessionData {
@@ -87,7 +87,7 @@ const { Bot, session } = require("grammy");
 
 const bot = new Bot("");
 
-// install session middleware, and define the initial session value
+// Install session middleware, and define the initial session value.
 bot.use(
   session({
     initial() {
@@ -117,17 +117,17 @@ import {
   SessionFlavor,
 } from "https://deno.land/x/grammy/mod.ts";
 
-// define shape of our session
+// Define shape of our session.
 interface SessionData {
   pizzaCount: number;
 }
 
-// flavor the context type to include sessions
+// Flavor the context type to include sessions.
 type MyContext = Context & SessionFlavor<SessionData>;
 
 const bot = new Bot<MyContext>("");
 
-// install session middleware, and define the initial session value
+// Install session middleware, and define the initial session value.
 bot.use(
   session({
     initial(): SessionData {
@@ -264,6 +264,7 @@ If you published your own storage adapter, please edit this page and link it her
 - Files: <https://github.com/Satont/grammy-file-storage>
 - MongoDB: <https://github.com/Satont/grammy-mongodb-storage>
 - Redis: <https://github.com/Satont/grammy-redis-storage>
+- PostgreSQL: <https://github.com/Satont/grammy-psql-storage>
 - TypeORM (Node.js-only): <https://github.com/Satont/grammy-typeorm-storage>
 - Submit your own by editing this page!
 

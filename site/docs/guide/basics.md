@@ -14,17 +14,17 @@ The easiest way to listen for messages is via
 
 ```ts
 bot.on("message", (ctx) => {
-  const message = ctx.message; // message object
+  const message = ctx.message; // the message object
 });
 ```
 
 However, there are a number of other options, too.
 
 ```ts
-// Handles commands, such as /start
+// Handles commands, such as /start.
 bot.command('start', (ctx) => { ... });
 
-// Matches the message text against a string or a regular expression
+// Matches the message text against a string or a regular expression.
 bot.hears(/echo *(.+)?/, (ctx) => { ... });
 ```
 
@@ -37,10 +37,10 @@ You can use auto-complete in your code editor to see all available options, or c
 [All methods that bots can use](https://core.telegram.org/bots/api#available-methods) are available on the `bot.api` object.
 
 ```ts
-// Send a text message to user 12345
+// Send a text message to user 12345.
 await bot.api.sendMessage(12345, "Hi!");
 
-// Get information about the bot itself
+// Get information about the bot itself.
 const me = await bot.api.getMe();
 
 // etc
@@ -56,9 +56,9 @@ You can use the Telegram reply-to feature by specifying the message identifier t
 
 ```ts
 bot.hears("ping", async (ctx) => {
-  // `reply` is an alias for `sendMessage` in the same chat (see next section)
+  // `reply` is an alias for `sendMessage` in the same chat (see next section).
   await ctx.reply("pong", {
-    // `reply_to_message_id` specifies the actual reply feature
+    // `reply_to_message_id` specifies the actual reply feature.
     reply_to_message_id: ctx.msg.message_id,
   });
 });
@@ -116,7 +116,7 @@ You can force a reply like this:
 ```ts
 bot.command("start", async (ctx) => {
   await ctx.reply("Hi! I can only read messages that explicitly reply to me!", {
-    // force Telegram client to open the reply feature
+    // Make Telegram clients automatically show a reply interface to the user.
     reply_markup: { force_reply: true },
   });
 });

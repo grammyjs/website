@@ -31,7 +31,7 @@ grammY 是由 TypeScript 编写的，一个 JavaScript 的超集。
 
 ## 你为什么要支持 Deno？
 
-这里有一些我们觉得 Deno 比 Node 更好的原因：
+这里有一些我们觉得 Deno 比 Node.js 更好的原因：
 
 - 从零开始更简单、更快速。
 - 工具链有大幅度优化。
@@ -39,10 +39,10 @@ grammY 是由 TypeScript 编写的，一个 JavaScript 的超集。
 - 不需要维护 `package.json` 或者 `node_modules`。
 - 它有一个经过审查的标准库。
 
-> Deno 是由发明 Node 的同一个人 Ry 创造的。
-> 他在 [这个视频]](https://youtu.be/M3BM9TB-8yA) 里总结了他对 Node 的 10 个遗憾。
+> Deno 是由发明 Node.js 的同一个人 Ry 创造的。
+> 他在 [这个视频]](https://youtu.be/M3BM9TB-8yA) 里总结了他对 Node.js 的 10 个遗憾。
 
-grammY 实际上在编写时优先考虑 Deno，然后再支持 Node。
+grammY 实际上在编写时优先考虑 Deno，然后再支持 Node.js。
 
 ## 我在哪里可以托管 Deno 程序？
 
@@ -51,5 +51,5 @@ grammY 实际上在编写时优先考虑 Deno，然后再支持 Node。
 
 1. [Cloudflare Workers](https://workers.dev)
 2. [Deno Deploy](https://deno.com/deploy)
-3. Heroku，[参考此文](https://dev.to/ms314006/deploy-your-deno-apps-to-heroku-375h)
+3. [Heroku](https://dev.to/ms314006/deploy-your-deno-apps-to-heroku-375h)
 4. [Vercel](https://github.com/vercel-community/deno)

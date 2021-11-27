@@ -9,9 +9,9 @@ This plugin provides a transformer for setting default `parse_mode`, and a middl
 
 ```ts
 import { Bot, Composer } from "grammy";
-import { hydrateReply, parseMode } from "parse-mode";
+import { hydrateReply, parseMode } from "@grammyjs/parse-mode";
 
-import type { ParseModeContext } from "parse-mode";
+import type { ParseModeContext } from "@grammyjs/parse-mode";
 
 const bot = new Bot<ParseModeContext>("");
 
@@ -38,15 +38,15 @@ bot.start();
  <CodeGroupItem title="JS">
 
 ```js
-import { Bot, Composer } from "grammy";
-import { hydrateReply, parseMode } from "parse-mode";
+const { Bot, Composer } = require("grammy");
+const { hydrateReply, parseMode } = require("@grammyjs/parse-mode");
 
 const bot = new Bot("");
 
-// Install familiar reply variants to ctx
+// Use the plugin.
 bot.use(hydrateReply);
 
-// Sets default parse_mode for ctx.reply
+// Set the default `parse_mode` of `ctx.reply`.
 bot.api.config.use(parseMode("MarkdownV2"));
 
 bot.command("demo", async (ctx) => {
@@ -76,10 +76,10 @@ import type { ParseModeContext } from "https://deno.land/x/grammy_parse_mode/mod
 
 const bot = new Bot<ParseModeContext>("");
 
-// Install familiar reply variants to ctx
+// Use the plugin.
 bot.use(hydrateReply);
 
-// Sets default parse_mode for ctx.reply
+// Set the default `parse_mode` of `ctx.reply`.
 bot.api.config.use(parseMode("MarkdownV2"));
 
 bot.command("demo", async (ctx) => {

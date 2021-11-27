@@ -171,7 +171,7 @@ await ctx.reply("^ This is a message!", {
 如果你选择选项 1，你必须指定自定义上下文作为一个类型参数（JavaScript 可以忽略这条）。
 
 <CodeGroup>
-  <CodeGroupItem title="Node" active>
+  <CodeGroupItem title="Node.js" active>
 
 ```ts
 import { Bot, Context } from "grammy";

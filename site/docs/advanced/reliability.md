@@ -11,8 +11,127 @@ All errors that should be expected to happen (failing API calls, failing network
 You should make sure to always `await` all promises, or at least call `catch` on them if you ever don't want to `await` stuff.
 Use a linting rule to make sure you cannot forget this.
 
+## Graceful shutdown
+
 For bots that are using long polling, there is one more thing to consider.
-As you are going to stop your instance during operation at some point again, you should consider catching `SIGTERM` and `SIGINT` events, and call `bot.stop` (built-in long polling) or stop your bot via its [handle](https://doc.deno.land/https/deno.land/x/grammy_runner/mod.ts#RunnerHandle) (grammY runner).
+As you are going to stop your instance during operation at some point again, you should consider catching `SIGTERM` and `SIGINT` events, and call `bot.stop` (built-in long polling) or stop your bot via its [handle](https://doc.deno.land/https/deno.land/x/grammy_runner/mod.ts#RunnerHandle) (grammY runner):
+
+### Simple long polling
+
+<CodeGroup>
+
+<CodeGroupItem title="TS" active>
+
+```ts
+import { Bot } from "grammy";
+
+const bot = new Bot("<token>");
+
+// Stopping the bot when Node process
+// is about to be terminated
+process.once("SIGINT", () => bot.stop());
+process.once("SIGTERM", () => bot.stop());
+
+await bot.start();
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="JS">
+
+```js
+const { Bot } = require("grammy");
+
+const bot = new Bot("<token>");
+
+// Stopping the bot when Node process
+// is about to be terminated
+process.once("SIGINT", () => bot.stop());
+process.once("SIGTERM", () => bot.stop());
+
+await bot.start();
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="Deno">
+
+```ts
+import { Bot } from "https://deno.land/x/grammy/mod.ts";
+
+const bot = new Bot("<token>");
+
+// Stopping the bot when Node process
+// is about to be terminated
+Deno.addSignalListener("SIGINT", () => bot.stop());
+Deno.addSignalListener("SIGTERM", () => bot.stop());
+
+await bot.start();
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+### Using grammY runner
+
+<CodeGroup>
+
+<CodeGroupItem title="TS" active>
+
+```ts
+import { Bot } from "grammy";
+import { run } from "@grammyjs/runner";
+
+const bot = new Bot("<token>");
+
+const runner = run(bot);
+
+// Stopping the bot when Node process
+// is about to be terminated
+const stopRunner = () => runner.isRunning() && runner.stop();
+process.once("SIGINT", stopRunner);
+process.once("SIGTERM", stopRunner);
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="JS">
+
+```js
+const { Bot } = require("grammy");
+const { run } = require("@grammyjs/runner");
+
+const bot = new Bot("<token>");
+
+const runner = run(bot);
+
+// Stopping the bot when Node process
+// is about to be terminated
+const stopRunner = () => runner.isRunning() && runner.stop();
+process.once("SIGINT", stopRunner);
+process.once("SIGTERM", stopRunner);
+```
+
+</CodeGroupItem>
+<CodeGroupItem title="Deno">
+
+```ts
+import { Bot } from "https://deno.land/x/grammy/mod.ts";
+import { run } from "https://deno.land/x/grammy_runner/mod.ts";
+
+const bot = new Bot("<token>");
+
+const runner = run(bot);
+
+// Stopping the bot when Node process
+// is about to be terminated
+const stopRunner = () => runner.isRunning() && runner.stop();
+Deno.addSignalListener("SIGINT", stopRunner);
+Deno.addSignalListener("SIGTERM", stopRunner);
+```
+
+</CodeGroupItem>
+</CodeGroup>
 
 That's basically all there is to reliability, your instance should:registered: never:tm: crash now.
 

@@ -121,22 +121,22 @@ Instances of `InputFile` can be passed to all methods that accept sending files 
 This is how you can construct `InputFile`s.
 
 <CodeGroup>
-  <CodeGroupItem title="Node" active>
+  <CodeGroupItem title="Node.js" active>
 
 ```ts
 import { createReadStream } from "fs";
 import { URL } from "url";
 
-// send a local file
+// Send a local file.
 new InputFile("/path/to/file");
-// download a file, and stream the response to Telegram
+// Download a file, and stream the response to Telegram.
 new InputFile(new URL("https://grammy.dev/Y.png"));
 new InputFile({ url: "https://grammy.dev/Y.png" }); // equivalent
 
-// send buffers and byte arrays
+// Send buffers and byte arrays.
 const buffer = Uint8Array.from([65, 66, 67]);
 new InputFile(buffer); // "ABC"
-// send streams and iterables
+// Send streams and iterables.
 new InputFile(createReadStream("/path/to/file"));
 new InputFile(function* () {
   // "ABCABCABCABC"
@@ -148,20 +148,20 @@ new InputFile(function* () {
   <CodeGroupItem title="Deno">
 
 ```ts
-// send a local file
+// Send a local file.
 new InputFile("/path/to/file");
 new InputFile(Deno.open("/path/to/file"));
-// download a file, and stream the response to Telegram
+// Download a file, and stream the response to Telegram.
 new InputFile(new URL("https://grammy.dev/Y.png"));
 new InputFile({ url: "https://grammy.dev/Y.png" }); // equivalent
 
-// send blobs
+// Send blobs.
 const blob = new Blob("ABC", { type: "text/plain" });
 new InputFile(blob);
-// send buffers and byte arrays
+// Send buffers and byte arrays.
 const buffer = Uint8Array.from([65, 66, 67]);
 new InputFile(buffer); // "ABC"
-// send streams and iterables
+// Send streams and iterables.
 new InputFile(Deno.open("/path/to/file"));
 new InputFile(function* () {
   // "ABCABCABCABC"

@@ -1,6 +1,6 @@
 # Rate Limit Users (`ratelimiter`)
 
-rateLimiter is a rate-limiting middleware for Telegram bots made with GrammY or [Telegraf](https://github.com/telegraf/telegraf) bot frameworks. In simple terms, it is a plugin that helps you deflect heavy spamming in your bots. To understand rateLimiter better, you can take a look at the following illustration:
+rateLimiter is a rate-limiting middleware for Telegram bots made with grammY or [Telegraf](https://github.com/telegraf/telegraf) bot frameworks. In simple terms, it is a plugin that helps you deflect heavy spamming in your bots. To understand rateLimiter better, you can take a look at the following illustration:
 
 ![rateLimiter's role in deflecting spam](/rateLimiter-role.png)
 
@@ -71,23 +71,25 @@ const bot = new Bot("YOUR BOT TOKEN HERE");
 const redis = new Redis();
 
 app.use(express.json());
-bot.use(limit({
-  timeFrame: 2000,
+bot.use(
+  limit({
+    timeFrame: 2000,
 
-  limit: 3,
+    limit: 3,
 
-  // "MEMORY_STORAGE" is the default mode. Therefore if you want to use Redis, do not pass storageClient at all.
-  storageClient: redis,
+    // "MEMORY_STORAGE" is the default mode. Therefore if you want to use Redis, do not pass storageClient at all.
+    storageClient: redis,
 
-  onLimitExceeded: (ctx) => {
-    ctx?.reply("Please refrain from sending too many requests!");
-  },
+    onLimitExceeded: (ctx) => {
+      ctx?.reply("Please refrain from sending too many requests!");
+    },
 
-  // Note that the key should be a number in string format such as "123456789"
-  keyGenerator: (ctx) => {
-    return ctx.from?.id.toString();
-  },
-}));
+    // Note that the key should be a number in string format such as "123456789".
+    keyGenerator: (ctx) => {
+      return ctx.from?.id.toString();
+    },
+  }),
+);
 
 app.listen(3000, () => {
   bot.api.setWebhook("YOUR DOMAIN HERRE", { drop_pending_updates: true });
@@ -110,14 +112,16 @@ const app = express();
 const bot = new Bot("YOUR BOT TOKEN HERE");
 
 app.use(express.json());
-bot.use(limit({
-  keyGenerator: (ctx) => {
-    if (ctx.chat?.type === "group" || ctx.chat?.type === "supergroup") {
-      // Note that the key should be a number in string format such as "123456789"
-      return ctx.chat.id.toString();
-    }
-  },
-}));
+bot.use(
+  limit({
+    keyGenerator: (ctx) => {
+      if (ctx.chat?.type === "group" || ctx.chat?.type === "supergroup") {
+        // Note that the key should be a number in string format such as "123456789".
+        return ctx.chat.id.toString();
+      }
+    },
+  }),
+);
 
 app.listen(3000, () => {
   bot.api.setWebhook("YOUR DOMAIN HERRE", { drop_pending_updates: true });

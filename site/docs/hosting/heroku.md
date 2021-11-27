@@ -11,18 +11,18 @@ We also assume that you have a Heroku account already.
 First, install some dependencies:
 
 ```bash
-# Create a project directory
+# Create a project directory.
 mkdir grammy-bot
 cd grammy-bot
 npm init --y
 
-# Install main dependencies
+# Install main dependencies.
 npm install grammy express
 
-# Install development dependencies
+# Install development dependencies.
 npm install -D typescript @types/express @types/node
 
-# Create config for TypeScript
+# Create TypeScript config.
 npx tsc --init
 ```
 

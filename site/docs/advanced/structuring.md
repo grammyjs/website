@@ -43,7 +43,7 @@ In `list.ts`, you would then do something like this:
 ```ts
 export const lists = new Composer();
 
-// Register some handlers here that handle your middleware the usual way
+// Register some handlers here that handle your middleware the usual way.
 lists.on('message', ctx => { ... });
 ```
 

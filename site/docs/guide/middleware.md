@@ -46,7 +46,7 @@ Let's find out.
 We can inspect the `Middleware` type in grammY's reference [here](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Middleware):
 
 ```ts
-// omitted some type paramters for brevity
+// Omitted some type paramters for brevity.
 type Middleware = MiddlewareFn | MiddlewareObj;
 ```
 
@@ -55,7 +55,7 @@ Middleware can be a function or an object.
 We only used functions (`(ctx) => { ... }`) so far, so let's ignore middleware objects for now, and dig deeper into the `MiddlewareFn` type ([reference](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#MiddlewareFn)):
 
 ```ts
-// omitted type parameters again
+// Omitted type parameters again.
 type MiddlewareFn = (ctx: Context, next: NextFunction) => MaybePromise<unknown>;
 // with
 type NextFunction = () => Promise<void>;
@@ -131,7 +131,7 @@ async function responseTime(
   ctx: Context,
   next: NextFunction, // is an alias for: () => Promise<void>
 ): Promise<void> {
-  // TODO implement
+  // TODO: implement
 }
 ```
 

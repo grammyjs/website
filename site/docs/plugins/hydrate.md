@@ -23,7 +23,7 @@ bot.on(":photo", async (ctx) => {
     () =>
       ctx.api.deleteMessage(ctx.chat.id, statusMessage.message_id).catch(
         () => {
-          // do nothing on error
+          // Do nothing on error.
         },
       ),
     3000,
