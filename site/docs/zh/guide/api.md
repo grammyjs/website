@@ -18,7 +18,7 @@ Telegram Bot 的 API 是这个接口的规范，即一个 [很长的列表](http
 ( ( ( Telegram ) MTProto API ) Bot HTTP API ) <-- bot 在此连接
 ```
 
-换句话说：当你的机器人发送消息时，它将以 HTTP 请求的形式发送到一个 _Bot API服务器_（由 Telegram 团队托管，或者 [由你自己托管](https://core.telegram.org/bots/api#using-a-local-bot-api-server)）。
+换句话说：当你的 bot 发送消息时，它将以 HTTP 请求的形式发送到一个 _Bot API服务器_（由 Telegram 团队托管，或者 [由你自己托管](https://core.telegram.org/bots/api#using-a-local-bot-api-server)）。
 这个服务器将把请求转换成 Telegram 的本地协议，称为 MTProto，并向 Telegram 的后端发送请求，后者负责将信息发送给用户。
 
 类似地，每当用户返回响应时，会采取相反的路径。
