@@ -162,7 +162,7 @@ new InputFile(blob);
 const buffer = Uint8Array.from([65, 66, 67]);
 new InputFile(buffer); // "ABC"
 // Send streams and iterables.
-new InputFile(Deno.open("/path/to/file"));
+new InputFile(await Deno.open("/path/to/file"));
 new InputFile(function* () {
   // "ABCABCABCABC"
   for (let i = 0; i < 4; i++) yield buffer;
