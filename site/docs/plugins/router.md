@@ -38,7 +38,7 @@ Only if both values are known, the bot can tell the user how many days are left.
 This is how a bot like that could be implemented:
 
 <CodeGroup>
-  <CodeGroupItem title="TS" active>
+  <CodeGroupItem title="TypeScript" active>
 
 ```ts
 import { Bot, Context, Keyboard, session, SessionFlavor } from "grammy";
@@ -168,7 +168,7 @@ function getDays(month: number, day: number) {
 ```
 
 </CodeGroupItem>
-  <CodeGroupItem title="JS">
+  <CodeGroupItem title="JavaScript">
 
 ```js
 const { Bot, Context, Keyboard, session, SessionFlavor } = require("grammy");

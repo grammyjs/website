@@ -48,7 +48,7 @@ npm install grammy
 你可以把下面这个 bot 的例子复制到该文件中，并把你的令牌传给 `Bot` 构造函数。
 
 <CodeGroup>
- <CodeGroupItem title="TS" active>
+ <CodeGroupItem title="TypeScript" active>
 
 ```ts
 import { Bot } from "grammy";
@@ -72,7 +72,7 @@ bot.start();
 ```
 
 </CodeGroupItem>
- <CodeGroupItem title="JS">
+ <CodeGroupItem title="JavaScript">
 
 ```js
 const { Bot } = require("grammy");

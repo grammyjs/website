@@ -103,7 +103,7 @@ grammY runner 中封装了 `sequentialize()` 中间件来确保发生冲突的�
 它将通过减慢那些（也仅仅是那些）可能引起冲突的更新来避免上述所说的竞态。
 
 <CodeGroup>
-  <CodeGroupItem title="TS" active>
+  <CodeGroupItem title="TypeScript" active>
 
 ```ts
 import { Bot, Context, session } from "grammy";
@@ -130,7 +130,7 @@ run(bot);
 
 </CodeGroupItem>
 
-<CodeGroupItem title="JS">
+<CodeGroupItem title="JavaScript">
 
 ```ts
 const { Bot, Context, session } = require("grammy";)

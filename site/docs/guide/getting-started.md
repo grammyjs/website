@@ -48,7 +48,7 @@ Got the token? You can now code your bot in the `bot.ts` file.
 You can copy the following example bot into that file, and pass your token to the `Bot` constructor:
 
 <CodeGroup>
- <CodeGroupItem title="TS" active>
+ <CodeGroupItem title="TypeScript" active>
 
 ```ts
 import { Bot } from "grammy";
@@ -72,7 +72,7 @@ bot.start();
 ```
 
 </CodeGroupItem>
- <CodeGroupItem title="JS">
+ <CodeGroupItem title="JavaScript">
 
 ```js
 const { Bot } = require("grammy");

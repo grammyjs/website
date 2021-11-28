@@ -13,7 +13,7 @@ grammY 有一个 [内置插件](./keyboard.md#inline-keyboards) 可以创建基�
 这里是一个简单的例子，不言自明。
 
 <CodeGroup>
-  <CodeGroupItem title="TS" active>
+  <CodeGroupItem title="TypeScript" active>
 
 ```ts
 import { Bot } from "grammy";
@@ -39,7 +39,7 @@ bot.start();
 ```
 
 </CodeGroupItem>
- <CodeGroupItem title="JS">
+ <CodeGroupItem title="JavaScript">
 
 ```js
 const { Bot } = require("grammy");

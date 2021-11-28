@@ -16,7 +16,7 @@ Telegram 不像别的服务那样直接限制你的请求，它会告诉你，�
 你可以在 `bot.api` 对象上安装这个插件：
 
 <CodeGroup>
-  <CodeGroupItem title="TS" active>
+  <CodeGroupItem title="TypeScript" active>
 
 ```ts
 import { autoRetry } from "@grammyjs/auto-retry";
@@ -26,7 +26,7 @@ bot.api.config.use(autoRetry());
 ```
 
 </CodeGroupItem>
- <CodeGroupItem title="JS">
+ <CodeGroupItem title="JavaScript">
 
 ```js
 const { autoRetry } = require("@grammyjs/auto-retry");

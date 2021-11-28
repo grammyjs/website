@@ -5,7 +5,7 @@ This plugin provides a transformer for setting default `parse_mode`, and a middl
 ## Usage
 
 <CodeGroup>
-  <CodeGroupItem title="TS" active>
+  <CodeGroupItem title="TypeScript" active>
 
 ```ts
 import { Bot, Composer } from "grammy";
@@ -35,7 +35,7 @@ bot.start();
 ```
 
 </CodeGroupItem>
- <CodeGroupItem title="JS">
+ <CodeGroupItem title="JavaScript">
 
 ```js
 const { Bot, Composer } = require("grammy");

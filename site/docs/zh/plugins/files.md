@@ -9,7 +9,7 @@
 例子：
 
 <CodeGroup>
-  <CodeGroupItem title="TS" active>
+  <CodeGroupItem title="TypeScript" active>
 
 ```ts
 import { Bot, Context } from "grammy";
@@ -36,7 +36,7 @@ bot.on([":video", ":animation"], async (ctx) => {
 ```
 
 </CodeGroupItem>
- <CodeGroupItem title="JS">
+ <CodeGroupItem title="JavaScript">
 
 ```js
 import { Bot } from "grammy";

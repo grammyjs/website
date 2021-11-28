@@ -224,7 +224,7 @@ If you choose option 2., this is how you set a custom context constructor that w
 Note that your class must extend `Context`.
 
 <CodeGroup>
-  <CodeGroupItem title="TS" active>
+  <CodeGroupItem title="TypeScript" active>
 
 ```ts
 import { Bot, Context } from "grammy";
@@ -255,7 +255,7 @@ bot.start();
 ```
 
 </CodeGroupItem>
-  <CodeGroupItem title="JS" active>
+  <CodeGroupItem title="JavaScript" active>
 
 ```ts
 const { Bot, Context } = require("grammy");

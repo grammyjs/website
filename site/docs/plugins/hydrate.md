@@ -53,7 +53,7 @@ There are two ways to install this plugin.
 This plugin can be installed in a straightforward way that should be enough for most users.
 
 <CodeGroup>
-  <CodeGroupItem title="TS" active>
+  <CodeGroupItem title="TypeScript" active>
 
 ```ts
 import { Bot, Context } from "grammy";
@@ -67,7 +67,7 @@ bot.use(hydrate());
 ```
 
 </CodeGroupItem>
- <CodeGroupItem title="JS">
+ <CodeGroupItem title="JavaScript">
 
 ```js
 import { Bot } from "grammy";
@@ -110,7 +110,7 @@ It will integrate context hydration and API call result hydration separately int
 Note that you now also have to install an [API flavor](/advanced/transformers.html#api-flavoring).
 
 <CodeGroup>
-  <CodeGroupItem title="TS" active>
+  <CodeGroupItem title="TypeScript" active>
 
 ```ts
 import { Api, Bot, Context } from "grammy";
@@ -131,7 +131,7 @@ bot.api.config.use(hydrateApi());
 ```
 
 </CodeGroupItem>
- <CodeGroupItem title="JS">
+ <CodeGroupItem title="JavaScript">
 
 ```js
 import { Bot } from "grammy";

@@ -35,7 +35,7 @@ Bots are written in [TypeScript](https://www.typescriptlang.org) (or JavaScript)
 `npm install grammy` and paste the following code:
 
 <CodeGroup>
-  <CodeGroupItem title="TS" active>
+  <CodeGroupItem title="TypeScript" active>
 
 ```ts
 import { Bot } from "grammy";
@@ -49,7 +49,7 @@ bot.start();
 ```
 
 </CodeGroupItem>
- <CodeGroupItem title="JS">
+ <CodeGroupItem title="JavaScript">
 
 ```ts
 const { Bot } = require("grammy");

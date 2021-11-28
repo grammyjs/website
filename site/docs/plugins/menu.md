@@ -13,7 +13,7 @@ They can have interactive buttons, multiple pages with navigation between them, 
 Here is a simple example that speaks for itself.
 
 <CodeGroup>
-  <CodeGroupItem title="TS" active>
+  <CodeGroupItem title="TypeScript" active>
 
 ```ts
 import { Bot } from "grammy";
@@ -39,7 +39,7 @@ bot.start();
 ```
 
 </CodeGroupItem>
- <CodeGroupItem title="JS">
+ <CodeGroupItem title="JavaScript">
 
 ```js
 const { Bot } = require("grammy");

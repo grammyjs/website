@@ -38,7 +38,7 @@ bot.use(router)
 这是如何实现这样的机器人的示例：
 
 <CodeGroup>
-  <CodeGroupItem title="TS" active>
+  <CodeGroupItem title="TypeScript" active>
 
 ```ts
 import { Bot, Context, Keyboard, session, SessionFlavor } from "grammy";
@@ -159,7 +159,7 @@ function getDays(month: number, day: number) {
 ```
 
 </CodeGroupItem>
-  <CodeGroupItem title="JS">
+  <CodeGroupItem title="JavaScript">
 
 ```js
 const { Bot, Context, Keyboard, session, SessionFlavor } = require("grammy");

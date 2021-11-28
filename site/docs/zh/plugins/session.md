@@ -45,7 +45,7 @@
 下面是一个计算含有披萨表情 :pizza: 的信息的 bot 例子
 
 <CodeGroup>
- <CodeGroupItem title="TS" active>
+ <CodeGroupItem title="TypeScript" active>
 
 ```ts
 import { Bot, Context, session, SessionFlavor } from "grammy";
@@ -80,7 +80,7 @@ bot.start();
 ```
 
 </CodeGroupItem>
- <CodeGroupItem title="JS">
+ <CodeGroupItem title="JavaScript">
 
 ```js
 const { Bot, session } = require("grammy");
