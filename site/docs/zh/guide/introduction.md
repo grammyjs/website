@@ -79,7 +79,7 @@ bot 通过 HTTP 请求与 Telegram 互动。
 
 在下一节中，你将通过编写一个包含编程语言 [TypeScript](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html) 源代码的文本文件来创建一个 bot。
 grammY 文档不会教你如何编程，所以我们希望你能自学。
-不过，请记住：用 grammY 创建 Telegram Bot 是个学习编程的好方法。恭喜你找到了他。:rocket:
+不过，请记住：用 grammY 创建 Telegram Bot 是个学习编程的好方法。恭喜你找到了他。 :rocket:
 
 ::: tip 学习编程
 你可以从 TypeScript 团队编写的 [官方教程](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html) 开始学习 TypeScript，然后再从这里开始。
