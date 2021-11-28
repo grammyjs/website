@@ -323,7 +323,8 @@ A `MenuRange` provides you with exactly the same functions as a menu, but it doe
 
 ```ts
 function getRandomInt(minInclusive: number, maxExclusive: number) {
-  return min + Math.floor(Math.random() * (max - min));
+  return minInclusive +
+    Math.floor(Math.random() * (maxExclusive - minInclusive));
 }
 
 // Create a menu with a random number of buttons.
