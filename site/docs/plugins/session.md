@@ -45,7 +45,7 @@ You can add session support to grammY by using the built-in session middleware.
 Here is an example bot that counts messages containing a pizza emoji :pizza::
 
 <CodeGroup>
- <CodeGroupItem title="TS">
+ <CodeGroupItem title="TS" active>
 
 ```ts
 import { Bot, Context, session, SessionFlavor } from "grammy";

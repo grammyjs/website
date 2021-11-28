@@ -48,7 +48,7 @@ Got the token? You can now code your bot in the `bot.ts` file.
 You can copy the following example bot into that file, and pass your token to the `Bot` constructor:
 
 <CodeGroup>
- <CodeGroupItem title="TS">
+ <CodeGroupItem title="TS" active>
 
 ```ts
 import { Bot } from "grammy";

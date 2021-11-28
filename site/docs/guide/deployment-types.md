@@ -190,7 +190,7 @@ Every grammY bot can be converted to middleware for a number of web frameworks, 
 You can import the `webhookCallback` function from grammY to convert your bot to middleware for the respective framework.
 
 <CodeGroup>
- <CodeGroupItem title="TS">
+ <CodeGroupItem title="TS" active>
 
 ```ts
 import express from "express";

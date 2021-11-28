@@ -191,7 +191,7 @@ bot.start();
 你可以从 grammY 中导入 webhookCallback 函数，将你的 bot 服务转换成相应框架的中间件。
 
 <CodeGroup>
- <CodeGroupItem title="TS">
+ <CodeGroupItem title="TS" active>
 
 ```ts
 import express from "express";
