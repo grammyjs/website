@@ -8,11 +8,11 @@ next: ./introduction.md
 
 欢迎来到 grammY！相信我，你找到了正确的 Bot 框架。
 
-grammY 是一个用于创建 Telegram Bot 的框架。它可以从 TypeScript 和 JavaScript 中使用，在 Node.js 、 Deno 和浏览器中运行。
+grammY 是一个用于创建 Telegram Bot 的框架。它可以从 TypeScript 和 JavaScript 中使用，在 Node.js、 Deno 和浏览器中运行。
 
-如果你是编写 Telegram Bot 的新手，特别是没有什么编码经验的人，请看[简介](./introduction.md)。
+如果你是编写 Telegram Bot 的新手，特别是没有什么编码经验的人，请看 [简介](./introduction.md)。
 
-如果你知道如何在 Node.js 中编写应用程序，或者已经用其他 JavaScript 框架创建了一个 Telegram Bot ，可以通过我们的[入门](./getting-started.md)指南在几分钟内启动和运行。
+如果你知道如何在 Node.js 中编写应用程序，或者已经用其他 JavaScript 框架创建了一个 Telegram Bot ，可以通过我们的 [入门指南](./getting-started.md) 在几分钟内启动和运行。
 
 这个文档有两个主要部分。
 第一部分（正如你所看到的）介绍了 grammY 和 Telegram Bot 背后的一般概念，并帮助你了解 grammY 如何让你的生活更轻松。
@@ -26,6 +26,6 @@ grammY 是一个用于创建 Telegram Bot 的框架。它可以从 TypeScript �
 grammY 的一些核心主题在API参考中也有简要的概述。
 
 ::: tip 社区需要你！
-我们在 Telegram 上有一个友好的[社区聊天](https://t.me/grammyjs)，欢迎所有新成员。
+我们在 Telegram 上有一个友好的 [社区聊天](https://t.me/grammyjs)，欢迎所有新成员。
 加入我们，为你的下一个 bot 项目获得帮助，提出问题，并学习技巧和诀窍。
 :::

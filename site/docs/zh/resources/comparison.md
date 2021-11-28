@@ -56,7 +56,7 @@ Telegraf v4 试图通过将整个代码库迁移到 TypeScript 来解决这个�
 它们也共享很多基本语法：
 
 ```ts
-// 在 grammY 和 Telegraf 都能这样写
+// 在 grammY 和 Telegraf 都能这样写。
 bot.on("message", (ctx) => ctx.reply("Hi!"));
 ```
 
@@ -91,12 +91,12 @@ Telegraf 社区可能在各个版本之间有分歧，但在这个早期阶段�
 比如说：
 
 - grammY 有 [一个文档](/zh)。
-  Telegraf 则没有（它被缺少解释的生成的 API 引用所取代）。
+  Telegraf 则没有（它被缺少解释的生成的 API 参考所取代）。
 - grammY 中的类型会跟随你的代码来工作。
   在 Telegraf 中，你可能经常需要以某种方式来写的你的代码，否则它就不能编译（即使它实际上是可以正常工作的）
-- grammY integrates hints from [the official Bot API reference](core.telegram.org/bots/api) inline that help you while you're coding.
+- grammY integrates hints from [官方 Bot API 参考](core.telegram.org/bots/api) inline that help you while you're coding.
   Telegraf does not give you any explanations on your code.
-- grammY 集成了来自 [官方 Bot API 引用](core.telegram.org/bots/api) 的内联提示，在你写代码时能够帮助你。
+- grammY 集成了来自 [官方 Bot API 参考](core.telegram.org/bots/api) 的内联提示，在你写代码时能够帮助你。
   Telegraf 则不会给你的代码提供任何解释。
 
 #### 总结

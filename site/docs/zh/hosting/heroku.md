@@ -11,18 +11,18 @@
 首先，安装一些依赖：
 
 ```bash
-# 创建项目目录
+# 创建项目目录。
 mkdir grammy-bot
 cd grammy-bot
 npm init --y
 
-# 安装主要依赖
+# 安装主要依赖。
 npm install grammy express
 
-# 安装开发依赖
+# 安装开发依赖。
 npm install -D typescript @types/express @types/node
 
-# 为 TypeScript 创建配置文件
+# 创建 TypeScript 配置文件。
 npx tsc --init
 ```
 
@@ -156,7 +156,7 @@ https://api.telegram.org/botabcd:1234/setWebhook?url=https%3A%2F%2Fgrammybot.her
 :::
 
 ::: tip ⚡ 优化（可选）
-使用 [Webhook 回复](/zh/guide/deployment-types.html#webhook-reply) 以提高效率。
+使用 [Webhook Reply](/zh/guide/deployment-types.html#webhook-reply) 以提高效率。
 :::
 
 ### 创建 `bot.ts`

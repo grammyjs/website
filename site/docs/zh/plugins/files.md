@@ -18,17 +18,17 @@ import { FileFlavor, hydrateFiles } from "@grammyjs/files";
 // 添加上下文调味剂
 type MyContext = FileFlavor<Context>;
 
-// 创建 bot
+// 创建一个 bot。
 const bot = new Bot<MyContext>("");
 
-// 安装插件
+// 使用插件。
 bot.api.config.use(hydrateFiles(bot.token));
 
-// 下载视频和 GIF 到临时文件
+// 下载视频和 GIF 到临时位置。
 bot.on([":video", ":animation"], async (ctx) => {
-  // 准备文件供下载
+  // 准备文件供下载。
   const file = await ctx.getFile();
-  // 下载文件到临时文件
+  // 下载文件到一个临时位置。
   const path = await file.download();
   // 打印文件路径
   console.log("File saved at", path);
@@ -42,19 +42,19 @@ bot.on([":video", ":animation"], async (ctx) => {
 import { Bot } from "grammy";
 import { hydrateFiles } from "@grammyjs/files";
 
-// 创建 bot
+// 创建一个 bot。
 const bot = new Bot("");
 
-// 安装插件
+// 使用插件。
 bot.api.config.use(hydrateFiles(bot.token));
 
-// 下载视频和 GIF 到临时文件
+// 下载视频和 GIF 到临时位置。
 bot.on([":video", ":animation"], async (ctx) => {
-  // 准备文件供下载
+  // 准备文件供下载。
   const file = await ctx.getFile();
-  // 下载文件到临时文件
+  // 下载文件到一个临时位置。
   const path = await file.download();
-  // 打印文件路径
+  // 打印文件路径。
   console.log("File saved at", path);
 });
 ```
@@ -72,19 +72,19 @@ import {
 // 添加上下文调味剂
 type MyContext = FileFlavor<Context>;
 
-// 创建 bot
+// 创建一个 bot。
 const bot = new Bot<MyContext>("");
 
-// 安装插件
+// 使用插件。
 bot.api.config.use(hydrateFiles(bot.token));
 
-// 下载视频和 GIF 到临时文件
+// 下载视频和 GIF 到临时位置。
 bot.on([":video", ":animation"], async (ctx) => {
-  // 准备文件供下载
+  // 准备文件供下载。
   const file = await ctx.getFile();
-  // 下载文件到临时文件
+  // 下载文件到一个临时位置。
   const path = await file.download();
-  // 打印文件路径
+  // 打印文件路径。
   console.log("File saved at", path);
 });
 ```
@@ -122,7 +122,7 @@ type MyContext = FileFlavor<Context>;
 type MyApi = FileApiFlavor<Api>;
 
 const bot = new Bot<MyContext, MyApi>("");
-// etc
+// ...
 ```
 
 </CodeGroupItem>
@@ -140,7 +140,7 @@ type MyContext = FileFlavor<Context>;
 type MyApi = FileApiFlavor<Api>;
 
 const bot = new Bot<MyContext, MyApi>("");
-// etc
+// ...
 ```
 
 </CodeGroupItem>

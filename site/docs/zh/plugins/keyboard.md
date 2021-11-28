@@ -16,7 +16,7 @@ grammY 有一个简单且直观的方式来构建 inline keyboard，让你的 bo
 
 这里有三个例子来演示如何构建带有 `text` 按钮的 inline keyboard。
 
-你也可以使用其他方法，比如 `url`，让 Telegram 客户端打开一个 URL，或者 [grammY API Reference](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#InlineKeyboard) 和 [Telegram Bot API Reference](https://core.telegram.org/bots/api#inlinekeyboardbutton) 中列出的提供给 `InlineKeyboard` 方法。
+你也可以使用其他方法，比如 `url`，让 Telegram 客户端打开一个 URL，或者 [grammY API 参考](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#InlineKeyboard) 和 [Telegram Bot API 参考](https://core.telegram.org/bots/api#inlinekeyboardbutton) 中列出的提供给 `InlineKeyboard` 方法。
 
 #### 示例 1
 
@@ -75,13 +75,13 @@ const inlineKeyboard = new InlineKeyboard().url(
 不论你是用 `bot.api.sendMessage` 、 `ctx.api.sendMessage` 还是 `ctx.reply`，你都可以直接发送 inline keyboard：
 
 ```ts
-// 和消息一起发送 inline keyboard：
+// 和消息一起发送 inline keyboard。
 await ctx.reply(text, {
   reply_markup: inlineKeyboard,
 });
 ```
 
-当然，除了文本消息以外，其他发送消息的方法都支持相同的选项，即 [Telegram Bot API Reference](https://core.telegram.org/bots/api) 中所规定的。
+当然，除了文本消息以外，其他发送消息的方法都支持相同的选项，即 [Telegram Bot API 参考](https://core.telegram.org/bots/api) 中所规定的。
 比如说，你可以通过调用 `editMessageReplyMarkup` 来编辑一个按键，并将新的 `InlineKeyboard` 实例作为 `reply_markup` 来传递。
 指定一个空的 inline keyboard 可以移除信息下方的所有按钮。
 
@@ -101,15 +101,15 @@ keyboard 插件让你可以获取到 Telegram 发送的 update 对象。
 你可以通过 `bot.callbackQuery()` 来监听回调数据。
 
 ```ts
-// 构建一个 keyboard
+// 构建一个 keyboard。
 const inlineKeyboard = new InlineKeyboard().text("click", "click-payload");
 
-// 和消息一起发送 keyboard
+// 和消息一起发送 keyboard。
 bot.command("start", async (ctx) => {
   await ctx.reply("Curious? Click me!", { reply_markup: inlineKeyboard });
 });
 
-// 等待具有特定回调数据的点击事件
+// 等待具有特定回调数据的点击事件。
 bot.callbackQuery("click-payload", async (ctx) => {
   await ctx.answerCallbackQuery({
     text: "You were curious, indeed!",
@@ -122,7 +122,7 @@ bot.callbackQuery("click-payload", async (ctx) => {
 你也可以使用 `bot.on('callback_query:data')` 来监听所有按钮的点击事件。
 
 ```ts
-bot.callbackQuery("click-payload" /* ... */);
+bot.callbackQuery("click-payload" /* , ... */);
 
 bot.on("callback_query:data", async (ctx) => {
   console.log("Unknown button event with payload", ctx.callbackQuery.data);
@@ -203,16 +203,16 @@ const keyboard = new Keyboard()
 
 ### 发送一个 Keyboard
 
-不论你是用 `bot.api.sendMessage` 、 `ctx.api.sendMessage` 还是 `ctx.reply`，你都可以直接发送 keyboard：
+不论你是用 `bot.api.sendMessage`，`ctx.api.sendMessage` 还是 `ctx.reply`，你都可以直接发送 keyboard：
 
 ```ts
-// 和消息一起发送 keyboard：
+// 和消息一起发送 keyboard。
 await ctx.reply(text, {
   reply_markup: keyboard,
 });
 ```
 
-当然，除了文本消息以外，其他发送消息的方法都支持相同的选项，即 [Telegram Bot API Reference](https://core.telegram.org/bots/api) 中所规定的。
+当然，除了文本消息以外，其他发送消息的方法都支持相同的选项，即 [Telegram Bot API 参考](https://core.telegram.org/bots/api) 中所规定的。
 
 如果你想在你的信息中指定更多选项，你可能需要创建你自己的 `reply_markup` 对象。
 在这种情况下，你必须在传递你的自定义对象时使用 `keyboard.build()`。

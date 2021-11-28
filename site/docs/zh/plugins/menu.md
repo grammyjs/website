@@ -19,19 +19,19 @@ grammY 有一个 [内置插件](./keyboard.md#inline-keyboards) 可以创建基�
 import { Bot } from "grammy";
 import { Menu } from "@grammyjs/menu";
 
-// 创建 bot
+// 创建一个 bot。
 const bot = new Bot("token");
 
-// 创建一个简单的菜单
+// 创建一个简单的菜单。
 const menu = new Menu("my-menu-identifier")
   .text("A", (ctx) => ctx.reply("You pressed A!")).row()
   .text("B", (ctx) => ctx.reply("You pressed B!"));
 
-// 使其具有互动性
+// 使其具有互动性。
 bot.use(menu);
 
 bot.command("start", async (ctx) => {
-  // 发送菜单：
+  // 发送菜单。
   await ctx.reply("Check out this menu:", { reply_markup: menu });
 });
 
@@ -45,19 +45,19 @@ bot.start();
 const { Bot } = require("grammy");
 const { Menu } = require("@grammyjs/menu");
 
-// 创建 bot
+// 创建一个 bot。
 const bot = new Bot("token");
 
-// 创建一个简单的菜单
+// 创建一个简单的菜单。
 const menu = new Menu("my-menu-identifier")
   .text("A", (ctx) => ctx.reply("You pressed A!")).row()
   .text("B", (ctx) => ctx.reply("You pressed B!"));
 
-// 使其具有互动性
+// 使其具有互动性。
 bot.use(menu);
 
 bot.command("start", async (ctx) => {
-  // 发送菜单：
+  // 发送菜单。
   await ctx.reply("Check out this menu:", { reply_markup: menu });
 });
 
@@ -71,19 +71,19 @@ bot.start();
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { Menu } from "https://deno.land/x/grammy_menu/mod.ts";
 
-// 创建 bot
+// 创建一个 bot。
 const bot = new Bot("token");
 
-// 创建一个简单的菜单
+// 创建一个简单的菜单。
 const menu = new Menu("my-menu-identifier")
   .text("A", (ctx) => ctx.reply("You pressed A!")).row()
   .text("B", (ctx) => ctx.reply("You pressed B!"));
 
-// 使其具有互动性
+// 使其具有互动性。
 bot.use(menu);
 
 bot.command("start", async (ctx) => {
-  // 发送菜单：
+  // 发送菜单。
   await ctx.reply("Check out this menu:", { reply_markup: menu });
 });
 
@@ -145,7 +145,7 @@ bot.command("menu", async (ctx) => {
 这个函数可能是也可能不是 `async` 的（即异步）。
 
 ```ts
-// 创建一个带有用户名的按钮，并且问候他们
+// 创建一个带有用户名字的按钮，按下后会向他们问好。
 const menu = new Menu("greet-me")
   .text(
     (ctx) => `Greet ${ctx.from.first_name}!`, // 动态标签
@@ -160,7 +160,7 @@ const menu = new Menu("greet-me")
 调用 `ctx.menu.update()` 来确保你的菜单会被重新渲染。
 
 ```ts
-// 已启用通知的用户标识符集合
+// 已启用通知的用户标识符集合。
 const notifications = new Set<number>();
 
 function toggleNotifications(id: number) {
@@ -182,7 +182,7 @@ const menu = new Menu("toggle")
 上面的例子展示了如何使用菜单插件。
 将用户设置储存在一个 `Set` 对象中并不是一个好主意，因为这样当你停止服务器时所有的数据都会丢失。
 
-相反，如果你想储存数据，请考虑使用数据库或 [session 插件](./session.md)。
+相反，如果你想储存数据，请考虑使用数据库或 [会话插件](./session.md)。
 :::
 
 ## 更新或关闭菜单
@@ -223,7 +223,7 @@ const menu = new Menu("time")
 当然，如果你调用了 `ctx.menu.update()` 但是你没有编辑消息，菜单插件会在中间件执行完成之前自动更新按钮。
 
 你可以使用 `ctx.menu.update({ immediate: true })` 来强制更新菜单。
-请注意，`ctx.menu.update()` 将会返回一个 Promise，所以你需要使用 `await`!
+请注意，`ctx.menu.update()` 将会返回一个 Promise，所以你需要使用 `await`！
 使用 `immediate` 标志也可以用于所有你可以在 `ctx.menu` 上调用的操作。
 这只在必要时使用。
 
@@ -259,9 +259,9 @@ const settings = new Menu("credits-menu")
 在向后导航时，将使用父级菜单。
 
 ```ts
-// 注册设置菜单到主菜单
+// 注册设置菜单到主菜单。
 main.register(settings);
-// 可选择设置不同的父级
+// 可选择设置不同的父级。
 main.register(settings, "back-from-settings-menu");
 ```
 
@@ -328,12 +328,12 @@ function getRandomInt(minInclusive: number, maxExclusive: number) {
   return minInclusive + Math.floor(range * Math.random());
 }
 
-// 创建一个包含随机数量的按钮的菜单
+// 创建一个包含随机数量的按钮的菜单。
 const menu = new Menu("random");
 
 menu.dynamic((_ctx) => {
   const range = new MenuRange();
-  const buttonCount = getRandomInt(2, 9); // 2-8 buttons
+  const buttonCount = getRandomInt(2, 9); // 2-8 按钮
   for (let i = 0; i < buttonCount; i++) {
     range
       .text(i.toString(), (ctx) => ctx.reply(`${i} selected`))
@@ -345,7 +345,6 @@ menu.dynamic((_ctx) => {
 menu.text("Generate New", (ctx) => ctx.menu.update());
 ```
 
-The range builder function that you pass to `dynamic` may be `async`, so you can even perform API calls or do database communication.
 你传递给 `dynamic` 的范围构造器可以是 `async`，所以你可以甚至进行 API 调用或数据库交互。
 
 此外，范围构造器的第一个参数是上下文对象。
@@ -405,7 +404,7 @@ const menu1 = new Menu("id", {
     await ctx.reply("Here is a fresh menu", { reply_markup: menu1 });
   },
 });
-// 完全禁用过时检测（可能运行错误的按钮处理程序）
+// 完全禁用过时检测（可能运行错误的按钮处理程序）。
 const menu2 = new Menu("id", { onMenuOutdated: false });
 ```
 
@@ -415,7 +414,7 @@ const menu2 = new Menu("id", { onMenuOutdated: false });
 - 菜单的标识符，
 - 菜单的形状，
 - 被按下的按钮的位置，
-- payload，如果指定的话。
+- payload，如果指定的话，
 - 被按下的按钮的文本。
 
 这些数据被压缩成一个 4 字节的哈希，并且存储在每个按钮中。
@@ -426,7 +425,7 @@ const menu2 = new Menu("id", { onMenuOutdated: false });
 
 ```ts
 function ident(ctx: Context): string {
-  // 返回一个字符串，当你的菜单改变时，它将会改变
+  // 返回一个字符串，当你的菜单改变时，它将会改变。
 }
 const menu = new Menu("id", { fingerprint: (ctx) => ident(ctx) });
 ```

@@ -7,7 +7,6 @@ prev: ./proxy.md
 在托管一个大型 bot 的时候，这里有一系列你需要深深记在脑海里的东西。
 
 > 你可能也会对我们的部署一个 bot 的指导感兴趣。
->
 > 查看页面顶部的 **资源/托管服务** 查看一些已经有专用指南的平台。
 
 ## 错误
@@ -29,30 +28,22 @@ prev: ./proxy.md
 ### 长轮询
 
 1. [使用 grammY runner](/zh/plugins/runner.md)
-
 2. [使用相同的 session 密钥处理函数作为 session 中间件来进行 `sequentialize`](./scaling.md#并发是困难的)
-
-3. 通过 `run` （[参考API](https://doc.deno.land/https/deno.land/x/grammy_runner/mod)）方法的配置选项并确保它们适合你的需求，或者甚至可以考虑用外部的资源和插槽来组成你自己的 runner 。
-
+3. 通过 `run`（[参考API](https://doc.deno.land/https/deno.land/x/grammy_runner/mod)）方法的配置选项并确保它们适合你的需求，或者甚至可以考虑用外部的资源和插槽来组成你自己的 runner。
    主要考虑的事情就是你想给你的服务器应用的最大负载，例如会有多少 update 会在同一时间内被处理。
-
-4. 当你想要终止你的 bot 时（比如切换到新版本），请考虑实现 [优雅关闭](/zh/advanced/reliability.md#优雅关闭)。
+4. 当你想要结束你的 bot 的时候（或者切换版本的时候），为了优雅去停用你的 bot 可以考虑监听 `SIGINT` 和 `SIGTERM` 事件。
+   这个可以通过 grammY runner 提供给你的处理来完成。
+   （如果你忽略第一点，因为一些原因你使用了内置的长轮询，请使用 `bot.stop` 方法来进行替代）。
 
 ### Webhooks
 
 1. 确保你没有在你的中间件中执行任何长时间的操作，例如大文件的转换。
-
    这将导致 webhooks 的超时错误，并且 Telegram 将会重复发送未确认的 update。
-
    考虑用任何队列来代替。
-
-2. 让你自己熟悉 `webhookCallback` （[API参考](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#webhookCallback)）的配置。
-
+2. 让你自己熟悉 `webhookCallback`（[API参考](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#webhookCallback)）的配置。
 3. 如果你对你的 session 调整过 `getSessionKey` 选项，[使用相同的 session 密钥处理函数作为 session 中间件来进行 `sequentialize`](./scaling.md#concurrency-is-hard)。
-
 4. 如果你在一个 serverless 或者 autoscaling 平台上运行，[设置 bot 信息](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#BotConfig) 来阻止过多的 `getMe` 调用。
-
-5. 考虑使用 [webhook 回复](/zh/guide/deployment-types.html#webhook-reply) 。
+5. 考虑使用 [Webhook Reply](/zh/guide/deployment-types.html#webhook-reply) 。
 
 ## Sessions
 
@@ -62,18 +53,13 @@ prev: ./proxy.md
 ## 测试
 
 为你的 bot 编写测试用例。
-
 可以使用 grammY 像这样做：
 
-1. 对外部的 API 请求使用 [transformer 函数](./transformers.md) 来进行Mock。
-2. 通过 `bot.handleUpdate` （参考API）定义并发送一些测试 update 对象到你的 bot 。考虑从 Telegram 团队提供的 [这些 update 对象](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates) 来获取一些灵感。
+1. 对外部的 API 请求使用 [transformer 函数](./transformers.md) 来进行 Mock。
+2. 通过 `bot.handleUpdate` （参考API）定义并发送一些测试 update 对象到你的 bot。考虑从 Telegram 团队提供的 [这些 update 对象](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates) 来获取一些灵感。
 
 ::: tip 贡献测试框架
-
 虽然 grammY 提供了必要的 hooks 钩子去编写测试用例，但是如果对于 bot 来说有一个测试框架会更加有用。
-
 这是一个全新的领域，这样的测试框架目前基本上并不存在。
-
 我们很期待你的贡献！
-
 :::

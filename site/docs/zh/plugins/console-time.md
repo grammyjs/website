@@ -12,14 +12,14 @@
 ## 调试你的实现
 
 ```ts
-import {generateUpdateMiddleware} from 'telegraf-middleware-console-time';
+import { generateUpdateMiddleware } from "telegraf-middleware-console-time";
 
-if (process.env['NODE_ENV'] !== 'production') {
-    bot.use(generateUpdateMiddleware());
+if (process.env.NODE_ENV !== "production") {
+  bot.use(generateUpdateMiddleware());
 }
 
 // 你的实现：
-bot.command('start', …);
+bot.command("start" /* , ... */);
 ```
 
 它将输出这样的东西：
@@ -44,20 +44,20 @@ bot.command('start', …);
 ```ts
 import {generateBeforeMiddleware, generateAfterMiddleware} from 'telegraf-middleware-console-time';
 
-const bot = new Bot(…);
+const bot = new Bot(/* ... */);
 
 // 在加载被测试中间件之前使用 BeforeMiddleware
 bot.use(generateBeforeMiddleware('foo'))
 
 // 被测试的中间件
-bot.use(…)
+bot.use(/* ... */)
 
 // 在加载被测试中间件之后使用 AfterMiddleware（使用相同标签）
 bot.use(generateAfterMiddleware('foo'))
 
-// 其他中间件 / 实现（它们会在使用时获得 'inner' 的时间）
-bot.use(…)
-bot.on(…, …)
+// 其他中间件或者实现（它们会在使用时获得 'inner' 的时间）
+bot.use(/* ... */)
+bot.on(/* ... */, /* ... */)
 ```
 
 它将输出这样的东西：

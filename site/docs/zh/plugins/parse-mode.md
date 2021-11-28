@@ -1,7 +1,6 @@
 # 解析模式（`parse-mode`）
 
-This plugin provides a transformer for setting default `parse_mode`, and a middleware for hydrating `Context` with familiar `reply` variant methods - i.e. `replyWithHTML`, `replyWithMarkdown`, etc.
-这个插件提供了一个设置默认的 `parse_mode` 的 transformer，以及一个中间件，用于将 `Context` 中的 `reply` 方法转换成常用的 `replyWithHTML`, `replyWithMarkdown`, 等等方法。
+这个插件提供了一个设置默认的 `parse_mode` 的 transformer，以及一个中间件，用于将 `Context` 中的 `reply` 方法转换成常用的 `replyWithHTML`，`replyWithMarkdown`，等等方法。
 
 ## 使用方法
 
@@ -44,10 +43,10 @@ const { hydrateReply, parseMode } = require("@grammyjs/parse-mode");
 
 const bot = new Bot("");
 
-// 安装常用的 reply 方法到 ctx 中
+// 使用插件。
 bot.use(hydrateReply);
 
-// 为 ctx.reply 设置默认解析模式
+// 为 `ctx.reply` 设置默认 `parse_mode`。
 bot.api.config.use(parseMode("MarkdownV2"));
 
 bot.command("demo", async (ctx) => {
@@ -77,10 +76,10 @@ import type { ParseModeContext } from "https://deno.land/x/grammy_parse_mode/mod
 
 const bot = new Bot<ParseModeContext>("");
 
-// 安装常用的 reply 方法到 ctx 中
+// 使用插件。
 bot.use(hydrateReply);
 
-// 为 ctx.reply 设置默认解析模式
+// 为 `ctx.reply` 设置默认 `parse_mode`。
 bot.api.config.use(parseMode("MarkdownV2"));
 
 bot.command("demo", async (ctx) => {

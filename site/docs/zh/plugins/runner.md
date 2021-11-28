@@ -31,7 +31,7 @@
 import { Bot } from "grammy";
 import { run } from "@grammyjs/runner";
 
-// 创建 bot
+// 创建一个 bot。
 const bot = new Bot("<token>");
 
 // 添加常见的中间件，bala bala

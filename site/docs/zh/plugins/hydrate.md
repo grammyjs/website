@@ -1,6 +1,6 @@
 # Hydration（`hydrate`）
 
-这个插件会安装一些有用的方法在两种类型的对象, 即
+这个插件会安装一些有用的方法在两种类型的对象，即
 
 1. API调用的结果, 和
 2. 上下文对象 `ctx` 上的对象。
@@ -23,7 +23,7 @@ bot.on(":photo", async (ctx) => {
     () =>
       ctx.api.deleteMessage(ctx.chat.id, statusMessage.message_id).catch(
         () => {
-          // 出错时什么也不做
+          // 出错时什么也不做。
         },
       ),
     3000,
@@ -107,7 +107,7 @@ bot.use(hydrate());
 在这种情况下，你应该使用高级安装。
 
 它将会在你的 bot 中分别集成上下文 hydration 和 API 调用结果 hydration。
-请注意，你还需要安装一个 [API 调味剂](/advanced/transformers.html#api-flavoring)。
+请注意，你还需要安装一个 [API 调味剂](/zh/advanced/transformers.html#api-调味剂)。
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>

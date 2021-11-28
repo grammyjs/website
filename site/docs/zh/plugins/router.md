@@ -1,6 +1,6 @@
 # 路由器（`router`）
 
-`Router` 类 ([API 参考](https://doc.deno.land/https/deno.land/x/grammy_router/router.ts)) 提供了一种更为灵活的方式来结构化你的 bot，通过路由上下文对象到不同的部分代码。
+`Router` 类（[API 参考](https://doc.deno.land/https/deno.land/x/grammy_router/router.ts)）提供了一种更为灵活的方式来结构化你的 bot，通过路由上下文对象到不同的部分代码。
 它是 `Composer` 的 `bot.route` 的更高级版本（[grammY API 参考](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Composer))
 
 ## 示例
@@ -9,7 +9,7 @@
 
 ```ts
 const router = new Router(ctx => {
-  // 在此处确定路由
+  // 在此处确定路由。
   return 'key'
 })
 
@@ -46,16 +46,16 @@ import { Router } from "@grammyjs/router";
 
 interface SessionData {
   step: "idle" | "day" | "month"; // 我们在表单的哪一步
-  dayOfMonth?: number; // 日期
-  month?: number; // 月份
+  dayOfMonth?: number; // 生日日期
+  month?: number; // 生日月份
 }
 type MyContext = Context & SessionFlavor<SessionData>;
 
 const bot = new Bot<MyContext>("");
-// 使用会话
+// 使用会话。
 bot.use(session({ initial: (): SessionData => ({ step: "idle" }) }));
 
-// 定义一些命令
+// 定义一些命令。
 bot.command("start", async (ctx) => {
   await ctx.reply(`欢迎！
 我可以告诉你还有几天到你的生日！
@@ -69,16 +69,16 @@ bot.command("birthday", async (ctx) => {
     // 已经提供了信息！
     await ctx.reply(`距离你的生日还有 ${getDays(month, day)} 天！`);
   } else {
-    // 缺少信息，进入路由器的表单
+    // 缺少信息，进入路由器的表单。
     ctx.session.step = "day";
     await ctx.reply("请把你生日的日期以数字形式发送给我～");
   }
 });
 
-// 使用路由器
+// 使用路由器。
 const router = new Router<MyContext>((ctx) => ctx.session.step);
 
-// 定义一个处理日期的步骤
+// 定义一个处理日期的步骤。
 router.route("day", async (ctx) => {
   const day = parseInt(ctx.msg?.text ?? "", 10);
   if (isNaN(day) || day < 1 || 31 < day) {
@@ -101,7 +101,7 @@ router.route("day", async (ctx) => {
 });
 
 router.route("month", async (ctx) => {
-  // 应该不会发生，除非会话数据被破坏
+  // 应该不会发生，除非会话数据被破坏。
   const day = ctx.session.dayOfMonth;
   if (day === undefined) {
     await ctx.reply("咱还不知道你的生日日期和月份呢～");
@@ -132,7 +132,7 @@ router.route("idle", async (ctx) => {
 bot.use(router); // 注册路由器
 bot.start();
 
-// 日期转换工具：
+// 日期转换工具
 const months = [
   "Jan",
   "Feb",
@@ -147,6 +147,7 @@ const months = [
   "Nov",
   "Dec",
 ];
+
 function getDays(month: number, day: number) {
   const bday = new Date();
   const now = Date.now();
@@ -166,10 +167,10 @@ const { Bot, Context, Keyboard, session, SessionFlavor } = require("grammy");
 const { Router } = require("@grammyjs/router");
 
 const bot = new Bot("");
-// 使用会话
+// 使用会话。
 bot.use(session({ initial: () => ({ step: "idle" }) }));
 
-// 定义一些命令
+// 定义一些命令。
 bot.command("start", async (ctx) => {
   await ctx.reply(`欢迎！
 我可以告诉你还有几天到你的生日！
@@ -183,16 +184,16 @@ bot.command("birthday", async (ctx) => {
     // 已经提供了信息！
     await ctx.reply(`距离你的生日还有 ${getDays(month, day)} 天！`);
   } else {
-    // 缺少信息，进入路由器的表单
+    // 缺少信息，进入路由器的表单。
     ctx.session.step = "day";
     await ctx.reply("请把你生日的日期以数字形式发送给我～");
   }
 });
 
-// 使用路由器
+// 使用路由器。
 const router = new Router((ctx) => ctx.session.step);
 
-// 定义一个处理日期的步骤
+// 定义一个处理日期的步骤。
 router.route("day", async (ctx) => {
   const day = parseInt(ctx.msg?.text ?? "", 10);
   if (isNaN(day) || day < 1 || 31 < day) {
@@ -215,7 +216,7 @@ router.route("day", async (ctx) => {
 });
 
 router.route("month", async (ctx) => {
-  // 应该不会发生，除非会话数据被破坏
+  // 应该不会发生，除非会话数据被破坏。
   const day = ctx.session.dayOfMonth;
   if (day === undefined) {
     await ctx.reply("咱还不知道你的生日日期和月份呢～");
@@ -246,7 +247,7 @@ router.route("idle", async (ctx) => {
 bot.use(router); // 注册路由器
 bot.start();
 
-// 日期转换工具：
+// 日期转换工具
 const months = [
   "Jan",
   "Feb",
@@ -261,6 +262,7 @@ const months = [
   "Nov",
   "Dec",
 ];
+
 function getDays(month, day) {
   const bday = new Date();
   const now = Date.now();
@@ -287,16 +289,16 @@ import { Router } from "https://deno.land/x/grammy_router/router.ts";
 
 interface SessionData {
   step: "idle" | "day" | "month"; // 我们在表单的哪一步
-  dayOfMonth?: number; // 日期
-  month?: number; // 月份
+  dayOfMonth?: number; // 生日日期
+  month?: number; // 生日月份
 }
 type MyContext = Context & SessionFlavor<SessionData>;
 
 const bot = new Bot<MyContext>("");
-// 使用会话
+// 使用会话。
 bot.use(session({ initial: (): SessionData => ({ step: "idle" }) }));
 
-// 定义一些命令
+// 定义一些命令。
 bot.command("start", async (ctx) => {
   await ctx.reply(`欢迎！
 我可以告诉你还有几天到你的生日！
@@ -310,16 +312,16 @@ bot.command("birthday", async (ctx) => {
     // 已经提供了信息！
     await ctx.reply(`距离你的生日还有 ${getDays(month, day)} 天！`);
   } else {
-    // 缺少信息，进入路由器的表单
+    // 缺少信息，进入路由器的表单。
     ctx.session.step = "day";
     await ctx.reply("请把你生日的日期以数字形式发送给我～");
   }
 });
 
-// 使用路由器
+// 使用路由器。
 const router = new Router<MyContext>((ctx) => ctx.session.step);
 
-// 定义一个处理日期的步骤
+// 定义一个处理日期的步骤。
 router.route("day", async (ctx) => {
   const day = parseInt(ctx.msg?.text ?? "", 10);
   if (isNaN(day) || day < 1 || 31 < day) {
@@ -342,7 +344,7 @@ router.route("day", async (ctx) => {
 });
 
 router.route("month", async (ctx) => {
-  // 应该不会发生，除非会话数据被破坏
+  // 应该不会发生，除非会话数据被破坏。
   const day = ctx.session.dayOfMonth;
   if (day === undefined) {
     await ctx.reply("咱还不知道你的生日日期和月份呢～");
@@ -373,7 +375,7 @@ router.route("idle", async (ctx) => {
 bot.use(router); // 注册路由器
 bot.start();
 
-// 日期转换工具：
+// 日期转换工具
 const months = [
   "Jan",
   "Feb",
@@ -388,6 +390,7 @@ const months = [
   "Nov",
   "Dec",
 ];
+
 function getDays(month: number, day: number) {
   const bday = new Date();
   const now = Date.now();

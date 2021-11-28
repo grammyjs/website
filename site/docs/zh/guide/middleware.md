@@ -5,8 +5,8 @@ next: ./errors.md
 
 # 中间件
 
-传递给 `bot.on()` 、 `bot.command()` 和它们的兄弟姐妹的监听器函数被称为 _中间件_。
-虽然说它们在监听更新是没有错的，但称它们为”监听者”又有些简单了。
+传递给 `bot.on()`，`bot.command()` 和它们的兄弟姐妹的监听器函数被称为 _中间件_。
+虽然说它们在监听更新是没有错的，但称它们为“监听者”又有些简单了。
 
 > 本节解释了什么是中间件，并以 grammY 为例，说明如何使用中间件。
 > 如果你正在寻找关于 grammY 实现中间件的特别之处的具体文档，请查看文档高级部分的 [Middleware Redux](/zh/advanced/middleware.md)。
@@ -31,7 +31,7 @@ bot.start();
 
 当有普通文本信息的更新到达时，将执行这些步骤：
 
-1. 你向 bot 发送 `你好！` 。
+1. 你向 bot 发送 `你好！`。
 2. 你的 `session` 中间件会收到这些更新，并且做一些它需要做的事情。
 3. 这次更新将检查是否存在 `/start` command，即使它并不存在。
 4. 这次更新将检查是否存在 `/help` command，即使它并不存在。
@@ -46,7 +46,7 @@ bot.start();
 我们可以在 grammY 的参考资料中查看 `Middleware` [类型](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Middleware)。
 
 ```ts
-// 为了简洁起见，省略了一些类型参数
+// 为了简洁起见，省略了一些类型参数。
 type Middleware = MiddlewareFn | MiddlewareObj;
 ```
 
@@ -55,14 +55,14 @@ type Middleware = MiddlewareFn | MiddlewareObj;
 我们只用了函数（`(ctx) => { ... }`），所以我们暂时忽略中间件对象，深入挖掘 `MiddlewareFn` 类型（[参考](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#MiddlewareFn)）。
 
 ```ts
-// 再次省略了类型参数
+// 再次省略了类型参数。
 type MiddlewareFn = (ctx: Context, next: NextFunction) => MaybePromise<unknown>;
 // 和
 type NextFunction = () => Promise<void>;
 ```
 
 所以，中间件需要两个参数!
-到目前为止我们只用了一个，即上下文对象 `ctx` 。
+到目前为止我们只用了一个，即上下文对象 `ctx`。
 我们[已经知道](./context.md) `ctx` 是什么，但我们也看到一个名字为 `next` 的函数。
 为了理解 `next` 是什么，我们必须把你安装在 bot 对象上的所有中间件作为一个整体来看。
 
@@ -126,12 +126,12 @@ bot.start();
 你可以把它与上面的中间件类型进行比较，并说服自己，我们在这里确实完成了一个中间件。
 
 ```ts
-/** 统计 bot 的响应时间，并将其记录到 `console` 。 */
+/** 统计 bot 的响应时间，并将其记录到 `console`。 */
 async function responseTime(
   ctx: Context,
   next: NextFunction, // 这是 `() => Promise<void>` 的一个别名
 ): Promise<void> {
-  // TODO
+  // TODO：实现
 }
 ```
 
@@ -152,7 +152,7 @@ bot.use(responseTime);
 重要的是，要先在 bot 上安装我们的 `responseTime` 中间件（在中间件栈的顶部），以确保所有操作都包括在统计中。
 
 ```ts
-/** 统计 bot 的响应时间，并将其记录到 `console` 。 */
+/** 统计 bot 的响应时间，并将其记录到 `console`。 */
 async function responseTime(
   ctx: Context,
   next: NextFunction, // 这是 `() => Promise<void>` 的一个别名
@@ -160,7 +160,7 @@ async function responseTime(
   // 开始计时
   const before = Date.now(); // 毫秒
   // 调用下游的中间件
-  await next(); // 请务必使用 `await` !
+  await next(); // 请务必使用 `await`！
   // 停止计时
   const after = Date.now(); // 毫秒
   // 打印时间差
@@ -175,7 +175,7 @@ bot.use(responseTime);
 欢迎在你的 bot 对象上使用这个中间件，注册更多的监听器，并试一试这个例子。
 这样做将有助于你充分理解什么是中间件。
 
-::: danger DANGER: 请一定要对 `next` 使用 `await` !
+::: danger DANGER: 请一定要对 `next` 使用 `await`！
 如果你在调用 `next()` 时没有使用 `await` 关键字，有几件事会被搞砸：
 
 - :x: 你的中间件栈将以错误的顺序执行。
@@ -186,18 +186,18 @@ bot.use(responseTime);
 
 :::
 
-你应该使用 `await`的规则实际上不仅仅适用于 `next()` ，而是适用于任何返回 `Promise` 的表达式。
-这包括 `bot.api.sendMessage` ，`ctx.reply` ，以及所有其他网络调用。
-如果你的项目对你很重要，那么你就会使用提示工具，如果你忘记在 `Promise` 上使用 `await` ，工具会警告你。
+你应该使用 `await`的规则实际上不仅仅适用于 `next()`，而是适用于任何返回 `Promise` 的表达式。
+这包括 `bot.api.sendMessage`，`ctx.reply`，以及所有其他网络调用。
+如果你的项目对你很重要，那么你就会使用提示工具，如果你忘记在 `Promise` 上使用 `await`，工具会警告你。
 
 ::: tip 启用 no-floating-promises
-考虑使用 [ESLint](https://eslint.org/) 并配置它使用 [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-floating-promises.md) 规则.
+考虑使用 [ESLint](https://eslint.org/) 并配置它使用 [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-floating-promises.md) 规则。
 这将确保你永远不会忘记使用 `await`（通过不停的唠叨你）。
 :::
 
 ## grammY 的中间件属性
 
-对于 grammY， 中间件 将返回一个 `Promise` (必须结合 `await` 使用), 但它也可以是同步的。
+对于 grammY，中间件将返回一个 `Promise`（必须结合 `await` 使用）, 但它也可以是同步的。
 
 与其他中间件系统（如来自 `express` 的中间件系统）相比，你不能向 `next` 传递错误值。
 `next` 不接受任何参数。

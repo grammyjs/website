@@ -4,7 +4,7 @@
 
 ::: warning 不存在文档中的 API 限制
 Telegram 实现了一些未指定的和无文档的 API 调用的限制。
-这些无文档的限制 **不被限流器计算**。
+这些无文档的限**不被限流器计算**。
 如果你在某些 API 调用出现 floodwait 错误，例如 `api.sendContact`，请考虑将 [auto-retry 插件](./auto-retry.md) 和这个插件一起使用。
 :::
 
