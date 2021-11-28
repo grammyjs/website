@@ -324,7 +324,8 @@ Payloads 也能和动态范围一起使用。
 
 ```ts
 function getRandomInt(minInclusive: number, maxExclusive: number) {
-  return min + Math.floor(Math.random() * (max - min));
+  return minInclusive +
+    Math.floor(Math.random() * (maxExclusive - minInclusive));
 }
 
 // 创建一个包含随机数量的按钮的菜单
