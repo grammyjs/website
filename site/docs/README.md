@@ -25,8 +25,9 @@ permalink: /
   'runs faster than you',
   'one update ahead',
   'can do anything except dishes',
-  'easy peasy lemon squeezY'
-][Math.floor(Math.random() * 6)] }}.</h6>
+  'easy peasy lemon squeezY',
+  'hundreds of millions served',
+][Math.floor(Math.random() * 7)] }}.</h6>
 
 ## Quickstart
 
