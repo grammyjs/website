@@ -389,7 +389,7 @@ type MyContext = SomeFlavorA<Context>;
 
 ### 结合不同类型的上下文调味剂
 
-如果你有不同的[添加式调味剂](#添加式上下文调味剂)，你可以像这样配置它们：
+如果你有不同的 [添加式调味剂](#添加式上下文调味剂)，你可以像这样配置它们：
 
 ```ts
 type MyContext = Context & FlavorA & FlavorB & FlavorC;
