@@ -82,7 +82,7 @@ You can configure it with the very same function that you use to determine the s
 It will then avoid the above race condition by slowing down those (and only those) updates that would cause a collision.
 
 <CodeGroup>
-  <CodeGroupItem title="TS" active>
+  <CodeGroupItem title="TypeScript" active>
 
 ```ts
 import { Bot, Context, session } from "grammy";
@@ -109,7 +109,7 @@ run(bot);
 
 </CodeGroupItem>
 
-<CodeGroupItem title="JS">
+<CodeGroupItem title="JavaScript">
 
 ```ts
 const { Bot, Context, session } = require("grammy";)

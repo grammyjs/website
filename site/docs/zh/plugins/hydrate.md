@@ -53,7 +53,7 @@ bot.on(":photo", async (ctx) => {
 这个插件可以简单直接地安装，应该可以满足绝大多数用户。
 
 <CodeGroup>
-  <CodeGroupItem title="TS" active>
+  <CodeGroupItem title="TypeScript" active>
 
 ```ts
 import { Bot, Context } from "grammy";
@@ -67,7 +67,7 @@ bot.use(hydrate());
 ```
 
 </CodeGroupItem>
- <CodeGroupItem title="JS">
+ <CodeGroupItem title="JavaScript">
 
 ```js
 import { Bot } from "grammy";
@@ -110,7 +110,7 @@ bot.use(hydrate());
 请注意，你还需要安装一个 [API 调味剂](/advanced/transformers.html#api-flavoring)。
 
 <CodeGroup>
-  <CodeGroupItem title="TS" active>
+  <CodeGroupItem title="TypeScript" active>
 
 ```ts
 import { Api, Bot, Context } from "grammy";
@@ -131,7 +131,7 @@ bot.api.config.use(hydrateApi());
 ```
 
 </CodeGroupItem>
- <CodeGroupItem title="JS">
+ <CodeGroupItem title="JavaScript">
 
 ```js
 import { Bot } from "grammy";

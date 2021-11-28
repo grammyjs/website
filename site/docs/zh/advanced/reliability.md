@@ -23,7 +23,7 @@ next: ./flood.md
 
 <CodeGroup>
 
-<CodeGroupItem title="TS" active>
+<CodeGroupItem title="TypeScript" active>
 
 ```ts
 import { Bot } from "grammy";
@@ -36,7 +36,7 @@ await bot.start();
 
 </CodeGroupItem>
 
-<CodeGroupItem title="JS">
+<CodeGroupItem title="JavaScript">
 
 ```js
 const { Bot } = require("grammy");
@@ -67,7 +67,7 @@ await bot.start();
 
 <CodeGroup>
 
-<CodeGroupItem title="TS" active>
+<CodeGroupItem title="TypeScript" active>
 
 ```ts
 import { Bot } from "grammy";
@@ -82,7 +82,7 @@ process.once("SIGTERM", stopRunner);
 
 </CodeGroupItem>
 
-<CodeGroupItem title="JS">
+<CodeGroupItem title="JavaScript">
 
 ```js
 const { Bot } = require("grammy");

@@ -25,7 +25,7 @@
 这里是一个简单的例子。
 
 <CodeGroup>
-  <CodeGroupItem title="TS" active>
+  <CodeGroupItem title="TypeScript" active>
 
 ```ts
 import { Bot } from "grammy";
@@ -42,7 +42,7 @@ run(bot);
 ```
 
 </CodeGroupItem>
- <CodeGroupItem title="JS">
+ <CodeGroupItem title="JavaScript">
 
 ```ts
 const { Bot } = require("grammy");

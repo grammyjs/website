@@ -222,7 +222,7 @@ bot.on("message", (ctx) => {
 注意，你的类必须扩展 `Context` 。
 
 <CodeGroup>
-  <CodeGroupItem title="TS" active>
+  <CodeGroupItem title="TypeScript" active>
 
 ```ts
 import { Bot, Context } from "grammy";
@@ -252,7 +252,7 @@ bot.start();
 ```
 
 </CodeGroupItem>
-  <CodeGroupItem title="JS" active>
+  <CodeGroupItem title="JavaScript" active>
 
 ```ts
 const { Bot, Context } = require("grammy");

@@ -14,7 +14,7 @@ Telegram 实现了一些未指定的和无文档的 API 调用的限制。
 请注意，默认选项与 Telegram 所实现的限制率一致，因此它们应该可以正常使用。
 
 <CodeGroup>
-  <CodeGroupItem title="TS" active>
+  <CodeGroupItem title="TypeScript" active>
 
 ```ts
 import { Bot } from "grammy";
@@ -34,7 +34,7 @@ bot.start();
 ```
 
 </CodeGroupItem>
- <CodeGroupItem title="JS">
+ <CodeGroupItem title="JavaScript">
 
 ```js
 const { Bot } = require("grammy");
