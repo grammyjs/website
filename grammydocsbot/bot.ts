@@ -17,7 +17,7 @@ if (token === undefined) throw new Error("Missing BOT_TOKEN");
 
 const bot = new Bot(token);
 
-bot.on(
+bot.drop((ctx) => ctx.msg?.via_bot?.id === ctx.me.id).on(
   "message",
   (ctx) =>
     ctx.reply("I can search for grammY documentation inline.", {
