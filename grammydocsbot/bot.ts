@@ -18,7 +18,9 @@ bot.on(
   "message",
   (ctx) =>
     ctx.reply("I can search for grammY documentation inline.", {
-      reply_markup: new InlineKeyboard().switchInline("Search"),
+      reply_markup: new InlineKeyboard()
+        .switchInlineCurrent("Search here").row()
+        .switchInline("Share article"),
     }),
 );
 
