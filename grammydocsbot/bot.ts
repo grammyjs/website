@@ -1,12 +1,15 @@
-// deno-lint-ignore-file no-explicit-any
-import express from "express";
-import algoliasearch from "algoliasearch";
-import { Bot, InlineKeyboard, webhookCallback } from "grammy";
+import {
+  Bot,
+  InlineKeyboard,
+  webhookCallback,
+} from "https://raw.githubusercontent.com/grammyjs/grammY/1620cc3cf0f1cd453fc6e6b8a3446ea878357547/src/mod.ts";
+import algoliasearch from "https://cdn.skypack.dev/algoliasearch@4.11.0?dts";
+import { serve } from "https://deno.land/std@0.116.0/http/server.ts";
 
 const client = algoliasearch("BH4D9OD16A", "17b3527aa6f36e8d3fe2276b0f4d9633");
 const index = client.initIndex("grammy");
 
-const token = process.env.BOT_TOKEN;
+const token = Deno.env.get("BOT_TOKEN");
 if (token === undefined) throw new Error("Missing BOT_TOKEN");
 
 const bot = new Bot(token);
@@ -41,21 +44,11 @@ bot.on("inline_query", async (ctx) => {
   );
 });
 
-if (process.env.DEBUG) {
+if (Deno.env.get("DEBUG")) {
   bot.catch(console.error);
   bot.start();
 } else {
-  const port = process.env.PORT || 8080;
-  const app = express();
-  app.use(express.json());
-  app.use(webhookCallback(bot));
-  app.listen(
-    port,
-    () =>
-      bot.api.setWebhook("https://grammydocsbot.herokuapp.com/", {
-        drop_pending_updates: true,
-      }),
-  );
+  serve(webhookCallback(bot, "std/http"));
 }
 
 function getTitle(hit: any) {
