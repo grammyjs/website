@@ -3,11 +3,14 @@ import {
   InlineKeyboard,
   webhookCallback,
 } from "https://raw.githubusercontent.com/grammyjs/grammY/1620cc3cf0f1cd453fc6e6b8a3446ea878357547/src/mod.ts";
-import algoliasearch from "https://cdn.skypack.dev/algoliasearch@4.11.0?dts";
 import { serve } from "https://deno.land/std@0.116.0/http/server.ts";
 
-const client = algoliasearch("BH4D9OD16A", "17b3527aa6f36e8d3fe2276b0f4d9633");
-const index = client.initIndex("grammy");
+const APPLICATION_ID = "BH4D9OD16A";
+const API_KEY = "17b3527aa6f36e8d3fe2276b0f4d9633";
+
+const SEARCH_HOST = `https://${APPLICATION_ID}-dsn.algolia.net`;
+const SEARCH_INDEX = "grammy";
+const SEARCH_URL = `${SEARCH_HOST}/1/indexes/${SEARCH_INDEX}/query`;
 
 const token = Deno.env.get("BOT_TOKEN");
 if (token === undefined) throw new Error("Missing BOT_TOKEN");
@@ -24,9 +27,21 @@ bot.on(
     }),
 );
 
+const enc = new TextEncoder();
+const headers = {
+  "X-Algolia-API-Key": API_KEY,
+  "X-Algolia-Application-Id": APPLICATION_ID,
+};
+async function search(query: string) {
+  const payload = { params: `query=${query}` };
+  const body = enc.encode(JSON.stringify(payload));
+  const res = await fetch(SEARCH_URL, { method: "POST", headers, body });
+  return await res.json();
+}
+
 bot.on("inline_query", async (ctx) => {
   const query = ctx.inlineQuery.query;
-  const { hits } = await index.search(query);
+  const { hits } = await search(query);
   hits.length = Math.min(50, hits.length);
   await ctx.answerInlineQuery(
     hits.map((h: any) => ({
