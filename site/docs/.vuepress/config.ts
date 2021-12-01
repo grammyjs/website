@@ -238,6 +238,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                 text: "Examples",
                 children: [
                   {
+                    text: "Awesome grammY",
+                    link: "https://github.com/grammyjs/awesome-grammY",
+                  },
+                  {
                     text: "Example Bots Repository",
                     link: "https://github.com/grammyjs/examples",
                   },
@@ -246,10 +250,6 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/demo/README.md",
                   },
                   { text: "Example Bots", link: "/demo/examples.md" },
-                  {
-                    text: "Community Showlounge",
-                    link: "/demo/showlounge.md",
-                  },
                 ],
               },
             ],
@@ -263,10 +263,6 @@ export default defineUserConfig<DefaultThemeOptions>({
                   {
                     text: "Community Chat",
                     link: "https://t.me/grammyjs",
-                  },
-                  {
-                    text: "Awesome grammY",
-                    link: "https://github.com/grammyjs/awesome-grammY",
                   },
                   {
                     text: "News",
@@ -539,6 +535,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                 text: "示例",
                 children: [
                   {
+                    text: "Awesome grammY",
+                    link: "https://github.com/grammyjs/awesome-grammY",
+                  },
+                  {
                     text: "示例 Bots 仓库",
                     link: "https://github.com/grammyjs/examples",
                   },
@@ -549,10 +549,6 @@ export default defineUserConfig<DefaultThemeOptions>({
                   {
                     text: "示例 Bots",
                     link: "/zh/demo/examples.md",
-                  },
-                  {
-                    text: "社区示例",
-                    link: "/zh/demo/showlounge.md",
                   },
                 ],
               },
@@ -567,10 +563,6 @@ export default defineUserConfig<DefaultThemeOptions>({
                   {
                     text: "社区聊天",
                     link: "https://t.me/grammyjs",
-                  },
-                  {
-                    text: "Awesome grammY",
-                    link: "https://github.com/grammyjs/awesome-grammY",
                   },
                   {
                     text: "咨询",
@@ -670,7 +662,7 @@ export default defineUserConfig<DefaultThemeOptions>({
 // Adapted from original `code_inline` implementation of markdown-it.
 const HTML_ESCAPE_TEST_RE = /&|<(?!wbr>)|(?<!<wbr)>/;
 const HTML_ESCAPE_REPLACE_RE = /&|<(?!wbr>)|(?<!<wbr)>/g;
-const HTML_REPLACEMENTS = {
+const HTML_REPLACEMENTS: Record<string, string> = {
   "&": "&amp;",
   "<": "&lt;",
   ">": "&gt;",
