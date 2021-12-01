@@ -3,7 +3,7 @@ import {
   Bot,
   InlineKeyboard,
   webhookCallback,
-} from "https://raw.githubusercontent.com/grammyjs/grammY/1620cc3cf0f1cd453fc6e6b8a3446ea878357547/src/mod.ts";
+} from "https://deno.land/x/grammy@1.4.3/mod.ts";
 import { serve } from "https://deno.land/std@0.116.0/http/server.ts";
 
 const APPLICATION_ID = "BH4D9OD16A";
