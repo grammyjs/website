@@ -360,7 +360,7 @@ The range builder function that you pass to `dynamic` may be `async`, so you can
 **In many cases, it makes sense to generate a dynamic range based on [session](./session.md) data.**
 
 Moreover, the range builder function takes a context object as the first argument.
-(This is not specified in the example above).
+(This is not specified in the example above.)
 Optionally, as a second argument after `ctx`, you can receive a fresh instance of `MenuRange`.
 You can modify it instead of returning your own instance if that's what you prefer.
 Here is how you can use the two parameters of the range builder function.
@@ -421,12 +421,12 @@ const menu2 = new Menu("id", { onMenuOutdated: false });
 ```
 
 We have a heuristic to check if the menu is outdated.
-We consider it outdated if
+We consider it outdated if:
 
 - the shape of the menu changed (number of rows, or number of buttons in any row)
-- the row/column position of the pressed button is out of range
-- the label the pressed button changed
-- the pressed button does not contain a handler
+- The row/column position of the pressed button is out of range.
+- The label the pressed button changed.
+- The pressed button does not contain a handler.
 
 It is possible that your menu changes, while all of the above things stay the same.
 It is also possible that your menu does not change fundamentally (i.e. the behavior of the handlers does not change), even though the above heuristic indicates indicates that the menu is outdates.
@@ -456,20 +456,20 @@ Whenever a menu is sent, it will replay these operations to render your menu.
 This includes laying out all dynamic ranges and generating all dynamic labels.
 Once the menu is sent, the rendered button array will be forgotten again.
 
-When a menu is sent, every button contains callback query that stores the following information.
+When a menu is sent, every button contains callback query that stores:
 
-- The menu identifier
-- The row/column position of the button
-- An optional payload
-- A fingerprint flag that stores whether or not a fingerprint was used in the menu
-- A 4-byte hash that encodes either the fingerprint, or the menu layout and the button label
+- The menu identifier.
+- The row/column position of the button.
+- An optional payload.
+- A fingerprint flag that stores whether or not a fingerprint was used in the menu.
+- A 4-byte hash that encodes either the fingerprint, or the menu layout and the button label.
 
 That way, we can identify exactly which button of which menu was pressed.
-A menu will only handle button presses if
+A menu will only handle button presses if:
 
-- the menu identifiers match
-- the row/column is specified
-- the fingerprint flag exists
+- The menu identifiers match.
+- The row/column is specified.
+- The fingerprint flag exists.
 
 When a user presses a menu's button, we need to find the handler that was added to that button at the time the menu was rendered.
 Hence, we simply render the old menu again.
