@@ -65,7 +65,7 @@ type MyContext = Context & SessionFlavor<SessionData>;
 const bot = new Bot<MyContext>("");
 
 // Install session middleware, and define the initial session value.
-function initial(): SessoinData {
+function initial(): SessionData {
   return { pizzaCount: 0 };
 }
 bot.use(session({ initial }));
@@ -126,7 +126,7 @@ type MyContext = Context & SessionFlavor<SessionData>;
 const bot = new Bot<MyContext>("");
 
 // Install session middleware, and define the initial session value.
-function initial(): SessoinData {
+function initial(): SessionData {
   return { pizzaCount: 0 };
 }
 bot.use(session({ initial }));
