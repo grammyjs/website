@@ -318,9 +318,13 @@ You can also dynamically adjust the structure of a menu in order to add and remo
 ::: danger Changing a Menu During Message Handling
 You cannot create or change your menus during message handling.
 All menus must be fully created and registered before your bot starts.
+This means that you cannot do `new Menu('id')` in a handler of your bot.
 
 Adding new menus while your bot is running would cause a memory leak.
 Your bot would slow down more and more, and eventually crash.
+
+However, you can make use of the dynamic ranges described in this section.
+They allow you to arbitrarily change the structure of an existing menu instance, so they are equally powerful.
 :::
 
 You can let a part of a menu's buttons be generated on the fly (or all of them if you want).
