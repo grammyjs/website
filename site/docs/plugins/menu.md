@@ -148,7 +148,7 @@ This function may or may not be `async`.
 // Create a button with the user's name, which will greet them when pressed.
 const menu = new Menu("greet-me")
   .text(
-    (ctx) => `Greet ${ctx.from.first_name}!`, // dynamic label
+    (ctx) => `Greet ${ctx.from?.first_name ?? "me"}!`, // dynamic label
     (ctx) => ctx.reply(`Hello ${ctx.from.first_name}!`), // handler
   );
 ```
@@ -193,20 +193,23 @@ This will only work inside the handlers that you install on your menu.
 It will not work when called from other bot middleware, as in such cases there is no way to know _which_ menu should be updated.
 
 ```ts
-const menu = new Menu("time")
+const menu = new Menu("time", { onMenuOutdated: false })
   .text(
-    () => new Date().toString(), // button label is current time
+    () => new Date().toLocaleString(), // button label is current time
     (ctx) => ctx.menu.update(), // update time on button click
   );
 ```
+
+> The purpose of `onMenuOutdated` is explained [below](#outdated-menus-and-fingerprints).
+> You can ignore it for now.
 
 You can also update the menu implicitly by editing the corresponding message.
 
 ```ts
 const menu = new Menu("time")
   .text(
-    () => new Date().toString(),
-    (ctx) => ctx.editMessageText("Last updated: " + new Date.toString()),
+    "What's the time?",
+    (ctx) => ctx.editMessageText("It is " + new Date().toLocaleString()),
   );
 ```
 
@@ -289,9 +292,13 @@ Here is an example menu that remembers its creator in the payload.
 Other use cases could be, for example, to store the index in a paginated menu.
 
 ```ts
-const menu = new Menu("pun-intended")
+function generatePayload(ctx: Context) {
+  return ctx.from?.first_name ?? "";
+}
+
+const menu = new Menu("store-author-name-in-payload")
   .text(
-    { text: "I know my creator", payload: (ctx) => ctx.from.first_name },
+    { text: "I know my creator", payload: generatePayload },
     (ctx) => ctx.reply(`I was created by ${ctx.match}!`),
   );
 
@@ -328,9 +335,12 @@ function getRandomInt(minInclusive: number, maxExclusive: number) {
 }
 
 // Create a menu with a random number of buttons.
-const menu = new Menu("random");
+const menu = new Menu("random", { onMenuOutdated: false });
 
-menu.dynamic((_ctx) => {
+menu
+  .text("Regenerate", (ctx) => ctx.menu.update())
+  .row();
+menu.dynamic(() => {
   const range = new MenuRange();
   const buttonCount = getRandomInt(2, 9); // 2-8 buttons
   for (let i = 0; i < buttonCount; i++) {
@@ -340,21 +350,20 @@ menu.dynamic((_ctx) => {
   }
   return range;
 });
-
-menu.text("Generate New", (ctx) => ctx.menu.update());
 ```
 
 The range builder function that you pass to `dynamic` may be `async`, so you can even perform API calls or do database communication before returning your new menu range.
+**In many cases, it makes sense to generate a dynamic range based on [session](./session.md) data.**
 
 Moreover, the range builder function takes a context object as the first argument.
-(This is unused in the example above).
-
+(This is not specified in the example above).
 Optionally, as a second argument after `ctx`, you can receive a fresh instance of `MenuRange`.
 You can modify it instead of returning your own instance if that's what you prefer.
+Here is how you can use the two parameters of the range builder function.
 
 ```ts
 menu.dynamic((ctx, range) => {
-  for (const text of ["foo", "bar", "baz"]) {
+  for (const text of ctx.session.items) {
     range // no need for `new MenuRange()` or a `return`
       .text(text, (ctx) => ctx.reply(text))
       .row();
@@ -408,28 +417,27 @@ const menu2 = new Menu("id", { onMenuOutdated: false });
 ```
 
 We have a heuristic to check if the menu is outdated.
-It looks at:
+We consider it outdated if
 
-- the identifier of the menu,
-- the shape of the menu,
-- the position of the pressed button,
-- the payload, if specified, and
-- the text of the pressed button.
-
-This data is effeciently compressed into a 4-byte hash that is stored in every button.
-It will then be compared to see if the menu is outdated before any handler is run.
+- the shape of the menu changed (number of rows, or number of buttons in any row)
+- the row/column position of the pressed button is out of range
+- the label the pressed button changed
+- the pressed button does not contain a handler
 
 It is possible that your menu changes, while all of the above things stay the same.
-This is usually not the case, but if you are creating a menu where this is likely, you should use a fingerprint function.
+It is also possible that your menu does not change fundamentally (i.e. the behavior of the handlers does not change), even though the above heuristic indicates indicates that the menu is outdates.
+Both scenarios are unlikely to happen for most bots, but if you are creating a menu where this is the case, you should use a fingerprint function.
 
 ```ts
 function ident(ctx: Context): string {
-  // Return a string that would change when your menu changes.
+  // Return a string that would change if and only if your menu changes
+  // so significantly that it should be considered outdated.
+  return ctx.session.myStateIdentifier;
 }
 const menu = new Menu("id", { fingerprint: (ctx) => ident(ctx) });
 ```
 
-The fingerprint string will be added to the above list of things that impact the hash generation.
+The fingerprint string will replace the above heuristic.
 This way, you can be sure that outdated menus are always detected.
 
 ## How Does It Work
@@ -443,6 +451,21 @@ Instead, the menu plugin will remember how to assemble new menus based on your o
 Whenever a menu is sent, it will replay these operations to render your menu.
 This includes laying out all dynamic ranges and generating all dynamic labels.
 Once the menu is sent, the rendered button array will be forgotten again.
+
+When a menu is sent, every button contains callback query that stores the following information.
+
+- The menu identifier
+- The row/column position of the button
+- An optional payload
+- A fingerprint flag that stores whether or not a fingerprint was used in the menu
+- A 4-byte hash that encodes either the fingerprint, or the menu layout and the button label
+
+That way, we can identify exactly which button of which menu was pressed.
+A menu will only handle button presses if
+
+- the menu identifiers match
+- the row/column is specified
+- the fingerprint flag exists
 
 When a user presses a menu's button, we need to find the handler that was added to that button at the time the menu was rendered.
 Hence, we simply render the old menu again.
