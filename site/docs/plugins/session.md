@@ -234,7 +234,7 @@ This would allow for the following code:
 
 ```ts
 bot.command("reset", (ctx) => {
-  // Much shorter then having to `await ctx.session` first:
+  // Much shorter than having to `await ctx.session` first:
   ctx.session = ctx.session.then((stats) => {
     stats.counter = 0;
   });
@@ -257,6 +257,7 @@ If you published your own storage adapter, please edit this page and link it her
 ### Official
 
 - Supabase: <https://github.com/grammyjs/storage-supabase>
+- Deta.sh Base: <https://github.com/grammyjs/storage-deta>
 - Google Firestore (Node.js-only): <https://github.com/grammyjs/storage-firestore>
 
 ### Third-Party
