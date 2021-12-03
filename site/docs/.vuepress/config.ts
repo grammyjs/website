@@ -570,8 +570,12 @@ export default defineUserConfig<DefaultThemeOptions>({
                 text: "grammY",
                 children: [
                   {
-                    text: "社区聊天",
+                    text: "社区聊天（英语）",
                     link: "https://t.me/grammyjs",
+                  },
+                  {
+                    text: "社区聊天（俄语）",
+                    link: "https://t.me/grammyjs_ru",
                   },
                   {
                     text: "咨询",
@@ -601,6 +605,11 @@ export default defineUserConfig<DefaultThemeOptions>({
                   {
                     text: "Bot API 概览",
                     link: "https://core.telegram.org/bots/api",
+                  },
+                  {
+                    text: "Updates 示例",
+                    link:
+                      "https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates",
                   },
                 ],
               },

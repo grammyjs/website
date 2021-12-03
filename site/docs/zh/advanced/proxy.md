@@ -38,3 +38,4 @@ const bot = new Bot("", {
 
 让一个代理工作是很困难的。
 如果你遇到问题或者你需要 grammY 去支持更多的配置选项，可以通过 [Telegram chat](https://t.me/grammyjs) 联系我们。
+我们还有一个 [俄语 Telegram chat](https://t.me/grammyjs_ru)。

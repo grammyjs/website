@@ -26,6 +26,6 @@ grammY 是一个用于创建 Telegram Bot 的框架。它可以从 TypeScript �
 grammY 的一些核心主题在API参考中也有简要的概述。
 
 ::: tip 社区需要你！
-我们在 Telegram 上有一个友好的 [社区聊天](https://t.me/grammyjs)，欢迎所有新成员。
+我们在 Telegram 上有一个友好的 [社区聊天](https://t.me/grammyjs)，欢迎所有新成员。（你可以在 [这里](https://t.me/grammyjs_ru) 找到俄语的聊天室。）
 加入我们，为你的下一个 bot 项目获得帮助，提出问题，并学习技巧和诀窍。
 :::
