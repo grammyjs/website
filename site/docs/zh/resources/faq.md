@@ -17,6 +17,7 @@ grammY 是一个完全免费并且开源的软件，由一个志愿者团队开�
 你可以在 GitHub 上找到它的源码。
 
 我们非常欢迎你的 [加入](https://t.me/grammyjs)！
+（如果你会说俄语，你也可以在 [这里](https://t.me/grammyjs_ru) 加入我们！）
 
 ## grammY 使用什么编程语言？
 

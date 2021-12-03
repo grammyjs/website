@@ -17,6 +17,7 @@ grammY is a completely free and open-source software, developed by a team of vol
 Its code is available on GitHub.
 
 You're welcome to [join us](https://t.me/grammyjs)!
+(If you speak Russian, you can also join us [here](https://t.me/grammyjs_ru)!)
 
 ## What programming language does grammY use?
 
