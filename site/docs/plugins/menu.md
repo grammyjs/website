@@ -423,13 +423,13 @@ const menu2 = new Menu("id", { onMenuOutdated: false });
 We have a heuristic to check if the menu is outdated.
 We consider it outdated if:
 
-- the shape of the menu changed (number of rows, or number of buttons in any row)
+- The shape of the menu changed (number of rows, or number of buttons in any row).
 - The row/column position of the pressed button is out of range.
 - The label the pressed button changed.
 - The pressed button does not contain a handler.
 
 It is possible that your menu changes, while all of the above things stay the same.
-It is also possible that your menu does not change fundamentally (i.e. the behavior of the handlers does not change), even though the above heuristic indicates indicates that the menu is outdates.
+It is also possible that your menu does not change fundamentally (i.e. the behavior of the handlers does not change), even though the above heuristic indicates that the menu is outdates.
 Both scenarios are unlikely to happen for most bots, but if you are creating a menu where this is the case, you should use a fingerprint function.
 
 ```ts
