@@ -38,3 +38,4 @@ const bot = new Bot("", {
 
 Getting a proxy to work can be difficult.
 Contact us in the [Telegram chat](https://t.me/grammyjs) if you run into issues, or if you need grammY to support further configuration options.
+We also have a [Russian Telegram chat](https://t.me/grammyjs_ru).

@@ -261,8 +261,12 @@ export default defineUserConfig<DefaultThemeOptions>({
                 text: "grammY",
                 children: [
                   {
-                    text: "Community Chat",
+                    text: "Community Chat (English)",
                     link: "https://t.me/grammyjs",
+                  },
+                  {
+                    text: "Community Chat (Russian)",
+                    link: "https://t.me/grammyjs_ru",
                   },
                   {
                     text: "News",
@@ -292,6 +296,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                   {
                     text: "Bot API Reference",
                     link: "https://core.telegram.org/bots/api",
+                  },
+                  {
+                    text: "Example Updates",
+                    link: "https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates",
                   },
                 ],
               },

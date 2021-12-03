@@ -28,6 +28,6 @@ You can see it as a complete collection of all of the useful “tooltip explanat
 Some central topics of grammY have brief outlines in the API Reference too.
 
 ::: tip Join the Community!
-We have a friendly [community chat](https://t.me/grammyjs) on Telegram that welcomes all new members.
+We have a friendly [community chat](https://t.me/grammyjs) on Telegram that welcomes all new members. (You can find the Russian chat [here](https://t.me/grammyjs_ru).)
 Join us to get assistance, ask questions, and learn tips and tricks for your next bot project.
 :::
