@@ -299,7 +299,8 @@ export default defineUserConfig<DefaultThemeOptions>({
                   },
                   {
                     text: "Example Updates",
-                    link: "https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates",
+                    link:
+                      "https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates",
                   },
                 ],
               },
