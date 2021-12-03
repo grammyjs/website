@@ -54,7 +54,7 @@ Write tests for your bot.
 This can be done with grammY like so:
 
 1. Mock outgoing API requests using [transformer functions](./transformers.md).
-2. Define and send sample update objects to your bot via `bot.handleUpdate` (API reference).
+2. Define and send sample update objects to your bot via `bot.handleUpdate` ([API reference](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Bot)).
    Consider to take some inspiration from [these update objects](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates) provided by the Telegram team.
 
 ::: tip Contribute a Testing Framework
