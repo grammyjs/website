@@ -201,7 +201,7 @@ const menu = new Menu("time", { onMenuOutdated: false })
   );
 ```
 
-> `onMenuOutdated` 的目的 [如下](#outdated-menus-and-fingerprints)。
+> `onMenuOutdated` 的目的 [如下](#过时的菜单和指纹)。
 > 你可以暂时忽略它。
 
 你也可以通过编辑相应的消息来自动更新菜单。
