@@ -148,7 +148,7 @@ bot.command("menu", async (ctx) => {
 // 创建一个带有用户名字的按钮，按下后会向他们问好。
 const menu = new Menu("greet-me")
   .text(
-    (ctx) => `Greet ${ctx.from.first_name}!`, // 动态标签
+    (ctx) => `Greet ${ctx.from?.first_name ?? "me"}!`, // 动态标签
     (ctx) => ctx.reply(`Hello ${ctx.from.first_name}!`), // 处理函数
   );
 ```
@@ -194,20 +194,23 @@ const menu = new Menu("toggle")
 当从其他中间件调用时，它将不会生效，因为它不能确定应该更新 _哪个_ 菜单。
 
 ```ts
-const menu = new Menu("time")
+const menu = new Menu("time", { onMenuOutdated: false })
   .text(
-    () => new Date().toString(), // 按钮标签为当前时间
+    () => new Date().toLocaleString(), // 按钮标签为当前时间
     (ctx) => ctx.menu.update(), // 点击按钮时更新时间
   );
 ```
+
+> `onMenuOutdated` 的目的 [如下](#过时的菜单和指纹)。
+> 你可以暂时忽略它。
 
 你也可以通过编辑相应的消息来自动更新菜单。
 
 ```ts
 const menu = new Menu("time")
   .text(
-    () => new Date().toString(),
-    (ctx) => ctx.editMessageText("Last updated: " + new Date.toString()),
+    "What's the time?",
+    (ctx) => ctx.editMessageText("It is" + new Date().toLocaleString()),
   );
 ```
 
@@ -290,9 +293,13 @@ bot.use(settings);
 其他用例可能是，例如，存储分页菜单的索引。
 
 ```ts
+function generatePayload(ctx: Context) {
+  return ctx.from?.first_name ?? "";
+}
+
 const menu = new Menu("pun-intended")
   .text(
-    { text: "I know my creator", payload: (ctx) => ctx.from.first_name },
+    { text: "I know my creator", payload: generatePayload },
     (ctx) => ctx.reply(`I was created by ${ctx.match}!`),
   );
 
@@ -312,9 +319,13 @@ Payloads 也能和动态范围一起使用。
 ::: danger 不要在信息处理过程中改变菜单
 你不能在信息处理过程中创建或更改菜单。
 所有菜单必须在你的机器人开始之前完全创建和注册。
+这意味着你不能在你的 bot 的处理程序中使用 `new Menu('id')`。
 
 在你的 bot 运行时，添加新的菜单会导致内存泄漏。
 你的 bot 将会变得更慢，并且最终崩溃。
+
+但是你可以使用本节中描述的动态范围来自定义菜单。
+你可以通过它们任意地改变现有的菜单实例，所以它们同样的强大。
 :::
 
 你可以让一部分按钮在运行时动态生成（或者全部）。
@@ -329,7 +340,11 @@ function getRandomInt(minInclusive: number, maxExclusive: number) {
 }
 
 // 创建一个包含随机数量的按钮的菜单。
-const menu = new Menu("random");
+const menu = new Menu("random", { onMenuOutdated: false });
+
+menu
+  .text("Regenerate", (ctx) => ctx.menu.update())
+  .row();
 
 menu.dynamic((_ctx) => {
   const range = new MenuRange();
@@ -341,21 +356,21 @@ menu.dynamic((_ctx) => {
   }
   return range;
 });
-
-menu.text("Generate New", (ctx) => ctx.menu.update());
 ```
 
 你传递给 `dynamic` 的范围构造器可以是 `async`，所以你可以甚至进行 API 调用或数据库交互。
+**在许多情况下，根据 [会话](./session.md)数据生成一个动态范围是有意义的。**
 
 此外，范围构造器的第一个参数是上下文对象。
-(在上面的例子中，这是不用的)。
+（在上面的例子中，没有指定这一点。）
 
 你可以选择在 `ctx` 后面接收一个新的 `MenuRange` 实例。
 如果你喜欢的话，你可以修改它而不是返回你自己的实例。
+下面是你如何使用范围构建器函数的两个参数。
 
 ```ts
 menu.dynamic((ctx, range) => {
-  for (const text of ["foo", "bar", "baz"]) {
+  for (const text of ctx.session.items) {
     range // 不需要 `new MenuRange()` 或者 `return`
       .text(text, (ctx) => ctx.reply(text))
       .row();
@@ -409,28 +424,28 @@ const menu2 = new Menu("id", { onMenuOutdated: false });
 ```
 
 我们有一个检测菜单是否过时的技巧。
-它将会查看：
+我们认为，如果：
 
-- 菜单的标识符，
-- 菜单的形状，
-- 被按下的按钮的位置，
-- payload，如果指定的话，
-- 被按下的按钮的文本。
+- 菜单的形状发生了变化（行数或任意一行中按钮的数量）。
+- 被按下的按钮的行/列位置超出范围。
+- 被按下的按钮的标签改变了。
+- 被按下的按钮不包含处理程序。
 
-这些数据被压缩成一个 4 字节的哈希，并且存储在每个按钮中。
-然后，在任何处理程序运行之前，它将被比较以检查菜单是否过时。
+有可能会出现这种情况，你的菜单可能会改变，但是上面的所有东西都保持不变。
 
-有可能会出现这种情况，你的菜单可能会改变，但是上面的所有东西都会保持不变。
-通常不会出现这种情况，但是如果你创建了一个这样的菜单，你应该使用一个指纹函数。
+也有可能你的菜单根本没有改变（即处理程序的行为没有发生变化），即使上面的技巧地表明菜单已经过时。
+这两种情况对大多数 bot 来说都不太可能发生，但如果你创建的菜单是这种情况，你应该使用指纹功能。
 
 ```ts
 function ident(ctx: Context): string {
-  // 返回一个字符串，当你的菜单改变时，它将会改变。
+  // 返回一个字符串，当且仅当你的菜单发生显著变化
+  // 以至于它应该被认为过时时，该字符串才会改变。
+  return ctx.session.myStateIdentifier;
 }
 const menu = new Menu("id", { fingerprint: (ctx) => ident(ctx) });
 ```
 
-指纹字符串将被添加到上诉影响哈希生成的列表中。
+指纹字符串将取代上面的技巧。
 这样，你可以确保过时的菜单总是被检测到。
 
 ## 它是如何工作的
@@ -444,6 +459,23 @@ const menu = new Menu("id", { fingerprint: (ctx) => ident(ctx) });
 每当一个菜单被发送时，它将重放这些操作以渲染你的菜单。
 这包括布局所有动态范围和生成所有动态标签。
 一旦菜单被发送，渲染的按钮数组将被忘记。
+
+当一个菜单被发送时，每个按钮都包含一个回调查询，它将存储：
+
+- 菜单标识符。
+- 按钮的行/列位置。
+- 一个可选的 payload。
+- 一个指纹标志，它存储了是否在菜单中使用了指纹。
+- 一个4字节的哈希，用于编码指纹或菜单布局和按钮标签。
+
+当一个按钮被按下时，回调查询将被发送到 bot。
+
+这样，我们可以确定哪个菜单中哪个按钮被按下。
+一个菜单只有在以下情况下才会处理按钮的按下：
+
+- 匹配菜单标识符。
+- 行/列位置已经指定。
+- 存在指纹标志。
 
 当用户按下一个菜单按钮时，我们需要找到在菜单渲染时被添加到这个按钮的处理程序。
 因此，我们只需要再次渲染旧的菜单。
