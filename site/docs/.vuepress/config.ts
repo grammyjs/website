@@ -321,7 +321,7 @@ export default defineUserConfig<DefaultThemeOptions>({
           },
           {
             text: "API Reference",
-            link: "https://doc.deno.land/https/deno.land/x/grammy/mod.ts",
+            link: "https://doc.deno.land/https://deno.land/x/grammy/mod.ts",
           },
         ],
       },
@@ -630,7 +630,7 @@ export default defineUserConfig<DefaultThemeOptions>({
           },
           {
             text: "API 参考",
-            link: "https://doc.deno.land/https/deno.land/x/grammy/mod.ts",
+            link: "https://doc.deno.land/https://deno.land/x/grammy/mod.ts",
           },
         ],
       },
