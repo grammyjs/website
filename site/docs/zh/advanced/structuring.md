@@ -20,7 +20,7 @@ next: ./scaling.md
    这些中的每一个单独部分都暴露出可以处理指定消息的中间件。
 2. 集中创建一个 bot 实例，通过将其安装到 bot 上来合并所有中间件。
 3. （可选的）集中提前找出更新，并且以正确的方式去发送这些更新。
-   你可能还想查看相关的 `bot.route`（[API 参考](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Composer)） 或者 [路由器插件](/zh/plugins/router.md)。
+   你可能还想查看相关的 `bot.route`（[API 参考](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer#route)） 或者 [路由器插件](/zh/plugins/router.md)。
 
 你可以在 [Example Bot repository](https://github.com/grammyjs/examples/tree/main/scaling) 找到实现上面所提到的策略的一个可运行示例。
 

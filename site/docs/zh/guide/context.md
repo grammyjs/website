@@ -5,7 +5,7 @@ next: ./api.md
 
 # 上下文
 
-`Context` 对象（[grammY API 参考](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Context)）是 grammY 的一个重要部分。
+`Context` 对象（[grammY API 参考](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Context)）是 grammY 的一个重要部分。
 
 每当你在你的 bot 对象上注册一个监听器时，这个监听器将收到一个上下文对象。
 
@@ -142,7 +142,7 @@ await ctx.reply("^ This is a message!", {
 在你的代码编辑器中使用自动完成来查看可用的选项。
 :::
 
-当然，`ctx.api` 上的每一个其他方法都有一个快捷方式，并且有正确的预填值，比如 `ctx.replyWithPhoto` 用来回复照片，或者 `ctx.exportChatInviteLink` 用来获取相应聊天的邀请链接。如果你想了解存在哪些快捷方式，那么自动完成是你的伙伴，还有 [grammY API 参考](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Context)。
+当然，`ctx.api` 上的每一个其他方法都有一个快捷方式，并且有正确的预填值，比如 `ctx.replyWithPhoto` 用来回复照片，或者 `ctx.exportChatInviteLink` 用来获取相应聊天的邀请链接。如果你想了解存在哪些快捷方式，那么自动完成是你的伙伴，还有 [grammY API 参考](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Context)。
 
 请注意，你可能不希望总是在同一个聊天中做出回复。
 在这种情况下，你可以退回到使用 `ctx.api` 方法，并在调用它们时指定所有选项。
@@ -349,7 +349,7 @@ interface SessionFlavor<S> {
 }
 ```
 
-`SessionFlavor` 类型（[API 参考](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#SessionFlavor)）是清晰的：它只定义了属性 `session`。
+`SessionFlavor` 类型（[API 参考](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/SessionFlavor)）是清晰的：它只定义了属性 `session`。
 它需要一个类型参数，用来定义会话数据的实际结构。
 
 这有什么用呢？

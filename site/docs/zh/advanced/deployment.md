@@ -40,9 +40,9 @@ prev: ./proxy.md
 1. 确保你没有在你的中间件中执行任何长时间的操作，例如大文件的转换。
    这将导致 webhooks 的超时错误，并且 Telegram 将会重复发送未确认的 update。
    考虑用任何队列来代替。
-2. 让你自己熟悉 `webhookCallback`（[API参考](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#webhookCallback)）的配置。
+2. 让你自己熟悉 `webhookCallback`（[API参考](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/webhookCallback)）的配置。
 3. 如果你对你的 session 调整过 `getSessionKey` 选项，[使用相同的 session 密钥处理函数作为 session 中间件来进行 `sequentialize`](./scaling.md#concurrency-is-hard)。
-4. 如果你在一个 serverless 或者 autoscaling 平台上运行，[设置 bot 信息](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#BotConfig) 来阻止过多的 `getMe` 调用。
+4. 如果你在一个 serverless 或者 autoscaling 平台上运行，[设置 bot 信息](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/BotConfig) 来阻止过多的 `getMe` 调用。
 5. 考虑使用 [Webhook Reply](/zh/guide/deployment-types.html#webhook-reply) 。
 
 ## Sessions
@@ -56,7 +56,7 @@ prev: ./proxy.md
 可以使用 grammY 像这样做：
 
 1. 对外部的 API 请求使用 [transformer 函数](./transformers.md) 来进行 Mock。
-2. 通过 `bot.handleUpdate`（[API 参考](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Bot)）定义并发送一些测试 update 对象到你的 bot。考虑从 Telegram 团队提供的 [这些 update 对象](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates) 来获取一些灵感。
+2. 通过 `bot.handleUpdate`（[API 参考](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Bot#handleUpdate)）定义并发送一些测试 update 对象到你的 bot。考虑从 Telegram 团队提供的 [这些 update 对象](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates) 来获取一些灵感。
 
 ::: tip 贡献测试框架
 虽然 grammY 提供了必要的 hooks 钩子去编写测试用例，但是如果对于 bot 来说有一个测试框架会更加有用。
