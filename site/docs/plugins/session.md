@@ -198,21 +198,21 @@ Here are three examples:
  <CodeGroupItem title="TypeScript" active>
 
 ```ts
-/** stores data per chat (default) */
+// Stores data per chat (default).
 function getSessionKey(ctx: Context): string | undefined {
   // Let all users in a group chat share the same session,
   // but give an independent private one to each user in private chats
   return ctx.chat?.id.toString();
 }
 
-/** stores data per user */
+// Stores data per user.
 function getSessionKey(ctx: Context): string | undefined {
   // Give every user their personal session storage
   // (will be shared across groups and in their private chat)
   return ctx.from?.id.toString();
 }
 
-/** stores data per user-chat combination */
+// Stores data per user-chat combination.
 function getSessionKey(ctx: Context): string | undefined {
   // Give every user their one personal session storage per chat with the bot
   // (an independent session for each group and their private chat)
@@ -228,21 +228,21 @@ bot.use(session({ getSessionKey }));
  <CodeGroupItem title="JavaScript">
 
 ```js
-/** stores data per chat (default) */
+// Stores data per chat (default).
 function getSessionKey(ctx) {
   // Let all users in a group chat share the same session,
   // but give an independent private one to each user in private chats
   return ctx.chat?.id.toString();
 }
 
-/** stores data per user */
+// Stores data per user.
 function getSessionKey(ctx) {
   // Give every user their personal session storage
   // (will be shared across groups and in their private chat)
   return ctx.from?.id.toString();
 }
 
-/** stores data per user-chat combination */
+// Stores data per user-chat combination.
 function getSessionKey(ctx) {
   // Give every user their one personal session storage per chat with the bot
   // (an independent session for each group and their private chat)
