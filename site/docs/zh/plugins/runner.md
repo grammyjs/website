@@ -104,7 +104,7 @@ source 是一个异步迭代器，但它可以是活动的或非活动的，并�
 
 grammY runner 有三种 sink，一种是顺序的（与 bot.start() 相同），一种是批量的（主要用于兼容其他框架），和一种是全并发的（由 `run` 调用）。
 所有的 sink 都是在 `UpdateConsumer` 上操作的（[API 参考](https://doc.deno.land/https/deno.land/x/grammy_runner/mod.ts#UpdateConsumer)）。
-如果你想自己创建一个，请检查 `Bot` 的 `handleUpdate`（[API 参考](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Bot)）。
+如果你想自己创建一个，请检查 `Bot` 的 `handleUpdate`（[API 参考](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Bot#handleUpdate)）。
 
 sink 包含了一个当前正在处理的 updates 的队列（[API 参考](https://doc.deno.land/https/deno.land/x/grammy_runner/mod.ts#DecayingDeque)）。
 添加新的 updates 到队列中会立即让 update 消费者处理它们，并且返回一个 Promise，它在队列中有空闲空间时就会解决。

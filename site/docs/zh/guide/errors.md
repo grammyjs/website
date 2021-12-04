@@ -67,7 +67,7 @@ grammY 不会以任何方式触及抛出的错误，而是把它包装成一个 
 会给你一个名为 `err` 的对象， 你可以找到最根本的错误通过 `err.error`，
 同样，你可以到达相应的上下文对象通过 `err.ctx`。
 
-在 [grammY API 参考](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#BotError) 中了解 `BotError` 类。
+在 [grammY API 参考](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/BotError) 中了解 `BotError` 类。
 
 ## `GrammyError` 对象
 
@@ -77,7 +77,7 @@ grammY 不会以任何方式触及抛出的错误，而是把它包装成一个 
 一个被抛出的`GrammyError` 意味着对应的 API 方法失败了。
 这个错误对象提供路径去查看 Telegram 后台返回的错误代码和描述。
 
-在 [grammY API 参考](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#GrammyError) 中了解 `GrammyError` 类。
+在 [grammY API 参考](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/GrammyError) 中了解 `GrammyError` 类。
 
 ## `HttpError` 对象
 
@@ -89,7 +89,7 @@ grammY 不会以任何方式触及抛出的错误，而是把它包装成一个 
 
 > 需要注意的是如果 Bot API 服务器能被链接，但是方法回调返回了 `ok: false`，这时就会抛出 [`GrammyError`](/zh/guide/errors.md#GrammyError对象) 作为代替。
 
-在 [grammY API 参考](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#HttpError) 中了解 `HttpError` 类。
+在 [grammY API 参考](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/HttpError) 中了解 `HttpError` 类。
 
 ## Error 边界
 
