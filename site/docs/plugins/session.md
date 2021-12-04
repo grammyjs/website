@@ -33,6 +33,8 @@ Sessions are an elegant way to store data _per chat_.
 You would use the chat identifier as the key in your database, and a counter as the value.
 In this case, we would call the chat identifier the _session key_.
 
+> You can read more about session keys [down here](#session-keys).
+
 We can install middleware on the bot that will provide a chat's session data on `ctx.session` for every update by loading it from the database before our middleware runs.
 It would also make sure that the session data is written back to the database once we're done, so that we never have to worry about actually communicating with the data storage anymore.
 
@@ -41,6 +43,8 @@ In our example, we would have access to the pizza count _of the corresponding ch
 ## How to Use Sessions
 
 You can add session support to grammY by using the built-in session middleware.
+
+### Example Usage
 
 Here is an example bot that counts messages containing a pizza emoji :pizza::
 
@@ -61,13 +65,10 @@ type MyContext = Context & SessionFlavor<SessionData>;
 const bot = new Bot<MyContext>("");
 
 // Install session middleware, and define the initial session value.
-bot.use(
-  session({
-    initial(): SessionData {
-      return { pizzaCount: 0 };
-    },
-  }),
-);
+function initial(): SessionData {
+  return { pizzaCount: 0 };
+}
+bot.use(session({ initial }));
 
 bot.command("hunger", async (ctx) => {
   const count = ctx.session.pizzaCount;
@@ -88,13 +89,10 @@ const { Bot, session } = require("grammy");
 const bot = new Bot("");
 
 // Install session middleware, and define the initial session value.
-bot.use(
-  session({
-    initial() {
-      return { pizzaCount: 0 };
-    },
-  }),
-);
+function initial() {
+  return { pizzaCount: 0 };
+}
+bot.use(session({ initial }));
 
 bot.command("hunger", async (ctx) => {
   const count = ctx.session.pizzaCount;
@@ -128,13 +126,10 @@ type MyContext = Context & SessionFlavor<SessionData>;
 const bot = new Bot<MyContext>("");
 
 // Install session middleware, and define the initial session value.
-bot.use(
-  session({
-    initial(): SessionData {
-      return { pizzaCount: 0 };
-    },
-  }),
-);
+function initial(): SessionData {
+  return { pizzaCount: 0 };
+}
+bot.use(session({ initial }));
 
 bot.command("hunger", async (ctx) => {
   const count = ctx.session.pizzaCount;
@@ -152,22 +147,135 @@ bot.start();
 Note how we also have to [adjust the context type](/guide/context.md#customising-the-context-object) to make the session available on it.
 The context flavor is called `SessionFlavor`.
 
-It is important (but optional) that you specify the `initial` option for the session middleware.
+### Initial Session Data
+
+When a user first contacts your bot, no session data is available for them.
+It is therefore important that you specify the `initial` option for the session middleware.
 Pass a function that generates a new object with initial session data for new chats.
 
-You can specify which session key to use by passing a function called `getSessionKey` to the [options](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#SessionOptions).
-Whenever `getSessionKey` returns `undefined`, `ctx.session` will be `undefined`.
+```ts
+// Creates a new object that will be used as initial session data.
+function createInitialSessionData() {
+  return {
+    pizzaCount: 0,
+    // more data here
+  };
+}
+bot.use(session({ initial: createInitialSessionData }));
+```
 
-In the example above, the session data is stored in your RAM, so as soon as your bot is stopped, all data is lost.
-This is convenient when you develop your bot or if you run automatic tests (no database setup needed), however, **that is most likely not desired in production**.
-In production, you should use the `storage` option of the session middleware to connect it to your datastore.
-There may already be storage adapter written for grammY that you can use (see below), but if not, it usually only takes 5 lines of code to implement one yourself.
+Same but much shorter:
+
+```ts
+bot.use(session({ initial: () => ({ pizzaCount: 0 }) }));
+```
+
+::: warning Sharing objects
+Make sure to always create a _new object_.
+Do **NOT** do this:
+
+```ts
+// DANGER, BAD, WRONG, STOP
+bot.use(session({ initial: { pizzaCount: 0 } })); // EVIL
+```
+
+If you would do this, several chats might share the same session object in memory.
+Hence, changing the session data in one chat may accidentally impact the session data in the other chat.
+:::
+
+You may also omit the `initial` option entirely, even though you are well advised not to do that.
+If you don't specify it, reading `ctx.session` will throw an error for new users.
+
+### Session Keys
+
+You can specify which session key to use by passing a function called `getSessionKey` to the [options](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#SessionOptions).
+That way, you can fundamentally change the way how the session plugin works.
+By default, data is stored per chat.
+Using `getSessionKey` allows you to store data per user, or per user-chat combination, or however you want.
+Here are three examples:
+
+<CodeGroup>
+ <CodeGroupItem title="TypeScript" active>
+
+```ts
+// Stores data per chat (default).
+function getSessionKey(ctx: Context): string | undefined {
+  // Let all users in a group chat share the same session,
+  // but give an independent private one to each user in private chats
+  return ctx.chat?.id.toString();
+}
+
+// Stores data per user.
+function getSessionKey(ctx: Context): string | undefined {
+  // Give every user their personal session storage
+  // (will be shared across groups and in their private chat)
+  return ctx.from?.id.toString();
+}
+
+// Stores data per user-chat combination.
+function getSessionKey(ctx: Context): string | undefined {
+  // Give every user their one personal session storage per chat with the bot
+  // (an independent session for each group and their private chat)
+  return ctx.from === undefined || ctx.chat === undefined
+    ? undefined
+    : `${ctx.from.id}/${ctx.chat.id}`;
+}
+
+bot.use(session({ getSessionKey }));
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+// Stores data per chat (default).
+function getSessionKey(ctx) {
+  // Let all users in a group chat share the same session,
+  // but give an independent private one to each user in private chats
+  return ctx.chat?.id.toString();
+}
+
+// Stores data per user.
+function getSessionKey(ctx) {
+  // Give every user their personal session storage
+  // (will be shared across groups and in their private chat)
+  return ctx.from?.id.toString();
+}
+
+// Stores data per user-chat combination.
+function getSessionKey(ctx) {
+  // Give every user their one personal session storage per chat with the bot
+  // (an independent session for each group and their private chat)
+  return ctx.from === undefined || ctx.chat === undefined
+    ? undefined
+    : `${ctx.from.id}/${ctx.chat.id}`;
+}
+
+bot.use(session({ getSessionKey }));
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+Whenever `getSessionKey` returns `undefined`, `ctx.session` will be `undefined`.
+For example, the default session key resolver will not work for `poll`/`poll_answer` updates or `inline_query` updates because they do not belong to a chat (`ctx.chat` is `undefined`).
 
 ::: warning Session Keys and Webhooks
 When you are running your bot on webhooks, you should avoid using the option `getSessionKey`.
+Telegram sends webhooks sequentially per chat, so the default session key resolver is the only implementation that guarantees not to cause data loss.
 
-If you need to use the option (which is totally possible), and if the function you pass does not depend on `ctx.chat.id` in some way, you should first make sure you understand the consequences of that by reading [this](/guide/deployment-types.md) article and also [this](/plugins/runner.md) one.
+If you must use the option (which is of course still possible), you should know what you are doing.
+Make sure you understand the consequences of this configuration by reading [this](/guide/deployment-types.md) article and especially [this](/plugins/runner.html#sequential-processing-where-necessary) one.
 :::
+
+### Storing Your Data
+
+In all examples above, the session data is stored in your RAM, so as soon as your bot is stopped, all data is lost.
+This is convenient when you develop your bot or if you run automatic tests (no database setup needed), however, **that is most likely not desired in production**.
+In production, you would want to persist your data, for example in a file, a database, or some other storage.
+
+You should use the `storage` option of the session middleware to connect it to your datastore.
+There may already be storage adapter written for grammY that you can use (see [below](#known-storage-adapters)), but if not, it usually only takes 5 lines of code to implement one yourself.
 
 ## Lazy Sessions
 
