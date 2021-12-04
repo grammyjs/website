@@ -33,6 +33,8 @@
 你将会使用聊天标识符来作为数据库的键，和一个计数器作为值。
 在这种情况下，我们会把聊天标识符称为 _会话密钥_。
 
+> 你可以在 [这里](#session-keys) 阅读更多关于会话密钥的信息。
+
 我们可以在 bot 上安装中间件，这个中间件会在运行前，从数据库中加载聊天会话数据到 `ctx.session` 来提供给每个 update。
 它还会确保一旦我们完成了工作，会话数据就会被写回数据库，这样我们就不用再担心与数据存储的实际通信了。
 
@@ -41,6 +43,8 @@
 ## 如何使用会话
 
 你可以添加内置的会话中间件来为 grammY 添加会话支持。
+
+### 使用示例
 
 下面是一个计算含有披萨表情 :pizza: 的信息的 bot 例子
 
@@ -61,13 +65,10 @@ type MyContext = Context & SessionFlavor<SessionData>;
 const bot = new Bot<MyContext>("");
 
 // 安装会话中间件，并定义会话初始值。
-bot.use(
-  session({
-    initial(): SessionData {
-      return { pizzaCount: 0 };
-    },
-  }),
-);
+function initial(): SessionData {
+  return { pizzaCount: 0 };
+}
+bot.use(session({ initial }));
 
 bot.command("hunger", async (ctx) => {
   const count = ctx.session.pizzaCount;
@@ -88,13 +89,10 @@ const { Bot, session } = require("grammy");
 const bot = new Bot("");
 
 // 安装会话中间件，并定义会话初始值。
-bot.use(
-  session({
-    initial() {
-      return { pizzaCount: 0 };
-    },
-  }),
-);
+function initial(): SessionData {
+  return { pizzaCount: 0 };
+}
+bot.use(session({ initial }));
 
 bot.command("hunger", async (ctx) => {
   const count = ctx.session.pizzaCount;
@@ -128,13 +126,10 @@ type MyContext = Context & SessionFlavor<SessionData>;
 const bot = new Bot<MyContext>("");
 
 // 安装会话中间件，并定义会话初始值。
-bot.use(
-  session({
-    initial(): SessionData {
-      return { pizzaCount: 0 };
-    },
-  }),
-);
+function initial(): SessionData {
+  return { pizzaCount: 0 };
+}
+bot.use(session({ initial }));
 
 bot.command("hunger", async (ctx) => {
   const count = ctx.session.pizzaCount;
@@ -152,23 +147,126 @@ bot.start();
 请注意，我们还必须 [调整上下文类型](/zh/guide/context.md#customising-the-context-object)，使得会话可以在上下文上使用。
 上下文修饰器被称为 `SessionFlavor`。
 
-为会话中间件指定 `initial` 是很重要的（但也是可选的）。
+### 初始化会话数据
+
+当一个用户第一次联系你的 bot 时，他们没有任何会话数据可以使用。
+因此，你需要在会话中间件中指定 `initial` 选项。
 传入一个函数，为新的聊天生成一个带有初始会话数据的新对象。
 
-你可以通过向 [options](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#SessionOptions) 传入一个名为 `getSessionKey` 的函数来指定会话使用哪个会话密钥。
-只要 `getSessionKey` 返回 `underfined`， `ctx.session` 也会是 `undefined`。
+```ts
+// 创建一个新的对象，作为初始会话数据使用。
+function createInitialSessionData() {
+  return {
+    pizzaCount: 0,
+    // 更多数据放在这里
+  };
+}
+bot.use(session({ initial: createInitialSessionData }));
+```
 
-在上面的例子中，会话数据存储在你的内存中，所以一旦你的 bot 被停止了，所有的数据都会丢失。
-当你开发 bot 或者运行自动测试时，这样会很方便（因为不需要配置数据库），但是**不应该在生产环境中使用这种方式**。
-在生产环境中，你应该使用会话中间件的 `storage` 选项，将它连接到你的数据存储中。
-这里可能已经有你需要并且可以使用的为 grammY 编写的存储适配器（见下文），如果没有，通常只需要 5 行代码就可以自己实现一个。
+相同但更短的写法：
+
+```ts
+bot.use(session({ initial: () => ({ pizzaCount: 0 }) }));
+```
+
+::: warning 共享对象
+请确保总是创建一个 _新的对象_。
+**不要**这样做：
+
+```ts
+// 危险的，不安全的，错误的，应该被制止的
+bot.use(session({ initial: { pizzaCount: 0 } })); // 邪恶的
+```
+
+如果你这样做，几个不同的聊天室可能会在内存中共享同一个会话对象。
+因此，在一个聊天中更改会话数据可能会导致另一个聊天的会话数据也被更改。
+:::
+
+你也可以完全忽略 `initial` 选项，尽管我们建议你不要这样做。
+如果你不指定它，读取 `ctx.session` 时将会给新用户抛出一个错误。
+
+### 会话密钥
+
+你可以通过向 [options](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#SessionOptions) 传入一个名为 `getSessionKey` 的函数来指定会话使用哪个会话密钥。
+这样，你可以从根本上改变会话插件的工作方式。
+默认情况下，会话数据存储在每个聊天中。
+使用 `getSessionKey`，你可以按每个用户，或每个用户-聊天组合，或任何你想要的方式存储数据。
+这里有三个示例：
+
+<CodeGroup>
+ <CodeGroupItem title="TypeScript" active>
+
+```ts
+// 为每个聊天存储数据（默认）。
+function getSessionKey(ctx: Context): string | undefined {
+  // 让群聊中的所有用户共享同一个会话，
+  // 但私聊中每个用户都有一个独立的私人会话
+  return ctx.chat?.id.toString();
+}
+// 为每个用户存储数据。
+function getSessionKey(ctx: Context): string | undefined {
+  // 给每个用户提供一个私人的会话存储
+  //（将在群聊和私人聊天中共享）
+  return ctx.from?.id.toString();
+}
+// 为用户-聊天组合存储数据。
+function getSessionKey(ctx: Context): string | undefined {
+  // 在每次与 bot 聊天时，给每个用户一个独立的会话存储
+  // （给每个群聊和私人聊天一个独立的会话存储）
+  return ctx.from === undefined || ctx.chat === undefined
+    ? undefined
+    : `${ctx.from.id}/${ctx.chat.id}`;
+}
+bot.use(session({ getSessionKey }));
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+// 为每个聊天存储数据（默认）。
+function getSessionKey(ctx) {
+  // 让群聊中的所有用户共享同一个会话，
+  // 但私聊中每个用户都有一个独立的私人会话
+  return ctx.chat?.id.toString();
+}
+// 为每个用户存储数据。
+function getSessionKey(ctx) {
+  // 给每个用户提供一个私人的会话存储
+  //（将在群聊和私人聊天中共享）
+  return ctx.from?.id.toString();
+}
+// 为用户-聊天组合存储数据。
+function getSessionKey(ctx) {
+  // 在每次与 bot 聊天时，给每个用户一个独立的会话存储
+  // （给每个群聊和私人聊天一个独立的会话存储）
+  return ctx.from === undefined || ctx.chat === undefined
+    ? undefined
+    : `${ctx.from.id}/${ctx.chat.id}`;
+}
+bot.use(session({ getSessionKey }));
+```
+</CodeGroupItem>
+</CodeGroup>
+
+当 `getSessionKey` 返回 `undefined` 时，`ctx.session` 也会被设置为 `undefined`。
+举个例子，默认的会话密钥解析器不能处理 `poll`/`poll_answer` update 或 `inline_query` update，因为它们不属于一个聊天（`ctx.chat` 是 `undefined`）。
 
 ::: warning 会话密钥和 webhooks
 当你在 webhooks 上运行你的 bot，你应该避免使用 `getSessionKey` 选项。
+Telegram 在每次聊天时都会按照顺序发送 webhooks，因此默认的会话密钥解析器是唯一能保证不会丢失数据的实现。
 
-如果你需要使用该选项（这完全没问题），并且你传入的函数在一定程度上不依赖于 `ctx.chat.id`，请确保你读了 [这个](/zh/guide/deployment-types.md) 和 [这个](/zh/plugins/runner.md) 以了解后果。
-
+如果你必须使用该选项（当然，这仍然是可能的），你应该知道你在做什么。
+通过阅读 [这个](/zh/guide/deployment-types.md)，特别是 [这个](/zh/plugins/runner.html#为什么需要顺序处理)，确保你了解使用这个配置的后果。
 :::
+
+### 储存你的数据
+
+在上面的例子中，会话数据存储在你的内存中，所以一旦你的 bot 被停止了，所有的数据都会丢失。
+当你开发 bot 或者运行自动测试时，这样会很方便（因为不需要配置数据库），但是不应该在生产环境中使用这种方式。
+在生产环境中，你应该使用会话中间件的 storage 选项，将它连接到你的数据存储中。
+这里可能已经有你需要并且可以使用的为 grammY 编写的存储适配器（见 [下文](#已知的存储适配器)），如果没有，通常只需要 5 行代码就可以自己实现一个。
 
 ## 懒会话
 
