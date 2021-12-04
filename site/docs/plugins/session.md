@@ -154,7 +154,7 @@ It is therefore important that you specify the `initial` option for the session 
 Pass a function that generates a new object with initial session data for new chats.
 
 ```ts
-/** Creates a new object that will be used as initial session data */
+// Creates a new object that will be used as initial session data.
 function createInitialSessionData() {
   return {
     pizzaCount: 0,
