@@ -356,6 +356,7 @@ bot.command("reset", (ctx) => {
 ### 官方
 
 - Supabase: <https://github.com/grammyjs/storage-supabase>
+- Deta.sh Base: <https://github.com/grammyjs/storage-deta>
 - Google Firestore (Node.js-only): <https://github.com/grammyjs/storage-firestore>
 
 ### 第三方
