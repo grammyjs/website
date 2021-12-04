@@ -180,7 +180,7 @@ bot.on("message", (ctx) => ctx.reply("Got another message!"));
 
 ::: tip ⚡ 优化（可选）
 每次你的服务器启动时，grammY 会向 Telegram 请求 [bot 的信息](https://core.telegram.org/bots/api#getme)，以便在 `ctx.me` 下的 [上下文对象](/zh/guide/context.md) 提供 bot 的信息。
-我们可以设置 [bot 的信息](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#BotConfig) 以防止过多的 `getMe` 调用。
+我们可以设置 [bot 的信息](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/BotConfig#botInfo) 以防止过多的 `getMe` 调用。
 
 1. 在你最喜欢的浏览器中打开这个链接 `https://api.telegram.org/bot<bot_token>/getMe`，推荐使用 [Firefox](https://www.mozilla.org/en-US/firefox/)，因为它能格式化显示 `json` 数据。
 2. 根据 `getMe` 的结果来修改我们上面第 4 行的代码：
