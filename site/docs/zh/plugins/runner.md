@@ -18,7 +18,7 @@
 这是一个与组合中间件或发送消息到 Telegram 非常不同的问题。
 因此，它不是 grammY 内核包的一部分。
 而是使用 [grammY runner](https://github.com/grammyjs/runner)。
-它有自己的 [API 参考](https://doc.deno.land/https/deno.land/x/grammy_runner/mod.ts)。
+它有自己的 [API 参考](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts)。
 
 ## 使用方法
 
@@ -94,19 +94,19 @@ api.telegram.org <—> source <—> runner <—> sink <—> bot
 
 ### Source
 
-grammY runner 有一个默认的 source，它可以操作任何 `UpdateSupplier`（[API 参考](https://doc.deno.land/https/deno.land/x/grammy_runner/mod.ts#UpdateSupplier)）。
+grammY runner 有一个默认的 source，它可以操作任何 `UpdateSupplier`（[API 参考](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/UpdateSupplier)）。
 这样一个 update supplier 可以直接从 bot 实例中创建。
-如果你想自己创建一个，请检查 `createUpdateFetcher`（[API 参考](https://doc.deno.land/https/deno.land/x/grammy_runner/mod.ts#createUpdateFetcher)）。
+如果你想自己创建一个，请检查 `createUpdateFetcher`（[API 参考](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/createUpdateFetcher)）。
 
 source 是一个异步迭代器，但它可以是活动的或非活动的，并且你可以通过 `close` 方法来断开与 Telegram 服务器的连接。
 
 ### Sink
 
 grammY runner 有三种 sink，一种是顺序的（与 bot.start() 相同），一种是批量的（主要用于兼容其他框架），和一种是全并发的（由 `run` 调用）。
-所有的 sink 都是在 `UpdateConsumer` 上操作的（[API 参考](https://doc.deno.land/https/deno.land/x/grammy_runner/mod.ts#UpdateConsumer)）。
+所有的 sink 都是在 `UpdateConsumer` 上操作的（[API 参考](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/UpdateConsumer)）。
 如果你想自己创建一个，请检查 `Bot` 的 `handleUpdate`（[API 参考](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Bot#handleUpdate)）。
 
-sink 包含了一个当前正在处理的 updates 的队列（[API 参考](https://doc.deno.land/https/deno.land/x/grammy_runner/mod.ts#DecayingDeque)）。
+sink 包含了一个当前正在处理的 updates 的队列（[API 参考](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/DecayingDeque)）。
 添加新的 updates 到队列中会立即让 update 消费者处理它们，并且返回一个 Promise，它在队列中有空闲空间时就会解决。
 已解决的整数数字表示队列中的空闲空间。
 为 grammY runner 设置一个并发限制是通过队列实例来实现的。
@@ -121,10 +121,10 @@ sink 包含了一个当前正在处理的 updates 的队列（[API 参考](https
 runner 是一个简单的循环，它从 source 中拉取 updates，并将它们提供给 sink。
 一旦 sink 可以再次提供 updates，runner 将从 source 中拉取下一批 updates。
 
-当你使用 `createRunner`（[API 参考](https://doc.deno.land/https/deno.land/x/grammy_runner/mod.ts#createRunner)） 创建一个 runner 时，你会获得一个可以控制它的处理器。
+当你使用 `createRunner`（[API 参考](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/createRunner)） 创建一个 runner 时，你会获得一个可以控制它的处理器。
 例如，它允许你启动和停止它，或者获得一个 Promise，它在 runner 停止时解决。
 (这个处理器也会在 `run` 中返回。)
-检查 [API 参考](https://doc.deno.land/https/deno.land/x/grammy_runner/mod.ts#RunnerHandle) 中的 `RunnerHandle`。
+检查 [API 参考](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/RunnerHandle) 中的 `RunnerHandle`。
 
 ## 为什么需要顺序处理？
 
@@ -166,4 +166,4 @@ grammY runner 将在运行时自动解决所有必要的约束，并在必要时
 
 - 名字：`runner`
 - 源码：<https://github.com/grammyjs/runner>
-- 参考：<https://doc.deno.land/https/deno.land/x/grammy_runner/mod.ts>
+- 参考：<https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts>
