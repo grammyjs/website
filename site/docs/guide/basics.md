@@ -28,7 +28,7 @@ bot.command('start', (ctx) => { ... });
 bot.hears(/echo *(.+)?/, (ctx) => { ... });
 ```
 
-You can use auto-complete in your code editor to see all available options, or check out [all methods](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Bot) of the `Bot` class.
+You can use auto-complete in your code editor to see all available options, or check out [all methods](https://doc.deno.land/https://deno.land/x/grammy/mod.ts#Bot) of the `Bot` class.
 
 > [Read more](./filter-queries.md) about filtering for specific message types with `bot.on()`.
 
@@ -46,7 +46,7 @@ const me = await bot.api.getMe();
 // etc
 ```
 
-You can use auto-complete in your code editor to see all available options, or check out [all methods](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Api) of the `Api` class.
+You can use auto-complete in your code editor to see all available options, or check out [all methods](https://doc.deno.land/https://deno.land/x/grammy/mod.ts#Api) of the `Api` class.
 
 Check out the [next section](./context.md) to learn how the context object of a listener makes sending messages a breeze!
 

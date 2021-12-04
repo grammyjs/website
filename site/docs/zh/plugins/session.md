@@ -188,7 +188,7 @@ bot.use(session({ initial: { pizzaCount: 0 } })); // 邪恶的
 
 ### 会话密钥
 
-你可以通过向 [options](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#SessionOptions) 传入一个名为 `getSessionKey` 的函数来指定会话使用哪个会话密钥。
+你可以通过向 [options](https://doc.deno.land/https://deno.land/x/grammy/mod.ts#SessionOptions) 传入一个名为 `getSessionKey` 的函数来指定会话使用哪个会话密钥。
 这样，你可以从根本上改变会话插件的工作方式。
 默认情况下，会话数据存储在每个聊天中。
 使用 `getSessionKey`，你可以按每个用户，或每个用户-聊天组合，或任何你想要的方式存储数据。

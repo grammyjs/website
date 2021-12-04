@@ -188,4 +188,4 @@ bot.api.config.use(hydrateApi());
 
 - 名字：`hydrate`
 - 源码：<https://github.com/grammyjs/hydrate>
-- 参考：<https://doc.deno.land/https/deno.land/x/grammy_hydrate/mod.ts>
+- 参考：<https://doc.deno.land/https://deno.land/x/grammy_hydrate/mod.ts>
