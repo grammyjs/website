@@ -28,7 +28,7 @@ bot.command('start', (ctx) => { ... });
 bot.hears(/echo *(.+)?/, (ctx) => { ... });
 ```
 
-你可以在你的代码编辑器中使用自动完成来查看所有可用的选项，或者查看 `Bot` 类的 [所有方法](https://doc.deno.land/https://deno.land/x/grammy/mod.ts#Bot)。
+你可以在你的代码编辑器中使用自动完成来查看所有可用的选项，或者查看 `Bot` 类的 [所有方法](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Bot)。
 
 > [了解更多](./filter-queries.md) 关于使用 `bot.on()` 来筛选请求的内容。
 
@@ -46,7 +46,7 @@ const me = await bot.api.getMe();
 // 及其他
 ```
 
-你可以在你的代码编辑器中使用自动完成来查看所有可用的选项，或者查看 `Api` 类的 [所有方法](https://doc.deno.land/https://deno.land/x/grammy/mod.ts#Api)。
+你可以在你的代码编辑器中使用自动完成来查看所有可用的选项，或者查看 `Api` 类的 [所有方法](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Api)。
 
 请看 [下一节](./context.md)，以了解监听器的上下文对象如何使发送消息变得轻而易举！
 

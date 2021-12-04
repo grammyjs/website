@@ -43,7 +43,7 @@ The update is **not** checked for a photo content, because the middleware at `(*
 Now, how does this work?
 Let's find out.
 
-We can inspect the `Middleware` type in grammY's reference [here](https://doc.deno.land/https://deno.land/x/grammy/mod.ts#Middleware):
+We can inspect the `Middleware` type in grammY's reference [here](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Middleware):
 
 ```ts
 // Omitted some type paramters for brevity.
@@ -52,7 +52,7 @@ type Middleware = MiddlewareFn | MiddlewareObj;
 
 Aha.
 Middleware can be a function or an object.
-We only used functions (`(ctx) => { ... }`) so far, so let's ignore middleware objects for now, and dig deeper into the `MiddlewareFn` type ([reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts#MiddlewareFn)):
+We only used functions (`(ctx) => { ... }`) so far, so let's ignore middleware objects for now, and dig deeper into the `MiddlewareFn` type ([reference](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#MiddlewareFn)):
 
 ```ts
 // Omitted type parameters again.
@@ -206,7 +206,7 @@ Another difference is that it does not matter how many arguments your middleware
 
 There are two types of middleware: functions and objects.
 Middleware objects are simply a wrapper for middleware functions.
-They are mostly used internally, but can sometimes also help third-party libraries, or be used in advanced use cases, such as with [Composer](https://doc.deno.land/https://deno.land/x/grammy/mod.ts#Composer):
+They are mostly used internally, but can sometimes also help third-party libraries, or be used in advanced use cases, such as with [Composer](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Composer):
 
 ```ts
 const bot = new Bot("<token>");

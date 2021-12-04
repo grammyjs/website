@@ -16,7 +16,7 @@ It provides a class called `InlineKeyboard` for this.
 
 Here are three examples how to build an inline keyboard with `text` buttons.
 
-You can also use other methods like `url` to let the Telegram clients open a URL, and many more options as listed in the [grammY API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts#InlineKeyboard) as well as the [Telegram Bot API Reference](https://core.telegram.org/bots/api#inlinekeyboardbutton) for `InlineKeyboard`.
+You can also use other methods like `url` to let the Telegram clients open a URL, and many more options as listed in the [grammY API Reference](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#InlineKeyboard) as well as the [Telegram Bot API Reference](https://core.telegram.org/bots/api#inlinekeyboardbutton) for `InlineKeyboard`.
 
 #### Example 1
 

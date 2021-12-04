@@ -188,7 +188,7 @@ If you don't specify it, reading `ctx.session` will throw an error for new users
 
 ### Session Keys
 
-You can specify which session key to use by passing a function called `getSessionKey` to the [options](https://doc.deno.land/https://deno.land/x/grammy/mod.ts#SessionOptions).
+You can specify which session key to use by passing a function called `getSessionKey` to the [options](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#SessionOptions).
 That way, you can fundamentally change the way how the session plugin works.
 By default, data is stored per chat.
 Using `getSessionKey` allows you to store data per user, or per user-chat combination, or however you want.

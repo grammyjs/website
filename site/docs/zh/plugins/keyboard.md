@@ -16,7 +16,7 @@ grammY 有一个简单且直观的方式来构建 inline keyboard，让你的 bo
 
 这里有三个例子来演示如何构建带有 `text` 按钮的 inline keyboard。
 
-你也可以使用其他方法，比如 `url`，让 Telegram 客户端打开一个 URL，或者 [grammY API 参考](https://doc.deno.land/https://deno.land/x/grammy/mod.ts#InlineKeyboard) 和 [Telegram Bot API 参考](https://core.telegram.org/bots/api#inlinekeyboardbutton) 中列出的提供给 `InlineKeyboard` 方法。
+你也可以使用其他方法，比如 `url`，让 Telegram 客户端打开一个 URL，或者 [grammY API 参考](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#InlineKeyboard) 和 [Telegram Bot API 参考](https://core.telegram.org/bots/api#inlinekeyboardbutton) 中列出的提供给 `InlineKeyboard` 方法。
 
 #### 示例 1
 

@@ -188,4 +188,4 @@ All objects are hydrated on
 
 - Name: `hydrate`
 - Source: <https://github.com/grammyjs/hydrate>
-- Reference: <https://doc.deno.land/https://deno.land/x/grammy_hydrate/mod.ts>
+- Reference: <https://doc.deno.land/https/deno.land/x/grammy_hydrate/mod.ts>

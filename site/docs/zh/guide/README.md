@@ -19,7 +19,7 @@ grammY 是一个用于创建 Telegram Bot 的框架。它可以从 TypeScript �
 接着查看"了解"部分，看看有哪些对你有用的信息。
 你可能还想阅读一下我们伟大的插件，帮助你建立丰富的菜单，存储数据，将你的 bot 翻译成多种语言，以及更多。
 
-第二部分是 grammY [API 参考](https://doc.deno.land/https://deno.land/x/grammy/mod.ts)，链接在页面的顶部。
+第二部分是 grammY [API 参考](https://doc.deno.land/https/deno.land/x/grammy/mod.ts)，链接在页面的顶部。
 这是对 grammY 提供的每一个代码和每一个选项的详细概述。
 它是由代码自动生成的，并包含关于库的每一部分的详细描述。
 你可以把它看作是所有有用的 "工具提示解释 "的完整集合，通常会发现于在代码编辑器中把光标悬停在 grammY 的任何元素上的时候。

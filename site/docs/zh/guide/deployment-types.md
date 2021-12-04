@@ -150,7 +150,7 @@ ______________                                   _____________
 你省下了一大堆多余的请求。
 你不需要一直让 bot 与 Telegram 保持连接。
 当没有请求时，你可以使用自动将基础结构收敛为零消耗的服务。
-如果你愿意， 你甚至可以 [在响应 Telegram 请求时调用 API](#webhook-reply), 即使这样有[很多缺点](https://doc.deno.land/https://deno.land/x/grammy/mod.ts#ApiClientOptions)。
+如果你愿意， 你甚至可以 [在响应 Telegram 请求时调用 API](#webhook-reply), 即使这样有[很多缺点](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#ApiClientOptions)。
 
 Webhooks 可以在这些地方良好运行：
 
@@ -247,7 +247,7 @@ app.use(webhookCallback(bot, "oak"));
 4. 还要注意的是，grammY 中的类型并不反映所执行的 webhook 回调的结果！
    例如，它们表明你总是接收到一个响应对象，但确保在使用这个次要的性能优化时，你将自己责任，努力让他不会出错。
 
-如果你想使用 webhook reply，你可以在你的 `BotConfig` 的 `client` 选项中指定 `canUseWebhookReply` 选项（[API 参考](https://doc.deno.land/https://deno.land/x/grammy/mod.ts#BotConfig)）。
+如果你想使用 webhook reply，你可以在你的 `BotConfig` 的 `client` 选项中指定 `canUseWebhookReply` 选项（[API 参考](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#BotConfig)）。
 传递一个函数，该函数决定是否对给定的请求使用 webhook 应答(由方法标识)。
 
 ```ts

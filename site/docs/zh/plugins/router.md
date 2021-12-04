@@ -1,7 +1,7 @@
 # 路由器（`router`）
 
-`Router` 类（[API 参考](https://doc.deno.land/https://deno.land/x/grammy_router/router.ts)）提供了一种更为灵活的方式来结构化你的 bot，通过路由上下文对象到不同的部分代码。
-它是 `Composer` 的 `bot.route` 的更高级版本（[grammY API 参考](https://doc.deno.land/https://deno.land/x/grammy/mod.ts#Composer))
+`Router` 类（[API 参考](https://doc.deno.land/https/deno.land/x/grammy_router/router.ts)）提供了一种更为灵活的方式来结构化你的 bot，通过路由上下文对象到不同的部分代码。
+它是 `Composer` 的 `bot.route` 的更高级版本（[grammY API 参考](https://doc.deno.land/https/deno.land/x/grammy/mod.ts#Composer))
 
 ## 示例
 
@@ -418,4 +418,4 @@ function getDays(month: number, day: number) {
 
 - 名字：`router`
 - 源码：<https://github.com/grammyjs/router>
-- 参考：<https://doc.deno.land/https://deno.land/x/grammy_router/router.ts>
+- 参考：<https://doc.deno.land/https/deno.land/x/grammy_router/router.ts>

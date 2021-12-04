@@ -14,7 +14,7 @@ next: ./flood.md
 ## 优雅关闭
 
 对于使用了长轮询的 bot，还有更多的事要去考虑。
-当你打算在某个操作期间再次停止你的实例，你应该去考虑捕获 `SIGTERM` 和 `SIGINT` 事件，并调用 `bot.stop`（长轮询内置的） 方法或者通过它的 [处理]((https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts#RunnerHandle)) （grammY runner）来停止你的 bot。
+当你打算在某个操作期间再次停止你的实例，你应该去考虑捕获 `SIGTERM` 和 `SIGINT` 事件，并调用 `bot.stop`（长轮询内置的） 方法或者通过它的 [处理]((https://doc.deno.land/https/deno.land/x/grammy_runner/mod.ts#RunnerHandle)) （grammY runner）来停止你的 bot。
 
 ### 简单的长轮询
 
@@ -140,7 +140,7 @@ grammY 没有为你做这些工作，但是如果你认为其他人可以从中�
 这将会引起数据丢失。
 如果防止这种情况非常重要，那么应该使用 grammY 源程序库来组成自己的 update 管道，首先通过消息队列传递所有 update。
 你基本上必须创建一个发送到队列的接收器，并启动一个只提供消息队列的运行程序。
-然后，你必须再次创建一个从消息队列提取的 [源](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts#UpdateSource) 。
+然后，你必须再次创建一个从消息队列提取的 [源](https://doc.deno.land/https/deno.land/x/grammy_runner/mod.ts#UpdateSource) 。
 你将有效的运行两个不同的 grammY runner 实例。
 据我们所知，上述这个模糊的草案只是草图，还没有实现。
 如果你有问题或者你想尝试并分享你的进展，请 [联系 Telegram group](https://t.me/grammyjs) 。

@@ -135,4 +135,4 @@ app.listen(3000, () => {
 
 - 名字：`ratelimiter`
 - 源码：<https://github.com/grammyjs/rateLimiter>
-- 参考：<https://doc.deno.land/https://deno.land/x/grammy_ratelimiter/rateLimiter.ts>
+- 参考：<https://doc.deno.land/https/deno.land/x/grammy_ratelimiter/rateLimiter.ts>
