@@ -43,4 +43,20 @@ Anyone who wants to start a new language should ask themselves the following que
    We don't want to end up with 15 languages and none of them is done for months.
    If you can't set aside enough free time to get this done, don't start.
 
+With that out of the way, here are some recommendations that will make your life easier.
+
+1. Find another native speaker that can review your translations.
+   We cannot merge pull requests that have not been reviewed, because they tend to have typos or other small mistakes.
+   In addition, we found that reviews often lead to much better phrasing.
+   However, we can of course only review contributions to languages we speak.
+   It therefore makes a lot of sense if you find at least one other person who can speak your language so that you can work on it together.
+2. Create an issue for progress tracking.
+   It could look somewhat like https://github.com/grammyjs/website/issues/55.
+   Make sure you do not lose track of your translations.
+   We can also create such an issue for you, just ping us in the [group chat](https://t.me/grammyjs).
+3. Re-create the structure first.
+   It makes a lot of sense to create empty pages that only contain “TODO translate” but that follow the same structure as the English original.
+   Again, we can of course create that for you if you send us a message.
+
+You are now ready to translate https://grammy.dev!
 We are looking forward to your contributions!
