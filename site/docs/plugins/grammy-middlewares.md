@@ -1,4 +1,4 @@
-# Set of useful middlewares for [grammY](https://grammy.dev/)
+# Set of useful middlewares
 
 I kept rewriting the same middlewares again and again for all of my bots so I decided to extract them all to a separate package.
 
