@@ -21,7 +21,7 @@ You're welcome to [join us](https://t.me/grammyjs)!
 
 ## What programming language does grammY use?
 
-grammY is written from the ground up in TypeScrip — a superset of JavaScript.
+grammY is written from the ground up in TypeScript—a superset of JavaScript.
 Therefore, it runs on Node.js.
 
 However, grammY can also run on Deno, which positions itself as the successor of Node.js.
