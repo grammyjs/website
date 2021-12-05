@@ -223,6 +223,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/plugins/console-time.md",
                   },
                   {
+                    text: "Useful Middleware",
+                    link: "/plugins/middlewares.md",
+                  },
+                  {
                     text: "[Submit your PR!]",
                     link:
                       "/plugins/README.md#submitting-your-own-package-to-the-docs",
