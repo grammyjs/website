@@ -50,6 +50,7 @@ bot.on("inline_query", async (ctx) => {
   await ctx.answerInlineQuery(
     hits.map((h: any): InlineQueryResultArticle => {
       const { text: message_text, url } = getText(h, !h.hierarchy.lvl2);
+      const iv = `https://t.me/iv?rhash=ca1d23e111bcad&url=${url}`
       return {
         id: h.objectID,
         type: "article",
@@ -57,7 +58,7 @@ bot.on("inline_query", async (ctx) => {
         description: getTitle(h) + ": " +
           (h.content ?? "Title matches the search query"),
         input_message_content: { message_text, parse_mode: "HTML" },
-        reply_markup: new InlineKeyboard().url("Instant View", url),
+        reply_markup: new InlineKeyboard().url("Instant View", iv),
       };
     }),
     { cache_time: 24 * 60 * 60 }, // 24 hours (algolia re-indexing)
