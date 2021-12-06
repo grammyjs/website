@@ -38,6 +38,20 @@ grammY 是由 TypeScript 编写的，一个 JavaScript 的超集。
 
 ## 为什么我会收到这个错误？
 
+### 400 Bad Request: Cannot parse entities
+
+你正在发送带有格式的消息，即你设置了 `parse_mode`。
+但是你的格式不正确，因此 Telegram 不知道怎么解析它。
+你应该在 Telegram 文档中重新阅读 [关于格式化选项](https://core.telegram.org/bots/api#formatting-options)。
+错误消息中提到的字节偏移量将告诉你在你的字符串中出错的位置。
+
+::: tip 传入 entities 而不是格式化
+如果你愿意，你可以在 Telegram 上预解析 entities，并在发送消息时指定 `entities`。
+然后你的消息文本可以是一个普通的字符串。
+这样以来，你不必担心对奇怪的字符进行转义。
+这可能会看起来需要更多代码，但实际上它是这个问题的最可靠和安全的解决方案。
+:::
+
 ### 401 Unauthorized
 
 你的 bot token 是错误的。
@@ -45,7 +59,7 @@ grammY 是由 TypeScript 编写的，一个 JavaScript 的超集。
 其实不然。
 和 [@BotFather](https://t.me/BotFather) 交流，以获得你正确的 token。
 
-### 403 Forbidden: bot 被用户屏蔽了
+### 403 Forbidden: bot was blocked by the user
 
 你可能试图向一个用户发送信息，然后你遇到了这个问题。
 
@@ -68,7 +82,7 @@ Telegram 会这样做以保护他们的用户。
 如果你的 bot 大多数时间都能正常工作，但是突然发生了 404 错误，那么你可能正在做一些奇怪的事情。
 你可以在群聊中问我们。
 
-### 409 Conflict: 被其他 getUpdates 请求终止了
+### 409 Conflict: terminated by other getUpdates request
 
 你不小心在长轮询模式下运行了你的 bot 两次。
 你只能运行一个实例。
