@@ -18,8 +18,6 @@ import { Bot, webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 // You might modify this to the correct way to import your `Bot` object.
 import bot from "./bot.ts";
 
-const handleUpdate = webhookCallback(bot, "serveHttp");
-
 import { serve } from "https://deno.land/std/http/server.ts"; 
 
 const handleUpdate = webhookCallback(bot, "std/http");
