@@ -308,16 +308,16 @@ export default defineUserConfig<DefaultThemeOptions>({
                 text: "Hosting",
                 children: [
                   {
+                    text: "Deno Deploy",
+                    link: "/hosting/deno-deploy.md",
+                  },
+                  {
                     text: "Heroku",
                     link: "/hosting/heroku.md",
                   },
                   {
                     text: "Google Cloud Functions",
                     link: "/hosting/gcf.md",
-                  },
-                  {
-                    text: "Deno Deploy",
-                    link: "/hosting/deno-deploy.md",
                   },
                 ],
               },
