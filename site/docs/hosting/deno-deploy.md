@@ -1,0 +1,67 @@
+# Hosting: Deno deploy
+
+This guide tells you about the ways you can host your grammY bots on [Deno deploy](https://deno.com/deploy).
+
+Please note that this guide is only for Deno users, and you need to have a [GitHub](https://github.com/github.com) account for creating a [Deno deploy](https://deno.com/deploy) account.
+
+Deno deploy is ideal for most simple bots, and you should note that not all Deno features are available for apps running on Deno deploy. For example, there is no filesys on Deno deploy. It's just like the other many microservices, but dedicated for Deno apps.
+
+## Preparing Your Code
+
+1. Make sure that you have a which exports your `Bot` object, so that you can import it later to run it.
+2. Create a file named `mod.ts` or `mod.js`, or actually any name you like (but you should be remembering and using this as the main file to deploy), with the following content:
+
+```ts
+import { Bot, webhookCallback } from "https://deno.land/x/grammy/mod.ts";
+// You might modify this to the correct way to import your `Bot` object.
+import bot from "./bot.ts";
+
+const handleUpdate = webhookCallback(bot, "serveHttp");
+
+const server = Deno.listen({ port: 3000 });
+
+for await (const conn of server) {
+  serveHttp(conn);
+}
+
+async function serveHttp(conn: Deno.Conn) {
+  const httpConn = Deno.serveHttp(conn);
+
+  for await (const requestEvent of httpConn) {
+    if (requestEvent.request.method == "POST") {
+      try {
+        await handleUpdate(requestEvent);
+      } catch (err) {
+        console.error(err);
+      }
+    } else {
+      await requestEvent.respondWith(new Response(undefined, { status: 200 }));
+    }
+  }
+}
+```
+
+## Deploying
+
+### Method 1: With GitHub
+
+> This is the recommended method, and the easiest way to go with. The main advantage of following this method is that Deno deploy will watch for changes in your repository which includes your bot's, and it will update it on its own.
+
+1. Create a repository on GitHub, it can be either private or public.
+2. Push your code.
+
+> It is recommended that you have a single stable branch and you do your testing stuff in other branches, so that you won't get some unexpected things happen.
+
+3. Visit your [Deno deploy dashboard](https://dash.deno.com/projects).
+4. Create a new project.
+5. Scroll to the "Deploy from GitHub" section and "Continue".
+6. Install the GitHub app on your account or organization and choose your repository.
+7. Select the branch you want to deploy, and then choose your `mod` file to be deployed.
+
+### Method 2: With URL
+
+> All you need for following this method to deploy your grammY bot, is a public URL to your `mod` file.
+
+1. Create a new project on Deno deploy.
+2. Click "Deploy URL".
+3. Input the public URL to your `mod` file, and "Deploy".

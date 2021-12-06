@@ -315,6 +315,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                     text: "Google Cloud Functions",
                     link: "/hosting/gcf.md",
                   },
+                  {
+                    text: "Deno Deploy",
+                    link: "/hosting/deno-deploy.md",
+                  },
                 ],
               },
             ],
