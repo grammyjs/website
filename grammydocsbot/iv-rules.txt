@@ -1,16 +1,25 @@
 ~version: "2.1"
 
+# Define paths structures
 ?path: /(zh/)?guide/.*
 ?path: /(zh/)?advanced/.*
 ?path: /(zh/)?plugins/.*
 ?path: /(zh/)?resources/.*
 ?path: /(zh/)?hosting/.*
 
+# Title is always the only h1 elements
+title:  //h1
+site_name: "grammY Docs"
+channel: "@grammyjs_news"
+
+# Simply picking up main does most of the work
 body:    //main
+# Just gotta fix some spacing in code blocks ...
 @replace("\n$", ""): //code
+# ... and rewrite links to stay within IV.
 @replace("^/", "https://t.me/iv?rhash=ca1d23e111bcad&url=https%3A%2F%2Fgrammy.dev%2F"): //a/@href
 
-@detach: //span[has-class("prev")]
-@remove: //span[has-class("sr-only")]
-@remove: //a[has-class("header-anchor")]
-@remove: //div[has-class("line-numbers")]
+@detach: //span[has-class("prev")] # fix prev/next links, same as: @detach: //span[has-class("next")]
+@remove: //span[has-class("sr-only")] # no sr content
+@remove: //a[has-class("header-anchor")] # remove header links
+@remove: //div[has-class("line-numbers")] # remove line number blocks
