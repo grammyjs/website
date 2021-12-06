@@ -39,6 +39,20 @@ If you're coming from a different programming language or framework, you can che
 
 ## Why Am I Getting This Error?
 
+### 400 Bad Request: Cannot parse entities
+
+You are sending a message with formatting, i.e. you're setting `parse_mode` when sending a message.
+However, your formatting is broken, so Telegram does not know how to parse it.
+You should re-read [the section about foratting](https://core.telegram.org/bots/api#formatting-options) in the Telegram docs.
+The byte offset that is mentioned in the error message will tell you where exactly the error is in your string.
+
+::: tip Passing entities instead of formatting
+You can pre-parse the entities for Telegram if you want, and specify `entities` when sending your message.
+Your message text could then be a regular string.
+That way, you don't have to worry about escaping weird characters.
+This may look like it needs more code, but in fact it is the far more reliable and fool-proof solution to this problem.
+:::
+
 ### 401 Unauthorized
 
 Your bot token is wrong.
