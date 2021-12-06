@@ -10,6 +10,8 @@ import {
   MessageEntity,
 } from "https://deno.land/x/grammy@v1.4.3/platform.deno.ts";
 
+const ZWSP = "\u200b"; // zero-width space character
+
 const APPLICATION_ID = "BH4D9OD16A";
 const API_KEY = "17b3527aa6f36e8d3fe2276b0f4d9633";
 
@@ -50,19 +52,20 @@ bot.on("inline_query", async (ctx) => {
   hits.length = Math.min(50, hits.length);
   await ctx.answerInlineQuery(
     hits.map((h: any): InlineQueryResultArticle => {
-      const { title: message_text, iv, url } = getText(h, !h.hierarchy.lvl2);
-      const length = iv.length;
-      const bold: MessageEntity = { type: "bold", offset: 0, length };
-      const link: MessageEntity = { type: "url", offset: 0, length };
-      const entities = [bold, link];
+      const { title, iv, url } = getText(h, !h.hierarchy.lvl2);
+      const message_text = `${title}${ZWSP}\n\n${url}`;
+      const entities: MessageEntity[] = [
+        { type: "bold", offset: 0, length: title.length },
+        { type: "text_link", offset: title.length, length: 1, url: iv },
+      ];
       return {
         id: h.objectID,
         type: "article",
-        title: getTitle(h),
-        description: getTitle(h) + ": " +
-          (h.content ?? "Title matches the search query"),
+        title,
+        description: `${title}: ${
+          h.content ?? "Title matches the search query"
+        }`,
         input_message_content: { message_text, entities },
-        reply_markup: new InlineKeyboard().url("Open Externally", url),
       };
     }),
     { cache_time: 24 * 60 * 60 }, // 24 hours (algolia re-indexing)
