@@ -7,7 +7,7 @@
 ?path: /(zh/)?resources/.*
 ?path: /(zh/)?hosting/.*
 
-# Title is always the only h1 elements
+# Title is always the only h1 element
 title:  //h1
 site_name: "grammY Docs"
 channel: "@grammyjs_news"
