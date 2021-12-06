@@ -7,6 +7,7 @@ import {
 import { serve } from "https://deno.land/std@0.116.0/http/server.ts";
 import {
   InlineQueryResultArticle,
+  MessageEntity,
 } from "https://deno.land/x/grammy@v1.4.3/platform.deno.ts";
 
 const APPLICATION_ID = "BH4D9OD16A";
@@ -49,14 +50,18 @@ bot.on("inline_query", async (ctx) => {
   hits.length = Math.min(50, hits.length);
   await ctx.answerInlineQuery(
     hits.map((h: any): InlineQueryResultArticle => {
-      const { text: message_text, url } = getText(h, !h.hierarchy.lvl2);
+      const { title: message_text, iv, url } = getText(h, !h.hierarchy.lvl2);
+      const length = iv.length;
+      const bold: MessageEntity = { type: "bold", offset: 0, length };
+      const link: MessageEntity = { type: "url", offset: 0, length };
+      const entities = [bold, link];
       return {
         id: h.objectID,
         type: "article",
         title: getTitle(h),
         description: getTitle(h) + ": " +
           (h.content ?? "Title matches the search query"),
-        input_message_content: { message_text, parse_mode: "HTML" },
+        input_message_content: { message_text, entities },
         reply_markup: new InlineKeyboard().url("Open Externally", url),
       };
     }),
@@ -80,8 +85,8 @@ function getTitle(hit: any) {
 function getText(hit: any, strip: boolean) {
   const title = getTitle(hit);
   const url = strip ? stripAnchor(hit.url) : hit.url;
-  const iv = `https://t.me/iv?rhash=ca1d23e111bcad&url=${url}`
-  return { text: `<b>${title}</b>\n\n${iv}`, url };
+  const iv = `https://t.me/iv?rhash=ca1d23e111bcad&url=${url}`;
+  return { title, iv, url };
 }
 
 function stripAnchor(url: string) {
