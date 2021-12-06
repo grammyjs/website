@@ -5,6 +5,9 @@ import {
   webhookCallback,
 } from "https://deno.land/x/grammy@v1.4.3/mod.ts";
 import { serve } from "https://deno.land/std@0.116.0/http/server.ts";
+import {
+  InlineQueryResultArticle,
+} from "https://deno.land/x/grammy@v1.4.3/platform.deno.ts";
 
 const APPLICATION_ID = "BH4D9OD16A";
 const API_KEY = "17b3527aa6f36e8d3fe2276b0f4d9633";
@@ -45,20 +48,19 @@ bot.on("inline_query", async (ctx) => {
   const { hits } = await search(query);
   hits.length = Math.min(50, hits.length);
   await ctx.answerInlineQuery(
-    hits.map((h: any) => ({
-      id: h.objectID,
-      type: "article",
-      title: getTitle(h),
-      description: getTitle(h) + ": " +
-        (h.content ?? "Title matches the search query"),
-      input_message_content: {
-        message_text: getText(h, !h.hierarchy.lvl2),
-        parse_mode: "HTML",
-      },
-    })),
-    {
-      cache_time: 24 * 60 * 60, // 24 hours (algolia re-indexing)
-    },
+    hits.map((h: any): InlineQueryResultArticle => {
+      const { text: message_text, url } = getText(h, !h.hierarchy.lvl2);
+      return {
+        id: h.objectID,
+        type: "article",
+        title: getTitle(h),
+        description: getTitle(h) + ": " +
+          (h.content ?? "Title matches the search query"),
+        input_message_content: { message_text, parse_mode: "HTML" },
+        reply_markup: new InlineKeyboard().url("Instant View", url),
+      };
+    }),
+    { cache_time: 24 * 60 * 60 }, // 24 hours (algolia re-indexing)
   );
 });
 
@@ -78,9 +80,7 @@ function getTitle(hit: any) {
 function getText(hit: any, strip: boolean) {
   const title = getTitle(hit);
   const url = strip ? stripAnchor(hit.url) : hit.url;
-  return `<b>${title}</b>
-
-${url}`;
+  return { text: `<b>${title}</b>\n\n${url}`, url };
 }
 
 function stripAnchor(url: string) {
