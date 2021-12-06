@@ -20,27 +20,22 @@ import bot from "./bot.ts";
 
 const handleUpdate = webhookCallback(bot, "serveHttp");
 
-const server = Deno.listen({ port: 3000 });
+import { serve } from "https://deno.land/std/http/server.ts"; 
 
-for await (const conn of server) {
-  serveHttp(conn);
-}
+const handleUpdate = webhookCallback(bot, "std/http");
 
-async function serveHttp(conn: Deno.Conn) {
-  const httpConn = Deno.serveHttp(conn);
-
-  for await (const requestEvent of httpConn) {
-    if (requestEvent.request.method == "POST") {
-      try {
-        await handleUpdate(requestEvent);
-      } catch (err) {
-        console.error(err);
-      }
-    } else {
-      await requestEvent.respondWith(new Response(undefined, { status: 200 }));
-    }
-  }
-}
+serve(async (req) => {
+  if (req.method == "POST") {
+    try {
+      return await handleUpdate(req);
+     } catch (err) {
+       console.error(err);
+       return new Response();
+     }
+   }
+   
+   return new Response();
+});
 ```
 
 ## Deploying
