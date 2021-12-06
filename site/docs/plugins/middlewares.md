@@ -56,7 +56,7 @@ Checks if the user is a super admin. You have to provide the super admin id.
 
 ### `sequentialize`
 
-The basic [sequentialize](https://grammy.dev/advanced/scaling.html#concurrency-is-hard) middleware that takes the chat id as a sequential identifier.
+The basic [sequentialize](/advanced/scaling.html#concurrency-is-hard) middleware that takes the chat id as a sequential identifier.
 
 ## Plugin Summary
 
