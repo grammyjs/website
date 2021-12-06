@@ -288,6 +288,10 @@ You can store short text payloads along with all navigation and text buttons.
 When the respective handlers are invoked, the text payload will be available under `ctx.match`.
 This is useful because it lets you store a little bit of data in a menu.
 
+> Payloads cannot be used to actually store any significant amounts of data.
+> The only thing you can store are short strings of typically less than 50 bytes, such as an index or an identifier.
+> If you really want to store user data such as a file identifier, a URL, or anything else, you should use [sessions](./session.md).
+
 Here is an example menu that remembers its creator in the payload.
 Other use cases could be, for example, to store the index in a paginated menu.
 
@@ -319,6 +323,7 @@ You can also dynamically adjust the structure of a menu in order to add and remo
 You cannot create or change your menus during message handling.
 All menus must be fully created and registered before your bot starts.
 This means that you cannot do `new Menu('id')` in a handler of your bot.
+You cannot call `menu.text` or the like in a handler of your bot.
 
 Adding new menus while your bot is running would cause a memory leak.
 Your bot would slow down more and more, and eventually crash.
@@ -329,37 +334,31 @@ They allow you to arbitrarily change the structure of an existing menu instance,
 
 You can let a part of a menu's buttons be generated on the fly (or all of them if you want).
 We call this part of the menu a _dynamic range_.
-The easiest way to create a dynamic range is by using the `MenuRange` class that this plugin provides.
+In other words, instead of defining the buttons directly on the menu, you can pass a factory function that creates a the buttons when the menu is rendered.
+The easiest way to create a dynamic range in this function is by using the `MenuRange` class that this plugin provides.
 A `MenuRange` provides you with exactly the same functions as a menu, but it does not have an identifier, and it cannot be registered.
 
 ```ts
-function getRandomInt(minInclusive: number, maxExclusive: number) {
-  const range = maxExclusive - minInclusive;
-  return minInclusive + Math.floor(range * Math.random());
-}
-
-// Create a menu with a random number of buttons.
-const menu = new Menu("random", { onMenuOutdated: false });
-
+const menu = new Menu("dynamic");
 menu
-  .text("Regenerate", (ctx) => ctx.menu.update())
-  .row();
-menu.dynamic(() => {
-  const range = new MenuRange();
-  const buttonCount = getRandomInt(2, 9); // 2-8 buttons
-  for (let i = 0; i < buttonCount; i++) {
-    range
-      .text(i.toString(), (ctx) => ctx.reply(`${i} selected`))
-      .row();
-  }
-  return range;
-});
+  .url("About", "https://grammy.dev/plugins/menu").row()
+  .dynamic(() => {
+    // Generate a part of the menu dynamically!
+    const range = new MenuRange();
+    for (let i = 0; i < 3; i++) {
+      range
+        .text(i.toString(), (ctx) => ctx.reply(`You chose ${i}`))
+        .row();
+    }
+    return range;
+  })
+  .text("Cancel", (ctx) => ctx.deleteMessage());
 ```
 
-The range builder function that you pass to `dynamic` may be `async`, so you can even perform API calls or do database communication before returning your new menu range.
+The range builder function that you pass to `dynamic` may be `async`, so you can even read data from an API or a database before returning your new menu range.
 **In many cases, it makes sense to generate a dynamic range based on [session](./session.md) data.**
 
-Moreover, the range builder function takes a context object as the first argument.
+The range builder function takes a context object as the first argument.
 (This is not specified in the example above.)
 Optionally, as a second argument after `ctx`, you can receive a fresh instance of `MenuRange`.
 You can modify it instead of returning your own instance if that's what you prefer.
@@ -374,6 +373,19 @@ menu.dynamic((ctx, range) => {
   }
 });
 ```
+
+It is important that your factory function works in a certain way, otherwise your menus may show strange behavior or even throw errors.
+As menus are always [rendered twice](#how-does-it-work) (once when the menu is sent, and once when a button is pressed), you need to make sure that:
+
+1. **You do not have any side-effects in the function that builds the dynamic range.**
+   Do not send messages.
+   Do not write to the session data.
+   Do not change any variables outside of the function.
+   Check out [Wikipedia on side-effects](https://en.wikipedia.org/wiki/Side_effect_(computer_science)).
+2. **Your function is stable**, i.e. it does not depend on randomness, the current time, or other fast-changing data sources.
+   It has to generate the same buttons the first and the second time the menu is rendered.
+   Otherwise, the menu plugin cannot match the correct handler with the pressed button.
+   Instead, it will [detect](#outdated-menus-and-fingerprints) that your menu is outdated, and refuse to call the handlers.
 
 ## Answering Callback Queries Manually
 
@@ -425,7 +437,7 @@ We consider it outdated if:
 
 - The shape of the menu changed (number of rows, or number of buttons in any row).
 - The row/column position of the pressed button is out of range.
-- The label the pressed button changed.
+- The label on the pressed button changed.
 - The pressed button does not contain a handler.
 
 It is possible that your menu changes, while all of the above things stay the same.
