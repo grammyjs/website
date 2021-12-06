@@ -1,0 +1,16 @@
+~version: "2.1"
+
+?path: /(zh/)?guide/.*
+?path: /(zh/)?advanced/.*
+?path: /(zh/)?plugins/.*
+?path: /(zh/)?resources/.*
+?path: /(zh/)?hosting/.*
+
+body:    //main
+@replace("\n$", ""): //code
+@replace("^/", "https://t.me/iv?rhash=ca1d23e111bcad&url=https%3A%2F%2Fgrammy.dev%2F"): //a/@href
+
+@detach: //span[has-class("prev")]
+@remove: //span[has-class("sr-only")]
+@remove: //a[has-class("header-anchor")]
+@remove: //div[has-class("line-numbers")]
