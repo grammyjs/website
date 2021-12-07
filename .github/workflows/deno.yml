@@ -29,7 +29,7 @@ jobs:
         run: npm run docs:build
         working-directory: site/
 
-  format-and-lint:
+  format:
     runs-on: ubuntu-latest
     steps:
       - name: Setup repo
@@ -40,9 +40,5 @@ jobs:
           deno-version: v1.x
 
       - name: Check Format
-        run: npm run fmt
-        working-directory: site/
-
-      - name: Lint
-        run: npm run lint
+        run: npm run docs:fmt
         working-directory: site/
