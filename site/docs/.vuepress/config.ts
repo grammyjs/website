@@ -223,6 +223,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/plugins/console-time.md",
                   },
                   {
+                    text: "Useful Middleware",
+                    link: "/plugins/middlewares.md",
+                  },
+                  {
                     text: "[Submit your PR!]",
                     link:
                       "/plugins/README.md#submitting-your-own-package-to-the-docs",
@@ -532,6 +536,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                   {
                     text: "调试时输出日志",
                     link: "/zh/plugins/console-time.md",
+                  },
+                  {
+                    text: "有用的中间件",
+                    link: "/zh/plugins/middlewares.md",
                   },
                   {
                     text: "[等待你的 PR!]",

@@ -7,7 +7,7 @@ next: ./middleware.md
 
 Commands 是 Telegram 信息中的特殊对象，作为 bot 的指令存在。
 
-## 用法
+## 使用方法
 
 > 重温 Telegram 团队编写的 [Introduction for Developers](https://core.telegram.org/bots#commands)中的 Commands 部分。
 
