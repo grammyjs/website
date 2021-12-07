@@ -341,10 +341,10 @@ bot.command("reset", (ctx) => {
 });
 ```
 
-有人可能会争论说，明确地使用 `await` 比赋值一个 promise 给 `ctx.seesion` 要更好，但重点是如果你出于某种原因更喜欢这种风格，你 _可以_ 这样写。
+有人可能会争论说，明确地使用 `await` 比赋值一个 promise 给 `ctx.session` 要更好，但重点是如果你出于某种原因更喜欢这种风格，你 _可以_ 这样写。
 
 ::: tip 需要会话的插件
-使用 `ctx.session` 的插件开发者应该始终允许用户传入 `SeesionFlavor | LazySessionFlavor`，从而支持这两种模式。
+使用 `ctx.session` 的插件开发者应该始终允许用户传入 `SessionFlavor | LazySessionFlavor`，从而支持这两种模式。
 在插件代码中，只需要一直 await `ctx.session`：如果一个非 promise 对象被传入，那么它将会简单地计算为它自己，因此你实际上只需要支持懒会话就能够自动支持严格的会话。
 :::
 

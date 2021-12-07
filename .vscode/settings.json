@@ -1,1 +1,1 @@
-{ "deno.config": "./deno.json", "deno.enable": true }
+{ "deno.config": "./site/deno.json", "deno.enable": true }
