@@ -42,11 +42,11 @@ bot.use(
 
 ### `onlyAdmin`
 
-检查用户是否是管理员。你可以选择指定 `errorHandler`，如果用户不是管理员时通过上下文来调用。
+检查用户是否是管理员。你可以选择指定 `errorHandler`，如果用户不是管理员时，它将在上下文中调用。
 
 ### `onlyPublic`
 
-检查是否是群组或频道。你可以选择指定 `errorHandler`，如果不是群组或频道时通过上下文来调用。
+检查是否是群组或频道。你可以选择指定 `errorHandler`，如果不是群组或频道时，它将在上下文中调用。
 
 ### `onlySuperAdmin`
 
