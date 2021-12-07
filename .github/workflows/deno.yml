@@ -40,7 +40,9 @@ jobs:
           deno-version: v1.x
 
       - name: Check Format
-        run: deno fmt --config deno.json --check
+        run: npm run fmt
+        working-directory: site/
 
       - name: Lint
-        run: deno lint --config deno.json
+        run: npm run lint
+        working-directory: site/
