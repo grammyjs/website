@@ -289,6 +289,10 @@ bot.use(settings);
 当相应的处理程序被调用时，payload 将在 `ctx.match` 中可用。
 这是非常有用的，因为它让你可以在菜单中存储一些数据。
 
+> Payloads 不能用来实际存储任何大量的数据。
+> 你能存储的唯一的东西是通常小于 50 字节的短字符串，例如索引或标识符。
+> 如果你真的想存储用户数据，例如文件标识符，URL 或其他东西，你应该使用 [会话](./session.md)。
+
 这里是一个记住创建者的菜单的例子。
 其他用例可能是，例如，存储分页菜单的索引。
 
@@ -320,6 +324,7 @@ Payloads 也能和动态范围一起使用。
 你不能在信息处理过程中创建或更改菜单。
 所有菜单必须在你的机器人开始之前完全创建和注册。
 这意味着你不能在你的 bot 的处理程序中使用 `new Menu('id')`。
+你不能在你的 bot 的处理程序中调用 `menu.text` 或类似的东西。
 
 在你的 bot 运行时，添加新的菜单会导致内存泄漏。
 你的 bot 将会变得更慢，并且最终崩溃。
@@ -330,38 +335,32 @@ Payloads 也能和动态范围一起使用。
 
 你可以让一部分按钮在运行时动态生成（或者全部）。
 我们把这部分菜单称为 _动态范围_。
-创建动态范围的最简单方法是使用这个插件提供的 `MenuRange` 类。
+换句话说，你可以通过一个工厂函数在菜单被渲染时创建一个按钮，而不是直接在菜单上定义按钮。
+在这个函数里创建动态范围的最简单方法是使用这个插件提供的 `MenuRange` 类。
 `MenuRange` 为你提供了菜单的所有功能，但是它没有标识符，并且不能被注册。
 
 ```ts
-function getRandomInt(minInclusive: number, maxExclusive: number) {
-  const range = maxExclusive - minInclusive;
-  return minInclusive + Math.floor(range * Math.random());
-}
-
-// 创建一个包含随机数量的按钮的菜单。
-const menu = new Menu("random", { onMenuOutdated: false });
+const menu = new Menu("dynamic");
 
 menu
-  .text("Regenerate", (ctx) => ctx.menu.update())
-  .row();
-
-menu.dynamic((_ctx) => {
-  const range = new MenuRange();
-  const buttonCount = getRandomInt(2, 9); // 2-8 按钮
-  for (let i = 0; i < buttonCount; i++) {
-    range
-      .text(i.toString(), (ctx) => ctx.reply(`${i} selected`))
-      .row();
-  }
-  return range;
-});
+  .url("About", "https://grammy.dev/plugins/menu").row()
+  .dynamic(() => {
+    // 动态生成一部分菜单！
+    const range = new MenuRange();
+    for (let i = 0; i < 3; i++) {
+      range
+        .text(i.toString(), (ctx) => ctx.reply(`You chose ${i}`))
+        .row();
+    }
+    return range;
+  })
+  .text("Cancel", (ctx) => ctx.deleteMessage());
 ```
 
-你传递给 `dynamic` 的范围构造器可以是 `async`，所以你可以甚至进行 API 调用或数据库交互。
+你传递给 `dynamic` 的范围构造器可以是 `async`，所以你甚至可以在返回新的菜单范围之前从 API 或数据库读取数据。
 **在许多情况下，根据 [会话](./session.md)数据生成一个动态范围是有意义的。**
 
-此外，范围构造器的第一个参数是上下文对象。
+范围构造器的第一个参数是上下文对象。
 （在上面的例子中，没有指定这一点。）
 
 你可以选择在 `ctx` 后面接收一个新的 `MenuRange` 实例。
@@ -377,6 +376,19 @@ menu.dynamic((ctx, range) => {
   }
 });
 ```
+
+你的工厂函数以某种方式工作是很重要的，否则你的菜单可能会出现奇怪的行为，甚至抛出错误。
+由于菜单总是 [渲染两次](#它是如何工作的)（一次是当菜单被发送时，另一次是当按钮被按下时），你需要确保：
+
+1. **你在建立动态范围的函数中没有任何副作用。**
+   不要发送消息。
+   不要写入会话数据。
+   不要改变函数之外的任何变量。
+   请查看 [维基百科上的副作用](https://zh.wikipedia.org/wiki/副作用_(计算机科学))。
+2. **你的函数是稳定的**，也就是说，它不依赖于随机性、当前时间或其他快速变化的数据源。
+   它必须在第一次和第二次渲染菜单时生成相同的按钮。
+   否则，菜单插件无法将正确的处理程序与按下的按钮匹配。
+   而是，它会 [检测](#过时的菜单和指纹) 你的菜单已经过期，并且拒绝调用处理程序。
 
 ## 手动回复 Callback 查询
 
@@ -428,7 +440,7 @@ const menu2 = new Menu("id", { onMenuOutdated: false });
 
 - 菜单的形状发生了变化（行数或任意一行中按钮的数量）。
 - 被按下的按钮的行/列位置超出范围。
-- 被按下的按钮的标签改变了。
+- 被按下的按钮上的标签改变了。
 - 被按下的按钮不包含处理程序。
 
 有可能会出现这种情况，你的菜单可能会改变，但是上面的所有东西都保持不变。
