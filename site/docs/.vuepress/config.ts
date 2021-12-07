@@ -621,6 +621,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                 text: "托管服务",
                 children: [
                   {
+                    text: "Deno Deploy",
+                    link: "/zh/hosting/deno-deploy.md",
+                  },
+                  {
                     text: "Heroku",
                     link: "/zh/hosting/heroku.md",
                   },
