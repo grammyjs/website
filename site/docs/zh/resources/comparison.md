@@ -12,7 +12,7 @@
 ::: tip 请先选择你的编程语言
 鉴于你正在阅读 JavaScript 生态系统中的一个框架的文档，你可能正在寻找能在 Node.js（或 Deno）上运行的东西。
 但是，如果你不是的话，请 [向下滚动](#与其他编程语言的框架比较)，比较哪些编程语言适合于 bot 开发。
-当然，你也会发现与其他语言的框架（主要是 Pyhton）的简单比较。
+当然，你也会发现与其他语言的框架（主要是 Python）的简单比较。
 :::
 
 grammY 主要从两个项目中获取灵感，即 [Telegraf](https://github.com/telegraf/telegraf) 和 [NTBA](https://github.com/yagop/node-telegram-bot-api)。
