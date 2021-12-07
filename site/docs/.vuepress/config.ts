@@ -534,6 +534,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/zh/plugins/console-time.md",
                   },
                   {
+                    text: "有用的中间件",
+                    link: "/zh/plugins/middlewares.md",
+                  },
+                  {
                     text: "[等待你的 PR!]",
                     link: "/zh/plugins/README.md#向文档提交你自己的插件",
                   },
