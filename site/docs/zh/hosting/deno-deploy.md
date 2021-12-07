@@ -1,4 +1,4 @@
-# 托管：Deno deploy
+# 托管：Deno Deploy
 
 这个指南告诉你如何将你的 grammY bots 托管到 [Deno Deploy](https://deno.com/deploy).
 
