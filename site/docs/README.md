@@ -29,7 +29,7 @@ permalink: /
   'hundreds of millions served',
 ][Math.floor(Math.random() * 7)] }}.</h6>
 
-## Quickstart
+## Quickstart ftw
 
 Bots are written in [TypeScript](https://www.typescriptlang.org) (or JavaScript) and run on various platforms, including [Node.js](https://nodejs.org).
 
