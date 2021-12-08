@@ -37,7 +37,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: ${{ github.event.pull_request.title }}
           enable-pull-request-comment: false
-          enable-commit-comment: true
+          enable-commit-comment: false
           overwrites-pull-request-comment: true
           fails-without-credentials: true
         env:
