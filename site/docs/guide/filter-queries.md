@@ -252,7 +252,7 @@ const messages = bot.on("message"); // (only regard messages from here)
 // Automatic forward from the channel `ctx.senderChat`:
 messages.on(":is_automatic_forward");
 // Regular messages sent by `ctx.from`:
-messages.filter((ctx) => ctx.from !== undefined);
+messages.filter((ctx) => ctx.senderChat === undefined);
 // Anonymous admin in `ctx.chat`:
 messages.filter((ctx) => ctx.senderChat?.id === ctx.chat?.id);
 // Everything else, i.e. users sending messages as `ctx.senderChat`:
