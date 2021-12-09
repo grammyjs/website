@@ -129,14 +129,14 @@ You can detect bots in queries with the `:is_bot` query part.
 The syntactic sugar `:me` can be used to refer to your bot from within a query, which will compare the user identifiers for you.
 
 ```ts
-// A service message about a bot that joined the chat:
+// A service message about a bot that joined the chat
 bot.on("message:new_chat_members:is_bot");
-// A service message about your bot being removed:
+// A service message about your bot being removed
 bot.on("message:left_chat_member:me");
 ```
 
 Note that while this syntactic sugar is useful to work with service messages, is should not be used to detect if someone actually joins or leaves a chat.
-Services messages are messages that inform the users in the chat about about , but they will not be sent in all cases.
+Services messages are messages that inform the users in the chat, and some of them will not be visible in all cases.
 For example, in large groups, there will not be any service messages about users that join or leave the chat.
 Hence, your bot may not notice this.
 Instead, you should listen for [chat member updates](#chat-member-updates).
@@ -192,7 +192,7 @@ As an example, it can detect that `ctx.msg.text` is a required property for the 
 
 ## Useful Tips
 
-Here are some less known features of filter queries that can come in handy.
+Here are some less-known features of filter queries that can come in handy.
 Some of them are a little advanced, so feel free to move on to [the next section](./commands.md).
 
 ### Chat Member Updates
@@ -225,7 +225,7 @@ This allows for powerful message handling patterns.
 ```ts
 bot.on(":forward_date").command("help"); // forwarded /help commands
 
-// Only handle commands in private chats:
+// Only handle commands in private chats.
 const pm = bot.filter((ctx) => ctx.chat?.type === "private");
 pm.command("start");
 pm.command("help");
@@ -233,7 +233,7 @@ pm.command("help");
 
 ### Filtering by Message Sender Type
 
-There are five different possible types of message authors on Telegram.
+There are five different possible types of message authors on Telegram:
 
 1. Channel post authors
 2. Automatic forwards from linked channels in discussion groups
@@ -244,18 +244,18 @@ There are five different possible types of message authors on Telegram.
 You can combine filter queries with other update handling mechanisms to find out the type of the message author.
 
 ```ts
-// Channel posts sent by `ctx.senderChat`:
+// Channel posts sent by `ctx.senderChat`
 bot.on("channel_post");
 
 const messages = bot.on("message"); // (only regard messages from here)
 
 // Automatic forward from the channel `ctx.senderChat`:
 messages.on(":is_automatic_forward");
-// Regular messages sent by `ctx.from`:
+// Regular messages sent by `ctx.from`
 messages.filter((ctx) => ctx.senderChat === undefined);
-// Anonymous admin in `ctx.chat`:
+// Anonymous admin in `ctx.chat`
 messages.filter((ctx) => ctx.senderChat?.id === ctx.chat?.id);
-// Everything else, i.e. users sending messages as `ctx.senderChat`:
+// Everything else, i.e. users sending messages as `ctx.senderChat`
 messages.use();
 ```
 
