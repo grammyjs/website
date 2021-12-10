@@ -52,12 +52,14 @@ nano bot1.service
 
 ```text
 [Service]
-ExecStart=<start command>
+ExecStart=<start_command>
 Restart=on-failure
 
 [Install]
 WantedBy=multi-user.targets
 ```
+
+> Replace `<start_command>` with the command you got above.
 
 3. Reload systemd whenever you edit the service:
 
@@ -73,9 +75,9 @@ systemctl daemon-reload
 systemctl start <service_name>
 ```
 
-> You should be replacing `<service_name>` with the file name of the service.
+> Replace `<service_name>` with the file name of the service.
 
-### Run on reboots
+### Run on boot
 
 ```bash
 systemctl enable <service_name>
@@ -99,7 +101,7 @@ systemctl restart <service_name>
 systemctl stop <service_name>
 ```
 
-### Don't run on reboots
+### Don't run on boot
 
 ```bash
 systemctl disable <service_name>
