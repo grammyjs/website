@@ -324,7 +324,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/hosting/gcf.md",
                   },
                   {
-                    text: "VPS",
+                    text: "Virtual Private Server",
                     link: "/hosting/vps.md",
                   },
                 ],
