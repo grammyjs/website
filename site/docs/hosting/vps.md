@@ -8,12 +8,6 @@ The main advantage of using systemd to run your bot is that you won't need to
 restart your bot manually on reboots, or when it crashes. systemd will take care
 of all of this, itself.
 
-## Contents
-
-- [Getting prepared](#getting-prepared)
-- [Running polling bots](#running-polling-bots)
-- [Running webhhook bots](#running-webhook-bots)
-
 ## Getting the start commmand
 
 1. Get the full path of your runtime:
