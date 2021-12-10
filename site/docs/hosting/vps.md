@@ -1,11 +1,11 @@
 # systemd
 
-systemd is a powerful service manager which is pre-installed on many Linux
-distributions, mainly Debian-based ones. This guide tells how systemd can be
+systemd is a powerful service manager which is pre-installed on many Linux distributions, mainly Debian-based ones.
+This guide tells how systemd can be
 used to run grammY bots.
 
-The main advantage of using systemd to run your bot is that you won't need to
-restart your bot manually on reboots, or when it crashes. systemd will take care
+The main advantage of using systemd to run your bot is that you won't need to restart your bot manually on reboots, or when it crashes.
+systemd will take care
 of all of this, itself.
 
 ## Getting the start commmand
