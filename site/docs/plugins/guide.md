@@ -144,11 +144,9 @@ const bot = new Bot("YOUR BOT TOKEN HERE");
 // Use the plugin.
 bot.api.config.use(autoChatAction());
 
-bot.on("message", async (ctx) => {
-  // If user send this command, we will send him a pdf file (for demonstration purposes)
-  if (ctx.message.text === "send me a document") {
+bot.hears("send me a document", async (ctx) => {
+    // If user send this command, we will send him a pdf file (for demonstration purposes)
     await ctx.replyWithDocument(new InputFile("/tmp/document.pdf"));
-  }
 });
 
 // start the bot
