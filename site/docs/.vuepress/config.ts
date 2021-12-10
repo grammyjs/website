@@ -152,6 +152,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                     text: "About Plugins",
                     link: "/plugins/README.md",
                   },
+                  {
+                    text: "How to Write a Plugin",
+                    link: "/plugins/guide.md",
+                  },
                 ],
               },
               {
