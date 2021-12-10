@@ -1,27 +1,14 @@
 # VPS
 
-A virtual private server, mostly known as VPS, is a virtual machine running in the cloud with its users having the full control of its filesystem.
-There are tons of advantages in using a VPS over things like Heroku and microservices to run your bots.
+A virtual private server, mostly known as VPS, is a virtual machine running in the cloud with its users having the full control of its system.
 
 In this guide, you'll learn about various methods of running your bot in a VPS, keeping it online 24/7, making it run automatically when your VPS boots and restart on crashes.
 
-## Methods of Hosting
-
-- [systemd](#systemd)
-
----
-
-# systemd
+## systemd
 
 systemd is a powerful service manager which is pre-installed on many Linux distributions, mainly Debian-based ones.
-This guide tells how systemd can be
-used to run grammY bots.
 
-The main advantage of using systemd to run your bot is that you won't need to restart your bot manually on reboots, or when it crashes.
-systemd will take care
-of all of this, itself.
-
-## Getting the start commmand
+### Getting the start commmand
 
 1. Get the full path of your runtime:
 
@@ -47,7 +34,7 @@ which node
 # /home/user/.nvm/versions/node/v16.9.1/bin/node /home/user/bot1/index.js
 ```
 
-## Creating the service
+### Creating the service
 
 1. Go to the services directory:
 
@@ -80,9 +67,9 @@ WantedBy=multi-user.targets
 systemctl daemon-reload
 ```
 
-## Managing the service
+### Managing the service
 
-### Start
+#### Start
 
 ```bash
 systemctl start <service_name>
@@ -90,31 +77,31 @@ systemctl start <service_name>
 
 > Replace `<service_name>` with the file name of the service.
 
-### Run on boot
+#### Run on boot
 
 ```bash
 systemctl enable <service_name>
 ```
 
-### Check logs
+#### Check logs
 
 ```bash
 systemctl status <service_name>
 ```
 
-### Restart
+#### Restart
 
 ```bash
 systemctl restart <service_name>
 ```
 
-### Stop
+#### Stop
 
 ```bash
 systemctl stop <service_name>
 ```
 
-### Don't run on boot
+#### Don't run on boot
 
 ```bash
 systemctl disable <service_name>
