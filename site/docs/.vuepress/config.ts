@@ -323,6 +323,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                     text: "Google Cloud Functions",
                     link: "/hosting/gcf.md",
                   },
+                  {
+                    text: "VPS",
+                    link: "/hosting/vps.md",
+                  },
                 ],
               },
             ],
