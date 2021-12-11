@@ -1,47 +1,34 @@
 # The Hitchhiker's Guide to grammY Plugins
 
-grammY is very extensible and it supports installing plugins, but how does one go about doing it?
-In this article, we will cover all the steps of developing a plugin for grammY bot framework.
+If you would like to develop your own plugin and publish it or if you want to know how grammY plugins work behind the scenes, this is the place for you!
 
-## What Is a Plugin?
-
-There is a popular principle in computing stating that software should be concise and minimal, but extensible.
-Why?
-Because not everyone uses everything!
-Plugins are designed as extra functionalities added to said pieces of software.
+> Please note that there is already a summary about [grammY plugins](./guide.md) and what they do. This article is a deep dive into their inner workings.
 
 ## Types of Plugins in grammY
 
-All that glitters is gold, right?
-Well, a different kind of gold!
-grammY can take advantage of two types of plugins: middleware plugins and transformer plugins.
-In simple terms, plugins in grammY return either a middleware function or a transformer one.
-Let's talk about the differences.
+There are 2 types of plugins in grammY:
 
-### Type I: Middleware Plugins
-
-A [middleware](https://grammy.dev/guide/middleware.html) is a function that handles incoming data in various forms.
-Middleware plugins are plugins that are fed to a bot as a—well you guessed it—middleware.
-This means that your plugin's sole job is to return a middleware that can be fed to grammY.
-
-### Type II: Transformer Plugins
-
-A [transformer function](https://grammy.dev/advanced/transformers.html#installing-a-transformer-function) is exactly the opposite of a middleware!
-It is a function that handles outgoing data.
-Transformer plugins are plugins that are fed to a bot as a—crazy! guessed it again—transformer.
-Similarly, this type of plugin returns a transformer function.
+- Middleware Plugins: The plugin's sole job is to return a [middleware function](/guide/middleware.md) that can be fed to a grammY bot.
+- Transformer Plugins: The plugin's sole job is to return a [transformer function](/advanced/transformers.md) that can be fed to a grammY bot.
 
 ## Rules of Contribution
 
-Before diving into some hands-on examples, there are some notes to pay attention to if you would like your plugins to be submitted to the documentation:
+You may publish your plugins in one of the following forms:
 
-1. You should document your plugin (README with instructions).
+- Publishing as a **third-party** plugin.
+- Publishing as an **official** plugin.
+
+If you choose to publish your plugins as a third party, we can still offer you a prominent place on this website. However, it is much preferred if you publish your plugin under [grammYjs organization](https://github.com/grammyjs). In such a case, you will be granted publish access to GitHub and npm. Also, You will be responsible for maintaining your code.
+
+Before diving into some hands-on examples, there are some rules to pay attention to if you'd like your plugins to be listed on this website:
+
+1. Have a README file on GitHub (and npm) with **short** instructions on how to use it.
 2. Explain the purpose of your plugin and how to use it by adding a page to the [docs](https://github.com/grammyjs/website).
 3. Choose a permissive license such as MIT or ISC.
 
 Finally, you should know that even though grammY supports both node and [deno](https://deno.land/), it is a Deno-first project and we also encourage you to write your plugins for Deno (and subsequently in style!).
 There is a handy-dandy tool called [deno2node](https://github.com/wojpawlik/deno2node) that transpiles your code from deno to node so we can support both platforms.
-This is **NOT** a must, however, it is very much encouraged.
+This is **NOT** a must, however, very much encouraged.
 
 ## Designing a Dummy Middleware Plugin
 
@@ -158,7 +145,7 @@ Note that this was for demonstration purposes.
 Telegram recommends using chat actions only when “a response from the bot will take a **noticeable** amount of time to arrive”.
 You probably don't actually need to set the status if the file is very small.
 
-## Exctraction Into a Plugin
+## Extraction Into a Plugin
 
 Whichever type of plugin you made, you have to bundle it in a standalone package.
 This is a fairly simple task.
