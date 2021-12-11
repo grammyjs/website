@@ -76,6 +76,7 @@ systemctl start <service_name>
 ```
 
 > Replace `<service_name>` with the file name of the service.
+> Example: `systemctl start bot1`
 
 #### Run on boot
 
