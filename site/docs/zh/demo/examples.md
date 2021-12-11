@@ -1,6 +1,5 @@
 ---
 prev: ./
-next: ./showlounge.md
 ---
 
 # 示例 Bots
