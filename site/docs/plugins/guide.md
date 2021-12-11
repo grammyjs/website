@@ -132,8 +132,8 @@ const bot = new Bot("YOUR BOT TOKEN HERE");
 bot.api.config.use(autoChatAction());
 
 bot.hears("send me a document", async (ctx) => {
-    // If user send this command, we will send him a pdf file (for demonstration purposes)
-    await ctx.replyWithDocument(new InputFile("/tmp/document.pdf"));
+  // If user send this command, we will send him a pdf file (for demonstration purposes)
+  await ctx.replyWithDocument(new InputFile("/tmp/document.pdf"));
 });
 
 // start the bot
