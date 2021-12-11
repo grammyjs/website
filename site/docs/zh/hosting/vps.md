@@ -76,6 +76,7 @@ systemctl start <service_name>
 ```
 
 > 用服务的文件名替换 `<service_name>`。
+> 样例：`systemctl start bot1`
 
 #### 开机时启动
 
