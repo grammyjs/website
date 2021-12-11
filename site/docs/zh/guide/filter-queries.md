@@ -98,7 +98,7 @@ bot.on("msg:text"); // 与 `:text` 完全一致
 ```ts
 bot.on("edit"); // 任何编辑过的消息和编辑过的频道 post
 bot.on("edit:text"); // 已编辑过的文字消息
-bot.on("edit::url"); // 所有编辑过的消息和编辑过的 channel posts 中带有 URL 的部分
+bot.on("edit::url"); // 在文本或标题中编辑带有 URL 的消息
 bot.on("edit:location"); // 实时位置更新
 ```
 
@@ -122,35 +122,24 @@ bot.on(":file"); // 消息或频道 posts 包含文件的部分
 bot.on("edit:file"); // 在消息或频道 posts 包含文件的部分且已被编辑的部分
 ```
 
-### 实用技巧！
+### 语法糖
 
+查询部分有两种特殊情况，使用户的过滤更方便。
 你可以通过 `:is_bot` 的查询部分来检测消息来源是否是 bot。
 语法糖 `:me` 可以用来在查询中指代你的 bot ，它将在内部为你比对用户标识符来实现这个效果。
 
 ```ts
-bot.on("message:new_chat_members:is_bot"); // 一个 bot 加入了会话
-bot.on("message:left_chat_member:me"); // 你的 bot 留下了一条聊天记录（已被删除）
+// 一个 bot 加入了聊天的服务信息
+bot.on("message:new_chat_members:is_bot");
+// 你的 bot 被移除的服务信息
+bot.on("message:left_chat_member:me");
 ```
 
-::: tip 按照用户属性筛选
-
-如果你想通过用户的其他属性进行过滤，你需要执行一个额外的请求，例如 `await ctx.getAuthor()` 来获取消息的作者。
-filter 查询不会秘密地为你执行进一步的 API 请求。
-执行这种查询仍然很简单：
-
-```ts
-bot.on("message").filter(
-  async (ctx) => {
-    const user = await ctx.getAuthor();
-    return user.status === "creator" || user.status === "administrator";
-  },
-  (ctx) => {
-    // 处理来自 creator 和 administrator 的消息
-  },
-);
-```
-
-:::
+请注意，虽然这个语法糖对于服务消息很有用，但是它不应该用于检测用户是否真的加入或离开聊天。
+服务消息是通知聊天中的用户的消息，其中一些不一定会在所有情况下都可见。
+例如，在大型群组中，用户加入或离开聊天的消息不会出现在消息中。
+因此，你的 bot 可能不会注意到这个。
+所以，你应该监听 [聊天成员更新](#聊天成员更新)。
 
 ## 组合多个查询
 
@@ -199,7 +188,91 @@ bot
 ```
 
 `ctx` 的类型推理将扫描整个调用链并检查所有三个 `.on` 调用的每个元素。
-打个比方，它可以检测到`ctx.msg.text`是上述代码片断的一个必要属性。
+打个比方，它可以检测到 `ctx.msg.text` 是上述代码片断的一个必要属性。
+
+## 实用贴士
+
+这里有一些鲜为人知的过滤器查询的功能，它们可能会派上用场。
+其中一些是一些比较高级的，所以你可以跳过它们到 [下一节](./commands.md)。
+
+### 聊天成员更新
+
+你可以使用下面的过滤查询来接收你的 bot 的状态更新。
+
+```ts
+bot.on("my_chat_member"); // 开始, 停止, 加入, 或者离开
+```
+
+在私人聊天中，这将在 bot 开始或停止时触发。
+在群组中，这将在 bot 加入或移除时触发。
+你可以检查 `ctx.myChatMember` 来确定到底发生了什么。
+
+这一点不能与下面混淆
+
+```ts
+bot.on("chat_member");
+```
+
+上面可用于检测其他聊天成员的状态变化，如人们加入、权限提升等。
+
+> 请注意，`chat_member` 更新需要在启动 bot 时显式地指定 `allowed_updates`。
+
+### 将查询与其他方法相结合
+
+你可以将过滤器查询与 `Composer` 类（[API 参考](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer)）的其他方法相结合，例如 `command` 或 `filter`。
+这可以让你构建更复杂的消息处理模式。
+
+```ts
+bot.on(":forward_date").command("help"); // 转发的 /help 命令
+// 只在私人聊天中处理命令。
+const pm = bot.filter((ctx) => ctx.chat?.type === "private");
+pm.command("start");
+pm.command("help");
+```
+
+### 按消息发送者类型过滤
+
+在 Telegram 上有 5 种可能的消息发送者类型：
+
+1. 频道中帖子的作者
+2. 在讨论组中从链接的频道的自动转发
+3. 正常的用户账户，这包括机器人（即“普通”消息）
+4. 管理员代表小组发送（[匿名组管理员]((https://telegram.org/blog/filters-anonymous-admins-comments#anonymous-group-admins))）
+5. 用户将消息作为其频道之一发送
+
+你可以将过滤查询与其他更新处理机制结合起来，以找出消息作者的类型。
+
+```ts
+// 从 `ctx.senderChat` 发送的频道帖子
+bot.on("channel_post");
+const messages = bot.on("message"); // （只看这里的消息）
+// 从 `ctx.senderChat`频道自动转发
+messages.on(":is_automatic_forward");
+// 从 `ctx.from` 发送的常规信息
+messages.filter((ctx) => ctx.senderChat === undefined);
+// `ctx.chat` 中的匿名管理员
+messages.filter((ctx) => ctx.senderChat?.id === ctx.chat?.id);
+// 其他一切，比如用户作为 `ctx.senderChat' 发送消息
+messages.use();
+```
+
+### 按照用户属性筛选
+
+如果你想通过用户的其他属性进行过滤，你需要执行一个额外的请求，例如 `await ctx.getAuthor()` 来获取消息的作者。
+filter 查询不会秘密地为你执行进一步的 API 请求。
+执行这种查询仍然很简单：
+
+```ts
+bot.on("message").filter(
+  async (ctx) => {
+    const user = await ctx.getAuthor();
+    return user.status === "creator" || user.status === "administrator";
+  },
+  (ctx) => {
+    // 处理来自 creator 和 administrator 的消息
+  },
+);
+```
 
 ## 查询语言
 

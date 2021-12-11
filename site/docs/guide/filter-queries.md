@@ -98,7 +98,7 @@ This `edit` shortcut groups edited messages and edited channel posts.
 ```ts
 bot.on("edit"); // any message or channel post edit
 bot.on("edit:text"); // edits of text messages
-bot.on("edit::url"); // edits of messages or channel posts with URL
+bot.on("edit::url"); // edits of messages with URL in text or caption
 bot.on("edit:location"); // live location updated
 ```
 
@@ -122,35 +122,24 @@ bot.on(":file"); // files in messages or channel posts
 bot.on("edit:file"); // edits to file messages or file channel posts
 ```
 
-### Useful Tips
+### Syntactic Sugar
 
+There are two special cases for the query parts that make filtering for users more convenient.
 You can detect bots in queries with the `:is_bot` query part.
 The syntactic sugar `:me` can be used to refer to your bot from within a query, which will compare the user identifiers for you.
 
 ```ts
-bot.on("message:new_chat_members:is_bot"); // a bot joined the chat
-bot.on("message:left_chat_member:me"); // your bot left a chat (was removed)
+// A service message about a bot that joined the chat
+bot.on("message:new_chat_members:is_bot");
+// A service message about your bot being removed
+bot.on("message:left_chat_member:me");
 ```
 
-::: tip Filter by User Properties
-
-If you want to filter by other properties of a user, you need to perform an additional request, e.g. `await ctx.getAuthor()` for the author of the message.
-Filter queries will not secretly perform further API requests for you.
-It is still simple to perform this kind of filtering:
-
-```ts
-bot.on("message").filter(
-  async (ctx) => {
-    const user = await ctx.getAuthor();
-    return user.status === "creator" || user.status === "administrator";
-  },
-  (ctx) => {
-    // Handles messages from creators and admins.
-  },
-);
-```
-
-:::
+Note that while this syntactic sugar is useful to work with service messages, is should not be used to detect if someone actually joins or leaves a chat.
+Services messages are messages that inform the users in the chat, and some of them will not be visible in all cases.
+For example, in large groups, there will not be any service messages about users that join or leave the chat.
+Hence, your bot may not notice this.
+Instead, you should listen for [chat member updates](#chat-member-updates).
 
 ## Combining Multiple Queries
 
@@ -200,6 +189,93 @@ bot
 
 The type inference of `ctx` will scan through the entire call chain and inspect every element of all three `.on` calls.
 As an example, it can detect that `ctx.msg.text` is a required property for the above code snippet.
+
+## Useful Tips
+
+Here are some less-known features of filter queries that can come in handy.
+Some of them are a little advanced, so feel free to move on to [the next section](./commands.md).
+
+### Chat Member Updates
+
+You can use the following filter query to receive status updates about your bot.
+
+```ts
+bot.on("my_chat_member"); // start, stop, join, or leave
+```
+
+In private chats, this triggers when the bot is started or stopped.
+In groups, this triggers when the bot is added or removed.
+You can now inspect `ctx.myChatMember` to figure out what exactly happened.
+
+This is not to be confused with
+
+```ts
+bot.on("chat_member");
+```
+
+which can be used to detect status changes of other chat members, such as when people join, get promoted, and so on.
+
+> Note that `chat_member` updates need to be enabled explicitly by specifying `allowed_updates` when starting your bot.
+
+### Combining Queries With Other Methods
+
+You can combine filter queries with other methods on the `Composer` class ([API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer)), such as `command` or `filter`.
+This allows for powerful message handling patterns.
+
+```ts
+bot.on(":forward_date").command("help"); // forwarded /help commands
+
+// Only handle commands in private chats.
+const pm = bot.filter((ctx) => ctx.chat?.type === "private");
+pm.command("start");
+pm.command("help");
+```
+
+### Filtering by Message Sender Type
+
+There are five different possible types of message authors on Telegram:
+
+1. Channel post authors
+2. Automatic forwards from linked channels in discussion groups
+3. Normal user accounts, this includes bots (i.e. “normal” messages)
+4. Admins sending on behalf of the group ([anonymous admins](https://telegram.org/blog/filters-anonymous-admins-comments#anonymous-group-admins))
+5. Users sending messages as one of their channels
+
+You can combine filter queries with other update handling mechanisms to find out the type of the message author.
+
+```ts
+// Channel posts sent by `ctx.senderChat`
+bot.on("channel_post");
+
+const messages = bot.on("message"); // (only regard messages from here)
+
+// Automatic forward from the channel `ctx.senderChat`:
+messages.on(":is_automatic_forward");
+// Regular messages sent by `ctx.from`
+messages.filter((ctx) => ctx.senderChat === undefined);
+// Anonymous admin in `ctx.chat`
+messages.filter((ctx) => ctx.senderChat?.id === ctx.chat?.id);
+// Everything else, i.e. users sending messages as `ctx.senderChat`
+messages.use();
+```
+
+### Filtering by User Properties
+
+If you want to filter by other properties of a user, you need to perform an additional request, e.g. `await ctx.getAuthor()` for the author of the message.
+Filter queries will not secretly perform further API requests for you.
+It is still simple to perform this kind of filtering:
+
+```ts
+bot.on("message").filter(
+  async (ctx) => {
+    const user = await ctx.getAuthor();
+    return user.status === "creator" || user.status === "administrator";
+  },
+  (ctx) => {
+    // Handles messages from creators and admins.
+  },
+);
+```
 
 ## The Query Language
 
