@@ -38,7 +38,7 @@ This depends on your deployment type.
 1. Make sure you do not perform any long-running operations in your middleware, such as large file transfers.
    [This leads to timeout errors](/guide/deployment-types.html#ending-webhook-requests-in-time) for the webhooks, and duplicate update processing as Telegram will re-send non-acknowledged updates.
    Consider using a task queuing system instead.
-2. Make yourself familiar with the configuration of `webhookCallback` [API refenece](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/webhookCallback).
+2. Make yourself familiar with the configuration of `webhookCallback` [API reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/webhookCallback).
 3. If you adjusted the `getSessionKey` option for your session, [use `sequentialize` with the same session key resolver function as your session middleware](./scaling.md#concurrency-is-hard).
 4. If you are running on a serverless or autoscaling platform, [set the bot information](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/BotConfig) to prevent excessive `getMe` calls.
 5. Consider using [webhook replies](/guide/deployment-types.html#webhook-reply).
@@ -57,7 +57,10 @@ This can be done with grammY like so:
 2. Define and send sample update objects to your bot via `bot.handleUpdate` ([API reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Bot#handleUpdate)).
    Consider to take some inspiration from [these update objects](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates) provided by the Telegram team.
 
-::: tip Contribute a Testing Framework
+::: Tip
+
+Contribute a Testing Framework
+
 While grammY provides the necessary hooks to start writing tests, it would be very helpful to have a testing framework for bots.
 This is novel territory, such testing frameworks largely do not exist.
 We look forward to your contributions!
