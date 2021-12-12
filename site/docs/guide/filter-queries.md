@@ -252,9 +252,11 @@ bot.on("message:is_automatic_forward");
 // Regular messages sent by `ctx.from`
 bot.on("message").filter((ctx) => ctx.senderChat === undefined);
 // Anonymous admin in `ctx.chat`
-bot.on("message").filter((ctx) => ctx.senderChat.id === ctx.chat.id);
+bot.on("message").filter((ctx) => ctx.senderChat?.id === ctx.chat.id);
 // Users sending messages on behalf of their channel `ctx.senderChat`
-bot.on("message").filter((ctx) => ctx.senderChat.id !== ctx.chat.id);
+bot.on("message").filter((ctx) =>
+  ctx.senderChat !== undefined && ctx.senderChat.id !== ctx.chat.id
+);
 ```
 
 ### Filtering by User Properties
