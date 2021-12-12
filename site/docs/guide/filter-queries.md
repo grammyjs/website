@@ -247,16 +247,14 @@ You can combine filter queries with other update handling mechanisms to find out
 // Channel posts sent by `ctx.senderChat`
 bot.on("channel_post");
 
-const messages = bot.on("message"); // (only regard messages from here)
-
 // Automatic forward from the channel `ctx.senderChat`:
-messages.on(":is_automatic_forward");
+bot.on("message:is_automatic_forward");
 // Regular messages sent by `ctx.from`
-messages.filter((ctx) => ctx.senderChat === undefined);
+bot.on("message").filter((ctx) => ctx.senderChat === undefined);
 // Anonymous admin in `ctx.chat`
-messages.filter((ctx) => ctx.senderChat?.id === ctx.chat?.id);
-// Everything else, i.e. users sending messages as `ctx.senderChat`
-messages.use();
+bot.on("message").filter((ctx) => ctx.senderChat.id === ctx.chat.id);
+// Users sending messages on behalf of their channel `ctx.senderChat`
+bot.on("message").filter((ctx) => ctx.senderChat.id !== ctx.chat.id);
 ```
 
 ### Filtering by User Properties
