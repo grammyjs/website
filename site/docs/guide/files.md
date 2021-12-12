@@ -119,7 +119,9 @@ Instances of `InputFile` can be passed to all methods that accept sending files 
 
 Here are some examples on how you can construct `InputFile`s.
 
-#### Uploading a Local File
+#### Uploading a File From Disk
+
+If you already have a file stored on your machine, you can let grammY upload this file.
 
 <CodeGroup>
   <CodeGroupItem title="Node.js" active>
@@ -146,17 +148,19 @@ new InputFile(await Deno.open("/path/to/file"));
 </CodeGroupItem>
 </CodeGroup>
 
-Send a `Buffer`, or an iterator that yields `Buffer` objects.
-On Deno, you can also send `Blob` objects.
+#### Uploading Raw Binary Data
+
+You can also send a `Buffer` object, or an iterator that yields `Buffer` objects.
+On Deno, you can send `Blob` objects, too.
 
 <CodeGroup>
   <CodeGroupItem title="Node.js" active>
 
 ```ts
-// Send buffers and byte arrays.
+// Send a buffer or a byte array.
 const buffer = Uint8Array.from([65, 66, 67]);
 new InputFile(buffer); // "ABC"
-// Send iterables.
+// Send an iterable.
 new InputFile(function* () {
   // "ABCABCABCABC"
   for (let i = 0; i < 4; i++) yield buffer;
@@ -167,13 +171,13 @@ new InputFile(function* () {
   <CodeGroupItem title="Deno">
 
 ```ts
-// Send blobs.
+// Send a blob.
 const blob = new Blob("ABC", { type: "text/plain" });
 new InputFile(blob);
-// Send buffers and byte arrays.
+// Send a buffer or a byte array.
 const buffer = Uint8Array.from([65, 66, 67]);
 new InputFile(buffer); // "ABC"
-// Send iterables.
+// Send an iterable.
 new InputFile(function* () {
   // "ABCABCABCABC"
   for (let i = 0; i < 4; i++) yield buffer;
@@ -183,13 +187,15 @@ new InputFile(function* () {
 </CodeGroupItem>
 </CodeGroup>
 
+#### Downloading and Reuploading a File
+
 You can even make grammY download a file from the internet.
 This will not actually save the file on your disk.
-Instead, grammY will only pipe through the data, and only keep a small part of it in memory.
+Instead, grammY will only pipe through the data, and only keep a small chunk of it in memory.
 This is very efficient.
 
-> Note that most times, Telegram supports downloading the file for you from the internet.
-> If possible, you should prefer to send the file via URL, instead of using `InputFile` to stream the file contents through your server.
+> Note that Telegram supports downloading the file for you in many methods.
+> If possible, you should prefer to [send the file via URL](#via-file-id-or-url), instead of using `InputFile` to stream the file contents through your server.
 
 <CodeGroup>
   <CodeGroupItem title="Node.js" active>
