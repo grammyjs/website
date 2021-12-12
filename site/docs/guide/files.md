@@ -114,30 +114,49 @@ await ctx.replyWithPhoto(new InputFile("/tmp/picture.jpg"));
 ```
 
 The `InputFile` constructor not only takes file paths, but also streams, `Buffer` objects, async iterators, and—depending on your platform—more.
-grammY will automatically convert all file formats to `Uint8Array` objects internally, and build a multipart/form-data stream from them.
 All you need to remember is: **create an instance of `InputFile` and pass it to any method to send a file**.
 Instances of `InputFile` can be passed to all methods that accept sending files by upload.
 
-This is how you can construct `InputFile`s.
+Here are some examples on how you can construct `InputFile`s.
+
+#### Uploading a Local File
 
 <CodeGroup>
   <CodeGroupItem title="Node.js" active>
 
 ```ts
 import { createReadStream } from "fs";
-import { URL } from "url";
 
 // Send a local file.
 new InputFile("/path/to/file");
-// Download a file, and stream the response to Telegram.
-new InputFile(new URL("https://grammy.dev/Y.png"));
-new InputFile({ url: "https://grammy.dev/Y.png" }); // equivalent
+// Send a stream.
+new InputFile(createReadStream("/path/to/file"));
+```
 
+</CodeGroupItem>
+  <CodeGroupItem title="Deno">
+
+```ts
+// Send a local file.
+new InputFile("/path/to/file");
+// Send a `Deno.File` instance.
+new InputFile(await Deno.open("/path/to/file"));
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+Send a `Buffer`, or an iterator that yields `Buffer` objects.
+On Deno, you can also send `Blob` objects.
+
+<CodeGroup>
+  <CodeGroupItem title="Node.js" active>
+
+```ts
 // Send buffers and byte arrays.
 const buffer = Uint8Array.from([65, 66, 67]);
 new InputFile(buffer); // "ABC"
-// Send streams and iterables.
-new InputFile(createReadStream("/path/to/file"));
+// Send iterables.
 new InputFile(function* () {
   // "ABCABCABCABC"
   for (let i = 0; i < 4; i++) yield buffer;
@@ -148,28 +167,49 @@ new InputFile(function* () {
   <CodeGroupItem title="Deno">
 
 ```ts
-// Send a local file.
-new InputFile("/path/to/file");
-new InputFile(Deno.open("/path/to/file"));
-// Download a file, and stream the response to Telegram.
-new InputFile(new URL("https://grammy.dev/Y.png"));
-new InputFile({ url: "https://grammy.dev/Y.png" }); // equivalent
-
 // Send blobs.
 const blob = new Blob("ABC", { type: "text/plain" });
 new InputFile(blob);
 // Send buffers and byte arrays.
 const buffer = Uint8Array.from([65, 66, 67]);
 new InputFile(buffer); // "ABC"
-// Send streams and iterables.
-new InputFile(await Deno.open("/path/to/file"));
+// Send iterables.
 new InputFile(function* () {
   // "ABCABCABCABC"
   for (let i = 0; i < 4; i++) yield buffer;
 });
 ```
 
-Note that you can also pass a `Promise` of any of the values to `InputFile`.
+</CodeGroupItem>
+</CodeGroup>
+
+You can even make grammY download a file from the internet.
+This will not actually save the file on your disk.
+Instead, grammY will only pipe through the data, and only keep a small part of it in memory.
+This is very efficient.
+
+> Note that most times, Telegram supports downloading the file for you from the internet.
+> If possible, you should prefer to send the file via URL, instead of using `InputFile` to stream the file contents through your server.
+
+<CodeGroup>
+  <CodeGroupItem title="Node.js" active>
+
+```ts
+import { URL } from "url";
+
+// Download a file, and stream the response to Telegram.
+new InputFile(new URL("https://grammy.dev/Y.png"));
+new InputFile({ url: "https://grammy.dev/Y.png" }); // equivalent
+```
+
+</CodeGroupItem>
+  <CodeGroupItem title="Deno">
+
+```ts
+// Download a file, and stream the response to Telegram.
+new InputFile(new URL("https://grammy.dev/Y.png"));
+new InputFile({ url: "https://grammy.dev/Y.png" }); // equivalent
+```
 
 </CodeGroupItem>
 </CodeGroup>
