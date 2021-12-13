@@ -142,7 +142,7 @@ grammY has a simple and intuitive way to build up the reply keyboards that your 
 It provides a class called `Keyboard` for this.
 
 Once a user clicks a text button, your bot will receive the sent text as a plain text message.
-Remember that you can listen for text message via `bot.on('message:text')`.
+Remember that you can listen for text message via `bot.on('message:text')` or `bot.hears()`.
 
 ### Building a Keyboard
 
@@ -272,6 +272,17 @@ await ctx.reply(text, {
   },
 });
 ```
+
+### Responding to Clicks
+
+As mentioned earlier, all that keyboards do is sending regular text messages.
+Your bot cannot differentiate between ordinary text messages, and text messages that were sent by clicking a button.
+
+Moreover, buttons will always send exactly the message that's written on them.
+Telegram does not allow you to create buttons that display one text, but send another.
+
+In order to handle the click of a specific button, you can use `bot.hears` with the same text as you put on the button
+If you want to handle all button clicks at once, you use `bot.on('message:text')` and inspect `ctx.msg.text` to figure out which button was clicked, or if an ordinary text message was sent.
 
 ### Removing a Keyboard
 
