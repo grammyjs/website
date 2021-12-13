@@ -107,3 +107,63 @@ systemctl stop <service_name>
 ```bash
 systemctl disable <service_name>
 ```
+
+## PM2 PROCESS MANAGER (NODE only)
+
+PM2 is a daemon process manager that will help you manage and keep your application online 24/7
+
+### Starting an app
+
+1. Install PM2 via NPM or Yarn globally
+
+```bash
+npm install pm2@latest -g
+# or
+yarn global add pm2
+```
+
+2. Your start command should look like the following:
+
+```bash
+# Start a simple process with the name of your file
+pm2 start index.js
+```
+
+### Managing the pm2 process
+
+#### Restarting an app:
+Restart stops all processes of this app first and then starts it again.
+
+```bash
+pm2 restart <app_name>
+```
+
+#### Reloading an app:
+Reload first starts a new process before stopping the other processes resulting in 0-second-downtime. Recommended for stateless applications.
+
+```bash
+pm2 reload <app_name>
+```
+
+#### Stopping an app:
+
+```bash
+# Stopping an app with its name
+pm2 stop <app_name>
+# Stopping every app launched by pm2
+pm2 stop all
+```
+
+#### Deleting an app:
+Also stops the app and deletes its logs and metrics
+
+```bash
+pm2 del <app_name>
+```
+
+### Advanced Information
+
+- Management of Processes: <https://pm2.keymetrics.io/docs/usage/process-management/>
+- Logs: <https://pm2.keymetrics.io/docs/usage/log-management/>
+- Startup Script: <https://pm2.keymetrics.io/docs/usage/startup/>
+- Graceful start and stop: <https://pm2.keymetrics.io/docs/usage/signals-clean-restart/>
