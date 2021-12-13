@@ -297,6 +297,7 @@ Your bot cannot differentiate between ordinary text messages, and text messages 
 
 Moreover, buttons will always send exactly the message that's written on them.
 Telegram does not allow you to create buttons that display one text, but send another.
+If you need to do this, you should use an inline keyboard instead.
 
 In order to handle the click of a specific button, you can use `bot.hears` with the same text as you put on the button
 If you want to handle all button clicks at once, you use `bot.on('message:text')` and inspect `ctx.msg.text` to figure out which button was clicked, or if an ordinary text message was sent.
