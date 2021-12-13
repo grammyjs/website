@@ -107,14 +107,11 @@ systemctl stop <service_name>
 ```bash
 systemctl disable <service_name>
 ```
-
 ## PM2 PROCESS MANAGER (NODE only)
 
 PM2 is a daemon process manager that will help you manage and keep your application online 24/7
 
-### Starting an app
-
-1. Install PM2 via NPM or Yarn globally
+### Installing PM2
 
 ```bash
 npm install pm2@latest -g
@@ -122,14 +119,14 @@ npm install pm2@latest -g
 yarn global add pm2
 ```
 
-2. Your start command should look like the following:
+### Managing the pm2 process
+
+#### Starting an app: 
 
 ```bash
-# Start a simple process with the name of your file
-pm2 start index.js
+# Start a simple process <entry_point> is your file location
+pm2 start --name <app_name> <entry_point>
 ```
-
-### Managing the pm2 process
 
 #### Restarting an app:
 Restart stops all processes of this app first and then starts it again.
