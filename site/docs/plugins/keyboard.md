@@ -1,6 +1,23 @@
 # Keyboards and Inline Keyboards (built-in)
 
 Your bot may send a number of buttons, either to be [displayed underneath a message](#inline-keyboards), or to [replace the user's keyboard](#keyboards).
+They are called _inline keyboards_ and _keyboards_, respectively.
+If you think that this is confusing, then that's because it is.
+Thank you, Telegram, for this overlapping terminology.
+
+Let us try to clear it up a bit:
+
+| Term                                     | Definition                                                                                                                        |
+| ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| [**Keyboard**](#keyboards)               | a set of buttons that is displayed instead of the user's system keyboard                                                          |
+| [**Inline Keyboard**](#inline-keyboards) | a set of buttons that is displayed underneath a message inside the chat                                                           |
+| **Keyboard button**                      | a button in a keyboard, sends a text message with its label when pressed                                                          |
+| **Inline keyboard button**               | a button in an inline keyboard, sends an callback query not visible to the user when pressed, sometimes just called inline button |
+| **`Keyboard`**                           | class in grammY to create keyboards                                                                                               |
+| **`InlineKeyboard`**                     | class in grammY to create inline keyboards                                                                                        |
+
+> Note that both keyboard buttons and inline keyboard buttons can also have other functions, such as requesting the user location, opening a website, and so on.
+> This was omitted for brevity.
 
 ## Inline Keyboards
 
