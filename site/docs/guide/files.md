@@ -131,7 +131,7 @@ import { createReadStream } from "fs";
 
 // Send a local file.
 new InputFile("/path/to/file");
-// Send a stream.
+// Send from a stream.
 new InputFile(createReadStream("/path/to/file"));
 ```
 
