@@ -107,19 +107,21 @@ systemctl stop <service_name>
 ```bash
 systemctl disable <service_name>
 ```
+
 ## PM2 (Node.js only)
 
 PM2 is a daemon process manager for Node.js that will help you manage and keep your app online 24/7.
 
-### Installing PM2
+### Installing
 
 ```bash
 npm install pm2@latest -g
-# or
+
+# If using yarn
 yarn global add pm2
 ```
 
-### Managing the app
+### Managing apps
 
 #### Start
 
@@ -127,9 +129,11 @@ yarn global add pm2
 pm2 start --name <app_name> <entry_point>
 ```
 
-> The `<app_name>` can be any identifier to your app, for example: `bot1`.  
-> The `<entry_point>` should be the path to your index file (which runs your bot). 
+> The `<app_name>` can be any identifier to your app, for example: `bot1`.\
+> The `<entry_point>` should be the path to your index file (which runs your bot).
+
 #### Restart
+
 By restarting, you stop the app, and start it again.
 
 ```bash
@@ -137,6 +141,7 @@ pm2 restart <app_name>
 ```
 
 #### Reload
+
 By reloading, you replace the current process of your app with a new one, resulting in a 0-second downtime. This is recommended for stateless applications.
 
 ```bash
@@ -154,6 +159,7 @@ pm2 stop all
 ```
 
 #### Delete
+
 By deleting, you stop your app and remove its logs and metrics.
 
 ```bash
