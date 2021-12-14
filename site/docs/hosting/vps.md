@@ -168,4 +168,4 @@ pm2 del <app_name>
 
 ### Advanced Information
 
-For more, please refer to https://pm2.keymetrics.io/docs.
+For more, please refer to <https://pm2.keymetrics.io/docs>.
