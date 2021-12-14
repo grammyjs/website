@@ -107,9 +107,9 @@ systemctl stop <service_name>
 ```bash
 systemctl disable <service_name>
 ```
-## PM2 PROCESS MANAGER (NODE only)
+## PM2 (Node.js only)
 
-PM2 is a daemon process manager that will help you manage and keep your application online 24/7
+PM2 is a daemon process manager for Node.js that will help you manage and keep your app online 24/7.
 
 ### Installing PM2
 
@@ -119,40 +119,42 @@ npm install pm2@latest -g
 yarn global add pm2
 ```
 
-### Managing the pm2 process
+### Managing the app
 
-#### Starting an app: 
+#### Start
 
 ```bash
-# Start a simple process <entry_point> is your file location
 pm2 start --name <app_name> <entry_point>
 ```
 
-#### Restarting an app:
-Restart stops all processes of this app first and then starts it again.
+> The `<app_name>` can be any identifier to your app, for example: `bot1`.  
+> The `<entry_point>` should be the path to your index file (which runs your bot). 
+#### Restart
+By restarting, you stop the app, and start it again.
 
 ```bash
 pm2 restart <app_name>
 ```
 
-#### Reloading an app:
-Reload first starts a new process before stopping the other processes resulting in 0-second-downtime. Recommended for stateless applications.
+#### Reload
+By reloading, you replace the current process of your app with a new one, resulting in a 0-second downtime. This is recommended for stateless applications.
 
 ```bash
 pm2 reload <app_name>
 ```
 
-#### Stopping an app:
+#### Stop
 
 ```bash
-# Stopping an app with its name
+# A single app
 pm2 stop <app_name>
-# Stopping every app launched by pm2
+
+# All apps
 pm2 stop all
 ```
 
-#### Deleting an app:
-Also stops the app and deletes its logs and metrics
+#### Delete
+By deleting, you stop your app and remove its logs and metrics.
 
 ```bash
 pm2 del <app_name>
@@ -160,7 +162,4 @@ pm2 del <app_name>
 
 ### Advanced Information
 
-- Management of Processes: <https://pm2.keymetrics.io/docs/usage/process-management/>
-- Logs: <https://pm2.keymetrics.io/docs/usage/log-management/>
-- Startup Script: <https://pm2.keymetrics.io/docs/usage/startup/>
-- Graceful start and stop: <https://pm2.keymetrics.io/docs/usage/signals-clean-restart/>
+For more, please refer to https://pm2.keymetrics.io/docs.
