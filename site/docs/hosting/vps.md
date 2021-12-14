@@ -117,7 +117,7 @@ PM2 is a daemon process manager for Node.js that will help you manage and keep y
 ```bash
 npm install pm2@latest -g
 
-# If using yarn
+# If using Yarn
 yarn global add pm2
 ```
 
