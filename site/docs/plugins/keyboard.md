@@ -154,7 +154,7 @@ Otherwise, some clients may display a loading animation for up to a minute when 
 ## Custom Keyboards
 
 First things first: custom keyboards are sometimes just called keyboards, sometimes they're called reply keyboards, and even Telegram's own documentation is not consistent in this repect.
-As a simple rule of thumb, if it isn't absolutely obvious from the context is meant, every keyboard that is not an inline keyboard is a custom keyboard.
+As a simple rule of thumb, when it isn't absolutely obvious from the context and not called inline keyboard, it probably is a custom keyboard.
 This refers to a way to replace the system keyboard by a set of buttons that you can define.
 
 > Revisit the custom keyboard section in the [Introduction for Developers](https://core.telegram.org/bots#keyboards) written by the Telegram team.
