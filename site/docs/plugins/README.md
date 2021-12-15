@@ -1,6 +1,10 @@
+---
+next: ./guide.md
+---
+
 # What Is a Plugin?
 
-There is a popular principle in computing stating that software should be concise and minimal, but extensible.
+We want grammY to be concise and minimal, but extensible.
 Why?
 Because not everyone uses everything!
 Plugins are designed as extra functionalities added to said pieces of software.
@@ -21,20 +25,22 @@ As an example, the [grammY runner](./runner.md) plugin (`runner`) needs to be in
 
 All that glitters is gold, right?
 Well, a different kind of gold!
-grammY can take advantage of two types of plugins: middleware plugins and transformer plugins.
+grammY can take advantage of two types of plugins: _middleware plugins_ and _transformer plugins_.
 In simple terms, plugins in grammY return either a middleware function or a transformer one.
 Let's talk about the differences.
 
 ### Type I: Middleware Plugins
 
-A [middleware](/guide/middleware.md) is a function that handles incoming data in various forms.
-Middleware plugins are plugins that are fed to a bot as a—well you guessed it—middleware.
+[Middleware](/guide/middleware.md) is a function that handles incoming data in various forms.
+Middleware plugins are plugins that are fed to a bot as—well, you guessed it—middleware.
+This means that you install them via `bot.use`.
 
 ### Type II: Transformer Plugins
 
-A [transformer function](/advanced/transformers.md) is exactly the opposite of a middleware!
+A [transformer function](/advanced/transformers.md) is the opposite of middleware!
 It is a function that handles outgoing data.
-Transformer plugins are plugins that are fed to a bot as a—crazy! guessed it again—transformer.
+Transformer plugins are plugins that are fed to a bot as a—crazy! guessed it again—transformer function.
+This means that you install them via `bot.api.config.use`.
 
 ## Create Your Own Plugins
 
