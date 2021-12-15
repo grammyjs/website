@@ -671,7 +671,7 @@ export default defineUserConfig<DefaultThemeOptions>({
     [
       "@vuepress/plugin-docsearch",
       {
-        apiKey: "17b3527aa6f36e8d3fe2276b0f4d9633",
+        apiKey: "1d0adc6891f310ef33db7a8a2bab513d",
         indexName: "grammy",
         placeholder: "Search",
         locales: { "/zh/": { placeholder: "搜索文档" } },
