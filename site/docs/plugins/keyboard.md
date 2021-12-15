@@ -10,7 +10,7 @@ Let us try to clear it up a bit:
 | Term                                     | Definition                                                                                                                          |
 | ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | [**Inline Keyboard**](#inline-keyboards) | a set of buttons that is displayed underneath a message inside the chat                                                             |
-| [**Custom Keyboard**](#custom-keyboards)        | a set of buttons that is displayed instead of the user's system keyboard                                                            |
+| [**Custom Keyboard**](#custom-keyboards) | a set of buttons that is displayed instead of the user's system keyboard                                                            |
 | **Inline keyboard button**               | a button in an inline keyboard, sends an callback query not visible to the user when pressed, sometimes just called _inline button_ |
 | **Custom Keyboard button**               | a button in a keyboard, sends a text message with its label when pressed, sometimes just called _keyboard button_                   |
 | **`InlineKeyboard`**                     | class in grammY to create inline keyboards                                                                                          |
@@ -287,9 +287,9 @@ You can specify the `selective` option if you want to show the custom keyboard o
 
 ```ts
 await ctx.reply(text, {
+  reply_to_message_id: ctx.msg.message_id,
   reply_markup: {
     selective: true,
-    reply_to_message_id: ctx.msg.message_id,
     keyboard: keyboard.build(),
   },
 });
