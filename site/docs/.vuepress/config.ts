@@ -162,7 +162,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/plugins/session.md",
                   },
                   {
-                    text: "Keyboards and Inline Keyboards (built-in)",
+                    text: "Custom and Inline Keyboards (built-in)",
                     link: "/plugins/keyboard.md",
                   },
                   {
