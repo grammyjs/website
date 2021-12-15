@@ -65,6 +65,9 @@ autoRetry({
 });
 ```
 
+You can use `retryOnInternalServerErrors` to include all other internal server errors by Telegram (status code >= 500) in the above procedure.
+Those errros will be retried immediately, but they also respect the `maxRetryAttempts` option.
+
 ## Plugin Summary
 
 - Name: `auto-retry`

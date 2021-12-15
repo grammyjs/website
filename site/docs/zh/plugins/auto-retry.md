@@ -65,6 +65,9 @@ autoRetry({
 });
 ```
 
+你可以使用 `retryOnInternalServerErrors` 将 Telegram 的所有其他内部服务器错误（状态码 >= 500）纳入上述程序。
+这些错误将会被立即重试，但是它们也会遵循 `maxRetryAttempts` 选项。
+
 ## 插件概述
 
 - 名字：`auto-retry`
