@@ -129,7 +129,7 @@ yarn global add pm2
 pm2 start --name <app_name> <entry_point>
 ```
 
-> The `<app_name>` can be any identifier to your app, for example: `bot1`.\
+> The `<app_name>` can be any identifier to your app, for example: `bot1`.
 > The `<entry_point>` should be the path to your index file (which runs your bot).
 
 #### Restart
