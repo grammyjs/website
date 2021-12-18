@@ -207,6 +207,4 @@ plugin-template/
 
 ## 如何提交？
 
-If you have a plugin ready, you may simply submit a pull request on GitHub (according to the [Rules of Contribution](#rules-of-contribution)), or notify us in the [community chat](https://t.me/grammyjs) for further help.
-
 如果你已经准备好了一个插件，你可以直接在 GitHub 上提交一个 pull request（根据 [贡献规则](#贡献规则)），或者在 [社区聊天](https://t.me/grammyjs) 中通知我们以获得进一步的帮助。
