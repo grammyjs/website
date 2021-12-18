@@ -481,7 +481,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/zh/plugins/session.md",
                   },
                   {
-                    text: "Keyboards 与 Inline Keyboards（内置）",
+                    text: "Inline 与自定义 Keyboards（内置）",
                     link: "/zh/plugins/keyboard.md",
                   },
                   {
