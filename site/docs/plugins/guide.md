@@ -64,7 +64,7 @@ export function onlyAccept<C extends Context>(str: string): Middleware<C> {
   return async (ctx, next) => {
     // Get first name of user.
     const name = ctx.from?.first_name;
-    // Let through all matching updates
+    // Let through all matching updates.
     if (name === undefined || name.includes(str)) {
       // Pass on control flow to downstream middleware.
       await next();
@@ -79,7 +79,8 @@ export function onlyAccept<C extends Context>(str: string): Middleware<C> {
 Now, it can be used in a real bot:
 
 ```ts
-import { onlyAccept } from "./testing.ts";
+// Here, the plugin code is in a file called `plugin.ts`.
+import { onlyAccept } from "./plugin.ts";
 import { Bot } from "./deps.deno.ts";
 
 const bot = new Bot(""); // <-- put your bot token here
@@ -108,9 +109,9 @@ import type { Transformer } from "./deps.deno.ts";
 
 // Main plugin function
 export function autoChatAction(): Transformer {
-  // Create and return a transformer function
+  // Create and return a transformer function.
   return async (prev, method, payload, signal) => {
-    // Save the handle of the set interval so we can clear it later
+    // Save the handle of the set interval so we can clear it later.
     let handle: ReturnType<typeof setTimeout> | undefined;
     if (method === "sendDocument" && "chat_id" in payload) {
       // We now know that a document is being sent.
