@@ -216,6 +216,9 @@ new InputFile(new URL("https://grammy.dev/Y.png"));
 new InputFile({ url: "https://grammy.dev/Y.png" }); // 等价的写法
 ```
 
+</CodeGroupItem>
+</CodeGroup>
+
 ## 文件大小限制
 
 grammY 本身可以不受限制地发送文件，但是 Telegram 在他们的 [文档里](https://core.telegram.org/bots/api#sending-files) 重新规范了文件大小。
