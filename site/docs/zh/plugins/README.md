@@ -4,10 +4,10 @@ next: ./guide.md
 
 # 什么是一个插件？
 
-We want grammY to be concise and minimal, but extensible.
-Why?
-Because not everyone uses everything!
-Plugins are designed as extra functionalities added to said pieces of software.
+我们想 grammY 是简明扼要的，但可扩展的。
+为什么？
+因为不是所有人都会使用所有的东西！
+插件被设计为添加到上述软件的额外功能。
 
 ## grammY 中的插件
 
@@ -32,14 +32,14 @@ grammY 可以利用两种类型的插件：_中间件插件_ 和 _转换器插�
 ### 类型 I: 中间件插件
 
 [中间件](/zh/guide/middleware.md) 是一个处理各种形式传入数据的函数。
-中间件插件是作为——嗯，你猜对了——中间件，被送入 bot 的插件。
+中间件插件是作为——嗯，你猜对了——中间件，被喂给 bot 的插件。
 这意味着你可以通过 `bot.use` 来安装它们。
 
 ### 类型 II: 转换器插件
 
 [转换器函数](/zh/guide/transformers.md) 与中间件相反！
 它是一个处理传出数据的函数。
-转换器插件是作为——你没疯！你又猜对了——转换器函数，被送入 bot 的插件。
+转换器插件是作为——你没疯！你又猜对了——转换器函数，被喂给 bot 的插件。
 这意味着你可以通过 `bot.api.config.use` 来安装它们。
 
 ## 创建你自己的插件
