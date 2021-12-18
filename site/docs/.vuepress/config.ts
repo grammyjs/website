@@ -475,6 +475,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                     text: "关于插件",
                     link: "/zh/plugins/README.md",
                   },
+                  {
+                    text: "如何编写一个插件",
+                    link: "/zh/plugins/guide.md",
+                  },
                 ],
               },
               {
