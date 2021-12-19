@@ -159,7 +159,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                 ],
               },
               {
-                text: "Official",
+                text: "Built-in",
                 children: [
                   {
                     text: "Sessions and Storing Data (built-in)",
@@ -169,6 +169,11 @@ export default defineUserConfig<DefaultThemeOptions>({
                     text: "Inline and Custom Keyboards (built-in)",
                     link: "/plugins/keyboard.md",
                   },
+                ],
+              },
+              {
+                text: "Official",
+                children: [
                   {
                     text: "Interactive Menus (menu)",
                     link: "/plugins/menu.md",
