@@ -107,3 +107,65 @@ systemctl stop <service_name>
 ```bash
 systemctl disable <service_name>
 ```
+
+## PM2（仅限 Node.js）
+
+PM2是一个用于 Node.js 的守护进程管理器，它将帮助你管理并保持你的应用程序 24/7 在线。
+
+### 安装
+
+```bash
+npm install pm2@latest -g
+
+# 使用 Yarn
+yarn global add pm2
+```
+
+### 管理应用
+
+#### 启动
+
+```bash
+pm2 start --name <app_name> <entry_point>
+```
+
+> `<app_name>` 可以是你的应用程序的任何标识符，例如：`bot1`。
+> `<entry_point>` 是你的索引文件的路径（即运行你的 bot 的文件）。
+
+#### 重启
+
+通过重启，你停止了应用程序，然后再次启动它。
+
+```bash
+pm2 restart <app_name>
+```
+
+#### 重载
+
+通过重载，用一个新的进程替换你的应用程序的当前进程，导致 0 秒的停机时间。这建议用于无状态应用程序。
+
+```bash
+pm2 reload <app_name>
+```
+
+#### 停止
+
+```bash
+# 一个应用程序
+pm2 stop <app_name>
+
+# 所有应用程序
+pm2 stop all
+```
+
+#### 删除
+
+通过删除，将会停止你的应用程序，并且删除它的日志和指标。
+
+```bash
+pm2 del <app_name>
+```
+
+### 高级用法
+
+更多信息，请参考 <https://pm2.keymetrics.io/docs>。

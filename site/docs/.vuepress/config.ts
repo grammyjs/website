@@ -152,19 +152,28 @@ export default defineUserConfig<DefaultThemeOptions>({
                     text: "About Plugins",
                     link: "/plugins/README.md",
                   },
+                  {
+                    text: "How to Write a Plugin",
+                    link: "/plugins/guide.md",
+                  },
                 ],
               },
               {
-                text: "Official",
+                text: "Built-in",
                 children: [
                   {
                     text: "Sessions and Storing Data (built-in)",
                     link: "/plugins/session.md",
                   },
                   {
-                    text: "Keyboards and Inline Keyboards (built-in)",
+                    text: "Inline and Custom Keyboards (built-in)",
                     link: "/plugins/keyboard.md",
                   },
+                ],
+              },
+              {
+                text: "Official",
+                children: [
                   {
                     text: "Interactive Menus (menu)",
                     link: "/plugins/menu.md",
@@ -471,19 +480,28 @@ export default defineUserConfig<DefaultThemeOptions>({
                     text: "关于插件",
                     link: "/zh/plugins/README.md",
                   },
+                  {
+                    text: "如何编写一个插件",
+                    link: "/zh/plugins/guide.md",
+                  },
                 ],
               },
               {
-                text: "官方维护",
+                text: "内置插件",
                 children: [
                   {
                     text: "会话与数据储存（内置）",
                     link: "/zh/plugins/session.md",
                   },
                   {
-                    text: "Keyboards 与 Inline Keyboards（内置）",
+                    text: "Inline 与自定义 Keyboards（内置）",
                     link: "/zh/plugins/keyboard.md",
                   },
+                ],
+              },
+              {
+                text: "官方维护",
+                children: [
                   {
                     text: "互动菜单（menu）",
                     link: "/zh/plugins/menu.md",
