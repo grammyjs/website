@@ -114,28 +114,53 @@ await ctx.replyWithPhoto(new InputFile("/tmp/picture.jpg"));
 ```
 
 `InputFile` 构建器不仅仅能适用于文件路径，也可以适用流，`Buffer` 对象，异步迭代器，这取决于你所使用的平台。
-grammY 会自动的在内部转化所有的文件格式成 `Uint8Array` 对象，构建一个 multipart/form-data 数据流。
 所以你需要记住的是：**创造一个 `InputFile` 实例，并且把它传递到任何发送文件的方法**。
 `InputFile` 实例能够传递到所有发送上传文件的方法中。
 
-这是如何构建 `InputFile` 的方法。
+下面是一些关于如何构建 `InputFile` 的例子。
+
+#### 从硬盘中上传一个文件
+
+如果你的机器中已经存储了一个文件，你可以让 garmmY 上传这个文件。
 
 <CodeGroup>
   <CodeGroupItem title="Node.js" active>
 
 ```ts
 import { createReadStream } from "fs";
-import { URL } from "url";
+
 // 发送一个本地文件。
 new InputFile("/path/to/file");
-// 下载一个文件，并将响应流发送到 Telegram。
-new InputFile(new URL("https://grammy.dev/Y.png"));
-new InputFile({ url: "https://grammy.dev/Y.png" }); // equivalent
-// 发送 buffers 和 byte 数组。
+// 从一个文件流中发送。
+new InputFile(createReadStream("/path/to/file"));
+```
+
+</CodeGroupItem>
+  <CodeGroupItem title="Deno">
+
+```ts
+// 发送一个本地文件。
+new InputFile("/path/to/file");
+// 发送一个 `Deno.File` 实例。
+new InputFile(await Deno.open("/path/to/file"));
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+#### 上传原始二进制数据
+
+你也可以发送一个 `Buffer` 对象，或者一个产生 `Buffer` 对象的迭代器。
+在 Deno 中，你也可以发送 `Blob` 对象。
+
+<CodeGroup>
+  <CodeGroupItem title="Node.js" active>
+
+```ts
+// 发送一个 buffer 或者一个 byte 数组。
 const buffer = Uint8Array.from([65, 66, 67]);
 new InputFile(buffer); // "ABC"
-// 发送流和可迭代的数据。
-new InputFile(createReadStream("/path/to/file"));
+// 发送可迭代的数据。
 new InputFile(function* () {
   // "ABCABCABCABC"
   for (let i = 0; i < 4; i++) yield buffer;
@@ -146,27 +171,50 @@ new InputFile(function* () {
   <CodeGroupItem title="Deno">
 
 ```ts
-// 发送一个本地文件。
-new InputFile("/path/to/file");
-new InputFile(Deno.open("/path/to/file"));
-// 下载一个文件，并将响应流发送到 Telegram。
-new InputFile(new URL("https://grammy.dev/Y.png"));
-new InputFile({ url: "https://grammy.dev/Y.png" }); // equivalent
-// 发送 blobs。
+// 发送一个 blob。
 const blob = new Blob("ABC", { type: "text/plain" });
 new InputFile(blob);
-// 发送 buffers 和 byte 数组。
+// 发送一个 buffer 或一个 byte 数组。
 const buffer = Uint8Array.from([65, 66, 67]);
 new InputFile(buffer); // "ABC"
-// 发送流和可迭代的数据。
-new InputFile(Deno.open("/path/to/file"));
+// 发送可迭代的数据。
 new InputFile(function* () {
   // "ABCABCABCABC"
   for (let i = 0; i < 4; i++) yield buffer;
 });
 ```
 
-请注意，你也可以传递任何值的 `Promise` 到 `InputFile`。
+</CodeGroupItem>
+</CodeGroup>
+
+#### 下载和重新上传文件
+
+你甚至可以让 grammY 从网上下载一个文件。
+这实际上不会保存文件到你的磁盘上。
+相反，grammY 将只通过管道传输数据，并且只在内存中保留一小段数据。
+这是非常高效的。
+
+> 请注意，Telegram 支持用许多种方法为你下载文件。
+> 如果可能，你应该选择 [通过 URL 发送文件](#通过-file_id-或者-url)，而不是使用 `InputFile` 来通过你的服务器流式传输文件内容。
+
+<CodeGroup>
+  <CodeGroupItem title="Node.js" active>
+
+```ts
+import { URL } from "url";
+// 下载一个文件，并将响应的内容流转到 Telegram。
+new InputFile(new URL("https://grammy.dev/Y.png"));
+new InputFile({ url: "https://grammy.dev/Y.png" }); // 等价的写法
+```
+
+</CodeGroupItem>
+  <CodeGroupItem title="Deno">
+
+```ts
+// 下载一个文件，并将响应的内容流转到 Telegram。
+new InputFile(new URL("https://grammy.dev/Y.png"));
+new InputFile({ url: "https://grammy.dev/Y.png" }); // 等价的写法
+```
 
 </CodeGroupItem>
 </CodeGroup>
