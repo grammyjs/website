@@ -487,7 +487,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                 ],
               },
               {
-                text: "官方维护",
+                text: "内置插件",
                 children: [
                   {
                     text: "会话与数据储存（内置）",
@@ -497,6 +497,11 @@ export default defineUserConfig<DefaultThemeOptions>({
                     text: "Inline 与自定义 Keyboards（内置）",
                     link: "/zh/plugins/keyboard.md",
                   },
+                ],
+              },
+              {
+                text: "官方维护",
+                children: [
                   {
                     text: "互动菜单（menu）",
                     link: "/zh/plugins/menu.md",
