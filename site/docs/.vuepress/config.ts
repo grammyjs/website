@@ -162,11 +162,11 @@ export default defineUserConfig<DefaultThemeOptions>({
                 text: "Built-in",
                 children: [
                   {
-                    text: "Sessions and Storing Data (built-in)",
+                    text: "Sessions and Storing Data",
                     link: "/plugins/session.md",
                   },
                   {
-                    text: "Inline and Custom Keyboards (built-in)",
+                    text: "Inline and Custom Keyboards",
                     link: "/plugins/keyboard.md",
                   },
                 ],
@@ -490,11 +490,11 @@ export default defineUserConfig<DefaultThemeOptions>({
                 text: "内置插件",
                 children: [
                   {
-                    text: "会话与数据储存（内置）",
+                    text: "会话与数据储存",
                     link: "/zh/plugins/session.md",
                   },
                   {
-                    text: "Inline 与自定义 Keyboards（内置）",
+                    text: "Inline 与自定义 Keyboards",
                     link: "/zh/plugins/keyboard.md",
                   },
                 ],
