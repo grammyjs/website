@@ -36,14 +36,14 @@ jobs:
           production-branch: main
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: ${{ github.event.pull_request.title }}
-          enable-pull-request-comment: false
+          enable-pull-request-comment: true
           enable-commit-comment: false
           overwrites-pull-request-comment: true
-          fails-without-credentials: true
+          fails-without-credentials: false
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        timeout-minutes: 5
+        timeout-minutes: 1
 
   format:
     runs-on: ubuntu-latest
@@ -56,5 +56,5 @@ jobs:
           deno-version: v1.x
 
       - name: Check Format
-        run: npm run docs:fmt
+        run: npm run docs:fmt -- --check
         working-directory: site/

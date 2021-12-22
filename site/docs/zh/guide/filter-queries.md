@@ -245,15 +245,16 @@ pm.command("help");
 ```ts
 // 从 `ctx.senderChat` 发送的频道帖子
 bot.on("channel_post");
-const messages = bot.on("message"); // （只看这里的消息）
 // 从 `ctx.senderChat`频道自动转发
-messages.on(":is_automatic_forward");
+bot.on("message:is_automatic_forward");
 // 从 `ctx.from` 发送的常规信息
-messages.filter((ctx) => ctx.senderChat === undefined);
+bot.on("message").filter((ctx) => ctx.senderChat === undefined);
 // `ctx.chat` 中的匿名管理员
-messages.filter((ctx) => ctx.senderChat?.id === ctx.chat?.id);
+bot.on("message").filter((ctx) => ctx.senderChat?.id === ctx.chat?.id);
 // 其他一切，比如用户作为 `ctx.senderChat' 发送消息
-messages.use();
+bot.on("message").filter((ctx) =>
+  ctx.senderChat !== undefined && ctx.senderChat.id !== ctx.chat.id
+);
 ```
 
 ### 按照用户属性筛选
