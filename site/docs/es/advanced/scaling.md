@@ -67,7 +67,7 @@ Imagina esta secuencia de eventos:
 6. El bot lee los datos de la sesión de Alice de la base de datos
 7. El bot termina de procesar A, y escribe la nueva sesión en la base de datos
 8. El bot termina de procesar B, y escribe la nueva sesión en la base de datos, sobrescribiendo así los cambios realizados durante el procesamiento de A.
-  ¡Pérdida de datos!
+   ¡Pérdida de datos!
 
 > Nota: Podría intentar utilizar transacciones de base de datos para sus sesiones, pero entonces sólo podrá detectar el peligro y no evitarlo.
 > Intentar usar un bloqueo en su lugar eliminaría efectivamente toda la concurrencia.
