@@ -103,6 +103,6 @@ bot.api.somePluginMethod();
 bot.on("message", (ctx) => ctx.api.somePluginMethod());
 ```
 
-API flavors  funcionan exactamente igual que los tipos de context flavors.
+API flavors funcionan exactamente igual que los tipos de context flavors.
 Existen API flavors aditivos y transformativos, y se pueden combinar múltiples API flavors de la misma manera que se haría con context flavors.
 Si no estás seguro de cómo funciona esto, vuelve a [la sección sobre context flavors](/guide/context.md#context-flavors) en la guía.
