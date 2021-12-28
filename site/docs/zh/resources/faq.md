@@ -127,7 +127,7 @@ Telegram 会这样做以保护他们的用户。
 - 它有一个经过审查的标准库。
 
 > Deno 是由发明 Node.js 的同一个人 Ry 创造的。
-> 他在 [这个视频]](https://youtu.be/M3BM9TB-8yA) 里总结了他对 Node.js 的 10 个遗憾。
+> 他在 [这个视频](https://youtu.be/M3BM9TB-8yA) 里总结了他对 Node.js 的 10 个遗憾。
 
 grammY 实际上在编写时是优先 Deno，然后再支持 Node.js。
 
