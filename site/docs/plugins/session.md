@@ -370,11 +370,11 @@ If you published your own storage adapter, please edit this page and link it her
 
 ### Third-Party
 
-- Files: <https://github.com/Satont/grammy-file-storage>
-- MongoDB: <https://github.com/Satont/grammy-mongodb-storage>
-- Redis: <https://github.com/Satont/grammy-redis-storage>
-- PostgreSQL: <https://github.com/Satont/grammy-psql-storage>
-- TypeORM (Node.js-only): <https://github.com/Satont/grammy-typeorm-storage>
+- Files: <https://github.com/Satont/grammy-storages/tree/main/packages/file>
+- MongoDB: <https://github.com/Satont/grammy-storages/tree/main/packages/mongodb>
+- Redis: <https://github.com/Satont/grammy-storages/tree/main/packages/redis>
+- PostgreSQL: <https://github.com/Satont/grammy-storages/tree/main/packages/psql>
+- TypeORM (Node.js-only): <https://github.com/Satont/grammy-storages/tree/main/packages/typeorm>
 - Submit your own by editing this page!
 
 ## Plugin Summary
