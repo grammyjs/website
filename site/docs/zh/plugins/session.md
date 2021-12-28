@@ -362,10 +362,11 @@ bot.command("reset", (ctx) => {
 
 ### 第三方
 
-- Files: <https://github.com/Satont/grammy-file-storage>
-- MongoDB: <https://github.com/Satont/grammy-mongodb-storage>
-- Redis: <https://github.com/Satont/grammy-redis-storage>
-- TypeORM (Node.js-only): <https://github.com/Satont/grammy-typeorm-storage>
+- Files: <https://github.com/Satont/grammy-storages/tree/main/packages/file>
+- MongoDB: <https://github.com/Satont/grammy-storages/tree/main/packages/mongodb>
+- Redis: <https://github.com/Satont/grammy-storages/tree/main/packages/redis>
+- PostgreSQL: <https://github.com/Satont/grammy-storages/tree/main/packages/psql>
+- TypeORM (Node.js-only): <https://github.com/Satont/grammy-storages/tree/main/packages/typeorm>
 - 通过编辑本页面提交你自己的适配器！
 
 ## 插件概述
