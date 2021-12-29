@@ -21,6 +21,9 @@ jobs:
       - name: Setup repo
         uses: actions/checkout@v2
 
+      - name: Print versions
+        run: node -v && npm -v
+
       - name: Install dependencies
         run: npm ci
         working-directory: site/
