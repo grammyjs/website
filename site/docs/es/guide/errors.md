@@ -12,11 +12,11 @@ Lo más importante, esta sección te enseñará [cómo atrapar errores](#catchin
 
 Después, veremos los tres tipos de errores que tu bot puede encontrar.
 
-| Nombre                                     | Propósito                                                                                                   |
-| ---------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| Nombre                                   | Propósito                                                                                                                 |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
 | [`BotError`](#the-boterror-object)       | Objeto de error que envuelve cualquier error lanzado en su middleware (por ejemplo, los dos errores siguientes)           |
 | [`GrammyError`](#the-grammyerror-object) | Lanzado si el servidor de la API del Bot devuelve `ok: false`, indicando que su solicitud de la API no era válida y falló |
-| [`HttpError`](#the-httperror-object)     | Se lanza si no se puede acceder al servidor de la API del Bot                                                         |
+| [`HttpError`](#the-httperror-object)     | Se lanza si no se puede acceder al servidor de la API del Bot                                                             |
 
 Un mecanismo más avanzado de manejo de errores se puede encontrar [aquí abajo](#error-boundaries).
 
