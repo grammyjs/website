@@ -81,7 +81,6 @@ Hay dos formas de hacerlo, como se describe en [la sección sobre opciones de fo
 
 Envía tu mensaje con markdown en el texto, y especifica `parse_mode: 'MarkdownV2'`.
 
-
 ```ts
 await bot.api.sendMessage(
   12345,
@@ -92,7 +91,7 @@ await bot.api.sendMessage(
 
 ### HTML
 
-> Véase también  <https://core.telegram.org/bots/api#html-style>
+> Véase también <https://core.telegram.org/bots/api#html-style>
 
 Envía tu mensaje con elementos HTML en el texto, y especifica `parse_mode: 'HTML'`.
 
@@ -116,9 +115,12 @@ Puedes forzar una respuesta así:
 
 ```ts
 bot.command("start", async (ctx) => {
-  await ctx.reply("¡Hola! Sólo puedo leer los mensajes que me responden explícitamente!", {
-    // Haz que los clientes de Telegram muestren automáticamente una interfaz de respuesta al usuario.
-    reply_markup: { force_reply: true },
-  });
+  await ctx.reply(
+    "¡Hola! Sólo puedo leer los mensajes que me responden explícitamente!",
+    {
+      // Haz que los clientes de Telegram muestren automáticamente una interfaz de respuesta al usuario.
+      reply_markup: { force_reply: true },
+    },
+  );
 });
 ```
