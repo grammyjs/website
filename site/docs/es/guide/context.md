@@ -59,13 +59,13 @@ El objeto context siempre contiene información sobre tu bot, accesible a travé
 
 Hay una serie de accesos directos instalados en el objeto de contexto.
 
-| Atajo              | Descripción                                                                         |
-| --------------------- | ----------------------------------------------------------------------------------- |
-| `ctx.msg`             | Obtiene el objeto mensaje, también los editados                                           |
-| `ctx.chat`            | Obtiene el objeto chat                                                                |
-| `ctx.senderChat`      | Obtiene el objeto de chat del remitente de `ctx.msg` (para mensajes anónimos de canal/grupo) |
-| `ctx.from`            | Obtiene el autor del mensaje, la consulta de devolución de llamada, u otras cosas                     |
-| `ctx.inlineMessageId` | Obtiene el identificador del mensaje en línea para las consultas de devolución de llamada o los resultados elegidos en línea    |
+| Atajo                 | Descripción                                                                                                                  |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `ctx.msg`             | Obtiene el objeto mensaje, también los editados                                                                              |
+| `ctx.chat`            | Obtiene el objeto chat                                                                                                       |
+| `ctx.senderChat`      | Obtiene el objeto de chat del remitente de `ctx.msg` (para mensajes anónimos de canal/grupo)                                 |
+| `ctx.from`            | Obtiene el autor del mensaje, la consulta de devolución de llamada, u otras cosas                                            |
+| `ctx.inlineMessageId` | Obtiene el identificador del mensaje en línea para las consultas de devolución de llamada o los resultados elegidos en línea |
 
 En otras palabras, también puedes hacer esto:
 
