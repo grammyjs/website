@@ -125,6 +125,9 @@ We will illustrate the concept of middleware by writing a simple middleware func
 Here is the function signature for our middleware.
 You can compare it to the middleware type from above, and convince yourself that we actually have middleware here.
 
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
+
 ```ts
 /** Measures the response time of the bot, and logs it to `console` */
 async function responseTime(
@@ -134,6 +137,19 @@ async function responseTime(
   // TODO: implement
 }
 ```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+/** Measures the response time of the bot, and logs it to `console` */
+async function responseTime(ctx, next) {
+  // TODO: implement
+}
+```
+
+</CodeGroupItem>
+</CodeGroup>
 
 We can install it into our `bot` instance with `bot.use()`:
 
@@ -150,6 +166,9 @@ Here is what we want to do:
 3. We take `Date.now()` again, compare it to the old value, and `console.log` the time difference.
 
 It is important to install our `responseTime` middleware _first_ on the bot (at the top of the middleware stack) to make sure that all operations are included in the measurement.
+
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
 
 ```ts
 /** Measures the response time of the bot, and logs it to `console` */
@@ -169,6 +188,28 @@ async function responseTime(
 
 bot.use(responseTime);
 ```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+/** Measures the response time of the bot, and logs it to `console` */
+async function responseTime(ctx, next) {
+  // take time before
+  const before = Date.now(); // milliseconds
+  // invoke downstream middleware
+  await next(); // make sure to `await`!
+  // take time after
+  const after = Date.now(); // milliseconds
+  // log difference
+  console.log(`Response time: ${after - before} ms`);
+}
+
+bot.use(responseTime);
+```
+
+</CodeGroupItem>
+</CodeGroup>
 
 Complete, and works! :heavy_check_mark:
 
