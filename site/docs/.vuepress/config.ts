@@ -215,6 +215,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/plugins/router.md",
                   },
                   {
+                    text: "Emoji (emoji)",
+                    link: "/plugins/parse-mode.md",
+                  },
+                  {
                     text: "Parse Mode (parse-mode)",
                     link: "/plugins/parse-mode.md",
                   },
