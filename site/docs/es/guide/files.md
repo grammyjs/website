@@ -27,7 +27,6 @@ Si tu bot realmente quiere descargar el archivo, entonces puede hacerlo llamando
 Este método te permite descargar el archivo construyendo una URL especial y temporal.
 Ten en cuenta que la validez de esta URL sólo está garantizada durante 60 minutos, después de los cuales puede expirar. En este caso, puedes simplemente llamar a `getFile` de nuevo.
 
-
 Cuando un bot **envía** un mensaje, puede especificar un `file_id` que haya visto antes.
 Esto le permitirá enviar el archivo identificado, sin necesidad de subir los datos para ello.
 (Para ver cómo subir sus propios archivos, [desplácese hacia abajo](#envío-de-archivos).
@@ -59,10 +58,14 @@ bot.on("message:voice", async (ctx) => {
   const voice = ctx.msg.voice;
 
   const duration = voice.duration; // en segundos
-  await ctx.reply(`Su mensaje de voz tiene una duración de ${duration} segundos.`);
+  await ctx.reply(
+    `Su mensaje de voz tiene una duración de ${duration} segundos.`,
+  );
 
   const fileId = voice.file_id;
-  await ctx.reply("El identificador de archivo de tu mensaje de voz es: " + fileId);
+  await ctx.reply(
+    "El identificador de archivo de tu mensaje de voz es: " + fileId,
+  );
 
   const file = await ctx.getFile(); // válido durante al menos 1 hora
   const path = file.file_path; // fruta del archivo en el servidor de la API de Bot
