@@ -82,14 +82,12 @@ bot.command("start", async (ctx) => {
 });
 ```
 
-::: warn Notice two things:
-
-1. `ctx.emoji` and `ctx.replyWithEmoji` **ALWAYS** use template strings.
-2. The emojis you want goes inside `${"templates"}`.
-   :::
+:::warn Notice two things
+`ctx.emoji` and `ctx.replyWithEmoji` **ALWAYS** use template strings. If you're unfamiliar with this syntax, you can read more about it [here](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Template_literals).
+:::
 
 ## Plugin Summary
 
 - Name: `emoji`
 - Source: <https://github.com/grammyjs/emoji>
-- Reference: TBD
+- Reference: https://doc.deno.land/https://deno.land/x/grammy_emoji/mod.ts
