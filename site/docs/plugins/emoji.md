@@ -12,10 +12,9 @@ You can install this plugin on your bot like this:
 ```ts
 import { EmojiFlavor, emojiParser } from "@grammyjs/emoji";
 
-type FlavoredContext =
-  & Context // You can pass your own context here
-  & EmojiFlavor;
-const bot = new Bot<FlavoredContext>("<your token>");
+type MyContext = Context & // You can pass your own context here
+  EmojiFlavor;
+const bot = new Bot<MyContext>(""); // <-- put your bot token between the ""
 
 bot.use(emojiParser());
 ```
@@ -26,7 +25,7 @@ bot.use(emojiParser());
 ```js
 const { emojiParser } = require("@grammyjs/emoji");
 
-const bot = new Bot("<your token>");
+const bot = new Bot(""); // <-- put your bot token between the ""
 
 bot.use(emojiParser());
 ```
@@ -40,7 +39,9 @@ import {
   emojiParser,
 } from "https://deno.land/x/grammy_emoji/mod.ts";
 
-const bot = new Bot("<your token>");
+type MyContext = Context & // You can pass your own context here
+  EmojiFlavor;
+const bot = new Bot<MyContext>(""); // <-- put your bot token between the ""
 
 bot.use(emojiParser());
 ```
