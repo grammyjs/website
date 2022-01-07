@@ -15,7 +15,7 @@ import { EmojiFlavor, emojiParser } from "@grammyjs/emoji";
 type FlavoredContext =
   & Context // You can pass your own context here
   & EmojiFlavor;
-const bot = new Bot<FlavoredContext>('<your token>');
+const bot = new Bot<FlavoredContext>("<your token>");
 
 bot.use(emojiParser());
 ```
@@ -24,9 +24,9 @@ bot.use(emojiParser());
   <CodeGroupItem title="JavaScript">
 
 ```js
-const { emojiParser } = require("@grammyjs/emoji")
+const { emojiParser } = require("@grammyjs/emoji");
 
-const bot = new Bot('<your token>');
+const bot = new Bot("<your token>");
 
 bot.use(emojiParser());
 ```
@@ -35,9 +35,12 @@ bot.use(emojiParser());
   <CodeGroupItem title="Deno">
 
 ```ts
-import { EmojiFlavor, emojiParser } from "https://deno.land/x/grammy_emoji/mod.ts";
+import {
+  EmojiFlavor,
+  emojiParser,
+} from "https://deno.land/x/grammy_emoji/mod.ts";
 
-const bot = new Bot('<your token>');
+const bot = new Bot("<your token>");
 
 bot.use(emojiParser());
 ```
