@@ -19,7 +19,7 @@ You can install this plugin on your bot like this:
       bot.use(emojiParser());
     ```
 
-  </CodeGroupItem>
+</CodeGroupItem>
   <CodeGroupItem title="JavaScript">
     ```js
       const { emojiParser } = require("@grammyjs/emoji")
@@ -29,7 +29,7 @@ You can install this plugin on your bot like this:
       bot.use(emojiParser());
     ```
 
-  </CodeGroupItem>
+</CodeGroupItem>
   <CodeGroupItem title="Deno">
     ```ts
       import { EmojiFlavor, emojiParser } from "https://deno.land/x/grammy-emoji/src/mod.ts";
@@ -39,7 +39,7 @@ You can install this plugin on your bot like this:
       bot.use(emojiParser());
     ```
 
-  </CodeGroupItem>
+</CodeGroupItem>
 </CodeGroup>
 
 And you can get emojis in your replies like this:
