@@ -82,7 +82,7 @@ bot.command("start", async (ctx) => {
 });
 ```
 
-:::warn Notice two things
+:::warn Keep in mind that
 `ctx.emoji` and `ctx.replyWithEmoji` **ALWAYS** use template strings. If you're unfamiliar with this syntax, you can read more about it [here](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Template_literals).
 :::
 
