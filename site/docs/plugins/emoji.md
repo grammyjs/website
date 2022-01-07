@@ -30,8 +30,11 @@ You can install this plugin on your bot like this:
 ```ts
 import { EmojiFlavor, emojiParser } from "@grammyjs/emoji";
 
-type MyContext = Context & // You can pass your own context here
-  EmojiFlavor;
+// This is called Context Flavoring
+// You can read more about at:
+// https://grammy.dev/guide/context.html#context-flavors
+type MyContext = Context & EmojiFlavor;
+
 const bot = new Bot<MyContext>(""); // <-- put your bot token between the ""
 
 bot.use(emojiParser());
@@ -57,8 +60,11 @@ import {
   emojiParser,
 } from "https://deno.land/x/grammy_emoji/mod.ts";
 
-type MyContext = Context & // You can pass your own context here
-  EmojiFlavor;
+// This is called Context Flavoring
+// You can read more about at:
+// https://grammy.dev/guide/context.html#context-flavors
+type MyContext = Context & EmojiFlavor;
+
 const bot = new Bot<MyContext>(""); // <-- put your bot token between the ""
 
 bot.use(emojiParser());
@@ -72,13 +78,15 @@ And you can get emojis in your replies like this:
 ```js
 bot.command("start", async (ctx) => {
   await ctx.reply(ctx.emoji`Welcome! ${"smiling_face_with_sunglasses"}`);
+  // > Welcome! 😎
 });
 ```
 
-Notice two things:
+::: warn Notice two things:
 
 1. `ctx.emoji` and `ctx.replyWithEmoji` **ALWAYS** use template strings.
 2. The emojis you want goes inside `${"templates"}`.
+   :::
 
 ## Plugin Summary
 
