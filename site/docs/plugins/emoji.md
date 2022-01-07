@@ -18,7 +18,7 @@ This plugin aim to solve these issues, handling for you the hard task of parsing
 
 ### Is this sorcery?
 
-No, it is called template strings. You can read more about them [here](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Template_literals).
+No, it is called template strings. You can read more about them [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals).
 
 ## Installing and examples
 
@@ -83,7 +83,7 @@ bot.command("start", async (ctx) => {
 ```
 
 :::warn Keep in mind that
-`ctx.emoji` and `ctx.replyWithEmoji` **ALWAYS** use template strings. If you're unfamiliar with this syntax, you can read more about it [here](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Template_literals).
+`ctx.emoji` and `ctx.replyWithEmoji` **ALWAYS** use template strings. If you're unfamiliar with this syntax, you can read more about it [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals).
 :::
 
 ## Plugin Summary
