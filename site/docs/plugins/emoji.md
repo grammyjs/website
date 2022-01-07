@@ -16,7 +16,7 @@ This plugin aim to solve these issues, handling for you the hard task of parsing
 
 1. Describe the emoji you want and use it. Right in your code. Simple as that.
 
-#### Is this sorcery?
+### Is this sorcery?
 
 No, it is called template strings. You can read more about them [here](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Template_literals).
 
