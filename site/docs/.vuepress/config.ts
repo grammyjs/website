@@ -547,6 +547,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/zh/plugins/router.md",
                   },
                   {
+                    text: "Emoji (emoji)",
+                    link: "/zh/plugins/emoji.md",
+                  },
+                  {
                     text: "解析模式 (parse-mode)",
                     link: "/zh/plugins/parse-mode.md",
                   },
