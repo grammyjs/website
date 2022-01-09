@@ -90,4 +90,4 @@ bot.command("start", async (ctx) => {
 
 - Name: `emoji`
 - Source: <https://github.com/grammyjs/emoji>
-- Reference: https://doc.deno.land/https://deno.land/x/grammy_emoji/mod.ts
+- Reference: <https://doc.deno.land/https://deno.land/x/grammy_emoji/mod.ts>
