@@ -13,10 +13,10 @@ In Node.js, here is how you would use a proxy with the `socks5-https-client` pac
 
 ```ts
 import { Bot } from "grammy";
-import { SocksProxyAgent } from 'socks-proxy-agent';
+import { SocksProxyAgent } from "socks-proxy-agent";
 
 const socksAgent = new SocksProxyAgent({
-	host: host, // put in the proxy host
+  host: host, // put in the proxy host
   port: port, // put in the proxy port
 });
 
