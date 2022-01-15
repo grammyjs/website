@@ -103,7 +103,7 @@ This will return an HTTPS link to your file that is valid for at least one hour.
 If you are using a local Bot API server, then the `getFile` call effectively downloads the file to your disk already.
 
 In turn, you can call `file.getUrl()` to access that file path.
-Note that `await file.download()` will now simply copy that locally present file to a temporary location (or to the given path if speciffied).
+Note that `await file.download()` will now simply copy that locally present file to a temporary location (or to the given path if specified).
 
 ## Supporting `bot.api` Calls
 
