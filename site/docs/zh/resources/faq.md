@@ -2,7 +2,7 @@
 
 这里收集了一些 [关于 grammY 本身](#关于-grammy-的问题)，[常见错误](#为什么我会收到这个错误) 和 [Deno](#关于-deno-的问题) 的常见问题。
 
-如果这个 FAQ 不能答复你的问题，你也应该看看 Telegram 团队写的 Bot FAQ。
+如果这个 FAQ 不能答复你的问题，你也应该看看 Telegram 团队写的 [Bot FAQ]((https://core.telegram.org/bots/faq))。
 
 ## 关于 grammY 的问题
 
