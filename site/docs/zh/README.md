@@ -15,7 +15,7 @@ features:
     details: grammY 是开放的，通过插件让它完全适合你的需要。
   - title: 可扩展
     details: grammY 在你 bot 拥有较多流量时提供可靠的帮助.
-footer: Copyright © 2021
+footer: Copyright © 2022
 permalink: /zh/
 ---
 
