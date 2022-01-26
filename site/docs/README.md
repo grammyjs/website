@@ -15,7 +15,7 @@ features:
     details: grammY is open and can be extended by plugins to make it fit exactly your needs.
   - title: Scalable
     details: grammY has you covered when your bot gets popular and the traffic increases.
-footer: Copyright © 2022
+footer: Copyright © 2021-2022
 permalink: /
 ---
 
