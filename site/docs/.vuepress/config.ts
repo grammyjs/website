@@ -696,7 +696,7 @@ export default defineUserConfig<DefaultThemeOptions>({
           "Topilmadi",
           "Yo'q.",
           "Bu yerda siz uchun hech narsa mavjud emas, uzr.",
-          "Error 404. Bu sahifa mavjud emas"
+          "Error 404. Bu sahifa mavjud emas",
         ],
         backToHome: "Asosiy sahifaga qaytish",
         navbar: [
@@ -1033,7 +1033,7 @@ export default defineUserConfig<DefaultThemeOptions>({
         indexName: "grammy",
         placeholder: "Search",
         locales: {
-          "/zh/": { placeholder: "搜索文档"},
+          "/zh/": { placeholder: "搜索文档" },
           "/uz/": {
             placeholder: "Qidirish",
             translations: {
@@ -1042,32 +1042,35 @@ export default defineUserConfig<DefaultThemeOptions>({
                 searchBox: {
                   resetButtonTitle: "So'rovni tozalash",
                   resetButtonAriaLabel: "So'rovni tozalash",
-                  cancelButtonText: 'Bekor qilish',
-                  cancelButtonAriaLabel: 'Bekor qilish',
+                  cancelButtonText: "Bekor qilish",
+                  cancelButtonAriaLabel: "Bekor qilish",
                 },
                 startScreen: {
-                  recentSearchesTitle: 'Yaqinda amalga oshirilgan qidiruvlar',
-                  noRecentSearchesText: 'Yaqinda amalga oshirilgan qidiruvlar mavjud emas',
-                  saveRecentSearchButtonTitle: 'Qidiruvni saqlash',
+                  recentSearchesTitle: "Yaqinda amalga oshirilgan qidiruvlar",
+                  noRecentSearchesText:
+                    "Yaqinda amalga oshirilgan qidiruvlar mavjud emas",
+                  saveRecentSearchButtonTitle: "Qidiruvni saqlash",
                   removeRecentSearchButtonTitle: "Qidiruvni tarixdan o'chirish",
-                  favoriteSearchesTitle: 'Sevimli qidiruvlar',
-                  removeFavoriteSearchButtonTitle: "Qidiruvni sevimlilar ro'yhatidan o'chirish",
+                  favoriteSearchesTitle: "Sevimli qidiruvlar",
+                  removeFavoriteSearchButtonTitle:
+                    "Qidiruvni sevimlilar ro'yhatidan o'chirish",
                 },
                 errorScreen: {
-                  titleText: 'Natijalarni qabul qilishda xatolik',
-                  helpText: 'Iltimos, tarmoqga ulanganligingizni tekshiring.',
+                  titleText: "Natijalarni qabul qilishda xatolik",
+                  helpText: "Iltimos, tarmoqga ulanganligingizni tekshiring.",
                 },
                 footer: {
-                  selectText: 'tanlash',
-                  navigateText: 'navigatsiya',
-                  closeText: 'yopish',
-                  searchByText: 'Qidiruv tizimi',
+                  selectText: "tanlash",
+                  navigateText: "navigatsiya",
+                  closeText: "yopish",
+                  searchByText: "Qidiruv tizimi",
                 },
                 noResultsScreen: {
                   noResultsText: "So'rov bo'yicha natija mavjud emas",
                   suggestedQueryText: "Quyidagini qidirishga urinib ko'ring",
-                  openIssueText: "Bu so'rovdan natija chiqishiga ishonchingiz komilmi?",
-                  openIssueLinkText: 'Bizga xabar bering',
+                  openIssueText:
+                    "Bu so'rovdan natija chiqishiga ishonchingiz komilmi?",
+                  openIssueLinkText: "Bizga xabar bering",
                 },
               },
             },
