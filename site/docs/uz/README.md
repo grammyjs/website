@@ -12,7 +12,7 @@ features:
   - title: Foydalanish oson
     details: grammY da Telegram bot qurish naqadar oson
   - title: Moslashuvchan
-    details: grammY ochiq va sizning ehtiyojlaringizga mos kelishi uchun plaginlar orqali kengaytirilishi mumkin.
+    details: grammY ochiq va sizning ehtiyojlaringizga mos kelishi uchun pluginlar orqali kengaytirilishi mumkin.
   - title: Kengayuvchan
     details: grammY botingiz ommaviylashib, traffik ko'payganda sizni qoniqtira oladi.
 footer: Copyright © 2021-2022
@@ -20,18 +20,17 @@ permalink: /
 ---
 
 <h6 align="right">… {{ [
-  'think of the whY',
-  'a new era of bot development',
-  'runs faster than you',
-  'one update ahead',
-  'can do anything except dishes',
-  'easy peasy lemon squeezY',
-  'hundreds of millions served',
-][Math.floor(Math.random() * 7)] }}.</h6>
+  'bot rivojlanishining yangi davri',
+  'sizdanda tezroq ishlaydi',
+  'bir qadam oldinda',
+  'idish yuvishdan boshqa',
+  'limon siqqandek oson',
+  'yuzlab millionlar foydalangan',
+][Math.floor(Math.random() * 6)] }}.</h6>
 
 ## Boshlash
 
-Botlar [TypeScript](https://www.typescriptlang.org) (yoki JavaScript) da yozilgan va turli platformalarda, jumladan [Node.js](https://nodejs.org) da ishlaydi.
+Botlar [TypeScript](https://www.typescriptlang.org) (yoki JavaScript) da yozilgan va turli platformalarda, jumladan [Node.js](https://nodejs.org)da ishlaydi.
 
 `npm install grammy` va quyidagi kodni joylashtiring:
 
@@ -85,4 +84,4 @@ Ishladi! :tada:
 ---
 
 grammY 2021-yil 30-dekabrda [chiqarilgan](https://core.telegram.org/bots/api#december-30-2021) Telegram Bot API 5.6’ni qo‘llab-quvvatlaydi.
-(So'ngi ta'kidlash: Spoyler va yaxshilangan himoyalangan kontentni qo'llab-quvvatlash)
+(So'nggi yoritish: Spoyler va yaxshilangan himoyalangan kontentni qo'llash)
