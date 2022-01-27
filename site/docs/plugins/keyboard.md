@@ -11,13 +11,14 @@ Let us try to clear it up a bit:
 | ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | [**Inline Keyboard**](#inline-keyboards) | a set of buttons that is displayed underneath a message inside the chat                                                            |
 | [**Custom Keyboard**](#custom-keyboards) | a set of buttons that is displayed instead of the user's system keyboard                                                           |
-| **Inline keyboard button**               | a button in an inline keyboard, sends a callback query not visible to the user when pressed, sometimes just called _inline button_ |
+| **Inline Keyboard button**               | a button in an inline keyboard, sends a callback query not visible to the user when pressed, sometimes just called _inline button_ |
 | **Custom Keyboard button**               | a button in a keyboard, sends a text message with its label when pressed, sometimes just called _keyboard button_                  |
 | **`InlineKeyboard`**                     | class in grammY to create inline keyboards                                                                                         |
 | **`Keyboard` (!)**                       | class in grammY to create custom keyboards                                                                                         |
 
 > Note that both custom keyboard buttons and inline keyboard buttons can also have other functions, such as requesting the user's location, opening a website, and so on.
 > This was omitted for brevity.
+> As of current tests, it's not possible to edit a custom keyboard with `editMessageReplyMarkup` and change it to a Inline Keayboard and vice versa.
 
 ## Inline Keyboards
 
@@ -99,7 +100,7 @@ await ctx.reply(text, {
 ```
 
 Naturally, all other methods that send messages other than text messages support the same options, as specified by the [Telegram Bot API Reference](https://core.telegram.org/bots/api).
-For example, you can edit a keybaord by calling `editMessageReplyMarkup`, and passing the new `InlineKeyboard` instance as `reply_markup`.
+For example, you can edit a keyboard by calling `editMessageReplyMarkup`, and passing the new `InlineKeyboard` instance as `reply_markup`.
 Specify an empty inline keyboard to remove all buttons underneath a message.
 
 ### Responding to Clicks
