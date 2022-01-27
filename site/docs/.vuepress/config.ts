@@ -16,6 +16,11 @@ export default defineUserConfig<DefaultThemeOptions>({
       title: "grammY",
       description: "Telegram Bot 框架",
     },
+    "/uz/": {
+      lang: "uz-UZ",
+      title: "grammY",
+      description: "Telegram Bot Framework",
+    },
   },
   shouldPrefetch: true,
 
@@ -684,6 +689,333 @@ export default defineUserConfig<DefaultThemeOptions>({
           },
         ],
       },
+      "/uz/": {
+        selectLanguageName: "O'zbekcha",
+        editLinkText: "Bu sahifani Githubda o'zgartirish",
+        notFound: [
+          "Topilmadi",
+          "Yo'q.",
+          "Bu yerda siz uchun hech narsa mavjud emas, uzr.",
+          "Error 404. Bu sahifa mavjud emas"
+        ],
+        backToHome: "Asosiy sahifaga qaytish",
+        navbar: [
+          { text: "Qo'llanma", link: "/uz/guide/" },
+          {
+            text: "O'rganish",
+            children: [
+              {
+                text: "Qo'llanma",
+                children: [
+                  {
+                    text: "Umumiy",
+                    link: "/uz/guide/README.md",
+                  },
+                  {
+                    text: "Kirish",
+                    link: "/uz/guide/introduction.md",
+                  },
+                  {
+                    text: "Boshlash",
+                    link: "/uz/guide/getting-started.md",
+                  },
+                  {
+                    text: "Xabar Yuborish va Qabul qilish",
+                    link: "/uz/guide/basics.md",
+                  },
+                  {
+                    text: "Kontekst",
+                    link: "/uz/guide/context.md",
+                  },
+                  {
+                    text: "Bot API",
+                    link: "/uz/guide/api.md",
+                  },
+                  {
+                    text: "So'rovlar Filtri va bot.on()",
+                    link: "/uz/guide/filter-queries.md",
+                  },
+                  {
+                    text: "Buyruqlar",
+                    link: "/uz/guide/commands.md",
+                  },
+                  {
+                    text: "Middleware",
+                    link: "/uz/guide/middleware.md",
+                  },
+                  {
+                    text: "Xatolar boshqaruvi",
+                    link: "/uz/guide/errors.md",
+                  },
+                  {
+                    text: "Inline So'rovlar",
+                    link: "/uz/guide/inline-queries.md",
+                  },
+                  {
+                    text: "File Boshqaruvi",
+                    link: "/uz/guide/files.md",
+                  },
+                  {
+                    text: "O'yinlar",
+                    link: "/uz/guide/games.md",
+                  },
+                  {
+                    text: "Long Polling va Webhooklar",
+                    link: "/uz/guide/deployment-types.md",
+                  },
+                ],
+              },
+              {
+                text: "Asosiy",
+                children: [
+                  {
+                    text: "Umumiy",
+                    link: "/uz/advanced/README.md",
+                  },
+                  {
+                    text: "Middleware Redux",
+                    link: "/uz/advanced/middleware.md",
+                  },
+                  {
+                    text: "Kengaytirish I: Katta kod bazasi",
+                    link: "/uz/advanced/structuring.md",
+                  },
+                  {
+                    text: "Kengaytirish II: Yuqori bosim",
+                    link: "/uz/advanced/scaling.md",
+                  },
+                  {
+                    text: "Kengaytirish III: Ishonchlilik",
+                    link: "/uz/advanced/reliability.md",
+                  },
+                  {
+                    text: "Kengaytirish IV: Flud Cheklovlar",
+                    link: "/uz/advanced/flood.md",
+                  },
+                  {
+                    text: "Bot API Transformerlar",
+                    link: "/uz/advanced/transformers.md",
+                  },
+                  {
+                    text: "Proksi Qo'llash",
+                    link: "/uz/advanced/proxy.md",
+                  },
+                  {
+                    text: "Deploy jarayoni",
+                    link: "/uz/advanced/deployment.md",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            text: "Pluginlar",
+            children: [
+              {
+                text: "Kirish",
+                children: [
+                  {
+                    text: "Pluginlar haqida",
+                    link: "/uz/plugins/README.md",
+                  },
+                  {
+                    text: "Plugin yozish",
+                    link: "/uz/plugins/guide.md",
+                  },
+                ],
+              },
+              {
+                text: "Doimiy",
+                children: [
+                  {
+                    text: "Session va Ma'lumot saqlash",
+                    link: "/uz/plugins/session.md",
+                  },
+                  {
+                    text: "Inline and Custom Keyboardlar",
+                    link: "/uz/plugins/keyboard.md",
+                  },
+                ],
+              },
+              {
+                text: "Rasmiy",
+                children: [
+                  {
+                    text: "Interaktiv menyular (menu)",
+                    link: "/uz/plugins/menu.md",
+                  },
+                  {
+                    text: "Stateless Question (stateless-question)",
+                    link: "/uz/plugins/stateless-question.md",
+                  },
+                  {
+                    text: "Concurrency (runner)",
+                    link: "/uz/plugins/runner.md",
+                  },
+                  {
+                    text: "Hydration (hydrate)",
+                    link: "/uz/plugins/hydrate.md",
+                  },
+                  {
+                    text: "API So'rovlarni Takrorlash (auto-retry)",
+                    link: "/uz/plugins/auto-retry.md",
+                  },
+                  {
+                    text: "Flud Nazorati (transformer-throttler)",
+                    link: "/uz/plugins/transformer-throttler.md",
+                  },
+                  {
+                    text: "Foydalanuvchilar Tarifini Cheklash (ratelimiter)",
+                    link: "/uz/plugins/ratelimiter.md",
+                  },
+                  {
+                    text: "Fayllar (files)",
+                    link: "/uz/plugins/files.md",
+                  },
+                  {
+                    text: "Universallashtirish (i18n)",
+                    link: "/uz/plugins/i18n.md",
+                  },
+                  {
+                    text: "Router (router)",
+                    link: "/uz/plugins/router.md",
+                  },
+                  {
+                    text: "Emoji (emoji)",
+                    link: "/uz/plugins/emoji.md",
+                  },
+                  {
+                    text: "Parse Mode (parse-mode)",
+                    link: "/uz/plugins/parse-mode.md",
+                  },
+                  {
+                    text: "Buyruq Filtri (command-filter)",
+                    link: "/uz/plugins/command-filter.md",
+                  },
+                ],
+              },
+              {
+                text: "Uchinchi tomon",
+                children: [
+                  {
+                    text: "Console Time",
+                    link: "/uz/plugins/console-time.md",
+                  },
+                  {
+                    text: "Foydali Middleware",
+                    link: "/uz/plugins/middlewares.md",
+                  },
+                  {
+                    text: "[PR Jo'nating!]",
+                    link:
+                      "/uz/plugins/README.md#submitting-your-own-package-to-the-docs",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            text: "Misollar",
+            children: [
+              {
+                text: "Misollar",
+                children: [
+                  {
+                    text: "Awesome grammY",
+                    link: "https://github.com/grammyjs/awesome-grammY",
+                  },
+                  {
+                    text: "Namuna Botlar Repozitoriyasi",
+                    link: "https://github.com/grammyjs/examples",
+                  },
+                  {
+                    text: "Real Brauzer Demo",
+                    link: "/uz/demo/README.md",
+                  },
+                  { text: "Namuna botlar", link: "/uz/demo/examples.md" },
+                ],
+              },
+            ],
+          },
+          {
+            text: "Resurslar",
+            children: [
+              {
+                text: "grammY",
+                children: [
+                  {
+                    text: "Hamjamiyat Guruhi (Ingliz)",
+                    link: "https://t.me/grammyjs",
+                  },
+                  {
+                    text: "Hamjamiyat Guruhi (Rus)",
+                    link: "https://t.me/grammyjs_ru",
+                  },
+                  {
+                    text: "Yangiliklar",
+                    link: "https://t.me/grammyjs_news",
+                  },
+                  {
+                    text: "FAQ",
+                    link: "/resources/faq.md",
+                  },
+                  {
+                    text: "Boshqa frameworklar bilan solishtirish",
+                    link: "/resources/comparison.md",
+                  },
+                ],
+              },
+              {
+                text: "Telegram",
+                children: [
+                  {
+                    text: "Dasturchilar uchun Kirish",
+                    link: "https://core.telegram.org/bots",
+                  },
+                  {
+                    text: "Bots FAQ",
+                    link: "https://core.telegram.org/bots/faq",
+                  },
+                  {
+                    text: "Bot API Ma'lumotnomasi",
+                    link: "https://core.telegram.org/bots/api",
+                  },
+                  {
+                    text: "Namuna Updatelar",
+                    link:
+                      "https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates",
+                  },
+                ],
+              },
+              {
+                text: "Hosting",
+                children: [
+                  {
+                    text: "Deno Deploy",
+                    link: "/uz/hosting/deno-deploy.md",
+                  },
+                  {
+                    text: "Heroku",
+                    link: "/uz/hosting/heroku.md",
+                  },
+                  {
+                    text: "Google Cloud Funksiyalari",
+                    link: "/uz/hosting/gcf.md",
+                  },
+                  {
+                    text: "Virtual Shaxsiy Server (VPS)",
+                    link: "/uz/hosting/vps.md",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            text: "API Ma'lumotnoma",
+            link: "https://doc.deno.land/https://deno.land/x/grammy/mod.ts",
+          },
+        ],
+      },
     },
     repo: "https://github.com/grammyjs/grammY",
     docsRepo: "https://github.com/grammyjs/website",
@@ -700,7 +1032,47 @@ export default defineUserConfig<DefaultThemeOptions>({
         apiKey: "17b3527aa6f36e8d3fe2276b0f4d9633",
         indexName: "grammy",
         placeholder: "Search",
-        locales: { "/zh/": { placeholder: "搜索文档" } },
+        locales: {
+          "/zh/": { placeholder: "搜索文档"},
+          "/uz/": {
+            placeholder: "Qidirish",
+            translations: {
+              button: { buttonText: "Qidirish" },
+              modal: {
+                searchBox: {
+                  resetButtonTitle: "So'rovni tozalash",
+                  resetButtonAriaLabel: "So'rovni tozalash",
+                  cancelButtonText: 'Bekor qilish',
+                  cancelButtonAriaLabel: 'Bekor qilish',
+                },
+                startScreen: {
+                  recentSearchesTitle: 'Yaqinda amalga oshirilgan qidiruvlar',
+                  noRecentSearchesText: 'Yaqinda amalga oshirilgan qidiruvlar mavjud emas',
+                  saveRecentSearchButtonTitle: 'Qidiruvni saqlash',
+                  removeRecentSearchButtonTitle: "Qidiruvni tarixdan o'chirish",
+                  favoriteSearchesTitle: 'Sevimli qidiruvlar',
+                  removeFavoriteSearchButtonTitle: "Qidiruvni sevimlilar ro'yhatidan o'chirish",
+                },
+                errorScreen: {
+                  titleText: 'Natijalarni qabul qilishda xatolik',
+                  helpText: 'Iltimos, tarmoqga ulanganligingizni tekshiring.',
+                },
+                footer: {
+                  selectText: 'tanlash',
+                  navigateText: 'navigatsiya',
+                  closeText: 'yopish',
+                  searchByText: 'Qidiruv tizimi',
+                },
+                noResultsScreen: {
+                  noResultsText: "So'rov bo'yicha natija mavjud emas",
+                  suggestedQueryText: "Quyidagini qidirishga urinib ko'ring",
+                  openIssueText: "Bu so'rovdan natija chiqishiga ishonchingiz komilmi?",
+                  openIssueLinkText: 'Bizga xabar bering',
+                },
+              },
+            },
+          },
+        },
         sitemaps: ["https://grammy.dev/sitemap.xml"],
       },
     ],
