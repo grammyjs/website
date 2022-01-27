@@ -23,4 +23,4 @@ We have observed that the following workflow works well, and we usually try to s
 
 ## Translating
 
-See [the Translating Guide](./TRANSLATING.md).
+See [the Translation Guide](./TRANSLATING.md).
