@@ -41,10 +41,10 @@ Botlar [TypeScript](https://www.typescriptlang.org) (yoki JavaScript) da yozilga
 ```ts
 import { Bot } from "grammy";
 
-const bot = new Bot(""); // <-- put your bot token here (https://t.me/BotFather)
+const bot = new Bot(""); // <-- bu yerga bot tokenini joylashtiring (https://t.me/BotFather)
 
-// Reply to any message with "Hi there!".
-bot.on("message", (ctx) => ctx.reply("Hi there!"));
+// Har qanday xabarga "Salom!" deya javob qiladi.
+bot.on("message", (ctx) => ctx.reply("Salom!"));
 
 bot.start();
 ```
@@ -55,10 +55,10 @@ bot.start();
 ```ts
 const { Bot } = require("grammy");
 
-const bot = new Bot(""); // <-- put your bot token here (https://t.me/BotFather)
+const bot = new Bot(""); // <-- bu yerga bot tokenini joylashtiring (https://t.me/BotFather)
 
-// Reply to any message with "Hi there!".
-bot.on("message", (ctx) => ctx.reply("Hi there!"));
+// Har qanday xabarga "Salom!" deya javob qiladi.
+bot.on("message", (ctx) => ctx.reply("Salom!"));
 
 bot.start();
 ```
@@ -69,10 +69,10 @@ bot.start();
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
-const bot = new Bot(""); // <-- put your bot token here (https://t.me/BotFather)
+const bot = new Bot(""); // <-- bu yerga bot tokenini joylashtiring (https://t.me/BotFather)
 
-// Reply to any message with "Hi there!".
-bot.on("message", (ctx) => ctx.reply("Hi there!"));
+// Har qanday xabarga "Salom!" deya javob qiladi.
+bot.on("message", (ctx) => ctx.reply("Salom!"));
 
 bot.start();
 ```
