@@ -7,14 +7,14 @@ Thank you, Telegram, for this overlapping terminology.
 
 Let us try to clear it up a bit:
 
-| Term                                     | Definition                                                                                                                          |
-| ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| [**Inline Keyboard**](#inline-keyboards) | a set of buttons that is displayed underneath a message inside the chat                                                             |
-| [**Custom Keyboard**](#custom-keyboards) | a set of buttons that is displayed instead of the user's system keyboard                                                            |
-| **Inline keyboard button**               | a button in an inline keyboard, sends a callback query not visible to the user when pressed, sometimes just called _inline button_  |
-| **Custom Keyboard button**               | a button in a keyboard, sends a text message with its label when pressed, sometimes just called _keyboard button_                   |
-| **`InlineKeyboard`**                     | class in grammY to create inline keyboards                                                                                          |
-| **`Keyboard` (!)**                       | class in grammY to create custom keyboards                                                                                          |
+| Term                                     | Definition                                                                                                                         |
+| ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| [**Inline Keyboard**](#inline-keyboards) | a set of buttons that is displayed underneath a message inside the chat                                                            |
+| [**Custom Keyboard**](#custom-keyboards) | a set of buttons that is displayed instead of the user's system keyboard                                                           |
+| **Inline keyboard button**               | a button in an inline keyboard, sends a callback query not visible to the user when pressed, sometimes just called _inline button_ |
+| **Custom Keyboard button**               | a button in a keyboard, sends a text message with its label when pressed, sometimes just called _keyboard button_                  |
+| **`InlineKeyboard`**                     | class in grammY to create inline keyboards                                                                                         |
+| **`Keyboard` (!)**                       | class in grammY to create custom keyboards                                                                                         |
 
 > Note that both custom keyboard buttons and inline keyboard buttons can also have other functions, such as requesting the user's location, opening a website, and so on.
 > This was omitted for brevity.
