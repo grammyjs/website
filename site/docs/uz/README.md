@@ -16,7 +16,7 @@ features:
   - title: Kengayuvchan
     details: grammY botingiz ommaviylashib, traffik ko'payganda sizni qoniqtira oladi.
 footer: Copyright © 2021-2022
-permalink: /
+permalink: /uz/
 ---
 
 <h6 align="right">… {{ [
