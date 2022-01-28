@@ -143,7 +143,7 @@ Places where long polling works well include:
 
 - During development on your local machine.
 - On majority of servers.
-- On hosted "backend" instances, i.e. machines that actively run your bot 24/7.
+- On hosted “backend” instances, i.e. machines that actively run your bot 24/7.
 
 **The main advantage of webhooks over long polling is that they are cheaper.**
 You save a ton of superfluous requests.
@@ -154,7 +154,7 @@ If you want to, you can even [make an API call when responding to the Telegram r
 Places where webhooks work well include:
 
 - On servers with SSL certificates.
-- On hosted "frontend" instances that scale according to their load.
+- On hosted “frontend” instances that scale according to their load.
 - On serverless platforms, such as cloud functions or programmable edge networks.
 
 ## I Still Have No Idea What to Use

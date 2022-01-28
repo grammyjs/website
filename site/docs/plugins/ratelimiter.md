@@ -77,14 +77,14 @@ bot.use(
 
     limit: 3,
 
-    // "MEMORY_STORAGE" is the default mode. Therefore if you want to use Redis, do not pass storageClient at all.
+    // “MEMORY_STORAGE” is the default mode. Therefore if you want to use Redis, do not pass storageClient at all.
     storageClient: redis,
 
     onLimitExceeded: (ctx) => {
       ctx?.reply("Please refrain from sending too many requests!");
     },
 
-    // Note that the key should be a number in string format such as "123456789".
+    // Note that the key should be a number in string format such as “123456789”.
     keyGenerator: (ctx) => {
       return ctx.from?.id.toString();
     },
@@ -116,7 +116,7 @@ bot.use(
   limit({
     keyGenerator: (ctx) => {
       if (ctx.chat?.type === "group" || ctx.chat?.type === "supergroup") {
-        // Note that the key should be a number in string format such as "123456789".
+        // Note that the key should be a number in string format such as “123456789”.
         return ctx.chat.id.toString();
       }
     },
