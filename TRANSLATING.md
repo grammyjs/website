@@ -5,10 +5,10 @@
 It is possible to translate the website to other languages, and anyone is very welcome to do so.
 
 Note that we're taking translations very seriously.
-They should receive as much love as the English version.
+They should be loved as much as the English version.
 
 For example, Google Translate is already built into Google Chrome.
-Don't bother using software to create translations of the docs.
+Don't bother to use software to create translations of the docs.
 If we create a translation of the docs for a new language, then because we want high quality translations written by native speakers or near-native speakers.
 Examples and real-world comparisons must be replaced by equivalents in the culture of the respective country.
 A good translation is hard and it takes time.
