@@ -18,7 +18,11 @@ Let us try to clear it up a bit:
 
 > Note that both custom keyboard buttons and inline keyboard buttons can also have other functions, such as requesting the user's location, opening a website, and so on.
 > This was omitted for brevity.
-> As of current tests, it's not possible to edit a custom keyboard with `editMessageReplyMarkup` and change it to an inline keyboard and vice versa.
+
+It is not possible to specify both a custom keyboard and an inline keyboard in the same message.
+The two are mutually exclusive.
+Moreover, the sent kind of reply markup cannot be changed at a later point by editing the message.
+For example, it is not possible to first send a custom keyboard along with a message, and then edit the message to use an inline keyboard.
 
 ## Inline Keyboards
 
