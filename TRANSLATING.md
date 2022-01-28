@@ -91,12 +91,12 @@ At this point, all you need to do is to keep it that way.
 Whenever an English article is updated (by us, you, or anyone else), a pull request will be opened.
 It usually takes some time before we get the content right, so don't bother translating anything at this point yet.
 
-Once the content is finalised, we add the "ready for translation" label.
+Once the content is finalised, we add the “ready for translation” label.
 This is a guarantee that the English version is not going to change anymore.
 You should now push more commits to the existing branch which sync up the changes to your language.
 It is recommended to have a second person review your translations, but this is less strict than in the Active Stage.
 
-Once you are satisfied with your work, add the label of your language, e.g. "🇪🇸 ES".
+Once you are satisfied with your work, add the label of your language, e.g. “🇪🇸 ES.”
 Now we have a good overview over which translations are done and which ones are missing.
 As soon as all translations are added (this usually takes 2-3 days), the pull request can be merged.
 The change immediately goes live for all languages at the same time.
