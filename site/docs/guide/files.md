@@ -162,7 +162,7 @@ const buffer = Uint8Array.from([65, 66, 67]);
 new InputFile(buffer); // "ABC"
 // Send an iterable.
 new InputFile(function* () {
-  // "ABCABCABCABC"
+  // “ABCABCABCABC”
   for (let i = 0; i < 4; i++) yield buffer;
 });
 ```
@@ -179,7 +179,7 @@ const buffer = Uint8Array.from([65, 66, 67]);
 new InputFile(buffer); // "ABC"
 // Send an iterable.
 new InputFile(function* () {
-  // "ABCABCABCABC"
+  // “ABCABCABCABC”
   for (let i = 0; i < 4; i++) yield buffer;
 });
 ```
