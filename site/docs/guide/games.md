@@ -32,7 +32,7 @@ An advantage of using the `api.sendGame` method is you can specify the `chat.id`
    ```ts
    // We will be using the start command to invoke the game reply method.
    bot.command("start", async (ctx) => {
-     // Pass the name of the game you created in BotFather, for example “my_game”.
+     // Pass the name of the game you created in BotFather, for example "my_game".
      await ctx.replyWithGame("my_game");
    });
    ```
