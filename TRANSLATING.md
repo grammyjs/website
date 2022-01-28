@@ -22,7 +22,8 @@ Anyone who wants to start a new language should ask themselves the following que
    grammY is young.
    It evolves quickly and there are many articles that get changed often.
    The translations must be kept in sync with the English original.
-   Outdated and wrong docs are much worse than no docs. Many people only come here for a few months (and that's fine!), but if you translate everything and then stop developing bots and stop updating the articles, we'll have to remove that language again.
+   Outdated and wrong docs are much worse than no docs.
+   Many people only come here for a few months (and that's fine!), but if you translate everything and then stop developing bots and stop updating the articles, we'll have to remove that language again.
    Then it was a waste of time for you.
    So if you don't want to commit long-term, don't start.
 3. How many hours per week can you spend in the beginning?
@@ -30,6 +31,10 @@ Anyone who wants to start a new language should ask themselves the following que
    However, if you can only work on it rarely, it's going to take a very long time until you're done.
    We don't want to end up with 15 languages and none of them is done for months.
    If you can't set aside enough free time to get this done, don't start.
+
+Still eager to join us?
+Great!
+Here is how we work:
 
 ## The Translation Workflow
 
@@ -48,13 +53,15 @@ Here is some more information about how each stage works.
 
 ### Active Stage
 
-A translation to another language must be 100% complete before it gets published.
+A translation to another language must be 100 % complete before it gets published.
 We do not accept partial translations.
 All menus, links, articles, comments, and everything translatable must be localised before the changes can finally go live on the website.
+Please open a translation tracking issue so everyone can follow the progress.
+It can look like https://github.com/grammyjs/website/issues/55.
 
 It would be very painful to do everything in a single pull request, so we developed a simple branching model which will make this easy.
 
-Once you start working on a new language, we will give you access to the repository.
+Once you start working on a new language, we will give push permission to this repository.
 You can then create a new branch for the translations, e.g. `feat/spanish-translations`.
 This is called the _translation branch_ of your language.
 
@@ -62,7 +69,7 @@ For every page you translate, create a new branch, perform the translations, and
 Make sure to open a pull request against your translation branch, and not against `main`.
 
 A different person who can speak your language can now review the pull request.
-Make sure to reiterate on the translations, in case if you have ideas to improve it.
+Make sure to reiterate on the translations, in case you have ideas to improve it.
 Once you both think that the translation is perfect, merge the pull request into the translation branch of your language.
 
 You should keep track of which pages are translated in your translation tracking issue.
@@ -70,12 +77,13 @@ If we update an article that is already translated, you need to open a new pull 
 That way, it is always guaranteed that the articles in the translation branch are up to date.
 
 Once everything is translated, the translation branch can be merged into `main`.
+You can now close your progress tracking issue.
 Your translations go live immediately.
 Your language has now entered the Maintenance Stage.
 
 ### Maintenance Stage
 
-Your language is 100% translated and perfectly in sync with the English original.
+Your language is 100 % translated and perfectly in sync with the English original.
 Great job!
 At this point, all you need to do is to keep it that way.
 
