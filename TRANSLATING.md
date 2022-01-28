@@ -102,5 +102,5 @@ As soon as all translations are added (this usually takes 2-3 days), the pull re
 The change immediately goes live for all languages at the same time.
 
 Some pull requests do not require a translation.
-They are labeled not translatable.
+They are labeled with “not translatable.”
 You can safely ignore them.
