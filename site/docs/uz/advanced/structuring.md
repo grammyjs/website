@@ -20,7 +20,7 @@ Aytish joizki, kodingizni tuzishning sodda va tasdiqlangan strategiyasi quyidagi
    Ushbu qismlarning har biri belgilangan xabarlarni boshqaradigan middlewareni ko'rsatadi.
 2. Botni yozish orqali barcha middlewareni birlashtiradigan bot misolini yozing.
 3. (Ixtiyoriy.) Yangilanishlarni markaziy tarzda oldindan filtrlang va yangilanishlarni faqat toʻgʻri yoʻl bilan yuboring.
-   Buning uchun `bot.route` ([API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer#route)) yoki muqobil ravishda [router plugini](/plugins/router.md)dan foydalanishingiz mumkin.
+   Buning uchun `bot.route` ([API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer#route)) yoki muqobil ravishda [router plugini](./plugins/router.md)dan foydalanishingiz mumkin.
 
 Yuqoridagi strategiyani amalga oshiradigan ishga tushiriladigan misolni [Example Bot repository](https://github.com/grammyjs/examples/tree/main/scaling)sida topishingiz mumkin.
 
@@ -47,7 +47,7 @@ export const lists = new Composer();
 lists.on('message', ctx => { ... });
 ```
 
-Ixtiyoriy, siz modul ichida bo'lgan barcha xatolarni boshqarish uchun "[error boundary](/guide/errors.md#error-boundaries)"dan foydalanishingiz mumkin.
+Ixtiyoriy, siz modul ichida bo'lgan barcha xatolarni boshqarish uchun "[error boundary](./guide/errors.md#error-boundaries)"dan foydalanishingiz mumkin.
 
 Endi `bot.ts` da ushbu modulni quyidagi tarzda yozishingiz mumkin:
 
@@ -62,7 +62,7 @@ bot.use(lists);
 bot.start();
 ```
 
-Optionally, you can use the [router plugin](/plugins/router.md) or to bundle up the different modules, if you're able to determine which middleware is responsible upfront.
+Optionally, you can use the [router plugin](./plugins/router.md) or to bundle up the different modules, if you're able to determine which middleware is responsible upfront.
 
 Biroq, esda tutingki, botingizni qanday tuzishning aniq usulini umumiy tarzda tushuntirish mushkulroq.
 Har doimgidek, dasturiy ta'minotda, buni eng mantiqiy tarzda bajaring :wink:
