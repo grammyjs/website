@@ -5,8 +5,8 @@ next: ./structuring.md
 
 # Middleware Redux
 
-[Qo'llanmada](./guide/middleware.md) biz middleware'ni funktsiyalar sifatida tanishtirdik.
-Middlewareni ushbu chiziqli usulda (grammYda ham) ishlatishingiz mumkin.
+[Qo'llanmada](./guide/middleware.md) biz middleware'ni funksiyalar sifatida tanishtirdik.
+Middlewelar ketma-ket ishlata olinishini (grammYda ham) hisobga olib, uni funksiyalar to'plami deb atash ham mumkin.
 
 ## grammY'da middleware
 
@@ -25,11 +25,11 @@ bot.on(/* ... */);
 bot.start();
 ```
 
-Ko'rinishidan "stack"ga o'xshaydi, faqat sahna ortida, u haqiqatan ham daraxt simondir.
-Ushbu funktsiyaning yuragi bu daraxtni yaratadigan `Composer` class'idir ([ma'lumotnoma](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer)).
+Ko'rinishidan ketma-ketlikdagi to'plamga o'xshaydi, ammo sahna ortida u tarmoqlangan ko'rinishda bo'ladi.
+Ushbu funksiyaning yuragi bu tarmoqlangan strukturani yaratadigan `Composer` class'idir ([ma'lumotnoma](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer)).
 
 Birinchidan, `Bot`ning har bir nusxasi `Composer`ning namunasidir.
-Bu shunchaki kichik `class`, shuning uchun `Bot` `class`i `Composer`ni kengaytiradi.
+Demak kichik `class`, shuning uchun `Bot` `class`i `Composer`ni kengaytiradi.
 
 Bundan tashqari, `Composer` ning har bir usuli ichki `use` ni chaqirishni yodda tutishingiz kerak.
 Misol uchun, `filter` ba'zi bir tarmoqli vositachi dasturlari bilan `use`ni chaqiradi, `on` esa berilgan [filter so'rovi](./guide/filter-queries.md)ga nisbatan yangilanishlarga mos keladigan ba'zi bir predikat funksiyasi bilan `filter`ni yana chaqiradi.
@@ -117,8 +117,7 @@ composer.filter(/* 1 */).filter(/* 2 */).use(/* A */);
 
 Filtr so'rovlarini yangi bilimlaringiz bilan [birlashtirish](./guide/filter-queries.md#combining-multiple-queries) bo'limini qayta ko'rib chiqing va bilimignizni mustahkamlab oling.
 
-Bu erda alohida holat `fork` hisoblanadi, chunki u bir vaqtning o'zida ikkita hisoblashni boshlaydi, ya'ni voqea siklida aralashtiriladi.
-Asosiy `use` chaqiruvlari bilan yaratilgan `Composer` misolini qaytarish oʻrniga, u ajratilgan hisoblashni aks ettiruvchi `Composer`ni qaytaradi.
-This allows for concise patterns like `bot.fork().on(':text').use(/* A */)`.
-Bu `bot.fork().on(':text').use(/* A */)` kabi ixcham ko'rinishlarga ruxsat beradi.
-`A` endi parallel hisoblash tarmog'ida bajariladi.
+Bu yerda alohida holat `fork` hisoblanadi, chunki u bir vaqtning o'zida ikkita jarayonni boshlaydi, ya'ni event loopga qo'shiladi.
+Asosiy `use` chaqiruvlari bilan yaratilgan `Composer` nusxasini qaytarish oʻrniga, u ajratilgan jarayonni aks ettiruvchi `Composer`ni qaytaradi.
+Bu `bot.fork().on(':text').use(/* A */)` kabi ixcham ko'rinishga keltirish imkonini beradi.
+`A` endi parallel tarmoqda bajariladi.
