@@ -5,7 +5,7 @@ next: ./structuring.md
 
 # Middleware Redux
 
-[Qo'llanmada](/guide/middleware.md) biz middleware'ni funktsiyalar sifatida tanishtirdik.
+[Qo'llanmada](./guide/middleware.md) biz middleware'ni funktsiyalar sifatida tanishtirdik.
 Middlewareni ushbu chiziqli usulda (grammYda ham) ishlatishingiz mumkin.
 
 ## grammY'da middleware
@@ -32,7 +32,7 @@ Birinchidan, `Bot`ning har bir nusxasi `Composer`ning namunasidir.
 Bu shunchaki kichik `class`, shuning uchun `Bot` `class`i `Composer`ni kengaytiradi.
 
 Bundan tashqari, `Composer` ning har bir usuli ichki `use` ni chaqirishni yodda tutishingiz kerak.
-Misol uchun, `filter` ba'zi bir tarmoqli vositachi dasturlari bilan `use`ni chaqiradi, `on` esa berilgan [filter so'rovi](/guide/filter-queries.md)ga nisbatan yangilanishlarga mos keladigan ba'zi bir predikat funksiyasi bilan `filter`ni yana chaqiradi.
+Misol uchun, `filter` ba'zi bir tarmoqli vositachi dasturlari bilan `use`ni chaqiradi, `on` esa berilgan [filter so'rovi](./guide/filter-queries.md)ga nisbatan yangilanishlarga mos keladigan ba'zi bir predikat funksiyasi bilan `filter`ni yana chaqiradi.
 Shuning uchun biz hozircha `use` ni ko'rib chiqish bilan cheklanishimiz kerak, qolganlari esa quyidagicha.
 
 Endi biz `Composer` sizning `use` chaqirishlaringiz bilan nima qilishini va u erdagi boshqa middleware tizimlaridan qanday farq qilishini batafsil ko'rib chiqishimiz kerak.
@@ -115,7 +115,7 @@ composer.filter(/* 1 */).filter(/* 2 */).use(/* A */);
 
 `2` faqat `1` bo'lsa, `A` esa faqat `2` (va shunday qilib `1`) bo`lsa, tekshiriladi.
 
-Filtr so'rovlarini yangi bilimlaringiz bilan [birlashtirish](/guide/filter-queries.md#combining-multiple-queries) bo'limini qayta ko'rib chiqing va bilimignizni mustahkamlab oling.
+Filtr so'rovlarini yangi bilimlaringiz bilan [birlashtirish](./guide/filter-queries.md#combining-multiple-queries) bo'limini qayta ko'rib chiqing va bilimignizni mustahkamlab oling.
 
 Bu erda alohida holat `fork` hisoblanadi, chunki u bir vaqtning o'zida ikkita hisoblashni boshlaydi, ya'ni voqea siklida aralashtiriladi.
 Asosiy `use` chaqiruvlari bilan yaratilgan `Composer` misolini qaytarish oʻrniga, u ajratilgan hisoblashni aks ettiruvchi `Composer`ni qaytaradi.
