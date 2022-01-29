@@ -40,7 +40,7 @@ Farqi uncha bilinmasligi mumkin, lekin qanday afzalliklari borligini bilish uchu
 
 ## Kengaytirilgan `Composer`lar
 
-Siz `Composer`ning o'zini biror yerda ishlatganingizdan keyin ham `Compser` nusxasiga yana ko'proq middlewarelar o'rnatishingiz mumkin.
+Siz `Composer`ning o'zini biror yerda ishlatganingizdan keyin ham `Composer` nusxasiga yana ko'proq middlewarelar o'rnatishingiz mumkin.
 
 ```ts
 const bot = new Bot("<token>"); // `Composer`ning nusxasi
@@ -58,7 +58,7 @@ composer.use(/* C */);
 Bularning barchasi shundan iboratki, siz `Composer` nusxasini yozganingizdan keyin ham `use` chaqirishingiz mumkin va bu middleware hali ham ishlaydi.
 (Bu ta'sirli narsa emas, lekin ketma-ket operatsiyalarni e'tiborsiz qoldiradigan ommaviy raqobatdosh frameworklar uchun asosiy farq.)
 
-Siz bu erda tarmoqlangan tuzilishi qayerda ekanligiga hayron bo'lishingiz mumkin.
+Siz bu yerda tarmoqlangan tuzilishi qayerda ekanligiga hayron bo'lishingiz mumkin.
 Keling, ushbu strukturani ko'rib chiqaylik:
 
 ```ts
