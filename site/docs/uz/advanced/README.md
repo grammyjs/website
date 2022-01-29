@@ -18,6 +18,6 @@ Agar siz API so'rovlarga ishlov berishingiz kerak bo'lsa, grammY buni [transform
 
 Bundan tashqari, grammY [proksi](./proxy.md) ishlatish imkonini ham beradi.
 
-Va nihoyat biz siz uchun botingizni ishga tushirayotganda [esingizda tutishingiz kerak bo'lgan ba'zi bir narsalarni](./deployment.md) tayyorlaganmiz.
-Bu yerda hech qanday yangi narsa kiritilgan emas, bu shunchaki taxminiy muammolarning markazlashtirilgan holdagi jamlanmasi.
+Va nihoyat biz siz uchun botingizni ishga tushirayotganda [esingizda tutishingiz kerak bo'lgan ba'zi bir ma'lumotlarni](./deployment.md) tayyorlaganmiz.
+Bu yerda hech qanday yangi ma'lumot kiritilgan emas, bu shunchaki taxminiy muammolarning markazlashtirilgan holdagi jamlanmasi.
 Har holda sizning xotirjam uxlashingizga ko'maklashishi mumkin.
