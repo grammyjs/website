@@ -36,7 +36,7 @@ U grammY kodidan avtomatik ravishda yaratiladi va barcha foydali maslahatlarni o
 kod muharririda grammYning istalgan elementi ustiga kursorni olib borish orqali u haqidagi ma'lumotni bilish mumkin.
 
 **Uchinchi qism** Telegram tomonidan taqdim etilgan ushbu [HTTP API](https://core.telegram.org/bots/api), asosiy tavsiflar ro'yxatini keltiradi.
-grammY API ma'lumotnomasi kerak bo'lgan joylarda unga yo'naltiradi. API so'rovlari bilan yubormoqchi bo'lgan barcha detallashtirilgan qiziqqaningizda uni ko'rib chiqishingiz mumkin.
+grammY API ma'lumotnomasi kerak bo'lgan joylarda unga yo'naltiradi. API so'rovlari bilan yubormoqchi bo'lgan barcha detallashtirilgan ma'lumotlarga qiziqqaningizda uni ko'rib chiqishingiz mumkin.
 
 ::: tip Hamjamiyatimizga qo'shiling!
 Bizning Telegramdagi do'stona [jamiyatimizga](https://t.me/grammyjs) qo'shiling.
