@@ -2,7 +2,7 @@
 # Internationalization with Fluent
 
 [Fluent](https://projectfluent.org/) is a localization system for natural-sounding translations created and maintained by Mozilla Foundation.
-It has a very powerful and at the same time elegant syntax, that enables even non-developer people to efficiently work with translation files.
+It has a very powerful and elegant syntax that lets anyone write efficient and fully-understandable translations.
 Thanks to the [grammY Fluent integration plugin](https://github.com/grammyjs/fluent) you can easily translate your bot to multiple languages using industry best practices like variable substitution, pluralization, locale negotiation, conditional messages and message reuse.
 
 
