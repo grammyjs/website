@@ -28,7 +28,9 @@ Here is an example for a transformer function that does nothing:
 
 ```ts
 // Pass-through transformer function
-bot.api.config.use((prev, method, payload, signal) => prev(method, payload, signal));
+bot.api.config.use((prev, method, payload, signal) =>
+  prev(method, payload, signal)
+);
 
 // Comparison with pass-through middleware
 bot.use((ctx, next) => next());
@@ -50,7 +52,9 @@ As soon as the respective middleware completes, the transformer function is disc
 ```ts
 bot.on("message", (ctx) => {
   // Install on all context objects that process messages.
-  ctx.api.config.use((prev, method, payload, signal) => prev(method, payload, signal));
+  ctx.api.config.use((prev, method, payload, signal) =>
+    prev(method, payload, signal)
+  );
 });
 ```
 
