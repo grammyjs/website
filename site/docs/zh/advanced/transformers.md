@@ -28,7 +28,7 @@ Transformer 函数可以被安装在 `bot.api` 中。
 
 ```ts
 // 传递 transformer 函数
-bot.api.config.use((prev, method, payload) => prev(method, payload));
+bot.api.config.use((prev, method, payload, signal) => prev(method, payload, signal));
 
 // 对照传递的中间件
 bot.use((ctx, next) => next());
@@ -50,7 +50,7 @@ bot.api.config.use((prev, method, payload) => undefined as any);
 ```ts
 bot.on("message", (ctx) => {
   // 安装所有处理消息的上下文对象。
-  ctx.api.config.use((prev, method, payload) => prev(method, payload));
+  ctx.api.config.use((prev, method, payload, signal) => prev(method, payload, signal));
 });
 ```
 

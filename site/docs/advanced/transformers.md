@@ -28,7 +28,7 @@ Here is an example for a transformer function that does nothing:
 
 ```ts
 // Pass-through transformer function
-bot.api.config.use((prev, method, payload) => prev(method, payload));
+bot.api.config.use((prev, method, payload, signal) => prev(method, payload, signal));
 
 // Comparison with pass-through middleware
 bot.use((ctx, next) => next());
@@ -50,9 +50,12 @@ As soon as the respective middleware completes, the transformer function is disc
 ```ts
 bot.on("message", (ctx) => {
   // Install on all context objects that process messages.
-  ctx.api.config.use((prev, method, payload) => prev(method, payload));
+  ctx.api.config.use((prev, method, payload, signal) => prev(method, payload, signal));
 });
 ```
+
+> The `signal` parameter should be always passed to `prev`.
+> It allows canceling requests and is important for `bot.stop` to work.
 
 Transformer functions installed on `bot.api` will be pre-installed on every `ctx.api` object.
 Thus, calls to `ctx.api` will be transformed by both those transformers on `ctx.api`, as well as those transformers installed on `bot.api`.
