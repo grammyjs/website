@@ -102,7 +102,8 @@ bot.start();
 Si ejecutas el bot anterior, y envías `/start`, nunca llegarás a ver una respuesta que diga `¡Comando!`.
 Vamos a inspeccionar lo que sucede:
 
-1. 1. Envías `'/start'` al bot.
+1.
+   1. Envías `'/start'` al bot.
 2. El middleware `':text'` recibe la actualización y comprueba si hay texto, lo cual tiene éxito porque los comandos son mensajes de texto.
    La actualización es manejada inmediatamente por el primer middleware y tu bot responde con "¡Texto!".
 
