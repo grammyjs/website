@@ -164,6 +164,8 @@ function errorHandler(err: BotError) {
 }
 ```
 
+The `boundaryHandler` of the above example will be invoked for middlewares bound to `protected`.
+
 If you actively want the error to cross a boundary (that is, pass it outside), you can re-throw the error inside your error handler.
 The error will then be passed to the next surrounding boundary.
 
