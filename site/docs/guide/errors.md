@@ -100,7 +100,7 @@ If you divide your code base into different parts, _error boundaries_ allow you 
 They achieve this by letting you fence errors in a part of your middleware.
 In other words, if an error is thrown in a specially protected part of middleware, it will not be able to escape from that part of the middleware system.
 Instead, a dedicated error handler is invoked, and the surrounded part of the middleware pretends to complete successfully.
-This is a feature of grammY's middleware system, so error boundaries don't care whether you're running your bot with webhooks or long polling.
+This is a feature of grammY’s middleware system, so error boundaries don’t care whether you’re running your bot with webhooks or long polling.
 
 Optionally, you may choose to instead let the middleware execution _resume_ normally after the error was handled, continuing right outside the error boundary.
 In that case, the fenced middleware does not only act as if it had completed successfully, but it also passes on the control flow to the next middleware that was installed after the error boundary.
@@ -137,12 +137,32 @@ function errorHandler(err: BotError) {
 }
 ```
 
-In the above example, the `boundaryHandler` handler will be invoked for
+In the above example, the `boundaryHandler` will be invoked for
 
-1. all middleware that is passed to `bot.errorBoundary` after `boundaryHandler` (i.e. `Q`), and
-2. all middleware that is installed on subsequently installed composer instances (i.e. `X`, `Y`, and `Z`).
+1. all middlewares that are passed to `bot.errorBoundary` after `boundaryHandler` (i.e. `Q`), and
+2. all middlewares that are installed on subsequently installed composer instances (i.e. `X`, `Y`, and `Z`).
 
 > Regarding point 2, you may want to skip ahead to [the advanced explanation](/advanced/middleware.md) of middleware to learn how chaining works in grammY.
+
+You can also apply an error boundary to a composer without calling `bot.errorBoundary`:
+
+```ts
+const composer = new Composer();
+
+const protected = composer.errorBoundary(boundaryHandler);
+protected.use(/* B */);
+
+bot.use(composer);
+bot.use(/* C */);
+
+function boundaryHandler(err: BotError, next: NextFunction) {
+  throw new Error("Error in B!");
+}
+
+function errorHandler(err: BotError) {
+  throw new Error("Error in C!");
+}
+```
 
 If you actively want the error to cross a boundary (that is, pass it outside), you can re-throw the error inside your error handler.
 The error will then be passed to the next surrounding boundary.
