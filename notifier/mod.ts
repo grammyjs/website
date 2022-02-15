@@ -1,5 +1,5 @@
-import { Bot } from "https://deno.land/x/grammy/mod.ts";
-import { Application } from "https://deno.land/x/oak/mod.ts";
+import { Bot } from "https://deno.land/x/grammy@v1.7.0/mod.ts";
+import { Application } from "https://deno.land/x/oak@v10.2.1/mod.ts";
 import { verifyGitHubWebhook } from "./utils.ts";
 import env from "./env.ts";
 
@@ -16,7 +16,7 @@ app.use(async (ctx, next) => {
 
 app.use(async (ctx, next) => {
   const { verified } = await verifyGitHubWebhook(
-    ctx.request.originalRequest.request,
+    ctx.request.originalRequest.request
   );
   if (verified) {
     await next();
@@ -36,7 +36,7 @@ app.use(async (ctx) => {
         await bot.api.sendMessage(
           env.CHAT_ID,
           `[#${payload.pull_request.number}](${payload.pull_request.html_url}) is ready for translation.`,
-          { parse_mode: "Markdown" },
+          { parse_mode: "Markdown" }
         );
       }
     }
