@@ -156,11 +156,11 @@ bot.use(composer);
 bot.use(/* C */);
 
 function boundaryHandler(err: BotError, next: NextFunction) {
-  throw new Error("Error in B!");
+  console.error("Error in B!", err);
 }
 
 function errorHandler(err: BotError) {
-  throw new Error("Error in C!");
+  console.error("Error in C!", err);
 }
 ```
 
