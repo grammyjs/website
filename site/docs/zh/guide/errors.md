@@ -114,7 +114,7 @@ const bot = new Bot("");
 bot.use(/* A */);
 bot.use(/* B */);
 
-const composer = new Compser();
+const composer = new Composer();
 composer.use(/* X */);
 composer.use(/* Y */);
 composer.use(/* Z */);
