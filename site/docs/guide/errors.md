@@ -155,6 +155,8 @@ protected.use(/* B */);
 bot.use(composer);
 bot.use(/* C */);
 
+bot.catch(errorHandler);
+
 function boundaryHandler(err: BotError, next: NextFunction) {
   console.error("Error in B!", err);
 }
