@@ -150,13 +150,17 @@ function errorHandler(err: BotError) {
 
 ```ts
 const composer = new Composer();
+
 const protected = composer.errorBoundary(boundaryHandler);
 protected.use(/* B */);
+
 bot.use(composer);
 bot.use(/* C */);
+
 function boundaryHandler(err: BotError, next: NextFunction) {
   console.error("Error in B!", err);
 }
+
 function errorHandler(err: BotError) {
   console.error("Error in C!", err);
 }
