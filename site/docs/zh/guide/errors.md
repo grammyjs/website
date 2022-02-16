@@ -125,6 +125,7 @@ bot.use(/* D */);
 
 bot.catch(errorHandler);
 
+
 function boundaryHandler(err: BotError, next: NextFunction) {
   console.error("Error in Q, X, Y, or Z!", err);
   /*
@@ -156,6 +157,8 @@ protected.use(/* B */);
 
 bot.use(composer);
 bot.use(/* C */);
+
+bot.catch(errorHandler);
 
 function boundaryHandler(err: BotError, next: NextFunction) {
   console.error("Error in B!", err);
