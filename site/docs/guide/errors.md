@@ -158,10 +158,6 @@ bot.use(/* C */);
 function boundaryHandler(err: BotError, next: NextFunction) {
   console.error("Error in B!", err);
 }
-
-function errorHandler(err: BotError) {
-  console.error("Error in C!", err);
-}
 ```
 
 The `boundaryHandler` of the above example will be invoked for middlewares bound to `protected`.
