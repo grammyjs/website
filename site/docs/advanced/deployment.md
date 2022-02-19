@@ -62,5 +62,5 @@ While grammY provides the necessary hooks to start writing tests, it would be ve
 This is novel territory, such testing frameworks largely do not exist.
 We look forward to your contributions!
 
-[Example](https://github.com/PavelPolyakov/grammy-with-tests), which shows how tests could be done.
+An example on how tests could be done [can be found here](https://github.com/PavelPolyakov/grammy-with-tests).
 :::
