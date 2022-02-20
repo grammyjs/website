@@ -6,18 +6,6 @@ It has a very powerful and elegant syntax that lets anyone write efficient and f
 This plugin takes advantage of this amazing localization system to make grammY-powered bots fluent with high-quality translations.
 
 
-## Install
-
-Install the dependencies:
-
-```shell
-npm install --save @grammyjs/fluent @moebius/fluent
-```
-
-grammY Fluent is built on top of the `@moebius/fluent` package, so you will need to install it as well.
-Also, it is highly advisable to read the documentation of the [original library](https://github.com/the-moebius/fluent#moebiusfluent).
-
-
 ## Instantiate Fluent
 
 The next step would be to create a Fluent instance:
@@ -170,3 +158,9 @@ You will just need to create several translation files and make sure that all th
 - study the dedicated grammY Fluent [plugin documentation](https://github.com/grammyjs/fluent)
 - want to replace the original [i18n](/plugins/i18n.md) plugin? Read the corresponding [cookbook recipe](https://github.com/grammyjs/fluent#i18n-plugin-replacement)
 - have questions? Ask in the [grammY Telegram chat](https://t.me/grammyjs) (use the `@slavafomin` tag)
+
+
+## Plugin Summary
+
+- Name: `fluent`
+- Source: <https://github.com/grammyjs/fluent>
