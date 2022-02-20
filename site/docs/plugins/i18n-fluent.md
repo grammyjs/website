@@ -1,9 +1,9 @@
 
 # Internationalization with Fluent
 
-[Fluent](https://projectfluent.org/) is a localization system for natural-sounding translations created and maintained by Mozilla Foundation.
+[Fluent](https://projectfluent.org/) is a localization system made by the Mozilla Foundation for natural-sounding translations.
 It has a very powerful and elegant syntax that lets anyone write efficient and fully-understandable translations.
-Thanks to the [grammY Fluent integration plugin](https://github.com/grammyjs/fluent) you can easily translate your bot to multiple languages using industry best practices like variable substitution, pluralization, locale negotiation, conditional messages and message reuse.
+This plugin takes advantage of this amazing localization system to make grammY-powered bots fluent with high-quality translations.
 
 
 ## Install
@@ -150,7 +150,7 @@ bot.command('i18n_test', async context => {
 Now, you can start your bot and use the `/i18n_test` command.
 It should render the following message:
 
-```text
+```text:no-line-numbers
 Welcome, Slava, to the Apples Bot!
 You have 1 apple.
 ```
