@@ -211,6 +211,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/plugins/i18n.md",
                   },
                   {
+                    text: "Internationalization (fluent)",
+                    link: "/plugins/i18n-fluent.md",
+                  },
+                  {
                     text: "Router (router)",
                     link: "/plugins/router.md",
                   },
