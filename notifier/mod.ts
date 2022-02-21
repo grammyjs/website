@@ -16,7 +16,7 @@ app.use(async (ctx, next) => {
 
 app.use(async (ctx, next) => {
   const { verified } = await verifyGitHubWebhook(
-    ctx.request.originalRequest.request
+    ctx.request.originalRequest.request,
   );
   if (verified) {
     await next();
@@ -35,14 +35,12 @@ app.use(async (ctx) => {
       if (payload.label.name == "ready for translation") {
         await bot.api.sendMessage(
           env.CHAT_ID,
-          `[#${payload.pull_request.number}](${
-            payload.pull_request.html_url
-          }) with ${payload.pull_request.additions} addition${
+          `[#${payload.pull_request.number}](${payload.pull_request.html_url}) with ${payload.pull_request.additions} addition${
             payload.pull_request.additions != 1 ? "s" : ""
           } and ${payload.pull_request.deletions} deletion${
             payload.pull_request.deletions != 1 ? "s" : ""
           } is ready for translation.`,
-          { parse_mode: "Markdown" }
+          { parse_mode: "Markdown" },
         );
       }
     }
