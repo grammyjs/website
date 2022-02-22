@@ -26,5 +26,4 @@ jobs:
           deno-version: v1.x
 
       - name: Check Format
-        run: npm run docs:fmt -- --check
-        working-directory: site/
+        run: deno fmt --config deno.json --check
