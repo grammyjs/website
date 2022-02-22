@@ -1,18 +1,14 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-# This workflow will install Deno and run tests across stable and nightly builds on Windows, Ubuntu and macOS.
-# For more information see: https://github.com/denolib/setup-deno
-
-name: grammY
+name: Build
 
 on:
   push:
     branches: [main]
+    paths:
+      - "**.md"
   pull_request:
     types: ["opened", "edited", "synchronize"]
+    paths:
+      - "**.md"
 
 jobs:
   build:
@@ -46,17 +42,3 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         timeout-minutes: 1
-
-  format:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Setup repo
-        uses: actions/checkout@v2
-
-      - uses: denoland/setup-deno@main
-        with:
-          deno-version: v1.x
-
-      - name: Check Format
-        run: npm run docs:fmt -- --check
-        working-directory: site/
