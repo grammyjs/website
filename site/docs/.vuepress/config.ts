@@ -547,6 +547,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/zh/plugins/i18n.md",
                   },
                   {
+                    text: "国际化 (fluent)",
+                    link: "/zh/plugins/fluent.md",
+                  },
+                  {
                     text: "路由器 (router)",
                     link: "/zh/plugins/router.md",
                   },
