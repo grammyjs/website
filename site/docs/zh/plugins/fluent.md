@@ -6,7 +6,7 @@
 
 ## 初始化 Fluent
 
-你需要做的第一件事是初始化一个 Fluent 实例：
+第一件事是初始化一个 Fluent 实例：
 
 ```typescript
 import { Fluent } from "@moebius/fluent";
@@ -14,7 +14,7 @@ import { Fluent } from "@moebius/fluent";
 const fluent = new Fluent();
 ```
 
-然后，你需要添加至少一个翻译到 Fluent 实例中：
+然后，需要添加至少一个翻译到 Fluent 实例中：
 
 ```typescript
 await fluent.addTranslation({
@@ -112,8 +112,6 @@ bot.use(useFluent({
 
 ```typescript
 bot.command("i18n_test", async (ctx) => {
-  // Call the "translate" or "t" helper to render the
-  // message by specifying its ID and additional parameters:
   // 调用 "translate" 或 "t" 来渲染消息，指定其 ID 和额外参数：
   await context.reply(ctx.t("welcome", {
     name: context.from.first_name,
