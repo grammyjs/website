@@ -211,6 +211,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/plugins/i18n.md",
                   },
                   {
+                    text: "Internationalization (fluent)",
+                    link: "/plugins/fluent.md",
+                  },
+                  {
                     text: "Router (router)",
                     link: "/plugins/router.md",
                   },
@@ -541,6 +545,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                   {
                     text: "国际化 (i18n)",
                     link: "/zh/plugins/i18n.md",
+                  },
+                  {
+                    text: "国际化 (fluent)",
+                    link: "/zh/plugins/fluent.md",
                   },
                   {
                     text: "路由器 (router)",
