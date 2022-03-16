@@ -77,7 +77,7 @@ bot.hears("ping", async (ctx) => {
 
 ### Markdown
 
-> 查看 <https://core.telegram.org/bots/api#markdownv2-style>
+> 查看 <https://core.telegram.org/bots/api#formatting-options>
 
 发送你的信息时，在文本中加入 markdown，并指定 `parse_mode: 'MarkdownV2'`。
 
@@ -91,7 +91,7 @@ await bot.api.sendMessage(
 
 ### HTML
 
-> 查看 <https://core.telegram.org/bots/api#html-style>
+> 查看 <https://core.telegram.org/bots/api#formatting-options>
 
 发送你的信息，文本中含有 HTML 元素，并指定 `parse_mode: 'HTML'`。
 
