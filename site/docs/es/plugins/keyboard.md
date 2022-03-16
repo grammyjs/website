@@ -106,7 +106,9 @@ const inlineKeyboard = new InlineKeyboard().text("click", "click-payload");
 
 // Envía un teclado junto con un mensaje.
 bot.command("start", async (ctx) => {
-  await ctx.reply("¿Tienes curiosidad? Haz clic en mí.", { reply_markup: inlineKeyboard });
+  await ctx.reply("¿Tienes curiosidad? Haz clic en mí.", {
+    reply_markup: inlineKeyboard,
+  });
 });
 
 // Esperar eventos de clic con datos de devolución de llamada específicos.
@@ -118,14 +120,16 @@ bot.callbackQuery("click-payload", async (ctx) => {
 ```
 
 ::: tip Responder a todas las consultas de devolución de llamada
-bot.callbackQuery()` es útil para escuchar los eventos de clic de botones específicos.
-Puedes usar `bot.on('callback_query:data')` para escuchar los eventos de cualquier botón.
+bot.callbackQuery()`es útil para escuchar los eventos de clic de botones específicos. Puedes usar`bot.on('callback_query:data')` para escuchar los eventos de cualquier botón.
 
 ```ts
 bot.callbackQuery("click-payload" /* , ... */);
 
 bot.on("callback_query:data", async (ctx) => {
-  console.log("Evento de botón desconocido con payload", ctx.callbackQuery.data);
+  console.log(
+    "Evento de botón desconocido con payload",
+    ctx.callbackQuery.data,
+  );
   await ctx.answerCallbackQuery(); // eliminar la animación de carga
 });
 ```
