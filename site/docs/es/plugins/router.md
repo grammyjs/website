@@ -134,7 +134,9 @@ por favor, utilice uno de los botones",
 });
 
 router.route("idle", async (ctx) => {
-  await ctx.reply("Envía /cumpleaños para saber cuánto tiempo tienes que esperar");
+  await ctx.reply(
+    "Envía /cumpleaños para saber cuánto tiempo tienes que esperar",
+  );
 });
 
 bot.use(router); // registrar el router
@@ -190,7 +192,7 @@ bot.command("birthday", async (ctx) => {
   const day = ctx.session.dayOfMonth;
   const month = ctx.session.month;
   if (day !== undefined && month !== undefined) {
-     // ¡Información ya proporcionada!
+    // ¡Información ya proporcionada!
     await ctx.reply(`¡Tu cumpleaños es en ${getDays(month, day)} días!`);
   } else {
     // Falta información, introduzca el formulario basado en el router.
@@ -256,7 +258,9 @@ por favor, utilice uno de los botones",
 });
 
 router.route("idle", async (ctx) => {
-  await ctx.reply("Envía /cumpleaños para saber cuánto tiempo tienes que esperar");
+  await ctx.reply(
+    "Envía /cumpleaños para saber cuánto tiempo tienes que esperar",
+  );
 });
 
 bot.use(router); // registrar el router
@@ -324,7 +328,7 @@ bot.command("birthday", async (ctx) => {
   const day = ctx.session.dayOfMonth;
   const month = ctx.session.month;
   if (day !== undefined && month !== undefined) {
-     // ¡Información ya proporcionada!
+    // ¡Información ya proporcionada!
     await ctx.reply(`¡Tu cumpleaños es en ${getDays(month, day)} días!`);
   } else {
     // Falta información, introduzca el formulario basado en el router.
@@ -390,7 +394,9 @@ por favor, utilice uno de los botones",
 });
 
 router.route("idle", async (ctx) => {
-  await ctx.reply("Envía /cumpleaños para saber cuánto tiempo tienes que esperar");
+  await ctx.reply(
+    "Envía /cumpleaños para saber cuánto tiempo tienes que esperar",
+  );
 });
 
 bot.use(router); // registrar el router
