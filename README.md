@@ -27,7 +27,7 @@ You can use the following two commands in the `site/` directory.
 cd site/
 
 # Checks if all files are fomatted correctly
-deno fmt -check
+deno fmt --check
 
 # Automatically formats all files directly
 deno fmt
