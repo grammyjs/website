@@ -207,10 +207,6 @@ export default defineUserConfig<DefaultThemeOptions>({
                     link: "/plugins/files.md",
                   },
                   {
-                    text: "Internationalization (i18n)",
-                    link: "/plugins/i18n.md",
-                  },
-                  {
                     text: "Internationalization (fluent)",
                     link: "/plugins/fluent.md",
                   },
@@ -541,10 +537,6 @@ export default defineUserConfig<DefaultThemeOptions>({
                   {
                     text: "文件助手 (files)",
                     link: "/zh/plugins/files.md",
-                  },
-                  {
-                    text: "国际化 (i18n)",
-                    link: "/zh/plugins/i18n.md",
                   },
                   {
                     text: "国际化 (fluent)",
