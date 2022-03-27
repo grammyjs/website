@@ -24,11 +24,13 @@ In addition to the VSCode extension that lints the Markdown, [Deno](https://deno
 You can use the following two commands in the `site/` directory.
 
 ```bash
+cd site/
+
 # Checks if all files are fomatted correctly
-deno fmt --config deno.json --check
+deno fmt -check
 
 # Automatically formats all files directly
-deno fmt --config deno.json
+deno fmt
 ```
 
 You can also run
