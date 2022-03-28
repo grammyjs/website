@@ -27,7 +27,7 @@ const bot = new Bot(TOKEN, {
 });
 ```
 
-> Note that run with the '--unstable' flag
+> Note that you need to run this with the `--unstable` flag.
 
 In Node.js, here is how you would use a proxy with the `socks5-https-client` package ([npm](https://www.npmjs.com/package/socks-proxy-agent)):
 
