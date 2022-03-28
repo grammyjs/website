@@ -28,6 +28,7 @@ You can install this plugin on your bot like this:
   <CodeGroupItem title="TypeScript" active>
 
 ```ts
+import { Bot, Context } from "grammy";
 import { EmojiFlavor, emojiParser } from "@grammyjs/emoji";
 
 // This is called Context Flavoring
@@ -44,6 +45,7 @@ bot.use(emojiParser());
   <CodeGroupItem title="JavaScript">
 
 ```js
+const { Bot } = require("grammy");
 const { emojiParser } = require("@grammyjs/emoji");
 
 const bot = new Bot(""); // <-- put your bot token between the ""
@@ -55,6 +57,7 @@ bot.use(emojiParser());
   <CodeGroupItem title="Deno">
 
 ```ts
+import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   EmojiFlavor,
   emojiParser,
