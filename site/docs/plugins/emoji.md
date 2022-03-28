@@ -89,7 +89,7 @@ Alternatively, you can reply directly using the `replyWithEmoji` method:
 
 ```js
 bot.command("ping", async (ctx) => {
-  await ctx.replyWithEmoji`Pong ${'ping_pong'}`; // => Pong 🏓
+  await ctx.replyWithEmoji`Pong ${"ping_pong"}`; // => Pong 🏓
 });
 ```
 
