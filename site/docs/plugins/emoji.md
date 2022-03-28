@@ -76,12 +76,20 @@ bot.use(emojiParser());
 </CodeGroupItem>
 </CodeGroup>
 
-And you can get emojis in your replies like this:
+Now, whenever you want, you can get an emoji by name like this:
 
 ```js
 bot.command("start", async (ctx) => {
-  await ctx.reply(ctx.emoji`Welcome! ${"smiling_face_with_sunglasses"}`);
-  // > Welcome! 😎
+  const parsedString = ctx.emoji`Welcome! ${"smiling_face_with_sunglasses"}`; // => Welcome! 😎
+  await ctx.reply(parsedString);
+});
+```
+
+Alternatively, you can reply directly using the `replyWithEmoji` method:
+
+```js
+bot.command("ping", async (ctx) => {
+  await ctx.replyWithEmoji`Pong ${'ping_pong'}`; // => Pong 🏓
 });
 ```
 
