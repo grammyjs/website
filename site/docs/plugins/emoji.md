@@ -76,7 +76,7 @@ bot.use(emojiParser());
 </CodeGroupItem>
 </CodeGroup>
 
-Now, whenever you want, you can get an emoji by name like this:
+Now you can get emojis by their names:
 
 ```js
 bot.command("start", async (ctx) => {
