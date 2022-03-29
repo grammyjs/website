@@ -47,7 +47,7 @@ npx tsc --init
 yarn add grammy
 ```
 
- </CodeGroupItem>
+</CodeGroupItem>
   <CodeGroupItem title="pnpm">
 
 ```bash
@@ -63,7 +63,7 @@ npx tsc --init
 pnpm add grammy
 ```
 
- </CodeGroupItem>
+</CodeGroupItem>
 </CodeGroup>
 
 Create a new empty text file, e.g. called `bot.ts`.
