@@ -48,6 +48,22 @@ yarn add grammy
 ```
 
  </CodeGroupItem>
+  <CodeGroupItem title="pnpm">
+
+```bash
+# Create a new directory and change into it.
+mkdir my-bot
+cd my-bot
+
+# Set up TypeScript (skip if you use JavaScript).
+pnpm add -D typescript
+npx tsc --init
+
+# Install grammY.
+pnpm add grammy
+```
+
+ </CodeGroupItem>
 </CodeGroup>
 
 Create a new empty text file, e.g. called `bot.ts`.
