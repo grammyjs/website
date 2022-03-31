@@ -105,6 +105,6 @@ app.use(async (ctx) => {
 
 await client.connect();
 await client.queryArray(
-  "CREATE TABLE IF NOT EXISTS notifications (pr_number int PRIMARY_KEY, message_id int, text varchar);",
+  "CREATE TABLE IF NOT EXISTS notifications (pr_number int PRIMARY KEY, message_id int, text varchar);",
 );
 await app.listen({ port: 8000 });
