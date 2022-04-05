@@ -34,7 +34,7 @@ npm install grammy
 </CodeGroupItem>
  <CodeGroupItem title="Yarn">
 
- ```bash
+```bash
 # 创建并进入一个新的目录。
 mkdir my-bot
 cd my-bot
