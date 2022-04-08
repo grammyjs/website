@@ -21,7 +21,7 @@ import { Bot } from "grammy";
 import { run } from "@grammyjs/runner";
 import { apiThrottler } from "@grammyjs/transformer-throttler";
 
-const botToken = Deno.env.get('BOT_TOKEN');
+const botToken = process.env.BOT_TOKEN;
 if (!botToken) {
   throw Error('BOT_TOKEN is required');
 }
