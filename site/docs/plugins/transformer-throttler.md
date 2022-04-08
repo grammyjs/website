@@ -30,7 +30,7 @@ const bot = new Bot(botToken);
 const throttler = apiThrottler();
 bot.api.config.use(throttler);
 
-bot.command("/example", ctx => ctx.reply("I am throttled"));
+bot.command("/example", (ctx) => ctx.reply("I am throttled"));
 
 // If you are using throttler, you most likely want to use a runner to handle update concurrently
 run(bot);
@@ -53,7 +53,7 @@ const bot = new Bot(botToken);
 const throttler = apiThrottler();
 bot.api.config.use(throttler);
 
-bot.command("/example", ctx => ctx.reply("I am throttled"));
+bot.command("/example", (ctx) => ctx.reply("I am throttled"));
 
 // If you are using throttler, you most likely want to use a runner to handle update concurrently
 run(bot);
@@ -76,7 +76,7 @@ const bot = new Bot(botToken);
 const throttler = apiThrottler();
 bot.api.config.use(throttler);
 
-bot.command("/example", ctx => ctx.reply("I am throttled"));
+bot.command("/example", (ctx) => ctx.reply("I am throttled"));
 
 // If you are using throttler, you most likely want to use a runner to handle update concurrently
 run(bot);
