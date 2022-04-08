@@ -23,14 +23,14 @@ import { apiThrottler } from "@grammyjs/transformer-throttler";
 
 const botToken = process.env.BOT_TOKEN;
 if (!botToken) {
-  throw Error('BOT_TOKEN is required');
+  throw Error("BOT_TOKEN is required");
 }
 const bot = new Bot(botToken);
 
 const throttler = apiThrottler();
 bot.api.config.use(throttler);
 
-bot.command('/example', ctx => ctx.reply('I am throttled'));
+bot.command("/example", ctx => ctx.reply("I am throttled"));
 
 // If you are using throttler, you most likely want to use a runner to handle update concurrently
 run(bot);
@@ -46,14 +46,14 @@ const { apiThrottler } = require("@grammyjs/transformer-throttler");
 
 const botToken = process.env.BOT_TOKEN;
 if (!botToken) {
-  throw Error('BOT_TOKEN is required');
+  throw Error("BOT_TOKEN is required");
 }
 const bot = new Bot(botToken);
 
 const throttler = apiThrottler();
 bot.api.config.use(throttler);
 
-bot.command('/example', ctx => ctx.reply('I am throttled'));
+bot.command("/example", ctx => ctx.reply("I am throttled"));
 
 // If you are using throttler, you most likely want to use a runner to handle update concurrently
 run(bot);
@@ -69,14 +69,14 @@ import { apiThrottler } from "https://deno.land/x/grammy_transformer_throttler/m
 
 const botToken = Deno.env.get("BOT_TOKEN");
 if (!botToken) {
-  throw Error('BOT_TOKEN is required');
+  throw Error("BOT_TOKEN is required");
 }
 const bot = new Bot(botToken);
 
 const throttler = apiThrottler();
 bot.api.config.use(throttler);
 
-bot.command('/example', ctx => ctx.reply('I am throttled'));
+bot.command("/example", ctx => ctx.reply("I am throttled"));
 
 // If you are using throttler, you most likely want to use a runner to handle update concurrently
 run(bot);
