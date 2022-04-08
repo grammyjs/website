@@ -18,19 +18,22 @@ Note that the default options are aligned with the actual rate limits enforced b
 
 ```ts
 import { Bot } from "grammy";
+import { run } from "@grammyjs/runner";
 import { apiThrottler } from "@grammyjs/transformer-throttler";
 
-const botToken = process.env.BOT_TOKEN;
+const botToken = Deno.env.get('BOT_TOKEN');
 if (!botToken) {
-  throw Error("BOT_TOKEN is required");
+  throw Error('BOT_TOKEN is required');
 }
 const bot = new Bot(botToken);
 
 const throttler = apiThrottler();
 bot.api.config.use(throttler);
 
-bot.command("/example", (ctx) => ctx.reply("I am throttled"));
-bot.start();
+bot.command('/example', ctx => ctx.reply('I am throttled'));
+
+// If you are using throttler, you most likely want to use a runner to handle update concurrently
+run(bot);
 ```
 
 </CodeGroupItem>
@@ -38,19 +41,22 @@ bot.start();
 
 ```js
 const { Bot } = require("grammy");
+const { run } = require("@grammyjs/runner");
 const { apiThrottler } = require("@grammyjs/transformer-throttler");
 
 const botToken = process.env.BOT_TOKEN;
 if (!botToken) {
-  throw Error("BOT_TOKEN is required");
+  throw Error('BOT_TOKEN is required');
 }
 const bot = new Bot(botToken);
 
 const throttler = apiThrottler();
 bot.api.config.use(throttler);
 
-bot.command("/example", (ctx) => ctx.reply("I am throttled"));
-bot.start();
+bot.command('/example', ctx => ctx.reply('I am throttled'));
+
+// If you are using throttler, you most likely want to use a runner to handle update concurrently
+run(bot);
 ```
 
 </CodeGroupItem>
@@ -58,19 +64,22 @@ bot.start();
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
+import { run } from "https://deno.land/x/grammy_runner/mod.ts";
 import { apiThrottler } from "https://deno.land/x/grammy_transformer_throttler/mod.ts";
 
 const botToken = Deno.env.get("BOT_TOKEN");
 if (!botToken) {
-  throw Error("BOT_TOKEN is required");
+  throw Error('BOT_TOKEN is required');
 }
 const bot = new Bot(botToken);
 
 const throttler = apiThrottler();
 bot.api.config.use(throttler);
 
-bot.command("/example", (ctx) => ctx.reply("I am throttled"));
-bot.start();
+bot.command('/example', ctx => ctx.reply('I am throttled'));
+
+// If you are using throttler, you most likely want to use a runner to handle update concurrently
+run(bot);
 ```
 
 </CodeGroupItem>
