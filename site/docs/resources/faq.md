@@ -115,6 +115,12 @@ There are a few things you can do.
 4. Come ask us in the group chat for help. We have experienced people there.
 5. It is possible to ask Telegram to increase the limits, but this is very unlikely to happen if you did not do steps 1-3 first.
 
+### Cannot find type definition file for 'node-fetch'.
+
+This is the result of a version conflict between the installed `@types/node-fetch`, and the grammY dependency `node-fetch`.
+
+Currently, the preferred workaround is to set the `skipLibCheck` option to `true` when compiling TypeScript.
+
 ## Questions About Deno
 
 ### Why do you support Deno?
