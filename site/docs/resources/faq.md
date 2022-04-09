@@ -117,9 +117,9 @@ There are a few things you can do.
 
 ### Cannot find type definition file for 'node-fetch'.
 
-This is the result of a version conflict between the installed `@types/node-fetch`, and the grammY dependency `node-fetch`.
+This is the result of some missing type declarations.
 
-Currently, the preferred workaround is to set the `skipLibCheck` option to `true` when compiling TypeScript.
+The recommended way to fix this is to set `skipLibCheck` to `true` in your TypeScript compile options.
 
 ## Questions About Deno
 
