@@ -16,7 +16,7 @@ It reached its first stable version a few weeks later.
 grammY is developed by a team of volunteers who work on the core library, the docs, and the remaining ecosystem in their free time.
 You can find a list of all our contributors in the [README](https://github.com/grammyjs/grammY#contributors-) of our repository.
 
-Feel free to take contact [in the group chat](https://t.me/grammyjs)!
+Feel free to make contact in the [group chat](https://t.me/grammyjs)!
 If you speak Russian, you can also join us [here](https://t.me/grammyjs_ru)!
 
 ## How is grammY developed?
