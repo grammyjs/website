@@ -114,6 +114,14 @@ Telegram 会这样做以保护他们的用户。
 4. 在群聊中向我们寻求帮助。我们有经验丰富的人能帮你。
 5. 可以要求 Telegram 增加限制，但如果不先执行步骤 1-3，就不太可能发生这种情况。
 
+### Cannot find type definition file for 'node-fetch'
+
+这是一些丢失的类型声明的结果。
+
+推荐的解决方案是在你的 TypeScript 编译选项中设置 `skipLibCheck` 为 `true`。
+
+如果你确定你需要这个选项保持为 `false`，你可以通过运行 `npm i -D @types/node-fetch@2` 安装丢失的类型定义。
+
 ## 关于 Deno 的问题
 
 ### 你为什么要支持 Deno？
