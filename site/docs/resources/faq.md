@@ -122,6 +122,7 @@ This is the result of some missing type declarations.
 The recommended way to fix this is to set `skipLibCheck` to `true` in your TypeScript compile options.
 
 If you are sure that you need this option to be kept to `false`, you can instead install the missing type definitions by running `npm i -D @types/node-fetch@2`.
+
 ## Questions About Deno
 
 ### Why do you support Deno?
