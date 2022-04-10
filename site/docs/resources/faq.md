@@ -2,7 +2,7 @@
 
 Here is a collection of frequently asked questions regarding [common errors](#why-am-i-getting-this-error) and [Deno things](#questions-about-deno).
 
-If this FAQ does not answer your question, you should also have a look at [the Bot FAQ](https://core.telegram.org/bots/faq) written by the Telegram team.
+If this FAQ does not answer your question, you should also have a look at the [Bot FAQ](https://core.telegram.org/bots/faq) written by the Telegram team.
 
 ## Why Am I Getting This Error?
 
