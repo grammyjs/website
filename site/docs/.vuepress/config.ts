@@ -278,6 +278,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                 text: "grammY",
                 children: [
                   {
+                    text: "About grammY",
+                    link: "/resources/about.md",
+                  },
+                  {
                     text: "Community Chat (English)",
                     link: "https://t.me/grammyjs",
                   },
