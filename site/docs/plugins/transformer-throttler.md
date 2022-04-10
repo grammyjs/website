@@ -32,7 +32,7 @@ bot.api.config.use(throttler);
 
 bot.command("/example", (ctx) => ctx.reply("I am throttled"));
 
-// If you are using throttler, you most likely want to use a runner to handle updates concurrently
+// If you are using throttler, you most likely want to use a runner to handle updates concurrently.
 run(bot);
 ```
 
@@ -55,7 +55,7 @@ bot.api.config.use(throttler);
 
 bot.command("/example", (ctx) => ctx.reply("I am throttled"));
 
-// If you are using throttler, you most likely want to use a runner to handle updates concurrently
+// If you are using throttler, you most likely want to use a runner to handle updates concurrently.
 run(bot);
 ```
 
@@ -78,7 +78,7 @@ bot.api.config.use(throttler);
 
 bot.command("/example", (ctx) => ctx.reply("I am throttled"));
 
-// If you are using throttler, you most likely want to use a runner to handle updates concurrently
+// If you are using throttler, you most likely want to use a runner to handle updates concurrently.
 run(bot);
 ```
 
