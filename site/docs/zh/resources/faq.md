@@ -116,7 +116,7 @@ Telegram 会这样做以保护他们的用户。
 
 ### Cannot find type definition file for 'node-fetch'
 
-这是一些丢失的类型声明的结果。
+这是因为你丢失了类型定义。
 
 推荐的解决方案是在你的 TypeScript 编译选项中设置 `skipLibCheck` 为 `true`。
 
