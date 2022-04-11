@@ -19,7 +19,7 @@ Note that `Payload<M, R>` refers to the payload object that has to match the giv
 
 The last invoked transformer function is a built-in caller that does things like JSON serialization of certain fields, and eventually calling `fetch`.
 
-There is no equivalent of a `Composer` class for transformer functions because that's probably overkill, but if you need it, you can write your own. PR welcome! :wink:
+There is no equivalent of a `Composer` class for transformer functions because that’s probably overkill, but if you need it, you can write your own. PR welcome! :wink:
 
 ## Installing a Transformer Function
 
@@ -43,7 +43,7 @@ Here is an example of a transformer function that prevents all API calls from ha
 bot.api.config.use((prev, method, payload) => undefined as any);
 ```
 
-You can also install transformer functions on the context object's API object.
+You can also install transformer functions on the context object’s API object.
 The transformer function will then only be used temporarily for the API requests that are performed on that specific context object.
 Calls to `bot.api` are left unaffected.
 Calls via context objects of concurrently running middleware are left unaffected, as well.

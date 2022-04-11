@@ -114,7 +114,7 @@ Setting a concurrency limit for the grammY runner is therefore respected through
 The queue also throws out updates that take too long processing, and you can specify a `timeoutHandler` when creating the respective sink.
 Of course, you should also provide an error handler when creating a sink.
 
-If you're using `run(bot)`, the error handler from `bot.catch` will be used.
+If you’re using `run(bot)`, the error handler from `bot.catch` will be used.
 
 ### Runner
 
@@ -160,7 +160,7 @@ It needs constant memory (unless you specify infinite concurrency), and it needs
 
 ## Graceful shutdown
 
-In order for the bot to complete it's work correctly you [should signal](/advanced/reliability.html#using-grammy-runner) it to stop when the Node process is about to be destroyed.
+In order for the bot to complete it’s work correctly you [should signal](/advanced/reliability.html#using-grammy-runner) it to stop when the Node process is about to be destroyed.
 
 ## Plugin Summary
 

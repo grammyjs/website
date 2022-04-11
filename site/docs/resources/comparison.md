@@ -3,15 +3,15 @@
 While grammY uses some concepts known from other bot frameworks (and web frameworks), it was written from scratch for optimal readability and performance.
 In other words, it does not use any code of competing projects, but it will still feel familiar to users of some frameworks.
 
-> Please assume that this comparison is biased, even though we're trying to provide you with an objective description of the advantages and disadvantages of using grammY over using other libraries.
+> Please assume that this comparison is biased, even though we’re trying to provide you with an objective description of the advantages and disadvantages of using grammY over using other libraries.
 > We are trying to keep things in this article up-to-date.
 > If you notice that anything is outdated, please edit this page using the link at the bottom.
 
 ## Comparison With Other JavaScript Frameworks
 
 ::: tip Choose Your Programming Language First
-Given that you're reading the docs of a framework within the JavaScript ecosystem, you are likely looking for something to run on Node.js (or Deno).
-However, if that's not you, [scroll down](#comparison-with-frameworks-in-other-programming-languages) for a comparison of what programming languages are suited for bot development.
+Given that you’re reading the docs of a framework within the JavaScript ecosystem, you are likely looking for something to run on Node.js (or Deno).
+However, if that’s not you, [scroll down](#comparison-with-frameworks-in-other-programming-languages) for a comparison of what programming languages are suited for bot development.
 Naturally, you will also find a brief comparison against frameworks of other languages (mainly Python).
 :::
 
@@ -28,7 +28,7 @@ Telegraf is an amazing library, and grammY would not be where it is without it.
 However, Telegraf used to be written in JavaScript (in v3).
 The rare type annotations were manually added and poorly maintained, so they were incomplete, incorrect, and outdated.
 Strong type annotations are a crucial aspect of any serious library for the tooling support they enable, and because it allows you to iterate significantly faster on your code base.
-Many people prefer to have type safety when developing a complex bot, and for some it's a deal-breaker not to offer it.
+Many people prefer to have type safety when developing a complex bot, and for some it’s a deal-breaker not to offer it.
 
 Telegraf v4 attempted to fix this by migrating the entire code base to TypeScript.
 Unfortunately, many of the resulting types were so complex that they were too hard to understand (but correct).
@@ -71,7 +71,7 @@ Experience shows that you often have to run your bot to find out whether your co
 
 In contrast, grammY is written in pure TypeScript.
 This allows your code editor (e.g. VSCode) to analyze your code while you are typing, and assist you.
-In addition, it can show the complete Telegram Bot API inline—the website's documentation will be available right at your fingertips when hovering your mouse over any name or element of your code.
+In addition, it can show the complete Telegram Bot API inline—the website’s documentation will be available right at your fingertips when hovering your mouse over any name or element of your code.
 
 Another remarkable advantage is that you are finally able to **write your own bots in TypeScript**.
 This was hard to do because the wrong type annotations of Telegraf were preventing perfectly correct code from compiling, thus effectively encouraging users not to check their code in the first place.
@@ -94,7 +94,7 @@ For example:
   Telegraf does not (it was replaced by a generated API reference that lacks explanations).
 - Types in grammY _just work_ and they will follow your code.
   In Telegraf, you will often need to write your code a certain way, otherwise it does not compile (even though it would actually work fine).
-- grammY integrates hints from [the official Bot API reference](core.telegram.org/bots/api) inline that help you while you're coding.
+- grammY integrates hints from [the official Bot API reference](core.telegram.org/bots/api) inline that help you while you’re coding.
   Telegraf does not give you any explanations on your code.
 
 #### Summary
@@ -131,7 +131,7 @@ The idea of putting everything in a gigantic file, and using a primitive `EventE
 Bots always start small, but a responsible framework must provide them a clear path to grow, and to scale up.
 Unfortunately, NTBA fails horribly at doing that.
 Any code base with more than 50 lines that uses NTBA ends up being a terrible mess of spaghetti-like cross-references.
-You don't want that.
+You don’t want that.
 
 ### Other Frameworks
 
@@ -144,7 +144,7 @@ There are reasons to favor a different programming language over TypeScript.
 The most important thing is that you like working with your tools and languages.
 If you are determined to stick with something else, then you can stop reading here.
 
-Given that you're still reading, you may want to know why grammY is written in TypeScript, and why you should maybe consider picking this language for your bot, too.
+Given that you’re still reading, you may want to know why grammY is written in TypeScript, and why you should maybe consider picking this language for your bot, too.
 
 This section will outline how TypeScript has a few advantages over other languages when it comes to developing Telegram bots.
 The main other language that is used to develop chat bots for Telegram is Python, so we will limit ourselves to this for now.
@@ -174,7 +174,7 @@ People have different taste, so take this section with a grain of salt.
 
 ## How to Disagree With This Comparison
 
-If you think that something is wrong on this page, don't despair!
+If you think that something is wrong on this page, don’t despair!
 Please let us know in the [group chat](https://t.me/grammyjs)!
 We'd love for you to educate us about your perspective.
 Naturally, you can also just edit this page on GitHub, or file an issue there to point out mistakes or suggest other things.

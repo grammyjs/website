@@ -69,7 +69,7 @@ This will output something like this:
 490ai foo total: 891.849ms
 ```
 
-This indicates the checked middleware alone took 800ms and isn't as performant as maybe needed.
+This indicates the checked middleware alone took 800ms and isn’t as performant as maybe needed.
 
 ## Plugin Summary
 

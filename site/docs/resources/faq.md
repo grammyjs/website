@@ -8,7 +8,7 @@ If this FAQ does not answer your question, you should also have a look at the [B
 
 ### 400 Bad Request: Cannot parse entities
 
-You are sending a message with formatting, i.e. you're setting `parse_mode` when sending a message.
+You are sending a message with formatting, i.e. you’re setting `parse_mode` when sending a message.
 However, your formatting is broken, so Telegram does not know how to parse it.
 You should re-read [the section about formatting](https://core.telegram.org/bots/api#formatting-options) in the Telegram docs.
 The byte offset that is mentioned in the error message will tell you where exactly the error is in your string.
@@ -16,14 +16,14 @@ The byte offset that is mentioned in the error message will tell you where exact
 ::: tip Passing entities instead of formatting
 You can pre-parse the entities for Telegram if you want, and specify `entities` when sending your message.
 Your message text could then be a regular string.
-That way, you don't have to worry about escaping weird characters.
+That way, you don’t have to worry about escaping weird characters.
 This may look like it needs more code, but in fact it is the far more reliable and fool-proof solution to this problem.
 :::
 
 ### 401 Unauthorized
 
 Your bot token is wrong.
-Maybe you think it's right.
+Maybe you think it’s right.
 It is not.
 Talk to [@BotFather](https://t.me/BotFather) to see what your token is.
 
@@ -37,7 +37,7 @@ You cannot do anything about it.
 
 You can either:
 
-- Handle the error and for example delete the user's data from your database.
+- Handle the error and for example delete the user’s data from your database.
 - Ignore the error.
 - Listen for `my_chat_member` updates via `bot.on("my_chat_member")` in order to be notified when the user blocks your bot.
   Hint: Compare the `status` fields of the old and the new chat member.
@@ -47,7 +47,7 @@ You can either:
 If this happens while starting your bot, then your bot token is wrong.
 Talk to [@BotFather](https://t.me/BotFather) to see what your token is.
 
-If your bot works fine most of the time, but then suddenly you're getting a 404, then you're doing something very funky.
+If your bot works fine most of the time, but then suddenly you’re getting a 404, then you’re doing something very funky.
 You can come ask us in the group chat.
 
 ### 409 Conflict: terminated by other getUpdates request
@@ -68,11 +68,11 @@ There are two possible scenarios.
 
 One: Your bot does not have many users.
 In that case, you are just spamming the Telegram servers by sending too many requests.
-Solution: don't do that.
+Solution: don’t do that.
 You should seriously think about how to reduce the number of API calls substantially.
 
 Two: Your bot is getting very popular and it has a lot of users (hundreds of thousands).
-You have already made sure to use the minimum number of API calls for the most common operations of your bot, and _still_ you're running to these errors (called flood wait).
+You have already made sure to use the minimum number of API calls for the most common operations of your bot, and _still_ you’re running to these errors (called flood wait).
 
 There are a few things you can do.
 
@@ -96,7 +96,7 @@ If you are sure that you need this option to be kept to `false`, you can instead
 
 Some important reasons why we like Deno more than Node.js:
 
-- It's simpler and faster to get started.
+- It’s simpler and faster to get started.
 - The tooling is substantially better.
 - It natively executes TypeScript.
 - No need to maintain `package.json` or `node_modules`.

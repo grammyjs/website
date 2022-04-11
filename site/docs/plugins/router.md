@@ -25,7 +25,7 @@ bot.use(router)
 Routers work well together with [sessions](./session.md).
 As an example, combining the two concepts allows you to re-create forms in the chat interface.
 
-Let's say that you want to build a bot that tells users how many days are left until it is their birthday.
+Let’s say that you want to build a bot that tells users how many days are left until it is their birthday.
 In order to compute the number of days, the bot has to know the month (e.g. June) and the day of month (e.g. 15) of the birthday.
 
 The bot therefore has to ask two questions:

@@ -162,7 +162,7 @@ The same context object for one update will be shared by all installed middlewar
 
 ## Customising the Context Object
 
-> If you are new to context objects, you don't need to worry about the rest of this page.
+> If you are new to context objects, you don’t need to worry about the rest of this page.
 
 You can install your own properties on the context object if you want.
 This is possible in two ways:
@@ -333,19 +333,19 @@ Context flavors are a way to tell TypeScript about new properties on your contex
 
 There are two different kinds of context flavors.
 The basic one is called _additive context flavor_, and whenever we talk about context flavoring, we just mean this basic form.
-Let's look at how it works.
+Let’s look at how it works.
 
 As an example, when you have [session data](/plugins/session.md), you must register `ctx.session` on the context type.
 Otherwise,
 
 1. you cannot install the built-in sessions plugin, and
-2. you don't have access to `ctx.session` in your listeners.
+2. you don’t have access to `ctx.session` in your listeners.
 
-> Even though we'll use sessions as an example here, similar things apply for lots of other things.
+> Even though we’ll use sessions as an example here, similar things apply for lots of other things.
 > In fact, most plugins will give you a context flavor that you need to use.
 
 A context flavor is simply a small new type that defines the properties that should be added to the context type.
-Let's look at an example for a flavor.
+Let’s look at an example for a flavor.
 
 ```ts
 interface SessionFlavor<S> {

@@ -6,7 +6,7 @@ Please note that this guide is only for Deno users, and you need to have a [GitH
 
 Deno Deploy is ideal for most simple bots, and you should note that not all Deno features are available for apps running on Deno Deploy.
 For example, there is no file system on Deno Deploy.
-It's just like the other many serverless platforms, but dedicated for Deno apps.
+It’s just like the other many serverless platforms, but dedicated for Deno apps.
 
 ## Preparing Your Code
 
@@ -46,7 +46,7 @@ serve(async (req) => {
 1. Create a repository on GitHub, it can be either private or public.
 2. Push your code.
 
-> It is recommended that you have a single stable branch and you do your testing stuff in other branches, so that you won't get some unexpected things happen.
+> It is recommended that you have a single stable branch and you do your testing stuff in other branches, so that you won’t get some unexpected things happen.
 
 3. Visit your [Deno Deploy dashboard](https://dash.deno.com/projects).
 4. Create a new project.

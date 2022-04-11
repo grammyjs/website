@@ -19,7 +19,7 @@ The setup can be visualized like this:
 ```
 
 In words: when your bot sends a message, it will be sent as an HTTP request to a _Bot API server_ (either hosted by the Telegram team, or [hosted by you](https://core.telegram.org/bots/api#using-a-local-bot-api-server)).
-This server will translate the request to Telegram's native protocol called MTProto, and send a request to the Telegram backend which takes care of sending the message to the user.
+This server will translate the request to Telegram’s native protocol called MTProto, and send a request to the Telegram backend which takes care of sending the message to the user.
 
 Analogously, whenever a user responds, the inverse path is taken.
 

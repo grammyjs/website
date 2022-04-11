@@ -8,7 +8,7 @@ next: ./flood.md
 If you made sure you have proper [error handling](/guide/errors.md) for your bot, you are basically good to go.
 All errors that should be expected to happen (failing API calls, failing network requests, failing database queries, failing middleware, etc) are all caught.
 
-You should make sure to always `await` all promises, or at least call `catch` on them if you ever don't want to `await` stuff.
+You should make sure to always `await` all promises, or at least call `catch` on them if you ever don’t want to `await` stuff.
 Use a linting rule to make sure you cannot forget this.
 
 ## Graceful shutdown
@@ -133,7 +133,7 @@ Deno.addSignalListener("SIGTERM", stopRunner);
 </CodeGroupItem>
 </CodeGroup>
 
-That's basically all there is to reliability, your instance should:registered: never:tm: crash now.
+That’s basically all there is to reliability, your instance should:registered: never:tm: crash now.
 
 ## Reliability Guarantees
 
@@ -163,8 +163,8 @@ This is the cost of heavy concurrency, and unfortunately, it cannot be avoided w
 As a result, if your instance is killed in the right (wrong) moment, it could happen that up to 100 updates cannot be fetched again because Telegram regards them as confirmed.
 This leads to data loss.
 If it is crucial to prevent this, you should use the sources and sinks of the grammY runner package to compose your own update pipeline that passes all updates through a message queue first.
-You'd basically have to create a [sink](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/UpdateSink) that pushes to the queue, and start one runner that only supplies your message queue.
-You'd then have to create a [source](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/UpdateSource) that pulls from the message queue again.
+You’d basically have to create a [sink](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/UpdateSink) that pushes to the queue, and start one runner that only supplies your message queue.
+You’d then have to create a [source](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/UpdateSource) that pulls from the message queue again.
 You will effectively run two different instances of the grammY runner.
 This vague draft described above has only been sketched but not implemented, according to our knowledge.
 Please [take contact with the Telegram group](https://t.me/grammyjs) if you have any question or if you attempt this and can share your progress.

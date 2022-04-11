@@ -2,7 +2,7 @@
 
 rateLimiter is a rate-limiting middleware for Telegram bots made with grammY or [Telegraf](https://github.com/telegraf/telegraf) bot frameworks. In simple terms, it is a plugin that helps you deflect heavy spamming in your bots. To understand rateLimiter better, you can take a look at the following illustration:
 
-![rateLimiter's role in deflecting spam](/rateLimiter-role.png)
+![rateLimiter’s role in deflecting spam](/rateLimiter-role.png)
 
 ## How Does It Work Exactly?
 
@@ -24,7 +24,7 @@ This plugin exposes 5 customisable options:
 
 ### About `storageClient`
 
-The `MEMORY_STORE` or the in-memory tracking is suitable for most bots, however if you implement clustering for your bot you will not be able to use the in-memory storage effectively. That's why the Redis option is provided as well. You can pass a Redis client from [ioredis](https://github.com/luin/ioredis) or [redis](https://deno.land/x/redis) in case you use deno. In reality any Redis driver that implements the `incr` and `pexpire` methods should work just fine. rateLimiter is driver agnostic.
+The `MEMORY_STORE` or the in-memory tracking is suitable for most bots, however if you implement clustering for your bot you will not be able to use the in-memory storage effectively. That’s why the Redis option is provided as well. You can pass a Redis client from [ioredis](https://github.com/luin/ioredis) or [redis](https://deno.land/x/redis) in case you use deno. In reality any Redis driver that implements the `incr` and `pexpire` methods should work just fine. rateLimiter is driver agnostic.
 
 > Note: You must have redis-server **2.6.0** and above on your server to use Redis storage client with rateLimiter. Older versions of Redis are not supported.
 
@@ -58,7 +58,7 @@ app.listen(3000, () => {
 
 ### Manual Configuration
 
-As mentioned before, you can pass an `Options` object to the `limit()` method to alter rateLimiter's behaviors. In the following snippet, I have decided to use Redis as my storage option:
+As mentioned before, you can pass an `Options` object to the `limit()` method to alter rateLimiter’s behaviors. In the following snippet, I have decided to use Redis as my storage option:
 
 ```ts
 import express from "express";

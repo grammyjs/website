@@ -120,7 +120,7 @@ You can pass a label and a handler function.
 Use `row` to end the current row, and add all subsequent buttons to a new one.
 
 There are many more button types available, e.g. for opening URLs.
-Check out [this plugin's API Reference](https://doc.deno.land/https://deno.land/x/grammy_menu/mod.ts/~/MenuRange) for `MenuRange`, as well as the [Telegram Bot API Reference](https://core.telegram.org/bots/api#inlinekeyboardbutton) for `InlineKeyboardButton`.
+Check out [this plugin’s API Reference](https://doc.deno.land/https://deno.land/x/grammy_menu/mod.ts/~/MenuRange) for `MenuRange`, as well as the [Telegram Bot API Reference](https://core.telegram.org/bots/api#inlinekeyboardbutton) for `InlineKeyboardButton`.
 
 ## Sending a Menu
 
@@ -316,7 +316,7 @@ Payloads also work well together with dynamic ranges.
 
 ## Dynamic Ranges
 
-So far, we've only seen how to change the text on a button dynamically.
+So far, we’ve only seen how to change the text on a button dynamically.
 You can also dynamically adjust the structure of a menu in order to add and remove buttons on the fly.
 
 ::: danger Changing a Menu During Message Handling
@@ -332,7 +332,7 @@ However, you can make use of the dynamic ranges described in this section.
 They allow you to arbitrarily change the structure of an existing menu instance, so they are equally powerful.
 :::
 
-You can let a part of a menu's buttons be generated on the fly (or all of them if you want).
+You can let a part of a menu’s buttons be generated on the fly (or all of them if you want).
 We call this part of the menu a _dynamic range_.
 In other words, instead of defining the buttons directly on the menu, you can pass a factory function that creates a the buttons when the menu is rendered.
 The easiest way to create a dynamic range in this function is by using the `MenuRange` class that this plugin provides.
@@ -361,7 +361,7 @@ The range builder function that you pass to `dynamic` may be `async`, so you can
 The range builder function takes a context object as the first argument.
 (This is not specified in the example above.)
 Optionally, as a second argument after `ctx`, you can receive a fresh instance of `MenuRange`.
-You can modify it instead of returning your own instance if that's what you prefer.
+You can modify it instead of returning your own instance if that’s what you prefer.
 Here is how you can use the two parameters of the range builder function.
 
 ```ts
@@ -401,7 +401,7 @@ This allows you to pass custom messages that are displayed to the user.
 
 ## Outdated Menus and Fingerprints
 
-Let's say you have a menu where a user can toggle notifications on and off, such as in the example [up here](#dynamic-labels).
+Let’s say you have a menu where a user can toggle notifications on and off, such as in the example [up here](#dynamic-labels).
 Now, if a user sends `/settings` twice, they will get the same menu twice.
 But, changing the notification setting on one of the two messages will not update the other!
 
@@ -412,7 +412,7 @@ This is not practical.
 
 The solution, is to check if a menu is outdated _before_ performing any actions.
 This way, we will only update old menus if a user actually starts clicking the buttons on them.
-The menu plugin handles this automatically for you, so you don't need to worry about it.
+The menu plugin handles this automatically for you, so you don’t need to worry about it.
 
 You can configure exactly what happens when an outdated menu is detected.
 By default, the message “Menu was outdated, try again!” will be displayed to the user, and the menu will be updated.
@@ -483,9 +483,9 @@ A menu will only handle button presses if:
 - The row/column is specified.
 - The fingerprint flag exists.
 
-When a user presses a menu's button, we need to find the handler that was added to that button at the time the menu was rendered.
+When a user presses a menu’s button, we need to find the handler that was added to that button at the time the menu was rendered.
 Hence, we simply render the old menu again.
-However, this time, we don't actually need the full layout—all we need is the overall structure, and that one specific button.
+However, this time, we don’t actually need the full layout—all we need is the overall structure, and that one specific button.
 Consequently, the menu plugin will perform a shallow rendering in order to be more efficient.
 In other words, the menu will only be rendered partially.
 

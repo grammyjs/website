@@ -1,8 +1,8 @@
 # Inline and Custom Keyboards (built-in)
 
-Your bot may send a number of buttons, either to be [displayed underneath a message](#inline-keyboards), or to [replace the user's keyboard](#custom-keyboards).
+Your bot may send a number of buttons, either to be [displayed underneath a message](#inline-keyboards), or to [replace the user’s keyboard](#custom-keyboards).
 They are called _inline keyboards_ and _custom keyboards_, respectively.
-If you think that this is confusing, then that's because it is.
+If you think that this is confusing, then that’s because it is.
 Thank you, Telegram, for this overlapping terminology.
 
 Let us try to clear it up a bit:
@@ -10,13 +10,13 @@ Let us try to clear it up a bit:
 | Term                                     | Definition                                                                                                                         |
 | ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | [**Inline Keyboard**](#inline-keyboards) | a set of buttons that is displayed underneath a message inside the chat                                                            |
-| [**Custom Keyboard**](#custom-keyboards) | a set of buttons that is displayed instead of the user's system keyboard                                                           |
+| [**Custom Keyboard**](#custom-keyboards) | a set of buttons that is displayed instead of the user’s system keyboard                                                           |
 | **Inline Keyboard button**               | a button in an inline keyboard, sends a callback query not visible to the user when pressed, sometimes just called _inline button_ |
 | **Custom Keyboard button**               | a button in a keyboard, sends a text message with its label when pressed, sometimes just called _keyboard button_                  |
 | **`InlineKeyboard`**                     | class in grammY to create inline keyboards                                                                                         |
 | **`Keyboard` (!)**                       | class in grammY to create custom keyboards                                                                                         |
 
-> Note that both custom keyboard buttons and inline keyboard buttons can also have other functions, such as requesting the user's location, opening a website, and so on.
+> Note that both custom keyboard buttons and inline keyboard buttons can also have other functions, such as requesting the user’s location, opening a website, and so on.
 > This was omitted for brevity.
 
 It is not possible to specify both a custom keyboard and an inline keyboard in the same message.
@@ -117,9 +117,9 @@ It makes it simple to create interactive menus.
 :::
 
 Every `text` button has a string as callback data attached.
-If you don't attach callback data, grammY will use the button's text as data.
+If you don’t attach callback data, grammY will use the button’s text as data.
 
-Once a user clicks a text button, your bot will receive an update containing the corresponding button's callback data.
+Once a user clicks a text button, your bot will receive an update containing the corresponding button’s callback data.
 You can listen for callback data via `bot.callbackQuery()`.
 
 ```ts
@@ -158,8 +158,8 @@ Otherwise, some clients may display a loading animation for up to a minute when 
 
 ## Custom Keyboards
 
-First things first: custom keyboards are sometimes just called keyboards, sometimes they're called reply keyboards, and even Telegram's own documentation is not consistent in this repect.
-As a simple rule of thumb, when it isn't absolutely obvious from the context and not called inline keyboard, it probably is a custom keyboard.
+First things first: custom keyboards are sometimes just called keyboards, sometimes they’re called reply keyboards, and even Telegram’s own documentation is not consistent in this repect.
+As a simple rule of thumb, when it isn’t absolutely obvious from the context and not called inline keyboard, it probably is a custom keyboard.
 This refers to a way to replace the system keyboard by a set of buttons that you can define.
 
 > Revisit the custom keyboard section in the [Introduction for Developers](https://core.telegram.org/bots#keyboards) written by the Telegram team.
@@ -247,7 +247,7 @@ In that case, you have to use `keyboard.build()` when passing it to your object.
 
 You can specify the `resize_keyboard` option if you want the custom keyboard to be resized according to the buttons it contains.
 This will effectively make the keyboard smaller.
-(Usually, the keyboard will always have the size of the app's standard keyboard.)
+(Usually, the keyboard will always have the size of the app’s standard keyboard.)
 
 ```ts
 await ctx.reply(text, {
@@ -305,7 +305,7 @@ await ctx.reply(text, {
 As mentioned earlier, all that custom keyboards do is sending regular text messages.
 Your bot cannot differentiate between ordinary text messages, and text messages that were sent by clicking a button.
 
-Moreover, buttons will always send exactly the message that's written on them.
+Moreover, buttons will always send exactly the message that’s written on them.
 Telegram does not allow you to create buttons that display one text, but send another.
 If you need to do this, you should use an [inline keyboard](#inline-keyboards) instead.
 
@@ -335,7 +335,7 @@ remove the custom keyboard for selected users only. This works analogously to
 ## Plugin Summary
 
 This plugin is built-in into the core of grammY.
-You don't need to install anything to use it.
+You don’t need to install anything to use it.
 Simply import everything from grammY itself.
 
 Also, both the documentation and the API reference of this plugin are unified with the core package.

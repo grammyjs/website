@@ -29,5 +29,5 @@ Instead of fixing the problem after the fact, it is much better to enqueue all A
 
 grammY provides you with [the throttler plugin](/plugins/transformer-throttler.md) that automatically makes your bot respect all rate limits by enqueuing the outgoing requests of your bot in a message queue.
 This plugin is just as simple to set up but does a much better job at flood control.
-There isn't really any good reason to use `auto-retry` over the throttler plugin.
+There isn’t really any good reason to use `auto-retry` over the throttler plugin.
 In some cases it may make sense to use both.

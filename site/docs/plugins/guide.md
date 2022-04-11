@@ -2,7 +2,7 @@
 prev: /plugins/
 ---
 
-# The Hitchhiker's Guide to grammY Plugins
+# The Hitchhiker’s Guide to grammY Plugins
 
 If you would like to develop your own plugin and publish it, or if you want to know how grammY plugins work behind the scenes, this is the place for you!
 
@@ -13,8 +13,8 @@ If you would like to develop your own plugin and publish it, or if you want to k
 
 There are two main types of plugins in grammY:
 
-- Middleware Plugins: The plugin's sole job is to return a [middleware function](/guide/middleware.md) that can be fed to a grammY bot.
-- Transformer Plugins: The plugin's sole job is to return a [transformer function](/advanced/transformers.md) that can be fed to a grammY bot.
+- Middleware Plugins: The plugin’s sole job is to return a [middleware function](/guide/middleware.md) that can be fed to a grammY bot.
+- Transformer Plugins: The plugin’s sole job is to return a [transformer function](/advanced/transformers.md) that can be fed to a grammY bot.
 
 However, you will sometimes find plugins that do both things.
 There are also other packages that are neither middleware nor transformer functions, but we will call them plugins anyway because they extend grammY in various ways.
@@ -31,7 +31,7 @@ However, we prefer it if you publish your plugin under [the grammyjs organizatio
 In such a case, you will be granted publish access to GitHub and npm.
 Also, You will be responsible for maintaining your code.
 
-Before diving into some hands-on examples, there are some rules to pay attention to if you'd like your plugins to be listed on this website.
+Before diving into some hands-on examples, there are some rules to pay attention to if you’d like your plugins to be listed on this website.
 
 1. Have a README file on GitHub (and npm) with **short and clear** instructions on how to use it.
 2. Explain the purpose of your plugin and how to use it by adding a page to the [docs](https://github.com/grammyjs/website).
@@ -46,7 +46,7 @@ You will not want to go back.
 
 ## Designing a Dummy Middleware Plugin
 
-Let's assume we would like to design a plugin that only responds to certain users!
+Let’s assume we would like to design a plugin that only responds to certain users!
 For example, we could decide to only respond to people whose usernames contain a certain word.
 The bot will simply refuse to work for everyone else.
 
@@ -70,7 +70,7 @@ export function onlyAccept<C extends Context>(str: string): Middleware<C> {
       await next();
     } else {
       // Tell them we don't like them.
-      await ctx.reply(`I'm not talking to you! You don't care about ${str}!`);
+      await ctx.reply(`I'm not talking to you! You don’t care about ${str}!`);
     }
   };
 }
@@ -95,7 +95,7 @@ bot.start();
 Voilà!
 You got yourself a plugin, right?
 Well, not so fast.
-We still need to package it up, but before that, let's take a look at transformer plugins, as well.
+We still need to package it up, but before that, let’s take a look at transformer plugins, as well.
 
 ## Designing a Dummy Transformer Plugin
 
@@ -161,7 +161,7 @@ bot.start();
 Now, every time we send a document, the chat action of `upload_document` will be sent to our client.
 Note that this was for demonstration purposes.
 Telegram recommends using chat actions only when “a response from the bot will take a **noticeable** amount of time to arrive”.
-You probably don't actually need to set the status if the file is very small, so there are some optimisations that could be done here.
+You probably don’t actually need to set the status if the file is very small, so there are some optimisations that could be done here.
 
 ## Extraction Into a Plugin
 
@@ -211,9 +211,9 @@ If you would like to develop a plugin for grammY and do not know where to start,
 You can clone the code for yourself and start coding based on what was covered in this article.
 This repository also includes some extra goodies such as `.editorconfig`, `LICENSE`, `.gitignore`, etc, but you may choose to delete them.
 
-## I Don't Like Deno
+## I Don’t Like Deno
 
-Well, you're missing out!
+Well, you’re missing out!
 But you can also write your plugins only for Node.js.
 You can still publish the plugin and have it listed as a third-party plugin on this website.
 In such a case, you may use any folder structure you like (as long as it is organized like any other npm project).

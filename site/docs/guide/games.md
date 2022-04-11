@@ -14,8 +14,8 @@ The answer is anything, any HTML5 game that you have developed you can provide t
 
 ## Setting Up a Game With Your Bot via @BotFather
 
-For simplicity, let's assume that by now you must have set up a bot and a game associated with your bot on [@BotFather](https://t.me/BotFather).
-If you haven't already, check out this [article](https://core.telegram.org/bots/games) by the Telegram team.
+For simplicity, let’s assume that by now you must have set up a bot and a game associated with your bot on [@BotFather](https://t.me/BotFather).
+If you haven’t already, check out this [article](https://core.telegram.org/bots/games) by the Telegram team.
 
 > Note: We will only learn the bot side development.
 > Developing the game is entirely up to the developer.
@@ -100,5 +100,5 @@ bot.command("start", (ctx) => {
 
 > Remember to add proper [error handling](/guide/errors.md) to your bot before going live.
 
-We may extend this article in the future by further advanced sections and FAQ's, but this is already all you need to start your game in Telegram.
+We may extend this article in the future by further advanced sections and FAQ’s, but this is already all you need to start your game in Telegram.
 Have fun playing! :space_invader:

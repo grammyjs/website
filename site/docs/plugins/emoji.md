@@ -4,13 +4,13 @@ With this plugin, you can easily insert emojis on your replies searching for the
 
 ## Why should I use this?
 
-Why not? People use emojis in their code all the time to better illustrate the message they're willing to pass or to organize things. But you lose your focus everytime you need a new emoji, see:
+Why not? People use emojis in their code all the time to better illustrate the message they’re willing to pass or to organize things. But you lose your focus everytime you need a new emoji, see:
 
 1. You stop coding to search for a specific emoji.
 2. You go to a Telegram chat and spent ~6 seconds (to not say more) searching for the emoji you want.
 3. You copy-paste them into your code and get back coding, but with lost focus.
 
-With this plugin, you just don't stop coding as also you don't lose your focus. There is also bad-frickin'-laggy systems and/or editors that doesn't like and don't show emojis, so you end up pasting a white square, like this sad-little-squary message `I'm so happy □`.
+With this plugin, you just don’t stop coding as also you don’t lose your focus. There is also bad-frickin’-laggy systems and/or editors that doesn’t like and don’t show emojis, so you end up pasting a white square, like this sad-little-squary message `I'm so happy □`.
 
 This plugin aim to solve these issues, handling for you the hard task of parsing emojis in all systems and letting you only search for them in a easy way (autocomplete is available). Now, the above steps can be reduced to this one:
 
@@ -83,7 +83,7 @@ bot.command("start", async (ctx) => {
 ```
 
 ::: warning Keep in mind that
-`ctx.emoji` and `ctx.replyWithEmoji` **ALWAYS** use template strings. If you're unfamiliar with this syntax, you can read more about it [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals).
+`ctx.emoji` and `ctx.replyWithEmoji` **ALWAYS** use template strings. If you’re unfamiliar with this syntax, you can read more about it [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals).
 :::
 
 ## Plugin Summary

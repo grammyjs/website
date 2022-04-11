@@ -44,7 +44,7 @@ If you’re coming from a different programming language or framework, you can c
 There are a number of great ways to support this project!
 
 - Contribute code via a [pull request](https://github.com/grammyjs/grammY/pulls).
-- [File an issue](https://github.com/grammyjs/grammY/issues/new) about a bug you discovered, a feature you'd like to have, or anything else.
+- [File an issue](https://github.com/grammyjs/grammY/issues/new) about a bug you discovered, a feature you’d like to have, or anything else.
 - Help out with the [Documentation](https://github.com/grammyjs/website).
 - Assist people in the community chats in [English](https://t.me/grammyjs) or [Russian](https://t.me/grammyjs_ru).
 - Or just come tell us what you think!

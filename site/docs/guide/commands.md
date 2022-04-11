@@ -57,7 +57,7 @@ bot.command("add", (ctx) => {
 });
 ```
 
-Note that you can always access the entire message's text via `ctx.msg.text`.
+Note that you can always access the entire message’s text via `ctx.msg.text`.
 
 ## Deep Linking Support
 

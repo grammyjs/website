@@ -317,4 +317,4 @@ On start-up, grammY derives a predicate function from the filter query by splitt
 Every part will be mapped to a function that performs a single `in` check, or two checks if the part is omitted and two values need to be checked.
 These functions are then combined to form a predicate that only has to check for as many values as are relevant for the query, without iterating over the object keys of `Update`.
 
-This system uses less operations than some competing libraries, which need to perform containment checks in arrays when routing updates. grammY's filter query system is much more powerful.
+This system uses less operations than some competing libraries, which need to perform containment checks in arrays when routing updates. grammY’s filter query system is much more powerful.

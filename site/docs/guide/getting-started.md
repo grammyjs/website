@@ -10,7 +10,7 @@ Create your first bot in minutes. (Scroll [down](#getting-started-on-deno) for a
 ## Getting Started on Node.js
 
 > This guide assumes that you have [Node.js](https://nodejs.org) installed, and `npm` should come with it.
-> If you don't know what these things are, check out our [Introduction](./introduction.md)!
+> If you don’t know what these things are, check out our [Introduction](./introduction.md)!
 
 Create a new TypeScript project and install the `grammy` package.
 Do this by opening a terminal and typing:
@@ -78,7 +78,7 @@ Your folder structure should now look like this:
 └── tsconfig.json
 ```
 
-Now, it's time to open Telegram to create a bot account, and obtain an authentication token for it.
+Now, it’s time to open Telegram to create a bot account, and obtain an authentication token for it.
 Talk to [@BotFather](https://t.me/BotFather) to do this.
 The authentication token looks like `123456:aBcDeF_gHiJkLmNoP-q`.
 
@@ -173,7 +173,7 @@ This makes it easier to debug your bot.
 
 Create a new directory somewhere and create a new empty text file in it, e.g. called `bot.ts`.
 
-Now, it's time to open Telegram to create a bot account, and obtain an authentication token for it.
+Now, it’s time to open Telegram to create a bot account, and obtain an authentication token for it.
 Talk to [@BotFather](https://t.me/BotFather) to do this.
 The authentication token looks like `123456:aBcDeF_gHiJkLmNoP-q`.
 

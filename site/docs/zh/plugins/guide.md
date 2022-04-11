@@ -68,7 +68,7 @@ export function onlyAccept<C extends Context>(str: string): Middleware<C> {
       await next();
     } else {
       // 告诉他们我们不喜欢他们。
-      await ctx.reply(`I'm not talking to you! You don't care about ${str}!`);
+      await ctx.reply(`I'm not talking to you! You don’t care about ${str}!`);
     }
   };
 }

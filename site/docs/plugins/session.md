@@ -18,12 +18,12 @@ Basically, it boils down to the fact that **a bot only has access to the informa
 
 Consequently, if you _do want to access_ old data, you have to store it as soon as it arrives.
 This means that you must have a data storage, such as a file, a database, or an in-memory storage.
-Of course you don't have to host this yourself, there are plenty of services that offer data storage as a service, i.e. other people will host your database for you.
+Of course you don’t have to host this yourself, there are plenty of services that offer data storage as a service, i.e. other people will host your database for you.
 
 ## What Are Sessions?
 
 It is a very common thing for bots to store some piece of data per chat.
-For example, let's say we want to build a bot that counts the number of times that a message contains the pizza emoji :pizza: in its text.
+For example, let’s say we want to build a bot that counts the number of times that a message contains the pizza emoji :pizza: in its text.
 This bot could be added to a group, and it can tell you how much you and your friends like pizza.
 
 When our pizza bot receives a message, it has to remember how many times it saw a :pizza: in that chat before.
@@ -35,8 +35,8 @@ In this case, we would call the chat identifier the _session key_.
 
 > You can read more about session keys [down here](#session-keys).
 
-We can install middleware on the bot that will provide a chat's session data on `ctx.session` for every update by loading it from the database before our middleware runs.
-It would also make sure that the session data is written back to the database once we're done, so that we never have to worry about actually communicating with the data storage anymore.
+We can install middleware on the bot that will provide a chat’s session data on `ctx.session` for every update by loading it from the database before our middleware runs.
+It would also make sure that the session data is written back to the database once we’re done, so that we never have to worry about actually communicating with the data storage anymore.
 
 In our example, we would have access to the pizza count _of the corresponding chat_ on the session object `ctx.session`.
 
@@ -184,7 +184,7 @@ Hence, changing the session data in one chat may accidentally impact the session
 :::
 
 You may also omit the `initial` option entirely, even though you are well advised not to do that.
-If you don't specify it, reading `ctx.session` will throw an error for new users.
+If you don’t specify it, reading `ctx.session` will throw an error for new users.
 
 ### Session Keys
 
@@ -281,7 +281,7 @@ There may already be storage adapter written for grammY that you can use (see [b
 
 Lazy sessions is an alternative implementation of sessions that can significantly reduce the database traffic of your bot by skipping superfluous read and write operations.
 
-Let's assume that your bot is in a group chat where it does not respond to regular text messages, but only to commands.
+Let’s assume that your bot is in a group chat where it does not respond to regular text messages, but only to commands.
 Without sessions, this would happen:
 
 1. Update with new text message is sent to your bot
@@ -323,7 +323,7 @@ bot.command("settings", async (ctx) => {
 ```
 
 If you never access `ctx.session`, no operations will be performed, but as soon as you access the `session` property on the context object, the read operation will be triggered.
-If you never trigger the read (or directly assign a new value to `ctx.session`), we know that we also won't need to write any data back, because there is no way it could have been altered.
+If you never trigger the read (or directly assign a new value to `ctx.session`), we know that we also won’t need to write any data back, because there is no way it could have been altered.
 Consequently, we skip the write operation, too.
 As a result, we achieve minimal read and write operations, but you can use session almost identical to before, just with a few `async` and `await` keywords mixed into your code.
 
@@ -334,7 +334,7 @@ You mainly have to do three things:
    They work the same way, just that `ctx.session` is wrapped inside a promise for the lazy variant.
 2. Use `lazySession` instead of `session` to register your session middleware.
 3. Always put an inline `await ctx.session` instead of `ctx.session` everywhere in your middleware, for both reads and writes.
-   Don't worry: you can `await` the promise with your session data as many times as you want, but you will always refer to the same value, so there are never going to be duplicate reads for an update.
+   Don’t worry: you can `await` the promise with your session data as many times as you want, but you will always refer to the same value, so there are never going to be duplicate reads for an update.
 
 Note that with lazy sessions, you can assign both objects and promises of objects to `ctx.session`.
 If you set `ctx.session` to be a promise, it will be `await`ed before writing the data back to the data storage.
@@ -380,7 +380,7 @@ If you published your own storage adapter, please edit this page and link it her
 ## Plugin Summary
 
 This plugin is built-in into the core of grammY.
-You don't need to install anything to use it.
+You don’t need to install anything to use it.
 Simply import everything from grammY itself.
 
 Also, both the documentation and the API reference of this plugin are unified with the core package.

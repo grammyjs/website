@@ -231,7 +231,7 @@ app.use(webhookCallback(bot, "oak"));
 </CodeGroupItem>
 </CodeGroup>
 
-如果你考虑在 VPS 上使用 webhooks 运行你的 bot，请确保你阅读了 Telegram 团队写的 [Marvin's Marvellous Guide to All Things Webhook](https://core.telegram.org/bots/webhooks)。
+如果你考虑在 VPS 上使用 webhooks 运行你的 bot，请确保你阅读了 Telegram 团队写的 [Marvin’s Marvellous Guide to All Things Webhook](https://core.telegram.org/bots/webhooks)。
 
 ### Webhook Reply
 

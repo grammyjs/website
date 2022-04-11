@@ -1,7 +1,7 @@
 # Hosting: Heroku
 
 > We assume that you have the basic knowledge about creating bots using grammY.
-> If you are not ready yet, don't hestitate to head over to our friendly [Guide](/guide)! :rocket:
+> If you are not ready yet, don’t hestitate to head over to our friendly [Guide](/guide)! :rocket:
 
 This tutorial will guide you how to deploy a Telegram bot to [Heroku](https://heroku.com/) by using either [webhooks](/guide/deployment-types.md#webhooks) or [long polling](/guide/deployment-types.md#long-polling).
 We also assume that you have a Heroku account already.
@@ -27,7 +27,7 @@ npx tsc --init
 ```
 
 We will store our TypeScript files inside a folder `src`, and our compiled files in a folder `dist`.
-Create the folders in the project's root directory.
+Create the folders in the project’s root directory.
 Then, inside folder `src`, create a new file named `bot.ts`.
 Our folder structure should now look like this:
 
@@ -129,7 +129,7 @@ app.listen(Number(process.env.PORT), async () => {
 });
 ```
 
-Let's take a look at our code above:
+Let’s take a look at our code above:
 
 - `process.env`: Remember, NEVER store credentials in our code!
   For creating [Environment Variables in Heroku](https://www.freecodecamp.org/news/using-environment-variables-the-right-way/), head over to [this guide](https://devcenter.heroku.com/articles/config-vars).
@@ -200,7 +200,7 @@ export const bot = new Bot(`${process.env.BOT_TOKEN}`, {
 ```
 
 :::
-Cool! It's time to prepare our deployment environment!
+Cool! It’s time to prepare our deployment environment!
 Straight to [Deployment Section](#deployment) everyone! :muscle:
 
 ## Long Polling
@@ -213,14 +213,14 @@ Unless you know how to handle this behavior, make sure you have enough [dyno hou
 > Jump up to the [webhook section](#webhooks). :rocket:
 
 Using long polling on your server is not always a bad idea.
-Sometimes, it is suitable for data gathering bots that don't need to respond quickly and handle lots of data.
+Sometimes, it is suitable for data gathering bots that don’t need to respond quickly and handle lots of data.
 If you want to do this once an hour, you can do that easily.
-That's something you cannot control with webhooks.
+That’s something you cannot control with webhooks.
 If your bot gets flooded with messages, you will see a lot of webhook requests, however, you can more easily limit the rate of updates to process with long polling.
 
 ### Creating `bot.ts`
 
-Let's open the `bot.ts` file that we have created earlier.
+Let’s open the `bot.ts` file that we have created earlier.
 Have it contain these lines of code:
 
 ```ts
@@ -237,7 +237,7 @@ bot.command(
 bot.start();
 ```
 
-That's it!
+That’s it!
 We are ready to deploy it.
 Pretty simple, right? :smiley:
 If you think it is too easy, check out our [Deployment Checklist](/advanced/deployment.md#long-polling)! :rocket:
@@ -307,7 +307,7 @@ Here is the link for the installation:
 - [Git installation instructions](https://git-scm.com/download/)
 - [Heroku CLI installation instructions](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
 
-Assuming that you already have them in your machine, and you have a terminal open in the root of our project's directory.
+Assuming that you already have them in your machine, and you have a terminal open in the root of our project’s directory.
 Now initialize a local git repository by running this code in your terminal:
 
 ```bash
@@ -315,7 +315,7 @@ git init
 ```
 
 Next, we need to prevent unnecessary files from reaching our production server, in this case `Heroku`.
-Create a file named `.gitignore` in root of our project's directory.
+Create a file named `.gitignore` in root of our project’s directory.
 Then add this list:
 
 ```
@@ -375,7 +375,7 @@ git commit -m "My first commit"
 
 ### Set up a Heroku Remote
 
-If you have already created [Heroku app](https://dashboard.heroku.com/apps/), pass your `Existing app`'s name in `<myApp>` below, then run the code.
+If you have already created [Heroku app](https://dashboard.heroku.com/apps/), pass your `Existing app`’s name in `<myApp>` below, then run the code.
 Otherwise, run `New app`.
 
 <CodeGroup>
@@ -404,7 +404,7 @@ Finally, press the _red button_ and liftoff! :rocket:
 git push heroku main
 ```
 
-If it doesn't work, it's probably our git branch is not `main` but `master`.
+If it doesn’t work, it’s probably our git branch is not `main` but `master`.
 Press this _blue button_ instead:
 
 ```bash

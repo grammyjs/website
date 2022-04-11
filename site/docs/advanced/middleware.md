@@ -29,7 +29,7 @@ Looks pretty much like a stack, except, behind the scenes, it really is a tree.
 The heart of this functionality is the `Composer` class ([reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer)) that builds up this tree.
 
 First of all, every instance of `Bot` is an instance of `Composer`.
-It's just a subclass, so `class Bot extends Composer`.
+It’s just a subclass, so `class Bot extends Composer`.
 
 Also, you should know that every single method of `Composer` internally calls `use`.
 For example, `filter` just calls `use` with some branching middleware, while `on` just calls `filter` again with some predicate function that matches updates against the given [filter query](/guide/filter-queries.md).
@@ -59,7 +59,7 @@ All this says is that once you have installed an instance of `Composer`, you can
 (This is nothing spectacular, but already a main difference to popular competing frameworks that simply ignore subsequent operations.)
 
 You may be wondering where the tree structure is in there.
-Let's have a look at this snippet:
+Let’s have a look at this snippet:
 
 ```ts
 const composer = new Composer();

@@ -19,7 +19,7 @@ They are installed from `@grammyjs/*` on npm, and they are published under the [
 We coordinate their releases with the releases of grammY, and we make sure that everything works well together.
 Every section of the plugin docs for an official plugin has the package name in its title.
 As an example, the [grammY runner](./runner.md) plugin (`runner`) needs to be installed via `npm install @grammyjs/runner`.
-(If you are using Deno and not Node.js, you should import the plugin from <https://deno.land/x/> instead, so from the `grammy_runner` module's `mod.ts` file.)
+(If you are using Deno and not Node.js, you should import the plugin from <https://deno.land/x/> instead, so from the `grammy_runner` module’s `mod.ts` file.)
 
 ## Types of Plugins in grammY
 
@@ -27,7 +27,7 @@ All that glitters is gold, right?
 Well, a different kind of gold!
 grammY can take advantage of two types of plugins: _middleware plugins_ and _transformer plugins_.
 In simple terms, plugins in grammY return either a middleware function or a transformer one.
-Let's talk about the differences.
+Let’s talk about the differences.
 
 ### Type I: Middleware Plugins
 

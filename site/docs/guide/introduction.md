@@ -24,7 +24,7 @@ It defines _what your bot actually does_, i.e. “when a user sends this message
 You can then run that source file.
 Your bot will now work, until you stop running it.
 
-You're kinda done now…
+You’re kinda done now…
 
 ## How to Keep a Bot Running
 
@@ -34,7 +34,7 @@ If you stop your bot (or shut down your computer), your bot becomes unresponsive
 > Skip this section if you only want to play around with bots, and [continue down here with the prerequisites](#prerequisites-to-getting-started) to getting started.
 
 Simply put, if you want the bot to be online all the time, you have to keep a computer running 24 hours every day.
-Because you most likely don't want to do that with your laptop, you should upload your code to a _hosting provider_ (in other words, someone else's computer, also known as a _server_), and let those people run it for you.
+Because you most likely don’t want to do that with your laptop, you should upload your code to a _hosting provider_ (in other words, someone else’s computer, also known as a _server_), and let those people run it for you.
 
 There are countless companies that let you run your Telegram bot for free.
 This documentation covers a number of different hosting providers that we know work well with grammY (check the Resources).
@@ -54,7 +54,7 @@ _________        sends a         ____________                    ____________
 
 |____________________________________________|                   |___________|
                     |                                                  |
-        Telegram's responsibility                             your responsibility
+        Telegram’s responsibility                             your responsibility
 ```
 
 <!-- TODO: create a proper diagram instead of the ASCII art -->
@@ -83,9 +83,9 @@ Remember, though: creating a Telegram bot with grammY is actually a good way to 
 
 ::: tip Learning How to Code
 You can start learning TypeScript with the [official tutorial](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html) written by the TypeScript team, and then move on from there.
-Don't spend more than 30 minutes reading things on the internet, then come back here, (read the rest of the section) and [get started](./getting-started.md).
+Don’t spend more than 30 minutes reading things on the internet, then come back here, (read the rest of the section) and [get started](./getting-started.md).
 
-If you see unfamiliar syntax in the docs, or if you get an error message that you don't understand, google it—the explanation is already on the internet (e.g. on StackOverflow).
+If you see unfamiliar syntax in the docs, or if you get an error message that you don’t understand, google it—the explanation is already on the internet (e.g. on StackOverflow).
 :::
 
 ::: danger Not Learning How to Code
@@ -93,7 +93,7 @@ Save yourself some time by watching [this 34 second long video](https://youtu.be
 :::
 
 By picking grammY, you have already decided on a programming language, namely TypeScript.
-But what happens once you've created your TypeScript code, how will it start running?
+But what happens once you’ve created your TypeScript code, how will it start running?
 For that, you need to install some software which is able to _execute_ your code.
 This type of software is called a _runtime environment_.
 It takes in your source code files and actually does whatever is programmed in them.
@@ -110,7 +110,7 @@ Deno is relatively new, so it is sometimes still lacking support for some advanc
 Today, most servers use Node.js.
 
 On the other hand side, Deno is significantly easier to learn and to use.
-If you don't have much experience with programming yet, **it makes sense to start with Deno**.
+If you don’t have much experience with programming yet, **it makes sense to start with Deno**.
 
 Even if you have written code for Node.js before, you should consider giving Deno a go.
 Many things that are hard under Node.js are a no-brainer under Deno.
@@ -123,7 +123,7 @@ It has
 - many more advantages that do not fit here.
 
 Developing code under Deno is also a lot more fun.
-At least, that's our opinion.
+At least, that’s our opinion.
 
 However, if you have a reason to use Node.js, for example because you already know it well, then that is completely fine!
 We are making sure that grammY works equally well on both platforms, and we are not cutting any corners.

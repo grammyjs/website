@@ -9,7 +9,7 @@ The listener functions that are being passed to `bot.on()`, `bot.command()`, and
 While it is not wrong to say that they are listening for updates, calling them “listeners” is a simplification.
 
 > This section explains what middleware is, and uses grammY as an example to illustrate how it can be used.
-> If you are looking for specific documentation about what makes grammY's implementation of middleware special, check out [Middleware Redux](/advanced/middleware.md) in the advanced section of the docs.
+> If you are looking for specific documentation about what makes grammY’s implementation of middleware special, check out [Middleware Redux](/advanced/middleware.md) in the advanced section of the docs.
 
 ## The Middleware Stack
 
@@ -41,9 +41,9 @@ When an update with a regular text message arrives, these steps will be performe
 The update is **not** checked for a photo content, because the middleware at `(*)` already handled the update.
 
 Now, how does this work?
-Let's find out.
+Let’s find out.
 
-We can inspect the `Middleware` type in grammY's reference [here](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Middleware):
+We can inspect the `Middleware` type in grammY’s reference [here](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Middleware):
 
 ```ts
 // Omitted some type paramters for brevity.
@@ -52,7 +52,7 @@ type Middleware = MiddlewareFn | MiddlewareObj;
 
 Aha.
 Middleware can be a function or an object.
-We only used functions (`(ctx) => { ... }`) so far, so let's ignore middleware objects for now, and dig deeper into the `MiddlewareFn` type ([reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/MiddlewareFn)):
+We only used functions (`(ctx) => { ... }`) so far, so let’s ignore middleware objects for now, and dig deeper into the `MiddlewareFn` type ([reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/MiddlewareFn)):
 
 ```ts
 // Omitted type parameters again.
@@ -70,7 +70,7 @@ You can view all installed middleware functions as a number of layers that are s
 The first middleware (`session` in our example) is the uppermost layer, hence receiving each update first.
 It can then decide if it wants to handle the update, or pass it down to the next layer (the `/start` command handler).
 The function `next` can be used to invoke the subsequent middleware, often called _downstream middleware_.
-This also means that if you don't call `next` in your middleware, the underlying layers of middleware will not be invoked.
+This also means that if you don’t call `next` in your middleware, the underlying layers of middleware will not be invoked.
 
 This stack of functions is the _middleware stack_.
 
@@ -88,7 +88,7 @@ Looking back at our earlier example, we now know why `bot.on(":photo")` was neve
 In fact, it did not even specify `next` as a parameter.
 It simply ignored `next`, hence not passing on the update.
 
-Let's try out something else with our new knowledge!
+Let’s try out something else with our new knowledge!
 
 ```ts
 const bot = new Bot("<token>");
@@ -100,7 +100,7 @@ bot.start();
 ```
 
 If you run the above bot, and send `/start`, you will never get to see a response saying `Command!`.
-Let's inspect what happens:
+Let’s inspect what happens:
 
 1. You send `'/start'` to the bot.
 2. The `':text'` middleware receives the update and checks for text, which succeeds because commands are text messages.
@@ -116,7 +116,7 @@ This is why `session()` is installed via `bot.use()`—we want the plugin to ope
 
 Having a middleware stack is an extremely powerful property of any web framework, and this pattern is widely popular (not just for Telegram bots).
 
-Let's write our own little piece of middleware to better illustrate how it works.
+Let’s write our own little piece of middleware to better illustrate how it works.
 
 ## Writing Custom Middleware
 
@@ -157,7 +157,7 @@ We can install it into our `bot` instance with `bot.use()`:
 bot.use(responseTime);
 ```
 
-Let's begin implementing it.
+Let’s begin implementing it.
 Here is what we want to do:
 
 1. Once an update arrives, we store `Date.now()` in a variable.
