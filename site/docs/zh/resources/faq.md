@@ -1,40 +1,8 @@
 # FAQ
 
-这里收集了一些 [关于 grammY 本身](#关于-grammy-的问题)，[常见错误](#为什么我会收到这个错误) 和 [Deno](#关于-deno-的问题) 的常见问题。
+这里收集了一些 [常见错误](#为什么我会收到这个错误) 和 [Deno](#关于-deno-的问题) 的常见问题。
 
-如果这个 FAQ 不能答复你的问题，你也应该看看 Telegram 团队写的 [Bot FAQ]((https://core.telegram.org/bots/faq))。
-
-## 关于 grammY 的问题
-
-### grammY 是什么？
-
-grammY 是一个用于在 [Telegram](https://telegram.org) 上创建聊天 bot 的软件（也可以说是一个框架）。
-当你在创建 bot 时，你会发现其中有很大一部分是重复且乏味的。
-grammY 帮你完成了这些繁琐的工作，让你创建 bot 变得超级简单。
-
-### grammY 是什么时候被创造出来的？
-
-grammY 的首次发布是在 2021 年 3 月底。
-几周后，我们发布了第一个稳定版本。
-
-### grammY 是如何开发的？
-
-grammY 是一个完全免费并且开源的软件，由一个志愿者团队开发。
-你可以在 GitHub 上找到它的源码。
-
-我们非常欢迎你的 [加入](https://t.me/grammyjs)！
-（如果你会说俄语，你也可以在 [这里](https://t.me/grammyjs_ru) 加入我们！）
-
-### grammY 使用什么编程语言？
-
-grammY 是由 TypeScript 编写的，一个 JavaScript 的超集。
-因此，它可以在 Node.js 上运行。
-并且，grammY 也可以在 Deno（它将自己定义为 Node.js 的继承者）上运行。
-（从技术上来讲，你可以在现代浏览器上运行 grammY，尽管这可能没什么用。）
-
-### grammY 和它的竞争对手相比如何？
-
-如果你来自不同编程语言或者不同的 JavaScript 框架，你可以查看我们 [框架之间的细节比较](./comparison.md)。
+如果这个 FAQ 不能回答你的问题，你也应该看看 Telegram 团队写的 [Bot FAQ](https://core.telegram.org/bots/faq)。
 
 ## 为什么我会收到这个错误？
 

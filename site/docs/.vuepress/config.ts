@@ -278,6 +278,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                 text: "grammY",
                 children: [
                   {
+                    text: "About grammY",
+                    link: "/resources/about.md",
+                  },
+                  {
                     text: "Community Chat (English)",
                     link: "https://t.me/grammyjs",
                   },
@@ -611,6 +615,10 @@ export default defineUserConfig<DefaultThemeOptions>({
               {
                 text: "grammY",
                 children: [
+                  {
+                    text: "关于 grammY",
+                    link: "/zh/resources/about.md",
+                  },
                   {
                     text: "社区聊天（英语）",
                     link: "https://t.me/grammyjs",
