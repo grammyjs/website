@@ -70,7 +70,7 @@ export function onlyAccept<C extends Context>(str: string): Middleware<C> {
       await next();
     } else {
       // Tell them we don't like them.
-      await ctx.reply(`I'm not talking to you! You don’t care about ${str}!`);
+      await ctx.reply(`I'm not talking to you! You don't care about ${str}!`);
     }
   };
 }
