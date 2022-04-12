@@ -401,7 +401,7 @@ type MyContext = Context & FlavorA & FlavorB & FlavorC;
 type MyContext = FlavorX<FlavorY<FlavorZ<Context>>>;
 ```
 
-你甚至可以混合添加式和转化式的，以“烹饪”出更佳的上下文。
+你甚至可以混合添加式和转化式的，以"烹饪"出更佳的上下文。
 
 ```ts
 type MyContext = FlavorX<

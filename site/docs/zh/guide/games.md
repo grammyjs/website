@@ -32,7 +32,7 @@ Telegram 游戏是一个非常有趣的功能，很好玩。
    ```ts
    // 我们将使用 start 命令来调用游戏回复方法。
    bot.command("start", async (ctx) => {
-     // 传递在 BotFather 中创建的游戏的名称，例如 “my_game”。
+     // 传递在 BotFather 中创建的游戏的名称，例如 "my_game"。
      await ctx.replyWithGame("my_game");
    });
    ```

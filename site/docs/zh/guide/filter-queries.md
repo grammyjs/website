@@ -236,7 +236,7 @@ pm.command("help");
 
 1. 频道中帖子的作者
 2. 在讨论组中从链接的频道的自动转发
-3. 正常的用户账户，这包括机器人（即“普通”消息）
+3. 正常的用户账户，这包括机器人（即"普通"消息）
 4. 管理员代表小组发送（[匿名组管理员]((https://telegram.org/blog/filters-anonymous-admins-comments#anonymous-group-admins))）
 5. 用户将消息作为其频道之一发送
 

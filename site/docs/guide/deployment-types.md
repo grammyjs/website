@@ -75,8 +75,8 @@ And wait.
 Some hours before the next sunrise, a truck of a local food delivery company arrives and brings a couple of large boxes into the parlor's storage room.
 They read_ ice cream _on the outside.
 The employee finally starts to move again.
-“Of course we have salted caramel!
-Two scoops with sprinkles, the usual?”
+"Of course we have salted caramel!
+Two scoops with sprinkles, the usual?"
 As if nothing had happened, you enjoy your ice cream while leaving the world's most unrealistic ice cream parlor._
 
 ```asciiart:no-line-numbers
@@ -143,7 +143,7 @@ Places where long polling works well include:
 
 - During development on your local machine.
 - On majority of servers.
-- On hosted “backend” instances, i.e. machines that actively run your bot 24/7.
+- On hosted "backend" instances, i.e. machines that actively run your bot 24/7.
 
 **The main advantage of webhooks over long polling is that they are cheaper.**
 You save a ton of superfluous requests.
@@ -154,7 +154,7 @@ If you want to, you can even [make an API call when responding to the Telegram r
 Places where webhooks work well include:
 
 - On servers with SSL certificates.
-- On hosted “frontend” instances that scale according to their load.
+- On hosted "frontend" instances that scale according to their load.
 - On serverless platforms, such as cloud functions or programmable edge networks.
 
 ## I Still Have No Idea What to Use

@@ -43,7 +43,7 @@ import { Bot } from "grammy";
 
 const bot = new Bot(""); // <-- 把你的 bot token 放在这里 (https://t.me/BotFather)
 
-// 用“你好！”来回复任意信息
+// 用"你好！"来回复任意信息
 bot.on("message", (ctx) => ctx.reply("你好！"));
 
 bot.start();
@@ -57,7 +57,7 @@ const { Bot } = require("grammy");
 
 const bot = new Bot(""); // <-- 把你的 bot token 放在这里 (https://t.me/BotFather)
 
-// 用“你好！”来回复任意信息
+// 用"你好！"来回复任意信息
 bot.on("message", (ctx) => ctx.reply("你好！"));
 
 bot.start();
@@ -71,7 +71,7 @@ import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
 const bot = new Bot(""); // <-- 把你的 bot token 放在这里 (https://t.me/BotFather)
 
-// 用“你好！”来回复任意信息
+// 用"你好！"来回复任意信息
 bot.on("message", (ctx) => ctx.reply("你好！"));
 
 bot.start();

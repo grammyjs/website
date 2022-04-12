@@ -17,7 +17,7 @@ We have observed that the following workflow works well, and we usually try to s
 
 1. You (or someone else) starts a PR of unknown quality with a change to the English docs.
 2. Someone else (or you) reviews and comments it, the participants iterate over the changes until they're good.
-3. A member of @grammyjs approves the PR and adds the label “read for translation”.
+3. A member of @grammyjs approves the PR and adds the label "read for translation".
 4. All translation happens and the labels for the respective languages are added.
 5. The PR now has at least one approval and all translations are ready, so it can be merged.
 
