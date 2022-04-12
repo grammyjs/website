@@ -733,6 +733,9 @@ export default defineUserConfig<DefaultThemeOptions>({
       },
     ],
   ],
+  markdown: {
+    typographer: true,
+  },
 });
 
 // Adapted from original `code_inline` implementation of markdown-it.

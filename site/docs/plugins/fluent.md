@@ -43,7 +43,7 @@ await fluent.addTranslation({
 The Fluent syntax should be easy to master.
 You can start by looking at the [official examples](https://projectfluent.org/#examples) or by studying the [comprehensive syntax guide](https://projectfluent.org/fluent/guide/).
 
-Let’s start with this example for now:
+Let's start with this example for now:
 
 ```ftl
 -bot-name = Apples Bot
@@ -62,7 +62,7 @@ It demonstrates three important features of Fluent, namely: **terms**, **variabl
 The `welcome` is the **message ID**, which will be used to reference its message whenever render it.
 
 The statement `-bot-name = Apples Bot` defines a **term** with name `bot-name` and value `Apples Bot`.
-The construct `{-bot-name}` references the previously defined term and will be get replaced by the term’s value when rendered.
+The construct `{-bot-name}` references the previously defined term and will be get replaced by the term's value when rendered.
 
 The statement `{$name}` will be replaced with the value of the `name` variable that you will need to pass to the translation function yourself.
 
@@ -72,7 +72,7 @@ This effectively implements the pluralization.
 
 ## grammY Configuration
 
-Now let’s see how this message above could be rendered by a bot.
+Now let's see how this message above could be rendered by a bot.
 But first, we will need to configure grammY to use the plugin.
 
 Before all else, you will need to configure your bot to use the Fluent context flavor.
@@ -108,7 +108,7 @@ Make sure to pass the [previously created Fluent instance](#initialize-fluent).
 ## Render the Localized Messages
 
 Great, now we have everything in place to render our messages!
-Let’s do that by defining a test command in our bot:
+Let's do that by defining a test command in our bot:
 
 ```typescript
 bot.command("i18n_test", async (ctx) => {

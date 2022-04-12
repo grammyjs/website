@@ -6,7 +6,7 @@ next: ./errors.md
 # Middleware
 
 The listener functions that are being passed to `bot.on()`, `bot.command()`, and their siblings, are called _middleware_.
-While it is not wrong to say that they are listening for updates, calling them “listeners” is a simplification.
+While it is not wrong to say that they are listening for updates, calling them "listeners" is a simplification.
 
 > This section explains what middleware is, and uses grammY as an example to illustrate how it can be used.
 > If you are looking for specific documentation about what makes grammY's implementation of middleware special, check out [Middleware Redux](/advanced/middleware.md) in the advanced section of the docs.
@@ -104,7 +104,7 @@ Let's inspect what happens:
 
 1. You send `'/start'` to the bot.
 2. The `':text'` middleware receives the update and checks for text, which succeeds because commands are text messages.
-   The update is handled immediately by the first middleware and your bot replies with “Text!”.
+   The update is handled immediately by the first middleware and your bot replies with "Text!".
 
 The message is never even checked for if it contains the `/start` command!
 The order in which you register your middleware matters, because it determines the order of the layers in the middleware stack.

@@ -10,7 +10,7 @@ Either way, you should read up on some pitfalls [below](#concurrency-is-hard).
 
 ## Long Polling
 
-Most bots never need to process more than a handful of messages per minute (during “peak load”).
+Most bots never need to process more than a handful of messages per minute (during "peak load").
 In other words, scalability is not a concern for them.
 In order to be predictable, grammY is processing updates sequentially.
 This is the order of operations:
