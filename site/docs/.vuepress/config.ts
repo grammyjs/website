@@ -734,7 +734,7 @@ export default defineUserConfig<DefaultThemeOptions>({
     ],
   ],
   markdown: {
-    typography: true,
+    typographer: true,
   },
 });
 
