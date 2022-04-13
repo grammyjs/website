@@ -28,12 +28,13 @@
   <CodeGroupItem title="TypeScript" active>
 
 ```ts
+import { Bot, Context } from "grammy";
 import { EmojiFlavor, emojiParser } from "@grammyjs/emoji";
 
 // 这个被称为上下文调味剂
 // 你可以在这里阅读更多关于它们的信息：
-// https://grammy.dev/zh/guide/context.html#上下文调味剂
-type MyContext = Context & EmojiFlavor;
+// https://grammy.dev/zh/guide/context.html#转换式上下文调味剂
+type MyContext = EmojiFlavor<Context>;
 
 const bot = new Bot<MyContext>(""); // <-- 在 "" 之间填上你的 bot token。
 
@@ -44,6 +45,7 @@ bot.use(emojiParser());
   <CodeGroupItem title="JavaScript">
 
 ```js
+const { Bot } = require("grammy");
 const { emojiParser } = require("@grammyjs/emoji");
 
 const bot = new Bot(""); // <-- 在 "" 之间填上你的 bot token。
@@ -55,6 +57,7 @@ bot.use(emojiParser());
   <CodeGroupItem title="Deno">
 
 ```ts
+import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   EmojiFlavor,
   emojiParser,
@@ -62,8 +65,8 @@ import {
 
 // 这个被称为上下文调味剂
 // 你可以在这里阅读更多关于它们的信息：
-// https://grammy.dev/zh/guide/context.html#上下文调味剂
-type MyContext = Context & EmojiFlavor;
+// https://grammy.dev/zh/guide/context.html#转换式上下文调味剂
+type MyContext = EmojiFlavor<Context>;
 
 const bot = new Bot<MyContext>(""); // <-- 在 "" 之间填上你的 bot token。
 
@@ -73,13 +76,20 @@ bot.use(emojiParser());
 </CodeGroupItem>
 </CodeGroup>
 
-And you can get emojis in your replies like this:
-然后你可以像这样在你的回复中获得 emoji：
+现在你可以通过它们的名字来获得 emoji：
 
 ```js
 bot.command("start", async (ctx) => {
-  await ctx.reply(ctx.emoji`Welcome! ${"smiling_face_with_sunglasses"}`);
-  // > Welcome! 😎
+  const parsedString = ctx.emoji`Welcome! ${"smiling_face_with_sunglasses"}`; // => Welcome! 😎
+  await ctx.reply(parsedString);
+});
+```
+
+或者，你也可以使用 `replyWithEmoji` 方法直接回复：
+
+```js
+bot.command("ping", async (ctx) => {
+  await ctx.replyWithEmoji`Pong ${"ping_pong"}`; // => Pong 🏓
 });
 ```
 
