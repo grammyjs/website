@@ -28,12 +28,13 @@ You can install this plugin on your bot like this:
   <CodeGroupItem title="TypeScript" active>
 
 ```ts
+import { Bot, Context } from "grammy";
 import { EmojiFlavor, emojiParser } from "@grammyjs/emoji";
 
 // This is called Context Flavoring
 // You can read more about at:
-// https://grammy.dev/guide/context.html#context-flavors
-type MyContext = Context & EmojiFlavor;
+// https://grammy.dev/guide/context.html#transformative-context-flavors
+type MyContext = EmojiFlavor<Context>;
 
 const bot = new Bot<MyContext>(""); // <-- put your bot token between the ""
 
@@ -44,6 +45,7 @@ bot.use(emojiParser());
   <CodeGroupItem title="JavaScript">
 
 ```js
+const { Bot } = require("grammy");
 const { emojiParser } = require("@grammyjs/emoji");
 
 const bot = new Bot(""); // <-- put your bot token between the ""
@@ -55,6 +57,7 @@ bot.use(emojiParser());
   <CodeGroupItem title="Deno">
 
 ```ts
+import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   EmojiFlavor,
   emojiParser,
@@ -62,8 +65,8 @@ import {
 
 // This is called Context Flavoring
 // You can read more about at:
-// https://grammy.dev/guide/context.html#context-flavors
-type MyContext = Context & EmojiFlavor;
+// https://grammy.dev/guide/context.html#transformative-context-flavors
+type MyContext = EmojiFlavor<Context>;
 
 const bot = new Bot<MyContext>(""); // <-- put your bot token between the ""
 
@@ -73,12 +76,20 @@ bot.use(emojiParser());
 </CodeGroupItem>
 </CodeGroup>
 
-And you can get emojis in your replies like this:
+Now you can get emojis by their names:
 
 ```js
 bot.command("start", async (ctx) => {
-  await ctx.reply(ctx.emoji`Welcome! ${"smiling_face_with_sunglasses"}`);
-  // > Welcome! 😎
+  const parsedString = ctx.emoji`Welcome! ${"smiling_face_with_sunglasses"}`; // => Welcome! 😎
+  await ctx.reply(parsedString);
+});
+```
+
+Alternatively, you can reply directly using the `replyWithEmoji` method:
+
+```js
+bot.command("ping", async (ctx) => {
+  await ctx.replyWithEmoji`Pong ${"ping_pong"}`; // => Pong 🏓
 });
 ```
 
