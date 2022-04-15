@@ -359,23 +359,17 @@ In the plugin code, simply await `ctx.session` all the time: if a non-promise ob
 ## Known Storage Adapters
 
 By default, sessions will be stored in your memory by the built-in storage adapter.
-Here is a list of storage adapters that we are aware of, and that allow you to store your session data in other places.
+Here is a list of official storage adapters that allow you to store your session data in different places.
 If you published your own storage adapter, please edit this page and link it here, so that other people can use it.
-
-### Official
 
 - Supabase: <https://github.com/grammyjs/storage-supabase>
 - Deta.sh Base: <https://github.com/grammyjs/storage-deta>
 - Google Firestore (Node.js-only): <https://github.com/grammyjs/storage-firestore>
-
-### Third-Party
-
-- Files: <https://github.com/Satont/grammy-storages/tree/main/packages/file>
-- MongoDB: <https://github.com/Satont/grammy-storages/tree/main/packages/mongodb>
-- Redis: <https://github.com/Satont/grammy-storages/tree/main/packages/redis>
-- PostgreSQL: <https://github.com/Satont/grammy-storages/tree/main/packages/psql>
-- TypeORM (Node.js-only): <https://github.com/Satont/grammy-storages/tree/main/packages/typeorm>
-- Submit your own by editing this page!
+- Files: <https://github.com/grammyjs/storages/tree/main/packages/file>
+- MongoDB: <https://github.com/grammyjs/storages/tree/main/packages/mongodb>
+- Redis: <https://github.com/grammyjs/storages/tree/main/packages/redis>
+- PostgreSQL: <https://github.com/grammyjs/storages/tree/main/packages/psql>
+- TypeORM (Node.js-only): <https://github.com/grammyjs/storages/tree/main/packages/typeorm>
 
 ## Plugin Summary
 
