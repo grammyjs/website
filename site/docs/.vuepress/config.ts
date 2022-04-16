@@ -241,8 +241,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                   },
                   {
                     text: "[Submit your PR!]",
-                    link:
-                      "/plugins/README.md#submitting-your-own-package-to-the-docs",
+                    link: "/plugins/README.md#submitting-your-own-package-to-the-docs",
                   },
                 ],
               },
@@ -301,6 +300,10 @@ export default defineUserConfig<DefaultThemeOptions>({
                     text: "Comparison to Other Frameworks",
                     link: "/resources/comparison.md",
                   },
+                  {
+                    text: "Glossary",
+                    link: "/resources/glossary.md",
+                  },
                 ],
               },
               {
@@ -320,8 +323,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                   },
                   {
                     text: "Example Updates",
-                    link:
-                      "https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates",
+                    link: "https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates",
                   },
                 ],
               },
@@ -658,8 +660,7 @@ export default defineUserConfig<DefaultThemeOptions>({
                   },
                   {
                     text: "Updates 示例",
-                    link:
-                      "https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates",
+                    link: "https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates",
                   },
                 ],
               },
@@ -716,13 +717,7 @@ export default defineUserConfig<DefaultThemeOptions>({
       {
         name: "break-long-inline-code-snippets",
         extendsMarkdown: (md) => {
-          md.renderer.rules.code_inline = (
-            tokens,
-            idx,
-            _opts,
-            _env,
-            slf,
-          ) => {
+          md.renderer.rules.code_inline = (tokens, idx, _opts, _env, slf) => {
             const token = tokens[idx];
             const attributes = slf.renderAttrs(token);
             const withBreaks = insertWbrTags(token.content);
@@ -758,18 +753,19 @@ function escapeHtml(str: string) {
 
 function insertWbrTags(url: string) {
   // Adapted from https://css-tricks.com/better-line-breaks-for-long-urls/
-  return url
-    .split("//")
-    .map(
-      (str) =>
+  return (
+    url
+      .split("//")
+      .map((str) =>
         str
           // Insert a word break opportunity after a colon
           .replace(/(?<after>:)/giu, "$1<wbr>")
           // Before a single slash, tilde, period, comma, hyphen, underline, question mark, number sign, or percent symbol
           .replace(/(?<before>[/~.,\-_?#%])/giu, "<wbr>$1")
           // Before and after an equals sign or ampersand
-          .replace(/(?<beforeAndAfter>[=&])/giu, "<wbr>$1<wbr>"),
-    )
-    // Reconnect the strings with word break opportunities after double slashes
-    .join("//<wbr>");
+          .replace(/(?<beforeAndAfter>[=&])/giu, "<wbr>$1<wbr>")
+      )
+      // Reconnect the strings with word break opportunities after double slashes
+      .join("//<wbr>")
+  );
 }
