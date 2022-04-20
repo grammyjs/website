@@ -24,6 +24,7 @@ Anyone who wants to start a new language should ask themselves the following que
    The translations must be kept in sync with the English original.
    Outdated and wrong docs are much worse than no docs.
    Many people only come here for a few months (and that’s fine!), but if you translate everything and then stop developing bots and stop updating the articles, we’ll have to remove that language again.
+   (This is not a joke, we had to do this in the past.)
    Then it was a waste of time for you.
    So if you don’t want to commit long-term, don’t start.
 3. How many hours per week can you spend in the beginning?
