@@ -1,6 +1,7 @@
 # Documentation
 
-[Documentation for grammY.](https://grammy.dev) Contributions are welcome!
+[Documentation for grammY.](https://grammy.dev)
+Contributions are welcome!
 
 The `logos/` directory only contains the logos of grammY, all website-related things are in `site/`.
 
