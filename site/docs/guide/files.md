@@ -141,7 +141,7 @@ new InputFile(createReadStream("/path/to/file"));
 ```ts
 // Send a local file.
 new InputFile("/path/to/file");
-// Send a `Deno.File` instance.
+// Send a `Deno.FsFile` instance.
 new InputFile(await Deno.open("/path/to/file"));
 ```
 
