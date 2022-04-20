@@ -141,7 +141,7 @@ new InputFile(createReadStream("/path/to/file"));
 ```ts
 // 发送一个本地文件。
 new InputFile("/path/to/file");
-// 发送一个 `Deno.File` 实例。
+// 发送一个 `Deno.FsFile` 实例。
 new InputFile(await Deno.open("/path/to/file"));
 ```
 
