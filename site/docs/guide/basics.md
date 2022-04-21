@@ -146,7 +146,7 @@ bot.command("photo", async (ctx) => {
 The first argument can be an instance of `InputFile`, a photo URL or file ID.
 The constructor `InputFile` can take a path to a local file, buffers, or readable streams.
 
-You can send other types of media simply by renaming the method and the type of the data you pass to it.
+You can send other types of media by simply renaming the method and the type of the data you pass to it.
 For example, to send a video, you can use `sendVideo` or `replyWithVideo`. It's the same case for a document: `sendDocument`, `replyWithDocument`.
 
 For more information methods, see [Bot API](./api.md).
