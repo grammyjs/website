@@ -357,11 +357,11 @@ bot.command("reset", (ctx) => {
 - Supabase: <https://github.com/grammyjs/storage-supabase>
 - Deta.sh Base: <https://github.com/grammyjs/storage-deta>
 - Google Firestore (Node.js-only): <https://github.com/grammyjs/storage-firestore>
-- Files: <https://github.com/Satont/grammy-storages/tree/main/packages/file>
-- MongoDB: <https://github.com/Satont/grammy-storages/tree/main/packages/mongodb>
-- Redis: <https://github.com/Satont/grammy-storages/tree/main/packages/redis>
-- PostgreSQL: <https://github.com/Satont/grammy-storages/tree/main/packages/psql>
-- TypeORM (Node.js-only): <https://github.com/Satont/grammy-storages/tree/main/packages/typeorm>
+- Files: <https://github.com/grammyjs/storages/tree/main/packages/file>
+- MongoDB: <https://github.com/grammyjs/storages/tree/main/packages/mongodb>
+- Redis: <https://github.com/grammyjs/storages/tree/main/packages/redis>
+- PostgreSQL: <https://github.com/grammyjs/storages/tree/main/packages/psql>
+- TypeORM (Node.js-only): <https://github.com/grammyjs/storages/tree/main/packages/typeorm>
 
 ## 插件概述
 
