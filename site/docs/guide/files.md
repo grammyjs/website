@@ -87,6 +87,17 @@ Telegram bots have [three ways](https://core.telegram.org/bots/api#sending-files
 2. Via URL, i.e. by passing a public file URL, which Telegram downloads and sends for you.
 3. Via uploading your own file.
 
+In all cases, the methods you need to call are named the same.
+Depending on which of the three ways you pick to send your file, the paramters to these functions will vary.
+For example, to send a photo, you can use `ctx.replyWithPhoto` (or `sendPhoto` if you use `ctx.api` or `bot.api`).
+
+You can send other types of files by simply renaming the method and the type of the data you pass to it.
+In order to send a video, you can use `ctx.replyWithVideo`.
+It's the same case for a document: `ctx.replyWithDocument`.
+You get the idea.
+
+Let's dive into what the three ways of sending a file are.
+
 ### Via `file_id` or URL
 
 The first two methods are simple: you just pass the respective value as a `string`, and you're done.
@@ -219,6 +230,20 @@ new InputFile({ url: "https://grammy.dev/Y.png" }); // equivalent
 
 </CodeGroupItem>
 </CodeGroup>
+
+### Adding a Caption
+
+When sending files, you can specify further options in an options object of type `Other`, exactly as explained [earlier](./basics.md#sending-messages).
+For example, this lets you send captions.
+
+```ts
+// Send a photo from a local file to user 1235 with the caption "photo.jpg".
+await bot.api.sendPhoto(12345, new InputFile("/path/to/photo.jpg"), {
+  caption: "photo.jpg",
+});
+```
+
+As always, just like with all other API methods, you can send files via `ctx` (easiest) or `ctx.api` or `bot.api`.
 
 ## File Size Limits
 

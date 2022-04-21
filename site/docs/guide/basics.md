@@ -34,11 +34,13 @@ You can use auto-complete in your code editor to see all available options, or c
 
 ## Sending Messages
 
-[All methods that bots can use](https://core.telegram.org/bots/api#available-methods) are available on the `bot.api` object.
+All methods that bots can use (**[important list](https://core.telegram.org/bots/api#available-methods)**) are available on the `bot.api` object.
 
 ```ts
 // Send a text message to user 12345.
 await bot.api.sendMessage(12345, "Hi!");
+// Optionally, you can pass an options object.
+await bot.api.sendMessage(12345, "Hi!", {/* more options */});
 
 // Get information about the bot itself.
 const me = await bot.api.getMe();
@@ -46,9 +48,12 @@ const me = await bot.api.getMe();
 // etc
 ```
 
-You can use auto-complete in your code editor to see all available options, or check out [all methods](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Api) of the `Api` class.
+Every method takes an optional options object of type `Other`, which allows you to set further options for your API calls.
+These options objects correspond exactly with the options that you can find in list of methods linked above.
+You can also use auto-complete in your code editor to see all available options, or check out [all methods](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Api) of the `Api` class.
+The rest of this page shows some examples for this.
 
-Check out the [next section](./context.md) to learn how the context object of a listener makes sending messages a breeze!
+Also, check out the [next section](./context.md) to learn how the context object of a listener makes sending messages a breeze!
 
 ## Sending Messages With Reply
 
@@ -103,6 +108,10 @@ await bot.api.sendMessage(
 );
 ```
 
+## Sending Files
+
+File handling is explained in greater depth in [a later section](./files.md#sending-files).
+
 ## Force Reply
 
 > This can be useful if your bot is running in [privacy mode](https://core.telegram.org/bots#privacy-mode) in group chats.
@@ -121,32 +130,3 @@ bot.command("start", async (ctx) => {
   });
 });
 ```
-
-## Sending Media
-
-You can send media files just like text messages, either from the `api` object, or from `ctx`.
-
-```ts
-// Send a photo from a local file to user 1235 with the caption "photo.jpg".
-await bot.api.sendPhoto(12345, new InputFile("/path/to/photo.jpg"), {
-  caption: "photo.jpg",
-});
-
-bot.command("photo", async (ctx) => {
-  // Send a photo using its URL.
-  await ctx.replyWithPhoto("https://example.com/photo.png");
-
-  // Send a photo using its file ID.
-  await ctx.replyWithPhoto(
-    "AgACAgQAAxkBAAIB1mJhlVDPkyUePOmFHqTguUQY2xvkAAIGujEbJLbRUl7kn7InD-USAQADAgADeQADJAQ",
-  );
-});
-```
-
-The first argument can be an instance of `InputFile`, a photo URL or file ID.
-The constructor `InputFile` can take a path to a local file, buffers, or readable streams.
-
-You can send other types of media by simply renaming the method and the type of the data you pass to it.
-For example, to send a video, you can use `sendVideo` or `replyWithVideo`. It's the same case for a document: `sendDocument`, `replyWithDocument`.
-
-For more information methods, see [Bot API](./api.md).
