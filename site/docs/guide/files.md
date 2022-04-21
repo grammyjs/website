@@ -109,7 +109,7 @@ await ctx.replyWithPhoto(existingFileId);
 // Send via URL.
 await ctx.replyWithPhoto("https://grammy.dev/Y.png");
 
-// alternatively, you use bot.api.sendPhoto() or ctx.api.sendPhoto().
+// Alternatively, you use bot.api.sendPhoto() or ctx.api.sendPhoto().
 ```
 
 ### Uploading Your Own Files

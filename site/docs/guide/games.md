@@ -51,7 +51,7 @@ An advantage of using the `api.sendGame` method is you can specify the `chat.id`
 > [Remember](./basics.md#sending-messages) that you can specify further options when sending messages by using the options object of type `Other`.
 
 You can also specify a custom [inline keyboard](/plugins/keyboard.md#inline-keyboards) for the game to show buttons.
-By default, it will be sent with a button with name as `Play my_game` where _my_game_ is the name of your game.
+By default, it will be sent with a button with name as `Play my_game`, where _my_game_ is the name of your game.
 
 ```ts
 // Define a new inline keyboard. You can write any text to be shown
