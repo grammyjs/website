@@ -351,23 +351,17 @@ bot.command("reset", (ctx) => {
 ## 已知的存储适配器
 
 默认情况下，会话会由内置的存储适配器存储在你的内存中。
-下面是我们所知道的存储适配器的列表，它们允许你在其他地方存储会话数据。
+下面是允许您将会话数据存储在不同位置的官方存储适配器的列表。
 如果你发布了自己的存储适配器，请编辑这个页面并且添加链接到这里，这样可以让其他人也使用它。
-
-### 官方
 
 - Supabase: <https://github.com/grammyjs/storage-supabase>
 - Deta.sh Base: <https://github.com/grammyjs/storage-deta>
 - Google Firestore (Node.js-only): <https://github.com/grammyjs/storage-firestore>
-
-### 第三方
-
-- Files: <https://github.com/Satont/grammy-storages/tree/main/packages/file>
-- MongoDB: <https://github.com/Satont/grammy-storages/tree/main/packages/mongodb>
-- Redis: <https://github.com/Satont/grammy-storages/tree/main/packages/redis>
-- PostgreSQL: <https://github.com/Satont/grammy-storages/tree/main/packages/psql>
-- TypeORM (Node.js-only): <https://github.com/Satont/grammy-storages/tree/main/packages/typeorm>
-- 通过编辑本页面提交你自己的适配器！
+- Files: <https://github.com/grammyjs/storages/tree/main/packages/file>
+- MongoDB: <https://github.com/grammyjs/storages/tree/main/packages/mongodb>
+- Redis: <https://github.com/grammyjs/storages/tree/main/packages/redis>
+- PostgreSQL: <https://github.com/grammyjs/storages/tree/main/packages/psql>
+- TypeORM (Node.js-only): <https://github.com/grammyjs/storages/tree/main/packages/typeorm>
 
 ## 插件概述
 
