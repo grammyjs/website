@@ -176,7 +176,7 @@ bot.api.config.use(hydrateApi());
 - 回调查询
 - inline 查询
 - 选定的 inline 结果
-- web 应用程序查询
+- web 应用查询
 - 预付款和配送查询
 
 所有对象都会被 hydrated 在
