@@ -91,7 +91,7 @@ In all cases, the methods you need to call are named the same.
 Depending on which of the three ways you pick to send your file, the paramters to these functions will vary.
 For example, to send a photo, you can use `ctx.replyWithPhoto` (or `sendPhoto` if you use `ctx.api` or `bot.api`).
 
-You can send other types of files by simply renaming the method and the type of the data you pass to it.
+You can send other types of files by simply renaming the method and changing the type of the data you pass to it.
 In order to send a video, you can use `ctx.replyWithVideo`.
 It's the same case for a document: `ctx.replyWithDocument`.
 You get the idea.
@@ -103,13 +103,13 @@ Let's dive into what the three ways of sending a file are.
 The first two methods are simple: you just pass the respective value as a `string`, and you're done.
 
 ```ts
-// Sending via file_id
+// Send  via file_id.
 await ctx.replyWithPhoto(existingFileId);
 
-// Sending via URL
+// Send via URL.
 await ctx.replyWithPhoto("https://grammy.dev/Y.png");
 
-// alternatively, use bot.api.sendPhoto() or ctx.api.sendPhoto()
+// alternatively, you use bot.api.sendPhoto() or ctx.api.sendPhoto().
 ```
 
 ### Uploading Your Own Files
@@ -142,7 +142,8 @@ import { createReadStream } from "fs";
 
 // Send a local file.
 new InputFile("/path/to/file");
-// Send from a stream.
+
+// Send from a read stream.
 new InputFile(createReadStream("/path/to/file"));
 ```
 
@@ -152,6 +153,7 @@ new InputFile(createReadStream("/path/to/file"));
 ```ts
 // Send a local file.
 new InputFile("/path/to/file");
+
 // Send a `Deno.FsFile` instance.
 new InputFile(await Deno.open("/path/to/file"));
 ```
@@ -243,7 +245,7 @@ await bot.api.sendPhoto(12345, new InputFile("/path/to/photo.jpg"), {
 });
 ```
 
-As always, just like with all other API methods, you can send files via `ctx` (easiest) or `ctx.api` or `bot.api`.
+As always, just like with all other API methods, you can send files via `ctx` (easiest), `ctx.api`, or `bot.api`.
 
 ## File Size Limits
 
