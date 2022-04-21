@@ -84,5 +84,5 @@ Works! :tada:
 
 ---
 
-grammY supports the Telegram Bot API 5.7 which was [released](https://core.telegram.org/bots/api#january-31-2022) on January 31, 2022.
-(Last highlight: Video Stickers)
+grammY supports the Telegram Bot API 6.0 which was [released](https://core.telegram.org/bots/api#april-16-2022) on April 16, 2022.
+(Last highlight: Web Apps)
