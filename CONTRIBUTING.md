@@ -1,6 +1,6 @@
 # Contribution Guide
 
-## Editing the documentation
+## Editing the Documentation
 
 You’re free to edit the documentation in any way you like, and suggest the changes in a PR.
 If we merge it, they’ll go live immediately.
