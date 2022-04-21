@@ -121,3 +121,32 @@ bot.command("start", async (ctx) => {
   });
 });
 ```
+
+## Sending Media
+
+You can send media files just like text messages, either from the `api` object, or from `ctx`.
+
+```ts
+// Send a photo from a local file to user 1235 with the caption "photo.jpg".
+await bot.api.sendPhoto(12345, new InputFile("/path/to/photo.jpg"), {
+  caption: "photo.jpg",
+});
+
+bot.command("photo", async (ctx) => {
+  // Send a photo using its URL.
+  await ctx.replyWithPhoto("https://example.com/photo.png");
+
+  // Send a photo using its file ID.
+  await ctx.replyWithPhoto(
+    "AgACAgQAAxkBAAIB1mJhlVDPkyUePOmFHqTguUQY2xvkAAIGujEbJLbRUl7kn7InD-USAQADAgADeQADJAQ",
+  );
+});
+```
+
+The first argument can be an instance of `InputFile`, a photo URL or file ID.
+The constructor `InputFile` can take a path to a local file, buffers, or readable streams.
+
+You can send other types of media simply by renaming the method and the type of the data you pass to it.
+For example, to send a video, you can use `sendVideo` or `replyWithVideo`. It's the same case for a document: `sendDocument`, `replyWithDocument`.
+
+For more information methods, see [Bot API](./api.md).
