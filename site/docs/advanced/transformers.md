@@ -19,7 +19,8 @@ Note that `Payload<M, R>` refers to the payload object that has to match the giv
 
 The last invoked transformer function is a built-in caller that does things like JSON serialization of certain fields, and eventually calling `fetch`.
 
-There is no equivalent of a `Composer` class for transformer functions because that's probably overkill, but if you need it, you can write your own. PR welcome! :wink:
+There is no equivalent of a `Composer` class for transformer functions because that's probably overkill, but if you need it, you can write your own.
+PR welcome! :wink:
 
 ## Installing a Transformer Function
 

@@ -9,7 +9,8 @@ With inline queries, users can search for, browse, and send content suggested by
 To do this, they start a message with `@your_bot_name` and choose one of the results.
 
 ::: tip Enable Inline Mode
-By default, support for inline mode is disabled. You must contact [@BotFather](https://t.me/BotFather) and enable inline mode for your bot, to start receiving inline queries.
+By default, support for inline mode is disabled.
+You must contact [@BotFather](https://t.me/BotFather) and enable inline mode for your bot, to start receiving inline queries.
 :::
 
 > Revisit the Inline mode section in the [Introduction for Developers](https://core.telegram.org/bots#inline-mode) written by the Telegram team.

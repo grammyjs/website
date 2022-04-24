@@ -30,7 +30,8 @@ You can reuse the same `file_id` as often as you want, so you could send the sam
 However, you must make sure to use the correct method—for example, you cannot use a `file_id` that identifies a photo when calling [`sendVideo`](https://core.telegram.org/bots/api#sendvideo).
 
 Every bot has its own set of `file_id`s for the files that it can access.
-You cannot reliably use a `file_id` from your friend's bot, to access a file with _your_ bot. Each bot will use different identifiers for the same file.
+You cannot reliably use a `file_id` from your friend's bot, to access a file with _your_ bot.
+Each bot will use different identifiers for the same file.
 This implies that you cannot simply guess a `file_id` and access some random person's file, because Telegram keeps track of which `file_id`s are valid for your bot.
 
 ::: warning Using Foreign file_ids
