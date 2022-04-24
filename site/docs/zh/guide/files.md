@@ -87,6 +87,17 @@ Telegram bot 有 [三种方法](https://core.telegram.org/bots/api#sending-files
 2. 通过URL，即通过传递一个公共文件 URL，由 Telegram 为你下载和发送。
 3. 通过上传你自己的文件。
 
+在所有情况下，你需要调用的方法名都是相同的。
+根据你选择的三种发送文件的方式中的哪一种，这些函数的参数将有所不同。
+比如说，要发送一张照片，你可以使用 `ctx.replyWithPhoto`（或者 `sendPhoto`，如果你使用 `ctx.api` 或 `bot.api`）。
+
+你可以通过简单地重命名方法并更改传递给它的数据的类型来发送其他类型的文件
+要发送一个视频，你可以使用 `ctx.replyWithVideo`。
+对于发送文档也是同样的情况：`ctx.replyWithDocument`。
+你明白了吧。
+
+让我们深入了解三种发送文件的方式。
+
 ### 通过 `file_id` 或者 URL
 
 前两种方法很简单：只需将各自的值作为 `string` 传递即可。
@@ -98,7 +109,7 @@ await ctx.replyWithPhoto(existingFileId);
 // 通过 URL 发送
 await ctx.replyWithPhoto("https://grammy.dev/Y.png");
 
-// 或者，使用 bot.api.sendPhoto() 或 ctx.api.sendPhoto()
+// 或者，你可以使用 bot.api.sendPhoto() 或 ctx.api.sendPhoto()
 ```
 
 ### 上传你自己的文件
@@ -131,7 +142,8 @@ import { createReadStream } from "fs";
 
 // 发送一个本地文件。
 new InputFile("/path/to/file");
-// 从一个文件流中发送。
+
+// 从一个读文件流中发送。
 new InputFile(createReadStream("/path/to/file"));
 ```
 
@@ -141,6 +153,7 @@ new InputFile(createReadStream("/path/to/file"));
 ```ts
 // 发送一个本地文件。
 new InputFile("/path/to/file");
+
 // 发送一个 `Deno.FsFile` 实例。
 new InputFile(await Deno.open("/path/to/file"));
 ```
@@ -218,6 +231,20 @@ new InputFile({ url: "https://grammy.dev/Y.png" }); // 等价的写法
 
 </CodeGroupItem>
 </CodeGroup>
+
+### 添加一个标题
+
+正如 [前面](./basics.md#sending-messages) 所解释的，当发送文件时，你可以在 `Other` 类型的选项对象中指定更多的选项。
+例如，这让你可以指定文件的标题。
+
+```ts
+// 发送一个本地文件给用户 1235，并且添加一个标题 "photo.jpg"。
+await bot.api.sendPhoto(12345, new InputFile("/path/to/photo.jpg"), {
+  caption: "photo.jpg",
+});
+```
+
+一如既往，就像所有其他 API 方法一样，你可以通过 `ctx` (最简单的)，`ctx.api` 或 `bot.api` 来发送文件。
 
 ## 文件大小限制
 
