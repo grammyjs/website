@@ -319,8 +319,8 @@ Unless you specify `one_time_keyboard` as described
 the user can minimize it).
 
 You can only remove a custom keyboard when you send a new message in the chat, just
-like you can only specify a new keyboard by sending a message. Pass
-`{ remove_keyboard: true }` as `reply_markup` like so:
+like you can only specify a new keyboard by sending a message.
+Pass `{ remove_keyboard: true }` as `reply_markup` like so:
 
 ```ts
 await ctx.reply(text, {
@@ -329,8 +329,8 @@ await ctx.reply(text, {
 ```
 
 Next to `remove_keyboard`, you can again set `selective: true` in order to
-remove the custom keyboard for selected users only. This works analogously to
-[selectively sending a custom keyboard](#selectively-send-custom-keyboard).
+remove the custom keyboard for selected users only.
+This works analogously to [selectively sending a custom keyboard](#selectively-send-custom-keyboard).
 
 ## Plugin Summary
 
