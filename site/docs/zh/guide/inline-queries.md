@@ -53,5 +53,8 @@ They even have a pretty website! 👇",
 bot.on("inline_query", (ctx) => ctx.answerInlineQuery([]));
 ```
 
-grammY 可以自动完成上面结构中的所有字段。
+> [请记住](./basics.md#sending-messages) 在调用 API 方法时，你可以通过使用 `Other` 类型的选项对象来指定进一步的选项。
+> 例如，这允许你通过使用偏移量来对 inline 差错进行分页。
+
+注意，grammY 可以自动完成上面结构中的所有字段。
 另外，一定要查看 [Telegram bot API](https://core.telegram.org/bots/api#inlinequeryresult) 参考文献中的关于 inline queries 结果的确切规范。
