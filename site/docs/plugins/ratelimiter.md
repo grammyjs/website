@@ -46,7 +46,7 @@ There are two ways of using rateLimiter:
 
 ### Default Configuration
 
-The following example uses [express](https://github.com/expressjs/express) as the webserver and [webhooks](https://grammy.dev/guide/deployment-types.html) for our small bot.
+The following example uses [express](https://github.com/expressjs/express) as the webserver and [webhooks](/guide/deployment-types) for our small bot.
 This snippet demonstrates the easiest way of using rateLimiter which is accepting the default behavior:
 
 ```ts
