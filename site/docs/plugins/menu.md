@@ -93,6 +93,8 @@ bot.start();
 </CodeGroupItem>
 </CodeGroup>
 
+> Make sure that you install all menus before other middleware, especially before middleware that uses callback query data.
+
 Naturally, if you are using a custom context type, you can pass it to `Menu` too.
 
 ```ts
