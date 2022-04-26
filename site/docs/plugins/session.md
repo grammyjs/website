@@ -462,13 +462,13 @@ Here is a full example bot that you can copy to try it out.
 import { Bot, Context, session, SessionFlavor } from "grammy";
 import { freeStorage } from "@grammyjs/storage-free";
 
-// Define session structure
+// Define the session structure.
 interface SessionData {
   count: number;
 }
 type MyContext = Context & SessionFlavor<SessionData>;
 
-// Create the bot and register the session middleware
+// Create the bot and register the session middleware.
 const bot = new Bot<MyContext>(""); // <-- put your bot token between the ""
 
 bot.use(session({
@@ -476,7 +476,7 @@ bot.use(session({
   storage: freeStorage<SessionData>(bot.token),
 }));
 
-// Use persistant session data in update handlers
+// Use persistent session data in update handlers.
 bot.on("message", async (ctx) => {
   ctx.session.count++;
   await ctx.reply(`Message count: ${ctx.session.count}`);
@@ -493,7 +493,7 @@ bot.start();
 const { Bot, session } = require("grammy");
 const { freeStorage } = require("@grammyjs/storage-free");
 
-// Create the bot and register the session middleware
+// Create the bot and register the session middleware.
 const bot = new Bot(""); // <-- put your bot token between the ""
 
 bot.use(session({
@@ -501,7 +501,7 @@ bot.use(session({
   storage: freeStorage(bot.token),
 }));
 
-// Use persistant session data in update handlers
+// Use persistent session data in update handlers.
 bot.on("message", async (ctx) => {
   ctx.session.count++;
   await ctx.reply(`Message count: ${ctx.session.count}`);
@@ -523,13 +523,13 @@ import {
 } from "https://deno.land/x/grammy/mod.ts";
 import { freeStorage } from "https://deno.land/x/grammy_storage_free/mod.ts";
 
-// Define session structure
+// Define the session structure.
 interface SessionData {
   count: number;
 }
 type MyContext = Context & SessionFlavor<SessionData>;
 
-// Create the bot and register the session middleware
+// Create the bot and register the session middleware.
 const bot = new Bot<MyContext>(""); // <-- put your bot token between the ""
 
 bot.use(session({
@@ -537,7 +537,7 @@ bot.use(session({
   storage: freeStorage<SessionData>(bot.token),
 }));
 
-// Use persistant session data in update handlers
+// Use persistent session data in update handlers.
 bot.on("message", async (ctx) => {
   ctx.session.count++;
   await ctx.reply(`Message count: ${ctx.session.count}`);
@@ -567,7 +567,7 @@ Check out the respsective repositories about each individual setup.
 
 ::: tip Your storage is not supported? No problem!
 Creating a custom storage adapter is extremely simple.
-The `storage` option works with any object that adheres to [this interface](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/StorageAdapter), so you can connect to your storage in just a few lines of code.
+The `storage` option works with any object that adheres to [this interface](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/StorageAdapter), so you can connect to your storage just in a few lines of code.
 
 > If you published your own storage adapter, feel free edit this page and link it here, so that other people can use it.
 
