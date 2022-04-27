@@ -18,7 +18,13 @@
 
 因此，如果你 _真的想访问_ 旧数据，你必须在收到它时立刻把它存下来。
 也就是说你必须有一个数据存储，比如说文件、数据库或者内存存储。
-当然，你可以不用自己托管，有很多第三方的服务商可以提供数据存储服务。
+
+当然，grammY 在这里为你提供了保障：你不需要自己托管。
+你可以直接使用 grammY 的会话存储，它不需要任何设置，而且永久免费。
+
+> 当然，还有很多其他提供数据存储的服务，而 grammY 也能与它们无缝整合。
+> 如果你想运行自己的数据库，请放心，grammY 同样支持这个的能力。
+> [向下跳转](#已知的存储适配器) 查看目前支持的集成。
 
 ## 什么是会话？
 
@@ -176,7 +182,8 @@ bot.use(session({ initial: () => ({ pizzaCount: 0 }) }));
 
 ```ts
 // 危险的，不安全的，错误的，应该被制止的
-bot.use(session({ initial: { pizzaCount: 0 } })); // 邪恶的
+const initialData = { pizzaCount: 0 }; // 不要这么干
+bot.use(session({ initial: { initialData } })); // 邪恶的
 ```
 
 如果你这样做，几个不同的聊天室可能会在内存中共享同一个会话对象。
@@ -188,6 +195,9 @@ bot.use(session({ initial: { pizzaCount: 0 } })); // 邪恶的
 
 ### 会话密钥
 
+> 本章节介绍一个大多数人不需要关心的高级特性。
+> 你可能想继续阅读有关 [存储数据](#储存你的数据) 的章节。
+
 你可以通过向 [options](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/SessionOptions#getSessionKey) 传入一个名为 `getSessionKey` 的函数来指定会话使用哪个会话密钥。
 这样，你可以从根本上改变会话插件的工作方式。
 默认情况下，会话数据存储在每个聊天中。
@@ -195,7 +205,7 @@ bot.use(session({ initial: { pizzaCount: 0 } })); // 邪恶的
 这里有三个示例：
 
 <CodeGroup>
- <CodeGroupItem title="TypeScript" active>
+<CodeGroupItem title="TypeScript" active>
 
 ```ts
 // 为每个聊天存储数据（默认）。
@@ -222,7 +232,7 @@ bot.use(session({ getSessionKey }));
 ```
 
 </CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+<CodeGroupItem title="JavaScript">
 
 ```js
 // 为每个聊天存储数据（默认）。
@@ -270,6 +280,9 @@ Telegram 在每次聊天时都会按照顺序发送 webhooks，因此默认的�
 这里可能已经有你需要并且可以使用的为 grammY 编写的存储适配器（见 [下文](#已知的存储适配器)），如果没有，通常只需要 5 行代码就可以自己实现一个。
 
 ## 懒会话
+
+> 本章节介绍了大多数人不需要关心的性能优化。
+> 你可能想继续写阅读有关 [已知的存储适配器](#已知的存储适配器) 的章节。
 
 懒会话是会话的另一种实现方式，通过跳过多余的读写操作，可以大大减少你的 bot 的数据库流量。
 
@@ -350,9 +363,190 @@ bot.command("reset", (ctx) => {
 
 ## 已知的存储适配器
 
-默认情况下，会话会由内置的存储适配器存储在你的内存中。
-下面是允许您将会话数据存储在不同位置的官方存储适配器的列表。
-如果你发布了自己的存储适配器，请编辑这个页面并且添加链接到这里，这样可以让其他人也使用它。
+默认情况下，会话会由内置的存储适配器存储[在你的内存中](#内存-默认)。
+你也可以使用 grammY [免费提供](#免费存储) 的存储适配器，或者连接到 [外部存储](#外部存储解决方案)。
+
+你可以使用下面的一个存储适配器来安装它。
+
+```ts
+const storageAdapter = ... // 取决于配置
+
+bot.use(session({
+  initial: ...
+  storage: storageAdapter,
+}));
+```
+
+### 内存（默认）
+
+默认情况下，所有数据都会被存储在内存中。
+这意味着，当你的机器人停止时，所有的会话都会丢失。
+
+如果你想配置更多的内存存储选项，你可以使用 grammY 核心包中的 `MemorySessionStorage` 类（[API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/MemorySessionStorage)）。
+
+```ts
+bot.use(session({
+  initial: ...
+  storage: new MemorySessionStorage() // 同样使用默认选项
+}));
+```
+
+### 免费存储
+
+> 免费存储是为了用于业余项目。
+> 产品级应用程序应该使用自己的数据库。
+> 支持的外部存储解决方案的支持请参考 [这里](#外部存储解决方案)。
+
+使用 grammY 的一个好处是你可以使用免费的云存储。
+它不需要任何配置，所有的认证都是痛使用你的 bot token 完成的。
+查看 [这个仓库](https://github.com/KnorpelSenf/storage-free)！
+
+它非常容易使用：
+
+<CodeGroup>
+<CodeGroupItem title="TypeScript" active>
+
+```ts
+import { freeStorage } from "@grammyjs/storage-free";
+
+bot.use(session({
+  initial: ...
+  storage: freeStorage<SessionData>(bot.token),
+}));
+```
+
+</CodeGroupItem>
+<CodeGroupItem title="JavaScript">
+
+```ts
+const { freeStorage } = require("@grammyjs/storage-free");
+
+bot.use(session({
+  initial: ...
+  storage: freeStorage(bot.token),
+}));
+```
+
+</CodeGroupItem>
+<CodeGroupItem title="Deno">
+
+```ts
+import { freeStorage } from "https://deno.land/x/grammy_storage_free/mod.ts";
+
+bot.use(session({
+  initial: ...
+  storage: freeStorage<SessionData>(bot.token),
+}));
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+完成！
+你的 bot 将会使用一个持久的数据存储。
+
+这是一个完整的 bot 示例，你可以复制它来试试。
+
+<CodeGroup>
+<CodeGroupItem title="TypeScript" active>
+
+```ts
+import { Bot, Context, session, SessionFlavor } from "grammy";
+import { freeStorage } from "@grammyjs/storage-free";
+
+// 定义会话结构。
+interface SessionData {
+  count: number;
+}
+type MyContext = Context & SessionFlavor<SessionData>;
+
+// 创建 bot 并且注册会话中间件。
+const bot = new Bot<MyContext>(""); // <-- 把你的 bot token 放在 "" 中间
+
+bot.use(session({
+  initial: () => ({ count: 0 }),
+  storage: freeStorage<SessionData>(bot.token),
+}));
+
+// 在 update 处理中使用持久会话数据。
+bot.on("message", async (ctx) => {
+  ctx.session.count++;
+  await ctx.reply(`Message count: ${ctx.session.count}`);
+});
+
+bot.catch((err) => console.error(err));
+bot.start();
+```
+
+</CodeGroupItem>
+<CodeGroupItem title="JavaScript">
+
+```ts
+const { Bot, session } = require("grammy");
+const { freeStorage } = require("@grammyjs/storage-free");
+
+// 创建 bot 并且注册会话中间件。
+const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 中间
+
+bot.use(session({
+  initial: () => ({ count: 0 }),
+  storage: freeStorage(bot.token),
+}));
+
+// 在 update 处理中使用持久会话数据。
+bot.on("message", async (ctx) => {
+  ctx.session.count++;
+  await ctx.reply(`Message count: ${ctx.session.count}`);
+});
+
+bot.catch((err) => console.error(err));
+bot.start();
+```
+
+</CodeGroupItem>
+<CodeGroupItem title="Deno">
+
+```ts
+import {
+  Bot,
+  Context,
+  session,
+  SessionFlavor,
+} from "https://deno.land/x/grammy/mod.ts";
+import { freeStorage } from "https://deno.land/x/grammy_storage_free/mod.ts";
+
+// 定义会话结构。
+interface SessionData {
+  count: number;
+}
+type MyContext = Context & SessionFlavor<SessionData>;
+
+// 创建 bot 并且注册会话中间件。
+const bot = new Bot<MyContext>(""); // <-- 把你的 bot token 放在 "" 中间
+
+bot.use(session({
+  initial: () => ({ count: 0 }),
+  storage: freeStorage<SessionData>(bot.token),
+}));
+
+// 在 update 处理中使用持久会话数据。
+bot.on("message", async (ctx) => {
+  ctx.session.count++;
+  await ctx.reply(`Message count: ${ctx.session.count}`);
+});
+
+bot.catch((err) => console.error(err));
+bot.start();
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+### 外部存储解决方案
+
+我们维护了一个官方的存储适配器列表，允许你存储会话数据在不同的地方。
+它们中的每一个都需要你在托管提供商处注册，或者托管你自己的存储解决方案。
+请查看各自的仓库，了解不同适配器的设置。
 
 - Supabase: <https://github.com/grammyjs/storage-supabase>
 - Deta.sh Base: <https://github.com/grammyjs/storage-deta>

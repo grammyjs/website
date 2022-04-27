@@ -554,7 +554,7 @@ bot.start();
 
 We maintain a list of official storage adapters that allow you to store your session data in different places.
 Each of them will require you to register at a hosting provider, or to host your own storage solution.
-Check out the respsective repositories about each individual setup.
+Check out the respective repositories about each individual setup.
 
 - Supabase: <https://github.com/grammyjs/storage-supabase>
 - Deta.sh Base: <https://github.com/grammyjs/storage-deta>
