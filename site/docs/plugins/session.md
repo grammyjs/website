@@ -451,7 +451,7 @@ bot.use(session({
 </CodeGroup>
 
 Done!
-Your bot will now have use a persistent data storage.
+Your bot will now use a persistent data storage.
 
 Here is a full example bot that you can copy to try it out.
 
