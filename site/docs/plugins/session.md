@@ -388,7 +388,7 @@ bot.use(session({
 ### RAM (default)
 
 By default, all data will be stored in RAM.
-This means that all session are lost as soon as your bot stops.
+This means that all sessions are lost as soon as your bot stops.
 
 You can use the `MemorySessionStorage` class ([API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/MemorySessionStorage)) from the grammY core package if you want to configure further things about storing data in RAM.
 
