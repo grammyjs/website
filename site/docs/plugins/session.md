@@ -403,7 +403,7 @@ bot.use(session({
 
 > The free storage is meant to be used in hobby projects.
 > Production-scale applications should host their own database.
-> The supported integrations of external storage solutions is [down here](#external-storage-solutions).
+> The list of supported integrations of external storage solutions is [down here](#external-storage-solutions).
 
 A benefit of using grammY is that you get access to free cloud storage.
 It requires zero setup—all authentication is done using your bot token.
