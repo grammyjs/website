@@ -100,7 +100,7 @@ We still need to package it up, but before that, let's take a look at transforme
 ## Designing a Dummy Transformer Plugin
 
 Imagine writing a plugin that sends the appropriate [chat action](https://core.telegram.org/bots/api#sendchataction) automatically whenever the bot sends a document.
-This means that while your bot is sending a file, users will automatically see “_sending file…_” as status.
+This means that while your bot is sending a file, users will automatically see "_sending file…_" as status.
 Pretty cool, right?
 
 ```ts
@@ -160,7 +160,7 @@ bot.start();
 
 Now, every time we send a document, the chat action of `upload_document` will be sent to our client.
 Note that this was for demonstration purposes.
-Telegram recommends using chat actions only when “a response from the bot will take a **noticeable** amount of time to arrive”.
+Telegram recommends using chat actions only when "a response from the bot will take a **noticeable** amount of time to arrive".
 You probably don't actually need to set the status if the file is very small, so there are some optimisations that could be done here.
 
 ## Extraction Into a Plugin
