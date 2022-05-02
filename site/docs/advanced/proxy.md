@@ -9,17 +9,35 @@ grammY let's you configure a number of things about how network requests are per
 This includes injecting a custom payload into every request, which can be used to install a proxy agent.
 Check out the `ApiClientOptions` in the [grammY API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/ApiClientOptions).
 
-In Node.js, here is how you would use a proxy with the `socks5-https-client` package ([npm](https://www.npmjs.com/package/socks5-https-client)):
+In Deno, here is how you would use an `http` proxy:
+
+```ts
+import { Bot } from "https://deno.land/x/grammy/mod.ts";
+
+const client = Deno.createHttpClient({
+  proxy: { url: "http://host:port/" },
+});
+const bot = new Bot(TOKEN, {
+  client: {
+    baseFetchConfig: {
+      // @ts-ignore
+      client,
+    },
+  },
+});
+```
+
+> Note that you need to run this with the `--unstable` flag.
+
+In Node.js, here is how you would use a proxy with the `socks5-https-client` package ([npm](https://www.npmjs.com/package/socks-proxy-agent)):
 
 ```ts
 import { Bot } from "grammy";
-import SocksAgent from "socks5-https-client/lib/Agent";
+import { SocksProxyAgent } from "socks-proxy-agent";
 
-const socksAgent = new SocksAgent({
-  socksHost: proxyHost, // put in the proxy host
-  socksPort: proxyPort, // put in the proxy port
-  socksUsername: proxyUser, // put in the username
-  socksPassword: proxyPassword, // put in the password
+const socksAgent = new SocksProxyAgent({
+  host: host, // put in the proxy host
+  port: port, // put in the proxy port
 });
 
 const bot = new Bot("", {

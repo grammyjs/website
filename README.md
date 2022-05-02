@@ -1,6 +1,7 @@
 # Documentation
 
-[Documentation for grammY.](https://grammy.dev) Contributions are welcome!
+[Documentation for grammY.](https://grammy.dev)
+Contributions are welcome!
 
 The `logos/` directory only contains the logos of grammY, all website-related things are in `site/`.
 
@@ -21,14 +22,16 @@ to view the documentation in your browser.
 ## Checking Correct Formatting of Docs
 
 In addition to the VSCode extension that lints the Markdown, [Deno](https://deno.land/) formatting is used to check the formatting of markdown files and the TypeScript and JavaScript code contained in them.
-You can use the following two commands the `site/` directory.
+You can use the following two commands in the `site/` directory.
 
 ```bash
+cd site/
+
 # Checks if all files are fomatted correctly
-deno fmt --config deno.json --check
+deno fmt --check
 
 # Automatically formats all files directly
-deno fmt --config deno.json
+deno fmt
 ```
 
 You can also run
