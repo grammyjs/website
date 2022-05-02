@@ -7,17 +7,22 @@ Thank you, Telegram, for this overlapping terminology.
 
 Let us try to clear it up a bit:
 
-| Term                                     | Definition                                                                                                                          |
-| ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| [**Inline Keyboard**](#inline-keyboards) | a set of buttons that is displayed underneath a message inside the chat                                                             |
-| [**Custom Keyboard**](#custom-keyboards) | a set of buttons that is displayed instead of the user's system keyboard                                                            |
-| **Inline keyboard button**               | a button in an inline keyboard, sends an callback query not visible to the user when pressed, sometimes just called _inline button_ |
-| **Custom Keyboard button**               | a button in a keyboard, sends a text message with its label when pressed, sometimes just called _keyboard button_                   |
-| **`InlineKeyboard`**                     | class in grammY to create inline keyboards                                                                                          |
-| **`Keyboard` (!)**                       | class in grammY to create custom keyboards                                                                                          |
+| Term                                     | Definition                                                                                                                         |
+| ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| [**Inline Keyboard**](#inline-keyboards) | a set of buttons that is displayed underneath a message inside the chat                                                            |
+| [**Custom Keyboard**](#custom-keyboards) | a set of buttons that is displayed instead of the user's system keyboard                                                           |
+| **Inline Keyboard button**               | a button in an inline keyboard, sends a callback query not visible to the user when pressed, sometimes just called _inline button_ |
+| **Custom Keyboard button**               | a button in a keyboard, sends a text message with its label when pressed, sometimes just called _keyboard button_                  |
+| **`InlineKeyboard`**                     | class in grammY to create inline keyboards                                                                                         |
+| **`Keyboard` (!)**                       | class in grammY to create custom keyboards                                                                                         |
 
 > Note that both custom keyboard buttons and inline keyboard buttons can also have other functions, such as requesting the user's location, opening a website, and so on.
 > This was omitted for brevity.
+
+It is not possible to specify both a custom keyboard and an inline keyboard in the same message.
+The two are mutually exclusive.
+Moreover, the sent kind of reply markup cannot be changed at a later point by editing the message.
+For example, it is not possible to first send a custom keyboard along with a message, and then edit the message to use an inline keyboard.
 
 ## Inline Keyboards
 
@@ -99,7 +104,7 @@ await ctx.reply(text, {
 ```
 
 Naturally, all other methods that send messages other than text messages support the same options, as specified by the [Telegram Bot API Reference](https://core.telegram.org/bots/api).
-For example, you can edit a keybaord by calling `editMessageReplyMarkup`, and passing the new `InlineKeyboard` instance as `reply_markup`.
+For example, you can edit a keyboard by calling `editMessageReplyMarkup`, and passing the new `InlineKeyboard` instance as `reply_markup`.
 Specify an empty inline keyboard to remove all buttons underneath a message.
 
 ### Responding to Clicks
@@ -314,8 +319,8 @@ Unless you specify `one_time_keyboard` as described
 the user can minimize it).
 
 You can only remove a custom keyboard when you send a new message in the chat, just
-like you can only specify a new keyboard by sending a message. Pass
-`{ remove_keyboard: true }` as `reply_markup` like so:
+like you can only specify a new keyboard by sending a message.
+Pass `{ remove_keyboard: true }` as `reply_markup` like so:
 
 ```ts
 await ctx.reply(text, {
@@ -324,8 +329,8 @@ await ctx.reply(text, {
 ```
 
 Next to `remove_keyboard`, you can again set `selective: true` in order to
-remove the custom keyboard for selected users only. This works analogously to
-[selectively sending a custom keyboard](#selectively-send-custom-keyboard).
+remove the custom keyboard for selected users only.
+This works analogously to [selectively sending a custom keyboard](#selectively-send-custom-keyboard).
 
 ## Plugin Summary
 
