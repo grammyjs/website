@@ -62,4 +62,6 @@ prev: ./proxy.md
 虽然 grammY 提供了必要的 hooks 钩子去编写测试用例，但是如果对于 bot 来说有一个测试框架会更加有用。
 这是一个全新的领域，这样的测试框架目前基本上并不存在。
 我们很期待你的贡献！
+
+关于如何进行测试的例子 [可以在这里找到](https://github.com/PavelPolyakov/grammy-with-tests)。
 :::

@@ -19,7 +19,7 @@ Check out the [Introduction for Developers](https://core.telegram.org/bots) by t
 
 In making your Telegram bot, you will create a text file with the source code of your bot.
 (You can also copy one of our example files.)
-It defines _what your bot actually does_, i.e. “when a user sends this message, respond with that”, and so on.
+It defines _what your bot actually does_, i.e. "when a user sends this message, respond with that", and so on.
 
 You can then run that source file.
 Your bot will now work, until you stop running it.
@@ -39,7 +39,7 @@ Because you most likely don't want to do that with your laptop, you should uploa
 There are countless companies that let you run your Telegram bot for free.
 This documentation covers a number of different hosting providers that we know work well with grammY (check the Resources).
 In the end, however, the choice of which provider to pick is up to you.
-Remember that running your code somewhere else means that whoever owns that “somewhere” has access to all your messages and the data of your users, so you should pick a provider that you can trust.
+Remember that running your code somewhere else means that whoever owns that "somewhere" has access to all your messages and the data of your users, so you should pick a provider that you can trust.
 
 Here is a (simplified) diagram of how the setup will look in the end when Alice contacts your bot:
 
@@ -99,7 +99,7 @@ This type of software is called a _runtime environment_.
 It takes in your source code files and actually does whatever is programmed in them.
 
 For us, there are two runtime environments to choose from, [Deno](https://deno.land) and [Node.js](https://nodejs.org).
-(If you see people call it _Node_, they are just too lazy to type “.js”, but they mean the same thing.)
+(If you see people call it _Node_, they are just too lazy to type ".js", but they mean the same thing.)
 
 > The rest of this section helps you decide between these two platforms.
 > If you already know what you want to use, jump down to the [prerequisites for Node.js](#prerequisites-for-node-js) or [those for Deno](#prerequisites-for-deno).
