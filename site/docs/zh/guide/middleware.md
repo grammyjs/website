@@ -6,7 +6,7 @@ next: ./errors.md
 # 中间件
 
 传递给 `bot.on()`，`bot.command()` 和它们的兄弟姐妹的监听器函数被称为 _中间件_。
-虽然说它们在监听更新是没有错的，但称它们为“监听者”又有些简单了。
+虽然说它们在监听更新是没有错的，但称它们为"监听者"又有些简单了。
 
 > 本节解释了什么是中间件，并以 grammY 为例，说明如何使用中间件。
 > 如果你正在寻找关于 grammY 实现中间件的特别之处的具体文档，请查看文档高级部分的 [Middleware Redux](/zh/advanced/middleware.md)。
@@ -84,7 +84,7 @@ type NextFunction = () => Promise<void>;
 (ctx, next) => ...    |
 ```
 
-回顾我们之前的例子，我们现在知道为什么 `bot.on(":photo")` 从未被使用：`bot.(":text", (ctx) => { ... })` 中的中间件已经处理了更新，它没有调用 `next` 。
+回顾我们之前的例子，我们现在知道为什么 `bot.on(":photo")` 从未被使用：`bot.on(":text", (ctx) => { ... })` 中的中间件已经处理了更新，它没有调用 `next` 。
 事实上，它甚至没有把 `next` 作为一个参数。
 它只是忽略了 `next` ，因此没有传递更新。
 
@@ -125,6 +125,9 @@ bot.start();
 这里是我们中间件的函数签名。
 你可以把它与上面的中间件类型进行比较，并说服自己，我们在这里确实完成了一个中间件。
 
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
+
 ```ts
 /** 统计 bot 的响应时间，并将其记录到 `console`。 */
 async function responseTime(
@@ -134,6 +137,19 @@ async function responseTime(
   // TODO：实现
 }
 ```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+/** 统计 bot 的响应时间，并将其记录到 `console`。 */
+async function responseTime(ctx, next) {
+  // TODO：实现
+}
+```
+
+</CodeGroupItem>
+</CodeGroup>
 
 我们可以用 `bot.use()` 把它安装到我们的 `bot` 实例中。
 
@@ -150,6 +166,9 @@ bot.use(responseTime);
 3. 我们再次使用 `Date.now()` ，将其与旧值进行比较，然后 `console.log` 显示时间差异。
 
 重要的是，要先在 bot 上安装我们的 `responseTime` 中间件（在中间件栈的顶部），以确保所有操作都包括在统计中。
+
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
 
 ```ts
 /** 统计 bot 的响应时间，并将其记录到 `console`。 */
@@ -169,6 +188,28 @@ async function responseTime(
 
 bot.use(responseTime);
 ```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+/** 统计 bot 的响应时间，并将其记录到 `console`。 */
+async function responseTime(ctx, next) {
+  // 开始计时
+  const before = Date.now(); // 毫秒
+  // 调用下游的中间件
+  await next(); // 请务必使用 `await`！
+  // 停止计时
+  const after = Date.now(); // 毫秒
+  // 打印时间差
+  console.log(`Response time: ${after - before} ms`);
+}
+
+bot.use(responseTime);
+```
+
+</CodeGroupItem>
+</CodeGroup>
 
 完成，并且可以正常工作! :heavy_check_mark:
 
