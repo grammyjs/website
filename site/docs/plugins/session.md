@@ -18,7 +18,13 @@ Basically, it boils down to the fact that **a bot only has access to the informa
 
 Consequently, if you _do want to access_ old data, you have to store it as soon as it arrives.
 This means that you must have a data storage, such as a file, a database, or an in-memory storage.
-Of course you don't have to host this yourself, there are plenty of services that offer data storage as a service, i.e. other people will host your database for you.
+
+Of course, grammY has you covered here: you don't have to host this yourself.
+You can just use the grammY session storage which needs zero setup and is free forever.
+
+> Naturally, there are plenty of other services that offer data storage as a service, and grammY integrates seamlessly with them, too.
+> If you want to run your own database, rest assured that grammY supports this equally well.
+> [Scroll down](#known-storage-adapters) to see which integrations are currently available.
 
 ## What Are Sessions?
 
@@ -176,7 +182,8 @@ Do **NOT** do this:
 
 ```ts
 // DANGER, BAD, WRONG, STOP
-bot.use(session({ initial: { pizzaCount: 0 } })); // EVIL
+const initialData = { pizzaCount: 0 }; // NOPE
+bot.use(session({ initial: () => initialData })); // EVIL
 ```
 
 If you would do this, several chats might share the same session object in memory.
@@ -188,6 +195,9 @@ If you don't specify it, reading `ctx.session` will throw an error for new users
 
 ### Session Keys
 
+> This section describes an advanced feature that most people do not have to worry about.
+> You may want to continue with the section about [storing your data](#storing-your-data).
+
 You can specify which session key to use by passing a function called `getSessionKey` to the [options](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/SessionOptions#getSessionKey).
 That way, you can fundamentally change the way how the session plugin works.
 By default, data is stored per chat.
@@ -195,7 +205,7 @@ Using `getSessionKey` allows you to store data per user, or per user-chat combin
 Here are three examples:
 
 <CodeGroup>
- <CodeGroupItem title="TypeScript" active>
+<CodeGroupItem title="TypeScript" active>
 
 ```ts
 // Stores data per chat (default).
@@ -225,7 +235,7 @@ bot.use(session({ getSessionKey }));
 ```
 
 </CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+<CodeGroupItem title="JavaScript">
 
 ```js
 // Stores data per chat (default).
@@ -278,6 +288,9 @@ You should use the `storage` option of the session middleware to connect it to y
 There may already be storage adapter written for grammY that you can use (see [below](#known-storage-adapters)), but if not, it usually only takes 5 lines of code to implement one yourself.
 
 ## Lazy Sessions
+
+> This section describes a performance optimization that most people do not have to worry about.
+> You may want to continue with the section about [known storage adapters](#known-storage-adapters).
 
 Lazy sessions is an alternative implementation of sessions that can significantly reduce the database traffic of your bot by skipping superfluous read and write operations.
 
@@ -358,24 +371,207 @@ In the plugin code, simply await `ctx.session` all the time: if a non-promise ob
 
 ## Known Storage Adapters
 
-By default, sessions will be stored in your memory by the built-in storage adapter.
-Here is a list of storage adapters that we are aware of, and that allow you to store your session data in other places.
-If you published your own storage adapter, please edit this page and link it here, so that other people can use it.
+By default, sessions will be stored [in your memory](#ram-default) by the built-in storage adapter.
+You can also use persistent sessions that grammY [offers for free](#free-storage), or connect to [external storages](#external-storage-solutions).
 
-### Official
+This is how you can install one of the storage adapters from below.
+
+```ts
+const storageAdapter = ... // depends on setup
+
+bot.use(session({
+  initial: ...
+  storage: storageAdapter,
+}));
+```
+
+### RAM (default)
+
+By default, all data will be stored in RAM.
+This means that all sessions are lost as soon as your bot stops.
+
+You can use the `MemorySessionStorage` class ([API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/MemorySessionStorage)) from the grammY core package if you want to configure further things about storing data in RAM.
+
+```ts
+bot.use(session({
+  initial: ...
+  storage: new MemorySessionStorage() // also the default value
+}));
+```
+
+### Free Storage
+
+> The free storage is meant to be used in hobby projects.
+> Production-scale applications should host their own database.
+> The list of supported integrations of external storage solutions is [down here](#external-storage-solutions).
+
+A benefit of using grammY is that you get access to free cloud storage.
+It requires zero setup—all authentication is done using your bot token.
+Check out [the repository](https://github.com/KnorpelSenf/storage-free)!
+
+It is very easy to use:
+
+<CodeGroup>
+<CodeGroupItem title="TypeScript" active>
+
+```ts
+import { freeStorage } from "@grammyjs/storage-free";
+
+bot.use(session({
+  initial: ...
+  storage: freeStorage<SessionData>(bot.token),
+}));
+```
+
+</CodeGroupItem>
+<CodeGroupItem title="JavaScript">
+
+```ts
+const { freeStorage } = require("@grammyjs/storage-free");
+
+bot.use(session({
+  initial: ...
+  storage: freeStorage(bot.token),
+}));
+```
+
+</CodeGroupItem>
+<CodeGroupItem title="Deno">
+
+```ts
+import { freeStorage } from "https://deno.land/x/grammy_storage_free/mod.ts";
+
+bot.use(session({
+  initial: ...
+  storage: freeStorage<SessionData>(bot.token),
+}));
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+Done!
+Your bot will now use a persistent data storage.
+
+Here is a full example bot that you can copy to try it out.
+
+<CodeGroup>
+<CodeGroupItem title="TypeScript" active>
+
+```ts
+import { Bot, Context, session, SessionFlavor } from "grammy";
+import { freeStorage } from "@grammyjs/storage-free";
+
+// Define the session structure.
+interface SessionData {
+  count: number;
+}
+type MyContext = Context & SessionFlavor<SessionData>;
+
+// Create the bot and register the session middleware.
+const bot = new Bot<MyContext>(""); // <-- put your bot token between the ""
+
+bot.use(session({
+  initial: () => ({ count: 0 }),
+  storage: freeStorage<SessionData>(bot.token),
+}));
+
+// Use persistent session data in update handlers.
+bot.on("message", async (ctx) => {
+  ctx.session.count++;
+  await ctx.reply(`Message count: ${ctx.session.count}`);
+});
+
+bot.catch((err) => console.error(err));
+bot.start();
+```
+
+</CodeGroupItem>
+<CodeGroupItem title="JavaScript">
+
+```ts
+const { Bot, session } = require("grammy");
+const { freeStorage } = require("@grammyjs/storage-free");
+
+// Create the bot and register the session middleware.
+const bot = new Bot(""); // <-- put your bot token between the ""
+
+bot.use(session({
+  initial: () => ({ count: 0 }),
+  storage: freeStorage(bot.token),
+}));
+
+// Use persistent session data in update handlers.
+bot.on("message", async (ctx) => {
+  ctx.session.count++;
+  await ctx.reply(`Message count: ${ctx.session.count}`);
+});
+
+bot.catch((err) => console.error(err));
+bot.start();
+```
+
+</CodeGroupItem>
+<CodeGroupItem title="Deno">
+
+```ts
+import {
+  Bot,
+  Context,
+  session,
+  SessionFlavor,
+} from "https://deno.land/x/grammy/mod.ts";
+import { freeStorage } from "https://deno.land/x/grammy_storage_free/mod.ts";
+
+// Define the session structure.
+interface SessionData {
+  count: number;
+}
+type MyContext = Context & SessionFlavor<SessionData>;
+
+// Create the bot and register the session middleware.
+const bot = new Bot<MyContext>(""); // <-- put your bot token between the ""
+
+bot.use(session({
+  initial: () => ({ count: 0 }),
+  storage: freeStorage<SessionData>(bot.token),
+}));
+
+// Use persistent session data in update handlers.
+bot.on("message", async (ctx) => {
+  ctx.session.count++;
+  await ctx.reply(`Message count: ${ctx.session.count}`);
+});
+
+bot.catch((err) => console.error(err));
+bot.start();
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+### External Storage Solutions
+
+We maintain a list of official storage adapters that allow you to store your session data in different places.
+Each of them will require you to register at a hosting provider, or to host your own storage solution.
+Check out the respective repositories about each individual setup.
 
 - Supabase: <https://github.com/grammyjs/storage-supabase>
 - Deta.sh Base: <https://github.com/grammyjs/storage-deta>
 - Google Firestore (Node.js-only): <https://github.com/grammyjs/storage-firestore>
+- Files: <https://github.com/grammyjs/storages/tree/main/packages/file>
+- MongoDB: <https://github.com/grammyjs/storages/tree/main/packages/mongodb>
+- Redis: <https://github.com/grammyjs/storages/tree/main/packages/redis>
+- PostgreSQL: <https://github.com/grammyjs/storages/tree/main/packages/psql>
+- TypeORM (Node.js-only): <https://github.com/grammyjs/storages/tree/main/packages/typeorm>
 
-### Third-Party
+::: tip Your storage is not supported? No problem!
+Creating a custom storage adapter is extremely simple.
+The `storage` option works with any object that adheres to [this interface](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/StorageAdapter), so you can connect to your storage just in a few lines of code.
 
-- Files: <https://github.com/Satont/grammy-file-storage>
-- MongoDB: <https://github.com/Satont/grammy-mongodb-storage>
-- Redis: <https://github.com/Satont/grammy-redis-storage>
-- PostgreSQL: <https://github.com/Satont/grammy-psql-storage>
-- TypeORM (Node.js-only): <https://github.com/Satont/grammy-typeorm-storage>
-- Submit your own by editing this page!
+> If you published your own storage adapter, feel free edit this page and link it here, so that other people can use it.
+
+:::
 
 ## Plugin Summary
 

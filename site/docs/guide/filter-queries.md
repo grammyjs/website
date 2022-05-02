@@ -14,7 +14,7 @@ Other filtering of messages is left to the developer, which often leads to endle
 
 On the contrary, **grammY ships with its own query language** that you can use in order to **filter for exactly the messages** you want.
 
-This allows for over 500 different filters to be used, and we may add more over time.
+This allows for over 650 different filters to be used, and we may add more over time.
 Every valid filter can be auto-completed in your code editor.
 Hence, you can simply type `bot.on('')`, open auto-complete, and search through all queries by typing something.
 
@@ -237,7 +237,7 @@ There are five different possible types of message authors on Telegram:
 
 1. Channel post authors
 2. Automatic forwards from linked channels in discussion groups
-3. Normal user accounts, this includes bots (i.e. “normal” messages)
+3. Normal user accounts, this includes bots (i.e. "normal" messages)
 4. Admins sending on behalf of the group ([anonymous admins](https://telegram.org/blog/filters-anonymous-admins-comments#anonymous-group-admins))
 5. Users sending messages as one of their channels
 
@@ -317,4 +317,5 @@ On start-up, grammY derives a predicate function from the filter query by splitt
 Every part will be mapped to a function that performs a single `in` check, or two checks if the part is omitted and two values need to be checked.
 These functions are then combined to form a predicate that only has to check for as many values as are relevant for the query, without iterating over the object keys of `Update`.
 
-This system uses less operations than some competing libraries, which need to perform containment checks in arrays when routing updates. grammY's filter query system is much more powerful.
+This system uses less operations than some competing libraries, which need to perform containment checks in arrays when routing updates.
+grammY's filter query system is much more powerful.
