@@ -32,7 +32,7 @@ En primer lugar, cada instancia de `Bot` es una instancia de `Composer`.
 Es sólo una subclase, así que `class Bot extends Composer`.
 
 Además, debes saber que cada método de `Composer` llama internamente a `use`.
-Por ejemplo, `filter` sólo llama a `use` con algún middleware de bifurcación, mientras que `on` sólo llama a `filter` de nuevo con alguna función de predicado que compara las actualizaciones con la [consulta de filtro] dada (/guide/filter-queries.md).
+Por ejemplo, `filter` sólo llama a `use` con algún middleware de bifurcación, mientras que `on` sólo llama a `filter` de nuevo con alguna función de predicado que compara las actualizaciones con la [consulta de filtro dada](/guide/filter-queries.md).
 Por lo tanto, podemos limitarnos a mirar `use` por ahora, y el resto sigue.
 
 Ahora tenemos que sumergirnos un poco en los detalles de lo que hace `Composer` con sus llamadas `use`, y en qué se diferencia de otros sistemas de middleware que existen.
