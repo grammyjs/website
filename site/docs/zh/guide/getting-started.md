@@ -15,18 +15,56 @@ next: ./basics.md
 创建一个新的 TypeScript 项目并安装 `grammy` 包。
 通过打开终端并键入以下内容来完成。
 
+<CodeGroup>
+ <CodeGroupItem title="NPM" active>
+
 ```bash
-# 创建一个新的目录，并进入该目录。
+# 创建并进入一个新的目录。
 mkdir my-bot
 cd my-bot
 
-# 设置 TypeScript（如果你使用 JavaScript 就跳过）。
+# 设置 TypeScript（如果你使用 JavaScript 则跳过）。
 npm install -D typescript
 npx tsc --init
 
 # 安装 grammY。
 npm install grammy
 ```
+
+</CodeGroupItem>
+ <CodeGroupItem title="Yarn">
+
+```bash
+# 创建并进入一个新的目录。
+mkdir my-bot
+cd my-bot
+
+# 设置 TypeScript（如果你使用 JavaScript 就跳过）。
+yarn add typescript -D
+npx tsc --init
+
+# 安装 grammY。
+yarn add grammy
+```
+
+</CodeGroupItem>
+<CodeGroupItem title="pnpm">
+
+```bash
+# 创建并进入一个新的目录。
+mkdir my-bot
+cd my-bot
+
+# 设置 TypeScript（如果你使用 JavaScript 就跳过）。
+pnpm add -D typescript
+npx tsc --init
+
+# 安装 grammY。
+pnpm add grammy
+```
+
+</CodeGroupItem>
+</CodeGroup>
 
 创建一个新的空文本文件，例如称为 `bot.ts`。
 你的文件夹结构现在应该看起来像这样。

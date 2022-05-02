@@ -167,7 +167,7 @@ People have different taste, so take this section with a grain of salt.
 5. **`async`/`await` support.**
    This is a very popular programming pattern to tame concurrency.
    The recent years show a strong trend towards asynchronous programming.
-   The largest bot framework for Python, PTB, [announced its migration](https://t.me/pythontelegrambotchannel/94) to asynchronous programming in January 2021, which is expected to maybe take “2 years”.
+   The largest bot framework for Python, PTB, [announced its migration](https://t.me/pythontelegrambotchannel/94) to asynchronous programming in January 2021, which is expected to maybe take "2 years".
    grammY is already there.
    (Other less-known Python frameworks may be faster at transitioning.
    Disregard this point if you are using a Python framework that has support for `async`/`await`.)

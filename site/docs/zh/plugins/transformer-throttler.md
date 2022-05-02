@@ -4,7 +4,7 @@
 
 ::: warning 不存在文档中的 API 限制
 Telegram 实现了一些未指定的和无文档的 API 调用的限制。
-这些无文档的限**不被限流器计算**。
+这些无文档的限制**不被限流器计算**。
 如果你在某些 API 调用出现 floodwait 错误，例如 `api.sendContact`，请考虑将 [auto-retry 插件](./auto-retry.md) 和这个插件一起使用。
 :::
 
@@ -18,6 +18,7 @@ Telegram 实现了一些未指定的和无文档的 API 调用的限制。
 
 ```ts
 import { Bot } from "grammy";
+import { run } from "@grammyjs/runner";
 import { apiThrottler } from "@grammyjs/transformer-throttler";
 
 const botToken = process.env.BOT_TOKEN;
@@ -30,7 +31,9 @@ const throttler = apiThrottler();
 bot.api.config.use(throttler);
 
 bot.command("/example", (ctx) => ctx.reply("I am throttled"));
-bot.start();
+
+// 如果你使用了限流器，你可能想要使用一个 runner 来并发处理 update。
+run(bot);
 ```
 
 </CodeGroupItem>
@@ -38,6 +41,7 @@ bot.start();
 
 ```js
 const { Bot } = require("grammy");
+const { run } = require("@grammyjs/runner");
 const { apiThrottler } = require("@grammyjs/transformer-throttler");
 
 const botToken = process.env.BOT_TOKEN;
@@ -50,7 +54,9 @@ const throttler = apiThrottler();
 bot.api.config.use(throttler);
 
 bot.command("/example", (ctx) => ctx.reply("I am throttled"));
-bot.start();
+
+// 如果你使用了限流器，你可能想要使用一个 runner 来并发处理 update。
+run(bot);
 ```
 
 </CodeGroupItem>
@@ -58,6 +64,7 @@ bot.start();
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
+import { run } from "https://deno.land/x/grammy_runner/mod.ts";
 import { apiThrottler } from "https://deno.land/x/grammy_transformer_throttler/mod.ts";
 
 const botToken = Deno.env.get("BOT_TOKEN");
@@ -70,7 +77,9 @@ const throttler = apiThrottler();
 bot.api.config.use(throttler);
 
 bot.command("/example", (ctx) => ctx.reply("I am throttled"));
-bot.start();
+
+// 如果你使用了限流器，你可能想要使用一个 runner 来并发处理 update。
+run(bot);
 ```
 
 </CodeGroupItem>
