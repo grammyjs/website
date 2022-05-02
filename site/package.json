@@ -5,7 +5,6 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "docs:fmt": "deno fmt --config deno.json",
     "docs:dev": "vuepress-vite dev docs",
     "docs:build": "vuepress-vite build docs"
   },
