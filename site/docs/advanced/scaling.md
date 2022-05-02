@@ -10,7 +10,7 @@ Either way, you should read up on some pitfalls [below](#concurrency-is-hard).
 
 ## Long Polling
 
-Most bots never need to process more than a handful of messages per minute (during “peak load”).
+Most bots never need to process more than a handful of messages per minute (during "peak load").
 In other words, scalability is not a concern for them.
 In order to be predictable, grammY is processing updates sequentially.
 This is the order of operations:
@@ -163,5 +163,5 @@ run(bot);
 </CodeGroupItem>
 </CodeGroup>
 
-Feel free to join the [Telegram chat](https://t.me/grammjs) to discuss how to use grammY runner with your bot.
+Feel free to join the [Telegram chat](https://t.me/grammyjs) to discuss how to use grammY runner with your bot.
 We are always happy to hear from people who maintain large bots so we can improve grammY based on their experience with the package.

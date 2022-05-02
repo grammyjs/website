@@ -28,7 +28,9 @@ Transformer 函数可以被安装在 `bot.api` 中。
 
 ```ts
 // 传递 transformer 函数
-bot.api.config.use((prev, method, payload) => prev(method, payload));
+bot.api.config.use((prev, method, payload, signal) =>
+  prev(method, payload, signal)
+);
 
 // 对照传递的中间件
 bot.use((ctx, next) => next());
@@ -50,9 +52,14 @@ bot.api.config.use((prev, method, payload) => undefined as any);
 ```ts
 bot.on("message", (ctx) => {
   // 安装所有处理消息的上下文对象。
-  ctx.api.config.use((prev, method, payload) => prev(method, payload));
+  ctx.api.config.use((prev, method, payload, signal) =>
+    prev(method, payload, signal)
+  );
 });
 ```
+
+> `signal` 参数应该始终传递给 `prev`。
+> 它允许取消请求，并且对于 `bot.stop` 的正常工作非常重要。
 
 已经在 `bot.api` 中安装了Transformer 函数将会被预安装到每一个 `ctx.api` 对象中。
 因此，调用 `ctx.api` 将会被 `ctx.api` 中的 transformers 转换，同样那些 transformers 也会被安装在 `bot.api` 中。
