@@ -11,12 +11,12 @@ All errors that should be expected to happen (failing API calls, failing network
 You should make sure to always `await` all promises, or at least call `catch` on them if you ever don't want to `await` stuff.
 Use a linting rule to make sure you cannot forget this.
 
-## Graceful shutdown
+## Graceful Shutdown
 
 For bots that are using long polling, there is one more thing to consider.
 As you are going to stop your instance during operation at some point again, you should consider catching `SIGTERM` and `SIGINT` events, and call `bot.stop` (built-in long polling) or stop your bot via its [handle](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/RunnerHandle#stop) (grammY runner):
 
-### Simple long polling
+### Simple Long Polling
 
 <CodeGroup>
 
