@@ -6,7 +6,7 @@ next: ./errors.md
 # Middleware
 
 The listener functions that are being passed to `bot.on()`, `bot.command()`, and their siblings, are called _middleware_.
-While it is not wrong to say that they are listening for updates, calling them “listeners” is a simplification.
+While it is not wrong to say that they are listening for updates, calling them "listeners" is a simplification.
 
 > This section explains what middleware is, and uses grammY as an example to illustrate how it can be used.
 > If you are looking for specific documentation about what makes grammY's implementation of middleware special, check out [Middleware Redux](/advanced/middleware.md) in the advanced section of the docs.
@@ -84,7 +84,7 @@ This stack of functions is the _middleware stack_.
 (ctx, next) => ...    |
 ```
 
-Looking back at our earlier example, we now know why `bot.on(":photo")` was never even checked: the middleware in `bot.(":text", (ctx) => { ... })` already handled the update, and it did not call `next`.
+Looking back at our earlier example, we now know why `bot.on(":photo")` was never even checked: the middleware in `bot.on(":text", (ctx) => { ... })` already handled the update, and it did not call `next`.
 In fact, it did not even specify `next` as a parameter.
 It simply ignored `next`, hence not passing on the update.
 
@@ -104,7 +104,7 @@ Let's inspect what happens:
 
 1. You send `'/start'` to the bot.
 2. The `':text'` middleware receives the update and checks for text, which succeeds because commands are text messages.
-   The update is handled immediately by the first middleware and your bot replies with “Text!”.
+   The update is handled immediately by the first middleware and your bot replies with "Text!".
 
 The message is never even checked for if it contains the `/start` command!
 The order in which you register your middleware matters, because it determines the order of the layers in the middleware stack.
@@ -125,6 +125,9 @@ We will illustrate the concept of middleware by writing a simple middleware func
 Here is the function signature for our middleware.
 You can compare it to the middleware type from above, and convince yourself that we actually have middleware here.
 
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
+
 ```ts
 /** Measures the response time of the bot, and logs it to `console` */
 async function responseTime(
@@ -134,6 +137,19 @@ async function responseTime(
   // TODO: implement
 }
 ```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+/** Measures the response time of the bot, and logs it to `console` */
+async function responseTime(ctx, next) {
+  // TODO: implement
+}
+```
+
+</CodeGroupItem>
+</CodeGroup>
 
 We can install it into our `bot` instance with `bot.use()`:
 
@@ -150,6 +166,9 @@ Here is what we want to do:
 3. We take `Date.now()` again, compare it to the old value, and `console.log` the time difference.
 
 It is important to install our `responseTime` middleware _first_ on the bot (at the top of the middleware stack) to make sure that all operations are included in the measurement.
+
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
 
 ```ts
 /** Measures the response time of the bot, and logs it to `console` */
@@ -169,6 +188,28 @@ async function responseTime(
 
 bot.use(responseTime);
 ```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+/** Measures the response time of the bot, and logs it to `console` */
+async function responseTime(ctx, next) {
+  // take time before
+  const before = Date.now(); // milliseconds
+  // invoke downstream middleware
+  await next(); // make sure to `await`!
+  // take time after
+  const after = Date.now(); // milliseconds
+  // log difference
+  console.log(`Response time: ${after - before} ms`);
+}
+
+bot.use(responseTime);
+```
+
+</CodeGroupItem>
+</CodeGroup>
 
 Complete, and works! :heavy_check_mark:
 
