@@ -93,6 +93,8 @@ bot.start();
 </CodeGroupItem>
 </CodeGroup>
 
+> Make sure that you install all menus before other middleware, especially before middleware that uses callback query data.
+
 Naturally, if you are using a custom context type, you can pass it to `Menu` too.
 
 ```ts
@@ -415,7 +417,7 @@ This way, we will only update old menus if a user actually starts clicking the b
 The menu plugin handles this automatically for you, so you don't need to worry about it.
 
 You can configure exactly what happens when an outdated menu is detected.
-By default, the message “Menu was outdated, try again!” will be displayed to the user, and the menu will be updated.
+By default, the message "Menu was outdated, try again!" will be displayed to the user, and the menu will be updated.
 You can define custom behavior in the config under `onMenuOutdated`.
 
 ```ts
