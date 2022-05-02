@@ -39,7 +39,7 @@ bot.api.config.use(autoRetry());
  <CodeGroupItem title="Deno">
 
 ```ts
-import { autoRetry } from "https://cdn.skypack.dev/@grammyjs/auto-retry?dts";
+import { autoRetry } from "https://esm.sh/@grammyjs/auto-retry";
 
 // 安装插件
 bot.api.config.use(autoRetry());
