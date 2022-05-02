@@ -8,7 +8,8 @@ I kept rewriting the same middlewares again and again for all of my bots so I de
 
 ## Usage
 
-All the middleware accessors are factories, even though not all of them have to be. I decided to make API homogeneous.
+All the middleware accessors are factories, even though not all of them have to be.
+I decided to make API homogeneous.
 
 Some of the factories consume optional or required parameters.
 
@@ -40,19 +41,23 @@ bot.use(
 
 ### `ignoreOld`
 
-Ignores old updates, useful when bot has been down for a while. You can optionaly specify the timeout in seconds which defaults to `5 * 60`.
+Ignores old updates, useful when bot has been down for a while.
+You can optionaly specify the timeout in seconds which defaults to `5 * 60`.
 
 ### `onlyAdmin`
 
-Checks if the user is an admin. You can optionally specify `errorHandler` that is called with the context if the user is not an admin.
+Checks if the user is an admin.
+You can optionally specify `errorHandler` that is called with the context if the user is not an admin.
 
 ### `onlyPublic`
 
-Checks if it is a group chat or a channel. You can optionally specify `errorHandler` that is called with the context if it is not a group chat or a channel.
+Checks if it is a group chat or a channel.
+You can optionally specify `errorHandler` that is called with the context if it is not a group chat or a channel.
 
 ### `onlySuperAdmin`
 
-Checks if the user is a super admin. You have to provide the super admin id.
+Checks if the user is a super admin.
+You have to provide the super admin id.
 
 ### `sequentialize`
 
