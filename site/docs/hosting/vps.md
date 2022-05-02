@@ -142,7 +142,8 @@ pm2 restart <app_name>
 
 #### Reload
 
-By reloading, you replace the current process of your app with a new one, resulting in a 0-second downtime. This is recommended for stateless applications.
+By reloading, you replace the current process of your app with a new one, resulting in a 0-second downtime.
+This is recommended for stateless applications.
 
 ```bash
 pm2 reload <app_name>

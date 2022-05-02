@@ -263,7 +263,7 @@ npx tsc
 其中两个是：
 
 - **Web dynos**:
-  <br> _Web dynos_ 是接收来自路由器的 HTTP 流量的 “web” 进程。
+  <br> _Web dynos_ 是接收来自路由器的 HTTP 流量的 "web" 进程。
   这种类型的 dyno 在执行代码时有 30 秒的超时限制。
   另外，如果在 30 分钟内没有需要处理的请求，它就会休眠。
   这种类型的 dyno 非常适合 _webhooks_。
