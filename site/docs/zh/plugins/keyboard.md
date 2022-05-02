@@ -19,6 +19,11 @@
 > 请注意，自定义 keyboard 按钮和 inline keyboard 按钮也可以有其他功能，例如请求用户的位置，打开网站等等。
 > 为了简洁起见，我们省略了这一点。
 
+不能在同一消息中同时指定了自定义 keyboard 和 inline keyboard。
+两者是互斥的。
+此外，发送的回复类型不能通过编辑消息更改。
+例如，不能先发送一个自定义 keyboard，然后编辑消息使用 inline keyboard。
+
 ## Inline Keyboards
 
 > 重温 Telegram 团队编写的 [Introduction for Developers](https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating) 中的 inline keyboard 部分。
@@ -99,7 +104,7 @@ await ctx.reply(text, {
 ```
 
 当然，除了文本消息以外，其他发送消息的方法都支持相同的选项，即 [Telegram Bot API 参考](https://core.telegram.org/bots/api) 中所规定的。
-比如说，你可以通过调用 `editMessageReplyMarkup` 来编辑一个按键，并将新的 `InlineKeyboard` 实例作为 `reply_markup` 来传递。
+比如说，你可以通过调用 `editMessageReplyMarkup` 来编辑一个 keyboard，并将新的 `InlineKeyboard` 实例作为 `reply_markup` 来传递。
 指定一个空的 inline keyboard 可以移除信息下方的所有按钮。
 
 ### 响应点击
