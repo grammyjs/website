@@ -16,10 +16,10 @@ next: ./files.md
 > 进一步的资源是他们的 inline bot 的 [详细描述](https://core.telegram.org/bots/Inline)，以及宣布该功能的 [原始博客文章](https://telegram.org/blog/Inline-bots)，以及 [Telegram bot API 参考](https://core.telegram.org/bots/API#Inline-mode) 中的 inline bot 部分。
 > 当你想在 bot 上开启 inline queries 前，它们都值得一读。
 
-一旦用户触发了一个 inline queries，即在文本输入框中输入“@你机器人的名字”来启动一条消息，你的 bot 就会收到这方面的 update。
+一旦用户触发了一个 inline queries，即在文本输入框中输入"@你机器人的名字"来启动一条消息，你的 bot 就会收到这方面的 update。
 grammY 对于通过 `bot.inlineQuery()` 方法处理 inline queries 有特殊的支持，正如在 [grammY API 参考](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer#inlineQuery) 中 `Composer` 类中所记录的那样。
 它允许你监听匹配字符串或正则表达式的特定 inline queries。
-如果你想通用地处理所有的 inline queries，可以使用 `bot.on('inline_query’)`。
+如果你想通用地处理所有的 inline queries，可以使用 `bot.on('inline_query')`。
 
 ```ts
 // 在自己的文档中进行自我宣传是一件有趣的事
@@ -53,5 +53,8 @@ They even have a pretty website! 👇",
 bot.on("inline_query", (ctx) => ctx.answerInlineQuery([]));
 ```
 
-grammY 可以自动完成上面结构中的所有字段。
+> [请记住](./basics.md#sending-messages) 在调用 API 方法时，你可以通过使用 `Other` 类型的选项对象来指定进一步的选项。
+> 例如，这允许你通过使用偏移量来对 inline 差错进行分页。
+
+注意，grammY 可以自动完成上面结构中的所有字段。
 另外，一定要查看 [Telegram bot API](https://core.telegram.org/bots/api#inlinequeryresult) 参考文献中的关于 inline queries 结果的确切规范。

@@ -169,7 +169,7 @@ bot 总是从小规模开始，但一个负责任的框架必须为它们提供�
 5. **`async`/`await` 支持**
    这是一种非常流行的控制并发性的编程模式。
    近几年来，异步编程呈现出强烈的趋势。
-   最大的 Python bot 框架 PTB [宣布在2021年1月迁移](https://t.me/pythontelegrambotchannel/94) 到异步编程，预计可能需要 “两年时间”。
+   最大的 Python bot 框架 PTB [宣布在2021年1月迁移](https://t.me/pythontelegrambotchannel/94) 到异步编程，预计可能需要 "两年时间"。
    grammY 则已经支持了。
    （其他不太为人所知的 Python 框架可能前一的框架。
    如果你正在使用支持 `async`/`await` 的 Python 框架，请忽略这一点。）
