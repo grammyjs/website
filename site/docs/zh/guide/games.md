@@ -32,7 +32,7 @@ Telegram 游戏是一个非常有趣的功能，很好玩。
    ```ts
    // 我们将使用 start 命令来调用游戏回复方法。
    bot.command("start", async (ctx) => {
-     // 传递在 BotFather 中创建的游戏的名称，例如 “my_game”。
+     // 传递在 BotFather 中创建的游戏的名称，例如 "my_game"。
      await ctx.replyWithGame("my_game");
    });
    ```
@@ -48,8 +48,10 @@ Telegram 游戏是一个非常有趣的功能，很好玩。
    });
    ```
 
-> 你也可以为你的游戏按钮自定义一个 [inline keyboard](/zh/plugins/keyboard.md#inline-keyboards)。
-> 默认情况下，发送时会有一个名为 `Play my_game` 的按钮，其中 my_game 是你游戏的名称。
+> [请记住](./basics.md#sending-messages)，你可以在 `Other` 类型的选项对象中指定更多的选项。
+
+你也可以为你的游戏按钮自定义一个 [inline keyboard](/zh/plugins/keyboard.md#inline-keyboards)。
+默认情况下，发送时会有一个名为 `Play my_game` 的按钮，其中 my_game 是你游戏的名称。
 
 ```ts
 // 定义一个新的 inline keyboard 。您可以编写任何要显示的文本
