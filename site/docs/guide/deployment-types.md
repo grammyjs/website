@@ -75,8 +75,8 @@ And wait.
 Some hours before the next sunrise, a truck of a local food delivery company arrives and brings a couple of large boxes into the parlor's storage room.
 They read_ ice cream _on the outside.
 The employee finally starts to move again.
-“Of course we have salted caramel!
-Two scoops with sprinkles, the usual?”
+"Of course we have salted caramel!
+Two scoops with sprinkles, the usual?"
 As if nothing had happened, you enjoy your ice cream while leaving the world's most unrealistic ice cream parlor._
 
 ```asciiart:no-line-numbers
@@ -235,7 +235,8 @@ Be sure to read [Marvin's Marvellous Guide to All Things Webhook](https://core.t
 ### Webhook Reply
 
 When a webhook request is received, your bot can call up to one method in the response.
-As a benefit, this saves your bot from making up to one HTTP request per update. However, there are a number of drawbacks to using this:
+As a benefit, this saves your bot from making up to one HTTP request per update.
+However, there are a number of drawbacks to using this:
 
 1. You will not be able to handle potential errors of the respective API call.
    This includes rate limiting errors, so you won't actually be guaranteed that your request has any effect.
