@@ -46,7 +46,7 @@ serve(async (req) => {
 
 3. 访问你的 [Deno Deploy 仪表台](https://dash.deno.com/projects)。
 4. 创建一个新的项目。
-5. 滚动到 “Deploy from GitHub” 部分，然后点击 “Continue”。
+5. 滚动到 "Deploy from GitHub" 部分，然后点击 "Continue"。
 6. 安装 GitHub 应用程序到你的账户或组织，并选择你的仓库。
 7. 选择你想部署的分支，然后选择你要部署的`mod.ts`文件
 
@@ -55,5 +55,5 @@ serve(async (req) => {
 > 按照这个方法部署你的 grammY bot，你所需要的只是一个到你的 `mod.ts` 的公开 URL。
 
 1. 在 Deno Deploy 上创建一个新的项目。
-2. 点击 “Deploy URL”。
-3. 输入你的 `mod.ts` 文件的公开 URL，然后点击 “Deploy”。
+2. 点击 "Deploy URL"。
+3. 输入你的 `mod.ts` 文件的公开 URL，然后点击 "Deploy"。
