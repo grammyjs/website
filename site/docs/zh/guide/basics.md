@@ -34,11 +34,13 @@ bot.hears(/echo *(.+)?/, (ctx) => { ... });
 
 ## 发送信息
 
-[bot 可以使用的所有方法](https://core.telegram.org/bots/api#available-methods) 都可以通过 `bot.api` 对象上使用。
+Bot 可以使用的所有方法（**[重要的列表](https://core.telegram.org/bots/api#available-methods)**）都可以通过 `bot.api` 对象上使用。
 
 ```ts
 // 向用户 12345 发送一条消息。
 await bot.api.sendMessage(12345, "Hi!");
+// 你也可以选择性地传入一个选项对象。
+await bot.api.sendMessage(12345, "Hi!", {/* 其他选项 */});
 
 // 获取有关 bot 本身的信息。
 const me = await bot.api.getMe();
@@ -46,9 +48,12 @@ const me = await bot.api.getMe();
 // 及其他
 ```
 
-你可以在你的代码编辑器中使用自动完成来查看所有可用的选项，或者查看 `Api` 类的 [所有方法](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Api)。
+每个方法都接受一个可选的 `Other` 类型的选项对象，它允许你为你的 API 调用设置更多选项。
+这些选项对象与上面列出的方法的选项对象完全对应。
+你也可以在你的代码编辑器中使用自动完成来查看所有可用的选项，或者查看 `Api` 类的 [所有方法](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Api)。
+本页的其余部分展示了一些相关示例。
 
-请看 [下一节](./context.md)，以了解监听器的上下文对象如何使发送消息变得轻而易举！
+同时，请看 [下一节](./context.md)，以了解监听器的上下文对象如何使发送消息变得轻而易举！
 
 ## 发送带回复的信息
 
@@ -102,6 +107,10 @@ await bot.api.sendMessage(
   { parse_mode: "HTML" },
 );
 ```
+
+## 发送文件
+
+文件处理在 [后面的章节](./files.md#sending-files) 中有更深入的解释。
 
 ## 强行回复
 

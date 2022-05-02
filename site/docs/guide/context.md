@@ -127,6 +127,9 @@ Neat! :tada:
 Under the hood, the context _already knows its chat identifier_ (namely `ctx.msg.chat.id`), so it gives you the `reply` method to just send a message back to the same chat.
 Internally, `reply` again calls `sendMessage` with the chat identifier pre-filled for you.
 
+Consequently, all methods on the context object take options objects of type `Other` as explained [earlier](./basics.md#sending-messages).
+This can be used to pass further configuration to every API call.
+
 ::: tip Telegram Reply Feature
 Even though the method is called `ctx.reply` in grammY (and many other frameworks), it does not use the reply feature of Telegram where a previous message is linked.
 
@@ -143,7 +146,8 @@ The same options object can be passed to `bot.api.sendMessage` and `ctx.api.send
 Use auto-complete to see the available options right in your code editor.
 :::
 
-Naturally, every other method on `ctx.api` has a shortcut with the correct pre-filled values, such as `ctx.replyWithPhoto` to reply with a photo, or `ctx.exportChatInviteLink` to get an invite link for the respective chat. If you want to get an overview over what shortcuts exist, then auto-complete is your friend, along with the [grammY API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Context).
+Naturally, every other method on `ctx.api` has a shortcut with the correct pre-filled values, such as `ctx.replyWithPhoto` to reply with a photo, or `ctx.exportChatInviteLink` to get an invite link for the respective chat.
+If you want to get an overview over what shortcuts exist, then auto-complete is your friend, along with the [grammY API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Context).
 
 Note that you may not want to react in the same chat always.
 In this case, you can just fall back to using `ctx.api` methods, and specify all options when calling them.
@@ -289,10 +293,7 @@ bot.start();
 
 ```ts
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
-import type {
-  Update,
-  UserFromGetMe,
-} from "https://cdn.skypack.dev/@grammyjs/types?dts";
+import type { Update, UserFromGetMe } from "https://esm.sh/@grammyjs/types";
 
 // Define a custom context class.
 class MyContext extends Context {

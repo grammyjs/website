@@ -1,41 +1,8 @@
 # FAQ
 
-Here is a collection of frequently asked questions [regarding grammY itself](#questions-about-grammy), [common errors](#why-am-i-getting-this-error), and [Deno things](#questions-about-deno).
+Here is a collection of frequently asked questions regarding [common errors](#why-am-i-getting-this-error) and [Deno things](#questions-about-deno).
 
-If this FAQ does not answer your question, you should also have a look at the Bot FAQ written by the Telegram team.
-
-## Questions About grammY
-
-### What is grammY?
-
-grammY is a piece of software that you can use when you want to program your own chat bot for [the Telegram messenger](https://telegram.org).
-When you make bots, you will notice that some parts of this process are tedious and always the same.
-grammY does the heavy lifting for you and makes it super simple to create a bot.
-
-### When was grammY created?
-
-The first publish of grammY code was in late March, 2021.
-It reached the first stable version a few weeks later.
-
-### How is grammY developed?
-
-grammY is a completely free and open-source software, developed by a team of volunteers.
-Its code is available on GitHub.
-
-You're welcome to [join us](https://t.me/grammyjs)!
-(If you speak Russian, you can also join us [here](https://t.me/grammyjs_ru)!)
-
-### What programming language does grammY use?
-
-grammY is written from the ground up in TypeScript—a superset of JavaScript.
-Therefore, it runs on Node.js.
-
-However, grammY can also run on Deno, which positions itself as the successor of Node.js.
-(Technically, you can even run grammY on modern browsers, though this will rarely be useful.)
-
-### How does grammY compare to its competitors?
-
-If you're coming from a different programming language or framework, you can check out our [detailed comparison between frameworks](./comparison.md).
+If this FAQ does not answer your question, you should also have a look at the [Bot FAQ](https://core.telegram.org/bots/faq) written by the Telegram team.
 
 ## Why Am I Getting This Error?
 
@@ -114,6 +81,14 @@ There are a few things you can do.
 3. Use [the `auto-retry` plugin](/plugins/auto-retry.md).
 4. Come ask us in the group chat for help. We have experienced people there.
 5. It is possible to ask Telegram to increase the limits, but this is very unlikely to happen if you did not do steps 1-3 first.
+
+### Cannot find type definition file for 'node-fetch'
+
+This is the result of some missing type declarations.
+
+The recommended way to fix this is to set `skipLibCheck` to `true` in your TypeScript compile options.
+
+If you are sure that you need this option to be kept to `false`, you can instead install the missing type definitions by running `npm i -D @types/node-fetch@2`.
 
 ## Questions About Deno
 
