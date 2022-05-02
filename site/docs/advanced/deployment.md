@@ -61,4 +61,6 @@ This can be done with grammY like so:
 While grammY provides the necessary hooks to start writing tests, it would be very helpful to have a testing framework for bots.
 This is novel territory, such testing frameworks largely do not exist.
 We look forward to your contributions!
+
+An example on how tests could be done [can be found here](https://github.com/PavelPolyakov/grammy-with-tests).
 :::

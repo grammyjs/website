@@ -175,6 +175,8 @@ This plugin currently hydrates
 - edited messages and edited channel posts
 - callback queries
 - inline queries
+- chosen inline results
+- web app queries
 - pre-checkout and shipping queries
 
 All objects are hydrated on
