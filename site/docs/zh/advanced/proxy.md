@@ -9,17 +9,34 @@ grammY 可以让你对网络请求如何执行进行配置。
 这包括注入一个自定义的 payload 到每一个请求中，它可以被用于安装一个代理。
 在 [grammY API 参考](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/ApiClientOptions) 中查看 `ApiClientOptions`。
 
-在 Node.js 中，下面是怎样用 `socks5-https-client` 这个 [npm](https://www.npmjs.com/package/socks5-https-client) 包去使用代理的例子：
+在 Deno 中，下面是如何使用 `http` 代理的例子：
+
+```ts
+import { Bot } from "https://deno.land/x/grammy/mod.ts";
+const client = Deno.createHttpClient({
+  proxy: { url: "http://host:port/" },
+});
+const bot = new Bot(TOKEN, {
+  client: {
+    baseFetchConfig: {
+      // @ts-ignore
+      client,
+    },
+  },
+});
+```
+
+> 请注意，你需要运行这个命令时加上 `--unstable` 参数。
+
+在 Node.js 中，下面是通过 [`socks5-https-client`](https://www.npmjs.com/package/socks-proxy-agent) 去使用代理的例子：
 
 ```ts
 import { Bot } from "grammy";
-import SocksAgent from "socks5-https-client/lib/Agent";
+import { SocksProxyAgent } from "socks-proxy-agent";
 
-const socksAgent = new SocksAgent({
-  socksHost: proxyHost, // 输入代理主机
-  socksPort: proxyPort, // 输入代理端口号
-  socksUsername: proxyUser, // 输入用户名
-  socksPassword: proxyPassword, // 输入密码
+const socksAgent = new SocksProxyAgent({
+  host: host, // 输入代理主机
+  port: port, // 输入代理端口号
 });
 
 const bot = new Bot("", {
