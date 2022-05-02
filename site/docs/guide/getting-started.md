@@ -15,6 +15,9 @@ Create your first bot in minutes. (Scroll [down](#getting-started-on-deno) for a
 Create a new TypeScript project and install the `grammy` package.
 Do this by opening a terminal and typing:
 
+<CodeGroup>
+ <CodeGroupItem title="NPM" active>
+
 ```bash
 # Create a new directory and change into it.
 mkdir my-bot
@@ -27,6 +30,41 @@ npx tsc --init
 # Install grammY.
 npm install grammy
 ```
+
+</CodeGroupItem>
+ <CodeGroupItem title="Yarn">
+
+```bash
+# Create a new directory and change into it.
+mkdir my-bot
+cd my-bot
+
+# Set up TypeScript (skip if you use JavaScript).
+yarn add typescript -D
+npx tsc --init
+
+# Install grammY.
+yarn add grammy
+```
+
+</CodeGroupItem>
+  <CodeGroupItem title="pnpm">
+
+```bash
+# Create a new directory and change into it.
+mkdir my-bot
+cd my-bot
+
+# Set up TypeScript (skip if you use JavaScript).
+pnpm add -D typescript
+npx tsc --init
+
+# Install grammY.
+pnpm add grammy
+```
+
+</CodeGroupItem>
+</CodeGroup>
 
 Create a new empty text file, e.g. called `bot.ts`.
 Your folder structure should now look like this:
