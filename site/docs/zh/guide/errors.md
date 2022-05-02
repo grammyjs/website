@@ -114,7 +114,7 @@ const bot = new Bot("");
 bot.use(/* A */);
 bot.use(/* B */);
 
-const composer = new Compser();
+const composer = new Composer();
 composer.use(/* X */);
 composer.use(/* Y */);
 composer.use(/* Z */);
@@ -139,12 +139,36 @@ function errorHandler(err: BotError) {
 }
 ```
 
-在上面的例子里，`boundaryHandler` 错误处理器将在下面两种中间件中被调用：
+在上面的例子里，`boundaryHandler` 将在下面两种中间件中被调用：
 
 1. 在 `bot.errorBoundary`（即 `Q`）之后传递给 `boundaryHandler` 的所有中间件
 2. 安装在随后安装的 composer 实例（即 `X`，`Y`，和 `Z`）上的所有中间件。
 
 > 关于第 2 点，你可能想要跳转到中间件的 [高级解释](/zh/advanced/middleware.md) 中去学习如何在 grammY 中连接中间件。
+
+你还可以将错误边界应用到一个没有调用 `bot.errorBoundary` 的 composer 中：
+
+```ts
+const composer = new Composer();
+
+const protected = composer.errorBoundary(boundaryHandler);
+protected.use(/* B */);
+
+bot.use(composer);
+bot.use(/* C */);
+
+bot.catch(errorHandler);
+
+function boundaryHandler(err: BotError, next: NextFunction) {
+  console.error("Error in B!", err);
+}
+
+function errorHandler(err: BotError) {
+  console.error("Error in C!", err);
+}
+```
+
+上述例子中的 `boundaryHandler` 将被绑定到 `protected` 的中间件调用。
 
 如果你还是想要你的错误穿越错误边界（到达边界外），你可以重新在你的错误处理器里面抛出这个错误。
 
