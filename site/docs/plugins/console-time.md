@@ -33,7 +33,8 @@ which will output stuff like this:
 
 The `490af` is the `update_id`.
 
-The number before the commands is the total length of the content. This is helpful when considering max length for stuff like callback data.
+The number before the commands is the total length of the content.
+This is helpful when considering max length for stuff like callback data.
 
 The content itself is shortened in order to prevent log spamming.
 

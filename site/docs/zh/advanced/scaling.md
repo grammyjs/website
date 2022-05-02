@@ -163,5 +163,5 @@ run(bot);
 </CodeGroupItem>
 </CodeGroup>
 
-加入 [Telegram chat](https://t.me/grammjs) 自由的讨论怎样在你的 bot 中使用 grammY。
+加入 [Telegram chat](https://t.me/grammyjs) 自由的讨论怎样在你的 bot 中使用 grammY。
 我们总是很高兴收到维护大型 bot 项目的朋友的来信，我们可以根据他们的经验来不断改进 grammY。
