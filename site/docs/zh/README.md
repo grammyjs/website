@@ -15,7 +15,7 @@ features:
     details: grammY 是开放的，通过插件让它完全适合你的需要。
   - title: 可扩展
     details: grammY 在你 bot 拥有较多流量时提供可靠的帮助.
-footer: Copyright © 2021
+footer: Copyright © 2021-2022
 permalink: /zh/
 ---
 
@@ -43,7 +43,7 @@ import { Bot } from "grammy";
 
 const bot = new Bot(""); // <-- 把你的 bot token 放在这里 (https://t.me/BotFather)
 
-// 用“你好！”来回复任意信息
+// 用"你好！"来回复任意信息
 bot.on("message", (ctx) => ctx.reply("你好！"));
 
 bot.start();
@@ -57,7 +57,7 @@ const { Bot } = require("grammy");
 
 const bot = new Bot(""); // <-- 把你的 bot token 放在这里 (https://t.me/BotFather)
 
-// 用“你好！”来回复任意信息
+// 用"你好！"来回复任意信息
 bot.on("message", (ctx) => ctx.reply("你好！"));
 
 bot.start();
@@ -71,7 +71,7 @@ import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
 const bot = new Bot(""); // <-- 把你的 bot token 放在这里 (https://t.me/BotFather)
 
-// 用“你好！”来回复任意信息
+// 用"你好！"来回复任意信息
 bot.on("message", (ctx) => ctx.reply("你好！"));
 
 bot.start();
@@ -84,5 +84,5 @@ bot.start();
 
 ---
 
-grammY 支持 Telegram Bot API 5.5，该 API 于 2021 年 12 月 7 日 [发布](https://core.telegram.org/bots/api#december-7-2021)。
-(新增: 响应加入请求)
+grammY 支持 Telegram Bot API 6.0，该 API 于 2022 年 4 月 16 日 [发布](https://core.telegram.org/bots/api#april-16-2022)。
+(新增: Web 应用)
