@@ -163,5 +163,5 @@ run(bot);
 </CodeGroupItem>
 </CodeGroup>
 
-No dudes en unirte al [chat de Telegram](https://t.me/grammjs) para discutir cómo usar grammY runner con tu bot.
+No dudes en unirte al [chat de Telegram](https://t.me/grammyjs) para discutir cómo usar grammY runner con tu bot.
 Siempre estamos contentos de escuchar a las personas que mantienen grandes bots para que podamos mejorar grammY en base a su experiencia con el paquete.
