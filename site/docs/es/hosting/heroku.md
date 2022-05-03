@@ -107,7 +107,7 @@ Eso significa que cada vez que Telegram (o cualquier otra persona) visite nuestr
 Esto es útil cuando estás desplegando tanto el sitio web como el bot en el mismo dominio.
 Además, al dividir los códigos en diferentes archivos, hace que nuestro código se vea ordenado. :sparkles:
 
-### Express and its Middleware
+### Express y su Middleware
 
 Ahora crea `app.ts` dentro de la carpeta `src` y escribe este código dentro:
 
@@ -396,7 +396,7 @@ heroku git:remote -a <myApp>
 </CodeGroupItem>
 </CodeGroup>
 
-### Deploying Code
+### Despliegue del código
 
 Finalmente, pulsa el _botón rojo_ y ¡despega! :rocket:
 
