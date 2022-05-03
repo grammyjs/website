@@ -28,7 +28,9 @@ Aquí hay un ejemplo para una función transformadora que no hace nada:
 
 ```ts
 // Función transformadora de paso
-bot.api.config.use((prev, method, payload) => prev(method, payload));
+bot.api.config.use((prev, method, payload, signal) =>
+  prev(method, payload, signal)
+);
 
 // Comparación con el middleware de paso
 bot.use((ctx, next) => next());
@@ -50,9 +52,14 @@ Tan pronto como el middleware respectivo se completa, la función transformadora
 ```ts
 bot.on("message", (ctx) => {
   // Se instala en todos los objetos de contexto que procesan mensajes.
-  ctx.api.config.use((prev, method, payload) => prev(method, payload));
+  ctx.api.config.use((prev, method, payload, signal) =>
+    prev(method, payload, signal)
+  );
 });
 ```
+
+> El parámetro `signal` debe pasarse siempre a `prev`.
+> Permite cancelar peticiones y es importante para que `bot.stop` funcione.
 
 Las funciones de transformación instaladas en `bot.api` serán preinstaladas en cada objeto `ctx.api`.
 Así, las llamadas a `ctx.api` serán transformadas tanto por los transformadores de `ctx.api` como por los transformadores instalados en `bot.api`.
