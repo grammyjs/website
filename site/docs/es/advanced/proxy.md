@@ -9,6 +9,26 @@ grammY le permite configurar una serie de cosas sobre cómo se realizan las peti
 Esto incluye inyectar un payload personalizado en cada petición, que puede ser usado para instalar un agente proxy.
 Mira las `ApiClientOptions` en la [referencia de la API de grammY](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/ApiClientOptions).
 
+En Deno, así es como se usaría un proxy `http`:
+
+```ts
+import { Bot } from "https://deno.land/x/grammy/mod.ts";
+
+const client = Deno.createHttpClient({
+  proxy: { url: "http://host:port/" },
+});
+const bot = new Bot(TOKEN, {
+  client: {
+    baseFetchConfig: {
+      // @ts-ignore
+      client,
+    },
+  },
+});
+```
+
+> Note that you need to run this with the `--unstable` flag.
+
 En Node.js, así es como usarías un proxy con el paquete `socks5-https-client` ([npm](https://www.npmjs.com/package/socks5-https-client)):
 
 ```ts
