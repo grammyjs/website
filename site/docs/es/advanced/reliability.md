@@ -86,8 +86,8 @@ const bot = new Bot("<token>");
 
 const runner = run(bot);
 
-// Stopping the bot when Node process
-// is about to be terminated
+// Detener el bot cuando el proceso de Node
+// está a punto de terminar
 const stopRunner = () => runner.isRunning() && runner.stop();
 process.once("SIGINT", stopRunner);
 process.once("SIGTERM", stopRunner);
@@ -105,8 +105,8 @@ const bot = new Bot("<token>");
 
 const runner = run(bot);
 
-// Stopping the bot when Node process
-// is about to be terminated
+// Detener el bot cuando el proceso de Node
+// está a punto de terminar
 const stopRunner = () => runner.isRunning() && runner.stop();
 process.once("SIGINT", stopRunner);
 process.once("SIGTERM", stopRunner);
@@ -123,8 +123,8 @@ const bot = new Bot("<token>");
 
 const runner = run(bot);
 
-// Stopping the bot when Node process
-// is about to be terminated
+// Detener el bot cuando el proceso de Node
+// está a punto de terminar
 const stopRunner = () => runner.isRunning() && runner.stop();
 Deno.addSignalListener("SIGINT", stopRunner);
 Deno.addSignalListener("SIGTERM", stopRunner);
