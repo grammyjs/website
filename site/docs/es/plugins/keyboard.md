@@ -11,10 +11,10 @@ Vamos a intentar aclararlo un poco:
 | ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | [**Inline Keyboard**](#inline-keyboards) | un conjunto de botones que se muestra debajo de un mensaje dentro del chat                                                            |
 | [**Custom Keyboard**](#custom-keyboards) | un conjunto de botones que se muestra en lugar del teclado del sistema del usuario                                                           |
-| **Inline Keyboard button**               | un botón en un teclado en línea, envía una consulta de devolución de llamada no visible para el usuario cuando se pulsa, a veces sólo se llama _inline button_ |
-| **Custom Keyboard button**               | un botón en un teclado, envía un mensaje de texto con su etiqueta cuando se pulsa, a veces sólo se llama _keyboard button_                  |
-| **`InlineKeyboard`**                     | class en grammY para crear teclados en línea                                                                                         |
-| **`Keyboard` (!)**                       | class en grammY para crear teclados personalizados                                                                                         |
+| **Inline Keyboard button**               | un botón en un inline keyboard, envía una consulta de devolución de llamada no visible para el usuario cuando se pulsa, a veces sólo se llama _inline button_ |
+| **Custom Keyboard button**               | un botón en un keyboard, envía un mensaje de texto con su etiqueta cuando se pulsa, a veces sólo se llama _keyboard button_                  |
+| **`InlineKeyboard`**                     | clase de grammY para crear inline keyboards                                                                                         |
+| **`Keyboard` (!)**                       | clase de grammY para crear custom keyboards                                                                                         |
 
 > Tenga en cuenta que tanto los botones de teclado personalizados como los botones de teclado en línea también pueden tener otras funciones, como solicitar la ubicación del usuario, abrir un sitio web, etc.
 > Esto se ha omitido por razones de brevedad.
