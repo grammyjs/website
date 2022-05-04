@@ -72,7 +72,7 @@ import {
 // Transformative Context flavor
 type MyContext = FileFlavor<Context>;
 
-// Create a bot.
+// Crea un bot.
 const bot = new Bot<MyContext>("");
 
 // Usa el plugin.
