@@ -277,7 +277,7 @@ bot.on("message").filter(
 );
 ```
 
-### Reusing Filter Query Logic and Types
+### Reusing Filter Query Logic
 
 Internally, `bot.on` relies on a function called `matchFilter`.
 It takes a filter query and compiles it down to a predicate function.
@@ -291,7 +291,9 @@ For example, you can decide to drop all updates that match a certain query:
 bot.drop(matchFilter(":text"));
 ```
 
-Analogously, the same thing works on the type level.
+Analogously, you can make use of the filter query types that grammY uses internally:
+
+### Reusing Filter Query Types
 
 Internally, `matchFilter` uses TypeScript's [type predicates](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates) to narrow down the type of `ctx`.
 It takes a type `C extends Context` and a `Q extends FilterQuery` and produces `ctx is Filter<C, Q>`.
