@@ -1,66 +1,33 @@
 # FAQ
 
-Aquí hay una colección de preguntas frecuentes [sobre el propio grammY](#questions-about-grammy), [errores comunes](#why-am-i-getting-this-error)), y [cosas de Deno](#questions-about-deno).
+Aquí hay una colección de preguntas frecuentes sobre [errores comunes](#why-am-i-getting-this-error) y [cosas de Deno](#questions-about-deno).
 
-Si este FAQ no responde a tu pregunta, también deberías echar un vistazo al Bot FAQ escrito por el equipo de Telegram.
-
-## Preguntas sobre grammY
-
-### ¿Qué es grammY?
-
-grammY es una pieza de software que puedes usar cuando quieras programar tu propio bot de chat para [el mensajero de Telegram](https://telegram.org).
-Cuando haces bots, te darás cuenta de que algunas partes de este proceso son tediosas y siempre iguales.
-grammY hace el trabajo pesado por ti y hace que sea súper sencillo crear un bot.
-
-### ¿Cuándo se creó grammY?
-
-La primera publicación del código de grammY fue a finales de marzo de 2021.
-Llegó a la primera versión estable unas semanas después.
-
-### ¿Cómo se desarrolla grammY?
-
-grammY es un software completamente libre y de código abierto, desarrollado por un equipo de voluntarios.
-Su código está disponible en GitHub.
-
-¡Eres bienvenido a [unirte a nosotros](https://t.me/grammyjs)!
-(¡Si hablas ruso, también puedes unirte a nosotros [aquí](https://t.me/grammyjs_ru)!)
-
-### ¿Qué lenguaje de programación utiliza grammY?
-
-grammY está escrito desde el principio en TypeScript, un superconjunto de JavaScript.
-Por lo tanto, se ejecuta en Node.js.
-
-Sin embargo, grammY también puede ejecutarse en Deno, que se posiciona como el sucesor de Node.js.
-(Técnicamente, puedes incluso ejecutar grammY en los navegadores modernos, aunque esto rara vez será útil).
-
-### ¿Cómo se compara grammY con sus competidores?
-
-Si vienes de un lenguaje de programación o marco de trabajo diferente, puedes revisar nuestra [comparación detallada entre marcos de trabajo](./comparison.md).
+Si este FAQ no responde a tu pregunta, también deberías echar un vistazo al [Bot FAQ](https://core.telegram.org/bots/faq) escrito por el equipo de Telegram.
 
 ## ¿Por qué recibo este error?
 
-### 400 Bad Request: No se pueden analizar las entidades
+### 400 Bad Request: Cannot parse entities
 
 Estás enviando un mensaje con formato, es decir, estás configurando `parse_mode` al enviar un mensaje.
 Sin embargo, tu formato está roto, por lo que Telegram no sabe cómo analizarlo.
 Deberías releer [la sección sobre formato](https://core.telegram.org/bots/api#formatting-options) en los documentos de Telegram.
 El desplazamiento de bytes que se menciona en el mensaje de error te dirá dónde está exactamente el error en tu cadena.
 
-::: tip Pasar entidades en lugar de formato
+::: consejo Pasar entidades en lugar de formato
 Puedes pre-preparar las entidades para Telegram si quieres, y especificar `entidades` cuando envíes tu mensaje.
 El texto de tu mensaje podría entonces ser una cadena regular.
 De esta manera, no tienes que preocuparte de escapar caracteres extraños.
 Esto puede parecer que necesita más código, pero de hecho es la solución mucho más fiable y a prueba de tontos para este problema.
 :::
 
-### 401 No autorizado
+### 401 Unauthorized
 
-Tu bot token está mal.
-Tal vez pienses que es correcto.
+Tu token de bot está mal.
+Tal vez pienses que está bien.
 No lo es.
 Habla con [@BotFather](https://t.me/BotFather) para ver cuál es tu token.
 
-### 403 Prohibido: el bot fue bloqueado por el usuario
+### 403 Forbidden: bot was blocked by the user
 
 Probablemente has intentado enviar un mensaje a un usuario y te has encontrado con este problema.
 
@@ -75,7 +42,7 @@ Puedes:
 - Escuchar las actualizaciones de `my_chat_member` a través de `bot.on("my_chat_member")` para ser notificado cuando el usuario bloquee tu bot.
   Sugerencia: Compara los campos `status` del antiguo y del nuevo miembro del chat.
 
-### 404 No encontrado
+### 404 Not found
 
 Si esto ocurre al iniciar tu bot, entonces tu token de bot está equivocado.
 Habla con [@BotFather](https://t.me/BotFather) para ver cuál es tu token.
@@ -83,7 +50,7 @@ Habla con [@BotFather](https://t.me/BotFather) para ver cuál es tu token.
 Si tu bot funciona bien la mayor parte del tiempo, pero de repente te sale un 404, entonces estás haciendo algo muy raro.
 Puedes venir a preguntarnos en el chat del grupo.
 
-### 409 Conflicto: terminado por otra solicitud de getUpdates
+### 409 Conflict: terminated by other getUpdates request
 
 Accidentalmente estás ejecutando tu bot dos veces en un sondeo largo.
 Sólo puedes ejecutar una instancia de tu bot.
@@ -92,7 +59,7 @@ Si crees que sólo ejecutas tu bot una vez, puedes revocar el token del bot.
 Eso detendrá todas las demás instancias.
 Habla con [@BotFather](https://t.me/BotFather) para hacer esto.
 
-### 429: Demasiadas solicitudes: reintentar después de X
+### 429: Too Many Requests: retry after X
 
 Enhorabuena.
 Te has encontrado con un error que está entre los más difíciles de arreglar.
@@ -115,13 +82,21 @@ Hay algunas cosas que puedes hacer
 4. Ven a pedirnos ayuda en el chat del grupo. Tenemos gente experimentada allí.
 5. Es posible pedirle a Telegram que aumente los límites, pero es muy poco probable que esto ocurra si no hiciste los pasos 1-3 primero.
 
+### Cannot find type definition file for 'node-fetch'
+
+Esto es el resultado de algunas declaraciones de tipo que faltan.
+
+La forma recomendada de arreglar esto es establecer `skipLibCheck` a `true` en sus opciones de compilación de TypeScript.
+
+Si está seguro de que necesita mantener esta opción a `false`, puede instalar las definiciones de tipos que faltan ejecutando `npm i -D @types/node-fetch@2`.
+
 ## Preguntas sobre Deno
 
 ### ¿Por qué apoyan a Deno?
 
 Algunas razones importantes por las que nos gusta más Deno que Node.js:
 
-- Es más sencillo y rápido de empezar.
+- Es más sencillo y rápido para empezar.
 - Las herramientas son sustancialmente mejores.
 - Ejecuta TypeScript de forma nativa.
 - No es necesario mantener `package.json` o `node_modules`.
@@ -138,7 +113,7 @@ Dado que Deno es nuevo y su ecosistema es más pequeño, el número de lugares d
 
 Estos son algunos de los lugares donde puede alojar su aplicación Deno:
 
-1. [Trabajadores de Cloudflare](https://workers.dev)
+1. [Cloudflare Workers](https://workers.dev)
 2. [Deno Deploy](https://deno.com/deploy)
 3. [Heroku](https://dev.to/ms314006/deploy-your-deno-apps-to-heroku-375h)
 4. [Vercel](https://github.com/vercel-community/deno)
