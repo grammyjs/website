@@ -171,10 +171,12 @@ bot.api.config.use(hydrateApi());
 
 Este plugin actualmente hidrata
 
-- los mensajes y los mensajes del canal
-- los mensajes editados y los mensajes del canal editados
+- mensajes y mensajes del canal
+- mensajes editados y mensajes de canal editados
 - consultas de devolución de llamada
 - consultas en línea
+- resultados elegidos en línea
+- consultas de la aplicación web
 - consultas de precomprobación y envío
 
 Todos los objetos se hidratan en
