@@ -1,8 +1,30 @@
-# Teclados y teclados en línea (incorporados)
+# Inline y Custom Keyboards (incorporados)
 
-Tu bot puede enviar una serie de botones, ya sea para ser [mostrados debajo de un mensaje](#inline-keyboards), o para [reemplazar el teclado del usuario](#keyboards).
+Tu bot puede enviar una serie de botones, ya sea para ser [mostrados debajo de un mensaje](#inline-keyboards), o para [reemplazar el teclado del usuario](#custom-keyboards).
+Se denominan _inline keyboards_ y _custom keyboards_, respectivamente.
+Si crees que esto es confuso, es porque lo es.
+Gracias, Telegram, por este solapamiento terminológico.
 
-# Teclados en línea
+Vamos a intentar aclararlo un poco:
+
+| Término                                     | Definición                                                                                                                         |
+| ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| [**Inline Keyboard**](#inline-keyboards) | un conjunto de botones que se muestra debajo de un mensaje dentro del chat                                                            |
+| [**Custom Keyboard**](#custom-keyboards) | un conjunto de botones que se muestra en lugar del teclado del sistema del usuario                                                           |
+| **Inline Keyboard button**               | un botón en un teclado en línea, envía una consulta de devolución de llamada no visible para el usuario cuando se pulsa, a veces sólo se llama _inline button_ |
+| **Custom Keyboard button**               | un botón en un teclado, envía un mensaje de texto con su etiqueta cuando se pulsa, a veces sólo se llama _keyboard button_                  |
+| **`InlineKeyboard`**                     | class en grammY para crear teclados en línea                                                                                         |
+| **`Keyboard` (!)**                       | class en grammY para crear teclados personalizados                                                                                         |
+
+> Tenga en cuenta que tanto los botones de teclado personalizados como los botones de teclado en línea también pueden tener otras funciones, como solicitar la ubicación del usuario, abrir un sitio web, etc.
+> Esto se ha omitido por razones de brevedad.
+
+No es posible especificar tanto un teclado personalizado como un teclado en línea en el mismo mensaje.
+Ambos son mutuamente excluyentes.
+Además, el tipo de marcado de respuesta enviado no puede cambiarse posteriormente editando el mensaje.
+Por ejemplo, no es posible enviar primero un teclado personalizado junto con un mensaje, y luego editar el mensaje para utilizar un teclado en línea.
+
+# Inline Keyboards
 
 > Revisa la sección del teclado en línea en la [Introducción para Desarrolladores](https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating) escrita por el equipo de Telegram.
 
@@ -12,7 +34,7 @@ Proporciona una clase llamada `InlineKeyboard` para esto.
 > Tanto los botones `switchInline` como `switchInlineCurrent` inician consultas en línea.
 > Consulta la sección sobre [Inline Queries](/guide/inline-queries.md) para más información sobre su funcionamiento.
 
-### Construyendo un teclado en línea
+### Construyendo un Inline Keyboard
 
 Aquí hay tres ejemplos de cómo construir un teclado en línea con botones de `texto`.
 
@@ -70,7 +92,7 @@ const inlineKeyboard = new InlineKeyboard().url(
 
 ![Ejemplo 3](https://core.telegram.org/file/811140999/1/2JSoUVlWKa0/4fad2e2743dc8eda04)
 
-### Envío de un teclado en línea
+### Envío de un Inline Keyboard
 
 Puedes enviar un teclado en línea directamente a lo largo de un mensaje, sin importar si usas `bot.api.sendMessage`, `ctx.api.sendMessage`, o `ctx.reply`:
 
@@ -106,9 +128,7 @@ const inlineKeyboard = new InlineKeyboard().text("click", "click-payload");
 
 // Envía un teclado junto con un mensaje.
 bot.command("start", async (ctx) => {
-  await ctx.reply("¿Tienes curiosidad? Haz clic en mí.", {
-    reply_markup: inlineKeyboard,
-  });
+  await ctx.reply("¿Tienes curiosidad? Haz clic en mí.", { reply_markup: inlineKeyboard });
 });
 
 // Esperar eventos de clic con datos de devolución de llamada específicos.
@@ -126,10 +146,7 @@ bot.callbackQuery()`es útil para escuchar los eventos de clic de botones espec�
 bot.callbackQuery("click-payload" /* , ... */);
 
 bot.on("callback_query:data", async (ctx) => {
-  console.log(
-    "Evento de botón desconocido con payload",
-    ctx.callbackQuery.data,
-  );
+  console.log("Evento de botón desconocido con payload", ctx.callbackQuery.data);
   await ctx.answerCallbackQuery(); // eliminar la animación de carga
 });
 ```
@@ -138,7 +155,11 @@ Tiene sentido definir `bot.on('callback_query:data')` al final para responder si
 De lo contrario, algunos clientes pueden mostrar una animación de carga durante un minuto cuando un usuario pulsa un botón al que tu bot no quiere reaccionar.
 :::
 
-## Teclados
+## Custom Keyboards
+
+Lo primero es lo primero: los teclados a veces se llaman simplemente keyboards, a veces se llaman reply keyboards, e incluso la propia documentación de Telegram no es consistente a este respecto.
+Como simple regla general, cuando no es absolutamente obvio por el contexto y no se llama inline keyboard, probablemente es un custom keyboard.
+Esto se refiere a una forma de reemplazar el teclado del sistema por un conjunto de botones que puedes definir.
 
 > Revisa la sección de teclados en la [Introducción para Desarrolladores](https://core.telegram.org/bots#keyboards) escrita por el equipo de Telegram.
 
@@ -148,7 +169,7 @@ Proporciona una clase llamada `Keyboard` para esto.
 Una vez que el usuario hace clic en un botón de texto, tu bot recibirá el texto enviado como un mensaje de texto plano.
 Recuerda que puedes escuchar los mensajes de texto a través de `bot.on('message:text')`.
 
-### Construyendo un teclado
+### Construyendo un Custom Keyboard
 
 Aquí hay tres ejemplos de cómo construir un teclado con botones de `texto`.
 
@@ -205,7 +226,7 @@ const keyboard = new Keyboard()
 
 ![Ejemplo 3](https://core.telegram.org/file/811140733/2/KoysqJKQ_kI/a1ee46a377796c3961)
 
-### Envío de un teclado
+### Envío de un Custom Keyboard
 
 Puedes enviar un teclado directamente a lo largo de un mensaje, sin importar si usas `bot.api.sendMessage`, `ctx.api.sendMessage`, o `ctx.reply`:
 
@@ -221,7 +242,7 @@ Naturalmente, todos los demás métodos que envían mensajes que no sean de text
 Si quieres especificar más opciones con tu mensaje, puede que tengas que crear tu propio objeto `reply_markup`.
 En ese caso, tienes que usar `keyboard.build()` al pasarlo a tu objeto personalizado.
 
-#### Cambiar el tamaño del teclado
+#### Cambiar el tamaño del Custom Keyboard
 
 Puedes especificar la opción `resize_keyboard` si quieres que el teclado sea redimensionado de acuerdo a los botones que contiene.
 Esto hará que el teclado sea más pequeño.
@@ -236,7 +257,7 @@ await ctx.reply(text, {
 });
 ```
 
-#### Teclados de un solo uso
+#### Custom Keyboards de un solo uso
 
 Puede especificar la opción `one_time_keyboard` si desea que el teclado se oculte inmediatamente después de que se pulse el primer botón.
 
@@ -264,9 +285,9 @@ await ctx.reply(text, {
 });
 ```
 
-#### Enviar selectivamente el teclado
+#### Enviar selectivamente un Custom Keyboards
 
-Puedes especificar la opción `selectiva` si quieres mostrar el teclado sólo a aquellos usuarios que estén @-mencionados en el texto del objeto de mensaje, y al remitente del mensaje original en caso de que tu mensaje sea una respuesta.
+Puedes especificar la opción `selectiva` si quieres mostrar el teclado personalizado sólo a aquellos usuarios que sean @mencionados en el texto del objeto mensaje, y al remitente del mensaje original en caso de que tu mensaje sea una [respuesta](/guide/basics.html#sending-messages-with-reply).
 
 ```ts
 await ctx.reply(text, {
@@ -277,7 +298,19 @@ await ctx.reply(text, {
 });
 ```
 
-### Eliminación de un teclado
+### Respondiendo a los clics
+
+Como se mencionó anteriormente, todo lo que hacen los custom keyboards es enviar mensajes de texto normales.
+Tu bot no puede diferenciar entre los mensajes de texto ordinarios, y los mensajes de texto que fueron enviados al hacer clic en un botón.
+
+Además, los botones siempre enviarán exactamente el mensaje que está escrito en ellos.
+Telegram no te permite crear botones que muestren un texto, pero que envíen otro.
+Si necesitas hacer esto, deberías usar un [inline-keyboards](#inline-keyboards) en su lugar.
+
+Para manejar el clic de un botón específico, puedes usar `bot.hears` con el mismo texto que pusiste en el botón.
+Si quieres manejar todos los clics de los botones a la vez, utiliza `bot.on('message:text')` e inspecciona `ctx.msg.text` para averiguar qué botón se ha pulsado, o si se ha enviado un mensaje de texto ordinario.
+
+### Eliminación de un Custom Keyboard
 
 A menos que especifique `one_time_keyboard` como se describe
 (#one-time-keyboards), el teclado permanecerá abierto para el usuario (pero
@@ -295,7 +328,7 @@ await ctx.reply(text, {
 
 Junto a `remove_keyboard`, puede volver a establecer `selective: true` para
 eliminar el teclado sólo para los usuarios seleccionados. Esto funciona de forma análoga a
-[enviar selectivamente un teclado](#selectively-send-keyboard).
+[enviar selectivamente un custom keyboard](#selectively-send-keyboard).
 
 ## Resumen del plugin
 
