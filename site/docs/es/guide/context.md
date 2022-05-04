@@ -291,10 +291,7 @@ bot.start();
 
 ```ts
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
-import type {
-  Update,
-  UserFromGetMe,
-} from "https://cdn.skypack.dev/@grammyjs/types?dts";
+import type { Update, UserFromGetMe } from "https://esm.sh/@grammyjs/types";
 
 // Definir una clase de contexto personalizada.
 class MyContext extends Context {
