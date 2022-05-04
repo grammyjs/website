@@ -93,6 +93,8 @@ bot.start();
 </CodeGroupItem>
 </CodeGroup>
 
+> Asegúrese de instalar todos los menús antes de otros middleware, especialmente antes de los middleware que utilizan datos de consulta de devolución de llamada.
+
 Naturalmente, si está utilizando un tipo de contexto personalizado, puede pasarlo a `Menu` también.
 
 ```ts
