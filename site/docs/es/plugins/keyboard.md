@@ -8,7 +8,7 @@ Gracias, Telegram, por este solapamiento terminológico.
 Vamos a intentar aclararlo un poco:
 
 | Término                                     | Definición                                                                                                                         |
-| ---------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [**Inline Keyboard**](#inline-keyboards) | un conjunto de botones que se muestra debajo de un mensaje dentro del chat                                                            |
 | [**Custom Keyboard**](#custom-keyboards) | un conjunto de botones que se muestra en lugar del teclado del sistema del usuario                                                           |
 | **Inline Keyboard button**               | un botón en un inline keyboard, envía una consulta de devolución de llamada no visible para el usuario cuando se pulsa, a veces sólo se llama _inline button_ |
