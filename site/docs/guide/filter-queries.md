@@ -277,6 +277,39 @@ bot.on("message").filter(
 );
 ```
 
+### Reusing Filter Query Logic and Types
+
+Internally, `bot.on` relies on a function called `matchFilter`.
+It takes a filter query and compiles it down to a predicate function.
+The predicate is simply passed to `bot.filter` in order to filter for updates.
+
+You can import `matchFilter` directly if you want to use it in your own logic.
+For example, you can decide to drop all updates that match a certain query:
+
+```ts
+// Drop all text messages or text channel posts.
+bot.drop(matchFilter(":text"));
+```
+
+Analogously, the same thing works on the type level.
+
+Internally, `matchFilter` uses TypeScript's [type predicates](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates) to narrow down the type of `ctx`.
+It takes a type `C extends Context` and a `Q extends FilterQuery` and produces `ctx is Filter<C, Q>`.
+In other words, the `Filter` type is what you actually receive for your `ctx` in the middleware.
+
+You can import `Filter` directly if you want to use it in your own logic.
+For example, you can decide to define a handler function that handles specific context objects which were filtered by a filter query:
+
+```ts
+function handler(ctx: Filter<Context, ':text'>) {
+  // handle narrowed context object
+}
+
+bot.on(':text', handler)
+```
+
+> Check out the API references for [`matchFilter`](https://doc.deno.land/https://deno.land/x/grammy/filter.ts/~/matchFilter), [`Filter`](https://doc.deno.land/https://deno.land/x/grammy/filter.ts/~/Filter), and [`FilterQuery`](https://doc.deno.land/https://deno.land/x/grammy/filter.ts/~/FilterQuery) to read on.
+
 ## The Query Language
 
 > This section is meant for users who want to have a deeper understanding of filter queries in grammY, but it does not contain any knowledge required to create a bot.
@@ -319,3 +352,6 @@ These functions are then combined to form a predicate that only has to check for
 
 This system uses less operations than some competing libraries, which need to perform containment checks in arrays when routing updates.
 grammY's filter query system is much more powerful.
+
+```
+```
