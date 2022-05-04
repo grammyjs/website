@@ -301,11 +301,11 @@ You can import `Filter` directly if you want to use it in your own logic.
 For example, you can decide to define a handler function that handles specific context objects which were filtered by a filter query:
 
 ```ts
-function handler(ctx: Filter<Context, ':text'>) {
+function handler(ctx: Filter<Context, ":text">) {
   // handle narrowed context object
 }
 
-bot.on(':text', handler)
+bot.on(":text", handler);
 ```
 
 > Check out the API references for [`matchFilter`](https://doc.deno.land/https://deno.land/x/grammy/filter.ts/~/matchFilter), [`Filter`](https://doc.deno.land/https://deno.land/x/grammy/filter.ts/~/Filter), and [`FilterQuery`](https://doc.deno.land/https://deno.land/x/grammy/filter.ts/~/FilterQuery) to read on.
