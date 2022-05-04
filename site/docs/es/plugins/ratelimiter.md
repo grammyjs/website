@@ -1,6 +1,8 @@
 # Usuarios con límite de velocidad (`ratelimiter`)
 
-rateLimiter es un middleware de limitación de tasa para los bots de Telegram hechos con los frameworks de bots grammY o [Telegraf](https://github.com/telegraf/telegraf). En términos simples, es un plugin que te ayuda a desviar el spam pesado en tus bots. Para entender mejor rateLimiter, puedes echar un vistazo a la siguiente ilustración:
+rateLimiter es un middleware de limitación de tasa para los bots de Telegram hechos con los frameworks de bots grammY o [Telegraf](https://github.com/telegraf/telegraf).
+En términos simples, es un plugin que te ayuda a desviar el spam pesado en tus bots.
+Para entender mejor rateLimiter, puedes echar un vistazo a la siguiente ilustración:
 
 ![El papel de rateLimiter para desviar el spam](/rateLimiter-role.png)
 
@@ -24,9 +26,14 @@ Este plugin expone 5 opciones personalizables:
 
 ### Sobre `storageClient`
 
-El `MEMORY_STORE` o el seguimiento en memoria es adecuado para la mayoría de los bots, sin embargo si implementas el clustering para tu bot no podrás utilizar el almacenamiento en memoria de forma efectiva. Por eso también se proporciona la opción Redis. Puedes pasar un cliente Redis desde [ioredis](https://github.com/luin/ioredis) o [redis](https://deno.land/x/redis) en caso de que uses deno. En realidad, cualquier controlador de Redis que implemente los métodos `incr` y `pexpire` debería funcionar bien. rateLimiter es agnóstico al controlador.
+El `MEMORY_STORE` o el seguimiento en memoria es adecuado para la mayoría de los bots, sin embargo si implementas el clustering para tu bot no podrás utilizar el almacenamiento en memoria de forma efectiva.
+Por eso también se proporciona la opción Redis.
+Puedes pasar un cliente Redis desde [ioredis](https://github.com/luin/ioredis) o [redis](https://deno.land/x/redis) en caso de que uses deno.
+En realidad, cualquier controlador de Redis que implemente los métodos `incr` y `pexpire` debería funcionar bien.
+rateLimiter es agnóstico al controlador.
 
-> Nota: Debe tener redis-server **2.6.0** y superior en su servidor para utilizar el cliente de almacenamiento Redis con rateLimiter. Las versiones anteriores de Redis no son compatibles.
+> Nota: Debe tener redis-server **2.6.0** y superior en su servidor para utilizar el cliente de almacenamiento Redis con rateLimiter.
+> Las versiones anteriores de Redis no son compatibles.
 
 ## Cómo utilizarlo
 
@@ -37,7 +44,8 @@ Hay dos maneras de utilizar rateLimiter:
 
 ### Configuración por defecto
 
-El siguiente ejemplo utiliza [express](https://github.com/expressjs/express) como servidor web y [webhooks](https://grammy.dev/guide/deployment-types.html) para nuestro pequeño bot. Este snippet demuestra la forma más fácil de usar rateLimiter que es aceptar el comportamiento por defecto:
+El siguiente ejemplo utiliza [express](https://github.com/expressjs/express) como servidor web y [webhooks](https://grammy.dev/guide/deployment-types.html) para nuestro pequeño bot.
+Este snippet demuestra la forma más fácil de usar rateLimiter que es aceptar el comportamiento por defecto:
 
 ```ts
 import express from "express";
@@ -58,7 +66,8 @@ app.listen(3000, () => {
 
 ### Configuración manual
 
-Como se mencionó antes, puedes pasar un objeto `Options` al método `limit()` para alterar los comportamientos de rateLimiter. En el siguiente fragmento, he decidido utilizar Redis como opción de almacenamiento:
+Como se mencionó antes, puedes pasar un objeto `Options` al método `limit()` para alterar los comportamientos de rateLimiter.
+En el siguiente fragmento, he decidido utilizar Redis como opción de almacenamiento:
 
 ```ts
 import express from "express";
@@ -97,7 +106,9 @@ app.listen(3000, () => {
 });
 ```
 
-Como puedes ver en el ejemplo anterior, cada usuario puede enviar 3 peticiones cada 2 segundos. Si dicho usuario envía más peticiones, el bot responde con _Por favor, absténgase de enviar demasiadas peticiones_. Esa petición no viajará más y morirá inmediatamente ya que no llamamos a [next()](/guide/middleware.html#the-middleware-stack) en el middleware.
+Como puedes ver en el ejemplo anterior, cada usuario puede enviar 3 peticiones cada 2 segundos.
+Si dicho usuario envía más peticiones, el bot responde con _Por favor, absténgase de enviar demasiadas peticiones_.
+Esa petición no viajará más y morirá inmediatamente ya que no llamamos a [next()](/guide/middleware.html#the-middleware-stack) en el middleware.
 
 > Nota: Para evitar inundar los servidores de Telegram, `onLimitExceeded` sólo se ejecuta una vez en cada `timeFrame`.
 

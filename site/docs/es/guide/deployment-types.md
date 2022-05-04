@@ -235,7 +235,8 @@ Asegúrate de leer [Marvin's Marvellous Guide to All Things Webhook](https://cor
 ### Webhook Reply
 
 Cuando se recibe una solicitud de webhook, tu bot puede llamar hasta un método en la respuesta.
-Como ventaja, esto evita que tu bot tenga que hacer hasta una petición HTTP por actualización. Sin embargo, hay una serie de inconvenientes al utilizar esto:
+Como ventaja, esto evita que tu bot tenga que hacer hasta una petición HTTP por actualización.
+Sin embargo, hay una serie de inconvenientes al utilizar esto:
 
 1. No podrás manejar los posibles errores de la respectiva llamada a la API.
    Esto incluye los errores de limitación de velocidad, por lo que en realidad no tendrás la garantía de que tu petición tenga algún efecto.

@@ -33,7 +33,8 @@ que dará salida a cosas como esta:
 
 El `490af` es el `update_id`.
 
-El número que precede a los comandos es la longitud total del contenido. Esto es útil cuando se considera la longitud máxima para cosas como los datos de devolución de llamada.
+El número que precede a los comandos es la longitud total del contenido.
+Esto es útil cuando se considera la longitud máxima para cosas como los datos de devolución de llamada.
 
 El contenido en sí se acorta para evitar el spam de los registros.
 

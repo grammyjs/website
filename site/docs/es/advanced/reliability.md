@@ -147,7 +147,8 @@ El resto de esta sección se refiere a **cómo** se comporta grammY bajo estas c
 > ¿Sólo te interesa codificar un bot de Telegram? (/advanced/flood.md)
 
 Si estás ejecutando tu bot con webhooks, el servidor de la API del bot reintentará entregar actualizaciones a tu bot si no responde con OK a tiempo.
-Esto define el comportamiento del sistema de forma exhaustiva. Si necesitas evitar el procesamiento de actualizaciones duplicadas, deberás construir tu propia desduplicación basada en `update_id`.
+Esto define el comportamiento del sistema de forma exhaustiva.
+Si necesitas evitar el procesamiento de actualizaciones duplicadas, deberás construir tu propia desduplicación basada en `update_id`.
 grammY no hace esto por ti, pero siéntete libre de PR si crees que alguien más podría beneficiarse de esto.
 
 El long polling es más interesante.
