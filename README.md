@@ -40,4 +40,5 @@ You can also run
 npm run docs:fmt
 ```
 
-in the `site/` directory to perform the formatting if you don't have Deno installed.
+to perform the formatting.
+Note that you still need to have Deno installed.
