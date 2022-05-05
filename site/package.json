@@ -6,13 +6,15 @@
   "private": true,
   "scripts": {
     "docs:dev": "vuepress-vite dev docs",
-    "docs:build": "vuepress-vite build docs"
+    "docs:build": "vuepress-vite build docs",
+    "docs:fmt": "deno fmt"
   },
   "keywords": [],
   "author": "KnorpelSenf",
   "license": "MIT",
   "devDependencies": {
     "@vuepress/plugin-docsearch": "^2.0.0-beta.27",
+    "deno-bin": ">=1.21.1",
     "typescript": "^4.5.2",
     "vuepress-vite": "^2.0.0-beta.27"
   }
