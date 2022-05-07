@@ -521,7 +521,7 @@ import {
   session,
   SessionFlavor,
 } from "https://deno.land/x/grammy/mod.ts";
-import { freeStorage } from "https://deno.land/x/grammy_storage_free/mod.ts";
+import { freeStorage } from "https://deno.land/x/grammy_storages@v2.0.0/free/src/mod.ts";
 
 // Define the session structure.
 interface SessionData {

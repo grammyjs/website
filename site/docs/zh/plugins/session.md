@@ -399,7 +399,7 @@ bot.use(session({
 
 使用 grammY 的一个好处是你可以使用免费的云存储。
 它不需要任何配置，所有的认证都是痛使用你的 bot token 完成的。
-查看 [这个仓库](https://github.com/grammyjs/storage-free)！
+查看 [这个仓库](https://github.com/grammyjs/storages/tree/main/packages/free)！
 
 它非常容易使用：
 
@@ -431,7 +431,7 @@ bot.use(session({
 <CodeGroupItem title="Deno">
 
 ```ts
-import { freeStorage } from "https://deno.land/x/grammy_storage_free/mod.ts";
+import { freeStorage } from "https://deno.land/x/grammy_storages@v2.0.0/free/src/mod.ts";
 
 bot.use(session({
   initial: ...
@@ -513,7 +513,7 @@ import {
   session,
   SessionFlavor,
 } from "https://deno.land/x/grammy/mod.ts";
-import { freeStorage } from "https://deno.land/x/grammy_storage_free/mod.ts";
+import { freeStorage } from "https://deno.land/x/grammy_storages@v2.0.0/free/src/mod.ts";
 
 // 定义会话结构。
 interface SessionData {
@@ -548,9 +548,9 @@ bot.start();
 它们中的每一个都需要你在托管提供商处注册，或者托管你自己的存储解决方案。
 请查看各自的仓库，了解不同适配器的设置。
 
-- Supabase: <https://github.com/grammyjs/storage-supabase>
-- Deta.sh Base: <https://github.com/grammyjs/storage-deta>
-- Google Firestore (Node.js-only): <https://github.com/grammyjs/storage-firestore>
+- Supabase: <https://github.com/grammyjs/storages/tree/main/packages/supabase>
+- Deta.sh Base: <https://github.com/grammyjs/storages/tree/main/packages/deta>
+- Google Firestore (Node.js-only): <https://github.com/grammyjs/storages/tree/main/packages/firestore>
 - Files: <https://github.com/grammyjs/storages/tree/main/packages/file>
 - MongoDB: <https://github.com/grammyjs/storages/tree/main/packages/mongodb>
 - Redis: <https://github.com/grammyjs/storages/tree/main/packages/redis>
