@@ -407,7 +407,7 @@ bot.use(session({
 
 A benefit of using grammY is that you get access to free cloud storage.
 It requires zero setup—all authentication is done using your bot token.
-Check out [the repository](https://github.com/grammyjs/storage-free)!
+Check out [the repository](https://github.com/grammyjs/storages/tree/main/packages/free)!
 
 It is very easy to use:
 
@@ -439,7 +439,7 @@ bot.use(session({
 <CodeGroupItem title="Deno">
 
 ```ts
-import { freeStorage } from "https://deno.land/x/grammy_storage_free/mod.ts";
+import { freeStorage } from "https://deno.land/x/grammy_storages@v2.0.0/free/src/mod.ts";
 
 bot.use(session({
   initial: ...
@@ -521,7 +521,7 @@ import {
   session,
   SessionFlavor,
 } from "https://deno.land/x/grammy/mod.ts";
-import { freeStorage } from "https://deno.land/x/grammy_storage_free/mod.ts";
+import { freeStorage } from "https://deno.land/x/grammy_storages@v2.0.0/free/src/mod.ts";
 
 // Define the session structure.
 interface SessionData {
@@ -556,14 +556,15 @@ We maintain a list of official storage adapters that allow you to store your ses
 Each of them will require you to register at a hosting provider, or to host your own storage solution.
 Check out the respective repositories about each individual setup.
 
-- Supabase: <https://github.com/grammyjs/storage-supabase>
-- Deta.sh Base: <https://github.com/grammyjs/storage-deta>
-- Google Firestore (Node.js-only): <https://github.com/grammyjs/storage-firestore>
+- Supabase: <https://github.com/grammyjs/storages/tree/main/packages/supabase>
+- Deta.sh Base: <https://github.com/grammyjs/storages/tree/main/packages/deta>
+- Google Firestore (Node.js-only): <https://github.com/grammyjs/storages/tree/main/packages/firestore>
 - Files: <https://github.com/grammyjs/storages/tree/main/packages/file>
 - MongoDB: <https://github.com/grammyjs/storages/tree/main/packages/mongodb>
 - Redis: <https://github.com/grammyjs/storages/tree/main/packages/redis>
 - PostgreSQL: <https://github.com/grammyjs/storages/tree/main/packages/psql>
 - TypeORM (Node.js-only): <https://github.com/grammyjs/storages/tree/main/packages/typeorm>
+- DenoDB (Deno-only): <https://github.com/grammyjs/storages/tree/main/packages/denodb>
 
 ::: tip Your storage is not supported? No problem!
 Creating a custom storage adapter is extremely simple.
