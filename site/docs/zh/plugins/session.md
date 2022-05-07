@@ -556,6 +556,7 @@ bot.start();
 - Redis: <https://github.com/grammyjs/storages/tree/main/packages/redis>
 - PostgreSQL: <https://github.com/grammyjs/storages/tree/main/packages/psql>
 - TypeORM (Node.js-only): <https://github.com/grammyjs/storages/tree/main/packages/typeorm>
+- DenoDB (Deno-only): <https://github.com/grammyjs/storages/tree/main/packages/denodb>
 
 ## 插件概述
 
