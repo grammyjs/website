@@ -150,7 +150,7 @@ bot.start();
 </CodeGroupItem>
 </CodeGroup>
 
-Note how we also have to [adjust the context type](/guide/context.md#customising-the-context-object) to make the session available on it.
+Note how we also have to [adjust the context type](/guide/context.md#customizing-the-context-object) to make the session available on it.
 The context flavor is called `SessionFlavor`.
 
 ### Initial Session Data
