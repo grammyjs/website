@@ -116,7 +116,7 @@ File handling is explained in greater depth in [a later section](./files.md#send
 
 > This can be useful if your bot is running in [privacy mode](https://core.telegram.org/bots#privacy-mode) in group chats.
 
-When you send a message, you can make the user's Telegram client automatically specifies the message as reply.
+When you send a message, you can make the user's Telegram client automatically specify the message as reply.
 That means that the user will reply to your bot's message automatically (unless they remove the reply manually).
 As a result, your bot will receive the user's message even when running in [privacy mode](https://core.telegram.org/bots#privacy-mode) in group chats.
 
