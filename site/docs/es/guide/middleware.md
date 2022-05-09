@@ -6,7 +6,7 @@ next: ./errors.md
 # Middleware
 
 Las funciones de escucha que se pasan a `bot.on()`, `bot.command()`, y sus hermanos, se llaman _middleware_.
-Aunque no es incorrecto decir que están escuchando las actualizaciones, llamarlos "listeners" es una simplificación.
+Aunque no es incorrecto decir que están escuchando las actualizaciones, llamarlos "oyentes" es una simplificación.
 
 > Esta sección explica qué es el middleware, y utiliza grammY como ejemplo para ilustrar cómo se puede utilizar.
 > Si buscas documentación específica sobre lo que hace especial a la implementación de middleware de grammY, revisa [Middleware Redux](/advanced/middleware.md) en la sección avanzada de la documentación.
@@ -84,7 +84,7 @@ Este stack de funciones es la _middleware stack_.
 (ctx, next) => ...    |
 ```
 
-Volviendo a nuestro ejemplo anterior, ahora sabemos por qué `bot.on(":photo")` ni siquiera se comprobó: el middleware en `bot.(":text", (ctx) => { ... })` ya se encargó de la actualización, y no llamó a `next`.
+Volviendo a nuestro ejemplo anterior, ahora sabemos por qué `bot.on(":photo")` ni siquiera se comprobó: el middleware en `bot.on(":text", (ctx) => { ... })` ya se encargó de la actualización, y no llamó a `next`.
 De hecho, ni siquiera especificó "next" como parámetro.
 Simplemente ha ignorado `next`, por lo que no ha pasado la actualización.
 
@@ -104,7 +104,7 @@ Vamos a inspeccionar lo que sucede:
 
 1. Envías `'/start'` al bot.
 2. El middleware `':text'` recibe la actualización y comprueba si hay texto, lo cual tiene éxito porque los comandos son mensajes de texto.
-   La actualización es manejada inmediatamente por el primer middleware y tu bot responde con "¡Texto!".
+   La actualización es manejada inmediatamente por el primer middleware y su bot responde con "¡Texto!".
 
 ¡El mensaje ni siquiera se comprueba si contiene el comando `/start`!
 El orden en el que registras tu middleware importa, porque determina el orden de las capas en la pila de middleware.
@@ -125,6 +125,9 @@ Ilustraremos el concepto de middleware escribiendo una simple función de middle
 Aquí está la firma de la función para nuestro middleware.
 Puedes compararla con el tipo de middleware de arriba, y convencerte de que realmente tenemos un middleware aquí.
 
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
+
 ```ts
 /** Mide el tiempo de respuesta del bot, y lo registra en el `console` */
 async function responseTime(
@@ -134,6 +137,19 @@ async function responseTime(
   // TODO: implementar
 }
 ```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+/** Mide el tiempo de respuesta del bot, y lo registra en el `console` */
+async function responseTime(ctx, next) {
+  // TODO: implementar
+}
+```
+
+</CodeGroupItem>
+</CodeGroup>
 
 Podemos instalarlo en nuestra instancia `bot` con `bot.use()`:
 
@@ -150,6 +166,9 @@ Esto es lo que queremos hacer:
 3. Tomamos `Date.now()` de nuevo, lo comparamos con el valor anterior, y `console.log` la diferencia de tiempo.
 
 Es importante instalar nuestro middleware `responseTime` _primero_ en el bot (en la parte superior de la pila de middleware) para asegurarse de que todas las operaciones se incluyen en la medición.
+
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
 
 ```ts
 /** Mide el tiempo de respuesta del bot, y lo registra en el `console` */
@@ -169,6 +188,27 @@ async function responseTime(
 
 bot.use(responseTime);
 ```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+/** Mide el tiempo de respuesta del bot, y lo registra en el `console` */
+async function responseTime(ctx, next) {
+  // tomar el tiempo antes
+  const before = Date.now(); // milliseconds
+  // invocar downstream middleware
+  await next(); // ¡asegúrate de `await`!
+  // tomar el tiempo despues
+  const after = Date.now(); // milliseconds
+  // registrar la diferencia
+  console.log(`Response time: ${after - before} ms`);
+}
+bot.use(responseTime);
+```
+
+</CodeGroupItem>
+</CodeGroup>
 
 Completo, ¡y funciona! :heavy_check_mark:
 
