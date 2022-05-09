@@ -34,8 +34,9 @@ Puede reutilizar el mismo `file_id` tantas veces como quiera, por lo que podría
 Sin embargo, debes asegurarte de utilizar el método correcto-por ejemplo, no puedes utilizar un `file_id` que identifique una foto al llamar a [`sendVideo`](https://core.telegram.org/bots/api#sendvideo).
 
 Cada bot tiene su propio conjunto de `file_id` para los archivos a los que puede acceder.
-No puedes usar de forma fiable un `file_id` del bot de tu amigo, para acceder a un archivo con _tu_ bot. Cada bot utilizará diferentes identificadores para el mismo archivo.
-Esto implica que no puedes simplemente adivinar un `file_id` y acceder al archivo de alguna persona al azar, porque Telegram mantiene un registro de qué `file_id`s son válidos para tu bot.
+No puedes usar de forma fiable un `file_id` del bot de tu amigo, para acceder a un archivo con _tu_ bot.
+Cada bot utilizará diferentes identificadores para el mismo archivo.
+Esto implica que no puedes simplemente adivinar un `file_id` y acceder a un archivo de una persona al azar, porque Telegram mantiene un registro de qué `file_id` son válidos para tu bot.
 
 ::: warning Uso de file_ids extranjeros
 Ten en cuenta que en algunos casos _es_ técnicamente posible que un `file_id` de otro bot parezca funcionar correctamente.
@@ -95,18 +96,29 @@ Los bots de Telegram tienen [tres formas](https://core.telegram.org/bots/api#sen
 2. Vía URL, es decir, pasando una URL de archivo pública, que Telegram descarga y envía por ti.
 3. Mediante la subida de tu propio archivo.
 
+En todos los casos, los métodos a los que hay que llamar tienen el mismo nombre.
+Dependiendo de cuál de las tres formas elija para enviar su archivo, los parámetros de estas funciones variarán.
+Por ejemplo, para enviar una foto, puedes utilizar `ctx.replyWithPhoto` (o `sendPhoto` si utilizas `ctx.api` o `bot.api`).
+
+Puedes enviar otros tipos de archivos simplemente cambiando el nombre del método y el tipo de datos que le pasas.
+Para enviar un vídeo, puedes utilizar `ctx.replyWithVideo`.
+Es el mismo caso para un documento: `ctx.replyWithDocument`.
+Ya te haces una idea.
+
+Vamos a profundizar en cuáles son las tres formas de enviar un archivo.
+
 ### Mediante `file_id` o URL
 
 Los dos primeros métodos son sencillos: sólo tienes que pasar el valor respectivo como una `cadena`, y ya está.
 
 ```ts
-// Envío a través de file_id
+// Enviar a través de file_id.
 await ctx.replyWithPhoto(existingFileId);
 
-// Envío vía URL
+// Enviar a través de URL.
 await ctx.replyWithPhoto("https://grammy.dev/Y.png");
 
-// alternativamente, utilizar bot.api.sendPhoto() o ctx.api.sendPhoto()
+// Alternativamente, se utiliza bot.api.sendPhoto() o ctx.api.sendPhoto().
 ```
 
 ### Cómo subir tus propios archivos
@@ -128,24 +140,50 @@ Las instancias de `InputFile` se pueden pasar a todos los métodos que aceptan e
 
 Así es como puedes construir `InputFile`s.
 
+#### Cargar un archivo desde el disco
+
+Si ya tiene un archivo almacenado en su máquina, puede dejar que grammY cargue este archivo.
+
 <CodeGroup>
   <CodeGroupItem title="Node.js" active>
 
 ```ts
-import { createReadStream } from "fs";
-import { URL } from "url";
+import { createReadStream } de "fs";
 
 // Enviar un archivo local.
-new InputFile("/path/to/file");
-// Descargar un archivo, y transmitir la respuesta a Telegram.
-new InputFile(new URL("https://grammy.dev/Y.png"));
-new InputFile({ url: "https://grammy.dev/Y.png" }); // equivalente
+new InputFile("/ruta/a/archivo");
 
-// Enviar buffers y arrays de bytes.
+// Enviar desde un flujo de lectura.
+new InputFile(createReadStream("/ruta/a/archivo"));
+```
+
+</CodeGroupItem>
+  <CodeGroupItem title="Deno">
+
+```ts
+// Enviar un archivo local.
+new InputFile("/ruta/a/archivo");
+
+// Enviar una instancia `Deno.FsFile`.
+new InputFile(await Deno.open("/ruta/a/archivo"));
+```
+
+  </CodeGroupItem>
+</CodeGroup>
+
+#### Carga de datos binarios sin procesar
+
+También se puede enviar un objeto `Buffer`, o un iterador que produzca objetos `Buffer`.
+En Deno, también se pueden enviar objetos `Blob`.
+
+<CodeGroup>
+  <CodeGroupItem title="Node.js" active>
+
+```ts
+// Enviar un buffer o un array de bytes.
 const buffer = Uint8Array.from([65, 66, 67]);
 new InputFile(buffer); // "ABC"
-// Enviar streams e iterables.
-new InputFile(createReadStream("/path/to/file"));
+// Enviar un iterable.
 new InputFile(function* () {
   // "ABCABCABCABC"
   for (let i = 0; i < 4; i++) yield buffer;
@@ -156,31 +194,68 @@ new InputFile(function* () {
   <CodeGroupItem title="Deno">
 
 ```ts
-// Enviar un archivo local.
-new InputFile("/path/to/file");
-new InputFile(Deno.open("/path/to/file"));
-// Descargar un archivo, y transmitir la respuesta a Telegram.
-new InputFile(new URL("https://grammy.dev/Y.png"));
-new InputFile({ url: "https://grammy.dev/Y.png" }); // equivalente
-
-// Enviar blobs.
+// Enviar un blob.
 const blob = new Blob("ABC", { type: "text/plain" });
 new InputFile(blob);
-// Enviar buffers y arrays de bytes.
+// Enviar un buffer o un array de bytes.
 const buffer = Uint8Array.from([65, 66, 67]);
 new InputFile(buffer); // "ABC"
-// Enviar streams e iterables.
-new InputFile(await Deno.open("/path/to/file"));
+// Enviar un iterable.
 new InputFile(function* () {
   // "ABCABCABCABC"
   for (let i = 0; i < 4; i++) yield buffer;
 });
 ```
 
-Tenga en cuenta que también puede pasar una `promesa` de cualquiera de los valores a `InputFile`.
+  </CodeGroupItem>
+</CodeGroup>
+
+#### Descargar y volver a cargar un archivo
+
+Puedes hacer que grammY descargue un archivo de Internet.
+Esto no guardará el archivo en tu disco.
+En su lugar, grammY sólo canalizará los datos, y sólo mantendrá una pequeña parte de ellos en la memoria.
+Esto es muy eficiente.
+
+> Ten en cuenta que Telegram soporta la descarga del archivo por ti en muchos métodos.
+> Si es posible, deberías preferir [enviar el archivo vía URL](#vía-id-archivo-o-url), en lugar de usar `InputFile` para transmitir el contenido del archivo a través de tu servidor.
+
+<CodeGroup>
+  <CodeGroupItem title="Node.js" active>
+
+```ts
+import { URL } from "url";
+
+// Descarga un archivo, y transmite la respuesta a Telegram.
+new InputFile(new URL("https://grammy.dev/Y.png"));
+new InputFile({ url: "https://grammy.dev/Y.png" }); // equivalente
+```
+
+</CodeGroupItem>
+  <CodeGroupItem title="Deno">
+
+```ts
+// Descargar un archivo, y transmitir la respuesta a Telegram.
+new InputFile(new URL("https://grammy.dev/Y.png"));
+new InputFile({ url: "https://grammy.dev/Y.png" }); // equivalente
+```
 
 </CodeGroupItem>
 </CodeGroup>
+
+### Añadir un título
+
+Cuando se envían archivos, se pueden especificar más opciones en un objeto de opciones de tipo `Other`, exactamente como se explicó [anteriormente](./basics.md#sending-messages).
+Por ejemplo, esto le permite enviar subtítulos.
+
+```ts
+// Enviar una foto desde un archivo local al usuario 1235 con el título "foto.jpg".
+await bot.api.sendPhoto(12345, new InputFile("/ruta/a/foto.jpg"), {
+  título: "foto.jpg",
+});
+```
+
+Como siempre, al igual que con el resto de métodos de la API, puedes enviar archivos a través de `ctx` (lo más fácil), `ctx.api`, o `bot.api`.
 
 ## Límites de tamaño de los archivos
 
