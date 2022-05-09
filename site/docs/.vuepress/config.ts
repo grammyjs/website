@@ -329,8 +329,22 @@ export default defineUserConfig({
                   },
                 ],
               },
+            ],
+          },
+          {
+            text: "Hosting",
+            children: [
               {
-                text: "Hosting",
+                text: "Overview",
+                children: [
+                  {
+                    text: "Comparison",
+                    link: "/hosting/comparison.md",
+                  },
+                ],
+              },
+              {
+                text: "Tutorials",
                 children: [
                   {
                     text: "Deno Deploy",
