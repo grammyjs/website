@@ -14,7 +14,7 @@ Es igual que las demás plataformas sin servidor, pero dedicado a las aplicacion
 2. Crea un archivo llamado `mod.ts` o `mod.js`, o en realidad cualquier nombre que te guste (pero deberías recordar y usar este como el archivo principal para desplegar), con el siguiente contenido:
 
 ```ts
-import { Bot, webhookCallback } from "https://deno.land/x/grammy/mod.ts";
+import { webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 // Puedes modificar esto a la forma correcta de importar tu objeto `Bot`.
 import bot from "./bot.ts";
 
