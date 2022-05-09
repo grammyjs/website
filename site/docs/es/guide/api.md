@@ -58,7 +58,7 @@ Estrictamente hablando, todos los métodos de la API del Bot esperan un objeto J
 Fíjate, sin embargo, en que `sendMessage` en el ejemplo anterior recibe dos argumentos, un identificador de chat y una cadena.
 grammY sabe que estos dos valores pertenecen a la propiedad `chat_id` y `text`, respectivamente, y construirá el objeto JSON correcto para ti.
 
-Si quieres especificar otras opciones, lo haces en el tercer argumento:
+Como se mencionó [anteriormente](./basics.md#sending-messages), puede especificar otras opciones en el tercer argumento de tipo `Other`:
 
 ```ts
 async function sendHelloTo12345() {
@@ -89,3 +89,5 @@ async function sendHelloTo12345() {
   });
 }
 ```
+
+Básicamente, todos los parámetros de la firma de la función se fusionan con el objeto de opciones cuando se utiliza la API en bruto.
