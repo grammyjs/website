@@ -15,7 +15,7 @@ features:
     details: grammY es abierto y puede extenderse con plugins para adaptarse a tus necesidades.
   - title: Escalable
     details: grammY te tiene cubierto cuando tu bot se vuelve popular y el tráfico se incrementa.
-footer: Copyright © 2021
+footer: Copyright © 2021-2022
 permalink: /
 ---
 
@@ -25,7 +25,7 @@ permalink: /
   'se ejecuta más rápido que tú',
   'una actualización por delante',
   'puede hacer todo menos lavar los platos',
-  'fácil de exprimir',
+  'fácil de exprimir limones',
   'cientos de millones de peticiones',
 ][Math.floor(Math.random() * 7)] }}.</h6>
 
@@ -43,7 +43,7 @@ import { Bot } from "grammy";
 
 const bot = new Bot(""); // <-- Pon el token del bot aquí (https://t.me/BotFather)
 
-// Responde a cualquier mensaje con "Reply to any message with "Hola a todos!".
+// Responde a cualquier mensaje con "¡Hola a todos!".
 bot.on("message", (ctx) => ctx.reply("Hola a todos!"));
 
 bot.start();
@@ -57,7 +57,7 @@ const { Bot } = require("grammy");
 
 const bot = new Bot(""); // <-- Pon el token del bot aquí (https://t.me/BotFather)
 
-// Responde a cualquier mensaje con "Reply to any message with "Hola a todos!".
+// Responde a cualquier mensaje con "¡Hola a todos!".
 bot.on("message", (ctx) => ctx.reply("Hola a todos!"));
 
 bot.start();
@@ -71,7 +71,7 @@ import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
 const bot = new Bot(""); // <-- Pon el token del bot aquí (https://t.me/BotFather)
 
-// Responde a cualquier mensaje con "Reply to any message with "Hola a todos!".
+// Responde a cualquier mensaje con "¡Hola a todos!".
 bot.on("message", (ctx) => ctx.reply("Hola a todos!"));
 
 bot.start();
@@ -84,5 +84,5 @@ bot.start();
 
 ---
 
-grammY soporta el API de Telegram 5.5 que fue [lanzado](https://core.telegram.org/bots/api#november-5-2021) el 8 de Diciembre del 2021.
-(Lo más destacado: Solicitudes de adhesión)
+grammY es compatible con la API 6.0 de Telegram Bot que fue [lanzada](https://core.telegram.org/bots/api#april-16-2022) el 16 de abril de 2022.
+(Último punto destacado: Web Apps)
