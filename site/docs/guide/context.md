@@ -164,7 +164,7 @@ Contexts for different updates are completely unrelated objects, they only refer
 
 The same context object for one update will be shared by all installed middleware ([docs](./middleware.md)) on the bot.
 
-## Customising the Context Object
+## Customizing the Context Object
 
 > If you are new to context objects, you don't need to worry about the rest of this page.
 
