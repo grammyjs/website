@@ -275,6 +275,40 @@ bot.on("message").filter(
 );
 ```
 
+### 复用过滤查询逻辑
+
+在内部，`bot.on` 依赖于一个名为 `matchFilter` 的函数。
+它接受一个过滤查询并编译成一个判断函数。
+这个判断函数被简单地传递给 `bot.filter`，用于过滤 updates。
+
+如果你想在你自己的逻辑中使用 `matchFilter`，你可以直接导入它。
+例如，你可以决定丢弃所有匹配某个查询的 updates：
+
+```ts
+// 丢弃所有文本消息或文本频道帖子。
+bot.drop(matchFilter(":text"));
+```
+
+类似地，你可以使用 grammY 内部的过滤查询类型：
+
+### 复用过滤查询类型
+
+在内部，`matchFilter` 使用 TypeScript 的 [类型预先定义](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates) 来缩小 `ctx` 的类型。
+它接受一个 `C extends Context` 类型和一个 `Q extends FilterQuery`类型，并生成 `ctx is Filter<C, Q>`。
+换句话说，`Filter` 类型是你在中间件中接收到的 `ctx` 的类型。
+
+如果你想在你自己的逻辑中使用 `Filter`，你可以直接导入它。
+例如，你可以定义一个处理函数，处理被过滤查询筛选的特定上下文对象：
+
+```ts
+function handler(ctx: Filter<Context, ":text">) {
+  // 处理缩小的上下文对象
+}
+bot.on(":text", handler);
+```
+
+> 查看并阅读更多 [`matchFilter`](https://doc.deno.land/https://deno.land/x/grammy/filter.ts/~/matchFilter)，[`Filter`](https://doc.deno.land/https://deno.land/x/grammy/filter.ts/~/Filter) 和 [`FilterQuery`](https://doc.deno.land/https://deno.land/x/grammy/filter.ts/~/FilterQuery) 的 API 参考。
+
 ## 查询语言
 
 > 本节是为那些想对 grammY 中的 filter 查询有更深入了解的用户准备的，它不包含创建 bot 所需的任何知识。
