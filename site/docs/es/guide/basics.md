@@ -34,11 +34,13 @@ Puedes utilizar la función de autocompletar en tu editor de código para ver to
 
 ## Envío de mensajes
 
-[Todos los métodos que los bots pueden utilizar](https://core.telegram.org/bots/api#available-methods) están disponibles en el objeto `bot.api`.
+Todos los métodos que los bots pueden utilizar (**[lista importante](https://core.telegram.org/bots/api#available-methods)**) están disponibles en el objeto `bot.api`.
 
 ```ts
 // Enviar un mensaje de texto al usuario 12345.
 await bot.api.sendMessage(12345, "Hi!");
+// Opcionalmente, puedes pasar un objeto de opciones.
+await bot.api.sendMessage(12345, "Hi!", {/* más opciones */});
 
 // Obtener información sobre el propio bot.
 const me = await bot.api.getMe();
@@ -46,9 +48,12 @@ const me = await bot.api.getMe();
 // etc
 ```
 
-Puedes utilizar el autocompletado en tu editor de código para ver todas las opciones disponibles, o consultar [todos los métodos](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Api) de la clase `Api`.
+Cada método toma un objeto opcional de opciones de tipo `Other`, que le permite establecer otras opciones para sus llamadas a la API.
+Estos objetos de opciones se corresponden exactamente con las opciones que puedes encontrar en la lista de métodos enlazada anteriormente.
+También puedes utilizar el autocompletado en tu editor de código para ver todas las opciones disponibles, o consultar [todos los métodos](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Api) de la clase `Api`.
+El resto de esta página muestra algunos ejemplos para esto.
 
-Consulta la [siguiente sección](./context.md) para aprender cómo el objeto context de un listener hace que el envío de mensajes sea un juego de niños.
+También, revisa la [siguiente sección](./context.md) para aprender cómo el objeto context de un listener hace que el envío de mensajes sea un juego de niños.
 
 ## Enviando Mensajes con Respuesta
 
@@ -102,6 +107,10 @@ await bot.api.sendMessage(
   { parse_mode: "HTML" },
 );
 ```
+
+## Envío de archivos
+
+El manejo de archivos se explica con mayor profundidad en [una sección posterior] (./files.md#sending-files).
 
 ## Forzar respuesta
 
