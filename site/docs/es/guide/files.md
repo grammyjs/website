@@ -168,7 +168,7 @@ new InputFile("/ruta/a/archivo");
 new InputFile(await Deno.open("/ruta/a/archivo"));
 ```
 
-  </CodeGroupItem>
+</CodeGroupItem>
 </CodeGroup>
 
 #### Carga de datos binarios sin procesar
@@ -207,7 +207,7 @@ new InputFile(function* () {
 });
 ```
 
-  </CodeGroupItem>
+</CodeGroupItem>
 </CodeGroup>
 
 #### Descargar y volver a cargar un archivo
