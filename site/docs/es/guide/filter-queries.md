@@ -201,6 +201,128 @@ bot
 La inferencia de tipo de `ctx` recorrerá toda la cadena de llamadas e inspeccionará cada elemento de las tres llamadas a `.on`.
 Como ejemplo, puede detectar que `ctx.msg.text` es una propiedad necesaria para el fragmento de código anterior.
 
+## Consejos útiles
+
+Aquí hay algunas características menos conocidas de las consultas de filtro que pueden ser útiles.
+Algunas de ellas son un poco avanzadas, así que no dudes en pasar a [la siguiente sección](./commands.md).
+
+### Actualizaciones de los miembros del chat
+
+Puedes utilizar la siguiente consulta de filtro para recibir actualizaciones de estado sobre tu bot.
+
+```ts
+bot.on("mi_miembro_del_chat"); // iniciar, detener, unirse o abandonar
+```
+
+En los chats privados, esto se activa cuando el bot se inicia o se detiene.
+En los grupos, esto se dispara cuando el bot es añadido o eliminado.
+Ahora puedes inspeccionar `ctx.myChatMember` para saber qué ha pasado exactamente.
+
+Esto no debe confundirse con
+
+```ts
+bot.on("chat_member");
+```
+
+que se puede utilizar para detectar los cambios de estado de otros miembros del chat, como cuando la gente se une, es promovida, etc.
+
+> Ten en cuenta que las actualizaciones de `chat_member` deben ser habilitadas explícitamente especificando `allowed_updates` al iniciar tu bot.
+
+### Combinación de consultas con otros métodos
+
+Puedes combinar consultas de filtro con otros métodos de la clase `Composer` ([Referencia de la API](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer)), como `command` o `filter`.
+Esto permite crear potentes patrones de manejo de mensajes.
+
+```ts
+bot.on(":forward_date").command("help"); // comandos /help reenviados
+
+// Solo maneja comandos en chats privados.
+const pm = bot.filter((ctx) => ctx.chat?.type === "private");
+pm.command("start");
+pm.command("help");
+```
+
+### Filtrado por tipo de remitente del mensaje
+
+Hay cinco tipos diferentes de autores de mensajes en Telegram:
+
+1. Autores de mensajes del canal
+2. Reenvíos automáticos desde canales vinculados en grupos de discusión
+3. Cuentas de usuarios normales, esto incluye a los bots (es decir, mensajes "normales")
+4. Administradores que envían en nombre del grupo ([administradores anónimos](https://telegram.org/blog/filters-anonymous-admins-comments#anonymous-group-admins))
+5. Usuarios que envían mensajes como uno de sus canales
+
+Puedes combinar las consultas de filtro con otros mecanismos de gestión de actualizaciones para averiguar el tipo de autor del mensaje.
+
+```ts
+// Mensajes del canal enviados por `ctx.senderChat`
+bot.on("channel_post");
+
+// Reenvío automático desde el canal `ctx.senderChat`:
+bot.on("message:is_automatic_forward");
+// Mensajes regulares enviados por `ctx.from`
+bot.on("mensaje").filter((ctx) => ctx.senderChat === undefined);
+// Administrador anónimo en `ctx.chat`
+bot.on("message").filter((ctx) => ctx.senderChat?.id === ctx.chat.id);
+// Usuarios que envían mensajes en nombre de su canal `ctx.senderChat`
+bot.on("message").filter((ctx) =>
+  ctx.senderChat !== undefined && ctx.senderChat.id !== ctx.chat.id
+);
+```
+
+### Filtrado por propiedades del usuario
+
+Si quieres filtrar por otras propiedades de un usuario, tienes que realizar una petición adicional, por ejemplo `await ctx.getAuthor()` para el autor del mensaje.
+Las consultas de filtrado no realizarán secretamente otras peticiones a la API por ti.
+Sigue siendo sencillo realizar este tipo de filtrado:
+
+```ts
+bot.on("mensaje").filter(
+  async (ctx) => {
+    const user = await ctx.getAuthor();
+    return user.status === "creador" | user.status === "administrador";
+  },
+  (ctx) => {
+    // Maneja los mensajes de los creadores y administradores.
+  },
+);
+```
+
+### Reutilización de la lógica de consulta del filtro
+
+Internamente, `bot.on` se basa en una función llamada `matchFilter`.
+Toma una consulta de filtro y la compila en una función de predicado.
+El predicado se pasa simplemente a `bot.filter` para filtrar las actualizaciones.
+
+Puedes importar `matchFilter` directamente si quieres usarlo en tu propia lógica.
+Por ejemplo, puedes decidir eliminar todas las actualizaciones que coincidan con una determinada consulta:
+
+```ts
+// Deja caer todos los mensajes de texto o las publicaciones del canal de texto.
+bot.drop(matchFilter(":text"));
+```
+
+Análogamente, puedes hacer uso de los tipos de consulta de filtro que grammY utiliza internamente:
+
+### Reutilización de los tipos de consulta de filtro
+
+Internamente, `matchFilter` utiliza los [type predicates] de TypeScript (https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates) para acotar el tipo de `ctx`.
+Toma un tipo `C extends Context` y un `Q extends FilterQuery` y produce `ctx is Filter<C, Q>`.
+En otras palabras, el tipo `Filter` es lo que realmente recibes para tu `ctx` en el middleware.
+
+Puedes importar `Filter` directamente si quieres utilizarlo en tu propia lógica.
+Por ejemplo, puedes decidir definir una función manejadora que maneje objetos de contexto específicos que fueron filtrados por una consulta de filtro:
+
+```ts
+function handler(ctx: Filter<Context, ":text">) {
+  // maneja el objeto de contexto filtrado
+}
+
+bot.on(":text", handler);
+```
+
+> Consulta las referencias de la API para [`matchFilter`](https://doc.deno.land/https://deno.land/x/grammy/filter.ts/~/matchFilter), [`Filter`](https://doc.deno.land/https://deno.land/x/grammy/filter.ts/~/Filter), y [`FilterQuery`](https://doc.deno.land/https://deno.land/x/grammy/filter.ts/~/FilterQuery) para seguir leyendo.
+
 ## El lenguaje de consulta
 
 > Esta sección está pensada para los usuarios que quieran tener un conocimiento más profundo de las consultas de filtrado en grammY, pero no contiene ningún conocimiento necesario para crear un bot.
