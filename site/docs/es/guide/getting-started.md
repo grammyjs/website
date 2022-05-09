@@ -15,6 +15,9 @@ Crea tu primer bot en minutos (Desplázate [abajo](#comenzando-en-deno) para una
 Crea un nuevo proyecto TypeScript e instala el paquete `grammy`.
 Hazlo abriendo un terminal y escribiendo:
 
+<CodeGroup>
+ <CodeGroupItem title="NPM" active>
+
 ```bash
 # Crea un nuevo directorio y entra en él.
 mkdir my-bot
@@ -24,9 +27,40 @@ cd my-bot
 npm install -D typescript
 npx tsc --init
 
-# Instalar grammY.
+# Instala grammY.
 npm install grammy
 ```
+
+</CodeGroupItem>
+ <CodeGroupItem title="Yarn">
+
+```bash
+# Crea un nuevo directorio y entra en él.
+mkdir my-bot
+cd my-bot
+# Instala TypeScript (sáltate si usas JavaScript).
+yarn add typescript -D
+npx tsc --init
+# Instala grammY.
+yarn add grammy
+```
+
+</CodeGroupItem>
+  <CodeGroupItem title="pnpm">
+
+```bash
+# Crea un nuevo directorio y entra en él.
+mkdir my-bot
+cd my-bot
+# Instala TypeScript (sáltate si usas JavaScript).
+pnpm add -D typescript
+npx tsc --init
+# Instala grammY.
+pnpm add grammy
+```
+
+</CodeGroupItem>
+</CodeGroup>
 
 Crea un nuevo archivo de texto vacío, por ejemplo, llamado `bot.ts`.
 La estructura de tu carpeta debería ser así:
