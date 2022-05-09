@@ -47,6 +47,7 @@ Una ventaja de usar el método `api.sendGame` es que puedes especificar el `chat
      await ctx.api.sendGame(chatid, "my_game");
    });
    ```
+
 > [Recuerde](./basics.md#sending-messages) que puede especificar más opciones al enviar mensajes utilizando el objeto de opciones de tipo `Other`.
 
 También puedes especificar un [inline keyboard] personalizado (/plugins/keyboard.md#inline-keyboards) para que el juego muestre los botones.
