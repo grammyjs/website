@@ -354,6 +354,3 @@ These functions are then combined to form a predicate that only has to check for
 
 This system uses less operations than some competing libraries, which need to perform containment checks in arrays when routing updates.
 grammY's filter query system is much more powerful.
-
-```
-```
