@@ -112,7 +112,7 @@ const bot = new Bot("");
 bot.use(/* A */);
 bot.use(/* B */);
 
-const composer = new Compser();
+const composer = new Composer();
 composer.use(/* X */);
 composer.use(/* Y */);
 composer.use(/* Z */);
@@ -137,12 +137,36 @@ function errorHandler(err: BotError) {
 }
 ```
 
-En el ejemplo anterior, el manejador `boundaryHandler` será invocado para
+En el ejemplo anterior, el `boundaryHandler` será invocado para
 
-1. todo el middleware que se pase a `bot.errorBoundary` después de `boundaryHandler` (es decir, `Q`), y
-2. todo el middleware que se instale en las instancias de compositor instaladas posteriormente (es decir, `X`, `Y` y `Z`).
+1. todos los middlewares que se pasan a `bot.errorBoundary` después de `boundaryHandler` (es decir, `Q`), y
+2. todos los middlewares que se instalan en las instancias de compositor instaladas posteriormente (es decir, `X`, `Y` y `Z`).
 
 > En cuanto al punto 2, es posible que desee saltar a [la explicación avanzada](/advanced/middleware.md) de middleware para aprender cómo funciona el encadenamiento en grammY.
+
+También se puede aplicar un límite de error a un compositor sin llamar a `bot.errorBoundary`:
+
+```ts
+const composer = new Composer();
+
+const protected = composer.errorBoundary(boundaryHandler);
+protected.use(/* B */);
+
+bot.use(composer);
+bot.use(/* C */);
+
+bot.catch(errorHandler);
+
+function boundaryHandler(err: BotError, next: NextFunction) {
+  console.error("Error in B!", err);
+}
+
+function errorHandler(err: BotError) {
+  console.error("Error in C!", err);
+}
+```
+
+El `boundaryHandler` del ejemplo anterior será invocado para los middlewares vinculados a `protected`.
 
 Si quieres activamente que el error cruce un límite (es decir, pasarlo fuera), puedes volver a lanzar el error dentro de tu manejador de errores.
 El error será entonces pasado a la siguiente frontera circundante.
