@@ -1,8 +1,4 @@
-import {
-  defaultTheme,
-  type DefaultThemeOptions,
-  defineUserConfig,
-} from "vuepress-vite";
+import { defaultTheme, defineUserConfig } from "vuepress-vite";
 import { docsearchPlugin } from "@vuepress/plugin-docsearch";
 
 export default defineUserConfig({
@@ -181,6 +177,10 @@ export default defineUserConfig({
                   {
                     text: "Interactive Menus (menu)",
                     link: "/plugins/menu.md",
+                  },
+                  {
+                    text: "Conversations (conversations)",
+                    link: "/plugins/conversations.md",
                   },
                   {
                     text: "Stateless Question (stateless-question)",
