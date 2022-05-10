@@ -487,6 +487,9 @@ Naturally, you can just move your functions across modules.
 
 If you want, you can also define classes.
 
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
+
 ```ts
 class Auth {
   public token?: string;
@@ -516,6 +519,42 @@ async function askForToken(conversation: MyConversation, ctx: MyContext) {
   }
 }
 ```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```ts
+class Auth {
+  constructor(conversation) {
+    this.conversation = conversation;
+  }
+
+  authenticate(ctx) {
+    const link = getAuthLink(); // get auth link from your system
+    await ctx.reply(
+      "Open this link to obtain a token, and sent it back to me: " + link,
+    );
+    ctx = await this.conversation.wait();
+    this.token = ctx.message?.text;
+  }
+
+  isAuthenticated() {
+    return this.token !== undefined;
+  }
+}
+
+async function askForToken(conversation, ctx) {
+  const auth = new Auth(conversation);
+  await auth.authenticate(ctx);
+  if (auth.isAuthenticated()) {
+    const token = auth.token;
+    // do stuff with token
+  }
+}
+```
+
+</CodeGroupItem>
+</CodeGroup>
 
 The point here is not so much that we strictly recommend you to do this.
 It is rather meant as an example for how you can use the endless flexibilities of JavaScript to structure your code.
