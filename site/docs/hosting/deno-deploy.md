@@ -15,16 +15,14 @@ It's just like the other many serverless platforms, but dedicated for Deno apps.
 
 ```ts
 import { webhookCallback } from "https://deno.land/x/grammy/mod.ts";
-import {
-  serve,
-} from "https://deno.land/x/sift@0.5.0/mod.ts";
+import { serve } from "https://deno.land/x/sift@0.5.0/mod.ts";
 // You might modify this to the correct way to import your `Bot` object.
 import bot from "./bot.ts";
 
 const handleUpdate = webhookCallback(bot, "std/http");
 
 serve({
-  ['/' + Deno.env.get('TOKEN')]: async (req) => {
+  ["/" + Deno.env.get("TOKEN")]: async (req) => {
     if (req.method == "POST") {
       try {
         return await handleUpdate(req);
@@ -34,7 +32,7 @@ serve({
     }
     return new Response();
   },
-  '/': () => {
+  "/": () => {
     return new Response('Hello world!')
   }
 });
@@ -58,8 +56,8 @@ It's advisable to have webhook handler on some secret path rather that root. Her
 2. Click on "New Project" and go to "Deploy from GitHub repository" section.
 3. Install the GitHub app on your account or organization and choose your repository.
 4. Select the branch you want to deploy, and then choose your `mod.ts` file to be deployed.
-3. It's recommended to store the token in environment variables. You can set them up on the Settings page.
-4. Set your bot's webhook url to `https://<PROJECT_NAME>.deno.dev/<TOKEN>` (Replacing `<...>` with respective values). In order to do that, run this url (in your browser, for example): `https://api.telegram.org/bot<TOKEN>/setWebhook?url=https://<PROJECT_NAME>.deno.dev/<TOKEN>`
+5. It's recommended to store the token in environment variables. You can set them up on the Settings page.
+6. Set your bot's webhook url to `https://<PROJECT_NAME>.deno.dev/<TOKEN>` (Replacing `<...>` with respective values). In order to do that, run this url (in your browser, for example): `https://api.telegram.org/bot<TOKEN>/setWebhook?url=https://<PROJECT_NAME>.deno.dev/<TOKEN>`
 
 ### Method 2: With `deployctl`
 
