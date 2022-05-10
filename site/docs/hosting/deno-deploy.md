@@ -80,4 +80,4 @@ It's advisable to have webhook handler on some secret path rather that root. Her
 2. Click "Deploy URL".
 3. Input the public URL to your `mod.ts` file, and click "Deploy".
 4. It's recommended to store the token in environment variables. You can set them up on the Settings page.
-5. Set your bot's webhook url to `https://<PROJECT_NAME>.deno.dev/<TOKEN>` (Replacing `<...>` with respective values). In order to do that, run this url (in your browser, for example): `https://api.telegram.org/bot<TOKEN>/setWebhook?url=https://<PROJECT_NAME>.deno.dev/<TOKEN>`
+5. Set your bot's webhook URL to `https://<PROJECT_NAME>.deno.dev/<TOKEN>` (replacing `<...>` with respective values). In order to do that, run this URL (in your browser, for example): `https://api.telegram.org/bot<TOKEN>/setWebhook?url=https://<PROJECT_NAME>.deno.dev/<TOKEN>`
