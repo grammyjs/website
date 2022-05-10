@@ -52,12 +52,12 @@ It's advisable to have webhook handler on some secret path rather that root. Her
 
 > It is recommended that you have a single stable branch and you do your testing stuff in other branches, so that you won't get some unexpected things happen.
 
-1. Visit your [Deno Deploy dashboard](https://dash.deno.com/projects).
-2. Click on "New Project" and go to "Deploy from GitHub repository" section.
-3. Install the GitHub app on your account or organization and choose your repository.
-4. Select the branch you want to deploy, and then choose your `mod.ts` file to be deployed.
-5. It's recommended to store the token in environment variables. You can set them up on the Settings page.
-6. Set your bot's webhook url to `https://<PROJECT_NAME>.deno.dev/<TOKEN>` (Replacing `<...>` with respective values). In order to do that, run this url (in your browser, for example): `https://api.telegram.org/bot<TOKEN>/setWebhook?url=https://<PROJECT_NAME>.deno.dev/<TOKEN>`
+3. Visit your [Deno Deploy dashboard](https://dash.deno.com/projects).
+4. Click on "New Project" and go to the "Deploy from GitHub repository" section.
+5. Install the GitHub app on your account or organization and choose your repository.
+6. Select the branch you want to deploy, and then choose your `mod.ts` file to be deployed.
+7. It's recommended to store the token in environment variables. You can set them up on the Settings page.
+8. Set your bot's webhook URL to `https://<PROJECT_NAME>.deno.dev/<TOKEN>` (replacing `<...>` with respective values). In order to do that, run this URL (in your browser, for example): `https://api.telegram.org/bot<TOKEN>/setWebhook?url=https://<PROJECT_NAME>.deno.dev/<TOKEN>`
 
 ### Method 2: With `deployctl`
 
