@@ -70,7 +70,7 @@ It's advisable to have webhook handler on some secret path rather that root. Her
 5. Set your bot's webhook url to `https://<PROJECT_NAME>.deno.dev/<TOKEN>` (Replacing `<...>` with respective values). In order to do that, run this url (in your browser, for example): `https://api.telegram.org/bot<TOKEN>/setWebhook?url=https://<PROJECT_NAME>.deno.dev/<TOKEN>`
 6. Create a new [access token](https://dash.deno.com/user/access-tokens). Save it somewhere
 7. Run this command to deploy: `deployctl deploy --project <PROJECT_NAME> ./mod.ts --prod --token <ACCESS_TOKEN>`
-8. To set up Github actions, refer to [this](https://github.com/denoland/deployctl/blob/main/action/README.md) documentation
+8. To set up Github Actions, refer to [this](https://github.com/denoland/deployctl/blob/main/action/README.md).
 
 ### Method 3: With URL
 
