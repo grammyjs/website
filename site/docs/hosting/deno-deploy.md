@@ -33,8 +33,8 @@ serve({
     return new Response();
   },
   "/": () => {
-    return new Response('Hello world!')
-  }
+    return new Response("Hello world!");
+  },
 });
 ```
 
