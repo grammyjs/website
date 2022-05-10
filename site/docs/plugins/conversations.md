@@ -484,6 +484,7 @@ If the main conversation function throws, the error will propagate further into 
 ## Modules and Classes
 
 Naturally, you can just move your functions across modules.
+That way, you can define some functions in one file, `export` them, and then `import` and use them in another file.
 
 If you want, you can also define classes.
 
