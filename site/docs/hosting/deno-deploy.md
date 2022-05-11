@@ -68,7 +68,7 @@ We advise you to have your handler on some secret path rather than root. Here, w
 5. Run the following command:
 
 ```bash
-deployctl deploy --project <PROJECT_NAME> ./mod.ts --prod --token <access_token>
+deployctl deploy --project <project> ./mod.ts --prod --token <token>
 ```
 
 6. To set up Github Actions, refer to [this](https://github.com/denoland/deployctl/blob/main/action/README.md).
