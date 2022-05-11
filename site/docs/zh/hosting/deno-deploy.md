@@ -14,11 +14,14 @@ Deno Deploy 是大多数简单 bot 的理想选择，并且你应该注意，不
 2. 创建一个名为 `mod.ts` 或 `mod.js` 的文件，或任何你喜欢的名字（但你应该记住并使用这个文件作为部署的主要文件），其内容如下：
 
 ```ts
-import { Bot, webhookCallback } from "https://deno.land/x/grammy/mod.ts";
+import { webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 // 你可以将其修改为正确的方式来导入你的 `Bot' 对象。
 import bot from "./bot.ts";
+
 import { serve } from "https://deno.land/std/http/server.ts";
+
 const handleUpdate = webhookCallback(bot, "std/http");
+
 serve(async (req) => {
   if (req.method == "POST") {
     try {
