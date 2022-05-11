@@ -38,7 +38,7 @@ serve({
 });
 ```
 
-It's advisable to have webhook handler on some secret path rather that root. Here we use a bot token for that.
+We advise you to have your handler on some secret path rather than root. Here, we are using the bot token.
 
 ## Deploying
 
