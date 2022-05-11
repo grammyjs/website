@@ -79,4 +79,10 @@ We advise you to have your handler on some secret path rather than root. Here, w
 ### Note
 
 After getting your app running, you should configure your bot's webhook settings to point to your app.
-To do that, send a request to `https://api.telegram.org/bot<token>/setWebhook?url=<url>`, replacing `<token>` with your bot's token, and `<url>` with the full URL of your app along with the path to the webhook handler.
+To do that, send a request to 
+
+```text
+https://api.telegram.org/bot<token>/setWebhook?url=<url>
+```
+
+replacing `<token>` with your bot's token, and `<url>` with the full URL of your app along with the path to the webhook handler.
