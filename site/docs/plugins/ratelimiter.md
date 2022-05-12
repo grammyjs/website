@@ -68,7 +68,7 @@ const { limit } = require("@grammyjs/ratelimiter");
 bot.use(limit());
 ```
 
-  </CodeGroupItem>
+</CodeGroupItem>
   <CodeGroupItem title="Deno">
 
 ```ts
@@ -117,7 +117,7 @@ bot.use(
 );
 ```
 
-  </CodeGroupItem>
+</CodeGroupItem>
   <CodeGroupItem title="JavaScript">
 
 ```ts
@@ -149,7 +149,7 @@ bot.use(
 );
 ```
 
-  </CodeGroupItem>
+</CodeGroupItem>
   <CodeGroupItem title="Deno">
 
 ```ts
@@ -205,7 +205,7 @@ bot.use(
         return ctx.chat.id.toString();
       }
     },
-  })
+  }),
 );
 ```
 
@@ -223,7 +223,7 @@ bot.use(
         return ctx.chat.id.toString();
       }
     },
-  })
+  }),
 );
 ```
 
@@ -241,7 +241,7 @@ bot.use(
         return ctx.chat.id.toString();
       }
     },
-  })
+  }),
 );
 ```
 
