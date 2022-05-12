@@ -49,7 +49,7 @@ There are two ways of using rateLimiter:
 This snippet demonstrates the easiest way of using rateLimiter, which is accepting the default behavior:
 
 <CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+  <CodeGroupItem title="TypeScript" active>
 
 ```ts
 import { limit } from "@grammyjs/ratelimiter";
@@ -59,6 +59,16 @@ bot.use(limit());
 ```
 
 </CodeGroupItem>
+  <CodeGroupItem title="JavaScript">
+
+```ts
+const { limit } = require("@grammyjs/ratelimiter");
+
+// Limits message handling to a message per second for each user.
+bot.use(limit());
+```
+
+  </CodeGroupItem>
   <CodeGroupItem title="Deno">
 
 ```ts
@@ -76,7 +86,7 @@ bot.use(limit());
 As mentioned earlier, you can pass an `Options` object to the `limit()` method to alter the limiter's behavior.
 
 <CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+  <CodeGroupItem title="TypeScript" active>
 
 ```ts
 import Redis from "ioredis";
@@ -107,7 +117,39 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
+  </CodeGroupItem>
+  <CodeGroupItem title="JavaScript">
+
+```ts
+const Redis = require("ioredis");
+const { limit } = require("@grammyjs/ratelimiter");
+
+const redis = new Redis(...);
+
+bot.use(
+  limit({
+    // Allow only 3 messages to be handled every 2 seconds.
+    timeFrame: 2000,
+
+    limit: 3,
+
+    // "MEMORY_STORE" is the default value. If you do not want to use Redis, do not pass storageClient at all.
+    storageClient: redis,
+
+    // This is called when the limit is exceeded.
+    onLimitExceeded: async (ctx) => {
+      await ctx.reply("Please refrain from sending too many requests!");
+    },
+
+    // Note that the key should be a number in string format such as "123456789".
+    keyGenerator: (ctx) => {
+      return ctx.from?.id.toString();
+    },
+  })
+);
+```
+
+  </CodeGroupItem>
   <CodeGroupItem title="Deno">
 
 ```ts
@@ -150,7 +192,7 @@ If said user sends more requests, the bot replies with _Please refrain from send
 Another use case would be limiting the incoming requests from a chat instead of a specific user:
 
 <CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+  <CodeGroupItem title="TypeScript" active>
 
 ```ts
 import { limit } from "@grammyjs/ratelimiter";
@@ -163,7 +205,25 @@ bot.use(
         return ctx.chat.id.toString();
       }
     },
-  }),
+  })
+);
+```
+
+</CodeGroupItem>
+  <CodeGroupItem title="JavaScript">
+
+```ts
+const { limit } = require("@grammyjs/ratelimiter");
+
+bot.use(
+  limit({
+    keyGenerator: (ctx) => {
+      if (ctx.chat?.type === "group" || ctx.chat?.type === "supergroup") {
+        // Note that the key should be a number in string format, such as "123456789".
+        return ctx.chat.id.toString();
+      }
+    },
+  })
 );
 ```
 
@@ -181,7 +241,7 @@ bot.use(
         return ctx.chat.id.toString();
       }
     },
-  }),
+  })
 );
 ```
 
