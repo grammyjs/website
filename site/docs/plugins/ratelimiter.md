@@ -95,8 +95,8 @@ bot.use(
     storageClient: redis,
 
     // This is called when the limit is exceeded.
-    onLimitExceeded: (ctx) => {
-      ctx?.reply("Please refrain from sending too many requests!");
+    onLimitExceeded: async (ctx) => {
+      await ctx.reply("Please refrain from sending too many requests!");
     },
 
     // Note that the key should be a number in string format such as "123456789".
@@ -127,8 +127,8 @@ bot.use(
     storageClient: redis,
 
     // This is called when the limit is exceeded.
-    onLimitExceeded: (ctx) => {
-      ctx?.reply("Please refrain from sending too many requests!");
+    onLimitExceeded: async (ctx) => {
+      await ctx.reply("Please refrain from sending too many requests!");
     },
 
     // Note that the key should be a number in string format such as "123456789".
