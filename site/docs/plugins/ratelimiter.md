@@ -58,7 +58,7 @@ import { limit } from "@grammyjs/ratelimiter";
 bot.use(limit());
 ```
 
-  </CodeGroupItem>
+</CodeGroupItem>
   <CodeGroupItem title="Deno">
 
 ```ts
@@ -68,7 +68,7 @@ import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
 bot.use(limit());
 ```
 
-  </CodeGroupItem>
+</CodeGroupItem>
 </CodeGroup>
 
 ### Manual Configuration
@@ -107,9 +107,8 @@ bot.use(
 );
 ```
 
-  </CodeGroupItem>
+</CodeGroupItem>
   <CodeGroupItem title="Deno">
-
 
 ```ts
 import { connect } from "https://deno.land/x/redis/mod.ts";
@@ -140,7 +139,7 @@ bot.use(
 );
 ```
 
-  </CodeGroupItem>
+</CodeGroupItem>
 </CodeGroup>
 
 As you can see in the example above, each user is allowed to send 3 requests every 2 seconds.
@@ -168,7 +167,7 @@ bot.use(
 );
 ```
 
-  </CodeGroupItem>
+</CodeGroupItem>
   <CodeGroupItem title="Deno">
 
 ```ts
@@ -186,7 +185,7 @@ bot.use(
 );
 ```
 
-  </CodeGroupItem>
+</CodeGroupItem>
 </CodeGroup>
 
 In this example, I have used `chat.id` as the unique key for rate-limiting.
