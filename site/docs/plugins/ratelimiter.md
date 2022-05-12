@@ -80,7 +80,7 @@ As mentioned earlier, you can pass an `Options` object to the `limit()` method t
 
 ```ts
 import Redis from "ioredis";
-import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
+import { limit } from "@grammyjs/ratelimiter";
 
 const redis = new Redis(...);
 
