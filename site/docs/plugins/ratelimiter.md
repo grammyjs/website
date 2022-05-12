@@ -61,7 +61,7 @@ bot.use(limit());
 </CodeGroupItem>
   <CodeGroupItem title="JavaScript">
 
-```ts
+```js
 const { limit } = require("@grammyjs/ratelimiter");
 
 // Limits message handling to a message per second for each user.
@@ -120,7 +120,7 @@ bot.use(
 </CodeGroupItem>
   <CodeGroupItem title="JavaScript">
 
-```ts
+```js
 const Redis = require("ioredis");
 const { limit } = require("@grammyjs/ratelimiter");
 
@@ -212,7 +212,7 @@ bot.use(
 </CodeGroupItem>
   <CodeGroupItem title="JavaScript">
 
-```ts
+```js
 const { limit } = require("@grammyjs/ratelimiter");
 
 bot.use(
