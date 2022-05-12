@@ -397,7 +397,8 @@ export default defineUserConfig({
                     link: "/es/guide/getting-started.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Sending and Receiving Messages'",
+                    text:
+                      "MISSING TRANSLATION OF 'Sending and Receiving Messages'",
                     link: "/es/guide/basics.md",
                   },
                   {
@@ -409,7 +410,8 @@ export default defineUserConfig({
                     link: "/es/guide/api.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Filter Queries and bot.on()'",
+                    text:
+                      "MISSING TRANSLATION OF 'Filter Queries and bot.on()'",
                     link: "/es/guide/filter-queries.md",
                   },
                   {
@@ -454,7 +456,8 @@ export default defineUserConfig({
                     link: "/es/advanced/middleware.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Scaling Up I: Large Codebase'",
+                    text:
+                      "MISSING TRANSLATION OF 'Scaling Up I: Large Codebase'",
                     link: "/es/advanced/structuring.md",
                   },
                   {
@@ -462,11 +465,13 @@ export default defineUserConfig({
                     link: "/es/advanced/scaling.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Scaling Up III: Reliability'",
+                    text:
+                      "MISSING TRANSLATION OF 'Scaling Up III: Reliability'",
                     link: "/es/advanced/reliability.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Scaling Up IV: Flood Limits'",
+                    text:
+                      "MISSING TRANSLATION OF 'Scaling Up IV: Flood Limits'",
                     link: "/es/advanced/flood.md",
                   },
                   {
@@ -509,7 +514,8 @@ export default defineUserConfig({
                     link: "/es/plugins/session.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Inline and Custom Keyboards'",
+                    text:
+                      "MISSING TRANSLATION OF 'Inline and Custom Keyboards'",
                     link: "/es/plugins/keyboard.md",
                   },
                 ],
@@ -522,11 +528,13 @@ export default defineUserConfig({
                     link: "/es/plugins/menu.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Conversations (conversations)'",
+                    text:
+                      "MISSING TRANSLATION OF 'Conversations (conversations)'",
                     link: "/es/plugins/conversations.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Stateless Question (stateless-question)'",
+                    text:
+                      "MISSING TRANSLATION OF 'Stateless Question (stateless-question)'",
                     link: "/es/plugins/stateless-question.md",
                   },
                   {
@@ -538,15 +546,18 @@ export default defineUserConfig({
                     link: "/es/plugins/hydrate.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Retry API Requests (auto-retry)'",
+                    text:
+                      "MISSING TRANSLATION OF 'Retry API Requests (auto-retry)'",
                     link: "/es/plugins/auto-retry.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Flood Control (transformer-throttler)'",
+                    text:
+                      "MISSING TRANSLATION OF 'Flood Control (transformer-throttler)'",
                     link: "/es/plugins/transformer-throttler.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Rate Limit Users (ratelimiter)'",
+                    text:
+                      "MISSING TRANSLATION OF 'Rate Limit Users (ratelimiter)'",
                     link: "/es/plugins/ratelimiter.md",
                   },
                   {
@@ -554,7 +565,8 @@ export default defineUserConfig({
                     link: "/es/plugins/files.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Internationalization (fluent)'",
+                    text:
+                      "MISSING TRANSLATION OF 'Internationalization (fluent)'",
                     link: "/es/plugins/fluent.md",
                   },
                   {
@@ -570,7 +582,8 @@ export default defineUserConfig({
                     link: "/es/plugins/parse-mode.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Command Filtering (command-filter)'",
+                    text:
+                      "MISSING TRANSLATION OF 'Command Filtering (command-filter)'",
                     link: "/es/plugins/command-filter.md",
                   },
                 ],
@@ -613,7 +626,10 @@ export default defineUserConfig({
                     text: "MISSING TRANSLATION OF 'Live Browser Demo'",
                     link: "/es/demo/README.md",
                   },
-                  { text: "MISSING TRANSLATION OF 'Example Bots'", link: "/es/demo/examples.md" },
+                  {
+                    text: "MISSING TRANSLATION OF 'Example Bots'",
+                    link: "/es/demo/examples.md",
+                  },
                 ],
               },
             ],
@@ -645,7 +661,8 @@ export default defineUserConfig({
                     link: "/es/resources/faq.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Comparison to Other Frameworks'",
+                    text:
+                      "MISSING TRANSLATION OF 'Comparison to Other Frameworks'",
                     link: "/es/resources/comparison.md",
                   },
                 ],
@@ -654,7 +671,8 @@ export default defineUserConfig({
                 text: "MISSING TRANSLATION OF 'Telegram'",
                 children: [
                   {
-                    text: "MISSING TRANSLATION OF 'Introduction for Developers'",
+                    text:
+                      "MISSING TRANSLATION OF 'Introduction for Developers'",
                     link: "https://core.telegram.org/bots",
                   },
                   {
@@ -1057,10 +1075,10 @@ export default defineUserConfig({
         locales: {
           "/es/": {
             placeholder: "MISSING TRANSLATION OF 'Search'",
-            translations: { button: { buttonText: "MISSING TRANSLATION OF 'Search'" } },
+            translations: {
+              button: { buttonText: "MISSING TRANSLATION OF 'Search'" },
+            },
           },
-        },
-        locales: {
           "/zh/": {
             placeholder: "搜索文档",
             translations: { button: { buttonText: "搜索文档" } },
