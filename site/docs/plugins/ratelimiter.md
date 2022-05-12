@@ -62,7 +62,7 @@ bot.use(limit());
   <CodeGroupItem title="Deno">
 
 ```ts
-import { limit } from "https://deno.land/x/grammy/mod.ts";
+import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
 
 // Limits message handling to a message per second for each user.
 bot.use(limit());
@@ -76,11 +76,11 @@ bot.use(limit());
 As mentioned before, you can pass an `Options` object to the `limit()` method to alter rateLimiter's behaviors.
 
 <CodeGroup>
-
-<CodeGroupItem title="Node.js" active>
+  <CodeGroupItem title="Node.js" active>
 
 ```ts
 import Redis from "ioredis";
+import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
 
 const redis = new Redis(...);
 
@@ -107,13 +107,13 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-
-<CodeGroupItem title="Deno">
+  </CodeGroupItem>
+  <CodeGroupItem title="Deno">
 
 
 ```ts
 import { connect } from "https://deno.land/x/redis/mod.ts";
+import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
 
 const redis = await connect(...);
 
@@ -140,8 +140,7 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-
+  </CodeGroupItem>
 </CodeGroup>
 
 As you can see in the example above, each user is allowed to send 3 requests every 2 seconds.
@@ -151,31 +150,44 @@ If said user sends more requests, the bot replies with _Please refrain from send
 
 Another use case would be limiting the incoming requests from a chat instead of a specific user:
 
+<CodeGroup>
+  <CodeGroupItem title="Node.js" active>
+
 ```ts
-import express from "express";
-import { Bot } from "grammy";
 import { limit } from "@grammyjs/ratelimiter";
 
-const app = express();
-const bot = new Bot("YOUR BOT TOKEN HERE");
-
-app.use(express.json());
 bot.use(
   limit({
     keyGenerator: (ctx) => {
       if (ctx.chat?.type === "group" || ctx.chat?.type === "supergroup") {
-        // Note that the key should be a number in string format such as "123456789".
+        // Note that the key should be a number in string format, such as "123456789".
         return ctx.chat.id.toString();
       }
     },
-  })
+  }),
 );
-
-app.listen(3000, () => {
-  bot.api.setWebhook("YOUR DOMAIN HERRE", { drop_pending_updates: true });
-  console.log("The application is listening on port 3000!");
-});
 ```
+
+  </CodeGroupItem>
+  <CodeGroupItem title="Deno">
+
+```ts
+import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
+
+bot.use(
+  limit({
+    keyGenerator: (ctx) => {
+      if (ctx.chat?.type === "group" || ctx.chat?.type === "supergroup") {
+        // Note that the key should be a number in string format, such as "123456789".
+        return ctx.chat.id.toString();
+      }
+    },
+  }),
+);
+```
+
+  </CodeGroupItem>
+</CodeGroup>
 
 In this example, I have used `chat.id` as the unique key for rate-limiting.
 
