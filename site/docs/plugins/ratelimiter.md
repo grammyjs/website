@@ -46,7 +46,7 @@ There are two ways of using rateLimiter:
 
 ### Default Configuration
 
-This snippet demonstrates the easiest way of using rateLimiter which is accepting the default behavior:
+This snippet demonstrates the easiest way of using rateLimiter, which is accepting the default behavior:
 
 <CodeGroup>
   <CodeGroupItem title="Node.js" active>
@@ -73,7 +73,7 @@ bot.use(limit());
 
 ### Manual Configuration
 
-As mentioned before, you can pass an `Options` object to the `limit()` method to alter rateLimiter's behaviors.
+As mentioned earlier, you can pass an `Options` object to the `limit()` method to alter the limiter's behavior.
 
 <CodeGroup>
   <CodeGroupItem title="Node.js" active>
