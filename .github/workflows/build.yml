@@ -4,11 +4,11 @@ on:
   push:
     branches: [main]
     paths:
-      - "**.md"
+      - "site/docs/**"
   pull_request:
     types: ["opened", "edited", "synchronize"]
     paths:
-      - "**.md"
+      - "site/docs/**"
 
 jobs:
   build:
