@@ -15,6 +15,11 @@ export default defineUserConfig({
       title: "grammY",
       description: "The Telegram Bot Framework.",
     },
+    "/es/": {
+      lang: "es-ES",
+      title: "grammY",
+      description: "MISSING TRANSLATION OF 'The Telegram Bot Framework.'",
+    },
     "/zh/": {
       lang: "zh-CN",
       title: "grammY",
@@ -358,10 +363,347 @@ export default defineUserConfig({
           },
         ],
       },
+      "/es/": {
+        selectLanguageName: "MISSING TRANSLATION OF 'Spanish'",
+        editLinkText: "MISSING TRANSLATION OF 'Edit this page on GitHub'",
+        contributorsText: "MISSING TRANSLATION",
+        lastUpdatedText: "MISSING TRANSLATION",
+        notFound: [
+          "MISSING TRANSLATION OF 'Not Found'",
+          "MISSING TRANSLATION OF 'Nope.'",
+          "MISSING TRANSLATION OF 'nothin' here for ya, sorry'",
+          "MISSING TRANSLATION OF 'Error 404/ This Page Could Not Be Found But/ A Haiku Instead'",
+          "MISSING TRANSLATION OF 'Country rooooaaaads,'",
+        ],
+        backToHome: "MISSING TRANSLATION OF 'Take me hoooooooome'",
+        navbar: [
+          { text: "MISSING TRANSLATION OF 'Guide'", link: "/es/guide/" },
+          {
+            text: "MISSING TRANSLATION OF 'Learn'",
+            children: [
+              {
+                text: "MISSING TRANSLATION OF 'Guide'",
+                children: [
+                  {
+                    text: "MISSING TRANSLATION OF 'Overview'",
+                    link: "/es/guide/README.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Introduction'",
+                    link: "/es/guide/introduction.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Getting Started'",
+                    link: "/es/guide/getting-started.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Sending and Receiving Messages'",
+                    link: "/es/guide/basics.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Context'",
+                    link: "/es/guide/context.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Bot API'",
+                    link: "/es/guide/api.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Filter Queries and bot.on()'",
+                    link: "/es/guide/filter-queries.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Commands'",
+                    link: "/es/guide/commands.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Middleware'",
+                    link: "/es/guide/middleware.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Error Handling'",
+                    link: "/es/guide/errors.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Inline Queries'",
+                    link: "/es/guide/inline-queries.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'File Handling'",
+                    link: "/es/guide/files.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Games'",
+                    link: "/es/guide/games.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Long Polling vs. Webhooks'",
+                    link: "/es/guide/deployment-types.md",
+                  },
+                ],
+              },
+              {
+                text: "MISSING TRANSLATION OF 'Advanced'",
+                children: [
+                  {
+                    text: "MISSING TRANSLATION OF 'Overview'",
+                    link: "/es/advanced/README.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Middleware Redux'",
+                    link: "/es/advanced/middleware.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Scaling Up I: Large Codebase'",
+                    link: "/es/advanced/structuring.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Scaling Up II: High Load'",
+                    link: "/es/advanced/scaling.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Scaling Up III: Reliability'",
+                    link: "/es/advanced/reliability.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Scaling Up IV: Flood Limits'",
+                    link: "/es/advanced/flood.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Bot API Transformers'",
+                    link: "/es/advanced/transformers.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Proxy Support'",
+                    link: "/es/advanced/proxy.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Deployment Checklist'",
+                    link: "/es/advanced/deployment.md",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            text: "MISSING TRANSLATION OF 'Plugins'",
+            children: [
+              {
+                text: "MISSING TRANSLATION OF 'Introduction'",
+                children: [
+                  {
+                    text: "MISSING TRANSLATION OF 'About Plugins'",
+                    link: "/es/plugins/README.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'How to Write a Plugin'",
+                    link: "/es/plugins/guide.md",
+                  },
+                ],
+              },
+              {
+                text: "MISSING TRANSLATION OF 'Built-in'",
+                children: [
+                  {
+                    text: "MISSING TRANSLATION OF 'Sessions and Storing Data'",
+                    link: "/es/plugins/session.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Inline and Custom Keyboards'",
+                    link: "/es/plugins/keyboard.md",
+                  },
+                ],
+              },
+              {
+                text: "MISSING TRANSLATION OF 'Official'",
+                children: [
+                  {
+                    text: "MISSING TRANSLATION OF 'Interactive Menus (menu)'",
+                    link: "/es/plugins/menu.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Conversations (conversations)'",
+                    link: "/es/plugins/conversations.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Stateless Question (stateless-question)'",
+                    link: "/es/plugins/stateless-question.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Concurrency (runner)'",
+                    link: "/es/plugins/runner.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Hydration (hydrate)'",
+                    link: "/es/plugins/hydrate.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Retry API Requests (auto-retry)'",
+                    link: "/es/plugins/auto-retry.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Flood Control (transformer-throttler)'",
+                    link: "/es/plugins/transformer-throttler.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Rate Limit Users (ratelimiter)'",
+                    link: "/es/plugins/ratelimiter.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Files (files)'",
+                    link: "/es/plugins/files.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Internationalization (fluent)'",
+                    link: "/es/plugins/fluent.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Router (router)'",
+                    link: "/es/plugins/router.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Emoji (emoji)'",
+                    link: "/es/plugins/emoji.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Parse Mode (parse-mode)'",
+                    link: "/es/plugins/parse-mode.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Command Filtering (command-filter)'",
+                    link: "/es/plugins/command-filter.md",
+                  },
+                ],
+              },
+              {
+                text: "MISSING TRANSLATION OF 'Third-party'",
+                children: [
+                  {
+                    text: "MISSING TRANSLATION OF 'Console Time'",
+                    link: "/es/plugins/console-time.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Useful Middleware'",
+                    link: "/es/plugins/middlewares.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF '[Submit your PR!]'",
+                    link:
+                      "/es/plugins/README.md#submitting-your-own-package-to-the-docs",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            text: "MISSING TRANSLATION OF 'Examples'",
+            children: [
+              {
+                text: "MISSING TRANSLATION OF 'Examples'",
+                children: [
+                  {
+                    text: "MISSING TRANSLATION OF 'Awesome grammY'",
+                    link: "https://github.com/grammyjs/awesome-grammY",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Example Bots Repository'",
+                    link: "https://github.com/grammyjs/examples",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Live Browser Demo'",
+                    link: "/es/demo/README.md",
+                  },
+                  { text: "MISSING TRANSLATION OF 'Example Bots'", link: "/es/demo/examples.md" },
+                ],
+              },
+            ],
+          },
+          {
+            text: "MISSING TRANSLATION OF 'Resources'",
+            children: [
+              {
+                text: "MISSING TRANSLATION OF 'grammY'",
+                children: [
+                  {
+                    text: "MISSING TRANSLATION OF 'About grammY'",
+                    link: "&es/resources/about.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Community Chat (English)'",
+                    link: "https://t.me/grammyjs",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Community Chat (Russian)'",
+                    link: "https://t.me/grammyjs_ru",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'News'",
+                    link: "https://t.me/grammyjs_news",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'FAQ'",
+                    link: "/es/resources/faq.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Comparison to Other Frameworks'",
+                    link: "/es/resources/comparison.md",
+                  },
+                ],
+              },
+              {
+                text: "MISSING TRANSLATION OF 'Telegram'",
+                children: [
+                  {
+                    text: "MISSING TRANSLATION OF 'Introduction for Developers'",
+                    link: "https://core.telegram.org/bots",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Bots FAQ'",
+                    link: "https://core.telegram.org/bots/faq",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Bot API Reference'",
+                    link: "https://core.telegram.org/bots/api",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Example Updates'",
+                    link:
+                      "https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates",
+                  },
+                ],
+              },
+              {
+                text: "MISSING TRANSLATION OF 'Hosting'",
+                children: [
+                  {
+                    text: "MISSING TRANSLATION OF 'Deno Deploy'",
+                    link: "/es/hosting/deno-deploy.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Heroku'",
+                    link: "/es/hosting/heroku.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Google Cloud Functions'",
+                    link: "/es/hosting/gcf.md",
+                  },
+                  {
+                    text: "MISSING TRANSLATION OF 'Virtual Private Server'",
+                    link: "/es/hosting/vps.md",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            text: "MISSING TRANSLATION OF 'API Reference'",
+            link: "https://doc.deno.land/https://deno.land/x/grammy/mod.ts",
+          },
+        ],
+      },
       "/zh/": {
         selectLanguageText: "语言",
         selectLanguageName: "简体中文",
-        editLinks: true,
         editLinkText: "在 GitHub 上编辑此页！",
         contributorsText: "贡献者",
         lastUpdatedText: "最近更新时间",
@@ -712,6 +1054,12 @@ export default defineUserConfig({
         indexName: "grammy",
         appId: "RBF5Q0D7QV",
         placeholder: "Search",
+        locales: {
+          "/es/": {
+            placeholder: "MISSING TRANSLATION OF 'Search'",
+            translations: { button: { buttonText: "MISSING TRANSLATION OF 'Search'" } },
+          },
+        },
         locales: {
           "/zh/": {
             placeholder: "搜索文档",
