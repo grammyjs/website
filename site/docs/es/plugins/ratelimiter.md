@@ -44,67 +44,139 @@ Hay dos maneras de utilizar rateLimiter:
 
 ### Configuración por defecto
 
-El siguiente ejemplo utiliza [express](https://github.com/expressjs/express) como servidor web y [webhooks](https://grammy.dev/guide/deployment-types.html) para nuestro pequeño bot.
-Este snippet demuestra la forma más fácil de usar rateLimiter que es aceptar el comportamiento por defecto:
+Este fragmento demuestra la forma más sencilla de utilizar rateLimiter, que es aceptar el comportamiento por defecto:
+
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
 
 ```ts
-import express from "express";
-import { Bot } from "grammy";
 import { limit } from "@grammyjs/ratelimiter";
 
-const app = express();
-const bot = new Bot("SU TOKEN DE BOT AQUÍ");
-
-app.use(express.json());
+// Limita el manejo de mensajes a un mensaje por segundo para cada usuario.
 bot.use(limit());
-
-app.listen(3000, () => {
-  bot.api.setWebhook("SU DOMINIO AQUÍ", { drop_pending_updates: true });
-  console.log("¡La aplicación está escuchando en el puerto 3000!");
-});
 ```
+
+</CodeGroupItem>
+  <CodeGroupItem title="JavaScript">
+
+```js
+const { limit } = require("@grammyjs/ratelimiter");
+// Limita el manejo de mensajes a un mensaje por segundo para cada usuario.
+bot.use(limit());
+```
+
+</CodeGroupItem>
+  <CodeGroupItem title="Deno">
+
+```ts
+import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
+// Limita el manejo de mensajes a un mensaje por segundo para cada usuario.
+bot.use(limit());
+```
+
+</CodeGroupItem>
+</CodeGroup>
 
 ### Configuración manual
 
-Como se mencionó antes, puedes pasar un objeto `Options` al método `limit()` para alterar los comportamientos de rateLimiter.
-En el siguiente fragmento, he decidido utilizar Redis como opción de almacenamiento:
+Como se mencionó anteriormente, puedes pasar un objeto `Options` al método `limit()` para alterar el comportamiento del limitador.
+
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
 
 ```ts
-import express from "express";
-import { Bot } from "grammy";
-import { limit } from "@grammyjs/ratelimiter";
 import Redis from "ioredis";
+import { limit } from "@grammyjs/ratelimiter";
 
-const app = express();
-const bot = new Bot("SU TOKEN DE BOT AQUÍ");
-const redis = new Redis();
+const redis = new Redis(...);
 
-app.use(express.json());
 bot.use(
   limit({
+    // Permitir que sólo se manejen 3 mensajes cada 2 segundos.
     timeFrame: 2000,
 
     limit: 3,
 
-    // MEMORY_STORAGE" es el modo por defecto. Por lo tanto, si desea utilizar Redis, no pase storageClient en absoluto.
+    // "MEMORY_STORE" es el valor por defecto. Si no quieres usar Redis, no pases storageClient en absoluto.
     storageClient: redis,
 
-    onLimitExceeded: (ctx) => {
-      ctx?.reply("Por favor, absténgase de enviar demasiadas solicitudes.");
+    // Se llama cuando se supera el límite.
+    onLimitExceeded: async (ctx) => {
+      await ctx.reply("¡Por favor, absténgase de enviar demasiadas solicitudes!");
     },
 
     // Tenga en cuenta que la clave debe ser un número en formato de cadena como "123456789".
     keyGenerator: (ctx) => {
       return ctx.from?.id.toString();
     },
-  }),
+  })
 );
-
-app.listen(3000, () => {
-  bot.api.setWebhook("SU DOMINIO AQUÍ", { drop_pending_updates: true });
-  console.log("¡La aplicación está escuchando en el puerto 3000!");
-});
 ```
+
+</CodeGroupItem>
+  <CodeGroupItem title="JavaScript">
+
+```js
+const Redis = require("ioredis");
+const { limit } = require("@grammyjs/ratelimiter");
+
+const redis = new Redis(...);
+
+bot.use(
+  limit({
+    // Permitir que sólo se manejen 3 mensajes cada 2 segundos.
+    timeFrame: 2000,
+
+    limit: 3,
+
+    // "MEMORY_STORE" es el valor por defecto. Si no quieres usar Redis, no pases storageClient en absoluto.
+    storageClient: redis,
+
+    // Se llama cuando se supera el límite.
+    onLimitExceeded: async (ctx) => {
+      await ctx.reply("¡Por favor, absténgase de enviar demasiadas solicitudes!");
+    },
+    // Tenga en cuenta que la clave debe ser un número en formato de cadena como "123456789".
+    keyGenerator: (ctx) => {
+      return ctx.from?.id.toString();
+    },
+  })
+);
+```
+
+</CodeGroupItem>
+  <CodeGroupItem title="Deno">
+
+```ts
+import { connect } from "https://deno.land/x/redis/mod.ts";
+import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
+
+const redis = await connect(...);
+
+bot.use(
+  limit({
+    // Permitir que sólo se manejen 3 mensajes cada 2 segundos.
+    timeFrame: 2000,
+
+    limit: 3,
+
+    // "MEMORY_STORE" es el valor por defecto. Si no quieres usar Redis, no pases storageClient en absoluto.
+    storageClient: redis,
+
+    // Se llama cuando se supera el límite.
+    onLimitExceeded: async (ctx) => {
+      await ctx.reply("¡Por favor, absténgase de enviar demasiadas solicitudes!");
+    },
+    // Tenga en cuenta que la clave debe ser un número en formato de cadena como "123456789".
+    keyGenerator: (ctx) => {
+      return ctx.from?.id.toString();
+    },
+  })
+);
+```
+
+</CodeGroupItem>
+</CodeGroup>
 
 Como puedes ver en el ejemplo anterior, cada usuario puede enviar 3 peticiones cada 2 segundos.
 Si dicho usuario envía más peticiones, el bot responde con _Por favor, absténgase de enviar demasiadas peticiones_.
@@ -114,15 +186,12 @@ Esa petición no viajará más y morirá inmediatamente ya que no llamamos a [ne
 
 Otro caso de uso sería limitar las peticiones entrantes de un chat en lugar de un usuario específico:
 
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
+
 ```ts
-import express from "express";
-import { Bot } from "grammy";
 import { limit } from "@grammyjs/ratelimiter";
 
-const app = express();
-const bot = new Bot("SU TOKEN DE BOT AQUÍ");
-
-app.use(express.json());
 bot.use(
   limit({
     keyGenerator: (ctx) => {
@@ -133,12 +202,46 @@ bot.use(
     },
   }),
 );
-
-app.listen(3000, () => {
-  bot.api.setWebhook("SU DOMINIO AQUÍ", { drop_pending_updates: true });
-  console.log("¡La aplicación está escuchando en el puerto 3000!");
-});
 ```
+
+</CodeGroupItem>
+  <CodeGroupItem title="JavaScript">
+
+```js
+const { limit } = require("@grammyjs/ratelimiter");
+
+bot.use(
+  limit({
+    keyGenerator: (ctx) => {
+      if (ctx.chat?.type === "group" || ctx.chat?.type === "supergroup") {
+        // Tenga en cuenta que la clave debe ser un número en formato de cadena como "123456789".
+        return ctx.chat.id.toString();
+      }
+    },
+  }),
+);
+```
+
+</CodeGroupItem>
+  <CodeGroupItem title="Deno">
+
+```ts
+import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
+
+bot.use(
+  limit({
+    keyGenerator: (ctx) => {
+      if (ctx.chat?.type === "group" || ctx.chat?.type === "supergroup") {
+        // Tenga en cuenta que la clave debe ser un número en formato de cadena como "123456789".
+        return ctx.chat.id.toString();
+      }
+    },
+  }),
+);
+```
+
+</CodeGroupItem>
+</CodeGroup>
 
 En este ejemplo, he utilizado `chat.id` como clave única para la limitación de la tasa.
 
