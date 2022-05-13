@@ -18,7 +18,7 @@ export default defineUserConfig({
     "/es/": {
       lang: "es-ES",
       title: "grammY",
-      description: "MISSING TRANSLATION OF 'The Telegram Bot Framework.'",
+      description: "El Framework de Bots para Telegram.",
     },
     "/zh/": {
       lang: "zh-CN",
@@ -364,126 +364,121 @@ export default defineUserConfig({
         ],
       },
       "/es/": {
-        selectLanguageName: "MISSING TRANSLATION OF 'Spanish'",
-        editLinkText: "MISSING TRANSLATION OF 'Edit this page on GitHub'",
-        contributorsText: "MISSING TRANSLATION",
-        lastUpdatedText: "MISSING TRANSLATION",
+        selectLanguageName: "Español",
+        editLinkText: "Editar esta página en GitHub",
+        contributorsText: "Colaboradores",
+        lastUpdatedText: "Última actualización",
         notFound: [
-          "MISSING TRANSLATION OF 'Not Found'",
-          "MISSING TRANSLATION OF 'Nope.'",
-          "MISSING TRANSLATION OF 'nothin' here for ya, sorry'",
-          "MISSING TRANSLATION OF 'Error 404/ This Page Could Not Be Found But/ A Haiku Instead'",
-          "MISSING TRANSLATION OF 'Country rooooaaaads,'",
+          "No se ha encontrado",
+          "Nop.",
+          "nada aquí para ti, lo siento",
+          "Error 404/ Esta página no se pudo encontrar pero/ Un haiku en su lugar",
+          "Caminos ruuuuraaaales",
         ],
-        backToHome: "MISSING TRANSLATION OF 'Take me hoooooooome'",
+        backToHome: "Llévame a casa",
         navbar: [
-          { text: "MISSING TRANSLATION OF 'Guide'", link: "/es/guide/" },
+          { text: "Guía", link: "/es/guide/" },
           {
-            text: "MISSING TRANSLATION OF 'Learn'",
+            text: "Aprender",
             children: [
               {
-                text: "MISSING TRANSLATION OF 'Guide'",
+                text: "Guía",
                 children: [
                   {
-                    text: "MISSING TRANSLATION OF 'Overview'",
+                    text: "Resumen",
                     link: "/es/guide/README.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Introduction'",
+                    text: "Introducción",
                     link: "/es/guide/introduction.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Getting Started'",
+                    text: "Cómo empezar",
                     link: "/es/guide/getting-started.md",
                   },
                   {
-                    text:
-                      "MISSING TRANSLATION OF 'Sending and Receiving Messages'",
+                    text: "Envío y recepción de mensajes",
                     link: "/es/guide/basics.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Context'",
+                    text: "Contexto",
                     link: "/es/guide/context.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Bot API'",
+                    text: "API para bots",
                     link: "/es/guide/api.md",
                   },
                   {
-                    text:
-                      "MISSING TRANSLATION OF 'Filter Queries and bot.on()'",
+                    text: "Filtrar consultas y bot.on()",
                     link: "/es/guide/filter-queries.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Commands'",
+                    text: "Comandos",
                     link: "/es/guide/commands.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Middleware'",
+                    text: "Middleware",
                     link: "/es/guide/middleware.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Error Handling'",
+                    text: "Manejo de errores",
                     link: "/es/guide/errors.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Inline Queries'",
+                    text: "Consultas lineales",
                     link: "/es/guide/inline-queries.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'File Handling'",
+                    text: "Manejo de archivos",
                     link: "/es/guide/files.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Games'",
+                    text: "Juegos",
                     link: "/es/guide/games.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Long Polling vs. Webhooks'",
+                    text: "Long Polling vs. Webhooks",
                     link: "/es/guide/deployment-types.md",
                   },
                 ],
               },
               {
-                text: "MISSING TRANSLATION OF 'Advanced'",
+                text: "Avanzado",
                 children: [
                   {
-                    text: "MISSING TRANSLATION OF 'Overview'",
+                    text: "Resumen",
                     link: "/es/advanced/README.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Middleware Redux'",
+                    text: "Middleware Redux",
                     link: "/es/advanced/middleware.md",
                   },
                   {
-                    text:
-                      "MISSING TRANSLATION OF 'Scaling Up I: Large Codebase'",
+                    text: "Escalando I: Código base grande",
                     link: "/es/advanced/structuring.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Scaling Up II: High Load'",
+                    text: "Escalando II: Alta carga",
                     link: "/es/advanced/scaling.md",
                   },
                   {
-                    text:
-                      "MISSING TRANSLATION OF 'Scaling Up III: Reliability'",
+                    text: "Escalando III: Fiabilidad",
                     link: "/es/advanced/reliability.md",
                   },
                   {
-                    text:
-                      "MISSING TRANSLATION OF 'Scaling Up IV: Flood Limits'",
+                    text: "Escalando IV: Límites de flujo",
                     link: "/es/advanced/flood.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Bot API Transformers'",
+                    text: "Transformadores de la API del Bot",
                     link: "/es/advanced/transformers.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Proxy Support'",
+                    text: "Soporte para proxy",
                     link: "/es/advanced/proxy.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Deployment Checklist'",
+                    text: "Lista de comprobación del despliegue",
                     link: "/es/advanced/deployment.md",
                   },
                 ],
@@ -491,116 +486,108 @@ export default defineUserConfig({
             ],
           },
           {
-            text: "MISSING TRANSLATION OF 'Plugins'",
+            text: "Complementos",
             children: [
               {
-                text: "MISSING TRANSLATION OF 'Introduction'",
+                text: "Introducción",
                 children: [
                   {
-                    text: "MISSING TRANSLATION OF 'About Plugins'",
+                    text: "Acerca de los complementos",
                     link: "/es/plugins/README.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'How to Write a Plugin'",
+                    text: "Cómo escribir complementos",
                     link: "/es/plugins/guide.md",
                   },
                 ],
               },
               {
-                text: "MISSING TRANSLATION OF 'Built-in'",
+                text: "Incorporado",
                 children: [
                   {
-                    text: "MISSING TRANSLATION OF 'Sessions and Storing Data'",
+                    text: "Sesiones y almacenamiento de datos",
                     link: "/es/plugins/session.md",
                   },
                   {
-                    text:
-                      "MISSING TRANSLATION OF 'Inline and Custom Keyboards'",
+                    text: "Teclados lineales y personalizados",
                     link: "/es/plugins/keyboard.md",
                   },
                 ],
               },
               {
-                text: "MISSING TRANSLATION OF 'Official'",
+                text: "Oficial",
                 children: [
                   {
-                    text: "MISSING TRANSLATION OF 'Interactive Menus (menu)'",
+                    text: "Menus Interactivos (menu)",
                     link: "/es/plugins/menu.md",
                   },
                   {
-                    text:
-                      "MISSING TRANSLATION OF 'Conversations (conversations)'",
+                    text: "Conversaciones (conversations)",
                     link: "/es/plugins/conversations.md",
                   },
                   {
-                    text:
-                      "MISSING TRANSLATION OF 'Stateless Question (stateless-question)'",
+                    text: "Preguntas sin estado (stateless-question)",
                     link: "/es/plugins/stateless-question.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Concurrency (runner)'",
+                    text: "Concurrencia (runner)",
                     link: "/es/plugins/runner.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Hydration (hydrate)'",
+                    text: "Hidratación (hydrate)",
                     link: "/es/plugins/hydrate.md",
                   },
                   {
-                    text:
-                      "MISSING TRANSLATION OF 'Retry API Requests (auto-retry)'",
+                    text: "Reintentar solicitudes de la API (auto-retry)",
                     link: "/es/plugins/auto-retry.md",
                   },
                   {
-                    text:
-                      "MISSING TRANSLATION OF 'Flood Control (transformer-throttler)'",
+                    text: "Control de flujo (transformer-throttler)",
                     link: "/es/plugins/transformer-throttler.md",
                   },
                   {
-                    text:
-                      "MISSING TRANSLATION OF 'Rate Limit Users (ratelimiter)'",
+                    text: "Usuarios con límite de peticiones (ratelimiter)",
                     link: "/es/plugins/ratelimiter.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Files (files)'",
+                    text: "Archivos (files)",
                     link: "/es/plugins/files.md",
                   },
                   {
-                    text:
-                      "MISSING TRANSLATION OF 'Internationalization (fluent)'",
+                    text: "Internacionalización (fluent)",
                     link: "/es/plugins/fluent.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Router (router)'",
+                    text: "Enrutador (router)",
                     link: "/es/plugins/router.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Emoji (emoji)'",
+                    text: "Emojis (emoji)",
                     link: "/es/plugins/emoji.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Parse Mode (parse-mode)'",
+                    text: "Modo de parsear (parse-mode)",
                     link: "/es/plugins/parse-mode.md",
                   },
                   {
-                    text:
-                      "MISSING TRANSLATION OF 'Command Filtering (command-filter)'",
+                    text: "Filtro de comandos (command-filter)",
                     link: "/es/plugins/command-filter.md",
                   },
                 ],
               },
               {
-                text: "MISSING TRANSLATION OF 'Third-party'",
+                text: "De Terceros",
                 children: [
                   {
-                    text: "MISSING TRANSLATION OF 'Console Time'",
+                    text: "Tiempo de consola",
                     link: "/es/plugins/console-time.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Useful Middleware'",
+                    text: "Middleware útil",
                     link: "/es/plugins/middlewares.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF '[Submit your PR!]'",
+                    text: "[¡Envíe su PR!]",
                     link:
                       "/es/plugins/README.md#submitting-your-own-package-to-the-docs",
                   },
@@ -609,25 +596,25 @@ export default defineUserConfig({
             ],
           },
           {
-            text: "MISSING TRANSLATION OF 'Examples'",
+            text: "Ejemplos",
             children: [
               {
-                text: "MISSING TRANSLATION OF 'Examples'",
+                text: "Ejemplos",
                 children: [
                   {
-                    text: "MISSING TRANSLATION OF 'Awesome grammY'",
+                    text: "Impresionante grammY",
                     link: "https://github.com/grammyjs/awesome-grammY",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Example Bots Repository'",
+                    text: "Ejemplo de Repositorio de Bots",
                     link: "https://github.com/grammyjs/examples",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Live Browser Demo'",
+                    text: "Demostración de navegador en vivo",
                     link: "/es/demo/README.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Example Bots'",
+                    text: "Ejemplos de bots",
                     link: "/es/demo/examples.md",
                   },
                 ],
@@ -635,78 +622,76 @@ export default defineUserConfig({
             ],
           },
           {
-            text: "MISSING TRANSLATION OF 'Resources'",
+            text: "Recursos",
             children: [
               {
-                text: "MISSING TRANSLATION OF 'grammY'",
+                text: "grammY",
                 children: [
                   {
-                    text: "MISSING TRANSLATION OF 'About grammY'",
+                    text: "Sobre grammY",
                     link: "&es/resources/about.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Community Chat (English)'",
+                    text: "Chat comunitario (Inglés)",
                     link: "https://t.me/grammyjs",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Community Chat (Russian)'",
+                    text: "Chat comunitario (Ruso)",
                     link: "https://t.me/grammyjs_ru",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'News'",
+                    text: "Noticias",
                     link: "https://t.me/grammyjs_news",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'FAQ'",
+                    text: "Preguntas frecuentes",
                     link: "/es/resources/faq.md",
                   },
                   {
-                    text:
-                      "MISSING TRANSLATION OF 'Comparison to Other Frameworks'",
+                    text: "Comparación con otros frameworks",
                     link: "/es/resources/comparison.md",
                   },
                 ],
               },
               {
-                text: "MISSING TRANSLATION OF 'Telegram'",
+                text: "Telegram",
                 children: [
                   {
-                    text:
-                      "MISSING TRANSLATION OF 'Introduction for Developers'",
+                    text: "Introducción para desarrolladores",
                     link: "https://core.telegram.org/bots",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Bots FAQ'",
+                    text: "Preguntas frecuentes de bots",
                     link: "https://core.telegram.org/bots/faq",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Bot API Reference'",
+                    text: "Referencia de la API para bots",
                     link: "https://core.telegram.org/bots/api",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Example Updates'",
+                    text: "Ejemplos de actualizaciones",
                     link:
                       "https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates",
                   },
                 ],
               },
               {
-                text: "MISSING TRANSLATION OF 'Hosting'",
+                text: "Alojamiento",
                 children: [
                   {
-                    text: "MISSING TRANSLATION OF 'Deno Deploy'",
+                    text: "Despliegue con Deno",
                     link: "/es/hosting/deno-deploy.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Heroku'",
+                    text: "Heroku",
                     link: "/es/hosting/heroku.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Google Cloud Functions'",
+                    text: "Google Cloud Functions",
                     link: "/es/hosting/gcf.md",
                   },
                   {
-                    text: "MISSING TRANSLATION OF 'Virtual Private Server'",
+                    text: "Servidor Privado Virtual",
                     link: "/es/hosting/vps.md",
                   },
                 ],
@@ -714,7 +699,7 @@ export default defineUserConfig({
             ],
           },
           {
-            text: "MISSING TRANSLATION OF 'API Reference'",
+            text: "Referencia de API",
             link: "https://doc.deno.land/https://deno.land/x/grammy/mod.ts",
           },
         ],
@@ -1074,9 +1059,9 @@ export default defineUserConfig({
         placeholder: "Search",
         locales: {
           "/es/": {
-            placeholder: "MISSING TRANSLATION OF 'Search'",
+            placeholder: "Buscar",
             translations: {
-              button: { buttonText: "MISSING TRANSLATION OF 'Search'" },
+              button: { buttonText: "Buscar" },
             },
           },
           "/zh/": {
