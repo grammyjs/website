@@ -61,6 +61,7 @@ bot.use(limit());
 
 ```js
 const { limit } = require("@grammyjs/ratelimiter");
+
 // Limita el manejo de mensajes a un mensaje por segundo para cada usuario.
 bot.use(limit());
 ```
@@ -70,6 +71,7 @@ bot.use(limit());
 
 ```ts
 import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
+
 // Limita el manejo de mensajes a un mensaje por segundo para cada usuario.
 bot.use(limit());
 ```
