@@ -3,10 +3,10 @@ home: true
 heroImage: /Y.png
 actions:
   - text: Get Started
-    link: /guide/getting-started.md
+    link: ./guide/getting-started.md
     type: primary
   - text: Introduction
-    link: /guide/introduction.md
+    link: ./guide/introduction.md
     type: secondary
 features:
   - title: Easy to Use
