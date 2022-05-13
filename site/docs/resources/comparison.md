@@ -61,7 +61,7 @@ bot.on("message", (ctx) => ctx.reply("Hi!"));
 ```
 
 Any code written in Telegraf will work in grammY with minimal changes.
-(Note that the oppsite is not true as many grammY features are not available to Telegraf users.)
+(Note that the opposite is not true as many grammY features are not available to Telegraf users.)
 
 The main advantage of grammY over Telegraf 3.x is **substatially better tooling support**.
 Telegraf 3 is written in JavaScript.

@@ -1,6 +1,0 @@
-[[plugins]]
-package = "@netlify/plugin-sitemap"
-
-  [plugins.inputs]
-  # disable pretty URLS and keep `index.html` & trailing `.html` file references in paths
-  prettyURLs = false

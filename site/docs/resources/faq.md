@@ -72,7 +72,7 @@ Solution: don't do that.
 You should seriously think about how to reduce the number of API calls substantially.
 
 Two: Your bot is getting very popular and it has a lot of users (hundreds of thousands).
-You have already made sure to use the minimum number of API calls for the most common operations of your bot, and _still_ you're running to these errors (called flood wait).
+You have already made sure to use the minimum number of API calls for the most common operations of your bot, and _still_ you're running into these errors (called flood wait).
 
 There are a few things you can do.
 

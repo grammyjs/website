@@ -1,7 +1,11 @@
-import { defineUserConfig } from "vuepress-vite";
-import type { DefaultThemeOptions } from "vuepress-vite";
+import {
+  defaultTheme,
+  type DefaultThemeOptions,
+  defineUserConfig,
+} from "vuepress-vite";
+import { docsearchPlugin } from "@vuepress/plugin-docsearch";
 
-export default defineUserConfig<DefaultThemeOptions>({
+export default defineUserConfig({
   title: "grammY",
   description: "The Telegram Bot Framework.",
 
@@ -19,7 +23,7 @@ export default defineUserConfig<DefaultThemeOptions>({
   },
   shouldPrefetch: true,
 
-  themeConfig: {
+  theme: defaultTheme({
     logo: "/Y.png",
     locales: {
       "/": {
@@ -700,17 +704,21 @@ export default defineUserConfig<DefaultThemeOptions>({
     editLink: true,
     editLinkPattern: ":repo/edit/:branch/:path",
     repoLabel: "GitHub",
-  },
+  }),
   plugins: [
     [
-      "@vuepress/plugin-docsearch",
-      {
-        apiKey: "17b3527aa6f36e8d3fe2276b0f4d9633",
+      docsearchPlugin({
+        apiKey: "33782ffb584887e3b8cdf9e760ea8e60",
         indexName: "grammy",
+        appId: "RBF5Q0D7QV",
         placeholder: "Search",
-        locales: { "/zh/": { placeholder: "搜索文档" } },
-        sitemaps: ["https://grammy.dev/sitemap.xml"],
-      },
+        locales: {
+          "/zh/": {
+            placeholder: "搜索文档",
+            translations: { button: { buttonText: "搜索文档" } },
+          },
+        },
+      }),
     ],
     [
       {
