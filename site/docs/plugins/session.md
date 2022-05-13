@@ -570,7 +570,7 @@ Check out the respective repositories about each individual setup.
 Creating a custom storage adapter is extremely simple.
 The `storage` option works with any object that adheres to [this interface](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/StorageAdapter), so you can connect to your storage just in a few lines of code.
 
-> If you published your own storage adapter, feel free edit this page and link it here, so that other people can use it.
+> If you published your own storage adapter, feel free to edit this page and link it here, so that other people can use it.
 
 :::
 
