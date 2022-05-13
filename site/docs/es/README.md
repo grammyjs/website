@@ -3,10 +3,10 @@ home: true
 heroImage: /Y.png
 actions:
   - text: Comenzar
-    link: /guide/getting-started.md
+    link: ./guide/getting-started.md
     type: primary
   - text: Introducción
-    link: /guide/introduction.md
+    link: ./guide/introduction.md
     type: secondary
 features:
   - title: Fácil de usar
@@ -16,7 +16,7 @@ features:
   - title: Escalable
     details: grammY te tiene cubierto cuando tu bot se vuelve popular y el tráfico se incrementa.
 footer: Copyright © 2021-2022
-permalink: /
+permalink: /es/
 ---
 
 <h6 align="right">… {{ [
