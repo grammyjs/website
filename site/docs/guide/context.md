@@ -400,11 +400,16 @@ If you have different [additive context flavors](#additive-context-flavors), you
 type MyContext = Context & FlavorA & FlavorB & FlavorC;
 ```
 
+The order of context flavors does not matter, you can combine them in any order you like.
+
 Multiple [transformative context flavors](#transformative-context-flavors) can also be combined:
 
 ```ts
 type MyContext = FlavorX<FlavorY<FlavorZ<Context>>>;
 ```
+
+Here, the order could matter, as `FlavorZ` transforms `Context` first, then `FlavorY`, and the result of this will be transformed again by `FlavorZ`.
+(In practice, this is nothing to worry about because plugins usually don't clash with each other.)
 
 You can even mix additive and transformative flavors:
 
@@ -417,5 +422,3 @@ type MyContext = FlavorX<
   >
 >;
 ```
-
-The order of context flavors does not matter, you can combine them in any order you like.
