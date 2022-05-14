@@ -1,6 +1,6 @@
 ---
 prev: ../guide/
-next: ./getting-started.html
+next: ./getting-started.md
 ---
 
 # Introducción

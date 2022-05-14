@@ -1,6 +1,6 @@
 ---
-prev: ./files.html
-next: ./deployment-types.html
+prev: ./files.md
+next: ./deployment-types.md
 ---
 
 # Games

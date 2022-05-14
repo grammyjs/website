@@ -1,6 +1,6 @@
 ---
-prev: ./flood.html
-next: ./proxy.html
+prev: ./flood.md
+next: ./proxy.md
 ---
 
 # Bot API Transformers

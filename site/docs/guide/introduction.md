@@ -1,6 +1,6 @@
 ---
 prev: /guide/
-next: ./getting-started.html
+next: ./getting-started.md
 ---
 
 # Introduction
@@ -77,7 +77,7 @@ You will get to know them as you go.
 
 Here are a few interesting things about programming—things that are essential to coding, yet rarely explained because most developers think they are self-evident.
 
-In the next section, you will create a bot by writing a text file that contains source code in the programming language [TypeScript](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html).
+In the next section, you will create a bot by writing a text file that contains source code in the programming language [TypeScript](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.md).
 The grammY documentation will not teach you how to program, so we expect you to teach yourself.
 Remember, though: creating a Telegram bot with grammY is actually a good way to learn coding! :rocket:
 

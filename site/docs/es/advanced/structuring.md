@@ -1,6 +1,6 @@
 ---
-prev: ./middleware.html
-next: ./scaling.html
+prev: ./middleware.md
+next: ./scaling.md
 ---
 
 # Escalando I: Gran base de código

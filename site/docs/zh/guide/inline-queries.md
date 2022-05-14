@@ -1,6 +1,6 @@
 ---
-prev: ./errors.html
-next: ./files.html
+prev: ./errors.md
+next: ./files.md
 ---
 
 # Inline Queries

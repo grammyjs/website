@@ -1,6 +1,6 @@
 ---
 prev: /zh/guide/
-next: ./getting-started.html
+next: ./getting-started.md
 ---
 
 # 简介

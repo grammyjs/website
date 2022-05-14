@@ -1,6 +1,6 @@
 ---
-prev: ./inline-queries.html
-next: ./games.html
+prev: ./inline-queries.md
+next: ./games.md
 ---
 
 # 文件管理

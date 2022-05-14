@@ -1,6 +1,6 @@
 ---
 prev: ./
-next: ./structuring.html
+next: ./structuring.md
 ---
 
 # Middleware Redux

@@ -1,6 +1,6 @@
 ---
-prev: ./scaling.html
-next: ./flood.html
+prev: ./scaling.md
+next: ./flood.md
 ---
 
 # Escalando III: Fiabilidad

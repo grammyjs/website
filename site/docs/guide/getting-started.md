@@ -1,6 +1,6 @@
 ---
-prev: ./introduction.html
-next: ./basics.html
+prev: ./introduction.md
+next: ./basics.md
 ---
 
 # Getting Started

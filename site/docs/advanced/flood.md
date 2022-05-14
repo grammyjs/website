@@ -1,6 +1,6 @@
 ---
-prev: ./reliability.html
-next: ./transformers.html
+prev: ./reliability.md
+next: ./transformers.md
 ---
 
 # Scaling Up IV: Flood Limits

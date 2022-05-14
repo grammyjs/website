@@ -1,6 +1,6 @@
 ---
-prev: ./api.html
-next: ./commands.html
+prev: ./api.md
+next: ./commands.md
 ---
 
 # Filter 参数与 `bot.on()`

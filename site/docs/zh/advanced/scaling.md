@@ -1,6 +1,6 @@
 ---
-prev: ./structuring.html
-next: ./reliability.html
+prev: ./structuring.md
+next: ./reliability.md
 ---
 
 # 关注点二：高负载

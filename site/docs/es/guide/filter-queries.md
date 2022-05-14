@@ -1,6 +1,6 @@
 ---
-prev: ./api.html
-next: ./commands.html
+prev: ./api.md
+next: ./commands.md
 ---
 
 # Consultas de filtro y `bot.on()`

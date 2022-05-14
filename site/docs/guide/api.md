@@ -1,6 +1,6 @@
 ---
-prev: ./context.html
-next: ./filter-queries.html
+prev: ./context.md
+next: ./filter-queries.md
 ---
 
 # Bot API

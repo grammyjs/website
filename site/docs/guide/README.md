@@ -1,5 +1,5 @@
 ---
-next: ./introduction.html
+next: ./introduction.md
 ---
 
 ![logo](/grammY.png)

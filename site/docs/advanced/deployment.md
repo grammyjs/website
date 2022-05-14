@@ -1,5 +1,5 @@
 ---
-prev: ./proxy.html
+prev: ./proxy.md
 ---
 
 # Deployment Checklist

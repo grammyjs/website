@@ -1,6 +1,6 @@
 ---
 prev: ./
-next: ./structuring.html
+next: ./structuring.md
 ---
 
 # 重构中间件

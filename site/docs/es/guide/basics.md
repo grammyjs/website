@@ -1,6 +1,6 @@
 ---
-prev: ./getting-started.html
-next: ./context.html
+prev: ./getting-started.md
+next: ./context.md
 ---
 
 # Envío y recepción de mensajes

@@ -1,6 +1,6 @@
 ---
-prev: ./api.html
-next: ./commands.html
+prev: ./api.md
+next: ./commands.md
 ---
 
 # Filter Queries and `bot.on()`
@@ -193,7 +193,7 @@ As an example, it can detect that `ctx.msg.text` is a required property for the 
 ## Useful Tips
 
 Here are some less-known features of filter queries that can come in handy.
-Some of them are a little advanced, so feel free to move on to [the next section](./commands.html).
+Some of them are a little advanced, so feel free to move on to [the next section](./commands.md).
 
 ### Chat Member Updates
 

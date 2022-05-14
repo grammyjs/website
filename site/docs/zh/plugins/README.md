@@ -1,5 +1,5 @@
 ---
-next: ./guide.html
+next: ./guide.md
 ---
 
 # 什么是一个插件？

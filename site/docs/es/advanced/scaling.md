@@ -1,6 +1,6 @@
 ---
-prev: ./structuring.html
-next: ./reliability.html
+prev: ./structuring.md
+next: ./reliability.md
 ---
 
 # Escalando II: Alta carga

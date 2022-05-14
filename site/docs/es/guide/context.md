@@ -1,6 +1,6 @@
 ---
-prev: ./basics.html
-next: ./api.html
+prev: ./basics.md
+next: ./api.md
 ---
 
 # Context

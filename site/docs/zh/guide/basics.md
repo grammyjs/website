@@ -1,6 +1,6 @@
 ---
-prev: ./getting-started.html
-next: ./context.html
+prev: ./getting-started.md
+next: ./context.md
 ---
 
 # 发送和接收信息

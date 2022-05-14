@@ -1,5 +1,5 @@
 ---
-prev: ./games.html
+prev: ./games.md
 next: /zh/advanced/
 ---
 
