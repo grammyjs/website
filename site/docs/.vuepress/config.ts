@@ -369,11 +369,11 @@ export default defineUserConfig({
         contributorsText: "Colaboradores",
         lastUpdatedText: "Última actualización",
         notFound: [
-          "No se ha encontrado",
+          "¡Uy! Esta página no existe",
           "Nop.",
-          "nada aquí para ti, lo siento",
-          "Error 404/ Esta página no se pudo encontrar pero/ Un haiku en su lugar",
-          "Caminos ruuuuraaaales",
+          "Nada aquí para ti, lo siento",
+          "Error 404/ ¡Houston, tenemos un problema!",
+          "Vuelveeeee, vuelve a casaaaaa, por navidad",
         ],
         backToHome: "Llévame a casa",
         navbar: [
