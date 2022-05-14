@@ -1,5 +1,5 @@
 ---
-prev: /guide/
+prev: ../guide/
 next: ./getting-started.md
 ---
 

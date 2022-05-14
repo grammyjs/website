@@ -1,6 +1,6 @@
 ---
 prev: ./games.md
-next: /advanced/
+next: ../advanced/
 ---
 
 # Long Polling vs. Webhooks
