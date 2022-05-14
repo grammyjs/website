@@ -1,6 +1,6 @@
 ---
-prev: ./scaling.md
-next: ./flood.md
+prev: ./scaling.html
+next: ./flood.html
 ---
 
 # 关注点三：可靠性

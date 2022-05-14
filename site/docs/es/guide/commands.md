@@ -1,6 +1,6 @@
 ---
-prev: ./filter-queries.md
-next: ./middleware.md
+prev: ./filter-queries.html
+next: ./middleware.html
 ---
 
 # Comandos

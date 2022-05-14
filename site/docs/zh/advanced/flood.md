@@ -1,6 +1,6 @@
 ---
-prev: ./reliability.md
-next: ./transformers.md
+prev: ./reliability.html
+next: ./transformers.html
 ---
 
 # 关注点四：流量限制

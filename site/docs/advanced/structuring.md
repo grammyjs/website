@@ -1,6 +1,6 @@
 ---
-prev: ./middleware.md
-next: ./scaling.md
+prev: ./middleware.html
+next: ./scaling.html
 ---
 
 # Scaling Up I: Large Codebase

@@ -1,6 +1,6 @@
 # Flood Control (`transformer-throttler`)
 
-This plugin enqueues outgoing API requests instance via [Bottleneck](https://github.com/SGrondin/bottleneck) in order to prevent your bot from hitting [rate limits](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this) as described in [this advanced section](../advanced/flood.md) of the documentation.
+This plugin enqueues outgoing API requests instance via [Bottleneck](https://github.com/SGrondin/bottleneck) in order to prevent your bot from hitting [rate limits](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this) as described in [this advanced section](../advanced/flood.html) of the documentation.
 
 ::: warning Undocumented API Limits Exist
 Telegram implements unspecified and undocumented rate limits for some API calls.

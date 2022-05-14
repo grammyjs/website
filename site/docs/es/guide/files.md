@@ -1,6 +1,6 @@
 ---
-prev: ./inline-queries.md
-next: ./games.md
+prev: ./inline-queries.html
+next: ./games.html
 ---
 
 # Manejo de archivos

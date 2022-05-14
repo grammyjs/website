@@ -1,5 +1,5 @@
 ---
-next: ./guide.md
+next: ./guide.html
 ---
 
 # ¿Qué es un plugin?

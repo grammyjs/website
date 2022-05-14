@@ -1,6 +1,6 @@
 ---
-prev: ./middleware.md
-next: ./inline-queries.md
+prev: ./middleware.html
+next: ./inline-queries.html
 ---
 
 # 错误处理

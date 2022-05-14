@@ -1,6 +1,6 @@
 ---
-prev: ./transformers.md
-next: ./deployment.md
+prev: ./transformers.html
+next: ./deployment.html
 ---
 
 # Soporte Proxy

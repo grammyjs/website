@@ -1,5 +1,5 @@
 ---
-next: ./middleware.md
+next: ./middleware.html
 ---
 
 # Overview: Advanced Topics

@@ -1,6 +1,6 @@
 ---
-prev: ./structuring.md
-next: ./reliability.md
+prev: ./structuring.html
+next: ./reliability.html
 ---
 
 # Scaling Up II: High Load

@@ -1,5 +1,5 @@
 ---
-prev: ./proxy.md
+prev: ./proxy.html
 ---
 
 # Lista de verificaciones en despliegues

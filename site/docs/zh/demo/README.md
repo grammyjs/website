@@ -1,5 +1,5 @@
 ---
-next: ./examples.md
+next: ./examples.html
 ---
 
 # 在线 Demo

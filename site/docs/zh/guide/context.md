@@ -1,6 +1,6 @@
 ---
-prev: ./basics.md
-next: ./api.md
+prev: ./basics.html
+next: ./api.html
 ---
 
 # 上下文

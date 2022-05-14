@@ -1,6 +1,6 @@
 ---
-prev: ./commands.md
-next: ./errors.md
+prev: ./commands.html
+next: ./errors.html
 ---
 
 # 中间件
