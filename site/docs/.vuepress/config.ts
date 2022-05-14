@@ -450,7 +450,7 @@ export default defineUserConfig({
                     link: "/es/advanced/README.md",
                   },
                   {
-                    text: "Middleware Redux",
+                    text: "Middleware en profundidad",
                     link: "/es/advanced/middleware.md",
                   },
                   {
