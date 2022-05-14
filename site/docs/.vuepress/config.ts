@@ -629,7 +629,7 @@ export default defineUserConfig({
                 children: [
                   {
                     text: "Sobre grammY",
-                    link: "&es/resources/about.md",
+                    link: "/es/resources/about.md",
                   },
                   {
                     text: "Chat comunitario (Inglés)",
