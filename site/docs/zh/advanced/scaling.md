@@ -5,7 +5,7 @@ next: ./reliability.md
 
 # 关注点二：高负载
 
-你的 bot 能够处理高负载的消息取决于你有没有让它处于 [长轮询状态运行或者通过使用 webhooks](/zh/guide/deployment-types.md)。
+你的 bot 能够处理高负载的消息取决于你有没有让它处于 [长轮询状态运行或者通过使用 webhooks](../guide/deployment-types.md)。
 不论使用哪种方式，你都应该阅读 [下面的一些坑点](#并发是困难的)。
 
 ## 长轮询
@@ -26,7 +26,7 @@ next: ./reliability.md
 理想情况下，我们还希望将并发限制在某个固定数量，以约束最大服务器负载。
 
 并发处理的模块并没有被打包在 grammy 的核心库中。
-相应替代的是， [grammY runner](/zh/plugins/runner.md) 这个包可以在你的 bot 中使用。
+相应替代的是， [grammY runner](../plugins/runner.md) 这个包可以在你的 bot 中使用。
 它支持上述所有开箱即用的功能，而且使用起来非常简单。
 
 ```ts
@@ -45,7 +45,7 @@ run(bot);
 ## Webhooks
 
 如果你让你的 bot 运行在 webhooks模式下，只要接收到更新它就会并发去处理。
-当然，为了让它能够在高负载下运行良好，你应该熟悉 [怎样去使用 webhooks](/guide/deployment-types.md#how-to-use-1)。
+当然，为了让它能够在高负载下运行良好，你应该熟悉 [怎样去使用 webhooks](../guide/deployment-types.md#how-to-use-1)。
 这就意味着你不得不去意识到一些并发带来的后果，详见 [下一小节](#并发是困难的)。
 
 Telegram 将按顺序传送来自同一聊天的更新，但也同时并发传送来自不同聊天的更新 ([source](https://github.com/tdlib/telegram-bot-api/issues/75#issuecomment-755436496))。
@@ -56,7 +56,7 @@ Telegram 将按顺序传送来自同一聊天的更新，但也同时并发传�
 比如，如果两条来自同一聊天的信息最终被同一个 `getUpdates` 处理，它们将会被并发处理。
 同一聊天中消息的顺序不再得到保证。
 
-发生冲突的主要原因是，当你使用 [sessions](/plugins/session.md)，有可能会发生读后写的风险。
+发生冲突的主要原因是，当你使用 [sessions](../plugins/session.md)，有可能会发生读后写的风险。
 想一下这些事件的顺序：
 
 1. Alice 发送消息 A

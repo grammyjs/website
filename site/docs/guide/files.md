@@ -67,16 +67,16 @@ bot.on("message:voice", async (ctx) => {
 ```
 
 ::: tip Passing a Custom file_id to getFile
-On the context object, `getFile` is [a shortcut](/guide/context.md#shortcuts), and will fetch information for a file on the current message.
+On the context object, `getFile` is [a shortcut](./context.md#shortcuts), and will fetch information for a file on the current message.
 If you want to get a different file while handling a message, use `ctx.api.getFile(file_id)` instead.
 :::
 
-> Check out [the `:media` and `:file` shortcuts](/guide/filter-queries.md#shortcuts) for filter queries if you want to receive any kind of file.
+> Check out [the `:media` and `:file` shortcuts](./filter-queries.md#shortcuts) for filter queries if you want to receive any kind of file.
 
 Once you have called `getFile`, you can use the returned `file_path` to download the file using this URL `https://api.telegram.org/file/bot<token>/<file_path>`, where `<token>` must be replaced by your bot token.
 
 ::: tip Files Plugin
-grammY does not come bundled with its own file downloader, but you can install [the official files plugin](/plugins/files.md).
+grammY does not come bundled with its own file downloader, but you can install [the official files plugin](../plugins/files.md).
 This allows you to download files via `await file.download()`, and to obtain a constructed download URL for them via `file.getUrl()`.
 :::
 

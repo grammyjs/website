@@ -9,7 +9,7 @@ next: ./errors.md
 虽然说它们在监听更新是没有错的，但称它们为"监听者"又有些简单了。
 
 > 本节解释了什么是中间件，并以 grammY 为例，说明如何使用中间件。
-> 如果你正在寻找关于 grammY 实现中间件的特别之处的具体文档，请查看文档高级部分的 [Middleware Redux](/zh/advanced/middleware.md)。
+> 如果你正在寻找关于 grammY 实现中间件的特别之处的具体文档，请查看文档高级部分的 [Middleware Redux](../advanced/middleware.md)。
 
 ## 中间件栈
 
@@ -222,7 +222,7 @@ bot.use(responseTime);
 - :x: 你的中间件栈将以错误的顺序执行。
 - :x: 如果发生错误，你的错误处理程序将不会被调用。
   相反，你会看到一个 `UnhandledPromiseRejectionWarning` 发生，这可能会使你的 bot 进程崩溃。
-- :x: [grammY runner](/zh/plugins/runner.md) 的抗压机制被打破，它可以保护你的服务器免受过高的负载，例如在负载高峰期。
+- :x: [grammY runner](../plugins/runner.md) 的抗压机制被打破，它可以保护你的服务器免受过高的负载，例如在负载高峰期。
 - :skull: 有时，它还会杀死你所有的无辜代码（是真的！）。
 
 :::
@@ -266,4 +266,4 @@ bot.use(/*...*/);
 // ...
 ```
 
-如果你想深入了解 grammY 如何实现中间件，请在文档的进阶部分查阅 [Middleware Redux](/zh/advanced/middleware.md)。
+如果你想深入了解 grammY 如何实现中间件，请在文档的进阶部分查阅 [Middleware Redux](../advanced/middleware.md)。
