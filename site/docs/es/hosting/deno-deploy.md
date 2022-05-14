@@ -38,7 +38,7 @@ serve({
 });
 ```
 
-Le aconsejamos que tenga su manejador en alguna ruta secreta en lugar de la raíz. Aquí, estamos usando el token del bot.
+Le aconsejamos que tenga su manejador en alguna ruta secreta en lugar de la raíz (`/`). Aquí, estamos usando el token del bot (`/<bot_token>`).
 
 ## Despliegue
 
