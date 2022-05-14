@@ -292,7 +292,7 @@ await ctx.reply(text, {
 
 #### Enviar selectivamente un Custom Keyboards
 
-Puedes especificar la opción `selectiva` si quieres mostrar el teclado personalizado sólo a aquellos usuarios que sean @mencionados en el texto del objeto mensaje, y al remitente del mensaje original en caso de que tu mensaje sea una [respuesta](../guide/basics.html#sending-messages-with-reply).
+Puedes especificar la opción `selectiva` si quieres mostrar el teclado personalizado sólo a aquellos usuarios que sean @mencionados en el texto del objeto mensaje, y al remitente del mensaje original en caso de que tu mensaje sea una [respuesta](../guide/basics.md#sending-messages-with-reply).
 
 ```ts
 await ctx.reply(text, {

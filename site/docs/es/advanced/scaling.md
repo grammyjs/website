@@ -48,7 +48,7 @@ Si ejecutas tu bot con webhooks, procesará automáticamente las actualizaciones
 Naturalmente, para que esto funcione bien bajo una alta carga, deberías familiarizarte con [cómo usar webhooks](../guide/deployment-types.md#how-to-use-1).
 Esto significa que todavía tienes que ser consciente de algunas consecuencias de la concurrencia, conferir [la subsección de abajo](##concurrency-is-hard).
 
-Además, [recuerda que](../guide/deployment-types.html#ending-webhook-requests-in-time) Telegram entregará las actualizaciones del mismo chat en secuencia, pero las actualizaciones de diferentes chats de forma concurrente.
+Además, [recuerda que](../guide/deployment-types.md#ending-webhook-requests-in-time) Telegram entregará las actualizaciones del mismo chat en secuencia, pero las actualizaciones de diferentes chats de forma concurrente.
 
 ## La concurrencia es difícil
 

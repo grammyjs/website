@@ -156,7 +156,7 @@ https://api.telegram.org/botabcd:1234/setWebhook?url=https%3A%2F%2Fgrammybot.her
 :::
 
 ::: tip Optimización (opcional)
-Utilice [Webhook Reply](../guide/deployment-types.html#webhook-reply) para una mayor eficiencia.
+Utilice [Webhook Reply](../guide/deployment-types.md#webhook-reply) para una mayor eficiencia.
 :::
 
 ### Creando `bot.ts`

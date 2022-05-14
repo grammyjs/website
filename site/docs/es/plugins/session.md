@@ -275,7 +275,7 @@ Cuando estés ejecutando tu bot con webhooks, deberías evitar usar la opción `
 Telegram envía los webhooks secuencialmente por chat, por lo que la resolución de la clave de sesión por defecto es la única implementación que garantiza no causar pérdida de datos.
 
 Si debes usar la opción (que por supuesto sigue siendo posible), debes saber lo que estás haciendo.
-Asegúrese de entender las consecuencias de esta configuración leyendo el artículo [este](../guide/deployment-types.md) y especialmente [este](../plugins/runner.html#sequential-processing-where-necessary).
+Asegúrese de entender las consecuencias de esta configuración leyendo el artículo [este](../guide/deployment-types.md) y especialmente [este](../plugins/runner.md#sequential-processing-where-necessary).
 :::
 
 ### Almacenamiento de sus datos

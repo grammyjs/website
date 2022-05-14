@@ -288,7 +288,7 @@ await ctx.reply(text, {
 
 #### 选择性地发送自定义 Keyboard
 
-如果你想只向消息对象的文本中提到的 @ 的用户显示自定义 keyboard，你可以指定 `selective` 选项，如果你的消息是 [回复](/zh/guide/basics.html#发送带回复的信息)，则向原始消息的发送者显示。
+如果你想只向消息对象的文本中提到的 @ 的用户显示自定义 keyboard，你可以指定 `selective` 选项，如果你的消息是 [回复](/zh/guide/basics.md#发送带回复的信息)，则向原始消息的发送者显示。
 
 ```ts
 await ctx.reply(text, {
