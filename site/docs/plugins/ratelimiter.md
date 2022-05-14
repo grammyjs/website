@@ -46,7 +46,7 @@ There are two ways of using rateLimiter:
 
 ### Default Configuration
 
-The following example uses [express](https://github.com/expressjs/express) as the webserver and [webhooks](../guide/deployment-types) for our small bot.
+The following example uses [express](https://github.com/expressjs/express) as the webserver and [webhooks](/guide/deployment-types) for our small bot.
 This snippet demonstrates the easiest way of using rateLimiter which is accepting the default behavior:
 
 ```ts
@@ -109,7 +109,7 @@ app.listen(3000, () => {
 ```
 
 As you can see in the example above, each user is allowed to send 3 requests every 2 seconds.
-If said user sends more requests, the bot replies with _Please refrain from sending too many requests_. That request will not travel further and dies immediately as we do not call [next()](../guide/middleware.md#the-middleware-stack) in the middleware.
+If said user sends more requests, the bot replies with _Please refrain from sending too many requests_. That request will not travel further and dies immediately as we do not call [next()](/guide/middleware.html#the-middleware-stack) in the middleware.
 
 > Note: To avoid flooding Telegram servers, `onLimitExceeded` is only executed once in every `timeFrame`.
 

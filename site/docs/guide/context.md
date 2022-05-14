@@ -222,7 +222,7 @@ bot.on("message", (ctx) => {
 Naturally, just because the context _type_ now has new properties, this does not mean that there will actually be _values_ behind them.
 You have to make sure that a plugin (or your own middleware) sets all properties correctly to satisfy the type you specified.
 
-> Some middleware (e.g. [session middleware](../plugins/session.md)) requires you to mix in the correct types on the context object, which can be done by _flavoring_ your context as explained [down here](#context-flavors).
+> Some middleware (e.g. [session middleware](/plugins/session.md)) requires you to mix in the correct types on the context object, which can be done by _flavoring_ your context as explained [down here](#context-flavors).
 
 If you choose option 2., this is how you set a custom context constructor that will be used to instantiate the context objects.
 Note that your class must extend `Context`.
@@ -336,7 +336,7 @@ There are two different kinds of context flavors.
 The basic one is called _additive context flavor_, and whenever we talk about context flavoring, we just mean this basic form.
 Let's look at how it works.
 
-As an example, when you have [session data](../plugins/session.md), you must register `ctx.session` on the context type.
+As an example, when you have [session data](/plugins/session.md), you must register `ctx.session` on the context type.
 Otherwise,
 
 1. you cannot install the built-in sessions plugin, and

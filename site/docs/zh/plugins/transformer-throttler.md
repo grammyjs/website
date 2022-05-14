@@ -1,6 +1,6 @@
 # 流量控制（`transformer-throttler`）
 
-这个插件通过 [Bottleneck](https://github.com/SGrondin/bottleneck) 对传出的 API 请求实例进行排队，以防止你的 bot 被 [限流](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this)，正如在 [这个高级部分](../advanced/flood.md) 的文档中描述的那样。
+这个插件通过 [Bottleneck](https://github.com/SGrondin/bottleneck) 对传出的 API 请求实例进行排队，以防止你的 bot 被 [限流](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this)，正如在 [这个高级部分](/advanced/flood.md) 的文档中描述的那样。
 
 ::: warning 不存在文档中的 API 限制
 Telegram 实现了一些未指定的和无文档的 API 调用的限制。

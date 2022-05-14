@@ -9,7 +9,7 @@ The listener functions that are being passed to `bot.on()`, `bot.command()`, and
 While it is not wrong to say that they are listening for updates, calling them "listeners" is a simplification.
 
 > This section explains what middleware is, and uses grammY as an example to illustrate how it can be used.
-> If you are looking for specific documentation about what makes grammY's implementation of middleware special, check out [Middleware Redux](../advanced/middleware.md) in the advanced section of the docs.
+> If you are looking for specific documentation about what makes grammY's implementation of middleware special, check out [Middleware Redux](/advanced/middleware.md) in the advanced section of the docs.
 
 ## The Middleware Stack
 
@@ -222,7 +222,7 @@ If you ever call `next()` without the `await` keyword, several things will break
 - :x: Your middleware stack will be executed in the wrong order.
 - :x: If an error happens, your error handler will not be called for it.
   Instead, you will see that an `UnhandledPromiseRejectionWarning` will occur, which may crash your bot process
-- :x: The backpressure mechanism of [grammY runner](../plugins/runner.md) breaks, which protects your server from overly-high load, such as during load spikes.
+- :x: The backpressure mechanism of [grammY runner](/plugins/runner.md) breaks, which protects your server from overly-high load, such as during load spikes.
 - :skull: Sometimes, it also kills all of your innocent kittens.
 
 :::
@@ -266,4 +266,4 @@ bot.use(/*...*/);
 // ...
 ```
 
-If you want to dig deeper into how grammY implements middleware, check out [Middleware Redux](../advanced/middleware.md) in the advanced section of the docs.
+If you want to dig deeper into how grammY implements middleware, check out [Middleware Redux](/advanced/middleware.md) in the advanced section of the docs.

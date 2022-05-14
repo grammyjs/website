@@ -427,7 +427,7 @@ function getDays(month: number, day: number) {
 
 ::: tip Breaking Up the Code
 If you feel like your code gets too complex, you can split it across several files.
-You can read more about how to scale your codebase in [this advanced section](../advanced/structuring.md).
+You can read more about how to scale your codebase in [this advanced section](/advanced/structuring.md).
 :::
 
 Note how the session has a property `step` that stores the step of the form, i.e. which value is currently being filled.
