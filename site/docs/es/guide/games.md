@@ -100,7 +100,7 @@ bot.command("start", (ctx) => {
 });
 ```
 
-> Recuerda añadir un adecuado [manejo de errores](/guía/errores.md) a tu bot antes de ponerlo en marcha.
+> Recuerda añadir un adecuado [manejo de errores](./errors.md) a tu bot antes de ponerlo en marcha.
 
 Puede que ampliemos este artículo en el futuro con más secciones avanzadas y preguntas frecuentes, pero esto es ya todo lo que necesitas para empezar tu juego en Telegram.
 ¡Diviértete jugando! :space_invader:

@@ -57,7 +57,7 @@ Debe manejar los errores de acuerdo con las convenciones de ese framework.
 
 ## El Objeto `BotError`
 
-El objeto `BotError` agrupa un error lanzado con el correspondiente [objeto contexto](/guía/contexto.md) que causó el error.
+El objeto `BotError` agrupa un error lanzado con el correspondiente [objeto contexto](./context.md) que causó el error.
 Esto funciona de la siguiente manera.
 
 Cualquiera que sea el error que se produzca mientras se procesa una actualización, grammY capturará el error lanzado por usted.

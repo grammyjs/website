@@ -52,7 +52,7 @@ Basándonos en el hecho de que Telegraf se encuentra en algún lugar entre la ve
 #### Comparación con la v3
 
 Dada su historia compartida, grammY y Telegraf tienen mucho en común.
-Ambos tienen un [sistema de middleware](/guía/middleware.md) en su núcleo.
+Ambos tienen un [sistema de middleware](../guide/middleware.md) en su núcleo.
 También comparten gran parte de su sintaxis básica:
 
 ```ts
@@ -90,7 +90,7 @@ Esto también significa que puedes encontrar más historias en internet sobre us
 La principal ventaja de grammY sobre Telegraf 4.x es que **es simplemente mucho más fácil**.
 Por ejemplo
 
-- grammY tiene [una documentación](/).
+- grammY tiene [una documentación](/es).
   Telegraf no la tiene (fue reemplazada por una referencia de la API generada que carece de explicaciones).
 - Los tipos en grammY _sólo funcionan_ y seguirán tu código.
   En Telegraf, a menudo necesitarás escribir tu código de cierta manera, de lo contrario no compila (aunque en realidad funcione bien).
