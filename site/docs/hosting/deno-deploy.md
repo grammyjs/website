@@ -12,7 +12,7 @@ It's just like the other many serverless platforms, but dedicated for Deno apps.
 
 1. Make sure that you have a file which exports your `Bot` object, so that you can import it later to run it.
 Note that you shouldn't call `bot.start()` or `bot.init()` in that file.
-3. Create a file named `mod.ts` or `mod.js`, or actually any name you like (but you should be remembering and using this as the main file to deploy), with the following content:
+2. Create a file named `mod.ts` or `mod.js`, or actually any name you like (but you should be remembering and using this as the main file to deploy), with the following content:
 
 ```ts
 import { webhookCallback } from "https://deno.land/x/grammy/mod.ts";
