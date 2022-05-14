@@ -52,7 +52,7 @@ bot.start();
 </CodeGroupItem>
  <CodeGroupItem title="JavaScript">
 
-```ts
+```js
 const { Bot } = require("grammy");
 
 const bot = new Bot(""); // <-- Pon el token del bot aquí (https://t.me/BotFather)
