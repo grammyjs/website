@@ -23,6 +23,10 @@ We have two comparison tables, one for [serverless](#what-does-serverless-mean) 
 Serverless means that you do not control a single machine on which your bot is run.
 Instead, these hosting providers will rather allow you to upload your code, and then start and stop different machines as necessary to make sure that your bot always works.
 
+This has the downside that your bot does not have access to a persistent storage by default, such as a local file system.
+Instead, you will often have to have a database separately and connect to it if you need to store data permanently.
+We therefore recommend you to use a different kind of hosting for more complex bots, e.g. a [VPS](./vps.md).
+
 The main thing to know about them is that you must run your bot on webhooks on serverless infrastructure.
 
 | Name                  | Min. price | Limits                                                                                             | Ping and Location                     | Node.js            | Deno               | Web                | Notes                                |
