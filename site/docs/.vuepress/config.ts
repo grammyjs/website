@@ -437,7 +437,7 @@ export default defineUserConfig({
                     link: "/es/guide/games.md",
                   },
                   {
-                    text: "Long Polling vs. Webhooks",
+                    text: "Long Polling frente a Webhooks",
                     link: "/es/guide/deployment-types.md",
                   },
                 ],
