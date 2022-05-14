@@ -1,5 +1,5 @@
 ---
-prev: /plugins/
+prev: ../plugins/
 ---
 
 # La Guía del Autoestopista de los Plugins de grammY
