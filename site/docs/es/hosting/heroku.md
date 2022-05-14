@@ -3,7 +3,7 @@
 > Asumimos que tienes los conocimientos básicos sobre la creación de bots usando grammY.
 > Si aún no estás preparado, ¡no dudes en dirigirte a nuestra amigable [Guía](../guide)! :cohete:
 
-Este tutorial te guiará en cómo desplegar un bot de Telegram en [Heroku](https://heroku.com/) usando [webhooks](../guide/deployment-types.html#webhooks) o [long polling](../guide/deployment-types.html#long-polling).
+Este tutorial te guiará en cómo desplegar un bot de Telegram en [Heroku](https://heroku.com/) usando [webhooks](../guide/deployment-types.md#webhooks) o [long polling](../guide/deployment-types.md#long-polling).
 También asumimos que ya tienes una cuenta en Heroku.
 
 ## Requisitos previos
@@ -90,7 +90,7 @@ Nuestro `package.json` debería ser ahora similar a esto:
 ```
 
 Como hemos mencionado anteriormente, tenemos dos opciones para recibir datos de Telegram, los webhooks y el long polling.
-¡Puedes aprender más sobre las dos ventajas y luego decidir cuál es la adecuada en [estos increíbles consejos](../guide/deployment-types.html)!
+¡Puedes aprender más sobre las dos ventajas y luego decidir cuál es la adecuada en [estos increíbles consejos](../guide/deployment-types.md)!
 
 ## Webhooks
 
@@ -156,7 +156,7 @@ https://api.telegram.org/botabcd:1234/setWebhook?url=https%3A%2F%2Fgrammybot.her
 :::
 
 ::: tip Optimización (opcional)
-Utilice [Webhook Reply](../guide/deployment-types.html#webhook-reply) para una mayor eficiencia.
+Utilice [Webhook Reply](../guide/deployment-types.md#webhook-reply) para una mayor eficiencia.
 :::
 
 ### Creando `bot.ts`
@@ -179,7 +179,7 @@ Pero antes de ir a los pasos de despliegue, podemos optimizar nuestro bot un poc
 Como siempre, esto es opcional.
 
 ::: tip ⚡ Optimización (opcional)
-Cada vez que tu servidor se inicie, grammY solicitará [información sobre el bot](https://core.telegram.org/bots/api#getme) a Telegram para proporcionarla en el [objeto de contexto](../guide/context.html) bajo `ctx.me`.
+Cada vez que tu servidor se inicie, grammY solicitará [información sobre el bot](https://core.telegram.org/bots/api#getme) a Telegram para proporcionarla en el [objeto de contexto](../guide/context.md) bajo `ctx.me`.
 Podemos establecer la [información sobre el bot](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/BotConfig#botInfo) para evitar un exceso de llamadas a `getMe`.
 
 1. Abre este enlace `https://api.telegram.org/bot<bot_token>/getMe` en tu navegador web favorito. Se recomienda usar [Firefox](https://www.mozilla.org/en-US/firefox/) ya que muestra muy bien el formato `json`.
@@ -240,7 +240,7 @@ bot.start();
 ¡Ya está!
 Estamos listos para desplegarlo.
 Bastante sencillo, ¿verdad? :smiley:
-Si crees que es demasiado fácil, ¡consulta nuestra [Lista de verificación de despliegue](../advanced/deployment.html#long-polling)! :rocket:
+Si crees que es demasiado fácil, ¡consulta nuestra [Lista de verificación de despliegue](../advanced/deployment.md#long-polling)! :rocket:
 
 ## Despliegue
 

@@ -1,11 +1,11 @@
 ---
-prev: ./structuring.html
-next: ./reliability.html
+prev: ./structuring.md
+next: ./reliability.md
 ---
 
 # Escalando II: Alta carga
 
-Hacer que tu bot sea capaz de manejar una alta carga depende de si ejecutas tu bot [a través de un long polling o a través de webhooks](../guide/deployment-types.html).
+Hacer que tu bot sea capaz de manejar una alta carga depende de si ejecutas tu bot [a través de un long polling o a través de webhooks](../guide/deployment-types.md).
 En cualquier caso, deberías leer algunas dificultades [a continuación](#concurrency-is-hard).
 
 ## Long Polling
@@ -26,7 +26,7 @@ Para conseguir la máxima capacidad de respuesta, también nos gustaría recibir
 Idealmente, también nos gustaría limitar la concurrencia a algún número fijo para restringir la carga máxima del servidor.
 
 El procesamiento concurrente no está incluido en el paquete central de grammY.
-En su lugar, **el paquete [grammY runner](../plugins/runner.html) puede ser utilizado** para ejecutar tu bot.
+En su lugar, **el paquete [grammY runner](../plugins/runner.md) puede ser utilizado** para ejecutar tu bot.
 Soporta todo lo anterior fuera de la caja, y es extremadamente simple de usar.
 
 ```ts
@@ -38,17 +38,17 @@ run(bot);
 ```
 
 El límite de concurrencia por defecto es de 500.
-Si quieres profundizar en el paquete, consulta [esta página](../plugins/runner.html).
+Si quieres profundizar en el paquete, consulta [esta página](../plugins/runner.md).
 
 La concurrencia es difícil, así que revisa [la subsección de abajo](#concurrency-is-hard) para saber lo que debes tener en cuenta cuando uses grammY runner.
 
 ## Webhooks
 
 Si ejecutas tu bot con webhooks, procesará automáticamente las actualizaciones de forma concurrente tan pronto como se reciban.
-Naturalmente, para que esto funcione bien bajo una alta carga, deberías familiarizarte con [cómo usar webhooks](../guide/deployment-types.html#how-to-use-1).
+Naturalmente, para que esto funcione bien bajo una alta carga, deberías familiarizarte con [cómo usar webhooks](../guide/deployment-types.md#how-to-use-1).
 Esto significa que todavía tienes que ser consciente de algunas consecuencias de la concurrencia, conferir [la subsección de abajo](##concurrency-is-hard).
 
-Además, [recuerda que](../guide/deployment-types.html#ending-webhook-requests-in-time) Telegram entregará las actualizaciones del mismo chat en secuencia, pero las actualizaciones de diferentes chats de forma concurrente.
+Además, [recuerda que](../guide/deployment-types.md#ending-webhook-requests-in-time) Telegram entregará las actualizaciones del mismo chat en secuencia, pero las actualizaciones de diferentes chats de forma concurrente.
 
 ## La concurrencia es difícil
 
@@ -56,7 +56,7 @@ Si tu bot procesa todas las actualizaciones de forma concurrente, esto puede cau
 Por ejemplo, si dos mensajes del mismo chat acaban siendo recibidos por la misma llamada `getUpdates`, se procesarían concurrentemente.
 Ya no se puede garantizar el orden de los mensajes dentro del mismo chat.
 
-El principal punto en el que esto puede chocar es cuando se utiliza [sessiones](../plugins/session.html), que puede encontrarse con un peligro de escritura después de lectura.
+El principal punto en el que esto puede chocar es cuando se utiliza [sessiones](../plugins/session.md), que puede encontrarse con un peligro de escritura después de lectura.
 Imagina esta secuencia de eventos:
 
 1. Alice envía el mensaje A

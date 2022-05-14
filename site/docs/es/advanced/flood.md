@@ -1,6 +1,6 @@
 ---
-prev: ./reliability.html
-next: ./transformers.html
+prev: ./reliability.md
+next: ./transformers.md
 ---
 
 # Escalando IV: Límites
@@ -17,8 +17,8 @@ Esta sección resuelve tu problema a corto plazo, pero si estás construyendo un
 
 Hay una solución muy simple para golpear los límites de velocidad: si una solicitud de la API falla debido a un límite de velocidad, simplemente espera el tiempo que Telegram te dice que esperes, y repite la solicitud.
 
-Si quieres hacer esto, puedes utilizar [el plugion super sencillo `auto-retry`](../plugins/auto-retry.html).
-Es una [función transformadora de la API](../advanced/transformers.html) que hace exactamente eso.
+Si quieres hacer esto, puedes utilizar [el plugion super sencillo `auto-retry`](../plugins/auto-retry.md).
+Es una [función transformadora de la API](../advanced/transformers.md) que hace exactamente eso.
 
 Sin embargo, si el tráfico de tu bot aumenta rápidamente, por ejemplo, cuando se añade a un grupo grande, puede encontrarse con muchos errores de limitación de velocidad antes de que el pico de tráfico se asiente.
 Esto podría llevar a un baneo.
@@ -27,7 +27,7 @@ En lugar de solucionar el problema a posteriori, es mucho mejor poner en cola to
 
 ## La solución real (recomendada)
 
-grammY le proporciona [el plugin throttler](../plugins/transformer-throttler.html) que hace que tu bot respete automáticamente todos los límites de velocidad poniendo en cola las peticiones salientes de tu bot en una cola de mensajes.
+grammY le proporciona [el plugin throttler](../plugins/transformer-throttler.md) que hace que tu bot respete automáticamente todos los límites de velocidad poniendo en cola las peticiones salientes de tu bot en una cola de mensajes.
 Este plugin es igual de sencillo de configurar, pero hace un trabajo mucho mejor en el control de peticiones.
 No hay realmente ninguna buena razón para usar `auto-retry` sobre el plugin throttler.
 En algunos casos puede tener sentido usar ambos.

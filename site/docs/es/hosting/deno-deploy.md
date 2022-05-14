@@ -71,7 +71,7 @@ Le aconsejamos que tenga su manejador en alguna ruta secreta en lugar de la raí
 deployctl deploy --project <project> ./mod.ts --prod --token <token>
 ```
 
-6. Para configurar las acciones de Github, consulte [esto](https://github.com/denoland/deployctl/blob/main/action/README.html).
+6. Para configurar las acciones de Github, consulte [esto](https://github.com/denoland/deployctl/blob/main/action/README.md).
 
 ### Método 3: Con URL
 

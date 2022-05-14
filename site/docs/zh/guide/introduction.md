@@ -1,6 +1,6 @@
 ---
 prev: /zh/guide/
-next: ./getting-started.html
+next: ./getting-started.md
 ---
 
 # 简介
@@ -8,7 +8,7 @@ next: ./getting-started.html
 Telegram Bot 是一个特殊的用户账户，由一个程序自动运行。
 任何人都可以创建 Telegram Bot ，唯一的前提条件是你要懂得一点编程。
 
-> 如果你已经知道如何创建 Bot，请前往 [入门](./getting-started.html)！
+> 如果你已经知道如何创建 Bot，请前往 [入门](./getting-started.md)！
 
 grammY 是一个库，它使编写这样一个 bot 变得超级简单。
 
@@ -73,17 +73,17 @@ bot 通过 HTTP 请求与 Telegram 互动。
 
 ## 开始的前提条件
 
-> 如果你已经知道如何开发 Deno 或 Node.js 应用程序，请跳过本页面的其余部分，[开始](./getting-started.html)。
+> 如果你已经知道如何开发 Deno 或 Node.js 应用程序，请跳过本页面的其余部分，[开始](./getting-started.md)。
 
 这里有一些关于编程的趣事--这些事情对编程是必不可少的，但大家却很少解释，因为大多数开发者认为它们是不言而喻的。
 
-在下一节中，你将通过编写一个包含编程语言 [TypeScript](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html) 源代码的文本文件来创建一个 bot。
+在下一节中，你将通过编写一个包含编程语言 [TypeScript](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.md) 源代码的文本文件来创建一个 bot。
 grammY 文档不会教你如何编程，所以我们希望你能自学。
 不过，请记住：用 grammY 创建 Telegram Bot 是个学习编程的好方法。恭喜你找到了他。 :rocket:
 
 ::: tip 学习编程
-你可以从 TypeScript 团队编写的 [官方教程](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html) 开始学习 TypeScript，然后再从这里开始。
-这些东西不会花费你太多的时间，接着你可以回到这里阅读剩下的部分，并 [开始](./getting-started.html)。
+你可以从 TypeScript 团队编写的 [官方教程](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.md) 开始学习 TypeScript，然后再从这里开始。
+这些东西不会花费你太多的时间，接着你可以回到这里阅读剩下的部分，并 [开始](./getting-started.md)。
 
 如果你在文档中看到不熟悉的语法，或者你得到一个你不理解的错误信息，请用谷歌搜索它--互联网拥有一切（例如在 StackOverflow 上）。
 :::
@@ -136,7 +136,7 @@ Deno 相对较新，所以它有时还缺乏对一些高级事物的支持。
 你可以用 `Ctrl+C` 再次停止它。
 
 都准备好了吗?
-[开始吧](./getting-started.html#getting-started-on-deno)！ :robot:
+[开始吧](./getting-started.md#getting-started-on-deno)！ :robot:
 
 ### Node.js 的前提条件
 
@@ -159,4 +159,4 @@ Deno 相对较新，所以它有时还缺乏对一些高级事物的支持。
 然后，你需要重复步骤 2 和 3。
 
 都准备好了吗?
-[开始吧](./getting-started.html#getting-started-on-deno)！ :robot:
+[开始吧](./getting-started.md#getting-started-on-deno)！ :robot:

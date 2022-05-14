@@ -1,6 +1,6 @@
 ---
-prev: ./basics.html
-next: ./api.html
+prev: ./basics.md
+next: ./api.md
 ---
 
 # Context
@@ -127,7 +127,7 @@ Neat! :tada:
 Under the hood, the context _already knows its chat identifier_ (namely `ctx.msg.chat.id`), so it gives you the `reply` method to just send a message back to the same chat.
 Internally, `reply` again calls `sendMessage` with the chat identifier pre-filled for you.
 
-Consequently, all methods on the context object take options objects of type `Other` as explained [earlier](./basics.html#sending-messages).
+Consequently, all methods on the context object take options objects of type `Other` as explained [earlier](./basics.md#sending-messages).
 This can be used to pass further configuration to every API call.
 
 ::: tip Telegram Reply Feature
@@ -162,7 +162,7 @@ In fact, update objects can not only contain new messages, but also all other so
 A fresh context object is created exactly once for every incoming update.
 Contexts for different updates are completely unrelated objects, they only reference the same bot information via `ctx.me`.
 
-The same context object for one update will be shared by all installed middleware ([docs](./middleware.html)) on the bot.
+The same context object for one update will be shared by all installed middleware ([docs](./middleware.md)) on the bot.
 
 ## Customizing the Context Object
 
@@ -171,7 +171,7 @@ The same context object for one update will be shared by all installed middlewar
 You can install your own properties on the context object if you want.
 This is possible in two ways:
 
-1. Installing [middleware](./middleware.html) that modifies the context (recommended), or
+1. Installing [middleware](./middleware.md) that modifies the context (recommended), or
 2. setting a custom context constructor.
 
 If you choose option 1., you must specify the custom context as a type parameter (skip for JavaScript):
@@ -222,7 +222,7 @@ bot.on("message", (ctx) => {
 Naturally, just because the context _type_ now has new properties, this does not mean that there will actually be _values_ behind them.
 You have to make sure that a plugin (or your own middleware) sets all properties correctly to satisfy the type you specified.
 
-> Some middleware (e.g. [session middleware](../plugins/session.html)) requires you to mix in the correct types on the context object, which can be done by _flavoring_ your context as explained [down here](#context-flavors).
+> Some middleware (e.g. [session middleware](../plugins/session.md)) requires you to mix in the correct types on the context object, which can be done by _flavoring_ your context as explained [down here](#context-flavors).
 
 If you choose option 2., this is how you set a custom context constructor that will be used to instantiate the context objects.
 Note that your class must extend `Context`.
@@ -323,7 +323,7 @@ bot.start();
 </CodeGroup>
 
 ::: tip Related
-[Middleware](./middleware.html) refers to a function that receives a context object as parameter, such as installed listeners.
+[Middleware](./middleware.md) refers to a function that receives a context object as parameter, such as installed listeners.
 :::
 
 ## Context Flavors
@@ -336,7 +336,7 @@ There are two different kinds of context flavors.
 The basic one is called _additive context flavor_, and whenever we talk about context flavoring, we just mean this basic form.
 Let's look at how it works.
 
-As an example, when you have [session data](../plugins/session.html), you must register `ctx.session` on the context type.
+As an example, when you have [session data](../plugins/session.md), you must register `ctx.session` on the context type.
 Otherwise,
 
 1. you cannot install the built-in sessions plugin, and

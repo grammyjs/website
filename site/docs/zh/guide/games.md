@@ -1,6 +1,6 @@
 ---
-prev: ./files.html
-next: ./deployment-types.html
+prev: ./files.md
+next: ./deployment-types.md
 ---
 
 # 游戏
@@ -48,9 +48,9 @@ Telegram 游戏是一个非常有趣的功能，很好玩。
    });
    ```
 
-> [请记住](./basics.html#sending-messages)，你可以在 `Other` 类型的选项对象中指定更多的选项。
+> [请记住](./basics.md#sending-messages)，你可以在 `Other` 类型的选项对象中指定更多的选项。
 
-你也可以为你的游戏按钮自定义一个 [inline keyboard](/zh/plugins/keyboard.html#inline-keyboards)。
+你也可以为你的游戏按钮自定义一个 [inline keyboard](/zh/plugins/keyboard.md#inline-keyboards)。
 默认情况下，发送时会有一个名为 `Play my_game` 的按钮，其中 my_game 是你游戏的名称。
 
 ```ts
@@ -100,7 +100,7 @@ bot.command("start", (ctx) => {
 });
 ```
 
-> 记得在 bot 启动前添加适合的 [错误捕获处理](./errors.html)。
+> 记得在 bot 启动前添加适合的 [错误捕获处理](./errors.md)。
 
 我们将在之后的进阶模块与 FAQ 模块扩展相关的知识。不过目前所描述的已经足够你在 Telegram 中开始游戏。
 玩的开心！ :space_invader:

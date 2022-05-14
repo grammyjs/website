@@ -1,5 +1,5 @@
 ---
-prev: ./games.html
+prev: ./games.md
 next: ../advanced/
 ---
 
@@ -95,7 +95,7 @@ ______________                                   _____________
 ```
 
 > Tenga en cuenta que, en realidad, ninguna conexión se mantendría abierta durante horas.
-> Las solicitudes de long polling ienen un tiempo de espera por defecto de 30 segundos (para evitar una serie de [problemas técnicos](https://tools.ietf.org/id/draft-loreto-http-bidirectional-07.html#timeouts)).
+> Las solicitudes de long polling ienen un tiempo de espera por defecto de 30 segundos (para evitar una serie de [problemas técnicos](https://tools.ietf.org/id/draft-loreto-http-bidirectional-07.md#timeouts)).
 > Si no se devuelven nuevos mensajes después de este período de tiempo, la solicitud se cancelará y se volverá a enviar, pero el concepto general sigue siendo el mismo.
 
 Usando un long polling, no necesitas enviar spam a los servidores de Telegram, ¡y aún así recibes nuevos mensajes inmediatamente!
@@ -165,7 +165,7 @@ Los webhooks pueden ser un poco desagradables de vez en cuando (ver [abajo](#end
 
 Elijas lo que elijas, si alguna vez te encuentras con problemas serios, no debería ser demasiado difícil cambiar al otro tipo de despliegue después del hecho.
 Con grammY, sólo tienes que tocar unas pocas líneas de código.
-La configuración de su [middleware](./middleware.html) es la misma.
+La configuración de su [middleware](./middleware.md) es la misma.
 
 ## Cómo utilizar el Long Polling
 
@@ -179,7 +179,7 @@ para ejecutar su bot con una forma muy simple de long polling.
 Procesa todas las actualizaciones secuencialmente.
 Esto hace que tu bot sea muy fácil de depurar, y todo el comportamiento muy predecible, porque no hay concurrencia involucrada.
 
-Si quieres que tus mensajes sean manejados concurrentemente por grammY, o te preocupa el rendimiento, revisa la sección sobre [grammY runner](../plugins/runner.html).
+Si quieres que tus mensajes sean manejados concurrentemente por grammY, o te preocupa el rendimiento, revisa la sección sobre [grammY runner](../plugins/runner.md).
 
 ## Cómo usar Webhooks
 

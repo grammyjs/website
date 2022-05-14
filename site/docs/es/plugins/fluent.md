@@ -67,7 +67,7 @@ La construcción `{-bot-name}` hace referencia al término previamente definido 
 La declaración `{$name}` será reemplazada por el valor de la variable `name` que tendrá que pasar a la función de traducción usted mismo.
 
 Y la última sentencia (_líneas 5 a 9_) define un **selector** (muy similar a una sentencia switch) que toma el resultado de la función especial `NUMBER` aplicada a la variable `applesCount` y selecciona uno de los tres posibles mensajes a renderizar basándose en el valor coincidente.
-La función `NUMBER` devolverá una [categoría plural CLDR](https://www.unicode.org/cldr/cldr-aux/charts/30/supplemental/language_plural_rules.html) basada en el valor proporcionado y la configuración regional utilizada.
+La función `NUMBER` devolverá una [categoría plural CLDR](https://www.unicode.org/cldr/cldr-aux/charts/30/supplemental/language_plural_rules.md) basada en el valor proporcionado y la configuración regional utilizada.
 Esto implementa efectivamente la pluralización.
 
 ## grammY Configuración
@@ -76,7 +76,7 @@ Ahora vamos a ver cómo este mensaje de arriba podría ser renderizado por un bo
 Pero primero, necesitaremos configurar grammY para usar el plugin.
 
 Antes que nada, necesitarás configurar tu bot para que utilice el sabor de contexto Fluent.
-Si no estás familiarizado con este concepto, deberías leer los documentos oficiales sobre [Context Flavors](../guide/context.html#context-flavors).
+Si no estás familiarizado con este concepto, deberías leer los documentos oficiales sobre [Context Flavors](../guide/context.md#context-flavors).
 
 ```typescript
 import { Context } de "grammy";

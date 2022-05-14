@@ -1,6 +1,6 @@
 ---
-prev: ./errors.html
-next: ./files.html
+prev: ./errors.md
+next: ./files.md
 ---
 
 # Inline Queries
@@ -54,7 +54,7 @@ bot.inlineQuery(/best bot (framework|library)/, async (ctx) => {
 bot.on("inline_query", (ctx) => ctx.answerInlineQuery([]));
 ```
 
-> [Recuerde](./basics.html#sending-messages) que siempre puede especificar más opciones al llamar a los métodos de la API utilizando el objeto de opciones de tipo `Other`.
+> [Recuerde](./basics.md#sending-messages) que siempre puede especificar más opciones al llamar a los métodos de la API utilizando el objeto de opciones de tipo `Other`.
 > Por ejemplo, esto le permite realizar la paginación para las consultas en línea a través de un desplazamiento.
 
 Tenga en cuenta que grammY puede autocompletar todos los campos de la estructura anterior por usted.

@@ -1,5 +1,5 @@
 ---
-prev: ./games.html
+prev: ./games.md
 next: /zh/advanced/
 ---
 
@@ -96,7 +96,7 @@ ______________                                   _____________
 ```
 
 > 请注意，在现实中，没有连接将保持数小时。
-> 长轮询请求的默认超时时间为 30 秒（为了避免一些 [技术问题](https://tools.ietf.org/id/draft-loreto-http-bidirectional-07.html#timeouts)）
+> 长轮询请求的默认超时时间为 30 秒（为了避免一些 [技术问题](https://tools.ietf.org/id/draft-loreto-http-bidirectional-07.md#timeouts)）
 > 如果在这段时间之后没有返回任何新消息，那么请求将被取消并重新执行ー但总体信息保持不变。
 
 使用长轮询，你不需要污染 Telegram 的服务器，你仍然可以立即得到新的信息！
@@ -166,7 +166,7 @@ Webhooks 有时候可能会有点令人讨厌（见 [下文](#及时结束-webho
 
 无论你选择什么，如果遇到严重问题，在事后切换到其他部署类型应该不会太难。
 使用 grammY，这都只需要修改几行代码。
-关于你的 [中间件](./middleware.html) 的设置也是一样的。
+关于你的 [中间件](./middleware.md) 的设置也是一样的。
 
 ## 如何使用长轮询
 
@@ -180,7 +180,7 @@ bot.start();
 它按顺序处理所有 update。
 这使得你的 bot 代码很容易调试，而且所有的行为都是可预测的，因为这里面没有并发性。
 
-如果你希望你的消息能够被 grammY 并发处理，或者你担心吞吐量，请查看关于 [并发](/zh/plugins/runner.html) 的信息.
+如果你希望你的消息能够被 grammY 并发处理，或者你担心吞吐量，请查看关于 [并发](/zh/plugins/runner.md) 的信息.
 
 ## 如何使用长轮询 Webhooks
 

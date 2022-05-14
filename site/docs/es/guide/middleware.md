@@ -1,6 +1,6 @@
 ---
-prev: ./commands.html
-next: ./errors.html
+prev: ./commands.md
+next: ./errors.md
 ---
 
 # Middleware
@@ -9,7 +9,7 @@ Las funciones de escucha que se pasan a `bot.on()`, `bot.command()`, y sus herma
 Aunque no es incorrecto decir que están escuchando las actualizaciones, llamarlos "oyentes" es una simplificación.
 
 > Esta sección explica qué es el middleware, y utiliza grammY como ejemplo para ilustrar cómo se puede utilizar.
-> Si buscas documentación específica sobre lo que hace especial a la implementación de middleware de grammY, revisa [Middleware Redux](../advanced/middleware.html) en la sección avanzada de la documentación.
+> Si buscas documentación específica sobre lo que hace especial a la implementación de middleware de grammY, revisa [Middleware Redux](../advanced/middleware.md) en la sección avanzada de la documentación.
 
 ## The Middleware Stack
 
@@ -63,7 +63,7 @@ type NextFunction = () => Promise<void>;
 
 Por lo tanto, ¡el middleware toma dos parámetros!
 Hasta ahora sólo hemos utilizado uno, el objeto de contexto `ctx`.
-Ya sabemos (./context.html) lo que es `ctx`, pero también vemos una función con el nombre `next`.
+Ya sabemos (./context.md) lo que es `ctx`, pero también vemos una función con el nombre `next`.
 Para entender qué es `next`, tenemos que ver todo el middleware que se instala en el objeto bot como un todo.
 
 Puedes ver todas las funciones de middleware instaladas como un número de capas que se apilan unas sobre otras.
@@ -221,7 +221,7 @@ Si alguna vez llamas a `next()` sin la palabra clave `await`, varias cosas se ro
 - :x: Tu pila de middleware se ejecutará en el orden equivocado.
 - :x: Si ocurre un error, su manejador de errores no será llamado por él.
   En su lugar, verás que se producirá un `UnhandledPromiseRejectionWarning`, que puede hacer que tu proceso bot se caiga
-- :x: Se rompe el mecanismo de backpressure de [grammY runner](../plugins/runner.html), que protege a tu servidor de una carga excesiva, como por ejemplo durante los picos de carga.
+- :x: Se rompe el mecanismo de backpressure de [grammY runner](../plugins/runner.md), que protege a tu servidor de una carga excesiva, como por ejemplo durante los picos de carga.
 - :cráneo: A veces, también mata a todos tus inocentes gatitos.
 
 :::
@@ -231,7 +231,7 @@ Esto incluye `bot.api.sendMessage`, `ctx.reply`, y todas las demás llamadas de 
 Si tu proyecto es importante para ti, entonces utiliza herramientas de linting que te avisen si alguna vez te olvidas de usar `await` en una `Promise`.
 
 ::: tip Habilitar las promesas no flotantes
-Considere utilizar [ESLint](https://eslint.org/) y configúrelo para que utilice la regla [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-floating-promises.html).
+Considere utilizar [ESLint](https://eslint.org/) y configúrelo para que utilice la regla [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-floating-promises.md).
 Esto se asegurará de que nunca se olvide de usar `await` (gritando).
 :::
 
@@ -265,4 +265,4 @@ bot.use(/*...*/);
 // ...
 ```
 
-Si quieres profundizar en cómo grammY implementa el middleware, consulta [Middleware Redux](../advanced/middleware.html) en la sección avanzada de la documentación.
+Si quieres profundizar en cómo grammY implementa el middleware, consulta [Middleware Redux](../advanced/middleware.md) en la sección avanzada de la documentación.

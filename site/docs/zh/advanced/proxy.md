@@ -1,6 +1,6 @@
 ---
-prev: ./transformers.html
-next: ./deployment.html
+prev: ./transformers.md
+next: ./deployment.md
 ---
 
 # 代理支持

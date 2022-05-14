@@ -22,7 +22,7 @@ bot.use(router)
 
 ## Combining Routers With Sessions
 
-Routers work well together with [sessions](./session.html).
+Routers work well together with [sessions](./session.md).
 As an example, combining the two concepts allows you to re-create forms in the chat interface.
 
 Let's say that you want to build a bot that tells users how many days are left until it is their birthday.
@@ -427,7 +427,7 @@ function getDays(month: number, day: number) {
 
 ::: tip Breaking Up the Code
 If you feel like your code gets too complex, you can split it across several files.
-You can read more about how to scale your codebase in [this advanced section](../advanced/structuring.html).
+You can read more about how to scale your codebase in [this advanced section](../advanced/structuring.md).
 :::
 
 Note how the session has a property `step` that stores the step of the form, i.e. which value is currently being filled.

@@ -1,6 +1,6 @@
 ---
-prev: ./flood.html
-next: ./proxy.html
+prev: ./flood.md
+next: ./proxy.md
 ---
 
 # Transformadores de la API del Bot
@@ -68,12 +68,12 @@ Así, las llamadas a `ctx.api` serán transformadas tanto por los transformadore
 
 Las funciones transformadoras son tan flexibles como el middleware, y tienen tantas aplicaciones diferentes.
 
-Por ejemplo, el plugin [grammY menu](../plugins/menu.html) instala una función transformadora para convertir las instancias de menú salientes en la carga útil correcta.
+Por ejemplo, el plugin [grammY menu](../plugins/menu.md) instala una función transformadora para convertir las instancias de menú salientes en la carga útil correcta.
 También puedes utilizarlos para:
 
-- implementar [flood control](../plugins/transformer-throttler.html)
+- implementar [flood control](../plugins/transformer-throttler.md)
 - simular solicitudes de la API durante las pruebas
-- añadir [auto-retry](../plugins/auto-retry.html)
+- añadir [auto-retry](../plugins/auto-retry.md)
 
 Ten en cuenta, sin embargo, que reintentar una llamada a la API puede tener efectos secundarios extraños: si llamas a `sendDocument` y pasas una instancia de stream legible a `InputFile`, entonces el stream será leído la primera vez que se intente la petición.
 Si invocas `prev` de nuevo, el flujo puede estar ya consumido (parcialmente), lo que lleva a archivos rotos.
@@ -81,7 +81,7 @@ Por lo tanto, es una forma más fiable de pasar las rutas de los archivos a `Inp
 
 ## API Flavoring
 
-grammY cuenta con [context flavors](../guide/context.html#context-flavors) que pueden ser usados para ajustar el tipo de contexto.
+grammY cuenta con [context flavors](../guide/context.md#context-flavors) que pueden ser usados para ajustar el tipo de contexto.
 Esto incluye los métodos de la API, tanto los que están directamente en el objeto de contexto como `ctx.reply`, y todos los métodos en `ctx.api` y `ctx.api.raw`.
 Sin embargo, no puedes ajustar los tipos de `bot.api` y `bot.api.raw` a través de los context flavors.
 
@@ -112,4 +112,4 @@ bot.on("message", (ctx) => ctx.api.somePluginMethod());
 
 API flavors funcionan exactamente igual que los tipos de context flavors.
 Existen API flavors aditivos y transformativos, y se pueden combinar múltiples API flavors de la misma manera que se haría con context flavors.
-Si no estás seguro de cómo funciona esto, vuelve a [la sección sobre context flavors](../guide/context.html#context-flavors) en la guía.
+Si no estás seguro de cómo funciona esto, vuelve a [la sección sobre context flavors](../guide/context.md#context-flavors) en la guía.

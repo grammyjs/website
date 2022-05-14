@@ -13,8 +13,8 @@ prev: /plugins/
 
 grammY 中主要有两种类型的插件：
 
-- 中间件插件：该插件的唯一工作是返回一个 [中间件函数](/zh/guide/middleware.html)，可以喂给 grammY bot。
-- 转化器插件：该插件的唯一工作是返回一个 [转换器函数](/zh/advanced/transformers.html)，可以喂给 grammY bot。
+- 中间件插件：该插件的唯一工作是返回一个 [中间件函数](/zh/guide/middleware.md)，可以喂给 grammY bot。
+- 转化器插件：该插件的唯一工作是返回一个 [转换器函数](/zh/advanced/transformers.md)，可以喂给 grammY bot。
 
 然而，有时候你会发现插件同时做这两件事。
 还有一些软件包既不是中间件，也不是转化器函数，但我们还是称它们为插件，因为它们以各种方式扩展了 grammY。

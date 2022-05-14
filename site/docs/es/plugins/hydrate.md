@@ -107,7 +107,7 @@ Sin embargo, algunos bots pueden necesitar hacer llamadas a `bot.api`.
 En este caso, deberías utilizar esta instalación avanzada.
 
 Integrará la hidratación del contexto y la hidratación de los resultados de las llamadas a la API por separado en tu bot.
-Ten en cuenta que ahora también tienes que instalar un [API flavor](../advanced/transformers.html#api-flavoring).
+Ten en cuenta que ahora también tienes que instalar un [API flavor](../advanced/transformers.md#api-flavoring).
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>

@@ -150,7 +150,7 @@ bot.start();
 </CodeGroupItem>
 </CodeGroup>
 
-Note how we also have to [adjust the context type](../guide/context.html#customizing-the-context-object) to make the session available on it.
+Note how we also have to [adjust the context type](../guide/context.md#customizing-the-context-object) to make the session available on it.
 The context flavor is called `SessionFlavor`.
 
 ### Initial Session Data
@@ -275,7 +275,7 @@ When you are running your bot on webhooks, you should avoid using the option `ge
 Telegram sends webhooks sequentially per chat, so the default session key resolver is the only implementation that guarantees not to cause data loss.
 
 If you must use the option (which is of course still possible), you should know what you are doing.
-Make sure you understand the consequences of this configuration by reading [this](../guide/deployment-types.html) article and especially [this](./runner.html#sequential-processing-where-necessary) one.
+Make sure you understand the consequences of this configuration by reading [this](../guide/deployment-types.md) article and especially [this](./runner.md#sequential-processing-where-necessary) one.
 :::
 
 ### Storing Your Data

@@ -1,6 +1,6 @@
 ---
-prev: ./middleware.html
-next: ./scaling.html
+prev: ./middleware.md
+next: ./scaling.md
 ---
 
 # Scaling Up I: Large Codebase
@@ -20,7 +20,7 @@ That being said, a straightforward and proven strategy to structure your code is
    Every single one of these parts exposes middleware that will handle the designated messages.
 2. Create a bot instance centrally that merges all middleware by installing it onto the bot.
 3. (Optional.) Pre-filter the updates centrally, and send down updates the right way only.
-   You may also want to check out `bot.route` ([API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer#route)) or alternatively the [router plugin](../plugins/router.html) for that.
+   You may also want to check out `bot.route` ([API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer#route)) or alternatively the [router plugin](../plugins/router.md) for that.
 
 A runnable example that implements the above strategy can be found in the [Example Bot repository](https://github.com/grammyjs/examples/tree/main/scaling).
 
@@ -47,7 +47,7 @@ export const lists = new Composer();
 lists.on('message', ctx => { ... });
 ```
 
-Optionally, you can use an [error boundary](../guide/errors.html#error-boundaries) to handle all errors that happen inside your module.
+Optionally, you can use an [error boundary](../guide/errors.md#error-boundaries) to handle all errors that happen inside your module.
 
 Now, in `bot.ts`, you can install this module like so:
 
@@ -62,7 +62,7 @@ bot.use(lists);
 bot.start();
 ```
 
-Optionally, you can use the [router plugin](../plugins/router.html) or to bundle up the different modules, if you're able to determine which middleware is responsible upfront.
+Optionally, you can use the [router plugin](../plugins/router.md) or to bundle up the different modules, if you're able to determine which middleware is responsible upfront.
 
 However, remember that the exact way of how to structure your bot is very hard to say generically.
 As always in software, do it in a way that makes the most sense :wink:

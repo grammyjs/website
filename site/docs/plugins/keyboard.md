@@ -32,7 +32,7 @@ grammY has a simple and intuitive way to build up the inline keyboards that your
 It provides a class called `InlineKeyboard` for this.
 
 > Both `switchInline` and `switchInlineCurrent` buttons start inline queries.
-> Check out the section about [Inline Queries](../guide/inline-queries.html) for more information about how they work.
+> Check out the section about [Inline Queries](../guide/inline-queries.md) for more information about how they work.
 
 ### Building an Inline Keyboard
 
@@ -112,7 +112,7 @@ Specify an empty inline keyboard to remove all buttons underneath a message.
 ::: tip Menu Plugin
 The keyboard plugin gives you raw access to the update objects that Telegram sends.
 However, responding to clicks this way can be tedious.
-If you are looking for a more high-level implementation of inline keyboards, check out [the menu plugin](./menu.html).
+If you are looking for a more high-level implementation of inline keyboards, check out [the menu plugin](./menu.md).
 It makes it simple to create interactive menus.
 :::
 
@@ -288,7 +288,7 @@ await ctx.reply(text, {
 
 #### Selectively Send Custom Keyboards
 
-You can specify the `selective` option if you want to show the custom keyboard only to those users that are @-mentioned in the text of the message object, and to the sender of the original message in case your message is a [reply](../guide/basics.html#sending-messages-with-reply).
+You can specify the `selective` option if you want to show the custom keyboard only to those users that are @-mentioned in the text of the message object, and to the sender of the original message in case your message is a [reply](../guide/basics.md#sending-messages-with-reply).
 
 ```ts
 await ctx.reply(text, {

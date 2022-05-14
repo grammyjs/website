@@ -76,9 +76,9 @@ Ya te has asegurado de utilizar el mínimo número de llamadas a la API para las
 
 Hay algunas cosas que puedes hacer
 
-1. Leer [este artículo en los docs](../advanced/flood.html) para obtener una comprensión básica de la situación.
-2. Utilice [el plugin `transformer-throttler`](../plugins/transformer-throttler.html).
-3. Utiliza [el plugin `auto-retry`](../plugins/auto-retry.html).
+1. Leer [este artículo en los docs](../advanced/flood.md) para obtener una comprensión básica de la situación.
+2. Utilice [el plugin `transformer-throttler`](../plugins/transformer-throttler.md).
+3. Utiliza [el plugin `auto-retry`](../plugins/auto-retry.md).
 4. Ven a pedirnos ayuda en el chat del grupo. Tenemos gente experimentada allí.
 5. Es posible pedirle a Telegram que aumente los límites, pero es muy poco probable que esto ocurra si no hiciste los pasos 1-3 primero.
 

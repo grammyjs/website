@@ -22,7 +22,7 @@ bot.use(router)
 
 ## Combinación de enrutadores con sesiones
 
-Los enrutadores funcionan bien junto con las [sesiones](./session.html).
+Los enrutadores funcionan bien junto con las [sesiones](./session.md).
 A modo de ejemplo, la combinación de ambos conceptos permite recrear formularios en la interfaz del chat.
 
 Digamos que quieres construir un bot que le diga a los usuarios cuántos días faltan para su cumpleaños.
@@ -433,7 +433,7 @@ function getDays(month: number, day: number) {
 
 ::: tip Dividir el código
 Si crees que tu código es demasiado complejo, puedes dividirlo en varios archivos.
-Puedes leer más sobre cómo escalar tu código base en [esta sección avanzada](../advanced/structuring.html).
+Puedes leer más sobre cómo escalar tu código base en [esta sección avanzada](../advanced/structuring.md).
 :::
 
 Observe cómo la sesión tiene una propiedad `step` que almacena el paso del formulario, es decir, qué valor se está rellenando actualmente.

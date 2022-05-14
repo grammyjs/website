@@ -1,6 +1,6 @@
 ---
-prev: ./api.html
-next: ./commands.html
+prev: ./api.md
+next: ./commands.md
 ---
 
 # Filter Queries and `bot.on()`
@@ -72,7 +72,7 @@ bot.on("::email"); // messages or channel posts with email in text or caption
 ```
 
 Leaving out the _first_ value matches both messages and channel posts.
-[Remember](./context.html#available-actions) that `ctx.msg` gives you access to both messages or channel posts, whichever is matched by the query.
+[Remember](./context.md#available-actions) that `ctx.msg` gives you access to both messages or channel posts, whichever is matched by the query.
 
 Leaving out the _second_ value matches both entities and caption entities.
 You can leave out both the first and the second part at the same time.
@@ -193,7 +193,7 @@ As an example, it can detect that `ctx.msg.text` is a required property for the 
 ## Useful Tips
 
 Here are some less-known features of filter queries that can come in handy.
-Some of them are a little advanced, so feel free to move on to [the next section](./commands.html).
+Some of them are a little advanced, so feel free to move on to [the next section](./commands.md).
 
 ### Chat Member Updates
 
@@ -295,7 +295,7 @@ Analogously, you can make use of the filter query types that grammY uses interna
 
 ### Reusing Filter Query Types
 
-Internally, `matchFilter` uses TypeScript's [type predicates](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates) to narrow down the type of `ctx`.
+Internally, `matchFilter` uses TypeScript's [type predicates](https://www.typescriptlang.org/docs/handbook/2/narrowing.md#using-type-predicates) to narrow down the type of `ctx`.
 It takes a type `C extends Context` and a `Q extends FilterQuery` and produces `ctx is Filter<C, Q>`.
 In other words, the `Filter` type is what you actually receive for your `ctx` in the middleware.
 

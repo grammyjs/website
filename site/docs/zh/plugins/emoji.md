@@ -33,7 +33,7 @@ import { EmojiFlavor, emojiParser } from "@grammyjs/emoji";
 
 // 这个被称为上下文调味剂
 // 你可以在这里阅读更多关于它们的信息：
-// https://grammy.dev/zh/guide/context.html#转换式上下文调味剂
+// https://grammy.dev/zh/guide/context.md#转换式上下文调味剂
 type MyContext = EmojiFlavor<Context>;
 
 const bot = new Bot<MyContext>(""); // <-- 在 "" 之间填上你的 bot token。
@@ -65,7 +65,7 @@ import {
 
 // 这个被称为上下文调味剂
 // 你可以在这里阅读更多关于它们的信息：
-// https://grammy.dev/zh/guide/context.html#转换式上下文调味剂
+// https://grammy.dev/zh/guide/context.md#转换式上下文调味剂
 type MyContext = EmojiFlavor<Context>;
 
 const bot = new Bot<MyContext>(""); // <-- 在 "" 之间填上你的 bot token。
