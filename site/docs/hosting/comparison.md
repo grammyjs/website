@@ -12,29 +12,47 @@ Instead, you can ask a company to run the bot in the cloud.
 
 In other words, you just run it on someone else's computer.
 
-## Comparison Table
+## Comparison Tables
 
-Please click the edit button at the bottom of the page to add more providers or to edit existing ones!
+> Please click the edit button at the bottom of the page to add more providers or to edit existing ones!
 
-| Name                | Min. price | Serverless? | Ping and Location                    | Limits                                              | Features   |
-| ------------------- | ---------- | ----------- | ------------------------------------ | --------------------------------------------------- | ---------- |
-| Vercel              | Free       | Yes         |                                      | Unlimited invocations, 100 GB-hours, 10s time limit |            |
-| Deta                | Free       | Yes         |                                      | No limits                                           |            |
-| Scaleway Functions  | Free       | Yes         |                                      | 1M requests, 400000 GB-s per month                  |            |
-| Scaleway Containers | Free       | Yes         |                                      | 400000 GB-s, 200000 vCPU-s per month                |            |
-| Deno Deploy         | Free       | Yes         |                                      |                                                     |            |
-| Cloudflare Workers  |            | Yes         |                                      |                                                     |            |
-| Heroku              |            | Yes         |                                      |                                                     |            |
-| DigitalOcean Apps   | $5         | Yes         |                                      |                                                     | Not tested |
-| DigitalOcean        | $5         | No          | 1ms :netherlands: AMS, 19ms :de: FRA | 1 vCPU, 1GB RAM, 25GB SSD, 1TB                      |            |
-| Hetzner Cloud       | €4.15      | No          | ~42ms :de:                           | 1 vCPU, 2GB RAM, 20GB SSD, 20TB                     |            |
-| Scaleway            | ~7€        | No          |                                      | 2 cores, 2GB RAM, 20GB SSD                          |            |
-| Contabo             |            | No          | 15ms :de:                            |                                                     |            |
-| IONOS VPS           | €1/$2      | No          | 15ms :de: Baden-Baden                | 1vCPU, 0.5GB RAM, 8GB SSD                           |            |
+We have two comparison tables, one for [serverless](#what-does-serverless-mean) hosting and one for [VPS](#vps).
 
-## What Does Serverless Mean?
+### Serverless
 
 Serverless means that you do not control a single machine on which your bot is run.
 Instead, these hosting providers will rather allow you to upload your code, and then start and stop different machines as necessary to make sure that your bot always works.
 
 The main thing to know about them is that you must run your bot on webhooks on serverless infrastructure.
+
+| Name                  | Min. price | Limits                                                                                             | Ping and Location                     | Node.js            | Deno               | Web                | Notes                                |
+| --------------------- | ---------- | -------------------------------------------------------------------------------------------------- | ------------------------------------- | ------------------ | ------------------ | ------------------ | ------------------------------------ |
+| Vercel                | Free       | [Unlimited invocations, 100 GB-hours, 10s time limit](https://vercel.com/pricing)                  | $20/mo subscription                   | :question:         | :question:         | :question:         |                                      |
+| Deta                  | Free       | No limits                                                                                          | No paid plans yet                     | :white_check_mark: | :question:         | :question:         |                                      |
+| Scaleway Functions    | Free       | [1M requests, 400000 GB-s per month](https://www.scaleway.com/en/pricing/#serverless-functions)    | €0.15/1m req, €1.2 / 100k GB-s        | :question:         | :question:         | :question:         |                                      |
+| Scaleway Containers   | Free       | [400000 GB-s, 200000 vCPU-s per month](https://www.scaleway.com/en/pricing/#serverless-containers) | €0.10 / 100k GB-s, €1.0 / 100k vCPU-s | :question:         | :question:         | :question:         |                                      |
+| Deno Deploy           | Free       | [100k req/day, 1000 req/min, 50ms time limit](https://deno.com/deploy/docs/pricing-and-limits)     | No paid plans yet                     | :x:                | :white_check_mark: | :x:                | Beta                                 |
+| Cloudflare Workers    | Free       | [100k req/day, 10ms limit](https://workers.cloudflare.com/)                                        | $5/10m req                            | :x:                | :x:                | :white_check_mark: |                                      |
+| Vercel Edge Functions | Free       | [100k req/day](https://vercel.com/pricing)                                                         | $20/mo subscription for 500k          | :question:         | :question:         | :question:         |                                      |
+| Heroku                | Free       | [550-1000 hours per month](https://www.heroku.com/pricing)                                         | It's complicated                      | :white_check_mark: | :question:         | :question:         | Long startup times, not recommended? |
+| serverless.com        | Free       |                                                                                                    |                                       | :question:         | :question:         | :question:         |                                      |
+| DigitalOcean Apps     | $5         |                                                                                                    |                                       | :question:         | :question:         | :question:         | Not tested                           |
+
+### VPS
+
+A virtual private server is a virtual machine that you have full control over.
+You can usually access it via [SSH](https://en.wikipedia.org/wiki/Secure_Shell).
+You can install any software there, and are responsible for system updates and so on.
+
+You can run on bot on both polling or webhooks on a VPS.
+
+Check out [the tutorial](./vps.md) on how to host a grammY bot on a VPS.
+
+| Name          | Min. price | Ping to API                              | Cheapest option                 |
+| ------------- | ---------- | ---------------------------------------- | ------------------------------- |
+| Name          | Min. price | Ping to API                              | Cheapest option                 |
+| DigitalOcean  | $5         | 1-15 ms :netherlands: AMS, 19ms :de: FRA | 1 vCPU, 1GB RAM, 25GB SSD, 1TB  |
+| Hetzner Cloud | €4.15      | ~42ms :de:                               | 1 vCPU, 2GB RAM, 20GB SSD, 20TB |
+| Scaleway      | ~7€        |                                          | 2 cores, 2GB RAM, 20GB SSD      |
+| Contabo       |            | 15ms :de: Nuremberg                      |                                 |
+| IONOS VPS     | €1/$2      | 15ms :de: Baden-Baden                    | 1vCPU, 0.5GB RAM, 8GB SSD       |
