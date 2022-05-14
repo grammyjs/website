@@ -54,8 +54,8 @@ serve({
 
 3. 访问你的 [Deno Deploy 仪表台](https://dash.deno.com/projects)。
 4. 点击 "New Project"，然后进入 "Deploy from GitHub repository" 部分
-6. 安装 GitHub 应用程序到你的账户或组织，并选择你的仓库。
-7. 选择你想部署的分支，然后选择你要部署的`mod.ts`文件
+5. 安装 GitHub 应用程序到你的账户或组织，并选择你的仓库。
+6. 选择你想部署的分支，然后选择你要部署的`mod.ts`文件
 
 ### 方法 2: 使用 `deployctl`
 
