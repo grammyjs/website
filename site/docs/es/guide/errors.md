@@ -26,7 +26,7 @@ La forma de capturar los errores dependerá de su configuración.
 
 ### Long Polling
 
-Si ejecutas tu bot a través de `bot.start()`, o si estás usando [grammY runner](/plugins/runner.md), entonces deberías **instalar un manejador de errores a través de `bot.catch`**.
+Si ejecutas tu bot a través de `bot.start()`, o si estás usando [grammY runner](../plugins/runner.md), entonces deberías **instalar un manejador de errores a través de `bot.catch`**.
 
 grammY tiene instalado un controlador de errores por defecto que detiene el bot si fue iniciado por `bot.start()`.
 Entonces vuelve a lanzar el error.
@@ -87,7 +87,7 @@ El objeto de error contiene información sobre la razón por la que la petición
 
 Raramente verás este tipo de error, a menos que tu infraestructura de red sea inestable, o que el servidor del Bot API de tu bot esté temporalmente fuera de línea.
 
-> Ten en cuenta que si se puede contactar con el servidor de la API del bot, pero devuelve `ok: false` para una llamada a un método determinado, se lanza un [`GrammyError`](/guide/errors.md#the-grammyerror-object) en su lugar.
+> Ten en cuenta que si se puede contactar con el servidor de la API del bot, pero devuelve `ok: false` para una llamada a un método determinado, se lanza un [`GrammyError`](../guide/errors.md#the-grammyerror-object) en su lugar.
 
 Consulta la clase `HttpError` en la [Referencia de la API de grammY](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/HttpError).
 
@@ -142,7 +142,7 @@ En el ejemplo anterior, el `boundaryHandler` será invocado para
 1. todos los middlewares que se pasan a `bot.errorBoundary` después de `boundaryHandler` (es decir, `Q`), y
 2. todos los middlewares que se instalan en las instancias de compositor instaladas posteriormente (es decir, `X`, `Y` y `Z`).
 
-> En cuanto al punto 2, es posible que desee saltar a [la explicación avanzada](/advanced/middleware.md) de middleware para aprender cómo funciona el encadenamiento en grammY.
+> En cuanto al punto 2, es posible que desee saltar a [la explicación avanzada](../advanced/middleware.md) de middleware para aprender cómo funciona el encadenamiento en grammY.
 
 También se puede aplicar un límite de error a un compositor sin llamar a `bot.errorBoundary`:
 

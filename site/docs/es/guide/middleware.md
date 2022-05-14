@@ -9,7 +9,7 @@ Las funciones de escucha que se pasan a `bot.on()`, `bot.command()`, y sus herma
 Aunque no es incorrecto decir que están escuchando las actualizaciones, llamarlos "oyentes" es una simplificación.
 
 > Esta sección explica qué es el middleware, y utiliza grammY como ejemplo para ilustrar cómo se puede utilizar.
-> Si buscas documentación específica sobre lo que hace especial a la implementación de middleware de grammY, revisa [Middleware Redux](/advanced/middleware.md) en la sección avanzada de la documentación.
+> Si buscas documentación específica sobre lo que hace especial a la implementación de middleware de grammY, revisa [Middleware Redux](../advanced/middleware.md) en la sección avanzada de la documentación.
 
 ## The Middleware Stack
 
@@ -221,7 +221,7 @@ Si alguna vez llamas a `next()` sin la palabra clave `await`, varias cosas se ro
 - :x: Tu pila de middleware se ejecutará en el orden equivocado.
 - :x: Si ocurre un error, su manejador de errores no será llamado por él.
   En su lugar, verás que se producirá un `UnhandledPromiseRejectionWarning`, que puede hacer que tu proceso bot se caiga
-- :x: Se rompe el mecanismo de backpressure de [grammY runner](/plugins/runner.md), que protege a tu servidor de una carga excesiva, como por ejemplo durante los picos de carga.
+- :x: Se rompe el mecanismo de backpressure de [grammY runner](../plugins/runner.md), que protege a tu servidor de una carga excesiva, como por ejemplo durante los picos de carga.
 - :cráneo: A veces, también mata a todos tus inocentes gatitos.
 
 :::
@@ -265,4 +265,4 @@ bot.use(/*...*/);
 // ...
 ```
 
-Si quieres profundizar en cómo grammY implementa el middleware, consulta [Middleware Redux](/advanced/middleware.md) en la sección avanzada de la documentación.
+Si quieres profundizar en cómo grammY implementa el middleware, consulta [Middleware Redux](../advanced/middleware.md) en la sección avanzada de la documentación.

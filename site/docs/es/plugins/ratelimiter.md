@@ -182,7 +182,7 @@ bot.use(
 
 Como puedes ver en el ejemplo anterior, cada usuario puede enviar 3 peticiones cada 2 segundos.
 Si dicho usuario envía más peticiones, el bot responde con _Por favor, absténgase de enviar demasiadas peticiones_.
-Esa petición no viajará más y morirá inmediatamente ya que no llamamos a [next()](/guide/middleware.html#the-middleware-stack) en el middleware.
+Esa petición no viajará más y morirá inmediatamente ya que no llamamos a [next()](../guide/middleware.html#the-middleware-stack) en el middleware.
 
 > Nota: Para evitar inundar los servidores de Telegram, `onLimitExceeded` sólo se ejecuta una vez en cada `timeFrame`.
 

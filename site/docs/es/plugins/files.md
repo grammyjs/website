@@ -109,7 +109,7 @@ Tenga en cuenta que `await file.download()` simplemente copiará ese archivo loc
 
 Por defecto, los resultados de `await bot.api.getFile()` también contarán con los métodos `download` y `getUrl`.
 Sin embargo, esto no se refleja en los tipos.
-Si necesitas estas llamadas, también debes instalar un [API flavor](/advanced/transformers.html#api-flavoring) en el objeto bot llamado `FileApiFlavor`:
+Si necesitas estas llamadas, también debes instalar un [API flavor](../advanced/transformers.html#api-flavoring) en el objeto bot llamado `FileApiFlavor`:
 
 <CodeGroup>
   <CodeGroupItem title="Node.js" active>

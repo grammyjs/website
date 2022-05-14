@@ -481,7 +481,7 @@ En otras palabras, el menú sólo se renderizará parcialmente.
 
 Una vez que se conoce el botón pulsado de nuevo (y hemos comprobado que el menú no está [desactualizado](#outdated-menus-and-fingerprints)), invocamos el manejador.
 
-Internamente, el plugin de menús hace un gran uso de [API Transformer Functions](/advanced/transformers.md), por ejemplo, para renderizar rápidamente los menús salientes sobre la marcha.
+Internamente, el plugin de menús hace un gran uso de [API Transformer Functions](../advanced/transformers.md), por ejemplo, para renderizar rápidamente los menús salientes sobre la marcha.
 
 Cuando se registran los menús en una gran jerarquía de navegación, de hecho no almacenan estas referencias explícitamente.
 Bajo el capó, todos los menús de esa estructura se añaden al mismo pool grande, y ese pool se comparte entre todas las instancias contenidas.

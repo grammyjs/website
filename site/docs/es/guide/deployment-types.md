@@ -179,7 +179,7 @@ para ejecutar su bot con una forma muy simple de long polling.
 Procesa todas las actualizaciones secuencialmente.
 Esto hace que tu bot sea muy fácil de depurar, y todo el comportamiento muy predecible, porque no hay concurrencia involucrada.
 
-Si quieres que tus mensajes sean manejados concurrentemente por grammY, o te preocupa el rendimiento, revisa la sección sobre [grammY runner](/plugins/runner.md).
+Si quieres que tus mensajes sean manejados concurrentemente por grammY, o te preocupa el rendimiento, revisa la sección sobre [grammY runner](../plugins/runner.md).
 
 ## Cómo usar Webhooks
 

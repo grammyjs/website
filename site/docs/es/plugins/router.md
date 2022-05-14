@@ -433,7 +433,7 @@ function getDays(month: number, day: number) {
 
 ::: tip Dividir el código
 Si crees que tu código es demasiado complejo, puedes dividirlo en varios archivos.
-Puedes leer más sobre cómo escalar tu código base en [esta sección avanzada](/advanced/structuring.md).
+Puedes leer más sobre cómo escalar tu código base en [esta sección avanzada](../advanced/structuring.md).
 :::
 
 Observe cómo la sesión tiene una propiedad `step` que almacena el paso del formulario, es decir, qué valor se está rellenando actualmente.

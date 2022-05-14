@@ -4,7 +4,7 @@ next: ./guide.md
 
 # Plugins en grammY
 
-grammY soporta la instalación de plugins, la mayoría de ellos a través de la adición de nuevos [middleware](/guide/middleware.md) o [transformer functions](/advanced/transformers.md).
+grammY soporta la instalación de plugins, la mayoría de ellos a través de la adición de nuevos [middleware](../guide/middleware.md) o [transformer functions](../advanced/transformers.md).
 
 ## Categorías de plugins
 

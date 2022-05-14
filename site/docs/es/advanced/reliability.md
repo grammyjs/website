@@ -5,7 +5,7 @@ next: ./flood.md
 
 # Escalando III: Fiabilidad
 
-Si te aseguraste de tener un adecuado [manejo de errores](/guide/errors.md) para tu bot, básicamente estás listo para ir.
+Si te aseguraste de tener un adecuado [manejo de errores](../guide/errors.md) para tu bot, básicamente estás listo para ir.
 Todos los errores que se espera que ocurran (llamadas a la API que fallan, solicitudes de red que fallan, consultas a la base de datos que fallan, middleware que falla, etc) son capturados.
 
 Deberías asegurarte de siempre `esperar` todas las promesas, o al menos llamar a `catch` en ellas si alguna vez no quieres `esperar` cosas.
@@ -158,7 +158,7 @@ En otras palabras, nunca perderás ninguna actualización, sin embargo, puede oc
 Como las llamadas a `sendMessage` no son idempotentes, los usuarios pueden recibir mensajes duplicados de tu bot.
 Sin embargo, se garantiza el procesamiento de _al menos una vez_.
 
-Si estás utilizando el [grammY runner](/plugins/runner.md) en modo concurrente, la siguiente llamada a `getUpdates` se realiza potencialmente antes de que tu middleware procese la primera actualización del lote actual.
+Si estás utilizando el [grammY runner](../plugins/runner.md) en modo concurrente, la siguiente llamada a `getUpdates` se realiza potencialmente antes de que tu middleware procese la primera actualización del lote actual.
 Por lo tanto, el desplazamiento de la actualización es [confirmado](https://core.telegram.org/bots/api#getupdates) prematuramente.
 Este es el coste de una gran concurrencia, y desafortunadamente, no puede evitarse sin reducir tanto el rendimiento como la capacidad de respuesta.
 Como resultado, si tu instancia es eliminada en el momento correcto (equivocado), podría ocurrir que hasta 100 actualizaciones no puedan ser obtenidas de nuevo porque Telegram las considera confirmadas.
@@ -170,5 +170,5 @@ Efectivamente, ejecutará dos instancias diferentes del corredor grammY.
 Este vago borrador descrito arriba sólo ha sido esbozado pero no implementado, según nuestro conocimiento.
 Por favor, [ponte en contacto con el grupo de Telegram](https://t.me/grammyjs) si tienes alguna pregunta o si intentas esto y puedes compartir tu progreso.
 
-Por otro lado, si tu bot está bajo una gran carga y el sondeo de actualizaciones se ralentiza debido a [las restricciones de carga automática](/plugins/runner.md#sink), aumentan las posibilidades de que algunas actualizaciones sean recuperadas de nuevo, lo que lleva a la duplicación de mensajes de nuevo.
+Por otro lado, si tu bot está bajo una gran carga y el sondeo de actualizaciones se ralentiza debido a [las restricciones de carga automática](../plugins/runner.md#sink), aumentan las posibilidades de que algunas actualizaciones sean recuperadas de nuevo, lo que lleva a la duplicación de mensajes de nuevo.
 Por lo tanto, el precio de la concurrencia total es que no se puede garantizar el procesamiento _al menos una vez_ ni _como máximo una vez_.

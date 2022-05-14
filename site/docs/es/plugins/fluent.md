@@ -76,7 +76,7 @@ Ahora vamos a ver cómo este mensaje de arriba podría ser renderizado por un bo
 Pero primero, necesitaremos configurar grammY para usar el plugin.
 
 Antes que nada, necesitarás configurar tu bot para que utilice el sabor de contexto Fluent.
-Si no estás familiarizado con este concepto, deberías leer los documentos oficiales sobre [Context Flavors](/guide/context.html#context-flavors).
+Si no estás familiarizado con este concepto, deberías leer los documentos oficiales sobre [Context Flavors](../guide/context.html#context-flavors).
 
 ```typescript
 import { Context } de "grammy";

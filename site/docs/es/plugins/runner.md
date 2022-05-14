@@ -1,8 +1,8 @@
 # Concurrencia con grammY runner (`runner`)
 
-Este paquete se puede utilizar si ejecutas tu bot [usando long polling](/guide/deployment-types.md#long-polling), y quieres que los mensajes se procesen concurrentemente.
+Este paquete se puede utilizar si ejecutas tu bot [usando long polling](../guide/deployment-types.md#long-polling), y quieres que los mensajes se procesen concurrentemente.
 
-> Asegúrate de entender [Scaling Up II](/advanced/scaling.md#long-polling) antes de usar el runner de grammY.
+> Asegúrate de entender [Scaling Up II](../advanced/scaling.md#long-polling) antes de usar el runner de grammY.
 
 ## Por qué necesitamos un Bot Runner
 
@@ -132,7 +132,7 @@ Lo más probable es que quieras tener la garantía de que los mensajes de un mis
 Esto es útil cuando se instala [session middleware](./session.md), pero también asegura que tu bot no confunda el orden de los mensajes en el mismo chat.
 
 grammY runner exporta el middleware `sequentialize` que se encarga de esto.
-Puedes consultar [esta sección](/advanced/scaling.md#concurrency-is-hard) para aprender a usarlo.
+Puedes consultar [esta sección](../advanced/scaling.md#concurrency-is-hard) para aprender a usarlo.
 
 Ahora vamos a ver un uso más avanzado del plugin.
 
