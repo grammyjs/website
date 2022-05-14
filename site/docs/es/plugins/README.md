@@ -2,11 +2,14 @@
 next: ./guide.md
 ---
 
-# Plugins en grammY
+# ¿Qué es un plugin?
 
-grammY soporta la instalación de plugins, la mayoría de ellos a través de la adición de nuevos [middleware](../guide/middleware.md) o [transformer functions](../advanced/transformers.md).
+Queremos que grammY sea conciso y mínimo, pero extensible.
+¿Por qué?
+Porque no todo el mundo utiliza todo.
+Los plugins están diseñados como funcionalidades extra añadidas a dichas piezas de software.
 
-## Categorías de plugins
+## Plugins en grammY
 
 Algunos plugins están directamente **integrados** en la biblioteca central de grammY porque asumimos que muchos bots los necesitan.
 Esto hace que sea más fácil para los nuevos usuarios utilizarlos, sin tener que instalar un nuevo paquete primero.
@@ -18,31 +21,30 @@ Cada sección de la documentación de un plugin oficial tiene el nombre del paqu
 Como ejemplo, el plugin [grammY runner](./runner.md) (`runner`) necesita ser instalado vía `npm install @grammyjs/runner`.
 (Si estás usando Deno y no Node.js, debes importar el plugin desde <https://deno.land/x/> en su lugar, es decir, desde el archivo `mod.ts` del módulo `grammy_runner`).
 
-> Si quieres publicar tu propio paquete como un plugin oficialmente soportado, simplemente envíanos un ping en el [chat de la comunidad](https://t.me/grammyjs) y haznos saber lo que estás planeando, entonces podemos concederte acceso de publicación a GitHub y npm.
-> Serás responsable de mantener tu código (pero quizás otros quieran unirse).
+## Tipos de Plugins en grammY
 
-Puedes decidir publicar tu paquete de forma independiente como un **tercero**.
-En ese caso, aún podemos ofrecerle un lugar destacado en este sitio web:
+Todo lo que brilla es oro, ¿verdad?
+Bueno, ¡un tipo diferente de oro!
+grammY puede aprovechar dos tipos de plugins: _plugins middleware_ y _plugins transformadores_.
+En términos simples, los plugins en grammY devuelven una función middleware o una función transformadora.
+Hablemos de las diferencias.
 
-## Enviar su propio plugin a los Docs
+### Tipo I: Plugins Middleware
 
-Si eres el autor de una librería que puede ayudar a otros usuarios de grammY, puedes enviar un PR en GitHub que añada una página para ella en la web oficial de grammY (esta).
-Esto permitirá a otros usuarios encontrarla, y te da una forma sencilla de tener una buena documentación.
+[Middleware](/guide/middleware.md) es una función que maneja los datos entrantes en varias formas.
+Los plugins de middleware son plugins que se introducen en un bot como -bueno, lo has adivinado- middleware.
+Esto significa que se instalan a través de `bot.use`.
 
-Aquí hay algunas cosas que esperamos de tu plugin si quieres que aparezca aquí.
+### Tipo II: Plugins transformadores
 
-1. Tiene un archivo README en GitHub (y npm) con instrucciones de cómo usarlo.
-2. Su PR añade una página que incluye contenido significativo sobre
+Una [función transformadora](/advanced/transformers.md) es lo contrario del middleware.
+Es una función que maneja los datos de salida.
+Los plugins transformadores son plugins que se introducen en un bot como una función transformadora (¡lo has adivinado!).
+Esto significa que los instalas a través de `bot.api.config.use`.
 
-   - qué problema resuelve tu plugin, y
-   - cómo utilizarlo.
+## Crear tus propios plugins
 
-   En el caso más sencillo, puedes copiar el texto de tu archivo README.
-
-3. Es un software de código abierto que se publica bajo una licencia permisiva, preferiblemente MIT (como grammY), o ISC.
-
-Sería genial que tu plugin también funcionara con Deno, y moveremos esos plugins al principio de la lista.
-Sin embargo, la compatibilidad con Deno no es un requisito estricto.
+Si quieres desarrollar un plugin y compartirlo con otros usuarios (incluso publicarlo en la web oficial de grammY), hay una [guía útil](./guide.md) que puedes consultar.
 
 ## Ideas para más plugins
 
