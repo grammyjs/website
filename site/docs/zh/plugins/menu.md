@@ -499,7 +499,7 @@ const menu = new Menu("id", { fingerprint: (ctx) => ident(ctx) });
 
 一旦再次知道被按下的按钮（并且我们已经检查了菜单没有[过时](#过时的菜单和指纹)），我们将调用处理程序。
 
-在内部，菜单插件大量使用了 [API Transformer 函数](/advanced/transformers.md)，例如，以快速渲染出正在运行的菜单。
+在内部，菜单插件大量使用了 [API Transformer 函数](../advanced/transformers.md)，例如，以快速渲染出正在运行的菜单。
 
 当你在一个大型层次结构中注册菜单以导航时，它们实际上不存储这些引用。
 在内部，所有这个结构的菜单都被添加到同一个大型池中，并且这个池在所有包含的实例中共享。

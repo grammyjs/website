@@ -11,15 +11,15 @@ prev: ./proxy.md
 
 ## 错误
 
-1. [使用 `bot.catch`在长轮询或者 webhooks 中安装错误处理器](/zh/guide/errors.md)。
+1. [使用 `bot.catch`在长轮询或者 webhooks 中安装错误处理器](../guide/errors.md)。
 2. 使用 `await` 去等待所有的 Promise，并且安装 **lint** 工具去确保你不会忘记做这件事。
 
 ## 发送消息
 
 1. 通过 path 或 `Buffer` 发送文件而不是通过 stream流，或者至少确保你 [了解这些风险](./transformers.md#use-cases-of-transformer-functions)。
-2. 使用 `bot.on('callback_query:data')` 作为回调处理 [响应所有回调查询](/plugins/keyboard.md#responding-to-clicks)
-3. 使用 [`transformer-throttler` 插件](/zh/plugins/transformer-throttler.md) 去避免到达速率限制。
-4. **可选的**，考虑使用 [auto-retry 插件](/zh/plugins/auto-retry.md) 去自动处理流量等待的错误。
+2. 使用 `bot.on('callback_query:data')` 作为回调处理 [响应所有回调查询](../plugins/keyboard.md#responding-to-clicks)
+3. 使用 [`transformer-throttler` 插件](../plugins/transformer-throttler.md) 去避免到达速率限制。
+4. **可选的**，考虑使用 [auto-retry 插件](../plugins/auto-retry.md) 去自动处理流量等待的错误。
 
 ## 伸缩性
 
@@ -27,7 +27,7 @@ prev: ./proxy.md
 
 ### 长轮询
 
-1. [使用 grammY runner](/zh/plugins/runner.md)
+1. [使用 grammY runner](../plugins/runner.md)
 2. [使用相同的 session 密钥处理函数作为 session 中间件来进行 `sequentialize`](./scaling.md#并发是困难的)
 3. 通过 `run`（[参考API](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/run)）方法的配置选项并确保它们适合你的需求，或者甚至可以考虑用外部的资源和插槽来组成你自己的 runner。
    主要考虑的事情就是你想给你的服务器应用的最大负载，例如会有多少 update 会在同一时间内被处理。
@@ -43,11 +43,11 @@ prev: ./proxy.md
 2. 让你自己熟悉 `webhookCallback`（[API参考](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/webhookCallback)）的配置。
 3. 如果你对你的 session 调整过 `getSessionKey` 选项，[使用相同的 session 密钥处理函数作为 session 中间件来进行 `sequentialize`](./scaling.md#concurrency-is-hard)。
 4. 如果你在一个 serverless 或者 autoscaling 平台上运行，[设置 bot 信息](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/BotConfig) 来阻止过多的 `getMe` 调用。
-5. 考虑使用 [Webhook Reply](/zh/guide/deployment-types.html#webhook-reply) 。
+5. 考虑使用 [Webhook Reply](../guide/deployment-types.md#webhook-reply) 。
 
 ## Sessions
 
-1. 请考虑使用 [这里](/zh/plugins/session.md#懒会话) 解释的 `lazySessions`。
+1. 请考虑使用 [这里](../plugins/session.md#懒会话) 解释的 `lazySessions`。
 2. 使用 `storage` 选项去设置你的 storage（存储） 适配器，否则当 bot 进程关闭的时候所有的数据都将会丢失。
 
 ## 测试

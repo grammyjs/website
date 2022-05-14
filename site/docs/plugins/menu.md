@@ -493,7 +493,7 @@ In other words, the menu will only be rendered partially.
 
 Once the pressed button is known again (and we have checked that the menu is not [outdated](#outdated-menus-and-fingerprints)), we invoke the handler.
 
-Internally, the menu plugin makes heavy use of [API Transformer Functions](/advanced/transformers.md), for example, to quickly render outgoing menus on the fly.
+Internally, the menu plugin makes heavy use of [API Transformer Functions](../advanced/transformers.md), for example, to quickly render outgoing menus on the fly.
 
 When you register the menus in a large navigation hierarchy, they will in fact not store these references explicitly.
 Under the hood, all menus of that one structure are added to the same large pool, and that pool is shared across all contained instances.
