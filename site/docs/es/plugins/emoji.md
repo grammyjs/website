@@ -36,7 +36,7 @@ import { EmojiFlavor, emojiParser } from "@grammyjs/emoji";
 
 // Esto se llama Context Flavoring
 // Puedes leer más en:
-// https://grammy.dev/guide/context.md#transformative-context-flavors
+// https://grammy.dev/guide/context.html#transformative-context-flavors
 type MyContext = EmojiFlavor<Context>;
 
 const bot = new Bot<MyContext>(""); // <-- pon tu token de bot entre los ""
@@ -68,7 +68,7 @@ importar {
 
 // Esto se llama Context Flavoring
 // Puedes leer más en:
-// https://grammy.dev/guide/context.md#transformative-context-flavors
+// https://grammy.dev/guide/context.html#transformative-context-flavors
 tipo MyContext = EmojiFlavor<Context>;
 
 const bot = new Bot<MyContext>(""); // <-- pon tu token de bot entre los ""

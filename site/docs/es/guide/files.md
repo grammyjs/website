@@ -1,6 +1,6 @@
 ---
-prev: ./inline-queries.md
-next: ./games.md
+prev: ./inline-queries.html
+next: ./games.html
 ---
 
 # Manejo de archivos
@@ -75,16 +75,16 @@ bot.on("message:voice", async (ctx) => {
 ```
 
 ::: tip Pasar un file_id personalizado a getFile
-En el objeto de contexto, `getFile` es [un acceso directo](../guide/context.md#shortcuts), y obtendrá la información de un archivo en el mensaje actual.
+En el objeto de contexto, `getFile` es [un acceso directo](../guide/context.html#shortcuts), y obtendrá la información de un archivo en el mensaje actual.
 Si quieres obtener un archivo diferente mientras manejas un mensaje, utiliza `ctx.api.getFile(file_id)` en su lugar.
 :::
 
-> Consulta [the `:media` and `:file` shortcuts](../guide/filter-queries.md#shortcuts) para las consultas de filtro si quieres recibir cualquier tipo de archivo.
+> Consulta [the `:media` and `:file` shortcuts](../guide/filter-queries.html#shortcuts) para las consultas de filtro si quieres recibir cualquier tipo de archivo.
 
 Una vez que hayas llamado a `getFile`, puedes usar la ruta de archivo devuelta para descargar el archivo usando esta URL `https://api.telegram.org/file/bot<token>/<ruta del archivo>`, donde `<token>` debe ser reemplazado por tu token de bot.
 
 ::: tip Plugin de archivos
-grammY no viene con su propio descargador de archivos, pero puedes instalar [el plugin oficial de archivos](../plugins/files.md).
+grammY no viene con su propio descargador de archivos, pero puedes instalar [el plugin oficial de archivos](../plugins/files.html).
 Esto te permite descargar archivos mediante `await file.download()`, y obtener una URL de descarga construida para ellos mediante `file.getUrl()`.
 :::
 
@@ -245,7 +245,7 @@ new InputFile({ url: "https://grammy.dev/Y.png" }); // equivalente
 
 ### Añadir un título
 
-Cuando se envían archivos, se pueden especificar más opciones en un objeto de opciones de tipo `Other`, exactamente como se explicó [anteriormente](./basics.md#sending-messages).
+Cuando se envían archivos, se pueden especificar más opciones en un objeto de opciones de tipo `Other`, exactamente como se explicó [anteriormente](./basics.html#sending-messages).
 Por ejemplo, esto le permite enviar subtítulos.
 
 ```ts
@@ -269,4 +269,4 @@ Consulta la documentación oficial al respecto [aquí](https://core.telegram.org
 Alojar tu propio servidor Bot API no tiene, en sí mismo, nada que ver con grammY.
 Sin embargo, grammY soporta todos los métodos que se necesitan para configurar tu bot para usar tu propio servidor Bot API.
 
-Además, es posible que quieras volver a visitar un capítulo anterior de esta guía sobre la configuración del Bot API [aquí](./api.md).
+Además, es posible que quieras volver a visitar un capítulo anterior de esta guía sobre la configuración del Bot API [aquí](./api.html).

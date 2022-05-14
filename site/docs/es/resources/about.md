@@ -37,7 +37,7 @@ Sin embargo, grammY también puede ejecutarse en Deno, que se posiciona como el 
 
 ## ¿Cómo se compara grammY con sus competidores?
 
-Si vienes de un lenguaje de programación o marco de trabajo diferente, puedes revisar nuestra [comparación detallada entre marcos de trabajo](./comparison.md).
+Si vienes de un lenguaje de programación o marco de trabajo diferente, puedes revisar nuestra [comparación detallada entre marcos de trabajo](./comparison.html).
 
 ## ¿Cómo puedo apoyarlo?
 

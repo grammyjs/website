@@ -1,11 +1,11 @@
 ---
 prev: ./
-next: ./structuring.md
+next: ./structuring.html
 ---
 
 # Middleware Redux
 
-In the Guide, [we introduced middleware](../guide/middleware.md) as a stack of functions.
+In the Guide, [we introduced middleware](../guide/middleware.html) as a stack of functions.
 While it is not wrong that you can use middleware in this linear fashion (also in grammY), calling it just a stack is a simplification.
 
 ## Middleware in grammY
@@ -32,7 +32,7 @@ First of all, every instance of `Bot` is an instance of `Composer`.
 It's just a subclass, so `class Bot extends Composer`.
 
 Also, you should know that every single method of `Composer` internally calls `use`.
-For example, `filter` just calls `use` with some branching middleware, while `on` just calls `filter` again with some predicate function that matches updates against the given [filter query](../guide/filter-queries.md).
+For example, `filter` just calls `use` with some branching middleware, while `on` just calls `filter` again with some predicate function that matches updates against the given [filter query](../guide/filter-queries.html).
 We can therefore limit ourselves to looking at `use` for now, and the rest follows.
 
 We now have to dive a bit into the details of what `Composer` does with your `use` calls, and how it differs from other middleware systems out there.
@@ -113,7 +113,7 @@ composer.filter(/* 1 */).filter(/* 2 */).use(/* A */);
 
 `2` will only be checked if `1` holds, and `A` will only be run if `2` (and thus `1`) holds.
 
-Revisit the section about [combining filter queries](../guide/filter-queries.md#combining-multiple-queries) with your new knowledge and feel your new power.
+Revisit the section about [combining filter queries](../guide/filter-queries.html#combining-multiple-queries) with your new knowledge and feel your new power.
 
 A special case here is `fork`, as it starts two computations that are concurrent, i.e. interleaved on the event loop.
 Instead of returning the `Composer` instance created by the underlying `use` call, it returns a `Composer` that reflects the forked computation.

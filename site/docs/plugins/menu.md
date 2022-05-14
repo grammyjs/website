@@ -5,7 +5,7 @@ Easily create interactive menus.
 ## Introduction
 
 An inline keyboard is an array of buttons underneath a message.
-grammY has [a built-in plugin](./keyboard.md#inline-keyboards) to create basic inline keyboards.
+grammY has [a built-in plugin](./keyboard.html#inline-keyboards) to create basic inline keyboards.
 
 The menu plugin takes this idea further and lets you create rich menus right inside the chat.
 They can have interactive buttons, multiple pages with navigation between them, and more.
@@ -103,7 +103,7 @@ const menu = new Menu<MyContext>("id");
 
 ## Adding Buttons
 
-The menu plugin lays out your keyboards exactly like [the plugin for inline keyboards](./keyboard.md#building-an-inline-keyboard) does.
+The menu plugin lays out your keyboards exactly like [the plugin for inline keyboards](./keyboard.html#building-an-inline-keyboard) does.
 The class `Menu` replaces the class `InlineKeyboard`.
 
 Here is an example for a menu that has four buttons in a 1-2-1 row shape.
@@ -183,7 +183,7 @@ Call `ctx.menu.update()` to make sure that your menu will be re-rendered.
 The example above demonstrates how to use the menu plugin.
 It is not a good idea to actually store user settings in a `Set` object, because then all data will be lost when you stop the server.
 
-Instead, consider using a database or [the session plugin](./session.md) if you want to store data.
+Instead, consider using a database or [the session plugin](./session.html) if you want to store data.
 :::
 
 ## Updating or Closing the Menu
@@ -292,7 +292,7 @@ This is useful because it lets you store a little bit of data in a menu.
 
 > Payloads cannot be used to actually store any significant amounts of data.
 > The only thing you can store are short strings of typically less than 50 bytes, such as an index or an identifier.
-> If you really want to store user data such as a file identifier, a URL, or anything else, you should use [sessions](./session.md).
+> If you really want to store user data such as a file identifier, a URL, or anything else, you should use [sessions](./session.html).
 
 Here is an example menu that remembers its creator in the payload.
 Other use cases could be, for example, to store the index in a paginated menu.
@@ -358,7 +358,7 @@ menu
 ```
 
 The range builder function that you pass to `dynamic` may be `async`, so you can even read data from an API or a database before returning your new menu range.
-**In many cases, it makes sense to generate a dynamic range based on [session](./session.md) data.**
+**In many cases, it makes sense to generate a dynamic range based on [session](./session.html) data.**
 
 The range builder function takes a context object as the first argument.
 (This is not specified in the example above.)
@@ -493,7 +493,7 @@ In other words, the menu will only be rendered partially.
 
 Once the pressed button is known again (and we have checked that the menu is not [outdated](#outdated-menus-and-fingerprints)), we invoke the handler.
 
-Internally, the menu plugin makes heavy use of [API Transformer Functions](../advanced/transformers.md), for example, to quickly render outgoing menus on the fly.
+Internally, the menu plugin makes heavy use of [API Transformer Functions](../advanced/transformers.html), for example, to quickly render outgoing menus on the fly.
 
 When you register the menus in a large navigation hierarchy, they will in fact not store these references explicitly.
 Under the hood, all menus of that one structure are added to the same large pool, and that pool is shared across all contained instances.

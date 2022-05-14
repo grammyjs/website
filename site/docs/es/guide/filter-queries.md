@@ -1,6 +1,6 @@
 ---
-prev: ./api.md
-next: ./commands.md
+prev: ./api.html
+next: ./commands.html
 ---
 
 # Consultas de filtro y `bot.on()`
@@ -72,7 +72,7 @@ bot.on("::email"); // mensajes o publicaciones de canales con email en texto o p
 ```
 
 Si se omite el valor _first_, se pueden obtener tanto los mensajes como los mensajes del canal.
-[Recuerde](./context.md#available-actions) que `ctx.msg` le da acceso tanto a los mensajes como a las publicaciones del canal, lo que coincida con la consulta.
+[Recuerde](./context.html#available-actions) que `ctx.msg` le da acceso tanto a los mensajes como a las publicaciones del canal, lo que coincida con la consulta.
 
 Si se omite el valor _segundo_, se obtiene acceso tanto a las entidades como a los subtítulos.
 Puede omitir tanto la primera como la segunda parte al mismo tiempo.
@@ -204,7 +204,7 @@ Como ejemplo, puede detectar que `ctx.msg.text` es una propiedad necesaria para 
 ## Consejos útiles
 
 Aquí hay algunas características menos conocidas de las consultas de filtro que pueden ser útiles.
-Algunas de ellas son un poco avanzadas, así que no dudes en pasar a [la siguiente sección](./commands.md).
+Algunas de ellas son un poco avanzadas, así que no dudes en pasar a [la siguiente sección](./commands.html).
 
 ### Actualizaciones de los miembros del chat
 
@@ -306,7 +306,7 @@ Análogamente, puedes hacer uso de los tipos de consulta de filtro que grammY ut
 
 ### Reutilización de los tipos de consulta de filtro
 
-Internamente, `matchFilter` utiliza los [type predicates] de TypeScript (https://www.typescriptlang.org/docs/handbook/2/narrowing.md#using-type-predicates) para acotar el tipo de `ctx`.
+Internamente, `matchFilter` utiliza los [type predicates] de TypeScript (https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates) para acotar el tipo de `ctx`.
 Toma un tipo `C extends Context` y un `Q extends FilterQuery` y produce `ctx is Filter<C, Q>`.
 En otras palabras, el tipo `Filter` es lo que realmente recibes para tu `ctx` en el middleware.
 

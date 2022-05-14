@@ -1,8 +1,8 @@
 # Concurrencia con grammY runner (`runner`)
 
-Este paquete se puede utilizar si ejecutas tu bot [usando long polling](../guide/deployment-types.md#long-polling), y quieres que los mensajes se procesen concurrentemente.
+Este paquete se puede utilizar si ejecutas tu bot [usando long polling](../guide/deployment-types.html#long-polling), y quieres que los mensajes se procesen concurrentemente.
 
-> Asegúrate de entender [Scaling Up II](../advanced/scaling.md#long-polling) antes de usar el runner de grammY.
+> Asegúrate de entender [Scaling Up II](../advanced/scaling.html#long-polling) antes de usar el runner de grammY.
 
 ## Por qué necesitamos un Bot Runner
 
@@ -129,10 +129,10 @@ Consulta la [referencia API](https://doc.deno.land/https://deno.land/x/grammy_ru
 ## Procesamiento secuencial cuando sea necesario
 
 Lo más probable es que quieras tener la garantía de que los mensajes de un mismo chat se procesen en orden.
-Esto es útil cuando se instala [session middleware](./session.md), pero también asegura que tu bot no confunda el orden de los mensajes en el mismo chat.
+Esto es útil cuando se instala [session middleware](./session.html), pero también asegura que tu bot no confunda el orden de los mensajes en el mismo chat.
 
 grammY runner exporta el middleware `sequentialize` que se encarga de esto.
-Puedes consultar [esta sección](../advanced/scaling.md#concurrency-is-hard) para aprender a usarlo.
+Puedes consultar [esta sección](../advanced/scaling.html#concurrency-is-hard) para aprender a usarlo.
 
 Ahora vamos a ver un uso más avanzado del plugin.
 
@@ -160,7 +160,7 @@ Necesita memoria constante (a menos que se especifique una concurrencia infinita
 
 ## Graceful shutdown
 
-Para que el bot complete su trabajo correctamente, debes indicarle (/advanced/reliability.md#using-grammy-runner) que se detenga cuando el proceso Node esté a punto de ser destruido.
+Para que el bot complete su trabajo correctamente, debes indicarle (/advanced/reliability.html#using-grammy-runner) que se detenga cuando el proceso Node esté a punto de ser destruido.
 
 ## Resumen del plugin
 

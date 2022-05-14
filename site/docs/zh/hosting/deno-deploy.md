@@ -71,7 +71,7 @@ serve({
 deployctl deploy --project <project> ./mod.ts --prod --token <token>
 ```
 
-6. 配置 GitHub Action，请参考 [这里](https://github.com/denoland/deployctl/blob/main/action/README.md).
+6. 配置 GitHub Action，请参考 [这里](https://github.com/denoland/deployctl/blob/main/action/README.html).
 
 ### 方法 3：使用 URL
 

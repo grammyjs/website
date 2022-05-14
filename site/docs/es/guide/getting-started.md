@@ -1,6 +1,6 @@
 ---
-prev: ./introduction.md
-next: ./basics.md
+prev: ./introduction.html
+next: ./basics.html
 ---
 
 # Comenzando
@@ -10,7 +10,7 @@ Crea tu primer bot en minutos. (Desplázate [abajo](#comenzando-en-deno) para un
 ## Comenzando en Node.js
 
 > Esta guía asume que tienes [Node.js](https://nodejs.org) instalado, y `npm` debería venir con él.
-> Si no sabes qué son estas cosas, ¡consulta nuestra [Introducción](./introduction.md)!
+> Si no sabes qué son estas cosas, ¡consulta nuestra [Introducción](./introduction.html)!
 
 Crea un nuevo proyecto TypeScript e instala el paquete `grammy`.
 Hazlo abriendo un terminal y escribiendo:

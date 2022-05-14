@@ -1,6 +1,6 @@
 ---
-prev: ./files.md
-next: ./deployment-types.md
+prev: ./files.html
+next: ./deployment-types.html
 ---
 
 # Games
@@ -48,9 +48,9 @@ An advantage of using the `api.sendGame` method is you can specify the `chat.id`
    });
    ```
 
-> [Remember](./basics.md#sending-messages) that you can specify further options when sending messages by using the options object of type `Other`.
+> [Remember](./basics.html#sending-messages) that you can specify further options when sending messages by using the options object of type `Other`.
 
-You can also specify a custom [inline keyboard](../plugins/keyboard.md#inline-keyboards) for the game to show buttons.
+You can also specify a custom [inline keyboard](../plugins/keyboard.html#inline-keyboards) for the game to show buttons.
 By default, it will be sent with a button with name as `Play my_game`, where _my_game_ is the name of your game.
 
 ```ts
@@ -100,7 +100,7 @@ bot.command("start", (ctx) => {
 });
 ```
 
-> Remember to add proper [error handling](./errors.md) to your bot before going live.
+> Remember to add proper [error handling](./errors.html) to your bot before going live.
 
 We may extend this article in the future by further advanced sections and FAQ's, but this is already all you need to start your game in Telegram.
 Have fun playing! :space_invader:

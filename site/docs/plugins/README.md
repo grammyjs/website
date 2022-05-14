@@ -1,5 +1,5 @@
 ---
-next: ./guide.md
+next: ./guide.html
 ---
 
 # What Is a Plugin?
@@ -18,7 +18,7 @@ Most plugins are published alongside the core package of grammY, we call them **
 They are installed from `@grammyjs/*` on npm, and they are published under the [@grammyjs](https://github.com/grammyjs) organization on GitHub.
 We coordinate their releases with the releases of grammY, and we make sure that everything works well together.
 Every section of the plugin docs for an official plugin has the package name in its title.
-As an example, the [grammY runner](./runner.md) plugin (`runner`) needs to be installed via `npm install @grammyjs/runner`.
+As an example, the [grammY runner](./runner.html) plugin (`runner`) needs to be installed via `npm install @grammyjs/runner`.
 (If you are using Deno and not Node.js, you should import the plugin from <https://deno.land/x/> instead, so from the `grammy_runner` module's `mod.ts` file.)
 
 ## Types of Plugins in grammY
@@ -31,20 +31,20 @@ Let's talk about the differences.
 
 ### Type I: Middleware Plugins
 
-[Middleware](../guide/middleware.md) is a function that handles incoming data in various forms.
+[Middleware](../guide/middleware.html) is a function that handles incoming data in various forms.
 Middleware plugins are plugins that are fed to a bot as—well, you guessed it—middleware.
 This means that you install them via `bot.use`.
 
 ### Type II: Transformer Plugins
 
-A [transformer function](../advanced/transformers.md) is the opposite of middleware!
+A [transformer function](../advanced/transformers.html) is the opposite of middleware!
 It is a function that handles outgoing data.
 Transformer plugins are plugins that are fed to a bot as a—crazy! guessed it again—transformer function.
 This means that you install them via `bot.api.config.use`.
 
 ## Create Your Own Plugins
 
-If you want to develop a plugin and share it with other users (even published on the official website of grammY), there is a [useful guide](./guide.md) that you can check out.
+If you want to develop a plugin and share it with other users (even published on the official website of grammY), there is a [useful guide](./guide.html) that you can check out.
 
 ## Ideas for More Plugins
 

@@ -1,11 +1,11 @@
 ---
-prev: ./scaling.md
-next: ./flood.md
+prev: ./scaling.html
+next: ./flood.html
 ---
 
 # Scaling Up III: Reliability
 
-If you made sure you have proper [error handling](../guide/errors.md) for your bot, you are basically good to go.
+If you made sure you have proper [error handling](../guide/errors.html) for your bot, you are basically good to go.
 All errors that should be expected to happen (failing API calls, failing network requests, failing database queries, failing middleware, etc) are all caught.
 
 You should make sure to always `await` all promises, or at least call `catch` on them if you ever don't want to `await` stuff.
@@ -144,7 +144,7 @@ In essence, bots cannot guarantee an _exactly once_ execution of your middleware
 Read [this discussion on GitHub](https://github.com/tdlib/telegram-bot-api/issues/126) in order to learn more about **why** your bot could send duplicate messages (or none at all) in extremely rare cases.
 The remainder of this section is elaborating on **how** grammY behaves under these unusual circumstances, and how to handle these situations.
 
-> Do you just care about coding a Telegram bot? [Skip the rest of this page.](./flood.md)
+> Do you just care about coding a Telegram bot? [Skip the rest of this page.](./flood.html)
 
 If you are running your bot on webhooks, the Bot API server will retry delivering updates to your bot if it does not respond with OK in time.
 That pretty much defines the behavior of the system comprehensively—if you need to prevent processing duplicate updates, you should build your own de-duplication based on `update_id`.
@@ -157,7 +157,7 @@ In other words, you will never loose any updates, however, it may happen that yo
 As calls to `sendMessage` are not idempotent, users may receive duplicate messages from your bot.
 However, _at least once_ processing is guaranteed.
 
-If you are using the [grammY runner](../plugins/runner.md) in concurrent mode, the next `getUpdates` call is potentially performed before your middleware processes the first update of the current batch.
+If you are using the [grammY runner](../plugins/runner.html) in concurrent mode, the next `getUpdates` call is potentially performed before your middleware processes the first update of the current batch.
 Thus, the update offset is [confirmed](https://core.telegram.org/bots/api#getupdates) prematurely.
 This is the cost of heavy concurrency, and unfortunately, it cannot be avoided without reducing both throughput and responsiveness.
 As a result, if your instance is killed in the right (wrong) moment, it could happen that up to 100 updates cannot be fetched again because Telegram regards them as confirmed.
@@ -169,5 +169,5 @@ You will effectively run two different instances of the grammY runner.
 This vague draft described above has only been sketched but not implemented, according to our knowledge.
 Please [take contact with the Telegram group](https://t.me/grammyjs) if you have any question or if you attempt this and can share your progress.
 
-On the other hand, if your bot is under heavy load and the update polling is slowed down due to [the automatic load constraints](../plugins/runner.md#sink), chances are increasing that some updates will be fetched again, which leads to duplicate messages again.
+On the other hand, if your bot is under heavy load and the update polling is slowed down due to [the automatic load constraints](../plugins/runner.html#sink), chances are increasing that some updates will be fetched again, which leads to duplicate messages again.
 Thus, the price of full concurrency is that neither _at least once_ nor _at most once_ processing can be guaranteed.

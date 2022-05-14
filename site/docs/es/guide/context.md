@@ -1,6 +1,6 @@
 ---
-prev: ./basics.md
-next: ./api.md
+prev: ./basics.html
+next: ./api.html
 ---
 
 # Context
@@ -160,7 +160,7 @@ De hecho, los objetos de actualización no sólo pueden contener nuevos mensajes
 Un objeto de contexto nuevo se crea exactamente una vez para cada actualización entrante.
 Los contextos para las diferentes actualizaciones son objetos completamente no relacionados, sólo hacen referencia a la misma información del bot a través de `ctx.me`.
 
-El mismo objeto de contexto para una actualización será compartido por todo el middleware instalado ([documentación](./middleware.md)) en el bot.
+El mismo objeto de contexto para una actualización será compartido por todo el middleware instalado ([documentación](./middleware.html)) en el bot.
 
 ## Personalización del objeto de contexto
 
@@ -169,7 +169,7 @@ El mismo objeto de contexto para una actualización será compartido por todo el
 Si lo desea, puede instalar sus propias propiedades en el objeto de contexto.
 Esto es posible de dos maneras:
 
-1. Instalando [middleware](./middleware.md) que modifique el contexto (recomendado), o
+1. Instalando [middleware](./middleware.html) que modifique el contexto (recomendado), o
 2. estableciendo un constructor de contexto personalizado.
 
 Si eliges la opción 1., debes especificar el contexto personalizado como un parámetro de tipo (omitir para JavaScript):
@@ -220,7 +220,7 @@ bot.on("message", (ctx) => {
 Naturalmente, el hecho de que el _tipo_ de contexto tenga ahora nuevas propiedades, no significa que haya realmente _valores_ detrás de ellas.
 Tienes que asegurarte de que un plugin (o tu propio middleware) establece todas las propiedades correctamente para satisfacer el tipo que has especificado.
 
-> Algunos middleware (por ejemplo, [session middleware](../plugins/session.md)) requieren que mezcles los tipos correctos en el objeto contexto, lo que puede hacerse _flavoring_ tu contexto como se explica [aquí abajo](#context-flavors).
+> Algunos middleware (por ejemplo, [session middleware](../plugins/session.html)) requieren que mezcles los tipos correctos en el objeto contexto, lo que puede hacerse _flavoring_ tu contexto como se explica [aquí abajo](#context-flavors).
 
 Si eliges la opción 2., así es como estableces un constructor de contexto personalizado que se utilizará para instanciar los objetos de contexto.
 Ten en cuenta que tu clase debe extender `Context`.
@@ -321,7 +321,7 @@ bot.start();
 </CodeGroup>
 
 ::: tip Relacionado
-[Middleware](./middleware.md) se refiere a una función que recibe un objeto de contexto como parámetro, como los listeners instalados.
+[Middleware](./middleware.html) se refiere a una función que recibe un objeto de contexto como parámetro, como los listeners instalados.
 :::
 
 ## Context Flavors
@@ -334,7 +334,7 @@ Hay dos tipos diferentes de context flavors.
 El básico se llama _additive context flavor_, y siempre que hablamos de sabor de contexto, nos referimos a esta forma básica.
 Veamos cómo funciona.
 
-Por ejemplo, cuando tienes [session data](../plugins/session.md), debes registrar `ctx.session` en el tipo de contexto.
+Por ejemplo, cuando tienes [session data](../plugins/session.html), debes registrar `ctx.session` en el tipo de contexto.
 De lo contrario,
 
 1. no puedes instalar el plugin de sesiones incorporado, y

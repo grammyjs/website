@@ -1,6 +1,6 @@
 ---
-prev: ./getting-started.md
-next: ./context.md
+prev: ./getting-started.html
+next: ./context.html
 ---
 
 # Envío y recepción de mensajes
@@ -30,7 +30,7 @@ bot.hears(/echo *(.+)?/, (ctx) => { ... });
 
 Puedes utilizar la función de autocompletar en tu editor de código para ver todas las opciones disponibles, o consultar [todos los métodos](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer) de la clase `Composer`.
 
-> [Leer más](./filter-queries.md) sobre el filtrado de tipos de mensajes específicos con `bot.on()`.
+> [Leer más](./filter-queries.html) sobre el filtrado de tipos de mensajes específicos con `bot.on()`.
 
 ## Envío de mensajes
 
@@ -53,7 +53,7 @@ Estos objetos de opciones se corresponden exactamente con las opciones que puede
 También puedes utilizar el autocompletado en tu editor de código para ver todas las opciones disponibles, o consultar [todos los métodos](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Api) de la clase `Api`.
 El resto de esta página muestra algunos ejemplos para esto.
 
-También, revisa la [siguiente sección](./context.md) para aprender cómo el objeto context de un listener hace que el envío de mensajes sea un juego de niños.
+También, revisa la [siguiente sección](./context.html) para aprender cómo el objeto context de un listener hace que el envío de mensajes sea un juego de niños.
 
 ## Enviando Mensajes con Respuesta
 
@@ -71,7 +71,7 @@ bot.hears("ping", async (ctx) => {
 
 > Tenga en cuenta que sólo el envío de un mensaje a través de `ctx.reply` no **significa que usted está respondiendo automáticamente a cualquier cosa.
 > En su lugar, debes especificar `reply_to_message_id` para ello.
-> La función `ctx.reply` es sólo un alias de `ctx.api.sendMessage`, ver [la siguiente sección](./context.md#available-actions).
+> La función `ctx.reply` es sólo un alias de `ctx.api.sendMessage`, ver [la siguiente sección](./context.html#available-actions).
 
 ## Envío de mensajes con formato
 
@@ -110,7 +110,7 @@ await bot.api.sendMessage(
 
 ## Envío de archivos
 
-El manejo de archivos se explica con mayor profundidad en [una sección posterior] (./files.md#sending-files).
+El manejo de archivos se explica con mayor profundidad en [una sección posterior] (./files.html#sending-files).
 
 ## Forzar respuesta
 

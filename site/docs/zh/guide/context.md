@@ -1,6 +1,6 @@
 ---
-prev: ./basics.md
-next: ./api.md
+prev: ./basics.html
+next: ./api.html
 ---
 
 # 上下文
@@ -126,7 +126,7 @@ bot.on("message", (ctx) => ctx.reply("Gotcha!"));
 在后台，上下文 _已经知道_ 它的聊天标识符（即 `ctx.msg.chat.id`），所以它给你 `reply` 方法，让你向同一个聊天记录发送消息。
 在内部，`reply` 再次调用 `sendMessage`，并为您预先填写了聊天标识符。
 
-因此，正如 [前面](./basics.md#sending-messages) 所解释的，上下文对象的所有方法都可以接受 `Other` 类型的选项对象，以传递给每个 API 调用。
+因此，正如 [前面](./basics.html#sending-messages) 所解释的，上下文对象的所有方法都可以接受 `Other` 类型的选项对象，以传递给每个 API 调用。
 这可以用于向每个 API 调用传递进一步的配置。
 
 ::: tip Telegram 的回复功能
@@ -160,7 +160,7 @@ await ctx.reply("^ This is a message!", {
 对于每一个传入的 update，都会精确地创建一个新的 `Context` 对象。
 不同 update 的上下文是完全不相关的对象，它们只是通过 `ctx.me` 引用相同的 bot 信息。
 
-一个 update 的相同上下文对象将被 bot 上所有安装的中间件（[docs](./middleware.md)）共享。
+一个 update 的相同上下文对象将被 bot 上所有安装的中间件（[docs](./middleware.html)）共享。
 
 ## 定制你的上下文对象
 
@@ -169,7 +169,7 @@ await ctx.reply("^ This is a message!", {
 如果你愿意，你可以在 `Context` 对象上安装你自己的需要的。
 这可以通过两种方式实现：
 
-1. 安装修改上下文的[中间件](./middleware.md)（推荐），或
+1. 安装修改上下文的[中间件](./middleware.html)（推荐），或
 2. 设置一个自定义的上下文构造函数。
 
 如果你选择选项 1，你必须指定自定义上下文作为一个类型参数（JavaScript 可以忽略这条）。
@@ -220,7 +220,7 @@ bot.on("message", (ctx) => {
 自然地，仅仅因为现在上下文 _类型_ 有了新的属性，这并不意味着它们背后会有实际的 _值_。
 你必须确保一个插件（或你自己的中间件）正确设置所有属性，以满足你指定的类型。
 
-> 一些中间件（例如 [会话中间件](/zh/plugins/session.md)）要求你在上下文对象中混入正确的类型，这可以通过 _调味_ 你的上下文来完成，正如 [在下面](#上下文调味剂) 所解释的。
+> 一些中间件（例如 [会话中间件](/zh/plugins/session.html)）要求你在上下文对象中混入正确的类型，这可以通过 _调味_ 你的上下文来完成，正如 [在下面](#上下文调味剂) 所解释的。
 
 如果你选择了选项 2，这就是你设置自定义上下文构造函数的方式，它将被用来实例化上下文对象。
 注意，你的类必须扩展 `Context`。
@@ -318,7 +318,7 @@ bot.start();
 </CodeGroup>
 
 ::: tip 相关
-[中间件](./middleware.md) 指的是接收上下文对象作为参数的函数，比如已安装的监听器。
+[中间件](./middleware.html) 指的是接收上下文对象作为参数的函数，比如已安装的监听器。
 :::
 
 ## 上下文调味剂
@@ -331,7 +331,7 @@ bot.start();
 基本的一种被称为 _添加式上下文调味剂_，而且每当我们谈论 _给上下文烹饪调味_ 时，我们一般指这种基本形式。
 让我们来看看它是如何工作的：
 
-举个例子，当你有 [会话数据](../plugins/session.md) 时，你必须在上下文类型上注册 `ctx.session`。
+举个例子，当你有 [会话数据](../plugins/session.html) 时，你必须在上下文类型上注册 `ctx.session`。
 否则：
 
 1. 你不能安装内置的 session 插件

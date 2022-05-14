@@ -1,6 +1,6 @@
 ---
-prev: ./filter-queries.md
-next: ./middleware.md
+prev: ./filter-queries.html
+next: ./middleware.html
 ---
 
 # Commands
@@ -69,7 +69,7 @@ grammY 为你提取这个 `payload`，并在 `ctx.match` 下提供。
 在我们的例子中，`ctx.match` 将包含字符串 `payload`。
 
 如果你想建立一个推荐系统，或跟踪用户在哪里发现你的 bot ，那么深度链接是很有用的。
-例如，你的 bot 可以发送一个带有 [inline-keyboards](/zh/plugins/keyboard.md#inline-keyboards) 按钮的 channel post。
+例如，你的 bot 可以发送一个带有 [inline-keyboards](/zh/plugins/keyboard.html#inline-keyboards) 按钮的 channel post。
 该按钮包含一个类似上述的 URL，例如 `https://t.me/your_bot_name?start=awesome-channel-post-12345`。
 当用户点击帖子下面的按钮时，他们的 Telegram 客户端将打开与你的 bot 的聊天，并显示上述的 START 按钮。
 这样，你的 bot 可以识别用户来自哪里，以及他们点击了哪个特定频道帖子下的按钮。

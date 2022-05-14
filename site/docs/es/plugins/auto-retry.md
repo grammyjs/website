@@ -1,8 +1,8 @@
 # Reintentar solicitudes de la API (`auto-retry`)
 
-> Considera usar [el plugin throttler](./transformer-throttler.md) en su lugar.
+> Considera usar [el plugin throttler](./transformer-throttler.html) en su lugar.
 
-Este plugin es una [función transformadora de la API](../advanced/transformers.md), lo que significa que le permite interceptar y modificar las peticiones HTTP salientes sobre la marcha.
+Este plugin es una [función transformadora de la API](../advanced/transformers.html), lo que significa que le permite interceptar y modificar las peticiones HTTP salientes sobre la marcha.
 Más concretamente, este plugin detectará automáticamente si una petición de la API falla con un valor `retry_after`, es decir, debido a la limitación de velocidad.
 Entonces atrapará el error, esperará el período de tiempo especificado, y luego reintentará la solicitud.
 
@@ -54,7 +54,7 @@ Bajo el capó, se están realizando múltiples peticiones HTTP, con los retrasos
 Puede pasar un objeto de opciones que especifique un número máximo de reintentos (`maxRetryAttempts`, por defecto: 3), o un umbral para un tiempo máximo de espera (`maxDelaySeconds`, por defecto: 1 hora).
 
 Tan pronto como se agote el número máximo de reintentos, los siguientes errores para la misma petición no se volverán a intentar.
-En su lugar, se pasa el objeto de error de Telegram, fallando efectivamente la petición con un [`GrammyError`] (/guide/errors.md#the-grammyerror-object).
+En su lugar, se pasa el objeto de error de Telegram, fallando efectivamente la petición con un [`GrammyError`] (/guide/errors.html#the-grammyerror-object).
 
 De forma similar, si la petición falla con `retry_after` mayor que lo especificado por la opción `maxDelaySeconds`, la petición fallará inmediatamente.
 

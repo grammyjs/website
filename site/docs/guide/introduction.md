@@ -1,6 +1,6 @@
 ---
 prev: /guide/
-next: ./getting-started.md
+next: ./getting-started.html
 ---
 
 # Introduction
@@ -8,7 +8,7 @@ next: ./getting-started.md
 A Telegram bot is a special user account that is automated by a program.
 Anyone can create a Telegram bot, the only prerequisite is that you know a little bit of coding.
 
-> If you already know how create bots, head over to [Getting Started](./getting-started.md)!
+> If you already know how create bots, head over to [Getting Started](./getting-started.html)!
 
 grammY is a library that makes it super simple to write such a bot.
 
@@ -73,17 +73,17 @@ You will get to know them as you go.
 
 ## Prerequisites to Getting Started
 
-> Skip the rest of this page if you already know how to develop a Deno or a Node.js application, and [get started](./getting-started.md).
+> Skip the rest of this page if you already know how to develop a Deno or a Node.js application, and [get started](./getting-started.html).
 
 Here are a few interesting things about programming—things that are essential to coding, yet rarely explained because most developers think they are self-evident.
 
-In the next section, you will create a bot by writing a text file that contains source code in the programming language [TypeScript](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.md).
+In the next section, you will create a bot by writing a text file that contains source code in the programming language [TypeScript](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html).
 The grammY documentation will not teach you how to program, so we expect you to teach yourself.
 Remember, though: creating a Telegram bot with grammY is actually a good way to learn coding! :rocket:
 
 ::: tip Learning How to Code
-You can start learning TypeScript with the [official tutorial](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.md) written by the TypeScript team, and then move on from there.
-Don't spend more than 30 minutes reading things on the internet, then come back here, (read the rest of the section) and [get started](./getting-started.md).
+You can start learning TypeScript with the [official tutorial](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html) written by the TypeScript team, and then move on from there.
+Don't spend more than 30 minutes reading things on the internet, then come back here, (read the rest of the section) and [get started](./getting-started.html).
 
 If you see unfamiliar syntax in the docs, or if you get an error message that you don't understand, google it—the explanation is already on the internet (e.g. on StackOverflow).
 :::
@@ -136,7 +136,7 @@ When you have created your bot, for example in a file called `bot.ts`, you can r
 You can stop it again with `Ctrl+C`.
 
 Ready?
-[Get started](./getting-started.md#getting-started-on-deno)! :robot:
+[Get started](./getting-started.html#getting-started-on-deno)! :robot:
 
 ### Prerequisites for Node.js
 
@@ -159,4 +159,4 @@ This will stop your bot.
 Then, you need to repeat steps 2 and 3.
 
 Are you ready?
-[Get started](./getting-started.md#getting-started-on-node-js)! :robot:
+[Get started](./getting-started.html#getting-started-on-node-js)! :robot:

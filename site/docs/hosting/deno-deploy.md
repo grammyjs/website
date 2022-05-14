@@ -71,7 +71,7 @@ We advise you to have your handler on some secret path rather than the root (`/`
 deployctl deploy --project <project> ./mod.ts --prod --token <token>
 ```
 
-6. To set up Github Actions, refer to [this](https://github.com/denoland/deployctl/blob/main/action/README.md).
+6. To set up Github Actions, refer to [this](https://github.com/denoland/deployctl/blob/main/action/README.html).
 
 ### Method 3: With URL
 

@@ -1,5 +1,5 @@
 ---
-next: ./guide.md
+next: ./guide.html
 ---
 
 # 什么是一个插件？
@@ -18,7 +18,7 @@ next: ./guide.md
 它们从 npm 上的 `@grammyjs/*` 安装，并在 GitHub 的 [@grammyjs](https://github.com/grammyjs) 组织下发布。
 官方插件与 grammY 同步发布，确保插件与 grammY 的运行一致性。
 官方插件文档的每一节标题中都有软件包（即插件）的名称。
-举个例子，[grammY runner](./runner.md) 插件（`runner`）需要通过 `npm install @grammyjs/runner` 来安装。
+举个例子，[grammY runner](./runner.html) 插件（`runner`）需要通过 `npm install @grammyjs/runner` 来安装。
 （如果你在使用 Deno 而不是 Node.js，你应该从 <https://deno.land/x> 中导入插件，也就是从 `grammy_runner` 模块的 `mod.ts` 文件中导入）
 
 ## grammY 中的插件类型
@@ -31,20 +31,20 @@ grammY 可以利用两种类型的插件：_中间件插件_ 和 _转换器插�
 
 ### 类型 I: 中间件插件
 
-[中间件](/zh/guide/middleware.md) 是一个处理各种形式传入数据的函数。
+[中间件](/zh/guide/middleware.html) 是一个处理各种形式传入数据的函数。
 中间件插件是作为——嗯，你猜对了——中间件，被喂给 bot 的插件。
 这意味着你可以通过 `bot.use` 来安装它们。
 
 ### 类型 II: 转换器插件
 
-[转换器函数](/zh/guide/transformers.md) 与中间件相反！
+[转换器函数](/zh/guide/transformers.html) 与中间件相反！
 它是一个处理传出数据的函数。
 转换器插件是作为——你没疯！你又猜对了——转换器函数，被喂给 bot 的插件。
 这意味着你可以通过 `bot.api.config.use` 来安装它们。
 
 ## 创建你自己的插件
 
-如果你想开发一个插件并且和其他用户分享（甚至是在官方的 grammY 网站上发布的），你可以查看这个 [有用的指南](./guide.md)。
+如果你想开发一个插件并且和其他用户分享（甚至是在官方的 grammY 网站上发布的），你可以查看这个 [有用的指南](./guide.html)。
 
 ## 关于更多插件的想法
 

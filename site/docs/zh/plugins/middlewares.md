@@ -54,7 +54,7 @@ bot.use(
 
 ### `sequentialize`
 
-基本的 [顺序化](/zh/advanced/scaling.md#并发是困难的) 中间件，将聊天 id 作为一个顺序标识。
+基本的 [顺序化](/zh/advanced/scaling.html#并发是困难的) 中间件，将聊天 id 作为一个顺序标识。
 
 ## 插件概述
 

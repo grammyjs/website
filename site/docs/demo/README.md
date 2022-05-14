@@ -1,5 +1,5 @@
 ---
-next: ./examples.md
+next: ./examples.html
 ---
 
 # Live Browser Demo

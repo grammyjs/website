@@ -5,7 +5,7 @@
 ## 简介
 
 一个 inline keyboard 是一条消息下面的按钮数组。
-grammY 有一个 [内置插件](./keyboard.md#inline-keyboards) 可以创建基本的 inline keybaords。
+grammY 有一个 [内置插件](./keyboard.html#inline-keyboards) 可以创建基本的 inline keybaords。
 
 这个菜单插件将这个想法更进一步，让你能够在聊天里创建精美的菜单。
 它们可以有交互的按钮，多个页面之间的导航，以及更多。
@@ -103,7 +103,7 @@ const menu = new Menu<MyContext>("id");
 
 ## 添加按钮
 
-菜单插件会像 [inline keyboard 插件](./keyboard.md#inline-keyboards) 一样布局你的键盘。
+菜单插件会像 [inline keyboard 插件](./keyboard.html#inline-keyboards) 一样布局你的键盘。
 `InlineKeyboard` 类替换为 `Menu` 类。
 
 下面是一个菜单的例子，它有四个按钮，按钮的布局是 1-2-1。
@@ -184,7 +184,7 @@ const menu = new Menu("toggle")
 上面的例子展示了如何使用菜单插件。
 将用户设置储存在一个 `Set` 对象中并不是一个好主意，因为这样当你停止服务器时所有的数据都会丢失。
 
-相反，如果你想储存数据，请考虑使用数据库或 [会话插件](./session.md)。
+相反，如果你想储存数据，请考虑使用数据库或 [会话插件](./session.html)。
 :::
 
 ## 更新或关闭菜单
@@ -293,7 +293,7 @@ bot.use(settings);
 
 > Payloads 不能用来实际存储任何大量的数据。
 > 你能存储的唯一的东西是通常小于 50 字节的短字符串，例如索引或标识符。
-> 如果你真的想存储用户数据，例如文件标识符，URL 或其他东西，你应该使用 [会话](./session.md)。
+> 如果你真的想存储用户数据，例如文件标识符，URL 或其他东西，你应该使用 [会话](./session.html)。
 
 这里是一个记住创建者的菜单的例子。
 其他用例可能是，例如，存储分页菜单的索引。
@@ -360,7 +360,7 @@ menu
 ```
 
 你传递给 `dynamic` 的范围构造器可以是 `async`，所以你甚至可以在返回新的菜单范围之前从 API 或数据库读取数据。
-**在许多情况下，根据 [会话](./session.md)数据生成一个动态范围是有意义的。**
+**在许多情况下，根据 [会话](./session.html)数据生成一个动态范围是有意义的。**
 
 范围构造器的第一个参数是上下文对象。
 （在上面的例子中，没有指定这一点。）
@@ -499,7 +499,7 @@ const menu = new Menu("id", { fingerprint: (ctx) => ident(ctx) });
 
 一旦再次知道被按下的按钮（并且我们已经检查了菜单没有[过时](#过时的菜单和指纹)），我们将调用处理程序。
 
-在内部，菜单插件大量使用了 [API Transformer 函数](../advanced/transformers.md)，例如，以快速渲染出正在运行的菜单。
+在内部，菜单插件大量使用了 [API Transformer 函数](../advanced/transformers.html)，例如，以快速渲染出正在运行的菜单。
 
 当你在一个大型层次结构中注册菜单以导航时，它们实际上不存储这些引用。
 在内部，所有这个结构的菜单都被添加到同一个大型池中，并且这个池在所有包含的实例中共享。

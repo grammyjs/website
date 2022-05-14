@@ -1,6 +1,6 @@
 ---
-prev: ./introduction.md
-next: ./basics.md
+prev: ./introduction.html
+next: ./basics.html
 ---
 
 # 入门
@@ -10,7 +10,7 @@ next: ./basics.md
 ## 通过 Node.js 开始
 
 > 本指南假定你已经安装了 [Node.js](https://nodejs.org)，并且 `npm` 应该是自带的。
-> 如果你不知道这些东西是什么，请查看我们的 [简介](./introduction.md)！
+> 如果你不知道这些东西是什么，请查看我们的 [简介](./introduction.html)！
 
 创建一个新的 TypeScript 项目并安装 `grammy` 包。
 通过打开终端并键入以下内容来完成。

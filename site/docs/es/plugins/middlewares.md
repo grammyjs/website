@@ -61,7 +61,7 @@ Tienes que proporcionar el id de superadministrador.
 
 ### `sequentialize`
 
-El middleware básico [sequentialize](../advanced/scaling.md#concurrency-is-hard) que toma el id del chat como identificador secuencial.
+El middleware básico [sequentialize](../advanced/scaling.html#concurrency-is-hard) que toma el id del chat como identificador secuencial.
 
 ## Resumen del plugin
 

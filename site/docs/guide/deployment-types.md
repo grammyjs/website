@@ -1,5 +1,5 @@
 ---
-prev: ./games.md
+prev: ./games.html
 next: /advanced/
 ---
 
@@ -95,7 +95,7 @@ ______________                                   _____________
 ```
 
 > Note that in reality, no connection would be kept open for hours.
-> Long polling requests have a default timeout of 30 seconds (in order to avoid a number of [technical problems](https://tools.ietf.org/id/draft-loreto-http-bidirectional-07.md#timeouts)).
+> Long polling requests have a default timeout of 30 seconds (in order to avoid a number of [technical problems](https://tools.ietf.org/id/draft-loreto-http-bidirectional-07.html#timeouts)).
 > If no new messages are returned after this period of time, then the request will be cancelled and resent—but the general concept stays the same.
 
 Using long polling, you don't need to spam Telegram's servers, and still you get new messages immediately!
@@ -165,7 +165,7 @@ Webhooks can be a bit nasty from time to time (see [below](#ending-webhook-reque
 
 Whatever you choose, if you ever run into serious problems, it should not be too hard to switch to the other deployment type after the fact.
 With grammY, you only have to touch a few lines of code.
-The setup of your [middleware](./middleware.md) is the same.
+The setup of your [middleware](./middleware.html) is the same.
 
 ## How to Use Long Polling
 
@@ -179,7 +179,7 @@ to run your bot with a very simple form of long polling.
 It processes all updates sequentially.
 This makes your bot very easy to debug, and all behavior very predictable, because there is no concurrency involved.
 
-If you want your messages to be handled concurrently by grammY, or you worry about throughput, check out the section about [grammY runner](../plugins/runner.md).
+If you want your messages to be handled concurrently by grammY, or you worry about throughput, check out the section about [grammY runner](../plugins/runner.html).
 
 ## How to Use Webhooks
 

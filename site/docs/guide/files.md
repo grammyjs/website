@@ -1,6 +1,6 @@
 ---
-prev: ./inline-queries.md
-next: ./games.md
+prev: ./inline-queries.html
+next: ./games.html
 ---
 
 # File Handling
@@ -67,16 +67,16 @@ bot.on("message:voice", async (ctx) => {
 ```
 
 ::: tip Passing a Custom file_id to getFile
-On the context object, `getFile` is [a shortcut](./context.md#shortcuts), and will fetch information for a file on the current message.
+On the context object, `getFile` is [a shortcut](./context.html#shortcuts), and will fetch information for a file on the current message.
 If you want to get a different file while handling a message, use `ctx.api.getFile(file_id)` instead.
 :::
 
-> Check out [the `:media` and `:file` shortcuts](./filter-queries.md#shortcuts) for filter queries if you want to receive any kind of file.
+> Check out [the `:media` and `:file` shortcuts](./filter-queries.html#shortcuts) for filter queries if you want to receive any kind of file.
 
 Once you have called `getFile`, you can use the returned `file_path` to download the file using this URL `https://api.telegram.org/file/bot<token>/<file_path>`, where `<token>` must be replaced by your bot token.
 
 ::: tip Files Plugin
-grammY does not come bundled with its own file downloader, but you can install [the official files plugin](../plugins/files.md).
+grammY does not come bundled with its own file downloader, but you can install [the official files plugin](../plugins/files.html).
 This allows you to download files via `await file.download()`, and to obtain a constructed download URL for them via `file.getUrl()`.
 :::
 
@@ -236,7 +236,7 @@ new InputFile({ url: "https://grammy.dev/Y.png" }); // equivalent
 
 ### Adding a Caption
 
-When sending files, you can specify further options in an options object of type `Other`, exactly as explained [earlier](./basics.md#sending-messages).
+When sending files, you can specify further options in an options object of type `Other`, exactly as explained [earlier](./basics.html#sending-messages).
 For example, this lets you send captions.
 
 ```ts
@@ -260,4 +260,4 @@ Refer to the official documentation about this [here](https://core.telegram.org/
 Hosting your own Bot API server has, in and of itself, nothing to do with grammY.
 However, grammY supports all of the methods that are needed to configure your bot to use your own Bot API Server.
 
-Also, you may want to revisit an earlier chapter of this guide about the setup of the Bot API [here](./api.md).
+Also, you may want to revisit an earlier chapter of this guide about the setup of the Bot API [here](./api.html).
