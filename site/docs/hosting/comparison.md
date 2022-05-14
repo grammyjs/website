@@ -50,7 +50,6 @@ Check out [the tutorial](./vps.md) on how to host a grammY bot on a VPS.
 
 | Name          | Min. price | Ping to API                              | Cheapest option                 |
 | ------------- | ---------- | ---------------------------------------- | ------------------------------- |
-| Name          | Min. price | Ping to API                              | Cheapest option                 |
 | DigitalOcean  | $5         | 1-15 ms :netherlands: AMS, 19ms :de: FRA | 1 vCPU, 1GB RAM, 25GB SSD, 1TB  |
 | Hetzner Cloud | €4.15      | ~42ms :de:                               | 1 vCPU, 2GB RAM, 20GB SSD, 20TB |
 | Scaleway      | ~7€        |                                          | 2 cores, 2GB RAM, 20GB SSD      |
