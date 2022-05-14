@@ -1,9 +1,9 @@
 # 托管：Heroku
 
 > 我们假设你有关于如何使用 grammY 创建 bot 的基本知识。
-> 如果你还没有准备好，不要犹豫，请查看我们十分友好的 [指南](../guide) ！ :rocket:
+> 如果你还没有准备好，不要犹豫，请查看我们十分友好的 [指南](/zh/guide) ！ :rocket:
 
-本教程将指导你如何通过 [webhooks](../guide/deployment-types.md#webhooks) 或者 [长轮询](../guide/deployment-types.md#长轮询) 将 Telegram bot 部署到 [Heroku](https://heroku.com/)。
+本教程将指导你如何通过 [webhooks](/zh/guide/deployment-types.md#webhooks) 或者 [长轮询](/zh/guide/deployment-types.md#长轮询) 将 Telegram bot 部署到 [Heroku](https://heroku.com/)。
 我们还假设你已经有了一个 Heroku 账户。
 
 ## 前提条件
@@ -90,7 +90,7 @@ npx tsc --init
 ```
 
 上面我们提到了，我们有两个选择来接收 Telegram 的数据，webhooks 和长轮询。
-你可以在 [这里](../guide/deployment-types.md) 了解更多关于两者之间的优缺点，再决定使用哪一个。
+你可以在 [这里](/zh/guide/deployment-types.md) 了解更多关于两者之间的优缺点，再决定使用哪一个。
 
 ## Webhooks
 
@@ -156,7 +156,7 @@ https://api.telegram.org/botabcd:1234/setWebhook?url=https%3A%2F%2Fgrammybot.her
 :::
 
 ::: tip ⚡ 优化（可选）
-使用 [Webhook Reply](../guide/deployment-types.md#webhook-reply) 以提高效率。
+使用 [Webhook Reply](/zh/guide/deployment-types.html#webhook-reply) 以提高效率。
 :::
 
 ### 创建 `bot.ts`
@@ -179,7 +179,7 @@ bot.on("message", (ctx) => ctx.reply("Got another message!"));
 和刚才一样，这是可选的。
 
 ::: tip ⚡ 优化（可选）
-每次你的服务器启动时，grammY 会向 Telegram 请求 [bot 的信息](https://core.telegram.org/bots/api#getme)，以便在 `ctx.me` 下的 [上下文对象](../guide/context.md) 提供 bot 的信息。
+每次你的服务器启动时，grammY 会向 Telegram 请求 [bot 的信息](https://core.telegram.org/bots/api#getme)，以便在 `ctx.me` 下的 [上下文对象](/zh/guide/context.md) 提供 bot 的信息。
 我们可以设置 [bot 的信息](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/BotConfig#botInfo) 以防止过多的 `getMe` 调用。
 
 1. 在你最喜欢的浏览器中打开这个链接 `https://api.telegram.org/bot<bot_token>/getMe`，推荐使用 [Firefox](https://www.mozilla.org/en-US/firefox/)，因为它能格式化显示 `json` 数据。
@@ -240,7 +240,7 @@ bot.start();
 就是这样！
 我们已经准备好去部署它了。
 看起来是不是非常简单？:smiley:
-如果你觉得这太简单了，可以查看我们的 [部署清单](../advanced/deployment.md#长轮询)！:rocket:
+如果你觉得这太简单了，可以查看我们的 [部署清单](/zh/advanced/deployment.md#长轮询)！:rocket:
 
 ## 部署
 

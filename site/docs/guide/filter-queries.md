@@ -295,7 +295,7 @@ Analogously, you can make use of the filter query types that grammY uses interna
 
 ### Reusing Filter Query Types
 
-Internally, `matchFilter` uses TypeScript's [type predicates](https://www.typescriptlang.org/docs/handbook/2/narrowing.md#using-type-predicates) to narrow down the type of `ctx`.
+Internally, `matchFilter` uses TypeScript's [type predicates](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates) to narrow down the type of `ctx`.
 It takes a type `C extends Context` and a `Q extends FilterQuery` and produces `ctx is Filter<C, Q>`.
 In other words, the `Filter` type is what you actually receive for your `ctx` in the middleware.
 

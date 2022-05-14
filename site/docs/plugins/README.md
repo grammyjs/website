@@ -31,13 +31,13 @@ Let's talk about the differences.
 
 ### Type I: Middleware Plugins
 
-[Middleware](../guide/middleware.md) is a function that handles incoming data in various forms.
+[Middleware](/guide/middleware.md) is a function that handles incoming data in various forms.
 Middleware plugins are plugins that are fed to a bot as—well, you guessed it—middleware.
 This means that you install them via `bot.use`.
 
 ### Type II: Transformer Plugins
 
-A [transformer function](../advanced/transformers.md) is the opposite of middleware!
+A [transformer function](/advanced/transformers.md) is the opposite of middleware!
 It is a function that handles outgoing data.
 Transformer plugins are plugins that are fed to a bot as a—crazy! guessed it again—transformer function.
 This means that you install them via `bot.api.config.use`.

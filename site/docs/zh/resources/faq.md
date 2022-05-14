@@ -76,9 +76,9 @@ Telegram 会这样做以保护他们的用户。
 
 这里有几件事情你可以做。
 
-1. 阅读 [这篇文章](../advanced/flood.md) 以获得对情况的基本了解。
-2. 使用 [`transformer-throttler` 插件](../plugins/transformer-throttler.md)。
-3. 使用 [`auto-retry` 插件](../plugins/auto-retry.md)。
+1. 阅读 [这篇文章](/zh/advanced/flood.md) 以获得对情况的基本了解。
+2. 使用 [`transformer-throttler` 插件](/zh/plugins/transformer-throttler.md)。
+3. 使用 [`auto-retry` 插件](/zh/plugins/auto-retry.md)。
 4. 在群聊中向我们寻求帮助。我们有经验丰富的人能帮你。
 5. 可以要求 Telegram 增加限制，但如果不先执行步骤 1-3，就不太可能发生这种情况。
 

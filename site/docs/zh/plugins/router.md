@@ -407,7 +407,7 @@ function getDays(month: number, day: number) {
 
 ::: tip 拆解代码
 如果你觉得代码太复杂了，你可以拆分成多个文件。
-你可以在 [这个高级部分](../advanced/structuring.md) 中阅读更多关于如何扩展你的代码。
+你可以在 [这个高级部分](/zh/advanced/structuring.md) 中阅读更多关于如何扩展你的代码。
 :::
 
 请注意，会话有一个属性 `step`，它存储表单的步骤，即当前正在填写的值。

@@ -41,7 +41,7 @@ It also got harder for new users to get started.
 **grammY takes a step back and rethinks a type-safe bot framework with approachability first.**
 This allowed to skip a lot of the frustrating discussions around how to cope with strange internal typings.
 It enabled the project to have clean, consistent, compiling code that provides users with excellent types (=editor support).
-Type safety in turn permits more advanced features that fundamentally change how we think about bot development, such as [API transformers](../advanced/transformers.md).
+Type safety in turn permits more advanced features that fundamentally change how we think about bot development, such as [API transformers](/advanced/transformers.md).
 
 Today, Telegraf 3 is outdated.
 There are some unofficial forks out there that try to keep the legacy code base up to date with the evolvement of the Bot API, but their compatibility is unknown.
@@ -52,7 +52,7 @@ Based on the fact that Telegraf hangs somewhere between version 3 and 4, it make
 #### Comparison to v3
 
 Given their shared history, grammY and Telegraf have a lot in common.
-They both have a [middleware system](../guide/middleware.md) in their core.
+They both have a [middleware system](/guide/middleware.md) in their core.
 They also share a lot of their basic syntax:
 
 ```ts
@@ -78,7 +78,7 @@ This was hard to do because the wrong type annotations of Telegraf were preventi
 However, type-safe code is a major advantage for any non-trivial code base.
 
 grammY and Telegraf have distinct code bases.
-Beeing freed from the legacy, grammY could also make substantial contributions to the underlying middleware system, enabling exciting use cases such as [filter queries](../guide/filter-queries.md), [error boundaries](../guide/errors.md#error-boundaries), [API transformers](../advanced/transformers.md), and many more.
+Beeing freed from the legacy, grammY could also make substantial contributions to the underlying middleware system, enabling exciting use cases such as [filter queries](/guide/filter-queries.md), [error boundaries](/guide/errors.md#error-boundaries), [API transformers](/advanced/transformers.md), and many more.
 This also enables the development of valuable plugins that are impossible to work under Telegraf.
 
 The main advantage of Telegraf over grammY is that it is still **known by a lot more people**.
@@ -123,7 +123,7 @@ For example:
 
 The `node-telegram-bot-api` package is the second big project that impacted the development of grammY.
 Its main advantage over other frameworks is that it just is dead simple.
-Its architecture can be described in a single sentence, while grammY needs a [guide](../guide/) on its documentation website to do the same.
+Its architecture can be described in a single sentence, while grammY needs a [guide](/guide/) on its documentation website to do the same.
 We believe that all these explanations on the grammY website help people to get started easily, but it is tempting to have a library which does not need any explanations in the first place.
 
 On the downside, this is only good in the short-term perspective.
