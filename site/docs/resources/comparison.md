@@ -90,7 +90,7 @@ This also means that you can find more stories on the internet about Telegraf us
 The main advantage of grammY over Telegraf 4.x is that **it is simply a lot easier**.
 For example:
 
-- grammY has [a documentation](/).
+- grammY has [a documentation](../).
   Telegraf does not (it was replaced by a generated API reference that lacks explanations).
 - Types in grammY _just work_ and they will follow your code.
   In Telegraf, you will often need to write your code a certain way, otherwise it does not compile (even though it would actually work fine).
