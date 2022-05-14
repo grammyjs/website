@@ -15,6 +15,11 @@ export default defineUserConfig({
       title: "grammY",
       description: "The Telegram Bot Framework.",
     },
+    "/es/": {
+      lang: "es-ES",
+      title: "grammY",
+      description: "El Framework de Bots para Telegram.",
+    },
     "/zh/": {
       lang: "zh-CN",
       title: "grammY",
@@ -358,10 +363,350 @@ export default defineUserConfig({
           },
         ],
       },
+      "/es/": {
+        selectLanguageName: "Español",
+        editLinkText: "Editar esta página en GitHub",
+        contributorsText: "Colaboradores",
+        lastUpdatedText: "Última actualización",
+        notFound: [
+          "¡Uy! Esta página no existe",
+          "Nop.",
+          "Nada aquí para ti, lo siento",
+          "Error 404/ ¡Houston, tenemos un problema!",
+          "Vuelveeeee, vuelve a casaaaaa, por navidad",
+        ],
+        backToHome: "Llévame a casa",
+        navbar: [
+          { text: "Guía", link: "/es/guide/" },
+          {
+            text: "Aprender",
+            children: [
+              {
+                text: "Guía",
+                children: [
+                  {
+                    text: "Resumen",
+                    link: "/es/guide/README.md",
+                  },
+                  {
+                    text: "Introducción",
+                    link: "/es/guide/introduction.md",
+                  },
+                  {
+                    text: "Cómo empezar",
+                    link: "/es/guide/getting-started.md",
+                  },
+                  {
+                    text: "Envío y recepción de mensajes",
+                    link: "/es/guide/basics.md",
+                  },
+                  {
+                    text: "Contexto",
+                    link: "/es/guide/context.md",
+                  },
+                  {
+                    text: "API para bots",
+                    link: "/es/guide/api.md",
+                  },
+                  {
+                    text: "Filtrar consultas y bot.on()",
+                    link: "/es/guide/filter-queries.md",
+                  },
+                  {
+                    text: "Comandos",
+                    link: "/es/guide/commands.md",
+                  },
+                  {
+                    text: "Middleware",
+                    link: "/es/guide/middleware.md",
+                  },
+                  {
+                    text: "Manejo de errores",
+                    link: "/es/guide/errors.md",
+                  },
+                  {
+                    text: "Consultas lineales",
+                    link: "/es/guide/inline-queries.md",
+                  },
+                  {
+                    text: "Manejo de archivos",
+                    link: "/es/guide/files.md",
+                  },
+                  {
+                    text: "Juegos",
+                    link: "/es/guide/games.md",
+                  },
+                  {
+                    text: "Long Polling frente a Webhooks",
+                    link: "/es/guide/deployment-types.md",
+                  },
+                ],
+              },
+              {
+                text: "Avanzado",
+                children: [
+                  {
+                    text: "Resumen",
+                    link: "/es/advanced/README.md",
+                  },
+                  {
+                    text: "Middleware en profundidad",
+                    link: "/es/advanced/middleware.md",
+                  },
+                  {
+                    text: "Escalando I: Código base grande",
+                    link: "/es/advanced/structuring.md",
+                  },
+                  {
+                    text: "Escalando II: Alta carga",
+                    link: "/es/advanced/scaling.md",
+                  },
+                  {
+                    text: "Escalando III: Fiabilidad",
+                    link: "/es/advanced/reliability.md",
+                  },
+                  {
+                    text: "Escalando IV: Límites de flujo",
+                    link: "/es/advanced/flood.md",
+                  },
+                  {
+                    text: "Transformadores de la API del Bot",
+                    link: "/es/advanced/transformers.md",
+                  },
+                  {
+                    text: "Soporte para proxy",
+                    link: "/es/advanced/proxy.md",
+                  },
+                  {
+                    text: "Lista de comprobación del despliegue",
+                    link: "/es/advanced/deployment.md",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            text: "Complementos",
+            children: [
+              {
+                text: "Introducción",
+                children: [
+                  {
+                    text: "Acerca de los complementos",
+                    link: "/es/plugins/README.md",
+                  },
+                  {
+                    text: "Cómo escribir complementos",
+                    link: "/es/plugins/guide.md",
+                  },
+                ],
+              },
+              {
+                text: "Incorporado",
+                children: [
+                  {
+                    text: "Sesiones y almacenamiento de datos",
+                    link: "/es/plugins/session.md",
+                  },
+                  {
+                    text: "Teclados lineales y personalizados",
+                    link: "/es/plugins/keyboard.md",
+                  },
+                ],
+              },
+              {
+                text: "Oficial",
+                children: [
+                  {
+                    text: "Menus Interactivos (menu)",
+                    link: "/es/plugins/menu.md",
+                  },
+                  {
+                    text: "Conversaciones (conversations)",
+                    link: "/es/plugins/conversations.md",
+                  },
+                  {
+                    text: "Preguntas sin estado (stateless-question)",
+                    link: "/es/plugins/stateless-question.md",
+                  },
+                  {
+                    text: "Concurrencia (runner)",
+                    link: "/es/plugins/runner.md",
+                  },
+                  {
+                    text: "Hidratación (hydrate)",
+                    link: "/es/plugins/hydrate.md",
+                  },
+                  {
+                    text: "Reintentar solicitudes de la API (auto-retry)",
+                    link: "/es/plugins/auto-retry.md",
+                  },
+                  {
+                    text: "Control de flujo (transformer-throttler)",
+                    link: "/es/plugins/transformer-throttler.md",
+                  },
+                  {
+                    text: "Usuarios con límite de peticiones (ratelimiter)",
+                    link: "/es/plugins/ratelimiter.md",
+                  },
+                  {
+                    text: "Archivos (files)",
+                    link: "/es/plugins/files.md",
+                  },
+                  {
+                    text: "Internacionalización (fluent)",
+                    link: "/es/plugins/fluent.md",
+                  },
+                  {
+                    text: "Enrutador (router)",
+                    link: "/es/plugins/router.md",
+                  },
+                  {
+                    text: "Emojis (emoji)",
+                    link: "/es/plugins/emoji.md",
+                  },
+                  {
+                    text: "Modo de parsear (parse-mode)",
+                    link: "/es/plugins/parse-mode.md",
+                  },
+                  {
+                    text: "Filtro de comandos (command-filter)",
+                    link: "/es/plugins/command-filter.md",
+                  },
+                ],
+              },
+              {
+                text: "De Terceros",
+                children: [
+                  {
+                    text: "Tiempo de consola",
+                    link: "/es/plugins/console-time.md",
+                  },
+                  {
+                    text: "Middleware útil",
+                    link: "/es/plugins/middlewares.md",
+                  },
+                  {
+                    text: "[¡Envíe su PR!]",
+                    link:
+                      "/es/plugins/README.md#submitting-your-own-package-to-the-docs",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            text: "Ejemplos",
+            children: [
+              {
+                text: "Ejemplos",
+                children: [
+                  {
+                    text: "Impresionante grammY",
+                    link: "https://github.com/grammyjs/awesome-grammY",
+                  },
+                  {
+                    text: "Ejemplo de Repositorio de Bots",
+                    link: "https://github.com/grammyjs/examples",
+                  },
+                  {
+                    text: "Demostración de navegador en vivo",
+                    link: "/es/demo/README.md",
+                  },
+                  {
+                    text: "Ejemplos de bots",
+                    link: "/es/demo/examples.md",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            text: "Recursos",
+            children: [
+              {
+                text: "grammY",
+                children: [
+                  {
+                    text: "Sobre grammY",
+                    link: "/es/resources/about.md",
+                  },
+                  {
+                    text: "Chat comunitario (Inglés)",
+                    link: "https://t.me/grammyjs",
+                  },
+                  {
+                    text: "Chat comunitario (Ruso)",
+                    link: "https://t.me/grammyjs_ru",
+                  },
+                  {
+                    text: "Noticias",
+                    link: "https://t.me/grammyjs_news",
+                  },
+                  {
+                    text: "Preguntas frecuentes",
+                    link: "/es/resources/faq.md",
+                  },
+                  {
+                    text: "Comparación con otros frameworks",
+                    link: "/es/resources/comparison.md",
+                  },
+                ],
+              },
+              {
+                text: "Telegram",
+                children: [
+                  {
+                    text: "Introducción para desarrolladores",
+                    link: "https://core.telegram.org/bots",
+                  },
+                  {
+                    text: "Preguntas frecuentes de bots",
+                    link: "https://core.telegram.org/bots/faq",
+                  },
+                  {
+                    text: "Referencia de la API para bots",
+                    link: "https://core.telegram.org/bots/api",
+                  },
+                  {
+                    text: "Ejemplos de actualizaciones",
+                    link:
+                      "https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates",
+                  },
+                ],
+              },
+              {
+                text: "Alojamiento",
+                children: [
+                  {
+                    text: "Despliegue con Deno",
+                    link: "/es/hosting/deno-deploy.md",
+                  },
+                  {
+                    text: "Heroku",
+                    link: "/es/hosting/heroku.md",
+                  },
+                  {
+                    text: "Google Cloud Functions",
+                    link: "/es/hosting/gcf.md",
+                  },
+                  {
+                    text: "Servidor Privado Virtual",
+                    link: "/es/hosting/vps.md",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            text: "Referencia de API",
+            link: "https://doc.deno.land/https://deno.land/x/grammy/mod.ts",
+          },
+        ],
+      },
       "/zh/": {
         selectLanguageText: "语言",
         selectLanguageName: "简体中文",
-        editLinks: true,
         editLinkText: "在 GitHub 上编辑此页！",
         contributorsText: "贡献者",
         lastUpdatedText: "最近更新时间",
@@ -713,6 +1058,12 @@ export default defineUserConfig({
         appId: "RBF5Q0D7QV",
         placeholder: "Search",
         locales: {
+          "/es/": {
+            placeholder: "Buscar",
+            translations: {
+              button: { buttonText: "Buscar" },
+            },
+          },
           "/zh/": {
             placeholder: "搜索文档",
             translations: { button: { buttonText: "搜索文档" } },

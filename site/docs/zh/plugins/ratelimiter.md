@@ -37,7 +37,7 @@ rateLimiter 是用 grammY 或 [Telegraf](https://github.com/telegraf/telegraf) b
 
 ### 默认配置
 
-下面的示例使用 [express](https://github.com/expressjs/express) 作为服务器，并且使用 [webhooks](https://grammy.dev/zh/guide/deployment-types.html) 模式。这个示例演示了最简单的方式来使用默认行为的 rateLimiter：
+下面的示例使用 [express](https://github.com/expressjs/express) 作为服务器，并且使用 [webhooks](https://grammy.dev/zh/guide/deployment-types.md) 模式。这个示例演示了最简单的方式来使用默认行为的 rateLimiter：
 
 ```ts
 import express from "express";
@@ -97,7 +97,7 @@ app.listen(3000, () => {
 });
 ```
 
-正如你在上面的示例中看到的，每个用户每 2 秒钟最多只能发送 3 次请求。如果该用户发送更多请求，机器人会回复 _Please refrain from sending too many requests!_。由于我们不调用 [next()](/guide/middleware.html#the-middleware-stack)，这个请求将立即死亡。
+正如你在上面的示例中看到的，每个用户每 2 秒钟最多只能发送 3 次请求。如果该用户发送更多请求，机器人会回复 _Please refrain from sending too many requests!_。由于我们不调用 [next()](../guide/middleware.md#the-middleware-stack)，这个请求将立即死亡。
 
 > 请注意：为了避免 Telegram 服务器被请求淹没，`onLimitExceeded` 只会在每个 `timeFrame` 中执行一次。
 

@@ -1,8 +1,8 @@
 # Concurrency With grammY runner (`runner`)
 
-This package can be used if you run your bot [using long polling](/guide/deployment-types.md#long-polling), and you want messages to be processed concurrently.
+This package can be used if you run your bot [using long polling](../guide/deployment-types.md#long-polling), and you want messages to be processed concurrently.
 
-> Make sure to understand [Scaling Up II](/advanced/scaling.md#long-polling) before you use grammY runner.
+> Make sure to understand [Scaling Up II](../advanced/scaling.md#long-polling) before you use grammY runner.
 
 ## Why We Need a Bot Runner
 
@@ -132,7 +132,7 @@ Most likely, you want to be guaranteed that messages from the same chat are proc
 This is useful when installing [session middleware](./session.md), but it also makes sure that your bot does not confuse the order of messages in the same chat.
 
 grammY runner exports the `sequentialize` middleware that takes care of this.
-You can check out [this section](/advanced/scaling.md#concurrency-is-hard) to learn how to use it.
+You can check out [this section](../advanced/scaling.md#concurrency-is-hard) to learn how to use it.
 
 We are now going to look at more advanced usage of the plugin.
 
@@ -160,7 +160,7 @@ It needs constant memory (unless you specify infinite concurrency), and it needs
 
 ## Graceful shutdown
 
-In order for the bot to complete it's work correctly you [should signal](/advanced/reliability.html#using-grammy-runner) it to stop when the Node process is about to be destroyed.
+In order for the bot to complete it's work correctly you [should signal](../advanced/reliability.md#using-grammy-runner) it to stop when the Node process is about to be destroyed.
 
 ## Plugin Summary
 
