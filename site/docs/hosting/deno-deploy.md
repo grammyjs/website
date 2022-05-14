@@ -38,7 +38,7 @@ serve({
 });
 ```
 
-We advise you to have your handler on some secret path rather than root. Here, we are using the bot token.
+We advise you to have your handler on some secret path rather than the root (`/`). Here, we are using the bot token (`/<bot token>`).
 
 ## Deploying
 
