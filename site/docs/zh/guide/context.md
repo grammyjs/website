@@ -395,11 +395,16 @@ type MyContext = SomeFlavorA<Context>;
 type MyContext = Context & FlavorA & FlavorB & FlavorC;
 ```
 
+调味的顺序并不重要，你可以以任何你喜欢的顺序组合它们。
+
 多个 [转换式调味剂](#转换式上下文调味剂) 也可以结合起来：
 
 ```ts
 type MyContext = FlavorX<FlavorY<FlavorZ<Context>>>;
 ```
+
+在这里，顺序可能很重要，因为 `Context` 先转换为 `FlavorZ`， 然后再转换为 `FlavorY`，最后转换为 `FlavorX`。
+（在实践中，你不需要担心这个顺序，因为插件之间通常不会发生冲突。）
 
 你甚至可以混合添加式和转化式的，以"烹饪"出更佳的上下文。
 
@@ -412,5 +417,3 @@ type MyContext = FlavorX<
   >
 >;
 ```
-
-调味的顺序并不重要，你可以以任何你喜欢的顺序组合它们。
