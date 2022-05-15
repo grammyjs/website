@@ -269,7 +269,7 @@ bot.use(session({ getSessionKey }));
 Telegram 在每次聊天时都会按照顺序发送 webhooks，因此默认的会话密钥解析器是唯一能保证不会丢失数据的实现。
 
 如果你必须使用该选项（当然，这仍然是可能的），你应该知道你在做什么。
-通过阅读 [这个](/zh/guide/deployment-types.md)，特别是 [这个](/zh/plugins/runner.html#为什么需要顺序处理)，确保你了解使用这个配置的后果。
+通过阅读 [这个](/zh/guide/deployment-types.md)，特别是 [这个](/zh/plugins/runner.md#为什么需要顺序处理)，确保你了解使用这个配置的后果。
 :::
 
 ### 储存你的数据

@@ -17,7 +17,7 @@ prev: ./proxy.md
 ## 发送消息
 
 1. 通过 path 或 `Buffer` 发送文件而不是通过 stream流，或者至少确保你 [了解这些风险](./transformers.md#use-cases-of-transformer-functions)。
-2. 使用 `bot.on('callback_query:data')` 作为回调处理 [响应所有回调查询](/plugins/keyboard.md#responding-to-clicks)
+2. 使用 `bot.on('callback_query:data')` 作为回调处理 [响应所有回调查询](../plugins/keyboard.md#responding-to-clicks)
 3. 使用 [`transformer-throttler` 插件](/zh/plugins/transformer-throttler.md) 去避免到达速率限制。
 4. **可选的**，考虑使用 [auto-retry 插件](/zh/plugins/auto-retry.md) 去自动处理流量等待的错误。
 
@@ -43,7 +43,7 @@ prev: ./proxy.md
 2. 让你自己熟悉 `webhookCallback`（[API参考](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/webhookCallback)）的配置。
 3. 如果你对你的 session 调整过 `getSessionKey` 选项，[使用相同的 session 密钥处理函数作为 session 中间件来进行 `sequentialize`](./scaling.md#concurrency-is-hard)。
 4. 如果你在一个 serverless 或者 autoscaling 平台上运行，[设置 bot 信息](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/BotConfig) 来阻止过多的 `getMe` 调用。
-5. 考虑使用 [Webhook Reply](/zh/guide/deployment-types.html#webhook-reply) 。
+5. 考虑使用 [Webhook Reply](/zh/guide/deployment-types.md#webhook-reply) 。
 
 ## Sessions
 

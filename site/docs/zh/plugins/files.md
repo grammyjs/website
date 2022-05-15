@@ -109,7 +109,7 @@ bot.on([":video", ":animation"], async (ctx) => {
 
 默认情况下，`await bot.api.getFile()` 的结果将会被配备上 `download` 和 `getUrl` 方法。
 但是，这并不会在类型中反映出来。
-如果你需要这些调用，你应该也安装一个叫作 `FileApiFlavor` 的 [API flavor](/advanced/transformers.html#api-flavoring) 在 bot 对象上。
+如果你需要这些调用，你应该也安装一个叫作 `FileApiFlavor` 的 [API flavor](../advanced/transformers.md#api-flavoring) 在 bot 对象上。
 
 <CodeGroup>
   <CodeGroupItem title="Node.js" active>

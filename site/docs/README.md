@@ -3,10 +3,10 @@ home: true
 heroImage: /Y.png
 actions:
   - text: Get Started
-    link: /guide/getting-started.md
+    link: /guide/getting-started.html
     type: primary
   - text: Introduction
-    link: /guide/introduction.md
+    link: /guide/introduction.html
     type: secondary
 features:
   - title: Easy to Use
@@ -52,7 +52,7 @@ bot.start();
 </CodeGroupItem>
  <CodeGroupItem title="JavaScript">
 
-```ts
+```js
 const { Bot } = require("grammy");
 
 const bot = new Bot(""); // <-- put your bot token here (https://t.me/BotFather)
