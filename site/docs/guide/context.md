@@ -408,7 +408,7 @@ Multiple [transformative context flavors](#transformative-context-flavors) can a
 type MyContext = FlavorX<FlavorY<FlavorZ<Context>>>;
 ```
 
-Here, the order could matter, as `FlavorZ` transforms `Context` first, then `FlavorY`, and the result of this will be transformed again by `FlavorZ`.
+Here, the order could matter, as `FlavorZ` transforms `Context` first, then `FlavorY`, and the result of this will be transformed again by `FlavorX`.
 (In practice, this is nothing to worry about because plugins usually don't clash with each other.)
 
 You can even mix additive and transformative flavors:
