@@ -182,7 +182,7 @@ bot.start();
 
 如果你希望你的消息能够被 grammY 并发处理，或者你担心吞吐量，请查看关于 [并发](/zh/plugins/runner.md) 的信息.
 
-## 如何使用长轮询 Webhooks
+## 如何使用 Webhooks
 
 如果你想运行 grammY Webhooks，你可以把你的 bot 集成到一个网络服务器上。
 因此，我们希望你能够选择一个合适的框架，去启动一个简单的 web 服务器。
