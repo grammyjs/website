@@ -104,7 +104,7 @@ app.use(async (ctx) => {
   } catch (_err) {
     return;
   }
-  if (payload.repository.full_name == "roj1512/wordle2") {
+  if (payload.repository.full_name == "grammyjs/website") {
     switch (payload.action) {
       case "labeled": {
         switch (payload.label.name) {
