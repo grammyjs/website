@@ -29,7 +29,7 @@ export function createNotification(
 export async function getNotification(prNumber: number) {
   return (
     await client.queryObject<Notification>
-      `SELECT message_id FROM notifications WHERE pr_number=${prNumber};`
+      `SELECT * FROM notifications WHERE pr_number=${prNumber};`
   ).rows[0];
 }
 
