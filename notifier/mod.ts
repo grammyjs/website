@@ -1,13 +1,12 @@
 import { Application } from "https://deno.land/x/oak@v10.2.1/mod.ts";
 import { Bot } from "https://deno.land/x/grammy@v1.7.1/mod.ts";
-import { Client } from "https://deno.land/x/postgres@v0.15.0/mod.ts";
 
 import env from "./env.ts";
+import * as db from "./db.ts";
 import { verifyGitHubWebhook } from "./utils.ts";
 
 const app = new Application();
 const bot = new Bot(env.BOT_TOKEN);
-const client = new Client(env.DATABASE_URI);
 
 app.use(async (ctx, next) => {
   try {
@@ -44,42 +43,40 @@ app.use(async (ctx) => {
             } and ${payload.pull_request.deletions} deletion${
               payload.pull_request.deletions != 1 ? "s" : ""
             } is ready for translation\\.`;
-          const messageId = Number(
-            (await client.queryArray
-              `SELECT message_id FROM notifications WHERE pr_number=${payload.pull_request.number};`)
-              .rows[0]?.[0],
+          const notification = await db.getNotification(
+            payload.pull_request.number,
           );
-          if (!isNaN(messageId)) {
+          if (notification) {
             await bot.api.editMessageText(
               env.CHAT_ID,
-              messageId,
+              notification.message_id,
               text,
               other,
             );
-            await client.queryArray
-              `UPDATE notifications SET text=${text} WHERE message_id=${messageId};`;
+            await db.updateNotification(notification.message_id, text);
           } else {
             const notification = await bot.api.sendMessage(
               env.CHAT_ID,
               text,
               other,
             );
-            await client.queryArray
-              `INSERT INTO notifications values (${payload.pull_request.number}, ${notification.message_id}, ${text});`;
+            await db.createNotification(
+              payload.pull_request.number,
+              notification.message_id,
+              text,
+            );
           }
-
           break;
         }
         case "unlabeled": {
-          const [messageId, text] =
-            ((await client.queryArray
-              `SELECT message_id, text FROM notifications WHERE pr_number=${payload.pull_request.number};`)
-              .rows[0] || []) as [number, string];
-          if (messageId) {
+          const notification = await db.getNotification(
+            payload.pull_request.number,
+          );
+          if (notification) {
             await bot.api.editMessageText(
               env.CHAT_ID,
-              messageId,
-              `~${text}~`,
+              notification.message_id,
+              `~${notification.text}~`,
               other,
             );
           }
@@ -88,23 +85,17 @@ app.use(async (ctx) => {
       }
     }
     if (payload.action == "closed" && payload.pull_request) {
-      const messageId = Number(
-        (await client.queryArray
-          `SELECT message_id FROM notifications WHERE pr_number=${payload.pull_request.number};`)
-          .rows[0]?.[0],
+      const notification = await db.getNotification(
+        payload.pull_request.number,
       );
-      if (!isNaN(messageId)) {
-        await bot.api.deleteMessage(env.CHAT_ID, messageId);
-        await client.queryArray
-          `DELETE FROM notifications WHERE pr_number=${payload.pull_request.number};`;
+      if (notification) {
+        await bot.api.deleteMessage(env.CHAT_ID, notification.message_id);
+        await db.deleteNotification(payload.pull_request.number);
       }
     }
   }
   ctx.response.status = 200;
 });
 
-await client.connect();
-await client.queryArray(
-  "CREATE TABLE IF NOT EXISTS notifications (pr_number int PRIMARY KEY, message_id int, text varchar);",
-);
+await db.connectAndInitialize();
 await app.listen({ port: 8000 });
