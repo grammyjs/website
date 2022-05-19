@@ -648,6 +648,10 @@ export default defineUserConfig({
                     link: "https://t.me/grammyjs_news",
                   },
                   {
+                    text: "Twitter",
+                    link: "https://twitter.com/grammy_js",
+                  },
+                  {
                     text: "Preguntas frecuentes",
                     link: "/es/resources/faq.md",
                   },
@@ -983,6 +987,10 @@ export default defineUserConfig({
                   {
                     text: "咨询",
                     link: "https://t.me/grammyjs_news",
+                  },
+                  {
+                    text: "Twitter",
+                    link: "https://twitter.com/grammy_js",
                   },
                   {
                     text: "FAQ",
