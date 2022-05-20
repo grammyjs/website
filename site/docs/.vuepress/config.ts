@@ -20,6 +20,11 @@ export default defineUserConfig({
       title: "grammY",
       description: "El Framework de Bots para Telegram.",
     },
+    "/id/": {
+      lang: "id-ID",
+      title: "grammY",
+      description: "Framework Bot Telegram",
+    },
     "/zh/": {
       lang: "zh-CN",
       title: "grammY",
@@ -32,6 +37,7 @@ export default defineUserConfig({
     logo: "/Y.png",
     locales: {
       "/": {
+        selectLanguageText: "Language",
         selectLanguageName: "English",
         editLinkText: "Edit this page on GitHub",
         notFound: [
@@ -712,6 +718,345 @@ export default defineUserConfig({
           },
         ],
       },
+      "/id/": {
+        selectLanguageText: "Bahasa",
+        selectLanguageName: "Indonesia",
+        editLinkText: "Edit halaman ini di GitHub",
+        contributorsText: "Kontributor",
+        lastUpdatedText: "Terakhir diperbarui",
+        notFound: [
+          "Halaman tidak ditemukan",
+          "Halaman tak bertuan.",
+          "Maaf, tidak ada apa-apa di sini.",
+          "Kesalahan 404. // Halaman yang dicari / tidak dapat ditemukan. // Melainkan / sepenggal bait puisi / di pelupuk mata. //",
+          "Perjalanan ini... Terasa sangat menyedihkan ~",
+        ],
+        backToHome: "Bawa aku pulaaaaaang",
+        navbar: [
+          { text: "Panduan", link: "/id/panduan/" },
+          {
+            text: "Belajar",
+            children: [
+              {
+                text: "Panduan",
+                children: [
+                  {
+                    text: "Sekilas",
+                    link: "/id/guide/README.md",
+                  },
+                  {
+                    text: "Pengantar",
+                    link: "/id/guide/introduction.md",
+                  },
+                  {
+                    text: "Memulai",
+                    link: "/id/guide/getting-started.md",
+                  },
+                  {
+                    text: "Mengirim dan Menerima Pesan",
+                    link: "/id/guide/basics.md",
+                  },
+                  {
+                    text: "Context",
+                    link: "/id/guide/context.md",
+                  },
+                  {
+                    text: "API Bot",
+                    link: "/id/guide/api.md",
+                  },
+                  {
+                    text: "Filter Query dan bot.on()",
+                    link: "/id/guide/filter-queries.md",
+                  },
+                  {
+                    text: "Commands",
+                    link: "/id/guide/commands.md",
+                  },
+                  {
+                    text: "Middleware",
+                    link: "/id/guide/middleware.md",
+                  },
+                  {
+                    text: "Penanganan Error",
+                    link: "/id/guide/errors.md",
+                  },
+                  {
+                    text: "Inline Queries",
+                    link: "/id/guide/inline-queries.md",
+                  },
+                  {
+                    text: "Penanganan File",
+                    link: "/id/guide/files.md",
+                  },
+                  {
+                    text: "Permainan",
+                    link: "/id/guide/games.md",
+                  },
+                  {
+                    text: "Pilih Long Polling atau Webhooks",
+                    link: "/id/guide/deployment-types.md",
+                  },
+                ],
+              },
+              {
+                text: "Tingkat Lanjut",
+                children: [
+                  {
+                    text: "Sekilas",
+                    link: "/id/advanced/README.md",
+                  },
+                  {
+                    text: "Meninjau Middleware Sekali Lagi",
+                    link: "/id/advanced/middleware.md",
+                  },
+                  {
+                    text: "Peningkatan Skalabilitas I: Basis Kode Skala Besar",
+                    link: "/id/advanced/structuring.md",
+                  },
+                  {
+                    text: "Peningkatan Skalabilitas II: Beban Kerja yang Tinggi",
+                    link: "/id/advanced/scaling.md",
+                  },
+                  {
+                    text: "Peningkatan Skalabilitas III: Keandalan",
+                    link: "/id/advanced/reliability.md",
+                  },
+                  {
+                    text: "Peningkatan Skalabilitas IV: Pembatasan Flood",
+                    link: "/id/advanced/flood.md",
+                  },
+                  {
+                    text: "Bot API Transformers",
+                    link: "/id/advanced/transformers.md",
+                  },
+                  {
+                    text: "Dukungan Proxy",
+                    link: "/id/advanced/proxy.md",
+                  },
+                  {
+                    text: "Daftar Periksa Deployment",
+                    link: "/id/advanced/deployment.md",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            text: "Plugin",
+            children: [
+              {
+                text: "Pengantar",
+                children: [
+                  {
+                    text: "Tentang Plugin",
+                    link: "/id/plugins/README.md",
+                  },
+                  {
+                    text: "Bagaimana menggunakan Plugin",
+                    link: "/id/plugins/guide.md",
+                  },
+                ],
+              },
+              {
+                text: "Bawaan",
+                children: [
+                  {
+                    text: "Sesi dan Penyimpanan Data",
+                    link: "/id/plugins/session.md",
+                  },
+                  {
+                    text: "Keyboard Inline serta Modifikasinya",
+                    link: "/id/plugins/keyboard.md",
+                  },
+                ],
+              },
+              {
+                text: "Resmi",
+                children: [
+                  {
+                    text: "Menu Interaktif (menu)",
+                    link: "/id/plugins/menu.md",
+                  },
+                  {
+                    text: "Pertanyaan Tanpa Status (stateless-question)",
+                    link: "/id/plugins/stateless-question.md",
+                  },
+                  {
+                    text: "Kesinambungan (runner)",
+                    link: "/id/plugins/runner.md",
+                  },
+                  {
+                    text: "Hidrasi (hydrate)",
+                    link: "/id/plugins/hydrate.md",
+                  },
+                  {
+                    text: "Mengulang permintaan API (auto-retry)",
+                    link: "/id/plugins/auto-retry.md",
+                  },
+                  {
+                    text: "Kontrol Flood (transformer-throttler)",
+                    link: "/id/plugins/transformer-throttler.md",
+                  },
+                  {
+                    text: "Pengatur Limit untuk Pengguna (ratelimiter)",
+                    link: "/id/plugins/ratelimiter.md",
+                  },
+                  {
+                    text: "File (files)",
+                    link: "/id/plugins/files.md",
+                  },
+                  {
+                    text: "Internasionalisasi (fluent)",
+                    link: "/id/plugins/fluent.md",
+                  },
+                  {
+                    text: "Perutean (router)",
+                    link: "/id/plugins/router.md",
+                  },
+                  {
+                    text: "Emoji (emoji)",
+                    link: "/id/plugins/emoji.md",
+                  },
+                  {
+                    text: "Mode parsing (parse-mode)",
+                    link: "/id/plugins/parse-mode.md",
+                  },
+                  {
+                    text: "Penyaringan Perintah (command-filter)",
+                    link: "/id/plugins/command-filter.md",
+                  },
+                ],
+              },
+              {
+                text: "Pihak-Ketiga",
+                children: [
+                  {
+                    text: "Waktu Konsol",
+                    link: "/id/plugins/console-time.md",
+                  },
+                  {
+                    text: "Middleware Bermanfaat",
+                    link: "/id/plugins/middlewares.md",
+                  },
+                  {
+                    text: "[Kirimkan PR Anda!]",
+                    link:
+                      "/id/plugins/README.md#submitting-your-own-package-to-the-docs",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            text: "Contoh",
+            children: [
+              {
+                text: "Contoh",
+                children: [
+                  {
+                    text: "Awesome grammY",
+                    link: "https://github.com/grammyjs/awesome-grammY",
+                  },
+                  {
+                    text: "Contoh Repositori Bot",
+                    link: "https://github.com/grammyjs/examples",
+                  },
+                  {
+                    text: "Demo Peramban Langsung",
+                    link: "/id/demo/README.md",
+                  },
+                  { text: "Contoh Bot", link: "/id/demo/examples.md" },
+                ],
+              },
+            ],
+          },
+          {
+            text: "Referensi",
+            children: [
+              {
+                text: "grammY",
+                children: [
+                  {
+                    text: "Tentang grammY",
+                    link: "/id/resources/about.md",
+                  },
+                  {
+                    text: "Chat Komunitas (Inggris)",
+                    link: "https://t.me/grammyjs",
+                  },
+                  {
+                    text: "Chat Komunitas (Rusia)",
+                    link: "https://t.me/grammyjs_ru",
+                  },
+                  {
+                    text: "Berita",
+                    link: "https://t.me/grammyjs_news",
+                  },
+                  {
+                    text: "Twitter",
+                    link: "https://twitter.com/grammy_js",
+                  },
+                  {
+                    text: "FAQ",
+                    link: "/id/resources/faq.md",
+                  },
+                  {
+                    text: "Perbandingan dengan Framework Lainnya",
+                    link: "/id/resources/comparison.md",
+                  },
+                ],
+              },
+              {
+                text: "Telegram",
+                children: [
+                  {
+                    text: "Pengantar untuk Pengembang",
+                    link: "https://core.telegram.org/bots",
+                  },
+                  {
+                    text: "FAQ tentang Bot",
+                    link: "https://core.telegram.org/bots/faq",
+                  },
+                  {
+                    text: "Referensi API Bot",
+                    link: "https://core.telegram.org/bots/api",
+                  },
+                  {
+                    text: "Contoh Update",
+                    link:
+                      "https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates",
+                  },
+                ],
+              },
+              {
+                text: "Hosting",
+                children: [
+                  {
+                    text: "Deno Deploy",
+                    link: "/id/hosting/deno-deploy.md",
+                  },
+                  {
+                    text: "Heroku",
+                    link: "/id/hosting/heroku.md",
+                  },
+                  {
+                    text: "Google Cloud Functions",
+                    link: "/id/hosting/gcf.md",
+                  },
+                  {
+                    text: "Virtual Private Server",
+                    link: "/id/hosting/vps.md",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            text: "Referensi API",
+            link: "https://doc.deno.land/https://deno.land/x/grammy/mod.ts",
+          },
+        ],
+      },
       "/zh/": {
         selectLanguageText: "语言",
         selectLanguageName: "简体中文",
@@ -1075,6 +1420,10 @@ export default defineUserConfig({
             translations: {
               button: { buttonText: "Buscar" },
             },
+          },
+          "/id/": {
+            placeholder: "Cari",
+            translations: { button: { buttonText: "Cari" } },
           },
           "/zh/": {
             placeholder: "搜索文档",
