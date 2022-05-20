@@ -31,7 +31,7 @@ The main thing to know about them is that you must run your bot on webhooks on s
 
 | Name                  | Min. price | Limits                                                                                             | Ping and Location                     | Node.js            | Deno               | Web                | Notes                                |
 | --------------------- | ---------- | -------------------------------------------------------------------------------------------------- | ------------------------------------- | ------------------ | ------------------ | ------------------ | ------------------------------------ |
-| Vercel                | Free       | [Unlimited invocations, 100 GB-hours, 10s time limit](https://vercel.com/pricing)                  | $20/mo subscription                   | :question:         | :question:         | :question:         |                                      |
+| Vercel                | Free       | [Unlimited invocations, 100 GB-hours, 10s time limit](https://vercel.com/pricing)                  | $20/mo subscription                   | :question:         | :question:         | :question:         | Not intended for non-websites?       |
 | Deta                  | Free       | No limits                                                                                          | No paid plans yet                     | :white_check_mark: | :question:         | :question:         |                                      |
 | Scaleway Functions    | Free       | [1M requests, 400000 GB-s per month](https://www.scaleway.com/en/pricing/#serverless-functions)    | €0.15/1m req, €1.2 / 100k GB-s        | :question:         | :question:         | :question:         |                                      |
 | Scaleway Containers   | Free       | [400000 GB-s, 200000 vCPU-s per month](https://www.scaleway.com/en/pricing/#serverless-containers) | €0.10 / 100k GB-s, €1.0 / 100k vCPU-s | :question:         | :question:         | :question:         |                                      |
@@ -41,6 +41,7 @@ The main thing to know about them is that you must run your bot on webhooks on s
 | Heroku                | Free       | [550-1000 hours per month](https://www.heroku.com/pricing)                                         | It's complicated                      | :white_check_mark: | :question:         | :question:         | Long startup times, not recommended? |
 | serverless.com        | Free       |                                                                                                    |                                       | :question:         | :question:         | :question:         |                                      |
 | DigitalOcean Apps     | $5         |                                                                                                    |                                       | :question:         | :question:         | :question:         | Not tested                           |
+| Fastly Compute@Edge   |            |                                                                                                    |                                       |                    |                    |                    |                                      |
 
 ### VPS
 
@@ -52,10 +53,10 @@ You can run on bot on both polling or webhooks on a VPS.
 
 Check out [the tutorial](./vps.md) on how to host a grammY bot on a VPS.
 
-| Name          | Min. price | Ping to API                              | Cheapest option                 |
-| ------------- | ---------- | ---------------------------------------- | ------------------------------- |
-| DigitalOcean  | $5         | 1-15 ms :netherlands: AMS, 19ms :de: FRA | 1 vCPU, 1GB RAM, 25GB SSD, 1TB  |
-| Hetzner Cloud | €4.15      | ~42ms :de:                               | 1 vCPU, 2GB RAM, 20GB SSD, 20TB |
-| Scaleway      | ~7€        |                                          | 2 cores, 2GB RAM, 20GB SSD      |
-| Contabo       |            | 15ms :de: Nuremberg                      |                                 |
-| IONOS VPS     | €1/$2      | 15ms :de: Baden-Baden                    | 1vCPU, 0.5GB RAM, 8GB SSD       |
+| Name          | Min. price | Ping to API                               | Cheapest option                 |
+| ------------- | ---------- | ----------------------------------------- | ------------------------------- |
+| DigitalOcean  | $5         | 1-15 ms :netherlands: AMS, 19 ms :de: FRA | 1 vCPU, 1GB RAM, 25GB SSD, 1TB  |
+| Hetzner Cloud | €4.15      | ~42 ms :de:                               | 1 vCPU, 2GB RAM, 20GB SSD, 20TB |
+| Scaleway      | €~7        |                                           | 2 cores, 2GB RAM, 20GB SSD      |
+| Contabo       |            | 15 ms :de: Nuremberg                      |                                 |
+| IONOS VPS     | €1/$2      | 15 ms :de: Baden-Baden                    | 1vCPU, 0.5GB RAM, 8GB SSD       |
