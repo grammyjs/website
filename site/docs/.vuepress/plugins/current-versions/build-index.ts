@@ -10,4 +10,4 @@ async function redirect(source: string) {
 
 const index = Object.fromEntries(await Promise.all(urls.map(redirect)));
 
-console.log(JSON.stringify(index, null, 4));
+console.log(JSON.stringify(index, null, 2));

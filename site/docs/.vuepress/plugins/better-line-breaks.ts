@@ -5,7 +5,6 @@ export function betterLineBreaks(): Plugin {
   return {
     name: "better-line-breaks",
     extendsMarkdown: (md) => {
-
       md.renderer.rules.code_inline = (tokens, idx, _opts, _env, slf) => {
         const token = tokens[idx];
         const attributes = slf.renderAttrs(token);
