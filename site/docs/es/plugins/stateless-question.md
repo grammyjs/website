@@ -44,3 +44,8 @@ bot.command('unicornio', async ctx => ctx.replyWithHTML('¿Qué hacen los unicor
 ```
 
 Consulte el [plugin README](https://github.com/grammyjs/stateless-question) para obtener más información.
+
+## Resumen del plugin
+
+- Nombre: `stateless-question`
+- Fuente: <https://github.com/grammyjs/stateless-question>

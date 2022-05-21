@@ -44,3 +44,8 @@ bot.command('unicorn', async ctx => ctx.replyWithHTML(    'What are unicorns doi
 ```
 
 See the [plugin repo README](https://github.com/grammyjs/stateless-question) for more information.
+
+## Plugin Summary
+
+- Name: `stateless-question`
+- Source: <https://github.com/grammyjs/stateless-question>
