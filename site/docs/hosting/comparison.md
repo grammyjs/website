@@ -83,12 +83,13 @@ Check out [the tutorial](./vps.md) on how to host grammY bots on a VPS.
 
 ### Example Unit Combinations
 
-| Unit        | Quantity                 | In Words                               | Explanation                                  |
-| ----------- | ------------------------ | -------------------------------------- | -------------------------------------------- |
-| $/mo        | cost                     | US-Dollars per month                   | Monthly cost.                                |
-| €/M req     | cost                     | Euros per million requests             | Cost for handling one million request.       |
-| GB-s        | storage space time       | gigabyte seconds                       | One gigabyte stored for one second.          |
-| GB-h        | storage space time       | gigabyte hours                         | One gigabyte stored for one hour.            |
-| req/min     | throughput               | requests per minute                    | Number of requests handled in one minute.    |
-| h/mo        | time fraction            | hours per month                        | Number of hours in one month.                |
-| K vCPU-s/mo | processing time fraction | thousand virtual CPU seconds per month | Monthly processing time with one virtual CPU |
+| Unit        | Quantity                 | In Words                               | Explanation                                    |
+| ----------- | ------------------------ | -------------------------------------- | ---------------------------------------------- |
+| $/mo        | cost                     | US-Dollars per month                   | Monthly cost.                                  |
+| €/M req     | cost                     | Euros per million requests             | Cost for handling one million request.         |
+| req/min     | throughput               | requests per minute                    | Number of requests handled in one minute.      |
+| GB/s        | throughput               | gigabytes per second                   | Number of gigabytes transferred in one second. |
+| GB-s        | memory usage             | gigabyte seconds                       | One gigabyte used for one second.              |
+| GB-h        | memory usage             | gigabyte hours                         | One gigabyte used for one hour.                |
+| h/mo        | time fraction            | hours per month                        | Number of hours in one month.                  |
+| K vCPU-s/mo | processing time fraction | thousand virtual CPU seconds per month | Monthly processing time with one virtual CPU   |
