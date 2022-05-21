@@ -92,4 +92,4 @@ Check out [the tutorial](./vps.md) on how to host grammY bots on a VPS.
 | GB-s        | memory usage             | gigabyte seconds                       | One gigabyte used for one second.              |
 | GB-h        | memory usage             | gigabyte hours                         | One gigabyte used for one hour.                |
 | h/mo        | time fraction            | hours per month                        | Number of hours in one month.                  |
-| K vCPU-s/mo | processing time fraction | thousand virtual CPU seconds per month | Monthly processing time with one virtual CPU   |
+| K vCPU-s/mo | processing time fraction | thousand virtual CPU seconds per month | Monthly processing time with one virtual CPU.  |
