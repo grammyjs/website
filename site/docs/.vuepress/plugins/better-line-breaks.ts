@@ -1,16 +1,12 @@
 import { type Plugin } from "vuepress-vite";
+import { escapeHtml } from "./shared";
 
 export function betterLineBreaks(): Plugin {
   return {
-    name: "break-long-inline-code-snippets",
+    name: "better-line-breaks",
     extendsMarkdown: (md) => {
-      md.renderer.rules.code_inline = (
-        tokens,
-        idx,
-        _opts,
-        _env,
-        slf,
-      ) => {
+
+      md.renderer.rules.code_inline = (tokens, idx, _opts, _env, slf) => {
         const token = tokens[idx];
         const attributes = slf.renderAttrs(token);
         const withBreaks = insertWbrTags(token.content);
@@ -19,24 +15,6 @@ export function betterLineBreaks(): Plugin {
       };
     },
   };
-}
-
-// Adapted from original `code_inline` implementation of markdown-it.
-const HTML_ESCAPE_TEST_RE = /&|<(?!wbr>)|(?<!<wbr)>/;
-const HTML_ESCAPE_REPLACE_RE = /&|<(?!wbr>)|(?<!<wbr)>/g;
-const HTML_REPLACEMENTS: Record<string, string> = {
-  "&": "&amp;",
-  "<": "&lt;",
-  ">": "&gt;",
-  '"': "&quot;",
-};
-function replaceUnsafeChar(ch: string) {
-  return HTML_REPLACEMENTS[ch];
-}
-function escapeHtml(str: string) {
-  return HTML_ESCAPE_TEST_RE.test(str)
-    ? str.replace(HTML_ESCAPE_REPLACE_RE, replaceUnsafeChar)
-    : str;
 }
 
 function insertWbrTags(url: string) {
