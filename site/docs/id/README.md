@@ -2,7 +2,7 @@
 home: true
 heroImage: /Y.png
 actions:
-  - text: Memulai
+  - text: Mulai
     link: /id/guide/getting-started.html
     type: primary
   - text: Pendahuluan
@@ -33,7 +33,7 @@ permalink: /id/
 
 Bot ditulis menggunakan [TypeScript](https://www.typescriptlang.org) (atau JavaScript) dan berjalan di berbagai platform, termasuk [Node.js](https://nodejs.org).
 
-`npm install grammy` dan tempel kode berikut:
+`npm install grammy` lalu tempel kode berikut:
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
