@@ -57,8 +57,6 @@ _________    envía un mensaje     ____________                    ____________
         Responsabilidad de Telegram                             tu responsabilidad
 ```
 
-<!-- TODO: create a proper diagram instead of the ASCII art -->
-
 Del mismo modo, tu bot puede hacer peticiones HTTP a los servidores de Telegram para enviar mensajes de vuelta a Alice.
 (Si nunca has oído hablar de HTTP, puedes pensar en él como los paquetes de datos que se envían a través de Internet, por ahora).
 

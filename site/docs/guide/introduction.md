@@ -57,8 +57,6 @@ _________        sends a         ____________                    ____________
         Telegram's responsibility                             your responsibility
 ```
 
-<!-- TODO: create a proper diagram instead of the ASCII art -->
-
 Similarly, your bot can make HTTP requests to the Telegram servers to send messages back to Alice.
 (If you have never heard of HTTP, you can think of it as the data packages that are sent through the internet, for now.)
 
