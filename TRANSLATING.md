@@ -95,7 +95,7 @@ It usually takes some time before we get the content right, so don’t bother tr
 
 Once the content is finalised, we add the “ready for translation” label.
 This is a guarantee that the English version is not going to change anymore.
-You should now push more commits to the existing branch in this repo which sync up the changes to your language.
+You should now push more commits to the existing branch in this repository which sync up the changes to your language.
 It is recommended to have a second person review your translations, but this is less strict than in the Active Stage.
 
 Once you are satisfied with your work, add the label of your language, e.g. “🇪🇸 ES”.
