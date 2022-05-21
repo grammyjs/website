@@ -733,7 +733,7 @@ export default defineUserConfig({
         ],
         backToHome: "Bawa aku pulaaaaaang",
         navbar: [
-          { text: "Panduan", link: "/id/panduan/" },
+          { text: "Panduan", link: "/id/guide/" },
           {
             text: "Belajar",
             children: [
