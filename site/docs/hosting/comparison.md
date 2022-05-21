@@ -29,19 +29,19 @@ We therefore recommend you to use a different kind of hosting for more complex b
 
 The main thing to know about them is that you must run your bot on webhooks on serverless infrastructure.
 
-| Name                  | Min. price | Pricing                               | Limits                                                                                              | Node.js            | Deno               | Web                | Notes                                |
-| --------------------- | ---------- | ------------------------------------- | --------------------------------------------------------------------------------------------------- | ------------------ | ------------------ | ------------------ | ------------------------------------ |
-| Vercel                | Free       | $20/mo subscription                   | [Unlimited invocations, 100 GB-h, 10 s time limit](https://vercel.com/pricing)                      | :question:         | :question:         | :question:         | Not intended for non-websites?       |
-| Deta                  | Free       | No paid plans yet                     | No limits                                                                                           | :white_check_mark: | :question:         | :question:         |                                      |
-| Scaleway Functions    | Free       | €0.15/1M req, €1.2 / 100K GB-s        | [1M requests, 400K GB-s/mo](https://www.scaleway.com/en/pricing/#serverless-functions)              | :question:         | :question:         | :question:         |                                      |
-| Scaleway Containers   | Free       | €0.10 / 100K GB-s, €1.0 / 100K vCPU-s | [400K GB-s, 200K vCPU-s/mo](https://www.scaleway.com/en/pricing/#serverless-containers)             | :question:         | :question:         | :question:         |                                      |
-| Deno Deploy           | Free       | No paid plans yet                     | [100K req/day, 1000 req/min, 50 ms CPU-time limit](https://deno.com/deploy/docs/pricing-and-limits) | :x:                | :white_check_mark: | :x:                | Beta                                 |
-| Cloudflare Workers    | Free       | $5/10M req                            | [100K req/day, 10 ms CPU-time limit](https://workers.cloudflare.com/)                               | :x:                | :x:                | :white_check_mark: |                                      |
-| Vercel Edge Functions | Free       | $20/mo subscription for 500K          | [100K req/day](https://vercel.com/pricing)                                                          | :question:         | :question:         | :question:         |                                      |
-| Heroku                | Free       | It's complicated                      | [550-1000 h/mo](https://www.heroku.com/pricing)                                                     | :white_check_mark: | :question:         | :question:         | Long startup times, not recommended? |
-| serverless.com        | Free       |                                       |                                                                                                     | :question:         | :question:         | :question:         |                                      |
-| DigitalOcean Apps     | $5         |                                       |                                                                                                     | :question:         | :question:         | :question:         | Not tested                           |
-| Fastly Compute@Edge   |            |                                       |                                                                                                     |                    |                    |                    |                                      |
+| Name                  | Min. price | Pricing                           | Limits                                                                                              | Node.js            | Deno               | Web                | Notes                                |
+| --------------------- | ---------- | --------------------------------- | --------------------------------------------------------------------------------------------------- | ------------------ | ------------------ | ------------------ | ------------------------------------ |
+| Vercel                | Free       | $20/mo subscription               | [Unlimited invocations, 100 GB-h, 10 s time limit](https://vercel.com/pricing)                      | :question:         | :question:         | :question:         | Not intended for non-websites?       |
+| Deta                  | Free       | No paid plans yet                 | No limits                                                                                           | :white_check_mark: | :question:         | :question:         |                                      |
+| Scaleway Functions    | Free       | €0.15/1M req, €1.2/100K GB-s      | [1M requests, 400K GB-s/mo](https://www.scaleway.com/en/pricing/#serverless-functions)              | :question:         | :question:         | :question:         |                                      |
+| Scaleway Containers   | Free       | €0.10/100K GB-s, €1.0/100K vCPU-s | [400K GB-s, 200K vCPU-s/mo](https://www.scaleway.com/en/pricing/#serverless-containers)             | :question:         | :question:         | :question:         |                                      |
+| Deno Deploy           | Free       | No paid plans yet                 | [100K req/day, 1000 req/min, 50 ms CPU-time limit](https://deno.com/deploy/docs/pricing-and-limits) | :x:                | :white_check_mark: | :x:                | Beta                                 |
+| Cloudflare Workers    | Free       | $5/10M req                        | [100K req/day, 10 ms CPU-time limit](https://workers.cloudflare.com/)                               | :x:                | :x:                | :white_check_mark: |                                      |
+| Vercel Edge Functions | Free       | $20/mo subscription for 500K      | [100K req/day](https://vercel.com/pricing)                                                          | :question:         | :question:         | :question:         |                                      |
+| Heroku                | Free       | It's complicated                  | [550-1000 h/mo](https://www.heroku.com/pricing)                                                     | :white_check_mark: | :question:         | :question:         | Long startup times, not recommended? |
+| serverless.com        | Free       |                                   |                                                                                                     | :question:         | :question:         | :question:         |                                      |
+| DigitalOcean Apps     | $5         |                                   |                                                                                                     | :question:         | :question:         | :question:         | Not tested                           |
+| Fastly Compute@Edge   |            |                                   |                                                                                                     |                    |                    |                    |                                      |
 
 ### VPS
 
@@ -60,3 +60,35 @@ Check out [the tutorial](./vps.md) on how to host grammY bots on a VPS.
 | Scaleway      | €~7        |                                           | 2 cores, 2 GB RAM, 20 GB SSD       |
 | Contabo       |            | 15 ms :de: Nuremberg                      |                                    |
 | IONOS VPS     | €1 or $2   | 15 ms :de: Baden-Baden                    | 1 vCPU, 0.5 GB RAM, 8 GB SSD       |
+
+### Unit Explanations
+
+#### Base Units
+
+| Unit | In Words    | Explanation                                               |
+| ---- | ----------- | --------------------------------------------------------- |
+| K    | thousand    | 1,000 of something.                                       |
+| M    | million     | 1,000,000 of something.                                   |
+| €    | Euro        | The currency EUR.                                         |
+| $    | US-Dollar   | The currency USD.                                         |
+| req  | request     | Number of HTTP requests.                                  |
+| vCPU | virtual CPU | Computing power of one virtual CPU, a part of a real CPU. |
+| ms   | millisecond | 0.001 seconds.                                            |
+| s    | second      | One second (SI unit for time).                            |
+| min  | minute      | One minute, 60 seconds.                                   |
+| h    | hours       | One hour, 60 minutes.                                     |
+| day  | day         | One day, 24 hours.                                        |
+| mo   | month       | One month, approximately 30 days.                         |
+| GB   | gigabytes   | 1,000,000,000 bytes of storage.                           |
+
+#### Example Unit Combinations
+
+| Unit        | Quantity                 | In Words                               | Explanation                                  |
+| ----------- | ------------------------ | -------------------------------------- | -------------------------------------------- |
+| $/mo        | cost                     | US-Dollars per month                   | Monthly cost.                                |
+| €/M req     | cost                     | Euros per million requests             | Cost for handling one million request.       |
+| GB-s        | storage space time       | gigabyte seconds                       | One gigabyte stored for one second.          |
+| GB-h        | storage space time       | gigabyte hours                         | One gigabyte stored for one hour.            |
+| req/min     | throughput               | requests per minute                    | Number of requests handled in one minute.    |
+| h/mo        | time fraction            | hours per month                        | Number of hours in one month.                |
+| K vCPU-s/mo | processing time fraction | thousand virtual CPU seconds per month | Monthly processing time with one virtual CPU |
