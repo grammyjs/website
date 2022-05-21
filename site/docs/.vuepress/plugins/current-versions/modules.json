@@ -1,15 +1,15 @@
 {
   "modules": [
     "grammy",
-    "grammy_parse_mode",
-    "grammy_files",
-    "grammy_emoji",
-    "grammy_storages",
-    "grammy_hydrate",
-    "grammy_ratelimiter",
-    "grammy_transformer_throttler",
     "grammy_menu",
+    "grammy_runner",
+    "grammy_hydrate",
+    "grammy_transformer_throttler",
+    "grammy_ratelimiter",
+    "grammy_files",
     "grammy_router",
-    "grammy_runner"
+    "grammy_emoji",
+    "grammy_parse_mode",
+    "grammy_storages"
   ]
 }
