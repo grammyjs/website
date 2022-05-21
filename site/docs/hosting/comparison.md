@@ -47,11 +47,11 @@ The main thing to know about them is that you must run your bot on webhooks on s
 
 A virtual private server is a virtual machine that you have full control over.
 You can usually access it via [SSH](https://en.wikipedia.org/wiki/Secure_Shell).
-You can install any software there, and are responsible for system updates and so on.
+You can install any software there, and you are responsible for system upgrades and so on.
 
-You can run on bot on both polling or webhooks on a VPS.
+On a VPS, you can run bots using both polling or webhooks.
 
-Check out [the tutorial](./vps.md) on how to host a grammY bot on a VPS.
+Check out [the tutorial](./vps.md) on how to host grammY bots on a VPS.
 
 | Name          | Min. price | Ping to API                               | Cheapest option                    |
 | ------------- | ---------- | ----------------------------------------- | ---------------------------------- |
