@@ -61,9 +61,9 @@ Check out [the tutorial](./vps.md) on how to host grammY bots on a VPS.
 | Contabo       |            | 15 ms :de: Nuremberg                      |                                    |
 | IONOS VPS     | €1 or $2   | 15 ms :de: Baden-Baden                    | 1 vCPU, 0.5 GB RAM, 8 GB SSD       |
 
-### Unit Explanations
+## Unit Explanations
 
-#### Base Units
+### Base Units
 
 | Unit | In Words    | Explanation                                               |
 | ---- | ----------- | --------------------------------------------------------- |
@@ -81,7 +81,7 @@ Check out [the tutorial](./vps.md) on how to host grammY bots on a VPS.
 | mo   | month       | One month, approximately 30 days.                         |
 | GB   | gigabytes   | 1,000,000,000 bytes of storage.                           |
 
-#### Example Unit Combinations
+### Example Unit Combinations
 
 | Unit        | Quantity                 | In Words                               | Explanation                                  |
 | ----------- | ------------------------ | -------------------------------------- | -------------------------------------------- |
