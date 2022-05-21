@@ -814,7 +814,8 @@ export default defineUserConfig({
                     link: "/id/advanced/structuring.md",
                   },
                   {
-                    text: "Peningkatan Skalabilitas II: Beban Kerja yang Tinggi",
+                    text:
+                      "Peningkatan Skalabilitas II: Beban Kerja yang Tinggi",
                     link: "/id/advanced/scaling.md",
                   },
                   {
