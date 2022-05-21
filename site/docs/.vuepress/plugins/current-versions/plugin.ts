@@ -12,7 +12,7 @@ export function currentVersions(): Plugin {
           for (const [source, target] of Object.entries(imports)) {
             str = str.replace(source, target);
           }
-          return oldHighlight.bind(options)(str, lang, attrs);
+          return oldHighlight(str, lang, attrs);
         };
         return oldFence(tokens, idx, options, env, slf);
       };
