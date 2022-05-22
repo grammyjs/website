@@ -10,7 +10,7 @@ Buat bot pertama Anda dalam hitungan menit. (Gulir [ke bawah](#memulai-dengan-de
 ## Memulai dengan Node.js
 
 > Kami mengasumsikan bahwa Anda sudah menginstal [Node.js](https://nodejs.org), dan seharusnya `npm` juga sudah disertakan di paket penginstalan.
-> Jika Anda tidak tahu apa yang kami maksud barusan, lihat [Pengenalan](./introduction.md)!
+> Jika Anda tidak tahu apa yang kami maksud barusan, lihat [Pendahulan](./introduction.md)!
 
 Buat project TypeScript baru lalu instal package `grammy`.
 Lakukan ini dengan cara membuka terminal, kemudian ketik:
