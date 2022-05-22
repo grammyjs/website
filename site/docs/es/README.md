@@ -44,7 +44,7 @@ import { Bot } from "grammy";
 const bot = new Bot(""); // <-- Pon el token del bot aquí (https://t.me/BotFather)
 
 // Responde a cualquier mensaje con "¡Hola a todos!".
-bot.on("message", (ctx) => ctx.reply("Hola a todos!"));
+bot.on("message", (ctx) => ctx.reply("¡Hola a todos!"));
 
 bot.start();
 ```
@@ -58,7 +58,7 @@ const { Bot } = require("grammy");
 const bot = new Bot(""); // <-- Pon el token del bot aquí (https://t.me/BotFather)
 
 // Responde a cualquier mensaje con "¡Hola a todos!".
-bot.on("message", (ctx) => ctx.reply("Hola a todos!"));
+bot.on("message", (ctx) => ctx.reply("¡Hola a todos!"));
 
 bot.start();
 ```
@@ -72,7 +72,7 @@ import { Bot } from "https://deno.land/x/grammy/mod.ts";
 const bot = new Bot(""); // <-- Pon el token del bot aquí (https://t.me/BotFather)
 
 // Responde a cualquier mensaje con "¡Hola a todos!".
-bot.on("message", (ctx) => ctx.reply("Hola a todos!"));
+bot.on("message", (ctx) => ctx.reply("¡Hola a todos!"));
 
 bot.start();
 ```
