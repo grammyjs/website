@@ -293,7 +293,7 @@ bot.drop(matchFilter(":text"));
 
 ### 复用过滤查询类型
 
-在内部，`matchFilter` 使用 TypeScript 的 [类型预先定义](https://www.typescriptlang.org/docs/handbook/2/narrowing.md#using-type-predicates) 来缩小 `ctx` 的类型。
+在内部，`matchFilter` 使用 TypeScript 的 [类型预先定义](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates) 来缩小 `ctx` 的类型。
 它接受一个 `C extends Context` 类型和一个 `Q extends FilterQuery`类型，并生成 `ctx is Filter<C, Q>`。
 换句话说，`Filter` 类型是你在中间件中接收到的 `ctx` 的类型。
 

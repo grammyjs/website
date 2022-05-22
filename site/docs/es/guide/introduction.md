@@ -75,12 +75,12 @@ Las conocerás a medida que vayas avanzando.
 
 Aquí hay algunas cosas interesantes sobre la programación-cosas que son esenciales para la codificación, pero que rara vez se explican porque la mayoría de los desarrolladores piensan que son evidentes.
 
-En la siguiente sección, crearás un bot escribiendo un archivo de texto que contiene el código fuente en el lenguaje de programación [TypeScript](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.md).
+En la siguiente sección, crearás un bot escribiendo un archivo de texto que contiene el código fuente en el lenguaje de programación [TypeScript](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html).
 La documentación de grammY no te enseñará a programar, así que esperamos que te enseñes a ti mismo.
 Sin embargo, recuerda: ¡crear un bot de Telegram con grammY es una buena manera de aprender a programar! :rocket:
 
 ::: tip Aprender a codificar
-Puedes empezar a aprender TypeScript con el [tutorial oficial](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.md) escrito por el equipo de TypeScript, y luego avanzar desde ahí.
+Puedes empezar a aprender TypeScript con el [tutorial oficial](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html) escrito por el equipo de TypeScript, y luego avanzar desde ahí.
 No pases más de 30 minutos leyendo cosas en internet, luego vuelve aquí, (lee el resto de la sección) y [empieza](./getting-started.md).
 
 Si ves una sintaxis desconocida en los documentos, o si recibes un mensaje de error que no entiendes, búscalo en Google; la explicación ya está en Internet (por ejemplo, en StackOverflow).

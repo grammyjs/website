@@ -67,7 +67,7 @@ The construct `{-bot-name}` references the previously defined term and will be g
 The statement `{$name}` will be replaced with the value of the `name` variable that you will need to pass to the translation function yourself.
 
 And the final statement (_lines 5 to 9_) defines a **selector** (very similar to a switch statement) that takes result of the special `NUMBER` function applied to the `applesCount` variable and selects one of the three possible messages to be rendered based on the matched value.
-The `NUMBER` function will return a [CLDR plural category](https://www.unicode.org/cldr/cldr-aux/charts/30/supplemental/language_plural_rules.md) based on the provided value and the used locale.
+The `NUMBER` function will return a [CLDR plural category](https://www.unicode.org/cldr/cldr-aux/charts/30/supplemental/language_plural_rules.html) based on the provided value and the used locale.
 This effectively implements the pluralization.
 
 ## grammY Configuration
