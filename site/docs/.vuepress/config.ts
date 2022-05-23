@@ -251,8 +251,7 @@ export default defineUserConfig({
                   },
                   {
                     text: "[Submit your PR!]",
-                    link:
-                      "/plugins/#submitting-your-own-package-to-the-docs",
+                    link: "/plugins/#submitting-your-own-package-to-the-docs",
                   },
                 ],
               },
