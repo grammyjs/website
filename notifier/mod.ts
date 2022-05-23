@@ -62,25 +62,20 @@ const other = { parse_mode: "MarkdownV2" as const };
 
 // deno-lint-ignore no-explicit-any
 async function updateLabels(payload: any) {
-  console.log(1);
   if (
     labelNames.includes(
       payload.label.name,
     )
   ) {
-    console.log(2);
     const notification = await db.getNotification(
       payload.pull_request.number,
     );
-    console.log(notification);
     if (notification) {
-      console.log(3);
       const updatedText = getUpdatedText(
         notification.text,
         // deno-lint-ignore no-explicit-any
         payload.pull_request.labels.map((v: any) => v.name),
       );
-      console.log(notification.text, updatedText);
       if (updatedText != notification.text) {
         await bot.api.editMessageText(
           env.CHAT_ID,
