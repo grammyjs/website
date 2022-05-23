@@ -13,6 +13,7 @@ html.dark {
   --c-brand: #009dca;
 }
 
+// adjust table background colors to avoid clashes with inline code snippets
 html.dark tr:nth-child(2n) {
   background-color: var(--c-bg-lighter);
 }
