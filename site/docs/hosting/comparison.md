@@ -53,7 +53,7 @@ On a VPS, you can run bots using both polling or webhooks.
 
 Check out [the tutorial](./vps.md) on how to host grammY bots on a VPS.
 
-| Name          | Min. price | Ping to API                               | Cheapest option                    |
+| Name          | Min. price | Ping to Bot API                           | Cheapest option                    |
 | ------------- | ---------- | ----------------------------------------- | ---------------------------------- |
 | DigitalOcean  | $5         | 1-15 ms :netherlands: AMS, 19 ms :de: FRA | 1 vCPU, 1 GB RAM, 25 GB SSD, 1 TB  |
 | Hetzner Cloud | €4.15      | ~42 ms :de:                               | 1 vCPU, 2 GB RAM, 20 GB SSD, 20 TB |
