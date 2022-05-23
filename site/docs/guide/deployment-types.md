@@ -28,7 +28,7 @@ Your bot can either pull them in (long polling), or the Telegram servers can pus
 
 _Imagine you're getting yourself a scoop of ice cream in your trusted ice cream parlor.
 You walk up to the employee and ask for your favorite type of ice cream.
-Unfortunately, he lets you know you that it is out of stock._
+Unfortunately, he lets you know that it is out of stock._
 
 _The next day, you're craving that delicious ice cream again, so you go back to the same place and ask for the same ice cream.
 Good news!
