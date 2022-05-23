@@ -13,6 +13,14 @@ html.dark {
   --c-brand: #009dca;
 }
 
+html.dark tr:nth-child(2n) {
+  background-color: var(--c-bg-lighter);
+}
+
+html:not(.dark) tr:nth-child(2n) code {
+  background-color: var(--c-bg-lighter);
+}
+
 .token.string, .token.char, .token.attr-value, .token.regex, .token.variable {
   color: rgb(106.42, 191.75, 227.27);
 }
