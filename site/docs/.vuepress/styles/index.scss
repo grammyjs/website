@@ -2,5 +2,6 @@
 .theme-default-content p,
 .theme-default-content li {
   text-align: justify;
-  text-justify: distribute;
+  text-justify: inter-character;
+  hyphens: auto;
 }
