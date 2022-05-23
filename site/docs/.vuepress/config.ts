@@ -681,8 +681,22 @@ export default defineUserConfig({
                   },
                 ],
               },
+            ],
+          },
+          {
+            text: "托管服务",
+            children: [
               {
-                text: "托管服务",
+                text: "总览",
+                children: [
+                  {
+                    text: "对比",
+                    link: "/zh/hosting/comparison.md",
+                  },
+                ],
+              },
+              {
+                text: "教程",
                 children: [
                   {
                     text: "Deno Deploy",
