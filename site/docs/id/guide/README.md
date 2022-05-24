@@ -33,7 +33,7 @@ Lihat juga koleksi _Plugin_ kami yang luar biasa, dan berbagai _Contoh_ yang sud
 
 **Lapis kedua** adalah [referensi API grammY](https://doc.deno.land/https://deno.land/x/grammy/mod.ts), yang ditautkan di bagian atas halaman.
 Referensi ini berisi gambaran terperinci dari setiap bit kode yang disediakan grammY.
-Ia dihasilkan dari kode grammY secara otomatis dan berisi semua penjelasan tooltip yang berguna, biasanya dapat ditemukan dengan mengarahkan kursor Anda ke elemen grammY mana pun di kode editor.
+Ia dihasilkan dari kode grammY secara otomatis dan berisi semua penjelasan tooltip yang berguna, biasanya dapat ditemukan dengan mengarahkan kursor Anda ke elemen grammY mana pun di code editor.
 
 **Lapis ketiga** disediakan oleh Telegram dan berisi definisi murni dari [API HTTP](https://core.telegram.org/bots/api) yang akan dihubungkan oleh grammY di balik layar.
 Referensi API grammY akan terhubung ke sana kapan pun saat diperlukan.
