@@ -30,7 +30,7 @@ function insertWbrTags(url: string) {
           // Before and after an equals sign or ampersand
           .replace(/(?<beforeAndAfter>[=&])/giu, "<wbr>$1<wbr>")
           // Between words in camelCase
-          .replace(/([a-z]+)([A-Z][a-z])+/gu, '$1<wbr>$2'),
+          .replace(/([a-z]+)([A-Z][a-z])+/gu, "$1<wbr>$2"),
     )
     // Reconnect the strings with word break opportunities after double slashes
     .join("//<wbr>");
