@@ -20,7 +20,7 @@ You must contact [@BotFather](https://t.me/BotFather) and enable inline mode for
 Once a user triggers an inline query, i.e. starts a message by typing "@your_bot_name ..." in the text input field, your bot will receive updates about this.
 grammY has special support for handling inline queries via the `bot.inlineQuery()` method, as documented on the `Composer` class in the [grammY API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer#inlineQuery).
 It allows you to listen for specific inline queries that match strings or regular expressions.
-If you want to handle all inline queries generically, use `bot.on('inline_query')`.
+If you want to handle all inline queries generically, use `bot.on("inline_query")`.
 
 ```ts
 // Shameless self-advertising in one project's documentation

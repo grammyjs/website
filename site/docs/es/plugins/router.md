@@ -8,16 +8,16 @@ Es una versión más sofisticada de `bot.route` en `Composer` ([grammY API Refer
 Aquí hay un ejemplo de uso de un enrutador que habla por sí mismo.
 
 ```ts
-const router = new Router(ctx => {
+const router = new Router((ctx) => {
   // Determine la ruta a elegir aquí.
-  return 'key'
-})
+  return "key";
+});
 
-router.route('key',       ctx => { ... })
-router.route('other-key', ctx => { ... })
-router.otherwise(ctx => { ... }) // se llama si no hay ninguna ruta que coincida
+router.route("key", (ctx) => {/* ... */});
+router.route("other-key", (ctx) => {/* ... */});
+router.otherwise((ctx) => {/* ... */}); // se llama si no hay ninguna ruta que coincida
 
-bot.use(router)
+bot.use(router);
 ```
 
 ## Combinación de enrutadores con sesiones

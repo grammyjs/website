@@ -93,7 +93,7 @@ bot.on([":video", ":animation"], async (ctx) => {
 </CodeGroup>
 
 如果你不想创建临时文件，你可以传递一个文件路径到 `download`。
-像这样：`await file.download('/path/to/file')`。
+像这样：`await file.download("/path/to/file")`。
 
 如果你只想获取文件的 URL，以便你自己下载文件，请使用 `file.getUrl`。
 这将返回一个你的文件对 HTTPS 链接，这个链接有效的时间至少是一个小时。

@@ -93,7 +93,7 @@ bot.on([":video", ":animation"], async (ctx) => {
 </CodeGroup>
 
 Puedes pasar una cadena con una ruta de archivo a `download` si no quieres crear un archivo temporal.
-Simplemente haga `await file.download('/ruta/al/archivo')`.
+Simplemente haga `await file.download("/ruta/al/archivo")`.
 
 Si sólo quieres obtener la URL del archivo para poder descargarlo tú mismo, utiliza `file.getUrl`.
 Esto devolverá un enlace HTTPS a su archivo que es válido durante al menos una hora.
