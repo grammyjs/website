@@ -1,24 +1,38 @@
 # Router (`router`)
 
 La clase `Router` ([Referencia API](https://doc.deno.land/https://deno.land/x/grammy_router/router.ts)) proporciona una forma de estructurar tu bot enrutando objetos de contexto a diferentes partes de tu código.
-Es una versión más sofisticada de `bot.route` en `Composer` ([grammY API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer#route))
+Es una versión más sofisticada de `bot.route` en `Composer` ([grammY API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer#route)).
 
 ## Ejemplo
 
 Aquí hay un ejemplo de uso de un enrutador que habla por sí mismo.
 
 ```ts
-const router = new Router(ctx => {
+const router = new Router((ctx) => {
   // Determine la ruta a elegir aquí.
-  return 'key'
-})
+  return "key";
+});
 
-router.route('key',       ctx => { ... })
-router.route('other-key', ctx => { ... })
-router.otherwise(ctx => { ... }) // se llama si no hay ninguna ruta que coincida
+router.route("key", (ctx) => {/* ... */});
+router.route("other-key", (ctx) => {/* ... */});
+router.otherwise((ctx) => {/* ... */}); // se llama si no hay ninguna ruta que coincida
 
-bot.use(router)
+bot.use(router);
 ```
+
+## Integración con Middleware
+
+Naturalmente, el plugin del enrutador se integra perfectamente con las [jerarquías de middleware de grammY](../advanced/middleware.md).
+Por ejemplo, puedes filtrar más las actualizaciones después de enrutarlas.
+
+```ts
+router.route("key").on("message:text", (ctx) => {/* ... */});
+const other = router.otherwise();
+other.on(":text", (ctx) => {/* ... */});
+other.use((ctx) => {/* ... */});
+```
+
+También puedes revisar [esta sección](../guide/filter-queries.md#combinación-de-consultas-con-otros-métodos) sobre la combinación de manejadores de middleware.
 
 ## Combinación de enrutadores con sesiones
 
@@ -49,12 +63,11 @@ interface SessionData {
   dayOfMonth?: number; // día de cumpleaños
   month?: number; // mes de cumpleaños
 }
-
 type MyContext = Context & SessionFlavor<SessionData>;
 
 const bot = new Bot<MyContext>("");
 
-// Usar sesión.
+// Usar sesiones
 bot.use(session({ initial: (): SessionData => ({ step: "idle" }) }));
 
 // Definir algunos comandos.
@@ -71,7 +84,7 @@ bot.command("birthday", async (ctx) => {
     // ¡Información ya proporcionada!
     await ctx.reply(`¡Tu cumpleaños es en ${getDays(month, day)} días!`);
   } else {
-    // Falta información, introduzca el formulario basado en el router.
+    // Falta información, introduzca el formulario basado en el router
     ctx.session.step = "day";
     await ctx.reply(
 "¡Por favor, envíame el día del mes \
@@ -84,14 +97,15 @@ bot.command("birthday", async (ctx) => {
 const router = new Router<MyContext>((ctx) => ctx.session.step);
 
 // Definir el paso que maneja el día.
-router.route("day", async (ctx) => {
-  const day = parseInt(ctx.msg?.text ?? "", 10);
+const day = router.route("day");
+day.on("message:text", async (ctx) => {
+  const day = parseInt(ctx.msg.text, 10);
   if (isNaN(day) || day < 1 || 31 < day) {
     await ctx.reply("¡Ese no es un día válido, inténtelo de nuevo!");
     return;
   }
   ctx.session.dayOfMonth = day;
-  // Avanzar el formulario para el paso del mes
+  // Formulario de avance al paso del mes
   ctx.session.step = "month";
   await ctx.reply("¡Lo tengo! Ahora, ¡envíame el mes!", {
     reply_markup: {
@@ -104,8 +118,13 @@ router.route("day", async (ctx) => {
     },
   });
 });
+day.use((ctx) =>
+  ctx.reply("¡Por favor, envíenme el día en forma de mensaje de texto!")
+);
 
-router.route("month", async (ctx) => {
+// Definir el paso que maneja el mes.
+const month = router.route("month");
+month.on("message:text", async (ctx) => {
   // No debería ocurrir, a menos que los datos de la sesión estén corruptos.
   const day = ctx.session.dayOfMonth;
   if (day === undefined) {
@@ -114,7 +133,7 @@ router.route("month", async (ctx) => {
     return;
   }
 
-  const month = months.indexOf(ctx.msg?.text ?? "");
+  const month = months.indexOf(ctx.msg.text);
   if (month === -1) {
     await ctx.reply(
 "¡Ese no es un mes válido, \
@@ -132,8 +151,10 @@ por favor, utilice uno de los botones",
   );
   ctx.session.step = "idle";
 });
+month.use((ctx) => ctx.reply("¡Por favor, pulse uno de los botones.!"));
 
-router.route("idle", async (ctx) => {
+// Definir el paso que maneja todos los demás casos.
+router.otherwise(async (ctx) => { // idle
   await ctx.reply(
     "Envía /cumpleaños para saber cuánto tiempo tienes que esperar",
   );
@@ -157,7 +178,6 @@ const months = [
   "Nov",
   "Dec",
 ];
-
 function getDays(month: number, day: number) {
   const bday = new Date();
   const now = Date.now();
@@ -178,7 +198,7 @@ const { Router } = require("@grammyjs/router");
 
 const bot = new Bot("");
 
-// Usar sesión.
+// Usar sesiones.
 bot.use(session({ initial: () => ({ step: "idle" }) }));
 
 // Definir algunos comandos.
@@ -207,15 +227,16 @@ bot.command("birthday", async (ctx) => {
 // Utilizar el router.
 const router = new Router((ctx) => ctx.session.step);
 
-// Definir el paso que maneja el día.
-router.route("day", async (ctx) => {
-  const day = parseInt(ctx.msg?.text ?? "", 10);
+/// Definir el paso que maneja el día.
+const day = router.route("day");
+day.on("message:text", async (ctx) => {
+  const day = parseInt(ctx.msg.text, 10);
   if (isNaN(day) || day < 1 || 31 < day) {
     await ctx.reply("¡Ese no es un día válido, inténtelo de nuevo!");
     return;
   }
   ctx.session.dayOfMonth = day;
-  // Avanzar el formulario para el paso del mes
+  // Formulario de avance al paso del mes
   ctx.session.step = "month";
   await ctx.reply("¡Lo tengo! Ahora, ¡envíame el mes!", {
     reply_markup: {
@@ -228,8 +249,13 @@ router.route("day", async (ctx) => {
     },
   });
 });
+day.use((ctx) =>
+  ctx.reply("¡Por favor, envíenme el día en forma de mensaje de texto!")
+);
 
-router.route("month", async (ctx) => {
+// Definir el paso que maneja el mes.
+const month = router.route("month");
+month.on("message:text", async (ctx) => {
   // No debería ocurrir, a menos que los datos de la sesión estén corruptos.
   const day = ctx.session.dayOfMonth;
   if (day === undefined) {
@@ -238,7 +264,7 @@ router.route("month", async (ctx) => {
     return;
   }
 
-  const month = months.indexOf(ctx.msg?.text ?? "");
+  const month = months.indexOf(ctx.msg.text);
   if (month === -1) {
     await ctx.reply(
 "¡Ese no es un mes válido, \
@@ -256,8 +282,10 @@ por favor, utilice uno de los botones",
   );
   ctx.session.step = "idle";
 });
+month.use((ctx) => ctx.reply("¡Por favor, pulse uno de los botones.!"));
 
-router.route("idle", async (ctx) => {
+// Definir el paso que maneja todos los demás casos.
+router.otherwise(async (ctx) => { // idle
   await ctx.reply(
     "Envía /cumpleaños para saber cuánto tiempo tienes que esperar",
   );
@@ -306,15 +334,15 @@ import {
 import { Router } from "https://deno.land/x/grammy_router/router.ts";
 
 interface SessionData {
-  step: "idle" | "day" | "month"; // which step of the form we are on
-  dayOfMonth?: number; // day of birthday
-  month?: number; // month of birthday
+  step: "idle" | "day" | "month"; // en qué paso del formulario estamos
+  dayOfMonth?: number; // día de cumpleaños
+  month?: number; // mes de cumpleaños
 }
 type MyContext = Context & SessionFlavor<SessionData>;
 
 const bot = new Bot<MyContext>("");
 
-// Usar sesión.
+// Usar sesiones.
 bot.use(session({ initial: (): SessionData => ({ step: "idle" }) }));
 
 // Definir algunos comandos.
@@ -331,7 +359,7 @@ bot.command("birthday", async (ctx) => {
     // ¡Información ya proporcionada!
     await ctx.reply(`¡Tu cumpleaños es en ${getDays(month, day)} días!`);
   } else {
-    // Falta información, introduzca el formulario basado en el router.
+    // Falta información, introduzca el formulario basado en el router
     ctx.session.step = "day";
     await ctx.reply(
 "¡Por favor, envíame el día del mes \
@@ -344,14 +372,15 @@ bot.command("birthday", async (ctx) => {
 const router = new Router<MyContext>((ctx) => ctx.session.step);
 
 // Definir el paso que maneja el día.
-router.route("day", async (ctx) => {
-  const day = parseInt(ctx.msg?.text ?? "", 10);
+const day = router.route("day");
+day.on("message:text", async (ctx) => {
+  const day = parseInt(ctx.msg.text, 10);
   if (isNaN(day) || day < 1 || 31 < day) {
     await ctx.reply("¡Ese no es un día válido, inténtelo de nuevo!");
     return;
   }
   ctx.session.dayOfMonth = day;
-  // Avanzar el formulario para el paso del mes
+  // Formulario de avance al paso del mes
   ctx.session.step = "month";
   await ctx.reply("¡Lo tengo! Ahora, ¡envíame el mes!", {
     reply_markup: {
@@ -364,8 +393,13 @@ router.route("day", async (ctx) => {
     },
   });
 });
+day.use((ctx) =>
+  ctx.reply("¡Por favor, envíenme el día en forma de mensaje de texto!")
+);
 
-router.route("month", async (ctx) => {
+// Definir el paso que maneja el mes.
+const month = router.route("month");
+month.on("message:text", async (ctx) => {
   // No debería ocurrir, a menos que los datos de la sesión estén corruptos.
   const day = ctx.session.dayOfMonth;
   if (day === undefined) {
@@ -374,7 +408,7 @@ router.route("month", async (ctx) => {
     return;
   }
 
-  const month = months.indexOf(ctx.msg?.text ?? "");
+  const month = months.indexOf(ctx.msg.text);
   if (month === -1) {
     await ctx.reply(
 "¡Ese no es un mes válido, \
@@ -392,8 +426,10 @@ por favor, utilice uno de los botones",
   );
   ctx.session.step = "idle";
 });
+month.use((ctx) => ctx.reply("¡Por favor, pulse uno de los botones.!"));
 
-router.route("idle", async (ctx) => {
+// Definir el paso que maneja todos los demás casos.
+router.otherwise(async (ctx) => { // idle
   await ctx.reply(
     "Envía /cumpleaños para saber cuánto tiempo tienes que esperar",
   );
@@ -430,11 +466,6 @@ function getDays(month: number, day: number) {
 
 </CodeGroupItem>
 </CodeGroup>
-
-::: tip Dividir el código
-Si crees que tu código es demasiado complejo, puedes dividirlo en varios archivos.
-Puedes leer más sobre cómo escalar tu código base en [esta sección avanzada](../advanced/structuring.md).
-:::
 
 Observe cómo la sesión tiene una propiedad `step` que almacena el paso del formulario, es decir, qué valor se está rellenando actualmente.
 El router se utiliza para saltar entre diferentes middleware que completan los campos `month` y `dayOfMonth` de la sesión.
