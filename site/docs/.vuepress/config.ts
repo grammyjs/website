@@ -339,8 +339,22 @@ export default defineUserConfig({
                   },
                 ],
               },
+            ],
+          },
+          {
+            text: "Hosting",
+            children: [
               {
-                text: "Hosting",
+                text: "Overview",
+                children: [
+                  {
+                    text: "Comparison",
+                    link: "/hosting/comparison.md",
+                  },
+                ],
+              },
+              {
+                text: "Tutorials",
                 children: [
                   {
                     text: "Deno Deploy",
@@ -688,8 +702,22 @@ export default defineUserConfig({
                   },
                 ],
               },
+            ],
+          },
+          {
+            text: "Alojamiento",
+            children: [
               {
-                text: "Alojamiento",
+                text: "Resumen",
+                children: [
+                  {
+                    text: "Comparativa",
+                    link: "/hosting/comparison.md",
+                  },
+                ],
+              },
+              {
+                text: "Tutoriales",
                 children: [
                   {
                     text: "Despliegue con Deno",
@@ -1033,8 +1061,22 @@ export default defineUserConfig({
                   },
                 ],
               },
+            ],
+          },
+          {
+            text: "托管服务",
+            children: [
               {
-                text: "托管服务",
+                text: "总览",
+                children: [
+                  {
+                    text: "对比",
+                    link: "/zh/hosting/comparison.md",
+                  },
+                ],
+              },
+              {
+                text: "教程",
                 children: [
                   {
                     text: "Deno Deploy",
