@@ -12,7 +12,7 @@ Buat bot pertama Anda dalam hitungan menit. (Gulir [ke bawah](#memulai-dengan-de
 > Kami mengasumsikan bahwa Anda sudah menginstal [Node.js](https://nodejs.org), dan seharusnya `npm` juga sudah disertakan di paket penginstalan.
 > Jika Anda tidak tahu apa yang kami maksud barusan, lihat [Pendahulan](./introduction.md)!
 
-Buat project TypeScript baru lalu instal package `grammy`.
+Buat projek TypeScript baru lalu pasang package `grammy`.
 Lakukan ini dengan cara membuka terminal, kemudian ketik:
 
 <CodeGroup>
@@ -27,7 +27,7 @@ cd my-bot
 npm install -D typescript
 npx tsc --init
 
-# Instal grammY.
+# Pasang grammY.
 npm install grammy
 ```
 
@@ -43,7 +43,7 @@ cd my-bot
 yarn add typescript -D
 npx tsc --init
 
-# Install grammY.
+# Pasang grammY.
 yarn add grammy
 ```
 
@@ -59,7 +59,7 @@ cd my-bot
 pnpm add -D typescript
 npx tsc --init
 
-# Install grammY.
+# Pasang grammY.
 pnpm add grammy
 ```
 
@@ -82,8 +82,8 @@ Sekarang, saatnya membuka Telegram untuk membuat akun bot, dan mendapatkan token
 Chat [@BotFather](https://t.me/BotFather) untuk mendapatkan tokennya.
 Token otentikasi kurang lebih mirip seperti ini `123456:aBcDeF_gHiJiJkLmNoP-q`.
 
-Sudah dapat tokennya? Sekarang Anda dapat membuat kode bot di file `bot.ts`.
-Anda dapat menyalin contoh bot berikut ke dalam file tersebut, lalu masukkan token ke konstruktor `Bot`:
+Sudah dapat tokennya? Sekarang Anda dapat menulis kode bot di berkas `bot.ts`.
+Anda dapat menyalin contoh bot berikut ke dalam berkas, lalu masukkan token ke konstruktor `Bot`:
 
 <CodeGroup>
  <CodeGroupItem title="TypeScript" active>
@@ -94,8 +94,8 @@ import { Bot } from "grammy";
 // Buat sebuah instansiasi kelas `Bot` lalu tulis token otentikasi ke dalamnya.
 const bot = new Bot(""); // <-- taruh token di antara tanda petik ("").
 
-// Anda sekarang dapat membuat listener untuk objek `bot`.
-// grammY akan memanggil listener ini ketika pengguna mengirim pesan ke bot.
+// Anda sekarang dapat membuat penyimak (listener) untuk objek `bot`.
+// grammY akan memanggil penyimak ini ketika pengguna mengirim pesan ke bot.
 
 // Tangani perintah (command) /start.
 bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
@@ -118,8 +118,8 @@ const { Bot } = require("grammy");
 // Buat sebuah instansiasi kelas `Bot` lalu tulis token otentikasi ke dalamnya.
 const bot = new Bot(""); // <-- taruh token di antara tanda petik ("").
 
-// Anda sekarang dapat membuat listener untuk objek `bot`.
-// grammY akan memanggil listener ini ketika pengguna mengirim pesan ke bot.
+// Anda sekarang dapat membuat penyimak (listener) untuk objek `bot`.
+// grammY akan memanggil penyimak ini ketika pengguna mengirim pesan ke bot.
 
 // Tangani perintah (command) /start.
 bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
@@ -143,7 +143,7 @@ npx tsc
 ```
 
 di terminal.
-File JavaScript `bot.js` akan dihasilkan dari proses compile tadi.
+Berkas JavaScript `bot.js` akan dihasilkan dari proses kompilasi tadi.
 
 Sekarang Anda dapat menjalankan bot dengan mengeksekusi
 
@@ -156,8 +156,8 @@ Selesai! :tada:
 
 Buka Telegram untuk melihat bot Anda merespon pesan!
 
-::: tip Mengaktifkan Pencatatan (logging)
-Anda bisa mengaktifkan logging sederhana dengan menjalankan
+::: tip Mengaktifkan Pencatatan Log(logging)
+Anda bisa mengaktifkan pencatatan log sederhana dengan menjalankan
 
 ```bash
 export DEBUG='grammy*'
@@ -169,16 +169,16 @@ Ini mempermudah Anda untuk men-debug bot.
 
 ## Memulai dengan Deno
 
-> Kami mengasumsikan bahwa Anda sudah menginstal [Deno](https://deno.land).
+> Kami mengasumsikan bahwa Anda sudah memasang [Deno](https://deno.land).
 
-Buat direktori baru di suatu tempat lalu buat file teks kosong baru di dalamnya, misalnya kita namakan `bot.ts`.
+Buat direktori baru di suatu tempat lalu buat berkas teks kosong baru di dalamnya, misalnya kita namakan `bot.ts`.
 
 Sekarang, saatnya membuka Telegram untuk membuat akun bot, dan mendapatkan token otentikasi untuk bot tersebut.
 Chat [@BotFather](https://t.me/BotFather) untuk mendapatkannya.
 Token otentikasi kurang lebih mirip seperti ini `123456:aBcDeF_gHiJiJkLmNoP-q`.
 
-Sudah dapat tokennya? Sekarang Anda dapat membuat kode bot di file `bot.ts`.
-Anda bisa menyalin contoh bot berikut ke dalam file tersebut, lalu memasukkan token ke konstruktor `Bot`:
+Sudah dapat tokennya? Sekarang Anda dapat menulis kode bot di berkas `bot.ts`.
+Anda bisa menyalin contoh bot berikut ke dalam berkas, lalu memasukkan token ke konstruktor `Bot`:
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -186,8 +186,8 @@ import { Bot } from "https://deno.land/x/grammy/mod.ts";
 // Buat sebuah instansiasi kelas `Bot` lalu tulis token otentikasi ke dalamnya.
 const bot = new Bot(""); // <-- taruh token di antara tanda petik ("").
 
-// Anda sekarang dapat membuat listener untuk objek `bot`.
-// grammY akan memanggil listener ini ketika pengguna mengirim pesan ke bot.
+// Anda sekarang dapat membuat penyimak (listener) untuk objek `bot`.
+// grammY akan memanggil penyimak ini ketika pengguna mengirim pesan ke bot.
 
 // Tangani perintah (command) /start.
 bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
@@ -212,8 +212,8 @@ Selesai! :tada:
 
 Buka Telegram untuk melihat bot Anda merespon pesan!
 
-::: tip Mengaktifkan Pencatatan (logging)
-Anda bisa mengaktifkan logging sederhana dengan menjalankan
+::: tip Mengaktifkan Pencatatan Log (logging)
+Anda bisa mengaktifkan pencatatan log sederhana dengan menjalankan
 
 ```bash
 export DEBUG='grammy*'
