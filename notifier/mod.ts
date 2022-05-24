@@ -22,9 +22,11 @@ app.use(async (ctx, next) => {
   const { verified } = await verifyGitHubWebhook(
     ctx.request.originalRequest.request,
   );
-  if (verified) {
-    await next();
+  if (!verified) {
+    ctx.response.redirect("https://grammy.dev");
+    return;
   }
+  await next();
 });
 
 const labels: Record<string, string> = JSON.parse(
