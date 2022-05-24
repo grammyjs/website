@@ -1,0 +1,17 @@
+name: Deploy
+
+on:
+  push:
+    paths:
+      - "notifier/**"
+
+jobs:
+  permissions:
+    id-token: write
+    contents: read
+  steps:
+    - uses: denoland/deployctl@v1
+      with:
+        project: sour-newt-93
+        entrypoint: mod.ts
+        root: notifier
