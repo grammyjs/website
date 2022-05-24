@@ -10,11 +10,11 @@ actions:
     type: secondary
 features:
   - title: Mudah Digunakan
-    details: grammY menjadikan pembuatan bot Telegram begitu sederhana sehingga Anda langsung tahu cara membuatnya.
+    details: grammY menjadikan pembuatan bot Telegram begitu sederhana sehingga kamu pun langsung tahu cara membuatnya.
   - title: Fleksibel
-    details: grammY bersifat terbuka dan dapat ditambahkan dengan plugin untuk membuatnya sesuai dengan kebutuhan Anda.
+    details: grammY bersifat terbuka dan bisa ditambahkan dengan plugin yang kamu inginkan.
   - title: Dapat Diskalakan
-    details: grammY siap membantu ketika bot Anda menjadi populer dan semakin banyak trafiknya.
+    details: grammY siap membantu ketika bot menjadi semakin populer dan semakin banyak trafiknya.
 footer: Hak Cipta © 2021-2022
 permalink: /id/
 ---
@@ -22,12 +22,14 @@ permalink: /id/
 <h6 align="right">… {{ [
   'tak perlu lagi mengeluh "whY!?"',
   'era baru pengembangan bot',
-  'bekerja lebih cepat daripada Anda',
+  'bekerja lebih cepat dibanding kamu',
   'selangkah lebih maju',
-  'bisa melakukan apa saja kecuali mencuci piring',
+  'bisa melakukan apa saja, kecuali mencuci piring',
   'buatnya so easY, hati jadi happY',
   'ratusan juta telah terlayani',
-][Math.floor(Math.random() * 7)] }}.</h6>
+  'dokumentasi yang lengkap dan berkualitas',
+  'honeY, grammY, sweetY',
+][Math.floor(Math.random() * 9)] }}.</h6>
 
 ## Mulai Cepat
 
@@ -41,7 +43,7 @@ Bot ditulis menggunakan [TypeScript](https://www.typescriptlang.org) (atau JavaS
 ```ts
 import { Bot } from "grammy";
 
-const bot = new Bot(""); // <-- taruh token bot Anda di sini (https://t.me/BotFather)
+const bot = new Bot(""); // <-- taruh token botmu di sini (https://t.me/BotFather)
 
 // Balas pesan apapun dengan "Halo, apa kabar!".
 bot.on("message", (ctx) => ctx.reply("Halo, apa kabar!"));
@@ -55,7 +57,7 @@ bot.start();
 ```js
 const { Bot } = require("grammy");
 
-const bot = new Bot(""); // <-- taruh token bot Anda di sini (https://t.me/BotFather)
+const bot = new Bot(""); // <-- taruh token botmu di sini (https://t.me/BotFather)
 
 // Balas pesan apapun dengan "Halo, apa kabar!".
 bot.on("message", (ctx) => ctx.reply("Halo, apa kabar!"));
@@ -69,7 +71,7 @@ bot.start();
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
-const bot = new Bot(""); // <-- taruh token bot Anda di sini (https://t.me/BotFather)
+const bot = new Bot(""); // <-- taruh token botmu di sini (https://t.me/BotFather)
 
 // Balas pesan apapun dengan "Halo, apa kabar!".
 bot.on("message", (ctx) => ctx.reply("Halo, apa kabar!"));
