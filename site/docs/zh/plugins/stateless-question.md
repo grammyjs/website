@@ -44,3 +44,8 @@ bot.command('unicorn', async ctx => ctx.replyWithHTML(    'What are unicorns doi
 ```
 
 更多信息请查看 [插件仓库 README](https://github.com/grammyjs/stateless-question) 。
+
+## 插件概述
+
+- 名字：`stateless-question`
+- 源码：<https://github.com/grammyjs/stateless-question>

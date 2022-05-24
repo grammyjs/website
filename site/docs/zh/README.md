@@ -3,10 +3,10 @@ home: true
 heroImage: /Y.png
 actions:
   - text: 立刻开始
-    link: ./guide/getting-started.md
+    link: /zh/guide/getting-started.html
     type: primary
   - text: 介绍
-    link: ./guide/introduction.md
+    link: /zh/guide/introduction.html
     type: secondary
 features:
   - title: 易用
@@ -52,7 +52,7 @@ bot.start();
 </CodeGroupItem>
  <CodeGroupItem title="JavaScript">
 
-```ts
+```js
 const { Bot } = require("grammy");
 
 const bot = new Bot(""); // <-- 把你的 bot token 放在这里 (https://t.me/BotFather)

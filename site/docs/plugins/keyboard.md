@@ -32,7 +32,7 @@ grammY has a simple and intuitive way to build up the inline keyboards that your
 It provides a class called `InlineKeyboard` for this.
 
 > Both `switchInline` and `switchInlineCurrent` buttons start inline queries.
-> Check out the section about [Inline Queries](/guide/inline-queries.md) for more information about how they work.
+> Check out the section about [Inline Queries](../guide/inline-queries.md) for more information about how they work.
 
 ### Building an Inline Keyboard
 
@@ -158,7 +158,7 @@ Otherwise, some clients may display a loading animation for up to a minute when 
 
 ## Custom Keyboards
 
-First things first: custom keyboards are sometimes just called keyboards, sometimes they're called reply keyboards, and even Telegram's own documentation is not consistent in this repect.
+First things first: custom keyboards are sometimes just called keyboards, sometimes they're called reply keyboards, and even Telegram's own documentation is not consistent in this respect.
 As a simple rule of thumb, when it isn't absolutely obvious from the context and not called inline keyboard, it probably is a custom keyboard.
 This refers to a way to replace the system keyboard by a set of buttons that you can define.
 
@@ -288,7 +288,7 @@ await ctx.reply(text, {
 
 #### Selectively Send Custom Keyboards
 
-You can specify the `selective` option if you want to show the custom keyboard only to those users that are @-mentioned in the text of the message object, and to the sender of the original message in case your message is a [reply](/guide/basics.html#sending-messages-with-reply).
+You can specify the `selective` option if you want to show the custom keyboard only to those users that are @-mentioned in the text of the message object, and to the sender of the original message in case your message is a [reply](../guide/basics.md#sending-messages-with-reply).
 
 ```ts
 await ctx.reply(text, {

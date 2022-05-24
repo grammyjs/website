@@ -1,6 +1,40 @@
+// oklch theme
+:root {
+  // --c-brand: rgb(18.26, 165.86, 212.14);
+  --c-brand-light: rgb(38.51, 181.4, 229.84);
+  --c-tip: rgb(21.65, 175.31, 223.89);
+  --c-brand: #009dca;
+}
+
+html.dark {
+  // --c-brand: rgb(17, 157.22, 201.26);
+  --c-brand-light: rgb(18.59, 140.2, 179.44);
+  --c-tip: rgb(21.46, 130.7, 167.01);
+  --c-brand: #009dca;
+}
+
+// adjust table background colors to avoid clashes with inline code snippets
+html.dark tr:nth-child(2n) {
+  background-color: var(--c-bg-lighter);
+}
+
+html:not(.dark) tr:nth-child(2n) code {
+  background-color: var(--c-bg-lighter);
+}
+
+.token.string, .token.char, .token.attr-value, .token.regex, .token.variable {
+  color: rgb(106.42, 191.75, 227.27);
+}
+
+// fix the text color animation for the secondary button on the main page
+.home .hero .action-button.secondary {
+  transition-property: background-color, color;
+}
+
 // apply justify to all articles
 .theme-default-content p,
 .theme-default-content li {
   text-align: justify;
-  text-justify: distribute;
+  text-justify: inter-character;
+  hyphens: auto;
 }
