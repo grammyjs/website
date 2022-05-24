@@ -1,7 +1,7 @@
-import * as path from "https://deno.land/std@0.139.0/path/mod.ts";
+import * as path from "https://deno.land/std@0.140.0/path/mod.ts";
 
-import { Application } from "https://deno.land/x/oak@v10.2.1/mod.ts";
-import { Bot } from "https://deno.land/x/grammy@v1.7.1/mod.ts";
+import { Application } from "https://deno.land/x/oak@v10.6.0/mod.ts";
+import { Bot } from "https://deno.land/x/grammy@v1.8.3/mod.ts";
 
 import env from "./env.ts";
 import * as db from "./db.ts";
@@ -20,7 +20,7 @@ app.use(async (ctx, next) => {
 
 app.use(async (ctx, next) => {
   const { verified } = await verifyGitHubWebhook(
-    ctx.request.originalRequest.request,
+    ctx.request.originalRequest,
   );
   if (!verified) {
     ctx.response.redirect("https://grammy.dev");
@@ -129,6 +129,10 @@ app.use(async (ctx) => {
                 text,
                 other,
               );
+              await bot.api.pinChatMessage(
+                env.CHAT_ID,
+                notification.message_id,
+              );
               await db.createNotification(
                 payload.pull_request.number,
                 notification.message_id,
@@ -176,6 +180,10 @@ app.use(async (ctx) => {
               notification.message_id,
               `__${notification.text}__`,
               other,
+            );
+            await bot.api.unpinChatMessage(
+              env.CHAT_ID,
+              notification.message_id,
             );
             await db.deleteNotification(payload.pull_request.number);
           }
