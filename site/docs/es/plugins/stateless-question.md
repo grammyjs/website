@@ -16,31 +16,44 @@ Sólo tienes que asegurarte de que el `uniqueIdentifier` es único dentro de tu 
 ## Uso
 
 ```ts
-import {StatelessQuestion} from '@grammyjs/stateless-question';
+import { StatelessQuestion } from "@grammyjs/stateless-question";
 
 const bot = new Bot(token);
 
-const unicornQuestion = new StatelessQuestion('unicornio', ctx => {
-    console.log('El usuario cree que los unicornios están haciendo:', ctx.message)
-})
+const unicornQuestion = new StatelessQuestion("unicornio", (ctx) => {
+  console.log(
+    "El usuario cree que los unicornios están haciendo:",
+    ctx.message,
+  );
+});
 
 // No te olvides de utilizar el middleware.
-bot.use(unicornQuestion.middleware())
+bot.use(unicornQuestion.middleware());
 
-bot.command('arcoiris', async ctx => {
-    let text
-    if (ctx.session.language === 'de') {
-        text = 'Was machen Einhörner?'
-    } else {
-        text = '¿Qué hacen los unicornios?'
-    }
+bot.command("arcoiris", async (ctx) => {
+  let text;
+  if (ctx.session.language === "de") {
+    text = "Was machen Einhörner?";
+  } else {
+    text = "¿Qué hacen los unicornios?";
+  }
 
-    return unicornQuestion.replyWithMarkdown(ctx, text)
-})
+  return unicornQuestion.replyWithMarkdown(ctx, text);
+});
 
 // O envíe su pregunta manualmente (¡asegúrese de utilizar parse_mode y force_reply!).
-bot.command('unicornio', async ctx => ctx.replyWithMarkdown('¿Qué hacen los unicornios?' + unicornQuestion.messageSuffixMarkdown(), {parse_mode: 'Markdown', reply_markup: {force_reply: true}})
-bot.command('unicornio', async ctx => ctx.replyWithHTML('¿Qué hacen los unicornios?' + unicornQuestion.messageSuffixHTML(), {parse_mode: 'HTML', reply_markup: {force_reply: true}})
+bot.command("unicornio", async (ctx) => {
+  await ctx.replyWithMarkdown(
+    "¿Qué hacen los unicornios?" + unicornQuestion.messageSuffixMarkdown(),
+    { parse_mode: "Markdown", reply_markup: { force_reply: true } },
+  );
+});
+bot.command("unicornio", async (ctx) => {
+  await ctx.replyWithHTML(
+    "¿Qué hacen los unicornios?" + unicornQuestion.messageSuffixHTML(),
+    { parse_mode: "HTML", reply_markup: { force_reply: true } },
+  );
+});
 ```
 
 Consulte el [plugin README](https://github.com/grammyjs/stateless-question) para obtener más información.

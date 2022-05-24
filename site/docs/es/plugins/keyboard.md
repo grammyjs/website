@@ -142,7 +142,8 @@ bot.callbackQuery("click-payload", async (ctx) => {
 ```
 
 ::: tip Responder a todas las consultas de devolución de llamada
-bot.callbackQuery()`es útil para escuchar los eventos de clic de botones específicos. Puedes usar`bot.on('callback_query:data')` para escuchar los eventos de cualquier botón.
+`bot.callbackQuery()` es útil para escuchar los eventos de clic de botones específicos.
+Puedes usar `bot.on("callback_query:data")` para escuchar los eventos de cualquier botón.
 
 ```ts
 bot.callbackQuery("click-payload" /* , ... */);
@@ -156,7 +157,7 @@ bot.on("callback_query:data", async (ctx) => {
 });
 ```
 
-Tiene sentido definir `bot.on('callback_query:data')` al final para responder siempre a todas las demás consultas de devolución de llamada que sus oyentes anteriores no manejaron.
+Tiene sentido definir `bot.on("callback_query:data")` al final para responder siempre a todas las demás consultas de devolución de llamada que sus oyentes anteriores no manejaron.
 De lo contrario, algunos clientes pueden mostrar una animación de carga durante un minuto cuando un usuario pulsa un botón al que tu bot no quiere reaccionar.
 :::
 
@@ -172,7 +173,7 @@ grammY tiene una manera simple e intuitiva de construir los teclados de respuest
 Proporciona una clase llamada `Keyboard` para esto.
 
 Una vez que el usuario hace clic en un botón de texto, tu bot recibirá el texto enviado como un mensaje de texto plano.
-Recuerda que puedes escuchar los mensajes de texto a través de `bot.on('message:text')`.
+Recuerda que puedes escuchar los mensajes de texto a través de `bot.on("message:text")`.
 
 ### Construyendo un Custom Keyboard
 
@@ -313,7 +314,7 @@ Telegram no te permite crear botones que muestren un texto, pero que envíen otr
 Si necesitas hacer esto, deberías usar un [inline-keyboards](#inline-keyboards) en su lugar.
 
 Para manejar el clic de un botón específico, puedes usar `bot.hears` con el mismo texto que pusiste en el botón.
-Si quieres manejar todos los clics de los botones a la vez, utiliza `bot.on('message:text')` e inspecciona `ctx.msg.text` para averiguar qué botón se ha pulsado, o si se ha enviado un mensaje de texto ordinario.
+Si quieres manejar todos los clics de los botones a la vez, utiliza `bot.on("message:text")` e inspecciona `ctx.msg.text` para averiguar qué botón se ha pulsado, o si se ha enviado un mensaje de texto ordinario.
 
 ### Eliminación de un Custom Keyboard
 

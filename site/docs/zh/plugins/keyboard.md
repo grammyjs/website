@@ -141,7 +141,7 @@ bot.callbackQuery("click-payload", async (ctx) => {
 
 ::: tip 响应所有回调查询
 `bot.callbackQuery()` 可以用于监听特定按钮的点击事件。
-你也可以使用 `bot.on('callback_query:data')` 来监听所有按钮的点击事件。
+你也可以使用 `bot.on("callback_query:data")` 来监听所有按钮的点击事件。
 
 ```ts
 bot.callbackQuery("click-payload" /* , ... */);
@@ -152,7 +152,7 @@ bot.on("callback_query:data", async (ctx) => {
 });
 ```
 
-在最后定义 `bot.on('callback_query:data')` 来处理那些你没有设置监听的按钮的回调查询。
+在最后定义 `bot.on("callback_query:data")` 来处理那些你没有设置监听的按钮的回调查询。
 不然的话，当用户按下一个你的 bot 没有处理的回调查询的按钮时，一些客户端可能会显示长达 1 分钟的加载动画。
 :::
 
@@ -168,7 +168,7 @@ grammY 有一个简单且直观的方式来构建回复 keyboard，让你的 bot
 它提供了一个叫做 `Keyboard` 的类。
 
 一旦用户点击了一个文本按钮，你的 bot 就会收到作为纯文本信息发送的消息。
-请记住，你可以通过 `bot.on('message:text')` 或者 `bot.hears()` 列出文本信息。
+请记住，你可以通过 `bot.on("message:text")` 或者 `bot.hears()` 列出文本信息。
 
 ### 构建一个自定义 Keyboard
 
@@ -310,7 +310,7 @@ Telegram 不允许你创建显示一个文本，但发送另一个文本的按�
 如果你需要这样做，你应该使用 [Inline Keyboard](#inline-keyboards) 来代替。
 
 为了处理特定按钮的点击，你可以使用 `bot.hears`， 其文本与你放在按钮上的文本一样。
-如果你想一次性处理所有按钮的点击，你可以使用 `bot.on('message:text')`，并且检查 `ctx.msg.text` 来确定哪个按钮被点击了，或者是否发送了一个普通的文本消息。
+如果你想一次性处理所有按钮的点击，你可以使用 `bot.on("message:text")`，并且检查 `ctx.msg.text` 来确定哪个按钮被点击了，或者是否发送了一个普通的文本消息。
 
 ### 移除 Keyboard
 

@@ -8,16 +8,16 @@ It is a more sophisticated version of `bot.route` on `Composer` ([grammY API Ref
 Here is an example of a router usage that speaks for itself.
 
 ```ts
-const router = new Router(ctx => {
+const router = new Router((ctx) => {
   // Determine route to pick here.
-  return 'key'
-})
+  return "key";
+});
 
-router.route('key',       ctx => { ... })
-router.route('other-key', ctx => { ... })
-router.otherwise(ctx => { ... }) // called if no route matches
+router.route("key", (ctx) => {/* ... */});
+router.route("other-key", (ctx) => {/* ... */});
+router.otherwise((ctx) => {/* ... */}); // called if no route matches
 
-bot.use(router)
+bot.use(router);
 ```
 
 ## Combining Routers With Sessions

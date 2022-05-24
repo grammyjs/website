@@ -16,31 +16,41 @@ You only have to make sure the `uniqueIdentifier` is unique within your bot.
 ## Usage
 
 ```ts
-import {StatelessQuestion} from '@grammyjs/stateless-question';
+import { StatelessQuestion } from "@grammyjs/stateless-question";
 
 const bot = new Bot(token);
 
-const unicornQuestion = new StatelessQuestion('unicorns', ctx => {
-	console.log('User thinks unicorns are doing:', ctx.message)
-})
+const unicornQuestion = new StatelessQuestion("unicorns", (ctx) => {
+  console.log("User thinks unicorns are doing:", ctx.message);
+});
 
 // Don't forget to use the middleware.
-bot.use(unicornQuestion.middleware())
+bot.use(unicornQuestion.middleware());
 
-bot.command('rainbows', async ctx => {
-    let text
-    if (ctx.session.language === 'de') {
-        text = 'Was machen Einhörner?'
-    } else {
-        text = 'What are unicorns doing?'
-    }
+bot.command("rainbows", async (ctx) => {
+  let text;
+  if (ctx.session.language === "de") {
+    text = "Was machen Einhörner?";
+  } else {
+    text = "What are unicorns doing?";
+  }
 
-    return unicornQuestion.replyWithMarkdown(ctx, text)
-})
+  return unicornQuestion.replyWithMarkdown(ctx, text);
+});
 
 // Or send your question manually (make sure to use a parse_mode and force_reply!).
-bot.command('unicorn', async ctx => ctx.replyWithMarkdown('What are unicorns doing?' + unicornQuestion.messageSuffixMarkdown(), {parse_mode: 'Markdown', reply_markup: {force_reply: true}})
-bot.command('unicorn', async ctx => ctx.replyWithHTML(    'What are unicorns doing?' + unicornQuestion.messageSuffixHTML(),     {parse_mode: 'HTML',     reply_markup: {force_reply: true}})
+bot.command("unicorn", async (ctx) => {
+  await ctx.replyWithMarkdown(
+    "What are unicorns doing?" + unicornQuestion.messageSuffixMarkdown(),
+    { parse_mode: "Markdown", reply_markup: { force_reply: true } },
+  );
+});
+bot.command("unicorn", async (ctx) => {
+  await ctx.replyWithHTML(
+    "What are unicorns doing?" + unicornQuestion.messageSuffixHTML(),
+    { parse_mode: "HTML", reply_markup: { force_reply: true } },
+  );
+});
 ```
 
 See the [plugin repo README](https://github.com/grammyjs/stateless-question) for more information.

@@ -43,22 +43,25 @@ El contenido en sí se acorta para evitar el spam de los registros.
 Cuando creas tu propio middleware o asumes los tiempos lentos de otro middleware puedes usar estos middlewares para crear un perfil de tiempos.
 
 ```ts
-import {generateBeforeMiddleware, generateAfterMiddleware} from 'telegraf-middleware-console-time';
+import {
+  generateAfterMiddleware,
+  generateBeforeMiddleware,
+} from "telegraf-middleware-console-time";
 
 const bot = new Bot(/* ... */);
 
 // Utiliza BeforeMiddleware antes de cargar el middleware probado.
-bot.use(generateBeforeMiddleware('foo'))
+bot.use(generateBeforeMiddleware("foo"));
 
 // Middleware a probar
-bot.use(/* ... */)
+bot.use(/* ... */);
 
 // Usar AfterMiddleware después de cargar el middleware que se está probando (con la misma etiqueta).
-bot.use(generateAfterMiddleware('foo'))
+bot.use(generateAfterMiddleware("foo"));
 
 // Otros middleware/implementaciones (tomarán la cantidad de tiempo 'interna' cuando se usen).
-bot.use(/* ... */)
-bot.on(/* ... */, /* ... */)
+bot.use(/* ... */);
+bot.on("message" /* ... */);
 ```
 
 El resultado será algo así:

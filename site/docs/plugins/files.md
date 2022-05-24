@@ -93,7 +93,7 @@ bot.on([":video", ":animation"], async (ctx) => {
 </CodeGroup>
 
 You can pass a string with a file path to `download` if you don't want to create a temporary file.
-Just do `await file.download('/path/to/file')`.
+Just do `await file.download("/path/to/file")`.
 
 If you only want to get the URL of the file so you can download it yourself, use `file.getUrl`.
 This will return an HTTPS link to your file that is valid for at least one hour.

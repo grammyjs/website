@@ -20,7 +20,7 @@ Debes ponerte en contacto con [@BotFather](https://t.me/BotFather) y habilitar e
 Una vez que un usuario desencadena una consulta en línea, es decir, inicia un mensaje escribiendo "@tu_nombre_del_bot ..." en el campo de entrada de texto, tu bot recibirá actualizaciones al respecto.
 grammY tiene un soporte especial para manejar las inline queries a través del método `bot.inlineQuery()`, como se documenta en la clase `Composer` en la [Referencia de la API de grammY](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer#inlineQuery).
 Le permite escuchar inline queries específicas que coincidan con cadenas o expresiones regulares.
-Si quieres manejar todas las inline queries genéricamente, usa `bot.on('inline_query')`.
+Si quieres manejar todas las inline queries genéricamente, usa `bot.on("inline_query")`.
 
 ```ts
 // La autopublicidad descarada en la documentación de un proyecto

@@ -8,16 +8,16 @@
 这里是一个路由器的使用示例，不言自明。
 
 ```ts
-const router = new Router(ctx => {
+const router = new Router((ctx) => {
   // 在此处确定路由。
-  return 'key'
-})
+  return "key";
+});
 
-router.route('key',       ctx => { ... })
-router.route('other-key', ctx => { ... })
-router.otherwise(ctx => { ... }) // 如果没有匹配的路由，则调用此方法
+router.route("key", (ctx) => {/* ... */});
+router.route("other-key", (ctx) => {/* ... */});
+router.otherwise((ctx) => {/* ... */}); // 如果没有匹配的路由，则调用此方法
 
-bot.use(router)
+bot.use(router);
 ```
 
 ## 绑定路由器和会话

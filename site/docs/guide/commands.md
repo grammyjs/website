@@ -26,8 +26,8 @@ bot.command(["a", "b", "c", "d"] /* , ... */);
 Note that only those commands that are in the beginning of a message are handled, so if a user sends `'Please do not send /start to that bot!'`, then your listener will not be called, even though the `/start` command _is_ contained in the message.
 
 Telegram supports sending targeted commands to bots, i.e. commands that end with `@your_bot_name`.
-grammY handles this automatically for you, so `bot.command('start')` will match messages with `/start` and with `/start@your_bot_name` as commands.
-You can choose to match only targeted commands by specifying `bot.command('start@your_bot_name')`.
+grammY handles this automatically for you, so `bot.command("start")` will match messages with `/start` and with `/start@your_bot_name` as commands.
+You can choose to match only targeted commands by specifying `bot.command("start@your_bot_name")`.
 
 ::: tip Suggest Commands to Users
 You can call
