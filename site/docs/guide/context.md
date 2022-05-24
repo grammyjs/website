@@ -172,10 +172,10 @@ You can install your own properties on the context object if you want.
 
 ### Via Middleware (Recommended)
 
-The customizations can easily be done in [middleware](./middleware.md).
+The customizations can be easily done in [middleware](./middleware.md).
 
 ::: tip Middlewhat?
-This section requires an understanding of middleware, so in case you did not skip ahead to [this section](./middleware.md) yet, here is a very brief summary.
+This section requires an understanding of middleware, so in case you have not skipped ahead to [this section](./middleware.md) yet, here is a very brief summary.
 
 All you really need to know is that several handlers can process the same context object.
 There are special handlers which can modify `ctx` before any other handlers are run, and the modifications of the first handler will be visible to all subsequent handlers.
@@ -184,7 +184,7 @@ There are special handlers which can modify `ctx` before any other handlers are 
 The idea is to install middleware before you register other listeners.
 You can then set the properties you want inside these handlers.
 
-For illustration purposes, let's say you want to set a property `ctx.config` on the context object.
+For illustration purposes, let's say you want to set a property called `ctx.config` on the context object.
 In this example, we will use it do store some configuration about the project so that all handlers have access to it.
 The configuration will make it easier to detect if the bot is used by its developer or by regular users.
 
