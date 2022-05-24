@@ -27,6 +27,7 @@ Por ejemplo, puedes filtrar más las actualizaciones después de enrutarlas.
 
 ```ts
 router.route("key").on("message:text", (ctx) => {/* ... */});
+
 const other = router.otherwise();
 other.on(":text", (ctx) => {/* ... */});
 other.use((ctx) => {/* ... */});
