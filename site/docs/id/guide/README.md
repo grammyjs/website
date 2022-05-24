@@ -14,7 +14,7 @@ Anda telah datang ke tempat yang tepat.
 grammY adalah sebuah framework untuk membuat bot Telegram.
 Framework ini dapat dipakai menggunakan TypeScript maupun JavaScript, serta berjalan di Node.js, Deno, dan di browser.
 
-Kunjungi bagian [Pengenalan](./introduction.md) jika Anda masih baru dalam membuat bot Telegram, terutama jika Anda belum berpengalaman dalam hal coding.
+Kunjungi bagian [Pendahuluan](./introduction.md) jika Anda masih baru dalam membuat bot Telegram, terutama jika Anda belum berpengalaman dalam hal coding.
 
 Jika Anda sudah tahu cara membuat aplikasi dengan Node.js atau Deno, ataupun sudah pernah membuat bot Telegram dengan framework bot lain, Anda dapat memulai dan menjalankan bot Telegram dalam hitungan menit dengan panduan [Memulai](./getting-started.md) kami.
 
