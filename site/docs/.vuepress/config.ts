@@ -1,9 +1,7 @@
-import {
-  defaultTheme,
-  type DefaultThemeOptions,
-  defineUserConfig,
-} from "vuepress-vite";
-import { docsearchPlugin } from "@vuepress/plugin-docsearch";
+import { defaultTheme, defineUserConfig } from "vuepress-vite";
+import { betterLineBreaks } from "./plugins/better-line-breaks";
+import { currentVersions } from "./plugins/current-versions/plugin";
+import { docsearch } from "./plugins/docsearch";
 
 export default defineUserConfig({
   title: "grammY",
@@ -14,6 +12,11 @@ export default defineUserConfig({
       lang: "en-US",
       title: "grammY",
       description: "The Telegram Bot Framework.",
+    },
+    "/es/": {
+      lang: "es-ES",
+      title: "grammY",
+      description: "El Framework de Bots para Telegram.",
     },
     "/zh/": {
       lang: "zh-CN",
@@ -47,59 +50,60 @@ export default defineUserConfig({
                 children: [
                   {
                     text: "Overview",
-                    link: "/guide/README.md",
+                    link: "/guide/",
+                    activeMatch: "^/guide/$",
                   },
                   {
                     text: "Introduction",
-                    link: "/guide/introduction.md",
+                    link: "/guide/introduction.html",
                   },
                   {
                     text: "Getting Started",
-                    link: "/guide/getting-started.md",
+                    link: "/guide/getting-started.html",
                   },
                   {
                     text: "Sending and Receiving Messages",
-                    link: "/guide/basics.md",
+                    link: "/guide/basics.html",
                   },
                   {
                     text: "Context",
-                    link: "/guide/context.md",
+                    link: "/guide/context.html",
                   },
                   {
                     text: "Bot API",
-                    link: "/guide/api.md",
+                    link: "/guide/api.html",
                   },
                   {
                     text: "Filter Queries and bot.on()",
-                    link: "/guide/filter-queries.md",
+                    link: "/guide/filter-queries.html",
                   },
                   {
                     text: "Commands",
-                    link: "/guide/commands.md",
+                    link: "/guide/commands.html",
                   },
                   {
                     text: "Middleware",
-                    link: "/guide/middleware.md",
+                    link: "/guide/middleware.html",
                   },
                   {
                     text: "Error Handling",
-                    link: "/guide/errors.md",
+                    link: "/guide/errors.html",
                   },
                   {
                     text: "Inline Queries",
-                    link: "/guide/inline-queries.md",
+                    link: "/guide/inline-queries.html",
                   },
                   {
                     text: "File Handling",
-                    link: "/guide/files.md",
+                    link: "/guide/files.html",
                   },
                   {
                     text: "Games",
-                    link: "/guide/games.md",
+                    link: "/guide/games.html",
                   },
                   {
                     text: "Long Polling vs. Webhooks",
-                    link: "/guide/deployment-types.md",
+                    link: "/guide/deployment-types.html",
                   },
                 ],
               },
@@ -108,39 +112,40 @@ export default defineUserConfig({
                 children: [
                   {
                     text: "Overview",
-                    link: "/advanced/README.md",
+                    link: "/advanced/",
+                    activeMatch: "^/advanced/$",
                   },
                   {
                     text: "Middleware Redux",
-                    link: "/advanced/middleware.md",
+                    link: "/advanced/middleware.html",
                   },
                   {
                     text: "Scaling Up I: Large Codebase",
-                    link: "/advanced/structuring.md",
+                    link: "/advanced/structuring.html",
                   },
                   {
                     text: "Scaling Up II: High Load",
-                    link: "/advanced/scaling.md",
+                    link: "/advanced/scaling.html",
                   },
                   {
                     text: "Scaling Up III: Reliability",
-                    link: "/advanced/reliability.md",
+                    link: "/advanced/reliability.html",
                   },
                   {
                     text: "Scaling Up IV: Flood Limits",
-                    link: "/advanced/flood.md",
+                    link: "/advanced/flood.html",
                   },
                   {
                     text: "Bot API Transformers",
-                    link: "/advanced/transformers.md",
+                    link: "/advanced/transformers.html",
                   },
                   {
                     text: "Proxy Support",
-                    link: "/advanced/proxy.md",
+                    link: "/advanced/proxy.html",
                   },
                   {
                     text: "Deployment Checklist",
-                    link: "/advanced/deployment.md",
+                    link: "/advanced/deployment.html",
                   },
                 ],
               },
@@ -154,11 +159,12 @@ export default defineUserConfig({
                 children: [
                   {
                     text: "About Plugins",
-                    link: "/plugins/README.md",
+                    link: "/plugins/",
+                    activeMatch: "^/plugins/$",
                   },
                   {
                     text: "How to Write a Plugin",
-                    link: "/plugins/guide.md",
+                    link: "/plugins/guide.html",
                   },
                 ],
               },
@@ -167,11 +173,11 @@ export default defineUserConfig({
                 children: [
                   {
                     text: "Sessions and Storing Data",
-                    link: "/plugins/session.md",
+                    link: "/plugins/session.html",
                   },
                   {
                     text: "Inline and Custom Keyboards",
-                    link: "/plugins/keyboard.md",
+                    link: "/plugins/keyboard.html",
                   },
                 ],
               },
@@ -180,55 +186,55 @@ export default defineUserConfig({
                 children: [
                   {
                     text: "Interactive Menus (menu)",
-                    link: "/plugins/menu.md",
+                    link: "/plugins/menu.html",
                   },
                   {
                     text: "Stateless Question (stateless-question)",
-                    link: "/plugins/stateless-question.md",
+                    link: "/plugins/stateless-question.html",
                   },
                   {
                     text: "Concurrency (runner)",
-                    link: "/plugins/runner.md",
+                    link: "/plugins/runner.html",
                   },
                   {
                     text: "Hydration (hydrate)",
-                    link: "/plugins/hydrate.md",
+                    link: "/plugins/hydrate.html",
                   },
                   {
                     text: "Retry API Requests (auto-retry)",
-                    link: "/plugins/auto-retry.md",
+                    link: "/plugins/auto-retry.html",
                   },
                   {
                     text: "Flood Control (transformer-throttler)",
-                    link: "/plugins/transformer-throttler.md",
+                    link: "/plugins/transformer-throttler.html",
                   },
                   {
                     text: "Rate Limit Users (ratelimiter)",
-                    link: "/plugins/ratelimiter.md",
+                    link: "/plugins/ratelimiter.html",
                   },
                   {
                     text: "Files (files)",
-                    link: "/plugins/files.md",
+                    link: "/plugins/files.html",
                   },
                   {
                     text: "Internationalization (fluent)",
-                    link: "/plugins/fluent.md",
+                    link: "/plugins/fluent.html",
                   },
                   {
                     text: "Router (router)",
-                    link: "/plugins/router.md",
+                    link: "/plugins/router.html",
                   },
                   {
                     text: "Emoji (emoji)",
-                    link: "/plugins/emoji.md",
+                    link: "/plugins/emoji.html",
                   },
                   {
                     text: "Parse Mode (parse-mode)",
-                    link: "/plugins/parse-mode.md",
+                    link: "/plugins/parse-mode.html",
                   },
                   {
                     text: "Command Filtering (command-filter)",
-                    link: "/plugins/command-filter.md",
+                    link: "/plugins/command-filter.html",
                   },
                 ],
               },
@@ -237,16 +243,15 @@ export default defineUserConfig({
                 children: [
                   {
                     text: "Console Time",
-                    link: "/plugins/console-time.md",
+                    link: "/plugins/console-time.html",
                   },
                   {
                     text: "Useful Middleware",
-                    link: "/plugins/middlewares.md",
+                    link: "/plugins/middlewares.html",
                   },
                   {
                     text: "[Submit your PR!]",
-                    link:
-                      "/plugins/README.md#submitting-your-own-package-to-the-docs",
+                    link: "/plugins/#submitting-your-own-package-to-the-docs",
                   },
                 ],
               },
@@ -268,9 +273,10 @@ export default defineUserConfig({
                   },
                   {
                     text: "Live Browser Demo",
-                    link: "/demo/README.md",
+                    link: "/demo/",
+                    activeMatch: "^/demo/$",
                   },
-                  { text: "Example Bots", link: "/demo/examples.md" },
+                  { text: "Example Bots", link: "/demo/examples.html" },
                 ],
               },
             ],
@@ -283,7 +289,7 @@ export default defineUserConfig({
                 children: [
                   {
                     text: "About grammY",
-                    link: "/resources/about.md",
+                    link: "/resources/about.html",
                   },
                   {
                     text: "Community Chat (English)",
@@ -298,12 +304,16 @@ export default defineUserConfig({
                     link: "https://t.me/grammyjs_news",
                   },
                   {
+                    text: "Twitter",
+                    link: "https://twitter.com/grammy_js",
+                  },
+                  {
                     text: "FAQ",
-                    link: "/resources/faq.md",
+                    link: "/resources/faq.html",
                   },
                   {
                     text: "Comparison to Other Frameworks",
-                    link: "/resources/comparison.md",
+                    link: "/resources/comparison.html",
                   },
                 ],
               },
@@ -348,19 +358,19 @@ export default defineUserConfig({
                 children: [
                   {
                     text: "Deno Deploy",
-                    link: "/hosting/deno-deploy.md",
+                    link: "/hosting/deno-deploy.html",
                   },
                   {
                     text: "Heroku",
-                    link: "/hosting/heroku.md",
+                    link: "/hosting/heroku.html",
                   },
                   {
                     text: "Google Cloud Functions",
-                    link: "/hosting/gcf.md",
+                    link: "/hosting/gcf.html",
                   },
                   {
                     text: "Virtual Private Server",
-                    link: "/hosting/vps.md",
+                    link: "/hosting/vps.html",
                   },
                 ],
               },
@@ -372,10 +382,358 @@ export default defineUserConfig({
           },
         ],
       },
+      "/es/": {
+        selectLanguageName: "Español",
+        editLinkText: "Editar esta página en GitHub",
+        contributorsText: "Colaboradores",
+        lastUpdatedText: "Última actualización",
+        notFound: [
+          "¡Uy! Esta página no existe",
+          "Nop.",
+          "Nada aquí para ti, lo siento",
+          "Error 404/ ¡Houston, tenemos un problema!",
+          "Vuelveeeee, vuelve a casaaaaa, por navidad",
+        ],
+        backToHome: "Llévame a casa",
+        navbar: [
+          { text: "Guía", link: "/es/guide/" },
+          {
+            text: "Aprender",
+            children: [
+              {
+                text: "Guía",
+                children: [
+                  {
+                    text: "Resumen",
+                    link: "/es/guide/",
+                    activeMatch: "^/es/guide/$",
+                  },
+                  {
+                    text: "Introducción",
+                    link: "/es/guide/introduction.html",
+                  },
+                  {
+                    text: "Cómo empezar",
+                    link: "/es/guide/getting-started.html",
+                  },
+                  {
+                    text: "Envío y recepción de mensajes",
+                    link: "/es/guide/basics.html",
+                  },
+                  {
+                    text: "Contexto",
+                    link: "/es/guide/context.html",
+                  },
+                  {
+                    text: "API para bots",
+                    link: "/es/guide/api.html",
+                  },
+                  {
+                    text: "Filtrar consultas y bot.on()",
+                    link: "/es/guide/filter-queries.html",
+                  },
+                  {
+                    text: "Comandos",
+                    link: "/es/guide/commands.html",
+                  },
+                  {
+                    text: "Middleware",
+                    link: "/es/guide/middleware.html",
+                  },
+                  {
+                    text: "Manejo de errores",
+                    link: "/es/guide/errors.html",
+                  },
+                  {
+                    text: "Consultas lineales",
+                    link: "/es/guide/inline-queries.html",
+                  },
+                  {
+                    text: "Manejo de archivos",
+                    link: "/es/guide/files.html",
+                  },
+                  {
+                    text: "Juegos",
+                    link: "/es/guide/games.html",
+                  },
+                  {
+                    text: "Long Polling frente a Webhooks",
+                    link: "/es/guide/deployment-types.html",
+                  },
+                ],
+              },
+              {
+                text: "Avanzado",
+                children: [
+                  {
+                    text: "Resumen",
+                    link: "/es/advanced/",
+                    activeMatch: "^/es/advanced/$",
+                  },
+                  {
+                    text: "Middleware en profundidad",
+                    link: "/es/advanced/middleware.html",
+                  },
+                  {
+                    text: "Escalando I: Código base grande",
+                    link: "/es/advanced/structuring.html",
+                  },
+                  {
+                    text: "Escalando II: Alta carga",
+                    link: "/es/advanced/scaling.html",
+                  },
+                  {
+                    text: "Escalando III: Fiabilidad",
+                    link: "/es/advanced/reliability.html",
+                  },
+                  {
+                    text: "Escalando IV: Límites de flujo",
+                    link: "/es/advanced/flood.html",
+                  },
+                  {
+                    text: "Transformadores de la API del Bot",
+                    link: "/es/advanced/transformers.html",
+                  },
+                  {
+                    text: "Soporte para proxy",
+                    link: "/es/advanced/proxy.html",
+                  },
+                  {
+                    text: "Lista de comprobación del despliegue",
+                    link: "/es/advanced/deployment.html",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            text: "Complementos",
+            children: [
+              {
+                text: "Introducción",
+                children: [
+                  {
+                    text: "Acerca de los complementos",
+                    link: "/es/plugins/",
+                    activeMatch: "^/es/plugins/$",
+                  },
+                  {
+                    text: "Cómo escribir complementos",
+                    link: "/es/plugins/guide.html",
+                  },
+                ],
+              },
+              {
+                text: "Incorporado",
+                children: [
+                  {
+                    text: "Sesiones y almacenamiento de datos",
+                    link: "/es/plugins/session.html",
+                  },
+                  {
+                    text: "Teclados lineales y personalizados",
+                    link: "/es/plugins/keyboard.html",
+                  },
+                ],
+              },
+              {
+                text: "Oficial",
+                children: [
+                  {
+                    text: "Menus Interactivos (menu)",
+                    link: "/es/plugins/menu.html",
+                  },
+                  {
+                    text: "Conversaciones (conversations)",
+                    link: "/es/plugins/conversations.html",
+                  },
+                  {
+                    text: "Preguntas sin estado (stateless-question)",
+                    link: "/es/plugins/stateless-question.html",
+                  },
+                  {
+                    text: "Concurrencia (runner)",
+                    link: "/es/plugins/runner.html",
+                  },
+                  {
+                    text: "Hidratación (hydrate)",
+                    link: "/es/plugins/hydrate.html",
+                  },
+                  {
+                    text: "Reintentar solicitudes de la API (auto-retry)",
+                    link: "/es/plugins/auto-retry.html",
+                  },
+                  {
+                    text: "Control de flujo (transformer-throttler)",
+                    link: "/es/plugins/transformer-throttler.html",
+                  },
+                  {
+                    text: "Usuarios con límite de peticiones (ratelimiter)",
+                    link: "/es/plugins/ratelimiter.html",
+                  },
+                  {
+                    text: "Archivos (files)",
+                    link: "/es/plugins/files.html",
+                  },
+                  {
+                    text: "Internacionalización (fluent)",
+                    link: "/es/plugins/fluent.html",
+                  },
+                  {
+                    text: "Enrutador (router)",
+                    link: "/es/plugins/router.html",
+                  },
+                  {
+                    text: "Emojis (emoji)",
+                    link: "/es/plugins/emoji.html",
+                  },
+                  {
+                    text: "Modo de parsear (parse-mode)",
+                    link: "/es/plugins/parse-mode.html",
+                  },
+                  {
+                    text: "Filtro de comandos (command-filter)",
+                    link: "/es/plugins/command-filter.html",
+                  },
+                ],
+              },
+              {
+                text: "De Terceros",
+                children: [
+                  {
+                    text: "Tiempo de consola",
+                    link: "/es/plugins/console-time.html",
+                  },
+                  {
+                    text: "Middleware útil",
+                    link: "/es/plugins/middlewares.html",
+                  },
+                  {
+                    text: "[¡Envíe su PR!]",
+                    link:
+                      "/es/plugins/#submitting-your-own-package-to-the-docs",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            text: "Ejemplos",
+            children: [
+              {
+                text: "Ejemplos",
+                children: [
+                  {
+                    text: "Impresionante grammY",
+                    link: "https://github.com/grammyjs/awesome-grammY",
+                  },
+                  {
+                    text: "Ejemplo de Repositorio de Bots",
+                    link: "https://github.com/grammyjs/examples",
+                  },
+                  {
+                    text: "Demostración de navegador en vivo",
+                    link: "/es/demo/",
+                    activeMatch: "^/es/demo/$",
+                  },
+                  {
+                    text: "Ejemplos de bots",
+                    link: "/es/demo/examples.html",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            text: "Recursos",
+            children: [
+              {
+                text: "grammY",
+                children: [
+                  {
+                    text: "Sobre grammY",
+                    link: "/es/resources/about.html",
+                  },
+                  {
+                    text: "Chat comunitario (Inglés)",
+                    link: "https://t.me/grammyjs",
+                  },
+                  {
+                    text: "Chat comunitario (Ruso)",
+                    link: "https://t.me/grammyjs_ru",
+                  },
+                  {
+                    text: "Noticias",
+                    link: "https://t.me/grammyjs_news",
+                  },
+                  {
+                    text: "Twitter",
+                    link: "https://twitter.com/grammy_js",
+                  },
+                  {
+                    text: "Preguntas frecuentes",
+                    link: "/es/resources/faq.html",
+                  },
+                  {
+                    text: "Comparación con otros frameworks",
+                    link: "/es/resources/comparison.html",
+                  },
+                ],
+              },
+              {
+                text: "Telegram",
+                children: [
+                  {
+                    text: "Introducción para desarrolladores",
+                    link: "https://core.telegram.org/bots",
+                  },
+                  {
+                    text: "Preguntas frecuentes de bots",
+                    link: "https://core.telegram.org/bots/faq",
+                  },
+                  {
+                    text: "Referencia de la API para bots",
+                    link: "https://core.telegram.org/bots/api",
+                  },
+                  {
+                    text: "Ejemplos de actualizaciones",
+                    link:
+                      "https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates",
+                  },
+                ],
+              },
+              {
+                text: "Alojamiento",
+                children: [
+                  {
+                    text: "Despliegue con Deno",
+                    link: "/es/hosting/deno-deploy.html",
+                  },
+                  {
+                    text: "Heroku",
+                    link: "/es/hosting/heroku.html",
+                  },
+                  {
+                    text: "Google Cloud Functions",
+                    link: "/es/hosting/gcf.html",
+                  },
+                  {
+                    text: "Servidor Privado Virtual",
+                    link: "/es/hosting/vps.html",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            text: "Referencia de API",
+            link: "https://doc.deno.land/https://deno.land/x/grammy/mod.ts",
+          },
+        ],
+      },
       "/zh/": {
         selectLanguageText: "语言",
         selectLanguageName: "简体中文",
-        editLinks: true,
         editLinkText: "在 GitHub 上编辑此页！",
         contributorsText: "贡献者",
         lastUpdatedText: "最近更新时间",
@@ -397,59 +755,60 @@ export default defineUserConfig({
                 children: [
                   {
                     text: "概述",
-                    link: "/zh/guide/README.md",
+                    link: "/zh/guide/",
+                    activeMatch: "^/zh/guide/$",
                   },
                   {
                     text: "简介",
-                    link: "/zh/guide/introduction.md",
+                    link: "/zh/guide/introduction.html",
                   },
                   {
                     text: "入门",
-                    link: "/zh/guide/getting-started.md",
+                    link: "/zh/guide/getting-started.html",
                   },
                   {
                     text: "发送和接收消息",
-                    link: "/zh/guide/basics.md",
+                    link: "/zh/guide/basics.html",
                   },
                   {
                     text: "上下文",
-                    link: "/zh/guide/context.md",
+                    link: "/zh/guide/context.html",
                   },
                   {
                     text: "Bot API",
-                    link: "/zh/guide/api.md",
+                    link: "/zh/guide/api.html",
                   },
                   {
                     text: "Filter 查询与 bot.on()",
-                    link: "/zh/guide/filter-queries.md",
+                    link: "/zh/guide/filter-queries.html",
                   },
                   {
                     text: "Commands",
-                    link: "/zh/guide/commands.md",
+                    link: "/zh/guide/commands.html",
                   },
                   {
                     text: "中间件",
-                    link: "/zh/guide/middleware.md",
+                    link: "/zh/guide/middleware.html",
                   },
                   {
                     text: "错误处理",
-                    link: "/zh/guide/errors.md",
+                    link: "/zh/guide/errors.html",
                   },
                   {
                     text: "Inline Queries",
-                    link: "/zh/guide/inline-queries.md",
+                    link: "/zh/guide/inline-queries.html",
                   },
                   {
                     text: "文件管理",
-                    link: "/zh/guide/files.md",
+                    link: "/zh/guide/files.html",
                   },
                   {
                     text: "游戏",
-                    link: "/zh/guide/games.md",
+                    link: "/zh/guide/games.html",
                   },
                   {
                     text: "长轮询 vs. Webhooks",
-                    link: "/zh/guide/deployment-types.md",
+                    link: "/zh/guide/deployment-types.html",
                   },
                 ],
               },
@@ -458,39 +817,40 @@ export default defineUserConfig({
                 children: [
                   {
                     text: "概述",
-                    link: "/zh/advanced/README.md",
+                    link: "/zh/advanced/",
+                    activeMatch: "^/zh/advanced/$",
                   },
                   {
                     text: "重构中间件",
-                    link: "/zh/advanced/middleware.md",
+                    link: "/zh/advanced/middleware.html",
                   },
                   {
                     text: "I: 代码组织",
-                    link: "/zh/advanced/structuring.md",
+                    link: "/zh/advanced/structuring.html",
                   },
                   {
                     text: "II: 高负载",
-                    link: "/zh/advanced/scaling.md",
+                    link: "/zh/advanced/scaling.html",
                   },
                   {
                     text: "III: 可靠性",
-                    link: "/zh/advanced/reliability.md",
+                    link: "/zh/advanced/reliability.html",
                   },
                   {
                     text: "IV: 流量限制",
-                    link: "/zh/advanced/flood.md",
+                    link: "/zh/advanced/flood.html",
                   },
                   {
                     text: "Bot API Transformers",
-                    link: "/zh/advanced/transformers.md",
+                    link: "/zh/advanced/transformers.html",
                   },
                   {
                     text: "代理支持",
-                    link: "/zh/advanced/proxy.md",
+                    link: "/zh/advanced/proxy.html",
                   },
                   {
                     text: "部署",
-                    link: "/zh/advanced/deployment.md",
+                    link: "/zh/advanced/deployment.html",
                   },
                 ],
               },
@@ -504,11 +864,12 @@ export default defineUserConfig({
                 children: [
                   {
                     text: "关于插件",
-                    link: "/zh/plugins/README.md",
+                    link: "/zh/plugins/",
+                    activeMatch: "^/zh/plugins/$",
                   },
                   {
                     text: "如何编写一个插件",
-                    link: "/zh/plugins/guide.md",
+                    link: "/zh/plugins/guide.html",
                   },
                 ],
               },
@@ -517,11 +878,11 @@ export default defineUserConfig({
                 children: [
                   {
                     text: "会话与数据储存",
-                    link: "/zh/plugins/session.md",
+                    link: "/zh/plugins/session.html",
                   },
                   {
                     text: "Inline 与自定义 Keyboards",
-                    link: "/zh/plugins/keyboard.md",
+                    link: "/zh/plugins/keyboard.html",
                   },
                 ],
               },
@@ -530,55 +891,55 @@ export default defineUserConfig({
                 children: [
                   {
                     text: "互动菜单（menu）",
-                    link: "/zh/plugins/menu.md",
+                    link: "/zh/plugins/menu.html",
                   },
                   {
                     text: "无状态问题 (stateless-question)",
-                    link: "/zh/plugins/stateless-question.md",
+                    link: "/zh/plugins/stateless-question.html",
                   },
                   {
                     text: "并发 (runner)",
-                    link: "/zh/plugins/runner.md",
+                    link: "/zh/plugins/runner.html",
                   },
                   {
                     text: "Hydration (hydrate)",
-                    link: "/zh/plugins/hydrate.md",
+                    link: "/zh/plugins/hydrate.html",
                   },
                   {
                     text: "重试 API 请求 (auto-retry)",
-                    link: "/zh/plugins/auto-retry.md",
+                    link: "/zh/plugins/auto-retry.html",
                   },
                   {
                     text: "流量控制 (transformer-throttler)",
-                    link: "/zh/plugins/transformer-throttler.md",
+                    link: "/zh/plugins/transformer-throttler.html",
                   },
                   {
                     text: "限制用户速率 (ratelimiter)",
-                    link: "/zh/plugins/ratelimiter.md",
+                    link: "/zh/plugins/ratelimiter.html",
                   },
                   {
                     text: "文件助手 (files)",
-                    link: "/zh/plugins/files.md",
+                    link: "/zh/plugins/files.html",
                   },
                   {
                     text: "国际化 (fluent)",
-                    link: "/zh/plugins/fluent.md",
+                    link: "/zh/plugins/fluent.html",
                   },
                   {
                     text: "路由器 (router)",
-                    link: "/zh/plugins/router.md",
+                    link: "/zh/plugins/router.html",
                   },
                   {
                     text: "Emoji (emoji)",
-                    link: "/zh/plugins/emoji.md",
+                    link: "/zh/plugins/emoji.html",
                   },
                   {
                     text: "解析模式 (parse-mode)",
-                    link: "/zh/plugins/parse-mode.md",
+                    link: "/zh/plugins/parse-mode.html",
                   },
                   {
                     text: "指令过滤 (command-fiter)",
-                    link: "/zh/plugins/command-filter.md",
+                    link: "/zh/plugins/command-filter.html",
                   },
                 ],
               },
@@ -587,15 +948,15 @@ export default defineUserConfig({
                 children: [
                   {
                     text: "调试时输出日志",
-                    link: "/zh/plugins/console-time.md",
+                    link: "/zh/plugins/console-time.html",
                   },
                   {
                     text: "有用的中间件",
-                    link: "/zh/plugins/middlewares.md",
+                    link: "/zh/plugins/middlewares.html",
                   },
                   {
                     text: "[等待你的 PR!]",
-                    link: "/zh/plugins/README.md#向文档提交你自己的插件",
+                    link: "/zh/plugins/#向文档提交你自己的插件",
                   },
                 ],
               },
@@ -617,11 +978,12 @@ export default defineUserConfig({
                   },
                   {
                     text: "在线 Demo",
-                    link: "/zh/demo/README.md",
+                    link: "/zh/demo/",
+                    activeMatch: "^/zh/demo/$",
                   },
                   {
                     text: "示例 Bots",
-                    link: "/zh/demo/examples.md",
+                    link: "/zh/demo/examples.html",
                   },
                 ],
               },
@@ -635,7 +997,7 @@ export default defineUserConfig({
                 children: [
                   {
                     text: "关于 grammY",
-                    link: "/zh/resources/about.md",
+                    link: "/zh/resources/about.html",
                   },
                   {
                     text: "社区聊天（英语）",
@@ -650,12 +1012,16 @@ export default defineUserConfig({
                     link: "https://t.me/grammyjs_news",
                   },
                   {
+                    text: "Twitter",
+                    link: "https://twitter.com/grammy_js",
+                  },
+                  {
                     text: "FAQ",
-                    link: "/zh/resources/faq.md",
+                    link: "/zh/resources/faq.html",
                   },
                   {
                     text: "与其他框架的比较",
-                    link: "/zh/resources/comparison.md",
+                    link: "/zh/resources/comparison.html",
                   },
                 ],
               },
@@ -700,19 +1066,19 @@ export default defineUserConfig({
                 children: [
                   {
                     text: "Deno Deploy",
-                    link: "/zh/hosting/deno-deploy.md",
+                    link: "/zh/hosting/deno-deploy.html",
                   },
                   {
                     text: "Heroku",
-                    link: "/zh/hosting/heroku.md",
+                    link: "/zh/hosting/heroku.html",
                   },
                   {
                     text: "Google Cloud Functions",
-                    link: "/zh/hosting/gcf.md",
+                    link: "/zh/hosting/gcf.html",
                   },
                   {
                     text: "Virtual Private Server",
-                    link: "/zh/hosting/vps.md",
+                    link: "/zh/hosting/vps.html",
                   },
                 ],
               },
@@ -734,78 +1100,20 @@ export default defineUserConfig({
     repoLabel: "GitHub",
   }),
   plugins: [
-    [
-      docsearchPlugin({
-        apiKey: "33782ffb584887e3b8cdf9e760ea8e60",
-        indexName: "grammy",
-        appId: "RBF5Q0D7QV",
-        placeholder: "Search",
-        locales: {
-          "/zh/": {
-            placeholder: "搜索文档",
-            translations: { button: { buttonText: "搜索文档" } },
-          },
-        },
-      }),
-    ],
-    [
-      {
-        name: "break-long-inline-code-snippets",
-        extendsMarkdown: (md) => {
-          md.renderer.rules.code_inline = (
-            tokens,
-            idx,
-            _opts,
-            _env,
-            slf,
-          ) => {
-            const token = tokens[idx];
-            const attributes = slf.renderAttrs(token);
-            const withBreaks = insertWbrTags(token.content);
-            const escaped = escapeHtml(withBreaks);
-            return `<code${attributes}>${escaped}</code>`;
-          };
-        },
+    docsearch({
+      "/es/": {
+        placeholder: "Buscar",
+        translations: { button: { buttonText: "Buscar" } },
       },
-    ],
+      "/zh/": {
+        placeholder: "搜索文档",
+        translations: { button: { buttonText: "搜索文档" } },
+      },
+    }),
+    betterLineBreaks(),
+    currentVersions(),
   ],
   markdown: {
     typographer: true,
   },
 });
-
-// Adapted from original `code_inline` implementation of markdown-it.
-const HTML_ESCAPE_TEST_RE = /&|<(?!wbr>)|(?<!<wbr)>/;
-const HTML_ESCAPE_REPLACE_RE = /&|<(?!wbr>)|(?<!<wbr)>/g;
-const HTML_REPLACEMENTS: Record<string, string> = {
-  "&": "&amp;",
-  "<": "&lt;",
-  ">": "&gt;",
-  '"': "&quot;",
-};
-function replaceUnsafeChar(ch: string) {
-  return HTML_REPLACEMENTS[ch];
-}
-function escapeHtml(str: string) {
-  return HTML_ESCAPE_TEST_RE.test(str)
-    ? str.replace(HTML_ESCAPE_REPLACE_RE, replaceUnsafeChar)
-    : str;
-}
-
-function insertWbrTags(url: string) {
-  // Adapted from https://css-tricks.com/better-line-breaks-for-long-urls/
-  return url
-    .split("//")
-    .map(
-      (str) =>
-        str
-          // Insert a word break opportunity after a colon
-          .replace(/(?<after>:)/giu, "$1<wbr>")
-          // Before a single slash, tilde, period, comma, hyphen, underline, question mark, number sign, or percent symbol
-          .replace(/(?<before>[/~.,\-_?#%])/giu, "<wbr>$1")
-          // Before and after an equals sign or ampersand
-          .replace(/(?<beforeAndAfter>[=&])/giu, "<wbr>$1<wbr>"),
-    )
-    // Reconnect the strings with word break opportunities after double slashes
-    .join("//<wbr>");
-}

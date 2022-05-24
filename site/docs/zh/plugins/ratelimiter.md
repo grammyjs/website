@@ -37,97 +37,206 @@ rateLimiter 是用 grammY 或 [Telegraf](https://github.com/telegraf/telegraf) b
 
 ### 默认配置
 
-下面的示例使用 [express](https://github.com/expressjs/express) 作为服务器，并且使用 [webhooks](https://grammy.dev/zh/guide/deployment-types.html) 模式。这个示例演示了最简单的方式来使用默认行为的 rateLimiter：
+这个示例演示了最简单的方式来使用默认行为的 rateLimiter：
+
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
 
 ```ts
-import express from "express";
-import { Bot } from "grammy";
 import { limit } from "@grammyjs/ratelimiter";
 
-const app = express();
-const bot = new Bot("YOUR BOT TOKEN HERE");
-
-app.use(express.json());
+// 将每个用户的信息处理限制在每秒一条信息。
 bot.use(limit());
-
-app.listen(3000, () => {
-  bot.api.setWebhook("YOUR DOMAIN HERRE", { drop_pending_updates: true });
-  console.log("The application is listening on port 3000!");
-});
 ```
+
+</CodeGroupItem>
+  <CodeGroupItem title="JavaScript">
+
+```js
+const { limit } = require("@grammyjs/ratelimiter");
+
+// 将每个用户的信息处理限制在每秒一条信息。
+bot.use(limit());
+```
+
+</CodeGroupItem>
+  <CodeGroupItem title="Deno">
+
+```ts
+import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
+
+// 将每个用户的信息处理限制在每秒一条信息。
+bot.use(limit());
+```
+
+</CodeGroupItem>
+</CodeGroup>
 
 ### 手动配置
 
-正如前面所说，你可以向 `limit()` 方法传入一个 `Options` 对象来改变 rateLimiter 的行为。在下面的示例中，我决定使用 Redis 作为存储选项：
+正如前面所说，你可以向 `limit()` 方法传入一个 `Options` 对象来改变 rateLimiter 的行为。
+
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
 
 ```ts
-import express from "express";
-import { Bot } from "grammy";
-import { limit } from "@grammyjs/ratelimiter";
 import Redis from "ioredis";
+import { limit } from "@grammyjs/ratelimiter";
 
-const app = express();
-const bot = new Bot("YOUR BOT TOKEN HERE");
-const redis = new Redis();
+const redis = new Redis(...);
 
-app.use(express.json());
 bot.use(
   limit({
+    // 每 2 秒只允许处理 3 条信息。
     timeFrame: 2000,
 
     limit: 3,
 
-    // "MEMORY_STORAGE" 是默认的存储模式。如果你想使用 Redis，请不要忘记传入 storageClient。
+    // "MEMORY_STORE" 是默认值。如果你不想使用 Redis，请不要传入 storageClient。
     storageClient: redis,
 
-    onLimitExceeded: (ctx) => {
-      ctx?.reply("Please refrain from sending too many requests!");
+    // 当超过限制时执行调用。
+    onLimitExceeded: async (ctx) => {
+      await ctx.reply("Please refrain from sending too many requests!");
     },
 
-    // 请注意，这个键应该是一个字符串格式的数字，如 "123456789"
+    // 请注意，这个键应该是一个字符串格式的数字，如 "123456789"。
     keyGenerator: (ctx) => {
       return ctx.from?.id.toString();
     },
-  }),
+  })
 );
-
-app.listen(3000, () => {
-  bot.api.setWebhook("YOUR DOMAIN HERRE", { drop_pending_updates: true });
-  console.log("The application is listening on port 3000!");
-});
 ```
 
-正如你在上面的示例中看到的，每个用户每 2 秒钟最多只能发送 3 次请求。如果该用户发送更多请求，机器人会回复 _Please refrain from sending too many requests!_。由于我们不调用 [next()](/guide/middleware.html#the-middleware-stack)，这个请求将立即死亡。
+</CodeGroupItem>
+  <CodeGroupItem title="JavaScript">
+
+```js
+const Redis = require("ioredis");
+const { limit } = require("@grammyjs/ratelimiter");
+
+const redis = new Redis(...);
+
+bot.use(
+  limit({
+    // 每 2 秒只允许处理 3 条信息。
+    timeFrame: 2000,
+
+    limit: 3,
+
+    // "MEMORY_STORE" 是默认值。如果你不想使用 Redis，请不要传入 storageClient。
+    storageClient: redis,
+
+    // 当超过限制时执行调用。
+    onLimitExceeded: async (ctx) => {
+      await ctx.reply("Please refrain from sending too many requests!");
+    },
+
+    // 请注意，这个键应该是一个字符串格式的数字，如 "123456789"。
+    keyGenerator: (ctx) => {
+      return ctx.from?.id.toString();
+    },
+  })
+);
+```
+
+</CodeGroupItem>
+  <CodeGroupItem title="Deno">
+
+```ts
+import { connect } from "https://deno.land/x/redis/mod.ts";
+import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
+
+const redis = await connect(...);
+
+bot.use(
+  limit({
+    // 每 2 秒只允许处理 3 条信息。
+    timeFrame: 2000,
+
+    limit: 3,
+
+    // "MEMORY_STORE" 是默认值。如果你不想使用 Redis，请不要传入 storageClient。
+    storageClient: redis,
+
+    // 当超过限制时执行调用。
+    onLimitExceeded: async (ctx) => {
+      await ctx.reply("Please refrain from sending too many requests!");
+    },
+
+    // 请注意，这个键应该是一个字符串格式的数字，如 "123456789"。
+    keyGenerator: (ctx) => {
+      return ctx.from?.id.toString();
+    },
+  })
+);
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+正如你在上面的示例中看到的，每个用户每 2 秒钟最多只能发送 3 次请求。如果该用户发送更多请求，机器人会回复 _Please refrain from sending too many requests!_。由于我们不调用 [next()](/guide/middleware.html#the-middleware-stack)，这个请求将被立即关闭。
 
 > 请注意：为了避免 Telegram 服务器被请求淹没，`onLimitExceeded` 只会在每个 `timeFrame` 中执行一次。
 
 另一个用例是限制来自聊天室的请求而不是特定用户的请求：
 
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
+
 ```ts
-import express from "express";
-import { Bot } from "grammy";
 import { limit } from "@grammyjs/ratelimiter";
 
-const app = express();
-const bot = new Bot("YOUR BOT TOKEN HERE");
-
-app.use(express.json());
 bot.use(
   limit({
     keyGenerator: (ctx) => {
       if (ctx.chat?.type === "group" || ctx.chat?.type === "supergroup") {
-        // 请注意，这个键应该是一个字符串格式的数字，如 "123456789"
+        // 请注意，这个键应该是一个字符串格式的数字，如 "123456789"。
         return ctx.chat.id.toString();
       }
     },
   }),
 );
-
-app.listen(3000, () => {
-  bot.api.setWebhook("YOUR DOMAIN HERRE", { drop_pending_updates: true });
-  console.log("The application is listening on port 3000!");
-});
 ```
+
+</CodeGroupItem>
+  <CodeGroupItem title="JavaScript">
+
+```js
+const { limit } = require("@grammyjs/ratelimiter");
+
+bot.use(
+  limit({
+    keyGenerator: (ctx) => {
+      if (ctx.chat?.type === "group" || ctx.chat?.type === "supergroup") {
+        // 请注意，这个键应该是一个字符串格式的数字，如 "123456789"。
+        return ctx.chat.id.toString();
+      }
+    },
+  }),
+);
+```
+
+</CodeGroupItem>
+  <CodeGroupItem title="Deno">
+
+```ts
+import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
+
+bot.use(
+  limit({
+    keyGenerator: (ctx) => {
+      if (ctx.chat?.type === "group" || ctx.chat?.type === "supergroup") {
+        // 请注意，这个键应该是一个字符串格式的数字，如 "123456789"。
+        return ctx.chat.id.toString();
+      }
+    },
+  }),
+);
+```
+
+</CodeGroupItem>
+</CodeGroup>
 
 在这个示例中，我使用 `chat.id` 作为限制的唯一键。
 
