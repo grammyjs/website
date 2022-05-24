@@ -554,7 +554,6 @@ bot.start();
 
 We maintain a list of official storage adapters that allow you to store your session data in different places.
 Each of them will require you to register at a hosting provider, or to host your own storage solution.
-Check out the respective repositories about each individual setup.
 
 - Supabase: <https://github.com/grammyjs/storages/tree/main/packages/supabase>
 - Deta.sh Base: <https://github.com/grammyjs/storages/tree/main/packages/deta>
@@ -584,6 +583,9 @@ For example, the storage adapter for Supabase can be installed via `npm i @gramm
 **On Deno**, all storage adapters are published in the same Deno module.
 You can then import the adapter you need from its subpath at `https://deno.land/x/grammy_storages/<adapter>/src/mod.ts`.
 For example, the storage adapter for Supabase can be imported from `https://deno.land/x/grammy_storages/supabase/src/mod.ts`.
+
+Check out the respective repositories about each individual setup.
+They contain information about how to connect them to your storage solution.
 
 ## Plugin Summary
 
