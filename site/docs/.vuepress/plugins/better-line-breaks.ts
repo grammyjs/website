@@ -28,7 +28,9 @@ function insertWbrTags(url: string) {
           // Before a single slash, tilde, period, comma, hyphen, underline, question mark, number sign, or percent symbol
           .replace(/(?<before>[/~.,\-_?#%])/giu, "<wbr>$1")
           // Before and after an equals sign or ampersand
-          .replace(/(?<beforeAndAfter>[=&])/giu, "<wbr>$1<wbr>"),
+          .replace(/(?<beforeAndAfter>[=&])/giu, "<wbr>$1<wbr>")
+          // Between words in camelCase
+          .replace(/([a-z]+)([A-Z][a-z])+/gu, '$1<wbr>$2'),
     )
     // Reconnect the strings with word break opportunities after double slashes
     .join("//<wbr>");
