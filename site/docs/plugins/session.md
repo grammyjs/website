@@ -574,6 +574,17 @@ The `storage` option works with any object that adheres to [this interface](http
 
 :::
 
+All storage adapters can be installed in the same way.
+First, you should look out for the package name of the adapter of your choice.
+For example, the storage adapter for Supabase is called `supabase`.
+
+**On Node.js**, you can install the adapters via `npm i @grammyjs/storage-<name>`.
+For example, the storage adapter for Supabase can be installed via `npm i @grammyjs/storage-supabase`.
+
+**On Deno**, all storage adapters are published in the same Deno module.
+You can then import the adapter you need from its subpath at `https://deno.land/x/grammy_storages/<adapter>/src/mod.ts`.
+For example, the storage adapter for Supabase can be imported from `https://deno.land/x/grammy_storages/supabase/src/mod.ts`.
+
 ## Plugin Summary
 
 This plugin is built-in into the core of grammY.
