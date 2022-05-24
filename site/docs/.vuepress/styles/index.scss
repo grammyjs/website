@@ -39,7 +39,7 @@ html:not(.dark) tr:nth-child(2n) code {
   hyphens: auto;
 }
 
-// do not hyphenate inline code snippets, we are injeting <wbr> tags there
-code {
+// neither hyphenate inline code snippets nor links, we are injeting <wbr> tags there
+code, a {
   hyphens: none;
 }
