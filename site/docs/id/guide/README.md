@@ -26,9 +26,9 @@ Dokumentasi bot grammY dibagi menjadi tiga area:
 2. [Referensi API grammY tingkat rendah](https://doc.deno.land/https://deno.land/x/grammy/mod.ts)
 3. [Referensi API HTTP murni oleh Telegram](https://core.telegram.org/bots/api)
 
-**Area pertama** (Yang sedang Kamu baca saat ini!) menjelaskan bagaimana bot bekerja dan bagaimana menggunakan grammY.
+**Area pertama** — yang sedang kamu baca saat ini! — menjelaskan bagaimana bot bekerja dan bagaimana menggunakan grammY.
 Ini yang akan paling sering kamu gunakan.
-Bagian _Belajar_ selalu merupakan awal yang baik untuk memulai.
+Bab _Belajar_ selalu merupakan awal yang baik untuk memulai.
 Lihat juga koleksi _Plugin_ kami yang menakjubkan, dan berbagai _Contoh_ yang sudah disediakan.
 
 **Area kedua** adalah [referensi API grammY](https://doc.deno.land/https://deno.land/x/grammy/mod.ts), yang ditautkan di bagian atas halaman.
@@ -40,6 +40,6 @@ Referensi API grammY akan terhubung ke sana kapan pun saat diperlukan.
 Silahkan dipelajari jika penasaran dengan opsi-opsi apa saja yang dapat kamu gunakan dalam pemanggilan API.
 
 ::::: tip Bergabung dengan Komunitas!
-Kami memiliki [chat komunitas](https://t.me/grammyjs) di Telegram yang dengan senang hati menyambut hangat semua anggota baru (Khusus chat dalam bahasa Rusia ada [di sini](https://t.me/grammyjs_ru)).
+Kami memiliki [chat komunitas](https://t.me/grammyjs) di Telegram yang dengan senang hati menyambut hangat semua anggota baru (khusus chat Rusia ada [di sini](https://t.me/grammyjs_ru)).
 Mari bergabung untuk mendapatkan bantuan, mengajukan pertanyaan, dan mempelajari tips dan trik dalam mengerjakan proyek botmu selanjutnya!
 :::::
