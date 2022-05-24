@@ -5,7 +5,7 @@ on:
     paths:
       - "notifier/**"
 
-job:
+jobs:
   permissions:
     id-token: write
     contents: read
