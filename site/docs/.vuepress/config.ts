@@ -702,8 +702,22 @@ export default defineUserConfig({
                   },
                 ],
               },
+            ],
+          },
+          {
+            text: "Alojamiento",
+            children: [
               {
-                text: "Alojamiento",
+                text: "Resumen",
+                children: [
+                  {
+                    text: "Comparativa",
+                    link: "/hosting/comparison.md",
+                  },
+                ],
+              },
+              {
+                text: "Tutoriales",
                 children: [
                   {
                     text: "Despliegue con Deno",
