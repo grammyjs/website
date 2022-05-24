@@ -231,7 +231,7 @@ type MyContext = Context & {
 
 The new type `MyContext` now accurately describes the context objects our bot is actually handling.
 
-> You need to make sure that you keep the types in sync with the properties you initialize.
+> You will need to make sure that you keep the types in sync with the properties you initialize.
 
 We can use the new type by passing it to the `Bot` constructor.
 
