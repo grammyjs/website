@@ -59,7 +59,7 @@ Consulta [el tutorial](./vps.md) sobre cómo alojar bots de grammY en un VPS.
 | Hetzner Cloud | €4.15         | ~42 ms :de:                               | 1 vCPU, 2 GB RAM, 20 GB SSD, 20 TB |
 | Scaleway      | €~7           |                                           | 2 cores, 2 GB RAM, 20 GB SSD       |
 | Contabo       |               | 15 ms :de: Nuremberg                      |                                    |
-| IONOS VPS     | €1 or $2      | 15 ms :de: Baden-Baden                    | 1 vCPU, 0.5 GB RAM, 8 GB SSD       |
+| IONOS VPS     | €1 o $2      | 15 ms :de: Baden-Baden                    | 1 vCPU, 0.5 GB RAM, 8 GB SSD       |
 
 ## Explicaciones sobre las unidades
 
