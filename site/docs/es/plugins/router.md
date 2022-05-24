@@ -32,7 +32,7 @@ other.on(":text", (ctx) => {/* ... */});
 other.use((ctx) => {/* ... */});
 ```
 
-También puedes revisar [esta sección](../guide/filter-queries.md#combinación-de-consultas-con-otros-métodos) sobre la combinación de manejadores de middleware.
+También puedes revisar [esta sección](../guide/filter-queries.md#combinacion-de-consultas-con-otros-metodos) sobre la combinación de manejadores de middleware.
 
 ## Combinación de enrutadores con sesiones
 
