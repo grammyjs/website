@@ -38,3 +38,8 @@ html:not(.dark) tr:nth-child(2n) code {
   text-justify: inter-character;
   hyphens: auto;
 }
+
+// do not hyphenate inline code snippets, we are injeting <wbr> tags there
+code {
+  hyphens: none;
+}
