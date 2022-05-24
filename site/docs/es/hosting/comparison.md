@@ -7,7 +7,7 @@ Por ello, la comunidad de grammY está recopilando sus experiencias en esta pág
 ## ¿Qué es un proveedor de alojamiento?
 
 Para mantener un bot online las 24 horas del día, es necesario que un ordenador funcione las 24 horas del día.
-Como [se mencionó en la introducción](/guide/introduction.html#como-mantener-un-bot-en-funcionamiento), lo más probable es que no quieras hacer eso con tu ordenador portátil o doméstico.
+Como [se mencionó en la introducción](../guide/introduction.html#como-mantener-un-bot-en-funcionamiento), lo más probable es que no quieras hacer eso con tu ordenador portátil o doméstico.
 En su lugar, puedes pedir a una empresa que ejecute el bot en la nube.
 
 En otras palabras, simplemente lo ejecutas en el ordenador de otra persona.
