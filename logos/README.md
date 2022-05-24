@@ -5,4 +5,3 @@
 | Y.png                          | The Y of the original grammY logo.                                  |
 | Y-fit.png                      | The Y of the original grammY logo fitting the dimensions.           |
 | grammY-with-font-not-paths.png | The original grammY logo with its text content not as paths.        |
-| grammY-showcase.svg            | The graphic we tried to showcase on [deno.land](https://deno.land). |
