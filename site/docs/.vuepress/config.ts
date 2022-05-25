@@ -349,7 +349,7 @@ export default defineUserConfig({
                 children: [
                   {
                     text: "Comparison",
-                    link: "/hosting/comparison.md",
+                    link: "/hosting/comparison.html",
                   },
                 ],
               },
@@ -712,7 +712,7 @@ export default defineUserConfig({
                 children: [
                   {
                     text: "Comparativa",
-                    link: "/hosting/comparison.md",
+                    link: "/hosting/comparison.html",
                   },
                 ],
               },
@@ -1071,7 +1071,7 @@ export default defineUserConfig({
                 children: [
                   {
                     text: "对比",
-                    link: "/zh/hosting/comparison.md",
+                    link: "/zh/hosting/comparison.html",
                   },
                 ],
               },
