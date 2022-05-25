@@ -1,7 +1,7 @@
 # Router (`router`)
 
 The `Router` class ([API Reference](https://doc.deno.land/https://deno.land/x/grammy_router/router.ts)) provides a way to structure your bot by routing context objects to different parts of your code.
-It is a more sophisticated version of `bot.route` on `Composer` ([grammY API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer#route))
+It is a more sophisticated version of `bot.route` on `Composer` ([grammY API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer#route)).
 
 ## Example
 
@@ -19,6 +19,21 @@ router.otherwise((ctx) => {/* ... */}); // called if no route matches
 
 bot.use(router);
 ```
+
+## Integration With Middleware
+
+Naturally, the router plugin integrates seamlessly with grammY's [middleware trees](../advanced/middleware.md).
+For example, you filter down updates further after routing them.
+
+```ts
+router.route("key").on("message:text", (ctx) => {/* ... */});
+
+const other = router.otherwise();
+other.on(":text", (ctx) => {/* ... */});
+other.use((ctx) => {/* ... */});
+```
+
+You may also want to revisit [this section](../guide/filter-queries.md#combining-queries-with-other-methods) about combining middleware handlers.
 
 ## Combining Routers With Sessions
 
@@ -49,7 +64,6 @@ interface SessionData {
   dayOfMonth?: number; // day of birthday
   month?: number; // month of birthday
 }
-
 type MyContext = Context & SessionFlavor<SessionData>;
 
 const bot = new Bot<MyContext>("");
@@ -71,7 +85,7 @@ bot.command("birthday", async (ctx) => {
     // Information already provided!
     await ctx.reply(`Your birthday is in ${getDays(month, day)} days!`);
   } else {
-    // Missing information, enter router-based form.
+    // Missing information, enter router-based form
     ctx.session.step = "day";
     await ctx.reply(
 "Please send me the day of month \
@@ -84,8 +98,9 @@ of your birthday as a number!",
 const router = new Router<MyContext>((ctx) => ctx.session.step);
 
 // Define step that handles the day.
-router.route("day", async (ctx) => {
-  const day = parseInt(ctx.msg?.text ?? "", 10);
+const day = router.route("day");
+day.on("message:text", async (ctx) => {
+  const day = parseInt(ctx.msg.text, 10);
   if (isNaN(day) || day < 1 || 31 < day) {
     await ctx.reply("That is not a valid day, try again!");
     return;
@@ -104,8 +119,11 @@ router.route("day", async (ctx) => {
     },
   });
 });
+day.use((ctx) => ctx.reply("Please send me the day as a text message!"));
 
-router.route("month", async (ctx) => {
+// Define step that handles the month.
+const month = router.route("month");
+month.on("message:text", async (ctx) => {
   // Should not happen, unless session data is corrupted.
   const day = ctx.session.dayOfMonth;
   if (day === undefined) {
@@ -114,7 +132,7 @@ router.route("month", async (ctx) => {
     return;
   }
 
-  const month = months.indexOf(ctx.msg?.text ?? "");
+  const month = months.indexOf(ctx.msg.text);
   if (month === -1) {
     await ctx.reply(
 "That is not a valid month, \
@@ -132,8 +150,10 @@ That is in ${diff} days!`,
   );
   ctx.session.step = "idle";
 });
+month.use((ctx) => ctx.reply("Please tap one of the buttons!"));
 
-router.route("idle", async (ctx) => {
+// Define step that handles all other cases.
+router.otherwise(async (ctx) => { // idle
   await ctx.reply("Send /birthday to find out how long you have to wait.");
 });
 
@@ -155,7 +175,6 @@ const months = [
   "Nov",
   "Dec",
 ];
-
 function getDays(month: number, day: number) {
   const bday = new Date();
   const now = Date.now();
@@ -193,7 +212,7 @@ bot.command("birthday", async (ctx) => {
     // Information already provided!
     await ctx.reply(`Your birthday is in ${getDays(month, day)} days!`);
   } else {
-    // Missing information, enter router-based form.
+    // Missing information, enter router-based form
     ctx.session.step = "day";
     await ctx.reply(
 "Please send me the day of month \
@@ -206,8 +225,9 @@ of your birthday as a number!",
 const router = new Router((ctx) => ctx.session.step);
 
 // Define step that handles the day.
-router.route("day", async (ctx) => {
-  const day = parseInt(ctx.msg?.text ?? "", 10);
+const day = router.route("day");
+day.on("message:text", async (ctx) => {
+  const day = parseInt(ctx.msg.text, 10);
   if (isNaN(day) || day < 1 || 31 < day) {
     await ctx.reply("That is not a valid day, try again!");
     return;
@@ -226,8 +246,11 @@ router.route("day", async (ctx) => {
     },
   });
 });
+day.use((ctx) => ctx.reply("Please send me the day as a text message!"));
 
-router.route("month", async (ctx) => {
+// Define step that handles the month.
+const month = router.route("month");
+month.on("message:text", async (ctx) => {
   // Should not happen, unless session data is corrupted.
   const day = ctx.session.dayOfMonth;
   if (day === undefined) {
@@ -236,7 +259,7 @@ router.route("month", async (ctx) => {
     return;
   }
 
-  const month = months.indexOf(ctx.msg?.text ?? "");
+  const month = months.indexOf(ctx.msg.text);
   if (month === -1) {
     await ctx.reply(
 "That is not a valid month, \
@@ -254,8 +277,10 @@ That is in ${diff} days!`,
   );
   ctx.session.step = "idle";
 });
+month.use((ctx) => ctx.reply("Please tap one of the buttons!"));
 
-router.route("idle", async (ctx) => {
+// Define step that handles all other cases.
+router.otherwise(async (ctx) => { // idle
   await ctx.reply("Send /birthday to find out how long you have to wait.");
 });
 
@@ -340,8 +365,9 @@ of your birthday as a number!",
 const router = new Router<MyContext>((ctx) => ctx.session.step);
 
 // Define step that handles the day.
-router.route("day", async (ctx) => {
-  const day = parseInt(ctx.msg?.text ?? "", 10);
+const day = router.route("day");
+day.on("message:text", async (ctx) => {
+  const day = parseInt(ctx.msg.text, 10);
   if (isNaN(day) || day < 1 || 31 < day) {
     await ctx.reply("That is not a valid day, try again!");
     return;
@@ -360,8 +386,11 @@ router.route("day", async (ctx) => {
     },
   });
 });
+day.use((ctx) => ctx.reply("Please send me the day as a text message!"));
 
-router.route("month", async (ctx) => {
+// Define step that handles the month.
+const month = router.route("month");
+month.on("message:text", async (ctx) => {
   // Should not happen, unless session data is corrupted.
   const day = ctx.session.dayOfMonth;
   if (day === undefined) {
@@ -370,7 +399,7 @@ router.route("month", async (ctx) => {
     return;
   }
 
-  const month = months.indexOf(ctx.msg?.text ?? "");
+  const month = months.indexOf(ctx.msg.text);
   if (month === -1) {
     await ctx.reply(
 "That is not a valid month, \
@@ -388,8 +417,10 @@ That is in ${diff} days!`,
   );
   ctx.session.step = "idle";
 });
+month.use((ctx) => ctx.reply("Please tap one of the buttons!"));
 
-router.route("idle", async (ctx) => {
+// Define step that handles all other cases.
+router.otherwise(async (ctx) => { // idle
   await ctx.reply("Send /birthday to find out how long you have to wait.");
 });
 
@@ -424,11 +455,6 @@ function getDays(month: number, day: number) {
 
 </CodeGroupItem>
 </CodeGroup>
-
-::: tip Breaking Up the Code
-If you feel like your code gets too complex, you can split it across several files.
-You can read more about how to scale your codebase in [this advanced section](../advanced/structuring.md).
-:::
 
 Note how the session has a property `step` that stores the step of the form, i.e. which value is currently being filled.
 The router is used to jump between different middleware that completes both the `month` and the `dayOfMonth` fields on the session.
