@@ -35,7 +35,7 @@ Lihat juga koleksi _Plugin_ kami yang menakjubkan, dan berbagai _Contoh_ yang su
 Referensi ini berisi gambaran terperinci dari setiap bit kode yang disediakan grammY.
 Ia dihasilkan dari kode program grammY secara otomatis dan berisi semua penjelasan tooltip yang berguna, biasanya dapat ditemukan dengan mengarahkan kursor ke elemen grammY mana pun di kode editor.
 
-**Areas ketiga** disediakan oleh Telegram dan berisi definisi murni dari [API HTTP](https://core.telegram.org/bots/api) yang akan dihubungkan oleh grammY di balik layar.
+**Area ketiga** disediakan oleh Telegram dan berisi definisi murni dari [API HTTP](https://core.telegram.org/bots/api) yang akan dihubungkan oleh grammY di balik layar.
 Referensi API grammY akan terhubung ke sana kapan pun saat diperlukan.
 Silahkan dipelajari jika penasaran dengan opsi-opsi apa saja yang dapat kamu gunakan dalam pemanggilan API.
 
