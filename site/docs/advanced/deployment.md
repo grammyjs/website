@@ -7,7 +7,7 @@ prev: ./proxy.md
 Here is a list of things that you may want to keep in mind when hosting a large bot.
 
 > You may also be interested in our guides for hosting a bot.
-> Check out **Resources / Hosting** at the top of the page to see some of the platforms that already have dedicated guides.
+> Check out **Hosting / Tutorials** at the top of the page to see some of the platforms that already have dedicated guides.
 
 ## Errors
 

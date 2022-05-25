@@ -7,7 +7,7 @@ prev: ./proxy.md
 Lista de cosas a tener en cuanta cuando vayas a alojar un bot grande.
 
 > Puede que estes interesado en nuestras guías para alojar un bot.
-> Mira **Resources / Hosting** en el principio de la página para ver algunas de las plataformas que ya tienen guías dedicadas.
+> Mira **Alojamiento / Tutoriales** en el principio de la página para ver algunas de las plataformas que ya tienen guías dedicadas.
 
 ## Errores
 
