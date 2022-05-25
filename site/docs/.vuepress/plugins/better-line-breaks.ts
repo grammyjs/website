@@ -5,6 +5,17 @@ export function betterLineBreaks(): Plugin {
   return {
     name: "better-line-breaks",
     extendsMarkdown: (md) => {
+      md.renderer.rules.text = (tokens, idx) => {
+        let content = tokens[idx].content;
+        if (
+          tokens[idx - 1]?.type === "link_open" &&
+          tokens[idx + 1]?.type === "link_close"
+        ) {
+          content = insertWbrTags(content);
+        }
+        const escaped = escapeHtml(content);
+        return escaped;
+      };
       md.renderer.rules.code_inline = (tokens, idx, _opts, _env, slf) => {
         const token = tokens[idx];
         const attributes = slf.renderAttrs(token);
@@ -28,7 +39,9 @@ function insertWbrTags(url: string) {
           // Before a single slash, tilde, period, comma, hyphen, underline, question mark, number sign, or percent symbol
           .replace(/(?<before>[/~.,\-_?#%])/giu, "<wbr>$1")
           // Before and after an equals sign or ampersand
-          .replace(/(?<beforeAndAfter>[=&])/giu, "<wbr>$1<wbr>"),
+          .replace(/(?<beforeAndAfter>[=&])/giu, "<wbr>$1<wbr>")
+          // Between words in camelCase
+          .replace(/([a-z]+)([A-Z][a-z])+/gu, "$1<wbr>$2"),
     )
     // Reconnect the strings with word break opportunities after double slashes
     .join("//<wbr>");

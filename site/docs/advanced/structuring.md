@@ -44,7 +44,7 @@ In `list.ts`, you would then do something like this:
 export const lists = new Composer();
 
 // Register some handlers here that handle your middleware the usual way.
-lists.on('message', ctx => { ... });
+lists.on("message", (ctx) => {/* ... */});
 ```
 
 Optionally, you can use an [error boundary](../guide/errors.md#error-boundaries) to handle all errors that happen inside your module.

@@ -7,7 +7,7 @@ prev: ./proxy.md
 在托管一个大型 bot 的时候，这里有一系列你需要深深记在脑海里的东西。
 
 > 你可能也会对我们的部署一个 bot 的指导感兴趣。
-> 查看页面顶部的 **资源/托管服务** 查看一些已经有专用指南的平台。
+> 查看页面顶部的 **托管服务/教程** 查看一些已经有专用指南的平台。
 
 ## 错误
 
@@ -17,7 +17,7 @@ prev: ./proxy.md
 ## 发送消息
 
 1. 通过 path 或 `Buffer` 发送文件而不是通过 stream流，或者至少确保你 [了解这些风险](./transformers.md#use-cases-of-transformer-functions)。
-2. 使用 `bot.on('callback_query:data')` 作为回调处理 [响应所有回调查询](../plugins/keyboard.md#responding-to-clicks)
+2. 使用 `bot.on("callback_query:data")` 作为回调处理 [响应所有回调查询](../plugins/keyboard.md#responding-to-clicks)
 3. 使用 [`transformer-throttler` 插件](/zh/plugins/transformer-throttler.md) 去避免到达速率限制。
 4. **可选的**，考虑使用 [auto-retry 插件](/zh/plugins/auto-retry.md) 去自动处理流量等待的错误。
 

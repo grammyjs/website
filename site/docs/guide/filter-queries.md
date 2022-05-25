@@ -16,7 +16,7 @@ On the contrary, **grammY ships with its own query language** that you can use i
 
 This allows for over 650 different filters to be used, and we may add more over time.
 Every valid filter can be auto-completed in your code editor.
-Hence, you can simply type `bot.on('')`, open auto-complete, and search through all queries by typing something.
+Hence, you can simply type `bot.on("")`, open auto-complete, and search through all queries by typing something.
 
 ![Filter Query Search](/filter-query-search.png)
 

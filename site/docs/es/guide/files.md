@@ -18,8 +18,6 @@ Esto implica el manejo de los archivos que se adjuntan a los mensajes.
 Los archivos se almacenan por separado de los mensajes.
 Un archivo en los servidores de Telegram es identificado por un `file_id`, que es sólo una larga cadena de caracteres.
 
-`AgADBAADZRAxGyhM3FKSE4qKa-RODckQHxsoABDHe0BDC1GzpGACAAEC` is an example of a `file_id`.
-
 `AgADBAADZRAxGyhM3FKSE4qKa-RODckQHxsoABDHe0BDC1GzpGACAAEC` es un ejemplo de `file_id`.
 
 Siempre que tu bot **reciba** un mensaje con un archivo, no recibirá directamente los datos completos del archivo, sino sólo el `file_id`.

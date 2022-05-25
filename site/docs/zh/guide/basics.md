@@ -22,10 +22,10 @@ bot.on("message", (ctx) => {
 
 ```ts
 // 处理 commands, 比如 /start。
-bot.command('start', (ctx) => { ... });
+bot.command("start", (ctx) => {/* ... */});
 
 // 把信息文本与一个字符串或正则表达式相匹配。
-bot.hears(/echo *(.+)?/, (ctx) => { ... });
+bot.hears(/echo *(.+)?/, (ctx) => {/* ... */});
 ```
 
 你可以在你的代码编辑器中使用自动完成来查看所有可用的选项，或者查看 `Composer` 类的 [所有方法](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer)。

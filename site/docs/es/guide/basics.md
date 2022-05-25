@@ -22,10 +22,10 @@ Sin embargo, también hay otras opciones:
 
 ```ts
 // Maneja comandos, como /start.
-bot.command('start', (ctx) => { ... });
+bot.command("start", (ctx) => {/* ... */});
 
 // Compara el texto del mensaje con una cadena o una expresión regular.
-bot.hears(/echo *(.+)?/, (ctx) => { ... });
+bot.hears(/echo *(.+)?/, (ctx) => {/* ... */});
 ```
 
 Puedes utilizar la función de autocompletar en tu editor de código para ver todas las opciones disponibles, o consultar [todos los métodos](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer) de la clase `Composer`.

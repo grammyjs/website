@@ -320,7 +320,7 @@ También se puede ajustar dinámicamente la estructura de un menú para añadir 
 ::: peligro Cambiar un menú durante el manejo de mensajes
 No se pueden crear o modificar los menús durante la gestión de los mensajes.
 Todos los menús deben estar completamente creados y registrados antes de que se inicie tu bot.
-Esto significa que no puedes hacer `new Menu('id')` en un manejador de tu bot.
+Esto significa que no puedes hacer `new Menu("id")` en un manejador de tu bot.
 
 Añadir nuevos menús mientras tu bot se está ejecutando causaría una fuga de memoria.
 Tu bot se ralentizaría cada vez más, y finalmente se colgaría.

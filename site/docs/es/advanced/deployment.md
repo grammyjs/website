@@ -7,7 +7,7 @@ prev: ./proxy.md
 Lista de cosas a tener en cuanta cuando vayas a alojar un bot grande.
 
 > Puede que estes interesado en nuestras guías para alojar un bot.
-> Mira **Resources / Hosting** en el principio de la página para ver algunas de las plataformas que ya tienen guías dedicadas.
+> Mira **Alojamiento / Tutoriales** en el principio de la página para ver algunas de las plataformas que ya tienen guías dedicadas.
 
 ## Errores
 
@@ -17,7 +17,7 @@ Lista de cosas a tener en cuanta cuando vayas a alojar un bot grande.
 ## Envío de mensajes
 
 1. Envía ficheros por ruta o `Buffer` en vez de `Stream`,o al menos estate seguro de que [conoces las trampas](./transformers.md#use-cases-of-transformer-functions).
-2. Usa `bot.on('callback_query:data')` como un manejador alternativo para [reaccionar a todas las consultas de devolución de llamada](../plugins/keyboard.md#responding-to-clicks).
+2. Usa `bot.on("callback_query:data")` como un manejador alternativo para [reaccionar a todas las consultas de devolución de llamada](../plugins/keyboard.md#responding-to-clicks).
 3. Usa el [`transformer-throttler` plugin](../plugins/transformer-throttler.md) para prevenir llegar a los límites.
 4. **Optional.** Considera usar el [`auto-retry` plugin](../plugins/auto-retry.md) para automáticamente manejar los errores de espera.
 

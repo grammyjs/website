@@ -16,7 +16,7 @@ Por el contrario, **grammY incluye su propio lenguaje de consulta** que puedes u
 
 Esto permite utilizar más de 500 filtros diferentes, y es posible que añadamos más con el tiempo.
 Todos los filtros válidos se pueden autocompletar en el editor de código.
-Por lo tanto, puedes simplemente escribir `bot.on('')`, abrir el autocompletado, y buscar entre todas las consultas escribiendo algo
+Por lo tanto, puedes simplemente escribir `bot.on("")`, abrir el autocompletado, y buscar entre todas las consultas escribiendo algo
 
 ![Filtro de búsqueda de consultas](/filter-query-search.png)
 
