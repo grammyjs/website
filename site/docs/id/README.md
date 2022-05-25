@@ -43,7 +43,7 @@ Bot ditulis menggunakan [TypeScript](https://www.typescriptlang.org) (atau JavaS
 ```ts
 import { Bot } from "grammy";
 
-const bot = new Bot(""); // <-- taruh token botmu di sini (https://t.me/BotFather)
+const bot = new Bot(""); // <-- taruh token bot-mu di sini (https://t.me/BotFather)
 
 // Balas pesan apapun dengan "Halo, apa kabar!".
 bot.on("message", (ctx) => ctx.reply("Halo, apa kabar!"));
@@ -57,7 +57,7 @@ bot.start();
 ```js
 const { Bot } = require("grammy");
 
-const bot = new Bot(""); // <-- taruh token botmu di sini (https://t.me/BotFather)
+const bot = new Bot(""); // <-- taruh token bot-mu di sini (https://t.me/BotFather)
 
 // Balas pesan apapun dengan "Halo, apa kabar!".
 bot.on("message", (ctx) => ctx.reply("Halo, apa kabar!"));
@@ -71,7 +71,7 @@ bot.start();
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
-const bot = new Bot(""); // <-- taruh token botmu di sini (https://t.me/BotFather)
+const bot = new Bot(""); // <-- taruh token bot-mu di sini (https://t.me/BotFather)
 
 // Balas pesan apapun dengan "Halo, apa kabar!".
 bot.on("message", (ctx) => ctx.reply("Halo, apa kabar!"));
