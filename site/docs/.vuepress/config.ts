@@ -336,20 +336,6 @@ export default defineUserConfig({
                   },
                 ],
               },
-            ],
-          },
-          {
-            text: "Hosting",
-            children: [
-              {
-                text: "Overview",
-                children: [
-                  {
-                    text: "Comparison",
-                    link: "/hosting/comparison.html",
-                  },
-                ],
-              },
               {
                 text: "Hosting",
                 children: [
@@ -699,15 +685,6 @@ export default defineUserConfig({
                 text: "Alojamiento",
                 children: [
                   {
-                    text: "Comparativa",
-                    link: "/hosting/comparison.html",
-                  },
-                ],
-              },
-              {
-                text: "Tutoriales",
-                children: [
-                  {
                     text: "Despliegue con Deno",
                     link: "/es/hosting/deno-deploy.md",
                   },
@@ -1042,20 +1019,6 @@ export default defineUserConfig({
                     text: "Updates 示例",
                     link:
                       "https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates",
-                  },
-                ],
-              },
-            ],
-          },
-          {
-            text: "托管服务",
-            children: [
-              {
-                text: "总览",
-                children: [
-                  {
-                    text: "对比",
-                    link: "/zh/hosting/comparison.html",
                   },
                 ],
               },

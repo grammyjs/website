@@ -1,39 +1,24 @@
 # 路由器（`router`）
 
 `Router` 类（[API 参考](https://doc.deno.land/https://deno.land/x/grammy_router/router.ts)）提供了一种更为灵活的方式来结构化你的 bot，通过路由上下文对象到不同的部分代码。
-它是 `Composer` 的 `bot.route` 的更高级版本（[grammY API 参考](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer#route))。
+它是 `Composer` 的 `bot.route` 的更高级版本（[grammY API 参考](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer#route))
 
 ## 示例
 
 这里是一个路由器的使用示例，不言自明。
 
 ```ts
-const router = new Router((ctx) => {
+const router = new Router(ctx => {
   // 在此处确定路由。
-  return "key";
-});
+  return 'key'
+})
 
-router.route("key", (ctx) => {/* ... */});
-router.route("other-key", (ctx) => {/* ... */});
-router.otherwise((ctx) => {/* ... */}); // 如果没有匹配的路由，则调用此方法
+router.route('key',       ctx => { ... })
+router.route('other-key', ctx => { ... })
+router.otherwise(ctx => { ... }) // 如果没有匹配的路由，则调用此方法
 
-bot.use(router);
+bot.use(router)
 ```
-
-## 与中间件集成
-
-自然，路由器插件与 grammY 的 [中间件树](../advanced/middleware.md) 可以无缝集成。
-例如，你可以在路由之后继续过滤 updates。
-
-```ts
-router.route("key").on("message:text", (ctx) => {/* ... */});
-bot.use(router);
-const other = router.otherwise();
-other.on(":text", (ctx) => {/* ... */});
-other.use((ctx) => {/* ... */});
-```
-
-你可能还想回顾一下 [这一章节](../guide/filter-queries.md#将查询与其他方法相结合)，了解更多关于中间件的组合。
 
 ## 绑定路由器和会话
 
@@ -94,9 +79,8 @@ bot.command("birthday", async (ctx) => {
 const router = new Router<MyContext>((ctx) => ctx.session.step);
 
 // 定义一个处理日期的步骤。
-const day = router.route("day");
-day.on("message:text", async (ctx) => {
-  const day = parseInt(ctx.msg.text, 10);
+router.route("day", async (ctx) => {
+  const day = parseInt(ctx.msg?.text ?? "", 10);
   if (isNaN(day) || day < 1 || 31 < day) {
     await ctx.reply("啊哦，日期好像无效捏，再试一次吧！");
     return;
@@ -115,11 +99,8 @@ day.on("message:text", async (ctx) => {
     },
   });
 });
-day.use((ctx) => ctx.reply("请把日期以文字消息形式发送给我！"));
 
-// 定义一个处理月份的步骤。
-const month = router.route("month");
-month.on("message:text", async (ctx) => {
+router.route("month", async (ctx) => {
   // 应该不会发生，除非会话数据被破坏。
   const day = ctx.session.dayOfMonth;
   if (day === undefined) {
@@ -128,7 +109,7 @@ month.on("message:text", async (ctx) => {
     return;
   }
 
-  const month = months.indexOf(ctx.msg.text);
+  const month = months.indexOf(ctx.msg?.text ?? "");
   if (month === -1) {
     await ctx.reply("啊哦，月份好像无效捏，请使用按钮发送～");
     return;
@@ -143,9 +124,8 @@ month.on("message:text", async (ctx) => {
   );
   ctx.session.step = "idle";
 });
-month.use((ctx) => ctx.reply("请点击其中一个按钮！"));
 
-router.otherwise(async (ctx) => {
+router.route("idle", async (ctx) => {
   await ctx.reply("发送 /birthday 看看还有多久到你的生日。");
 });
 
@@ -167,6 +147,7 @@ const months = [
   "Nov",
   "Dec",
 ];
+
 function getDays(month: number, day: number) {
   const bday = new Date();
   const now = Date.now();
@@ -213,9 +194,8 @@ bot.command("birthday", async (ctx) => {
 const router = new Router((ctx) => ctx.session.step);
 
 // 定义一个处理日期的步骤。
-const day = router.route("day");
-day.on("message:text", async (ctx) => {
-  const day = parseInt(ctx.msg.text, 10);
+router.route("day", async (ctx) => {
+  const day = parseInt(ctx.msg?.text ?? "", 10);
   if (isNaN(day) || day < 1 || 31 < day) {
     await ctx.reply("啊哦，日期好像无效捏，再试一次吧！");
     return;
@@ -234,11 +214,8 @@ day.on("message:text", async (ctx) => {
     },
   });
 });
-day.use((ctx) => ctx.reply("请把日期以文字消息形式发送给我！"));
 
-// 定义一个处理月份的步骤。
-const month = router.route("month");
-month.on("message:text", async (ctx) => {
+router.route("month", async (ctx) => {
   // 应该不会发生，除非会话数据被破坏。
   const day = ctx.session.dayOfMonth;
   if (day === undefined) {
@@ -247,7 +224,7 @@ month.on("message:text", async (ctx) => {
     return;
   }
 
-  const month = months.indexOf(ctx.msg.text);
+  const month = months.indexOf(ctx.msg?.text ?? "");
   if (month === -1) {
     await ctx.reply("啊哦，月份好像无效捏，请使用按钮发送～");
     return;
@@ -262,9 +239,8 @@ month.on("message:text", async (ctx) => {
   );
   ctx.session.step = "idle";
 });
-month.use((ctx) => ctx.reply("请点击其中一个按钮！"));
 
-router.otherwise(async (ctx) => {
+router.route("idle", async (ctx) => {
   await ctx.reply("发送 /birthday 看看还有多久到你的生日。");
 });
 
@@ -286,6 +262,7 @@ const months = [
   "Nov",
   "Dec",
 ];
+
 function getDays(month, day) {
   const bday = new Date();
   const now = Date.now();
@@ -345,9 +322,8 @@ bot.command("birthday", async (ctx) => {
 const router = new Router<MyContext>((ctx) => ctx.session.step);
 
 // 定义一个处理日期的步骤。
-const day = router.route("day");
-day.on("message:text", async (ctx) => {
-  const day = parseInt(ctx.msg.text, 10);
+router.route("day", async (ctx) => {
+  const day = parseInt(ctx.msg?.text ?? "", 10);
   if (isNaN(day) || day < 1 || 31 < day) {
     await ctx.reply("啊哦，日期好像无效捏，再试一次吧！");
     return;
@@ -366,11 +342,8 @@ day.on("message:text", async (ctx) => {
     },
   });
 });
-day.use((ctx) => ctx.reply("请把日期以文字消息形式发送给我！"));
 
-// 定义一个处理月份的步骤。
-const month = router.route("month");
-month.on("message:text", async (ctx) => {
+router.route("month", async (ctx) => {
   // 应该不会发生，除非会话数据被破坏。
   const day = ctx.session.dayOfMonth;
   if (day === undefined) {
@@ -379,7 +352,7 @@ month.on("message:text", async (ctx) => {
     return;
   }
 
-  const month = months.indexOf(ctx.msg.text);
+  const month = months.indexOf(ctx.msg?.text ?? "");
   if (month === -1) {
     await ctx.reply("啊哦，月份好像无效捏，请使用按钮发送～");
     return;
@@ -394,9 +367,8 @@ month.on("message:text", async (ctx) => {
   );
   ctx.session.step = "idle";
 });
-month.use((ctx) => ctx.reply("请点击其中一个按钮！"));
 
-router.otherwise(async (ctx) => {
+router.route("idle", async (ctx) => {
   await ctx.reply("发送 /birthday 看看还有多久到你的生日。");
 });
 
@@ -418,6 +390,7 @@ const months = [
   "Nov",
   "Dec",
 ];
+
 function getDays(month: number, day: number) {
   const bday = new Date();
   const now = Date.now();
@@ -431,6 +404,11 @@ function getDays(month: number, day: number) {
 
 </CodeGroupItem>
 </CodeGroup>
+
+::: tip 拆解代码
+如果你觉得代码太复杂了，你可以拆分成多个文件。
+你可以在 [这个高级部分](/zh/advanced/structuring.md) 中阅读更多关于如何扩展你的代码。
+:::
 
 请注意，会话有一个属性 `step`，它存储表单的步骤，即当前正在填写的值。
 路由器用于跳转到不同的中间件，完成 `month` 和 `dayOfMonth` 字段的填写。

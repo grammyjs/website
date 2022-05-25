@@ -1,3 +1,3 @@
-# Alojamiento: Google Cloud Functions
+# Hosting: Google Cloud Functions
 
 Próximamente, vuelva más tarde.

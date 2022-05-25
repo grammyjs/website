@@ -29,8 +29,3 @@ html.dark {
   text-justify: inter-character;
   hyphens: auto;
 }
-
-// neither hyphenate inline code snippets nor links, we are injeting <wbr> tags there
-code, a {
-  hyphens: none;
-}
