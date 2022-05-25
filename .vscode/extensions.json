@@ -1,8 +1,0 @@
-{
-  "recommendations": [
-    "esbenp.prettier-vscode",
-    "davidanson.vscode-markdownlint",
-    "bierner.markdown-checkbox",
-    "denoland.vscode-deno"
-  ]
-}
