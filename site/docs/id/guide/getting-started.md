@@ -12,7 +12,7 @@ Buat bot pertamamu dalam hitungan menit. (Gulir [ke bawah](#memulai-dengan-deno)
 > Kami mengasumsikan bahwa kamu sudah memasang [Node.js](https://nodejs.org), dan seharusnya `npm` juga sudah disertakan di paket pemasangan.
 > Kalau tidak tahu apa yang kami maksud barusan, lihat [Pendahulan](./introduction.md)!
 
-Buat projek TypeScript baru lalu pasang package `grammy`.
+Buat proyek TypeScript baru lalu pasang package `grammy`.
 Lakukan ini dengan cara membuka terminal, kemudian ketik:
 
 <CodeGroup>
