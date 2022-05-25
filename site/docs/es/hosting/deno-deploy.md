@@ -1,4 +1,4 @@
-# Hosting: Deno deploy
+# Alojamiento: Deno Deploy
 
 Esta guía le informa sobre las formas de alojar sus bots de grammY en [Deno Deploy](https://deno.com/deploy).
 
