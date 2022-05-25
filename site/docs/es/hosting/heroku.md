@@ -1,4 +1,4 @@
-# Hosting: Heroku
+# Alojamiento: Heroku
 
 > Asumimos que tienes los conocimientos básicos sobre la creación de bots usando grammY.
 > Si aún no estás preparado, ¡no dudes en dirigirte a nuestra amigable [Guía](../guide)! :cohete:
