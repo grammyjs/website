@@ -546,7 +546,6 @@ bot.start();
 
 我们维护了一个官方的存储适配器列表，允许你存储会话数据在不同的地方。
 它们中的每一个都需要你在托管提供商处注册，或者托管你自己的存储解决方案。
-请查看各自的仓库，了解不同适配器的设置。
 
 - Supabase: <https://github.com/grammyjs/storages/tree/main/packages/supabase>
 - Deta.sh Base: <https://github.com/grammyjs/storages/tree/main/packages/deta>
@@ -557,6 +556,28 @@ bot.start();
 - PostgreSQL: <https://github.com/grammyjs/storages/tree/main/packages/psql>
 - TypeORM (Node.js-only): <https://github.com/grammyjs/storages/tree/main/packages/typeorm>
 - DenoDB (Deno-only): <https://github.com/grammyjs/storages/tree/main/packages/denodb>
+
+::: tip 你的存储解决方案还没被支持？没问题！
+创建一个自定义存储适配器非常简单。
+`storage` 选项可以与任何实现了[这个接口](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/StorageAdapter)的对象连接，所以你只需要在几行代码就可以连接到你的存储。
+
+> 如果你发布了自己的存储适配器，请随时编辑这个页面并且添加链接到这里，以便其他人也可以使用它。
+
+:::
+
+所有的存储适配器都可以以同样的方式安装。
+首先，你应该注意你所选择的存储适配器的包名。
+例如，Supabase 的存储适配器叫做 `supabase`。
+
+**在 Node.js 中**，你可以通过 `npm i @grammyjs/storage-<name>` 安装适配器。
+例如，Supabase 的存储适配器可以通过 `npm i @grammyjs/storage-supabase` 安装。
+
+**在 Deno 中**，所有的存储适配器都在同一个 Deno 模块中发布。
+你可以从 `https://deno.land/x/grammy_storages/<adapter>/src/mod.ts` 的子路径中导入你需要的适配器。
+例如，Supabase 的存储适配器可以通过 `https://deno.land/x/grammy_storages/supabase/src/mod.ts` 导入。
+
+请查看各自的仓库，了解不同适配器的设置。
+它们的仓库中包含了如何连接到你的存储解决方案的信息。
 
 ## 插件概述
 
