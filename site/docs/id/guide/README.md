@@ -4,7 +4,7 @@ next: ./introduction.md
 
 ![logo](/grammY.png)
 
-# Sekilas
+# Gambaran Umum
 
 Selamat datang di grammY!
 Kamu berada di tempat yang tepat.
