@@ -431,7 +431,7 @@ bot.use(session({
 <CodeGroupItem title="Deno">
 
 ```ts
-import { freeStorage } from "https://deno.land/x/grammy_storages@v2.0.0/free/src/mod.ts";
+import { freeStorage } from "https://deno.land/x/grammy_storages/free/src/mod.ts";
 
 bot.use(session({
   initial: ...
@@ -513,7 +513,7 @@ import {
   session,
   SessionFlavor,
 } from "https://deno.land/x/grammy/mod.ts";
-import { freeStorage } from "https://deno.land/x/grammy_storages@v2.0.0/free/src/mod.ts";
+import { freeStorage } from "https://deno.land/x/grammy_storages/free/src/mod.ts";
 
 // 定义会话结构。
 interface SessionData {
