@@ -21,7 +21,7 @@ Este plugin pretende resolver estos problemas, manejando por ti la difícil tare
 ### ¿Esto es brujería?
 
 No, se llama cadenas de plantillas.
-Puedes leer más sobre ellas [aquí](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals).
+Puedes leer más sobre ellas [aquí](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Template_literals).
 
 ## Instalación y ejemplos
 
@@ -36,7 +36,7 @@ import { EmojiFlavor, emojiParser } from "@grammyjs/emoji";
 
 // Esto se llama Context Flavoring
 // Puedes leer más en:
-// https://grammy.dev/guide/context.md#transformative-context-flavors
+// https://grammy.dev/es/guide/context.html#transformative-context-flavors
 type MyContext = EmojiFlavor<Context>;
 
 const bot = new Bot<MyContext>(""); // <-- pon tu token de bot entre los ""
@@ -68,7 +68,7 @@ importar {
 
 // Esto se llama Context Flavoring
 // Puedes leer más en:
-// https://grammy.dev/guide/context.md#transformative-context-flavors
+// https://grammy.dev/es/guide/context.html#transformative-context-flavors
 tipo MyContext = EmojiFlavor<Context>;
 
 const bot = new Bot<MyContext>(""); // <-- pon tu token de bot entre los ""
@@ -99,7 +99,7 @@ bot.command("ping", async (ctx) => {
 
 ::: warning Ten en cuenta que
 `ctx.emoji` y `ctx.replyWithEmoji` **Siempre** utilizan cadenas de plantilla.
-Si no estás familiarizado con esta sintaxis, puedes leer más sobre ella [aquí](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals).
+Si no estás familiarizado con esta sintaxis, puedes leer más sobre ella [aquí](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Template_literals).
 :::
 
 ## Resumen del plugin
