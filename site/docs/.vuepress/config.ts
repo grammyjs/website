@@ -276,7 +276,6 @@ export default defineUserConfig({
                     link: "/demo/",
                     activeMatch: "^/demo/$",
                   },
-                  { text: "Example Bots", link: "/demo/examples.html" },
                 ],
               },
             ],
@@ -349,7 +348,7 @@ export default defineUserConfig({
                 children: [
                   {
                     text: "Comparison",
-                    link: "/hosting/comparison.md",
+                    link: "/hosting/comparison.html",
                   },
                 ],
               },
@@ -636,10 +635,6 @@ export default defineUserConfig({
                     link: "/es/demo/",
                     activeMatch: "^/es/demo/$",
                   },
-                  {
-                    text: "Ejemplos de bots",
-                    link: "/es/demo/examples.html",
-                  },
                 ],
               },
             ],
@@ -712,7 +707,7 @@ export default defineUserConfig({
                 children: [
                   {
                     text: "Comparativa",
-                    link: "/hosting/comparison.md",
+                    link: "/hosting/comparison.html",
                   },
                 ],
               },
@@ -995,10 +990,6 @@ export default defineUserConfig({
                     link: "/zh/demo/",
                     activeMatch: "^/zh/demo/$",
                   },
-                  {
-                    text: "示例 Bots",
-                    link: "/zh/demo/examples.html",
-                  },
                 ],
               },
             ],
@@ -1071,7 +1062,7 @@ export default defineUserConfig({
                 children: [
                   {
                     text: "对比",
-                    link: "/zh/hosting/comparison.md",
+                    link: "/zh/hosting/comparison.html",
                   },
                 ],
               },

@@ -1,15 +1,13 @@
 // oklch theme
 :root {
-  // --c-brand: rgb(18.26, 165.86, 212.14);
-  --c-brand-light: rgb(38.51, 181.4, 229.84);
-  --c-tip: rgb(21.65, 175.31, 223.89);
+  --c-brand-light: #27b5e6;
+  --c-tip: #16afe0;
   --c-brand: #009dca;
 }
 
 html.dark {
-  // --c-brand: rgb(17, 157.22, 201.26);
-  --c-brand-light: rgb(18.59, 140.2, 179.44);
-  --c-tip: rgb(21.46, 130.7, 167.01);
+  --c-brand-light: #138cb3;
+  --c-tip: #1583a7;
   --c-brand: #009dca;
 }
 
@@ -23,7 +21,7 @@ html:not(.dark) tr:nth-child(2n) code {
 }
 
 .token.string, .token.char, .token.attr-value, .token.regex, .token.variable {
-  color: rgb(106.42, 191.75, 227.27);
+  color: #6ac0e3;
 }
 
 // fix the text color animation for the secondary button on the main page
@@ -39,7 +37,7 @@ html:not(.dark) tr:nth-child(2n) code {
   hyphens: auto;
 }
 
-// do not hyphenate inline code snippets, we are injeting <wbr> tags there
-code {
+// neither hyphenate inline code snippets nor links, we are injeting <wbr> tags there
+code, a {
   hyphens: none;
 }
