@@ -16,7 +16,7 @@ The result of this tutorial [can be seen in our example bots repository](https:/
 In order to deploy a Supabase Edge Function, you will need to create a Supabase account, install their CLI, and create a Supabase project.
 You should first [follow their documentation](https://supabase.com/docs/guides/functions#prerequisites) to set things up.
 
-Create a new supabase function by running this command.
+Create a new Supabase Function by running this command:
 
 ```sh
 supabase functions new telegram-bot
