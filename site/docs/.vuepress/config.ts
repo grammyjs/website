@@ -276,7 +276,6 @@ export default defineUserConfig({
                     link: "/demo/",
                     activeMatch: "^/demo/$",
                   },
-                  { text: "Example Bots", link: "/demo/examples.html" },
                 ],
               },
             ],
@@ -339,8 +338,22 @@ export default defineUserConfig({
                   },
                 ],
               },
+            ],
+          },
+          {
+            text: "Hosting",
+            children: [
               {
-                text: "Hosting",
+                text: "Overview",
+                children: [
+                  {
+                    text: "Comparison",
+                    link: "/hosting/comparison.html",
+                  },
+                ],
+              },
+              {
+                text: "Tutorials",
                 children: [
                   {
                     text: "Deno Deploy",
@@ -622,10 +635,6 @@ export default defineUserConfig({
                     link: "/es/demo/",
                     activeMatch: "^/es/demo/$",
                   },
-                  {
-                    text: "Ejemplos de bots",
-                    link: "/es/demo/examples.html",
-                  },
                 ],
               },
             ],
@@ -688,8 +697,22 @@ export default defineUserConfig({
                   },
                 ],
               },
+            ],
+          },
+          {
+            text: "Alojamiento",
+            children: [
               {
-                text: "Alojamiento",
+                text: "Resumen",
+                children: [
+                  {
+                    text: "Comparativa",
+                    link: "/hosting/comparison.html",
+                  },
+                ],
+              },
+              {
+                text: "Tutoriales",
                 children: [
                   {
                     text: "Despliegue con Deno",
@@ -967,10 +990,6 @@ export default defineUserConfig({
                     link: "/zh/demo/",
                     activeMatch: "^/zh/demo/$",
                   },
-                  {
-                    text: "示例 Bots",
-                    link: "/zh/demo/examples.html",
-                  },
                 ],
               },
             ],
@@ -1033,8 +1052,22 @@ export default defineUserConfig({
                   },
                 ],
               },
+            ],
+          },
+          {
+            text: "托管服务",
+            children: [
               {
-                text: "托管服务",
+                text: "总览",
+                children: [
+                  {
+                    text: "对比",
+                    link: "/zh/hosting/comparison.html",
+                  },
+                ],
+              },
+              {
+                text: "教程",
                 children: [
                   {
                     text: "Deno Deploy",

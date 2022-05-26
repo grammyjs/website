@@ -118,5 +118,5 @@ Revisa la sección sobre [combinar consultas de filtro](../guide/filter-queries.
 
 Un caso especial es `fork`, ya que inicia dos cálculos que son concurrentes, es decir, intercalados en el bucle de eventos.
 En lugar de devolver la instancia de `Composer` creada por la llamada subyacente `use`, devuelve un `Composer` que refleja el cálculo bifurcado.
-Esto permite patrones concisos como `bot.fork().on(':text').use(/* A */)`.
+Esto permite patrones concisos como `bot.fork().on(":text").use(/* A */)`.
 A" se ejecutará ahora en la rama de computación paralela.

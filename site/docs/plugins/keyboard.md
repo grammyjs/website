@@ -141,7 +141,7 @@ bot.callbackQuery("click-payload", async (ctx) => {
 
 ::: tip Answering All Callback Queries
 `bot.callbackQuery()` is useful to listen for click events of specific buttons.
-You can use `bot.on('callback_query:data')` to listen for events of any button.
+You can use `bot.on("callback_query:data")` to listen for events of any button.
 
 ```ts
 bot.callbackQuery("click-payload" /* , ... */);
@@ -152,7 +152,7 @@ bot.on("callback_query:data", async (ctx) => {
 });
 ```
 
-It makes sense to define `bot.on('callback_query:data')` at last to always answer all other callback queries that your previous listeners did not handle.
+It makes sense to define `bot.on("callback_query:data")` at last to always answer all other callback queries that your previous listeners did not handle.
 Otherwise, some clients may display a loading animation for up to a minute when a user presses a button that your bot does not want to react to.
 :::
 
@@ -168,7 +168,7 @@ grammY has a simple and intuitive way to build up the custom keyboards that your
 It provides a class called `Keyboard` for this.
 
 Once a user clicks a text button, your bot will receive the sent text as a plain text message.
-Remember that you can listen for text message via `bot.on('message:text')` or `bot.hears()`.
+Remember that you can listen for text message via `bot.on("message:text")` or `bot.hears()`.
 
 ### Building a Custom Keyboard
 
@@ -310,7 +310,7 @@ Telegram does not allow you to create buttons that display one text, but send an
 If you need to do this, you should use an [inline keyboard](#inline-keyboards) instead.
 
 In order to handle the click of a specific button, you can use `bot.hears` with the same text as you put on the button.
-If you want to handle all button clicks at once, you use `bot.on('message:text')` and inspect `ctx.msg.text` to figure out which button was clicked, or if an ordinary text message was sent.
+If you want to handle all button clicks at once, you use `bot.on("message:text")` and inspect `ctx.msg.text` to figure out which button was clicked, or if an ordinary text message was sent.
 
 ### Removing a Custom Keyboard
 

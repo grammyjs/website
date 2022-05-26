@@ -43,22 +43,25 @@ The content itself is shortened in order to prevent log spamming.
 When you create your own middleware or assume slow timings of another middleware you can use these middlewares to create a timing profile.
 
 ```ts
-import {generateBeforeMiddleware, generateAfterMiddleware} from 'telegraf-middleware-console-time';
+import {
+  generateAfterMiddleware,
+  generateBeforeMiddleware,
+} from "telegraf-middleware-console-time";
 
 const bot = new Bot(/* ... */);
 
 // Use BeforeMiddleware before loading the tested middleware.
-bot.use(generateBeforeMiddleware('foo'))
+bot.use(generateBeforeMiddleware("foo"));
 
 // Middleware to be tested
-bot.use(/* ... */)
+bot.use(); /* ... */
 
 // Use AfterMiddleware after loading the middleware you are testing (with the same label).
-bot.use(generateAfterMiddleware('foo'))
+bot.use(generateAfterMiddleware("foo"));
 
 // Other middleware/implementations (they will take the 'inner' amount of time when used).
-bot.use(/* ... */)
-bot.on(/* ... */, /* ... */)
+bot.use(); /* ... */
+bot.on("message" /* ... */);
 ```
 
 This will output something like this:

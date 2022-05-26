@@ -10,6 +10,8 @@ Deno Deploy 是大多数简单 bot 的理想选择，并且你应该注意，不
 
 ## 准备你的代码
 
+> 请注意，你需要 [在 webhooks 上运行你的 bot](../guide/deployment-types.md/#如何使用-webhooks)，所以你应该调用 `webhookCallback`，而不是 `bot.start()`。
+
 1. 确保你有一个文件可以导出你的`Bot'对象，这样你就可以在以后导入它来运行它。
 2. 创建一个名为 `mod.ts` 或 `mod.js` 的文件，或任何你喜欢的名字（但你应该记住并使用这个文件作为部署的主要文件），其内容如下：
 
