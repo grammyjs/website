@@ -272,16 +272,32 @@ main.register(settings, "back-from-settings-menu");
 You can register as many menus as you like, and nest them as deeply as you like.
 The menu identifiers let you jump easily to any page.
 
-**Note that you only have to make a single menu of your nested menu structure interactive.**
+**You only have to make a single menu of your nested menu structure interactive.**
 For example, only pass the root menu to `bot.use`.
 
 ```ts
+// If you have this:
+main.register(settings);
+
 // Do this:
 bot.use(main);
 
 // Don't do this:
 bot.use(main);
 bot.use(settings);
+```
+
+**You can create multiple independent menus and make them all interactive.**
+For example, if you create two unrelated menus and you never need to navigate between them, then you should install both of them indendently.
+
+```ts
+// If you have independent menus like this:
+const menuA = new Menu("menu-a");
+const menuB = new Menu("menu-b");
+
+// You can do this:
+bot.use(menuA);
+bot.use(menuB);
 ```
 
 ## Payloads
