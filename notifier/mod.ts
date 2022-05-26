@@ -19,14 +19,19 @@ app.use(async (ctx, next) => {
 });
 
 app.use(async (ctx, next) => {
-  const { verified } = await verifyGitHubWebhook(
-    ctx.request.originalRequest,
-  );
-  if (!verified) {
-    ctx.response.redirect("https://grammy.dev");
-    return;
+  let verified = false;
+  try {
+    const result = await verifyGitHubWebhook(
+      ctx.request.originalRequest,
+    );
+    verified = result.verified;
+  } finally {
+    if (!verified) {
+      ctx.response.redirect("https://grammy.dev");
+    } else {
+      await next();
+    }
   }
-  await next();
 });
 
 const labels: Record<string, string> = JSON.parse(
