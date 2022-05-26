@@ -56,7 +56,7 @@ serve(async (req) => {
 
 ## Deploying
 
-You can now deploy your bot to Supabase
+You can now deploy your bot to Supabase.
 Note that you will have to disable JWT authorization because Telegram uses a different way to make sure the requests are coming from Telegram.
 You can deploy the function using this command.
 
@@ -64,7 +64,7 @@ You can deploy the function using this command.
 supabase functions deploy --no-verify-jwt telegram-bot
 ```
 
-Next, you need to give your bot token to Supabase so that your bot has access to it as an environment variable.
+Next, you need to give your bot token to Supabase so that your code has access to it as an environment variable.
 
 ```sh
 # Replace 123:aBcDeF-gh with your real bot token.
@@ -74,14 +74,14 @@ supabase secrets set BOT_TOKEN=123:aBcDeF-gh
 Your Supabase Edge Function is now working.
 All that's left to do is to tell Telegram where to send the updates.
 You can do this by calling `setWebhook`.
-For example, open a new tab in your browser and visit this URL.
+For example, open a new tab in your browser and visit this URL:
 
 ```plaintext
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<PROJECT_NAME>.functions.supabase.co/telegram-bot?secret=<BOT_TOKEN>
 ```
 
 Replace `<BOT_TOKEN>` with your real bot token.
-Also replace the second occurrence of `<BOT_TOKEN>` with your real bot token.
+Also, replace the second occurrence of `<BOT_TOKEN>` with your real bot token.
 Replace `<PROJECT_NAME>` with the name of your Supabase project.
 
 You should now see this in your browser window.
