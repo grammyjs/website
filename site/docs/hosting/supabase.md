@@ -1,6 +1,6 @@
 # Hosting: Supabase Edge Functions
 
-This guide tells you about the ways you can host your grammY bots on [Supabase](https://supabase.com/).
+This guide tells you how you can host your grammY bots on [Supabase](https://supabase.com/).
 
 Please note that you need to have a [GitHub](https://github.com) account before you can use [Supabase Edge Functions](https://supabase.com/docs/guides/functions).
 Moreover, Supabase Edge Functions are based on [Deno Deploy](https://deno.com/deploy), so just like [our Deno Deploy guide](./deno-deploy.md), this guide is only for Deno users of grammY.
