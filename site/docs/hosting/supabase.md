@@ -22,7 +22,7 @@ Create a new Supabase Function by running this command:
 supabase functions new telegram-bot
 ```
 
-Once you have created a project with your Supabase Edge function, you can write your bot.
+Once you have created a Supabase Function project, you can write your bot.
 
 ## Preparing Your Code
 
@@ -71,7 +71,7 @@ Next, you need to give your bot token to Supabase so that your code has access t
 supabase secrets set BOT_TOKEN=123:aBcDeF-gh
 ```
 
-Your Supabase Edge Function is now working.
+Your Supabase Function is now working.
 All that's left to do is to tell Telegram where to send the updates.
 You can do this by calling `setWebhook`.
 For example, open a new tab in your browser and visit this URL:
