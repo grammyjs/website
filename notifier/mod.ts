@@ -25,6 +25,8 @@ app.use(async (ctx, next) => {
       ctx.request.originalRequest,
     );
     verified = result.verified;
+  } catch (_err) {
+    //
   } finally {
     if (!verified) {
       ctx.response.redirect("https://grammy.dev");
