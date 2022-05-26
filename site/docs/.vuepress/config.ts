@@ -361,6 +361,10 @@ export default defineUserConfig({
                     link: "/hosting/deno-deploy.html",
                   },
                   {
+                    text: "Supabase Edge Functions",
+                    link: "/hosting/supabase.html",
+                  },
+                  {
                     text: "Heroku",
                     link: "/hosting/heroku.html",
                   },
