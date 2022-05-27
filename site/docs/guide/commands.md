@@ -23,7 +23,7 @@ bot.command("help" /* , ... */);
 bot.command(["a", "b", "c", "d"] /* , ... */);
 ```
 
-Note that only those commands that are in the beginning of a message are handled, so if a user sends `'Please do not send /start to that bot!'`, then your listener will not be called, even though the `/start` command _is_ contained in the message.
+Note that only those commands that are in the beginning of a message are handled, so if a user sends `"Please do not send /start to that bot!"`, then your listener will not be called, even though the `/start` command _is_ contained in the message.
 
 Telegram supports sending targeted commands to bots, i.e. commands that end with `@your_bot_name`.
 grammY handles this automatically for you, so `bot.command("start")` will match messages with `/start` and with `/start@your_bot_name` as commands.
@@ -63,10 +63,10 @@ Note that you can always access the entire message's text via `ctx.msg.text`.
 
 > Revisit the deep linking section in the [Introduction for Developers](https://core.telegram.org/bots#deep-linking) written by the Telegram team.
 
-When a user visits `https://t.me/your_bot_name?start=payload`, their Telegram client will show a START button that (when clicked) sends the string from the URL parameter along with the message, in this example, the message text will be `'/start payload'`.
-Telegram clients will not show the payload to the user (they will only see `'/start'` in the UI), however, your bot will receive it.
+When a user visits `https://t.me/your_bot_name?start=payload`, their Telegram client will show a START button that (when clicked) sends the string from the URL parameter along with the message, in this example, the message text will be `"/start payload"`.
+Telegram clients will not show the payload to the user (they will only see `"/start"` in the UI), however, your bot will receive it.
 grammY extracts this payload for you, and provides it under `ctx.match`.
-In our example, `ctx.match` would contain the string `'payload'`.
+In our example, `ctx.match` would contain the string `"payload"`.
 
 Deep linking is useful if you want to build a referral system, or track where users discovered your bot.
 For example, your bot could send a channel post with an [inline query](../plugins/keyboard.md#inline-keyboards) button.
