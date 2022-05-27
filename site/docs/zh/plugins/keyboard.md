@@ -273,14 +273,14 @@ await ctx.reply(text, {
 
 #### 输入栏占位符
 
-如果你想在自定义 keyboard 可见时，在输入栏中显示一个占位符，你可以指定 `input_field_placehoder` 选项。
+如果你想在自定义 keyboard 可见时，在输入栏中显示一个占位符，你可以指定 `input_field_placeholder` 选项。
 
 ```ts
 const keyboard = new Keyboard().text("LEFT").text("RIGHT");
 
 await ctx.reply(text, {
   reply_markup: {
-    input_field_placehoder: "Send LEFT or RIGHT",
+    input_field_placeholder: "Send LEFT or RIGHT",
     keyboard: keyboard.build(),
   },
 });
