@@ -327,7 +327,7 @@ You may observe that your bot starts spamming users as it tries to handle all of
 #### Why Ending a Webhook Request Early Is Also Dangerous
 
 You can configure `webhookCallback` to not throw an error after the timeout, but instead end the webhook request early, even though your middleware is still running.
-You can do this by passing `'return'` as a third argument to `webhookCallback`, instead of the default value `'throw'`.
+You can do this by passing `"return"` as a third argument to `webhookCallback`, instead of the default value `"throw"`.
 However, while this behavior has some valid use cases, such a solution usually causes more problems than it solves.
 
 Remember that once you respond to a webhook request, Telegram will send the next update for that chat.
@@ -370,7 +370,7 @@ ______________                                   _____________
 |____________|                                   |___________|
 ```
 
-#### Why `'return'` Is Generally Worse Than `'throw'`
+#### Why `"return"` Is Generally Worse Than `"throw"`
 
 You may be wondering why the default action of `webhookCallback` is to throw an error, instead of ending the request successfully.
 This design choice was made for the following reasons.
@@ -379,7 +379,7 @@ Race conditions are very hard to reproduce and may occur extremely rarely or spo
 The solution to this is to _make sure not to run into timeouts_ in the first place.
 But, if you do, you really want to know that this is happening, so that you can investigate and fix the problem!
 For that reason, you want the error to occur in your logs.
-Setting the timeout handler to `'return'`, hence suppressing the timeout and pretending that nothing happened, is exactly the opposite of useful behavior.
+Setting the timeout handler to `"return"`, hence suppressing the timeout and pretending that nothing happened, is exactly the opposite of useful behavior.
 
 If you do this, you're in some sense using the update queue in Telegram's webhook delivery as your task queue.
 This is a bad idea for all of the reasons described above.

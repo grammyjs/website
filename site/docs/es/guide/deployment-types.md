@@ -327,7 +327,7 @@ Puedes observar que tu bot comienza a enviar spam a los usuarios mientras intent
 #### Por qué terminar una petición de webhook antes de tiempo también es peligroso
 
 Puedes configurar `webhookCallback` para que no lance un error después del tiempo de espera, sino que termine la petición de webhook antes de tiempo, aunque tu middleware siga funcionando.
-Puedes hacer esto pasando `'return'` como tercer argumento a `webhookCallback`, en lugar del valor por defecto `'throw'`.
+Puedes hacer esto pasando `"return"` como tercer argumento a `webhookCallback`, en lugar del valor por defecto `"throw"`.
 Sin embargo, aunque este comportamiento tiene algunos casos de uso válidos, esta solución suele causar más problemas de los que resuelve.
 
 Recuerda que una vez que respondas a una solicitud de webhook, Telegram enviará la siguiente actualización para ese chat.
@@ -370,7 +370,7 @@ ______________                                   _____________
 |____________|                                   |___________|
 ```
 
-#### Por qué `'return'` es generalmente peor que `'throw'`
+#### Por qué `"return"` es generalmente peor que `"throw"`
 
 Puede que te preguntes por qué la acción por defecto de `webhookCallback` es lanzar un error, en lugar de terminar la petición con éxito.
 Esta elección de diseño se hizo por las siguientes razones.
@@ -379,7 +379,7 @@ Las condiciones de carrera son muy difíciles de reproducir y pueden ocurrir muy
 La solución a esto es _asegurarse de no encontrarse con timeouts_ en primer lugar.
 Pero, si lo hace, realmente quiere saber que esto está ocurriendo, para poder investigar y solucionar el problema.
 Por esa razón, usted quiere que el error ocurra en sus registros.
-Configurar el manejador de tiempo de espera como `'return'`, suprimiendo así el tiempo de espera y pretendiendo que no ha pasado nada, es exactamente lo contrario de un comportamiento útil.
+Configurar el manejador de tiempo de espera como `"return"`, suprimiendo así el tiempo de espera y pretendiendo que no ha pasado nada, es exactamente lo contrario de un comportamiento útil.
 
 Si haces esto, en cierto sentido estás usando la cola de actualización en la entrega de webhooks de Telegram como tu cola de tareas.
 Esto es una mala idea por todas las razones descritas anteriormente.

@@ -22,7 +22,7 @@ bot.command("help" /* , ... */);
 bot.command(["a", "b", "c", "d"] /* , ... */);
 ```
 
-Ten en cuenta que sólo se manejan los comandos que están al principio de un mensaje, así que si un usuario envía ``¡Por favor, no envíes /start a ese bot!'`, entonces su escuchador no será llamado, aunque el comando`/start` _está_ contenido en el mensaje.
+Ten en cuenta que sólo se manejan los comandos que están al principio de un mensaje, así que si un usuario envía `"¡Por favor, no envíes /start a ese bot!"`, entonces su escuchador no será llamado, aunque el comando`/start` _está_ contenido en el mensaje.
 
 Telegram soporta el envío de comandos dirigidos a los bots, es decir, comandos que terminan con `@tu_nombre_del_bot`.
 grammY maneja esto automáticamente por ti, así que `bot.command("start")` coincidirá con mensajes con `/start` y con `/start@your_bot_name` como comandos.
@@ -63,10 +63,10 @@ Ten en cuenta que siempre puedes acceder al texto completo del mensaje a través
 
 > Revisa la sección de enlaces profundos en la [Introducción para Desarrolladores](https://core.telegram.org/bots#deep-linking) escrita por el equipo de Telegram.
 
-Cuando un usuario visita `https://t.me/your_bot_name?start=payload`, su cliente de Telegram mostrará un botón START que (al hacer clic) envía la cadena del parámetro de la URL junto con el mensaje, en este ejemplo, el texto del mensaje será `'/start payload'`.
-Los clientes de Telegram no mostrarán el payload al usuario (sólo verán `'/start'` en la UI), sin embargo, tu bot lo recibirá.
+Cuando un usuario visita `https://t.me/your_bot_name?start=payload`, su cliente de Telegram mostrará un botón START que (al hacer clic) envía la cadena del parámetro de la URL junto con el mensaje, en este ejemplo, el texto del mensaje será `"/start payload"`.
+Los clientes de Telegram no mostrarán el payload al usuario (sólo verán `"/start"` en la UI), sin embargo, tu bot lo recibirá.
 grammY extrae este payload por ti, y lo proporciona bajo `ctx.match`.
-En nuestro ejemplo, `ctx.match` contendría la cadena `'payload`.
+En nuestro ejemplo, `ctx.match` contendría la cadena `"payload"`.
 
 La vinculación profunda es útil si quieres construir un sistema de referencias, o rastrear dónde los usuarios descubrieron tu bot.
 Por ejemplo, tu bot podría enviar un mensaje de canal con un botón [inline query](../plugins/keyboard.md#inline-keyboards).

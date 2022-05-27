@@ -159,7 +159,7 @@ node bot.js
 你可以通过运行以下程序来启用基本日志记录
 
 ```bash
-export DEBUG='grammy*'
+export DEBUG="grammy*"
 ```
 
 在你执行 `node bot.js` 之前，先在你的终端机上使用 `node bot.js`。
@@ -214,7 +214,7 @@ deno run --allow-net bot.ts
 你可以通过运行以下程序来启用基本日志记录
 
 ```bash
-export DEBUG='grammy*'
+export DEBUG="grammy*"
 ```
 
 在你执行`node bot.js`之前，先在你的终端机上使用`node bot.js`。
