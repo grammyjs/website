@@ -32,19 +32,66 @@ Es muy común que los bots almacenen algún dato por chat.
 Por ejemplo, digamos que queremos construir un bot que cuente el número de veces que un mensaje contiene el emoji de la pizza :pizza: en su texto.
 Este bot podría añadirse a un grupo, y podría decir cuánto os gusta la pizza a ti y a tus amigos.
 
-Cuando nuestro bot de la pizza recibe un mensaje, tiene que recordar cuántas veces ha visto antes una :pizza: en ese chat.
-Por supuesto, el recuento de pizzas no debería cambiar cuando tu hermana añada el bot de la pizza a su chat de grupo, así que lo que realmente queremos es almacenar _un contador por chat_.
+Cuando nuestro bot de pizza recibe un mensaje, tiene que recordar cuántas veces ha visto una :pizza: en ese chat antes.
+Su recuento de pizzas no debería cambiar, por supuesto, cuando su hermana añada el bot de pizzas a su chat de grupo, así que lo que realmente queremos es almacenar _un contador por chat_.
 
 Las sesiones son una forma elegante de almacenar datos _por chat_.
 Utilizarías el identificador del chat como clave en tu base de datos, y un contador como valor.
 En este caso, llamaríamos al identificador del chat la _clave de la sesión_.
+(Puedes leer más sobre las claves de sesión [aquí abajo](#claves-de-sesion).
+Efectivamente, tu bot almacenará un mapa desde un identificador de chat a unos datos de sesión personalizados, es decir, algo así:
 
-> Puedes leer más sobre las claves de sesión [aquí abajo](#session-keys).
+```json:no-line-numbers
+{
+  "424242": { "pizzaCount": 24 },
+  "987654": { "pizzaCount": 1729 }
+}
+```
 
-Podemos instalar un middleware en el bot que proporcione los datos de sesión de un chat en `ctx.session` para cada actualización, cargándolos desde la base de datos antes de que se ejecute nuestro middleware.
-También se aseguraría de que los datos de la sesión se escriben de nuevo en la base de datos una vez que hayamos terminado, de modo que nunca más tengamos que preocuparnos de comunicarnos con el almacenamiento de datos.
+> Cuando decimos base de datos, en realidad nos referimos a cualquier solución de almacenamiento de datos.
+> Esto incluye archivos, almacenamiento en la nube o cualquier otra cosa.
+> Bien, pero ¿qué son las sesiones ahora?
 
-En nuestro ejemplo, tendríamos acceso a la cuenta de pizzas _del chat correspondiente_ en el objeto de sesión `ctx.session`.
+Podemos instalar un middleware en el bot que proporcionará los datos de la sesión del chat en `ctx.session` para cada actualización.
+El plugin instalado hará algo antes y después de que nuestros manejadores sean llamados:
+
+1. **Antes de nuestro middleware.**
+   El plugin de sesión carga los datos de sesión del chat actual desde la base de datos.
+   Almacena los datos en el objeto de contexto bajo `ctx.session`.
+2. **Nuestro middleware se ejecuta.**
+   Podemos _leer_ `ctx.session` para inspeccionar qué valor estaba en la base de datos.
+   Por ejemplo, si se envía un mensaje al chat con el identificador `424242`, sería `ctx.session = { pizzaCount: 24 }` mientras se ejecuta nuestro middleware (al menos con el estado de la base de datos de ejemplo anterior).
+   También podemos _modificar_ ctx.session arbitrariamente, por lo que podemos añadir, eliminar y cambiar campos a nuestro gusto.
+3. **Después de nuestro middleware.**
+   El middleware de sesión se asegura de que los datos se escriban de nuevo en la base de datos.
+   Cualquiera que sea el valor de `ctx.session` después de que el middleware termine de ejecutarse, se guardará en la base de datos.
+
+Como resultado, ya no tenemos que preocuparnos de comunicarnos con el almacenamiento de datos.
+Simplemente modificamos los datos en `ctx.session`, y el plugin se encargará del resto.
+
+## Cuándo usar las sesiones
+
+> [Sáltate el paso](#como-usar-las-sesiones) si ya sabes que quieres usar sesiones.
+> Puedes pensar, esto es genial, ¡nunca más tendré que preocuparme por las bases de datos!
+> Y tienes razón, las sesiones son una solución ideal, pero sólo para algunos tipos de datos.
+
+Según nuestra experiencia, hay casos de uso en los que las sesiones realmente brillan.
+Por otro lado, hay casos en los que una base de datos tradicional puede ser más adecuada.
+
+Esta comparación puede ayudarte a decidir si utilizar las sesiones o no.
+
+|                            | Sesiones                                                      | Base de datos                                                                            |
+| -------------------------- | ------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| _Acceso_                   | un almacenamiento aislado **por chat**                        | accede a los mismos datos desde **múltiples chats**                                      |
+| _Compartir_                | los datos son **sólo utilizados por el bot**                  | los datos son **utilizados por otros sistemas** (por ejemplo, un servidor web conectado) |
+| _Formato_                  | cualquier objeto JavaScript, cadenas, números, matrices, etc. | cualquier dato (binario, archivos, estructurado, etc)                                    |
+| _Tamaño por chat_          | preferiblemente menos de ~3 MB por chat                       | cualquier tamaño                                                                         |
+| _Característica exclusiva_ | Requerida por algunos plugins de grammY.                      | Soporta transacciones de base de datos.                                                  |
+
+Esto no significa que las cosas _no puedan funcionar_ si eliges sesiones/bases de datos por encima de las otras.
+
+Por ejemplo, por supuesto que puedes almacenar grandes datos binarios en tu sesión.
+Sin embargo, tu bot no funcionaría tan bien como podría hacerlo de otro modo, por lo que recomendamos usar sesiones sólo cuando tengan sentido.
 
 ## Cómo usar las sesiones
 
