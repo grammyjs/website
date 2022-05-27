@@ -77,7 +77,7 @@ const inlineKeyboard = new InlineKeyboard()
 
 #### Ejemplo 3
 
-URL buttons can be built like this:
+Los botones de la URL se pueden construir así:
 
 ##### Código
 
