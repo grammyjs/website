@@ -156,7 +156,7 @@ en tu terminal.
 Puedes habilitar el registro básico ejecutando
 
 ```bash
-export DEBUG='grammy*'
+export DEBUG="grammy*"
 ```
 
 en tu terminal antes de ejecutar `node bot.js`.
@@ -212,7 +212,7 @@ en tu terminal.
 Puedes activar el registro básico ejecutando
 
 ```bash
-export DEBUG='grammy*'
+export DEBUG="grammy*"
 ```
 
 en tu terminal antes de ejecutar tu bot.

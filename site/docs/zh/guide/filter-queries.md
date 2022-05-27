@@ -251,7 +251,7 @@ bot.on("message:is_automatic_forward");
 bot.on("message").filter((ctx) => ctx.senderChat === undefined);
 // `ctx.chat` 中的匿名管理员
 bot.on("message").filter((ctx) => ctx.senderChat?.id === ctx.chat?.id);
-// 其他一切，比如用户作为 `ctx.senderChat' 发送消息
+// 其他一切，比如用户作为 `ctx.senderChat` 发送消息
 bot.on("message").filter((ctx) =>
   ctx.senderChat !== undefined && ctx.senderChat.id !== ctx.chat.id
 );
@@ -327,9 +327,9 @@ bot.on(":text", handler);
 
 | Filter 查询                    | L1 部分       | L2 部分        | L3 部分       |
 | ---------------------------- | ----------- | ------------ | ----------- |
-| `'message'`                  | `'message'` | `undefined`  | `undefined` |
-| `'message:entities'`         | `'message'` | `'entities'` | `undefined` |
-| `'message:entities:mention'` | `'message'` | `'entities'` | `'mention'` |
+| `"message"`                  | `"message"` | `undefined`  | `undefined` |
+| `"message:entities"`         | `"message"` | `"entities"` | `undefined` |
+| `"message:entities:mention"` | `"message"` | `"entities"` | `"mention"` |
 
 ### 查询前验证
 
