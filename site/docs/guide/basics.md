@@ -84,7 +84,7 @@ There are two ways to do this, as described in [the section about formatting opt
 
 > Also see <https://core.telegram.org/bots/api#markdownv2-style>
 
-Send your message with markdown in the text, and specify `parse_mode: 'MarkdownV2'`.
+Send your message with markdown in the text, and specify `parse_mode: "MarkdownV2"`.
 
 ```ts
 await bot.api.sendMessage(
@@ -98,7 +98,7 @@ await bot.api.sendMessage(
 
 > Also see <https://core.telegram.org/bots/api#html-style>
 
-Send your message with HTML elements in the text, and specify `parse_mode: 'HTML'`.
+Send your message with HTML elements in the text, and specify `parse_mode: "HTML"`.
 
 ```ts
 await bot.api.sendMessage(

@@ -20,21 +20,17 @@ import {
   onlyPublic,
   onlySuperAdmin,
   sequentialize,
-} de 'grammy-middlewares'
+} from "grammy-middlewares";
 
-<...>
+// ...
 
 bot.use(
   ignoreOld(),
-  onlyAdmin(ctx => ctx.reply(
-    'Sólo los administradores pueden hacer esto'
-  )),
-  onlyPublic(ctx => ctx.reply(
-    'Sólo puedes usar los chats públicos'
-  )),
+  onlyAdmin((ctx) => ctx.reply("Sólo los administradores pueden hacer esto")),
+  onlyPublic((ctx) => ctx.reply("Sólo puedes usar los chats públicos")),
   onlySuperAdmin(env.SUPER_ADMIN_ID),
-  sequentialize()
-)
+  sequentialize(),
+);
 ```
 
 ## Middlewares

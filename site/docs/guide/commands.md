@@ -52,7 +52,7 @@ You can access the argument string via `ctx.match`.
 
 ```ts
 bot.command("add", (ctx) => {
-  // `item` will be 'apple pie' if a user sends '/add apple pie'.
+  // `item` will be "apple pie" if a user sends "/add apple pie".
   const item = ctx.match;
 });
 ```

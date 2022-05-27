@@ -198,7 +198,7 @@ import express from "express";
 const app = express(); // o lo que sea que estés usando
 app.use(express.json()); // analiza el cuerpo de la petición JSON
 
-// 'express' también se utiliza por defecto si no se da ningún argumento.
+// "express" también se utiliza por defecto si no se da ningún argumento.
 app.use(webhookCallback(bot, "express"));
 ```
 
@@ -211,7 +211,7 @@ const express = require("express");
 const app = express(); // o lo que sea que estés usando
 app.use(express.json()); // analiza el cuerpo de la petición JSON
 
-// 'express' también se utiliza por defecto si no se da ningún argumento.
+// "express" también se utiliza por defecto si no se da ningún argumento.
 app.use(webhookCallback(bot, "express"));
 ```
 
