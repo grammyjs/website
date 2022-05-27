@@ -59,7 +59,7 @@ bot.use(); /* ... */
 // Use AfterMiddleware after loading the middleware you are testing (with the same label).
 bot.use(generateAfterMiddleware("foo"));
 
-// Other middleware/implementations (they will take the 'inner' amount of time when used).
+// Other middleware/implementations (they will take the "inner" amount of time when used).
 bot.use(); /* ... */
 bot.on("message" /* ... */);
 ```

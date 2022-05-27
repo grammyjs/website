@@ -31,12 +31,12 @@ bot.start();
 
 Cuando llegue una actualización con un mensaje de texto normal, se realizarán estos pasos:
 
-1. Se envía `'¡Hola!'` al bot.
+1. Se envía `"¡Hola!"` al bot.
 2. El middleware de sesión recibe la actualización, y hace sus cosas de sesión
 3. La actualización será comprobada por un comando `/start`, que no está contenido
 4. Se comprobará si la actualización contiene un comando `/help`, que no está contenido
 5. Se comprobará que la actualización contiene un texto en el mensaje (o en el mensaje del canal), que tiene éxito.
-6. Se invocará al middleware en `(*)`, que maneja la actualización respondiendo con `'¡Texto!
+6. Se invocará al middleware en `(*)`, que maneja la actualización respondiendo con `"¡Texto!"`
 
 La actualización **no** se comprueba para el contenido de una foto, porque el middleware en `(*)` ya maneja la actualización.
 
@@ -102,8 +102,8 @@ bot.start();
 Si ejecutas el bot anterior, y envías `/start`, nunca llegarás a ver una respuesta que diga `¡Comando!`.
 Vamos a inspeccionar lo que sucede:
 
-1. Envías `'/start'` al bot.
-2. El middleware `':text'` recibe la actualización y comprueba si hay texto, lo cual tiene éxito porque los comandos son mensajes de texto.
+1. Envías `"/start"` al bot.
+2. El middleware `":text"` recibe la actualización y comprueba si hay texto, lo cual tiene éxito porque los comandos son mensajes de texto.
    La actualización es manejada inmediatamente por el primer middleware y su bot responde con "¡Texto!".
 
 ¡El mensaje ni siquiera se comprueba si contiene el comando `/start`!

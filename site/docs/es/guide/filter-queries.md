@@ -84,7 +84,7 @@ El motor de consulta de grammY permite definir accesos directos que agrupan cons
 #### `msg`
 
 El atajo `msg` agrupa los nuevos mensajes y los nuevos mensajes del canal.
-En otras palabras, usar `msg` es equivalente a escuchar los eventos `'message'` y `'channel_post'`.
+En otras palabras, usar `msg` es equivalente a escuchar los eventos `"message"` y `"channel_post"`.
 
 ```ts
 bot.on("msg"); // cualquier mensaje o mensaje de canal
@@ -330,7 +330,7 @@ bot.on(":text", handler);
 ### Estructura de la consulta
 
 Cada consulta consta de un máximo de tres partes de consulta.
-Dependiendo del número de partes de consulta que tenga una consulta, diferenciamos entre consultas L1, L2 y L3, como `'message'`, `'message:entities'` y `'message:entities:url'`, respectivamente.
+Dependiendo del número de partes de consulta que tenga una consulta, diferenciamos entre consultas L1, L2 y L3, como `"message"`, `"message:entities"` y `"message:entities:url"`, respectivamente.
 
 Las partes de la consulta están separadas por dos puntos (`:`).
 Nos referimos a la parte hasta los primeros dos puntos o el final de la cadena de consulta como la _L1 parte_ de una consulta.
@@ -341,9 +341,9 @@ Ejemplo:
 
 | Filter Query                 | L1 part     | L2 part      | L3 part     |
 | ---------------------------- | ----------- | ------------ | ----------- |
-| `'message'`                  | `'message'` | `undefined`  | `undefined` |
-| `'message:entities'`         | `'message'` | `'entities'` | `undefined` |
-| `'message:entities:mention'` | `'message'` | `'entities'` | `'mention'` |
+| `"message"`                  | `"message"` | `undefined`  | `undefined` |
+| `"message:entities"`         | `"message"` | `"entities"` | `undefined` |
+| `"message:entities:mention"` | `"message"` | `"entities"` | `"mention"` |
 
 ### Validación de consultas
 

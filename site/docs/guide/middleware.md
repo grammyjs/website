@@ -31,12 +31,12 @@ bot.start();
 
 When an update with a regular text message arrives, these steps will be performed:
 
-1. You send `'Hi there!'` to the bot.
+1. You send `"Hi there!"` to the bot.
 2. The session middleware receives the update, and does its session things
 3. The update will be checked for a `/start` command, which is not contained
 4. The update will be checked for a `/help` command, which is not contained
 5. The update will be checked for text in the message (or channel post), which succeeds.
-6. The middleware at `(*)` will be invoked, it handles the update by replying with `'Text!'`.
+6. The middleware at `(*)` will be invoked, it handles the update by replying with `"Text!"`.
 
 The update is **not** checked for a photo content, because the middleware at `(*)` already handled the update.
 
@@ -102,8 +102,8 @@ bot.start();
 If you run the above bot, and send `/start`, you will never get to see a response saying `Command!`.
 Let's inspect what happens:
 
-1. You send `'/start'` to the bot.
-2. The `':text'` middleware receives the update and checks for text, which succeeds because commands are text messages.
+1. You send `"/start"` to the bot.
+2. The `":text"` middleware receives the update and checks for text, which succeeds because commands are text messages.
    The update is handled immediately by the first middleware and your bot replies with "Text!".
 
 The message is never even checked for if it contains the `/start` command!

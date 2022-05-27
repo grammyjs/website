@@ -29,15 +29,15 @@ bot.on("message", (ctx) => {
 
 ```ts
 bot.on("message", (ctx) => {
-  // `txt` 在处理文本信息时将是一个 `string'。
-  // 如果收到的信息没有任何信息文本，它将是 `undefined'。
+  // `txt` 在处理文本信息时将是一个 `string`。
+  // 如果收到的信息没有任何信息文本，它将是 `undefined`。
   // 例如，照片、贴纸和其他信息。
   const txt = ctx.message.text;
 });
 ```
 
 同样，你也可以访问消息对象的其他属性，例如 `ctx.message.chat` ，以了解消息发送地的聊天信息。
-请查看 [Telegram Bot API 参考 中关于 `Message' 的部分](https://core.telegram.org/bots/api#message)，看看哪些数据是可用的。
+请查看 [Telegram Bot API 参考 中关于 `Message` 的部分](https://core.telegram.org/bots/api#message)，看看哪些数据是可用的。
 另外，你可以简单地在你的代码编辑器中使用自动完成功能来查看可能的选项。
 
 如果你为其他类型的监听器注册监听，`ctx` 也会给你关于这些的信息。
