@@ -58,7 +58,7 @@ bot.use(/* ... */);
 // 在加载被测试中间件之后使用 AfterMiddleware（使用相同标签）
 bot.use(generateAfterMiddleware("foo"));
 
-// 其他中间件或者实现（它们会在使用时获得 'inner' 的时间）
+// 其他中间件或者实现（它们会在使用时获得 "inner" 的时间）
 bot.use(/* ... */);
 bot.on("message" /* ... */);
 ```
