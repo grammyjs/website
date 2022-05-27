@@ -57,7 +57,7 @@ const inlineKeyboard = new InlineKeyboard()
 
 ##### Result
 
-![Example 1](/inline-keyboard-example-1.jpeg)
+![Example 1](/inline-keyboard-example-1.webp)
 
 #### Example 2
 
@@ -73,7 +73,7 @@ const inlineKeyboard = new InlineKeyboard()
 
 ##### Result
 
-![Example 2](/inline-keyboard-example-2.jpeg)
+![Example 2](/inline-keyboard-example-2.webp)
 
 #### Example 3
 
@@ -90,7 +90,7 @@ const inlineKeyboard = new InlineKeyboard().url(
 
 ##### Result
 
-![Example 3](/inline-keyboard-example-3.jpeg)
+![Example 3](/inline-keyboard-example-3.webp)
 
 ### Sending an Inline Keyboard
 
@@ -191,7 +191,7 @@ const keyboard = new Keyboard()
 
 ##### Result
 
-![Example 1](/keyboard-example-1.jpeg)
+![Example 1](/keyboard-example-1.webp)
 
 #### Example 2
 
@@ -209,7 +209,7 @@ const keyboard = new Keyboard()
 
 ##### Result
 
-![Example 2](/keyboard-example-2.jpeg)
+![Example 2](/keyboard-example-2.webp)
 
 #### Example 3
 
@@ -225,7 +225,7 @@ const keyboard = new Keyboard()
 
 ##### Result
 
-![Example 3](/keyboard-example-3.jpeg)
+![Example 3](/keyboard-example-3.webp)
 
 ### Sending a Custom Keyboard
 

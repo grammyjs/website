@@ -57,7 +57,7 @@ const inlineKeyboard = new InlineKeyboard()
 
 ##### 结果
 
-![示例 1](/inline-keyboard-example-1.jpeg)
+![示例 1](/inline-keyboard-example-1.webp)
 
 #### 示例 2
 
@@ -73,7 +73,7 @@ const inlineKeyboard = new InlineKeyboard()
 
 ##### 结果
 
-![示例 2](/inline-keyboard-example-2.jpeg)
+![示例 2](/inline-keyboard-example-2.webp)
 
 #### 示例 3
 
@@ -90,7 +90,7 @@ const inlineKeyboard = new InlineKeyboard().url(
 
 ##### 结果
 
-![示例 3](/inline-keyboard-example-3.jpeg)
+![示例 3](/inline-keyboard-example-3.webp)
 
 ### 发送一个 Inline Keyboard
 
@@ -191,7 +191,7 @@ const keyboard = new Keyboard()
 
 ##### 结果
 
-![样例 1](/keyboard-example-1.jpeg)
+![样例 1](/keyboard-example-1.webp)
 
 #### 样例 2
 
@@ -209,7 +209,7 @@ const keyboard = new Keyboard()
 
 ##### 结果
 
-![样例 2](/keyboard-example-2.jpeg)
+![样例 2](/keyboard-example-2.webp)
 
 #### 样例 3
 
@@ -225,7 +225,7 @@ const keyboard = new Keyboard()
 
 ##### 结果
 
-![样例 3](/keyboard-example-3.jpeg)
+![样例 3](/keyboard-example-3.webp)
 
 ### 发送一个自定义 Keyboard
 
