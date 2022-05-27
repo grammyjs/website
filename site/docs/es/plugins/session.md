@@ -439,7 +439,7 @@ bot.use(session({
 <CodeGroupItem title="Deno">
 
 ```ts
-import { freeStorage } from "https://deno.land/x/grammy_storage_free/mod.ts";
+import { freeStorage } from "https://deno.land/x/grammy_storage/free/mod.ts";
 
 bot.use(session({
   initial: ...
@@ -521,7 +521,7 @@ import {
   session,
   SessionFlavor,
 } from "https://deno.land/x/grammy/mod.ts";
-import { freeStorage } from "https://deno.land/x/grammy_storage_free/mod.ts";
+import { freeStorage } from "https://deno.land/x/grammy_storage/free/mod.ts";
 
 // Definir la estructura de la sesión.
 interface SessionData {
@@ -554,7 +554,6 @@ bot.start();
 
 Mantenemos una lista de adaptadores de almacenamiento oficiales que le permiten almacenar sus datos de sesión en diferentes lugares.
 Cada uno de ellos requerirá que te registres en un proveedor de alojamiento, o que alojes tu propia solución de almacenamiento.
-Consulta los respectivos repositorios sobre cada configuración individual.
 
 - Supabase: <https://github.com/grammyjs/storage-supabase>
 - Deta.sh Base: <https://github.com/grammyjs/storage-deta>
@@ -572,6 +571,20 @@ La opción `storage` funciona con cualquier objeto que se adhiera a [esta interf
 > Si has publicado tu propio adaptador de almacenamiento, no dudes en editar esta página y enlazarla aquí, para que otras personas puedan utilizarla.
 
 :::
+
+Todos los adaptadores de almacenamiento pueden instalarse de la misma manera.
+En primer lugar, debes buscar el nombre del paquete del adaptador que hayas elegido.
+Por ejemplo, el adaptador de almacenamiento para Supabase se llama `supabase`.
+
+**En Node.js**, puedes instalar los adaptadores a través de `npm i @grammyjs/storage-<nombre>`.
+Por ejemplo, el adaptador de almacenamiento para Supabase puede instalarse mediante `npm i @grammyjs/storage-supabase`.
+
+**En Deno**, todos los adaptadores de almacenamiento se publican en el mismo módulo de Deno.
+A continuación, puede importar el adaptador que necesite desde su sub-ruta en `https://deno.land/x/grammy_storages/<adaptador>/src/mod.ts`.
+Por ejemplo, el adaptador de almacenamiento para Supabase puede importarse desde `https://deno.land/x/grammy_storages/supabase/src/mod.ts`.
+
+Consulta los repositorios respectivos sobre cada configuración individual.
+Contienen información sobre cómo conectarlos a tu solución de almacenamiento.
 
 ## Resumen del plugin
 
