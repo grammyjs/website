@@ -1,31 +1,31 @@
-// import { type Plugin } from "vuepress-vite";
-// import { escapeHtml } from "./shared";
+import { type Plugin } from "vuepress-vite";
+import { escapeHtml } from "./shared";
 
-// export function betterLineBreaks(): Plugin {
-//   return {
-//     name: "better-line-breaks",
-//     extendsMarkdown: (md) => {
-//       md.renderer.rules.text = (tokens, idx) => {
-//         let content = tokens[idx].content;
-//         if (
-//           tokens[idx - 1]?.type === "link_open" &&
-//           tokens[idx + 1]?.type === "link_close"
-//         ) {
-//           content = insertWbrTags(content);
-//         }
-//         const escaped = escapeHtml(content);
-//         return escaped;
-//       };
-//       md.renderer.rules.code_inline = (tokens, idx, _opts, _env, slf) => {
-//         const token = tokens[idx];
-//         const attributes = slf.renderAttrs(token);
-//         const withBreaks = insertWbrTags(token.content);
-//         const escaped = escapeHtml(withBreaks);
-//         return `<code${attributes}>${escaped}</code>`;
-//       };
-//     },
-//   };
-// }
+export function betterLineBreaks(): Plugin {
+  return {
+    name: "better-line-breaks",
+    extendsMarkdown: (md) => {
+      md.renderer.rules.text = (tokens, idx) => {
+        let content = tokens[idx].content;
+        if (
+          tokens[idx - 1]?.type === "link_open" &&
+          tokens[idx + 1]?.type === "link_close"
+        ) {
+          content = insertWbrTags(content);
+        }
+        const escaped = escapeHtml(content);
+        return escaped;
+      };
+      md.renderer.rules.code_inline = (tokens, idx, _opts, _env, slf) => {
+        const token = tokens[idx];
+        const attributes = slf.renderAttrs(token);
+        const withBreaks = insertWbrTags(token.content);
+        const escaped = escapeHtml(withBreaks);
+        return `<code${attributes}>${escaped}</code>`;
+      };
+    },
+  };
+}
 
 function insertWbrTags(url: string) {
   // Adapted from https://css-tricks.com/better-line-breaks-for-long-urls/
