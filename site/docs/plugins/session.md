@@ -33,18 +33,66 @@ For example, let's say we want to build a bot that counts the number of times th
 This bot could be added to a group, and it can tell you how much you and your friends like pizza.
 
 When our pizza bot receives a message, it has to remember how many times it saw a :pizza: in that chat before.
-The pizza count should of course not change when your sister adds the pizza bot to her group chat, so what we really want is to store _one counter per chat_.
+Your pizza count should of course not change when your sister adds the pizza bot to her group chat, so what we really want is to store _one counter per chat_.
 
 Sessions are an elegant way to store data _per chat_.
 You would use the chat identifier as the key in your database, and a counter as the value.
 In this case, we would call the chat identifier the _session key_.
+(You can read more about session keys [down here](#session-keys).)
+Effectively, your bot will store a map from a chat identifier to some custom session data, i.e. something like this:
 
-> You can read more about session keys [down here](#session-keys).
+```json:no-line-numbers
+{
+  "424242": { "pizzaCount": 24 },
+  "987654": { "pizzaCount": 1729 }
+}
+```
 
-We can install middleware on the bot that will provide a chat's session data on `ctx.session` for every update by loading it from the database before our middleware runs.
-It would also make sure that the session data is written back to the database once we're done, so that we never have to worry about actually communicating with the data storage anymore.
+> When we say database, we really mean any data storage solution.
+> This includes files, cloud storage, or anything else.
 
-In our example, we would have access to the pizza count _of the corresponding chat_ on the session object `ctx.session`.
+Okay, but what are sessions now?
+
+We can install middleware on the bot that will provide a chat's session data on `ctx.session` for every update.
+The installed plugin will do somthing before and after our handlers are called:
+
+1. **Before our middleware.**
+   The session plugin loads the session data for the current chat from the database.
+   It stores the data on the context object under `ctx.session`.
+2. **Our middleware runs.**
+   We can _read_ `ctx.session` to inspect which value was in the database.
+   For example, if a message is sent to the chat with the identifier `424242`, it would be `ctx.session = { pizzaCount: 24 }` while our middleware runs (at least with the example database state above).
+   We can also _modify_ ctx.session arbitrarily, so we can add, remove, and change fields as we like.
+3. **After our middleware.**
+   The session middleware makes sure that the data is written back to the database.
+   Whatever the value of `ctx.session` is after the middleware is done executing, it will be saved in the database.
+
+As a result, we never have to worry about actually communicating with the data storage anymore.
+We just modify the data in `ctx.session`, and the plugin will take care of the rest.
+
+## When to Use Sessions
+
+> [Skip ahead](#how-to-use-sessions) if you already know that you want to use sessions.
+
+You may think, this is great, I never have to worry about databases again!
+And you are right, sessions are an ideal solution—but only for some types of data.
+
+In our experience, there are use cases where sessions truly shine.
+On the other hand, there are cases where a traditional database may be better suited.
+
+This comparison may help you decide whether to use sessions or not.
+
+|                     | Sessions                                                    | Database                                                           |
+| ------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------ |
+| _Access_            | one isolated storage **per chat**                           | access same data from **multiple chats**                           |
+| _Sharing_           | data is **only used by bot**                                | data is **used by other systems** (e.g. by a connected web server) |
+| _Format_            | any JavaScript objects, strings, numbers, arrays, and so on | any data (binary, files, structured, etc)                          |
+| _Size per chat_     | preferably less than ~3 MB per chat                         | any size                                                           |
+| _Exclusive feature_ | Required by some grammY plugins.                            | Supports database transactions.                                    |
+
+This does not mean that things _cannot work_ if you pick sessions/databases over the other.
+For example, you can of course store large binary data in your session.
+However, your bot would not perform as well as it could otherwise, so we recommend using sessions only where they make sense.
 
 ## How to Use Sessions
 
