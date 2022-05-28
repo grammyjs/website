@@ -167,62 +167,162 @@ El mismo objeto de contexto para una actualización será compartido por todo el
 > Si eres nuevo en los objetos de contexto, no necesitas preocuparte por el resto de esta página.
 
 Si lo desea, puede instalar sus propias propiedades en el objeto de contexto.
-Esto es posible de dos maneras:
 
-1. Instalando [middleware](./middleware.md) que modifique el contexto (recomendado), o
-2. estableciendo un constructor de contexto personalizado.
+### Vía Middleware (Recomendado)
 
-Si eliges la opción 1., debes especificar el contexto personalizado como un parámetro de tipo (omitir para JavaScript):
+Las personalizaciones pueden hacerse fácilmente en [middleware](./middleware.md).
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::: tip ¿Middle qué?
+Esta sección requiere una comprensión del middleware, así que en caso de que aún no hayas saltado a [esta sección](./middleware.md), aquí hay un resumen muy breve.
+
+Todo lo que necesitas saber es que varios manejadores pueden procesar el mismo objeto de contexto.
+Hay manejadores especiales que pueden modificar `ctx` antes de que se ejecuten otros manejadores, y las modificaciones del primer manejador serán visibles para todos los manejadores posteriores.
+:::
+
+La idea es instalar el middleware antes de registrar otros listeners.
+Entonces puedes establecer las propiedades que quieras dentro de estos manejadores.
+
+A modo de ejemplo, digamos que quieres establecer una propiedad llamada `ctx.config` en el objeto contexto.
+En este ejemplo, la usaremos para almacenar alguna configuración sobre el proyecto para que todos los manejadores tengan acceso a ella.
+La configuración hará que sea más fácil detectar si el bot es utilizado por su desarrollador o por los usuarios regulares.
+
+Justo después de crear tu bot, haz esto:
 
 ```ts
-import { Bot, Context } from "grammy";
+const BOT_DEVELOPER = 123456; // identificador del chat del desarrollador del bot
+bot.use(async (ctx, next) => {
+  // Modifica el objeto de contexto aquí estableciendo la configuración.
+  ctx.config = {
+    developer: BOT_DEVELOPER,
+    isDeveloper: ctx.from?.id === BOT_DEVELOPER,
+  };
+  // Ejecutar los manejadores restantes.
+  await next();
+});
+```
 
-// Definir un tipo de contexto personalizado.
-interface MyContext extends Context {
-  customProp: string | number | undefined;
+Después de esto, puedes usar `ctx.config` en los manejadores restantes.
+
+```ts
+bot.command("start", async (ctx) => {
+  // ¡Trabaja con el contexto modificado aquí!
+  if (ctx.config.isDeveloper) await ctx.reply("¡Hola mamá! <3");
+  else await ctx.reply("¡Bienvenido, humano!");
+});
+```
+
+Sin embargo, te darás cuenta de que TypeScript no sabe que `ctx.config` está disponible, a pesar de que estamos asignando la propiedad correctamente.
+Así que, aunque el código funcionará en tiempo de ejecución, no compila.
+Para solucionar esto, tenemos que ajustar el tipo del contexto y añadir la propiedad.
+
+```ts
+interface BotConfig {
+  botDeveloper: number;
+  isDeveloper: boolean;
 }
 
-// Pasa el tipo de contexto personalizado al constructor `Bot`.
-const bot = new Bot<MyContext>("<token>");
+type MyContext = Context & {
+  config: BotConfig;
+};
+```
 
-bot.on("message", (ctx) => {
-  // ¡`ctx` es ahora del tipo `MyContext`!
-  const prop = ctx.customProp;
+El nuevo tipo `MyContext` ahora describe con precisión los objetos de contexto que nuestro bot está manejando realmente.
+
+> Tendrás que asegurarte de mantener los tipos sincronizados con las propiedades que inicialices.
+> Podemos utilizar el nuevo tipo pasándolo al constructor del `Bot`.
+
+```ts
+const bot = new Bot<MyContext>("");
+```
+
+En resumen, la configuración se verá así:
+
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
+
+```ts
+const BOT_DEVELOPER = 123456; // identificador del chat del desarrollador del bot
+
+const bot = new Bot<MyContext>("");
+
+// Definir el tipo de contexto personalizado.
+interface BotConfig {
+  botDeveloper: number;
+  isDeveloper: boolean;
+}
+type MyContext = Context & {
+  config: BotConfig;
+};
+
+// Establecer propiedades personalizadas en los objetos de contexto.
+bot.use(async (ctx, next) => {
+  ctx.config = {
+    botDeveloper: BOT_DEVELOPER,
+    isDeveloper: ctx.from?.id === BOT_DEVELOPER,
+  };
+  await next();
+});
+
+// Definir manejadores para objetos de contexto personalizados.
+const bot = new Bot<MyContext>("<token>");
+bot.command("start", async (ctx) => {
+  if (ctx.config.isDeveloper) await ctx.reply("¡Hola mamá!");
+  else await ctx.reply("Bienvenido");
 });
 ```
 
 </CodeGroupItem>
-  <CodeGroupItem title="Deno">
+  <CodeGroupItem title="JavaScript">
 
-```ts
-import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
+```js
+const BOT_DEVELOPER = 123456; // identificador del chat del desarrollador del bot
 
-// Definir un tipo de contexto personalizado.
-interface MyContext extends Context {
-  customProp: string | number | undefined;
-}
+const bot = new Bot("");
 
-// Pasa el tipo de contexto personalizado al constructor `Bot`.
-const bot = new Bot<MyContext>("<token>");
+// Establecer propiedades personalizadas en los objetos de contexto.
+bot.use(async (ctx, next) => {
+  ctx.config = {
+    botDeveloper: BOT_DEVELOPER,
+    isDeveloper: ctx.from?.id === BOT_DEVELOPER,
+  };
+  await next();
+});
 
-bot.on("message", (ctx) => {
-  // ¡`ctx` es ahora del tipo `MyContext`!
-  const prop = ctx.customProp;
+// Definir manejadores para objetos de contexto personalizados.
+bot.command("start", async (ctx) => {
+  if (ctx.config.isDeveloper) await ctx.reply("¡Hola mamá!");
+  else await ctx.reply("Bienvenido");
 });
 ```
 
 </CodeGroupItem>
 </CodeGroup>
 
-Naturalmente, el hecho de que el _tipo_ de contexto tenga ahora nuevas propiedades, no significa que haya realmente _valores_ detrás de ellas.
-Tienes que asegurarte de que un plugin (o tu propio middleware) establece todas las propiedades correctamente para satisfacer el tipo que has especificado.
+Naturalmente, el tipo de contexto personalizado también se puede pasar a otras cosas que manejan el middleware, como los compositores.
 
-> Algunos middleware (por ejemplo, [session middleware](../plugins/session.md)) requieren que mezcles los tipos correctos en el objeto contexto, lo que puede hacerse _flavoring_ tu contexto como se explica [aquí abajo](#context-flavors).
+```ts
+const composer = new Composer<MyContext>();
+```
 
-Si eliges la opción 2., así es como estableces un constructor de contexto personalizado que se utilizará para instanciar los objetos de contexto.
+Algunos plugins también requieren que pases un tipo de contexto personalizado, como el plugin [router](../plugins/router.md) o el plugin [menu](../plugins/menu.md).
+Consulta su documentación para ver cómo pueden utilizar un tipo de contexto personalizado.
+Estos tipos se llaman context flavors, como se describe [aquí abajo](#context-flavors).
+
+### Vía Herencia
+
+Además de establecer propiedades personalizadas en el objeto de contexto, puede subclasificar la clase `Context`.
+
+```ts
+class MiContexto extends Context {
+  // etc
+}
+```
+
+Sin embargo, te recomendamos que personalices el objeto contexto [vía middleware](#via-middleware-recomendado) porque es mucho más flexible y funciona mucho mejor si quieres instalar plugins.
+
+Ahora veremos cómo utilizar clases personalizadas para los objetos de contexto.
+
+Cuando construyas tu bot, puedes pasar un constructor de contexto personalizado que se utilizará para instanciar los objetos de contexto.
 Ten en cuenta que tu clase debe extender `Context`.
 
 <CodeGroup>
@@ -320,17 +420,21 @@ bot.start();
 </CodeGroupItem>
 </CodeGroup>
 
-::: tip Relacionado
-[Middleware](./middleware.md) se refiere a una función que recibe un objeto de contexto como parámetro, como los listeners instalados.
-:::
+Fíjate en que el tipo de contexto personalizado será inferido automáticamente cuando utilices una subclase.
+Ya no necesitas escribir `Bot<MiContexto>` porque ya has especificado el constructor de tu subclase en el objeto de opciones de `new Bot()`.
+
+Sin embargo, esto hace que sea muy difícil (si no imposible) instalar plugins, ya que a menudo necesitan que instales context flavors.
 
 ## Context Flavors
 
 Context flavors son una forma de informar a TypeScript sobre las nuevas propiedades de su objeto de contexto.
+Estas nuevas propiedades pueden ser enviadas en plugins u otros módulos y luego instaladas en tu bot.
+
+Los context flavors también son capaces de transformar los tipos de propiedades existentes utilizando procedimientos automáticos que son definidos por los plugins.
 
 ### Additive Context Flavors
 
-Hay dos tipos diferentes de context flavors.
+Como ya se ha dicho, hay dos tipos diferentes de context flavors.
 El básico se llama _additive context flavor_, y siempre que hablamos de sabor de contexto, nos referimos a esta forma básica.
 Veamos cómo funciona.
 
