@@ -278,14 +278,14 @@ await ctx.reply(text, {
 
 #### Marcador de posición del campo de entrada
 
-Puede especificar la opción `input_field_placehoder` si desea que se muestre un marcador de posición en el campo de entrada mientras el teclado esté visible.
+Puede especificar la opción `input_field_placeholder` si desea que se muestre un marcador de posición en el campo de entrada mientras el teclado esté visible.
 
 ```ts
 const keyboard = new Keyboard().text("IZQUIERDA").text("DERECHA");
 
 await ctx.reply(text, {
   reply_markup: {
-    input_field_placehoder: "Enviar IZQUIERDA o DERECHA",
+    input_field_placeholder: "Enviar IZQUIERDA o DERECHA",
     keyboard: keyboard.build(),
   },
 });
