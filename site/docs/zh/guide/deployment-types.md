@@ -199,7 +199,7 @@ import express from "express";
 const app = express(); // 或者其它你正在使用的
 app.use(express.json()); // 解析 JSON 请求
 
-// 如果没有给出参数，则使用 'express' 作为默认值。
+// 如果没有给出参数，则使用 "express" 作为默认值。
 app.use(webhookCallback(bot, "express"));
 ```
 
@@ -212,7 +212,7 @@ const express = require("express");
 const app = express(); // 或者其它你正在使用的
 app.use(express.json()); // 解析 JSON 请求
 
-// 如果没有给出参数，则使用 'express' 作为默认值。
+// 如果没有给出参数，则使用 "express" 作为默认值。
 app.use(webhookCallback(bot, "express"));
 ```
 

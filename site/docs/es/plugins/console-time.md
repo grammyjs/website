@@ -59,7 +59,7 @@ bot.use(/* ... */);
 // Usar AfterMiddleware después de cargar el middleware que se está probando (con la misma etiqueta).
 bot.use(generateAfterMiddleware("foo"));
 
-// Otros middleware/implementaciones (tomarán la cantidad de tiempo 'interna' cuando se usen).
+// Otros middleware/implementaciones (tomarán la cantidad de tiempo "interna" cuando se usen).
 bot.use(/* ... */);
 bot.on("message" /* ... */);
 ```

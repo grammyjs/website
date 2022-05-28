@@ -57,7 +57,7 @@ const inlineKeyboard = new InlineKeyboard()
 
 ##### Result
 
-![Example 1](https://core.telegram.org/file/811140217/1/NkRCCLeQZVc/17a804837802700ea4)
+![Example 1](/inline-keyboard-example-1.webp)
 
 #### Example 2
 
@@ -73,7 +73,7 @@ const inlineKeyboard = new InlineKeyboard()
 
 ##### Result
 
-![Example 2](https://core.telegram.org/file/811140659/1/RRJyulbtLBY/ea6163411c7eb4f4dc)
+![Example 2](/inline-keyboard-example-2.webp)
 
 #### Example 3
 
@@ -90,7 +90,7 @@ const inlineKeyboard = new InlineKeyboard().url(
 
 ##### Result
 
-![Example 3](https://core.telegram.org/file/811140999/1/2JSoUVlWKa0/4fad2e2743dc8eda04)
+![Example 3](/inline-keyboard-example-3.webp)
 
 ### Sending an Inline Keyboard
 
@@ -191,7 +191,7 @@ const keyboard = new Keyboard()
 
 ##### Result
 
-![Example 1](https://core.telegram.org/file/811140184/1/5YJxx-rostA/ad3f74094485fb97bd)
+![Example 1](/keyboard-example-1.webp)
 
 #### Example 2
 
@@ -209,7 +209,7 @@ const keyboard = new Keyboard()
 
 ##### Result
 
-![Example 2](https://core.telegram.org/file/811140880/1/jS-YSVkDCNQ/b397dfcefc6da0dc70)
+![Example 2](/keyboard-example-2.webp)
 
 #### Example 3
 
@@ -225,7 +225,7 @@ const keyboard = new Keyboard()
 
 ##### Result
 
-![Example 3](https://core.telegram.org/file/811140733/2/KoysqJKQ_kI/a1ee46a377796c3961)
+![Example 3](/keyboard-example-3.webp)
 
 ### Sending a Custom Keyboard
 
