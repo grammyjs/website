@@ -5,7 +5,7 @@ actions:
   - text: Mulai
     link: /id/guide/getting-started.html
     type: primary
-  - text: Pendahuluan
+  - text: Pengenalan
     link: /id/guide/introduction.html
     type: secondary
 features:
