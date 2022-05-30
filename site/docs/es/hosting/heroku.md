@@ -133,7 +133,8 @@ Echemos un vistazo a nuestro código anterior:
 
 - `process.env`: Recuerda, ¡nunca almacenes credenciales en nuestro código!
   Para crear [Variables de entorno en Heroku](https://www.freecodecamp.org/news/using-environment-variables-the-right-way/), dirígete a [esta guía](https://devcenter.heroku.com/articles/config-vars).
-- `secretPath`: Puede ser nuestro `BOT_TOKEN` o cualquier cadena aleatoria. Es una buena práctica ocultar la ruta de nuestro bot, tal y como se explica en Telegram (https://core.telegram.org/bots/api#setwebhook).
+- `secretPath`: Puede ser nuestro `BOT_TOKEN` o cualquier cadena aleatoria.
+  Es una buena práctica ocultar la ruta de nuestro bot, tal y como se explica en Telegram (https://core.telegram.org/bots/api#setwebhook).
 
 ::: tip ⚡ Optimización (opcional)
 `bot.api.setWebhook` en la línea 14 siempre se ejecutará cuando Heroku inicie su servidor de nuevo.
