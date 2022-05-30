@@ -22,9 +22,11 @@ This plugin exposes 5 customizable options:
 
 - `timeFrame`: The time frame during which the requests will be monitored (defaults to `1000` ms).
 - `limit`: The number of requests allowed within each `timeFrame` (defaults to `1`).
-- `storageClient`: The type of storage to use for keeping track of users and their requests. The default value is `MEMORY_STORE` which uses an in-memory [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map), but you can also pass in a Redis client as well (more info at [About storageClient](#about-storageclient)).
+- `storageClient`: The type of storage to use for keeping track of users and their requests.
+  The default value is `MEMORY_STORE` which uses an in-memory [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map), but you can also pass in a Redis client as well (more info at [About storageClient](#about-storageclient)).
 - `onLimitExceeded`: A function that describes what to do if the user exceeds the limit (ignores the extra requests by default).
-- `keyGenerator`: A function that returns a unique key generated for each user (it uses `from.id` by default). This key is used to identify the user, therefore it should be unique, user specific and in string format.
+- `keyGenerator`: A function that returns a unique key generated for each user (it uses `from.id` by default).
+  This key is used to identify the user, therefore it should be unique, user specific and in string format.
 
 ### About `storageClient`
 

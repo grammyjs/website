@@ -20,9 +20,11 @@ Este plugin expone 5 opciones personalizables:
 
 - `timeFrame`: El intervalo de tiempo durante el cual se monitorizarán las peticiones (por defecto es `1000` ms).
 - `limit`: El número de peticiones permitidas dentro de cada `timeFrame` (por defecto es `1`).
-- `storageClient`: El tipo de almacenamiento que se utilizará para mantener un registro de los usuarios y sus peticiones. El valor por defecto es `MEMORY_STORE` que utiliza un [Mapa] en memoria (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map), pero también se puede pasar un cliente Redis (más información en [About storageClient](#about-storageclient)).
+- `storageClient`: El tipo de almacenamiento que se utilizará para mantener un registro de los usuarios y sus peticiones.
+  El valor por defecto es `MEMORY_STORE` que utiliza un [Mapa] en memoria (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map), pero también se puede pasar un cliente Redis (más información en [About storageClient](#about-storageclient)).
 - `onLimitExceeded`: Una función que describe qué hacer si el usuario excede el límite (ignora las peticiones extra por defecto).
-- `keyGenerator`: Una función que devuelve una clave única generada para cada usuario (utiliza `from.id` por defecto). Esta clave se utiliza para identificar al usuario, por lo que debe ser única, específica del usuario y en formato de cadena.
+- `keyGenerator`: Una función que devuelve una clave única generada para cada usuario (utiliza `from.id` por defecto).
+  Esta clave se utiliza para identificar al usuario, por lo que debe ser única, específica del usuario y en formato de cadena.
 
 ### Sobre `storageClient`
 
