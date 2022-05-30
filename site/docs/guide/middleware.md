@@ -230,7 +230,7 @@ If you ever call `next()` without the `await` keyword, several things will break
 
 :::
 
-The rule that you should use `await` is actually not just true for `next()`, but for any expression that returns a `Promise` in general.
+The rule that you should use `await` is especially important for `next()`, but it actually applies to any expression in general that returns a `Promise`.
 This includes `bot.api.sendMessage`, `ctx.reply`, and all other network calls.
 If your project is important to you, then you use linting tools that warn you if you ever forget to use `await` on a `Promise`.
 
