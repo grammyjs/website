@@ -220,8 +220,11 @@ Doing so will help you to fully understand what middleware is.
 If you ever call `next()` without the `await` keyword, several things will break:
 
 - :x: Your middleware stack will be executed in the wrong order.
+- :x: You may experience data loss.
+- :x: Some messages may not be sent.
+- :x: Your bot may randomly crash in ways that are hard to reproduce.
 - :x: If an error happens, your error handler will not be called for it.
-  Instead, you will see that an `UnhandledPromiseRejectionWarning` will occur, which may crash your bot process
+  Instead, you will see that an `UnhandledPromiseRejectionWarning` will occur, which may crash your bot process.
 - :x: The backpressure mechanism of [grammY runner](../plugins/runner.md) breaks, which protects your server from overly-high load, such as during load spikes.
 - :skull: Sometimes, it also kills all of your innocent kittens.
 
