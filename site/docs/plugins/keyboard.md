@@ -273,14 +273,14 @@ await ctx.reply(text, {
 
 #### Input Field Placeholder
 
-You can specify the `input_field_placehoder` option if you want a placeholder to be shown in the input field as long as the custom keyboard is visible.
+You can specify the `input_field_placeholder` option if you want a placeholder to be shown in the input field as long as the custom keyboard is visible.
 
 ```ts
 const keyboard = new Keyboard().text("LEFT").text("RIGHT");
 
 await ctx.reply(text, {
   reply_markup: {
-    input_field_placehoder: "Send LEFT or RIGHT",
+    input_field_placeholder: "Send LEFT or RIGHT",
     keyboard: keyboard.build(),
   },
 });

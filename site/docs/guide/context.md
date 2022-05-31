@@ -169,62 +169,163 @@ The same context object for one update will be shared by all installed middlewar
 > If you are new to context objects, you don't need to worry about the rest of this page.
 
 You can install your own properties on the context object if you want.
-This is possible in two ways:
 
-1. Installing [middleware](./middleware.md) that modifies the context (recommended), or
-2. setting a custom context constructor.
+### Via Middleware (Recommended)
 
-If you choose option 1., you must specify the custom context as a type parameter (skip for JavaScript):
+The customizations can be easily done in [middleware](./middleware.md).
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::: tip Middlewhat?
+This section requires an understanding of middleware, so in case you have not skipped ahead to [this section](./middleware.md) yet, here is a very brief summary.
+
+All you really need to know is that several handlers can process the same context object.
+There are special handlers which can modify `ctx` before any other handlers are run, and the modifications of the first handler will be visible to all subsequent handlers.
+:::
+
+The idea is to install middleware before you register other listeners.
+You can then set the properties you want inside these handlers.
+
+For illustration purposes, let's say you want to set a property called `ctx.config` on the context object.
+In this example, we will use it do store some configuration about the project so that all handlers have access to it.
+The configuration will make it easier to detect if the bot is used by its developer or by regular users.
+
+Right after creating your bot, do this:
 
 ```ts
-import { Bot, Context } from "grammy";
+const BOT_DEVELOPER = 123456; // bot developer chat identifier
 
-// Define a custom context type.
-interface MyContext extends Context {
-  customProp: string | number | undefined;
+bot.use(async (ctx, next) => {
+  // Modify context object here by setting the config.
+  ctx.config = {
+    developer: BOT_DEVELOPER,
+    isDeveloper: ctx.from?.id === BOT_DEVELOPER,
+  };
+  // Run remaining handlers.
+  await next();
+});
+```
+
+After that, you can use `ctx.config` in the remaining handlers.
+
+```ts
+bot.command("start", async (ctx) => {
+  // Work with modified context here!
+  if (ctx.config.isDeveloper) await ctx.reply("Hi mom!! <3");
+  else await ctx.reply("Welcome, human!");
+});
+```
+
+However, you will notice that TypeScript does not know that `ctx.config` is available, even though we are assigning the property correctly.
+So while the code will work at runtime, it does not compile.
+To fix this, we need to adjust the type of the context and add the property.
+
+```ts
+interface BotConfig {
+  botDeveloper: number;
+  isDeveloper: boolean;
 }
 
-// Pass the custom context type to the `Bot` constructor.
-const bot = new Bot<MyContext>("<token>");
+type MyContext = Context & {
+  config: BotConfig;
+};
+```
 
-bot.on("message", (ctx) => {
-  // `ctx` is now of type `MyContext`!
-  const prop = ctx.customProp;
+The new type `MyContext` now accurately describes the context objects our bot is actually handling.
+
+> You will need to make sure that you keep the types in sync with the properties you initialize.
+
+We can use the new type by passing it to the `Bot` constructor.
+
+```ts
+const bot = new Bot<MyContext>("");
+```
+
+In summary, the setup will look like this:
+
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
+
+```ts
+const BOT_DEVELOPER = 123456; // bot developer chat identifier
+
+const bot = new Bot<MyContext>("");
+
+// Define custom context type.
+interface BotConfig {
+  botDeveloper: number;
+  isDeveloper: boolean;
+}
+type MyContext = Context & {
+  config: BotConfig;
+};
+
+// Set custom properties on context objects.
+bot.use(async (ctx, next) => {
+  ctx.config = {
+    botDeveloper: BOT_DEVELOPER,
+    isDeveloper: ctx.from?.id === BOT_DEVELOPER,
+  };
+  await next();
+});
+
+// Define handlers for custom context objects.
+bot.command("start", async (ctx) => {
+  if (ctx.config.isDeveloper) await ctx.reply("Hi mom!");
+  else await ctx.reply("Welcome");
 });
 ```
 
 </CodeGroupItem>
-  <CodeGroupItem title="Deno">
+  <CodeGroupItem title="JavaScript">
 
-```ts
-import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
+```js
+const BOT_DEVELOPER = 123456; // bot developer chat identifier
 
-// Define a custom context type.
-interface MyContext extends Context {
-  customProp: string | number | undefined;
-}
+const bot = new Bot("");
 
-// Pass the custom context type to the `Bot` constructor.
-const bot = new Bot<MyContext>("<token>");
+// Set custom properties on context objects.
+bot.use(async (ctx, next) => {
+  ctx.config = {
+    botDeveloper: BOT_DEVELOPER,
+    isDeveloper: ctx.from?.id === BOT_DEVELOPER,
+  };
+  await next();
+});
 
-bot.on("message", (ctx) => {
-  // `ctx` is now of type `MyContext`!
-  const prop = ctx.customProp;
+// Define handlers for custom context objects.
+bot.command("start", async (ctx) => {
+  if (ctx.config.isDeveloper) await ctx.reply("Hi mom!");
+  else await ctx.reply("Welcome");
 });
 ```
 
 </CodeGroupItem>
 </CodeGroup>
 
-Naturally, just because the context _type_ now has new properties, this does not mean that there will actually be _values_ behind them.
-You have to make sure that a plugin (or your own middleware) sets all properties correctly to satisfy the type you specified.
+Naturally, the custom context type can also be passed to other things which handle middleware, such as composers.
 
-> Some middleware (e.g. [session middleware](../plugins/session.md)) requires you to mix in the correct types on the context object, which can be done by _flavoring_ your context as explained [down here](#context-flavors).
+```ts
+const composer = new Composer<MyContext>();
+```
 
-If you choose option 2., this is how you set a custom context constructor that will be used to instantiate the context objects.
+Some plugins will also require you to pass a custom context type, such as the [router](../plugins/router.md) or the [menu](../plugins/menu.md) plugin.
+Check out their docs to see how they can use a custom context type.
+These types are called context flavors, as described [down here](#context-flavors).
+
+### Via Inheritance
+
+In addition to setting custom properties on the context object, you can subclass the `Context` class.
+
+```ts
+class MyContext extends Context {
+  // etc
+}
+```
+
+However, we recommend that you customize the context object [via middleware](#via-middleware-recommended) because it is much more flexible and works much better if you want to install plugins.
+
+We will now see how to use custom classes for context objects.
+
+When constructing your bot, you can pass a custom context constructor that will be used to instantiate the context objects.
 Note that your class must extend `Context`.
 
 <CodeGroup>
@@ -322,17 +423,21 @@ bot.start();
 </CodeGroupItem>
 </CodeGroup>
 
-::: tip Related
-[Middleware](./middleware.md) refers to a function that receives a context object as parameter, such as installed listeners.
-:::
+Notice how the custom context type will be inferred automatically when you are using a subclass.
+You no longer need to write `Bot<MyContext>` because you already specified your subclass constructor in the options object of `new Bot()`.
+
+However, this makes it very hard (if not impossible) to install plugins, as they often need you to install context flavors.
 
 ## Context Flavors
 
 Context flavors are a way to tell TypeScript about new properties on your context object.
+These new properties can be shipped in plugins or other modules and then installed on your bot.
+
+Context flavors are also able to transform the types of existing properties using automatic procedures which are defined by plugins.
 
 ### Additive Context Flavors
 
-There are two different kinds of context flavors.
+As implied above, there are two different kinds of context flavors.
 The basic one is called _additive context flavor_, and whenever we talk about context flavoring, we just mean this basic form.
 Let's look at how it works.
 

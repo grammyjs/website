@@ -273,16 +273,31 @@ main.register(settings, "back-from-settings-menu");
 你可以注册任意多个菜单，并且可以嵌套任意深度。
 菜单标识可以让你快速跳转到任何页面。
 
-**请注意，你只需要给你的嵌套菜单设置一个交互即可。**
+**你只需要给你的嵌套菜单设置一个交互即可。**
 例如，只需要传递根菜单给 `bot.use`。
 
 ```ts
+// 如果你已经有了这个：
+main.register(settings);
+
 // 请这样做：
 bot.use(main);
 
 // 请不要这样做：
 bot.use(main);
 bot.use(settings);
+```
+
+**你可以创建多个独立的菜单并且使它们都可以交互。**
+例如，如果你创建了两个不相关的菜单，并且你不需要在它们之间导航，那么你应该独立地安装这两个菜单。
+
+```ts
+// 如果你有像这样的独立菜单：
+const menuA = new Menu("menu-a");
+const menuB = new Menu("menu-b");
+// 你可以这样做：
+bot.use(menuA);
+bot.use(menuB);
 ```
 
 ## Payloads

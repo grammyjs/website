@@ -272,16 +272,32 @@ main.register(settings, "back-from-settings-menu");
 Puedes registrar tantos menús como quieras, y anidarlos tan profundamente como quieras.
 Los identificadores de menú le permiten saltar fácilmente a cualquier página.
 
-**Nota que sólo tienes que hacer interactivo un único menú de tu estructura de menús anidados.**
+**Sólo tienes que hacer interactivo un único menú de tu estructura de menús anidados.**
 Por ejemplo, sólo pasa el menú raíz a `bot.use`.
 
 ```ts
+// Si tienes esto:
+main.register(settings);
+
 // Haz esto:
 bot.use(main);
 
 // No hagas esto:
 bot.use(main);
 bot.use(settings);
+```
+
+**Puedes crear varios menús independientes y hacerlos todos interactivos.**
+Por ejemplo, si creas dos menús no relacionados entre sí y nunca necesitas navegar entre ellos, entonces debes instalar ambos de forma independiente.
+
+```ts
+// Si tienes menús independientes como este
+const menuA = new Menu("menu-a");
+const menuB = new Menu("menu-b");
+
+// Puedes hacer esto
+bot.use(menuA);
+bot.use(menuB);
 ```
 
 ## Payloads
