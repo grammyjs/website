@@ -4,9 +4,11 @@
 
 请注意，这个指南只适用于 Deno 用户，你需要一个 [GitHub](https://github.com) 账户来创建一个 [Deno Deploy](https://deno.com/deploy) 账户。
 
-Deno Deploy 是大多数简单 bot 的理想选择，并且你应该注意，不是所有的 Deno 功能都适用于在 Deno Deploy 上运行的应用程序。
+Deno Deploy 是大多数简单 bot 的理想选择，并且你应该注意，并且你应该注意，Deno Deploy 上运行的应用程序不一定完整支持 Deno 的所有功能。
 例如，Deno Deploy 上没有文件系统。
 它就像其他许多 serverless 平台一样，但专门用于 Deno 应用程序。
+
+这个教程的结果 [可以在我们的示例 bot 仓库中看到](https://github.com/grammyjs/examples/tree/main/deno-deploy)。
 
 ## 准备你的代码
 
@@ -40,7 +42,8 @@ serve({
 });
 ```
 
-我们建议你将你的处理程序放在一个相对隐蔽的路径而不是根路径（`/`）。这里，我们使用 bot token 作为路径（`/<bot token>`）。
+我们建议你将你的处理程序放在一个相对隐蔽的路径而不是根路径（`/`）。
+这里，我们使用 bot token 作为路径（`/<bot token>`）。
 
 ## 部署
 
