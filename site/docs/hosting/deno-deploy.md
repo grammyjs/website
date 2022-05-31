@@ -8,6 +8,8 @@ Deno Deploy is ideal for most simple bots, and you should note that not all Deno
 For example, there is no file system on Deno Deploy.
 It's just like the other many serverless platforms, but dedicated for Deno apps.
 
+The result of this tutorial [can be seen in our example bots repository](https://github.com/grammyjs/examples/tree/main/deno-deploy).
+
 ## Preparing Your Code
 
 > Remember that you need to [run your bot on webhhoks](../guide/deployment-types.md#how-to-use-webhooks), so you should use `webhookCallback` and not call `bot.start()` in your code.
@@ -40,7 +42,8 @@ serve({
 });
 ```
 
-We advise you to have your handler on some secret path rather than the root (`/`). Here, we are using the bot token (`/<bot token>`).
+We advise you to have your handler on some secret path rather than the root (`/`).
+Here, we are using the bot token (`/<bot token>`).
 
 ## Deploying
 

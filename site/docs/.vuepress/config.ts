@@ -360,6 +360,10 @@ export default defineUserConfig({
                     link: "/hosting/deno-deploy.html",
                   },
                   {
+                    text: "Supabase Edge Functions",
+                    link: "/hosting/supabase.html",
+                  },
+                  {
                     text: "Heroku",
                     link: "/hosting/heroku.html",
                   },
@@ -715,8 +719,12 @@ export default defineUserConfig({
                 text: "Tutoriales",
                 children: [
                   {
-                    text: "Despliegue con Deno",
+                    text: "Deno Deploy",
                     link: "/es/hosting/deno-deploy.html",
+                  },
+                  {
+                    text: "Supabase Edge Functions",
+                    link: "/hosting/supabase.html",
                   },
                   {
                     text: "Heroku",
@@ -1072,6 +1080,10 @@ export default defineUserConfig({
                   {
                     text: "Deno Deploy",
                     link: "/zh/hosting/deno-deploy.html",
+                  },
+                  {
+                    text: "Supabase Edge Functions",
+                    link: "/zh/hosting/supabase.html",
                   },
                   {
                     text: "Heroku",
