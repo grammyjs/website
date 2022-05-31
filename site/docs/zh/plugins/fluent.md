@@ -113,8 +113,8 @@ bot.use(useFluent({
 ```typescript
 bot.command("i18n_test", async (ctx) => {
   // 调用 "translate" 或 "t" 来渲染消息，指定其 ID 和额外参数：
-  await context.reply(ctx.t("welcome", {
-    name: context.from.first_name,
+  await ctx.reply(ctx.t("welcome", {
+    name: ctx.from.first_name,
     applesCount: 1,
   }));
 });

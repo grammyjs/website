@@ -114,8 +114,8 @@ Vamos a hacerlo definiendo un comando de prueba en nuestro bot:
 bot.command("i18n_test", async (ctx) => {
   // Llama al helper "translate" o "t" para renderizar el
   // mensaje especificando su ID y parámetros adicionales:
-  await context.reply(ctx.t("welcome", {
-    nombre: context.from.first_name,
+  await ctx.reply(ctx.t("welcome", {
+    nombre: ctx.from.first_name,
     applesCount: 1,
   }));
 });
