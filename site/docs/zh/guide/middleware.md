@@ -220,6 +220,9 @@ bot.use(responseTime);
 如果你在调用 `next()` 时没有使用 `await` 关键字，有几件事会被搞砸：
 
 - :x: 你的中间件栈将以错误的顺序执行。
+- :x: 你可能会遇到数据丢失。
+- :x: 一些消息可能无法发送
+- :x: 你的 bot 可能会以难以重现的方式随机崩溃。
 - :x: 如果发生错误，你的错误处理程序将不会被调用。
   相反，你会看到一个 `UnhandledPromiseRejectionWarning` 发生，这可能会使你的 bot 进程崩溃。
 - :x: [grammY runner](/zh/plugins/runner.md) 的抗压机制被打破，它可以保护你的服务器免受过高的负载，例如在负载高峰期。
@@ -227,7 +230,7 @@ bot.use(responseTime);
 
 :::
 
-你应该使用 `await`的规则实际上不仅仅适用于 `next()`，而是适用于任何返回 `Promise` 的表达式。
+你应该在 `next()` 前使用 `await` 这一规则是特别重要的，但它实际上适用于任何返回 `Promise` 的一般表达式。
 这包括 `bot.api.sendMessage`，`ctx.reply`，以及所有其他网络调用。
 如果你的项目对你很重要，那么你就会使用提示工具，如果你忘记在 `Promise` 上使用 `await`，工具会警告你。
 
