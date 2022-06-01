@@ -219,14 +219,17 @@ Hacerlo te ayudará a entender completamente lo que es el middleware.
 Si alguna vez llamas a `next()` sin la palabra clave `await`, varias cosas se romperán:
 
 - :x: Tu pila de middleware se ejecutará en el orden equivocado.
+- :x: Puede experimentar una pérdida de datos.
+- :x: Es posible que algunos mensajes no se envíen.
+- :x: Tu bot puede fallar aleatoriamente de forma difícil de reproducir.
 - :x: Si ocurre un error, su manejador de errores no será llamado por él.
-  En su lugar, verás que se producirá un `UnhandledPromiseRejectionWarning`, que puede hacer que tu proceso bot se caiga
+  En su lugar, verás que se producirá un `UnhandledPromiseRejectionWarning`, que puede hacer que tu proceso bot se caiga.
 - :x: Se rompe el mecanismo de backpressure de [grammY runner](../plugins/runner.md), que protege a tu servidor de una carga excesiva, como por ejemplo durante los picos de carga.
 - :cráneo: A veces, también mata a todos tus inocentes gatitos.
 
 :::
 
-La regla de que debes usar `await` no sólo es cierta para `next()`, sino para cualquier expresión que devuelva una `Promise` en general.
+La regla de usar `await` es especialmente importante para `next()`, pero en realidad se aplica a cualquier expresión en general que devuelva una `Promise`.
 Esto incluye `bot.api.sendMessage`, `ctx.reply`, y todas las demás llamadas de red.
 Si tu proyecto es importante para ti, entonces utiliza herramientas de linting que te avisen si alguna vez te olvidas de usar `await` en una `Promise`.
 
