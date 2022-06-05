@@ -54,7 +54,7 @@ Effectively, your bot will store a map from a chat identifier to some custom ses
 Okay, but what are sessions now?
 
 We can install middleware on the bot that will provide a chat's session data on `ctx.session` for every update.
-The installed plugin will do somthing before and after our handlers are called:
+The installed plugin will do something before and after our handlers are called:
 
 1. **Before our middleware.**
    The session plugin loads the session data for the current chat from the database.
@@ -333,7 +333,7 @@ This is convenient when you develop your bot or if you run automatic tests (no d
 In production, you would want to persist your data, for example in a file, a database, or some other storage.
 
 You should use the `storage` option of the session middleware to connect it to your datastore.
-There may already be storage adapter written for grammY that you can use (see [below](#known-storage-adapters)), but if not, it usually only takes 5 lines of code to implement one yourself.
+There may already be a storage adapter written for grammY that you can use (see [below](#known-storage-adapters)), but if not, it usually only takes 5 lines of code to implement one yourself.
 
 ## Lazy Sessions
 

@@ -22,7 +22,7 @@ Puedes utilizar el objeto de contexto para:
 
 Tenga en cuenta que los objetos `Context` se llaman comúnmente `ctx`.
 
-# Información disponible
+## Información disponible
 
 Cuando un usuario envía un mensaje a tu bot, puedes acceder a él a través de `ctx.message`.
 Como ejemplo, para obtener el texto del mensaje, puedes hacer esto:
@@ -243,8 +243,6 @@ En resumen, la configuración se verá así:
 ```ts
 const BOT_DEVELOPER = 123456; // identificador del chat del desarrollador del bot
 
-const bot = new Bot<MyContext>("");
-
 // Definir el tipo de contexto personalizado.
 interface BotConfig {
   botDeveloper: number;
@@ -253,6 +251,8 @@ interface BotConfig {
 type MyContext = Context & {
   config: BotConfig;
 };
+
+const bot = new Bot<MyContext>("");
 
 // Establecer propiedades personalizadas en los objetos de contexto.
 bot.use(async (ctx, next) => {

@@ -247,8 +247,6 @@ In summary, the setup will look like this:
 ```ts
 const BOT_DEVELOPER = 123456; // bot developer chat identifier
 
-const bot = new Bot<MyContext>("");
-
 // Define custom context type.
 interface BotConfig {
   botDeveloper: number;
@@ -257,6 +255,8 @@ interface BotConfig {
 type MyContext = Context & {
   config: BotConfig;
 };
+
+const bot = new Bot<MyContext>("");
 
 // Set custom properties on context objects.
 bot.use(async (ctx, next) => {

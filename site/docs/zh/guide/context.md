@@ -245,8 +245,6 @@ const bot = new Bot<MyContext>("");
 ```ts
 const BOT_DEVELOPER = 123456; // bot 开发者的聊天标识符
 
-const bot = new Bot<MyContext>("");
-
 // 定义自定义上下文类型。
 interface BotConfig {
   botDeveloper: number;
@@ -255,6 +253,8 @@ interface BotConfig {
 type MyContext = Context & {
   config: BotConfig;
 };
+
+const bot = new Bot<MyContext>("");
 
 // 在上下文对象上设置自定义属性。
 bot.use(async (ctx, next) => {
