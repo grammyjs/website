@@ -54,7 +54,7 @@ Effectively, your bot will store a map from a chat identifier to some custom ses
 Okay, but what are sessions now?
 
 We can install middleware on the bot that will provide a chat's session data on `ctx.session` for every update.
-The installed plugin will do somthing before and after our handlers are called:
+The installed plugin will do something before and after our handlers are called:
 
 1. **Before our middleware.**
    The session plugin loads the session data for the current chat from the database.
