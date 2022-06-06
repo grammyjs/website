@@ -160,7 +160,7 @@ Necesita memoria constante (a menos que se especifique una concurrencia infinita
 
 ## Graceful shutdown
 
-Para que el bot complete su trabajo correctamente, debes indicarle (/advanced/reliability.md#using-grammy-runner) que se detenga cuando el proceso Node esté a punto de ser destruido.
+Para que el bot complete su trabajo correctamente, debes indicarle (../advanced/reliability.md#using-grammy-runner) que se detenga cuando el proceso esté a punto de ser destruido.
 
 ## Resumen del plugin
 
