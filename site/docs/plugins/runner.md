@@ -1,6 +1,6 @@
 # Concurrency With grammY runner (`runner`)
 
-This package can be used if you run your bot [using long polling](../guide/deployment-types.md#long-polling), and you want messages to be processed concurrently.
+This package can be used if you run your bot [using long polling](../guide/deployment-types.md), and you want messages to be processed concurrently.
 
 > Make sure to understand [Scaling Up II](../advanced/scaling.md#long-polling) before you use grammY runner.
 

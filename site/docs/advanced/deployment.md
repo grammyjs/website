@@ -29,7 +29,7 @@ This depends on your deployment type.
 
 1. [Use grammY runner.](../plugins/runner.md)
 2. [Use `sequentialize` with the same session key resolver function as your session middleware.](./scaling.md#concurrency-is-hard)
-3. Go through the configuration options of `run` ([API reference](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/run)) and make sure they fit your needs, or even consider composing your own runner out of sources and sinks.
+3. Go through the configuration options of `run` ([API reference](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/run)) and make sure they fit your needs, or even consider composing your own runner out of [sources](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/UpdateSource) and [sinks](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/UpdateSink).
    The main thing to consider is the maximum load you want to apply to your server, i.e. how many updates may be processed at the same time.
 4. Consider implementing [graceful shutdown](./reliability.md#graceful-shutdown) in order to stop your bot when you want to terminate it (i.e. to switch to a new version).
 
@@ -38,7 +38,7 @@ This depends on your deployment type.
 1. Make sure you do not perform any long-running operations in your middleware, such as large file transfers.
    [This leads to timeout errors](../guide/deployment-types.md#ending-webhook-requests-in-time) for the webhooks, and duplicate update processing as Telegram will re-send non-acknowledged updates.
    Consider using a task queuing system instead.
-2. Make yourself familiar with the configuration of `webhookCallback` [API reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/webhookCallback).
+2. Make yourself familiar with the configuration of `webhookCallback` ([API reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/webhookCallback)).
 3. If you adjusted the `getSessionKey` option for your session, [use `sequentialize` with the same session key resolver function as your session middleware](./scaling.md#concurrency-is-hard).
 4. If you are running on a serverless or autoscaling platform, [set the bot information](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/BotConfig) to prevent excessive `getMe` calls.
 5. Consider using [webhook replies](../guide/deployment-types.md#webhook-reply).
