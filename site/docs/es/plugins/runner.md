@@ -132,7 +132,7 @@ Lo más probable es que quieras tener la garantía de que los mensajes de un mis
 Esto es útil cuando se instala [session middleware](./session.md), pero también asegura que tu bot no confunda el orden de los mensajes en el mismo chat.
 
 grammY runner exporta el middleware `sequentialize` que se encarga de esto.
-Puedes consultar [esta sección](../advanced/scaling.md#concurrency-is-hard) para aprender a usarlo.
+Puedes consultar [esta sección](../advanced/scaling.md#la-concurrencia-es-dificil) para aprender a usarlo.
 
 Ahora vamos a ver un uso más avanzado del plugin.
 
@@ -160,7 +160,7 @@ Necesita memoria constante (a menos que se especifique una concurrencia infinita
 
 ## Graceful shutdown
 
-Para que el bot complete su trabajo correctamente, debes indicarle (../advanced/reliability.md#using-grammy-runner) que se detenga cuando el proceso esté a punto de ser destruido.
+Para que el bot complete su trabajo correctamente, debes [indicarle](../advanced/reliability.md#usando-grammy-runner) que se detenga cuando el proceso esté a punto de ser destruido.
 
 ## Resumen del plugin
 
