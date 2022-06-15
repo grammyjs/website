@@ -149,7 +149,8 @@ Places where long polling works well include:
 You save a ton of superfluous requests.
 You don't need to keep a network connection open at all times.
 You can use services that automatically scale your infrastructure down to zero when no requests are coming.
-If you want to, you can even [make an API call when responding to the Telegram request](#webhook-reply), even though this has [a number of drawbacks](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/ApiClientOptions#canUseWebhookReply).
+If you want to, you can even [make an API call when responding to the Telegram request](#webhook-reply), even though this has a number of drawbacks.
+Check out the configuration option [here](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/ApiClientOptions#canUseWebhookReply).
 
 Places where webhooks work well include:
 
