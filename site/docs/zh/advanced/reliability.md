@@ -51,7 +51,7 @@ await bot.start();
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 const bot = new Bot("<token>");
-// 当 Node 进程将要被终止时，停止你的 bot。
+// 当 Deno 进程将要被终止时，停止你的 bot。
 Deno.addSignalListener("SIGINT", () => bot.stop());
 Deno.addSignalListener("SIGTERM", () => bot.stop());
 await bot.start();
@@ -100,7 +100,7 @@ import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { run } from "https://deno.land/x/grammy_runner/mod.ts";
 const bot = new Bot("<token>");
 const runner = run(bot);
-// 当 Node 进程将要被终止时，停止你的 bot。
+// 当 Deno 进程将要被终止时，停止你的 bot。
 const stopRunner = () => runner.isRunning() && runner.stop();
 Deno.addSignalListener("SIGINT", stopRunner);
 Deno.addSignalListener("SIGTERM", stopRunner);
