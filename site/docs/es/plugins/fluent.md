@@ -83,10 +83,9 @@ import { Context } from "grammy";
 import { FluentContextFlavor } from "@grammyjs/fluent";
 
 // Extiende tu tipo de contexto de aplicación con la interfaz de sabor proporcionada.
-export type MyAppContext = (
+export type MyAppContext =
   & Context
-  & FluentContextFlavor
-);
+  & FluentContextFlavor;
 ```
 
 Tendrás que crear tu instancia de bot de la siguiente manera para poder utilizar el tipo de contexto aumentado:
