@@ -310,23 +310,31 @@ This is useful because it lets you store a little bit of data in a menu.
 > The only thing you can store are short strings of typically less than 50 bytes, such as an index or an identifier.
 > If you really want to store user data such as a file identifier, a URL, or anything else, you should use [sessions](./session.md).
 
-Here is an example menu that remembers its creator in the payload.
+Here is an example menu that remembers current time in the payload.
 Other use cases could be, for example, to store the index in a paginated menu.
 
 ```ts
-function generatePayload(ctx: Context) {
-  return ctx.from?.first_name ?? "";
+function generatePayload() {
+  return Date.now().toString();
 }
 
-const menu = new Menu("store-author-name-in-payload")
+const menu = new Menu("store-current-time-in-payload")
   .text(
-    { text: "I know my creator", payload: generatePayload },
-    (ctx) => ctx.reply(`I was created by ${ctx.match}!`),
+    { text: "ABORT!", payload: generatePayload },
+    (ctx) => {
+      // Give the user 5 seconds to undo.
+      const text = Date.now() - Number(ctx.match) < 5000
+        ? "The operation was canceled successfully."
+        : "Too late. Your cat videos have already gone viral on the internet.";
+      ctx.reply(text);
+    },
   );
 
 bot.use(menu);
 bot.command("menu", async (ctx) => {
-  await ctx.reply("I created a menu!", { reply_markup: menu });
+  await ctx.reply("The videos will be sent. You have 5 seconds to cancel it.", {
+    reply_markup: menu,
+  });
 });
 ```
 
