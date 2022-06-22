@@ -27,7 +27,7 @@ import { Bot } from "grammy";
 
 const bot = new Bot("<token>");
 
-// Detener el bot cuando el proceso
+// Detener el bot cuando el proceso de Node
 // está a punto de terminar
 process.once("SIGINT", () => bot.stop());
 process.once("SIGTERM", () => bot.stop());
@@ -44,7 +44,7 @@ const { Bot } = require("grammy");
 
 const bot = new Bot("<token>");
 
-// Detener el bot cuando el proceso
+// Detener el bot cuando el proceso de Node
 // está a punto de terminar
 process.once("SIGINT", () => bot.stop());
 process.once("SIGTERM", () => bot.stop());
@@ -61,7 +61,7 @@ import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
 const bot = new Bot("<token>");
 
-// Detener el bot cuando el proceso
+// Detener el bot cuando el proceso de Deno
 // está a punto de terminar
 Deno.addSignalListener("SIGINT", () => bot.stop());
 Deno.addSignalListener("SIGTERM", () => bot.stop());
@@ -86,7 +86,7 @@ const bot = new Bot("<token>");
 
 const runner = run(bot);
 
-// Detener el bot cuando el proceso
+// Detener el bot cuando el proceso de Node
 // está a punto de terminar
 const stopRunner = () => runner.isRunning() && runner.stop();
 process.once("SIGINT", stopRunner);
@@ -105,7 +105,7 @@ const bot = new Bot("<token>");
 
 const runner = run(bot);
 
-// Detener el bot cuando el proceso
+// Detener el bot cuando el proceso de Node
 // está a punto de terminar
 const stopRunner = () => runner.isRunning() && runner.stop();
 process.once("SIGINT", stopRunner);
@@ -123,7 +123,7 @@ const bot = new Bot("<token>");
 
 const runner = run(bot);
 
-// Detener el bot cuando el proceso
+// Detener el bot cuando el proceso de Deno
 // está a punto de terminar
 const stopRunner = () => runner.isRunning() && runner.stop();
 Deno.addSignalListener("SIGINT", stopRunner);
