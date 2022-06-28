@@ -321,17 +321,17 @@ function generatePayload() {
 const menu = new Menu("store-current-time-in-payload")
   .text(
     { text: "ABORT!", payload: generatePayload },
-    (ctx) => {
+    async (ctx) => {
       // Give the user 5 seconds to undo.
       const text = Date.now() - Number(ctx.match) < 5000
         ? "The operation was canceled successfully."
         : "Too late. Your cat videos have already gone viral on the internet.";
-      ctx.reply(text);
+      await ctx.reply(text);
     },
   );
 
 bot.use(menu);
-bot.command("menu", async (ctx) => {
+bot.command("publish", async (ctx) => {
   await ctx.reply("The videos will be sent. You have 5 seconds to cancel it.", {
     reply_markup: menu,
   });
