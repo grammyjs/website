@@ -306,23 +306,38 @@ Puede almacenar cargas útiles de texto cortas junto con todos los botones de na
 Cuando los respectivos manejadores son invocados, la carga útil de texto estará disponible bajo `ctx.match`.
 Esto es útil porque le permite almacenar un poco de información en un menú.
 
-Aquí hay un ejemplo de menú que recuerda a su creador en la carga útil.
+> Payloads no pueden utilizarse para almacenar realmente cantidades significativas de datos.
+> Lo único que puede almacenar son cadenas cortas de típicamente menos de 50 bytes, como un índice o un identificador.
+> Si realmente quiere almacenar datos del usuario, como un identificador de archivo, una URL o cualquier otra cosa, debe utilizar [sesiones](./session.md).
+
+Este es un ejemplo de menú que recuerda la hora actual en el payload.
 Otros casos de uso podrían ser, por ejemplo, almacenar el índice en un menú paginado.
 
 ```ts
-function generatePayload(ctx: Context) {
-  return ctx.from?.first_name ?? "";
+function generatePayload() {
+  return Date.now().toString();
 }
 
-const menu = new Menu("store-author-name-in-payload")
+const menu = new Menu("store-current-time-in-payload")
   .text(
-    { text: "Conozco a mi creador", payload: generatePayload },
-    (ctx) => ctx.reply(`Fui creado por ${ctx.match}!`),
+    { text: "¡ABORTAR!", payload: generatePayload },
+    async (ctx) => {
+      // Dar al usuario 5 segundos para deshacer.
+      const text = Date.now() - Number(ctx.match) < 5000
+        ? "La operación se ha cancelado con éxito."
+        : "Demasiado tarde. Tus vídeos de gatos ya se han hecho virales en Internet.";
+      await ctx.reply(text);
+    },
   );
 
 bot.use(menu);
-bot.command("menu", async (ctx) => {
-  await ctx.reply("¡He creado un menú!", { reply_markup: menu });
+bot.command("publish", async (ctx) => {
+  await ctx.reply(
+    "Los vídeos se enviarán. Tienes 5 segundos para cancelarlo.",
+    {
+      reply_markup: menu,
+    },
+  );
 });
 ```
 
