@@ -29,19 +29,20 @@ Serverless 意味着你不控制运行 bot 的单个机器。
 
 你需要知道的是，在 serverless 基础设施下，你必须使用 webhooks。
 
-| 名字                    | 最低价格 | 价格                                | 限制                                                                                                  | Node.js            | Deno               | Web                | 注意事项         |
-| --------------------- | ---- | --------------------------------- | --------------------------------------------------------------------------------------------------- | ------------------ | ------------------ | ------------------ | ------------ |
-| Vercel                | 免费   | $20/mo                            | [Unlimited invocations, 100 GB-h, 10 s limit](https://vercel.com/pricing)                           | :question:         | :question:         | :question:         | 不适用于非网站建设？   |
-| Deta                  | 免费   | 暂时没有付费计划                          | 没有限制                                                                                                | :white_check_mark: | :question:         | :question:         |              |
-| Scaleway Functions    | 免费   | €0.15/1M req, €1.2/100K GB-s      | [1M requests, 400K GB-s/mo](https://www.scaleway.com/en/pricing/#serverless-functions)              | :question:         | :question:         | :question:         |              |
-| Scaleway Containers   | 免费   | €0.10/100K GB-s, €1.0/100K vCPU-s | [400K GB-s, 200K vCPU-s/mo](https://www.scaleway.com/en/pricing/#serverless-containers)             | :question:         | :question:         | :question:         |              |
-| Deno Deploy           | 免费   | 暂时没有付费计划                          | [100K req/day, 1000 req/min, 50 ms CPU-time limit](https://deno.com/deploy/docs/pricing-and-limits) | :x:                | :white_check_mark: | :x:                | Beta         |
-| Cloudflare Workers    | 免费   | $5/10M req                        | [100K req/day, 10 ms CPU-time limit](https://workers.cloudflare.com/)                               | :x:                | :x:                | :white_check_mark: |              |
-| Vercel Edge Functions | 免费   | $20/月 subscription for 500K       | [100K req/day](https://vercel.com/pricing)                                                          | :question:         | :question:         | :question:         |              |
-| Heroku                | 免费   | 太复杂不予展示                           | [550-1000 h/mo](https://www.heroku.com/pricing)                                                     | :white_check_mark: | :question:         | :question:         | 启动时间长，不推荐使用？ |
-| serverless.com        | 免费   |                                   |                                                                                                     | :question:         | :question:         | :question:         |              |
-| DigitalOcean Apps     | $5   |                                   |                                                                                                     | :question:         | :question:         | :question:         | 暂未测试         |
-| Fastly Compute@Edge   |      |                                   |                                                                                                     |                    |                    |                    |              |
+| 名字                     | 最低价格 | 价格                                | 限制                                                                                                  | Node.js            | Deno               | Web                | 注意事项         |
+| ---------------------- | ---- | --------------------------------- | --------------------------------------------------------------------------------------------------- | ------------------ | ------------------ | ------------------ | ------------ |
+| Vercel                 | 免费   | $20/mo                            | [Unlimited invocations, 100 GB-h, 10 s limit](https://vercel.com/pricing)                           | :question:         | :question:         | :question:         | 不适用于非网站建设？   |
+| Deta                   | 免费   | 暂时没有付费计划                          | 没有限制                                                                                                | :white_check_mark: | :question:         | :question:         |              |
+| Scaleway Functions     | 免费   | €0.15/1M req, €1.2/100K GB-s      | [1M requests, 400K GB-s/mo](https://www.scaleway.com/en/pricing/#serverless-functions)              | :question:         | :question:         | :question:         |              |
+| Scaleway Containers    | 免费   | €0.10/100K GB-s, €1.0/100K vCPU-s | [400K GB-s, 200K vCPU-s/mo](https://www.scaleway.com/en/pricing/#serverless-containers)             | :question:         | :question:         | :question:         |              |
+| Deno Deploy            | 免费   | 暂时没有付费计划                          | [100K req/day, 1000 req/min, 50 ms CPU-time limit](https://deno.com/deploy/docs/pricing-and-limits) | :x:                | :white_check_mark: | :x:                | Beta         |
+| DigitalOcean Functions | Free | $1.85/100K GB-s                   | [90K GB-s/mo](https://docs.digitalocean.com/products/functions/details/pricing/)                    | :white_check_mark: | :x:                | :question:         |              |
+| Cloudflare Workers     | 免费   | $5/10M req                        | [100K req/day, 10 ms CPU-time limit](https://workers.cloudflare.com/)                               | :x:                | :x:                | :white_check_mark: |              |
+| Vercel Edge Functions  | 免费   | $20/月 subscription for 500K       | [100K req/day](https://vercel.com/pricing)                                                          | :question:         | :question:         | :question:         |              |
+| Heroku                 | 免费   | 太复杂不予展示                           | [550-1000 h/mo](https://www.heroku.com/pricing)                                                     | :white_check_mark: | :question:         | :question:         | 启动时间长，不推荐使用？ |
+| serverless.com         | 免费   |                                   |                                                                                                     | :question:         | :question:         | :question:         |              |
+| DigitalOcean Apps      | $5   |                                   |                                                                                                     | :question:         | :question:         | :question:         | 暂未测试         |
+| Fastly Compute@Edge    |      |                                   |                                                                                                     |                    |                    |                    |              |
 
 ### VPS
 
@@ -55,11 +56,11 @@ Serverless 意味着你不控制运行 bot 的单个机器。
 
 | 名字            | 最低价格     | 到 Bot API 的延迟                             | 最便宜的方案                             |
 | ------------- | -------- | ----------------------------------------- | ---------------------------------- |
+| Contabo       |          | 15 ms :de: Nuremberg                      |                                    |
 | DigitalOcean  | $5       | 1-15 ms :netherlands: AMS, 19 ms :de: FRA | 1 vCPU, 1 GB RAM, 25 GB SSD, 1 TB  |
 | Hetzner Cloud | €4.15    | ~42 ms :de:                               | 1 vCPU, 2 GB RAM, 20 GB SSD, 20 TB |
-| Scaleway      | €~7      |                                           | 2 cores, 2 GB RAM, 20 GB SSD       |
-| Contabo       |          | 15 ms :de: Nuremberg                      |                                    |
 | IONOS VPS     | €1 or $2 | 15 ms :de: Baden-Baden                    | 1 vCPU, 0.5 GB RAM, 8 GB SSD       |
+| Scaleway      | €~7      |                                           | 2 cores, 2 GB RAM, 20 GB SSD       |
 
 ## 单位解释
 
