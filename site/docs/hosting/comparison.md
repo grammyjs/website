@@ -29,19 +29,20 @@ We therefore recommend you to use a different kind of hosting for more complex b
 
 The main thing to know about them is that on serverless infrastructures you are required to use webhooks.
 
-| Name                  | Min. price | Pricing                           | Limits                                                                                              | Node.js            | Deno               | Web                | Notes                                |
-| --------------------- | ---------- | --------------------------------- | --------------------------------------------------------------------------------------------------- | ------------------ | ------------------ | ------------------ | ------------------------------------ |
-| Vercel                | Free       | $20/mo subscription               | [Unlimited invocations, 100 GB-h, 10 s time limit](https://vercel.com/pricing)                      | :question:         | :question:         | :question:         | Not intended for non-websites?       |
-| Deta                  | Free       | No paid plans yet                 | No limits                                                                                           | :white_check_mark: | :question:         | :question:         |                                      |
-| Scaleway Functions    | Free       | €0.15/1M req, €1.2/100K GB-s      | [1M requests, 400K GB-s/mo](https://www.scaleway.com/en/pricing/#serverless-functions)              | :question:         | :question:         | :question:         |                                      |
-| Scaleway Containers   | Free       | €0.10/100K GB-s, €1.0/100K vCPU-s | [400K GB-s, 200K vCPU-s/mo](https://www.scaleway.com/en/pricing/#serverless-containers)             | :question:         | :question:         | :question:         |                                      |
-| Deno Deploy           | Free       | No paid plans yet                 | [100K req/day, 1000 req/min, 50 ms CPU-time limit](https://deno.com/deploy/docs/pricing-and-limits) | :x:                | :white_check_mark: | :x:                | Beta                                 |
-| Cloudflare Workers    | Free       | $5/10M req                        | [100K req/day, 10 ms CPU-time limit](https://workers.cloudflare.com/)                               | :x:                | :x:                | :white_check_mark: |                                      |
-| Vercel Edge Functions | Free       | $20/mo subscription for 500K      | [100K req/day](https://vercel.com/pricing)                                                          | :question:         | :question:         | :question:         |                                      |
-| Heroku                | Free       | It's complicated                  | [550-1000 h/mo](https://www.heroku.com/pricing)                                                     | :white_check_mark: | :question:         | :question:         | Long startup times, not recommended? |
-| serverless.com        | Free       |                                   |                                                                                                     | :question:         | :question:         | :question:         |                                      |
-| DigitalOcean Apps     | $5         |                                   |                                                                                                     | :question:         | :question:         | :question:         | Not tested                           |
-| Fastly Compute@Edge   |            |                                   |                                                                                                     |                    |                    |                    |                                      |
+| Name                   | Min. price | Pricing                                                               | Limits                                                                                  | Node.js | Deno                        | Web | Notes                          |
+| ---------------------- | ---------- | --------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | ------- | --------------------------- | --- | ------------------------------ |
+| Deta                   | Free       | No paid plans yet                                                     | No specific limits                                                                      | ✅       | ❓                           | ❓   |                                |
+| Deno Deploy            | Free       | $10/mo subscription for 5M req and 100 GB; $2/1M req, $0.3/GB network | [100K req/day, 100 GB/mo, 10 ms CPU-time limit](https://deno.com/deploy/pricing)        | ❌       | ✅                           | ❌   |                                |
+| DigitalOcean Functions | Free       | $1.85/100K GB-s                                                       | [90K GB-s/mo](https://docs.digitalocean.com/products/functions/details/pricing/)        | ✅       | ❌                           | ❓   |                                |
+| Cloudflare Workers     | Free       | $5/10M req                                                            | [100K req/day, 10 ms CPU-time limit](https://workers.cloudflare.com/)                   | ❌       | [✅](https://denoflare.dev/) | ✅   |                                |
+| Heroku                 | Free       | It's complicated                                                      | [550-1000 h/mo](https://www.heroku.com/pricing)                                         | ✅       | ❓                           | ❓   |                                |
+| Vercel                 | Free       | $20/mo subscription                                                   | [Unlimited invocations, 100 GB-h, 10 s time limit](https://vercel.com/pricing)          | ❓       | ❓                           | ❓   | Not intended for non-websites? |
+| Scaleway Functions     | Free       | €0.15/1M req, €1.2/100K GB-s                                          | [1M requests, 400K GB-s/mo](https://www.scaleway.com/en/pricing/#serverless-functions)  | ❓       | ❓                           | ❓   |                                |
+| Scaleway Containers    | Free       | €0.10/100K GB-s, €1.0/100K vCPU-s                                     | [400K GB-s, 200K vCPU-s/mo](https://www.scaleway.com/en/pricing/#serverless-containers) | ❓       | ❓                           | ❓   |                                |
+| Vercel Edge Functions  | Free       | $20/mo subscription for 500K                                          | [100K req/day](https://vercel.com/pricing)                                              | ❓       | ❓                           | ❓   |                                |
+| serverless.com         | Free       |                                                                       |                                                                                         | ❓       | ❓                           | ❓   |                                |
+| DigitalOcean Apps      | $5         |                                                                       |                                                                                         | ❓       | ❓                           | ❓   | Not tested                     |
+| Fastly Compute@Edge    |            |                                                                       |                                                                                         | ❓       | ❓                           | ❓   |                                |
 
 ### VPS
 
@@ -55,11 +56,11 @@ Check out [the tutorial](./vps.md) on how to host grammY bots on a VPS.
 
 | Name          | Min. price | Ping to Bot API                           | Cheapest option                    |
 | ------------- | ---------- | ----------------------------------------- | ---------------------------------- |
+| Contabo       |            | 15 ms :de: Nuremberg                      |                                    |
 | DigitalOcean  | $5         | 1-15 ms :netherlands: AMS, 19 ms :de: FRA | 1 vCPU, 1 GB RAM, 25 GB SSD, 1 TB  |
 | Hetzner Cloud | €4.15      | ~42 ms :de:                               | 1 vCPU, 2 GB RAM, 20 GB SSD, 20 TB |
-| Scaleway      | €~7        |                                           | 2 cores, 2 GB RAM, 20 GB SSD       |
-| Contabo       |            | 15 ms :de: Nuremberg                      |                                    |
 | IONOS VPS     | €1 or $2   | 15 ms :de: Baden-Baden                    | 1 vCPU, 0.5 GB RAM, 8 GB SSD       |
+| Scaleway      | €~7        |                                           | 2 cores, 2 GB RAM, 20 GB SSD       |
 
 ## Unit Explanations
 
