@@ -1,6 +1,6 @@
 # Glossary
 
-This page collect a number of confusing terms related to Telegram bots that all sound very similar but are actually very different.
+This page collects a number of confusing terms related to Telegram bots that all sound very similar but are actually very different.
 
 | Term         | Meaning                                                                       | Link                                                                         |
 | ------------ | ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
