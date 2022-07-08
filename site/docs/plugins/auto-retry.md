@@ -2,7 +2,7 @@
 
 > Consider using [the throttler plugin](./transformer-throttler.md) instead.
 
-This plugin is an [API transformer function](/advanced/transformers.md), which means that it let's you intercept and modify outgoing HTTP requests on the fly.
+This plugin is an [API transformer function](../advanced/transformers.md), which means that it let's you intercept and modify outgoing HTTP requests on the fly.
 More specifically, this plugin will automatically detect if an API requests fails with a `retry_after` value. i.e. because of rate limiting.
 It will then catch the error, wait the specified period of time, and then retry the request.
 
@@ -39,7 +39,7 @@ bot.api.config.use(autoRetry());
  <CodeGroupItem title="Deno">
 
 ```ts
-import { autoRetry } from "https://cdn.skypack.dev/@grammyjs/auto-retry?dts";
+import { autoRetry } from "https://esm.sh/@grammyjs/auto-retry";
 
 // Use the plugin.
 bot.api.config.use(autoRetry());
@@ -54,7 +54,7 @@ Under the hood, multiple HTTP requests are being performed, with the appropriate
 You may pass an options object that specifies a maximum number of retries (`maxRetryAttempts`, default: 3), or a threshold for a maximum time to wait (`maxDelaySeconds`, default: 1 hour).
 
 As soon as the maximum number of retries is exhausted, subsequent errors for the same request will not be retried again.
-Instead, the error object from Telegram is passed on, effectively failing the request with a [`GrammyError`](/guide/errors.html#the-grammyerror-object).
+Instead, the error object from Telegram is passed on, effectively failing the request with a [`GrammyError`](../guide/errors.md#the-grammyerror-object).
 
 Similarly, if the request ever fails with `retry_after` larger than what is specified by the option `maxDelaySeconds`, the request will fail immediately.
 

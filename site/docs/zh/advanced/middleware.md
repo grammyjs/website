@@ -119,5 +119,5 @@ composer.filter(/* 1 */).filter(/* 2 */).use(/* A */);
 
 一个特殊的例子是 `fork`，它开启了两个并行的计算。交替在事件循环中。
 它不是返回由底层 `use` 调用创建的 `Composer` 实例，而是返回一个映射分叉计算的 `Composer` 实例。
-这允许使用简洁模式，像 `bot.fork().on(':text').use(/* A */)`。
+这允许使用简洁模式，像 `bot.fork().on(":text").use(/* A */)`。
 `A` 现在将在并行的计算分支上执行。

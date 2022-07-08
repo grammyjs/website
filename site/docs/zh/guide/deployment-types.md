@@ -150,7 +150,8 @@ ______________                                   _____________
 你省下了一大堆多余的请求。
 你不需要一直让 bot 与 Telegram 保持连接。
 当没有请求时，你可以使用自动将基础结构收敛为零消耗的服务。
-如果你愿意， 你甚至可以 [在响应 Telegram 请求时调用 API](#webhook-reply), 即使这样有[很多缺点](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/ApiClientOptions#canUseWebhookReply)。
+如果你愿意， 你甚至可以 [在响应 Telegram 请求时调用 API](#webhook-reply), 即使这样会有很多缺点。
+你可以在 [这里](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/ApiClientOptions#canUseWebhookReply) 查看配置选项。
 
 Webhooks 可以在这些地方良好运行：
 
@@ -182,7 +183,7 @@ bot.start();
 
 如果你希望你的消息能够被 grammY 并发处理，或者你担心吞吐量，请查看关于 [并发](/zh/plugins/runner.md) 的信息.
 
-## 如何使用长轮询 Webhooks
+## 如何使用 Webhooks
 
 如果你想运行 grammY Webhooks，你可以把你的 bot 集成到一个网络服务器上。
 因此，我们希望你能够选择一个合适的框架，去启动一个简单的 web 服务器。
@@ -199,7 +200,7 @@ import express from "express";
 const app = express(); // 或者其它你正在使用的
 app.use(express.json()); // 解析 JSON 请求
 
-// 如果没有给出参数，则使用 'express' 作为默认值。
+// 如果没有给出参数，则使用 "express" 作为默认值。
 app.use(webhookCallback(bot, "express"));
 ```
 
@@ -212,7 +213,7 @@ const express = require("express");
 const app = express(); // 或者其它你正在使用的
 app.use(express.json()); // 解析 JSON 请求
 
-// 如果没有给出参数，则使用 'express' 作为默认值。
+// 如果没有给出参数，则使用 "express" 作为默认值。
 app.use(webhookCallback(bot, "express"));
 ```
 

@@ -5,15 +5,21 @@
   "main": "index.js",
   "private": true,
   "scripts": {
+    "prepare": "npm run docs:index-versions",
+    "docs:index-versions": "deno run --allow-net docs/.vuepress/plugins/current-versions/build-index.ts > docs/.vuepress/plugins/current-versions/index.json",
     "docs:dev": "vuepress-vite dev docs",
-    "docs:build": "vuepress-vite build docs"
+    "docs:build": "npm run docs:vuepress && npm run docs:sitemap",
+    "docs:vuepress": "vuepress-vite build docs",
+    "docs:fmt": "deno fmt",
+    "docs:sitemap": "sscli -b https://grammy.dev -r docs/.vuepress/dist --format xml --no-robots --no-clean"
   },
   "keywords": [],
   "author": "KnorpelSenf",
   "license": "MIT",
   "devDependencies": {
-    "@vuepress/plugin-docsearch": "^2.0.0-beta.27",
-    "typescript": "^4.5.2",
-    "vuepress-vite": "^2.0.0-beta.27"
+    "@vuepress/plugin-docsearch": "^2.0.0-beta.43",
+    "deno-bin": ">=1.21.3",
+    "static-sitemap-cli": "^2.1.2",
+    "vuepress-vite": "^2.0.0-beta.45"
   }
 }

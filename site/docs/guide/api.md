@@ -29,7 +29,7 @@ However, the Bot API server that is responsible for translating the requests to 
 
 Hence, if you circumvent the Bot API server that Telegram runs for you, and simply [host your own Bot API server](https://core.telegram.org/bots/api#using-a-local-bot-api-server), you can allow your bot to send files up to 2000 MB.
 
-> Note: if you are working with large files over [long polling](./deployment-types.md), you should use [grammY runner](/plugins/runner.md).
+> Note: if you are working with large files over [long polling](./deployment-types.md), you should use [grammY runner](../plugins/runner.md).
 
 :::
 
@@ -58,7 +58,7 @@ Strictly speaking, all methods of the Bot API expect a JSON object with a number
 Notice, however, how `sendMessage` in the above example receives two arguments, a chat identifier and a string.
 grammY knows that these two values belong to the `chat_id` and the `text` property, respectively, and will built the correct JSON object for you.
 
-If you want to specify other options, you do so in the third argument:
+As mentioned [earlier](./basics.md#sending-messages), you can specify other options in the third argument of type `Other`:
 
 ```ts
 async function sendHelloTo12345() {
@@ -89,3 +89,5 @@ async function sendHelloTo12345() {
   });
 }
 ```
+
+Basically, all parameters of the function signature are merged with the options object when you use the raw API.

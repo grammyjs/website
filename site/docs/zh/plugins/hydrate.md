@@ -107,7 +107,7 @@ bot.use(hydrate());
 在这种情况下，你应该使用高级安装。
 
 它将会在你的 bot 中分别集成上下文 hydration 和 API 调用结果 hydration。
-请注意，你还需要安装一个 [API 调味剂](/zh/advanced/transformers.html#api-调味剂)。
+请注意，你还需要安装一个 [API 调味剂](/zh/advanced/transformers.md#api-调味剂)。
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
@@ -174,7 +174,9 @@ bot.api.config.use(hydrateApi());
 - 消息和频道消息
 - 编辑过的消息和编辑过的频道消息
 - 回调查询
-- Inline Queries
+- inline 查询
+- 选定的 inline 结果
+- web 应用查询
 - 预付款和配送查询
 
 所有对象都会被 hydrated 在

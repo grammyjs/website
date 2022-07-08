@@ -9,7 +9,8 @@ With inline queries, users can search for, browse, and send content suggested by
 To do this, they start a message with `@your_bot_name` and choose one of the results.
 
 ::: tip Enable Inline Mode
-By default, support for inline mode is disabled. You must contact [@BotFather](https://t.me/BotFather) and enable inline mode for your bot, to start receiving inline queries.
+By default, support for inline mode is disabled.
+You must contact [@BotFather](https://t.me/BotFather) and enable inline mode for your bot, to start receiving inline queries.
 :::
 
 > Revisit the Inline mode section in the [Introduction for Developers](https://core.telegram.org/bots#inline-mode) written by the Telegram team.
@@ -19,7 +20,7 @@ By default, support for inline mode is disabled. You must contact [@BotFather](h
 Once a user triggers an inline query, i.e. starts a message by typing "@your_bot_name ..." in the text input field, your bot will receive updates about this.
 grammY has special support for handling inline queries via the `bot.inlineQuery()` method, as documented on the `Composer` class in the [grammY API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer#inlineQuery).
 It allows you to listen for specific inline queries that match strings or regular expressions.
-If you want to handle all inline queries generically, use `bot.on('inline_query')`.
+If you want to handle all inline queries generically, use `bot.on("inline_query")`.
 
 ```ts
 // Shameless self-advertising in one project's documentation
@@ -53,5 +54,8 @@ They even have a pretty website! 👇",
 bot.on("inline_query", (ctx) => ctx.answerInlineQuery([]));
 ```
 
-Remember that grammY can auto-complete all of the fields in the above structure for you.
+> [Remember](./basics.md#sending-messages) that you can always specify further options when calling API methods by using the options object of type `Other`.
+> For example, this allows you to perform pagination for inline queries via an offset.
+
+Note that grammY can auto-complete all of the fields in the above structure for you.
 Also, be sure to check out the exact specifications for inline results in the [Telegram Bot API Reference](https://core.telegram.org/bots/api#inlinequeryresult).

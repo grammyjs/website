@@ -107,7 +107,7 @@ However, some bots may need to make calls to `bot.api`.
 In this case, you should use this advanced installation.
 
 It will integrate context hydration and API call result hydration separately into your bot.
-Note that you now also have to install an [API flavor](/advanced/transformers.html#api-flavoring).
+Note that you now also have to install an [API flavor](../advanced/transformers.md#api-flavoring).
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
@@ -175,6 +175,8 @@ This plugin currently hydrates
 - edited messages and edited channel posts
 - callback queries
 - inline queries
+- chosen inline results
+- web app queries
 - pre-checkout and shipping queries
 
 All objects are hydrated on

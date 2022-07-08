@@ -28,7 +28,7 @@ Your bot can either pull them in (long polling), or the Telegram servers can pus
 
 _Imagine you're getting yourself a scoop of ice cream in your trusted ice cream parlor.
 You walk up to the employee and ask for your favorite type of ice cream.
-Unfortunately, he lets you know you that it is out of stock._
+Unfortunately, he lets you know that it is out of stock._
 
 _The next day, you're craving that delicious ice cream again, so you go back to the same place and ask for the same ice cream.
 Good news!
@@ -149,7 +149,8 @@ Places where long polling works well include:
 You save a ton of superfluous requests.
 You don't need to keep a network connection open at all times.
 You can use services that automatically scale your infrastructure down to zero when no requests are coming.
-If you want to, you can even [make an API call when responding to the Telegram request](#webhook-reply), even though this has [a number of drawbacks](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/ApiClientOptions#canUseWebhookReply).
+If you want to, you can even [make an API call when responding to the Telegram request](#webhook-reply), even though this has a number of drawbacks.
+Check out the configuration option [here](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/ApiClientOptions#canUseWebhookReply).
 
 Places where webhooks work well include:
 
@@ -179,7 +180,7 @@ to run your bot with a very simple form of long polling.
 It processes all updates sequentially.
 This makes your bot very easy to debug, and all behavior very predictable, because there is no concurrency involved.
 
-If you want your messages to be handled concurrently by grammY, or you worry about throughput, check out the section about [grammY runner](/plugins/runner.md).
+If you want your messages to be handled concurrently by grammY, or you worry about throughput, check out the section about [grammY runner](../plugins/runner.md).
 
 ## How to Use Webhooks
 
@@ -198,7 +199,7 @@ import express from "express";
 const app = express(); // or whatever you're using
 app.use(express.json()); // parse the JSON request body
 
-// 'express' is also used as default if no argument is given.
+// "express" is also used as default if no argument is given.
 app.use(webhookCallback(bot, "express"));
 ```
 
@@ -211,7 +212,7 @@ const express = require("express");
 const app = express(); // or whatever you're using
 app.use(express.json()); // parse the JSON request body
 
-// 'express' is also used as default if no argument is given.
+// "express" is also used as default if no argument is given.
 app.use(webhookCallback(bot, "express"));
 ```
 
@@ -235,7 +236,8 @@ Be sure to read [Marvin's Marvellous Guide to All Things Webhook](https://core.t
 ### Webhook Reply
 
 When a webhook request is received, your bot can call up to one method in the response.
-As a benefit, this saves your bot from making up to one HTTP request per update. However, there are a number of drawbacks to using this:
+As a benefit, this saves your bot from making up to one HTTP request per update.
+However, there are a number of drawbacks to using this:
 
 1. You will not be able to handle potential errors of the respective API call.
    This includes rate limiting errors, so you won't actually be guaranteed that your request has any effect.
@@ -326,7 +328,7 @@ You may observe that your bot starts spamming users as it tries to handle all of
 #### Why Ending a Webhook Request Early Is Also Dangerous
 
 You can configure `webhookCallback` to not throw an error after the timeout, but instead end the webhook request early, even though your middleware is still running.
-You can do this by passing `'return'` as a third argument to `webhookCallback`, instead of the default value `'throw'`.
+You can do this by passing `"return"` as a third argument to `webhookCallback`, instead of the default value `"throw"`.
 However, while this behavior has some valid use cases, such a solution usually causes more problems than it solves.
 
 Remember that once you respond to a webhook request, Telegram will send the next update for that chat.
@@ -369,7 +371,7 @@ ______________                                   _____________
 |____________|                                   |___________|
 ```
 
-#### Why `'return'` Is Generally Worse Than `'throw'`
+#### Why `"return"` Is Generally Worse Than `"throw"`
 
 You may be wondering why the default action of `webhookCallback` is to throw an error, instead of ending the request successfully.
 This design choice was made for the following reasons.
@@ -378,7 +380,7 @@ Race conditions are very hard to reproduce and may occur extremely rarely or spo
 The solution to this is to _make sure not to run into timeouts_ in the first place.
 But, if you do, you really want to know that this is happening, so that you can investigate and fix the problem!
 For that reason, you want the error to occur in your logs.
-Setting the timeout handler to `'return'`, hence suppressing the timeout and pretending that nothing happened, is exactly the opposite of useful behavior.
+Setting the timeout handler to `"return"`, hence suppressing the timeout and pretending that nothing happened, is exactly the opposite of useful behavior.
 
 If you do this, you're in some sense using the update queue in Telegram's webhook delivery as your task queue.
 This is a bad idea for all of the reasons described above.

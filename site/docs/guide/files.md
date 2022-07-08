@@ -30,7 +30,8 @@ You can reuse the same `file_id` as often as you want, so you could send the sam
 However, you must make sure to use the correct method—for example, you cannot use a `file_id` that identifies a photo when calling [`sendVideo`](https://core.telegram.org/bots/api#sendvideo).
 
 Every bot has its own set of `file_id`s for the files that it can access.
-You cannot reliably use a `file_id` from your friend's bot, to access a file with _your_ bot. Each bot will use different identifiers for the same file.
+You cannot reliably use a `file_id` from your friend's bot, to access a file with _your_ bot.
+Each bot will use different identifiers for the same file.
 This implies that you cannot simply guess a `file_id` and access some random person's file, because Telegram keeps track of which `file_id`s are valid for your bot.
 
 ::: warning Using Foreign file_ids
@@ -66,16 +67,16 @@ bot.on("message:voice", async (ctx) => {
 ```
 
 ::: tip Passing a Custom file_id to getFile
-On the context object, `getFile` is [a shortcut](/guide/context.md#shortcuts), and will fetch information for a file on the current message.
+On the context object, `getFile` is [a shortcut](./context.md#shortcuts), and will fetch information for a file on the current message.
 If you want to get a different file while handling a message, use `ctx.api.getFile(file_id)` instead.
 :::
 
-> Check out [the `:media` and `:file` shortcuts](/guide/filter-queries.md#shortcuts) for filter queries if you want to receive any kind of file.
+> Check out [the `:media` and `:file` shortcuts](./filter-queries.md#shortcuts) for filter queries if you want to receive any kind of file.
 
 Once you have called `getFile`, you can use the returned `file_path` to download the file using this URL `https://api.telegram.org/file/bot<token>/<file_path>`, where `<token>` must be replaced by your bot token.
 
 ::: tip Files Plugin
-grammY does not come bundled with its own file downloader, but you can install [the official files plugin](/plugins/files.md).
+grammY does not come bundled with its own file downloader, but you can install [the official files plugin](../plugins/files.md).
 This allows you to download files via `await file.download()`, and to obtain a constructed download URL for them via `file.getUrl()`.
 :::
 
@@ -87,18 +88,29 @@ Telegram bots have [three ways](https://core.telegram.org/bots/api#sending-files
 2. Via URL, i.e. by passing a public file URL, which Telegram downloads and sends for you.
 3. Via uploading your own file.
 
+In all cases, the methods you need to call are named the same.
+Depending on which of the three ways you pick to send your file, the paramters to these functions will vary.
+For example, to send a photo, you can use `ctx.replyWithPhoto` (or `sendPhoto` if you use `ctx.api` or `bot.api`).
+
+You can send other types of files by simply renaming the method and changing the type of the data you pass to it.
+In order to send a video, you can use `ctx.replyWithVideo`.
+It's the same case for a document: `ctx.replyWithDocument`.
+You get the idea.
+
+Let's dive into what the three ways of sending a file are.
+
 ### Via `file_id` or URL
 
 The first two methods are simple: you just pass the respective value as a `string`, and you're done.
 
 ```ts
-// Sending via file_id
+// Send  via file_id.
 await ctx.replyWithPhoto(existingFileId);
 
-// Sending via URL
+// Send via URL.
 await ctx.replyWithPhoto("https://grammy.dev/Y.png");
 
-// alternatively, use bot.api.sendPhoto() or ctx.api.sendPhoto()
+// Alternatively, you use bot.api.sendPhoto() or ctx.api.sendPhoto().
 ```
 
 ### Uploading Your Own Files
@@ -131,7 +143,8 @@ import { createReadStream } from "fs";
 
 // Send a local file.
 new InputFile("/path/to/file");
-// Send from a stream.
+
+// Send from a read stream.
 new InputFile(createReadStream("/path/to/file"));
 ```
 
@@ -141,7 +154,8 @@ new InputFile(createReadStream("/path/to/file"));
 ```ts
 // Send a local file.
 new InputFile("/path/to/file");
-// Send a `Deno.File` instance.
+
+// Send a `Deno.FsFile` instance.
 new InputFile(await Deno.open("/path/to/file"));
 ```
 
@@ -219,6 +233,20 @@ new InputFile({ url: "https://grammy.dev/Y.png" }); // equivalent
 
 </CodeGroupItem>
 </CodeGroup>
+
+### Adding a Caption
+
+When sending files, you can specify further options in an options object of type `Other`, exactly as explained [earlier](./basics.md#sending-messages).
+For example, this lets you send captions.
+
+```ts
+// Send a photo from a local file to user 1235 with the caption "photo.jpg".
+await bot.api.sendPhoto(12345, new InputFile("/path/to/photo.jpg"), {
+  caption: "photo.jpg",
+});
+```
+
+As always, just like with all other API methods, you can send files via `ctx` (easiest), `ctx.api`, or `bot.api`.
 
 ## File Size Limits
 

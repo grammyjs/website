@@ -1,6 +1,6 @@
 # Console Logging While Debugging
 
-If you are familiar with JavaScript / TypeScript you probably used [`console.log`](https://developer.mozilla.org/en-US/docs/Web/API/Console/log) or [`console.time`](https://developer.mozilla.org/en-US/docs/Web/API/Console/time) to check what is happening while debugging something.
+If you are familiar with JavaScript/TypeScript you probably used [`console.log`](https://developer.mozilla.org/en-US/docs/Web/API/Console/log) or [`console.time`](https://developer.mozilla.org/en-US/docs/Web/API/Console/time) to check what is happening while debugging something.
 While working on your bot or middleware you might want to check something similar: What happened, and how long took it?
 
 This plugin is interested in individual requests to debug individual problems.
@@ -33,7 +33,8 @@ which will output stuff like this:
 
 The `490af` is the `update_id`.
 
-The number before the commands is the total length of the content. This is helpful when considering max length for stuff like callback data.
+The number before the commands is the total length of the content.
+This is helpful when considering max length for stuff like callback data.
 
 The content itself is shortened in order to prevent log spamming.
 
@@ -42,22 +43,25 @@ The content itself is shortened in order to prevent log spamming.
 When you create your own middleware or assume slow timings of another middleware you can use these middlewares to create a timing profile.
 
 ```ts
-import {generateBeforeMiddleware, generateAfterMiddleware} from 'telegraf-middleware-console-time';
+import {
+  generateAfterMiddleware,
+  generateBeforeMiddleware,
+} from "telegraf-middleware-console-time";
 
 const bot = new Bot(/* ... */);
 
 // Use BeforeMiddleware before loading the tested middleware.
-bot.use(generateBeforeMiddleware('foo'))
+bot.use(generateBeforeMiddleware("foo"));
 
 // Middleware to be tested
-bot.use(/* ... */)
+bot.use(); /* ... */
 
 // Use AfterMiddleware after loading the middleware you are testing (with the same label).
-bot.use(generateAfterMiddleware('foo'))
+bot.use(generateAfterMiddleware("foo"));
 
-// Other middleware/implementations (they will take the 'inner' amount of time when used).
-bot.use(/* ... */)
-bot.on(/* ... */, /* ... */)
+// Other middleware/implementations (they will take the "inner" amount of time when used).
+bot.use(); /* ... */
+bot.on("message" /* ... */);
 ```
 
 This will output something like this:

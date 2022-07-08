@@ -19,19 +19,17 @@ import {
   onlyPublic,
   onlySuperAdmin,
   sequentialize,
-} from 'grammy-middlewares'
-<...>
+} from "grammy-middlewares";
+
+// ...
+
 bot.use(
   ignoreOld(),
-  onlyAdmin(ctx => ctx.reply(
-    'Only admins can do this'
-  )),
-  onlyPublic(ctx => ctx.reply(
-    'You can only use public chats'
-  )),
+  onlyAdmin((ctx) => ctx.reply("Only admins can do this")),
+  onlyPublic((ctx) => ctx.reply("You can only use public chats")),
   onlySuperAdmin(env.SUPER_ADMIN_ID),
-  sequentialize()
-)
+  sequentialize(),
+);
 ```
 
 ## 中间件
@@ -54,7 +52,7 @@ bot.use(
 
 ### `sequentialize`
 
-基本的 [顺序化](/zh/advanced/scaling.html#并发是困难的) 中间件，将聊天 id 作为一个顺序标识。
+基本的 [顺序化](/zh/advanced/scaling.md#并发是困难的) 中间件，将聊天 id 作为一个顺序标识。
 
 ## 插件概述
 

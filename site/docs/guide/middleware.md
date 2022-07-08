@@ -9,7 +9,7 @@ The listener functions that are being passed to `bot.on()`, `bot.command()`, and
 While it is not wrong to say that they are listening for updates, calling them "listeners" is a simplification.
 
 > This section explains what middleware is, and uses grammY as an example to illustrate how it can be used.
-> If you are looking for specific documentation about what makes grammY's implementation of middleware special, check out [Middleware Redux](/advanced/middleware.md) in the advanced section of the docs.
+> If you are looking for specific documentation about what makes grammY's implementation of middleware special, check out [Middleware Redux](../advanced/middleware.md) in the advanced section of the docs.
 
 ## The Middleware Stack
 
@@ -31,12 +31,12 @@ bot.start();
 
 When an update with a regular text message arrives, these steps will be performed:
 
-1. You send `'Hi there!'` to the bot.
+1. You send `"Hi there!"` to the bot.
 2. The session middleware receives the update, and does its session things
 3. The update will be checked for a `/start` command, which is not contained
 4. The update will be checked for a `/help` command, which is not contained
 5. The update will be checked for text in the message (or channel post), which succeeds.
-6. The middleware at `(*)` will be invoked, it handles the update by replying with `'Text!'`.
+6. The middleware at `(*)` will be invoked, it handles the update by replying with `"Text!"`.
 
 The update is **not** checked for a photo content, because the middleware at `(*)` already handled the update.
 
@@ -102,8 +102,8 @@ bot.start();
 If you run the above bot, and send `/start`, you will never get to see a response saying `Command!`.
 Let's inspect what happens:
 
-1. You send `'/start'` to the bot.
-2. The `':text'` middleware receives the update and checks for text, which succeeds because commands are text messages.
+1. You send `"/start"` to the bot.
+2. The `":text"` middleware receives the update and checks for text, which succeeds because commands are text messages.
    The update is handled immediately by the first middleware and your bot replies with "Text!".
 
 The message is never even checked for if it contains the `/start` command!
@@ -220,14 +220,17 @@ Doing so will help you to fully understand what middleware is.
 If you ever call `next()` without the `await` keyword, several things will break:
 
 - :x: Your middleware stack will be executed in the wrong order.
+- :x: You may experience data loss.
+- :x: Some messages may not be sent.
+- :x: Your bot may randomly crash in ways that are hard to reproduce.
 - :x: If an error happens, your error handler will not be called for it.
-  Instead, you will see that an `UnhandledPromiseRejectionWarning` will occur, which may crash your bot process
-- :x: The backpressure mechanism of [grammY runner](/plugins/runner.md) breaks, which protects your server from overly-high load, such as during load spikes.
+  Instead, you will see that an `UnhandledPromiseRejectionWarning` will occur, which may crash your bot process.
+- :x: The backpressure mechanism of [grammY runner](../plugins/runner.md) breaks, which protects your server from overly-high load, such as during load spikes.
 - :skull: Sometimes, it also kills all of your innocent kittens.
 
 :::
 
-The rule that you should use `await` is actually not just true for `next()`, but for any expression that returns a `Promise` in general.
+The rule that you should use `await` is especially important for `next()`, but it actually applies to any expression in general that returns a `Promise`.
 This includes `bot.api.sendMessage`, `ctx.reply`, and all other network calls.
 If your project is important to you, then you use linting tools that warn you if you ever forget to use `await` on a `Promise`.
 
@@ -266,4 +269,4 @@ bot.use(/*...*/);
 // ...
 ```
 
-If you want to dig deeper into how grammY implements middleware, check out [Middleware Redux](/advanced/middleware.md) in the advanced section of the docs.
+If you want to dig deeper into how grammY implements middleware, check out [Middleware Redux](../advanced/middleware.md) in the advanced section of the docs.

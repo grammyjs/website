@@ -67,7 +67,7 @@ welcome =
 语句 `{$name}` 将会被替换为 `name` 变量的值，你需要自己传递给翻译函数。
 
 最后一条语句 (_第 5 行到第 9 行_) 定义了一个 **selector**（非常类似于 switch 语句），它接收应用于 `applesCount` 变量的特殊 `NUMBER` 函数的结果，并根据匹配的值选择三种可能的信息之一来渲染。
-`NUMBER` 函数将根据提供的值和使用的语言返回一个 [CLDR plural category](https://www.unicode.org/cldr/cldr-aux/charts/30/supplemental/language_plural_rules.html)。
+`NUMBER` 函数将根据提供的值和使用的语言返回一个 [CLDR plural category](https://www.unicode.org/cldr/cldr-aux/charts/30/supplemental/language_plural_rules.md)。
 这有效地实现了 pluralization。
 
 ## grammY 配置
@@ -76,7 +76,7 @@ welcome =
 但首先，我们需要配置 grammY 使用该插件。
 
 在所有其他方面之前，你需要配置你的 bot 使用 Fluent 上下文调味剂。
-如果你不熟悉这个概念，你应该阅读 [上下文调味剂](/zh/guide/context.html#context-flavors) 的官方文档。
+如果你不熟悉这个概念，你应该阅读 [上下文调味剂](/zh/guide/context.md#context-flavors) 的官方文档。
 
 ```typescript
 import { Context } from "grammy";
@@ -112,8 +112,8 @@ bot.use(useFluent({
 ```typescript
 bot.command("i18n_test", async (ctx) => {
   // 调用 "translate" 或 "t" 来渲染消息，指定其 ID 和额外参数：
-  await context.reply(ctx.t("welcome", {
-    name: context.from.first_name,
+  await ctx.reply(ctx.t("welcome", {
+    name: ctx.from.first_name,
     applesCount: 1,
   }));
 });

@@ -22,10 +22,10 @@ However, there are a number of other options, too.
 
 ```ts
 // Handles commands, such as /start.
-bot.command('start', (ctx) => { ... });
+bot.command("start", (ctx) => {/* ... */});
 
 // Matches the message text against a string or a regular expression.
-bot.hears(/echo *(.+)?/, (ctx) => { ... });
+bot.hears(/echo *(.+)?/, (ctx) => {/* ... */});
 ```
 
 You can use auto-complete in your code editor to see all available options, or check out [all methods](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer) of the `Composer` class.
@@ -34,11 +34,13 @@ You can use auto-complete in your code editor to see all available options, or c
 
 ## Sending Messages
 
-[All methods that bots can use](https://core.telegram.org/bots/api#available-methods) are available on the `bot.api` object.
+All methods that bots can use (**[important list](https://core.telegram.org/bots/api#available-methods)**) are available on the `bot.api` object.
 
 ```ts
 // Send a text message to user 12345.
 await bot.api.sendMessage(12345, "Hi!");
+// Optionally, you can pass an options object.
+await bot.api.sendMessage(12345, "Hi!", {/* more options */});
 
 // Get information about the bot itself.
 const me = await bot.api.getMe();
@@ -46,9 +48,12 @@ const me = await bot.api.getMe();
 // etc
 ```
 
-You can use auto-complete in your code editor to see all available options, or check out [all methods](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Api) of the `Api` class.
+Every method takes an optional options object of type `Other`, which allows you to set further options for your API calls.
+These options objects correspond exactly with the options that you can find in list of methods linked above.
+You can also use auto-complete in your code editor to see all available options, or check out [all methods](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Api) of the `Api` class.
+The rest of this page shows some examples for this.
 
-Check out the [next section](./context.md) to learn how the context object of a listener makes sending messages a breeze!
+Also, check out the [next section](./context.md) to learn how the context object of a listener makes sending messages a breeze!
 
 ## Sending Messages With Reply
 
@@ -79,7 +84,7 @@ There are two ways to do this, as described in [the section about formatting opt
 
 > Also see <https://core.telegram.org/bots/api#markdownv2-style>
 
-Send your message with markdown in the text, and specify `parse_mode: 'MarkdownV2'`.
+Send your message with markdown in the text, and specify `parse_mode: "MarkdownV2"`.
 
 ```ts
 await bot.api.sendMessage(
@@ -93,7 +98,7 @@ await bot.api.sendMessage(
 
 > Also see <https://core.telegram.org/bots/api#html-style>
 
-Send your message with HTML elements in the text, and specify `parse_mode: 'HTML'`.
+Send your message with HTML elements in the text, and specify `parse_mode: "HTML"`.
 
 ```ts
 await bot.api.sendMessage(
@@ -103,11 +108,15 @@ await bot.api.sendMessage(
 );
 ```
 
+## Sending Files
+
+File handling is explained in greater depth in [a later section](./files.md#sending-files).
+
 ## Force Reply
 
 > This can be useful if your bot is running in [privacy mode](https://core.telegram.org/bots#privacy-mode) in group chats.
 
-When you send a message, you can make the user's Telegram client automatically specifies the message as reply.
+When you send a message, you can make the user's Telegram client automatically specify the message as reply.
 That means that the user will reply to your bot's message automatically (unless they remove the reply manually).
 As a result, your bot will receive the user's message even when running in [privacy mode](https://core.telegram.org/bots#privacy-mode) in group chats.
 

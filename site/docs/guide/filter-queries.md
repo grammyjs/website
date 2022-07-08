@@ -16,7 +16,7 @@ On the contrary, **grammY ships with its own query language** that you can use i
 
 This allows for over 650 different filters to be used, and we may add more over time.
 Every valid filter can be auto-completed in your code editor.
-Hence, you can simply type `bot.on('')`, open auto-complete, and search through all queries by typing something.
+Hence, you can simply type `bot.on("")`, open auto-complete, and search through all queries by typing something.
 
 ![Filter Query Search](/filter-query-search.png)
 
@@ -84,7 +84,7 @@ The query engine of grammY allows to define neat shortcuts that group related qu
 #### `msg`
 
 The `msg` shortcut groups new messages and new channel posts.
-In other words, using `msg` is equivalent to listening for both `'message'` and `'channel_post'` events.
+In other words, using `msg` is equivalent to listening for both `"message"` and `"channel_post"` events.
 
 ```ts
 bot.on("msg"); // any message or channel post
@@ -277,6 +277,41 @@ bot.on("message").filter(
 );
 ```
 
+### Reusing Filter Query Logic
+
+Internally, `bot.on` relies on a function called `matchFilter`.
+It takes a filter query and compiles it down to a predicate function.
+The predicate is simply passed to `bot.filter` in order to filter for updates.
+
+You can import `matchFilter` directly if you want to use it in your own logic.
+For example, you can decide to drop all updates that match a certain query:
+
+```ts
+// Drop all text messages or text channel posts.
+bot.drop(matchFilter(":text"));
+```
+
+Analogously, you can make use of the filter query types that grammY uses internally:
+
+### Reusing Filter Query Types
+
+Internally, `matchFilter` uses TypeScript's [type predicates](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates) to narrow down the type of `ctx`.
+It takes a type `C extends Context` and a `Q extends FilterQuery` and produces `ctx is Filter<C, Q>`.
+In other words, the `Filter` type is what you actually receive for your `ctx` in the middleware.
+
+You can import `Filter` directly if you want to use it in your own logic.
+For example, you can decide to define a handler function that handles specific context objects which were filtered by a filter query:
+
+```ts
+function handler(ctx: Filter<Context, ":text">) {
+  // handle narrowed context object
+}
+
+bot.on(":text", handler);
+```
+
+> Check out the API references for [`matchFilter`](https://doc.deno.land/https://deno.land/x/grammy/filter.ts/~/matchFilter), [`Filter`](https://doc.deno.land/https://deno.land/x/grammy/filter.ts/~/Filter), and [`FilterQuery`](https://doc.deno.land/https://deno.land/x/grammy/filter.ts/~/FilterQuery) to read on.
+
 ## The Query Language
 
 > This section is meant for users who want to have a deeper understanding of filter queries in grammY, but it does not contain any knowledge required to create a bot.
@@ -284,7 +319,7 @@ bot.on("message").filter(
 ### Query Structure
 
 Every query consists of up to three query parts.
-Depending on how many query parts a query has, we differentiate between L1, L2, and L3 queries, such as `'message'`, `'message:entities'`, and `'message:entities:url'`, respectively.
+Depending on how many query parts a query has, we differentiate between L1, L2, and L3 queries, such as `"message"`, `"message:entities"`, and `"message:entities:url"`, respectively.
 
 The query parts are separated by colons (`:`).
 We refer to the part up to the first colon or the end of the query string as the _L1 part_ of a query.
@@ -295,9 +330,9 @@ Example:
 
 | Filter Query                 | L1 part     | L2 part      | L3 part     |
 | ---------------------------- | ----------- | ------------ | ----------- |
-| `'message'`                  | `'message'` | `undefined`  | `undefined` |
-| `'message:entities'`         | `'message'` | `'entities'` | `undefined` |
-| `'message:entities:mention'` | `'message'` | `'entities'` | `'mention'` |
+| `"message"`                  | `"message"` | `undefined`  | `undefined` |
+| `"message:entities"`         | `"message"` | `"entities"` | `undefined` |
+| `"message:entities:mention"` | `"message"` | `"entities"` | `"mention"` |
 
 ### Query Validation
 
@@ -317,4 +352,5 @@ On start-up, grammY derives a predicate function from the filter query by splitt
 Every part will be mapped to a function that performs a single `in` check, or two checks if the part is omitted and two values need to be checked.
 These functions are then combined to form a predicate that only has to check for as many values as are relevant for the query, without iterating over the object keys of `Update`.
 
-This system uses less operations than some competing libraries, which need to perform containment checks in arrays when routing updates. grammY's filter query system is much more powerful.
+This system uses less operations than some competing libraries, which need to perform containment checks in arrays when routing updates.
+grammY's filter query system is much more powerful.

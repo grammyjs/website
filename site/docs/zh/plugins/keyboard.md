@@ -57,7 +57,7 @@ const inlineKeyboard = new InlineKeyboard()
 
 ##### 结果
 
-![示例 1](https://core.telegram.org/file/811140217/1/NkRCCLeQZVc/17a804837802700ea4)
+![示例 1](/inline-keyboard-example-1.webp)
 
 #### 示例 2
 
@@ -73,7 +73,7 @@ const inlineKeyboard = new InlineKeyboard()
 
 ##### 结果
 
-![示例 2](https://core.telegram.org/file/811140659/1/RRJyulbtLBY/ea6163411c7eb4f4dc)
+![示例 2](/inline-keyboard-example-2.webp)
 
 #### 示例 3
 
@@ -90,7 +90,7 @@ const inlineKeyboard = new InlineKeyboard().url(
 
 ##### 结果
 
-![示例 3](https://core.telegram.org/file/811140999/1/2JSoUVlWKa0/4fad2e2743dc8eda04)
+![示例 3](/inline-keyboard-example-3.webp)
 
 ### 发送一个 Inline Keyboard
 
@@ -141,7 +141,7 @@ bot.callbackQuery("click-payload", async (ctx) => {
 
 ::: tip 响应所有回调查询
 `bot.callbackQuery()` 可以用于监听特定按钮的点击事件。
-你也可以使用 `bot.on('callback_query:data')` 来监听所有按钮的点击事件。
+你也可以使用 `bot.on("callback_query:data")` 来监听所有按钮的点击事件。
 
 ```ts
 bot.callbackQuery("click-payload" /* , ... */);
@@ -152,7 +152,7 @@ bot.on("callback_query:data", async (ctx) => {
 });
 ```
 
-在最后定义 `bot.on('callback_query:data')` 来处理那些你没有设置监听的按钮的回调查询。
+在最后定义 `bot.on("callback_query:data")` 来处理那些你没有设置监听的按钮的回调查询。
 不然的话，当用户按下一个你的 bot 没有处理的回调查询的按钮时，一些客户端可能会显示长达 1 分钟的加载动画。
 :::
 
@@ -168,7 +168,7 @@ grammY 有一个简单且直观的方式来构建回复 keyboard，让你的 bot
 它提供了一个叫做 `Keyboard` 的类。
 
 一旦用户点击了一个文本按钮，你的 bot 就会收到作为纯文本信息发送的消息。
-请记住，你可以通过 `bot.on('message:text')` 或者 `bot.hears()` 列出文本信息。
+请记住，你可以通过 `bot.on("message:text")` 或者 `bot.hears()` 列出文本信息。
 
 ### 构建一个自定义 Keyboard
 
@@ -191,7 +191,7 @@ const keyboard = new Keyboard()
 
 ##### 结果
 
-![样例 1](https://core.telegram.org/file/811140184/1/5YJxx-rostA/ad3f74094485fb97bd)
+![样例 1](/keyboard-example-1.webp)
 
 #### 样例 2
 
@@ -209,7 +209,7 @@ const keyboard = new Keyboard()
 
 ##### 结果
 
-![样例 2](https://core.telegram.org/file/811140880/1/jS-YSVkDCNQ/b397dfcefc6da0dc70)
+![样例 2](/keyboard-example-2.webp)
 
 #### 样例 3
 
@@ -225,7 +225,7 @@ const keyboard = new Keyboard()
 
 ##### 结果
 
-![样例 3](https://core.telegram.org/file/811140733/2/KoysqJKQ_kI/a1ee46a377796c3961)
+![样例 3](/keyboard-example-3.webp)
 
 ### 发送一个自定义 Keyboard
 
@@ -273,14 +273,14 @@ await ctx.reply(text, {
 
 #### 输入栏占位符
 
-如果你想在自定义 keyboard 可见时，在输入栏中显示一个占位符，你可以指定 `input_field_placehoder` 选项。
+如果你想在自定义 keyboard 可见时，在输入栏中显示一个占位符，你可以指定 `input_field_placeholder` 选项。
 
 ```ts
 const keyboard = new Keyboard().text("LEFT").text("RIGHT");
 
 await ctx.reply(text, {
   reply_markup: {
-    input_field_placehoder: "Send LEFT or RIGHT",
+    input_field_placeholder: "Send LEFT or RIGHT",
     keyboard: keyboard.build(),
   },
 });
@@ -288,7 +288,7 @@ await ctx.reply(text, {
 
 #### 选择性地发送自定义 Keyboard
 
-如果你想只向消息对象的文本中提到的 @ 的用户显示自定义 keyboard，你可以指定 `selective` 选项，如果你的消息是 [回复](/zh/guide/basics.html#发送带回复的信息)，则向原始消息的发送者显示。
+如果你想只向消息对象的文本中提到的 @ 的用户显示自定义 keyboard，你可以指定 `selective` 选项，如果你的消息是 [回复](/zh/guide/basics.md#发送带回复的信息)，则向原始消息的发送者显示。
 
 ```ts
 await ctx.reply(text, {
@@ -310,7 +310,7 @@ Telegram 不允许你创建显示一个文本，但发送另一个文本的按�
 如果你需要这样做，你应该使用 [Inline Keyboard](#inline-keyboards) 来代替。
 
 为了处理特定按钮的点击，你可以使用 `bot.hears`， 其文本与你放在按钮上的文本一样。
-如果你想一次性处理所有按钮的点击，你可以使用 `bot.on('message:text')`，并且检查 `ctx.msg.text` 来确定哪个按钮被点击了，或者是否发送了一个普通的文本消息。
+如果你想一次性处理所有按钮的点击，你可以使用 `bot.on("message:text")`，并且检查 `ctx.msg.text` 来确定哪个按钮被点击了，或者是否发送了一个普通的文本消息。
 
 ### 移除 Keyboard
 
