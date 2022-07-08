@@ -241,7 +241,8 @@ export default defineUserConfig<DefaultThemeOptions>({
                   },
                   {
                     text: "[Submit your PR!]",
-                    link: "/plugins/README.md#submitting-your-own-package-to-the-docs",
+                    link:
+                      "/plugins/README.md#submitting-your-own-package-to-the-docs",
                   },
                 ],
               },
@@ -323,7 +324,8 @@ export default defineUserConfig<DefaultThemeOptions>({
                   },
                   {
                     text: "Example Updates",
-                    link: "https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates",
+                    link:
+                      "https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates",
                   },
                 ],
               },
@@ -660,7 +662,8 @@ export default defineUserConfig<DefaultThemeOptions>({
                   },
                   {
                     text: "Updates 示例",
-                    link: "https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates",
+                    link:
+                      "https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates",
                   },
                 ],
               },

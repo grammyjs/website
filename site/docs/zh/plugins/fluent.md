@@ -83,10 +83,9 @@ import { Context } from "grammy";
 import { FluentContextFlavor } from "@grammyjs/fluent";
 
 // 扩展你的应用程序上下文类型，添加提供的调味剂接口。
-export type MyAppContext = (
+export type MyAppContext =
   & Context
-  & FluentContextFlavor
-);
+  & FluentContextFlavor;
 ```
 
 你需要使用下面的方式创建你的 bot 实例，以便使用扩展的上下文类型：
