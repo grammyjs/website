@@ -221,6 +221,10 @@ export default defineUserConfig({
                     link: "/plugins/fluent.html",
                   },
                   {
+                    text: "Internationalization (i18n)",
+                    link: "/plugins/i18n.html",
+                  },
+                  {
                     text: "Router (router)",
                     link: "/plugins/router.html",
                   },
