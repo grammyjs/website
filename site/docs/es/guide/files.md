@@ -25,7 +25,10 @@ Si tu bot realmente quiere descargar el archivo, entonces puede hacerlo llamando
 Este método te permite descargar el archivo construyendo una URL especial y temporal.
 Ten en cuenta que la validez de esta URL sólo está garantizada durante 60 minutos, después de los cuales puede expirar. En este caso, puedes simplemente llamar a `getFile` de nuevo.
 
-Cuando un bot **envía** un mensaje, puede especificar un `file_id` que haya visto antes.
+Siempre que tu bot **envíe** un mensaje con un archivo, recibirá información sobre el mensaje enviado, incluyendo el `file_id` del archivo enviado.
+Esto significa que todos los archivos que el bot vea, tanto a través del envío como de la recepción, pondrán un `file_id` a disposición del bot.
+
+Cuando un bot envía un mensaje, puede **especificar un `file_id` que haya visto antes**.
 Esto le permitirá enviar el archivo identificado, sin necesidad de subir los datos para ello.
 (Para ver cómo subir sus propios archivos, [desplácese hacia abajo](#envío-de-archivos).
 Puede reutilizar el mismo `file_id` tantas veces como quiera, por lo que podría enviar el mismo archivo a cinco chats diferentes, utilizando el mismo `file_id`.
