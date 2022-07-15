@@ -330,7 +330,7 @@ await ctx.reply(text, {
 
 Next to `remove_keyboard`, you can again set `selective: true` in order to
 remove the custom keyboard for selected users only.
-This works analogously to [selectively sending a custom keyboard](#selectively-send-custom-keyboard).
+This works analogously to [selectively sending a custom keyboard](#selectively-send-custom-keyboards).
 
 ## Plugin Summary
 

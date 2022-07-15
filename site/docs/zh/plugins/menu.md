@@ -310,23 +310,31 @@ bot.use(menuB);
 > 你能存储的唯一的东西是通常小于 50 字节的短字符串，例如索引或标识符。
 > 如果你真的想存储用户数据，例如文件标识符，URL 或其他东西，你应该使用 [会话](./session.md)。
 
-这里是一个记住创建者的菜单的例子。
+这里是一个记住当前时间的菜单的例子。
 其他用例可能是，例如，存储分页菜单的索引。
 
 ```ts
-function generatePayload(ctx: Context) {
-  return ctx.from?.first_name ?? "";
+function generatePayload() {
+  return Date.now().toString();
 }
 
-const menu = new Menu("pun-intended")
+const menu = new Menu("store-current-time-in-payload")
   .text(
-    { text: "I know my creator", payload: generatePayload },
-    (ctx) => ctx.reply(`I was created by ${ctx.match}!`),
+    { text: "终止！", payload: generatePayload },
+    async (ctx) => {
+      // 给用户5秒钟的时间来撤销。
+      const text = Date.now() - Number(ctx.match) < 5000
+        ? "该操作被成功取消。"
+        : "太晚了！你的猫咪视频已经在网上疯传了。";
+      await ctx.reply(text);
+    },
   );
 
 bot.use(menu);
-bot.command("menu", async (ctx) => {
-  await ctx.reply("I created a menu!", { reply_markup: menu });
+bot.command("publish", async (ctx) => {
+  await ctx.reply("视频将被发送。你有 5 秒钟时间来撤销它。", {
+    reply_markup: menu,
+  });
 });
 ```
 
