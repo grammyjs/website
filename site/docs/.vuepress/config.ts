@@ -314,6 +314,10 @@ export default defineUserConfig({
                     text: "Comparison to Other Frameworks",
                     link: "/resources/comparison.html",
                   },
+                  {
+                    text: "Glossary",
+                    link: "/resources/glossary.md",
+                  },
                 ],
               },
               {
