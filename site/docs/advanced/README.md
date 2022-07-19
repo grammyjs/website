@@ -12,7 +12,7 @@ The next four chapters care about scaling up.
 Read [Part I](./structuring.md) if your code gets very complex.
 Read [Part II](./scaling.md) if you have to process a lot of messages.
 Read [Part III](./reliability.md) if you worry about the reliability of your bot.
-Read [Part IV](./flood.md) if you are hitting rate limits, i.e. getting 429 errors.
+Read [Part IV](./flood.md) if you are hitting rate limits, i.e.,getting 429 errors.
 
 If you need to intercept and transform API requests on the fly, grammY offers you to do this by installing [transformer functions](./transformers.md).
 

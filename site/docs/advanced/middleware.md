@@ -115,7 +115,7 @@ composer.filter(/* 1 */).filter(/* 2 */).use(/* A */);
 
 Revisit the section about [combining filter queries](../guide/filter-queries.md#combining-multiple-queries) with your new knowledge and feel your new power.
 
-A special case here is `fork`, as it starts two computations that are concurrent, i.e. interleaved on the event loop.
+A special case here is `fork`, as it starts two computations that are concurrent, i.e.,interleaved on the event loop.
 Instead of returning the `Composer` instance created by the underlying `use` call, it returns a `Composer` that reflects the forked computation.
 This allows for concise patterns like `bot.fork().on(":text").use(/* A */)`.
 `A` will now be executed on the parallel computation branch.

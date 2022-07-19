@@ -21,7 +21,7 @@ This is the order of operations:
 However, if your bot processes one message per second (or something like that) during load peaks, this can begin to impact the responsiveness negatively.
 For instance, the message of Bob has to wait until the message of Alice is done processing.
 
-This can be solved by not waiting for Alice's message to be done processing, i.e. processing both messages concurrently.
+This can be solved by not waiting for Alice's message to be done processing, i.e.,processing both messages concurrently.
 In order to achieve maximum responsiveness, we'd also like to pull in new messages while the messages of Bob and Alice are still processing.
 Ideally, we would also like to limit the concurrency to some fixed number to constrain the maximum server load.
 

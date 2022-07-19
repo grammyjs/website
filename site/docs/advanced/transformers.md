@@ -5,7 +5,7 @@ next: ./proxy.md
 
 # Bot API Transformers
 
-Middleware is a function that handles a context object, i.e. incoming data.
+Middleware is a function that handles a context object, i.e.,incoming data.
 
 grammY also provides you with the inverse.
 A _transformer function_ is a function that handles outgoing data, i.e.

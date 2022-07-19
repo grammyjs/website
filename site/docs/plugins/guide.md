@@ -203,7 +203,7 @@ It corresponds with the TypeScript configuration that Deno uses internally, and 
 **`README.md`**: Instructions on how to use the plugin.
 **Make sure to change it according to your project**.
 
-**`index.ts`**: The file containing your business logic, i.e. your main plugin code.
+**`index.ts`**: The file containing your business logic, i.e.,your main plugin code.
 
 ## There Is a Boilerplate
 

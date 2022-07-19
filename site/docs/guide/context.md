@@ -31,14 +31,14 @@ As an example, to get the message text, you can do this:
 bot.on("message", (ctx) => {
   // `txt` will be a `string` when processing text messages.
   // It will be `undefined` if the received message does not have any message text,
-  // e.g. photos, stickers, and other messages.
+  // e.g.,photos, stickers, and other messages.
   const txt = ctx.message.text;
 });
 ```
 
-Similarly, you can access other properties of the message object, e.g. `ctx.message.chat` for information about the chat where the message was sent.
-Check out the [part about `Message`s in the Telegram Bot API Reference](https://core.telegram.org/bots/api#message) to see which data is available.
-Alternatively, you can simply use autocomplete in your code editor to see the possible options.
+Similarly, you can access other properties of the message object, e.g., `ctx.message.chat` for information about the chat where the message was sent.
+Check out the [part about `Message`s in the Telegram Bot API Reference](https://core.telegram.org/bots/api#message) to see the available data.
+Alternatively, you can simply use Autocomplete in your code editor to see the possible options.
 
 If you register your listener for other types, `ctx` will also give you information about those.
 Example:
@@ -57,7 +57,7 @@ The context object always contains information about your bot, accessible via `c
 
 ### Shortcuts
 
-There are a number of shortcuts installed on the context object.
+There are several shortcuts installed on the context object.
 
 | Shortcut              | Description                                                                         |
 | --------------------- | ----------------------------------------------------------------------------------- |
@@ -101,13 +101,13 @@ bot.on("message", async (ctx) => {
 You can notice two things that are not optimal about this:
 
 1. We must have access to the `bot` object.
-   This means that we have to pass the `bot` object all around our code base in order to respond, which is annoying when you have more than one source file and you define your listener somewhere else.
-2. We have to take out the chat identifier of the context, and explicitly pass it to `sendMessage` again.
+   This means that we have to pass the `bot` object all around our code base in order to respond, which is annoying when you have more than one source file and define your listener somewhere else.
+2. We must take out the context's chat identifier and explicitly pass it to `sendMessage` again.
    This is annoying, too, because you most likely always want to respond to the same user that sent a message.
    Imagine how often you would type the same thing over and over again!
 
 Regarding point 1., the context object simply provides you access to the same API object that you find on `bot.api`, it is called `ctx.api`.
-You could now write `ctx.api.sendMessage` instead and you no longer have to pass around your `bot` object.
+You could now write `ctx.api.sendMessage` instead, and you no longer have to pass around your `bot` object.
 Easy.
 
 However, the real strength is to fix point 2.
@@ -147,7 +147,7 @@ Use auto-complete to see the available options right in your code editor.
 :::
 
 Naturally, every other method on `ctx.api` has a shortcut with the correct pre-filled values, such as `ctx.replyWithPhoto` to reply with a photo, or `ctx.exportChatInviteLink` to get an invite link for the respective chat.
-If you want to get an overview over what shortcuts exist, then auto-complete is your friend, along with the [grammY API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Context).
+If you want an overview of what shortcuts exist, Autocomplete is your friend, along with the [grammY API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Context).
 
 Note that you may not want to react in the same chat always.
 In this case, you can just fall back to using `ctx.api` methods, and specify all options when calling them.
@@ -157,10 +157,11 @@ Instead, call `ctx.api.sendMessage` and specify the chat identifier of Bob.
 ## How Context Objects Are Created
 
 Whenever your bot receives a new message from Telegram, it is wrapped in an update object.
-In fact, update objects can not only contain new messages, but also all other sorts of things, such as edits to messages, poll answers, and [much more](https://core.telegram.org/bots/api#update).
+In fact, update objects can contain not only new messages, but also all other sorts of things, such as edits to messages, poll answers, and [much more](https://core.telegram.org/bots/api#update).
 
-A fresh context object is created exactly once for every incoming update.
-Contexts for different updates are completely unrelated objects, they only reference the same bot information via `ctx.me`.
+A new context object is created exactly once for every incoming update.
+Contexts for different updates are completely unrelated objects. 
+They only reference the same bot information via `ctx.me`.
 
 The same context object for one update will be shared by all installed middleware ([docs](./middleware.md)) on the bot.
 
@@ -178,15 +179,15 @@ The customizations can be easily done in [middleware](./middleware.md).
 This section requires an understanding of middleware, so in case you have not skipped ahead to [this section](./middleware.md) yet, here is a very brief summary.
 
 All you really need to know is that several handlers can process the same context object.
-There are special handlers which can modify `ctx` before any other handlers are run, and the modifications of the first handler will be visible to all subsequent handlers.
+There are special handlers that can modify `ctx` before any other handlers are run, and the modifications of the first handler will be visible to all subsequent handlers.
 :::
 
 The idea is to install middleware before you register other listeners.
 You can then set the properties you want inside these handlers.
 
 For illustration purposes, let's say you want to set a property called `ctx.config` on the context object.
-In this example, we will use it do store some configuration about the project so that all handlers have access to it.
-The configuration will make it easier to detect if the bot is used by its developer or by regular users.
+In this example, we will use it to store some configuration about the project so that all handlers can access it.
+The configuration will make it easier to detect if the bot is used by its developer or regular users.
 
 Right after creating your bot, do this:
 
@@ -301,7 +302,7 @@ bot.command("start", async (ctx) => {
 </CodeGroupItem>
 </CodeGroup>
 
-Naturally, the custom context type can also be passed to other things which handle middleware, such as composers.
+Naturally, the custom context type can also be passed to other things that handle middleware, such as composers.
 
 ```ts
 const composer = new Composer<MyContext>();
@@ -431,14 +432,14 @@ However, this makes it very hard (if not impossible) to install plugins, as they
 ## Context Flavors
 
 Context flavors are a way to tell TypeScript about new properties on your context object.
-These new properties can be shipped in plugins or other modules and then installed on your bot.
+These new properties can be shipped in plugins or other modules and installed on your bot.
 
-Context flavors are also able to transform the types of existing properties using automatic procedures which are defined by plugins.
+Context flavors can also transform the types of existing properties using automatic procedures defined by plugins.
 
 ### Additive Context Flavors
 
 As implied above, there are two different kinds of context flavors.
-The basic one is called _additive context flavor_, and whenever we talk about context flavoring, we just mean this basic form.
+The basic one is called _additive context flavor_; whenever we talk about context flavoring, we just mean this basic form.
 Let's look at how it works.
 
 As an example, when you have [session data](../plugins/session.md), you must register `ctx.session` on the context type.
@@ -447,11 +448,11 @@ Otherwise,
 1. you cannot install the built-in sessions plugin, and
 2. you don't have access to `ctx.session` in your listeners.
 
-> Even though we'll use sessions as an example here, similar things apply for lots of other things.
-> In fact, most plugins will give you a context flavor that you need to use.
+> Even though we'll use sessions as an example here, similar things apply to lots of other things.
+> In fact, most plugins will give you a context flavor you need to use.
 
 A context flavor is simply a small new type that defines the properties that should be added to the context type.
-Let's look at an example for a flavor.
+Let's look at an example of a flavor.
 
 ```ts
 interface SessionFlavor<S> {
@@ -505,7 +506,7 @@ If you have different [additive context flavors](#additive-context-flavors), you
 type MyContext = Context & FlavorA & FlavorB & FlavorC;
 ```
 
-The order of context flavors does not matter, you can combine them in any order you like.
+The order of context flavors does not matter; you can combine them in any order you like.
 
 Multiple [transformative context flavors](#transformative-context-flavors) can also be combined:
 

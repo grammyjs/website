@@ -8,7 +8,7 @@ next: ./filter-queries.md
 ## General Information
 
 Telegram bots communicate with the Telegram servers via HTTP requests.
-The Telegram Bot API is the specification of this interface, i.e. a [long list](https://core.telegram.org/bots/api) of methods and data types, commonly called a reference.
+The Telegram Bot API is the specification of this interface, i.e.,a [long list](https://core.telegram.org/bots/api) of methods and data types, commonly called a reference.
 It defines everything that Telegram bots can do.
 You can find it linked under the Resources tab.
 
@@ -75,7 +75,7 @@ grammY allows you to specify objects consistently across the API, and makes sure
 
 ### Making Raw API Calls
 
-There may be times when you want to use the original function signatures, but still rely on the convenience of the grammY API (e.g. JSON serialising where appropriate).
+There may be times when you want to use the original function signatures, but still rely on the convenience of the grammY API (e.g.,JSON serialising where appropriate).
 grammY supports this via the `bot.api.raw` (or the `ctx.api.raw`) properties.
 
 You can call the raw methods like this:

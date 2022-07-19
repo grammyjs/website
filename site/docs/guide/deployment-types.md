@@ -9,13 +9,13 @@ There are two ways how your bot can receive messages from the Telegram servers.
 They are called _long polling_ and _webhooks_.
 grammY supports both of these two ways, while long polling is the default.
 
-This section first describes what long polling and webhooks actually are, and in turn outlines some of the advantages and disadvantes of using one or the other deployment method.
+This section first describes what long polling and webhooks actually are and, in turn, outlines some of the advantages and disadvantages of using one or the other deployment method.
 It will also cover how to use them with grammY.
 
 ## Introduction
 
 You can think of the whole webhooks vs. long polling discussion as a question of what _deployment type_ to use.
-In other words, there are two fundamentally different ways to host your bot (run it on some server), and they differ in the way how the messages reach your bot, and can be processed by grammY.
+In other words, there are two fundamentally different ways to host your bot (run it on some server), and they differ in the way how the messages reach your bot and can be processed by grammY.
 
 This choice matters a lot when you need to decide where to host your bot.
 For instance, some infrastructure providers only support one of the two deployment types.
@@ -30,15 +30,15 @@ _Imagine you're getting yourself a scoop of ice cream in your trusted ice cream 
 You walk up to the employee and ask for your favorite type of ice cream.
 Unfortunately, he lets you know that it is out of stock._
 
-_The next day, you're craving that delicious ice cream again, so you go back to the same place and ask for the same ice cream.
+_The next day, you're craving that delicious ice cream again, so you return to the same place and ask for the same ice cream.
 Good news!
-They restocked over night so you can enjoy your salted caramel ice cream today!
+They are restocked overnight, so you can enjoy your salted caramel ice cream today!
 Yummy._
 
 **Polling** means that grammY proactively sends a request to Telegram, asking for new updates (think: messages).
-If no messages are there, Telegram will return an empty list, indicating that no new messages were sent to your bot since the last time you asked.
+Telegram will return an empty list if no messages are there, indicating that no new messages have been sent to your bot since the last time you asked.
 
-When grammY sends a request to Telegram and new messages have been sent to your bot in the meantime, Telegram will return them as an array of up to 100 update objects.
+When grammY sends a request to Telegram, and new messages have been sent to your bot in the meantime, Telegram will return them as an array of up to 100 update objects.
 
 ```asciiart:no-line-numbers
 ______________                                   _____________
@@ -56,9 +56,9 @@ ______________                                   _____________
 ```
 
 It is immediately obvious that this has some drawbacks.
-Your bot only receives new messages every time it asks, i.e. every few seconds or so.
-To make your bot respond faster, you could just send more requests and not wait as long between them.
-We could for example ask for new messages every millisecond! What could go wrong…
+Your bot only receives new messages every time it asks, i.e., every few seconds or so.
+To make your bot respond faster, you could just send more requests and not wait too long between them.
+We could, for example, ask for new messages every millisecond! What could go wrong…
 
 Instead of deciding to spam the Telegram servers, we will use _long polling_ instead of regular (short) polling.
 
@@ -72,10 +72,10 @@ In fact, you don't get any response at all.
 So you decide to wait, firmly smiling back.
 And you wait.
 And wait.
-Some hours before the next sunrise, a truck of a local food delivery company arrives and brings a couple of large boxes into the parlor's storage room.
+Some hours before the next sunrise, a local food delivery company truck arrives and brings a couple of large boxes into the parlor's storage room.
 They read_ ice cream _on the outside.
 The employee finally starts to move again.
-"Of course we have salted caramel!
+"Of course, we have salted caramel!
 Two scoops with sprinkles, the usual?"
 As if nothing had happened, you enjoy your ice cream while leaving the world's most unrealistic ice cream parlor._
 
@@ -96,9 +96,9 @@ ______________                                   _____________
 
 > Note that in reality, no connection would be kept open for hours.
 > Long polling requests have a default timeout of 30 seconds (in order to avoid a number of [technical problems](https://tools.ietf.org/id/draft-loreto-http-bidirectional-07.html#timeouts)).
-> If no new messages are returned after this period of time, then the request will be cancelled and resent—but the general concept stays the same.
+> If no new messages are returned after this period, the request will be canceled and resent—but the general concept stays the same.
 
-Using long polling, you don't need to spam Telegram's servers, and still you get new messages immediately!
+You don't need to spam Telegram's servers using long polling, and you still get new messages immediately!
 Nifty.
 This is what grammY does by default when you run `bot.start()`.
 
@@ -136,14 +136,14 @@ ______________                                   _____________
 **The main advantage of long polling over webhooks is that it is simpler.**
 You don't need a domain or a public URL.
 You don't need to fiddle around with setting up SSL certificates in case you're running your bot on a VPS.
-Use `bot.start()` and everything will work, no further configuration required.
+Use `bot.start()`, and everything will work; no further configuration is required.
 Under load, you are in complete control of how many messages you can process.
 
 Places where long polling works well include:
 
-- During development on your local machine.
-- On majority of servers.
-- On hosted "backend" instances, i.e. machines that actively run your bot 24/7.
+- During the development of your local machine.
+- On the majority of servers.
+- On hosted "backend" instances, i.e., machines that actively run your bot 24/7.
 
 **The main advantage of webhooks over long polling is that they are cheaper.**
 You save a ton of superfluous requests.
@@ -178,14 +178,14 @@ bot.start();
 
 to run your bot with a very simple form of long polling.
 It processes all updates sequentially.
-This makes your bot very easy to debug, and all behavior very predictable, because there is no concurrency involved.
+This makes your bot very easy to debug and all behavior predictable because no concurrency is involved.
 
 If you want your messages to be handled concurrently by grammY, or you worry about throughput, check out the section about [grammY runner](../plugins/runner.md).
 
 ## How to Use Webhooks
 
 If you want to run grammY with webhooks, you can integrate your bot into a web server.
-We therefore expect you to be able to start a simple web server with a framework of your choice.
+We, therefore, expect you to be able to start a simple web server with a framework of your choice.
 
 Every grammY bot can be converted to middleware for a number of web frameworks, including `express`, `koa`/`oak`, and more.
 You can import the `webhookCallback` function from grammY to convert your bot to middleware for the respective framework.
@@ -249,7 +249,7 @@ However, there are a number of drawbacks to using this:
    For instance, they indicate that you always receive a response object, so it is your own responsibility to make sure you're not screwing up while using this minor performance optimization.
 
 If you want to use webhook replies, you can specify the `canUseWebhookReply` option in the `client` option of your `BotConfig` ([API reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/BotConfig)).
-Pass a function that determines whether or not to use webhook reply for the given request, identified by method.
+Pass a function that determines whether or not to use webhook reply for the given request, identified by the method.
 
 ```ts
 const bot = new Bot(token, {
@@ -279,7 +279,7 @@ ______________                                   _____________
 
 ### Ending Webhook Requests in Time
 
-> You can ignore the rest of this page if all your middleware completes fast, i.e. within a few seconds.
+> You can ignore the rest of this page if all your middleware completes fast, i.e.,within a few seconds.
 > This section is primarily for people who want to do file transfers in response to messages, or other operations that need more time.
 
 When Telegram sends an update from one chat to your bot, it will wait for you to end the request before delivering the next update that belongs to that chat.
@@ -323,7 +323,7 @@ If you don't have that error handling, Telegram will send the same update again�
 Once Telegram sends an update to your bot for the second time, it is unlikely that your handling of it will be faster than the first time.
 As a result, it will likely timeout again, and Telegram will send the update again.
 Thus, your bot will not just see the update two times, but a few dozen times, until Telegram stops retrying.
-You may observe that your bot starts spamming users as it tries to handle all of those updates (that are in fact the same every time).
+You may observe that your bot starts spamming users as it tries to handle all of those updates (that are, in fact, the same every time).
 
 #### Why Ending a Webhook Request Early Is Also Dangerous
 
@@ -332,7 +332,7 @@ You can do this by passing `"return"` as a third argument to `webhookCallback`, 
 However, while this behavior has some valid use cases, such a solution usually causes more problems than it solves.
 
 Remember that once you respond to a webhook request, Telegram will send the next update for that chat.
-However, as the old update is still being processed, two updates which were previously processed sequentially, are suddenly processed in parallel.
+However, as the old update is still being processed, two updates that were previously processed sequentially, are suddenly processed in parallel.
 This can lead to race conditions.
 For example, the session plugin will inevitably break due to [WAR](https://en.wikipedia.org/wiki/Hazard_(computer_architecture)#Write_after_read_(WAR)) hazards.
 **This causes data loss!**
@@ -380,7 +380,7 @@ Race conditions are very hard to reproduce and may occur extremely rarely or spo
 The solution to this is to _make sure not to run into timeouts_ in the first place.
 But, if you do, you really want to know that this is happening, so that you can investigate and fix the problem!
 For that reason, you want the error to occur in your logs.
-Setting the timeout handler to `"return"`, hence suppressing the timeout and pretending that nothing happened, is exactly the opposite of useful behavior.
+Setting the timeout handler to `"return"`, hence suppressing the timeout and pretending that nothing happened is exactly the opposite of useful behavior.
 
 If you do this, you're in some sense using the update queue in Telegram's webhook delivery as your task queue.
 This is a bad idea for all of the reasons described above.

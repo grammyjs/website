@@ -70,7 +70,7 @@ As a result, there is no reliable support for auto-complete or spell-checking bo
 Experience shows that you often have to run your bot to find out whether your code works.
 
 In contrast, grammY is written in pure TypeScript.
-This allows your code editor (e.g. VSCode) to analyze your code while you are typing, and assist you.
+This allows your code editor (e.g.,VSCode) to analyze your code while you are typing, and assist you.
 In addition, it can show the complete Telegram Bot API inline—the website's documentation will be available right at your fingertips when hovering your mouse over any name or element of your code.
 
 Another remarkable advantage is that you are finally able to **write your own bots in TypeScript**.

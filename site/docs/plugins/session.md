@@ -12,9 +12,9 @@ As a result, there are a few things you cannot do with bots:
 1. You cannot access old messages that your bot received.
 2. You cannot access old messages that your bot sent.
 3. You cannot get a list of all chats with your bot.
-4. More things, e.g. no media overview, etc
+4. More things, e.g.,no media overview, etc
 
-Basically, it boils down to the fact that **a bot only has access to the information of the currently incoming update** (e.g. message), i.e. the information that is available on the context object `ctx`.
+Basically, it boils down to the fact that **a bot only has access to the information of the currently incoming update** (e.g.,message), i.e.,the information that is available on the context object `ctx`.
 
 Consequently, if you _do want to access_ old data, you have to store it as soon as it arrives.
 This means that you must have a data storage, such as a file, a database, or an in-memory storage.
@@ -39,7 +39,7 @@ Sessions are an elegant way to store data _per chat_.
 You would use the chat identifier as the key in your database, and a counter as the value.
 In this case, we would call the chat identifier the _session key_.
 (You can read more about session keys [down here](#session-keys).)
-Effectively, your bot will store a map from a chat identifier to some custom session data, i.e. something like this:
+Effectively, your bot will store a map from a chat identifier to some custom session data, i.e.,something like this:
 
 ```json:no-line-numbers
 {
@@ -85,7 +85,7 @@ This comparison may help you decide whether to use sessions or not.
 |                     | Sessions                                                    | Database                                                           |
 | ------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------ |
 | _Access_            | one isolated storage **per chat**                           | access same data from **multiple chats**                           |
-| _Sharing_           | data is **only used by bot**                                | data is **used by other systems** (e.g. by a connected web server) |
+| _Sharing_           | data is **only used by bot**                                | data is **used by other systems** (e.g.,by a connected web server) |
 | _Format_            | any JavaScript objects, strings, numbers, arrays, and so on | any data (binary, files, structured, etc)                          |
 | _Size per chat_     | preferably less than ~3 MB per chat                         | any size                                                           |
 | _Exclusive feature_ | Required by some grammY plugins.                            | Supports database transactions.                                    |
@@ -352,7 +352,7 @@ Without sessions, this would happen:
 As soon as you install (default, strict) sessions, which directly provide the session data on the context object, this happens:
 
 1. Update with new text message is sent to your bot
-2. Session data is loaded from session storage (e.g. database)
+2. Session data is loaded from session storage (e.g.,database)
 3. No handler is invoked, so no action is taken
 4. Identical session data is written back to session storage
 5. The middleware completes, and has performed a read and a write to the data storage

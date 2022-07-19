@@ -120,7 +120,7 @@ Let's write our own little piece of middleware to better illustrate how it works
 
 ## Writing Custom Middleware
 
-We will illustrate the concept of middleware by writing a simple middleware function that can measure the response time of your bot, i.e. how long it takes your bot to handle a message.
+We will illustrate the concept of middleware by writing a simple middleware function that can measure the response time of your bot, i.e.,how long it takes your bot to handle a message.
 
 Here is the function signature for our middleware.
 You can compare it to the middleware type from above, and convince yourself that we actually have middleware here.

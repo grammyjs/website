@@ -87,8 +87,8 @@ This allows you to download files via `await file.download()`, and to obtain a c
 
 Telegram bots have [three ways](https://core.telegram.org/bots/api#sending-files) to send files:
 
-1. Via `file_id`, i.e. by sending a file by an identifier that is already known to the bot.
-2. Via URL, i.e. by passing a public file URL, which Telegram downloads and sends for you.
+1. Via `file_id`, i.e.,by sending a file by an identifier that is already known to the bot.
+2. Via URL, i.e.,by passing a public file URL, which Telegram downloads and sends for you.
 3. Via uploading your own file.
 
 In all cases, the methods you need to call are named the same.
