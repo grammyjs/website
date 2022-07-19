@@ -31,7 +31,7 @@ As an example, to get the message text, you can do this:
 bot.on("message", (ctx) => {
   // `txt` will be a `string` when processing text messages.
   // It will be `undefined` if the received message does not have any message text,
-  // e.g.,photos, stickers, and other messages.
+  // e.g., photos, stickers, and other messages.
   const txt = ctx.message.text;
 });
 ```
@@ -160,7 +160,7 @@ Whenever your bot receives a new message from Telegram, it is wrapped in an upda
 In fact, update objects can contain not only new messages, but also all other sorts of things, such as edits to messages, poll answers, and [much more](https://core.telegram.org/bots/api#update).
 
 A new context object is created exactly once for every incoming update.
-Contexts for different updates are completely unrelated objects.
+Contexts for different updates are completely unrelated objects. 
 They only reference the same bot information via `ctx.me`.
 
 The same context object for one update will be shared by all installed middleware ([docs](./middleware.md)) on the bot.

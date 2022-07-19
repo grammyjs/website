@@ -78,12 +78,12 @@ Your folder structure should now look like this:
 └── tsconfig.json
 ```
 
-Now, it's time to open Telegram to create a bot account and obtain an authentication token for it.
+Now, it's time to open Telegram to create a bot account, and obtain an authentication token for it.
 Talk to [@BotFather](https://t.me/BotFather) to do this.
 The authentication token looks like `123456:aBcDeF_gHiJkLmNoP-q`.
 
 Got the token? You can now code your bot in the `bot.ts` file.
-You can copy the following example bot into that file and pass your token to the `Bot` constructor:
+You can copy the following example bot into that file, and pass your token to the `Bot` constructor:
 
 <CodeGroup>
  <CodeGroupItem title="TypeScript" active>

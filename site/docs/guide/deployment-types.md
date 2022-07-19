@@ -279,7 +279,7 @@ ______________                                   _____________
 
 ### Ending Webhook Requests in Time
 
-> You can ignore the rest of this page if all your middleware completes fast, i.e.,within a few seconds.
+> You can ignore the rest of this page if all your middleware completes fast, i.e., within a few seconds.
 > This section is primarily for people who want to do file transfers in response to messages, or other operations that need more time.
 
 When Telegram sends an update from one chat to your bot, it will wait for you to end the request before delivering the next update that belongs to that chat.
