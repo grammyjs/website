@@ -63,11 +63,8 @@ Note that you can always access the entire message's text via `ctx.msg.text`.
 
 > Revisit the deep linking section in the [Introduction for Developers](https://core.telegram.org/bots#deep-linking) written by the Telegram team.
 
-When a user visits `https://t.me/your_bot_name?start=payload`, their Telegram client will show a START button that (when clicked) sends the string from the URL parameter along with the message. 
-The message text will be `"/start payload" in this example.
-Telegram clients will not show the payload to the user (they will only see `"/start"` in the UI); however, your bot will receive it.
-grammY extracts this payload for you, and provides it under `ctx.match`.
-In our example, `ctx.match` would contain the string `"payload"`.
+When a user visits `https://t.me/your_bot_name?start=payload`, their Telegram client will show a START button that (when clicked) sends the string from the URL parameter along with the message.
+The message text will be `"/start payload" in this example. Telegram clients will not show the payload to the user (they will only see`"/start"`in the UI); however, your bot will receive it. grammY extracts this payload for you, and provides it under`ctx.match`. In our example,`ctx.match`would contain the string`"payload"`.
 
 Deep linking is useful if you want to build a referral system or track where users discovered your bot.
 For example, your bot could send a channel post with an [inline keyboard](../plugins/keyboard.md#inline-keyboards) button.

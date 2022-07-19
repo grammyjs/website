@@ -82,13 +82,13 @@ On the other hand, there are cases where a traditional database may be better su
 
 This comparison may help you decide whether to use sessions or not.
 
-|                     | Sessions                                                    | Database                                                           |
-| ------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------ |
-| _Access_            | one isolated storage **per chat**                           | access same data from **multiple chats**                           |
+|                     | Sessions                                                    | Database                                                            |
+| ------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------- |
+| _Access_            | one isolated storage **per chat**                           | access same data from **multiple chats**                            |
 | _Sharing_           | data is **only used by bot**                                | data is **used by other systems** (e.g., by a connected web server) |
-| _Format_            | any JavaScript objects, strings, numbers, arrays, and so on | any data (binary, files, structured, etc)                          |
-| _Size per chat_     | preferably less than ~3 MB per chat                         | any size                                                           |
-| _Exclusive feature_ | Required by some grammY plugins.                            | Supports database transactions.                                    |
+| _Format_            | any JavaScript objects, strings, numbers, arrays, and so on | any data (binary, files, structured, etc)                           |
+| _Size per chat_     | preferably less than ~3 MB per chat                         | any size                                                            |
+| _Exclusive feature_ | Required by some grammY plugins.                            | Supports database transactions.                                     |
 
 This does not mean that things _cannot work_ if you pick sessions/databases over the other.
 For example, you can of course store large binary data in your session.
