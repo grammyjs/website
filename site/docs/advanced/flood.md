@@ -20,7 +20,7 @@ There is a very simple solution to hitting rate limits: if an API request fails 
 If you want to do this, you can use [the super simple `auto-retry` plugin](../plugins/auto-retry.md).
 It is an [API transformer function](./transformers.md) that does exactly that.
 
-However, if the traffic to your bot increases rapidly, e.g.,when it is added to a large group, it may run into a lot of rate limiting errors before the traffic spike settles.
+However, if the traffic to your bot increases rapidly, e.g., when it is added to a large group, it may run into a lot of rate limiting errors before the traffic spike settles.
 This could lead to a ban.
 Moreover, as requests might be tried several times, your server will consume more RAM and bandwidth than necessary.
 Instead of fixing the problem after the fact, it is much better to enqueue all API requests and only send them at the permitted speed:

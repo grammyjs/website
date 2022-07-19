@@ -83,7 +83,7 @@ Remember, though: creating a Telegram bot with grammY is actually a good way to 
 You can start learning TypeScript with the [official tutorial](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html) written by the TypeScript team, and then move on from there.
 Don't spend more than 30 minutes reading things on the internet, then come back here, (read the rest of the section) and [get started](./getting-started.md).
 
-If you see unfamiliar syntax in the docs, or if you get an error message that you don't understand, google it—the explanation is already on the internet (e.g.,on StackOverflow).
+If you see unfamiliar syntax in the docs, or if you get an error message that you don't understand, google it—the explanation is already on the internet (e.g., on StackOverflow).
 :::
 
 ::: danger Not Learning How to Code
@@ -139,7 +139,7 @@ Ready?
 ### Prerequisites for Node.js
 
 You are going to write your bot in TypeScript, but, contrary to Deno, Node.js cannot actually run TypeScript.
-Instead, once you have a source file (e.g.,called `bot.ts`), you are going to _compile_ it to JavaScript.
+Instead, once you have a source file (e.g., called `bot.ts`), you are going to _compile_ it to JavaScript.
 You will then have two files: your original `bot.ts`, and a generated `bot.js`, which can in turn be run by Node.js.
 The exact commands for all of that will be introduced in the next section when you actually create a bot, but it is important to know that these steps are necessary.
 
@@ -147,7 +147,7 @@ In order to run the `bot.js` file, you have to have [Node.js](https://nodejs.org
 
 In summary, this is what you have to do for Node.js:
 
-1. Create a source file `bot.ts` with TypeScript code, e.g.,using [VSCode](https://code.visualstudio.com/) (or any other code editor).
+1. Create a source file `bot.ts` with TypeScript code, e.g., using [VSCode](https://code.visualstudio.com/) (or any other code editor).
 2. Compile the code by running a command in your terminal. This generates a file called `bot.js`.
 3. Run `bot.js` using Node.js, again from your terminal.
 

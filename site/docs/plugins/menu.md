@@ -121,7 +121,7 @@ You can pass a label and a handler function.
 
 Use `row` to end the current row, and add all subsequent buttons to a new one.
 
-There are many more button types available, e.g.,for opening URLs.
+There are many more button types available, e.g., for opening URLs.
 Check out [this plugin's API Reference](https://doc.deno.land/https://deno.land/x/grammy_menu/mod.ts/~/MenuRange) for `MenuRange`, as well as the [Telegram Bot API Reference](https://core.telegram.org/bots/api#inlinekeyboardbutton) for `InlineKeyboardButton`.
 
 ## Sending a Menu
@@ -231,7 +231,7 @@ Note that `ctx.menu.update()` will then return a promise, so you need to use `aw
 Using the `immediate` flag also works for all other operations that you can call on `ctx.menu`.
 This should only be used when necessary.
 
-If you want to close a menu, i.e.,remove all buttons, you can call `ctx.menu.close()`.
+If you want to close a menu, i.e., remove all buttons, you can call `ctx.menu.close()`.
 Again, this will be performed lazily.
 
 ## Navigation Between Menus
@@ -408,7 +408,7 @@ As menus are always [rendered twice](#how-does-it-work) (once when the menu is s
    Do not write to the session data.
    Do not change any variables outside of the function.
    Check out [Wikipedia on side-effects](https://en.wikipedia.org/wiki/Side_effect_(computer_science)).
-2. **Your function is stable**, i.e.,it does not depend on randomness, the current time, or other fast-changing data sources.
+2. **Your function is stable**, i.e., it does not depend on randomness, the current time, or other fast-changing data sources.
    It has to generate the same buttons the first and the second time the menu is rendered.
    Otherwise, the menu plugin cannot match the correct handler with the pressed button.
    Instead, it will [detect](#outdated-menus-and-fingerprints) that your menu is outdated, and refuse to call the handlers.
@@ -467,7 +467,7 @@ We consider it outdated if:
 - The pressed button does not contain a handler.
 
 It is possible that your menu changes, while all of the above things stay the same.
-It is also possible that your menu does not change fundamentally (i.e.,the behavior of the handlers does not change), even though the above heuristic indicates that the menu is outdates.
+It is also possible that your menu does not change fundamentally (i.e., the behavior of the handlers does not change), even though the above heuristic indicates that the menu is outdates.
 Both scenarios are unlikely to happen for most bots, but if you are creating a menu where this is the case, you should use a fingerprint function.
 
 ```ts

@@ -41,7 +41,7 @@ Routers work well together with [sessions](./session.md).
 As an example, combining the two concepts allows you to re-create forms in the chat interface.
 
 Let's say that you want to build a bot that tells users how many days are left until it is their birthday.
-In order to compute the number of days, the bot has to know the month (e.g.,June) and the day of month (e.g.,15) of the birthday.
+In order to compute the number of days, the bot has to know the month (e.g., June) and the day of month (e.g., 15) of the birthday.
 
 The bot therefore has to ask two questions:
 
@@ -456,7 +456,7 @@ function getDays(month: number, day: number) {
 </CodeGroupItem>
 </CodeGroup>
 
-Note how the session has a property `step` that stores the step of the form, i.e.,which value is currently being filled.
+Note how the session has a property `step` that stores the step of the form, i.e., which value is currently being filled.
 The router is used to jump between different middleware that completes both the `month` and the `dayOfMonth` fields on the session.
 If both values are known, the bot computes the remaining days and sends it back to the user.
 

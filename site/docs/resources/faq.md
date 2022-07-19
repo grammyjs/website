@@ -8,7 +8,7 @@ If this FAQ does not answer your question, you should also have a look at the [B
 
 ### 400 Bad Request: Cannot parse entities
 
-You are sending a message with formatting, i.e.,you're setting `parse_mode` when sending a message.
+You are sending a message with formatting, i.e., you're setting `parse_mode` when sending a message.
 However, your formatting is broken, so Telegram does not know how to parse it.
 You should re-read [the section about formatting](https://core.telegram.org/bots/api#formatting-options) in the Telegram docs.
 The byte offset that is mentioned in the error message will tell you where exactly the error is in your string.
