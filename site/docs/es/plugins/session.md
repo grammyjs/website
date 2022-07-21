@@ -609,7 +609,9 @@ Cada uno de ellos requerirá que te registres en un proveedor de alojamiento, o 
 - MongoDB: <https://github.com/grammyjs/storages/tree/main/packages/mongodb>
 - Redis: <https://github.com/grammyjs/storages/tree/main/packages/redis>
 - PostgreSQL: <https://github.com/grammyjs/storages/tree/main/packages/psql>
-- TypeORM (Node.js-only): <https://github.com/grammyjs/storages/tree/main/packages/typeorm>
+- TypeORM (solo para Node.js): <https://github.com/grammyjs/storages/tree/main/packages/typeorm>
+- DenoDB (solo para Deno): https://github.com/grammyjs/storages/tree/main/packages/denodb
+- Prisma (solo para Node.js): https://github.com/grammyjs/storages/tree/main/packages/prisma
 
 ::: tip ¿Su almacenamiento no es compatible? No hay problema.
 Crear un adaptador de almacenamiento personalizado es extremadamente sencillo.
