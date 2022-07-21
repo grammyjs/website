@@ -612,6 +612,7 @@ Each of them will require you to register at a hosting provider, or to host your
 - PostgreSQL: <https://github.com/grammyjs/storages/tree/main/packages/psql>
 - TypeORM (Node.js-only): <https://github.com/grammyjs/storages/tree/main/packages/typeorm>
 - DenoDB (Deno-only): <https://github.com/grammyjs/storages/tree/main/packages/denodb>
+- Prisma (Node.js-only): <https://github.com/grammyjs/storages/tree/main/packages/prisma>
 
 ::: tip Your storage is not supported? No problem!
 Creating a custom storage adapter is extremely simple.
