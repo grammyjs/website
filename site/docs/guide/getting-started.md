@@ -66,7 +66,7 @@ pnpm add grammy
 </CodeGroupItem>
 </CodeGroup>
 
-Create a new empty text file, e.g. called `bot.ts`.
+Create a new empty text file, e.g., called `bot.ts`.
 Your folder structure should now look like this:
 
 ```asciiart:no-line-numbers
@@ -171,7 +171,7 @@ This makes it easier to debug your bot.
 
 > This guide assumes that you have [Deno](https://deno.land) installed.
 
-Create a new directory somewhere and create a new empty text file in it, e.g. called `bot.ts`.
+Create a new directory somewhere and create a new empty text file in it, e.g., called `bot.ts`.
 
 Now, it's time to open Telegram to create a bot account, and obtain an authentication token for it.
 Talk to [@BotFather](https://t.me/BotFather) to do this.
