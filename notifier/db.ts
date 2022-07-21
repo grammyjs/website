@@ -22,23 +22,24 @@ export function createNotification(
   messageId: number,
   text: string,
 ) {
-  return client.queryArray
-    `INSERT INTO notifications VALUES (${prNumber}, ${messageId}, ${text});`;
+  return client
+    .queryArray`INSERT INTO notifications VALUES (${prNumber}, ${messageId}, ${text});`;
 }
 
 export async function getNotification(prNumber: number) {
   return (
-    await client.queryObject<Notification>
-      `SELECT * FROM notifications WHERE pr_number=${prNumber};`
+    await client.queryObject<
+      Notification
+    >`SELECT * FROM notifications WHERE pr_number=${prNumber};`
   ).rows[0];
 }
 
 export function updateNotification(messageId: number, text: string) {
-  return client.queryArray
-    `UPDATE notifications SET text=${text} WHERE message_id=${messageId};`;
+  return client
+    .queryArray`UPDATE notifications SET text=${text} WHERE message_id=${messageId};`;
 }
 
 export function deleteNotification(prNumber: number) {
-  return client.queryArray
-    `DELETE FROM notifications WHERE pr_number=${prNumber};`;
+  return client
+    .queryArray`DELETE FROM notifications WHERE pr_number=${prNumber};`;
 }
