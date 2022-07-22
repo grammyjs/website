@@ -250,6 +250,10 @@ export default defineUserConfig({
                     link: "/plugins/middlewares.html",
                   },
                   {
+                    text: "Autoquote",
+                    link: "/plugins/autoquote.html",
+                  },
+                  {
                     text: "[Submit your PR!]",
                     link: "/plugins/#submitting-your-own-package-to-the-docs",
                   },
