@@ -21,6 +21,18 @@ Every section of the plugin docs for an official plugin has the package name in 
 As an example, the [grammY runner](./runner.md) plugin (`runner`) needs to be installed via `npm install @grammyjs/runner`.
 (If you are using Deno and not Node.js, you should import the plugin from <https://deno.land/x/> instead, so from the `grammy_runner` module's `mod.ts` file.)
 
+There are also a few **third-party** plugins.
+Anyone can publish them.
+We don't provide any guarantees that they are up to date, well-documented, or work together with other plugins.
+If you want, your own third-party plugin can also be listed on the website so that more people can find out about it.
+
+## Overview
+
+We compiled a neat overview for you with short descriptions for each plugin.
+Installing plugins is fun and easy, and we want you to know what we have in store for you.
+
+TODO: list
+
 ## Types of Plugins in grammY
 
 All that glitters is gold, right?
