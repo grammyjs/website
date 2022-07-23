@@ -92,7 +92,7 @@ They solve this problem:
 
 ```ts
 import { Api, Bot, Context } from "grammy";
-import { SomeApiFlavor, someContextFlavor, somePlugin } from "some-plugin";
+import { SomeApiFlavor, SomeContextFlavor, somePlugin } from "some-plugin";
 
 // Context flavoring
 type MyContext = Context & SomeContextFlavor;

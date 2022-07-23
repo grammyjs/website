@@ -37,8 +37,7 @@ Your pizza count should of course not change when your sister adds the pizza bot
 
 Sessions are an elegant way to store data _per chat_.
 You would use the chat identifier as the key in your database, and a counter as the value.
-In this case, we would call the chat identifier the _session key_.
-(You can read more about session keys [down here](#session-keys).)
+In this case, we would call the chat identifier the _session key_ (you can read more about session keys [down here](#session-keys)).
 Effectively, your bot will store a map from a chat identifier to some custom session data, i.e. something like this:
 
 ```json:no-line-numbers
@@ -62,7 +61,7 @@ The installed plugin will do something before and after our handlers are called:
 2. **Our middleware runs.**
    We can _read_ `ctx.session` to inspect which value was in the database.
    For example, if a message is sent to the chat with the identifier `424242`, it would be `ctx.session = { pizzaCount: 24 }` while our middleware runs (at least with the example database state above).
-   We can also _modify_ ctx.session arbitrarily, so we can add, remove, and change fields as we like.
+   We can also _modify_ `ctx.session` arbitrarily, so we can add, remove, and change fields as we like.
 3. **After our middleware.**
    The session middleware makes sure that the data is written back to the database.
    Whatever the value of `ctx.session` is after the middleware is done executing, it will be saved in the database.
@@ -86,7 +85,7 @@ This comparison may help you decide whether to use sessions or not.
 | ------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------ |
 | _Access_            | one isolated storage **per chat**                           | access same data from **multiple chats**                           |
 | _Sharing_           | data is **only used by bot**                                | data is **used by other systems** (e.g. by a connected web server) |
-| _Format_            | any JavaScript objects, strings, numbers, arrays, and so on | any data (binary, files, structured, etc)                          |
+| _Format_            | any JavaScript objects: strings, numbers, arrays, and so on | any data (binary, files, structured, etc)                          |
 | _Size per chat_     | preferably less than ~3 MB per chat                         | any size                                                           |
 | _Exclusive feature_ | Required by some grammY plugins.                            | Supports database transactions.                                    |
 
@@ -224,7 +223,7 @@ Same but much shorter:
 bot.use(session({ initial: () => ({ pizzaCount: 0 }) }));
 ```
 
-::: warning Sharing objects
+::: warning Sharing Objects
 Make sure to always create a _new object_.
 Do **NOT** do this:
 
@@ -395,7 +394,7 @@ You mainly have to do three things:
    They work the same way, just that `ctx.session` is wrapped inside a promise for the lazy variant.
 2. Use `lazySession` instead of `session` to register your session middleware.
 3. Always put an inline `await ctx.session` instead of `ctx.session` everywhere in your middleware, for both reads and writes.
-   Don't worry: you can `await` the promise with your session data as many times as you want, but you will always refer to the same value, so there are never going to be duplicate reads for an update.
+   Don't worry, you can `await` the promise with your session data as many times as you want, but you will always refer to the same value, so there are never going to be duplicate reads for an update.
 
 Note that with lazy sessions, you can assign both objects and promises of objects to `ctx.session`.
 If you set `ctx.session` to be a promise, it will be `await`ed before writing the data back to the data storage.
@@ -413,7 +412,7 @@ bot.command("reset", (ctx) => {
 One may argue well that explicitly using `await` is preferable over assigning a promise to `ctx.session`, the point is that you _could_ do this if you like that style better for some reason.
 
 ::: tip Plugins That Need Sessions
-Plugin developers that make use of `ctx.session` should always allow users to pass `SessionFlavor | LazySessionFlavor` and hence support both modi.
+Plugin developers that make use of `ctx.session` should always allow users to pass `SessionFlavor | LazySessionFlavor` and hence support both mode.
 In the plugin code, simply await `ctx.session` all the time: if a non-promise object is passed, this will simply be evaluated to itself, so you effectively only write code for lazy sessions and thus support strict sessions automatically.
 :::
 
