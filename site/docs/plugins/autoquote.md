@@ -1,6 +1,8 @@
 # Always replying to messages
 
-Sometimes, especially for bots that are meant to be used in groups, it is necessary to always send messages as a reply (or quote) to the message that started the interaction. Usually, the way to do that is to mannualy add `reply_to_message_id` to the params of the mathod that sends the message (`sendText` / `reply`, `sendPhoto` / `replyWithPhoto`). However, if you're doing this for every message, it can get a bit messy and tiring.
+Sometimes, especially for bots that are meant to be used in groups, it is necessary to always send messages as a reply (or quote) to the message that started the interaction.
+Usually, the way to do that is to mannualy add `reply_to_message_id` to the params of the mathod that sends the message (`sendText` / `reply`, `sendPhoto` / `replyWithPhoto`).
+However, if you're doing this for every message, it can get a bit messy and tiring.
 
 This plugin sets the value of `reply_to_message_id` param to `ctx.msg.message_id` for every `send` method (except for `sendChatAction`, which does not support this parameter), thus making every message a reply to the message that triggered that update.
 
