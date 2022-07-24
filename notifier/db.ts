@@ -23,8 +23,7 @@ export function createNotification(
   text: string,
 ) {
   return client
-    .queryArray
-    `INSERT INTO notifications VALUES (${prNumber}, ${messageId}, ${text});`;
+    .queryArray`INSERT INTO notifications VALUES (${prNumber}, ${messageId}, ${text});`;
 }
 
 export async function getNotification(prNumber: number) {
@@ -37,8 +36,7 @@ export async function getNotification(prNumber: number) {
 
 export function updateNotification(messageId: number, text: string) {
   return client
-    .queryArray
-    `UPDATE notifications SET text=${text} WHERE message_id=${messageId};`;
+    .queryArray`UPDATE notifications SET text=${text} WHERE message_id=${messageId};`;
 }
 
 export function deleteNotification(prNumber: number) {
