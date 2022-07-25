@@ -27,7 +27,7 @@ bot.command("demo", async (ctx) => {
 bot.start();
 ```
 
-### Usage for every route
+### Usage for Every Route
 
 Use this if you want absolutelly every possible message sent from your bot to quote the triggering message.
 
