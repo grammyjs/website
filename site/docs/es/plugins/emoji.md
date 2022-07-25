@@ -83,8 +83,8 @@ Ahora puedes obtener emojis por sus nombres:
 
 ```js
 bot.command("start", async (ctx) => {
-  const parsedString = ctx.emoji
-    `¡Bienvenido! ${"smiling_face_with_sunglasses"}`; // => ¡Bienvenido! 😎
+  const parsedString = ctx
+    .emoji`¡Bienvenido! ${"smiling_face_with_sunglasses"}`; // => ¡Bienvenido! 😎
   await ctx.reply(parsedString);
 });
 ```

@@ -104,7 +104,7 @@ And the final step would be to register the Fluent plugin itself with grammY:
 bot.use(
   useFluent({
     fluent,
-  })
+  }),
 );
 ```
 
@@ -123,7 +123,7 @@ bot.command("i18n_test", async (ctx) => {
     ctx.t("welcome", {
       name: ctx.from.first_name,
       applesCount: 1,
-    })
+    }),
   );
 });
 ```
