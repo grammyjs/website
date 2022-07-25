@@ -4,7 +4,7 @@
 It has a very powerful and elegant syntax that lets anyone write efficient and fully-understandable translations.
 This plugin takes advantage of this amazing localization system to make grammY-powered bots fluent with high-quality translations.
 
-::: tip Not to be confused
+::: tip Not to Be Confused
 Don't confuse this with [i18n](./i18n.md).
 
 [i18n](./i18n.md) is an improved version of this plugin that works on both Deno and Node.js.
