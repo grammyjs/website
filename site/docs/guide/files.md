@@ -23,7 +23,10 @@ If your bot actually wants to download the file, then it can do so by calling th
 This method enables you to download the file by constructing a special, temporary, URL.
 Note that this URL is only guaranteed to be valid for 60 minutes, after which it may expire. In this case, you can simply call `getFile` again.
 
-When a bot **sends** a message, it can specify a `file_id` that it has seen before.
+Whenever your bot **sends** a message with a file, it will receive information about the sent message, including the `file_id` of the sent file.
+This means that all files the bot sees, both via sending or receiving, will make a `file_id` available to the bot.
+
+When a bot sends a message, it can **specify a `file_id` that it has seen before**.
 This will allow it to send the identified file, without needing to upload the data for it.
 (To see how to upload your own files, [scroll down](#sending-files).)
 You can reuse the same `file_id` as often as you want, so you could send the same file to five different chats, using the same `file_id`.
