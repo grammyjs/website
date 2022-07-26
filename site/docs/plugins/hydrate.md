@@ -100,7 +100,7 @@ bot.use(hydrate());
 
 ### Advanced Installation
 
-When using the simple installation, only the API call results that go through `ctx.api` will be hydrated, e.g. `ctx.reply`.
+When using the simple installation, only the API call results that go through `ctx.api` will be hydrated, e.g., `ctx.reply`.
 These are most calls for most bots.
 
 However, some bots may need to make calls to `bot.api`.

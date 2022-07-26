@@ -98,7 +98,7 @@ This is a guarantee that the English version is not going to change anymore.
 You should now push more commits to the existing branch in this repository which sync up the changes to your language.
 It is recommended to have a second person review your translations, but this is less strict than in the Active Stage.
 
-Once you are satisfied with your work, add the label of your language, e.g. “🇪🇸 ES”.
+Once you are satisfied with your work, add the label of your language, e.g., “🇪🇸 ES”.
 Now we have a good overview over which translations are done and which ones are missing.
 As soon as all translations are added (this usually takes 2-3 days), the pull request can be merged.
 The change immediately goes live for all languages at the same time.

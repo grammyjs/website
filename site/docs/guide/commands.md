@@ -26,7 +26,7 @@ bot.command(["a", "b", "c", "d"] /* , ... */);
 Note that only those commands that are at the beginning of a message are handled, so if a user sends `"Please do not send /start to that bot!"`, then your listener will not be called, even though the `/start` command _is_ contained in the message.
 
 Telegram supports sending targeted commands to bots, i.e., commands that end with `@your_bot_name`.
-grammY handles this automatically for you, so `bot.command("start")` will match messages with `/start` and `/start@your_bot_name` as commands.
+grammY handles this automatically for you, so `bot.command("start")` will match messages with `/start` and with `/start@your_bot_name` as commands.
 You can choose to match only targeted commands by specifying `bot.command("start@your_bot_name")`.
 
 ::: tip Suggest Commands to Users
@@ -68,7 +68,7 @@ The message text will be `"/start payload" in this example. Telegram clients wil
 
 Deep linking is useful if you want to build a referral system or track where users discovered your bot.
 For example, your bot could send a channel post with an [inline keyboard](../plugins/keyboard.md#inline-keyboards) button.
-The button contains a URL like the one above, e.g. `https://t.me/your_bot_name?start=awesome-channel-post-12345`.
+The button contains a URL like the one above, e.g., `https://t.me/your_bot_name?start=awesome-channel-post-12345`.
 When a user clicks on the button underneath the post, their Telegram client will open a chat with your bot, and display the START button described above.
 This way, your bot can identify where a user came from, and that they clicked the button underneath a specific channel post.
 

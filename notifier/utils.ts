@@ -18,7 +18,7 @@ function isNativeRequest(r: ServerRequest): r is NativeRequest {
   return (r as any).request instanceof Request;
 }
 
-// Because this uses a native Request, it can be used in other contexts besides Oak (e.g. `std/http/serve`)
+// Because this uses a native Request, it can be used in other contexts besides Oak (e.g., `std/http/serve`)
 export async function verifyGitHubWebhook(
   request: ServerRequest,
 ): Promise<GitHubWebhookVerificationStatus> {

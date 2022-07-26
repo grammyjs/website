@@ -237,7 +237,7 @@ There are five different possible types of message authors on Telegram:
 
 1. Channel post authors
 2. Automatic forwards from linked channels in discussion groups
-3. Normal user accounts, this includes bots (i.e. "normal" messages)
+3. Normal user accounts, this includes bots (i.e., "normal" messages)
 4. Admins sending on behalf of the group ([anonymous admins](https://telegram.org/blog/filters-anonymous-admins-comments#anonymous-group-admins))
 5. Users sending messages as one of their channels
 
@@ -261,7 +261,7 @@ bot.on("message").filter((ctx) =>
 
 ### Filtering by User Properties
 
-If you want to filter by other properties of a user, you need to perform an additional request, e.g. `await ctx.getAuthor()` for the author of the message.
+If you want to filter by other properties of a user, you need to perform an additional request, e.g., `await ctx.getAuthor()` for the author of the message.
 Filter queries will not secretly perform further API requests for you.
 It is still simple to perform this kind of filtering:
 

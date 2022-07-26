@@ -30,13 +30,13 @@ _Imagine you're getting yourself a scoop of ice cream in your trusted ice cream 
 You walk up to the employee and ask for your favorite type of ice cream.
 Unfortunately, he lets you know that it is out of stock._
 
-_The next day, you're craving that delicious ice cream again, so you return to the same place and ask for the same ice cream.
+_The next day, you're craving that delicious ice cream again, so you go back to the same place and ask for the same ice cream.
 Good news!
-They are restocked overnight, so you can enjoy your salted caramel ice cream today!
+They restocked overnight, so you can enjoy your salted caramel ice cream today!
 Yummy._
 
 **Polling** means that grammY proactively sends a request to Telegram, asking for new updates (think: messages).
-Telegram will return an empty list if no messages are there, indicating that no new messages have been sent to your bot since the last time you asked.
+If no messages are there, Telegram will return an empty list, indicating that no new messages have been sent to your bot since the last time you asked.
 
 When grammY sends a request to Telegram, and new messages have been sent to your bot in the meantime, Telegram will return them as an array of up to 100 update objects.
 
@@ -98,7 +98,7 @@ ______________                                   _____________
 > Long polling requests have a default timeout of 30 seconds (in order to avoid a number of [technical problems](https://tools.ietf.org/id/draft-loreto-http-bidirectional-07.html#timeouts)).
 > If no new messages are returned after this period, the request will be canceled and resent—but the general concept stays the same.
 
-You don't need to spam Telegram's servers using long polling, and you still get new messages immediately!
+Using long polling, you don't need to spam Telegram's servers, and still, you get new messages immediately!
 Nifty.
 This is what grammY does by default when you run `bot.start()`.
 
@@ -141,7 +141,7 @@ Under load, you are in complete control of how many messages you can process.
 
 Places where long polling works well include:
 
-- During the development of your local machine.
+- During the development for your local machine.
 - On the majority of servers.
 - On hosted "backend" instances, i.e., machines that actively run your bot 24/7.
 
@@ -249,7 +249,7 @@ However, there are a number of drawbacks to using this:
    For instance, they indicate that you always receive a response object, so it is your own responsibility to make sure you're not screwing up while using this minor performance optimization.
 
 If you want to use webhook replies, you can specify the `canUseWebhookReply` option in the `client` option of your `BotConfig` ([API reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/BotConfig)).
-Pass a function that determines whether or not to use webhook reply for the given request, identified by the method.
+Pass a function that determines whether or not to use webhook reply for the given request, identified by method.
 
 ```ts
 const bot = new Bot(token, {

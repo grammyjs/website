@@ -69,7 +69,7 @@ Imagine this sequence of events:
 8. Bot is done processing B, and writes new session to database, hence overwriting the changes performed during processing A.
    Data loss due to WAR hazard!
 
-> Note: You could try use database transactions for your sessions, but then you can only detect the hazard and not prevent it.
+> Note: You could try to use database transactions for your sessions, but then you can only detect the hazard and not prevent it.
 > Trying to use a lock instead would effectively eliminate all concurrency.
 > It is much easier to avoid the hazard in the first place.
 
@@ -82,7 +82,7 @@ You can configure it with the very same function that you use to determine the s
 It will then avoid the above race condition by slowing down those (and only those) updates that would cause a collision.
 
 <CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+ <CodeGroupItem title="TypeScript" active>
 
 ```ts
 import { Bot, Context, session } from "grammy";
@@ -120,7 +120,7 @@ const bot = new Bot("<token>");
 
 // Build a unique identifier for the `Context` object.
 function getSessionKey(ctx) {
-  return ctx.chat?.id.toString();
+ return ctx.chat?.id.toString();
 }
 
 // Sequentialize before accessing session data!

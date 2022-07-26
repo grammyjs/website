@@ -19,5 +19,6 @@ If you need to intercept and transform API requests on the fly, grammY offers yo
 grammY also has [proxy support](./proxy.md).
 
 Last but not least, we compiled a [list of a few things that you should keep in mind](./deployment.md) when deploying your bot.
-There is nothing new in there, it's just a bunch of things about potential traps, all in a central place for you to go through.
+There is nothing new in there.
+It's just a bunch of things about potential traps, all in a central place for you to go through.
 Maybe it let's you sleep better at night.

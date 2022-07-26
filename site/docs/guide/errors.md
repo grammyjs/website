@@ -52,7 +52,7 @@ bot.catch((err) => {
 
 ### Webhooks
 
-If you run your bot via webhooks, grammY will pass the error on to the web framework that you use, e.g. `express`.
+If you run your bot via webhooks, grammY will pass the error on to the web framework that you use, e.g., `express`.
 You should handle errors according to the conventions of that framework.
 
 ## The `BotError` Object
@@ -139,8 +139,8 @@ function errorHandler(err: BotError) {
 
 In the above example, the `boundaryHandler` will be invoked for
 
-1. all middlewares that are passed to `bot.errorBoundary` after `boundaryHandler` (i.e. `Q`), and
-2. all middlewares that are installed on subsequently installed composer instances (i.e. `X`, `Y`, and `Z`).
+1. all middlewares that are passed to `bot.errorBoundary` after `boundaryHandler` (i.e., `Q`), and
+2. all middlewares that are installed on subsequently installed composer instances (i.e., `X`, `Y`, and `Z`).
 
 > Regarding point 2, you may want to skip ahead to [the advanced explanation](../advanced/middleware.md) of middleware to learn how chaining works in grammY.
 

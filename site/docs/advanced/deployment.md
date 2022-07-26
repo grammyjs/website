@@ -29,7 +29,7 @@ This depends on your deployment type.
 
 1. [Use grammY runner.](../plugins/runner.md)
 2. [Use `sequentialize` with the same session key resolver function as your session middleware.](./scaling.md#concurrency-is-hard)
-3. Go through the configuration options of `run` ([API reference](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/run)) and make sure they fit your needs, or even consider composing your own runner out of sources and sinks.
+3. Go through the configuration options of `run` ([API reference](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/run)) and make sure they fit your needs or even consider composing your own runner out of sources and sinks.
    The main thing to consider is the maximum load you want to apply to your server, i.e., how many updates may be processed at the same time.
 4. Consider implementing [graceful shutdown](./reliability.md#graceful-shutdown) in order to stop your bot when you want to terminate it (i.e., to switch to a new version).
 
@@ -46,7 +46,7 @@ This depends on your deployment type.
 ## Sessions
 
 1. Consider using `lazySessions` as explained [here](../plugins/session.md#lazy-sessions).
-2. Use the `storage` option to set your storage adapter, otherwise all data will be lost when the bot process stops.
+2. Use the `storage` option to set your storage adapter. Otherwise, all data will be lost when the bot process stops.
 
 ## Testing
 
@@ -55,12 +55,12 @@ This can be done with grammY like so:
 
 1. Mock outgoing API requests using [transformer functions](./transformers.md).
 2. Define and send sample update objects to your bot via `bot.handleUpdate` ([API reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Bot#handleUpdate)).
-   Consider to take some inspiration from [these update objects](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates) provided by the Telegram team.
+   Consider taking some inspiration from [these update objects](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates) provided by the Telegram team.
 
 ::: tip Contribute a Testing Framework
 While grammY provides the necessary hooks to start writing tests, it would be very helpful to have a testing framework for bots.
-This is novel territory, such testing frameworks largely do not exist.
+This is novel territory, and such testing frameworks largely do not exist.
 We look forward to your contributions!
 
-An example on how tests could be done [can be found here](https://github.com/PavelPolyakov/grammy-with-tests).
+An example of how tests could be done [can be found here](https://github.com/PavelPolyakov/grammy-with-tests).
 :::

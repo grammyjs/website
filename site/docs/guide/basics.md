@@ -6,7 +6,7 @@ next: ./context.md
 # Sending and Receiving Messages
 
 As soon as you start your bot with `bot.start()`, grammY will supply your listeners with the messages that users send to your bot.
-grammY also provides methods to quickly reply to these messages.
+grammY also provides methods to easily reply to these messages.
 
 ## Receiving Messages
 
@@ -57,7 +57,7 @@ Also, check out the [next section](./context.md) to learn how the context object
 
 ## Sending Messages With Reply
 
-You can use the Telegram reply-to feature by specifying the message identifier to reply using `reply_to_message_id`.
+You can use the Telegram reply-to feature by specifying the message identifier to reply to using `reply_to_message_id`.
 
 ```ts
 bot.hears("ping", async (ctx) => {
@@ -117,7 +117,7 @@ File handling is explained in greater depth in [a later section](./files.md#send
 > This can be useful if your bot is running in [privacy mode](https://core.telegram.org/bots#privacy-mode) in group chats.
 
 When you send a message, you can make the user's Telegram client automatically specify the message as a reply.
-That means the user will reply to your bot's message automatically (unless they remove the reply manually).
+That means that the user will reply to your bot's message automatically (unless they remove the reply manually).
 As a result, your bot will receive the user's message even when running in [privacy mode](https://core.telegram.org/bots#privacy-mode) in group chats.
 
 You can force a reply like this:

@@ -36,7 +36,7 @@ For example, `filter` just calls `use` with some branching middleware, while `on
 We can therefore limit ourselves to looking at `use` for now, and the rest follows.
 
 We now have to dive a bit into the details of what `Composer` does with your `use` calls, and how it differs from other middleware systems out there.
-The difference may seem subtle, but wait until the next subsection to find out why it has remarkable consequences.
+The difference may seem subtle but wait until the next subsection to find out why it has remarkable consequences.
 
 ## Augmenting `Composer`
 
@@ -55,8 +55,8 @@ composer.use(/* C */);
 ```
 
 `A`, `B`, and `C` will be run.
-All this says is that once you have installed an instance of `Composer`, you can still call `use` on it and this middleware will still be run.
-(This is nothing spectacular, but already a main difference to popular competing frameworks that simply ignore subsequent operations.)
+All this says is that once you have installed an instance of `Composer`, you can still call `use` on it, and this middleware will still be run.
+(This is nothing spectacular, but already one main difference to popular competing frameworks that simply ignore subsequent operations.)
 
 You may be wondering where the tree structure is in there.
 Let's have a look at this snippet:
@@ -79,12 +79,12 @@ Other libraries would internally flatten this code to be equivalent to `composer
 On the contrary, grammY preserves the tree you specified: one root node (`composer`) has five children (`A`, `B`, `D`, `H`, `J`), while the child `B` has one other child, `C`, etc.
 This tree will then be traversed by every update in depth-first order, hence effectively passing through `A` to `L` in linear order, much like what you know from other systems.
 
-This is made possible by creating a new instance of `Composer` every time you call `use` that will in turn be extended (as explained above).
+This is made possible by creating a new instance of `Composer` every time you call `use` that will, in turn, be extended (as explained above).
 
 ## Concatenating `use` Calls
 
 If we only used `use`, this would not be too useful (pun intended).
-It gets more interesting as soon as e.g. `filter` comes into play.
+It gets more interesting as soon as, e.g., `filter` comes into play.
 
 Check this out:
 
@@ -97,7 +97,7 @@ composer.filter(/* 2 */).use(/* C */, /* D */)
 ```
 
 On line 3, we register `A` behind a predicate function `1`.
-`A` will only be evaluated for updates which pass the condition `1`.
+`A` will only be evaluated for updates that pass the condition `1`.
 However, `filter` returns a `Composer` instance that we augment with the `use` call on line 3, so `B` is still guarded by `1`, even though it is installed in a completely different `use` call.
 
 Line 5 is equivalent to line 3 in the respect that both `C` and `D` will only be run if `2` holds.

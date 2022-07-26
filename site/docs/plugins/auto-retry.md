@@ -48,7 +48,7 @@ bot.api.config.use(autoRetry());
 </CodeGroupItem>
 </CodeGroup>
 
-If you now call e.g. `sendMessage` and run into a rate limit, it will look like the request just takes unusually long.
+If you now call e.g., `sendMessage` and run into a rate limit, it will look like the request just takes unusually long.
 Under the hood, multiple HTTP requests are being performed, with the appropriate delays in between.
 
 You may pass an options object that specifies a maximum number of retries (`maxRetryAttempts`, default: 3), or a threshold for a maximum time to wait (`maxDelaySeconds`, default: 1 hour).

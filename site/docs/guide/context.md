@@ -38,7 +38,7 @@ bot.on("message", (ctx) => {
 
 Similarly, you can access other properties of the message object, e.g., `ctx.message.chat` for information about the chat where the message was sent.
 Check out the [part about `Message`s in the Telegram Bot API Reference](https://core.telegram.org/bots/api#message) to see the available data.
-Alternatively, you can simply use Autocomplete in your code editor to see the possible options.
+Alternatively, you can simply use autocomplete in your code editor to see the possible options.
 
 If you register your listener for other types, `ctx` will also give you information about those.
 Example:
@@ -57,7 +57,7 @@ The context object always contains information about your bot, accessible via `c
 
 ### Shortcuts
 
-There are several shortcuts installed on the context object.
+There are a number of shortcuts installed on the context object.
 
 | Shortcut              | Description                                                                         |
 | --------------------- | ----------------------------------------------------------------------------------- |
@@ -102,7 +102,7 @@ You can notice two things that are not optimal about this:
 
 1. We must have access to the `bot` object.
    This means that we have to pass the `bot` object all around our code base in order to respond, which is annoying when you have more than one source file and define your listener somewhere else.
-2. We must take out the context's chat identifier and explicitly pass it to `sendMessage` again.
+2. We have to take out the chat identifier of the context, and explicitly pass it to `sendMessage` again.
    This is annoying, too, because you most likely always want to respond to the same user that sent a message.
    Imagine how often you would type the same thing over and over again!
 
@@ -147,7 +147,7 @@ Use auto-complete to see the available options right in your code editor.
 :::
 
 Naturally, every other method on `ctx.api` has a shortcut with the correct pre-filled values, such as `ctx.replyWithPhoto` to reply with a photo, or `ctx.exportChatInviteLink` to get an invite link for the respective chat.
-If you want an overview of what shortcuts exist, Autocomplete is your friend, along with the [grammY API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Context).
+If you want an overview of what shortcuts exist, autocomplete is your friend, along with the [grammY API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Context).
 
 Note that you may not want to react in the same chat always.
 In this case, you can just fall back to using `ctx.api` methods, and specify all options when calling them.
@@ -432,7 +432,7 @@ However, this makes it very hard (if not impossible) to install plugins, as they
 ## Context Flavors
 
 Context flavors are a way to tell TypeScript about new properties on your context object.
-These new properties can be shipped in plugins or other modules and installed on your bot.
+These new properties can be shipped in plugins or other modules and then installed on your bot.
 
 Context flavors can also transform the types of existing properties using automatic procedures defined by plugins.
 

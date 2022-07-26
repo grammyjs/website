@@ -19,7 +19,7 @@ Check out the [Introduction for Developers](https://core.telegram.org/bots) by t
 
 In making your Telegram bot, you will create a text file with the source code of your bot.
 (You can also copy one of our example files.)
-It defines _what your bot actually does_, i.e. "when a user sends this message, respond with that", and so on.
+It defines _what your bot actually does_, i.e., "when a user sends this message, respond with that", and so on.
 
 You can then run that source file.
 Your bot will now work, until you stop running it.
