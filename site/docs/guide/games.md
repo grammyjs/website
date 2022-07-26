@@ -7,7 +7,7 @@ next: ./deployment-types.md
 
 ## Introduction
 
-Telegram Games is a very interesting feature and it is great fun to play with.
+Telegram Games is a very interesting feature, and it is great fun to play with.
 What can you do with it?
 The answer is anything, any HTML5 game that you have developed you can provide to users on Telegram with the help of this feature.
 (Yes, this means that you will have to develop a real website-based game that is publicly accessible on the internet before you can integrate it into your Telegram bot.)
@@ -19,34 +19,34 @@ If you haven't already, check out this [article](https://core.telegram.org/bots/
 
 > Note: We will only learn the bot side development.
 > Developing the game is entirely up to the developer.
-> All we need here is a link of the HTML5 game hosted on the internet.
+> All we need here is a link to the HTML5 game hosted on the internet.
 
 ## Sending the Game via a Bot
 
-We can send the game in grammY via the `replyWithGame` method which takes the name of the game you created with BotFather as argument.
+We can send the game in grammY via the `replyWithGame` method, which takes the name of the game you created with BotFather as argument.
 Alternatively, we can also use the `api.sendGame` method (grammY provides all the official [Bot API](https://core.telegram.org/bots/api) methods).
 An advantage of using the `api.sendGame` method is you can specify the `chat.id` of a specific user to send it to.
 
 1. Sending Game via `replyWithGame`
 
-   ```ts
-   // We will be using the start command to invoke the game reply method.
-   bot.command("start", async (ctx) => {
-     // Pass the name of the game you created in BotFather, for example "my_game".
-     await ctx.replyWithGame("my_game");
-   });
-   ```
+```ts
+// We will be using the start command to invoke the game reply method.
+bot.command("start", async (ctx) => {
+  // Pass the name of the game you created in BotFather, for example "my_game".
+  await ctx.replyWithGame("my_game");
+});
+```
 
 2. Sending game via `api.sendGame`
 
-   ```ts
-   bot.command("start", async (ctx) => {
-     // You can get the chat identifier of the user to send your game to with `ctx.from.id`.
-     // which gives you the chat identifier of the user who invoked the start command.
-     const chatId = ctx.from.id;
-     await ctx.api.sendGame(chatid, "my_game");
-   });
-   ```
+```ts
+bot.command("start", async (ctx) => {
+  // You can get the chat identifier of the user to send your game to with `ctx.from.id`.
+  // which gives you the chat identifier of the user who invoked the start command.
+  const chatId = ctx.from.id;
+  await ctx.api.sendGame(chatid, "my_game");
+});
+```
 
 > [Remember](./basics.md#sending-messages) that you can specify further options when sending messages by using the options object of type `Other`.
 
@@ -72,7 +72,7 @@ await ctx.api.sendGame(chatId, "my_game", { reply_markup: keyboard });
 
 ## Listening to the Callback of Our Game Button
 
-For providing logic to the button when it is pressed, and to redirect our users to our game and many more, we listen to the event `callback_query:game_short_name` which tells us that a game button has been pressed by the user.
+For providing logic to the button when it is pressed, and to redirect our users to our game and many more, we listen to the event `callback_query:game_short_name`, which tells us that a game button has been pressed by the user.
 All we need to do is:
 
 ```ts
@@ -102,5 +102,5 @@ bot.command("start", (ctx) => {
 
 > Remember to add proper [error handling](./errors.md) to your bot before going live.
 
-We may extend this article in the future by further advanced sections and FAQ's, but this is already all you need to start your game in Telegram.
+We may extend this article in the future with further advanced sections and FAQ's, but this is already all you need to start your game in Telegram.
 Have fun playing! :space_invader:

@@ -50,12 +50,12 @@ Here, we are using the bot token (`/<bot token>`).
 ### Method 1: With GitHub
 
 > This is the recommended method, and the easiest one to go with.
-> The main advantage of following this method is that Deno Deploy will watch for changes in your repository which includes your bot code, and it will deploy new versions automatically.
+> The main advantage of following this method is that Deno Deploy will watch for changes in your repository, which includes your bot code, and it will deploy new versions automatically.
 
 1. Create a repository on GitHub, it can be either private or public.
 2. Push your code.
 
-> It is recommended that you have a single stable branch and you do your testing stuff in other branches, so that you won't get some unexpected things happen.
+> It is recommended that you have a single stable branch, and you do your testing stuff in other branches, so that you won't get some unexpected things happen.
 
 3. Visit your [Deno Deploy dashboard](https://dash.deno.com/projects).
 4. Click on "New Project", and go to the "Deploy from GitHub repository" section.

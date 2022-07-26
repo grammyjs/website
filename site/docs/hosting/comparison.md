@@ -25,9 +25,9 @@ Instead, these hosting providers will rather allow you to upload your code, and 
 
 This has the downside that your bot does not have access to a persistent storage by default, such as a local file system.
 Instead, you will often have to have a database separately and connect to it if you need to store data permanently.
-We therefore recommend you to use a different kind of hosting for more complex bots, e.g., a [VPS](./vps.md).
+We, therefore, recommend you to use a different kind of hosting for more complex bots, e.g., a [VPS](./vps.md).
 
-The main thing to know about them is that on serverless infrastructures you are required to use webhooks.
+The main thing to know about them is that on serverless infrastructures, you are required to use webhooks.
 
 | Name                   | Min. price | Pricing                                                               | Limits                                                                                  | Node.js | Deno                        | Web | Notes                          |
 | ---------------------- | ---------- | --------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | ------- | --------------------------- | --- | ------------------------------ |

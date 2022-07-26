@@ -29,7 +29,7 @@ The documentation for grammY bots is divided into three layers.
 **The first part** (you're looking at it!) explains how bots work and how to use grammY.
 This is what you will use most often.
 The _Learn_ section is always a good start.
-Also check out our great collection of _Plugins_, and have a look at the _Examples_.
+Also, check out our great collection of _Plugins_, and have a look at the _Examples_.
 
 **The second part** is [the grammY API reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts), linked at the top of the page.
 This is a detailed overview of every single bit of code that grammY provides.

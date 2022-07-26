@@ -75,13 +75,13 @@ This also means that if you don't call `next` in your middleware, the underlying
 This stack of functions is the _middleware stack_.
 
 ```asciiart:no-line-numbers
-(ctx, next) => ...    |
-(ctx, next) => ...    |—————upstream middleware of X
-(ctx, next) => ...    |
-(ctx, next) => ...       <— middleware X. Call `next` to pass down updates
-(ctx, next) => ...    |
-(ctx, next) => ...    |—————downstream middleware of X
-(ctx, next) => ...    |
+(ctx, next) => ... |
+(ctx, next) => ... |—————upstream middleware of X
+(ctx, next) => ... |
+(ctx, next) => ... <— middleware X. Call `next` to pass down updates
+(ctx, next) => ... |
+(ctx, next) => ... |—————downstream middleware of X
+(ctx, next) => ... |
 ```
 
 Looking back at our earlier example, we now know why `bot.on(":photo")` was never even checked: the middleware in `bot.on(":text", (ctx) => { ... })` already handled the update, and it did not call `next`.
@@ -104,7 +104,7 @@ Let's inspect what happens:
 
 1. You send `"/start"` to the bot.
 2. The `":text"` middleware receives the update and checks for text, which succeeds because commands are text messages.
-   The update is handled immediately by the first middleware and your bot replies with "Text!".
+   The update is handled immediately by the first middleware, and your bot replies with "Text!".
 
 The message is never even checked for if it contains the `/start` command!
 The order in which you register your middleware matters, because it determines the order of the layers in the middleware stack.
@@ -126,7 +126,7 @@ Here is the function signature for our middleware.
 You can compare it to the middleware type from above, and convince yourself that we actually have middleware here.
 
 <CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+ <CodeGroupItem title="TypeScript" active>
 
 ```ts
 /** Measures the response time of the bot, and logs it to `console` */
@@ -168,7 +168,7 @@ Here is what we want to do:
 It is important to install our `responseTime` middleware _first_ on the bot (at the top of the middleware stack) to make sure that all operations are included in the measurement.
 
 <CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+ <CodeGroupItem title="TypeScript" active>
 
 ```ts
 /** Measures the response time of the bot, and logs it to `console` */

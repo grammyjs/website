@@ -22,7 +22,7 @@ In making your Telegram bot, you will create a text file with the source code of
 It defines _what your bot actually does_, i.e., "when a user sends this message, respond with that", and so on.
 
 You can then run that source file.
-Your bot will now work, until you stop running it.
+Your bot will now work until you stop running it.
 
 You're kinda done now…
 
@@ -54,7 +54,7 @@ _________        sends a         ____________                    ____________
 
 |____________________________________________|                   |___________|
                     |                                                  |
-        Telegram's responsibility                             your responsibility
+        Telegram's responsibility,                            your responsibility
 ```
 
 Similarly, your bot can make HTTP requests to the Telegram servers to send messages back to Alice.
@@ -65,7 +65,7 @@ Similarly, your bot can make HTTP requests to the Telegram servers to send messa
 Bots interact with Telegram via HTTP requests.
 Every time your bot sends or receives messages, HTTP requests go back and forth between the Telegram servers and your server/computer.
 
-At its core, grammY implements all of this communication for you, so you can simply type `sendMessage` in your code and a message will be sent.
+At its core, grammY implements all of this communication for you, so you can simply type `sendMessage` in your code, and a message will be sent.
 In addition, there are a variety of other helpful things that grammY does to make it simpler to create your bot.
 You will get to know them as you go.
 
@@ -123,14 +123,14 @@ It has
 Developing code under Deno is also a lot more fun.
 At least, that's our opinion.
 
-However, if you have a reason to use Node.js, for example because you already know it well, then that is completely fine!
+However, if you have a reason to use Node.js, for example, because you already know it well, then that is completely fine!
 We are making sure that grammY works equally well on both platforms, and we are not cutting any corners.
 Please choose what you think is best for you.
 
 ### Prerequisites for Deno
 
 [Install Deno](https://deno.land/#installation) if you have not done that already.
-When you have created your bot, for example in a file called `bot.ts`, you can run it via `deno run --allow-net bot.ts`.
+When you have created your bot, for example, in a file called `bot.ts`, you can run it via `deno run --allow-net bot.ts`.
 You can stop it again with `Ctrl+C`.
 
 Ready?
@@ -140,7 +140,7 @@ Ready?
 
 You are going to write your bot in TypeScript, but, contrary to Deno, Node.js cannot actually run TypeScript.
 Instead, once you have a source file (e.g., called `bot.ts`), you are going to _compile_ it to JavaScript.
-You will then have two files: your original `bot.ts`, and a generated `bot.js`, which can in turn be run by Node.js.
+You will then have two files: your original `bot.ts`, and a generated `bot.js`, which can, in turn, be run by Node.js.
 The exact commands for all of that will be introduced in the next section when you actually create a bot, but it is important to know that these steps are necessary.
 
 In order to run the `bot.js` file, you have to have [Node.js](https://nodejs.org/en/) installed.

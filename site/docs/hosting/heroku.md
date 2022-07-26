@@ -36,7 +36,7 @@ Our folder structure should now look like this:
 ├── node_modules/
 ├── dist/
 ├── src/
-│   └── bot.ts
+│ └── bot.ts
 ├── package.json
 ├── package-lock.json
 └── tsconfig.json
@@ -105,7 +105,7 @@ We will not dump all the code there, and leave coding the bot up to you.
 Instead, we are going to make `app.ts` our main entry point.
 That means everytime Telegram (or anyone else) visits our site, `express` decides which part of your server will be responsible for handling the request.
 This is useful when you are deploying both website and bot in the same domain.
-Also, by splitting codes to different files, it make our code look tidy. :sparkles:
+Also, by splitting codes into different files, it make our code look tidy. :sparkles:
 
 ### Express and its Middleware
 
@@ -282,7 +282,7 @@ Then write this single line code format:
 <dynos type>: <command for executing our main entry file>
 ```
 
-For our case it should be:
+For our case, it should be:
 <CodeGroup>
 <CodeGroupItem title="Webhook" active>
 
@@ -291,7 +291,7 @@ web: node dist/app.js
 ```
 
 </CodeGroupItem>
-  <CodeGroupItem title="Long Polling">
+ <CodeGroupItem title="Long Polling">
 
 ```
 worker: node dist/bot.js
@@ -315,7 +315,7 @@ Now initialize a local git repository by running this code in your terminal:
 git init
 ```
 
-Next, we need to prevent unnecessary files from reaching our production server, in this case `Heroku`.
+Next, we need to prevent unnecessary files from reaching our production server, in this case, `Heroku`.
 Create a file named `.gitignore` in root of our project's directory.
 Then add this list:
 
@@ -334,11 +334,11 @@ Our final folder structure should now look like this:
 ├── .git/
 ├── node_modules/
 ├── dist/
-│   ├── bot.js
-│   └── app.js
+│ ├── bot.js
+│ └── app.js
 ├── src/
-│   ├── bot.ts
-│   └── app.ts
+│ ├── bot.ts
+│ └── app.ts
 ├── package.json
 ├── package-lock.json
 ├── tsconfig.json
@@ -347,16 +347,16 @@ Our final folder structure should now look like this:
 ```
 
 </CodeGroupItem>
-  <CodeGroupItem title="Long Polling">
+ <CodeGroupItem title="Long Polling">
 
 ```asciiart:no-line-numbers
 .
 ├── .git/
 ├── node_modules/
 ├── dist/
-│   └── bot.js
+│ └── bot.js
 ├── src/
-│   └── bot.ts
+│ └── bot.ts
 ├── package.json
 ├── package-lock.json
 ├── tsconfig.json
@@ -380,7 +380,7 @@ If you have already created [Heroku app](https://dashboard.heroku.com/apps/), pa
 Otherwise, run `New app`.
 
 <CodeGroup>
-  <CodeGroupItem title="New app" active>
+ <CodeGroupItem title="New app" active>
 
 ```bash
 heroku create
@@ -388,7 +388,7 @@ git remote -v
 ```
 
 </CodeGroupItem>
-  <CodeGroupItem title="Existing app" active>
+ <CodeGroupItem title="Existing app" active>
 
 ```bash
 heroku git:remote -a <myApp>

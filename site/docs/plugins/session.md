@@ -20,7 +20,7 @@ Consequently, if you _do want to access_ old data, you have to store it as soon 
 This means that you must have a data storage, such as a file, a database, or an in-memory storage.
 
 Of course, grammY has you covered here: you don't have to host this yourself.
-You can just use the grammY session storage which needs zero setup and is free forever.
+You can just use the grammY session storage, which needs zero setup and is free forever.
 
 > Naturally, there are plenty of other services that offer data storage as a service, and grammY integrates seamlessly with them, too.
 > If you want to run your own database, rest assured that grammY supports this equally well.
@@ -33,18 +33,18 @@ For example, let's say we want to build a bot that counts the number of times th
 This bot could be added to a group, and it can tell you how much you and your friends like pizza.
 
 When our pizza bot receives a message, it has to remember how many times it saw a :pizza: in that chat before.
-Your pizza count should of course not change when your sister adds the pizza bot to her group chat, so what we really want is to store _one counter per chat_.
+Your pizza count should, of course, not change when your sister adds the pizza bot to her group chat, so what we really want is to store _one counter per chat_.
 
 Sessions are an elegant way to store data _per chat_.
-You would use the chat identifier as the key in your database, and a counter as the value.
+You would use the chat identifier as the key in your database and a counter as the value.
 In this case, we would call the chat identifier the _session key_.
 (You can read more about session keys [down here](#session-keys).)
 Effectively, your bot will store a map from a chat identifier to some custom session data, i.e., something like this:
 
 ```json:no-line-numbers
 {
-  "424242": { "pizzaCount": 24 },
-  "987654": { "pizzaCount": 1729 }
+ "424242": { "pizzaCount": 24 },
+ "987654": { "pizzaCount": 1729 }
 }
 ```
 
@@ -91,7 +91,7 @@ This comparison may help you decide whether to use sessions or not.
 | _Exclusive feature_ | Required by some grammY plugins.                            | Supports database transactions.                                     |
 
 This does not mean that things _cannot work_ if you pick sessions/databases over the other.
-For example, you can of course store large binary data in your session.
+For example, you can, of course, store large binary data in your session.
 However, your bot would not perform as well as it could otherwise, so we recommend using sessions only where they make sense.
 
 ## How to Use Sessions
@@ -204,7 +204,7 @@ The context flavor is called `SessionFlavor`.
 ### Initial Session Data
 
 When a user first contacts your bot, no session data is available for them.
-It is therefore important that you specify the `initial` option for the session middleware.
+It is, therefore, important that you specify the `initial` option for the session middleware.
 Pass a function that generates a new object with initial session data for new chats.
 
 ```ts
@@ -322,7 +322,7 @@ For example, the default session key resolver will not work for `poll`/`poll_ans
 When you are running your bot on webhooks, you should avoid using the option `getSessionKey`.
 Telegram sends webhooks sequentially per chat, so the default session key resolver is the only implementation that guarantees not to cause data loss.
 
-If you must use the option (which is of course still possible), you should know what you are doing.
+If you must use the option (which is, of course, still possible), you should know what you are doing.
 Make sure you understand the consequences of this configuration by reading [this](../guide/deployment-types.md) article and especially [this](./runner.md#sequential-processing-where-necessary) one.
 :::
 
@@ -330,7 +330,7 @@ Make sure you understand the consequences of this configuration by reading [this
 
 In all examples above, the session data is stored in your RAM, so as soon as your bot is stopped, all data is lost.
 This is convenient when you develop your bot or if you run automatic tests (no database setup needed), however, **that is most likely not desired in production**.
-In production, you would want to persist your data, for example in a file, a database, or some other storage.
+In production, you would want to persist your data, for example, in a file, a database, or some other storage.
 
 You should use the `storage` option of the session middleware to connect it to your datastore.
 There may already be a storage adapter written for grammY that you can use (see [below](#known-storage-adapters)), but if not, it usually only takes 5 lines of code to implement one yourself.
@@ -428,8 +428,8 @@ This is how you can install one of the storage adapters from below.
 const storageAdapter = ... // depends on setup
 
 bot.use(session({
-  initial: ...
-  storage: storageAdapter,
+ initial: ...
+ storage: storageAdapter,
 }));
 ```
 
@@ -442,8 +442,8 @@ You can use the `MemorySessionStorage` class ([API Reference](https://doc.deno.l
 
 ```ts
 bot.use(session({
-  initial: ...
-  storage: new MemorySessionStorage() // also the default value
+ initial: ...
+ storage: new MemorySessionStorage() // also the default value
 }));
 ```
 
@@ -466,8 +466,8 @@ It is very easy to use:
 import { freeStorage } from "@grammyjs/storage-free";
 
 bot.use(session({
-  initial: ...
-  storage: freeStorage<SessionData>(bot.token),
+ initial: ...
+ storage: freeStorage<SessionData>(bot.token),
 }));
 ```
 
@@ -478,8 +478,8 @@ bot.use(session({
 const { freeStorage } = require("@grammyjs/storage-free");
 
 bot.use(session({
-  initial: ...
-  storage: freeStorage(bot.token),
+ initial: ...
+ storage: freeStorage(bot.token),
 }));
 ```
 
@@ -490,8 +490,8 @@ bot.use(session({
 import { freeStorage } from "https://deno.land/x/grammy_storages/free/src/mod.ts";
 
 bot.use(session({
-  initial: ...
-  storage: freeStorage<SessionData>(bot.token),
+ initial: ...
+ storage: freeStorage<SessionData>(bot.token),
 }));
 ```
 

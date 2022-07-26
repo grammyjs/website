@@ -18,7 +18,7 @@ A file on the Telegram servers is identified by a `file_id`, which is just a lon
 
 `AgADBAADZRAxGyhM3FKSE4qKa-RODckQHxsoABDHe0BDC1GzpGACAAEC` is an example of a `file_id`.
 
-Whenever your bot **receives** a message with a file, it will in fact not directly receive the complete file data, but only the `file_id` instead.
+Whenever your bot **receives** a message with a file, it will, in fact, not directly receive the complete file data, but only the `file_id` instead.
 If your bot actually wants to download the file, then it can do so by calling the `getFile` method ([Telegram Bot API reference](https://core.telegram.org/bots/api#getfile)).
 This method enables you to download the file by constructing a special, temporary, URL.
 Note that this URL is only guaranteed to be valid for 60 minutes, after which it may expire. In this case, you can simply call `getFile` again.
@@ -30,10 +30,11 @@ When a bot sends a message, it can **specify a `file_id` that it has seen before
 This will allow it to send the identified file, without needing to upload the data for it.
 (To see how to upload your own files, [scroll down](#sending-files).)
 You can reuse the same `file_id` as often as you want, so you could send the same file to five different chats, using the same `file_id`.
-However, you must make sure to use the correct method—for example, you cannot use a `file_id` that identifies a photo when calling [`sendVideo`](https://core.telegram.org/bots/api#sendvideo).
+However, you must make sure to use the correct method—for example.
+You cannot use a `file_id` that identifies a photo when calling [`sendVideo`](https://core.telegram.org/bots/api#sendvideo).
 
 Every bot has its own set of `file_id`s for the files that it can access.
-You cannot reliably use a `file_id` from your friend's bot, to access a file with _your_ bot.
+You cannot reliably use a `file_id` from your friend's bot to access a file with _your_ bot.
 Each bot will use different identifiers for the same file.
 This implies that you cannot simply guess a `file_id` and access some random person's file, because Telegram keeps track of which `file_id`s are valid for your bot.
 
@@ -107,7 +108,7 @@ Let's dive into what the three ways of sending a file are.
 The first two methods are simple: you just pass the respective value as a `string`, and you're done.
 
 ```ts
-// Send  via file_id.
+// Send via file_id.
 await ctx.replyWithPhoto(existingFileId);
 
 // Send via URL.
@@ -139,7 +140,7 @@ Here are some examples on how you can construct `InputFile`s.
 If you already have a file stored on your machine, you can let grammY upload this file.
 
 <CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+ <CodeGroupItem title="Node.js" active>
 
 ```ts
 import { createReadStream } from "fs";
@@ -152,7 +153,7 @@ new InputFile(createReadStream("/path/to/file"));
 ```
 
 </CodeGroupItem>
-  <CodeGroupItem title="Deno">
+ <CodeGroupItem title="Deno">
 
 ```ts
 // Send a local file.
@@ -171,7 +172,7 @@ You can also send a `Buffer` object, or an iterator that yields `Buffer` objects
 On Deno, you can send `Blob` objects, too.
 
 <CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+ <CodeGroupItem title="Node.js" active>
 
 ```ts
 // Send a buffer or a byte array.
@@ -185,7 +186,7 @@ new InputFile(function* () {
 ```
 
 </CodeGroupItem>
-  <CodeGroupItem title="Deno">
+ <CodeGroupItem title="Deno">
 
 ```ts
 // Send a blob.
@@ -215,7 +216,7 @@ This is very efficient.
 > If possible, you should prefer to [send the file via URL](#via-file-id-or-url), instead of using `InputFile` to stream the file contents through your server.
 
 <CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+ <CodeGroupItem title="Node.js" active>
 
 ```ts
 import { URL } from "url";
@@ -226,7 +227,7 @@ new InputFile({ url: "https://grammy.dev/Y.png" }); // equivalent
 ```
 
 </CodeGroupItem>
-  <CodeGroupItem title="Deno">
+ <CodeGroupItem title="Deno">
 
 ```ts
 // Download a file, and stream the response to Telegram.
@@ -253,7 +254,8 @@ As always, just like with all other API methods, you can send files via `ctx` (e
 
 ## File Size Limits
 
-grammY itself can send files without any size limits, however, Telegram restricts file sizes as documented [here](https://core.telegram.org/bots/api#sending-files).
+grammY itself can send files without any size limits.
+However, Telegram restricts file sizes as documented [here](https://core.telegram.org/bots/api#sending-files).
 This means that your bot cannot download files larger than 20 MB, or upload files larger than 50 MB.
 Some combinations have even stricter limits, such as photos sent by URL (5 MB).
 

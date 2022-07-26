@@ -55,8 +55,8 @@ async function sendHelloTo12345() {
 
 While `bot.api` covers the entire Bot API, it sometimes changes the function signatures a bit to make it more usable.
 Strictly speaking, all methods of the Bot API expect a JSON object with a number of properties.
-Notice, however, how `sendMessage` in the above example receives two arguments, a chat identifier and a string.
-grammY knows that these two values belong to the `chat_id` and the `text` property, respectively, and will built the correct JSON object for you.
+Notice, however, how `sendMessage` in the above example receives two arguments, a chat identifier, and a string.
+grammY knows that these two values belong to the `chat_id` and the `text` property, respectively, and will build the correct JSON object for you.
 
 As mentioned [earlier](./basics.md#sending-messages), you can specify other options in the third argument of type `Other`:
 

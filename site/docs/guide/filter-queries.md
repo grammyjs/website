@@ -42,7 +42,7 @@ Here are some example queries:
 
 ### Regular Queries
 
-Simple filters for updates, and sub-filters:
+Simple filters for updates and sub-filters:
 
 ```ts
 bot.on("message"); // called when any message is received
@@ -135,7 +135,7 @@ bot.on("message:new_chat_members:is_bot");
 bot.on("message:left_chat_member:me");
 ```
 
-Note that while this syntactic sugar is useful to work with service messages, is should not be used to detect if someone actually joins or leaves a chat.
+Note that while this syntactic sugar is useful to work with service messages, it should not be used to detect if someone actually joins or leaves a chat.
 Services messages are messages that inform the users in the chat, and some of them will not be visible in all cases.
 For example, in large groups, there will not be any service messages about users that join or leave the chat.
 Hence, your bot may not notice this.
@@ -352,5 +352,5 @@ On start-up, grammY derives a predicate function from the filter query by splitt
 Every part will be mapped to a function that performs a single `in` check, or two checks if the part is omitted and two values need to be checked.
 These functions are then combined to form a predicate that only has to check for as many values as are relevant for the query, without iterating over the object keys of `Update`.
 
-This system uses less operations than some competing libraries, which need to perform containment checks in arrays when routing updates.
+This system uses fewer operations than some competing libraries, which need to perform containment checks in arrays when routing updates.
 grammY's filter query system is much more powerful.

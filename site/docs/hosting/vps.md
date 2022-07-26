@@ -2,7 +2,7 @@
 
 A virtual private server, mostly known as VPS, is a virtual machine running in the cloud with its users having the full control of its system.
 
-In this guide, you'll learn about various methods of running your bot in a VPS, keeping it online 24/7, making it run automatically when your VPS boots and restart on crashes.
+In this guide, you'll learn about various methods of running your bot in a VPS, keeping it online 24/7, making it run automatically when your VPS boots, and restart on crashes.
 
 ## systemd
 
