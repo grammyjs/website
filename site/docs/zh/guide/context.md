@@ -194,7 +194,7 @@ const BOT_DEVELOPER = 123456; // bot 开发者的聊天标识符
 bot.use(async (ctx, next) => {
   // 通过设置配置，在这里修改上下文对象。
   ctx.config = {
-    developer: BOT_DEVELOPER,
+    botDeveloper: BOT_DEVELOPER,
     isDeveloper: ctx.from?.id === BOT_DEVELOPER,
   };
   // 运行其余处理程序。

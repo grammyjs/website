@@ -196,7 +196,7 @@ const BOT_DEVELOPER = 123456; // bot developer chat identifier
 bot.use(async (ctx, next) => {
   // Modify context object here by setting the config.
   ctx.config = {
-    developer: BOT_DEVELOPER,
+    botDeveloper: BOT_DEVELOPER,
     isDeveloper: ctx.from?.id === BOT_DEVELOPER,
   };
   // Run remaining handlers.
