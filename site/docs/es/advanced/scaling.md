@@ -112,8 +112,8 @@ run(bot);
 <CodeGroupItem title="JavaScript">
 
 ```ts
-const { Bot, Context, session } = require("grammy";)
-const { run, sequentialize } = require("@grammyjs/runner";)
+const { Bot, Context, session } = require("grammy");
+const { run, sequentialize } = require("@grammyjs/runner");
 
 // Crear un bot.
 const bot = new Bot("<token>");
