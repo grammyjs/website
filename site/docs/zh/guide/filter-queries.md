@@ -16,7 +16,7 @@ next: ./commands.md
 
 这允许使用超过 650 种不同的 filter 进行筛选，而且我们可能会随着时间的推移增加更多的过滤器。
 每个有效的 filter 都可以在你的代码编辑器中自动完成。
-因此，你可以简单地输入 `bot.on('')`，打开自动完成，并通过输入一些东西来搜索所有的查询。
+因此，你可以简单地输入 `bot.on("")`，打开自动完成，并通过输入一些东西来搜索所有的查询。
 
 ![Filter 参数查询](/filter-query-search.png)
 
@@ -251,7 +251,7 @@ bot.on("message:is_automatic_forward");
 bot.on("message").filter((ctx) => ctx.senderChat === undefined);
 // `ctx.chat` 中的匿名管理员
 bot.on("message").filter((ctx) => ctx.senderChat?.id === ctx.chat?.id);
-// 其他一切，比如用户作为 `ctx.senderChat' 发送消息
+// 其他一切，比如用户作为 `ctx.senderChat` 发送消息
 bot.on("message").filter((ctx) =>
   ctx.senderChat !== undefined && ctx.senderChat.id !== ctx.chat.id
 );
@@ -327,9 +327,9 @@ bot.on(":text", handler);
 
 | Filter 查询                    | L1 部分       | L2 部分        | L3 部分       |
 | ---------------------------- | ----------- | ------------ | ----------- |
-| `'message'`                  | `'message'` | `undefined`  | `undefined` |
-| `'message:entities'`         | `'message'` | `'entities'` | `undefined` |
-| `'message:entities:mention'` | `'message'` | `'entities'` | `'mention'` |
+| `"message"`                  | `"message"` | `undefined`  | `undefined` |
+| `"message:entities"`         | `"message"` | `"entities"` | `undefined` |
+| `"message:entities:mention"` | `"message"` | `"entities"` | `"mention"` |
 
 ### 查询前验证
 

@@ -132,7 +132,7 @@ runner 是一个简单的循环，它从 source 中拉取 updates，并将它们
 这在安装 [session 中间件](./session.md) 时很有用，但它也确保了你的 bot 不会在同一个聊天中混乱消息的顺序。
 
 grammY runner 也提供了一个 `sequentialize` 中间件来实现这个目的。
-你可以查看 [这个部分](/advanced/scaling.md#concurrency-is-hard) 来学习如何使用它。
+你可以查看 [这个部分](../advanced/scaling.md#concurrency-is-hard) 来学习如何使用它。
 
 我们现在将看一些更高级的使用。
 
@@ -160,7 +160,7 @@ grammY runner 将在运行时自动解决所有必要的约束，并在必要时
 
 ## 优雅关闭
 
-为了让 bot 正确地完成工作，你应该在 Node 进程即将被销毁时，[发出信号](/zh/advanced/reliability.html#使用-grammy-runner) 让 bot 停止。
+为了让 bot 正确地完成工作，你应该在进程即将被销毁时，[发出信号](/zh/advanced/reliability.md#使用-grammy-runner) 让 bot 停止。
 
 ## 插件概述
 

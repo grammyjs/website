@@ -44,7 +44,7 @@ src/
 export const lists = new Composer();
 
 // 在这里注册一些处理的方法来处理你的中间件。
-lists.on('message', ctx => { ... });
+lists.on("message", (ctx) => {/* ... */});
 ```
 
 你也可以使用 [Error 边界](/zh/guide/errors.md#error-边界) 去处理所有程序模块中可能出现的错误。

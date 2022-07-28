@@ -3,10 +3,10 @@ home: true
 heroImage: /Y.png
 actions:
   - text: 立刻开始
-    link: /zh/guide/getting-started.md
+    link: /zh/guide/getting-started.html
     type: primary
   - text: 介绍
-    link: /zh/guide/introduction.md
+    link: /zh/guide/introduction.html
     type: secondary
 features:
   - title: 易用
@@ -52,7 +52,7 @@ bot.start();
 </CodeGroupItem>
  <CodeGroupItem title="JavaScript">
 
-```ts
+```js
 const { Bot } = require("grammy");
 
 const bot = new Bot(""); // <-- 把你的 bot token 放在这里 (https://t.me/BotFather)
@@ -84,5 +84,5 @@ bot.start();
 
 ---
 
-grammY 支持 Telegram Bot API 6.0，该 API 于 2022 年 4 月 16 日 [发布](https://core.telegram.org/bots/api#april-16-2022)。
-(新增: Web 应用)
+grammY 支持 Telegram Bot API 6.1，该 API 于 2022 年 6 月 20 日 [发布](https://core.telegram.org/bots/api#june-20-2022)。
+(新增: Telegram Premium)

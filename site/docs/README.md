@@ -3,10 +3,10 @@ home: true
 heroImage: /Y.png
 actions:
   - text: Get Started
-    link: /guide/getting-started.md
+    link: /guide/getting-started.html
     type: primary
   - text: Introduction
-    link: /guide/introduction.md
+    link: /guide/introduction.html
     type: secondary
 features:
   - title: Easy to Use
@@ -52,7 +52,7 @@ bot.start();
 </CodeGroupItem>
  <CodeGroupItem title="JavaScript">
 
-```ts
+```js
 const { Bot } = require("grammy");
 
 const bot = new Bot(""); // <-- put your bot token here (https://t.me/BotFather)
@@ -84,5 +84,5 @@ Works! :tada:
 
 ---
 
-grammY supports the Telegram Bot API 6.0 which was [released](https://core.telegram.org/bots/api#april-16-2022) on April 16, 2022.
-(Last highlight: Web Apps)
+grammY supports the Telegram Bot API 6.1 which was [released](https://core.telegram.org/bots/api#june-20-2022) on June 20, 2022.
+(Last highlight: Telegram Premium)

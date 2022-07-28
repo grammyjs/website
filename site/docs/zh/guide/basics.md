@@ -22,10 +22,10 @@ bot.on("message", (ctx) => {
 
 ```ts
 // 处理 commands, 比如 /start。
-bot.command('start', (ctx) => { ... });
+bot.command("start", (ctx) => {/* ... */});
 
 // 把信息文本与一个字符串或正则表达式相匹配。
-bot.hears(/echo *(.+)?/, (ctx) => { ... });
+bot.hears(/echo *(.+)?/, (ctx) => {/* ... */});
 ```
 
 你可以在你的代码编辑器中使用自动完成来查看所有可用的选项，或者查看 `Composer` 类的 [所有方法](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer)。
@@ -84,7 +84,7 @@ bot.hears("ping", async (ctx) => {
 
 > 查看 <https://core.telegram.org/bots/api#markdownv2-style>
 
-发送你的信息时，在文本中加入 markdown，并指定 `parse_mode: 'MarkdownV2'`。
+发送你的信息时，在文本中加入 markdown，并指定 `parse_mode: "MarkdownV2"`。
 
 ```ts
 await bot.api.sendMessage(
@@ -98,7 +98,7 @@ await bot.api.sendMessage(
 
 > 查看 <https://core.telegram.org/bots/api#html-style>
 
-发送你的信息，文本中含有 HTML 元素，并指定 `parse_mode: 'HTML'`。
+发送你的信息，文本中含有 HTML 元素，并指定 `parse_mode: "HTML"`。
 
 ```ts
 await bot.api.sendMessage(

@@ -273,16 +273,31 @@ main.register(settings, "back-from-settings-menu");
 你可以注册任意多个菜单，并且可以嵌套任意深度。
 菜单标识可以让你快速跳转到任何页面。
 
-**请注意，你只需要给你的嵌套菜单设置一个交互即可。**
+**你只需要给你的嵌套菜单设置一个交互即可。**
 例如，只需要传递根菜单给 `bot.use`。
 
 ```ts
+// 如果你已经有了这个：
+main.register(settings);
+
 // 请这样做：
 bot.use(main);
 
 // 请不要这样做：
 bot.use(main);
 bot.use(settings);
+```
+
+**你可以创建多个独立的菜单并且使它们都可以交互。**
+例如，如果你创建了两个不相关的菜单，并且你不需要在它们之间导航，那么你应该独立地安装这两个菜单。
+
+```ts
+// 如果你有像这样的独立菜单：
+const menuA = new Menu("menu-a");
+const menuB = new Menu("menu-b");
+// 你可以这样做：
+bot.use(menuA);
+bot.use(menuB);
 ```
 
 ## Payloads
@@ -295,23 +310,31 @@ bot.use(settings);
 > 你能存储的唯一的东西是通常小于 50 字节的短字符串，例如索引或标识符。
 > 如果你真的想存储用户数据，例如文件标识符，URL 或其他东西，你应该使用 [会话](./session.md)。
 
-这里是一个记住创建者的菜单的例子。
+这里是一个记住当前时间的菜单的例子。
 其他用例可能是，例如，存储分页菜单的索引。
 
 ```ts
-function generatePayload(ctx: Context) {
-  return ctx.from?.first_name ?? "";
+function generatePayload() {
+  return Date.now().toString();
 }
 
-const menu = new Menu("pun-intended")
+const menu = new Menu("store-current-time-in-payload")
   .text(
-    { text: "I know my creator", payload: generatePayload },
-    (ctx) => ctx.reply(`I was created by ${ctx.match}!`),
+    { text: "终止！", payload: generatePayload },
+    async (ctx) => {
+      // 给用户5秒钟的时间来撤销。
+      const text = Date.now() - Number(ctx.match) < 5000
+        ? "该操作被成功取消。"
+        : "太晚了！你的猫咪视频已经在网上疯传了。";
+      await ctx.reply(text);
+    },
   );
 
 bot.use(menu);
-bot.command("menu", async (ctx) => {
-  await ctx.reply("I created a menu!", { reply_markup: menu });
+bot.command("publish", async (ctx) => {
+  await ctx.reply("视频将被发送。你有 5 秒钟时间来撤销它。", {
+    reply_markup: menu,
+  });
 });
 ```
 
@@ -325,7 +348,7 @@ Payloads 也能和动态范围一起使用。
 ::: danger 不要在信息处理过程中改变菜单
 你不能在信息处理过程中创建或更改菜单。
 所有菜单必须在你的机器人开始之前完全创建和注册。
-这意味着你不能在你的 bot 的处理程序中使用 `new Menu('id')`。
+这意味着你不能在你的 bot 的处理程序中使用 `new Menu("id")`。
 你不能在你的 bot 的处理程序中调用 `menu.text` 或类似的东西。
 
 在你的 bot 运行时，添加新的菜单会导致内存泄漏。
@@ -499,7 +522,7 @@ const menu = new Menu("id", { fingerprint: (ctx) => ident(ctx) });
 
 一旦再次知道被按下的按钮（并且我们已经检查了菜单没有[过时](#过时的菜单和指纹)），我们将调用处理程序。
 
-在内部，菜单插件大量使用了 [API Transformer 函数](/advanced/transformers.md)，例如，以快速渲染出正在运行的菜单。
+在内部，菜单插件大量使用了 [API Transformer 函数](../advanced/transformers.md)，例如，以快速渲染出正在运行的菜单。
 
 当你在一个大型层次结构中注册菜单以导航时，它们实际上不存储这些引用。
 在内部，所有这个结构的菜单都被添加到同一个大型池中，并且这个池在所有包含的实例中共享。

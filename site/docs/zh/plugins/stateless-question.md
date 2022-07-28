@@ -16,31 +16,46 @@
 ## 使用方法
 
 ```ts
-import {StatelessQuestion} from '@grammyjs/stateless-question';
+import { StatelessQuestion } from "@grammyjs/stateless-question";
 
 const bot = new Bot(token);
 
-const unicornQuestion = new StatelessQuestion('unicorns', ctx => {
-    console.log('User thinks unicorns are doing:', ctx.message)
-})
+const unicornQuestion = new StatelessQuestion("unicorns", (ctx) => {
+  console.log("User thinks unicorns are doing:", ctx.message);
+});
 
 // 不要忘记使用中间件。
-bot.use(unicornQuestion.middleware())
+bot.use(unicornQuestion.middleware());
 
-bot.command('rainbows', async ctx => {
-    let text
-    if (ctx.session.language === 'de') {
-        text = 'Was machen Einhörner?'
-    } else {
-        text = 'What are unicorns doing?'
-    }
+bot.command("rainbows", async (ctx) => {
+  let text;
+  if (ctx.session.language === "de") {
+    text = "Was machen Einhörner?";
+  } else {
+    text = "What are unicorns doing?";
+  }
 
-    return unicornQuestion.replyWithMarkdown(ctx, text)
-})
+  return unicornQuestion.replyWithMarkdown(ctx, text);
+});
 
 // 或者手动发送你的问题（请确保使用 parse_mode 和 force_reply！）。
-bot.command('unicorn', async ctx => ctx.replyWithMarkdown('What are unicorns doing?' + unicornQuestion.messageSuffixMarkdown(), {parse_mode: 'Markdown', reply_markup: {force_reply: true}})
-bot.command('unicorn', async ctx => ctx.replyWithHTML(    'What are unicorns doing?' + unicornQuestion.messageSuffixHTML(),     {parse_mode: 'HTML',     reply_markup: {force_reply: true}})
+bot.command("unicorn", async (ctx) => {
+  await ctx.replyWithMarkdown(
+    "What are unicorns doing?" + unicornQuestion.messageSuffixMarkdown(),
+    { parse_mode: "Markdown", reply_markup: { force_reply: true } },
+  );
+});
+bot.command("unicorn", async (ctx) => {
+  await ctx.replyWithHTML(
+    "What are unicorns doing?" + unicornQuestion.messageSuffixHTML(),
+    { parse_mode: "HTML", reply_markup: { force_reply: true } },
+  );
+});
 ```
 
 更多信息请查看 [插件仓库 README](https://github.com/grammyjs/stateless-question) 。
+
+## 插件概述
+
+- 名字：`stateless-question`
+- 源码：<https://github.com/grammyjs/stateless-question>

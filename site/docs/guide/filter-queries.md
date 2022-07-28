@@ -16,7 +16,7 @@ On the contrary, **grammY ships with its own query language** that you can use i
 
 This allows for over 650 different filters to be used, and we may add more over time.
 Every valid filter can be auto-completed in your code editor.
-Hence, you can simply type `bot.on('')`, open auto-complete, and search through all queries by typing something.
+Hence, you can simply type `bot.on("")`, open auto-complete, and search through all queries by typing something.
 
 ![Filter Query Search](/filter-query-search.png)
 
@@ -84,7 +84,7 @@ The query engine of grammY allows to define neat shortcuts that group related qu
 #### `msg`
 
 The `msg` shortcut groups new messages and new channel posts.
-In other words, using `msg` is equivalent to listening for both `'message'` and `'channel_post'` events.
+In other words, using `msg` is equivalent to listening for both `"message"` and `"channel_post"` events.
 
 ```ts
 bot.on("msg"); // any message or channel post
@@ -319,7 +319,7 @@ bot.on(":text", handler);
 ### Query Structure
 
 Every query consists of up to three query parts.
-Depending on how many query parts a query has, we differentiate between L1, L2, and L3 queries, such as `'message'`, `'message:entities'`, and `'message:entities:url'`, respectively.
+Depending on how many query parts a query has, we differentiate between L1, L2, and L3 queries, such as `"message"`, `"message:entities"`, and `"message:entities:url"`, respectively.
 
 The query parts are separated by colons (`:`).
 We refer to the part up to the first colon or the end of the query string as the _L1 part_ of a query.
@@ -330,9 +330,9 @@ Example:
 
 | Filter Query                 | L1 part     | L2 part      | L3 part     |
 | ---------------------------- | ----------- | ------------ | ----------- |
-| `'message'`                  | `'message'` | `undefined`  | `undefined` |
-| `'message:entities'`         | `'message'` | `'entities'` | `undefined` |
-| `'message:entities:mention'` | `'message'` | `'entities'` | `'mention'` |
+| `"message"`                  | `"message"` | `undefined`  | `undefined` |
+| `"message:entities"`         | `"message"` | `"entities"` | `undefined` |
+| `"message:entities:mention"` | `"message"` | `"entities"` | `"mention"` |
 
 ### Query Validation
 

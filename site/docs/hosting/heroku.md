@@ -1,9 +1,9 @@
 # Hosting: Heroku
 
 > We assume that you have the basic knowledge about creating bots using grammY.
-> If you are not ready yet, don't hestitate to head over to our friendly [Guide](/guide)! :rocket:
+> If you are not ready yet, don't hestitate to head over to our friendly [Guide](../guide)! :rocket:
 
-This tutorial will guide you how to deploy a Telegram bot to [Heroku](https://heroku.com/) by using either [webhooks](/guide/deployment-types.md#webhooks) or [long polling](/guide/deployment-types.md#long-polling).
+This tutorial will guide you how to deploy a Telegram bot to [Heroku](https://heroku.com/) by using either [webhooks](../guide/deployment-types.md#webhooks) or [long polling](../guide/deployment-types.md#long-polling).
 We also assume that you have a Heroku account already.
 
 ## Prerequisites
@@ -90,7 +90,7 @@ Our `package.json` should now be similar to this:
 ```
 
 As mentioned earlier, we have two options for receiving data from Telegram, webhooks and long polling.
-You can learn more about the both advantages and then decide which ones is suitable in [these awesome tips](/guide/deployment-types.md)!
+You can learn more about the both advantages and then decide which ones is suitable in [these awesome tips](../guide/deployment-types.md)!
 
 ## Webhooks
 
@@ -133,7 +133,8 @@ Let's take a look at our code above:
 
 - `process.env`: Remember, NEVER store credentials in our code!
   For creating [Environment Variables in Heroku](https://www.freecodecamp.org/news/using-environment-variables-the-right-way/), head over to [this guide](https://devcenter.heroku.com/articles/config-vars).
-- `secretPath`: It could be our `BOT_TOKEN` or any random string. It is best practice to hide our bot path as [explained by Telegram](https://core.telegram.org/bots/api#setwebhook).
+- `secretPath`: It could be our `BOT_TOKEN` or any random string.
+  It is best practice to hide our bot path as [explained by Telegram](https://core.telegram.org/bots/api#setwebhook).
 
 ::: tip ⚡ Optimization (optional)
 `bot.api.setWebhook` at line 14 will always run when Heroku starts your server again.
@@ -156,7 +157,7 @@ https://api.telegram.org/botabcd:1234/setWebhook?url=https%3A%2F%2Fgrammybot.her
 :::
 
 ::: tip ⚡ Optimization (optional)
-Use [Webhook Reply](/guide/deployment-types.html#webhook-reply) for more efficiency.
+Use [Webhook Reply](../guide/deployment-types.md#webhook-reply) for more efficiency.
 :::
 
 ### Creating `bot.ts`
@@ -179,7 +180,7 @@ But before we go to the deployment steps, we can optimize our bot a little bit.
 As usual, this is optional.
 
 ::: tip ⚡ Optimization (optional)
-Every time your server starts up, grammY will request [information about the bot](https://core.telegram.org/bots/api#getme) from Telegram in order to provide it on the [context object](/guide/context.md) under `ctx.me`.
+Every time your server starts up, grammY will request [information about the bot](https://core.telegram.org/bots/api#getme) from Telegram in order to provide it on the [context object](../guide/context.md) under `ctx.me`.
 We can set the [bot information](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/BotConfig#botInfo) to prevent excessive `getMe` calls.
 
 1. Open this link `https://api.telegram.org/bot<bot_token>/getMe` in your favorite web browser. [Firefox](https://www.mozilla.org/en-US/firefox/) is recommended since it displays `json` format nicely.
@@ -240,7 +241,7 @@ bot.start();
 That's it!
 We are ready to deploy it.
 Pretty simple, right? :smiley:
-If you think it is too easy, check out our [Deployment Checklist](/advanced/deployment.md#long-polling)! :rocket:
+If you think it is too easy, check out our [Deployment Checklist](../advanced/deployment.md#long-polling)! :rocket:
 
 ## Deployment
 

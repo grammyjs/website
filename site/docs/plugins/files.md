@@ -93,7 +93,7 @@ bot.on([":video", ":animation"], async (ctx) => {
 </CodeGroup>
 
 You can pass a string with a file path to `download` if you don't want to create a temporary file.
-Just do `await file.download('/path/to/file')`.
+Just do `await file.download("/path/to/file")`.
 
 If you only want to get the URL of the file so you can download it yourself, use `file.getUrl`.
 This will return an HTTPS link to your file that is valid for at least one hour.
@@ -109,7 +109,7 @@ Note that `await file.download()` will now simply copy that locally present file
 
 By default, the results of `await bot.api.getFile()` will also be equipped with `download` and `getUrl` methods.
 However, this is not reflected in the types.
-If you need these calls, you should also install an [API flavor](/advanced/transformers.html#api-flavoring) on the bot object called `FileApiFlavor`:
+If you need these calls, you should also install an [API flavor](../advanced/transformers.md#api-flavoring) on the bot object called `FileApiFlavor`:
 
 <CodeGroup>
   <CodeGroupItem title="Node.js" active>

@@ -160,7 +160,7 @@ Head over to Telegram to watch your bot respond to messages!
 You can enable basic logging by running
 
 ```bash
-export DEBUG='grammy*'
+export DEBUG="grammy*"
 ```
 
 in your terminal before you execute `node bot.js`.
@@ -216,7 +216,7 @@ Head over to Telegram to watch your bot respond to messages!
 You can enable basic logging by running
 
 ```bash
-export DEBUG='grammy*'
+export DEBUG="grammy*"
 ```
 
 in your terminal before you run your bot.

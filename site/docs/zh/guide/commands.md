@@ -26,8 +26,8 @@ bot.command(["a", "b", "c", "d"] /* , ... */);
 请注意，只有那些在消息开头的命令才会被处理，所以如果一个用户发送 `请不要向那个 bot 发送 /start ！`，那么你的监听器将不会被调用，即使 `/start` 命令 _是_ 包含在消息中。
 
 Telegram 支持向 bot 发送目标命令，即以 `@your_bot_name` 结尾的命令。
-grammY 会为你自动处理这个问题，所以 `bot.command('start')` 将匹配带有 `/start` 和带有 `/start@your_bot_name` 的命令信息。
-你可以通过指定 `bot.command('start@your_bot_name')` 来选择只匹配目标命令。
+grammY 会为你自动处理这个问题，所以 `bot.command("start")` 将匹配带有 `/start` 和带有 `/start@your_bot_name` 的命令信息。
+你可以通过指定 `bot.command("start@your_bot_name")` 来选择只匹配目标命令。
 
 ::: tip 向用户推荐你的命令
 你可以这样调用函数：
@@ -69,7 +69,7 @@ grammY 为你提取这个 `payload`，并在 `ctx.match` 下提供。
 在我们的例子中，`ctx.match` 将包含字符串 `payload`。
 
 如果你想建立一个推荐系统，或跟踪用户在哪里发现你的 bot ，那么深度链接是很有用的。
-例如，你的 bot 可以发送一个带有 [inline-keyboards](/zh/plugins/keyboard.html#inline-keyboards) 按钮的 channel post。
+例如，你的 bot 可以发送一个带有 [inline keyboard](/zh/plugins/keyboard.md#inline-keyboards) 按钮的 channel post。
 该按钮包含一个类似上述的 URL，例如 `https://t.me/your_bot_name?start=awesome-channel-post-12345`。
 当用户点击帖子下面的按钮时，他们的 Telegram 客户端将打开与你的 bot 的聊天，并显示上述的 START 按钮。
 这样，你的 bot 可以识别用户来自哪里，以及他们点击了哪个特定频道帖子下的按钮。

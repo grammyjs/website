@@ -93,7 +93,7 @@ bot.on([":video", ":animation"], async (ctx) => {
 </CodeGroup>
 
 如果你不想创建临时文件，你可以传递一个文件路径到 `download`。
-像这样：`await file.download('/path/to/file')`。
+像这样：`await file.download("/path/to/file")`。
 
 如果你只想获取文件的 URL，以便你自己下载文件，请使用 `file.getUrl`。
 这将返回一个你的文件对 HTTPS 链接，这个链接有效的时间至少是一个小时。
@@ -109,7 +109,7 @@ bot.on([":video", ":animation"], async (ctx) => {
 
 默认情况下，`await bot.api.getFile()` 的结果将会被配备上 `download` 和 `getUrl` 方法。
 但是，这并不会在类型中反映出来。
-如果你需要这些调用，你应该也安装一个叫作 `FileApiFlavor` 的 [API flavor](/advanced/transformers.html#api-flavoring) 在 bot 对象上。
+如果你需要这些调用，你应该也安装一个叫作 `FileApiFlavor` 的 [API flavor](../advanced/transformers.md#api-flavoring) 在 bot 对象上。
 
 <CodeGroup>
   <CodeGroupItem title="Node.js" active>

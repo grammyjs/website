@@ -42,22 +42,25 @@ bot.command("start" /* , ... */);
 当你创建自己的中间件或者假设有其他中间件执行得很慢时，你可以使用这些中间件来创建一个时间分析。
 
 ```ts
-import {generateBeforeMiddleware, generateAfterMiddleware} from 'telegraf-middleware-console-time';
+import {
+  generateAfterMiddleware,
+  generateBeforeMiddleware,
+} from "telegraf-middleware-console-time";
 
 const bot = new Bot(/* ... */);
 
 // 在加载被测试中间件之前使用 BeforeMiddleware
-bot.use(generateBeforeMiddleware('foo'))
+bot.use(generateBeforeMiddleware("foo"));
 
 // 被测试的中间件
-bot.use(/* ... */)
+bot.use(/* ... */);
 
 // 在加载被测试中间件之后使用 AfterMiddleware（使用相同标签）
-bot.use(generateAfterMiddleware('foo'))
+bot.use(generateAfterMiddleware("foo"));
 
-// 其他中间件或者实现（它们会在使用时获得 'inner' 的时间）
-bot.use(/* ... */)
-bot.on(/* ... */, /* ... */)
+// 其他中间件或者实现（它们会在使用时获得 "inner" 的时间）
+bot.use(/* ... */);
+bot.on("message" /* ... */);
 ```
 
 它将输出这样的东西：

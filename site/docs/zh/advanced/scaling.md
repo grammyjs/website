@@ -45,7 +45,7 @@ run(bot);
 ## Webhooks
 
 如果你让你的 bot 运行在 webhooks模式下，只要接收到更新它就会并发去处理。
-当然，为了让它能够在高负载下运行良好，你应该熟悉 [怎样去使用 webhooks](/guide/deployment-types.md#how-to-use-1)。
+当然，为了让它能够在高负载下运行良好，你应该熟悉 [怎样去使用 webhooks](../guide/deployment-types.md#how-to-use-1)。
 这就意味着你不得不去意识到一些并发带来的后果，详见 [下一小节](#并发是困难的)。
 
 Telegram 将按顺序传送来自同一聊天的更新，但也同时并发传送来自不同聊天的更新 ([source](https://github.com/tdlib/telegram-bot-api/issues/75#issuecomment-755436496))。
@@ -56,7 +56,7 @@ Telegram 将按顺序传送来自同一聊天的更新，但也同时并发传�
 比如，如果两条来自同一聊天的信息最终被同一个 `getUpdates` 处理，它们将会被并发处理。
 同一聊天中消息的顺序不再得到保证。
 
-发生冲突的主要原因是，当你使用 [sessions](/plugins/session.md)，有可能会发生读后写的风险。
+发生冲突的主要原因是，当你使用 [sessions](../plugins/session.md)，有可能会发生读后写的风险。
 想一下这些事件的顺序：
 
 1. Alice 发送消息 A
@@ -112,8 +112,8 @@ run(bot);
 <CodeGroupItem title="JavaScript">
 
 ```ts
-const { Bot, Context, session } = require("grammy";)
-const { run, sequentialize } = require("@grammyjs/runner";)
+const { Bot, Context, session } = require("grammy");
+const { run, sequentialize } = require("@grammyjs/runner");
 
 // 创建一个 bot。
 const bot = new Bot("<token>");

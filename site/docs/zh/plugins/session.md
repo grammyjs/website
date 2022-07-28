@@ -33,18 +33,65 @@
 这个 bot 可以添加到一个小组里，并且它可以告诉你，你和你的朋友有多喜欢披萨。
 
 当我们的披萨 bot 收到一条消息时，它必须记住之前在当前聊天中看到过多少次 :pizza:。
-并且当你的妹妹将披萨 bot 添加到她的群聊中时，别的披萨计数器不应该发生改变，也就是说我们真正想要的是可以存储 _每个聊天一个计数器_。
+并且当你的妹妹将披萨 bot 添加到她的群聊中时，你的披萨计数器不应该发生改变，也就是说我们真正想要的是可以存储 _每个聊天一个计数器_。
 
 会话就是这样一种优雅的方式来给 _每个聊天_ 存储数据。
 你将会使用聊天标识符来作为数据库的键，和一个计数器作为值。
 在这种情况下，我们会把聊天标识符称为 _会话密钥_。
+（你可以在 [这里](#会话密钥) 阅读更多关于会话密钥的信息。）
+实际上，你的 bot 将存储一个键为聊天标识符，值为自定义会话数据的字典，即类似这样的东西：
 
-> 你可以在 [这里](#会话密钥) 阅读更多关于会话密钥的信息。
+```json:no-line-numbers
+{
+  "424242": { "pizzaCount": 24 },
+  "987654": { "pizzaCount": 1729 }
+}
+```
 
-我们可以在 bot 上安装中间件，这个中间件会在运行前，从数据库中加载聊天会话数据到 `ctx.session` 来提供给每个 update。
-它还会确保一旦我们完成了工作，会话数据就会被写回数据库，这样我们就不用再担心与数据存储的实际通信了。
+> 当我们说数据库时，我们实际上是指任何数据存储解决方案。
+> 这包括文件，云存储，或者其他任何东西。
 
-在我们的例子中，我们可以在会话对象 `ctx.session` 上访问 _对应的聊天_ 的披萨数量。
+但是，到底什么是会话？
+
+我们可以在 bot 上安装中间件，为每次 update 提供 `ctx.session` 上的会话数据。
+安装的插件将会在我们的处理程序被调用之前和之后做一些事情：
+
+1. **在我们的中间件之前。**
+   会话插件从数据库加载当前聊天的会话数据。
+   它将数据存储在 `ctx.session` 上下文对象中。
+2. **在我们的中间件运行时**
+   我们可以 _读_ `ctx.session` 来检查数据库中的值。
+   例如，当我们的中间件在运行时，如果有一条标识符为 `424242` 的消息被发送到聊天中，那么它将是 `ctx.session = { pizzaCount: 24 }`（根据上面的数据库状态示例）。
+   我们还可以随意 _修改_ `ctx.session`，所以我们可以根据需要添加、删除和改变字段。
+3. **在我们的中间件之后。**
+   会话中间件确保数据被写回数据库。
+   在中间件执行完毕后，无论 `ctx.session` 的值是多少，它都会被保存在数据库中。
+
+因此，我们不必再担心与数据存储之间的通信了。
+我们只需要修改 `ctx.session` 中的数据，插件会自动处理剩下的事情。
+
+## 什么时候使用会话
+
+> 如果你已经知道你想要使用会话，请 [跳过这一部分](#如何使用会话)。
+> 你可能会想，这太好了，我再也不用担心数据库了！
+> 你是对的，会话是一个理想的解决方案，但只适用于某些类型的数据。
+
+根据我们的经验，在一些用例中，会话确实很有价值。
+另一方面，在有些情况下 ，一个传统的数据库可能更合适。
+
+这个比较可以帮助你决定是否使用会话。
+
+|           | 会话                          | 数据库                   |
+| --------- | --------------------------- | --------------------- |
+| _访问_      | **每个聊天**有一个隔离的存储空间          | **多个聊天**访问相同的数据       |
+| _共享_      | 数据**仅被 bot 使用**             | 数据被其他系统使用（例如，一个网络服务器） |
+| _格式_      | 任何 JavaScript 对象、字符串、数字、数组等 | 任何数据（二进制，文件，结构体等）     |
+| _每个聊天的大小_ | 每个聊天最好少于 ~3MB               | 任意大小                  |
+| _独家特色_    | 一些 grammY 插件必需              | 支持数据库事务               |
+
+这并不意味着如果你选择会话/数据库而不是其他的，其他方面就 _不能工作_ 了。
+例如，你可以将大型二进制数据存储在会话中。
+然而，你的 bot 不会像另一种方式那样表现良好，所以我们建议只在有意义的地方使用会话。
 
 ## 如何使用会话
 
@@ -269,7 +316,7 @@ bot.use(session({ getSessionKey }));
 Telegram 在每次聊天时都会按照顺序发送 webhooks，因此默认的会话密钥解析器是唯一能保证不会丢失数据的实现。
 
 如果你必须使用该选项（当然，这仍然是可能的），你应该知道你在做什么。
-通过阅读 [这个](/zh/guide/deployment-types.md)，特别是 [这个](/zh/plugins/runner.html#为什么需要顺序处理)，确保你了解使用这个配置的后果。
+通过阅读 [这个](/zh/guide/deployment-types.md)，特别是 [这个](/zh/plugins/runner.md#为什么需要顺序处理)，确保你了解使用这个配置的后果。
 :::
 
 ### 储存你的数据
@@ -431,7 +478,7 @@ bot.use(session({
 <CodeGroupItem title="Deno">
 
 ```ts
-import { freeStorage } from "https://deno.land/x/grammy_storages@v2.0.0/free/src/mod.ts";
+import { freeStorage } from "https://deno.land/x/grammy_storages/free/src/mod.ts";
 
 bot.use(session({
   initial: ...
@@ -513,7 +560,7 @@ import {
   session,
   SessionFlavor,
 } from "https://deno.land/x/grammy/mod.ts";
-import { freeStorage } from "https://deno.land/x/grammy_storages@v2.0.0/free/src/mod.ts";
+import { freeStorage } from "https://deno.land/x/grammy_storages/free/src/mod.ts";
 
 // 定义会话结构。
 interface SessionData {
@@ -546,7 +593,6 @@ bot.start();
 
 我们维护了一个官方的存储适配器列表，允许你存储会话数据在不同的地方。
 它们中的每一个都需要你在托管提供商处注册，或者托管你自己的存储解决方案。
-请查看各自的仓库，了解不同适配器的设置。
 
 - Supabase: <https://github.com/grammyjs/storages/tree/main/packages/supabase>
 - Deta.sh Base: <https://github.com/grammyjs/storages/tree/main/packages/deta>
@@ -557,6 +603,29 @@ bot.start();
 - PostgreSQL: <https://github.com/grammyjs/storages/tree/main/packages/psql>
 - TypeORM (Node.js-only): <https://github.com/grammyjs/storages/tree/main/packages/typeorm>
 - DenoDB (Deno-only): <https://github.com/grammyjs/storages/tree/main/packages/denodb>
+- Prisma (Node.js-only): https://github.com/grammyjs/storages/tree/main/packages/prisma
+
+::: tip 你的存储解决方案还没被支持？没问题！
+创建一个自定义存储适配器非常简单。
+`storage` 选项可以与任何实现了[这个接口](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/StorageAdapter)的对象连接，所以你只需要在几行代码就可以连接到你的存储。
+
+> 如果你发布了自己的存储适配器，请随时编辑这个页面并且添加链接到这里，以便其他人也可以使用它。
+
+:::
+
+所有的存储适配器都可以以同样的方式安装。
+首先，你应该注意你所选择的存储适配器的包名。
+例如，Supabase 的存储适配器叫做 `supabase`。
+
+**在 Node.js 中**，你可以通过 `npm i @grammyjs/storage-<name>` 安装适配器。
+例如，Supabase 的存储适配器可以通过 `npm i @grammyjs/storage-supabase` 安装。
+
+**在 Deno 中**，所有的存储适配器都在同一个 Deno 模块中发布。
+你可以从 `https://deno.land/x/grammy_storages/<adapter>/src/mod.ts` 的子路径中导入你需要的适配器。
+例如，Supabase 的存储适配器可以通过 `https://deno.land/x/grammy_storages/supabase/src/mod.ts` 导入。
+
+请查看各自的仓库，了解不同适配器的设置。
+它们的仓库中包含了如何连接到你的存储解决方案的信息。
 
 ## 插件概述
 

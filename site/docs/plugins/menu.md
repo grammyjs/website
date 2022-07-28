@@ -272,16 +272,32 @@ main.register(settings, "back-from-settings-menu");
 You can register as many menus as you like, and nest them as deeply as you like.
 The menu identifiers let you jump easily to any page.
 
-**Note that you only have to make a single menu of your nested menu structure interactive.**
+**You only have to make a single menu of your nested menu structure interactive.**
 For example, only pass the root menu to `bot.use`.
 
 ```ts
+// If you have this:
+main.register(settings);
+
 // Do this:
 bot.use(main);
 
 // Don't do this:
 bot.use(main);
 bot.use(settings);
+```
+
+**You can create multiple independent menus and make them all interactive.**
+For example, if you create two unrelated menus and you never need to navigate between them, then you should install both of them indendently.
+
+```ts
+// If you have independent menus like this:
+const menuA = new Menu("menu-a");
+const menuB = new Menu("menu-b");
+
+// You can do this:
+bot.use(menuA);
+bot.use(menuB);
 ```
 
 ## Payloads
@@ -294,23 +310,31 @@ This is useful because it lets you store a little bit of data in a menu.
 > The only thing you can store are short strings of typically less than 50 bytes, such as an index or an identifier.
 > If you really want to store user data such as a file identifier, a URL, or anything else, you should use [sessions](./session.md).
 
-Here is an example menu that remembers its creator in the payload.
+Here is an example menu that remembers current time in the payload.
 Other use cases could be, for example, to store the index in a paginated menu.
 
 ```ts
-function generatePayload(ctx: Context) {
-  return ctx.from?.first_name ?? "";
+function generatePayload() {
+  return Date.now().toString();
 }
 
-const menu = new Menu("store-author-name-in-payload")
+const menu = new Menu("store-current-time-in-payload")
   .text(
-    { text: "I know my creator", payload: generatePayload },
-    (ctx) => ctx.reply(`I was created by ${ctx.match}!`),
+    { text: "ABORT!", payload: generatePayload },
+    async (ctx) => {
+      // Give the user 5 seconds to undo.
+      const text = Date.now() - Number(ctx.match) < 5000
+        ? "The operation was canceled successfully."
+        : "Too late. Your cat videos have already gone viral on the internet.";
+      await ctx.reply(text);
+    },
   );
 
 bot.use(menu);
-bot.command("menu", async (ctx) => {
-  await ctx.reply("I created a menu!", { reply_markup: menu });
+bot.command("publish", async (ctx) => {
+  await ctx.reply("The videos will be sent. You have 5 seconds to cancel it.", {
+    reply_markup: menu,
+  });
 });
 ```
 
@@ -324,7 +348,7 @@ You can also dynamically adjust the structure of a menu in order to add and remo
 ::: danger Changing a Menu During Message Handling
 You cannot create or change your menus during message handling.
 All menus must be fully created and registered before your bot starts.
-This means that you cannot do `new Menu('id')` in a handler of your bot.
+This means that you cannot do `new Menu("id")` in a handler of your bot.
 You cannot call `menu.text` or the like in a handler of your bot.
 
 Adding new menus while your bot is running would cause a memory leak.
@@ -493,7 +517,7 @@ In other words, the menu will only be rendered partially.
 
 Once the pressed button is known again (and we have checked that the menu is not [outdated](#outdated-menus-and-fingerprints)), we invoke the handler.
 
-Internally, the menu plugin makes heavy use of [API Transformer Functions](/advanced/transformers.md), for example, to quickly render outgoing menus on the fly.
+Internally, the menu plugin makes heavy use of [API Transformer Functions](../advanced/transformers.md), for example, to quickly render outgoing menus on the fly.
 
 When you register the menus in a large navigation hierarchy, they will in fact not store these references explicitly.
 Under the hood, all menus of that one structure are added to the same large pool, and that pool is shared across all contained instances.
