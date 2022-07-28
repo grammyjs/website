@@ -185,12 +185,12 @@ export default defineUserConfig({
                 text: "Official",
                 children: [
                   {
-                    text: "Interactive Menus (menu)",
-                    link: "/plugins/menu.html",
-                  },
-                  {
                     text: "Conversations (conversations)",
                     link: "/plugins/conversations.md",
+                  },
+                  {
+                    text: "Interactive Menus (menu)",
+                    link: "/plugins/menu.html",
                   },
                   {
                     text: "Stateless Question (stateless-question)",

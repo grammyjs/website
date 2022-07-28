@@ -20,11 +20,11 @@ Many bot frameworks make you define large configuration objects with steps and s
 This leads to a lot of boilerplate code, and makes it hard to follow along.
 **This plugin does not work that way.**
 
-Instead, with plugin, you will use something much more powerful: **code**.
+Instead, with this plugin, you will use something much more powerful: **code**.
 Basically, you simply define a normal JavaScript function which lets you define how the conversation evolves.
 As the bot and the user talk to each other, the function will be executed statement by statement.
 
-(To be fair, that's not actually how it works.
+(To be fair, that's not actually how it works under the hood.
 But it is very helpful to think of it that way!
 In reality, your function will be executed a bit differently, but we'll get to that [later](#waiting-for-updates).)
 
@@ -58,6 +58,7 @@ First of all, lets import a few things.
 import {
   type Conversation,
   type ConversationFlavor,
+  conversations,
   createConversation,
 } from "@grammyjs/conversations";
 ```
@@ -66,7 +67,10 @@ import {
  <CodeGroupItem title="JavaScript">
 
 ```js
-const { createConversation } = require("@grammyjs/conversations");
+const {
+  conversations,
+  createConversation,
+} = require("@grammyjs/conversations");
 ```
 
 </CodeGroupItem>
@@ -76,6 +80,7 @@ const { createConversation } = require("@grammyjs/conversations");
 import {
   type Conversation,
   type ConversationFlavor,
+  conversations,
   createConversation,
 } from "https://deno.land/x/grammy_conversations/mod.ts";
 ```
@@ -83,12 +88,14 @@ import {
 </CodeGroupItem>
 </CodeGroup>
 
+With that out of the way, we can now have a look at how to define conversational interfaces.
+
 The main element of a conversation is a function with two arguments.
 We call this the _conversation builder function_.
 
 ```js
 async function greeting(conversation, ctx) {
-  // TODO code the conversation
+  // TODO: code the conversation
 }
 ```
 
@@ -96,7 +103,7 @@ Let's see what the two parameters are.
 
 **The second parameter** is not that interesting, it is just a regular context object.
 As always, it is called `ctx` and uses your custom context type (maybe called `MyContext`).
-The conversations plugin exports a [transformative context flavor](/guide/context.md#transformative-context-flavors) called `ConversationFlavor`.
+The conversations plugin exports a [context flavor](/guide/context.html#additive-context-flavors) called `ConversationFlavor`.
 
 **The first parameter** is the central element of this plugin.
 It is commonly named `conversation`, and it has the type `Conversation` ([API reference](https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts/~/Conversation)).
@@ -106,7 +113,7 @@ The type `Conversation` expects your custom context type as a type parameter, so
 In summary, in TypeScript, your conversation builder function will look like this.
 
 ```ts
-type MyContext = ConversationFlavor<Context>;
+type MyContext = Context & ConversationFlavor;
 type MyConversation = Conversation<MyContext>;
 
 async function greeting(conversation: MyConversation, ctx: MyContext) {
@@ -115,20 +122,67 @@ async function greeting(conversation: MyConversation, ctx: MyContext) {
 ```
 
 Inside of your conversation builder function, you can now define how the conversation should look.
+Before we go in depth about every feature of this plugin, let's have a look at a more complex example than [the simple one](#simple-example) above.
 
-Let's now see how you can actually enter the conversation.
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
+
+```ts
+async function movie(conversation: MyConversation, ctx: MyContext) {
+  await ctx.reply("How many favorite movies do you have?");
+  const count = await conversation.form.number();
+  const movies: string[] = [];
+  for (let i = 0; i < count; i++) {
+    await ctx.reply(`Tell me number ${i + 1}!`);
+    const titleCtx = await conversation.waitFor(":text");
+    movies.push(titleCtx.msg.text);
+  }
+  await ctx.reply("Here is a better ranking!");
+  movies.sort();
+  await ctx.reply(movies.map((m, i) => `${i + 1}. ${m}`).join("\n"));
+}
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+async function movie(conversation, ctx) {
+  await ctx.reply("How many favorite movies do you have?");
+  const count = await conversation.form.number();
+  const movies = [];
+  for (let i = 0; i < count; i++) {
+    await ctx.reply(`Tell me number ${i + 1}!`);
+    const titleCtx = await conversation.waitFor(":text");
+    movies.push(titleCtx.msg.text);
+  }
+  await ctx.reply("Here is a better ranking!");
+  movies.sort();
+  await ctx.reply(movies.map((m, i) => `${i + 1}. ${m}`).join("\n"));
+}
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+Can you figure out how this bot will work?
 
 ## Installing and Entering a Conversation
 
 First of all, you **must** use [the session plugin](/plugins/session.md) if you want to use the conversations plugin.
+You also have to install the conversations plugin itself, before you can register individual conversations on your bot.
 
 ```ts
+// Install the session plugin.
 bot.use(session({
   initial() {
     // return empty object for now
     return {};
   },
 }));
+
+// Install the conversations plugin.
+bot.use(conversations());
 ```
 
 Next, you can install the conversation builder function as middleware on your bot object by wrapping it inside `createConversation`.
@@ -138,16 +192,17 @@ bot.use(createConversation(greeting));
 ```
 
 Now that your conversation is registered on the bot, you can enter the conversation from any handler.
+Make sure to use `await` for all methods on `ctx.conversation`---otherwise your code will break.
 
 ```ts
-bot.command("start", (ctx) => {
-  ctx.conversation.enter("greeting");
+bot.command("start", async (ctx) => {
+  await ctx.conversation.enter("greeting");
 });
 ```
 
 As soon as the user sends `/start` to the bot, the conversation will be entered.
 The current context object is passed as the second argument to the conversation builder function.
-For example, if you start your conversation with `await ctx.reply(ctx.message.text)`, it will echo `/start` to the user, because `/start` is the message text that was received when the conversation was entered.
+For example, if you start your conversation with `await ctx.reply(ctx.message.text)`, it will contain the update that contains `/start`.
 
 ::: tip Change the Conversation Identifier
 By default, you have to pass the name of the function to `ctx.conversation.enter()`.
@@ -160,9 +215,7 @@ bot.use(createConversation(greeting, "new-name"));
 In turn, you can enter the conversation with it:
 
 ```ts
-bot.command("start", (ctx) => {
-  ctx.conversation.enter("new-name");
-});
+bot.command("start", (ctx) => ctx.conversation.enter("new-name"));
 ```
 
 :::
@@ -203,8 +256,65 @@ You can also throw an error.
 This will likewise exit the conversation.
 Remember to [install an error handler](/guide/errors.md) on your bot.
 
-If you want to hard-kill the conversation while it is waiting for user input, you can also use `ctx.conversation.exit()`.
-However, this tends to make your code less readable, so it's often better to stick with simply returning from the function.
+If you want to hard-kill the conversation while it is waiting for user input, you can also use `await ctx.conversation.exit()`.
+It's often better to stick with simply returning from the function, but there are a few examples where using `await ctx.conversation.exit()` is convenient.
+Remember that you must `await` the call.
+
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
+
+```ts
+// Install the conversations plugin.
+bot.use(conversations());
+
+// Always exit any conversation upon /cancel
+bot.command("cancel", async (ctx) => {
+  await ctx.reply("Leaving.");
+  await ctx.conversation.exit();
+});
+// Always exit the `movie` conversation upon button press
+const cancel = new InlineKeyboard().text("cancel");
+bot.callbackQuery("cancel", async (ctx) => {
+  await ctx.answerCallbackQuery("Left conversation");
+  await ctx.conversation.exit("movie");
+});
+
+async function movie(conversation: MyConversation, ctx: MyContext) {
+  // TODO: define conversation
+}
+bot.use(createConversation(movie));
+bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+// Always exit any conversation upon /cancel
+bot.command("cancel", async (ctx) => {
+  await ctx.reply("Leaving.");
+  await ctx.conversation.exit();
+});
+// Always exit the `movie` conversation upon button press
+const cancel = new InlineKeyboard().text("cancel");
+bot.callbackQuery("cancel", async (ctx) => {
+  await ctx.answerCallbackQuery("Left conversation");
+  await ctx.conversation.exit("movie");
+});
+
+async function movie(conversation, ctx) {
+  // TODO: define conversation
+}
+bot.use(createConversation(movie));
+bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+Note that the order matters here.
+You must first install the conversations plugin (line 2) before you can call `await ctx.conversation.exit()`.
+Also, the generic cancel handlers must be installed before the actual conversations are registered.
 
 ## Waiting for Updates
 
@@ -234,6 +344,7 @@ async function waitForMe(conversation, ctx) {
 </CodeGroup>
 
 An update can mean that a text message was sent, or a button was pressed, or something was edited, or virtually any other action was performed by the user.
+Check out the full list in the Telegram docs [here](https://core.telegram.org/bots/api#update).
 
 Usually, outside of the conversations plugin, every one of these updates would be handled by [the middleware system](/guide/middleware.md) of your bot.
 Hence, your bot would handle the update via a context object which gets passed to your handlers.
@@ -246,11 +357,11 @@ For example, you can check for text messages:
   <CodeGroupItem title="TypeScript" active>
 
 ```ts
-async function waitForMe(conversation: MyConversation, ctx: MyContext) {
+async function waitForText(conversation: MyConversation, ctx: MyContext) {
   // Wait for the next update:
   ctx = await conversation.wait();
   // Check for text:
-  if (ctx.message.text) {
+  if (ctx.message?.text) {
     // ...
   }
 }
@@ -260,11 +371,11 @@ async function waitForMe(conversation: MyConversation, ctx: MyContext) {
  <CodeGroupItem title="JavaScript">
 
 ```js
-async function waitForMe(conversation, ctx) {
+async function waitForText(conversation, ctx) {
   // Wait for the next update:
   ctx = await conversation.wait();
   // Check for text:
-  if (ctx.message.text) {
+  if (ctx.message?.text) {
     // ...
   }
 }
@@ -272,6 +383,35 @@ async function waitForMe(conversation, ctx) {
 
 </CodeGroupItem>
 </CodeGroup>
+
+In addition, there are a number of other methods alongside `wait` that let you wait for specific updates only.
+One example is `waitFor` which takes a [filter query](/guide/filter-queries.md) and then only waits for updates that match the provided query.
+This is especially powerful in combination with [object destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment):
+
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
+
+```ts
+async function waitForText(conversation: MyConversation, ctx: MyContext) {
+  // Wait for the next text message update:
+  const { msg: { text } } = await conversation.waitFor("message:text");
+}
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+async function waitForText(conversation, ctx) {
+  // Wait for the next text message update:
+  const { msg: { text } } = await conversation.waitFor("message:text");
+}
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+Check out [the API reference of this plugin](https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts/~/ConversationHandle#wait) to see all available methods that are similar to `wait`.
 
 Let's now see how wait calls actually work.
 As mentioned earlier, **they don't _literally_ make your bot wait**, even though we can program conversations as if that was the case.
@@ -446,6 +586,9 @@ do {
 You can also split up your code in several functions, and reuse them.
 For example, this is how you can define a reusable captcha.
 
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
+
 ```ts
 async function captcha(conversation: MyConversation, ctx: MyContext) {
   await ctx.reply("Prove you are human! What is the answer to everything?");
@@ -454,8 +597,25 @@ async function captcha(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+async function captcha(conversation, ctx) {
+  await ctx.reply("Prove you are human! What is the answer to everything?");
+  const { message } = await conversation.wait();
+  return message?.text === "42";
+}
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
 It returns `true` if the user may pass, and `false` otherwise.
 You can now use it in your main conversation builder function like this:
+
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
 
 ```ts
 async function enterGroup(conversation: MyConversation, ctx: MyContext) {
@@ -466,17 +626,32 @@ async function enterGroup(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+async function enterGroup(conversation, ctx) {
+  const ok = await captcha(conversation, ctx);
+
+  if (ok) await ctx.reply("Welcome!");
+  else await ctx.banChatMember();
+}
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
 See how the captcha function can be reused in different places in your code.
 
 > This simple example is only meant to illustrate how functions work.
-> In reality, it may work poorly because it only waits for a new update from the chat, but without verifying that it actually comes from the user who joined.
-> In this case, you may want to use [parallel conversations](#parallel-conversations).
+> In reality, it may work poorly because it only waits for a new update from the respective chat, but without verifying that it actually comes from the same user who joined.
+> If you want to create a real captcha, you may want to use [parallel conversations](#parallel-conversations).
 
 If you want, you can also split your code across even more fuctions, or use recursion, mutual recursion, generators, and so on.
 (Just make sure that all functions follow [the three rules](#golden-rules-of-conversations).)
 
 Naturally, you can use error handling in your functions, too.
-Regulary `try`-`catch` statement work just fine, also across functions.
+Regular `try`/`catch` statements work just fine, also across functions.
 After all, conversations are just JavaScript.
 
 If the main conversation function throws, the error will propagate further into [the error handling mechanisms](/guide/errors.md) of your bot.
@@ -562,12 +737,34 @@ It is rather meant as an example for how you can use the endless flexibilities o
 
 ## Forms
 
-> This has not been implemented yet.
+As mentioned [earlier](#waiting-for-updates), there are several different utility functions on the conversation handle, such as `await conversation.waitFor('message:text')` which only returns text message updates.
 
-Notes:
+If these methods are not enough, the conversations plugin provides even more helper functions for building forms via `conversation.form`.
 
-- lots of utils are provided to build proper forms, such as `conversation.waitFor('message:text')`
-- even integrations with other plugins
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
+
+```ts
+async function waitForMe(conversation: MyConversation, ctx: MyContext) {
+  await ctx.reply("How old are you?");
+  const age: number = await conversation.form.number();
+}
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+async function waitForMe(conversation, ctx) {
+  await ctx.reply("How old are you?");
+  const age = await conversation.form.number();
+}
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+As always, check out [the API reference of this plugin](https://doc.deno.land/https://deno.land/x/grammy_conversations@v0.6.2/mod.ts/~/ConversationForm) to see which methods are available.
 
 ## Parallel Conversations
 
