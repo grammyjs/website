@@ -31,11 +31,11 @@ Esto es lo que usarás más a menudo.
 La sección _Learn_ es siempre un buen comienzo.
 También revisa nuestra gran colección de _Plugins_, y echa un vistazo a los _Ejemplos_.
 
-**La segunda parte** es [la referencia de la API de grammY](https://doc.deno.land/https://deno.land/x/grammy/mod.ts), enlazada en la parte superior de la página.
+**La segunda parte** es la [referencia de la API de grammY](https://doc.deno.land/https://deno.land/x/grammy/mod.ts), enlazada en la parte superior de la página.
 Se trata de un resumen detallado de cada trozo de código que grammY proporciona.
 Se genera automáticamente a partir del código de grammY y contiene todas las explicaciones útiles de las herramientas, que normalmente se encuentran al pasar el cursor sobre cualquier elemento de grammY en un editor de código.
 
-**La tercera parte** es proporcionada por Telegram y enumera las definiciones en bruto de [la API HTTP](https://core.telegram.org/bots/api) a la que grammY se conectará bajo el capó.
+**La tercera parte** es proporcionada por Telegram y enumera las definiciones en bruto de la [API HTTP](https://core.telegram.org/bots/api) a la que grammY se conectará bajo el capó.
 La referencia de la API de grammY enlaza con ella siempre que tenga sentido.
 Échale un vistazo cuando estés interesado en las opciones detalladas que puedes pasar a las llamadas de la API.
 

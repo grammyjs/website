@@ -193,7 +193,7 @@ const BOT_DEVELOPER = 123456; // identificador del chat del desarrollador del bo
 bot.use(async (ctx, next) => {
   // Modifica el objeto de contexto aquí estableciendo la configuración.
   ctx.config = {
-    developer: BOT_DEVELOPER,
+    botDeveloper: BOT_DEVELOPER,
     isDeveloper: ctx.from?.id === BOT_DEVELOPER,
   };
   // Ejecutar los manejadores restantes.

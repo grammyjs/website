@@ -10,7 +10,7 @@ Si este FAQ no responde a tu pregunta, también deberías echar un vistazo al [B
 
 Estás enviando un mensaje con formato, es decir, estás configurando `parse_mode` al enviar un mensaje.
 Sin embargo, tu formato está roto, por lo que Telegram no sabe cómo analizarlo.
-Deberías releer [la sección sobre formato](https://core.telegram.org/bots/api#formatting-options) en los documentos de Telegram.
+Deberías releer la [sección sobre formato](https://core.telegram.org/bots/api#formatting-options) en los documentos de Telegram.
 El desplazamiento de bytes que se menciona en el mensaje de error te dirá dónde está exactamente el error en tu cadena.
 
 ::: consejo Pasar entidades en lugar de formato
@@ -77,8 +77,8 @@ Ya te has asegurado de utilizar el mínimo número de llamadas a la API para las
 Hay algunas cosas que puedes hacer
 
 1. Leer [este artículo en los docs](../advanced/flood.md) para obtener una comprensión básica de la situación.
-2. Utilice [el plugin `transformer-throttler`](../plugins/transformer-throttler.md).
-3. Utiliza [el plugin `auto-retry`](../plugins/auto-retry.md).
+2. Utilice el [plugin `transformer-throttler`](../plugins/transformer-throttler.md).
+3. Utiliza el [plugin `auto-retry`](../plugins/auto-retry.md).
 4. Ven a pedirnos ayuda en el chat del grupo. Tenemos gente experimentada allí.
 5. Es posible pedirle a Telegram que aumente los límites, pero es muy poco probable que esto ocurra si no hiciste los pasos 1-3 primero.
 

@@ -40,13 +40,13 @@ run(bot);
 The default concurrency limit is 500.
 If you want to dig deeper into the package, check out [this page](../plugins/runner.md).
 
-Concurrency is hard, so check out [the subsection below](#concurrency-is-hard) to find out what you should keep in mind when using grammY runner.
+Concurrency is hard, so check out the [subsection below](#concurrency-is-hard) to find out what you should keep in mind when using grammY runner.
 
 ## Webhooks
 
 If you run your bot on webhooks, it will automatically process updates concurrently as soon as they are received.
 Naturally, in order for this to work well under high load, you should make yourself familiar with [how to use webhooks](../guide/deployment-types.md#how-to-use-1).
-This means that you still have to be aware of some consequences of concurrency, confer [the subsection below](#concurrency-is-hard).
+This means that you still have to be aware of some consequences of concurrency, confer the [subsection below](#concurrency-is-hard).
 
 Also, [remember that](../guide/deployment-types.md#ending-webhook-requests-in-time) Telegram will deliver updates from the same chat in sequence, but updates from different chats concurrently.
 
@@ -112,8 +112,8 @@ run(bot);
 <CodeGroupItem title="JavaScript">
 
 ```ts
-const { Bot, Context, session } = require("grammy";)
-const { run, sequentialize } = require("@grammyjs/runner";)
+const { Bot, Context, session } = require("grammy");
+const { run, sequentialize } = require("@grammyjs/runner");
 
 // Create a bot.
 const bot = new Bot("<token>");

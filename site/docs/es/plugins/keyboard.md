@@ -112,7 +112,7 @@ Especifique un teclado en línea vacío para eliminar todos los botones debajo d
 ::: tip Menu Plugin
 El plugin de teclado te da acceso directo a los objetos de actualización que envía Telegram.
 Sin embargo, responder a los clics de esta manera puede ser tedioso.
-Si buscas una implementación de más alto nivel de los teclados en línea, echa un vistazo a [el plugin de menús](./menu.md).
+Si buscas una implementación de más alto nivel de los teclados en línea, echa un vistazo a el [plugin de menús](./menu.md).
 Hace que sea sencillo crear menús interactivos.
 :::
 

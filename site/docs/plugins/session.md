@@ -455,7 +455,7 @@ bot.use(session({
 
 A benefit of using grammY is that you get access to free cloud storage.
 It requires zero setup—all authentication is done using your bot token.
-Check out [the repository](https://github.com/grammyjs/storages/tree/main/packages/free)!
+Check out the [repository](https://github.com/grammyjs/storages/tree/main/packages/free)!
 
 It is very easy to use:
 
