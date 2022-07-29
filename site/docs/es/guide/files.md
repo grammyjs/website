@@ -80,7 +80,7 @@ En el objeto de contexto, `getFile` es [un acceso directo](../guide/context.md#s
 Si quieres obtener un archivo diferente mientras manejas un mensaje, utiliza `ctx.api.getFile(file_id)` en su lugar.
 :::
 
-> Consulta [the `:media` and `:file` shortcuts](../guide/filter-queries.md#shortcuts) para las consultas de filtro si quieres recibir cualquier tipo de archivo.
+> Consulta the [`:media` and `:file` shortcuts](../guide/filter-queries.md#shortcuts) para las consultas de filtro si quieres recibir cualquier tipo de archivo.
 
 Una vez que hayas llamado a `getFile`, puedes usar la ruta de archivo devuelta para descargar el archivo usando esta URL `https://api.telegram.org/file/bot<token>/<ruta del archivo>`, donde `<token>` debe ser reemplazado por tu token de bot.
 

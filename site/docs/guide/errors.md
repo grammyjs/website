@@ -142,7 +142,7 @@ In the above example, the `boundaryHandler` will be invoked for
 1. all middlewares that are passed to `bot.errorBoundary` after `boundaryHandler` (i.e. `Q`), and
 2. all middlewares that are installed on subsequently installed composer instances (i.e. `X`, `Y`, and `Z`).
 
-> Regarding point 2, you may want to skip ahead to [the advanced explanation](../advanced/middleware.md) of middleware to learn how chaining works in grammY.
+> Regarding point 2, you may want to skip ahead to the [advanced explanation](../advanced/middleware.md) of middleware to learn how chaining works in grammY.
 
 You can also apply an error boundary to a composer without calling `bot.errorBoundary`:
 

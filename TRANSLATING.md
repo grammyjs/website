@@ -70,7 +70,7 @@ Make sure to open a pull request against your translation branch, and not agains
 
 A different person who can speak your language can now review the pull request.
 Make sure to reiterate on the translations, in case you have ideas to improve it.
-Make sure to review a fully rendered version of how your changes will look (by using [a local setup](./README.md#building-the-website-locally)), which will enable you to catch all mistakes.
+Make sure to review a fully rendered version of how your changes will look (by using a [local setup](./README.md#building-the-website-locally)), which will enable you to catch all mistakes.
 Once you both think that the translation is perfect, merge the pull request into the translation branch of your language.
 
 You should keep track of which pages are translated in your translation tracking issue.
