@@ -7,7 +7,7 @@ If we merge it, they’ll go live immediately.
 
 > **IMPORTANT:** Please write exactly one sentence per line in order to preserve readable `git diff`s.
 
-If you are planning on adding completely new pages, you may want to ask in [the group chat](https://t.me/grammyjs) if those changes are welcome.
+If you are planning on adding completely new pages, you may want to ask in the [group chat](https://t.me/grammyjs) if those changes are welcome.
 
 Remember that you can edit a page directly in the browser by clicking the link at the bottom of each page.
 That makes it very easy to fix typos and other small things, as you don’t even have to clone this repository.
@@ -23,4 +23,4 @@ We have observed that the following workflow works well, and we usually try to s
 
 ## Translating
 
-See [the Translation Guide](./TRANSLATING.md).
+See the [Translation Guide](./TRANSLATING.md).

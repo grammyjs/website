@@ -52,7 +52,7 @@ Puedes instalar cualquier software allí, y eres responsable de las actualizacio
 
 En un VPS, puedes ejecutar bots usando tanto polling como webhooks.
 
-Consulta [el tutorial](./vps.md) sobre cómo alojar bots de grammY en un VPS.
+Consulta el [tutorial](./vps.md) sobre cómo alojar bots de grammY en un VPS.
 
 | Nombre        | Precio mínimo | Ping a Bot API                            | Opción más barata                  |
 | ------------- | ------------- | ----------------------------------------- | ---------------------------------- |
