@@ -70,7 +70,7 @@ Nuestro `package.json` debería ser ahora similar a esto:
   "version": "0.0.1",
   "description": "",
   "main": "dist/app.js",
-  "type": "module", // aañadir propiedad "type": "module"
+  "type": "module", // añadir propiedad "type": "module"
   "scripts": {
     "dev-build": "tsc"
   },
