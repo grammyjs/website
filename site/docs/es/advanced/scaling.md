@@ -40,13 +40,13 @@ run(bot);
 El límite de concurrencia por defecto es de 500.
 Si quieres profundizar en el paquete, consulta [esta página](../plugins/runner.md).
 
-La concurrencia es difícil, así que revisa [la subsección de abajo](#concurrency-is-hard) para saber lo que debes tener en cuenta cuando uses grammY runner.
+La concurrencia es difícil, así que revisa la [subsección de abajo](#concurrency-is-hard) para saber lo que debes tener en cuenta cuando uses grammY runner.
 
 ## Webhooks
 
 Si ejecutas tu bot con webhooks, procesará automáticamente las actualizaciones de forma concurrente tan pronto como se reciban.
 Naturalmente, para que esto funcione bien bajo una alta carga, deberías familiarizarte con [cómo usar webhooks](../guide/deployment-types.md#how-to-use-1).
-Esto significa que todavía tienes que ser consciente de algunas consecuencias de la concurrencia, conferir [la subsección de abajo](##concurrency-is-hard).
+Esto significa que todavía tienes que ser consciente de algunas consecuencias de la concurrencia, conferir la [subsección de abajo](##concurrency-is-hard).
 
 Además, [recuerda que](../guide/deployment-types.md#ending-webhook-requests-in-time) Telegram entregará las actualizaciones del mismo chat en secuencia, pero las actualizaciones de diferentes chats de forma concurrente.
 
