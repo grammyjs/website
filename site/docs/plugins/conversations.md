@@ -848,9 +848,9 @@ It then resumes ordinary execution of your function—until the next `wait` call
 What do we mean by the state of execution?
 In a nutshell, it consists on three things:
 
-1. Incoming updates.
-2. Outgoing API calls.
-3. External events and effects, such as randomness or calls to external APIs or databases.
+1. Incoming updates
+2. Outgoing API calls
+3. External events and effects, such as randomness or calls to external APIs or databases
 
 What do we mean by replaying?
 Replaying simply means calling the function regularly from the start, but when it does things like calling `wait` or performing API calls, we don't actually do any of those.
