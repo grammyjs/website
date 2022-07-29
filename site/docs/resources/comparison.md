@@ -90,11 +90,11 @@ This also means that you can find more stories on the internet about Telegraf us
 The main advantage of grammY over Telegraf 4.x is that **it is simply a lot easier**.
 For example:
 
-- grammY has [a documentation](../).
+- grammY has a [documentation](../).
   Telegraf does not (it was replaced by a generated API reference that lacks explanations).
 - Types in grammY _just work_ and they will follow your code.
   In Telegraf, you will often need to write your code a certain way, otherwise it does not compile (even though it would actually work fine).
-- grammY integrates hints from [the official Bot API reference](core.telegram.org/bots/api) inline that help you while you're coding.
+- grammY integrates hints from the [official Bot API reference](core.telegram.org/bots/api) inline that help you while you're coding.
   Telegraf does not give you any explanations on your code.
 
 #### Summary
