@@ -117,7 +117,7 @@ type MyContext = Context & ConversationFlavor;
 type MyConversation = Conversation<MyContext>;
 
 async function greeting(conversation: MyConversation, ctx: MyContext) {
-  // TODO code the conversation
+  // TODO: code the conversation
 }
 ```
 
