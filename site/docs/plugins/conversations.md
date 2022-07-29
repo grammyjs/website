@@ -416,82 +416,14 @@ Check out [the API reference of this plugin](https://doc.deno.land/https://deno.
 Let's now see how wait calls actually work.
 As mentioned earlier, **they don't _literally_ make your bot wait**, even though we can program conversations as if that was the case.
 
-## Rules and Side-effects
+## Three Golden Rules of Conversations
 
-There are a few rules to the code you write inside a conversation builder function.
-Before diving into the actual rules, here is what `wait` call really do internally.
+There are three rules that apply to the code you write inside a conversation builder function.
+You must follow them if you want your code to behave correctly.
 
-### How `wait` Calls Work
+Scroll [down](#how-it-works) if you want to know more about _why_ these rules apply, and what `wait` calls really do internally.
 
-> [Skip this part](#golden-rules-of-conversations) if you want to learn _how_ to build things without reading about _why_ you need to build them that way.
-
-The naïve approach to implementing a `wait` call in the conversations plugin would be to create a new promise, and to wait until the next context object arrives.
-As soon as it does, we resolve the promise, and the conversation can continue.
-
-However, this is a bad idea for several reasons.
-
-**Data Loss.**
-What if your server crashes while waiting for a context object?
-In that case, we lose all information about the state of the conversation.
-Basically, the bot loses its train of thought, and the user has to start over.
-This is bad desgin and annoying.
-
-**Blocking.**
-If wait calls would block until the next update arrives, it means that the middleware execution for the first update can't complete until the entire conversation completes.
-
-- For built-in polling, this means that no further updates can be processed until the current one is done.
-  Hence, the bot would simply be blocked forever.
-- For [the grammY runner](./runner.md), the bot would not be blocked.
-  However, when processing thousands of conversations in parallel with different users, it would consume potentially very large amounts of memory.
-  If many users stop responding, this leaves the bot stuck in the middle of countless conversations.
-- Webhooks have their own whole [category of problems](/guide/deployment-types.html#ending-webhook-requests-in-time) with long-running middleware.
-
-**State.**
-On serverless infrastructure such as cloud functions, we cannot actually assume that the same instance handles two subsequent updates from the same user.
-Hence, if we were to create stateful conversations, they may randomly break all the time, as some `wait` calls don't resolve, but some other middleware is suddenly executed.
-The result is an abundance of random bugs and chaos.
-
-There are more problems, but you get the idea.
-
-Consequently, the conversations plugin does things differently.
-
-The conversations plugin tracks the execution of your function.
-When a wait call is reached, it serializes the state of execution into the session, and safely stores it in a database.
-When the next update arrives, it first inspects the session data.
-If it finds that it left off in the middle of a conversation, it deserializes the state of execution, takes your conversation builder function, and replays it up to the point of the last `wait` call.
-It then switches back to normal execution mode, and resumes ordinary execution of your function—until the next `wait` call is reached, and the execution must be haltet again.
-
-What do we mean by the state of execution?
-In a nutshell, it consists on three things:
-
-1. The conversation builder function.
-2. Incoming and outgoing messages.
-3. External events and effects, such as randomness or calls to external APIs or databases.
-
-The plugin has access to the conversation builder function, so starting, stopping, and replaying the function is easy.
-The plugin also tracks all incoming updates as well as all Bot API calls, so point 2 is similarly easy.
-
-However, the plugin has no control over external events, side-effects, or randomness.
-For example, you could this:
-
-```ts
-if (Math.random() < 0.5) {
-  // do one thing
-} else {
-  // do another thing
-}
-```
-
-In that case, when replaying the function, it may suddenly behave differently every time, so replaying the function will break!
-
-Don't worry, you can still use external events and randomness if you want.
-However, in order for the plugin to work correctly, you need to follow some rules in your conversation builder function.
-
-### Golden Rules of Conversations
-
-The code in conversation builder functions must follow these three golden rules.
-
-#### Rule I: All Side-effects Must Be Wrapped
+### Rule I: All Side-effects Must Be Wrapped
 
 Code that depends on external system such as databases, APIs, files, or other resources which could change from one execution to the next must be wrapped in `conversation.external()` calls.
 
@@ -510,7 +442,7 @@ If you are familiar with React, you may know a comparable concept from `useEffec
 
 :::
 
-#### Rule II: All Random Behavior Must Be Wrapped
+### Rule II: All Random Behavior Must Be Wrapped
 
 Code that depends on randomness or on global state which could change, must wrap all access to it in `conversation.external()` calls, or use the `conversation.random()` convenience function.
 
@@ -521,7 +453,7 @@ if (Math.random() < 0.5) { /* do stuff */ }
 if (conversation.random() < 0.5) { /* do stuff */ }
 ```
 
-#### Rule III: Use Convenience Functions
+### Rule III: Use Convenience Functions
 
 There are a bunch of things installed on `conversation` which may greatly help you.
 Your code doesn't exactly break if you don't use them, but it can be slow or behave in a confusing way.
@@ -547,7 +479,7 @@ Imagine that all code below is written inside a conversation builder function.
 You can declare variables and do whatever you want with them.
 
 ```ts
-await ctx.reply("Send me you favorite numbers, separated by commas!");
+await ctx.reply("Send me your favorite numbers, separated by commas!");
 const { message } = await conversation.wait();
 const sum = message.text
   .split(",")
@@ -768,33 +700,198 @@ As always, check out [the API reference of this plugin](https://doc.deno.land/ht
 
 ## Parallel Conversations
 
-> This has not been implemented yet.
+Naturally, the conversations plugin can run any number of conversations in parallel in different chats.
 
-Notes:
+However, if your bot gets added to a group chat, it may want to have conversations with several different users in parallel _in the same chat_.
+For example, if your bot features a captcha that it wants to send to all new members.
+If two members join at the same time, the bot should be able to have two independent conversations with them.
 
-- several conversations in a group chat with different members (at the same time)
-- you can skip updates via `await conversation.skip()`, hence giving back control to the middleware system
-- you can then start a new conversation in parallel
-- how to install timeouts and timeout handlers for individual conversations
-- listing active conversations
+This is why the conversations plugin allows you to enter several conversations at the same time for every chat.
+For instance, it is possible to have five different conversations with five new users, and at the same time chat with an admin about new chat config.
 
-## External Events
+### How It Works Behind the Scenes
 
-> This has not been implemented yet.
+Every incoming update will only be handled by one of the active conversations in a chat.
+Comparable to middleware handlers, the conversations will be called in the order they are registered.
+If a conversation is started multiple times, these instances of the conversation will be called in chronological order.
 
-Notes:
+Each conversation can then either handle the update, or it can call `await conversation.skip()`.
+In the former case, the update will simply be consumed while the conversation is handling it.
+In the latter case, the conversation will effetively undo receiving the update, and pass it on to the next conversation.
+If all conversations skip an update, the control flow will be passed back to the middleware system, and run any subsequent handlers.
 
-- we can wait for external events and only resume execution after that
-- show how to do that
+This allows you to start a new conversation from the regular middleware.
+
+### How You Can Use It
+
+In practice, you never really need to call `await conversation.skip()` at all.
+Instead, you can just use things like `await conversation.waitFor(userId)`, which will take care of the details for you.
+This allows you to chat with a single user only in a group chat.
+
+For instance, let's implement the captcha example from up here again, but this time with parallel conversations.
+
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
+
+```ts
+async function captcha(conversation: MyConversation, ctx: MyContext) {
+  if (ctx.from === undefined) return false;
+  await ctx.reply("Prove you are human! What is the answer to everything?");
+  const { message } = await conversation.waitFrom(ctx.from);
+  return message?.text === "42";
+}
+
+async function enterGroup(conversation: MyConversation, ctx: MyContext) {
+  const ok = await captcha(conversation, ctx);
+
+  if (ok) await ctx.reply("Welcome!");
+  else await ctx.banChatMember();
+}
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+async function captcha(conversation, ctx) {
+  if (ctx.from === undefined) return false;
+  await ctx.reply("Prove you are human! What is the answer to everything?");
+  const { message } = await conversation.waitFrom(ctx.from);
+  return message?.text === "42";
+}
+
+async function enterGroup(conversation, ctx) {
+  const ok = await captcha(conversation, ctx);
+
+  if (ok) await ctx.reply("Welcome!");
+  else await ctx.banChatMember();
+}
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+Note how we only wait for messages from a particular user.
+
+We can now have a simple handler that enters the conversation when a new member joins.
+
+```ts
+bot.on("chat_member")
+  .filter((ctx) => ctx.chatMember.old_chat_member.status === "left")
+  .filter((ctx) => ctx.chatMember.new_chat_member.status === "member")
+  .use((ctx) => ctx.conversation.enter("enterGroup"));
+```
+
+### Inspecting Active Conversations
+
+You can see how many conversations with which identifier are running.
+
+```ts
+const stats = ctx.conversation.active;
+console.log(stats); // { "enterGroup": 1 }
+```
+
+This will be provided as an object that has the conversation identifiers as keys, and a number indicating the number of running conversations for each identifier.
+
+<!-- TODO: timeouts -->
+<!-- TODO: external events -->
 
 ## How It Works
 
-Notes:
+> [Remember](#golden-rules-of-conversations) that the code inside your conversation builder functions must follow three rules.
+> We are now going to see _why_ you need to build them that way.
 
-- magical promise
-- must work across server restarts
-- logging and replaying
-- reason for no side-effects or non-deterministic behavior
+We are first going to see how this plugin works conceptually, before we elaborate on some details.
+
+### How `wait` Calls Work
+
+Let us switch perspectives for a while, and ask a question from a plugin developer's point of view.
+How to implement a `wait` call in the plugin?
+
+The naïve approach to implementing a `wait` call in the conversations plugin would be to create a new promise, and to wait until the next context object arrives.
+As soon as it does, we resolve the promise, and the conversation can continue.
+
+However, this is a bad idea for several reasons.
+
+**Data Loss.**
+What if your server crashes while waiting for a context object?
+In that case, we lose all information about the state of the conversation.
+Basically, the bot loses its train of thought, and the user has to start over.
+This is bad desgin and annoying.
+
+**Blocking.**
+If wait calls would block until the next update arrives, it means that the middleware execution for the first update can't complete until the entire conversation completes.
+
+- For built-in polling, this means that no further updates can be processed until the current one is done.
+  Hence, the bot would simply be blocked forever.
+- For [the grammY runner](./runner.md), the bot would not be blocked.
+  However, when processing thousands of conversations in parallel with different users, it would consume potentially very large amounts of memory.
+  If many users stop responding, this leaves the bot stuck in the middle of countless conversations.
+- Webhooks have their own whole [category of problems](/guide/deployment-types.html#ending-webhook-requests-in-time) with long-running middleware.
+
+**State.**
+On serverless infrastructure such as cloud functions, we cannot actually assume that the same instance handles two subsequent updates from the same user.
+Hence, if we were to create stateful conversations, they may randomly break all the time, as some `wait` calls don't resolve, but some other middleware is suddenly executed.
+The result is an abundance of random bugs and chaos.
+
+There are more problems, but you get the idea.
+
+Consequently, the conversations plugin does things differently.
+Very differently.
+
+The conversations plugin tracks the execution of your function.
+When a wait call is reached, it serializes the state of execution into the session, and safely stores it in a database.
+When the next update arrives, it first inspects the session data.
+If it finds that it left off in the middle of a conversation, it deserializes the state of execution, takes your conversation builder function, and replays it up to the point of the last `wait` call.
+It then resumes ordinary execution of your function—until the next `wait` call is reached, and the execution must be haltet again.
+
+What do we mean by the state of execution?
+In a nutshell, it consists on three things:
+
+1. Incoming updates.
+2. Outgoing API calls.
+3. External events and effects, such as randomness or calls to external APIs or databases.
+
+What do we mean by replaying?
+Replaying simply means calling the function regularly from the start, but when it does things like calling `wait` or performing API calls, we don't actually do any of those.
+Instead, we check out or logs where we recorded from a previous run which values were returned.
+We then inject these values so that the conversation builder function simply runs through very fast---until our logs are exhausted.
+At that point, we switch back to normal execution mode, which is just a fancy way of saying that we stop injecting stuff, and start to actually perform API calls again.
+
+This is why the plugin has to track all incoming updates as well as all Bot API calls.
+(See points 1 and 2 above.)
+However, the plugin has no control over external events, side-effects, or randomness.
+For example, you could this:
+
+```ts
+if (Math.random() < 0.5) {
+  // do one thing
+} else {
+  // do another thing
+}
+```
+
+In that case, when calling the function, it may suddenly behave differently every time, so replaying the function will break!
+It could randomly work differently than the original execution.
+This is why point 3 exists, and [The Three Golden Rules](#three-golden-rules-of-conversations) must be followed.
+
+### How to Intercept Function Execution
+
+Conceptually speaking, the keywords `async` and `await` give us control over where the thread is [preempted](https://en.wikipedia.org/wiki/Preemption_(computing)).
+Hence, if someone calls `await conversation.wait()`, which is a function of our library, we are given the power to preempt the execution.
+
+Concretely speaking, the secret core primitive that enables us to interrupt function execution is a `Promise` that never resolves.
+
+```ts
+await new Promise<never>(() => {}); // BOOM
+```
+
+If you `await` such a promise in any JavaScript file, your runtime will terminate instantly.
+(Feel free to paste the above code into a file and try it out.)
+
+Since we obviously don't want to kill the JS runtime, we have to catch this again.
+How would you go about this?
+(Feel free to check out the plugin's source code if this isn't immediately obvious to you.)
 
 ## Plugin Summary
 
