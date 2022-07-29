@@ -290,6 +290,9 @@ bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
  <CodeGroupItem title="JavaScript">
 
 ```js
+// Install the conversations plugin.
+bot.use(conversations());
+
 // Always exit any conversation upon /cancel
 bot.command("cancel", async (ctx) => {
   await ctx.reply("Leaving.");
@@ -631,10 +634,10 @@ async function askForToken(conversation: MyConversation, ctx: MyContext) {
 </CodeGroupItem>
  <CodeGroupItem title="JavaScript">
 
-```ts
+```js
 class Auth {
   constructor(conversation) {
-    this.conversation = conversation;
+    this.#conversation = conversation;
   }
 
   authenticate(ctx) {
@@ -642,7 +645,7 @@ class Auth {
     await ctx.reply(
       "Open this link to obtain a token, and sent it back to me: " + link,
     );
-    ctx = await this.conversation.wait();
+    ctx = await this.#conversation.wait();
     this.token = ctx.message?.text;
   }
 
@@ -696,7 +699,7 @@ async function waitForMe(conversation, ctx) {
 </CodeGroupItem>
 </CodeGroup>
 
-As always, check out [the API reference of this plugin](https://doc.deno.land/https://deno.land/x/grammy_conversations@v0.6.2/mod.ts/~/ConversationForm) to see which methods are available.
+As always, check out the [API reference](https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts/~/ConversationForm) to see which methods are available.
 
 ## Parallel Conversations
 
