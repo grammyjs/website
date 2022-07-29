@@ -27,7 +27,7 @@ You may publish your plugins in one of the following forms:
 - Publishing as a **third-party** plugin.
 
 If you choose to publish your plugins as a third party, we can still offer you a prominent place on this website.
-However, we prefer it if you publish your plugin under [the grammyjs organization](https://github.com/grammyjs) on GitHub, hence making it an official plugin.
+However, we prefer it if you publish your plugin under the [grammyjs organization](https://github.com/grammyjs) on GitHub, hence making it an official plugin.
 In such a case, you will be granted publish access to GitHub and npm.
 Also, You will be responsible for maintaining your code.
 
