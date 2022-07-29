@@ -21,7 +21,7 @@ const bot = new Bot("");
 
 bot.command("demo", async (ctx) => {
   ctx.api.config.use(addReplyParam(ctx));
-  ctx.reply("Demo command!"); // This will quote the user's message
+  await ctx.reply("Demo command!"); // This will quote the user's message
 });
 
 bot.start();
@@ -41,11 +41,11 @@ const bot = new Bot("");
 bot.use(autoQuote);
 
 bot.command("demo", async (ctx) => {
-  ctx.reply("Demo command!"); // This will quote the user's message
+  await ctx.reply("Demo command!"); // This will quote the user's message
 });
 
 bot.command("hello", async (ctx) => {
-  ctx.reply("Hi there :)"); // Also quotes the user's message
+  await ctx.reply("Hi there :)"); // Also quotes the user's message
 });
 
 bot.start();
