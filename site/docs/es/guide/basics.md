@@ -71,14 +71,14 @@ bot.hears("ping", async (ctx) => {
 
 > Tenga en cuenta que sólo el envío de un mensaje a través de `ctx.reply` no **significa que usted está respondiendo automáticamente a cualquier cosa.
 > En su lugar, debes especificar `reply_to_message_id` para ello.
-> La función `ctx.reply` es sólo un alias de `ctx.api.sendMessage`, ver [la siguiente sección](./context.md#available-actions).
+> La función `ctx.reply` es sólo un alias de `ctx.api.sendMessage`, ver la [siguiente sección](./context.md#available-actions).
 
 ## Envío de mensajes con formato
 
-> Revisa [la sección sobre opciones de formato](https://core.telegram.org/bots/api#formatting-options) en la Referencia de la API de Telegram Bot escrita por el equipo de Telegram.
+> Revisa la [sección sobre opciones de formato](https://core.telegram.org/bots/api#formatting-options) en la Referencia de la API de Telegram Bot escrita por el equipo de Telegram.
 
 Puedes enviar mensajes con texto en **negrita** o _cursiva_, usar URLs, y más.
-Hay dos formas de hacerlo, como se describe en [la sección sobre opciones de formato](https://core.telegram.org/bots/api#formatting-options), a saber, Markdown y HTML.
+Hay dos formas de hacerlo, como se describe en la [sección sobre opciones de formato](https://core.telegram.org/bots/api#formatting-options), a saber, Markdown y HTML.
 
 ### Markdown
 
@@ -110,7 +110,7 @@ await bot.api.sendMessage(
 
 ## Envío de archivos
 
-El manejo de archivos se explica con mayor profundidad en [una sección posterior] (./files.md#sending-files).
+El manejo de archivos se explica con mayor profundidad en una [sección posterior] (./files.md#sending-files).
 
 ## Forzar respuesta
 

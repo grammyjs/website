@@ -603,6 +603,7 @@ bot.start();
 - PostgreSQL: <https://github.com/grammyjs/storages/tree/main/packages/psql>
 - TypeORM (Node.js-only): <https://github.com/grammyjs/storages/tree/main/packages/typeorm>
 - DenoDB (Deno-only): <https://github.com/grammyjs/storages/tree/main/packages/denodb>
+- Prisma (Node.js-only): https://github.com/grammyjs/storages/tree/main/packages/prisma
 
 ::: tip 你的存储解决方案还没被支持？没问题！
 创建一个自定义存储适配器非常简单。

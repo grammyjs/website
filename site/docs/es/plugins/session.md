@@ -454,7 +454,7 @@ bot.use(session({
 
 Un beneficio de usar grammY es que obtienes acceso a almacenamiento gratuito en la nube.
 No requiere ninguna configuración - toda la autenticación se hace usando tu token de bot.
-¡Echa un vistazo a [el repositorio](https://github.com/grammyjs/storage-free)!
+¡Echa un vistazo a el [repositorio](https://github.com/grammyjs/storage-free)!
 
 Es muy fácil de usar:
 
@@ -609,7 +609,9 @@ Cada uno de ellos requerirá que te registres en un proveedor de alojamiento, o 
 - MongoDB: <https://github.com/grammyjs/storages/tree/main/packages/mongodb>
 - Redis: <https://github.com/grammyjs/storages/tree/main/packages/redis>
 - PostgreSQL: <https://github.com/grammyjs/storages/tree/main/packages/psql>
-- TypeORM (Node.js-only): <https://github.com/grammyjs/storages/tree/main/packages/typeorm>
+- TypeORM (solo para Node.js): <https://github.com/grammyjs/storages/tree/main/packages/typeorm>
+- DenoDB (solo para Deno): https://github.com/grammyjs/storages/tree/main/packages/denodb
+- Prisma (solo para Node.js): https://github.com/grammyjs/storages/tree/main/packages/prisma
 
 ::: tip ¿Su almacenamiento no es compatible? No hay problema.
 Crear un adaptador de almacenamiento personalizado es extremadamente sencillo.

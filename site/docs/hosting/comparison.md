@@ -52,7 +52,7 @@ You can install any software there, and you are responsible for system upgrades 
 
 On a VPS, you can run bots using both polling or webhooks.
 
-Check out [the tutorial](./vps.md) on how to host grammY bots on a VPS.
+Check out the [tutorial](./vps.md) on how to host grammY bots on a VPS.
 
 | Name          | Min. price | Ping to Bot API                           | Cheapest option                    |
 | ------------- | ---------- | ----------------------------------------- | ---------------------------------- |

@@ -142,7 +142,7 @@ En el ejemplo anterior, el `boundaryHandler` será invocado para
 1. todos los middlewares que se pasan a `bot.errorBoundary` después de `boundaryHandler` (es decir, `Q`), y
 2. todos los middlewares que se instalan en las instancias de compositor instaladas posteriormente (es decir, `X`, `Y` y `Z`).
 
-> En cuanto al punto 2, es posible que desee saltar a [la explicación avanzada](../advanced/middleware.md) de middleware para aprender cómo funciona el encadenamiento en grammY.
+> En cuanto al punto 2, es posible que desee saltar a la [explicación avanzada](../advanced/middleware.md) de middleware para aprender cómo funciona el encadenamiento en grammY.
 
 También se puede aplicar un límite de error a un compositor sin llamar a `bot.errorBoundary`:
 
