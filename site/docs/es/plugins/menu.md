@@ -5,7 +5,7 @@ Crea fácilmente menús interactivos.
 ## Introducción
 
 Un teclado en línea es un conjunto de botones debajo de un mensaje.
-grammY tiene [un plugin incorporado](./keyboard.md#inline-keyboards) para crear teclados en línea básicos.
+grammY tiene un [plugin incorporado](./keyboard.md#inline-keyboards) para crear teclados en línea básicos.
 
 El plugin de menús lleva esta idea más allá y te permite crear menús ricos justo dentro del chat.
 Pueden tener botones interactivos, múltiples páginas con navegación entre ellas, y más.
@@ -103,7 +103,7 @@ const menu = new Menu<MyContext>("id");
 
 ## Adding Buttons
 
-El plugin de menús presenta sus teclados exactamente como lo hace [el plugin para teclados en línea] (./keyboard.md#building-an-inline-keyboard).
+El plugin de menús presenta sus teclados exactamente como lo hace el [plugin para teclados en línea] (./keyboard.md#building-an-inline-keyboard).
 La clase `Menu` reemplaza a la clase `InlineKeyboard`.
 
 Aquí hay un ejemplo para un menú que tiene cuatro botones en forma de fila 1-2-1.
@@ -183,7 +183,7 @@ Llama a `ctx.menu.update()` para asegurarte de que tu menú se volverá a render
 El ejemplo anterior demuestra cómo utilizar el plugin de menú.
 No es una buena idea almacenar la configuración del usuario en un objeto `Set`, porque entonces todos los datos se perderán cuando se detenga el servidor.
 
-En su lugar, considere el uso de una base de datos o [el plugin de sesión] (./session.md) si desea almacenar datos.
+En su lugar, considere el uso de una base de datos o el [plugin de sesión] (./session.md) si desea almacenar datos.
 :::
 
 ## Actualizar o cerrar el menú

@@ -170,5 +170,5 @@ Efectivamente, ejecutará dos instancias diferentes del corredor grammY.
 Este vago borrador descrito arriba sólo ha sido esbozado pero no implementado, según nuestro conocimiento.
 Por favor, [ponte en contacto con el grupo de Telegram](https://t.me/grammyjs) si tienes alguna pregunta o si intentas esto y puedes compartir tu progreso.
 
-Por otro lado, si tu bot está bajo una gran carga y el sondeo de actualizaciones se ralentiza debido a [las restricciones de carga automática](../plugins/runner.md#sink), aumentan las posibilidades de que algunas actualizaciones sean recuperadas de nuevo, lo que lleva a la duplicación de mensajes de nuevo.
+Por otro lado, si tu bot está bajo una gran carga y el sondeo de actualizaciones se ralentiza debido a las [restricciones de carga automática](../plugins/runner.md#sink), aumentan las posibilidades de que algunas actualizaciones sean recuperadas de nuevo, lo que lleva a la duplicación de mensajes de nuevo.
 Por lo tanto, el precio de la concurrencia total es que no se puede garantizar el procesamiento _al menos una vez_ ni _como máximo una vez_.

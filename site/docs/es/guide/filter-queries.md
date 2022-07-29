@@ -204,7 +204,7 @@ Como ejemplo, puede detectar que `ctx.msg.text` es una propiedad necesaria para 
 ## Consejos útiles
 
 Aquí hay algunas características menos conocidas de las consultas de filtro que pueden ser útiles.
-Algunas de ellas son un poco avanzadas, así que no dudes en pasar a [la siguiente sección](./commands.md).
+Algunas de ellas son un poco avanzadas, así que no dudes en pasar a la [siguiente sección](./commands.md).
 
 ### Actualizaciones de los miembros del chat
 
