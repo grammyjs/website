@@ -76,11 +76,11 @@ bot.on("message:voice", async (ctx) => {
 ```
 
 ::: tip Pasar un file_id personalizado a getFile
-En el objeto de contexto, `getFile` es [un acceso directo](../guide/context.md#shortcuts), y obtendrá la información de un archivo en el mensaje actual.
+En el objeto de contexto, `getFile` es [un acceso directo](../guide/context.md#atajos), y obtendrá la información de un archivo en el mensaje actual.
 Si quieres obtener un archivo diferente mientras manejas un mensaje, utiliza `ctx.api.getFile(file_id)` en su lugar.
 :::
 
-> Consulta the [`:media` and `:file` shortcuts](../guide/filter-queries.md#shortcuts) para las consultas de filtro si quieres recibir cualquier tipo de archivo.
+> Consulta the [`:media` and `:file` shortcuts](../guide/filter-queries.md#accesos-directos) para las consultas de filtro si quieres recibir cualquier tipo de archivo.
 
 Una vez que hayas llamado a `getFile`, puedes usar la ruta de archivo devuelta para descargar el archivo usando esta URL `https://api.telegram.org/file/bot<token>/<ruta del archivo>`, donde `<token>` debe ser reemplazado por tu token de bot.
 
@@ -246,7 +246,7 @@ new InputFile({ url: "https://grammy.dev/Y.png" }); // equivalente
 
 ### Añadir un título
 
-Cuando se envían archivos, se pueden especificar más opciones en un objeto de opciones de tipo `Other`, exactamente como se explicó [anteriormente](./basics.md#sending-messages).
+Cuando se envían archivos, se pueden especificar más opciones en un objeto de opciones de tipo `Other`, exactamente como se explicó [anteriormente](./basics.md#envío-de-mensajes).
 Por ejemplo, esto le permite enviar subtítulos.
 
 ```ts

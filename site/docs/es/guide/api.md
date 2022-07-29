@@ -40,7 +40,7 @@ Ejemplo: `sendMessage` en el [Telegram Bot API Reference](https://core.telegram.
 
 ### Llamar a un Método
 
-Puedes llamar a los métodos de la API a través de `bot.api`, o [equivalentemente](./context.md#available-actions) a través de `ctx.api`:
+Puedes llamar a los métodos de la API a través de `bot.api`, o [equivalentemente](./context.md#acciones-disponibles) a través de `ctx.api`:
 
 ```ts
 async function sendHelloTo12345() {
@@ -58,7 +58,7 @@ Estrictamente hablando, todos los métodos de la API del Bot esperan un objeto J
 Fíjate, sin embargo, en que `sendMessage` en el ejemplo anterior recibe dos argumentos, un identificador de chat y una cadena.
 grammY sabe que estos dos valores pertenecen a la propiedad `chat_id` y `text`, respectivamente, y construirá el objeto JSON correcto para ti.
 
-Como se mencionó [anteriormente](./basics.md#sending-messages), puede especificar otras opciones en el tercer argumento de tipo `Other`:
+Como se mencionó [anteriormente](./basics.md#envío-de-mensajes), puede especificar otras opciones en el tercer argumento de tipo `Other`:
 
 ```ts
 async function sendHelloTo12345() {

@@ -12,8 +12,8 @@ Lo más importante, esta sección te enseñará [cómo atrapar errores](#atrapan
 
 Después, veremos los tres tipos de errores que tu bot puede encontrar.
 
-| Nombre                                   | Propósito                                                                                                                 |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| Nombre                                  | Propósito                                                                                                                 |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
 | [`BotError`](#el-objeto-boterror)       | Objeto de error que envuelve cualquier error lanzado en su middleware (por ejemplo, los dos errores siguientes)           |
 | [`GrammyError`](#el-objeto-grammyerror) | Lanzado si el servidor de la API del Bot devuelve `ok: false`, indicando que su solicitud de la API no era válida y falló |
 | [`HttpError`](#el-objeto-httperror)     | Se lanza si no se puede acceder al servidor de la API del Bot                                                             |
@@ -87,7 +87,7 @@ El objeto de error contiene información sobre la razón por la que la petición
 
 Raramente verás este tipo de error, a menos que tu infraestructura de red sea inestable, o que el servidor del Bot API de tu bot esté temporalmente fuera de línea.
 
-> Ten en cuenta que si se puede contactar con el servidor de la API del bot, pero devuelve `ok: false` para una llamada a un método determinado, se lanza un [`GrammyError`](../guide/errors.md#the-grammyerror-object) en su lugar.
+> Ten en cuenta que si se puede contactar con el servidor de la API del bot, pero devuelve `ok: false` para una llamada a un método determinado, se lanza un [`GrammyError`](../guide/errors.md#el-objeto-grammyerror) en su lugar.
 
 Consulta la clase `HttpError` en la [Referencia de la API de grammY](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/HttpError).
 

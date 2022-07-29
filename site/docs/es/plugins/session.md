@@ -197,7 +197,7 @@ bot.start();
 </CodeGroupItem>
 </CodeGroup>
 
-Nótese que también tenemos que [ajustar el tipo de contexto](../guide/context.md#customising-the-context-object) para que la sesión esté disponible en él.
+Nótese que también tenemos que [ajustar el tipo de contexto](../guide/context.md#personalización-del-objeto-de-contexto) para que la sesión esté disponible en él.
 El context flavor se llama `SessionFlavor`.
 
 ### Datos de la sesión inicial

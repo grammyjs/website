@@ -71,7 +71,7 @@ bot.hears("ping", async (ctx) => {
 
 > Tenga en cuenta que sólo el envío de un mensaje a través de `ctx.reply` no **significa que usted está respondiendo automáticamente a cualquier cosa.
 > En su lugar, debes especificar `reply_to_message_id` para ello.
-> La función `ctx.reply` es sólo un alias de `ctx.api.sendMessage`, ver [la siguiente sección](./context.md#available-actions).
+> La función `ctx.reply` es sólo un alias de `ctx.api.sendMessage`, ver [la siguiente sección](./context.md#acciones-disponibles).
 
 ## Envío de mensajes con formato
 

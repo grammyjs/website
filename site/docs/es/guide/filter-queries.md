@@ -72,7 +72,7 @@ bot.on("::email"); // mensajes o publicaciones de canales con email en texto o p
 ```
 
 Si se omite el valor _first_, se pueden obtener tanto los mensajes como los mensajes del canal.
-[Recuerde](./context.md#available-actions) que `ctx.msg` le da acceso tanto a los mensajes como a las publicaciones del canal, lo que coincida con la consulta.
+[Recuerde](./context.md#acciones-disponibles) que `ctx.msg` le da acceso tanto a los mensajes como a las publicaciones del canal, lo que coincida con la consulta.
 
 Si se omite el valor _segundo_, se obtiene acceso tanto a las entidades como a los subtítulos.
 Puede omitir tanto la primera como la segunda parte al mismo tiempo.
