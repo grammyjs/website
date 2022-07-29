@@ -122,7 +122,7 @@ async function greeting(conversation: MyConversation, ctx: MyContext) {
 ```
 
 Inside of your conversation builder function, you can now define how the conversation should look.
-Before we go in depth about every feature of this plugin, let's have a look at a more complex example than [the simple one](#simple-example) above.
+Before we go in depth about every feature of this plugin, let's have a look at a more complex example than the [simple one](#simple-example) above.
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
@@ -346,7 +346,7 @@ async function waitForMe(conversation, ctx) {
 An update can mean that a text message was sent, or a button was pressed, or something was edited, or virtually any other action was performed by the user.
 Check out the full list in the Telegram docs [here](https://core.telegram.org/bots/api#update).
 
-Usually, outside of the conversations plugin, every one of these updates would be handled by [the middleware system](/guide/middleware.md) of your bot.
+Usually, outside of the conversations plugin, each of these updates would be handled by the [middleware system](/guide/middleware.md) of your bot.
 Hence, your bot would handle the update via a context object which gets passed to your handlers.
 
 In conversations, you will obtain this new context object from the `wait` call.
@@ -476,7 +476,7 @@ We will now go through a few concepts that you already know from programming, an
 
 Imagine that all code below is written inside a conversation builder function.
 
-You can declare variables and do whatever you want with them.
+You can declare variables and do whatever you want with them:
 
 ```ts
 await ctx.reply("Send me your favorite numbers, separated by commas!");
@@ -488,7 +488,7 @@ const sum = message.text
 await ctx.reply("The sum of these numbers is: " + sum);
 ```
 
-Branching works, too.
+Branching works, too:
 
 ```ts
 await ctx.reply("Send me a photo!");
@@ -580,13 +580,13 @@ See how the captcha function can be reused in different places in your code.
 > If you want to create a real captcha, you may want to use [parallel conversations](#parallel-conversations).
 
 If you want, you can also split your code across even more fuctions, or use recursion, mutual recursion, generators, and so on.
-(Just make sure that all functions follow [the three rules](#golden-rules-of-conversations).)
+(Just make sure that all functions follow the [three rules](#golden-rules-of-conversations).)
 
 Naturally, you can use error handling in your functions, too.
 Regular `try`/`catch` statements work just fine, also across functions.
 After all, conversations are just JavaScript.
 
-If the main conversation function throws, the error will propagate further into [the error handling mechanisms](/guide/errors.md) of your bot.
+If the main conversation function throws, the error will propagate further into the [error handling mechanisms](/guide/errors.md) of your bot.
 
 ## Modules and Classes
 
@@ -824,7 +824,7 @@ If wait calls would block until the next update arrives, it means that the middl
 
 - For built-in polling, this means that no further updates can be processed until the current one is done.
   Hence, the bot would simply be blocked forever.
-- For [the grammY runner](./runner.md), the bot would not be blocked.
+- For [grammY runner](./runner.md), the bot would not be blocked.
   However, when processing thousands of conversations in parallel with different users, it would consume potentially very large amounts of memory.
   If many users stop responding, this leaves the bot stuck in the middle of countless conversations.
 - Webhooks have their own whole [category of problems](/guide/deployment-types.html#ending-webhook-requests-in-time) with long-running middleware.
