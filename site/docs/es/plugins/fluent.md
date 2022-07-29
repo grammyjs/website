@@ -4,6 +4,12 @@
 Tiene una sintaxis muy potente y elegante que permite a cualquiera escribir traducciones eficientes y totalmente comprensibles.
 Este plugin aprovecha este increíble sistema de localización para hacer que los bots alimentados por grammY sean fluidos con traducciones de alta calidad.
 
+::: tip No se debe confundir
+No confundas esto con [i18n](./i18n.md).
+
+[i18n](./i18n.md) es una versión mejorada de este plugin que funciona tanto en Deno como en Node.js.
+:::
+
 ## Inicializar Fluent
 
 Lo primero que hay que hacer es inicializar una instancia de Fluent:
@@ -82,10 +88,8 @@ Si no estás familiarizado con este concepto, deberías leer los documentos ofic
 import { Context } from "grammy";
 import { FluentContextFlavor } from "@grammyjs/fluent";
 
-// Extiende tu tipo de contexto de aplicación con la interfaz de sabor proporcionada.
-export type MyAppContext =
-  & Context
-  & FluentContextFlavor;
+// Extiende el context type de tu aplicación con la interfaz flavor proporcionada.
+export type MyAppContext = Context & FluentContextFlavor;
 ```
 
 Tendrás que crear tu instancia de bot de la siguiente manera para poder utilizar el tipo de contexto aumentado:
@@ -97,12 +101,14 @@ const bot = new Bot<MyAppContext>();
 Y el último paso sería registrar el propio plugin de Fluent con grammY:
 
 ```typescript
-bot.use(useFluent({
-  fluent,
-}));
+bot.use(
+  useFluent({
+    fluent,
+  }),
+);
 ```
 
-Asegúrate de pasar la [instancia de Fluent previamente creada](#initialize-fluent).
+Asegúrate de pasar la [instancia de Fluent previamente creada](#inicializar-fluent).
 
 ## Renderizar los mensajes localizados
 
@@ -113,10 +119,12 @@ Vamos a hacerlo definiendo un comando de prueba en nuestro bot:
 bot.command("i18n_test", async (ctx) => {
   // Llama al helper "translate" o "t" para renderizar el
   // mensaje especificando su ID y parámetros adicionales:
-  await ctx.reply(ctx.t("welcome", {
-    nombre: ctx.from.first_name,
-    applesCount: 1,
-  }));
+  await ctx.reply(
+    ctx.t("bienvenido", {
+      name: ctx.from.first_name,
+      applesCount: 1,
+    }),
+  );
 });
 ```
 
