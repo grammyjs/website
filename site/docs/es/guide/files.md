@@ -13,7 +13,7 @@ Esto implica el manejo de los archivos que se adjuntan a los mensajes.
 ## Cómo funcionan los archivos para los bots de Telegram
 
 > Esta sección explica cómo funcionan los archivos para los bots de Telegram.
-> Si quieres saber cómo puedes trabajar con archivos en grammY desplázate hacia abajo para [descargar](#receiving-files) y [subir](#sending-files) archivos.
+> Si quieres saber cómo puedes trabajar con archivos en grammY desplázate hacia abajo para [descargar](#reciviendo-archivos) y [subir](#envío-de-archivos) archivos.
 
 Los archivos se almacenan por separado de los mensajes.
 Un archivo en los servidores de Telegram es identificado por un `file_id`, que es sólo una larga cadena de caracteres.

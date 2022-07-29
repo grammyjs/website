@@ -8,15 +8,15 @@ next: ./inline-queries.md
 Cada uno de los errores causados por tu middleware será capturado por grammY.
 Deberías instalar un manejador de errores personalizado para manejar los errores.
 
-Lo más importante, esta sección te enseñará [cómo atrapar errores](#catching-errors) que pueden ser lanzados.
+Lo más importante, esta sección te enseñará [cómo atrapar errores](#atrapando-errores) que pueden ser lanzados.
 
 Después, veremos los tres tipos de errores que tu bot puede encontrar.
 
 | Nombre                                   | Propósito                                                                                                                 |
 | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| [`BotError`](#the-boterror-object)       | Objeto de error que envuelve cualquier error lanzado en su middleware (por ejemplo, los dos errores siguientes)           |
-| [`GrammyError`](#the-grammyerror-object) | Lanzado si el servidor de la API del Bot devuelve `ok: false`, indicando que su solicitud de la API no era válida y falló |
-| [`HttpError`](#the-httperror-object)     | Se lanza si no se puede acceder al servidor de la API del Bot                                                             |
+| [`BotError`](#el-objeto-boterror)       | Objeto de error que envuelve cualquier error lanzado en su middleware (por ejemplo, los dos errores siguientes)           |
+| [`GrammyError`](#el-objeto-grammyerror) | Lanzado si el servidor de la API del Bot devuelve `ok: false`, indicando que su solicitud de la API no era válida y falló |
+| [`HttpError`](#el-objeto-httperror)     | Se lanza si no se puede acceder al servidor de la API del Bot                                                             |
 
 Un mecanismo más avanzado de manejo de errores se puede encontrar [aquí abajo](#error-boundaries).
 

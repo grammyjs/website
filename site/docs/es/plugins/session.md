@@ -2,7 +2,7 @@
 
 Aunque siempre puedes escribir tu propio código para conectarte a un almacenamiento de datos de tu elección, grammY soporta un patrón de almacenamiento muy conveniente llamado _sessions_.
 
-> [Salta hacia abajo](#how-to-use-sessions) si sabes cómo funcionan las sesiones.
+> [Salta hacia abajo](#cómo-usar-las-sesiones) si sabes cómo funcionan las sesiones.
 
 ## ¿Por qué debemos pensar en el almacenamiento?
 
@@ -24,7 +24,7 @@ Puedes utilizar el almacenamiento de sesiones de grammY, que no necesita ninguna
 
 > Naturalmente, hay muchos otros servicios que ofrecen almacenamiento de datos como servicio, y grammY se integra perfectamente con ellos también.
 > Si quieres manejar tu propia base de datos, ten por seguro que grammY lo soporta igualmente bien.
-> [Desplázate hacia abajo](#known-storage-adapters) para ver qué integraciones están actualmente disponibles.
+> [Desplázate hacia abajo](#adaptadores-de-almacenamiento-conocidos) para ver qué integraciones están actualmente disponibles.
 
 ## ¿Qué son las sesiones?
 
@@ -243,7 +243,7 @@ Si no la especifica, la lectura de `ctx.session` arrojará un error para los nue
 ### Claves de sesión
 
 > Esta sección describe una característica avanzada de la que la mayoría de la gente no tiene que preocuparse.
-> Es posible que desee continuar con la sección sobre [almacenamiento de sus datos](#storing-your-data).
+> Es posible que desee continuar con la sección sobre [almacenamiento de sus datos](#almacenamiento-de-sus-datos).
 
 Puedes especificar qué clave de sesión usar pasando una función llamada `getSessionKey` a las [opciones](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/SessionOptions#getSessionKey).
 De esta manera, puedes cambiar fundamentalmente el funcionamiento del plugin de sesión.
@@ -332,12 +332,12 @@ Esto es conveniente cuando desarrollas tu bot o si ejecutas pruebas automáticas
 En producción, querrás persistir tus datos, por ejemplo en un archivo, una base de datos, o algún otro almacenamiento.
 
 Deberías utilizar la opción `storage` del middleware de sesión para conectarlo a tu almacén de datos.
-Puede que ya haya un adaptador de almacenamiento escrito para grammY que puedas utilizar (ver [abajo](#known-storage-adapters), pero si no, normalmente sólo se necesitan 5 líneas de código para implementar uno tú mismo.
+Puede que ya haya un adaptador de almacenamiento escrito para grammY que puedas utilizar (ver [abajo](#adaptadores-de-almacenamiento-conocidos), pero si no, normalmente sólo se necesitan 5 líneas de código para implementar uno tú mismo.
 
 ## Lazy Sessions
 
 > Esta sección describe una optimización del rendimiento de la que la mayoría de la gente no tiene que preocuparse.
-> Es posible que desee continuar con la sección sobre [adaptadores de almacenamiento conocidos](#known-storage-adapters).
+> Es posible que desee continuar con la sección sobre [adaptadores de almacenamiento conocidos](#adaptadores-de-almacenamiento-conocidos).
 
 Las lazy sessions son una implementación alternativa de las sesiones que puede reducir significativamente el tráfico de la base de datos de tu bot al omitir operaciones de lectura y escritura superfluas.
 
@@ -418,8 +418,8 @@ En el código del plugin, simplemente espere `ctx.session` todo el tiempo: si se
 
 ## Adaptadores de almacenamiento conocidos
 
-Por defecto, las sesiones serán almacenadas [en su memoria](#ram-default) por el adaptador de almacenamiento incorporado.
-También puedes utilizar las sesiones persistentes que grammY [ofrece gratuitamente](#free-storage), o conectarte a [almacenamientos externos](#external-storage-solutions).
+Por defecto, las sesiones serán almacenadas [en su memoria](#ram-por-defecto) por el adaptador de almacenamiento incorporado.
+También puedes utilizar las sesiones persistentes que grammY [ofrece gratuitamente](#free-storage), o conectarte a [almacenamientos externos](#soluciones-de-almacenamiento-externo).
 
 Así es como puedes instalar uno de los adaptadores de almacenamiento desde abajo.
 
