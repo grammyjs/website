@@ -18,8 +18,8 @@ Here is a list of things that you may want to keep in mind when hosting a large 
 
 1. Send files by path or `Buffer` instead of by stream, or at least make sure you [know the pitfalls](./transformers.md#use-cases-of-transformer-functions).
 2. Use `bot.on("callback_query:data")` as the fallback handler to [react to all callback queries](../plugins/keyboard.md#responding-to-clicks).
-3. Use [the `transformer-throttler` plugin](../plugins/transformer-throttler.md) to avoid hitting rate limits.
-4. **Optional.** Consider using [the `auto-retry` plugin](../plugins/auto-retry.md) to automatically handle flood wait errors.
+3. Use the [`transformer-throttler` plugin](../plugins/transformer-throttler.md) to avoid hitting rate limits.
+4. **Optional.** Consider using the [`auto-retry` plugin](../plugins/auto-retry.md) to automatically handle flood wait errors.
 
 ## Scaling
 
