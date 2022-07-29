@@ -169,7 +169,7 @@ Can you figure out how this bot will work?
 
 ## Installing and Entering a Conversation
 
-First of all, you **must** use [the session plugin](/plugins/session.md) if you want to use the conversations plugin.
+First of all, you **must** use the [session plugin](/plugins/session.md) if you want to use the conversations plugin.
 You also have to install the conversations plugin itself, before you can register individual conversations on your bot.
 
 ```ts
@@ -414,7 +414,7 @@ async function waitForText(conversation, ctx) {
 </CodeGroupItem>
 </CodeGroup>
 
-Check out [the API reference of this plugin](https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts/~/ConversationHandle#wait) to see all available methods that are similar to `wait`.
+Check out the [API reference](https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts/~/ConversationHandle#wait) to see all available methods that are similar to `wait`.
 
 Let's now see how wait calls actually work.
 As mentioned earlier, **they don't _literally_ make your bot wait**, even though we can program conversations as if that was the case.
