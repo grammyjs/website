@@ -796,9 +796,6 @@ console.log(stats); // { "enterGroup": 1 }
 
 This will be provided as an object that has the conversation identifiers as keys, and a number indicating the number of running conversations for each identifier.
 
-<!-- TODO: timeouts -->
-<!-- TODO: external events -->
-
 ## How It Works
 
 > [Remember](#golden-rules-of-conversations) that the code inside your conversation builder functions must follow three rules.
