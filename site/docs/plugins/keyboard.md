@@ -256,7 +256,7 @@ new Keyboard()
   .resized();
 ```
 
-It does not matter when you call `resized` (first or last or somewhere in between).
+It does not matter whether you call `resized` first, last or somewhere in between.
 The result will always be the same.
 
 #### One-Time Custom Keyboards
@@ -270,7 +270,7 @@ new Keyboard()
   .oneTime();
 ```
 
-It does not matter when you call `oneTime` (first or last or somewhere in between).
+It does not matter whether you call `oneTime` first, last or somewhere in between.
 The result will always be the same.
 
 #### Input Field Placeholder
@@ -284,7 +284,7 @@ new Keyboard()
   .placeholder("Decide now!");
 ```
 
-It does not matter when you call `placeholder` (first or last or somewhere in between).
+It does not matter whether you call `placeholder` first, last or somewhere in between.
 The result will always be the same.
 
 #### Selectively Send Custom Keyboards
@@ -298,7 +298,7 @@ new Keyboard()
   .selected();
 ```
 
-It does not matter when you call `selected` (first or last or somewhere in between).
+It does not matter whether you call `selected` first, last or somewhere in between.
 The result will always be the same.
 
 ### Responding to Clicks
