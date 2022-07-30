@@ -114,7 +114,7 @@ They could be changed arbitrarily at any point in time, so we strongly advise yo
 
 #### Type Definitions on Deno
 
-On Deno, you can simply import type definitions from `types.ts` instead of `mod.ts`.
+On Deno, you can simply import type definitions from `types.ts` which is right next to `mod.ts`:
 
 ```ts
 import { type Chat } from "https://deno.land/x/grammy/types.ts";
