@@ -66,3 +66,62 @@ Optionally, you can use the [router plugin](../plugins/router.md) or to bundle u
 
 However, remember that the exact way of how to structure your bot is very hard to say generically.
 As always in software, do it in a way that makes the most sense :wink:
+
+## Type Definitions for Extracted Middleware
+
+The above structure using composers works well.
+However, sometimes you may find yourself in the situation that you want to extract a handler into a function, rather than creating a new comopser and adding the logic to it.
+This requires you to add the correct middleware type definitions to your handlers because they can no longer be inferred through the composer.
+
+grammY exports type definitions for all **narrowed types of middleware**, such as the middleware that you can pass to command handlers.
+In addition, it exports the type definitions for the **narrowed context objects** that are being used in that middleware.
+Both types are parametrized with your [custom context object](../guide/context.md#customizing-the-context-object).
+Hence, a command handler would have the type `CommandMiddleware<MyContext>` and its context object `CommandContext<MyContext>`.
+They can be used as follows.
+
+<CodeGroup>
+  <CodeGroupItem title="Node.js" active>
+
+```ts
+import {
+  type CallbackQueryMiddleware,
+  type CommandContext,
+  type NextFunction,
+} from "grammy";
+
+function commandMiddleware(ctx: CommandContext<MyContext>, next: NextFunction) {
+  // command handling
+}
+const callbackQueryMiddleware: CallbackQueryMiddleware<MyContext> = (ctx) => {
+  // callback query handling
+};
+
+bot.command(["start", "help"], commandMiddleware);
+bot.callbackQuery("query-data", callbackQueryMiddleware);
+```
+
+</CodeGroupItem>
+  <CodeGroupItem title="Deno">
+
+```ts
+import {
+  type CallbackQueryMiddleware,
+  type CommandContext,
+  type NextFunction,
+} from "https://deno.land/x/grammy/mod.ts";
+
+function commandMiddleware(ctx: CommandContext<MyContext>, next: NextFunction) {
+  // command handling
+}
+const callbackQueryMiddleware: CallbackQueryMiddleware<MyContext> = (ctx) => {
+  // callback query handling
+};
+
+bot.command(["start", "help"], commandMiddleware);
+bot.callbackQuery("query-data", callbackQueryMiddleware);
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+Check out the [type aliases in the API reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts#Type_Aliases) of grammY to see an overview over all type aliases that grammY exports.
