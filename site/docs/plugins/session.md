@@ -554,6 +554,8 @@ For example, the storage adapter for Supabase can be imported from `https://deno
 Check out the respective repositories about each individual setup.
 They contain information about how to connect them to your storage solution.
 
+You may also want to [scroll down](#storage-enhancements) to see how the session plugin is able to enhance any storage adapter.
+
 ## Multi Sessions
 
 The session plugin is able to store different fragments of your session data in different places.
@@ -687,6 +689,151 @@ Plugin developers that make use of `ctx.session` should always allow users to pa
 In the plugin code, simply await `ctx.session` all the time: if a non-promise object is passed, this will simply be evaluated to itself, so you effectively only write code for lazy sessions and thus support strict sessions automatically.
 :::
 
+## Storage Enhancements
+
+The session plugin is able to enhance any storage adapter by adding more features to the storage: [timeouts](#timeouts) and [migrations](#migrations).
+
+They can be installed using the `enhanceStorage` function.
+
+```ts
+// Create a storage adapter.
+const storage = freeStorage(bot.token); // adjust this
+// Enhance the storage adapter.
+const enhanced = enhanceStorage({
+  storage,
+  // more config here
+});
+// Use the enhanced storage adapter.
+bot.use(session({ storage: enhanced }));
+```
+
+You can also use both at the same time.
+
+### Timeouts
+
+The timeouts enhancement can add an expiry date to the session data.
+This means that you can specify a time period, and if the session is never changed during this time, the data for the particular chat will be deleted.
+
+You can use session timeouts via the `millisecondsToLive` option.
+
+```ts
+const enhanced = enhanceStorage({
+  storage,
+  millisecondsToLive: 30 * 60 * 1000, // 30 min
+});
+```
+
+Note that the actual deletion of the data will only happen the next time the respective session data is read.
+
+### Migrations
+
+Migrations are useful if you develop your bot further while there is already existing session data.
+You can use them if you want to change your session data without breaking all previous data.
+
+This works by giving version numbers to the data, and then writing small migration functions.
+The migration functions define how to upgrade session data from one version to the next.
+
+We will try to illustrate this by example.
+Let's say that you stored information about the pet of a user.
+So far, you only stored the names of the pets in a string array in `ctx.session.petNames`.
+
+```ts
+interface SessionData {
+  petNames: string[];
+}
+```
+
+Now you get the idea that you also want to store the age of the pets.
+
+You could do this:
+
+```ts
+interface SessionData {
+  petNames: string[];
+  petBirthdays?: number[];
+}
+```
+
+This would not break your existing session data.
+However, this is not so great, because now the names and the birthdays are stored in different places.
+Ideally, your session data should look like this:
+
+```ts
+interface Pet {
+  name: string;
+  birthday?: number;
+}
+
+interface SessionData {
+  pets: Pet[];
+}
+```
+
+Migration functions let you transform the old string array into the new array of pet objects.
+
+<CodeGroup>
+<CodeGroupItem title="TypeScript" active>
+
+```ts
+function addBirthdayToPets(old: { petNames: string[] }): SessionData {
+  return {
+    pets: old.petNames.map((name) => ({ name })),
+  };
+}
+
+const enhanced = enhanceStorage({
+  storage,
+  migrations: {
+    1: addBirthdayToPets,
+  },
+});
+```
+
+</CodeGroupItem>
+<CodeGroupItem title="JavaScript">
+
+```ts
+function addBirthdayToPets(old) {
+  return {
+    pets: old.petNames.map((name) => ({ name })),
+  };
+}
+
+const enhanced = enhanceStorage({
+  storage,
+  migrations: {
+    1: addBirthdayToPets,
+  },
+});
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+Whenever session data is read, the storage enhancement will check if the session data is already at version `1`.
+If the version is lower (or missing because you were not using this feature before) then the migration function will be run.
+This upgrades the data to version `1`.
+Hence, in your bot, you can always just assume that your session data has the most up to date structure, and the storage enhancement will take care of the rest and migrate your data as necessary.
+
+As time evolves and your bot changes further, you can add more and mre migration functions:
+
+```ts
+const enhanced = enhanceStorage({
+  storage,
+  migrations: {
+    1: addBirthdayToPets,
+    2: addIsFavoriteFlagToPets,
+    3: addUserSettings,
+    10: extendUserSettings,
+    10.1: fixUserSettings,
+    11: compressData,
+  },
+});
+```
+
+You can pick any JavaScript numbers as versions.
+No matter how far the session data for a chat has evolved, as soon as it is read, it will be migrated through the versions until it uses the most recent structure.
+
 ## Plugin Summary
 
 This plugin is built-in into the core of grammY.
@@ -694,6 +841,3 @@ You don't need to install anything to use it.
 Simply import everything from grammY itself.
 
 Also, both the documentation and the API reference of this plugin are unified with the core package.
-
-```
-```
