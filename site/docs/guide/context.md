@@ -109,6 +109,7 @@ if (ctx.hasCallbackQuery(/query-data-\d+/)) {
 
 The same applies to all other has-checks.
 Check out the [API reference of the context object](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Context#has) to see a list of all has-checks.
+Also check out the static property `Context.has` in the [API reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Context#Static_Properties) that lets you create efficient predicate functions for probing a lot of context objects.
 
 ## Available Actions
 
