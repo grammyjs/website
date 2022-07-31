@@ -92,7 +92,7 @@ Officially, Node.js only supports importing from sub-paths properly since Node.j
 Consequently, TypeScript requires the `moduleResolution` to be set to `node16` or `nodenext`.
 Adjust your `tsconfig.json` accordingly and add the highlighted line:
 
-```jsonc{4}
+```json{4}
 {
   "compilerOptions": {
     // ...
