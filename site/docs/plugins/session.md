@@ -335,88 +335,6 @@ In production, you would want to persist your data, for example in a file, a dat
 You should use the `storage` option of the session middleware to connect it to your datastore.
 There may already be a storage adapter written for grammY that you can use (see [below](#known-storage-adapters)), but if not, it usually only takes 5 lines of code to implement one yourself.
 
-## Lazy Sessions
-
-> This section describes a performance optimization that most people do not have to worry about.
-> You may want to continue with the section about [known storage adapters](#known-storage-adapters).
-
-Lazy sessions is an alternative implementation of sessions that can significantly reduce the database traffic of your bot by skipping superfluous read and write operations.
-
-Let's assume that your bot is in a group chat where it does not respond to regular text messages, but only to commands.
-Without sessions, this would happen:
-
-1. Update with new text message is sent to your bot
-2. No handler is invoked, so no action is taken
-3. The middleware completes immediately
-
-As soon as you install (default, strict) sessions, which directly provide the session data on the context object, this happens:
-
-1. Update with new text message is sent to your bot
-2. Session data is loaded from session storage (e.g. database)
-3. No handler is invoked, so no action is taken
-4. Identical session data is written back to session storage
-5. The middleware completes, and has performed a read and a write to the data storage
-
-Depending on the nature of your bot, this may lead to a lot of superfluous reads and writes.
-Lazy sessions allow you to skip steps 2. and 4. if it turns out that no invoked handler needs session data.
-In that case, no data will be read from the data storage, nor written back to it.
-
-This is achieved by intercepting access to `ctx.session`.
-If no handler is invoked, then `ctx.session` will never be accessed.
-Lazy sessions use this as an indicator to prevent database communication.
-
-In practice, instead of having the session data available under `ctx.session`, you will now have _a promise of the session data_ available under `ctx.session`.
-
-```ts
-// Default sessions (strict sessions)
-bot.command("settings", (ctx) => {
-  // `session` is the session data
-  const session = ctx.session;
-});
-
-// Lazy sessions
-bot.command("settings", async (ctx) => {
-  // `promise` is a Promise of the session data, and
-  const promise = ctx.session;
-  // `session` is the session data
-  const session = await ctx.session;
-});
-```
-
-If you never access `ctx.session`, no operations will be performed, but as soon as you access the `session` property on the context object, the read operation will be triggered.
-If you never trigger the read (or directly assign a new value to `ctx.session`), we know that we also won't need to write any data back, because there is no way it could have been altered.
-Consequently, we skip the write operation, too.
-As a result, we achieve minimal read and write operations, but you can use session almost identical to before, just with a few `async` and `await` keywords mixed into your code.
-
-So what is necessary to use lazy sessions instead of the default (strict) ones?
-You mainly have to do three things:
-
-1. Flavor your context with `LazySessionFlavor` instead of `SessionFlavor`.
-   They work the same way, just that `ctx.session` is wrapped inside a promise for the lazy variant.
-2. Use `lazySession` instead of `session` to register your session middleware.
-3. Always put an inline `await ctx.session` instead of `ctx.session` everywhere in your middleware, for both reads and writes.
-   Don't worry: you can `await` the promise with your session data as many times as you want, but you will always refer to the same value, so there are never going to be duplicate reads for an update.
-
-Note that with lazy sessions, you can assign both objects and promises of objects to `ctx.session`.
-If you set `ctx.session` to be a promise, it will be `await`ed before writing the data back to the data storage.
-This would allow for the following code:
-
-```ts
-bot.command("reset", (ctx) => {
-  // Much shorter than having to `await ctx.session` first:
-  ctx.session = ctx.session.then((stats) => {
-    stats.counter = 0;
-  });
-});
-```
-
-One may argue well that explicitly using `await` is preferable over assigning a promise to `ctx.session`, the point is that you _could_ do this if you like that style better for some reason.
-
-::: tip Plugins That Need Sessions
-Plugin developers that make use of `ctx.session` should always allow users to pass `SessionFlavor | LazySessionFlavor` and hence support both modi.
-In the plugin code, simply await `ctx.session` all the time: if a non-promise object is passed, this will simply be evaluated to itself, so you effectively only write code for lazy sessions and thus support strict sessions automatically.
-:::
-
 ## Known Storage Adapters
 
 By default, sessions will be stored [in your memory](#ram-default) by the built-in storage adapter.
@@ -636,6 +554,139 @@ For example, the storage adapter for Supabase can be imported from `https://deno
 Check out the respective repositories about each individual setup.
 They contain information about how to connect them to your storage solution.
 
+## Multi Sessions
+
+The session plugin is able to store different fragments of your session data in different places.
+Basically, this works as if you would install multiple independent instances of the the session plugin, each with a different configuration.
+
+Each of these data fragments will have a name under which they can store their data.
+You will then be able to access `ctx.session.foo` and `ctx.session.bar` and these values were loaded from different data storages, and they will also be written back to different data storages.
+Naturally, you can also use the same storage with different configuration.
+
+It is also possible to use different [session keys](#session-keys) for each fragment.
+As a result, you can store some data per chat and some data per user.
+
+> If you are using [grammY runner](./runner.md), make sure to configure `sequentialize` correctly by returning **all** session keys as constraints from the function.
+
+You can use this feature by passing `type: "multi"` to the session configuration.
+In turn, you will need to configure each fragment with its own config.
+
+```ts
+bot.use(session({
+  type: "multi",
+  foo: {
+    initial: () => ({ prop: 0 }),
+    storage: freeStorage(bot.token),
+  },
+  bar: {
+    initial: () => 'empty'
+    getSessionKey: (ctx) => ctx.from?.id.toString(),
+  },
+  baz: {},
+}));
+```
+
+Note that you must add a configuration entry for every fragment you want to use.
+If you wish to use the default configuration, you can specify an empty object (such as we do for `baz` in the above example).
+
+Your session data will still consist of an object with multiple properties.
+This is why your context flavor does not change.
+The above example could use this interface when customizing the context object:
+
+```ts
+interface SessionData {
+  foo: { prop: number };
+  bar: "empty" | "half" | "full";
+  baz: { width?: number; height?: number };
+}
+```
+
+You can then keep on using `SessionFlavor<SessionData>` for your context object.
+
+## Lazy Sessions
+
+> This section describes a performance optimization that most people do not have to worry about.
+
+Lazy sessions is an alternative implementation of sessions that can significantly reduce the database traffic of your bot by skipping superfluous read and write operations.
+
+Let's assume that your bot is in a group chat where it does not respond to regular text messages, but only to commands.
+Without sessions, this would happen:
+
+1. Update with new text message is sent to your bot
+2. No handler is invoked, so no action is taken
+3. The middleware completes immediately
+
+As soon as you install (default, strict) sessions, which directly provide the session data on the context object, this happens:
+
+1. Update with new text message is sent to your bot
+2. Session data is loaded from session storage (e.g. database)
+3. No handler is invoked, so no action is taken
+4. Identical session data is written back to session storage
+5. The middleware completes, and has performed a read and a write to the data storage
+
+Depending on the nature of your bot, this may lead to a lot of superfluous reads and writes.
+Lazy sessions allow you to skip steps 2. and 4. if it turns out that no invoked handler needs session data.
+In that case, no data will be read from the data storage, nor written back to it.
+
+This is achieved by intercepting access to `ctx.session`.
+If no handler is invoked, then `ctx.session` will never be accessed.
+Lazy sessions use this as an indicator to prevent database communication.
+
+In practice, instead of having the session data available under `ctx.session`, you will now have _a promise of the session data_ available under `ctx.session`.
+
+```ts
+// Default sessions (strict sessions)
+bot.command("settings", (ctx) => {
+  // `session` is the session data
+  const session = ctx.session;
+});
+
+// Lazy sessions
+bot.command("settings", async (ctx) => {
+  // `promise` is a Promise of the session data, and
+  const promise = ctx.session;
+  // `session` is the session data
+  const session = await ctx.session;
+});
+```
+
+If you never access `ctx.session`, no operations will be performed, but as soon as you access the `session` property on the context object, the read operation will be triggered.
+If you never trigger the read (or directly assign a new value to `ctx.session`), we know that we also won't need to write any data back, because there is no way it could have been altered.
+Consequently, we skip the write operation, too.
+As a result, we achieve minimal read and write operations, but you can use session almost identical to before, just with a few `async` and `await` keywords mixed into your code.
+
+So what is necessary to use lazy sessions instead of the default (strict) ones?
+You mainly have to do three things:
+
+1. Flavor your context with `LazySessionFlavor` instead of `SessionFlavor`.
+   They work the same way, just that `ctx.session` is wrapped inside a promise for the lazy variant.
+2. Use `lazySession` instead of `session` to register your session middleware.
+3. Always put an inline `await ctx.session` instead of `ctx.session` everywhere in your middleware, for both reads and writes.
+   Don't worry: you can `await` the promise with your session data as many times as you want, but you will always refer to the same value, so there are never going to be duplicate reads for an update.
+
+Note that with lazy sessions, you can assign both objects and promises of objects to `ctx.session`.
+If you set `ctx.session` to be a promise, it will be `await`ed before writing the data back to the data storage.
+This would allow for the following code:
+
+```ts
+bot.command("reset", (ctx) => {
+  // Much shorter than having to `await ctx.session` first:
+  ctx.session = ctx.session.then((stats) => {
+    stats.counter = 0;
+  });
+});
+```
+
+One may argue well that explicitly using `await` is preferable over assigning a promise to `ctx.session`, the point is that you _could_ do this if you like that style better for some reason.
+
+If you are combining lazy sessions with multi sessions (see [above](#multi-sessions)), then each fragment of the session data will be read and written independently.
+As a result, you will be able to load your session data only partially.
+
+::: tip Plugins That Need Sessions
+Plugin developers that make use of `ctx.session` should always allow users to pass `SessionFlavor | LazySessionFlavor` and hence support both modi.
+In the plugin code, simply await `ctx.session` all the time: if a non-promise object is passed, this will simply be evaluated to itself, so you effectively only write code for lazy sessions and thus support strict sessions automatically.
+:::
+
 ## Plugin Summary
 
 This plugin is built-in into the core of grammY.
@@ -643,3 +694,6 @@ You don't need to install anything to use it.
 Simply import everything from grammY itself.
 
 Also, both the documentation and the API reference of this plugin are unified with the core package.
+
+```
+```
