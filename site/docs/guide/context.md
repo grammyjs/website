@@ -83,6 +83,33 @@ bot.on("edited_message", (ctx) => {
 
 Hence, if you want to, you can forget about `ctx.message` and `ctx.channelPost` and `ctx.editedMessage` and so on and so forth, and just always use `ctx.msg` instead.
 
+## Probing via Has-checks
+
+The context object has a few methods that allow you to probe the contained data for certain things.
+For example, you can call `ctx.hasCommand("start")` to see if the context object contains a `/start` command.
+This is why the methods are collectively named _has-checks_.
+
+::: tip Know When to Use Has-checks
+
+This is the exact same logic that is used by `bot.command("start")`.
+Note that you should usually use [filter queries](./filter-queries.md) and similar methods.
+Using has-checks works best inside the [conversations plugin](../plugins/conversations.md).
+
+:::
+
+The has-checks correctly narrow down the context type.
+This means that checking if a context has callback query data will tell TypeScript that the context has the field `ctx.callbackQuery.data` present.
+
+```ts
+if (ctx.hasCallbackQuery(/query-data-\d+/)) {
+  // `ctx.callbackQuery.data` is known to be present here
+  const data: string = ctx.callbackQuery.data;
+}
+```
+
+The same applies to all other has-checks.
+Check out the [API reference of the context object](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Context#has) to see a list of all has-checks.
+
 ## Available Actions
 
 If you want to respond to a message from a user, you could write this:
