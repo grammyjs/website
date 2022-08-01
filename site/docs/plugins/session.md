@@ -666,7 +666,7 @@ You mainly have to do three things:
 3. Always put an inline `await ctx.session` instead of `ctx.session` everywhere in your middleware, for both reads and writes.
    Don't worry: You can `await` the promise with your session data as many times as you want, but you will always refer to the same value, so they are never going to be duplicate reads for an update.
 
-Note that with lazy sessions, you can assign both objects and promises of objects to `ctx.session`.
+Note that with Lazy Sessions, you can assign both objects and promises of objects to `ctx.session`.
 If you set `ctx.session` to be a promise, it will be `await`ed before writing the data back to the data storage.
 This would allow for the following code:
 
@@ -681,12 +681,12 @@ bot.command("reset", (ctx) => {
 
 One may argue well that explicitly using `await` is preferable over assigning a promise to `ctx.session`, the point is that you _could_ do this if you like that style better for some reason.
 
-If you are combining lazy sessions with multi sessions (see [above](#multi-sessions)), then each fragment of the session data will be read and written independently.
+If you are combining Lazy Sessions with multi sessions (see [above](#multi-sessions)), then each fragment of the session data will be read and written independently.
 As a result, you will be able to load your session data only partially.
 
 ::: tip Plugins That Need Sessions
 Plugin developers that make use of `ctx.session` should always allow users to pass `SessionFlavor | LazySessionFlavor` and hence support both modi.
-In the plugin code, simply await `ctx.session` all the time: if a non-promise object is passed, this will simply be evaluated to itself, so you effectively only write code for lazy sessions and thus support strict sessions automatically.
+In the plugin code, simply await `ctx.session` all the time: if a non-promise object is passed, this will simply be evaluated to itself, so you effectively only write code for Lazy Sessions and thus support strict sessions automatically.
 :::
 
 ## Storage Enhancements
