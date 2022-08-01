@@ -583,7 +583,7 @@ See how the captcha function can be reused in different places in your code.
 > If you want to create a real captcha, you may want to use [parallel conversations](#parallel-conversations).
 
 If you want, you can also split your code across even more fuctions, or use recursion, mutual recursion, generators, and so on.
-(Just make sure that all functions follow the [three rules](#golden-rules-of-conversations).)
+(Just make sure that all functions follow the [three rules](#three-golden-rules-of-conversations).)
 
 Naturally, you can use error handling in your functions, too.
 Regular `try`/`catch` statements work just fine, also across functions.
@@ -798,7 +798,7 @@ This will be provided as an object that has the conversation identifiers as keys
 
 ## How It Works
 
-> [Remember](#golden-rules-of-conversations) that the code inside your conversation builder functions must follow three rules.
+> [Remember](#three-golden-rules-of-conversations) that the code inside your conversation builder functions must follow three rules.
 > We are now going to see _why_ you need to build them that way.
 
 We are first going to see how this plugin works conceptually, before we elaborate on some details.
@@ -873,7 +873,7 @@ if (Math.random() < 0.5) {
 
 In that case, when calling the function, it may suddenly behave differently every time, so replaying the function will break!
 It could randomly work differently than the original execution.
-This is why point 3 exists, and [The Three Golden Rules](#three-golden-rules-of-conversations) must be followed.
+This is why point 3 exists, and the [Three Golden Rules](#three-golden-rules-of-conversations) must be followed.
 
 ### How to Intercept Function Execution
 
