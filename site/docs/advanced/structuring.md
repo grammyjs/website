@@ -75,7 +75,7 @@ This requires you to add the correct middleware type definitions to your handler
 
 grammY exports type definitions for all **narrowed types of middleware**, such as the middleware that you can pass to command handlers.
 In addition, it exports the type definitions for the **narrowed context objects** that are being used in that middleware.
-Both types are parametrized with your [custom context object](../guide/context.md#customizing-the-context-object).
+Both types are parameterized with your [custom context object](../guide/context.md#customizing-the-context-object).
 Hence, a command handler would have the type `CommandMiddleware<MyContext>` and its context object `CommandContext<MyContext>`.
 They can be used as follows.
 
@@ -124,4 +124,4 @@ bot.callbackQuery("query-data", callbackQueryMiddleware);
 </CodeGroupItem>
 </CodeGroup>
 
-Check out the [type aliases in the API reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts#Type_Aliases) of grammY to see an overview over all type aliases that grammY exports.
+Check out the [type aliases API reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts#Type_Aliases) to see an overview over all type aliases that grammY exports.
