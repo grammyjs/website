@@ -603,36 +603,36 @@ interface SessionData {
 }
 ```
 
-You can then keep on using `SessionFlavor<SessionData>` for your context object.
+You can then keep using `SessionFlavor<SessionData>` for your context object.
 
 ## Lazy Sessions
 
 > This section describes a performance optimization that most people do not have to worry about.
 
-Lazy sessions is an alternative implementation of sessions that can significantly reduce the database traffic of your bot by skipping superfluous read and write operations.
+Lazy Sessions is an alternative implementation of sessions that can significantly reduce the database traffic of your bot by skipping superfluous read and write operations.
 
 Let's assume that your bot is in a group chat where it does not respond to regular text messages, but only to commands.
 Without sessions, this would happen:
 
-1. Update with new text message is sent to your bot
-2. No handler is invoked, so no action is taken
-3. The middleware completes immediately
+1. Update with new text message is sent to your bot.
+2. No handler is invoked, so no action is taken.
+3. The middleware completes immediately.
 
-As soon as you install (default, strict) sessions, which directly provide the session data on the context object, this happens:
+As soon as you install default (strict) sessions, which directly provide the session data on the context object, this happens:
 
-1. Update with new text message is sent to your bot
-2. Session data is loaded from session storage (e.g. database)
-3. No handler is invoked, so no action is taken
-4. Identical session data is written back to session storage
-5. The middleware completes, and has performed a read and a write to the data storage
+1. Update with new text message is sent to your bot.
+2. Session data is loaded from session storage (e.g. database).
+3. No handler is invoked, so no action is taken.
+4. Identical session data is written back to session storage.
+5. The middleware completes, and has performed a read and a write to the data storage.
 
 Depending on the nature of your bot, this may lead to a lot of superfluous reads and writes.
-Lazy sessions allow you to skip steps 2. and 4. if it turns out that no invoked handler needs session data.
+Lazy Sessions allow you to skip steps 2. and 4. if it turns out that no invoked handler needs session data.
 In that case, no data will be read from the data storage, nor written back to it.
 
 This is achieved by intercepting access to `ctx.session`.
 If no handler is invoked, then `ctx.session` will never be accessed.
-Lazy sessions use this as an indicator to prevent database communication.
+Lazy Sessions use this as an indicator to prevent database communication.
 
 In practice, instead of having the session data available under `ctx.session`, you will now have _a promise of the session data_ available under `ctx.session`.
 
@@ -657,14 +657,14 @@ If you never trigger the read (or directly assign a new value to `ctx.session`),
 Consequently, we skip the write operation, too.
 As a result, we achieve minimal read and write operations, but you can use session almost identical to before, just with a few `async` and `await` keywords mixed into your code.
 
-So what is necessary to use lazy sessions instead of the default (strict) ones?
+So what is necessary to use Lazy Sessions instead of the default (strict) ones?
 You mainly have to do three things:
 
 1. Flavor your context with `LazySessionFlavor` instead of `SessionFlavor`.
    They work the same way, just that `ctx.session` is wrapped inside a promise for the lazy variant.
 2. Use `lazySession` instead of `session` to register your session middleware.
 3. Always put an inline `await ctx.session` instead of `ctx.session` everywhere in your middleware, for both reads and writes.
-   Don't worry: you can `await` the promise with your session data as many times as you want, but you will always refer to the same value, so there are never going to be duplicate reads for an update.
+   Don't worry: You can `await` the promise with your session data as many times as you want, but you will always refer to the same value, so they are never going to be duplicate reads for an update.
 
 Note that with lazy sessions, you can assign both objects and promises of objects to `ctx.session`.
 If you set `ctx.session` to be a promise, it will be `await`ed before writing the data back to the data storage.
@@ -755,7 +755,7 @@ interface SessionData {
 ```
 
 This would not break your existing session data.
-However, this is not so great, because now the names and the birthdays are stored in different places.
+However, this is not so great, because the names and the birthdays are now stored in different places.
 Ideally, your session data should look like this:
 
 ```ts
