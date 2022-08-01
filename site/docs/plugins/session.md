@@ -683,10 +683,6 @@ bot.command("reset", (ctx) => {
 
 One may argue well that explicitly using `await` is preferable over assigning a promise to `ctx.session`, the point is that you _could_ do this if you like that style better for some reason.
 
-If you are combining lazy sessions with multi sessions (see [above](#multi-sessions)), then each fragment of the session data will be read and written independently.
-As a result, you will be able to load your session data only partially.
-Note that you will then have to use `LazyMultiSessionFlavor` rather than `LazySessionFlavor`.
-
 ::: tip Plugins That Need Sessions
 Plugin developers that make use of `ctx.session` should always allow users to pass `SessionFlavor | LazySessionFlavor` and hence support both modi.
 In the plugin code, simply await `ctx.session` all the time: if a non-promise object is passed, this will simply be evaluated to itself, so you effectively only write code for lazy sessions and thus support strict sessions automatically.
