@@ -241,7 +241,7 @@ await ctx.reply(text, {
 Naturally, all other methods that send messages other than text messages support the same options, as specified by the [Telegram Bot API Reference](https://core.telegram.org/bots/api).
 
 You can also give your keyboard one or more further properties by calling special methods on it.
-They will not add any buttons, but rather define the behavior of the keyboard:
+They will not add any buttons, but rather define the behavior of the keyboard.
 
 #### Resize Custom Keyboard
 
