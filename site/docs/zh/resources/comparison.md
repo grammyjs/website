@@ -96,7 +96,7 @@ Telegraf 社区可能在各个版本之间有分歧，但这些群体中的大�
   在 Telegraf 中，你可能经常需要以某种方式来写的你的代码，否则它就不能编译（即使它实际上是可以正常工作的）
 - grammY integrates hints from [官方 Bot API 参考](core.telegram.org/bots/api) inline that help you while you're coding.
   Telegraf does not give you any explanations on your code.
-- grammY 集成了来自 [官方 Bot API 参考](core.telegram.org/bots/api) 的内联提示，在你写代码时能够帮助你。
+- grammY 集成了来自 [官方 Bot API 参考](https://core.telegram.org/bots/api) 的内联提示，在你写代码时能够帮助你。
   Telegraf 则不会给你的代码提供任何解释。
 
 #### 总结
