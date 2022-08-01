@@ -9,7 +9,7 @@ Most chats consist of more than just one single message. (duh)
 For example, you may want to ask the user a question, and then wait for the response.
 This may even go back and forth several times, so that a conversation unfolds.
 
-When you think about [middleware](/guide/middleware.md), you will notice that everything is based around a single [context object](/guide/context.md) per handler.
+When you think about [middleware](../guide/middleware.md), you will notice that everything is based around a single [context object](../guide/context.md) per handler.
 This means that you always only handle a single message in isolation.
 It is not easy to write something like "check the text three messages ago" or something.
 
@@ -103,7 +103,7 @@ Let's see what the two parameters are.
 
 **The second parameter** is not that interesting, it is just a regular context object.
 As always, it is called `ctx` and uses your custom context type (maybe called `MyContext`).
-The conversations plugin exports a [context flavor](/guide/context.html#additive-context-flavors) called `ConversationFlavor`.
+The conversations plugin exports a [context flavor](../guide/context.html#additive-context-flavors) called `ConversationFlavor`.
 
 **The first parameter** is the central element of this plugin.
 It is commonly named `conversation`, and it has the type `Conversation` ([API reference](https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts/~/Conversation)).
@@ -169,7 +169,7 @@ Can you figure out how this bot will work?
 
 ## Installing and Entering a Conversation
 
-First of all, you **must** use the [session plugin](/plugins/session.md) if you want to use the conversations plugin.
+First of all, you **must** use the [session plugin](./session.md) if you want to use the conversations plugin.
 You also have to install the conversations plugin itself, before you can register individual conversations on your bot.
 
 ```ts
@@ -254,7 +254,7 @@ async function hiAndBye(conversation, ctx) {
 
 You can also throw an error.
 This will likewise exit the conversation.
-Remember to [install an error handler](/guide/errors.md) on your bot.
+Remember to [install an error handler](../guide/errors.md) on your bot.
 
 If you want to hard-kill the conversation while it is waiting for user input, you can also use `await ctx.conversation.exit()`.
 It's often better to stick with simply returning from the function, but there are a few examples where using `await ctx.conversation.exit()` is convenient.
@@ -349,7 +349,7 @@ async function waitForMe(conversation, ctx) {
 An update can mean that a text message was sent, or a button was pressed, or something was edited, or virtually any other action was performed by the user.
 Check out the full list in the Telegram docs [here](https://core.telegram.org/bots/api#update).
 
-Usually, outside of the conversations plugin, each of these updates would be handled by the [middleware system](/guide/middleware.md) of your bot.
+Usually, outside of the conversations plugin, each of these updates would be handled by the [middleware system](../guide/middleware.md) of your bot.
 Hence, your bot would handle the update via a context object which gets passed to your handlers.
 
 In conversations, you will obtain this new context object from the `wait` call.
@@ -388,7 +388,7 @@ async function waitForText(conversation, ctx) {
 </CodeGroup>
 
 In addition, there are a number of other methods alongside `wait` that let you wait for specific updates only.
-One example is `waitFor` which takes a [filter query](/guide/filter-queries.md) and then only waits for updates that match the provided query.
+One example is `waitFor` which takes a [filter query](../guide/filter-queries.md) and then only waits for updates that match the provided query.
 This is especially powerful in combination with [object destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment):
 
 <CodeGroup>
@@ -589,7 +589,7 @@ Naturally, you can use error handling in your functions, too.
 Regular `try`/`catch` statements work just fine, also across functions.
 After all, conversations are just JavaScript.
 
-If the main conversation function throws, the error will propagate further into the [error handling mechanisms](/guide/errors.md) of your bot.
+If the main conversation function throws, the error will propagate further into the [error handling mechanisms](../guide/errors.md) of your bot.
 
 ## Modules and Classes
 
@@ -827,7 +827,7 @@ If wait calls would block until the next update arrives, it means that the middl
 - For [grammY runner](./runner.md), the bot would not be blocked.
   However, when processing thousands of conversations in parallel with different users, it would consume potentially very large amounts of memory.
   If many users stop responding, this leaves the bot stuck in the middle of countless conversations.
-- Webhooks have their own whole [category of problems](/guide/deployment-types.html#ending-webhook-requests-in-time) with long-running middleware.
+- Webhooks have their own whole [category of problems](../guide/deployment-types.html#ending-webhook-requests-in-time) with long-running middleware.
 
 **State.**
 On serverless infrastructure such as cloud functions, we cannot actually assume that the same instance handles two subsequent updates from the same user.
