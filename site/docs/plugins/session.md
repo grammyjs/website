@@ -664,7 +664,7 @@ You mainly have to do three things:
    They work the same way, just that `ctx.session` is wrapped inside a promise for the lazy variant.
 2. Use `lazySession` instead of `session` to register your session middleware.
 3. Always put an inline `await ctx.session` instead of `ctx.session` everywhere in your middleware, for both reads and writes.
-   Don't worry: You can `await` the promise with your session data as many times as you want, but you will always refer to the same value, so they are never going to be duplicate reads for an update.
+   Don't worry: You can `await` the promise with your session data as many times as you want, but you will always refer to the same value, so there are never going to be duplicate reads for an update.
 
 Note that with Lazy Sessions, you can assign both objects and promises of objects to `ctx.session`.
 If you set `ctx.session` to be a promise, it will be `await`ed before writing the data back to the data storage.
