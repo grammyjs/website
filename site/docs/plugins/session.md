@@ -609,7 +609,7 @@ You can then keep using `SessionFlavor<SessionData>` for your context object.
 
 > This section describes a performance optimization that most people do not have to worry about.
 
-Lazy Sessions is an alternative implementation of sessions that can significantly reduce the database traffic of your bot by skipping superfluous read and write operations.
+Lazy sessions is an alternative implementation of sessions that can significantly reduce the database traffic of your bot by skipping superfluous read and write operations.
 
 Let's assume that your bot is in a group chat where it does not respond to regular text messages, but only to commands.
 Without sessions, this would happen:
@@ -627,12 +627,12 @@ As soon as you install default (strict) sessions, which directly provide the ses
 5. The middleware completes, and has performed a read and a write to the data storage.
 
 Depending on the nature of your bot, this may lead to a lot of superfluous reads and writes.
-Lazy Sessions allow you to skip steps 2. and 4. if it turns out that no invoked handler needs session data.
+Lazy sessions allow you to skip steps 2. and 4. if it turns out that no invoked handler needs session data.
 In that case, no data will be read from the data storage, nor written back to it.
 
 This is achieved by intercepting access to `ctx.session`.
 If no handler is invoked, then `ctx.session` will never be accessed.
-Lazy Sessions use this as an indicator to prevent database communication.
+Lazy sessions use this as an indicator to prevent database communication.
 
 In practice, instead of having the session data available under `ctx.session`, you will now have _a promise of the session data_ available under `ctx.session`.
 
@@ -657,7 +657,7 @@ If you never trigger the read (or directly assign a new value to `ctx.session`),
 Consequently, we skip the write operation, too.
 As a result, we achieve minimal read and write operations, but you can use session almost identical to before, just with a few `async` and `await` keywords mixed into your code.
 
-So what is necessary to use Lazy Sessions instead of the default (strict) ones?
+So what is necessary to use lazy sessions instead of the default (strict) ones?
 You mainly have to do three things:
 
 1. Flavor your context with `LazySessionFlavor` instead of `SessionFlavor`.
@@ -666,7 +666,7 @@ You mainly have to do three things:
 3. Always put an inline `await ctx.session` instead of `ctx.session` everywhere in your middleware, for both reads and writes.
    Don't worry: You can `await` the promise with your session data as many times as you want, but you will always refer to the same value, so there are never going to be duplicate reads for an update.
 
-Note that with Lazy Sessions, you can assign both objects and promises of objects to `ctx.session`.
+Note that with lazy sessions you can assign both objects and promises of objects to `ctx.session`.
 If you set `ctx.session` to be a promise, it will be `await`ed before writing the data back to the data storage.
 This would allow for the following code:
 
@@ -681,12 +681,12 @@ bot.command("reset", (ctx) => {
 
 One may argue well that explicitly using `await` is preferable over assigning a promise to `ctx.session`, the point is that you _could_ do this if you like that style better for some reason.
 
-If you are combining Lazy Sessions with multi sessions (see [above](#multi-sessions)), then each fragment of the session data will be read and written independently.
+If you are combining lazy sessions with multi sessions (see [above](#multi-sessions)), then each fragment of the session data will be read and written independently.
 As a result, you will be able to load your session data only partially.
 
 ::: tip Plugins That Need Sessions
 Plugin developers that make use of `ctx.session` should always allow users to pass `SessionFlavor | LazySessionFlavor` and hence support both modi.
-In the plugin code, simply await `ctx.session` all the time: if a non-promise object is passed, this will simply be evaluated to itself, so you effectively only write code for Lazy Sessions and thus support strict sessions automatically.
+In the plugin code, simply await `ctx.session` all the time: if a non-promise object is passed, this will simply be evaluated to itself, so you effectively only write code for lazy sessions and thus support strict sessions automatically.
 :::
 
 ## Storage Enhancements
