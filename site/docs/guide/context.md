@@ -87,17 +87,17 @@ Hence, if you want to, you can forget about `ctx.message` and `ctx.channelPost` 
 
 The context object has a few methods that allow you to probe the contained data for certain things.
 For example, you can call `ctx.hasCommand("start")` to see if the context object contains a `/start` command.
-This is why the methods are collectively named _Has Checks_.
+This is why the methods are collectively named _has checks_.
 
 ::: tip Know When to Use Has Checks
 
 This is the exact same logic that is used by `bot.command("start")`.
 Note that you should usually use [filter queries](./filter-queries.md) and similar methods.
-Using Has Checks works best inside the [conversations plugin](../plugins/conversations.md).
+Using has checks works best inside the [conversations plugin](../plugins/conversations.md).
 
 :::
 
-The Has Checks correctly narrow down the context type.
+The has checks correctly narrow down the context type.
 This means that checking if a context has callback query data will tell TypeScript that the context has the field `ctx.callbackQuery.data` present.
 
 ```ts
@@ -107,8 +107,8 @@ if (ctx.hasCallbackQuery(/query-data-\d+/)) {
 }
 ```
 
-The same applies to all other Has Checks.
-Check out the [API reference of the context object](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Context#has) to see a list of all Has Checks.
+The same applies to all other has checks.
+Check out the [API reference of the context object](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Context#has) to see a list of all has checks.
 Also check out the static property `Context.has` in the [API reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Context#Static_Properties) that lets you create efficient predicate functions for probing a lot of context objects.
 
 ## Available Actions
