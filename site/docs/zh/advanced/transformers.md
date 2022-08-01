@@ -68,12 +68,12 @@ bot.on("message", (ctx) => {
 
 Transformer 函数像中间件一样灵活，并且他们也有很多不同的应用。
 
-例如，[grammY menu 插件]((/zh/plugins/menu.md)) 使用了一个 transformer 函数来将 menu 实例转换成一个正确的 payload。
+例如，[grammY menu 插件](/zh/plugins/menu.md) 使用了一个 transformer 函数来将 menu 实例转换成一个正确的 payload。
 你也可以用它们来：
 
 - 实现 [流量控制](/zh/plugins/transformer-throttler.md)
 - 测试期间用来 mock API 请求
-- 增加 [重试行为]((/zh/plugins/auto-retry.md))
+- 增加 [重试行为](/zh/plugins/auto-retry.md)
 - 或者更多其它的事情
 
 注意，不过重试一个 API 调用会有偶然的副作用：如果你调用 `senDocument` 并且将一个可读流实例传递给 `InputFile`，可读流将会在尝试请求时第一时间被读取。
