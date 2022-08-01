@@ -185,6 +185,10 @@ export default defineUserConfig({
                 text: "Official",
                 children: [
                   {
+                    text: "Conversations (conversations)",
+                    link: "/plugins/conversations.md",
+                  },
+                  {
                     text: "Interactive Menus (menu)",
                     link: "/plugins/menu.html",
                   },
