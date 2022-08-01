@@ -83,18 +83,18 @@ Esto también permite el desarrollo de valiosos plugins que son imposibles de tr
 
 La principal ventaja de Telegraf sobre grammY es que sigue siendo **conocido por mucha más gente**.
 La comunidad de Telegraf puede estar dividida entre las versiones, pero en este punto inicial la mayoría de estos grupos son todavía más grandes que el grupo unido de usuarios de grammY.
-Esto también significa que puedes encontrar más historias en internet sobre usuarios de Telegraf, y encontrarás más tutoriales no oficiales de otros codificadores, que pueden ayudarte si la documentación oficial de una librería tiene carencias.
+Esto también significa que puedes encontrar más historias en internet sobre usuarios de Telegraf, y encontrarás más tutoriales no oficiales de otros codificadores, que pueden ayudarte si la documentación oficial de una librería tiene deficiencias.
 
 #### Comparación con v4
 
 La principal ventaja de grammY sobre Telegraf 4.x es que **es simplemente mucho más fácil**.
 Por ejemplo
 
-- grammY tiene [una documentación](../).
+- grammY tiene una [documentación](../).
   Telegraf no la tiene (fue reemplazada por una referencia de la API generada que carece de explicaciones).
 - Los tipos en grammY _sólo funcionan_ y seguirán tu código.
   En Telegraf, a menudo necesitarás escribir tu código de cierta manera, de lo contrario no compila (aunque en realidad funcione bien).
-- grammY integra sugerencias de [la referencia oficial de la API del Bot](core.telegram.org/bots/api) en línea que te ayudan mientras estás codificando.
+- grammY integra sugerencias de la [referencia oficial de la API del Bot](core.telegram.org/bots/api) en línea que te ayudan mientras estás codificando.
   Telegraf no te da ninguna explicación sobre tu código.
 
 #### Resumen
@@ -106,6 +106,8 @@ Por ejemplo
 - Tiene tanto una documentación como una referencia de la API generada
 - Significativamente más rápido en los sondeos largos (con el corredor de grammY)
 - Comunidad y ecosistema unidos
+- Más plugins
+- Mejores integraciones con bases de datos y frameworks web
 - Se desarrolla más activamente
 - Mensajes de error útiles
 - Es mucho más difícil encontrarse con condiciones de carrera peligrosas
@@ -115,9 +117,7 @@ Por ejemplo
 ##### Ventajas de Telegraf
 
 - Más antiguo, por lo tanto más maduro
-- Más plugins (pero esto está cambiando actualmente)
 - Muchos más ejemplos de bots, tanto en el repositorio como en la naturaleza
-- Telegraf 3 tiene muchos más usuarios
 
 ### NTBA
 

@@ -27,7 +27,7 @@ Puedes publicar tus plugins de una de las siguientes formas:
 - Publicando como un **plugin de terceros**.
 
 Si decide publicar sus plugins como terceros, podemos ofrecerle un lugar destacado en este sitio web.
-Sin embargo, preferimos que publiques tu plugin bajo [la organización grammyjs](https://github.com/grammyjs) en GitHub, convirtiéndolo así en un plugin oficial.
+Sin embargo, preferimos que publiques tu plugin bajo la [organización grammyjs](https://github.com/grammyjs) en GitHub, convirtiéndolo así en un plugin oficial.
 En tal caso, se le concederá acceso de publicación a GitHub y npm.
 Además, serás responsable de mantener tu código.
 

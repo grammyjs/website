@@ -112,7 +112,7 @@ Especifique un teclado en línea vacío para eliminar todos los botones debajo d
 ::: tip Menu Plugin
 El plugin de teclado te da acceso directo a los objetos de actualización que envía Telegram.
 Sin embargo, responder a los clics de esta manera puede ser tedioso.
-Si buscas una implementación de más alto nivel de los teclados en línea, echa un vistazo a [el plugin de menús](./menu.md).
+Si buscas una implementación de más alto nivel de los teclados en línea, echa un vistazo a el [plugin de menús](./menu.md).
 Hace que sea sencillo crear menús interactivos.
 :::
 
@@ -293,7 +293,7 @@ await ctx.reply(text, {
 
 #### Enviar selectivamente un Custom Keyboards
 
-Puedes especificar la opción `selectiva` si quieres mostrar el teclado personalizado sólo a aquellos usuarios que sean @mencionados en el texto del objeto mensaje, y al remitente del mensaje original en caso de que tu mensaje sea una [respuesta](../guide/basics.md#sending-messages-with-reply).
+Puedes especificar la opción `selectiva` si quieres mostrar el teclado personalizado sólo a aquellos usuarios que sean @mencionados en el texto del objeto mensaje, y al remitente del mensaje original en caso de que tu mensaje sea una [respuesta](../guide/basics.md#enviando-mensajes-con-respuesta).
 
 ```ts
 await ctx.reply(text, {
@@ -334,7 +334,7 @@ await ctx.reply(text, {
 
 Junto a `remove_keyboard`, puede volver a establecer `selective: true` para
 eliminar el teclado sólo para los usuarios seleccionados. Esto funciona de forma análoga a
-[enviar selectivamente un custom keyboard](#selectively-send-keyboard).
+[enviar selectivamente un custom keyboard](#enviar-selectivamente-un-custom-keyboards).
 
 ## Resumen del plugin
 

@@ -82,19 +82,19 @@ Beeing freed from the legacy, grammY could also make substantial contributions t
 This also enables the development of valuable plugins that are impossible to work under Telegraf.
 
 The main advantage of Telegraf over grammY is that it is still **known by a lot more people**.
-The Telegraf community may be divided between the versions, but at this early point most of these groups are still larger than the united group of grammY users.
-This also means that you can find more stories on the internet about Telegraf users, and you will find more unofficial tutorials by other coders, which can help you if the official documentation of a library has shortcomings.
+The Telegraf community may be divided between the versions, but most of these groups have created more bots with their version of Telegraf than there are grammY bots.
+This also means that you can find more stories on the internet about Telegraf users, and you will find more unofficial tutorials by other coders.
 
 #### Comparison to v4
 
 The main advantage of grammY over Telegraf 4.x is that **it is simply a lot easier**.
 For example:
 
-- grammY has [a documentation](../).
+- grammY has a [documentation](../).
   Telegraf does not (it was replaced by a generated API reference that lacks explanations).
 - Types in grammY _just work_ and they will follow your code.
   In Telegraf, you will often need to write your code a certain way, otherwise it does not compile (even though it would actually work fine).
-- grammY integrates hints from [the official Bot API reference](core.telegram.org/bots/api) inline that help you while you're coding.
+- grammY integrates hints from the [official Bot API reference](core.telegram.org/bots/api) inline that help you while you're coding.
   Telegraf does not give you any explanations on your code.
 
 #### Summary
@@ -106,6 +106,8 @@ For example:
 - Has both a documentation and a generated API reference
 - Significantly faster on long polling (with grammY runner)
 - United community and ecosystem
+- More plugins
+- Better integrations with databases and web frameworks
 - More actively developed
 - Helpful error messages
 - Much harder to run into dangerous race conditions
@@ -115,9 +117,7 @@ For example:
 ##### Advantages of Telegraf
 
 - Older, thus more mature
-- More plugins (but this is changing currently)
 - Many more example bots, both in the repository and in the wild
-- Telegraf 3 has significantly more users
 
 ### NTBA
 
