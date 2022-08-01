@@ -577,12 +577,14 @@ In turn, you will need to configure each fragment with its own config.
 bot.use(session({
   type: "multi",
   foo: {
-    initial: () => ({ prop: 0 }),
-    storage: freeStorage(bot.token),
+    // there are also the default values
+    storage: new MemorySessionStorage(),
+    initial: () => undefined,
+    getSessionKey: (ctx) => ctx.from?.id.toString(),
   },
   bar: {
-    initial: () => 'empty'
-    getSessionKey: (ctx) => ctx.from?.id.toString(),
+    initial: () => ({ prop: 0 }),
+    storage: freeStorage(bot.token),
   },
   baz: {},
 }));
@@ -597,8 +599,8 @@ The above example could use this interface when customizing the context object:
 
 ```ts
 interface SessionData {
-  foo: { prop: number };
-  bar: "empty" | "half" | "full";
+  foo?: string;
+  bar: { prop: number };
   baz: { width?: number; height?: number };
 }
 ```
@@ -683,6 +685,7 @@ One may argue well that explicitly using `await` is preferable over assigning a 
 
 If you are combining lazy sessions with multi sessions (see [above](#multi-sessions)), then each fragment of the session data will be read and written independently.
 As a result, you will be able to load your session data only partially.
+Note that you will then have to use `LazyMultiSessionFlavor` rather than `LazySessionFlavor`.
 
 ::: tip Plugins That Need Sessions
 Plugin developers that make use of `ctx.session` should always allow users to pass `SessionFlavor | LazySessionFlavor` and hence support both modi.
