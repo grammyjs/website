@@ -205,6 +205,7 @@ El objeto de contexto actual se pasa como segundo argumento a la función de con
 Por ejemplo, si inicias tu conversación con `await ctx.reply(ctx.message.text)`, contendrá la actualización que contiene `/start`.
 
 ::: tip Cambiar el identificador de la conversación
+
 Por defecto, tienes que pasar el nombre de la función a `ctx.conversation.enter()`.
 Sin embargo, si prefieres utilizar un identificador diferente, puedes especificarlo así
 
@@ -219,6 +220,111 @@ bot.command("start", (ctx) => ctx.conversation.enter("new-name"));
 ```
 
 :::
+
+En total, tu código debería tener ahora más o menos este aspecto:
+
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
+
+```ts
+import { Bot, Context, session } from "grammy";
+import {
+  type Conversation,
+  type ConversationFlavor,
+  conversations,
+  createConversation,
+} from "@grammyjs/conversations";
+
+type MyContext = Context & ConversationFlavor;
+type MyConversation = Conversation<MyContext>;
+
+const bot = new Bot<MyContext>("");
+
+bot.use(session({ initial: () => ({}) }));
+bot.use(conversations());
+
+/** Define la conversación */
+async function greeting(conversation: MyConversation, ctx: MyContext) {
+  // TODO: codificar la conversación
+}
+
+bot.use(createConversation(greeting));
+
+bot.command("start", async (ctx) => {
+  // introduce la función "saludo" que has declarado
+  await ctx.conversation.enter("greeting");
+});
+
+bot.start();
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+const { Bot, Context, session } = require("grammy");
+const {
+  conversations,
+  createConversation,
+} = require("@grammyjs/conversations");
+
+const bot = new Bot("");
+
+bot.use(session({ initial: () => ({}) }));
+bot.use(conversations());
+
+/** Define la conversación */
+async function greeting(conversation, ctx) {
+  // TODO: codificar la conversación
+}
+
+bot.use(createConversation(greeting));
+
+bot.command("start", async (ctx) => {
+  // introduce la función "saludo" que has declarado
+  await ctx.conversation.enter("greeting");
+});
+
+bot.start();
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="Deno">
+
+```ts
+import { Bot, Context, session } from "https://deno.land/x/grammy/mod.ts";
+import {
+  type Conversation,
+  type ConversationFlavor,
+  conversations,
+  createConversation,
+} from "https://deno.land/x/grammy_conversations/mod.ts";
+
+type MyContext = Context & ConversationFlavor;
+type MyConversation = Conversation<MyContext>;
+
+const bot = new Bot<MyContext>("");
+
+bot.use(session({ initial: () => ({}) }));
+bot.use(conversations());
+
+/** Define la conversación */
+async function greeting(conversation: MyConversation, ctx: MyContext) {
+  // TODO: codificar la conversación
+}
+
+bot.use(createConversation(greeting));
+
+bot.command("start", async (ctx) => {
+  // introduce la función "saludo" que has declarado
+  await ctx.conversation.enter("greeting");
+});
+
+bot.start();
+```
+
+</CodeGroupItem>
+</CodeGroup>
 
 ## Salir de una conversación
 
