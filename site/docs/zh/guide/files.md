@@ -237,7 +237,7 @@ new InputFile({ url: "https://grammy.dev/Y.png" }); // 等价的写法
 
 ### 添加一个标题
 
-正如 [前面](./basics.md#sending-messages) 所解释的，当发送文件时，你可以在 `Other` 类型的选项对象中指定更多的选项。
+正如 [前面](./basics.md#发送信息) 所解释的，当发送文件时，你可以在 `Other` 类型的选项对象中指定更多的选项。
 例如，这让你可以指定文件的标题。
 
 ```ts

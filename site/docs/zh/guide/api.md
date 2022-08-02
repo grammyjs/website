@@ -58,7 +58,7 @@ async function sendHelloTo12345() {
 但请注意，上例中的 `sendMessage` 如何接收两个参数？即一个聊天标识符和一个字符串。
 grammY 知道这两个值分别属于 `chat_id` 和 `text` 属性，并将为你构建正确的 JSON 对象。
 
-正如 [前面](./basics.md#sending-messages) 提到的，你可以在 `Other` 类型的第三个参数中指定其他选项：
+正如 [前面](./basics.md#发送信息) 提到的，你可以在 `Other` 类型的第三个参数中指定其他选项：
 
 ```ts
 async function sendHelloTo12345() {
