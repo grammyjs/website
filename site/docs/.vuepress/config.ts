@@ -4,9 +4,6 @@ import { currentVersions } from "./plugins/current-versions/plugin";
 import { docsearch } from "./plugins/docsearch";
 
 export default defineUserConfig({
-  title: "grammY",
-  description: "The Telegram Bot Framework.",
-
   locales: {
     "/": {
       lang: "en-US",
