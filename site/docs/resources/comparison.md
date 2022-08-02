@@ -94,7 +94,7 @@ For example:
   Telegraf does not (it was replaced by a generated API reference that lacks explanations).
 - Types in grammY _just work_ and they will follow your code.
   In Telegraf, you will often need to write your code a certain way, otherwise it does not compile (even though it would actually work fine).
-- grammY integrates hints from the [official Bot API reference](core.telegram.org/bots/api) inline that help you while you're coding.
+- grammY integrates hints from the [official Bot API reference](https://core.telegram.org/bots/api) inline that help you while you're coding.
   Telegraf does not give you any explanations on your code.
 
 #### Summary

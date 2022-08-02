@@ -26,7 +26,7 @@ supabase functions new telegram-bot
 
 ## 准备你的代码
 
-> 请注意，你需要 [在 webhooks 上运行你的 bot](../guide/deployment-types.md/#如何使用-webhooks)，所以你应该调用 `webhookCallback`，而不是 `bot.start()`。
+> 请注意，你需要 [在 webhooks 上运行你的 bot](../guide/deployment-types.md#如何使用-webhooks)，所以你应该调用 `webhookCallback`，而不是 `bot.start()`。
 
 你可以使用这个简单的示例 bot 作为一个起点。
 

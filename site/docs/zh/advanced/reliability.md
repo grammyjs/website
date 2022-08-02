@@ -14,7 +14,7 @@ next: ./flood.md
 ## 优雅关闭
 
 对于使用了长轮询的 bot，还有更多的事要去考虑。
-当你打算在某个操作期间再次停止你的实例，你应该去考虑捕获 `SIGTERM` 和 `SIGINT` 事件，并调用 `bot.stop`（长轮询内置的） 方法或者通过它的 [处理]((https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/RunnerHandle#stop)) （grammY runner）来停止你的 bot。
+当你打算在某个操作期间再次停止你的实例，你应该去考虑捕获 `SIGTERM` 和 `SIGINT` 事件，并调用 `bot.stop`（长轮询内置的） 方法或者通过它的 [处理](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/RunnerHandle#stop) （grammY runner）来停止你的 bot。
 
 ### 简单的长轮询
 

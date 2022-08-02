@@ -78,7 +78,7 @@ Telegraf 3 使用 JavaScript 写的。
 然而，类型安全的代码对于任何重要的代码库来说都是一个主要优势。
 
 grammY 和 Telegraf 有不同的代码基础。
-由于摆脱了传统的束缚，grammY 可以对底层的中间件做出实质性的贡献，实现令人兴奋的用例，比如 [filter 查询](/zh/guide/filter-queries.md)，[error 边界](zh/guide/errors.md#error-边界)，[Bot API Transformers](/zh/advanced/transformers.md)，以及更多。
+由于摆脱了传统的束缚，grammY 可以对底层的中间件做出实质性的贡献，实现令人兴奋的用例，比如 [filter 查询](/zh/guide/filter-queries.md)，[error 边界](/zh/guide/errors.md#error-边界)，[Bot API Transformers](/zh/advanced/transformers.md)，以及更多。
 这也使得开发一些在 Telegraf 下无法工作的有价值的插件成为可能。
 
 与 grammY 相比，Telegraf 的主要优势在于**它仍然被更多人所知道**。
@@ -94,9 +94,9 @@ Telegraf 社区可能在各个版本之间有分歧，但这些群体中的大�
   Telegraf 则没有（它被缺少解释的生成的 API 参考所取代）。
 - grammY 中的类型会跟随你的代码来工作。
   在 Telegraf 中，你可能经常需要以某种方式来写的你的代码，否则它就不能编译（即使它实际上是可以正常工作的）
-- grammY integrates hints from [官方 Bot API 参考](core.telegram.org/bots/api) inline that help you while you're coding.
+- grammY integrates hints from [官方 Bot API 参考](https://core.telegram.org/bots/api) inline that help you while you're coding.
   Telegraf does not give you any explanations on your code.
-- grammY 集成了来自 [官方 Bot API 参考](core.telegram.org/bots/api) 的内联提示，在你写代码时能够帮助你。
+- grammY 集成了来自 [官方 Bot API 参考](https://core.telegram.org/bots/api) 的内联提示，在你写代码时能够帮助你。
   Telegraf 则不会给你的代码提供任何解释。
 
 #### 总结

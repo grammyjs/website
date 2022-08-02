@@ -37,7 +37,7 @@ grammY 可以利用两种类型的插件：_中间件插件_ 和 _转换器插�
 
 ### 类型 II: 转换器插件
 
-[转换器函数](/zh/guide/transformers.md) 与中间件相反！
+[转换器函数](/zh/advanced/transformers.md) 与中间件相反！
 它是一个处理传出数据的函数。
 转换器插件是作为——你没疯！你又猜对了——转换器函数，被喂给 bot 的插件。
 这意味着你可以通过 `bot.api.config.use` 来安装它们。
