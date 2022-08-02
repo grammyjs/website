@@ -110,7 +110,7 @@ await bot.api.sendMessage(
 
 ## 发送文件
 
-文件处理在 [后面的章节](./files.md#sending-files) 中有更深入的解释。
+文件处理在 [后面的章节](./files.md#发送文件) 中有更深入的解释。
 
 ## 强行回复
 

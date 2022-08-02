@@ -84,7 +84,7 @@ grammY 没有捆绑自己的文件下载器，但是你可以安装 [官方文�
 
 ## 发送文件
 
-Telegram bot 有 [三种方法](https://core.telegram.org/bots/api#sending-files) 去发送文件：
+Telegram bot 有 [三种方法](https://core.telegram.org/bots/api#发送文件) 去发送文件：
 
 1. 通过`file_id`，即通过一个已经被机器人知道的标识符来发送文件。
 2. 通过URL，即通过传递一个公共文件 URL，由 Telegram 为你下载和发送。
@@ -251,7 +251,7 @@ await bot.api.sendPhoto(12345, new InputFile("/path/to/photo.jpg"), {
 
 ## 文件大小限制
 
-grammY 本身可以不受限制地发送文件，但是 Telegram 在他们的 [文档里](https://core.telegram.org/bots/api#sending-files) 重新规范了文件大小。
+grammY 本身可以不受限制地发送文件，但是 Telegram 在他们的 [文档里](https://core.telegram.org/bots/api#发送文件) 重新规范了文件大小。
 这意味着你的 bot 不可以下载大小超过 20 MB 的文件也不能上传超过 50 MB 的文件。
 一些文件类型有着更加严格的限制，比如图片。
 
