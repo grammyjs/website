@@ -205,6 +205,7 @@ The current context object is passed as the second argument to the conversation 
 For example, if you start your conversation with `await ctx.reply(ctx.message.text)`, it will contain the update that contains `/start`.
 
 ::: tip Change the Conversation Identifier
+
 By default, you have to pass the name of the function to `ctx.conversation.enter()`.
 However, if you prefer to use a different identifier, you can specify it like so:
 
@@ -219,6 +220,111 @@ bot.command("start", (ctx) => ctx.conversation.enter("new-name"));
 ```
 
 :::
+
+In total, your code should now roughly look like this.
+
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
+
+```ts
+import { Bot, Context, session } from "grammy";
+import {
+  type Conversation,
+  type ConversationFlavor,
+  conversations,
+  createConversation,
+} from "@grammyjs/conversations";
+
+type MyContext = Context & ConversationFlavor;
+type MyConversation = Conversation<MyContext>;
+
+const bot = new Bot<MyContext>("");
+
+bot.use(session({ initial: () => ({}) }));
+bot.use(conversations());
+
+/** Defines the conversation */
+async function greeting(conversation: MyConversation, ctx: MyContext) {
+  // TODO: code the conversation
+}
+
+bot.use(createConversation(greeting));
+
+bot.command("start", async (ctx) => {
+  // enter the function "greeting" you declared
+  await ctx.conversation.enter("greeting");
+});
+
+bot.start();
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+const { Bot, Context, session } = require("grammy");
+const {
+  conversations,
+  createConversation,
+} = require("@grammyjs/conversations");
+
+const bot = new Bot("");
+
+bot.use(session({ initial: () => ({}) }));
+bot.use(conversations());
+
+/** Defines the conversation */
+async function greeting(conversation, ctx) {
+  // TODO: code the conversation
+}
+
+bot.use(createConversation(greeting));
+
+bot.command("start", async (ctx) => {
+  // enter the function "greeting" you declared
+  await ctx.conversation.enter("greeting");
+});
+
+bot.start();
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="Deno">
+
+```ts
+import { Bot, Context, session } from "https://deno.land/x/grammy/mod.ts";
+import {
+  type Conversation,
+  type ConversationFlavor,
+  conversations,
+  createConversation,
+} from "https://deno.land/x/grammy_conversations/mod.ts";
+
+type MyContext = Context & ConversationFlavor;
+type MyConversation = Conversation<MyContext>;
+
+const bot = new Bot<MyContext>("");
+
+bot.use(session({ initial: () => ({}) }));
+bot.use(conversations());
+
+/** Defines the conversation */
+async function greeting(conversation: MyConversation, ctx: MyContext) {
+  // TODO: code the conversation
+}
+
+bot.use(createConversation(greeting));
+
+bot.command("start", async (ctx) => {
+  // enter the function "greeting" you declared
+  await ctx.conversation.enter("greeting");
+});
+
+bot.start();
+```
+
+</CodeGroupItem>
+</CodeGroup>
 
 ## Leaving a Conversation
 
@@ -280,7 +386,7 @@ bot.callbackQuery("cancel", async (ctx) => {
 });
 
 async function movie(conversation: MyConversation, ctx: MyContext) {
-  // TODO: define conversation
+  // TODO: code the conversation
 }
 bot.use(createConversation(movie));
 bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
@@ -306,7 +412,7 @@ bot.callbackQuery("cancel", async (ctx) => {
 });
 
 async function movie(conversation, ctx) {
-  // TODO: define conversation
+  // TODO: code the conversation
 }
 bot.use(createConversation(movie));
 bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
@@ -415,9 +521,6 @@ async function waitForText(conversation, ctx) {
 </CodeGroup>
 
 Check out the [API reference](https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts/~/ConversationHandle#wait) to see all available methods that are similar to `wait`.
-
-Let's now see how wait calls actually work.
-As mentioned earlier, **they don't _literally_ make your bot wait**, even though we can program conversations as if that was the case.
 
 ## Three Golden Rules of Conversations
 
@@ -838,6 +941,7 @@ There are more problems, but you get the idea.
 
 Consequently, the conversations plugin does things differently.
 Very differently.
+As mentioned earlier, **they don't _literally_ make your bot wait**, even though we can program conversations as if that was the case.
 
 The conversations plugin tracks the execution of your function.
 When a wait call is reached, it serializes the state of execution into the session, and safely stores it in a database.
