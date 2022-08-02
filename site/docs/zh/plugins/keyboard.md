@@ -32,7 +32,7 @@ grammY 有一个简单且直观的方式来构建 inline keyboard，让你的 bo
 它提供了一个叫做 `InlineKeyboard` 的类。
 
 > `switchInline` 和 `switchInlineCurrent` 按钮都可以启动 Inline Queries。
-> 你也可以查看 [Inline Queries](/zh/guide/inline-queries.md) 的部分，来了解更多关于它们是怎样工作的。
+> 你也可以查看 [Inline Queries](../guide/inline-queries.md) 的部分，来了解更多关于它们是怎样工作的。
 
 ### 构建一个 Inline Keyboard
 
@@ -288,7 +288,7 @@ await ctx.reply(text, {
 
 #### 选择性地发送自定义 Keyboard
 
-如果你想只向消息对象的文本中提到的 @ 的用户显示自定义 keyboard，你可以指定 `selective` 选项，如果你的消息是 [回复](/zh/guide/basics.md#发送带回复的信息)，则向原始消息的发送者显示。
+如果你想只向消息对象的文本中提到的 @ 的用户显示自定义 keyboard，你可以指定 `selective` 选项，如果你的消息是 [回复](../guide/basics.md#发送带回复的信息)，则向原始消息的发送者显示。
 
 ```ts
 await ctx.reply(text, {

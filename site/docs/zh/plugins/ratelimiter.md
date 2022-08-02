@@ -175,7 +175,7 @@ bot.use(
 </CodeGroupItem>
 </CodeGroup>
 
-正如你在上面的示例中看到的，每个用户每 2 秒钟最多只能发送 3 次请求。如果该用户发送更多请求，机器人会回复 _Please refrain from sending too many requests!_。由于我们不调用 [next()](/guide/middleware.html#the-middleware-stack)，这个请求将被立即关闭。
+正如你在上面的示例中看到的，每个用户每 2 秒钟最多只能发送 3 次请求。如果该用户发送更多请求，机器人会回复 _Please refrain from sending too many requests!_。由于我们不调用 [next()](../guide/middleware.html#the-middleware-stack)，这个请求将被立即关闭。
 
 > 请注意：为了避免 Telegram 服务器被请求淹没，`onLimitExceeded` 只会在每个 `timeFrame` 中执行一次。
 

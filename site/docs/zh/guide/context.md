@@ -126,7 +126,7 @@ bot.on("message", (ctx) => ctx.reply("Gotcha!"));
 在后台，上下文 _已经知道_ 它的聊天标识符（即 `ctx.msg.chat.id`），所以它给你 `reply` 方法，让你向同一个聊天记录发送消息。
 在内部，`reply` 再次调用 `sendMessage`，并为您预先填写了聊天标识符。
 
-因此，正如 [前面](./basics.md#sending-messages) 所解释的，上下文对象的所有方法都可以接受 `Other` 类型的选项对象，以传递给每个 API 调用。
+因此，正如 [前面]/basics.md#sending-messages) 所解释的，上下文对象的所有方法都可以接受 `Other` 类型的选项对象，以传递给每个 API 调用。
 这可以用于向每个 API 调用传递进一步的配置。
 
 ::: tip Telegram 的回复功能
@@ -160,7 +160,7 @@ await ctx.reply("^ This is a message!", {
 对于每一个传入的 update，都会精确地创建一个新的 `Context` 对象。
 不同 update 的上下文是完全不相关的对象，它们只是通过 `ctx.me` 引用相同的 bot 信息。
 
-一个 update 的相同上下文对象将被 bot 上所有安装的中间件（[docs](./middleware.md)）共享。
+一个 update 的相同上下文对象将被 bot 上所有安装的中间件（[docs]/middleware.md)）共享。
 
 ## 定制你的上下文对象
 
@@ -170,10 +170,10 @@ await ctx.reply("^ This is a message!", {
 
 ### 通过中间件（推荐）
 
-在 [中间件](./middleware.md) 中，可以轻松完成定制。
+在 [中间件]/middleware.md) 中，可以轻松完成定制。
 
 ::: tip 什么是中间件？
-本节需要对中间件有所了解，所以如果你还没有跳过到 [这一部分](./middleware.md)，那么这里有一个非常简短的总结。
+本节需要对中间件有所了解，所以如果你还没有跳过到 [这一部分]/middleware.md)，那么这里有一个非常简短的总结。
 
 你需要知道，多个处理程序可以处理相同的上下文对象。
 有一些特殊处理程序可以在任何其他处理程序之前修改 `ctx`，并且第一个处理程序的修改对所有后续处理程序都是可见的。
@@ -305,7 +305,7 @@ bot.command("start", async (ctx) => {
 const composer = new Composer<MyContext>();
 ```
 
-一些插件也需要你传递自定义上下文类型，比如 [路由器](../plugins/router.md) 或 [互动菜单](../plugins/menu.md) 插件。
+一些插件也需要你传递自定义上下文类型，比如 [路由器]./plugins/router.md) 或 [互动菜单]./plugins/menu.md) 插件。
 请查看它们的文档，以了解它们如何使用自定义上下文类型。
 这些类型被称为上下文调味剂，如 [下面](#上下文调味剂) 所述。
 
@@ -436,7 +436,7 @@ bot.start();
 最基本的被称为 _添加式上下文调味剂_，而且每当我们谈论 _给上下文烹饪调味_ 时，我们一般指这种基本形式。
 让我们来看看它是如何工作的：
 
-举个例子，当你有 [会话数据](../plugins/session.md) 时，你必须在上下文类型上注册 `ctx.session`。
+举个例子，当你有 [会话数据]./plugins/session.md) 时，你必须在上下文类型上注册 `ctx.session`。
 否则：
 
 1. 你不能安装内置的 session 插件
