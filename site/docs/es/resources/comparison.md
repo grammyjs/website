@@ -94,7 +94,7 @@ Por ejemplo
   Telegraf no la tiene (fue reemplazada por una referencia de la API generada que carece de explicaciones).
 - Los tipos en grammY _sólo funcionan_ y seguirán tu código.
   En Telegraf, a menudo necesitarás escribir tu código de cierta manera, de lo contrario no compila (aunque en realidad funcione bien).
-- grammY integra sugerencias de la [referencia oficial de la API del Bot](core.telegram.org/bots/api) en línea que te ayudan mientras estás codificando.
+- grammY integra sugerencias de la [referencia oficial de la API del Bot](https://core.telegram.org/bots/api) en línea que te ayudan mientras estás codificando.
   Telegraf no te da ninguna explicación sobre tu código.
 
 #### Resumen

@@ -69,16 +69,16 @@ bot.on("message:voice", async (ctx) => {
 ```
 
 ::: tip 传入一个自定义个 file_id 给 `getFile` 方法
-在上下文对象中，`getFile` 是一个 [快捷方式](/zh/guide/context.md#shortcuts)，它可以在当前的消息中下载文件。
+在上下文对象中，`getFile` 是一个 [快捷方式](./context.md#快捷方式)，它可以在当前的消息中下载文件。
 如果你想要在处理消息的时候拿到不同的文件，请使用 `ctx.api.getFile(file_id)`。
 :::
 
-> 如果你想要去接收所有类型的文件，了解使用 [`:media` 和 `:file` 快捷方式](/zh/guide/filter-queries.md#shortcuts) 用于筛选查询。
+> 如果你想要去接收所有类型的文件，了解使用 [`:media` 和 `:file` 快捷方式](./filter-queries.md#快捷方式) 用于筛选查询。
 
 一旦你调用了 `getFile`，你可以使用返回的 `file_path` 下载文件，使用这个 URL `https://api.telegram.org/file/bot<token>/<file_path>`，其中 `<token>` 必须用你的 bot token 替换。
 
 ::: tip 文件插件
-grammY 没有捆绑自己的文件下载器，但是你可以安装 [官方文件插件](/zh/plugins/files.md)。
+grammY 没有捆绑自己的文件下载器，但是你可以安装 [官方文件插件](../plugins/files.md)。
 这允许你通过 `await file.download()` 下载文件，并通过 `file.getUrl()` 获取一个构造后的下载文件的 URL。
 :::
 
@@ -237,7 +237,7 @@ new InputFile({ url: "https://grammy.dev/Y.png" }); // 等价的写法
 
 ### 添加一个标题
 
-正如 [前面](./basics.md#sending-messages) 所解释的，当发送文件时，你可以在 `Other` 类型的选项对象中指定更多的选项。
+正如 [前面](./basics.md#发送信息) 所解释的，当发送文件时，你可以在 `Other` 类型的选项对象中指定更多的选项。
 例如，这让你可以指定文件的标题。
 
 ```ts
