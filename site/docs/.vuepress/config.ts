@@ -186,7 +186,7 @@ export default defineUserConfig({
                 children: [
                   {
                     text: "Conversations (conversations)",
-                    link: "/plugins/conversations.md",
+                    link: "/plugins/conversations.html",
                   },
                   {
                     text: "Interactive Menus (menu)",
