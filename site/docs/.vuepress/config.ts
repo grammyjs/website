@@ -547,12 +547,12 @@ export default defineUserConfig({
                 text: "Oficial",
                 children: [
                   {
-                    text: "Menus Interactivos (menu)",
-                    link: "/es/plugins/menu.html",
-                  },
-                  {
                     text: "Conversaciones (conversations)",
                     link: "/es/plugins/conversations.html",
+                  },
+                  {
+                    text: "Menus Interactivos (menu)",
+                    link: "/es/plugins/menu.html",
                   },
                   {
                     text: "Preguntas sin estado (stateless-question)",
