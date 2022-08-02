@@ -72,7 +72,7 @@ bot.on("::email"); // 所有消息、channel post 的标题或内容中包括的
 ```
 
 省去 _filter 第一个参数_ ，可以同时匹配消息和 channel posts 。
-[记住]/context.md#available-actions)，`ctx.msg` 让你可以访问消息或 channel posts ，它们都是符合匹配规则的，可以放心使用。
+[记住](./context.md#available-actions)，`ctx.msg` 让你可以访问消息或 channel posts ，它们都是符合匹配规则的，可以放心使用。
 
 遗漏 _第二_ 个值可以同时匹配 entities 和标题 entities。
 你可以同时省略第一和第二部分。
@@ -193,7 +193,7 @@ bot
 ## 实用贴士
 
 这里有一些鲜为人知的过滤器查询的功能，它们可能会派上用场。
-其中一些是一些比较高级的，所以你可以跳过它们到 [下一节]/commands.md)。
+其中一些是一些比较高级的，所以你可以跳过它们到 [下一节](./commands.md)。
 
 ### 聊天成员更新
 

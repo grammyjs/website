@@ -30,7 +30,7 @@ bot.hears(/echo *+)?/, (ctx) => {/* ... */});
 
 你可以在你的代码编辑器中使用自动完成来查看所有可用的选项，或者查看 `Composer` 类的 [所有方法](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer)。
 
-> [了解更多]/filter-queries.md) 关于使用 `bot.on()` 来筛选请求的内容。
+> [了解更多](./filter-queries.md) 关于使用 `bot.on()` 来筛选请求的内容。
 
 ## 发送信息
 
@@ -53,7 +53,7 @@ const me = await bot.api.getMe();
 你也可以在你的代码编辑器中使用自动完成来查看所有可用的选项，或者查看 `Api` 类的 [所有方法](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Api)。
 本页的其余部分展示了一些相关示例。
 
-同时，请看 [下一节]/context.md)，以了解监听器的上下文对象如何使发送消息变得轻而易举！
+同时，请看 [下一节](./context.md)，以了解监听器的上下文对象如何使发送消息变得轻而易举！
 
 ## 发送带回复的信息
 
@@ -71,7 +71,7 @@ bot.hears("ping", async (ctx) => {
 
 > 注意，只通过 `ctx.reply` 发送消息**并不**意味着你会自动回复任何东西。
 > 相反，你应该为此指定 `reply_to_message_id` 。
-> 函数 `ctx.reply` 只是 `ctx.api.sendMessage` 的一个别名，见 [下一节]/context.md#可用操作)。
+> 函数 `ctx.reply` 只是 `ctx.api.sendMessage` 的一个别名，见 [下一节](./context.md#可用操作)。
 
 ## 发送格式化的信息
 
@@ -110,7 +110,7 @@ await bot.api.sendMessage(
 
 ## 发送文件
 
-文件处理在 [后面的章节]/files.md#sending-files) 中有更深入的解释。
+文件处理在 [后面的章节](./files.md#sending-files) 中有更深入的解释。
 
 ## 强行回复
 

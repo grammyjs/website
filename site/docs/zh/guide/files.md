@@ -237,7 +237,7 @@ new InputFile({ url: "https://grammy.dev/Y.png" }); // 等价的写法
 
 ### 添加一个标题
 
-正如 [前面]/basics.md#sending-messages) 所解释的，当发送文件时，你可以在 `Other` 类型的选项对象中指定更多的选项。
+正如 [前面](./basics.md#sending-messages) 所解释的，当发送文件时，你可以在 `Other` 类型的选项对象中指定更多的选项。
 例如，这让你可以指定文件的标题。
 
 ```ts
@@ -261,4 +261,4 @@ grammY 本身可以不受限制地发送文件，但是 Telegram 在他们的 [�
 托管一个 Bot API 服务器与 grammY 无关。
 然而，grammY 支持在配置 bot 需要调用的所有必要方法。
 
-另外，你可能想要在 [这里]/api.md) 重温一下我们关于 Bot API 的指引文档。
+另外，你可能想要在 [这里](./api.md) 重温一下我们关于 Bot API 的指引文档。
