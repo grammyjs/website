@@ -221,7 +221,7 @@ bot.command("start", (ctx) => ctx.conversation.enter("new-name"));
 
 :::
 
-In total, your code should now roughly look like this.
+In total, your code should now roughly look like this:
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
