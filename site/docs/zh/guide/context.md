@@ -305,7 +305,7 @@ bot.command("start", async (ctx) => {
 const composer = new Composer<MyContext>();
 ```
 
-一些插件也需要你传递自定义上下文类型，比如 [路由器]./plugins/router.md) 或 [互动菜单]./plugins/menu.md) 插件。
+一些插件也需要你传递自定义上下文类型，比如 [路由器](../plugins/router.md) 或 [互动菜单](../plugins/menu.md) 插件。
 请查看它们的文档，以了解它们如何使用自定义上下文类型。
 这些类型被称为上下文调味剂，如 [下面](#上下文调味剂) 所述。
 
@@ -436,7 +436,7 @@ bot.start();
 最基本的被称为 _添加式上下文调味剂_，而且每当我们谈论 _给上下文烹饪调味_ 时，我们一般指这种基本形式。
 让我们来看看它是如何工作的：
 
-举个例子，当你有 [会话数据]./plugins/session.md) 时，你必须在上下文类型上注册 `ctx.session`。
+举个例子，当你有 [会话数据](../plugins/session.md) 时，你必须在上下文类型上注册 `ctx.session`。
 否则：
 
 1. 你不能安装内置的 session 插件
