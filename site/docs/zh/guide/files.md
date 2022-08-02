@@ -69,11 +69,11 @@ bot.on("message:voice", async (ctx) => {
 ```
 
 ::: tip 传入一个自定义个 file_id 给 `getFile` 方法
-在上下文对象中，`getFile` 是一个 [快捷方式](./context.md#shortcuts)，它可以在当前的消息中下载文件。
+在上下文对象中，`getFile` 是一个 [快捷方式](./context.md#快捷方式)，它可以在当前的消息中下载文件。
 如果你想要在处理消息的时候拿到不同的文件，请使用 `ctx.api.getFile(file_id)`。
 :::
 
-> 如果你想要去接收所有类型的文件，了解使用 [`:media` 和 `:file` 快捷方式](./filter-queries.md#shortcuts) 用于筛选查询。
+> 如果你想要去接收所有类型的文件，了解使用 [`:media` 和 `:file` 快捷方式](./filter-queries.md#快捷方式) 用于筛选查询。
 
 一旦你调用了 `getFile`，你可以使用返回的 `file_path` 下载文件，使用这个 URL `https://api.telegram.org/file/bot<token>/<file_path>`，其中 `<token>` 必须用你的 bot token 替换。
 

@@ -197,7 +197,7 @@ bot.start();
 </CodeGroupItem>
 </CodeGroup>
 
-请注意，我们还必须 [调整上下文类型](../guide/context.md#customising-the-context-object)，使得会话可以在上下文上使用。
+请注意，我们还必须 [调整上下文类型](../guide/context.md#定制你的上下文对象)，使得会话可以在上下文上使用。
 上下文修饰器被称为 `SessionFlavor`。
 
 ### 初始化会话数据
