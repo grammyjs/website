@@ -245,64 +245,66 @@ await ctx.reply(text, {
 
 Naturalmente, todos los demás métodos que envían mensajes que no sean de texto soportan las mismas opciones, tal y como se especifica en la [Referencia de la API de Telegram Bot](https://core.telegram.org/bots/api).
 
-Si quieres especificar más opciones con tu mensaje, puede que tengas que crear tu propio objeto `reply_markup`.
-En ese caso, tienes que usar `keyboard.build()` al pasarlo a tu objeto personalizado.
+También puede dar a su teclado una o más propiedades adicionales llamando a métodos especiales sobre él.
+Estos no añadirán ningún botón, sino que definirán el comportamiento del teclado.
 
 #### Cambiar el tamaño del Custom Keyboard
 
-Puedes especificar la opción `resize_keyboard` si quieres que el teclado sea redimensionado de acuerdo a los botones que contiene.
+Puedes llamar a `resized` si quieres que el teclado personalizado se redimensione en función de los botones que contiene.
 Esto hará que el teclado sea más pequeño.
 (Normalmente, el teclado siempre tendrá el tamaño del teclado estándar de la aplicación).
 
 ```ts
-await ctx.reply(text, {
-  reply_markup: {
-    resize_keyboard: true,
-    keyboard: keyboard.build(),
-  },
-});
+new Keyboard()
+  .text("Si").row()
+  .text("No")
+  .resized();
 ```
 
-#### Custom Keyboards de un solo uso
+No importa si llama a `resized` primero, último o en algún punto intermedio.
+El resultado será siempre el mismo.
 
-Puede especificar la opción `one_time_keyboard` si desea que el teclado se oculte inmediatamente después de que se pulse el primer botón.
+#### Custom Keyboard de un solo uso
+
+Puede llamar a `oneTime` si quiere que el teclado personalizado se oculte inmediatamente después de que se pulse el primer botón.
 
 ```ts
-await ctx.reply(text, {
-  reply_markup: {
-    one_time_keyboard: true,
-    keyboard: keyboard.build(),
-  },
-});
+new Keyboard()
+  .text("Si").row()
+  .text("No")
+  .oneTime();
 ```
+
+No importa si se llama a `oneTime` primero, último o en algún punto intermedio.
+El resultado será siempre el mismo.
 
 #### Marcador de posición del campo de entrada
 
-Puede especificar la opción `input_field_placeholder` si desea que se muestre un marcador de posición en el campo de entrada mientras el teclado esté visible.
+Puede llamar a `placeholder` si quiere que se muestre un marcador de posición en el campo de entrada mientras el teclado personalizado esté visible.
 
 ```ts
-const keyboard = new Keyboard().text("IZQUIERDA").text("DERECHA");
-
-await ctx.reply(text, {
-  reply_markup: {
-    input_field_placeholder: "Enviar IZQUIERDA o DERECHA",
-    keyboard: keyboard.build(),
-  },
-});
+new Keyboard()
+  .text("Si").row()
+  .text("No")
+  .placeholder("¡Decide ahora!");
 ```
 
-#### Enviar selectivamente un Custom Keyboards
+No importa si se llama a `placeholder` primero, último o en algún punto intermedio.
+El resultado será siempre el mismo.
 
-Puedes especificar la opción `selectiva` si quieres mostrar el teclado personalizado sólo a aquellos usuarios que sean @mencionados en el texto del objeto mensaje, y al remitente del mensaje original en caso de que tu mensaje sea una [respuesta](../guide/basics.md#sending-messages-with-reply).
+#### Enviar selectivamente un Custom Keyboard
+
+Puedes llamar a `selected` si quieres mostrar el teclado personalizado sólo a aquellos usuarios que sean @mencionados en el texto del objeto mensaje, y al remitente del mensaje original en caso de que tu mensaje sea una [respuesta](../guide/basics.md#enviando-mensajes-con-respuesta).
 
 ```ts
-await ctx.reply(text, {
-  reply_markup: {
-    selective: true,
-    keyboard: keyboard.build(),
-  },
-});
+new Keyboard()
+  .text("Si").row()
+  .text("No")
+  .selected();
 ```
+
+No importa si llama a `selected` primero, último o en algún punto intermedio.
+El resultado será siempre el mismo.
 
 ### Respondiendo a los clics
 
@@ -318,13 +320,12 @@ Si quieres manejar todos los clics de los botones a la vez, utiliza `bot.on("mes
 
 ### Eliminación de un Custom Keyboard
 
-A menos que especifique `one_time_keyboard` como se describe
-(#one-time-keyboards), el teclado permanecerá abierto para el usuario (pero
+A menos que especifique `one_time_keyboard` como se describe [arriba](#custom-keyboard-de-un-solo-uso), el teclado personalizado permanecerá abierto para el usuario (pero
 el usuario puede minimizarlo).
 
-Sólo se puede eliminar un teclado cuando se envía un nuevo mensaje en el chat, al igual que
-como sólo se puede especificar un nuevo teclado al enviar un mensaje. Pasar
-`{ remove_keyboard: true }` como `reply_markup` así:
+Sólo puedes eliminar un teclado personalizado cuando envías un nuevo mensaje en el chat, al igual que sólo puedes especificar un nuevo teclado al enviar un mensaje.
+
+Pasar `{ remove_keyboard: true }` como `reply_markup` así:
 
 ```ts
 await ctx.reply(text, {
@@ -332,9 +333,9 @@ await ctx.reply(text, {
 });
 ```
 
-Junto a `remove_keyboard`, puede volver a establecer `selective: true` para
-eliminar el teclado sólo para los usuarios seleccionados. Esto funciona de forma análoga a
-[enviar selectivamente un custom keyboard](#selectively-send-keyboard).
+Junto a `remove_keyboard`, puede establecer `selective: true` para eliminar el teclado personalizado sólo para los usuarios seleccionados.
+
+Esto funciona de forma análoga a [enviar selectivamente un custom keyboard](#enviar-selectivamente-un-custom-keyboard).
 
 ## Resumen del plugin
 

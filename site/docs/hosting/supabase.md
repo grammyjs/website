@@ -9,7 +9,7 @@ Supabase Edge Functions is ideal for most simple bots, and you should note that 
 For example, there is no file system on Supabase Edge Functions.
 It's just like the other many serverless platforms, but dedicated for Deno apps.
 
-The result of this tutorial [can be seen in our example bots repository](https://github.com/grammyjs/examples/tree/main/Supabase-edge-functions).
+The result of this tutorial [can be seen in our example bots repository](https://github.com/grammyjs/examples/tree/main/supabase-edge-functions).
 
 ## Setup
 

@@ -102,7 +102,7 @@ bot.use(useFluent({
 }));
 ```
 
-Asegúrate de pasar la [instancia de Fluent previamente creada](#initialize-fluent).
+Asegúrate de pasar la [instancia de Fluent previamente creada](#inicializar-fluent).
 
 ## Renderizar los mensajes localizados
 
