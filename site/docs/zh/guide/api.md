@@ -73,6 +73,52 @@ async function sendHelloTo12345() {
 这很容易忘记，很难调试，而且会破坏类型推导。
 grammY 允许你在整个 API 中统一的指定对象，并确保正确的属性在发送前就被序列化了。
 
+### API 的类型定义
+
+grammY 提供了完整的 Bot API 的类型覆盖。
+[`@grammyjs/types`](https://github.com/grammyjs/types) 仓库包含 grammY 内部使用的类型定义。
+这些类型定义也被导出，因此你可以在你的代码中使用它们。
+
+#### 在 Node.js 中的类型定义
+
+在 Node.js 中，你需要从 `grammy/types` 导入类型。
+例如，你可以通过如下方式获取 `Chat` 类型：
+
+```ts
+import { type Chat } from "grammy/types";
+```
+
+因此，TypeScript 需要设置 `moduleResolution` 为 `node16` 或 `nodenext`。
+调整你的 `tsconfig.json` 并将以下列高亮行添加到配置文件中：
+
+```json{4}
+{
+  "compilerOptions": {
+    // ...
+    "moduleResolution": "node16"
+    // ...
+  }
+}
+```
+
+但是，有时候会出现玄学，你不设置 TypeScript 配置，也可能可以正常使用。
+
+::: warning 错误的自动补全
+
+如果你不按上述方法修改 `tsconfig.json` 文件，那么你的代码编辑器可能会在自动补全中提示你导入 `grammy/out/client` 或其他东西。
+**所有以 `grammy/out` 开头的路径都是内部的。请不要使用它们。**
+它们可能在任何时候被改变，所以我们强烈建议你从 `grammy/types` 导入。
+
+:::
+
+#### 在 Deno 中的类型定义
+
+在 Deno 中，你可以简单地从 `types.ts` 导入类型定义：
+
+```ts
+import { type Chat } from "https://deno.land/x/grammy/types.ts";
+```
+
 ### 调用原始方法
 
 有时你可能想使用原始的函数签名，但仍然享受 grammY API 的便利性（例如在适当的时候进行 JSON 序列化）。
