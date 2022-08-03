@@ -16,7 +16,7 @@ In other words, you just run it on someone else's computer.
 
 > Please click the edit button at the bottom of the page to add more providers or to edit existing ones!
 
-We have two comparison tables, one for [serverless](#serverless) hosting and one for [VPS](#vps).
+We have two comparison tables: one for [serverless](#serverless) hosting and one for [VPS](#vps).
 
 ### Serverless
 
@@ -27,7 +27,7 @@ This has the downside that your bot does not have access to a persistent storage
 Instead, you will often have to have a database separately and connect to it if you need to store data permanently.
 We therefore recommend you to use a different kind of hosting for more complex bots, e.g. a [VPS](./vps.md).
 
-The main thing to know about them is that on serverless infrastructures you are required to use webhooks.
+The main thing to know about them is that on serverless infrastructures you are required to use [webhooks](../guide/deployment-types.md).
 
 | Name                   | Min. price | Pricing                                                               | Limits                                                                                  | Node.js | Deno                        | Web | Notes                          |
 | ---------------------- | ---------- | --------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | ------- | --------------------------- | --- | ------------------------------ |
@@ -50,7 +50,7 @@ A virtual private server is a virtual machine that you have full control over.
 You can usually access it via [SSH](https://en.wikipedia.org/wiki/Secure_Shell).
 You can install any software there, and you are responsible for system upgrades and so on.
 
-On a VPS, you can run bots using both polling or webhooks.
+On a VPS, you can run bots using both long polling or webhooks.
 
 Check out the [tutorial](./vps.md) on how to host grammY bots on a VPS.
 

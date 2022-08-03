@@ -48,7 +48,7 @@ If this happens while starting your bot, then your bot token is wrong.
 Talk to [@BotFather](https://t.me/BotFather) to see what your token is.
 
 If your bot works fine most of the time, but then suddenly you're getting a 404, then you're doing something very funky.
-You can come ask us in the group chat.
+You can come ask us in the [group chat](https://t.me/grammyjs).
 
 ### 409 Conflict: terminated by other getUpdates request
 
@@ -61,25 +61,26 @@ Talk to [@BotFather](https://t.me/BotFather) to do this.
 
 ### 429: Too Many Requests: retry after X
 
-Congratulations.
+Congratulations!
 You ran into an error that is among the most difficult ones to fix.
 
-There are two possible scenarios.
+There are two possible scenarios:
 
-One: Your bot does not have many users.
+**One:** Your bot does not have many users.
 In that case, you are just spamming the Telegram servers by sending too many requests.
-Solution: don't do that.
+Solution: don't do that!
 You should seriously think about how to reduce the number of API calls substantially.
 
-Two: Your bot is getting very popular and it has a lot of users (hundreds of thousands).
+**Two:** Your bot is getting very popular and it has a lot of users (hundreds of thousands).
 You have already made sure to use the minimum number of API calls for the most common operations of your bot, and _still_ you're running into these errors (called flood wait).
 
-There are a few things you can do.
+There are a few things you can do:
 
 1. Read [this article in the docs](../advanced/flood.md) to gain a basic understanding of the situation.
 2. Use the [`transformer-throttler` plugin](../plugins/transformer-throttler.md).
 3. Use the [`auto-retry` plugin](../plugins/auto-retry.md).
-4. Come ask us in the group chat for help. We have experienced people there.
+4. Come ask us in the [group chat](https://t.me/grammyjs) for help.
+   We have experienced people there.
 5. It is possible to ask Telegram to increase the limits, but this is very unlikely to happen if you did not do steps 1-3 first.
 
 ### Cannot find type definition file for 'node-fetch'

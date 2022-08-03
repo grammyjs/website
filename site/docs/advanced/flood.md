@@ -25,9 +25,9 @@ This could lead to a ban.
 Moreover, as requests might be tried several times, your server will consume more RAM and bandwidth than necessary.
 Instead of fixing the problem after the fact, it is much better to enqueue all API requests and only send them at the permitted speed:
 
-## The Real Solution (recommended)
+## The Real Solution (Recommended)
 
 grammY provides you with the [throttler plugin](../plugins/transformer-throttler.md) that automatically makes your bot respect all rate limits by enqueuing the outgoing requests of your bot in a message queue.
 This plugin is just as simple to set up but does a much better job at flood control.
-There isn't really any good reason to use `auto-retry` over the throttler plugin.
+There isn't really any good reason to use [auto-retry](../plugins/auto-retry.md) over the [throttler plugin](../plugins/transformer-throttler.md).
 In some cases it may make sense to use both.

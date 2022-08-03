@@ -37,7 +37,7 @@ An advantage of using the `api.sendGame` method is you can specify the `chat.id`
    });
    ```
 
-2. Sending game via `api.sendGame`
+2. Sending Game via `api.sendGame`
 
    ```ts
    bot.command("start", async (ctx) => {

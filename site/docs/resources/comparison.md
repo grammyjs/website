@@ -47,6 +47,7 @@ Today, Telegraf 3 is outdated.
 There are some unofficial forks out there that try to keep the legacy code base up to date with the evolvement of the Bot API, but their compatibility is unknown.
 Furthermore, the plugin ecosystem of Telegraf has moved on to Telegraf 4.
 Most plugins developers do not maintain versions for third-party forks of old Telegraf versions.
+
 Based on the fact that Telegraf hangs somewhere between version 3 and 4, it makes sense to compare grammY to both versions individually.
 
 #### Comparison to v3
@@ -128,6 +129,7 @@ We believe that all these explanations on the grammY website help people to get 
 
 On the downside, this is only good in the short-term perspective.
 The idea of putting everything in a gigantic file, and using a primitive `EventEmitter` to process streams of complex objects (aka. web requests) has brought a lot of pain to the world of Telegram bots, and it certainly prevented a number of good ideas from being implemented.
+
 Bots always start small, but a responsible framework must provide them a clear path to grow, and to scale up.
 Unfortunately, NTBA fails horribly at doing that.
 Any code base with more than 50 lines that uses NTBA ends up being a terrible mess of spaghetti-like cross-references.
@@ -156,14 +158,18 @@ People have different taste, so take this section with a grain of salt.
    While Python did introduce types in its 3.5 release, they are not used as commonly in the ecosystem as it is the case with JavaScript/TypeScript.
    Hence, they cannot compare to what you get out of the box with grammY and its accompanying libraries.
    With the types come auto-completion at every step of development, as well as helpful tooltips with explanations and links.
+
 2. **Easier to scale up code base.**
    The type system has a second advantage—it lets you scale the code base of your bot.
    This is much harder to do for projects written in a language with worse type safety.
+
 3. **Easier to scale up load.**
    If your bot actually starts to get popular, it is significantly easier to scale bots written in JS rather than in Python.
+
 4. **Higher responsiveness of your bot.**
    The V8 engine makes JavaScript the fastest scripting language in the observable universe.
    If you like your bot to be as fast as possible while still enjoying a dynamic language, then grammY is your best bet.
+
 5. **`async`/`await` support.**
    This is a very popular programming pattern to tame concurrency.
    The recent years show a strong trend towards asynchronous programming.
