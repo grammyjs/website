@@ -12,7 +12,7 @@ The result of this tutorial [can be seen in our example bots repository](https:/
 
 ## Preparing Your Code
 
-> Remember that you need to [run your bot on webhhoks](../guide/deployment-types.md#how-to-use-webhooks), so you should use `webhookCallback` and not call `bot.start()` in your code.
+> Remember that you need to [run your bot on webhooks](../guide/deployment-types.md#how-to-use-webhooks), so you should use `webhookCallback` and not call `bot.start()` in your code.
 
 1. Make sure that you have a file which exports your `Bot` object, so that you can import it later to run it.
 2. Create a file named `mod.ts` or `mod.js`, or actually any name you like (but you should be remembering and using this as the main file to deploy), with the following content:
