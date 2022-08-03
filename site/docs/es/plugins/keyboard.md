@@ -48,11 +48,11 @@ Los botones para una navegación de paginación se pueden construir así:
 
 ```ts
 const inlineKeyboard = new InlineKeyboard()
-  .text("« 1", "primero")
-  .text("‹ 3", "previo")
-  .text("· 4 ·", "actual")
-  .text("5 ›", "siguiente")
-  .text("31 »", "último");
+  .text("« 1", "first")
+  .text("‹ 3", "prev")
+  .text("· 4 ·", "stay")
+  .text("5 ›", "next")
+  .text("31 »", "last");
 ```
 
 ##### Resultado
@@ -67,8 +67,8 @@ Un teclado en línea con botón de compartir puede ser construido así:
 
 ```ts
 const inlineKeyboard = new InlineKeyboard()
-  .text("Obtener música al azar", "al azar").row()
-  .switchInline("Enviar música a los amigos");
+  .text("Get random music", "random").row()
+  .switchInline("Send music to friends");
 ```
 
 ##### Resultado
@@ -83,7 +83,7 @@ Los botones de la URL se pueden construir así:
 
 ```ts
 const inlineKeyboard = new InlineKeyboard().url(
-  "Leer en TechCrunch",
+  "Read on TechCrunch",
   "https://techcrunch.com/2016/04/11/this-is-the-htc-10/",
 );
 ```
@@ -189,9 +189,10 @@ Tres botones en una columna pueden ser construidos así:
 
 ```ts
 const keyboard = new Keyboard()
-  .text("Sí, ciertamente lo son").row()
-  .text("No estoy muy seguro").row()
-  .text("No. 😈");
+  .text("Yes, they certainly are").row()
+  .text("I'm not quite sure").row()
+  .text("No. 😈")
+  .resized();
 ```
 
 ##### Resultado
