@@ -186,7 +186,8 @@ Three buttons in one column can be built like this:
 const keyboard = new Keyboard()
   .text("Yes, they certainly are").row()
   .text("I'm not quite sure").row()
-  .text("No. 😈");
+  .text("No. 😈")
+  .resized();
 ```
 
 ##### Result

@@ -186,7 +186,8 @@ grammY 有一个简单且直观的方式来构建回复 keyboard，让你的 bot
 const keyboard = new Keyboard()
   .text("Yes, they certainly are").row()
   .text("I'm not quite sure").row()
-  .text("No. 😈");
+  .text("No. 😈")
+  .resized();
 ```
 
 ##### 结果
