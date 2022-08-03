@@ -10,6 +10,7 @@
     "grammy_router",
     "grammy_emoji",
     "grammy_parse_mode",
-    "grammy_storages"
+    "grammy_storages",
+    "grammy_conversations"
   ]
 }
