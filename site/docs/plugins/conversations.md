@@ -817,7 +817,7 @@ However, this is a bad idea for several reasons.
 What if your server crashes while waiting for a context object?
 In that case, we lose all information about the state of the conversation.
 Basically, the bot loses its train of thought, and the user has to start over.
-This is bad desgin and annoying.
+This is a bad and annoying design.
 
 **Blocking.**
 If wait calls would block until the next update arrives, it means that the middleware execution for the first update can't complete until the entire conversation completes.
