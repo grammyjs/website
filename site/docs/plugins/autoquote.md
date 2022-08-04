@@ -29,7 +29,7 @@ Use this if you want all messages sent from within a specific context (like a sp
     bot.start();
     ```
 
-  </CodeGroupItem>
+</CodeGroupItem>
   <CodeGroupItem title="JavaScript">
 
     ```ts
@@ -46,7 +46,7 @@ Use this if you want all messages sent from within a specific context (like a sp
     bot.start();
     ```
 
-  </CodeGroupItem>
+</CodeGroupItem>
   <CodeGroupItem title="Deno">
 
     ```ts
@@ -63,7 +63,7 @@ Use this if you want all messages sent from within a specific context (like a sp
     bot.start();
     ```
 
-  </CodeGroupItem>
+</CodeGroupItem>
 </CodeGroup>
 
 ### Usage for Every Route
@@ -76,67 +76,67 @@ Use this if you want absolutelly every possible message sent from your bot to qu
     ```ts
     import { Bot } from "grammy";
     import { autoQuote } from "@roziscoding/grammy-autoquote";
-    
+
     const bot = new Bot("");
-    
+
     bot.use(autoQuote);
-    
+
     bot.command("demo", async (ctx) => {
       await ctx.reply("Demo command!"); // This will quote the user's message
     });
-    
+
     bot.command("hello", async (ctx) => {
       await ctx.reply("Hi there :)"); // Also quotes the user's message
     });
-    
+
     bot.start();
     ```
 
-  </CodeGroupItem>
+</CodeGroupItem>
   <CodeGroupItem title="JavaScript">
 
     ```ts
     const { Bot } = require("grammy");
     const { autoQuote } = require("@roziscoding/grammy-autoquote");
-    
+
     const bot = new Bot("");
-    
+
     bot.use(autoQuote);
-    
+
     bot.command("demo", async (ctx) => {
       await ctx.reply("Demo command!"); // This will quote the user's message
     });
-    
+
     bot.command("hello", async (ctx) => {
       await ctx.reply("Hi there :)"); // Also quotes the user's message
     });
-    
+
     bot.start();
     ```
 
-  </CodeGroupItem>
+</CodeGroupItem>
   <CodeGroupItem title="Deno">
 
     ```ts
     import { Bot } from "https://deno.land/x/grammy/mod.ts";
     import { autoQuote } from "https://deno.land/x/grammy_autoquote/mod.ts";
-    
+
     const bot = new Bot("");
-    
+
     bot.use(autoQuote);
-    
+
     bot.command("demo", async (ctx) => {
       await ctx.reply("Demo command!"); // This will quote the user's message
     });
-    
+
     bot.command("hello", async (ctx) => {
       await ctx.reply("Hi there :)"); // Also quotes the user's message
     });
-    
+
     bot.start();
     ```
 
-  </CodeGroupItem>
+</CodeGroupItem>
 </CodeGroup>
 
 ## Plugin Summary
