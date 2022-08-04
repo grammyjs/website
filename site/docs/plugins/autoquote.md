@@ -12,44 +12,132 @@ This plugin sets the value of `reply_to_message_id` param to `ctx.msg.message_id
 
 Use this if you want all messages sent from within a specific context (like a specific command) to
 
-```ts
-import { Bot } from "grammy";
-import { addReplyParam } from "@roziscoding/grammy-autoquote";
-// import { addReplyParam } from "https://deno.land/x/grammy_autoquote/mod.ts"
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
 
-const bot = new Bot("");
+    ```ts
+    import { Bot } from "grammy";
+    import { addReplyParam } from "@roziscoding/grammy-autoquote";
 
-bot.command("demo", async (ctx) => {
-  ctx.api.config.use(addReplyParam(ctx));
-  await ctx.reply("Demo command!"); // This will quote the user's message
-});
+    const bot = new Bot("");
 
-bot.start();
-```
+    bot.command("demo", async (ctx) => {
+      ctx.api.config.use(addReplyParam(ctx));
+      await ctx.reply("Demo command!"); // This will quote the user's message
+    });
+
+    bot.start();
+    ```
+
+  </CodeGroupItem>
+  <CodeGroupItem title="JavaScript">
+
+    ```ts
+    const { Bot } = require("grammy");
+    const { addReplyParam } = require("@roziscoding/grammy-autoquote");
+
+    const bot = new Bot("");
+
+    bot.command("demo", async (ctx) => {
+      ctx.api.config.use(addReplyParam(ctx));
+      await ctx.reply("Demo command!"); // This will quote the user's message
+    });
+
+    bot.start();
+    ```
+
+  </CodeGroupItem>
+  <CodeGroupItem title="Deno">
+
+    ```ts
+    import { Bot } from "https://deno.land/x/grammy/mod.ts";
+    import { addReplyParam } from "https://deno.land/x/grammy_autoquote/mod.ts";
+
+    const bot = new Bot("");
+
+    bot.command("demo", async (ctx) => {
+      ctx.api.config.use(addReplyParam(ctx));
+      await ctx.reply("Demo command!"); // This will quote the user's message
+    });
+
+    bot.start();
+    ```
+
+  </CodeGroupItem>
+</CodeGroup>
 
 ### Usage for Every Route
 
 Use this if you want absolutelly every possible message sent from your bot to quote the triggering message.
 
-```ts
-import { Bot } from "grammy";
-import { autoQuote } from "@roziscoding/grammy-autoquote";
-// import { autoQuote } from 'https://deno.land/x/grammy_autoquote/mod.ts'
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
 
-const bot = new Bot("");
+    ```ts
+    import { Bot } from "grammy";
+    import { autoQuote } from "@roziscoding/grammy-autoquote";
+    
+    const bot = new Bot("");
+    
+    bot.use(autoQuote);
+    
+    bot.command("demo", async (ctx) => {
+      await ctx.reply("Demo command!"); // This will quote the user's message
+    });
+    
+    bot.command("hello", async (ctx) => {
+      await ctx.reply("Hi there :)"); // Also quotes the user's message
+    });
+    
+    bot.start();
+    ```
 
-bot.use(autoQuote);
+  </CodeGroupItem>
+  <CodeGroupItem title="JavaScript">
 
-bot.command("demo", async (ctx) => {
-  await ctx.reply("Demo command!"); // This will quote the user's message
-});
+    ```ts
+    const { Bot } = require("grammy");
+    const { autoQuote } = require("@roziscoding/grammy-autoquote");
+    
+    const bot = new Bot("");
+    
+    bot.use(autoQuote);
+    
+    bot.command("demo", async (ctx) => {
+      await ctx.reply("Demo command!"); // This will quote the user's message
+    });
+    
+    bot.command("hello", async (ctx) => {
+      await ctx.reply("Hi there :)"); // Also quotes the user's message
+    });
+    
+    bot.start();
+    ```
 
-bot.command("hello", async (ctx) => {
-  await ctx.reply("Hi there :)"); // Also quotes the user's message
-});
+  </CodeGroupItem>
+  <CodeGroupItem title="Deno">
 
-bot.start();
-```
+    ```ts
+    import { Bot } from "https://deno.land/x/grammy/mod.ts";
+    import { autoQuote } from "https://deno.land/x/grammy_autoquote/mod.ts";
+    
+    const bot = new Bot("");
+    
+    bot.use(autoQuote);
+    
+    bot.command("demo", async (ctx) => {
+      await ctx.reply("Demo command!"); // This will quote the user's message
+    });
+    
+    bot.command("hello", async (ctx) => {
+      await ctx.reply("Hi there :)"); // Also quotes the user's message
+    });
+    
+    bot.start();
+    ```
+
+  </CodeGroupItem>
+</CodeGroup>
 
 ## Plugin Summary
 
