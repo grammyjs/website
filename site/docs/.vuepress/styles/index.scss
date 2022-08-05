@@ -20,21 +20,21 @@ html.dark {
   --c-danger-text: rgb(253, 128, 136);
 }
 
-html.dark .custom-container.warning p code{
+html.dark .custom-container.warning code{
   color: rgba(252, 210, 83, 0.9);
   background-color: rgba(255, 197, 23, .1);
 }
 
-html.dark .custom-container.danger p code{
+html.dark .custom-container.danger code{
   color: rgb(252, 83, 83);
   background-color: rgba(237, 60, 80, .15);
 }
 
-html.dark .custom-container.warning p a{
+html.dark .custom-container.warning a{
   color: var(--c-warning);
 }
 
-html.dark .custom-container.danger p a{
+html.dark .custom-container.danger a{
   color: rgb(253, 54, 54);
 }
 
@@ -44,6 +44,13 @@ html.dark .custom-container.warning blockquote{
 
 html.dark .custom-container.danger blockquote{
   color: rgb(253, 128, 136, 0.7);
+}
+
+.custom-container.tip pre code, .custom-container.tip pre[class*="language-"] code,
+.custom-container.warning pre code, .custom-container.warning pre[class*="language-"] code,
+.custom-container.danger pre code, .custom-container.danger pre[class*="language-"] code {
+  color: #fff;
+  background-color: transparent;
 }
 
 // adjust table background colors to avoid clashes with inline code snippets
