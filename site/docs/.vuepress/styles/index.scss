@@ -7,8 +7,43 @@
 
 html.dark {
   --c-brand-light: #138cb3;
-  --c-tip: #1583a7;
   --c-brand: #009dca;
+  --c-tip: #1583a7;
+  --c-tip-title: #22c3f8;
+  --c-warning: #e0ad15;
+  --c-warning-bg: rgba(255, 197, 23, .05);
+  --c-warning-title: #fdca31;
+  --c-warning-text: rgba(252, 252, 124, 0.9);
+  --c-danger: #fc1e38;
+  --c-danger-bg: rgba(237, 60, 80, .06);
+  --c-danger-title: #fc2d3b;
+  --c-danger-text: rgb(253, 128, 136);
+}
+
+html.dark .custom-container.warning p code{
+  color: rgba(252, 210, 83, 0.9);
+  background-color: rgba(255, 197, 23, .1);
+}
+
+html.dark .custom-container.danger p code{
+  color: rgb(252, 83, 83);
+  background-color: rgba(237, 60, 80, .15);
+}
+
+html.dark .custom-container.warning p a{
+  color: var(--c-warning);
+}
+
+html.dark .custom-container.danger p a{
+  color: rgb(253, 54, 54);
+}
+
+html.dark .custom-container.warning blockquote{
+  color: rgba(252, 252, 124, 0.65);
+}
+
+html.dark .custom-container.danger blockquote{
+  color: rgb(253, 128, 136, 0.7);
 }
 
 // adjust table background colors to avoid clashes with inline code snippets
