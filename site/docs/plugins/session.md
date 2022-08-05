@@ -224,7 +224,7 @@ Same but much shorter:
 bot.use(session({ initial: () => ({ pizzaCount: 0 }) }));
 ```
 
-::: warning Sharing objects
+::: warning Sharing Objects
 Make sure to always create a _new object_.
 Do **NOT** do this:
 
@@ -814,7 +814,7 @@ If the version is lower (or missing because you were not using this feature befo
 This upgrades the data to version `1`.
 Hence, in your bot, you can always just assume that your session data has the most up to date structure, and the storage enhancement will take care of the rest and migrate your data as necessary.
 
-As time evolves and your bot changes further, you can add more and mre migration functions:
+As time evolves and your bot changes further, you can add more and more migration functions:
 
 ```ts
 const enhanced = enhanceStorage({
