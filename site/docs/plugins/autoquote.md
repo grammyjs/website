@@ -1,16 +1,16 @@
 # Always Replying to Messages
 
-Sometimes, especially for bots that are meant to be used in groups, it is necessary to always send messages as a reply (or quote) to the message that started the interaction.
-Usually, the way to do that is to mannualy add `reply_to_message_id` to the params of the method that sends the message (`sendText` / `reply`, `sendPhoto` / `replyWithPhoto`).
-However, if you're doing this for every message, it can get a bit messy and tiring.
+It is sometimes necessary to always send messages as replies, especially for bots that are meant to be used in groups.
+We usually do this by adding the `reply_to_message_id` parameter to the methods that send the message: `sendText`, `reply`, sendPhoto, replyWithPhoto and etc.
+However, if you're doing this for every single message, it can get messy and boring.
 
-This plugin sets the value of `reply_to_message_id` param to `ctx.msg.message_id` for every `send` method (except for `sendChatAction`, which does not support this parameter), thus making every message a reply to the message that triggered that update.
+This plugin sets the `reply_to_message_id` parameter to `ctx.msg.message_id` for `reply` and all `send*` methods that support it to make every message a reply to the message that triggered it.
 
 ## Usage
 
-### For a Single Route
+### In a Specific Routes
 
-Use this if you want all messages sent from within a specific context (like a specific command) to
+If you want all messages sent within a specific context (like a specific command), you can specifically apply the plugin to them: 
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
@@ -23,7 +23,7 @@ Use this if you want all messages sent from within a specific context (like a sp
 
     bot.command("demo", async (ctx) => {
       ctx.api.config.use(addReplyParam(ctx));
-      await ctx.reply("Demo command!"); // This will quote the user's message
+      await ctx.reply("Demo command!"); // this is going to quote the user's message
     });
 
     bot.start();
@@ -40,7 +40,7 @@ Use this if you want all messages sent from within a specific context (like a sp
 
     bot.command("demo", async (ctx) => {
       ctx.api.config.use(addReplyParam(ctx));
-      await ctx.reply("Demo command!"); // This will quote the user's message
+      await ctx.reply("Demo command!"); // this is going to quote the user's message
     });
 
     bot.start();
@@ -57,7 +57,7 @@ Use this if you want all messages sent from within a specific context (like a sp
 
     bot.command("demo", async (ctx) => {
       ctx.api.config.use(addReplyParam(ctx));
-      await ctx.reply("Demo command!"); // This will quote the user's message
+      await ctx.reply("Demo command!"); // this is going to quote the user's message
     });
 
     bot.start();
@@ -66,9 +66,9 @@ Use this if you want all messages sent from within a specific context (like a sp
 </CodeGroupItem>
 </CodeGroup>
 
-### Usage for Every Route
+### In for All Routes
 
-Use this if you want absolutelly every possible message sent from your bot to quote the triggering message.
+If you want every sent message to reply the messages that triggered them, you can apply the plugin this way:
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
@@ -82,11 +82,11 @@ Use this if you want absolutelly every possible message sent from your bot to qu
     bot.use(autoQuote);
 
     bot.command("demo", async (ctx) => {
-      await ctx.reply("Demo command!"); // This will quote the user's message
+      await ctx.reply("Demo command!"); // this is going to quote the user's message
     });
 
     bot.command("hello", async (ctx) => {
-      await ctx.reply("Hi there :)"); // Also quotes the user's message
+      await ctx.reply("Hi there :)"); // this quotes the user's message, too
     });
 
     bot.start();
@@ -104,11 +104,11 @@ Use this if you want absolutelly every possible message sent from your bot to qu
     bot.use(autoQuote);
 
     bot.command("demo", async (ctx) => {
-      await ctx.reply("Demo command!"); // This will quote the user's message
+      await ctx.reply("Demo command!"); // this is going to quote the user's message
     });
 
     bot.command("hello", async (ctx) => {
-      await ctx.reply("Hi there :)"); // Also quotes the user's message
+      await ctx.reply("Hi there :)"); // this quotes the user's message, too
     });
 
     bot.start();
@@ -126,11 +126,11 @@ Use this if you want absolutelly every possible message sent from your bot to qu
     bot.use(autoQuote);
 
     bot.command("demo", async (ctx) => {
-      await ctx.reply("Demo command!"); // This will quote the user's message
+      await ctx.reply("Demo command!"); // this is going to quote the user's message
     });
 
     bot.command("hello", async (ctx) => {
-      await ctx.reply("Hi there :)"); // Also quotes the user's message
+      await ctx.reply("Hi there :)"); // this quotes the user's message, too
     });
 
     bot.start();
