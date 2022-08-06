@@ -8,7 +8,7 @@ This plugin sets the `reply_to_message_id` parameter to `ctx.msg.message_id` for
 
 ## Usage
 
-### In a Specific Routes
+### In Specific Routes
 
 If you want all messages sent within a specific context (like a specific command), you can specifically apply the plugin to them:
 
