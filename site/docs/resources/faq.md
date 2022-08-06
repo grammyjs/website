@@ -10,7 +10,7 @@ If this FAQ does not answer your question, you should also have a look at the [B
 
 You are sending a message with formatting, i.e. you're setting `parse_mode` when sending a message.
 However, your formatting is broken, so Telegram does not know how to parse it.
-You should re-read [the section about formatting](https://core.telegram.org/bots/api#formatting-options) in the Telegram docs.
+You should re-read the [section about formatting](https://core.telegram.org/bots/api#formatting-options) in the Telegram docs.
 The byte offset that is mentioned in the error message will tell you where exactly the error is in your string.
 
 ::: tip Passing entities instead of formatting
@@ -77,8 +77,8 @@ You have already made sure to use the minimum number of API calls for the most c
 There are a few things you can do.
 
 1. Read [this article in the docs](../advanced/flood.md) to gain a basic understanding of the situation.
-2. Use [the `transformer-throttler` plugin](../plugins/transformer-throttler.md).
-3. Use [the `auto-retry` plugin](../plugins/auto-retry.md).
+2. Use the [`transformer-throttler` plugin](../plugins/transformer-throttler.md).
+3. Use the [`auto-retry` plugin](../plugins/auto-retry.md).
 4. Come ask us in the group chat for help. We have experienced people there.
 5. It is possible to ask Telegram to increase the limits, but this is very unlikely to happen if you did not do steps 1-3 first.
 

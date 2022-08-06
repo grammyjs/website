@@ -1,8 +1,8 @@
 # 并发 (`runner`)
 
-如果你使用 [长轮询](/zh/guide/deployment-types.md#长轮询) 的方式运行你的机器人，你可以使用这个包来并发处理消息。
+如果你使用 [长轮询](../guide/deployment-types.md#长轮询) 的方式运行你的机器人，你可以使用这个包来并发处理消息。
 
-> 在使用 grammY runner 之前，请确保你了解 [关注点二：高负载](/zh/advanced/scaling.md#长轮询)。
+> 在使用 grammY runner 之前，请确保你了解 [关注点二：高负载](../advanced/scaling.md#长轮询)。
 
 ## 为什么我们需要一个 bot runner
 
@@ -160,7 +160,7 @@ grammY runner 将在运行时自动解决所有必要的约束，并在必要时
 
 ## 优雅关闭
 
-为了让 bot 正确地完成工作，你应该在进程即将被销毁时，[发出信号](/zh/advanced/reliability.md#使用-grammy-runner) 让 bot 停止。
+为了让 bot 正确地完成工作，你应该在进程即将被销毁时，[发出信号](../advanced/reliability.md#使用-grammy-runner) 让 bot 停止。
 
 ## 插件概述
 

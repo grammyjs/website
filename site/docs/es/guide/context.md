@@ -17,8 +17,8 @@ bot.on("message", (ctx) => {
 
 Puedes utilizar el objeto de contexto para:
 
-- [acceder a la información sobre el mensaje](#available-information)
-- [realizar acciones en respuesta al mensaje](#available-actions).
+- [acceder a la información sobre el mensaje](#información-disponible)
+- [realizar acciones en respuesta al mensaje](#acciones-disponibles).
 
 Tenga en cuenta que los objetos `Context` se llaman comúnmente `ctx`.
 
@@ -193,7 +193,7 @@ const BOT_DEVELOPER = 123456; // identificador del chat del desarrollador del bo
 bot.use(async (ctx, next) => {
   // Modifica el objeto de contexto aquí estableciendo la configuración.
   ctx.config = {
-    developer: BOT_DEVELOPER,
+    botDeveloper: BOT_DEVELOPER,
     isDeveloper: ctx.from?.id === BOT_DEVELOPER,
   };
   // Ejecutar los manejadores restantes.

@@ -7,7 +7,7 @@ This is why the grammY community is collecting their experiences on this page.
 ## What is a Hosting Provider?
 
 In order to keep a bot online 24 hours a day, you need to run a computer 24 hours a day.
-As [mentioned in the introduction](/guide/introduction.html#how-to-keep-a-bot-running), you most likely don't want to do that with your laptop or home computer.
+As [mentioned in the introduction](../guide/introduction.html#how-to-keep-a-bot-running), you most likely don't want to do that with your laptop or home computer.
 Instead, you can ask a company to run the bot in the cloud.
 
 In other words, you just run it on someone else's computer.
@@ -52,7 +52,7 @@ You can install any software there, and you are responsible for system upgrades 
 
 On a VPS, you can run bots using both polling or webhooks.
 
-Check out [the tutorial](./vps.md) on how to host grammY bots on a VPS.
+Check out the [tutorial](./vps.md) on how to host grammY bots on a VPS.
 
 | Name          | Min. price | Ping to Bot API                           | Cheapest option                    |
 | ------------- | ---------- | ----------------------------------------- | ---------------------------------- |

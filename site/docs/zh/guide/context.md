@@ -126,7 +126,7 @@ bot.on("message", (ctx) => ctx.reply("Gotcha!"));
 在后台，上下文 _已经知道_ 它的聊天标识符（即 `ctx.msg.chat.id`），所以它给你 `reply` 方法，让你向同一个聊天记录发送消息。
 在内部，`reply` 再次调用 `sendMessage`，并为您预先填写了聊天标识符。
 
-因此，正如 [前面](./basics.md#sending-messages) 所解释的，上下文对象的所有方法都可以接受 `Other` 类型的选项对象，以传递给每个 API 调用。
+因此，正如 [前面](./basics.md#发送信息) 所解释的，上下文对象的所有方法都可以接受 `Other` 类型的选项对象，以传递给每个 API 调用。
 这可以用于向每个 API 调用传递进一步的配置。
 
 ::: tip Telegram 的回复功能
@@ -194,7 +194,7 @@ const BOT_DEVELOPER = 123456; // bot 开发者的聊天标识符
 bot.use(async (ctx, next) => {
   // 通过设置配置，在这里修改上下文对象。
   ctx.config = {
-    developer: BOT_DEVELOPER,
+    botDeveloper: BOT_DEVELOPER,
     isDeveloper: ctx.from?.id === BOT_DEVELOPER,
   };
   // 运行其余处理程序。

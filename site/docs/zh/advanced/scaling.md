@@ -5,7 +5,7 @@ next: ./reliability.md
 
 # 关注点二：高负载
 
-你的 bot 能够处理高负载的消息取决于你有没有让它处于 [长轮询状态运行或者通过使用 webhooks](/zh/guide/deployment-types.md)。
+你的 bot 能够处理高负载的消息取决于你有没有让它处于 [长轮询状态运行或者通过使用 webhooks](../guide/deployment-types.md)。
 不论使用哪种方式，你都应该阅读 [下面的一些坑点](#并发是困难的)。
 
 ## 长轮询
@@ -26,7 +26,7 @@ next: ./reliability.md
 理想情况下，我们还希望将并发限制在某个固定数量，以约束最大服务器负载。
 
 并发处理的模块并没有被打包在 grammy 的核心库中。
-相应替代的是， [grammY runner](/zh/plugins/runner.md) 这个包可以在你的 bot 中使用。
+相应替代的是， [grammY runner](../plugins/runner.md) 这个包可以在你的 bot 中使用。
 它支持上述所有开箱即用的功能，而且使用起来非常简单。
 
 ```ts
@@ -38,7 +38,7 @@ run(bot);
 ```
 
 默认的并发量限制在了500。
-如果你想对这个库有更深入的了解，[看这里]((/plugins/runner.md))
+如果你想对这个库有更深入的了解，[看这里](../plugins/runner.md)
 
 并发是困难的，所以当你使用 `grammY runner` 的时候你应该记住一些东西，详情看 [下面的小节](#并发是困难的)
 
@@ -112,8 +112,8 @@ run(bot);
 <CodeGroupItem title="JavaScript">
 
 ```ts
-const { Bot, Context, session } = require("grammy";)
-const { run, sequentialize } = require("@grammyjs/runner";)
+const { Bot, Context, session } = require("grammy");
+const { run, sequentialize } = require("@grammyjs/runner");
 
 // 创建一个 bot。
 const bot = new Bot("<token>");

@@ -31,7 +31,7 @@ Ya has terminado...
 ...excepto, si te tomas en serio tu proyecto de bot.
 Si detienes tu bot (o apagas tu ordenador), tu bot deja de responder, por lo que ya no reaccionará a ningún mensaje.
 
-> Omite esta sección si sólo quieres jugar con los bots, y [continúa aquí abajo con los prerrequisitos](#prerequisites-to-getting-started) para empezar.
+> Omite esta sección si sólo quieres jugar con los bots, y [continúa aquí abajo con los prerrequisitos](#prerrequisitos-para-empezar) para empezar.
 
 En pocas palabras, si quieres que el bot esté en línea todo el tiempo, tienes que mantener un ordenador funcionando las 24 horas del día.
 Como lo más probable es que no quieras hacer eso con tu portátil, debes subir tu código a un _hosting provider_ (en otras palabras, el ordenador de otra persona, también conocido como _servidor_), y dejar que esa gente lo ejecute por ti.
@@ -100,7 +100,7 @@ Para nosotros, hay dos entornos de ejecución para elegir, [Deno](https://deno.l
 (Si ves que la gente lo llama _Node_, es que son demasiado perezosos para escribir ".js", pero significan lo mismo).
 
 > El resto de esta sección te ayuda a decidir entre estas dos plataformas.
-> Si ya sabes lo que quieres usar, salta a los [prerrequisitos para Node.js](#prerequisites-for-node-js) o [los de Deno](#prerequisites-for-deno).
+> Si ya sabes lo que quieres usar, salta a los [prerrequisitos para Node.js](#prerrequisitos-para-nodejs) o los [de Deno](#prerrequisitos-para-deno).
 
 Node.js es la tecnología más antigua y madura.
 Si necesitas conectarte a una base de datos extraña o hacer otras cosas de bajo nivel relacionadas con el sistema, es muy probable que puedas hacerlo con Node.js.
@@ -134,7 +134,7 @@ Cuando hayas creado tu bot, por ejemplo en un archivo llamado `bot.ts`, puedes e
 Puedes detenerlo de nuevo con `Ctrl+C`.
 
 ¿Listo?
-¡[Empieza](./getting-started.md#getting-started-on-deno)! :robot:
+¡[Empieza](./getting-started.md#introducción-a-deno)! :robot:
 
 ### Prerrequisitos para Node.js
 
@@ -157,4 +157,4 @@ Esto detendrá tu bot.
 Entonces, necesitas repetir los pasos 2 y 3.
 
 ¿Estás listo?
-¡[Empieza](./getting-started.md#getting-started-on-node-js)! :robot:
+¡[Empieza](./getting-started.md#comenzando-en-nodejs)! :robot:

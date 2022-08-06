@@ -22,7 +22,7 @@ Por ejemplo, algunos proveedores de infraestructura sólo admiten uno de los dos
 
 Tu bot puede atraerlos (long polling), o los servidores de Telegram pueden empujarlos a tu bot (webhooks).
 
-> Si ya sabes cómo funcionan estas cosas, desplázate hacia abajo para ver cómo usar [long polling](#how-to-use-long-polling) o [webhooks](#how-to-use-webhooks) con grammY.
+> Si ya sabes cómo funcionan estas cosas, desplázate hacia abajo para ver cómo usar [long polling](#cómo-utilizar-el-long-polling) o [webhooks](#cómo-usar-webhooks) con grammY.
 
 ## ¿Cómo funciona el Long Polling?
 
@@ -163,7 +163,7 @@ Los lugares donde los webhooks funcionan bien incluyen:
 
 Entonces opte por el long polling.
 Si no tienes una buena razón para usar webhooks, entonces ten en cuenta que no hay mayores inconvenientes en el long polling, y -según nuestra experiencia- pasarás mucho menos tiempo arreglando cosas.
-Los webhooks pueden ser un poco desagradables de vez en cuando (ver [abajo](#ending-webhook-requests-in-time)).
+Los webhooks pueden ser un poco desagradables de vez en cuando (ver [abajo](#terminar-las-solicitudes-de-webhooks-a-tiempo)).
 
 Elijas lo que elijas, si alguna vez te encuentras con problemas serios, no debería ser demasiado difícil cambiar al otro tipo de despliegue después del hecho.
 Con grammY, sólo tienes que tocar unas pocas líneas de código.
