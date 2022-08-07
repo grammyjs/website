@@ -9,7 +9,7 @@ html.dark {
   --c-brand-light: #138cb3;
   --c-brand: #009dca;
   --c-tip: #1583a7;
-  --c-tip-title: #138bb3;
+  --c-tip-title: var(--c-text-accent);
   --c-warning: #e0ad15;
   --c-warning-bg: rgba(255, 197, 23, .05);
   --c-warning-title: #fdca31;
