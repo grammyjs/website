@@ -161,7 +161,7 @@ bot.start();
 Now, every time we send a document, the chat action of `upload_document` will be sent to our client.
 Note that this was for demonstration purposes.
 Telegram recommends using chat actions only when "a response from the bot will take a **noticeable** amount of time to arrive".
-You probably don't actually need to set the status if the file is very small, so there are some optimisations that could be done here.
+You probably don't actually need to set the status if the file is very small, so there are some optimizations that could be done here.
 
 ## Extraction Into a Plugin
 

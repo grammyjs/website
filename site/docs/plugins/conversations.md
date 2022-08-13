@@ -685,7 +685,7 @@ See how the captcha function can be reused in different places in your code.
 > In reality, it may work poorly because it only waits for a new update from the respective chat, but without verifying that it actually comes from the same user who joined.
 > If you want to create a real captcha, you may want to use [parallel conversations](#parallel-conversations).
 
-If you want, you can also split your code across even more fuctions, or use recursion, mutual recursion, generators, and so on.
+If you want, you can also split your code across even more functions, or use recursion, mutual recursion, generators, and so on.
 (Just make sure that all functions follow the [three rules](#three-golden-rules-of-conversations).)
 
 Naturally, you can use error handling in your functions, too.
@@ -823,7 +823,7 @@ If a conversation is started multiple times, these instances of the conversation
 
 Each conversation can then either handle the update, or it can call `await conversation.skip()`.
 In the former case, the update will simply be consumed while the conversation is handling it.
-In the latter case, the conversation will effetively undo receiving the update, and pass it on to the next conversation.
+In the latter case, the conversation will effectively undo receiving the update, and pass it on to the next conversation.
 If all conversations skip an update, the control flow will be passed back to the middleware system, and run any subsequent handlers.
 
 This allows you to start a new conversation from the regular middleware.
@@ -920,7 +920,7 @@ However, this is a bad idea for several reasons.
 What if your server crashes while waiting for a context object?
 In that case, we lose all information about the state of the conversation.
 Basically, the bot loses its train of thought, and the user has to start over.
-This is bad desgin and annoying.
+This is bad design and annoying.
 
 **Blocking.**
 If wait calls would block until the next update arrives, it means that the middleware execution for the first update can't complete until the entire conversation completes.
@@ -947,7 +947,7 @@ The conversations plugin tracks the execution of your function.
 When a wait call is reached, it serializes the state of execution into the session, and safely stores it in a database.
 When the next update arrives, it first inspects the session data.
 If it finds that it left off in the middle of a conversation, it deserializes the state of execution, takes your conversation builder function, and replays it up to the point of the last `wait` call.
-It then resumes ordinary execution of your function—until the next `wait` call is reached, and the execution must be haltet again.
+It then resumes ordinary execution of your function—until the next `wait` call is reached, and the execution must be halted again.
 
 What do we mean by the state of execution?
 In a nutshell, it consists on three things:

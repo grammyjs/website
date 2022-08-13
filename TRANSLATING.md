@@ -56,7 +56,7 @@ Here is some more information about how each stage works.
 
 A translation to another language must be 100 % complete before it gets published.
 We do not accept partial translations.
-All menus, links, articles, comments, and everything translatable must be localised before the changes can finally go live on the website.
+All menus, links, articles, comments, and everything translatable must be localized before the changes can finally go live on the website.
 Please open a translation tracking issue so everyone can follow the progress.
 It can look like https://github.com/grammyjs/website/issues/55.
 
@@ -93,7 +93,7 @@ At this point, all you need to do is to keep it that way.
 Whenever an English article is updated (by us, you, or anyone else), a pull request will be opened in this repository.
 It usually takes some time before we get the content right, so don’t bother translating anything at this point yet.
 
-Once the content is finalised, we add the “ready for translation” label.
+Once the content is finalized, we add the “ready for translation” label.
 This is a guarantee that the English version is not going to change anymore.
 You should now push more commits to the existing branch in this repository which sync up the changes to your language.
 It is recommended to have a second person review your translations, but this is less strict than in the Active Stage.
