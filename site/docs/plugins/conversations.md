@@ -885,7 +885,7 @@ We can now have a simple handler that enters the conversation when a new member 
 bot.on("chat_member")
   .filter((ctx) => ctx.chatMember.old_chat_member.status === "left")
   .filter((ctx) => ctx.chatMember.new_chat_member.status === "member")
-  .use((ctx) => ctx.conversation.enter("enterGroup"));
+  .use(async (ctx) => await ctx.conversation.enter("enterGroup"));
 ```
 
 ### Inspecting Active Conversations
