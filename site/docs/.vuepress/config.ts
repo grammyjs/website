@@ -268,11 +268,6 @@ export default defineUserConfig({
                     text: "Example Bots Repository",
                     link: "https://github.com/grammyjs/examples",
                   },
-                  {
-                    text: "Live Browser Demo",
-                    link: "/demo/",
-                    activeMatch: "^/demo/$",
-                  },
                 ],
               },
             ],
@@ -625,11 +620,6 @@ export default defineUserConfig({
                   {
                     text: "Ejemplo de Repositorio de Bots",
                     link: "https://github.com/grammyjs/examples",
-                  },
-                  {
-                    text: "Demostración de navegador en vivo",
-                    link: "/es/demo/",
-                    activeMatch: "^/es/demo/$",
                   },
                 ],
               },
@@ -984,11 +974,6 @@ export default defineUserConfig({
                   {
                     text: "示例 Bots 仓库",
                     link: "https://github.com/grammyjs/examples",
-                  },
-                  {
-                    text: "在线 Demo",
-                    link: "/zh/demo/",
-                    activeMatch: "^/zh/demo/$",
                   },
                 ],
               },
