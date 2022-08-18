@@ -1,6 +1,5 @@
 ---
 prev: ./games.md
-next: /zh/advanced/
 ---
 
 # 长轮询 vs. Webhooks
