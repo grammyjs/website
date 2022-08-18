@@ -248,7 +248,7 @@ export default defineUserConfig({
                   },
                   {
                     text: "[Submit your PR!]",
-                    link: "/plugins/#submitting-your-own-package-to-the-docs",
+                    link: "/plugins/#create-your-own-plugins",
                   },
                 ],
               },
@@ -606,8 +606,7 @@ export default defineUserConfig({
                   },
                   {
                     text: "[¡Envíe su PR!]",
-                    link:
-                      "/es/plugins/#submitting-your-own-package-to-the-docs",
+                    link: "/es/plugins/#crear-tus-propios-plugins",
                   },
                 ],
               },
@@ -966,7 +965,7 @@ export default defineUserConfig({
                   },
                   {
                     text: "[等待你的 PR!]",
-                    link: "/zh/plugins/#向文档提交你自己的插件",
+                    link: "/zh/plugins/#创建你自己的插件",
                   },
                 ],
               },
