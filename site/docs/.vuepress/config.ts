@@ -360,10 +360,6 @@ export default defineUserConfig({
                     link: "/hosting/heroku.html",
                   },
                   {
-                    text: "Google Cloud Functions",
-                    link: "/hosting/gcf.html",
-                  },
-                  {
                     text: "Virtual Private Server",
                     link: "/hosting/vps.html",
                   },
@@ -711,10 +707,6 @@ export default defineUserConfig({
                   {
                     text: "Heroku",
                     link: "/es/hosting/heroku.html",
-                  },
-                  {
-                    text: "Google Cloud Functions",
-                    link: "/es/hosting/gcf.html",
                   },
                   {
                     text: "Servidor Privado Virtual",
@@ -1065,10 +1057,6 @@ export default defineUserConfig({
                   {
                     text: "Heroku",
                     link: "/zh/hosting/heroku.html",
-                  },
-                  {
-                    text: "Google Cloud Functions",
-                    link: "/zh/hosting/gcf.html",
                   },
                   {
                     text: "Virtual Private Server",
