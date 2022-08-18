@@ -8,7 +8,7 @@ In this guide, you'll learn about various methods of running your bot in a VPS, 
 
 systemd is a powerful service manager which is pre-installed on many Linux distributions, mainly Debian-based ones.
 
-### Getting the start commmand
+### Getting the start command
 
 1. Get the full path of your runtime:
 

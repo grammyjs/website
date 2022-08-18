@@ -908,7 +908,11 @@ export default defineUserConfig({
                 text: "官方维护",
                 children: [
                   {
-                    text: "互动菜单（menu）",
+                    text: "对话 (conversations)",
+                    link: "/zh/plugins/conversations.html",
+                  },
+                  {
+                    text: "互动菜单 (menu)",
                     link: "/zh/plugins/menu.html",
                   },
                   {

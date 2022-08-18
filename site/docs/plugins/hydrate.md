@@ -178,6 +178,7 @@ This plugin currently hydrates
 - chosen inline results
 - web app queries
 - pre-checkout and shipping queries
+- chat join requests
 
 All objects are hydrated on
 

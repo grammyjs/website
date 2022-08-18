@@ -244,62 +244,66 @@ await ctx.reply(text, {
 如果你想在你的信息中指定更多选项，你可能需要创建你自己的 `reply_markup` 对象。
 在这种情况下，你必须在传递你的对象时使用 `keyboard.build()`。
 
+你也可以通过调用特殊方法给你的 keyboard 添加一个或者多个属性。
+它们不会添加任何新的按钮，而是定义 keyboard 的行为。
+
 #### 调整自定义 Keyboard 大小
 
-如果你想让键盘根据其包含的按钮调整大小，你可以指定 `resize_keyboard` 选项。
+如果你想让键盘根据其包含的按钮调整大小，你可以调用 `resized`。
 这可以让自定义 keyboard 变得更小。
 （通常情况下，keyboard 与应用程序的标准键盘的大小一致。）
 
 ```ts
-await ctx.reply(text, {
-  reply_markup: {
-    resize_keyboard: true,
-    keyboard: keyboard.build(),
-  },
-});
+new Keyboard()
+  .text("Yes").row()
+  .text("No")
+  .resized();
 ```
+
+不管你是最开始调用 `resized`，还是最后调用，还是在某个地方的两者之间调用，都没有关系。
+结果都是一样的。
 
 #### 一次性自定义 Keyboards
 
-如果你想在按钮第一次被按下后立即隐藏自定义 keyboard，你可以指定 `one_time_keyboard` 选项。
+如果你想在按钮第一次被按下后立即隐藏自定义 keyboard，你可以调用 `oneTime`。
 
 ```ts
-await ctx.reply(text, {
-  reply_markup: {
-    one_time_keyboard: true,
-    keyboard: keyboard.build(),
-  },
-});
+new Keyboard()
+  .text("Yes").row()
+  .text("No")
+  .oneTime();
 ```
+
+不管你是最开始调用 `oneTime`，还是最后调用，还是在某个地方的两者之间调用，都没有关系。
+结果都是一样的。
 
 #### 输入栏占位符
 
-如果你想在自定义 keyboard 可见时，在输入栏中显示一个占位符，你可以指定 `input_field_placeholder` 选项。
+如果你想在自定义 keyboard 可见时，在输入栏中显示一个占位符，你可以调用 `placeholder`。
 
 ```ts
-const keyboard = new Keyboard().text("LEFT").text("RIGHT");
-
-await ctx.reply(text, {
-  reply_markup: {
-    input_field_placeholder: "Send LEFT or RIGHT",
-    keyboard: keyboard.build(),
-  },
-});
+new Keyboard()
+  .text("Yes").row()
+  .text("No")
+  .placeholder("Decide now!");
 ```
+
+不管你是最开始调用 `placeholder`，还是最后调用，还是在某个地方的两者之间调用，都没有关系。
+结果都是一样的。
 
 #### 选择性地发送自定义 Keyboard
 
-如果你想只向消息对象的文本中提到的 @ 的用户显示自定义 keyboard，你可以指定 `selective` 选项，如果你的消息是 [回复](../guide/basics.md#发送带回复的信息)，则向原始消息的发送者显示。
+如果你想只向消息对象的文本中提到的 @ 的用户显示自定义 keyboard，你可以调用 `selected`，如果你的消息是 [回复](../guide/basics.md#发送带回复的信息)，则向原始消息的发送者显示。
 
 ```ts
-await ctx.reply(text, {
-  reply_to_message_id: ctx.msg.message_id,
-  reply_markup: {
-    selective: true,
-    keyboard: keyboard.build(),
-  },
-});
+new Keyboard()
+  .text("Yes").row()
+  .text("No")
+  .selected();
 ```
+
+不管你是最开始调用 `selected`，还是最后调用，还是在某个地方的两者之间调用，都没有关系。
+结果都是一样的。
 
 ### 响应点击
 

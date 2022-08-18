@@ -178,6 +178,7 @@ bot.api.config.use(hydrateApi());
 - 选定的 inline 结果
 - web 应用查询
 - 预付款和配送查询
+- 加入聊天请求
 
 所有对象都会被 hydrated 在
 

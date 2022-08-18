@@ -5,7 +5,7 @@ With this plugin, you can easily insert emojis on your replies searching for the
 ## Why should I use this?
 
 Why not? People use emojis in their code all the time to better illustrate the message they're willing to pass or to organize things.
-But you lose your focus everytime you need a new emoji, see:
+But you lose your focus every time you need a new emoji, see:
 
 1. You stop coding to search for a specific emoji.
 2. You go to a Telegram chat and spent ~6 seconds (to not say more) searching for the emoji you want.

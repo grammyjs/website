@@ -26,7 +26,7 @@ Once you have created a Supabase Function project, you can write your bot.
 
 ## Preparing Your Code
 
-> Remember that you need to [run your bot on webhhoks](../guide/deployment-types.md#how-to-use-webhooks), so you should use `webhookCallback` and not call `bot.start()` in your code.
+> Remember that you need to [run your bot on webhooks](../guide/deployment-types.md#how-to-use-webhooks), so you should use `webhookCallback` and not call `bot.start()` in your code.
 
 You can use this short example bot as a starting point.
 

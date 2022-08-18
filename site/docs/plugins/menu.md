@@ -288,7 +288,7 @@ bot.use(settings);
 ```
 
 **You can create multiple independent menus and make them all interactive.**
-For example, if you create two unrelated menus and you never need to navigate between them, then you should install both of them indendently.
+For example, if you create two unrelated menus and you never need to navigate between them, then you should install both of them independently.
 
 ```ts
 // If you have independent menus like this:
