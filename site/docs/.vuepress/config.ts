@@ -233,10 +233,6 @@ export default defineUserConfig({
                     text: "Parse Mode (parse-mode)",
                     link: "/plugins/parse-mode.html",
                   },
-                  {
-                    text: "Command Filtering (command-filter)",
-                    link: "/plugins/command-filter.html",
-                  },
                 ],
               },
               {
@@ -594,10 +590,6 @@ export default defineUserConfig({
                   {
                     text: "Modo de parsear (parse-mode)",
                     link: "/es/plugins/parse-mode.html",
-                  },
-                  {
-                    text: "Filtro de comandos (command-filter)",
-                    link: "/es/plugins/command-filter.html",
                   },
                 ],
               },
@@ -958,10 +950,6 @@ export default defineUserConfig({
                   {
                     text: "解析模式 (parse-mode)",
                     link: "/zh/plugins/parse-mode.html",
-                  },
-                  {
-                    text: "指令过滤 (command-fiter)",
-                    link: "/zh/plugins/command-filter.html",
                   },
                 ],
               },
