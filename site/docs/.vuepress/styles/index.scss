@@ -33,7 +33,7 @@ html:not(.dark) tr:nth-child(2n) code {
 .theme-default-content p,
 .theme-default-content li {
   text-align: justify;
-  text-justify: inter-character;
+  text-justify: auto;
   hyphens: auto;
 }
 
