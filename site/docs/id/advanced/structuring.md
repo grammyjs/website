@@ -65,7 +65,7 @@ bot.start();
 Cara lainnya, kamu bisa menggunakan [plugin router](../plugins/router.md). Plugin ini juga bisa digunakan untuk menggabungkan modul-modul yang berbeda dengan menentukan middleware mana yang akan digunakan di awal.
 
 Yang perlu diingat adalah tidak ada satu cara mutlak untuk mengatur struktur bot kamu, karena masing-masing bot memiliki kasus yang berbeda.
-Seperti biasa, pilih cara yang menurutmu paling sesuai dan cocok untuk bot kamu, karena kamu lah sebagai pencipta yang paham mengenai seluk-beluk dari bot kamu. :wink:
+Seperti biasa, pilih cara yang menurutmu paling sesuai dan cocok untuk bot kamu, karena kamulah sebagai pencipta yang paham mengenai seluk-beluk dari bot kamu. :wink:
 
 ## Type Definition untuk Middleware yang Telah Di-extract
 

@@ -52,7 +52,7 @@ Kamu juga perlu tahu beberapa konsekuensi yang ditimbulkan ketika menggunakan co
 
 ## Concurrency Itu Sulit
 
-Jika bot kamu memproses semua update secara bersamaan, maka ini bisa menimbulkan beberapa masalah yang perlu diperhatikan.
+Beberapa masalah akan timbul jika bot kamu memproses semua update secara bersamaan.
 Contohnya, saat dua pesan dari chat yang sama diterima oleh pemanggilan `getUpdates` yang sama pula, maka kedua pesan ini akan diproses secara bersamaan.
 Sehingga, kita tidak dapat memastikan urutan pesan tersebut sudah teracak atau tidak.
 

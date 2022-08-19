@@ -9,7 +9,7 @@ _Filter query_ merupakan argument pertama dari `bot.on()` yang berbentuk string.
 
 ## Pengenalan
 
-Sebagian besar framework bot — _atau bahkan semuanya?_ — hanya menyediakan pemfilteran update yang sederhana, misalnya cuma disediakan `on("message")` dan sejenisnya.
+Sebagian besar framework bot—atau bahkan semuanya?—hanya menyediakan pemfilteran update yang sederhana, misalnya cuma disediakan `on("message")` dan sejenisnya.
 Pemfilteran untuk jenis pesan lainnya diserahkan kepada developer bot masing-masing untuk ditangani sendiri, yang mana sering kali mengarah ke penggunaan statemen `if` yang tidak ada habisnya di dalam kode mereka.
 
 Sebaliknya, **grammY dilengkapi dengan bahasa query-nya sendiri** yang dapat digunakan untuk **memfilter pesan yang kamu inginkan**.
@@ -83,7 +83,7 @@ _Query engine_ grammY memiliki shortcut yang dapat mengelompokkan query-query ya
 
 #### `msg`
 
-Shortcut `msg` — _bukan msg micin, loh ya_ :grimacing: — mengelompokkan pesan dan postingan channel.
+Shortcut `msg`—bukan msg micin, loh ya :grimacing:—mengelompokkan pesan dan postingan channel.
 Dengan menggunakan `msg`sama halnya dengan menyimak aktivitas `message` dan `channel_post`.
 
 ```ts
@@ -341,7 +341,7 @@ Contoh:
 
 Meski type system bisa menangkap semua filter query yang tidak valid di compile time, namun grammY tetap memeriksa semua filter query di runtime selama proses penyusunan.
 Setiap filter query akan dicocokkan dengan struktur validasi untuk diperiksa apakah query tersebut memang valid.
-Dengan begitu, ia akan langsung gagal saat itu juga — _alih-alih gagal di runtime_ — ketika hasilnya tidak valid, karena pernah terjadi sebelumnya, ketika bug di TypeScript menyebabkan masalah serius terhadap _type inference system_ lanjutan yang menjadi penyokong filter query.
+Dengan begitu, ia akan langsung gagal saat itu juga—alih-alih gagal di runtime—ketika hasilnya tidak valid, karena pernah terjadi sebelumnya, ketika bug di TypeScript menyebabkan masalah serius terhadap _type inference system_ lanjutan yang menjadi penyokong filter query.
 Jika suatu saat bug tersebut muncul, kita bisa mencegah masalah serupa terjadi lagi.
 Selain itu, kamu juga akan diberikan pesan error yang lebih bermanfaat.
 

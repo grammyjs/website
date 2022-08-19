@@ -16,14 +16,14 @@ Akibatnya, ada beberapa hal yang tidak bisa kamu lakukan di bot:
 
 Dengan kata lain, **bot hanya bisa mengakses informasi update yang datang pada saat itu saja** (misal sebuah pesan), contohnya informasi yang tersedia di object context `ctx`.
 
-Oleh karena itu, jika kamu _ingin mengakses_ data lama, maka kamu perlu menyimpannya segera setelah data itu diterima.
+Oleh karena itu, jika kamu _ingin mengakses_ data lama, kamu perlu menyimpannya segera setelah data itu diterima.
 Kamu harus memiliki sebuah data storage, misalnya di file, database, atau in-memory.
 
 Tentu saja, grammY sudah mengantisipasinya agar kamu tidak perlu repot-repot menyiapkannya sendiri.
 Kamu bisa menggunakan penyimpanan session grammY yang bisa langsung dipakai dan gratis untuk selamanya.
 
 > Secara umum, ada banyak provider di luar sana yang menawarkan layanan data storage, dan grammY sudah terintegrasi dengan mereka tanpa ada kendala.
-> Jika kamu hendak menjalankan database-mu sendiri, maka bisa dipastikan grammY juga mampu terintegrasi sama baiknya.
+> Jika kamu hendak menjalankan database-mu sendiri, bisa dipastikan grammY juga mampu terintegrasi sama baiknya.
 > [Gulir ke bawah](#storage-adapter-yang-tersedia) untuk melihat daftar integrasi yang tersedia.
 
 ## Apa Itu Session?
@@ -75,7 +75,7 @@ Cukup dengan memodifikasi data di `ctx.session`, lalu plugin akan mengurus sisan
 > [Lewati](#cara-menggunakan-session) jika kamu sudah yakin akan menggunakan session.
 
 Kamu mungkin sekarang berpikir, "Sip! sekarang aku tidak perlu capek-capek mengatur database lagi."
-Yup, kamu benar, session merupakan solusi yang ideal — _untuk tipe data tertentu saja_.
+Yup, kamu benar, session merupakan solusi yang ideal—untuk tipe data tertentu saja.
 
 Berdasarkan pengalaman kami, ada beberapa situasi dimana session benar-benar berjaya.
 Di sisi lain, ada situasi-situasi tertentu dimana sebuah database tradisional mungkin lebih cocok dipakai.
@@ -373,7 +373,7 @@ bot.use(session({
 > Daftar pilihan integrasi storage eksternal yang didukung tersedia [di bawah sini](#storage-eksternal).
 
 Keuntungan menggunakan grammY adalah kamu bisa mengakses cloud storage secara gratis.
-Ia tidak membutuhkan pengaturan sama sekali — _semua autentikasi dilakukan menggunakan token bot-mu_.
+Ia tidak membutuhkan pengaturan sama sekali—semua autentikasi dilakukan menggunakan token bot-mu.
 Lihat [repositori berikut](https://github.com/grammyjs/storages/tree/main/packages/free)!
 
 Cara pemasangannya sangat mudah:
@@ -635,7 +635,7 @@ Lazy Session dapat mengabaikan langkah 2 dan 4 jika memang tidak ada handler yan
 Dengan begitu, tidak ada data yang perlu dibaca maupun ditulis kembali ke data storage.
 
 Ini bisa dilakukan dengan cara memotong akses `ctx.session`.
-Jika tidak ada handler yang dipanggil, maka `ctx.session` tidak akan diakses.
+Jika tidak ada handler yang dipanggil, `ctx.session` tidak akan diakses.
 Lazy session menggunakannya sebagai indikator untuk mencegah agar komunikasi ke database tidak dilakukan .
 
 Dalam praktiknya, alih-alih memiliki data session di `ctx.session`, kamu sekarang akan memiliki _sebuah data session dalam bentuk promise_ yang tersedia di `ctx.session`.
@@ -656,7 +656,7 @@ bot.command("settings", async (ctx) => {
 });
 ```
 
-Jika kamu tidak mengakses `ctx.session` sama sekali, maka tidak ada operasi yang dijalankan.
+Jika kamu tidak mengakses `ctx.session` sama sekali, tidak ada operasi yang dijalankan.
 Sebaliknya, di saat kamu mengakses property `session` di object context, maka operasi baca akan dijalankan.
 Ketika kamu tidak melakukan operasi baca sama sekali (atau menambahkan sebuah value baru langsung ke `ctx.session`), maka kita tidak butuh melakukan operasi tulis, karena tidak ada data yang perlu diubah.
 Oleh karena itu, kita bisa mengabaikan operasi tulis juga.
@@ -717,7 +717,7 @@ Kamu juga bisa menggunakan kedua fitur secara bersamaan.
 ### Timeout
 
 Fitur timeout mampu menambahkan rentang waktu kedaluwarsa ke data session.
-Jika dalam kurun waktu tersebut session tidak mengalami perubahan, maka data untuk chat terkait akan dihapus.
+Jika dalam kurun waktu tersebut session tidak mengalami perubahan, data untuk chat terkait akan dihapus.
 
 Kamu bisa menggunakan session timeout melalui opsi `millisecondsToLive`.
 
@@ -736,7 +736,7 @@ Migrasi akan berguna di saat kamu sedang mengembangkan bot tetapi masih terdapat
 Fitur ini bisa digunakan jika kamu ingin mengubah data session tanpa merusak data-data yang sudah ada.
 
 Ini bisa dilakukan dengan cara memberi nomor versi ke data terkait, lalu menulis function migrasi sederhana.
-Function migrasi tersebut lah yang menentukan bagaimana session data di-upgrade dari satu versi ke versi yang lain.
+Function migrasi tersebut yang akan menentukan bagaimana session data di-upgrade dari satu versi ke versi yang lain.
 
 Kita akan mengilustrasikannya dengan sebuah contoh.
 Anggaplah kamu menyimpan informasi daftar hewan peliharaan dari suatu user.

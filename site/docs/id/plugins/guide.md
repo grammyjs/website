@@ -156,7 +156,7 @@ const bot = new Bot(""); // <-- Isi token bot-mu di sini
 bot.api.config.use(autoChatAction());
 
 bot.hears("kirimkan aku sebuah dokumen kucing", async (ctx) => {
-  // Jika user mengirim command ini, maka kita akan
+  // Jika user mengirim command ini, kita akan
   // mengirimkannya sebuah file pdf (untuk tujuan demonstrasi)
   await ctx.replyWithDocument(new InputFile("/tmp/dokumen-meong.pdf"));
 });

@@ -178,7 +178,7 @@ Gunakan auto-complete untuk melihat opsi yang tersedia langsung di code editor.
 :::::
 
 Umumnya, setiap method di `ctx.api` memiliki shortcut dengan nilai yang sudah terisi sebelumnya, seperti `ctx.replyWithPhoto` untuk membalas menggunakan foto, atau `ctx.exportChatInviteLink` untuk mendapatkan link undangan chat yang bersangkutan.
-Jika ingin tahu pintasan apa saja yang tersedia, maka auto-complete beserta [Referensi API grammY](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Context) adalah kawan baikmu.
+Jika ingin tahu pintasan apa saja yang tersedia, auto-complete beserta [Referensi API grammY](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Context) adalah kawan baikmu.
 
 Harap dicatat bahwa mungkin adakalanya kamu tidak ingin merespon ke chat yang sama.
 Untuk itu, kamu bisa kembali menggunakan method `ctx.api`, lalu menentukan sendiri opsi-opsinya.

@@ -44,11 +44,11 @@ Nuestra estructura de carpetas debería ser así:
 
 Después, abre `tsconfig.json` y cámbialo para usar esta configuración:
 
-```json
+```json{4}
 {
   "compilerOptions": {
     "target": "ESNEXT",
-    "module": "esnext",
+    "module": "esnext", // cambiado de commonjs a esnext
     "lib": ["ES2021"],
     "outDir": "./dist/",
     "strict": true,
@@ -64,13 +64,13 @@ Después, abre `tsconfig.json` y cámbialo para usar esta configuración:
 Debido a que la opción `module` anterior se ha establecido de `commonjs` a `esnext`, tenemos que añadir `"type": "module"` a nuestro `package.json`.
 Nuestro `package.json` debería ser ahora similar a esto:
 
-```json
+```json{6}
 {
   "name": "grammy-bot",
   "version": "0.0.1",
   "description": "",
   "main": "dist/app.js",
-  "type": "module",
+  "type": "module", // añadir propiedad "type": "module"
   "scripts": {
     "dev-build": "tsc"
   },

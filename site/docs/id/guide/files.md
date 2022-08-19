@@ -44,7 +44,7 @@ Oleh karena itu, selalu gunakan `file_id` yang memang diperuntukkan khusus untuk
 
 Di sisi lain, bot bisa saja secara kebetulan mendapat `file_id` yang berbeda untuk satu file yang sama.
 Karenanya, kamu tidak bisa mengandalkan `file_id` untuk membandingkan apakah dua file identik atau tidak.
-Kalau bot kamu — _atau beberapa bot_ — perlu mengidentifikasi file yang sama dari waktu ke waktu, kamu harus menggunakan value dari `file_unique_id` yang bot terima bersamaan dengan `file_id`.
+Kalau bot kamu—atau beberapa bot—perlu mengidentifikasi file yang sama dari waktu ke waktu, kamu harus menggunakan value dari `file_unique_id` yang bot terima bersamaan dengan `file_id`.
 `file_unique_id` tidak bisa digunakan untuk mengunduh file, namun value-nya akan selalu sama untuk setiap file yang diberikan, bahkan untuk setiap bot.
 
 ## Menerima File
@@ -128,7 +128,7 @@ await ctx.replyWithPhoto(new InputFile("/tmp/kocheng-oren-uwu.jpg"));
 // Alternatifnya, gunakan bot.api.sendPhoto() atau ctx.api.sendPhoto()
 ```
 
-Constructor `InputFile` tidak hanya mengambil path file, tetapi juga stream, object `Buffer`, perulangan async, dan — _tergantung dari platform kamu_ — banyak lagi.
+Constructor `InputFile` tidak hanya mengambil path file, tetapi juga stream, object `Buffer`, perulangan async, dan—tergantung dari platform kamu—banyak lagi.
 Yang perlu diingat adalah: **buat sebuah instance `InputFile` lalu teruskan ke method yang bertugas mengirim file**.
 Instance `InputFile` bisa diteruskan ke semua method yang menerima pengiriman file melalui unggahan.
 

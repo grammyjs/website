@@ -21,7 +21,7 @@ Solusi paling simpel ketika request API gagal karena terkena rate limit adalah..
 Kamu bisa melakukannya menggunakan [plugin `auto-retry` yang super duper simpel](../plugins/auto-retry.md).
 Ia adalah sebuah [function transformer API](./transformers.md) yang berfungsi persis seperti namanya, coba-otomatis.
 
-Sayangnya, jika trafik bot kamu semakin lama semakin tinggi, misal bot kamu dimasukkan ke grup besar yang sangat ramai chat-nya, maka bot-mu akan sering sekali terkena rate limit hingga lonjakan trafik tersebut mereda.
+Sayangnya, jika trafik bot kamu semakin lama semakin tinggi, misal bot kamu dimasukkan ke grup besar yang sangat ramai chat-nya, bot-mu akan sering sekali terkena rate limit hingga lonjakan trafik tersebut mereda.
 Kalau sudah begitu, siap-siap bot kamu kena surat tilang dari polisi Telegram, alias di-banned.
 
 Tidak hanya itu, di sisi server juga akan terbebani oleh penggunaan RAM dan bandwith yang tidak perlu karena request dikirim beberapa kali secara terus menerus.

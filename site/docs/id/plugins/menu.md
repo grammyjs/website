@@ -224,7 +224,7 @@ Perilaku ini dinamakan _lazy updating_.
 Sehingga, nanti ketika kamu mau mengubah pesannya lagi, plugin tersebut cukup menggunakan pemanggilan API yang sama untuk memperbarui tombolnya.
 Dengan begitu bot bisa bekerja secara efisien dengan cara memperbarui pesan beserta keyboard-nya di waktu yang bersamaan.
 
-Normalnya, jika kamu memanggil `ctx.menu.update()` tetapi tidak melakukan perubahan pesan, maka plugin menu akan memperbarui keyboard tersebut sebelum middleware kamu selesai memprosesnya.
+Normalnya, jika kamu memanggil `ctx.menu.update()` tetapi tidak melakukan perubahan pesan, plugin menu akan memperbarui keyboard tersebut sebelum middleware kamu selesai memprosesnya.
 
 Kamu bisa memaksa menu untuk melakukan pembaruan di saat itu juga menggunakan `await ctx.menu.update({ immediate: true })`.
 Perlu dicatat bahwa `ctx.menu.update()` akan mengembalikan sebuah promise, jadi kamu harus menggunakan `await`!
@@ -289,7 +289,7 @@ bot.use(pengaturan);
 ```
 
 **Kamu bisa membuat beberapa menu tersendiri lalu membuatnya menjadi interaktif.**
-Contohnya, jika kamu membuat dua menu yang tidak saling berkaitan dan kamu tidak perlu bernavigasi diantara dua menu tersebut, maka kamu harus memasang keduanya secara terpisah.
+Contohnya, jika kamu membuat dua menu yang tidak saling berkaitan dan kamu tidak perlu bernavigasi diantara dua menu tersebut, kamu harus memasang keduanya secara terpisah.
 
 ```ts
 // Jika kamu memiliki menu-menu tersendiri seperti ini:
@@ -509,7 +509,7 @@ Sebuah menu hanya akan memroses penekanan tombol jika:
 
 Ketika user menekan tombol menu, kita harus menemukan handler yang telah ditambahkan ke tombol tersebut saat menu di-render sebelumnya.
 Dengan cara seperti itu, kita cukup me-render ulang menu sebelumnya.
-Tetapi, untuk kali ini, kita tidak membutuhkan layout-nya secara utuh—_yang kita butuhkan adalah struktur secara keseluruhan, serta tombol spesifik tersebut_.
+Tetapi, untuk kali ini, kita tidak membutuhkan layout-nya secara utuh—yang kita butuhkan adalah struktur secara keseluruhan, serta tombol spesifik tersebut.
 Sehingga, plugin menu akan melakukan pe-render-an tipis-tipis supaya lebih efisien.
 Dengan kata lain, menu tersebut akan di-render sebagian saja.
 

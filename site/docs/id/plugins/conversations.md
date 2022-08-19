@@ -4,7 +4,7 @@ Membuat interaksi percakapan dengan mudah.
 
 ## Pengenalan
 
-Sebagian besar chat mengandung lebih dari satu pesan. (ya iya lah :roll_eyes:)
+Sebagian besar chat mengandung lebih dari satu pesan. (ya iyalah :roll_eyes:)
 
 Contohnya, bot kamu sedang mengajukan sebuah pertanyaan lalu menunggu jawaban dari seorang user.
 Kegiatan tanya jawab tersebut bisa jadi dilakukan beberapa kali sehingga terjadi sebuah **percakapan**.
@@ -202,7 +202,7 @@ bot.command("start", async (ctx) => {
 
 Segera setelah user mengirim `/start` ke bot, conversation untuk handler tersebut akan dijalankan.
 Context object terkait akan diteruskan ke conversation builder function sebagai argumen kedua.
-Contohnya, jika kamu membuat conversation dengan `await ctx.reply(ctx.message.text)`, maka ia akan memiliki update yang di dalamnya terdapat `/start`.
+Contohnya, jika kamu membuat conversation dengan `await ctx.reply(ctx.message.text)`, ia akan memiliki update yang di dalamnya terdapat `/start`.
 
 ::: tip Mengubah Conversation Identifier
 
@@ -835,12 +835,12 @@ Contohnya, kita bisa memiliki lima percakapan yang berbeda dengan lima user baru
 
 Setiap update yang masuk akan diproses oleh salah satu dari beberapa percakapan yang aktif.
 Mirip dengan handle di middleware, percakapan-percakapan tadi akan dipanggil secara berurutan berdasarkan siapa yang lebih dulu dipasang.
-Jika sebuah percakapan dijalankan beberapa kali, maka ia akan dipanggil berdasarkan urutan kronologis.
+Jika sebuah percakapan dijalankan beberapa kali, ia akan dipanggil berdasarkan urutan kronologis.
 
 Nah, setiap percakapan yang dipanggil tadi akan memutuskan apakah memproses update tersebut atau memanggil `await conversation.skip()`.
-Jika memilih pilihan pertama, maka update tersebut akan dipakai selama conversation terkait memprosesnya.
-Sebaliknya, jika pilihan kedua dipilih, maka update tersebut akan ditolak dan diteruskan ke percakapan berikutnya.
-Jika tidak ada percakapan yang memproses update tersebut, maka control flow akan meneruskannya kembali ke sistem middleware yang kemudian akan ditangani oleh handler berikutnya.
+Jika memilih pilihan pertama, update tersebut akan dipakai selama conversation terkait memprosesnya.
+Sebaliknya, jika pilihan kedua dipilih, update tersebut akan ditolak dan diteruskan ke percakapan berikutnya.
+Jika tidak ada percakapan yang memproses update tersebut, control flow akan meneruskannya kembali ke sistem middleware yang kemudian akan ditangani oleh handler berikutnya.
 
 Sehingga, kamu bisa memulai sebuah percakapan baru dari middleware biasa.
 
@@ -951,12 +951,12 @@ Jika pemanggilan `wait` menghalangi sampai update berikutnya tiba, berarti pemro
   Ini mengakibatkan bot kamu terhalangi selamanya.
 - Untuk [grammY runner](./runner.md), bot tidak akan terhalangi.
   Tetapi, ketika memproses ribuan percakapan dari berbagai user secara paralel, ia akan mengonsumsi banyak sekali memory.
-  Jika banyak user yang berhenti merespon, maka bot akan terjebak diantara banyak sekali percakapan.
+  Jika banyak user yang berhenti merespon, bot akan terjebak diantara banyak sekali percakapan.
 - Webhooks juga mempunyai [masalahnya sendiri](../guide/deployment-types.md#mengakhiri-request-webhook-tepat-waktu) karena middleware yang terus berjalan tanpa henti.
 
 **State.**
 Di infrastruktur serverless seperti cloud functions, kita tidak bisa memastikan instance yang sama memproses dua update dari user yang sama berturut-turut.
-Sehingga, jika kita membuat stateful conversation, maka bisa dipastikan ia tidak akan berjalan dengan baik karena middleware lain tiba-tiba dieksekusi sementara pemanggilan `wait` masih belum terselesaikan.
+Sehingga, jika kita membuat stateful conversation, bisa dipastikan ia tidak akan berjalan dengan baik karena middleware lain tiba-tiba dieksekusi sementara pemanggilan `wait` masih belum terselesaikan.
 Ini akan menimbulkan banyak kekacauan dan bug secara acak.
 
 Dan masalah-masalah lainnya.
@@ -968,7 +968,7 @@ Seperti yang telah dijabarkan di awal, **Ia tidak akan membuat bot kamu menunggu
 Plugin conversations akan memantau proses eksekusi function kamu.
 Ketika pemanggilan `wait` dilakukan, ia akan men-serialize state dari eksekusi tersebut ke dalam session, yang selanjutnya akan disimpan dengan aman di sebuah database.
 Ketika update selanjutnya tiba, ia akan memeriksa data session terlebih dahulu.
-Jika ternyata ia sedang ditengah-tengah sebuah percakapan, maka state dari ekseskusi tersebut akan di-deserialize, lalu conversation builder function akan mengulanginya kembali di titik di mana pemanggilan `wait` sebelumnya dilakukan.
+Jika ternyata ia sedang ditengah-tengah sebuah percakapan, state dari ekseskusi tersebut akan di-deserialize, lalu conversation builder function akan mengulanginya kembali di titik di mana pemanggilan `wait` sebelumnya dilakukan.
 Kemudian ia akan melanjutkan kembali eksekusi function kamu seperti biasanya---hingga pemanggilan `wait` selanjutnya dilakukan dan eksekusinya harus ditunda lagi.
 
 Apa saja yang termasuk state eksekusi?
@@ -1002,7 +1002,7 @@ Itulah kenapa adanya poin ketiga di atas, dan diharuskan mengikuti [tiga aturan 
 ### Bagaimana Cara Memotong Eksekusi dari Suatu Function
 
 Secara konsep, keyword `async` dan `await` memberi kita kontrol di thread mana akan dilakukan [preempted](https://en.wikipedia.org/wiki/Preemption_(computing)).
-Sehingga, jika seseorang memanggil `await conversation.wait()`, yang mana adalah sebuah function dari library kita, maka kita diberi kuasa untuk me-preempt eksekusi tersebut.
+Sehingga, jika seseorang memanggil `await conversation.wait()`, yang mana adalah sebuah function dari library kita, kita diberi kuasa untuk me-preempt eksekusi tersebut.
 
 Secara konkret, rahasia utama yang membolehkan kita memotong eksekusi dari suatu function adalah sebuah `Promise` yang tidak pernah di-resolve.
 
@@ -1010,7 +1010,7 @@ Secara konkret, rahasia utama yang membolehkan kita memotong eksekusi dari suatu
 await new Promise<never>(() => {}); // BOOM
 ```
 
-Jika kamu melakukan `await` ke promise tersebut di file JavaScript manapun, maka runtime kamu akan mati di saat itu juga.
+Jika kamu melakukan `await` ke promise tersebut di file JavaScript manapun, runtime kamu akan mati di saat itu juga.
 (Silahkan salin kode di atas ke dalam sebuah file lalu coba jalankan.)
 
 Karena kita jelas tidak ingin mematikan runtime JS, maka kita perlu menangkapnya sekali lagi.

@@ -31,14 +31,14 @@ Mari kita bahas perbedaanya.
 ### Jenis I: Plugin Middleware
 
 [Middleware](../guide/middleware.md) adalah sebuah function yang menangani data yang masuk apapun bentuknya.
-Sehingga, plugin middleware adalah plugin yang diberikan ke bot dalam bentuk — _yup, tebakanmu benar_ — middleware.
+Sehingga, plugin middleware adalah plugin yang diberikan ke bot dalam bentuk—yup, tebakanmu benar—middleware.
 Artinya, kamu bisa menggunakannya melalui `bot.use`.
 
 ### Jenis II: Plugin Transformer
 
 [Function transformer](../advanced/transformers.md) adalah kebalikan dari middleware!
 Ia adalah sebuah function yang menangani data yang keluar.
-Dengan begitu, plugin transformer adalah plugin yang diberikan ke bot dalam bentuk — _wow! tebakanmu benar lagi!_ — function transformer.
+Dengan begitu, plugin transformer adalah plugin yang diberikan ke bot dalam bentuk—wow! tebakanmu benar lagi!—function transformer.
 Artinya, kamu bisa menggunakannya melalui `bot.api.config.use`.
 
 ## Buat Plugin-mu Sendiri

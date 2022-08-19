@@ -315,7 +315,7 @@ Kalau ingin mengetahui ketika tombol manapun ditekan, kamu bisa menggunakan `bot
 
 ### Menghapus Keyboard Custom
 
-Jika kamu tidak menyertakan opsi `one_time_keyboard` seperti yang dijelaskan [di atas](#keyboard-custom-sekali-pakai), maka keyboard custom akan terus ditampilkan untuk user tersebut (tetapi mereka bisa menyembunyikannya dengan cara manual).
+Jika kamu tidak menyertakan opsi `one_time_keyboard` seperti yang dijelaskan [di atas](#keyboard-custom-sekali-pakai), keyboard custom akan terus ditampilkan untuk user tersebut (tetapi mereka bisa menyembunyikannya dengan cara manual).
 
 Kamu bisa menghilangkan keyboard custom dengan cara mengirim pesan baru di chat tersebut, persis seperti yang kamu lakukan ketika mengirim keyboard baru.
 Sertakan `{ remove_keyboard: true }` sebagai `reply_markup`-nya seperti contoh berikut:

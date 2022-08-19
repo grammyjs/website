@@ -105,7 +105,7 @@ ______________                                            _____________
 > Kalau tidak ada pesan baru yang dikembalikan selama periode waktu tersebut, maka request akan dibatalkan dan dikirimkan kembali—tetapi konsep dasarnya masih tetap sama.
 
 Dengan menggunakan long polling, kamu akan menerima pesan baru yang sama cepatnya, sehingga tidak perlu lagi mengirim spam ke server Telegram.
-Metode ini lah yang akan dipakai grammY ketika kamu menjalankan `bot.start()`.
+Metode inilah yang akan dipakai grammY ketika kamu menjalankan `bot.start()`.
 Mantap!
 
 ## Bagaimana Cara Kerja Webhook?
@@ -164,7 +164,7 @@ Tempat-tempat yang cocok untuk menggunakan webhook:
 
 ## Aku Masih Belum Tahu Mana yang Sebaiknya Dipilih
 
-Jika kamu tidak punya alasan yang bagus untuk menggunakan webhook, maka pilih saja long polling.
+Jika kamu tidak punya alasan yang bagus untuk menggunakan webhook, pilih saja long polling.
 Long polling tidak memiliki kekurangan yang mencolok, dan—berdasarkan pengalaman kami—kamu tidak perlu membuang-buang waktu melakukan perawatan atau maintenance.
 Webhook bisa menjadi sedikit "nakal" dari waktu ke waktu (lihat [di bawah](#mengakhiri-request-webhook-tepat-waktu)).
 

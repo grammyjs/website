@@ -163,7 +163,7 @@ Tetapi, dengan cara demikian _setidaknya satu_ pemrosesan bisa terjamin.
 Kalau kamu menggunakan [grammY runner](../plugins/runner.md) di mode _concurrent_, pemanggilan `getUpdates` berikutnya berpotensi dilakukan sebelum middleware kamu selesai memproses update pertama dari _batch_ tersebut.
 Itulah kenapa, [update offset](https://core.telegram.org/bots/api#getupdates)-nya terkonfirmasi sebelum waktunya.
 Ini adalah efek dari penggunaan concurrency secara maksimal, dan sayangnya, kita tidak bisa menghindarinya tanpa mengurangi responsifitas dan jumlah output-nya.
-Dampaknya, jika bot kamu dihentikan di momen yang tidak tepat, maka 100 update yang sebelumnya sudah diminta tetapi belum diproses, tidak bisa diminta lagi karena Telegram telah menandainya sebagai sudah diproses.
+Dampaknya, jika bot kamu dihentikan di momen yang tidak tepat, 100 update yang sebelumnya sudah diminta tetapi belum diproses, tidak bisa diminta lagi karena Telegram telah menandainya sebagai sudah diproses.
 Sehingga, data-data update tadi akan hilang selamanya.
 
 Untuk menghindari hal tersebut terjadi, kamu harus menggunakan _source_ dan _sink_ dari package grammy runner untuk membuat jalur update-mu sendiri yang meneruskan semua update ke antrian pesan atau queue terlebih dahulu.

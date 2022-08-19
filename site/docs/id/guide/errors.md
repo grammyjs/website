@@ -168,7 +168,7 @@ function errorHandler(err: BotError) {
 
 `boundaryHandler` di atas akan dipanggil untuk middleware yang terkait dengan `protected`.
 
-Kalau kamu ingin dengan sengaja membuat error melewati batas error boundary — _maksudnya meneruskannya keluar_ — kamu bisa melempar ulang sebuah error di dalam error handler.
+Kalau kamu ingin dengan sengaja membuat error melewati batas error boundary—maksudnya meneruskannya keluar—kamu bisa melempar ulang sebuah error di dalam error handler.
 Kemudian, error tersebut akan diteruskan ke error boundary berikutnya yang ada di sekitarnya.
 
 Dengan kata lain, kamu bisa menganggap error handler yang dipasang melalui `bot.catch` sebagai lapisan terluar error boundary.

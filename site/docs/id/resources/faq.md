@@ -9,8 +9,8 @@ Jika FAQ ini tidak menjawab pertanyaanmu, sebaiknya kamu juga membaca [FAQ Bot](
 ### 400 Bad Request: Cannot parse entities
 
 Error ini terjadi karena kamu sedang mengirim sebuah pesan menggunakan format tertentu, misal kamu menggunakan `parse_mode` ketika mengirim pesan.
-Namun, format tersebut ada yang keliru, sehingga Telegram tidak bisa menguraikannya.
-Sebaiknya, kamu membaca kembali dokumentasi Telegram di [bagian pemformatan](https://core.telegram.org/bots/api#formatting-options).
+Tetapi, format tersebut ada yang keliru, sehingga Telegram tidak bisa menguraikannya.
+Sebaiknya kamu membaca kembali dokumentasi Telegram di [bagian pemformatan](https://core.telegram.org/bots/api#formatting-options).
 `Byte offsite` yang ditampilan di pesan error akan memberi tahu kamu dimana letak kesalahannya.
 
 ::: tip Menggunakan Entities Alih-Alih Formatting
@@ -54,7 +54,7 @@ Kamu bisa bertanya kepada kami [di grup](https://t.me/grammyjs).
 Kamu secara tidak sengaja menjalankan bot sebanyak dua kali saat menggunakan long polling.
 Kamu hanya diizinkan menjalankan satu instance bot.
 
-Jika kamu merasa sudah menjalankan bot sebanyak sekali saja, maka kamu perlu mengganti token bot-nya.
+Jika kamu merasa sudah menjalankan bot sebanyak sekali saja, kamu perlu mengganti token bot-nya.
 Ketika token diganti, instance yang lain akan terhenti dengan sendirinya.
 Chat dengan [@BotFather](https://t.me/BotFather) untuk mengganti token bot.
 

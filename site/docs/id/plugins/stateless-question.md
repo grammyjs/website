@@ -9,7 +9,7 @@ Plugin ini bisa mengatasi masalah tersebut dengan mudah.
 Konsep dasarnya adalah dengan mengirim sebuah pertanyaan menggunakan [teks spesial](https://en.wikipedia.org/wiki/Zero-width_non-joiner) di akhir kalimat.
 Teks spesial ini tidak terlihat oleh user, namun dapat dibaca oleh bot.
 Ketika user membalas pesan tersebut, maka pesan akan diperiksa apakah mengandung teks spesial di akhir kalimatnya.
-Jika ada, maka balasan pesan tersebut adalah jawaban dari pertanyaan yang kita berikan.
+Jika ada, balasan pesan tersebut adalah jawaban dari pertanyaan yang kita berikan.
 Dengan demikian, kamu bisa memasukkan string berapapun jumlahnya ke pertanyaan yang sama ketika melakukan terjemahan.
 Kamu hanya perlu memastikan nilai `uniqueIdentifier`-nya benar-benar unik.
 
