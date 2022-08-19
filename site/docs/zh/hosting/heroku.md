@@ -44,11 +44,11 @@ npx tsc --init
 
 然后，将 `tsconfig.json` 修改为如下配置：
 
-```json{4}
+```json
 {
   "compilerOptions": {
     "target": "ESNEXT",
-    "module": "esnext", // 把 commonjs 改成 esnext
+    "module": "esnext",
     "lib": ["ES2021"],
     "outDir": "./dist/",
     "strict": true,
@@ -64,13 +64,13 @@ npx tsc --init
 因为在上面的配置中，我们将 `module` 选项从 `commonjs` 设置为了 `esnext`，所以我们需要在 `package.json` 中添加 `"type": "module"`。
 `package.json` 文件如下所示：
 
-```json{6}
+```json
 {
   "name": "grammy-bot",
   "version": "0.0.1",
   "description": "",
   "main": "dist/app.js",
-  "type": "module", // 添加 "type": "module"
+  "type": "module",
   "scripts": {
     "dev-build": "tsc"
   },
