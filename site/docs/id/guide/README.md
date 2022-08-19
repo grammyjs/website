@@ -12,7 +12,7 @@ Anggap saja rumah sendiri.
 ## Apa Itu grammY?
 
 grammY adalah sebuah framework untuk membuat bot Telegram.
-Framework ini bisa dipakai menggunakan TypeScript maupun JavaScript, serta berjalan di Node.js, Deno, bahkan browser sekalipun.
+Framework ini bisa dipakai menggunakan TypeScript ataupun JavaScript, dan dapat berjalan di Node.js, Deno, bahkan browser sekalipun.
 
 Kalau kamu masih baru belajar membuat bot Telegram, apalagi belum berpengalaman dalam menulis kode program, silahkan memulai dari subbab [Pengenalan](./introduction.md).
 
@@ -22,24 +22,25 @@ Kalau kamu sudah tahu cara membuat aplikasi dengan Node.js atau Deno, ataupun su
 
 Dokumentasi bot grammY dibagi menjadi tiga area:
 
-1. Dokumen grammY tingkat tinggi _(website ini)_
-2. [Referensi API grammY tingkat rendah](https://doc.deno.land/https://deno.land/x/grammy/mod.ts)
-3. [Referensi API HTTP murni oleh Telegram](https://core.telegram.org/bots/api)
+1. Dokumentasi grammY tingkat tinggi _(website ini)_.
+2. [Referensi API grammY tingkat rendah](https://doc.deno.land/https://deno.land/x/grammy/mod.ts).
+3. [Referensi API HTTP murni yang dibuat oleh Telegram](https://core.telegram.org/bots/api).
 
-**Area pertama** — yang sedang kamu baca saat ini — menjelaskan bagaimana bot bekerja dan bagaimana menggunakan grammY.
+**Area pertama**—_yang sedang kamu baca saat ini_—berisi tutorial penggunaan grammY dan penjelasan mengenai cara kerja dari suatu bot.
 Dokumen ini yang akan paling sering kamu gunakan.
-Bab _Belajar_ — yang bisa diakses melalui tab di atas halaman — selalu merupakan awal yang baik untuk memulai.
-Jangan lupa untuk melihat koleksi _Plugin_ kami yang menakjubkan, dan berbagai _Contoh_ yang sudah disediakan.
+Kamu bisa memulai dari bab _Belajar_ di tab navigasi yang ada di bagian atas halaman ini.
+Jangan lupa untuk melihat koleksi _Plugin_ kami yang menakjubkan serta berbagai _Contoh_ yang sudah disediakan.
 
-**Area kedua** adalah [referensi API grammY](https://doc.deno.land/https://deno.land/x/grammy/mod.ts), yang juga bisa diakses melalui tab di atas halaman.
+**Area kedua** adalah [referensi API grammY](https://doc.deno.land/https://deno.land/x/grammy/mod.ts), yang juga bisa diakses melalui tab navigasi di bagian atas halaman.
 Referensi ini berisi gambaran terperinci dari setiap bit kode yang disediakan grammY.
-Ia dihasilkan dari kode program grammY secara otomatis yang berisi penjelasan-penjelasan tooltip yang bermanfaat. Tooltip ini — biasanya — dapat ditemukan dengan mengarahkan kursor ke elemen grammY mana pun di kode editor.
+Ia juga menghasilkan penjelasan-penjelasan bermanfaat dalam bentuk tooltip yang dibuat secara otomatis dari kode program grammY.
+Tooltip tersebut dapat ditemukan dengan mengarahkan kursor ke berbagai elemen grammY di kode editor.
 
-**Area ketiga** disediakan oleh Telegram yang berisi daftar _raw definition_ dari [API HTTP](https://core.telegram.org/bots/api) yang akan dihubungkan oleh grammY di balik layar.
-Referensi API grammY akan terhubung ke sana jika memang diperlukan.
-Silahkan dipelajari jika penasaran dengan opsi-opsi apa saja yang dapat kamu gunakan dalam pemanggilan API.
+**Area ketiga** berisi daftar _raw definition_ dari [API HTTP](https://core.telegram.org/bots/api) yang disediakan oleh Telegram.
+API ini akan digunakan oleh grammY untuk memberi perintah ke bot kamu.
+Silahkan dipelajari untuk mengetahui opsi-opsi apa saja yang dapat kamu gunakan dalam pemanggilan API.
 
 ::::: tip Bergabung dengan Komunitas!
-Kami memiliki [chat komunitas](https://t.me/grammyjs) di Telegram yang dengan senang hati menyambut hangat semua anggota baru (khusus chat Rusia ada [di sini](https://t.me/grammyjs_ru)).
-Mari bergabung untuk mendapatkan bantuan, mengajukan pertanyaan, dan mempelajari tips dan trik dalam mengerjakan proyek botmu selanjutnya!
+Kami memiliki [komunitas](https://t.me/grammyjs) di Telegram yang dengan senang hati menyambut hangat semua anggota baru (khusus chat Rusia ada [di sini](https://t.me/grammyjs_ru)).
+Silahkan bergabung untuk memperoleh bantuan, mengajukan pertanyaan, serta mempelajari tips dan trik dalam mengerjakan proyek botmu selanjutnya!
 :::::
