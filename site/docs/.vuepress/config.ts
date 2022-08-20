@@ -977,6 +977,10 @@ export default defineUserConfig({
                     link: "/zh/plugins/middlewares.html",
                   },
                   {
+                    text: "自动引用",
+                    link: "/zh/plugins/autoquote.html",
+                  },
+                  {
                     text: "[等待你的 PR!]",
                     link: "/zh/plugins/#向文档提交你自己的插件",
                   },
