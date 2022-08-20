@@ -12,7 +12,7 @@ Si ignoras estos errores, tu bot puede acabar siendo baneado.
 ## La solución sencilla
 
 :::warning No es una solución real
-Esta sección resuelve tu problema a corto plazo, pero si estás construyendo un bot que realmente debe escalar bien, lee la [siguiente subsección](#the-real-solution-recommended) en su lugar.
+Esta sección resuelve tu problema a corto plazo, pero si estás construyendo un bot que realmente debe escalar bien, lee la [siguiente subsección](#la-solución-real-recomendada) en su lugar.
 :::
 
 Hay una solución muy simple para golpear los límites de velocidad: si una solicitud de la API falla debido a un límite de velocidad, simplemente espera el tiempo que Telegram te dice que esperes, y repite la solicitud.

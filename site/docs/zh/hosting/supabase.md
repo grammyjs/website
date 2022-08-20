@@ -9,7 +9,7 @@ Supabase Edge Functions 是大多数简单 bot 的理想选择，并且你应该
 例如，Supabase Edge Functions 上没有文件系统。
 它就像其他许多 serverless 平台一样，但专门用于 Deno 应用程序。
 
-这个教程的结果 [可以在我们的示例 bot 仓库中看到](https://github.com/grammyjs/examples/tree/main/Supabase-edge-functions)。
+这个教程的结果 [可以在我们的示例 bot 仓库中看到](https://github.com/grammyjs/examples/tree/main/supabase-edge-functions)。
 
 ## 设置
 
@@ -26,7 +26,7 @@ supabase functions new telegram-bot
 
 ## 准备你的代码
 
-> 请注意，你需要 [在 webhooks 上运行你的 bot](../guide/deployment-types.md/#如何使用-webhooks)，所以你应该调用 `webhookCallback`，而不是 `bot.start()`。
+> 请注意，你需要 [在 webhooks 上运行你的 bot](../guide/deployment-types.md#如何使用-webhooks)，所以你应该调用 `webhookCallback`，而不是 `bot.start()`。
 
 你可以使用这个简单的示例 bot 作为一个起点。
 

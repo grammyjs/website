@@ -202,7 +202,7 @@ const menu = new Menu("time", { onMenuOutdated: false })
   );
 ```
 
-> El propósito de `onMenuOutdated` se explica [más abajo](#outdated-menus-and-fingerprints).
+> El propósito de `onMenuOutdated` se explica [más abajo](#menús-y-huellas-anticuadas).
 > Puedes ignorarlo por ahora.
 
 También puede actualizar el menú implícitamente editando el mensaje correspondiente.
@@ -510,7 +510,7 @@ Sin embargo, esta vez, no necesitamos el diseño completo - todo lo que necesita
 En consecuencia, el plugin del menú realizará una representación superficial para ser más eficiente.
 En otras palabras, el menú sólo se renderizará parcialmente.
 
-Una vez que se conoce el botón pulsado de nuevo (y hemos comprobado que el menú no está [desactualizado](#outdated-menus-and-fingerprints)), invocamos el manejador.
+Una vez que se conoce el botón pulsado de nuevo (y hemos comprobado que el menú no está [desactualizado](#menús-y-huellas-anticuadas)), invocamos el manejador.
 
 Internamente, el plugin de menús hace un gran uso de [API Transformer Functions](../advanced/transformers.md), por ejemplo, para renderizar rápidamente los menús salientes sobre la marcha.
 

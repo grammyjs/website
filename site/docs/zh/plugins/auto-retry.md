@@ -2,7 +2,7 @@
 
 > 请考虑使用 [流量控制插件](./transformer-throttler.md) 替代。
 
-这个插件是一个 [API 转换函数](/zh/advanced/transformers.md)，这意味着它可以让你动态地拦截和修改传出的 HTTP 请求。
+这个插件是一个 [API 转换函数](../advanced/transformers.md)，这意味着它可以让你动态地拦截和修改传出的 HTTP 请求。
 更具体一点，这个插件将自动检测一个 API 请求是否失败（比如说因为速率限制），并且使用返回值中的 `retry_after`。
 它会自动捕捉错误，等待指定时间后重试请求。
 
@@ -54,7 +54,7 @@ bot.api.config.use(autoRetry());
 你可以传入一个选项对象，指定最大的重试次数（`maxRetryAttempts`，默认值：3）或者最大的等待时间阈值（`maxDelaySeconds`，默认值：一小时）。
 
 一旦耗尽最大重试次数，将不会再次重试相同错误的请求。
-相反，来自 Telegram 的错误对象会被包装成 [`GrammyError`](/zh/guide/errors.md#grammyerror-对象) 抛出。
+相反，来自 Telegram 的错误对象会被包装成 [`GrammyError`](../guide/errors.md#grammyerror-对象) 抛出。
 
 同样的，如果请求失败时 `retry_after` 大于 `maxDelaySeconds` 所指定的时间，请求会立即失败。
 

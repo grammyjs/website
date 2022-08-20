@@ -1,7 +1,7 @@
 # Hosting: Heroku
 
 > We assume that you have the basic knowledge about creating bots using grammY.
-> If you are not ready yet, don't hestitate to head over to our friendly [Guide](../guide)! :rocket:
+> If you are not ready yet, don't hesitate to head over to our friendly [Guide](../guide)! :rocket:
 
 This tutorial will guide you how to deploy a Telegram bot to [Heroku](https://heroku.com/) by using either [webhooks](../guide/deployment-types.md#webhooks) or [long polling](../guide/deployment-types.md#long-polling).
 We also assume that you have a Heroku account already.
@@ -103,7 +103,7 @@ Okay, let us continue!
 Remember we have created `bot.ts` earlier?
 We will not dump all the code there, and leave coding the bot up to you.
 Instead, we are going to make `app.ts` our main entry point.
-That means everytime Telegram (or anyone else) visits our site, `express` decides which part of your server will be responsible for handling the request.
+That means every time Telegram (or anyone else) visits our site, `express` decides which part of your server will be responsible for handling the request.
 This is useful when you are deploying both website and bot in the same domain.
 Also, by splitting codes to different files, it make our code look tidy. :sparkles:
 
@@ -139,7 +139,7 @@ Let's take a look at our code above:
 ::: tip ⚡ Optimization (optional)
 `bot.api.setWebhook` at line 14 will always run when Heroku starts your server again.
 For low traffic bots, this will be for every request.
-However, we do not need this code to run everytime a request is coming.
+However, we do not need this code to run every time a request is coming.
 Therefore, we can delete this part completely, and execute the `GET` only once manually.
 Open this link on your web browser after deploying our bot:
 

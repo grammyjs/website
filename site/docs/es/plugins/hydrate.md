@@ -178,6 +178,7 @@ Este plugin actualmente hidrata
 - resultados elegidos en línea
 - consultas de la aplicación web
 - consultas de precomprobación y envío
+- solicitudes de ingreso al chat
 
 Todos los objetos se hidratan en
 

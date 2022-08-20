@@ -41,8 +41,8 @@ rateLimiter es agnóstico al controlador.
 
 Hay dos maneras de utilizar rateLimiter:
 
-- Aceptando los valores por defecto ([Configuración por defecto](#default-configuration)).
-- Pasando un objeto personalizado que contenga sus ajustes ([Configuración manual](#manual-configuration)).
+- Aceptando los valores por defecto ([Configuración por defecto](#configuración-por-defecto)).
+- Pasando un objeto personalizado que contenga sus ajustes ([Configuración manual](#configuración-manual)).
 
 ### Configuración por defecto
 

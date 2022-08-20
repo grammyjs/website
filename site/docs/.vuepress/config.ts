@@ -4,9 +4,6 @@ import { currentVersions } from "./plugins/current-versions/plugin";
 import { docsearch } from "./plugins/docsearch";
 
 export default defineUserConfig({
-  title: "grammY",
-  description: "The Telegram Bot Framework.",
-
   locales: {
     "/": {
       lang: "en-US",
@@ -184,6 +181,10 @@ export default defineUserConfig({
               {
                 text: "Official",
                 children: [
+                  {
+                    text: "Conversations (conversations)",
+                    link: "/plugins/conversations.html",
+                  },
                   {
                     text: "Interactive Menus (menu)",
                     link: "/plugins/menu.html",
@@ -547,12 +548,12 @@ export default defineUserConfig({
                 text: "Oficial",
                 children: [
                   {
-                    text: "Menus Interactivos (menu)",
-                    link: "/es/plugins/menu.html",
-                  },
-                  {
                     text: "Conversaciones (conversations)",
                     link: "/es/plugins/conversations.html",
+                  },
+                  {
+                    text: "Menus Interactivos (menu)",
+                    link: "/es/plugins/menu.html",
                   },
                   {
                     text: "Preguntas sin estado (stateless-question)",
@@ -911,7 +912,11 @@ export default defineUserConfig({
                 text: "官方维护",
                 children: [
                   {
-                    text: "互动菜单（menu）",
+                    text: "对话 (conversations)",
+                    link: "/zh/plugins/conversations.html",
+                  },
+                  {
+                    text: "互动菜单 (menu)",
                     link: "/zh/plugins/menu.html",
                   },
                   {

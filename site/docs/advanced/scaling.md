@@ -65,7 +65,7 @@ Imagine this sequence of events:
 4. Alice sends message B
 5. Bot begins processing B
 6. Bot reads session data for Alice from database
-7. Bot is done processsing A, and writes new session to database
+7. Bot is done processing A, and writes new session to database
 8. Bot is done processing B, and writes new session to database, hence overwriting the changes performed during processing A.
    Data loss due to WAR hazard!
 
