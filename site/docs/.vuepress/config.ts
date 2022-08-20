@@ -943,6 +943,10 @@ export default defineUserConfig({
                     link: "/zh/plugins/files.html",
                   },
                   {
+                    text: "国际化 (i18n)",
+                    link: "/zh/plugins/i18n.html",
+                  },
+                  {
                     text: "国际化 (fluent)",
                     link: "/zh/plugins/fluent.html",
                   },
