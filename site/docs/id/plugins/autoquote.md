@@ -147,4 +147,4 @@ bot.start();
 
 - Nama: Autoquote
 - Sumber: <https://github.com/roziscoding/grammy-autoquote>
-- Referensi: <https://doc.deno.land/https://deno.land/x/grammy_autoquote/mod.ts>
+- Referensi API: <https://doc.deno.land/https://deno.land/x/grammy_autoquote/mod.ts>
