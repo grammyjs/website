@@ -613,8 +613,12 @@ export default defineUserConfig({
                     link: "/es/plugins/console-time.html",
                   },
                   {
-                    text: "Middleware útil",
+                    text: "Middlewares de utilidad",
                     link: "/es/plugins/middlewares.html",
+                  },
+                  {
+                    text: "Citar automáticamente",
+                    link: "/es/plugins/autoquote.html",
                   },
                   {
                     text: "[¡Envíe su PR!]",
