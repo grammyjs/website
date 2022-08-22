@@ -251,6 +251,10 @@ export default defineUserConfig({
                     link: "/plugins/middlewares.html",
                   },
                   {
+                    text: "Autoquote",
+                    link: "/plugins/autoquote.html",
+                  },
+                  {
                     text: "[Submit your PR!]",
                     link: "/plugins/#submitting-your-own-package-to-the-docs",
                   },
@@ -975,6 +979,10 @@ export default defineUserConfig({
                   {
                     text: "有用的中间件",
                     link: "/zh/plugins/middlewares.html",
+                  },
+                  {
+                    text: "自动引用",
+                    link: "/zh/plugins/autoquote.html",
                   },
                   {
                     text: "[等待你的 PR!]",
