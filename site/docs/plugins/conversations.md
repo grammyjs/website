@@ -586,7 +586,7 @@ You can declare variables and do whatever you want with them:
 
 ```ts
 await ctx.reply("Send me your favorite numbers, separated by commas!");
-const { message } = await conversation.wait();
+const { message } = await conversation.waitFor("message:text");
 const sum = message.text
   .split(",")
   .map((n) => parseInt(n.trim(), 10))
