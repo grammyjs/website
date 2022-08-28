@@ -11,7 +11,8 @@
     "grammy_emoji",
     "grammy_parse_mode",
     "grammy_storages",
-    "grammy_i18n",
-    "grammy_conversations"
+    "grammy_conversations",
+    "grammy_autoquote",
+    "grammy_i18n"
   ]
 }
