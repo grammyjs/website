@@ -588,7 +588,7 @@ conversation.log("Hello, world");
 
 ```ts
 await ctx.reply("把你最喜欢的数字用逗号隔开后发给我！");
-const { message } = await conversation.wait();
+const { message } = await conversation.waitFor("message:text");
 const sum = message.text
   .split(",")
   .map((n) => parseInt(n.trim(), 10))
