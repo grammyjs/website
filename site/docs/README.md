@@ -84,5 +84,5 @@ Works! :tada:
 
 ---
 
-grammY supports the Telegram Bot API 6.1 which was [released](https://core.telegram.org/bots/api#june-20-2022) on June 20, 2022.
-(Last highlight: Telegram Premium)
+grammY supports the Telegram Bot API 6.2 which was [released](https://core.telegram.org/bots/api#august-12-2022) on August 12, 2022.
+(Last highlight: Custom Emoji)
