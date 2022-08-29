@@ -71,11 +71,11 @@ _Kembali ke es cendol Pak Jenggot!
 Kali ini kamu minta es cendol alpukat.
 Pak Jenggot tersenyum lalu tiba-tiba diam mematung.
 Bahkan, kamu tidak mendapatkan respon sama sekali.
-Jadi, kamu pun menunggu sambil tersenyum kembali ke Pak Jenggot._
+Jadi, kamu pun menunggu sambil tersenyum kembali ke Pak Jenggot.
+Masih menunggu…
+Dan menunggu…_
 
-_Masih menunggu…
-Dan menunggu…
-Beberapa menit sebelum matahari terbit, sebuah mobil pickup tiba dan membawa beberapa wadah besar menuju gudang pendingin di belakang warung.
+_Beberapa menit sebelum matahari terbit, sebuah mobil pickup tiba dengan membawa beberapa wadah besar menuju gudang pendingin di belakang warung.
 Di wadah-wadah itu terdapat label besar bertuliskan **ES CENDOL ALPUKAT**._
 
 _Pak Jenggot tiba-tiba mulai bergerak lagi.
