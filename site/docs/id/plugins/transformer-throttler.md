@@ -5,7 +5,7 @@ Plugin ini menjaga bot kamu agar terhindar dari [rate limit](https://core.telegr
 ::: warning Aturan Pembatasan API yang Tidak Didokumentasikan
 Telegram juga memiliki beberapa aturan rate limit yang tidak didokumentasikan.
 Sayangnya, aturan-aturan tersebut **tidak diperhitungkan** oleh throttler.
-Oleh karena itu, kalau kamu mengalami error `floodwait` untuk beberapa pemanggilan API, misalnya `api.sendContact`, maka kami menyarankan untuk memasang [plugin auto-retry](./auto-retry.md) dan plugin ini secara beriringan.
+Oleh karena itu, kalau kamu mengalami error floodwait untuk beberapa pemanggilan API, misalnya `api.sendContact`, maka kami menyarankan untuk memasang [plugin auto-retry](./auto-retry.md) dan plugin ini secara beriringan.
 :::
 
 ## Penggunaan
