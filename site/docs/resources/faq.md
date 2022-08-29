@@ -48,7 +48,7 @@ If this happens while starting your bot, then your bot token is wrong.
 Talk to [@BotFather](https://t.me/BotFather) to see what your token is.
 
 If your bot works fine most of the time, but then suddenly you're getting a 404, then you're doing something very funky.
-You can come ask us in the [group chat](https://t.me/grammyjs).
+You can come ask us in the [group chat](https://t.me/grammyjs) (or the [Russian-speaking group chat](https://t.me/grammyjs_ru)).
 
 ### 409 Conflict: terminated by other getUpdates request
 
