@@ -601,8 +601,8 @@ La ramificación también funciona:
 
 ```ts
 await ctx.reply("¡Envíame una foto!");
-const { photo } = await conversation.wait();
-if (!photo) {
+const { message } = await conversation.wait();
+if (!message?.photo) {
   await ctx.reply("¡Eso no es una foto! ¡Estoy fuera!");
   return;
 }
@@ -619,7 +619,7 @@ do {
     await ctx.reply("¡Cancelado, me voy!");
     return;
   }
-} while (!ctx.photo);
+} while (!ctx.message?.photo);
 ```
 
 ## Funciones y recursión

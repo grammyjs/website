@@ -600,8 +600,8 @@ await ctx.reply("这些数字的总和为：" + sum);
 
 ```ts
 await ctx.reply("发给我一张照片！");
-const { photo } = await conversation.wait();
-if (!photo) {
+const { message } = await conversation.wait();
+if (!message?.photo) {
   await ctx.reply("啊，这不是一张照片！我死了！");
   return;
 }
@@ -618,7 +618,7 @@ do {
     await ctx.reply("呜呜，被取消了，我走了！");
     return;
   }
-} while (!ctx.photo);
+} while (!ctx.message?.photo);
 ```
 
 ## 函数和递归
