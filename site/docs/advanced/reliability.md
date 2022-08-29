@@ -166,7 +166,7 @@ However, _at least once_ processing is guaranteed.
 ### grammY Runner
 
 If you are using the [grammY runner](../plugins/runner.md) in concurrent mode, the next `getUpdates` call is potentially performed before your middleware processes the first update of the current batch.
-Thus, the [update offset](https://core.telegram.org/bots/api#getupdates) is confirmed prematurely.
+Thus, the update offset is [confirmed](https://core.telegram.org/bots/api#getupdates) prematurely.
 This is the cost of heavy concurrency, and unfortunately, it cannot be avoided without reducing both throughput and responsiveness.
 As a result, if your instance is killed in the right (wrong) moment, it could happen that up to 100 updates cannot be fetched again because Telegram regards them as confirmed.
 This leads to data loss.

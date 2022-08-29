@@ -5,7 +5,7 @@ This plugin enqueues outgoing API requests instance via [Bottleneck](https://git
 ::: warning Undocumented API Limits Exist
 Telegram implements unspecified and undocumented rate limits for some API calls.
 These undocumented limits are **not accounted for** by the throttler.
-Consider using the [auto-retry plugin](./auto-retry.md) together with this plugin, if you are experiencing `floodwait` errors for certain API calls, such as `api.sendContact`.
+Consider using the [auto-retry plugin](./auto-retry.md) together with this plugin, if you are experiencing floodwait errors for certain API calls, such as `api.sendContact`.
 :::
 
 ## Usage

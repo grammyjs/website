@@ -68,11 +68,11 @@ _Time for ice cream again!
 The employee already greets you with your first name by now.
 Asked about some ice cream of your favorite kind, the employee smiles at you and freezes.
 In fact, you don't get any response at all.
-So you decide to wait, firmly smiling back._
+So you decide to wait, firmly smiling back.
+And you wait.
+And wait._
 
-_And you wait.
-And wait.
-Some hours before the next sunrise, a truck of a local food delivery company arrives and brings a couple of large boxes into the parlor's storage room.
+_Some hours before the next sunrise, a truck of a local food delivery company arrives and brings a couple of large boxes into the parlor's storage room.
 They read **ice cream** on the outside.
 The employee finally starts to move again.
 "Of course we have salted caramel!

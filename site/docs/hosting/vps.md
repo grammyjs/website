@@ -108,7 +108,7 @@ systemctl stop <service_name>
 systemctl disable <service_name>
 ```
 
-## PM2 (Node.js Only)
+## PM2 (Node.js only)
 
 PM2 is a daemon process manager for Node.js that will help you manage and keep your app online 24/7.
 

@@ -1,4 +1,4 @@
-# Sessions and Storing Data (Built-In)
+# Sessions and Storing Data (built-in)
 
 While you can always just write you own code to connect to a data storage of your choice, grammY supports a very convenient storage pattern called _sessions_.
 
@@ -684,7 +684,7 @@ bot.command("reset", (ctx) => {
 One may argue well that explicitly using `await` is preferable over assigning a promise to `ctx.session`, the point is that you _could_ do this if you like that style better for some reason.
 
 ::: tip Plugins That Need Sessions
-Plugin developers that make use of `ctx.session` should always allow users to pass `SessionFlavor | LazySessionFlavor` and hence support both mode.
+Plugin developers that make use of `ctx.session` should always allow users to pass `SessionFlavor | LazySessionFlavor` and hence support both modes.
 In the plugin code, simply await `ctx.session` all the time: if a non-promise object is passed, this will simply be evaluated to itself, so you effectively only write code for lazy sessions and thus support strict sessions automatically.
 :::
 
