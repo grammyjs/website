@@ -831,7 +831,7 @@ This allows you to start a new conversation from the regular middleware.
 ### How You Can Use It
 
 In practice, you never really need to call `await conversation.skip()` at all.
-Instead, you can just use things like `await conversation.waitFor(userId)`, which will take care of the details for you.
+Instead, you can just use things like `await conversation.waitFrom(userId)`, which will take care of the details for you.
 This allows you to chat with a single user only in a group chat.
 
 For instance, let's implement the captcha example from up here again, but this time with parallel conversations.
@@ -920,7 +920,7 @@ However, this is a bad idea for several reasons.
 What if your server crashes while waiting for a context object?
 In that case, we lose all information about the state of the conversation.
 Basically, the bot loses its train of thought, and the user has to start over.
-This is bad design and annoying.
+This is a bad and annoying design.
 
 **Blocking.**
 If wait calls would block until the next update arrives, it means that the middleware execution for the first update can't complete until the entire conversation completes.
