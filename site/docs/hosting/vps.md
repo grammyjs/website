@@ -56,7 +56,7 @@ ExecStart=<start_command>
 Restart=on-failure
 
 [Install]
-WantedBy=multi-user.targets
+WantedBy=multi-user.target
 ```
 
 > Replace `<start_command>` with the command you got above.
