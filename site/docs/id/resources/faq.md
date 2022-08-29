@@ -47,7 +47,7 @@ Jika kamu menemui error ini ketika mengaktifkan bot, berarti ada yang salah deng
 Chat dengan [@BotFather](https://t.me/BotFather) untuk melihat tokennya.
 
 Jika bot sebelumnya berjalan dengan baik-baik saja, kemudian secara tiba-tiba mendapatkan error 404, berarti ada yang salah dengan coding-an bot kamu.
-Kamu bisa bertanya kepada kami [di grup](https://t.me/grammyjs).
+Kamu bisa bertanya kepada kami [di grup](https://t.me/grammyjs) (atau [chat grup Rusia](https://t.me/grammyjs_ru)).
 
 ### 409 Conflict: terminated by other getUpdates request
 
