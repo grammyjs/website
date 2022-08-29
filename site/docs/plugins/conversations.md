@@ -602,8 +602,8 @@ Branching works, too:
 
 ```ts
 await ctx.reply("Send me a photo!");
-const { photo } = await conversation.wait();
-if (!photo) {
+const { message } = await conversation.wait();
+if (!message?.photo) {
   await ctx.reply("That is not a photo! I'm out!");
   return;
 }
@@ -620,7 +620,7 @@ do {
     await ctx.reply("Cancelled, leaving!");
     return;
   }
-} while (!ctx.photo);
+} while (!ctx.message?.photo);
 ```
 
 ## Functions and Recursion
