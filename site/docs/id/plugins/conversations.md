@@ -966,7 +966,7 @@ Benar-benar berbeda.
 Seperti yang telah dijabarkan di awal, **Ia tidak akan membuat bot kamu menunggu _begitu saja_**, meski kita bisa saja memprogram conversations seolah-olah itu terjadi.
 
 Plugin conversations akan memantau proses eksekusi function kamu.
-Ketika pemanggilan `wait` dilakukan, ia akan men-serialize state dari eksekusi tersebut ke dalam session, yang selanjutnya akan disimpan dengan aman di sebuah database.
+Ketika pemanggilan wait dilakukan, ia akan men-serialize state dari eksekusi tersebut ke dalam session, yang selanjutnya akan disimpan dengan aman di sebuah database.
 Ketika update selanjutnya tiba, ia akan memeriksa data session terlebih dahulu.
 Jika ternyata ia sedang ditengah-tengah sebuah percakapan, state dari ekseskusi tersebut akan di-deserialize, lalu conversation builder function akan mengulanginya kembali di titik di mana pemanggilan `wait` sebelumnya dilakukan.
 Kemudian ia akan melanjutkan kembali eksekusi function kamu seperti biasanya---hingga pemanggilan `wait` selanjutnya dilakukan dan eksekusinya harus ditunda lagi.
