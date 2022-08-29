@@ -590,7 +590,7 @@ You can declare variables and do whatever you want with them:
 
 ```ts
 await ctx.reply("Send me your favorite numbers, separated by commas!");
-const { message } = await conversation.wait();
+const { message } = await conversation.waitFor("message:text");
 const sum = message.text
   .split(",")
   .map((n) => parseInt(n.trim(), 10))
@@ -924,7 +924,7 @@ However, this is a bad idea for several reasons.
 What if your server crashes while waiting for a context object?
 In that case, we lose all information about the state of the conversation.
 Basically, the bot loses its train of thought, and the user has to start over.
-This is bad design and annoying.
+This is a bad and annoying design.
 
 **Blocking.**
 If `wait` calls would block until the next update arrives, it means that the middleware execution for the first update can't complete until the entire conversation completes.
