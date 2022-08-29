@@ -213,7 +213,7 @@ The idea is to install middleware before you register other listeners.
 You can then set the properties you want inside these handlers.
 
 For illustration purposes, let's say you want to set a property called `ctx.config` on the context object.
-In this example, we will use it do store some configuration about the project so that all handlers have access to it.
+In this example, we will use it to store some configuration about the project so that all handlers have access to it.
 The configuration will make it easier to detect if the bot is used by its developer or by regular users.
 
 Right after creating your bot, do this:

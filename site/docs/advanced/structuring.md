@@ -70,7 +70,7 @@ As always in software, do it in a way that makes the most sense :wink:
 ## Type Definitions for Extracted Middleware
 
 The above structure using composers works well.
-However, sometimes you may find yourself in the situation that you want to extract a handler into a function, rather than creating a new comopser and adding the logic to it.
+However, sometimes you may find yourself in the situation that you want to extract a handler into a function, rather than creating a new composer and adding the logic to it.
 This requires you to add the correct middleware type definitions to your handlers because they can no longer be inferred through the composer.
 
 grammY exports type definitions for all **narrowed types of middleware**, such as the middleware that you can pass to command handlers.

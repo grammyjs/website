@@ -122,7 +122,7 @@ import { type Chat } from "https://deno.land/x/grammy/types.ts";
 
 ### Making Raw API Calls
 
-There may be times when you want to use the original function signatures, but still rely on the convenience of the grammY API (e.g. JSON serialising where appropriate).
+There may be times when you want to use the original function signatures, but still rely on the convenience of the grammY API (e.g. JSON serializing where appropriate).
 grammY supports this via the `bot.api.raw` (or the `ctx.api.raw`) properties.
 
 You can call the raw methods like this:

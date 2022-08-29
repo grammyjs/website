@@ -251,6 +251,10 @@ export default defineUserConfig({
                     link: "/plugins/middlewares.html",
                   },
                   {
+                    text: "Autoquote",
+                    link: "/plugins/autoquote.html",
+                  },
+                  {
                     text: "[Submit your PR!]",
                     link: "/plugins/#submitting-your-own-package-to-the-docs",
                   },
@@ -609,8 +613,12 @@ export default defineUserConfig({
                     link: "/es/plugins/console-time.html",
                   },
                   {
-                    text: "Middleware útil",
+                    text: "Middlewares de utilidad",
                     link: "/es/plugins/middlewares.html",
+                  },
+                  {
+                    text: "Citar automáticamente",
+                    link: "/es/plugins/autoquote.html",
                   },
                   {
                     text: "[¡Envíe su PR!]",
@@ -908,7 +916,11 @@ export default defineUserConfig({
                 text: "官方维护",
                 children: [
                   {
-                    text: "互动菜单（menu）",
+                    text: "对话 (conversations)",
+                    link: "/zh/plugins/conversations.html",
+                  },
+                  {
+                    text: "互动菜单 (menu)",
                     link: "/zh/plugins/menu.html",
                   },
                   {
@@ -971,6 +983,10 @@ export default defineUserConfig({
                   {
                     text: "有用的中间件",
                     link: "/zh/plugins/middlewares.html",
+                  },
+                  {
+                    text: "自动引用",
+                    link: "/zh/plugins/autoquote.html",
                   },
                   {
                     text: "[等待你的 PR!]",
