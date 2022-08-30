@@ -31,7 +31,7 @@ bot.on([":video", ":animation"], async (ctx) => {
   // Descargue el archivo en una ubicación temporal.
   const path = await file.download();
   // Imprime la ruta del archivo.
-  console.log("Archivo guardado en", path);
+  console.log("Archivo guardado en ", path);
 });
 ```
 
@@ -55,7 +55,7 @@ bot.on([":video", ":animation"], async (ctx) => {
   // Descargue el archivo en una ubicación temporal.
   const path = await file.download();
   // Imprime la ruta del archivo.
-  console.log("Archivo guardado en", path);
+  console.log("Archivo guardado en ", path);
 });
 ```
 
@@ -85,7 +85,7 @@ bot.on([":video", ":animation"], async (ctx) => {
   // Descargue el archivo en una ubicación temporal.
   const path = await file.download();
   // Imprime la ruta del archivo.
-  console.log("Archivo guardado en", path);
+  console.log("Archivo guardado en ", path);
 });
 ```
 

@@ -98,7 +98,6 @@ bot.use(
   limit({
     // Permitir que sólo se manejen 3 mensajes cada 2 segundos.
     timeFrame: 2000,
-
     limit: 3,
 
     // "MEMORY_STORE" es el valor por defecto. Si no quieres usar Redis, no pases storageClient en absoluto.
@@ -130,7 +129,6 @@ bot.use(
   limit({
     // Permitir que sólo se manejen 3 mensajes cada 2 segundos.
     timeFrame: 2000,
-
     limit: 3,
 
     // "MEMORY_STORE" es el valor por defecto. Si no quieres usar Redis, no pases storageClient en absoluto.
@@ -161,7 +159,6 @@ bot.use(
   limit({
     // Permitir que sólo se manejen 3 mensajes cada 2 segundos.
     timeFrame: 2000,
-
     limit: 3,
 
     // "MEMORY_STORE" es el valor por defecto. Si no quieres usar Redis, no pases storageClient en absoluto.

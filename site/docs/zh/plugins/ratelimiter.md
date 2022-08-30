@@ -89,7 +89,6 @@ bot.use(
   limit({
     // 每 2 秒只允许处理 3 条信息。
     timeFrame: 2000,
-
     limit: 3,
 
     // "MEMORY_STORE" 是默认值。如果你不想使用 Redis，请不要传入 storageClient。
@@ -121,7 +120,6 @@ bot.use(
   limit({
     // 每 2 秒只允许处理 3 条信息。
     timeFrame: 2000,
-
     limit: 3,
 
     // "MEMORY_STORE" 是默认值。如果你不想使用 Redis，请不要传入 storageClient。
@@ -153,7 +151,6 @@ bot.use(
   limit({
     // 每 2 秒只允许处理 3 条信息。
     timeFrame: 2000,
-
     limit: 3,
 
     // "MEMORY_STORE" 是默认值。如果你不想使用 Redis，请不要传入 storageClient。
@@ -175,7 +172,8 @@ bot.use(
 </CodeGroupItem>
 </CodeGroup>
 
-正如你在上面的示例中看到的，每个用户每 2 秒钟最多只能发送 3 次请求。如果该用户发送更多请求，机器人会回复 _Please refrain from sending too many requests!_。由于我们不调用 [next()](../guide/middleware.html#中间件栈)，这个请求将被立即关闭。
+正如你在上面的示例中看到的，每个用户每 2 秒钟最多只能发送 3 次请求。如果该用户发送更多请求，机器人会回复 _Please refrain from sending too many requests!_。
+由于我们不调用 [next()](../guide/middleware.html#中间件栈)，这个请求将被立即关闭。
 
 > 请注意：为了避免 Telegram 服务器被请求淹没，`onLimitExceeded` 只会在每个 `timeFrame` 中执行一次。
 

@@ -1,5 +1,5 @@
 ---
-prev: ./
+prev: ../plugins/
 ---
 
 # The Hitchhiker's Guide to grammY Plugins

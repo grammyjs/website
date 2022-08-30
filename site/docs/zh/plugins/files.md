@@ -31,7 +31,7 @@ bot.on([":video", ":animation"], async (ctx) => {
   // 下载文件到一个临时位置。
   const path = await file.download();
   // 打印文件路径
-  console.log("File saved at", path);
+  console.log("File saved at ", path);
 });
 ```
 
@@ -55,7 +55,7 @@ bot.on([":video", ":animation"], async (ctx) => {
   // 下载文件到一个临时位置。
   const path = await file.download();
   // 打印文件路径。
-  console.log("File saved at", path);
+  console.log("File saved at ", path);
 });
 ```
 
@@ -85,7 +85,7 @@ bot.on([":video", ":animation"], async (ctx) => {
   // 下载文件到一个临时位置。
   const path = await file.download();
   // 打印文件路径。
-  console.log("File saved at", path);
+  console.log("File saved at ", path);
 });
 ```
 

@@ -14,7 +14,7 @@
 | **Inline keyboard button**               | inline keyboard 中的一个按钮，按下后会发送一个用户不可见的回调查询，有时候被称为 _inline button_ |
 | **自定义 Keyboard button**                  | keyboard 中的一个按钮，按下后会发送带有其标签的文本信息，有时候被称为 _keyboard button_        |
 | **`InlineKeyboard`**                     | grammY 中用来创建 inline keyboards 的类                                 |
-| **`Keyboard` (!)**                       | grammY 中用来创建自定义 keyboards 的类                                     |
+| **`Keyboard`**                           | grammY 中用来创建自定义 keyboards 的类                                     |
 
 > 请注意，自定义 keyboard 按钮和 inline keyboard 按钮也可以有其他功能，例如请求用户的位置，打开网站等等。
 > 为了简洁起见，我们省略了这一点。

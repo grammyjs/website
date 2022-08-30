@@ -1,5 +1,5 @@
 ---
-prev: ./
+prev: ../plugins/
 ---
 
 # grammy 插件的搭便车指南
