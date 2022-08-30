@@ -12,7 +12,7 @@ Pero se pierde el enfoque cada vez que se necesita un nuevo emoji, ver:
 3. Los copias y pegas en tu código y vuelves a codificar, pero con el foco perdido.
 
 Con este plugin, simplemente no dejas de codificar ya que tampoco pierdes la concentración.
-También hay sistemas y/o editores que no les gusta y no muestran los emojis, por lo que terminas pegando un cuadrado blanco, como este triste-pequeño-cuidado mensaje `Estoy tan feliz □`.
+También hay sistemas y/o editores que no les gusta y no muestran los emojis, por lo que terminas pegando un cuadrado blanco, como este triste-pequeño-cuidado mensaje: `Estoy tan feliz □`.
 
 Este plugin pretende resolver estos problemas, manejando por ti la difícil tarea de analizar los emojis en todos los sistemas y permitiéndote sólo buscarlos de forma sencilla (está disponible el autocompletado). Ahora, los pasos anteriores se pueden reducir a este:
 

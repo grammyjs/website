@@ -19,7 +19,7 @@ import { FileFlavor, hydrateFiles } from "@grammyjs/files";
 type MyContext = FileFlavor<Context>;
 
 // 创建一个 bot。
-const bot = new Bot<MyContext>("");
+const bot = new Bot<MyContext>("BOT_TOKEN");
 
 // 使用插件。
 bot.api.config.use(hydrateFiles(bot.token));
@@ -43,7 +43,7 @@ import { Bot } from "grammy";
 import { hydrateFiles } from "@grammyjs/files";
 
 // 创建一个 bot。
-const bot = new Bot("");
+const bot = new Bot("BOT_TOKEN");
 
 // 使用插件。
 bot.api.config.use(hydrateFiles(bot.token));
@@ -73,7 +73,7 @@ import {
 type MyContext = FileFlavor<Context>;
 
 // 创建一个 bot。
-const bot = new Bot<MyContext>("");
+const bot = new Bot<MyContext>("BOT_TOKEN");
 
 // 使用插件。
 bot.api.config.use(hydrateFiles(bot.token));

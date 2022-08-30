@@ -7,14 +7,14 @@ Gracias, Telegram, por este solapamiento terminológico.
 
 Vamos a intentar aclararlo un poco:
 
-| Término                                  | Definición                                                                                                                                                    |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [**Inline Keyboard**](#inline-keyboards) | un conjunto de botones que se muestra debajo de un mensaje dentro del chat                                                                                    |
-| [**Custom Keyboard**](#custom-keyboards) | un conjunto de botones que se muestra en lugar del teclado del sistema del usuario                                                                            |
-| **Inline Keyboard button**               | un botón en un inline keyboard, envía una consulta de devolución de llamada no visible para el usuario cuando se pulsa, a veces sólo se llama _inline button_ |
-| **Custom Keyboard button**               | un botón en un keyboard, envía un mensaje de texto con su etiqueta cuando se pulsa, a veces sólo se llama _keyboard button_                                   |
-| **`InlineKeyboard`**                     | clase de grammY para crear inline keyboards                                                                                                                   |
-| **`Keyboard`**                           | clase de grammY para crear custom keyboards                                                                                                                   |
+| Término                                  | Definición                                                                                                                                                     |
+| ---------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [**Inline Keyboard**](#inline-keyboards) | un conjunto de botones que se muestra debajo de un mensaje dentro del chat.                                                                                    |
+| [**Custom Keyboard**](#custom-keyboards) | un conjunto de botones que se muestra en lugar del teclado del sistema del usuario.                                                                            |
+| **Inline Keyboard button**               | un botón en un inline keyboard, envía una consulta de devolución de llamada no visible para el usuario cuando se pulsa, a veces sólo se llama _inline button_. |
+| **Custom Keyboard button**               | un botón en un keyboard, envía un mensaje de texto con su etiqueta cuando se pulsa, a veces sólo se llama _keyboard button_.                                   |
+| **`InlineKeyboard`**                     | clase de grammY para crear inline keyboards.                                                                                                                   |
+| **`Keyboard`**                           | clase de grammY para crear custom keyboards.                                                                                                                   |
 
 > Tenga en cuenta que tanto los botones de teclado personalizados como los botones de teclado en línea también pueden tener otras funciones, como solicitar la ubicación del usuario, abrir un sitio web, etc.
 > Esto se ha omitido por razones de brevedad.
@@ -119,7 +119,7 @@ Hace que sea sencillo crear menús interactivos.
 Cada botón de `texto` tiene adjuntada una cadena como dato de callback.
 Si no se adjuntan datos de devolución de llamada, grammY utilizará el texto del botón como datos.
 
-Una vez que un usuario hace clic en un botón de texto, tu bot recibirá una actualización que contiene los datos de callback del botón correspondiente.
+Una vez que un usuario hace clic en un botón de `texto`, tu bot recibirá una actualización que contiene los datos de callback del botón correspondiente.
 Puedes escuchar los datos del callback a través de `bot.callbackQuery()`.
 
 ```ts
@@ -172,7 +172,7 @@ Esto se refiere a una forma de reemplazar el teclado del sistema por un conjunto
 grammY tiene una manera simple e intuitiva de construir los teclados de respuesta que tu bot puede usar para reemplazar el teclado del usuario.
 Proporciona una clase llamada `Keyboard` para esto.
 
-Una vez que el usuario hace clic en un botón de texto, tu bot recibirá el texto enviado como un mensaje de texto plano.
+Una vez que el usuario hace clic en un botón de `texto`, tu bot recibirá el texto enviado como un mensaje de texto plano.
 Recuerda que puedes escuchar los mensajes de texto a través de `bot.on("message:text")`.
 
 ### Construyendo un Custom Keyboard

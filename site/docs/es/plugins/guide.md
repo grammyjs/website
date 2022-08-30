@@ -187,7 +187,7 @@ plugin-template/
 Como ya hemos mencionado, utilizamos la herramienta `deno2node` para transpilar nuestro código Deno a Node.js.
 `deno2node` tiene una característica que te permite proporcionarle archivos específicos para el tiempo de ejecución.
 Estos archivos deben ser adyacentes entre sí y seguir la estructura de nombres `*.deno.ts` y `*.node.ts` como se [explica en la documentación](https://github.com/wojpawlik/deno2node#runtime-specific-code).
-Por eso hay dos archivos `deps.deno.ts` y `deps.node.ts`.
+Por eso hay dos archivos: `deps.deno.ts` y `deps.node.ts`.
 Si hay alguna dependencia específica de Node.js, ponla en `deps.node.ts`, si no, déjala vacía.
 
 > _**Nota**_: También puede utilizar otras herramientas como [deno dnt](https://github.com/denoland/dnt) para transpilar su código base de deno o utilizar otras estructuras de carpetas.

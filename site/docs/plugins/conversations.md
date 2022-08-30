@@ -927,7 +927,7 @@ Basically, the bot loses its train of thought, and the user has to start over.
 This is a bad and annoying design.
 
 **Blocking.**
-If `wait` calls would block until the next update arrives, it means that the middleware execution for the first update can't complete until the entire conversation completes.
+If wait calls would block until the next update arrives, it means that the middleware execution for the first update can't complete until the entire conversation completes.
 
 - For built-in polling, this means that no further updates can be processed until the current one is done.
   Hence, the bot would simply be blocked forever.

@@ -35,7 +35,7 @@ Esto depende del tipo de despliegue.
 ### Webhooks
 
 1. Asegúrese de no realizar ninguna operación de larga duración en su middleware, como las transferencias de archivos de gran tamaño. [Esto lleva a errores de tiempo de espera](../guide/deployment-types.md#terminar-las-solicitudes-de-webhooks-a-tiempo) para los webhooks, y el procesamiento de actualizaciones duplicadas, ya que Telegram reenviará las actualizaciones no reconocidas. Considere la posibilidad de utilizar un sistema de cola de tareas en su lugar.
-2. Familiarícese con la configuración de `webhookCallback` [referencia API](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/webhookCallback).
+2. Familiarícese con la configuración de `webhookCallback` ([referencia API](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/webhookCallback)).
 3. Si cambiaste la opción `getSessionKey` por la de tu sesión, [usa `sequentialize` con la misma función de resolución de claves de sesión que su middleware de sesión](./scaling.md#la-concurrencia-es-difícil).
 4. Si se ejecuta en una plataforma sin servidor o de autoescalado, [establezca la información del bot](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/BotConfig) para prevenir excesivas llamadas `getMe`.
 5. Considere utilizar [webhook replies](../guide/deployment-types.md#webhook-reply).

@@ -578,7 +578,7 @@ await conversation.sleep(3000); // 3 segundos
 conversation.log("Hola, mundo");
 ```
 
-Ten en cuenta que puedes hacer todo lo anterior a través de `conversation.external()`, pero esto puede ser tedioso de escribir, así que es más fácil usar las funciones de conveniencia.
+Ten en cuenta que puedes hacer todo lo anterior a través de `conversation.external()`, pero esto puede ser tedioso de escribir, así que es más fácil usar las funciones de conveniencia ([referencia de la API](https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts/~/ConversationHandle#Methods)).
 
 ## Variables, bifurcaciones y bucles
 
