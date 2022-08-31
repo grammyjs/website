@@ -3,67 +3,57 @@
   --c-brand-light: #27b5e6;
   --c-tip: #16afe0;
   --c-brand: #009dca;
+  --c-warning: #ffc310;
+  --c-warning-bg-lighter: #fff3ba;
+  --c-warning-title: #f1b300;
+  --c-warning-text-lighter: #c1971c;
+  --c-warning-text-accent: #edb100;
+  --c-warning-text-quote: #ccab49;
+  --c-warning-border-dark: #f7dc91;
+  --c-danger: #f11e37;
+  --c-danger-bg-lighter: #ffcfde;
+  --c-danger-title: #ed1e2c;
+  --c-danger-text-lighter: #b5474d;
+  --c-danger-text-accent: #bd1a1a;
+  --c-danger-text-quote: #c15b5b;
+  --c-danger-border-dark: #f1abab;
 }
 
 html.dark {
-  --c-bg-lighter: #2b313a;
   --c-brand-light: #138cb3;
-  --c-brand: #009dca;
   --c-tip: #1583a7;
-  --c-tip-title: var(--c-text-accent);
+  --c-brand: #009dca;
+  --c-bg-lighter-2: #38404a;
   --c-warning: #e0ad15;
-  --c-warning-bg: rgba(255, 197, 23, .05);
+  --c-warning-bg: #2d2f2d;
+  --c-warning-bg-lighter: #423E2A;
   --c-warning-title: #fdca31;
-  --c-warning-text: rgba(252, 252, 124, 0.9);
+  --c-warning-text: #d8d96d;
+  --c-warning-text-lighter: #ddb84b;
+  --c-warning-text-accent: #ffbf00;
+  --c-warning-text-quote: #ccab49;
+  --c-warning-border-dark: #957c35;
   --c-danger: #fc1e38;
-  --c-danger-bg: rgba(237, 60, 80, .06);
+  --c-danger-bg: #39232c;
+  --c-danger-bg-lighter: #4b2b35;
   --c-danger-title: #fc2d3b;
-  --c-danger-text: rgb(253, 128, 136);
+  --c-danger-text: #ea9ca0;
+  --c-danger-text-lighter: #d9777c;
+  --c-danger-text-accent: #fd3636;
+  --c-danger-text-quote: #d56b6b;
+  --c-danger-border-dark: #a25151;
 }
 
-html.dark .custom-container.warning code{
-  color: rgba(252, 210, 83, 0.9);
-  background-color: rgba(255, 197, 23, .1);
-}
-
-html.dark .custom-container.danger code{
-  color: rgb(252, 83, 83);
-  background-color: rgba(237, 60, 80, .15);
-}
-
-html.dark .custom-container.warning a{
-  color: var(--c-warning);
-}
-
-html.dark .custom-container.danger a{
-  color: rgb(253, 54, 54);
-}
-
-html.dark .custom-container.warning blockquote{
-  color: rgba(252, 252, 124, 0.65);
-}
-
-html.dark .custom-container.danger blockquote{
-  color: rgb(253, 128, 136, 0.7);
-}
-
-.custom-container.tip pre code, .custom-container.tip pre[class*="language-"] code,
-.custom-container.warning pre code, .custom-container.warning pre[class*="language-"] code,
-.custom-container.danger pre code, .custom-container.danger pre[class*="language-"] code {
-  color: #fff;
-  background-color: transparent;
-}
-
-// adjust table background colors to avoid clashes with inline code snippets
-html.dark tr:nth-child(2n) {
+// adjust inline code snippets colors to avoid clashes with table and container background
+:is(tr:nth-child(2n), .custom-container.tip) code {
   background-color: var(--c-bg-lighter);
 }
 
-html:not(.dark) tr:nth-child(2n) code {
-  background-color: var(--c-bg-lighter);
+html.dark :is(tr:nth-child(2n), .custom-container.tip) code{
+  background-color: var(--c-bg-lighter-2);
 }
 
-.token.string, .token.char, .token.attr-value, .token.regex, .token.variable {
+.token:is(.string, .char, .attr-value, .regex, .variable) {
   color: #6ac0e3;
 }
 
@@ -73,8 +63,7 @@ html:not(.dark) tr:nth-child(2n) code {
 }
 
 // apply justify to all articles
-.theme-default-content p,
-.theme-default-content li {
+.theme-default-content:is(p, li) {
   text-align: justify;
   text-justify: inter-character;
   hyphens: auto;
@@ -83,4 +72,52 @@ html:not(.dark) tr:nth-child(2n) code {
 // neither hyphenate inline code snippets nor links, we are injeting <wbr> tags there
 code, a {
   hyphens: none;
+}
+
+// Do not change the code snippet block
+[class*="language-"] code {
+  color: #fff !important; // Default value #fff
+  background-color: transparent !important; // Default value `transparent`
+}
+
+// custom container for light theme
+.custom-container.warning code {
+  color: var(--c-warning-text-lighter);
+  background-color: var(--c-warning-bg-lighter);
+}
+
+.custom-container.warning blockquote {
+  color: var(--c-warning-text-quote);
+  border-left-color: var(--c-warning-border-dark);
+}
+
+.custom-container.danger code {
+  color: var(--c-danger-text-lighter);
+  background-color: var(--c-danger-bg-lighter);
+}
+
+.custom-container.danger blockquote {
+  color: var(--c-danger-text-quote);
+  border-left-color: var(--c-danger-border-dark);
+}
+
+// custom container for dark theme
+html.dark .custom-container.warning code {
+  color: var(--c-warning-text-lighter);
+  background-color: var(--c-warning-bg-lighter);
+}
+
+html.dark .custom-container.warning blockquote {
+  color: var(--c-warning-text-quote);
+  border-left-color: var(--c-warning-border-dark);
+}
+
+html.dark .custom-container.danger code {
+  color: var(--c-danger-text-lighter);
+  background-color: var(--c-danger-bg-lighter);
+}
+
+html.dark .custom-container.danger blockquote {
+  color: var(--c-danger-text-quote);
+  border-left-color: var(--c-danger-border-dark);
 }
