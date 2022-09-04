@@ -19,26 +19,23 @@ The result of this tutorial [can be seen in our example bots repository](https:/
 
 ```ts
 import { webhookCallback } from "https://deno.land/x/grammy/mod.ts";
-import { serve } from "https://deno.land/x/sift@0.5.0/mod.ts";
 // You might modify this to the correct way to import your `Bot` object.
 import bot from "./bot.ts";
 
 const handleUpdate = webhookCallback(bot, "std/http");
 
-serve({
-  ["/" + Deno.env.get("TOKEN")]: async (req) => {
-    if (req.method == "POST") {
+serve(async (req) => {
+  if (req.method == "POST") {
+    const url = new URL(req.url);
+    if (url.pathname.slice(1) == bot.token) {
       try {
         return await handleUpdate(req);
       } catch (err) {
         console.error(err);
       }
     }
-    return new Response();
-  },
-  "/": () => {
-    return new Response("Hello world!");
-  },
+  }
+  return new Response();
 });
 ```
 
