@@ -31,7 +31,7 @@ Una vez que hayas creado un proyecto de Supabase Function, puedes escribir tu bo
 Puedes utilizar este breve ejemplo de bot como punto de partida.
 
 ```ts
-import { serve } from "https://deno.land/std@0.154.0/http/server.ts";
+import { serve } from "https://deno.land/std/http/server.ts";
 import { Bot, webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 
 const bot = new Bot(Deno.env.get("BOT_TOKEN") ?? "");
