@@ -31,7 +31,7 @@ Puedes instalar este plugin en tu bot así:
   <CodeGroupItem title="TypeScript" active>
 
 ```ts
-import { Bot, Context } de "grammy";
+import { Bot, Context } from "grammy";
 import { EmojiFlavor, emojiParser } from "@grammyjs/emoji";
 
 // Esto se llama Context Flavoring
@@ -64,7 +64,7 @@ import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 importar {
   EmojiFlavor,
   emojiParser,
-} de "https://deno.land/x/grammy_emoji/mod.ts";
+} from "https://deno.land/x/grammy_emoji/mod.ts";
 
 // Esto se llama Context Flavoring
 // Puedes leer más en:
