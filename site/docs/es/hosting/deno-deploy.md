@@ -18,6 +18,7 @@ El resultado de este tutorial [puede verse en nuestro repositorio de bots de eje
 2. Crea un archivo llamado `mod.ts` o `mod.js`, o en realidad cualquier nombre que te guste (pero deberías recordar y usar este como el archivo principal para desplegar), con el siguiente contenido:
 
 ```ts
+import { serve } from "https://deno.land/std@0.154.0/http/server.ts";
 import { Bot, webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 // Puedes modificar esto a la forma correcta de importar tu objeto `Bot`.
 import bot from "./bot.ts";
