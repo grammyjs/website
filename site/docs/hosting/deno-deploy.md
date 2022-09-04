@@ -18,6 +18,7 @@ The result of this tutorial [can be seen in our example bots repository](https:/
 2. Create a file named `mod.ts` or `mod.js`, or actually any name you like (but you should be remembering and using this as the main file to deploy), with the following content:
 
 ```ts
+import { serve } from "https://deno.land/std@0.154.0/http/server.ts";
 import { webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 // You might modify this to the correct way to import your `Bot` object.
 import bot from "./bot.ts";
