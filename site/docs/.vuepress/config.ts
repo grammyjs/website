@@ -962,10 +962,10 @@ export default defineUserConfig({
                     text: "File (files)",
                     link: "/id/plugins/files.html",
                   },
-                  // {
-                  //   text: "Internationalization (i18n)",
-                  //   link: "/id/plugins/i18n.html",
-                  // },
+                  {
+                    text: "Internationalization (i18n)",
+                    link: "/id/plugins/i18n.html",
+                  },
                   {
                     text: "Internationalization (fluent)",
                     link: "/id/plugins/fluent.html",
