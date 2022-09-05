@@ -149,7 +149,7 @@ Si ya tiene un archivo almacenado en su máquina, puede dejar que grammY cargue 
   <CodeGroupItem title="Node.js" active>
 
 ```ts
-import { createReadStream } de "fs";
+import { createReadStream } from "fs";
 
 // Enviar un archivo local.
 new InputFile("/ruta/a/archivo");
