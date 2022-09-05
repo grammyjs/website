@@ -960,10 +960,6 @@ export default defineUserConfig({
                     text: "Parse Mode (parse-mode)",
                     link: "/id/plugins/parse-mode.html",
                   },
-                  {
-                    text: "Command Filtering (command-filter)",
-                    link: "/id/plugins/command-filter.html",
-                  },
                 ],
               },
               {
