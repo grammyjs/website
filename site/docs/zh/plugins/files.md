@@ -19,7 +19,7 @@ import { FileFlavor, hydrateFiles } from "@grammyjs/files";
 type MyContext = FileFlavor<Context>;
 
 // 创建一个 bot。
-const bot = new Bot<MyContext>("");
+const bot = new Bot<MyContext>("BOT_TOKEN");
 
 // 使用插件。
 bot.api.config.use(hydrateFiles(bot.token));
@@ -31,7 +31,7 @@ bot.on([":video", ":animation"], async (ctx) => {
   // 下载文件到一个临时位置。
   const path = await file.download();
   // 打印文件路径
-  console.log("File saved at", path);
+  console.log("File saved at ", path);
 });
 ```
 
@@ -43,7 +43,7 @@ import { Bot } from "grammy";
 import { hydrateFiles } from "@grammyjs/files";
 
 // 创建一个 bot。
-const bot = new Bot("");
+const bot = new Bot("BOT_TOKEN");
 
 // 使用插件。
 bot.api.config.use(hydrateFiles(bot.token));
@@ -55,7 +55,7 @@ bot.on([":video", ":animation"], async (ctx) => {
   // 下载文件到一个临时位置。
   const path = await file.download();
   // 打印文件路径。
-  console.log("File saved at", path);
+  console.log("File saved at ", path);
 });
 ```
 
@@ -73,7 +73,7 @@ import {
 type MyContext = FileFlavor<Context>;
 
 // 创建一个 bot。
-const bot = new Bot<MyContext>("");
+const bot = new Bot<MyContext>("BOT_TOKEN");
 
 // 使用插件。
 bot.api.config.use(hydrateFiles(bot.token));
@@ -85,7 +85,7 @@ bot.on([":video", ":animation"], async (ctx) => {
   // 下载文件到一个临时位置。
   const path = await file.download();
   // 打印文件路径。
-  console.log("File saved at", path);
+  console.log("File saved at ", path);
 });
 ```
 

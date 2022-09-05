@@ -604,8 +604,8 @@ Percabangan juga bisa dilakukan:
 
 ```ts
 await ctx.reply("Kirim sebuah foto!");
-const { photo } = await conversation.wait();
-if (!photo) {
+const { message } = await conversation.wait();
+if (!message?.photo) {
   await ctx.reply("Itu bukan foto! Aksi dibatalkan.");
   return;
 }
@@ -622,7 +622,7 @@ do {
     await ctx.reply("Aksi dibatalkan!");
     return;
   }
-} while (!ctx.photo);
+} while (!ctx.message?.photo);
 ```
 
 ## Function dan Recursion

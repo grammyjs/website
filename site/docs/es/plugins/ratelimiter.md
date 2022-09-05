@@ -11,7 +11,7 @@ Para entender mejor rateLimiter, puedes echar un vistazo a la siguiente ilustrac
 En circunstancias normales, cada solicitud será procesada y respondida por su bot, lo que significa que hacer spam no será tan difícil. ¡Cada usuario puede enviar múltiples peticiones por segundo y tu script tiene que procesar cada petición, pero ¿cómo puedes detenerlo? con rateLimiter!
 
 ::: warning Limitando los usuarios, no los servidores de Telegram.
-Debes tener en cuenta que este paquete **NO** limita la tasa de las solicitudes entrantes de los servidores de telegramas, en su lugar, rastrea las solicitudes entrantes por `from.id` y las descarta a su llegada para que no se añada más carga de procesamiento a tus servidores.
+Debes tener en cuenta que este paquete **NO** limita la tasa de las solicitudes entrantes de los servidores de Telegramas, en su lugar, rastrea las solicitudes entrantes por `from.id` y las descarta a su llegada para que no se añada más carga de procesamiento a tus servidores.
 :::
 
 ## Personalización
@@ -98,7 +98,6 @@ bot.use(
   limit({
     // Permitir que sólo se manejen 3 mensajes cada 2 segundos.
     timeFrame: 2000,
-
     limit: 3,
 
     // "MEMORY_STORE" es el valor por defecto. Si no quieres usar Redis, no pases storageClient en absoluto.
@@ -130,7 +129,6 @@ bot.use(
   limit({
     // Permitir que sólo se manejen 3 mensajes cada 2 segundos.
     timeFrame: 2000,
-
     limit: 3,
 
     // "MEMORY_STORE" es el valor por defecto. Si no quieres usar Redis, no pases storageClient en absoluto.
@@ -161,7 +159,6 @@ bot.use(
   limit({
     // Permitir que sólo se manejen 3 mensajes cada 2 segundos.
     timeFrame: 2000,
-
     limit: 3,
 
     // "MEMORY_STORE" es el valor por defecto. Si no quieres usar Redis, no pases storageClient en absoluto.

@@ -61,25 +61,26 @@ Habla con [@BotFather](https://t.me/BotFather) para hacer esto.
 
 ### 429: Too Many Requests: retry after X
 
-Enhorabuena.
+¡Enhorabuena!
 Te has encontrado con un error que está entre los más difíciles de arreglar.
 
-Hay dos escenarios posibles.
+Hay dos escenarios posibles:
 
-Uno: Tu bot no tiene muchos usuarios.
+**Uno**: Tu bot no tiene muchos usuarios.
 En ese caso, sólo estás haciendo spam a los servidores de Telegram enviando demasiadas solicitudes.
-Solución: no hagas eso.
+Solución: ¡no hagas eso!
 Deberías pensar seriamente en cómo reducir sustancialmente el número de llamadas a la API.
 
-Dos: Tu bot se está haciendo muy popular y tiene muchos usuarios (cientos de miles).
+**Dos**: Tu bot se está haciendo muy popular y tiene muchos usuarios (cientos de miles).
 Ya te has asegurado de utilizar el mínimo número de llamadas a la API para las operaciones más comunes de tu bot, y _aún_ te encuentras con estos errores (llamados flood wait).
 
-Hay algunas cosas que puedes hacer
+Hay algunas cosas que puedes hacer:
 
 1. Leer [este artículo en los docs](../advanced/flood.md) para obtener una comprensión básica de la situación.
 2. Utilice el [plugin `transformer-throttler`](../plugins/transformer-throttler.md).
 3. Utiliza el [plugin `auto-retry`](../plugins/auto-retry.md).
-4. Ven a pedirnos ayuda en el chat del grupo. Tenemos gente experimentada allí.
+4. Ven a pedirnos ayuda en el [chat del grupo]((https://t.me/grammyjs)).
+   Tenemos gente experimentada allí.
 5. Es posible pedirle a Telegram que aumente los límites, pero es muy poco probable que esto ocurra si no hiciste los pasos 1-3 primero.
 
 ### Cannot find type definition file for 'node-fetch'

@@ -103,7 +103,7 @@ Veamos cuáles son los dos parámetros.
 
 **El segundo parámetro** no es tan interesante, es sólo un objeto de contexto normal.
 Como siempre, se llama `ctx` y utiliza tu tipo de contexto personalizado (quizás llamado `MyContext`).
-El plugin de conversaciones exporta un [context flavor](../guide/context.html#additive-context-flavors) llamado `ConversationFlavor`.
+El plugin de conversaciones exporta un [context flavor](../guide/context.md#additive-context-flavors) llamado `ConversationFlavor`.
 
 **El primer parámetro** es el elemento central de este plugin.
 Se llama comúnmente `conversation`, y tiene el tipo `Conversación` ([referencia de la API](https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts/~/Conversation)).
@@ -369,7 +369,11 @@ Recuerda que debes `esperar` la llamada.
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
 
-```ts
+```ts{6,20}
+async function movie(conversation: MyConversation, ctx: MyContext) {
+  // TODO: definir la conversación
+}
+
 // Instalar el plugin de conversaciones.
 bot.use(conversations());
 
@@ -378,16 +382,13 @@ bot.command("cancel", async (ctx) => {
   await ctx.reply("Saliendo.");
   await ctx.conversation.exit();
 });
+
 // Salir siempre de la conversación de la `película` al pulsar el botón
-const cancel = new InlineKeyboard().text("cancel");
 bot.callbackQuery("cancel", async (ctx) => {
   await ctx.answerCallbackQuery("Dejando la conversación");
   await ctx.conversation.exit("movie");
 });
 
-async function movie(conversation: MyConversation, ctx: MyContext) {
-  // TODO: definir la conversación
-}
 bot.use(createConversation(movie));
 bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 ```
@@ -395,7 +396,11 @@ bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 </CodeGroupItem>
  <CodeGroupItem title="JavaScript">
 
-```js
+```js{6,20}
+async function movie(conversation, ctx) {
+  // TODO: definir la conversación
+}
+
 // Instalar el plugin de conversaciones.
 bot.use(conversations());
 
@@ -404,16 +409,13 @@ bot.command("cancel", async (ctx) => {
   await ctx.reply("Saliendo.");
   await ctx.conversation.exit();
 });
+
 // Salir siempre de la conversación de la `película` al pulsar el botón
-const cancel = new InlineKeyboard().text("cancel");
 bot.callbackQuery("cancel", async (ctx) => {
   await ctx.answerCallbackQuery("Dejando la conversación");
   await ctx.conversation.exit("movie");
 });
 
-async function movie(conversation, ctx) {
-  // TODO: definir la conversación
-}
 bot.use(createConversation(movie));
 bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 ```
@@ -422,7 +424,7 @@ bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 </CodeGroup>
 
 Tenga en cuenta que el orden es importante aquí.
-Primero debes instalar el plugin de conversaciones (línea 2) antes de poder llamar a `await ctx.conversation.exit()`.
+Primero debes instalar el plugin de conversaciones (línea 6) antes de poder llamar a `await ctx.conversation.exit()`.
 Además, los manejadores de cancelación genéricos deben ser instalados antes de que las conversaciones reales sean registradas.
 
 ## Esperar a las actualizaciones
@@ -576,7 +578,7 @@ await conversation.sleep(3000); // 3 segundos
 conversation.log("Hola, mundo");
 ```
 
-Ten en cuenta que puedes hacer todo lo anterior a través de `conversation.external()`, pero esto puede ser tedioso de escribir, así que es más fácil usar las funciones de conveniencia.
+Ten en cuenta que puedes hacer todo lo anterior a través de `conversation.external()`, pero esto puede ser tedioso de escribir, así que es más fácil usar las funciones de conveniencia ([referencia de la API](https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts/~/ConversationHandle#Methods)).
 
 ## Variables, bifurcaciones y bucles
 
@@ -601,8 +603,8 @@ La ramificación también funciona:
 
 ```ts
 await ctx.reply("¡Envíame una foto!");
-const { photo } = await conversation.wait();
-if (!photo) {
+const { message } = await conversation.wait();
+if (!message?.photo) {
   await ctx.reply("¡Eso no es una foto! ¡Estoy fuera!");
   return;
 }
@@ -619,7 +621,7 @@ do {
     await ctx.reply("¡Cancelado, me voy!");
     return;
   }
-} while (!ctx.photo);
+} while (!ctx.message?.photo);
 ```
 
 ## Funciones y recursión
@@ -842,7 +844,7 @@ Por ejemplo, vamos a implementar el ejemplo del captcha de aquí arriba de nuevo
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
 
-```ts
+```ts{4}
 async function captcha(conversation: MyConversation, ctx: MyContext) {
   if (ctx.from === undefined) return false;
   await ctx.reply("¡Demuestra que eres humano! ¿Cuál es la respuesta a todo?");
@@ -861,7 +863,7 @@ async function enterGroup(conversation: MyConversation, ctx: MyContext) {
 </CodeGroupItem>
  <CodeGroupItem title="JavaScript">
 
-```js
+```js{4}
 async function captcha(conversation, ctx) {
   if (ctx.from === undefined) return false;
   await ctx.reply("¡Demuestra que eres humano! ¿Cuál es la respuesta a todo?");
@@ -933,7 +935,7 @@ Si las llamadas de espera se bloquean hasta que llega la siguiente actualizació
 - Para [grammY runner](./runner.md), el bot no se bloquearía.
   Sin embargo, al procesar miles de conversaciones en paralelo con diferentes usuarios, consumiría cantidades potencialmente muy grandes de memoria.
   Si muchos usuarios dejan de responder, esto deja al bot atascado en medio de innumerables conversaciones.
-- Los webhooks tienen su propia [categoría de problemas](../guide/deployment-types.html#terminar-las-solicitudes-de-webhooks-a-tiempo) con middleware de larga duración.
+- Los webhooks tienen su propia [categoría de problemas](../guide/deployment-types.md#terminar-las-solicitudes-de-webhooks-a-tiempo) con middleware de larga duración.
 
 **Estado.**
 En la infraestructura sin servidor, como las funciones en la nube, no podemos asumir que la misma instancia maneja dos actualizaciones posteriores del mismo usuario.

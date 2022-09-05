@@ -1,8 +1,8 @@
 ---
-prev: /plugins/
+prev: ../plugins/
 ---
 
-# garmmy 插件的搭便车指南
+# grammy 插件的搭便车指南
 
 如果你想开发自己的插件并发布它，或者你想知道 grammY 插件在幕后是如何工作的，这就是你要来的地方！
 

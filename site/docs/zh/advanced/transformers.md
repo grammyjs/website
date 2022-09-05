@@ -91,7 +91,7 @@ grammY 具有 [上下文调味剂](../guide/context.md#上下文调味剂) 可�
 
 ```ts
 import { Api, Bot, Context } from "grammy";
-import { SomeApiFlavor, someContextFlavor, somePlugin } from "some-plugin";
+import { SomeApiFlavor, SomeContextFlavor, somePlugin } from "some-plugin";
 
 // 调味上下文
 type MyContext = Context & SomeContextFlavor;

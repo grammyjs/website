@@ -92,7 +92,7 @@ Telegram bots have [three ways](https://core.telegram.org/bots/api#sending-files
 3. Via uploading your own file.
 
 In all cases, the methods you need to call are named the same.
-Depending on which of the three ways you pick to send your file, the paramters to these functions will vary.
+Depending on which of the three ways you pick to send your file, the parameters to these functions will vary.
 For example, to send a photo, you can use `ctx.replyWithPhoto` (or `sendPhoto` if you use `ctx.api` or `bot.api`).
 
 You can send other types of files by simply renaming the method and changing the type of the data you pass to it.
@@ -107,7 +107,7 @@ Let's dive into what the three ways of sending a file are.
 The first two methods are simple: you just pass the respective value as a `string`, and you're done.
 
 ```ts
-// Send  via file_id.
+// Send via file_id.
 await ctx.replyWithPhoto(existingFileId);
 
 // Send via URL.

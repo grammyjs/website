@@ -15,7 +15,7 @@ import type { ParseModeContext } from "@grammyjs/parse-mode";
 
 const bot = new Bot<ParseModeContext>("");
 
-// 安装常用的 reply 方法到 ctx 中
+// 使用插件。
 bot.use(hydrateReply);
 
 // 为 ctx.reply 设置默认解析模式

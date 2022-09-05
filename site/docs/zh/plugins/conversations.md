@@ -103,7 +103,7 @@ async function greeting(conversation, ctx) {
 
 **第二个参数**不是什么新奇的东西，它只是一个普通的上下文对象。
 一如既往，它被称为 `ctx`，并使用你的自定义上下文类型（可能称为 `MyContext`）。
-对话插件导出了一个 [上下文调味剂](../guide/context.html#additive-context-flavors)，叫作 `ConversationFlavor`。
+对话插件导出了一个 [上下文调味剂](../guide/context.md#添加式上下文调味剂)，叫作 `ConversationFlavor`。
 
 **第一个参数**是这个插件的核心元素。
 它通常被命名为 `conversation`，它的类型是 `Conversation`（[API 参考](https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts/~/Conversation)）。
@@ -369,7 +369,11 @@ async function hiAndBye(conversation, ctx) {
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
 
-```ts
+```ts{6,20}
+async function movie(conversation: MyConversation, ctx: MyContext) {
+  // TODO: 编写对话
+}
+
 // 安装对话插件。
 bot.use(conversations());
 
@@ -378,16 +382,13 @@ bot.command("cancel", async (ctx) => {
   await ctx.reply("Leaving.");
   await ctx.conversation.exit();
 });
+
 // 始终在按下按钮后退出 `movie` 对话
-const cancel = new InlineKeyboard().text("cancel");
 bot.callbackQuery("cancel", async (ctx) => {
   await ctx.answerCallbackQuery("Left conversation");
   await ctx.conversation.exit("movie");
 });
 
-async function movie(conversation: MyConversation, ctx: MyContext) {
-  // TODO: 编写对话
-}
 bot.use(createConversation(movie));
 bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 ```
@@ -395,7 +396,11 @@ bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 </CodeGroupItem>
  <CodeGroupItem title="JavaScript">
 
-```js
+```js{6,20}
+async function movie(conversation, ctx) {
+  // TODO: 编写对话
+}
+
 // 安装对话插件。
 bot.use(conversations());
 
@@ -404,16 +409,13 @@ bot.command("cancel", async (ctx) => {
   await ctx.reply("Leaving.");
   await ctx.conversation.exit();
 });
+
 // 始终在按下按钮后退出 `movie` 对话
-const cancel = new InlineKeyboard().text("cancel");
 bot.callbackQuery("cancel", async (ctx) => {
   await ctx.answerCallbackQuery("Left conversation");
   await ctx.conversation.exit("movie");
 });
 
-async function movie(conversation, ctx) {
-  // TODO: 编写对话
-}
 bot.use(createConversation(movie));
 bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 ```
@@ -422,7 +424,7 @@ bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 </CodeGroup>
 
 请注意，这里的顺序很重要。
-你必须先安装对话插件（第 2 行），然后才能调用 `await ctx.conversation.exit()`。
+你必须先安装对话插件（第 6 行），然后才能调用 `await ctx.conversation.exit()`。
 此外，在实际的对话被注册之前，必须安装通用的取消处理程序。
 
 ## 等待 Updates
@@ -600,8 +602,8 @@ await ctx.reply("这些数字的总和为：" + sum);
 
 ```ts
 await ctx.reply("发给我一张照片！");
-const { photo } = await conversation.wait();
-if (!photo) {
+const { message } = await conversation.wait();
+if (!message?.photo) {
   await ctx.reply("啊，这不是一张照片！我死了！");
   return;
 }
@@ -618,7 +620,7 @@ do {
     await ctx.reply("呜呜，被取消了，我走了！");
     return;
   }
-} while (!ctx.photo);
+} while (!ctx.message?.photo);
 ```
 
 ## 函数和递归
@@ -841,7 +843,7 @@ async function waitForMe(conversation, ctx) {
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
 
-```ts
+```ts{4}
 async function captcha(conversation: MyConversation, ctx: MyContext) {
   if (ctx.from === undefined) return false;
   await ctx.reply("请证明你是个人！一切的答案是什么？");
@@ -860,7 +862,7 @@ async function enterGroup(conversation: MyConversation, ctx: MyContext) {
 </CodeGroupItem>
  <CodeGroupItem title="JavaScript">
 
-```js
+```js{4}
 async function captcha(conversation, ctx) {
   if (ctx.from === undefined) return false;
   await ctx.reply("请证明你是个人！一切的答案是什么？");

@@ -61,7 +61,7 @@ El plugin instalado hará algo antes y después de que nuestros manejadores sean
 2. **Nuestro middleware se ejecuta.**
    Podemos _leer_ `ctx.session` para inspeccionar qué valor estaba en la base de datos.
    Por ejemplo, si se envía un mensaje al chat con el identificador `424242`, sería `ctx.session = { pizzaCount: 24 }` mientras se ejecuta nuestro middleware (al menos con el estado de la base de datos de ejemplo anterior).
-   También podemos _modificar_ ctx.session arbitrariamente, por lo que podemos añadir, eliminar y cambiar campos a nuestro gusto.
+   También podemos _modificar_ `ctx.session` arbitrariamente, por lo que podemos añadir, eliminar y cambiar campos a nuestro gusto.
 3. **Después de nuestro middleware.**
    El middleware de sesión se asegura de que los datos se escriban de nuevo en la base de datos.
    Cualquiera que sea el valor de `ctx.session` después de que el middleware termine de ejecutarse, se guardará en la base de datos.
@@ -84,7 +84,7 @@ Esta comparación puede ayudarte a decidir si utilizar las sesiones o no.
 | -------------------------- | ------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | _Acceso_                   | un almacenamiento aislado **por chat**                        | accede a los mismos datos desde **múltiples chats**                                      |
 | _Compartir_                | los datos son **sólo utilizados por el bot**                  | los datos son **utilizados por otros sistemas** (por ejemplo, un servidor web conectado) |
-| _Formato_                  | cualquier objeto JavaScript, cadenas, números, matrices, etc. | cualquier dato (binario, archivos, estructurado, etc)                                    |
+| _Formato_                  | cualquier objeto JavaScript: cadenas, números, matrices, etc. | cualquier dato (binario, archivos, estructurado, etc)                                    |
 | _Tamaño por chat_          | preferiblemente menos de ~3 MB por chat                       | cualquier tamaño                                                                         |
 | _Característica exclusiva_ | Requerida por algunos plugins de grammY.                      | Soporta transacciones de base de datos.                                                  |
 

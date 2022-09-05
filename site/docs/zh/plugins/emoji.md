@@ -10,7 +10,7 @@
 2. 你去 Telegram 中，花了 ~6 秒（可能还会更多）搜索你想要的表情符号。
 3. 你把它们复制粘贴到你的代码中，并重新开始写代码，但失去了你的注意力。
 
-有了这个插件，你就不用停止写代码，也不会失去你的注意力。也有一些糟糕的系统和/或编辑器不喜欢也不显示 emoji，所以你最后只能粘贴一个白色的方块，就像这个悲哀的、小的、安静的信息 `I'm so happy □`。
+有了这个插件，你就不用停止写代码，也不会失去你的注意力。也有一些糟糕的系统和/或编辑器不喜欢也不显示 emoji，所以你最后只能粘贴一个白色的方块，就像这个悲哀的、小的、安静的信息：`I'm so happy □`。
 
 这个插件旨在解决这些问题，为你处理所有系统中解析 emoji 的艰巨任务，并让你只用简单的方式搜索它们（可以使用自动完成）。现在，上述步骤可以减少到一个：
 
@@ -33,7 +33,7 @@ import { EmojiFlavor, emojiParser } from "@grammyjs/emoji";
 
 // 这个被称为上下文调味剂
 // 你可以在这里阅读更多关于它们的信息：
-// https://grammy.dev/zh/guide/context.md#转换式上下文调味剂
+// https://grammy.dev/zh/guide/context.html#转换式上下文调味剂
 type MyContext = EmojiFlavor<Context>;
 
 const bot = new Bot<MyContext>(""); // <-- 在 "" 之间填上你的 bot token。

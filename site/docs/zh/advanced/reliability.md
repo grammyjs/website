@@ -113,7 +113,7 @@ Deno.addSignalListener("SIGTERM", stopRunner);
 
 ## 可靠性保证
 
-如果你的 bot 正在处理金融交易，你必须考虑一个 `kill -9` 的场景设想，即 CPU 物理故障或者数据中心断电该怎么办？
+如果你的 bot 正在处理金融交易，你必须考虑一个 [`kill -9` 的场景设想](https://stackoverflow.com/questions/43724467/what-is-the-difference-between-kill-and-kill-9)，即 CPU 物理故障或者数据中心断电该怎么办？
 如果因为一些原因，某人或者某事真的很难处理这过程，它将会变得更加复杂。
 
 本质上，bot 不能保证你的中间件只执行一次。
