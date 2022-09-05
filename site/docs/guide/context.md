@@ -92,7 +92,7 @@ bot.on("message:entities", (ctx) => {
 
   // Get phones and emails present in the message text
   const phonesAndEmails = ctx.entities(["email", "phone"])
-})
+});
 ```
 
 Hence, if you want to, you can forget about `ctx.message` and `ctx.channelPost` and `ctx.editedMessage` and so on and so forth, and just always use `ctx.msg` instead.
