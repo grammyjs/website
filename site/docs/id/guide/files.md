@@ -1,0 +1,271 @@
+---
+prev: ./inline-queries.md
+next: ./games.md
+---
+
+# Menangani File
+
+Bot Telegram tidak hanya bisa menerima dan mengirim pesan teks, tetapi juga jenis pesan lainnya, seperti foto dan video.
+Materi kali ini akan membahas bagaimana cara menangani file yang dilampirkan ke pesan.
+
+## Bagaimana File Bekerja di Bot Telegram
+
+> Bagian ini menjelaskan bagaimana bot-bot Telegram menangani file.
+> Kalau kamu ingin tahu cara menangani file di grammY, gulir ke bawah menuju [mengunduh](#menerima-file) dan [mengunggah](#mengirim-file) file.
+
+File disimpan terpisah dari pesan.
+Setiap file di server Telegram diidentifikasi dengan sebuah `file_id`, isinya adalah sebuah string karakter yang sangat panjang.
+
+`AgADBAADZRAxGyhM3FKSE4qKa-RODckQHxsoABDHe0BDC1GzpGACAAEC` adalah contoh isi dari `file_id`.
+
+Setiap kali bot **menerima** sebuah file yang disertakan di sebuah pesan, ia sebenarnya hanya menerima `file_id`, bukan data file aslinya.
+Kalau bot kamu ingin mengunduh file tersebut, maka ia perlu memanggil method `getFile` ([Referensi API Bot Telegram](https://core.telegram.org/bots/api#getfile)).
+Method inilah yang bertugas membuat URL khusus sementara supaya kamu bisa mengunduh file tadi. Setelah 60 menit terlewati, URL tersebut tidak bisa digunakan. Jika itu terjadi, kamu cukup memanggil ulang `getFile`.
+
+Ketika sebuah bot **mengirim** pesan yang mengandung sebuah file, maka bot tersebut akan menerima informasi mengenai pesan yang terkirim tersebut, termasuk informasi `file_id` dari file yang terkirim.
+Artinya, semua file yang bot lihat, baik file yang dikirim maupun yang diterima, `file_id`-nya akan tersedia untuk bot tersebut.
+
+Ketika sebuah bot mengirim sebuah pesan, ia bisa **menentukan `file_id` yang sebelumnya pernah dilihat oleh bot**.
+Dengan begitu, ia dapat mengirim file yang teridentifikasi tanpa harus mengunggah data file tersebut.
+
+[Gulir ke bawah](#mengirim-file) untuk belajar cara mengunggah file-mu sendiri.
+Kamu bisa menggunakan kembali `file_id` yang sama berulang kali. Artinya, kamu bisa menggunakan `file_id` untuk mengirim file yang sama ke lima chat berbeda.
+Meski begitu, kamu tetap harus menggunakan method yang sesuai, contohnya `file_id` yang mengidentifikasikan sebuah foto tidak dapat digunakan ketika memanggil [`sendVideo`](https://core.telegram.org/bots/api#sendvideo).
+
+Setiap bot memiliki `file_id`-nya sendiri untuk mengakses file. Kamu tidak bisa menggunakan `file_id` dari bot lain untuk mengakses file yang sama di bot kamu.
+Masing-masing bot menggunakan pengidentifikasi yang berbeda untuk satu file yang sama.
+Sehingga, kamu tidak bisa asal menebak `file_id` lalu mengakses file seseorang begitu saja karena Telegram telah menentukan `file_id` mana yang valid untuk bot kamu.
+
+::: warning Menggunakan file_id dari Sumber Luar
+Perlu dicatat bahwa dalam beberapa kasus, `file_id` dari bot lain sesekali bisa bekerja dengan baik di bot kamu karena secara teknis itu memang memungkinkan.
+**Tetapi**, menggunakan `file_id` dari sumber luar seperti itu bisa berbahaya karena ia dapat tidak bekerja sewaktu-waktu tanpa peringatan.
+Oleh karena itu, selalu gunakan `file_id` yang memang diperuntukkan khusus untuk bot kamu.
+:::
+
+Di sisi lain, bot bisa saja secara kebetulan mendapat `file_id` yang berbeda untuk satu file yang sama.
+Karenanya, kamu tidak bisa mengandalkan `file_id` untuk membandingkan apakah dua file identik atau tidak.
+Kalau bot kamu—atau beberapa bot—perlu mengidentifikasi file yang sama dari waktu ke waktu, kamu harus menggunakan value dari `file_unique_id` yang bot terima bersamaan dengan `file_id`.
+`file_unique_id` tidak bisa digunakan untuk mengunduh file, namun value-nya akan selalu sama untuk setiap file yang diberikan, bahkan untuk setiap bot.
+
+## Menerima File
+
+Kamu bisa menangani sebuah file seperti pesan-pesan lainnya.
+Contohnya, kalau kamu ingin mendengarkan pesan suara, kamu bisa melakukan ini:
+
+```ts
+bot.on("message:voice", async (ctx) => {
+  const suara = ctx.msg.voice;
+
+  const durasi = voice.duration; // dalam satuan detik
+  await ctx.reply(`Pesan suara kamu berdurasi ${durasi} detik.`);
+
+  const fileId = voice.file_id;
+  await ctx.reply("Pengidentifikasi file pesan suaramu adalah: " + fileId);
+
+  const file = await ctx.getFile(); // valid selama 1 jam
+  const path = file.file_path; // path file di server API Bot
+  await ctx.reply("Unduh lagi file kamu: " + path);
+});
+```
+
+::: tip Meneruskan file_id Lain ke getFile
+Di object context, `getFile` adalah [sebuah shortcut](./context.md#shortcut) yang mengambil informasi file dari pesan tersebut saja.
+Kalau ingin mendapatkan file lain selagi menangani pesan, gunakan `ctx.api.getFile(file_id)`.
+:::
+
+> Lihat [shortcut `:media` dan `:file`](./filter-queries.md#shortcut) di filter query untuk menerima berbagai macam file.
+
+Setelah kamu memanggil `getFile`, kamu bisa menggunakan `file_path` untuk mengunduh file menggunakan URL ini `https://api.telegram.org/file/bot<token>/<file_path>`, di mana `<token>` adalah token bot kamu.
+
+::: tip Plugin Files
+grammY tidak menyertakan pengunduh file secara bawaan, sebagai gantinya kamu bisa memasang [plugin files resmi](../plugins/files.md) yang telah kami sediakan.
+Kamu bisa mengunduh file dengan plugin tersebut melalui `await file.download()` dan membuat URL download mengunakan `file.getUrl()`.
+:::
+
+## Mengirim File
+
+Bot Telegram punya [tiga cara](https://core.telegram.org/bots/api#sending-files) untuk mengirim file:
+
+1. Melalui `file_id`, contohnya mengirim file menggunakan pengidentifikasi yang sudah diketahui bot.
+2. Melalui URL, contohnya meneruskan URL file yang tersedia untuk publik, yang akan diunduh oleh Telegram lalu mengirimkannya.
+3. Mengunggah file-mu sendiri.
+
+Terlepas dari ketiga cara tersebut, mereka menggunakan nama method yang sama.
+Sedangkan, parameter dari function-nya akan berbeda-beda tergantung dari cara yang kamu pilih.
+Misal, untuk mengirim foto, kamu bisa menggunakan `ctx.replyWithPhoto`, atau `sendPhoto` kalau menggunakan `ctx.api` atau `bot.api`.
+
+Kamu bisa mengirim jenis file lain dengan mengganti nama method dan jenis datanya.
+Untuk mengirim video, kamu bisa menggunakan `ctx.replyWithVideo`.
+Sama halnya dengan dokumen: `ctx.replyWithDocument`.
+Kurang lebih seperti itu.
+
+Mari kita kupas lebih dalam ketiga cara pengiriman file tadi.
+
+### Melalui `file_id` atau URL
+
+Dua method yang pertama cukup simpel: kamu hanya perlu mengisi value sebagai sebuah `string`, selesai!
+
+```ts
+// Kirim melalui file_id.
+await ctx.replyWithPhoto(idFilenya);
+
+// Kirim melalui URL.
+await ctx.replyWithPhoto("https://grammy.dev/Y.png");
+
+// Alternatifnya, kamu bisa menggunakan
+// bot.api.sendPhoto() atau ctx.api.sendPhoto().
+```
+
+### Mengunggah File-mu Sendiri
+
+grammY memiliki dukungan yang baik terhadap pengunggahan file secara mandiri.
+Kamu bisa melakukannya dengan meng-import dan menggunakan class `InputFile` ([Referensi API grammY](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/InputFile)).
+
+```ts
+// Kirim sebuah file melalui path lokal
+await ctx.replyWithPhoto(new InputFile("/tmp/kocheng-oren-uwu.jpg"));
+
+// Alternatifnya, gunakan bot.api.sendPhoto() atau ctx.api.sendPhoto()
+```
+
+Constructor `InputFile` tidak hanya mengambil path file, tetapi juga stream, object `Buffer`, perulangan async, dan—tergantung dari platform kamu—banyak lagi.
+Yang perlu diingat adalah: **buat sebuah instance `InputFile` lalu teruskan ke method yang bertugas mengirim file**.
+Instance `InputFile` bisa diteruskan ke semua method yang menerima pengiriman file melalui unggahan.
+
+Berikut beberapa contoh bagaimana kamu bisa membuat `InputFile`.
+
+#### Mengunggah File dari Disk
+
+Kalau kamu sudah punya file yang tersimpan di komputermu, kamu bisa menyuruh grammY untuk mengunggah file tersebut.
+
+<CodeGroup>
+  <CodeGroupItem title="Node.js" active>
+
+```ts
+import { createReadStream } from "fs";
+
+// Kirim file lokal
+new InputFile("/path/ke/file");
+
+// Kirim dari pembacaan stream.
+new InputFile(createReadStream("/path/ke/file"));
+```
+
+</CodeGroupItem>
+  <CodeGroupItem title="Deno">
+
+```ts
+// Kirim file lokal
+new InputFile("/path/ke/file");
+
+// Kirim instance `Deno.FsFile`.
+new InputFile(await Deno.open("/path/ke/file"));
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+#### Mengunggah Raw Binary Data
+
+Kamu juga bisa mengirim object `Buffer`, maupun sebuah perulangan yang menghasilkan object `Buffer`.
+Di Deno, kamu bisa mengirim object `Blob` juga.
+
+<CodeGroup>
+  <CodeGroupItem title="Node.js" active>
+
+```ts
+// Kirim sebuah buffer atau array byte.
+const buffer = Uint8Array.from([65, 66, 67]);
+new InputFile(buffer); // "ABC"
+// Kirim sebuah perulangan.
+new InputFile(function* () {
+  // "ABCABCABCABC"
+  for (let i = 0; i < 4; i++) yield buffer;
+});
+```
+
+</CodeGroupItem>
+  <CodeGroupItem title="Deno">
+
+```ts
+// Kirim sebuah blob.
+const blob = new Blob("ABC", { type: "text/plain" });
+new InputFile(blob);
+// Kirim sebuah buffer atau array byte.
+const buffer = Uint8Array.from([65, 66, 67]);
+new InputFile(buffer); // "ABC"
+// Kirim sebuah perulangan.
+new InputFile(function* () {
+  // "ABCABCABCABC"
+  for (let i = 0; i < 4; i++) yield buffer;
+});
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+#### Mengunduh dan Mengunggah File Kembali
+
+Kamu bahkan bisa menyuruh grammY untuk mengunduh file dari internet.
+File hasil unduhan tidak akan disimpan di disk kamu.
+Sebaliknya, grammY cuma melewatkan data tersebut dan menyimpan sepotong kecil data ke memori.
+Sangat efisien, bukan.
+
+> Perlu dicatat bahwa Telegram mendukung pengunduhan file dengan berbagai cara.
+> Jika memungkinkan, sebaiknya kamu [mengirim file menggunakan URL](#melalui-file-id-atau-url), daripada menggunakan `InputFile` untuk mengalirkan data file melalui server kamu.
+
+<CodeGroup>
+  <CodeGroupItem title="Node.js" active>
+
+```ts
+import { URL } from "url";
+
+// Unduh file lalu alirkan data ke Telegram.
+new InputFile(new URL("https://grammy.dev/Y.png"));
+new InputFile({ url: "https://grammy.dev/Y.png" }); // sama saja
+```
+
+</CodeGroupItem>
+  <CodeGroupItem title="Deno">
+
+```ts
+// Unduh file lalu alirkan data ke Telegram.
+new InputFile(new URL("https://grammy.dev/Y.png"));
+new InputFile({ url: "https://grammy.dev/Y.png" }); // sama saja
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+### Menambahkan Caption
+
+Ketika mengirim file, kamu bisa menentukan opsi lebih lanjut di pilihan object type `Other`, persis seperti yang sudah dijelaskan [sebelumnya](./basics.md#mengirim-pesan).
+Kode berikut akan mengirimkan caption.
+
+```ts
+// Kirim sebuah foto dari file lokal ke user 12345
+// dengan caption "Ngopi dulu, bro!".
+await bot.api.sendPhoto(
+  12345,
+  new InputFile("/path/ke/foto-permen-kopi-susu.jpg"),
+  {
+    caption: "Ngopi dulu, bro!",
+  },
+);
+```
+
+Seperti pada method API lainnya, kamu bisa mengirim file menggunakan `ctx` (cara termudah), `ctx.api`, atau `bot.api`.
+
+## Batas Ukuran File
+
+Sebenarnya, grammY sanggup mengirim file berapapun ukurannya. Namun, Telegram membatasi ukuran file yang diperbolehkan seperti yang didokumentasikan [di sini](https://core.telegram.org/bots/api#sending-files).
+Sehingga, bot kamu tidak bisa mengunduh file lebih besar dari 20 MB ataupun menunggah file di atas 50 MB.
+Kombinasi tertentu bahkan memiliki batas yang lebih kecil lagi, contohnya foto yang dikirim melalui URL (5 MB).
+
+Selain kamu meng-hosting bot, kamu juga harus meng-hosting server API Bot kamu sendiri, kalau memang ingin supaya bot kamu bisa mengunduh dan mengunggah file hingga 2000 MB (batasan ukuran file di Telegram).
+Lihat dokumentasi resminya [di sini](https://core.telegram.org/bots/api#using-a-local-bot-api-server).
+
+Meng-hosting server API Bot tidak ada hubungannya dengan grammY.
+Meski begitu, grammY mendukung method-method yang dibutuhkan untuk mengatur bot kamu agar dapat menggunakan server API Bot milikmu sendiri.
+
+Kamu mungkin ingin mengunjungi materi sebelumnya mengenai skema API Bot [di sini](./api.md).
