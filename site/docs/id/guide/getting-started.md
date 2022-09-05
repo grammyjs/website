@@ -5,7 +5,8 @@ next: ./basics.md
 
 # Memulai
 
-Buat bot pertamamu dalam hitungan menit. Gulir [ke bawah](#memulai-dengan-deno) untuk panduan Deno.
+Buat bot pertamamu dalam hitungan menit.
+(Gulir [ke bawah](#memulai-dengan-deno) untuk panduan Deno.)
 
 ## Memulai dengan Node.js
 
