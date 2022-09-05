@@ -589,7 +589,7 @@ Puedes declarar variables y hacer lo que quieras con ellas:
 
 ```ts
 await ctx.reply("¡Envíame tus números favoritos, separados por comas!");
-const { message } = await conversation.wait();
+const { message } = await conversation.waitFor("message:text");
 const suma = message.texto
   .split(",")
   .map((n) => parseInt(n.trim(), 10))
@@ -834,7 +834,7 @@ Esto permite iniciar una nueva conversación desde el middleware regular.
 ### Cómo se puede utilizar
 
 En la práctica, nunca necesitas llamar a `await conversation.skip()` en absoluto.
-En su lugar, puedes usar cosas como `await conversation.waitFor(userId)`, que se encargará de los detalles por ti.
+En su lugar, puedes usar cosas como `await conversation.waitFrom(userId)`, que se encargará de los detalles por ti.
 Esto te permite chatear con un solo usuario en un chat de grupo.
 
 Por ejemplo, vamos a implementar el ejemplo del captcha de aquí arriba de nuevo, pero esta vez con conversaciones paralelas.

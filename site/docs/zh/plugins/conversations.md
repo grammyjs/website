@@ -588,7 +588,7 @@ conversation.log("Hello, world");
 
 ```ts
 await ctx.reply("把你最喜欢的数字用逗号隔开后发给我！");
-const { message } = await conversation.wait();
+const { message } = await conversation.waitFor("message:text");
 const sum = message.text
   .split(",")
   .map((n) => parseInt(n.trim(), 10))
@@ -833,7 +833,7 @@ async function waitForMe(conversation, ctx) {
 ### 你可以如何使用它
 
 在实践中，你根本不需要调用 `await conversation.skip()`。
-相反，你可以直接使用 `await conversation.waitFor(userId)`，它将自动处理细节问题。
+相反，你可以直接使用 `await conversation.waitFrom(userId)`，它将自动处理细节问题。
 这允许你在群聊中与指定用户进行聊天。
 
 举个例子，让我们重新使用平行对话的方式实现上面的验证码流程。
