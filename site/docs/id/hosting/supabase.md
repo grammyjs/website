@@ -32,7 +32,7 @@ Setelah berhasil membuat sebuah proyek Supabase Function, sekarang kamu bisa men
 Kamu bisa menggunakan contoh bot singkat ini sebagai entry point-nya.
 
 ```ts
-import { serve } from "https://deno.land/std@0.140.0/http/server.ts";
+import { serve } from "https://deno.land/std/http/server.ts";
 import { Bot, webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 
 const bot = new Bot(Deno.env.get("BOT_TOKEN") ?? "");
