@@ -66,7 +66,7 @@ There are a number of shortcuts installed on the context object.
 | `ctx.senderChat`      | Gets the sender chat object out of `ctx.msg` (for anonymous channel/group messages) |
 | `ctx.from`            | Gets the author of the message, callback query, or other things                     |
 | `ctx.inlineMessageId` | Gets the inline message identifier for callback queries or chosen inline results    |
-| `ctx.entities`        | Gets the message entities and their text. Optionally filters by entity type         |
+| `ctx.entities`        | Gets the message entities and their text, optionally filtered by entity type         |
 
 In other words, you can also do this:
 
