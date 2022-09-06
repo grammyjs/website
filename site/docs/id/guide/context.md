@@ -85,10 +85,13 @@ bot.on("edited_message", (ctx) => {
 bot.on("message:entities", (ctx) => {
   // Ambil semua jenis entity.
   const entity = ctx.entities();
+
   // Ambil entity teks pertama.
   entities[0].text;
+
   // Ambil entity email.
   const email = ctx.entities("email");
+
   // Ambil entity telepon dan email.
   const teleponDanEmail = ctx.entities(["email", "phone"]);
 });

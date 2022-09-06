@@ -84,6 +84,7 @@ bot.on("edited_message", (ctx) => {
 bot.on("message:entities", (ctx) => {
   // Get all the entities.
   const entities = ctx.entities();
+
   // Get the first entity's text.
   entities[0].text;
 
