@@ -15,7 +15,7 @@ If you want all messages sent within a specific context (like a specific command
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
 
-```ts
+```ts twoslash
 import { Bot } from "grammy";
 import { addReplyParam } from "@roziscoding/grammy-autoquote";
 
