@@ -60,25 +60,37 @@ Object context selalu berisi informasi tentang bot-mu, yang dapat diakses melalu
 
 Ada sejumlah shortcut yang tersedia untuk object context.
 
-| Shortcut              | Deskripsi                                                                         |
-| --------------------- | --------------------------------------------------------------------------------- |
-| `ctx.msg`             | Mendapatkan object message, termasuk yang sudah diedit                            |
-| `ctx.chat`            | Mendapatkan object chat                                                           |
-| `ctx.senderChat`      | Mendapatkan object chat pengirim dari `ctx.msg` (untuk pesan grup/channel anonim) |
-| `ctx.from`            | Mendapatkan informasi penulis pesan, callback query, dan lainnya                  |
-| `ctx.inlineMessageId` | Mendapatkan id pesan inline dari callback query atau hasil inline yang dipilih    |
+| Shortcut              | Deskripsi                                                                             |
+| --------------------- | ------------------------------------------------------------------------------------- |
+| `ctx.msg`             | Mendapatkan object message, termasuk yang sudah diedit                                |
+| `ctx.chat`            | Mendapatkan object chat                                                               |
+| `ctx.senderChat`      | Mendapatkan object chat pengirim dari `ctx.msg` (untuk pesan grup/channel anonim)     |
+| `ctx.from`            | Mendapatkan informasi penulis pesan, callback query, dan lainnya                      |
+| `ctx.inlineMessageId` | Mendapatkan id pesan inline dari callback query atau hasil inline yang dipilih        |
+| `ctx.entities`        | Mendapatkan entity pesan beserta teksnya, dapat disaring berdasarkan jenis entity-nya |
 
 Dengan kata lain, kamu juga bisa melakukan ini:
 
 ```ts
 bot.on("message", (ctx) => {
-  // Mendapatkan isi teks pesan.
+  // Ambil isi pesan teks.
   const teks = ctx.msg.text;
 });
 
 bot.on("edited_message", (ctx) => {
-  // Mendapatkan isi teks pesan yang diedit.
+  // Ambil isi pesan teks yang diedit.
   const teks = ctx.msg.text;
+});
+
+bot.on("message:entities", (ctx) => {
+  // Ambil semua jenis entity.
+  const entity = ctx.entities();
+  // Ambil entity teks pertama.
+  entities[0].text;
+  // Ambil entity email.
+  const email = ctx.entities("email");
+  // Ambil entity telepon dan email.
+  const teleponDanEmail = ctx.entities(["email", "phone"]);
 });
 ```
 
