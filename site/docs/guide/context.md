@@ -82,15 +82,15 @@ bot.on("edited_message", (ctx) => {
 });
 
 bot.on("message:entities", (ctx) => {
-  // Get all entities present in the message text
+  // Get all the entities.
   const entities = ctx.entities();
-  // Gets the text for the first entity
+  // Get the first entity's text.
   entities[0].text;
 
-  // Get emails present in the message text
+  // Get email entities.
   const emails = ctx.entities("email");
 
-  // Get phones and emails present in the message text
+  // Get phone and email entities.
   const phonesAndEmails = ctx.entities(["email", "phone"]);
 });
 ```
