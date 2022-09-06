@@ -21,7 +21,7 @@ Hasil dari tutorial disini dapat dilihat di [repositori bot kami](https://github
 
 ```ts
 import { serve } from "https://deno.land/std/http/server.ts";
-import { Bot, webhookCallback } from "https://deno.land/x/grammy/mod.ts";
+import { webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 // Kamu mungkin perlu mengubah ini agar dapat melakukan import pada object bot-mu.
 import bot from "./bot.ts";
 
