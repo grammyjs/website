@@ -49,7 +49,7 @@ bot.start();
 </CodeGroupItem>
   <CodeGroupItem title="Deno">
 
-```ts
+```ts twoslash
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { addReplyParam } from "https://deno.land/x/grammy_autoquote/mod.ts";
 

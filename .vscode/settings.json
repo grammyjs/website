@@ -10,5 +10,9 @@
     "./site/docs/plugins/",
     "./site/docs/resources/",
     "./site/docs/zh/"
-  ]
+  ],
+  "editor.defaultFormatter": "denoland.vscode-deno",
+  "[typescript]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  }
 }
