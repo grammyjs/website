@@ -1526,7 +1526,7 @@ export default defineUserConfig({
     shiki({
       langs: ["typescript", "ts", "sh", "javascript", "js"],
       disableImplicitReactImport: true,
-      themes: ["dark-plus", "vitesse-light"],
+      theme: "dracula",
     }),
   ],
   markdown: {

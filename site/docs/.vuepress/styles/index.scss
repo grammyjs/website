@@ -57,16 +57,21 @@ Code blocks structurally look like:
   </pre> 
 */
 
-/** Changes shiki theme according to dark theme preference **/
-@media (prefers-color-scheme: light) {
-  .shiki.dark-plus {
-    display: none;
-  }
+/** Adds line numbers to shiki code blocks **/
+
+code {
+	counter-reset: step;
+	counter-increment: step 0;
 }
-@media (prefers-color-scheme: dark) {
-  .shiki.vitesse-light {
-    display: none;
-  }
+
+code .line::before {
+	content: counter(step);
+	counter-increment: step;
+	width: 1rem;
+	margin-right: 1.5rem;
+	display: inline-block;
+	text-align: right;
+	color: rgba(115,138,148,.4)
 }
 
 pre.error {
@@ -84,7 +89,7 @@ pre {
   color: black;
 
   /* Give it some space to breathe */
-  padding: 12px;
+  // padding: 12px;
 
   /* All code samples get a grey border, twoslash ones get a different color */
   // border-left: 1px solid #999;
@@ -93,8 +98,8 @@ pre {
   margin-bottom: 3rem;
 
   /* Important to allow the code to move horizontally; */
-  overflow-x: auto;
-  position: relative;
+  // overflow-x: auto;
+  // position: relative;
 }
 pre.shiki {
   overflow-x: auto;

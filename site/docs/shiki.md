@@ -48,7 +48,7 @@ bot.command("demo", async (ctx) => {
 bot.start();
 ```
 
-## Twoslash and expension using ---cut---
+## Twoslash and expansion using ---cut---
 
 This:
 
