@@ -125,7 +125,7 @@ class ShikiTwoslash {
         this.settings,
       );
     } catch (err) {
-      return `${err}`;
+      return `<pre class="shiki error"><div class="code-container"><code>${err}</code></div></pre>`;
     }
   }
 
