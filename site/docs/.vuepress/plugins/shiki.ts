@@ -1,4 +1,3 @@
-import { createDefaultMapFromNodeModules } from "@typescript/vfs";
 import type MarkdownIt from "markdown-it";
 import { setupForFile, transformAttributesToHTML } from "remark-shiki-twoslash";
 import type { UserConfigSettings } from "shiki-twoslash";
@@ -6,11 +5,6 @@ import type { UserConfigSettings } from "shiki-twoslash";
 const libMap = {
   grammy_autoquote: "@roziscoding/grammy-autoquote",
 };
-
-// Loads type definitions from installed libraries
-// We can inject other type definitions as shown here:
-// https://github.com/microsoft/TypeScript-Website/issues/513#issuecomment-613522891
-const fsMap = createDefaultMapFromNodeModules({});
 
 const highlight = (
   code: string,
@@ -24,10 +18,7 @@ const highlight = (
       code,
       [lang, attrs].join(" "),
       highlighters,
-      {
-        fsMap,
-        ...settings,
-      }!,
+      settings,
     );
   } catch (err) {
     return `${err}`;
@@ -40,8 +31,9 @@ export default (settings: UserConfigSettings) => ({
     const { highlighters } = await setupForFile(settings);
     md.options.highlight = (code, lang, attrs) => {
       code = code.replace(/\r?\n$/, ""); // strip trailing newline fed during code block parsing
+      const skipTwoslash = !attrs.includes("twoslash");
 
-      if (!attrs.includes("twoslash")) {
+      if (skipTwoslash) {
         return highlight(code, lang, attrs, highlighters, settings);
       }
 
@@ -54,7 +46,9 @@ export default (settings: UserConfigSettings) => ({
         return highlight(code, lang, attrs, highlighters, settings);
       }
 
-      const lines = imports.map((i) => {
+      const replacedMap = new Map();
+
+      imports.forEach((i) => {
         const urlMatch = /(?:"|')([^"']+)(?:"|')/.exec(i);
 
         /** If we can't find and extract the URL, return unaltered line */
@@ -67,25 +61,24 @@ export default (settings: UserConfigSettings) => ({
         /** If we can't find and extract the URL, return unaltered line */
         if (!idMatch || !idMatch[0] || !idMatch[1]) return i;
 
-        const id = idMatch[1];
+        const id = idMatch[1] in libMap ? libMap[idMatch[1]] : idMatch[1];
 
-        return i.replace(url, id in libMap ? libMap[id] : id);
-      }).concat([
-        "// ---cut---",
-        code.replace(importRegex, "//REMOVETHIS$1"),
-      ]);
+        replacedMap.set(id, url);
 
-      console.log(lines.join("\n"));
+        code = code.replace(url, id);
+      });
 
-      const result = highlight(
-        lines.join("\n"),
+      let result = highlight(
+        code,
         lang,
         attrs,
         highlighters,
         settings,
-      ).replace(/\/\/REMOVETHIS/ig, "");
+      );
 
-      console.log(result);
+      for (const [id, url] of replacedMap.entries()) {
+        result = result.replace(id, url);
+      }
 
       return result;
     };

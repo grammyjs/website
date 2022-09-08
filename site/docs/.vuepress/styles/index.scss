@@ -57,6 +57,17 @@ Code blocks structurally look like:
   </pre> 
 */
 
+@media (prefers-color-scheme: light) {
+  .shiki.dark-plus {
+    display: none;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .shiki.vitesse-light {
+    display: none;
+  }
+}
+
 p.highlight-error {
   background-color: #bf1818;
 }
