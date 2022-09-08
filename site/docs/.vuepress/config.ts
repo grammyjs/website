@@ -2,7 +2,7 @@ import { defaultTheme, defineUserConfig } from "vuepress-vite";
 import { betterLineBreaks } from "./plugins/better-line-breaks";
 import { currentVersions } from "./plugins/current-versions/plugin";
 import { docsearch } from "./plugins/docsearch";
-import shiki from "./plugins/shiki";
+import shiki from "./plugins/shiki/plugin";
 
 export default defineUserConfig({
   locales: {

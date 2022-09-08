@@ -57,6 +57,7 @@ Code blocks structurally look like:
   </pre> 
 */
 
+/** Changes shiki theme according to dark theme preference **/
 @media (prefers-color-scheme: light) {
   .shiki.dark-plus {
     display: none;
@@ -70,6 +71,11 @@ Code blocks structurally look like:
 
 p.highlight-error {
   background-color: #bf1818;
+}
+
+/** Hide `pre` tags used to fool VuePress **/
+pre.invisible {
+  display: none;
 }
 
 pre {

@@ -15,7 +15,7 @@ If you want all messages sent within a specific context (like a specific command
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
 
-```ts twoslash
+```ts
 import { Bot } from "grammy";
 import { addReplyParam } from "@roziscoding/grammy-autoquote";
 
@@ -32,7 +32,7 @@ bot.start();
 </CodeGroupItem>
   <CodeGroupItem title="JavaScript">
 
-```js twoslash
+```js
 const { Bot } = require("grammy");
 const { addReplyParam } = require("@roziscoding/grammy-autoquote");
 
@@ -49,7 +49,7 @@ bot.start();
 </CodeGroupItem>
   <CodeGroupItem title="Deno">
 
-```ts twoslash
+```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { addReplyParam } from "https://deno.land/x/grammy_autoquote/mod.ts";
 
@@ -73,7 +73,7 @@ If you want every sent message to reply the messages that triggered them, you ca
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
 
-```ts twoslash
+```ts
 import { Bot } from "grammy";
 import { autoQuote } from "@roziscoding/grammy-autoquote";
 
@@ -95,7 +95,7 @@ bot.start();
 </CodeGroupItem>
   <CodeGroupItem title="JavaScript">
 
-```js twoslash
+```js
 const { Bot } = require("grammy");
 const { autoQuote } = require("@roziscoding/grammy-autoquote");
 
@@ -117,7 +117,7 @@ bot.start();
 </CodeGroupItem>
   <CodeGroupItem title="Deno">
 
-```ts twoslash
+```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { autoQuote } from "https://deno.land/x/grammy_autoquote/mod.ts";
 
