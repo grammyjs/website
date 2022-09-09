@@ -2,7 +2,7 @@ import { defaultTheme, defineUserConfig } from "vuepress-vite";
 import { betterLineBreaks } from "./plugins/better-line-breaks";
 import { currentVersions } from "./plugins/current-versions/plugin";
 import { docsearch } from "./plugins/docsearch";
-import shiki from "./plugins/shiki/plugin";
+import { shikiHighlight } from "./plugins/shiki/plugin";
 
 export default defineUserConfig({
   locales: {
@@ -1523,9 +1523,10 @@ export default defineUserConfig({
     }),
     betterLineBreaks(),
     currentVersions(),
-    shiki({
-      langs: ["typescript", "ts", "sh", "javascript", "js"],
+    shikiHighlight({
+      langs: ["ts", "js", "json", "sh"],
       disableImplicitReactImport: true,
+      includeJSDocInHover: true,
       theme: "dracula",
     }),
   ],

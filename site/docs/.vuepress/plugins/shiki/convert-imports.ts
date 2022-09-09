@@ -4,31 +4,26 @@ const denoToNode = {
 
 export function urlsToIds(code: string): [string, Map<string, string>] {
   const importRegex =
-    /(^import ?(?<imports>[^;]+)(?: ?)from (?<id>(?:'|")[^'"]+(?:'|"));?$)/img;
+    /(^import ?(?<imports>[^;\n]+)(?: ?)from (?<id>(?:'|")[^'"]+(?:'|"));?$)/gim;
 
-  const imports = code.match(importRegex);
+  const imports = Array.from(code.matchAll(importRegex));
 
   if (!imports) return [code, new Map()];
 
-  const replacedMap = new Map<string, string>();
-
-  imports.forEach((i) => {
-    const urlMatch = /(?:"|')([^"']+)(?:"|')/.exec(i);
-
-    /** If we can't find and extract the URL, return unaltered line */
-    if (!urlMatch || !urlMatch[0] || !urlMatch[1]) return i;
-
-    const url = urlMatch[1];
-
-    const idMatch = url.match(/https:\/\/deno\.land\/x\/([^@]+)/i);
-
-    /** If we can't find and extract the URL, return unaltered line */
-    if (!idMatch || !idMatch[0] || !idMatch[1]) return i;
-
-    const id = idMatch[1] in denoToNode ? denoToNode[idMatch[1]] : idMatch[1];
-
-    replacedMap.set(id, url);
-  });
+  const replacedMap = Array.from(imports)
+    .map((i) => i.groups?.id.replace(/"|'/g, ""))
+    .map((url) =>
+      Array.from(
+        url!.includes("deno.land")
+          ? url!.matchAll(/https:\/\/deno\.land\/x\/(?<id>[^@\/]+)[^\n]+/gi)
+          : url!.matchAll(/https:\/\/esm\.sh\/(?<id>[^\n]+)$/gim),
+      )
+    )
+    .filter((match) => !!match[0])
+    .map((match) => [match[0].groups?.id || "", match[0][0]] as const)
+    .filter(([id]) => !!id)
+    .map(([id, url]) => [id in denoToNode ? denoToNode[id] : id, url])
+    .reduce((map, [id, url]) => map.set(id!, url), new Map<string, string>());
 
   const replacedCode = Array.from(replacedMap.entries()).reduce(
     (code, [id, url]) => {
