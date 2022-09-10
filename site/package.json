@@ -19,14 +19,11 @@
   "devDependencies": {
     "@roziscoding/grammy-autoquote": "^1.1.1",
     "@typescript/vfs": "^1.3.5",
-    "@vuepress/plugin-docsearch": "^2.0.0-beta.43",
-    "deno-bin": ">=1.21.3",
     "grammy": "^1.11.0",
     "shiki-twoslash": "^3.1.0",
+    "@vuepress/plugin-docsearch": "^2.0.0-beta.51",
+    "deno-bin": ">=1.25.2",
     "static-sitemap-cli": "^2.1.2",
-    "vuepress-vite": "^2.0.0-beta.45"
-  },
-  "dependencies": {
-    "vuepress-plugin-shiki-twoslash": "^1.0.36"
+    "vuepress-vite": "^2.0.0-beta.51"
   }
 }
