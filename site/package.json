@@ -9,7 +9,7 @@
     "docs:index-versions": "deno run --allow-net docs/.vuepress/plugins/current-versions/build-index.ts > docs/.vuepress/plugins/current-versions/index.json",
     "docs:dev": "vuepress-vite dev docs",
     "docs:build": "npm run docs:vuepress && npm run docs:sitemap",
-    "docs:vuepress": "vuepress-vite build docs",
+    "docs:vuepress": "NODE_OPTIONS='--max-old-space-size=4096' vuepress-vite build docs",
     "docs:fmt": "deno fmt",
     "docs:sitemap": "sscli -b https://grammy.dev -r docs/.vuepress/dist --format xml --no-robots --no-clean"
   },
