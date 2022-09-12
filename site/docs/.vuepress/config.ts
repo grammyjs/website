@@ -594,6 +594,10 @@ export default defineUserConfig({
                     link: "/es/plugins/files.html",
                   },
                   {
+                    text: "Internacionalización (i18n)",
+                    link: "/es/plugins/i18n.html",
+                  },
+                  {
                     text: "Internacionalización (fluent)",
                     link: "/es/plugins/fluent.html",
                   },
