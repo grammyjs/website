@@ -694,6 +694,24 @@ The session plugin is able to enhance any storage adapter by adding more feature
 
 They can be installed using the `enhanceStorage` function.
 
+<CodeGroup>
+<CodeGroupItem title="TypeScript" active>
+
+```ts
+// Create a storage adapter.
+const storage = freeStorage<Enhance<SessionData>>(bot.token); // adjust this
+// Enhance the storage adapter.
+const enhanced = enhanceStorage<SessionData>({
+  storage,
+  // more config here
+});
+// Use the enhanced storage adapter.
+bot.use(session({ storage: enhanced }));
+```
+
+</CodeGroupItem>
+<CodeGroupItem title="JavaScript">
+
 ```ts
 // Create a storage adapter.
 const storage = freeStorage(bot.token); // adjust this
@@ -705,6 +723,9 @@ const enhanced = enhanceStorage({
 // Use the enhanced storage adapter.
 bot.use(session({ storage: enhanced }));
 ```
+
+</CodeGroupItem>
+</CodeGroup>
 
 You can also use both at the same time.
 
