@@ -712,7 +712,7 @@ bot.use(session({ storage: enhanced }));
 </CodeGroupItem>
 <CodeGroupItem title="JavaScript">
 
-```ts
+```js
 // Create a storage adapter.
 const storage = freeStorage(bot.token); // adjust this
 // Enhance the storage adapter.
