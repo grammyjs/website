@@ -1,14 +1,14 @@
 # Usuarios con límite de velocidad (`ratelimiter`)
 
-rateLimiter es un middleware de limitación de tasa para los bots de Telegram hechos con los frameworks de bots grammY o [Telegraf](https://github.com/telegraf/telegraf).
+ratelimiter es un middleware de limitación de tasa para los bots de Telegram hechos con los frameworks de bots grammY o [Telegraf](https://github.com/telegraf/telegraf).
 En términos simples, es un plugin que te ayuda a desviar el spam pesado en tus bots.
-Para entender mejor rateLimiter, puedes echar un vistazo a la siguiente ilustración:
+Para entender mejor ratelimiter, puedes echar un vistazo a la siguiente ilustración:
 
-![El papel de rateLimiter para desviar el spam](/rateLimiter-role.png)
+![El papel de ratelimiter para desviar el spam](/ratelimiter-role.png)
 
 ## ¿Cómo funciona exactamente?
 
-En circunstancias normales, cada solicitud será procesada y respondida por su bot, lo que significa que hacer spam no será tan difícil. ¡Cada usuario puede enviar múltiples peticiones por segundo y tu script tiene que procesar cada petición, pero ¿cómo puedes detenerlo? con rateLimiter!
+En circunstancias normales, cada solicitud será procesada y respondida por su bot, lo que significa que hacer spam no será tan difícil. ¡Cada usuario puede enviar múltiples peticiones por segundo y tu script tiene que procesar cada petición, pero ¿cómo puedes detenerlo? con ratelimiter!
 
 ::: warning Limitando los usuarios, no los servidores de Telegram.
 Debes tener en cuenta que este paquete **NO** limita la tasa de las solicitudes entrantes de los servidores de telegramas, en su lugar, rastrea las solicitudes entrantes por `from.id` y las descarta a su llegada para que no se añada más carga de procesamiento a tus servidores.
@@ -32,21 +32,21 @@ El `MEMORY_STORE` o el seguimiento en memoria es adecuado para la mayoría de lo
 Por eso también se proporciona la opción Redis.
 Puedes pasar un cliente Redis desde [ioredis](https://github.com/luin/ioredis) o [redis](https://deno.land/x/redis) en caso de que uses deno.
 En realidad, cualquier controlador de Redis que implemente los métodos `incr` y `pexpire` debería funcionar bien.
-rateLimiter es agnóstico al controlador.
+ratelimiter es agnóstico al controlador.
 
-> Nota: Debe tener redis-server **2.6.0** y superior en su servidor para utilizar el cliente de almacenamiento Redis con rateLimiter.
+> Nota: Debe tener redis-server **2.6.0** y superior en su servidor para utilizar el cliente de almacenamiento Redis con ratelimiter.
 > Las versiones anteriores de Redis no son compatibles.
 
 ## Cómo utilizarlo
 
-Hay dos maneras de utilizar rateLimiter:
+Hay dos maneras de utilizar ratelimiter:
 
 - Aceptando los valores por defecto ([Configuración por defecto](#configuración-por-defecto)).
 - Pasando un objeto personalizado que contenga sus ajustes ([Configuración manual](#configuración-manual)).
 
 ### Configuración por defecto
 
-Este fragmento demuestra la forma más sencilla de utilizar rateLimiter, que es aceptar el comportamiento por defecto:
+Este fragmento demuestra la forma más sencilla de utilizar ratelimiter, que es aceptar el comportamiento por defecto:
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
@@ -252,5 +252,5 @@ En este ejemplo, he utilizado `chat.id` como clave única para la limitación de
 ## Resumen del plugin
 
 - Nombre: `ratelimitador`
-- Fuente: <https://github.com/grammyjs/rateLimiter>
-- Referencia: <https://doc.deno.land/https://deno.land/x/grammy_ratelimiter/rateLimiter.ts>
+- Fuente: <https://github.com/grammyjs/ratelimiter>
+- Referencia: <https://doc.deno.land/https://deno.land/x/grammy_ratelimiter/mod.ts>
