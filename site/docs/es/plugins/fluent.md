@@ -120,7 +120,7 @@ bot.command("i18n_test", async (ctx) => {
   // Llama al helper "translate" o "t" para renderizar el
   // mensaje especificando su ID y parámetros adicionales:
   await ctx.reply(
-    ctx.t("bienvenido", {
+    ctx.t("welcome", {
       name: ctx.from.first_name,
       applesCount: 1,
     }),
