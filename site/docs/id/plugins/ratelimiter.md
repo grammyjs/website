@@ -1,10 +1,10 @@
 # Rate Limit Pengguna (`ratelimiter`)
 
-rateLimiter adalah sebuah middleware yang dibuat dari framework bot grammY ataupun [Telegraf](https://github.com/telegraf/telegraf) yang berfungsi untuk mengatur rate-limit pengguna bot.
+ratelimiter adalah sebuah middleware yang dibuat dari framework bot grammY ataupun [Telegraf](https://github.com/telegraf/telegraf) yang berfungsi untuk mengatur rate-limit pengguna bot.
 Simpelnya, plugin ini dapat membantu kamu dalam mencegah serangan spam ke bot.
 Supaya lebih paham, coba lihat ilustrasi berikut:
 
-![Peran rateLimiter dalam menangkis spam](/rateLimiter-role.png)
+![Peran ratelimiter dalam menangkis spam](/ratelimiter-role.png)
 
 ## Bagaimana Cara Kerjanya?
 
@@ -12,7 +12,7 @@ Dalam keadaan normal, setiap request akan langsung diproses dan dijawab oleh bot
 Artinya, user bisa dengan mudah melakukan spam ke bot kamu.
 Mereka bisa saja mengirim banyak sekali request setiap detiknya, lalu bot kamu akan memproses semua request tersebut.
 Lantas, bagaimana cara kita menghentikannya?
-Solusinya adalah dengan menggunakan rateLimiter!
+Solusinya adalah dengan menggunakan ratelimiter!
 
 ::: warning Batasi User, Bukan Server Telegram!
 Perlu diketahui, package ini **TIDAK** membatasi request yang datang dari server Telegram.
@@ -40,21 +40,21 @@ Namun, kalau kamu menggunakan cluster untuk bot kamu, maka kamu tidak bisa mengg
 Itulah kenapa kami juga menyediakan opsi Redis.
 Kamu bisa menerapkan Redis dengan [ioredis](https://github.com/luin/ioredis) atau [redis](https://deno.land/x/redis) jika kamu menggunakan Deno.
 Semua driver Redis yang menggunakan method `incr` dan `pexpire` seharusnya juga dapat bekerja sama baiknya.
-rateLimiter tidak berorientasi pada driver.
+ratelimiter tidak berorientasi pada driver.
 
-> Catatan: Kamu harus memiliki redis-server **2.6.0** ke atas untuk menggunakan penyimpanan Redis bersama dengan rateLimiter.
+> Catatan: Kamu harus memiliki redis-server **2.6.0** ke atas untuk menggunakan penyimpanan Redis bersama dengan ratelimiter.
 > Versi Redis yang di bawah itu tidak didukung.
 
 ## Cara Penggunaan
 
-Ada dua cara dalam menggunakan rateLimiter:
+Ada dua cara dalam menggunakan ratelimiter:
 
 - Menggunakan pengaturan bawaan ([Konfigurasi Bawaan](#konfigurasi-bawaan)),
 - Menentukan object khusus yang berisi konfigurasimu ([Konfigurasi Manual](#konfigurasi-manual)).
 
 ### Konfigurasi Bawaan
 
-Berikut cara termudah dalam menggunakan rateLimiter dengan menerapkan perilaku bawaan:
+Berikut cara termudah dalam menggunakan ratelimiter dengan menerapkan perilaku bawaan:
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
@@ -262,5 +262,5 @@ Dari contoh di atas, kita menggunakan `chat.id` sebagai key unik untuk melakukan
 ## Ringkasan Plugin
 
 - Nama: `ratelimiter`
-- Sumber: <https://github.com/grammyjs/rateLimiter>
-- Referensi: <https://doc.deno.land/https://deno.land/x/grammy_ratelimiter/rateLimiter.ts>
+- Sumber: <https://github.com/grammyjs/ratelimiter>
+- Referensi: <https://doc.deno.land/https://deno.land/x/grammy_ratelimiter/mod.ts>
