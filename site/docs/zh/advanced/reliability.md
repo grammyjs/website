@@ -151,7 +151,7 @@ grammY 没有为你做这些工作，但是如果你认为其他人可以从中�
 
 1. 基本上来说，你必须创建一个发送到队列的接收器，并启动一个只提供消息队列的运行程序。
 2. 然后，你必须再次创建一个从消息队列提取的 [源](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/UpdateSource) 。
-    你将有效的运行两个不同的 grammY runner 实例。
+   你将有效的运行两个不同的 grammY runner 实例。
 
 据我们所知，上述这个模糊的草案只是草图，还没有实现。
 如果你有问题或者你想尝试并分享你的进展，请 [联系 Telegram group](https://t.me/grammyjs) 。
