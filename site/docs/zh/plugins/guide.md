@@ -47,7 +47,7 @@ Deno 支持只是对官方插件的严格要求，而不是对第三方插件的
 ## 设计一个虚拟的中间件插件
 
 让我们假设我们想设计一个只响应某些特定用户的插件！
-例如，我们可以决定只响应用户名中包含特定字符的人。
+例如，我们可以决定只响应用户的名字中包含特定字符的人。
 这个 bot 将简单地拒绝为其他人服务。
 
 下面是一个虚拟的示例：
@@ -174,6 +174,7 @@ plugin-template/
 正如前面提到的，我们使用 `deno2node` 将 Deno 的代码转译为 Node.js。
 `deno2node` 有一个特性，允许你向它提供运行时的特定文件。
 这些文件应该是相邻的，并且按照如 [文档中解释](https://github.com/wojpawlik/deno2node#runtime-specific-code) 的 `*.deno.ts` 和 `*.node.ts` 的名称结构来命名。
+这就是为什么这里有两个文件：`deps.deno.ts` 和 `deps.node.ts`。
 如果有任何 Node.js 特定的依赖项，请放在 `deps.node.ts` 中，否则，请让它保持空白。
 
 > _**注意**_：你也可以使用其他工具，例如 [deno dnt](https://github.com/denoland/dnt) 来转译你的 Deno 代码或使用其他文件夹结构。

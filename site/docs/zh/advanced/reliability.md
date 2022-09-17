@@ -122,26 +122,37 @@ Deno.addSignalListener("SIGTERM", stopRunner);
 
 > 如果你只关心怎样去编写一个 Telegram bot 的代码？[跳过本章剩下的部分](./flood.md)。
 
+### Webhook
+
 如果你在 webhooks 模式下运行你的 bot，如果你的bot没有及时返回正确响应 Bot API 服务器将会再次尝试传送 updates 到你的 bot。
 这基本上全面定义了系统的行为，如果你需要阻止处理重复的 updates，你应该基于 `update_id` 来构建你自己的重复数据删除。
 grammY 没有为你做这些工作，但是如果你认为其他人可以从中获得收益，你可以向我们提交 PR 。
 
+### 长轮询
+
 长轮询是更加有意思的。
 内置的轮询基本上是重新运行已获取但无法完成的最近的 update 批处理。
-（注意如果你使用 `bot.stop` 正确停止了你的 bot ， Telegram服务器会用正确的偏移量调用 `getUpdates` ，update 偏移量将会被同步但是不会处理 update 的数据）。
+
+> 注意如果你使用 `bot.stop` 正确停止了你的 bot ，Telegram 服务器会用正确的 [偏移量](https://core.telegram.org/bots/api#getting-updates) 调用 `getUpdates` ，update 偏移量将会被同步但是不会处理 update 的数据。
+
 换句话说，你将不会错过任何的 update，不过，你可能会重新处理多达100个以前见过的 update。
 由于对 `sendMessage` 的调用不是幂等的，用户可能会从你的 bot 收到重复的消息。
 不过，_至少有一次_ 处理是可以被保证的。
+
+### grammY Runner
 
 如果你在并发模式使用 [grammY runner](../plugins/runner.md)， 下一次的 `getUpdates` 调用可能会在你的中间件处理当前批处理的第一个 update 之前执行。
 因此，update 偏移量被提前 [确认](https://core.telegram.org/bots/api#getupdates) 。
 这是高并发性的代价，不幸的是，如果不降低吞吐量和响应能力，就无法避免这种代价。
 结果是，如果你的实例被正确的（或错误的）时间被关闭了，可能会发生多达 100 个 update 无法再次获取，因为 Telegram 认为它们已被确认。
 这将会引起数据丢失。
+
 如果防止这种情况非常重要，那么应该使用 grammY 源程序库来组成自己的 update 管道，首先通过消息队列传递所有 update。
-你基本上必须创建一个发送到队列的接收器，并启动一个只提供消息队列的运行程序。
-然后，你必须再次创建一个从消息队列提取的 [源](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/UpdateSource) 。
-你将有效的运行两个不同的 grammY runner 实例。
+
+1. 基本上来说，你必须创建一个发送到队列的接收器，并启动一个只提供消息队列的运行程序。
+2. 然后，你必须再次创建一个从消息队列提取的 [源](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/UpdateSource) 。
+    你将有效的运行两个不同的 grammY runner 实例。
+
 据我们所知，上述这个模糊的草案只是草图，还没有实现。
 如果你有问题或者你想尝试并分享你的进展，请 [联系 Telegram group](https://t.me/grammyjs) 。
 

@@ -16,7 +16,7 @@
 
 > 请点击页面底部的编辑按钮来添加更多提供商或编辑现有的提供商！
 
-我们有两个对比表格，一个是 [serverless](#serverless) 托管，一个是 [VPS](#vps) 托管。
+我们有两个对比表格：一个是 [serverless](#serverless) 托管，一个是 [VPS](#vps) 托管。
 
 ### Serverless
 

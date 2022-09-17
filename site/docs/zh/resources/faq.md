@@ -48,7 +48,7 @@ Telegram 会这样做以保护他们的用户。
 和 [@BotFather](https://t.me/BotFather) 交流，以获得你正确的 token。
 
 如果你的 bot 大多数时间都能正常工作，但是突然发生了 404 错误，那么你可能正在做一些奇怪的事情。
-你可以在群聊中问我们。
+你可以在 [群聊](https://t.me/grammyjs)（或者 [使用俄语的群聊](https://t.me/grammyjs_ru)） 中问我们。
 
 ### 409 Conflict: terminated by other getUpdates request
 
@@ -79,7 +79,7 @@ Telegram 会这样做以保护他们的用户。
 1. 阅读 [这篇文章](../advanced/flood.md) 以获得对情况的基本了解。
 2. 使用 [`transformer-throttler` 插件](../plugins/transformer-throttler.md)。
 3. 使用 [`auto-retry` 插件](../plugins/auto-retry.md)。
-4. 在群聊中向我们寻求帮助。我们有经验丰富的人能帮你。
+4. 在 [群聊](https://t.me/grammyjs) 中向我们寻求帮助。我们有经验丰富的人能帮你。
 5. 可以要求 Telegram 增加限制，但如果不先执行步骤 1-3，就不太可能发生这种情况。
 
 ### Cannot find type definition file for 'node-fetch'

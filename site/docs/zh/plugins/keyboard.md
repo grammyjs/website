@@ -119,7 +119,7 @@ keyboard 插件让你可以获取到 Telegram 发送的 update 对象。
 每个 `text` 按钮都会附加一个字符串作为回调数据。
 如果你没有附加回调数据，grammY 将会使用按钮的文本来作为回调数据。
 
-一旦用户点击了一个文本按钮，你的 bot 将会收到一个包含相应按钮的回调数据的 update。
+一旦用户点击了一个 `text` 按钮，你的 bot 将会收到一个包含相应按钮的回调数据的 update。
 你可以通过 `bot.callbackQuery()` 来监听回调数据。
 
 ```ts
@@ -167,7 +167,7 @@ bot.on("callback_query:data", async (ctx) => {
 grammY 有一个简单且直观的方式来构建回复 keyboard，让你的 bot 可以用它来替换用户的键盘。
 它提供了一个叫做 `Keyboard` 的类。
 
-一旦用户点击了一个文本按钮，你的 bot 就会收到作为纯文本信息发送的消息。
+一旦用户点击了一个 `text` 按钮，你的 bot 就会收到作为纯文本信息发送的消息。
 请记住，你可以通过 `bot.on("message:text")` 或者 `bot.hears()` 列出文本信息。
 
 ### 构建一个自定义 Keyboard

@@ -102,13 +102,12 @@ async function greeting(conversation, ctx) {
 让我们来看看这两个参数分别是什么。
 
 **第二个参数**不是什么新奇的东西，它只是一个普通的上下文对象。
-一如既往，它被称为 `ctx`，并使用你的自定义上下文类型（可能称为 `MyContext`）。
-对话插件导出了一个 [上下文调味剂](../guide/context.md#添加式上下文调味剂)，叫作 `ConversationFlavor`。
+一如既往，它被称为 `ctx`，并使用你的 [自定义上下文类型](../guide/context.md#定制你的上下文对象)（可能称为 `MyContext`）。
 
 **第一个参数**是这个插件的核心元素。
 它通常被命名为 `conversation`，它的类型是 `Conversation`（[API 参考](https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts/~/Conversation)）。
 它可以用于控制对话，比如等待用户输入等等。
-`Conversation` 类型会希望你使用你的自定义上下文类型作为它的类型参数，所以你通常会用的的是 `Conversation<MyContext>`。
+`Conversation` 类型会希望你使用你的 [自定义上下文类型](../guide/context.md#定制你的上下文对象) 作为它的类型参数，所以你通常会用的的是 `Conversation<MyContext>`。
 
 综上所述，在 TypeScript 中，你的对话生成器函数将看起来像这样。
 
@@ -425,7 +424,7 @@ bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 
 请注意，这里的顺序很重要。
 你必须先安装对话插件（第 6 行），然后才能调用 `await ctx.conversation.exit()`。
-此外，在实际的对话被注册之前，必须安装通用的取消处理程序。
+此外，在实际的对话被注册之前，必须安装通用的取消处理程序（第 21 行）。
 
 ## 等待 Updates
 
@@ -553,7 +552,6 @@ const response = await conversation.external(() => externalApi());
 
 ### 规则二：所有随机行为必须被封装
 
-Code that depends on randomness or on global state which could change, must wrap all access to it in `conversation.external()` calls, or use the `conversation.random()` convenience function.
 依赖于随机性或者可能发生变化的全局状态的代码，必须使用 `conversation.external()` 调用来封装它们，或使用 `conversation.random()` 函数。
 
 ```ts
@@ -577,7 +575,7 @@ await conversation.sleep(3000); // 3 秒
 conversation.log("Hello, world");
 ```
 
-请注意，你可以使用 `conversation.external()` 来执行所有上述操作，但这可能会很麻烦，所以我们提供了一些便捷函数。
+请注意，你可以使用 `conversation.external()` 来执行所有上述操作，但这可能会很麻烦，所以我们提供了一些便捷函数（[API 参考](https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts/~/ConversationHandle#Methods)）。
 
 ## 变量，分支和循环
 
