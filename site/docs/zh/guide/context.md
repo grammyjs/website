@@ -66,6 +66,7 @@ bot.on("edited_message", (ctx) => {
 | `ctx.senderChat`      | 从 `ctx.msg` 中获取发送者聊天对象（用于匿名通道/群组消息）。 |
 | `ctx.from`            | 获取消息的作者，回调查询，或其他东西的作者                |
 | `ctx.inlineMessageId` | 获取回调查询的内联信息标识符或选择的内联结果               |
+| `ctx.entities`        | 获取消息实体和文本，可选择按实体类型进行过滤               |
 
 换句话说，你也可以这样做：
 
@@ -77,6 +78,20 @@ bot.on("message", (ctx) => {
 bot.on("edited_message", (ctx) => {
   // 获得新的、经过编辑的信息文本。
   const editedText = ctx.msg.text;
+});
+
+bot.on("message:entities", (ctx) => {
+  // 获取所有实体。
+  const entities = ctx.entities();
+
+  // 获取第一个实体的文本。
+  entities[0].text;
+
+  // 获取电子邮件实体。
+  const emails = ctx.entities("email");
+
+  // 获取电话和电子邮件实体。
+  const phonesAndEmails = ctx.entities(["email", "phone"]);
 });
 ```
 
