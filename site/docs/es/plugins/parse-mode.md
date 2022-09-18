@@ -22,7 +22,9 @@ bot.use(hydrateReply);
 bot.api.config.use(parseMode("MarkdownV2"));
 
 bot.command("demo", async (ctx) => {
-  await ctx.reply("*Este* es _el_ `formato` por defecto");
+  await ctx.reply(
+    "*Esta* respuesta utiliza _MarkdownV2_ como `formato` por defecto",
+  );
   await ctx.replyWithHTML(
     "<b>Este</b> es el <code>formato</code> <i>conHTML</i>",
   );
@@ -50,7 +52,9 @@ bot.use(hydrateReply);
 bot.api.config.use(parseMode("MarkdownV2"));
 
 bot.command("demo", async (ctx) => {
-  await ctx.reply("*Este* es _el_ `formato` por defecto");
+  await ctx.reply(
+    "*Esta* respuesta utiliza _MarkdownV2_ como `formato` por defecto",
+  );
   await ctx.replyWithHTML(
     "<b>Este</b> es el <code>formato</code> <i>conHTML</i>",
   );
@@ -83,7 +87,9 @@ bot.use(hydrateReply);
 bot.api.config.use(parseMode("MarkdownV2"));
 
 bot.command("demo", async (ctx) => {
-  await ctx.reply("*Este* es _el_ `formato` por defecto");
+  await ctx.reply(
+    "*Esta* respuesta utiliza _MarkdownV2_ como `formato` por defecto",
+  );
   await ctx.replyWithHTML(
     "<b>Este</b> es el <code>formato</code> <i>conHTML</i>",
   );

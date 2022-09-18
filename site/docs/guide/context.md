@@ -159,7 +159,7 @@ Consequently, all methods on the context object take options objects of type `Ot
 This can be used to pass further configuration to every API call.
 
 ::: tip Telegram Reply Feature
-Even though the method is called `ctx.reply` in grammY (and many other frameworks), it does not use the reply feature of Telegram where a previous message is linked.
+Even though the method is called `ctx.reply` in grammY (and many other frameworks), it does not use the [reply feature of Telegram](https://telegram.org/blog/replies-mentions-hashtags#replies) where a previous message is linked.
 
 If you look up what `sendMessage` can do in the [Telegram Bot API Reference](https://core.telegram.org/bots/api#sendmessage), you will see a number of options, such as `parse_mode`, `disable_web_page_preview`, and `reply_to_message_id`.
 The latter can be used to make a message a reply:
@@ -329,7 +329,7 @@ bot.command("start", async (ctx) => {
 </CodeGroupItem>
 </CodeGroup>
 
-Naturally, the custom context type can also be passed to other things which handle middleware, such as composers.
+Naturally, the custom context type can also be passed to other things which handle middleware, such as [composers](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer).
 
 ```ts
 const composer = new Composer<MyContext>();
