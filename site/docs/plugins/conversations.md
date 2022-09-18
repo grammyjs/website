@@ -689,7 +689,7 @@ See how the captcha function can be reused in different places in your code.
 > In reality, it may work poorly because it only waits for a new update from the respective chat, but without verifying that it actually comes from the same user who joined.
 > If you want to create a real captcha, you may want to use [parallel conversations](#parallel-conversations).
 
-If you want, you can also split your code across even more funnctions, or use recursion, mutual recursion, generators, and so on.
+If you want, you can also split your code across even more functions, or use recursion, mutual recursion, generators, and so on.
 (Just make sure that all functions follow the [three rules](#three-golden-rules-of-conversations).)
 
 Naturally, you can use error handling in your functions, too.

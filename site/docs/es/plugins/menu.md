@@ -95,7 +95,7 @@ bot.start();
 
 > Asegúrese de instalar todos los menús antes de otros middleware, especialmente antes de los middleware que utilizan datos de consulta de devolución de llamada.
 
-Naturalmente, si está utilizando un tipo de contexto personalizado, puede pasarlo a `Menu` también.
+Naturalmente, si está utilizando un [tipo de contexto personalizado](../guide/context.md#personalizacion-del-objeto-de-contexto), puede pasarlo a `Menu` también.
 
 ```ts
 const menu = new Menu<MyContext>("id");

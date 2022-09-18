@@ -47,7 +47,7 @@ No querrá volver atrás.
 ## Diseño de un plugin Middleware ficticio
 
 Supongamos que queremos diseñar un plugin que sólo responda a determinados usuarios.
-Por ejemplo, podríamos decidir que sólo responda a personas cuyos nombres de usuario contengan una determinada palabra.
+Por ejemplo, podemos decidir que sólo se responda a las personas cuyo nombre contenga una determinada palabra.
 El bot simplemente se negará a trabajar para todos los demás.
 
 He aquí un ejemplo ficticio:

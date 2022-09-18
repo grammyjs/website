@@ -101,14 +101,14 @@ async function saludo(conversation, ctx) {
 
 Veamos cuáles son los dos parámetros.
 
-**El segundo parámetro** no es tan interesante, es sólo un objeto de contexto normal.
-Como siempre, se llama `ctx` y utiliza tu tipo de contexto personalizado (quizás llamado `MyContext`).
+_El segundo parámetro_* no es tan interesante, es sólo un objeto de contexto normal.
+Como siempre, se llama `ctx` y utiliza tu [tipo de contexto personalizado](../guide/context.md#customizing-the-context-object) (quizás llamado `MyContext`).
 El plugin de conversaciones exporta un [context flavor](../guide/context.md#additive-context-flavors) llamado `ConversationFlavor`.
 
 **El primer parámetro** es el elemento central de este plugin.
 Se llama comúnmente `conversation`, y tiene el tipo `Conversación` ([referencia de la API](https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts/~/Conversation)).
 Puede ser usado como un manejador para controlar la conversación, como esperar la entrada del usuario, y más.
-El tipo `Conversation` espera tu tipo de contexto personalizado como un parámetro de tipo, por lo que a menudo utilizarías `Conversation<MyContext>`.
+El tipo `Conversation` espera su [tipo de contexto personalizado](../guide/context.md#customizing-the-context-object) como parámetro de tipo, por lo que a menudo utilizaría `Conversation<MyContext>`.
 
 En resumen, en TypeScript, tu función de construcción de conversación se verá así.
 
@@ -369,7 +369,7 @@ Recuerda que debes `esperar` la llamada.
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
 
-```ts{6,20}
+```ts{6,21}
 async function movie(conversation: MyConversation, ctx: MyContext) {
   // TODO: definir la conversación
 }
@@ -383,7 +383,8 @@ bot.command("cancel", async (ctx) => {
   await ctx.conversation.exit();
 });
 
-// Salir siempre de la conversación de la `película` al pulsar el botón
+// Salir siempre de la conversación de la `movie` 
+// cuando se pulsa el botón de `cancel` del teclado en línea.
 bot.callbackQuery("cancel", async (ctx) => {
   await ctx.answerCallbackQuery("Dejando la conversación");
   await ctx.conversation.exit("movie");
@@ -396,7 +397,7 @@ bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 </CodeGroupItem>
  <CodeGroupItem title="JavaScript">
 
-```js{6,20}
+```js{6,21}
 async function movie(conversation, ctx) {
   // TODO: definir la conversación
 }
@@ -410,7 +411,8 @@ bot.command("cancel", async (ctx) => {
   await ctx.conversation.exit();
 });
 
-// Salir siempre de la conversación de la `película` al pulsar el botón
+// Salir siempre de la conversación de la `movie` 
+// cuando se pulsa el botón de `cancel` del teclado en línea.
 bot.callbackQuery("cancel", async (ctx) => {
   await ctx.answerCallbackQuery("Dejando la conversación");
   await ctx.conversation.exit("movie");
@@ -425,7 +427,7 @@ bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 
 Tenga en cuenta que el orden es importante aquí.
 Primero debes instalar el plugin de conversaciones (línea 6) antes de poder llamar a `await ctx.conversation.exit()`.
-Además, los manejadores de cancelación genéricos deben ser instalados antes de que las conversaciones reales sean registradas.
+Además, los manejadores de cancelación genéricos deben ser instalados antes de que las conversaciones reales (línea 21) sean registradas.
 
 ## Esperar a las actualizaciones
 
@@ -697,7 +699,7 @@ Naturalmente, también puedes usar el manejo de errores en tus funciones.
 Las declaraciones regulares `try`/`catch` funcionan bien, también en las funciones.
 Después de todo, las conversaciones son sólo JavaScript.
 
-Si la función principal de la conversación lanza, el error se propagará más allá en los [mecanismos de manejo de errores](../guide/errors.md) de tu bot.
+Si la función de conversación principal arroja un error, el error se propagará más allá en los [mecanismos de manejo de errores] (../guide/errors.md) de tu bot.
 
 ## Módulos y clases
 

@@ -69,4 +69,4 @@ autoRetry({
 
 - Nombre: `auto-retry`
 - Fuente: <https://github.com/grammyjs/auto-retry>
-- Referencia: <https://doc.deno.land/https://raw.githubusercontent.com/grammyjs/auto-retry/main/src/index.ts>
+- Reference: <https://doc.deno.land/https://raw.githubusercontent.com/grammyjs/auto-retry/main/src/index.ts>

@@ -11,7 +11,7 @@ Para entender mejor ratelimiter, puedes echar un vistazo a la siguiente ilustrac
 En circunstancias normales, cada solicitud será procesada y respondida por su bot, lo que significa que hacer spam no será tan difícil. ¡Cada usuario puede enviar múltiples peticiones por segundo y tu script tiene que procesar cada petición, pero ¿cómo puedes detenerlo? con ratelimiter!
 
 ::: warning Limitando los usuarios, no los servidores de Telegram.
-Debes tener en cuenta que este paquete **NO** limita la tasa de las solicitudes entrantes de los servidores de Telegramas, en su lugar, rastrea las solicitudes entrantes por `from.id` y las descarta a su llegada para que no se añada más carga de procesamiento a tus servidores.
+Debes tener en cuenta que este paquete **NO** limita la tasa de solicitudes entrantes de los servidores de Telegram, en su lugar, rastrea las solicitudes entrantes por `from.id` y las descarta a su llegada, por lo que no se añade más carga de procesamiento a tus servidores.
 :::
 
 ## Personalización
@@ -179,9 +179,8 @@ bot.use(
 </CodeGroupItem>
 </CodeGroup>
 
-Como puedes ver en el ejemplo anterior, cada usuario puede enviar 3 peticiones cada 2 segundos.
 Si dicho usuario envía más peticiones, el bot responde con _Por favor, absténgase de enviar demasiadas peticiones_.
-Esa petición no viajará más y morirá inmediatamente ya que no llamamos a [next()](../guide/middleware.md#the-middleware-stack) en el middleware.
+Esa petición no viajará más allá y muere inmediatamente ya que no llamamos a [next()](../guide/middleware.md#the-middleware-stack) en el middleware.
 
 > Nota: Para evitar inundar los servidores de Telegram, `onLimitExceeded` sólo se ejecuta una vez en cada `timeFrame`.
 

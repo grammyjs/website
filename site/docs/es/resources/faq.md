@@ -48,7 +48,7 @@ Si esto ocurre al iniciar tu bot, entonces tu token de bot está equivocado.
 Habla con [@BotFather](https://t.me/BotFather) para ver cuál es tu token.
 
 Si tu bot funciona bien la mayor parte del tiempo, pero de repente te sale un 404, entonces estás haciendo algo muy raro.
-Puedes venir a preguntarnos en el chat del grupo.
+Puede venir a preguntarnos en el [chat de grupo](https://t.me/grammyjs) (o en el [chat de grupo de habla rusa](https://t.me/grammyjs_ru)).
 
 ### 409 Conflict: terminated by other getUpdates request
 
@@ -79,8 +79,8 @@ Hay algunas cosas que puedes hacer:
 1. Leer [este artículo en los docs](../advanced/flood.md) para obtener una comprensión básica de la situación.
 2. Utilice el [plugin `transformer-throttler`](../plugins/transformer-throttler.md).
 3. Utiliza el [plugin `auto-retry`](../plugins/auto-retry.md).
-4. Ven a pedirnos ayuda en el [chat del grupo]((https://t.me/grammyjs)).
-   Tenemos gente experimentada allí.
+4. Ven a pedirnos ayuda en el [chat de grupo](https://t.me/grammyjs).
+   Allí tenemos gente con experiencia.
 5. Es posible pedirle a Telegram que aumente los límites, pero es muy poco probable que esto ocurra si no hiciste los pasos 1-3 primero.
 
 ### Cannot find type definition file for 'node-fetch'

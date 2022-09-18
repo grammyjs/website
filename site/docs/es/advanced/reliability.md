@@ -146,10 +146,14 @@ El resto de esta sección se refiere a **cómo** se comporta grammY bajo estas c
 
 > ¿Sólo te interesa codificar un bot de Telegram? (/advanced/flood.md)
 
+### Webhook
+
 Si estás ejecutando tu bot con webhooks, el servidor de la API del bot reintentará entregar actualizaciones a tu bot si no responde con `OK` a tiempo.
 Esto define el comportamiento del sistema de forma exhaustiva.
 Si necesitas evitar el procesamiento de actualizaciones duplicadas, deberás construir tu propia desduplicación basada en `update_id`.
 grammY no hace esto por ti, pero siéntete libre de PR si crees que alguien más podría beneficiarse de esto.
+
+### Long Polling
 
 El long polling es más interesante.
 El long polling incorporado básicamente vuelve a ejecutar el lote de actualización más reciente que fue obtenido pero no pudo completarse.
@@ -159,6 +163,8 @@ El long polling incorporado básicamente vuelve a ejecutar el lote de actualizac
 En otras palabras, nunca perderás ninguna actualización, sin embargo, puede ocurrir que vuelvas a procesar hasta 100 actualizaciones que hayas visto antes.
 Como las llamadas a `sendMessage` no son idempotentes, los usuarios pueden recibir mensajes duplicados de tu bot.
 Sin embargo, se garantiza el procesamiento de _al menos una vez_.
+
+### grammY Runner
 
 Si estás utilizando el [grammY runner](../plugins/runner.md) en modo concurrente, la siguiente llamada a `getUpdates` se realiza potencialmente antes de que tu middleware procese la primera actualización del lote actual.
 Por lo tanto, el desplazamiento de la actualización es [confirmado](https://core.telegram.org/bots/api#getupdates) prematuramente.

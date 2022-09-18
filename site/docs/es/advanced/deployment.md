@@ -30,7 +30,7 @@ Esto depende del tipo de despliegue.
 1. [Usa grammY runner.](../plugins/runner.md)
 2. [Usa `sequentialize` con el mismo id de sesión que tu middleware de sesión.](./scaling.md#la-concurrencia-es-difícil)
 3. Revise las opciones de configuración de `run` ([referencia de la API](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/run)) y asegúrese de que se ajustan a sus necesidades, o incluso considere la posibilidad de componer su propio corredor a partir de [sources](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/UpdateSource) y [sinks](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/UpdateSink).
-Lo principal a tener en cuenta es la carga máxima que quiere aplicar a su servidor, es decir, cuántas actualizaciones pueden procesarse al mismo tiempo.
+   Lo principal a tener en cuenta es la carga máxima que quiere aplicar a su servidor, es decir, cuántas actualizaciones pueden procesarse al mismo tiempo.
 4. Considere implementar un [apagado gradual](../advanced/reliability.md#apagado-correcto) para parar tu bot cuando tu quieres terminar con él (e.j. cambiar a una nueva versión).
 
 ### Webhooks

@@ -70,13 +70,15 @@ Al preguntarle por un helado de su tipo favorito, el empleado le sonríe y se qu
 De hecho, no obtiene ninguna respuesta.
 Así que decides esperar, devolviendo la sonrisa con firmeza.
 Y esperas.
-Y esperas.
-Unas horas antes del siguiente amanecer, llega un camión de una empresa local de reparto de comida y trae un par de cajas grandes al almacén de la heladería.
-En ellas se lee_ helado _en el exterior.
-El empleado se pone por fin en marcha de nuevo.
+Y esperas._
+
+_Unas horas antes del siguiente amanecer, llega un camión de una empresa local de reparto de alimentos y trae un par de cajas grandes al almacén del salón.
+En ellas se lee **helado** en el exterior.
+El empleado por fin se pone en marcha de nuevo.
 "¡Claro que tenemos caramelo salado!
-Dos bolas con virutas, lo de siempre".
-Como si no hubiera pasado nada, disfrutas de tu helado mientras sales de la heladería más irreal del mundo._
+Dos cucharadas con virutas, lo de siempre"._
+
+_Como si no hubiera pasado nada, disfrutas de tu helado mientras sales de la heladería más irreal del mundo._
 
 ```asciiart:no-line-numbers
 ______________                                   _____________

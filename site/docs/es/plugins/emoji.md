@@ -2,7 +2,7 @@
 
 Con este plugin, puedes insertar fácilmente emojis en tus respuestas buscándolos en lugar de copiar y pegar manualmente un emoji de la web en tu código.
 
-## ¿Por qué debería usar esto?
+## ¿Por qué debería utilizarlo?
 
 ¿Por qué no? La gente utiliza emojis en su código todo el tiempo para ilustrar mejor el mensaje que quieren pasar o para organizar las cosas.
 Pero se pierde el enfoque cada vez que se necesita un nuevo emoji, ver:

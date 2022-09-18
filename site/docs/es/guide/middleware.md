@@ -46,11 +46,11 @@ Averigüémoslo.
 Podemos inspeccionar el tipo `Middleware` en la referencia de grammY [aquí](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Middleware):
 
 ```ts
-// Omitimos algunos parámetros del tipo por brevedad.
+// Se han omitido algunos parámetros de tipo por razones de brevedad.
 type Middleware = MiddlewareFn | MiddlewareObj;
 ```
 
-ha.
+¡Ajá!
 El middleware puede ser una función o un objeto.
 Sólo hemos utilizado funciones (`(ctx) => { ... }`) hasta ahora, así que ignoremos los objetos middleware por ahora, y profundicemos en el tipo `MiddlewareFn` ([reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/MiddlewareFn)):
 

@@ -3,7 +3,7 @@
 > Asumimos que tienes los conocimientos básicos sobre la creación de bots usando grammY.
 > Si aún no estás preparado, ¡no dudes en dirigirte a nuestra amigable [Guía](../guide)! :cohete:
 
-Este tutorial te guiará en cómo desplegar un bot de Telegram en [Heroku](https://heroku.com/) usando [webhooks](../guide/deployment-types.md#¿cómo-funcionan-los-webhooks) o [long polling](../guide/deployment-types.md#¿cómo-funciona-el-long-polling).
+Este tutorial te guiará en cómo desplegar un bot de Telegram en [Heroku](https://heroku.com/) usando [webhooks](../guide/deployment-types.md#¿como-funcionan-los-webhooks) o [long polling](../guide/deployment-types.md#¿como-funciona-el-long-polling).
 También asumimos que ya tienes una cuenta en Heroku.
 
 ## Requisitos previos
@@ -132,7 +132,7 @@ app.listen(Number(process.env.PORT), async () => {
 Echemos un vistazo a nuestro código anterior:
 
 - `process.env`: Recuerda, ¡nunca almacenes credenciales en nuestro código!
-  Para crear [Variables de entorno](https://www.freecodecamp.org/news/using-environment-variables-the-right-way/) en Heroku, dirígete a [esta guía](https://devcenter.heroku.com/articles/config-vars).
+  Para crear [variables de entorno](https://www.freecodecamp.org/news/using-environment-variables-the-right-way/) en Heroku, dirígete a [esta guía](https://devcenter.heroku.com/articles/config-vars).
 - `secretPath`: Puede ser nuestro `BOT_TOKEN` o cualquier cadena aleatoria.
   Es una buena práctica ocultar la ruta de nuestro bot, tal y como se explica en Telegram (https://core.telegram.org/bots/api#setwebhook).
 
@@ -201,6 +201,7 @@ export const bot = new Bot(`${process.env.BOT_TOKEN}`, {
 ```
 
 :::
+
 ¡Genial! ¡Es hora de preparar nuestro entorno de despliegue!
 ¡Directamente a la [Sección de Despliegue](#despliegue) todo el mundo! :muscle:
 

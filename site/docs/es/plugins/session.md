@@ -412,7 +412,7 @@ bot.command("reset", (ctx) => {
 Se puede argumentar bien que usar explícitamente `await` es preferible a asignar una promesa a `ctx.session`, la cuestión es que _podrías_ hacer esto si te gusta más ese estilo por alguna razón.
 
 ::: tip Plugins que necesitan sesiones
-Los desarrolladores de plugins que hacen uso de `ctx.session` siempre deberían permitir a los usuarios pasar `SessionFlavor | LazySessionFlavor` y por lo tanto soportar ambos modi.
+Los desarrolladores de plugins que hacen uso de `ctx.session` siempre deben permitir a los usuarios pasar `SessionFlavor | LazySessionFlavor` y por lo tanto soportar ambos modos.
 En el código del plugin, simplemente espere `ctx.session` todo el tiempo: si se pasa un objeto no prometido, éste simplemente se evaluará a sí mismo, por lo que efectivamente sólo se escribe código para sesiones perezosas y así se soportan sesiones estrictas automáticamente.
 :::
 
