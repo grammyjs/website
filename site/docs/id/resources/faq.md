@@ -107,14 +107,3 @@ Berikut beberapa alasan kenapa kami lebih menyukai Deno dibandingkan dengan Node
 > Dia mengutarakan 10 penyesalannya mengenai Node.js di [video ini](https://youtu.be/M3BM9TB-8yA).
 
 grammY sendiri lebih memprioritaskan Deno, dari situ ia disusun ulang agar dapat mendukung Node.js sama baiknya.
-
-### Dimana saya bisa meng-hosting sebuah aplikasi Deno?
-
-Deno relatif baru dan ekosistemnya belum banyak, sehingga jumlah layanan hosting yang tersedia lebih sedikit dibandingkan dengan Node.js.
-
-Berikut beberapa tempat dimana kamu bisa meng-hosting aplikasi Deno-mu:
-
-1. [Cloudflare Workers](https://workers.dev)
-2. [Deno Deploy](https://deno.com/deploy)
-3. [Heroku](https://dev.to/ms314006/deploy-your-deno-apps-to-heroku-375h)
-4. [Vercel](https://github.com/vercel-community/deno)

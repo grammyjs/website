@@ -107,14 +107,3 @@ Algunas razones importantes por las que nos gusta más Deno que Node.js:
 > Él resumió sus 10 arrepentimientos sobre Node.js en [este video](https://youtu.be/M3BM9TB-8yA).
 
 grammY en sí mismo es Deno-first, y está respaldado para soportar Node.js igualmente bien.
-
-### ¿Dónde puedo alojar una aplicación Deno?
-
-Dado que Deno es nuevo y su ecosistema es más pequeño, el número de lugares donde se puede alojar una aplicación Deno es menor que el de Node.js.
-
-Estos son algunos de los lugares donde puede alojar su aplicación Deno:
-
-1. [Cloudflare Workers](https://workers.dev)
-2. [Deno Deploy](https://deno.com/deploy)
-3. [Heroku](https://dev.to/ms314006/deploy-your-deno-apps-to-heroku-375h)
-4. [Vercel](https://github.com/vercel-community/deno)

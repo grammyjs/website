@@ -224,6 +224,10 @@ export default defineUserConfig({
                     link: "/plugins/files.html",
                   },
                   {
+                    text: "Internationalization (i18n)",
+                    link: "/plugins/i18n.html",
+                  },
+                  {
                     text: "Internationalization (fluent)",
                     link: "/plugins/fluent.html",
                   },
@@ -579,6 +583,10 @@ export default defineUserConfig({
                   {
                     text: "Archivos (files)",
                     link: "/es/plugins/files.html",
+                  },
+                  {
+                    text: "Internacionalización (i18n)",
+                    link: "/es/plugins/i18n.html",
                   },
                   {
                     text: "Internacionalización (fluent)",
@@ -940,10 +948,10 @@ export default defineUserConfig({
                     text: "File (files)",
                     link: "/id/plugins/files.html",
                   },
-                  // {
-                  //   text: "Internationalization (i18n)",
-                  //   link: "/id/plugins/i18n.html",
-                  // },
+                  {
+                    text: "Internationalization (i18n)",
+                    link: "/id/plugins/i18n.html",
+                  },
                   {
                     text: "Internationalization (fluent)",
                     link: "/id/plugins/fluent.html",
@@ -1301,6 +1309,10 @@ export default defineUserConfig({
                   {
                     text: "文件助手 (files)",
                     link: "/zh/plugins/files.html",
+                  },
+                  {
+                    text: "国际化 (i18n)",
+                    link: "/zh/plugins/i18n.html",
                   },
                   {
                     text: "国际化 (fluent)",

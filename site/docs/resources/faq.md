@@ -107,14 +107,3 @@ Some important reasons why we like Deno more than Node.js:
 > He summarized his 10 regrets about Node.js in [this video](https://youtu.be/M3BM9TB-8yA).
 
 grammY itself is Deno-first, and it is backported to support Node.js equally well.
-
-### Where can I host a Deno app?
-
-Because Deno is new and its ecosystem is smaller, the number of places where you can host a Deno app are fewer than the ones for Node.js.
-
-Here are some places where you can host your Deno app:
-
-1. [Cloudflare Workers](https://workers.dev)
-2. [Deno Deploy](https://deno.com/deploy)
-3. [Heroku](https://dev.to/ms314006/deploy-your-deno-apps-to-heroku-375h)
-4. [Vercel](https://github.com/vercel-community/deno)

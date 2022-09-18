@@ -106,13 +106,3 @@ Telegram 会这样做以保护他们的用户。
 > 他在 [这个视频](https://youtu.be/M3BM9TB-8yA) 里总结了他对 Node.js 的 10 个遗憾。
 
 grammY 实际上在编写时是优先 Deno，然后再支持 Node.js。
-
-### 我在哪里可以托管 Deno 程序？
-
-因为 Deno 比较新，并且生态系统还不够完善，所以你能够托管 Deno 应用的地方比 Node.js 的少。
-以下是你可以托管 Deno 应用的一些选择：
-
-1. [Cloudflare Workers](https://workers.dev)
-2. [Deno Deploy](https://deno.com/deploy)
-3. [Heroku](https://dev.to/ms314006/deploy-your-deno-apps-to-heroku-375h)
-4. [Vercel](https://github.com/vercel-community/deno)
