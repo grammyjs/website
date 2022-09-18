@@ -1,4 +1,4 @@
-# 托管：Supabase Edge Functions
+# 托管：Supabase Edge Functions<Badge text="Deno" />
 
 这个指南告诉你如何将你的 grammY bots 托管到 [Supabase](https://supabase.com/).
 

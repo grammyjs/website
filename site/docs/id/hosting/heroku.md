@@ -1,4 +1,4 @@
-# Hosting: Heroku
+# Hosting: Heroku <Badge text="Deno" /><Badge text="Node.js" type="warning"/>
 
 > Kami mengasumsikan bahwa kamu sudah memiliki pengetahuan dasar dalam membuat sebuah bot menggunakan grammY.
 > Jika belum, silahkan baca [panduan](../guide) yang telah kami buat dengan sepenuh hati! :heart:

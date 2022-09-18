@@ -1,4 +1,4 @@
-# Hosting: Deno Deploy
+# Hosting: Deno Deploy <Badge text="Deno" />
 
 This guide tells you about the ways you can host your grammY bots on [Deno Deploy](https://deno.com/deploy).
 
@@ -48,7 +48,7 @@ Here, we are using the bot token (`/<bot token>`).
 ### Method 1: With GitHub
 
 > This is the recommended method, and the easiest one to go with.
-> The main advantage of following this method is that Deno Deploy will watch for changes in your repository which includes your bot code, and it will deploy new versions automatically.
+> The main advantage of following method is that Deno Deploy will watch for changes in your repository which includes your bot code, and it will deploy new versions automatically.
 
 1. Create a repository on GitHub, it can be either private or public.
 2. Push your code.
@@ -89,7 +89,7 @@ deployctl deploy --project <project> ./mod.ts --prod --token <token>
 After getting your app running, you should configure your bot's webhook settings to point to your app.
 To do that, send a request to
 
-```text
+```md
 https://api.telegram.org/bot<token>/setWebhook?url=<url>
 ```
 

@@ -1,4 +1,4 @@
-# 托管：Deno Deploy
+# 托管：Deno Deploy <Badge text="Deno" />
 
 这个指南告诉你如何将你的 grammY bots 托管到 [Deno Deploy](https://deno.com/deploy).
 
@@ -89,7 +89,7 @@ deployctl deploy --project <project> ./mod.ts --prod --token <token>
 在部署完成后，你需要配置你的 bot 的 webhook 设置来指向你的 app。
 为了配置 webhook，发送一个请求到
 
-```text
+```md
 https://api.telegram.org/bot<token>/setWebhook?url=<url>
 ```
 
