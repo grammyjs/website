@@ -4,12 +4,12 @@
 Ia memiliki sebuah syntax yang canggih dan elegan, sehingga memungkinkan siapa pun dapat menerjemah secara efisien serta bisa dipahami dengan baik.
 Plugin ini memanfaatkan sistem penerjemah tersebut untuk membuat bot grammY menjadi fasih serta menghasilkan terjemahan berkualitas tinggi.
 
-<!-- ::: tip Fluent vs i18n
+::: tip Fluent vs i18n
 Jangan bingung membedakan plugin ini dengan plugin [i18n](./i18n.md).
 
 Plugin [i18n](./i18n.md) merupakan versi upgrade dari plugin ini.
 Ia dapat digunakan baik di Deno maupun Node.js.
-::: -->
+:::
 
 ## Inisialisasi Fluent
 
