@@ -4,6 +4,12 @@
 It has a very powerful and elegant syntax that lets anyone write efficient and fully-understandable translations.
 This plugin takes advantage of this amazing localization system to make grammY-powered bots fluent with high-quality translations.
 
+::: tip Not to Be Confused
+Don't confuse this with [i18n](./i18n.md).
+
+[i18n](./i18n.md) is an improved version of this plugin that works on both Deno and Node.js.
+:::
+
 ## Initialize Fluent
 
 The first thing you do is to initialize a Fluent instance:
@@ -83,9 +89,7 @@ import { Context } from "grammy";
 import { FluentContextFlavor } from "@grammyjs/fluent";
 
 // Extend your application context type with the provided flavor interface.
-export type MyAppContext =
-  & Context
-  & FluentContextFlavor;
+export type MyAppContext = Context & FluentContextFlavor;
 ```
 
 You will need to create your bot instance the following way in order to use the augmented context type:
@@ -97,9 +101,11 @@ const bot = new Bot<MyAppContext>();
 And the final step would be to register the Fluent plugin itself with grammY:
 
 ```typescript
-bot.use(useFluent({
-  fluent,
-}));
+bot.use(
+  useFluent({
+    fluent,
+  }),
+);
 ```
 
 Make sure to pass the [previously created Fluent instance](#initialize-fluent).
@@ -113,10 +119,12 @@ Let's do that by defining a test command in our bot:
 bot.command("i18n_test", async (ctx) => {
   // Call the "translate" or "t" helper to render the
   // message by specifying its ID and additional parameters:
-  await ctx.reply(ctx.t("welcome", {
-    name: ctx.from.first_name,
-    applesCount: 1,
-  }));
+  await ctx.reply(
+    ctx.t("welcome", {
+      name: ctx.from.first_name,
+      applesCount: 1,
+    }),
+  );
 });
 ```
 
