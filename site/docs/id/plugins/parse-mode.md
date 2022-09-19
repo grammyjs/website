@@ -1,5 +1,7 @@
 # Plugin Parse Mode (`parse-mode`)
 
+![Resmi](/badges/official-id.svg) ![Deno](/badges/deno.svg) ![Node.js](/badges/nodejs.svg)
+
 Plugin ini menyediakan sebuah transformer untuk mengatur setting-an bawaan `parse_mode` dan sebuah middleware untuk menghidrasi `Context` dengan varian method `reply` yang lebih familiar, contohnya: `replyWithHTML`, `replyWithMarkdown`, dll.
 
 ## Penggunaan

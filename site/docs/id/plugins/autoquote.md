@@ -1,5 +1,7 @@
 # Selalu Reply Pesan
 
+![Pihak Ketiga](/badges/third-party-id.svg) ![Deno badge](/badges/deno.svg) ![Node.js badge](/badges/nodejs.svg)
+
 > Catatan terjemahan: Kami membedakan istilah `balas` dengan `reply` agar tidak rancu.
 > Balas berarti membalas chat seperti pada umumnya.
 > Sedangkan reply merujuk ke [membalas pesan secara spesifik](https://telegram.org/blog/replies-mentions-hashtags#replies) sehingga menghasilkan utas pesan.

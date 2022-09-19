@@ -1,5 +1,7 @@
 # Retry API Requests (`auto-retry`)
 
+![Official](/badges/official.svg) ![Deno](/badges/deno.svg) ![Node.js](/badges/nodejs.svg)
+
 > Consider using the [throttler plugin](./transformer-throttler.md) instead.
 
 This plugin is an [API transformer function](../advanced/transformers.md), which means that it let's you intercept and modify outgoing HTTP requests on the fly.

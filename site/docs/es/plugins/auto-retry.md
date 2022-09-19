@@ -1,5 +1,7 @@
 # Reintentar solicitudes de la API (`auto-retry`)
 
+![Oficial](/badges/official-es.svg) ![Deno](/badges/deno.svg) ![Node.js](/badges/nodejs.svg)
+
 > Considera usar el [plugin throttler](./transformer-throttler.md) en su lugar.
 
 Este plugin es una [función transformadora de la API](../advanced/transformers.md), lo que significa que le permite interceptar y modificar las peticiones HTTP salientes sobre la marcha.

@@ -1,5 +1,7 @@
 # Plugin Hidrasi untuk grammY (`hydrate`)
 
+![Resmi](/badges/official-id.svg) ![Deno](/badges/deno.svg) ![Node.js](/badges/nodejs.svg)
+
 Plugin ini akan menginstal method-method yang berguna di dua macam object, yaitu
 
 - hasil dari pemanggilan API; serta

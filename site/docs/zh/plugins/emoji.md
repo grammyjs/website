@@ -1,5 +1,7 @@
 # Emoji 插件（`emoji`）
 
+![官方维护](/badges/official-zh.svg) ![Deno](/badges/deno.svg) ![Node.js](/badges/nodejs.svg)
+
 有了这个插件，你可以轻松地在你的回复中插入搜索到的 emoji，而不是在你的代码中手动复制和粘贴网络上的一个 emoji。
 
 ## 我为什么要使用它？

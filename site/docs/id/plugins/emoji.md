@@ -1,5 +1,7 @@
 # Plugin Emoji (`emoji`)
 
+![Resmi](/badges/official-id.svg) ![Deno](/badges/deno.svg) ![Node.js](/badges/nodejs.svg)
+
 Dengan plugin ini, kamu bisa menambahkan emoji secara otomatis di pesan balasanmu tanpa perlu bolak-balik copy-paste emoji dari web ke kode kamu.
 
 ## Kenapa Aku Perlu Plugin Ini?

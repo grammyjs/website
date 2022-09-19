@@ -1,5 +1,7 @@
 # 互动菜单 (`menu`)
 
+![官方维护](/badges/official-zh.svg) ![Deno](/badges/deno.svg) ![Node.js](/badges/nodejs.svg)
+
 轻松地创建一个互动菜单。
 
 ## 简介

@@ -1,5 +1,7 @@
 # Kumpulan Middleware yang Berguna
 
+![Pihak Ketiga](/badges/third-party-id.svg) ![Node.js](/badges/nodejs.svg)
+
 Capek menulis middleware yang sama berulang kali?
 Yup, begitu juga dengan kami.
 Oleh karena itu, kali ini kami memutuskan untuk mengumpulkan berbagai middleware ke dalam sebuah package terpisah.

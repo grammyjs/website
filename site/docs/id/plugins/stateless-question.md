@@ -1,5 +1,7 @@
 # Stateless Question (`stateless-question`)
 
+![Resmi](/badges/official-id.svg) ![Node.js](/badges/nodejs.svg)
+
 > Membuat stateless question di mode privasi
 
 Apakah kamu ingin mengirim pertanyaan menggunakan bahasa yang sedang digunakan user tanpa perlu mematikan [mode privasi Telegram](https://core.telegram.org/bots#privacy-mode) serta tidak menyimpan statusnya saat ini?

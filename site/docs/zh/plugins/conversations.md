@@ -1,5 +1,7 @@
 # 对话 (`conversations`)
 
+![官方维护](/badges/official-zh.svg) ![Deno](/badges/deno.svg) ![Node.js](/badges/nodejs.svg)
+
 轻松创建强大的对话界面。
 
 ## 介绍

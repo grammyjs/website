@@ -1,5 +1,7 @@
 # Pengulang Request API (`auto-retry`)
 
+![Resmi](/badges/official-id.svg) ![Deno](/badges/deno.svg) ![Node.js](/badges/nodejs.svg)
+
 > Pertimbangkan untuk menggunakan [plugin throttler](./transformer-throttler.md) alih-alih menggunakan plugin ini.
 
 Plugin ini adalah sebuah [API transformer function](../advanced/transformers.md).

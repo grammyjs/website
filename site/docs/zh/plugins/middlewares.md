@@ -1,5 +1,7 @@
 # 一套有用的中间件
 
+![第三方](/badges/third-party-zh.svg) ![Node.js badge](/badges/nodejs.svg)
+
 我一直在为我所有的 bot 写重复的中间件，所以我决定把它们全部提取到一个单独的包中。
 
 ## 安装

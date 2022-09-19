@@ -1,5 +1,7 @@
 # 使用 Fluent 进行国际化 (`fluent`)
 
+![官方维护](/badges/official-zh.svg) ![Node.js](/badges/nodejs.svg)
+
 [Fluent](https://projectfluent.org/) 是 Mozilla 基金会制作的一个本地化系统，用于自然发音的翻译。
 它有一个非常强大和优雅的语法，可以让任何人写出高效和完全可理解的翻译。
 这个插件利用了这个惊人的本地化系统，使得由 grammY 驱动的 bot 能够流畅地进行高质量的翻译。

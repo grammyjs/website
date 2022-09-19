@@ -1,5 +1,7 @@
 # Conversations (`conversations`)
 
+![Official](/badges/official.svg) ![Deno](/badges/deno.svg) ![Node.js](/badges/nodejs.svg)
+
 Create powerful conversational interfaces with ease.
 
 ## Introduction

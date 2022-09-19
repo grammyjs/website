@@ -1,5 +1,7 @@
 # 重试 API 请求（`auto-retry`）
 
+![官方维护](/badges/official-zh.svg) ![Deno](/badges/deno.svg) ![Node.js](/badges/nodejs.svg)
+
 > 请考虑使用 [流量控制插件](./transformer-throttler.md) 替代。
 
 这个插件是一个 [API 转换函数](../advanced/transformers.md)，这意味着它可以让你动态地拦截和修改传出的 HTTP 请求。

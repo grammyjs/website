@@ -1,5 +1,7 @@
 # Pregunta sin estado (`stateless-question`)
 
+![Oficial](/badges/official-es.svg) ![Node.js](/badges/nodejs.svg)
+
 > Crear preguntas sin estado a los usuarios de Telegram que trabajan en modo de privacidad
 
 ¿Quieres mantener la privacidad del usuario con el [modo de privacidad de Telegram activado (por defecto)](https://core.telegram.org/bots#privacy-mode), enviar a los usuarios preguntas traducidas en su idioma y no guardar el estado que los usuarios están haciendo actualmente?

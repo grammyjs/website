@@ -1,5 +1,7 @@
 # Menggunakan Console Log untuk Men-debug
 
+![Pihak Ketiga](/badges/third-party-id.svg) ![Node.js](/badges/nodejs.svg)
+
 Jika kamu sudah terbiasa dengan JavaScript/TypeScript, kemungkinan besar kamu sering menggunakan [`console.log`](https://developer.mozilla.org/en-US/docs/Web/API/Console/log) atau [`console.time`](https://developer.mozilla.org/en-US/docs/Web/API/Console/time) untuk men-debug suatu program.
 Ketika bekerja dengan sebuah bot atau middleware, kamu mungkin juga perlu untuk melakukan hal yang serupa: Apa yang sebenarnya terjadi, dan berapa lama waktu yang dibutuhkan?
 

@@ -1,5 +1,7 @@
 # 并发 (`runner`)
 
+![官方维护](/badges/official-zh.svg) ![Deno](/badges/deno.svg) ![Node.js](/badges/nodejs.svg)
+
 如果你使用 [长轮询](../guide/deployment-types.md) 的方式运行你的机器人，你可以使用这个包来并发处理消息。
 
 > 在使用 grammY runner 之前，请确保你了解 [关注点二：高负载](../advanced/scaling.md#长轮询)。

@@ -1,5 +1,7 @@
 # Internacionalización con Fluent (`fluent`)
 
+![Oficial](/badges/official-es.svg) ![Node.js](/badges/nodejs.svg)
+
 [Fluent](https://projectfluent.org/) es un sistema de localización creado por la Fundación Mozilla para realizar traducciones naturales.
 Tiene una sintaxis muy potente y elegante que permite a cualquiera escribir traducciones eficientes y totalmente comprensibles.
 Este plugin aprovecha este increíble sistema de localización para hacer que los bots alimentados por grammY sean fluidos con traducciones de alta calidad.

@@ -1,5 +1,7 @@
 # Menús interactivos (`menu`)
 
+![Oficial](/badges/official-es.svg) ![Deno](/badges/deno.svg) ![Node.js](/badges/nodejs.svg)
+
 Crea fácilmente menús interactivos.
 
 ## Introducción

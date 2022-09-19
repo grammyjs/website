@@ -1,5 +1,7 @@
 # Hydration Plugin for grammY (`hydrate`)
 
+![Official](/badges/official.svg) ![Deno](/badges/deno.svg) ![Node.js](/badges/nodejs.svg)
+
 This plugin installs useful methods on two types of objects, namely
 
 1. the results of API calls, and

@@ -1,5 +1,7 @@
 # Concurrencia con grammY runner (`runner`)
 
+![Oficial](/badges/official-es.svg) ![Deno](/badges/deno.svg) ![Node.js](/badges/nodejs.svg)
+
 Este paquete se puede utilizar si ejecutas tu bot [usando long polling](../guide/deployment-types.md), y quieres que los mensajes se procesen concurrentemente.
 
 > Asegúrate de entender [Scaling Up II](../advanced/scaling.md#long-polling) antes de usar el runner de grammY.

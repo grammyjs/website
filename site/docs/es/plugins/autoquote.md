@@ -1,5 +1,7 @@
 # Responder siempre a los mensajes
 
+![De Terceros](/badges/third-party-es.svg) ![Deno](/badges/deno.svg) ![Node.js](/badges/nodejs.svg)
+
 A veces es necesario enviar siempre los mensajes como respuestas, especialmente para los bots que están destinados a ser utilizados en grupos.
 Normalmente hacemos esto añadiendo el parámetro `reply_to_message_id` a los métodos que envían el mensaje: `sendText`, `reply`, `sendPhoto`, `replyWithPhoto` y otros.
 Sin embargo, si estás haciendo esto para cada mensaje, puede ser un desastre y aburrido.

@@ -1,5 +1,7 @@
 # 无状态问题 (`stateless-question`)
 
+![官方维护](/badges/official-zh.svg) ![Node.js](/badges/nodejs.svg)
+
 > 向隐私模式下的 Telegram 用户创建无状态问题
 
 你想在 [启用 Telegrams 隐私模式（默认）](https://core.telegram.org/bots#privacy-mode) 的情况下，保护用户的隐私，向用户发送他们所使用的语言的问题，并且不保存用户当前状态？

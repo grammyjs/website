@@ -1,5 +1,7 @@
 # Percakapan (`conversations`)
 
+![Resmi](/badges/official-id.svg) ![Deno](/badges/deno.svg) ![Node.js](/badges/nodejs.svg)
+
 Membuat interaksi percakapan dengan mudah.
 
 ## Pengenalan
