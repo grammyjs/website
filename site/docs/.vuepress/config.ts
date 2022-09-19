@@ -224,6 +224,10 @@ export default defineUserConfig({
                     link: "/plugins/files.html",
                   },
                   {
+                    text: "Internationalization (i18n)",
+                    link: "/plugins/i18n.html",
+                  },
+                  {
                     text: "Internationalization (fluent)",
                     link: "/plugins/fluent.html",
                   },
@@ -238,10 +242,6 @@ export default defineUserConfig({
                   {
                     text: "Parse Mode (parse-mode)",
                     link: "/plugins/parse-mode.html",
-                  },
-                  {
-                    text: "Command Filtering (command-filter)",
-                    link: "/plugins/command-filter.html",
                   },
                 ],
               },
@@ -281,11 +281,6 @@ export default defineUserConfig({
                   {
                     text: "Example Bots Repository",
                     link: "https://github.com/grammyjs/examples",
-                  },
-                  {
-                    text: "Live Browser Demo",
-                    link: "/demo/",
-                    activeMatch: "^/demo/$",
                   },
                 ],
               },
@@ -590,6 +585,10 @@ export default defineUserConfig({
                     link: "/es/plugins/files.html",
                   },
                   {
+                    text: "Internacionalización (i18n)",
+                    link: "/es/plugins/i18n.html",
+                  },
+                  {
                     text: "Internacionalización (fluent)",
                     link: "/es/plugins/fluent.html",
                   },
@@ -604,10 +603,6 @@ export default defineUserConfig({
                   {
                     text: "Modo de parsear (parse-mode)",
                     link: "/es/plugins/parse-mode.html",
-                  },
-                  {
-                    text: "Filtro de comandos (command-filter)",
-                    link: "/es/plugins/command-filter.html",
                   },
                 ],
               },
@@ -647,11 +642,6 @@ export default defineUserConfig({
                   {
                     text: "Ejemplo de Repositorio de Bots",
                     link: "https://github.com/grammyjs/examples",
-                  },
-                  {
-                    text: "Demostración de navegador en vivo",
-                    link: "/es/demo/",
-                    activeMatch: "^/es/demo/$",
                   },
                 ],
               },
@@ -958,10 +948,10 @@ export default defineUserConfig({
                     text: "File (files)",
                     link: "/id/plugins/files.html",
                   },
-                  // {
-                  //   text: "Internationalization (i18n)",
-                  //   link: "/id/plugins/i18n.html",
-                  // },
+                  {
+                    text: "Internationalization (i18n)",
+                    link: "/id/plugins/i18n.html",
+                  },
                   {
                     text: "Internationalization (fluent)",
                     link: "/id/plugins/fluent.html",
@@ -977,10 +967,6 @@ export default defineUserConfig({
                   {
                     text: "Parse Mode (parse-mode)",
                     link: "/id/plugins/parse-mode.html",
-                  },
-                  {
-                    text: "Command Filtering (command-filter)",
-                    link: "/id/plugins/command-filter.html",
                   },
                 ],
               },
@@ -1325,6 +1311,10 @@ export default defineUserConfig({
                     link: "/zh/plugins/files.html",
                   },
                   {
+                    text: "国际化 (i18n)",
+                    link: "/zh/plugins/i18n.html",
+                  },
+                  {
                     text: "国际化 (fluent)",
                     link: "/zh/plugins/fluent.html",
                   },
@@ -1339,10 +1329,6 @@ export default defineUserConfig({
                   {
                     text: "解析模式 (parse-mode)",
                     link: "/zh/plugins/parse-mode.html",
-                  },
-                  {
-                    text: "指令过滤 (command-fiter)",
-                    link: "/zh/plugins/command-filter.html",
                   },
                 ],
               },
@@ -1382,11 +1368,6 @@ export default defineUserConfig({
                   {
                     text: "示例 Bots 仓库",
                     link: "https://github.com/grammyjs/examples",
-                  },
-                  {
-                    text: "在线 Demo",
-                    link: "/zh/demo/",
-                    activeMatch: "^/zh/demo/$",
                   },
                 ],
               },

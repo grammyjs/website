@@ -130,7 +130,7 @@ bot.on("message", (ctx) => ctx.reply("Gotcha!"));
 这可以用于向每个 API 调用传递进一步的配置。
 
 ::: tip Telegram 的回复功能
-尽管该方法在 grammY （和许多其他框架）中被称为 `ctx.reply`，但它并没有使用 Telegram 的回复功能，因为在 Telegram 中，前一条信息是被链接的。
+尽管该方法在 grammY （和许多其他框架）中被称为 `ctx.reply`，但它并没有使用 [Telegram 的回复功能](https://telegram.org/blog/replies-mentions-hashtags#replies)，因为在 Telegram 中，前一条信息是被链接的。
 
 如果你在 [Telegram Bot API 参考](https://core.telegram.org/bots/api#sendmessage) 中查看 `sendMessage` 能做什么，你会看到一些选项，比如`parse_mode`，`disable_web_page_preview` 和 `reply_to_message_id`。
 最后的那个选项可以使一条消息成为回复：
@@ -299,7 +299,7 @@ bot.command("start", async (ctx) => {
 </CodeGroupItem>
 </CodeGroup>
 
-当然，自定义上下文类型也可以传递给其他处理中间件的东西，比如组合器。
+当然，自定义上下文类型也可以传递给其他处理中间件的东西，比如 [组合器](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer)。
 
 ```ts
 const composer = new Composer<MyContext>();

@@ -47,6 +47,7 @@ Hoy en día, Telegraf 3 es obsoleto.
 Hay algunos forks no oficiales por ahí que tratan de mantener la base de código heredada al día con la evolución de la API de bots, pero su compatibilidad es desconocida.
 Además, el ecosistema de plugins de Telegraf ha pasado a Telegraf 4.
 La mayoría de los desarrolladores de plugins no mantienen versiones para forks de terceros de versiones antiguas de Telegraf.
+
 Basándonos en el hecho de que Telegraf se encuentra en algún lugar entre la versión 3 y la 4, tiene sentido comparar grammY con ambas versiones individualmente.
 
 #### Comparación con la v3
@@ -128,6 +129,7 @@ Creemos que todas estas explicaciones en el sitio web de grammY ayudan a la gent
 
 Lo malo es que esto sólo es bueno a corto plazo.
 La idea de poner todo en un archivo gigantesco, y usar un primitivo `EventEmitter` para procesar flujos de objetos complejos (aka. peticiones web) ha traído mucho dolor al mundo de los bots de Telegram, y ciertamente impidió que un número de buenas ideas fueran implementadas.
+
 Los bots siempre empiezan siendo pequeños, pero un marco de trabajo responsable debe proporcionarles un camino claro para crecer, y para escalar.
 Desgraciadamente, la NTBA falla horriblemente en eso.
 Cualquier base de código con más de 50 líneas que utilice NTBA acaba siendo un terrible lío de referencias cruzadas tipo espagueti.
@@ -156,15 +158,19 @@ La gente tiene diferentes gustos, así que toma esta sección con un grano de sa
    Aunque Python introdujo tipos en su versión 3.5, no se utilizan tan comúnmente en el ecosistema como es el caso de JavaScript/TypeScript.
    Por lo tanto, no se pueden comparar con lo que se obtiene fuera de la caja con grammY y las bibliotecas que lo acompañan.
    Con los tipos viene el autocompletado en cada paso del desarrollo, así como útiles tooltips con explicaciones y enlaces.
-2. **2. Más fácil de escalar la base de código.
+
+2. **Más fácil de escalar la base de código.**
    El sistema de tipos tiene una segunda ventaja: te permite escalar la base de código de tu bot.
    Esto es mucho más difícil de hacer para proyectos escritos en un lenguaje con peor seguridad de tipos.
-3. **3. Más fácil de escalar la carga.
+
+3. **Más fácil de escalar la carga.**
    Si tu bot empieza a ser realmente popular, es significativamente más fácil escalar bots escritos en JS que en Python.
+
 4. **Mayor capacidad de respuesta de tu bot.**
    El motor V8 hace que JavaScript sea el lenguaje de scripting más rápido del universo observable.
    Si quieres que tu bot sea lo más rápido posible sin dejar de disfrutar de un lenguaje dinámico, entonces grammY es tu mejor opción.
-5. Soporte de **`async`/`await`.**
+
+5. **Soporte de `async`/`await`.**
    Este es un patrón de programación muy popular para domar la concurrencia.
    Los últimos años muestran una fuerte tendencia hacia la programación asíncrona.
    El mayor framework de bots para Python, PTB, [anunció su migración](https://t.me/pythontelegrambotchannel/94) a la programación asíncrona en enero de 2021, que se espera que tal vez lleve "2 años".

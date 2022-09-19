@@ -96,7 +96,7 @@ La configuración por defecto es la siguiente:
 ```ts
 // Acelerador global saliente
 const globalConfig = {
-  depósito: 30, // número de nuevos trabajos que el throttler aceptará al inicio
+  reservoir: 30, // número de nuevos trabajos que el throttler aceptará al inicio
   reservoirRefreshAmount: 30, // número de trabajos que el throttler aceptará después de la actualización
   reservoirRefreshInterval: 1000, // intervalo en milisegundos en el que se refrescará el reservorio
 };
@@ -104,7 +104,7 @@ const globalConfig = {
 // Acelerador de grupo saliente
 const groupConfig = {
   maxConcurrent: 1, // sólo 1 trabajo a la vez
-  minTime: 1000, // nait esta cantidad de milisegundos para estar listo, después de un trabajo
+  minTime: 1000, // esperar esta cantidad de milisegundos para estar listo, después de un trabajo
   reservoir: 20, // número de nuevos trabajos que el throttler aceptará al inicio
   reservoirRefreshAmount: 20, // número de trabajos que el throttler aceptará después de la actualización
   reservoirRefreshInterval: 60000, // intervalo en milisegundos en el que se refrescará el reservorio

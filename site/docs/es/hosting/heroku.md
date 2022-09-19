@@ -3,7 +3,7 @@
 > Asumimos que tienes los conocimientos básicos sobre la creación de bots usando grammY.
 > Si aún no estás preparado, ¡no dudes en dirigirte a nuestra amigable [Guía](../guide)! :cohete:
 
-Este tutorial te guiará en cómo desplegar un bot de Telegram en [Heroku](https://heroku.com/) usando [webhooks](../guide/deployment-types.md#webhooks) o [long polling](../guide/deployment-types.md#long-polling).
+Este tutorial te guiará en cómo desplegar un bot de Telegram en [Heroku](https://heroku.com/) usando [webhooks](../guide/deployment-types.md#¿como-funcionan-los-webhooks) o [long polling](../guide/deployment-types.md#¿como-funciona-el-long-polling).
 También asumimos que ya tienes una cuenta en Heroku.
 
 ## Requisitos previos
@@ -89,7 +89,7 @@ Nuestro `package.json` debería ser ahora similar a esto:
 }
 ```
 
-Como hemos mencionado anteriormente, tenemos dos opciones para recibir datos de Telegram, los webhooks y el long polling.
+Como hemos mencionado anteriormente, tenemos dos opciones para recibir datos de Telegram: los webhooks y el long polling.
 ¡Puedes aprender más sobre las dos ventajas y luego decidir cuál es la adecuada en [estos increíbles consejos](../guide/deployment-types.md)!
 
 ## Webhooks
@@ -132,7 +132,7 @@ app.listen(Number(process.env.PORT), async () => {
 Echemos un vistazo a nuestro código anterior:
 
 - `process.env`: Recuerda, ¡nunca almacenes credenciales en nuestro código!
-  Para crear [Variables de entorno en Heroku](https://www.freecodecamp.org/news/using-environment-variables-the-right-way/), dirígete a [esta guía](https://devcenter.heroku.com/articles/config-vars).
+  Para crear [variables de entorno](https://www.freecodecamp.org/news/using-environment-variables-the-right-way/) en Heroku, dirígete a [esta guía](https://devcenter.heroku.com/articles/config-vars).
 - `secretPath`: Puede ser nuestro `BOT_TOKEN` o cualquier cadena aleatoria.
   Es una buena práctica ocultar la ruta de nuestro bot, tal y como se explica en Telegram (https://core.telegram.org/bots/api#setwebhook).
 
@@ -148,7 +148,7 @@ https://api.telegram.org/bot<bot_token>/setWebhook?url=<webhook_url>
 ```
 
 Ten en cuenta que algunos navegadores requieren que codifiques manualmente (https://en.wikipedia.org/wiki/Percent-encoding#Reserved_characters) la `webhook_url` antes de pasarla.
-Por ejemplo, si tenemos el token bot `abcd:1234` y la url `https://grammybot.herokuapp.com/secret_path`, entonces nuestro enlace debería tener este aspecto:
+Por ejemplo, si tenemos el token bot `abcd:1234` y la URL `https://grammybot.herokuapp.com/secret_path`, entonces nuestro enlace debería tener este aspecto:
 
 ```asciiart:no-line-numbers
 https://api.telegram.org/botabcd:1234/setWebhook?url=https%3A%2F%2Fgrammybot.herokuapp.com%2Fsecret_path
@@ -201,6 +201,7 @@ export const bot = new Bot(`${process.env.BOT_TOKEN}`, {
 ```
 
 :::
+
 ¡Genial! ¡Es hora de preparar nuestro entorno de despliegue!
 ¡Directamente a la [Sección de Despliegue](#despliegue) todo el mundo! :muscle:
 
@@ -250,7 +251,7 @@ No... nuestro _Rocket Bot_ no está listo para ser lanzado todavía.
 
 ### Compilar Archivos
 
-Ejecute este código en su terminal para compilar los archivos Typescript a Javascript:
+Ejecute este código en su terminal para compilar los archivos TypeScript a JavaScript:
 
 ```bash
 npx tsc
@@ -283,6 +284,7 @@ A continuación, escriba este formato de código de una sola línea:
 ```
 
 Para nuestro caso debería serlo:
+
 <CodeGroup>
 <CodeGroupItem title="Webhook" active>
 
@@ -291,7 +293,7 @@ web: node dist/app.js
 ```
 
 </CodeGroupItem>
-  <CodeGroupItem title="Long Polling">
+<CodeGroupItem title="Long Polling">
 
 ```
 worker: node dist/bot.js
@@ -326,6 +328,7 @@ tsconfig.json
 ```
 
 Nuestra estructura final de carpetas debería tener este aspecto:
+
 <CodeGroup>
 <CodeGroupItem title="Webhook" active>
 

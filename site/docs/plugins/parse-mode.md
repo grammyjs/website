@@ -15,14 +15,14 @@ import type { ParseModeContext } from "@grammyjs/parse-mode";
 
 const bot = new Bot<ParseModeContext>("");
 
-// Install familiar reply variants to ctx
+// Use the plugin.
 bot.use(hydrateReply);
 
 // Sets default parse_mode for ctx.reply
 bot.api.config.use(parseMode("MarkdownV2"));
 
 bot.command("demo", async (ctx) => {
-  await ctx.reply("*This* is _the_ default `formatting`");
+  await ctx.reply("*This* reply uses _MarkdownV2_ as the default `formatting`");
   await ctx.replyWithHTML(
     "<b>This</b> is <i>withHTML</i> <code>formatting</code>",
   );
@@ -50,7 +50,7 @@ bot.use(hydrateReply);
 bot.api.config.use(parseMode("MarkdownV2"));
 
 bot.command("demo", async (ctx) => {
-  await ctx.reply("*This* is _the_ default `formatting`");
+  await ctx.reply("*This* reply uses _MarkdownV2_ as the default `formatting`");
   await ctx.replyWithHTML(
     "<b>This</b> is <i>withHTML</i> <code>formatting</code>",
   );
@@ -83,7 +83,7 @@ bot.use(hydrateReply);
 bot.api.config.use(parseMode("MarkdownV2"));
 
 bot.command("demo", async (ctx) => {
-  await ctx.reply("*This* is _the_ default `formatting`");
+  await ctx.reply("*This* reply uses _MarkdownV2_ as the default `formatting`");
   await ctx.replyWithHTML(
     "<b>This</b> is <i>withHTML</i> <code>formatting</code>",
   );

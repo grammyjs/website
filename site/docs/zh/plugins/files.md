@@ -19,7 +19,7 @@ import { FileFlavor, hydrateFiles } from "@grammyjs/files";
 type MyContext = FileFlavor<Context>;
 
 // 创建一个 bot。
-const bot = new Bot<MyContext>("");
+const bot = new Bot<MyContext>("BOT_TOKEN");
 
 // 使用插件。
 bot.api.config.use(hydrateFiles(bot.token));
@@ -31,7 +31,7 @@ bot.on([":video", ":animation"], async (ctx) => {
   // 下载文件到一个临时位置。
   const path = await file.download();
   // 打印文件路径
-  console.log("File saved at", path);
+  console.log("File saved at ", path);
 });
 ```
 
@@ -43,7 +43,7 @@ import { Bot } from "grammy";
 import { hydrateFiles } from "@grammyjs/files";
 
 // 创建一个 bot。
-const bot = new Bot("");
+const bot = new Bot("BOT_TOKEN");
 
 // 使用插件。
 bot.api.config.use(hydrateFiles(bot.token));
@@ -55,7 +55,7 @@ bot.on([":video", ":animation"], async (ctx) => {
   // 下载文件到一个临时位置。
   const path = await file.download();
   // 打印文件路径。
-  console.log("File saved at", path);
+  console.log("File saved at ", path);
 });
 ```
 
@@ -73,7 +73,7 @@ import {
 type MyContext = FileFlavor<Context>;
 
 // 创建一个 bot。
-const bot = new Bot<MyContext>("");
+const bot = new Bot<MyContext>("BOT_TOKEN");
 
 // 使用插件。
 bot.api.config.use(hydrateFiles(bot.token));
@@ -85,7 +85,7 @@ bot.on([":video", ":animation"], async (ctx) => {
   // 下载文件到一个临时位置。
   const path = await file.download();
   // 打印文件路径。
-  console.log("File saved at", path);
+  console.log("File saved at ", path);
 });
 ```
 
@@ -100,7 +100,7 @@ bot.on([":video", ":animation"], async (ctx) => {
 
 ## 本地 Bot API 服务器
 
-如果你使用本地 Bot API 服务器，那么 `getFile` 调用有效地下载文件到你的磁盘。
+如果你使用 [本地 Bot API 服务器](https://core.telegram.org/bots/api#using-a-local-bot-api-server)，那么 `getFile` 调用有效地下载文件到你的磁盘。
 
 反过来，你可以调用 `file.getUrl()` 以访问这个文件路径。
 请注意，`await file.download()` 现在将会将这个本地存在的文件复制到临时位置（或者指定的路径）。

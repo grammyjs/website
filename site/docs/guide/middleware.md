@@ -15,7 +15,7 @@ While it is not wrong to say that they are listening for updates, calling them "
 
 Suppose you write a bot like this:
 
-```ts
+```ts{8}
 const bot = new Bot("<token>");
 
 bot.use(session());
@@ -46,11 +46,11 @@ Let's find out.
 We can inspect the `Middleware` type in grammY's reference [here](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Middleware):
 
 ```ts
-// Omitted some type paramters for brevity.
+// Omitted some type parameters for brevity.
 type Middleware = MiddlewareFn | MiddlewareObj;
 ```
 
-Aha.
+Aha!
 Middleware can be a function or an object.
 We only used functions (`(ctx) => { ... }`) so far, so let's ignore middleware objects for now, and dig deeper into the `MiddlewareFn` type ([reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/MiddlewareFn)):
 
@@ -226,7 +226,7 @@ If you ever call `next()` without the `await` keyword, several things will break
 - :x: If an error happens, your error handler will not be called for it.
   Instead, you will see that an `UnhandledPromiseRejectionWarning` will occur, which may crash your bot process.
 - :x: The backpressure mechanism of [grammY runner](../plugins/runner.md) breaks, which protects your server from overly-high load, such as during load spikes.
-- :skull: Sometimes, it also kills all of your innocent kittens.
+- :skull: Sometimes, it also kills all of your innocent kittens. :crying_cat_face:
 
 :::
 

@@ -29,7 +29,7 @@ prev: ./proxy.md
 
 1. [使用 grammY runner](../plugins/runner.md)
 2. [使用相同的 session 密钥处理函数作为 session 中间件来进行 `sequentialize`](./scaling.md#并发是困难的)
-3. 通过 `run`（[参考API](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/run)）方法的配置选项并确保它们适合你的需求，或者甚至可以考虑用外部的资源和插槽来组成你自己的 runner。
+3. 通过 `run`（[参考API](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/run)）方法的配置选项并确保它们适合你的需求，或者甚至可以考虑用外部的 [资源](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/UpdateSource) 和 [插槽](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/UpdateSink) 来组成你自己的 runner。
    主要考虑的事情就是你想给你的服务器应用的最大负载，例如会有多少 update 会在同一时间内被处理。
 4. 当你想要结束你的 bot 的时候（或者切换版本的时候），为了优雅去停用你的 bot 可以考虑监听 `SIGINT` 和 `SIGTERM` 事件。
    这个可以通过 grammY runner 提供给你的处理来完成。

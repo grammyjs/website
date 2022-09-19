@@ -3,7 +3,7 @@
 > 我们假设你有关于如何使用 grammY 创建 bot 的基本知识。
 > 如果你还没有准备好，不要犹豫，请查看我们十分友好的 [指南](../guide) ！ :rocket:
 
-本教程将指导你如何通过 [webhooks](../guide/deployment-types.md#webhooks) 或者 [长轮询](../guide/deployment-types.md#长轮询) 将 Telegram bot 部署到 [Heroku](https://heroku.com/)。
+本教程将指导你如何通过 [webhooks](../guide/deployment-types.md#webhooks-是如何工作的) 或者 [长轮询](../guide/deployment-types.md#长轮询是如何工作的) 将 Telegram bot 部署到 [Heroku](https://heroku.com/)。
 我们还假设你已经有了一个 Heroku 账户。
 
 ## 前提条件
@@ -132,7 +132,7 @@ app.listen(Number(process.env.PORT), async () => {
 让我们看一下上面的代码：
 
 - `process.env`：请记住，千万不要在我们的代码中存储凭证！
-  关于如何 [在 Heroku 中创建环境变量](https://www.freecodecamp.org/news/using-environment-variables-the-right-way/)，请前往 [这个指南](https://devcenter.heroku.com/articles/config-vars)。
+  关于如何在 Heroku 中 [创建环境变量](https://www.freecodecamp.org/news/using-environment-variables-the-right-way/)，请前往 [这个指南](https://devcenter.heroku.com/articles/config-vars)。
 - `secretPath`：它可以是我们的 `BOT_TOKEN` 或者任何随机字符串。最好的做法是按照 [Telegram 的解释](https://core.telegram.org/bots/api#setwebhook) 来隐藏我们的 bot 的路径。
 
 ::: tip ⚡ 优化（可选）
@@ -210,7 +210,7 @@ export const bot = new Bot(`${process.env.BOT_TOKEN}`, {
 :::
 
 > 考虑使用 webhooks 吗？
-> 跳转到 [webhook 章节](#webhooks)。:rocket:
+> 跳转到 [webhooks 章节](#webhooks)。:rocket:
 
 在你的服务器上使用长轮询并不总是一个坏主意。
 有些时候它适用于不需要快速响应和处理大量数据的数据收集 bot。
@@ -249,7 +249,7 @@ bot.start();
 
 ### 编译文件
 
-在你的终端中运行这段命令，将 Typescript 文件编译为 Javascript 文件：
+在你的终端中运行这段命令，将 TypeScript 文件编译为 JavaScript 文件：
 
 ```bash
 npx tsc
@@ -282,6 +282,7 @@ npx tsc
 ```
 
 对于我们的情况来说，应该是这样：
+
 <CodeGroup>
 <CodeGroupItem title="Webhook" active>
 
@@ -290,7 +291,7 @@ web: node dist/app.js
 ```
 
 </CodeGroupItem>
-  <CodeGroupItem title="长轮询">
+<CodeGroupItem title="长轮询">
 
 ```
 worker: node dist/bot.js
@@ -325,6 +326,7 @@ tsconfig.json
 ```
 
 最终，我们的文件夹结构看起来应该是这样的：
+
 <CodeGroup>
 <CodeGroupItem title="Webhook" active>
 
