@@ -25,7 +25,7 @@ import { bot } from "./bot.ts";
 const port = 8000;
 const handleUpdate = webhookCallback(bot, "std/http");
 
-await serve(async (req) => {
+serve(async (req) => {
   const url = new URL(req.url);
   if (req.method === "POST" && url.pathname.slice(1) === bot.token) {
     try {
@@ -127,7 +127,7 @@ Kunjungi <https://fly.io/docs/reference/secrets/> untuk informasi lebih lanjut m
 
 Metode ni adalah cara yang termudah.
 
-1. Instal [flyctl](https://fly.io/docs/hands-on/install-flyctl).
+1. Instal [flyctl](https://fly.io/docs/hands-on/install-flyctl) lalu [login](https://fly.io/docs/hands-on/sign-in/).
 2. Jalankan `flyctl launch` untuk membuat sebuah file `Dockerfile` dan `fly.toml` untuk deployment.
    Tetapi, **JANGAN** di-deploy terlebih dahulu.
 
@@ -181,7 +181,7 @@ Your app is ready. Deploy with `flyctl deploy`
 3. **Deno**: Ubah versi Deno dan hapus `CMD` di dalam file `Dockerfile`.
    Pada contoh di bawah, kami mengubah `DENO_VERSION` menjadi `1.25.2`.
 
-   **Node.js**: Untuk mengubah versi Node.js, kamu perlu menambahkan `node` ke dalam property `engine` di dalam file `package.json`.
+   **Node.js**: Untuk mengubah versi Node.js, kamu perlu menambahkan property `node` ke dalam property `engine` di dalam file `package.json`.
    Pada contoh di bawah, kami mengubah versi Node.js menjadi `16.14.0`.
 
 <CodeGroup>
@@ -247,7 +247,7 @@ ENTRYPOINT ["/bin/deno"]
 </CodeGroup>
 
 4. Ubah `app` di dalam file `fly.toml`.
-   `./app.ts` (atau `./app.js` untuk Node.js) pada contoh di bawah mengacu pada direktori file utamanya.
+   Path `./app.ts` (atau `./app.js` untuk Node.js) pada contoh di bawah mengacu pada direktori file utamanya.
    Kamu mungkin perlu mengaturnya agar sesuai dengan direktori proyek kamu.
    Kalau kamu menggunakan webhooks, pastikan port-nya sama dengan [konfigurasi](#webhooks) yang kamu miliki, dalam hal ini port `8000`.
 
@@ -386,7 +386,7 @@ Kelebihan dari metode ini adalah Fly akan selalu memantau perubahan di repositor
 Ketika terjadi perubahan, kode tersebut akan di-deploy secara otomatis ke versi yang lebih baru.
 Kunjungi <https://fly.io/docs/app-guides/continuous-deployment-with-github-actions> untuk instruksi lebih lanjut.
 
-1. Instal [flyctl](https://fly.io/docs/hands-on/install-flyctl).
+1. Instal [flyctl](https://fly.io/docs/hands-on/install-flyctl) lalu [login](https://fly.io/docs/hands-on/sign-in/).
 2. Buat sebuah repositori di GitHub, bisa berupa privat ataupun publik.
 3. Dapatkan token API Fly menggunakan `flyctl auth token`.
 4. Pergi ke repositori yang baru saja kamu buat di Github, lalu pilih "Settings".
