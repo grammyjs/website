@@ -93,7 +93,7 @@ deployctl deploy --project <project> ./mod.ts --prod --token <token>
 Setelah mendapati bot-mu dapat berjalan, kamu harus melakukan konfigurasi pada pengaturan webhook untuk menggunakan URL bot-mu yang baru.
 Untuk melakukannya, kirim sebuah request ke
 
-```md
+```md:no-line-numbers
 https://api.telegram.org/bot<token>/setWebhook?url=<url>
 ```
 
