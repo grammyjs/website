@@ -1,4 +1,4 @@
-# Hosting: Fly <Badge text="Deno" /><Badge text="Node.js" type="warning"/>
+# Hosting: Fly
 
 This guide tells you about the ways you can host your grammY bots on [Fly](https://fly.io), either using Deno or Node.js.
 
@@ -10,16 +10,13 @@ You can run your bot either on [webhooks](../guide/deployment-types.md) or [long
 
 > Remember that you should not call `bot.start()` in your code when using webhooks.
 
-You can use the example code provided in our [Deno Deploy](./deno-deploy.md#preparing-your-code) (Deno) and [Heroku](./heroku.md#express-and-its-middleware) (Node.js) hosting guide.
-In this section, we literally transcribe the text from the both docs.
-
 1. Make sure that you have a file which exports your `Bot` object, so that you can import it later to run it.
 2. Create a file named `app.ts` or `app.js`, or actually any name you like (but you should be remembering and using this as the main file to deploy), with the following content:
 
 <CodeGroup>
 <CodeGroupItem title="Deno" active>
 
-```ts{6,11}
+```ts{11}
 import { serve } from "https://deno.land/std/http/server.ts";
 import { webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 // You might modify this to the correct way to import your `Bot` object.
@@ -44,7 +41,7 @@ await serve(async (req) => {
 </CodeGroupItem>
 <CodeGroupItem title="Node.js" active>
 
-```ts{6,10}
+```ts{10}
 import express from "express";
 import { webhookCallback } from "grammy";
 // You might modify this to the correct way to import your `Bot` object.
@@ -64,7 +61,7 @@ app.listen(port, () => console.log(`listening on port ${port}`));
 </CodeGroup>
 
 We advise you to have your handler on some secret path rather than the root (`/`).
-Here, we are using the bot token (`/<bot token>`).
+As shown in the highlighted line above, we are using the bot token (`/<bot token>`) as the secret path.
 
 ### Long Polling
 
@@ -73,10 +70,11 @@ Create a file named `app.ts` or `app.js`, or actually any name you like (but you
 <CodeGroup>
 <CodeGroupItem title="Deno" active>
 
-```ts
+```ts{4}
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
-const bot = new Bot(""); // <-- insert the bot token here
+// Here, we take the bot token from "BOT_TOKEN" environment variable.
+const bot = new Bot(Deno.env.get("BOT_TOKEN") ?? ""); 
 
 bot.command(
   "start",
@@ -92,10 +90,11 @@ bot.start();
 </CodeGroupItem>
 <CodeGroupItem title="Node.js">
 
-```ts
+```ts{4}
 import { Bot } from "grammy";
 
-const bot = new Bot(""); // <-- insert the bot token here
+// Here, we take the bot token from "BOT_TOKEN" environment variable.
+const bot = new Bot(process.env.BOT_TOKEN ?? "");
 
 bot.command(
   "start",
@@ -111,11 +110,21 @@ bot.start();
 </CodeGroupItem>
 </CodeGroup>
 
+As you can see in the highlighted line above, we take some sensitive values (your bot token) from environment variables.
+Fly allow us to store that secret by running this command:
+
+```sh:no-line-numbers
+flyctl secrets set BOT_TOKEN="AAAA:12345"
+```
+
+You can specify other secrets in the same way.
+For more information about this _secrets_, see <https://fly.io/docs/reference/secrets/>.
+
 ## Deploying
 
 ### Method 1: With `flyctl`
 
-This is the easiest one to go with.
+This is the easiest method to go with.
 
 1. Install [flyctl](https://fly.io/docs/hands-on/install-flyctl).
 2. Run `flyctl launch` to generate a `Dockerfile` and `fly.toml` file for deployment.
@@ -400,20 +409,20 @@ jobs:
 7. Follow steps 2 until 4 from [Method 1](#method-1-with-flyctl) above.
    Remember to skip the last step (step 5) since we are not deploying the code directly.
 8. Commit your changes and push them up to GitHub.
-9. This is where the magic happens---The push will have triggered a deploy and from now on whenever you push a change, the app will automatically be redeployed.
+9. This is where the magic happens---the push will have triggered a deploy and from now on, whenever you push a change, the app will automatically be redeployed.
 
-### Note
+### Setting the Webhook URL
 
 If you are using webhooks, after getting your app running, you should configure your bot's webhook settings to point to your app.
 To do that, send a request to
 
-```md
+```md:no-line-numbers
 https://api.telegram.org/bot<token>/setWebhook?url=<url>
 ```
 
 replacing `<token>` with your bot's token, and `<url>` with the full URL of your app along with the path to the webhook handler.
 
-### Bonus
+### Dockerfile Optimization
 
 When our `Dockerfile` is run, it copies everything from the directory over to the Docker image.
 For Node.js applications, some directories like `node_modules` are going to be rebuilt anyway so there's no need to copy them.

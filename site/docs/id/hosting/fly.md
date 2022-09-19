@@ -1,4 +1,4 @@
-# Hosting: Fly <Badge text="Deno" /><Badge text="Node.js" type="warning"/>
+# Hosting: Fly
 
 Halaman ini berisi panduan mengenai cara-cara meng-hosting bot di [Fly](https://fly.io), baik menggunakan Deno maupun Node.js.
 
@@ -10,16 +10,13 @@ Kamu bisa menjalankan bot menggunakan [webhooks](../guide/deployment-types.md) a
 
 > Ingat! Jangan panggil `bot.start()` di kode kamu ketika menggunakan webhooks.
 
-Kamu bisa menggunakan contoh kode yang tersedia di dokumentasi [Deno Deploy](./deno-deploy.md#menyiapkan-kode) (Deno) dan [Heroku](./heroku.md#express-beserta-middleware-nya) (Node.js).
-Di bagian ini, kami menyalin beberapa bagian dari kedua dokumentasi tersebut.
-
 1. Pastikan kamu meng-export object `Bot` di dalam sebuah file agar nantinya bisa di-import ketika ingin menjalankannya.
 2. Buat sebuah file dengan nama `app.ts` atau `app.js`, ataupun nama lainnya sesuai dengan keinginanmu (tetapi kamu harus mengingatnya karena nanti file tersebut akan digunakan sebagai file deploy utama). File tersebut berisikan:
 
 <CodeGroup>
 <CodeGroupItem title="Deno" active>
 
-```ts{6,11}
+```ts{11}
 import { serve } from "https://deno.land/std/http/server.ts";
 import { webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 // Kamu mungkin perlu mengubah ini agar object bot-mu bisa di-import.
@@ -30,7 +27,7 @@ const handleUpdate = webhookCallback(bot, "std/http");
 
 await serve(async (req) => {
   const url = new URL(req.url);
-  if (req.method == "POST" && url.pathname.slice(1) == bot.token) {
+  if (req.method === "POST" && url.pathname.slice(1) === bot.token) {
     try {
       return await handleUpdate(req);
     } catch (err) {
@@ -44,7 +41,7 @@ await serve(async (req) => {
 </CodeGroupItem>
 <CodeGroupItem title="Node.js" active>
 
-```ts{6,10}
+```ts{10}
 import express from "express";
 import { webhookCallback } from "grammy";
 // Kamu mungkin perlu mengubah ini agar object bot-mu bisa di-import.
@@ -64,7 +61,7 @@ app.listen(port, () => console.log(`listening on port ${port}`));
 </CodeGroup>
 
 Kami menganjurkan kamu untuk menaruh handler di direktori rahasia alih-alih menempatkanya di root (`/`).
-Di contoh kali ini, kita menggunakan token bot (`/<token bot>`) sebagai direktori rahasianya.
+Di contoh kali ini, kita menggunakan token bot (`/<token bot>`) sebagai direktori rahasianya (perhatikan baris kode yang disorot).
 
 ### Long Polling
 
@@ -77,7 +74,8 @@ File tersebut berisikan:
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
-const bot = new Bot(""); // <-- masukkan token bot di sini
+// Di sini, kita mengambil token bot dari variable "BOT_TOKEN".
+const bot = new Bot(Deno.env.get("BOT_TOKEN"));
 
 bot.command(
   "start",
@@ -96,7 +94,8 @@ bot.start();
 ```ts
 import { Bot } from "grammy";
 
-const bot = new Bot(""); // <-- masukkan token bot di sini
+// Di sini, kita mengambil token bot dari variable "BOT_TOKEN".
+const bot = new Bot(process.env.BOT_TOKEN);
 
 bot.command(
   "start",
@@ -111,6 +110,16 @@ bot.start();
 
 </CodeGroupItem>
 </CodeGroup>
+
+Seperti yang terlihat di baris kode yang disorot di atas, kita telah mengambil informasi sensitif (token bot kamu) dari environment variables.
+Kamu bisa menyimpan informasi tersebut dengan menjalankan perintah berikut:
+
+```sh:no-line-numbers
+flyctl secrets set BOT_TOKEN="AAAA:12345"
+```
+
+Dengan cara yang sama, kamu bisa menyimpan informasi sensitif lainnya.
+Kunjungi <https://fly.io/docs/reference/secrets/> untuk informasi lebih lanjut mengenai _secrets_ di Fly.
 
 ## Men-deploy Bot
 
@@ -404,18 +413,18 @@ jobs:
 8. Commit perubahan kamu lalu push ke GitHub.
 9. Di sinilah keajaibannya mulai terjadi---push tadi akan memicu sebuah deploy dan mulai sekarang kapanpun kamu melakukan push, kode tersebut akan secara otomatis di deploy ulang.
 
-### Catatan
+### Mengatur URL Webhook
 
 Setelah mendapati bot-mu dapat berjalan, kamu harus melakukan konfigurasi pada pengaturan webhook untuk menggunakan URL bot-mu yang baru.
 Untuk melakukannya, kirim sebuah request ke
 
-```md
+```md:no-line-numbers
 https://api.telegram.org/bot<token>/setWebhook?url=<url>
 ```
 
 Ganti `<token>` dengan token bot-mu, dan `<url>` dengan URL lengkap bot kamu.
 
-### Bonus
+### Optimisasi Dockerfile
 
 Ketika `Dockerfile` kamu dijalankan, ia akan menyalin semua file ke Docker image.
 Untuk aplikasi Node.js, beberapa direktori seperti `node_modules` akan dibikin ulang sehingga direktori tersebut tidak perlu disalin.
