@@ -1,4 +1,6 @@
-# Hosting: Supabase Edge Functions <Badge text="Deno" />
+# Hosting: Supabase Edge Functions
+
+![Deno badge](/badges/deno.svg)
 
 Esta guía te explica cómo puedes alojar tus bots de grammY en [Supabase](https://supabase.com/).
 

@@ -1,4 +1,6 @@
-# Hosting: Deno Deploy <Badge text="Deno" />
+# Hosting: Deno Deploy
+
+![Deno badge](/badges/deno.svg)
 
 Halaman ini berisi panduan mengenai cara-cara meng-hosting bot di [Deno Deploy](https://deno.com/deploy).
 

@@ -1,4 +1,6 @@
-# 托管：Deno Deploy <Badge text="Deno" />
+# 托管：Deno Deploy
+
+![Deno badge](/badges/deno.svg)
 
 这个指南告诉你如何将你的 grammY bots 托管到 [Deno Deploy](https://deno.com/deploy).
 

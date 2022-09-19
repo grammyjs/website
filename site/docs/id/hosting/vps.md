@@ -1,4 +1,6 @@
-# Hosting: VPS <Badge text="Deno" /><Badge text="Node.js" type="warning"/>
+# Hosting: VPS
+
+![Deno badge](/badges/deno.svg) ![Node.js badge](/badges/nodejs.svg)
 
 Virtual Private Server, atau biasa dikenal dengan VPS, adalah sebuah perangkat virtual yang berjalan di cloud, dimana pemiliknya memiliki kendali penuh atas perangkat tersebut.
 

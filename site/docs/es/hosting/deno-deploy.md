@@ -1,4 +1,6 @@
-# Alojamiento: Deno Deploy <Badge text="Deno" />
+# Alojamiento: Deno Deploy
+
+![Deno badge](/badges/deno.svg)
 
 Esta guía le informa sobre las formas de alojar sus bots de grammY en [Deno Deploy](https://deno.com/deploy).
 

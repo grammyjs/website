@@ -1,4 +1,6 @@
-# Hosting: Deno Deploy <Badge text="Deno" />
+# Hosting: Deno Deploy
+
+![Deno badge](/badges/deno.svg)
 
 This guide tells you about the ways you can host your grammY bots on [Deno Deploy](https://deno.com/deploy).
 
