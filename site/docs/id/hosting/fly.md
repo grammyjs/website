@@ -387,11 +387,10 @@ Ketika terjadi perubahan, kode tersebut akan di-deploy secara otomatis ke versi 
 Kunjungi <https://fly.io/docs/app-guides/continuous-deployment-with-github-actions> untuk instruksi lebih lanjut.
 
 1. Instal [flyctl](https://fly.io/docs/hands-on/install-flyctl) lalu [login](https://fly.io/docs/hands-on/sign-in/).
-2. Buat sebuah repositori di GitHub, bisa berupa privat ataupun publik.
-3. Dapatkan token API Fly menggunakan `flyctl auth token`.
-4. Pergi ke repositori yang baru saja kamu buat di Github, lalu pilih "Settings".
-5. Pergi ke "Secrets" dan buat sebuah secret bernama `FLY_API_TOKEN` yang berisi nilai atau value token dari langkah ke-2.
-6. Buat `.github/workflows/main.yml`, kemudian isi dengan kode berikut:
+2. Dapatkan token API Fly dengan cara menjalankan perintah `flyctl auth token`.
+3. Buat sebuah repositori di GitHub, bisa berupa privat ataupun publik.
+4. Pergi ke Settings, pilih Secrets dan buat sebuah secret bernama `FLY_API_TOKEN` yang berisi nilai atau value token dari langkah ke-2.
+5. Buat `.github/workflows/main.yml`, kemudian isi dengan kode berikut:
 
 ```yml
 name: Fly Deploy
@@ -408,10 +407,10 @@ jobs:
         - run: flyctl deploy --remote-only
 ```
 
-7. Ikuti langkah 2 hingga 4 dari [Metode 1](#metode-1-menggunakan-flyctl) di atas.
+6. Ikuti langkah 2 hingga 4 dari [Metode 1](#metode-1-menggunakan-flyctl) di atas.
    Jangan lupa untuk melewati langkah terakhir (step 5) karena kita tidak ingin men-deploy kode secara langsung.
-8. Commit perubahan kamu lalu push ke GitHub.
-9. Di sinilah keajaibannya mulai terjadi---push tadi akan memicu sebuah deploy dan mulai sekarang kapanpun kamu melakukan push, kode tersebut akan secara otomatis di deploy ulang.
+7. Commit perubahan kamu lalu push ke GitHub.
+8. Di sinilah keajaibannya mulai terjadi---push tadi akan memicu sebuah deploy dan mulai sekarang kapanpun kamu melakukan push, kode tersebut akan secara otomatis di deploy ulang.
 
 ### Mengatur URL Webhook
 
