@@ -700,38 +700,15 @@ Plugin session dapat meningkatkan kemampuan storage adapter dengan cara menambah
 
 Kedua fitur tersebut bisa diinstal dengan menggunakan function `enhanceStorage`.
 
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
-
-```ts
-// Buat sebuah storage adapter.
-const storage = freeStorage<Enhance<SessionData>>(bot.token); // jangan lupa diatur
-// Tingkatkan kemampuan storage.
-const enhanced = enhanceStorage<SessionData>({
-  storage,
-  // tulis konfigurasinya di sini
-});
-// Gunakan storage adapter yang sudah ditingkatkan.
-bot.use(session({ storage: enhanced }));
-```
-
-</CodeGroupItem>
-<CodeGroupItem title="JavaScript">
-
 ```js
-// Buat sebuah storage adapter.
-const storage = freeStorage(bot.token); // jangan lupa diatur
-// Tingkatkan kemampuan storage.
-const enhanced = enhanceStorage({
-  storage,
-  // tulis konfigurasinya di sini
-});
 // Gunakan storage adapter yang sudah ditingkatkan.
-bot.use(session({ storage: enhanced }));
+bot.use(session({
+  storage: enhanceStorage({
+    storage: freeStorage(bot.token), // jangan lupa diatur,
+    // tulis konfigurasinya di sini
+  }),
+}));
 ```
-
-</CodeGroupItem>
-</CodeGroup>
 
 Kamu juga bisa menggunakan kedua fitur secara bersamaan.
 
