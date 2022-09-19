@@ -25,7 +25,7 @@ import { bot } from "./bot.ts";
 const port = 8000;
 const handleUpdate = webhookCallback(bot, "std/http");
 
-await serve(async (req) => {
+serve(async (req) => {
   const url = new URL(req.url);
   if (req.method === "POST" && url.pathname.slice(1) === bot.token) {
     try {
@@ -128,7 +128,7 @@ This is the easiest method to go with.
 
 1. Install [flyctl](https://fly.io/docs/hands-on/install-flyctl).
 2. Run `flyctl launch` to generate a `Dockerfile` and `fly.toml` file for deployment.
-   But, **DO NOT** deploy.
+   But **DO NOT** deploy.
 
 <CodeGroup>
 <CodeGroupItem title="Deno" Active>
@@ -180,7 +180,7 @@ Your app is ready. Deploy with `flyctl deploy`
 3. **Deno**: Change the Deno version and remove `CMD` if exist within the `Dockerfile` file.
    For example, in this case, we update `DENO_VERSION` to `1.25.2`.
 
-   **Node.js**: To change the Node.js version, you need to insert `node` into `engine` property inside the `package.json`.
+   **Node.js**: To change the Node.js version, you need to insert a `"node"` property inside an `"engines"` property inside `package.json`.
    For instance, we update the Node.js version to `16.14.0` in the example below.
 
 <CodeGroup>
@@ -245,8 +245,8 @@ ENTRYPOINT ["/bin/deno"]
 </CodeGroupItem>
 </CodeGroup>
 
-4. Edit the `app` inside the `fly.toml` file.
-   `./app.ts` (or `./app.js` for Node.js) at the example below refers to the main file directory.
+4. Edit `app` inside the `fly.toml` file.
+   The path `./app.ts` (or `./app.js` for Node.js) in the example below refers to the main file directory.
    You might modify them to match with your project directory.
    If you are using webhooks, make sure the port is same with your [config](#webhooks) (`8000`).
 
@@ -384,7 +384,7 @@ kill_timeout = 5
 The main advantage of following method is that Fly will watch for changes in your repository which includes your bot code, and it will deploy new versions automatically.
 Visit <https://fly.io/docs/app-guides/continuous-deployment-with-github-actions> for the detailed instructions.
 
-1. Install [flyctl](https://fly.io/docs/hands-on/install-flyctl).
+1. Install [flyctl](https://fly.io/docs/hands-on/install-flyctl) and [sign in](https://fly.io/docs/hands-on/sign-in/).
 2. Create a repository on GitHub, it can be either private or public.
 3. Get a Fly API token with `flyctl auth token`.
 4. Go to your newly created repository on GitHub and select "Settings".
