@@ -126,7 +126,7 @@ For more information about this _secrets_, see <https://fly.io/docs/reference/se
 
 This is the easiest method to go with.
 
-1. Install [flyctl](https://fly.io/docs/hands-on/install-flyctl).
+1. Instal [flyctl](https://fly.io/docs/hands-on/install-flyctl) lalu [login](https://fly.io/docs/hands-on/sign-in/).
 2. Run `flyctl launch` to generate a `Dockerfile` and `fly.toml` file for deployment.
    But **DO NOT** deploy.
 
@@ -385,11 +385,10 @@ The main advantage of following method is that Fly will watch for changes in you
 Visit <https://fly.io/docs/app-guides/continuous-deployment-with-github-actions> for the detailed instructions.
 
 1. Install [flyctl](https://fly.io/docs/hands-on/install-flyctl) and [sign in](https://fly.io/docs/hands-on/sign-in/).
-2. Create a repository on GitHub, it can be either private or public.
-3. Get a Fly API token with `flyctl auth token`.
-4. Go to your newly created repository on GitHub and select "Settings".
-5. Go to "Secrets" and create a secret called `FLY_API_TOKEN` with the value of the token from step 2.
-6. Create `.github/workflows/main.yml` with these contents:
+2. Get a Fly API token by running `flyctl auth token`.
+3. Create a repository on GitHub, it can be either private or public.
+4. Go to Settings, choose Secrets and create a secret called `FLY_API_TOKEN` with the value of the token from step 2.
+5. Create `.github/workflows/main.yml` with these contents:
 
 ```yml
 name: Fly Deploy
@@ -406,10 +405,10 @@ jobs:
         - run: flyctl deploy --remote-only
 ```
 
-7. Follow steps 2 until 4 from [Method 1](#method-1-with-flyctl) above.
+6. Follow steps 2 until 4 from [Method 1](#method-1-with-flyctl) above.
    Remember to skip the last step (step 5) since we are not deploying the code directly.
-8. Commit your changes and push them up to GitHub.
-9. This is where the magic happens---the push will have triggered a deploy and from now on, whenever you push a change, the app will automatically be redeployed.
+7. Commit your changes and push them up to GitHub.
+8. This is where the magic happens---the push will have triggered a deploy and from now on, whenever you push a change, the app will automatically be redeployed.
 
 ### Setting the Webhook URL
 
