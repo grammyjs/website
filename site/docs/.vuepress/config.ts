@@ -2,6 +2,7 @@ import { defaultTheme, defineUserConfig } from "vuepress-vite";
 import { betterLineBreaks } from "./plugins/better-line-breaks";
 import { currentVersions } from "./plugins/current-versions/plugin";
 import { docsearch } from "./plugins/docsearch";
+import { registerComponents } from "./plugins/registerComponents";
 
 export default defineUserConfig({
   locales: {
@@ -1504,6 +1505,7 @@ export default defineUserConfig({
     }),
     betterLineBreaks(),
     currentVersions(),
+    registerComponents(),
   ],
   markdown: {
     typographer: true,
