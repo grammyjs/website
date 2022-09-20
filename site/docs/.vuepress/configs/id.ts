@@ -380,6 +380,48 @@ export const localeId: LocaleConfig<DefaultThemeLocaleData> = {
 export const docsearchId: LocaleConfig<DocsearchLocaleData> = {
   "/id/": {
     placeholder: "Cari",
-    translations: { button: { buttonText: "Cari" } },
+    translations: {
+      button: {
+        buttonText: "Cari",
+        buttonAriaLabel: "Cari",
+      },
+      modal: {
+        searchBox: {
+          resetButtonTitle: "Hapus kueri",
+          resetButtonAriaLabel: "Hapus kueri",
+          cancelButtonText: "Batal",
+          cancelButtonAriaLabel: "Batal",
+        },
+        startScreen: {
+          recentSearchesTitle: "Terkini",
+          noRecentSearchesText: "Belum ada pencarian terkini",
+          saveRecentSearchButtonTitle: "Simpan pencarian ini",
+          removeRecentSearchButtonTitle: "Hapus pencarian ini dari riwayat",
+          favoriteSearchesTitle: "Favorit",
+          removeFavoriteSearchButtonTitle: "Hapus pencarian ini dari favorit",
+        },
+        errorScreen: {
+          titleText: "Pencarian gagal dilakukan",
+          helpText: "Coba periksa koneksi internet kamu.",
+        },
+        footer: {
+          selectText: "pilih",
+          selectKeyAriaLabel: "tombol Enter",
+          navigateText: "navigasi",
+          navigateUpKeyAriaLabel: "Ke atas",
+          navigateDownKeyAriaLabel: "Ke bawah",
+          closeText: "tutup",
+          closeKeyAriaLabel: "tombol Escape",
+          searchByText: "Cari menggunakan",
+        },
+        noResultsScreen: {
+          noResultsText: "Tidak ditemukan hasil untuk",
+          suggestedQueryText: "Coba cari",
+          reportMissingResultsText:
+            "Apakah hasil kueri ini seharusnya tersedia?",
+          reportMissingResultsLinkText: "Beritahu kami.",
+        },
+      },
+    },
   },
 };
