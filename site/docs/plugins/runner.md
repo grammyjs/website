@@ -1,6 +1,6 @@
 # Concurrency With grammY runner (`runner`)
 
-![Official](/badges/official.svg) ![Deno](/badges/deno.svg) ![Node.js](/badges/nodejs.svg)
+<Tag type="official"/>
 
 This package can be used if you run your bot [using long polling](../guide/deployment-types.md), and you want messages to be processed concurrently.
 

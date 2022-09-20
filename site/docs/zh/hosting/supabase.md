@@ -1,6 +1,6 @@
 # 托管：Supabase Edge Functions
 
-![Deno badge](/badges/deno.svg)
+<Tag type="deno"/>
 
 这个指南告诉你如何将你的 grammY bots 托管到 [Supabase](https://supabase.com/).
 

@@ -1,6 +1,6 @@
 # Emoji Plugin (`emoji`)
 
-![Official](/badges/official.svg) ![Deno](/badges/deno.svg) ![Node.js](/badges/nodejs.svg)
+<Tag type="official"/>
 
 With this plugin, you can easily insert emojis on your replies searching for them instead of manually copying and pasting an emoji from web at your code.
 

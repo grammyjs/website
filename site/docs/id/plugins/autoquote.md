@@ -1,6 +1,6 @@
 # Selalu Reply Pesan
 
-![Pihak Ketiga](/badges/third-party-id.svg) ![Deno badge](/badges/deno.svg) ![Node.js badge](/badges/nodejs.svg)
+<Tag type="third-party-id deno nodejs"/>
 
 > Catatan terjemahan: Kami membedakan istilah `balas` dengan `reply` agar tidak rancu.
 > Balas berarti membalas chat seperti pada umumnya.

@@ -1,6 +1,6 @@
 # Retry API Requests (`auto-retry`)
 
-![Official](/badges/official.svg) ![Deno](/badges/deno.svg) ![Node.js](/badges/nodejs.svg)
+<Tag type="official"/>
 
 > Consider using the [throttler plugin](./transformer-throttler.md) instead.
 

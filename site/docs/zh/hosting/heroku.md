@@ -1,6 +1,6 @@
 # 托管：Heroku
 
-![Deno badge](/badges/deno.svg) ![Node.js badge](/badges/nodejs.svg)
+<Tag type="deno nodejs"/>
 
 > 我们假设你有关于如何使用 grammY 创建 bot 的基本知识。
 > 如果你还没有准备好，不要犹豫，请查看我们十分友好的 [指南](../guide) ！ :rocket:

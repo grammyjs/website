@@ -1,6 +1,6 @@
 # Registro en la consola mientras se depura
 
-![De Terceros](/badges/third-party-es.svg) ![Node.js](/badges/nodejs.svg)
+<Tag type="third-party-es nodejs"/>
 
 Si estás familiarizado con JavaScript / TypeScript probablemente hayas utilizado [`console.log`](https://developer.mozilla.org/en-US/docs/Web/API/Console/log) o [`console.time`](https://developer.mozilla.org/en-US/docs/Web/API/Console/time) para comprobar lo que está sucediendo mientras depuras algo.
 Mientras trabajas en tu bot o middleware puede que quieras comprobar algo similar: ¿Qué ha pasado y cuánto tiempo ha tardado?

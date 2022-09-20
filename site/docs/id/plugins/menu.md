@@ -1,6 +1,6 @@
 # Menu Interaktif (`menu`)
 
-![Resmi](/badges/official-id.svg) ![Deno](/badges/deno.svg) ![Node.js](/badges/nodejs.svg)
+<Tag type="official-id"/>
 
 Membuat menu interaktif dengan mudah.
 

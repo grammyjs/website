@@ -1,6 +1,6 @@
 # Percakapan (`conversations`)
 
-![Resmi](/badges/official-id.svg) ![Deno](/badges/deno.svg) ![Node.js](/badges/nodejs.svg)
+<Tag type="official-id"/>
 
 Membuat interaksi percakapan dengan mudah.
 

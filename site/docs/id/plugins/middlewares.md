@@ -1,6 +1,6 @@
 # Kumpulan Middleware yang Berguna
 
-![Pihak Ketiga](/badges/third-party-id.svg) ![Node.js](/badges/nodejs.svg)
+<Tag type="third-party-id nodejs"/>
 
 Capek menulis middleware yang sama berulang kali?
 Yup, begitu juga dengan kami.

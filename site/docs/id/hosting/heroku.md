@@ -1,6 +1,6 @@
 # Hosting: Heroku
 
-![Deno badge](/badges/deno.svg) ![Node.js badge](/badges/nodejs.svg)
+<Tag type="deno nodejs"/>
 
 > Kami mengasumsikan bahwa kamu sudah memiliki pengetahuan dasar dalam membuat sebuah bot menggunakan grammY.
 > Jika belum, silahkan baca [panduan](../guide) yang telah kami buat dengan sepenuh hati! :heart:

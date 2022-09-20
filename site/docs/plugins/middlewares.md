@@ -1,6 +1,6 @@
 # Set of useful middlewares
 
-![Third-party](/badges/third-party.svg) ![Node.js](/badges/nodejs.svg)
+<Tag type="third-party nodejs"/>
 
 I kept rewriting the same middlewares again and again for all of my bots so I decided to extract them all to a separate package.
 

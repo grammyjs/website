@@ -1,6 +1,6 @@
 # Menangani File dengan Mudah di grammY (`files`)
 
-![Resmi](/badges/official-id.svg) ![Deno](/badges/deno.svg) ![Node.js](/badges/nodejs.svg)
+<Tag type="official-id"/>
 
 Plugin ini memudahkan kamu untuk mengunduh file dari server Telegram dan memperoleh URL-nya agar kamu dapat mengunduh file tersebut secara mandiri.
 

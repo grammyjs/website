@@ -1,6 +1,6 @@
 # 文件助手（`files`）
 
-![官方维护](/badges/official-zh.svg) ![Deno](/badges/deno.svg) ![Node.js](/badges/nodejs.svg)
+<Tag type="official-zh"/>
 
 这个插件允许你轻松地从 Telegram 服务器下载文件，并且获取一个URL，以便你自己下载文件。
 

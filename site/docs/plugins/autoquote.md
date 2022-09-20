@@ -1,6 +1,6 @@
 # Always Replying to Messages
 
-![Third-party](/badges/third-party.svg) ![Deno](/badges/deno.svg) ![Node.js](/badges/nodejs.svg)
+<Tag type="third-party deno nodejs"/>
 
 It is sometimes necessary to always send messages as replies, especially for bots that are meant to be used in groups.
 We usually do this by adding the `reply_to_message_id` parameter to the methods that send the message: `sendText`, `reply`, `sendPhoto`, `replyWithPhoto` and etc.

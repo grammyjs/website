@@ -1,6 +1,6 @@
 # Hosting: Heroku
 
-![Deno badge](/badges/deno.svg) ![Node.js badge](/badges/nodejs.svg)
+<Tag type="deno nodejs"/>
 
 > We assume that you have the basic knowledge about creating bots using grammY.
 > If you are not ready yet, don't hesitate to head over to our friendly [Guide](../guide)! :rocket:

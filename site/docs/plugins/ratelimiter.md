@@ -1,6 +1,6 @@
 # Rate Limit Users (`ratelimiter`)
 
-![Official](/badges/official.svg) ![Deno](/badges/deno.svg) ![Node.js](/badges/nodejs.svg)
+<Tag type="official"/>
 
 ratelimiter is a rate-limiting middleware for Telegram bots made with grammY or [Telegraf](https://github.com/telegraf/telegraf) bot frameworks.
 In simple terms, it is a plugin that helps you deflect heavy spamming in your bots.

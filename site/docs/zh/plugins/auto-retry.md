@@ -1,6 +1,6 @@
 # 重试 API 请求（`auto-retry`）
 
-![官方维护](/badges/official-zh.svg) ![Deno](/badges/deno.svg) ![Node.js](/badges/nodejs.svg)
+<Tag type="official-zh"/>
 
 > 请考虑使用 [流量控制插件](./transformer-throttler.md) 替代。
 

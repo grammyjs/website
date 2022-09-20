@@ -1,6 +1,6 @@
 # Plugin Hydration para grammY (`hydrate`)
 
-![Oficial](/badges/official-es.svg) ![Deno](/badges/deno.svg) ![Node.js](/badges/nodejs.svg)
+<Tag type="official-es"/>
 
 Este plugin instala métodos útiles en dos tipos de objetos, a saber
 

@@ -1,6 +1,6 @@
 # Hydration（`hydrate`）
 
-![官方维护](/badges/official-zh.svg) ![Deno](/badges/deno.svg) ![Node.js](/badges/nodejs.svg)
+<Tag type="official-zh"/>
 
 这个插件会安装一些有用的方法在两种类型的对象，即
 

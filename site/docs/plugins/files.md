@@ -1,6 +1,6 @@
 # File Handling Simplified in grammY (`files`)
 
-![Official](/badges/official.svg) ![Deno](/badges/deno.svg) ![Node.js](/badges/nodejs.svg)
+<Tag type="official"/>
 
 This plugin allows you to easily download files from Telegram servers, and to obtain a URL so you can download the file yourself.
 

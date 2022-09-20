@@ -1,6 +1,6 @@
 # Stateless Question (`stateless-question`)
 
-![Resmi](/badges/official-id.svg) ![Node.js](/badges/nodejs.svg)
+<Tag type="official-id"/>
 
 > Membuat stateless question di mode privasi
 

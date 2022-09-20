@@ -1,6 +1,6 @@
 # Conjunto de middlewares útiles
 
-![De Terceros](/badges/third-party-es.svg) ![Node.js](/badges/nodejs.svg)
+<Tag type="third-party-es nodejs"/>
 
 Seguí reescribiendo los mismos middlewares una y otra vez para todos mis bots así que decidí extraerlos todos a un paquete separado.
 

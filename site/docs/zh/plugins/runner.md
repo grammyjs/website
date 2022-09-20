@@ -1,6 +1,6 @@
 # 并发 (`runner`)
 
-![官方维护](/badges/official-zh.svg) ![Deno](/badges/deno.svg) ![Node.js](/badges/nodejs.svg)
+<Tag type="official-zh"/>
 
 如果你使用 [长轮询](../guide/deployment-types.md) 的方式运行你的机器人，你可以使用这个包来并发处理消息。
 

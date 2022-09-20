@@ -1,6 +1,6 @@
 # Conversations (`conversations`)
 
-![Official](/badges/official.svg) ![Deno](/badges/deno.svg) ![Node.js](/badges/nodejs.svg)
+<Tag type="official"/>
 
 Create powerful conversational interfaces with ease.
 

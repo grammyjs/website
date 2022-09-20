@@ -1,6 +1,6 @@
 # Pregunta sin estado (`stateless-question`)
 
-![Oficial](/badges/official-es.svg) ![Node.js](/badges/nodejs.svg)
+<Tag type="official-es"/>
 
 > Crear preguntas sin estado a los usuarios de Telegram que trabajan en modo de privacidad
 
