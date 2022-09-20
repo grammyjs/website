@@ -715,7 +715,7 @@ export default defineUserConfig({
                 children: [
                   {
                     text: "Comparativa",
-                    link: "/hosting/comparison.html",
+                    link: "/es/hosting/comparison.html",
                   },
                 ],
               },
@@ -728,7 +728,7 @@ export default defineUserConfig({
                   },
                   {
                     text: "Supabase Edge Functions",
-                    link: "/hosting/supabase.html",
+                    link: "/es/hosting/supabase.html",
                   },
                   {
                     text: "Heroku",
