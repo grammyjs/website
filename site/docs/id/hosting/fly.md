@@ -111,7 +111,7 @@ bot.start();
 </CodeGroupItem>
 </CodeGroup>
 
-Seperti yang terlihat di baris kode yang disorot di atas, kita telah mengambil informasi sensitif (token bot kamu) dari environment variables.
+Perhatikan baris kode yang disorot di atas, kita telah mengambil informasi sensitif (token bot kamu) dari environment variables.
 Kamu bisa menyimpan informasi tersebut dengan menjalankan perintah berikut:
 
 ```sh:no-line-numbers
@@ -125,7 +125,7 @@ Kunjungi <https://fly.io/docs/reference/secrets/> untuk informasi lebih lanjut m
 
 ### Metode 1: Menggunakan `flyctl`
 
-Metode ni adalah cara yang termudah.
+Metode ini adalah cara yang termudah.
 
 1. Instal [flyctl](https://fly.io/docs/hands-on/install-flyctl) lalu [login](https://fly.io/docs/hands-on/sign-in/).
 2. Jalankan `flyctl launch` untuk membuat sebuah file `Dockerfile` dan `fly.toml` untuk deployment.
@@ -409,7 +409,7 @@ jobs:
 
 6. Ikuti langkah 2 hingga 4 dari [Metode 1](#metode-1-menggunakan-flyctl) di atas.
    Jangan lupa untuk melewati langkah terakhir (step 5) karena kita tidak ingin men-deploy kode secara langsung.
-7. Commit perubahan kamu lalu push ke GitHub.
+7. Commit perubahan kamu, lalu push ke GitHub.
 8. Di sinilah keajaibannya mulai terjadi---push tadi akan memicu sebuah deploy dan mulai sekarang kapanpun kamu melakukan push, kode tersebut akan secara otomatis di deploy ulang.
 
 ### Mengatur URL Webhook
