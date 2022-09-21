@@ -128,7 +128,7 @@ Kunjungi <https://fly.io/docs/reference/secrets/> untuk informasi lebih lanjut m
 Metode ini adalah cara yang termudah.
 
 1. Instal [flyctl](https://fly.io/docs/hands-on/install-flyctl) lalu [login](https://fly.io/docs/hands-on/sign-in/).
-2. Jalankan `flyctl launch` untuk membuat sebuah file `Dockerfile` dan `fly.toml` untuk deployment.
+2. Jalankan `flyctl launch` untuk membuat sebuah file `Dockerfile` dan `fly.toml` yang nantinya untuk digunakan saat deployment.
    Tetapi, **JANGAN** di-deploy terlebih dahulu.
 
 <CodeGroup>
@@ -181,7 +181,7 @@ Your app is ready. Deploy with `flyctl deploy`
 3. **Deno**: Ubah versi Deno dan hapus `CMD` di dalam file `Dockerfile`.
    Pada contoh di bawah, kami mengubah `DENO_VERSION` menjadi `1.25.2`.
 
-   **Node.js**: Untuk mengubah versi Node.js, kamu perlu menambahkan property `node` ke dalam property `engine` di dalam file `package.json`.
+   **Node.js**: Untuk mengubah versi Node.js, kamu perlu menambahkan property `node` ke dalam property `engine` yang berada di dalam file `package.json`.
    Pada contoh di bawah, kami mengubah versi Node.js menjadi `16.14.0`.
 
 <CodeGroup>
@@ -249,7 +249,7 @@ ENTRYPOINT ["/bin/deno"]
 4. Ubah `app` di dalam file `fly.toml`.
    Path `./app.ts` (atau `./app.js` untuk Node.js) pada contoh di bawah mengacu pada direktori file utamanya.
    Kamu mungkin perlu mengaturnya agar sesuai dengan direktori proyek kamu.
-   Kalau kamu menggunakan webhooks, pastikan port-nya sama dengan [konfigurasi](#webhooks) yang kamu miliki, dalam hal ini port `8000`.
+   Kalau kamu menggunakan webhooks, pastikan port-nya sama dengan [konfigurasi](#webhooks) yang kamu miliki, dalam hal ini port-nya adalah `8000`.
 
 <CodeGroup>
 <CodeGroupItem title="Deno (Webhooks)" Active>
