@@ -1,6 +1,6 @@
 # Hosting: VPS
 
-<Tag type="deno nodejs"/>
+<TagGroup><Tag type="deno"/><Tag type="nodejs"/></TagGroup>
 
 A virtual private server, mostly known as VPS, is a virtual machine running in the cloud with its users having the full control of its system.
 

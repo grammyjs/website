@@ -1,6 +1,6 @@
 # Alojamiento: Heroku
 
-<Tag type="deno nodejs"/>
+<TagGroup><Tag type="deno"/><Tag type="nodejs"/></TagGroup>
 
 > Asumimos que tienes los conocimientos básicos sobre la creación de bots usando grammY.
 > Si aún no estás preparado, ¡no dudes en dirigirte a nuestra amigable [Guía](../guide)! :cohete:

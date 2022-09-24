@@ -1,6 +1,6 @@
 # 托管：Deno Deploy
 
-<Tag type="deno"/>
+<TagGroup><Tag type="deno"/></TagGroup>
 
 这个指南告诉你如何将你的 grammY bots 托管到 [Deno Deploy](https://deno.com/deploy).
 

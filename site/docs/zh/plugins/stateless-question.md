@@ -1,6 +1,6 @@
 # 无状态问题 (`stateless-question`)
 
-<Tag type="official-zh"/>
+<TagGroup><Tag type="official" text="官方维护"/></TagGroup>
 
 > 向隐私模式下的 Telegram 用户创建无状态问题
 

@@ -1,6 +1,6 @@
 # Concurrency With grammY runner (`runner`)
 
-<Tag type="official"/>
+<TagGroup><Tag type="official"/></TagGroup>
 
 This package can be used if you run your bot [using long polling](../guide/deployment-types.md), and you want messages to be processed concurrently.
 

@@ -1,6 +1,6 @@
 # 并发 (`runner`)
 
-<Tag type="official-zh"/>
+<TagGroup><Tag type="official" text="官方维护"/></TagGroup>
 
 如果你使用 [长轮询](../guide/deployment-types.md) 的方式运行你的机器人，你可以使用这个包来并发处理消息。
 

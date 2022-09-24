@@ -1,6 +1,6 @@
 # 托管: VPS
 
-<Tag type="deno nodejs"/>
+<TagGroup><Tag type="deno"/><Tag type="nodejs"/></TagGroup>
 
 虚拟私人服务器，大多数时候被称为 VPS，是在云中运行的虚拟机，用户拥有其系统的完整控制权。
 

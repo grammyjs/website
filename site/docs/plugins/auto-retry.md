@@ -1,6 +1,6 @@
 # Retry API Requests (`auto-retry`)
 
-<Tag type="official"/>
+<TagGroup><Tag type="official"/></TagGroup>
 
 > Consider using the [throttler plugin](./transformer-throttler.md) instead.
 

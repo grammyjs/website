@@ -1,6 +1,6 @@
 # Hydration（`hydrate`）
 
-<Tag type="official-zh"/>
+<TagGroup><Tag type="official" text="官方维护"/></TagGroup>
 
 这个插件会安装一些有用的方法在两种类型的对象，即
 

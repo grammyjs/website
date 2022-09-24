@@ -1,6 +1,6 @@
 # Conversations (`conversations`)
 
-<Tag type="official"/>
+<TagGroup><Tag type="official"/></TagGroup>
 
 Create powerful conversational interfaces with ease.
 

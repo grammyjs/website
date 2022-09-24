@@ -1,6 +1,6 @@
 # Stateless Question (`stateless-question`)
 
-<Tag type="official-id"/>
+<TagGroup><Tag type="official" text="RESMI"/></TagGroup>
 
 > Membuat stateless question di mode privasi
 

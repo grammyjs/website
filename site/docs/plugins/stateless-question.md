@@ -1,6 +1,6 @@
 # Stateless Question (`stateless-question`)
 
-<Tag type="official"/>
+<TagGroup><Tag type="official"/></TagGroup>
 
 > Create stateless questions to Telegram users working in privacy mode
 

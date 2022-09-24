@@ -1,6 +1,10 @@
 # Responder siempre a los mensajes
 
-<Tag type="third-party-es deno nodejs"/>
+<TagGroup>
+  <Tag type="thirdparty" text="DE TERCEROS"/>
+  <Tag type="deno"/>
+  <Tag type="nodejs"/>
+</TagGroup>
 
 A veces es necesario enviar siempre los mensajes como respuestas, especialmente para los bots que están destinados a ser utilizados en grupos.
 Normalmente hacemos esto añadiendo el parámetro `reply_to_message_id` a los métodos que envían el mensaje: `sendText`, `reply`, `sendPhoto`, `replyWithPhoto` y otros.

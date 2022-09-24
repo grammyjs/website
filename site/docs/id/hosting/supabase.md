@@ -1,6 +1,6 @@
 # Hosting: Supabase Edge Functions
 
-<Tag type="deno"/>
+<TagGroup><Tag type="deno"/></TagGroup>
 
 Halaman ini berisi panduan mengenai langkah-langkah meng-hosting bot grammY di [Supabase](https://supabase.com/).
 

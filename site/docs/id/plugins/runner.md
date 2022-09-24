@@ -1,6 +1,6 @@
 # Concurrency Menggunakan grammY runner (`runner`)
 
-<Tag type="official-id"/>
+<TagGroup><Tag type="official" text="RESMI"/></TagGroup>
 
 Plugin ini dapat digunakan untuk memproses berbagai pesan secara bersamaan ketika bot dijalankan [menggunakan long polling](../guide/deployment-types.md).
 

@@ -1,6 +1,6 @@
 # Menús interactivos (`menu`)
 
-<Tag type="official-es"/>
+<TagGroup><Tag type="official" text="OFICIAL"/></TagGroup>
 
 Crea fácilmente menús interactivos.
 

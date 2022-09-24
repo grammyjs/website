@@ -1,6 +1,6 @@
 # Alojamiento: Deno Deploy
 
-<Tag type="deno"/>
+<TagGroup><Tag type="deno"/></TagGroup>
 
 Esta guía le informa sobre las formas de alojar sus bots de grammY en [Deno Deploy](https://deno.com/deploy).
 

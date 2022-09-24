@@ -1,6 +1,6 @@
 # Plugin Hidrasi untuk grammY (`hydrate`)
 
-<Tag type="official-id"/>
+<TagGroup><Tag type="official" text="RESMI"/></TagGroup>
 
 Plugin ini akan menginstal method-method yang berguna di dua macam object, yaitu
 

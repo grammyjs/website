@@ -1,6 +1,6 @@
 # 重试 API 请求（`auto-retry`）
 
-<Tag type="official-zh"/>
+<TagGroup><Tag type="official" text="官方维护"/></TagGroup>
 
 > 请考虑使用 [流量控制插件](./transformer-throttler.md) 替代。
 

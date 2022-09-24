@@ -1,6 +1,6 @@
 # Pengulang Request API (`auto-retry`)
 
-<Tag type="official-id"/>
+<TagGroup><Tag type="official" text="RESMI"/></TagGroup>
 
 > Pertimbangkan untuk menggunakan [plugin throttler](./transformer-throttler.md) alih-alih menggunakan plugin ini.
 

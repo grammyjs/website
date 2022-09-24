@@ -1,6 +1,6 @@
 # 互动菜单 (`menu`)
 
-<Tag type="official-zh"/>
+<TagGroup><Tag type="official" text="官方维护"/></TagGroup>
 
 轻松地创建一个互动菜单。
 

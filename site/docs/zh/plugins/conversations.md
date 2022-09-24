@@ -1,6 +1,6 @@
 # 对话 (`conversations`)
 
-<Tag type="official-zh"/>
+<TagGroup><Tag type="official" text="官方维护"/></TagGroup>
 
 轻松创建强大的对话界面。
 

@@ -1,6 +1,6 @@
 # Kontrol Flood (`transformer-throttler`)
 
-<Tag type="official-id"/>
+<TagGroup><Tag type="official" text="RESMI"/></TagGroup>
 
 Plugin ini menjaga bot kamu agar terhindar dari [rate limit](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this)---lihat [materi tingkat lanjut berikut](../advanced/flood.md)---dengan cara membuat daftar antrian API request yang keluar menggunakan [Bottleneck](https://github.com/SGrondin/bottleneck).
 

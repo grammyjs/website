@@ -1,6 +1,6 @@
 # Plugin Hydration para grammY (`hydrate`)
 
-<Tag type="official-es"/>
+<TagGroup><Tag type="official" text="OFICIAL"/></TagGroup>
 
 Este plugin instala métodos útiles en dos tipos de objetos, a saber
 

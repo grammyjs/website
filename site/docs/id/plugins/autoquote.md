@@ -1,6 +1,10 @@
 # Selalu Reply Pesan
 
-<Tag type="third-party-id deno nodejs"/>
+<TagGroup>
+  <Tag type="thirdparty" text="PIHAK KETIGA"/>
+  <Tag type="deno"/>
+  <Tag type="nodejs"/>
+</TagGroup>
 
 > Catatan terjemahan: Kami membedakan istilah `balas` dengan `reply` agar tidak rancu.
 > Balas berarti membalas chat seperti pada umumnya.

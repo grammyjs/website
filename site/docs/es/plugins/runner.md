@@ -1,6 +1,6 @@
 # Concurrencia con grammY runner (`runner`)
 
-<Tag type="official-es"/>
+<TagGroup><Tag type="official" text="OFICIAL"/></TagGroup>
 
 Este paquete se puede utilizar si ejecutas tu bot [usando long polling](../guide/deployment-types.md), y quieres que los mensajes se procesen concurrentemente.
 

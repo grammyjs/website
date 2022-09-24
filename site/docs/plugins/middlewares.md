@@ -1,6 +1,6 @@
 # Set of useful middlewares
 
-<Tag type="third-party nodejs"/>
+<TagGroup><Tag type="thirdparty"/><Tag type="nodejs"/></TagGroup>
 
 I kept rewriting the same middlewares again and again for all of my bots so I decided to extract them all to a separate package.
 

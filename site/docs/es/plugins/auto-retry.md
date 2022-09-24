@@ -1,6 +1,6 @@
 # Reintentar solicitudes de la API (`auto-retry`)
 
-<Tag type="official-es"/>
+<TagGroup><Tag type="official" text="OFICIAL"/></TagGroup>
 
 > Considera usar el [plugin throttler](./transformer-throttler.md) en su lugar.
 

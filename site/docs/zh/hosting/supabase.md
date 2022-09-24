@@ -1,6 +1,6 @@
 # 托管：Supabase Edge Functions
 
-<Tag type="deno"/>
+<TagGroup><Tag type="deno"/></TagGroup>
 
 这个指南告诉你如何将你的 grammY bots 托管到 [Supabase](https://supabase.com/).
 

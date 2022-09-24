@@ -1,6 +1,9 @@
 # 一套有用的中间件
 
-<Tag type="third-party-zh nodejs"/>
+<TagGroup>
+<Tag type="thirdparty" text="第三方"/>
+<Tag type="nodejs"/>
+</TagGroup>
 
 我一直在为我所有的 bot 写重复的中间件，所以我决定把它们全部提取到一个单独的包中。
 

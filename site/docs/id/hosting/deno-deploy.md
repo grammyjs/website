@@ -1,6 +1,6 @@
 # Hosting: Deno Deploy
 
-<Tag type="deno"/>
+<TagGroup><Tag type="deno"/></TagGroup>
 
 Halaman ini berisi panduan mengenai cara-cara meng-hosting bot di [Deno Deploy](https://deno.com/deploy).
 

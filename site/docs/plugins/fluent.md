@@ -1,6 +1,6 @@
 # Internationalization with Fluent (`fluent`)
 
-<Tag type="official"/>
+<TagGroup><Tag type="official"/></TagGroup>
 
 [Fluent](https://projectfluent.org/) is a localization system made by the Mozilla Foundation for natural-sounding translations.
 It has a very powerful and elegant syntax that lets anyone write efficient and fully-understandable translations.
