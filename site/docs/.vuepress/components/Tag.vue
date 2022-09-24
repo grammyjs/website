@@ -1,57 +1,11 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
+// import fetch from 'node-fetch';
 
 type Data = {
   data: typeof tag;
   defaultName?: String;
   defaultType?: "logo" | "icon" | undefined;
-};
-
-const loadIcon = async ({ data, defaultName = "", defaultType = undefined}: Data) => {
-  let type = defaultType;
-  let name = defaultName;
-
-  if (data.logo) {
-    name = data.logo;
-    type = "logo";
-  } else if (data.icon) {
-    name = data.icon;
-    type = "icon";
-  } else if (!name || !type) {
-    textPaddingLeft = 0;
-    tag.iconBg = data.color!;
-    ok.value = true;
-    return;
-  }
-
-  let result = await fetch(`/tag/${type}/${name}.svg`);
-
-  if (!result.ok) {
-    try {
-      if (type === "logo") {
-        result = await fetch(`https://simpleicons.org/icons/${name}.svg`);
-      } else {
-        result = await fetch(
-          `https://icons.getbootstrap.com/assets/icons/${name}.svg`
-        );
-      }
-      if (!result.ok) throw(result);
-    }
-    catch (_error) {
-      textPaddingLeft = 0;
-      tag.iconBg = data.color!;
-      ok.value = true;
-      return;
-    }
-  }
-  
-  const svg = await result.text();
-
-  // Remove title, width and height attributes to prevent clashing with CSS.
-  icon.value = svg.replaceAll(/<title>.*?<\/title>|width=".*?"\s?|height=".*?"\s?/gm, "");
-
-  textPaddingLeft = (data.iconBg === data.color) ? 0 : svgMargin;
-  ok.value = true;
 };
 
 const props = defineProps({
@@ -84,57 +38,117 @@ const svgMargin = "0.3rem";
 const radius = "2px";
 let textPaddingLeft: String | Number = "0.3rem";
 
-switch (tag.type) {
-  case "deno":
-    tag.desc = tag.desc ?? "This plugin can be run in Deno";
-    tag.color = tag.color ?? "#000000";
-    tag.text = tag.text ?? "DENO";
-    tag.textColor = tag.textColor ?? "#ffffff";
-    tag.iconColor = tag.iconColor ?? "#ffffff";
-    tag.iconBg = tag.iconBg ?? tag.color;
-    loadIcon({ data: tag, defaultName: "deno", defaultType: "logo" });
-    break;
+onMounted(() => {
+  const loadIcon = async ({
+    data,
+    defaultName = "",
+    defaultType = undefined,
+  }: Data) => {
+    let type = defaultType;
+    let name = defaultName;
 
-  case "nodejs":
-    tag.desc = tag.desc ?? "This plugin can be run in Node.js";
-    tag.color = tag.color ?? "#689f63";
-    tag.text = tag.text ?? "NODE.JS";
-    tag.textColor = tag.textColor ?? "#ffffff";
-    tag.iconColor = tag.iconColor ?? "#ffffff";
-    tag.iconBg = tag.iconBg ?? tag.color;
-    loadIcon({ data: tag, defaultName: "nodedotjs", defaultType: "logo" });
-    break;
+    if (data.logo) {
+      name = data.logo;
+      type = "logo";
+    } else if (data.icon) {
+      name = data.icon;
+      type = "icon";
+    } else if (!name || !type) {
+      textPaddingLeft = 0;
+      tag.iconBg = data.color!;
+      ok.value = true;
+      return;
+    }
 
-  case "official":
-    tag.desc = tag.desc ?? "This plugin is published and maintained by grammY";
-    tag.color = tag.color ?? "#009dca";
-    tag.text = tag.text ?? "OFFICIAL";
-    tag.textColor = tag.textColor ?? "#ffffff";
-    tag.iconColor = tag.iconColor ?? "#ffffff";
-    tag.iconBg = tag.iconBg ?? tag.color;
-    loadIcon({ data: tag, defaultName: "patch-check-fill", defaultType: "icon" });
-    break;
+    let result = await fetch(`/tag/${type}/${name}.svg`);
+
+    if (!result.ok) {
+      try {
+        if (type === "logo") {
+          result = await fetch(`https://simpleicons.org/icons/${name}.svg`);
+        } else {
+          result = await fetch(
+            `https://icons.getbootstrap.com/assets/icons/${name}.svg`
+          );
+        }
+        if (!result.ok) throw result;
+      } catch (_error) {
+        textPaddingLeft = 0;
+        tag.iconBg = data.color!;
+        ok.value = true;
+        return;
+      }
+    }
+
+    const svg = await result.text();
+
+    // Remove title, width and height attributes to prevent clashing with CSS.
+    icon.value = svg.replaceAll(
+      /<title>.*?<\/title>|width=".*?"\s?|height=".*?"\s?/gm,
+      ""
+    );
+
+    textPaddingLeft = data.iconBg === data.color ? 0 : svgMargin;
+    ok.value = true;
+  };
+
+  switch (tag.type) {
+    case "deno":
+      tag.desc = tag.desc ?? "This plugin can be run in Deno";
+      tag.color = tag.color ?? "#000000";
+      tag.text = tag.text ?? "DENO";
+      tag.textColor = tag.textColor ?? "#ffffff";
+      tag.iconColor = tag.iconColor ?? "#ffffff";
+      tag.iconBg = tag.iconBg ?? tag.color;
+      loadIcon({ data: tag, defaultName: "deno", defaultType: "logo" });
+      break;
+
+    case "nodejs":
+      tag.desc = tag.desc ?? "This plugin can be run in Node.js";
+      tag.color = tag.color ?? "#689f63";
+      tag.text = tag.text ?? "NODE.JS";
+      tag.textColor = tag.textColor ?? "#ffffff";
+      tag.iconColor = tag.iconColor ?? "#ffffff";
+      tag.iconBg = tag.iconBg ?? tag.color;
+      loadIcon({ data: tag, defaultName: "nodedotjs", defaultType: "logo" });
+      break;
+
+    case "official":
+      tag.desc =
+        tag.desc ?? "This plugin is published and maintained by grammY";
+      tag.color = tag.color ?? "#009dca";
+      tag.text = tag.text ?? "OFFICIAL";
+      tag.textColor = tag.textColor ?? "#ffffff";
+      tag.iconColor = tag.iconColor ?? "#ffffff";
+      tag.iconBg = tag.iconBg ?? tag.color;
+      loadIcon({
+        data: tag,
+        defaultName: "patch-check-fill",
+        defaultType: "icon",
+      });
+      break;
 
     case "thirdparty":
-    tag.desc = tag.desc ?? "This plugin is maintained by the community";
-    tag.color = tag.color ?? "#ffe005";
-    tag.text = tag.text ?? "THIRD-PARTY";
-    tag.textColor = tag.textColor ?? "#000000";
-    tag.iconColor = tag.iconColor ?? "#000000";
-    tag.iconBg = tag.iconBg ?? tag.color;
-    loadIcon({ data: tag, defaultName: "people-fill", defaultType: "icon" });
-    break;
+      tag.desc = tag.desc ?? "This plugin is maintained by the community";
+      tag.color = tag.color ?? "#ffe005";
+      tag.text = tag.text ?? "THIRD-PARTY";
+      tag.textColor = tag.textColor ?? "#000000";
+      tag.iconColor = tag.iconColor ?? "#000000";
+      tag.iconBg = tag.iconBg ?? tag.color;
+      loadIcon({ data: tag, defaultName: "people-fill", defaultType: "icon" });
+      break;
 
     default:
-    tag.color = tag.color ?? "#34404c";
-    tag.text = tag.text ?? "TAG";
-    tag.textColor = tag.textColor ?? "#ffffff";
-    tag.iconColor = tag.iconColor ?? "#ffffff";
-    tag.iconBg = tag.iconBg ?? tag.color;
-    tag.desc = tag.desc ?? tag.text;
-    loadIcon({ data: tag });
-    break;
-}
+      tag.color = tag.color ?? "#34404c";
+      tag.text = tag.text ?? "TAG";
+      tag.textColor = tag.textColor ?? "#ffffff";
+      tag.iconColor = tag.iconColor ?? "#ffffff";
+      tag.iconBg = tag.iconBg ?? tag.color;
+      tag.desc = tag.desc ?? tag.text;
+      loadIcon({ data: tag });
+      break;
+  }
+});
 </script>
 
 <template>
@@ -194,7 +208,7 @@ switch (tag.type) {
   align-self: stretch;
   padding-right: v-bind("svgMargin");
   border-radius: 0 v-bind("radius") v-bind("radius") 0;
-  font-family: Verdana, Geneva, Tahoma,"DejaVu Sans", sans-serif;
+  font-family: Verdana, Geneva, Tahoma, "DejaVu Sans", sans-serif;
 }
 
 /*
