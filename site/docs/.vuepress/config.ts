@@ -1101,7 +1101,7 @@ export default defineUserConfig({
                   },
                   {
                     text: "Google Cloud Functions",
-                    link: "/hosting/gcf.html",
+                    link: "/id/hosting/gcf.html",
                   },
                   {
                     text: "Virtual Private Server",
