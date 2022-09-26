@@ -367,7 +367,7 @@ Sehingga, jika kamu melempar sebuah error di dalam sebuah percakapan dan tidak s
 Akibatnya, pesan-pesan selanjutnya akan menghasilkan error yang sama.
 
 Kamu bisa mengatasinya dengan cara memasang sebuah [error boundary](../guide/errors.md#error-boundary) diantara session dan conversation terkait.
-Dengan begitu, kamu bisa mencegah error mencapai [middleware tree](../advanced/middleware.md#), yang mengakibatkan plugin session tidak dapat menulis data tersebut kembali.
+Dengan begitu, kamu bisa mencegah error mencapai [middleware tree](../advanced/middleware.md), yang mengakibatkan plugin session tidak dapat menulis data tersebut kembali.
 
 > Perlu diketahui bahwa jika kamu menggunakan in-memory sessions bawaan, semua perubahan pada data session akan langsung diterapkan saat itu juga, karena ia tidak memiliki storage backend.
 > Untuk itu, kamu tidak perlu menggunakan error boundary untuk meninggalkan suatu percakapan dengan cara melempar sebuah error.
@@ -419,7 +419,7 @@ bot.errorBoundary(
 
 Apapun cara yang dipakai, selalu ingat untuk [memasang sebuah error handler](../guide/errors.md) di bot kamu.
 
-Jika ingin menghentikan secara paksa suatu percakapan yang sedang menunggu sebuah input dari user, kamu juga bisa menggunakan await `ctx.conversation.exit()`, yang mana akan menghapus data plugin conversation dari session.
+Jika ingin menghentikan secara paksa suatu percakapan yang sedang menunggu sebuah input dari user, kamu juga bisa menggunakan `await ctx.conversation.exit()`, yang mana akan menghapus data plugin conversation dari session.
 Biasanya menggunakan `return` di function adalah cara yang lebih dianjurkan, tetapi ada kalanya di beberapa kondisi menggunakan `await ctx.conversation.exit()` jauh lebih nyaman.
 Jangan lupa untuk menggunakan `await`.
 
