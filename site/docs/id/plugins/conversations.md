@@ -332,7 +332,7 @@ bot.start();
 ## Meninggalkan Sebuah Percakapan
 
 Percakapan akan terus berjalan hingga conversation builder function selesai melakukan tugasnya.
-Karena itu, kamu bisa meninggalkan sebuah percakapan cukup dengan menggunakan `return`.
+Karena itu, kamu bisa meninggalkan sebuah percakapan cukup dengan menggunakan `return` atau `throw`.
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
@@ -361,12 +361,67 @@ async function hiAndBye(conversation, ctx) {
 
 (Iya.. iya.. Kami tahu menambahkan sebuah `return` di akhir function memang tidak terlalu bermanfaat, tetapi setidaknya kamu paham maksud yang kami sampaikan. :slightly_smiling_face:)
 
-Kamu juga bisa meninggalkan percakapan dengan melempar sebuah error.
-Jangan lupa untuk [menginstal sebuah error handler](../guide/errors.md) di bot kamu.
+Melempar sebuah error juga bisa digunakan untuk meninggalkan sebuah percakapan.
+Meski demikian, [plugin session](#menginstal-dan-memasuki-sebuah-percakapan) hanya akan menyimpan data jika middleware terkait berhasil dijalankan.
+Sehingga, jika kamu melempar sebuah error di dalam sebuah percakapan dan tidak segera menangkapnya sebelum error tersebut mencapai plugin session, maka status percakapan tersebut telah ditinggalkan tidak akan tersimpan.
+Akibatnya, pesan-pesan selanjutnya akan menghasilkan error yang sama.
 
-Jika ingin menghentikan secara paksa sebuah percakapan yang sedang menunggu input dari user, kamu bisa menggunakan `await ctx.conversation.exit()`.
-Biasanya menggunakan `return` di function adalah cara yang lebih baik, tetapi ada kalanya di beberapa kondisi menggunakan `await ctx.conversation.exit()` jauh lebih nyaman.
-Selalu ingat untuk memanggil `await`.
+Kamu bisa mengatasinya dengan cara memasang sebuah [error boundary](../guide/errors.md#error-boundary) diantara session dan conversation terkait.
+Dengan begitu, kamu bisa mencegah error mencapai [middleware tree](../advanced/middleware.md#), yang mengakibatkan plugin session tidak dapat menulis data tersebut kembali.
+
+> Perlu diketahui bahwa jika kamu menggunakan in-memory sessions bawaan, semua perubahan pada data session akan langsung diterapkan saat itu juga, karena ia tidak memiliki storage backend.
+> Untuk itu, kamu tidak perlu menggunakan error boundary untuk meninggalkan suatu percakapan dengan cara melempar sebuah error.
+
+Berikut bagaimana error boundary dan conversation digunakan secara bersamaan.
+
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
+
+```ts
+bot.use(session({
+  storage: freeStorage(bot.token), // Silahkan diatur
+  initial: () => ({}),
+}));
+bot.use(conversations());
+async function hiAndBye(conversation: MyConversation, ctx: MyContext) {
+  await ctx.reply("Halo! Dan selamat tinggal!");
+  // Tinggalkan percakapan:
+  throw new Error("Coba tangkap aku!");
+}
+bot.errorBoundary(
+  (err) => console.error("Conversation melempar sebuah error!", err),
+  createConversation(greeting),
+);
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+bot.use(session({
+  storage: freeStorage(bot.token), // Silahkan diatur
+  initial: () => ({}),
+}));
+bot.use(conversations());
+async function hiAndBye(conversation, ctx) {
+  await ctx.reply("Halo! Dan selamat tinggal!");
+  // Tinggalkan percakapan:
+  throw new Error("Coba tangkap aku!");
+}
+bot.errorBoundary(
+  (err) => console.error("Conversation melempar sebuah error!", err),
+  createConversation(greeting),
+);
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+Apapun cara yang dipakai, selalu ingat untuk [memasang sebuah error handler](../guide/errors.md) di bot kamu.
+
+Jika ingin menghentikan secara paksa suatu percakapan yang sedang menunggu sebuah input dari user, kamu juga bisa menggunakan await `ctx.conversation.exit()`, yang mana akan menghapus data plugin conversation dari session.
+Biasanya menggunakan `return` di function adalah cara yang lebih dianjurkan, tetapi ada kalanya di beberapa kondisi menggunakan `await ctx.conversation.exit()` jauh lebih nyaman.
+Jangan lupa untuk menggunakan `await`.
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
