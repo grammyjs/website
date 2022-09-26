@@ -7,14 +7,14 @@
 
 让我们试着理清一下：
 
-| 术语                                       | 定义                                                               |
-| ---------------------------------------- | ---------------------------------------------------------------- |
-| [**Inline Keyboard**](#inline-keyboards) | 显示在聊天消息下面的一组按钮                                                   |
-| [**自定义 Keyboard**](#自定义-keyboards)       | 代替用户的系统键盘显示的一组按钮                                                 |
-| **Inline keyboard button**               | inline keyboard 中的一个按钮，按下后会发送一个用户不可见的回调查询，有时候被称为 _inline button_ |
-| **自定义 Keyboard button**                  | keyboard 中的一个按钮，按下后会发送带有其标签的文本信息，有时候被称为 _keyboard button_        |
-| **`InlineKeyboard`**                     | grammY 中用来创建 inline keyboards 的类                                 |
-| **`Keyboard` (!)**                       | grammY 中用来创建自定义 keyboards 的类                                     |
+| 术语                                       | 定义                                                                |
+| ---------------------------------------- | ----------------------------------------------------------------- |
+| [**Inline Keyboard**](#inline-keyboards) | 显示在聊天消息下面的一组按钮。                                                   |
+| [**自定义 Keyboard**](#自定义-keyboards)       | 代替用户的系统键盘显示的一组按钮。                                                 |
+| **Inline keyboard button**               | inline keyboard 中的一个按钮，按下后会发送一个用户不可见的回调查询，有时候被称为 _inline button_。 |
+| **自定义 Keyboard button**                  | keyboard 中的一个按钮，按下后会发送带有其标签的文本信息，有时候被称为 _keyboard button_。        |
+| **`InlineKeyboard`**                     | grammY 中用来创建 inline keyboards 的类。                                 |
+| **`Keyboard`**                           | grammY 中用来创建自定义 keyboards 的类。                                     |
 
 > 请注意，自定义 keyboard 按钮和 inline keyboard 按钮也可以有其他功能，例如请求用户的位置，打开网站等等。
 > 为了简洁起见，我们省略了这一点。
@@ -119,7 +119,7 @@ keyboard 插件让你可以获取到 Telegram 发送的 update 对象。
 每个 `text` 按钮都会附加一个字符串作为回调数据。
 如果你没有附加回调数据，grammY 将会使用按钮的文本来作为回调数据。
 
-一旦用户点击了一个文本按钮，你的 bot 将会收到一个包含相应按钮的回调数据的 update。
+一旦用户点击了一个 `text` 按钮，你的 bot 将会收到一个包含相应按钮的回调数据的 update。
 你可以通过 `bot.callbackQuery()` 来监听回调数据。
 
 ```ts
@@ -167,7 +167,7 @@ bot.on("callback_query:data", async (ctx) => {
 grammY 有一个简单且直观的方式来构建回复 keyboard，让你的 bot 可以用它来替换用户的键盘。
 它提供了一个叫做 `Keyboard` 的类。
 
-一旦用户点击了一个文本按钮，你的 bot 就会收到作为纯文本信息发送的消息。
+一旦用户点击了一个 `text` 按钮，你的 bot 就会收到作为纯文本信息发送的消息。
 请记住，你可以通过 `bot.on("message:text")` 或者 `bot.hears()` 列出文本信息。
 
 ### 构建一个自定义 Keyboard

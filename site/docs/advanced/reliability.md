@@ -137,7 +137,7 @@ That's basically all there is to reliability, your instance should:registered: n
 
 ## Reliability Guarantees
 
-What if your bot is processing financial transactions and you must consider a `kill -9` scenario where the CPU physically breaks or there is a power outage in the data center?
+What if your bot is processing financial transactions and you must consider a [`kill -9` scenario](https://stackoverflow.com/questions/43724467/what-is-the-difference-between-kill-and-kill-9) where the CPU physically breaks or there is a power outage in the data center?
 If for some reason someone or something actually hard-kills the process, it gets a bit more complicated.
 
 In essence, bots cannot guarantee an _exactly once_ execution of your middleware.
@@ -146,26 +146,37 @@ The remainder of this section is elaborating on **how** grammY behaves under the
 
 > Do you just care about coding a Telegram bot? [Skip the rest of this page.](./flood.md)
 
-If you are running your bot on webhooks, the Bot API server will retry delivering updates to your bot if it does not respond with OK in time.
+### Webhook
+
+If you are running your bot on webhooks, the Bot API server will retry delivering updates to your bot if it does not respond with `OK` in time.
 That pretty much defines the behavior of the system comprehensively—if you need to prevent processing duplicate updates, you should build your own de-duplication based on `update_id`.
 grammY does not do this for you, but feel free to PR if you think someone else could profit from this.
 
+### Long Polling
+
 Long polling is more interesting.
 The built-in polling basically re-runs the most recent update batch that was fetched but could not complete.
-(Note that if you properly stop your bot with `bot.stop`, the update offset will be synced with the Telegram servers by calling `getUpdates` with the correct offset but without processing the update data).
+
+> Note that if you properly stop your bot with `bot.stop`, [the update offset](https://core.telegram.org/bots/api#getting-updates) will be synced with the Telegram servers by calling `getUpdates` with the correct offset but without processing the update data.
+
 In other words, you will never loose any updates, however, it may happen that you re-process up to 100 updates that you have seen before.
 As calls to `sendMessage` are not idempotent, users may receive duplicate messages from your bot.
 However, _at least once_ processing is guaranteed.
+
+### grammY Runner
 
 If you are using the [grammY runner](../plugins/runner.md) in concurrent mode, the next `getUpdates` call is potentially performed before your middleware processes the first update of the current batch.
 Thus, the update offset is [confirmed](https://core.telegram.org/bots/api#getupdates) prematurely.
 This is the cost of heavy concurrency, and unfortunately, it cannot be avoided without reducing both throughput and responsiveness.
 As a result, if your instance is killed in the right (wrong) moment, it could happen that up to 100 updates cannot be fetched again because Telegram regards them as confirmed.
 This leads to data loss.
+
 If it is crucial to prevent this, you should use the sources and sinks of the grammY runner package to compose your own update pipeline that passes all updates through a message queue first.
-You'd basically have to create a [sink](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/UpdateSink) that pushes to the queue, and start one runner that only supplies your message queue.
-You'd then have to create a [source](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/UpdateSource) that pulls from the message queue again.
-You will effectively run two different instances of the grammY runner.
+
+1. You'd basically have to create a [sink](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/UpdateSink) that pushes to the queue, and start one runner that only supplies your message queue.
+2. You'd then have to create a [source](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/UpdateSource) that pulls from the message queue again.
+   You will effectively run two different instances of the grammY runner.
+
 This vague draft described above has only been sketched but not implemented, according to our knowledge.
 Please [take contact with the Telegram group](https://t.me/grammyjs) if you have any question or if you attempt this and can share your progress.
 

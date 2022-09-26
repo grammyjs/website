@@ -62,7 +62,7 @@ The installed plugin will do something before and after our handlers are called:
 2. **Our middleware runs.**
    We can _read_ `ctx.session` to inspect which value was in the database.
    For example, if a message is sent to the chat with the identifier `424242`, it would be `ctx.session = { pizzaCount: 24 }` while our middleware runs (at least with the example database state above).
-   We can also _modify_ ctx.session arbitrarily, so we can add, remove, and change fields as we like.
+   We can also _modify_ `ctx.session` arbitrarily, so we can add, remove, and change fields as we like.
 3. **After our middleware.**
    The session middleware makes sure that the data is written back to the database.
    Whatever the value of `ctx.session` is after the middleware is done executing, it will be saved in the database.
@@ -86,7 +86,7 @@ This comparison may help you decide whether to use sessions or not.
 | ------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------ |
 | _Access_            | one isolated storage **per chat**                           | access same data from **multiple chats**                           |
 | _Sharing_           | data is **only used by bot**                                | data is **used by other systems** (e.g. by a connected web server) |
-| _Format_            | any JavaScript objects, strings, numbers, arrays, and so on | any data (binary, files, structured, etc)                          |
+| _Format_            | any JavaScript objects: strings, numbers, arrays, and so on | any data (binary, files, structured, etc)                          |
 | _Size per chat_     | preferably less than ~3 MB per chat                         | any size                                                           |
 | _Exclusive feature_ | Required by some grammY plugins.                            | Supports database transactions.                                    |
 
@@ -684,7 +684,7 @@ bot.command("reset", (ctx) => {
 One may argue well that explicitly using `await` is preferable over assigning a promise to `ctx.session`, the point is that you _could_ do this if you like that style better for some reason.
 
 ::: tip Plugins That Need Sessions
-Plugin developers that make use of `ctx.session` should always allow users to pass `SessionFlavor | LazySessionFlavor` and hence support both modi.
+Plugin developers that make use of `ctx.session` should always allow users to pass `SessionFlavor | LazySessionFlavor` and hence support both modes.
 In the plugin code, simply await `ctx.session` all the time: if a non-promise object is passed, this will simply be evaluated to itself, so you effectively only write code for lazy sessions and thus support strict sessions automatically.
 :::
 

@@ -8,8 +8,8 @@ Este plugin quiere resolver este problema.
 
 La idea básica es enviar su pregunta con un [texto especial](https://en.wikipedia.org/wiki/Zero-width_non-joiner) al final.
 Este texto es invisible para el usuario pero visible para tu bot.
-Cuando el usuario responde a un mensaje se comprueba el mensaje.
-Si contiene este texto especial al final es una respuesta a la pregunta.
+Cuando el usuario responde a un mensaje, se comprueba el mensaje.
+Si contiene este texto especial al final, entonces es una respuesta a la pregunta.
 De esta manera puedes tener muchas cadenas para las mismas preguntas como cuando tienes traducciones.
 Sólo tienes que asegurarte de que el `uniqueIdentifier` es único dentro de tu bot.
 

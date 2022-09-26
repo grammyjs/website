@@ -37,7 +37,7 @@ Una ventaja de usar el método `api.sendGame` es que puedes especificar el `chat
    });
    ```
 
-2. Envío del juego a través de `api.sendGame`
+2. Envío de un juego por medio de `api.sendGame`.
 
    ```ts
    bot.command("start", async (ctx) => {

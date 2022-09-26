@@ -95,7 +95,7 @@ bot.start();
 
 > Make sure that you install all menus before other middleware, especially before middleware that uses callback query data.
 
-Naturally, if you are using a custom context type, you can pass it to `Menu` too.
+Naturally, if you are using a [custom context type](../guide/context.md#customizing-the-context-object), you can pass it to `Menu` too.
 
 ```ts
 const menu = new Menu<MyContext>("id");

@@ -92,24 +92,24 @@ Ia dapat menyelesaikan permasalahan berikut:
 
 ```ts
 import { Api, Bot, Context } from "grammy";
-import { MyApiFlavor, MyContextFlavor, myPlugin } from "myPlugin";
+import { SomeApiFlavor, SomeContextFlavor, somePlugin } from "myPlugin";
 
 // Buat Context flavor.
-type MyContext = Context & MyContextFlavor;
+type MyContext = Context & SomeContextFlavor;
 // Buat API flavor.
-type MyApi = Api & MyApiFlavor;
+type MyApi = Api & SomeApiFlavor;
 
 // Gunakan kedua flavor.
-const bot = new Bot<MyContext, MyApi>("token-bot");
+const bot = new Bot<MyContext, MyApi>("my-token");
 
 // Gunakan sebuah plugin.
-bot.api.config.use(myPlugin());
+bot.api.config.use(somePlugin());
 
 // Sekarang panggil `bot.api` dengan type yang sudah disesuaikan dari API flavor.
-bot.api.myPluginMethod();
+bot.api.somePluginMethod();
 
 // Gunakan juga type yang sudah disesuaikan dari context flavor.
-bot.on("message", (ctx) => ctx.api.myPluginMethod());
+bot.on("message", (ctx) => ctx.api.somePluginMethod());
 ```
 
 API flavor berjalan sama persis seperti context flavor. Baik jenis _additive_ maupun _transformative_ juga tersedia, dan berbagai macam API flavor juga bisa dikombinasikan sama halnya dengan yang kamu lakukan dengan context flavor.

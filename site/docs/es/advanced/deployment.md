@@ -29,13 +29,14 @@ Esto depende del tipo de despliegue.
 
 1. [Usa grammY runner.](../plugins/runner.md)
 2. [Usa `sequentialize` con el mismo id de sesión que tu middleware de sesión.](./scaling.md#la-concurrencia-es-difícil)
-3. Revise las opciones de configuración de la `ejecución` ([referencia API](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/run)) y asegúrese de que se ajustan a sus necesidades, o incluso considere la posibilidad de componer su propio runner a partir de códigos fuente. Lo principal a tener en cuenta es la carga máxima que quiere aplicar a su servidor, es decir, cuántas actualizaciones pueden procesarse al mismo tiempo.
+3. Revise las opciones de configuración de `run` ([referencia de la API](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/run)) y asegúrese de que se ajustan a sus necesidades, o incluso considere la posibilidad de componer su propio corredor a partir de [sources](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/UpdateSource) y [sinks](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/UpdateSink).
+   Lo principal a tener en cuenta es la carga máxima que quiere aplicar a su servidor, es decir, cuántas actualizaciones pueden procesarse al mismo tiempo.
 4. Considere implementar un [apagado gradual](../advanced/reliability.md#apagado-correcto) para parar tu bot cuando tu quieres terminar con él (e.j. cambiar a una nueva versión).
 
 ### Webhooks
 
 1. Asegúrese de no realizar ninguna operación de larga duración en su middleware, como las transferencias de archivos de gran tamaño. [Esto lleva a errores de tiempo de espera](../guide/deployment-types.md#terminar-las-solicitudes-de-webhooks-a-tiempo) para los webhooks, y el procesamiento de actualizaciones duplicadas, ya que Telegram reenviará las actualizaciones no reconocidas. Considere la posibilidad de utilizar un sistema de cola de tareas en su lugar.
-2. Familiarícese con la configuración de `webhookCallback` [referencia API](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/webhookCallback).
+2. Familiarícese con la configuración de `webhookCallback` ([referencia de la API](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/webhookCallback)).
 3. Si cambiaste la opción `getSessionKey` por la de tu sesión, [usa `sequentialize` con la misma función de resolución de claves de sesión que su middleware de sesión](./scaling.md#la-concurrencia-es-difícil).
 4. Si se ejecuta en una plataforma sin servidor o de autoescalado, [establezca la información del bot](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/BotConfig) para prevenir excesivas llamadas `getMe`.
 5. Considere utilizar [webhook replies](../guide/deployment-types.md#webhook-reply).

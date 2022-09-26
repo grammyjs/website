@@ -1,6 +1,5 @@
 ---
 prev: ./games.md
-next: /advanced/
 ---
 
 # Long Polling vs. Webhooks
@@ -71,13 +70,15 @@ Asked about some ice cream of your favorite kind, the employee smiles at you and
 In fact, you don't get any response at all.
 So you decide to wait, firmly smiling back.
 And you wait.
-And wait.
-Some hours before the next sunrise, a truck of a local food delivery company arrives and brings a couple of large boxes into the parlor's storage room.
-They read_ ice cream _on the outside.
+And wait._
+
+_Some hours before the next sunrise, a truck of a local food delivery company arrives and brings a couple of large boxes into the parlor's storage room.
+They read **ice cream** on the outside.
 The employee finally starts to move again.
 "Of course we have salted caramel!
-Two scoops with sprinkles, the usual?"
-As if nothing had happened, you enjoy your ice cream while leaving the world's most unrealistic ice cream parlor._
+Two scoops with sprinkles, the usual?"_
+
+_As if nothing had happened, you enjoy your ice cream while leaving the world's most unrealistic ice cream parlor._
 
 ```asciiart:no-line-numbers
 ______________                                   _____________

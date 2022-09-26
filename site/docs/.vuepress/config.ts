@@ -243,10 +243,6 @@ export default defineUserConfig({
                     text: "Parse Mode (parse-mode)",
                     link: "/plugins/parse-mode.html",
                   },
-                  {
-                    text: "Command Filtering (command-filter)",
-                    link: "/plugins/command-filter.html",
-                  },
                 ],
               },
               {
@@ -285,11 +281,6 @@ export default defineUserConfig({
                   {
                     text: "Example Bots Repository",
                     link: "https://github.com/grammyjs/examples",
-                  },
-                  {
-                    text: "Live Browser Demo",
-                    link: "/demo/",
-                    activeMatch: "^/demo/$",
                   },
                 ],
               },
@@ -613,10 +604,6 @@ export default defineUserConfig({
                     text: "Modo de parsear (parse-mode)",
                     link: "/es/plugins/parse-mode.html",
                   },
-                  {
-                    text: "Filtro de comandos (command-filter)",
-                    link: "/es/plugins/command-filter.html",
-                  },
                 ],
               },
               {
@@ -655,11 +642,6 @@ export default defineUserConfig({
                   {
                     text: "Ejemplo de Repositorio de Bots",
                     link: "https://github.com/grammyjs/examples",
-                  },
-                  {
-                    text: "Demostración de navegador en vivo",
-                    link: "/es/demo/",
-                    activeMatch: "^/es/demo/$",
                   },
                 ],
               },
@@ -733,7 +715,7 @@ export default defineUserConfig({
                 children: [
                   {
                     text: "Comparativa",
-                    link: "/hosting/comparison.html",
+                    link: "/es/hosting/comparison.html",
                   },
                 ],
               },
@@ -746,7 +728,7 @@ export default defineUserConfig({
                   },
                   {
                     text: "Supabase Edge Functions",
-                    link: "/hosting/supabase.html",
+                    link: "/es/hosting/supabase.html",
                   },
                   {
                     text: "Heroku",
@@ -985,10 +967,6 @@ export default defineUserConfig({
                   {
                     text: "Parse Mode (parse-mode)",
                     link: "/id/plugins/parse-mode.html",
-                  },
-                  {
-                    text: "Command Filtering (command-filter)",
-                    link: "/id/plugins/command-filter.html",
                   },
                 ],
               },
@@ -1352,10 +1330,6 @@ export default defineUserConfig({
                     text: "解析模式 (parse-mode)",
                     link: "/zh/plugins/parse-mode.html",
                   },
-                  {
-                    text: "指令过滤 (command-fiter)",
-                    link: "/zh/plugins/command-filter.html",
-                  },
                 ],
               },
               {
@@ -1394,11 +1368,6 @@ export default defineUserConfig({
                   {
                     text: "示例 Bots 仓库",
                     link: "https://github.com/grammyjs/examples",
-                  },
-                  {
-                    text: "在线 Demo",
-                    link: "/zh/demo/",
-                    activeMatch: "^/zh/demo/$",
                   },
                 ],
               },
