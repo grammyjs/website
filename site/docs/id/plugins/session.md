@@ -700,7 +700,7 @@ Plugin session dapat meningkatkan kemampuan storage adapter dengan cara menambah
 
 Kedua fitur tersebut bisa diinstal dengan menggunakan function `enhanceStorage`.
 
-```js
+```ts
 // Gunakan storage adapter yang sudah ditingkatkan.
 bot.use(session({
   storage: enhanceStorage({
