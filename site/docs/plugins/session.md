@@ -694,7 +694,7 @@ The session plugin is able to enhance any storage adapter by adding more feature
 
 They can be installed using the `enhanceStorage` function.
 
-```js
+```ts
 // Use the enhanced storage adapter.
 bot.use(session({
   storage: enhanceStorage({
