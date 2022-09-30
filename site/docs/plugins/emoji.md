@@ -1,6 +1,6 @@
 # Emoji Plugin (`emoji`)
 
-<TagGroup><Tag type="official"/></TagGroup>
+<TagGroup><Tag type="official" desc="This plugin is published and maintained by grammY"/></TagGroup>
 
 With this plugin, you can easily insert emojis on your replies searching for them instead of manually copying and pasting an emoji from web at your code.
 

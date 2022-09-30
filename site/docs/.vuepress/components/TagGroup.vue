@@ -2,43 +2,103 @@
 const props = defineProps({
   mt: String,
   mb: String,
+  pt: String,
+  pb: String,
 });
-const addClass = (props.mt || props.mb) ? "custom" : "" ;
-const mtCustom = props.mt ?? "1rem";
-const mbCustom = props.mb ?? "1rem";
+
+let customStyle: AnyObject = {};
+
+if (props.mt) {
+  customStyle.marginTop = props.mt;
+}
+if (props.mb) {
+  customStyle.marginBottom = props.mb;
+}
+if (props.pt) {
+  customStyle.paddingTop = props.pt;
+}
+if (props.pb) {
+  customStyle.paddingBottom = props.pb;
+}
 </script>
 
 <template>
-  <div class="tagGroup" :class="addClass" v-once>
-    <slot></slot>
+  <div class="tag-group" :style="customStyle">
+    <slot />
   </div>
 </template>
 
-<style scoped>
-.tagGroup.custom {
-  margin-top: v-bind("mtCustom");
-  margin-bottom: v-bind("mbCustom");
-}
-</style>
-
 <style>
-.tagGroup {
-  margin-top: v-bind(mtCustom);
-  margin-bottom: v-bind(mbCustom);
+.tag-group {
+  --mb-custom: 2rem;
+}
+
+.tag-group {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
 }
 
+.tag-group:empty {
+  display: none;
+}
+
 /* Make tag closer to heading */
-.theme-default-content :is(h1, h3, h4, h5, h6) + div.tagGroup{
+.theme-default-content :is(h1, h3, h4, h5, h6) + div.tag-group {
   margin-top: 0;
-  margin-bottom: 2rem;
+  margin-bottom: var(--mb-custom);
 }
 
 /* Add additional margin due to line border at the bottom of h2 */
-.theme-default-content h2 + div.tagGroup{
+.theme-default-content h2 + div.tag-group {
   margin-top: 0.6rem;
-  margin-bottom: 2rem;
+  margin-bottom: var(--mb-custom);
+}
+</style>
+
+<style>
+/**
+ * NavbarDropdown
+ */
+
+.navbar .tag-group {
+  display: inline-flex;
+  gap: 0.2rem;
+  padding-left: 0.4rem;
+  padding-right: 0.2rem;
+}
+
+.navbar .navbar-item > a .tag-group {
+  padding-left: 0.1rem;
+}
+
+/**
+ * For mobile
+ */
+
+.sidebar .navbar-items .navbar-item .tag-group {
+  display: inline-flex;
+  gap: 0.2rem;
+  padding-left: 0.15rem;
+  padding-right: 0.1rem;
+}
+
+.sidebar
+  .navbar-items
+  .navbar-item
+  :is(.navbar-dropdown-title-mobile, .navbar-dropdown-subtitle)
+  .tag-group {
+  padding-left: 0.4rem;
+  padding-right: 0.1rem;
+}
+
+.sidebar
+  .navbar-items
+  .navbar-item
+  .navbar-dropdown-subitem-wrapper
+  .navbar-dropdown-subitem
+  .tag-group {
+  padding-left: 0.2rem;
+  padding-right: 0;
 }
 </style>

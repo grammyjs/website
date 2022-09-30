@@ -1,6 +1,6 @@
 # Parse Mode Plugin (`parse-mode`)
 
-<TagGroup><Tag type="official"/></TagGroup>
+<TagGroup><Tag type="official" desc="This plugin is published and maintained by grammY"/></TagGroup>
 
 This plugin provides a transformer for setting default `parse_mode`, and a middleware for hydrating `Context` with familiar `reply` variant methods - i.e. `replyWithHTML`, `replyWithMarkdown`, etc.
 

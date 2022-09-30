@@ -1,6 +1,6 @@
 # Hosting: Supabase Edge Functions
 
-<TagGroup><Tag type="deno"/></TagGroup>
+<TagGroup><Tag type="deno" desc="This setup is able to run Deno bots"/></TagGroup>
 
 This guide tells you how you can host your grammY bots on [Supabase](https://supabase.com/).
 

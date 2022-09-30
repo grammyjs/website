@@ -1,6 +1,6 @@
 # Retry API Requests (`auto-retry`)
 
-<TagGroup><Tag type="official"/></TagGroup>
+<TagGroup><Tag type="official" desc="This plugin is published and maintained by grammY"/></TagGroup>
 
 > Consider using the [throttler plugin](./transformer-throttler.md) instead.
 

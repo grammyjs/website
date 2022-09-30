@@ -1,6 +1,6 @@
 # Flood Control (`transformer-throttler`)
 
-<TagGroup><Tag type="official"/></TagGroup>
+<TagGroup><Tag type="official" desc="This plugin is published and maintained by grammY"/></TagGroup>
 
 This plugin enqueues outgoing API requests instance via [Bottleneck](https://github.com/SGrondin/bottleneck) in order to prevent your bot from hitting [rate limits](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this) as described in [this advanced section](../advanced/flood.md) of the documentation.
 

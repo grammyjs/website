@@ -37,6 +37,11 @@
     // See <https://github.com/vuejs/vue-cli/pull/5688>
     "skipLibCheck": true,
     "useUnknownInCatchVariables": false
+    // "allowJs": true
+  },
+  "vueCompilerOptions": {
+    // too buggy. Temporarily disabled for template check
+    "experimentalDisableTemplateSupport": true
   },
   "include": ["**/.vuepress/**/*"],
   "exclude": ["node_modules", ".temp", "lib", "dist"],

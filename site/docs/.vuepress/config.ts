@@ -1,8 +1,9 @@
-import { defaultTheme, defineUserConfig } from "vuepress-vite";
+import { defineUserConfig } from "vuepress-vite";
 import { betterLineBreaks } from "./plugins/better-line-breaks";
 import { currentVersions } from "./plugins/current-versions/plugin";
 import { docsearch } from "./plugins/docsearch";
 import { registerComponents } from "./plugins/registerComponents";
+import { grammyTheme } from "./theme";
 
 export default defineUserConfig({
   locales: {
@@ -29,7 +30,7 @@ export default defineUserConfig({
   },
   shouldPrefetch: true,
 
-  theme: defaultTheme({
+  theme: grammyTheme({
     logo: "/Y.png",
     locales: {
       "/": {
@@ -365,14 +366,56 @@ export default defineUserConfig({
                   {
                     text: "Deno Deploy",
                     link: "/hosting/deno-deploy.html",
+                    favicon: [
+                      {
+                        icon: {
+                          name: "deno",
+                          type: "logo",
+                          color: "black",
+                          colorDark: "white",
+                        },
+                        desc: "This setup is able to run Deno bots",
+                      },
+                    ],
                   },
                   {
                     text: "Supabase Edge Functions",
                     link: "/hosting/supabase.html",
+                    favicon: [
+                      {
+                        icon: {
+                          name: "deno",
+                          type: "logo",
+                          color: "black",
+                          colorDark: "white",
+                        },
+                        desc: "This setup is able to run Deno bots",
+                      },
+                    ],
                   },
                   {
                     text: "Heroku",
                     link: "/hosting/heroku.html",
+                    favicon: [
+                      {
+                        icon: {
+                          name: "deno",
+                          type: "logo",
+                          color: "black",
+                          colorDark: "white",
+                        },
+                        desc: "This setup is able to run Deno bots",
+                      },
+                      {
+                        icon: {
+                          name: "nodedotjs",
+                          type: "logo",
+                          color: "#689f63",
+                          colorDark: "#689f63",
+                        },
+                        desc: "This setup is able to run Node.js bots",
+                      },
+                    ],
                   },
                   {
                     text: "Google Cloud Functions",
@@ -381,6 +424,26 @@ export default defineUserConfig({
                   {
                     text: "Virtual Private Server",
                     link: "/hosting/vps.html",
+                    favicon: [
+                      {
+                        icon: {
+                          name: "deno",
+                          type: "logo",
+                          color: "black",
+                          colorDark: "white",
+                        },
+                        desc: "This setup is able to run Deno bots",
+                      },
+                      {
+                        icon: {
+                          name: "nodedotjs",
+                          type: "logo",
+                          color: "#689f63",
+                          colorDark: "#689f63",
+                        },
+                        desc: "This setup is able to run Node.js bots",
+                      },
+                    ],
                   },
                 ],
               },
@@ -770,7 +833,10 @@ export default defineUserConfig({
         ],
         backToHome: "Putar balik, guys!",
         navbar: [
-          { text: "Panduan", link: "/id/guide/" },
+          {
+            text: "Panduan",
+            link: "/id/guide/",
+          },
           {
             text: "Belajar",
             children: [

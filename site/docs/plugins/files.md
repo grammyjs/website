@@ -1,6 +1,6 @@
 # File Handling Simplified in grammY (`files`)
 
-<TagGroup><Tag type="official"/></TagGroup>
+<TagGroup><Tag type="official" desc="This plugin is published and maintained by grammY"/></TagGroup>
 
 This plugin allows you to easily download files from Telegram servers, and to obtain a URL so you can download the file yourself.
 

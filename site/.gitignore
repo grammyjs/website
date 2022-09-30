@@ -21,3 +21,4 @@ yarn.lock
 
 # dist directory
 dist/
+.prettierrc

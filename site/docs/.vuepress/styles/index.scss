@@ -20,7 +20,11 @@ html:not(.dark) tr:nth-child(2n) code {
   background-color: var(--c-bg-lighter);
 }
 
-.token.string, .token.char, .token.attr-value, .token.regex, .token.variable {
+.token.string,
+.token.char,
+.token.attr-value,
+.token.regex,
+.token.variable {
   color: #6ac0e3;
 }
 
@@ -38,6 +42,29 @@ html:not(.dark) tr:nth-child(2n) code {
 }
 
 // neither hyphenate inline code snippets nor links, we are injeting <wbr> tags there
-code, a {
+code,
+a {
   hyphens: none;
+}
+
+/** 
+* Implement default margin for first heading of a page.
+* The default rule is "h1:first-child", which means it does not work 
+* if there is another element like <img> before them.
+*   
+* For instance the rule is not implemented correctly on
+* https://grammy.dev/guide/ due to image banner at the top of page.
+*/
+
+// Restore margin for first heading
+.theme-default-content :not(h1, h2, h3, h4, h5, h6):first-child + :is(h1, h2, h3, h4, h5, h6) {
+  margin-bottom: 1rem;
+}
+
+// Restore margin after first heading
+.theme-default-content
+  :not(h1, h2, h3, h4, h5, h6):first-child
+  + :is(h1, h2, h3, h4, h5, h6)
+  + :is(p, pre, .custom-container) {
+  margin-top: 2rem;
 }
