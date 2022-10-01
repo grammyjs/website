@@ -313,10 +313,17 @@ onBeforeMount(() => {
 }
 
 .tag .icon svg {
-  display: flex;
+  position: relative;
+  display: inline-flex;
   height: var(--tag-svg-size);
   width: v-bind("svgWidth");
   fill: v-bind("tag.icon.color");
+  vertical-align: middle;
+  top: -0.01rem;
+}
+
+html.dark .tag .icon svg {
+  fill: v-bind("tag.icon.colorDark");
 }
 
 [v-cloak] {
@@ -425,18 +432,27 @@ NavbarDropdown
   display: flex;
 }
 
-.navbar .tag .icon {
+:is(.navbar .sidebar) .tag .icon {
   padding: 0;
   background-color: transparent;
 }
 
 .navbar .tag .icon svg {
-  height: 1.4em;
-  width: 1.4em;
+  height: 0.95rem;
+  width: 0.95rem;
+  top: -0.1rem;
   fill: v-bind("tag.icon.color");
 }
 
-html.dark .navbar .tag .icon svg {
+.navbar h4.navbar-dropdown-subtitle > span .tag .icon svg {
+  top: -0.3rem;
+}
+
+.navbar h4.navbar-dropdown-subtitle > a .tag .icon svg {
+  top: -0.13rem;
+}
+
+html.dark :is(.navbar .sidebar) .tag .icon svg {
   fill: v-bind("tag.icon.colorDark");
 }
 
@@ -468,6 +484,21 @@ html.dark
   .tag
   svg {
   fill: v-bind("tag.icon.colorDark");
+}
+
+/**
+
+For mobile devices
+*/
+
+.sidebar .tag .icon svg {
+  width: 1rem;
+  height: 1rem;
+  top: -0.15rem;
+}
+
+.sidebar .navbar-dropdown-wrapper .navbar-dropdown-subtitle > span .tag .icon svg {
+  top: -0.08rem;
 }
 
 /**

@@ -44,8 +44,6 @@ const handleDropdown = (e: UIEvent): void => {
 };
 
 const isLastItemOfArray = (item: unknown, arr: unknown[]): boolean => arr[arr.length - 1] === item;
-
-const inlineFlex = { display: "inline-flex" };
 </script>
 
 <template>
@@ -90,10 +88,9 @@ const inlineFlex = { display: "inline-flex" };
                     child.children.length === 0 &&
                     (open = false)
                 "
-                display="inline-flex"
               />
-              <span v-else :style="inlineFlex" v-once>
-                <span>{{ child.text }}</span>
+              <span v-else>
+                {{ child.text }}
                 <TagGroup v-if="child.favicon">
                   <Tag v-for="value in child.favicon" :item="value" />
                 </TagGroup>
@@ -113,7 +110,6 @@ const inlineFlex = { display: "inline-flex" };
                       isLastItemOfArray(child, item.children) &&
                       (open = false)
                   "
-                  display="inline-flex"
                 />
               </li>
             </ul>
@@ -123,7 +119,6 @@ const inlineFlex = { display: "inline-flex" };
             <AutoLink
               :item="child"
               @focusout="isLastItemOfArray(child, item.children) && (open = false)"
-              display="inline-flex"
             />
           </template>
         </li>

@@ -85,9 +85,6 @@ const isActive = computed(() => {
   }
   return isActiveInSubpath.value;
 });
-
-//  css {display: inline-flex}, etc
-const tagStyle = props.display ? { display: props.display } : {};
 </script>
 
 <template>
@@ -97,13 +94,14 @@ const tagStyle = props.display ? { display: props.display } : {};
     :to="item.link"
     :aria-label="linkAriaLabel"
     v-bind="$attrs"
-    :style="tagStyle"
   >
     <slot name="before" />
-    {{ item.text }}
-    <TagGroup v-if="item.favicon">
-      <Tag v-for="value in item.favicon" :item="value" />
-    </TagGroup>
+    <span>
+      {{ item.text }}
+      <TagGroup v-if="item.favicon">
+        <Tag v-for="value in item.favicon" :item="value" />
+      </TagGroup>
+    </span>
     <slot name="after" />
   </RouterLink>
   <a
@@ -114,14 +112,15 @@ const tagStyle = props.display ? { display: props.display } : {};
     :target="linkTarget"
     :aria-label="linkAriaLabel"
     v-bind="$attrs"
-    :style="tagStyle"
   >
     <slot name="before" />
-    {{ item.text }}
-    <TagGroup v-if="item.favicon">
-      <Tag v-for="value in item.favicon" :item="value" />
-    </TagGroup>
-    <AutoLinkExternalIcon v-if="isBlankTarget" />
+    <span>
+      {{ item.text }}
+      <TagGroup v-if="item.favicon">
+        <Tag v-for="value in item.favicon" :item="value" />
+      </TagGroup>
+      <AutoLinkExternalIcon v-if="isBlankTarget" />
+    </span>
     <slot name="after" />
   </a>
 </template>
