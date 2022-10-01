@@ -39,6 +39,7 @@ if (_props.item) {
   props = _props;
 }
 
+const element = props.link ? "a" : "div";
 let showTag = ref();
 let showIcon = ref();
 let showText = ref();
@@ -271,7 +272,7 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <a :href="link" v-if="showTag" class="tag" v-cloak>
+  <component :is="element" :href="link" v-if="showTag" class="tag" v-cloak>
     <div
       class="tag"
       :class="{ active: isActive }"
@@ -291,7 +292,7 @@ onBeforeMount(() => {
         tag.text.content
       }}</span>
     </div>
-  </a>
+  </component>
 </template>
 
 <style>
@@ -426,7 +427,7 @@ html.dark .theme-default-content a.tag[href] .tag:hover .text {
 NavbarDropdown
 */
 
-.navbar-dropdown-wrapper .navbar-dropdown .navbar-dropdown-item a.tag {
+.navbar-dropdown-wrapper .navbar-dropdown .navbar-dropdown-item :is(a.tag, div.tag) {
   padding-left: 0;
   padding-right: 0;
   display: flex;
