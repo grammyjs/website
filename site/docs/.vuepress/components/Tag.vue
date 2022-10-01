@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, type PropType } from "vue";
+import { onBeforeMount, ref, type PropType } from "vue";
 import type { Favicon } from "../types/shared";
 
 const _props = defineProps({
@@ -189,10 +189,10 @@ if (tag.text.content) {
     showIcon.value = showTag.value ?? true;
     showText.value = showTag.value ?? true;
     showTag.value = showTag.value ?? true;
-  }, 1);
+  }, 1500);
 }
 
-onMounted(() => {
+onBeforeMount(() => {
   async function loadTag() {
     let result: Response;
     let noIcon = false;
