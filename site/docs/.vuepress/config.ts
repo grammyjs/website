@@ -253,14 +253,56 @@ export default defineUserConfig({
                   {
                     text: "Console Time",
                     link: "/plugins/console-time.html",
+                    favicon: [
+                      {
+                        desc: "This plugin is compatible with Node.js",
+                        icon: {
+                          name: "nodedotjs",
+                          type: "logo",
+                          color: "#689f63",
+                          colorDark: "#689f63",
+                        },
+                      },
+                    ],
                   },
                   {
                     text: "Useful Middleware",
                     link: "/plugins/middlewares.html",
+                    favicon: [
+                      {
+                        desc: "This plugin is compatible with Node.js",
+                        icon: {
+                          name: "nodedotjs",
+                          type: "logo",
+                          color: "#689f63",
+                          colorDark: "#689f63",
+                        },
+                      },
+                    ],
                   },
                   {
                     text: "Autoquote",
                     link: "/plugins/autoquote.html",
+                    favicon: [
+                      {
+                        desc: "This plugin is compatible with Deno",
+                        icon: {
+                          name: "deno",
+                          type: "logo",
+                          color: "black",
+                          colorDark: "white",
+                        },
+                      },
+                      {
+                        desc: "This plugin is compatible with Node.js",
+                        icon: {
+                          name: "nodedotjs",
+                          type: "logo",
+                          color: "#689f63",
+                          colorDark: "#689f63",
+                        },
+                      },
+                    ],
                   },
                   {
                     text: "[Submit your PR!]",
