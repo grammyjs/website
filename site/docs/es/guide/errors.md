@@ -8,15 +8,15 @@ next: ./inline-queries.md
 Cada uno de los errores causados por tu middleware será capturado por grammY.
 Deberías instalar un manejador de errores personalizado para manejar los errores.
 
-Lo más importante, esta sección te enseñará [cómo atrapar errores](#catching-errors) que pueden ser lanzados.
+Lo más importante, esta sección te enseñará [cómo atrapar errores](#atrapando-errores) que pueden ser lanzados.
 
 Después, veremos los tres tipos de errores que tu bot puede encontrar.
 
-| Nombre                                   | Propósito                                                                                                                 |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| [`BotError`](#the-boterror-object)       | Objeto de error que envuelve cualquier error lanzado en su middleware (por ejemplo, los dos errores siguientes)           |
-| [`GrammyError`](#the-grammyerror-object) | Lanzado si el servidor de la API del Bot devuelve `ok: false`, indicando que su solicitud de la API no era válida y falló |
-| [`HttpError`](#the-httperror-object)     | Se lanza si no se puede acceder al servidor de la API del Bot                                                             |
+| Nombre                                  | Propósito                                                                                                                 |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| [`BotError`](#el-objeto-boterror)       | Objeto de error que envuelve cualquier error lanzado en su middleware (por ejemplo, los dos errores siguientes)           |
+| [`GrammyError`](#el-objeto-grammyerror) | Lanzado si el servidor de la API del Bot devuelve `ok: false`, indicando que su solicitud de la API no era válida y falló |
+| [`HttpError`](#el-objeto-httperror)     | Se lanza si no se puede acceder al servidor de la API del Bot                                                             |
 
 Un mecanismo más avanzado de manejo de errores se puede encontrar [aquí abajo](#error-boundaries).
 
@@ -87,7 +87,7 @@ El objeto de error contiene información sobre la razón por la que la petición
 
 Raramente verás este tipo de error, a menos que tu infraestructura de red sea inestable, o que el servidor del Bot API de tu bot esté temporalmente fuera de línea.
 
-> Ten en cuenta que si se puede contactar con el servidor de la API del bot, pero devuelve `ok: false` para una llamada a un método determinado, se lanza un [`GrammyError`](../guide/errors.md#the-grammyerror-object) en su lugar.
+> Ten en cuenta que si se puede contactar con el servidor de la API del bot, pero devuelve `ok: false` para una llamada a un método determinado, se lanza un [`GrammyError`](../guide/errors.md#el-objeto-grammyerror) en su lugar.
 
 Consulta la clase `HttpError` en la [Referencia de la API de grammY](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/HttpError).
 
@@ -142,7 +142,7 @@ En el ejemplo anterior, el `boundaryHandler` será invocado para
 1. todos los middlewares que se pasan a `bot.errorBoundary` después de `boundaryHandler` (es decir, `Q`), y
 2. todos los middlewares que se instalan en las instancias de compositor instaladas posteriormente (es decir, `X`, `Y` y `Z`).
 
-> En cuanto al punto 2, es posible que desee saltar a [la explicación avanzada](../advanced/middleware.md) de middleware para aprender cómo funciona el encadenamiento en grammY.
+> En cuanto al punto 2, es posible que desee saltar a la [explicación avanzada](../advanced/middleware.md) de middleware para aprender cómo funciona el encadenamiento en grammY.
 
 También se puede aplicar un límite de error a un compositor sin llamar a `bot.errorBoundary`:
 

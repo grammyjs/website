@@ -38,7 +38,7 @@ bot.use(
 ### `ignoreOld`
 
 Ignores old updates, useful when bot has been down for a while.
-You can optionaly specify the timeout in seconds which defaults to `5 * 60`.
+You can optionally specify the timeout in seconds which defaults to `5 * 60`.
 
 ### `onlyAdmin`
 

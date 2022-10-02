@@ -1,6 +1,5 @@
 ---
 prev: ./games.md
-next: /advanced/
 ---
 
 # Long Polling vs. Webhooks
@@ -9,7 +8,7 @@ There are two ways how your bot can receive messages from the Telegram servers.
 They are called _long polling_ and _webhooks_.
 grammY supports both of these two ways, while long polling is the default.
 
-This section first describes what long polling and webhooks actually are, and in turn outlines some of the advantages and disadvantes of using one or the other deployment method.
+This section first describes what long polling and webhooks actually are, and in turn outlines some of the advantages and disadvantages of using one or the other deployment method.
 It will also cover how to use them with grammY.
 
 ## Introduction
@@ -71,13 +70,15 @@ Asked about some ice cream of your favorite kind, the employee smiles at you and
 In fact, you don't get any response at all.
 So you decide to wait, firmly smiling back.
 And you wait.
-And wait.
-Some hours before the next sunrise, a truck of a local food delivery company arrives and brings a couple of large boxes into the parlor's storage room.
-They read_ ice cream _on the outside.
+And wait._
+
+_Some hours before the next sunrise, a truck of a local food delivery company arrives and brings a couple of large boxes into the parlor's storage room.
+They read **ice cream** on the outside.
 The employee finally starts to move again.
 "Of course we have salted caramel!
-Two scoops with sprinkles, the usual?"
-As if nothing had happened, you enjoy your ice cream while leaving the world's most unrealistic ice cream parlor._
+Two scoops with sprinkles, the usual?"_
+
+_As if nothing had happened, you enjoy your ice cream while leaving the world's most unrealistic ice cream parlor._
 
 ```asciiart:no-line-numbers
 ______________                                   _____________

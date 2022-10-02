@@ -4,9 +4,6 @@ import { currentVersions } from "./plugins/current-versions/plugin";
 import { docsearch } from "./plugins/docsearch";
 
 export default defineUserConfig({
-  title: "grammY",
-  description: "The Telegram Bot Framework.",
-
   locales: {
     "/": {
       lang: "en-US",
@@ -17,6 +14,11 @@ export default defineUserConfig({
       lang: "es-ES",
       title: "grammY",
       description: "El Framework de Bots para Telegram.",
+    },
+    "/id/": {
+      lang: "id",
+      title: "grammY",
+      description: "Framework Bot Telegram.",
     },
     "/zh/": {
       lang: "zh-CN",
@@ -30,6 +32,7 @@ export default defineUserConfig({
     logo: "/Y.png",
     locales: {
       "/": {
+        selectLanguageText: "Languages",
         selectLanguageName: "English",
         editLinkText: "Edit this page on GitHub",
         notFound: [
@@ -185,6 +188,10 @@ export default defineUserConfig({
                 text: "Official",
                 children: [
                   {
+                    text: "Conversations (conversations)",
+                    link: "/plugins/conversations.html",
+                  },
+                  {
                     text: "Interactive Menus (menu)",
                     link: "/plugins/menu.html",
                   },
@@ -217,6 +224,10 @@ export default defineUserConfig({
                     link: "/plugins/files.html",
                   },
                   {
+                    text: "Internationalization (i18n)",
+                    link: "/plugins/i18n.html",
+                  },
+                  {
                     text: "Internationalization (fluent)",
                     link: "/plugins/fluent.html",
                   },
@@ -232,10 +243,6 @@ export default defineUserConfig({
                     text: "Parse Mode (parse-mode)",
                     link: "/plugins/parse-mode.html",
                   },
-                  {
-                    text: "Command Filtering (command-filter)",
-                    link: "/plugins/command-filter.html",
-                  },
                 ],
               },
               {
@@ -250,8 +257,12 @@ export default defineUserConfig({
                     link: "/plugins/middlewares.html",
                   },
                   {
+                    text: "Autoquote",
+                    link: "/plugins/autoquote.html",
+                  },
+                  {
                     text: "[Submit your PR!]",
-                    link: "/plugins/#submitting-your-own-package-to-the-docs",
+                    link: "/plugins/#create-your-own-plugins",
                   },
                 ],
               },
@@ -270,11 +281,6 @@ export default defineUserConfig({
                   {
                     text: "Example Bots Repository",
                     link: "https://github.com/grammyjs/examples",
-                  },
-                  {
-                    text: "Live Browser Demo",
-                    link: "/demo/",
-                    activeMatch: "^/demo/$",
                   },
                 ],
               },
@@ -543,12 +549,12 @@ export default defineUserConfig({
                 text: "Oficial",
                 children: [
                   {
-                    text: "Menus Interactivos (menu)",
-                    link: "/es/plugins/menu.html",
-                  },
-                  {
                     text: "Conversaciones (conversations)",
                     link: "/es/plugins/conversations.html",
+                  },
+                  {
+                    text: "Menus Interactivos (menu)",
+                    link: "/es/plugins/menu.html",
                   },
                   {
                     text: "Preguntas sin estado (stateless-question)",
@@ -579,6 +585,10 @@ export default defineUserConfig({
                     link: "/es/plugins/files.html",
                   },
                   {
+                    text: "Internacionalización (i18n)",
+                    link: "/es/plugins/i18n.html",
+                  },
+                  {
                     text: "Internacionalización (fluent)",
                     link: "/es/plugins/fluent.html",
                   },
@@ -594,10 +604,6 @@ export default defineUserConfig({
                     text: "Modo de parsear (parse-mode)",
                     link: "/es/plugins/parse-mode.html",
                   },
-                  {
-                    text: "Filtro de comandos (command-filter)",
-                    link: "/es/plugins/command-filter.html",
-                  },
                 ],
               },
               {
@@ -608,13 +614,16 @@ export default defineUserConfig({
                     link: "/es/plugins/console-time.html",
                   },
                   {
-                    text: "Middleware útil",
+                    text: "Middlewares de utilidad",
                     link: "/es/plugins/middlewares.html",
                   },
                   {
+                    text: "Citar automáticamente",
+                    link: "/es/plugins/autoquote.html",
+                  },
+                  {
                     text: "[¡Envíe su PR!]",
-                    link:
-                      "/es/plugins/#submitting-your-own-package-to-the-docs",
+                    link: "/es/plugins/#crear-tus-propios-plugins",
                   },
                 ],
               },
@@ -633,11 +642,6 @@ export default defineUserConfig({
                   {
                     text: "Ejemplo de Repositorio de Bots",
                     link: "https://github.com/grammyjs/examples",
-                  },
-                  {
-                    text: "Demostración de navegador en vivo",
-                    link: "/es/demo/",
-                    activeMatch: "^/es/demo/$",
                   },
                 ],
               },
@@ -711,7 +715,7 @@ export default defineUserConfig({
                 children: [
                   {
                     text: "Comparativa",
-                    link: "/hosting/comparison.html",
+                    link: "/es/hosting/comparison.html",
                   },
                 ],
               },
@@ -724,7 +728,7 @@ export default defineUserConfig({
                   },
                   {
                     text: "Supabase Edge Functions",
-                    link: "/hosting/supabase.html",
+                    link: "/es/hosting/supabase.html",
                   },
                   {
                     text: "Heroku",
@@ -744,6 +748,370 @@ export default defineUserConfig({
           },
           {
             text: "Referencia de API",
+            link: "https://doc.deno.land/https://deno.land/x/grammy/mod.ts",
+          },
+        ],
+      },
+      "/id/": {
+        selectLanguageText: "Bahasa",
+        selectLanguageName: "Indonesia",
+        editLinkText: "Edit halaman ini di GitHub",
+        contributorsText: "Kontributor",
+        lastUpdatedText: "Terakhir diperbarui",
+        notFound: [
+          "Halaman tidak ditemukan.",
+          "Zonk!",
+          "Maaf, tidak ada apa-apa di sini.",
+          "Perjalanan ini... Terasa sangat menyedihkan~",
+          "Hey, Google. Tunjukkan jalan ke halaman yang saya cari!",
+          "Belum beruntung. Coba lagi.",
+          "Pat nol pat peg not fon.",
+        ],
+        backToHome: "Putar balik, guys!",
+        navbar: [
+          { text: "Panduan", link: "/id/guide/" },
+          {
+            text: "Belajar",
+            children: [
+              {
+                text: "Panduan",
+                children: [
+                  {
+                    text: "Gambaran Umum",
+                    link: "/id/guide/",
+                    activeMatch: "^/id/guide/$",
+                  },
+                  {
+                    text: "Pengenalan",
+                    link: "/id/guide/introduction.html",
+                  },
+                  {
+                    text: "Memulai",
+                    link: "/id/guide/getting-started.html",
+                  },
+                  {
+                    text: "Mengirim dan Menerima Pesan",
+                    link: "/id/guide/basics.html",
+                  },
+                  {
+                    text: "Context",
+                    link: "/id/guide/context.html",
+                  },
+                  {
+                    text: "API Bot",
+                    link: "/id/guide/api.html",
+                  },
+                  {
+                    text: "Filter Query dan bot.on()",
+                    link: "/id/guide/filter-queries.html",
+                  },
+                  {
+                    text: "Command",
+                    link: "/id/guide/commands.html",
+                  },
+                  {
+                    text: "Middleware",
+                    link: "/id/guide/middleware.html",
+                  },
+                  {
+                    text: "Menangani Error",
+                    link: "/id/guide/errors.html",
+                  },
+                  {
+                    text: "Inline Query",
+                    link: "/id/guide/inline-queries.html",
+                  },
+                  {
+                    text: "Menangani File",
+                    link: "/id/guide/files.html",
+                  },
+                  {
+                    text: "Game",
+                    link: "/id/guide/games.html",
+                  },
+                  {
+                    text: "Long Polling vs. Webhook",
+                    link: "/id/guide/deployment-types.html",
+                  },
+                ],
+              },
+              {
+                text: "Tingkat Lanjut",
+                children: [
+                  {
+                    text: "Gambaran Umum",
+                    link: "/id/advanced/",
+                    activeMatch: "^/id/advanced/$",
+                  },
+                  {
+                    text: "Membangkitkan Middleware",
+                    link: "/id/advanced/middleware.html",
+                  },
+                  {
+                    text: "Peningkatan I: Codebase Skala Besar",
+                    link: "/id/advanced/structuring.html",
+                  },
+                  {
+                    text: "Peningkatan II: Beban Kerja Tinggi",
+                    link: "/id/advanced/scaling.html",
+                  },
+                  {
+                    text: "Peningkatan III: Reliabilitas",
+                    link: "/id/advanced/reliability.html",
+                  },
+                  {
+                    text: "Peningkatan IV: Limitasi Flood",
+                    link: "/id/advanced/flood.html",
+                  },
+                  {
+                    text: "Transformer API Bot",
+                    link: "/id/advanced/transformers.html",
+                  },
+                  {
+                    text: "Dukungan Proxy",
+                    link: "/id/advanced/proxy.html",
+                  },
+                  {
+                    text: "Daftar Periksa Deployment",
+                    link: "/id/advanced/deployment.html",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            text: "Plugin",
+            children: [
+              {
+                text: "Pendahuluan",
+                children: [
+                  {
+                    text: "Tentang Plugin",
+                    link: "/id/plugins/",
+                    activeMatch: "^/id/plugins/$",
+                  },
+                  {
+                    text: "Cara Membuat Plugin",
+                    link: "/id/plugins/guide.html",
+                  },
+                ],
+              },
+              {
+                text: "Bawaan",
+                children: [
+                  {
+                    text: "Session dan Penyimpanan Data",
+                    link: "/id/plugins/session.html",
+                  },
+                  {
+                    text: "Keyboard Custom dan Inline",
+                    link: "/id/plugins/keyboard.html",
+                  },
+                ],
+              },
+              {
+                text: "Resmi",
+                children: [
+                  {
+                    text: "Percakapan (conversations)",
+                    link: "/id/plugins/conversations.html",
+                  },
+                  {
+                    text: "Menu Interaktif (menu)",
+                    link: "/id/plugins/menu.html",
+                  },
+                  {
+                    text: "Stateless Question (stateless-question)",
+                    link: "/id/plugins/stateless-question.html",
+                  },
+                  {
+                    text: "Concurrency (runner)",
+                    link: "/id/plugins/runner.html",
+                  },
+                  {
+                    text: "Hidrasi (hydrate)",
+                    link: "/id/plugins/hydrate.html",
+                  },
+                  {
+                    text: "Pengulang Request Api (auto-retry)",
+                    link: "/id/plugins/auto-retry.html",
+                  },
+                  {
+                    text: "Kontrol Flood (transformer-throttler)",
+                    link: "/id/plugins/transformer-throttler.html",
+                  },
+                  {
+                    text: "Rate Limit Pengguna (ratelimiter)",
+                    link: "/id/plugins/ratelimiter.html",
+                  },
+                  {
+                    text: "File (files)",
+                    link: "/id/plugins/files.html",
+                  },
+                  {
+                    text: "Internationalization (i18n)",
+                    link: "/id/plugins/i18n.html",
+                  },
+                  {
+                    text: "Internationalization (fluent)",
+                    link: "/id/plugins/fluent.html",
+                  },
+                  {
+                    text: "Router (router)",
+                    link: "/id/plugins/router.html",
+                  },
+                  {
+                    text: "Emoji (emoji)",
+                    link: "/id/plugins/emoji.html",
+                  },
+                  {
+                    text: "Parse Mode (parse-mode)",
+                    link: "/id/plugins/parse-mode.html",
+                  },
+                ],
+              },
+              {
+                text: "Pihak Ketiga",
+                children: [
+                  {
+                    text: "Console Time",
+                    link: "/id/plugins/console-time.html",
+                  },
+                  {
+                    text: "Kumpulan Middleware yang Berguna",
+                    link: "/id/plugins/middlewares.html",
+                  },
+                  {
+                    text: "Autoquote",
+                    link: "/id/plugins/autoquote.html",
+                  },
+                  {
+                    text: "[Kirim PR-mu!]",
+                    link: "/id/plugins/#buat-plugin-mu-sendiri",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            text: "Contoh",
+            children: [
+              {
+                text: "Contoh",
+                children: [
+                  {
+                    text: "Awesome grammY",
+                    link: "https://github.com/grammyjs/awesome-grammY",
+                  },
+                  {
+                    text: "Contoh Repositori Bot",
+                    link: "https://github.com/grammyjs/examples",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            text: "Sumber Daya",
+            children: [
+              {
+                text: "grammY",
+                children: [
+                  {
+                    text: "Tentang grammY",
+                    link: "/id/resources/about.html",
+                  },
+                  {
+                    text: "Chat Komunitas (Inggris)",
+                    link: "https://t.me/grammyjs",
+                  },
+                  {
+                    text: "Chat Komunitas (Rusia)",
+                    link: "https://t.me/grammyjs_ru",
+                  },
+                  {
+                    text: "Berita",
+                    link: "https://t.me/grammyjs_news",
+                  },
+                  {
+                    text: "Twitter",
+                    link: "https://twitter.com/grammy_js",
+                  },
+                  {
+                    text: "FAQ",
+                    link: "/id/resources/faq.html",
+                  },
+                  {
+                    text: "Perbandingan dengan Framework Lainnya",
+                    link: "/id/resources/comparison.html",
+                  },
+                ],
+              },
+              {
+                text: "Telegram",
+                children: [
+                  {
+                    text: "Pendahuluan untuk Developer",
+                    link: "https://core.telegram.org/bots",
+                  },
+                  {
+                    text: "FAQ tentang Bot",
+                    link: "https://core.telegram.org/bots/faq",
+                  },
+                  {
+                    text: "Referensi API Bot",
+                    link: "https://core.telegram.org/bots/api",
+                  },
+                  {
+                    text: "Contoh Update",
+                    link:
+                      "https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            text: "Hosting",
+            children: [
+              {
+                text: "Gambaran Umum",
+                children: [
+                  {
+                    text: "Perbandingan",
+                    link: "/id/hosting/comparison.html",
+                  },
+                ],
+              },
+              {
+                text: "Tutorial",
+                children: [
+                  {
+                    text: "Deno Deploy",
+                    link: "/id/hosting/deno-deploy.html",
+                  },
+                  {
+                    text: "Supabase Edge Functions",
+                    link: "/id/hosting/supabase.html",
+                  },
+                  {
+                    text: "Heroku",
+                    link: "/id/hosting/heroku.html",
+                  },
+                  {
+                    text: "Google Cloud Functions",
+                    link: "/hosting/gcf.html",
+                  },
+                  {
+                    text: "Virtual Private Server",
+                    link: "/id/hosting/vps.html",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            text: "Referensi API",
             link: "https://doc.deno.land/https://deno.land/x/grammy/mod.ts",
           },
         ],
@@ -907,7 +1275,11 @@ export default defineUserConfig({
                 text: "官方维护",
                 children: [
                   {
-                    text: "互动菜单（menu）",
+                    text: "对话 (conversations)",
+                    link: "/zh/plugins/conversations.html",
+                  },
+                  {
+                    text: "互动菜单 (menu)",
                     link: "/zh/plugins/menu.html",
                   },
                   {
@@ -939,6 +1311,10 @@ export default defineUserConfig({
                     link: "/zh/plugins/files.html",
                   },
                   {
+                    text: "国际化 (i18n)",
+                    link: "/zh/plugins/i18n.html",
+                  },
+                  {
                     text: "国际化 (fluent)",
                     link: "/zh/plugins/fluent.html",
                   },
@@ -954,10 +1330,6 @@ export default defineUserConfig({
                     text: "解析模式 (parse-mode)",
                     link: "/zh/plugins/parse-mode.html",
                   },
-                  {
-                    text: "指令过滤 (command-fiter)",
-                    link: "/zh/plugins/command-filter.html",
-                  },
                 ],
               },
               {
@@ -972,8 +1344,12 @@ export default defineUserConfig({
                     link: "/zh/plugins/middlewares.html",
                   },
                   {
+                    text: "自动引用",
+                    link: "/zh/plugins/autoquote.html",
+                  },
+                  {
                     text: "[等待你的 PR!]",
-                    link: "/zh/plugins/#向文档提交你自己的插件",
+                    link: "/zh/plugins/#创建你自己的插件",
                   },
                 ],
               },
@@ -992,11 +1368,6 @@ export default defineUserConfig({
                   {
                     text: "示例 Bots 仓库",
                     link: "https://github.com/grammyjs/examples",
-                  },
-                  {
-                    text: "在线 Demo",
-                    link: "/zh/demo/",
-                    activeMatch: "^/zh/demo/$",
                   },
                 ],
               },
@@ -1125,6 +1496,10 @@ export default defineUserConfig({
       "/zh/": {
         placeholder: "搜索文档",
         translations: { button: { buttonText: "搜索文档" } },
+      },
+      "/id/": {
+        placeholder: "Cari",
+        translations: { button: { buttonText: "Cari" } },
       },
     }),
     betterLineBreaks(),

@@ -72,7 +72,7 @@ bot.on("::email"); // mensajes o publicaciones de canales con email en texto o p
 ```
 
 Si se omite el valor _first_, se pueden obtener tanto los mensajes como los mensajes del canal.
-[Recuerde](./context.md#available-actions) que `ctx.msg` le da acceso tanto a los mensajes como a las publicaciones del canal, lo que coincida con la consulta.
+[Recuerde](./context.md#acciones-disponibles) que `ctx.msg` le da acceso tanto a los mensajes como a las publicaciones del canal, lo que coincida con la consulta.
 
 Si se omite el valor _segundo_, se obtiene acceso tanto a las entidades como a los subtítulos.
 Puede omitir tanto la primera como la segunda parte al mismo tiempo.
@@ -190,7 +190,7 @@ Es técnicamente posible combinar consultas de filtro a fórmulas más complicad
 
 ```ts
 bot
-  // Coincide con todas las publicaciones del canal y los mensajes reenviados ...
+  // Coincide con todas las publicaciones del canal o los mensajes reenviados ...
   .on(["channel_post", ":forward_date"])
   // ... que contengan texto ...
   .on(":text")
@@ -204,7 +204,7 @@ Como ejemplo, puede detectar que `ctx.msg.text` es una propiedad necesaria para 
 ## Consejos útiles
 
 Aquí hay algunas características menos conocidas de las consultas de filtro que pueden ser útiles.
-Algunas de ellas son un poco avanzadas, así que no dudes en pasar a [la siguiente sección](./commands.md).
+Algunas de ellas son un poco avanzadas, así que no dudes en pasar a la [siguiente sección](./commands.md).
 
 ### Actualizaciones de los miembros del chat
 

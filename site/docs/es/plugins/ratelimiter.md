@@ -1,17 +1,17 @@
 # Usuarios con límite de velocidad (`ratelimiter`)
 
-rateLimiter es un middleware de limitación de tasa para los bots de Telegram hechos con los frameworks de bots grammY o [Telegraf](https://github.com/telegraf/telegraf).
+ratelimiter es un middleware de limitación de tasa para los bots de Telegram hechos con los frameworks de bots grammY o [Telegraf](https://github.com/telegraf/telegraf).
 En términos simples, es un plugin que te ayuda a desviar el spam pesado en tus bots.
-Para entender mejor rateLimiter, puedes echar un vistazo a la siguiente ilustración:
+Para entender mejor ratelimiter, puedes echar un vistazo a la siguiente ilustración:
 
-![El papel de rateLimiter para desviar el spam](/rateLimiter-role.png)
+![El papel de ratelimiter para desviar el spam](/ratelimiter-role.png)
 
 ## ¿Cómo funciona exactamente?
 
-En circunstancias normales, cada solicitud será procesada y respondida por su bot, lo que significa que hacer spam no será tan difícil. ¡Cada usuario puede enviar múltiples peticiones por segundo y tu script tiene que procesar cada petición, pero ¿cómo puedes detenerlo? con rateLimiter!
+En circunstancias normales, cada solicitud será procesada y respondida por su bot, lo que significa que hacer spam no será tan difícil. ¡Cada usuario puede enviar múltiples peticiones por segundo y tu script tiene que procesar cada petición, pero ¿cómo puedes detenerlo? con ratelimiter!
 
 ::: warning Limitando los usuarios, no los servidores de Telegram.
-Debes tener en cuenta que este paquete **NO** limita la tasa de las solicitudes entrantes de los servidores de telegramas, en su lugar, rastrea las solicitudes entrantes por `from.id` y las descarta a su llegada para que no se añada más carga de procesamiento a tus servidores.
+Debes tener en cuenta que este paquete **NO** limita la tasa de solicitudes entrantes de los servidores de Telegram, en su lugar, rastrea las solicitudes entrantes por `from.id` y las descarta a su llegada, por lo que no se añade más carga de procesamiento a tus servidores.
 :::
 
 ## Personalización
@@ -32,21 +32,21 @@ El `MEMORY_STORE` o el seguimiento en memoria es adecuado para la mayoría de lo
 Por eso también se proporciona la opción Redis.
 Puedes pasar un cliente Redis desde [ioredis](https://github.com/luin/ioredis) o [redis](https://deno.land/x/redis) en caso de que uses deno.
 En realidad, cualquier controlador de Redis que implemente los métodos `incr` y `pexpire` debería funcionar bien.
-rateLimiter es agnóstico al controlador.
+ratelimiter es agnóstico al controlador.
 
-> Nota: Debe tener redis-server **2.6.0** y superior en su servidor para utilizar el cliente de almacenamiento Redis con rateLimiter.
+> Nota: Debe tener redis-server **2.6.0** y superior en su servidor para utilizar el cliente de almacenamiento Redis con ratelimiter.
 > Las versiones anteriores de Redis no son compatibles.
 
 ## Cómo utilizarlo
 
-Hay dos maneras de utilizar rateLimiter:
+Hay dos maneras de utilizar ratelimiter:
 
-- Aceptando los valores por defecto ([Configuración por defecto](#default-configuration)).
-- Pasando un objeto personalizado que contenga sus ajustes ([Configuración manual](#manual-configuration)).
+- Aceptando los valores por defecto ([Configuración por defecto](#configuración-por-defecto)).
+- Pasando un objeto personalizado que contenga sus ajustes ([Configuración manual](#configuración-manual)).
 
 ### Configuración por defecto
 
-Este fragmento demuestra la forma más sencilla de utilizar rateLimiter, que es aceptar el comportamiento por defecto:
+Este fragmento demuestra la forma más sencilla de utilizar ratelimiter, que es aceptar el comportamiento por defecto:
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
@@ -98,7 +98,6 @@ bot.use(
   limit({
     // Permitir que sólo se manejen 3 mensajes cada 2 segundos.
     timeFrame: 2000,
-
     limit: 3,
 
     // "MEMORY_STORE" es el valor por defecto. Si no quieres usar Redis, no pases storageClient en absoluto.
@@ -130,7 +129,6 @@ bot.use(
   limit({
     // Permitir que sólo se manejen 3 mensajes cada 2 segundos.
     timeFrame: 2000,
-
     limit: 3,
 
     // "MEMORY_STORE" es el valor por defecto. Si no quieres usar Redis, no pases storageClient en absoluto.
@@ -161,7 +159,6 @@ bot.use(
   limit({
     // Permitir que sólo se manejen 3 mensajes cada 2 segundos.
     timeFrame: 2000,
-
     limit: 3,
 
     // "MEMORY_STORE" es el valor por defecto. Si no quieres usar Redis, no pases storageClient en absoluto.
@@ -182,9 +179,8 @@ bot.use(
 </CodeGroupItem>
 </CodeGroup>
 
-Como puedes ver en el ejemplo anterior, cada usuario puede enviar 3 peticiones cada 2 segundos.
 Si dicho usuario envía más peticiones, el bot responde con _Por favor, absténgase de enviar demasiadas peticiones_.
-Esa petición no viajará más y morirá inmediatamente ya que no llamamos a [next()](../guide/middleware.md#the-middleware-stack) en el middleware.
+Esa petición no viajará más allá y muere inmediatamente ya que no llamamos a [next()](../guide/middleware.md#the-middleware-stack) en el middleware.
 
 > Nota: Para evitar inundar los servidores de Telegram, `onLimitExceeded` sólo se ejecuta una vez en cada `timeFrame`.
 
@@ -252,5 +248,5 @@ En este ejemplo, he utilizado `chat.id` como clave única para la limitación de
 ## Resumen del plugin
 
 - Nombre: `ratelimitador`
-- Fuente: <https://github.com/grammyjs/rateLimiter>
-- Referencia: <https://doc.deno.land/https://deno.land/x/grammy_ratelimiter/rateLimiter.ts>
+- Fuente: <https://github.com/grammyjs/ratelimiter>
+- Referencia: <https://doc.deno.land/https://deno.land/x/grammy_ratelimiter/mod.ts>

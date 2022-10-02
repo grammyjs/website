@@ -4,6 +4,12 @@
 它有一个非常强大和优雅的语法，可以让任何人写出高效和完全可理解的翻译。
 这个插件利用了这个惊人的本地化系统，使得由 grammY 驱动的 bot 能够流畅地进行高质量的翻译。
 
+::: tip 不要困惑
+不要将它与 [i18n](./i18n.md) 混淆。
+
+[i18n](./i18n.md) 是这个插件的改进版，它可以在 Deno 和 Node.js 上使用。
+:::
+
 ## 初始化 Fluent
 
 第一件事是初始化一个 Fluent 实例：
@@ -76,16 +82,14 @@ welcome =
 但首先，我们需要配置 grammY 使用该插件。
 
 在所有其他方面之前，你需要配置你的 bot 使用 Fluent 上下文调味剂。
-如果你不熟悉这个概念，你应该阅读 [上下文调味剂](/zh/guide/context.md#context-flavors) 的官方文档。
+如果你不熟悉这个概念，你应该阅读 [上下文调味剂](../guide/context.md#context-flavors) 的官方文档。
 
 ```typescript
 import { Context } from "grammy";
 import { FluentContextFlavor } from "@grammyjs/fluent";
 
 // 扩展你的应用程序上下文类型，添加提供的调味剂接口。
-export type MyAppContext =
-  & Context
-  & FluentContextFlavor;
+export type MyAppContext = Context & FluentContextFlavor;
 ```
 
 你需要使用下面的方式创建你的 bot 实例，以便使用扩展的上下文类型：
@@ -97,9 +101,11 @@ const bot = new Bot<MyAppContext>();
 最后一步是将 Fluent 插件注册到 grammY 中：
 
 ```typescript
-bot.use(useFluent({
-  fluent,
-}));
+bot.use(
+  useFluent({
+    fluent,
+  }),
+);
 ```
 
 确保传递 [先前创建的 Fluent 实例](#初始化-fluent)。
@@ -112,10 +118,12 @@ bot.use(useFluent({
 ```typescript
 bot.command("i18n_test", async (ctx) => {
   // 调用 "translate" 或 "t" 来渲染消息，指定其 ID 和额外参数：
-  await ctx.reply(ctx.t("welcome", {
-    name: ctx.from.first_name,
-    applesCount: 1,
-  }));
+  await ctx.reply(
+    ctx.t("welcome", {
+      name: ctx.from.first_name,
+      applesCount: 1,
+    }),
+  );
 });
 ```
 

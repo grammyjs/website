@@ -1,9 +1,9 @@
 # Retry API Requests (`auto-retry`)
 
-> Consider using [the throttler plugin](./transformer-throttler.md) instead.
+> Consider using the [throttler plugin](./transformer-throttler.md) instead.
 
 This plugin is an [API transformer function](../advanced/transformers.md), which means that it let's you intercept and modify outgoing HTTP requests on the fly.
-More specifically, this plugin will automatically detect if an API requests fails with a `retry_after` value. i.e. because of rate limiting.
+More specifically, this plugin will automatically detect if an API requests fails with a `retry_after` value, i.e. because of rate limiting.
 It will then catch the error, wait the specified period of time, and then retry the request.
 
 ::: warning Be Gentle With the Bot API Server
@@ -66,10 +66,10 @@ autoRetry({
 ```
 
 You can use `retryOnInternalServerErrors` to include all other internal server errors by Telegram (status code >= 500) in the above procedure.
-Those errros will be retried immediately, but they also respect the `maxRetryAttempts` option.
+Those errors will be retried immediately, but they also respect the `maxRetryAttempts` option.
 
 ## Plugin Summary
 
 - Name: `auto-retry`
 - Source: <https://github.com/grammyjs/auto-retry>
-- Reference: <https://doc.deno.land/https://raw.githubusercontent.com%2Fgrammyjs%2Fauto-retry%2Fmain%2Fsrc%2Findex.ts>
+- Reference: <https://doc.deno.land/https://raw.githubusercontent.com/grammyjs/auto-retry/main/src/index.ts>

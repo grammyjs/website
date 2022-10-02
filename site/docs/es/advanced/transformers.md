@@ -90,7 +90,7 @@ Estos resuelven este problema:
 
 ```ts
 import { Api, Bot, Context } from "grammy";
-import { SomeApiFlavor, someContextFlavor, somePlugin } from "some-plugin";
+import { SomeApiFlavor, SomeContextFlavor, somePlugin } from "some-plugin";
 
 // Context flavoring
 type MyContext = Context & SomeContextFlavor;
@@ -112,4 +112,4 @@ bot.on("message", (ctx) => ctx.api.somePluginMethod());
 
 API flavors funcionan exactamente igual que los tipos de context flavors.
 Existen API flavors aditivos y transformativos, y se pueden combinar múltiples API flavors de la misma manera que se haría con context flavors.
-Si no estás seguro de cómo funciona esto, vuelve a [la sección sobre context flavors](../guide/context.md#context-flavors) en la guía.
+Si no estás seguro de cómo funciona esto, vuelve a la [sección sobre context flavors](../guide/context.md#context-flavors) en la guía.

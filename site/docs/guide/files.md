@@ -70,16 +70,16 @@ bot.on("message:voice", async (ctx) => {
 ```
 
 ::: tip Passing a Custom file_id to getFile
-On the context object, `getFile` is [a shortcut](./context.md#shortcuts), and will fetch information for a file on the current message.
+On the context object, `getFile` is a [shortcut](./context.md#shortcuts), and will fetch information for a file on the current message.
 If you want to get a different file while handling a message, use `ctx.api.getFile(file_id)` instead.
 :::
 
-> Check out [the `:media` and `:file` shortcuts](./filter-queries.md#shortcuts) for filter queries if you want to receive any kind of file.
+> Check out the [`:media` and `:file` shortcuts](./filter-queries.md#shortcuts) for filter queries if you want to receive any kind of file.
 
 Once you have called `getFile`, you can use the returned `file_path` to download the file using this URL `https://api.telegram.org/file/bot<token>/<file_path>`, where `<token>` must be replaced by your bot token.
 
 ::: tip Files Plugin
-grammY does not come bundled with its own file downloader, but you can install [the official files plugin](../plugins/files.md).
+grammY does not come bundled with its own file downloader, but you can install the [official files plugin](../plugins/files.md).
 This allows you to download files via `await file.download()`, and to obtain a constructed download URL for them via `file.getUrl()`.
 :::
 
@@ -92,7 +92,7 @@ Telegram bots have [three ways](https://core.telegram.org/bots/api#sending-files
 3. Via uploading your own file.
 
 In all cases, the methods you need to call are named the same.
-Depending on which of the three ways you pick to send your file, the paramters to these functions will vary.
+Depending on which of the three ways you pick to send your file, the parameters to these functions will vary.
 For example, to send a photo, you can use `ctx.replyWithPhoto` (or `sendPhoto` if you use `ctx.api` or `bot.api`).
 
 You can send other types of files by simply renaming the method and changing the type of the data you pass to it.
@@ -107,7 +107,7 @@ Let's dive into what the three ways of sending a file are.
 The first two methods are simple: you just pass the respective value as a `string`, and you're done.
 
 ```ts
-// Send  via file_id.
+// Send via file_id.
 await ctx.replyWithPhoto(existingFileId);
 
 // Send via URL.

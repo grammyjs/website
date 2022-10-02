@@ -7,14 +7,14 @@ Thank you, Telegram, for this overlapping terminology.
 
 Let us try to clear it up a bit:
 
-| Term                                     | Definition                                                                                                                         |
-| ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| [**Inline Keyboard**](#inline-keyboards) | a set of buttons that is displayed underneath a message inside the chat                                                            |
-| [**Custom Keyboard**](#custom-keyboards) | a set of buttons that is displayed instead of the user's system keyboard                                                           |
-| **Inline Keyboard button**               | a button in an inline keyboard, sends a callback query not visible to the user when pressed, sometimes just called _inline button_ |
-| **Custom Keyboard button**               | a button in a keyboard, sends a text message with its label when pressed, sometimes just called _keyboard button_                  |
-| **`InlineKeyboard`**                     | class in grammY to create inline keyboards                                                                                         |
-| **`Keyboard` (!)**                       | class in grammY to create custom keyboards                                                                                         |
+| Term                                     | Definition                                                                                                                          |
+| ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| [**Inline Keyboard**](#inline-keyboards) | a set of buttons that is displayed underneath a message inside the chat.                                                            |
+| [**Custom Keyboard**](#custom-keyboards) | a set of buttons that is displayed instead of the user's system keyboard.                                                           |
+| **Inline Keyboard button**               | a button in an inline keyboard, sends a callback query not visible to the user when pressed, sometimes just called _inline button_. |
+| **Custom Keyboard button**               | a button in a keyboard, sends a text message with its label when pressed, sometimes just called _keyboard button_.                  |
+| **`InlineKeyboard`**                     | class in grammY to create inline keyboards.                                                                                         |
+| **`Keyboard`**                           | class in grammY to create custom keyboards.                                                                                         |
 
 > Note that both custom keyboard buttons and inline keyboard buttons can also have other functions, such as requesting the user's location, opening a website, and so on.
 > This was omitted for brevity.
@@ -112,14 +112,14 @@ Specify an empty inline keyboard to remove all buttons underneath a message.
 ::: tip Menu Plugin
 The keyboard plugin gives you raw access to the update objects that Telegram sends.
 However, responding to clicks this way can be tedious.
-If you are looking for a more high-level implementation of inline keyboards, check out [the menu plugin](./menu.md).
+If you are looking for a more high-level implementation of inline keyboards, check out the [menu plugin](./menu.md).
 It makes it simple to create interactive menus.
 :::
 
 Every `text` button has a string as callback data attached.
 If you don't attach callback data, grammY will use the button's text as data.
 
-Once a user clicks a text button, your bot will receive an update containing the corresponding button's callback data.
+Once a user clicks a `text` button, your bot will receive an update containing the corresponding button's callback data.
 You can listen for callback data via `bot.callbackQuery()`.
 
 ```ts
@@ -167,7 +167,7 @@ This refers to a way to replace the system keyboard by a set of buttons that you
 grammY has a simple and intuitive way to build up the custom keyboards that your bot can use to replace the system keyboard.
 It provides a class called `Keyboard` for this.
 
-Once a user clicks a text button, your bot will receive the sent text as a plain text message.
+Once a user clicks a `text` button, your bot will receive the sent text as a plain text message.
 Remember that you can listen for text message via `bot.on("message:text")` or `bot.hears()`.
 
 ### Building a Custom Keyboard
@@ -186,7 +186,8 @@ Three buttons in one column can be built like this:
 const keyboard = new Keyboard()
   .text("Yes, they certainly are").row()
   .text("I'm not quite sure").row()
-  .text("No. 😈");
+  .text("No. 😈")
+  .resized();
 ```
 
 ##### Result
@@ -240,65 +241,66 @@ await ctx.reply(text, {
 
 Naturally, all other methods that send messages other than text messages support the same options, as specified by the [Telegram Bot API Reference](https://core.telegram.org/bots/api).
 
-If you want to specify further options with your message, you may need to create your own `reply_markup` object.
-In that case, you have to use `keyboard.build()` when passing it to your object.
+You can also give your keyboard one or more further properties by calling special methods on it.
+They will not add any buttons, but rather define the behavior of the keyboard.
 
 #### Resize Custom Keyboard
 
-You can specify the `resize_keyboard` option if you want the custom keyboard to be resized according to the buttons it contains.
+You can call `resized` if you want the custom keyboard to be resized according to the buttons it contains.
 This will effectively make the keyboard smaller.
 (Usually, the keyboard will always have the size of the app's standard keyboard.)
 
 ```ts
-await ctx.reply(text, {
-  reply_markup: {
-    resize_keyboard: true,
-    keyboard: keyboard.build(),
-  },
-});
+new Keyboard()
+  .text("Yes").row()
+  .text("No")
+  .resized();
 ```
+
+It does not matter whether you call `resized` first, last or somewhere in between.
+The result will always be the same.
 
 #### One-Time Custom Keyboards
 
-You can specify the `one_time_keyboard` option if you want the custom keyboard to be hidden immediately after the first button was pressed.
+You can call `oneTime` if you want the custom keyboard to be hidden immediately after the first button was pressed.
 
 ```ts
-await ctx.reply(text, {
-  reply_markup: {
-    one_time_keyboard: true,
-    keyboard: keyboard.build(),
-  },
-});
+new Keyboard()
+  .text("Yes").row()
+  .text("No")
+  .oneTime();
 ```
+
+It does not matter whether you call `oneTime` first, last or somewhere in between.
+The result will always be the same.
 
 #### Input Field Placeholder
 
-You can specify the `input_field_placeholder` option if you want a placeholder to be shown in the input field as long as the custom keyboard is visible.
+You can call `placeholder` if you want a placeholder to be shown in the input field as long as the custom keyboard is visible.
 
 ```ts
-const keyboard = new Keyboard().text("LEFT").text("RIGHT");
-
-await ctx.reply(text, {
-  reply_markup: {
-    input_field_placeholder: "Send LEFT or RIGHT",
-    keyboard: keyboard.build(),
-  },
-});
+new Keyboard()
+  .text("Yes").row()
+  .text("No")
+  .placeholder("Decide now!");
 ```
+
+It does not matter whether you call `placeholder` first, last or somewhere in between.
+The result will always be the same.
 
 #### Selectively Send Custom Keyboards
 
-You can specify the `selective` option if you want to show the custom keyboard only to those users that are @-mentioned in the text of the message object, and to the sender of the original message in case your message is a [reply](../guide/basics.md#sending-messages-with-reply).
+You can call `selected` if you want to show the custom keyboard only to those users that are @-mentioned in the text of the message object, and to the sender of the original message in case your message is a [reply](../guide/basics.md#sending-messages-with-reply).
 
 ```ts
-await ctx.reply(text, {
-  reply_to_message_id: ctx.msg.message_id,
-  reply_markup: {
-    selective: true,
-    keyboard: keyboard.build(),
-  },
-});
+new Keyboard()
+  .text("Yes").row()
+  .text("No")
+  .selected();
 ```
+
+It does not matter whether you call `selected` first, last or somewhere in between.
+The result will always be the same.
 
 ### Responding to Clicks
 
@@ -314,12 +316,10 @@ If you want to handle all button clicks at once, you use `bot.on("message:text")
 
 ### Removing a Custom Keyboard
 
-Unless you specify `one_time_keyboard` as described
-[above](#one-time-custom-keyboards), the custom keyboard will remain open for the user (but
+Unless you specify `one_time_keyboard` as described [above](#one-time-custom-keyboards), the custom keyboard will remain open for the user (but
 the user can minimize it).
 
-You can only remove a custom keyboard when you send a new message in the chat, just
-like you can only specify a new keyboard by sending a message.
+You can only remove a custom keyboard when you send a new message in the chat, just like you can only specify a new keyboard by sending a message.
 Pass `{ remove_keyboard: true }` as `reply_markup` like so:
 
 ```ts
@@ -328,8 +328,7 @@ await ctx.reply(text, {
 });
 ```
 
-Next to `remove_keyboard`, you can again set `selective: true` in order to
-remove the custom keyboard for selected users only.
+Next to `remove_keyboard`, you can set `selective: true` in order to remove the custom keyboard for selected users only.
 This works analogously to [selectively sending a custom keyboard](#selectively-send-custom-keyboards).
 
 ## Plugin Summary

@@ -72,7 +72,7 @@ bot.on("::email"); // 所有消息、channel post 的标题或内容中包括的
 ```
 
 省去 _filter 第一个参数_ ，可以同时匹配消息和 channel posts 。
-[记住](./context.md#available-actions)，`ctx.msg` 让你可以访问消息或 channel posts ，它们都是符合匹配规则的，可以放心使用。
+[记住](./context.md#可用操作)，`ctx.msg` 让你可以访问消息或 channel posts ，它们都是符合匹配规则的，可以放心使用。
 
 遗漏 _第二_ 个值可以同时匹配 entities 和标题 entities。
 你可以同时省略第一和第二部分。
@@ -179,7 +179,7 @@ bot.on(":photo").on("::hashtag" /* , ... */);
 
 ```ts
 bot
-  // 匹配所有频道的帖子和转发的消息 ...
+  // 匹配所有频道的帖子或转发的消息 ...
   .on(["channel_post", ":forward_date"])
   // ... 包含文本. ...
   .on(":text")
@@ -237,7 +237,7 @@ pm.command("help");
 1. 频道中帖子的作者
 2. 在讨论组中从链接的频道的自动转发
 3. 正常的用户账户，这包括机器人（即"普通"消息）
-4. 管理员代表小组发送（[匿名组管理员]((https://telegram.org/blog/filters-anonymous-admins-comments#anonymous-group-admins))）
+4. 管理员代表小组发送（[匿名组管理员](https://telegram.org/blog/filters-anonymous-admins-comments#anonymous-group-admins)）
 5. 用户将消息作为其频道之一发送
 
 你可以将过滤查询与其他更新处理机制结合起来，以找出消息作者的类型。

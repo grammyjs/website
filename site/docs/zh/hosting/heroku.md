@@ -1,9 +1,9 @@
 # 托管：Heroku
 
 > 我们假设你有关于如何使用 grammY 创建 bot 的基本知识。
-> 如果你还没有准备好，不要犹豫，请查看我们十分友好的 [指南](/zh/guide) ！ :rocket:
+> 如果你还没有准备好，不要犹豫，请查看我们十分友好的 [指南](../guide) ！ :rocket:
 
-本教程将指导你如何通过 [webhooks](/zh/guide/deployment-types.md#webhooks) 或者 [长轮询](/zh/guide/deployment-types.md#长轮询) 将 Telegram bot 部署到 [Heroku](https://heroku.com/)。
+本教程将指导你如何通过 [webhooks](../guide/deployment-types.md#webhooks-是如何工作的) 或者 [长轮询](../guide/deployment-types.md#长轮询是如何工作的) 将 Telegram bot 部署到 [Heroku](https://heroku.com/)。
 我们还假设你已经有了一个 Heroku 账户。
 
 ## 前提条件
@@ -44,11 +44,11 @@ npx tsc --init
 
 然后，将 `tsconfig.json` 修改为如下配置：
 
-```json
+```json{4}
 {
   "compilerOptions": {
     "target": "ESNEXT",
-    "module": "esnext",
+    "module": "esnext", // 把 commonjs 改成 esnext
     "lib": ["ES2021"],
     "outDir": "./dist/",
     "strict": true,
@@ -64,13 +64,13 @@ npx tsc --init
 因为在上面的配置中，我们将 `module` 选项从 `commonjs` 设置为了 `esnext`，所以我们需要在 `package.json` 中添加 `"type": "module"`。
 `package.json` 文件如下所示：
 
-```json
+```json{6}
 {
   "name": "grammy-bot",
   "version": "0.0.1",
   "description": "",
   "main": "dist/app.js",
-  "type": "module",
+  "type": "module", // 添加 "type": "module"
   "scripts": {
     "dev-build": "tsc"
   },
@@ -90,7 +90,7 @@ npx tsc --init
 ```
 
 上面我们提到了，我们有两个选择来接收 Telegram 的数据，webhooks 和长轮询。
-你可以在 [这里](/zh/guide/deployment-types.md) 了解更多关于两者之间的优缺点，再决定使用哪一个。
+你可以在 [这里](../guide/deployment-types.md) 了解更多关于两者之间的优缺点，再决定使用哪一个。
 
 ## Webhooks
 
@@ -132,7 +132,7 @@ app.listen(Number(process.env.PORT), async () => {
 让我们看一下上面的代码：
 
 - `process.env`：请记住，千万不要在我们的代码中存储凭证！
-  关于如何 [在 Heroku 中创建环境变量](https://www.freecodecamp.org/news/using-environment-variables-the-right-way/)，请前往 [这个指南](https://devcenter.heroku.com/articles/config-vars)。
+  关于如何在 Heroku 中 [创建环境变量](https://www.freecodecamp.org/news/using-environment-variables-the-right-way/)，请前往 [这个指南](https://devcenter.heroku.com/articles/config-vars)。
 - `secretPath`：它可以是我们的 `BOT_TOKEN` 或者任何随机字符串。最好的做法是按照 [Telegram 的解释](https://core.telegram.org/bots/api#setwebhook) 来隐藏我们的 bot 的路径。
 
 ::: tip ⚡ 优化（可选）
@@ -156,7 +156,7 @@ https://api.telegram.org/botabcd:1234/setWebhook?url=https%3A%2F%2Fgrammybot.her
 :::
 
 ::: tip ⚡ 优化（可选）
-使用 [Webhook Reply](/zh/guide/deployment-types.md#webhook-reply) 以提高效率。
+使用 [Webhook Reply](../guide/deployment-types.md#webhook-reply) 以提高效率。
 :::
 
 ### 创建 `bot.ts`
@@ -179,7 +179,7 @@ bot.on("message", (ctx) => ctx.reply("Got another message!"));
 和刚才一样，这是可选的。
 
 ::: tip ⚡ 优化（可选）
-每次你的服务器启动时，grammY 会向 Telegram 请求 [bot 的信息](https://core.telegram.org/bots/api#getme)，以便在 `ctx.me` 下的 [上下文对象](/zh/guide/context.md) 提供 bot 的信息。
+每次你的服务器启动时，grammY 会向 Telegram 请求 [bot 的信息](https://core.telegram.org/bots/api#getme)，以便在 `ctx.me` 下的 [上下文对象](../guide/context.md) 提供 bot 的信息。
 我们可以设置 [bot 的信息](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/BotConfig#botInfo) 以防止过多的 `getMe` 调用。
 
 1. 在你最喜欢的浏览器中打开这个链接 `https://api.telegram.org/bot<bot_token>/getMe`，推荐使用 [Firefox](https://www.mozilla.org/en-US/firefox/)，因为它能格式化显示 `json` 数据。
@@ -210,7 +210,7 @@ export const bot = new Bot(`${process.env.BOT_TOKEN}`, {
 :::
 
 > 考虑使用 webhooks 吗？
-> 跳转到 [webhook 章节](#webhooks)。:rocket:
+> 跳转到 [webhooks 章节](#webhooks)。:rocket:
 
 在你的服务器上使用长轮询并不总是一个坏主意。
 有些时候它适用于不需要快速响应和处理大量数据的数据收集 bot。
@@ -240,7 +240,7 @@ bot.start();
 就是这样！
 我们已经准备好去部署它了。
 看起来是不是非常简单？:smiley:
-如果你觉得这太简单了，可以查看我们的 [部署清单](/zh/advanced/deployment.md#长轮询)！:rocket:
+如果你觉得这太简单了，可以查看我们的 [部署清单](../advanced/deployment.md#长轮询)！:rocket:
 
 ## 部署
 
@@ -249,7 +249,7 @@ bot.start();
 
 ### 编译文件
 
-在你的终端中运行这段命令，将 Typescript 文件编译为 Javascript 文件：
+在你的终端中运行这段命令，将 TypeScript 文件编译为 JavaScript 文件：
 
 ```bash
 npx tsc
@@ -282,6 +282,7 @@ npx tsc
 ```
 
 对于我们的情况来说，应该是这样：
+
 <CodeGroup>
 <CodeGroupItem title="Webhook" active>
 
@@ -290,7 +291,7 @@ web: node dist/app.js
 ```
 
 </CodeGroupItem>
-  <CodeGroupItem title="长轮询">
+<CodeGroupItem title="长轮询">
 
 ```
 worker: node dist/bot.js
@@ -325,6 +326,7 @@ tsconfig.json
 ```
 
 最终，我们的文件夹结构看起来应该是这样的：
+
 <CodeGroup>
 <CodeGroupItem title="Webhook" active>
 

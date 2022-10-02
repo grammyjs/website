@@ -10,7 +10,7 @@ Si este FAQ no responde a tu pregunta, también deberías echar un vistazo al [B
 
 Estás enviando un mensaje con formato, es decir, estás configurando `parse_mode` al enviar un mensaje.
 Sin embargo, tu formato está roto, por lo que Telegram no sabe cómo analizarlo.
-Deberías releer [la sección sobre formato](https://core.telegram.org/bots/api#formatting-options) en los documentos de Telegram.
+Deberías releer la [sección sobre formato](https://core.telegram.org/bots/api#formatting-options) en los documentos de Telegram.
 El desplazamiento de bytes que se menciona en el mensaje de error te dirá dónde está exactamente el error en tu cadena.
 
 ::: consejo Pasar entidades en lugar de formato
@@ -48,7 +48,7 @@ Si esto ocurre al iniciar tu bot, entonces tu token de bot está equivocado.
 Habla con [@BotFather](https://t.me/BotFather) para ver cuál es tu token.
 
 Si tu bot funciona bien la mayor parte del tiempo, pero de repente te sale un 404, entonces estás haciendo algo muy raro.
-Puedes venir a preguntarnos en el chat del grupo.
+Puede venir a preguntarnos en el [chat de grupo](https://t.me/grammyjs) (o en el [chat de grupo de habla rusa](https://t.me/grammyjs_ru)).
 
 ### 409 Conflict: terminated by other getUpdates request
 
@@ -61,25 +61,26 @@ Habla con [@BotFather](https://t.me/BotFather) para hacer esto.
 
 ### 429: Too Many Requests: retry after X
 
-Enhorabuena.
+¡Enhorabuena!
 Te has encontrado con un error que está entre los más difíciles de arreglar.
 
-Hay dos escenarios posibles.
+Hay dos escenarios posibles:
 
-Uno: Tu bot no tiene muchos usuarios.
+**Uno**: Tu bot no tiene muchos usuarios.
 En ese caso, sólo estás haciendo spam a los servidores de Telegram enviando demasiadas solicitudes.
-Solución: no hagas eso.
+Solución: ¡no hagas eso!
 Deberías pensar seriamente en cómo reducir sustancialmente el número de llamadas a la API.
 
-Dos: Tu bot se está haciendo muy popular y tiene muchos usuarios (cientos de miles).
+**Dos**: Tu bot se está haciendo muy popular y tiene muchos usuarios (cientos de miles).
 Ya te has asegurado de utilizar el mínimo número de llamadas a la API para las operaciones más comunes de tu bot, y _aún_ te encuentras con estos errores (llamados flood wait).
 
-Hay algunas cosas que puedes hacer
+Hay algunas cosas que puedes hacer:
 
 1. Leer [este artículo en los docs](../advanced/flood.md) para obtener una comprensión básica de la situación.
-2. Utilice [el plugin `transformer-throttler`](../plugins/transformer-throttler.md).
-3. Utiliza [el plugin `auto-retry`](../plugins/auto-retry.md).
-4. Ven a pedirnos ayuda en el chat del grupo. Tenemos gente experimentada allí.
+2. Utilice el [plugin `transformer-throttler`](../plugins/transformer-throttler.md).
+3. Utiliza el [plugin `auto-retry`](../plugins/auto-retry.md).
+4. Ven a pedirnos ayuda en el [chat de grupo](https://t.me/grammyjs).
+   Allí tenemos gente con experiencia.
 5. Es posible pedirle a Telegram que aumente los límites, pero es muy poco probable que esto ocurra si no hiciste los pasos 1-3 primero.
 
 ### Cannot find type definition file for 'node-fetch'
@@ -106,14 +107,3 @@ Algunas razones importantes por las que nos gusta más Deno que Node.js:
 > Él resumió sus 10 arrepentimientos sobre Node.js en [este video](https://youtu.be/M3BM9TB-8yA).
 
 grammY en sí mismo es Deno-first, y está respaldado para soportar Node.js igualmente bien.
-
-### ¿Dónde puedo alojar una aplicación Deno?
-
-Dado que Deno es nuevo y su ecosistema es más pequeño, el número de lugares donde se puede alojar una aplicación Deno es menor que el de Node.js.
-
-Estos son algunos de los lugares donde puede alojar su aplicación Deno:
-
-1. [Cloudflare Workers](https://workers.dev)
-2. [Deno Deploy](https://deno.com/deploy)
-3. [Heroku](https://dev.to/ms314006/deploy-your-deno-apps-to-heroku-375h)
-4. [Vercel](https://github.com/vercel-community/deno)

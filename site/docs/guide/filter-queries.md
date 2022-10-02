@@ -179,7 +179,7 @@ It is technically possible to combine filter queries to more complicated formula
 
 ```ts
 bot
-  // Matches all channel posts and forwarded messages ...
+  // Matches all channel posts or forwarded messages ...
   .on(["channel_post", ":forward_date"])
   // ... that contain text ...
   .on(":text")
@@ -193,7 +193,7 @@ As an example, it can detect that `ctx.msg.text` is a required property for the 
 ## Useful Tips
 
 Here are some less-known features of filter queries that can come in handy.
-Some of them are a little advanced, so feel free to move on to [the next section](./commands.md).
+Some of them are a little advanced, so feel free to move on to the [next section](./commands.md).
 
 ### Chat Member Updates
 

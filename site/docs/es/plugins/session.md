@@ -2,7 +2,7 @@
 
 Aunque siempre puedes escribir tu propio código para conectarte a un almacenamiento de datos de tu elección, grammY soporta un patrón de almacenamiento muy conveniente llamado _sessions_.
 
-> [Salta hacia abajo](#how-to-use-sessions) si sabes cómo funcionan las sesiones.
+> [Salta hacia abajo](#cómo-usar-las-sesiones) si sabes cómo funcionan las sesiones.
 
 ## ¿Por qué debemos pensar en el almacenamiento?
 
@@ -24,7 +24,7 @@ Puedes utilizar el almacenamiento de sesiones de grammY, que no necesita ninguna
 
 > Naturalmente, hay muchos otros servicios que ofrecen almacenamiento de datos como servicio, y grammY se integra perfectamente con ellos también.
 > Si quieres manejar tu propia base de datos, ten por seguro que grammY lo soporta igualmente bien.
-> [Desplázate hacia abajo](#known-storage-adapters) para ver qué integraciones están actualmente disponibles.
+> [Desplázate hacia abajo](#adaptadores-de-almacenamiento-conocidos) para ver qué integraciones están actualmente disponibles.
 
 ## ¿Qué son las sesiones?
 
@@ -61,7 +61,7 @@ El plugin instalado hará algo antes y después de que nuestros manejadores sean
 2. **Nuestro middleware se ejecuta.**
    Podemos _leer_ `ctx.session` para inspeccionar qué valor estaba en la base de datos.
    Por ejemplo, si se envía un mensaje al chat con el identificador `424242`, sería `ctx.session = { pizzaCount: 24 }` mientras se ejecuta nuestro middleware (al menos con el estado de la base de datos de ejemplo anterior).
-   También podemos _modificar_ ctx.session arbitrariamente, por lo que podemos añadir, eliminar y cambiar campos a nuestro gusto.
+   También podemos _modificar_ `ctx.session` arbitrariamente, por lo que podemos añadir, eliminar y cambiar campos a nuestro gusto.
 3. **Después de nuestro middleware.**
    El middleware de sesión se asegura de que los datos se escriban de nuevo en la base de datos.
    Cualquiera que sea el valor de `ctx.session` después de que el middleware termine de ejecutarse, se guardará en la base de datos.
@@ -84,7 +84,7 @@ Esta comparación puede ayudarte a decidir si utilizar las sesiones o no.
 | -------------------------- | ------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | _Acceso_                   | un almacenamiento aislado **por chat**                        | accede a los mismos datos desde **múltiples chats**                                      |
 | _Compartir_                | los datos son **sólo utilizados por el bot**                  | los datos son **utilizados por otros sistemas** (por ejemplo, un servidor web conectado) |
-| _Formato_                  | cualquier objeto JavaScript, cadenas, números, matrices, etc. | cualquier dato (binario, archivos, estructurado, etc)                                    |
+| _Formato_                  | cualquier objeto JavaScript: cadenas, números, matrices, etc. | cualquier dato (binario, archivos, estructurado, etc)                                    |
 | _Tamaño por chat_          | preferiblemente menos de ~3 MB por chat                       | cualquier tamaño                                                                         |
 | _Característica exclusiva_ | Requerida por algunos plugins de grammY.                      | Soporta transacciones de base de datos.                                                  |
 
@@ -197,7 +197,7 @@ bot.start();
 </CodeGroupItem>
 </CodeGroup>
 
-Nótese que también tenemos que [ajustar el tipo de contexto](../guide/context.md#customising-the-context-object) para que la sesión esté disponible en él.
+Nótese que también tenemos que [ajustar el tipo de contexto](../guide/context.md#personalización-del-objeto-de-contexto) para que la sesión esté disponible en él.
 El context flavor se llama `SessionFlavor`.
 
 ### Datos de la sesión inicial
@@ -243,7 +243,7 @@ Si no la especifica, la lectura de `ctx.session` arrojará un error para los nue
 ### Claves de sesión
 
 > Esta sección describe una característica avanzada de la que la mayoría de la gente no tiene que preocuparse.
-> Es posible que desee continuar con la sección sobre [almacenamiento de sus datos](#storing-your-data).
+> Es posible que desee continuar con la sección sobre [almacenamiento de sus datos](#almacenamiento-de-sus-datos).
 
 Puedes especificar qué clave de sesión usar pasando una función llamada `getSessionKey` a las [opciones](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/SessionOptions#getSessionKey).
 De esta manera, puedes cambiar fundamentalmente el funcionamiento del plugin de sesión.
@@ -332,12 +332,12 @@ Esto es conveniente cuando desarrollas tu bot o si ejecutas pruebas automáticas
 En producción, querrás persistir tus datos, por ejemplo en un archivo, una base de datos, o algún otro almacenamiento.
 
 Deberías utilizar la opción `storage` del middleware de sesión para conectarlo a tu almacén de datos.
-Puede que ya haya un adaptador de almacenamiento escrito para grammY que puedas utilizar (ver [abajo](#known-storage-adapters), pero si no, normalmente sólo se necesitan 5 líneas de código para implementar uno tú mismo.
+Puede que ya haya un adaptador de almacenamiento escrito para grammY que puedas utilizar (ver [abajo](#adaptadores-de-almacenamiento-conocidos), pero si no, normalmente sólo se necesitan 5 líneas de código para implementar uno tú mismo.
 
 ## Lazy Sessions
 
 > Esta sección describe una optimización del rendimiento de la que la mayoría de la gente no tiene que preocuparse.
-> Es posible que desee continuar con la sección sobre [adaptadores de almacenamiento conocidos](#known-storage-adapters).
+> Es posible que desee continuar con la sección sobre [adaptadores de almacenamiento conocidos](#adaptadores-de-almacenamiento-conocidos).
 
 Las lazy sessions son una implementación alternativa de las sesiones que puede reducir significativamente el tráfico de la base de datos de tu bot al omitir operaciones de lectura y escritura superfluas.
 
@@ -412,14 +412,14 @@ bot.command("reset", (ctx) => {
 Se puede argumentar bien que usar explícitamente `await` es preferible a asignar una promesa a `ctx.session`, la cuestión es que _podrías_ hacer esto si te gusta más ese estilo por alguna razón.
 
 ::: tip Plugins que necesitan sesiones
-Los desarrolladores de plugins que hacen uso de `ctx.session` siempre deberían permitir a los usuarios pasar `SessionFlavor | LazySessionFlavor` y por lo tanto soportar ambos modi.
+Los desarrolladores de plugins que hacen uso de `ctx.session` siempre deben permitir a los usuarios pasar `SessionFlavor | LazySessionFlavor` y por lo tanto soportar ambos modos.
 En el código del plugin, simplemente espere `ctx.session` todo el tiempo: si se pasa un objeto no prometido, éste simplemente se evaluará a sí mismo, por lo que efectivamente sólo se escribe código para sesiones perezosas y así se soportan sesiones estrictas automáticamente.
 :::
 
 ## Adaptadores de almacenamiento conocidos
 
-Por defecto, las sesiones serán almacenadas [en su memoria](#ram-default) por el adaptador de almacenamiento incorporado.
-También puedes utilizar las sesiones persistentes que grammY [ofrece gratuitamente](#free-storage), o conectarte a [almacenamientos externos](#external-storage-solutions).
+Por defecto, las sesiones serán almacenadas [en su memoria](#ram-por-defecto) por el adaptador de almacenamiento incorporado.
+También puedes utilizar las sesiones persistentes que grammY [ofrece gratuitamente](#free-storage), o conectarte a [almacenamientos externos](#soluciones-de-almacenamiento-externo).
 
 Así es como puedes instalar uno de los adaptadores de almacenamiento desde abajo.
 
@@ -454,7 +454,7 @@ bot.use(session({
 
 Un beneficio de usar grammY es que obtienes acceso a almacenamiento gratuito en la nube.
 No requiere ninguna configuración - toda la autenticación se hace usando tu token de bot.
-¡Echa un vistazo a [el repositorio](https://github.com/grammyjs/storage-free)!
+¡Echa un vistazo a el [repositorio](https://github.com/grammyjs/storage-free)!
 
 Es muy fácil de usar:
 

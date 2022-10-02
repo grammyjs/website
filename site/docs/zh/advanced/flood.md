@@ -17,8 +17,8 @@ Telegram 对你的 bot 每秒钟能发送多少条信息进行了限制，详见
 
 有一个非常简单的解决方案来到达速率限制：如果一个 API 请求由于速率限制而失败了，等待 Telegram 告诉你需要等待的时间就行了，然后重复这个请求。
 
-如果你想做这一步，你可以使用 [超级简单的 `auto-retry` 插件](/zh/plugins/auto-retry.md)。
-它是一个用来做这一步工作的 [API transformer 函数](/zh/advanced/transformers.md) 。
+如果你想做这一步，你可以使用 [超级简单的 `auto-retry` 插件](../plugins/auto-retry.md)。
+它是一个用来做这一步工作的 [API transformer 函数](./transformers.md) 。
 
 不过，如果你的 bot 信息流量增长得很快，例如，当你被添加到一个很大的群组，在流量高峰期到达之前，它可能会遇到很多速率限制的错误。
 这将会导致被禁用。
@@ -27,7 +27,7 @@ Telegram 对你的 bot 每秒钟能发送多少条信息进行了限制，详见
 
 ## 实用的解决方案（推荐）
 
-grammY 给你提供了 [throttler 插件](/zh/plugins/transformer-throttler.md) 让你的 bot 请求自动按照限定的速率去将外部的请求添加到消息队列中。
+grammY 给你提供了 [throttler 插件](../plugins/transformer-throttler.md) 让你的 bot 请求自动按照限定的速率去将外部的请求添加到消息队列中。
 这个插件设置很简单但却可以为流量控制做出很好的效果。
-没有更好的理由去使用 `auto-retry` 插件而不去使用 `throttler` 插件。
+没有更好的理由去使用 [auto-retry](../plugins/auto-retry.md) 插件而不去使用 [`throttler` 插件](../plugins/transformer-throttler.md)。
 在某些情况下，同时使用这两个插件可能是有意义的。

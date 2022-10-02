@@ -83,6 +83,34 @@ bot.on("edited_message", (ctx) => {
 
 Hence, if you want to, you can forget about `ctx.message` and `ctx.channelPost` and `ctx.editedMessage` and so on and so forth, and just always use `ctx.msg` instead.
 
+## Probing via Has Checks
+
+The context object has a few methods that allow you to probe the contained data for certain things.
+For example, you can call `ctx.hasCommand("start")` to see if the context object contains a `/start` command.
+This is why the methods are collectively named _has checks_.
+
+::: tip Know When to Use Has Checks
+
+This is the exact same logic that is used by `bot.command("start")`.
+Note that you should usually use [filter queries](./filter-queries.md) and similar methods.
+Using has checks works best inside the [conversations plugin](../plugins/conversations.md).
+
+:::
+
+The has checks correctly narrow down the context type.
+This means that checking if a context has callback query data will tell TypeScript that the context has the field `ctx.callbackQuery.data` present.
+
+```ts
+if (ctx.hasCallbackQuery(/query-data-\d+/)) {
+  // `ctx.callbackQuery.data` is known to be present here
+  const data: string = ctx.callbackQuery.data;
+}
+```
+
+The same applies to all other has checks.
+Check out the [API reference of the context object](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Context#has) to see a list of all has checks.
+Also check out the static property `Context.has` in the [API reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Context#Static_Properties) that lets you create efficient predicate functions for probing a lot of context objects.
+
 ## Available Actions
 
 If you want to respond to a message from a user, you could write this:
@@ -131,7 +159,7 @@ Consequently, all methods on the context object take options objects of type `Ot
 This can be used to pass further configuration to every API call.
 
 ::: tip Telegram Reply Feature
-Even though the method is called `ctx.reply` in grammY (and many other frameworks), it does not use the reply feature of Telegram where a previous message is linked.
+Even though the method is called `ctx.reply` in grammY (and many other frameworks), it does not use the [reply feature of Telegram](https://telegram.org/blog/replies-mentions-hashtags#replies) where a previous message is linked.
 
 If you look up what `sendMessage` can do in the [Telegram Bot API Reference](https://core.telegram.org/bots/api#sendmessage), you will see a number of options, such as `parse_mode`, `disable_web_page_preview`, and `reply_to_message_id`.
 The latter can be used to make a message a reply:
@@ -185,7 +213,7 @@ The idea is to install middleware before you register other listeners.
 You can then set the properties you want inside these handlers.
 
 For illustration purposes, let's say you want to set a property called `ctx.config` on the context object.
-In this example, we will use it do store some configuration about the project so that all handlers have access to it.
+In this example, we will use it to store some configuration about the project so that all handlers have access to it.
 The configuration will make it easier to detect if the bot is used by its developer or by regular users.
 
 Right after creating your bot, do this:
@@ -196,7 +224,7 @@ const BOT_DEVELOPER = 123456; // bot developer chat identifier
 bot.use(async (ctx, next) => {
   // Modify context object here by setting the config.
   ctx.config = {
-    developer: BOT_DEVELOPER,
+    botDeveloper: BOT_DEVELOPER,
     isDeveloper: ctx.from?.id === BOT_DEVELOPER,
   };
   // Run remaining handlers.
@@ -301,7 +329,7 @@ bot.command("start", async (ctx) => {
 </CodeGroupItem>
 </CodeGroup>
 
-Naturally, the custom context type can also be passed to other things which handle middleware, such as composers.
+Naturally, the custom context type can also be passed to other things which handle middleware, such as [composers](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer).
 
 ```ts
 const composer = new Composer<MyContext>();

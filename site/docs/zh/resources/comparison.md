@@ -41,18 +41,19 @@ Telegraf v4 试图通过将整个代码库迁移到 TypeScript 来解决这个�
 **grammY 后退了一步，重新思考一个以可行性优先的类型安全的 bot 框架。**
 这使得我们可以跳过许多关于如何处理奇怪的内部类型的令人沮丧的讨论。
 它使项目具有干净、一致、可编译的代码，为用户提供优秀的类型（= 编辑器支持）。
-类型安全反过来允许更多高级特性，这些特性从根本上改变了我们对 bot 开发的看法，比如 [Bot API Transformers](/zh/advanced/transformers.md)。
+类型安全反过来允许更多高级特性，这些特性从根本上改变了我们对 bot 开发的看法，比如 [Bot API Transformers](../advanced/transformers.md)。
 
 今天，Telegraf 3 已经过时了。
 有一些非官方的分支试图使遗留的代码库跟上 Bot API 的发展，但它们的兼容性是未知的。
 此外，Telegraf 的插件生态系统已经转移到了 Telegraf 4。
 大多数插件的开发者并没有为旧的 Telegraf 版本的第三方分支维护版本。
+
 基于 Telegraf 出于版本 3 和版本 4 之间的事实，将 grammY 分别与这两个版本进行比较是有意义的。
 
 #### 与 v3 的比较
 
 鉴于它们的共同历史，grammY 和 Telegraf 有很多共同点。
-它们的核心都有一个 [中间件系统](/zh/guide/middleware.md)。
+它们的核心都有一个 [中间件系统](../guide/middleware.md)。
 它们也共享很多基本语法：
 
 ```ts
@@ -78,12 +79,12 @@ Telegraf 3 使用 JavaScript 写的。
 然而，类型安全的代码对于任何重要的代码库来说都是一个主要优势。
 
 grammY 和 Telegraf 有不同的代码基础。
-由于摆脱了传统的束缚，grammY 可以对底层的中间件做出实质性的贡献，实现令人兴奋的用例，比如 [filter 查询](/zh/guide/filter-queries.md)，[error 边界](zh/guide/errors.md#error-边界)，[Bot API Transformers](/zh/advanced/transformers.md)，以及更多。
+由于摆脱了传统的束缚，grammY 可以对底层的中间件做出实质性的贡献，实现令人兴奋的用例，比如 [filter 查询](../guide/filter-queries.md)，[error 边界](../guide/errors.md#error-边界)，[Bot API Transformers](../advanced/transformers.md)，以及更多。
 这也使得开发一些在 Telegraf 下无法工作的有价值的插件成为可能。
 
 与 grammY 相比，Telegraf 的主要优势在于**它仍然被更多人所知道**。
-Telegraf 社区可能在各个版本之间有分歧，但在这个早期阶段，这些群体中的大多数仍然比 grammY 所有用户还多。
-这也意味着你可以在互联网上找到更多关于 Telegraf 用户的故事，和找到更多由其他程序员编写的非官方教程。在官方文档有缺陷时，这些教程可以帮助到你。
+Telegraf 社区可能在各个版本之间有分歧，但这些群体中的大多数人用他们的 Telegraf 版本创建的 bot 比 grammY 的 bot 还要多。
+这也意味着你可以在互联网上找到更多关于 Telegraf 用户的故事，和找到更多由其他程序员编写的非官方教程。
 
 #### 与 v4 的比较
 
@@ -94,9 +95,9 @@ Telegraf 社区可能在各个版本之间有分歧，但在这个早期阶段�
   Telegraf 则没有（它被缺少解释的生成的 API 参考所取代）。
 - grammY 中的类型会跟随你的代码来工作。
   在 Telegraf 中，你可能经常需要以某种方式来写的你的代码，否则它就不能编译（即使它实际上是可以正常工作的）
-- grammY integrates hints from [官方 Bot API 参考](core.telegram.org/bots/api) inline that help you while you're coding.
+- grammY integrates hints from [官方 Bot API 参考](https://core.telegram.org/bots/api) inline that help you while you're coding.
   Telegraf does not give you any explanations on your code.
-- grammY 集成了来自 [官方 Bot API 参考](core.telegram.org/bots/api) 的内联提示，在你写代码时能够帮助你。
+- grammY 集成了来自 [官方 Bot API 参考](https://core.telegram.org/bots/api) 的内联提示，在你写代码时能够帮助你。
   Telegraf 则不会给你的代码提供任何解释。
 
 #### 总结
@@ -108,6 +109,8 @@ Telegraf 社区可能在各个版本之间有分歧，但在这个早期阶段�
 - 有文档和生成的 API 参考
 - 长时间轮询时速度明显加快（使用 grammY runner）
 - 联合社区和生态系统
+- 更多插件
+- 更好地与数据库和网络框架集成
 - 更积极的开发
 - 有帮助的错误信息
 - 更难遇到危险的竞争条件
@@ -117,19 +120,18 @@ Telegraf 社区可能在各个版本之间有分歧，但在这个早期阶段�
 ##### Telegraf 的优势
 
 - 更早，因此更成熟
-- 更多的插件（但目前正在改变）
 - 更多的 bot 实例，包括在代码仓库中和在互联网上
-- Telegraf 3 的用户明显更多
 
 ### NTBA
 
 `node-telegram-bot-api` 是影响 grammY 发展的第二个大项目。
 与其他框架相比，它的主要优势在于它非常简单。
-它的架构可以用一句话来描述，而 grammY 需要在文档网站上用一个 [指南](/zh/guide/) 来做同样的描述。
+它的架构可以用一句话来描述，而 grammY 需要在文档网站上用一个 [指南](../guide/) 来做同样的描述。
 我们相信，grammY 网站上的所有这些解释有助于人们轻松入门，但是拥有一个不需要任何解释的库是很诱人的。
 
 从坏的方面来看，这只在短期内有好处。
 把所有东西都放在一个巨大的文件里，用一个原始的 `EventEmitter` 来处理复杂的对象流（又称网络请求），这种想法给 Telegram bot 的世界带来了很多痛苦，也阻碍了一些好的想法的实现。
+
 bot 总是从小规模开始，但一个负责任的框架必须为它们提供一条清晰的增长和扩展的路径。
 不幸的是，NTBA 在这方面做的很差。
 任何超过 50 行使用 NTBA 的代码库最终都会变成一堆像意大利面条一样的交叉引用。
@@ -158,14 +160,18 @@ bot 总是从小规模开始，但一个负责任的框架必须为它们提供�
    虽然 Python 在 3.5 版本中引入了类型，但它们在生态系统中的使用并不像 JavaScript/TypeScript 那样普遍。
    因此，它们无法与 grammY 及其配套库的开箱即用的功能相比。
    这些类型会在开发的每一步自动完成，以及带有解释和链接的有用提示。
+
 2. **更容易扩展代码库**
    类型系统还有第二个优势——它允许你扩展 bot 的代码库。
    对于用类型安全较差的语言编写的项目来说，这很难做到。
+
 3. **更容易扩大负载**
    如果你的 bot 开始流行起来，那么用 JS 编写的 bot 比用 Python 编写的 bot 更容易扩展。
+
 4. **更快的响应速度**
    V8 引擎使 JavaScript 成为可观察世界中最快的脚本语言。
    如果你希望你的 bot 尽可能的快，同时仍然享受动态语言，那么 grammY 是你的最佳选择。
+
 5. **`async`/`await` 支持**
    这是一种非常流行的控制并发性的编程模式。
    近几年来，异步编程呈现出强烈的趋势。

@@ -12,12 +12,12 @@ If you ignore these errors, your bot may eventually be banned.
 ## The Simple Solution
 
 :::warning Not a Real Solution
-This section solves your problem short-term, but if you are building a bot that should actually scale well, read [the next subsection](#the-real-solution-recommended) instead.
+This section solves your problem short-term, but if you are building a bot that should actually scale well, read the [next subsection](#the-real-solution-recommended) instead.
 :::
 
 There is a very simple solution to hitting rate limits: if an API request fails due to a rate limit, just wait the time Telegram tells you to wait, and repeat the request.
 
-If you want to do this, you can use [the super simple `auto-retry` plugin](../plugins/auto-retry.md).
+If you want to do this, you can use the [super simple `auto-retry` plugin](../plugins/auto-retry.md).
 It is an [API transformer function](./transformers.md) that does exactly that.
 
 However, if the traffic to your bot increases rapidly, e.g. when it is added to a large group, it may run into a lot of rate limiting errors before the traffic spike settles.
@@ -27,7 +27,7 @@ Instead of fixing the problem after the fact, it is much better to enqueue all A
 
 ## The Real Solution (recommended)
 
-grammY provides you with [the throttler plugin](../plugins/transformer-throttler.md) that automatically makes your bot respect all rate limits by enqueuing the outgoing requests of your bot in a message queue.
+grammY provides you with the [throttler plugin](../plugins/transformer-throttler.md) that automatically makes your bot respect all rate limits by enqueuing the outgoing requests of your bot in a message queue.
 This plugin is just as simple to set up but does a much better job at flood control.
-There isn't really any good reason to use `auto-retry` over the throttler plugin.
+There isn't really any good reason to use [auto-retry](../plugins/auto-retry.md) over the [throttler plugin](../plugins/transformer-throttler.md).
 In some cases it may make sense to use both.

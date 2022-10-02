@@ -1,5 +1,5 @@
 ---
-prev: /plugins/
+prev: ../plugins/
 ---
 
 # The Hitchhiker's Guide to grammY Plugins
@@ -27,7 +27,7 @@ You may publish your plugins in one of the following forms:
 - Publishing as a **third-party** plugin.
 
 If you choose to publish your plugins as a third party, we can still offer you a prominent place on this website.
-However, we prefer it if you publish your plugin under [the grammyjs organization](https://github.com/grammyjs) on GitHub, hence making it an official plugin.
+However, we prefer it if you publish your plugin under the [grammyjs organization](https://github.com/grammyjs) on GitHub, hence making it an official plugin.
 In such a case, you will be granted publish access to GitHub and npm.
 Also, You will be responsible for maintaining your code.
 
@@ -47,7 +47,7 @@ You will not want to go back.
 ## Designing a Dummy Middleware Plugin
 
 Let's assume we would like to design a plugin that only responds to certain users!
-For example, we could decide to only respond to people whose usernames contain a certain word.
+For example, we could decide to only respond to people whose first name contain a certain word.
 The bot will simply refuse to work for everyone else.
 
 Here is a dummy example:
@@ -161,7 +161,7 @@ bot.start();
 Now, every time we send a document, the chat action of `upload_document` will be sent to our client.
 Note that this was for demonstration purposes.
 Telegram recommends using chat actions only when "a response from the bot will take a **noticeable** amount of time to arrive".
-You probably don't actually need to set the status if the file is very small, so there are some optimisations that could be done here.
+You probably don't actually need to set the status if the file is very small, so there are some optimizations that could be done here.
 
 ## Extraction Into a Plugin
 
@@ -187,7 +187,7 @@ plugin-template/
 As mentioned before, we use the tool `deno2node` to transpile our Deno code for Node.js.
 `deno2node` has a feature that allows you to provide runtime-specific files to it.
 These files should be adjacent to each other and follow the `*.deno.ts` and `*.node.ts` name structure as [explained in the docs](https://github.com/wojpawlik/deno2node#runtime-specific-code).
-This is why there are two files `deps.deno.ts` and `deps.node.ts`.
+This is why there are two files: `deps.deno.ts` and `deps.node.ts`.
 If there are any Node.js-specific dependencies, put them in `deps.node.ts`, otherwise, leave it empty.
 
 > _**Note**_: You may also use other tools such as [deno dnt](https://github.com/denoland/dnt) to transpile your deno codebase or use other folder structures.

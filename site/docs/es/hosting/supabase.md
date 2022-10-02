@@ -9,7 +9,7 @@ Supabase Edge Functions es ideal para la mayoría de los bots simples, y debes t
 Por ejemplo, no hay sistema de archivos en Supabase Edge Functions.
 Es igual que las otras plataformas sin servidor, pero dedicado a las aplicaciones de Deno.
 
-El resultado de este tutorial [se puede ver en nuestro repositorio de bots de ejemplo](https://github.com/grammyjs/examples/tree/main/Supabase-edge-functions).
+El resultado de este tutorial [se puede ver en nuestro repositorio de bots de ejemplo](https://github.com/grammyjs/examples/tree/main/supabase-edge-functions).
 
 ## Configuración
 
@@ -26,12 +26,12 @@ Una vez que hayas creado un proyecto de Supabase Function, puedes escribir tu bo
 
 ## Preparando tu código
 
-> Recuerda que necesitas [ejecutar tu bot en webhhoks](../guide/deployment-types.md#how-to-use-webhooks), por lo que debes usar `webhookCallback` y no llamar a `bot.start()` en tu código.
+> Recuerda que necesitas [ejecutar tu bot en webhhoks](../guide/deployment-types.md#cómo-usar-webhooks), por lo que debes usar `webhookCallback` y no llamar a `bot.start()` en tu código.
 
 Puedes utilizar este breve ejemplo de bot como punto de partida.
 
 ```ts
-import { serve } de "https://deno.land/std@0.140.0/http/server.ts";
+import { serve } from "https://deno.land/std/http/server.ts";
 import { Bot, webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 
 const bot = new Bot(Deno.env.get("BOT_TOKEN") ?? "");

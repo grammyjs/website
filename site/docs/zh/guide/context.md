@@ -126,11 +126,11 @@ bot.on("message", (ctx) => ctx.reply("Gotcha!"));
 在后台，上下文 _已经知道_ 它的聊天标识符（即 `ctx.msg.chat.id`），所以它给你 `reply` 方法，让你向同一个聊天记录发送消息。
 在内部，`reply` 再次调用 `sendMessage`，并为您预先填写了聊天标识符。
 
-因此，正如 [前面](./basics.md#sending-messages) 所解释的，上下文对象的所有方法都可以接受 `Other` 类型的选项对象，以传递给每个 API 调用。
+因此，正如 [前面](./basics.md#发送信息) 所解释的，上下文对象的所有方法都可以接受 `Other` 类型的选项对象，以传递给每个 API 调用。
 这可以用于向每个 API 调用传递进一步的配置。
 
 ::: tip Telegram 的回复功能
-尽管该方法在 grammY （和许多其他框架）中被称为 `ctx.reply`，但它并没有使用 Telegram 的回复功能，因为在 Telegram 中，前一条信息是被链接的。
+尽管该方法在 grammY （和许多其他框架）中被称为 `ctx.reply`，但它并没有使用 [Telegram 的回复功能](https://telegram.org/blog/replies-mentions-hashtags#replies)，因为在 Telegram 中，前一条信息是被链接的。
 
 如果你在 [Telegram Bot API 参考](https://core.telegram.org/bots/api#sendmessage) 中查看 `sendMessage` 能做什么，你会看到一些选项，比如`parse_mode`，`disable_web_page_preview` 和 `reply_to_message_id`。
 最后的那个选项可以使一条消息成为回复：
@@ -194,7 +194,7 @@ const BOT_DEVELOPER = 123456; // bot 开发者的聊天标识符
 bot.use(async (ctx, next) => {
   // 通过设置配置，在这里修改上下文对象。
   ctx.config = {
-    developer: BOT_DEVELOPER,
+    botDeveloper: BOT_DEVELOPER,
     isDeveloper: ctx.from?.id === BOT_DEVELOPER,
   };
   // 运行其余处理程序。
@@ -299,7 +299,7 @@ bot.command("start", async (ctx) => {
 </CodeGroupItem>
 </CodeGroup>
 
-当然，自定义上下文类型也可以传递给其他处理中间件的东西，比如组合器。
+当然，自定义上下文类型也可以传递给其他处理中间件的东西，比如 [组合器](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer)。
 
 ```ts
 const composer = new Composer<MyContext>();

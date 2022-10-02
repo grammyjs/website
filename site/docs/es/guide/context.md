@@ -17,8 +17,8 @@ bot.on("message", (ctx) => {
 
 Puedes utilizar el objeto de contexto para:
 
-- [acceder a la información sobre el mensaje](#available-information)
-- [realizar acciones en respuesta al mensaje](#available-actions).
+- [acceder a la información sobre el mensaje](#información-disponible)
+- [realizar acciones en respuesta al mensaje](#acciones-disponibles).
 
 Tenga en cuenta que los objetos `Context` se llaman comúnmente `ctx`.
 
@@ -130,7 +130,7 @@ Bajo el capó, el contexto _ya conoce su identificador de chat_ (es decir, `ctx.
 Internamente, `reply` vuelve a llamar a `sendMessage` con el identificador del chat pre-rellenado para ti.
 
 ::: tip Función de respuesta de Telegram
-Aunque el método se llama `ctx.reply` en grammY (y en muchos otros frameworks), no utiliza la función de respuesta de Telegram donde se enlaza un mensaje anterior.
+Aunque el método se llama `ctx.reply` en grammY (y en muchos otros frameworks), no utiliza la función [reply de Telegram](https://telegram.org/blog/replies-mentions-hashtags#replies) donde se vincula un mensaje anterior.
 
 Si buscas lo que puede hacer `sendMessage` en el [Referencia Bot API de Telegram](https://core.telegram.org/bots/api#sendmessage), verás un número de opciones, como `parse_mode`, `disable_web_page_preview`, y `reply_to_message_id`.
 Esta última puede utilizarse para convertir un mensaje en una respuesta:
@@ -193,7 +193,7 @@ const BOT_DEVELOPER = 123456; // identificador del chat del desarrollador del bo
 bot.use(async (ctx, next) => {
   // Modifica el objeto de contexto aquí estableciendo la configuración.
   ctx.config = {
-    developer: BOT_DEVELOPER,
+    botDeveloper: BOT_DEVELOPER,
     isDeveloper: ctx.from?.id === BOT_DEVELOPER,
   };
   // Ejecutar los manejadores restantes.
@@ -298,7 +298,7 @@ bot.command("start", async (ctx) => {
 </CodeGroupItem>
 </CodeGroup>
 
-Naturalmente, el tipo de contexto personalizado también se puede pasar a otras cosas que manejan el middleware, como los compositores.
+Naturalmente, el tipo de contexto personalizado también se puede pasar a otras cosas que manejan middleware, como [compositores](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer).
 
 ```ts
 const composer = new Composer<MyContext>();

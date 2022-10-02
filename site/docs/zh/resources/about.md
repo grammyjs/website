@@ -2,7 +2,7 @@
 
 ## grammY 是什么？
 
-grammY 是一个用于在 [Telegram](https://telegram.org) 上创建聊天 bot 的软件（也可以说是一个框架）。
+grammY 是一个用于在 [Telegram](https://telegram.org) 上创建 [聊天 bot](https://core.telegram.org/bots) 的软件（也可以说是一个框架）。
 当你在创建 bot 时，你会发现其中有很大一部分是重复且乏味的。
 grammY 帮你完成了这些繁琐的工作，让你创建 bot 变得超级简单。
 

@@ -92,7 +92,7 @@ They solve this problem:
 
 ```ts
 import { Api, Bot, Context } from "grammy";
-import { SomeApiFlavor, someContextFlavor, somePlugin } from "some-plugin";
+import { SomeApiFlavor, SomeContextFlavor, somePlugin } from "some-plugin";
 
 // Context flavoring
 type MyContext = Context & SomeContextFlavor;
@@ -112,6 +112,6 @@ bot.api.somePluginMethod();
 bot.on("message", (ctx) => ctx.api.somePluginMethod());
 ```
 
-API flavors work exactly anaolgously to context flavors.
+API flavors work exactly analogously to context flavors.
 There are both additive and transformative API flavors, and multiple API flavors can be combined the same way as you would do with context flavors.
-If you are unsure how this works, head back to [the section about context flavors](../guide/context.md#context-flavors) in the guide.
+If you are unsure how this works, head back to the [section about context flavors](../guide/context.md#context-flavors) in the guide.
