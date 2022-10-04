@@ -1,3 +1,1 @@
-interface AnyObject {
-  [key: string]: any;
-}
+type AnyObject = Record<string, any>;

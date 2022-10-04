@@ -81,9 +81,7 @@ interface TypeProp {
   desc?: string | null;
 }
 
-interface Type {
-  [key: string]: TypeProp;
-}
+type Type = Record<string, TypeProp>;
 
 interface Tag {
   color: string;

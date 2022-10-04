@@ -29,31 +29,34 @@ if (props.pb) {
 </template>
 
 <style>
-.tag-group {
-  --mb-custom: 2rem;
-}
 
 .tag-group {
-  display: flex;
+  display: inline-flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .tag-group:empty {
   display: none;
 }
 
-/* Make tag closer to heading */
-.theme-default-content :is(h1, h3, h4, h5, h6) + div.tag-group {
+/* custom margin for h1 */
+.theme-default-content h1 + div.tag-group {
   margin-top: 0;
-  margin-bottom: var(--mb-custom);
+  margin-bottom: 1rem;
 }
 
 /* Add additional margin due to line border at the bottom of h2 */
 .theme-default-content h2 + div.tag-group {
   margin-top: 0.6rem;
-  margin-bottom: var(--mb-custom);
 }
+
+/* custom margin for heading other than h1 and h2 */
+.theme-default-content :is(h3, h4, h5, h6) + div.tag-group {
+  margin-top: 0.7rem;
+}
+
 </style>
 
 <style>

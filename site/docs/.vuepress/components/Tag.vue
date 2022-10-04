@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { onBeforeMount, ref, type PropType } from "vue";
+import { tagType, fetchIcon } from "./tag/index";
 import type { Favicon } from "../types/shared";
 
+// get user options
 const _props = defineProps({
   type: String,
   desc: String,
@@ -24,8 +26,12 @@ const _props = defineProps({
 
 let props: Props | typeof _props;
 
+/**
+ * Components from pages send props directly to corresponding properties,
+ * while components from navbars send all props via item property.
+ * */
 if (_props.item) {
-  // Props from navbar
+  // get options from item property,
   props = {
     type: "favicon",
     desc: _props.item.desc,
@@ -58,100 +64,11 @@ let link: string | null | undefined;
  * Make text div height equal by adding an empty <svg>
  *   due to different rem size measurement between text and svg
  *   (1rem in text =/= 1 rem in svg).
- *
  * */
 let icon = ref("<svg></svg>");
 
-const defaultType: Type = {
-  deno: {
-    desc: "Deno is available",
-    color: "black",
-    colorDark: "white",
-    text: {
-      content: "DENO",
-      color: "white",
-      colorDark: "black",
-    },
-    icon: {
-      name: "deno",
-      type: "logo",
-      color: "white",
-      colorDark: "black",
-    },
-  },
-  nodejs: {
-    desc: "Node.js is available",
-    color: "#689f63",
-    colorDark: "#689f63",
-    text: {
-      content: "NODE.JS",
-      color: "white",
-      colorDark: "white",
-    },
-    icon: {
-      name: "nodedotjs",
-      type: "logo",
-      color: "white",
-      colorDark: "white",
-    },
-  },
-  official: {
-    desc: "Published and maintained by grammY",
-    color: "#009dca",
-    colorDark: "#009dca",
-    text: {
-      content: "OFFICIAL",
-      color: "white",
-      colorDark: "white",
-    },
-    icon: {
-      name: "patch-check-fill",
-      type: "icon",
-      color: "white",
-      colorDark: "white",
-    },
-  },
-  thirdparty: {
-    desc: "Maintained by a community",
-    color: "#ffe005",
-    colorDark: "#ffe005",
-    text: {
-      content: "THIRD-PARTY",
-      color: "black",
-      colorDark: "black",
-    },
-    icon: {
-      name: "people-fill",
-      type: "icon",
-      color: "black",
-      colorDark: "black",
-    },
-  },
-  favicon: {
-    color: "transparent",
-    text: {
-      color: "inherit",
-      colorDark: "inherit",
-    },
-    icon: {
-      color: "var(--c-text)",
-      colorDark: "var(--c-text)",
-      bg: "transparent",
-      bgDark: "transparent",
-    },
-  },
-  default: {
-    color: "#34404c",
-    text: {
-      color: "white",
-    },
-    icon: {
-      color: "white",
-    },
-  },
-};
-
-const defaultTag: TypeProp = defaultType[props.type!] ?? defaultType.default;
+// if tag type property is not specified by user, use the default one.
+const defaultTag: TypeProp = tagType[props.type!] ?? tagType.default;
 
 const tag: Tag = {
   color: props.color ?? defaultTag.color,
@@ -183,91 +100,57 @@ const tag: Tag = {
 desc = props.desc ?? defaultTag.desc ?? tag.text.content;
 link = props.link ?? null;
 
-// Show tag if text is not empty (while waiting for icon to be fetched).
+// Show tag if text is not empty.
 if (tag.text.content) {
-  // Timeout for fetching icon. + add transition
+  // Show tag immediately when timeout is reached (the icon is taking too long to fetch).
   setTimeout(() => {
-    showIcon.value = showTag.value ?? true;
-    showText.value = showTag.value ?? true;
-    showTag.value = showTag.value ?? true;
+    showIcon.value = showText.value = showTag.value ??= true;
   }, 1500);
 }
 
-onBeforeMount(() => {
-  async function loadTag() {
-    let result: Response;
-    let noIcon = false;
+onBeforeMount(async () => {
+  const iconResult = await fetchIcon(tag);
+  icon.value = iconResult.value;
 
-    if (!tag.icon.name || !tag.icon.type) {
-      noIcon = true;
+  // proccess if icon is fetched successfully
+  if (iconResult.ok) {
+    // do tag has text label?
+    if (tag.text.content) {
+      /**
+       * Make text and icon closer if iconBg color is equal with tag color.
+       * Unfortunately, it can't detect the same color with different type
+       * (unless using third-party npm package).
+       *
+       *  ex: ("#ffffff" === "white") will evaluate to false.
+       */
+      iconPaddingRight.value = tag.icon.bg === tag.color ? "0" : "var(--tag-padding)";
+      iconPaddingRightDark.value = tag.icon.bgDark === tag.colorDark ? "0" : "var(--tag-padding)";
+
+      // since we have an icon, remove the text radius on left side to make it blend with the icon.
+      textRadiusLeft.value = "0";
+      showText.value = true;
     } else {
-      try {
-        // fetch from assets folder first ...
-        result = await fetch(`/tag/${tag.icon.type}/${tag.icon.name}.svg`);
-
-        // ... if not available then download the file.
-        if (!result.ok) {
-          if (tag.icon.type === "logo") {
-            result = await fetch(`https://simpleicons.org/icons/${tag.icon.name}.svg`);
-          } else {
-            result = await fetch(
-              `https://icons.getbootstrap.com/assets/icons/${tag.icon.name}.svg`
-            );
-          }
-          if (!result.ok) noIcon = true;
-        }
-      } catch (error) {
-        noIcon = true;
-        console.error(error);
-      }
+      // hide text element and make icon padding rounded on all sides
+      iconPaddingRight.value = "var(--tag-padding)";
+      iconPaddingRightDark.value = "var(--tag-padding)";
+      iconRadiusRight.value = "var(--tag-radius)";
+      showText.value = false;
     }
 
-    if (noIcon) {
-      // Hide tag if it does not have text and icon.
-      if (tag.text.content) {
-        showIcon.value = true;
-        showText.value = true;
-        showTag.value = true;
-      } else {
-        showTag.value = false;
-      }
-      return;
-    }
-
-    try {
-      const svg = await result!.text();
-      // Remove title, width and height attributes to prevent clashing with CSS.
-      icon.value = svg.replaceAll(/<title>.*?<\/title>|width=".*?"\s?|height=".*?"\s?/gm, "");
-
-      if (tag.text.content) {
-        /**
-         * Make text and icon closer if iconBg color is equal with tag color.
-         * Unfortunately, it can't detect the same color with different type
-         * (unless using third-party npm package).
-         *
-         *  ex: ("#ffffff" === "white") will evaluate to false.
-         */
-        iconPaddingRight.value = tag.icon.bg === tag.color ? "0" : "var(--tag-padding)";
-        iconPaddingRightDark.value = tag.icon.bgDark === tag.colorDark ? "0" : "var(--tag-padding)";
-        textRadiusLeft.value = "0";
-        showText.value = true;
-      } else {
-        iconPaddingRight.value = "var(--tag-padding)";
-        iconPaddingRightDark.value = "var(--tag-padding)";
-        iconRadiusRight.value = "var(--tag-radius)";
-        showText.value = false;
-      }
-
-      iconPaddingLeft.value = "var(--tag-padding)";
-      svgWidth.value = "var(--tag-svg-size)";
-      showIcon.value = true;
-      showTag.value = true;
-    } catch (error) {
-      console.error(error);
+    iconPaddingLeft.value = "var(--tag-padding)";
+    svgWidth.value = "var(--tag-svg-size)";
+    showIcon.value = true;
+    showTag.value = true;
+  } else {
+    // do tag has text label?
+    if (tag.text.content) {
+      // show all of them
+      showIcon.value = showText.value = showTag.value = true;
+    } else {
+      // do not show tag at all since it does not have icon and text
+      showTag.value = false;
     }
   }
-
-  loadTag();
 });
 </script>
 
