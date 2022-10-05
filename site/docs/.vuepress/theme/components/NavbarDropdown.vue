@@ -68,7 +68,7 @@ const isLastItemOfArray = (item: unknown, arr: unknown[]): boolean => arr[arr.le
       <!-- Inject Tag component -->
       <span class="title">{{ item.text }}</span>
       <TagGroup v-if="item.favicon">
-        <Tag v-for="value in item.favicon" :item="value" />
+        <Tag v-for="value in item.favicon" :nav="value" />
       </TagGroup>
       <span class="arrow down" />
       <!-- End of inject Tag component -->
@@ -83,7 +83,7 @@ const isLastItemOfArray = (item: unknown, arr: unknown[]): boolean => arr[arr.le
       <!-- Inject Tag component -->
       <span class="title">{{ item.text }}</span>
       <TagGroup v-if="item.favicon">
-        <Tag v-for="value in item.favicon" :item="value" />
+        <Tag v-for="value in item.favicon" :nav="value" />
       </TagGroup>
       <span class="arrow" :class="open ? 'down' : 'right'" />
       <!-- End of Inject Tag component -->
@@ -107,7 +107,7 @@ const isLastItemOfArray = (item: unknown, arr: unknown[]): boolean => arr[arr.le
               <span v-else>
                 {{ child.text }}
                 <TagGroup v-if="child.favicon">
-                  <Tag v-for="value in child.favicon" :item="value" />
+                  <Tag v-for="value in child.favicon" :nav="value" />
                 </TagGroup>
               </span>
               <!-- End of inject Tag component -->

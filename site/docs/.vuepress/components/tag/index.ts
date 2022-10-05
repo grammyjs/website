@@ -1,3 +1,5 @@
+import type { Tag, TagDefault } from "../../types";
+
 export async function fetchIcon(tag: Tag) {
   let result: Response;
   const icon = {
@@ -46,9 +48,9 @@ export async function fetchIcon(tag: Tag) {
   return icon;
 }
 
-export const tagType: Type = {
+export const tagType: TagDefault = {
   deno: {
-    desc: "Deno is available",
+    desc: "This setup is able to run Deno bots",
     color: "black",
     colorDark: "white",
     text: {
@@ -63,8 +65,23 @@ export const tagType: Type = {
       colorDark: "black",
     },
   },
+  iconDeno: {
+    color: "transparent",
+    desc: "This setup is able to run Deno bots",
+    text: {
+      color: "transparent",
+    },
+    icon: {
+      name: "deno",
+      type: "logo",
+      color: "black",
+      colorDark: "white",
+      bg: "transparent",
+      bgDark: "transparent",
+    },
+  },
   nodejs: {
-    desc: "Node.js is available",
+    desc: "This setup is able to run Node.js bots",
     color: "#689f63",
     colorDark: "#689f63",
     text: {
@@ -77,6 +94,21 @@ export const tagType: Type = {
       type: "logo",
       color: "white",
       colorDark: "white",
+    },
+  },
+  iconNodejs: {
+    color: "transparent",
+    desc: "This setup is able to run Node.js bots",
+    text: {
+      color: "transparent",
+    },
+    icon: {
+      name: "nodedotjs",
+      type: "logo",
+      color: "#689f63",
+      colorDark: "#689f63",
+      bg: "transparent",
+      bgDark: "transparent",
     },
   },
   official: {
@@ -95,8 +127,23 @@ export const tagType: Type = {
       colorDark: "white",
     },
   },
+  iconOfficial: {
+    color: "transparent",
+    desc: "Published and maintained by grammY",
+    text: {
+      color: "transparent",
+    },
+    icon: {
+      name: "patch-check-fill",
+      type: "icon",
+      color: "#009dca",
+      colorDark: "#009dca",
+      bg: "transparent",
+      bgDark: "transparent",
+    },
+  },
   thirdparty: {
-    desc: "Maintained by a community",
+    desc: "Maintained by a third-party",
     color: "#ffe005",
     colorDark: "#ffe005",
     text: {
@@ -111,15 +158,17 @@ export const tagType: Type = {
       colorDark: "black",
     },
   },
-  favicon: {
+  iconThirdparty: {
     color: "transparent",
+    desc: "Maintained by a third-party",
     text: {
-      color: "inherit",
-      colorDark: "inherit",
+      color: "transparent",
     },
     icon: {
-      color: "var(--c-text)",
-      colorDark: "var(--c-text)",
+      name: "patch-check-fill",
+      type: "icon",
+      color: "#ffe005",
+      colorDark: "#ffe005",
       bg: "transparent",
       bgDark: "transparent",
     },

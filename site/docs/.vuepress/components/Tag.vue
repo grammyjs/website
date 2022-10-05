@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { onBeforeMount, ref, type PropType } from "vue";
 import { tagType, fetchIcon } from "./tag/index";
-import type { Favicon } from "../types/shared";
+import type { Props, Favicon, Tag } from "../types";
 
-// get user options
+// Get user options
 const _props = defineProps({
   type: String,
   desc: String,
@@ -19,32 +19,15 @@ const _props = defineProps({
   iconBg: String,
   iconBgDark: String,
   link: String,
-  item: {
+  nav: {
     type: Object as PropType<Favicon>,
   }, // Props from navbar
+  autotag: {
+    type: Object as PropType<Props>,
+  }, // Props from autotag component
 });
 
-let props: Props | typeof _props;
-
-/**
- * Components from pages send props directly to corresponding properties,
- * while components from navbars send all props via item property.
- * */
-if (_props.item) {
-  // get options from item property,
-  props = {
-    type: "favicon",
-    desc: _props.item.desc,
-    icon: _props.item.icon.name,
-    iconType: _props.item.icon.type,
-    iconColor: _props.item.icon.color,
-    iconColorDark: _props.item.icon.colorDark,
-    link: undefined,
-  };
-} else {
-  props = _props;
-}
-
+const props = { ..._props, ..._props.nav, ..._props.autotag };
 const element = props.link ? "a" : "div";
 let showTag = ref();
 let showIcon = ref();
@@ -57,8 +40,6 @@ let textRadiusLeft = ref("var(--tag-radius)");
 let svgWidth = ref("0");
 let isHovering = ref(false); // cursor hovering on element
 let isActive = ref(false); // click event
-let desc: string | null | undefined;
-let link: string | null | undefined;
 
 /**
  * Make text div height equal by adding an empty <svg>
@@ -67,38 +48,37 @@ let link: string | null | undefined;
  * */
 let icon = ref("<svg></svg>");
 
-// if tag type property is not specified by user, use the default one.
-const defaultTag: TypeProp = tagType[props.type!] ?? tagType.default;
+// If tag type property is not specified by user, use the default one.
+const defaultTag: Tag = tagType[props.type!] ?? tagType.default;
 
+// Assign properties and add some fallbacks
 const tag: Tag = {
   color: props.color ?? defaultTag.color,
-  colorDark: props.colorDark ?? props.color ?? defaultTag.colorDark ?? defaultTag.color,
   text: {
     content: props.text ?? defaultTag.text.content,
     color: props.textColor ?? defaultTag.text.color,
-    colorDark:
-      props.textColorDark ?? defaultTag.text.colorDark ?? props.textColor ?? defaultTag.text.color,
   },
   icon: {
     color: props.iconColor ?? defaultTag.icon.color,
-    colorDark:
-      props.iconColorDark ?? defaultTag.icon.colorDark ?? props.iconColor ?? defaultTag.icon.color,
     bg: props.iconBg ?? props.color ?? defaultTag.color,
-    bgDark:
-      props.iconBgDark ??
-      props.iconBg ??
-      props.colorDark ??
-      props.color ??
-      defaultTag.colorDark ??
-      defaultTag.color,
     name: props.icon ?? defaultTag.icon.name,
     type: props.iconType ?? defaultTag.icon.type,
   },
+  desc: props.desc ?? defaultTag.desc,
+  link: props.link,
 };
 
-// Priority user option instead of default one.
-desc = props.desc ?? defaultTag.desc ?? tag.text.content;
-link = props.link ?? null;
+tag.desc ??= tag.text.content;
+tag.colorDark = props.colorDark ?? defaultTag.colorDark ?? tag.color;
+tag.text.colorDark = props.textColorDark ?? defaultTag.text.colorDark ?? tag.text.color;
+tag.icon.colorDark = props.iconColorDark ?? defaultTag.icon.colorDark ?? tag.icon.color;
+tag.icon.bgDark =
+  props.iconBgDark ??
+  props.iconBg ??
+  props.colorDark ??
+  props.color ??
+  defaultTag.colorDark ??
+  defaultTag.color;
 
 // Show tag if text is not empty.
 if (tag.text.content) {
@@ -112,25 +92,24 @@ onBeforeMount(async () => {
   const iconResult = await fetchIcon(tag);
   icon.value = iconResult.value;
 
-  // proccess if icon is fetched successfully
   if (iconResult.ok) {
-    // do tag has text label?
+    // Do tag has text?
     if (tag.text.content) {
       /**
        * Make text and icon closer if iconBg color is equal with tag color.
        * Unfortunately, it can't detect the same color with different type
        * (unless using third-party npm package).
        *
-       *  ex: ("#ffffff" === "white") will evaluate to false.
+       * Ex: ("#ffffff" === "white") will evaluate to false.
        */
       iconPaddingRight.value = tag.icon.bg === tag.color ? "0" : "var(--tag-padding)";
       iconPaddingRightDark.value = tag.icon.bgDark === tag.colorDark ? "0" : "var(--tag-padding)";
 
-      // since we have an icon, remove the text radius on left side to make it blend with the icon.
+      // Since we have an icon, remove the text radius on left side to make it blend with the icon.
       textRadiusLeft.value = "0";
       showText.value = true;
     } else {
-      // hide text element and make icon padding rounded on all sides
+      // Hide text element and make the icon padding rounded on all sides
       iconPaddingRight.value = "var(--tag-padding)";
       iconPaddingRightDark.value = "var(--tag-padding)";
       iconRadiusRight.value = "var(--tag-radius)";
@@ -142,7 +121,7 @@ onBeforeMount(async () => {
     showIcon.value = true;
     showTag.value = true;
   } else {
-    // do tag has text label?
+    // Do tag has text label?
     if (tag.text.content) {
       // show all of them
       showIcon.value = showText.value = showTag.value = true;
@@ -155,11 +134,11 @@ onBeforeMount(async () => {
 </script>
 
 <template>
-  <component :is="element" :href="link" v-if="showTag" class="tag" v-cloak>
+  <component :is="element" :href="tag.link" v-if="showTag" class="tag" v-cloak>
     <div
       class="tag"
       :class="{ active: isActive }"
-      :title="desc"
+      :title="tag.desc"
       @mouseover="isHovering = true"
       @mouseout="isHovering = false"
       @mousedown="isActive = true"

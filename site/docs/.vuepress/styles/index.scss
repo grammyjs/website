@@ -5,26 +5,27 @@
   --c-brand: #009dca;
 }
 
-html.dark {
-  --c-brand-light: #138cb3;
-  --c-tip: #1583a7;
-  --c-brand: #009dca;
-}
-
 // adjust table background colors to avoid clashes with inline code snippets
-html.dark tr:nth-child(2n) {
-  background-color: var(--c-bg-lighter);
+html {
+  tr:nth-child(2n) {
+    code {
+      background-color: var(--c-bg-lighter);
+    }
+  }
+
+  // for dark mode
+  &.dark {
+    --c-brand-light: #138cb3;
+    --c-tip: #1583a7;
+    --c-brand: #009dca;
+
+    tr:nth-child(2n) {
+      background-color: var(--c-bg-lighter);
+    }
+  }
 }
 
-html:not(.dark) tr:nth-child(2n) code {
-  background-color: var(--c-bg-lighter);
-}
-
-.token.string,
-.token.char,
-.token.attr-value,
-.token.regex,
-.token.variable {
+.token:is(.string, .char, .attr-value, .regex, .variable) {
   color: #6ac0e3;
 }
 
@@ -34,8 +35,7 @@ html:not(.dark) tr:nth-child(2n) code {
 }
 
 // apply justify to all articles
-.theme-default-content p,
-.theme-default-content li {
+.theme-default-content :is(p, li) {
   text-align: justify;
   text-justify: auto;
   hyphens: auto;
@@ -48,7 +48,7 @@ a {
 }
 
 /** 
-* Implement default margin for first heading of a page.
+* Re-implement default margin for first heading of a page.
 * The default rule is "h1:first-child", which means it does not work 
 * if there is another element like <img> before them.
 *   
@@ -56,15 +56,37 @@ a {
 * https://grammy.dev/guide/ due to image banner at the top of page.
 */
 
-// Restore margin for first heading
-.theme-default-content :not(h1, h2, h3, h4, h5, h6):first-child + :is(h1, h2, h3, h4, h5, h6) {
-  margin-bottom: 1rem;
-}
+// main page
+.theme-default-content {
+  // first element of page which is not a heading ...
+  :not(h1, h2, h3, h4, h5, h6):first-child {
+    // ... followed by heading
+    + :is(h1, h2, h3, h4, h5, h6) {
+      margin-bottom: 1rem; // add bottom margin to this heading (the default value is 1rem)
 
-// Restore margin after first heading
-.theme-default-content
-  :not(h1, h2, h3, h4, h5, h6):first-child
-  + :is(h1, h2, h3, h4, h5, h6)
-  + :is(p, pre, .custom-container) {
-  margin-top: 2rem;
+      // ... followed by paragraph or any text content
+      + :is(p, pre, .custom-container) {
+        margin-top: 2rem; // add margin to this element (the default value is 2rem)
+      }
+
+      // ... followed by empty TagGroup
+      + div.tag-group:empty {
+        // ... followed by paragraph or any text content
+        + :is(p, pre, .custom-container) {
+          margin-top: 2rem; // add margin to this element (the default value is 2rem)
+        }
+      }
+    }
+  }
+
+  // first element of page that is a heading ...
+  :is(h1, h2, h3, h4, h5, h6):first-child {
+    // ... followed by empty TagGroup
+    + div.tag-group:empty {
+      // ... followed by paragraph or any text content
+      + :is(p, pre, .custom-container) {
+        margin-top: 2rem; // add margin to this element (the default value is 2rem)
+      }
+    }
+  }
 }

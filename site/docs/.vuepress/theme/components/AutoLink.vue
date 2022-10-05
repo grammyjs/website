@@ -110,7 +110,7 @@ const isActive = computed(() => {
     <span>
       {{ item.text }}
       <TagGroup v-if="item.favicon">
-        <Tag v-for="value in item.favicon" :item="value" />
+        <Tag v-for="value in item.favicon" :nav="value" />
       </TagGroup>
     </span>
     <slot name="after" />
@@ -130,7 +130,7 @@ const isActive = computed(() => {
     <span>
       {{ item.text }}
       <TagGroup v-if="item.favicon">
-        <Tag v-for="value in item.favicon" :item="value" />
+        <Tag v-for="value in item.favicon" :nav="value" />
       </TagGroup>
       <AutoLinkExternalIcon v-if="isBlankTarget" />
     </span>

@@ -4,6 +4,7 @@ import { currentVersions } from "./plugins/current-versions/plugin";
 import { docsearch } from "./plugins/docsearch";
 import { registerComponents } from "./plugins/registerComponents";
 import { grammyTheme } from "./theme";
+import { autotag } from "./plugins/autotag";
 
 export default defineUserConfig({
   locales: {
@@ -253,56 +254,14 @@ export default defineUserConfig({
                   {
                     text: "Console Time",
                     link: "/plugins/console-time.html",
-                    favicon: [
-                      {
-                        desc: "This plugin is compatible with Node.js",
-                        icon: {
-                          name: "nodedotjs",
-                          type: "logo",
-                          color: "#689f63",
-                          colorDark: "#689f63",
-                        },
-                      },
-                    ],
                   },
                   {
                     text: "Useful Middleware",
                     link: "/plugins/middlewares.html",
-                    favicon: [
-                      {
-                        desc: "This plugin is compatible with Node.js",
-                        icon: {
-                          name: "nodedotjs",
-                          type: "logo",
-                          color: "#689f63",
-                          colorDark: "#689f63",
-                        },
-                      },
-                    ],
                   },
                   {
                     text: "Autoquote",
                     link: "/plugins/autoquote.html",
-                    favicon: [
-                      {
-                        desc: "This plugin is compatible with Deno",
-                        icon: {
-                          name: "deno",
-                          type: "logo",
-                          color: "black",
-                          colorDark: "white",
-                        },
-                      },
-                      {
-                        desc: "This plugin is compatible with Node.js",
-                        icon: {
-                          name: "nodedotjs",
-                          type: "logo",
-                          color: "#689f63",
-                          colorDark: "#689f63",
-                        },
-                      },
-                    ],
                   },
                   {
                     text: "[Submit your PR!]",
@@ -408,56 +367,17 @@ export default defineUserConfig({
                   {
                     text: "Deno Deploy",
                     link: "/hosting/deno-deploy.html",
-                    favicon: [
-                      {
-                        icon: {
-                          name: "deno",
-                          type: "logo",
-                          color: "black",
-                          colorDark: "white",
-                        },
-                        desc: "This setup is able to run Deno bots",
-                      },
-                    ],
+                    favicon: [{ type: "iconDeno" }],
                   },
                   {
                     text: "Supabase Edge Functions",
                     link: "/hosting/supabase.html",
-                    favicon: [
-                      {
-                        icon: {
-                          name: "deno",
-                          type: "logo",
-                          color: "black",
-                          colorDark: "white",
-                        },
-                        desc: "This setup is able to run Deno bots",
-                      },
-                    ],
+                    favicon: [{ type: "iconDeno" }],
                   },
                   {
                     text: "Heroku",
                     link: "/hosting/heroku.html",
-                    favicon: [
-                      {
-                        icon: {
-                          name: "deno",
-                          type: "logo",
-                          color: "black",
-                          colorDark: "white",
-                        },
-                        desc: "This setup is able to run Deno bots",
-                      },
-                      {
-                        icon: {
-                          name: "nodedotjs",
-                          type: "logo",
-                          color: "#689f63",
-                          colorDark: "#689f63",
-                        },
-                        desc: "This setup is able to run Node.js bots",
-                      },
-                    ],
+                    favicon: [{ type: "iconDeno" }, { type: "iconNodejs" }],
                   },
                   {
                     text: "Google Cloud Functions",
@@ -466,26 +386,7 @@ export default defineUserConfig({
                   {
                     text: "Virtual Private Server",
                     link: "/hosting/vps.html",
-                    favicon: [
-                      {
-                        icon: {
-                          name: "deno",
-                          type: "logo",
-                          color: "black",
-                          colorDark: "white",
-                        },
-                        desc: "This setup is able to run Deno bots",
-                      },
-                      {
-                        icon: {
-                          name: "nodedotjs",
-                          type: "logo",
-                          color: "#689f63",
-                          colorDark: "#689f63",
-                        },
-                        desc: "This setup is able to run Node.js bots",
-                      },
-                    ],
+                    favicon: [{ type: "iconDeno" }, { type: "iconNodejs" }],
                   },
                 ],
               },
@@ -1614,6 +1515,36 @@ export default defineUserConfig({
     betterLineBreaks(),
     currentVersions(),
     registerComponents(),
+    autotag([
+      {
+        url: ["/plugins"],
+        exclude: [
+          "console-time",
+          "middlewares",
+          "autoquote",
+          "guide",
+          "session",
+          "keyboard",
+          "/",
+        ],
+        tag: [{
+          type: "official",
+          locale: { es: "OFICIAL", id: "RESMI", zh: "官方维护" },
+        }],
+      },
+      {
+        url: ["/plugins"],
+        include: [
+          "console-time",
+          "middlewares",
+          "autoquote",
+        ],
+        tag: [{
+          type: "thirdparty",
+          locale: { es: "DE TERCEROS", id: "PIHAK-KETIGA", zh: "第三方" },
+        }],
+      },
+    ]),
   ],
   markdown: {
     typographer: true,
