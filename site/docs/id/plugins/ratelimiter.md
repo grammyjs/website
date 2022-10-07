@@ -1,7 +1,5 @@
 # Rate Limit Pengguna (`ratelimiter`)
 
-<TagGroup><Tag type="official" text="RESMI"/></TagGroup>
-
 ratelimiter adalah sebuah middleware yang dibuat dari framework bot grammY ataupun [Telegraf](https://github.com/telegraf/telegraf) yang berfungsi untuk mengatur rate-limit pengguna bot.
 Simpelnya, plugin ini dapat membantu kamu dalam mencegah serangan spam ke bot.
 Supaya lebih paham, coba lihat ilustrasi berikut:

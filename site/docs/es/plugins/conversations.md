@@ -1,7 +1,5 @@
 # Conversaciones (`conversations`)
 
-<TagGroup><Tag type="official" text="OFICIAL"/></TagGroup>
-
 Crea potentes interfaces conversacionales con facilidad.
 
 ## Introducción

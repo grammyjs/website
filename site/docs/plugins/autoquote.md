@@ -1,7 +1,5 @@
 # Always Replying to Messages
 
-<TagGroup><Tag type="thirdparty" desc="This plugin is maintained by a third party"/><Tag type="deno" desc="This plugin is compatible with Deno"/><Tag type="nodejs" desc="This plugin is compatible with Node.js"/></TagGroup>
-
 It is sometimes necessary to always send messages as replies, especially for bots that are meant to be used in groups.
 We usually do this by adding the `reply_to_message_id` parameter to the methods that send the message: `sendText`, `reply`, `sendPhoto`, `replyWithPhoto` and etc.
 However, if you're doing this for every single message, it can get messy and boring.

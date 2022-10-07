@@ -1,7 +1,5 @@
 # Retry API Requests (`auto-retry`)
 
-<TagGroup><Tag type="official" desc="This plugin is published and maintained by grammY"/></TagGroup>
-
 > Consider using the [throttler plugin](./transformer-throttler.md) instead.
 
 This plugin is an [API transformer function](../advanced/transformers.md), which means that it let's you intercept and modify outgoing HTTP requests on the fly.

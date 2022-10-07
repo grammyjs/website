@@ -1,7 +1,5 @@
 # Menu Interaktif (`menu`)
 
-<TagGroup><Tag type="official" text="RESMI"/></TagGroup>
-
 Membuat menu interaktif dengan mudah.
 
 ## Pengenalan

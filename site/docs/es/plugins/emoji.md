@@ -1,7 +1,5 @@
 # Plugin Emoji (`emoji`)
 
-<TagGroup><Tag type="official" text="OFICIAL"/></TagGroup>
-
 Con este plugin, puedes insertar fácilmente emojis en tus respuestas buscándolos en lugar de copiar y pegar manualmente un emoji de la web en tu código.
 
 ## ¿Por qué debería utilizarlo?

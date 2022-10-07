@@ -1,11 +1,5 @@
 # 总是回复消息
 
-<TagGroup>
-<Tag type="thirdparty" text="第三方"/>
-<Tag type="deno"/>
-<Tag type="nodejs"/>
-</TagGroup>
-
 有时候有必要总是将消息作为回复发送，特别是对于那些打算要在群组中使用的 bot。
 我们通常通过在发送消息的方法中添加 `reply_to_message_id` 参数来实现这一点：`sendText`, `reply`, `sendPhoto`, `replyWithPhoto` 等等。
 然而，如果你对每一条消息都这样做，这会使得代码变得很无聊和繁琐。

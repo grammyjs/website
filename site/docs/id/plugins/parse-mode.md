@@ -1,7 +1,5 @@
 # Plugin Parse Mode (`parse-mode`)
 
-<TagGroup><Tag type="official" text="RESMI"/></TagGroup>
-
 Plugin ini menyediakan sebuah transformer untuk mengatur setting-an bawaan `parse_mode` dan sebuah middleware untuk menghidrasi `Context` dengan varian method `reply` yang lebih familiar, contohnya: `replyWithHTML`, `replyWithMarkdown`, dll.
 
 ## Penggunaan

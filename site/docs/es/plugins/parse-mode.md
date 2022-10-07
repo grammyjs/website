@@ -1,7 +1,5 @@
 # Parse Mode Plugin (`parse-mode`)
 
-<TagGroup><Tag type="official" text="OFICIAL"/></TagGroup>
-
 Este plugin proporciona un transformador para establecer el `parse_mode` por defecto, y un middleware para hidratar el `Context` con los métodos variantes familiares de `reply` - es decir, `replyWithHTML`, `replyWithMarkdown`, etc.
 
 ## Uso

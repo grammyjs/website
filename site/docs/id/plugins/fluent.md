@@ -1,7 +1,5 @@
 # Internasionalisasi dengan Fluent (`fluent`)
 
-<TagGroup><Tag type="official" text="RESMI"/></TagGroup>
-
 [Fluent](https://projectfluent.org/) adalah sebuah sistem penerjemah bahasa yang dibuat oleh Mozilla Foundation dengan tujuan supaya hasil terjemahan terdengar lebih natural.
 Ia memiliki sebuah syntax yang canggih dan elegan, sehingga memungkinkan siapa pun dapat menerjemah secara efisien serta bisa dipahami dengan baik.
 Plugin ini memanfaatkan sistem penerjemah tersebut untuk membuat bot grammY menjadi fasih serta menghasilkan terjemahan berkualitas tinggi.

@@ -1,7 +1,5 @@
 # Percakapan (`conversations`)
 
-<TagGroup><Tag type="official" text="RESMI"/></TagGroup>
-
 Membuat interaksi percakapan dengan mudah.
 
 ## Pengenalan

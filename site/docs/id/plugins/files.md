@@ -1,7 +1,5 @@
 # Menangani File dengan Mudah di grammY (`files`)
 
-<TagGroup><Tag type="official" text="RESMI"/></TagGroup>
-
 Plugin ini memudahkan kamu untuk mengunduh file dari server Telegram dan memperoleh URL-nya agar kamu dapat mengunduh file tersebut secara mandiri.
 
 ## Mengunduh File

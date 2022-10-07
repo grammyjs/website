@@ -1,7 +1,5 @@
 # Stateless Question (`stateless-question`)
 
-<TagGroup><Tag type="official" desc="This plugin is published and maintained by grammY"/></TagGroup>
-
 > Create stateless questions to Telegram users working in privacy mode
 
 You want to keep the privacy of the user with [Telegrams privacy mode enabled (by default)](https://core.telegram.org/bots#privacy-mode), send users translated questions in their language and don't save the state what users are currently doing?
