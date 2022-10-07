@@ -1,9 +1,16 @@
+<!-- 
+  This script is copied from upstream (@theme/NavbarDropdown.vue). 
+  No changes were made to the script other than modifying some import.
+-->
 <script setup lang="ts">
-import AutoLink from "./AutoLink.vue";
 import DropdownTransition from "@theme/DropdownTransition.vue";
 import { computed, ref, toRefs, watch } from "vue";
 import type { PropType } from "vue";
 import { useRoute } from "vue-router";
+
+// import AutoLink from '@theme/AutoLink.vue'
+// import type { NavbarItem, ResolvedNavbarItem } from '../../shared/index.js'
+import AutoLink from "./AutoLink.vue";
 import type { NavbarItem, ResolvedNavbarItem } from "../../types/shared";
 
 const props = defineProps({
@@ -46,6 +53,10 @@ const handleDropdown = (e: UIEvent): void => {
 const isLastItemOfArray = (item: unknown, arr: unknown[]): boolean => arr[arr.length - 1] === item;
 </script>
 
+<!-- 
+  This template is copied from upstream (@theme/NavbarDropdown.vue). 
+  We injected `TagGroup` and `Tag` component to this template.
+-->
 <template>
   <div class="navbar-dropdown-wrapper" :class="{ open }">
     <button
@@ -54,11 +65,13 @@ const isLastItemOfArray = (item: unknown, arr: unknown[]): boolean => arr[arr.le
       :aria-label="dropdownAriaLabel"
       @click="handleDropdown"
     >
+      <!-- Inject Tag component -->
       <span class="title">{{ item.text }}</span>
       <TagGroup v-if="item.favicon">
-        <Tag v-for="value in item.favicon" :item="value" />
+        <Tag v-for="value in item.favicon" :nav="value" />
       </TagGroup>
       <span class="arrow down" />
+      <!-- End of inject Tag component -->
     </button>
 
     <button
@@ -67,16 +80,17 @@ const isLastItemOfArray = (item: unknown, arr: unknown[]): boolean => arr[arr.le
       :aria-label="dropdownAriaLabel"
       @click="open = !open"
     >
+      <!-- Inject Tag component -->
       <span class="title">{{ item.text }}</span>
       <TagGroup v-if="item.favicon">
-        <Tag v-for="value in item.favicon" :item="value" />
+        <Tag v-for="value in item.favicon" :nav="value" />
       </TagGroup>
       <span class="arrow" :class="open ? 'down' : 'right'" />
+      <!-- End of Inject Tag component -->
     </button>
 
     <DropdownTransition>
       <ul v-show="open" class="navbar-dropdown">
-        <!-- suppress type check error by implementing `as any` -->
         <li v-for="child in item.children" :key="child.text" class="navbar-dropdown-item">
           <template v-if="child.children">
             <h4 class="navbar-dropdown-subtitle">
@@ -89,12 +103,14 @@ const isLastItemOfArray = (item: unknown, arr: unknown[]): boolean => arr[arr.le
                     (open = false)
                 "
               />
+              <!-- Inject Tag component -->
               <span v-else>
                 {{ child.text }}
                 <TagGroup v-if="child.favicon">
-                  <Tag v-for="value in child.favicon" :item="value" />
+                  <Tag v-for="value in child.favicon" :nav="value" />
                 </TagGroup>
               </span>
+              <!-- End of inject Tag component -->
             </h4>
 
             <ul class="navbar-dropdown-subitem-wrapper">

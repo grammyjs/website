@@ -1,3 +1,4 @@
+<!-- This script is copied from upstream (@theme/AutoLink.vue). No changes were made to the script. -->
 <script lang="ts">
 /* eslint-disable import/first, import/no-duplicates, import/order */
 import { defineComponent } from "vue";
@@ -8,6 +9,10 @@ export default defineComponent({
 /* eslint-enable import/order */
 </script>
 
+<!-- 
+  This script is copied from upstream (@theme/AutoLink.vue). 
+  No changes were made to the script other than importing `Tag` and `TagGroup`.
+-->
 <script setup lang="ts">
 import { useSiteData } from "@vuepress/client";
 import { isLinkHttp, isLinkMailto, isLinkTel } from "@vuepress/shared";
@@ -15,6 +20,7 @@ import { computed, toRefs } from "vue";
 import type { PropType } from "vue";
 import { useRoute } from "vue-router";
 import type { NavLink } from "../../types/shared";
+
 import Tag from "../../components/Tag.vue";
 import TagGroup from "../../components/TagGroup.vue";
 
@@ -87,6 +93,10 @@ const isActive = computed(() => {
 });
 </script>
 
+<!-- 
+  This template is copied from upstream (@theme/AutoLink.vue). 
+  We injected `TagGroup` and `Tag` component to this template.
+-->
 <template>
   <RouterLink
     v-if="isRouterLink"
@@ -95,14 +105,16 @@ const isActive = computed(() => {
     :aria-label="linkAriaLabel"
     v-bind="$attrs"
   >
+    <!-- Inject Tag component -->
     <slot name="before" />
     <span>
       {{ item.text }}
       <TagGroup v-if="item.favicon">
-        <Tag v-for="value in item.favicon" :item="value" />
+        <Tag v-for="value in item.favicon" :nav="value" />
       </TagGroup>
     </span>
     <slot name="after" />
+    <!-- End of inject Tag component -->
   </RouterLink>
   <a
     v-else
@@ -113,14 +125,16 @@ const isActive = computed(() => {
     :aria-label="linkAriaLabel"
     v-bind="$attrs"
   >
+    <!-- inject Tag component -->
     <slot name="before" />
     <span>
       {{ item.text }}
       <TagGroup v-if="item.favicon">
-        <Tag v-for="value in item.favicon" :item="value" />
+        <Tag v-for="value in item.favicon" :nav="value" />
       </TagGroup>
       <AutoLinkExternalIcon v-if="isBlankTarget" />
     </span>
     <slot name="after" />
+    <!-- End of inject Tag component -->
   </a>
 </template>

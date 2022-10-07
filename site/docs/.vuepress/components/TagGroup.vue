@@ -1,4 +1,5 @@
 <script setup lang="ts">
+
 const props = defineProps({
   mt: String,
   mb: String,
@@ -6,20 +7,12 @@ const props = defineProps({
   pb: String,
 });
 
-let customStyle: AnyObject = {};
-
-if (props.mt) {
-  customStyle.marginTop = props.mt;
-}
-if (props.mb) {
-  customStyle.marginBottom = props.mb;
-}
-if (props.pt) {
-  customStyle.paddingTop = props.pt;
-}
-if (props.pb) {
-  customStyle.paddingBottom = props.pb;
-}
+const customStyle = {
+  marginTop: props.mt,
+  marginBottom: props.mb,
+  paddingTop: props.pt,
+  paddingBottom: props.pb,
+};
 </script>
 
 <template>
@@ -30,33 +23,48 @@ if (props.pb) {
 
 <style>
 .tag-group {
-  --mb-custom: 2rem;
+  --tag-gap: 0.5rem;
 }
 
 .tag-group {
-  display: flex;
+  display: inline-flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: var(--tag-gap);
+  margin-bottom: 0.5rem;
 }
 
 .tag-group:empty {
   display: none;
 }
 
-/* Make tag closer to heading */
-.theme-default-content :is(h1, h3, h4, h5, h6) + div.tag-group {
+/* custom margin for h1 */
+.theme-default-content h1 + div.tag-group {
   margin-top: 0;
-  margin-bottom: var(--mb-custom);
+  margin-bottom: 1rem;
 }
 
 /* Add additional margin due to line border at the bottom of h2 */
 .theme-default-content h2 + div.tag-group {
   margin-top: 0.6rem;
-  margin-bottom: var(--mb-custom);
+}
+
+/* custom margin for heading other than h1 and h2 */
+.theme-default-content :is(h3, h4, h5, h6) + div.tag-group {
+  margin-top: 0.7rem;
+}
+
+/* Add some gaps between TagGroups */
+div.tag-group:not(:empty) + div.tag-group {
+  margin-left: var(--tag-gap);
 }
 </style>
 
 <style>
+/* Disable margin in navbar (desktop) and sidebar (mobile)*/
+:is(.navbar, .sidebar) .tag-group {
+  margin-bottom: 0;
+}
+
 /**
  * NavbarDropdown
  */

@@ -1,38 +1,69 @@
-interface Favicon {
-  icon: {
-    /**
-     * Icon file name
-     */
-    name: string;
+type FaviconNoType = {
+  /**
+   * Tag type
+   *
+   * Use the available templates as the base of tag.
+   */
+  type?: "iconDeno" | "iconNodejs" | "iconOfficial" | "iconThirdparty";
 
-    /**
-     * `logo` for https://simpleicons.org/.
-     * `icon` for https://icons.getbootstrap.com.
-     */
-    type: "icon" | "logo";
+  /**
+   * Icon file name
+   */
+  icon: string;
 
-    /**
-     * Icon color
-     *
-     * `blue`, `fff000`, or any valid css color.
-     *
-     * @default "black"
-     */
-    color?: string;
+  /**
+   * `logo` for https://simpleicons.org/.
+   * `icon` for https://icons.getbootstrap.com.
+   */
+  iconType: "icon" | "logo";
+};
 
-    /**
-     * Icon color for dark mode
-     *
-     * `blue`, `fff000`, or any valid css color.
-     */
-    colorDark?: string;
-  };
+type FaviconDefinedType = {
+  /**
+   * Tag type
+   *
+   * Use the available templates as the base of tag.
+   */
+  type?: "iconDeno" | "iconNodejs" | "iconOfficial" | "iconThirdparty";
+
+  /**
+   * Icon file name
+   */
+  icon?: string;
+
+  /**
+   * `logo` for https://simpleicons.org/.
+   * `icon` for https://icons.getbootstrap.com.
+   */
+  iconType?: "icon" | "logo";
+};
+
+type FaviconBase = {
+  /**
+   * Icon color
+   *
+   * `blue`, `fff000`, or any valid css color.
+   *
+   * @default "black"
+   */
+  iconColor?: string;
+
+  /**
+   * Icon color for dark mode
+   *
+   * `blue`, `fff000`, or any valid css color.
+   */
+  iconColorDark?: string;
 
   /**
    * Description text to be displayed in the tooltip
    */
   desc?: string;
-}
+};
+
+export type Favicon =
+  | FaviconBase & FaviconDefinedType
+  | FaviconBase & FaviconNoType;
 
 /**
  * Base nav item, displayed as text

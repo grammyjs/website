@@ -1,11 +1,5 @@
 # Selalu Reply Pesan
 
-<TagGroup>
-  <Tag type="thirdparty" text="PIHAK KETIGA"/>
-  <Tag type="deno"/>
-  <Tag type="nodejs"/>
-</TagGroup>
-
 > Catatan terjemahan: Kami membedakan istilah `balas` dengan `reply` agar tidak rancu.
 > Balas berarti membalas chat seperti pada umumnya.
 > Sedangkan reply merujuk ke [membalas pesan secara spesifik](https://telegram.org/blog/replies-mentions-hashtags#replies) sehingga menghasilkan utas pesan.

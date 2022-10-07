@@ -1,7 +1,5 @@
 # Hosting: Supabase Edge Functions
 
-<TagGroup><Tag type="deno" desc="This setup is able to run Deno bots"/></TagGroup>
-
 This guide tells you how you can host your grammY bots on [Supabase](https://supabase.com/).
 
 Please note that you need to have a [GitHub](https://github.com) account before you can use [Supabase Edge Functions](https://supabase.com/docs/guides/functions).

@@ -1,7 +1,5 @@
 # Conversations (`conversations`)
 
-<TagGroup><Tag type="official" desc="This plugin is published and maintained by grammY"/></TagGroup>
-
 Create powerful conversational interfaces with ease.
 
 ## Introduction

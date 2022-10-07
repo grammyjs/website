@@ -1,7 +1,5 @@
 # Hosting: Heroku
 
-<TagGroup><Tag type="deno" desc="This setup is able to run Deno bots"/><Tag type="nodejs" desc="This setup is able to run Node.js bots"/></TagGroup>
-
 > We assume that you have the basic knowledge about creating bots using grammY.
 > If you are not ready yet, don't hesitate to head over to our friendly [Guide](../guide)! :rocket:
 

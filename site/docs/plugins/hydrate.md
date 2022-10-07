@@ -1,7 +1,5 @@
 # Hydration Plugin for grammY (`hydrate`)
 
-<TagGroup><Tag type="official" desc="This plugin is published and maintained by grammY"/></TagGroup>
-
 This plugin installs useful methods on two types of objects, namely
 
 1. the results of API calls, and

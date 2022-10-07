@@ -1,7 +1,5 @@
 # 重试 API 请求（`auto-retry`）
 
-<TagGroup><Tag type="official" text="官方维护"/></TagGroup>
-
 > 请考虑使用 [流量控制插件](./transformer-throttler.md) 替代。
 
 这个插件是一个 [API 转换函数](../advanced/transformers.md)，这意味着它可以让你动态地拦截和修改传出的 HTTP 请求。

@@ -1,7 +1,5 @@
 # Set of useful middlewares
 
-<TagGroup><Tag type="thirdparty" desc="This plugin is maintained by a third party"/><Tag type="nodejs" desc="This plugin is compatible with Node.js"/></TagGroup>
-
 I kept rewriting the same middlewares again and again for all of my bots so I decided to extract them all to a separate package.
 
 ## Installation

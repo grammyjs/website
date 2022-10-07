@@ -1,7 +1,5 @@
 # Router (`router`)
 
-<TagGroup><Tag type="official" text="RESMI"/></TagGroup>
-
 Class `Router` ([Referensi API](https://doc.deno.land/https://deno.land/x/grammy_router/router.ts)) berfungsi untuk mengatur rute suatu object context ke berbagai tempat di kode kamu.
 Plugin ini serupa dengan `bot.route` di `Composer` ([grammY API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer#route)), namun ia jauh lebih canggih.
 

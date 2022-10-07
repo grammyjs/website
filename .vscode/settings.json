@@ -12,5 +12,16 @@
     "./site/docs/zh/",
     "./site/docs/es/",
     "./site/docs/id/"
-  ]
+  ],
+  "editor.formatOnType": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "modifications",
+  "editor.defaultFormatter": "denoland.vscode-deno",
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

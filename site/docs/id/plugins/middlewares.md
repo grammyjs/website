@@ -1,10 +1,5 @@
 # Kumpulan Middleware yang Berguna
 
-<TagGroup>
-  <Tag type="thirdparty" text="PIHAK KETIGA"/>
-  <Tag type="nodejs"/>
-</TagGroup>
-
 Capek menulis middleware yang sama berulang kali?
 Yup, begitu juga dengan kami.
 Oleh karena itu, kali ini kami memutuskan untuk mengumpulkan berbagai middleware ke dalam sebuah package terpisah.
