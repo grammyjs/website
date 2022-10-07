@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useRoute } from "vue-router";
 import TagGroup from "./TagGroup.vue";
 import Tag from "./Tag.vue";
 import type { AutotagOptions, Props } from "../types";
@@ -8,9 +9,10 @@ let showTag = false;
 let tagProps: Props[] = []; // Collection of tags to be shown
 
 if (props.config) {
-  // Get current URL page then replace trailing "/"
-  // at the end of url ("/plugins/" => "/plugins")
-  const currentUrl = window.location.pathname.replace(/\/$/, "");
+  // Get current URL page then delete trailing "/" and anchor "#"
+  // at the end of URL.
+  const route = useRoute().fullPath;
+  const currentUrl = route.replace(/\/$|#.*$/, "");
   const autotag: AutotagOptions = JSON.parse(props.config);
 
   for (const item of autotag) {
@@ -34,8 +36,8 @@ if (props.config) {
       const _exclude = item.exclude ?? []; // [] will always evaluate to false on searchUrl function
 
       // Check if the current url page is matched with the user options.
-      include = matchUrl(_include, url, currentUrl);
-      exclude = !matchUrl(_exclude, url, currentUrl);
+      include = matchUrl(_include, url, currentUrl, route);
+      exclude = !matchUrl(_exclude, url, currentUrl, route);
 
       if (include && exclude) {
         item.tag.forEach((tag) => {
@@ -57,15 +59,14 @@ if (props.config) {
   }
 }
 
-function matchUrl(items: string[], url: string, currentUrl: string): boolean {
+function matchUrl(items: string[], url: string, currentUrl: string, route: string): boolean {
   let result = false;
 
   for (const item of items) {
     // Match user url with current url page
     if (item === "/") {
-      // "/" is special syntax for index
-      const pageUrl = window.location.pathname; // Use the original URL path.
-      result = new RegExp(`^${url}${item}$`).test(pageUrl); // https://grammy.dev/url/
+      // "/" is special syntax for index html
+      result = new RegExp(`^${url}\/$`).test(route); // https://grammy.dev/url/
     } else {
       result = item.startsWith("/")
         ? new RegExp(`^${url}${item}`).test(currentUrl) // https://grammy.dev/url/item ...

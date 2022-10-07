@@ -22,7 +22,7 @@ export function autotag(option: AutotagOptions): Plugin {
         // Insert Tag component
         // and user option to Tag attributes.
         return tokens[idx].tag === "h1"
-          ? closingTag + `<AutoTag config='${optionString}'/>`
+          ? closingTag + `<TagAuto config='${optionString}'/>`
           : closingTag;
       };
     },
