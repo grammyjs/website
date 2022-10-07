@@ -1,7 +1,5 @@
 # Hosting: Heroku
 
-<TagGroup><Tag type="deno"/><Tag type="nodejs"/></TagGroup>
-
 > Kami mengasumsikan bahwa kamu sudah memiliki pengetahuan dasar dalam membuat sebuah bot menggunakan grammY.
 > Jika belum, silahkan baca [panduan](../guide) yang telah kami buat dengan sepenuh hati! :heart:
 

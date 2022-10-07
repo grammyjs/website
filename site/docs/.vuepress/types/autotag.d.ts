@@ -1,20 +1,40 @@
 import type { Props } from "./Tag";
 
-type AutotagOptionsItemUrl = `/${string}`;
+type AutotagItemUrl = `/${string}`;
+
+type AutotagLocaleTagConfig = {
+  /**
+   * Tag text.
+   *
+   * If not defined, then use the main one.
+   */
+  text?: string;
+  /**
+   * Description text to be displayed on the tooltip.
+   *
+   * If not defined, then use the main one.
+   */
+  desc?: string;
+};
 
 type AutotagTag = Props & {
   /**
-   * Change tag label according to these languages.
+   * Change tag label according to the defined languages.
    *
    * @example
    * ```
-   *  {es: "OFICIAL", id: "RESMI", zh: "官方维护"},
+   *  {
+   *    id: {
+   *      text: "TAG INDONESIA",
+   *      desc: "Tag untuk halaman lokal Indonesia",
+   *    }
+   *  }
    * ```
    */
-  locale?: Record<string, string>;
+  locale?: Record<string, AutotagLocaleTagConfig>;
 };
 
-type AutotagOptionsItem = {
+type AutotagItem = {
   /**
    * Add tags to all pages in these path.
    * It will be matched with the url page (case-sensitive).
@@ -30,7 +50,7 @@ type AutotagOptionsItem = {
    * ["/plugins", "/hosting/middlewares.html"]
    * ```
    */
-  url: AutotagOptionsItemUrl[];
+  url: AutotagItemUrl[];
 
   /**
    * Tag options.
@@ -75,4 +95,4 @@ type AutotagOptionsItem = {
   exclude?: string[];
 };
 
-type AutotagOptions = AutotagOptionsItem[];
+type AutotagOptions = AutotagItem[];

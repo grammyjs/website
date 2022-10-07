@@ -1,7 +1,5 @@
 # 托管：Deno Deploy
 
-<TagGroup><Tag type="deno"/></TagGroup>
-
 这个指南告诉你如何将你的 grammY bots 托管到 [Deno Deploy](https://deno.com/deploy).
 
 请注意，这个指南只适用于 Deno 用户，你需要一个 [GitHub](https://github.com) 账户来创建一个 [Deno Deploy](https://deno.com/deploy) 账户。

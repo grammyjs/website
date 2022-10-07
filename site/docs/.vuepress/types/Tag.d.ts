@@ -23,7 +23,7 @@ export type TagDefault = Record<string, Tag>;
 
 type PropsBase = {
   /**
-   * Description text to be displayed in the tooltip
+   * Description text to be displayed on the tooltip
    */
   desc?: string;
 

@@ -1,7 +1,5 @@
 # Hosting: Supabase Edge Functions
 
-<TagGroup><Tag type="deno"/></TagGroup>
-
 Esta guía te explica cómo puedes alojar tus bots de grammY en [Supabase](https://supabase.com/).
 
 Ten en cuenta que necesitas tener una cuenta de [GitHub](https://github.com) antes de poder utilizar [Supabase Edge Functions](https://supabase.com/docs/guides/functions).

@@ -1,7 +1,5 @@
 # Alojamiento: VPS
 
-<TagGroup><Tag type="deno"/><Tag type="nodejs"/></TagGroup>
-
 Un servidor virtual privado, mayormente conocido como VPS, es una máquina virtual que se ejecuta en la nube y cuyos usuarios tienen el control total de su sistema.
 
 En esta guía, aprenderás varios métodos para ejecutar tu bot en un VPS, manteniéndolo en línea 24/7, haciendo que se ejecute automáticamente cuando tu VPS se inicie y se reinicie en caso de caída.

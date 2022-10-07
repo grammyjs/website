@@ -2,7 +2,7 @@
 import { useRoute } from "vue-router";
 import TagGroup from "./TagGroup.vue";
 import Tag from "./Tag.vue";
-import type { AutotagOptions, Props } from "../types";
+import type { AutotagItemUrl, AutotagOptions, Props } from "../types";
 
 const props = defineProps({ config: String });
 let showTag = false;
@@ -22,7 +22,7 @@ if (props.config) {
     // Inject locale url
     item.url.forEach((url) => {
       for (const lang in locale) {
-        const localeUrl = `/${lang}` + url; // ex: "/plugins" => "/id/plugins"
+        const localeUrl: AutotagItemUrl = `/${lang}${url}`; // ex: "/plugins" => "/id/plugins"
         urls.push(localeUrl);
       }
     });
@@ -46,7 +46,8 @@ if (props.config) {
             // Check if current page is a locale page
             const isLocalePage = currentUrl.startsWith(`/${lang}/`);
             if (isLocalePage) {
-              tag.text = tag.locale[lang]; // Replace tag text with the locale one
+              tag.text = tag.locale[lang].text ?? tag.text; // Replace tag text with the locale one
+              tag.desc = tag.locale[lang].desc ?? tag.desc; // Replace tag description with the locale one
               break;
             }
           }

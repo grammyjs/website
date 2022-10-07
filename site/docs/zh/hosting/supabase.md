@@ -1,7 +1,5 @@
 # 托管：Supabase Edge Functions
 
-<TagGroup><Tag type="deno"/></TagGroup>
-
 这个指南告诉你如何将你的 grammY bots 托管到 [Supabase](https://supabase.com/).
 
 请注意，在使用 [Supabase Edge Functions](https://supabase.com/docs/guides/functions) 之前，你需要有一个 [GitHub](https://github.com) 账户。

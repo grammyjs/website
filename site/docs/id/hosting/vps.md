@@ -1,7 +1,5 @@
 # Hosting: VPS
 
-<TagGroup><Tag type="deno"/><Tag type="nodejs"/></TagGroup>
-
 Virtual Private Server, atau biasa dikenal dengan VPS, adalah sebuah perangkat virtual yang berjalan di cloud, dimana pemiliknya memiliki kendali penuh atas perangkat tersebut.
 
 Di panduan kali ini, kamu akan mempelajari bagaimana menjalankan bot di sebuah VPS, menjaga bot agar tetap online 24/7, serta memulai bot secara otomatis ketika VPS kamu mengalami crash.

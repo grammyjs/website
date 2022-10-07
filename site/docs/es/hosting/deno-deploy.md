@@ -1,7 +1,5 @@
 # Alojamiento: Deno Deploy
 
-<TagGroup><Tag type="deno"/></TagGroup>
-
 Esta guía le informa sobre las formas de alojar sus bots de grammY en [Deno Deploy](https://deno.com/deploy).
 
 Ten en cuenta que esta guía es sólo para usuarios de Deno, y que necesitas tener una cuenta de [GitHub](https://github.com) para crear una cuenta de [Deno Deploy](https://deno.com/deploy).

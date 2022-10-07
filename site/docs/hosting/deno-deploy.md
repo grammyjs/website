@@ -1,7 +1,5 @@
 # Hosting: Deno Deploy
 
-<TagGroup><Tag type="deno" desc="This setup is able to run Deno bots"/></TagGroup>
-
 This guide tells you about the ways you can host your grammY bots on [Deno Deploy](https://deno.com/deploy).
 
 Please note that this guide is only for Deno users, and you need to have a [GitHub](https://github.com) account for creating a [Deno Deploy](https://deno.com/deploy) account.
