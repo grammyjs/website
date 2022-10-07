@@ -3,6 +3,8 @@
     "esbenp.prettier-vscode",
     "davidanson.vscode-markdownlint",
     "bierner.markdown-checkbox",
-    "denoland.vscode-deno"
+    "denoland.vscode-deno",
+    "Vue.volar",
+    "Vue.vscode-typescript-vue-plugin"
   ]
 }
