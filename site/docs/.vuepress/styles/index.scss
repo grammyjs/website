@@ -1,13 +1,53 @@
 // oklch theme
 :root {
-  --c-brand-light: #27b5e6;
-  --c-tip: #16afe0;
+  --c-brand-light: #138cb3;
+  --c-tip: #1583a7;
   --c-brand: #009dca;
+  --c-warning: #ffc310;
+  --c-warning-bg-lighter: #fff3ba;
+  --c-warning-title: #f1b300;
+  --c-warning-text-lighter: #c1971c;
+  --c-warning-text-accent: #edb100;
+  --c-warning-text-quote: #ccab49;
+  --c-warning-border-dark: #f7dc91;
+  --c-danger: #f11e37;
+  --c-danger-bg-lighter: #ffcfde;
+  --c-danger-title: #ed1e2c;
+  --c-danger-text-lighter: #b5474d;
+  --c-danger-text-accent: #bd1a1a;
+  --c-danger-text-quote: #c15b5b;
+  --c-danger-border-dark: #f1abab;
+}
+
+// for dark mode
+html.dark {
+  --c-brand-light: #138cb3;
+  --c-tip: #1583a7;
+  --c-brand: #009dca;
+  --c-bg-lighter-2: #38404a;
+  --c-warning: #e0ad15;
+  --c-warning-bg: #2d2f2d;
+  --c-warning-bg-lighter: #423E2A;
+  --c-warning-title: #fdca31;
+  --c-warning-text: #d8d96d;
+  --c-warning-text-lighter: #ddb84b;
+  --c-warning-text-accent: #ffbf00;
+  --c-warning-text-quote: #ccab49;
+  --c-warning-border-dark: #957c35;
+  --c-danger: #fc1e38;
+  --c-danger-bg: #39232c;
+  --c-danger-bg-lighter: #4b2b35;
+  --c-danger-title: #fc2d3b;
+  --c-danger-text: #ea9ca0;
+  --c-danger-text-lighter: #d9777c;
+  --c-danger-text-accent: #fd3636;
+  --c-danger-text-quote: #d56b6b;
+  --c-danger-border-dark: #a25151;
 }
 
 // adjust table background colors to avoid clashes with inline code snippets
 html {
-  tr:nth-child(2n) {
+  :is(tr:nth-child(2n), .custom-container.tip) {
     code {
       background-color: var(--c-bg-lighter);
     }
@@ -15,12 +55,10 @@ html {
 
   // for dark mode
   &.dark {
-    --c-brand-light: #138cb3;
-    --c-tip: #1583a7;
-    --c-brand: #009dca;
-
-    tr:nth-child(2n) {
-      background-color: var(--c-bg-lighter);
+    :is(tr:nth-child(2n), .custom-container.tip) {
+      code {
+        background-color: var(--c-bg-lighter-2);
+      }
     }
   }
 }
@@ -41,11 +79,17 @@ html {
   hyphens: auto;
 }
 
+// make code background color brighter
+.theme-default-content code {
+  background-color: var(--c-bg-light);
+}
+
 // neither hyphenate inline code snippets nor links, we are injeting <wbr> tags there
 code,
 a {
   hyphens: none;
 }
+
 
 /** 
 * Re-implement default margin for first heading of a page.
@@ -86,6 +130,40 @@ a {
       // ... followed by paragraph or any text content
       + :is(p, pre, .custom-container) {
         margin-top: 2rem; // add margin to this element (the default value is 2rem)
+      }
+    }
+  }
+}
+
+// Do not change the code snippet block
+[class*="language-"] code {
+  color: #fff !important; // Default value #fff
+  background-color: transparent !important; // Default value `transparent`
+}
+
+html {
+  .custom-container {
+    &.warning {
+      code {
+        color: var(--c-warning-text-lighter);
+        background-color: var(--c-warning-bg-lighter);
+      }
+
+      blockquote {
+        color: var(--c-warning-text-quote);
+        border-left-color: var(--c-warning-border-dark);
+      }
+    }
+
+    &.danger {
+      code {
+        color: var(--c-danger-text-lighter);
+        background-color: var(--c-danger-bg-lighter);
+      }
+
+      blockquote {
+        color: var(--c-danger-text-quote);
+        border-left-color: var(--c-danger-border-dark);
       }
     }
   }

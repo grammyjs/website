@@ -20,5 +20,8 @@
   "editor.defaultFormatter": "denoland.vscode-deno",
   "[vue]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }
