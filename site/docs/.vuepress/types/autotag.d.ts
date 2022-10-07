@@ -1,5 +1,7 @@
 import type { Props } from "./Tag";
 
+type AutotagOptionsItemUrl = `/${string}`;
+
 type AutotagTag = Props & {
   /**
    * Change tag label according to these languages.
@@ -17,6 +19,8 @@ type AutotagOptionsItem = {
    * Add tags to all pages in these path.
    * It will be matched with the url page (case-sensitive).
    *
+   * It should always start with a slash.
+   *
    * @example
    * This will add tags to all pages inside `plugins` directory
    * and a `middlewares.md` file at the root of `hosting` folder
@@ -26,7 +30,7 @@ type AutotagOptionsItem = {
    * ["/plugins", "/hosting/middlewares.html"]
    * ```
    */
-  url: string[];
+  url: AutotagOptionsItemUrl[];
 
   /**
    * Tag options.

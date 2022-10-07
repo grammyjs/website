@@ -60,6 +60,11 @@ div.tag-group:not(:empty) + div.tag-group {
 </style>
 
 <style>
+/* Disable margin in navbar (desktop) and sidebar (mobile)*/
+:is(.navbar, .sidebar) .tag-group {
+  margin-bottom: 0;
+}
+
 /**
  * NavbarDropdown
  */

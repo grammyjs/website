@@ -1,8 +1,8 @@
 // oklch theme
 :root {
   --c-brand-light: #138cb3;
-  --c-tip: #1583a7;
   --c-brand: #009dca;
+  --c-tip: var(--c-brand);
   --c-warning: #ffc310;
   --c-warning-bg-lighter: #fff3ba;
   --c-warning-title: #f1b300;
@@ -22,12 +22,12 @@
 // for dark mode
 html.dark {
   --c-brand-light: #138cb3;
-  --c-tip: #1583a7;
   --c-brand: #009dca;
+  --c-tip: var(--c-brand);
   --c-bg-lighter-2: #38404a;
   --c-warning: #e0ad15;
   --c-warning-bg: #2d2f2d;
-  --c-warning-bg-lighter: #423E2A;
+  --c-warning-bg-lighter: #423e2a;
   --c-warning-title: #fdca31;
   --c-warning-text: #d8d96d;
   --c-warning-text-lighter: #ddb84b;
@@ -90,6 +90,10 @@ a {
   hyphens: none;
 }
 
+// Fix button color transition at home page
+.home .hero .action-button {
+  transition: background-color var(--t-color), color var(--t-color);
+}
 
 /** 
 * Re-implement default margin for first heading of a page.
@@ -167,4 +171,22 @@ html {
       }
     }
   }
+}
+
+// Fix navbar menu pointer position.
+.navbar-dropdown-wrapper .navbar-dropdown .navbar-dropdown-item a.router-link-active::after {
+  border-left: 0.35rem solid var(--c-text-accent);
+  border-top: 0.2rem solid transparent;
+  border-bottom: 0.2rem solid transparent;
+  top: calc(0.71rem);
+  left: 0.56rem;
+}
+
+.sidebar
+  .navbar-items
+  .navbar-dropdown-wrapper
+  .navbar-dropdown
+  .navbar-dropdown-item
+  a.router-link-active::after {
+  top: calc(0.71rem);
 }
