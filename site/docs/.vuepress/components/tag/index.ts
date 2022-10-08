@@ -1,4 +1,5 @@
 import type { Tag, TagDefault } from "../../types";
+import { withBase } from "@vuepress/client";
 
 export async function fetchIcon(tag: Tag) {
   let result: Response;
@@ -7,11 +8,11 @@ export async function fetchIcon(tag: Tag) {
     value: "<svg></svg>",
   };
 
-  // Do not fetch if neither icon name nor icon type value defined
+  // Do not fetch if neither icon name nor icon type is defined
   if (tag.icon.name && tag.icon.type) {
     try {
-      // fetch from assets folder first ...
-      result = await fetch(`/tag/${tag.icon.type}/${tag.icon.name}.svg`);
+      const assetUrl = withBase(`/tag/${tag.icon.type}/${tag.icon.name}.svg`); // prefix url with site base
+      result = await fetch(assetUrl); // fetch from assets folder first ...
 
       // ... if not available then download the file.
       if (!result.ok) {
@@ -44,7 +45,6 @@ export async function fetchIcon(tag: Tag) {
       console.error(error);
     }
   }
-
   return icon;
 }
 
