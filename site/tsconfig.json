@@ -41,7 +41,7 @@
   },
   "vueCompilerOptions": {
     // too buggy. Temporarily disabled for template check
-    "experimentalDisableTemplateSupport": true
+    "skipTemplateCodegen": true
   },
   "include": ["**/.vuepress/**/*"],
   "exclude": ["node_modules", ".temp", "lib", "dist"],
