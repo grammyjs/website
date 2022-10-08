@@ -2,7 +2,7 @@ import type { Props } from "./Tag";
 
 type AutotagItemUrl = `/${string}`;
 
-type AutotagLocaleTagConfig = {
+type AutotagLocaleTag = {
   /**
    * Tag text.
    *
@@ -17,7 +17,7 @@ type AutotagLocaleTagConfig = {
   desc?: string;
 };
 
-type AutotagTag = Props & {
+type AutotagItemTag = Props & {
   /**
    * Change tag label according to the defined languages.
    *
@@ -31,7 +31,7 @@ type AutotagTag = Props & {
    *  }
    * ```
    */
-  locale?: Record<string, AutotagLocaleTagConfig>;
+  locale?: Record<string, AutotagLocaleTag>;
 };
 
 type AutotagItem = {
@@ -64,7 +64,7 @@ type AutotagItem = {
    * [ {type: "official"}, {text: "Tag 1"} ]
    * ```
    */
-  tag: AutotagTag[];
+  tag: AutotagItemTag[];
 
   /**
    * implement only to these files/folders.

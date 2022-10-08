@@ -16,7 +16,7 @@ export type Tag = {
   };
   desc?: string;
   link?: string;
-  type?: string;
+  template?: string;
 };
 
 export type TagDefault = Record<string, Tag>;
@@ -97,26 +97,26 @@ type PropsBase = {
    * `https://www.example.com`, `#anchor`, or any valid URL.
    */
   link?: string;
+
+  /**
+   * Tag template
+   *
+   * Use the available templates as the base of tag.
+   */
+  template?:
+    | "deno"
+    | "nodejs"
+    | "official"
+    | "thirdparty"
+    | "denoIcon"
+    | "nodejsIcon"
+    | "officialIcon"
+    | "thirdpartyIcon";
 };
 
 // text or icon is required when type is not defined
 type PropsNoType =
   | {
-    /**
-     * Tag type
-     *
-     * Use the available templates as the base of tag.
-     */
-    type?:
-      | "deno"
-      | "nodejs"
-      | "official"
-      | "thirdparty"
-      | "icon-deno"
-      | "icon-nodejs"
-      | "icon-official"
-      | "icon-thirdparty";
-
     /**
      * Text label
      */
@@ -128,21 +128,6 @@ type PropsNoType =
     icon?: string;
   }
   | {
-    /**
-     * Tag type
-     *
-     * Use the available templates as the base of tag.
-     */
-    type?:
-      | "deno"
-      | "nodejs"
-      | "official"
-      | "thirdparty"
-      | "icon-deno"
-      | "icon-nodejs"
-      | "icon-official"
-      | "icon-thirdparty";
-
     /**
      * Text label
      */
@@ -156,21 +141,6 @@ type PropsNoType =
 
 // if type is defined then text and icon is optional
 type PropsDefinedType = {
-  /**
-   * Tag type
-   *
-   * Use the available templates as the base of tag.
-   */
-  type?:
-    | "deno"
-    | "nodejs"
-    | "official"
-    | "thirdparty"
-    | "icon-deno"
-    | "icon-nodejs"
-    | "icon-official"
-    | "icon-thirdparty";
-
   /**
    * Text label
    */

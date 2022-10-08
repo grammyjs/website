@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { onBeforeMount, ref, type PropType } from "vue";
-import { tagType, fetchIcon } from "./tag/index";
+import { tagTemplate, fetchIcon } from "./tag/index";
 import type { Props, Favicon, Tag } from "../types";
 
 // Get user options
 const _props = defineProps({
-  type: String,
+  template: String,
   desc: String,
   color: String,
   colorDark: String,
@@ -48,37 +48,37 @@ let isActive = ref(false); // click event
  * */
 let icon = ref("<svg></svg>");
 
-// If tag type property is not specified by user, use the default one.
-const defaultTag: Tag = tagType[props.type!] ?? tagType.default;
+// If template property is not specified by user, use the default one.
+const template: Tag = tagTemplate[props.template!] ?? tagTemplate.default;
 
 // Assign properties and add some fallbacks
 const tag: Tag = {
-  color: props.color ?? defaultTag.color,
+  color: props.color ?? template.color,
   text: {
-    content: props.text ?? defaultTag.text.content,
-    color: props.textColor ?? defaultTag.text.color,
+    content: props.text ?? template.text.content,
+    color: props.textColor ?? template.text.color,
   },
   icon: {
-    color: props.iconColor ?? defaultTag.icon.color,
-    bg: props.iconBg ?? props.color ?? defaultTag.color,
-    name: props.icon ?? defaultTag.icon.name,
-    type: props.iconType ?? defaultTag.icon.type,
+    color: props.iconColor ?? template.icon.color,
+    bg: props.iconBg ?? props.color ?? template.color,
+    name: props.icon ?? template.icon.name,
+    type: props.iconType ?? template.icon.type,
   },
-  desc: props.desc ?? defaultTag.desc,
+  desc: props.desc ?? template.desc,
   link: props.link,
 };
 
 tag.desc ??= tag.text.content;
-tag.colorDark = props.colorDark ?? defaultTag.colorDark ?? tag.color;
-tag.text.colorDark = props.textColorDark ?? defaultTag.text.colorDark ?? tag.text.color;
-tag.icon.colorDark = props.iconColorDark ?? defaultTag.icon.colorDark ?? tag.icon.color;
+tag.colorDark = props.colorDark ?? template.colorDark ?? tag.color;
+tag.text.colorDark = props.textColorDark ?? template.text.colorDark ?? tag.text.color;
+tag.icon.colorDark = props.iconColorDark ?? template.icon.colorDark ?? tag.icon.color;
 tag.icon.bgDark =
   props.iconBgDark ??
   props.iconBg ??
   props.colorDark ??
   props.color ??
-  defaultTag.colorDark ??
-  defaultTag.color;
+  template.colorDark ??
+  template.color;
 
 // Show tag if text is not empty.
 if (tag.text.content) {

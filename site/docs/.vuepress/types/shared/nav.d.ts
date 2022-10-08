@@ -1,12 +1,5 @@
 type FaviconNoType = {
   /**
-   * Tag type
-   *
-   * Use the available templates as the base of tag.
-   */
-  type?: "iconDeno" | "iconNodejs" | "iconOfficial" | "iconThirdparty";
-
-  /**
    * Icon file name
    */
   icon: string;
@@ -20,13 +13,6 @@ type FaviconNoType = {
 
 type FaviconDefinedType = {
   /**
-   * Tag type
-   *
-   * Use the available templates as the base of tag.
-   */
-  type?: "iconDeno" | "iconNodejs" | "iconOfficial" | "iconThirdparty";
-
-  /**
    * Icon file name
    */
   icon?: string;
@@ -39,6 +25,13 @@ type FaviconDefinedType = {
 };
 
 type FaviconBase = {
+  /**
+   * Tag template
+   *
+   * Use the available templates as the base of tag.
+   */
+  template?: "denoIcon" | "nodejsIcon" | "officialIcon" | "thirdpartyIcon";
+
   /**
    * Icon color
    *
@@ -93,23 +86,18 @@ export interface NavLink extends NavItem {
    *
    * @see https://github.com/grammyjs/website/pull/507 for detailed instructions.
    *
-   * For instance, this will show deno logo and fire icon:
+   * @example
+   * This will show deno logo and fire icon:
    *
    * ```
-   * badge: [
+   * favicon: [
    *  {
-   *   icon:
-   *    {
-   *      name: "deno",
-   *      type: "logo",
-   *    }
+   *    icon: "deno",
+   *    iconType: "logo",
    *  },
    *  {
-   *   icon:
-   *    {
-   *      name: "fire",
-   *      type: "icon",
-   *    }
+   *    icon: "fire",
+   *    iconType: "icon",
    *  },
    * ]
    *

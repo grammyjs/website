@@ -48,7 +48,7 @@ export async function fetchIcon(tag: Tag) {
   return icon;
 }
 
-export const tagType: TagDefault = {
+export const tagTemplate: TagDefault = {
   deno: {
     desc: "This setup is able to run Deno bots",
     color: "black",
@@ -65,7 +65,7 @@ export const tagType: TagDefault = {
       colorDark: "black",
     },
   },
-  iconDeno: {
+  denoIcon: {
     color: "transparent",
     desc: "This setup is able to run Deno bots",
     text: {
@@ -96,7 +96,7 @@ export const tagType: TagDefault = {
       colorDark: "white",
     },
   },
-  iconNodejs: {
+  nodejsIcon: {
     color: "transparent",
     desc: "This setup is able to run Node.js bots",
     text: {
@@ -127,7 +127,7 @@ export const tagType: TagDefault = {
       colorDark: "white",
     },
   },
-  iconOfficial: {
+  officialIcon: {
     color: "transparent",
     desc: "Published and maintained by grammY",
     text: {
@@ -158,7 +158,7 @@ export const tagType: TagDefault = {
       colorDark: "black",
     },
   },
-  iconThirdparty: {
+  thirdpartyIcon: {
     color: "transparent",
     desc: "Maintained by a third-party",
     text: {

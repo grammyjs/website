@@ -368,7 +368,7 @@ export default defineUserConfig({
                     text: "Deno Deploy",
                     link: "/hosting/deno-deploy.html",
                     favicon: [{
-                      type: "iconDeno",
+                      template: "denoIcon",
                       desc: "This setup is able to run Deno bots",
                     }],
                   },
@@ -376,7 +376,7 @@ export default defineUserConfig({
                     text: "Supabase Edge Functions",
                     link: "/hosting/supabase.html",
                     favicon: [{
-                      type: "iconDeno",
+                      template: "denoIcon",
                       desc: "This setup is able to run Deno bots",
                     }],
                   },
@@ -384,10 +384,10 @@ export default defineUserConfig({
                     text: "Heroku",
                     link: "/hosting/heroku.html",
                     favicon: [{
-                      type: "iconDeno",
+                      template: "denoIcon",
                       desc: "This setup is able to run Deno bots",
                     }, {
-                      type: "iconNodejs",
+                      template: "nodejsIcon",
                       desc: "This setup is able to run Node.js bots",
                     }],
                   },
@@ -399,10 +399,10 @@ export default defineUserConfig({
                     text: "Virtual Private Server",
                     link: "/hosting/vps.html",
                     favicon: [{
-                      type: "iconDeno",
+                      template: "denoIcon",
                       desc: "This setup is able to run Deno bots",
                     }, {
-                      type: "iconNodejs",
+                      template: "nodejsIcon",
                       desc: "This setup is able to run Node.js bots",
                     }],
                   },
@@ -751,7 +751,7 @@ export default defineUserConfig({
                     text: "Deno Deploy",
                     link: "/es/hosting/deno-deploy.html",
                     favicon: [{
-                      type: "iconDeno",
+                      template: "denoIcon",
                       desc: "Esta configuración es capaz de ejecutar bots Deno",
                     }],
                   },
@@ -759,7 +759,7 @@ export default defineUserConfig({
                     text: "Supabase Edge Functions",
                     link: "/es/hosting/supabase.html",
                     favicon: [{
-                      type: "iconDeno",
+                      template: "denoIcon",
                       desc: "Esta configuración es capaz de ejecutar bots Deno",
                     }],
                   },
@@ -767,10 +767,10 @@ export default defineUserConfig({
                     text: "Heroku",
                     link: "/es/hosting/heroku.html",
                     favicon: [{
-                      type: "iconDeno",
+                      template: "denoIcon",
                       desc: "Esta configuración es capaz de ejecutar bots Deno",
                     }, {
-                      type: "iconNodejs",
+                      template: "nodejsIcon",
                       desc:
                         "Esta configuración es capaz de ejecutar bots Node.js",
                     }],
@@ -783,10 +783,10 @@ export default defineUserConfig({
                     text: "Servidor Privado Virtual",
                     link: "/es/hosting/vps.html",
                     favicon: [{
-                      type: "iconDeno",
+                      template: "denoIcon",
                       desc: "Esta configuración es capaz de ejecutar bots Deno",
                     }, {
-                      type: "iconNodejs",
+                      template: "nodejsIcon",
                       desc:
                         "Esta configuración es capaz de ejecutar bots Node.js",
                     }],
@@ -1142,7 +1142,7 @@ export default defineUserConfig({
                     text: "Deno Deploy",
                     link: "/id/hosting/deno-deploy.html",
                     favicon: [{
-                      type: "iconDeno",
+                      template: "denoIcon",
                       desc: "Konfigurasi ini dapat dijalankan di bot Deno",
                     }],
                   },
@@ -1150,7 +1150,7 @@ export default defineUserConfig({
                     text: "Supabase Edge Functions",
                     link: "/id/hosting/supabase.html",
                     favicon: [{
-                      type: "iconDeno",
+                      template: "denoIcon",
                       desc: "Konfigurasi ini dapat dijalankan di bot Deno",
                     }],
                   },
@@ -1158,10 +1158,10 @@ export default defineUserConfig({
                     text: "Heroku",
                     link: "/id/hosting/heroku.html",
                     favicon: [{
-                      type: "iconDeno",
+                      template: "denoIcon",
                       desc: "Konfigurasi ini dapat dijalankan di bot Deno",
                     }, {
-                      type: "iconNodejs",
+                      template: "nodejsIcon",
                       desc: "Konfigurasi ini dapat dijalankan di bot Node.js",
                     }],
                   },
@@ -1173,10 +1173,10 @@ export default defineUserConfig({
                     text: "Virtual Private Server",
                     link: "/id/hosting/vps.html",
                     favicon: [{
-                      type: "iconDeno",
+                      template: "denoIcon",
                       desc: "Konfigurasi ini dapat dijalankan di bot Deno",
                     }, {
-                      type: "iconNodejs",
+                      template: "nodejsIcon",
                       desc: "Konfigurasi ini dapat dijalankan di bot Node.js",
                     }],
                   },
@@ -1526,7 +1526,7 @@ export default defineUserConfig({
                     text: "Deno Deploy",
                     link: "/zh/hosting/deno-deploy.html",
                     favicon: [{
-                      type: "iconDeno",
+                      template: "denoIcon",
                       desc: "这个设置能够运行Deno机器人",
                     }],
                   },
@@ -1534,7 +1534,7 @@ export default defineUserConfig({
                     text: "Supabase Edge Functions",
                     link: "/zh/hosting/supabase.html",
                     favicon: [{
-                      type: "iconDeno",
+                      template: "denoIcon",
                       desc: "这个设置能够运行Deno机器人",
                     }],
                   },
@@ -1542,10 +1542,10 @@ export default defineUserConfig({
                     text: "Heroku",
                     link: "/zh/hosting/heroku.html",
                     favicon: [{
-                      type: "iconDeno",
+                      template: "denoIcon",
                       desc: "这个设置能够运行Deno机器人",
                     }, {
-                      type: "iconNodejs",
+                      template: "nodejsIcon",
                       desc: "这个设置能够运行Node.js机器人",
                     }],
                   },
@@ -1557,10 +1557,10 @@ export default defineUserConfig({
                     text: "Virtual Private Server",
                     link: "/zh/hosting/vps.html",
                     favicon: [{
-                      type: "iconDeno",
+                      template: "denoIcon",
                       desc: "这个设置能够运行Deno机器人",
                     }, {
-                      type: "iconNodejs",
+                      template: "nodejsIcon",
                       desc: "这个设置能够运行Node.js机器人",
                     }],
                   },
@@ -1614,7 +1614,7 @@ export default defineUserConfig({
           "/",
         ],
         tag: [{
-          type: "official",
+          template: "official",
           text: "OFFICIAL",
           desc: "This plugin is published and maintained by grammY",
           locale: {
@@ -1638,7 +1638,7 @@ export default defineUserConfig({
           "autoquote",
         ],
         tag: [{
-          type: "thirdparty",
+          template: "thirdparty",
           text: "THIRD-PARTY",
           desc: "This plugin is maintained by third-party",
           locale: {
@@ -1657,7 +1657,7 @@ export default defineUserConfig({
       {
         url: ["/hosting"],
         tag: [{
-          type: "deno",
+          template: "deno",
           desc: "This setup is able to run Deno bots",
           locale: {
             es: { desc: "Esta configuración es capaz de ejecutar bots Deno" },
@@ -1670,7 +1670,7 @@ export default defineUserConfig({
       {
         url: ["/hosting"],
         tag: [{
-          type: "nodejs",
+          template: "nodejs",
           desc: "This setup is able to run Node.js bots",
           locale: {
             es: {
