@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onBeforeMount, ref, type PropType } from "vue";
-import { tagTemplate, fetchIcon } from "./tag/index";
+import { tagTemplate } from "./tag/tagTemplate";
+import { fetchIcon } from "./tag/utils";
 import type { Props, Favicon, Tag } from "../types";
 
 // Get user options
