@@ -2,33 +2,29 @@
 
 This plugin provides a transformer for setting default `parse_mode`, and a middleware for hydrating `Context` with familiar `reply` variant methods - i.e. `replyWithHTML`, `replyWithMarkdown`, etc.
 
-## Usage
+## Usage (Using format)
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
 
 ```ts
-import { Bot } from "grammy";
-import { hydrateReply, parseMode } from "@grammyjs/parse-mode";
+import { Bot, Composer, Context } from 'grammy';
+import { bold, fmt, hydrateReply, italic } from '@grammyjs/parse-mode';
 
-import type { ParseModeContext } from "@grammyjs/parse-mode";
+import type { ParseModeFlavor } from '@grammyjs/parse-mode';
 
-const bot = new Bot<ParseModeContext>("");
+const bot = new Bot<ParseModeFlavor<Context>>('');
 
-// Use the plugin.
+// Install format reply variant to ctx
 bot.use(hydrateReply);
 
-// Sets default parse_mode for ctx.reply
-bot.api.config.use(parseMode("MarkdownV2"));
+bot.command('demo', async ctx => {
+  await ctx.replyFmt(fmt`${bold('bold!')}
+${bold(italic('bitalic!'))}
+${bold(fmt`bold ${link('blink', 'example.com')} bold`)}`);
 
-bot.command("demo", async (ctx) => {
-  await ctx.reply("*This* reply uses _MarkdownV2_ as the default `formatting`");
-  await ctx.replyWithHTML(
-    "<b>This</b> is <i>withHTML</i> <code>formatting</code>",
-  );
-  await ctx.replyWithMarkdown("*This* is _withMarkdown_ `formatting`");
-  await ctx.replyWithMarkdownV1("*This* is _withMarkdownV1_ `formatting`");
-  await ctx.replyWithMarkdownV2("*This* is _withMarkdownV2_ `formatting`");
+  // fmt can also be called like a regular function
+  await ctx.replyFmt(fmt(['', ' and ', ' and ', ''], fmt`${bold('bold')}`, fmt`${bold(italic('bitalic'))}`, fmt`${italic('italic')}`));
 });
 
 bot.start();
@@ -38,25 +34,21 @@ bot.start();
  <CodeGroupItem title="JavaScript">
 
 ```js
-const { Bot } = require("grammy");
-const { hydrateReply, parseMode } = require("@grammyjs/parse-mode");
+const { Bot, Composer, Context } = require("grammy");
+const { bold, fmt, hydrateReply, italic } = require("@grammyjs/parse-mode");
 
 const bot = new Bot("");
 
-// Use the plugin.
+// Install format reply variant to ctx
 bot.use(hydrateReply);
 
-// Set the default `parse_mode` of `ctx.reply`.
-bot.api.config.use(parseMode("MarkdownV2"));
+bot.command('demo', async ctx => {
+  await ctx.replyFmt(fmt`${bold('bold!')}
+${bold(italic('bitalic!'))}
+${bold(fmt`bold ${link('blink', 'example.com')} bold`)}`);
 
-bot.command("demo", async (ctx) => {
-  await ctx.reply("*This* reply uses _MarkdownV2_ as the default `formatting`");
-  await ctx.replyWithHTML(
-    "<b>This</b> is <i>withHTML</i> <code>formatting</code>",
-  );
-  await ctx.replyWithMarkdown("*This* is _withMarkdown_ `formatting`");
-  await ctx.replyWithMarkdownV1("*This* is _withMarkdownV1_ `formatting`");
-  await ctx.replyWithMarkdownV2("*This* is _withMarkdownV2_ `formatting`");
+  // fmt can also be called like a regular function
+  await ctx.replyFmt(fmt(['', ' and ', ' and ', ''], fmt`${bold('bold')}`, fmt`${bold(italic('bitalic'))}`, fmt`${italic('italic')}`));
 });
 
 bot.start();
@@ -66,30 +58,118 @@ bot.start();
  <CodeGroupItem title="Deno">
 
 ```ts
-import { Bot } from "https://deno.land/x/grammy/mod.ts";
+import { Bot, Composer, Context } from "https://deno.land/x/grammy/mod.ts";
+import {
+  bold,
+  fmt,
+  hydrateReply,
+  italic,
+} from "https://deno.land/x/grammy_parse_mode/mod.ts";
+
+import type { ParseModeFlavor } from "https://deno.land/x/grammy_parse_mode/mod.ts";
+
+const bot = new Bot<ParseModeFlavor<Context>>("");
+
+// Install format reply variant to ctx
+bot.use(hydrateReply);
+
+bot.command('demo', async ctx => {
+  await ctx.replyFmt(fmt`${bold('bold!')}
+${bold(italic('bitalic!'))}
+${bold(fmt`bold ${link('blink', 'example.com')} bold`)}`);
+
+  // fmt can also be called like a regular function
+  await ctx.replyFmt(fmt(['', ' and ', ' and ', ''], fmt`${bold('bold')}`, fmt`${bold(italic('bitalic'))}`, fmt`${italic('italic')}`));
+});
+
+bot.start();
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+## Usage (Using default parse mode and utility reply methods)
+
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
+
+```ts
+import { Bot, Composer, Context } from 'grammy';
+import { hydrateReply, parseMode } from '@grammyjs/parse-mode';
+
+import type { ParseModeFlavor } from '@grammyjs/parse-mode';
+
+const bot = new Bot<ParseModeFlavor<Context>>('');
+
+// Install familiar reply variants to ctx
+bot.use(hydrateReply);
+
+// Sets default parse_mode for ctx.reply
+bot.api.config.use(parseMode('MarkdownV2'));
+
+bot.command('demo', async ctx => {
+  await ctx.reply('*This* is _the_ default `formatting`');
+  await ctx.replyWithHTML('<b>This</b> is <i>withHTML</i> <code>formatting</code>');
+  await ctx.replyWithMarkdown('*This* is _withMarkdown_ `formatting`');
+  await ctx.replyWithMarkdownV1('*This* is _withMarkdownV1_ `formatting`');
+  await ctx.replyWithMarkdownV2('*This* is _withMarkdownV2_ `formatting`');
+});
+
+bot.start();
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+const { Bot, Composer, Context } = require("grammy");
+const { hydrateReply, parseMode } = require("@grammyjs/parse-mode");
+
+const bot = new Bot("");
+
+// Install familiar reply variants to ctx
+bot.use(hydrateReply);
+
+// Sets default parse_mode for ctx.reply
+bot.api.config.use(parseMode('MarkdownV2'));
+
+bot.command('demo', async ctx => {
+  await ctx.reply('*This* is _the_ default `formatting`');
+  await ctx.replyWithHTML('<b>This</b> is <i>withHTML</i> <code>formatting</code>');
+  await ctx.replyWithMarkdown('*This* is _withMarkdown_ `formatting`');
+  await ctx.replyWithMarkdownV1('*This* is _withMarkdownV1_ `formatting`');
+  await ctx.replyWithMarkdownV2('*This* is _withMarkdownV2_ `formatting`');
+});
+
+bot.start();
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="Deno">
+
+```ts
+import { Bot, Composer, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   hydrateReply,
   parseMode,
 } from "https://deno.land/x/grammy_parse_mode/mod.ts";
 
-import type { ParseModeContext } from "https://deno.land/x/grammy_parse_mode/mod.ts";
+import type { ParseModeFlavor } from "https://deno.land/x/grammy_parse_mode/mod.ts";
 
-const bot = new Bot<ParseModeContext>("");
+const bot = new Bot<ParseModeFlavor<Context>>("");
 
-// Use the plugin.
+// Install familiar reply variants to ctx
 bot.use(hydrateReply);
 
-// Set the default `parse_mode` of `ctx.reply`.
-bot.api.config.use(parseMode("MarkdownV2"));
+// Sets default parse_mode for ctx.reply
+bot.api.config.use(parseMode('MarkdownV2'));
 
-bot.command("demo", async (ctx) => {
-  await ctx.reply("*This* reply uses _MarkdownV2_ as the default `formatting`");
-  await ctx.replyWithHTML(
-    "<b>This</b> is <i>withHTML</i> <code>formatting</code>",
-  );
-  await ctx.replyWithMarkdown("*This* is _withMarkdown_ `formatting`");
-  await ctx.replyWithMarkdownV1("*This* is _withMarkdownV1_ `formatting`");
-  await ctx.replyWithMarkdownV2("*This* is _withMarkdownV2_ `formatting`");
+bot.command('demo', async ctx => {
+  await ctx.reply('*This* is _the_ default `formatting`');
+  await ctx.replyWithHTML('<b>This</b> is <i>withHTML</i> <code>formatting</code>');
+  await ctx.replyWithMarkdown('*This* is _withMarkdown_ `formatting`');
+  await ctx.replyWithMarkdownV1('*This* is _withMarkdownV1_ `formatting`');
+  await ctx.replyWithMarkdownV2('*This* is _withMarkdownV2_ `formatting`');
 });
 
 bot.start();
