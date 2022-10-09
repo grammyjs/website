@@ -1063,6 +1063,10 @@ export default defineUserConfig({
                     link: "https://core.telegram.org/bots/faq",
                   },
                   {
+                    text: "Fitur Bot yang Tersedia",
+                    link: "https://core.telegram.org/bots/features",
+                  },
+                  {
                     text: "Referensi API Bot",
                     link: "https://core.telegram.org/bots/api",
                   },
