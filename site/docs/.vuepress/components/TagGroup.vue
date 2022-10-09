@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 const props = defineProps({
   mt: String,
   mb: String,
@@ -53,16 +52,28 @@ const customStyle = {
   margin-top: 0.7rem;
 }
 
-/* Add some gaps between TagGroups */
+/* Add some gaps between TagGroups in page*/
 div.tag-group:not(:empty) + div.tag-group {
   margin-left: var(--tag-gap);
 }
 </style>
 
 <style>
-/* Disable margin in navbar (desktop) and sidebar (mobile)*/
+/* Disable margin bottom in navbar (desktop) and sidebar (mobile)*/
 :is(.navbar, .sidebar) .tag-group {
   margin-bottom: 0;
+}
+
+/* Remove space between two tag-groups in navbar (dekstop) and sidebar (mobile) */
+:is(.navbar, .sidebar)
+  .navbar-items
+  .navbar-item
+  .navbar-dropdown-subitem-wrapper
+  .navbar-dropdown-subitem
+  div.tag-group:not(:empty)
+  + div.tag-group {
+  margin-left: 0;
+  padding-left: 0.05rem;
 }
 
 /**
@@ -73,16 +84,12 @@ div.tag-group:not(:empty) + div.tag-group {
   display: inline-flex;
   gap: 0.3rem;
   padding-left: 0.25rem;
-  padding-right: 0.2rem;
+  padding-right: 0.25rem;
 }
 
 .navbar .navbar-dropdown-title .tag-group {
   padding-right: 0;
   padding-left: 0.4rem;
-}
-
-.navbar h4 .tag-group {
-  padding-left: 0.5rem;
 }
 
 .navbar .navbar-item > a .tag-group {
@@ -103,18 +110,9 @@ div.tag-group:not(:empty) + div.tag-group {
 .sidebar
   .navbar-items
   .navbar-item
-  :is(.navbar-dropdown-title-mobile, .navbar-dropdown-subtitle)
-  .tag-group {
-  padding-left: 0.4rem;
-}
-
-.sidebar
-  .navbar-items
-  .navbar-item
   .navbar-dropdown-subitem-wrapper
   .navbar-dropdown-subitem
   .tag-group {
   padding-left: 0.15rem;
-  padding-right: 0;
 }
 </style>

@@ -1,62 +1,5 @@
-type FaviconNoType = {
-  /**
-   * Icon file name
-   */
-  icon: string;
-
-  /**
-   * `logo` for https://simpleicons.org/.
-   * `icon` for https://icons.getbootstrap.com.
-   */
-  iconType: "icon" | "logo";
-};
-
-type FaviconDefinedType = {
-  /**
-   * Icon file name
-   */
-  icon?: string;
-
-  /**
-   * `logo` for https://simpleicons.org/.
-   * `icon` for https://icons.getbootstrap.com.
-   */
-  iconType?: "icon" | "logo";
-};
-
-type FaviconBase = {
-  /**
-   * Tag template
-   *
-   * Use the available templates as the base of tag.
-   */
-  template?: "denoIcon" | "nodejsIcon" | "officialIcon" | "thirdpartyIcon";
-
-  /**
-   * Icon color
-   *
-   * `blue`, `fff000`, or any valid css color.
-   *
-   * @default "black"
-   */
-  iconColor?: string;
-
-  /**
-   * Icon color for dark mode
-   *
-   * `blue`, `fff000`, or any valid css color.
-   */
-  iconColorDark?: string;
-
-  /**
-   * Description text to be displayed in the tooltip
-   */
-  desc?: string;
-};
-
-export type Favicon =
-  | FaviconBase & FaviconDefinedType
-  | FaviconBase & FaviconNoType;
+import type { TagTemplateIconOnly } from "../../components/tag/tagTemplate";
+import type { TagNav } from "../index";
 
 /**
  * Base nav item, displayed as text
@@ -81,7 +24,7 @@ export interface NavLink extends NavItem {
   activeMatch?: string;
   /**
    * Add badges right after the navbar item.
-   * It will fetch the icon from https://icons.getbootstrap.com and
+   * It will fetch the icon from https://icons.getbootstrap.com or
    * https://simpleicons.org/.
    *
    * @see https://github.com/grammyjs/website/pull/507 for detailed instructions.
@@ -90,7 +33,7 @@ export interface NavLink extends NavItem {
    * This will show deno logo and fire icon:
    *
    * ```
-   * favicon: [
+   * tag: [
    *  {
    *    icon: "deno",
    *    iconType: "logo",
@@ -103,7 +46,7 @@ export interface NavLink extends NavItem {
    *
    * ```
    */
-  favicon?: Favicon[];
+  tag?: TagNav[];
 }
 /**
  * Navbar types

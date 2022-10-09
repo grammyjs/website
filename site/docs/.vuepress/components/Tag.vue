@@ -2,7 +2,7 @@
 import { onBeforeMount, ref, type PropType } from "vue";
 import { tagTemplate } from "./tag/tagTemplate";
 import { fetchIcon } from "./tag/utils";
-import type { Props, Favicon, Tag } from "../types";
+import type { Props, TagNav, Tag } from "../types";
 
 // Get user options
 const _props = defineProps({
@@ -21,7 +21,7 @@ const _props = defineProps({
   iconBgDark: String,
   link: String,
   nav: {
-    type: Object as PropType<Favicon>,
+    type: Object as PropType<TagNav>,
   }, // Props from navbar
   autotag: {
     type: Object as PropType<Props>,
@@ -286,6 +286,7 @@ html.dark .theme-default-content a.tag[href] .tag:hover .text {
 
 <!-- Style for navitem -->
 <style>
+
 /**
 NavbarDropdown
 */
@@ -308,10 +309,6 @@ NavbarDropdown
   fill: v-bind("tag.icon.color");
 }
 
-.navbar h4.navbar-dropdown-subtitle > span .tag .icon svg {
-  top: -0.3rem;
-}
-
 .navbar h4.navbar-dropdown-subtitle > a .tag .icon svg {
   top: -0.13rem;
 }
@@ -327,16 +324,6 @@ html.dark :is(.navbar .sidebar) .tag .icon svg {
   .tag
   svg {
   fill: var(--c-text-accent);
-}
-
-.navbar-dropdown-wrapper
-  .navbar-dropdown
-  .navbar-dropdown-item
-  h4.navbar-dropdown-subtitle
-  > span:hover
-  .tag
-  svg {
-  fill: v-bind("tag.icon.color");
 }
 
 html.dark
@@ -361,8 +348,9 @@ For mobile devices
   top: -0.15rem;
 }
 
-.sidebar .navbar-dropdown-wrapper .navbar-dropdown-subtitle > span .tag .icon svg {
-  top: -0.08rem;
+.sidebar .navbar-items :is(a:hover, a.router-link-active) .tag svg {
+  transition: none;
+  fill: var(--c-text-accent);
 }
 
 /**

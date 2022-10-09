@@ -36,8 +36,12 @@
     "forceConsistentCasingInFileNames": true,
     // See <https://github.com/vuejs/vue-cli/pull/5688>
     "skipLibCheck": true,
-    "useUnknownInCatchVariables": false
-    // "allowJs": true
+    "useUnknownInCatchVariables": false,
+    // "allowJs": true,
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["site/node_modules/@vuepress/theme-default/lib/client/*"]
+    }
   },
   "vueCompilerOptions": {
     // too buggy. Temporarily disabled for template check

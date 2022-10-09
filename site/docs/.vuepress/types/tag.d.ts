@@ -1,4 +1,6 @@
-export type Tag = {
+import type { TagTemplateItem } from "../components/tag/tagTemplate";
+
+type Tag = {
   /**
    * Tag color
    *
@@ -116,8 +118,6 @@ export type Tag = {
   link?: string;
 };
 
-export type TagDefault = Record<string, Tag>;
-
 type PropsBase = {
   /**
    * Description text to be displayed on the tooltip
@@ -204,15 +204,7 @@ type PropsNoTheme =
      *
      * Use the available templates as the base of tag.
      */
-    template?:
-      | "deno"
-      | "nodejs"
-      | "official"
-      | "thirdparty"
-      | "denoIcon"
-      | "nodejsIcon"
-      | "officialIcon"
-      | "thirdpartyIcon";
+    template?: TagTemplateItem;
 
     /**
      * Text to be displayed
@@ -236,15 +228,7 @@ type PropsNoTheme =
      *
      * Use the available templates as the base of tag.
      */
-    template?:
-      | "deno"
-      | "nodejs"
-      | "official"
-      | "thirdparty"
-      | "denoIcon"
-      | "nodejsIcon"
-      | "officialIcon"
-      | "thirdpartyIcon";
+    template?: TagTemplateItem;
 
     /**
      * Text to be displayed
@@ -264,21 +248,13 @@ type PropsNoTheme =
   };
 
 // if type is defined then text and icon is optional
-type PropsDefinedTheme = {
+type PropsThemeExist = {
   /**
    * Tag template
    *
    * Use the available templates as the base of tag.
    */
-  template:
-    | "deno"
-    | "nodejs"
-    | "official"
-    | "thirdparty"
-    | "denoIcon"
-    | "nodejsIcon"
-    | "officialIcon"
-    | "thirdpartyIcon";
+  template?: TagTemplateItem;
 
   /**
    * Text to be displayed
@@ -297,6 +273,7 @@ type PropsDefinedTheme = {
   iconType?: "logo" | "icon";
 };
 
-export type Props =
-  | (PropsDefinedTheme & PropsBase)
-  | (PropsNoTheme & PropsBase);
+type Props = (PropsThemeExist & PropsBase) | (PropsNoTheme & PropsBase);
+type TagDefault = Record<string, Tag>;
+
+export { Props, Tag, TagDefault };

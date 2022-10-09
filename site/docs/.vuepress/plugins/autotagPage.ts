@@ -10,9 +10,9 @@ import type { AutotagOptions } from "../types";
  * <AutoTag/>
  * ```
  */
-export function autotag(option: AutotagOptions): Plugin {
+export function autotagPage(option: AutotagOptions): Plugin {
   return {
-    name: "autotag",
+    name: "autotagPage",
     extendsMarkdown: (md) => {
       // Filter only the closing tag.
       md.renderer.rules.heading_close = (tokens, idx) => {
@@ -22,7 +22,7 @@ export function autotag(option: AutotagOptions): Plugin {
         // Insert Tag component
         // and user option to Tag attributes.
         return tokens[idx].tag === "h1"
-          ? closingTag + `<TagAuto config='${optionString}'/>`
+          ? closingTag + `<AutotagPage config='${optionString}'/>`
           : closingTag;
       };
     },

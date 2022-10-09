@@ -1,6 +1,7 @@
 export * from "./autotag";
 export * from "./grammyTheme";
-export * from "./Tag";
+export * from "./tag";
 export * from "./shared";
+export * from "./autotagMenu";
 
-export type AnyObject = Record<string, any>;
+export declare type AnyObject = Record<string, any>;

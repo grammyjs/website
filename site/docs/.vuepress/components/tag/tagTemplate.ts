@@ -1,5 +1,17 @@
 import type { TagDefault } from "../../types";
 
+export type TagTemplateIconOnly =
+  | "denoIcon"
+  | "nodejsIcon"
+  | "officialIcon"
+  | "thirdpartyIcon"
+  | "defaultIcon";
+export type TagTemplateItem =
+  | TagTemplateIconOnly
+  | "deno"
+  | "nodejs"
+  | "official"
+  | "thirdparty";
 export const tagTemplate: TagDefault = {
   deno: {
     desc: "This setup is able to run Deno bots",
@@ -19,9 +31,11 @@ export const tagTemplate: TagDefault = {
   },
   denoIcon: {
     color: "transparent",
+    colorDark: "transparent",
     desc: "This setup is able to run Deno bots",
     text: {
       color: "transparent",
+      colorDark: "transparent",
     },
     icon: {
       name: "deno",
@@ -50,9 +64,11 @@ export const tagTemplate: TagDefault = {
   },
   nodejsIcon: {
     color: "transparent",
+    colorDark: "transparent",
     desc: "This setup is able to run Node.js bots",
     text: {
       color: "transparent",
+      colorDark: "transparent",
     },
     icon: {
       name: "nodejs",
@@ -81,9 +97,11 @@ export const tagTemplate: TagDefault = {
   },
   officialIcon: {
     color: "transparent",
+    colorDark: "transparent",
     desc: "Published and maintained by grammY",
     text: {
       color: "transparent",
+      colorDark: "transparent",
     },
     icon: {
       name: "official",
@@ -112,9 +130,11 @@ export const tagTemplate: TagDefault = {
   },
   thirdpartyIcon: {
     color: "transparent",
+    colorDark: "transparent",
     desc: "Maintained by a third-party",
     text: {
       color: "transparent",
+      colorDark: "transparent",
     },
     icon: {
       name: "thirdparty",
@@ -132,6 +152,20 @@ export const tagTemplate: TagDefault = {
     },
     icon: {
       color: "white",
+    },
+  },
+  defaultIcon: {
+    color: "transparent",
+    colorDark: "transparent",
+    text: {
+      color: "transparent",
+      colorDark: "transparent",
+    },
+    icon: {
+      color: "inherit",
+      colorDark: "inherit",
+      bg: "transparent",
+      bgDark: "transparent",
     },
   },
 };

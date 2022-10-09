@@ -2,15 +2,14 @@
 import { useRoute } from "vue-router";
 import TagGroup from "./TagGroup.vue";
 import Tag from "./Tag.vue";
-import type { AutotagItemUrl, AutotagOptions, Props } from "../types";
+import type { AutotagUrl, AutotagOptions, Props } from "../types";
 
 const props = defineProps({ config: String });
 let showTag = false;
-let tagProps: Props[] = []; // Collection of tags to be shown
+let tagList: Props[] = []; // Collection of tags to be shown
 
 if (props.config) {
   // Get current URL page then delete trailing "/" and anchor "#"
-  // at the end of URL.
   const route = useRoute().fullPath;
   const currentUrl = route.replace(/\/$|#.*$/, "");
   const autotag: AutotagOptions = JSON.parse(props.config);
@@ -22,7 +21,7 @@ if (props.config) {
     // Inject locale url
     item.url.forEach((url) => {
       for (const lang in locale) {
-        const localeUrl: AutotagItemUrl = `/${lang}${url}`; // ex: "/plugins" => "/id/plugins"
+        const localeUrl: AutotagUrl = `/${lang}${url}`; // ex: "/plugins" => "/id/plugins"
         urls.push(localeUrl);
       }
     });
@@ -51,7 +50,7 @@ if (props.config) {
               break;
             }
           }
-          tagProps.push(tag); // Add tag to the list
+          tagList.push(tag); // Add tag to the list
         });
         showTag = true;
         break;
@@ -82,6 +81,6 @@ function matchUrl(items: string[], url: string, currentUrl: string, route: strin
 
 <template>
   <TagGroup v-if="showTag">
-    <Tag v-for="item in tagProps" :autotag="item" />
+    <Tag v-for="item in tagList" :autotag="item" />
   </TagGroup>
 </template>

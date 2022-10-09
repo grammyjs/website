@@ -1,37 +1,40 @@
 <!-- 
-  This script is copied from upstream (@theme/NavbarDropdown.vue). 
-  No changes were made to the script other than modifying some import.
+  This file is copied from @theme/NavbarDropdown.vue. 
+  Some changes were made to this script.
 -->
 <script setup lang="ts">
-import DropdownTransition from "@theme/DropdownTransition.vue";
-import { computed, ref, toRefs, watch } from "vue";
-import type { PropType } from "vue";
-import { useRoute } from "vue-router";
+import DropdownTransition from '@theme/DropdownTransition.vue'
+import { computed, ref, toRefs, watch } from 'vue'
+import type { PropType } from 'vue'
+import { useRoute } from 'vue-router'
 
-// import AutoLink from '@theme/AutoLink.vue'
-// import type { NavbarItem, ResolvedNavbarItem } from '../../shared/index.js'
+// Start inject
 import AutoLink from "./AutoLink.vue";
 import type { NavbarItem, ResolvedNavbarItem } from "../../types/shared";
+// End of inject
 
 const props = defineProps({
   item: {
     type: Object as PropType<Exclude<ResolvedNavbarItem, NavbarItem>>,
     required: true,
   },
+  menuIndex: Array<number>
 });
 
-const { item } = toRefs(props);
+const { item } = toRefs(props)
 
-const dropdownAriaLabel = computed(() => item.value.ariaLabel || item.value.text);
+const dropdownAriaLabel = computed(
+  () => item.value.ariaLabel || item.value.text
+)
 
-const open = ref(false);
-const route = useRoute();
+const open = ref(false)
+const route = useRoute()
 watch(
   () => route.path,
   () => {
-    open.value = false;
+    open.value = false
   }
-);
+)
 
 /**
  * Open the dropdown when user tab and click from keyboard.
@@ -41,22 +44,20 @@ watch(
  *
  * @see https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail
  */
-const handleDropdown = (e: UIEvent): void => {
-  const isTriggerByTab = e.detail === 0;
+const handleDropdown = (e): void => {
+  const isTriggerByTab = e.detail === 0
   if (isTriggerByTab) {
-    open.value = !open.value;
+    open.value = !open.value
   } else {
-    open.value = false;
+    open.value = false
   }
-};
+}
 
-const isLastItemOfArray = (item: unknown, arr: unknown[]): boolean => arr[arr.length - 1] === item;
+const isLastItemOfArray = (item: unknown, arr: unknown[]): boolean =>
+  arr[arr.length - 1] === item
 </script>
 
-<!-- 
-  This template is copied from upstream (@theme/NavbarDropdown.vue). 
-  We injected `TagGroup` and `Tag` component to this template.
--->
+<!-- We injected `AutotagMenu, `TagGroup`, and `Tag` component to this template. -->
 <template>
   <div class="navbar-dropdown-wrapper" :class="{ open }">
     <button
@@ -65,13 +66,14 @@ const isLastItemOfArray = (item: unknown, arr: unknown[]): boolean => arr[arr.le
       :aria-label="dropdownAriaLabel"
       @click="handleDropdown"
     >
-      <!-- Inject Tag component -->
-      <span class="title">{{ item.text }}</span>
-      <TagGroup v-if="item.favicon">
-        <Tag v-for="value in item.favicon" :nav="value" />
+    <span class="title">{{ item.text }}</span>
+      <!-- Sstart inject-->
+      <AutotagMenu v-if="item.text" :menuIndex="menuIndex" :currentMenu="[item.text]"/>
+      <TagGroup v-if="item.tag">
+        <Tag v-for="value in item.tag" :nav="value" />
       </TagGroup>
+      <!-- End of inject -->
       <span class="arrow down" />
-      <!-- End of inject Tag component -->
     </button>
 
     <button
@@ -80,47 +82,51 @@ const isLastItemOfArray = (item: unknown, arr: unknown[]): boolean => arr[arr.le
       :aria-label="dropdownAriaLabel"
       @click="open = !open"
     >
-      <!-- Inject Tag component -->
-      <span class="title">{{ item.text }}</span>
-      <TagGroup v-if="item.favicon">
-        <Tag v-for="value in item.favicon" :nav="value" />
+    <span class="title">{{ item.text }}</span>
+      <!-- Start inject -->
+      <TagGroup v-if="item.tag">
+        <Tag v-for="value in item.tag" :nav="value" />
       </TagGroup>
+      <!-- End of Inject -->
       <span class="arrow" :class="open ? 'down' : 'right'" />
-      <!-- End of Inject Tag component -->
     </button>
 
     <DropdownTransition>
       <ul v-show="open" class="navbar-dropdown">
-        <li v-for="child in item.children" :key="child.text" class="navbar-dropdown-item">
+        <!-- Start inject -->
+        <li v-for="(child, index) in item.children" :key="child.text" class="navbar-dropdown-item">
           <template v-if="child.children">
             <h4 class="navbar-dropdown-subtitle">
               <AutoLink
                 v-if="child.link"
                 :item="child"
+                :menuIndex="[...menuIndex, index]"
+                :currentMenu="[item.text, child.text]"
                 @focusout="
                   isLastItemOfArray(child, item.children) &&
                     child.children.length === 0 &&
                     (open = false)
                 "
               />
-              <!-- Inject Tag component -->
               <span v-else>
                 {{ child.text }}
-                <TagGroup v-if="child.favicon">
-                  <Tag v-for="value in child.favicon" :nav="value" />
+                <AutotagMenu v-if="item.text" :menuIndex="[...menuIndex, index]" :currentMenu="[item.text, child.text]"/>
+                <TagGroup v-if="child.tag">
+                  <Tag v-for="value in child.tag" :nav="value" />
                 </TagGroup>
               </span>
-              <!-- End of inject Tag component -->
             </h4>
 
             <ul class="navbar-dropdown-subitem-wrapper">
               <li
-                v-for="grandchild in child.children"
+                v-for="(grandchild, index2) in child.children"
                 :key="grandchild.link"
                 class="navbar-dropdown-subitem"
               >
                 <AutoLink
                   :item="grandchild"
+                  :menuIndex="[...menuIndex, index, index2]"
+                  :currentMenu="[item.text, child.text, grandchild.text]"
                   @focusout="
                     isLastItemOfArray(grandchild, child.children) &&
                       isLastItemOfArray(child, item.children) &&
@@ -134,10 +140,13 @@ const isLastItemOfArray = (item: unknown, arr: unknown[]): boolean => arr[arr.le
           <template v-else>
             <AutoLink
               :item="child"
+              :menuIndex="[...menuIndex, index]"
+              :currentMenu="[item.text, child.text]"
               @focusout="isLastItemOfArray(child, item.children) && (open = false)"
             />
           </template>
         </li>
+        <!-- End of inject -->
       </ul>
     </DropdownTransition>
   </div>

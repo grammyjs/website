@@ -3,8 +3,9 @@ import { betterLineBreaks } from "./plugins/better-line-breaks";
 import { currentVersions } from "./plugins/current-versions/plugin";
 import { docsearch } from "./plugins/docsearch";
 import { registerComponents } from "./plugins/registerComponents";
-import { grammyTheme } from "./theme";
-import { autotag } from "./plugins/autotag";
+import { grammyTheme } from "./theme/grammyTheme";
+import { autotagPage } from "./plugins/autotagPage";
+import { autotagMenu } from "./plugins/autotagMenu";
 
 export default defineUserConfig({
   locales: {
@@ -66,6 +67,13 @@ export default defineUserConfig({
                   {
                     text: "Getting Started",
                     link: "/guide/getting-started.html",
+                    children: [
+                      {
+                        text: "Overview",
+                        link: "/guide/",
+                        activeMatch: "^/guide/$",
+                      },
+                    ],
                   },
                   {
                     text: "Sending and Receiving Messages",
@@ -367,29 +375,14 @@ export default defineUserConfig({
                   {
                     text: "Deno Deploy",
                     link: "/hosting/deno-deploy.html",
-                    favicon: [{
-                      template: "denoIcon",
-                      desc: "This setup is able to run Deno bots",
-                    }],
                   },
                   {
                     text: "Supabase Edge Functions",
                     link: "/hosting/supabase.html",
-                    favicon: [{
-                      template: "denoIcon",
-                      desc: "This setup is able to run Deno bots",
-                    }],
                   },
                   {
                     text: "Heroku",
                     link: "/hosting/heroku.html",
-                    favicon: [{
-                      template: "denoIcon",
-                      desc: "This setup is able to run Deno bots",
-                    }, {
-                      template: "nodejsIcon",
-                      desc: "This setup is able to run Node.js bots",
-                    }],
                   },
                   {
                     text: "Google Cloud Functions",
@@ -398,13 +391,6 @@ export default defineUserConfig({
                   {
                     text: "Virtual Private Server",
                     link: "/hosting/vps.html",
-                    favicon: [{
-                      template: "denoIcon",
-                      desc: "This setup is able to run Deno bots",
-                    }, {
-                      template: "nodejsIcon",
-                      desc: "This setup is able to run Node.js bots",
-                    }],
                   },
                 ],
               },
@@ -750,30 +736,14 @@ export default defineUserConfig({
                   {
                     text: "Deno Deploy",
                     link: "/es/hosting/deno-deploy.html",
-                    favicon: [{
-                      template: "denoIcon",
-                      desc: "Esta configuración es capaz de ejecutar bots Deno",
-                    }],
                   },
                   {
                     text: "Supabase Edge Functions",
                     link: "/es/hosting/supabase.html",
-                    favicon: [{
-                      template: "denoIcon",
-                      desc: "Esta configuración es capaz de ejecutar bots Deno",
-                    }],
                   },
                   {
                     text: "Heroku",
                     link: "/es/hosting/heroku.html",
-                    favicon: [{
-                      template: "denoIcon",
-                      desc: "Esta configuración es capaz de ejecutar bots Deno",
-                    }, {
-                      template: "nodejsIcon",
-                      desc:
-                        "Esta configuración es capaz de ejecutar bots Node.js",
-                    }],
                   },
                   {
                     text: "Google Cloud Functions",
@@ -782,14 +752,6 @@ export default defineUserConfig({
                   {
                     text: "Servidor Privado Virtual",
                     link: "/es/hosting/vps.html",
-                    favicon: [{
-                      template: "denoIcon",
-                      desc: "Esta configuración es capaz de ejecutar bots Deno",
-                    }, {
-                      template: "nodejsIcon",
-                      desc:
-                        "Esta configuración es capaz de ejecutar bots Node.js",
-                    }],
                   },
                 ],
               },
@@ -1141,29 +1103,14 @@ export default defineUserConfig({
                   {
                     text: "Deno Deploy",
                     link: "/id/hosting/deno-deploy.html",
-                    favicon: [{
-                      template: "denoIcon",
-                      desc: "Konfigurasi ini dapat dijalankan di bot Deno",
-                    }],
                   },
                   {
                     text: "Supabase Edge Functions",
                     link: "/id/hosting/supabase.html",
-                    favicon: [{
-                      template: "denoIcon",
-                      desc: "Konfigurasi ini dapat dijalankan di bot Deno",
-                    }],
                   },
                   {
                     text: "Heroku",
                     link: "/id/hosting/heroku.html",
-                    favicon: [{
-                      template: "denoIcon",
-                      desc: "Konfigurasi ini dapat dijalankan di bot Deno",
-                    }, {
-                      template: "nodejsIcon",
-                      desc: "Konfigurasi ini dapat dijalankan di bot Node.js",
-                    }],
                   },
                   {
                     text: "Google Cloud Functions",
@@ -1172,13 +1119,6 @@ export default defineUserConfig({
                   {
                     text: "Virtual Private Server",
                     link: "/id/hosting/vps.html",
-                    favicon: [{
-                      template: "denoIcon",
-                      desc: "Konfigurasi ini dapat dijalankan di bot Deno",
-                    }, {
-                      template: "nodejsIcon",
-                      desc: "Konfigurasi ini dapat dijalankan di bot Node.js",
-                    }],
                   },
                 ],
               },
@@ -1525,29 +1465,14 @@ export default defineUserConfig({
                   {
                     text: "Deno Deploy",
                     link: "/zh/hosting/deno-deploy.html",
-                    favicon: [{
-                      template: "denoIcon",
-                      desc: "这个设置能够运行Deno机器人",
-                    }],
                   },
                   {
                     text: "Supabase Edge Functions",
                     link: "/zh/hosting/supabase.html",
-                    favicon: [{
-                      template: "denoIcon",
-                      desc: "这个设置能够运行Deno机器人",
-                    }],
                   },
                   {
                     text: "Heroku",
                     link: "/zh/hosting/heroku.html",
-                    favicon: [{
-                      template: "denoIcon",
-                      desc: "这个设置能够运行Deno机器人",
-                    }, {
-                      template: "nodejsIcon",
-                      desc: "这个设置能够运行Node.js机器人",
-                    }],
                   },
                   {
                     text: "Google Cloud Functions",
@@ -1556,13 +1481,6 @@ export default defineUserConfig({
                   {
                     text: "Virtual Private Server",
                     link: "/zh/hosting/vps.html",
-                    favicon: [{
-                      template: "denoIcon",
-                      desc: "这个设置能够运行Deno机器人",
-                    }, {
-                      template: "nodejsIcon",
-                      desc: "这个设置能够运行Node.js机器人",
-                    }],
                   },
                 ],
               },
@@ -1601,7 +1519,7 @@ export default defineUserConfig({
     betterLineBreaks(),
     currentVersions(),
     registerComponents(),
-    autotag([
+    autotagPage([
       {
         url: ["/plugins"],
         exclude: [
@@ -1613,74 +1531,110 @@ export default defineUserConfig({
           "keyboard",
           "/",
         ],
-        tag: [{
-          template: "official",
-          text: "OFFICIAL",
-          desc: "This plugin is published and maintained by grammY",
-          locale: {
-            es: {
-              text: "OFICIAL",
-              desc: "Este plugin es publicado y mantenido por grammY",
+        tag: [
+          {
+            template: "official",
+            text: "OFFICIAL",
+            desc: "This plugin is published and maintained by grammY",
+            locale: {
+              es: {
+                text: "OFICIAL",
+                desc: "Este plugin es publicado y mantenido por grammY",
+              },
+              id: {
+                text: "RESMI",
+                desc: "Plugin ini dipublikasi dan dikelola oleh grammY",
+              },
+              zh: { text: "官方维护", desc: "这个插件是由grammY发布和维护的" },
             },
-            id: {
-              text: "RESMI",
-              desc: "Plugin ini dipublikasi dan dikelola oleh grammY",
-            },
-            zh: { text: "官方维护", desc: "这个插件是由grammY发布和维护的" },
           },
-        }],
+        ],
       },
       {
         url: ["/plugins"],
-        include: [
-          "console-time",
-          "middlewares",
-          "autoquote",
+        include: ["console-time", "middlewares", "autoquote"],
+        tag: [
+          {
+            template: "thirdparty",
+            text: "THIRD-PARTY",
+            desc: "This plugin is maintained by third-party",
+            locale: {
+              es: {
+                text: "DE TERCEROS",
+                desc: "Este plugin es mantenido por terceros",
+              },
+              id: {
+                text: "PIHAK KETIGA",
+                desc: "Plugin ini dikelola oleh pihak ketiga",
+              },
+              zh: { text: "第三方", desc: "这个插件是由第三方维护的" },
+            },
+          },
         ],
-        tag: [{
-          template: "thirdparty",
-          text: "THIRD-PARTY",
-          desc: "This plugin is maintained by third-party",
-          locale: {
-            es: {
-              text: "DE TERCEROS",
-              desc: "Este plugin es mantenido por terceros",
-            },
-            id: {
-              text: "PIHAK KETIGA",
-              desc: "Plugin ini dikelola oleh pihak ketiga",
-            },
-            zh: { text: "第三方", desc: "这个插件是由第三方维护的" },
-          },
-        }],
       },
       {
         url: ["/hosting"],
-        tag: [{
-          template: "deno",
-          desc: "This setup is able to run Deno bots",
-          locale: {
-            es: { desc: "Esta configuración es capaz de ejecutar bots Deno" },
-            id: { desc: "Konfigurasi ini dapat dijalankan di bot Deno" },
-            zh: { desc: "这个设置能够运行Deno机器人" },
+        exclude: ["gcf", "comparison"],
+        tag: [
+          {
+            template: "deno",
+            desc: "This setup is able to run Deno bots",
+            locale: {
+              es: { desc: "Esta configuración es capaz de ejecutar bots Deno" },
+              id: { desc: "Konfigurasi ini dapat dijalankan di bot Deno" },
+              zh: { desc: "这个设置能够运行Deno机器人" },
+            },
           },
-        }],
-        exclude: ["gcf"],
+        ],
       },
       {
         url: ["/hosting"],
-        tag: [{
-          template: "nodejs",
-          desc: "This setup is able to run Node.js bots",
-          locale: {
-            es: {
-              desc: "Esta configuración es capaz de ejecutar bots Node.js",
-            },
-            id: { desc: "Konfigurasi ini dapat dijalankan di bot Node.js" },
-            zh: { desc: "这个设置能够运行Node.js机器人" },
-          },
-        }],
         include: ["heroku", "vps"],
+        tag: [
+          {
+            template: "nodejs",
+            desc: "This setup is able to run Node.js bots",
+            locale: {
+              es: {
+                desc: "Esta configuración es capaz de ejecutar bots Node.js",
+              },
+              id: { desc: "Konfigurasi ini dapat dijalankan di bot Node.js" },
+              zh: { desc: "这个设置能够运行Node.js机器人" },
+            },
+          },
+        ],
+      },
+    ]),
+    autotagMenu([
+      {
+        path: [["Hosting", "Tutorials"]],
+        exclude: ["Google Cloud Functions"],
+        tag: [
+          {
+            template: "denoIcon",
+            desc: "This setup is able to run Deno bots",
+            locale: {
+              es: "Esta configuración es capaz de ejecutar bots Deno",
+              id: "Konfigurasi ini dapat dijalankan di bot Deno",
+              zh: "这个设置能够运行Deno机器人",
+            },
+          },
+        ],
+      },
+      {
+        path: [["Hosting", "Tutorials"]],
+        include: ["Heroku", "Virtual Private Server"],
+        tag: [
+          {
+            template: "nodejsIcon",
+            desc: "This setup is able to run Node.js bots",
+            locale: {
+              es: "Esta configuración es capaz de ejecutar bots Node.js",
+              id: "Konfigurasi ini dapat dijalankan di bot Node.js",
+              zh: "这个设置能够运行Node.js机器人",
+            },
+          },
+        ],
       },
     ]),
   ],

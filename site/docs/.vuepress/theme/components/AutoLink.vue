@@ -1,102 +1,95 @@
-<!-- This script is copied from upstream (@theme/AutoLink.vue). No changes were made to the script. -->
+<!-- This file is copied from upstream (@theme/AutoLink.vue). No changes were made to this script. -->
 <script lang="ts">
 /* eslint-disable import/first, import/no-duplicates, import/order */
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   inheritAttrs: false,
-});
+})
 /* eslint-enable import/order */
 </script>
 
-<!-- 
-  This script is copied from upstream (@theme/AutoLink.vue). 
-  No changes were made to the script other than importing `Tag` and `TagGroup`.
--->
+<!-- Some changes were made to this script. -->
 <script setup lang="ts">
-import { useSiteData } from "@vuepress/client";
-import { isLinkHttp, isLinkMailto, isLinkTel } from "@vuepress/shared";
-import { computed, toRefs } from "vue";
-import type { PropType } from "vue";
-import { useRoute } from "vue-router";
+import { useSiteData } from '@vuepress/client'
+import { isLinkHttp, isLinkMailto, isLinkTel } from '@vuepress/shared'
+import { computed, toRefs } from 'vue'
+import type { PropType } from 'vue'
+import { useRoute } from 'vue-router'
 import type { NavLink } from "../../types/shared";
-
-import Tag from "../../components/Tag.vue";
-import TagGroup from "../../components/TagGroup.vue";
 
 const props = defineProps({
   item: {
     type: Object as PropType<NavLink>,
     required: true,
   },
-  display: String,
-});
+  currentMenu: Array<string>,
+  menuIndex: Array<number>
+})
 
-const route = useRoute();
-const site = useSiteData();
-const { item } = toRefs(props);
+const route = useRoute()
+const site = useSiteData()
+const { item } = toRefs(props)
 
 // if the link has http protocol
-const hasHttpProtocol = computed(() => isLinkHttp(item.value.link));
+const hasHttpProtocol = computed(() => isLinkHttp(item.value.link))
 // if the link has non-http protocol
 const hasNonHttpProtocol = computed(
   () => isLinkMailto(item.value.link) || isLinkTel(item.value.link)
-);
+)
 // resolve the `target` attr
 const linkTarget = computed(() => {
-  if (hasNonHttpProtocol.value) return undefined;
-  if (item.value.target) return item.value.target;
-  if (hasHttpProtocol.value) return "_blank";
-  return undefined;
-});
+  if (hasNonHttpProtocol.value) return undefined
+  if (item.value.target) return item.value.target
+  if (hasHttpProtocol.value) return '_blank'
+  return undefined
+})
 // if the `target` attr is '_blank'
-const isBlankTarget = computed(() => linkTarget.value === "_blank");
+const isBlankTarget = computed(() => linkTarget.value === '_blank')
 // is `<RouterLink>` or not
 const isRouterLink = computed(
-  () => !hasHttpProtocol.value && !hasNonHttpProtocol.value && !isBlankTarget.value
-);
+  () =>
+    !hasHttpProtocol.value && !hasNonHttpProtocol.value && !isBlankTarget.value
+)
 // resolve the `rel` attr
 const linkRel = computed(() => {
-  if (hasNonHttpProtocol.value) return undefined;
-  if (item.value.rel) return item.value.rel;
-  if (isBlankTarget.value) return "noopener noreferrer";
-  return undefined;
-});
+  if (hasNonHttpProtocol.value) return undefined
+  if (item.value.rel) return item.value.rel
+  if (isBlankTarget.value) return 'noopener noreferrer'
+  return undefined
+})
 // resolve the `aria-label` attr
-const linkAriaLabel = computed(() => item.value.ariaLabel || item.value.text);
+const linkAriaLabel = computed(() => item.value.ariaLabel || item.value.text)
 
 // should be active when current route is a subpath of this link
 const shouldBeActiveInSubpath = computed(() => {
-  const localeKeys = Object.keys(site.value.locales);
+  const localeKeys = Object.keys(site.value.locales)
   if (localeKeys.length) {
-    return !localeKeys.some((key) => key === item.value.link);
+    return !localeKeys.some((key) => key === item.value.link)
   }
-  return item.value.link !== "/";
-});
+  return item.value.link !== '/'
+})
 // if this link is active in subpath
 const isActiveInSubpath = computed(() => {
   if (!shouldBeActiveInSubpath.value) {
-    return false;
+    return false
   }
-  return route.path.startsWith(item.value.link);
-});
+  return route.path.startsWith(item.value.link)
+})
 
 // if this link is active
 const isActive = computed(() => {
   if (!isRouterLink.value) {
-    return false;
+    return false
   }
   if (item.value.activeMatch) {
-    return new RegExp(item.value.activeMatch).test(route.path);
+    return new RegExp(item.value.activeMatch).test(route.path)
   }
-  return isActiveInSubpath.value;
-});
+  return isActiveInSubpath.value
+})
 </script>
 
-<!-- 
-  This template is copied from upstream (@theme/AutoLink.vue). 
-  We injected `TagGroup` and `Tag` component to this template.
--->
+<!-- We injected `TagGroup` and `Tag` component to this template. -->
 <template>
   <RouterLink
     v-if="isRouterLink"
@@ -105,16 +98,17 @@ const isActive = computed(() => {
     :aria-label="linkAriaLabel"
     v-bind="$attrs"
   >
-    <!-- Inject Tag component -->
     <slot name="before" />
+    <!-- Start inject -->
     <span>
       {{ item.text }}
-      <TagGroup v-if="item.favicon">
-        <Tag v-for="value in item.favicon" :nav="value" />
+      <AutotagMenu v-if="currentMenu" :menuIndex="menuIndex" :currentMenu="currentMenu"/>
+      <TagGroup v-if="item.tag">
+        <Tag v-for="value in item.tag" :nav="value" />
       </TagGroup>
     </span>
+    <!-- End of inject -->
     <slot name="after" />
-    <!-- End of inject Tag component -->
   </RouterLink>
   <a
     v-else
@@ -125,16 +119,17 @@ const isActive = computed(() => {
     :aria-label="linkAriaLabel"
     v-bind="$attrs"
   >
-    <!-- inject Tag component -->
     <slot name="before" />
+    <!-- Start inject -->
     <span>
       {{ item.text }}
-      <TagGroup v-if="item.favicon">
-        <Tag v-for="value in item.favicon" :nav="value" />
+      <AutotagMenu v-if="currentMenu" :menuIndex="menuIndex" :currentMenu="currentMenu"/>
+      <TagGroup v-if="item.tag">
+        <Tag v-for="value in item.tag" :nav="value" />
       </TagGroup>
       <AutoLinkExternalIcon v-if="isBlankTarget" />
     </span>
+    <!-- End of inject -->
     <slot name="after" />
-    <!-- End of inject Tag component -->
   </a>
 </template>

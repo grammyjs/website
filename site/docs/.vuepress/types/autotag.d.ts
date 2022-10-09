@@ -1,8 +1,9 @@
 import type { Props } from "./Tag";
+import type { TagTemplateIconOnly } from "../components/tag/tagTemplate";
 
-type AutotagItemUrl = `/${string}`;
+type Url = `/${string}`;
 
-type AutotagLocaleTag = {
+type LocaleTag = {
   /**
    * Tag text.
    *
@@ -17,7 +18,7 @@ type AutotagLocaleTag = {
   desc?: string;
 };
 
-type AutotagItemTag = Props & {
+type Tag = Props & {
   /**
    * Change tag label according to the defined languages.
    *
@@ -31,10 +32,10 @@ type AutotagItemTag = Props & {
    *  }
    * ```
    */
-  locale?: Record<string, AutotagLocaleTag>;
+  locale?: Record<string, LocaleTag>;
 };
 
-type AutotagItem = {
+type Option = {
   /**
    * Add tags to all pages in these path.
    * It will be matched with the url page (case-sensitive).
@@ -50,7 +51,7 @@ type AutotagItem = {
    * ["/plugins", "/hosting/middlewares.html"]
    * ```
    */
-  url: AutotagItemUrl[];
+  url: Url[];
 
   /**
    * Tag options.
@@ -64,7 +65,7 @@ type AutotagItem = {
    * [ {type: "official"}, {text: "Tag 1"} ]
    * ```
    */
-  tag: AutotagItemTag[];
+  tag: Tag[];
 
   /**
    * implement only to these files/folders.
@@ -95,4 +96,64 @@ type AutotagItem = {
   exclude?: string[];
 };
 
-type AutotagOptions = AutotagItem[];
+type TagNavNoType = {
+  /**
+   * Icon file name
+   */
+  icon: string;
+
+  /**
+   * `logo` for https://simpleicons.org/.
+   * `icon` for https://icons.getbootstrap.com.
+   */
+  iconType: "icon" | "logo";
+};
+
+type TagNavTypeExist = {
+  /**
+   * Icon file name
+   */
+  icon?: string;
+
+  /**
+   * `logo` for https://simpleicons.org/.
+   * `icon` for https://icons.getbootstrap.com.
+   */
+  iconType?: "icon" | "logo";
+};
+
+type TagNavBase = {
+  /**
+   * Tag template
+   *
+   * Use the available templates as the base of tag.
+   */
+  template?: TagTemplateIconOnly;
+
+  /**
+   * Icon color
+   *
+   * `blue`, `fff000`, or any valid css color.
+   *
+   * @default "black"
+   */
+  iconColor?: string;
+
+  /**
+   * Icon color for dark mode
+   *
+   * `blue`, `fff000`, or any valid css color.
+   */
+  iconColorDark?: string;
+
+  /**
+   * Description text to be displayed in the tooltip
+   */
+  desc?: string;
+};
+
+type TagNav = (TagNavBase & TagNavTypeExist) | (TagNavBase & TagNavNoType);
+type AutotagOptions = Option[];
+type AutotagUrl = Url;
+
+export { AutotagOptions, AutotagUrl, TagNav };
