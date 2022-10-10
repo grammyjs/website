@@ -1,17 +1,22 @@
 <script lang="ts" setup>
-import { type UserFromGetMe, type WebhookInfo } from '@grammyjs/types'
+import { ArrowLeft12Filled, Bot20Filled } from '@vicons/fluent'
 import { usePageLang } from '@vuepress/client'
-import { darkTheme, NButton, NCard, NCheckbox, NConfigProvider, NDivider, NForm, NFormItem, NInput, NSpace, NSwitch, NTabPane, NTabs, NThemeEditor, NThing, type GlobalThemeOverrides } from 'naive-ui'
-import { computed, ref } from 'vue'
+import { useBot } from '../composables/use-bot'
+import { useSetWebhook } from '../composables/use-set-webhook'
+import { useWebhookInfo } from '../composables/use-webhook-info'
 
+import {
+  darkTheme, NAlert, NAvatar, NButton,
+  NCard,
+  NCheckbox, NConfigProvider, NEmpty, NForm,
+  NFormItem, NIcon, NInput, NSpace, NSpin, NSwitch,
+  NTabPane, NTabs, NThemeEditor, type GlobalThemeOverrides
+} from 'naive-ui'
 
-/**
- * Values
- */
-const token = ref('298746736:AAEMxN8viy7v8wCHbnP7Kae9hbHx0locM7I')
-const url = ref('')
-const secret = ref('')
-const dropUpdates = ref(false)
+import {
+  computed,
+  ref
+} from 'vue'
 
 /**
  * Layout
@@ -31,98 +36,73 @@ const themeOverrides: GlobalThemeOverrides = {
   }
 }
 
-/**
- * Webhook
- */
-const webhookInfo = ref<WebhookInfo>()
-const loadingWebhookInfo = ref(false)
-const webhookInfoError = ref<Error>()
-async function getWebhookInfo () {
-  if (!token.value) return
-  loadingWebhookInfo.value = true
+const { bot, error: botError, loading: botLoading, refresh: getMe, token, reset: resetBot } = useBot()
+const botName = computed(() => bot.value ? `${bot.value?.botInfo.first_name} ${bot.value?.botInfo.last_name || ''}`.trim() : '')
+const { error: webhookInfoError, loading: webhookInfoLoading, webhookInfo, refresh: getWebhookInfo } = useWebhookInfo(bot)
+const { error: setWebhookError, loading: setWebhookLoading, success: setWebhookSuccess, refresh: setWebhook, ...setWebhookParams } = useSetWebhook(bot)
+const { dropUpdates, secret, url } = setWebhookParams
 
-  try {
-    const response = await fetch(`https://api.telegram.org/bot${token.value}/getWebhookInfo`)
-    if (!response.ok) throw new Error(`Error fetching bot data: ${await response.text()}`)
-
-    webhookInfo.value = await response.json().then((data: { ok: true, result: WebhookInfo }) => data.result)
-  } catch (err) {
-    if (err instanceof Error) {
-      webhookInfoError.value = err
-      return
-    }
-
-    webhookInfoError.value = new Error(err as any)
-  }
-
-  loadingWebhookInfo.value = false
+async function init () {
+  await getMe()
+  await getWebhookInfo()
+  if (webhookInfo.value && !webhookInfoError.value && webhookInfo.value.url) url.value = webhookInfo.value.url
 }
-
-/**
- * Bot Info
- */
-const botInfo = ref<UserFromGetMe>()
-const botName = computed(() => botInfo.value ? `${[ botInfo.value.first_name, botInfo.value.last_name ].join(' ')} (@${botInfo.value.username})` : '')
-const loadingBotInfo = ref(false)
-const botInfoError = ref<Error>()
-
-async function getMe () {
-  if (!token.value) return
-  loadingBotInfo.value = true
-
-  try {
-    const response = await fetch(`https://api.telegram.org/bot${token.value}/getMe`)
-    if (!response.ok) throw new Error(`Error fetching bot data: ${await response.text()}`)
-
-    botInfo.value = await response.json().then((data: { ok: true, result: UserFromGetMe }) => data.result)
-
-    getWebhookInfo()
-  } catch (err) {
-    if (err instanceof Error) {
-      botInfoError.value = err
-      return
-    }
-
-    botInfoError.value = new Error(err as any)
-  }
-
-  loadingBotInfo.value = false
-}
-
-/**
- * Loading status
- */
-
-const loading = computed(() => loadingWebhookInfo.value)
 </script>
 
 <template>
   <n-config-provider :theme-overrides="themeOverrides" :theme="darkTheme">
     <n-theme-editor v-if="dev">
-      <n-card size="small" v-if="!botInfo">
-        <n-form>
-          <n-form-item :label="strings.token.label">
-            <n-input :loading="loadingBotInfo" :readonly="loading" v-model:value="token"
-              :placeholder="strings.token.placeholder" />
-          </n-form-item>
-          <n-space justify="end">
-            <n-button type="primary" :disabled="!token || loadingBotInfo" :loading="loadingBotInfo" @click="getMe">Load
-              Bot Info
-            </n-button>
+      <n-space vertical v-if="!bot">
+        <n-alert title="About your bot token" type="warning">
+          We never store your bot's token in the backend. It is stored in your browser's <i>localStorage</i>. Do not go
+          around giving your token to random websites, no matter how nicely they ask!
+        </n-alert>
+        <n-card size="small">
+          <n-form>
+            <n-form-item :label="strings.token.label">
+              <n-input :readonly="botLoading" v-model:value="token" :placeholder="strings.token.placeholder" />
+            </n-form-item>
+            <n-space justify="end">
+              <n-button type="primary" :disabled="!token || botLoading" :loading="botLoading" @click="init">
+                Load Bot Info
+              </n-button>
+            </n-space>
+          </n-form>
+        </n-card>
+      </n-space>
+      <n-card v-if="bot" style="margin-top: 10px;" size="small" :segmented="{ content: true }">
+        <template #header>
+          <n-space align="center">
+            <n-avatar>
+              <n-icon>
+                <bot20-filled />
+              </n-icon>
+            </n-avatar>
+            {{ botName }}
           </n-space>
-        </n-form>
-      </n-card>
-      <n-card v-if="botInfo" style="margin-top: 10px;" size="small">
-        <n-thing :title="botName" :title-extra="`ID: ${botInfo.id}`" content-indented>
-          <n-space justify="center">
-            <n-checkbox :checked="botInfo.can_join_groups" readonly>Can join groups</n-checkbox>
-            <n-checkbox :checked="botInfo.can_read_all_group_messages" readonly>Can read all group messages
-            </n-checkbox>
-            <n-checkbox :checked="botInfo.supports_inline_queries" readonly>Supports inline queries</n-checkbox>
-          </n-space>
-        </n-thing>
-        <n-divider />
+        </template>
+        <template #header-extra>
+          {{ `ID: ${bot.botInfo.id}` }}
+        </template>
+        <n-space justify="center" style="margin-top: 20px;">
+          <n-checkbox :checked="bot.botInfo.can_join_groups" readonly>Can join groups</n-checkbox>
+          <n-checkbox :checked="bot.botInfo.can_read_all_group_messages" readonly>Can read all group messages
+          </n-checkbox>
+          <n-checkbox :checked="bot.botInfo.supports_inline_queries" readonly>Supports inline queries</n-checkbox>
+        </n-space>
         <n-tabs type="segment" animated style="margin-top: 20px;">
+          <n-tab-pane name="webhookInfo" tab="Webhook Info">
+            <n-spin :show="webhookInfoLoading">
+              <template v-if="webhookInfo">
+                <template v-if="webhookInfo.url">
+
+                </template>
+                <template v-else>
+                  <n-empty description="No webhook set" />
+                </template>
+              </template>
+            </n-spin>
+          </n-tab-pane>
           <n-tab-pane name="manageWebhook" tab="Manage Webhook">
             <n-form label-placement="left" style="margin-top: 10px">
               <n-form-item :label="strings.url.label">
@@ -140,11 +120,20 @@ const loading = computed(() => loadingWebhookInfo.value)
               </n-space>
             </n-form>
           </n-tab-pane>
-          <n-tab-pane name="webhookInfo" tab="Webhook Info">
-          </n-tab-pane>
         </n-tabs>
+        <template #action>
+          <n-button text @click="resetBot">
+            <template #icon>
+              <arrow-left12-filled />
+            </template>
+            Change token
+          </n-button>
+        </template>
       </n-card>
     </n-theme-editor>
   </n-config-provider>
 </template>
 
+<style scoped>
+
+</style>

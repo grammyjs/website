@@ -17,7 +17,10 @@
   "author": "KnorpelSenf",
   "license": "MIT",
   "devDependencies": {
+    "@esbuild-plugins/node-globals-polyfill": "^0.1.1",
+    "@esbuild-plugins/node-modules-polyfill": "^0.1.4",
     "@grammyjs/types": "^2.9.1",
+    "@vicons/fluent": "^0.12.0",
     "@vuepress/plugin-docsearch": "^2.0.0-beta.51",
     "@vuepress/plugin-register-components": "^2.0.0-beta.51",
     "deno-bin": ">=1.25.2",
@@ -27,6 +30,8 @@
     "vuepress-vite": "^2.0.0-beta.51"
   },
   "dependencies": {
+    "cross-fetch": "^3.1.5",
+    "grammy": "^1.11.2",
     "highlight.js": "^11.6.0"
   }
 }
