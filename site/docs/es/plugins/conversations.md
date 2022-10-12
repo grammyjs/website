@@ -379,8 +379,8 @@ bot.use(conversations());
 
 // Salir siempre de cualquier conversación tras /cancelar
 bot.command("cancel", async (ctx) => {
-  await ctx.reply("Saliendo.");
   await ctx.conversation.exit();
+  await ctx.reply("Saliendo.");
 });
 
 // Salir siempre de la conversación de la `movie` 
