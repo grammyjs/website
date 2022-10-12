@@ -1,5 +1,5 @@
 import type { Bot, GrammyError } from 'grammy'
-import { ref, type Ref } from 'vue'
+import { ref, watch, type Ref } from 'vue'
 
 export function useSetWebhook(bot: Ref<Bot | undefined>) {
   const success = ref<boolean | null>(null)
@@ -7,11 +7,19 @@ export function useSetWebhook(bot: Ref<Bot | undefined>) {
   const error = ref<GrammyError>()
 
   const url = ref('')
-  const secret = ref('')
+  const secret = ref(localStorage.getItem('webhookSecret'))
   const dropUpdates = ref(false)
+
+  watch(secret, (value) =>
+    value
+      ? localStorage.setItem('webhookSecret', value)
+      : localStorage.removeItem('webhookSecret')
+  )
 
   async function setWebhook() {
     if (!bot.value || !url.value) return
+    success.value = null
+    error.value = undefined
     loading.value = true
 
     await bot.value?.api

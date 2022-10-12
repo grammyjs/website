@@ -1,16 +1,15 @@
 <script lang="ts" setup>
 import { ArrowLeft12Filled, Bot20Filled } from '@vicons/fluent'
 import { usePageLang } from '@vuepress/client'
-import { useBot } from '../composables/use-bot'
-import { useSetWebhook } from '../composables/use-set-webhook'
-import { useWebhookInfo } from '../composables/use-webhook-info'
+import { useBot } from '../../composables/use-bot'
+import ManageWebhook from './ManageWebhook.vue'
+import WebhookInfo from './WebhookInfo.vue'
 
 import {
   darkTheme, NAlert, NAvatar, NButton,
   NCard,
-  NCheckbox, NConfigProvider, NEmpty, NForm,
-  NFormItem, NIcon, NInput, NSpace, NSpin, NSwitch,
-  NTabPane, NTabs, NThemeEditor, type GlobalThemeOverrides
+  NCheckbox, NConfigProvider, NForm,
+  NFormItem, NIcon, NInput, NSpace, NTabPane, NTabs, NThemeEditor, type GlobalThemeOverrides
 } from 'naive-ui'
 
 import {
@@ -36,16 +35,27 @@ const themeOverrides: GlobalThemeOverrides = {
   }
 }
 
-const { bot, error: botError, loading: botLoading, refresh: getMe, token, reset: resetBot } = useBot()
-const botName = computed(() => bot.value ? `${bot.value?.botInfo.first_name} ${bot.value?.botInfo.last_name || ''}`.trim() : '')
-const { error: webhookInfoError, loading: webhookInfoLoading, webhookInfo, refresh: getWebhookInfo } = useWebhookInfo(bot)
-const { error: setWebhookError, loading: setWebhookLoading, success: setWebhookSuccess, refresh: setWebhook, ...setWebhookParams } = useSetWebhook(bot)
-const { dropUpdates, secret, url } = setWebhookParams
+/**
+ * Orchestration
+ */
+const webhookInfo = ref<typeof WebhookInfo | null>(null)
+const manageWebhook = ref<typeof ManageWebhook | null>(null)
 
-async function init () {
-  await getMe()
-  await getWebhookInfo()
-  if (webhookInfo.value && !webhookInfoError.value && webhookInfo.value.url) url.value = webhookInfo.value.url
+const refreshWebhookInfo = () => webhookInfo.value?.refresh()
+const setWebhookUrl = (url: string) => {
+  manageWebhook.value?.setUrl(url)
+}
+
+/**
+ * Get Me
+ */
+const { bot, error: botError, loading: botLoading, refresh: getMe, reset: resetBot, token } = useBot()
+const botName = computed(() => bot.value ? `${bot.value?.botInfo.first_name} ${bot.value?.botInfo.last_name || ''}`.trim() : '')
+
+const init = () => {
+  getMe().then(() => {
+    webhookInfo.value?.refresh()
+  })
 }
 </script>
 
@@ -60,7 +70,8 @@ async function init () {
         <n-card size="small">
           <n-form>
             <n-form-item :label="strings.token.label">
-              <n-input :readonly="botLoading" v-model:value="token" :placeholder="strings.token.placeholder" />
+              <n-input :readonly="botLoading" v-model:value="token" :placeholder="strings.token.placeholder"
+                clearable />
             </n-form-item>
             <n-space justify="end">
               <n-button type="primary" :disabled="!token || botLoading" :loading="botLoading" @click="init">
@@ -91,34 +102,11 @@ async function init () {
           <n-checkbox :checked="bot.botInfo.supports_inline_queries" readonly>Supports inline queries</n-checkbox>
         </n-space>
         <n-tabs type="segment" animated style="margin-top: 20px;">
-          <n-tab-pane name="webhookInfo" tab="Webhook Info">
-            <n-spin :show="webhookInfoLoading">
-              <template v-if="webhookInfo">
-                <template v-if="webhookInfo.url">
-
-                </template>
-                <template v-else>
-                  <n-empty description="No webhook set" />
-                </template>
-              </template>
-            </n-spin>
+          <n-tab-pane name="webhookInfo" tab="Webhook Info" display-directive="show">
+            <WebhookInfo :bot="bot" ref="webhookInfo" @url-change="setWebhookUrl" />
           </n-tab-pane>
-          <n-tab-pane name="manageWebhook" tab="Manage Webhook">
-            <n-form label-placement="left" style="margin-top: 10px">
-              <n-form-item :label="strings.url.label">
-                <n-input :placeholder="strings.url.placeholder" v-model="url" />
-              </n-form-item>
-              <n-form-item label="Webhook Secret">
-                <n-input placeholder="Secret value telegram sends to your bot" v-model="secret" />
-              </n-form-item>
-              <n-form-item label="Drop pending updates">
-                <n-switch v-model="dropUpdates" />
-              </n-form-item>
-              <n-space justify="end">
-                <n-button type="error">{{ strings.buttons.deleteWebhook }}</n-button>
-                <n-button type="primary">{{ strings.buttons.setWebhook }}</n-button>
-              </n-space>
-            </n-form>
+          <n-tab-pane name="manageWebhook" tab="Manage Webhook" display-directive="show">
+            <ManageWebhook :bot="bot" ref="manageWebhook" @webhook-change="refreshWebhookInfo" />
           </n-tab-pane>
         </n-tabs>
         <template #action>
@@ -133,7 +121,3 @@ async function init () {
     </n-theme-editor>
   </n-config-provider>
 </template>
-
-<style scoped>
-
-</style>

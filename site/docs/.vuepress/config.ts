@@ -1,14 +1,10 @@
 import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill'
 import { NodeModulesPolyfillPlugin } from '@esbuild-plugins/node-modules-polyfill'
-import { registerComponentsPlugin } from '@vuepress/plugin-register-components'
-import { getDirname, path } from '@vuepress/utils'
 import rollupNodePolyFill from 'rollup-plugin-node-polyfills'
 import { defaultTheme, defineUserConfig, viteBundler } from 'vuepress-vite'
 import { betterLineBreaks } from './plugins/better-line-breaks'
 import { currentVersions } from './plugins/current-versions/plugin'
 import { docsearch } from './plugins/docsearch'
-
-const __dirname = getDirname(import.meta.url)
 
 export default defineUserConfig({
   define: {
@@ -1595,10 +1591,7 @@ export default defineUserConfig({
       }
     }),
     betterLineBreaks(),
-    currentVersions(),
-    registerComponentsPlugin({
-      componentsDir: path.resolve(__dirname, './components')
-    })
+    currentVersions()
   ],
   markdown: {
     typographer: true
