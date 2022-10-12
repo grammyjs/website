@@ -92,7 +92,7 @@ bot.command("demo", async (ctx) => {
 ${bold(italic("bitalic!"))}
 ${bold(fmt`bold ${link("blink", "example.com")} bold`)}`);
 
-  // fmt can also be called like a regular function
+  // fmt can also be called like any other function
   await ctx.replyFmt(
     fmt(
       ["", " and ", " and ", ""],
