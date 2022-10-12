@@ -381,15 +381,15 @@ bot.use(conversations());
 
 // Keluar dari semua percakapan ketika command `cancel` dikirim
 bot.command("cancel", async (ctx) => {
-  await ctx.reply("Keluar.");
   await ctx.conversation.exit();
+  await ctx.reply("Keluar.");
 });
 
 // Keluar dari percakapan `movie` ketika tombol `cancel`
 // di inline keyboard ditekan
 bot.callbackQuery("cancel", async (ctx) => {
-  await ctx.answerCallbackQuery("Keluar dari percakapan");
   await ctx.conversation.exit("movie");
+  await ctx.answerCallbackQuery("Keluar dari percakapan");
 });
 
 bot.use(createConversation(movie));
@@ -409,15 +409,15 @@ bot.use(conversations());
 
 // Keluar dari semua percakapan ketika command `cancel` dikirim
 bot.command("cancel", async (ctx) => {
-  await ctx.reply("Keluar.");
   await ctx.conversation.exit();
+  await ctx.reply("Keluar.");
 });
 
 // Keluar dari percakapan `movie` ketika tombol `cancel` 
 // di inline keyboard ditekan
 bot.callbackQuery("cancel", async (ctx) => {
-  await ctx.answerCallbackQuery("Keluar dari percakapan");
   await ctx.conversation.exit("movie");
+  await ctx.answerCallbackQuery("Keluar dari percakapan");
 });
 
 bot.use(createConversation(movie));
