@@ -381,8 +381,8 @@ bot.use(conversations());
 
 // Keluar dari semua percakapan ketika command `cancel` dikirim
 bot.command("cancel", async (ctx) => {
-  await ctx.reply("Keluar.");
   await ctx.conversation.exit();
+  await ctx.reply("Keluar.");
 });
 
 // Keluar dari percakapan `movie` ketika tombol `cancel`
