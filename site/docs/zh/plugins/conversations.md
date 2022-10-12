@@ -378,8 +378,8 @@ bot.use(conversations());
 
 // 始终在 /cancel 时退出任意对话
 bot.command("cancel", async (ctx) => {
-  await ctx.reply("Leaving.");
   await ctx.conversation.exit();
+  await ctx.reply("Leaving.");
 });
 
 // 始终在按下按钮后退出 `movie` 对话
