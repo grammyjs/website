@@ -717,7 +717,7 @@ class Auth {
   authenticate(ctx: MyContext) {
     const link = getAuthLink(); // get auth link from your system
     await ctx.reply(
-      "Open this link to obtain a token, and sent it back to me: " + link,
+      "Open this link to obtain a token, and send it back to me: " + link,
     );
     ctx = await this.conversation.wait();
     this.token = ctx.message?.text;
@@ -750,7 +750,7 @@ class Auth {
   authenticate(ctx) {
     const link = getAuthLink(); // get auth link from your system
     await ctx.reply(
-      "Open this link to obtain a token, and sent it back to me: " + link,
+      "Open this link to obtain a token, and send it back to me: " + link,
     );
     ctx = await this.#conversation.wait();
     this.token = ctx.message?.text;
