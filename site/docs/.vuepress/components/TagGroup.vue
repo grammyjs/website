@@ -4,6 +4,7 @@ const props = defineProps({
   mb: String,
   pt: String,
   pb: String,
+  gap: String,
 });
 
 const customStyle = {
@@ -11,6 +12,7 @@ const customStyle = {
   marginBottom: props.mb,
   paddingTop: props.pt,
   paddingBottom: props.pb,
+  gap: props.gap
 };
 </script>
 
