@@ -63,7 +63,7 @@ html.dark :is(tr:nth-child(2n), .custom-container.tip) code{
 }
 
 // apply justify to all articles
-.theme-default-content:is(p, li) {
+.theme-default-content :is(p, li) {
   text-align: justify;
   text-justify: auto;
   hyphens: auto;
