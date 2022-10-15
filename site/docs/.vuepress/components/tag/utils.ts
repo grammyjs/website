@@ -20,7 +20,7 @@ export async function fetchIcon(tag: Tag) {
           result = await fetch(
             `https://simpleicons.org/icons/${tag.icon.name}.svg`,
           );
-        } else {
+        } else if (tag.icon.type === "icon") {
           result = await fetch(
             `https://icons.getbootstrap.com/assets/icons/${tag.icon.name}.svg`,
           );

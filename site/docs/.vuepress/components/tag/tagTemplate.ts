@@ -5,7 +5,7 @@ export type TagTemplateIconOnly =
   | "nodejsIcon"
   | "officialIcon"
   | "thirdpartyIcon"
-  | "defaultIcon";
+  | "iconOnly";
 export type TagTemplateItem =
   | TagTemplateIconOnly
   | "deno"
@@ -154,7 +154,7 @@ export const tagTemplate: TagDefault = {
       color: "white",
     },
   },
-  defaultIcon: {
+  iconOnly: {
     color: "transparent",
     colorDark: "transparent",
     text: {

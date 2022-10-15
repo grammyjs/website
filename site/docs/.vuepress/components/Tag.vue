@@ -30,15 +30,16 @@ const _props = defineProps({
 
 const props = { ..._props, ..._props.nav, ..._props.autotag };
 const element = props.link ? "a" : "div";
-let showTag = ref();
-let showIcon = ref();
-let showText = ref();
-let iconPaddingLeft = ref("0");
+let showTag = ref(false);
+let iconPadding = ref("var(--tag-padding)");
+let iconPaddingDark = ref("var(--tag-padding)");
 let iconPaddingRight = ref("0");
 let iconPaddingRightDark = ref("0");
-let iconRadiusRight = ref("0");
-let textRadiusLeft = ref("var(--tag-radius)");
+let textPadding = ref("var(--tag-padding)");
+let textPaddingDark = ref("var(--tag-padding)");
+let textPaddingLeft = ref("0");
 let svgWidth = ref("0");
+let iconOnly = ref(false);
 let isHovering = ref(false); // cursor hovering on element
 let isActive = ref(false); // click event
 
@@ -49,8 +50,13 @@ let isActive = ref(false); // click event
  * */
 let icon = ref("<svg></svg>");
 
+let template: Tag;
 // If template property is not specified by user, use the default one.
-const template: Tag = tagTemplate[props.template!] ?? tagTemplate.default;
+if (props.nav) {
+  template = tagTemplate[props.template!] ?? tagTemplate.IconOnly;
+} else {
+  template = tagTemplate[props.template!] ?? tagTemplate.default;
+}
 
 // Assign properties and add some fallbacks
 const tag: Tag = {
@@ -81,90 +87,80 @@ tag.icon.bgDark =
   template.colorDark ??
   template.color;
 
-// Show tag if text is not empty.
-if (tag.text.content) {
-  // Show tag immediately when timeout is reached (the icon is taking too long to fetch).
-  setTimeout(() => {
-    showIcon.value = showText.value = showTag.value ??= true;
-  }, 1500);
-}
+let tagColor = ref(tag.color);
+let tagColorDark = ref(tag.colorDark);
 
 onBeforeMount(async () => {
   const iconResult = await fetchIcon(tag);
   icon.value = iconResult.value;
 
   if (iconResult.ok) {
-    // Do tag has text?
+    // Do the tag has a text label?
     if (tag.text.content) {
+      textPaddingLeft.value = "var(--tag-padding)";
       /**
        * Make text and icon closer if iconBg color is equal with tag color.
-       * Unfortunately, it can't detect the same color with different type
+       * But, it can't detect the same color with different type
        * (unless using third-party npm package).
        *
        * Ex: ("#ffffff" === "white") will evaluate to false.
        */
-      iconPaddingRight.value = tag.icon.bg === tag.color ? "0" : "var(--tag-padding)";
-      iconPaddingRightDark.value = tag.icon.bgDark === tag.colorDark ? "0" : "var(--tag-padding)";
-
-      // Since we have an icon, remove the text radius on left side to make it blend with the icon.
-      textRadiusLeft.value = "0";
-      showText.value = true;
+      if (tag.icon.bg !== tag.color) iconPaddingRight.value = "var(--tag-padding)";
+      if (tag.icon.bgDark !== tag.colorDark) iconPaddingRightDark.value = "var(--tag-padding)";
     } else {
-      // Hide text element and make the icon padding rounded on all sides
-      iconPaddingRight.value = "var(--tag-padding)";
-      iconPaddingRightDark.value = "var(--tag-padding)";
-      iconRadiusRight.value = "var(--tag-radius)";
-      showText.value = false;
+      if (tag.icon.bg === "transparent") {
+        iconPadding.value = textPadding.value = "0";
+        iconOnly.value = true;
+      }
+      if (tag.icon.bgDark === "transparent") {
+        iconPaddingDark.value = textPaddingDark.value = "0";
+        iconOnly.value = true;
+      }
+      tagColor.value = tag.icon.bg!;
+      tagColorDark.value = tag.icon.bgDark!;
     }
 
-    iconPaddingLeft.value = "var(--tag-padding)";
+    // iconPaddingLeft.value = "var(--tag-padding)";
     svgWidth.value = "var(--tag-svg-size)";
-    showIcon.value = true;
+    // showIcon.value = true;
     showTag.value = true;
   } else {
-    // Do tag has text label?
-    if (tag.text.content) {
-      // show all of them
-      showIcon.value = showText.value = showTag.value = true;
-    } else {
-      // do not show tag at all since it does not have icon and text
-      showTag.value = false;
-    }
+    // Do not show tag when it does not have icon and text
+    showTag.value = !!tag.text.content; // Return `false` if text is empty
   }
 });
 </script>
 
 <template>
-  <component :is="element" :href="tag.link" v-if="showTag" class="tag" v-cloak>
-    <div
-      class="tag"
-      :class="{ active: isActive }"
+  <Transition>
+    <component
+      v-if="showTag"
+      :is="element"
+      :href="tag.link"
+      :class="{ active: isActive, iconOnly: iconOnly }"
       :title="tag.desc"
+      class="tag"
       @mouseover="isHovering = true"
       @mouseout="isHovering = false"
       @mousedown="isActive = true"
       @mouseup="isActive = false"
+      v-cloak
     >
-      <div
-        v-if="showIcon"
-        v-html="icon"
-        class="icon"
-        :class="{ hover: isHovering, active: isActive }"
-      ></div>
-      <span v-if="showText" class="text" :class="{ hover: isHovering, active: isActive }">{{
+      <div v-html="icon" class="icon" :class="{ hover: isHovering, active: isActive }"></div>
+      <span class="text" :class="{ hover: isHovering, active: isActive }">{{
         tag.text.content
       }}</span>
-    </div>
-  </component>
+    </component>
+  </Transition>
 </template>
 
 <style>
 .tag {
   --tag-padding: 0.3rem;
   --tag-radius: 3px;
-  --tag-svg-size: 0.9rem;
   --transition: 0.2s;
   --transition-hover: 0.1s;
+  --tag-svg-size: 0.9rem;
 }
 
 .tag {
@@ -186,12 +182,27 @@ onBeforeMount(async () => {
   top: -0.01rem;
 }
 
+.tag.iconOnly .icon svg {
+  height: 1rem;
+  width: 1rem;
+}
+
 html.dark .tag .icon svg {
   fill: v-bind("tag.icon.colorDark");
 }
 
 [v-cloak] {
   display: none;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity var(--transition) cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 </style>
 
@@ -201,18 +212,20 @@ html.dark .tag .icon svg {
   display: flex;
   align-items: center;
   align-self: stretch;
-  padding: var(--tag-padding);
-  border-radius: var(--tag-radius);
+  padding: v-bind("textPadding");
+  padding-left: v-bind("textPaddingLeft");
+  border-top-right-radius: var(--tag-radius);
+  border-bottom-right-radius: var(--tag-radius);
   color: v-bind("tag.text.color");
-  background-color: v-bind("tag.color");
-  border-top-left-radius: v-bind("textRadiusLeft");
-  border-end-start-radius: v-bind("textRadiusLeft");
+  background-color: v-bind("tagColor");
   transition: var(--transition);
 }
 
 html.dark .theme-default-content .tag .text {
   color: v-bind("tag.text.colorDark");
-  background-color: v-bind("tag.colorDark");
+  padding: v-bind("textPaddingDark");
+  padding-left: v-bind("textPaddingLeft");
+  background-color: v-bind("tagColorDark");
   transition: var(--transition);
 }
 
@@ -220,18 +233,21 @@ html.dark .theme-default-content .tag .text {
   display: flex;
   align-items: center;
   align-self: stretch;
-  padding: var(--tag-padding);
-  padding-left: v-bind("iconPaddingLeft");
+  padding: v-bind("iconPadding");
   padding-right: v-bind("iconPaddingRight");
-  border-radius: var(--tag-radius);
   background-color: v-bind("tag.icon.bg");
-  border-top-right-radius: v-bind("iconRadiusRight");
-  border-bottom-right-radius: v-bind("iconRadiusRight");
+  border-top-left-radius: var(--tag-radius);
+  border-bottom-left-radius: var(--tag-radius);
   transition: var(--transition);
+}
+
+.theme-default-content .tag.iconOnly .icon {
+  border-radius: var(--tag-radius);
 }
 
 html.dark .theme-default-content .tag .icon {
   background-color: v-bind("tag.icon.bgDark");
+  padding: v-bind("iconPaddingDark");
   padding-right: v-bind("iconPaddingRightDark");
   transition: var(--transition);
 }
@@ -244,7 +260,7 @@ html.dark .theme-default-content .tag .icon svg {
   fill: v-bind("tag.icon.colorDark");
 }
 
-.theme-default-content a.tag[href] .tag .hover {
+.theme-default-content a.tag[href] .hover {
   box-shadow: inset 0 0 0 10em rgba(255, 255, 255, 0.3);
   transition: var(--transition-hover);
   cursor: pointer;
@@ -255,23 +271,42 @@ html.dark .theme-default-content .tag .icon svg {
   transition: var(--transition-hover);
 }
 
-.theme-default-content a.tag[href] .tag.active {
+.theme-default-content a.tag[href] .active {
   transform: scale(0.95);
 }
 
-.theme-default-content a.tag[href] .tag .active {
+.theme-default-content a.tag[href] .active {
   box-shadow: inset 0em 0em 0em 10em rgba(0, 0, 0, 0.3);
 }
 
-.theme-default-content a.tag[href] .tag:hover .text {
+.theme-default-content a.tag[href]:hover .text {
   text-decoration: underline;
   text-underline-offset: 0.22em;
   text-decoration-color: v-bind("tag.text.color");
   transition: var(--transition-hover);
 }
 
-html.dark .theme-default-content a.tag[href] .tag:hover .text {
+html.dark .theme-default-content a.tag[href]:hover .text {
   text-decoration-color: v-bind("tag.text.colorDark");
+}
+
+/* 
+  Tag used in paragraph
+*/
+
+/* For tag inside table */
+:is(html, html.dark) .theme-default-content td .tag .icon {
+  margin-left: 0.2rem;
+}
+
+td .tag .icon svg {
+  /* position:relative; */
+  height: 1rem;
+  width: 1rem;
+}
+
+td .tag {
+  top: 0.1rem;
 }
 
 /**
@@ -286,7 +321,6 @@ html.dark .theme-default-content a.tag[href] .tag:hover .text {
 
 <!-- Style for navitem -->
 <style>
-
 /**
 NavbarDropdown
 */
@@ -338,7 +372,6 @@ html.dark
 }
 
 /**
-
 For mobile devices
 */
 

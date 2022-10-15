@@ -117,7 +117,7 @@ menuConfig.forEach((option) => {
       // Extract the tags
       option.tag.forEach((tag) => {
         const _tag = { ...tag }; // Copy tag to temporary variable to protect the original one from being changed.
-        _tag.template ??= "defaultIcon"; // If the tag template is empty, assign with value "defaultIcon"
+        _tag.template ??= "iconOnly"; // If the tag template is empty, assign with value "iconOnly" (default template)
         _tag.desc = tag.desc;
 
         // If current page is in locale, change the tag description according to the selected language.

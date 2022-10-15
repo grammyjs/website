@@ -1,4 +1,4 @@
-import type { Props } from "./Tag";
+import type { Props } from "./tag";
 import type { TagTemplateIconOnly } from "../components/tag/tagTemplate";
 
 type Url = `/${string}`;
