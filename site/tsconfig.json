@@ -14,6 +14,6 @@
     ]
   },
   "include": [
-    "./docs/.vuepress/components"
+    "./docs/.vuepress/components/**/*"
   ]
 }

@@ -1,49 +1,38 @@
-import type { Bot, GrammyError } from 'grammy'
+import type { Api } from 'grammy'
 import { ref, watch, type Ref } from 'vue'
+import { useApiMethod } from '../composables/use-api-method'
 
-export function useSetWebhook(bot: Ref<Bot | undefined>) {
-  const success = ref<boolean | null>(null)
-  const loading = ref(false)
-  const error = ref<GrammyError>()
+type UseSetWebhookParams = {
+  url?: Ref<string>
+  dropPendingUpdates?: Ref<boolean>
+  secretToken?: Ref<string>
+}
 
-  const url = ref('')
-  const secret = ref(localStorage.getItem('webhookSecret'))
-  const dropUpdates = ref(false)
+export function useSetWebhook(
+  api: Ref<Api | undefined>,
+  params?: UseSetWebhookParams
+) {
+  const {
+    url = ref(''),
+    dropPendingUpdates = ref(false),
+    secretToken = ref(localStorage.getItem('secret') || '')
+  } = params || {}
 
-  watch(secret, (value) =>
-    value
-      ? localStorage.setItem('webhookSecret', value)
-      : localStorage.removeItem('webhookSecret')
-  )
+  const { loading, error, data, refresh } = useApiMethod(api, 'setWebhook')
 
-  async function setWebhook() {
-    if (!bot.value || !url.value) return
-    success.value = null
-    error.value = undefined
-    loading.value = true
-
-    await bot.value?.api
-      .setWebhook(url.value, {
-        drop_pending_updates: dropUpdates.value,
-        secret_token: secret.value || undefined
-      })
-      .then(() => {
-        success.value = true
-      })
-      .catch((err) => {
-        error.value = err
-      })
-
-    loading.value = false
-  }
+  watch(secretToken, (value) => localStorage.setItem('secret', value))
 
   return {
-    success,
     loading,
     error,
+    data,
     url,
-    secret,
-    dropUpdates,
-    refresh: setWebhook
+    dropPendingUpdates,
+    secretToken,
+    setWebhook: () =>
+      refresh(url.value, {
+        drop_pending_updates: dropPendingUpdates.value,
+        secret_token: secretToken.value || undefined
+      })
   }
 }

@@ -1,23 +1,25 @@
 <script setup lang="ts">
 import { usePageLang } from '@vuepress/client'
-import type { Bot } from 'grammy'
+import type { Api } from 'grammy'
 import { NButton, NForm, NFormItem, NInput, NSpace, NSwitch } from 'naive-ui'
-import { computed, toRefs } from 'vue'
+import { computed, ref, toRefs } from 'vue'
 import { useDeleteWebhook } from '../../composables/use-delete-webhook'
 import { useSetWebhook } from '../../composables/use-set-webhook'
+import GrammyError from './GrammyError.vue'
 
 const lang = usePageLang()
 const strings = computed(() => __SETWEBHOOKUTIL_STRINGS__[ lang.value ])
 
 type Props = {
-  bot: Bot
+  api: Api | undefined
 }
 
 const _props = defineProps<Props>()
 const props = toRefs(_props)
 
-const { error: setWebhookError, loading: setWebhookLoading, refresh: setWebhook, dropUpdates, secret, url } = useSetWebhook(props.bot)
-const { error: deleteWebhookError, loading: deleteWebhookLoading, deleteWebhook } = useDeleteWebhook(props.bot)
+const dropPendingUpdates = ref(false)
+const { error: setWebhookError, loading: setWebhookLoading, setWebhook, secretToken, url } = useSetWebhook(props.api, { dropPendingUpdates })
+const { error: deleteWebhookError, loading: deleteWebhookLoading, deleteWebhook } = useDeleteWebhook(props.api, dropPendingUpdates)
 const webhookLoading = computed(() => setWebhookLoading.value || deleteWebhookLoading.value)
 
 const emit = defineEmits([ 'webhookChange' ])
@@ -34,11 +36,13 @@ defineExpose({ setUrl })
     </n-form-item>
     <n-form-item label="Webhook Secret">
       <n-input :readonly="webhookLoading" placeholder="Secret value telegram sends to your bot"
-        v-model:value="secret" />
+        v-model:value="secretToken" />
     </n-form-item>
     <n-form-item label="Drop pending updates">
-      <n-switch :readonly="webhookLoading" v-model:value="dropUpdates" />
+      <n-switch :readonly="webhookLoading" v-model:value="dropPendingUpdates" />
     </n-form-item>
+    <grammy-error :error="setWebhookError" @retry="withRefreshWebhookInfo(setWebhook)" :retriable="false" />
+    <grammy-error :error="deleteWebhookError" @retry="withRefreshWebhookInfo(deleteWebhook)" />
     <n-space justify="end">
       <n-button type="error" @click="withRefreshWebhookInfo(deleteWebhook)" :loading="deleteWebhookLoading"
         :disabled="setWebhookLoading">

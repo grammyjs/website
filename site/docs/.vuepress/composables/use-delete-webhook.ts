@@ -1,33 +1,19 @@
-import type { Bot, GrammyError } from 'grammy'
+import type { Api } from 'grammy'
 import { ref, type Ref } from 'vue'
+import { useApiMethod } from './use-api-method'
 
-export function useDeleteWebhook(bot: Ref<Bot | undefined>) {
-  const success = ref<boolean | null>(null)
-  const loading = ref(false)
-  const error = ref<GrammyError>()
-
-  async function deleteWebhook() {
-    if (!bot.value) return
-    success.value = null
-    error.value = undefined
-    loading.value = true
-
-    await bot.value?.api
-      .deleteWebhook()
-      .then(() => {
-        success.value = true
-      })
-      .catch((err) => {
-        error.value = err
-      })
-
-    loading.value = false
-  }
+export function useDeleteWebhook(
+  api: Ref<Api | undefined>,
+  dropPendingUpdates: Ref<boolean> = ref(false)
+) {
+  const { loading, error, data, refresh } = useApiMethod(api, 'deleteWebhook')
 
   return {
-    success,
     loading,
     error,
-    deleteWebhook
+    data,
+    dropPendingUpdates,
+    deleteWebhook: () =>
+      refresh({ drop_pending_updates: dropPendingUpdates.value })
   }
 }

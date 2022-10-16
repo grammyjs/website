@@ -1,42 +1,107 @@
 <script setup lang="ts">
-import type { Bot } from 'grammy'
-import { NButton, NEmpty, NSpin } from 'naive-ui'
+import { CheckboxChecked16Regular } from '@vicons/fluent'
+import { usePageLang } from '@vuepress/client'
+import type { Api } from 'grammy'
+import { NAlert, NButton, NEmpty, NIcon, NSkeleton, NSpace, NSpin } from 'naive-ui'
 import { toRefs, watch } from 'vue'
-import { useWebhookInfo } from '../../composables/use-webhook-info'
+import { useApiMethod } from '../../composables/use-api-method'
+import GrammyError from './GrammyError.vue'
 
 type Props = {
-  bot: Bot
+  api: Api | undefined
 }
 
+const lang = usePageLang()
 const _props = defineProps<Props>()
 const props = toRefs(_props)
 
-const { error, loading, webhookInfo, refresh } = useWebhookInfo(props.bot)
+const { error, loading, data: webhookInfo, refresh } = useApiMethod(props.api, 'getWebhookInfo')
 
 defineExpose({
   refresh
 })
 
+const toLocaleDateString = (timestamp?: number) => {
+  const date = timestamp ? new Date(timestamp * 1000) : undefined
+
+  return date?.toLocaleDateString(lang.value, {
+    month: '2-digit',
+    day: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit'
+  }) ?? ''
+}
+
 const emit = defineEmits([ 'urlChange' ])
 
+watch(props.api, () => refresh(), { immediate: true })
 watch(webhookInfo, (value) => value?.url && emit('urlChange', value.url), { immediate: true })
 </script>
 
 <template>
-  <n-spin :show="loading">
-    <template v-if="webhookInfo">
-      <template v-if="webhookInfo.url">
-        {{ webhookInfo }}
+  <n-space vertical>
+    <n-spin :show="loading" size="small">
+      <template v-if="loading">
+        <n-space vertical align="center">
+          <n-skeleton height="40px" circle />
+        </n-space>
       </template>
-      <template v-else>
-        <n-empty description="No webhook set">
-          <template #extra>
-            <n-button size="small" @click="refresh">
-              Refresh
-            </n-button>
-          </template>
-        </n-empty>
+      <template v-if="webhookInfo">
+        <template v-if="!webhookInfo.url">
+          <n-empty description="No webhook set">
+            <template #extra>
+              <n-button size="small" @click="() => refresh()">
+                Refresh
+              </n-button>
+            </template>
+          </n-empty>
+        </template>
+        <template v-if="webhookInfo.url">
+          <n-empty :description="webhookInfo.url">
+            <template #icon>
+              <n-icon>
+                <CheckboxChecked16Regular />
+              </n-icon>
+            </template>
+            <template #extra>
+              <n-space vertical>
+                <div>
+                  {{ webhookInfo.pending_update_count }} pending update{{ webhookInfo.pending_update_count !== 1 ? 's' :
+                  ''
+                  }}.
+                </div>
+                <n-button size="small" @click="() => refresh()">
+                  Refresh
+                </n-button>
+              </n-space>
+            </template>
+          </n-empty>
+        </template>
+        <template v-if="webhookInfo.last_error_message">
+          <n-alert type="info" style="margin-top: 10px"
+            :title="`Last error (${toLocaleDateString(webhookInfo.last_error_date)})`" closable>
+            <n-space vertical>
+              <div>{{ webhookInfo.last_error_message }}</div>
+              <div v-if="webhookInfo.last_synchronization_error_date">Last ynchronization error date: {{
+              toLocaleDateString(webhookInfo.last_synchronization_error_date) }}</div>
+            </n-space>
+          </n-alert>
+        </template>
       </template>
-    </template>
-  </n-spin>
+      <template v-if="error">
+        <GrammyError :error="error" @retry="refresh" />
+      </template>
+    </n-spin>
+  </n-space>
 </template>
+
+<style scoped>
+.webhookInfo {
+  margin-left: 10px;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 10px;
+}
+</style>

@@ -1,7 +1,10 @@
 <script lang="ts" setup>
 import { ArrowLeft12Filled, Bot20Filled } from '@vicons/fluent'
 import { usePageLang } from '@vuepress/client'
-import { useBot } from '../../composables/use-bot'
+import { useApi } from '../../composables/use-api'
+import { useApiMethod } from '../../composables/use-api-method'
+import { useProfilePhoto } from '../../composables/use-profile-photo'
+import GrammyError from './GrammyError.vue'
 import ManageWebhook from './ManageWebhook.vue'
 import WebhookInfo from './WebhookInfo.vue'
 
@@ -9,12 +12,13 @@ import {
   darkTheme, NAlert, NAvatar, NButton,
   NCard,
   NCheckbox, NConfigProvider, NForm,
-  NFormItem, NIcon, NInput, NSpace, NTabPane, NTabs, NThemeEditor, type GlobalThemeOverrides
+  NFormItem, NIcon, NInput, NSpace, NSpin, NTabPane, NTabs, NThemeEditor, type GlobalThemeOverrides
 } from 'naive-ui'
 
 import {
   computed,
-  ref
+  ref,
+  watch
 } from 'vue'
 
 /**
@@ -46,23 +50,26 @@ const setWebhookUrl = (url: string) => {
   manageWebhook.value?.setUrl(url)
 }
 
-/**
- * Get Me
- */
-const { bot, error: botError, loading: botLoading, refresh: getMe, reset: resetBot, token } = useBot()
-const botName = computed(() => bot.value ? `${bot.value?.botInfo.first_name} ${bot.value?.botInfo.last_name || ''}`.trim() : '')
+const { api, token } = useApi()
+const { loading: botInfoLoading, error: botInfoError, data: botInfo, refresh: botInfoRefresh } = useApiMethod(api, 'getMe')
+const botName = computed(() => botInfo.value ? `${[ botInfo.value.first_name, botInfo.value.last_name ].join(' ')}` : '')
 
-const init = () => {
-  getMe().then(() => {
-    webhookInfo.value?.refresh()
-  })
+const { url: photoUrl, refresh: photoRefresh } = useProfilePhoto(api)
+
+watch(botInfo, (info) => {
+  if (!info) return
+  photoRefresh(info.id, token.value)
+})
+
+const resetBot = () => {
+  botInfo.value = undefined
 }
 </script>
 
 <template>
   <n-config-provider :theme-overrides="themeOverrides" :theme="darkTheme">
     <n-theme-editor v-if="dev">
-      <n-space vertical v-if="!bot">
+      <n-space vertical v-if="!botInfo">
         <n-alert title="About your bot token" type="warning">
           We never store your bot's token in the backend. It is stored in your browser's <i>localStorage</i>. Do not go
           around giving your token to random websites, no matter how nicely they ask!
@@ -70,43 +77,48 @@ const init = () => {
         <n-card size="small">
           <n-form>
             <n-form-item :label="strings.token.label">
-              <n-input :readonly="botLoading" v-model:value="token" :placeholder="strings.token.placeholder"
+              <n-input :readonly="botInfoLoading" v-model:value="token" :placeholder="strings.token.placeholder"
                 clearable />
             </n-form-item>
+            <GrammyError :error="botInfoError" closable @retry="botInfoRefresh" />
             <n-space justify="end">
-              <n-button type="primary" :disabled="!token || botLoading" :loading="botLoading" @click="init">
+              <n-button type="primary" :disabled="!token || botInfoLoading" :loading="botInfoLoading"
+                @click="() => botInfoRefresh()">
                 Load Bot Info
               </n-button>
             </n-space>
           </n-form>
         </n-card>
       </n-space>
-      <n-card v-if="bot" style="margin-top: 10px;" size="small" :segmented="{ content: true }">
+      <n-card v-if="botInfo" style="margin-top: 10px;" size="small" :segmented="{ content: true }">
         <template #header>
           <n-space align="center">
-            <n-avatar>
-              <n-icon>
-                <bot20-filled />
-              </n-icon>
+            <n-avatar round :src="photoUrl">
+              <template #fallback>
+                <n-icon>
+                  <bot20-filled />
+                </n-icon>
+              </template>
+              <n-spin size="small" v-if="!photoUrl" />
             </n-avatar>
             {{ botName }}
           </n-space>
         </template>
         <template #header-extra>
-          {{ `ID: ${bot.botInfo.id}` }}
+          {{ `ID: ${botInfo.id}` }}
         </template>
         <n-space justify="center" style="margin-top: 20px;">
-          <n-checkbox :checked="bot.botInfo.can_join_groups" readonly>Can join groups</n-checkbox>
-          <n-checkbox :checked="bot.botInfo.can_read_all_group_messages" readonly>Can read all group messages
+          <n-checkbox :checked="botInfo.can_join_groups" readonly>Can join groups</n-checkbox>
+          <n-checkbox :checked="botInfo.can_read_all_group_messages" readonly>Can read all group messages
           </n-checkbox>
-          <n-checkbox :checked="bot.botInfo.supports_inline_queries" readonly>Supports inline queries</n-checkbox>
+          <n-checkbox :checked="botInfo.supports_inline_queries" readonly>Supports inline queries</n-checkbox>
         </n-space>
         <n-tabs type="segment" animated style="margin-top: 20px;">
           <n-tab-pane name="webhookInfo" tab="Webhook Info" display-directive="show">
-            <WebhookInfo :bot="bot" ref="webhookInfo" @url-change="setWebhookUrl" />
+            <WebhookInfo :api="api" ref="webhookInfo" @url-change="setWebhookUrl" />
           </n-tab-pane>
           <n-tab-pane name="manageWebhook" tab="Manage Webhook" display-directive="show">
-            <ManageWebhook :bot="bot" ref="manageWebhook" @webhook-change="refreshWebhookInfo" />
+            <ManageWebhook :api="api" ref="manageWebhook" @webhook-change="refreshWebhookInfo" />
           </n-tab-pane>
         </n-tabs>
         <template #action>
