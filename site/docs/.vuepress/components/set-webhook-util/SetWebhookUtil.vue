@@ -6,6 +6,7 @@ import { useApiMethod } from '../../composables/use-api-method'
 import { useProfilePhoto } from '../../composables/use-profile-photo'
 import GrammyError from './GrammyError.vue'
 import ManageWebhook from './ManageWebhook.vue'
+import { getTranslation } from './translations'
 import WebhookInfo from './WebhookInfo.vue'
 
 import {
@@ -25,8 +26,9 @@ import {
  * Layout
  */
 const dev = ref(__VUEPRESS_DEV__)
+
 const lang = usePageLang()
-const strings = computed(() => __SETWEBHOOKUTIL_STRINGS__[ lang.value ])
+const translation = computed(() => getTranslation(lang.value))
 
 const themeOverrides: GlobalThemeOverrides = {
   common: {
@@ -70,21 +72,20 @@ const resetBot = () => {
   <n-config-provider :theme-overrides="themeOverrides" :theme="darkTheme">
     <n-theme-editor v-if="dev">
       <n-space vertical v-if="!botInfo">
-        <n-alert title="About your bot token" type="warning">
-          We never store your bot's token in the backend. It is stored in your browser's <i>localStorage</i>. Do not go
-          around giving your token to random websites, no matter how nicely they ask!
+        <n-alert :title="translation.tokenCard.disclaimer.title" type="warning">
+          {{ translation.tokenCard.disclaimer.content }}
         </n-alert>
         <n-card size="small">
           <n-form>
-            <n-form-item :label="strings.token.label">
-              <n-input :readonly="botInfoLoading" v-model:value="token" :placeholder="strings.token.placeholder"
-                clearable />
+            <n-form-item :label="translation.tokenCard.fields.token.label">
+              <n-input :readonly="botInfoLoading" v-model:value="token"
+                :placeholder="translation.tokenCard.fields.token.placeholder" clearable />
             </n-form-item>
             <GrammyError :error="botInfoError" closable @retry="botInfoRefresh" />
             <n-space justify="end">
               <n-button type="primary" :disabled="!token || botInfoLoading" :loading="botInfoLoading"
                 @click="() => botInfoRefresh()">
-                Load Bot Info
+                {{ translation.tokenCard.buttons.loadBotInfo }}
               </n-button>
             </n-space>
           </n-form>
@@ -108,16 +109,17 @@ const resetBot = () => {
           {{ `ID: ${botInfo.id}` }}
         </template>
         <n-space justify="center" style="margin-top: 20px;">
-          <n-checkbox :checked="botInfo.can_join_groups" readonly>Can join groups</n-checkbox>
-          <n-checkbox :checked="botInfo.can_read_all_group_messages" readonly>Can read all group messages
+          <n-checkbox :checked="botInfo.can_join_groups" readonly>{{ translation.botCard.canJoinGroups }}</n-checkbox>
+          <n-checkbox :checked="botInfo.can_read_all_group_messages" readonly>{{
+          translation.botCard.canReadGroupMessages }}</n-checkbox>
+          <n-checkbox :checked="botInfo.supports_inline_queries" readonly>{{ translation.botCard.inlineQueries }}
           </n-checkbox>
-          <n-checkbox :checked="botInfo.supports_inline_queries" readonly>Supports inline queries</n-checkbox>
         </n-space>
         <n-tabs type="segment" animated style="margin-top: 20px;">
-          <n-tab-pane name="webhookInfo" tab="Webhook Info" display-directive="show">
+          <n-tab-pane name="webhookInfo" :tab="translation.botCard.tabs.webhookInfo" display-directive="show">
             <WebhookInfo :api="api" ref="webhookInfo" @url-change="setWebhookUrl" />
           </n-tab-pane>
-          <n-tab-pane name="manageWebhook" tab="Manage Webhook" display-directive="show">
+          <n-tab-pane name="manageWebhook" :tab="translation.botCard.tabs.manageWebhook" display-directive="show">
             <ManageWebhook :api="api" ref="manageWebhook" @webhook-change="refreshWebhookInfo" />
           </n-tab-pane>
         </n-tabs>
@@ -126,7 +128,7 @@ const resetBot = () => {
             <template #icon>
               <arrow-left12-filled />
             </template>
-            Change token
+            {{ translation.botCard.buttons.changeToken }}
           </n-button>
         </template>
       </n-card>

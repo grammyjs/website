@@ -1,17 +1,20 @@
 <script setup lang="ts">
 import { CheckboxChecked16Regular } from '@vicons/fluent'
+import { computed } from '@vue/reactivity'
 import { usePageLang } from '@vuepress/client'
 import type { Api } from 'grammy'
 import { NAlert, NButton, NEmpty, NIcon, NSkeleton, NSpace, NSpin } from 'naive-ui'
 import { toRefs, watch } from 'vue'
 import { useApiMethod } from '../../composables/use-api-method'
 import GrammyError from './GrammyError.vue'
+import { getTranslation } from './translations'
 
 type Props = {
   api: Api | undefined
 }
 
 const lang = usePageLang()
+const translation = computed(() => getTranslation(lang.value).webhookInfo)
 const _props = defineProps<Props>()
 const props = toRefs(_props)
 
@@ -50,10 +53,10 @@ watch(webhookInfo, (value) => value?.url && emit('urlChange', value.url), { imme
       </template>
       <template v-if="webhookInfo">
         <template v-if="!webhookInfo.url">
-          <n-empty description="No webhook set">
+          <n-empty :description="translation.empty">
             <template #extra>
               <n-button size="small" @click="() => refresh()">
-                Refresh
+                {{ translation.buttons.refresh }}
               </n-button>
             </template>
           </n-empty>
@@ -68,12 +71,10 @@ watch(webhookInfo, (value) => value?.url && emit('urlChange', value.url), { imme
             <template #extra>
               <n-space vertical>
                 <div>
-                  {{ webhookInfo.pending_update_count }} pending update{{ webhookInfo.pending_update_count !== 1 ? 's' :
-                  ''
-                  }}.
+                  {{ translation.pendingUpdates(webhookInfo.pending_update_count) }}.
                 </div>
                 <n-button size="small" @click="() => refresh()">
-                  Refresh
+                  {{ translation.buttons.refresh }}
                 </n-button>
               </n-space>
             </template>
@@ -81,11 +82,12 @@ watch(webhookInfo, (value) => value?.url && emit('urlChange', value.url), { imme
         </template>
         <template v-if="webhookInfo.last_error_message">
           <n-alert type="info" style="margin-top: 10px"
-            :title="`Last error (${toLocaleDateString(webhookInfo.last_error_date)})`" closable>
+            :title="translation.lastErrorDate(toLocaleDateString(webhookInfo.last_error_date))" closable>
             <n-space vertical>
               <div>{{ webhookInfo.last_error_message }}</div>
-              <div v-if="webhookInfo.last_synchronization_error_date">Last ynchronization error date: {{
-              toLocaleDateString(webhookInfo.last_synchronization_error_date) }}</div>
+              <div v-if="webhookInfo.last_synchronization_error_date">
+                {{ translation.lastSyncErrorDate(toLocaleDateString(webhookInfo.last_synchronization_error_date)) }}
+              </div>
             </n-space>
           </n-alert>
         </template>

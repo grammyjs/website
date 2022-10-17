@@ -7,66 +7,6 @@ import { currentVersions } from './plugins/current-versions/plugin'
 import { docsearch } from './plugins/docsearch'
 
 export default defineUserConfig({
-  define: {
-    __SETWEBHOOKUTIL_STRINGS__: {
-      'en-US': {
-        token: {
-          label: 'Bot Token',
-          placeholder: 'Obtained from talking to @botfather'
-        },
-        url: {
-          label: 'Webhook URL',
-          placeholder: 'Full URL to your webhook'
-        },
-        buttons: {
-          setWebhook: 'Set webhook',
-          deleteWebhook: 'Delete webhook'
-        }
-      },
-      'es-ES': {
-        token: {
-          label: 'Bot Token',
-          placeholder: 'Obtenido al hablar con @botfather'
-        },
-        url: {
-          label: 'Webhook URL',
-          placeholder: 'URL completa de su webhook'
-        },
-        buttons: {
-          setWebhook: 'Establecer webhook',
-          deleteWebhook: 'Delete webhook'
-        }
-      },
-      id: {
-        token: {
-          label: 'Bot Token',
-          placeholder: 'Obtained from talking to @botfather'
-        },
-        url: {
-          label: 'Webhook URL',
-          placeholder: 'Full URL to your webhook'
-        },
-        buttons: {
-          setWebhook: 'Set webhook',
-          deleteWebhook: 'Delete webhook'
-        }
-      },
-      'zh-CN': {
-        token: {
-          label: 'Bot Token',
-          placeholder: 'Obtained from talking to @botfather'
-        },
-        url: {
-          label: 'Webhook URL',
-          placeholder: 'Full URL to your webhook'
-        },
-        buttons: {
-          setWebhook: 'Set webhook',
-          deleteWebhook: 'Delete webhook'
-        }
-      }
-    }
-  },
   locales: {
     '/': {
       lang: 'en-US',

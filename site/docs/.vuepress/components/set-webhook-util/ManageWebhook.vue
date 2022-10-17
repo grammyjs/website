@@ -6,9 +6,10 @@ import { computed, ref, toRefs } from 'vue'
 import { useDeleteWebhook } from '../../composables/use-delete-webhook'
 import { useSetWebhook } from '../../composables/use-set-webhook'
 import GrammyError from './GrammyError.vue'
+import { getTranslation } from './translations'
 
 const lang = usePageLang()
-const strings = computed(() => __SETWEBHOOKUTIL_STRINGS__[ lang.value ])
+const translation = computed(() => getTranslation(lang.value).manageWebhook)
 
 type Props = {
   api: Api | undefined
@@ -31,14 +32,14 @@ defineExpose({ setUrl })
 
 <template>
   <n-form label-placement="left" style="margin-top: 10px">
-    <n-form-item :label="strings.url.label">
-      <n-input :readonly="webhookLoading" :placeholder="strings.url.placeholder" v-model:value="url" />
+    <n-form-item :label="translation.fields.url.label">
+      <n-input :readonly="webhookLoading" :placeholder="translation.fields.url.placeholder" v-model:value="url" />
     </n-form-item>
-    <n-form-item label="Webhook Secret">
-      <n-input :readonly="webhookLoading" placeholder="Secret value telegram sends to your bot"
+    <n-form-item :label="translation.fields.secret.label">
+      <n-input :readonly="webhookLoading" :placeholder="translation.fields.secret.placeholder"
         v-model:value="secretToken" />
     </n-form-item>
-    <n-form-item label="Drop pending updates">
+    <n-form-item :label="translation.fields.dropPending.label">
       <n-switch :readonly="webhookLoading" v-model:value="dropPendingUpdates" />
     </n-form-item>
     <grammy-error :error="setWebhookError" @retry="withRefreshWebhookInfo(setWebhook)" :retriable="false" />
@@ -46,11 +47,11 @@ defineExpose({ setUrl })
     <n-space justify="end">
       <n-button type="error" @click="withRefreshWebhookInfo(deleteWebhook)" :loading="deleteWebhookLoading"
         :disabled="setWebhookLoading">
-        {{ strings.buttons.deleteWebhook }}
+        {{ translation.buttons.deleteWebhook }}
       </n-button>
       <n-button type="primary" @click="withRefreshWebhookInfo(setWebhook)" :loading="setWebhookLoading"
         :disabled="deleteWebhookLoading || !url">
-        {{ strings.buttons.setWebhook }}
+        {{ translation.buttons.setWebhook }}
       </n-button>
     </n-space>
   </n-form>
