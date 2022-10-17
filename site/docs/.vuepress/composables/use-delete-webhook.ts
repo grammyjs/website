@@ -1,12 +1,12 @@
-import type { Api } from 'grammy'
-import { ref, type Ref } from 'vue'
-import { useApiMethod } from './use-api-method'
+import type { Api } from "grammy";
+import { type Ref, ref } from "vue";
+import { useApiMethod } from "./use-api-method";
 
 export function useDeleteWebhook(
   api: Ref<Api | undefined>,
-  dropPendingUpdates: Ref<boolean> = ref(false)
+  dropPendingUpdates: Ref<boolean> = ref(false),
 ) {
-  const { loading, error, data, refresh } = useApiMethod(api, 'deleteWebhook')
+  const { loading, error, data, refresh } = useApiMethod(api, "deleteWebhook");
 
   return {
     loading,
@@ -14,6 +14,6 @@ export function useDeleteWebhook(
     data,
     dropPendingUpdates,
     deleteWebhook: () =>
-      refresh({ drop_pending_updates: dropPendingUpdates.value })
-  }
+      refresh({ drop_pending_updates: dropPendingUpdates.value }),
+  };
 }

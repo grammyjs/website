@@ -1,1 +1,1 @@
-export const AbortController = global.AbortController
+export const AbortController = global.AbortController;

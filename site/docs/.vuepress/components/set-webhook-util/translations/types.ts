@@ -1,62 +1,62 @@
 export type Translation = {
   tokenCard: {
     disclaimer: {
-      title: string
-      content: string
-    }
+      title: string;
+      content: string;
+    };
     fields: {
       token: {
-        label: string
-        placeholder: string
-      }
-    }
+        label: string;
+        placeholder: string;
+      };
+    };
     buttons: {
-      loadBotInfo: string
-    }
-  }
+      loadBotInfo: string;
+    };
+  };
   botCard: {
-    canJoinGroups: string
-    canReadGroupMessages: string
-    inlineQueries: string
+    canJoinGroups: string;
+    canReadGroupMessages: string;
+    inlineQueries: string;
     tabs: {
-      webhookInfo: string
-      manageWebhook: string
-    }
+      webhookInfo: string;
+      manageWebhook: string;
+    };
     buttons: {
-      changeToken: string
-    }
-  }
+      changeToken: string;
+    };
+  };
   manageWebhook: {
     fields: {
       secret: {
-        label: string
-        placeholder: string
-      }
+        label: string;
+        placeholder: string;
+      };
       url: {
-        label: string
-        placeholder: string
-      }
+        label: string;
+        placeholder: string;
+      };
       dropPending: {
-        label: string
-      }
-    }
+        label: string;
+      };
+    };
     buttons: {
-      setWebhook: string
-      deleteWebhook: string
-    }
-  }
+      setWebhook: string;
+      deleteWebhook: string;
+    };
+  };
   webhookInfo: {
-    empty: string
-    pendingUpdates: (count: number) => string
-    lastErrorDate: (formattedDate: string) => string
-    lastSyncErrorDate: (formattedDate: string) => string
+    empty: string;
+    pendingUpdates: (count: number) => string;
+    lastErrorDate: (formattedDate: string) => string;
+    lastSyncErrorDate: (formattedDate: string) => string;
     buttons: {
-      refresh: string
-    }
-  }
+      refresh: string;
+    };
+  };
   error: {
     buttons: {
-      retry: string
-    }
-  }
-}
+      retry: string;
+    };
+  };
+};

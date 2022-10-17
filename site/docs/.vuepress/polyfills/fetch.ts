@@ -1,1 +1,1 @@
-export default fetch
+export default fetch;

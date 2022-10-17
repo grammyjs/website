@@ -1,26 +1,26 @@
-import type { Api } from 'grammy'
-import { ref, watch, type Ref } from 'vue'
-import { useApiMethod } from '../composables/use-api-method'
+import type { Api } from "grammy";
+import { type Ref, ref, watch } from "vue";
+import { useApiMethod } from "../composables/use-api-method";
 
 type UseSetWebhookParams = {
-  url?: Ref<string>
-  dropPendingUpdates?: Ref<boolean>
-  secretToken?: Ref<string>
-}
+  url?: Ref<string>;
+  dropPendingUpdates?: Ref<boolean>;
+  secretToken?: Ref<string>;
+};
 
 export function useSetWebhook(
   api: Ref<Api | undefined>,
-  params?: UseSetWebhookParams
+  params?: UseSetWebhookParams,
 ) {
   const {
-    url = ref(''),
+    url = ref(""),
     dropPendingUpdates = ref(false),
-    secretToken = ref(localStorage.getItem('secret') || '')
-  } = params || {}
+    secretToken = ref(localStorage.getItem("secret") || ""),
+  } = params || {};
 
-  const { loading, error, data, refresh } = useApiMethod(api, 'setWebhook')
+  const { loading, error, data, refresh } = useApiMethod(api, "setWebhook");
 
-  watch(secretToken, (value) => localStorage.setItem('secret', value))
+  watch(secretToken, (value) => localStorage.setItem("secret", value));
 
   return {
     loading,
@@ -32,7 +32,7 @@ export function useSetWebhook(
     setWebhook: () =>
       refresh(url.value, {
         drop_pending_updates: dropPendingUpdates.value,
-        secret_token: secretToken.value || undefined
-      })
-  }
+        secret_token: secretToken.value || undefined,
+      }),
+  };
 }
