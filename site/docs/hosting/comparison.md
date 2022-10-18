@@ -29,20 +29,20 @@ We therefore recommend you to use a different kind of hosting for more complex b
 
 The main thing to know about them is that on serverless infrastructures you are required to use [webhooks](../guide/deployment-types.md).
 
-| Name                   | Min. price | Pricing                                                               | Limits                                                                                  | Node.js | Deno                        | Web | Notes                          |
-| ---------------------- | ---------- | --------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | ------- | --------------------------- | --- | ------------------------------ |
-| Deta                   | Free       | No paid plans yet                                                     | No specific limits                                                                      | ✅       | ❓                           | ❓   |                                |
-| Deno Deploy            | Free       | $10/mo subscription for 5M req and 100 GB; $2/1M req, $0.3/GB network | [100K req/day, 100 GB/mo, 10 ms CPU-time limit](https://deno.com/deploy/pricing)        | ❌       | ✅                           | ❌   |                                |
-| DigitalOcean Functions | Free       | $1.85/100K GB-s                                                       | [90K GB-s/mo](https://docs.digitalocean.com/products/functions/details/pricing/)        | ✅       | ❌                           | ❓   |                                |
-| Cloudflare Workers     | Free       | $5/10M req                                                            | [100K req/day, 10 ms CPU-time limit](https://workers.cloudflare.com/)                   | ❌       | [✅](https://denoflare.dev/) | ✅   |                                |
-| Heroku                 | Free       | It's complicated                                                      | [550-1000 h/mo](https://www.heroku.com/pricing)                                         | ✅       | ❓                           | ❓   |                                |
-| Vercel                 | Free       | $20/mo subscription                                                   | [Unlimited invocations, 100 GB-h, 10 s time limit](https://vercel.com/pricing)          | ❓       | ❓                           | ❓   | Not intended for non-websites? |
-| Scaleway Functions     | Free       | €0.15/1M req, €1.2/100K GB-s                                          | [1M requests, 400K GB-s/mo](https://www.scaleway.com/en/pricing/#serverless-functions)  | ❓       | ❓                           | ❓   |                                |
-| Scaleway Containers    | Free       | €0.10/100K GB-s, €1.0/100K vCPU-s                                     | [400K GB-s, 200K vCPU-s/mo](https://www.scaleway.com/en/pricing/#serverless-containers) | ❓       | ❓                           | ❓   |                                |
-| Vercel Edge Functions  | Free       | $20/mo subscription for 500K                                          | [100K req/day](https://vercel.com/pricing)                                              | ❓       | ❓                           | ❓   |                                |
-| serverless.com         | Free       |                                                                       |                                                                                         | ❓       | ❓                           | ❓   |                                |
-| DigitalOcean Apps      | $5         |                                                                       |                                                                                         | ❓       | ❓                           | ❓   | Not tested                     |
-| Fastly Compute@Edge    |            |                                                                       |                                                                                         | ❓       | ❓                           | ❓   |                                |
+| Name                                                                      | Min. price | Limits                                                                                  |                                         Platforms                                         | Notes                          |
+| ------------------------------------------------------------------------- | ---------- | --------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------: | ------------------------------ |
+| [Deta](https://www.deta.sh/)                                              | Free       | No specific limits                                                                      |                               <Tag template="nodejsIcon"/>                                |                                |
+| [Deno Deploy](https://deno.com/deploy)                                    | Free       | [100K req/day, 100 GB/mo, 10 ms CPU-time limit](https://deno.com/deploy/pricing)        |                                <Tag template="denoIcon"/>                                 |                                |
+| [DigitalOcean Functions](https://www.digitalocean.com/products/functions) | Free       | [90K GB-s/mo](https://docs.digitalocean.com/products/functions/details/pricing/)        |                               <Tag template="nodejsIcon"/>                                |                                |
+| [Cloudflare Workers](https://workers.cloudflare.com)                      | Free       | [100K req/day, 10 ms CPU-time limit](https://workers.cloudflare.com/)                   |                 <Tag template="denoIcon" link="https://denoflare.dev/"/>                  |                                |
+| [Heroku](https://www.heroku.com/)                                         | Free       | [550-1000 h/mo](https://www.heroku.com/pricing)                                         | <TagGroup gap="0.2rem"><Tag template="denoIcon"/> <Tag template="nodejsIcon"/></TagGroup> |                                |
+| [Vercel](https://vercel.com/)                                             | Free       | [Unlimited invocations, 100 GB-h, 10 s time limit](https://vercel.com/pricing)          |                                                                                           | Not intended for non-websites? |
+| [Scaleway Functions](https://www.scaleway.com/en/serverless-functions/)   | Free       | [1M req, 400K GB-s/mo](https://www.scaleway.com/en/pricing/#serverless-functions)       |                                                                                           |                                |
+| [Scaleway Containers](https://www.scaleway.com/en/serverless-containers/) | Free       | [400K GB-s, 200K vCPU-s/mo](https://www.scaleway.com/en/pricing/#serverless-containers) |                                                                                           |                                |
+| [Vercel Edge Functions](https://vercel.com/features/edge-functions)       | Free       | [100K req/day](https://vercel.com/pricing)                                              |                                                                                           |                                |
+| [serverless.com](https://www.serverless.com/)                             | Free       | [100k req/mo](https://www.serverless.com/pricing)                                       |                                                                                           |                                |
+| [DigitalOcean Apps](https://www.digitalocean.com/products/app-platform)   | $5         | [1 vCPU, 0.5 GB RAM](https://www.digitalocean.com/pricing/app-platform)                 |                                                                                           | Not tested                     |
+| [Fastly Compute@Edge](https://www.fastly.com/products/edge-compute)       |            |                                                                                         |                                                                                           |                                |
 
 ### VPS
 
@@ -54,13 +54,13 @@ On a VPS, you can run bots using both long polling or webhooks.
 
 Check out the [tutorial](./vps.md) on how to host grammY bots on a VPS.
 
-| Name          | Min. price | Ping to Bot API                           | Cheapest option                    |
-| ------------- | ---------- | ----------------------------------------- | ---------------------------------- |
-| Contabo       |            | 15 ms :de: Nuremberg                      |                                    |
-| DigitalOcean  | $5         | 1-15 ms :netherlands: AMS, 19 ms :de: FRA | 1 vCPU, 1 GB RAM, 25 GB SSD, 1 TB  |
-| Hetzner Cloud | €4.15      | ~42 ms :de:                               | 1 vCPU, 2 GB RAM, 20 GB SSD, 20 TB |
-| IONOS VPS     | €1 or $2   | 15 ms :de: Baden-Baden                    | 1 vCPU, 0.5 GB RAM, 8 GB SSD       |
-| Scaleway      | €~7        |                                           | 2 cores, 2 GB RAM, 20 GB SSD       |
+| Name          | Min. price | Ping to Bot API                           | Cheapest option                     |
+| ------------- | ---------- | ----------------------------------------- | ----------------------------------- |
+| Contabo       | €5.99      | 15 ms :de: Nuremberg                      | 4 vCPU, 8 GB RAM, 50 GB NVMe, 32 TB |
+| DigitalOcean  | $5         | 1-15 ms :netherlands: AMS, 19 ms :de: FRA | 1 vCPU, 1 GB RAM, 25 GB SSD, 1 TB   |
+| Hetzner Cloud | €4.15      | ~42 ms :de:                               | 1 vCPU, 2 GB RAM, 20 GB SSD, 20 TB  |
+| IONOS VPS     | €1 or $2   | 15 ms :de: Baden-Baden                    | 1 vCPU, 0.5 GB RAM, 8 GB SSD        |
+| Scaleway      | €~7        |                                           | 2 cores, 2 GB RAM, 20 GB SSD        |
 
 ## Unit Explanations
 
