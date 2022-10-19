@@ -39,7 +39,7 @@ export type Translation = {
           required: string;
           invalid: string;
           protocol: string;
-        }
+        };
       };
       dropPending: {
         label: string;

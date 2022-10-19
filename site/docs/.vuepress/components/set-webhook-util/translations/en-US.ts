@@ -1,4 +1,4 @@
-import { Translation } from "./types"
+import { Translation } from "./types";
 
 export const lang: Translation = {
   tokenCard: {
@@ -39,10 +39,10 @@ export const lang: Translation = {
         label: "Webhook URL",
         placeholder: "Full URL to your webhook",
         errorMessages: {
-          invalid: 'Invalid URL',
-          protocol: 'Telegram only allows HTTPs',
-          required: 'Please specify a URL'
-        }
+          invalid: "Invalid URL",
+          protocol: "Telegram only allows HTTPs",
+          required: "Please specify a URL",
+        },
       },
       dropPending: {
         label: "Drop pending updates",
