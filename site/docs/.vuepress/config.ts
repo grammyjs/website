@@ -352,6 +352,10 @@ export default defineUserConfig({
                     text: "Comparison to Other Frameworks",
                     link: "/resources/comparison.html",
                   },
+                  {
+                    text: "Webhook Util",
+                    link: "/webhook-util.html",
+                  },
                 ],
               },
               {
@@ -712,6 +716,10 @@ export default defineUserConfig({
                   {
                     text: "Comparación con otros frameworks",
                     link: "/es/resources/comparison.html",
+                  },
+                  {
+                    text: "Webhook Util",
+                    link: "/webhook-util.html",
                   },
                 ],
               },
@@ -1077,6 +1085,10 @@ export default defineUserConfig({
                     text: "Perbandingan dengan Framework Lainnya",
                     link: "/id/resources/comparison.html",
                   },
+                  {
+                    text: "Webhook Util",
+                    link: "/webhook-util.html",
+                  },
                 ],
               },
               {
@@ -1438,6 +1450,10 @@ export default defineUserConfig({
                   {
                     text: "与其他框架的比较",
                     link: "/zh/resources/comparison.html",
+                  },
+                  {
+                    text: "Webhook Util",
+                    link: "/webhook-util.html",
                   },
                 ],
               },
