@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ArrowLeft12Filled, Bot20Filled } from '@vicons/fluent'
+import { ArrowLeft12Filled, Bot20Filled, Open20Filled } from '@vicons/fluent'
 import { usePageLang } from '@vuepress/client'
 import { useApi } from '../../composables/use-api'
 import { useApiMethod } from '../../composables/use-api-method'
@@ -124,12 +124,22 @@ const resetBot = () => {
           </n-tab-pane>
         </n-tabs>
         <template #action>
-          <n-button text @click="resetBot">
-            <template #icon>
-              <arrow-left12-filled />
-            </template>
-            {{ translation.botCard.buttons.changeToken }}
-          </n-button>
+          <n-space justify="space-between">
+            <n-button text @click="resetBot">
+              <template #icon>
+                <arrow-left12-filled />
+              </template>
+              {{ translation.botCard.buttons.changeToken }}
+            </n-button>
+            <a :href="`https://t.me/${botInfo.username}`" target="_blank">
+              <n-button text icon-placement="right">
+                <template #icon>
+                  <open20-filled />
+                </template>
+                Open chat with @{{botInfo.username}}
+              </n-button>
+            </a>
+          </n-space>
         </template>
       </n-card>
     </n-theme-editor>
