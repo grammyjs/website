@@ -10,8 +10,8 @@ const translation = computed(() => getTranslation(lang.value).error)
 
 type Props = {
   error: GrammyError | undefined
-  closable: boolean
-  retriable: boolean
+  closable?: boolean
+  retriable?: boolean
 }
 
 withDefaults(defineProps<Props>(), { closable: false, retriable: true })

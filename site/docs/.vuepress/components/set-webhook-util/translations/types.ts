@@ -35,6 +35,11 @@ export type Translation = {
       url: {
         label: string;
         placeholder: string;
+        errorMessages: {
+          required: string;
+          invalid: string;
+          protocol: string;
+        }
       };
       dropPending: {
         label: string;

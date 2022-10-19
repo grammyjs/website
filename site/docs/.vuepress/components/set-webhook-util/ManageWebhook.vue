@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { usePageLang } from '@vuepress/client'
 import type { Api } from 'grammy'
-import { NButton, NForm, NFormItem, NInput, NSpace, NSwitch } from 'naive-ui'
+import { FormItemRule, NButton, NForm, NFormItem, NInput, NSpace, NSwitch } from 'naive-ui'
 import { computed, ref, toRefs } from 'vue'
 import { useDeleteWebhook } from '../../composables/use-delete-webhook'
 import { useSetWebhook } from '../../composables/use-set-webhook'
@@ -26,13 +26,31 @@ const webhookLoading = computed(() => setWebhookLoading.value || deleteWebhookLo
 const emit = defineEmits([ 'webhookChange' ])
 const withRefreshWebhookInfo = (fn: () => Promise<any>) => fn().then(() => emit('webhookChange'))
 
+const urlRule: FormItemRule = {
+  required: true,
+  validator: () => {
+    if (!url.value) return new Error(translation.value.fields.url.errorMessages.required)
+
+    try {
+      const urlObj = new URL(url.value)
+
+      if (urlObj.protocol.replace(':', '') !== 'https') return new Error(translation.value.fields.url.errorMessages.protocol)
+
+      return true
+    } catch (err) {
+      return new Error(translation.value.fields.url.errorMessages.invalid)
+    }
+  },
+  trigger: [ 'blur', 'input' ]
+}
+
 const setUrl = (newUrl: string) => { url.value = newUrl }
 defineExpose({ setUrl })
 </script>
 
 <template>
-  <n-form label-placement="left" style="margin-top: 10px">
-    <n-form-item :label="translation.fields.url.label">
+  <n-form label-placement="top" style="margin-top: 10px">
+    <n-form-item :label="translation.fields.url.label" path="url" style="margin-bottom: 10px" :rule="urlRule">
       <n-input :readonly="webhookLoading" :placeholder="translation.fields.url.placeholder" v-model:value="url" />
     </n-form-item>
     <n-form-item :label="translation.fields.secret.label">

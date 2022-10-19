@@ -1,3 +1,4 @@
-# Webhook
-
+---
+sidebar: false
+---
 <SetWebhookUtil />
