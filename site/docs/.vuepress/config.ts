@@ -1429,6 +1429,10 @@ export default defineUserConfig({
                     link: "https://core.telegram.org/bots/faq",
                   },
                   {
+                    text: "Bot 特性",
+                    link: "https://core.telegram.org/bots/features",
+                  },
+                  {
                     text: "Bot API 概览",
                     link: "https://core.telegram.org/bots/api",
                   },
