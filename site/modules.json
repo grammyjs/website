@@ -1,0 +1,18 @@
+{
+  "modules": {
+    "grammy": "core",
+    "grammy_menu": "menu",
+    "grammy_runner": "runner",
+    "grammy_hydrate": "hydrate",
+    "grammy_transformer_throttler": "transformer-throttler",
+    "grammy_ratelimiter": "ratelimiter",
+    "grammy_files": "files",
+    "grammy_router": "router",
+    "grammy_emoji": "emoji",
+    "grammy_parse_mode": "parse-mode",
+    "grammy_storages": "",
+    "grammy_conversations": "conversations",
+    "grammy_autoquote": "autoquote",
+    "grammy_i18n": "i18n"
+  }
+}
