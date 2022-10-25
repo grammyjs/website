@@ -379,15 +379,15 @@ bot.use(conversations());
 
 // Salir siempre de cualquier conversación tras /cancelar
 bot.command("cancel", async (ctx) => {
-  await ctx.reply("Saliendo.");
   await ctx.conversation.exit();
+  await ctx.reply("Saliendo.");
 });
 
 // Salir siempre de la conversación de la `movie` 
 // cuando se pulsa el botón de `cancel` del teclado en línea.
 bot.callbackQuery("cancel", async (ctx) => {
-  await ctx.answerCallbackQuery("Dejando la conversación");
   await ctx.conversation.exit("movie");
+  await ctx.answerCallbackQuery("Dejando la conversación");
 });
 
 bot.use(createConversation(movie));
@@ -407,15 +407,15 @@ bot.use(conversations());
 
 // Salir siempre de cualquier conversación tras /cancelar
 bot.command("cancel", async (ctx) => {
-  await ctx.reply("Saliendo.");
   await ctx.conversation.exit();
+  await ctx.reply("Saliendo.");
 });
 
 // Salir siempre de la conversación de la `movie` 
 // cuando se pulsa el botón de `cancel` del teclado en línea.
 bot.callbackQuery("cancel", async (ctx) => {
-  await ctx.answerCallbackQuery("Dejando la conversación");
   await ctx.conversation.exit("movie");
+  await ctx.answerCallbackQuery("Dejando la conversación");
 });
 
 bot.use(createConversation(movie));
