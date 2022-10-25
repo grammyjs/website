@@ -4,11 +4,11 @@ on:
   push:
     branches: [main]
     paths:
-      - "site/docs/**"
+      - "site/**"
   pull_request:
     types: ["opened", "edited", "synchronize"]
     paths:
-      - "site/docs/**"
+      - "site/**"
 
 jobs:
   build:
@@ -21,6 +21,10 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+        working-directory: site/
+
+      - name: Generate API references
+        run: npm run docs:genapi
         working-directory: site/
 
       - name: Build site
