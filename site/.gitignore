@@ -21,3 +21,6 @@ yarn.lock
 
 # dist directory
 dist/
+
+# generated API reference files
+docs/api/

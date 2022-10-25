@@ -9,6 +9,7 @@
     "./site/docs/hosting/",
     "./site/docs/plugins/",
     "./site/docs/resources/",
-    "./site/docs/zh/"
+    "./site/docs/zh/",
+    "./site/api/"
   ]
 }
