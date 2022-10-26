@@ -126,7 +126,7 @@ For more information about this _secrets_, see <https://fly.io/docs/reference/se
 
 This is the easiest method to go with.
 
-1. Install [flyctl](https://fly.io/docs/hands-on/install-flyctl), and [login](https://fly.io/docs/hands-on/sign-in/).
+1. Install [flyctl](https://fly.io/docs/hands-on/install-flyctl) and [sign in](https://fly.io/docs/hands-on/sign-in/).
 2. Run `flyctl launch` to generate a `Dockerfile` and `fly.toml` file for deployment.
    But **DO NOT** deploy.
 
