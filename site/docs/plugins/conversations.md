@@ -438,15 +438,15 @@ bot.use(conversations());
 
 // Always exit any conversation upon /cancel
 bot.command("cancel", async (ctx) => {
-  await ctx.reply("Leaving.");
   await ctx.conversation.exit();
+  await ctx.reply("Leaving.");
 });
 
 // Always exit the `movie` conversation 
 // when the inline keyboard's `cancel` button is pressed.
 bot.callbackQuery("cancel", async (ctx) => {
-  await ctx.answerCallbackQuery("Left conversation");
   await ctx.conversation.exit("movie");
+  await ctx.answerCallbackQuery("Left conversation");
 });
 
 bot.use(createConversation(movie));
@@ -466,15 +466,15 @@ bot.use(conversations());
 
 // Always exit any conversation upon /cancel
 bot.command("cancel", async (ctx) => {
-  await ctx.reply("Leaving.");
   await ctx.conversation.exit();
+  await ctx.reply("Leaving.");
 });
 
 // Always exit the `movie` conversation 
 // when the inline keyboard's `cancel` button is pressed.
 bot.callbackQuery("cancel", async (ctx) => {
-  await ctx.answerCallbackQuery("Left conversation");
   await ctx.conversation.exit("movie");
+  await ctx.answerCallbackQuery("Left conversation");
 });
 
 bot.use(createConversation(movie));
@@ -776,7 +776,7 @@ class Auth {
   authenticate(ctx: MyContext) {
     const link = getAuthLink(); // get auth link from your system
     await ctx.reply(
-      "Open this link to obtain a token, and sent it back to me: " + link,
+      "Open this link to obtain a token, and send it back to me: " + link,
     );
     ctx = await this.conversation.wait();
     this.token = ctx.message?.text;
@@ -809,7 +809,7 @@ class Auth {
   authenticate(ctx) {
     const link = getAuthLink(); // get auth link from your system
     await ctx.reply(
-      "Open this link to obtain a token, and sent it back to me: " + link,
+      "Open this link to obtain a token, and send it back to me: " + link,
     );
     ctx = await this.#conversation.wait();
     this.token = ctx.message?.text;
