@@ -511,7 +511,6 @@ type MyContext = FlavorX<FlavorY<FlavorZ<Context>>>;
 ```
 
 Aquí, el orden podría importar, ya que `FlavorZ` transforma primero a `Context`, luego a `FlavorY`, y el resultado de esto será transformado de nuevo por `FlavorX`.
-(En la práctica, no hay que preocuparse por esto porque los plugins no suelen chocar entre sí).
 
 Incluso se pueden mezclar additive and transformative flavors:
 
@@ -524,3 +523,6 @@ type MyContext = FlavorX<
   >
 >;
 ```
+
+Asegúrese de seguir este patrón cuando instale varios plugins.
+Hay una serie de errores de tipo que se derivan de la combinación incorrecta de context flavors.
