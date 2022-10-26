@@ -329,7 +329,7 @@ bot.start();
 ## Salir de una conversación
 
 La conversación se ejecutará hasta que su función de construcción de conversación se complete.
-Esto significa que puedes simplemente dejar una conversación usando `return`.
+Esto significa que puedes salir de una conversación simplemente usando `return` o `throw`.
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
@@ -358,13 +358,67 @@ async function hiAndBye(conversation, ctx) {
 
 (Sí, poner un `return` al final de la función es un poco inútil, pero se entiende la idea).
 
-También puedes lanzar un error.
-Esto también saldrá de la conversación.
-Recuerda [instalar un manejador de errores](../guide/errors.md) en tu bot.
+Si se produce un error, también se saldrá de la conversación.
+Sin embargo, el [plugin de sesión](#instalar-y-entrar-en-una-conversacion) sólo persigue los datos si el middleware se ejecuta con éxito.
+Por lo tanto, si lanzas un error dentro de tu conversación y no lo capturas antes de que llegue al plugin de sesión, no se guardará que la conversación fue abandonada.
+Como resultado, el siguiente mensaje causará el mismo error.
 
-Si quieres acabar con la conversación mientras espera la entrada del usuario, también puedes usar `await ctx.conversation.exit()`.
+Puedes mitigar esto instalando un [límite de error](../guide/errors.md#error-boundaries) entre la sesión y la conversación.
+De esta manera, puede evitar que el error se propague por el [árbol de middleware](../advanced/middleware.md) y por lo tanto permitir que el plugin de sesión vuelva a escribir los datos.
+
+> Tenga en cuenta que si está utilizando las sesiones en memoria por defecto, todos los cambios en los datos de la sesión se reflejan inmediatamente, porque no hay un backend de almacenamiento.
+> En ese caso, no es necesario utilizar los límites de error para abandonar una conversación lanzando un error.
+> Así es como los límites de error y las conversaciones podrían usarse juntos.
+
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
+
+```ts
+bot.use(session({
+  storage: freeStorage(bot.token), // ajustar
+  initial: () => ({}),
+}));
+bot.use(conversations());
+async function hiAndBye(conversation: MyConversation, ctx: MyContext) {
+  await ctx.reply("¡Hola! y ¡Adiós!");
+  // Abandona la conversación:
+  throw new Error("¡Atrápame si puedes!");
+}
+bot.errorBoundary(
+  (err) => console.error("¡La conversación arrojó un error!", err),
+  createConversation(greeting),
+);
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+bot.use(session({
+  storage: freeStorage(bot.token), // ajustar
+  initial: () => ({}),
+}));
+bot.use(conversations());
+async function hiAndBye(conversation, ctx) {
+  await ctx.reply("¡Hola! y ¡Adiós!");
+  // Abandona la conversación:
+  throw new Error("¡Atrápame si puedes!");
+}
+bot.errorBoundary(
+  (err) => console.error("¡La conversación arrojó un error!", err),
+  createConversation(greeting),
+);
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+Hagas lo que hagas, debes recordar [instalar un manejador de errores](../guide/errors.md) en tu bot.
+
+Si quieres acabar con la conversación desde tu middleware habitual mientras espera la entrada del usuario, también puedes usar `await ctx.conversation.exit()`.
+Esto simplemente borrará los datos del plugin de conversación de la sesión.
 A menudo es mejor quedarse con el simple retorno de la función, pero hay algunos ejemplos en los que el uso de `await ctx.conversation.exit()` es conveniente.
-Recuerda que debes `esperar` la llamada.
+Recuerda que debes `await` la llamada.
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
