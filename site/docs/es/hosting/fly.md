@@ -1,17 +1,17 @@
 # Hosting: Fly
 
-Halaman ini berisi panduan mengenai cara-cara meng-hosting bot di [Fly](https://fly.io), baik menggunakan Deno maupun Node.js.
+Esta guía te explica las formas de alojar tus bots de grammY en [Fly](https://fly.io), ya sea usando Deno o Node.js.
 
-## Menyiapkan Kode
+## Preparando tu código
 
-Kamu bisa menjalankan bot menggunakan [webhooks ataupun long polling](../guide/deployment-types.md).
+Puedes ejecutar tu bot tanto en [webhooks como en long polling](../guide/deployment-types.md).
 
 ### Webhooks
 
-> Ingat! Jangan panggil `bot.start()` di kode kamu ketika menggunakan webhooks.
+> Recuerda que no debes llamar a `bot.start()` en tu código cuando uses webhooks.
 
-1. Pastikan kamu meng-export object `Bot` di dalam sebuah file agar nantinya bisa di-import ketika ingin menjalankannya.
-2. Buat sebuah file dengan nama `app.ts` atau `app.js`, ataupun nama lainnya sesuai dengan keinginanmu (tetapi kamu harus mengingatnya karena nanti file tersebut akan digunakan sebagai file deploy utama). File tersebut berisikan:
+1. Asegúrate de tener un archivo que exporte tu objeto `Bot`, para poder importarlo después y ejecutarlo.
+2. Crea un archivo llamado `app.ts` o `app.js`, o en realidad cualquier nombre que te guste (pero deberías recordarlo y usarlo como el archivo principal para desplegar), con el siguiente contenido:
 
 <CodeGroup>
 <CodeGroupItem title="Deno" active>
@@ -19,7 +19,7 @@ Kamu bisa menjalankan bot menggunakan [webhooks ataupun long polling](../guide/d
 ```ts{11}
 import { serve } from "https://deno.land/std/http/server.ts";
 import { webhookCallback } from "https://deno.land/x/grammy/mod.ts";
-// Kamu mungkin perlu mengubah ini agar object bot-mu bisa di-import.
+// Podrías modificar esto a la forma correcta de importar tu objeto `Bot`.
 import { bot } from "./bot.ts";
 
 const port = 8000;
@@ -44,7 +44,7 @@ serve(async (req) => {
 ```ts{10}
 import express from "express";
 import { webhookCallback } from "grammy";
-// Kamu mungkin perlu mengubah ini agar object bot-mu bisa di-import.
+// Podrías modificar esto a la forma correcta de importar tu objeto `Bot`.
 import { bot } from "./bot";
 
 const port = 8000;
@@ -60,26 +60,25 @@ app.listen(port, () => console.log(`listening on port ${port}`));
 </CodeGroupItem>
 </CodeGroup>
 
-Kami menganjurkan kamu untuk menaruh handler di direktori rahasia alih-alih menempatkanya di root (`/`).
-Di contoh kali ini, kita menggunakan token bot (`/<token bot>`) sebagai direktori rahasianya (perhatikan baris kode yang disorot).
+Le aconsejamos que tenga su manejador en alguna ruta secreta en lugar de la raíz (`/`).
+Como se muestra en la línea resaltada arriba, estamos usando el token del bot (`/<bot token>`) como ruta secreta.
 
 ### Long Polling
 
-Buat sebuah file dengan nama `app.ts` atau `app.js`, ataupun nama lainnya sesuai dengan keinginanmu (tetapi kamu harus mengingatnya karena nanti file tersebut akan digunakan sebagai file deploy utama).
-File tersebut berisikan:
+Crea un archivo llamado `app.ts` o `app.js`, o en realidad cualquier nombre que te guste (pero deberías recordar y usar este como el archivo principal para desplegar), con el siguiente contenido:
 
 <CodeGroup>
 <CodeGroupItem title="Deno" active>
 
-```ts
+```ts{4}
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
-// Di sini, kita mengambil token bot dari variable "BOT_TOKEN".
-const bot = new Bot(Deno.env.get("BOT_TOKEN"));
+// Aquí, tomamos el token del bot de la variable de entorno "BOT_TOKEN".
+const bot = new Bot(Deno.env.get("BOT_TOKEN") ?? ""); 
 
 bot.command(
   "start",
-  (ctx) => ctx.reply("Aku berjalan di Fly menggunakan long polling!"),
+  (ctx) => ctx.reply("I'm running on Fly using long polling!"),
 );
 
 Deno.addSignalListener("SIGINT", () => bot.stop());
@@ -91,15 +90,15 @@ bot.start();
 </CodeGroupItem>
 <CodeGroupItem title="Node.js">
 
-```ts
+```ts{4}
 import { Bot } from "grammy";
 
-// Di sini, kita mengambil token bot dari variable "BOT_TOKEN".
-const bot = new Bot(process.env.BOT_TOKEN);
+// Aquí, tomamos el token del bot de la variable de entorno "BOT_TOKEN".
+const bot = new Bot(process.env.BOT_TOKEN ?? "");
 
 bot.command(
   "start",
-  (ctx) => ctx.reply("Aku berjalan di Fly menggunakan long polling!"),
+  (ctx) => ctx.reply("I'm running on Fly using long polling!"),
 );
 
 process.once("SIGINT", () => bot.stop());
@@ -111,25 +110,25 @@ bot.start();
 </CodeGroupItem>
 </CodeGroup>
 
-Perhatikan baris kode yang disorot di atas, kita telah mengambil informasi sensitif (token bot kamu) dari environment variables.
-Kamu bisa menyimpan informasi tersebut dengan menjalankan perintah berikut:
+Como puedes ver en la línea resaltada arriba, tomamos algunos valores sensibles (tu token de bot) de las variables de entorno.
+Fly nos permite almacenar ese secreto ejecutando este comando:
 
 ```sh:no-line-numbers
 flyctl secrets set BOT_TOKEN="AAAA:12345"
 ```
 
-Dengan cara yang sama, kamu bisa menyimpan informasi sensitif lainnya.
-Kunjungi <https://fly.io/docs/reference/secrets/> untuk informasi lebih lanjut mengenai _secrets_ di Fly.
+Puedes especificar otros secretos de la misma manera.
+Para más información sobre estos _secretos_, véase <https://fly.io/docs/reference/secrets/>.
 
-## Men-deploy Bot
+## Despliegue
 
-### Metode 1: Menggunakan `flyctl`
+### Método 1: Con `flyctl`
 
-Metode ini adalah cara yang termudah.
+Este es el método más sencillo.
 
-1. Instal [flyctl](https://fly.io/docs/hands-on/install-flyctl) lalu [login](https://fly.io/docs/hands-on/sign-in/).
-2. Jalankan `flyctl launch` untuk membuat sebuah file `Dockerfile` dan `fly.toml` yang nantinya untuk digunakan saat deployment.
-   Tetapi, **JANGAN** di-deploy terlebih dahulu.
+1. Instalar [flyctl](https://fly.io/docs/hands-on/install-flyctl) e [inicia la sesión](https://fly.io/docs/hands-on/sign-in/).
+2. Ejecuta `flyctl launch` para generar un `Dockerfile` y un archivo `fly.toml` para el despliegue.
+   Pero **NO** despliega.
 
 <CodeGroup>
 <CodeGroupItem title="Deno" Active>
@@ -178,11 +177,11 @@ Your app is ready. Deploy with `flyctl deploy`
 </CodeGroupItem>
 </CodeGroup>
 
-3. **Deno**: Ubah versi Deno dan hapus `CMD` di dalam file `Dockerfile`.
-   Pada contoh di bawah, kami mengubah `DENO_VERSION` menjadi `1.25.2`.
+3. **Deno**: Cambiar la versión de Deno y eliminar `CMD` si existe en el archivo `Dockerfile`.
+   Por ejemplo, en este caso, actualizamos `DENO_VERSION` a `1.25.2`.
 
-   **Node.js**: Untuk mengubah versi Node.js, kamu perlu menambahkan property `node` ke dalam property `engine` yang berada di dalam file `package.json`.
-   Pada contoh di bawah, kami mengubah versi Node.js menjadi `16.14.0`.
+   **Node.js**: Para cambiar la versión de Node.js, necesitas insertar una propiedad `"node"` dentro de una propiedad `"engines"` dentro de `package.json`.
+   Por ejemplo, actualizamos la versión de Node.js a `16.14.0` en el siguiente ejemplo.
 
 <CodeGroup>
 <CodeGroupItem title="Deno" Active>
@@ -213,7 +212,7 @@ WORKDIR /deno-dir
 COPY . .
 
 ENTRYPOINT ["/bin/deno"]
-# CMD is removed
+# CMD es eliminado
 ```
 
 </CodeGroupItem>
@@ -246,10 +245,10 @@ ENTRYPOINT ["/bin/deno"]
 </CodeGroupItem>
 </CodeGroup>
 
-4. Ubah `app` di dalam file `fly.toml`.
-   Path `./app.ts` (atau `./app.js` untuk Node.js) pada contoh di bawah mengacu pada direktori file utamanya.
-   Kamu mungkin perlu mengaturnya agar sesuai dengan direktori proyek kamu.
-   Kalau kamu menggunakan webhooks, pastikan port-nya sama dengan [konfigurasi](#webhooks) yang kamu miliki, dalam hal ini port-nya adalah `8000`.
+4. Edita `app` dentro del archivo `fly.toml`.
+   La ruta `./app.ts` (o `./app.js` para Node.js) en el ejemplo de abajo se refiere al directorio del archivo principal.
+   Puedes modificarlos para que coincidan con el directorio de tu proyecto.
+   Si estás usando webhooks, asegúrate de que el puerto es el mismo que tu [config](#webhooks) (`8000`).
 
 <CodeGroup>
 <CodeGroupItem title="Deno (Webhooks)" Active>
@@ -302,8 +301,8 @@ kill_timeout = 5
 [processes]
   app = "run --allow-net ./app.ts"
 
-# Hapus semua bagian [[services]] 
-# karena kita tidak perlu menyimak HTTP
+# Simply omitting the whole [[services]] section 
+# since we are not listening to HTTP
 ```
 
 </CodeGroupItem>
@@ -318,7 +317,7 @@ kill_timeout = 5
 [processes]
   app = "node ./build/app.js"
 
-# Atur environment NODE_ENV agar tidak muncul peringatan atau warning
+# Adjust the NODE_ENV environment to suppress the warning
 [build.args]
   NODE_ENV = "production"
 
@@ -364,33 +363,32 @@ kill_timeout = 5
 [processes]
   app = "node ./build/app.js"
 
-# Atur environment NODE_ENV agar tidak muncul peringatan atau warning
+# Adjust the NODE_ENV environment to suppress the warning
 [build.args]
   NODE_ENV = "production"
 
 [build]
   builder = "heroku/buildpacks:20"
 
-# Hapus semua bagian [[services]] 
-# karena kita tidak perlu menyimak HTTP
+# Simply omitting the whole [[services]] section 
+# since we are not listening to HTTP
 ```
 
 </CodeGroupItem>
 </CodeGroup>
 
-5. Jalankan `flyctl deploy` untuk men-deploy kode kamu.
+5. Ejecuta `flyctl deploy` para desplegar tu código.
 
-### Metode 2: Dengan GitHub Actions
+### Método 2: Con acciones de GitHub
 
-Kelebihan dari metode ini adalah Fly akan selalu memantau perubahan di repositori tempat kamu menaruh kode bot.
-Ketika terjadi perubahan, kode tersebut akan di-deploy secara otomatis ke versi yang lebih baru.
-Kunjungi <https://fly.io/docs/app-guides/continuous-deployment-with-github-actions> untuk instruksi lebih lanjut.
+La principal ventaja del siguiente método es que Fly vigilará los cambios en tu repositorio que incluye el código de tu bot, y desplegará las nuevas versiones automáticamente.
+Visita <https://fly.io/docs/app-guides/continuous-deployment-with-github-actions> para ver las instrucciones detalladas.
 
-1. Instal [flyctl](https://fly.io/docs/hands-on/install-flyctl) lalu [login](https://fly.io/docs/hands-on/sign-in/).
-2. Dapatkan token API Fly dengan cara menjalankan perintah `flyctl auth token`.
-3. Buat sebuah repositori di GitHub, bisa berupa privat ataupun publik.
-4. Pergi ke Settings, pilih Secrets dan buat sebuah secret bernama `FLY_API_TOKEN` yang berisi nilai atau value token dari langkah ke-2.
-5. Buat `.github/workflows/main.yml`, kemudian isi dengan kode berikut:
+1. Instala [flyctl](https://fly.io/docs/hands-on/install-flyctl) e [inicia la sesión](https://fly.io/docs/hands-on/sign-in/).
+2. Obtén un token de la API de Fly ejecutando `flyctl auth token`.
+3. Crea un repositorio en GitHub, puede ser privado o público.
+4. Ve a Configuración, elige Secretos y crea un secreto llamado `FLY_API_TOKEN` con el valor del token del paso 2.
+5. Crea `.github/workflows/main.yml` con estos contenidos:
 
 ```yml
 name: Fly Deploy
@@ -407,30 +405,30 @@ jobs:
         - run: flyctl deploy --remote-only
 ```
 
-6. Ikuti langkah 2 hingga 4 dari [Metode 1](#metode-1-menggunakan-flyctl) di atas.
-   Jangan lupa untuk melewati langkah terakhir (step 5) karena kita tidak ingin men-deploy kode secara langsung.
-7. Commit perubahan kamu, lalu push ke GitHub.
-8. Di sinilah keajaibannya mulai terjadi---push tadi akan memicu sebuah deploy dan mulai sekarang kapanpun kamu melakukan push, kode tersebut akan secara otomatis di deploy ulang.
+6. Sigue los pasos 2 a 4 del [Método 1](#metodo-1-con-flyctl) anterior.
+   Recuerda saltarte el último paso (paso 5) ya que no vamos a desplegar el código directamente.
+7. Confirma tus cambios y envíalos a GitHub.
+8. A partir de ahora, cada vez que envíes un cambio, la aplicación se desplegará automáticamente.
 
-### Mengatur URL Webhook
+### Configuración de la URL del Webhook
 
-Setelah mendapati bot-mu dapat berjalan, kamu harus melakukan konfigurasi pada pengaturan webhook untuk menggunakan URL bot-mu yang baru.
-Untuk melakukannya, kirim sebuah request ke
+Si estás utilizando webhooks, después de poner en marcha tu aplicación, debes configurar los ajustes de webhook de tu bot para que apunte a tu aplicación.
+Para ello, envía una petición a
 
 ```md:no-line-numbers
 https://api.telegram.org/bot<token>/setWebhook?url=<url>
 ```
 
-Ganti `<token>` dengan token bot-mu, dan `<url>` dengan URL lengkap bot kamu.
+sustituyendo `<token>` por el token de tu bot, y `<url>` por la URL completa de tu app junto con la ruta al manejador del webhook.
 
-### Optimisasi Dockerfile
+### Optimización de Dockerfile
 
-Ketika `Dockerfile` kamu dijalankan, ia akan menyalin semua file ke Docker image.
-Untuk aplikasi Node.js, beberapa direktori seperti `node_modules` akan dibikin ulang sehingga direktori tersebut tidak perlu disalin.
-Untuk melakukannya, buat sebuah file `.dockerignore` lalu tambahkan `node_modules` ke dalamnya.
-Kamu juga bisa menggunakan `.dockerignore` untuk mengecualikan aset-aset proyek dan file lain yang tidak dibutuhkan saat di runtime.
+Cuando nuestro `Dockerfile` se ejecuta, copia todo desde el directorio a la imagen Docker.
+Para las aplicaciones Node.js, algunos directorios como `node_modules` van a ser reconstruidos de todos modos, así que no hay necesidad de copiarlos.
+Crea un archivo `.dockerignore` y añade `node_modules` a él para hacer esto.
+También puedes utilizar el archivo `.dockerignore` para omitir los activos del proyecto que no se utilicen y cualquier otro archivo que no sea necesario en tiempo de ejecución.
 
-## Referensi
+## Reference
 
 - <https://fly.io/docs/languages-and-frameworks/deno/>
 - <https://fly.io/docs/languages-and-frameworks/node/>
