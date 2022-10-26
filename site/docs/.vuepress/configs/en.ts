@@ -323,7 +323,8 @@ export const localeEn: LocaleConfig<DefaultThemeLocaleData> = {
               },
               {
                 text: "Example Updates",
-                link: "https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates",
+                link:
+                  "https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates",
               },
             ],
           },
