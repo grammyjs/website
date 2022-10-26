@@ -509,7 +509,6 @@ type MyContext = FlavorX<FlavorY<FlavorZ<Context>>>;
 ```
 
 在这里，顺序可能很重要，因为 `Context` 先转换为 `FlavorZ`， 然后再转换为 `FlavorY`，最后转换为 `FlavorX`。
-（在实践中，你不需要担心这个顺序，因为插件之间通常不会发生冲突。）
 
 你甚至可以混合添加式和转化式的，以"烹饪"出更佳的上下文。
 
@@ -522,3 +521,6 @@ type MyContext = FlavorX<
   >
 >;
 ```
+
+在安装多个插件时，请确保遵循此模式。
+大部分类型错误都是因为上下文调味剂的不正确组合。
