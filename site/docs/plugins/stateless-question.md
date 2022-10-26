@@ -8,8 +8,8 @@ This plugin wants to solve this problem.
 
 The basic idea is to send your question with a [special text](https://en.wikipedia.org/wiki/Zero-width_non-joiner) at the end.
 This text is invisible to the user but still visible for your bot.
-When the user replies to a message the message is checked.
-If it is containing this special text at the end it is an answer to the question.
+When the user replies to a message, the message is checked.
+If it is containing this special text at the end, then it is an answer to the question.
 This way you can have many strings for the same questions as when having translations.
 You only have to make sure the `uniqueIdentifier` is unique within your bot.
 

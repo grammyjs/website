@@ -16,7 +16,7 @@ En otras palabras, simplemente lo ejecutas en el ordenador de otra persona.
 
 > ¡Por favor, haz clic en el botón de edición en la parte inferior de la página para añadir más proveedores o para editar los existentes!
 
-Tenemos dos tablas de comparación, una para alojamiento [sin servidor](#serverless) y otra para [VPS](#vps).
+Tenemos dos tablas comparativas: una para el alojamiento [serverless](#serverless) y otra para el [VPS](#vps).
 
 ### Serverless
 
@@ -27,7 +27,7 @@ Esto tiene el inconveniente de que tu bot no tiene acceso a un almacenamiento pe
 En su lugar, a menudo tendrá que tener una base de datos por separado y conectarse a ella si necesita almacenar datos de forma permanente.
 Por lo tanto, le recomendamos que utilice un tipo de alojamiento diferente para los bots más complejos, por ejemplo, un [VPS](./vps.md).
 
-Lo principal que hay que saber sobre ellos es que en las infraestructuras sin servidor se requiere el uso de webhooks.
+Lo principal que hay que saber sobre ellos es que en las infraestructuras sin servidor se requiere el uso de [webhooks](../guide/deployment-types.md).
 
 | Nombre                 | Precio mínimo | Precios                           | Límites                                                                                                               | Node.js | Deno                        | Web | Notas                                           |
 | ---------------------- | ------------- | --------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ------- | --------------------------- | --- | ----------------------------------------------- |
@@ -50,7 +50,7 @@ Un servidor virtual privado es una máquina virtual sobre la que usted tiene el 
 Normalmente puede acceder a ella a través de [SSH](https://en.wikipedia.org/wiki/Secure_Shell).
 Puedes instalar cualquier software allí, y eres responsable de las actualizaciones del sistema y demás.
 
-En un VPS, puedes ejecutar bots usando tanto polling como webhooks.
+En un VPS, puedes ejecutar bots usando tanto long polling como webhooks.
 
 Consulta el [tutorial](./vps.md) sobre cómo alojar bots de grammY en un VPS.
 

@@ -72,4 +72,4 @@ autoRetry({
 
 - 名字：`auto-retry`
 - 源码：<https://github.com/grammyjs/auto-retry>
-- 参考：<https://doc.deno.land/https://raw.githubusercontent.com%2Fgrammyjs%2Fauto-retry%2Fmain%2Fsrc%2Findex.ts>
+- 参考：<https://doc.deno.land/https://raw.githubusercontent.com/grammyjs/auto-retry/main/src/index.ts>

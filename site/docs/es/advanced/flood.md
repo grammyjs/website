@@ -29,5 +29,5 @@ En lugar de solucionar el problema a posteriori, es mucho mejor poner en cola to
 
 grammY le proporciona el [plugin throttler](../plugins/transformer-throttler.md) que hace que tu bot respete automáticamente todos los límites de velocidad poniendo en cola las peticiones salientes de tu bot en una cola de mensajes.
 Este plugin es igual de sencillo de configurar, pero hace un trabajo mucho mejor en el control de peticiones.
-No hay realmente ninguna buena razón para usar `auto-retry` sobre el plugin throttler.
+No hay realmente ninguna buena razón para usar [auto-retry](../plugins/auto-retry.md) sobre el [plugin throttler](../plugins/transformer-throttler.md).
 En algunos casos puede tener sentido usar ambos.

@@ -29,5 +29,5 @@ Telegram 对你的 bot 每秒钟能发送多少条信息进行了限制，详见
 
 grammY 给你提供了 [throttler 插件](../plugins/transformer-throttler.md) 让你的 bot 请求自动按照限定的速率去将外部的请求添加到消息队列中。
 这个插件设置很简单但却可以为流量控制做出很好的效果。
-没有更好的理由去使用 `auto-retry` 插件而不去使用 `throttler` 插件。
+没有更好的理由去使用 [auto-retry](../plugins/auto-retry.md) 插件而不去使用 [`throttler` 插件](../plugins/transformer-throttler.md)。
 在某些情况下，同时使用这两个插件可能是有意义的。

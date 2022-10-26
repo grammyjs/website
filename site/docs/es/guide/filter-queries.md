@@ -45,8 +45,8 @@ Aquí hay algunos ejemplos de consultas:
 Filtros simples para actualizaciones, y sub-filtros:
 
 ```ts
-bot.on("mensaje"); // se llama cuando se recibe cualquier mensaje
-bot.on("mensaje:texto"); // sólo mensajes de texto
+bot.on("message"); // se llama cuando se recibe cualquier mensaje
+bot.on("message:text"); // sólo mensajes de texto
 bot.on("message:photo"); // sólo mensajes de foto
 ```
 
@@ -190,7 +190,7 @@ Es técnicamente posible combinar consultas de filtro a fórmulas más complicad
 
 ```ts
 bot
-  // Coincide con todas las publicaciones del canal y los mensajes reenviados ...
+  // Coincide con todas las publicaciones del canal o los mensajes reenviados ...
   .on(["channel_post", ":forward_date"])
   // ... que contengan texto ...
   .on(":text")
@@ -211,7 +211,7 @@ Algunas de ellas son un poco avanzadas, así que no dudes en pasar a la [siguien
 Puedes utilizar la siguiente consulta de filtro para recibir actualizaciones de estado sobre tu bot.
 
 ```ts
-bot.on("mi_miembro_del_chat"); // iniciar, detener, unirse o abandonar
+bot.on("my_chat_member"); // iniciar, detener, unirse o abandonar
 ```
 
 En los chats privados, esto se activa cuando el bot se inicia o se detiene.
@@ -280,7 +280,7 @@ Sigue siendo sencillo realizar este tipo de filtrado:
 bot.on("mensaje").filter(
   async (ctx) => {
     const user = await ctx.getAuthor();
-    return user.status === "creador" | user.status === "administrador";
+    return user.status === "creator" | user.status === "administrator";
   },
   (ctx) => {
     // Maneja los mensajes de los creadores y administradores.

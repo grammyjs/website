@@ -12,6 +12,7 @@
     "grammy_parse_mode",
     "grammy_storages",
     "grammy_conversations",
-    "grammy_autoquote"
+    "grammy_autoquote",
+    "grammy_i18n"
   ]
 }
