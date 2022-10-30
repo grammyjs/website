@@ -1,2 +1,6 @@
 /.idea/
 .DS_Store
+
+#pnpm
+site/pnpm-lock.yaml
+#pnpm end
