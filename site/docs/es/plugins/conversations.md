@@ -900,7 +900,7 @@ bot.on("chat_member")
 Puede ver cuántas conversaciones con qué identificador se están ejecutando.
 
 ```ts
-const stats = ctx.conversation.active;
+const stats = await ctx.conversation.active();
 console.log(stats); // { "enterGroup": 1 }
 ```
 
