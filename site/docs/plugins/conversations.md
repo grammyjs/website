@@ -897,7 +897,7 @@ bot.on("chat_member")
 You can see how many conversations with which identifier are running.
 
 ```ts
-const stats = ctx.conversation.active;
+const stats = await ctx.conversation.active();
 console.log(stats); // { "enterGroup": 1 }
 ```
 
