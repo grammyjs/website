@@ -915,7 +915,7 @@ bot.on("chat_member")
 Kamu bisa melihat jumlah percakapan yang sedang aktif beserta identifier-nya.
 
 ```ts
-const stats = ctx.conversation.active;
+const stats = await ctx.conversation.active();
 console.log(stats); // { "enterGroup": 1 }
 ```
 
