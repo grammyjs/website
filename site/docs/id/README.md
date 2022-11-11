@@ -86,5 +86,5 @@ Berhasil! :tada:
 
 ---
 
-grammY mendukung API Bot Telegram versi 6.2 yang [dirilis](https://core.telegram.org/bots/api#august-12-2022) pada tanggal 12 Agustus 2022.
-(Fitur yang disorot: Emoji Khusus)
+grammY mendukung API Bot Telegram versi 6.3 yang [dirilis](https://core.telegram.org/bots/api#november-5-2022) pada tanggal 5 November 2022.
+(Fitur yang disorot: Topik Forum)
