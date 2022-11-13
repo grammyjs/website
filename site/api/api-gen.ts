@@ -1,4 +1,5 @@
-import { getClassContent } from "./classes.ts";
+// Deps
+import { modules } from "../modules.ts";
 import {
   dirname,
   doc,
@@ -6,31 +7,29 @@ import {
   type DocNodeClass as DClass,
   type DocNodeEnum as DEnum,
   type DocNodeFunction as DFunction,
-  type DocNodeImport as DImport,
   type DocNodeInterface as DInterface,
   type DocNodeModuleDoc as DModuleDoc,
   type DocNodeNamespace as DNamespace,
   type DocNodeTypeAlias as DTypeAlias,
   type DocNodeVariable as DVariable,
   join,
-  resolve,
 } from "./deps.ts";
+// Content templates
+import { getContent as getClassContent } from "./classes.ts";
+import { getContent as getEnumContent } from "./enums.ts";
+import { getContent as getFunctionContent } from "./functions.ts";
+import { getContent as getInterfaceContent } from "./interfaces.ts";
+import { getContent as getModuleContent } from "./modules.ts";
+import { getContent as getNamespaceContent } from "./namespaces.ts";
+import { getContent as getTypeAliasContent } from "./type-aliases.ts";
+import { getContent as getVariableContent } from "./variables.ts";
 
-const config = Deno.args[0];
-if (!config) throw new Error("no config!");
-
-const out = Deno.args[1];
+const out = Deno.args[0];
 if (!out) throw new Error("no out!");
 
-console.log("Loading modules");
-
-const { default: list } = await import(resolve(config), {
-  assert: { type: "json" },
-});
-
-const paths: Array<[string, string]> = Object.entries(list.modules)
-  .filter((mp): mp is [string, string] => typeof mp[1] === "string" && !!mp[1])
-  .map(([id, path]) => [`https://deno.land/x/${id}/mod.ts`, join(out, path)]);
+const paths: Array<[string, string]> = modules.map((
+  { mod, slug, entrypoint },
+) => [`https://deno.land/x/${mod}/${entrypoint ?? "mod.ts"}`, join(out, slug)]);
 
 console.log("Generating docs for", paths.length, "modules");
 
@@ -48,12 +47,22 @@ function createDocsWith<N extends DocNode>(
     const content = transform(n);
     const data = enc.encode(content);
     Deno.mkdirSync(dirname(filename), { recursive: true });
-    Deno.writeFileSync(filename, data);
+    Deno.writeFileSync(filename, data, { append: true });
   };
 }
 
-console.log("Creating files");
+console.log("Purging output folder", out);
+try {
+  Deno.removeSync(out, {
+    recursive: true,
+    // Why is this missing from Deno?
+    /* allowNotExists: true */
+  });
+} catch {
+  // ignore if missing
+}
 
+console.log("Creating files");
 for (const [ref, path] of refs) {
   const modules = ref.filter((n): n is DModuleDoc => n.kind === "moduleDoc");
   const functions = ref.filter((n): n is DFunction => n.kind === "function");
@@ -65,16 +74,16 @@ for (const [ref, path] of refs) {
   );
   const namespaces = ref.filter((n): n is DNamespace => n.kind === "namespace");
   const interfaces = ref.filter((n): n is DInterface => n.kind === "interface");
-  const imports = ref.filter((n): n is DImport => n.kind === "import");
 
-  // modules.forEach(createDocsWith(getModuleContent, path));
-  // functions.forEach(createDocsWith(getFunctionContent, path));
-  // variables.forEach(createDocsWith(getVariableContent, path));
-  // enums.forEach(createDocsWith(getEnumContent, path));
+  modules.forEach(createDocsWith(getModuleContent, path));
+  functions.forEach(createDocsWith(getFunctionContent, path));
+  variables.forEach(createDocsWith(getVariableContent, path));
+  enums.forEach(createDocsWith(getEnumContent, path));
   classes.forEach(createDocsWith(getClassContent, path));
-  // typeAliasess.forEach(createDocsWith(getTypeAliasContent, path));
-  // namespaces.forEach(createDocsWith(getNamespaceContent, path));
-  // interfaces.forEach(createDocsWith(getInterfaceContent, path));
-  // imports.forEach(createDocsWith(getImportContent, path));
+  typeAliasess.forEach(createDocsWith(getTypeAliasContent, path));
+  namespaces.forEach(createDocsWith(getNamespaceContent, path));
+  interfaces.forEach(createDocsWith(getInterfaceContent, path));
   console.log("Wrote", path);
 }
+
+console.log("Done.");

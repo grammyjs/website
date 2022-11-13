@@ -10,6 +10,8 @@
     "./site/docs/plugins/",
     "./site/docs/resources/",
     "./site/docs/zh/",
-    "./site/api/"
+    "./site/api/",
+    // but do include the indexing script
+    "./site/docs/.vuepress/plugins/current-versions/build-index.ts"
   ]
 }

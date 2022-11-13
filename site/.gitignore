@@ -23,4 +23,4 @@ yarn.lock
 dist/
 
 # generated API reference files
-docs/api/
+docs/ref/

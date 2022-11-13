@@ -1,7 +1,7 @@
-import list from "../../../../modules.json" assert { type: "json" };
+import { modules } from "../../../../modules.ts";
 
 const urls = [
-  ...Object.keys(list.modules).map((id) => `https://deno.land/x/${id}`),
+  ...modules.map(({ mod }) => `https://deno.land/x/${mod}`),
   "https://deno.land/std",
 ];
 

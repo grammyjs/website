@@ -14,5 +14,6 @@ export {
   type DocNodeNamespace,
   type DocNodeTypeAlias,
   type DocNodeVariable,
+  type Location,
 } from "https://deno.land/x/deno_doc@0.47.0/lib/types.d.ts";
 export { doc } from "https://deno.land/x/deno_doc@0.47.0/mod.ts";
