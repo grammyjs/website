@@ -1,4 +1,4 @@
-import { type DocNodeVariable } from "./deps.ts";
+import { type DocNodeVariable } from "../deps.ts";
 import { loc } from "./utils.ts";
 
 export function getContent(node: DocNodeVariable) {

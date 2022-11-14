@@ -1,4 +1,4 @@
-import { type DocNodeTypeAlias } from "./deps.ts";
+import { type DocNodeTypeAlias } from "../deps.ts";
 import { loc } from "./utils.ts";
 
 export function getContent(node: DocNodeTypeAlias) {

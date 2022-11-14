@@ -14,15 +14,16 @@ import {
   type DocNodeVariable as DVariable,
   join,
 } from "./deps.ts";
+import { escapeHtmlInMarkdown } from "./escape.ts";
 // Content templates
-import { getContent as getClassContent } from "./classes.ts";
-import { getContent as getEnumContent } from "./enums.ts";
-import { getContent as getFunctionContent } from "./functions.ts";
-import { getContent as getInterfaceContent } from "./interfaces.ts";
-import { getContent as getModuleContent } from "./modules.ts";
-import { getContent as getNamespaceContent } from "./namespaces.ts";
-import { getContent as getTypeAliasContent } from "./type-aliases.ts";
-import { getContent as getVariableContent } from "./variables.ts";
+import { getContent as getClassContent } from "./render/classes.ts";
+import { getContent as getEnumContent } from "./render/enums.ts";
+import { getContent as getFunctionContent } from "./render/functions.ts";
+import { getContent as getInterfaceContent } from "./render/interfaces.ts";
+import { getContent as getModuleContent } from "./render/modules.ts";
+import { getContent as getNamespaceContent } from "./render/namespaces.ts";
+import { getContent as getTypeAliasContent } from "./render/type-aliases.ts";
+import { getContent as getVariableContent } from "./render/variables.ts";
 
 const out = Deno.args[0];
 if (!out) throw new Error("no out!");
@@ -45,7 +46,8 @@ function createDocsWith<N extends DocNode>(
   return (n: N) => {
     const filename = join(path, `${n.name}.md`);
     const content = transform(n);
-    const data = enc.encode(content);
+    const escaped = escapeHtmlInMarkdown(content);
+    const data = enc.encode(escaped);
     Deno.mkdirSync(dirname(filename), { recursive: true });
     Deno.writeFileSync(filename, data, { append: true });
   };

@@ -1,4 +1,4 @@
-import { type DocNodeModuleDoc } from "./deps.ts";
+import { type DocNodeModuleDoc } from "../deps.ts";
 import { loc } from "./utils.ts";
 
 export function getContent(node: DocNodeModuleDoc) {

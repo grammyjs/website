@@ -1,4 +1,4 @@
-import { type DocNodeInterface } from "./deps.ts";
+import { type DocNodeInterface } from "../deps.ts";
 import { loc } from "./utils.ts";
 
 export function getContent(node: DocNodeInterface) {
