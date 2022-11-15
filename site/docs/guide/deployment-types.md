@@ -143,7 +143,7 @@ Under load, you are in complete control of how many messages you can process.
 Places where long polling works well include:
 
 - During development on your local machine.
-- On majority of servers.
+- On the majority of servers.
 - On hosted "backend" instances, i.e. machines that actively run your bot 24/7.
 
 **The main advantage of webhooks over long polling is that they are cheaper.**
