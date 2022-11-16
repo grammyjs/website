@@ -1,6 +1,6 @@
 import * as path from "std/path/mod.ts";
-import { Application } from "oak";
-import { Bot } from "grammy";
+import { Application } from "oak/mod.ts";
+import { Bot } from "grammy/mod.ts";
 import env from "./env.ts";
 import * as db from "./db.ts";
 import { verifyGitHubWebhook } from "./utils.ts";

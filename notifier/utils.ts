@@ -1,5 +1,5 @@
 import { assert } from "std/testing/asserts.ts";
-import { NativeRequest } from "oak";
+import { NativeRequest } from "oak/mod.ts";
 import type { ServerRequest } from "oak/types.d.ts";
 import { verify } from "octokit/web.ts";
 import env from "./env.ts";
