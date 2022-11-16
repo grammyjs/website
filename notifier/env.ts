@@ -1,4 +1,4 @@
-import { cleanEnv, num, str } from "https://deno.land/x/envalid@v0.0.3/mod.ts";
+import { cleanEnv, num, str } from "envalid";
 
 export default cleanEnv(Deno.env.toObject(), {
   BOT_TOKEN: str(),
