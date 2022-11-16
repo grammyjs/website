@@ -19,6 +19,6 @@ jobs:
 
       - uses: denoland/deployctl@v1
         with:
-          project: sour-newt-93
+          project: ${{ secrets.NOTIFIER_PROJECT_NAME }}
           entrypoint: main.ts
           root: notifier
