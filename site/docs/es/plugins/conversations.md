@@ -332,7 +332,7 @@ Ten en cuenta que si utilizas TypeScript y quieres almacenar tus propios datos d
 Digamos que tienes esta interfaz que describe tus datos de sesión personalizados:
 
 ```ts
-interfaz SessionData {
+interface SessionData {
   /** propiedad de sesión personalizada */
   foo: string;
 }
