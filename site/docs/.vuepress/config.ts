@@ -385,6 +385,10 @@ export default defineUserConfig({
                     text: "Virtual Private Server",
                     link: "/hosting/vps.html",
                   },
+                  {
+                    text: "Vercel",
+                    link: "/hosting/vercel.html",
+                  },
                 ],
               },
             ],
