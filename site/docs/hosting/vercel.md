@@ -1,10 +1,10 @@
 # Hosting: Vercel Serverless Functions
 
-This tutorial will guide you how to deploy a Telegram bot to [Vercel](https://vercel.com/) by using [Vercel Serverless Functions](https://vercel.com/docs/concepts/functions/serverless-functions). We also assume that you have a Vercel account already.
+This tutorial will guide you on how to deploy your bot to [Vercel](https://vercel.com/) by using [Vercel Serverless Functions](https://vercel.com/docs/concepts/functions/serverless-functions), assuming that you already have a [Vercel](https://vercel.com) account.
 
 ## Project Structure
 
-The only requisite you need to add to your project in order to use **Vercel Serverless Functions** is to create your bot code within an `api/` folder just like the example of below. You can check [the official Vercel documentation](https://vercel.com/docs/concepts/functions/serverless-functions#deploying-serverless-functions) for more info.
+The only prerequisite to get started with **Vercel Serverless Functions** is to move your code to the `api/` directory as shown below. You can also see [Vercel's documentation](https://vercel.com/docs/concepts/functions/serverless-functions#deploying-serverless-functions) for more on this.
 
 ```asciiart:no-line-numbers
 .
@@ -17,11 +17,11 @@ The only requisite you need to add to your project in order to use **Vercel Serv
 └── tsconfig.json
 ```
 
-If you are using _TypeScript_ you probably want to add `@vercel/node` but it is not mandatory to follow this guide. Anyway, feel free to install it by typing `npm i -D @vercel/node`.
+If you are using TypeScript, you might as well want to install `@vercel/node` as a dev dependency, but it is not mandatory to follow this guide.
 
-## Vercel.json file
+## Configuring Vercel
 
-The next step is to create a `vercel.json` file **at the root** of your project. The content of that file is the following for this example:
+The next step is to create a `vercel.json` file at the top level of your project. For our example structure, its content would look be:
 
 ```json
 {
@@ -34,11 +34,11 @@ The next step is to create a `vercel.json` file **at the root** of your project.
 }
 ```
 
-> The free version of vercel has restrictions on quotas, which we need to enable in the configuration file vercel.json. [grammY examples repo](https://github.com/grammyjs/examples/blob/main/vercel-bot/api/index.ts).
+> Vercel's free subscription has restrictions on quotas, which we need to enable in the configuration file, `vercel.json` ([grammY Examples](https://github.com/grammyjs/examples/blob/main/vercel-bot/api/index.ts)).
 
-If you want more information about the commands that you can add to that file, [check the official documentation](https://vercel.com/docs/project-configuration).
+If you want to learn more about this configuration file, see [its documentation](https://vercel.com/docs/project-configuration).
 
-## Tsconfig.json file
+## Configuring TypeScript
 
 In this case, in `tsconfig.json` we can define our _output directory_, for this case is **build** as well as our root directory is **api**. This is important because we will have to add it in the Vercel deploy options.
 
