@@ -40,12 +40,12 @@ If you want to learn more about this configuration file, see [its documentation]
 
 ## Configuring TypeScript
 
-In this case, in `tsconfig.json` we can define our _output directory_, for this case is **build** as well as our root directory is **api**. This is important because we will have to add it in the Vercel deploy options.
+In our `tsconfig.json` we have to define specify our output directory as `build/`*, and our root directory is `api/`. This is important since we will specify them in Vercel's deploy options.
 
 ```json
 {
   "compilerOptions": {
-    "target": "es2016",
+    "target": "ES2019",
     "module": "commonjs",
     "rootDir": "./api",
     "moduleResolution": "node",
@@ -59,9 +59,9 @@ In this case, in `tsconfig.json` we can define our _output directory_, for this 
 }
 ```
 
-## Our bot.ts or bot.js file
+## The Main File
 
-Regardless if we are using TypeScript or JavaScript, we should have a file through which our bot runs. The only thing we have to add at the end of it is this line:
+Regardless of using TypeScript or JavaScript, we should have a file through which our bot runs that should end like this:
 
 ```ts
 import { Bot, webhookCallback } from "grammy";
