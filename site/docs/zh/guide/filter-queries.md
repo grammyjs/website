@@ -307,7 +307,7 @@ function handler(ctx: Filter<Context, ":text">) {
 bot.on(":text", handler);
 ```
 
-> 查看并阅读更多 [`matchFilter`](https://doc.deno.land/https://deno.land/x/grammy/filter.ts/~/matchFilter)，[`Filter`](https://doc.deno.land/https://deno.land/x/grammy/filter.ts/~/Filter) 和 [`FilterQuery`](https://doc.deno.land/https://deno.land/x/grammy/filter.ts/~/FilterQuery) 的 API 参考。
+> 查看并阅读更多 [`matchFilter`](/ref/core/matchFilter.md)，[`Filter`](/ref/core/Filter.md) 和 [`FilterQuery`](/ref/core/FilterQuery.md) 的 API 参考。
 
 ## 查询语言
 
