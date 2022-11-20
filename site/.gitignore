@@ -24,3 +24,4 @@ dist/
 
 # generated API reference files
 docs/ref/
+!docs/ref/README.md

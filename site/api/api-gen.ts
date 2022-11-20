@@ -15,6 +15,7 @@ import {
   join,
 } from "./deps.ts";
 import { escapeHtmlInMarkdown } from "./escape.ts";
+import { createTableOfContents } from "./render/toc.ts";
 // Content templates
 import { getContent as getClassContent } from "./render/classes.ts";
 import { getContent as getEnumContent } from "./render/enums.ts";
@@ -44,7 +45,7 @@ const refs: Array<[DocNode[], string]> = await Promise.all(
 );
 
 const enc = new TextEncoder();
-function createDocsWith<N extends DocNode>(
+function createDocsWith<N extends { name: string }>(
   transform: (n: N) => string,
   path: string,
 ) {
@@ -90,6 +91,7 @@ for (const [ref, path] of refs) {
   typeAliasess.forEach(createDocsWith(getTypeAliasContent, path));
   namespaces.forEach(createDocsWith(getNamespaceContent, path));
   interfaces.forEach(createDocsWith(getInterfaceContent, path));
+  createDocsWith(createTableOfContents, path)({ name: "README", ref });
   console.log("Wrote", path);
 }
 
