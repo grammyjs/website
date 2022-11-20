@@ -40,7 +40,8 @@ If you want to learn more about this configuration file, see [its documentation]
 
 ## Configuring TypeScript
 
-In our `tsconfig.json` we have to define specify our output directory as `build/`, and our root directory is `api/`. This is important since we will specify them in Vercel's deploy options.
+In our `tsconfig.json` we have to define specify our output directory as `build/`, and our root directory is `api/`.
+This is important since we will specify them in Vercel's deploy options.
 
 ```json
 {
