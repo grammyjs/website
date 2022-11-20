@@ -245,7 +245,7 @@ bot.use(session({ initial: { initialData } })); // 邪恶的
 > 本章节介绍一个大多数人不需要关心的高级特性。
 > 你可能想继续阅读有关 [存储数据](#储存你的数据) 的章节。
 
-你可以通过向 [options](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/SessionOptions#getSessionKey) 传入一个名为 `getSessionKey` 的函数来指定会话使用哪个会话密钥。
+你可以通过向 [options](/ref/core/SessionOptions.md#getSessionKey) 传入一个名为 `getSessionKey` 的函数来指定会话使用哪个会话密钥。
 这样，你可以从根本上改变会话插件的工作方式。
 默认情况下，会话数据存储在每个聊天中。
 使用 `getSessionKey`，你可以按每个用户，或每个用户-聊天组合，或任何你想要的方式存储数据。
@@ -429,7 +429,7 @@ bot.use(session({
 默认情况下，所有数据都会被存储在内存中。
 这意味着，当你的机器人停止时，所有的会话都会丢失。
 
-如果你想配置更多的内存存储选项，你可以使用 grammY 核心包中的 `MemorySessionStorage` 类（[API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/MemorySessionStorage)）。
+如果你想配置更多的内存存储选项，你可以使用 grammY 核心包中的 `MemorySessionStorage` 类（[API Reference](/ref/core/MemorySessionStorage.md)）。
 
 ```ts
 bot.use(session({
@@ -607,7 +607,7 @@ bot.start();
 
 ::: tip 你的存储解决方案还没被支持？没问题！
 创建一个自定义存储适配器非常简单。
-`storage` 选项可以与任何实现了[这个接口](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/StorageAdapter)的对象连接，所以你只需要在几行代码就可以连接到你的存储。
+`storage` 选项可以与任何实现了[这个接口](/ref/core/StorageAdapter.md)的对象连接，所以你只需要在几行代码就可以连接到你的存储。
 
 > 如果你发布了自己的存储适配器，请随时编辑这个页面并且添加链接到这里，以便其他人也可以使用它。
 

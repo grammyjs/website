@@ -19,7 +19,7 @@ Berikut strategi yang sudah terbukti sesuai dalam penyusunan struktur kode.
 1. Kelompokkan hal-hal yang saling berkaitan di dalam file yang sama (atau di direktori yang sama, tergantung dari seberapa besar kode kamu).
 2. Buat sebuah instance bot terpusat yang menggabungkan semua middleware dengan cara memasangnya ke dalam bot.
 3. (Opsional) Filter update secara terpusat terlebih dahulu, lalu sebar update dengan cara yang sesuai.
-   Untuk melakukannya, silahkan cek `bot.route` ([API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer#route)) atau bisa juga menggunakan [plugin router](../plugins/router.md).
+   Untuk melakukannya, silahkan cek `bot.route` ([API Reference](/ref/core/Composer.md#route)) atau bisa juga menggunakan [plugin router](../plugins/router.md).
 
 Contoh siap pakai yang mengimplementasikan strategi-strategi di atas bisa ditemukan di [Repositori Contoh Bot](https://github.com/grammyjs/examples/tree/main/scaling).
 

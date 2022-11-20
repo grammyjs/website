@@ -103,7 +103,7 @@ Selain itu, kamu bisa melakukan `close` untuk memutuskan sambungan dari server T
 
 grammY runner dilengkapi dengan tiga kemungkinan implementasi sink, yaitu berurutan (sama seperti `bot.start()`), perkelompok atau batch (berguna untuk kompatibilitas dengan framework lain), dan bersamaan (yang digunakan oleh `run`).
 Semuanya beroperasi di object `UpdateConsumer` ([Referensi API](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/UpdateConsumer)) yang bisa dibuat dengan mudah dari sebuah bot instance.
-Jika kamu ingin membuatnya, pastikan untuk mempelajari `handleUpdate` di `Bot` instance grammY ([API reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Bot#handleUpdate)).
+Jika kamu ingin membuatnya, pastikan untuk mempelajari `handleUpdate` di `Bot` instance grammY ([API reference](/ref/core/Bot.md#handleUpdate)).
 
 Sink berisi sebuah queue ([referensi API](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/DecayingDeque)) untuk tiap-tiap update yang sedang diproses.
 Update baru yang ditambahkan ke queue akan langsung ditangani oleh update consumer, lalu ia akan mengembalikan sebuah promise yang akan terselesaikan segera setelah kapasitas queque tersedia lagi.

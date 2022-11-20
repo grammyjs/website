@@ -104,7 +104,7 @@ El origen es un iterador asíncrono de lotes de actualización, pero puede estar
 
 grammY runner viene con tres posibles implementaciones de sumideros, uno secuencial (el mismo comportamiento que `bot.start()`), uno por lotes (principalmente útil para la compatibilidad con otros frameworks), y uno totalmente concurrente (utilizado por `run`).
 Todos ellos operan con objetos `UpdateConsumer` ([referencia de la API](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/UpdateConsumer)) que son fáciles de crear a partir de una instancia del bot.
-Si quieres hacer uno tú mismo, asegúrate de revisar `handleUpdate` en la instancia `Bot` de grammY ([referencia API](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Bot#handleUpdate)).
+Si quieres hacer uno tú mismo, asegúrate de revisar `handleUpdate` en la instancia `Bot` de grammY ([referencia API](/ref/core/Bot.md#handleUpdate)).
 
 El sumidero contiene una cola ([referencia de la API](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/DecayingDeque)) de actualizaciones individuales que se están procesando actualmente.
 Añadir nuevas actualizaciones a la cola hará que el consumidor de actualizaciones las maneje inmediatamente, y devolverá una promesa que se resuelve tan pronto como haya capacidad en la cola de nuevo.

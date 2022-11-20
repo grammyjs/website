@@ -36,7 +36,7 @@ Telegram 的后端允许你的 bot [发送文件](./files.md)，最大容量为 
 ## 调用 Bot API
 
 Bot API 的每一个方法在 grammY 中都有对应的方法。
-例如：[Telegram Bot API 参考](https://core.telegram.org/bots/api#sendmessage) 和 [grammY API 参考](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Api#sendMessage) 中的 `sendMessage`。
+例如：[Telegram Bot API 参考](https://core.telegram.org/bots/api#sendmessage) 和 [grammY API 参考](/ref/core/Api.md#sendMessage) 中的 `sendMessage`。
 
 ### 调用方法
 

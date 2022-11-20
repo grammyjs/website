@@ -230,7 +230,7 @@ que se puede utilizar para detectar los cambios de estado de otros miembros del 
 
 ### Combinación de consultas con otros métodos
 
-Puedes combinar consultas de filtro con otros métodos de la clase `Composer` ([Referencia de la API](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer)), como `command` o `filter`.
+Puedes combinar consultas de filtro con otros métodos de la clase `Composer` ([Referencia de la API](/ref/core/Composer.md)), como `command` o `filter`.
 Esto permite crear potentes patrones de manejo de mensajes.
 
 ```ts

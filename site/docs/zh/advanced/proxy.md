@@ -7,7 +7,7 @@ next: ./deployment.md
 
 grammY 可以让你对网络请求如何执行进行配置。
 这包括注入一个自定义的 payload 到每一个请求中，它可以被用于安装一个代理。
-在 [grammY API 参考](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/ApiClientOptions) 中查看 `ApiClientOptions`。
+在 [grammY API 参考](/ref/core/ApiClientOptions.md) 中查看 `ApiClientOptions`。
 
 在 Deno 中，下面是如何使用 `http` 代理的例子：
 

@@ -36,9 +36,9 @@ Esto depende del tipo de despliegue.
 ### Webhooks
 
 1. Asegúrese de no realizar ninguna operación de larga duración en su middleware, como las transferencias de archivos de gran tamaño. [Esto lleva a errores de tiempo de espera](../guide/deployment-types.md#terminar-las-solicitudes-de-webhooks-a-tiempo) para los webhooks, y el procesamiento de actualizaciones duplicadas, ya que Telegram reenviará las actualizaciones no reconocidas. Considere la posibilidad de utilizar un sistema de cola de tareas en su lugar.
-2. Familiarícese con la configuración de `webhookCallback` ([referencia de la API](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/webhookCallback)).
+2. Familiarícese con la configuración de `webhookCallback` ([referencia de la API](/ref/core/webhookCallback.md)).
 3. Si cambiaste la opción `getSessionKey` por la de tu sesión, [usa `sequentialize` con la misma función de resolución de claves de sesión que su middleware de sesión](./scaling.md#la-concurrencia-es-difícil).
-4. Si se ejecuta en una plataforma sin servidor o de autoescalado, [establezca la información del bot](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/BotConfig) para prevenir excesivas llamadas `getMe`.
+4. Si se ejecuta en una plataforma sin servidor o de autoescalado, [establezca la información del bot](/ref/core/BotConfig.md) para prevenir excesivas llamadas `getMe`.
 5. Considere utilizar [webhook replies](../guide/deployment-types.md#webhook-reply).
 
 ## Sesiones
@@ -51,7 +51,7 @@ Esto depende del tipo de despliegue.
 Escribe tests para tu bot. Esto se puede hacer con grammY así
 
 1. Simular las peticiones salientes de la API utilizando [funciones de transformación](./transformers.md).
-2. Define y envía ejemplos de actualización a tu bot via `bot.handleUpdate` ([referencia API](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Bot#handleUpdate)). Considere inspirarse en [estos ejemplos](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates) proporcionados por el equipo de Telegram.
+2. Define y envía ejemplos de actualización a tu bot via `bot.handleUpdate` ([referencia API](/ref/core/Bot.md#handleUpdate)). Considere inspirarse en [estos ejemplos](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates) proporcionados por el equipo de Telegram.
 
 ::: tip Contribuye al framework de testing.
 

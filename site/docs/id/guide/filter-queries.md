@@ -222,7 +222,7 @@ yang digunakan untuk mendeteksi perubahan status member chat lainnya, misalnya k
 
 ### Mengombinasikan Query dengan Method Lain
 
-Kamu bisa mengombinasikan beberapa filter query dengan method-method lain di class `Composer` ([API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer)), misalnya `command` atau `filter`.
+Kamu bisa mengombinasikan beberapa filter query dengan method-method lain di class `Composer` ([API Reference](/ref/core/Composer.md)), misalnya `command` atau `filter`.
 Dengan begitu, kamu bisa membuat pola penanganan pesan menjadi lebih fleksibel.
 
 ```ts

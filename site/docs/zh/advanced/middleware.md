@@ -27,7 +27,7 @@ bot.start();
 
 看起来很像栈对吧，只不过，在背后的实现中，它实际是一棵树。
 
-该功能的核心是构建这棵树的 `Composer` 类 ([参考](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer))。
+该功能的核心是构建这棵树的 `Composer` 类 ([参考](/ref/core/Composer.md))。
 
 首先，每一个 `Bot` 的实例同样也是 `Composer` 的实例。
 它是一个子类，就像是 `class Bot extends Composer`。

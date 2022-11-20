@@ -219,7 +219,7 @@ which can be used to detect status changes of other chat members, such as when p
 
 ### Combining Queries With Other Methods
 
-You can combine filter queries with other methods on the `Composer` class ([API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer)), such as `command` or `filter`.
+You can combine filter queries with other methods on the `Composer` class ([API Reference](/ref/core/Composer.md)), such as `command` or `filter`.
 This allows for powerful message handling patterns.
 
 ```ts

@@ -219,7 +219,7 @@ bot.on("chat_member");
 
 ### 将查询与其他方法相结合
 
-你可以将过滤器查询与 `Composer` 类（[API 参考](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer)）的其他方法相结合，例如 `command` 或 `filter`。
+你可以将过滤器查询与 `Composer` 类（[API 参考](/ref/core/Composer.md)）的其他方法相结合，例如 `command` 或 `filter`。
 这可以让你构建更复杂的消息处理模式。
 
 ```ts

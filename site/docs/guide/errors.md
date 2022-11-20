@@ -67,7 +67,7 @@ grammY does not touch the thrown error in any way, but instead wraps it into an 
 Given that object is named `err`, you can then access the original error via `err.error`.
 You can access the respective context object via `err.ctx`.
 
-Check out the `BotError` class in the [grammY API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/BotError).
+Check out the `BotError` class in the [grammY API Reference](/ref/core/BotError.md).
 
 ## The `GrammyError` Object
 
@@ -77,7 +77,7 @@ Note that also `GrammyError` instances will be wrapped in `BotError` objects if 
 A thrown `GrammyError` indicates that the corresponding API request failed.
 The error provides access to the error code returned by the Telegram backend, as well as the description.
 
-Check out the `GrammyError` class in the [grammY API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/GrammyError).
+Check out the `GrammyError` class in the [grammY API Reference](/ref/core/GrammyError.md).
 
 ## The `HttpError` Object
 
@@ -89,7 +89,7 @@ You will rarely see this kind of error, unless your network infrastructure is un
 
 > Note that if the Bot API server can be contacted, but it returns `ok: false` for a given method call, a [`GrammyError`](./errors.md#the-grammyerror-object) is thrown instead.
 
-Check out the `HttpError` class in the [grammY API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/HttpError).
+Check out the `HttpError` class in the [grammY API Reference](/ref/core/HttpError.md).
 
 ## Error Boundaries
 

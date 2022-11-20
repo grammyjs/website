@@ -43,7 +43,7 @@ La actualización **no** se comprueba para el contenido de una foto, porque el m
 Ahora, ¿cómo funciona esto?
 Averigüémoslo.
 
-Podemos inspeccionar el tipo `Middleware` en la referencia de grammY [aquí](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Middleware):
+Podemos inspeccionar el tipo `Middleware` en la referencia de grammY [aquí](/ref/core/Middleware.md):
 
 ```ts
 // Se han omitido algunos parámetros de tipo por razones de brevedad.
@@ -52,7 +52,7 @@ type Middleware = MiddlewareFn | MiddlewareObj;
 
 ¡Ajá!
 El middleware puede ser una función o un objeto.
-Sólo hemos utilizado funciones (`(ctx) => { ... }`) hasta ahora, así que ignoremos los objetos middleware por ahora, y profundicemos en el tipo `MiddlewareFn` ([reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/MiddlewareFn)):
+Sólo hemos utilizado funciones (`(ctx) => { ... }`) hasta ahora, así que ignoremos los objetos middleware por ahora, y profundicemos en el tipo `MiddlewareFn` ([reference](/ref/core/MiddlewareFn.md)):
 
 ```ts
 // Vuelve a omitir los parámetros del tipo.
@@ -249,7 +249,7 @@ Otra diferencia es que no importa cuántos argumentos tome tu middleware: `() =>
 
 Hay dos tipos de middleware: funciones y objetos.
 Los objetos middleware son simplemente una envoltura para las funciones middleware.
-Se utilizan sobre todo internamente, pero a veces también pueden ayudar a las bibliotecas de terceros, o ser utilizados en casos de uso avanzado, como con [Composer](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer):
+Se utilizan sobre todo internamente, pero a veces también pueden ayudar a las bibliotecas de terceros, o ser utilizados en casos de uso avanzado, como con [Composer](/ref/core/Composer.md):
 
 ```ts
 const bot = new Bot("<token>");

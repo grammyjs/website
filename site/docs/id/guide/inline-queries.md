@@ -18,7 +18,7 @@ Jadi, kamu harus mengaktifkannya secara manual dengan cara menghubungi [@BotFath
 > Semua materi tadi patut dibaca sebelum mengimplementasikan inline query ke bot kamu.
 
 Ketika pengguna memicu inline query, misalnya dengan mengetik "@username\_bot ..." di kolom input pesan, bot kamu akan menerima update tersebut.
-grammY memiliki method khusus untuk menangani inline query, yaitu `bot.inlineQuery()`. Method ini juga didokumentasikan di [referensi API grammY](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer#inlineQuery) bagian class `Composer`.
+grammY memiliki method khusus untuk menangani inline query, yaitu `bot.inlineQuery()`. Method ini juga didokumentasikan di [referensi API grammY](/ref/core/Composer.md#inlineQuery) bagian class `Composer`.
 Method ini juga bisa menyimak inline query spesifik yang sesuai dengan suatu string atau regular expression.
 Jika kamu ingin menangani inline query secara keseluruhan, gunakan `bot.on("inline_query")`.
 

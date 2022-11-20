@@ -119,7 +119,7 @@ await ctx.replyWithPhoto("https://grammy.dev/Y.png");
 ### Mengunggah File-mu Sendiri
 
 grammY memiliki dukungan yang baik terhadap pengunggahan file secara mandiri.
-Kamu bisa melakukannya dengan meng-import dan menggunakan class `InputFile` ([Referensi API grammY](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/InputFile)).
+Kamu bisa melakukannya dengan meng-import dan menggunakan class `InputFile` ([Referensi API grammY](/ref/core/InputFile.md)).
 
 ```ts
 // Kirim sebuah file melalui path lokal

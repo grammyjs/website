@@ -181,7 +181,7 @@ Como siempre, esto es opcional.
 
 ::: tip ⚡ Optimización (opcional)
 Cada vez que tu servidor se inicie, grammY solicitará [información sobre el bot](https://core.telegram.org/bots/api#getme) a Telegram para proporcionarla en el [objeto de contexto](../guide/context.md) bajo `ctx.me`.
-Podemos establecer la [información sobre el bot](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/BotConfig#botInfo) para evitar un exceso de llamadas a `getMe`.
+Podemos establecer la [información sobre el bot](/ref/core/BotConfig.md#botInfo) para evitar un exceso de llamadas a `getMe`.
 
 1. Abre este enlace `https://api.telegram.org/bot<bot_token>/getMe` en tu navegador web favorito. Se recomienda usar [Firefox](https://www.mozilla.org/en-US/firefox/) ya que muestra muy bien el formato `json`.
 2. Cambia nuestro código en la línea 4 de arriba y rellena el valor de acuerdo con los resultados de `getMe`:
