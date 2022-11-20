@@ -104,4 +104,5 @@ Other useful commands are:
 - Info about webhook: `https://api.telegram.org/bot{bot-key}/getWebhookInfo`
 - Delete webhook: `https://api.telegram.org/bot{bot-key}/deleteWebhook`
 
-Congratulations! your bot is ready. Head over to Telegram and try it!
+Congratulations!
+Your bot should now be up and running.
