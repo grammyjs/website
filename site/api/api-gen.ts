@@ -28,9 +28,14 @@ import { getContent as getVariableContent } from "./render/variables.ts";
 const out = Deno.args[0];
 if (!out) throw new Error("no out!");
 
-const paths: Array<[string, string]> = modules.map((
-  { mod, slug, entrypoint },
-) => [`https://deno.land/x/${mod}/${entrypoint ?? "mod.ts"}`, join(out, slug)]);
+const paths: Array<[string, string]> = Deno.args[1]
+  ? [[Deno.args[1], join(out, "mod")]]
+  : modules.map((
+    { mod, slug, entrypoint },
+  ) => [
+    `https://deno.land/x/${mod}/${entrypoint ?? "mod.ts"}`,
+    join(out, slug),
+  ]);
 
 console.log("Generating docs for", paths.length, "modules");
 
