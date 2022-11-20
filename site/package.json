@@ -7,7 +7,7 @@
   "scripts": {
     "prepare": "npm run docs:index-versions",
     "docs:index-versions": "deno run --allow-net docs/.vuepress/plugins/current-versions/build-index.ts > docs/.vuepress/plugins/current-versions/index.json",
-    "docs:genapi": "deno run --allow-net --allow-read --allow-write=docs/ref api/api-gen.ts docs/ref",
+    "docs:genapi": "deno run --allow-net --allow-read --allow-write=docs/ref api/api-gen.ts docs/ref && deno fmt",
     "docs:dev": "vuepress-vite dev docs",
     "docs:build": "npm run docs:vuepress && npm run docs:sitemap",
     "docs:vuepress": "vuepress-vite build docs",
