@@ -17,7 +17,7 @@ Seperti yang kamu lihat, kita perlu sebuah solusi untuk menyelesaikan permasalah
 Masalah ini sangat berbeda dibandingkan dengan menyusun sebuah middleware ataupun mengirim pesan ke Telegram.
 Karena alasan tersebut, package inti grammY tidak dapat menyelesaikannya.
 Sebagai gantinya, kamu bisa menggunakan [grammY runner](https://github.com/grammyjs/runner).
-Ia juga memiliki [Referensi API](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts)-nya sendiri.
+Ia juga memiliki [Referensi API](/ref/runner/)-nya sendiri.
 
 ## Cara Penggunaan
 
@@ -93,8 +93,8 @@ api.telegram.org <—> source <—> runner <—> sink <—> bot
 
 ### Source
 
-grammY runner dilengkapi dengan satu source bawaan yang bisa beroperasi di berbagai `UpdateSupplier` ([API reference](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/UpdateSupplier)). Update supplier semacam itu sangat mudah dibuat dari bot instance.
-Jika kamu ingin membuatnya, pastikan untuk mempelajari `createUpdateFetcher` ([referensi API](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/createUpdateFetcher)).
+grammY runner dilengkapi dengan satu source bawaan yang bisa beroperasi di berbagai `UpdateSupplier` ([API reference](/ref/runner/UpdateSupplier.md)). Update supplier semacam itu sangat mudah dibuat dari bot instance.
+Jika kamu ingin membuatnya, pastikan untuk mempelajari `createUpdateFetcher` ([referensi API](/ref/runner/createUpdateFetcher.md)).
 
 Source adalah sebuah async iterator untuk kumpulan update yang bisa diaktifkan ataupun dinonaktifkan.
 Selain itu, kamu bisa melakukan `close` untuk memutuskan sambungan dari server Telegram.
@@ -102,10 +102,10 @@ Selain itu, kamu bisa melakukan `close` untuk memutuskan sambungan dari server T
 ### Sink
 
 grammY runner dilengkapi dengan tiga kemungkinan implementasi sink, yaitu berurutan (sama seperti `bot.start()`), perkelompok atau batch (berguna untuk kompatibilitas dengan framework lain), dan bersamaan (yang digunakan oleh `run`).
-Semuanya beroperasi di object `UpdateConsumer` ([Referensi API](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/UpdateConsumer)) yang bisa dibuat dengan mudah dari sebuah bot instance.
+Semuanya beroperasi di object `UpdateConsumer` ([Referensi API](/ref/runner/UpdateConsumer.md)) yang bisa dibuat dengan mudah dari sebuah bot instance.
 Jika kamu ingin membuatnya, pastikan untuk mempelajari `handleUpdate` di `Bot` instance grammY ([API reference](/ref/core/Bot.md#handleUpdate)).
 
-Sink berisi sebuah queue ([referensi API](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/DecayingDeque)) untuk tiap-tiap update yang sedang diproses.
+Sink berisi sebuah queue ([referensi API](/ref/runner/DecayingDeque.md)) untuk tiap-tiap update yang sedang diproses.
 Update baru yang ditambahkan ke queue akan langsung ditangani oleh update consumer, lalu ia akan mengembalikan sebuah promise yang akan terselesaikan segera setelah kapasitas queque tersedia lagi.
 Angka integral yang terselesaikan menentukan ruang kosong tersebut.
 Pengaturan batas concurrency untuk grammY runner akan dipatuhi melalui queue instance yang bersangkutan.
@@ -120,9 +120,9 @@ Kalau kamu menggunakan `run(bot)`, maka error handler dari `bot.catch` akan digu
 Runner adalah sebuah loop biasa yang mengambil update dari source lalu menyuplainya ke sink.
 Ketika ruang kosong sink tersedia lagi, runner akan mengambil batch update selanjutnya dari source.
 
-Ketika kamu membuat sebuah runner menggunakan `createRunner` ([referensi API](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/createRunner)), kamu akan memperoleh sebuah handle yang bisa digunakan untuk mengontrol runner tersebut.
+Ketika kamu membuat sebuah runner menggunakan `createRunner` ([referensi API](/ref/runner/createRunner.md)), kamu akan memperoleh sebuah handle yang bisa digunakan untuk mengontrol runner tersebut.
 Misalnya, kamu bisa memulai dan menghentikan runner, atau memperoleh sebuah promise yang akan terselesaikan jika runner dihentikan.
-Selain itu, handle ini juga dikembalikan oleh `run`, lihat [Referensi API](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/RunnerHandle) `RunnerHandle`.
+Selain itu, handle ini juga dikembalikan oleh `run`, lihat [Referensi API](/ref/runner/RunnerHandle.md) `RunnerHandle`.
 
 ## Pemrosesan Secara Berurutan jika Diperlukan
 
@@ -163,4 +163,4 @@ Agar bot menyelesaikan tugasnya dengan benar, kamu [harus memberi sinyal berhent
 
 - Nama: `runner`
 - Sumber: <https://github.com/grammyjs/runner>
-- Referensi: <https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts>
+- Referensi: [runner](/ref/runner/)

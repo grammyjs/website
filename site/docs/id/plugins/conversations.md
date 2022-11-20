@@ -106,7 +106,7 @@ Seperti biasanya, ia dinamai dengan `ctx` dan menggunakan [custom context type](
 Plugin conversations meng-export sebuah [context flavor](../guide/context.md#additive-context-flavor) bernama `ConversationFlavor`.
 
 **Parameter pertama** adalah elemen utama dari plugin ini.
-Ia bisanya dinamakan dengan `conversation` dan memiliki type `Conversation` ([referensi API](https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts/~/Conversation)).
+Ia bisanya dinamakan dengan `conversation` dan memiliki type `Conversation` ([referensi API](/ref/conversations/Conversation.md)).
 Ia berfungsi untuk mengontrol suatu percakapan, seperti menunggu input dari user, dsb.
 Type `Conversation` mengharapkan [custom context type](../guide/context.md#memodifikasi-object-context) kamu sebagai sebuah type parameter, sehingga kamu akan sering menggunakan `Conversation<MyContext>`.
 
@@ -525,7 +525,7 @@ async function waitForText(conversation, ctx) {
 </CodeGroupItem>
 </CodeGroup>
 
-Lihat [referensi API](https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts/~/ConversationHandle#wait) untuk melihat semua method yang serupa dengan `wait`.
+Lihat [referensi API](/ref/conversations/ConversationHandle.md#wait) untuk melihat semua method yang serupa dengan `wait`.
 
 ## Tiga Aturan Utama Conversations
 
@@ -578,7 +578,7 @@ await conversation.sleep(3000); // 3 detik
 conversation.log("Hello, world");
 ```
 
-Perlu diketahui bahwa kamu juga bisa melakukan hal-hal di atas melalui `conversation.external()`, tetapi akan jauh lebih mudah untuk menggunakan convenience functions ([referensi API](https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts/~/ConversationHandle#Methods)).
+Perlu diketahui bahwa kamu juga bisa melakukan hal-hal di atas melalui `conversation.external()`, tetapi akan jauh lebih mudah untuk menggunakan convenience functions ([referensi API](/ref/conversations/ConversationHandle.md#Methods)).
 
 ## Variable, Percabangan, dan Perulangan
 
@@ -818,7 +818,7 @@ async function waitForMe(conversation, ctx) {
 </CodeGroupItem>
 </CodeGroup>
 
-Seperti biasa, lihat [referensi API](https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts/~/ConversationForm) untuk mengetahui method apa saja yang tersedia.
+Seperti biasa, lihat [referensi API](/ref/conversations/ConversationForm.md) untuk mengetahui method apa saja yang tersedia.
 
 ## Percakapan Paralel
 
@@ -1021,4 +1021,4 @@ Lantas, bagaimana cara kamu melakukannya?
 
 - Nama: `conversations`
 - Sumber: <https://github.com/grammyjs/conversations>
-- Referensi: <https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts>
+- Referensi: [conversations](/ref/conversations/)

@@ -102,4 +102,4 @@ bot.start();
 
 - 名字：`parse-mode`
 - 源码：<https://github.com/grammyjs/parse-mode>
-- 参考：<https://doc.deno.land/https://deno.land/x/grammy_parse_mode/mod.ts>
+- 参考：[parse_mode](/ref/parse_mode/)

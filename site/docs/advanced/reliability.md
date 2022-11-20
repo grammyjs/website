@@ -14,7 +14,7 @@ Use a linting rule to make sure you cannot forget this.
 ## Graceful Shutdown
 
 For bots that are using long polling, there is one more thing to consider.
-As you are going to stop your instance during operation at some point again, you should consider catching `SIGTERM` and `SIGINT` events, and call `bot.stop` (built-in long polling) or stop your bot via its [handle](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/RunnerHandle#stop) (grammY runner):
+As you are going to stop your instance during operation at some point again, you should consider catching `SIGTERM` and `SIGINT` events, and call `bot.stop` (built-in long polling) or stop your bot via its [handle](/ref/runner/RunnerHandle.md#stop) (grammY runner):
 
 ### Simple Long Polling
 
@@ -173,8 +173,8 @@ This leads to data loss.
 
 If it is crucial to prevent this, you should use the sources and sinks of the grammY runner package to compose your own update pipeline that passes all updates through a message queue first.
 
-1. You'd basically have to create a [sink](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/UpdateSink) that pushes to the queue, and start one runner that only supplies your message queue.
-2. You'd then have to create a [source](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/UpdateSource) that pulls from the message queue again.
+1. You'd basically have to create a [sink](/ref/runner/UpdateSink.md) that pushes to the queue, and start one runner that only supplies your message queue.
+2. You'd then have to create a [source](/ref/runner/UpdateSource.md) that pulls from the message queue again.
    You will effectively run two different instances of the grammY runner.
 
 This vague draft described above has only been sketched but not implemented, according to our knowledge.

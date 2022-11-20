@@ -108,4 +108,4 @@ bot.start();
 
 - Nombre: `parse-mode`
 - Fuente: <https://github.com/grammyjs/parse-mode>
-- Referencia: <https://doc.deno.land/https://deno.land/x/grammy_parse_mode/mod.ts>
+- Referencia: [parse_mode](/ref/parse_mode/)

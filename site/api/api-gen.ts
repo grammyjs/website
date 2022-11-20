@@ -52,7 +52,8 @@ function createDocsWith<N extends { name: string }>(
   return (n: N) => {
     const filename = join(path, `${n.name}.md`);
     const content = transform(n);
-    const escaped = escapeHtmlInMarkdown(content);
+    const betterLinks = content.replaceAll("https://grammy.dev", "");
+    const escaped = escapeHtmlInMarkdown(betterLinks);
     const data = enc.encode(escaped);
     Deno.mkdirSync(dirname(filename), { recursive: true });
     Deno.writeFileSync(filename, data, { append: true });
@@ -91,7 +92,19 @@ for (const [ref, path] of refs) {
   typeAliasess.forEach(createDocsWith(getTypeAliasContent, path));
   namespaces.forEach(createDocsWith(getNamespaceContent, path));
   interfaces.forEach(createDocsWith(getInterfaceContent, path));
-  createDocsWith(createTableOfContents, path)({ name: "README", ref });
+  createDocsWith(createTableOfContents, path)({
+    name: "README",
+    ref: [
+      ...modules,
+      ...functions,
+      ...variables,
+      ...enums,
+      ...classes,
+      ...typeAliasess,
+      ...namespaces,
+      ...interfaces,
+    ],
+  });
   console.log("Wrote", path);
 }
 

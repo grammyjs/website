@@ -29,7 +29,7 @@ This depends on your deployment type.
 
 1. [Use grammY runner.](../plugins/runner.md)
 2. [Use `sequentialize` with the same session key resolver function as your session middleware.](./scaling.md#concurrency-is-hard)
-3. Go through the configuration options of `run` ([API reference](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/run)) and make sure they fit your needs, or even consider composing your own runner out of [sources](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/UpdateSource) and [sinks](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/UpdateSink).
+3. Go through the configuration options of `run` ([API reference](/ref/runner/run.md)) and make sure they fit your needs, or even consider composing your own runner out of [sources](/ref/runner/UpdateSource.md) and [sinks](/ref/runner/UpdateSink.md).
    The main thing to consider is the maximum load you want to apply to your server, i.e. how many updates may be processed at the same time.
 4. Consider implementing [graceful shutdown](./reliability.md#graceful-shutdown) in order to stop your bot when you want to terminate it (i.e. to switch to a new version).
 

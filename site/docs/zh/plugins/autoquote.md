@@ -143,4 +143,4 @@ bot.start();
 
 - 名字：Autoquote
 - 源码：<https://github.com/roziscoding/grammy-autoquote>
-- API 参考：<https://doc.deno.land/https://deno.land/x/grammy_autoquote/mod.ts>
+- API 参考：[autoquote](/ref/autoquote/)

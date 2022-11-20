@@ -14,7 +14,7 @@ Usa una regla de linting para asegurarte de que no puedes olvidar esto.
 ## Apagado correcto
 
 Para los bots que utilizan long polling, hay una cosa más a considerar.
-Como vas a detener tu instancia durante la operación en algún momento de nuevo, deberías considerar la captura de eventos `SIGTERM` y `SIGINT`, y llamar a `bot.stop` (long polling incorporado) o detener tu bot a través de su [manejador](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/RunnerHandle#stop) (grammY runner):
+Como vas a detener tu instancia durante la operación en algún momento de nuevo, deberías considerar la captura de eventos `SIGTERM` y `SIGINT`, y llamar a `bot.stop` (long polling incorporado) o detener tu bot a través de su [manejador](/ref/runner/RunnerHandle.md#stop) (grammY runner):
 
 ### Simple long polling
 
@@ -174,9 +174,9 @@ Esto lleva a la pérdida de datos.
 
 Si es crucial prevenir esto, deberías usar las fuentes y sumideros del paquete grammY runner para componer tu propio pipeline de actualización que pase todas las actualizaciones a través de una cola de mensajes primero.
 
-1. Básicamente tendrías que crear un [sink](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/UpdateSink) que empuje a la cola, e iniciar un corredor que sólo alimente tu cola de mensajes.
+1. Básicamente tendrías que crear un [sink](/ref/runner/UpdateSink.md) que empuje a la cola, e iniciar un corredor que sólo alimente tu cola de mensajes.
 
-2. A continuación, tendría que crear un [source](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/UpdateSource) que se alimente de la cola de mensajes de nuevo.
+2. A continuación, tendría que crear un [source](/ref/runner/UpdateSource.md) que se alimente de la cola de mensajes de nuevo.
    Efectivamente, ejecutará dos instancias diferentes del corredor grammY.
 
 Este vago borrador descrito arriba sólo ha sido esbozado pero no implementado, según nuestro conocimiento.

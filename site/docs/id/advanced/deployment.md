@@ -29,7 +29,7 @@ Ini tergantung dari jenis deployment kamu.
 
 1. [Gunakan grammY runner](../plugins/runner.md).
 2. [Gunakan `sequentialize` dengan _session key_ dari _resolver function_ yang sama sebagai _session middleware_ kamu](./scaling.md#concurrency-itu-sulit).
-3. Periksa konfigurasi `run` ([Referensi API](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/run)) dan pastikan sesuai dengan kebutuhanmu, atau bahkan pertimbangkan untuk membuat runner-mu sendiri dari [source](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/UpdateSource) dan [sink](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/UpdateSink).
+3. Periksa konfigurasi `run` ([Referensi API](/ref/runner/run.md)) dan pastikan sesuai dengan kebutuhanmu, atau bahkan pertimbangkan untuk membuat runner-mu sendiri dari [source](/ref/runner/UpdateSource.md) dan [sink](/ref/runner/UpdateSink.md).
    Hal utama yang perlu dipertimbangkan adalah beban maksimum yang ingin diterapkan ke servermu, misal: berapa banyak update yang dapat diproses secara bersamaan.
 4. Implementasikan [graceful shutdown](./reliability.md#graceful-shutdown) ketika hendak menghentikan bot (misalnya untuk beralih ke versi baru).
 
