@@ -40,7 +40,7 @@ If you want to learn more about this configuration file, see [its documentation]
 
 ## Configuring TypeScript
 
-In our `tsconfig.json` we have to define specify our output directory as `build/`\*, and our root directory is `api/`. This is important since we will specify them in Vercel's deploy options.
+In our `tsconfig.json` we have to define specify our output directory as `build/`, and our root directory is `api/`. This is important since we will specify them in Vercel's deploy options.
 
 ```json
 {
@@ -64,11 +64,11 @@ In our `tsconfig.json` we have to define specify our output directory as `build/
 Regardless of using TypeScript or JavaScript, we should have a file through which our bot runs that should end like this:
 
 ```ts
-import { Bot, webhookCallback } from 'grammy';
+import { Bot, webhookCallback } from "grammy";
 
 const bot = new Bot(process.env.BOT_TOKEN); // <-- use an environment variable with dotenv dependency
 
-export default webhookCallback(bot, 'http'); // <-- This line will do the trick!
+export default webhookCallback(bot, "http"); // <-- This line will do the trick!
 ```
 
 ## Go to Vercel website
