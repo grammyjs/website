@@ -69,7 +69,7 @@ Regardless of using TypeScript or JavaScript, we should have a file through whic
 ```ts
 import { Bot, webhookCallback } from "grammy";
 
-const bot = new Bot(process.env.BOT_TOKEN); // <-- use an environment variable with dotenv dependency
+const bot = new Bot(process.env.BOT_TOKEN); // <-- insert your bot token from environment variable
 
 export default webhookCallback(bot, "http"); // <-- This line will do the trick!
 ```
