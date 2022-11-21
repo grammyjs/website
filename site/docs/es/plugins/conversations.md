@@ -326,6 +326,39 @@ bot.start();
 </CodeGroupItem>
 </CodeGroup>
 
+### Instalación con datos de sesión personalizados
+
+Ten en cuenta que si utilizas TypeScript y quieres almacenar tus propios datos de sesión además de utilizar conversaciones, tendrás que proporcionar más información de tipo al compilador.
+Digamos que tienes esta interfaz que describe tus datos de sesión personalizados:
+
+```ts
+interface SessionData {
+  /** propiedad de sesión personalizada */
+  foo: string;
+}
+```
+
+Su tipo de contexto personalizado podría entonces tener el siguiente aspecto:
+
+```ts
+type MyContext = Context & SessionFlavor<SessionData> & ConversationFlavor;
+```
+
+Lo más importante es que al instalar el plugin de sesión con un almacenamiento externo, tendrás que proporcionar los datos de sesión explícitamente.
+Todos los adaptadores de almacenamiento te permiten pasar el `SessionData` como un parámetro de tipo.
+Por ejemplo, así es como tendrías que hacerlo con el [`almacenamiento gratuito`](./session.md#almacenamiento-gratuito) que proporciona grammY.
+
+```ts
+// Instalar el plugin de sesión.
+bot.use(session({
+  // Añade los tipos de sesión al adaptador.
+  storage: freeStorage<SessionData>(bot.token),
+  initial: () => ({ foo: "" }),
+}));
+```
+
+Puedes hacer lo mismo para todos los demás adaptadores de almacenamiento, como `new FileAdapter<SessionData>()` y así sucesivamente.
+
 ## Salir de una conversación
 
 La conversación se ejecutará hasta que su función de construcción de conversación se complete.
@@ -379,15 +412,15 @@ bot.use(conversations());
 
 // Salir siempre de cualquier conversación tras /cancelar
 bot.command("cancel", async (ctx) => {
-  await ctx.reply("Saliendo.");
   await ctx.conversation.exit();
+  await ctx.reply("Saliendo.");
 });
 
 // Salir siempre de la conversación de la `movie` 
 // cuando se pulsa el botón de `cancel` del teclado en línea.
 bot.callbackQuery("cancel", async (ctx) => {
-  await ctx.answerCallbackQuery("Dejando la conversación");
   await ctx.conversation.exit("movie");
+  await ctx.answerCallbackQuery("Dejando la conversación");
 });
 
 bot.use(createConversation(movie));
@@ -407,15 +440,15 @@ bot.use(conversations());
 
 // Salir siempre de cualquier conversación tras /cancelar
 bot.command("cancel", async (ctx) => {
-  await ctx.reply("Saliendo.");
   await ctx.conversation.exit();
+  await ctx.reply("Saliendo.");
 });
 
 // Salir siempre de la conversación de la `movie` 
 // cuando se pulsa el botón de `cancel` del teclado en línea.
 bot.callbackQuery("cancel", async (ctx) => {
-  await ctx.answerCallbackQuery("Dejando la conversación");
   await ctx.conversation.exit("movie");
+  await ctx.answerCallbackQuery("Dejando la conversación");
 });
 
 bot.use(createConversation(movie));
@@ -900,7 +933,7 @@ bot.on("chat_member")
 Puede ver cuántas conversaciones con qué identificador se están ejecutando.
 
 ```ts
-const stats = ctx.conversation.active;
+const stats = await ctx.conversation.active();
 console.log(stats); // { "enterGroup": 1 }
 ```
 

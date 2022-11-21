@@ -326,6 +326,39 @@ bot.start();
 </CodeGroupItem>
 </CodeGroup>
 
+### Installation With Custom Session Data
+
+Note that if you use TypeScript and you want to store your own session data as well as use conversations, you will need to provide more type information to the compiler.
+Let's say you have this interface which describes your custom session data:
+
+```ts
+interface SessionData {
+  /** custom session property */
+  foo: string;
+}
+```
+
+Your custom context type might then look like this:
+
+```ts
+type MyContext = Context & SessionFlavor<SessionData> & ConversationFlavor;
+```
+
+Most importantly, when installing the session plugin with an external storage, you will have to provide the session data explicitly.
+All storage adapters allow you to pass the `SessionData` as a type parameter.
+For example, this is how you'd have to do it with the [`freeStorage`](./session.md#free-storage) that grammY provides.
+
+```ts
+// Install the session plugin.
+bot.use(session({
+  // Add session types to adapter.
+  storage: freeStorage<SessionData>(bot.token),
+  initial: () => ({ foo: "" }),
+}));
+```
+
+You can do the same thing for all other storage adapters, such as `new FileAdapter<SessionData>()` and so on.
+
 ## Leaving a Conversation
 
 The conversation will run until your conversation builder function completes.
@@ -379,15 +412,15 @@ bot.use(conversations());
 
 // Always exit any conversation upon /cancel
 bot.command("cancel", async (ctx) => {
-  await ctx.reply("Leaving.");
   await ctx.conversation.exit();
+  await ctx.reply("Leaving.");
 });
 
 // Always exit the `movie` conversation 
 // when the inline keyboard's `cancel` button is pressed.
 bot.callbackQuery("cancel", async (ctx) => {
-  await ctx.answerCallbackQuery("Left conversation");
   await ctx.conversation.exit("movie");
+  await ctx.answerCallbackQuery("Left conversation");
 });
 
 bot.use(createConversation(movie));
@@ -407,15 +440,15 @@ bot.use(conversations());
 
 // Always exit any conversation upon /cancel
 bot.command("cancel", async (ctx) => {
-  await ctx.reply("Leaving.");
   await ctx.conversation.exit();
+  await ctx.reply("Leaving.");
 });
 
 // Always exit the `movie` conversation 
 // when the inline keyboard's `cancel` button is pressed.
 bot.callbackQuery("cancel", async (ctx) => {
-  await ctx.answerCallbackQuery("Left conversation");
   await ctx.conversation.exit("movie");
+  await ctx.answerCallbackQuery("Left conversation");
 });
 
 bot.use(createConversation(movie));
@@ -717,7 +750,7 @@ class Auth {
   authenticate(ctx: MyContext) {
     const link = getAuthLink(); // get auth link from your system
     await ctx.reply(
-      "Open this link to obtain a token, and sent it back to me: " + link,
+      "Open this link to obtain a token, and send it back to me: " + link,
     );
     ctx = await this.conversation.wait();
     this.token = ctx.message?.text;
@@ -750,7 +783,7 @@ class Auth {
   authenticate(ctx) {
     const link = getAuthLink(); // get auth link from your system
     await ctx.reply(
-      "Open this link to obtain a token, and sent it back to me: " + link,
+      "Open this link to obtain a token, and send it back to me: " + link,
     );
     ctx = await this.#conversation.wait();
     this.token = ctx.message?.text;
@@ -897,7 +930,7 @@ bot.on("chat_member")
 You can see how many conversations with which identifier are running.
 
 ```ts
-const stats = ctx.conversation.active;
+const stats = await ctx.conversation.active();
 console.log(stats); // { "enterGroup": 1 }
 ```
 
