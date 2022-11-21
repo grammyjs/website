@@ -64,11 +64,11 @@ In our `tsconfig.json` we have to define specify our output directory as `build/
 Regardless of using TypeScript or JavaScript, we should have a file through which our bot runs that should end like this:
 
 ```ts
-import { Bot, webhookCallback } from 'grammy';
+import { Bot, webhookCallback } from "grammy";
 
-const bot = new Bot(process.env.BOT_TOKEN); // <-- use an environment variable with dotenv dependency
+const bot = new Bot(process.env.BOT_TOKEN); // <-- insert your bot token from environment variable
 
-export default webhookCallback(bot, 'http'); // <-- This line will do the trick!
+export default webhookCallback(bot, "http"); // <-- This line will do the trick!
 ```
 
 ## Go to Vercel website
@@ -78,7 +78,7 @@ Assuming you have a Vercel account and have your GitHub account connected to Ver
 - Output directory: `build`
 - Install command: `npm install`
 
-Don't forget to add **environment variables** such as your **bot token**. Once you have done, deploy it!
+Don't forget to add **environment variables** such as your **bot token** in the environment variables inside Vercel settings. Once you have done, deploy it!
 
 ## Setting up the Telegram webhook
 

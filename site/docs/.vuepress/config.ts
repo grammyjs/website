@@ -382,12 +382,12 @@ export default defineUserConfig({
                     link: "/hosting/gcf.html",
                   },
                   {
-                    text: "Virtual Private Server",
-                    link: "/hosting/vps.html",
-                  },
-                  {
                     text: "Vercel",
                     link: "/hosting/vercel.html",
+                  },
+                  {
+                    text: "Virtual Private Server",
+                    link: "/hosting/vps.html",
                   },
                 ],
               },
