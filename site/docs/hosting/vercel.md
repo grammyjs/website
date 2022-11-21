@@ -23,7 +23,7 @@ If you are using TypeScript, you might as well want to install `@vercel/node` as
 ## Configuring Vercel
 
 The next step is to create a `vercel.json` file at the top level of your project.
-For our example structure, its content would look be:
+For our example structure, its content would be:
 
 ```json
 {
