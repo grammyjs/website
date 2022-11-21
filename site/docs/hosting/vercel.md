@@ -68,11 +68,11 @@ Regardless of using TypeScript or JavaScript, we should have a source file throu
 It should look roughly like this:
 
 ```ts
-import { Bot, webhookCallback } from 'grammy';
+import { Bot, webhookCallback } from "grammy";
 
 const bot = new Bot(process.env.BOT_TOKEN); // <-- insert your bot token from environment variable
 
-export default webhookCallback(bot, 'http'); // <-- This line will do the trick!
+export default webhookCallback(bot, "http"); // <-- This line will do the trick!
 ```
 
 ## Go to Vercel Website
