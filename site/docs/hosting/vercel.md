@@ -108,10 +108,5 @@ If everything was successful, you should now see this in your browser window.
 }
 ```
 
-Other useful commands are:
-
-- Info about webhook: `https://api.telegram.org/bot{BOT_TOKEN}/getWebhookInfo`
-- Delete webhook: `https://api.telegram.org/bot{BOT_TOKEN}/deleteWebhook`
-
 Congratulations!
 Your bot should now be up and running.
