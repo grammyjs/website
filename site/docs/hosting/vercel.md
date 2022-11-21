@@ -36,9 +36,9 @@ For our example structure, its content would be:
 }
 ```
 
-> Vercel's free subscription has restrictions on quotas, which we need to enable in the configuration file, `vercel.json` ([grammY Examples](https://github.com/grammyjs/examples/blob/main/vercel-bot/api/index.ts)).
+> If you want to use Vercel's free subscription, your `memory` and `maxDuration` configurations might look like above to not bypass its limits.
 
-If you want to learn more about this configuration file, see [its documentation](https://vercel.com/docs/project-configuration).
+If you want to learn more about the `vercel.json` configuration file, see [its documentation](https://vercel.com/docs/project-configuration).
 
 ## Configuring TypeScript
 
