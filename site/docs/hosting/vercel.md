@@ -45,7 +45,7 @@ If you want to learn more about this configuration file, see [its documentation]
 In our `tsconfig.json` we have to define specify our output directory as `build/`, and our root directory is `api/`.
 This is important since we will specify them in Vercel's deploy options.
 
-```json
+```json{5,8}
 {
   "compilerOptions": {
     "target": "ES2019",
@@ -88,12 +88,14 @@ Once you have done, deploy it!
 ## Setting up the Telegram Webhook
 
 Your bot is ready.
-The last step is to add the webhook that connects your deployment with Telegram and yout bot token.
+The last step is to add the webhook that connects your deployment with Telegram and your bot token.
 Here is the command you need to run in your browser:
 
-`https://api.telegram.org/bot{bot-key}/setWebhook?url={host-url}`
+```md:no-line-numbers
+https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<HOST_URL>
+```
 
-The _host url_ is a little tricky, because you need to use your **Vercel app domain following with the route to the bot code**, for example `https://appname.vercel.app/api/bot`.
+The `HOST_URL` is a little tricky, because you need to use your **Vercel app domain following with the route to the bot code**, for example `https://appname.vercel.app/api/bot`.
 Where `bot` is your `bot.ts` or `bot.js` file.
 
 If everything is ok you should now see this in your browser window.
