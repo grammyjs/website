@@ -419,7 +419,7 @@ En el código del plugin, simplemente espere `ctx.session` todo el tiempo: si se
 ## Adaptadores de almacenamiento conocidos
 
 Por defecto, las sesiones serán almacenadas [en su memoria](#ram-por-defecto) por el adaptador de almacenamiento incorporado.
-También puedes utilizar las sesiones persistentes que grammY [ofrece gratuitamente](#free-storage), o conectarte a [almacenamientos externos](#soluciones-de-almacenamiento-externo).
+También puedes utilizar las sesiones persistentes que grammY [ofrece gratuitamente](#almacenamiento-gratuito), o conectarte a [almacenamientos externos](#soluciones-de-almacenamiento-externo).
 
 Así es como puedes instalar uno de los adaptadores de almacenamiento desde abajo.
 
@@ -446,7 +446,7 @@ bot.use(session({
 }));
 ```
 
-### Free Storage
+### Almacenamiento gratuito
 
 > El almacenamiento gratuito está pensado para ser utilizado en proyectos de aficionados.
 > Las aplicaciones a escala de producción deberían alojar su propia base de datos.

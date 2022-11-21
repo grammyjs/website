@@ -329,6 +329,39 @@ bot.start();
 </CodeGroupItem>
 </CodeGroup>
 
+### Pemasangan Menggunakan Custom Session Data
+
+Perlu diketahui bahwa jika kamu menggunakan TypeScript dan ingin menyimpan session data sekaligus menggunakan conversation, kamu perlu menyediakan informasi type tambahan ke compiler.
+Misalkan kamu memiliki sebuah interface yang mendeskripsikan session data kamu seperti berikut:
+
+```ts
+interface SessionData {
+  /** custom session property */
+  foo: string;
+}
+```
+
+Maka custom context type kamu akan menjadi seperti ini:
+
+```ts
+type MyContext = Context & SessionFlavor<SessionData> & ConversationFlavor;
+```
+
+Yang perlu diperhatikan adalah kamu perlu menyediakan session data secara eksplisit ketika memasang plugin session dengan penyimpanan eksternal.
+Semua storage adapter menyediakan cara untuk kamu meneruskan `SessionData` tersebut sebagai sebuah type parameter.
+Contohnya, berikut yang harus kamu lakukan ketika menggunakan [`freeStorage`](./session.md#storage-gratis) milik grammY.
+
+```ts
+// Pasang plugin session-nya.
+bot.use(session({
+  // Tambahkan session type ke adapter.
+  storage: freeStorage<SessionData>(bot.token),
+  initial: () => ({ foo: "" }),
+}));
+```
+
+Kamu juga bisa melakukan hal yang sama ke storage adapter lainnya, misal `new FileAdapter<SessionData>()` dan sebagainya.
+
 ## Meninggalkan Sebuah Percakapan
 
 Percakapan akan terus berjalan hingga conversation builder function selesai melakukan tugasnya.
@@ -915,7 +948,7 @@ bot.on("chat_member")
 Kamu bisa melihat jumlah percakapan yang sedang aktif beserta identifier-nya.
 
 ```ts
-const stats = ctx.conversation.active;
+const stats = await ctx.conversation.active();
 console.log(stats); // { "enterGroup": 1 }
 ```
 
