@@ -87,7 +87,8 @@ Once you have done, deploy it!
 
 ## Setting up the Telegram Webhook
 
-Your bot is ready. The last step is to add the webhook that connects your deployment with Telegram and yout bot token.
+Your bot is ready.
+The last step is to add the webhook that connects your deployment with Telegram and yout bot token.
 Here is the command you need to run in your browser:
 
 `https://api.telegram.org/bot{bot-key}/setWebhook?url={host-url}`
