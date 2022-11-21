@@ -10,7 +10,7 @@ on:
       - reopened
 
 jobs:
-  check:
+  check-labels:
     runs-on: ubuntu-latest
 
     steps:
