@@ -18,7 +18,7 @@ You can also see [Vercel's documentation](https://vercel.com/docs/concepts/funct
 └── tsconfig.json
 ```
 
-If you are using TypeScript, you might as well want to install `@vercel/node` as a dev dependency, but it is not mandatory to follow this guide.
+If you are using TypeScript, you might as well want to install `@vercel/node` as a dev dependency, but it is not mandatory for following this guide.
 
 ## Configuring Vercel
 
@@ -70,35 +70,35 @@ It should look roughly like this:
 ```ts
 import { Bot, webhookCallback } from "grammy";
 
-const bot = new Bot(process.env.BOT_TOKEN); // <-- insert your bot token from environment variable
+const bot = new Bot(process.env.BOT_TOKEN);
 
-export default webhookCallback(bot, "http"); // <-- This line will do the trick!
+export default webhookCallback(bot, "http");
 ```
 
-## Go to Vercel Website
+## In Vercel's Dashboard
 
-Assuming you have a Vercel account and have your GitHub account connected to Vercel, add a new project and select your GitHub bot repository.
-In the _Build & Development Settings_:
+Assuming that you already have a Vercel account your GitHub is connected to it, add a new project and select your bot's repository.
+In _Build & Development Settings_:
 
 - Output directory: `build`
 - Install command: `npm install`
 
-Don't forget to add **environment variables** such as your **bot token** in the environment variables inside Vercel settings. Once you have done, deploy it!
+Don't forget to add the secrets such as your bot token as environment variables in the settings.
+Once you have done that, you can deploy it!
 
-## Setting Up the Telegram Webhook
+## Setting the Webhook
 
-Your bot is ready.
-The last step is to add the webhook that connects your deployment with Telegram and your bot token.
-Here is the URL you need to visit using your browser:
+The last step is to connect your Vercel app with Telegram.
+Modify the below URL to your credentials and visit it from your browser:
 
 ```md:no-line-numbers
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<HOST_URL>
 ```
 
 The `HOST_URL` is a little tricky, because you need to use your **Vercel app domain following with the route to the bot code**, for example `https://appname.vercel.app/api/bot`.
-Where `bot` is your `bot.ts` or `bot.js` file.
+Where `bot` is referring to your `bot.ts` or `bot.js` file.
 
-If everything was successful, you should now see this in your browser window.
+You should then see a response like this:
 
 ```json
 {
