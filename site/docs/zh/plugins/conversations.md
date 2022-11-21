@@ -325,6 +325,39 @@ bot.start();
 </CodeGroupItem>
 </CodeGroup>
 
+### 使用自定义会话数据进行安装
+
+请注意，如果你在使用 TypeScript，并且想要使用对话的时候存储自己的会话数据，你需要向编译器提供更多的类型信息。
+假设你有一个描述了你的自定义会话数据的接口：
+
+```ts
+interface SessionData {
+  /** 自定义会话属性 */
+  foo: string;
+}
+```
+
+你的自定义上下文类型会像这样：
+
+```ts
+type MyContext = Context & SessionFlavor<SessionData> & ConversationFlavor;
+```
+
+最重要的是，当你使用外部存储安装会话插件时，你必须明确地提供会话数据。
+所有的存储适配器都允许你把 `SessionData` 作为一个类型参数传入。
+举个例子，你需要按照下面的代码来使用 grammY 提供的 [`freeStorage`](./session.md#免费存储)
+
+```ts
+// 安装会话插件。
+bot.use(session({
+  // 向适配器添加会话类型。
+  storage: freeStorage<SessionData>(bot.token),
+  initial: () => ({ foo: "" }),
+}));
+```
+
+其他存储适配器也是一样的，比如 `new FileAdapter<SessionData>()` 等等。
+
 ## 离开对话
 
 对话将一直运行到你的对话生成器函数完成。

@@ -97,7 +97,7 @@ ______________                                   _____________
 ```
 
 > 请注意，在现实中，没有连接将保持数小时。
-> 长轮询请求的默认超时时间为 30 秒（为了避免一些 [技术问题](https://tools.ietf.org/id/draft-loreto-http-bidirectional-07.html#timeouts)）
+> 长轮询请求的默认超时时间为 30 秒（为了避免一些 [技术问题](https://datatracker.ietf.org/doc/html/draft-loreto-http-bidirectional-07#section-5.5)）
 > 如果在这段时间之后没有返回任何新消息，那么请求将被取消并重新执行ー但总体信息保持不变。
 
 使用长轮询，你不需要污染 Telegram 的服务器，你仍然可以立即得到新的信息！
