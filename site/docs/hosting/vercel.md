@@ -42,7 +42,7 @@ If you want to learn more about this configuration file, see [its documentation]
 
 ## Configuring TypeScript
 
-In our `tsconfig.json` we have to define specify our output directory as `build/`, and our root directory is `api/`.
+In our `tsconfig.json`, we have to specify our output directory as `build/`, and our root directory as `api/`.
 This is important since we will specify them in Vercel's deploy options.
 
 ```json{5,8}
@@ -64,7 +64,8 @@ This is important since we will specify them in Vercel's deploy options.
 
 ## The Main File
 
-Regardless of using TypeScript or JavaScript, we should have a file through which our bot runs that should end like this:
+Regardless of using TypeScript or JavaScript, we should have a source file through which our bot runs.
+It should look roughly like this:
 
 ```ts
 import { Bot, webhookCallback } from "grammy";
@@ -85,11 +86,11 @@ In the _Build & Development Settings_:
 Don't forget to add **environment variables** such as your **bot token**.
 Once you have done, deploy it!
 
-## Setting up the Telegram Webhook
+## Setting Up the Telegram Webhook
 
 Your bot is ready.
 The last step is to add the webhook that connects your deployment with Telegram and your bot token.
-Here is the command you need to run in your browser:
+Here is the URL you need to visit using your browser:
 
 ```md:no-line-numbers
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<HOST_URL>
@@ -98,7 +99,7 @@ https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<HOST_URL>
 The `HOST_URL` is a little tricky, because you need to use your **Vercel app domain following with the route to the bot code**, for example `https://appname.vercel.app/api/bot`.
 Where `bot` is your `bot.ts` or `bot.js` file.
 
-If everything is ok you should now see this in your browser window.
+If everything was successful, you should now see this in your browser window.
 
 ```json
 {
