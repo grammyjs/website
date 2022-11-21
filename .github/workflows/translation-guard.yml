@@ -1,0 +1,18 @@
+name: Translation Guard
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - labeled
+      - unlabeled
+      - reopened
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+        - if: "!contains(github.event.pull_request.labels.*.name, 'ready for translation') && !contains(github.event.pull_request.labels.*.name, 'not translatable')"
+          run: exit 1
