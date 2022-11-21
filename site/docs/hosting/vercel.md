@@ -76,7 +76,8 @@ export default webhookCallback(bot, "http"); // <-- This line will do the trick!
 
 ## Go to Vercel Website
 
-Assuming you have a Vercel account and have your GitHub account connected to Vercel, add a new project and select your GitHub bot repository. In the _Build & Development Settings_:
+Assuming you have a Vercel account and have your GitHub account connected to Vercel, add a new project and select your GitHub bot repository.
+In the _Build & Development Settings_:
 
 - Output directory: `build`
 - Install command: `npm install`
