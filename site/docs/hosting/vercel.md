@@ -4,7 +4,8 @@ This tutorial will guide you on how to deploy your bot to [Vercel](https://verce
 
 ## Project Structure
 
-The only prerequisite to get started with **Vercel Serverless Functions** is to move your code to the `api/` directory as shown below. You can also see [Vercel's documentation](https://vercel.com/docs/concepts/functions/serverless-functions#deploying-serverless-functions) for more on this.
+The only prerequisite to get started with **Vercel Serverless Functions** is to move your code to the `api/` directory as shown below.
+You can also see [Vercel's documentation](https://vercel.com/docs/concepts/functions/serverless-functions#deploying-serverless-functions) for more on this.
 
 ```asciiart:no-line-numbers
 .
@@ -21,7 +22,8 @@ If you are using TypeScript, you might as well want to install `@vercel/node` as
 
 ## Configuring Vercel
 
-The next step is to create a `vercel.json` file at the top level of your project. For our example structure, its content would look be:
+The next step is to create a `vercel.json` file at the top level of your project.
+For our example structure, its content would look be:
 
 ```json
 {
@@ -72,22 +74,25 @@ const bot = new Bot(process.env.BOT_TOKEN); // <-- use an environment variable w
 export default webhookCallback(bot, "http"); // <-- This line will do the trick!
 ```
 
-## Go to Vercel website
+## Go to Vercel Website
 
 Assuming you have a Vercel account and have your GitHub account connected to Vercel, add a new project and select your GitHub bot repository. In the _Build & Development Settings_:
 
 - Output directory: `build`
 - Install command: `npm install`
 
-Don't forget to add **environment variables** such as your **bot token**. Once you have done, deploy it!
+Don't forget to add **environment variables** such as your **bot token**.
+Once you have done, deploy it!
 
-## Setting up the Telegram webhook
+## Setting up the Telegram Webhook
 
-Your bot is ready. The last step is to add the webhook that connects your deployment with Telegram and yout bot token. Here is the command you need to run in your browser:
+Your bot is ready. The last step is to add the webhook that connects your deployment with Telegram and yout bot token.
+Here is the command you need to run in your browser:
 
 `https://api.telegram.org/bot{bot-key}/setWebhook?url={host-url}`
 
-The _host url_ is a little tricky, because you need to use your **Vercel app domain following with the route to the bot code**, for example `https://appname.vercel.app/api/bot`. Where `bot` is your `bot.ts` or `bot.js` file.
+The _host url_ is a little tricky, because you need to use your **Vercel app domain following with the route to the bot code**, for example `https://appname.vercel.app/api/bot`.
+Where `bot` is your `bot.ts` or `bot.js` file.
 
 If everything is ok you should now see this in your browser window.
 
@@ -101,8 +106,8 @@ If everything is ok you should now see this in your browser window.
 
 Other useful commands are:
 
-- Info about webhook: `https://api.telegram.org/bot{bot-key}/getWebhookInfo`
-- Delete webhook: `https://api.telegram.org/bot{bot-key}/deleteWebhook`
+- Info about webhook: `https://api.telegram.org/bot{BOT_TOKEN}/getWebhookInfo`
+- Delete webhook: `https://api.telegram.org/bot{BOT_TOKEN}/deleteWebhook`
 
 Congratulations!
 Your bot should now be up and running.
