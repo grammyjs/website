@@ -77,7 +77,7 @@ export default webhookCallback(bot, "http");
 
 ## In Vercel's Dashboard
 
-Assuming that you already have a Vercel account your GitHub is connected to it, add a new project and select your bot's repository.
+Assuming that you already have a Vercel account your GitHub is connected to, add a new project and select your bot's repository.
 In _Build & Development Settings_:
 
 - Output directory: `build`
