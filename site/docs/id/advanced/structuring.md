@@ -19,7 +19,7 @@ Berikut strategi yang sudah terbukti sesuai dalam penyusunan struktur kode.
 1. Kelompokkan hal-hal yang saling berkaitan di dalam file yang sama (atau di direktori yang sama, tergantung dari seberapa besar kode kamu).
 2. Buat sebuah instance bot terpusat yang menggabungkan semua middleware dengan cara memasangnya ke dalam bot.
 3. (Opsional) Filter update secara terpusat terlebih dahulu, lalu sebar update dengan cara yang sesuai.
-   Untuk melakukannya, silahkan cek `bot.route` ([API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer#route)) atau bisa juga menggunakan [plugin router](../plugins/router.md).
+   Untuk melakukannya, silahkan cek `bot.route` ([API Reference](https://deno.land/x/grammy/mod.ts?s=Composer#method_route_0)) atau bisa juga menggunakan [plugin router](../plugins/router.md).
 
 Contoh siap pakai yang mengimplementasikan strategi-strategi di atas bisa ditemukan di [Repositori Contoh Bot](https://github.com/grammyjs/examples/tree/main/scaling).
 
@@ -62,7 +62,7 @@ bot.use(lists);
 bot.start();
 ```
 
-Cara lainnya, kamu bisa menggunakan [plugin router](../plugins/router.md). Plugin ini juga bisa digunakan untuk menggabungkan modul-modul yang berbeda dengan menentukan middleware mana yang akan digunakan di awal.
+Cara lainnya, kamu bisa menggunakan [plugin router](../plugins/router.md) atau [`bot.route`](https://deno.land/x/grammy/mod.ts?s=Composer#method_route_0) untuk menggabungkan module-module yang berbeda dengan menentukan middleware mana yang akan digunakan di awal.
 
 Yang perlu diingat adalah tidak ada satu cara mutlak untuk mengatur struktur bot kamu, karena masing-masing bot memiliki kasus yang berbeda.
 Seperti biasa, pilih cara yang menurutmu paling sesuai dan cocok untuk bot kamu, karena kamulah sebagai pencipta yang paham mengenai seluk-beluk dari bot kamu. :wink:
