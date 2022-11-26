@@ -1,5 +1,10 @@
 # Translation Guide
 
+- [Introduction](#introduction)
+- [The Translation Workflow](#the-translation-workflow)
+  - [Active Stage](#active-stage)
+  - [Maintenance Stage](#maintenance-stage)
+- [A Notice for Chinese Translators](#a-notice-for-chinese-translators)
 
 ## Introduction
 
