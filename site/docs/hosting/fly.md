@@ -4,7 +4,7 @@ This guide tells you about the ways you can host your grammY bots on [Fly](https
 
 ## Preparing Your Code
 
-You can run your bot either on [webhooks or long polling](../guide/deployment-types.md).
+You can run your bot using both [webhooks or long polling](../guide/deployment-types.md).
 
 ### Webhooks
 
