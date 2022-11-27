@@ -39,10 +39,6 @@ También puedes revisar [esta sección](../guide/filter-queries.md#combinacion-d
 Los enrutadores funcionan bien junto con las [sesiones](./session.md).
 A modo de ejemplo, la combinación de ambos conceptos permite recrear formularios en la interfaz del chat.
 
-> Tenga en cuenta que una solución mucho mejor es utilizar el [plugin de conversaciones](./conversations.md).
-> El resto de esta página está obsoleta desde que se creó ese plugin.
-> Mantendremos esta página como referencia para aquellos que usaban el enrutador para los formularios.
-
 Digamos que quieres construir un bot que le diga a los usuarios cuántos días faltan para su cumpleaños.
 Para calcular el número de días, el bot tiene que saber el mes (por ejemplo, junio) y el día del mes (por ejemplo, el 15) del cumpleaños.
 
