@@ -543,7 +543,7 @@ Beberapa [transformative context flavor](#transformative-context-flavor) juga bi
 type ContextKu = FlavorX<FlavorY<FlavorZ<Context>>>;
 ```
 
-Di sini, urutan context flavor akan berpengaruh. `FlavorZ` mengubah `Context` terlebih dahulu, lalu dilanjutkan oleh `FlavorY`, dan hasilnya akan diubah kembali oleh `FlavorX`. Dalam praktiknya, ini tidak perlu dikhawatirkan karena plugin biasanya tidak saling berbenturan satu sama lain.
+Di sini, urutan context flavor akan berpengaruh. `FlavorZ` mengubah `Context` terlebih dahulu, lalu dilanjutkan oleh `FlavorY`, dan hasilnya akan diubah kembali oleh `FlavorX`.
 
 Bahkan kamu bisa mencampur flavor additive dan flavor transformative sekaligus:
 
@@ -556,3 +556,6 @@ type ContextKu = FlavorX<
   >
 >;
 ```
+
+Pastikan untuk selalu mengikuti pola ini ketika menginstal beberapa plugin.
+Kombinasi context flavor yang salah akan mengakibatkan berbagai macam type error.

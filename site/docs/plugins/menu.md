@@ -360,7 +360,7 @@ They allow you to arbitrarily change the structure of an existing menu instance,
 
 You can let a part of a menu's buttons be generated on the fly (or all of them if you want).
 We call this part of the menu a _dynamic range_.
-In other words, instead of defining the buttons directly on the menu, you can pass a factory function that creates a the buttons when the menu is rendered.
+In other words, instead of defining the buttons directly on the menu, you can pass a factory function that creates the buttons when the menu is rendered.
 The easiest way to create a dynamic range in this function is by using the `MenuRange` class that this plugin provides.
 A `MenuRange` provides you with exactly the same functions as a menu, but it does not have an identifier, and it cannot be registered.
 

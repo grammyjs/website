@@ -326,10 +326,43 @@ bot.start();
 </CodeGroupItem>
 </CodeGroup>
 
+### Installation With Custom Session Data
+
+Note that if you use TypeScript and you want to store your own session data as well as use conversations, you will need to provide more type information to the compiler.
+Let's say you have this interface which describes your custom session data:
+
+```ts
+interface SessionData {
+  /** custom session property */
+  foo: string;
+}
+```
+
+Your custom context type might then look like this:
+
+```ts
+type MyContext = Context & SessionFlavor<SessionData> & ConversationFlavor;
+```
+
+Most importantly, when installing the session plugin with an external storage, you will have to provide the session data explicitly.
+All storage adapters allow you to pass the `SessionData` as a type parameter.
+For example, this is how you'd have to do it with the [`freeStorage`](./session.md#free-storage) that grammY provides.
+
+```ts
+// Install the session plugin.
+bot.use(session({
+  // Add session types to adapter.
+  storage: freeStorage<SessionData>(bot.token),
+  initial: () => ({ foo: "" }),
+}));
+```
+
+You can do the same thing for all other storage adapters, such as `new FileAdapter<SessionData>()` and so on.
+
 ## Leaving a Conversation
 
 The conversation will run until your conversation builder function completes.
-This means that you can simply leave a conversation by using `return`.
+This means that you can simply leave a conversation by using `return` or `throw`.
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
@@ -358,11 +391,70 @@ async function hiAndBye(conversation, ctx) {
 
 (Yes, putting a `return` at the end of the function is a bit pointless, but you get the idea.)
 
-You can also throw an error.
-This will likewise exit the conversation.
-Remember to [install an error handler](../guide/errors.md) on your bot.
+Throwing an error will likewise exit the conversation.
+However, the [session plugin](#installing-and-entering-a-conversation) only persists data if the middleware runs successfully.
+Hence, if you throw an error inside your conversation and do not catch it before it reaches the session plugin, it will not be saved that the conversation was left.
+As a result, the next message will cause the same error.
 
-If you want to hard-kill the conversation while it is waiting for user input, you can also use `await ctx.conversation.exit()`.
+You can mitigate this by installing an [error boundary](../guide/errors.md#error-boundaries) between the session and the conversation.
+That way, you can prevent the error from propagating up the [middleware tree](../advanced/middleware.md) and hence permit the session plugin to write back the data.
+
+> Note that if you are using the default in-memory sessions, all changes to the session data are reflected immediately, because there is no storage backend.
+> In that case, you do not need to use error boundaries to leave a conversation by throwing an error.
+
+This is how error boundaries and conversations could be used together.
+
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
+
+```ts
+bot.use(session({
+  storage: freeStorage(bot.token), // adjust
+  initial: () => ({}),
+}));
+bot.use(conversations());
+
+async function hiAndBye(conversation: MyConversation, ctx: MyContext) {
+  await ctx.reply("Hi! And Bye!");
+  // Leave the conversation:
+  throw new Error("Catch me if you can!");
+}
+
+bot.errorBoundary(
+  (err) => console.error("Conversation threw an error!", err),
+  createConversation(greeting),
+);
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+bot.use(session({
+  storage: freeStorage(bot.token), // adjust
+  initial: () => ({}),
+}));
+bot.use(conversations());
+
+async function hiAndBye(conversation, ctx) {
+  await ctx.reply("Hi! And Bye!");
+  // Leave the conversation:
+  throw new Error("Catch me if you can!");
+}
+
+bot.errorBoundary(
+  (err) => console.error("Conversation threw an error!", err),
+  createConversation(greeting),
+);
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+Whatever you do, you should remember to [install an error handler](../guide/errors.md) on your bot.
+
+If you want to hard-kill the conversation from your regular middleware while it is waiting for user input, you can also use `await ctx.conversation.exit()`.
+This will simply erase the conversation plugin's data from the session.
 It's often better to stick with simply returning from the function, but there are a few examples where using `await ctx.conversation.exit()` is convenient.
 Remember that you must `await` the call.
 
@@ -897,7 +989,7 @@ bot.on("chat_member")
 You can see how many conversations with which identifier are running.
 
 ```ts
-const stats = ctx.conversation.active;
+const stats = await ctx.conversation.active();
 console.log(stats); // { "enterGroup": 1 }
 ```
 
@@ -954,7 +1046,7 @@ If it finds that it left off in the middle of a conversation, it deserializes th
 It then resumes ordinary execution of your function—until the next `wait` call is reached, and the execution must be halted again.
 
 What do we mean by the state of execution?
-In a nutshell, it consists on three things:
+In a nutshell, it consists of three things:
 
 1. Incoming updates
 2. Outgoing API calls

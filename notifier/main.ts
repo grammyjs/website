@@ -1,8 +1,6 @@
-import * as path from "https://deno.land/std@0.140.0/path/mod.ts";
-
-import { Application } from "https://deno.land/x/oak@v10.6.0/mod.ts";
-import { Bot } from "https://deno.land/x/grammy@v1.8.3/mod.ts";
-
+import * as path from "std/path/mod.ts";
+import { Application } from "oak/mod.ts";
+import { Bot } from "grammy/mod.ts";
 import env from "./env.ts";
 import * as db from "./db.ts";
 import { verifyGitHubWebhook } from "./utils.ts";
