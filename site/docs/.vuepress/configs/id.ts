@@ -375,7 +375,7 @@ export const localeId: LocaleConfig<DefaultThemeLocaleData> = {
       },
       {
         text: "Referensi API",
-        link: "https://doc.deno.land/https://deno.land/x/grammy/mod.ts",
+        link: "https://deno.land/x/grammy/mod.ts",
       },
     ],
   },

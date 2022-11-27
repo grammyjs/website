@@ -106,7 +106,7 @@ Como siempre, se llama `ctx` y utiliza tu [tipo de contexto personalizado](../gu
 El plugin de conversaciones exporta un [context flavor](../guide/context.md#additive-context-flavors) llamado `ConversationFlavor`.
 
 **El primer parámetro** es el elemento central de este plugin.
-Se llama comúnmente `conversation`, y tiene el tipo `Conversación` ([referencia de la API](https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts/~/Conversation)).
+Se llama comúnmente `conversation`, y tiene el tipo `Conversación` ([referencia de la API](https://deno.land/x/grammy_conversations/mod.ts?s=Conversation)).
 Puede ser usado como un manejador para controlar la conversación, como esperar la entrada del usuario, y más.
 El tipo `Conversation` espera su [tipo de contexto personalizado](../guide/context.md#customizing-the-context-object) como parámetro de tipo, por lo que a menudo utilizaría `Conversation<MyContext>`.
 
@@ -611,7 +611,7 @@ async function waitForText(conversation, ctx) {
 </CodeGroupItem>
 </CodeGroup>
 
-Consulta la [referencia de la API](https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts/~/ConversationHandle#wait) para ver todos los métodos disponibles que son similares a `wait`.
+Consulta la [referencia de la API](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#method_wait_0) para ver todos los métodos disponibles que son similares a `wait`.
 
 Veamos ahora cómo funcionan realmente las llamadas wait.
 Como se mencionó anteriormente, **no hacen _literalmente_ que tu bot espere**, aunque podemos programar las conversaciones como si ese fuera el caso.
@@ -667,7 +667,7 @@ await conversation.sleep(3000); // 3 segundos
 conversation.log("Hola, mundo");
 ```
 
-Ten en cuenta que puedes hacer todo lo anterior a través de `conversation.external()`, pero esto puede ser tedioso de escribir, así que es más fácil usar las funciones de conveniencia ([referencia de la API](https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts/~/ConversationHandle#Methods)).
+Ten en cuenta que puedes hacer todo lo anterior a través de `conversation.external()`, pero esto puede ser tedioso de escribir, así que es más fácil usar las funciones de conveniencia ([referencia de la API](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#Methods)).
 
 ## Variables, bifurcaciones y bucles
 
@@ -896,7 +896,7 @@ async function waitForMe(conversation, ctx) {
 </CodeGroupItem>
 </CodeGroup>
 
-Como siempre, consulte la [referencia de la API](https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts/~/ConversationForm) para ver qué métodos están disponibles.
+Como siempre, consulte la [referencia de la API](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationForm) para ver qué métodos están disponibles.
 
 ## Conversaciones paralelas
 
@@ -1094,4 +1094,4 @@ Como obviamente no queremos matar el runtime de JS, tenemos que atrapar esto de 
 
 - Name: `conversations`
 - Source: <https://github.com/grammyjs/conversations>
-- Reference: <https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts>
+- Reference: <https://deno.land/x/grammy_conversations/mod.ts>
