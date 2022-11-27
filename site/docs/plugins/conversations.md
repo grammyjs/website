@@ -2,10 +2,6 @@
 
 Create powerful conversational interfaces with ease.
 
-- waitForCommand etc
-- conversation.skip({ drop })
-- plugins with conversation.run
-
 ## Introduction
 
 Most chats consist of more than just one single message. (duh)
@@ -363,8 +359,6 @@ bot.use(session({
 
 You can do the same thing for all other storage adapters, such as `new FileAdapter<SessionData>()` and so on.
 
-> Note that you should use `conversation.session` rather than `ctx.session` from inside conversations (see [below](#rule-iii-use-convenience-functions)).
-
 ## Leaving a Conversation
 
 The conversation will run until your conversation builder function completes.
@@ -668,14 +662,11 @@ Your code doesn't exactly break if you don't use them, but it can be slow or beh
 The end user might not notice a difference, though.
 
 ```ts
-// Access session via conversation, makes sure to save all changes
-const session = conversation.session; // NOT: ctx.session
+// Sleep via conversation, massive performance improvement
+await conversation.sleep(3000); // 3 seconds
 
 // Debug logging via conversation, does not print confusing logs
-conversation.log("Hello, world"); // NOT: console.log()
-
-// Getting current time via conversation, uses the correct time
-const now = conversation.now(); // NOT: Date.now()
+conversation.log("Hello, world");
 ```
 
 Note that you can do all of the above via `conversation.external()`, but this can be tedious to type, so it's just easier to use the convenience functions ([API reference](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#Methods)).
