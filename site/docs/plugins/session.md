@@ -695,13 +695,15 @@ The session plugin is able to enhance any storage adapter by adding more feature
 They can be installed using the `enhanceStorage` function.
 
 ```ts
+// Create a storage adapter.
+const storage = freeStorage(bot.token); // adjust this
+// Enhance the storage adapter.
+const enhanced = enhanceStorage({
+  storage,
+  // more config here
+});
 // Use the enhanced storage adapter.
-bot.use(session({
-  storage: enhanceStorage({
-    storage: freeStorage(bot.token), // adjust this
-    // more config here
-  }),
-}));
+bot.use(session({ storage: enhanced }));
 ```
 
 You can also use both at the same time.

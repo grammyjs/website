@@ -84,5 +84,5 @@ bot.start();
 
 ---
 
-grammY es compatible con la API 6.3 de Telegram Bot que fue [lanzada](https://core.telegram.org/bots/api#november-5-2022) el 5 de Noviembre de 2022.
-(Último punto destacado: Temas en los foros)
+grammY es compatible con la API 6.2 de Telegram Bot que fue [lanzada](https://core.telegram.org/bots/api#august-12-2022) el 12 de Agosto de 2022.
+(Último punto destacado: Emojis personalizados)

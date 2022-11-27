@@ -1,11 +1,5 @@
 # Translation Guide
 
-- [Introduction](#introduction)
-- [The Translation Workflow](#the-translation-workflow)
-  - [Active Stage](#active-stage)
-  - [Maintenance Stage](#maintenance-stage)
-- [A Notice for Chinese Translators](#a-notice-for-chinese-translators)
-
 ## Introduction
 
 It is possible to translate the website to other languages, and anyone is very welcome to do so.
@@ -112,10 +106,3 @@ The change immediately goes live for all languages at the same time.
 Some pull requests do not require a translation.
 They are labeled with “not translatable”.
 You can safely ignore them.
-
-## A Notice for Chinese Translators
-
-If you’re planning to translate to Chinese, you don’t have to start from zero or with no inspiration.
-
-Since we used to have Chinese translations, you can take advantage of the previous translations which can be found in [this commit](https://github.com/grammyjs/website/tree/d4f552c4c1c65a11389ba14e7f096be38a3bc586).
-Note that the previous translations might get even more out-of-date in the future, and for that reason, we advice you to use them with caution.
