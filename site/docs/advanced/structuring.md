@@ -20,7 +20,7 @@ That being said, a straightforward and proven strategy to structure your code is
    Every single one of these parts exposes middleware that will handle the designated messages.
 2. Create a bot instance centrally that merges all middleware by installing it onto the bot.
 3. (Optional.) Pre-filter the updates centrally, and send down updates the right way only.
-   You may also want to check out `bot.route` ([API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer#route)) or alternatively the [router plugin](../plugins/router.md) for that.
+   You may also want to check out `bot.route` ([API Reference](https://deno.land/x/grammy/mod.ts?s=Composer#method_route_0)) or alternatively the [router plugin](../plugins/router.md) for that.
 
 A runnable example that implements the above strategy can be found in the [Example Bot repository](https://github.com/grammyjs/examples/tree/main/scaling).
 
@@ -124,4 +124,4 @@ bot.callbackQuery("query-data", callbackQueryMiddleware);
 </CodeGroupItem>
 </CodeGroup>
 
-Check out the [type aliases API reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts#Type_Aliases) to see an overview over all type aliases that grammY exports.
+Check out the [type aliases API reference](https://deno.land/x/grammy/mod.ts#Type_Aliases) to see an overview over all type aliases that grammY exports.

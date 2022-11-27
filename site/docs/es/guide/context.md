@@ -5,7 +5,7 @@ next: ./api.md
 
 # Context
 
-El objeto `Context` ([Referencia de la API de grammY](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Context)) es una parte importante de grammY.
+El objeto `Context` ([Referencia de la API de grammY](https://deno.land/x/grammy/mod.ts?s=Context)) es una parte importante de grammY.
 
 Siempre que registres un oyente en tu objeto bot, este oyente recibirá un objeto `Context`.
 
@@ -145,7 +145,7 @@ El mismo objeto de opciones se puede pasar a `bot.api.sendMessage` y `ctx.api.se
 Utiliza el autocompletado para ver las opciones disponibles directamente en tu editor de código.
 :::
 
-Naturalmente, todos los demás métodos de `ctx.api` tienen un acceso directo con los valores correctos precompletados, como `ctx.replyWithPhoto` para responder con una foto, o `ctx.exportChatInviteLink` para obtener un enlace de invitación para el chat correspondiente. Si quieres tener una visión general de los accesos directos que existen, el autocompletado es tu amigo, junto con la [Referencia de la API de grammY](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Context).
+Naturalmente, todos los demás métodos de `ctx.api` tienen un acceso directo con los valores correctos precompletados, como `ctx.replyWithPhoto` para responder con una foto, o `ctx.exportChatInviteLink` para obtener un enlace de invitación para el chat correspondiente. Si quieres tener una visión general de los accesos directos que existen, el autocompletado es tu amigo, junto con la [Referencia de la API de grammY](https://deno.land/x/grammy/mod.ts?s=Context).
 
 Ten en cuenta que puede que no quieras reaccionar siempre en el mismo chat.
 En este caso, puedes volver a utilizar los métodos `ctx.api`, y especificar todas las opciones al llamarlos.
@@ -298,7 +298,7 @@ bot.command("start", async (ctx) => {
 </CodeGroupItem>
 </CodeGroup>
 
-Naturalmente, el tipo de contexto personalizado también se puede pasar a otras cosas que manejan middleware, como [compositores](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer).
+Naturalmente, el tipo de contexto personalizado también se puede pasar a otras cosas que manejan middleware, como [compositores](https://deno.land/x/grammy/mod.ts?s=Composer).
 
 ```ts
 const composer = new Composer<MyContext>();
@@ -456,7 +456,7 @@ interface SessionFlavor<S> {
 }
 ```
 
-El tipo `SessionFlavor` ([Referencia API](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/SessionFlavor)) es sencillo: sólo define la propiedad `session`.
+El tipo `SessionFlavor` ([Referencia API](https://deno.land/x/grammy/mod.ts?s=SessionFlavor)) es sencillo: sólo define la propiedad `session`.
 Toma un parámetro de tipo que definirá la estructura real de los datos de la sesión.
 
 ¿Qué utilidad tiene esto?

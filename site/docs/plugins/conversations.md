@@ -2,6 +2,10 @@
 
 Create powerful conversational interfaces with ease.
 
+- waitForCommand etc
+- conversation.skip({ drop })
+- plugins with conversation.run
+
 ## Introduction
 
 Most chats consist of more than just one single message. (duh)
@@ -106,7 +110,7 @@ As always, it is called `ctx` and uses your [custom context type](../guide/conte
 The conversations plugin exports a [context flavor](../guide/context.md#additive-context-flavors) called `ConversationFlavor`.
 
 **The first parameter** is the central element of this plugin.
-It is commonly named `conversation`, and it has the type `Conversation` ([API reference](https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts/~/Conversation)).
+It is commonly named `conversation`, and it has the type `Conversation` ([API reference](https://deno.land/x/grammy_conversations/mod.ts?s=Conversation)).
 It can be used as a handle to control the conversation, such as waiting for user input, and more.
 The type `Conversation` expects your [custom context type](../guide/context.md#customizing-the-context-object) as a type parameter, so you would often use `Conversation<MyContext>`.
 
@@ -358,6 +362,8 @@ bot.use(session({
 ```
 
 You can do the same thing for all other storage adapters, such as `new FileAdapter<SessionData>()` and so on.
+
+> Note that you should use `conversation.session` rather than `ctx.session` from inside conversations (see [below](#rule-iii-use-convenience-functions)).
 
 ## Leaving a Conversation
 
@@ -616,7 +622,7 @@ async function waitForText(conversation, ctx) {
 </CodeGroupItem>
 </CodeGroup>
 
-Check out the [API reference](https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts/~/ConversationHandle#wait) to see all available methods that are similar to `wait`.
+Check out the [API reference](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#method_wait_0) to see all available methods that are similar to `wait`.
 
 ## Three Golden Rules of Conversations
 
@@ -662,14 +668,17 @@ Your code doesn't exactly break if you don't use them, but it can be slow or beh
 The end user might not notice a difference, though.
 
 ```ts
-// Sleep via conversation, massive performance improvement
-await conversation.sleep(3000); // 3 seconds
+// Access session via conversation, makes sure to save all changes
+const session = conversation.session; // NOT: ctx.session
 
 // Debug logging via conversation, does not print confusing logs
-conversation.log("Hello, world");
+conversation.log("Hello, world"); // NOT: console.log()
+
+// Getting current time via conversation, uses the correct time
+const now = conversation.now(); // NOT: Date.now()
 ```
 
-Note that you can do all of the above via `conversation.external()`, but this can be tedious to type, so it's just easier to use the convenience functions ([API reference](https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts/~/ConversationHandle#Methods)).
+Note that you can do all of the above via `conversation.external()`, but this can be tedious to type, so it's just easier to use the convenience functions ([API reference](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#Methods)).
 
 ## Variables, Branching, and Loops
 
@@ -898,7 +907,7 @@ async function waitForMe(conversation, ctx) {
 </CodeGroupItem>
 </CodeGroup>
 
-As always, check out the [API reference](https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts/~/ConversationForm) to see which methods are available.
+As always, check out the [API reference](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationForm) to see which methods are available.
 
 ## Parallel Conversations
 
@@ -1097,4 +1106,4 @@ How would you go about this?
 
 - Name: `conversations`
 - Source: <https://github.com/grammyjs/conversations>
-- Reference: <https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts>
+- Reference: <https://deno.land/x/grammy_conversations/mod.ts>

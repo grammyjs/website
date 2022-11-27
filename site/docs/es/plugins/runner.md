@@ -18,7 +18,7 @@ Como puedes ver, necesitamos una solución que pueda resolver todos los problema
 Este es un problema muy distinto al de componer middleware o enviar mensajes a Telegram.
 En consecuencia, no está resuelto por el paquete central de grammY.
 En su lugar, puedes utilizar [grammY runner](https://github.com/grammyjs/runner).
-También tiene su propia [Referencia API](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts).
+También tiene su propia [Referencia API](https://deno.land/x/grammy_runner/mod.ts).
 
 ## Uso
 
@@ -94,19 +94,19 @@ api.telegram.org <—> source <—> runner <—> sink <—> bot
 
 ### Source
 
-El runner de grammY viene con una fuente por defecto que puede operar con cualquier `UpdateSupplier` ([referencia API](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/UpdateSupplier)).
+El runner de grammY viene con una fuente por defecto que puede operar con cualquier `UpdateSupplier` ([referencia API](https://deno.land/x/grammy_runner/mod.ts?s=UpdateSupplier)).
 Dicho proveedor de actualizaciones es sencillo de crear a partir de una instancia del bot.
-Si quieres crear uno tú mismo, asegúrate de consultar `createUpdateFetcher` ([referencia de la API](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/createUpdateFetcher)).
+Si quieres crear uno tú mismo, asegúrate de consultar `createUpdateFetcher` ([referencia de la API](https://deno.land/x/grammy_runner/mod.ts?s=createUpdateFetcher)).
 
 El origen es un iterador asíncrono de lotes de actualización, pero puede estar activo o inactivo, y puedes `cerrarlo` para desconectarte de los servidores de Telegram.
 
 ### Sink
 
 grammY runner viene con tres posibles implementaciones de sumideros, uno secuencial (el mismo comportamiento que `bot.start()`), uno por lotes (principalmente útil para la compatibilidad con otros frameworks), y uno totalmente concurrente (utilizado por `run`).
-Todos ellos operan con objetos `UpdateConsumer` ([referencia de la API](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/UpdateConsumer)) que son fáciles de crear a partir de una instancia del bot.
-Si quieres hacer uno tú mismo, asegúrate de revisar `handleUpdate` en la instancia `Bot` de grammY ([referencia API](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Bot#handleUpdate)).
+Todos ellos operan con objetos `UpdateConsumer` ([referencia de la API](https://deno.land/x/grammy_runner/mod.ts?s=UpdateConsumer)) que son fáciles de crear a partir de una instancia del bot.
+Si quieres hacer uno tú mismo, asegúrate de revisar `handleUpdate` en la instancia `Bot` de grammY ([referencia API](https://deno.land/x/grammy/mod.ts?s=Bot#method_handleUpdate_0)).
 
-El sumidero contiene una cola ([referencia de la API](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/DecayingDeque)) de actualizaciones individuales que se están procesando actualmente.
+El sumidero contiene una cola ([referencia de la API](https://deno.land/x/grammy_runner/mod.ts?s=DecayingDeque)) de actualizaciones individuales que se están procesando actualmente.
 Añadir nuevas actualizaciones a la cola hará que el consumidor de actualizaciones las maneje inmediatamente, y devolverá una promesa que se resuelve tan pronto como haya capacidad en la cola de nuevo.
 El número integral resuelto determina el espacio libre.
 Por lo tanto, el establecimiento de un límite de concurrencia para el corredor grammY se respeta a través de la instancia de cola subyacente.
@@ -121,10 +121,10 @@ Si utilizas `run(bot)`, se utilizará el gestor de errores de `bot.catch`.
 El runner es un bucle simple que extrae las actualizaciones del source y las suministra al sink.
 Una vez que el sumidero tiene espacio de nuevo, el runner obtendrá el siguiente lote de actualizaciones del source.
 
-Cuando creas un runner con `createRunner` ([referencia de la API](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/createRunner)), obtienes un manejador que puedes usar para controlar el runner.
+Cuando creas un runner con `createRunner` ([referencia de la API](https://deno.land/x/grammy_runner/mod.ts?s=createRunner)), obtienes un manejador que puedes usar para controlar el runner.
 Por ejemplo, te permite iniciarlo y detenerlo, u obtener una promesa que resuelve si el runner se detiene.
 (Este handle también es devuelto por `run`).
-Consulta la [referencia API](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/RunnerHandle) del `RunnerHandle`.
+Consulta la [referencia API](https://deno.land/x/grammy_runner/mod.ts?s=RunnerHandle) del `RunnerHandle`.
 
 ## Procesamiento secuencial cuando sea necesario
 
@@ -166,4 +166,4 @@ Para que el bot complete su trabajo correctamente, debes [indicarle](../advanced
 
 - Nombre: `runner`
 - Fuente: <https://github.com/grammyjs/runner>
-- Referencia: <https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts>
+- Referencia: <https://deno.land/x/grammy_runner/mod.ts>
