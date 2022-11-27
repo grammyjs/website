@@ -40,6 +40,10 @@ Kamu mungkin juga tertarik untuk membaca materi lain mengenai [pengombinasian ha
 Router juga bisa dikombinasikan dengan [session](./session.md).
 Misalnya, kamu dapat membuat kembali form di interface chat dengan mengombinasikan keduanya.
 
+> Catatan: [Plugin conversations](./conversations.md) menyediakan metode yang lebih baik dari plugin ini.
+> Oleh karena itu, isi dari halaman ini sebenarnya sudah tidak berlaku lagi.
+> Namun, kami tetap menyediakan dokumentasi ini sebagai rujukan untuk para pengguna yang masih menggunakan plugin router untuk membuat form.
+
 Anggaplah kamu ingin membuat sebuah bot yang memberitahu user berapa hari yang tersisa menuju ulang tahun mereka.
 Untuk menghitung sisa hari tersebut, bot harus mengetahui tanggal serta bulan ulang tahun mereka.
 
