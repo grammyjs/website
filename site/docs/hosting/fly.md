@@ -247,8 +247,8 @@ ENTRYPOINT ["/bin/deno"]
 
 4. Edit `app` inside the `fly.toml` file.
    The path `./app.ts` (or `./app.js` for Node.js) in the example below refers to the main file directory.
-   You might modify them to match with your project directory.
-   If you are using webhooks, make sure the port is same with your [config](#webhooks) (`8000`).
+   You might modify them to match with your project's directory.
+   If you are using webhooks, make sure the port is same as the one in your [configuration](#webhooks) (`8000`).
 
 <CodeGroup>
 <CodeGroupItem title="Deno (Webhooks)" Active>
@@ -370,8 +370,7 @@ kill_timeout = 5
 [build]
   builder = "heroku/buildpacks:20"
 
-# Simply omitting the whole [[services]] section 
-# since we are not listening to HTTP
+# Simply omitting the whole of the [[services]] section since we are not listening to HTTP.
 ```
 
 </CodeGroupItem>
@@ -382,7 +381,7 @@ kill_timeout = 5
 ### Method 2: With GitHub Actions
 
 The main advantage of following method is that Fly will watch for changes in your repository which includes your bot code, and it will deploy new versions automatically.
-Visit <https://fly.io/docs/app-guides/continuous-deployment-with-github-actions> for the detailed instructions.
+Visit <https://fly.io/docs/app-guides/continuous-deployment-with-github-actions> for more detailed instructions.
 
 1. Install [flyctl](https://fly.io/docs/hands-on/install-flyctl) and [sign in](https://fly.io/docs/hands-on/sign-in/).
 2. Get a Fly API token by running `flyctl auth token`.
@@ -426,7 +425,7 @@ replacing `<token>` with your bot's token, and `<url>` with the full URL of your
 When our `Dockerfile` is run, it copies everything from the directory over to the Docker image.
 For Node.js applications, some directories like `node_modules` are going to be rebuilt anyway so there's no need to copy them.
 Create a `.dockerignore` file and add `node_modules` to it to do this.
-You can also use the `.dockerignore` to skip unused project assets and any other files which aren't needed at runtime.
+You can also use `.dockerignore` to not copy any other files which aren't needed at runtime.
 
 ## Reference
 
