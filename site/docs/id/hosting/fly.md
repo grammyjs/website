@@ -371,8 +371,7 @@ kill_timeout = 5
 [build]
   builder = "heroku/buildpacks:20"
 
-# Hapus semua bagian [[services]] 
-# karena kita tidak perlu menyimak HTTP
+# Hapus semua bagian [[services]] karena kita tidak perlu menyimak HTTP
 ```
 
 </CodeGroupItem>
@@ -384,7 +383,7 @@ kill_timeout = 5
 
 Kelebihan dari metode ini adalah Fly akan selalu memantau perubahan di repositori tempat kamu menaruh kode bot.
 Ketika terjadi perubahan, kode tersebut akan di-deploy secara otomatis ke versi yang lebih baru.
-Kunjungi <https://fly.io/docs/app-guides/continuous-deployment-with-github-actions> untuk instruksi lebih lanjut.
+Untuk instruksi detailnya, silahkan kunjungi <https://fly.io/docs/app-guides/continuous-deployment-with-github-actions>.
 
 1. Instal [flyctl](https://fly.io/docs/hands-on/install-flyctl) lalu [login](https://fly.io/docs/hands-on/sign-in/).
 2. Dapatkan token API Fly dengan cara menjalankan perintah `flyctl auth token`.
@@ -428,7 +427,7 @@ Ganti `<token>` dengan token bot-mu, dan `<url>` dengan URL lengkap bot kamu.
 Ketika `Dockerfile` kamu dijalankan, ia akan menyalin semua file ke Docker image.
 Untuk aplikasi Node.js, beberapa direktori seperti `node_modules` akan dibikin ulang sehingga direktori tersebut tidak perlu disalin.
 Untuk melakukannya, buat sebuah file `.dockerignore` lalu tambahkan `node_modules` ke dalamnya.
-Kamu juga bisa menggunakan `.dockerignore` untuk mengecualikan aset-aset proyek dan file lain yang tidak dibutuhkan saat di runtime.
+Kamu juga bisa menggunakan `.dockerignore` untuk mencegah file-file yang tidak diperlukan ikut tersalin saat di runtime.
 
 ## Referensi
 
