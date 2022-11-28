@@ -1,4 +1,4 @@
-# Sesiones y almacenamiento de datos (incorporado)
+# Sesiones y almacenamiento de datos (incluido)
 
 Aunque siempre puedes escribir tu propio código para conectarte a un almacenamiento de datos de tu elección, grammY soporta un patrón de almacenamiento muy conveniente llamado _sesiones_.
 
@@ -246,7 +246,7 @@ Si no la especifica, la lectura de `ctx.session` arrojará un error para los nue
 > Esta sección describe una característica avanzada de la que la mayoría de la gente no tiene que preocuparse.
 > Es posible que desee continuar con la sección sobre [almacenamiento de sus datos](#almacenamiento-de-sus-datos).
 
-Puedes especificar qué clave de sesión usar pasando una función llamada `getSessionKey` a las [opciones](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/SessionOptions#getSessionKey).
+Puedes especificar qué clave de sesión usar pasando una función llamada `getSessionKey` a las [opciones](https://deno.land/x/grammy/mod.ts?s=SessionOptions#prop_getSessionKey).
 De esta manera, puedes cambiar fundamentalmente el funcionamiento del plugin de sesión.
 Por defecto, los datos se almacenan por chat.
 El uso de `getSessionKey` le permite almacenar los datos por usuario, o por combinación de usuario-chat, o como usted quiera.
@@ -356,7 +356,7 @@ bot.use(session({
 Por defecto, todos los datos se almacenan en la memoria RAM.
 Esto significa que todas las sesiones se pierden tan pronto como tu bot se detenga.
 
-Puedes usar la clase `MemorySessionStorage` ([API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/MemorySessionStorage)) del paquete central de grammY si quieres configurar más cosas sobre el almacenamiento de datos en la RAM.
+Puedes usar la clase `MemorySessionStorage` ([API Reference](https://deno.land/x/grammy/mod.ts?s=MemorySessionStorage)) del paquete central de grammY si quieres configurar más cosas sobre el almacenamiento de datos en la RAM.
 
 ```ts
 bot.use(session({
@@ -534,7 +534,7 @@ Cada uno de ellos requerirá que te registres en un proveedor de alojamiento, o 
 
 ::: tip ¿Su almacenamiento no es compatible? No hay problema.
 Crear un adaptador de almacenamiento personalizado es extremadamente sencillo.
-La opción `storage` funciona con cualquier objeto que se adhiera a [esta interfaz](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/StorageAdapter), por lo que puedes conectarte a tu almacenamiento con sólo unas líneas de código.
+La opción `storage` funciona con cualquier objeto que se adhiera a [esta interfaz](https://deno.land/x/grammy/mod.ts?s=StorageAdapter), por lo que puedes conectarte a tu almacenamiento con sólo unas líneas de código.
 
 > Si has publicado tu propio adaptador de almacenamiento, no dudes en editar esta página y enlazarla aquí, para que otras personas puedan utilizarla.
 

@@ -1,4 +1,4 @@
-# Parse Mode Plugin (`parse-mode`)
+# Parsear (`parse-mode`)
 
 Este plugin proporciona un transformador para establecer el `parse_mode` por defecto, y un middleware para hidratar el `Context` con los métodos variantes familiares de `reply` - es decir, `replyWithHTML`, `replyWithMarkdown`, etc.
 
@@ -108,4 +108,4 @@ bot.start();
 
 - Nombre: `parse-mode`
 - Fuente: <https://github.com/grammyjs/parse-mode>
-- Referencia: <https://doc.deno.land/https://deno.land/x/grammy_parse_mode/mod.ts>
+- Referencia: <https://deno.land/x/grammy_parse_mode/mod.ts>

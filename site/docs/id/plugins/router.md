@@ -1,7 +1,7 @@
 # Router (`router`)
 
-Class `Router` ([Referensi API](https://doc.deno.land/https://deno.land/x/grammy_router/router.ts)) berfungsi untuk mengatur rute suatu object context ke berbagai tempat di kode kamu.
-Plugin ini serupa dengan `bot.route` di `Composer` ([grammY API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer#route)), namun ia jauh lebih canggih.
+Class `Router` ([Referensi API](https://deno.land/x/grammy_router/router.ts)) berfungsi untuk mengatur rute suatu object context ke berbagai tempat di kode kamu.
+Plugin ini serupa dengan `bot.route` di `Composer` ([grammY API Reference](https://deno.land/x/grammy/mod.ts?s=Composer#method_route_0)), namun ia jauh lebih canggih.
 
 ## Contoh
 
@@ -486,4 +486,4 @@ Ketika kedua nilai tersebut diketahui, bot akan menghitung sisa harinya lalu men
 
 - Nama: `router`
 - Sumber: <https://github.com/grammyjs/router>
-- Referensi: <https://doc.deno.land/https://deno.land/x/grammy_router/router.ts>
+- Referensi: <https://deno.land/x/grammy_router/router.ts>

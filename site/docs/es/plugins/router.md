@@ -1,7 +1,7 @@
-# Router (`router`)
+# Enrutador (`router`)
 
-La clase `Router` ([Referencia API](https://doc.deno.land/https://deno.land/x/grammy_router/router.ts)) proporciona una forma de estructurar tu bot enrutando objetos de contexto a diferentes partes de tu código.
-Es una versión más sofisticada de `bot.route` en `Composer` ([grammY API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer#route)).
+La clase `Router` ([Referencia API](https://deno.land/x/grammy_router/router.ts)) proporciona una forma de estructurar tu bot enrutando objetos de contexto a diferentes partes de tu código.
+Es una versión más sofisticada de `bot.route` en `Composer` ([grammY API Reference](https://deno.land/x/grammy/mod.ts?s=Composer#method_route_0)).
 
 ## Ejemplo
 
@@ -479,4 +479,4 @@ Si ambos valores son conocidos, el bot calcula los días restantes y los envía 
 
 - Nombre: `router`
 - Fuente: <https://github.com/grammyjs/router>
-- Referencia: <https://doc.deno.land/https://deno.land/x/grammy_router/router.ts>
+- Referencia: <https://deno.land/x/grammy_router/router.ts>
