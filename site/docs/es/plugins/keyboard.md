@@ -1,4 +1,4 @@
-# Inline y Custom Keyboards (incorporados)
+# Inline y Custom Keyboards (incluido)
 
 Tu bot puede enviar una serie de botones, ya sea para ser [mostrados debajo de un mensaje](#inline-keyboards), o para [reemplazar el teclado del usuario](#custom-keyboards).
 Se denominan _inline keyboards_ y _custom keyboards_, respectivamente.
@@ -38,7 +38,7 @@ Proporciona una clase llamada `InlineKeyboard` para esto.
 
 Aquí hay tres ejemplos de cómo construir un teclado en línea con botones de `texto`.
 
-También puedes usar otros métodos como `url` para permitir que los clientes de Telegram abran una URL, y muchas más opciones como se listan en la [Referencia de la API de grammY](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/InlineKeyboard#Methods) así como en la [Referencia de la API de Telegram Bot](https://core.telegram.org/bots/api#inlinekeyboardbutton) para `InlineKeyboard`.
+También puedes usar otros métodos como `url` para permitir que los clientes de Telegram abran una URL, y muchas más opciones como se listan en la [Referencia de la API de grammY](https://deno.land/x/grammy/mod.ts?s=InlineKeyboard#Methods) así como en la [Referencia de la API de Telegram Bot](https://core.telegram.org/bots/api#inlinekeyboardbutton) para `InlineKeyboard`.
 
 #### Ejemplo 1
 

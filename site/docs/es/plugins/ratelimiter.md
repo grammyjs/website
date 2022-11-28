@@ -1,4 +1,4 @@
-# Usuarios con límite de velocidad (`ratelimiter`)
+# Limitador de velocidad (`ratelimiter`)
 
 ratelimiter es un middleware de limitación de tasa para los bots de Telegram hechos con los frameworks de bots grammY o [Telegraf](https://github.com/telegraf/telegraf).
 En términos simples, es un plugin que te ayuda a desviar el spam pesado en tus bots.
@@ -249,4 +249,4 @@ En este ejemplo, he utilizado `chat.id` como clave única para la limitación de
 
 - Nombre: `ratelimitador`
 - Fuente: <https://github.com/grammyjs/ratelimiter>
-- Referencia: <https://doc.deno.land/https://deno.land/x/grammy_ratelimiter/mod.ts>
+- Referencia: <https://deno.land/x/grammy_ratelimiter/mod.ts>

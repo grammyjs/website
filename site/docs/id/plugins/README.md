@@ -17,8 +17,41 @@ Dengan begitu, user baru akan lebih mudah menggunakannya karena tidak perlu meng
 Sebagian besar plugin dipublikasikan bersama dengan package inti grammY, yang kami sebut sebagai plugin **resmi**.
 Plugin-plugin ini bisa diinstal dari `@grammyjs/*` melalui npm, dan mereka semua dipublikasikan oleh organisasi [@grammyjs](https://github.com/grammyjs) di GitHub.
 Selain itu, kami juga selalu memastikan semua plugin berjalan dengan baik di setiap rilisan grammY.
-Khusus untuk plugin resmi, nama package-nya selalu disertakan di judul dokumentasi masing-masing plugin. Contohnya, plugin [grammy runner](./runner.md) (`runner`) bisa diinstal melalui `npm install @grammyjs/runner`.
-(Kalau kamu menggunakan Deno, kamu bisa meng-import plugin dari <https://deno.land/x/>, yaitu file `mod.ts` di modul `grammy_runner`.)
+Khusus untuk plugin resmi, nama package-nya selalu disertakan di judul dokumentasi masing-masing plugin. Contohnya, plugin [grammy runner](./runner.md) (`runner`) bisa diinstal melalui `npm install @grammyjs/runner` (Kalau kamu menggunakan Deno, kamu bisa meng-import plugin dari <https://deno.land/x/>, yaitu file `mod.ts` di module `grammy_runner`).
+
+Kami juga menyediakan beberapa plugin **pihak ketiga**.
+Siapapun bisa mempublikasikan plugin jenis ini.
+Tetapi, kami tidak bisa menjamin plugin tersebut akan selalu diperbarui, terdokumentasi secara lengkap, ataupun kompatibel dengan plugin-plugin lain.
+Kamu juga bisa membuat plugin pihak ketigamu terdaftar di website ini agar orang-orang bisa menemukannya dengan mudah.
+
+## Gambaran Umum
+
+Kami menyediakan daftar setiap plugin yang tersedia beserta deskripsi singkat di dalamnya.
+Memasang plugin-plugin ini cukup mudah dan menyenangkan, dan kami ingin kalian semua tahu plugin apa saja yang telah tersedia.
+
+> Klik nama package berikut untuk mempelajari lebih lanjut mengenai plugin tersebut.
+
+| Plugin                     | Package                                               | Deskripsi                                                                            |
+| -------------------------- | ----------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| Session                    | _bawaan_                                              | Menyimpan data user di database kamu                                                 |
+| Keyboard Custom dan Inline | _bawaan_                                              | Membuat keyboard custom dan inline dengan mudah                                      |
+| Pengulang Request API      | [`auto-retry`](./auto-retry.md)                       | Menangani rate limit secara otomatis                                                 |
+| Percakapan                 | [`conversations`](./conversations.md)                 | Membuat antarmuka percakapan dan dialog                                              |
+| Emoji                      | [`emoji`](./emoji.md)                                 | Menggunakan emoji di kode dengan mudah                                               |
+| File                       | [`files`](./files.md)                                 | Menangani file dengan mudah                                                          |
+| Hidrasi                    | [`hydrate`](./hydrate.md)                             | Memanggil method untuk object yang dikembalikan dari pemanggilan API                 |
+| Internationalization       | [`i18n`](./i18n.md) atau [`fluent`](./fluent.md)      | Membuat bot kamu bisa berbicara dengan berbagai bahasa                               |
+| Menu Interaktif            | [`menu`](./menu.md)                                   | Mendesain tombol menu secara dinamis dengan navigasi yang fleksibel                  |
+| Parse Mode                 | [`parse-mode`](./parse-mode.md)                       | Memformat pesan dengan mudah                                                         |
+| Rate Limit User            | [`ratelimiter`](./ratelimiter.md)                     | Otomatis membatasi user yang melakukan spam ke bot kamu                              |
+| Router                     | [`router`](./router.md)                               | Mengarahkan pesan ke beberapa bagian di kode kamu                                    |
+| Runner                     | [`runner`](./runner.md)                               | Menggunakan long polling secara bersamaan dalam skala besar                          |
+| Stateless Question         | [`stateless-question`](./stateless-question.md)       | Membuat dialog tanpa menggunakan penyimpanan data                                    |
+| Kontrol Flood              | [`transformer-throttler`](./transformer-throttler.md) | Membuat antrian pemanggilan API secara otomatis untuk mencegah terjadinya flood wait |
+
+Kami juga punya plugin pihak ketiga!
+Kamu bisa menemukannya di menu navigasi _Plugin_ > _Pihak Ketiga_.
+Jangan lupa untuk mengeceknya juga!
 
 ## Jenis-Jenis Plugin di grammY
 

@@ -124,4 +124,4 @@ bot.callbackQuery("query-data", callbackQueryMiddleware);
 </CodeGroupItem>
 </CodeGroup>
 
-Kunjungi [referensi API type aliases](https://doc.deno.land/https://deno.land/x/grammy/mod.ts#Type_Aliases) untuk melihat gambaran umum semua type aliases yang telah di-export oleh grammY.
+Kunjungi [referensi API type aliases](https://deno.land/x/grammy/mod.ts#Type_Aliases) untuk melihat gambaran umum semua type aliases yang telah di-export oleh grammY.

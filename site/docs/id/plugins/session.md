@@ -247,7 +247,7 @@ Kalau kamu tidak menentukan opsi tersebut, pembacaan `ctx.session` akan mengakib
 > Bagian ini membahas fitur lanjutan yang untuk sebagian besar orang bisa diabaikan.
 > Kamu bisa melanjutkan ke bagian [Menyimpan Data](#menyimpan-data).
 
-Kamu bisa menentukan session key mana yang akan digunakan dengan cara memasukkan sebuah function bernama `getSessionKey` ke [opsi session](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/SessionOptions#getSessionKey).
+Kamu bisa menentukan session key mana yang akan digunakan dengan cara memasukkan sebuah function bernama `getSessionKey` ke [opsi session](https://deno.land/x/grammy/mod.ts?s=SessionOptions#prop_getSessionKey).
 Dengan begitu, kamu bisa mengubah perilaku plugin session sepenuhnya.
 Secara bawaan, data disimpan per chat.
 Tetapi, dengan menggunakan `getSessionKey` kamu bisa menyimpan data entah itu per user, kombinasi per user dan chat, ataupun cara lainnya.
@@ -357,7 +357,7 @@ bot.use(session({
 Secara bawaan semua data disimpan di dalam RAM.
 Artinya, semua session akan terhapus di saat bot dihentikan.
 
-Kamu bisa menggunakan class `MemorySessionStorage` ([Referensi API](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/MemorySessionStorage)) dari package inti grammY jika kamu ingin mengatur penyimpanan data di RAM.
+Kamu bisa menggunakan class `MemorySessionStorage` ([Referensi API](https://deno.land/x/grammy/mod.ts?s=MemorySessionStorage)) dari package inti grammY jika kamu ingin mengatur penyimpanan data di RAM.
 
 ```ts
 bot.use(session({
@@ -535,7 +535,7 @@ Masing-masing dari mereka mengharuskan kamu untuk mendaftar di sebuah penyedia l
 
 ::: tip Storage pilihanmu belum didukung? Tidak masalah!
 Membuat storage adapter sendiri sangat mudah dilakukan.
-Opsi `storage` bekerja dengan berbagai object yang menganut [interface berikut](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/StorageAdapter), sehingga kamu bisa melakukan koneksi ke storage-mu hanya dengan beberapa baris kode.
+Opsi `storage` bekerja dengan berbagai object yang menganut [interface berikut](https://deno.land/x/grammy/mod.ts?s=StorageAdapter), sehingga kamu bisa melakukan koneksi ke storage-mu hanya dengan beberapa baris kode.
 
 > Kalau kamu ingin mempublikasikan storage adapter buatanmu, silahkan ubah halaman ini dan sertakan juga link-nya agar orang-orang bisa menggunakannya.
 
@@ -701,15 +701,13 @@ Plugin session dapat meningkatkan kemampuan storage adapter dengan cara menambah
 Kedua fitur tersebut bisa diinstal dengan menggunakan function `enhanceStorage`.
 
 ```ts
-// Buat sebuah storage adapter.
-const storage = freeStorage(bot.token); // jangan lupa diatur
-// Tingkatkan kemampuan storage.
-const enhanced = enhanceStorage({
-  storage,
-  // tulis konfigurasinya di sini
-});
 // Gunakan storage adapter yang sudah ditingkatkan.
-bot.use(session({ storage: enhanced }));
+bot.use(session({
+  storage: enhanceStorage({
+    storage: freeStorage(bot.token), // jangan lupa diatur,
+    // tulis konfigurasinya di sini
+  }),
+}));
 ```
 
 Kamu juga bisa menggunakan kedua fitur secara bersamaan.
