@@ -20,7 +20,7 @@ Dicho esto, una estrategia directa y probada para estructurar tu código es la s
    Cada una de estas partes expone el middleware que manejará los mensajes designados.
 2. Crea una instancia del bot de forma centralizada que aglutine todo el middleware instalándolo en el bot.
 3. (Opcional.) Pre-filtrar las actualizaciones de forma centralizada, y enviar las actualizaciones sólo de la forma correcta.
-   También puedes consultar `bot.route` ([Referencia de la API](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer#route)) o alternativamente el [router plugin](../plugins/router.md) para ello.
+   También puedes consultar `bot.route` ([Referencia de la API](https://deno.land/x/grammy/mod.ts?s=Composer#method_route_0)) o alternativamente el [router plugin](../plugins/router.md) para ello.
 
 Un ejemplo ejecutable que implementa la estrategia anterior puede encontrarse en el [Repositorio de ejemplos de bots](https://github.com/grammyjs/examples/tree/main/scaling).
 
