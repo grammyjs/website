@@ -1,4 +1,4 @@
-# Sesiones y almacenamiento de datos (incorporado)
+# Sesiones y almacenamiento de datos (incluido)
 
 Aunque siempre puedes escribir tu propio código para conectarte a un almacenamiento de datos de tu elección, grammY soporta un patrón de almacenamiento muy conveniente llamado _sesiones_.
 

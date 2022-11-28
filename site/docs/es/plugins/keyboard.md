@@ -1,4 +1,4 @@
-# Inline y Custom Keyboards (incorporados)
+# Inline y Custom Keyboards (incluido)
 
 Tu bot puede enviar una serie de botones, ya sea para ser [mostrados debajo de un mensaje](#inline-keyboards), o para [reemplazar el teclado del usuario](#custom-keyboards).
 Se denominan _inline keyboards_ y _custom keyboards_, respectivamente.
