@@ -48,7 +48,7 @@ Instalar plugins es divertido y fácil, y queremos que sepas lo que tenemos para
 | Limitador de velocidad             | [`ratelimiter`](./ratelimiter.md)                     | Restringe automáticamente a los usuarios que envían spam a tu bot           |
 | Enrutador                          | [`router`](./router.md)                               | Dirija los mensajes a diferentes partes de su código                        |
 | Concurrencia                       | [`runner`](./runner.md)                               | Long polling csimultáneo a escala                                           |
-| Pregunta sin estado                | [`stateless-question`](./stateless-question.md)       | Crear diálogos sin almacenamiento de datos                                  |
+| Preguntas sin estado               | [`stateless-question`](./stateless-question.md)       | Crear diálogos sin almacenamiento de datos                                  |
 | Control de flujo                   | [`transformer-throttler`](./transformer-throttler.md) | Poner en cola automáticamente las llamadas a la API para evitar las esperas |
 
 También tenemos algunos plugins de terceros.
