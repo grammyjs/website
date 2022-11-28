@@ -62,7 +62,7 @@ bot.use(lists);
 bot.start();
 ```
 
-Cara lainnya, kamu bisa menggunakan [plugin router](../plugins/router.md). Plugin ini juga bisa digunakan untuk menggabungkan modul-modul yang berbeda dengan menentukan middleware mana yang akan digunakan di awal.
+Cara lainnya, kamu bisa menggunakan [plugin router](../plugins/router.md) atau [`bot.route`](https://deno.land/x/grammy/mod.ts?s=Composer#method_route_0) untuk menggabungkan module-module yang berbeda dengan menentukan middleware mana yang akan digunakan di awal.
 
 Yang perlu diingat adalah tidak ada satu cara mutlak untuk mengatur struktur bot kamu, karena masing-masing bot memiliki kasus yang berbeda.
 Seperti biasa, pilih cara yang menurutmu paling sesuai dan cocok untuk bot kamu, karena kamulah sebagai pencipta yang paham mengenai seluk-beluk dari bot kamu. :wink:

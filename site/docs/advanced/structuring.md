@@ -62,7 +62,7 @@ bot.use(lists);
 bot.start();
 ```
 
-Optionally, you can use the [router plugin](../plugins/router.md) or to bundle up the different modules, if you're able to determine which middleware is responsible upfront.
+Optionally, you can use the [router plugin](../plugins/router.md) or [`bot.route`](https://deno.land/x/grammy/mod.ts?s=Composer#method_route_0) to bundle up the different modules, if you're able to determine which middleware is responsible upfront.
 
 However, remember that the exact way of how to structure your bot is very hard to say generically.
 As always in software, do it in a way that makes the most sense :wink:
