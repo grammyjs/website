@@ -373,6 +373,10 @@ export default defineUserConfig({
                     link: "/hosting/heroku.html",
                   },
                   {
+                    text: "Fly",
+                    link: "/hosting/fly.html",
+                  },
+                  {
                     text: "Google Cloud Functions",
                     link: "/hosting/gcf.html",
                   },
@@ -736,6 +740,10 @@ export default defineUserConfig({
                   {
                     text: "Heroku",
                     link: "/es/hosting/heroku.html",
+                  },
+                  {
+                    text: "Fly",
+                    link: "/es/hosting/fly.html",
                   },
                   {
                     text: "Google Cloud Functions",
@@ -1104,6 +1112,10 @@ export default defineUserConfig({
                   {
                     text: "Heroku",
                     link: "/id/hosting/heroku.html",
+                  },
+                  {
+                    text: "Fly",
+                    link: "/id/hosting/fly.html",
                   },
                   {
                     text: "Google Cloud Functions",
