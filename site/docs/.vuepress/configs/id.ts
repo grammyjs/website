@@ -327,8 +327,7 @@ export const localeId: LocaleConfig<DefaultThemeLocaleData> = {
               },
               {
                 text: "Contoh Update",
-                link:
-                  "https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates",
+                link: "https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates",
               },
             ],
           },
@@ -363,7 +362,7 @@ export const localeId: LocaleConfig<DefaultThemeLocaleData> = {
               },
               {
                 text: "Google Cloud Functions",
-                link: "/hosting/gcf.html",
+                link: "/id/hosting/gcf.html",
               },
               {
                 text: "Virtual Private Server",
