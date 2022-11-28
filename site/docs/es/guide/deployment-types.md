@@ -96,7 +96,7 @@ ______________                                   _____________
 ```
 
 > Tenga en cuenta que, en realidad, ninguna conexión se mantendría abierta durante horas.
-> Las solicitudes de long polling ienen un tiempo de espera por defecto de 30 segundos (para evitar una serie de [problemas técnicos](https://tools.ietf.org/id/draft-loreto-http-bidirectional-07.html#timeouts)).
+> Las solicitudes de long polling ienen un tiempo de espera por defecto de 30 segundos (para evitar una serie de [problemas técnicos](https://datatracker.ietf.org/doc/html/draft-loreto-http-bidirectional-07#section-5.5)).
 > Si no se devuelven nuevos mensajes después de este período de tiempo, la solicitud se cancelará y se volverá a enviar, pero el concepto general sigue siendo el mismo.
 
 Usando un long polling, no necesitas enviar spam a los servidores de Telegram, ¡y aún así recibes nuevos mensajes inmediatamente!
@@ -152,7 +152,7 @@ No necesitas mantener una conexión de red abierta en todo momento.
 Puedes utilizar servicios que reduzcan automáticamente tu infraestructura a cero cuando no haya peticiones.
 Si quieres, puedes incluso [hacer una llamada a la API al responder a la petición de Telegram](#webhook-reply), aunque esto tiene una serie de inconvenientes.
 
-Consulta la opción de configuración [aquí](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/ApiClientOptions#canUseWebhookReply).
+Consulta la opción de configuración [aquí](https://deno.land/x/grammy/mod.ts?s=ApiClientOptions#prop_canUseWebhookReply).
 
 Los lugares donde los webhooks funcionan bien incluyen:
 
@@ -250,7 +250,7 @@ Sin embargo, hay una serie de inconvenientes al utilizar esto:
 4. ¡Ten en cuenta también que los tipos en grammY no reflejan las consecuencias de una devolución de llamada de webhooks realizada!
    Por ejemplo, indican que siempre se recibe un objeto de respuesta, por lo que es tu propia responsabilidad asegurarte de que no estás metiendo la pata al utilizar esta pequeña optimización de rendimiento.
 
-Si quieres usar las respuestas de los webhooks, puedes especificar la opción `canUseWebhookReply` en la opción `client` de tu `BotConfig` ([Referencia API](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/BotConfig)).
+Si quieres usar las respuestas de los webhooks, puedes especificar la opción `canUseWebhookReply` en la opción `client` de tu `BotConfig` ([Referencia API](https://deno.land/x/grammy/mod.ts?s=BotConfig)).
 Pasar una función que determine si se utiliza o no la respuesta del webhook para la solicitud dada, identificada por el método.
 
 ```ts

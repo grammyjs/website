@@ -1,7 +1,7 @@
 # Router (`router`)
 
-The `Router` class ([API Reference](https://doc.deno.land/https://deno.land/x/grammy_router/router.ts)) provides a way to structure your bot by routing context objects to different parts of your code.
-It is a more sophisticated version of `bot.route` on `Composer` ([grammY API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer#route)).
+The `Router` class ([API Reference](https://deno.land/x/grammy_router/router.ts)) provides a way to structure your bot by routing context objects to different parts of your code.
+It is a more sophisticated version of `bot.route` on `Composer` ([grammY API Reference](https://deno.land/x/grammy/mod.ts?s=Composer#method_route_0)).
 
 ## Example
 
@@ -39,6 +39,10 @@ You may also want to revisit [this section](../guide/filter-queries.md#combining
 
 Routers work well together with [sessions](./session.md).
 As an example, combining the two concepts allows you to re-create forms in the chat interface.
+
+> Note that a much better solution is to use the [conversations plugin](./conversations.md).
+> The remainder of this page is obsolete since that plugin was created.
+> We will keep this page as a reference for those who used the router for forms.
 
 Let's say that you want to build a bot that tells users how many days are left until it is their birthday.
 In order to compute the number of days, the bot has to know the month (e.g. June) and the day of month (e.g. 15) of the birthday.
@@ -464,4 +468,4 @@ If both values are known, the bot computes the remaining days and sends it back 
 
 - Name: `router`
 - Source: <https://github.com/grammyjs/router>
-- Reference: <https://doc.deno.land/https://deno.land/x/grammy_router/router.ts>
+- Reference: <https://deno.land/x/grammy_router/router.ts>

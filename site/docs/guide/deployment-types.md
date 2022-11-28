@@ -96,7 +96,7 @@ ______________                                   _____________
 ```
 
 > Note that in reality, no connection would be kept open for hours.
-> Long polling requests have a default timeout of 30 seconds (in order to avoid a number of [technical problems](https://tools.ietf.org/id/draft-loreto-http-bidirectional-07.html#timeouts)).
+> Long polling requests have a default timeout of 30 seconds (in order to avoid a number of [technical problems](https://datatracker.ietf.org/doc/html/draft-loreto-http-bidirectional-07#section-5.5)).
 > If no new messages are returned after this period of time, then the request will be cancelled and resent—but the general concept stays the same.
 
 Using long polling, you don't need to spam Telegram's servers, and still you get new messages immediately!
@@ -143,7 +143,7 @@ Under load, you are in complete control of how many messages you can process.
 Places where long polling works well include:
 
 - During development on your local machine.
-- On majority of servers.
+- On the majority of servers.
 - On hosted "backend" instances, i.e. machines that actively run your bot 24/7.
 
 **The main advantage of webhooks over long polling is that they are cheaper.**
@@ -151,7 +151,7 @@ You save a ton of superfluous requests.
 You don't need to keep a network connection open at all times.
 You can use services that automatically scale your infrastructure down to zero when no requests are coming.
 If you want to, you can even [make an API call when responding to the Telegram request](#webhook-reply), even though this has a number of drawbacks.
-Check out the configuration option [here](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/ApiClientOptions#canUseWebhookReply).
+Check out the configuration option [here](https://deno.land/x/grammy/mod.ts?s=ApiClientOptions#prop_canUseWebhookReply).
 
 Places where webhooks work well include:
 
@@ -249,7 +249,7 @@ However, there are a number of drawbacks to using this:
 4. Note also that the types in grammY do not reflect the consequences of a performed webhook callback!
    For instance, they indicate that you always receive a response object, so it is your own responsibility to make sure you're not screwing up while using this minor performance optimization.
 
-If you want to use webhook replies, you can specify the `canUseWebhookReply` option in the `client` option of your `BotConfig` ([API reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/BotConfig)).
+If you want to use webhook replies, you can specify the `canUseWebhookReply` option in the `client` option of your `BotConfig` ([API reference](https://deno.land/x/grammy/mod.ts?s=BotConfig)).
 Pass a function that determines whether or not to use webhook reply for the given request, identified by method.
 
 ```ts

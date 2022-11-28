@@ -23,7 +23,7 @@ If you know how to write an application for Node.js or Deno or have already crea
 The documentation for grammY bots is divided into three layers.
 
 1. High-level grammY docs _(this website)_
-2. [Low-level grammY API reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts)
+2. [Low-level grammY API reference](https://deno.land/x/grammy/mod.ts)
 3. [Raw HTTP API reference by Telegram](https://core.telegram.org/bots/api)
 
 **The first part** (you're looking at it!) explains how bots work and how to use grammY.
@@ -31,7 +31,7 @@ This is what you will use most often.
 The _Learn_ section is always a good start.
 Also check out our great collection of _Plugins_, and have a look at the _Examples_.
 
-**The second part** is the [grammY API reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts), linked at the top of the page.
+**The second part** is the [grammY API reference](https://deno.land/x/grammy/mod.ts), linked at the top of the page.
 This is a detailed overview of every single bit of code that grammY provides.
 It is automatically generated from grammY's code and contains all of the useful tooltip explanations, normally found by hovering your cursor over any element of grammY in a code editor.
 

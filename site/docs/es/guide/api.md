@@ -36,7 +36,7 @@ Por lo tanto, si evitas el servidor Bot API que Telegram ejecuta por ti, y simpl
 ## Llamar a la API del Bot
 
 Cada método de la API del Bot tiene un equivalente en grammY.
-Ejemplo: `sendMessage` en el [Telegram Bot API Reference](https://core.telegram.org/bots/api#sendmessage) y en el [grammY API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Api#sendMessage).
+Ejemplo: `sendMessage` en el [Telegram Bot API Reference](https://core.telegram.org/bots/api#sendmessage) y en el [grammY API Reference](https://deno.land/x/grammy/mod.ts?s=Api#method_sendMessage_0).
 
 ### Llamar a un Método
 

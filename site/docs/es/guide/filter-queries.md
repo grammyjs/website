@@ -230,7 +230,7 @@ que se puede utilizar para detectar los cambios de estado de otros miembros del 
 
 ### Combinación de consultas con otros métodos
 
-Puedes combinar consultas de filtro con otros métodos de la clase `Composer` ([Referencia de la API](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer)), como `command` o `filter`.
+Puedes combinar consultas de filtro con otros métodos de la clase `Composer` ([Referencia de la API](https://deno.land/x/grammy/mod.ts?s=Composer)), como `command` o `filter`.
 Esto permite crear potentes patrones de manejo de mensajes.
 
 ```ts
@@ -321,7 +321,7 @@ function handler(ctx: Filter<Context, ":text">) {
 bot.on(":text", handler);
 ```
 
-> Consulta las referencias de la API para [`matchFilter`](https://doc.deno.land/https://deno.land/x/grammy/filter.ts/~/matchFilter), [`Filter`](https://doc.deno.land/https://deno.land/x/grammy/filter.ts/~/Filter), y [`FilterQuery`](https://doc.deno.land/https://deno.land/x/grammy/filter.ts/~/FilterQuery) para seguir leyendo.
+> Consulta las referencias de la API para [`matchFilter`](https://deno.land/x/grammy/filter.ts?s=matchFilter), [`Filter`](https://deno.land/x/grammy/filter.ts?s=Filter), y [`FilterQuery`](https://deno.land/x/grammy/filter.ts?s=FilterQuery) para seguir leyendo.
 
 ## El lenguaje de consulta
 

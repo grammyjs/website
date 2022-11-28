@@ -1,5 +1,4 @@
-import { Client } from "https://deno.land/x/postgres@v0.15.0/mod.ts";
-
+import { Client } from "postgres/mod.ts";
 import env from "./env.ts";
 
 export interface Notification {
