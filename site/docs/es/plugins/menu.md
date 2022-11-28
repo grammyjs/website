@@ -5,7 +5,7 @@ Crea fácilmente menús interactivos.
 ## Introducción
 
 Un teclado en línea es un conjunto de botones debajo de un mensaje.
-grammY tiene un [plugin incorporado](./keyboard.md#inline-keyboards) para crear teclados en línea básicos.
+grammY tiene un [plugin incorporado](./keyboard.md#teclados-en-linea) para crear teclados en línea básicos.
 
 El plugin de menús lleva esta idea más allá y te permite crear menús ricos justo dentro del chat.
 Pueden tener botones interactivos, múltiples páginas con navegación entre ellas, y más.

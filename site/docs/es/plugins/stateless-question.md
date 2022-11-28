@@ -1,4 +1,4 @@
-# Pregunta sin estado (`stateless-question`)
+# Preguntas sin estado (`stateless-question`)
 
 > Crear preguntas sin estado a los usuarios de Telegram que trabajan en modo de privacidad
 

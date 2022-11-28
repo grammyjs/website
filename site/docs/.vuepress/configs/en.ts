@@ -358,6 +358,10 @@ export const localeEn: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/hosting/heroku.html",
               },
               {
+                text: "Fly",
+                link: "/hosting/fly.html",
+              },
+              {
                 text: "Google Cloud Functions",
                 link: "/hosting/gcf.html",
               },

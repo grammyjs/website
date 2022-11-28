@@ -1,4 +1,4 @@
-# Flood Control (`transformer-throttler`)
+# Control de flujo (`transformer-throttler`)
 
 Este plugin pone en cola la instancia de solicitudes de API salientes a través de [Bottleneck](https://github.com/SGrondin/bottleneck) para evitar que su bot alcance los [límites de velocidad](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this) como se describe en [esta sección avanzada](../advanced/flood.md) de la documentación.
 

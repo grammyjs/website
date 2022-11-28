@@ -1,4 +1,4 @@
-# Sesiones y almacenamiento de datos (incorporado)
+# Sesiones y almacenamiento de datos (incluido)
 
 Aunque siempre puedes escribir tu propio código para conectarte a un almacenamiento de datos de tu elección, grammY soporta un patrón de almacenamiento muy conveniente llamado _sesiones_.
 
@@ -575,7 +575,7 @@ A su vez, tendrás que configurar cada fragmento con su propia configuración.
 bot.use(session({
   type: "multi",
   foo: {
-    // también están los valores por defecto
+    // estos son también los valores por defecto
     storage: new MemorySessionStorage(),
     initial: () => undefined,
     getSessionKey: (ctx) => ctx.from?.id.toString(),

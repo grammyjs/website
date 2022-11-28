@@ -577,7 +577,7 @@ In turn, you will need to configure each fragment with its own config.
 bot.use(session({
   type: "multi",
   foo: {
-    // there are also the default values
+    // these are also the default values
     storage: new MemorySessionStorage(),
     initial: () => undefined,
     getSessionKey: (ctx) => ctx.from?.id.toString(),

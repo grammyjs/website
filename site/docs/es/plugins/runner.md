@@ -1,4 +1,4 @@
-# Concurrencia con grammY runner (`runner`)
+# Concurrencia (`runner`)
 
 Este paquete se puede utilizar si ejecutas tu bot [usando long polling](../guide/deployment-types.md), y quieres que los mensajes se procesen concurrentemente.
 

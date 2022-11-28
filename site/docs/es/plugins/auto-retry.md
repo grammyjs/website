@@ -1,4 +1,4 @@
-# Reintentar solicitudes de la API (`auto-retry`)
+# Auto-reintento de solicitudes a la API (`auto-retry`)
 
 > Considera usar el [plugin throttler](./transformer-throttler.md) en su lugar.
 
