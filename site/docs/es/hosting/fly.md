@@ -4,7 +4,7 @@ Esta guía te explica las formas de alojar tus bots de grammY en [Fly](https://f
 
 ## Preparando tu código
 
-Puedes ejecutar tu bot tanto en [webhooks como en long polling](../guide/deployment-types.md).
+Puedes ejecutar tu bot usando ambos [webhooks o long polling](../guide/deployment-types.md).
 
 ### Webhooks
 
@@ -248,7 +248,7 @@ ENTRYPOINT ["/bin/deno"]
 4. Edita `app` dentro del archivo `fly.toml`.
    La ruta `./app.ts` (o `./app.js` para Node.js) en el ejemplo de abajo se refiere al directorio del archivo principal.
    Puedes modificarlos para que coincidan con el directorio de tu proyecto.
-   Si estás usando webhooks, asegúrate de que el puerto es el mismo que tu [config](#webhooks) (`8000`).
+   Si estás usando webhooks, asegúrate de que el puerto es el mismo que el de tu [configuración](#webhooks) (`8000`).
 
 <CodeGroup>
 <CodeGroupItem title="Deno (Webhooks)" Active>
@@ -370,8 +370,7 @@ kill_timeout = 5
 [build]
   builder = "heroku/buildpacks:20"
 
-# Simply omitting the whole [[services]] section 
-# since we are not listening to HTTP
+# Simplemente omitiendo toda la sección de [[servicios]] ya que no estamos escuchando HTTP.
 ```
 
 </CodeGroupItem>
@@ -382,7 +381,7 @@ kill_timeout = 5
 ### Método 2: Con acciones de GitHub
 
 La principal ventaja del siguiente método es que Fly vigilará los cambios en tu repositorio que incluye el código de tu bot, y desplegará las nuevas versiones automáticamente.
-Visita <https://fly.io/docs/app-guides/continuous-deployment-with-github-actions> para ver las instrucciones detalladas.
+Visite <https://fly.io/docs/app-guides/continuous-deployment-with-github-actions> para obtener instrucciones más detalladas.
 
 1. Instala [flyctl](https://fly.io/docs/hands-on/install-flyctl) e [inicia la sesión](https://fly.io/docs/hands-on/sign-in/).
 2. Obtén un token de la API de Fly ejecutando `flyctl auth token`.
@@ -426,7 +425,7 @@ sustituyendo `<token>` por el token de tu bot, y `<url>` por la URL completa de 
 Cuando nuestro `Dockerfile` se ejecuta, copia todo desde el directorio a la imagen Docker.
 Para las aplicaciones Node.js, algunos directorios como `node_modules` van a ser reconstruidos de todos modos, así que no hay necesidad de copiarlos.
 Crea un archivo `.dockerignore` y añade `node_modules` a él para hacer esto.
-También puedes utilizar el archivo `.dockerignore` para omitir los activos del proyecto que no se utilicen y cualquier otro archivo que no sea necesario en tiempo de ejecución.
+También puedes utilizar `.dockerignore` para no copiar ningún otro archivo que no sea necesario en tiempo de ejecución.
 
 ## Reference
 
