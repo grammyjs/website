@@ -13,7 +13,7 @@ By default, support for inline mode is disabled.
 You must contact [@BotFather](https://t.me/BotFather) and enable inline mode for your bot, to start receiving inline queries.
 :::
 
-> Revisit the Inline mode section in the [Introduction for Developers](https://core.telegram.org/bots#inline-mode) written by the Telegram team.
+> Revisit the Inline mode section in the [Telegram Bot Features](https://core.telegram.org/bots/features#inline-requests) written by the Telegram team.
 > Further resources are their [detailed description](https://core.telegram.org/bots/inline) of inline bots, as well as the [original blog post](https://telegram.org/blog/inline-bots) announcing the feature, and the Inline mode section in the [Telegram Bot API Reference](https://core.telegram.org/bots/api#inline-mode).
 > They are all worth a read before implementing inline queries for your bot.
 
