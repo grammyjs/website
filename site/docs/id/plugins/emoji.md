@@ -107,4 +107,4 @@ Jika kamu belum familiar dengan syntax tersebut, pahami terlebih dahulu [materi 
 
 - Nama: `emoji`
 - Sumber: <https://github.com/grammyjs/emoji>
-- Referensi: <https://doc.deno.land/https://deno.land/x/grammy_emoji/mod.ts>
+- Referensi: <https://deno.land/x/grammy_emoji/mod.ts>

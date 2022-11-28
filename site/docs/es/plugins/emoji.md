@@ -1,4 +1,4 @@
-# Plugin Emoji (`emoji`)
+# Emojis (`emoji`)
 
 Con este plugin, puedes insertar fácilmente emojis en tus respuestas buscándolos en lugar de copiar y pegar manualmente un emoji de la web en tu código.
 
@@ -106,4 +106,4 @@ Si no estás familiarizado con esta sintaxis, puedes leer más sobre ella [aquí
 
 - Nombre: `emoji`
 - Fuente: <https://github.com/grammyjs/emoji>
-- Referencia: <https://doc.deno.land/https://deno.land/x/grammy_emoji/mod.ts>
+- Referencia: <https://deno.land/x/grammy_emoji/mod.ts>
