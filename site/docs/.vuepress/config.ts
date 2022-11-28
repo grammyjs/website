@@ -746,6 +746,10 @@ export default defineUserConfig({
                     link: "/es/hosting/gcf.html",
                   },
                   {
+                    text: "Vercel",
+                    link: "/es/hosting/vercel.html",
+                  },
+                  {
                     text: "Servidor Privado Virtual",
                     link: "/es/hosting/vps.html",
                   },
