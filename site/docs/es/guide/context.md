@@ -83,6 +83,34 @@ bot.on("edited_message", (ctx) => {
 
 Por lo tanto, si lo desea, puede olvidarse de `ctx.message` y `ctx.channelPost` y `ctx.editedMessage` y así sucesivamente, y sólo utilizar siempre `ctx.msg` en su lugar.
 
+## Probar a través de comprobaciones Has
+
+El objeto de contexto tiene algunos métodos que le permiten comprobar los datos contenidos para ciertas cosas.
+Por ejemplo, puede llamar a `ctx.hasCommand("start")` para ver si el objeto de contexto contiene un comando `/start`.
+Esta es la razón por la que los métodos se denominan colectivamente _has checks_.
+
+::: tip Saber cuándo usar Has Checks
+
+Esta es exactamente la misma lógica que utiliza `bot.command("start")`.
+Tenga en cuenta que normalmente debería utilizar [consultas de filtro](./filter-queries.md) y métodos similares.
+El uso de las comprobaciones has funciona mejor dentro del plugin [conversaciones](../plugins/conversations.md).
+
+:::
+
+Las comprobaciones has acotan correctamente el tipo de contexto.
+Esto significa que comprobar si un contexto tiene datos de consulta de devolución de llamada le dirá a TypeScript que el contexto tiene el campo `ctx.callbackQuery.data` presente.
+
+```ts
+if (ctx.hasCallbackQuery(/query-data-\d+/)) {
+  // Se sabe que `ctx.callbackQuery.data` está presente aquí
+  const data: string = ctx.callbackQuery.data;
+}
+```
+
+Lo mismo se aplica a todas las demás comprobaciones de has.
+Consulta la [referencia de la API del objeto context](https://deno.land/x/grammy/mod.ts?s=Context#method_has_0) para ver una lista de todas las comprobaciones has.
+También puedes consultar la propiedad estática `Context.has` en la [referencia de la API](https://deno.land/x/grammy/mod.ts?s=Context#Static_Properties) que te permite crear funciones de predicado eficientes para comprobar muchos objetos de contexto.
+
 ## Acciones disponibles
 
 Si quieres responder a un mensaje de un usuario, puedes escribir esto:
