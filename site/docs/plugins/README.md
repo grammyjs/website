@@ -21,6 +21,40 @@ Every section of the plugin docs for an official plugin has the package name in 
 As an example, the [grammY runner](./runner.md) plugin (`runner`) needs to be installed via `npm install @grammyjs/runner`.
 (If you are using Deno and not Node.js, you should import the plugin from <https://deno.land/x/> instead, so from the `grammy_runner` module's `mod.ts` file.)
 
+There are also a few **third-party** plugins.
+Anyone can publish them.
+We don't provide any guarantees that they are up to date, well-documented, or work together with other plugins.
+If you want, your own third-party plugin can also be listed on the website so that more people can find out about it.
+
+## Overview
+
+We compiled a neat overview for you with short descriptions for each plugin.
+Installing plugins is fun and easy, and we want you to know what we have in store for you.
+
+> Click on any package name to learn more about the respective plugin.
+
+| Plugin                      | Package                                               | Description                                          |
+| --------------------------- | ----------------------------------------------------- | ---------------------------------------------------- |
+| Sessions                    | _built-in_                                            | Store user data in your database                     |
+| Inline and Custom Keyboards | _built-in_                                            | Simplifies building inline and custom keyboards      |
+| Auto-retry                  | [`auto-retry`](./auto-retry.md)                       | Automatically handle rate limiting                   |
+| Conversations               | [`conversations`](./conversations.md)                 | Build powerful conversational interfaces and dialogs |
+| Emoji                       | [`emoji`](./emoji.md)                                 | Simplify using emoji in code                         |
+| Files                       | [`files`](./files.md)                                 | Easy file handling                                   |
+| Hydration                   | [`hydrate`](./hydrate.md)                             | Call methods on objects returned from API calls      |
+| Internationalization        | [`i18n`](./i18n.md) or [`fluent`](./fluent.md)        | Let your bot speak multiple languages                |
+| Interactive Menus           | [`menu`](./menu.md)                                   | Design dynamic button menus with flexible navigation |
+| Parse Mode                  | [`parse-mode`](./parse-mode.md)                       | Simplify message formatting                          |
+| Rate Limiter                | [`ratelimiter`](./ratelimiter.md)                     | Automatically restrict users who spam your bot       |
+| Router                      | [`router`](./router.md)                               | Route messages to different parts of your code       |
+| Runner                      | [`runner`](./runner.md)                               | Long polling concurrently at scale                   |
+| Stateless Question          | [`stateless-question`](./stateless-question.md)       | Create dialogs without a data storage                |
+| Flood Control               | [`transformer-throttler`](./transformer-throttler.md) | Automatically queue API calls to prevent flood wait  |
+
+We also have some third-party plugins!
+You can find them in the navigation menu under _Plugins_ > _Third-Party_.
+Be sure to check them out, too!
+
 ## Types of Plugins in grammY
 
 All that glitters is gold, right?
