@@ -26,7 +26,7 @@ Contohnya, kita tidak bisa mengirim keyboard custom sebagai pesan pertama lalu m
 
 ## Keyboard Inline
 
-> Silahkan kunjungi bagian keyboard inline di materi [Pengenalan untuk Developer](https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating) yang ditulis oleh tim Telegram.
+> Silahkan kunjungi bagian keyboard inline di materi [Fitur-fitur Bot Telegram](https://core.telegram.org/bots/features#inline-keyboards) yang ditulis oleh tim Telegram.
 
 grammY menyediakan class bernama `InlineKeyboard` yang bisa kamu gunakan untuk membuat keyboard inline dengan mudah dan simpel.
 
@@ -166,7 +166,7 @@ Pertama-tama, keyboard custom terkadang hanya disebut sebagai keyboard, ada juga
 Gampangnya, ketika tidak disertai dengan konteks yang jelas serta tidak ada penyebutan keyboard inline di dalamnya, maka kemungkinan besar yang dimaksud adalah keyboard custom.
 Keyboard custom dapat mengganti keyboard sistem dengan beraneka tombol yang sudah kamu tentukan.
 
-> Kunjungi bagian keyboard custom di materi [Pengenalan untuk Developer](https://core.telegram.org/bots#keyboards) yang ditulis oleh tim Telegram.
+> Kunjungi bagian keyboard custom di dokumentasi [Fitur-fitur Bot Telegram](https://core.telegram.org/bots/features#keyboards) yang ditulis oleh tim Telegram.
 
 grammY menyediakan class bernama `Keyboard` yang bisa kamu gunakan untuk membuat keyboard custom dengan mudah dan simpel.
 

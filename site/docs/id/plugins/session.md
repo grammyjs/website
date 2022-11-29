@@ -6,7 +6,7 @@ Meski kamu bisa saja menulis sendiri kode untuk melakukan koneksi ke sebuah data
 
 ## Mengapa Kita Perlu Memikirkan Tempat Penyimpanan?
 
-Berbeda dengan akun user Telegram biasa, bot memiliki [cloud storage yang terbatas](https://core.telegram.org/bots#4-how-are-bots-different-from-humans) di Telegram cloud.
+Berbeda dengan akun user Telegram biasa, bot memiliki [penyimpanan cloud yang terbatas](https://core.telegram.org/bots#how-are-bots-different-from-users) di Telegram cloud.
 Akibatnya, ada beberapa hal yang tidak bisa kamu lakukan di bot:
 
 1. Kamu tidak bisa mengakses pesan lama yang pernah diterima oleh bot-mu.
@@ -48,7 +48,7 @@ Alhasil, bot kamu akan menyimpan sebuah map chat identifier ke beberapa data ses
 ```
 
 > Ketika kami menyebut database, kami benar-benar merujuk ke sebuah penyimpanan data, apapun bentuknya.
-> Termasuk file, cloud storage, atau lainnya.
+> Termasuk file, penyimpanan cloud, atau lainnya.
 
 OK, keren.
 Tapi, bagaimana sebenarnya cara kerja session di atas?
@@ -372,7 +372,7 @@ bot.use(session({
 > Pengaplikasian skala-produksi harus menggunakan database mereka sendiri.
 > Daftar pilihan integrasi storage eksternal yang didukung tersedia [di bawah sini](#storage-eksternal).
 
-Keuntungan menggunakan grammY adalah kamu bisa mengakses cloud storage secara gratis.
+Keuntungan menggunakan grammY adalah kamu bisa mengakses penyimpanan cloud secara gratis.
 Ia tidak membutuhkan pengaturan sama sekali—semua autentikasi dilakukan menggunakan token bot-mu.
 Lihat [repositori berikut](https://github.com/grammyjs/storages/tree/main/packages/free)!
 
