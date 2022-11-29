@@ -366,6 +366,10 @@ export const localeEn: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/hosting/gcf.html",
               },
               {
+                text: "Vercel",
+                link: "/hosting/vercel.html",
+              },
+              {
                 text: "Virtual Private Server",
                 link: "/hosting/vps.html",
               },
