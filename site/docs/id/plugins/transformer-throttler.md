@@ -134,4 +134,4 @@ const outConfig = {
 
 - Nama: `transformer-throttler`
 - Sumber: <https://github.com/grammyjs/transformer-throttler>
-- Referensi: <https://doc.deno.land/https://deno.land/x/grammy_transformer_throttler/mod.ts>
+- Referensi: <https://deno.land/x/grammy_transformer_throttler/mod.ts>

@@ -5,7 +5,7 @@ next: ./api.md
 
 # Context
 
-El objeto `Context` ([Referencia de la API de grammY](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Context)) es una parte importante de grammY.
+El objeto `Context` ([Referencia de la API de grammY](https://deno.land/x/grammy/mod.ts?s=Context)) es una parte importante de grammY.
 
 Siempre que registres un oyente en tu objeto bot, este oyente recibirá un objeto `Context`.
 
@@ -83,6 +83,34 @@ bot.on("edited_message", (ctx) => {
 
 Por lo tanto, si lo desea, puede olvidarse de `ctx.message` y `ctx.channelPost` y `ctx.editedMessage` y así sucesivamente, y sólo utilizar siempre `ctx.msg` en su lugar.
 
+## Probar a través de comprobaciones Has
+
+El objeto de contexto tiene algunos métodos que le permiten comprobar los datos contenidos para ciertas cosas.
+Por ejemplo, puede llamar a `ctx.hasCommand("start")` para ver si el objeto de contexto contiene un comando `/start`.
+Esta es la razón por la que los métodos se denominan colectivamente _has checks_.
+
+::: tip Saber cuándo usar Has Checks
+
+Esta es exactamente la misma lógica que utiliza `bot.command("start")`.
+Tenga en cuenta que normalmente debería utilizar [consultas de filtro](./filter-queries.md) y métodos similares.
+El uso de las comprobaciones has funciona mejor dentro del plugin [conversaciones](../plugins/conversations.md).
+
+:::
+
+Las comprobaciones has acotan correctamente el tipo de contexto.
+Esto significa que comprobar si un contexto tiene datos de consulta de devolución de llamada le dirá a TypeScript que el contexto tiene el campo `ctx.callbackQuery.data` presente.
+
+```ts
+if (ctx.hasCallbackQuery(/query-data-\d+/)) {
+  // Se sabe que `ctx.callbackQuery.data` está presente aquí
+  const data: string = ctx.callbackQuery.data;
+}
+```
+
+Lo mismo se aplica a todas las demás comprobaciones de has.
+Consulta la [referencia de la API del objeto context](https://deno.land/x/grammy/mod.ts?s=Context#method_has_0) para ver una lista de todas las comprobaciones has.
+También puedes consultar la propiedad estática `Context.has` en la [referencia de la API](https://deno.land/x/grammy/mod.ts?s=Context#Static_Properties) que te permite crear funciones de predicado eficientes para comprobar muchos objetos de contexto.
+
 ## Acciones disponibles
 
 Si quieres responder a un mensaje de un usuario, puedes escribir esto:
@@ -145,7 +173,7 @@ El mismo objeto de opciones se puede pasar a `bot.api.sendMessage` y `ctx.api.se
 Utiliza el autocompletado para ver las opciones disponibles directamente en tu editor de código.
 :::
 
-Naturalmente, todos los demás métodos de `ctx.api` tienen un acceso directo con los valores correctos precompletados, como `ctx.replyWithPhoto` para responder con una foto, o `ctx.exportChatInviteLink` para obtener un enlace de invitación para el chat correspondiente. Si quieres tener una visión general de los accesos directos que existen, el autocompletado es tu amigo, junto con la [Referencia de la API de grammY](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Context).
+Naturalmente, todos los demás métodos de `ctx.api` tienen un acceso directo con los valores correctos precompletados, como `ctx.replyWithPhoto` para responder con una foto, o `ctx.exportChatInviteLink` para obtener un enlace de invitación para el chat correspondiente. Si quieres tener una visión general de los accesos directos que existen, el autocompletado es tu amigo, junto con la [Referencia de la API de grammY](https://deno.land/x/grammy/mod.ts?s=Context).
 
 Ten en cuenta que puede que no quieras reaccionar siempre en el mismo chat.
 En este caso, puedes volver a utilizar los métodos `ctx.api`, y especificar todas las opciones al llamarlos.
@@ -298,7 +326,7 @@ bot.command("start", async (ctx) => {
 </CodeGroupItem>
 </CodeGroup>
 
-Naturalmente, el tipo de contexto personalizado también se puede pasar a otras cosas que manejan middleware, como [compositores](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer).
+Naturalmente, el tipo de contexto personalizado también se puede pasar a otras cosas que manejan middleware, como [compositores](https://deno.land/x/grammy/mod.ts?s=Composer).
 
 ```ts
 const composer = new Composer<MyContext>();
@@ -456,7 +484,7 @@ interface SessionFlavor<S> {
 }
 ```
 
-El tipo `SessionFlavor` ([Referencia API](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/SessionFlavor)) es sencillo: sólo define la propiedad `session`.
+El tipo `SessionFlavor` ([Referencia API](https://deno.land/x/grammy/mod.ts?s=SessionFlavor)) es sencillo: sólo define la propiedad `session`.
 Toma un parámetro de tipo que definirá la estructura real de los datos de la sesión.
 
 ¿Qué utilidad tiene esto?
@@ -511,7 +539,6 @@ type MyContext = FlavorX<FlavorY<FlavorZ<Context>>>;
 ```
 
 Aquí, el orden podría importar, ya que `FlavorZ` transforma primero a `Context`, luego a `FlavorY`, y el resultado de esto será transformado de nuevo por `FlavorX`.
-(En la práctica, no hay que preocuparse por esto porque los plugins no suelen chocar entre sí).
 
 Incluso se pueden mezclar additive and transformative flavors:
 
@@ -524,3 +551,6 @@ type MyContext = FlavorX<
   >
 >;
 ```
+
+Asegúrese de seguir este patrón cuando instale varios plugins.
+Hay una serie de errores de tipo que se derivan de la combinación incorrecta de context flavors.

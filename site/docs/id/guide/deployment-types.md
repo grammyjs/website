@@ -101,7 +101,7 @@ ______________                                            _____________
 ```
 
 > Perlu dicatat bahwa pada kenyataannya, tidak ada koneksi yang akan tetap terbuka selama berjam-jam.
-> Request long polling mempunyai waktu timeout bawaan selama 30 detik untuk menghindari terjadinya berbagai [masalah teknis](https://tools.ietf.org/id/draft-loreto-http-bidirectional-07.html#timeouts).
+> Request long polling mempunyai waktu timeout bawaan selama 30 detik untuk menghindari terjadinya berbagai [masalah teknis](https://datatracker.ietf.org/doc/html/draft-loreto-http-bidirectional-07#section-5.5).
 > Kalau tidak ada pesan baru yang dikembalikan selama periode waktu tersebut, maka request akan dibatalkan dan dikirimkan kembali—tetapi konsep dasarnya masih tetap sama.
 
 Dengan menggunakan long polling, kamu akan menerima pesan baru yang sama cepatnya, sehingga tidak perlu lagi mengirim spam ke server Telegram.
@@ -154,7 +154,7 @@ Tempat-tempat yang cocok untuk menggunakan long polling:
 Kamu bisa menghemat banyak sekali request dan tidak perlu lagi menjaga koneksi tetap tersambung sepanjang waktu.
 Kamu bisa menggunakan layanan hosting yang secara otomatis menurunkan performa ketika tidak ada request yang masuk, yang berarti lebih hemat biaya.
 Kalau mau, kamu bahkan bisa [membuat panggilan API ketika membalas request dari Telegram](#webhook-reply), walaupun ia juga memiliki beberapa kekurangan yang harus diperhitungkan juga.
-Lihat konfigurasi opsinya [di sini](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/ApiClientOptions#canUseWebhookReply).
+Lihat konfigurasi opsinya [di sini](https://deno.land/x/grammy/mod.ts?s=ApiClientOptions#prop_canUseWebhookReply).
 
 Tempat-tempat yang cocok untuk menggunakan webhook:
 
@@ -253,7 +253,7 @@ Tetapi, terdapat beberapa kekurangan dibaliknya:
 4. Perlu diperhatikan juga bahwa beberapa type di grammY tidak mencerminkan hasil dari callback webhook yang telah dilakukan!
    Sebagai contoh, mereka akan selalu mengindikasikan bahwa kamu telah menerima object respon, sehingga ini menjadi tanggung jawab kamu untuk memastikan semua berjalan baik ketika melakukan optimasi kecil ini.
 
-Kalau kamu ingin memanfaatkan webhook reply, kamu bisa menambahkan opsi `canUseWebhookReply`di opsi `client` dari `BotConfig` kamu ([referensi API](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/BotConfig)).
+Kalau kamu ingin memanfaatkan webhook reply, kamu bisa menambahkan opsi `canUseWebhookReply`di opsi `client` dari `BotConfig` kamu ([referensi API](https://deno.land/x/grammy/mod.ts?s=BotConfig)).
 Masukkan sebuah function yang menentukan apakah method tersebut memanfaatkan webhook reply atau tidak.
 
 ```ts

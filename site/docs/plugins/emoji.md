@@ -105,4 +105,4 @@ If you're unfamiliar with this syntax, you can read more about it [here](https:/
 
 - Name: `emoji`
 - Source: <https://github.com/grammyjs/emoji>
-- Reference: <https://doc.deno.land/https://deno.land/x/grammy_emoji/mod.ts>
+- Reference: <https://deno.land/x/grammy_emoji/mod.ts>

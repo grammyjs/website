@@ -314,6 +314,13 @@ export const localeEn: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "https://core.telegram.org/bots/faq",
               },
               {
+                // HEAD
+                //
+                text: "Bot Features",
+                link: "https://core.telegram.org/bots/features",
+              },
+              {
+                //main
                 text: "Bot API Reference",
                 link: "https://core.telegram.org/bots/api",
               },
@@ -354,8 +361,16 @@ export const localeEn: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/hosting/heroku.html",
               },
               {
+                text: "Fly",
+                link: "/hosting/fly.html",
+              },
+              {
                 text: "Google Cloud Functions",
                 link: "/hosting/gcf.html",
+              },
+              {
+                text: "Vercel",
+                link: "/hosting/vercel.html",
               },
               {
                 text: "Virtual Private Server",
@@ -367,7 +382,7 @@ export const localeEn: LocaleConfig<DefaultThemeLocaleData> = {
       },
       {
         text: "API Reference",
-        link: "https://doc.deno.land/https://deno.land/x/grammy/mod.ts",
+        link: "https://deno.land/x/grammy/mod.ts",
       },
     ],
   },

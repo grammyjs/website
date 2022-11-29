@@ -1,7 +1,7 @@
-import { assert } from "https://deno.land/std@0.140.0/testing/asserts.ts";
-import { NativeRequest } from "https://deno.land/x/oak@v10.6.0/mod.ts";
-import type { ServerRequest } from "https://deno.land/x/oak@v10.6.0/types.d.ts";
-import { verify } from "https://raw.githubusercontent.com/octokit/webhooks-methods.js/v2.0.0/src/web.ts";
+import { assert } from "std/testing/asserts.ts";
+import { NativeRequest } from "oak/mod.ts";
+import type { ServerRequest } from "oak/types.d.ts";
+import { verify } from "octokit/web.ts";
 import env from "./env.ts";
 
 // https://stackoverflow.com/a/71088170/10379728

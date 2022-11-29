@@ -5,7 +5,7 @@ next: ./api.md
 
 # Context
 
-The `Context` object ([grammY API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Context)) is an important part of grammY.
+The `Context` object ([grammY API Reference](https://deno.land/x/grammy/mod.ts?s=Context)) is an important part of grammY.
 
 Whenever you register a listener on your bot object, this listener will receive a context object.
 
@@ -108,8 +108,8 @@ if (ctx.hasCallbackQuery(/query-data-\d+/)) {
 ```
 
 The same applies to all other has checks.
-Check out the [API reference of the context object](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Context#has) to see a list of all has checks.
-Also check out the static property `Context.has` in the [API reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Context#Static_Properties) that lets you create efficient predicate functions for probing a lot of context objects.
+Check out the [API reference of the context object](https://deno.land/x/grammy/mod.ts?s=Context#method_has_0) to see a list of all has checks.
+Also check out the static property `Context.has` in the [API reference](https://deno.land/x/grammy/mod.ts?s=Context#Static_Properties) that lets you create efficient predicate functions for probing a lot of context objects.
 
 ## Available Actions
 
@@ -175,7 +175,7 @@ Use auto-complete to see the available options right in your code editor.
 :::
 
 Naturally, every other method on `ctx.api` has a shortcut with the correct pre-filled values, such as `ctx.replyWithPhoto` to reply with a photo, or `ctx.exportChatInviteLink` to get an invite link for the respective chat.
-If you want to get an overview over what shortcuts exist, then auto-complete is your friend, along with the [grammY API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Context).
+If you want to get an overview over what shortcuts exist, then auto-complete is your friend, along with the [grammY API Reference](https://deno.land/x/grammy/mod.ts?s=Context).
 
 Note that you may not want to react in the same chat always.
 In this case, you can just fall back to using `ctx.api` methods, and specify all options when calling them.
@@ -329,7 +329,7 @@ bot.command("start", async (ctx) => {
 </CodeGroupItem>
 </CodeGroup>
 
-Naturally, the custom context type can also be passed to other things which handle middleware, such as [composers](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer).
+Naturally, the custom context type can also be passed to other things which handle middleware, such as [composers](https://deno.land/x/grammy/mod.ts?s=Composer).
 
 ```ts
 const composer = new Composer<MyContext>();
@@ -487,7 +487,7 @@ interface SessionFlavor<S> {
 }
 ```
 
-The `SessionFlavor` type ([API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/SessionFlavor)) is straightforward: it defines only the property `session`.
+The `SessionFlavor` type ([API Reference](https://deno.land/x/grammy/mod.ts?s=SessionFlavor)) is straightforward: it defines only the property `session`.
 It takes a type parameter that will define the actual structure of the session data.
 
 How is that useful?
@@ -542,7 +542,6 @@ type MyContext = FlavorX<FlavorY<FlavorZ<Context>>>;
 ```
 
 Here, the order could matter, as `FlavorZ` transforms `Context` first, then `FlavorY`, and the result of this will be transformed again by `FlavorX`.
-(In practice, this is nothing to worry about because plugins usually don't clash with each other.)
 
 You can even mix additive and transformative flavors:
 
@@ -555,3 +554,6 @@ type MyContext = FlavorX<
   >
 >;
 ```
+
+Make sure to follow this pattern when installing several plugins.
+There are a number of type errors that stem from incorrect combination of context flavors.

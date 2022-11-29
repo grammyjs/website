@@ -1,38 +1,23 @@
 import { defaultTheme, defineUserConfig } from "vuepress-vite";
-import {
-  docsearchEn,
-  docsearchEs,
-  docsearchId,
-  docsearchZh,
-  localeEn,
-  localeEs,
-  localeId,
-  localeZh,
-  siteEn,
-  siteEs,
-  siteId,
-  siteZh,
-} from "./configs";
+import * as config from "./configs";
 import { betterLineBreaks } from "./plugins/better-line-breaks";
 import { currentVersions } from "./plugins/current-versions/plugin";
 import { docsearch } from "./plugins/docsearch";
 
 export default defineUserConfig({
   locales: {
-    ...siteEn,
-    ...siteEs,
-    ...siteId,
-    ...siteZh,
+    ...config.siteEn,
+    ...config.siteEs,
+    ...config.siteId,
   },
   shouldPrefetch: true,
 
   theme: defaultTheme({
     logo: "/Y.png",
     locales: {
-      ...localeEn,
-      ...localeEs,
-      ...localeId,
-      ...localeZh,
+      ...config.localeEn,
+      ...config.localeEs,
+      ...config.localeId,
     },
     repo: "https://github.com/grammyjs/grammY",
     docsRepo: "https://github.com/grammyjs/website",
@@ -42,16 +27,17 @@ export default defineUserConfig({
     editLinkPattern: ":repo/edit/:branch/:path",
     repoLabel: "GitHub",
   }),
+
   plugins: [
     docsearch({
-      ...docsearchEn,
-      ...docsearchEs,
-      ...docsearchId,
-      ...docsearchZh,
+      ...config.docsearchEn,
+      ...config.docsearchEs,
+      ...config.docsearchId,
     }),
     betterLineBreaks(),
     currentVersions(),
   ],
+
   markdown: {
     typographer: true,
   },

@@ -318,6 +318,13 @@ export const localeId: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "https://core.telegram.org/bots/faq",
               },
               {
+                // HEAD
+                //
+                text: "Fitur Bot yang Tersedia",
+                link: "https://core.telegram.org/bots/features",
+              },
+              {
+                //main
                 text: "Referensi API Bot",
                 link: "https://core.telegram.org/bots/api",
               },
@@ -358,8 +365,16 @@ export const localeId: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/id/hosting/heroku.html",
               },
               {
+                text: "Fly",
+                link: "/id/hosting/fly.html",
+              },
+              {
                 text: "Google Cloud Functions",
-                link: "/hosting/gcf.html",
+                link: "/id/hosting/gcf.html",
+              },
+              {
+                text: "Vercel",
+                link: "/id/hosting/vercel.html",
               },
               {
                 text: "Virtual Private Server",
@@ -371,7 +386,7 @@ export const localeId: LocaleConfig<DefaultThemeLocaleData> = {
       },
       {
         text: "Referensi API",
-        link: "https://doc.deno.land/https://deno.land/x/grammy/mod.ts",
+        link: "https://deno.land/x/grammy/mod.ts",
       },
     ],
   },

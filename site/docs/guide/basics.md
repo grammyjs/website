@@ -28,7 +28,7 @@ bot.command("start", (ctx) => {/* ... */});
 bot.hears(/echo *(.+)?/, (ctx) => {/* ... */});
 ```
 
-You can use auto-complete in your code editor to see all available options, or check out [all methods](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer) of the `Composer` class.
+You can use auto-complete in your code editor to see all available options, or check out [all methods](https://deno.land/x/grammy/mod.ts?s=Composer) of the `Composer` class.
 
 > [Read more](./filter-queries.md) about filtering for specific message types with `bot.on()`.
 
@@ -50,7 +50,7 @@ const me = await bot.api.getMe();
 
 Every method takes an optional options object of type `Other`, which allows you to set further options for your API calls.
 These options objects correspond exactly with the options that you can find in list of methods linked above.
-You can also use auto-complete in your code editor to see all available options, or check out [all methods](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Api) of the `Api` class.
+You can also use auto-complete in your code editor to see all available options, or check out [all methods](https://deno.land/x/grammy/mod.ts?s=Api) of the `Api` class.
 The rest of this page shows some examples for this.
 
 Also, check out the [next section](./context.md) to learn how the context object of a listener makes sending messages a breeze!

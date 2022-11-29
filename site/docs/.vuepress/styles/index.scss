@@ -1,43 +1,6 @@
-// oklch theme
-:root {
-  --c-brand-light: #27b5e6;
-  --c-tip: #16afe0;
-  --c-brand: #009dca;
-}
+@use "vars";
+@use "vars-dark";
 
-html.dark {
-  --c-brand-light: #138cb3;
-  --c-tip: #1583a7;
-  --c-brand: #009dca;
-}
-
-// adjust table background colors to avoid clashes with inline code snippets
-html.dark tr:nth-child(2n) {
-  background-color: var(--c-bg-lighter);
-}
-
-html:not(.dark) tr:nth-child(2n) code {
-  background-color: var(--c-bg-lighter);
-}
-
-.token.string, .token.char, .token.attr-value, .token.regex, .token.variable {
-  color: #6ac0e3;
-}
-
-// fix the text color animation for the secondary button on the main page
-.home .hero .action-button.secondary {
-  transition-property: background-color, color;
-}
-
-// apply justify to all articles
-.theme-default-content p,
-.theme-default-content li {
-  text-align: justify;
-  text-justify: auto;
-  hyphens: auto;
-}
-
-// neither hyphenate inline code snippets nor links, we are injeting <wbr> tags there
-code, a {
-  hyphens: none;
-}
+@use "code";
+@use "custom-container";
+@use "normalize";
