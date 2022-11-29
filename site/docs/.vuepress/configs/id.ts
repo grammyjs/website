@@ -318,13 +318,10 @@ export const localeId: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "https://core.telegram.org/bots/faq",
               },
               {
-                // HEAD
-                //
                 text: "Fitur Bot yang Tersedia",
                 link: "https://core.telegram.org/bots/features",
               },
               {
-                //main
                 text: "Referensi API Bot",
                 link: "https://core.telegram.org/bots/api",
               },
