@@ -381,6 +381,10 @@ export default defineUserConfig({
                     link: "/hosting/gcf.html",
                   },
                   {
+                    text: "Vercel",
+                    link: "/hosting/vercel.html",
+                  },
+                  {
                     text: "Virtual Private Server",
                     link: "/hosting/vps.html",
                   },
@@ -748,6 +752,10 @@ export default defineUserConfig({
                   {
                     text: "Google Cloud Functions",
                     link: "/es/hosting/gcf.html",
+                  },
+                  {
+                    text: "Vercel",
+                    link: "/es/hosting/vercel.html",
                   },
                   {
                     text: "Servidor Privado Virtual",
@@ -1119,7 +1127,11 @@ export default defineUserConfig({
                   },
                   {
                     text: "Google Cloud Functions",
-                    link: "/hosting/gcf.html",
+                    link: "/id/hosting/gcf.html",
+                  },
+                  {
+                    text: "Vercel",
+                    link: "/id/hosting/vercel.html",
                   },
                   {
                     text: "Virtual Private Server",
