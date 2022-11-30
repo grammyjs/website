@@ -389,6 +389,49 @@ export const localeEs: LocaleConfig<DefaultThemeLocaleData> = {
 export const docsearchEs: LocaleConfig<DocsearchLocaleData> = {
   "/es/": {
     placeholder: "Buscar",
-    translations: { button: { buttonText: "Buscar" } },
+    translations: {
+      button: {
+        buttonText: "Buscar",
+        buttonAriaLabel: "Buscar",
+      },
+      modal: {
+        searchBox: {
+          resetButtonTitle: "Borrar la consulta",
+          resetButtonAriaLabel: "Borrar la consulta",
+          cancelButtonText: "Cancelar",
+          cancelButtonAriaLabel: "Cancelar",
+        },
+        startScreen: {
+          recentSearchesTitle: "Recientes",
+          noRecentSearchesText: "No hay búsquedas recientes",
+          saveRecentSearchButtonTitle: "Guardar esta búsqueda",
+          removeRecentSearchButtonTitle: "Eliminar esta búsqueda del historial",
+          favoriteSearchesTitle: "Favorito",
+          removeFavoriteSearchButtonTitle:
+            "Eliminar esta búsqueda de los favoritos",
+        },
+        errorScreen: {
+          titleText: "No se pueden obtener resultados",
+          helpText: "Puede que quieras comprobar tu conexión de red.",
+        },
+        footer: {
+          selectText: "para seleccionar",
+          selectKeyAriaLabel: "Enter",
+          navigateText: "para navegar",
+          navigateUpKeyAriaLabel: "Flecha arriba",
+          navigateDownKeyAriaLabel: "Flecha abajo",
+          closeText: "para cerrar",
+          closeKeyAriaLabel: "Escape",
+          searchByText: "Buscar por",
+        },
+        noResultsScreen: {
+          noResultsText: "No hay resultados para",
+          suggestedQueryText: "Intenta buscar por",
+          reportMissingResultsText:
+            "¿Crees que esta consulta debería devolver resultados?",
+          reportMissingResultsLinkText: "Háganoslo saber.",
+        },
+      },
+    },
   },
 };
