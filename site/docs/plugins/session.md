@@ -6,7 +6,7 @@ While you can always just write you own code to connect to a data storage of you
 
 ## Why Must We Think About Storage?
 
-In opposite to regular user accounts on Telegram, bots have [limited cloud storage](https://core.telegram.org/bots#4-how-are-bots-different-from-humans) in the Telegram cloud.
+In opposite to regular user accounts on Telegram, bots have [limited cloud storage](https://core.telegram.org/bots#how-are-bots-different-from-users) in the Telegram cloud.
 As a result, there are a few things you cannot do with bots:
 
 1. You cannot access old messages that your bot received.
