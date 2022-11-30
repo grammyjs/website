@@ -301,8 +301,7 @@ kill_timeout = 5
 [processes]
   app = "run --allow-net ./app.ts"
 
-# Simply omitting the whole [[services]] section 
-# since we are not listening to HTTP
+# Simplemente omitiendo toda la sección de [[servicios]] ya que no estamos escuchando HTTP.
 ```
 
 </CodeGroupItem>
@@ -317,7 +316,7 @@ kill_timeout = 5
 [processes]
   app = "node ./build/app.js"
 
-# Adjust the NODE_ENV environment to suppress the warning
+# Ajuste el entorno NODE_ENV para suprimir la advertencia
 [build.args]
   NODE_ENV = "production"
 
@@ -363,7 +362,7 @@ kill_timeout = 5
 [processes]
   app = "node ./build/app.js"
 
-# Adjust the NODE_ENV environment to suppress the warning
+# Ajuste el entorno NODE_ENV para suprimir la advertencia
 [build.args]
   NODE_ENV = "production"
 

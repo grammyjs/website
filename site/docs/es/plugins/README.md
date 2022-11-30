@@ -52,7 +52,7 @@ Instalar plugins es divertido y fácil, y queremos que sepas lo que tenemos para
 | Control de flujo                   | [`transformer-throttler`](./transformer-throttler.md) | Poner en cola automáticamente las llamadas a la API para evitar las esperas |
 
 También tenemos algunos plugins de terceros.
-Puedes encontrarlos en el menú de navegación en _Plugins_ > _Third-Party_.
+Puedes encontrarlos en el menú de navegación en _Complementos_ > _De Terceros_.
 Asegúrese de comprobarlos también.
 
 ## Tipos de Plugins en grammY
