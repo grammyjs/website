@@ -114,11 +114,11 @@ El manejo de archivos se explica con mayor profundidad en una [sección posterio
 
 ## Forzar respuesta
 
-> Esto puede ser útil si tu bot está funcionando en [modo privacidad](https://core.telegram.org/bots#privacy-mode) en los chats de grupo.
+> Esto puede ser útil si tu bot está funcionando en [modo privacidad](https://core.telegram.org/bots/features#privacy-mode) en los chats de grupo.
 
 Cuando envíes un mensaje, puedes hacer que el cliente de Telegram del usuario especifique automáticamente el mensaje como respuesta.
 Esto significa que el usuario responderá al mensaje de tu bot automáticamente (a menos que elimine la respuesta manualmente).
-Como resultado, tu bot recibirá el mensaje del usuario incluso cuando se ejecute en [modo de privacidad](https://core.telegram.org/bots#privacy-mode) en los chats de grupo.
+Como resultado, tu bot recibirá el mensaje del usuario incluso cuando se ejecute en [modo de privacidad](https://core.telegram.org/bots/features#privacy-mode) en los chats de grupo.
 
 Puedes forzar una respuesta así:
 

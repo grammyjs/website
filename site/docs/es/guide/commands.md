@@ -9,7 +9,7 @@ Los comandos son entidades especiales en los mensajes de Telegram, que sirven co
 
 # Uso
 
-> Revisa la sección de comandos en la [Introducción para Desarrolladores](https://core.telegram.org/bots#commands) escrita por el equipo de Telegram.
+> Revisa la sección de comandos en las [Características de los bots de Telegram](https://core.telegram.org/bots/features#commands) escrita por el equipo de Telegram.
 
 grammY proporciona un manejo especial para los comandos (por ejemplo, `/start` y `/help`). Puedes registrar directamente oyentes para ciertos comandos a través de `bot.command()`.
 
@@ -61,7 +61,7 @@ Ten en cuenta que siempre puedes acceder al texto completo del mensaje a través
 
 ## Soporte de Deep Linking
 
-> Revisa la sección de enlaces profundos en la [Introducción para Desarrolladores](https://core.telegram.org/bots#deep-linking) escrita por el equipo de Telegram.
+> Revisa la sección de enlaces profundos en las [Características de los bots de Telegram](https://core.telegram.org/bots/features#deep-linking) escrita por el equipo de Telegram.
 
 Cuando un usuario visita `https://t.me/your_bot_name?start=payload`, su cliente de Telegram mostrará un botón START que (al hacer clic) envía la cadena del parámetro de la URL junto con el mensaje, en este ejemplo, el texto del mensaje será `"/start payload"`.
 Los clientes de Telegram no mostrarán el payload al usuario (sólo verán `"/start"` en la UI), sin embargo, tu bot lo recibirá.

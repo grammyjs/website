@@ -115,11 +115,11 @@ Pemrosesan file dijelaskan secara lengkap di [materi lain](./files.md#mengirim-f
 
 ## Reply Paksa (Force Reply)
 
-> Force reply berguna jika bot kamu berjalan dalam [mode privasi](https://core.telegram.org/bots#privacy-mode) di chat grup.
+> Force reply berguna jika bot kamu berjalan dalam [mode privasi](https://core.telegram.org/bots/features#privacy-mode) di chat grup.
 
 Saat mengirim pesan, kamu dapat membuat aplikasi Telegram pengguna secara otomatis me-reply pesan tersebut.
 Artinya, pengguna akan "dipaksa" me-reply pesan bot tadi (kecuali mereka menghapus reply tersebut secara manual).
-Keuntungannya, bot masih bisa menerima pesan dari pengguna di dalam chat grup meskipun sedang berjalan dalam [mode privasi](https://core.telegram.org/bots#privacy-mode).
+Keuntungannya, bot masih bisa menerima pesan dari pengguna di dalam chat grup meskipun sedang berjalan dalam [mode privasi](https://core.telegram.org/bots/features#privacy-mode).
 
 Kamu dapat menggunakan force reply seperti ini:
 

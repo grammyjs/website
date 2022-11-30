@@ -9,7 +9,7 @@ Commands are special entities in Telegram messages, that serve as instructions f
 
 ## Usage
 
-> Revisit the commands section in the [Introduction for Developers](https://core.telegram.org/bots#commands) written by the Telegram team.
+> Revisit the commands section in the [Telegram Bot Features](https://core.telegram.org/bots/features#commands) written by the Telegram team.
 
 grammY provides special handling for commands (e.g. `/start` and `/help`).
 You can directly register listeners for certain commands via `bot.command()`.
@@ -61,7 +61,7 @@ Note that you can always access the entire message's text via `ctx.msg.text`.
 
 ## Deep Linking Support
 
-> Revisit the deep linking section in the [Introduction for Developers](https://core.telegram.org/bots#deep-linking) written by the Telegram team.
+> Revisit the deep linking section in the [Telegram Bot Features](https://core.telegram.org/bots/features#deep-linking) written by the Telegram team.
 
 When a user visits `https://t.me/your_bot_name?start=payload`, their Telegram client will show a START button that (when clicked) sends the string from the URL parameter along with the message, in this example, the message text will be `"/start payload"`.
 Telegram clients will not show the payload to the user (they will only see `"/start"` in the UI), however, your bot will receive it.
