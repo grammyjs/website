@@ -213,7 +213,7 @@ WORKDIR /deno-dir
 COPY . .
 
 ENTRYPOINT ["/bin/deno"]
-# CMD is removed
+# CMD tidak digunakan
 ```
 
 </CodeGroupItem>
@@ -302,8 +302,7 @@ kill_timeout = 5
 [processes]
   app = "run --allow-net ./app.ts"
 
-# Hapus semua bagian [[services]] 
-# karena kita tidak perlu menyimak HTTP
+# Hapus semua bagian [[services]] karena kita tidak perlu menyimak HTTP
 ```
 
 </CodeGroupItem>
