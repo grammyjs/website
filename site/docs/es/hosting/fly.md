@@ -301,7 +301,7 @@ kill_timeout = 5
 [processes]
   app = "run --allow-net ./app.ts"
 
-# Simplemente omitiendo toda la sección de [[servicios]] ya que no estamos escuchando HTTP.
+# Simplemente omitiendo toda la sección de [[services]] ya que no estamos escuchando HTTP.
 ```
 
 </CodeGroupItem>
