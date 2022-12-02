@@ -213,7 +213,7 @@ WORKDIR /deno-dir
 COPY . .
 
 ENTRYPOINT ["/bin/deno"]
-# CMD is removed
+# CMD tidak digunakan
 ```
 
 </CodeGroupItem>
@@ -302,8 +302,7 @@ kill_timeout = 5
 [processes]
   app = "run --allow-net ./app.ts"
 
-# Hapus semua bagian [[services]] 
-# karena kita tidak perlu menyimak HTTP
+# Hapus semua bagian [[services]] karena kita tidak perlu menyimak HTTP
 ```
 
 </CodeGroupItem>
@@ -318,7 +317,7 @@ kill_timeout = 5
 [processes]
   app = "node ./build/app.js"
 
-# Atur environment NODE_ENV agar tidak muncul peringatan atau warning
+# Atur environment variable NODE_ENV agar tidak muncul peringatan atau warning
 [build.args]
   NODE_ENV = "production"
 
@@ -364,7 +363,7 @@ kill_timeout = 5
 [processes]
   app = "node ./build/app.js"
 
-# Atur environment NODE_ENV agar tidak muncul peringatan atau warning
+# Atur environment variable NODE_ENV agar tidak muncul peringatan atau warning
 [build.args]
   NODE_ENV = "production"
 

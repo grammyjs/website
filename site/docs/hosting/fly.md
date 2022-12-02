@@ -317,7 +317,7 @@ kill_timeout = 5
 [processes]
   app = "node ./build/app.js"
 
-# Adjust the NODE_ENV environment to suppress the warning
+# Adjust the NODE_ENV environment variable to suppress the warning
 [build.args]
   NODE_ENV = "production"
 
@@ -363,7 +363,7 @@ kill_timeout = 5
 [processes]
   app = "node ./build/app.js"
 
-# Adjust the NODE_ENV environment to suppress the warning
+# Adjust the NODE_ENV environment variable to suppress the warning
 [build.args]
   NODE_ENV = "production"
 
