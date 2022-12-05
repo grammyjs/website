@@ -325,6 +325,10 @@ Telegram sends webhooks sequentially per chat, so the default session key resolv
 If you must use the option (which is of course still possible), you should know what you are doing.
 Make sure you understand the consequences of this configuration by reading [this](../guide/deployment-types.md) article and especially [this](./runner.md#sequential-processing-where-necessary) one.
 :::
+   
+::: warning Sessions in group chats
+If you are using sessions for a group chat you should be aware that telegram migrates regular groups to supergroups under certain circumstances (e.g. [here](https://github.com/telegramdesktop/tdesktop/issues/5593)). This migration can only occur once per group chat but it can cause inconsitencies. This is because the migrated chat is technically a completely different chat with a different `chat.id` and hence a different session id.
+:::
 
 ### Storing Your Data
 
