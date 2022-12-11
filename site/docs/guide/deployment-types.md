@@ -241,19 +241,19 @@ In order to support many different web frameworks, grammY adopts the concept of 
 Because of how this approach works, we usually need an adapter for each framework but, since some frameworks share a similiar interface, there are adapters that are known to work with multiple frameworks.
 Below is a table containing the currently available adapters, the frameworks or APIs they're known to work with, and the runtime(s) they are available on.
 
-| Adapter          | Framework/API(s)                                                    | Runtime |
-| ---------------- | ------------------------------------------------------------- | -------- |
-| `std/http`       | `Deno.serve`,`Deno.upgradeHttp`,`Fresh`,`Ultra`,`Rutt`,`Sift` | Both     |
-| `oak`            | Oak                                                         | Both     |
-| `express`        | Express                                                       | Both     |
-| `koa`            | Koa                                                           | Both     |
-| `fastify`        | Fastify                                                       | Both     |
-| `serveHttp`      | `Deno.serveHttp`                                              | Deno     |
-| `http` / `https` | Node.js `http` module, Vercel                                 | Node     |
-| `aws-lambda`     | AWS Lambda Functions                                          | Node     |
-| `azure`          | Azure Functions                                               | Node     |
-| `nextJs`         | Next.js                                                       | Node     |
-| `worktop`        | The `worktop` framework for Cloudflare workers                    | Node     |
+| Adapter          | Framework/API(s)                                              | Runtime |
+| ---------------- | ------------------------------------------------------------- | ------- |
+| `std/http`       | `Deno.serve`,`Deno.upgradeHttp`,`Fresh`,`Ultra`,`Rutt`,`Sift` | Both    |
+| `oak`            | Oak                                                           | Both    |
+| `express`        | Express                                                       | Both    |
+| `koa`            | Koa                                                           | Both    |
+| `fastify`        | Fastify                                                       | Both    |
+| `serveHttp`      | `Deno.serveHttp`                                              | Deno    |
+| `http` / `https` | Node.js `http` module, Vercel                                 | Node    |
+| `aws-lambda`     | AWS Lambda Functions                                          | Node    |
+| `azure`          | Azure Functions                                               | Node    |
+| `nextJs`         | Next.js                                                       | Node    |
+| `worktop`        | The `worktop` framework for Cloudflare workers                | Node    |
 
 ### Webhook Reply
 
