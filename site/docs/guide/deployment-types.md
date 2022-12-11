@@ -234,6 +234,41 @@ app.use(webhookCallback(bot, "oak"));
 
 Be sure to read [Marvin's Marvellous Guide to All Things Webhook](https://core.telegram.org/bots/webhooks) written by the Telegram team if you consider running your bot on webhooks on a VPS.
 
+### Web framework adapters
+
+In order to support many different web frameworks, grammY adopts the concept of **adapters**. Each adapter is responsible for relaying input and output from the web framework to grammY and vice versa. The second parameter passed to `webhookCallback` defines the framework adapter used to communicate with the web framework.
+
+Because of how this approach works, we usually need an adapter for each framework but, since some frameworks share a similiar interface, there are adapters that are known to work with multiple frameworks. Below you will find a list of the existing adapters and, when applicable, the frameworks they're known to work with.
+
+#### Deno
+
+- `std/http`
+  - `Deno.serve`
+  - `Deno.upgradeHttp`
+  - `Fresh`
+  - `Ultra`
+  - `Rutt`
+  - `Sift`
+  - Anything that uses Deno's default `Request` and `Response` classes
+- `oak`
+- `serveHttp`
+
+#### Node.js
+
+- `http`
+  - Node.js `http` module
+  - Vercel
+- `worktop`
+- `awsLambda`
+- `azure`
+- `nextJs`
+
+#### Both
+
+- `express`
+- `koa`
+- `fastify`
+
 ### Webhook Reply
 
 When a webhook request is received, your bot can call up to one method in the response.
