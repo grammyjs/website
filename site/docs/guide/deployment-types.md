@@ -243,16 +243,16 @@ Because of how this approach works, we usually need an adapter for each framewor
 | Adapter          | Frameworks                                                    | Platform |
 | ---------------- | ------------------------------------------------------------- | -------- |
 | `std/http`       | `Deno.serve`,`Deno.upgradeHttp`,`Fresh`,`Ultra`,`Rutt`,`Sift` | Both     |
-| `oak`            | `oak`                                                         | Both     |
+| `oak`            | Oak                                                         | Both     |
 | `express`        | Express                                                       | Both     |
 | `koa`            | Koa                                                           | Both     |
 | `fastify`        | Fastify                                                       | Both     |
 | `serveHttp`      | `Deno.serveHttp`                                              | Deno     |
 | `http` / `https` | Node.js `http` module, Vercel                                 | Node     |
-| `aws-lambda`     | AWS Lambda functions                                          | Node     |
+| `aws-lambda`     | AWS Lambda Functions                                          | Node     |
 | `azure`          | Azure Functions                                               | Node     |
 | `nextJs`         | Next.js                                                       | Node     |
-| `worktop`        | `worktop` framework for CloudFlare workers                    | Node     |
+| `worktop`        | The `worktop` framework for Cloudflare workers                    | Node     |
 
 ### Webhook Reply
 
