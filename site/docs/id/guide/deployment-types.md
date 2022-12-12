@@ -238,6 +238,30 @@ app.use(webhookCallback(bot, "oak"));
 
 Jika kamu berniat menjalankan bot di sebuah VPS menggunakan webhook, pastikan untuk membaca [panduan keren Marvin mengenai hal-hal tentang webhook](https://core.telegram.org/bots/webhooks) yang ditulis oleh tim Telegram.
 
+### Web Framework Adapter
+
+Untuk mendukung berbagai macam web framework, grammY menerapkan konsep **multi-adapter**.
+Adapter bertugas untuk meneruskan input dan output dari suatu web framework ke grammY, dan sebaliknya.
+Nah, jenis framework adapter yang digunakan untuk berkomunikasi dengan web framework tersebut ditentukan oleh parameter kedua yang kamu isi di `webhookCallback`.
+
+Karena menggunakan pendekatan dengan cara tersebut, biasanya kita membutuhkan sebuah adapter yang berbeda untuk setiap framework.
+Tetapi, berhubung beberapa framework memiliki interface yang mirip, kita bisa menggunakan adapter yang sama untuk beberapa framework sekaligus.
+Di bawah ini adalah tabel berisi berbagai macam adapter yang tersedia, jenis framework atau API-nya, serta runtime yang didukung.
+
+| Adapter          | Framework/API                                                 | Runtime       |
+| ---------------- | ------------------------------------------------------------- | ------------- |
+| `std/http`       | `Deno.serve`,`Deno.upgradeHttp`,`Fresh`,`Ultra`,`Rutt`,`Sift` | Deno dan Node |
+| `oak`            | Oak                                                           | Deno dan Node |
+| `express`        | Express                                                       | Deno dan Node |
+| `koa`            | Koa                                                           | Deno dan Node |
+| `fastify`        | Fastify                                                       | Deno dan Node |
+| `serveHttp`      | `Deno.serveHttp`                                              | Deno          |
+| `http` / `https` | Node.js `http` module, Vercel                                 | Node          |
+| `aws-lambda`     | AWS Lambda Functions                                          | Node          |
+| `azure`          | Azure Functions                                               | Node          |
+| `nextJs`         | Next.js                                                       | Node          |
+| `worktop`        | framework `worktop` untuk Cloudflare workers                  | Node          |
+
 ### Webhook Reply
 
 Ketika menerima sebuah request webhook, bot kamu bisa memanggil satu method sebagai responnya.
