@@ -236,7 +236,7 @@ Be sure to read [Marvin's Marvellous Guide to All Things Webhook](https://core.t
 
 ### Web Framework Adapters
 
-In order to support many different web frameworks, grammY adopts the concept of **adapters**. 
+In order to support many different web frameworks, grammY adopts the concept of **adapters**.
 Each adapter is responsible for relaying input and output from the web framework to grammY and vice versa.
 The second parameter passed to `webhookCallback` defines the framework adapter used to communicate with the web framework.
 
