@@ -234,7 +234,7 @@ app.use(webhookCallback(bot, "oak"));
 
 Be sure to read [Marvin's Marvellous Guide to All Things Webhook](https://core.telegram.org/bots/webhooks) written by the Telegram team if you consider running your bot on webhooks on a VPS.
 
-### Web framework adapters
+### Web Framework Adapters
 
 In order to support many different web frameworks, grammY adopts the concept of **adapters**. Each adapter is responsible for relaying input and output from the web framework to grammY and vice versa. The second parameter passed to `webhookCallback` defines the framework adapter used to communicate with the web framework.
 
