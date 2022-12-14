@@ -190,7 +190,7 @@ Si quieres ejecutar grammY con webhooks, puedes integrar tu bot en un servidor w
 Por lo tanto, esperamos que seas capaz de poner en marcha un servidor web simple con un framework de tu elección.
 
 Cada bot de grammY puede convertirse en un middleware para un número de frameworks web, incluyendo `express`, `koa`/`oak`, y más.
-Puedes importar la función `webhookCallback` de grammY para convertir tu bot en middleware para el respectivo framework.
+Puedes importar la función `webhookCallback` ([API reference](https://deno.land/x/grammy/mod.ts?s=webhookCallback)) para crear un middleware para el framework correspondiente.
 
 <CodeGroup>
  <CodeGroupItem title="TypeScript" active>
@@ -234,6 +234,29 @@ app.use(webhookCallback(bot, "oak"));
 </CodeGroup>
 
 Asegúrate de leer [Marvin's Marvellous Guide to All Things Webhook](https://core.telegram.org/bots/webhooks) escrita por el equipo de Telegram si consideras ejecutar tu bot con webhooks en un VPS.
+
+### Web Framework Adapters
+
+Con el fin de soportar muchos frameworks web diferentes, grammY adopta el concepto de **adaptadores**.
+Cada adaptador es responsable de retransmitir la entrada y salida desde el framework web a grammY y viceversa.
+El segundo parámetro pasado a `webhookCallback` ([API reference](https://deno.land/x/grammy/mod.ts?s=webhookCallback)) define el adaptador del framework usado para comunicarse con el framework web.
+
+Debido a cómo funciona este enfoque, normalmente necesitamos un adaptador para cada framework pero, dado que algunos frameworks comparten una interfaz similar, hay adaptadores que se sabe que funcionan con múltiples frameworks.
+A continuación se muestra una tabla con los adaptadores disponibles actualmente, los frameworks o APIs con los que se sabe que funcionan y los tiempos de ejecución en los que están disponibles.
+
+| Adapter          | Framework/API(s)                                              | Runtime |
+| ---------------- | ------------------------------------------------------------- | ------- |
+| `std/http`       | `Deno.serve`,`Deno.upgradeHttp`,`Fresh`,`Ultra`,`Rutt`,`Sift` | Ambos   |
+| `oak`            | Oak                                                           | Ambos   |
+| `express`        | Express                                                       | Ambos   |
+| `koa`            | Koa                                                           | Ambos   |
+| `fastify`        | Fastify                                                       | Ambos   |
+| `serveHttp`      | `Deno.serveHttp`                                              | Deno    |
+| `http` / `https` | Node.js `http` module, Vercel                                 | Node    |
+| `aws-lambda`     | AWS Lambda Functions                                          | Node    |
+| `azure`          | Azure Functions                                               | Node    |
+| `next-js`        | Next.js                                                       | Node    |
+| `worktop`        | El `worktop` para los trabajadores de Cloudflare workers      | Node    |
 
 ### Webhook Reply
 
