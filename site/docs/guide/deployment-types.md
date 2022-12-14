@@ -254,7 +254,7 @@ Below is a table containing the currently available adapters, the frameworks or 
 | `http` / `https` | Node.js `http` module, Vercel                                 | Node    |
 | `aws-lambda`     | AWS Lambda Functions                                          | Node    |
 | `azure`          | Azure Functions                                               | Node    |
-| `nextJs`         | Next.js                                                       | Node    |
+| `next-js`        | Next.js                                                       | Node    |
 | `worktop`        | The `worktop` framework for Cloudflare workers                | Node    |
 
 ### Webhook Reply

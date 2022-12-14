@@ -255,7 +255,7 @@ A continuación se muestra una tabla con los adaptadores disponibles actualmente
 | `http` / `https` | Node.js `http` module, Vercel                                 | Node    |
 | `aws-lambda`     | AWS Lambda Functions                                          | Node    |
 | `azure`          | Azure Functions                                               | Node    |
-| `nextJs`         | Next.js                                                       | Node    |
+| `next-js`        | Next.js                                                       | Node    |
 | `worktop`        | El `worktop` para los trabajadores de Cloudflare workers      | Node    |
 
 ### Webhook Reply

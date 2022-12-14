@@ -259,7 +259,7 @@ Di bawah ini adalah tabel berisi berbagai macam adapter yang tersedia, jenis fra
 | `http` / `https` | Node.js `http` module, Vercel                                 | Node          |
 | `aws-lambda`     | AWS Lambda Functions                                          | Node          |
 | `azure`          | Azure Functions                                               | Node          |
-| `nextJs`         | Next.js                                                       | Node          |
+| `next-js`        | Next.js                                                       | Node          |
 | `worktop`        | framework `worktop` untuk Cloudflare workers                  | Node          |
 
 ### Webhook Reply
