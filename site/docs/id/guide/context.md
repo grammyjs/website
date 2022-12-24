@@ -210,8 +210,8 @@ Materi ini memerlukan pemahaman yang baik mengenai middleware. Jika kamu belum m
 Perlu kamu ketahui bahwa beberapa handler mampu memproses object context yang sama. Ada juga sebuah handler khusus yang berfungsi untuk memodifikasi `ctx` sebelum handler-handler lain dijalankan. Hasil modifikasi tersebut akan digunakan oleh handler-handler berikutnya.
 :::
 
-Idenya adalah kamu perlu memasang middleware terlebih dahulu sebelum listener-listener dijalankan.
-Dengan begitu, kamu bisa menentukan berbagai property yang diinginkan di dalam handler-handler tadi.
+Konsepnya adalah middleware harus dipasang sebelum listener.
+Dengan begitu, kamu bisa menambahkan property yang diinginkan ke berbagai handler.
 Misalnya, jika kamu menambahkan `ctx.namaPropertyCustomKamu = valuePropertyKamu` ke dalam sebuah handler, maka property `ctx.namaPropertyCustomKamu` juga akan tersedia di handler-handler yang lain.
 
 Sebagai ilustrasi, katakanlah kamu hendak mengatur property `ctx.config` dari object context.
