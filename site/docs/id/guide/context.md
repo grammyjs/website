@@ -212,6 +212,7 @@ Perlu kamu ketahui bahwa beberapa handler mampu memproses object context yang sa
 
 Idenya adalah kamu perlu memasang middleware terlebih dahulu sebelum listener-listener dijalankan.
 Dengan begitu, kamu bisa menentukan berbagai property yang diinginkan di dalam handler-handler tadi.
+Misalnya, jika kamu menambahkan `ctx.namaPropertyCustomKamu = valuePropertyKamu` ke dalam sebuah handler, maka property `ctx.namaPropertyCustomKamu` juga akan tersedia di handler-handler yang lain.
 
 Sebagai ilustrasi, katakanlah kamu hendak mengatur property `ctx.config` dari object context.
 Di contoh berikut, kamu akan menggunakannya untuk menyimpan beberapa konfigurasi, dengan tujuan agar semua handler bisa mengaksesnya.
