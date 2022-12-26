@@ -11,9 +11,11 @@ This plugin provides a transformer for setting default `parse_mode`, and a middl
 import { Bot } from "grammy";
 import { hydrateReply, parseMode } from "@grammyjs/parse-mode";
 
-import type { ParseModeContext } from "@grammyjs/parse-mode";
+import type { ParseModeFlavor } from "@grammyjs/parse-mode";
 
-const bot = new Bot<ParseModeContext>("");
+type MyContext = ParseModeFlavor<Context> & Context;
+
+const bot = new Bot<MyContext>("");
 
 // Use the plugin.
 bot.use(hydrateReply);
