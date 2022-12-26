@@ -208,11 +208,12 @@ Hay manejadores especiales que pueden modificar `ctx` antes de que se ejecuten o
 :::
 
 La idea es instalar el middleware antes de registrar otros listeners.
-Entonces puedes establecer las propiedades que quieras dentro de estos manejadores.
+A continuación, puede establecer las propiedades que desee dentro de estos manejadores.
+Si haces `ctx.yourCustomPropertyName = yourCustomValue` dentro de un manejador de este tipo, entonces la propiedad `ctx.yourCustomPropertyName` también estará disponible en el resto de manejadores.
 
-A modo de ejemplo, digamos que quieres establecer una propiedad llamada `ctx.config` en el objeto contexto.
-En este ejemplo, la usaremos para almacenar alguna configuración sobre el proyecto para que todos los manejadores tengan acceso a ella.
-La configuración hará que sea más fácil detectar si el bot es utilizado por su desarrollador o por los usuarios regulares.
+A modo de ejemplo, digamos que quieres establecer una propiedad llamada `ctx.config` en el objeto de contexto.
+En este ejemplo, la utilizaremos para almacenar alguna configuración sobre el proyecto de forma que todos los manejadores tengan acceso a ella.
+La configuración hará más fácil detectar si el bot es usado por su desarrollador o por usuarios normales.
 
 Justo después de crear tu bot, haz esto:
 
