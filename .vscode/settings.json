@@ -9,7 +9,10 @@
     "./site/docs/hosting/",
     "./site/docs/plugins/",
     "./site/docs/resources/",
-    "./site/docs/zh/"
+    "./site/docs/zh/",
+    "./site/docs/es/",
+    "./site/docs/id/",
+    "./site/README.md"
   ],
   "editor.defaultFormatter": "denoland.vscode-deno",
   "[typescript]": {

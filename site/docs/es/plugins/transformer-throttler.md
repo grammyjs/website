@@ -1,4 +1,4 @@
-# Flood Control (`transformer-throttler`)
+# Control de flujo (`transformer-throttler`)
 
 Este plugin pone en cola la instancia de solicitudes de API salientes a través de [Bottleneck](https://github.com/SGrondin/bottleneck) para evitar que su bot alcance los [límites de velocidad](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this) como se describe en [esta sección avanzada](../advanced/flood.md) de la documentación.
 
@@ -121,4 +121,4 @@ const outConfig = {
 
 - Nombre: `transformer-throttler`
 - Fuente: <https://github.com/grammyjs/transformer-throttler>
-- Referencia: <https://doc.deno.land/https://deno.land/x/grammy_transformer_throttler/mod.ts>
+- Referencia: <https://deno.land/x/grammy_transformer_throttler/mod.ts>

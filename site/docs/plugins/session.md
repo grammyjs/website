@@ -6,7 +6,7 @@ While you can always just write you own code to connect to a data storage of you
 
 ## Why Must We Think About Storage?
 
-In opposite to regular user accounts on Telegram, bots have [limited cloud storage](https://core.telegram.org/bots#4-how-are-bots-different-from-humans) in the Telegram cloud.
+In opposite to regular user accounts on Telegram, bots have [limited cloud storage](https://core.telegram.org/bots#how-are-bots-different-from-users) in the Telegram cloud.
 As a result, there are a few things you cannot do with bots:
 
 1. You cannot access old messages that your bot received.
@@ -246,7 +246,7 @@ If you don't specify it, reading `ctx.session` will throw an error for new users
 > This section describes an advanced feature that most people do not have to worry about.
 > You may want to continue with the section about [storing your data](#storing-your-data).
 
-You can specify which session key to use by passing a function called `getSessionKey` to the [options](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/SessionOptions#getSessionKey).
+You can specify which session key to use by passing a function called `getSessionKey` to the [options](https://deno.land/x/grammy/mod.ts?s=SessionOptions#prop_getSessionKey).
 That way, you can fundamentally change the way how the session plugin works.
 By default, data is stored per chat.
 Using `getSessionKey` allows you to store data per user, or per user-chat combination, or however you want.
@@ -356,7 +356,7 @@ bot.use(session({
 By default, all data will be stored in RAM.
 This means that all sessions are lost as soon as your bot stops.
 
-You can use the `MemorySessionStorage` class ([API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/MemorySessionStorage)) from the grammY core package if you want to configure further things about storing data in RAM.
+You can use the `MemorySessionStorage` class ([API Reference](https://deno.land/x/grammy/mod.ts?s=MemorySessionStorage)) from the grammY core package if you want to configure further things about storing data in RAM.
 
 ```ts
 bot.use(session({
@@ -534,7 +534,7 @@ Each of them will require you to register at a hosting provider, or to host your
 
 ::: tip Your storage is not supported? No problem!
 Creating a custom storage adapter is extremely simple.
-The `storage` option works with any object that adheres to [this interface](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/StorageAdapter), so you can connect to your storage just in a few lines of code.
+The `storage` option works with any object that adheres to [this interface](https://deno.land/x/grammy/mod.ts?s=StorageAdapter), so you can connect to your storage just in a few lines of code.
 
 > If you published your own storage adapter, feel free to edit this page and link it here, so that other people can use it.
 
@@ -577,7 +577,7 @@ In turn, you will need to configure each fragment with its own config.
 bot.use(session({
   type: "multi",
   foo: {
-    // there are also the default values
+    // these are also the default values
     storage: new MemorySessionStorage(),
     initial: () => undefined,
     getSessionKey: (ctx) => ctx.from?.id.toString(),
@@ -695,15 +695,13 @@ The session plugin is able to enhance any storage adapter by adding more feature
 They can be installed using the `enhanceStorage` function.
 
 ```ts
-// Create a storage adapter.
-const storage = freeStorage(bot.token); // adjust this
-// Enhance the storage adapter.
-const enhanced = enhanceStorage({
-  storage,
-  // more config here
-});
 // Use the enhanced storage adapter.
-bot.use(session({ storage: enhanced }));
+bot.use(session({
+  storage: enhanceStorage({
+    storage: freeStorage(bot.token), // adjust this
+    // more config here
+  }),
+}));
 ```
 
 You can also use both at the same time.

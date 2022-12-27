@@ -106,7 +106,7 @@ Seperti biasanya, ia dinamai dengan `ctx` dan menggunakan [custom context type](
 Plugin conversations meng-export sebuah [context flavor](../guide/context.md#additive-context-flavor) bernama `ConversationFlavor`.
 
 **Parameter pertama** adalah elemen utama dari plugin ini.
-Ia bisanya dinamakan dengan `conversation` dan memiliki type `Conversation` ([referensi API](https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts/~/Conversation)).
+Ia bisanya dinamakan dengan `conversation` dan memiliki type `Conversation` ([referensi API](https://deno.land/x/grammy_conversations/mod.ts?s=Conversation)).
 Ia berfungsi untuk mengontrol suatu percakapan, seperti menunggu input dari user, dsb.
 Type `Conversation` mengharapkan [custom context type](../guide/context.md#memodifikasi-object-context) kamu sebagai sebuah type parameter, sehingga kamu akan sering menggunakan `Conversation<MyContext>`.
 
@@ -329,10 +329,43 @@ bot.start();
 </CodeGroupItem>
 </CodeGroup>
 
+### Pemasangan Menggunakan Custom Session Data
+
+Perlu diketahui bahwa jika kamu menggunakan TypeScript dan ingin menyimpan session data sekaligus menggunakan conversation, kamu perlu menyediakan informasi type tambahan ke compiler.
+Misalkan kamu memiliki sebuah interface yang mendeskripsikan session data kamu seperti berikut:
+
+```ts
+interface SessionData {
+  /** custom session property */
+  foo: string;
+}
+```
+
+Maka custom context type kamu akan menjadi seperti ini:
+
+```ts
+type MyContext = Context & SessionFlavor<SessionData> & ConversationFlavor;
+```
+
+Yang perlu diperhatikan adalah kamu perlu menyediakan session data secara eksplisit ketika memasang plugin session dengan penyimpanan eksternal.
+Semua storage adapter menyediakan cara untuk kamu meneruskan `SessionData` tersebut sebagai sebuah type parameter.
+Contohnya, berikut yang harus kamu lakukan ketika menggunakan [`freeStorage`](./session.md#storage-gratis) milik grammY.
+
+```ts
+// Pasang plugin session-nya.
+bot.use(session({
+  // Tambahkan session type ke adapter.
+  storage: freeStorage<SessionData>(bot.token),
+  initial: () => ({ foo: "" }),
+}));
+```
+
+Kamu juga bisa melakukan hal yang sama ke storage adapter lainnya, misal `new FileAdapter<SessionData>()` dan sebagainya.
+
 ## Meninggalkan Sebuah Percakapan
 
 Percakapan akan terus berjalan hingga conversation builder function selesai melakukan tugasnya.
-Karena itu, kamu bisa meninggalkan sebuah percakapan cukup dengan menggunakan `return`.
+Karena itu, kamu bisa meninggalkan sebuah percakapan cukup dengan menggunakan `return` atau `throw`.
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
@@ -361,12 +394,67 @@ async function hiAndBye(conversation, ctx) {
 
 (Iya.. iya.. Kami tahu menambahkan sebuah `return` di akhir function memang tidak terlalu bermanfaat, tetapi setidaknya kamu paham maksud yang kami sampaikan. :slightly_smiling_face:)
 
-Kamu juga bisa meninggalkan percakapan dengan melempar sebuah error.
-Jangan lupa untuk [menginstal sebuah error handler](../guide/errors.md) di bot kamu.
+Melempar sebuah error juga bisa digunakan untuk meninggalkan sebuah percakapan.
+Meski demikian, [plugin session](#menginstal-dan-memasuki-sebuah-percakapan) hanya akan menyimpan data jika middleware terkait berhasil dijalankan.
+Sehingga, jika kamu melempar sebuah error di dalam sebuah percakapan dan tidak segera menangkapnya sebelum error tersebut mencapai plugin session, maka status percakapan tersebut telah ditinggalkan tidak akan tersimpan.
+Akibatnya, pesan-pesan selanjutnya akan menghasilkan error yang sama.
 
-Jika ingin menghentikan secara paksa sebuah percakapan yang sedang menunggu input dari user, kamu bisa menggunakan `await ctx.conversation.exit()`.
-Biasanya menggunakan `return` di function adalah cara yang lebih baik, tetapi ada kalanya di beberapa kondisi menggunakan `await ctx.conversation.exit()` jauh lebih nyaman.
-Selalu ingat untuk memanggil `await`.
+Kamu bisa mengatasinya dengan cara memasang sebuah [error boundary](../guide/errors.md#error-boundary) diantara session dan conversation terkait.
+Dengan begitu, kamu bisa mencegah error mencapai [middleware tree](../advanced/middleware.md), yang mengakibatkan plugin session tidak dapat menulis data tersebut kembali.
+
+> Perlu diketahui bahwa jika kamu menggunakan in-memory sessions bawaan, semua perubahan pada data session akan langsung diterapkan saat itu juga, karena ia tidak memiliki storage backend.
+> Untuk itu, kamu tidak perlu menggunakan error boundary untuk meninggalkan suatu percakapan dengan cara melempar sebuah error.
+
+Berikut bagaimana error boundary dan conversation digunakan secara bersamaan.
+
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
+
+```ts
+bot.use(session({
+  storage: freeStorage(bot.token), // Silahkan diatur
+  initial: () => ({}),
+}));
+bot.use(conversations());
+async function hiAndBye(conversation: MyConversation, ctx: MyContext) {
+  await ctx.reply("Halo! Dan selamat tinggal!");
+  // Tinggalkan percakapan:
+  throw new Error("Coba tangkap aku!");
+}
+bot.errorBoundary(
+  (err) => console.error("Conversation melempar sebuah error!", err),
+  createConversation(greeting),
+);
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+bot.use(session({
+  storage: freeStorage(bot.token), // Silahkan diatur
+  initial: () => ({}),
+}));
+bot.use(conversations());
+async function hiAndBye(conversation, ctx) {
+  await ctx.reply("Halo! Dan selamat tinggal!");
+  // Tinggalkan percakapan:
+  throw new Error("Coba tangkap aku!");
+}
+bot.errorBoundary(
+  (err) => console.error("Conversation melempar sebuah error!", err),
+  createConversation(greeting),
+);
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+Apapun cara yang dipakai, selalu ingat untuk [memasang sebuah error handler](../guide/errors.md) di bot kamu.
+
+Jika ingin menghentikan secara paksa suatu percakapan yang sedang menunggu sebuah input dari user, kamu juga bisa menggunakan `await ctx.conversation.exit()`, yang mana akan menghapus data plugin conversation dari session.
+Biasanya menggunakan `return` di function adalah cara yang lebih dianjurkan, tetapi ada kalanya di beberapa kondisi menggunakan `await ctx.conversation.exit()` jauh lebih nyaman.
+Jangan lupa untuk menggunakan `await`.
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
@@ -381,15 +469,15 @@ bot.use(conversations());
 
 // Keluar dari semua percakapan ketika command `cancel` dikirim
 bot.command("cancel", async (ctx) => {
-  await ctx.reply("Keluar.");
   await ctx.conversation.exit();
+  await ctx.reply("Keluar.");
 });
 
 // Keluar dari percakapan `movie` ketika tombol `cancel`
 // di inline keyboard ditekan
 bot.callbackQuery("cancel", async (ctx) => {
-  await ctx.answerCallbackQuery("Keluar dari percakapan");
   await ctx.conversation.exit("movie");
+  await ctx.answerCallbackQuery("Keluar dari percakapan");
 });
 
 bot.use(createConversation(movie));
@@ -409,15 +497,15 @@ bot.use(conversations());
 
 // Keluar dari semua percakapan ketika command `cancel` dikirim
 bot.command("cancel", async (ctx) => {
-  await ctx.reply("Keluar.");
   await ctx.conversation.exit();
+  await ctx.reply("Keluar.");
 });
 
 // Keluar dari percakapan `movie` ketika tombol `cancel` 
 // di inline keyboard ditekan
 bot.callbackQuery("cancel", async (ctx) => {
-  await ctx.answerCallbackQuery("Keluar dari percakapan");
   await ctx.conversation.exit("movie");
+  await ctx.answerCallbackQuery("Keluar dari percakapan");
 });
 
 bot.use(createConversation(movie));
@@ -525,7 +613,7 @@ async function waitForText(conversation, ctx) {
 </CodeGroupItem>
 </CodeGroup>
 
-Lihat [referensi API](https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts/~/ConversationHandle#wait) untuk melihat semua method yang serupa dengan `wait`.
+Lihat [referensi API](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#method_wait_0) untuk melihat semua method yang serupa dengan `wait`.
 
 ## Tiga Aturan Utama Conversations
 
@@ -578,7 +666,7 @@ await conversation.sleep(3000); // 3 detik
 conversation.log("Hello, world");
 ```
 
-Perlu diketahui bahwa kamu juga bisa melakukan hal-hal di atas melalui `conversation.external()`, tetapi akan jauh lebih mudah untuk menggunakan convenience functions ([referensi API](https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts/~/ConversationHandle#Methods)).
+Perlu diketahui bahwa kamu juga bisa melakukan hal-hal di atas melalui `conversation.external()`, tetapi akan jauh lebih mudah untuk menggunakan convenience functions ([referensi API](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#Methods)).
 
 ## Variable, Percabangan, dan Perulangan
 
@@ -818,7 +906,7 @@ async function waitForMe(conversation, ctx) {
 </CodeGroupItem>
 </CodeGroup>
 
-Seperti biasa, lihat [referensi API](https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts/~/ConversationForm) untuk mengetahui method apa saja yang tersedia.
+Seperti biasa, lihat [referensi API](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationForm) untuk mengetahui method apa saja yang tersedia.
 
 ## Percakapan Paralel
 
@@ -915,7 +1003,7 @@ bot.on("chat_member")
 Kamu bisa melihat jumlah percakapan yang sedang aktif beserta identifier-nya.
 
 ```ts
-const stats = ctx.conversation.active;
+const stats = await ctx.conversation.active();
 console.log(stats); // { "enterGroup": 1 }
 ```
 
@@ -1021,4 +1109,4 @@ Lantas, bagaimana cara kamu melakukannya?
 
 - Nama: `conversations`
 - Sumber: <https://github.com/grammyjs/conversations>
-- Referensi: <https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts>
+- Referensi: <https://deno.land/x/grammy_conversations/mod.ts>
