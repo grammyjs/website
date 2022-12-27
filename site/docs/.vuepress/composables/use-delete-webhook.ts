@@ -1,4 +1,4 @@
-import type { Api } from "grammy";
+import type { Api } from "grammy/web";
 import { type Ref, ref } from "vue";
 import { useApiMethod } from "./use-api-method";
 

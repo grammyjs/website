@@ -1,4 +1,4 @@
-import { Api } from "grammy";
+import { Api } from "grammy/web";
 import { ref, watch } from "vue";
 
 export function useApi(token = ref(localStorage.getItem("token") || "")) {

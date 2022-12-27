@@ -1,4 +1,4 @@
-import { Api, GrammyError } from "grammy";
+import { Api, GrammyError } from "grammy/web";
 import { type Ref, ref } from "vue";
 
 type FunctionPropertyOf<T> = {

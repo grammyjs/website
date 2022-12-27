@@ -1,4 +1,4 @@
-import { Api, GrammyError } from "grammy";
+import { Api, GrammyError } from "grammy/web";
 import { type Ref, ref } from "vue";
 
 export function useProfilePhoto(api: Ref<Api | undefined>) {

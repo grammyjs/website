@@ -10,11 +10,14 @@ import { getTranslation } from './translations'
 import WebhookInfo from './WebhookInfo.vue'
 
 import {
-  darkTheme, NAlert, NAvatar, NButton,
+  darkTheme, type GlobalThemeOverrides
+} from 'naive-ui'
+import {
+  NAlert, NAvatar, NButton,
   NCard,
   NCheckbox, NConfigProvider, NForm,
-  NFormItem, NIcon, NInput, NSpace, NSpin, NTabPane, NTabs, NThemeEditor, type GlobalThemeOverrides
-} from 'naive-ui'
+  NFormItem, NIcon, NInput, NSpace, NSpin, NTabPane, NTabs, NThemeEditor
+} from './deps'
 
 import {
   computed,
@@ -111,7 +114,8 @@ const resetBot = () => {
         <n-space justify="center" style="margin-top: 20px;">
           <n-checkbox :checked="botInfo.can_join_groups" readonly>{{ translation.botCard.canJoinGroups }}</n-checkbox>
           <n-checkbox :checked="botInfo.can_read_all_group_messages" readonly>{{
-          translation.botCard.canReadGroupMessages }}</n-checkbox>
+    translation.botCard.canReadGroupMessages
+}}</n-checkbox>
           <n-checkbox :checked="botInfo.supports_inline_queries" readonly>{{ translation.botCard.inlineQueries }}
           </n-checkbox>
         </n-space>
@@ -136,7 +140,7 @@ const resetBot = () => {
                 <template #icon>
                   <open20-filled />
                 </template>
-                Open chat with @{{botInfo.username}}
+                Open chat with @{{ botInfo.username }}
               </n-button>
             </a>
           </n-space>

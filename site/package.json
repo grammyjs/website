@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "cross-fetch": "^3.1.5",
-    "grammy": "^1.11.2",
-    "highlight.js": "^11.6.0"
+    "highlight.js": "^11.6.0",
+    "grammy": "^1.12.4"
   }
 }

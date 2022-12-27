@@ -1,7 +1,4 @@
-import { NodeGlobalsPolyfillPlugin } from "@esbuild-plugins/node-globals-polyfill";
-import { NodeModulesPolyfillPlugin } from "@esbuild-plugins/node-modules-polyfill";
-import rollupNodePolyFill from "rollup-plugin-node-polyfills";
-import { defaultTheme, defineUserConfig, viteBundler } from "vuepress-vite";
+import { defaultTheme, defineUserConfig } from "vuepress-vite";
 import { betterLineBreaks } from "./plugins/better-line-breaks";
 import { currentVersions } from "./plugins/current-versions/plugin";
 import { docsearch } from "./plugins/docsearch";
@@ -29,36 +26,6 @@ export default defineUserConfig({
       description: "Telegram Bot 框架",
     },
   },
-  bundler: viteBundler({
-    viteOptions: {
-      resolve: {
-        alias: {
-          "node-fetch": "docs/.vuepress/polyfills/fetch.ts",
-          "abort-controller": "docs/.vuepress/polyfills/abort-controller.ts",
-          http: "rollup-plugin-node-polyfills/polyfills/http",
-          https: "rollup-plugin-node-polyfills/polyfills/http",
-          stream: "rollup-plugin-node-polyfills/polyfills/stream",
-          util: "rollup-plugin-node-polyfills/polyfills/util",
-        },
-      },
-      optimizeDeps: {
-        esbuildOptions: {
-          define: {
-            global: "globalThis",
-          },
-          plugins: [
-            NodeGlobalsPolyfillPlugin({ process: true, buffer: true }),
-            NodeModulesPolyfillPlugin(),
-          ],
-        },
-      },
-      build: {
-        rollupOptions: {
-          plugins: [rollupNodePolyFill() as any],
-        },
-      },
-    },
-  }),
   shouldPrefetch: true,
   theme: defaultTheme({
     logo: "/Y.png",

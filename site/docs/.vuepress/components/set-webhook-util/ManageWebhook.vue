@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { usePageLang } from '@vuepress/client'
-import type { Api } from 'grammy'
-import { FormItemRule, NButton, NForm, NFormItem, NInput, NSpace, NSwitch } from 'naive-ui'
+import type { Api } from 'grammy/web'
 import { computed, ref, toRefs } from 'vue'
 import { useDeleteWebhook } from '../../composables/use-delete-webhook'
 import { useSetWebhook } from '../../composables/use-set-webhook'
+import { NButton, NForm, NFormItem, NInput, NSpace, NSwitch } from './deps'
 import GrammyError from './GrammyError.vue'
 import { getTranslation } from './translations'
 
@@ -26,7 +26,7 @@ const webhookLoading = computed(() => setWebhookLoading.value || deleteWebhookLo
 const emit = defineEmits([ 'webhookChange' ])
 const withRefreshWebhookInfo = (fn: () => Promise<any>) => fn().then(() => emit('webhookChange'))
 
-const urlRule: FormItemRule = {
+const urlRule = {
   required: true,
   validator: () => {
     if (!url.value) return new Error(translation.value.fields.url.errorMessages.required)
