@@ -61,7 +61,8 @@ WantedBy=multi-user.target
 
 > Replace `<start_command>` with the command you got above.
 >
-> Also note that if you Deno is installed for a different user other than root, you may need to specify it in the service section like `User=<the_user>`. For more information on the unit files, visit [here](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/assembly_working-with-systemd-unit-files_configuring-basic-system-settings).
+> Also note that if Deno is installed for a different user other than root, you may need to specify it in the service section like `User=<the_user>`.
+> For more information on the unit files, visit [here](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/assembly_working-with-systemd-unit-files_configuring-basic-system-settings).
 
 3. Reload systemd whenever you edit the service:
 
