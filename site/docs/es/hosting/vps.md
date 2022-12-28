@@ -60,6 +60,9 @@ WantedBy=multi-user.target
 ```
 
 > Sustituye `<comando_de_inicio>` por el comando que tienes arriba.
+>
+> Tenga en cuenta también que si Deno está instalado para un usuario distinto de root, puede que tenga que especificarlo en la sección de servicio como `User=<el_usuario>`.
+> Para más información sobre los archivos de unidad, visite [aquí](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/assembly_working-with-systemd-unit-files_configuring-basic-system-settings).
 
 3. Recarga systemd cada vez que edites el servicio:
 
