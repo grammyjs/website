@@ -1,0 +1,33 @@
+// https://github.com/vuepress/vuepress-next/blob/main/ecosystem/theme-default/src/client/styles/vars.scss
+// oklch theme
+
+:root {
+  // brand colors
+  --c-brand: #009dca;
+  --c-brand-light: #27b5e6;
+
+  // background colors
+  --c-bg-dark: #ebebec;
+  --c-bg-darker: #e6e6e6;
+
+  // custom container colors
+  --c-tip: #16afe0;
+  --c-warning: #ffc310;
+  --c-warning-bg-light: #fff3ba;
+  --c-warning-bg-lighter: #fff0b0;
+  --c-warning-border-dark: #f7dc91;
+  --c-warning-details-bg: #fff5ca;
+  --c-warning-title: #f1b300;
+  --c-warning-text-accent: #edb100;
+  --c-warning-text-light: #c1971c;
+  --c-warning-text-quote: #ccab49;
+  --c-danger: #f11e37;
+  --c-danger-bg-light: #ffcfde;
+  --c-danger-bg-lighter: #ffc9c9;
+  --c-danger-border-dark: #f1abab;
+  --c-danger-details-bg: #ffd4d4;
+  --c-danger-title: #ed1e2c;
+  --c-danger-text-accent: #bd1a1a;
+  --c-danger-text-light: #b5474d;
+  --c-danger-text-quote: #c15b5b;
+}

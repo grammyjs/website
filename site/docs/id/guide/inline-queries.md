@@ -13,7 +13,7 @@ Inline mode tidak aktif secara bawaan.
 Jadi, kamu harus mengaktifkannya secara manual dengan cara menghubungi [@BotFather](https://t.me/BotFather).
 :::
 
-> Lihat bagian inline mode di [Pengantar untuk Developer](https://core.telegram.org/bots#inline-mode) yang ditulis oleh tim Telegram.
+> Lihat bagian inline mode di [Fitur-fitur Bot Telegram](https://core.telegram.org/bots/features#inline-requests) yang ditulis oleh tim Telegram.
 > Referensi lebih lanjut ada di [detail deskripsi](https://core.telegram.org/bots/inline) inline bot, [postingan blog Telegram](https://telegram.org/blog/inline-bots), serta bagian inline mode di [Referensi API Bot Telegram](https://core.telegram.org/bots/api#inline-mode).
 > Semua materi tadi patut dibaca sebelum mengimplementasikan inline query ke bot kamu.
 

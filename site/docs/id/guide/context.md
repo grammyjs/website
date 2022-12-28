@@ -210,12 +210,13 @@ Materi ini memerlukan pemahaman yang baik mengenai middleware. Jika kamu belum m
 Perlu kamu ketahui bahwa beberapa handler mampu memproses object context yang sama. Ada juga sebuah handler khusus yang berfungsi untuk memodifikasi `ctx` sebelum handler-handler lain dijalankan. Hasil modifikasi tersebut akan digunakan oleh handler-handler berikutnya.
 :::
 
-Idenya adalah kamu perlu memasang middleware terlebih dahulu sebelum listener-listener dijalankan.
-Dengan begitu, kamu bisa menentukan berbagai property yang diinginkan di dalam handler-handler tadi.
+Konsepnya adalah middleware harus dipasang sebelum listener.
+Dengan begitu, kamu bisa menambahkan property yang diinginkan ke berbagai handler.
+Misalnya, jika kamu menambahkan `ctx.namaCustomProperty = valueProperty` ke dalam handler tersebut, maka property `ctx.namaCustomProperty` juga akan tersedia untuk handler-handler yang lain.
 
-Sebagai ilustrasi, katakanlah kamu hendak mengatur property `ctx.config` dari object context.
-Di contoh berikut, kamu akan menggunakannya untuk menyimpan beberapa konfigurasi, dengan tujuan agar semua handler bisa mengaksesnya.
-Konfigurasi tersebut akan mempermudah bot untuk mendeteksi apakah pesan dikirim oleh pengguna biasa atau developer bot itu sendiri.
+Sebagai contoh, katakanlah kamu hendak menambahkan property `ctx.config` di object context.
+Nantinya, beberapa konfigurasi akan kita simpan di property tersebut agar bisa diakses oleh semua handler.
+Bot akan memakai konfigurasi tersebut untuk membedakan apakah pesan dikirim oleh user biasa atau developer bot itu sendiri.
 
 Tepat sesudah membuat bot, lakukan hal ini:
 

@@ -6,7 +6,7 @@ Aunque siempre puedes escribir tu propio código para conectarte a un almacenami
 
 ## ¿Por qué debemos pensar en el almacenamiento?
 
-A diferencia de las cuentas de usuarios regulares en Telegram, los bots tienen [almacenamiento limitado en la nube](https://core.telegram.org/bots#4-how-are-bots-different-from-humans) en la nube de Telegram.
+A diferencia de las cuentas de usuarios regulares en Telegram, los bots tienen [almacenamiento limitado en la nube](https://core.telegram.org/bots#how-are-bots-different-from-users) en la nube de Telegram.
 Como resultado, hay algunas cosas que no puedes hacer con los bots:
 
 1. No puedes acceder a los mensajes antiguos que recibió tu bot.

@@ -211,6 +211,7 @@ There are special handlers which can modify `ctx` before any other handlers are 
 
 The idea is to install middleware before you register other listeners.
 You can then set the properties you want inside these handlers.
+If you do `ctx.yourCustomPropertyName = yourCustomValue` inside such a handler, then the property `ctx.yourCustomPropertyName` will be available in the remaining handlers, too.
 
 For illustration purposes, let's say you want to set a property called `ctx.config` on the context object.
 In this example, we will use it to store some configuration about the project so that all handlers have access to it.

@@ -26,7 +26,7 @@ For example, it is not possible to first send a custom keyboard along with a mes
 
 ## Inline Keyboards
 
-> Revisit the inline keyboard section in the [Introduction for Developers](https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating) written by the Telegram team.
+> Revisit the inline keyboard section in the [Telegram Bot Features](https://core.telegram.org/bots/features#inline-keyboards) written by the Telegram team.
 
 grammY has a simple and intuitive way to build up the inline keyboards that your bot can send along with a message.
 It provides a class called `InlineKeyboard` for this.
@@ -162,7 +162,7 @@ First things first: custom keyboards are sometimes just called keyboards, someti
 As a simple rule of thumb, when it isn't absolutely obvious from the context and not called inline keyboard, it probably is a custom keyboard.
 This refers to a way to replace the system keyboard by a set of buttons that you can define.
 
-> Revisit the custom keyboard section in the [Introduction for Developers](https://core.telegram.org/bots#keyboards) written by the Telegram team.
+> Revisit the custom keyboard section in the [Telegram Bot Features](https://core.telegram.org/bots/features#keyboards) written by the Telegram team.
 
 grammY has a simple and intuitive way to build up the custom keyboards that your bot can use to replace the system keyboard.
 It provides a class called `Keyboard` for this.

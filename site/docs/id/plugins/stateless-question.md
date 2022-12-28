@@ -2,7 +2,7 @@
 
 > Membuat stateless question di mode privasi
 
-Apakah kamu ingin mengirim pertanyaan menggunakan bahasa yang sedang digunakan user tanpa perlu mematikan [mode privasi Telegram](https://core.telegram.org/bots#privacy-mode) serta tidak menyimpan statusnya saat ini?
+Apakah kamu ingin mengirim pertanyaan menggunakan bahasa yang sedang digunakan user tanpa perlu mematikan [mode privasi Telegram](https://core.telegram.org/bots/features#privacy-mode) serta tidak menyimpan statusnya saat ini?
 
 Plugin ini bisa mengatasi masalah tersebut dengan mudah.
 

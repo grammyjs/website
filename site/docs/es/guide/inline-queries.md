@@ -13,7 +13,7 @@ Por defecto, el soporte para el modo inline está desactivado.
 Debes ponerte en contacto con [@BotFather](https://t.me/BotFather) y habilitar el modo inline para tu bot, para empezar a recibir consultas inline.
 :::
 
-> Revisa la sección del modo inline en la [Introducción para desarrolladores](https://core.telegram.org/bots#inline-mode) escrita por el equipo de Telegram.
+> Revisa la sección del modo inline en las [Características de los bots de Telegram](https://core.telegram.org/bots/features#inline-requests) escrita por el equipo de Telegram.
 > Otros recursos son su [descripción detallada](https://core.telegram.org/bots/inline) de los bots en línea, así como el [post original del blog](https://telegram.org/blog/inline-bots) que anuncia la característica, y la sección del modo en línea en la [Referencia de la API de los bots de Telegram](https://core.telegram.org/bots/api#inline-mode).
 > Merece la pena leerlos todos antes de implementar las inline queries para tu bot.
 
