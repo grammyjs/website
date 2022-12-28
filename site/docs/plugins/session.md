@@ -606,6 +606,9 @@ interface SessionData {
 ```
 
 You can then keep using `SessionFlavor<SessionData>` for your context object.
+  
+::: warning As of now, it is not possible to use Multi Sessions in combination with Lazy Sessions.
+:::
 
 ## Lazy Sessions
 
