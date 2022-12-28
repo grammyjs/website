@@ -97,7 +97,7 @@ Como hemos mencionado anteriormente, tenemos dos opciones para recibir datos de 
 > Si decides usar el long polling en su lugar, puedes saltarte esta sección y pasar a la [sección sobre long polling](#long-polling). :rocket:
 
 En resumen, a diferencia del long polling, los webhooks no se ejecutan continuamente para comprobar los mensajes entrantes de Telegram.
-Esto reducirá la carga del servidor y nos ahorrará un montón de [horas de dyno](https://devcenter.heroku.com/articles/free-dyno-hours), especialmente cuando estés usando la capa gratuita. :grin:
+Esto reducirá la carga del servidor y nos ahorrará un montón de [horas de dyno](https://devcenter.heroku.com/articles/eco-dyno-hours), especialmente si utiliza el plan Eco. :grin:
 
 Bien, ¡continuemos!
 ¿Recuerdas que hemos creado `bot.ts` antes?
@@ -208,7 +208,7 @@ export const bot = new Bot(`${process.env.BOT_TOKEN}`, {
 ## Long Polling
 
 ::: warning Su script se ejecutará de forma continua cuando utilice el sondeo largo
-A menos que sepa cómo manejar este comportamiento, asegúrese de que tiene suficientes [horas de dyno](https://devcenter.heroku.com/articles/free-dyno-hours).
+A menos que sepa cómo manejar este comportamiento, asegúrese de que tiene suficientes [horas de dyno](https://devcenter.heroku.com/articles/eco-dyno-hours).
 :::
 
 > ¿Considerar el uso de webhooks?
@@ -261,7 +261,7 @@ Si se ejecuta con éxito y no imprime ningún error, nuestros archivos compilado
 
 ### Configurar el `Procfile`
 
-Por el momento, `Heroku` tiene varios [tipos de dynos](https://devcenter.heroku.com/articles/free-dyno-hours).
+Por el momento, `Heroku` tiene varios [tipos de dynos](https://devcenter.heroku.com/articles/dyno-types).
 Dos de ellos son:
 
 - **Web dynos**:
