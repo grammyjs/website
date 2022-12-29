@@ -97,7 +97,7 @@ Kamu bisa mempelajari kelebihan dan kekurangan dari kedua jenis deployment terse
 > Jika kamu lebih memilih untuk menggunakan long polling, langsung saja lompat ke bagian [long polling](#long-polling). :rocket:
 
 Singkatnya, tidak seperti long polling, webhook tidak perlu berjalan terus-menerus untuk mengecek pesan masuk dari Telegram.
-Akibatnya, beban kerja server akan terkurangi serta dapat menghemat kuota [dyno hours](https://devcenter.heroku.com/articles/free-dyno-hours), terutama jika kamu menggunakan paket gratisan. :grin:
+Dengan begitu, beban kerja server dan penggunaan kuota [dyno hours](https://devcenter.heroku.com/articles/eco-dyno-hours) bisa dikurangi, terutama jika kamu menggunakan paket Eco. :grin:
 
 Oke, lanjut!
 Masih ingat kita punya `bot.ts` di awal tadi?
@@ -210,7 +210,7 @@ Mari menuju [bagian Deployment](#deployment), saudara-saudara sekalian! :muscle:
 ## Long Polling
 
 ::: warning Script Kamu Akan Dijalankan secara Terus-menerus ketika Menggunakan Long Polling
-Pastikan kamu memiliki [dyno hours](https://devcenter.heroku.com/articles/free-dyno-hours) yang cukup, kecuali jika kamu tahu cara mengatasinya.
+Pastikan kamu memiliki [dyno hours](https://devcenter.heroku.com/articles/eco-dyno-hours) yang cukup, kecuali jika kamu tahu cara mengatasinya.
 :::
 
 > Lebih memilih webhook?
@@ -250,7 +250,7 @@ Jika kamu pikir ini terlalu mudah, coba lihat [daftar Deployment](../advanced/de
 
 ## Deployment
 
-Nggak… _Bot Roket_ kita masih belum siap diluncurkan.
+Eitss… _Bot Roket_ kita masih belum siap untuk diluncurkan.
 Selesaikan tahapan-tahapan ini dulu!
 
 ### Compile File-nya
@@ -265,7 +265,7 @@ Jika berhasil dijalankan dan tidak ada pesan error yang muncul, file-file yang t
 
 ### Siapkan File `Procfile`
 
-Untuk saat ini, `Heroku` memiliki beberapa [jenis dynos](https://devcenter.heroku.com/articles/free-dyno-hours).
+`Heroku` memiliki beberapa [jenis dynos](https://devcenter.heroku.com/articles/dyno-types).
 Dua diantaranya adalah:
 
 - **Web dynos**:

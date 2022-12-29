@@ -97,7 +97,7 @@ You can learn more about the both advantages and then decide which ones is suita
 > If you decide to use long polling instead, you can skip this section and jump down to the [section about long polling](#long-polling). :rocket:
 
 In short, unlike long polling, webhook do not run continuously for checking incoming messages from Telegram.
-This will reduce server load and save us a lot of [dyno hours](https://devcenter.heroku.com/articles/free-dyno-hours), especially when you are using the free tier. :grin:
+This will reduce server load and save us a lot of [dyno hours](https://devcenter.heroku.com/articles/eco-dyno-hours), especially when you are using the Eco plan. :grin:
 
 Okay, let us continue!
 Remember we have created `bot.ts` earlier?
@@ -209,7 +209,7 @@ Straight to [Deployment Section](#deployment) everyone! :muscle:
 ## Long Polling
 
 ::: warning Your Script Will Run Continuously When Using Long Polling
-Unless you know how to handle this behavior, make sure you have enough [dyno hours](https://devcenter.heroku.com/articles/free-dyno-hours).
+Unless you know how to handle this behavior, make sure you have enough [dyno hours](https://devcenter.heroku.com/articles/eco-dyno-hours).
 :::
 
 > Consider using webhooks?
@@ -262,7 +262,7 @@ If it runs successfully and does not print any errors, our compiled files should
 
 ### Set up `Procfile`
 
-For the time being, `Heroku` has several [types of dynos](https://devcenter.heroku.com/articles/free-dyno-hours).
+For the time being, `Heroku` has several [types of dynos](https://devcenter.heroku.com/articles/dyno-types).
 Two of them are:
 
 - **Web dynos**:
