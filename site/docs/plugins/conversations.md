@@ -359,6 +359,27 @@ bot.use(session({
 
 You can do the same thing for all other storage adapters, such as `new FileAdapter<SessionData>()` and so on.
 
+### Installation With Multi Sessions
+
+Naturally, you can combine conversations with [multi sessions](./session.md#multi-sessions).
+
+This plugin stores the conversation data inside `session.conversation`.
+This means that if you want to use multi sessions, you have to specify this fragment.
+
+```ts
+// Install the session plugin.
+bot.use(session({
+  type: "multi",
+  custom: {
+    initial: () => ({ foo: "" }),
+  },
+  conversation: {}, // may be left empty
+}));
+```
+
+This way, you can store the conversation data in a different place than other session data.
+For example, if you leave the conversation config empty as illustrated above, the conversation plugin will store all data in memory.
+
 ## Leaving a Conversation
 
 The conversation will run until your conversation builder function completes.

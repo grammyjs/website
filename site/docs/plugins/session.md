@@ -580,7 +580,7 @@ bot.use(session({
     // these are also the default values
     storage: new MemorySessionStorage(),
     initial: () => undefined,
-    getSessionKey: (ctx) => ctx.from?.id.toString(),
+    getSessionKey: (ctx) => ctx.chat?.id.toString(),
   },
   bar: {
     initial: () => ({ prop: 0 }),
