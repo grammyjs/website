@@ -676,16 +676,16 @@ if (conversation.random() < 0.5) { /* hace cosas */ }
 
 ### Regla III: Usar funciones de conveniencia
 
-Hay un montón de cosas instaladas en `conversación` que pueden ayudarte mucho.
-Tu código no se rompe exactamente si no las usas, pero puede ser lento o comportarse de forma confusa.
-Sin embargo, el usuario final puede no notar la diferencia.
+Hay un montón de cosas instaladas en `conversation` que pueden ayudarte mucho.
+Tu código a veces ni siquiera se rompe si no las usas, pero incluso así puede ser lento o comportarse de forma confusa.
 
 ```ts
-// Dormir a través de la conversación, mejora masiva del rendimiento
-await conversation.sleep(3000); // 3 segundos
-
-// Depurar el registro a través de la conversación, no imprime registros confusos
-conversation.log("Hola, mundo");
+// `ctx.session` sólo persiste los cambios para el objeto de contexto más reciente
+conversation.session.myProp = 42; // ¡más fiable!
+// Date.now() puede ser impreciso dentro de las conversaciones
+await conversation.now(); // ¡más preciso!
+// Debug logging via conversation, no imprime logs confusos
+conversation.log("Hola, mundo"); // ¡más transparente!
 ```
 
 Ten en cuenta que puedes hacer todo lo anterior a través de `conversation.external()`, pero esto puede ser tedioso de escribir, así que es más fácil usar las funciones de conveniencia ([referencia de la API](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#Methods)).
@@ -918,6 +918,108 @@ async function waitForMe(conversation, ctx) {
 </CodeGroup>
 
 Como siempre, consulte la [referencia de la API](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationForm) para ver qué métodos están disponibles.
+
+## Trabajando con Plugins
+
+Como se mencionó [anteriormente](#introduccion), los manejadores grammY siempre manejan una sola actualización.
+Sin embargo, con las conversaciones, puedes procesar muchas actualizaciones en secuencia como si todas estuvieran disponibles al mismo tiempo.
+Los plugins hacen esto posible almacenando objetos de contexto antiguos, y reabasteciéndolos más tarde.
+Esta es la razón por la que los objetos de contexto dentro de las conversaciones no siempre se ven afectados por algunos plugins de grammY de la manera que cabría esperar.
+Esto es relevante para los siguientes plugins:
+
+- [menu](./menu.md)
+- [hydrate](./hydrate.md)
+- [i18n](./i18n.md) and [fluent](./fluent.md)
+- [emoji](./emoji.md)
+
+Todos ellos tienen en común que almacenan funciones en el objeto de contexto, que el plugin de conversaciones no puede manejar correctamente.
+Por lo tanto, si quieres combinar conversaciones con uno de estos plugins de grammY, tendrás que utilizar una sintaxis especial para instalar el otro plugin dentro de cada conversación.
+Puedes instalar otros plugins dentro de las conversaciones usando `conversation.run`:
+
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
+
+```ts
+async function convo(conversation: MyConversation, ctx: MyContext) {
+  // Instala los plugins de grammY aquí
+  await conversation.run(plugin());
+  // Continúa definiendo la conversación ...
+}
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+async function convo(conversation, ctx) {
+  // Instala los plugins de grammY aquí
+  await conversation.run(plugin());
+  // Continúa definiendo la conversación ...
+}
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+Esto hará que el plugin esté disponible dentro de la conversación.
+
+Como ejemplo, si quieres usar un menú dentro de una conversación, tu código podría ser así.
+
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
+
+```ts
+async function convo(conversation: MyConversation, ctx: MyContext) {
+  const menu = new Menu<MyContext>()
+    .text("Click", (ctx) => ctx.reply("¡Hola!"));
+  await conversation.run(menu);
+  // Continuar definiendo la conversación ...
+}
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+async function convo(conversation, ctx) {
+  const menu = new Menu()
+    .text("Click", (ctx) => ctx.reply("¡Hola!"));
+  await conversation.run(menu);
+  // Continuar definiendo la conversación ...
+}
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+### Objetos de contexto personalizados
+
+Si estás usando un [objeto de contexto personalizado](../guide/context.md#personalizacion-del-objeto-de-contexto) y quieres instalar propiedades personalizadas en tus objetos de contexto antes de entrar en una conversación, entonces algunas de estas propiedades pueden perderse también.
+En cierto modo, el middleware que utilizas para personalizar tu objeto de contexto también puede considerarse un plugin.
+
+La solución más limpia es **evitar las propiedades de contexto personalizadas** por completo, o al menos sólo instalar propiedades serializables en el objeto de contexto.
+En otras palabras, si todas las propiedades de contexto personalizadas pueden persistir en una base de datos y ser restauradas después, no tienes que preocuparte de nada.
+
+Normalmente, existen otras soluciones a los problemas que se suelen resolver con las propiedades de contexto personalizadas.
+Por ejemplo, a menudo es posible simplemente obtenerlas dentro de la propia conversación, en lugar de obtenerlas dentro de un manejador.
+
+Si ninguna de estas cosas es una opción para ti, puedes intentar trastear tú mismo con `conversation.run`.
+Debes saber que debes llamar a `next` dentro del middleware pasado---de lo contrario, el manejo de actualizaciones será interceptado.
+
+El middleware se ejecutará para todas las actualizaciones pasadas cada vez que llegue una nueva actualización.
+Por ejemplo, si llegan tres objetos de contexto, esto es lo que ocurre:
+
+1. se recibe la primera actualización
+2. se ejecuta el middleware para la primera actualización
+3. se recibe la segunda actualización
+4. el middleware se ejecuta para la primera actualización
+5. el middleware se ejecuta para la segunda actualización
+6. se recibe la tercera actualización
+7. el middleware se ejecuta para la primera actualización
+8. el middleware se ejecuta para la segunda actualización
+9. el middleware se ejecuta para la tercera actualización
+
+Nótese que el middleware se ejecuta con la primera actualización tres veces.
 
 ## Conversaciones paralelas
 
