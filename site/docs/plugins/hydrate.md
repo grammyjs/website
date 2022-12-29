@@ -167,7 +167,7 @@ bot.api.config.use(hydrateApi());
 </CodeGroupItem>
 </CodeGroup>
 
-## What Objects are Hydrated
+## What Objects Are Hydrated
 
 This plugin currently hydrates
 

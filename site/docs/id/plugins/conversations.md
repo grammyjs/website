@@ -362,6 +362,27 @@ bot.use(session({
 
 Kamu juga bisa melakukan hal yang sama ke storage adapter lainnya, misal `new FileAdapter<SessionData>()` dan sebagainya.
 
+### Pemasangan Menggunakan Multi Sessions
+
+Secara umum, kamu bisa mengombinasikan beberapa percakapan menggunakan [multi sessions](./session.md#multi-sessions).
+
+Plugin ini menyimpan data percakapan di dalam `session.conversation`.
+Artinya, kamu perlu menentukan fragment tersebut untuk menggunakan multi sessions.
+
+```ts
+// Instal plugin session-nya.
+bot.use(session({
+  type: "multi",
+  custom: {
+    initial: () => ({ foo: "" }),
+  },
+  conversation: {}, // bisa dibiarkan kosong
+}));
+```
+
+Dengan cara ini kamu bisa menyimpan data percakapan di tempat lain, tidak hanya di session data.
+Contohnya, jika kamu membiarkan konfigurasi conversation kosong seperti contoh di atas, plugin conversation akan menyimpan semua data di dalam memory.
+
 ## Meninggalkan Sebuah Percakapan
 
 Percakapan akan terus berjalan hingga conversation builder function selesai melakukan tugasnya.
