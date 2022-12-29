@@ -556,10 +556,10 @@ Lihat bagian pemasangan di repositori masing-masing untuk mengetahui cara menghu
 
 Kamu juga bisa [scroll ke bawah](#peningkatan-storage) untuk mempelajari bagaimana plugin session bisa meningkatkan storage adapter.
 
-## Multi Session
+## Multi Sessions
 
 Plugin session mampu menyimpan beberapa fragmen data session di beberapa tempat.
-Cara kerjanya sama seperti kamu menginstal beberapa instance plugin session, tetapi untuk setiap instance-nya dipasang pengaturan yang berbeda.
+Cara kerjanya mirip ketika kamu menginstal beberapa instance plugin session, bedanya untuk setiap instance-nya dipasang pengaturan yang berbeda.
 
 Setiap fragmen data akan diberi nama sesuai dengan tempat di mana data tersebut disimpan.
 Dengan begitu, kamu bisa mengakses `ctx.session.foo` dan `ctx.session.bar`.
@@ -608,7 +608,7 @@ interface SessionData {
 
 Dengan begitu, kamu masih bisa menggunakan `SessionFlavor<SessionData>` di context object-mu.
 
-## Lazy Session
+## Lazy Sessions
 
 > Bagian ini membahas optimisasi performa yang untuk sebagian besar orang bisa diabaikan.
 > Silahkan lewati bagian ini jika dirasa tidak perlu.
