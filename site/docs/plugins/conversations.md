@@ -661,11 +661,14 @@ There are a bunch of things installed on `conversation` which may greatly help y
 Your code sometimes does not even break if you don't use them, but even then it can be slow or behave in a confusing way.
 
 ```ts
+// `ctx.session` only persists changes for the most recent context object
+conversation.session.myProp = 42; // more reliable!
+
 // Date.now() can be inaccurate inside conversations
-await conversation.now();
+await conversation.now(); // more accurate!
 
 // Debug logging via conversation, does not print confusing logs
-conversation.log("Hello, world");
+conversation.log("Hello, world"); // more transparent!
 ```
 
 Note that you can do all of the above via `conversation.external()`, but this can be tedious to type, so it's just easier to use the convenience functions ([API reference](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#Methods)).
