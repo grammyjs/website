@@ -60,6 +60,9 @@ WantedBy=multi-user.target
 ```
 
 > Ganti `<start_command>` dengan command yang telah kamu buat di atas tadi.
+>
+> Perlu diperhatikan, jika Deno terinstal untuk user selain root, kamu juga perlu menambahkan `User=<nama_user>` di bagian service.
+> Untuk informasi lebih lanjut mengenai unit file ini, silahkan kunjungi [halaman berikut](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/assembly_working-with-systemd-unit-files_configuring-basic-system-settings).
 
 3. Mulai ulang systemd setiap kali service mengalami perubahan:
 
