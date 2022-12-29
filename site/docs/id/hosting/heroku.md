@@ -97,7 +97,7 @@ Kamu bisa mempelajari kelebihan dan kekurangan dari kedua jenis deployment terse
 > Jika kamu lebih memilih untuk menggunakan long polling, langsung saja lompat ke bagian [long polling](#long-polling). :rocket:
 
 Singkatnya, tidak seperti long polling, webhook tidak perlu berjalan terus-menerus untuk mengecek pesan masuk dari Telegram.
-Dengan begitu, beban kerja server dan penggunaan kuota [dyno hours](https://devcenter.heroku.com/articles/free-dyno-hours) bisa dikurangi, terutama jika kamu menggunakan paket Eco. :grin:
+Dengan begitu, beban kerja server dan penggunaan kuota [dyno hours](https://devcenter.heroku.com/articles/eco-dyno-hours) bisa dikurangi, terutama jika kamu menggunakan paket Eco. :grin:
 
 Oke, lanjut!
 Masih ingat kita punya `bot.ts` di awal tadi?
@@ -250,7 +250,7 @@ Jika kamu pikir ini terlalu mudah, coba lihat [daftar Deployment](../advanced/de
 
 ## Deployment
 
-Eitss… _Bot Roket_ kita masih belum siap diluncurkan.
+Eitss… _Bot Roket_ kita masih belum siap untuk diluncurkan.
 Selesaikan tahapan-tahapan ini dulu!
 
 ### Compile File-nya
