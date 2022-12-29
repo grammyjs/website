@@ -109,7 +109,7 @@ bot.start();
 </CodeGroupItem>
 </CodeGroup>
 
-## Usage (Using default parse mode and utility reply methods)
+## Usage (Default Parse Mode and Reply Methods)
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
