@@ -15,7 +15,7 @@ import type { ParseModeFlavor } from "@grammyjs/parse-mode";
 
 const bot = new Bot<ParseModeFlavor<Context>>("");
 
-// Install format reply variant to ctx
+// Install the plugin.
 bot.use(hydrateReply);
 
 bot.command("demo", async (ctx) => {
@@ -23,7 +23,7 @@ bot.command("demo", async (ctx) => {
 ${bold(italic("bitalic!"))}
 ${bold(fmt`bold ${link("blink", "example.com")} bold`)}`);
 
-  // fmt can also be called like any other function
+  // fmt can also be called like any other function.
   await ctx.replyFmt(
     fmt(
       ["", " and ", " and ", ""],
@@ -46,7 +46,7 @@ const { bold, fmt, hydrateReply, italic } = require("@grammyjs/parse-mode");
 
 const bot = new Bot("");
 
-// Install format reply variant to ctx
+// Install the plugin.
 bot.use(hydrateReply);
 
 bot.command("demo", async (ctx) => {
@@ -54,7 +54,7 @@ bot.command("demo", async (ctx) => {
 ${bold(italic("bitalic!"))}
 ${bold(fmt`bold ${link("blink", "example.com")} bold`)}`);
 
-  // fmt can also be called like any other function
+  // fmt can also be called like any other function.
   await ctx.replyFmt(
     fmt(
       ["", " and ", " and ", ""],
@@ -84,7 +84,7 @@ import type { ParseModeFlavor } from "https://deno.land/x/grammy_parse_mode/mod.
 
 const bot = new Bot<ParseModeFlavor<Context>>("");
 
-// Install format reply variant to ctx
+// Install the plugin.
 bot.use(hydrateReply);
 
 bot.command("demo", async (ctx) => {
@@ -92,7 +92,7 @@ bot.command("demo", async (ctx) => {
 ${bold(italic("bitalic!"))}
 ${bold(fmt`bold ${link("blink", "example.com")} bold`)}`);
 
-  // fmt can also be called like any other function
+  // fmt can also be called like any other function.
   await ctx.replyFmt(
     fmt(
       ["", " and ", " and ", ""],
@@ -122,7 +122,7 @@ import type { ParseModeFlavor } from "@grammyjs/parse-mode";
 
 const bot = new Bot<ParseModeFlavor<Context>>("");
 
-// Install familiar reply variants to ctx
+// Install the plugin.
 bot.use(hydrateReply);
 
 // Sets default parse_mode for ctx.reply
@@ -150,10 +150,10 @@ const { hydrateReply, parseMode } = require("@grammyjs/parse-mode");
 
 const bot = new Bot("");
 
-// Install familiar reply variants to ctx
+// Install the plugin.
 bot.use(hydrateReply);
 
-// Sets default parse_mode for ctx.reply
+// Set the default parse mode for ctx.reply.
 bot.api.config.use(parseMode("MarkdownV2"));
 
 bot.command("demo", async (ctx) => {
@@ -183,10 +183,10 @@ import type { ParseModeFlavor } from "https://deno.land/x/grammy_parse_mode/mod.
 
 const bot = new Bot<ParseModeFlavor<Context>>("");
 
-// Install familiar reply variants to ctx
+// Install the plugin.
 bot.use(hydrateReply);
 
-// Sets default parse_mode for ctx.reply
+// Set the default parse mode for ctx.reply.
 bot.api.config.use(parseMode("MarkdownV2"));
 
 bot.command("demo", async (ctx) => {
