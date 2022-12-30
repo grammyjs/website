@@ -682,8 +682,10 @@ Tu código a veces ni siquiera se rompe si no las usas, pero incluso así puede 
 ```ts
 // `ctx.session` sólo persiste los cambios para el objeto de contexto más reciente
 conversation.session.myProp = 42; // ¡más fiable!
+
 // Date.now() puede ser impreciso dentro de las conversaciones
 await conversation.now(); // ¡más preciso!
+
 // Debug logging via conversation, no imprime logs confusos
 conversation.log("Hola, mundo"); // ¡más transparente!
 ```
