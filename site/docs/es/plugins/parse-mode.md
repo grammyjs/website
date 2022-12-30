@@ -118,7 +118,7 @@ bot.start();
   <CodeGroupItem title="TypeScript" active>
 
 ```ts
-import { Bot, Composer, Context } from "grammy";
+import { Bot, Context } from "grammy";
 import { hydrateReply, parseMode } from "@grammyjs/parse-mode";
 
 import type { ParseModeFlavor } from "@grammyjs/parse-mode";
