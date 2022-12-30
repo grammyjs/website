@@ -42,7 +42,9 @@ bot.start();
 
 ```js
 const { Bot, Context } = require("grammy");
-const { bold, fmt, hydrateReply, italic, link } = require("@grammyjs/parse-mode");
+const { bold, fmt, hydrateReply, italic, link } = require(
+  "@grammyjs/parse-mode",
+);
 
 const bot = new Bot("");
 
