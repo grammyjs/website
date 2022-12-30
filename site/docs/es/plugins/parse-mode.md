@@ -59,7 +59,7 @@ ${bold(fmt`negrita ${link("blink", "example.com")} negrita`)}`);
   // fmt también puede ser llamada como cualquier otra función.
   await ctx.replyFmt(
     fmt(
-      ["", " and ", " and ", ""],
+      ["", " y ", " y ", ""],
       fmt`${bold("negrita")}`,
       fmt`${bold(italic("ambas"))}`,
       fmt`${italic("cursiva")}`,
@@ -98,7 +98,7 @@ ${bold(fmt`negrita ${link("blink", "example.com")} negrita`)}`);
   // fmt también puede ser llamada como cualquier otra función.
   await ctx.replyFmt(
     fmt(
-      ["", " and ", " and ", ""],
+      ["", " y ", " y ", ""],
       fmt`${bold("negrita")}`,
       fmt`${bold(italic("ambas"))}`,
       fmt`${italic("cursiva")}`,
