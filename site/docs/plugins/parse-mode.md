@@ -8,8 +8,8 @@ This plugin provides a transformer for setting default `parse_mode`, and a middl
   <CodeGroupItem title="TypeScript" active>
 
 ```ts
-import { Bot, Composer, Context } from "grammy";
-import { bold, fmt, hydrateReply, italic } from "@grammyjs/parse-mode";
+import { Bot, Context } from "grammy";
+import { bold, fmt, hydrateReply, italic, link } from "@grammyjs/parse-mode";
 
 import type { ParseModeFlavor } from "@grammyjs/parse-mode";
 
@@ -41,8 +41,8 @@ bot.start();
  <CodeGroupItem title="JavaScript">
 
 ```js
-const { Bot, Composer, Context } = require("grammy");
-const { bold, fmt, hydrateReply, italic } = require("@grammyjs/parse-mode");
+const { Bot, Context } = require("grammy");
+const { bold, fmt, hydrateReply, italic, link } = require("@grammyjs/parse-mode");
 
 const bot = new Bot("");
 
@@ -72,12 +72,13 @@ bot.start();
  <CodeGroupItem title="Deno">
 
 ```ts
-import { Bot, Composer, Context } from "https://deno.land/x/grammy/mod.ts";
+import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   bold,
   fmt,
   hydrateReply,
   italic,
+  link,
 } from "https://deno.land/x/grammy_parse_mode/mod.ts";
 
 import type { ParseModeFlavor } from "https://deno.land/x/grammy_parse_mode/mod.ts";
