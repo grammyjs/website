@@ -245,7 +245,20 @@ await ctx.reply(text, {
 Umumnya, semua method yang mengirim pesan selain pesan teks mendukung opsi-opsi yang serupa, seperti yang sudah dijelaskan di [Referensi API Bot Telegram](https://core.telegram.org/bots/api).
 
 Kamu juga bisa memberi beberapa property ke keyboard kamu dengan cara memanggil method khusus.
-Alih-alih menambahkan tombol baru, method-method berikut dapat mengubah perilaku sebuah keyboard:
+Alih-alih menambahkan tombol baru, method-method tersebut mengubah perilaku dari sebuah keyboard.
+
+#### Keyboard Persisten
+
+Secara bawaan, user bisa menggunakan sebuah tombol icon yang berfungsi untuk menampilkan dan menyembunyikan keyboard custom yang disetel oleh bot kamu.
+
+Kamu bisa memanggil `persistent` agar keyboard custom tetap ditampilkan ketika keyboard sistem disembunyikan.
+Dengan begitu, keyboard akan selalu ditampilkan ke user, baik itu keyboard custom ataupun keyboard sistem.
+
+```ts
+new Keyboard()
+  .text("Lewati")
+  .persistent();
+```
 
 #### Mengatur Ukuran Keyboard Custom
 
