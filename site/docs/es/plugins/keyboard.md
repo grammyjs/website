@@ -246,8 +246,21 @@ await ctx.reply(text, {
 
 Naturalmente, todos los demás métodos que envían mensajes que no sean de texto soportan las mismas opciones, tal y como se especifica en la [Referencia de la API de Telegram Bot](https://core.telegram.org/bots/api).
 
-También puede dar a su teclado una o más propiedades adicionales llamando a métodos especiales sobre él.
-Estos no añadirán ningún botón, sino que definirán el comportamiento del teclado.
+También puede dotar a su teclado de una o varias propiedades más llamando a métodos especiales sobre él.
+No añadirán ningún botón, sino que definirán el comportamiento del teclado.
+
+#### Teclados persistentes
+
+Por defecto, los usuarios ven un icono que les permite mostrar u ocultar el teclado personalizado que tu bot configuró.
+
+Puedes llamar a `persistent` si quieres que el teclado personalizado se muestre siempre que el teclado normal del sistema esté oculto.
+De esta forma, los usuarios siempre verán el teclado personalizado o el teclado del sistema.
+
+```ts
+new Keyboard()
+  .text("Omitir")
+  .persistent();
+```
 
 #### Cambiar el tamaño del Teclado Personalizado
 
