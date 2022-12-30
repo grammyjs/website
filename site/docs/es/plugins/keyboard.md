@@ -246,8 +246,8 @@ await ctx.reply(text, {
 
 Naturalmente, todos los demás métodos que envían mensajes que no sean de texto soportan las mismas opciones, tal y como se especifica en la [Referencia de la API de Telegram Bot](https://core.telegram.org/bots/api).
 
-También puede dar a su teclado una o más propiedades adicionales llamando a métodos especiales sobre él.
-Estos no añadirán ningún botón, sino que definirán el comportamiento del teclado.
+También puede dotar a su teclado de una o varias propiedades más llamando a métodos especiales sobre él.
+No añadirán ningún botón, sino que definirán el comportamiento del teclado.
 
 #### Teclados persistentes
 
