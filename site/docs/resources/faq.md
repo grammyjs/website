@@ -18,6 +18,7 @@ You can pre-parse the entities for Telegram if you want, and specify `entities` 
 Your message text could then be a regular string.
 That way, you don't have to worry about escaping weird characters.
 This may look like it needs more code, but in fact it is the far more reliable and fool-proof solution to this problem.
+Most importantly, this is simplified greatly by our [parse-mode plugin](../plugins/parse-mode.md).
 :::
 
 ### 401 Unauthorized
