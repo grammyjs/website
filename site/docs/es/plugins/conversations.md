@@ -929,7 +929,7 @@ Esto es relevante para los siguientes plugins:
 
 - [menu](./menu.md)
 - [hydrate](./hydrate.md)
-- [i18n](./i18n.md) and [fluent](./fluent.md)
+- [i18n](./i18n.md) y [fluent](./fluent.md)
 - [emoji](./emoji.md)
 
 Todos ellos tienen en común que almacenan funciones en el objeto de contexto, que el plugin de conversaciones no puede manejar correctamente.
