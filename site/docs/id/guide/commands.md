@@ -9,7 +9,7 @@ Command atau perintah adalah entity khusus di dalam pesan Telegram yang berfungs
 
 ## Penggunaan
 
-> Lihat bagian commands di dokumentasi [Pengenalan untuk Developer](https://core.telegram.org/bots#commands) yang ditulis oleh tim Telegram.
+> Lihat bagian commands di dokumentasi [Fitur-fitur Bot Telegram](https://core.telegram.org/bots/features#commands) yang ditulis oleh tim Telegram.
 
 grammY menyediakan listener khusus untuk menangani command (misal `/start` dan `/help`) yang bisa kamu pasang secara langsung melalui `bot.command()`.
 
@@ -61,7 +61,7 @@ Perlu dicatat bahwa seluruh isi teks pesan selalu bisa diakses melalui `ctx.msg.
 
 ## Dukungan Deep Linking
 
-> Lihat bagian deep linking di dokumentasi [Pengenalan untuk Developer](https://core.telegram.org/bots#deep-linking) yang ditulis oleh tim Telegram.
+> Lihat bagian deep linking di dokumentasi [Fitur-fitur Bot Telegram](https://core.telegram.org/bots/features#deep-linking) yang ditulis oleh tim Telegram.
 
 Ketika pengguna mengunjungi `https://t.me/username_bot_kamu?start=migoreng`, aplikasi Telegram mereka akan menampilkan sebuah tombol MULAI yang—kalau dipencet—akan mengirim pesan beserta string dari parameter URL-nya. Dari contoh tadi, isi pesannya akan menjadi `"/start migoreng"`. Nah,`"migoreng"` ini adalah muatannya atau disebut dengan `payload`.
 Aplikasi Telegram akan menyembunyikan isi payload tersebut dari pengguna, yang mereka lihat cuma `"/start"`. Tetapi, bot kamu tetap akan menerima pesannya secara utuh.

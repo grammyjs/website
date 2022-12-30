@@ -263,4 +263,4 @@ Dari contoh di atas, kita menggunakan `chat.id` sebagai key unik untuk melakukan
 
 - Nama: `ratelimiter`
 - Sumber: <https://github.com/grammyjs/ratelimiter>
-- Referensi: <https://doc.deno.land/https://deno.land/x/grammy_ratelimiter/mod.ts>
+- Referensi: <https://deno.land/x/grammy_ratelimiter/mod.ts>

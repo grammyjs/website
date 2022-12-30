@@ -106,7 +106,7 @@ Como siempre, se llama `ctx` y utiliza tu [tipo de contexto personalizado](../gu
 El plugin de conversaciones exporta un [context flavor](../guide/context.md#additive-context-flavors) llamado `ConversationFlavor`.
 
 **El primer parámetro** es el elemento central de este plugin.
-Se llama comúnmente `conversation`, y tiene el tipo `Conversación` ([referencia de la API](https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts/~/Conversation)).
+Se llama comúnmente `conversation`, y tiene el tipo `Conversación` ([referencia de la API](https://deno.land/x/grammy_conversations/mod.ts?s=Conversation)).
 Puede ser usado como un manejador para controlar la conversación, como esperar la entrada del usuario, y más.
 El tipo `Conversation` espera su [tipo de contexto personalizado](../guide/context.md#customizing-the-context-object) como parámetro de tipo, por lo que a menudo utilizaría `Conversation<MyContext>`.
 
@@ -326,10 +326,64 @@ bot.start();
 </CodeGroupItem>
 </CodeGroup>
 
+### Instalación con datos de sesión personalizados
+
+Ten en cuenta que si utilizas TypeScript y quieres almacenar tus propios datos de sesión además de utilizar conversaciones, tendrás que proporcionar más información de tipo al compilador.
+Digamos que tienes esta interfaz que describe tus datos de sesión personalizados:
+
+```ts
+interface SessionData {
+  /** propiedad de sesión personalizada */
+  foo: string;
+}
+```
+
+Su tipo de contexto personalizado podría entonces tener el siguiente aspecto:
+
+```ts
+type MyContext = Context & SessionFlavor<SessionData> & ConversationFlavor;
+```
+
+Lo más importante es que al instalar el plugin de sesión con un almacenamiento externo, tendrás que proporcionar los datos de sesión explícitamente.
+Todos los adaptadores de almacenamiento te permiten pasar el `SessionData` como un parámetro de tipo.
+Por ejemplo, así es como tendrías que hacerlo con el [`almacenamiento gratuito`](./session.md#almacenamiento-gratuito) que proporciona grammY.
+
+```ts
+// Instalar el plugin de sesión.
+bot.use(session({
+  // Añade los tipos de sesión al adaptador.
+  storage: freeStorage<SessionData>(bot.token),
+  initial: () => ({ foo: "" }),
+}));
+```
+
+Puedes hacer lo mismo para todos los demás adaptadores de almacenamiento, como `new FileAdapter<SessionData>()` y así sucesivamente.
+
+### Instalación Con Sesiones Múltiples
+
+Naturalmente, puedes combinar conversaciones con [multi sesiones](./session.md#multi-sesiones).
+
+Este plugin almacena los datos de la conversación dentro de `session.conversation`.
+Esto significa que si quieres usar multi sesiones, tienes que especificar este fragmento.
+
+```ts
+// Instala el plugin de sesiones.
+bot.use(session({
+  type: "multi",
+  custom: {
+    initial: () => ({ foo: "" }),
+  },
+  conversation: {}, // puede dejarse vacío
+}));
+```
+
+De esta forma, puedes almacenar los datos de la conversación en un lugar diferente al de otros datos de la sesión.
+Por ejemplo, si dejas la configuración de conversación vacía como se ilustra arriba, el plugin de conversación almacenará todos los datos en memoria.
+
 ## Salir de una conversación
 
 La conversación se ejecutará hasta que su función de construcción de conversación se complete.
-Esto significa que puedes simplemente dejar una conversación usando `return`.
+Esto significa que puedes salir de una conversación simplemente usando `return` o `throw`.
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
@@ -358,13 +412,67 @@ async function hiAndBye(conversation, ctx) {
 
 (Sí, poner un `return` al final de la función es un poco inútil, pero se entiende la idea).
 
-También puedes lanzar un error.
-Esto también saldrá de la conversación.
-Recuerda [instalar un manejador de errores](../guide/errors.md) en tu bot.
+Si se produce un error, también se saldrá de la conversación.
+Sin embargo, el [plugin de sesión](#instalar-y-entrar-en-una-conversacion) sólo persigue los datos si el middleware se ejecuta con éxito.
+Por lo tanto, si lanzas un error dentro de tu conversación y no lo capturas antes de que llegue al plugin de sesión, no se guardará que la conversación fue abandonada.
+Como resultado, el siguiente mensaje causará el mismo error.
 
-Si quieres acabar con la conversación mientras espera la entrada del usuario, también puedes usar `await ctx.conversation.exit()`.
+Puedes mitigar esto instalando un [límite de error](../guide/errors.md#error-boundaries) entre la sesión y la conversación.
+De esta manera, puede evitar que el error se propague por el [árbol de middleware](../advanced/middleware.md) y por lo tanto permitir que el plugin de sesión vuelva a escribir los datos.
+
+> Tenga en cuenta que si está utilizando las sesiones en memoria por defecto, todos los cambios en los datos de la sesión se reflejan inmediatamente, porque no hay un backend de almacenamiento.
+> En ese caso, no es necesario utilizar los límites de error para abandonar una conversación lanzando un error.
+> Así es como los límites de error y las conversaciones podrían usarse juntos.
+
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
+
+```ts
+bot.use(session({
+  storage: freeStorage(bot.token), // ajustar
+  initial: () => ({}),
+}));
+bot.use(conversations());
+async function hiAndBye(conversation: MyConversation, ctx: MyContext) {
+  await ctx.reply("¡Hola! y ¡Adiós!");
+  // Abandona la conversación:
+  throw new Error("¡Atrápame si puedes!");
+}
+bot.errorBoundary(
+  (err) => console.error("¡La conversación arrojó un error!", err),
+  createConversation(greeting),
+);
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+bot.use(session({
+  storage: freeStorage(bot.token), // ajustar
+  initial: () => ({}),
+}));
+bot.use(conversations());
+async function hiAndBye(conversation, ctx) {
+  await ctx.reply("¡Hola! y ¡Adiós!");
+  // Abandona la conversación:
+  throw new Error("¡Atrápame si puedes!");
+}
+bot.errorBoundary(
+  (err) => console.error("¡La conversación arrojó un error!", err),
+  createConversation(greeting),
+);
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+Hagas lo que hagas, debes recordar [instalar un manejador de errores](../guide/errors.md) en tu bot.
+
+Si quieres acabar con la conversación desde tu middleware habitual mientras espera la entrada del usuario, también puedes usar `await ctx.conversation.exit()`.
+Esto simplemente borrará los datos del plugin de conversación de la sesión.
 A menudo es mejor quedarse con el simple retorno de la función, pero hay algunos ejemplos en los que el uso de `await ctx.conversation.exit()` es conveniente.
-Recuerda que debes `esperar` la llamada.
+Recuerda que debes `await` la llamada.
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
@@ -379,15 +487,15 @@ bot.use(conversations());
 
 // Salir siempre de cualquier conversación tras /cancelar
 bot.command("cancel", async (ctx) => {
-  await ctx.reply("Saliendo.");
   await ctx.conversation.exit();
+  await ctx.reply("Saliendo.");
 });
 
 // Salir siempre de la conversación de la `movie` 
 // cuando se pulsa el botón de `cancel` del teclado en línea.
 bot.callbackQuery("cancel", async (ctx) => {
-  await ctx.answerCallbackQuery("Dejando la conversación");
   await ctx.conversation.exit("movie");
+  await ctx.answerCallbackQuery("Dejando la conversación");
 });
 
 bot.use(createConversation(movie));
@@ -407,15 +515,15 @@ bot.use(conversations());
 
 // Salir siempre de cualquier conversación tras /cancelar
 bot.command("cancel", async (ctx) => {
-  await ctx.reply("Saliendo.");
   await ctx.conversation.exit();
+  await ctx.reply("Saliendo.");
 });
 
 // Salir siempre de la conversación de la `movie` 
 // cuando se pulsa el botón de `cancel` del teclado en línea.
 bot.callbackQuery("cancel", async (ctx) => {
-  await ctx.answerCallbackQuery("Dejando la conversación");
   await ctx.conversation.exit("movie");
+  await ctx.answerCallbackQuery("Dejando la conversación");
 });
 
 bot.use(createConversation(movie));
@@ -524,7 +632,7 @@ async function waitForText(conversation, ctx) {
 </CodeGroupItem>
 </CodeGroup>
 
-Consulta la [referencia de la API](https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts/~/ConversationHandle#wait) para ver todos los métodos disponibles que son similares a `wait`.
+Consulta la [referencia de la API](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#method_wait_0) para ver todos los métodos disponibles que son similares a `wait`.
 
 Veamos ahora cómo funcionan realmente las llamadas wait.
 Como se mencionó anteriormente, **no hacen _literalmente_ que tu bot espere**, aunque podemos programar las conversaciones como si ese fuera el caso.
@@ -580,7 +688,7 @@ await conversation.sleep(3000); // 3 segundos
 conversation.log("Hola, mundo");
 ```
 
-Ten en cuenta que puedes hacer todo lo anterior a través de `conversation.external()`, pero esto puede ser tedioso de escribir, así que es más fácil usar las funciones de conveniencia ([referencia de la API](https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts/~/ConversationHandle#Methods)).
+Ten en cuenta que puedes hacer todo lo anterior a través de `conversation.external()`, pero esto puede ser tedioso de escribir, así que es más fácil usar las funciones de conveniencia ([referencia de la API](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#Methods)).
 
 ## Variables, bifurcaciones y bucles
 
@@ -809,7 +917,7 @@ async function waitForMe(conversation, ctx) {
 </CodeGroupItem>
 </CodeGroup>
 
-Como siempre, consulte la [referencia de la API](https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts/~/ConversationForm) para ver qué métodos están disponibles.
+Como siempre, consulte la [referencia de la API](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationForm) para ver qué métodos están disponibles.
 
 ## Conversaciones paralelas
 
@@ -900,7 +1008,7 @@ bot.on("chat_member")
 Puede ver cuántas conversaciones con qué identificador se están ejecutando.
 
 ```ts
-const stats = ctx.conversation.active;
+const stats = await ctx.conversation.active();
 console.log(stats); // { "enterGroup": 1 }
 ```
 
@@ -1007,4 +1115,4 @@ Como obviamente no queremos matar el runtime de JS, tenemos que atrapar esto de 
 
 - Name: `conversations`
 - Source: <https://github.com/grammyjs/conversations>
-- Reference: <https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts>
+- Reference: <https://deno.land/x/grammy_conversations/mod.ts>

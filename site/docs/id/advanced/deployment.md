@@ -29,7 +29,7 @@ Ini tergantung dari jenis deployment kamu.
 
 1. [Gunakan grammY runner](../plugins/runner.md).
 2. [Gunakan `sequentialize` dengan _session key_ dari _resolver function_ yang sama sebagai _session middleware_ kamu](./scaling.md#concurrency-itu-sulit).
-3. Periksa konfigurasi `run` ([Referensi API](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/run)) dan pastikan sesuai dengan kebutuhanmu, atau bahkan pertimbangkan untuk membuat runner-mu sendiri dari [source](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/UpdateSource) dan [sink](https://doc.deno.land/https://deno.land/x/grammy_runner/mod.ts/~/UpdateSink).
+3. Periksa konfigurasi `run` ([Referensi API](https://deno.land/x/grammy_runner/mod.ts?s=run)) dan pastikan sesuai dengan kebutuhanmu, atau bahkan pertimbangkan untuk membuat runner-mu sendiri dari [source](https://deno.land/x/grammy_runner/mod.ts?s=UpdateSource) dan [sink](https://deno.land/x/grammy_runner/mod.ts?s=UpdateSink).
    Hal utama yang perlu dipertimbangkan adalah beban maksimum yang ingin diterapkan ke servermu, misal: berapa banyak update yang dapat diproses secara bersamaan.
 4. Implementasikan [graceful shutdown](./reliability.md#graceful-shutdown) ketika hendak menghentikan bot (misalnya untuk beralih ke versi baru).
 
@@ -38,14 +38,14 @@ Ini tergantung dari jenis deployment kamu.
 1. Pastikan tidak melakukan operasi yang berjalan lama di middleware, seperti pengiriman file dalam jumlah besar.
    [Hal ini akan mengakibatkan error timeout](../guide/deployment-types.md#mengakhiri-request-webhook-tepat-waktu) pada webhooks serta pemrosesan update yang sama berulang kali karena Telegram terus mengirim kembali update yang tidak direspon.
    Untuk menghindari hal tersebut, sebaiknya gunakan sistem _task queuing_.
-2. Buat dirimu terbiasa dengan konfigurasi `webhookCallback` ([Referensi API](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/webhookCallback)).
+2. Buat dirimu terbiasa dengan konfigurasi `webhookCallback` ([Referensi API](https://deno.land/x/grammy/mod.ts?s=webhookCallback)).
 3. Jika hendak mengatur opsi `getSessionKey` untuk session, [Gunakan `sequentialize` dengan _session key_ dari _resolver function_ yang sama sebagai _session middleware_ kamu.](./scaling.md#concurrency-itu-sulit).
-4. Jika menjalankan bot di platform serverless atau autoscaling, [atur informasi bot](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/BotConfig) untuk mencegah panggilan `getMe` yang berlebihan.
+4. Jika menjalankan bot di platform serverless atau autoscaling, [atur informasi bot](https://deno.land/x/grammy/mod.ts?s=BotConfig) untuk mencegah panggilan `getMe` yang berlebihan.
 5. Pertimbangkan untuk menggunakan [webhook reply](../guide/deployment-types.md#webhook-reply).
 
 ## Session
 
-1. Pertimbangkan menggunakan `lazySessions` seperti yang sudah dijelaskan [di sini](../plugins/session.md#lazy-session).
+1. Pertimbangkan menggunakan `lazySessions` seperti yang sudah dijelaskan [di sini](../plugins/session.md#lazy-sessions).
 2. Gunakan opsi `storage` untuk mengatur tempat penyimpanan. Jika tidak dilakukan, semua data akan hilang ketika bot berhenti bekerja.
 
 ## Pengujian
@@ -54,7 +54,7 @@ Lakukan berbagai pengujian untuk bot.
 Berikut cara melakukannya dengan grammY:
 
 1. _Mock_ request API yang keluar menggunakan [function transformer](./transformers.md).
-2. Tentukan dan kirim berbagai sampel object update ke bot melalui `bot.handleUpdate` ([referensi API](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Bot#handleUpdate)).
+2. Tentukan dan kirim berbagai sampel object update ke bot melalui `bot.handleUpdate` ([referensi API](https://deno.land/x/grammy/mod.ts?s=Bot#method_handleUpdate_0)).
    Pertimbangkan untuk mengambil beberapa inspirasi dari [object update](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates) yang telah disediakan oleh tim Telegram.
 
 ::: tip Berkontribusi untuk Pengujian Framework

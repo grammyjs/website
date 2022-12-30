@@ -6,7 +6,7 @@ Meski kamu bisa saja menulis sendiri kode untuk melakukan koneksi ke sebuah data
 
 ## Mengapa Kita Perlu Memikirkan Tempat Penyimpanan?
 
-Berbeda dengan akun user Telegram biasa, bot memiliki [cloud storage yang terbatas](https://core.telegram.org/bots#4-how-are-bots-different-from-humans) di Telegram cloud.
+Berbeda dengan akun user Telegram biasa, bot memiliki [penyimpanan cloud yang terbatas](https://core.telegram.org/bots#how-are-bots-different-from-users) di Telegram cloud.
 Akibatnya, ada beberapa hal yang tidak bisa kamu lakukan di bot:
 
 1. Kamu tidak bisa mengakses pesan lama yang pernah diterima oleh bot-mu.
@@ -48,7 +48,7 @@ Alhasil, bot kamu akan menyimpan sebuah map chat identifier ke beberapa data ses
 ```
 
 > Ketika kami menyebut database, kami benar-benar merujuk ke sebuah penyimpanan data, apapun bentuknya.
-> Termasuk file, cloud storage, atau lainnya.
+> Termasuk file, penyimpanan cloud, atau lainnya.
 
 OK, keren.
 Tapi, bagaimana sebenarnya cara kerja session di atas?
@@ -247,7 +247,7 @@ Kalau kamu tidak menentukan opsi tersebut, pembacaan `ctx.session` akan mengakib
 > Bagian ini membahas fitur lanjutan yang untuk sebagian besar orang bisa diabaikan.
 > Kamu bisa melanjutkan ke bagian [Menyimpan Data](#menyimpan-data).
 
-Kamu bisa menentukan session key mana yang akan digunakan dengan cara memasukkan sebuah function bernama `getSessionKey` ke [opsi session](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/SessionOptions#getSessionKey).
+Kamu bisa menentukan session key mana yang akan digunakan dengan cara memasukkan sebuah function bernama `getSessionKey` ke [opsi session](https://deno.land/x/grammy/mod.ts?s=SessionOptions#prop_getSessionKey).
 Dengan begitu, kamu bisa mengubah perilaku plugin session sepenuhnya.
 Secara bawaan, data disimpan per chat.
 Tetapi, dengan menggunakan `getSessionKey` kamu bisa menyimpan data entah itu per user, kombinasi per user dan chat, ataupun cara lainnya.
@@ -357,7 +357,7 @@ bot.use(session({
 Secara bawaan semua data disimpan di dalam RAM.
 Artinya, semua session akan terhapus di saat bot dihentikan.
 
-Kamu bisa menggunakan class `MemorySessionStorage` ([Referensi API](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/MemorySessionStorage)) dari package inti grammY jika kamu ingin mengatur penyimpanan data di RAM.
+Kamu bisa menggunakan class `MemorySessionStorage` ([Referensi API](https://deno.land/x/grammy/mod.ts?s=MemorySessionStorage)) dari package inti grammY jika kamu ingin mengatur penyimpanan data di RAM.
 
 ```ts
 bot.use(session({
@@ -372,7 +372,7 @@ bot.use(session({
 > Pengaplikasian skala-produksi harus menggunakan database mereka sendiri.
 > Daftar pilihan integrasi storage eksternal yang didukung tersedia [di bawah sini](#storage-eksternal).
 
-Keuntungan menggunakan grammY adalah kamu bisa mengakses cloud storage secara gratis.
+Keuntungan menggunakan grammY adalah kamu bisa mengakses penyimpanan cloud secara gratis.
 Ia tidak membutuhkan pengaturan sama sekali—semua autentikasi dilakukan menggunakan token bot-mu.
 Lihat [repositori berikut](https://github.com/grammyjs/storages/tree/main/packages/free)!
 
@@ -535,7 +535,7 @@ Masing-masing dari mereka mengharuskan kamu untuk mendaftar di sebuah penyedia l
 
 ::: tip Storage pilihanmu belum didukung? Tidak masalah!
 Membuat storage adapter sendiri sangat mudah dilakukan.
-Opsi `storage` bekerja dengan berbagai object yang menganut [interface berikut](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/StorageAdapter), sehingga kamu bisa melakukan koneksi ke storage-mu hanya dengan beberapa baris kode.
+Opsi `storage` bekerja dengan berbagai object yang menganut [interface berikut](https://deno.land/x/grammy/mod.ts?s=StorageAdapter), sehingga kamu bisa melakukan koneksi ke storage-mu hanya dengan beberapa baris kode.
 
 > Kalau kamu ingin mempublikasikan storage adapter buatanmu, silahkan ubah halaman ini dan sertakan juga link-nya agar orang-orang bisa menggunakannya.
 
@@ -556,10 +556,10 @@ Lihat bagian pemasangan di repositori masing-masing untuk mengetahui cara menghu
 
 Kamu juga bisa [scroll ke bawah](#peningkatan-storage) untuk mempelajari bagaimana plugin session bisa meningkatkan storage adapter.
 
-## Multi Session
+## Multi Sessions
 
 Plugin session mampu menyimpan beberapa fragmen data session di beberapa tempat.
-Cara kerjanya sama seperti kamu menginstal beberapa instance plugin session, tetapi untuk setiap instance-nya dipasang pengaturan yang berbeda.
+Cara kerjanya mirip ketika kamu menginstal beberapa instance plugin session, bedanya untuk setiap instance-nya dipasang pengaturan yang berbeda.
 
 Setiap fragmen data akan diberi nama sesuai dengan tempat di mana data tersebut disimpan.
 Dengan begitu, kamu bisa mengakses `ctx.session.foo` dan `ctx.session.bar`.
@@ -581,7 +581,7 @@ bot.use(session({
     // value bawaan juga tersedia
     storage: new MemorySessionStorage(),
     initial: () => undefined,
-    getSessionKey: (ctx) => ctx.from?.id.toString(),
+    getSessionKey: (ctx) => ctx.chat?.id.toString(),
   },
   bar: {
     initial: () => ({ prop: 0 }),
@@ -608,7 +608,7 @@ interface SessionData {
 
 Dengan begitu, kamu masih bisa menggunakan `SessionFlavor<SessionData>` di context object-mu.
 
-## Lazy Session
+## Lazy Sessions
 
 > Bagian ini membahas optimisasi performa yang untuk sebagian besar orang bisa diabaikan.
 > Silahkan lewati bagian ini jika dirasa tidak perlu.
@@ -701,15 +701,13 @@ Plugin session dapat meningkatkan kemampuan storage adapter dengan cara menambah
 Kedua fitur tersebut bisa diinstal dengan menggunakan function `enhanceStorage`.
 
 ```ts
-// Buat sebuah storage adapter.
-const storage = freeStorage(bot.token); // jangan lupa diatur
-// Tingkatkan kemampuan storage.
-const enhanced = enhanceStorage({
-  storage,
-  // tulis konfigurasinya di sini
-});
 // Gunakan storage adapter yang sudah ditingkatkan.
-bot.use(session({ storage: enhanced }));
+bot.use(session({
+  storage: enhanceStorage({
+    storage: freeStorage(bot.token), // jangan lupa diatur,
+    // tulis konfigurasinya di sini
+  }),
+}));
 ```
 
 Kamu juga bisa menggunakan kedua fitur secara bersamaan.

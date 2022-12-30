@@ -97,7 +97,7 @@ Como hemos mencionado anteriormente, tenemos dos opciones para recibir datos de 
 > Si decides usar el long polling en su lugar, puedes saltarte esta sección y pasar a la [sección sobre long polling](#long-polling). :rocket:
 
 En resumen, a diferencia del long polling, los webhooks no se ejecutan continuamente para comprobar los mensajes entrantes de Telegram.
-Esto reducirá la carga del servidor y nos ahorrará un montón de [horas de dyno](https://devcenter.heroku.com/articles/free-dyno-hours), especialmente cuando estés usando la capa gratuita. :grin:
+Esto reducirá la carga del servidor y nos ahorrará un montón de [horas de dyno](https://devcenter.heroku.com/articles/eco-dyno-hours), especialmente si utiliza el plan Eco. :grin:
 
 Bien, ¡continuemos!
 ¿Recuerdas que hemos creado `bot.ts` antes?
@@ -181,7 +181,7 @@ Como siempre, esto es opcional.
 
 ::: tip ⚡ Optimización (opcional)
 Cada vez que tu servidor se inicie, grammY solicitará [información sobre el bot](https://core.telegram.org/bots/api#getme) a Telegram para proporcionarla en el [objeto de contexto](../guide/context.md) bajo `ctx.me`.
-Podemos establecer la [información sobre el bot](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/BotConfig#botInfo) para evitar un exceso de llamadas a `getMe`.
+Podemos establecer la [información sobre el bot](https://deno.land/x/grammy/mod.ts?s=BotConfig#prop_botInfo) para evitar un exceso de llamadas a `getMe`.
 
 1. Abre este enlace `https://api.telegram.org/bot<bot_token>/getMe` en tu navegador web favorito. Se recomienda usar [Firefox](https://www.mozilla.org/en-US/firefox/) ya que muestra muy bien el formato `json`.
 2. Cambia nuestro código en la línea 4 de arriba y rellena el valor de acuerdo con los resultados de `getMe`:
@@ -208,7 +208,7 @@ export const bot = new Bot(`${process.env.BOT_TOKEN}`, {
 ## Long Polling
 
 ::: warning Su script se ejecutará de forma continua cuando utilice el sondeo largo
-A menos que sepa cómo manejar este comportamiento, asegúrese de que tiene suficientes [horas de dyno](https://devcenter.heroku.com/articles/free-dyno-hours).
+A menos que sepa cómo manejar este comportamiento, asegúrese de que tiene suficientes [horas de dyno](https://devcenter.heroku.com/articles/eco-dyno-hours).
 :::
 
 > ¿Considerar el uso de webhooks?
@@ -261,7 +261,7 @@ Si se ejecuta con éxito y no imprime ningún error, nuestros archivos compilado
 
 ### Configurar el `Procfile`
 
-Por el momento, `Heroku` tiene varios [tipos de dynos](https://devcenter.heroku.com/articles/free-dyno-hours).
+Por el momento, `Heroku` tiene varios [tipos de dynos](https://devcenter.heroku.com/articles/dyno-types).
 Dos de ellos son:
 
 - **Web dynos**:

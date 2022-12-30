@@ -5,7 +5,7 @@ next: ./api.md
 
 # Context
 
-Object `Context` ([Referensi API grammY](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Context)) merupakan komponen penting di grammY.
+Object `Context` ([Referensi API grammY](https://deno.land/x/grammy/mod.ts?s=Context)) merupakan komponen penting di grammY.
 
 Setiap kali kamu menambahkan listener ke object bot, listener ini akan menerima sebuah object context.
 
@@ -110,8 +110,8 @@ if (ctx.hasCallbackQuery(/query-data-\d+/)) {
 ```
 
 Hal yang sama juga berlaku untuk has checks lainnya.
-Lihat [referensi API context object](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Context#has) untuk mengetahui semua has checks yang tersedia.
-Selain itu, lihat juga [referensi API](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Context#Static_Properties) untuk static property `Context.has` yang bisa kamu gunakan untuk membuat predicate function memeriksa beberapa context object secara efisien.
+Lihat [referensi API context object](https://deno.land/x/grammy/mod.ts?s=Context#method_has_0) untuk mengetahui semua has checks yang tersedia.
+Selain itu, lihat juga [referensi API](https://deno.land/x/grammy/mod.ts?s=Context#Static_Properties) untuk static property `Context.has` yang bisa kamu gunakan untuk membuat predicate function memeriksa beberapa context object secara efisien.
 
 ## Aksi yang Tersedia
 
@@ -178,7 +178,7 @@ Gunakan auto-complete untuk melihat opsi yang tersedia langsung di code editor.
 :::::
 
 Umumnya, setiap method di `ctx.api` memiliki shortcut dengan nilai yang sudah terisi sebelumnya, seperti `ctx.replyWithPhoto` untuk membalas menggunakan foto, atau `ctx.exportChatInviteLink` untuk mendapatkan link undangan chat yang bersangkutan.
-Jika ingin tahu pintasan apa saja yang tersedia, auto-complete beserta [Referensi API grammY](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Context) adalah kawan baikmu.
+Jika ingin tahu pintasan apa saja yang tersedia, auto-complete beserta [Referensi API grammY](https://deno.land/x/grammy/mod.ts?s=Context) adalah kawan baikmu.
 
 Harap dicatat bahwa mungkin adakalanya kamu tidak ingin merespon ke chat yang sama.
 Untuk itu, kamu bisa kembali menggunakan method `ctx.api`, lalu menentukan sendiri opsi-opsinya.
@@ -210,12 +210,13 @@ Materi ini memerlukan pemahaman yang baik mengenai middleware. Jika kamu belum m
 Perlu kamu ketahui bahwa beberapa handler mampu memproses object context yang sama. Ada juga sebuah handler khusus yang berfungsi untuk memodifikasi `ctx` sebelum handler-handler lain dijalankan. Hasil modifikasi tersebut akan digunakan oleh handler-handler berikutnya.
 :::
 
-Idenya adalah kamu perlu memasang middleware terlebih dahulu sebelum listener-listener dijalankan.
-Dengan begitu, kamu bisa menentukan berbagai property yang diinginkan di dalam handler-handler tadi.
+Konsepnya adalah middleware harus dipasang sebelum listener.
+Dengan begitu, kamu bisa menambahkan property yang diinginkan ke berbagai handler.
+Misalnya, jika kamu menambahkan `ctx.namaCustomProperty = valueProperty` ke dalam handler tersebut, maka property `ctx.namaCustomProperty` juga akan tersedia untuk handler-handler yang lain.
 
-Sebagai ilustrasi, katakanlah kamu hendak mengatur property `ctx.config` dari object context.
-Di contoh berikut, kamu akan menggunakannya untuk menyimpan beberapa konfigurasi, dengan tujuan agar semua handler bisa mengaksesnya.
-Konfigurasi tersebut akan mempermudah bot untuk mendeteksi apakah pesan dikirim oleh pengguna biasa atau developer bot itu sendiri.
+Sebagai contoh, katakanlah kamu hendak menambahkan property `ctx.config` di object context.
+Nantinya, beberapa konfigurasi akan kita simpan di property tersebut agar bisa diakses oleh semua handler.
+Bot akan memakai konfigurasi tersebut untuk membedakan apakah pesan dikirim oleh user biasa atau developer bot itu sendiri.
 
 Tepat sesudah membuat bot, lakukan hal ini:
 
@@ -331,7 +332,7 @@ bot.command("start", async (ctx) => {
 </CodeGroupItem>
 </CodeGroup>
 
-Type context modifikasi juga bisa diteruskan ke komponen lain yang menangani middleware, contohnya [composer](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer).
+Type context modifikasi juga bisa diteruskan ke komponen lain yang menangani middleware, contohnya [composer](https://deno.land/x/grammy/mod.ts?s=Composer).
 
 ```ts
 const composer = new Composer<MyContext>();
@@ -489,7 +490,7 @@ interface SessionFlavor<S> {
 }
 ```
 
-Type `SessionFlavor` ([referensi API](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/SessionFlavor)) di atas cukup sederhana: ia hanya mendefinisikan property `session`.
+Type `SessionFlavor` ([referensi API](https://deno.land/x/grammy/mod.ts?s=SessionFlavor)) di atas cukup sederhana: ia hanya mendefinisikan property `session`.
 Ia mengambil type parameter yang akan mendefinisikan struktur asli dari sebuah data session.
 
 Lantas, manfaatnya apa?
@@ -543,7 +544,7 @@ Beberapa [transformative context flavor](#transformative-context-flavor) juga bi
 type ContextKu = FlavorX<FlavorY<FlavorZ<Context>>>;
 ```
 
-Di sini, urutan context flavor akan berpengaruh. `FlavorZ` mengubah `Context` terlebih dahulu, lalu dilanjutkan oleh `FlavorY`, dan hasilnya akan diubah kembali oleh `FlavorX`. Dalam praktiknya, ini tidak perlu dikhawatirkan karena plugin biasanya tidak saling berbenturan satu sama lain.
+Di sini, urutan context flavor akan berpengaruh. `FlavorZ` mengubah `Context` terlebih dahulu, lalu dilanjutkan oleh `FlavorY`, dan hasilnya akan diubah kembali oleh `FlavorX`.
 
 Bahkan kamu bisa mencampur flavor additive dan flavor transformative sekaligus:
 
@@ -556,3 +557,6 @@ type ContextKu = FlavorX<
   >
 >;
 ```
+
+Pastikan untuk selalu mengikuti pola ini ketika menginstal beberapa plugin.
+Kombinasi context flavor yang salah akan mengakibatkan berbagai macam type error.
