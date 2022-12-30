@@ -686,7 +686,7 @@ conversation.session.myProp = 42; // ¡más fiable!
 // Date.now() puede ser impreciso dentro de las conversaciones
 await conversation.now(); // ¡más preciso!
 
-// Debug logging via conversation, no imprime logs confusos
+// Depuración de logs mediante conversation, no imprime logs confusos
 conversation.log("Hola, mundo"); // ¡más transparente!
 ```
 
