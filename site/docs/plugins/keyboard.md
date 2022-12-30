@@ -244,6 +244,19 @@ Naturally, all other methods that send messages other than text messages support
 You can also give your keyboard one or more further properties by calling special methods on it.
 They will not add any buttons, but rather define the behavior of the keyboard.
 
+#### Persistent Keyboards
+
+By default, users see an icon that allows them to show or hide the custom keyboard which your bot set.
+
+You can call `persistent` if you want the custom keyboard to always be shown when the regular system keyboard is hidden.
+That way, users will always see either the custom keyboard or the system keyboard.
+
+```ts
+new Keyboard()
+  .text("Skip")
+  .persistent();
+```
+
 #### Resize Custom Keyboard
 
 You can call `resized` if you want the custom keyboard to be resized according to the buttons it contains.
