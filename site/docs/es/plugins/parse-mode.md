@@ -150,7 +150,7 @@ bot.start();
  <CodeGroupItem title="JavaScript">
 
 ```js
-const { Bot, Composer, Context } = require("grammy");
+const { Bot, Context } = require("grammy");
 const { hydrateReply, parseMode } = require("@grammyjs/parse-mode");
 
 const bot = new Bot("");
@@ -180,7 +180,7 @@ bot.start();
  <CodeGroupItem title="Deno">
 
 ```ts
-import { Bot, Composer, Context } from "https://deno.land/x/grammy/mod.ts";
+import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   hydrateReply,
   parseMode,
