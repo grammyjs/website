@@ -15,7 +15,7 @@ While it is not wrong to say that they are listening for updates, calling them "
 
 Suppose you write a bot like this:
 
-```ts
+```ts{8}
 const bot = new Bot("<token>");
 
 bot.use(session());
@@ -43,16 +43,16 @@ The update is **not** checked for a photo content, because the middleware at `(*
 Now, how does this work?
 Let's find out.
 
-We can inspect the `Middleware` type in grammY's reference [here](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Middleware):
+We can inspect the `Middleware` type in grammY's reference [here](https://deno.land/x/grammy/mod.ts?s=Middleware):
 
 ```ts
-// Omitted some type paramters for brevity.
+// Omitted some type parameters for brevity.
 type Middleware = MiddlewareFn | MiddlewareObj;
 ```
 
-Aha.
+Aha!
 Middleware can be a function or an object.
-We only used functions (`(ctx) => { ... }`) so far, so let's ignore middleware objects for now, and dig deeper into the `MiddlewareFn` type ([reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/MiddlewareFn)):
+We only used functions (`(ctx) => { ... }`) so far, so let's ignore middleware objects for now, and dig deeper into the `MiddlewareFn` type ([reference](https://deno.land/x/grammy/mod.ts?s=MiddlewareFn)):
 
 ```ts
 // Omitted type parameters again.
@@ -226,7 +226,7 @@ If you ever call `next()` without the `await` keyword, several things will break
 - :x: If an error happens, your error handler will not be called for it.
   Instead, you will see that an `UnhandledPromiseRejectionWarning` will occur, which may crash your bot process.
 - :x: The backpressure mechanism of [grammY runner](../plugins/runner.md) breaks, which protects your server from overly-high load, such as during load spikes.
-- :skull: Sometimes, it also kills all of your innocent kittens.
+- :skull: Sometimes, it also kills all of your innocent kittens. :crying_cat_face:
 
 :::
 
@@ -250,7 +250,7 @@ Another difference is that it does not matter how many arguments your middleware
 
 There are two types of middleware: functions and objects.
 Middleware objects are simply a wrapper for middleware functions.
-They are mostly used internally, but can sometimes also help third-party libraries, or be used in advanced use cases, such as with [Composer](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer):
+They are mostly used internally, but can sometimes also help third-party libraries, or be used in advanced use cases, such as with [Composer](https://deno.land/x/grammy/mod.ts?s=Composer):
 
 ```ts
 const bot = new Bot("<token>");

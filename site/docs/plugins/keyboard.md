@@ -7,14 +7,14 @@ Thank you, Telegram, for this overlapping terminology.
 
 Let us try to clear it up a bit:
 
-| Term                                     | Definition                                                                                                                         |
-| ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| [**Inline Keyboard**](#inline-keyboards) | a set of buttons that is displayed underneath a message inside the chat                                                            |
-| [**Custom Keyboard**](#custom-keyboards) | a set of buttons that is displayed instead of the user's system keyboard                                                           |
-| **Inline Keyboard button**               | a button in an inline keyboard, sends a callback query not visible to the user when pressed, sometimes just called _inline button_ |
-| **Custom Keyboard button**               | a button in a keyboard, sends a text message with its label when pressed, sometimes just called _keyboard button_                  |
-| **`InlineKeyboard`**                     | class in grammY to create inline keyboards                                                                                         |
-| **`Keyboard` (!)**                       | class in grammY to create custom keyboards                                                                                         |
+| Term                                     | Definition                                                                                                                          |
+| ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| [**Inline Keyboard**](#inline-keyboards) | a set of buttons that is displayed underneath a message inside the chat.                                                            |
+| [**Custom Keyboard**](#custom-keyboards) | a set of buttons that is displayed instead of the user's system keyboard.                                                           |
+| **Inline Keyboard button**               | a button in an inline keyboard, sends a callback query not visible to the user when pressed, sometimes just called _inline button_. |
+| **Custom Keyboard button**               | a button in a keyboard, sends a text message with its label when pressed, sometimes just called _keyboard button_.                  |
+| **`InlineKeyboard`**                     | class in grammY to create inline keyboards.                                                                                         |
+| **`Keyboard`**                           | class in grammY to create custom keyboards.                                                                                         |
 
 > Note that both custom keyboard buttons and inline keyboard buttons can also have other functions, such as requesting the user's location, opening a website, and so on.
 > This was omitted for brevity.
@@ -26,7 +26,7 @@ For example, it is not possible to first send a custom keyboard along with a mes
 
 ## Inline Keyboards
 
-> Revisit the inline keyboard section in the [Introduction for Developers](https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating) written by the Telegram team.
+> Revisit the inline keyboard section in the [Telegram Bot Features](https://core.telegram.org/bots/features#inline-keyboards) written by the Telegram team.
 
 grammY has a simple and intuitive way to build up the inline keyboards that your bot can send along with a message.
 It provides a class called `InlineKeyboard` for this.
@@ -38,7 +38,7 @@ It provides a class called `InlineKeyboard` for this.
 
 Here are three examples how to build an inline keyboard with `text` buttons.
 
-You can also use other methods like `url` to let the Telegram clients open a URL, and many more options as listed in the [grammY API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/InlineKeyboard#Methods) as well as the [Telegram Bot API Reference](https://core.telegram.org/bots/api#inlinekeyboardbutton) for `InlineKeyboard`.
+You can also use other methods like `url` to let the Telegram clients open a URL, and many more options as listed in the [grammY API Reference](https://deno.land/x/grammy/mod.ts?s=InlineKeyboard#Methods) as well as the [Telegram Bot API Reference](https://core.telegram.org/bots/api#inlinekeyboardbutton) for `InlineKeyboard`.
 
 #### Example 1
 
@@ -119,7 +119,7 @@ It makes it simple to create interactive menus.
 Every `text` button has a string as callback data attached.
 If you don't attach callback data, grammY will use the button's text as data.
 
-Once a user clicks a text button, your bot will receive an update containing the corresponding button's callback data.
+Once a user clicks a `text` button, your bot will receive an update containing the corresponding button's callback data.
 You can listen for callback data via `bot.callbackQuery()`.
 
 ```ts
@@ -162,12 +162,12 @@ First things first: custom keyboards are sometimes just called keyboards, someti
 As a simple rule of thumb, when it isn't absolutely obvious from the context and not called inline keyboard, it probably is a custom keyboard.
 This refers to a way to replace the system keyboard by a set of buttons that you can define.
 
-> Revisit the custom keyboard section in the [Introduction for Developers](https://core.telegram.org/bots#keyboards) written by the Telegram team.
+> Revisit the custom keyboard section in the [Telegram Bot Features](https://core.telegram.org/bots/features#keyboards) written by the Telegram team.
 
 grammY has a simple and intuitive way to build up the custom keyboards that your bot can use to replace the system keyboard.
 It provides a class called `Keyboard` for this.
 
-Once a user clicks a text button, your bot will receive the sent text as a plain text message.
+Once a user clicks a `text` button, your bot will receive the sent text as a plain text message.
 Remember that you can listen for text message via `bot.on("message:text")` or `bot.hears()`.
 
 ### Building a Custom Keyboard

@@ -13,7 +13,7 @@ Each user might send multiple requests per second and your script has to process
 With ratelimiter!
 
 ::: warning Rate-Limiting Users, Not Telegram Servers!
-You should note that this package **DOES NOT** rate limit the incoming requests from telegram servers, instead, it tracks the incoming requests by `from.id` and dismisses them on arrival so no further processing load is added to your servers.
+You should note that this package **DOES NOT** rate limit the incoming requests from Telegram servers, instead, it tracks the incoming requests by `from.id` and dismisses them on arrival, so no further processing load is added to your servers.
 :::
 
 ## Customizability
@@ -100,7 +100,6 @@ bot.use(
   limit({
     // Allow only 3 messages to be handled every 2 seconds.
     timeFrame: 2000,
-
     limit: 3,
 
     // "MEMORY_STORE" is the default value. If you do not want to use Redis, do not pass storageClient at all.
@@ -132,7 +131,6 @@ bot.use(
   limit({
     // Allow only 3 messages to be handled every 2 seconds.
     timeFrame: 2000,
-
     limit: 3,
 
     // "MEMORY_STORE" is the default value. If you do not want to use Redis, do not pass storageClient at all.
@@ -164,7 +162,6 @@ bot.use(
   limit({
     // Allow only 3 messages to be handled every 2 seconds.
     timeFrame: 2000,
-
     limit: 3,
 
     // "MEMORY_STORE" is the default value. If you do not want to use Redis, do not pass storageClient at all.
@@ -187,7 +184,8 @@ bot.use(
 </CodeGroup>
 
 As you can see in the example above, each user is allowed to send 3 requests every 2 seconds.
-If said user sends more requests, the bot replies with _Please refrain from sending too many requests_. That request will not travel further and dies immediately as we do not call [next()](../guide/middleware.md#the-middleware-stack) in the middleware.
+If said user sends more requests, the bot replies with _Please refrain from sending too many requests_.
+That request will not travel further and dies immediately as we do not call [next()](../guide/middleware.md#the-middleware-stack) in the middleware.
 
 > Note: To avoid flooding Telegram servers, `onLimitExceeded` is only executed once in every `timeFrame`.
 
@@ -256,4 +254,4 @@ In this example, I have used `chat.id` as the unique key for rate-limiting.
 
 - Name: `ratelimiter`
 - Source: <https://github.com/grammyjs/ratelimiter>
-- Reference: <https://doc.deno.land/https://deno.land/x/grammy_ratelimiter/mod.ts>
+- Reference: <https://deno.land/x/grammy_ratelimiter/mod.ts>

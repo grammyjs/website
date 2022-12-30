@@ -1,8 +1,8 @@
-# Plugin Emoji (`emoji`)
+# Emojis (`emoji`)
 
 Con este plugin, puedes insertar fácilmente emojis en tus respuestas buscándolos en lugar de copiar y pegar manualmente un emoji de la web en tu código.
 
-## ¿Por qué debería usar esto?
+## ¿Por qué debería utilizarlo?
 
 ¿Por qué no? La gente utiliza emojis en su código todo el tiempo para ilustrar mejor el mensaje que quieren pasar o para organizar las cosas.
 Pero se pierde el enfoque cada vez que se necesita un nuevo emoji, ver:
@@ -12,7 +12,7 @@ Pero se pierde el enfoque cada vez que se necesita un nuevo emoji, ver:
 3. Los copias y pegas en tu código y vuelves a codificar, pero con el foco perdido.
 
 Con este plugin, simplemente no dejas de codificar ya que tampoco pierdes la concentración.
-También hay sistemas y/o editores que no les gusta y no muestran los emojis, por lo que terminas pegando un cuadrado blanco, como este triste-pequeño-cuidado mensaje `Estoy tan feliz □`.
+También hay sistemas y/o editores que no les gusta y no muestran los emojis, por lo que terminas pegando un cuadrado blanco, como este triste-pequeño-cuidado mensaje: `Estoy tan feliz □`.
 
 Este plugin pretende resolver estos problemas, manejando por ti la difícil tarea de analizar los emojis en todos los sistemas y permitiéndote sólo buscarlos de forma sencilla (está disponible el autocompletado). Ahora, los pasos anteriores se pueden reducir a este:
 
@@ -106,4 +106,4 @@ Si no estás familiarizado con esta sintaxis, puedes leer más sobre ella [aquí
 
 - Nombre: `emoji`
 - Fuente: <https://github.com/grammyjs/emoji>
-- Referencia: <https://doc.deno.land/https://deno.land/x/grammy_emoji/mod.ts>
+- Referencia: <https://deno.land/x/grammy_emoji/mod.ts>

@@ -15,7 +15,7 @@ Aunque no es incorrecto decir que están escuchando las actualizaciones, llamarl
 
 Supongamos que escribes un bot como este:
 
-```ts
+```ts{8}
 const bot = new Bot("<token>");
 
 bot.use(session());
@@ -43,16 +43,16 @@ La actualización **no** se comprueba para el contenido de una foto, porque el m
 Ahora, ¿cómo funciona esto?
 Averigüémoslo.
 
-Podemos inspeccionar el tipo `Middleware` en la referencia de grammY [aquí](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Middleware):
+Podemos inspeccionar el tipo `Middleware` en la referencia de grammY [aquí](https://deno.land/x/grammy/mod.ts?s=Middleware):
 
 ```ts
-// Omitimos algunos parámetros del tipo por brevedad.
+// Se han omitido algunos parámetros de tipo por razones de brevedad.
 type Middleware = MiddlewareFn | MiddlewareObj;
 ```
 
-ha.
+¡Ajá!
 El middleware puede ser una función o un objeto.
-Sólo hemos utilizado funciones (`(ctx) => { ... }`) hasta ahora, así que ignoremos los objetos middleware por ahora, y profundicemos en el tipo `MiddlewareFn` ([reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/MiddlewareFn)):
+Sólo hemos utilizado funciones (`(ctx) => { ... }`) hasta ahora, así que ignoremos los objetos middleware por ahora, y profundicemos en el tipo `MiddlewareFn` ([reference](https://deno.land/x/grammy/mod.ts?s=MiddlewareFn)):
 
 ```ts
 // Vuelve a omitir los parámetros del tipo.
@@ -225,7 +225,7 @@ Si alguna vez llamas a `next()` sin la palabra clave `await`, varias cosas se ro
 - :x: Si ocurre un error, su manejador de errores no será llamado por él.
   En su lugar, verás que se producirá un `UnhandledPromiseRejectionWarning`, que puede hacer que tu proceso bot se caiga.
 - :x: Se rompe el mecanismo de backpressure de [grammY runner](../plugins/runner.md), que protege a tu servidor de una carga excesiva, como por ejemplo durante los picos de carga.
-- :cráneo: A veces, también mata a todos tus inocentes gatitos.
+- :skull: A veces, también mata a todos tus inocentes gatitos. :crying_cat_face:
 
 :::
 
@@ -249,7 +249,7 @@ Otra diferencia es que no importa cuántos argumentos tome tu middleware: `() =>
 
 Hay dos tipos de middleware: funciones y objetos.
 Los objetos middleware son simplemente una envoltura para las funciones middleware.
-Se utilizan sobre todo internamente, pero a veces también pueden ayudar a las bibliotecas de terceros, o ser utilizados en casos de uso avanzado, como con [Composer](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer):
+Se utilizan sobre todo internamente, pero a veces también pueden ayudar a las bibliotecas de terceros, o ser utilizados en casos de uso avanzado, como con [Composer](https://deno.land/x/grammy/mod.ts?s=Composer):
 
 ```ts
 const bot = new Bot("<token>");

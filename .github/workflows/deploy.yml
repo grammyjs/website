@@ -20,5 +20,5 @@ jobs:
       - uses: denoland/deployctl@v1
         with:
           project: sour-newt-93
-          entrypoint: mod.ts
+          entrypoint: main.ts
           root: notifier

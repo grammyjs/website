@@ -14,7 +14,7 @@ Una _función transformadora_ es una función que maneja datos de salida, es dec
 - un objeto de carga útil que coincide con el método.
 
 En lugar de tener `next` como último argumento para invocar el middleware de salida, se recibe `prev` como primer argumento para utilizar las funciones transformadoras de salida.
-Mirando la firma de tipo de `Transformer` ([grammY API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Transformer)), podemos ver cómo refleja esto.
+Mirando la firma de tipo de `Transformer` ([grammY API Reference](https://deno.land/x/grammy/mod.ts?s=Transformer)), podemos ver cómo refleja esto.
 Observa que `Payload<M, R>` se refiere al objeto payload que tiene que coincidir con el método dado, y que `ApiResponse<ApiCallResult<M, R>>` es el tipo de retorno del método invocado.
 
 La última función transformadora invocada es un caller incorporado que hace cosas como la serialización JSON de ciertos campos, y eventualmente llama a `fetch`.
@@ -90,7 +90,7 @@ Estos resuelven este problema:
 
 ```ts
 import { Api, Bot, Context } from "grammy";
-import { SomeApiFlavor, someContextFlavor, somePlugin } from "some-plugin";
+import { SomeApiFlavor, SomeContextFlavor, somePlugin } from "some-plugin";
 
 // Context flavoring
 type MyContext = Context & SomeContextFlavor;

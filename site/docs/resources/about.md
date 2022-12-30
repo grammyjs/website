@@ -2,7 +2,7 @@
 
 ## What is grammY?
 
-grammY is a piece of software that you can use when you want to program your own chat bot for the [Telegram Messenger](https://telegram.org).
+grammY is a piece of software that you can use when you want to program your own [chat bot](https://core.telegram.org/bots) for the [Telegram Messenger](https://telegram.org).
 When you make bots, you will notice that some parts of this process are tedious and always the same.
 grammY does the heavy lifting for you and makes it super simple to create a bot.
 

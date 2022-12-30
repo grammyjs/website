@@ -1,4 +1,4 @@
-# Reintentar solicitudes de la API (`auto-retry`)
+# Auto-reintento de solicitudes a la API (`auto-retry`)
 
 > Considera usar el [plugin throttler](./transformer-throttler.md) en su lugar.
 
@@ -69,4 +69,4 @@ autoRetry({
 
 - Nombre: `auto-retry`
 - Fuente: <https://github.com/grammyjs/auto-retry>
-- Referencia: <https://doc.deno.land/https://raw.githubusercontent.com%2Fgrammyjs%2Fauto-retry%2Fmain%2Fsrc%2Findex.ts>
+- Reference: <https://doc.deno.land/https://raw.githubusercontent.com/grammyjs/auto-retry/main/src/index.ts>

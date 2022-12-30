@@ -3,7 +3,7 @@
 > Asumimos que tienes los conocimientos básicos sobre la creación de bots usando grammY.
 > Si aún no estás preparado, ¡no dudes en dirigirte a nuestra amigable [Guía](../guide)! :cohete:
 
-Este tutorial te guiará en cómo desplegar un bot de Telegram en [Heroku](https://heroku.com/) usando [webhooks](../guide/deployment-types.md#webhooks) o [long polling](../guide/deployment-types.md#long-polling).
+Este tutorial te guiará en cómo desplegar un bot de Telegram en [Heroku](https://heroku.com/) usando [webhooks](../guide/deployment-types.md#¿como-funcionan-los-webhooks) o [long polling](../guide/deployment-types.md#¿como-funciona-el-long-polling).
 También asumimos que ya tienes una cuenta en Heroku.
 
 ## Requisitos previos
@@ -89,7 +89,7 @@ Nuestro `package.json` debería ser ahora similar a esto:
 }
 ```
 
-Como hemos mencionado anteriormente, tenemos dos opciones para recibir datos de Telegram, los webhooks y el long polling.
+Como hemos mencionado anteriormente, tenemos dos opciones para recibir datos de Telegram: los webhooks y el long polling.
 ¡Puedes aprender más sobre las dos ventajas y luego decidir cuál es la adecuada en [estos increíbles consejos](../guide/deployment-types.md)!
 
 ## Webhooks
@@ -97,7 +97,7 @@ Como hemos mencionado anteriormente, tenemos dos opciones para recibir datos de 
 > Si decides usar el long polling en su lugar, puedes saltarte esta sección y pasar a la [sección sobre long polling](#long-polling). :rocket:
 
 En resumen, a diferencia del long polling, los webhooks no se ejecutan continuamente para comprobar los mensajes entrantes de Telegram.
-Esto reducirá la carga del servidor y nos ahorrará un montón de [horas de dyno](https://devcenter.heroku.com/articles/free-dyno-hours), especialmente cuando estés usando la capa gratuita. :grin:
+Esto reducirá la carga del servidor y nos ahorrará un montón de [horas de dyno](https://devcenter.heroku.com/articles/eco-dyno-hours), especialmente si utiliza el plan Eco. :grin:
 
 Bien, ¡continuemos!
 ¿Recuerdas que hemos creado `bot.ts` antes?
@@ -132,7 +132,7 @@ app.listen(Number(process.env.PORT), async () => {
 Echemos un vistazo a nuestro código anterior:
 
 - `process.env`: Recuerda, ¡nunca almacenes credenciales en nuestro código!
-  Para crear [Variables de entorno en Heroku](https://www.freecodecamp.org/news/using-environment-variables-the-right-way/), dirígete a [esta guía](https://devcenter.heroku.com/articles/config-vars).
+  Para crear [variables de entorno](https://www.freecodecamp.org/news/using-environment-variables-the-right-way/) en Heroku, dirígete a [esta guía](https://devcenter.heroku.com/articles/config-vars).
 - `secretPath`: Puede ser nuestro `BOT_TOKEN` o cualquier cadena aleatoria.
   Es una buena práctica ocultar la ruta de nuestro bot, tal y como se explica en Telegram (https://core.telegram.org/bots/api#setwebhook).
 
@@ -148,7 +148,7 @@ https://api.telegram.org/bot<bot_token>/setWebhook?url=<webhook_url>
 ```
 
 Ten en cuenta que algunos navegadores requieren que codifiques manualmente (https://en.wikipedia.org/wiki/Percent-encoding#Reserved_characters) la `webhook_url` antes de pasarla.
-Por ejemplo, si tenemos el token bot `abcd:1234` y la url `https://grammybot.herokuapp.com/secret_path`, entonces nuestro enlace debería tener este aspecto:
+Por ejemplo, si tenemos el token bot `abcd:1234` y la URL `https://grammybot.herokuapp.com/secret_path`, entonces nuestro enlace debería tener este aspecto:
 
 ```asciiart:no-line-numbers
 https://api.telegram.org/botabcd:1234/setWebhook?url=https%3A%2F%2Fgrammybot.herokuapp.com%2Fsecret_path
@@ -181,7 +181,7 @@ Como siempre, esto es opcional.
 
 ::: tip ⚡ Optimización (opcional)
 Cada vez que tu servidor se inicie, grammY solicitará [información sobre el bot](https://core.telegram.org/bots/api#getme) a Telegram para proporcionarla en el [objeto de contexto](../guide/context.md) bajo `ctx.me`.
-Podemos establecer la [información sobre el bot](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/BotConfig#botInfo) para evitar un exceso de llamadas a `getMe`.
+Podemos establecer la [información sobre el bot](https://deno.land/x/grammy/mod.ts?s=BotConfig#prop_botInfo) para evitar un exceso de llamadas a `getMe`.
 
 1. Abre este enlace `https://api.telegram.org/bot<bot_token>/getMe` en tu navegador web favorito. Se recomienda usar [Firefox](https://www.mozilla.org/en-US/firefox/) ya que muestra muy bien el formato `json`.
 2. Cambia nuestro código en la línea 4 de arriba y rellena el valor de acuerdo con los resultados de `getMe`:
@@ -201,13 +201,14 @@ export const bot = new Bot(`${process.env.BOT_TOKEN}`, {
 ```
 
 :::
+
 ¡Genial! ¡Es hora de preparar nuestro entorno de despliegue!
 ¡Directamente a la [Sección de Despliegue](#despliegue) todo el mundo! :muscle:
 
 ## Long Polling
 
 ::: warning Su script se ejecutará de forma continua cuando utilice el sondeo largo
-A menos que sepa cómo manejar este comportamiento, asegúrese de que tiene suficientes [horas de dyno](https://devcenter.heroku.com/articles/free-dyno-hours).
+A menos que sepa cómo manejar este comportamiento, asegúrese de que tiene suficientes [horas de dyno](https://devcenter.heroku.com/articles/eco-dyno-hours).
 :::
 
 > ¿Considerar el uso de webhooks?
@@ -250,7 +251,7 @@ No... nuestro _Rocket Bot_ no está listo para ser lanzado todavía.
 
 ### Compilar Archivos
 
-Ejecute este código en su terminal para compilar los archivos Typescript a Javascript:
+Ejecute este código en su terminal para compilar los archivos TypeScript a JavaScript:
 
 ```bash
 npx tsc
@@ -260,7 +261,7 @@ Si se ejecuta con éxito y no imprime ningún error, nuestros archivos compilado
 
 ### Configurar el `Procfile`
 
-Por el momento, `Heroku` tiene varios [tipos de dynos](https://devcenter.heroku.com/articles/free-dyno-hours).
+Por el momento, `Heroku` tiene varios [tipos de dynos](https://devcenter.heroku.com/articles/dyno-types).
 Dos de ellos son:
 
 - **Web dynos**:
@@ -283,6 +284,7 @@ A continuación, escriba este formato de código de una sola línea:
 ```
 
 Para nuestro caso debería serlo:
+
 <CodeGroup>
 <CodeGroupItem title="Webhook" active>
 
@@ -291,7 +293,7 @@ web: node dist/app.js
 ```
 
 </CodeGroupItem>
-  <CodeGroupItem title="Long Polling">
+<CodeGroupItem title="Long Polling">
 
 ```
 worker: node dist/bot.js
@@ -326,6 +328,7 @@ tsconfig.json
 ```
 
 Nuestra estructura final de carpetas debería tener este aspecto:
+
 <CodeGroup>
 <CodeGroupItem title="Webhook" active>
 

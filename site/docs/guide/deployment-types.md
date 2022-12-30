@@ -1,6 +1,5 @@
 ---
 prev: ./games.md
-next: /advanced/
 ---
 
 # Long Polling vs. Webhooks
@@ -71,13 +70,15 @@ Asked about some ice cream of your favorite kind, the employee smiles at you and
 In fact, you don't get any response at all.
 So you decide to wait, firmly smiling back.
 And you wait.
-And wait.
-Some hours before the next sunrise, a truck of a local food delivery company arrives and brings a couple of large boxes into the parlor's storage room.
-They read_ ice cream _on the outside.
+And wait._
+
+_Some hours before the next sunrise, a truck of a local food delivery company arrives and brings a couple of large boxes into the parlor's storage room.
+They read **ice cream** on the outside.
 The employee finally starts to move again.
 "Of course we have salted caramel!
-Two scoops with sprinkles, the usual?"
-As if nothing had happened, you enjoy your ice cream while leaving the world's most unrealistic ice cream parlor._
+Two scoops with sprinkles, the usual?"_
+
+_As if nothing had happened, you enjoy your ice cream while leaving the world's most unrealistic ice cream parlor._
 
 ```asciiart:no-line-numbers
 ______________                                   _____________
@@ -95,7 +96,7 @@ ______________                                   _____________
 ```
 
 > Note that in reality, no connection would be kept open for hours.
-> Long polling requests have a default timeout of 30 seconds (in order to avoid a number of [technical problems](https://tools.ietf.org/id/draft-loreto-http-bidirectional-07.html#timeouts)).
+> Long polling requests have a default timeout of 30 seconds (in order to avoid a number of [technical problems](https://datatracker.ietf.org/doc/html/draft-loreto-http-bidirectional-07#section-5.5)).
 > If no new messages are returned after this period of time, then the request will be cancelled and resent—but the general concept stays the same.
 
 Using long polling, you don't need to spam Telegram's servers, and still you get new messages immediately!
@@ -142,7 +143,7 @@ Under load, you are in complete control of how many messages you can process.
 Places where long polling works well include:
 
 - During development on your local machine.
-- On majority of servers.
+- On the majority of servers.
 - On hosted "backend" instances, i.e. machines that actively run your bot 24/7.
 
 **The main advantage of webhooks over long polling is that they are cheaper.**
@@ -150,7 +151,7 @@ You save a ton of superfluous requests.
 You don't need to keep a network connection open at all times.
 You can use services that automatically scale your infrastructure down to zero when no requests are coming.
 If you want to, you can even [make an API call when responding to the Telegram request](#webhook-reply), even though this has a number of drawbacks.
-Check out the configuration option [here](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/ApiClientOptions#canUseWebhookReply).
+Check out the configuration option [here](https://deno.land/x/grammy/mod.ts?s=ApiClientOptions#prop_canUseWebhookReply).
 
 Places where webhooks work well include:
 
@@ -188,7 +189,7 @@ If you want to run grammY with webhooks, you can integrate your bot into a web s
 We therefore expect you to be able to start a simple web server with a framework of your choice.
 
 Every grammY bot can be converted to middleware for a number of web frameworks, including `express`, `koa`/`oak`, and more.
-You can import the `webhookCallback` function from grammY to convert your bot to middleware for the respective framework.
+You can import the `webhookCallback` function ([API reference](https://deno.land/x/grammy/mod.ts?s=webhookCallback)) to create a middleware for the respective framework.
 
 <CodeGroup>
  <CodeGroupItem title="TypeScript" active>
@@ -233,6 +234,29 @@ app.use(webhookCallback(bot, "oak"));
 
 Be sure to read [Marvin's Marvellous Guide to All Things Webhook](https://core.telegram.org/bots/webhooks) written by the Telegram team if you consider running your bot on webhooks on a VPS.
 
+### Web Framework Adapters
+
+In order to support many different web frameworks, grammY adopts the concept of **adapters**.
+Each adapter is responsible for relaying input and output from the web framework to grammY and vice versa.
+The second parameter passed to `webhookCallback` ([API reference](https://deno.land/x/grammy/mod.ts?s=webhookCallback)) defines the framework adapter used to communicate with the web framework.
+
+Because of how this approach works, we usually need an adapter for each framework but, since some frameworks share a similiar interface, there are adapters that are known to work with multiple frameworks.
+Below is a table containing the currently available adapters, the frameworks or APIs they're known to work with, and the runtime(s) they are available on.
+
+| Adapter          | Framework/API(s)                                              | Runtime |
+| ---------------- | ------------------------------------------------------------- | ------- |
+| `std/http`       | `Deno.serve`,`Deno.upgradeHttp`,`Fresh`,`Ultra`,`Rutt`,`Sift` | Both    |
+| `oak`            | Oak                                                           | Both    |
+| `express`        | Express                                                       | Both    |
+| `koa`            | Koa                                                           | Both    |
+| `fastify`        | Fastify                                                       | Both    |
+| `serveHttp`      | `Deno.serveHttp`                                              | Deno    |
+| `http` / `https` | Node.js `http` module, Vercel                                 | Node    |
+| `aws-lambda`     | AWS Lambda Functions                                          | Node    |
+| `azure`          | Azure Functions                                               | Node    |
+| `next-js`        | Next.js                                                       | Node    |
+| `worktop`        | The `worktop` framework for Cloudflare workers                | Node    |
+
 ### Webhook Reply
 
 When a webhook request is received, your bot can call up to one method in the response.
@@ -248,7 +272,7 @@ However, there are a number of drawbacks to using this:
 4. Note also that the types in grammY do not reflect the consequences of a performed webhook callback!
    For instance, they indicate that you always receive a response object, so it is your own responsibility to make sure you're not screwing up while using this minor performance optimization.
 
-If you want to use webhook replies, you can specify the `canUseWebhookReply` option in the `client` option of your `BotConfig` ([API reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/BotConfig)).
+If you want to use webhook replies, you can specify the `canUseWebhookReply` option in the `client` option of your `BotConfig` ([API reference](https://deno.land/x/grammy/mod.ts?s=BotConfig)).
 Pass a function that determines whether or not to use webhook reply for the given request, identified by method.
 
 ```ts

@@ -1,4 +1,4 @@
-# Parse Mode Plugin (`parse-mode`)
+# Parsear (`parse-mode`)
 
 Este plugin proporciona un transformador para establecer el `parse_mode` por defecto, y un middleware para hidratar el `Context` con los métodos variantes familiares de `reply` - es decir, `replyWithHTML`, `replyWithMarkdown`, etc.
 
@@ -22,7 +22,9 @@ bot.use(hydrateReply);
 bot.api.config.use(parseMode("MarkdownV2"));
 
 bot.command("demo", async (ctx) => {
-  await ctx.reply("*Este* es _el_ `formato` por defecto");
+  await ctx.reply(
+    "*Esta* respuesta utiliza _MarkdownV2_ como `formato` por defecto",
+  );
   await ctx.replyWithHTML(
     "<b>Este</b> es el <code>formato</code> <i>conHTML</i>",
   );
@@ -50,7 +52,9 @@ bot.use(hydrateReply);
 bot.api.config.use(parseMode("MarkdownV2"));
 
 bot.command("demo", async (ctx) => {
-  await ctx.reply("*Este* es _el_ `formato` por defecto");
+  await ctx.reply(
+    "*Esta* respuesta utiliza _MarkdownV2_ como `formato` por defecto",
+  );
   await ctx.replyWithHTML(
     "<b>Este</b> es el <code>formato</code> <i>conHTML</i>",
   );
@@ -83,7 +87,9 @@ bot.use(hydrateReply);
 bot.api.config.use(parseMode("MarkdownV2"));
 
 bot.command("demo", async (ctx) => {
-  await ctx.reply("*Este* es _el_ `formato` por defecto");
+  await ctx.reply(
+    "*Esta* respuesta utiliza _MarkdownV2_ como `formato` por defecto",
+  );
   await ctx.replyWithHTML(
     "<b>Este</b> es el <code>formato</code> <i>conHTML</i>",
   );
@@ -102,4 +108,4 @@ bot.start();
 
 - Nombre: `parse-mode`
 - Fuente: <https://github.com/grammyjs/parse-mode>
-- Referencia: <https://doc.deno.land/https://deno.land/x/grammy_parse_mode/mod.ts>
+- Referencia: <https://deno.land/x/grammy_parse_mode/mod.ts>

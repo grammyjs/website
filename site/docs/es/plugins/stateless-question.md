@@ -1,15 +1,15 @@
-# Pregunta sin estado (`stateless-question`)
+# Preguntas sin estado (`stateless-question`)
 
 > Crear preguntas sin estado a los usuarios de Telegram que trabajan en modo de privacidad
 
-¿Quieres mantener la privacidad del usuario con el [modo de privacidad de Telegram activado (por defecto)](https://core.telegram.org/bots#privacy-mode), enviar a los usuarios preguntas traducidas en su idioma y no guardar el estado que los usuarios están haciendo actualmente?
+¿Quieres mantener la privacidad del usuario con el [modo de privacidad de Telegram activado (por defecto)](https://core.telegram.org/bots/features#privacy-mode), enviar a los usuarios preguntas traducidas en su idioma y no guardar el estado que los usuarios están haciendo actualmente?
 
 Este plugin quiere resolver este problema.
 
 La idea básica es enviar su pregunta con un [texto especial](https://en.wikipedia.org/wiki/Zero-width_non-joiner) al final.
 Este texto es invisible para el usuario pero visible para tu bot.
-Cuando el usuario responde a un mensaje se comprueba el mensaje.
-Si contiene este texto especial al final es una respuesta a la pregunta.
+Cuando el usuario responde a un mensaje, se comprueba el mensaje.
+Si contiene este texto especial al final, entonces es una respuesta a la pregunta.
 De esta manera puedes tener muchas cadenas para las mismas preguntas como cuando tienes traducciones.
 Sólo tienes que asegurarte de que el `uniqueIdentifier` es único dentro de tu bot.
 

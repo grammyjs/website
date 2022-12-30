@@ -14,7 +14,7 @@ _Function transformer_ adalah sebuah function yang menangani data yang keluar, c
 - Object payload yang cocok dengan suatu method tertentu.
 
 Alih-alih memasukkan `next` sebagai argument terakhir untuk memanggil middleware hilir (downstream), kamu akan menerima `prev` sebagai argument pertama untuk memanfaatkan function transformer hulu (upstream).
-Kalau dilihat dari _type signature_-nya `Transformer` ([referensi API grammY](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Transformer)), kita bisa melihat bagaimana ia diimplentasikan.
+Kalau dilihat dari _type signature_-nya `Transformer` ([referensi API grammY](https://deno.land/x/grammy/mod.ts?s=Transformer)), kita bisa melihat bagaimana ia diimplentasikan.
 Perlu diketahui bahwa `Payload<M, R>` merujuk ke object payload yang akan dicocokkan dengan method yang diberikan, serta `ApiResponse<ApiCallResult<M, R>>` adalah type pengembalian dari method yang dipanggil.
 
 Function transformer yang terakhir dipanggil adalah pemanggilan bawaan yang melakukan beberapa hal seperti _JSON serialization_ untuk field tertentu dan terkadang juga memanggil `fetch`.
@@ -92,24 +92,24 @@ Ia dapat menyelesaikan permasalahan berikut:
 
 ```ts
 import { Api, Bot, Context } from "grammy";
-import { MyApiFlavor, MyContextFlavor, myPlugin } from "myPlugin";
+import { SomeApiFlavor, SomeContextFlavor, somePlugin } from "myPlugin";
 
 // Buat Context flavor.
-type MyContext = Context & MyContextFlavor;
+type MyContext = Context & SomeContextFlavor;
 // Buat API flavor.
-type MyApi = Api & MyApiFlavor;
+type MyApi = Api & SomeApiFlavor;
 
 // Gunakan kedua flavor.
-const bot = new Bot<MyContext, MyApi>("token-bot");
+const bot = new Bot<MyContext, MyApi>("my-token");
 
 // Gunakan sebuah plugin.
-bot.api.config.use(myPlugin());
+bot.api.config.use(somePlugin());
 
 // Sekarang panggil `bot.api` dengan type yang sudah disesuaikan dari API flavor.
-bot.api.myPluginMethod();
+bot.api.somePluginMethod();
 
 // Gunakan juga type yang sudah disesuaikan dari context flavor.
-bot.on("message", (ctx) => ctx.api.myPluginMethod());
+bot.on("message", (ctx) => ctx.api.somePluginMethod());
 ```
 
 API flavor berjalan sama persis seperti context flavor. Baik jenis _additive_ maupun _transformative_ juga tersedia, dan berbagai macam API flavor juga bisa dikombinasikan sama halnya dengan yang kamu lakukan dengan context flavor.

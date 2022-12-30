@@ -37,7 +37,7 @@ Una ventaja de usar el método `api.sendGame` es que puedes especificar el `chat
    });
    ```
 
-2. Envío del juego a través de `api.sendGame`
+2. Envío de un juego por medio de `api.sendGame`.
 
    ```ts
    bot.command("start", async (ctx) => {
@@ -50,7 +50,7 @@ Una ventaja de usar el método `api.sendGame` es que puedes especificar el `chat
 
 > [Recuerde](./basics.md#envío-de-mensajes) que puede especificar más opciones al enviar mensajes utilizando el objeto de opciones de tipo `Other`.
 
-También puedes especificar un [inline keyboard] personalizado (/plugins/keyboard.md#inline-keyboards) para que el juego muestre los botones.
+También puedes especificar un [teclado en línea](../plugins/keyboard.md#teclados-en-linea) personalizado para que el juego muestre los botones.
 Por defecto, se enviará con un botón con nombre como `Play my_game`, donde _my_game_ es el nombre de su juego.
 
 ```ts

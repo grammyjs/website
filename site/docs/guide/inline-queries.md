@@ -13,12 +13,12 @@ By default, support for inline mode is disabled.
 You must contact [@BotFather](https://t.me/BotFather) and enable inline mode for your bot, to start receiving inline queries.
 :::
 
-> Revisit the Inline mode section in the [Introduction for Developers](https://core.telegram.org/bots#inline-mode) written by the Telegram team.
+> Revisit the Inline mode section in the [Telegram Bot Features](https://core.telegram.org/bots/features#inline-requests) written by the Telegram team.
 > Further resources are their [detailed description](https://core.telegram.org/bots/inline) of inline bots, as well as the [original blog post](https://telegram.org/blog/inline-bots) announcing the feature, and the Inline mode section in the [Telegram Bot API Reference](https://core.telegram.org/bots/api#inline-mode).
 > They are all worth a read before implementing inline queries for your bot.
 
 Once a user triggers an inline query, i.e. starts a message by typing "@your_bot_name ..." in the text input field, your bot will receive updates about this.
-grammY has special support for handling inline queries via the `bot.inlineQuery()` method, as documented on the `Composer` class in the [grammY API Reference](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer#inlineQuery).
+grammY has special support for handling inline queries via the `bot.inlineQuery()` method, as documented on the `Composer` class in the [grammY API Reference](https://deno.land/x/grammy/mod.ts?s=Composer#method_inlineQuery_0).
 It allows you to listen for specific inline queries that match strings or regular expressions.
 If you want to handle all inline queries generically, use `bot.on("inline_query")`.
 

@@ -102,13 +102,13 @@ async function greeting(conversation, ctx) {
 Let's see what the two parameters are.
 
 **The second parameter** is not that interesting, it is just a regular context object.
-As always, it is called `ctx` and uses your custom context type (maybe called `MyContext`).
-The conversations plugin exports a [context flavor](../guide/context.html#additive-context-flavors) called `ConversationFlavor`.
+As always, it is called `ctx` and uses your [custom context type](../guide/context.md#customizing-the-context-object) (maybe called `MyContext`).
+The conversations plugin exports a [context flavor](../guide/context.md#additive-context-flavors) called `ConversationFlavor`.
 
 **The first parameter** is the central element of this plugin.
-It is commonly named `conversation`, and it has the type `Conversation` ([API reference](https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts/~/Conversation)).
+It is commonly named `conversation`, and it has the type `Conversation` ([API reference](https://deno.land/x/grammy_conversations/mod.ts?s=Conversation)).
 It can be used as a handle to control the conversation, such as waiting for user input, and more.
-The type `Conversation` expects your custom context type as a type parameter, so you would often use `Conversation<MyContext>`.
+The type `Conversation` expects your [custom context type](../guide/context.md#customizing-the-context-object) as a type parameter, so you would often use `Conversation<MyContext>`.
 
 In summary, in TypeScript, your conversation builder function will look like this.
 
@@ -326,10 +326,64 @@ bot.start();
 </CodeGroupItem>
 </CodeGroup>
 
+### Installation With Custom Session Data
+
+Note that if you use TypeScript and you want to store your own session data as well as use conversations, you will need to provide more type information to the compiler.
+Let's say you have this interface which describes your custom session data:
+
+```ts
+interface SessionData {
+  /** custom session property */
+  foo: string;
+}
+```
+
+Your custom context type might then look like this:
+
+```ts
+type MyContext = Context & SessionFlavor<SessionData> & ConversationFlavor;
+```
+
+Most importantly, when installing the session plugin with an external storage, you will have to provide the session data explicitly.
+All storage adapters allow you to pass the `SessionData` as a type parameter.
+For example, this is how you'd have to do it with the [`freeStorage`](./session.md#free-storage) that grammY provides.
+
+```ts
+// Install the session plugin.
+bot.use(session({
+  // Add session types to adapter.
+  storage: freeStorage<SessionData>(bot.token),
+  initial: () => ({ foo: "" }),
+}));
+```
+
+You can do the same thing for all other storage adapters, such as `new FileAdapter<SessionData>()` and so on.
+
+### Installation With Multi Sessions
+
+Naturally, you can combine conversations with [multi sessions](./session.md#multi-sessions).
+
+This plugin stores the conversation data inside `session.conversation`.
+This means that if you want to use multi sessions, you have to specify this fragment.
+
+```ts
+// Install the session plugin.
+bot.use(session({
+  type: "multi",
+  custom: {
+    initial: () => ({ foo: "" }),
+  },
+  conversation: {}, // may be left empty
+}));
+```
+
+This way, you can store the conversation data in a different place than other session data.
+For example, if you leave the conversation config empty as illustrated above, the conversation plugin will store all data in memory.
+
 ## Leaving a Conversation
 
 The conversation will run until your conversation builder function completes.
-This means that you can simply leave a conversation by using `return`.
+This means that you can simply leave a conversation by using `return` or `throw`.
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
@@ -358,36 +412,97 @@ async function hiAndBye(conversation, ctx) {
 
 (Yes, putting a `return` at the end of the function is a bit pointless, but you get the idea.)
 
-You can also throw an error.
-This will likewise exit the conversation.
-Remember to [install an error handler](../guide/errors.md) on your bot.
+Throwing an error will likewise exit the conversation.
+However, the [session plugin](#installing-and-entering-a-conversation) only persists data if the middleware runs successfully.
+Hence, if you throw an error inside your conversation and do not catch it before it reaches the session plugin, it will not be saved that the conversation was left.
+As a result, the next message will cause the same error.
 
-If you want to hard-kill the conversation while it is waiting for user input, you can also use `await ctx.conversation.exit()`.
+You can mitigate this by installing an [error boundary](../guide/errors.md#error-boundaries) between the session and the conversation.
+That way, you can prevent the error from propagating up the [middleware tree](../advanced/middleware.md) and hence permit the session plugin to write back the data.
+
+> Note that if you are using the default in-memory sessions, all changes to the session data are reflected immediately, because there is no storage backend.
+> In that case, you do not need to use error boundaries to leave a conversation by throwing an error.
+
+This is how error boundaries and conversations could be used together.
+
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
+
+```ts
+bot.use(session({
+  storage: freeStorage(bot.token), // adjust
+  initial: () => ({}),
+}));
+bot.use(conversations());
+
+async function hiAndBye(conversation: MyConversation, ctx: MyContext) {
+  await ctx.reply("Hi! And Bye!");
+  // Leave the conversation:
+  throw new Error("Catch me if you can!");
+}
+
+bot.errorBoundary(
+  (err) => console.error("Conversation threw an error!", err),
+  createConversation(greeting),
+);
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+bot.use(session({
+  storage: freeStorage(bot.token), // adjust
+  initial: () => ({}),
+}));
+bot.use(conversations());
+
+async function hiAndBye(conversation, ctx) {
+  await ctx.reply("Hi! And Bye!");
+  // Leave the conversation:
+  throw new Error("Catch me if you can!");
+}
+
+bot.errorBoundary(
+  (err) => console.error("Conversation threw an error!", err),
+  createConversation(greeting),
+);
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+Whatever you do, you should remember to [install an error handler](../guide/errors.md) on your bot.
+
+If you want to hard-kill the conversation from your regular middleware while it is waiting for user input, you can also use `await ctx.conversation.exit()`.
+This will simply erase the conversation plugin's data from the session.
 It's often better to stick with simply returning from the function, but there are a few examples where using `await ctx.conversation.exit()` is convenient.
 Remember that you must `await` the call.
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
 
-```ts
+```ts{6,21}
+async function movie(conversation: MyConversation, ctx: MyContext) {
+  // TODO: code the conversation
+}
+
 // Install the conversations plugin.
 bot.use(conversations());
 
 // Always exit any conversation upon /cancel
 bot.command("cancel", async (ctx) => {
-  await ctx.reply("Leaving.");
   await ctx.conversation.exit();
-});
-// Always exit the `movie` conversation upon button press
-const cancel = new InlineKeyboard().text("cancel");
-bot.callbackQuery("cancel", async (ctx) => {
-  await ctx.answerCallbackQuery("Left conversation");
-  await ctx.conversation.exit("movie");
+  await ctx.reply("Leaving.");
 });
 
-async function movie(conversation: MyConversation, ctx: MyContext) {
-  // TODO: code the conversation
-}
+// Always exit the `movie` conversation 
+// when the inline keyboard's `cancel` button is pressed.
+bot.callbackQuery("cancel", async (ctx) => {
+  await ctx.conversation.exit("movie");
+  await ctx.answerCallbackQuery("Left conversation");
+});
+
 bot.use(createConversation(movie));
 bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 ```
@@ -395,25 +510,27 @@ bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 </CodeGroupItem>
  <CodeGroupItem title="JavaScript">
 
-```js
+```js{6,21}
+async function movie(conversation, ctx) {
+  // TODO: code the conversation
+}
+
 // Install the conversations plugin.
 bot.use(conversations());
 
 // Always exit any conversation upon /cancel
 bot.command("cancel", async (ctx) => {
-  await ctx.reply("Leaving.");
   await ctx.conversation.exit();
-});
-// Always exit the `movie` conversation upon button press
-const cancel = new InlineKeyboard().text("cancel");
-bot.callbackQuery("cancel", async (ctx) => {
-  await ctx.answerCallbackQuery("Left conversation");
-  await ctx.conversation.exit("movie");
+  await ctx.reply("Leaving.");
 });
 
-async function movie(conversation, ctx) {
-  // TODO: code the conversation
-}
+// Always exit the `movie` conversation 
+// when the inline keyboard's `cancel` button is pressed.
+bot.callbackQuery("cancel", async (ctx) => {
+  await ctx.conversation.exit("movie");
+  await ctx.answerCallbackQuery("Left conversation");
+});
+
 bot.use(createConversation(movie));
 bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 ```
@@ -422,8 +539,8 @@ bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 </CodeGroup>
 
 Note that the order matters here.
-You must first install the conversations plugin (line 2) before you can call `await ctx.conversation.exit()`.
-Also, the generic cancel handlers must be installed before the actual conversations are registered.
+You must first install the conversations plugin (line 6) before you can call `await ctx.conversation.exit()`.
+Also, the generic cancel handlers must be installed before the actual conversations (line 21) are registered.
 
 ## Waiting for Updates
 
@@ -520,7 +637,7 @@ async function waitForText(conversation, ctx) {
 </CodeGroupItem>
 </CodeGroup>
 
-Check out the [API reference](https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts/~/ConversationHandle#wait) to see all available methods that are similar to `wait`.
+Check out the [API reference](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#method_wait_0) to see all available methods that are similar to `wait`.
 
 ## Three Golden Rules of Conversations
 
@@ -573,7 +690,7 @@ await conversation.sleep(3000); // 3 seconds
 conversation.log("Hello, world");
 ```
 
-Note that you can do all of the above via `conversation.external()`, but this can be tedious to type, so it's just easier to use the convenience functions.
+Note that you can do all of the above via `conversation.external()`, but this can be tedious to type, so it's just easier to use the convenience functions ([API reference](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#Methods)).
 
 ## Variables, Branching, and Loops
 
@@ -598,8 +715,8 @@ Branching works, too:
 
 ```ts
 await ctx.reply("Send me a photo!");
-const { photo } = await conversation.wait();
-if (!photo) {
+const { message } = await conversation.wait();
+if (!message?.photo) {
   await ctx.reply("That is not a photo! I'm out!");
   return;
 }
@@ -616,7 +733,7 @@ do {
     await ctx.reply("Cancelled, leaving!");
     return;
   }
-} while (!ctx.photo);
+} while (!ctx.message?.photo);
 ```
 
 ## Functions and Recursion
@@ -692,7 +809,7 @@ Naturally, you can use error handling in your functions, too.
 Regular `try`/`catch` statements work just fine, also across functions.
 After all, conversations are just JavaScript.
 
-If the main conversation function throws, the error will propagate further into the [error handling mechanisms](../guide/errors.md) of your bot.
+If the main conversation function throws an error, the error will propagate further into the [error handling mechanisms](../guide/errors.md) of your bot.
 
 ## Modules and Classes
 
@@ -713,7 +830,7 @@ class Auth {
   authenticate(ctx: MyContext) {
     const link = getAuthLink(); // get auth link from your system
     await ctx.reply(
-      "Open this link to obtain a token, and sent it back to me: " + link,
+      "Open this link to obtain a token, and send it back to me: " + link,
     );
     ctx = await this.conversation.wait();
     this.token = ctx.message?.text;
@@ -746,7 +863,7 @@ class Auth {
   authenticate(ctx) {
     const link = getAuthLink(); // get auth link from your system
     await ctx.reply(
-      "Open this link to obtain a token, and sent it back to me: " + link,
+      "Open this link to obtain a token, and send it back to me: " + link,
     );
     ctx = await this.#conversation.wait();
     this.token = ctx.message?.text;
@@ -802,7 +919,7 @@ async function waitForMe(conversation, ctx) {
 </CodeGroupItem>
 </CodeGroup>
 
-As always, check out the [API reference](https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts/~/ConversationForm) to see which methods are available.
+As always, check out the [API reference](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationForm) to see which methods are available.
 
 ## Parallel Conversations
 
@@ -839,7 +956,7 @@ For instance, let's implement the captcha example from up here again, but this t
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
 
-```ts
+```ts{4}
 async function captcha(conversation: MyConversation, ctx: MyContext) {
   if (ctx.from === undefined) return false;
   await ctx.reply("Prove you are human! What is the answer to everything?");
@@ -858,7 +975,7 @@ async function enterGroup(conversation: MyConversation, ctx: MyContext) {
 </CodeGroupItem>
  <CodeGroupItem title="JavaScript">
 
-```js
+```js{4}
 async function captcha(conversation, ctx) {
   if (ctx.from === undefined) return false;
   await ctx.reply("Prove you are human! What is the answer to everything?");
@@ -893,7 +1010,7 @@ bot.on("chat_member")
 You can see how many conversations with which identifier are running.
 
 ```ts
-const stats = ctx.conversation.active;
+const stats = await ctx.conversation.active();
 console.log(stats); // { "enterGroup": 1 }
 ```
 
@@ -930,7 +1047,7 @@ If wait calls would block until the next update arrives, it means that the middl
 - For [grammY runner](./runner.md), the bot would not be blocked.
   However, when processing thousands of conversations in parallel with different users, it would consume potentially very large amounts of memory.
   If many users stop responding, this leaves the bot stuck in the middle of countless conversations.
-- Webhooks have their own whole [category of problems](../guide/deployment-types.html#ending-webhook-requests-in-time) with long-running middleware.
+- Webhooks have their own whole [category of problems](../guide/deployment-types.md#ending-webhook-requests-in-time) with long-running middleware.
 
 **State.**
 On serverless infrastructure such as cloud functions, we cannot actually assume that the same instance handles two subsequent updates from the same user.
@@ -950,7 +1067,7 @@ If it finds that it left off in the middle of a conversation, it deserializes th
 It then resumes ordinary execution of your function—until the next `wait` call is reached, and the execution must be halted again.
 
 What do we mean by the state of execution?
-In a nutshell, it consists on three things:
+In a nutshell, it consists of three things:
 
 1. Incoming updates
 2. Outgoing API calls
@@ -1001,4 +1118,4 @@ How would you go about this?
 
 - Name: `conversations`
 - Source: <https://github.com/grammyjs/conversations>
-- Reference: <https://doc.deno.land/https://deno.land/x/grammy_conversations/mod.ts>
+- Reference: <https://deno.land/x/grammy_conversations/mod.ts>

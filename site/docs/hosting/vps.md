@@ -8,7 +8,7 @@ In this guide, you'll learn about various methods of running your bot in a VPS, 
 
 systemd is a powerful service manager which is pre-installed on many Linux distributions, mainly Debian-based ones.
 
-### Getting the start command
+### Getting the Start Command
 
 1. Get the full path of your runtime:
 
@@ -34,7 +34,7 @@ which node
 # /home/user/.nvm/versions/node/v16.9.1/bin/node /home/user/bot1/index.js
 ```
 
-### Creating the service
+### Creating the Service
 
 1. Go to the services directory:
 
@@ -60,6 +60,9 @@ WantedBy=multi-user.target
 ```
 
 > Replace `<start_command>` with the command you got above.
+>
+> Also note that if Deno is installed for a different user other than root, you may need to specify it in the service section like `User=<the_user>`.
+> For more information on the unit files, visit [here](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/assembly_working-with-systemd-unit-files_configuring-basic-system-settings).
 
 3. Reload systemd whenever you edit the service:
 
@@ -67,7 +70,7 @@ WantedBy=multi-user.target
 systemctl daemon-reload
 ```
 
-### Managing the service
+### Managing the Service
 
 #### Start
 
@@ -78,13 +81,13 @@ systemctl start <service_name>
 > Replace `<service_name>` with the file name of the service.
 > Example: `systemctl start bot1`
 
-#### Run on boot
+#### Run on Boot
 
 ```bash
 systemctl enable <service_name>
 ```
 
-#### Check logs
+#### Check Logs
 
 ```bash
 systemctl status <service_name>
@@ -102,7 +105,7 @@ systemctl restart <service_name>
 systemctl stop <service_name>
 ```
 
-#### Don't run on boot
+#### Don't Run on Boot
 
 ```bash
 systemctl disable <service_name>
@@ -121,7 +124,7 @@ npm install pm2@latest -g
 yarn global add pm2
 ```
 
-### Managing apps
+### Managing Apps
 
 #### Start
 

@@ -28,7 +28,7 @@ bot.command("start", (ctx) => { ... });
 bot.hears(/echo *(.+)?/, (ctx) => { ... });
 ```
 
-Kamu bisa menggunakan fitur auto-complete di code editor untuk melihat semua pilihan yang tersedia, ataupun melihat secara manual [daftar method](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Composer) dari sebuah class `Composer`.
+Kamu bisa menggunakan fitur auto-complete di code editor untuk melihat semua pilihan yang tersedia, ataupun melihat secara manual [daftar method](https://deno.land/x/grammy/mod.ts?s=Composer) dari sebuah class `Composer`.
 
 > [Baca lebih lanjut](./filter-queries.md) tentang pemfilteran untuk jenis pesan tertentu menggunakan `bot.on()`.
 
@@ -50,7 +50,7 @@ const me = await bot.api.getMe();
 
 Setiap method memiliki opsi tambahan untuk object type `Other`, yang memungkinkan kamu untuk menetapkan opsi tambahan ketika memanggil API.
 Opsi-opsi dari object ini sama persis dengan opsi yang ada di daftar method di link atas tadi.
-Kamu juga dapat menggunakan fitur auto-complete di code editor untuk melihat semua opsi yang tersedia, ataupun melihat secara manual [daftar method](https://doc.deno.land/https://deno.land/x/grammy/mod.ts/~/Api) dari sebuah class `Api`.
+Kamu juga dapat menggunakan fitur auto-complete di code editor untuk melihat semua opsi yang tersedia, ataupun melihat secara manual [daftar method](https://deno.land/x/grammy/mod.ts?s=Api) dari sebuah class `Api`.
 
 Selain itu, coba lihat [materi selanjutnya](./context.md) untuk mempelajari bagaimana object context dari suatu listener bisa membuat pengiriman pesan menjadi sangat mudah dilakukan!
 
@@ -115,11 +115,11 @@ Pemrosesan file dijelaskan secara lengkap di [materi lain](./files.md#mengirim-f
 
 ## Reply Paksa (Force Reply)
 
-> Force reply berguna jika bot kamu berjalan dalam [mode privasi](https://core.telegram.org/bots#privacy-mode) di chat grup.
+> Force reply berguna jika bot kamu berjalan dalam [mode privasi](https://core.telegram.org/bots/features#privacy-mode) di chat grup.
 
 Saat mengirim pesan, kamu dapat membuat aplikasi Telegram pengguna secara otomatis me-reply pesan tersebut.
 Artinya, pengguna akan "dipaksa" me-reply pesan bot tadi (kecuali mereka menghapus reply tersebut secara manual).
-Keuntungannya, bot masih bisa menerima pesan dari pengguna di dalam chat grup meskipun sedang berjalan dalam [mode privasi](https://core.telegram.org/bots#privacy-mode).
+Keuntungannya, bot masih bisa menerima pesan dari pengguna di dalam chat grup meskipun sedang berjalan dalam [mode privasi](https://core.telegram.org/bots/features#privacy-mode).
 
 Kamu dapat menggunakan force reply seperti ini:
 

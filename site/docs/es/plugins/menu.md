@@ -5,7 +5,7 @@ Crea fácilmente menús interactivos.
 ## Introducción
 
 Un teclado en línea es un conjunto de botones debajo de un mensaje.
-grammY tiene un [plugin incorporado](./keyboard.md#inline-keyboards) para crear teclados en línea básicos.
+grammY tiene un [plugin incorporado](./keyboard.md#teclados-en-linea) para crear teclados en línea básicos.
 
 El plugin de menús lleva esta idea más allá y te permite crear menús ricos justo dentro del chat.
 Pueden tener botones interactivos, múltiples páginas con navegación entre ellas, y más.
@@ -95,7 +95,7 @@ bot.start();
 
 > Asegúrese de instalar todos los menús antes de otros middleware, especialmente antes de los middleware que utilizan datos de consulta de devolución de llamada.
 
-Naturalmente, si está utilizando un tipo de contexto personalizado, puede pasarlo a `Menu` también.
+Naturalmente, si está utilizando un [tipo de contexto personalizado](../guide/context.md#personalizacion-del-objeto-de-contexto), puede pasarlo a `Menu` también.
 
 ```ts
 const menu = new Menu<MyContext>("id");
@@ -122,7 +122,7 @@ Puede pasar una etiqueta y una función manejadora.
 Utilice `row` para terminar la fila actual, y añadir todos los botones posteriores a una nueva fila.
 
 Hay muchos más tipos de botones disponibles, por ejemplo, para abrir URLs.
-Echa un vistazo a la [Referencia API de este plugin](https://doc.deno.land/https://deno.land/x/grammy_menu/mod.ts/~/MenuRange) para `MenuRange`, así como a la [Referencia API de Telegram Bot](https://core.telegram.org/bots/api#inlinekeyboardbutton) para `InlineKeyboardButton`.
+Echa un vistazo a la [Referencia API de este plugin](https://deno.land/x/grammy_menu/mod.ts?s=MenuRange) para `MenuRange`, así como a la [Referencia API de Telegram Bot](https://core.telegram.org/bots/api#inlinekeyboardbutton) para `InlineKeyboardButton`.
 
 ## Enviando un Menú
 
@@ -525,4 +525,4 @@ Como resultado, puedes navegar entre menús arbitrarios sin límite, todo mientr
 
 - Nombre: `menu`
 - Fuente: <https://github.com/grammyjs/menu>
-- Referencia: <https://doc.deno.land/https://deno.land/x/grammy_menu/mod.ts>
+- Referencia: <https://deno.land/x/grammy_menu/mod.ts>

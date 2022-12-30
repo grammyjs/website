@@ -19,7 +19,7 @@ import { FileFlavor, hydrateFiles } from "@grammyjs/files";
 type MyContext = FileFlavor<Context>;
 
 // Create a bot.
-const bot = new Bot<MyContext>("");
+const bot = new Bot<MyContext>("BOT_TOKEN");
 
 // Use the plugin.
 bot.api.config.use(hydrateFiles(bot.token));
@@ -31,7 +31,7 @@ bot.on([":video", ":animation"], async (ctx) => {
   // Download the file to a temporary location.
   const path = await file.download();
   // Print the file path.
-  console.log("File saved at", path);
+  console.log("File saved at ", path);
 });
 ```
 
@@ -43,7 +43,7 @@ import { Bot } from "grammy";
 import { hydrateFiles } from "@grammyjs/files";
 
 // Create a bot.
-const bot = new Bot("");
+const bot = new Bot("BOT_TOKEN");
 
 // Use the plugin.
 bot.api.config.use(hydrateFiles(bot.token));
@@ -55,7 +55,7 @@ bot.on([":video", ":animation"], async (ctx) => {
   // Download the file to a temporary location.
   const path = await file.download();
   // Print the file path.
-  console.log("File saved at", path);
+  console.log("File saved at ", path);
 });
 ```
 
@@ -73,7 +73,7 @@ import {
 type MyContext = FileFlavor<Context>;
 
 // Create a bot.
-const bot = new Bot<MyContext>("");
+const bot = new Bot<MyContext>("BOT_TOKEN");
 
 // Use the plugin.
 bot.api.config.use(hydrateFiles(bot.token));
@@ -85,7 +85,7 @@ bot.on([":video", ":animation"], async (ctx) => {
   // Download the file to a temporary location.
   const path = await file.download();
   // Print the file path.
-  console.log("File saved at", path);
+  console.log("File saved at ", path);
 });
 ```
 
@@ -100,7 +100,7 @@ This will return an HTTPS link to your file that is valid for at least one hour.
 
 ## Local Bot API Server
 
-If you are using a local Bot API server, then the `getFile` call effectively downloads the file to your disk already.
+If you are using a [local Bot API server](https://core.telegram.org/bots/api#using-a-local-bot-api-server), then the `getFile` call effectively downloads the file to your disk already.
 
 In turn, you can call `file.getUrl()` to access that file path.
 Note that `await file.download()` will now simply copy that locally present file to a temporary location (or to the given path if specified).
@@ -150,4 +150,4 @@ const bot = new Bot<MyContext, MyApi>("");
 
 - Name: `files`
 - Source: <https://github.com/grammyjs/files>
-- Reference: <https://doc.deno.land/https://deno.land/x/grammy_files/mod.ts>
+- Reference: <https://deno.land/x/grammy_files/mod.ts>
