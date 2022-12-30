@@ -66,6 +66,7 @@ Hay una serie de accesos directos instalados en el objeto de contexto.
 | `ctx.senderChat`      | Obtiene el objeto de chat del remitente de `ctx.msg` (para mensajes anónimos de canal/grupo)                                 |
 | `ctx.from`            | Obtiene el autor del mensaje, la consulta de devolución de llamada, u otras cosas                                            |
 | `ctx.inlineMessageId` | Obtiene el identificador del mensaje en línea para las consultas de devolución de llamada o los resultados elegidos en línea |
+| `ctx.entities`        | Obtiene las entidades de los mensajes y su texto, opcionalmente filtrado por tipo de entidad                                 |
 
 En otras palabras, también puedes hacer esto:
 
@@ -78,6 +79,17 @@ bot.on("message", (ctx) => {
 bot.on("edited_message", (ctx) => {
   // Obtener el nuevo texto editado del mensaje.
   const editedText = ctx.msg.text;
+});
+
+bot.on("message:entities", (ctx) => {
+  // Obtener todas las entidades.
+  const entities = ctx.entities();
+  // Obtener el texto de la primera entidad.
+  entities[0].text;
+  // Obtener las entidades de correo electrónico.
+  const emails = ctx.entities("email");
+  // Obtener las entidades de teléfono y correo electrónico.
+  const phonesAndEmails = ctx.entities(["email", "phone"]);
 });
 ```
 
