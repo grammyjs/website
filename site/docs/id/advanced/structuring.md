@@ -47,6 +47,9 @@ export const lists = new Composer();
 lists.on("message", (ctx) => {/* ... */});
 ```
 
+> Catatan: Jika menggunakan TypeScript, kamu perlu menambahkan [custom context type](../guide/context.md#memodifikasi-object-context)-nya juga ketika membuat sebuah composer.
+> Contohnya, `new Composer<MyContext>()`.
+
 Sebagai tambahan, kamu bisa menambahkan sebuah [error boundary](../guide/errors.md#error-boundary) untuk mengatasi semua error yang terjadi di dalam module-mu.
 
 Sekarang, kamu bisa memasang module-nya di `bot.ts` seperti ini:
