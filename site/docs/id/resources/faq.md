@@ -17,6 +17,7 @@ Sebaiknya kamu membaca kembali dokumentasi Telegram di [bagian pemformatan](http
 Kamu bisa menyusun entities dengan mengirim pesan terkait menggunakan opsi `entities`.
 Teks pesanmu kemudian akan berisi string biasa, sehingga tidak perlu lagi menyaring karakter teks yang aneh.
 Meski kita jadi perlu menambahkan beberapa baris kode lagi, cara ini jauh lebih handal dan merupakan solusi yang cukup aman untuk permasalahan ini.
+Selain itu, kamu juga bisa menggunakan [plugin parse-mode](../plugins/parse-mode.md) untuk mengerjakannya dengan lebih mudah dan simpel.
 :::
 
 ### 401 Unauthorized
