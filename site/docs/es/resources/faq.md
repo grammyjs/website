@@ -18,6 +18,7 @@ Puedes pre-preparar las entidades para Telegram si quieres, y especificar `entid
 El texto de tu mensaje podría entonces ser una cadena regular.
 De esta manera, no tienes que preocuparte de escapar caracteres extraños.
 Esto puede parecer que necesita más código, pero de hecho es la solución mucho más fiable y a prueba de tontos para este problema.
+Y lo que es más importante, esto se simplifica enormemente con nuestro [plugin parse-mode](../plugins/parse-mode.md).
 :::
 
 ### 401 Unauthorized
