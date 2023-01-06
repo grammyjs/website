@@ -571,6 +571,7 @@ async function waitForMe(conversation, ctx) {
 
 An update can mean that a text message was sent, or a button was pressed, or something was edited, or virtually any other action was performed by the user.
 Check out the full list in the Telegram docs [here](https://core.telegram.org/bots/api#update).
+The wait method always yields a new [context](https://grammy.dev/guide/context.html) object representing the received update.
 
 Usually, outside of the conversations plugin, each of these updates would be handled by the [middleware system](../guide/middleware.md) of your bot.
 Hence, your bot would handle the update via a context object which gets passed to your handlers.
