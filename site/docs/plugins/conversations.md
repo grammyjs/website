@@ -573,7 +573,7 @@ An update can mean that a text message was sent, or a button was pressed, or som
 Check out the full list in the Telegram docs [here](https://core.telegram.org/bots/api#update).
    
 The wait method always yields a new [context](https://grammy.dev/guide/context.html) object representing the received update.
-That means you're always dealing with as many context objects as updates received during the conversation.
+That means you're always dealing with as many context objects as there are updates received during the conversation.
 
 <CodeGroup>
 <CodeGroupItem title="TypeScript" active>
