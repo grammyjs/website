@@ -132,7 +132,7 @@ app.listen(Number(process.env.PORT), async () => {
 Let's take a look at our code above:
 
 - `process.env`: Remember, NEVER store credentials in our code!
-  For creating [environment variables](https://www.freecodecamp.org/news/using-environment-variables-the-right-way/) in Heroku, head over to [this guide](https://devcenter.heroku.com/articles/config-vars).
+  For creating [environment variables](https://www.freecodecamp.org/news/using-environment-variables-the-right-way/) in Heroku, head over to this [guide](https://devcenter.heroku.com/articles/config-vars).
 - `secretPath`: It could be our `BOT_TOKEN` or any random string.
   It is best practice to hide our bot path as [explained by Telegram](https://core.telegram.org/bots/api#setwebhook).
 

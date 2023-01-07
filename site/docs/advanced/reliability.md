@@ -141,7 +141,7 @@ What if your bot is processing financial transactions and you must consider a [`
 If for some reason someone or something actually hard-kills the process, it gets a bit more complicated.
 
 In essence, bots cannot guarantee an _exactly once_ execution of your middleware.
-Read [this discussion on GitHub](https://github.com/tdlib/telegram-bot-api/issues/126) in order to learn more about **why** your bot could send duplicate messages (or none at all) in extremely rare cases.
+Read this [discussion on GitHub](https://github.com/tdlib/telegram-bot-api/issues/126) in order to learn more about **why** your bot could send duplicate messages (or none at all) in extremely rare cases.
 The remainder of this section is elaborating on **how** grammY behaves under these unusual circumstances, and how to handle these situations.
 
 > Do you just care about coding a Telegram bot? [Skip the rest of this page.](./flood.md)

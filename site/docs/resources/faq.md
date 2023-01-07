@@ -77,7 +77,7 @@ You have already made sure to use the minimum number of API calls for the most c
 
 There are a few things you can do:
 
-1. Read [this article in the docs](../advanced/flood.md) to gain a basic understanding of the situation.
+1. Read this [article](../advanced/flood.md) in the docs to gain a basic understanding of the situation.
 2. Use the [`transformer-throttler` plugin](../plugins/transformer-throttler.md).
 3. Use the [`auto-retry` plugin](../plugins/auto-retry.md).
 4. Come ask us in the [group chat](https://t.me/grammyjs) for help.
@@ -105,6 +105,6 @@ Some important reasons why we like Deno more than Node.js:
 - It has a reviewed standard library.
 
 > Deno was founded by Ryan Dahl—the same person that invented Node.js.
-> He summarized his 10 regrets about Node.js in [this video](https://youtu.be/M3BM9TB-8yA).
+> He summarized his 10 regrets about Node.js in this [video](https://youtu.be/M3BM9TB-8yA).
 
 grammY itself is Deno-first, and it is backported to support Node.js equally well.
