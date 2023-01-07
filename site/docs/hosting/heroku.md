@@ -90,7 +90,7 @@ Our `package.json` should now be similar to this:
 ```
 
 As mentioned earlier, we have two options for receiving data from Telegram: webhooks and long polling.
-You can learn more about the both advantages and then decide which ones is suitable in [these awesome tips](../guide/deployment-types.md)!
+You can learn more about the both advantages and then decide which ones is suitable in these [awesome tips](../guide/deployment-types.md)!
 
 ## Webhooks
 
