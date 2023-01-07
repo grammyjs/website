@@ -587,7 +587,7 @@ async function askUser(conversation: MyConversation, ctx: MyContext) {
   // Wait for the user to send their address:
   const userHomeAddressContext = await conversation.wait();
   
-  // Ask the user their nationality
+  // Ask the user for their nationality
   await ctx.reply("Could you also please state your nationality?");
   
   // Wait for the user to state their nationality
@@ -612,7 +612,7 @@ async function askUser(conversation, ctx) {
   // Wait for the user to send their address:
   const userHomeAddressContext = await conversation.wait();
   
-  // Ask the user their nationality
+  // Ask the user for their nationality
   await ctx.reply("Could you also please state your nationality?");
   
   // Wait for the user to state their nationality.
