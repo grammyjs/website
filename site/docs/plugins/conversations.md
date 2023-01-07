@@ -594,7 +594,7 @@ async function askUser(conversation: MyConversation, ctx: MyContext) {
   const userNationalityContext = await conversation.wait();
   await ctx.reply("That was the final step. Now that I've received all relevant information I'll forward them to our team for review. Thank you!");
   
-  // Now, we copy both messages to our review chat
+  // Now, we copy the responses to another chat for review.
   await userHomeAddressContext.copyMessage(TEAM_REVIEW_CHAT);
   await userNationalityContext.copyMessage(TEAM_REVIEW_CHAT);
 }
