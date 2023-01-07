@@ -581,7 +581,7 @@ That means you're always dealing with as many context objects as updates receive
 ```ts
 const TEAM_REVIEW_CHAT = -10018121912;
 async function askUser(conversation: MyConversation, ctx: MyContext) {
-  // Ask the user for their home address
+  // Ask the user for their home address.
   await ctx.reply("Could you state your home address?");
   
   // Wait for the user to send their address:
