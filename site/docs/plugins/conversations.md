@@ -615,7 +615,7 @@ async function askUser(conversation, ctx) {
   // Ask the user their nationality
   await ctx.reply("Could you also please state your nationality?");
   
-  // Wait for the user to state their nationality
+  // Wait for the user to state their nationality.
   const userNationalityContext = await conversation.wait();
   await ctx.reply("That was the final step. Now that I've received all relevant information I'll forward them to our team for review. Thank you!");
   
