@@ -571,8 +571,63 @@ async function waitForMe(conversation, ctx) {
 
 An update can mean that a text message was sent, or a button was pressed, or something was edited, or virtually any other action was performed by the user.
 Check out the full list in the Telegram docs [here](https://core.telegram.org/bots/api#update).
+   
 The wait method always yields a new [context](https://grammy.dev/guide/context.html) object representing the received update.
+That means you're always dealing with as many context objects as updates received during the conversation.
 
+<CodeGroup>
+<CodeGroupItem title="TypeScript" active>
+
+```ts
+const TEAM_REVIEW_CHAT = -10018121912;
+async function askUser(conversation: MyConversation, ctx: MyContext) {
+  // Ask the user for their home address
+  await ctx.reply("Could you state your home address?");
+  
+  // Wait for the user to send their address:
+  const userHomeAddressContext = await conversation.wait();
+  
+  // Ask the user their nationality
+  await ctx.reply("Could you also please state your nationality?");
+  
+  // Wait for the user to state their nationality
+  const userNationalityContext = await conversation.wait();
+  await ctx.reply("That was the final step. Now that I've received all relevant information I'll forward them to our team for review. Thank you!");
+  
+  // Now, we copy both messages to our review chat
+  await userHomeAddressContext.copyMessage(TEAM_REVIEW_CHAT);
+  await userNationalityContext.copyMessage(TEAM_REVIEW_CHAT);
+}
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+const TEAM_REVIEW_CHAT = -10018121912;
+async function askUser(conversation, ctx) {
+  // Ask the user for their home address
+  await ctx.reply("Could you state your home address?");
+  
+  // Wait for the user to send their address:
+  const userHomeAddressContext = await conversation.wait();
+  
+  // Ask the user their nationality
+  await ctx.reply("Could you also please state your nationality?");
+  
+  // Wait for the user to state their nationality
+  const userNationalityContext = await conversation.wait();
+  await ctx.reply("That was the final step. Now that I've received all relevant information I'll forward them to our team for review. Thank you!");
+  
+  // Now, we copy both messages to our review chat
+  await userHomeAddressContext.copyMessage(TEAM_REVIEW_CHAT);
+  await userNationalityContext.copyMessage(TEAM_REVIEW_CHAT);
+}
+```
+
+</CodeGroupItem>
+</CodeGroup>
+  
 Usually, outside of the conversations plugin, each of these updates would be handled by the [middleware system](../guide/middleware.md) of your bot.
 Hence, your bot would handle the update via a context object which gets passed to your handlers.
 
