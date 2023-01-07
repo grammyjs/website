@@ -587,11 +587,12 @@ async function askUser(conversation: MyConversation, ctx: MyContext) {
   // Wait for the user to send their address:
   const userHomeAddressContext = await conversation.wait();
   
-  // Ask the user for their nationality
+  // Ask the user for their nationality.
   await ctx.reply("Could you also please state your nationality?");
   
-  // Wait for the user to state their nationality
+  // Wait for the user to state their nationality:
   const userNationalityContext = await conversation.wait();
+  
   await ctx.reply("That was the final step. Now that I've received all relevant information I'll forward them to our team for review. Thank you!");
   
   // Now, we copy the responses to another chat for review.
@@ -606,16 +607,16 @@ async function askUser(conversation: MyConversation, ctx: MyContext) {
 ```js
 const TEAM_REVIEW_CHAT = -10018121912;
 async function askUser(conversation, ctx) {
-  // Ask the user for their home address
+  // Ask the user for their home address.
   await ctx.reply("Could you state your home address?");
   
   // Wait for the user to send their address:
   const userHomeAddressContext = await conversation.wait();
   
-  // Ask the user for their nationality
+  // Ask the user for their nationality.
   await ctx.reply("Could you also please state your nationality?");
   
-  // Wait for the user to state their nationality.
+  // Wait for the user to state their nationality:
   const userNationalityContext = await conversation.wait();
   await ctx.reply("That was the final step. Now that I've received all relevant information I'll forward them to our team for review. Thank you!");
   
