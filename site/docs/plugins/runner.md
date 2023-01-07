@@ -132,7 +132,7 @@ Most likely, you want to be guaranteed that messages from the same chat are proc
 This is useful when installing [session middleware](./session.md), but it also makes sure that your bot does not confuse the order of messages in the same chat.
 
 grammY runner exports the `sequentialize` middleware that takes care of this.
-You can check out [this section](../advanced/scaling.md#concurrency-is-hard) to learn how to use it.
+You can check out this [section](../advanced/scaling.md#concurrency-is-hard) to learn how to use it.
 
 We are now going to look at more advanced usage of the plugin.
 

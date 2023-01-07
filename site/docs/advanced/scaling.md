@@ -38,7 +38,7 @@ run(bot);
 ```
 
 The default concurrency limit is 500.
-If you want to dig deeper into the package, check out [this page](../plugins/runner.md).
+If you want to dig deeper into the package, check out this [page](../plugins/runner.md).
 
 Concurrency is hard, so check out the [subsection below](#concurrency-is-hard) to find out what you should keep in mind when using grammY runner.
 

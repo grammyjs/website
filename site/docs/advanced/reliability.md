@@ -141,7 +141,7 @@ What if your bot is processing financial transactions and you must consider a [`
 If for some reason someone or something actually hard-kills the process, it gets a bit more complicated.
 
 In essence, bots cannot guarantee an _exactly once_ execution of your middleware.
-Read [this discussion on GitHub](https://github.com/tdlib/telegram-bot-api/issues/126) in order to learn more about **why** your bot could send duplicate messages (or none at all) in extremely rare cases.
+Read this [discussion](https://github.com/tdlib/telegram-bot-api/issues/126) on GitHub in order to learn more about **why** your bot could send duplicate messages (or none at all) in extremely rare cases.
 The remainder of this section is elaborating on **how** grammY behaves under these unusual circumstances, and how to handle these situations.
 
 > Do you just care about coding a Telegram bot? [Skip the rest of this page.](./flood.md)
@@ -157,7 +157,7 @@ grammY does not do this for you, but feel free to PR if you think someone else c
 Long polling is more interesting.
 The built-in polling basically re-runs the most recent update batch that was fetched but could not complete.
 
-> Note that if you properly stop your bot with `bot.stop`, [the update offset](https://core.telegram.org/bots/api#getting-updates) will be synced with the Telegram servers by calling `getUpdates` with the correct offset but without processing the update data.
+> Note that if you properly stop your bot with `bot.stop`, the [update offset](https://core.telegram.org/bots/api#getting-updates) will be synced with the Telegram servers by calling `getUpdates` with the correct offset but without processing the update data.
 
 In other words, you will never loose any updates, however, it may happen that you re-process up to 100 updates that you have seen before.
 As calls to `sendMessage` are not idempotent, users may receive duplicate messages from your bot.
