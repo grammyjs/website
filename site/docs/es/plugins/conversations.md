@@ -602,7 +602,7 @@ async function askUser(conversation: MyConversation, ctx: MyContext) {
  <CodeGroupItem title="JavaScript">
 
 ```js
-const TEAM_REVIEW_CHAT = -10018121912;
+const TEAM_REVIEW_CHAT = -1001493653006;
 async function askUser(conversation, ctx) {
   // Pregunta al usuario por su dirección.
   await ctx.reply("¿Podría decirnos su dirección?");
