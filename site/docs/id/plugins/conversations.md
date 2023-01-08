@@ -577,7 +577,7 @@ Artinya, kamu akan selalu berurusan dengan context object sebanyak update yang d
 <CodeGroupItem title="TypeScript" active>
 
 ```ts
-const CHAT_TIM_REVIEW = -10018121912;
+const CHAT_TIM_REVIEW = -1001493653006;
 async function tanyaUser(conversation: MyConversation, ctx: MyContext) {
   // Minta alamat tempat tinggal user.
   await ctx.reply("Silahkan kirim alamat tempat tinggal Anda.");
@@ -605,7 +605,7 @@ async function tanyaUser(conversation: MyConversation, ctx: MyContext) {
  <CodeGroupItem title="JavaScript">
 
 ```js
-const CHAT_TIM_REVIEW = -10018121912;
+const CHAT_TIM_REVIEW = -1001493653006;
 async function tanyaUser(conversation, ctx) {
   // Minta alamat tempat tinggal user.
   await ctx.reply("Silahkan kirim alamat tempat tinggal Anda.");
