@@ -567,6 +567,68 @@ async function waitForMe(conversation, ctx) {
 Una actualización puede significar que se ha enviado un mensaje de texto, o que se ha pulsado un botón, o que se ha editado algo, o prácticamente cualquier otra acción realizada por el usuario.
 Consulta la lista completa en los documentos de Telegram [aquí](https://core.telegram.org/bots/api#update).
 
+El método `wait` siempre produce un nuevo [objeto context](../guide/context.md) que representa la actualización recibida.
+Esto significa que siempre se está tratando con tantos objetos context como actualizaciones se reciban durante la conversación.
+
+<CodeGroup>
+<CodeGroupItem title="TypeScript" active>
+
+```ts
+const TEAM_REVIEW_CHAT = -10018121912;
+async function askUser(conversation: MyConversation, ctx: MyContext) {
+  // Pregunta al usuario por su dirección.
+  await ctx.reply("¿Podría decirnos su dirección?");
+
+  // Esperar a que el usuario envíe su dirección:
+  const userHomeAddressContext = await conversation.wait();
+
+  // Pregunta al usuario por su nacionalidad.
+  await ctx.reply("¿Podría indicar también su nacionalidad?");
+
+  // Esperar a que el usuario indique su nacionalidad:
+  const userNationalityContext = await conversation.wait();
+
+  await ctx.reply(
+    "Este era el último paso. Ahora que he recibido toda la información pertinente, la enviaré a nuestro equipo para que la revise. ¡Gracias!",
+  );
+
+  // Ahora copiamos las respuestas a otro chat para su revisión.
+  await userHomeAddressContext.copyMessage(TEAM_REVIEW_CHAT);
+  await userNationalityContext.copyMessage(TEAM_REVIEW_CHAT);
+}
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+const TEAM_REVIEW_CHAT = -10018121912;
+async function askUser(conversation, ctx) {
+  // Pregunta al usuario por su dirección.
+  await ctx.reply("¿Podría decirnos su dirección?");
+
+  // Esperar a que el usuario envíe su dirección:
+  const userHomeAddressContext = await conversation.wait();
+
+  // Pregunta al usuario por su nacionalidad.
+  await ctx.reply("¿Podría indicar también su nacionalidad?");
+
+  // Esperar a que el usuario indique su nacionalidad:
+  const userNationalityContext = await conversation.wait();
+
+  await ctx.reply(
+    "Este era el último paso. Ahora que he recibido toda la información pertinente, la enviaré a nuestro equipo para que la revise. ¡Gracias!",
+  );
+
+  // Ahora copiamos las respuestas a otro chat para su revisión.
+  await userHomeAddressContext.copyMessage(TEAM_REVIEW_CHAT);
+  await userNationalityContext.copyMessage(TEAM_REVIEW_CHAT);
+}
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
 Normalmente, fuera del plugin de conversaciones, cada una de estas actualizaciones sería manejada por el [sistema de middleware](../guide/middleware.md) de tu bot.
 Por lo tanto, tu bot manejaría la actualización a través de un objeto de contexto que se pasa a tus manejadores.
 
