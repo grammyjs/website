@@ -570,6 +570,68 @@ async function waitForMe(conversation, ctx) {
 Sebuah update baru dapat terjadi karena adanya suatu event, diantaranya adalah pesan telah dikirim, tombol telah ditekan, pesan telah diubah, dan aksi-aksi lain yang dilakukan oleh user.
 Lihat daftar lengkapnya di [dokumentasi Telegram](https://core.telegram.org/bots/api#update).
 
+Method `wait` method selalu menghasilkan sebuah [context object](../guide/context.md) baru berisi update yang diterima.
+Artinya, kamu akan selalu berurusan dengan context object sebanyak update yang diterima selama percakapan berlangsung.
+
+<CodeGroup>
+<CodeGroupItem title="TypeScript" active>
+
+```ts
+const CHAT_TIM_REVIEW = -10018121912;
+async function tanyaUser(conversation: MyConversation, ctx: MyContext) {
+  // Minta alamat tempat tinggal user.
+  await ctx.reply("Silahkan kirim alamat tempat tinggal Anda.");
+
+  // Tunggu user mengirim alamatnya:
+  const contextAlamatUser = await conversation.wait();
+
+  // Tanyakan kewarganegaraan user.
+  await ctx.reply("Bisakah Anda memberitahu saya apa kewarganegaraan Anda?");
+
+  // Tunggu user mengirim jenis kewarganegaraan mereka:
+  const contextKewarganegaraanUser = await conversation.wait();
+
+  await ctx.reply(
+    "Selesai. Saya telah menerima semua informasi yang dibutuhkan, sekarang saya akan meneruskannya ke tim terkait untuk ditinjau. Terima kasih!",
+  );
+
+  // Sekarang kita akan menyalin respon-respon tersebut ke chat lain untuk ditinjau.
+  await contextAlamatUser.copyMessage(CHAT_TIM_REVIEW);
+  await contextKewarganegaraanUser.copyMessage(CHAT_TIM_REVIEW);
+}
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+const CHAT_TIM_REVIEW = -10018121912;
+async function tanyaUser(conversation, ctx) {
+  // Minta alamat tempat tinggal user.
+  await ctx.reply("Silahkan kirim alamat tempat tinggal Anda.");
+
+  // Tunggu user mengirim alamatnya:
+  const contextAlamatUser = await conversation.wait();
+
+  // Tanyakan kewarganegaraan user.
+  await ctx.reply("Bisakah Anda memberitahu saya apa kewarganegaraan Anda?");
+
+  // Tunggu user mengirim jenis kewarganegaraan mereka:
+  const contextKewarganegaraanUser = await conversation.wait();
+
+  await ctx.reply(
+    "Selesai. Saya telah menerima semua informasi yang dibutuhkan, sekarang saya akan meneruskannya ke tim terkait untuk ditinjau. Terima kasih!",
+  );
+
+  // Sekarang kita akan menyalin respon-respon tersebut ke chat lain untuk ditinjau.
+  await contextAlamatUser.copyMessage(CHAT_TIM_REVIEW);
+  await contextKewarganegaraanUser.copyMessage(CHAT_TIM_REVIEW);
+}
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
 Biasanya, tanpa plugin conversations, setiap update akan diproses oleh [sistem middleware](../guide/middleware.md) bot.
 Sehingga, bot kamu akan memproses update tersebut melalui context object yang telah diteruskan ke beberapa handler kamu.
 
