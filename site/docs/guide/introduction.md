@@ -87,7 +87,7 @@ If you see unfamiliar syntax in the docs, or if you get an error message that yo
 :::
 
 ::: danger Not Learning How to Code
-Save yourself some time by watching [this 34 second long video](https://youtu.be/8RtGlWmXGhA).
+Save yourself some time by watching this [34-second video](https://youtu.be/8RtGlWmXGhA).
 :::
 
 By picking grammY, you have already decided on a programming language, namely TypeScript.

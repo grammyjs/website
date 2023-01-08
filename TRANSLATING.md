@@ -117,5 +117,5 @@ You can safely ignore them.
 
 If you’re planning to translate to Chinese, you don’t have to start from zero or with no inspiration.
 
-Since we used to have Chinese translations, you can take advantage of the previous translations which can be found in [this commit](https://github.com/grammyjs/website/tree/d4f552c4c1c65a11389ba14e7f096be38a3bc586).
+Since we used to have Chinese translations, you can take advantage of the previous translations which can be found in this [commit](https://github.com/grammyjs/website/tree/d4f552c4c1c65a11389ba14e7f096be38a3bc586).
 Note that the previous translations might get even more out-of-date in the future, and for that reason, we advice you to use them with caution.

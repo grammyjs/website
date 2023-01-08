@@ -90,7 +90,7 @@ Our `package.json` should now be similar to this:
 ```
 
 As mentioned earlier, we have two options for receiving data from Telegram: webhooks and long polling.
-You can learn more about the both advantages and then decide which ones is suitable in [these awesome tips](../guide/deployment-types.md)!
+You can learn more about the both advantages and then decide which ones is suitable in these [awesome tips](../guide/deployment-types.md)!
 
 ## Webhooks
 
@@ -132,7 +132,7 @@ app.listen(Number(process.env.PORT), async () => {
 Let's take a look at our code above:
 
 - `process.env`: Remember, NEVER store credentials in our code!
-  For creating [environment variables](https://www.freecodecamp.org/news/using-environment-variables-the-right-way/) in Heroku, head over to [this guide](https://devcenter.heroku.com/articles/config-vars).
+  For creating [environment variables](https://www.freecodecamp.org/news/using-environment-variables-the-right-way/) in Heroku, head over to this [guide](https://devcenter.heroku.com/articles/config-vars).
 - `secretPath`: It could be our `BOT_TOKEN` or any random string.
   It is best practice to hide our bot path as [explained by Telegram](https://core.telegram.org/bots/api#setwebhook).
 

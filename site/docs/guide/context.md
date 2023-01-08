@@ -218,7 +218,7 @@ You can install your own properties on the context object if you want.
 The customizations can be easily done in [middleware](./middleware.md).
 
 ::: tip Middlewhat?
-This section requires an understanding of middleware, so in case you have not skipped ahead to [this section](./middleware.md) yet, here is a very brief summary.
+This section requires an understanding of middleware, so in case you have not skipped ahead to this [section](./middleware.md) yet, here is a very brief summary.
 
 All you really need to know is that several handlers can process the same context object.
 There are special handlers which can modify `ctx` before any other handlers are run, and the modifications of the first handler will be visible to all subsequent handlers.
