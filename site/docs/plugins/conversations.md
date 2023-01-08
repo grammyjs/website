@@ -579,7 +579,7 @@ That means you're always dealing with as many context objects as there are updat
 <CodeGroupItem title="TypeScript" active>
 
 ```ts
-const TEAM_REVIEW_CHAT = -10018121912;
+const TEAM_REVIEW_CHAT = -1001493653006;
 async function askUser(conversation: MyConversation, ctx: MyContext) {
   // Ask the user for their home address.
   await ctx.reply("Could you state your home address?");
@@ -607,7 +607,7 @@ async function askUser(conversation: MyConversation, ctx: MyContext) {
  <CodeGroupItem title="JavaScript">
 
 ```js
-const TEAM_REVIEW_CHAT = -10018121912;
+const TEAM_REVIEW_CHAT = -1001493653006;
 async function askUser(conversation, ctx) {
   // Ask the user for their home address.
   await ctx.reply("Could you state your home address?");
