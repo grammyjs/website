@@ -570,7 +570,7 @@ async function waitForMe(conversation, ctx) {
 Sebuah update baru dapat terjadi karena adanya suatu event, diantaranya adalah pesan telah dikirim, tombol telah ditekan, pesan telah diubah, dan aksi-aksi lain yang dilakukan oleh user.
 Lihat daftar lengkapnya di [dokumentasi Telegram](https://core.telegram.org/bots/api#update).
 
-Method `wait` method selalu menghasilkan sebuah [context object](../guide/context.md) baru berisi update yang diterima.
+Method `wait` selalu menghasilkan sebuah [context object](../guide/context.md) baru berisi update yang diterima.
 Artinya, kamu akan selalu berurusan dengan context object sebanyak update yang diterima selama percakapan berlangsung.
 
 <CodeGroup>
