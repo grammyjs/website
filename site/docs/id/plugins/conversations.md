@@ -570,8 +570,8 @@ async function waitForMe(conversation, ctx) {
 Sebuah update baru dapat terjadi karena adanya suatu event, diantaranya adalah pesan telah dikirim, tombol telah ditekan, pesan telah diubah, dan aksi-aksi lain yang dilakukan oleh user.
 Lihat daftar lengkapnya di [dokumentasi Telegram](https://core.telegram.org/bots/api#update).
 
-Biasanya, di luar plugin conversations, setiap update akan diproses oleh [sistem middleware](../guide/middleware.md) bot.
-Oleh karena itu, bot kamu akan memproses update tersebut melalui context object yang telah diteruskan ke beberapa handler kamu.
+Biasanya, tanpa plugin conversations, setiap update akan diproses oleh [sistem middleware](../guide/middleware.md) bot.
+Sehingga, bot kamu akan memproses update tersebut melalui context object yang telah diteruskan ke beberapa handler kamu.
 
 Sebaliknya, di plugin conversations, kamu akan memperoleh context object yang baru dari pemanggilan `wait`.
 Sehingga, kamu bisa menangani masing-masing update dengan cara yang berbeda-beda berdasarkan object tersebut.
