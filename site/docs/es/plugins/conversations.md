@@ -574,7 +574,7 @@ Esto significa que siempre se está tratando con tantos objetos context como act
 <CodeGroupItem title="TypeScript" active>
 
 ```ts
-const TEAM_REVIEW_CHAT = -10018121912;
+const TEAM_REVIEW_CHAT = -1001493653006;
 async function askUser(conversation: MyConversation, ctx: MyContext) {
   // Pregunta al usuario por su dirección.
   await ctx.reply("¿Podría decirnos su dirección?");
