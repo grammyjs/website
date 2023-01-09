@@ -12,7 +12,8 @@
     "docs:vuepress": "vuepress-vite build docs",
     "docs:fmt": "deno fmt",
     "docs:sitemap": "sscli -b https://grammy.dev -r docs/.vuepress/dist --format xml --no-robots --no-clean",
-    "docs:serve": "serve docs/.vuepress/dist"
+    "docs:serve": "serve docs/.vuepress/dist",
+    "docs:deno": "deno upgrade"
   },
   "keywords": [],
   "author": "KnorpelSenf",
