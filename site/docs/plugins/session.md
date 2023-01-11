@@ -326,7 +326,7 @@ If you must use the option (which is of course still possible), you should know 
 Make sure you understand the consequences of this configuration by reading [this](../guide/deployment-types.md) article and especially [this](./runner.md#sequential-processing-where-necessary) one.
 :::
 
-### Supergroup Migrations
+### Chat Migrations
 
 If you are using sessions for a group chat you should be aware that telegram migrates regular groups to supergroups under certain circumstances (e.g. [here](https://github.com/telegramdesktop/tdesktop/issues/5593)). 
 
