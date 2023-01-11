@@ -343,7 +343,7 @@ The issue is that there is no guarantee that these messages are sent before a ne
 
 * Another workaround would be to limit the bot only for supergroups with filtering (or limit only session related features to supergroups). However, this shifts the problematic / inconvenience to the users.
 
-* Letting the users decide explicitly. (“This chat was migrated, do you want to transfer the bot data?”) Much more reliable and transparent than automatic migrations due to the artificially added delay, but worse UX.
+* Letting the users decide explicitly. ("This chat was migrated, do you want to transfer the bot data?") Much more reliable and transparent than automatic migrations due to the artificially added delay, but worse UX.
 
 Finally, it is up to the developer to decide how to deal with this edge case. Depending on the bot functionalities one might choose one way or another.
 
