@@ -360,6 +360,8 @@ Much more reliable and transparent than automatic migrations due to the artifici
 
 Finally, it is up to the developer to decide how to deal with this edge case.
 Depending on the bot functionalities one might choose one way or another.
+If the data in question is short-lived (e.g. temporary, timeouts involved) the migration is less of a problem.
+A user would experience the migration as a hiccup (if the timing is bad) and would simply have to rerun the feature.
 
 Ignoring the problem is surely the easiest way, nevertheless it is important to know about this behavior.
 Otherwise it can cause confusion and might cost hours of debugging time.  
