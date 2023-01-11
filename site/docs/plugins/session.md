@@ -332,7 +332,7 @@ If you are using sessions for a group chat you should be aware that Telegram mig
 
 This migration can only occur once per group chat but it can cause inconsistencies. This is because the migrated chat is technically a completely different chat with a different chat identifer and hence a different session identifier.
 
-Currently there is no safe solution to this problem because the two chats can send messages simultaneously leading to data races. However, there are several ways of dealing with this issue:
+Currently, there is no safe solution to this problem because the two chats can send messages simultaneously. This can lead to data races. However, there are several ways of dealing with this issue:
 
 * Ignoring the problem. The bot's session data will effectively reset when a group is migrated. Simple, reliable, default behavior, but potentially unexpected once per chat. For example if a migration happens while a user is in a conversation (the conversation plugin uses sessions) the conversation will be reset.
 
