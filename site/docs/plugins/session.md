@@ -338,7 +338,7 @@ Currently, there is no safe solution to this problem because the two chats can s
 
 * Only storing temporary data (or data with timeouts) in the session, and using a database for the important things that need to be migrated when a chat migrates. This can then use transactions and custom logic to handle concurrent data access from the old and the new chat. A lot of effort and has a performance cost, but the only truly reliable way to solve this problem.
 
-* It is theoretically possible to implement a workaround that matches both chats **without guarantee of reliability**. The telegram API sends a migration update for each of the two chats once the migration was triggered (see the properties `migrate_to_chat_id` or `migrate_from_chat_id` in the [Telegram API Docs](https://core.telegram.org/bots/api#message)).
+* It is theoretically possible to implement a workaround that matches both chats **without guarantee of reliability**. The Telegram Bot API sends a migration update for each of the two chats once the migration was triggered (see the properties `migrate_to_chat_id` or `migrate_from_chat_id` in the [Telegram API Docs](https://core.telegram.org/bots/api#message)).
 The issue is that there is no guarantee that these messages are sent before a new message in the supergroup appears. Hence, the bot could receive a message from the new supergroup before it is aware of any migration and thus, it can not match the two chats, resulting in the mentioned problematic.
 
 * Another workaround would be to limit the bot only for supergroups with filtering (or limit only session related features to supergroups). However, this shifts the problematic / inconvenience to the users.
