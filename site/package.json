@@ -13,7 +13,7 @@
     "docs:fmt": "deno fmt",
     "docs:sitemap": "sscli -b https://grammy.dev -r docs/.vuepress/dist --format xml --no-robots --no-clean",
     "docs:serve": "serve docs/.vuepress/dist",
-    "deno:upgrade": "deno upgrade"
+    "deno:version": "deno --version"
   },
   "keywords": [],
   "author": "KnorpelSenf",
