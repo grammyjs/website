@@ -23,6 +23,6 @@
     "deno-bin": ">=1.25.2",
     "serve": "^14.1.2",
     "static-sitemap-cli": "^2.1.2",
-    "vuepress-vite": "next"
+    "vuepress-vite": "2.0.0-beta.60"
   }
 }
