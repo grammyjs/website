@@ -17,9 +17,16 @@ instance of any class that implements the [`StorageAdapter`](https://deno.land/x
 interface.
 
 ```typescript
-import { Bot, Context, MemorySessionStorage } from "https://deno.land/x/grammy/mod.ts";
+import {
+  Bot,
+  Context,
+  MemorySessionStorage,
+} from "https://deno.land/x/grammy/mod.ts";
 import type { ChatMember } from "https://deno.land/x/grammy/types.ts";
-import { chatMembers, ChatMembersFlavor } from "https://deno.land/x/grammy_chat_members/mod.ts";
+import {
+  chatMembers,
+  ChatMembersFlavor,
+} from "https://deno.land/x/grammy_chat_members/mod.ts";
 
 type MyContext = Context & ChatMembersFlavor;
 
@@ -48,7 +55,9 @@ Here's an example:
 bot.on("message", async (ctx) => {
   const chatMember = await ctx.chatMembers.getChatMember();
 
-  return ctx.reply(`Hello, ${chatMember.user.first_name}! I see you are a ${chatMember.status} of this chat!`);
+  return ctx.reply(
+    `Hello, ${chatMember.user.first_name}! I see you are a ${chatMember.status} of this chat!`,
+  );
 });
 ```
 

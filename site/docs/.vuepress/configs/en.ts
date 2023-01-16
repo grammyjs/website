@@ -225,7 +225,7 @@ export const localeEn: LocaleConfig<DefaultThemeLocaleData> = {
               },
               {
                 text: "Chat Members (chat-members)",
-                link: "/plugins/chat-members.html"
+                link: "/plugins/chat-members.html",
               },
             ],
           },
