@@ -4,9 +4,9 @@ Automatically store information about users on a chat and retrieve it easilly
 
 ## Introduction
 
-In many situations, it is necessary for a bot to have information about all the users of a given chat. Currently, though, the Telegram Bot API exposes no method that allows that to happen. The alternative is to store the necessary information about each user as they join the chat.
+In many situations, it is necessary for a bot to have information about all the users of a given chat. Currently, though, the Telegram Bot API exposes no method that allows that to happen.
 
-This plugin solves this problem by automatically listening to `chat_member` events and storing the `ChatMember` object. It then allows you to use `ctx.chatMembers.getChatMember()` to obtain information about a specific chat member, taking the previously stored information into account.
+This plugin does the next best thing: automatically listening to `chat_member` events and storing the `ChatMember` object. It then allows you to use `ctx.chatMembers.getChatMember()` to obtain information about a specific chat member, taking the previously stored information into account.
 
 ## Usage
 
