@@ -1,4 +1,4 @@
-# Chat Member plugin (`chat-member`)
+# Chat Members plugin (`chat-members`)
 
 Automatically store information about users on a chat and retrieve it easilly
 
