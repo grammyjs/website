@@ -376,7 +376,7 @@ export const localeEn: LocaleConfig<DefaultThemeLocaleData> = {
               {
                 text: "Virtual Private Server",
                 link: "/hosting/vps.html",
-              }
+              },
             ],
           },
         ],
