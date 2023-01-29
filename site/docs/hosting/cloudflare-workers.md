@@ -18,7 +18,7 @@ This guide shows you how you can host your grammY bots on Cloudflare Workers.
 
 ## Prerequisites
 
-To follow along, please make sure that you have a Cloudflare account with your workers subdomain configured.
+To follow along, please make sure that you have a [Cloudflare account](https://dash.cloudflare.com/login) with your workers subdomain [configured](https://dash.cloudflare.com/?account=workers).
 
 ## Setting Things Up
 
