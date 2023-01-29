@@ -1,8 +1,9 @@
 # Hosting: Cloudflare Workers
 
-[Cloudflare Workers](https://workers.cloudflare.com/) is a public serverless computing service developed by Cloudflare, which allows you to run JavaScript in the edge.
+[Cloudflare Workers](https://workers.cloudflare.com/) is a public serverless computing service developed by Cloudflare, which allows you to run JavaScript at the edge.
 Specifically, it is a worker which handles HTTP traffic and is written against the [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API).
-Together, with other services that are also provided by Cloudflare, namely:
+In combination with other services provided by Cloudflare, we can create powerful Telegram bots with ease.
+Here are some of the awesome services that Cloudflare Workers offer us:
 
 1. [Workers KV](https://developers.cloudflare.com/workers/runtime-apis/kv/), a global, low-latency, key-value data store,
 2. [Durable Objects](https://developers.cloudflare.com/workers/runtime-apis/durable-objects/), a low-latency coordination and consistent storage for the Workers,
@@ -10,7 +11,8 @@ Together, with other services that are also provided by Cloudflare, namely:
 4. [D1](https://developers.cloudflare.com/d1/), a queryable relational database at the edge,
 5. [Queues](https://developers.cloudflare.com/queues/), a message queuing service that allows applications to reliably send and receive messages using Cloudflare Workers.
 
-we can easily create our own Telegram bots, as well as [Web Apps](https://core.telegram.org/bots/webapps), all on the edge, and even for free (with some quotas)!
+In addition, we can develop [Web Apps](https://core.telegram.org/bots/webapps) at the edge.
+The best part of it is that all of this is free within some quotas.
 
 This guide shows you how you can host your grammY bots on Cloudflare Workers.
 
