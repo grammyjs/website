@@ -34,7 +34,7 @@ This will be the name of your bot and the project directory.
 After running the above command, follow the instructions you see to initialize the project.
 There, you can choose between JavaScript or TypeScript.
 
-When the project is initialized, cd into `my-bot` or whatever directory you initialized your project in.
+When the project is initialized, `cd` into `my-bot` or whatever directory you initialized your project in.
 Depending on how you initialized the project, you should see a file structure similar to the following:
 
 ```asciiart:no-line-numbers
