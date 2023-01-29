@@ -57,7 +57,7 @@ npm install grammy
 
 Edit `src/index.js` or `src/index.ts`, and write this code inside:
 
-```js
+```ts
 // Note that we're importing from 'grammy/web', not 'grammy'.
 import { Bot, webhookCallback } from "grammy/web";
 
