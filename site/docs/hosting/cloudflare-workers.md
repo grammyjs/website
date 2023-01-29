@@ -37,16 +37,15 @@ There, you can choose between JavaScript or TypeScript.
 When the project is initialized, cd into `my-bot` or whatever directory you initialized your project in.
 Depending on how you initialized the project, you should see a file structure similar to the following:
 
-```sh
+```asciiart:no-line-numbers
 .
-|-- node_modules
-|-- package-lock.json
-|-- package.json
-|-- src
-│   └── index.test.js
-│   └── index.js
-`-- wrangler.toml
-```
+├── node_modules
+├── package.json
+├── package-lock.json
+├── src
+│   ├── index.js
+│   └── index.test.js
+└── wrangler.toml
 
 Next, install `grammy`, and other packages you might need:
 
@@ -62,7 +61,7 @@ Edit `src/index.js` or `src/index.ts`, and write this code inside:
 // Note that we're importing from 'grammy/web', not 'grammy'.
 import { Bot, webhookCallback } from "grammy/web";
 
-// You can replace `BOT_TOKEN` to your bot token, but it is better to store in an environment variable.
+// You can replace `BOT_TOKEN` with your bot token, but it is better to store in an environment variable.
 // For more on this, see https://developers.cloudflare.com/workers/platform/environment-variables/#secrets-on-deployed-workers.
 // You should also replace `BOT_INFO` with your bot info from `bot.api.getMe()`.
 const bot = new Bot(BOT_TOKEN, { botInfo: BOT_INFO });
