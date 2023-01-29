@@ -73,7 +73,7 @@ bot.command("start", async (ctx) => {
 addEventListener("fetch", webhookCallback(bot, "cloudflare"));
 ```
 
-The above example bot replies "Hello, world!" when it receives the start command.
+The above example bot replies "Hello, world!" when it receives `/start`.
 
 ## Deploying Your Bot
 
