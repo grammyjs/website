@@ -37,7 +37,7 @@ There, you can choose between JavaScript or TypeScript.
 When the project is initialized, `cd` into `my-bot` or whatever directory you initialized your project in.
 Depending on how you initialized the project, you should see a file structure similar to the following:
 
-```asciiart:no-line-numbers
+````asciiart:no-line-numbers
 .
 ├── node_modules
 ├── package.json
@@ -51,7 +51,7 @@ Next, install `grammy`, and other packages you might need:
 
 ```sh
 npm install grammy
-```
+````
 
 ## Creating Your Bot
 
@@ -119,3 +119,6 @@ You can also run a local or remote development server for testing and debugging 
 ```sh
 npm run start
 ```
+
+After the development server has started, you can test your bot by sending sample updates to it via softwares like `curl` or [Postman](https://postman.com).
+Refer to [here](https://core.telegram.org/bots/api#update) for details on update structure.
