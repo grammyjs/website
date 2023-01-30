@@ -1,7 +1,7 @@
 import { assert } from "std/testing/asserts.ts";
 import { NativeRequest } from "oak/mod.ts";
 import type { ServerRequest } from "oak/types.d.ts";
-import { verify } from "octokit/web.ts";
+import { verify } from "octokit-webhooks-methods";
 import env from "./env.ts";
 
 // https://stackoverflow.com/a/71088170/10379728

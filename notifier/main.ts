@@ -1,12 +1,41 @@
 import * as path from "std/path/mod.ts";
-import { Application } from "oak/mod.ts";
-import { Bot } from "grammy/mod.ts";
+import { Application, Router } from "oak/mod.ts";
+import { Bot, Context, webhookCallback } from "grammy/mod.ts";
+import { FileFlavor, hydrateFiles } from "grammy_files/mod.ts";
 import env from "./env.ts";
 import * as db from "./db.ts";
 import { verifyGitHubWebhook } from "./utils.ts";
 
 const app = new Application();
-const bot = new Bot(env.BOT_TOKEN);
+const router = new Router();
+const bot = new Bot<FileFlavor<Context>>(env.BOT_TOKEN);
+
+bot.api.config.use(hydrateFiles(bot.token));
+
+bot.chatType(["group", "supergroup"]).filter((ctx) =>
+  ctx.chat.id == env.CHAT_ID
+).on("message:document", async (ctx) => {
+  if (
+    !ctx.message.document.file_name?.endsWith(".patch") || !ctx.message.caption
+  ) {
+    return;
+  }
+  const file = await fetch((await ctx.getFile()).getUrl());
+  const formData = new FormData();
+  formData.set("repository", env.REPOSITORY);
+  formData.set("branch", ctx.message.caption);
+  formData.set("patch", await file.blob());
+  const res = await fetch(env.PATCH_PUSHER_API_URL, {
+    method: "POST",
+    body: formData,
+  });
+  if (res.status == 200) {
+    await ctx.reply("Patch submitted.");
+  } else {
+    console.log(res.status);
+    await ctx.reply("Failed to submit the patch.");
+  }
+});
 
 app.use(async (ctx, next) => {
   try {
@@ -15,6 +44,10 @@ app.use(async (ctx, next) => {
     ctx.response.status = 500;
   }
 });
+
+router.get(`/${bot.token}`, webhookCallback(bot, "oak"));
+
+app.use(router.routes());
 
 app.use(async (ctx, next) => {
   let verified = false;
@@ -200,5 +233,10 @@ app.use(async (ctx) => {
   ctx.response.status = 200;
 });
 
-await db.connectAndInitialize();
-await app.listen({ port: 8000 });
+const promises = [db.connectAndInitialize(), app.listen({ port: 8000 })];
+
+if (Deno.env.get("DEBUG")) {
+  promises.push(bot.start({ drop_pending_updates: true }));
+}
+
+await Promise.all(promises);
