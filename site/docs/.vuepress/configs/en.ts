@@ -346,10 +346,6 @@ export const localeEn: LocaleConfig<DefaultThemeLocaleData> = {
             text: "Tutorials",
             children: [
               {
-                text: "Cloudflare Workers",
-                link: "/hosting/cloudflare-workers.html",
-              },
-              {
                 text: "Deno Deploy",
                 link: "/hosting/deno-deploy.html",
               },
