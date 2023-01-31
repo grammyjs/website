@@ -20,11 +20,13 @@ bot.chatType(["group", "supergroup"]).filter((ctx) =>
   ) {
     return;
   }
-  const file = await fetch((await ctx.getFile()).getUrl());
   const formData = new FormData();
   formData.set("repository", env.REPOSITORY);
   formData.set("branch", ctx.message.caption);
-  formData.set("patch", await file.blob());
+  formData.set(
+    "url",
+    new URL(env.BASE_URL, `/file/${ctx.message.document.file_id}`).href,
+  );
   const res = await fetch(env.PATCH_PUSHER_API_URL, {
     method: "POST",
     body: formData,
@@ -46,6 +48,12 @@ app.use(async (ctx, next) => {
 });
 
 router.get(`/${bot.token}`, webhookCallback(bot, "oak"));
+
+router.get(`/file/:file_id`, (ctx) => {
+  return fetch(
+    `https://api.telegram.org/file/bot${bot.token}/${ctx.params.file_id}`,
+  );
+});
 
 app.use(router.routes());
 
