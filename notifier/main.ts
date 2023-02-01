@@ -20,14 +20,38 @@ bot.chatType(["group", "supergroup"]).filter((ctx) =>
   ) {
     return;
   }
+  const repliedMessage = ctx.message.reply_to_message;
+  if (
+    !repliedMessage || !(repliedMessage.from?.id == ctx.me.id)
+  ) {
+    return;
+  }
+  const prNumber = Number(
+    (repliedMessage.text ?? "").match(/^#([1-9][0-9]+)\s/)?.[1],
+  );
+  if (!prNumber) {
+    return;
+  }
+  let branch = "";
+  let res = await fetch(new URL("pulls", env.REPOSITORY_API_URL));
+  if (res.status != 200) {
+    await ctx.reply("Failed to fetch PR.");
+    return;
+  }
+  branch = (await res.json())?.head?.ref;
+  if (!branch) {
+    await ctx.reply("Could not resolve PR branch.");
+    return;
+  }
   const formData = new FormData();
-  formData.set("repository", env.REPOSITORY);
-  formData.set("branch", ctx.message.caption);
+  // https://api.github.com/repos/grammyjs/website/pulls/
+  formData.set("repository", env.REPOSITORY_CLONE_URL);
+  formData.set("branch", branch);
   formData.set(
     "url",
     new URL(env.BASE_URL, `/file/${ctx.message.document.file_id}`).href,
   );
-  const res = await fetch(env.PATCH_PUSHER_API_URL, {
+  res = await fetch(env.PATCH_PUSHER_API_URL, {
     method: "POST",
     body: formData,
   });
