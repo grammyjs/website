@@ -4,21 +4,20 @@ Here is a collection of frequently asked questions regarding [common errors](#wh
 
 If this FAQ does not answer your question, you should also have a look at the [Bot FAQ](https://core.telegram.org/bots/faq) written by the Telegram team.
 
-## Where can I find docs about a method?
+## Where Can I Find Docs About a Method?
 
 In the API reference.
 You probably want to understand [this](../guide) better.
 
-## A method is missing a parameter!
+## A Method Is Missing a Parameter!
 
 No, it's not.
 
-Step 1: Make sure you have the latest grammY version installed.
-
-Step 2: Check if the parameter is optional.
-If it is, then grammY will collect it in the options object called `other`.
-Pass `{ parameter_name: value }` in that place and it'll work.
-As always, TypeScript will auto-complete the parameter names for you.
+1. Make sure you have the latest grammY version installed.
+2. Check if the parameter is optional.
+   If it is, then grammY will collect it in the options object called `other`.
+   Pass `{ parameter_name: value }` in that place and it'll work.
+   As always, TypeScript will auto-complete the parameter names for you.
 
 ## Why Am I Getting This Error?
 
