@@ -174,7 +174,8 @@ Remember that you can listen for text message via `bot.on("message:text")` or `b
 
 Here are three examples how to build a custom keyboard with `text` buttons.
 
-You can also request the phone number with `requestContact`, the location with `requestLocation`, a poll with `requestPoll`, a user with `requestUser`, and a chat with `requestChat`.
+You can also request a user with `requestUser`, a chat with `requestChat`, the phone number with `requestContact`, the location with `requestLocation`, a poll with `requestPoll`, and share a web app with `webApp`.
+Check out all keyboard button types in the [API reference](https://deno.land/x/grammy/mod.ts?s=Keyboard#Methods).
 
 #### Example 1
 
