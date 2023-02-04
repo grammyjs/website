@@ -64,7 +64,7 @@ import { Bot, webhookCallback } from "grammy/web";
 
 // You can replace `BOT_TOKEN` with your bot token, but it is better to store in an environment variable.
 // For more on this, see https://developers.cloudflare.com/workers/platform/environment-variables/#secrets-on-deployed-workers.
-// You should also replace `BOT_INFO` with your bot info from `bot.api.getMe()`.
+// You should also replace `BOT_INFO` with your bot info obtained from `bot.api.getMe()`.
 const bot = new Bot(BOT_TOKEN, { botInfo: BOT_INFO });
 
 bot.command("start", async (ctx) => {
