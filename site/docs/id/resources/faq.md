@@ -13,11 +13,11 @@ Kamu mungkin tertarik untuk memahami [hal-hal berikut](../guide) terlebih dahulu
 
 Tentu saja tidak.
 
-1. Pastikan kamu sudah menginstal grammY versi terbaru
+1. Pastikan kamu sudah menginstal grammY versi terbaru.
 2. Cek apakah parameter tersebut termasuk opsional.
    Jika iya, berarti grammY menaruh parameter tersebut di suatu options object bernama `other`.
    Kamu cuma perlu menulis `{ nama_parameter: value }` di options tersebut.
-   Seperti biasa, kamu bisa menggunakan TypeScript untuk membantu melengkapi nama parameter-nya secara otomatis.
+   Seperti biasa, TypeScript akan membantu kamu melengkapi nama parameter-nya secara otomatis.
 
 ## Kenapa Saya Mengalami Error Ini?
 
