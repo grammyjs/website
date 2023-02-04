@@ -989,7 +989,7 @@ As always, check out the [API reference](https://deno.land/x/grammy_conversation
 
 As mentioned [earlier](#introduction), grammY handlers always only handle a single update.
 However, with conversations, you are able to process many updates in sequence as if they were all available at the same time.
-The plugins makes this possible by storing old context objects, and resupplying them later.
+The plugin makes this possible by storing old context objects, and resupplying them later.
 
 This is why the context objects inside conversations are not always affected by some grammY plugins in the way one would expect.
 This is relevant for the following plugins:
