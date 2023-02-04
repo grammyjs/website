@@ -26,8 +26,12 @@ bot.chatType(["group", "supergroup"]).filter((ctx) =>
   ) {
     return;
   }
+  const entity = repliedMessage.entities?.[0];
+  if (!entity) {
+    return;
+  }
   const prNumber = Number(
-    (repliedMessage.text ?? "").match(/^#([1-9][0-9]+)\s/)?.[1],
+    repliedMessage.text?.slice(entity.offset + 1, entity.length),
   );
   if (!prNumber) {
     return;
