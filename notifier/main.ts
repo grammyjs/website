@@ -1,7 +1,7 @@
 import * as path from "std/path/mod.ts";
 import { Application, Router } from "oak/mod.ts";
-import { Bot, Context, webhookCallback } from "grammy/mod.ts";
-import { FileFlavor, hydrateFiles } from "grammy_files/mod.ts";
+import { Bot, type Context, webhookCallback } from "grammy/mod.ts";
+import { type FileFlavor, hydrateFiles } from "grammy_files/mod.ts";
 import env from "./env.ts";
 import * as db from "./db.ts";
 import { verifyGitHubWebhook } from "./utils.ts";
