@@ -4,6 +4,21 @@ Berikut ini adalah kumpulan pertanyaan yang sering diajukan mengenai [beberapa e
 
 Jika FAQ ini tidak menjawab pertanyaanmu, sebaiknya kamu juga membaca [FAQ Bot](https://core.telegram.org/bots/faq) yang ditulis oleh tim Telegram.
 
+## Di mana Saya Bisa Menemukan Dokumentasi Mengenai Method?
+
+Di referensi API.
+Kamu mungkin tertarik untuk memahami [hal-hal berikut](../guide) terlebih dahulu.
+
+## Parameter Tidak Tersedia di Method Tertentu!
+
+Tentu saja tidak.
+
+1. Pastikan kamu sudah menginstal grammY versi terbaru
+2. Cek apakah parameter tersebut termasuk opsional.
+   Jika iya, berarti grammY menaruh parameter tersebut di suatu options object bernama `other`.
+   Kamu cuma perlu menulis `{ nama_parameter: value }` di options tersebut.
+   Seperti biasa, kamu bisa menggunakan TypeScript untuk membantu melengkapi nama parameter-nya secara otomatis.
+
 ## Kenapa Saya Mengalami Error Ini?
 
 ### 400 Bad Request: Cannot parse entities
