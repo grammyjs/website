@@ -26,7 +26,7 @@ bot.chatType(["group", "supergroup"]).filter((ctx) =>
   ) {
     return;
   }
-  const entity = ctx.entities("text")[0];
+  const entity = ctx.entities("text_link")[0];
   if (!entity) {
     return;
   }
