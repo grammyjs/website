@@ -88,7 +88,7 @@ Check out the [tutorial](./vps.md) on how to host grammY bots on a VPS.
 | Unit        | Quantity                 | In Words                               | Explanation                                              |
 | ----------- | ------------------------ | -------------------------------------- | -------------------------------------------------------- |
 | $/mo        | cost                     | US-Dollars per month                   | Monthly cost.                                            |
-| €/M req     | cost                     | Euros per million requests             | Cost for handling one million request.                   |
+| €/M req     | cost                     | Euros per million requests             | Cost for handling one million requests.                  |
 | req/min     | throughput               | requests per minute                    | Number of requests handled in one minute.                |
 | GB/s        | throughput               | gigabytes per second                   | Number of gigabytes transferred in one second.           |
 | GB-s        | memory usage             | gigabyte seconds                       | One gigabyte used for one second.                        |
