@@ -750,7 +750,7 @@ conversation.session.myProp = 42; // 更可靠！
 await conversation.now(); // 更精确！
 
 // 通过对话调试日志，不会打印令人困惑的日志
-conversation.log("Hello, world");  // 更透明！
+conversation.log("Hello, world"); // 更透明！
 ```
 
 请注意，你可以使用 `conversation.external()` 来执行所有上述操作，但这可能会很麻烦，所以我们提供了一些便捷函数（[API 参考](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#method_wait_0)）。

@@ -325,7 +325,7 @@ bot.on(":text", handler);
 
 示例:
 
-| Filter 查询                    | L1 部分       | L2 部分        | L3 部分       |
+| Filter 查询                  | L1 部分     | L2 部分      | L3 部分     |
 | ---------------------------- | ----------- | ------------ | ----------- |
 | `"message"`                  | `"message"` | `undefined`  | `undefined` |
 | `"message:entities"`         | `"message"` | `"entities"` | `undefined` |

@@ -59,14 +59,14 @@ bot.on("edited_message", (ctx) => {
 
 在上下文对象上安装了一些快捷方式。
 
-| 快捷方式                  | 描述                                   |
-| --------------------- | ------------------------------------ |
-| `ctx.msg`             | 获取 `message` 对象，包括已编辑的信息对象           |
-| `ctx.chat`            | 获取 `chat` 对象                         |
+| 快捷方式              | 描述                                                         |
+| --------------------- | ------------------------------------------------------------ |
+| `ctx.msg`             | 获取 `message` 对象，包括已编辑的信息对象                    |
+| `ctx.chat`            | 获取 `chat` 对象                                             |
 | `ctx.senderChat`      | 从 `ctx.msg` 中获取发送者聊天对象（用于匿名通道/群组消息）。 |
-| `ctx.from`            | 获取消息的作者，回调查询，或其他东西的作者                |
-| `ctx.inlineMessageId` | 获取回调查询的内联信息标识符或选择的内联结果               |
-| `ctx.entities`        | 获取消息实体和它们的文本，可选择通过实体类型过滤        |
+| `ctx.from`            | 获取消息的作者，回调查询，或其他东西的作者                   |
+| `ctx.inlineMessageId` | 获取回调查询的内联信息标识符或选择的内联结果                 |
+| `ctx.entities`        | 获取消息实体和它们的文本，可选择通过实体类型过滤             |
 
 换句话说，你也可以这样做：
 
@@ -94,6 +94,7 @@ bot.on("message:entities", (ctx) => {
 因此，如果你愿意，你可以忘记 `ctx.message` 和 `ctx.channelPost` 以及 `ctx.editedMessage` 等等，而只是一直使用 `ctx.msg` 来代替。
 
 ## 通过 Has Checks 进行检测
+
 上下文对象有一些方法可以让你为某些事情检测包含的数据。
 例如，你可以调用 `ctx.hasCommand("start")` 来查看上下文对象是否包含了一个 `/start` 命令。
 这就是为什么这些方法被统称为 _has checks_ 。
@@ -113,7 +114,7 @@ if (ctx.hasCallbackQuery(/query-data-\d+/)) {
 ```
 
 这同样适用于所有其他 has checks。
-阅读 [上下文对象的 API 参考](https://deno.land/x/grammy/mod.ts?s=Context#method_has_0) 来获取查看 has checks 的列表。 
+阅读 [上下文对象的 API 参考](https://deno.land/x/grammy/mod.ts?s=Context#method_has_0) 来获取查看 has checks 的列表。
 阅读 [API 参考](https://deno.land/x/grammy/mod.ts?s=Context#Static_Properties) 中的静态属性 `Context.has` ， 这能让你创建高效的判定函数来检测大量上下文对象。
 
 ## 可用操作
