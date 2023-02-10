@@ -1,12 +1,71 @@
 import * as path from "std/path/mod.ts";
-import { Application } from "oak/mod.ts";
-import { Bot } from "grammy/mod.ts";
+import { Application, Router } from "oak/mod.ts";
+import { Bot, type Context, webhookCallback } from "grammy/mod.ts";
+import { type FileFlavor, hydrateFiles } from "grammy_files/mod.ts";
 import env from "./env.ts";
 import * as db from "./db.ts";
 import { verifyGitHubWebhook } from "./utils.ts";
 
 const app = new Application();
-const bot = new Bot(env.BOT_TOKEN);
+const router = new Router();
+const bot = new Bot<FileFlavor<Context>>(env.BOT_TOKEN);
+
+bot.api.config.use(hydrateFiles(bot.token));
+
+bot.chatType(["group", "supergroup"]).filter((ctx) =>
+  ctx.chat.id == env.CHAT_ID
+).on("message:document", async (ctx) => {
+  if (
+    !ctx.message.document.file_name?.endsWith(".patch") || !ctx.message.caption
+  ) {
+    return;
+  }
+  const repliedMessage = ctx.message.reply_to_message;
+  if (
+    !repliedMessage || !(repliedMessage.from?.id == ctx.me.id)
+  ) {
+    return;
+  }
+  const entity = ctx.entities("text_link")[0];
+  if (!entity) {
+    return;
+  }
+  const prNumber = Number(
+    repliedMessage.text?.slice(entity.offset + 1, entity.length),
+  );
+  if (!prNumber) {
+    return;
+  }
+  let branch = "";
+  let res = await fetch(new URL("pulls", env.REPOSITORY_API_URL));
+  if (res.status != 200) {
+    await ctx.reply("Failed to fetch PR.");
+    return;
+  }
+  branch = (await res.json())?.head?.ref;
+  if (!branch) {
+    await ctx.reply("Could not resolve PR branch.");
+    return;
+  }
+  const formData = new FormData();
+  // https://api.github.com/repos/grammyjs/website/pulls/
+  formData.set("repository", env.REPOSITORY_CLONE_URL);
+  formData.set("branch", branch);
+  formData.set(
+    "url",
+    new URL(env.BASE_URL, `/file/${ctx.message.document.file_id}`).href,
+  );
+  res = await fetch(env.PATCH_PUSHER_API_URL, {
+    method: "POST",
+    body: formData,
+  });
+  if (res.status == 200) {
+    await ctx.reply("Patch submitted.");
+  } else {
+    console.log(res.status);
+    await ctx.reply("Failed to submit the patch.");
+  }
+});
 
 app.use(async (ctx, next) => {
   try {
@@ -15,6 +74,16 @@ app.use(async (ctx, next) => {
     ctx.response.status = 500;
   }
 });
+
+router.get(`/${bot.token}`, webhookCallback(bot, "oak"));
+
+router.get(`/file/:file_id`, (ctx) => {
+  return fetch(
+    `https://api.telegram.org/file/bot${bot.token}/${ctx.params.file_id}`,
+  );
+});
+
+app.use(router.routes());
 
 app.use(async (ctx, next) => {
   let verified = false;
@@ -200,5 +269,10 @@ app.use(async (ctx) => {
   ctx.response.status = 200;
 });
 
-await db.connectAndInitialize();
-await app.listen({ port: 8000 });
+const promises = [db.connectAndInitialize(), app.listen({ port: 8000 })];
+
+if (Deno.env.get("DEBUG")) {
+  promises.push(bot.start({ drop_pending_updates: true }));
+}
+
+await Promise.all(promises);

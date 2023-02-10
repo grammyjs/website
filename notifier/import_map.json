@@ -1,10 +1,11 @@
 {
   "imports": {
     "envalid/": "https://deno.land/x/envalid@0.1.2/",
-    "grammy/": "https://deno.land/x/grammy@v1.11.2/",
+    "grammy/": "https://deno.land/x/grammy@v1.14.0/",
     "oak/": "https://deno.land/x/oak@v11.1.0/",
-    "octokit/": "https://raw.githubusercontent.com/octokit/webhooks-methods.js/v2.0.0/src/",
+    "octokit-webhooks-methods": "https://esm.sh/@octokit/webhooks-methods@3.0.2",
     "postgres/": "https://deno.land/x/postgres@v0.17.0/",
-    "std/": "https://deno.land/std@0.164.0/"
+    "std/": "https://deno.land/std@0.176.0/",
+    "grammy_files/": "https://deno.land/x/grammy_files@v1.0.4/"
   }
 }
