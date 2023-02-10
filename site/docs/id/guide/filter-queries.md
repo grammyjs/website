@@ -229,7 +229,7 @@ Dengan begitu, kamu bisa membuat pola penanganan pesan menjadi lebih fleksibel.
 bot.on(":forward_date").command("help"); // Command /help yang di-forward
 
 // Tangani command yang berasal dari private chat saja.
-const pm = bot.filter((ctx) => ctx.chat?.type === "private");
+const pm = bot.chatType("private");
 pm.command("start");
 pm.command("help");
 ```
