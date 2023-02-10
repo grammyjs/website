@@ -135,9 +135,9 @@ This means installing a few tools.
 
 #### Preparing Your Machine for Development
 
-[Install Deno](https://deno.land/manual/getting_started/installation#download-and-install) if you have not done that already.
+[Install Deno](https://deno.land/manual/getting_started/installation#download-and-install) if you have not done it already.
 
-You also need a text editor that works well for coding.
+You also need a text editor that fits well with coding.
 The best one for Deno is Visual Studio Code.
 [Install it.](https://code.visualstudio.com/)
 
