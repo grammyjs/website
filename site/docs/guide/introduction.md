@@ -158,7 +158,8 @@ mkdir ./my-bot
 cd ./my-bot
 code .
 ```
-> If the `code` command is not available, just open VSCode and open your directory from File > Open Folder...
+
+> If you’re on macOS and the `code` command is not available, just open VSCode, hit `Ctrl+Shift+P`, type "shell command", and hit enter.
 
 In VSCode, turn this empty directory into a Deno project.
 Hit `Ctrl+Shift+P`, type "deno init", and hit Enter.
