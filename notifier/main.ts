@@ -15,19 +15,18 @@ bot.api.config.use(hydrateFiles(bot.token));
 bot.chatType(["group", "supergroup"]).filter((ctx) =>
   ctx.chat.id == env.CHAT_ID
 ).on("message:document", async (ctx) => {
-  if (
-    !ctx.message.document.file_name?.endsWith(".patch") || !ctx.message.caption
-  ) {
+  if (!ctx.message.document.file_name?.endsWith(".patch")) {
     return;
   }
   const repliedMessage = ctx.message.reply_to_message;
   if (
-    !repliedMessage || !(repliedMessage.from?.id == ctx.me.id)
+    !repliedMessage ||
+    !(repliedMessage.from?.id == ctx.me.id)
   ) {
     return;
   }
-  const entity = ctx.entities("text_link")[0];
-  if (!entity) {
+  const entity = repliedMessage.entities?.[0];
+  if (!entity || entity.type != "text_link") {
     return;
   }
   const prNumber = Number(
