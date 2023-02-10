@@ -36,7 +36,7 @@ bot.chatType(["group", "supergroup"]).filter((ctx) =>
     return;
   }
   let branch = "";
-  let res = await fetch(new URL("pulls", env.REPOSITORY_API_URL));
+  let res = await fetch(new URL(`pulls/${prNumber}`, env.REPOSITORY_API_URL));
   if (res.status != 200) {
     await ctx.reply("Failed to fetch PR.");
     return;
