@@ -28,10 +28,9 @@ export async function verifyGitHubWebhook(
   // This should be more strict in reality
   if (!id) throw new Error("Not a GH webhhok");
 
-  const signatureHeader = request.headers.get("X-Hub-Signature-256");
+  const signature = request.headers.get("X-Hub-Signature-256");
   let verified = false;
-  if (signatureHeader) {
-    const signature = signatureHeader.slice("sha256=".length);
+  if (signature) {
     const payload = await request.request.clone().text();
     verified = await verify(env.SECRET, payload, signature);
   }
