@@ -46,16 +46,17 @@ bot.chatType(["group", "supergroup"]).filter((ctx) =>
     await ctx.reply("Could not resolve PR branch.");
     return;
   }
+  const { file_path } = await ctx.api.getFile(ctx.message.document.file_id);
+  if (!file_path) {
+    await ctx.reply("Could not resolve file path.");
+    return;
+  }
   const formData = new FormData();
-  // https://api.github.com/repos/grammyjs/website/pulls/
   formData.set("repository", env.REPOSITORY_CLONE_URL);
   formData.set("branch", branch);
-  console.log(
-    new URL(`/file/${ctx.message.document.file_id}`, env.BASE_URL).href,
-  );
   formData.set(
     "url",
-    new URL(`/file/${ctx.message.document.file_id}`, env.BASE_URL).href,
+    new URL(`/file/${file_path}`, env.BASE_URL).href,
   );
   res = await fetch(env.PATCH_PUSHER_API_URL, {
     method: "POST",
@@ -82,10 +83,13 @@ router.post(
   webhookCallback(bot, "oak"),
 );
 
-router.get(`/file/:file_id`, (ctx) => {
-  return fetch(
-    `https://api.telegram.org/file/bot${bot.token}/${ctx.params.file_id}`,
+router.get(`/file/:path`, async (ctx) => {
+  const response = await fetch(
+    `https://api.telegram.org/file/bot${bot.token}/${ctx.params.path}`,
   );
+  ctx.response.status = response.status;
+  ctx.response.headers = response.headers;
+  ctx.response.body = response.body;
 });
 
 app.use(router.routes());
