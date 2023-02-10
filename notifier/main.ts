@@ -155,12 +155,12 @@ async function updateLabels(payload: any) {
       if (updatedText != notification.text) {
         await bot.api.editMessageText(
           env.CHAT_ID,
-          notification.message_id,
+          notification.messageId,
           updatedText,
           other,
         );
         await db.updateNotification(
-          notification.message_id,
+          notification.messageId,
           updatedText,
         );
       }
@@ -192,11 +192,11 @@ app.use(async (ctx) => {
             if (notification) {
               await bot.api.editMessageText(
                 env.CHAT_ID,
-                notification.message_id,
+                notification.messageId,
                 text,
                 other,
               );
-              await db.updateNotification(notification.message_id, text);
+              await db.updateNotification(notification.messageId, text);
             } else {
               const notification = await bot.api.sendMessage(
                 env.CHAT_ID,
@@ -230,7 +230,7 @@ app.use(async (ctx) => {
             if (notification) {
               await bot.api.editMessageText(
                 env.CHAT_ID,
-                notification.message_id,
+                notification.messageId,
                 `~${notification.text}~`,
                 other,
               );
@@ -251,13 +251,13 @@ app.use(async (ctx) => {
           if (notification) {
             await bot.api.editMessageText(
               env.CHAT_ID,
-              notification.message_id,
+              notification.messageId,
               `__${notification.text}__`,
               other,
             );
             await bot.api.unpinChatMessage(
               env.CHAT_ID,
-              notification.message_id,
+              notification.messageId,
             );
             await db.deleteNotification(payload.pull_request.number);
           }
@@ -269,7 +269,7 @@ app.use(async (ctx) => {
   ctx.response.status = 200;
 });
 
-const promises = [db.connectAndInitialize(), app.listen({ port: 8000 })];
+const promises = [db.connect(), app.listen({ port: 8000 })];
 
 if (Deno.env.get("DEBUG")) {
   promises.push(bot.start({ drop_pending_updates: true }));

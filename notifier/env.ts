@@ -5,7 +5,7 @@ export default cleanEnv(Deno.env.toObject(), {
   CHAT_ID: num(),
   BASE_URL: url(),
   BOT_TOKEN: str(),
-  DATABASE_URI: str(),
+  MONGODB_URI: str(),
   REPOSITORY_API_URL: url(),
   REPOSITORY_CLONE_URL: url(),
   PATCH_PUSHER_API_URL: url(),
