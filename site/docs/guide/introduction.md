@@ -161,7 +161,7 @@ code .
 > If the `code` command is not available, just open VSCode and open your directory from File > Open Folder...
 
 In VSCode, turn this empty directory into a Deno project.
-Hit `Ctrl+Shift+P`, type "deno init" and hit Enter.
+Hit `Ctrl+Shift+P`, type "deno init", and hit Enter.
 The bottom right of your editor should then display the version of Deno installed on your system.
 
 Your Deno project is now ready so you can create your bot.
