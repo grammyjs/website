@@ -142,7 +142,7 @@ The best one for Deno is Visual Studio Code.
 [Install it.](https://code.visualstudio.com/)
 
 Next, you need to connect VSCode and Deno.
-That's very simple: there is an extension for VSCode that does everything automatically.
+That's very simple: There is an extension for VSCode that does everything automatically.
 You can install it [as described here](https://marketplace.visualstudio.com/items?itemName=denoland.vscode-deno).
 
 Your system is now ready for bot development! :tada:
