@@ -54,6 +54,9 @@ bot.chatType(["group", "supergroup"]).filter((ctx) =>
   const formData = new FormData();
   formData.set("repository", env.REPOSITORY_CLONE_URL);
   formData.set("branch", branch);
+  console.log(
+    new URL(`/file/${file_path}`, env.BASE_URL).href,
+  );
   formData.set(
     "url",
     new URL(`/file/${file_path}`, env.BASE_URL).href,
