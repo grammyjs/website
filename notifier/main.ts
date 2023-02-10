@@ -46,7 +46,7 @@ bot.chatType(["group", "supergroup"]).filter((ctx) =>
     await ctx.reply("Could not resolve PR branch.");
     return;
   }
-  const { file_path } = await ctx.api.getFile(ctx.message.document.file_id);
+  const { file_path } = await ctx.getFile();
   if (!file_path) {
     await ctx.reply("Could not resolve file path.");
     return;
