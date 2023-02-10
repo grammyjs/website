@@ -75,7 +75,7 @@ app.use(async (ctx, next) => {
   }
 });
 
-router.get(`/${bot.token}`, webhookCallback(bot, "oak"));
+router.post(`/${bot.token}`, webhookCallback(bot, "oak"));
 
 router.get(`/file/:file_id`, (ctx) => {
   return fetch(
