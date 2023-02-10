@@ -76,7 +76,7 @@ app.use(async (ctx, next) => {
 });
 
 router.get(
-  `/${bot.token.replaceAll(":", "\:")}`,
+  `/${bot.token.replaceAll(":", "\\:")}`,
   webhookCallback(bot, "oak"),
 );
 
