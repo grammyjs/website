@@ -73,13 +73,14 @@ bot.chatType(["group", "supergroup"]).filter((ctx) =>
   }
 });
 
-// app.use(async (ctx, next) => {
-//   try {
-//     await next();
-//   } catch (_err) {
-//     ctx.response.status = 500;
-//   }
-// });
+app.use(async (ctx, next) => {
+  try {
+    await next();
+  } catch (err) {
+    console.error(err);
+    ctx.response.status = 500;
+  }
+});
 
 router.post(
   `/${bot.token.replaceAll(":", "\\:")}`,
