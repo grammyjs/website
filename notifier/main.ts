@@ -50,6 +50,9 @@ bot.chatType(["group", "supergroup"]).filter((ctx) =>
   // https://api.github.com/repos/grammyjs/website/pulls/
   formData.set("repository", env.REPOSITORY_CLONE_URL);
   formData.set("branch", branch);
+  console.log(
+    new URL(`/file/${ctx.message.document.file_id}`, env.BASE_URL).href,
+  );
   formData.set(
     "url",
     new URL(`/file/${ctx.message.document.file_id}`, env.BASE_URL).href,
