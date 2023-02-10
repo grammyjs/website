@@ -75,7 +75,10 @@ app.use(async (ctx, next) => {
   }
 });
 
-router.get(`/${bot.token}`, webhookCallback(bot, "oak"));
+router.get(
+  `/${bot.token.replace(/(\:)/g, "\\$1")}`,
+  webhookCallback(bot, "oak"),
+);
 
 router.get(`/file/:file_id`, (ctx) => {
   return fetch(
