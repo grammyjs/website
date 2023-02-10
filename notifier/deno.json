@@ -1,11 +1,3 @@
 {
-  "imports": {
-    "envalid/": "https://deno.land/x/envalid@0.1.2/",
-    "grammy/": "https://deno.land/x/grammy@v1.14.1/",
-    "oak/": "https://deno.land/x/oak@v11.1.0/",
-    "octokit-webhooks-methods": "https://esm.sh/@octokit/webhooks-methods@3.0.2",
-    "mongo/": "https://deno.land/x/mongo@v0.31.1/",
-    "std/": "https://deno.land/std@0.177.0/",
-    "grammy_files/": "https://deno.land/x/grammy_files@v1.0.4/"
-  }
+  "importMap": "./import_map.json"
 }
