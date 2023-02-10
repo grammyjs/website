@@ -52,7 +52,7 @@ bot.chatType(["group", "supergroup"]).filter((ctx) =>
   formData.set("branch", branch);
   formData.set(
     "url",
-    new URL(env.BASE_URL, `/file/${ctx.message.document.file_id}`).href,
+    new URL(`/file/${ctx.message.document.file_id}`, env.BASE_URL).href,
   );
   res = await fetch(env.PATCH_PUSHER_API_URL, {
     method: "POST",
