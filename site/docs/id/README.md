@@ -15,7 +15,7 @@ features:
     details: grammY bersifat terbuka dan bisa ditambahkan dengan plugin yang kamu inginkan.
   - title: Dapat Diskalakan
     details: grammY selalu siap membantu ketika bot menjadi semakin populer dan semakin banyak trafiknya.
-footer: Hak Cipta © 2021-2022
+footer: Hak Cipta © 2021-2023
 permalink: /id/
 ---
 

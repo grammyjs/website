@@ -3,6 +3,7 @@
     "esbenp.prettier-vscode",
     "davidanson.vscode-markdownlint",
     "bierner.markdown-checkbox",
-    "denoland.vscode-deno"
+    "denoland.vscode-deno",
+    "GitHub.vscode-pull-request-github"
   ]
 }

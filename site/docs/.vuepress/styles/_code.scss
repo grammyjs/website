@@ -1,22 +1,9 @@
 // https://github.com/vuepress/vuepress-next/blob/main/ecosystem/theme-default/src/client/styles/code.scss
 
-code {
-  background-color: var(--c-bg-light);
-}
-
 .token.string,
 .token.char,
 .token.attr-value,
 .token.regex,
 .token.variable {
   color: #6ac0e3;
-}
-
-// add more contrast with table background color
-tr {
-  &:nth-child(2n) {
-    code {
-      background-color: var(--c-bg-dark);
-    }
-  }
 }
