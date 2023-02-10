@@ -165,7 +165,8 @@ In VSCode, turn this empty directory into a Deno project.
 Hit `Ctrl+Shift+P`, type "deno init", and hit Enter.
 The bottom right of your editor should then display the version of Deno installed on your system.
 
-Your Deno project is now ready so you can create your bot.
+Your Deno development environment is ready.
+You can now start writing your bot.
 This is explained on the next page.
 
 One last thing:
