@@ -72,7 +72,7 @@ Before deploying, we need to edit `wrangler.toml`:
 
 ```toml
 account_id = 'your account_id' # Get this from Cloudflare's dashboard.
-name = 'my-bot' # The name of your bot, which will be a part of its webhook URL, for example: https://my-bot.my-subdomain.workers.dev
+name = 'my-bot' # Your bot's name, which will appear in the webhook URL, for example: https://my-bot.my-subdomain.workers.dev
 main = "src/index.js"  # The entry file of the worker.
 compatibility_date = "2023-01-16"
 ```
