@@ -74,7 +74,7 @@ Selain itu, type API Bot yang digunakan telah usang sejak beberapa tahun yang la
 Akibatnya, dukungan auto-complete atau spell-checking untuk kode bot tidak dapat diandalkan, sehingga kamu perlu menjalankan bot terlebih dahulu untuk mengetahui apakah kode bekerja dengan baik atau tidak.
 
 Sebaliknya, grammY sepenuhnya ditulis menggunakan TypeScript.
-Kelebihannya, code editor (misalnya VSCode) dapat menganalisa kode kamu untuk memberikan saran ketika kamu mengetik sesuatu.
+Kelebihannya, code editor (misalnya VS Code) dapat menganalisa kode kamu untuk memberikan saran ketika kamu mengetik sesuatu.
 Terlebih lagi, ia mampu menampilkan secara lengkap inline API Bot Telegram—dokumentasi dari website akan ditampilkan secara langsung ketika meng-hover nama atau elemen kode menggunakan kursor mouse.
 
 Kelebihan utama lainnya adalah sekarang kamu bisa **menulis bot menggunakan TypeScript**.
