@@ -1,4 +1,4 @@
-# Chat Members plugin (`chat-members`)
+# Chat Members Plugin (`chat-members`)
 
 Automatically store information about users on a chat and retrieve it easilly
 
@@ -12,7 +12,7 @@ It then allows you to use `ctx.chatMembers.getChatMember()` to obtain informatio
 
 ## Usage
 
-### Storing chat members
+### Storing Chat Members
 
 You can use a valid grammY [storage adapter](https://grammy.dev/plugins/session.html#known-storage-adapters) or an
 instance of any class that implements the [`StorageAdapter`](https://deno.land/x/grammy/mod.ts?s=StorageAdapter) interface.
@@ -93,7 +93,7 @@ bot.start({
 
 </CodeGroup>
 
-### Reading chat member info
+### Reading Chat Members
 
 This plugin also adds a new `ctx.chatMembers.getChatMember` function that will check the storage for information about a chat member before querying Telegram for it.
 If the chat member exists in the storage, it will be returned.
@@ -115,7 +115,7 @@ All parameters are optional; if you don't provide them, `ctx.chat.id` and `ctx.f
 Please notice that, if you don't provide a chat id and there's no `chat` property inside the context (for example, on inline query updates), this will throw an error.
 The same will happen if there's no `ctx.from` in the context.
 
-## Aggressive storage
+## Aggressive Storage
 
 The `enableAggressiveStorage` config option will install middleware to cache chat members without depending on the `chat_member` event.
 For every update, the middleware checks if `ctx.chat` and `ctx.from` exist.
