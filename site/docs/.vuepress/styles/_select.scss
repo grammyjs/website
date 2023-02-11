@@ -1,0 +1,14 @@
+.action-button,
+.navbar-item,
+.site-name,
+.logo,
+img[alt="grammY"],
+.next,
+.prev {
+  user-select: none;
+}
+
+::selection {
+  // --c-brand with an opacity of 0x44
+  background-color: #009dca44;
+}
