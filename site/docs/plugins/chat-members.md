@@ -18,7 +18,68 @@ You can use a valid grammY [storage adapter](https://grammy.dev/plugins/session.
 instance of any class that implements the [`StorageAdapter`](https://deno.land/x/grammy/mod.ts?s=StorageAdapter)
 interface.
 
-```typescript
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
+
+```ts
+import {
+  Bot,
+  Context,
+  MemorySessionStorage,
+} from "grammy";
+import type { ChatMember } from "grammy/types";
+import {
+  chatMembers,
+  ChatMembersFlavor,
+} from "@grammyjs/chat-members";
+
+type MyContext = Context & ChatMembersFlavor;
+
+const adapter = new MemorySessionStorage<ChatMember>();
+
+const bot = new Bot<MyContext>("<your bot token>");
+
+bot.use(chatMembers(adapter));
+
+bot.start({
+  allowed_updates: ["chat_member", "message"],
+  onStart: ({ username }) => console.log(`Listening as ${username}`),
+});
+```
+
+  </CodeGroupItem>
+
+  <CodeGroupItem title="JavaScript" active>
+
+```js
+import {
+  Bot,
+  Context,
+  MemorySessionStorage,
+} from "grammy";
+import {
+  chatMembers,
+  ChatMembersFlavor,
+} from "@grammyjs/chat-members";
+
+const adapter = new MemorySessionStorage();
+
+const bot = new Bot("<your bot token>");
+
+bot.use(chatMembers(adapter));
+
+bot.start({
+  allowed_updates: ["chat_member", "message"],
+  onStart: ({ username }) => console.log(`Listening as ${username}`),
+});
+```
+
+  </CodeGroupItem>
+
+
+  <CodeGroupItem title="Deno" active>
+
+```ts
 import {
   Bot,
   Context,
@@ -43,6 +104,11 @@ bot.start({
   onStart: ({ username }) => console.log(`Listening as ${username}`),
 });
 ```
+
+  </CodeGroupItem>
+
+
+</CodeGroup>
 
 ### Reading chat member info
 
