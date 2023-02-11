@@ -179,7 +179,7 @@ Recuerda que puedes escuchar los mensajes de texto a través de `bot.on("message
 
 Aquí hay tres ejemplos de cómo construir un teclado con botones de `texto`.
 
-También puedes solicitar el número de teléfono con `requestContact`, la ubicación con `requestLocation`, y un sondeo con `requestPoll`.
+También puedes solicitar el número de teléfono con `requestContact`, la ubicación con `requestLocation`, una encuesta con `requestPoll`, un usuario con `requestUser`, y un chat con `requestChat`.
 
 #### Ejemplo 1
 
