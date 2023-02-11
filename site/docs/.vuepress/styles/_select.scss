@@ -12,3 +12,8 @@ img[alt="grammY"],
   // --c-brand with an opacity of 0x44
   background-color: #009dca44;
 }
+
+::selection:window-inactive {
+  // --c-brand with an opacity of 0x22
+  background-color: #009dca22;
+}
