@@ -89,10 +89,11 @@ We need to tell Telegram where to send updates to.
 Open your browser and visit this URL:
 
 ```text
-https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://my-bot.my-subdomain.workers.dev/
+https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<MY_BOT>.<MY_SUBDOMAIN>.workers.dev/
 ```
 
-Replacing `<BOT_TOKEN>`, `my-bot`, and `my-subdomain` with your values. If successful, you get a JSON response similar to this:
+Replace `<BOT_TOKEN>`, `<MY_BOT>`, and `<MY_SUBDOMAIN>` with your values.
+If the setup is successful, you'll see a JSON response like this:
 
 ```json
 { "ok": true, "result": true, "description": "Webhook was set" }
