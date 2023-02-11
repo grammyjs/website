@@ -337,26 +337,26 @@ Currently, there is no safe solution to this problem because the two chats can s
 This can lead to data races.
 However, there are several ways of dealing with this issue:
 
-* Ignoring the problem.
-The bot's session data will effectively reset when a group is migrated.
-Simple, reliable, default behavior, but potentially unexpected once per chat.
-For example if a migration happens while a user is in a conversation (the conversation plugin uses sessions) the conversation will be reset.
+- Ignoring the problem.
+  The bot's session data will effectively reset when a group is migrated.
+  Simple, reliable, default behavior, but potentially unexpected once per chat.
+  For example if a migration happens while a user is in a conversation (the conversation plugin uses sessions) the conversation will be reset.
 
-* Only storing temporary data (or data with timeouts) in the session, and using a database for the important things that need to be migrated when a chat migrates.
-This can then use transactions and custom logic to handle concurrent data access from the old and the new chat.
-A lot of effort and has a performance cost, but the only truly reliable way to solve this problem.
+- Only storing temporary data (or data with timeouts) in the session, and using a database for the important things that need to be migrated when a chat migrates.
+  This can then use transactions and custom logic to handle concurrent data access from the old and the new chat.
+  A lot of effort and has a performance cost, but the only truly reliable way to solve this problem.
 
-* It is theoretically possible to implement a workaround that matches both chats **without guarantee of reliability**.
-The Telegram Bot API sends a migration update for each of the two chats once the migration was triggered (see the properties `migrate_to_chat_id` or `migrate_from_chat_id` in the [Telegram API Docs](https://core.telegram.org/bots/api#message)).
-The issue is that there is no guarantee that these messages are sent before a new message in the supergroup appears.
-Hence, the bot could receive a message from the new supergroup before it is aware of any migration and thus, it can not match the two chats, resulting in the aforementioned problems.
+- It is theoretically possible to implement a workaround that matches both chats **without guarantee of reliability**.
+  The Telegram Bot API sends a migration update for each of the two chats once the migration was triggered (see the properties `migrate_to_chat_id` or `migrate_from_chat_id` in the [Telegram API Docs](https://core.telegram.org/bots/api#message)).
+  The issue is that there is no guarantee that these messages are sent before a new message in the supergroup appears.
+  Hence, the bot could receive a message from the new supergroup before it is aware of any migration and thus, it can not match the two chats, resulting in the aforementioned problems.
 
-* Another workaround would be to limit the bot only for supergroups with filtering (or limit only session related features to supergroups).
-However, this shifts the problematic / inconvenience to the users.
+- Another workaround would be to limit the bot only for supergroups with filtering (or limit only session related features to supergroups).
+  However, this shifts the problematic / inconvenience to the users.
 
-* Letting the users decide explicitly.
-("This chat was migrated, do you want to transfer the bot data?")
-Much more reliable and transparent than automatic migrations due to the artificially added delay, but worse UX.
+- Letting the users decide explicitly.
+  ("This chat was migrated, do you want to transfer the bot data?")
+  Much more reliable and transparent than automatic migrations due to the artificially added delay, but worse UX.
 
 Finally, it is up to the developer to decide how to deal with this edge case.
 Depending on the bot functionalities one might choose one way or another.
@@ -364,7 +364,7 @@ If the data in question is short-lived (e.g. temporary, timeouts involved) the m
 A user would experience the migration as a hiccup (if the timing is bad) and would simply have to rerun the feature.
 
 Ignoring the problem is surely the easiest way, nevertheless it is important to know about this behavior.
-Otherwise it can cause confusion and might cost hours of debugging time.  
+Otherwise it can cause confusion and might cost hours of debugging time.
 
 ### Storing Your Data
 
