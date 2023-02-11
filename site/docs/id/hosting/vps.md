@@ -12,7 +12,7 @@ systemd adalah sebuah service manager yang sudah terinstal secara bawaan di berb
 
 1. Memperoleh path lengkap runtime:
 
-```bash
+```sh
 # Jika menggunakan Deno
 which deno
 
@@ -24,7 +24,7 @@ which node
 
 3. Command start kamu kurang lebih terlihat seperti ini:
 
-```bash
+```sh
 <path_lengkap_runtime> <opsi> <path_lengkap_file_entry>
 
 # Contoh untuk Deno:
@@ -38,13 +38,13 @@ which node
 
 1. Arahkan pointer ke direktori service-nya:
 
-```bash
+```sh
 cd /etc/systemd/system
 ```
 
 2. Buka file service baru kamu di sebuah text editor:
 
-```bash
+```sh
 nano bot1.service
 ```
 
@@ -66,7 +66,7 @@ WantedBy=multi-user.target
 
 3. Mulai ulang systemd setiap kali service mengalami perubahan:
 
-```bash
+```sh
 systemctl daemon-reload
 ```
 
@@ -74,7 +74,7 @@ systemctl daemon-reload
 
 #### Start
 
-```bash
+```sh
 systemctl start <service_name>
 ```
 
@@ -83,31 +83,31 @@ systemctl start <service_name>
 
 #### Jalankan Setiap Kali Melakukan Boot
 
-```bash
+```sh
 systemctl enable <service_name>
 ```
 
 #### Cek Log
 
-```bash
+```sh
 systemctl status <service_name>
 ```
 
 #### Restart
 
-```bash
+```sh
 systemctl restart <service_name>
 ```
 
 #### Stop
 
-```bash
+```sh
 systemctl stop <service_name>
 ```
 
 #### Jangan Dijalankan ketika Boot Dilakukan
 
-```bash
+```sh
 systemctl disable <service_name>
 ```
 
@@ -117,7 +117,7 @@ PM2 adalah sebuah daemon process manager untuk Node.js yang berfungsi untuk menj
 
 ### Pemasangan
 
-```bash
+```sh
 npm install pm2@latest -g
 
 # Jika menggunakan Yarn
@@ -128,7 +128,7 @@ yarn global add pm2
 
 #### Start
 
-```bash
+```sh
 pm2 start --name <app_name> <entry_point>
 ```
 
@@ -139,7 +139,7 @@ pm2 start --name <app_name> <entry_point>
 
 Dengan melakukan restart, aplikasimu akan dihentikan, lalu dimulai ulang kembali.
 
-```bash
+```sh
 pm2 restart <app_name>
 ```
 
@@ -149,13 +149,13 @@ Dengan melakukan reload, kamu akan mengganti proses aplikasi yang sedang berjala
 Aksi ini tidak menghasilkan waktu downtime sedikitpun (0 detik waktu downtime).
 Langkah ini direkomendasikan untuk aplikasi stateless.
 
-```bash
+```sh
 pm2 reload <app_name>
 ```
 
 #### Stop
 
-```bash
+```sh
 # Satu aplikasi
 pm2 stop <app_name>
 
@@ -167,7 +167,7 @@ pm2 stop all
 
 Dengan melakukan delete, kamu akan menghentikan aplikasi lalu menghapus semua log beserta metric-nya.
 
-```bash
+```sh
 pm2 del <app_name>
 ```
 

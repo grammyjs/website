@@ -13,7 +13,7 @@ Setup (once): `cd` into `site/` and run `npm install`.
 
 You can now run
 
-```bash
+```sh
 npm run docs:dev
 ```
 
@@ -24,7 +24,7 @@ to view the documentation in your browser.
 In addition to the VSCode extension that lints the Markdown, [Deno](https://deno.land/) formatting is used to check the formatting of markdown files and the TypeScript and JavaScript code contained in them.
 You can use the following two commands in the `site/` directory.
 
-```bash
+```sh
 cd site/
 
 # Checks if all files are formatted correctly
@@ -36,7 +36,7 @@ deno fmt
 
 You can also run
 
-```bash
+```sh
 npm run docs:fmt
 ```
 

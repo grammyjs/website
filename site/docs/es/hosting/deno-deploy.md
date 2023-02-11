@@ -70,7 +70,7 @@ Aquí, estamos usando el token del bot (`/<bot token>`).
 4. [Crear un token de acceso](https://dash.deno.com/user/access-tokens).
 5. Ejecuta el siguiente comando:
 
-```bash
+```sh
 deployctl deploy --project <project> ./mod.ts --prod --token <token>
 ```
 

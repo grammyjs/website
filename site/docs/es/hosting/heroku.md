@@ -10,7 +10,7 @@ También asumimos que ya tienes una cuenta en Heroku.
 
 Primero, instala algunas dependencias:
 
-```bash
+```sh
 # Crear un directorio de proyecto.
 mkdir grammy-bot
 cd grammy-bot
@@ -253,7 +253,7 @@ No... nuestro _Rocket Bot_ no está listo para ser lanzado todavía.
 
 Ejecute este código en su terminal para compilar los archivos TypeScript a JavaScript:
 
-```bash
+```sh
 npx tsc
 ```
 
@@ -313,7 +313,7 @@ Aquí está el enlace para la instalación:
 Suponiendo que ya los tienes en tu máquina, y tienes una terminal abierta en la raíz del directorio de nuestro proyecto.
 Ahora inicializa un repositorio git local ejecutando este código en tu terminal:
 
-```bash
+```sh
 git init
 ```
 
@@ -372,7 +372,7 @@ Nuestra estructura final de carpetas debería tener este aspecto:
 
 Confirmar los archivos a nuestro repositorio git:
 
-```bash
+```sh
 git add .
 git commit -m "My first commit"
 ```
@@ -385,7 +385,7 @@ De lo contrario, ejecute `Nueva aplicación`.
 <CodeGroup>
   <CodeGroupItem title="New app" active>
 
-```bash
+```sh
 heroku create
 git remote -v
 ```
@@ -393,7 +393,7 @@ git remote -v
 </CodeGroupItem>
   <CodeGroupItem title="Existing app" active>
 
-```bash
+```sh
 heroku git:remote -a <myApp>
 ```
 
@@ -404,13 +404,13 @@ heroku git:remote -a <myApp>
 
 Finalmente, pulsa el _botón rojo_ y ¡despega! :rocket:
 
-```bash
+```sh
 git push heroku main
 ```
 
 Si no funciona, es probable que nuestra rama git no sea `main` sino `master`.
 Pulsa este _botón azul_ en su lugar:
 
-```bash
+```sh
 git push heroku master
 ```

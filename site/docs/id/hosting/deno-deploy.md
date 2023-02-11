@@ -73,7 +73,7 @@ Di contoh kali ini, kita menggunakan token bot (`/<token bot>`) sebagai direktor
 4. Buat [token akses](https://dash.deno.com/user/access-tokens) baru.
 5. Jalankan dengan perintah:
 
-```bash
+```sh
 deployctl deploy --project <project> ./mod.ts --prod --token <token>
 ```
 
