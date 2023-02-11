@@ -147,7 +147,7 @@ In order to run the `bot.js` file, you have to have [Node.js](https://nodejs.org
 
 In summary, this is what you have to do for Node.js:
 
-1. Create a source file `bot.ts` with TypeScript code, e.g. using [VS Code](https://code.visualstudio.com/) (or any other code editor).
+1. Create a source file `bot.ts` with TypeScript code, e.g. using [VSCode](https://code.visualstudio.com/) (or any other code editor).
 2. Compile the code by running a command in your terminal. This generates a file called `bot.js`.
 3. Run `bot.js` using Node.js, again from your terminal.
 

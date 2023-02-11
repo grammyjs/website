@@ -149,7 +149,7 @@ Untuk menjalankan file `bot.js`, kamu harus meng-install [Node.js](https://nodej
 
 Berikut tahap-tahap yang perlu dilakukan di Node.js:
 
-1. Buat source file `bot.ts` menggunakan TypeScript, misalnya dengan menggunakan [VS Code](https://code.visualstudio.com/) (atau kode editor lainnya).
+1. Buat source file `bot.ts` menggunakan TypeScript, misalnya dengan menggunakan [VSCode](https://code.visualstudio.com/) (atau kode editor lainnya).
 2. Compile kode dengan menjalankan perintah di terminal. Langkah ini akan menghasilkan file bernama `bot.js`.
 3. Jalankan `bot.js` menggunakan Node.js, sekali lagi dari terminal.
 
