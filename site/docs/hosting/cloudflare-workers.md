@@ -1,20 +1,10 @@
 # Hosting: Cloudflare Workers
 
-[Cloudflare Workers](https://workers.cloudflare.com/) is a public serverless computing service developed by Cloudflare, which allows you to run JavaScript at the edge.
-Specifically, it is a worker which handles HTTP traffic and is written against the [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API).
-In combination with other services provided by Cloudflare, we can create powerful Telegram bots with ease.
-Here are some of the awesome services that Cloudflare Workers offer us:
+[Cloudflare Workers](https://workers.cloudflare.com/) is a public serverless computing platform that offers a convenient and simple solution for running JavaScript at the edge.
+With the ability to handle HTTP traffic and work with [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API), building Telegram bots becomes a breeze.
+In addition, you can even develop [Web Apps](https://core.telegram.org/bots/webapps) at the edge, all for free within certain quotas.
 
-1. [Workers KV](https://developers.cloudflare.com/workers/runtime-apis/kv/), a global, low-latency, key-value data store,
-2. [Durable Objects](https://developers.cloudflare.com/workers/runtime-apis/durable-objects/), a low-latency coordination and consistent storage for the Workers,
-3. [R2](https://developers.cloudflare.com/r2/), an S3-compatible, zero egress-fee, globally distributed object storage,
-4. [D1](https://developers.cloudflare.com/d1/), a queryable relational database at the edge,
-5. [Queues](https://developers.cloudflare.com/queues/), a message queuing service that allows applications to reliably send and receive messages using Cloudflare Workers.
-
-In addition, we can develop [Web Apps](https://core.telegram.org/bots/webapps) at the edge.
-The best part of it is that all of this is free within some quotas.
-
-This guide shows you how you can host your grammY bots on Cloudflare Workers.
+This guide will take you through the process of hosting your Telegram bots on Cloudflare Workers.
 
 ## Prerequisites
 
