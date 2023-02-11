@@ -15,23 +15,15 @@ It then allows you to use `ctx.chatMembers.getChatMember()` to obtain informatio
 ### Storing chat members
 
 You can use a valid grammY [storage adapter](https://grammy.dev/plugins/session.html#known-storage-adapters) or an
-instance of any class that implements the [`StorageAdapter`](https://deno.land/x/grammy/mod.ts?s=StorageAdapter)
-interface.
+instance of any class that implements the [`StorageAdapter`](https://deno.land/x/grammy/mod.ts?s=StorageAdapter) interface.
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
 
 ```ts
-import {
-  Bot,
-  Context,
-  MemorySessionStorage,
-} from "grammy";
+import { Bot, Context, MemorySessionStorage } from "grammy";
 import type { ChatMember } from "grammy/types";
-import {
-  chatMembers,
-  ChatMembersFlavor,
-} from "@grammyjs/chat-members";
+import { chatMembers, ChatMembersFlavor } from "@grammyjs/chat-members";
 
 type MyContext = Context & ChatMembersFlavor;
 
@@ -47,20 +39,13 @@ bot.start({
 });
 ```
 
-  </CodeGroupItem>
+</CodeGroupItem>
 
-  <CodeGroupItem title="JavaScript" active>
+<CodeGroupItem title="JavaScript" active>
 
 ```js
-import {
-  Bot,
-  Context,
-  MemorySessionStorage,
-} from "grammy";
-import {
-  chatMembers,
-  ChatMembersFlavor,
-} from "@grammyjs/chat-members";
+import { Bot, Context, MemorySessionStorage } from "grammy";
+import { chatMembers, ChatMembersFlavor } from "@grammyjs/chat-members";
 
 const adapter = new MemorySessionStorage();
 
@@ -74,10 +59,9 @@ bot.start({
 });
 ```
 
-  </CodeGroupItem>
+</CodeGroupItem>
 
-
-  <CodeGroupItem title="Deno" active>
+<CodeGroupItem title="Deno" active>
 
 ```ts
 import {
@@ -105,18 +89,15 @@ bot.start({
 });
 ```
 
-  </CodeGroupItem>
-
+</CodeGroupItem>
 
 </CodeGroup>
 
 ### Reading chat member info
 
-This plugin also adds a new `ctx.chatMembers.getChatMember` function that will check the storage for information about a
-chat member before querying telegram for it.
+This plugin also adds a new `ctx.chatMembers.getChatMember` function that will check the storage for information about a chat member before querying telegram for it.
 If the chat member exists in the storage, it will be returned.
-Otherwise, `ctx.api.getChatMember` will be called and the result will be saved to the storage, making subsequent calls faster and
-removing the need to call telegram again for that user and chat in the future.
+Otherwise, `ctx.api.getChatMember` will be called and the result will be saved to the storage, making subsequent calls faster and removing the need to call telegram again for that user and chat in the future.
 
 Here's an example:
 
@@ -131,20 +112,16 @@ bot.on("message", async (ctx) => {
 ```
 
 All parameters are optional; if you don't provide them, `ctx.chat.id` and `ctx.from.id` will be used instead.
-Please notice that, if you don't provide a chat id and there's no `chat` property inside the context (for example: on
-inline query updates), this will throw an error.
+Please notice that, if you don't provide a chat id and there's no `chat` property inside the context (for example, on inline query updates), this will throw an error.
 The same will happen if there's no `ctx.from` in the context.
 
 ## Aggressive storage
 
-The `enableAggressiveStorage` config option will install middleware to cache chat members without depending on the
-`chat_member` event.
+The `enableAggressiveStorage` config option will install middleware to cache chat members without depending on the `chat_member` event.
 For every update, the middleware checks if `ctx.chat` and `ctx.from` exist.
-If they both do, it then proceeds to call `ctx.chatMembers.getChatMember` to add the chat member information to the storage in case it
-doesn't exist.
+If they both do, it then proceeds to call `ctx.chatMembers.getChatMember` to add the chat member information to the storage in case it doesn't exist.
 
-Please note that this means the storage will be called for **every update**, which may be a lot, depending on how many
-updates your bot receives
+Please note that this means the storage will be called for **every update**, which may be a lot, depending on how many updates your bot receives.
 This also has the potential to impact the performance of your bot drastically.
 Only use this if you _really_ know what you're doing and are ok with the risks and consequences.
 
