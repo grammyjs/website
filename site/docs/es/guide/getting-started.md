@@ -18,7 +18,7 @@ Hazlo abriendo un terminal y escribiendo:
 <CodeGroup>
  <CodeGroupItem title="NPM" active>
 
-```bash
+```sh
 # Crea un nuevo directorio y entra en él.
 mkdir my-bot
 cd my-bot
@@ -34,7 +34,7 @@ npm install grammy
 </CodeGroupItem>
  <CodeGroupItem title="Yarn">
 
-```bash
+```sh
 # Crea un nuevo directorio y entra en él.
 mkdir my-bot
 cd my-bot
@@ -48,7 +48,7 @@ yarn add grammy
 </CodeGroupItem>
   <CodeGroupItem title="pnpm">
 
-```bash
+```sh
 # Crea un nuevo directorio y entra en él.
 mkdir my-bot
 cd my-bot
@@ -134,7 +134,7 @@ bot.start();
 
 Compila el código ejecutando
 
-```bash
+```sh
 npx tsc
 ```
 
@@ -143,7 +143,7 @@ Esto genera el archivo JavaScript `bot.js`.
 
 Ahora puedes ejecutar el bot ejecutando
 
-```bash
+```sh
 node bot.js
 ```
 
@@ -155,7 +155,7 @@ en tu terminal.
 ::: tip Activar el registro
 Puedes habilitar el registro básico ejecutando
 
-```bash
+```sh
 export DEBUG="grammy*"
 ```
 
@@ -199,7 +199,7 @@ bot.start();
 
 Ahora puedes ejecutar el bot ejecutando
 
-```bash
+```sh
 deno run --allow-net bot.ts
 ```
 
@@ -211,7 +211,7 @@ en tu terminal.
 ::: tip Activar el registro
 Puedes activar el registro básico ejecutando
 
-```bash
+```sh
 export DEBUG="grammy*"
 ```
 
@@ -220,7 +220,7 @@ Esto facilita la depuración de tu bot.
 
 Ahora necesitas ejecutar el bot usando
 
-```bash
+```sh
 deno run --allow-net --allow-env bot.ts
 ```
 
