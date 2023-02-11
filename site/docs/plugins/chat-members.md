@@ -101,7 +101,7 @@ Otherwise, `ctx.api.getChatMember` will be called and the result will be saved t
 
 Here's an example:
 
-```typescript
+```ts
 bot.on("message", async (ctx) => {
   const chatMember = await ctx.chatMembers.getChatMember();
 
