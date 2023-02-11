@@ -331,7 +331,7 @@ Make sure you understand the consequences of this configuration by reading [this
 If you are using sessions for groups, you should be aware that Telegram migrates regular groups to supergroups under certain circumstances (e.g. [here](https://github.com/telegramdesktop/tdesktop/issues/5593)).
 
 This migration only occurs once for each group, but it can cause inconsistencies.
-This is because the migrated chat is technically a completely different chat with a different chat identifier and hence a different session identifier.
+This is because the migrated chat is technically a completely different chat that has a different identifier, and hence its session will be identified differently.
 
 Currently, there is no safe solution to this problem because the two chats can send messages simultaneously.
 This can lead to data races.
