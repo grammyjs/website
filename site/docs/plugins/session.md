@@ -340,7 +340,7 @@ However, there are several ways of dealing with this issue:
 - Ignoring the problem.
   The bot's session data will effectively reset when a group is migrated.
   Simple, reliable, default behavior, but potentially unexpected once per chat.
-  For example if a migration happens while a user is in a conversation (the conversation plugin uses sessions) the conversation will be reset.
+  For example, if a migration happens while a user is in a conversation powered by the [conversations plugin](./conversations.md), the conversation will be reset.
 
 - Only storing temporary data (or data with timeouts) in the session, and using a database for the important things that need to be migrated when a chat migrates.
   This can then use transactions and custom logic to handle concurrent data access from the old and the new chat.
