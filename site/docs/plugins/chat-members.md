@@ -45,8 +45,9 @@ bot.start({
 ### Reading chat member info
 
 This plugin also adds a new `ctx.chatMembers.getChatMember` function that will check the storage for information about a
-chat member before querying telegram for it. If the chat member exists in the storage, it will be returned. Otherwise,
-`ctx.api.getChatMember` will be called and the result will be saved to the storage, making subsequent calls faster and
+chat member before querying telegram for it.
+If the chat member exists in the storage, it will be returned.
+Otherwise, `ctx.api.getChatMember` will be called and the result will be saved to the storage, making subsequent calls faster and
 removing the need to call telegram again for that user and chat in the future.
 
 Here's an example:
@@ -63,18 +64,21 @@ bot.on("message", async (ctx) => {
 
 All parameters are optional; if you don't provide them, `ctx.chat.id` and `ctx.from.id` will be used instead.
 Please notice that, if you don't provide a chat id and there's no `chat` property inside the context (for example: on
-inline query updates), this will throw an error. The same will happen if there's no `ctx.from` in the context.
+inline query updates), this will throw an error.
+The same will happen if there's no `ctx.from` in the context.
 
 ## Aggressive storage
 
 The `enableAggressiveStorage` config option will install middleware to cache chat members without depending on the
-`chat_member` event. For every update, the middleware checks if `ctx.chat` and `ctx.from` exist. If they both do, it
-then proceeds to call `ctx.chatMembers.getChatMember` to add the chat member information to the storage in case it
+`chat_member` event.
+For every update, the middleware checks if `ctx.chat` and `ctx.from` exist.
+If they both do, it then proceeds to call `ctx.chatMembers.getChatMember` to add the chat member information to the storage in case it
 doesn't exist.
 
 Please note that this means the storage will be called for **every update**, which may be a lot, depending on how many
-updates your bot receives. This also has the potential to impact the performance of your bot drastically. Only use this
-if you _really_ know what you're doing and are ok with the risks and consequences.
+updates your bot receives
+This also has the potential to impact the performance of your bot drastically.
+Only use this if you _really_ know what you're doing and are ok with the risks and consequences.
 
 ## Plugin Summary
 
