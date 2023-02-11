@@ -1,13 +1,64 @@
-@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@700&family=Red+Hat+Text:ital,wght@0,400;0,600;1,400&family=Source+Code+Pro&display=optional');
+/* red-hat-display-700 - latin-ext_latin */
+@font-face {
+  font-display: optional;
+  font-family: "Red Hat Display";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/fonts/red-hat-display-v14-latin-ext_latin-700.woff2")
+    format("woff2");
+}
+/* red-hat-text-regular - latin-ext_latin */
+@font-face {
+  font-display: optional;
+  font-family: "Red Hat Text";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/red-hat-text-v13-latin-ext_latin-regular.woff2")
+    format("woff2");
+}
+/* red-hat-text-italic - latin-ext_latin */
+@font-face {
+  font-display: optional;
+  font-family: "Red Hat Text";
+  font-style: italic;
+  font-weight: 400;
+  src: url("/fonts/red-hat-text-v13-latin-ext_latin-italic.woff2")
+    format("woff2");
+}
+/* red-hat-text-600 - latin-ext_latin */
+@font-face {
+  font-display: optional;
+  font-family: "Red Hat Text";
+  font-style: normal;
+  font-weight: 600;
+  src: url("/fonts/red-hat-text-v13-latin-ext_latin-600.woff2") format("woff2");
+}
+/* source-code-pro-regular - latin */
+@font-face {
+  font-display: optional;
+  font-family: "Source Code Pro";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/source-code-pro-v22-latin-regular.woff2") format("woff2");
+}
 
 body {
-    font-family: "Red Hat Text", sans-serif;
+  font-family: "Red Hat Text", sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6, .site-name, .sidebar-heading, th {
-    font-family: "Red Hat Display", sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.site-name,
+.sidebar-heading,
+th {
+  font-family: "Red Hat Display", sans-serif;
 }
 
-pre, code {
-    font-family: "Source Code Pro", monospace;
+pre,
+code {
+  font-family: "Source Code Pro", monospace;
 }
