@@ -159,7 +159,7 @@ cd ./my-bot
 code .
 ```
 
-> If you’re on macOS and the `code` command is not available, just open VS Code, hit `Ctrl+Shift+P`, type "shell command", and hit Enter.
+> If you’re on macOS and the `code` command is not available, just open VS Code, hit `Cmd+Shift+P`, type "shell command", and hit Enter.
 
 In VS Code, turn this empty directory into a Deno project.
 Hit `Ctrl+Shift+P`, type "deno init", and hit Enter.
