@@ -1,14 +1,14 @@
 # Hosting: Deno Deploy
 
-Halaman ini berisi panduan mengenai cara-cara meng-hosting bot di [Deno Deploy](https://deno.com/deploy).
+Halaman ini berisi panduan mengenai langkah-langkah meng-hosting bot di [Deno Deploy](https://deno.com/deploy).
 
 Perlu diperhatikan bahwa panduan ini hanya berlaku untuk pengguna Deno.
 Kamu diharuskan memiliki akun [GitHub](https://github.com) untuk membuat akun [Deno Deploy](https://deno.com/deploy).
 
 Deno Deploy cocok dipakai untuk bot yang sederhana.
-Selain itu, kamu harus tahu bahwa tidak semua fitur Deno tersedia untuk beberapa aplikasi—termasuk bot kamu—yang berjalan di Deno Deploy.
-Contohnya, file system di Deno Deploy tidak tersedia.
-Deno Deploy mirip seperti platform serverless lainnya, tetapi hanya didedikasikan untuk aplikasi Deno saja.
+Selain itu, yang perlu diperhatikan adalah tidak semua fitur Deno tersedia di Deno Deploy.
+Diantaranya adalah [terbatasnya](https://deno.com/deploy/docs/runtime-fs) API file system Deno yang didukung.
+Deno Deploy serupa dengan platform serverless lainnya, bedanya ia diperuntukkan untuk aplikasi Deno saja.
 
 Hasil dari tutorial disini dapat dilihat di [repositori bot kami](https://github.com/grammyjs/examples/tree/main/deno-deploy).
 
