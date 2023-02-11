@@ -105,7 +105,7 @@ If the setup is successful, you'll see a JSON response like this:
 ## Testing Your Bot
 
 Open your Telegram app, and start your bot.
-If it responded, it means you're good to go!
+If it responds, it means you're good to go!
 
 ## Debugging Your Bot
 
