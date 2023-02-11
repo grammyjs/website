@@ -1,6 +1,6 @@
 # Chat Members Plugin (`chat-members`)
 
-Automatically store information about users on a chat and retrieve it easilly
+Automatically store information about users on a chat and retrieve it easily.
 
 ## Introduction
 
