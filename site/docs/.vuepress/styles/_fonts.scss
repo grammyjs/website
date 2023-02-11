@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@700&family=Red+Hat+Text:ital,wght@0,400;0,600;1,400&family=Source+Code+Pro&display=swap');
+
+body {
+    font-family: "Red Hat Text", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, .site-name, .sidebar-heading, th {
+    font-family: "Red Hat Display", sans-serif;
+}
+
+pre, code {
+    font-family: "Source Code Pro", monospace;
+}
