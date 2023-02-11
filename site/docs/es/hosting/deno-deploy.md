@@ -5,9 +5,7 @@ Esta guía te explica cómo puedes alojar tus bots de grammy en [Deno Deploy](ht
 Ten en cuenta que esta guía es solo para usuarios de Deno, y que necesitas tener una cuenta [GitHub](https://github.com) para crear una cuenta [Deno Deploy](https://deno.com/deploy).
 
 Deno Deploy es ideal para la mayoría de los bots sencillos, y debe tener en cuenta que no todas las funciones de Deno están disponibles para las aplicaciones que se ejecutan en Deno Deploy.
-
 Por ejemplo, la plataforma solo admite un [conjunto limitado](https://deno.com/deploy/docs/runtime-fs) de las API del sistema de archivos disponibles en Deno.
-
 Es como las otras muchas plataformas serverless, pero dedicadas a las aplicaciones Deno.
 
 El resultado de este tutorial [puede verse en nuestro repositorio de bots de ejemplo](https://github.com/grammyjs/examples/tree/main/deno-deploy).
