@@ -101,7 +101,7 @@ Terdapat dua runtime environment yang bisa kita pilih: [Deno](https://deno.land)
 Jika kamu menjumpai orang-orang menyebut Node.js dengan sebutan _Node_ saja, mereka terlalu malas untuk menambahkan imbuhan ".js", meskipun maksudnya sama saja.
 
 > Mulai dari sini, kami akan membantu kamu memilih diantara kedua platform tersebut.
-> Kalau sudah tahu mana yang ingin digunakan, silahkan lompat ke [persiapan untuk Node.js](#persiapan-untuk-node-js) atau [persiapan untuk Deno](#persiapan-untuk-deno).
+> Kalau sudah tahu mana yang ingin digunakan, silahkan lompat ke [persiapan untuk Node.js](#persiapan-untuk-nodejs) atau [persiapan untuk Deno](#persiapan-untuk-deno).
 
 Node.js adalah teknologi yang lebih stabil dan sudah lama dikembangkan.
 Oleh karena itu, tidak heran jika Node.js mampu mengerjakan hal-hal yang rumit, misalnya menghubungkan database yang tidak umum digunakan ataupun melakukan sesuatu yang berkaitan dengan _low-level system_.
@@ -197,5 +197,17 @@ Setiap kali melakukan perubahan kode di `bot.ts`, kamu perlu memulai ulang prose
 Tekan `Ctrl+C` di terminal untuk menghentikan proses tersebut, yang nantinya juga akan menghentikan bot kamu.
 Kemudian, ulangi langkah 2 dan 3.
 
-Sudah siap?
-[Mari kita mulai!](./getting-started.md#memulai-dengan-node-js) :robot:
+::: tip Hah, maksudnya?
+
+Proses instalasi Node.js beserta pengaturan konfigurasinya memerlukan waktu yang tidak sedikit.
+Jika kamu belum pernah melakukannya, kemungkinan besar kamu akan mengalami berbagai masalah yang cukup rumit untuk diatasi.
+
+Itulah kenapa kami sedikit berharap kamu mengerti bagaimana mengatur sistem kamu, atau bahkan mempelajarinya secara mandiri---Proses penginstalan Node.js _dengan cara yang benar_ sangatlah rumit sehingga tidak cukup untuk kami menjelaskannya di halaman ini.
+
+Jika kamu merasa kebingungan di titik ini, sebaiknya tinggalkan Node.js dan beralih menggunakan [Deno](#persiapan-untuk-deno).
+
+:::
+
+Masih percaya diri?
+Keren!
+[Mari kita mulai](./getting-started.md#memulai-dengan-nodejs! :robot:
