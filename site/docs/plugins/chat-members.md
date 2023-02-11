@@ -95,9 +95,9 @@ bot.start({
 
 ### Reading chat member info
 
-This plugin also adds a new `ctx.chatMembers.getChatMember` function that will check the storage for information about a chat member before querying telegram for it.
+This plugin also adds a new `ctx.chatMembers.getChatMember` function that will check the storage for information about a chat member before querying Telegram for it.
 If the chat member exists in the storage, it will be returned.
-Otherwise, `ctx.api.getChatMember` will be called and the result will be saved to the storage, making subsequent calls faster and removing the need to call telegram again for that user and chat in the future.
+Otherwise, `ctx.api.getChatMember` will be called and the result will be saved to the storage, making subsequent calls faster and removing the need to call Telegram again for that user and chat in the future.
 
 Here's an example:
 
