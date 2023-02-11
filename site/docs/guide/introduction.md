@@ -138,7 +138,7 @@ This means installing a few tools.
 [Install Deno](https://deno.land/manual/getting_started/installation#download-and-install) if you have not done it already.
 
 You also need a text editor that fits well with coding.
-The best one for Deno is Visual Studio Code.
+The best one for Deno is Visual Studio Code, often just called VS Code.
 [Install it.](https://code.visualstudio.com/)
 
 Next, you need to connect VS Code and Deno.
