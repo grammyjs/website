@@ -121,5 +121,6 @@ You can also run a local or remote development server for testing and debugging 
 npm run start
 ```
 
-After the development server has started, you can test your bot by sending sample updates to it via softwares like `curl` or [Postman](https://postman.com).
-Refer to [here](https://core.telegram.org/bots/api#update) for details on update structure.
+Once the development server has started, you can test your bot by sending sample updates to it using tools like `curl`, [Insomnia](https://insomnia.rest), or [Postman](https://postman.com).
+For more information on the update structure, refer to the [Telegram API documentation](https://core.telegram.org/bots/api#update).
+
