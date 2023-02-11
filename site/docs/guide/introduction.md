@@ -141,8 +141,8 @@ You also need a text editor that fits well with coding.
 The best one for Deno is Visual Studio Code.
 [Install it.](https://code.visualstudio.com/)
 
-Next, you need to connect VSCode and Deno.
-That's very simple: There is an extension for VSCode that does everything automatically.
+Next, you need to connect VS Code and Deno.
+That's very simple: There is an extension for VS Code that does everything automatically.
 You can install it [as described here](https://marketplace.visualstudio.com/items?itemName=denoland.vscode-deno).
 
 Your system is now ready for bot development! :tada:
@@ -151,7 +151,7 @@ Your system is now ready for bot development! :tada:
 
 Create a new directory somewhere.
 It will contain your bot project.
-Open this new directory in VSCode.
+Open this new directory in VS Code.
 
 ```sh
 mkdir ./my-bot
@@ -159,9 +159,9 @@ cd ./my-bot
 code .
 ```
 
-> If you’re on macOS and the `code` command is not available, just open VSCode, hit `Ctrl+Shift+P`, type "shell command", and hit Enter.
+> If you’re on macOS and the `code` command is not available, just open VS Code, hit `Ctrl+Shift+P`, type "shell command", and hit Enter.
 
-In VSCode, turn this empty directory into a Deno project.
+In VS Code, turn this empty directory into a Deno project.
 Hit `Ctrl+Shift+P`, type "deno init", and hit Enter.
 The bottom right of your editor should then display the version of Deno installed on your system.
 
@@ -188,7 +188,7 @@ In order to run the `bot.js` file, you have to have [Node.js](https://nodejs.org
 
 In summary, this is what you have to do for Node.js:
 
-1. Create a source file `bot.ts` with TypeScript code, e.g. using [VSCode](https://code.visualstudio.com/) (or any other code editor).
+1. Create a source file `bot.ts` with TypeScript code, e.g. using [VS Code](https://code.visualstudio.com/) (or any other code editor).
 2. Compile the code by running a command in your terminal. This generates a file called `bot.js`.
 3. Run `bot.js` using Node.js, again from your terminal.
 
