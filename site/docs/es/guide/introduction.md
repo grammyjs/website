@@ -83,7 +83,7 @@ Sin embargo, recuerda: ¡crear un bot de Telegram con grammY es una buena manera
 Puedes empezar a aprender TypeScript con el [tutorial oficial](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html) escrito por el equipo de TypeScript, y luego avanzar desde ahí.
 No pases más de 30 minutos leyendo cosas en internet, luego vuelve aquí, (lee el resto de la sección) y [empieza](./getting-started.md).
 
-Si ves una sintaxis desconocida en los documentos, o si recibes un mensaje de error que no entiendes, búscalo en Google; la explicación ya está en Internet (por ejemplo, en StackOverflow).
+Si ves una sintaxis desconocida en los documentos, o si recibes un mensaje de error que no entiendes, búscalo en Google; la explicación ya está en Internet (por ejemplo, en Stack Overflow).
 :::
 
 ::: danger No aprender a codificar
