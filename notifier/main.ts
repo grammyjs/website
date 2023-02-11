@@ -42,6 +42,7 @@ bot.chatType(["group", "supergroup"]).filter((ctx) =>
     return;
   }
   branch = (await res.json())?.head?.ref;
+  ctx.hasChatType([''])
   if (!branch) {
     await ctx.reply("Could not resolve PR branch.");
     return;

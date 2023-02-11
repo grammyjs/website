@@ -195,7 +195,7 @@ import { limit } from "@grammyjs/ratelimiter";
 bot.use(
   limit({
     keyGenerator: (ctx) => {
-      if (ctx.chat?.type === "group" || ctx.chat?.type === "supergroup") {
+      if (ctx.hasChatType(["group", "supergroup"])) {
         // Tenga en cuenta que la clave debe ser un número en formato de cadena como "123456789".
         return ctx.chat.id.toString();
       }
@@ -213,7 +213,7 @@ const { limit } = require("@grammyjs/ratelimiter");
 bot.use(
   limit({
     keyGenerator: (ctx) => {
-      if (ctx.chat?.type === "group" || ctx.chat?.type === "supergroup") {
+      if (ctx.hasChatType(["group", "supergroup"])) {
         // Tenga en cuenta que la clave debe ser un número en formato de cadena como "123456789".
         return ctx.chat.id.toString();
       }
@@ -231,7 +231,7 @@ import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
 bot.use(
   limit({
     keyGenerator: (ctx) => {
-      if (ctx.chat?.type === "group" || ctx.chat?.type === "supergroup") {
+      if (ctx.hasChatType(["group", "supergroup"])) {
         // Tenga en cuenta que la clave debe ser un número en formato de cadena como "123456789".
         return ctx.chat.id.toString();
       }
