@@ -333,7 +333,7 @@ If you are using sessions for groups, you should be aware that Telegram migrates
 This migration only occurs once for each group, but it can cause inconsistencies.
 This is because the migrated chat is technically a completely different chat that has a different identifier, and hence its session will be identified differently.
 
-Currently, there is no safe solution to this problem because the two chats can send messages simultaneously.
+Currently, there is no safe solution for this problem because messages from the two chats are also differently identified.
 This can lead to data races.
 However, there are several ways of dealing with this issue:
 
