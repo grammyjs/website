@@ -109,7 +109,8 @@ If it responds, it means you're good to go!
 
 ## Debugging Your Bot
 
-You can also run a local or remote development server for testing and debugging before deploying your bot to production:
+For testing and debugging purposes, you can run a local or remote development server before deploying your bot to production.
+Simply run the following command:
 
 ```sh
 npm run start
