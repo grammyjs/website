@@ -96,8 +96,11 @@ Replace `<BOT_TOKEN>`, `<MY_BOT>`, and `<MY_SUBDOMAIN>` with your values.
 If the setup is successful, you'll see a JSON response like this:
 
 ```json
-{ "ok": true, "result": true, "description": "Webhook was set" }
-```
+{
+  "ok": true,
+  "result": true,
+  "description": "Webhook was set"
+}
 
 ## Testing Your Bot
 
