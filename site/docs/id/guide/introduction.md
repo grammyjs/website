@@ -115,11 +115,12 @@ Malahan, jika sebelumnya pernah menulis kode menggunakan Node.js, kamu patut mem
 Banyak hal rumit yang ada di Node.js sudah tidak perlu dipikirkan lagi di Deno.
 Berikut kelebihan Deno dibandingkan dengan Node.js:
 
-- Tidak ada file `package.json` untuk dikonfigurasi.
-- Tidak ada `node_modules` untuk diurusi.
-- Unggul, memiliki _development tool_ bawaan.
-- Sistem keamanan yang jauh lebih baik.
-- Dan banyak lagi keuntungan yang tidak bisa diuraikan di sini.
+- Proses penginstalan sangat mudah.
+- Tidak perlu mengatur konfigurasi apapun.
+- Menggunakan kapasitas penyimpanan yang jauh lebih sedikit.
+- Memiliki _development tool_ bawaan yang lebih unggul serta integrasi code editor yang lebih baik.
+- Sistem keamanan yang jauh lebih aman.
+- Dan kelebihan-kelebihan lain yang tidak bisa diuraikan di sini.
 
 Menulis kode dengan Deno juga jauh lebih menyenangkan.
 Setidaknya, itulah pendapat kami.
@@ -130,8 +131,47 @@ Silakan pilih mana yang menurut kamu paling sesuai.
 
 ### Persiapan untuk Deno
 
-[Install Deno](https://deno.land/#installation) jika belum punya.
-Kalau sudah selesai membuat bot, misal disimpan di file bernama `bot.ts`, kamu dapat menjalankannya melalui `deno run --allow-net bot.ts` dan menghentikannya dengan tombol pintas `Ctrl+C`.
+Sebelum mulai membuat bot, mari terlebih dahulu menyiapkan lingkungan kerja pengembangan software yang sesuai.
+Diantaranya adalah menginstal beberapa tool yang dibutuhkan.
+
+#### Menyiapkan Perangkat untuk Pengembangan
+
+Pertama-tama, [instal Deno](https://deno.land/manual/getting_started/installation#download-and-install) di perangkat kamu.
+
+Siapkan juga text editor yang sesuai untuk coding.
+Salah satu yang sesuai untuk Deno adalah Visual Studio Code, atau biasa disebut dengan VS Code.
+Silahkan [diinstal](https://code.visualstudio.com/) juga.
+
+Selanjutnya, kamu perlu menghubungkan Deno dan VS Code.
+Caranya sangat mudah: VS Code punya extension yang bisa melakukan semua hal tersebut secara otomatis.
+Kamu bisa menginstalnya seperti yang telah [dijelaskan di sini](https://marketplace.visualstudio.com/items?itemName=denoland.vscode-deno).
+
+Perangkat kamu sekarang siap digunakan untuk mengembangkan bot! :tada:
+
+#### Mengembangkan Bot
+
+Buat sebuah direktori baru di suatu tempat.
+Direktori ini nantinya akan berisi proyek bot kamu.
+Setelah itu, buka direktori tersebut di VS Code.
+
+```sh
+mkdir ./my-bot
+cd ./my-bot
+code .
+```
+
+> Jika kamu menggunakan macOS dan command `code` tidak tersedia, cukup buka VS Code, tekan `Ctrl+Shift+P`, ketik "shell command", kemudian tekan Enter.
+
+Di VS Code, ubah direktori kosong tersebut menjadi sebuah proyek Deno.
+Tekan `Ctrl+Shift+P`, ketik "deno init", kemudian tekan Enter.
+Jika berhasil, versi Deno yang terinstal di perangkat kamu akan ditampikan di bagian bawah kanan code editor.
+
+Lingkungan kerja untuk pengembangan Deno kamu sudah siap.
+Sekarang kamu bisa mulai menulis bot kamu.
+Penjelasannya ada di halaman berikutnya.
+
+Terakhir, setelah membuat bot, misalnya ditaruh di sebuah file bernama `bot.ts`, kamu bisa menjalankannya dengan mengetik `deno run --allow-net bot.ts` di terminal kamu---Yup, kamu akan sering berinteraksi dengan terminal ketika menulis sebuah program, jadi mulai sekarang biasakan dirimu.
+Kamu bisa menghentikan bot dengan menekan `Ctrl+C`.
 
 Sudah siap?
 [Mari kita mulai!](./getting-started.md#memulai-dengan-deno) :robot:
