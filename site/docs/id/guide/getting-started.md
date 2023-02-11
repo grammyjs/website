@@ -19,7 +19,7 @@ Lakukan dengan cara mengetikan kode berikut di terminal:
 <CodeGroup>
  <CodeGroupItem title="NPM" active>
 
-```bash
+```sh
 # Buat direktori baru lalu masuk ke dalamnya.
 mkdir my-bot
 cd my-bot
@@ -35,7 +35,7 @@ npm install grammy
 </CodeGroupItem>
  <CodeGroupItem title="Yarn">
 
-```bash
+```sh
 # Buat direktori baru lalu masuk ke dalamnya.
 mkdir my-bot
 cd my-bot
@@ -51,7 +51,7 @@ yarn add grammy
 </CodeGroupItem>
   <CodeGroupItem title="pnpm">
 
-```bash
+```sh
 # Buat direktori baru lalu masuk ke dalamnya.
 mkdir my-bot
 cd my-bot
@@ -139,7 +139,7 @@ bot.start();
 
 Compile kode dengan menjalankan
 
-```bash
+```sh
 npx tsc
 ```
 
@@ -148,7 +148,7 @@ File JavaScript `bot.js` akan dihasilkan dari proses compile tadi.
 
 Sekarang kamu dapat menjalankan bot dengan mengeksekusi
 
-```bash
+```sh
 node bot.js
 ```
 
@@ -160,7 +160,7 @@ Buka Telegram untuk melihat bot kamu merespon pesan!
 ::: tip Mengaktifkan Pencatatan Log (logging)
 Kamu bisa mengaktifkan pencatatan log sederhana dengan menjalankan
 
-```bash
+```sh
 export DEBUG="grammy*"
 ```
 
@@ -210,7 +210,7 @@ bot.start();
 
 Sekarang, kamu dapat menjalankan bot dengan mengeksekusi
 
-```bash
+```sh
 deno run --allow-net bot.ts
 ```
 
@@ -222,7 +222,7 @@ Buka Telegram untuk melihat bot kamu merespon pesan!
 ::: tip Mengaktifkan Pencatatan Log (logging)
 Kamu bisa mengaktifkan pencatatan log sederhana dengan menjalankan
 
-```bash
+```sh
 export DEBUG="grammy*"
 ```
 
@@ -231,7 +231,7 @@ Ini mempermudah kamu untuk men-debug bot.
 
 Alih-alih menjalankan bot dengan cara tadi, kamu perlu menjalankan bot menggunakan
 
-```bash
+```sh
 deno run --allow-net --allow-env bot.ts
 ```
 

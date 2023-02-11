@@ -84,7 +84,7 @@ Paling tidak, dengan membuat bot Telegram menggunakan grammY adalah awal yang ba
 Kamu bisa mulai belajar TypeScript melalui [tutorial resmi](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html) yang ditulis oleh tim TypeScript, lalu kembali ke sini jika sudah selesai.
 Jangan habiskan lebih dari 30 menit untuk melakukan hal-hal lain di internet—lihat koleksi foto kucing misalnya :cat:. Langsung kembali ke sini, selesaikan materi ini, kemudian kita bisa [memulai](./getting-started.md).
 
-Jika menemukan syntax yang tidak kamu ketahui, atau mendapatkan pesan error yang tidak dimengerti, langsung saja cari di internet. Penjelasan serta solusinya sudah pasti tersedia di sana, misal di StackOverflow.
+Jika menemukan syntax yang tidak kamu ketahui, atau mendapatkan pesan error yang tidak dimengerti, langsung saja cari di internet. Penjelasan serta solusinya sudah pasti tersedia di sana, misal di Stack Overflow.
 :::
 
 ::: danger Tidak Usah Belajar Menulis Kode
@@ -189,7 +189,7 @@ Untuk menjalankan file `bot.js`, kamu harus meng-install [Node.js](https://nodej
 
 Berikut tahap-tahap yang perlu dilakukan di Node.js:
 
-1. Buat source file `bot.ts` menggunakan TypeScript, misalnya dengan menggunakan [VSCode](https://code.visualstudio.com/) (atau kode editor lainnya).
+1. Buat source file `bot.ts` menggunakan TypeScript, misalnya dengan menggunakan [VS Code](https://code.visualstudio.com/) (atau kode editor lainnya).
 2. Compile kode dengan menjalankan perintah di terminal. Langkah ini akan menghasilkan file bernama `bot.js`.
 3. Jalankan `bot.js` menggunakan Node.js, sekali lagi dari terminal.
 

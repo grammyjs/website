@@ -70,7 +70,7 @@ Here, we are using the bot token (`/<bot token>`).
 4. [Create an access token](https://dash.deno.com/user/access-tokens).
 5. Run the following command:
 
-```bash
+```sh
 deployctl deploy --project <project> ./mod.ts --prod --token <token>
 ```
 
@@ -89,7 +89,7 @@ deployctl deploy --project <project> ./mod.ts --prod --token <token>
 After getting your app running, you should configure your bot's webhook settings to point to your app.
 To do that, send a request to
 
-```text
+```text:no-line-numbers
 https://api.telegram.org/bot<token>/setWebhook?url=<url>
 ```
 

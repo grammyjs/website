@@ -237,7 +237,7 @@ Esto permite crear potentes patrones de manejo de mensajes.
 bot.on(":forward_date").command("help"); // comandos /help reenviados
 
 // Solo maneja comandos en chats privados.
-const pm = bot.filter((ctx) => ctx.chat?.type === "private");
+const pm = bot.chatType("private");
 pm.command("start");
 pm.command("help");
 ```

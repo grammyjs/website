@@ -73,7 +73,7 @@ Di contoh kali ini, kita menggunakan token bot (`/<token bot>`) sebagai direktor
 4. Buat [token akses](https://dash.deno.com/user/access-tokens) baru.
 5. Jalankan dengan perintah:
 
-```bash
+```sh
 deployctl deploy --project <project> ./mod.ts --prod --token <token>
 ```
 
@@ -91,7 +91,7 @@ deployctl deploy --project <project> ./mod.ts --prod --token <token>
 
 Setelah mendapati bot-mu dapat berjalan, kamu harus melakukan konfigurasi pada pengaturan webhook untuk menggunakan URL bot-mu yang baru.
 
-```text
+```text:no-line-numbers
 https://api.telegram.org/bot<token>/setWebhook?url=<url>
 ```
 

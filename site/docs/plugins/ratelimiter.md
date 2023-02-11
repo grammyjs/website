@@ -200,7 +200,7 @@ import { limit } from "@grammyjs/ratelimiter";
 bot.use(
   limit({
     keyGenerator: (ctx) => {
-      if (ctx.chat?.type === "group" || ctx.chat?.type === "supergroup") {
+      if (ctx.hasChatType(["group", "supergroup"])) {
         // Note that the key should be a number in string format, such as "123456789".
         return ctx.chat.id.toString();
       }
@@ -218,7 +218,7 @@ const { limit } = require("@grammyjs/ratelimiter");
 bot.use(
   limit({
     keyGenerator: (ctx) => {
-      if (ctx.chat?.type === "group" || ctx.chat?.type === "supergroup") {
+      if (ctx.hasChatType(["group", "supergroup"])) {
         // Note that the key should be a number in string format, such as "123456789".
         return ctx.chat.id.toString();
       }
@@ -236,7 +236,7 @@ import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
 bot.use(
   limit({
     keyGenerator: (ctx) => {
-      if (ctx.chat?.type === "group" || ctx.chat?.type === "supergroup") {
+      if (ctx.hasChatType(["group", "supergroup"])) {
         // Note that the key should be a number in string format, such as "123456789".
         return ctx.chat.id.toString();
       }

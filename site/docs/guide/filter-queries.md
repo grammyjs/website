@@ -226,7 +226,7 @@ This allows for powerful message handling patterns.
 bot.on(":forward_date").command("help"); // forwarded /help commands
 
 // Only handle commands in private chats.
-const pm = bot.filter((ctx) => ctx.chat?.type === "private");
+const pm = bot.chatType("private");
 pm.command("start");
 pm.command("help");
 ```
