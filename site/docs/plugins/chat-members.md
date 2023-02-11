@@ -35,7 +35,6 @@ bot.use(chatMembers(adapter));
 
 bot.start({
   allowed_updates: ["chat_member", "message"],
-  onStart: ({ username }) => console.log(`Listening as ${username}`),
 });
 ```
 
