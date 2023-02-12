@@ -169,6 +169,12 @@ Esto facilita la depuración de tu bot.
 
 Crea un nuevo directorio en algún lugar y crea un nuevo archivo de texto vacío en él, por ejemplo, llamado `bot.ts`.
 
+```sh
+mkdir ./my-bot
+cd ./my-bot
+touch bot.ts
+```
+
 Ahora, es el momento de abrir Telegram para crear una cuenta de bot, y obtener un token de autenticación para él.
 Habla con [@BotFather](https://t.me/BotFather) para hacer esto.
 El token de autenticación se parece a `123456:aBcDeF_gHiJkLmNoP-q`.
