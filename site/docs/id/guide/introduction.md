@@ -210,4 +210,4 @@ Jika kamu merasa kebingungan di titik ini, sebaiknya tinggalkan Node.js dan bera
 
 Masih percaya diri?
 Keren!
-[Mari kita mulai](./getting-started.md#memulai-dengan-nodejs)! :robot:
+[Mari kita mulai](./getting-started.md#memulai-dengan-node-js)! :robot:
