@@ -4,6 +4,22 @@ Aquí hay una colección de preguntas frecuentes sobre [errores comunes](#¿por-
 
 Si este FAQ no responde a tu pregunta, también deberías echar un vistazo al [Bot FAQ](https://core.telegram.org/bots/faq) escrito por el equipo de Telegram.
 
+## ¿Dónde puedo encontrar documentación sobre un método?
+
+En la referencia de la API.
+
+Probablemente quieras entender mejor [esto](../guíde).
+
+## ¡A un Método le Falta un Parámetro!
+
+No, no es así.
+
+1. Asegúrate de que tienes instalada la última versión de grammY.
+2. Comprueba si el parámetro es opcional.
+   Si lo es, entonces grammY lo recogerá en el objeto de opciones llamado `other`.
+   Pasa `{ parameter_name: value }` en ese lugar y funcionará.
+   Como siempre, TypeScript autocompletará los nombres de los parámetros por ti.
+
 ## ¿Por qué recibo este error?
 
 ### 400 Bad Request: Cannot parse entities
