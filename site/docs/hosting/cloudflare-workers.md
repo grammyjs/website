@@ -119,4 +119,3 @@ npm run start
 
 Once the development server has started, you can test your bot by sending sample updates to it using tools like `curl`, [Insomnia](https://insomnia.rest), or [Postman](https://postman.com).
 For more information on the update structure, refer to the [Telegram API documentation](https://core.telegram.org/bots/api#update).
-
