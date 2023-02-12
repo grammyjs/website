@@ -211,4 +211,4 @@ Si te sientes perdido en este punto, deberías dejar Node.js y usar [Deno](#prer
 
 ¿Aún confiado?
 ¡Genial!
-¡[Empieza](./getting-started.md#comenzando-en-nodejs)! :robot:
+¡[Empieza](./getting-started.md#comenzando-en-node-js)! :robot:
