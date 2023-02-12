@@ -8,7 +8,7 @@ Si este FAQ no responde a tu pregunta, también deberías echar un vistazo al [B
 
 En la referencia de la API.
 
-Probablemente quieras entender mejor [esto](../guía).
+Probablemente quieras entender mejor [esto](../guíde).
 
 ## ¡A un Método le Falta un Parámetro!
 
