@@ -101,6 +101,7 @@ If the setup is successful, you'll see a JSON response like this:
   "result": true,
   "description": "Webhook was set"
 }
+```
 
 ## Testing Your Bot
 
