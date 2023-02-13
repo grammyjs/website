@@ -9,7 +9,7 @@ next: ./introduction.md
 Welcome to grammY!
 You've come to the right place.
 
-## What Is grammY?
+## What Is grammY? 
 
 grammY is a framework for creating Telegram bots.
 It can be used from TypeScript and JavaScript and runs on Node.js, Deno, and in the browser.
