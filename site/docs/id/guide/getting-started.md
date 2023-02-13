@@ -174,6 +174,12 @@ Ini mempermudah kamu untuk men-debug bot.
 
 Buat direktori baru di suatu tempat lalu buat file teks kosong baru di dalamnya, misalnya kita namakan `bot.ts`.
 
+```sh
+mkdir ./my-bot
+cd ./my-bot
+touch bot.ts
+```
+
 Sekarang, buka aplikasi Telegram kamu untuk membuat sebuah akun bot beserta token otentikasinya.
 Chat [@BotFather](https://t.me/BotFather) untuk melakukannya.
 Token otentikasi kurang lebih mirip seperti ini `123456:aBcDeF_gHiJiJkLmNoP-q`.
