@@ -3,35 +3,9 @@
 
 html.dark {
   // brand colors
-  --c-brand-light: #138cb3;
   --c-brand: #009dca;
-
-  // background colors
-  --c-bg-dark: #343b44;
-  --c-bg-darker: #37404c;
+  --c-brand-light: #138cb3;
 
   // custom container colors
   --c-tip: #1583a7;
-  --c-warning: #e0ad15;
-  --c-warning-bg: #2d2f2d;
-  --c-warning-bg-light: #423e2a;
-  --c-warning-bg-lighter: #44442f;
-  --c-warning-border-dark: #957c35;
-  --c-warning-details-bg: #39392d;
-  --c-warning-title: #fdca31;
-  --c-warning-text: #d8d96d;
-  --c-warning-text-accent: #ffbf00;
-  --c-warning-text-light: #ddb84b;
-  --c-warning-text-quote: #ccab49;
-  --c-danger: #fc1e38;
-  --c-danger-bg: #39232c;
-  --c-danger-bg-light: #4b2b35;
-  --c-danger-bg-lighter: #553040;
-  --c-danger-border-dark: #a25151;
-  --c-danger-details-bg: #482936;
-  --c-danger-title: #fc2d3b;
-  --c-danger-text: #ea9ca0;
-  --c-danger-text-accent: #fd3636;
-  --c-danger-text-light: #d9777c;
-  --c-danger-text-quote: #d56b6b;
 }

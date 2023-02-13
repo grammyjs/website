@@ -16,7 +16,7 @@ Kami memutuskan untuk membuat API menjadi seragam.
 
 Beberapa factory bisa menggunakan parameter wajib ataupun opsional.
 
-```typescript
+```ts
 import {
   ignoreOld,
   onlyAdmin,

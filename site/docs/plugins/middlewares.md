@@ -13,7 +13,7 @@ I decided to make API homogeneous.
 
 Some of the factories consume optional or required parameters.
 
-```typescript
+```ts
 import {
   ignoreOld,
   onlyAdmin,

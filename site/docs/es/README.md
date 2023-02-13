@@ -15,7 +15,7 @@ features:
     details: grammY es abierto y puede extenderse con plugins para adaptarse a tus necesidades.
   - title: Escalable
     details: grammY te tiene cubierto cuando tu bot se vuelve popular y el tráfico se incrementa.
-footer: Copyright © 2021-2022
+footer: Copyright © 2021-2023
 permalink: /es/
 ---
 
@@ -84,5 +84,5 @@ bot.start();
 
 ---
 
-grammY es compatible con la API 6.4 de Telegram Bot que fue [lanzada](https://core.telegram.org/bots/api#december-30-2022) el 30 de Diciembre de 2022.
-(Último punto destacado: Media Spoilers)
+grammY es compatible con la API 6.5 de Telegram Bot que fue [lanzada](https://core.telegram.org/bots/api#february-02-2023) el 2 de Febrero de 2023.
+(Último punto destacado: Solicitudes de usuarios y chat)

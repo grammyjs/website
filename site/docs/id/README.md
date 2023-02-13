@@ -15,7 +15,7 @@ features:
     details: grammY bersifat terbuka dan bisa ditambahkan dengan plugin yang kamu inginkan.
   - title: Dapat Diskalakan
     details: grammY selalu siap membantu ketika bot menjadi semakin populer dan semakin banyak trafiknya.
-footer: Hak Cipta © 2021-2022
+footer: Hak Cipta © 2021-2023
 permalink: /id/
 ---
 
@@ -86,5 +86,5 @@ Berhasil! :tada:
 
 ---
 
-grammY mendukung API Bot Telegram versi 6.4 yang [dirilis](https://core.telegram.org/bots/api#december-30-2022) pada tanggal 30 Desember 2022.
-(Fitur yang disorot: Spoiler untuk Media)
+grammY mendukung API Bot Telegram versi 6.5 yang [dirilis](https://core.telegram.org/bots/api#february-02-2023) pada tanggal 2 Februari 2023.
+(Fitur yang disorot: Request untuk Chat dan User)

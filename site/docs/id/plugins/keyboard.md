@@ -177,7 +177,7 @@ Kamu bisa menyimak pesan teks menggunakan `bot.on("message:text")` ataupun `bot.
 
 Berikut ketiga contoh cara membuat keyboard custom dengan tombol `text` di dalamnya.
 
-Kamu juga bisa meminta nomor telepon dengan `requestContact`, lokasi dengan `requestLocation`, dan voting dengan `requestPoll`.
+Kamu juga bisa meminta nomor telepon dengan `requestContact`, lokasi dengan `requestLocation`, voting dengan `requestPoll`, user dengan `requestUser`, dan chat dengan `requestChat`.
 
 #### Contoh 1
 

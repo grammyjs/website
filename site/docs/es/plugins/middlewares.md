@@ -13,7 +13,7 @@ He decidido hacer la API homogénea.
 
 Algunas de las factories consumen parámetros opcionales o requeridos.
 
-```typescript
+```ts
 import {
   ignoreOld,
   onlyAdmin,

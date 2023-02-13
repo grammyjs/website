@@ -174,7 +174,7 @@ Remember that you can listen for text message via `bot.on("message:text")` or `b
 
 Here are three examples how to build a custom keyboard with `text` buttons.
 
-You can also request the phone number with `requestContact`, the location with `requestLocation`, and a poll with `requestPoll`.
+You can also request the phone number with `requestContact`, the location with `requestLocation`, a poll with `requestPoll`, a user with `requestUser`, and a chat with `requestChat`.
 
 #### Example 1
 

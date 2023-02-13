@@ -11,15 +11,18 @@
     "docs:build": "npm run docs:vuepress && npm run docs:sitemap",
     "docs:vuepress": "vuepress-vite build docs",
     "docs:fmt": "deno fmt",
-    "docs:sitemap": "sscli -b https://grammy.dev -r docs/.vuepress/dist --format xml --no-robots --no-clean"
+    "docs:sitemap": "sscli -b https://grammy.dev -r docs/.vuepress/dist --format xml --no-robots --no-clean",
+    "docs:serve": "serve docs/.vuepress/dist",
+    "deno:version": "deno --version"
   },
   "keywords": [],
   "author": "KnorpelSenf",
   "license": "MIT",
   "devDependencies": {
-    "@vuepress/plugin-docsearch": "^2.0.0-beta.51",
+    "@vuepress/plugin-docsearch": "next",
     "deno-bin": ">=1.25.2",
+    "serve": "^14.1.2",
     "static-sitemap-cli": "^2.1.2",
-    "vuepress-vite": "^2.0.0-beta.51"
+    "vuepress-vite": "2.0.0-beta.60"
   }
 }
