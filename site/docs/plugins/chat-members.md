@@ -8,7 +8,6 @@ In many situations, it is necessary for a bot to have information about all the 
 Currently, though, the Telegram Bot API exposes no method that allows us to retrieve this information.
 
 This plugin comes to the rescue: automatically listening to `chat_member` events and storing each `ChatMember` objects.
-It then allows you to use `ctx.chatMembers.getChatMember()` to obtain information about a specific chat member, taking the previously stored information into account.
 
 ## Usage
 
@@ -111,7 +110,7 @@ bot.on("message", async (ctx) => {
 ```
 
 All parameters are optional; if you don't provide them, `ctx.chat.id` and `ctx.from.id` will be used instead.
-Please notice that, if you don't provide a chat id and there's no `chat` property inside the context (for example, on inline query updates), this will throw an error.
+Please notice that, if you don't provide a chat identifier and there's no `chat` property inside the context (for example, on inline query updates), this will throw an error.
 The same will happen if there's no `ctx.from` in the context.
 
 ## Aggressive Storage
@@ -121,11 +120,11 @@ For every update, the middleware checks if `ctx.chat` and `ctx.from` exist.
 If they both do, it then proceeds to call `ctx.chatMembers.getChatMember` to add the chat member information to the storage in case it doesn't exist.
 
 Please note that this means the storage will be called for **every update**, which may be a lot, depending on how many updates your bot receives.
-This also has the potential to impact the performance of your bot drastically.
-Only use this if you _really_ know what you're doing and are ok with the risks and consequences.
+This has the potential to impact the performance of your bot drastically.
+Only use this if you _really_ know what you're doing and are okay with the risks and consequences.
 
 ## Plugin Summary
 
-- Name: `command-filter`
+- Name: `chat-members`
 - Source: <https://github.com/grammyjs/chat-members>
 - Reference: <https://deno.land/x/grammy_chat_members/mod.ts>
