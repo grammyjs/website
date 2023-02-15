@@ -57,7 +57,7 @@ const inlineKeyboard = new InlineKeyboard()
 
 ##### Resultado
 
-![Ejemplo 1](/inline-keyboard-example-1.webp)
+![Ejemplo 1](/images/inline-keyboard-example-1.webp)
 
 #### Ejemplo 2
 
@@ -73,7 +73,7 @@ const inlineKeyboard = new InlineKeyboard()
 
 ##### Resultado
 
-![Ejemplo 2](/inline-keyboard-example-2.webp)
+![Ejemplo 2](/images/inline-keyboard-example-2.webp)
 
 #### Ejemplo 3
 
@@ -90,7 +90,7 @@ const inlineKeyboard = new InlineKeyboard().url(
 
 ##### Resultado
 
-![Ejemplo 3](/inline-keyboard-example-3.webp)
+![Ejemplo 3](/images/inline-keyboard-example-3.webp)
 
 ### Envío de un Teclado en línea
 
