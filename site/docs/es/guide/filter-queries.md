@@ -18,7 +18,7 @@ Esto permite utilizar más de 500 filtros diferentes, y es posible que añadamos
 Todos los filtros válidos se pueden autocompletar en el editor de código.
 Por lo tanto, puedes simplemente escribir `bot.on("")`, abrir el autocompletado, y buscar entre todas las consultas escribiendo algo
 
-![Filtro de búsqueda de consultas](/filter-query-search.png)
+![Filtro de búsqueda de consultas](/images/filter-query-search.png)
 
 La inferencia de tipos de `bot.on()` comprenderá la consulta de filtro que hayas elegido.
 Por lo tanto, ajusta algunos tipos en el contexto que se sabe que existen.

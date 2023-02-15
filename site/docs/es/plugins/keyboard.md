@@ -197,7 +197,7 @@ const keyboard = new Keyboard()
 
 ##### Resultado
 
-![Ejemplo 1](/keyboard-example-1.webp)
+![Ejemplo 1](/images/keyboard-example-1.webp)
 
 #### Ejemplo 2
 
@@ -215,7 +215,7 @@ const keyboard = new Keyboard()
 
 ##### Resultado
 
-![Ejemplo 2](/keyboard-example-2.webp)
+![Ejemplo 2](/images/keyboard-example-2.webp)
 
 #### Ejemplo 3
 
@@ -231,7 +231,7 @@ const keyboard = new Keyboard()
 
 ##### Resultado
 
-![Ejemplo 3](/keyboard-example-3.webp)
+![Ejemplo 3](/images/keyboard-example-3.webp)
 
 ### Envío de un Teclado Personalizado
 

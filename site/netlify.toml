@@ -1,4 +1,4 @@
 [[headers]]
-  for = "/fonts/*"
+  for = "/{fonts,images}/*"
   [headers.values]
   cache-control = "max-age=604800" # 1 week

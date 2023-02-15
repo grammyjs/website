@@ -4,7 +4,7 @@ ratelimiter adalah sebuah middleware yang dibuat dari framework bot grammY ataup
 Simpelnya, plugin ini dapat membantu kamu dalam mencegah serangan spam ke bot.
 Supaya lebih paham, coba lihat ilustrasi berikut:
 
-![Peran ratelimiter dalam menangkis spam](/ratelimiter-role.png)
+![Peran ratelimiter dalam menangkis spam](/images/ratelimiter-role.png)
 
 ## Bagaimana Cara Kerjanya?
 

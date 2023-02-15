@@ -192,7 +192,7 @@ const keyboard = new Keyboard()
 
 ##### Result
 
-![Example 1](/keyboard-example-1.webp)
+![Example 1](/images/keyboard-example-1.webp)
 
 #### Example 2
 
@@ -210,7 +210,7 @@ const keyboard = new Keyboard()
 
 ##### Result
 
-![Example 2](/keyboard-example-2.webp)
+![Example 2](/images/keyboard-example-2.webp)
 
 #### Example 3
 
@@ -226,7 +226,7 @@ const keyboard = new Keyboard()
 
 ##### Result
 
-![Example 3](/keyboard-example-3.webp)
+![Example 3](/images/keyboard-example-3.webp)
 
 ### Sending a Custom Keyboard
 
