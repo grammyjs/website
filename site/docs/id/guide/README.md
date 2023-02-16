@@ -3,6 +3,7 @@ next: ./introduction.md
 ---
 
 ![grammY](/grammY.png)
+
 # Gambaran Umum
 
 Selamat datang di grammY!
