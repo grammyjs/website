@@ -9,7 +9,7 @@
 }
 /* noto-sans-display-700 - cyrillic-ext_cyrillic */
 @font-face {
-  font-display: swap;
+  font-display: optional;
   font-family: "Noto Sans Display";
   font-style: normal;
   font-weight: 700;
@@ -44,7 +44,7 @@
 }
 /* noto-sans-regular - cyrillic-ext_cyrillic */
 @font-face {
-  font-display: swap;
+  font-display: optional;
   font-family: "Noto Sans";
   font-style: normal;
   font-weight: 400;
@@ -53,7 +53,7 @@
 }
 /* noto-sans-italic - cyrillic-ext_cyrillic */
 @font-face {
-  font-display: swap;
+  font-display: optional;
   font-family: "Noto Sans";
   font-style: italic;
   font-weight: 400;
@@ -62,7 +62,7 @@
 }
 /* noto-sans-600 - cyrillic-ext_cyrillic */
 @font-face {
-  font-display: swap;
+  font-display: optional;
   font-family: "Noto Sans";
   font-style: normal;
   font-weight: 600;
