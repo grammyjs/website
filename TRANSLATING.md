@@ -68,16 +68,16 @@ It can look like <https://github.com/grammyjs/website/issues/55>.
 
 It would be very painful to do everything in a single pull request, so we developed a simple branching model which will help us to follow along with your progress.
 
-Once you start working on a new language, we will give push permission to this repository.
-You can then create a new branch for the translations, e.g. called `spanish`.
-This is called the _translation branch_ of your language.
+Once you start working on a new language, we will give you permission to push to this repository.
+You can then create a new branch for the translations, called `spanish` for example.
+This will be the _translation branch_ of your language.
 
 For every page you translate, create a new branch, perform the translations, and open a pull request.
 Make sure to open a pull request against your translation branch, and not against `main`.
 
 A different person who can speak your language can now review the pull request.
 Make sure to reiterate on the translations, in case you have ideas to improve it.
-The GitHub bot will provide you with a website preview of your pull request, so you can review a fully rendered version of how your changes will look, which will enable you to catch all mistakes.
+The GitHub bot will provide you with a website preview of your pull request, so you can review a fully-rendered version of how your changes will look, which will enable you to catch all mistakes.
 Once you both think that the translation is perfect, merge the pull request into the translation branch of your language.
 
 You should keep track of which pages are translated in your translation tracking issue.
