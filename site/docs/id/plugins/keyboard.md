@@ -56,7 +56,7 @@ const inlineKeyboard = new InlineKeyboard()
 
 ##### Hasil
 
-![Hasil contoh 1](/inline-keyboard-example-1.webp)
+![Hasil contoh 1](/images/inline-keyboard-example-1.webp)
 
 #### Contoh 2
 
@@ -72,7 +72,7 @@ const inlineKeyboard = new InlineKeyboard()
 
 ##### Hasil
 
-![Hasil contoh 2](/inline-keyboard-example-2.webp)
+![Hasil contoh 2](/images/inline-keyboard-example-2.webp)
 
 #### Contoh 3
 
@@ -89,7 +89,7 @@ const inlineKeyboard = new InlineKeyboard().url(
 
 ##### Hasil
 
-![Hasil contoh 3](/inline-keyboard-example-3.webp)
+![Hasil contoh 3](/images/inline-keyboard-example-3.webp)
 
 ### Mengirim Keyboard Inline
 
@@ -195,7 +195,7 @@ const keyboard = new Keyboard()
 
 ##### Hasil
 
-![Hasil Contoh 1](/keyboard-example-1.webp)
+![Hasil Contoh 1](/images/keyboard-example-1.webp)
 
 #### Contoh 2
 
@@ -213,7 +213,7 @@ const keyboard = new Keyboard()
 
 ##### Hasil
 
-![Hasil Contoh 2](/keyboard-example-2.webp)
+![Hasil Contoh 2](/images/keyboard-example-2.webp)
 
 #### Contoh 3
 
@@ -229,7 +229,7 @@ const keyboard = new Keyboard()
 
 ##### Hasil
 
-![Hasil Contoh 3](/keyboard-example-3.webp)
+![Hasil Contoh 3](/images/keyboard-example-3.webp)
 
 ### Mengirim Keyboard Custom
 
