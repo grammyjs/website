@@ -1,41 +1,37 @@
-# TODO translate to Russian
-
 ---
 home: true
 heroImage: /images/Y.png
 actions:
-  - text: Get Started
+  - text: Первые шаги
     link: /guide/getting-started.html
     type: primary
-  - text: Introduction
+  - text: Введение
     link: /guide/introduction.html
     type: secondary
 features:
-  - title: Easy to Use
-    details: grammY makes creating Telegram bots so simple you already know how to do it.
-  - title: Flexible
-    details: grammY is open and can be extended by plugins to make it fit exactly your needs.
-  - title: Scalable
-    details: grammY has you covered when your bot gets popular and the traffic increases.
-footer: Copyright © 2021-2023
-permalink: /
+  - title: Простой
+    details: grammY позволяет создавать Телеграм-ботов так просто, что ты уже знаешь как.
+  - title: Гибкий
+    details: grammY открытый и может научиться всему, что тебе нужно, через плагины.
+  - title: Масштабируемый
+    details: grammY позаботится обо всём, когда твой бот станет популярным, а трафик взлетит.
+footer: Все права защищены © 2021-2023
+permalink: /ru/
 ---
 
 <h6 align="right">… {{ [
-  'think of the whY',
-  'a new era of bot development',
-  'runs faster than you',
-  'one update ahead',
-  'can do anything except dishes',
-  'easy peasy lemon squeezY',
-  'hundreds of millions served',
-][Math.floor(Math.random() * 7)] }}.</h6>
+  'подумай почемY',
+  'новая эра ботов',
+  'работает быстрее, чем ты',
+  'на шаг впереди',
+  'делает всё, кроме обедов',
+][Math.floor(Math.random() * 5)] }}.</h6>
 
-## Quickstart
+## Начинаем
 
-Bots are written in [TypeScript](https://www.typescriptlang.org) (or JavaScript) and run on various platforms, including [Node.js](https://nodejs.org).
+Ботов пишут на [TypeScript](https://www.typescriptlang.org) (или JavaScript) и запускают на различных платформах, включая [Node.js](https://nodejs.org).
 
-`npm install grammy` and paste the following code:
+Запусти `npm install grammy` и скопируй этот код:
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
@@ -43,10 +39,10 @@ Bots are written in [TypeScript](https://www.typescriptlang.org) (or JavaScript)
 ```ts
 import { Bot } from "grammy";
 
-const bot = new Bot(""); // <-- put your bot token here (https://t.me/BotFather)
+const bot = new Bot(""); // <-- сюда вставь токен бота (https://t.me/BotFather)
 
-// Reply to any message with "Hi there!".
-bot.on("message", (ctx) => ctx.reply("Hi there!"));
+// Отвечаем "Привееет!" на любое сообщение.
+bot.on("message", (ctx) => ctx.reply("Привееет!"));
 
 bot.start();
 ```
@@ -57,10 +53,10 @@ bot.start();
 ```js
 const { Bot } = require("grammy");
 
-const bot = new Bot(""); // <-- put your bot token here (https://t.me/BotFather)
+const bot = new Bot(""); // <-- сюда вставь токен бота (https://t.me/BotFather)
 
-// Reply to any message with "Hi there!".
-bot.on("message", (ctx) => ctx.reply("Hi there!"));
+// Отвечаем "Привееет!" на любое сообщение.
+bot.on("message", (ctx) => ctx.reply("Привееет!"));
 
 bot.start();
 ```
@@ -71,10 +67,10 @@ bot.start();
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
-const bot = new Bot(""); // <-- put your bot token here (https://t.me/BotFather)
+const bot = new Bot(""); // <-- сюда вставь токен бота (https://t.me/BotFather)
 
-// Reply to any message with "Hi there!".
-bot.on("message", (ctx) => ctx.reply("Hi there!"));
+// Отвечаем "Привееет!" на любое сообщение.
+bot.on("message", (ctx) => ctx.reply("Привееет!"));
 
 bot.start();
 ```
@@ -82,9 +78,9 @@ bot.start();
 </CodeGroupItem>
 </CodeGroup>
 
-Works! :tada:
+Работает! :tada:
 
 ---
 
-grammY supports the Telegram Bot API 6.5 which was [released](https://core.telegram.org/bots/api#february-02-2023) on February 2, 2023.
-(Last highlight: User and Chat Requests)
+grammY поддерживает Telegram Bot API 6.5, который был [выпущен](https://core.telegram.org/bots/api#february-02-2023) 2 февраля, 2023.
+(Из интересного: пользователи и запросы в чаты)
