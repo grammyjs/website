@@ -2,7 +2,7 @@
 next: ./introduction.md
 ---
 
-![logo](/images/grammY.png)
+![grammY](/grammY.png)
 
 # Resumen
 

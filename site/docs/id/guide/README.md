@@ -2,8 +2,7 @@
 next: ./introduction.md
 ---
 
-![logo](/images/grammY.png)
-
+![grammY](/grammY.png)
 # Gambaran Umum
 
 Selamat datang di grammY!
