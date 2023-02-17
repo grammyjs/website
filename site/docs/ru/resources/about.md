@@ -1,55 +1,53 @@
-# TODO translate to Russian
+# О grammY
 
-# About grammY
+## Что такое grammY?
 
-## What is grammY?
+grammY — это ПО, которое ты можешь использовать, когда решишь создать своего [чат-бота](https://core.telegram.org/bots) для [мессенджера Телеграм](https://telegram.org).
+Когда ты начнёшь создавать ботов, ты заметишь, что многие вещи начинают повторятся, а процесс становится утомительным. 
+grammY берёт всю тяжёлую работу на себя, и создавать ботов становится намного проще.
 
-grammY is a piece of software that you can use when you want to program your own [chat bot](https://core.telegram.org/bots) for the [Telegram Messenger](https://telegram.org).
-When you make bots, you will notice that some parts of this process are tedious and always the same.
-grammY does the heavy lifting for you and makes it super simple to create a bot.
+## Когда grammY был создан?
 
-## When was grammY created?
+Впервые код grammY был опубликован в конце марта 2021-го года.
+Через несколько недель вышла первая стабильная версия.
 
-The first publish of grammY code was in late March, 2021.
-It reached its first stable version a few weeks later.
+## Кто разрабатывает grammY?
 
-## Who develops grammY?
+grammY разрабатывается командой волонтёров, которые работают над основной библиотекой, документацией и другими частями экосистемы в своё свободное время.
+Ты можешь найти список всех участников в [README](https://github.com/grammyjs/grammY#contributors-) нашего репозитория.
 
-grammY is developed by a team of volunteers who work on the core library, the docs, and the remaining ecosystem in their free time.
-You can find a list of all our contributors in the [README](https://github.com/grammyjs/grammY#contributors-) of our repository.
+Не стесняйся написать нам в [общем чате](https://t.me/grammyjs).
+Если говоришь по-русски, можешь ещё присоединиться [здесь](https://t.me/grammyjs_ru).
 
-Feel free to make contact in the [group chat](https://t.me/grammyjs)!
-If you speak Russian, you can also join us [here](https://t.me/grammyjs_ru)!
+## Как grammY разрабатывается?
 
-## How is grammY developed?
+grammY — абсолютно бесплатный проект с открытым исходным кодом.
+Код можешь найти на [GitHub](https://github.com/grammyjs/grammY).
 
-grammY is completely free and open-source software.
-Its code is available on [GitHub](https://github.com/grammyjs/grammY).
+Мы рады каждому, кто готов внести свой вклад.
+Все изменения кода проходят ревью нескольких человек, итеративно оптимизируются и тщательно тестируются, часто используя код других людей и проектов в продакшене.
 
-We welcome all contributions.
-All code changes are reviewed by several pairs of eyes, optimized iteratively and tested extensively, often using production code of various projects and people.
+## Какой язык программирования использует grammY?
 
-## What programming language does grammY use?
+grammY написан с нуля на TypeScript — надмножестве JavaScript.
+Следовательно, он запускается на Node.js.
 
-grammY is written from the ground up in TypeScript—a superset of JavaScript.
-Therefore, it runs on Node.js.
+Но grammY можно также запускать и на Deno, который позиционирует себя как преемник Node.js.
+(Технически, ты можешь использовать grammY даже в современных браузерах, хоть это и редко бывает полезным.)
 
-However, grammY can also run on Deno, which positions itself as the successor of Node.js.
-(Technically, you can even run grammY on modern browsers, though this will rarely be useful.)
+## В чём разница между grammY и конкурентами?
 
-## How does grammY compare to its competitors?
+Если ты пришёл из другого языка программирования или фреймворка, ты можешь посмотреть [детальное сравнение фреймворков](./comparison.md).
 
-If you're coming from a different programming language or framework, you can check out our [detailed comparison between frameworks](./comparison.md).
+## Как я могу поддержать вас?
 
-## How can I support you?
+Есть несколько отличных способов поддержать проект!
 
-There are a number of great ways to support this project!
+- Внести изменения в коде через [новый PR](https://github.com/grammyjs/grammY/pulls).
+- [Сообщить](https://github.com/grammyjs/grammY/issues/new) о баге, который ты нашёл, о новом функционале, который хотелось бы иметь, или о чём-то ещё.
+- Сделать [документацию](https://github.com/grammyjs/website) лучше.
+- Помочь другим участникам сообщества в [английском](https://t.me/grammyjs) и [русском](https://t.me/grammyjs_ru) чате.
+- Или просто зайти поделиться своим мнением!
+  Отзывы и интересные предложения помогают нам определить дальнейшее направление проекта.
 
-- Contribute code via a [pull request](https://github.com/grammyjs/grammY/pulls).
-- [File an issue](https://github.com/grammyjs/grammY/issues/new) about a bug you discovered, a feature you'd like to have, or anything else.
-- Help out with the [Documentation](https://github.com/grammyjs/website).
-- Assist people in the community chats in [English](https://t.me/grammyjs) or [Russian](https://t.me/grammyjs_ru).
-- Or just come tell us what you think!
-  Leaving a few words about your favorite feature, helps us determine the direction of the project.
-
-Currently, we do not take any donations or other financial support.
+В настоящее время мы не принимаем донаты или другую материальную поддержку.
