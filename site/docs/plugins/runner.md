@@ -157,7 +157,7 @@ run(bot, { runner: { fetch: { allowed_updates: [] } } });
 ## Multithreading
 
 JavaScript is single-threaded.
-This is amazing because [concurrency is hard](../advanced/scaling.md#concurrency-is-hard) so if there is only a single thread, then this removes a lot of headache.
+This is amazing because [concurrency is hard](../advanced/scaling.md#concurrency-is-hard), meaning that if there is only a single thread, a lot of headache is naturally removed.
 
 However, if your bot has an extremely high load (we are talking about 1000 updates per second and up), then doing everything on a single core might not be enough anymore.
 Basically, a single core will start struggling with the JSON processing of all the messages your bot has to handle.
