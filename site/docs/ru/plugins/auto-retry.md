@@ -1,5 +1,3 @@
-# TODO translate to Russian
-
 # Retry API Requests (`auto-retry`)
 
 > Consider using the [throttler plugin](./transformer-throttler.md) instead.

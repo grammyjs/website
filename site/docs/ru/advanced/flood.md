@@ -1,5 +1,3 @@
-# TODO translate to Russian
-
 ---
 prev: ./reliability.md
 next: ./transformers.md

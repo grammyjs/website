@@ -1,5 +1,3 @@
-# TODO translate to Russian
-
 ---
 prev: ./errors.md
 next: ./files.md

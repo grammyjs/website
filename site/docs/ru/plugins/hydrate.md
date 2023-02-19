@@ -1,5 +1,3 @@
-# TODO translate to Russian
-
 # Hydration Plugin for grammY (`hydrate`)
 
 This plugin installs useful methods on two types of objects, namely

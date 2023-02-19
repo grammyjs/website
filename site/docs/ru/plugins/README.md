@@ -1,5 +1,3 @@
-# TODO translate to Russian
-
 ---
 next: ./guide.md
 ---

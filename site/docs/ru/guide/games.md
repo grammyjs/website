@@ -1,5 +1,3 @@
-# TODO translate to Russian
-
 ---
 prev: ./files.md
 next: ./deployment-types.md

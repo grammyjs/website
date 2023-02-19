@@ -1,5 +1,3 @@
-# TODO translate to Russian
-
 # About grammY
 
 ## What is grammY?

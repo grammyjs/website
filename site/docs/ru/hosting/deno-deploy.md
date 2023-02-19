@@ -1,5 +1,3 @@
-# TODO translate to Russian
-
 # Hosting: Deno Deploy
 
 This guide tells you about the ways you can host your grammY bots on [Deno Deploy](https://deno.com/deploy).

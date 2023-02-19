@@ -1,5 +1,3 @@
-# TODO translate to Russian
-
 ---
 prev: ./basics.md
 next: ./api.md

@@ -1,5 +1,3 @@
-# TODO translate to Russian
-
 # Sessions and Storing Data (built-in)
 
 While you can always just write you own code to connect to a data storage of your choice, grammY supports a very convenient storage pattern called _sessions_.

@@ -1,5 +1,3 @@
-# TODO translate to Russian
-
 # How grammY Compares to Other Bot Frameworks
 
 While grammY uses some concepts known from other bot frameworks (and web frameworks), it was written from scratch for optimal readability and performance.

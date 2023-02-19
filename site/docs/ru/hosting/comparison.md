@@ -1,5 +1,3 @@
-# TODO translate to Russian
-
 # Comparison of Hosting Providers
 
 There are many different hosting providers that allow you to run your bot.
