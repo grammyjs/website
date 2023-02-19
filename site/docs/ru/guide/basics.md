@@ -1,5 +1,3 @@
-# TODO translate to Russian
-
 ---
 prev: ./getting-started.md
 next: ./context.md

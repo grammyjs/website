@@ -1,5 +1,3 @@
-# TODO translate to Russian
-
 ---
 prev: /guide/
 next: ./getting-started.md

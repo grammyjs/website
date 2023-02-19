@@ -1,5 +1,3 @@
-# TODO translate to Russian
-
 # Always Replying to Messages
 
 It is sometimes necessary to always send messages as replies, especially for bots that are meant to be used in groups.

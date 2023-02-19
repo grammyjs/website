@@ -1,5 +1,3 @@
-# TODO translate to Russian
-
 ---
 prev: ./transformers.md
 next: ./deployment.md

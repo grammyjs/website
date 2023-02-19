@@ -1,5 +1,3 @@
-# TODO translate to Russian
-
 # FAQ
 
 Here is a collection of frequently asked questions regarding [common errors](#why-am-i-getting-this-error) and [Deno things](#questions-about-deno).

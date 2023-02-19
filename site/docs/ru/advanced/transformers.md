@@ -1,5 +1,3 @@
-# TODO translate to Russian
-
 ---
 prev: ./flood.md
 next: ./proxy.md

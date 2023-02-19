@@ -1,5 +1,3 @@
-# TODO translate to Russian
-
 ---
 prev: ./inline-queries.md
 next: ./games.md

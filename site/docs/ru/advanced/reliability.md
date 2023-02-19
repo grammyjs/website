@@ -1,5 +1,3 @@
-# TODO translate to Russian
-
 ---
 prev: ./scaling.md
 next: ./flood.md

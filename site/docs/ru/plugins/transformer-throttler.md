@@ -1,5 +1,3 @@
-# TODO translate to Russian
-
 # Flood Control (`transformer-throttler`)
 
 This plugin enqueues outgoing API requests instance via [Bottleneck](https://github.com/SGrondin/bottleneck) in order to prevent your bot from hitting [rate limits](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this) as described in this [advanced section](../advanced/flood.md) of the documentation.

@@ -1,5 +1,3 @@
-# TODO translate to Russian
-
 ---
 prev: ./filter-queries.md
 next: ./middleware.md

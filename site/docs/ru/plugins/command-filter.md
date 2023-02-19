@@ -1,5 +1,3 @@
-# TODO translate to Russian
-
 # Command Filtering (`command-filter`)
 
 Coming soon, please come back later.

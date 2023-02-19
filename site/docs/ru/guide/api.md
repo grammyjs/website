@@ -1,5 +1,3 @@
-# TODO translate to Russian
-
 ---
 prev: ./context.md
 next: ./filter-queries.md
