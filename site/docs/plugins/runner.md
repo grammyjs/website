@@ -116,7 +116,7 @@ It needs constant memory (unless you specify infinite concurrency), and it needs
 
 In order for the bot to complete its work correctly you [should signal](../advanced/reliability.md#using-grammy-runner) it to stop when the process is about to be destroyed.
 
-Note that you can wait for the runner to terminate by `await`ing the `task` in the [RunnerHandle](https://deno.land/x/grammy_runner/mod.ts?s=RunnerHandle) returned from `run`.
+Note that you can wait for the runner to terminate by `await`ing the `task` in the [`RunnerHandle`](https://deno.land/x/grammy_runner/mod.ts?s=RunnerHandle) returned from `run`.
 
 ```ts
 const handle = run(bot);
@@ -131,7 +131,7 @@ handle.task.then(() => {
 grammY runner consists of three things: a source, a runner, and a sink.
 The source pulls in updates, the sink consumes updates, and the runner configures and connects the two.
 
-> An in-depth description on how the runner workds internally can be found [down here](#how-it-works-behind-the-scenes).
+> An in-depth description on how the runner works internally can be found [down here](#how-it-works-behind-the-scenes).
 
 Each of these three parts can be configured through various options.
 This can reduce the network traffic, let you specify allowed updates, and more.
@@ -148,7 +148,7 @@ run(bot, {
 
 You should check out the `RunOptions` in the [API reference](https://deno.land/x/grammy_runner/mod.ts?s=RunOptions) to see which options are available.
 
-For example, you will find there that `allowed_updates` can be enabled using the following code snippet.
+For example, you will there find out that `allowed_updates` can be enabled using the following code snippet.
 
 ```ts
 run(bot, { runner: { fetch: { allowed_updates: [] } } });
@@ -159,7 +159,7 @@ run(bot, { runner: { fetch: { allowed_updates: [] } } });
 JavaScript is single-threaded.
 This is amazing because [concurrency is hard](../advanced/scaling.md#concurrency-is-hard) so if there is only a single thread, then this removes a lot of headache.
 
-However, if your bot has extremely high load (we are talking about 1000 updates per second and up), then doing everything on a single core might not be enough anymore.
+However, if your bot has an extremely high load (we are talking about 1000 updates per second and up), then doing everything on a single core might not be enough anymore.
 Basically, a single core will start struggling with the JSON processing of all the messages your bot has to handle.
 
 ### Bot Workers for Update Handling
