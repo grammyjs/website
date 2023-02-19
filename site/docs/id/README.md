@@ -86,5 +86,5 @@ Berhasil! :tada:
 
 ---
 
-grammY mendukung API Bot Telegram versi 6.5 yang [dirilis](https://core.telegram.org/bots/api#february-02-2023) pada tanggal 2 Februari 2023.
+grammY mendukung API Bot Telegram versi 6.5 yang [dirilis](https://core.telegram.org/bots/api#february-3-2023) pada tanggal 3 Februari 2023.
 (Fitur yang disorot: Request untuk Chat dan User)
