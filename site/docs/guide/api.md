@@ -81,7 +81,7 @@ These type definitions are also exported so you can use them in your own code.
 
 #### Type Definitions on Deno
 
-On Deno, you can simply import type definitions from `types.ts` which is right next to `mod.ts`:
+On Deno, you can simply import type definitions from `types.ts`, which is right next to `mod.ts`:
 
 ```ts
 import { type Chat } from "https://deno.land/x/grammy/types.ts";
