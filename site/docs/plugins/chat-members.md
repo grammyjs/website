@@ -16,6 +16,9 @@ This plugin comes to the rescue: automatically listening to `chat_member` events
 You can use a valid grammY [storage adapter](https://grammy.dev/plugins/session.html#known-storage-adapters) or an
 instance of any class that implements the [`StorageAdapter`](https://deno.land/x/grammy/mod.ts?s=StorageAdapter) interface.
 
+Please note that, as per the official Telegram docs, your bot need to specify the `chat_member` update in the `allowed_updates` array, as shown in the example below.
+This means you also need to specify any other events you'd like to receive.
+
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
 
@@ -33,6 +36,7 @@ const bot = new Bot<MyContext>("<your bot token>");
 bot.use(chatMembers(adapter));
 
 bot.start({
+  // Make sure to specify the desired update types
   allowed_updates: ["chat_member", "message"],
 });
 ```
@@ -52,8 +56,8 @@ const bot = new Bot("<your bot token>");
 bot.use(chatMembers(adapter));
 
 bot.start({
+  // Make sure to specify the desired update types
   allowed_updates: ["chat_member", "message"],
-  onStart: ({ username }) => console.log(`Listening as ${username}`),
 });
 ```
 
@@ -82,8 +86,8 @@ const bot = new Bot<MyContext>("<your bot token>");
 bot.use(chatMembers(adapter));
 
 bot.start({
+  // Make sure to specify the desired update types
   allowed_updates: ["chat_member", "message"],
-  onStart: ({ username }) => console.log(`Listening as ${username}`),
 });
 ```
 
