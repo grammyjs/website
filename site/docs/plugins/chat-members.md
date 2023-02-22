@@ -109,7 +109,24 @@ bot.on("message", async (ctx) => {
 });
 ```
 
-All parameters are optional; if you don't provide them, `ctx.chat.id` and `ctx.from.id` will be used instead.
+This function accepts the following optional parameters:
+- `chatId`:
+  - Default: `ctx.chat.id`
+  - The chat identifier
+- `userId`:
+  - Default: `ctx.from.id`
+  - The user identifier
+
+You can pass them like so:
+
+```ts
+bot.on("message", async (ctx) => {
+  const chatMember = await ctx.chatMembers.getChatMember(ctx.chat.id, ctx.from.id);
+  return ctx.reply(
+    `Hello, ${chatMember.user.first_name}! I see you are a ${chatMember.status} of this chat!`,
+  );
+});
+```
 Please notice that, if you don't provide a chat identifier and there's no `chat` property inside the context (for example, on inline query updates), this will throw an error.
 The same will happen if there's no `ctx.from` in the context.
 
