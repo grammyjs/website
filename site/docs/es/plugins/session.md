@@ -326,6 +326,46 @@ Si debes usar la opción (que por supuesto sigue siendo posible), debes saber lo
 Asegúrese de entender las consecuencias de esta configuración leyendo el artículo [este](../guide/deployment-types.md) y especialmente [este](../plugins/runner.md#sequential-processing-where-necessary).
 :::
 
+### Migraciones de chat
+
+Si está utilizando sesiones para grupos, debe tener en cuenta que Telegram migra grupos regulares a supergrupos en determinadas circunstancias (por ejemplo, [aquí](https://github.com/telegramdesktop/tdesktop/issues/5593)).
+
+Esta migración solo ocurre una vez para cada grupo, pero puede causar inconsistencias.
+Esto se debe a que el chat migrado es técnicamente un chat completamente diferente que tiene un identificador diferente y, por lo tanto, su sesión se identificará de manera diferente.
+
+Actualmente, no existe una solución segura para este problema porque los mensajes de los dos chats también se identifican de manera diferente.
+Esto puede conducir a carreras de datos.
+Sin embargo, hay varias maneras de tratar este problema:
+
+- Ignorar el problema.
+  Los datos de la sesión del bot se restablecerán efectivamente cuando se migre un grupo.
+  Comportamiento simple, confiable y predeterminado, pero potencialmente inesperado una vez por chat.
+  Por ejemplo, si ocurre una migración mientras un usuario está en una conversación impulsada por el [complemento de conversaciones](./conversations.md), la conversación se restablecerá.
+
+- Solo almacenar datos temporales (o datos con tiempos de espera) en la sesión y usar una base de datos para las cosas importantes que deben migrarse cuando migra un chat.
+  Esto puede usar transacciones y lógica personalizada para manejar el acceso a datos simultáneos desde el chat antiguo y el nuevo.
+  Es mucho esfuerzo y tiene un costo de rendimiento, pero es la única forma verdaderamente confiable de resolver este problema.
+
+- En teoría, es posible implementar una solución alternativa que coincida con ambos chats **sin garantía de confiabilidad**.
+  La API de Telegram Bot envía una actualización de migración para cada uno de los dos chats una vez que se activa la migración (consulte las propiedades `migrate_to_chat_id` o `migrate_from_chat_id` en los [Documentos de la API de Telegram](https://core.telegram.org/bots/api#message)).
+  El problema es que no hay garantía de que estos mensajes se envíen antes de que aparezca un nuevo mensaje en el supergrupo.
+  Por lo tanto, el bot podría recibir un mensaje del nuevo supergrupo antes de que se dé cuenta de cualquier migración y, por lo tanto, no puede hacer coincidir los dos chats, lo que genera los problemas antes mencionados.
+
+- Otra solución alternativa sería limitar el bot solo para los supergrupos con filtrado (o limitar solo las funciones relacionadas con la sesión a los supergrupos).
+  Sin embargo, esto traslada la problemática/inconveniencia a los usuarios.
+
+- Dejar que los usuarios decidan explícitamente.
+  ("Este chat se migró, ¿quieres transferir los datos del bot?")
+  Mucho más confiable y transparente que las migraciones automáticas debido a la demora agregada artificialmente, pero peor UX.
+
+Finalmente, depende del desarrollador decidir cómo manejar este caso límite.
+Dependiendo de las funcionalidades del bot, se puede elegir una forma u otra.
+Si los datos en cuestión son de corta duración (por ejemplo, temporales, tiempos de espera involucrados), la migración es un problema menor.
+Un usuario experimentaría la migración como un contratiempo (si el momento no es el adecuado) y simplemente tendría que volver a ejecutar la función.
+
+Ignorar el problema es seguramente la forma más fácil, sin embargo, es importante conocer este comportamiento.
+De lo contrario, puede causar confusión y puede costar horas de tiempo de depuración.
+
 ### Almacenamiento de sus datos
 
 En todos los ejemplos anteriores, los datos de la sesión se almacenan en su memoria RAM, por lo que tan pronto como su bot se detiene, todos los datos se pierden.
