@@ -80,18 +80,27 @@ grammY dilengkapi dengan berbagai macam type API Bot.
 Repositori [`@grammyjs/types`](https://github.com/grammyjs/types) ini berisi type definition yang digunakan oleh grammY.
 Type definition tersebut juga sudah di-export supaya bisa digunakan di kode kamu.
 
+#### Type Definition di Deno
+
+Di Deno, kamu tinggal import type definition dari `types.ts`, yang mana berdampingan dengan file `mod.ts`:
+
+```ts
+import { type Chat } from "https://deno.land/x/grammy/types.ts";
+```
+
 #### Type Definition di Node.js
 
-Di Node.js, kamu perlu meng-import type dari `grammy/types`.
+Di Node.js, prosesnya lebih rumit.
+Kamu perlu meng-import type dari `grammy/types`.
 Contohnya, untuk mengakses type `Chat`, lakukan hal berikut:
 
 ```ts
 import { type Chat } from "grammy/types";
 ```
 
-Node.js baru bisa meng-import dari sub-path semenjak versi Node.js 16.
-Oleh karena itu, kamu harus mengeset `moduleResolution` menjadi `node16` atau `nodenext`.
-Atur `tsconfig.json` secara benar dan tandai barisnya:
+Namun, Node.js---secara resmi---baru mendukung fitur import dari sub-path mulai dari versi Node.js 16.
+Sehingga, kamu perlu mengubah `moduleResolution` menjadi `node16` atau `nodenext`.
+Atur `tsconfig.json` dengan benar lalu tambahkan baris yang disorot berikut:
 
 ```json{4}
 {
@@ -103,24 +112,16 @@ Atur `tsconfig.json` secara benar dan tandai barisnya:
 }
 ```
 
-Meski begitu, terkadang ia juga bisa bekerja tanpa harus mengatur konfigurasi Typescript-nya dulu.
+Terkadang ia juga bisa bekerja meski kita tidak mengatur konfigurasi Typescript-nya terlebih dahulu.
 
-::: warning Auto-complete Salah
+::: warning Keliru Menyetel Auto-complete
 
 Jika kamu tidak mengubah file `tsconfig.json` seperti yang telah dijelaskan di atas, kemungkinan besar auto-complete code editor kamu akan menyarankan untuk meng-import types dari `grammy/out/client` atau semacamnya.
-**Semua path yang dimulai dengan `grammy/out` adalah file-file internal. Jangan digunakan!**
-File-file tersebut dapat berubah sewaktu-waktu.
+**Semua path yang dimulai dengan `grammy/out` adalah file internal. Jangan digunakan!**
+File tersebut bisa berubah sewaktu-waktu.
 Oleh karena itu, kami sangat menyarankan kamu untuk meng-import dari `grammy/types`.
 
 :::
-
-#### Type Definition di Deno
-
-Di Deno, kamu cukup meng-import type definition dari `types.ts`, yang mana bersebelahan dengan file `mod.ts`:
-
-```ts
-import { type Chat } from "https://deno.land/x/grammy/types.ts";
-```
 
 ### Membuat Panggilan Raw API
 
