@@ -1228,7 +1228,7 @@ There are more problems, but you get the idea.
 
 Consequently, the conversations plugin does things differently.
 Very differently.
-As mentioned earlier, **they don't _literally_ make your bot wait**, even though we can program conversations as if that was the case.
+As mentioned earlier, **`wait` calls don't _literally_ make your bot wait**, even though we can program conversations as if that were the case.
 
 The conversations plugin tracks the execution of your function.
 When a wait call is reached, it serializes the state of execution into the session, and safely stores it in a database.
