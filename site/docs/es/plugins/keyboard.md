@@ -57,7 +57,7 @@ const inlineKeyboard = new InlineKeyboard()
 
 ##### Resultado
 
-![Ejemplo 1](/inline-keyboard-example-1.webp)
+![Ejemplo 1](/images/inline-keyboard-example-1.webp)
 
 #### Ejemplo 2
 
@@ -73,7 +73,7 @@ const inlineKeyboard = new InlineKeyboard()
 
 ##### Resultado
 
-![Ejemplo 2](/inline-keyboard-example-2.webp)
+![Ejemplo 2](/images/inline-keyboard-example-2.webp)
 
 #### Ejemplo 3
 
@@ -90,7 +90,7 @@ const inlineKeyboard = new InlineKeyboard().url(
 
 ##### Resultado
 
-![Ejemplo 3](/inline-keyboard-example-3.webp)
+![Ejemplo 3](/images/inline-keyboard-example-3.webp)
 
 ### Envío de un Teclado en línea
 
@@ -179,7 +179,7 @@ Recuerda que puedes escuchar los mensajes de texto a través de `bot.on("message
 
 Aquí hay tres ejemplos de cómo construir un teclado con botones de `texto`.
 
-También puedes solicitar el número de teléfono con `requestContact`, la ubicación con `requestLocation`, y un sondeo con `requestPoll`.
+También puedes solicitar el número de teléfono con `requestContact`, la ubicación con `requestLocation`, una encuesta con `requestPoll`, un usuario con `requestUser`, y un chat con `requestChat`.
 
 #### Ejemplo 1
 
@@ -197,7 +197,7 @@ const keyboard = new Keyboard()
 
 ##### Resultado
 
-![Ejemplo 1](/keyboard-example-1.webp)
+![Ejemplo 1](/images/keyboard-example-1.webp)
 
 #### Ejemplo 2
 
@@ -215,7 +215,7 @@ const keyboard = new Keyboard()
 
 ##### Resultado
 
-![Ejemplo 2](/keyboard-example-2.webp)
+![Ejemplo 2](/images/keyboard-example-2.webp)
 
 #### Ejemplo 3
 
@@ -231,7 +231,7 @@ const keyboard = new Keyboard()
 
 ##### Resultado
 
-![Ejemplo 3](/keyboard-example-3.webp)
+![Ejemplo 3](/images/keyboard-example-3.webp)
 
 ### Envío de un Teclado Personalizado
 
@@ -246,8 +246,21 @@ await ctx.reply(text, {
 
 Naturalmente, todos los demás métodos que envían mensajes que no sean de texto soportan las mismas opciones, tal y como se especifica en la [Referencia de la API de Telegram Bot](https://core.telegram.org/bots/api).
 
-También puede dar a su teclado una o más propiedades adicionales llamando a métodos especiales sobre él.
-Estos no añadirán ningún botón, sino que definirán el comportamiento del teclado.
+También puede dotar a su teclado de una o varias propiedades más llamando a métodos especiales sobre él.
+No añadirán ningún botón, sino que definirán el comportamiento del teclado.
+
+#### Teclados persistentes
+
+Por defecto, los usuarios ven un icono que les permite mostrar u ocultar el teclado personalizado que tu bot configuró.
+
+Puedes llamar a `persistent` si quieres que el teclado personalizado se muestre siempre que el teclado normal del sistema esté oculto.
+De esta forma, los usuarios siempre verán el teclado personalizado o el teclado del sistema.
+
+```ts
+new Keyboard()
+  .text("Omitir")
+  .persistent();
+```
 
 #### Cambiar el tamaño del Teclado Personalizado
 

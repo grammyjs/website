@@ -574,7 +574,7 @@ Each of them will require you to register at a hosting provider, or to host your
 
 ::: tip Your storage is not supported? No problem!
 Creating a custom storage adapter is extremely simple.
-The `storage` option works with any object that adheres to [this interface](https://deno.land/x/grammy/mod.ts?s=StorageAdapter), so you can connect to your storage just in a few lines of code.
+The `storage` option works with any object that adheres to this [interface](https://deno.land/x/grammy/mod.ts?s=StorageAdapter), so you can connect to your storage just in a few lines of code.
 
 > If you published your own storage adapter, feel free to edit this page and link it here, so that other people can use it.
 
@@ -620,7 +620,7 @@ bot.use(session({
     // these are also the default values
     storage: new MemorySessionStorage(),
     initial: () => undefined,
-    getSessionKey: (ctx) => ctx.from?.id.toString(),
+    getSessionKey: (ctx) => ctx.chat?.id.toString(),
   },
   bar: {
     initial: () => ({ prop: 0 }),

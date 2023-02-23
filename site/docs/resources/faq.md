@@ -4,6 +4,21 @@ Here is a collection of frequently asked questions regarding [common errors](#wh
 
 If this FAQ does not answer your question, you should also have a look at the [Bot FAQ](https://core.telegram.org/bots/faq) written by the Telegram team.
 
+## Where Can I Find Docs About a Method?
+
+In the API reference.
+You probably want to understand [this](../guide) better.
+
+## A Method Is Missing a Parameter!
+
+No, it's not.
+
+1. Make sure you have the latest grammY version installed.
+2. Check if the parameter is optional.
+   If it is, then grammY will collect it in the options object called `other`.
+   Pass `{ parameter_name: value }` in that place and it'll work.
+   As always, TypeScript will auto-complete the parameter names for you.
+
 ## Why Am I Getting This Error?
 
 ### 400 Bad Request: Cannot parse entities
@@ -18,6 +33,7 @@ You can pre-parse the entities for Telegram if you want, and specify `entities` 
 Your message text could then be a regular string.
 That way, you don't have to worry about escaping weird characters.
 This may look like it needs more code, but in fact it is the far more reliable and fool-proof solution to this problem.
+Most importantly, this is greatly simplified by our [parse-mode plugin](../plugins/parse-mode.md).
 :::
 
 ### 401 Unauthorized
@@ -76,7 +92,7 @@ You have already made sure to use the minimum number of API calls for the most c
 
 There are a few things you can do:
 
-1. Read [this article in the docs](../advanced/flood.md) to gain a basic understanding of the situation.
+1. Read this [article](../advanced/flood.md) in the docs to gain a basic understanding of the situation.
 2. Use the [`transformer-throttler` plugin](../plugins/transformer-throttler.md).
 3. Use the [`auto-retry` plugin](../plugins/auto-retry.md).
 4. Come ask us in the [group chat](https://t.me/grammyjs) for help.
@@ -104,6 +120,6 @@ Some important reasons why we like Deno more than Node.js:
 - It has a reviewed standard library.
 
 > Deno was founded by Ryan Dahl—the same person that invented Node.js.
-> He summarized his 10 regrets about Node.js in [this video](https://youtu.be/M3BM9TB-8yA).
+> He summarized his 10 regrets about Node.js in this [video](https://youtu.be/M3BM9TB-8yA).
 
 grammY itself is Deno-first, and it is backported to support Node.js equally well.

@@ -60,25 +60,40 @@ Object context selalu berisi informasi tentang bot-mu, yang dapat diakses melalu
 
 Ada sejumlah shortcut yang tersedia untuk object context.
 
-| Shortcut              | Deskripsi                                                                         |
-| --------------------- | --------------------------------------------------------------------------------- |
-| `ctx.msg`             | Mendapatkan object message, termasuk yang sudah diedit                            |
-| `ctx.chat`            | Mendapatkan object chat                                                           |
-| `ctx.senderChat`      | Mendapatkan object chat pengirim dari `ctx.msg` (untuk pesan grup/channel anonim) |
-| `ctx.from`            | Mendapatkan informasi penulis pesan, callback query, dan lainnya                  |
-| `ctx.inlineMessageId` | Mendapatkan id pesan inline dari callback query atau hasil inline yang dipilih    |
+| Shortcut              | Deskripsi                                                                             |
+| --------------------- | ------------------------------------------------------------------------------------- |
+| `ctx.msg`             | Mendapatkan object message, termasuk yang sudah diedit                                |
+| `ctx.chat`            | Mendapatkan object chat                                                               |
+| `ctx.senderChat`      | Mendapatkan object chat pengirim dari `ctx.msg` (untuk pesan grup/channel anonim)     |
+| `ctx.from`            | Mendapatkan informasi penulis pesan, callback query, dan lainnya                      |
+| `ctx.inlineMessageId` | Mendapatkan id pesan inline dari callback query atau hasil inline yang dipilih        |
+| `ctx.entities`        | Mendapatkan entity pesan beserta teksnya, dapat disaring berdasarkan jenis entity-nya |
 
 Dengan kata lain, kamu juga bisa melakukan ini:
 
 ```ts
 bot.on("message", (ctx) => {
-  // Mendapatkan isi teks pesan.
+  // Ambil isi pesan teks.
   const teks = ctx.msg.text;
 });
 
 bot.on("edited_message", (ctx) => {
-  // Mendapatkan isi teks pesan yang diedit.
+  // Ambil isi pesan teks yang diedit.
   const teks = ctx.msg.text;
+});
+
+bot.on("message:entities", (ctx) => {
+  // Ambil semua jenis entity.
+  const entity = ctx.entities();
+
+  // Ambil entity teks pertama.
+  entities[0].text;
+
+  // Ambil entity email.
+  const email = ctx.entities("email");
+
+  // Ambil entity telepon dan email.
+  const teleponDanEmail = ctx.entities(["email", "phone"]);
 });
 ```
 
@@ -210,12 +225,13 @@ Materi ini memerlukan pemahaman yang baik mengenai middleware. Jika kamu belum m
 Perlu kamu ketahui bahwa beberapa handler mampu memproses object context yang sama. Ada juga sebuah handler khusus yang berfungsi untuk memodifikasi `ctx` sebelum handler-handler lain dijalankan. Hasil modifikasi tersebut akan digunakan oleh handler-handler berikutnya.
 :::
 
-Idenya adalah kamu perlu memasang middleware terlebih dahulu sebelum listener-listener dijalankan.
-Dengan begitu, kamu bisa menentukan berbagai property yang diinginkan di dalam handler-handler tadi.
+Konsepnya adalah middleware harus dipasang sebelum listener.
+Dengan begitu, kamu bisa menambahkan property yang diinginkan ke berbagai handler.
+Misalnya, jika kamu menambahkan `ctx.namaCustomProperty = valueProperty` ke dalam handler tersebut, maka property `ctx.namaCustomProperty` juga akan tersedia untuk handler-handler yang lain.
 
-Sebagai ilustrasi, katakanlah kamu hendak mengatur property `ctx.config` dari object context.
-Di contoh berikut, kamu akan menggunakannya untuk menyimpan beberapa konfigurasi, dengan tujuan agar semua handler bisa mengaksesnya.
-Konfigurasi tersebut akan mempermudah bot untuk mendeteksi apakah pesan dikirim oleh pengguna biasa atau developer bot itu sendiri.
+Sebagai contoh, katakanlah kamu hendak menambahkan property `ctx.config` di object context.
+Nantinya, beberapa konfigurasi akan kita simpan di property tersebut agar bisa diakses oleh semua handler.
+Bot akan memakai konfigurasi tersebut untuk membedakan apakah pesan dikirim oleh user biasa atau developer bot itu sendiri.
 
 Tepat sesudah membuat bot, lakukan hal ini:
 

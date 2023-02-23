@@ -12,7 +12,7 @@ systemd es un potente gestor de servicios que viene preinstalado en muchas distr
 
 1. Obtenga la ruta completa de su tiempo de ejecución:
 
-```bash
+```sh
 # Si se utiliza Deno
 which deno
 
@@ -24,7 +24,7 @@ which node
 
 3. Tu comando de inicio debería ser como el siguiente
 
-```bash
+```sh
 <ruta_de_entrada_completa> <opciones> <ruta_de_archivo_de_entrada_completa>
 
 # Ejemplo de Deno:
@@ -38,13 +38,13 @@ which node
 
 1. Ve al directorio de servicios:
 
-```bash
+```sh
 cd /etc/systemd/system
 ```
 
 2. Abre tu nuevo archivo de servicio con un editor:
 
-```bash
+```sh
 nano bot1.service
 ```
 
@@ -60,10 +60,13 @@ WantedBy=multi-user.target
 ```
 
 > Sustituye `<comando_de_inicio>` por el comando que tienes arriba.
+>
+> Tenga en cuenta también que si Deno está instalado para un usuario distinto de root, puede que tenga que especificarlo en la sección de servicio como `User=<el_usuario>`.
+> Para más información sobre los archivos de unidad, visite [aquí](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/assembly_working-with-systemd-unit-files_configuring-basic-system-settings).
 
 3. Recarga systemd cada vez que edites el servicio:
 
-```bash
+```sh
 systemctl daemon-reload
 ```
 
@@ -71,7 +74,7 @@ systemctl daemon-reload
 
 #### Iniciar
 
-```bash
+```sh
 systemctl start <nombre_del_servicio>
 ```
 
@@ -80,31 +83,31 @@ systemctl start <nombre_del_servicio>
 
 #### Ejecutar en el arranque
 
-```bash
+```sh
 systemctl enable <nombre_del_servicio>
 ```
 
 #### Comprobar los registros
 
-```bash
+```sh
 systemctl status <nombre_del_servicio>
 ```
 
 #### Reiniciar
 
-```bash
+```sh
 systemctl restart <nombre_del_servicio>
 ```
 
 #### Detener
 
-```bash
+```sh
 systemctl stop <nombre_del_servicio>
 ```
 
 #### No ejecutar en el arranque
 
-```bash
+```sh
 systemctl disable <nombre_del_servicio>
 ```
 
@@ -114,7 +117,7 @@ PM2 es un gestor de procesos daemon para Node.js que te ayudará a gestionar y m
 
 ### Instalando
 
-```bash
+```sh
 npm install pm2@latest -g
 
 # Si usas Yarn
@@ -125,7 +128,7 @@ yarn global add pm2
 
 #### Inicio
 
-```bash
+```sh
 pm2 start --name <nombre_de_la_aplicación> <punto_de_entrada>
 ```
 
@@ -136,7 +139,7 @@ pm2 start --name <nombre_de_la_aplicación> <punto_de_entrada>
 
 Al reiniciar, detienes la aplicación y la vuelves a iniciar.
 
-```bash
+```sh
 pm2 restart <nombre_de_la_aplicación>
 ```
 
@@ -145,13 +148,13 @@ pm2 restart <nombre_de_la_aplicación>
 Al recargar, reemplazas el proceso actual de tu aplicación con uno nuevo, lo que resulta en un tiempo de inactividad de 0 segundos.
 Esto se recomienda para aplicaciones sin estado.
 
-```bash
+```sh
 pm2 reload <nombre_de_la_aplicación>
 ```
 
 #### Stop
 
-```bash
+```sh
 # Una sola aplicación
 pm2 stop <nombre_de_la_aplicación>
 
@@ -163,7 +166,7 @@ pm2 stop all
 
 Al borrar, detienes tu aplicación y eliminas sus registros y métricas.
 
-```bash
+```sh
 pm2 del <nombre_de_la_aplicación>
 ```
 

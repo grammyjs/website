@@ -4,6 +4,22 @@ Aquí hay una colección de preguntas frecuentes sobre [errores comunes](#¿por-
 
 Si este FAQ no responde a tu pregunta, también deberías echar un vistazo al [Bot FAQ](https://core.telegram.org/bots/faq) escrito por el equipo de Telegram.
 
+## ¿Dónde puedo encontrar documentación sobre un método?
+
+En la referencia de la API.
+
+Probablemente quieras entender mejor [esto](../guide).
+
+## ¡A un Método le Falta un Parámetro!
+
+No, no es así.
+
+1. Asegúrate de que tienes instalada la última versión de grammY.
+2. Comprueba si el parámetro es opcional.
+   Si lo es, entonces grammY lo recogerá en el objeto de opciones llamado `other`.
+   Pasa `{ parameter_name: value }` en ese lugar y funcionará.
+   Como siempre, TypeScript autocompletará los nombres de los parámetros por ti.
+
 ## ¿Por qué recibo este error?
 
 ### 400 Bad Request: Cannot parse entities
@@ -18,6 +34,7 @@ Puedes pre-preparar las entidades para Telegram si quieres, y especificar `entid
 El texto de tu mensaje podría entonces ser una cadena regular.
 De esta manera, no tienes que preocuparte de escapar caracteres extraños.
 Esto puede parecer que necesita más código, pero de hecho es la solución mucho más fiable y a prueba de tontos para este problema.
+Y lo que es más importante, esto se simplifica enormemente con nuestro [plugin parse-mode](../plugins/parse-mode.md).
 :::
 
 ### 401 Unauthorized

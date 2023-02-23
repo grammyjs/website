@@ -66,7 +66,7 @@ Ten en cuenta que siempre puedes acceder al texto completo del mensaje a través
 Cuando un usuario visita `https://t.me/your_bot_name?start=payload`, su cliente de Telegram mostrará un botón START que (al hacer clic) envía la cadena del parámetro de la URL junto con el mensaje, en este ejemplo, el texto del mensaje será `"/start payload"`.
 Los clientes de Telegram no mostrarán el payload al usuario (sólo verán `"/start"` en la UI), sin embargo, tu bot lo recibirá.
 grammY extrae este payload por ti, y lo proporciona bajo `ctx.match`.
-En nuestro ejemplo, `ctx.match` contendría la cadena `"payload"`.
+En nuestro ejemplo con el enlace anterior, `ctx.match` contendría la cadena `"payload"`.
 
 La vinculación profunda es útil si quieres construir un sistema de referencias, o rastrear dónde los usuarios descubrieron tu bot.
 Por ejemplo, tu bot podría enviar un mensaje de canal con un botón del [teclado en línea](../plugins/keyboard.md#teclados-en-linea).
@@ -74,4 +74,8 @@ El botón contiene una URL como la de arriba, por ejemplo `https://t.me/your_bot
 Cuando un usuario haga clic en el botón debajo de la publicación, su cliente de Telegram abrirá un chat con tu bot, y mostrará el botón START como se ha descrito anteriormente.
 De esta manera, tu bot puede identificar de dónde viene un usuario, y que hizo clic en el botón debajo de una publicación específica del canal.
 
-Naturalmente, también puedes incrustar estos enlaces en cualquier otro lugar: en la web, en los mensajes, en los códigos QR, etc.
+Naturalmente, también puedes incrustar dichos enlaces en cualquier otro lugar: en la web, en mensajes, en códigos QR, etc.
+
+Echa un vistazo a esta [sección de los documentos de Telegram](https://core.telegram.org/api/links#bot-links) para ver una lista completa de posibles formatos de enlace.
+
+También te permiten pedir a los usuarios que añadan tu bot a grupos o canales, y opcionalmente conceder a tu bot los derechos de administrador necesarios.

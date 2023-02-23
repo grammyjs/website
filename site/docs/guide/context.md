@@ -66,6 +66,7 @@ There are a number of shortcuts installed on the context object.
 | `ctx.senderChat`      | Gets the sender chat object out of `ctx.msg` (for anonymous channel/group messages) |
 | `ctx.from`            | Gets the author of the message, callback query, or other things                     |
 | `ctx.inlineMessageId` | Gets the inline message identifier for callback queries or chosen inline results    |
+| `ctx.entities`        | Gets the message entities and their text, optionally filtered by entity type        |
 
 In other words, you can also do this:
 
@@ -78,6 +79,20 @@ bot.on("message", (ctx) => {
 bot.on("edited_message", (ctx) => {
   // Get the new, edited, text of the message.
   const editedText = ctx.msg.text;
+});
+
+bot.on("message:entities", (ctx) => {
+  // Get all the entities.
+  const entities = ctx.entities();
+
+  // Get the first entity's text.
+  entities[0].text;
+
+  // Get email entities.
+  const emails = ctx.entities("email");
+
+  // Get phone and email entities.
+  const phonesAndEmails = ctx.entities(["email", "phone"]);
 });
 ```
 
@@ -203,7 +218,7 @@ You can install your own properties on the context object if you want.
 The customizations can be easily done in [middleware](./middleware.md).
 
 ::: tip Middlewhat?
-This section requires an understanding of middleware, so in case you have not skipped ahead to [this section](./middleware.md) yet, here is a very brief summary.
+This section requires an understanding of middleware, so in case you have not skipped ahead to this [section](./middleware.md) yet, here is a very brief summary.
 
 All you really need to know is that several handlers can process the same context object.
 There are special handlers which can modify `ctx` before any other handlers are run, and the modifications of the first handler will be visible to all subsequent handlers.
@@ -211,6 +226,7 @@ There are special handlers which can modify `ctx` before any other handlers are 
 
 The idea is to install middleware before you register other listeners.
 You can then set the properties you want inside these handlers.
+If you do `ctx.yourCustomPropertyName = yourCustomValue` inside such a handler, then the property `ctx.yourCustomPropertyName` will be available in the remaining handlers, too.
 
 For illustration purposes, let's say you want to set a property called `ctx.config` on the context object.
 In this example, we will use it to store some configuration about the project so that all handlers have access to it.

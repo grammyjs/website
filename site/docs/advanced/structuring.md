@@ -47,6 +47,9 @@ export const lists = new Composer();
 lists.on("message", (ctx) => {/* ... */});
 ```
 
+> Note that if you use TypeScript, you need to pass your [custom context type](../guide/context.md#customizing-the-context-object) when creating the composer.
+> For example, you'll need to use `new Composer<MyContext>()`.
+
 Optionally, you can use an [error boundary](../guide/errors.md#error-boundaries) to handle all errors that happen inside your module.
 
 Now, in `bot.ts`, you can install this module like so:

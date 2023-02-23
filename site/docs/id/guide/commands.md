@@ -66,7 +66,7 @@ Perlu dicatat bahwa seluruh isi teks pesan selalu bisa diakses melalui `ctx.msg.
 Ketika pengguna mengunjungi `https://t.me/username_bot_kamu?start=migoreng`, aplikasi Telegram mereka akan menampilkan sebuah tombol MULAI yang—kalau dipencet—akan mengirim pesan beserta string dari parameter URL-nya. Dari contoh tadi, isi pesannya akan menjadi `"/start migoreng"`. Nah,`"migoreng"` ini adalah muatannya atau disebut dengan `payload`.
 Aplikasi Telegram akan menyembunyikan isi payload tersebut dari pengguna, yang mereka lihat cuma `"/start"`. Tetapi, bot kamu tetap akan menerima pesannya secara utuh.
 grammY kemudian mengambil payload tersebut, lalu meneruskannya ke `ctx.match`.
-Berdasarkan contoh tadi, `ctx.match` akan berisi string `"migoreng"`.
+Berdasarkan link dari contoh di atas, `ctx.match` akan berisi string `"migoreng"`.
 
 Deep linking akan bermanfaat ketika kamu ingin membuat sistem referral, ataupun melacak dari mana pengguna menemukan bot-mu.
 Contohnya, bot kamu bisa memposting di channel dengan menyertakan sebuah tombol [inline keyboard](../plugins/keyboard.md#keyboard-inline) di bawah postingan tersebut.
@@ -75,3 +75,6 @@ Ketika user memencet tombol tersebut, aplikasi Telegram mereka akan membuka chat
 Dengan cara tersebut, bot-mu bisa mengidentifikasi dari mana pengguna tersebut berasal melalui tombol khusus di bawah postingan channel tadi.
 
 Tentu saja, selain di Telegram, kamu juga bisa menyematkan link tersebut di berbagai tempat: website, email, akun media sosial, kode QR, dll.
+
+Silahkan lihat [materi dokumentasi Telegram](https://core.telegram.org/api/links#bot-links) berikut untuk melihat daftar lengkap format link yang bisa digunakan.
+Salah satunya diantaranya adalah kita bisa menggunakan format link tertentu untuk meminta user menambahkan bot ke dalam grup atau channel, dan bisa juga sekaligus meminta izin akses administrator yang diperlukan untuk bot kamu.

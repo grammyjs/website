@@ -10,7 +10,7 @@ We also assume that you have a Heroku account already.
 
 First, install some dependencies:
 
-```bash
+```sh
 # Create a project directory.
 mkdir grammy-bot
 cd grammy-bot
@@ -90,14 +90,14 @@ Our `package.json` should now be similar to this:
 ```
 
 As mentioned earlier, we have two options for receiving data from Telegram: webhooks and long polling.
-You can learn more about the both advantages and then decide which ones is suitable in [these awesome tips](../guide/deployment-types.md)!
+You can learn more about the both advantages and then decide which ones is suitable in these [awesome tips](../guide/deployment-types.md)!
 
 ## Webhooks
 
 > If you decide to use long polling instead, you can skip this section and jump down to the [section about long polling](#long-polling). :rocket:
 
 In short, unlike long polling, webhook do not run continuously for checking incoming messages from Telegram.
-This will reduce server load and save us a lot of [dyno hours](https://devcenter.heroku.com/articles/free-dyno-hours), especially when you are using the free tier. :grin:
+This will reduce server load and save us a lot of [dyno hours](https://devcenter.heroku.com/articles/eco-dyno-hours), especially when you are using the Eco plan. :grin:
 
 Okay, let us continue!
 Remember we have created `bot.ts` earlier?
@@ -132,7 +132,7 @@ app.listen(Number(process.env.PORT), async () => {
 Let's take a look at our code above:
 
 - `process.env`: Remember, NEVER store credentials in our code!
-  For creating [environment variables](https://www.freecodecamp.org/news/using-environment-variables-the-right-way/) in Heroku, head over to [this guide](https://devcenter.heroku.com/articles/config-vars).
+  For creating [environment variables](https://www.freecodecamp.org/news/using-environment-variables-the-right-way/) in Heroku, head over to this [guide](https://devcenter.heroku.com/articles/config-vars).
 - `secretPath`: It could be our `BOT_TOKEN` or any random string.
   It is best practice to hide our bot path as [explained by Telegram](https://core.telegram.org/bots/api#setwebhook).
 
@@ -209,7 +209,7 @@ Straight to [Deployment Section](#deployment) everyone! :muscle:
 ## Long Polling
 
 ::: warning Your Script Will Run Continuously When Using Long Polling
-Unless you know how to handle this behavior, make sure you have enough [dyno hours](https://devcenter.heroku.com/articles/free-dyno-hours).
+Unless you know how to handle this behavior, make sure you have enough [dyno hours](https://devcenter.heroku.com/articles/eco-dyno-hours).
 :::
 
 > Consider using webhooks?
@@ -254,7 +254,7 @@ Complete these stages first!
 
 Run this code in your terminal to compile the TypeScript files to JavaScript:
 
-```bash
+```sh
 npx tsc
 ```
 
@@ -262,7 +262,7 @@ If it runs successfully and does not print any errors, our compiled files should
 
 ### Set up `Procfile`
 
-For the time being, `Heroku` has several [types of dynos](https://devcenter.heroku.com/articles/free-dyno-hours).
+For the time being, `Heroku` has several [types of dynos](https://devcenter.heroku.com/articles/dyno-types).
 Two of them are:
 
 - **Web dynos**:
@@ -314,7 +314,7 @@ Here is the link for the installation:
 Assuming that you already have them in your machine, and you have a terminal open in the root of our project's directory.
 Now initialize a local git repository by running this code in your terminal:
 
-```bash
+```sh
 git init
 ```
 
@@ -373,7 +373,7 @@ Our final folder structure should now look like this:
 
 Commit files to our git repository:
 
-```bash
+```sh
 git add .
 git commit -m "My first commit"
 ```
@@ -386,7 +386,7 @@ Otherwise, run `New app`.
 <CodeGroup>
   <CodeGroupItem title="New app" active>
 
-```bash
+```sh
 heroku create
 git remote -v
 ```
@@ -394,7 +394,7 @@ git remote -v
 </CodeGroupItem>
   <CodeGroupItem title="Existing app" active>
 
-```bash
+```sh
 heroku git:remote -a <myApp>
 ```
 
@@ -405,13 +405,13 @@ heroku git:remote -a <myApp>
 
 Finally, press the _red button_ and liftoff! :rocket:
 
-```bash
+```sh
 git push heroku main
 ```
 
 If it doesn't work, it's probably our git branch is not `main` but `master`.
 Press this _blue button_ instead:
 
-```bash
+```sh
 git push heroku master
 ```
