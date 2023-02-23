@@ -1,7 +1,7 @@
 # Hosting: Cloudflare Workers
 
 [Cloudflare Workers](https://workers.cloudflare.com/) is a public serverless computing platform that offers a convenient and simple solution for running JavaScript at the edge.
-With the ability to handle HTTP traffic and work with [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API), building Telegram bots becomes a breeze.
+Having the ability to handle HTTP traffic and being based on the [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API), building Telegram bots becomes a breeze.
 In addition, you can even develop [Web Apps](https://core.telegram.org/bots/webapps) at the edge, all for free within certain quotas.
 
 This guide will take you through the process of hosting your Telegram bots on Cloudflare Workers.
