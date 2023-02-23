@@ -18,7 +18,7 @@ Do this by opening a terminal and typing:
 <CodeGroup>
  <CodeGroupItem title="NPM" active>
 
-```bash
+```sh
 # Create a new directory and change into it.
 mkdir my-bot
 cd my-bot
@@ -34,7 +34,7 @@ npm install grammy
 </CodeGroupItem>
  <CodeGroupItem title="Yarn">
 
-```bash
+```sh
 # Create a new directory and change into it.
 mkdir my-bot
 cd my-bot
@@ -50,7 +50,7 @@ yarn add grammy
 </CodeGroupItem>
   <CodeGroupItem title="pnpm">
 
-```bash
+```sh
 # Create a new directory and change into it.
 mkdir my-bot
 cd my-bot
@@ -138,7 +138,7 @@ bot.start();
 
 Compile the code by running
 
-```bash
+```sh
 npx tsc
 ```
 
@@ -147,7 +147,7 @@ This generates the JavaScript file `bot.js`.
 
 You can now run the bot by executing
 
-```bash
+```sh
 node bot.js
 ```
 
@@ -159,7 +159,7 @@ Head over to Telegram to watch your bot respond to messages!
 ::: tip Enabling Logging
 You can enable basic logging by running
 
-```bash
+```sh
 export DEBUG="grammy*"
 ```
 
@@ -172,6 +172,12 @@ This makes it easier to debug your bot.
 > This guide assumes that you have [Deno](https://deno.land) installed.
 
 Create a new directory somewhere and create a new empty text file in it, e.g. called `bot.ts`.
+
+```sh
+mkdir ./my-bot
+cd ./my-bot
+touch bot.ts
+```
 
 Now, it's time to open Telegram to create a bot account, and obtain an authentication token for it.
 Talk to [@BotFather](https://t.me/BotFather) to do this.
@@ -203,7 +209,7 @@ bot.start();
 
 You can now run the bot by executing
 
-```bash
+```sh
 deno run --allow-net bot.ts
 ```
 
@@ -215,7 +221,7 @@ Head over to Telegram to watch your bot respond to messages!
 ::: tip Enabling Logging
 You can enable basic logging by running
 
-```bash
+```sh
 export DEBUG="grammy*"
 ```
 
@@ -224,7 +230,7 @@ This makes it easier to debug your bot.
 
 You now need to run the bot using
 
-```bash
+```sh
 deno run --allow-net --allow-env bot.ts
 ```
 

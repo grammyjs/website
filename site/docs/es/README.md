@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: /Y.png
+heroImage: /images/Y.png
 actions:
   - text: Comenzar
     link: /es/guide/getting-started.html
@@ -84,5 +84,5 @@ bot.start();
 
 ---
 
-grammY es compatible con la API 6.4 de Telegram Bot que fue [lanzada](https://core.telegram.org/bots/api#december-30-2022) el 30 de Diciembre de 2022.
-(Último punto destacado: Media Spoilers)
+grammY es compatible con la API 6.5 de Telegram Bot que fue [lanzada](https://core.telegram.org/bots/api#february-3-2023) el 3 de Febrero de 2023.
+(Último punto destacado: Solicitudes de usuarios y chat)

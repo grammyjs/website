@@ -4,7 +4,7 @@ ratelimiter is a rate-limiting middleware for Telegram bots made with grammY or 
 In simple terms, it is a plugin that helps you deflect heavy spamming in your bots.
 To understand ratelimiter better, you can take a look at the following illustration:
 
-![ratelimiter's role in deflecting spam](/ratelimiter-role.png)
+![ratelimiter's role in deflecting spam](/images/ratelimiter-role.png)
 
 ## How Does It Work Exactly?
 
@@ -200,7 +200,7 @@ import { limit } from "@grammyjs/ratelimiter";
 bot.use(
   limit({
     keyGenerator: (ctx) => {
-      if (ctx.chat?.type === "group" || ctx.chat?.type === "supergroup") {
+      if (ctx.hasChatType(["group", "supergroup"])) {
         // Note that the key should be a number in string format, such as "123456789".
         return ctx.chat.id.toString();
       }
@@ -218,7 +218,7 @@ const { limit } = require("@grammyjs/ratelimiter");
 bot.use(
   limit({
     keyGenerator: (ctx) => {
-      if (ctx.chat?.type === "group" || ctx.chat?.type === "supergroup") {
+      if (ctx.hasChatType(["group", "supergroup"])) {
         // Note that the key should be a number in string format, such as "123456789".
         return ctx.chat.id.toString();
       }
@@ -236,7 +236,7 @@ import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
 bot.use(
   limit({
     keyGenerator: (ctx) => {
-      if (ctx.chat?.type === "group" || ctx.chat?.type === "supergroup") {
+      if (ctx.hasChatType(["group", "supergroup"])) {
         // Note that the key should be a number in string format, such as "123456789".
         return ctx.chat.id.toString();
       }

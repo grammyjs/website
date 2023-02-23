@@ -10,7 +10,7 @@ Kami juga mengasumsikan kalau kamu sudah mempunyai akun Heroku.
 
 Pertama-tama, instal beberapa dependency.
 
-```bash
+```sh
 # Buat sebuah direktori proyek.
 mkdir grammy-bot
 cd grammy-bot
@@ -257,7 +257,7 @@ Selesaikan tahapan-tahapan ini dulu!
 
 Jalankan kode ini di terminal untuk meng-compile file TypeScript menjadi JavaScript:
 
-```bash
+```sh
 npx tsc
 ```
 
@@ -317,7 +317,7 @@ Berikut link cara penginstalannya:
 Kami mengasumsikan kamu telah menginstal kedua software tersebut, dan kamu juga sudah membuka terminal yang mengarah ke direktori root proyek kita.
 Sekarang, buat repositori git lokal dengan menjalankan kode ini di terminal:
 
-```bash
+```sh
 git init
 ```
 
@@ -376,7 +376,7 @@ Hasil akhir struktur folder kita akan tampak seperti ini:
 
 Commit file-file tersebut ke repositori git kita:
 
-```bash
+```sh
 git add .
 git commit -m "Commit pertamaku"
 ```
@@ -389,7 +389,7 @@ Kalau belum punya, jalankan `New app`.
 <CodeGroup>
   <CodeGroupItem title="New app" active>
 
-```bash
+```sh
 heroku create
 git remote -v
 ```
@@ -397,7 +397,7 @@ git remote -v
 </CodeGroupItem>
   <CodeGroupItem title="Existing app" active>
 
-```bash
+```sh
 heroku git:remote -a <myApp>
 ```
 
@@ -408,13 +408,13 @@ heroku git:remote -a <myApp>
 
 Terakhir, tekan _tombol merah_ berikut dan meluncur! :rocket:
 
-```bash
+```sh
 git push heroku main
 ```
 
 Jika kode di atas tidak bekerja, kemungkinan besar branch git kita bukanlah `main`, tetapi `master`.
 Kalau begitu, tekan _tombol biru_ berikut:
 
-```bash
+```sh
 git push heroku master
 ```

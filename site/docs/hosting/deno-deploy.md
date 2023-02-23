@@ -5,7 +5,7 @@ This guide tells you about the ways you can host your grammY bots on [Deno Deplo
 Please note that this guide is only for Deno users, and you need to have a [GitHub](https://github.com) account for creating a [Deno Deploy](https://deno.com/deploy) account.
 
 Deno Deploy is ideal for most simple bots, and you should note that not all Deno features are available for apps running on Deno Deploy.
-For example, there is no file system on Deno Deploy.
+For example, the platform only supports a [limited set](https://deno.com/deploy/docs/runtime-fs) of the file system APIs available in Deno.
 It's just like the other many serverless platforms, but dedicated for Deno apps.
 
 The result of this tutorial [can be seen in our example bots repository](https://github.com/grammyjs/examples/tree/main/deno-deploy).
@@ -70,7 +70,7 @@ Here, we are using the bot token (`/<bot token>`).
 4. [Create an access token](https://dash.deno.com/user/access-tokens).
 5. Run the following command:
 
-```bash
+```sh
 deployctl deploy --project <project> ./mod.ts --prod --token <token>
 ```
 
@@ -89,7 +89,7 @@ deployctl deploy --project <project> ./mod.ts --prod --token <token>
 After getting your app running, you should configure your bot's webhook settings to point to your app.
 To do that, send a request to
 
-```text
+```text:no-line-numbers
 https://api.telegram.org/bot<token>/setWebhook?url=<url>
 ```
 
