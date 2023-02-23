@@ -79,16 +79,25 @@ grammY viene con una cobertura completa de tipos de la API del Bot.
 El repositorio [`@grammyjs/types`](https://github.com/grammyjs/types) contiene las definiciones de tipos que grammY utiliza internamente.
 Estas definiciones de tipos también se exportan para que puedas usarlas en tu propio código.
 
+#### Definiciones de tipos en Deno
+
+En Deno, puede simplemente importar definiciones de tipos desde `types.ts`, que está justo al lado de `mod.ts`:
+
+```ts
+import { type Chat } from "https://deno.land/x/grammy/types.ts";
+```
+
 #### Definiciones de tipos en Node.js
 
-En Node.js, necesitas importar los tipos desde `grammy/types`.
+On Node.js, things are more complicated.
+You need to import the types from `grammy/types`.
 Por ejemplo, puedes acceder al tipo `Chat` de esta manera:
 
 ```ts
 import { type Chat } from "grammy/types";
 ```
 
-Oficialmente, Node.js sólo soporta la importación desde sub-rutas correctamente desde Node.js 16.
+Sin embargo, oficialmente, Node.js sólo soporta la importación desde sub-rutas correctamente desde Node.js 16.
 En consecuencia, TypeScript requiere que el `moduleResolution` se establezca en `node16` o `nodenext`.
 Ajusta tu `tsconfig.json` en consecuencia y añade la línea resaltada:
 
@@ -102,7 +111,7 @@ Ajusta tu `tsconfig.json` en consecuencia y añade la línea resaltada:
 }
 ```
 
-Sin embargo, esto también puede funcionar a veces sin ajustar la configuración de TypeScript.
+En algunos casos, esto también puede funcionar sin ajustar la configuración de TypeScript.
 
 ::: warning Autocompletar incorrecto
 
@@ -111,14 +120,6 @@ Si no cambias tu archivo `tsconfig.json` como se ha descrito anteriormente, pued
 Podrían cambiarse arbitrariamente en cualquier momento, por lo que te aconsejamos encarecidamente que importes desde `grammy/types` en su lugar.
 
 :::
-
-#### Definiciones de tipos en Deno
-
-En Deno, puedes simplemente importar definiciones de tipos desde `types.ts` que está justo al lado de `mod.ts`:
-
-```ts
-import { type Chat } from "https://deno.land/x/grammy/types.ts";
-```
 
 ### Haciendo llamadas a la API en bruto
 

@@ -79,16 +79,25 @@ grammY ships with complete type coverage of the Bot API.
 The [`@grammyjs/types`](https://github.com/grammyjs/types) repository contains the type definitions that grammY uses internally.
 These type definitions are also exported so you can use them in your own code.
 
+#### Type Definitions on Deno
+
+On Deno, you can simply import type definitions from `types.ts`, which is right next to `mod.ts`:
+
+```ts
+import { type Chat } from "https://deno.land/x/grammy/types.ts";
+```
+
 #### Type Definitions on Node.js
 
-On Node.js, you need to import the types from `grammy/types`.
+On Node.js, things are more complicated.
+You need to import the types from `grammy/types`.
 For example, you get access to the `Chat` type like this:
 
 ```ts
 import { type Chat } from "grammy/types";
 ```
 
-Officially, Node.js only supports importing from sub-paths properly since Node.js 16.
+However, officially, Node.js only supports importing from sub-paths properly since Node.js 16.
 Consequently, TypeScript requires the `moduleResolution` to be set to `node16` or `nodenext`.
 Adjust your `tsconfig.json` accordingly and add the highlighted line:
 
@@ -102,7 +111,7 @@ Adjust your `tsconfig.json` accordingly and add the highlighted line:
 }
 ```
 
-However, this can sometimes also work without adjusting your TypeScript configuration.
+In some cases, this can also work without adjusting your TypeScript configuration.
 
 ::: warning Wrong Autocomplete
 
@@ -111,14 +120,6 @@ If you do not change your `tsconfig.json` file as described above, it may happen
 They could be changed arbitrarily at any point in time, so we strongly advise you to import from `grammy/types` instead.
 
 :::
-
-#### Type Definitions on Deno
-
-On Deno, you can simply import type definitions from `types.ts` which is right next to `mod.ts`:
-
-```ts
-import { type Chat } from "https://deno.land/x/grammy/types.ts";
-```
 
 ### Making Raw API Calls
 
