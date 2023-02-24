@@ -89,8 +89,8 @@ import { type Chat } from "https://deno.land/x/grammy/types.ts";
 
 #### Definiciones de tipos en Node.js
 
-On Node.js, things are more complicated.
-You need to import the types from `grammy/types`.
+En Node.js, las cosas son más complicadas.
+Necesitas importar los tipos desde `grammy/types`.
 Por ejemplo, puedes acceder al tipo `Chat` de esta manera:
 
 ```ts
