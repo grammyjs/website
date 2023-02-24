@@ -118,4 +118,4 @@ npm run start
 ```
 
 Once the development server has started, you can test your bot by sending sample updates to it using tools like `curl`, [Insomnia](https://insomnia.rest), or [Postman](https://postman.com).
-Refer to [here](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates) for example updates [here](https://core.telegram.org/bots/api#update) for more information on the update structure.
+Refer to [here](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates) for update examples and [here](https://core.telegram.org/bots/api#update) for more information on the update structure.
