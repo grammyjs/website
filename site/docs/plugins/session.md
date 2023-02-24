@@ -326,6 +326,46 @@ If you must use the option (which is of course still possible), you should know 
 Make sure you understand the consequences of this configuration by reading [this](../guide/deployment-types.md) article and especially [this](./runner.md#sequential-processing-where-necessary) one.
 :::
 
+### Chat Migrations
+
+If you are using sessions for groups, you should be aware that Telegram migrates regular groups to supergroups under certain circumstances (e.g. [here](https://github.com/telegramdesktop/tdesktop/issues/5593)).
+
+This migration only occurs once for each group, but it can cause inconsistencies.
+This is because the migrated chat is technically a completely different chat that has a different identifier, and hence its session will be identified differently.
+
+Currently, there is no safe solution for this problem because messages from the two chats are also differently identified.
+This can lead to data races.
+However, there are several ways of dealing with this issue:
+
+- Ignoring the problem.
+  The bot's session data will effectively reset when a group is migrated.
+  Simple, reliable, default behavior, but potentially unexpected once per chat.
+  For example, if a migration happens while a user is in a conversation powered by the [conversations plugin](./conversations.md), the conversation will be reset.
+
+- Only storing temporary data (or data with timeouts) in the session, and using a database for the important things that need to be migrated when a chat migrates.
+  This can then use transactions and custom logic to handle concurrent data access from the old and the new chat.
+  A lot of effort and has a performance cost, but the only truly reliable way to solve this problem.
+
+- It is theoretically possible to implement a workaround that matches both chats **without guarantee of reliability**.
+  The Telegram Bot API sends a migration update for each of the two chats once the migration was triggered (see the properties `migrate_to_chat_id` or `migrate_from_chat_id` in the [Telegram API Docs](https://core.telegram.org/bots/api#message)).
+  The issue is that there is no guarantee that these messages are sent before a new message in the supergroup appears.
+  Hence, the bot could receive a message from the new supergroup before it is aware of any migration and thus, it can not match the two chats, resulting in the aforementioned problems.
+
+- Another workaround would be to limit the bot only for supergroups with [filtering](../guide/filter-queries.md) (or limit only session related features to supergroups).
+  However, this shifts the problematic / inconvenience to the users.
+
+- Letting the users decide explicitly.
+  ("This chat was migrated, do you want to transfer the bot data?")
+  Much more reliable and transparent than automatic migrations due to the artificially added delay, but worse UX.
+
+Finally, it is up to the developer to decide how to deal with this edge case.
+Depending on the bot functionalities one might choose one way or another.
+If the data in question is short-lived (e.g. temporary, timeouts involved) the migration is less of a problem.
+A user would experience the migration as a hiccup (if the timing is bad) and would simply have to rerun the feature.
+
+Ignoring the problem is surely the easiest way, nevertheless it is important to know about this behavior.
+Otherwise it can cause confusion and might cost hours of debugging time.
+
 ### Storing Your Data
 
 In all examples above, the session data is stored in your RAM, so as soon as your bot is stopped, all data is lost.
