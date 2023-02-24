@@ -326,6 +326,46 @@ Telegram mengirim webhook secara berurutan untuk setiap chat, oleh karena itu se
 Jika kamu terpaksa harus menggunakan opsi tersebut (yang mana masih bisa dilakukan), kamu harus paham betul dengan tindakan yang kamu lakukan. Pastikan memahami konsekuensi menggunakan konfigurasi ini dengan membaca [materi berikut](../guide/deployment-types.md), khususnya [yang ini](./runner.md#pemrosesan-secara-berurutan-jika-diperlukan).
 :::
 
+### Migrasi Chat
+
+Jika kamu menggunakan session untuk grup, kamu perlu tahu bahwa dalam kondisi tertentu (misalnya [di sini](https://github.com/telegramdesktop/tdesktop/issues/5593)), Telegram akan melakukan migrasi dari grup biasa menjadi supergroup.
+
+Meski migrasi hanya terjadi sekali untuk setiap grup, namun proses tersebut dapat menyebabkan masalah tersendiri.
+Sebab secara teknis, chat yang telah dimigrasi merupakan jenis chat yang berbeda, yang memiliki identifier yang berbeda pula. Sehingga, session yang digunakan pun juga berbeda.
+
+Hingga detik ini, kami masih belum menemukan solusi yang tepat untuk menyelesaikan permasalahan tersebut, sebab pesan dari kedua chat akan diidentifikasikan secara berbeda. Kondisi ini dapat menimbulkan data race.
+Meski begitu, terdapat beberapa cara untuk mengatasi masalah ini:
+
+- Mengabaikan masalah tersebut.
+  Data untuk session bot terkait akan direset ketika sebuah grup dimigrasi.
+  Sederhana, dapat diandalkan, serta memanfaatkan pengaturan default, namun dapat menimbulkan efek yang tidak diinginkan.
+  Misalnya, jika migrasi terjadi ketika user sedang berada di dalam suatu percakapan yang menggunakan [plugin conversations](./conversations.md), percakapan tersebut juga akan ikut direset.
+
+- Hanya menyimpanan data sementara---atau data dengan waktu yang terbatas (timeout)---di session, dan menggunakan database untuk menyimpan hal-hal penting untuk keperluan migrasi.
+  Dengan begitu kamu dapat memanfaatkan transaksi dan logika khusus untuk menangani akses data chat lama dan baru secara bersamaan.
+  Ini adalah cara yang paling tepat dan lebih bisa diandalkan, namun membutuhkan usaha dan performa lebih.
+
+- Secara teori, kita bisa mencocokkan kedua chat tersebut.
+  Namun, **tidak ada jaminan cara ini bisa diandalkan**.
+  API Bot Telegram akan mengirim sebuah update migrasi untuk masing-masing chat ketika migrasi terjadi (lihat property `migrate_to_chat_id` atau `migrate_from_chat_id` di [dokumentasi API Telegram](https://core.telegram.org/bots/api#message)).
+  Masalahnya, tidak ada jaminan kalau update tersebut dikirim sebelum pesan baru muncul di supergroup.
+  Bot kamu bisa saja menerima pesan dari supergroup terlebih dahulu tanpa mengetahui kalau migrasi telah dilakukan.
+  Akibatnya, ia tidak bisa mencocokkan kedua chat, yang menimbulkan masalah seperti yang telah kita bahas di atas.
+
+- Solusi lainnya adalah memanfaatkan filter untuk membatasi bot supaya bisa digunakan di supergroup saja, atau bisa juga membatasi fitur yang terkait dengan session hanya untuk supergroup.
+  Namun, kenyamanan user bisa terganggu dengan cara ini.
+
+- Membiarkan user untuk membuat keputusan secara eksplisit, "Chat ini telah dimigrasi, apakah Anda ingin melakukan migrasi data bot-nya juga?".
+  Dengan menerapkan penundaan tersebut, cara ini jauh lebih bisa diandalkan dan transparan daripada melakukan migrasi secara otomatis, namun memperburuk pengalaman pengguna (UX).
+
+Pada akhirnya, keputusan ada pada developer untuk mengatasi permasalahan tersebut.
+Karena fungsionalitas setiap bot berbeda, solusi yang dipilih bisa saja lebih baik dari lainnya.
+Apabila data session hanya berumur pendek (misal menerapkan timeout sementara), proses migrasi kemungkinan besar tidak akan menjadi masalah.
+Ketika proses migrasi terjadi, user hanya mengalami gangguan kecil (jika waktunya bersamaan) dan mereka cukup menjalankan ulang fitur tersebut.
+
+Mengabaikan permasalahan ini tentu merupakan cara yang paling mudah, namun perilaku ini penting untuk diketahui.
+Jika sebelumnya belum tahu, bisa jadi kamu akan kebingungan dan memakan waktu yang cukup lama untuk men-debug kode.
+
 ### Menyimpan Data
 
 Semua data session dari contoh-contoh di atas disimpan di dalam RAM kamu, sehingga ketika bot kamu berhenti bekerja, semua data tersebut akan hilang.
