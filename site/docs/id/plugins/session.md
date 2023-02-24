@@ -352,7 +352,7 @@ Meski begitu, terdapat beberapa cara untuk mengatasi masalah ini:
   Bot kamu bisa saja menerima pesan dari supergroup terlebih dahulu tanpa mengetahui kalau migrasi telah dilakukan.
   Akibatnya, ia tidak bisa mencocokkan kedua chat, yang menimbulkan masalah seperti yang telah kita bahas di atas.
 
-- Solusi lainnya adalah memanfaatkan filter untuk membatasi bot supaya bisa digunakan di supergroup saja, atau bisa juga membatasi fitur yang terkait dengan session hanya untuk supergroup.
+- Solusi lainnya adalah memanfaatkan [filter](../guide/filter-queries.md) untuk membatasi bot supaya bisa digunakan di supergroup saja, atau bisa juga membatasi fitur yang terkait dengan session hanya untuk supergroup.
   Namun, kenyamanan user bisa terganggu dengan cara ini.
 
 - Membiarkan user untuk membuat keputusan secara eksplisit, "Chat ini telah dimigrasi, apakah Anda ingin melakukan migrasi data bot-nya juga?".

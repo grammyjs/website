@@ -351,7 +351,7 @@ However, there are several ways of dealing with this issue:
   The issue is that there is no guarantee that these messages are sent before a new message in the supergroup appears.
   Hence, the bot could receive a message from the new supergroup before it is aware of any migration and thus, it can not match the two chats, resulting in the aforementioned problems.
 
-- Another workaround would be to limit the bot only for supergroups with filtering (or limit only session related features to supergroups).
+- Another workaround would be to limit the bot only for supergroups with [filtering](../guide/filter-queries.md) (or limit only session related features to supergroups).
   However, this shifts the problematic / inconvenience to the users.
 
 - Letting the users decide explicitly.
