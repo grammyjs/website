@@ -1242,7 +1242,7 @@ Dan masalah-masalah lainnya.
 
 Oleh karena itu, plugin conversations melakukannya dengan cara yang berbeda.
 Benar-benar berbeda.
-Seperti yang telah dijabarkan di awal, **Ia tidak akan membuat bot kamu menunggu _begitu saja_**, meski kita bisa saja memprogram conversations seolah-olah itu terjadi.
+Seperti yang telah dijabarkan di awal, **pemanggilan `wait` tidak akan membuat bot kamu menunggu _begitu saja_**, meski kita bisa saja memprogram conversations seolah-olah itu terjadi.
 
 Plugin conversations akan memantau proses eksekusi function kamu.
 Ketika pemanggilan wait dilakukan, ia akan men-serialize state dari eksekusi tersebut ke dalam session, yang selanjutnya akan disimpan dengan aman di sebuah database.
