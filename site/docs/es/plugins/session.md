@@ -351,7 +351,7 @@ Sin embargo, hay varias maneras de tratar este problema:
   El problema es que no hay garantía de que estos mensajes se envíen antes de que aparezca un nuevo mensaje en el supergrupo.
   Por lo tanto, el bot podría recibir un mensaje del nuevo supergrupo antes de que se dé cuenta de cualquier migración y, por lo tanto, no puede hacer coincidir los dos chats, lo que genera los problemas antes mencionados.
 
-- Otra solución alternativa sería limitar el bot solo para los supergrupos con filtrado (o limitar solo las funciones relacionadas con la sesión a los supergrupos).
+- Otra solución alternativa sería limitar el bot solo para los supergrupos con [filtrado](../guide/filter-queries.md) (o limitar solo las funciones relacionadas con la sesión a los supergrupos).
   Sin embargo, esto traslada la problemática/inconveniencia a los usuarios.
 
 - Dejar que los usuarios decidan explícitamente.
