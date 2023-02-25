@@ -44,7 +44,7 @@ https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<REGION>.<MY_PROJ
 ```
 
 Replace <BOT_TOKEN> with your real bot token.
-Replace <REGION> with the name of the region you chose to deploy your function to. Replace <PROJECT_NAME> with the name of your firebase project.\
+Replace <REGION> with the name of the region you chose to deploy your function to. Replace <PROJECT_NAME> with the name of your firebase project.
 The firebase CLI should give you the whole URL to your cloud function, so you can just paste it after the `?url=`
 
 You should now see this in your browser window.
