@@ -39,7 +39,9 @@ All that's left to do is to tell Telegram where to send the updates.
 You can do this by calling setWebhook.
 For example, open a new tab in your browser and visit this URL:
 
-`https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<REGION>.<MY_PROJECT>.cloudfunctions.net/helloworld`
+```text:no-line-numbers
+https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<REGION>.<MY_PROJECT>.cloudfunctions.net/helloworld
+```
 
 Replace <BOT_TOKEN> with your real bot token.
 Replace <REGION> with the name of the region you chose to deploy your function to. Replace <PROJECT_NAME> with the name of your firebase project.\
