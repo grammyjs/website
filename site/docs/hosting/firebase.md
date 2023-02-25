@@ -57,5 +57,5 @@ You should now see this in your browser window.
 }
 ```
 
-Done! Your bot is working now.\
+Done! Your bot is working now.
 Head over to Telegram and watch it respond to messages!
