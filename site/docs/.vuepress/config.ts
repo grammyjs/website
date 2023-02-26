@@ -1,4 +1,4 @@
-import { defaultTheme, defineUserConfig } from "vuepress-vite";
+import { defaultTheme, defineUserConfig, viteBundler } from "vuepress-vite";
 import * as config from "./configs";
 import { betterLineBreaks } from "./plugins/better-line-breaks";
 import { currentVersions } from "./plugins/current-versions/plugin";
@@ -11,7 +11,13 @@ export default defineUserConfig({
     ...config.siteId,
   },
   shouldPrefetch: true,
-
+  bundler: viteBundler({
+    viteOptions: {
+      ssr: {
+        noExternal: ['vuetify']
+      }
+    }
+  }),
   theme: defaultTheme({
     logo: "/images/Y.png",
     locales: {
