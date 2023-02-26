@@ -18,7 +18,7 @@ This allows for over 650 different filters to be used, and we may add more over 
 Every valid filter can be auto-completed in your code editor.
 Hence, you can simply type `bot.on("")`, open auto-complete, and search through all queries by typing something.
 
-![Filter Query Search](/filter-query-search.png)
+![Filter Query Search](/images/filter-query-search.png)
 
 The type inference of `bot.on()` will comprehend the filter query you picked.
 It therefore tightens a few types on the context that are known to exist.
@@ -226,7 +226,7 @@ This allows for powerful message handling patterns.
 bot.on(":forward_date").command("help"); // forwarded /help commands
 
 // Only handle commands in private chats.
-const pm = bot.filter((ctx) => ctx.chat?.type === "private");
+const pm = bot.chatType("private");
 pm.command("start");
 pm.command("help");
 ```

@@ -56,7 +56,7 @@ const inlineKeyboard = new InlineKeyboard()
 
 ##### Hasil
 
-![Hasil contoh 1](/inline-keyboard-example-1.webp)
+![Hasil contoh 1](/images/inline-keyboard-example-1.webp)
 
 #### Contoh 2
 
@@ -72,7 +72,7 @@ const inlineKeyboard = new InlineKeyboard()
 
 ##### Hasil
 
-![Hasil contoh 2](/inline-keyboard-example-2.webp)
+![Hasil contoh 2](/images/inline-keyboard-example-2.webp)
 
 #### Contoh 3
 
@@ -89,7 +89,7 @@ const inlineKeyboard = new InlineKeyboard().url(
 
 ##### Hasil
 
-![Hasil contoh 3](/inline-keyboard-example-3.webp)
+![Hasil contoh 3](/images/inline-keyboard-example-3.webp)
 
 ### Mengirim Keyboard Inline
 
@@ -177,7 +177,7 @@ Kamu bisa menyimak pesan teks menggunakan `bot.on("message:text")` ataupun `bot.
 
 Berikut ketiga contoh cara membuat keyboard custom dengan tombol `text` di dalamnya.
 
-Kamu juga bisa meminta nomor telepon dengan `requestContact`, lokasi dengan `requestLocation`, dan voting dengan `requestPoll`.
+Kamu juga bisa meminta nomor telepon dengan `requestContact`, lokasi dengan `requestLocation`, voting dengan `requestPoll`, user dengan `requestUser`, dan chat dengan `requestChat`.
 
 #### Contoh 1
 
@@ -195,7 +195,7 @@ const keyboard = new Keyboard()
 
 ##### Hasil
 
-![Hasil Contoh 1](/keyboard-example-1.webp)
+![Hasil Contoh 1](/images/keyboard-example-1.webp)
 
 #### Contoh 2
 
@@ -213,7 +213,7 @@ const keyboard = new Keyboard()
 
 ##### Hasil
 
-![Hasil Contoh 2](/keyboard-example-2.webp)
+![Hasil Contoh 2](/images/keyboard-example-2.webp)
 
 #### Contoh 3
 
@@ -229,7 +229,7 @@ const keyboard = new Keyboard()
 
 ##### Hasil
 
-![Hasil Contoh 3](/keyboard-example-3.webp)
+![Hasil Contoh 3](/images/keyboard-example-3.webp)
 
 ### Mengirim Keyboard Custom
 
@@ -245,7 +245,20 @@ await ctx.reply(text, {
 Umumnya, semua method yang mengirim pesan selain pesan teks mendukung opsi-opsi yang serupa, seperti yang sudah dijelaskan di [Referensi API Bot Telegram](https://core.telegram.org/bots/api).
 
 Kamu juga bisa memberi beberapa property ke keyboard kamu dengan cara memanggil method khusus.
-Alih-alih menambahkan tombol baru, method-method berikut dapat mengubah perilaku sebuah keyboard:
+Alih-alih menambahkan tombol baru, method-method tersebut mengubah perilaku dari sebuah keyboard.
+
+#### Keyboard Persisten
+
+Secara bawaan, user bisa menggunakan sebuah tombol icon yang berfungsi untuk menampilkan dan menyembunyikan keyboard custom yang disetel oleh bot kamu.
+
+Kamu bisa memanggil `persistent` agar keyboard custom tetap ditampilkan ketika keyboard sistem disembunyikan.
+Dengan begitu, keyboard akan selalu ditampilkan ke user, baik itu keyboard custom ataupun keyboard sistem.
+
+```ts
+new Keyboard()
+  .text("Lewati")
+  .persistent();
+```
 
 #### Mengatur Ukuran Keyboard Custom
 

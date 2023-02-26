@@ -1,19 +1,18 @@
-import { Client } from "postgres/mod.ts";
+import { Collection, MongoClient } from "mongo/mod.ts";
 import env from "./env.ts";
 
 export interface Notification {
-  pr_number: number;
-  message_id: number;
+  prNumber: number;
+  messageId: number;
   text: string;
 }
 
-export const client = new Client(env.DATABASE_URI);
+export const client = new MongoClient();
+let notifications: Collection<Notification>;
 
-export async function connectAndInitialize() {
-  await client.connect();
-  await client.queryArray(
-    "CREATE TABLE IF NOT EXISTS notifications (pr_number INT PRIMARY KEY, message_id INT, text VARCHAR);",
-  );
+export async function connect() {
+  const database = await client.connect(env.MONGODB_URI);
+  notifications = database.collection("notifications");
 }
 
 export function createNotification(
@@ -21,24 +20,20 @@ export function createNotification(
   messageId: number,
   text: string,
 ) {
-  return client
-    .queryArray`INSERT INTO notifications VALUES (${prNumber}, ${messageId}, ${text});`;
+  return notifications.updateOne({ prNumber, messageId }, { $set: { text } }, {
+    upsert: true,
+  });
 }
 
-export async function getNotification(prNumber: number) {
-  return (
-    await client.queryObject<
-      Notification
-    >`SELECT * FROM notifications WHERE pr_number=${prNumber};`
-  ).rows[0];
+export function getNotification(prNumber: number) {
+  return notifications.findOne({ prNumber });
 }
 
-export function updateNotification(messageId: number, text: string) {
-  return client
-    .queryArray`UPDATE notifications SET text=${text} WHERE message_id=${messageId};`;
+export async function updateNotification(messageId: number, text: string) {
+  return (await notifications.updateOne({ messageId }, { $set: { text } }))
+    .modifiedCount > 0;
 }
 
-export function deleteNotification(prNumber: number) {
-  return client
-    .queryArray`DELETE FROM notifications WHERE pr_number=${prNumber};`;
+export async function deleteNotification(prNumber: number) {
+  return (await notifications.deleteOne({ prNumber })) > 0;
 }

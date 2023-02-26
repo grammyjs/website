@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: /Y.png
+heroImage: /images/Y.png
 actions:
   - text: Get Started
     link: /guide/getting-started.html
@@ -15,7 +15,7 @@ features:
     details: grammY is open and can be extended by plugins to make it fit exactly your needs.
   - title: Scalable
     details: grammY has you covered when your bot gets popular and the traffic increases.
-footer: Copyright © 2021-2022
+footer: Copyright © 2021-2023
 permalink: /
 ---
 
@@ -84,5 +84,5 @@ Works! :tada:
 
 ---
 
-grammY supports the Telegram Bot API 6.3 which was [released](https://core.telegram.org/bots/api#november-5-2022) on November 5, 2022.
-(Last highlight: Forum Topics)
+grammY supports the Telegram Bot API 6.5 which was [released](https://core.telegram.org/bots/api#february-3-2023) on February 3, 2023.
+(Last highlight: User and Chat Requests)

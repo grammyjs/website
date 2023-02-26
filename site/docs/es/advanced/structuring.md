@@ -47,6 +47,9 @@ export const lists = new Composer();
 lists.on("message", (ctx) => {/* ... */});
 ```
 
+> Ten en cuenta que si usas TypeScript, necesitas pasar tu [tipo de contexto personalizado](../guide/context.md#personalizacion-del-objeto-de-contexto) al crear el compositor.
+> Por ejemplo, necesitarás usar `new Composer<MyContext>()`.
+
 Opcionalmente, puedes usar un [error boundary](../guide/errors.md#error-boundaries) para manejar todos los errores que ocurran dentro de tu módulo.
 
 Ahora, en `bot.ts`, puedes instalar este módulo así:

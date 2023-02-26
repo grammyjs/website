@@ -45,7 +45,7 @@ Ini tergantung dari jenis deployment kamu.
 
 ## Session
 
-1. Pertimbangkan menggunakan `lazySessions` seperti yang sudah dijelaskan [di sini](../plugins/session.md#lazy-session).
+1. Pertimbangkan menggunakan `lazySessions` seperti yang sudah dijelaskan [di sini](../plugins/session.md#lazy-sessions).
 2. Gunakan opsi `storage` untuk mengatur tempat penyimpanan. Jika tidak dilakukan, semua data akan hilang ketika bot berhenti bekerja.
 
 ## Pengujian

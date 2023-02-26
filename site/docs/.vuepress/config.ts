@@ -12,7 +12,7 @@ export default defineUserConfig({
   },
   shouldPrefetch: true,
   theme: defaultTheme({
-    logo: "/Y.png",
+    logo: "/images/Y.png",
     locales: {
       ...config.localeEn,
       ...config.localeEs,

@@ -359,6 +359,27 @@ bot.use(session({
 
 You can do the same thing for all other storage adapters, such as `new FileAdapter<SessionData>()` and so on.
 
+### Installation With Multi Sessions
+
+Naturally, you can combine conversations with [multi sessions](./session.md#multi-sessions).
+
+This plugin stores the conversation data inside `session.conversation`.
+This means that if you want to use multi sessions, you have to specify this fragment.
+
+```ts
+// Install the session plugin.
+bot.use(session({
+  type: "multi",
+  custom: {
+    initial: () => ({ foo: "" }),
+  },
+  conversation: {}, // may be left empty
+}));
+```
+
+This way, you can store the conversation data in a different place than other session data.
+For example, if you leave the conversation config empty as illustrated above, the conversation plugin will store all data in memory.
+
 ## Leaving a Conversation
 
 The conversation will run until your conversation builder function completes.
@@ -551,6 +572,68 @@ async function waitForMe(conversation, ctx) {
 An update can mean that a text message was sent, or a button was pressed, or something was edited, or virtually any other action was performed by the user.
 Check out the full list in the Telegram docs [here](https://core.telegram.org/bots/api#update).
 
+The `wait` method always yields a new [context object](../guide/context.md) representing the received update.
+That means you're always dealing with as many context objects as there are updates received during the conversation.
+
+<CodeGroup>
+<CodeGroupItem title="TypeScript" active>
+
+```ts
+const TEAM_REVIEW_CHAT = -1001493653006;
+async function askUser(conversation: MyConversation, ctx: MyContext) {
+  // Ask the user for their home address.
+  await ctx.reply("Could you state your home address?");
+
+  // Wait for the user to send their address:
+  const userHomeAddressContext = await conversation.wait();
+
+  // Ask the user for their nationality.
+  await ctx.reply("Could you also please state your nationality?");
+
+  // Wait for the user to state their nationality:
+  const userNationalityContext = await conversation.wait();
+
+  await ctx.reply(
+    "That was the final step. Now that I have received all relevant information, I will forward them to our team for review. Thank you!",
+  );
+
+  // We now copy the responses to another chat for review.
+  await userHomeAddressContext.copyMessage(TEAM_REVIEW_CHAT);
+  await userNationalityContext.copyMessage(TEAM_REVIEW_CHAT);
+}
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+const TEAM_REVIEW_CHAT = -1001493653006;
+async function askUser(conversation, ctx) {
+  // Ask the user for their home address.
+  await ctx.reply("Could you state your home address?");
+
+  // Wait for the user to send their address:
+  const userHomeAddressContext = await conversation.wait();
+
+  // Ask the user for their nationality.
+  await ctx.reply("Could you also please state your nationality?");
+
+  // Wait for the user to state their nationality:
+  const userNationalityContext = await conversation.wait();
+
+  await ctx.reply(
+    "That was the final step. Now that I have received all relevant information, I will forward them to our team for review. Thank you!",
+  );
+
+  // We now copy the responses to another chat for review.
+  await userHomeAddressContext.copyMessage(TEAM_REVIEW_CHAT);
+  await userNationalityContext.copyMessage(TEAM_REVIEW_CHAT);
+}
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
 Usually, outside of the conversations plugin, each of these updates would be handled by the [middleware system](../guide/middleware.md) of your bot.
 Hence, your bot would handle the update via a context object which gets passed to your handlers.
 
@@ -658,15 +741,17 @@ if (conversation.random() < 0.5) { /* do stuff */ }
 ### Rule III: Use Convenience Functions
 
 There are a bunch of things installed on `conversation` which may greatly help you.
-Your code doesn't exactly break if you don't use them, but it can be slow or behave in a confusing way.
-The end user might not notice a difference, though.
+Your code sometimes does not even break if you don't use them, but even then it can be slow or behave in a confusing way.
 
 ```ts
-// Sleep via conversation, massive performance improvement
-await conversation.sleep(3000); // 3 seconds
+// `ctx.session` only persists changes for the most recent context object
+conversation.session.myProp = 42; // more reliable!
+
+// Date.now() can be inaccurate inside conversations
+await conversation.now(); // more accurate!
 
 // Debug logging via conversation, does not print confusing logs
-conversation.log("Hello, world");
+conversation.log("Hello, world"); // more transparent!
 ```
 
 Note that you can do all of the above via `conversation.external()`, but this can be tedious to type, so it's just easier to use the convenience functions ([API reference](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#Methods)).
@@ -899,6 +984,112 @@ async function waitForMe(conversation, ctx) {
 </CodeGroup>
 
 As always, check out the [API reference](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationForm) to see which methods are available.
+
+## Working With Plugins
+
+As mentioned [earlier](#introduction), grammY handlers always only handle a single update.
+However, with conversations, you are able to process many updates in sequence as if they were all available at the same time.
+The plugin makes this possible by storing old context objects, and resupplying them later.
+
+This is why the context objects inside conversations are not always affected by some grammY plugins in the way one would expect.
+This is relevant for the following plugins:
+
+- [menu](./menu.md)
+- [hydrate](./hydrate.md)
+- [i18n](./i18n.md) and [fluent](./fluent.md)
+- [emoji](./emoji.md)
+
+They have in common that they all store functions on the context object, which the conversations plugin cannot handle correctly.
+Hence, if you want to combine conversations with one of these grammY plugins, you will have to use special syntax to install the other plugin inside each conversation.
+
+You can install other plugins inside conversations using `conversation.run`:
+
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
+
+```ts
+async function convo(conversation: MyConversation, ctx: MyContext) {
+  // Install grammY plugins here
+  await conversation.run(plugin());
+  // Continue defining the conversation ...
+}
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+async function convo(conversation, ctx) {
+  // Install grammY plugins here
+  await conversation.run(plugin());
+  // Continue defining the conversation ...
+}
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+This will make the plugin available inside the conversation.
+
+As an example, if you want to use a menu insde a conversation, your code could look like this.
+
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
+
+```ts
+async function convo(conversation: MyConversation, ctx: MyContext) {
+  const menu = new Menu<MyContext>()
+    .text("Click", (ctx) => ctx.reply("Hi!"));
+  await conversation.run(menu);
+
+  // Continue defining the conversation ...
+}
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+async function convo(conversation, ctx) {
+  const menu = new Menu()
+    .text("Click", (ctx) => ctx.reply("Hi!"));
+  await conversation.run(menu);
+
+  // Continue defining the conversation ...
+}
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+### Custom Context Objects
+
+If you are using a [custom context object](../guide/context.md#customizing-the-context-object) and you want to install custom properties on your context objects before a conversation is entered, then some of these properties can get lost, too.
+In a way, the middleware you use to customize your context object can be regarded as a plugin, as well.
+
+The cleanest solution is to **avoid custom context properties** entirely, or at least to only install serializable properties on the context object.
+In other words, if all custom context properties can be persisted in a database and be restored afterwards, you don't have to worry about anything.
+
+Typically, there are other solutions to the problems that you usually solve with via custom context properties.
+For example, it is often possible to just obtain them inside the conversation itself, rather than obtaining them inside a handler.
+
+If none of these things are an option for you, you can try messing around with `conversation.run` yourself.
+You should know that you must call `next` inside the passed middleware---otherwise, update handling will be intercepted.
+
+The middleware will be run for all past updates every time a new update arrives.
+For instance, if three context objects arrive, this is what happens:
+
+1. the first update is received
+2. the middleware runs for the first update
+3. the second update is received
+4. the middleware runs for the first update
+5. the middleware runs for the second update
+6. the third update is received
+7. the middleware runs for the first update
+8. the middleware runs for the second update
+9. the middleware runs for the third update
+
+Note that the middleware is run with first update thrice.
 
 ## Parallel Conversations
 
