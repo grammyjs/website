@@ -9,17 +9,17 @@ export default defineClientConfig({
   enhance({ app }) {
     const vuetify = createVuetify({
       theme: {
-        defaultTheme: 'dark',
+        defaultTheme: "dark",
         themes: {
           dark: {
             dark: true,
             colors: {
-              primary: '#009dcaFF',
-              background: '#38404a',
-              surface: '#38404AFF',
-            }
-          }
-        }
+              primary: "#009dcaFF",
+              background: "#38404a",
+              surface: "#38404AFF",
+            },
+          },
+        },
       },
       ssr: true,
       aliases,

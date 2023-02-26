@@ -14,9 +14,9 @@ export default defineUserConfig({
   bundler: viteBundler({
     viteOptions: {
       ssr: {
-        noExternal: ['vuetify']
-      }
-    }
+        noExternal: ["vuetify"],
+      },
+    },
   }),
   theme: defaultTheme({
     logo: "/images/Y.png",
