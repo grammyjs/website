@@ -8,7 +8,7 @@ This tutorial will guide you on how to deploy your bot to [firebase](https://fir
 
 ## Setup
 
-1. [Create a firebase projet](https://firebase.google.com/docs/functions/get-started#create-a-firebase-project)
+1. [Create a firebase project](https://firebase.google.com/docs/functions/get-started#create-a-firebase-project)
 2. [Install firebase cli](https://firebase.google.com/docs/functions/get-started#set-up-node.js-and-the-firebase-cli)
 3. [Initialize the project](https://firebase.google.com/docs/functions/get-started#initialize-your-project). You don't have to run step 3. in their docs (`firebase init firestore`). Thats for the their database.
 4. [set up the firebase emulator](https://firebase.google.com/docs/functions/get-started#emulate-execution-of-your-functions) to run your cloud function locally.
@@ -52,8 +52,8 @@ after the emulators started you should find a line in the console output, that l
 ```
 
 This is the local url of your cloud function.
-Right now, your function is only availably to the localhost (your computer).
-To acctually test your bot, you need to expose your function to the internet, so that the Telegram API can send updates to your bot.\
+Right now, your function is only availability to the localhost (your computer).
+To actually test your bot, you need to expose your function to the internet, so that the Telegram API can send updates to your bot.\
 There are several services like [localtunnel](https://localtunnel.me/) or [ngrok](https://ngrok.com/) that can help you with that.
 Let's go with localtunnel, because it does not shut down after an hour, if you don't give them money like ngrok does.
 First let's install localtunnel:
