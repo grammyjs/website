@@ -6,6 +6,7 @@ import { Translation } from './translations/types'
 import { VCheckbox } from 'vuetify/components/VCheckbox'
 import { VBtn } from 'vuetify/components/VBtn'
 import TabsUi from './TabsUi.vue'
+import { VDivider } from 'vuetify/components/VDivider'
 
 const props = defineProps<{ strings: Translation }>()
 // const translation = computed(() => props.strings.botCard)
@@ -26,8 +27,8 @@ const props = defineProps<{ strings: Translation }>()
             <span class="text-body-2">ID: 4613991</span>
           </v-row>
         </v-container>
-        <hr>
       </v-card-title>
+      <hr>
       <v-card-text class="pb-0">
         <v-container class="pt-0 pb-0">
           <v-row align-content="center">
@@ -38,8 +39,8 @@ const props = defineProps<{ strings: Translation }>()
           </v-row>
         </v-container>
         <tabs-ui :strings="strings" />
-        <hr>
       </v-card-text>
+      <hr class="mt-5">
       <v-card-actions class="pt-0">
         <v-container class="py-0">
           <v-btn size="small" prepend-icon="mdi-arrow-left">{{ strings.botCard.buttons.changeToken }}</v-btn>
