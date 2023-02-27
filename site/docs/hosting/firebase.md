@@ -8,10 +8,48 @@ This tutorial will guide you on how to deploy your bot to [firebase](https://fir
 
 ## Setup
 
-1. [Create a firebase project](https://firebase.google.com/docs/functions/get-started#create-a-firebase-project)
-2. [Install firebase cli](https://firebase.google.com/docs/functions/get-started#set-up-node.js-and-the-firebase-cli)
-3. [Initialize the project](https://firebase.google.com/docs/functions/get-started#initialize-your-project). You don't have to run step 3. in their docs (`firebase init firestore`). Thats for the their database.
-4. [set up the firebase emulator](https://firebase.google.com/docs/functions/get-started#emulate-execution-of-your-functions) to run your cloud function locally.
+This references the [official firebase documentation](https://firebase.google.com/docs/functions/get-started),
+so if you want a more detailed explanation of every step, you can take a look there.
+
+### 1. Create A Firebase Project
+
+1. Go to the [firebase console](https://console.firebase.google.com/) and click **Add Project**
+2. If prompted, review and accept the Firebase terms.
+3. Click Continue.
+4. Uncheck the analytics
+5. Click **Create Project**
+
+### 2. Setup Node.js and Firebase CL
+
+You'll need a Node.js environment to write functions, and you'll need the Firebase CLI to deploy functions to the Cloud Functions runtime.
+>Important: Node.js versions 14, 16 and 18 are supported. See [Set runtime options](https://firebase.google.com/docs/functions/manage-functions#set_nodejs_version)
+for important information regarding ongoing support for these versions of Node.js.
+
+Once you have Node.js and npm installed, install the Firebase CLI via your preferred method. To install the CLI via npm, use:
+
+```shell
+npm install -g firebase-tools
+```
+
+### 3. Initialize The Project
+
+1. Run `firebase login` to log in via the browser and authenticate the Firebase CLI.
+2. Go to your Firebase project directory.
+3. Run `firebase init functions`, and type `y` when asked, whether you want to initialize a new codebase
+4. Choose `use existing project` and select the project you created in Step 1.
+5. The CLI gives you two options for language support:
+   - JavaScript
+   - TypeScript
+
+   For this tutorial, select TypeScript.
+
+6. Optionally you can select ESLint
+7. The CLI asks you if you want to install the dependencies with npm.
+   If you use another package manager like `yarn` or `pnpm` you can decline.
+   In that case you have to cd into the `functions` directory and install the dependencies manually.
+8. open `./functions/package.json` and look for the key: `"engines": {"node": "16"}`.
+   The node version should match your installed version of node.
+   Otherwise the project might not run.
 
 ## Preparing Your Code
 
@@ -33,6 +71,15 @@ export const helloWorld = functions.https.onRequest(webhookCallback(bot));
 ## Development
 
 During development you can use the firebase emulator suite to run your code locally, which is way faster than deploying every change to firebase.
+To install the emulators run:
+
+```shell
+firebase init emulators
+```
+
+The functions emulator should be select already, if not navigate to it using the arrow keys, and select it using `space`.
+You can just hit `enter` for the questions about which port to use for which emulator.
+
 To start the emulators and run :
 
 ```shell
@@ -52,7 +99,7 @@ after the emulators started you should find a line in the console output, that l
 ```
 
 This is the local url of your cloud function.
-Right now, your function is only availability to the localhost (your computer).
+Right now, your function is only available to the localhost (your computer).
 To actually test your bot, you need to expose your function to the internet, so that the Telegram API can send updates to your bot.\
 There are several services like [localtunnel](https://localtunnel.me/) or [ngrok](https://ngrok.com/) that can help you with that.
 Let's go with localtunnel, because it does not shut down after an hour, if you don't give them money like ngrok does.
