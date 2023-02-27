@@ -19,7 +19,7 @@ so if you want a more detailed explanation of every step, you can take a look th
 4. Uncheck the analytics
 5. Click **Create Project**
 
-### 2. Setup Node.js and Firebase CL
+### 2. Setup Node.js and Firebase CLI
 
 You'll need a Node.js environment to write functions, and you'll need the Firebase CLI to deploy functions to the Cloud Functions runtime.
 >Important: Node.js versions 14, 16 and 18 are supported. See [Set runtime options](https://firebase.google.com/docs/functions/manage-functions#set_nodejs_version)
