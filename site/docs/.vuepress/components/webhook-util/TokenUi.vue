@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { UserFromGetMe } from '@grammyjs/types'
-import { computed, defineProps, ref } from 'vue'
+import { computed, ref } from 'vue'
 import { VAlert } from 'vuetify/components/VAlert'
 import { VBtn } from 'vuetify/components/VBtn'
 import { VCard, VCardActions, VCardText } from 'vuetify/components/VCard'
