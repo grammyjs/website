@@ -4,7 +4,8 @@ This tutorial will guide you through the process of deploying your bot to [Fireb
 
 ## Prerequisites
 
-1. Google account (you can [create one here](https://accounts.google.com/signup)).
+To follow this tutorial, you will need a Google account.
+If you don't have one, you can [create one here](https://accounts.google.com/signup).
 
 ## Setup
 
