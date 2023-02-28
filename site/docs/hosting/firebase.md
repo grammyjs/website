@@ -14,11 +14,11 @@ If you need a more detailed explanation of each step, you can refer to the [offi
 
 ### 1. Create A Firebase Project
 
-1. Go to the [firebase console](https://console.firebase.google.com/) and click **Add Project**
+1. Go to the [Firebase Console](https://console.firebase.google.com/) and click **Add Project**.
 2. If prompted, review and accept the Firebase terms.
-3. Click Continue.
-4. Uncheck the analytics
-5. Click **Create Project**
+3. Click **Continue**.
+4. Uncheck the analytics.
+5. Click **Create Project**.
 
 ### 2. Setup Node.js and Firebase CLI
 
