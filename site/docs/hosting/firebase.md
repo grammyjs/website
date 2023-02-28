@@ -26,7 +26,6 @@ To write functions and deploy them to the Cloud Functions runtime, you'll need t
 
 > It's important to note that only Node.js versions 14, 16, and 18 are currently supported by Firebase Functions.
 > For more information on Node.js version support, please refer to [Set Node.js version](https://firebase.google.com/docs/functions/manage-functions#set_nodejs_version) section in their docs.
-```
 
 Once you have Node.js and npm installed, install the Firebase CLI via your preferred method. To install the CLI via npm, use:
 
@@ -52,7 +51,7 @@ npm install -g firebase-tools
    In that case you have to cd into the `functions` directory and install the dependencies manually.
 8. open `./functions/package.json` and look for the key: `"engines": {"node": "16"}`.
    The node version should match your installed version of node.
-   Otherwise the project might not run.
+   Otherwise, the project might not run.
 
 ## Preparing Your Code
 
@@ -145,7 +144,15 @@ Head over to Telegram and watch it respond to messages!
 
 ## Deploying
 
-You can follow Step 8. of the [get started guide](https://firebase.google.com/docs/functions/get-started#deploy-functions-to-a-production-environment)
+To deploy your function just run:
+
+```shell
+firebase deploy
+```
+
+The Firebase CLI will give you the url of your function once the deployment is completed.
+It should look something like `https://<REGIO>.<MY_PROJECT.cloudfunctions.net/helloWorld`.
+For a more detailed explanation you can take a look at step 8. of the [get started guide](https://firebase.google.com/docs/functions/get-started#deploy-functions-to-a-production-environment).
 
 After deploying, you need to tell Telegram where to send updates to your bot by calling the `setWebhook` method.
 To do this, open a new browser tab and visit this URL:
