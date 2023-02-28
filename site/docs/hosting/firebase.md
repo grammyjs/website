@@ -156,11 +156,10 @@ For example, open a new tab in your browser and visit this URL:
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<REGION>.<MY_PROJECT>.cloudfunctions.net/helloworld
 ```
 
-Replace <BOT_TOKEN> with your real bot token.
-Replace <REGION> with the name of the region you chose to deploy your function to. Replace <PROJECT_NAME> with the name of your firebase project.
-The firebase CLI should give you the whole URL to your cloud function, so you can just paste it after the `?url=`
+Replace <BOT_TOKEN> with your actual bot token, <REGION> with the name of the region where you deployed your function, and <MY_PROJECT> with the name of your Firebase project.
+The Firebase CLI should provide you with the full URL of your cloud function, so you can simply paste it after the `?url=` parameter in the `setWebhook` method.
 
-You should now see this in your browser window.
+If everything is set up correctly, you should see this response in your browser window:
 
 ```json:no-line-numbers
 {
