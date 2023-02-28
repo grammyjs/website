@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "grammy": "^1.14.1",
+    "grammy-vue": "^0.0.4",
     "vuetify": "^3.1.6"
   }
 }

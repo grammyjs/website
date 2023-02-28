@@ -6,7 +6,7 @@ import { VBtn } from 'vuetify/components/VBtn'
 import { VCard, VCardActions, VCardText } from 'vuetify/components/VCard'
 import { VSpacer } from 'vuetify/components/VGrid'
 import { VTextField } from 'vuetify/components/VTextField'
-import { useTelegramApi } from '../../composables/use-api-method'
+import { useTelegramApi } from 'grammy-vue'
 import type { Translation } from './translations/types'
 
 const props = defineProps<{ strings: Translation }>()
@@ -26,7 +26,7 @@ const loadBotInfo = async () => {
 <template>
   <div class="token-ui">
     <v-alert :type="state === 'error' ? 'error' : 'warning'"
-      :text="state !== 'error' ? translation.disclaimer.content : error.message"
+      :text="state !== 'error' ? translation.disclaimer.content : error.description ?? error.message"
       :title="state !== 'error' ? translation.disclaimer.title : undefined">
     </v-alert>
     <v-card>

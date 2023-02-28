@@ -7,10 +7,16 @@ import { ref, computed } from 'vue'
 import WebhookInfo from './WebhookInfo.vue'
 import ManageWebhook from './ManageWebhook.vue'
 
-const props = defineProps<{ strings: Translation }>()
+const props = defineProps<{ strings: Translation, token: string }>()
 const translation = computed(() => props.strings.botCard.tabs)
 
-const tab = ref('tab-1')
+const tab = ref(0)
+
+const webhookInfoComponent = ref()
+const refresh = async () => {
+  await webhookInfoComponent.value.refresh()
+  tab.value = 0
+}
 </script>
 <template>
   <div class="tabs-ui">
@@ -25,10 +31,10 @@ const tab = ref('tab-1')
       </v-tabs>
       <v-window v-model="tab">
         <v-window-item :value="0">
-          <webhook-info :strings="strings" />
+          <webhook-info ref="webhookInfoComponent" :strings="strings" :token="token" />
         </v-window-item>
         <v-window-item :value="1">
-          <manage-webhook :strings="strings" />
+          <manage-webhook @rerfesh="refresh" :strings="strings" :token="token" />
         </v-window-item>
       </v-window>
     </v-card>
