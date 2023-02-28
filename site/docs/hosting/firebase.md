@@ -147,10 +147,8 @@ Head over to Telegram and watch it respond to messages!
 
 You can follow Step 8. of the [get started guide](https://firebase.google.com/docs/functions/get-started#deploy-functions-to-a-production-environment)
 
-Your firebase function is now working.
-All that's left to do is to tell Telegram where to send the updates.
-You can do this by calling setWebhook.
-For example, open a new tab in your browser and visit this URL:
+After deploying, you need to tell Telegram where to send updates to your bot by calling the `setWebhook` method.
+To do this, open a new browser tab and visit this URL:
 
 ```text:no-line-numbers
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<REGION>.<MY_PROJECT>.cloudfunctions.net/helloworld
