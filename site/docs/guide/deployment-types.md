@@ -400,7 +400,7 @@ ______________                                   _____________
 You may be wondering why the default action of `webhookCallback` is to throw an error, instead of ending the request successfully.
 This design choice was made for the following reasons.
 
-Race conditions are very hard to reproduce and may occur extremely rarely or sporadically.
+Data races are very hard to reproduce and may occur extremely rarely or sporadically.
 The solution to this is to _make sure not to run into timeouts_ in the first place.
 But, if you do, you really want to know that this is happening, so that you can investigate and fix the problem!
 For that reason, you want the error to occur in your logs.
