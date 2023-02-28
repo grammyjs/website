@@ -1,6 +1,6 @@
-import type { DocsearchLocaleData } from "@vuepress/plugin-docsearch";
-import type { DefaultThemeLocaleData } from "@vuepress/theme-default";
-import type { LocaleConfig, SiteLocaleConfig } from "vuepress-vite";
+import type { DocsearchLocaleData } from "@vuepress/plugin-docsearch"
+import type { DefaultThemeLocaleData } from "@vuepress/theme-default"
+import type { LocaleConfig, SiteLocaleConfig } from "vuepress-vite"
 
 export const siteId: SiteLocaleConfig = {
   "/id/": {
@@ -8,7 +8,7 @@ export const siteId: SiteLocaleConfig = {
     title: "grammY",
     description: "Framework Bot Telegram.",
   },
-};
+}
 
 export const localeId: LocaleConfig<DefaultThemeLocaleData> = {
   "/id/": {
@@ -304,6 +304,10 @@ export const localeId: LocaleConfig<DefaultThemeLocaleData> = {
                 text: "Perbandingan dengan Framework Lainnya",
                 link: "/id/resources/comparison.html",
               },
+              {
+                text: "Webhook Utility",
+                link: "/resources/webhook-utility.html"
+              }
             ],
           },
           {
@@ -387,7 +391,7 @@ export const localeId: LocaleConfig<DefaultThemeLocaleData> = {
       },
     ],
   },
-};
+}
 
 export const docsearchId: LocaleConfig<DocsearchLocaleData> = {
   "/id/": {
@@ -436,4 +440,4 @@ export const docsearchId: LocaleConfig<DocsearchLocaleData> = {
       },
     },
   },
-};
+}

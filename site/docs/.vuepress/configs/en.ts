@@ -1,6 +1,6 @@
-import type { DocsearchLocaleData } from "@vuepress/plugin-docsearch";
-import type { DefaultThemeLocaleData } from "@vuepress/theme-default";
-import type { LocaleConfig, SiteLocaleConfig } from "vuepress-vite";
+import type { DocsearchLocaleData } from "@vuepress/plugin-docsearch"
+import type { DefaultThemeLocaleData } from "@vuepress/theme-default"
+import type { LocaleConfig, SiteLocaleConfig } from "vuepress-vite"
 
 export const siteEn: SiteLocaleConfig = {
   "/": {
@@ -8,7 +8,7 @@ export const siteEn: SiteLocaleConfig = {
     title: "grammY",
     description: "The Telegram Bot Framework.",
   },
-};
+}
 
 export const localeEn: LocaleConfig<DefaultThemeLocaleData> = {
   "/": {
@@ -300,6 +300,10 @@ export const localeEn: LocaleConfig<DefaultThemeLocaleData> = {
                 text: "Comparison to Other Frameworks",
                 link: "/resources/comparison.html",
               },
+              {
+                text: "Webhook Utility",
+                link: "/resources/webhook-utility.html"
+              }
             ],
           },
           {
@@ -383,7 +387,7 @@ export const localeEn: LocaleConfig<DefaultThemeLocaleData> = {
       },
     ],
   },
-};
+}
 
 export const docsearchEn: LocaleConfig<DocsearchLocaleData> = {
   "/": {
@@ -431,4 +435,4 @@ export const docsearchEn: LocaleConfig<DocsearchLocaleData> = {
       },
     },
   },
-};
+}
