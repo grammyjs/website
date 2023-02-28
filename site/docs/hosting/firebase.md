@@ -169,5 +169,6 @@ If everything is set up correctly, you should see this response in your browser 
 }
 ```
 
-Done! Your bot is working now.
+That's it!
+Your bot is ready to go.
 Head over to Telegram and watch it respond to messages!
