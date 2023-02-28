@@ -9,8 +9,8 @@ If you don't have one, you can [create one here](https://accounts.google.com/sig
 
 ## Setup
 
-This references the [official firebase documentation](https://firebase.google.com/docs/functions/get-started),
-so if you want a more detailed explanation of every step, you can take a look there.
+This section will guide you through the setup process.
+If you need a more detailed explanation of each step, you can refer to the [official Firebase documentation](https://firebase.google.com/docs/functions/get-started).
 
 ### 1. Create A Firebase Project
 
