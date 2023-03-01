@@ -5,8 +5,9 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "prepare": "npm run docs:index-versions",
+    "prepare": "npm run docs:index-versions && npm run docs:generate-fq-docs",
     "docs:index-versions": "deno run --allow-net docs/.vuepress/plugins/current-versions/build-index.ts > docs/.vuepress/plugins/current-versions/index.json",
+    "docs:generate-fq-docs": "deno run --allow-net --allow-run --allow-read --allow-write=docs docs/.vuepress/plugins/filter-queries/generate_docs.ts",
     "docs:dev": "vuepress-vite dev docs",
     "docs:build": "npm run docs:vuepress && npm run docs:sitemap",
     "docs:vuepress": "vuepress-vite build docs",
