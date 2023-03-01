@@ -52,13 +52,16 @@ function generateDocs(translation: string) {
       ).join("\n") + "\n```";
       doc += generate.L2(L1Text, L2Text, accessInfo);
     } else if (L1[0] && L2[0] && L3) {
-      const accessInfo = "```ts:no-line-numbers\n" +
-          L2.join().includes("entities")
-        ? `ctx.entities("${L3}");`
-        : L1.map((k1) =>
-          L2.map((k2) => `ctx.${CONTEXT_SHORTCUTS[k1]}.${k2}.${L3};`).join("\n")
-        ).join("\n") +
-          "\n```";
+      const accessInfo = "```ts:no-line-numbers\n" + (
+        L2.join().includes("entities")
+          ? `ctx.entities("${L3}");`
+          : L1.map((k1) =>
+            L2.map((k2) => `ctx.${CONTEXT_SHORTCUTS[k1]}.${k2}.${L3};`).join(
+              "\n",
+            )
+          ).join("\n")
+      ) +
+        "\n```";
       doc += generate.L3(L1Text, L2Text, L3Text, accessInfo);
     } else {
       throw new Error(`There is some issue with the "${query}" filter query.`);
