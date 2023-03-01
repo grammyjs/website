@@ -334,8 +334,8 @@ export const localeEn: LocaleConfig<DefaultThemeLocaleData> = {
               {
                 text: "Filter Query Browser",
                 link: "/resources/tools/filter-queries.html",
-              }
-            ]
+              },
+            ],
           },
         ],
       },
