@@ -42,36 +42,26 @@ function generateDocs(translation: string) {
 
     if (L1[0] && !L2[0] && !L3) {
       const accessInfo = "```ts:no-line-numbers\n" +
-        L1.map((k1) => `ctx.${CONTEXT_SHORTCUTS[k1]}`).join("\n") + "\n```";
+        L1.map((k1) => `ctx.${CONTEXT_SHORTCUTS[k1]};`).join("\n") + "\n```";
       doc += generate.L1(L1Text, accessInfo);
     } else if (L1[0] && L2[0] && !L3) {
       const accessInfo = "```ts:no-line-numbers\n" + L1.map((k1) =>
         L2.map((k2) =>
-          `ctx.${CONTEXT_SHORTCUTS[k1]}.${k2}`
+          `ctx.${CONTEXT_SHORTCUTS[k1]}.${k2};`
         ).join("\n")
       ).join("\n") + "\n```";
       doc += generate.L2(L1Text, L2Text, accessInfo);
     } else if (L1[0] && L2[0] && L3) {
-      const accessInfo = L2.join().includes("entities")
-        ? "<CodeGroup>\n" +
-          L1.map((k1, i) =>
-            L2.map((k2, j) => `
-<CodeGroupItem title="${k1}:${k2}"${!i && !j ? " active" : ""}>
-
-\`\`\`ts
-const ${camelCase(L3, "_")}Entities = ctx.${CONTEXT_SHORTCUTS[k1]}.${k2}
-  .filter((entity) => entity.type === "${L3}");
-\`\`\`
-
-</CodeGroupItem>
-`).join("\n")
-          ).join("\n") +
-          "\n</CodeGroup>\n"
-        : "```ts:no-line-numbers\n" + L1.map((k1) =>
+      const accessInfo = 
+        "```ts:no-line-numbers\n" + 
+        L2.join().includes("entities")
+        ? `ctx.entities("${L3}");`
+        : L1.map((k1) =>
           L2.map((k2) =>
-            `ctx.${CONTEXT_SHORTCUTS[k1]}.${k2}.${L3}`
+            `ctx.${CONTEXT_SHORTCUTS[k1]}.${k2}.${L3};`
           ).join("\n")
-        ).join("\n") + "\n```";
+        ).join("\n")
+        + "\n```";
       doc += generate.L3(L1Text, L2Text, L3Text, accessInfo);
     } else {
       throw new Error(`There is some issue with the "${query}" filter query.`);
@@ -81,7 +71,7 @@ const ${camelCase(L3, "_")}Entities = ctx.${CONTEXT_SHORTCUTS[k1]}.${k2}
   }
 
   const filterQueryDocs = queryDocs.map(({ query, doc }) => {
-    return `::: details \`${query}\`\n\n${doc}\n:::`;
+    return `::: details <code>${query}</code>\n\n${doc}\n:::`;
   }).join("\n\n");
 
   return `# ${title}\n\n${introduction}\n\n${filterQueryDocs}`;
