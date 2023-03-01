@@ -328,6 +328,15 @@ export const localeEn: LocaleConfig<DefaultThemeLocaleData> = {
               },
             ],
           },
+          {
+            text: "Tools",
+            children: [
+              {
+                text: "Filter Query Browser",
+                link: "/resources/tools/filter-queries.html",
+              }
+            ]
+          },
         ],
       },
       {
