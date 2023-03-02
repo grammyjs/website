@@ -60,7 +60,7 @@ You can use this short example bot as a starting point:
 
 ```ts
 import * as functions from "firebase-functions";
-import {webhookCallback, Bot} from "grammy";
+import { Bot, webhookCallback } from "grammy";
 
 const bot = new Bot(""); // <-- put your bot token here (https://t.me/BotFather)
 
@@ -98,6 +98,7 @@ Therefore, if you use TypeScript, you also have to run:
 ```sh
 npm run build:watch
 ```
+
 :::
 
 After the emulators start, you should find a line in the console output that looks like this:
@@ -131,7 +132,7 @@ You can do this by calling setWebhook.
 For example, open a new tab in your browser and visit this URL:
 
 ```text:no-line-numbers
-https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://modern-heads-sink-80-132-166-120.loca.lt/hotsouceservice/us-central1/deleteImage
+https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://modern-heads-sink-80-132-166-120.loca.lt/hotsouceservice/us-central1/helloWorld
 ```
 
 Replace <BOT_TOKEN> with your real bot token, and the `.loca.lt` url with you own url you got from localtunnel.
