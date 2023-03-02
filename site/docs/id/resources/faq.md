@@ -1,8 +1,23 @@
 # FAQ
 
-Berikut ini adalah kumpulan pertanyaan yang sering diajukan mengenai [beberapa error yang sering terjadi](#kenapa-saya-mengalami-error-ini) dan [hal-hal seputar Deno](#pertanyaan-seputar-deno).
+Berikut ini adalah kumpulan pertanyaan yang sering ditanyakan mengenai [beberapa kendala yang sering terjadi](#kenapa-saya-mengalami-error-ini) dan [hal-hal lain seputar Deno](#pertanyaan-seputar-deno).
 
 Jika FAQ ini tidak menjawab pertanyaanmu, sebaiknya kamu juga membaca [FAQ Bot](https://core.telegram.org/bots/faq) yang ditulis oleh tim Telegram.
+
+## Di Mana Saya Bisa Menemukan Dokumentasi Mengenai Method?
+
+Di referensi API.
+Kamu mungkin tertarik untuk memahami [hal-hal berikut](../guide) terlebih dahulu.
+
+## Ada Parameter yang Tidak Tersedia di Method Tertentu!
+
+Tentu saja tidak.
+
+1. Pastikan kamu sudah menginstal grammY versi terbaru.
+2. Cek apakah parameter tersebut termasuk opsional.
+   Jika iya, berarti grammY menaruh parameter tersebut di suatu options object bernama `other`.
+   Kamu cuma perlu menulis `{ nama_parameter: value }` di options tersebut.
+   Seperti biasa, TypeScript akan membantu kamu melengkapi nama parameter-nya secara otomatis.
 
 ## Kenapa Saya Mengalami Error Ini?
 

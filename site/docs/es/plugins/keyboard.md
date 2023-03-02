@@ -57,7 +57,7 @@ const inlineKeyboard = new InlineKeyboard()
 
 ##### Resultado
 
-![Ejemplo 1](/inline-keyboard-example-1.webp)
+![Ejemplo 1](/images/inline-keyboard-example-1.webp)
 
 #### Ejemplo 2
 
@@ -73,7 +73,7 @@ const inlineKeyboard = new InlineKeyboard()
 
 ##### Resultado
 
-![Ejemplo 2](/inline-keyboard-example-2.webp)
+![Ejemplo 2](/images/inline-keyboard-example-2.webp)
 
 #### Ejemplo 3
 
@@ -90,7 +90,7 @@ const inlineKeyboard = new InlineKeyboard().url(
 
 ##### Resultado
 
-![Ejemplo 3](/inline-keyboard-example-3.webp)
+![Ejemplo 3](/images/inline-keyboard-example-3.webp)
 
 ### Envío de un Teclado en línea
 
@@ -179,7 +179,7 @@ Recuerda que puedes escuchar los mensajes de texto a través de `bot.on("message
 
 Aquí hay tres ejemplos de cómo construir un teclado con botones de `texto`.
 
-También puedes solicitar el número de teléfono con `requestContact`, la ubicación con `requestLocation`, y un sondeo con `requestPoll`.
+También puedes solicitar el número de teléfono con `requestContact`, la ubicación con `requestLocation`, una encuesta con `requestPoll`, un usuario con `requestUser`, y un chat con `requestChat`.
 
 #### Ejemplo 1
 
@@ -197,7 +197,7 @@ const keyboard = new Keyboard()
 
 ##### Resultado
 
-![Ejemplo 1](/keyboard-example-1.webp)
+![Ejemplo 1](/images/keyboard-example-1.webp)
 
 #### Ejemplo 2
 
@@ -215,7 +215,7 @@ const keyboard = new Keyboard()
 
 ##### Resultado
 
-![Ejemplo 2](/keyboard-example-2.webp)
+![Ejemplo 2](/images/keyboard-example-2.webp)
 
 #### Ejemplo 3
 
@@ -231,7 +231,7 @@ const keyboard = new Keyboard()
 
 ##### Resultado
 
-![Ejemplo 3](/keyboard-example-3.webp)
+![Ejemplo 3](/images/keyboard-example-3.webp)
 
 ### Envío de un Teclado Personalizado
 

@@ -10,7 +10,7 @@ We also assume that you have a Heroku account already.
 
 First, install some dependencies:
 
-```bash
+```sh
 # Create a project directory.
 mkdir grammy-bot
 cd grammy-bot
@@ -254,7 +254,7 @@ Complete these stages first!
 
 Run this code in your terminal to compile the TypeScript files to JavaScript:
 
-```bash
+```sh
 npx tsc
 ```
 
@@ -314,7 +314,7 @@ Here is the link for the installation:
 Assuming that you already have them in your machine, and you have a terminal open in the root of our project's directory.
 Now initialize a local git repository by running this code in your terminal:
 
-```bash
+```sh
 git init
 ```
 
@@ -373,7 +373,7 @@ Our final folder structure should now look like this:
 
 Commit files to our git repository:
 
-```bash
+```sh
 git add .
 git commit -m "My first commit"
 ```
@@ -386,7 +386,7 @@ Otherwise, run `New app`.
 <CodeGroup>
   <CodeGroupItem title="New app" active>
 
-```bash
+```sh
 heroku create
 git remote -v
 ```
@@ -394,7 +394,7 @@ git remote -v
 </CodeGroupItem>
   <CodeGroupItem title="Existing app" active>
 
-```bash
+```sh
 heroku git:remote -a <myApp>
 ```
 
@@ -405,13 +405,13 @@ heroku git:remote -a <myApp>
 
 Finally, press the _red button_ and liftoff! :rocket:
 
-```bash
+```sh
 git push heroku main
 ```
 
 If it doesn't work, it's probably our git branch is not `main` but `master`.
 Press this _blue button_ instead:
 
-```bash
+```sh
 git push heroku master
 ```

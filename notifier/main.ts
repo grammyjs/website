@@ -1,20 +1,99 @@
 import * as path from "std/path/mod.ts";
-import { Application } from "oak/mod.ts";
-import { Bot } from "grammy/mod.ts";
+import { Application, Router } from "oak/mod.ts";
+import { Bot, type Context, webhookCallback } from "grammy/mod.ts";
+import { type FileFlavor, hydrateFiles } from "grammy_files/mod.ts";
 import env from "./env.ts";
 import * as db from "./db.ts";
 import { verifyGitHubWebhook } from "./utils.ts";
 
 const app = new Application();
-const bot = new Bot(env.BOT_TOKEN);
+const router = new Router();
+const bot = new Bot<FileFlavor<Context>>(env.BOT_TOKEN);
+
+bot.api.config.use(hydrateFiles(bot.token));
+
+bot.chatType(["group", "supergroup"]).filter((ctx) =>
+  ctx.chat.id == env.CHAT_ID
+).on("message:document", async (ctx) => {
+  if (!ctx.message.document.file_name?.endsWith(".patch")) {
+    return;
+  }
+  const repliedMessage = ctx.message.reply_to_message;
+  if (
+    !repliedMessage ||
+    !(repliedMessage.from?.id == ctx.me.id)
+  ) {
+    return;
+  }
+  const entity = repliedMessage.entities?.[0];
+  if (!entity || entity.type != "text_link") {
+    return;
+  }
+  const prNumber = Number(
+    repliedMessage.text?.slice(entity.offset + 1, entity.length),
+  );
+  if (!prNumber) {
+    return;
+  }
+  let branch = "";
+  let res = await fetch(new URL(`pulls/${prNumber}`, env.REPOSITORY_API_URL));
+  if (res.status != 200) {
+    await ctx.reply("Failed to fetch PR.");
+    return;
+  }
+  branch = (await res.json())?.head?.ref;
+  if (!branch) {
+    await ctx.reply("Could not resolve PR branch.");
+    return;
+  }
+  const { file_path } = await ctx.getFile();
+  if (!file_path) {
+    await ctx.reply("Could not resolve file path.");
+    return;
+  }
+  const formData = new FormData();
+  formData.set("repository", env.REPOSITORY_CLONE_URL);
+  formData.set("branch", branch);
+  formData.set(
+    "url",
+    new URL(`/file/${encodeURIComponent(file_path)}`, env.BASE_URL).href,
+  );
+  res = await fetch(env.PATCH_PUSHER_API_URL, {
+    method: "POST",
+    body: formData,
+  });
+  if (res.status == 200) {
+    await ctx.reply("Patch submitted.");
+  } else {
+    console.log(res.status);
+    await ctx.reply("Failed to submit the patch.");
+  }
+});
 
 app.use(async (ctx, next) => {
   try {
     await next();
-  } catch (_err) {
+  } catch (err) {
+    console.error(err);
     ctx.response.status = 500;
   }
 });
+
+router.post(
+  `/${bot.token.replaceAll(":", "\\:")}`,
+  webhookCallback(bot, "oak"),
+);
+
+router.get(`/file/:path`, async (ctx) => {
+  const response = await fetch(
+    `https://api.telegram.org/file/bot${bot.token}/${ctx.params.path}`,
+  );
+  ctx.response.status = response.status;
+  ctx.response.headers = response.headers;
+  ctx.response.body = response.body;
+});
+
+app.use(router.routes());
 
 app.use(async (ctx, next) => {
   let verified = false;
@@ -86,12 +165,12 @@ async function updateLabels(payload: any) {
       if (updatedText != notification.text) {
         await bot.api.editMessageText(
           env.CHAT_ID,
-          notification.message_id,
+          notification.messageId,
           updatedText,
           other,
         );
         await db.updateNotification(
-          notification.message_id,
+          notification.messageId,
           updatedText,
         );
       }
@@ -123,11 +202,11 @@ app.use(async (ctx) => {
             if (notification) {
               await bot.api.editMessageText(
                 env.CHAT_ID,
-                notification.message_id,
+                notification.messageId,
                 text,
                 other,
               );
-              await db.updateNotification(notification.message_id, text);
+              await db.updateNotification(notification.messageId, text);
             } else {
               const notification = await bot.api.sendMessage(
                 env.CHAT_ID,
@@ -161,7 +240,7 @@ app.use(async (ctx) => {
             if (notification) {
               await bot.api.editMessageText(
                 env.CHAT_ID,
-                notification.message_id,
+                notification.messageId,
                 `~${notification.text}~`,
                 other,
               );
@@ -182,13 +261,13 @@ app.use(async (ctx) => {
           if (notification) {
             await bot.api.editMessageText(
               env.CHAT_ID,
-              notification.message_id,
+              notification.messageId,
               `__${notification.text}__`,
               other,
             );
             await bot.api.unpinChatMessage(
               env.CHAT_ID,
-              notification.message_id,
+              notification.messageId,
             );
             await db.deleteNotification(payload.pull_request.number);
           }
@@ -200,5 +279,10 @@ app.use(async (ctx) => {
   ctx.response.status = 200;
 });
 
-await db.connectAndInitialize();
-await app.listen({ port: 8000 });
+const promises = [db.connect(), app.listen({ port: 8000 })];
+
+if (Deno.env.get("DEBUG")) {
+  promises.push(bot.start({ drop_pending_updates: true }));
+}
+
+await Promise.all(promises);

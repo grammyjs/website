@@ -12,7 +12,7 @@ systemd is a powerful service manager which is pre-installed on many Linux distr
 
 1. Get the full path of your runtime:
 
-```bash
+```sh
 # If using Deno
 which deno
 
@@ -24,7 +24,7 @@ which node
 
 3. Your start command should look like the following:
 
-```bash
+```sh
 <full_runtime_path> <options> <full_entry_file_path>
 
 # Deno example:
@@ -38,13 +38,13 @@ which node
 
 1. Go to the services directory:
 
-```bash
+```sh
 cd /etc/systemd/system
 ```
 
 2. Open your new service file with an editor:
 
-```bash
+```sh
 nano bot1.service
 ```
 
@@ -66,7 +66,7 @@ WantedBy=multi-user.target
 
 3. Reload systemd whenever you edit the service:
 
-```bash
+```sh
 systemctl daemon-reload
 ```
 
@@ -74,7 +74,7 @@ systemctl daemon-reload
 
 #### Start
 
-```bash
+```sh
 systemctl start <service_name>
 ```
 
@@ -83,31 +83,31 @@ systemctl start <service_name>
 
 #### Run on Boot
 
-```bash
+```sh
 systemctl enable <service_name>
 ```
 
 #### Check Logs
 
-```bash
+```sh
 systemctl status <service_name>
 ```
 
 #### Restart
 
-```bash
+```sh
 systemctl restart <service_name>
 ```
 
 #### Stop
 
-```bash
+```sh
 systemctl stop <service_name>
 ```
 
 #### Don't Run on Boot
 
-```bash
+```sh
 systemctl disable <service_name>
 ```
 
@@ -117,7 +117,7 @@ PM2 is a daemon process manager for Node.js that will help you manage and keep y
 
 ### Installing
 
-```bash
+```sh
 npm install pm2@latest -g
 
 # If using Yarn
@@ -128,7 +128,7 @@ yarn global add pm2
 
 #### Start
 
-```bash
+```sh
 pm2 start --name <app_name> <entry_point>
 ```
 
@@ -139,7 +139,7 @@ pm2 start --name <app_name> <entry_point>
 
 By restarting, you stop the app, and start it again.
 
-```bash
+```sh
 pm2 restart <app_name>
 ```
 
@@ -148,13 +148,13 @@ pm2 restart <app_name>
 By reloading, you replace the current process of your app with a new one, resulting in a 0-second downtime.
 This is recommended for stateless applications.
 
-```bash
+```sh
 pm2 reload <app_name>
 ```
 
 #### Stop
 
-```bash
+```sh
 # A single app
 pm2 stop <app_name>
 
@@ -166,7 +166,7 @@ pm2 stop all
 
 By deleting, you stop your app and remove its logs and metrics.
 
-```bash
+```sh
 pm2 del <app_name>
 ```
 

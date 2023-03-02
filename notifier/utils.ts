@@ -1,7 +1,7 @@
 import { assert } from "std/testing/asserts.ts";
 import { NativeRequest } from "oak/mod.ts";
 import type { ServerRequest } from "oak/types.d.ts";
-import { verify } from "octokit/web.ts";
+import { verify } from "octokit-webhooks-methods";
 import env from "./env.ts";
 
 // https://stackoverflow.com/a/71088170/10379728
@@ -28,10 +28,9 @@ export async function verifyGitHubWebhook(
   // This should be more strict in reality
   if (!id) throw new Error("Not a GH webhhok");
 
-  const signatureHeader = request.headers.get("X-Hub-Signature-256");
+  const signature = request.headers.get("X-Hub-Signature-256");
   let verified = false;
-  if (signatureHeader) {
-    const signature = signatureHeader.slice("sha256=".length);
+  if (signature) {
     const payload = await request.request.clone().text();
     verified = await verify(env.SECRET, payload, signature);
   }
