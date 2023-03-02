@@ -20,4 +20,7 @@ onMounted(() => refresh())
       <v-progress-circular :width="2" :size="28" indeterminate></v-progress-circular>
     </v-avatar>
   </div>
+  <div v-if="state === 'empty'">
+    <v-avatar color="primary" icon="mdi-robot" />
+  </div>
 </template>
