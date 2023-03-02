@@ -20,6 +20,7 @@
   "license": "MIT",
   "devDependencies": {
     "@mdi/font": "^7.1.96",
+    "@types/lodash.debounce": "^4.0.7",
     "@vuepress/plugin-docsearch": "next",
     "deno-bin": ">=1.25.2",
     "serve": "^14.1.2",
@@ -28,6 +29,7 @@
   "dependencies": {
     "grammy": "^1.14.1",
     "grammy-vue": "^0.0.4",
+    "lodash.debounce": "^4.0.8",
     "vuetify": "^3.1.6"
   }
 }
