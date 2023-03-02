@@ -20,7 +20,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
       "Тут для тебе нічого немає, вибач.",
       "Error 404/ Цю сторінку не вдалося знайти.",
       "Загубилась, як кит у пустелі.",
-      "Знайшлося все, окрім розуму..."
+      "Знайшлося все, окрім розуму...",
     ],
     backToHome: "Ніколи не забувай, звідки ти",
     navbar: [
@@ -425,7 +425,8 @@ export const docsearchUk: LocaleConfig<DocsearchLocaleData> = {
         noResultsScreen: {
           noResultsText: "Немає результатів для",
           suggestedQueryText: "Спробуйте пошукати",
-          reportMissingResultsText: "Вважаєте, що цей запит повинен повернути результати?",
+          reportMissingResultsText:
+            "Вважаєте, що цей запит повинен повернути результати?",
           reportMissingResultsLinkText: "Дайте нам знати.",
         },
       },
