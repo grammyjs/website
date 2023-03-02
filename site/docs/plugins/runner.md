@@ -114,7 +114,7 @@ It needs constant memory (unless you specify infinite concurrency), and it needs
 
 ## Graceful Shutdown
 
-In order for the bot to complete its work correctly you [should signal](../advanced/reliability.md#using-grammy-runner) it to stop when the process is about to be destroyed.
+In order for the bot to complete its work correctly, you [should signal it](../advanced/reliability.md#using-grammy-runner) to stop when the process is about to be destroyed.
 
 Note that you can wait for the runner to terminate by `await`ing the `task` in the [`RunnerHandle`](https://deno.land/x/grammy_runner/mod.ts?s=RunnerHandle) returned from `run`.
 
@@ -128,7 +128,7 @@ handle.task.then(() => {
 
 ## Advanced Options
 
-grammY runner consists of three things: a source, a runner, and a sink.
+grammY runner consists of three things: a source, a sink, and a runner.
 The source pulls in updates, the sink consumes updates, and the runner configures and connects the two.
 
 > An in-depth description on how the runner works internally can be found [down here](#how-it-works-behind-the-scenes).
@@ -188,7 +188,7 @@ Instead, it has to receive them from a regular `Bot` that controls its workers.
 grammY runner provides you with middleware that can send updates to bot workers.
 The bot workers can then receive this update and handle it.
 This way, the central bot only has to concern itself with pulling in and distributing updates among the bot workers it orchestrates.
-The actual update handling (filtering messages, sending replies, etc) is performed by the bot workers.
+The actual update handling (filtering messages, sending replies, etc.) is performed by the bot workers.
 
 Let's now see how this can be used.
 
@@ -197,7 +197,7 @@ Let's now see how this can be used.
 > Examples of this can be found in the [grammY runner repository](https://github.com/grammyjs/runner/tree/main/examples).
 
 We will start out by creating the central bot instance that fetches updates and distributes them among workers.
-Let's create a file called `bot.ts` with the following code.
+Let's start by creating a file called `bot.ts` with the following content.
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
@@ -216,7 +216,7 @@ const bot = new Bot("");
 // Distribute the updates among bot workers.
 bot.use(distribute(__dirname + "/worker"));
 
-// Run the concurrently with multi-threading.
+// Run the bot concurrently with multi-threading.
 run(bot);
 ```
 
