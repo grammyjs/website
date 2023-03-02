@@ -1,31 +1,30 @@
 # Chat Members Plugin (`chat-members`)
 
-Automatically store information about users on a chat and retrieve it easily.
+Automatically store information about users in a chat and retrieve it easily.
 
 ## Introduction
 
 In many situations, it is necessary for a bot to have information about all the users of a given chat.
 Currently, though, the Telegram Bot API exposes no method that allows us to retrieve this information.
 
-This plugin comes to the rescue: automatically listening to `chat_member` events and storing each `ChatMember` objects.
+This plugin comes to the rescue: automatically listening to `chat_member` events and storing all `ChatMember` objects.
 
 ## Usage
 
 ### Storing Chat Members
 
-You can use a valid grammY [storage adapter](https://grammy.dev/plugins/session.html#known-storage-adapters) or an
-instance of any class that implements the [`StorageAdapter`](https://deno.land/x/grammy/mod.ts?s=StorageAdapter) interface.
+You can use a valid grammY [storage adapter](./session.md#known-storage-adapters) or an instance of any class that implements the [`StorageAdapter`](https://deno.land/x/grammy/mod.ts?s=StorageAdapter) interface.
 
-Please note that, as per the official Telegram docs, your bot need to specify the `chat_member` update in the `allowed_updates` array, as shown in the example below.
+Please note that, as per the official Telegram docs, your bot needs to specify the `chat_member` update in the `allowed_updates` array, as shown in the example below.
 This means you also need to specify any other events you'd like to receive.
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
 
 ```ts
-import { Bot, Context, MemorySessionStorage } from "grammy";
-import type { ChatMember } from "grammy/types";
-import { chatMembers, ChatMembersFlavor } from "@grammyjs/chat-members";
+import { Bot, type Context, MemorySessionStorage } from "grammy";
+import { type ChatMember } from "grammy/types";
+import { chatMembers, type ChatMembersFlavor } from "@grammyjs/chat-members";
 
 type MyContext = Context & ChatMembersFlavor;
 
@@ -43,11 +42,11 @@ bot.start({
 
 </CodeGroupItem>
 
-<CodeGroupItem title="JavaScript" active>
+<CodeGroupItem title="JavaScript">
 
 ```js
-import { Bot, Context, MemorySessionStorage } from "grammy";
-import { chatMembers, ChatMembersFlavor } from "@grammyjs/chat-members";
+import { Bot, MemorySessionStorage } from "grammy";
+import { chatMembers } from "@grammyjs/chat-members";
 
 const adapter = new MemorySessionStorage();
 
@@ -63,18 +62,18 @@ bot.start({
 
 </CodeGroupItem>
 
-<CodeGroupItem title="Deno" active>
+<CodeGroupItem title="Deno">
 
 ```ts
 import {
   Bot,
-  Context,
+  type Context,
   MemorySessionStorage,
 } from "https://deno.land/x/grammy/mod.ts";
-import type { ChatMember } from "https://deno.land/x/grammy/types.ts";
+import { type ChatMember } from "https://deno.land/x/grammy/types.ts";
 import {
   chatMembers,
-  ChatMembersFlavor,
+  type ChatMembersFlavor,
 } from "https://deno.land/x/grammy_chat_members/mod.ts";
 
 type MyContext = Context & ChatMembersFlavor;
