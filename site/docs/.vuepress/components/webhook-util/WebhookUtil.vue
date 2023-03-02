@@ -20,6 +20,7 @@ const updateBotInfo = (info: UserFromGetMe, _token: string) => {
 const reset = () => {
   botInfo.value = undefined
   token.value = ''
+  localStorage.removeItem('botToken')
 }
 </script>
 <template>

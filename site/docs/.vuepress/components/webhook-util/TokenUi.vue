@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { UserFromGetMe } from '@grammyjs/types'
-import { computed, ref, watch } from 'vue'
+import { computed, ref, watch, onMounted } from 'vue'
 import { VAlert } from 'vuetify/components/VAlert'
 import { VBtn } from 'vuetify/components/VBtn'
 import { VCard, VCardActions, VCardText } from 'vuetify/components/VCard'
@@ -12,7 +12,7 @@ import debounce from 'lodash.debounce'
 
 const props = defineProps<{ strings: Translation }>()
 const translation = computed(() => props.strings.tokenCard)
-const token = ref('')
+const token = ref(localStorage.getItem('botToken') ?? '')
 
 const { useApiMethod } = useTelegramApi(token)
 const { refresh: getMe, state, data: botInfo, error } = useApiMethod('getMe')
@@ -24,7 +24,14 @@ const loadBotInfo = debounce(async () => {
   emit('info', botInfo.value, token.value)
 }, 10)
 
-watch(token, () => loadBotInfo())
+watch(token, (value) => {
+  localStorage.setItem('botToken', value)
+  loadBotInfo()
+})
+
+onMounted(() => {
+  if (token.value) loadBotInfo()
+})
 </script>
 <template>
   <div class="token-ui">
