@@ -405,11 +405,11 @@ ______________                                          _____________
 Kamu mungkin penasaran kenapa perilaku bawaan `webhookCallback` adalah melempar sebuah error, alih-alih mengakhiri request tersebut dengan baik.
 Pilihan desain ini dipilih karena pertimbangan berikut.
 
-Race condition sangat sulit direproduksi dan bahkan mungkin sangat jarang terjadi atau cuma terjadi sekali-sekali saja.
-Solusinya adalah _pastikan tidak sampai terjadi timeout_ dari awal.
-Jika itu dilakukan, kamu pasti ingin tahu apa yang sebenarnya terjadi, dengan begitu kamu bisa menyelidiki dan memperbaiki sumber masalahnya!
-Karena alasan tersebut, kamu mengharapkan sebuah error muncul di log kamu.
-Menyetel timeout handler ke `"return"`, mengabaikan timeout dan berpura-pura seolah-olah tidak terjadi apa-apa, adalah kebalikan dari perilaku yang kita inginkan dan tidak membantu sama sekali.
+Data race sangatlah sulit untuk direproduksi karena sangat jarang terjadi.
+Untuk mengatasi permasalahan tersebut, dari awal _pastikan jangan sampai terjadi timeout_.
+Tetapi, jika kemungkinan terburuk itu terjadi, kamu pasti ingin tahu apa yang sebenarnya terjadi, dengan begitu kamu bisa menyelidiki dan memperbaiki sumber masalahnya!
+Karena alasan tersebutlah, kamu pasti mengharapkan sebuah error muncul di log kamu.
+Sebaliknya, dengan menyetel timeout handler ke `"return"`, mengabaikan timeout dan berpura-pura seolah-olah tidak terjadi apa-apa, adalah kebalikan dari perilaku yang kita inginkan dan tidak ada artinya.
 
 Kalau kamu tetap melakukannya, kamu seakan-akan menggunakan antrian update di pengiriman webhook milik Telegram sebagai antrian queue milikmu.
 Ini ide yang buruk karena alasan-alasan yang telah dijabarkan di atas.
