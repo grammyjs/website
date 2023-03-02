@@ -1,6 +1,7 @@
 # Chat Members Plugin (`chat-members`)
 
 Automatically store information about users in a chat and retrieve it easily.
+Track group and channel members, and list them.
 
 ## Introduction
 
