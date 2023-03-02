@@ -14,9 +14,9 @@ export function useProfilePhoto(token: string) {
       const id = (await api.getMe()).id;
       const photos = await api.getUserProfilePhotos(id);
       if (photos.total_count === 0) {
-        state.value = 'empty';
+        state.value = "empty";
         return;
-      };
+      }
       const fileId = photos.photos[0][2].file_id;
 
       const file = await api.getFile(fileId);
