@@ -132,10 +132,10 @@ You can do this by calling setWebhook.
 For example, open a new tab in your browser and visit this URL:
 
 ```text:no-line-numbers
-https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://modern-heads-sink-80-132-166-120.loca.lt/hotsouceservice/us-central1/helloWorld
+https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<LT_URL>/<firebase-projectname>/us-central1/helloWorld
 ```
 
-Replace <BOT_TOKEN> with your real bot token, and the `.loca.lt` url with you own url you got from localtunnel.
+Replace `<BOT_TOKEN>` with your real bot token, and `<LT_URL>` with your own URL you received from localtunnel.
 
 You should now see this in your browser window.
 
