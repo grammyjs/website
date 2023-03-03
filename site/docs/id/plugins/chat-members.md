@@ -1,19 +1,20 @@
 # Plugin Chat Members (`chat-members`)
 
 Secara otomatis menyimpan informasi pengguna pada percakapan dan mengambilnya dengan mudah.
+Pantau anggota group dan channel, lalu daftarkan mereka dalam list.
 
 ## Pengenalan
 
 Dalam berbagai situasi, suatu bot perlu memiliki informasi tentang semua pengguna yang pernah melakukan percakapan dengannya.
 Akan tetapi, saat ini, API Telegram tidak memiliki metode yang memungkinkan kita untuk mendapatkan informasi tersebut.
 
-Plugin ini hadir untuk membantu: secara otomatis membaca event `chat_member` dan menyimpan setiap objek `ChatMember`.
+Plugin ini hadir untuk membantu: secara otomatis membaca event `chat_member` dan menyimpan semua objek `ChatMember`.
 
 ## Penggunaan
 
 ### Menyimpan Percakapan Member
 
-Kamu bisa mengunakan [storage adapter](https://grammy.dev/id/plugins/session.html#known-storage-adapters) grammY yang valid atau
+Kamu bisa mengunakan [storage adapter](./session.md#storage-adapter-yang-tersedia) grammY yang valid atau
 instance dari kelas apapun yang mengimplementasikan interface [`StorageAdapter`](https://deno.land/x/grammy/mod.ts?s=StorageAdapter).
 
 Perhatikan bahwa, sesuai dengan dokumentasi resmi Telegram, bot kamu perlu diberikan update `chat_member` pada array `allowed_updates`, seperti yang ditampilkan pada contoh dibawah.
@@ -23,9 +24,9 @@ Ini berarti kamu juga bisa menentukan event lain sesuai yang ingin kamu dapatkan
   <CodeGroupItem title="TypeScript" active>
 
 ```ts
-import { Bot, Context, MemorySessionStorage } from "grammy";
-import type { ChatMember } from "grammy/types";
-import { chatMembers, ChatMembersFlavor } from "@grammyjs/chat-members";
+import { Bot, type Context, MemorySessionStorage } from "grammy";
+import { type ChatMember } from "grammy/types";
+import { chatMembers, type ChatMembersFlavor } from "@grammyjs/chat-members";
 
 type MyContext = Context & ChatMembersFlavor;
 
@@ -43,11 +44,11 @@ bot.start({
 
 </CodeGroupItem>
 
-<CodeGroupItem title="JavaScript" active>
+<CodeGroupItem title="JavaScript">
 
 ```js
-import { Bot, Context, MemorySessionStorage } from "grammy";
-import { chatMembers, ChatMembersFlavor } from "@grammyjs/chat-members";
+import { Bot, MemorySessionStorage } from "grammy";
+import { chatMembers } from "@grammyjs/chat-members";
 
 const adapter = new MemorySessionStorage();
 
@@ -63,18 +64,18 @@ bot.start({
 
 </CodeGroupItem>
 
-<CodeGroupItem title="Deno" active>
+<CodeGroupItem title="Deno">
 
 ```ts
 import {
   Bot,
-  Context,
+  type Context,
   MemorySessionStorage,
 } from "https://deno.land/x/grammy/mod.ts";
-import type { ChatMember } from "https://deno.land/x/grammy/types.ts";
+import { type ChatMember } from "https://deno.land/x/grammy/types.ts";
 import {
   chatMembers,
-  ChatMembersFlavor,
+  type ChatMembersFlavor,
 } from "https://deno.land/x/grammy_chat_members/mod.ts";
 
 type MyContext = Context & ChatMembersFlavor;
