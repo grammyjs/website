@@ -14,11 +14,11 @@ El resto del filtrado de los mensajes se deja al desarrollador, lo que a menudo 
 
 Por el contrario, **grammY incluye su propio lenguaje de consulta** que puedes utilizar para **filtrar exactamente los mensajes** que quieras.
 
-Esto permite utilizar más de 500 filtros diferentes, y es posible que añadamos más con el tiempo.
+Esto permite utilizar más de 820 filtros diferentes, y es posible que añadamos más con el tiempo.
 Todos los filtros válidos se pueden autocompletar en el editor de código.
 Por lo tanto, puedes simplemente escribir `bot.on("")`, abrir el autocompletado, y buscar entre todas las consultas escribiendo algo
 
-![Filtro de búsqueda de consultas](/filter-query-search.png)
+![Filtro de búsqueda de consultas](/images/filter-query-search.png)
 
 La inferencia de tipos de `bot.on()` comprenderá la consulta de filtro que hayas elegido.
 Por lo tanto, ajusta algunos tipos en el contexto que se sabe que existen.
@@ -237,7 +237,7 @@ Esto permite crear potentes patrones de manejo de mensajes.
 bot.on(":forward_date").command("help"); // comandos /help reenviados
 
 // Solo maneja comandos en chats privados.
-const pm = bot.filter((ctx) => ctx.chat?.type === "private");
+const pm = bot.chatType("private");
 pm.command("start");
 pm.command("help");
 ```

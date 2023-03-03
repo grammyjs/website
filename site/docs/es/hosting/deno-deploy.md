@@ -1,12 +1,12 @@
 # Alojamiento: Deno Deploy
 
-Esta guía le informa sobre las formas de alojar sus bots de grammY en [Deno Deploy](https://deno.com/deploy).
+Esta guía te explica cómo puedes alojar tus bots de grammy en [Deno Deploy](https://deno.com/deploy).
 
-Ten en cuenta que esta guía es sólo para usuarios de Deno, y que necesitas tener una cuenta de [GitHub](https://github.com) para crear una cuenta de [Deno Deploy](https://deno.com/deploy).
+Ten en cuenta que esta guía es solo para usuarios de Deno, y que necesitas tener una cuenta [GitHub](https://github.com) para crear una cuenta [Deno Deploy](https://deno.com/deploy).
 
-Deno Deploy es ideal para la mayoría de los bots simples, y debe tener en cuenta que no todas las características de Deno están disponibles para las aplicaciones que se ejecutan en Deno Deploy.
-Por ejemplo, no hay sistema de archivos en Deno Deploy.
-Es igual que las demás plataformas sin servidor, pero dedicado a las aplicaciones de Deno.
+Deno Deploy es ideal para la mayoría de los bots sencillos, y debe tener en cuenta que no todas las funciones de Deno están disponibles para las aplicaciones que se ejecutan en Deno Deploy.
+Por ejemplo, la plataforma solo admite un [conjunto limitado](https://deno.com/deploy/docs/runtime-fs) de las API del sistema de archivos disponibles en Deno.
+Es como las otras muchas plataformas serverless, pero dedicadas a las aplicaciones Deno.
 
 El resultado de este tutorial [puede verse en nuestro repositorio de bots de ejemplo](https://github.com/grammyjs/examples/tree/main/deno-deploy).
 
@@ -70,7 +70,7 @@ Aquí, estamos usando el token del bot (`/<bot token>`).
 4. [Crear un token de acceso](https://dash.deno.com/user/access-tokens).
 5. Ejecuta el siguiente comando:
 
-```bash
+```sh
 deployctl deploy --project <project> ./mod.ts --prod --token <token>
 ```
 
@@ -89,7 +89,7 @@ deployctl deploy --project <project> ./mod.ts --prod --token <token>
 Después de poner en marcha tu aplicación, debes configurar los ajustes de los webhooks de tu bot para que apunten a tu aplicación.
 Para ello, envía una petición a
 
-```text
+```text:no-line-numbers
 https://api.telegram.org/bot<token>/setWebhook?url=<url>
 ```
 

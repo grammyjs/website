@@ -14,11 +14,11 @@ Pemfilteran untuk jenis pesan lainnya diserahkan kepada developer bot masing-mas
 
 Sebaliknya, **grammY dilengkapi dengan bahasa query-nya sendiri** yang dapat digunakan untuk **memfilter pesan yang kamu inginkan**.
 
-grammY memiliki lebih dari 650 filter berbeda yang siap dipakai, dan tidak menutup kemungkinan lebih banyak lagi filter yang akan ditambahkan seiring berjalannya waktu.
+grammY memiliki lebih dari 820 filter berbeda yang siap dipakai, dan tidak menutup kemungkinan lebih banyak lagi filter yang akan ditambahkan seiring berjalannya waktu.
 Setiap filter yang valid dapat dilengkapi menggunakan auto-complete di code editor.
 Dengan demikian, kamu cukup mengetik `bot.on("")`, lalu buka auto-complete, kemudian telusuri semua query yang tersedia dengan cara mengetik sesuatu.
 
-![Pencarian Filter Query](/filter-query-search.png)
+![Pencarian Filter Query](/images/filter-query-search.png)
 
 _Type inference_ `bot.on()` akan memahami filter query yang sedang kamu pilih. Dari situ, ia akan mengerucutkan beberapa type context yang ada.
 
@@ -229,7 +229,7 @@ Dengan begitu, kamu bisa membuat pola penanganan pesan menjadi lebih fleksibel.
 bot.on(":forward_date").command("help"); // Command /help yang di-forward
 
 // Tangani command yang berasal dari private chat saja.
-const pm = bot.filter((ctx) => ctx.chat?.type === "private");
+const pm = bot.chatType("private");
 pm.command("start");
 pm.command("help");
 ```

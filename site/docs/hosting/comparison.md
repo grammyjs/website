@@ -4,7 +4,7 @@ There are many different hosting providers that allow you to run your bot.
 It can sometimes be hard to keep track of how much they cost and how good their performance is.
 This is why the grammY community is collecting their experiences on this page.
 
-## What is a Hosting Provider?
+## What Is a Hosting Provider?
 
 In order to keep a bot online 24 hours a day, you need to run a computer 24 hours a day.
 As [mentioned in the introduction](../guide/introduction.html#how-to-keep-a-bot-running), you most likely don't want to do that with your laptop or home computer.
@@ -88,7 +88,7 @@ Check out the [tutorial](./vps.md) on how to host grammY bots on a VPS.
 | Unit        | Quantity                 | In Words                               | Explanation                                              |
 | ----------- | ------------------------ | -------------------------------------- | -------------------------------------------------------- |
 | $/mo        | cost                     | US-Dollars per month                   | Monthly cost.                                            |
-| €/M req     | cost                     | Euros per million requests             | Cost for handling one million request.                   |
+| €/M req     | cost                     | Euros per million requests             | Cost for handling one million requests.                  |
 | req/min     | throughput               | requests per minute                    | Number of requests handled in one minute.                |
 | GB/s        | throughput               | gigabytes per second                   | Number of gigabytes transferred in one second.           |
 | GB-s        | memory usage             | gigabyte seconds                       | One gigabyte used for one second.                        |

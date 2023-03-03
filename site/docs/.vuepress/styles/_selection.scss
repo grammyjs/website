@@ -1,0 +1,16 @@
+.logo,
+.site-name,
+img[alt="grammY"] {
+  user-select: none;
+}
+
+::selection {
+  // --c-brand with an opacity of 0x44
+  background-color: #009dca44;
+}
+
+::selection:window-inactive,
+::selection:-moz-window-inactive {
+  // --c-brand with an opacity of 0x22
+  background-color: #009dca22;
+}

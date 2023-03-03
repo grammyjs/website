@@ -64,19 +64,20 @@ A translation to another language must be 100 % complete before it gets publishe
 We do not accept partial translations.
 All menus, links, articles, comments, and everything translatable must be localized before the changes can finally go live on the website.
 Please open a translation tracking issue so everyone can follow the progress.
-It can look like https://github.com/grammyjs/website/issues/55.
+It can look like <https://github.com/grammyjs/website/issues/55>.
 
 It would be very painful to do everything in a single pull request, so we developed a simple branching model which will help us to follow along with your progress.
 
-Once you start working on a new language, you should fork this repository.
-We call the `main` branch of your fork the _translation branch_ of your language.
+Once you start working on a new language, we will give you permission to push to this repository.
+You can then create a new branch for the translations, called `spanish` for example.
+This will be the _translation branch_ of your language.
 
-For every page you translate, create a new branch in your fork, perform the translations, and open a pull request.
-Make sure to open a pull request against your translation branch, and not against the `main` branch of the original repository.
+For every page you translate, create a new branch, perform the translations, and open a pull request.
+Make sure to open a pull request against your translation branch, and not against `main`.
 
 A different person who can speak your language can now review the pull request.
 Make sure to reiterate on the translations, in case you have ideas to improve it.
-Make sure to review a fully rendered version of how your changes will look (by using a [local setup](./README.md#building-the-website-locally)), which will enable you to catch all mistakes.
+The GitHub bot will provide you with a website preview of your pull request, so you can review a fully-rendered version of how your changes will look, which will enable you to catch all mistakes.
 Once you both think that the translation is perfect, merge the pull request into the translation branch of your language.
 
 You should keep track of which pages are translated in your translation tracking issue.
@@ -85,7 +86,7 @@ That way, it is always guaranteed that the articles in the translation branch ar
 
 > Hint: enable pull request notifications for this repository so that you can stay up to date.
 
-Once everything is translated, the translation branch can be merged into the `main` branch of this repository.
+Once everything is translated, the translation branch can be merged into `main`.
 You can now close your progress tracking issue.
 Your translations go live immediately.
 Your language has now entered the Maintenance Stage.

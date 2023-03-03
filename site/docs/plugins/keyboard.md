@@ -57,7 +57,7 @@ const inlineKeyboard = new InlineKeyboard()
 
 ##### Result
 
-![Example 1](/inline-keyboard-example-1.webp)
+![Example 1](/images/inline-keyboard-example-1.webp)
 
 #### Example 2
 
@@ -73,7 +73,7 @@ const inlineKeyboard = new InlineKeyboard()
 
 ##### Result
 
-![Example 2](/inline-keyboard-example-2.webp)
+![Example 2](/images/inline-keyboard-example-2.webp)
 
 #### Example 3
 
@@ -90,7 +90,7 @@ const inlineKeyboard = new InlineKeyboard().url(
 
 ##### Result
 
-![Example 3](/inline-keyboard-example-3.webp)
+![Example 3](/images/inline-keyboard-example-3.webp)
 
 ### Sending an Inline Keyboard
 
@@ -174,7 +174,7 @@ Remember that you can listen for text message via `bot.on("message:text")` or `b
 
 Here are three examples how to build a custom keyboard with `text` buttons.
 
-You can also request the phone number with `requestContact`, the location with `requestLocation`, and a poll with `requestPoll`.
+You can also request the phone number with `requestContact`, the location with `requestLocation`, a poll with `requestPoll`, a user with `requestUser`, and a chat with `requestChat`.
 
 #### Example 1
 
@@ -192,7 +192,7 @@ const keyboard = new Keyboard()
 
 ##### Result
 
-![Example 1](/keyboard-example-1.webp)
+![Example 1](/images/keyboard-example-1.webp)
 
 #### Example 2
 
@@ -210,7 +210,7 @@ const keyboard = new Keyboard()
 
 ##### Result
 
-![Example 2](/keyboard-example-2.webp)
+![Example 2](/images/keyboard-example-2.webp)
 
 #### Example 3
 
@@ -226,7 +226,7 @@ const keyboard = new Keyboard()
 
 ##### Result
 
-![Example 3](/keyboard-example-3.webp)
+![Example 3](/images/keyboard-example-3.webp)
 
 ### Sending a Custom Keyboard
 
