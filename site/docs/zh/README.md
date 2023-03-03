@@ -84,5 +84,5 @@ bot.start();
 
 ---
 
-grammY 支持 Telegram Bot API 6.4，该 API 于 2022 年 12 月 30 日 [发布](https://core.telegram.org/bots/api#december-30-2022)。
-(新增: 媒体透露)
+grammY 支持 Telegram Bot API 6.5，该 API 于 2023 年 2 月 2 日 [发布](https://core.telegram.org/bots/api#february-02-2023)。
+(新增: 用户和聊天请求)

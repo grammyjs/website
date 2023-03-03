@@ -174,7 +174,7 @@ grammY 有一个简单且直观的方式来构建回复 keyboard，让你的 bot
 
 这里有三个例子来演示如何构建带有 `text` 按钮的自定义 keyboard。
 
-你也可以使用 `requestContact` 来请求电话号码，使用 `requestLocation` 来请求位置，使用 `requestPoll` 来请求投票。
+你也可以使用 `requestContact` 来请求电话号码，使用 `requestLocation` 来请求位置，使用 `requestPoll` 来请求投票，使用 `requestUser` 来请求用户, 使用 `requestChat` 请求聊天。
 
 #### 样例 1
 
