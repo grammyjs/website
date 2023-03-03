@@ -223,6 +223,10 @@ export const localeZh: LocaleConfig<DefaultThemeLocaleData> = {
                 text: "解析模式 (parse-mode)",
                 link: "/zh/plugins/parse-mode.html",
               },
+              {
+                text: "聊天成员 (chat-members)",
+                link: "/zh/plugins/chat-members.html",
+              },
             ],
           },
           {
