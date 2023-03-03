@@ -1,24 +1,25 @@
 # Plugin Chat Members (`chat-members`)
 
-Secara otomatis menyimpan informasi pengguna pada percakapan dan mengambilnya dengan mudah.
-Pantau anggota group dan channel, lalu daftarkan mereka dalam list.
+Mengambil serta menyimpan informasi user dari suatu chat secara mudah dan otomatis.
+Plugin ini bekerja dengan cara memantau anggota grup dan channel, lalu menyimpannya ke dalam sebuah daftar.
 
 ## Pengenalan
 
-Dalam berbagai situasi, suatu bot perlu memiliki informasi tentang semua pengguna yang pernah melakukan percakapan dengannya.
-Akan tetapi, saat ini, API Telegram tidak memiliki metode yang memungkinkan kita untuk mendapatkan informasi tersebut.
+Sering kali, suatu bot perlu memiliki informasi semua pengguna dari suatu chat tertentu.
+Akan tetapi, saat ini, Telegram tidak memiliki method API yang memungkinkan kita untuk mendapatkan informasi tersebut.
 
-Plugin ini hadir untuk membantu: secara otomatis membaca event `chat_member` dan menyimpan semua objek `ChatMember`.
+Plugin ini hadir untuk membantu!
+Ia mampu memantau event `chat_member` serta menyimpan semua objek `ChatMember` secara otomatis.
 
 ## Penggunaan
 
-### Menyimpan Percakapan Member
+### Menyimpan Anggota Chat
 
-Kamu bisa mengunakan [storage adapter](./session.md#storage-adapter-yang-tersedia) grammY yang valid atau
+Kamu bisa menggunakan [storage adapter](./session.md#storage-adapter-yang-tersedia) grammY yang valid atau
 instance dari kelas apapun yang mengimplementasikan interface [`StorageAdapter`](https://deno.land/x/grammy/mod.ts?s=StorageAdapter).
 
-Perhatikan bahwa, sesuai dengan dokumentasi resmi Telegram, bot kamu perlu diberikan update `chat_member` pada array `allowed_updates`, seperti yang ditampilkan pada contoh dibawah.
-Ini berarti kamu juga bisa menentukan event lain sesuai yang ingin kamu dapatkan.
+Perhatikan bahwa, sesuai dengan dokumentasi resmi Telegram, bot kamu perlu mencantumkan update `chat_member` di array `allowed_updates`, seperti yang ditampilkan pada contoh di bawah.
+Ini berarti, kamu juga perlu mencantumkan event lain yang diperlukan.
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
@@ -37,7 +38,7 @@ const bot = new Bot<MyContext>("<token bot kamu>");
 bot.use(chatMembers(adapter));
 
 bot.start({
-  // Pastikan untuk memberikan tipe update yang spesifik
+  // Pastikan untuk mencantumkan tipe update yang sesuai
   allowed_updates: ["chat_member", "message"],
 });
 ```
@@ -57,7 +58,7 @@ const bot = new Bot("<token bot kamu>");
 bot.use(chatMembers(adapter));
 
 bot.start({
-  // Pastikan untuk memberikan tipe update yang spesifik
+  // Pastikan untuk mencantumkan tipe update yang sesuai
   allowed_updates: ["chat_member", "message"],
 });
 ```
@@ -87,7 +88,7 @@ const bot = new Bot<MyContext>("<token bot kamu>");
 bot.use(chatMembers(adapter));
 
 bot.start({
-  // Pastikan untuk memberikan tipe update yang spesifik
+  // Pastikan untuk mencantumkan tipe update yang sesuai
   allowed_updates: ["chat_member", "message"],
 });
 ```
@@ -96,11 +97,11 @@ bot.start({
 
 </CodeGroup>
 
-### Membaca Pesan Member
+### Membaca Anggota Chat
 
-Plugin ini juga menambahkan fungsi `ctx.chatMembers.getChatMember` yang akan memeriksa simpanan informasi tentang member chat sebelum melakukan permintaan pada Telegram.
-Apabila anggota tersebut ada didalam penyimpanan, maka nanti akan dikembalikan keanggotaannya.
-Sebaliknya, jika tidak ada maka nanti `ctx.api.getChatMember` akan dipanggil dan hasilnya akan disimpan dalam penyimpanan, sehingga membuat panggilan berikutnya menjadi lebih cepat dan mengurangi panggilan berulang ke Telegram untuk pengguna tersebut dan obrolannya di masa mendatang.
+Plugin ini juga menambahkan function `ctx.chatMembers.getChatMember` untuk memeriksa informasi anggota chat yang tersimpan, sebelum melakukan query ke Telegram.
+Apabila anggota itu ada di dalam penyimpanan, maka function akan mengembalikan informasi anggota tersebut.
+Sebaliknya, jika tidak tersedia, maka `ctx.api.getChatMember` akan dipanggil dan hasilnya akan disimpan ke dalam penyimpanan, sehingga pemanggilan berikutnya menjadi lebih cepat serta mengurangi pemanggilan berulang ke Telegram untuk user dan chat tersebut di masa mendatang.
 
 Berikut ini contohnya:
 
@@ -114,7 +115,7 @@ bot.on("message", async (ctx) => {
 });
 ```
 
-Fungsi ini menerima parameter opsional :
+Function ini menerima parameter opsional berikut:
 
 - `chatId`:
   - Default: `ctx.chat.id`
@@ -137,18 +138,18 @@ bot.on("message", async (ctx) => {
 });
 ```
 
-Perlu diperhatikan, apabila kamu tidak memberikan indetifier chat dan properti `chat` didalam context (misalnya, pada update inline query), maka nantinya akan menghasilkan error.
-Sama halnya yang terjadi apabila tidak adanya `ctx.from` pada context.
+Perlu diperhatikan, apabila kamu tidak memberikan identifier chat dan property `chat` tidak tersedia di dalam context tersebut (misalnya, pada update inline query), maka nantinya akan menghasilkan error.
+Sama halnya juga terjadi apabila context tidak memiliki `ctx.from`.
 
 ## Aggressive Storage
 
 Opsi konfigurasi `enableAggressiveStorage` akan menginstal middleware untuk menyimpan cache chat member tanpa bergantung pada event `chat_member`.
-Setiap adanya update, middleware akan memeriksa apakah `ctx.chat` dan `ctx.from` ada.
-Jika ada, maka ia nanti akan memanggil `ctx.chatMembers.getChatMember` untuk menambahkan informasi anggota pada penyimpanan, jika informasi tersebut tidak ada.
+Setiap adanya update, middleware akan memeriksa apakah `ctx.chat` dan `ctx.from` tersedia.
+Jika keduanya tersedia, ia kemudian memanggil `ctx.chatMembers.getChatMember` untuk menambahkan informasi anggota ke penyimpanan, jika informasi tersebut belum tersimpan.
 
-Harap perhatikan bahwa ini berarti penyimpanan akan dipanggil **setiap adanya update**, yang dimana mungkin sangat banyak, tergantung dari berapa banyak update yang diterima oleh bot.
-Plugin ini bisa memberikan dampak yang drastis pada performa bot kamu.
-Gunakan ini apabila kamu memang _benar-benar_ tahu apa yang kamu lakukan dan kamu setuju dengan resikonya.
+Harap perhatikan bahwa ini berarti penyimpanan akan dipanggil **setiap adanya update**, yang mana jumlahnya mungkin sangat banyak, tergantung dari berapa banyak update yang diterima oleh bot.
+Plugin ini bisa mempengaruhi performa bot kamu secara signifikan.
+Hanya gunakan ini apabila kamu _benar-benar_ paham dengan perilaku, resiko, dan konsekuensinya.
 
 ## Ringkasan Plugin
 
