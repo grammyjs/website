@@ -37,7 +37,7 @@ Sederhananya, jika ingin bot tetap aktif sepanjang waktu, kamu harus terus menja
 Karena kemungkinan besar kamu tidak ingin melakukannya dengan komputer kesayanganmu, kamu harus mengunggah source code bot ke sebuah _penyedia hosting_—dengan kata lain, menggunakan komputer milik orang lain, yang juga dikenal sebagai _server_—dan biarkan orang tersebut yang menjalankannya untukmu.
 
 Ada banyak penyedia layanan di luar sana yang mengizinkan kamu untuk menjalankan bot Telegram secara gratis.
-Dokumentasi ini juga sudah menyediakan daftar beberapa penyedia hosting yang kami tahu bekerja dengan baik dengan grammY (lihat bab Sumber Daya).
+Dokumentasi ini juga sudah menyediakan daftar beberapa penyedia hosting yang kami tahu bekerja dengan baik dengan grammY (lihat di bagian [Hosting](../hosting/comparison.md).
 Namun, pada akhirnya, keputusan ada pada diri kamu untuk memilih penyedia layanan yang sesuai.
 Perlu diingat bahwa disaat kamu menjalankan kode di tempat lain, berarti siapa pun yang menguasai "tempat" tersebut memiliki akses ke semua pesan dan data penggunamu. Jadi, kamu harus bijak dalam memilih penyedia hosting yang dapat dipercaya.
 
