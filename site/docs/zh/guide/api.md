@@ -96,6 +96,7 @@ import { type Chat } from "https://deno.land/x/grammy/types.ts";
 ```ts
 import { type Chat } from "grammy/types";
 ```
+
 然而，自 Node.js 16 起 Node.js 才正式支持从子路径正确导入。
 因此，TypeScript 需要设置 `moduleResolution` 为 `node16` 或 `nodenext`。
 调整你的 `tsconfig.json` 并将以下列高亮行添加到配置文件中：

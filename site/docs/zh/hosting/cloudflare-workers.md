@@ -8,7 +8,7 @@
 
 ## 先决条件
 
-请确保你有一个 [Cloudflare 帐户](https://dash.cloudflare.com/login)，并 [已配置](https://dash.cloudflare.com/?account=workers ) 你的 workers 子域名.
+请确保你有一个 [Cloudflare 帐户](https://dash.cloudflare.com/login)，并 [已配置](https://dash.cloudflare.com/?account=workers) 你的 workers 子域名.
 
 ## 设置
 

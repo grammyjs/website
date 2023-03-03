@@ -326,6 +326,7 @@ Telegram 在每次聊天时都会按照顺序发送 webhooks，因此默认的�
 :::
 
 ### 聊天迁移
+
 如果你正在群组中使用会话，你应该知道 Telegram 在某些情况下会将常规群组迁移到超级群组（例如 [此处](https://github.com/telegramdesktop/tdesktop/issues/5593)）。
 
 这种迁移对每个群组只发生一次，但它会导致不一致。
