@@ -113,7 +113,8 @@ Kalau kamu belum memiliki banyak pengalaman di dunia pemrograman, **memulai deng
 
 Malahan, jika sebelumnya pernah menulis kode menggunakan Node.js, kamu patut mempertimbangkan untuk mencoba Deno.
 Banyak hal rumit yang ada di Node.js sudah tidak perlu dipikirkan lagi di Deno.
-Berikut kelebihan Deno dibandingkan dengan Node.js:
+
+Keunggulan Deno dibandingkan dengan Node.js:
 
 - Proses penginstalan sangat mudah.
 - Tidak perlu mengatur konfigurasi apapun.
