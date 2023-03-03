@@ -3,7 +3,7 @@
 [Documentation for grammY.](https://grammy.dev)
 Contributions are welcome!
 
-The `logos/` directory only contains the logos of grammY and `notifier/` contains translation tooling—all website-related things are in `site/`.
+The `logos/` directory only contains the logos of grammY—all website-related things are in `site/`.
 
 ## [Contribution Guide »](./CONTRIBUTING.md)
 
