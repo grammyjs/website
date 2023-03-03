@@ -4,8 +4,8 @@
 
 请注意，这个指南只适用于 Deno 用户，你需要一个 [GitHub](https://github.com) 账户来创建一个 [Deno Deploy](https://deno.com/deploy) 账户。
 
-Deno Deploy 是大多数简单 bot 的理想选择，并且你应该注意，并且你应该注意，Deno Deploy 上运行的应用程序不一定完整支持 Deno 的所有功能。
-例如，Deno Deploy 上没有文件系统。
+Deno Deploy 是大多数简单 bot 的理想选择，并且你应该注意，Deno Deploy 上运行的应用程序不一定完整支持 Deno 的所有功能。
+例如，平台仅支持 Deno 中可用的文件系统 API 的 [有限集](https://deno.com/deploy/docs/runtime-fs)。
 它就像其他许多 serverless 平台一样，但专门用于 Deno 应用程序。
 
 这个教程的结果 [可以在我们的示例 bot 仓库中看到](https://github.com/grammyjs/examples/tree/main/deno-deploy)。
