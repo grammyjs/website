@@ -354,6 +354,10 @@ export const localeZh: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/zh/hosting/supabase.html",
               },
               {
+                text: "Cloudflare Workers",
+                link: "/zh/hosting/cloudflare-workers.html",
+              },
+              {
                 text: "Heroku",
                 link: "/zh/hosting/heroku.html",
               },
