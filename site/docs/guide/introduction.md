@@ -113,7 +113,7 @@ If you don't have much experience with programming yet, **it makes sense to star
 Even if you have written code for Node.js before, you should consider giving Deno a go.
 Many things that are hard under Node.js are a no-brainer under Deno.
 
-Deno:
+Deno
 
 - is much easier to install,
 - does not require you to configure anything about your project,
