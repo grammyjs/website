@@ -143,7 +143,7 @@ Sama halnya juga terjadi apabila context tidak memiliki `ctx.from`.
 
 ## Aggressive Storage
 
-Opsi konfigurasi `enableAggressiveStorage` akan menginstal middleware untuk menyimpan cache chat member tanpa bergantung pada event `chat_member`.
+Opsi konfigurasi `enableAggressiveStorage` akan menginstal middleware untuk menyimpan cache anggota chat tanpa bergantung pada event `chat_member`.
 Setiap adanya update, middleware akan memeriksa apakah `ctx.chat` dan `ctx.from` tersedia.
 Jika keduanya tersedia, ia kemudian memanggil `ctx.chatMembers.getChatMember` untuk menambahkan informasi anggota ke penyimpanan, jika informasi tersebut belum tersimpan.
 
