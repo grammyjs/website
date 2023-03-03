@@ -331,7 +331,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
         ],
       },
       {
-        text: "Хостінг",
+        text: "Хостинг",
         children: [
           {
             text: "Огляд",
