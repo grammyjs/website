@@ -12,7 +12,7 @@ systemd 是一个强大的服务管理器，它预安装在大多数 Linux 发�
 
 1. 获取你的运行时的完整路径：
 
-```bash
+```sh
 # 如果使用 Deno
 which deno
 
@@ -24,7 +24,7 @@ which node
 
 3. 你的启动命令应该像下面这样：
 
-```bash
+```sh
 <完整的运行时路径> <选项> <完整的入口文件路径>
 
 # Deno 样例:
@@ -38,13 +38,13 @@ which node
 
 1. 进入服务目录
 
-```bash
+```sh
 cd /etc/systemd/system
 ```
 
 2. 用编辑器打开你的新服务文件：
 
-```bash
+```sh
 nano bot1.service
 ```
 
@@ -65,7 +65,7 @@ WantedBy=multi-user.target
 
 3. 每当你编辑服务时，都要重新加载 systemd：
 
-```bash
+```sh
 systemctl daemon-reload
 ```
 
@@ -73,7 +73,7 @@ systemctl daemon-reload
 
 #### 启动
 
-```bash
+```sh
 systemctl start <service_name>
 ```
 
@@ -82,31 +82,31 @@ systemctl start <service_name>
 
 #### 开机时启动
 
-```bash
+```sh
 systemctl enable <service_name>
 ```
 
 #### 检查日志
 
-```bash
+```sh
 systemctl status <service_name>
 ```
 
 #### 重启
 
-```bash
+```sh
 systemctl restart <service_name>
 ```
 
 #### 停止
 
-```bash
+```sh
 systemctl stop <service_name>
 ```
 
 #### 不要在开机时运行
 
-```bash
+```sh
 systemctl disable <service_name>
 ```
 
@@ -116,7 +116,7 @@ PM2是一个用于 Node.js 的守护进程管理器，它将帮助你管理并�
 
 ### 安装
 
-```bash
+```sh
 npm install pm2@latest -g
 
 # 使用 Yarn
@@ -127,7 +127,7 @@ yarn global add pm2
 
 #### 启动
 
-```bash
+```sh
 pm2 start --name <app_name> <entry_point>
 ```
 
@@ -138,7 +138,7 @@ pm2 start --name <app_name> <entry_point>
 
 通过重启，你停止了应用程序，然后再次启动它。
 
-```bash
+```sh
 pm2 restart <app_name>
 ```
 
@@ -146,13 +146,13 @@ pm2 restart <app_name>
 
 通过重载，用一个新的进程替换你的应用程序的当前进程，导致 0 秒的停机时间。这建议用于无状态应用程序。
 
-```bash
+```sh
 pm2 reload <app_name>
 ```
 
 #### 停止
 
-```bash
+```sh
 # 一个应用程序
 pm2 stop <app_name>
 
@@ -164,7 +164,7 @@ pm2 stop all
 
 通过删除，将会停止你的应用程序，并且删除它的日志和指标。
 
-```bash
+```sh
 pm2 del <app_name>
 ```
 

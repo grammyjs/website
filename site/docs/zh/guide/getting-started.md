@@ -18,7 +18,7 @@ next: ./basics.md
 <CodeGroup>
  <CodeGroupItem title="NPM" active>
 
-```bash
+```sh
 # 创建并进入一个新的目录。
 mkdir my-bot
 cd my-bot
@@ -34,7 +34,7 @@ npm install grammy
 </CodeGroupItem>
  <CodeGroupItem title="Yarn">
 
-```bash
+```sh
 # 创建并进入一个新的目录。
 mkdir my-bot
 cd my-bot
@@ -50,7 +50,7 @@ yarn add grammy
 </CodeGroupItem>
 <CodeGroupItem title="pnpm">
 
-```bash
+```sh
 # 创建并进入一个新的目录。
 mkdir my-bot
 cd my-bot
@@ -138,7 +138,7 @@ bot.start();
 
 通过运行以下程序编译代码
 
-```bash
+```sh
 npx tsc
 ```
 
@@ -147,7 +147,7 @@ npx tsc
 
 现在你可以通过执行以下命令在终端来运行这个 bot：
 
-```bash
+```sh
 node bot.js
 ```
 
@@ -158,7 +158,7 @@ node bot.js
 ::: tip 启用日志记录功能
 你可以通过运行以下程序来启用基本日志记录
 
-```bash
+```sh
 export DEBUG="grammy*"
 ```
 
@@ -171,6 +171,12 @@ export DEBUG="grammy*"
 > 本指南假定你已经安装了 [Deno](https://deno.land) 。
 
 在某个地方创建一个新的目录，并在其中创建一个新的空文本文件，例如，称为 `bot.ts`。
+
+```sh
+mkdir ./my-bot
+cd ./my-bot
+touch bot.ts
+```
 
 现在，是时候打开 Telegram 创建一个 bot 账户，并为其获得一个认证令牌。
 与 [@BotFather](https://t.me/BotFather) 对话来完成这件事。
@@ -202,7 +208,7 @@ bot.start();
 
 现在你可以通过执行以下命令，在你的终端中运行该 bot：
 
-```bash
+```sh
 deno run --allow-net bot.ts
 ```
 
@@ -213,7 +219,7 @@ deno run --allow-net bot.ts
 ::: tip 启用日志记录功能
 你可以通过运行以下程序来启用基本日志记录
 
-```bash
+```sh
 export DEBUG="grammy*"
 ```
 
@@ -222,7 +228,7 @@ export DEBUG="grammy*"
 
 你现在需要用以下方法来运行 bot
 
-```bash
+```sh
 deno run --allow-net --allow-env bot.ts
 ```
 

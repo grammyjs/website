@@ -110,7 +110,7 @@ Telegram bot 有 [三种方法](https://core.telegram.org/bots/api#sending-files
 await ctx.replyWithPhoto(existingFileId);
 
 // 通过 URL 发送
-await ctx.replyWithPhoto("https://grammy.dev/Y.png");
+await ctx.replyWithPhoto("https://grammy.dev/images/Y.png");
 
 // 或者，你可以使用 bot.api.sendPhoto() 或 ctx.api.sendPhoto()
 ```
@@ -219,8 +219,8 @@ new InputFile(function* () {
 ```ts
 import { URL } from "url";
 // 下载一个文件，并将响应的内容流转到 Telegram。
-new InputFile(new URL("https://grammy.dev/Y.png"));
-new InputFile({ url: "https://grammy.dev/Y.png" }); // 等价的写法
+new InputFile(new URL("https://grammy.dev/images/Y.png"));
+new InputFile({ url: "https://grammy.dev/images/Y.png" }); // 等价的写法
 ```
 
 </CodeGroupItem>
@@ -228,8 +228,8 @@ new InputFile({ url: "https://grammy.dev/Y.png" }); // 等价的写法
 
 ```ts
 // 下载一个文件，并将响应的内容流转到 Telegram。
-new InputFile(new URL("https://grammy.dev/Y.png"));
-new InputFile({ url: "https://grammy.dev/Y.png" }); // 等价的写法
+new InputFile(new URL("https://grammy.dev/images/Y.png"));
+new InputFile({ url: "https://grammy.dev/images/Y.png" }); // 等价的写法
 ```
 
 </CodeGroupItem>

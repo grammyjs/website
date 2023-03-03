@@ -10,7 +10,7 @@
 
 首先，安装一些依赖：
 
-```bash
+```sh
 # 创建项目目录。
 mkdir grammy-bot
 cd grammy-bot
@@ -251,7 +251,7 @@ bot.start();
 
 在你的终端中运行这段命令，将 TypeScript 文件编译为 JavaScript 文件：
 
-```bash
+```sh
 npx tsc
 ```
 
@@ -311,7 +311,7 @@ worker: node dist/bot.js
 假设你已经在你的机器里安装了它们，并且你在项目的根目录下打开了一个终端。
 现在在终端中运行这段代码来初始化本地 git 仓库：
 
-```bash
+```sh
 git init
 ```
 
@@ -370,7 +370,7 @@ tsconfig.json
 
 将文件提交到我们的 git 仓库：
 
-```bash
+```sh
 git add .
 git commit -m "My first commit"
 ```
@@ -383,7 +383,7 @@ git commit -m "My first commit"
 <CodeGroup>
   <CodeGroupItem title="新应用" active>
 
-```bash
+```sh
 heroku create
 git remote -v
 ```
@@ -391,7 +391,7 @@ git remote -v
 </CodeGroupItem>
   <CodeGroupItem title="已存在应用" active>
 
-```bash
+```sh
 heroku git:remote -a <myApp>
 ```
 
@@ -402,13 +402,13 @@ heroku git:remote -a <myApp>
 
 最后，按下 _红色按钮_，升空！:rocket:
 
-```bash
+```sh
 git push heroku main
 ```
 
 如果失败了，可能我们的 git 分支是 `master` 而不是 `main`。
 请按下这个 _蓝色按钮_：
 
-```bash
+```sh
 git push heroku master
 ```

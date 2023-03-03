@@ -18,7 +18,7 @@ next: ./commands.md
 每个有效的 filter 都可以在你的代码编辑器中自动完成。
 因此，你可以简单地输入 `bot.on("")`，打开自动完成，并通过输入一些东西来搜索所有的查询。
 
-![Filter 参数查询](/filter-query-search.png)
+![Filter 参数查询](/images/filter-query-search.png)
 
 `bot.on()` 的类型推理将理解你挑选的 filter。
 因此，它在上下文中浓缩了一些已知存在的类型。
@@ -225,7 +225,7 @@ bot.on("chat_member");
 ```ts
 bot.on(":forward_date").command("help"); // 转发的 /help 命令
 // 只在私人聊天中处理命令。
-const pm = bot.filter((ctx) => ctx.chat?.type === "private");
+const pm = bot.chatType("private");
 pm.command("start");
 pm.command("help");
 ```

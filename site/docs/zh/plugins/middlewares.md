@@ -12,7 +12,7 @@
 
 有些工厂消费可选或必须的参数。
 
-```typescript
+```ts
 import {
   ignoreOld,
   onlyAdmin,

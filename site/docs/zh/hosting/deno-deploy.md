@@ -70,7 +70,7 @@ serve(async (req) => {
 4. [创建一个访问 token](https://dash.deno.com/user/access-tokens).
 5. 执行以下命令：
 
-```bash
+```sh
 deployctl deploy --project <project> ./mod.ts --prod --token <token>
 ```
 
@@ -89,7 +89,7 @@ deployctl deploy --project <project> ./mod.ts --prod --token <token>
 在部署完成后，你需要配置你的 bot 的 webhook 设置来指向你的 app。
 为了配置 webhook，发送一个请求到
 
-```text
+```text:no-line-numbers
 https://api.telegram.org/bot<token>/setWebhook?url=<url>
 ```
 

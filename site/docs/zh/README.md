@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: /Y.png
+heroImage: /images/Y.png
 actions:
   - text: 立刻开始
     link: /zh/guide/getting-started.html

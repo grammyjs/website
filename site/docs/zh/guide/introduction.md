@@ -83,7 +83,7 @@ grammY 文档不会教你如何编程，所以我们希望你能自学。
 你可以从 TypeScript 团队编写的 [官方教程](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html) 开始学习 TypeScript，然后再从这里开始。
 这些东西不会花费你太多的时间，接着你可以回到这里阅读剩下的部分，并 [开始](./getting-started.md)。
 
-如果你在文档中看到不熟悉的语法，或者你得到一个你不理解的错误信息，请用谷歌搜索它--互联网拥有一切（例如在 StackOverflow 上）。
+如果你在文档中看到不熟悉的语法，或者你得到一个你不理解的错误信息，请用谷歌搜索它--互联网拥有一切（例如在 Stack Overflow 上）。
 :::
 
 ::: danger 拒绝编程！
@@ -112,13 +112,14 @@ Deno 相对较新，所以它有时还缺乏对一些高级事物的支持。
 
 即使你以前为 Node.js 写过代码，你也应该考虑给 Deno 一个机会。
 许多在 Node.js 下很难做到的事情，在 Deno 下都是轻而易举的。
-包括：
+Deno：
 
-- 不需要 `package.json` 去配置
-- 不需要 `node_modules` 去安装
-- 出色的内置开发工具
-- 大幅提高安全性，以及
-- 更多的优点，在此不一一赘述
+- 更容易安装
+- 不需要你配置任何关于你的项目
+- 使用更少的磁盘空间
+- 具有卓越的内置开发工具和出色的编辑器集成，
+- 更安全，并且，
+- 还有更多优点，这里不再一一赘述。
 
 在 Deno 下开发代码也更加有趣。
 至少这是我们的看法。
@@ -130,8 +131,50 @@ Deno 相对较新，所以它有时还缺乏对一些高级事物的支持。
 ### Deno 的前提条件
 
 [安装 Deno](https://deno.land/#installation)，这是一切的前提。
-当你创建了你的 bot ，例如在一个叫做 `bot.ts` 的文件中，你可以通过 `deno run --allow-net bot.ts` 来运行它。
-你可以用 `Ctrl+C` 再次停止它。
+
+在开始创建你的 bot 之前，让我们先花几分钟时间为软件开发进行适当的设置。
+也就是安装一些工具。
+
+#### 为开发准备环境
+
+如果你还没有安装 Deno，那么就先 [安装 Deno](https://deno.land/manual/getting_started/installation#download-and-install)。
+
+你还需要一个非常适合编码的文本编辑器。
+最适合 Deno 的是 Visual Studio Code，通常简称为 VS Code。
+[安装它。](https://code.visualstudio.com/)
+
+接下来，你需要连接 VS Code 和 Deno。
+这非常简单：有一个 VS Code 的扩展可以自动完成所有事情。
+你可以 [按照这里的描述](https://marketplace.visualstudio.com/items?itemName=denoland.vscode-deno) 安装它。
+
+你的系统现在可以进行 bot 开发了！ :tada:
+
+#### 开发 Bot
+
+在某个地方创建一个新目录。
+它将包含你的机器人项目。
+在 VS Code 中打开这个新目录。
+
+```sh
+mkdir ./my-bot
+cd ./my-bot
+code .
+```
+
+> 如果你在 macOS 上并且 `code` 命令不可用，只需打开 VS Code，按 `Cmd+Shift+P`，输入“shell 命令”，然后按回车。
+
+在 VS Code 中，将这个空目录变成一个 Deno 项目。
+按 `Ctrl+Shift+P`，输入“deno init”，然后按回车。
+编辑器的右下角应该会显示系统上安装的 Deno 版本。
+
+你的 Deno 开发环境已准备就绪。
+你现在可以开始编写你的 bot 了。
+这在下一页解释。
+
+最后一件事:
+在你创建了你的 bot 之后，例如在一个名为 `bot.ts` 的文件中，你可以通过在终端中输入 `deno run --allow-net bot.ts` 来运行它。
+（是的，写软件意味着大量使用终端，慢慢适应吧。）
+你可以使用 `Ctrl+C` 停止 bot。
 
 都准备好了吗?
 [开始吧](./getting-started.md#getting-started-on-deno)！ :robot:
@@ -147,7 +190,7 @@ Deno 相对较新，所以它有时还缺乏对一些高级事物的支持。
 
 你将 Node.js 所要做的事情有下面这些：
 
-1. 用 TypeScript 代码创建一个源文件 `bot.ts` ，例如使用 [VSCode](https://code.visualstudio.com/) （或任何其他代码编辑器）。
+1. 用 TypeScript 代码创建一个源文件 `bot.ts` ，例如使用 [VS Code](https://code.visualstudio.com/) （或任何其他代码编辑器）。
 2. 通过在你的终端运行一个命令来编译代码。这将生成一个名为 `bot.js` 的文件。
 3. 同样从你的终端，使用 Node.js 运行 `bot.js`。
 
@@ -156,5 +199,18 @@ Deno 相对较新，所以它有时还缺乏对一些高级事物的支持。
 这将停止你的 bot 。
 然后，你需要重复步骤 2 和 3。
 
-都准备好了吗?
+::: tip 等等, 什么?
+
+安装 Node.js 并正确设置和配置所有内容需要花费大量时间。
+如果你以前从未这样做过，你应该预料到会遇到大量难以解决的令人困惑的问题。
+
+这就是为什么我们希望你知道如何设置你的系统，或者你能够自学。
+（以 _正确的方式_ 安装 Node.js 太复杂了，不适合这个页面。）
+
+如果此时你感到迷茫，你应该抛开 Node.js，转而使用 [Deno](#Deno-的前提条件)。
+
+:::
+
+还有信心吗？
+非常棒！
 [开始吧](./getting-started.md#getting-started-on-deno)！ :robot:
