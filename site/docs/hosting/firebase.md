@@ -50,7 +50,7 @@ npm install -g firebase-tools
 7. The CLI asks you if you want to install the dependencies with npm.
    If you use another package manager like `yarn` or `pnpm` you can decline.
    In that case, you have to `cd` into the `functions` directory and install the dependencies manually.
-8. open `./functions/package.json` and look for the key: `"engines": {"node": "16"}`.
+8. Open `./functions/package.json` and look for the key: `"engines": {"node": "16"}`.
    The `node` version should match your installed version of Node.js.
    Otherwise, the project might not run.
 
@@ -158,7 +158,7 @@ firebase deploy
 ```
 
 The Firebase CLI will give you the url of your function once the deployment is completed.
-It should look something like `https://<REGIO>.<MY_PROJECT.cloudfunctions.net/helloWorld`.
+It should look something like `https://<REGION>.<MY_PROJECT.cloudfunctions.net/helloWorld`.
 For a more detailed explanation you can take a look at step 8. of the [get started guide](https://firebase.google.com/docs/functions/get-started#deploy-functions-to-a-production-environment).
 
 After deploying, you need to tell Telegram where to send updates to your bot by calling the `setWebhook` method.
