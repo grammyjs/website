@@ -14,7 +14,7 @@
 
 ### 存储聊天成员
 
-你可以使用有效的 grammY [存储适配器](./session.md#known-storage-adapters) 或任何实现 [`StorageAdapter`](https://deno.land/x/grammy/mod.ts?s=StorageAdapter) 接口的类的实例。
+你可以使用有效的 grammY [存储适配器](./session.md#已知的存储适配器) 或任何实现 [`StorageAdapter`](https://deno.land/x/grammy/mod.ts?s=StorageAdapter) 接口的类的实例。
 
 请注意，根据官方 Telegram 文档，你的 bot 需要在 `allowed_updates` 数组中指定 `chat_member` update，如下例所示。
 这意味着你还需要指定你希望接收的任何其他事件。
