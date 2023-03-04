@@ -227,6 +227,10 @@ export const localeId: LocaleConfig<DefaultThemeLocaleData> = {
                 text: "Parse Mode (parse-mode)",
                 link: "/id/plugins/parse-mode.html",
               },
+              {
+                text: "Chat Members (chat-members)",
+                link: "/id/plugins/chat-members.html",
+              },
             ],
           },
           {
