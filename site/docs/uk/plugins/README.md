@@ -38,7 +38,7 @@ next: ./guide.md
 | Sessions                    | _вбудовано_                                           | Зберігання даних користувачів в базі                        |
 | Inline and Custom Keyboards | _вбудовано_                                           | Спрощення створення вбудованих і кастомних клавіатур             |
 | Auto-retry                  | [`auto-retry`](./auto-retry.md)                       | Автоматичне оброблення лімітів                               |
-| Conversations               | [`conversations`](./conversations.md)                 | Створення потужних діалогових інтерфейсів та діалогів        |
+| Conversations               | [`conversations`](./conversations.md)                 | Створюйте потужні діалогові інтерфейси        |
 | Emoji                       | [`emoji`](./emoji.md)                                 | Спрощення використання емодзі в коді                       |
 | Files                       | [`files`](./files.md)                                 | Легка робота з файлами                                       |
 | Hydration                   | [`hydrate`](./hydrate.md)                             | Виклик методів в об'єктах, що повертаються з викликів API    |
