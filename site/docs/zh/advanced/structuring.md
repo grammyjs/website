@@ -65,7 +65,7 @@ bot.use(lists);
 bot.start();
 ```
 
-可选地，如果你能够事先知道哪个中间件可以发挥相应的作用，你也可以使用 [router 插件](../plugins/router.md) 或者去绑定不同的模块。
+可选地，如果你能够事先知道哪个中间件可以发挥相应的作用，你也可以使用 [router 插件](../plugins/router.md) 或者 [`bot.route`](https://deno.land/x/grammy/mod.ts?s=Composer#method_route_0) 去绑定不同的模块。
 
 不过，需要记住的是，一般来说怎样去组织你的 bot 代码结构是很难去用一个具体的方式去描述的。
 就像在软件中，用最合理的方式去做就好啦 :wink:

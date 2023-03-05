@@ -616,7 +616,7 @@ bot.start();
 bot.use(session({
   type: "multi",
   foo: {
-    // 这里也有些默认值
+    // 这些也是默认值
     storage: new MemorySessionStorage(),
     initial: () => undefined,
     getSessionKey: (ctx) => ctx.chat?.id.toString(),

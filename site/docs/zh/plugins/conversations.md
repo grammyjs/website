@@ -382,7 +382,7 @@ bot.use(session({
 ## 离开对话
 
 对话将一直运行到你的对话生成器函数完成。
-也就是说你可以简单地通过使用 `return` 离开一个对话。
+也就是说你可以简单地通过使用 `return` 或 `throw` 离开一个对话。
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>

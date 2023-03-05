@@ -26,7 +26,7 @@
 
 ## Inline Keyboards
 
-> 重温 Telegram 团队编写的 [Telegram Bot Features](https://core.telegram.org/bots/features#inline-keyboards) 中的 inline keyboard 部分。
+> 重温 Telegram 团队编写的 [Telegram Bot 特性](https://core.telegram.org/bots/features#inline-keyboards) 中的 inline keyboard 部分。
 
 grammY 有一个简单且直观的方式来构建 inline keyboard，让你的 bot 可以和信息一起发送 inline keyboard。
 它提供了一个叫做 `InlineKeyboard` 的类。
@@ -162,7 +162,7 @@ bot.on("callback_query:data", async (ctx) => {
 作为一个简单的规则，当它从上下文中没有绝对明显的特征，而且不叫 inline keyboard 的时候，它可能就是一个自定义 keyboards。
 这是指用一组你可以定义的按钮来替换系统键盘的方法。
 
-> 重温 Telegram 团队编写的 [Telegram Bot Features](https://core.telegram.org/bots/features#keyboards) 中的 keyboard 部分。
+> 重温 Telegram 团队编写的 [Telegram Bot 特性](https://core.telegram.org/bots/features#keyboards) 中的 keyboard 部分。
 
 grammY 有一个简单且直观的方式来构建回复 keyboard，让你的 bot 可以用它来替换用户的键盘。
 它提供了一个叫做 `Keyboard` 的类。

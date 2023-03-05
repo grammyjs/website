@@ -9,7 +9,7 @@ Commands 是 Telegram 信息中的特殊对象，作为 bot 的指令存在。
 
 ## 使用方法
 
-> 重温 Telegram 团队编写的 [Telegram Bot Features](https://core.telegram.org/bots/features#commands)中的 Commands 部分。
+> 重温 Telegram 团队编写的 [Telegram Bot 特性](https://core.telegram.org/bots/features#commands)中的 Commands 部分。
 
 grammY 为命令（例如 `/start` 和 `/help` ）提供了特殊处理。
 你可以通过 `bot.command()` 直接为某些命令注册监听器。
@@ -61,7 +61,7 @@ bot.command("add", (ctx) => {
 
 ## 深度链接支持
 
-> 重新温习 Telegram 团队的 [Telegram Bot Features](https://core.telegram.org/bots/features#deep-linking) 中关于深度链接的部分。
+> 重新温习 Telegram 团队的 [Telegram Bot 特性](https://core.telegram.org/bots/features#deep-linking) 中关于深度链接的部分。
 
 当用户返回 `https://t.me/your_bot_name?start=payload` 时，他们的 `Telegram` 客户端将显示一个 `START` 按钮，点击后将 URL 参数中的字符串与信息一起发送，在这个例子中，消息文本将是 `start payload` 。
 Telegram 客户端不会向用户显示 `payload`（他们只会在页面中看到 `start`）。但是，你的 bot 会收到它。
