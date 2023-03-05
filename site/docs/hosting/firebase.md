@@ -1,6 +1,6 @@
 # Hosting: Firebase Functions
 
-This tutorial will guide you through the process of deploying your bot to [Firebase](https://firebase.google.com) using [Firebase Serverless Functions](https://firebase.google.com/docs/functions).
+This tutorial will guide you through the process of deploying your bot to [Firebase Functions](https://firebase.google.com/docs/functions).
 
 ## Prerequisites
 
