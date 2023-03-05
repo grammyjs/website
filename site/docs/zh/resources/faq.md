@@ -4,6 +4,21 @@
 
 如果这个 FAQ 不能回答你的问题，你也应该看看 Telegram 团队写的 [Bot FAQ](https://core.telegram.org/bots/faq)。
 
+## 在哪里可以找到有关方法的文档？
+
+在 API 参考中。
+你可能想更好地理解 [这个](../guide)。
+
+## 方法缺少参数！
+
+不，不是的。
+
+1. 确保安装了最新版本的 grammY。
+2. 检查参数是否可选。
+   如果是，则 grammY 会将其收集到名为 `other` 的选项对象中。
+   在那个地方传递 `{ parameter_name: value }` 就可以了。
+   与以往一样，TypeScript 会为你自动补全参数名称。
+
 ## 为什么我会收到这个错误？
 
 ### 400 Bad Request: Cannot parse entities
@@ -77,7 +92,7 @@ Telegram 会这样做以保护他们的用户。
 
 这里有几件事情你可以做：
 
-1. 阅读这篇 [文章](../advanced/flood.md) 以获得对情况的基本了解。
+1. 阅读文档中的这篇 [文章](../advanced/flood.md) 以获得对情况的基本了解。
 2. 使用 [`transformer-throttler` 插件](../plugins/transformer-throttler.md)。
 3. 使用 [`auto-retry` 插件](../plugins/auto-retry.md)。
 4. 在 [群聊](https://t.me/grammyjs) 中向我们寻求帮助。我们有经验丰富的人能帮你。

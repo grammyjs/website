@@ -76,5 +76,5 @@ grammY 为你提取这个 `payload`，并在 `ctx.match` 下提供。
 
 当然，你也可以在其他任何地方嵌入这样的链接：在网络上、信息中、二维码中等等。
 
-阅读 [section of the Telegram docs](https://core.telegram.org/api/links#bot-links) 查看可能的链接格式的完整列表。
+阅读 [Telegram 文档的这个章节](https://core.telegram.org/api/links#bot-links) 查看可能的链接格式的完整列表。
 它们也能让你提示用户把你的 bot 添加到群组或频道中，并可选择授予你的 bot 必要的管理员权限。

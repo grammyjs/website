@@ -24,10 +24,13 @@ next: ./flood.md
 
 ```ts
 import { Bot } from "grammy";
+
 const bot = new Bot("<token>");
+
 // 当 Node 进程将要被终止时，停止你的 bot。
 process.once("SIGINT", () => bot.stop());
 process.once("SIGTERM", () => bot.stop());
+
 await bot.start();
 ```
 
@@ -37,10 +40,13 @@ await bot.start();
 
 ```js
 const { Bot } = require("grammy");
+
 const bot = new Bot("<token>");
+
 // 当 Node 进程将要被终止时，停止你的 bot。
 process.once("SIGINT", () => bot.stop());
 process.once("SIGTERM", () => bot.stop());
+
 await bot.start();
 ```
 
@@ -50,10 +56,13 @@ await bot.start();
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
+
 const bot = new Bot("<token>");
+
 // 当 Deno 进程将要被终止时，停止你的 bot。
 Deno.addSignalListener("SIGINT", () => bot.stop());
 Deno.addSignalListener("SIGTERM", () => bot.stop());
+
 await bot.start();
 ```
 
@@ -69,8 +78,11 @@ await bot.start();
 ```ts
 import { Bot } from "grammy";
 import { run } from "@grammyjs/runner";
+
 const bot = new Bot("<token>");
+
 const runner = run(bot);
+
 // 当 Node 进程将要被终止时，停止你的 bot。
 const stopRunner = () => runner.isRunning() && runner.stop();
 process.once("SIGINT", stopRunner);
@@ -84,8 +96,11 @@ process.once("SIGTERM", stopRunner);
 ```js
 const { Bot } = require("grammy");
 const { run } = require("@grammyjs/runner");
+
 const bot = new Bot("<token>");
+
 const runner = run(bot);
+
 // 当 Node 进程将要被终止时，停止你的 bot。
 const stopRunner = () => runner.isRunning() && runner.stop();
 process.once("SIGINT", stopRunner);
@@ -98,8 +113,11 @@ process.once("SIGTERM", stopRunner);
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { run } from "https://deno.land/x/grammy_runner/mod.ts";
+
 const bot = new Bot("<token>");
+
 const runner = run(bot);
+
 // 当 Deno 进程将要被终止时，停止你的 bot。
 const stopRunner = () => runner.isRunning() && runner.stop();
 Deno.addSignalListener("SIGINT", stopRunner);
@@ -117,7 +135,7 @@ Deno.addSignalListener("SIGTERM", stopRunner);
 如果因为一些原因，某人或者某事真的很难处理这过程，它将会变得更加复杂。
 
 本质上，bot 不能保证你的中间件只执行一次。
-阅读一下 [GitHub上的这个讨论](https://github.com/tdlib/telegram-bot-api/issues/126) 去了解更多 **为什么** 你的 bot 在某些极端情况下会重复发送信息（或者根本不发送）。
+阅读一下GitHub上的这个 [讨论](https://github.com/tdlib/telegram-bot-api/issues/126) 去了解更多 **为什么** 你的 bot 在某些极端情况下会重复发送信息（或者根本不发送）。
 本章剩下的部分主要是详细解释 grammY 在这些不常见的情况下会怎样表现，并且怎样去处理这些情况。
 
 > 如果你只关心怎样去编写一个 Telegram bot 的代码？[跳过本章剩下的部分](./flood.md)。

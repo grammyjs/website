@@ -132,7 +132,7 @@ app.listen(Number(process.env.PORT), async () => {
 让我们看一下上面的代码：
 
 - `process.env`：请记住，千万不要在我们的代码中存储凭证！
-  关于如何在 Heroku 中 [创建环境变量](https://www.freecodecamp.org/news/using-environment-variables-the-right-way/)，请前往 [这个指南](https://devcenter.heroku.com/articles/config-vars)。
+  关于如何在 Heroku 中创建 [环境变量](https://www.freecodecamp.org/news/using-environment-variables-the-right-way/)，请前往这个 [指南](https://devcenter.heroku.com/articles/config-vars)。
 - `secretPath`：它可以是我们的 `BOT_TOKEN` 或者任何随机字符串。最好的做法是按照 [Telegram 的解释](https://core.telegram.org/bots/api#setwebhook) 来隐藏我们的 bot 的路径。
 
 ::: tip ⚡ 优化（可选）
