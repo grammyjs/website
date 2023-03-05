@@ -46,7 +46,7 @@ next: ./guide.md
 | Interactive Menus           | [`menu`](./menu.md)                                   | Створюйте динамічні меню з кнопками та гнучкою навігацією    |
 | Parse Mode                  | [`parse-mode`](./parse-mode.md)                       | Спрощене форматування повідомлень                            |
 | Rate Limiter                | [`ratelimiter`](./ratelimiter.md)                     | Автоматичне обмеження користувачів, які спамлять Вашого бота |
-| Router                      | [`router`](./router.md)                               | Перенаправління повідомлення в різні частини коду            |
+| Router                      | [`router`](./router.md)                               | Направляйте повідомлення в різні частини коду            |
 | Runner                      | [`runner`](./runner.md)                               | Багатопоточний лонг полінг з масштабізацією                  |
 | Stateless Question          | [`stateless-question`](./stateless-question.md)       | Створення діалогів без використання сховища даних            |
 | Flood Control               | [`transformer-throttler`](./transformer-throttler.md) | Ставити виклики API в чергу для уникнення спаму до API       |
