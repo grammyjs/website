@@ -49,7 +49,7 @@ next: ./guide.md
 | Router                      | [`router`](./router.md)                               | Направляйте повідомлення в різні частини коду            |
 | Runner                      | [`runner`](./runner.md)                               | Багатопоточне довге очікування (long polling) з масштабуванням                  |
 | Stateless Question          | [`stateless-question`](./stateless-question.md)       | Створення діалогів без використання сховища даних            |
-| Flood Control               | [`transformer-throttler`](./transformer-throttler.md) | Ставити виклики API в чергу для уникнення спаму до API       |
+| Flood Control               | [`transformer-throttler`](./transformer-throttler.md) | Створення черги викликів до API для запобігання надмірної кількості запитів       |
 
 У нас також є кілька сторонніх плагінів!
 Ви можете знайти їх у навігаційному меню в розділі _Плагіни_ > _Сторонні_.
