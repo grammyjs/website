@@ -25,7 +25,9 @@ const reset = () => {
 </script>
 <template>
   <div class="webhook-util">
-    <token-ui v-if="!botInfo" :token="token" :strings="translation" @info="updateBotInfo" />
+    <ClientOnly v-if="!botInfo">
+      <token-ui :token="token" :strings="translation" @info="updateBotInfo" />
+    </ClientOnly>
     <info-ui v-else :strings="translation" :info="botInfo" :token="token" @reset="reset" />
   </div>
 </template>
