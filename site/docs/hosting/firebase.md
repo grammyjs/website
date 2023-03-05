@@ -4,20 +4,20 @@ This tutorial will guide you through the process of deploying your bot to [Fireb
 
 ## Prerequisites
 
-To follow this tutorial, you will need a Google account.
-If you don't have one, you can [create one here](https://accounts.google.com/signup).
+To follow along, you will need to have a Google account.
+If you don't already have one, you can create it [here](https://accounts.google.com/signup).
 
 ## Setup
 
-This section will guide you through the setup process.
-If you need a more detailed explanation of each step, you can refer to the [official Firebase documentation](https://firebase.google.com/docs/functions/get-started).
+This section guides you through the setup process.
+If you need more detailed explanations on each step that you'll take, refer to the [official Firebase documentation](https://firebase.google.com/docs/functions/get-started).
 
 ### Create a Firebase Project
 
 1. Go to the [Firebase Console](https://console.firebase.google.com/) and click **Add Project**.
 2. If prompted, review and accept the Firebase terms.
 3. Click **Continue**.
-4. Uncheck the analytics.
+4. Decide on whether you want to share analytics or not.
 5. Click **Create Project**.
 
 ### Setup Node.js and Firebase CLI
