@@ -14,7 +14,7 @@ If you need more detailed explanations on each step that you'll take, refer to t
 
 ### Create a Firebase Project
 
-1. Go to the [Firebase Console](https://console.firebase.google.com/) and click **Add Project**.
+1. Go to the [Firebase console](https://console.firebase.google.com/) and click **Add Project**.
 2. If prompted, review and accept the Firebase terms.
 3. Click **Continue**.
 4. Decide on whether you want to share analytics or not.
