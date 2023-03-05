@@ -3,18 +3,18 @@ import { Translation } from "./types";
 export const lang: Translation = {
   tokenCard: {
     disclaimer: {
-      title: "About your token",
+      title: "Disclaimer",
       content:
-        "We never store your bot's token in the backend. It is stored in your browser's localStorage. Do not go around giving your token to random websites, no matter how nicely they ask!",
+        "We don’t take your bot token to the back end. It will only be stored in your browser’s local storage. Don’t provide your bot token to places you don’t trust.",
     },
     fields: {
       token: {
         label: "Bot Token",
-        placeholder: "Obtained from talking to @botfather",
+        placeholder: "The one which @BotFather gave you.",
       },
     },
     buttons: {
-      loadBotInfo: "Load bot info",
+      loadBotInfo: "Load Bot Info",
     },
   },
   botCard: {
@@ -26,22 +26,22 @@ export const lang: Translation = {
       manageWebhook: "Manage Webhook",
     },
     buttons: {
-      changeToken: "Change token",
+      changeToken: "Change Token",
     },
   },
   manageWebhook: {
     fields: {
       secret: {
-        label: "Webhook Secret",
-        placeholder: "Secret value telegram sends to your bot on every update",
+        label: "Webhook secret",
+        placeholder: "Secret value that will be sent with every update",
       },
       url: {
         label: "Webhook URL",
         placeholder: "Full URL to your webhook",
         errorMessages: {
-          invalid: "Invalid URL",
-          protocol: "Telegram only allows HTTPs",
-          required: "Please specify a URL",
+          invalid: "Invalid URL specified.",
+          protocol: "The main Bot API server only allows HTTPS.",
+          required: "Specify a URL.",
         },
       },
       dropPending: {
@@ -49,17 +49,17 @@ export const lang: Translation = {
       },
     },
     buttons: {
-      setWebhook: "Set webhook",
-      deleteWebhook: "Delete webhook",
+      setWebhook: "Set Webhook",
+      deleteWebhook: "Delete Webhook",
     },
   },
   webhookInfo: {
-    empty: "No webhook set",
+    empty: "No webhook is set",
     pendingUpdates: (count: number) =>
       `${count} pending update${count !== 1 ? "s" : ""}`,
-    lastErrorDate: (formattedDate: string) => `Last error (${formattedDate})`,
+    lastErrorDate: (formattedDate: string) => `Last error: ${formattedDate}`,
     lastSyncErrorDate: (formattedDate: string) =>
-      `Last ynchronization error date: ${formattedDate}`,
+      `Last synchronization error: ${formattedDate}`,
     buttons: {
       refresh: "Refresh",
     },
