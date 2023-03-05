@@ -45,7 +45,7 @@ next: ./guide.md
 | Internationalization        | [`i18n`](./i18n.md) or [`fluent`](./fluent.md)        | Дозвольте вашому боту розмовляти кількома мовами             |
 | Interactive Menus           | [`menu`](./menu.md)                                   | Створюйте динамічні меню з кнопками та гнучкою навігацією    |
 | Parse Mode                  | [`parse-mode`](./parse-mode.md)                       | Спрощене форматування повідомлень                            |
-| Rate Limiter                | [`ratelimiter`](./ratelimiter.md)                     | Автоматичне обмеження користувачів, які спамлять Вашого бота |
+| Rate Limiter                | [`ratelimiter`](./ratelimiter.md)                     | Автоматичне обмеження користувачів, які спамлять вашого бота |
 | Router                      | [`router`](./router.md)                               | Направляйте повідомлення в різні частини коду            |
 | Runner                      | [`runner`](./runner.md)                               | Багатопоточне довге очікування (long polling) з масштабуванням                  |
 | Stateless Question          | [`stateless-question`](./stateless-question.md)       | Створення діалогів без використання сховища даних            |
