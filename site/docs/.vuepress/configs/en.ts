@@ -12,7 +12,7 @@ export const siteEn: SiteLocaleConfig = {
 
 export const localeEn: LocaleConfig<DefaultThemeLocaleData> = {
   "/": {
-    selectLanguageText: "Languages",
+    selectLanguageText: "🌎",
     selectLanguageName: "English",
     editLinkText: "Edit this page on GitHub",
     notFound: [
