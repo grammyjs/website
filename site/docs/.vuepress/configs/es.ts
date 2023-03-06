@@ -12,6 +12,7 @@ export const siteEs: SiteLocaleConfig = {
 
 export const localeEs: LocaleConfig<DefaultThemeLocaleData> = {
   "/es/": {
+    selectLanguageText: "🌍",
     selectLanguageName: "Español",
     editLinkText: "Editar esta página en GitHub",
     contributorsText: "Colaboradores",
