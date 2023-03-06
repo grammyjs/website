@@ -6,7 +6,7 @@ export const siteUk: SiteLocaleConfig = {
   "/uk/": {
     lang: "uk-UA",
     title: "grammY",
-    description: "Фреймворк ботів Telegram.",
+    description: "Фреймворк для створення Telegram ботів.",
   },
 };
 
@@ -180,7 +180,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/uk/plugins/stateless-question.html",
               },
               {
-                text: "Конкуренція (runner)",
+                text: "Конкурентність (runner)",
                 link: "/uk/plugins/runner.html",
               },
               {
@@ -188,15 +188,15 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/uk/plugins/hydrate.html",
               },
               {
-                text: "Повтор запитів API (auto-retry)",
+                text: "Повтор запитів до API (auto-retry)",
                 link: "/uk/plugins/auto-retry.html",
               },
               {
-                text: "Обмеження переповнення (transformer-throttler)",
+                text: "Обмеження запитів до API (transformer-throttler)",
                 link: "/uk/plugins/transformer-throttler.html",
               },
               {
-                text: "Обмеження швидкості користувачів (ratelimiter)",
+                text: "Обмеження запитів від користувачів (ratelimiter)",
                 link: "/uk/plugins/ratelimiter.html",
               },
               {
@@ -220,7 +220,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/uk/plugins/emoji.html",
               },
               {
-                text: "Режим аналізу (parse-mode)",
+                text: "Режим форматування (parse-mode)",
                 link: "/uk/plugins/parse-mode.html",
               },
             ],
@@ -229,15 +229,15 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
             text: "Сторонні",
             children: [
               {
-                text: "Час у консолі",
+                text: "Вимірювання часу обробки запиту",
                 link: "/uk/plugins/console-time.html",
               },
               {
-                text: "Корисні проміжні ПЗ",
+                text: "Корисні middleware",
                 link: "/uk/plugins/middlewares.html",
               },
               {
-                text: "Автоцитата",
+                text: "Автоматичне встановлення відповіді",
                 link: "/uk/plugins/autoquote.html",
               },
               {
