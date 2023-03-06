@@ -43,7 +43,7 @@ await bot.api.sendMessage(12345, "Hi!");
 await bot.api.sendMessage(12345, "Hi!", {/* more options */});
 // Inspect the message object of the sent message.
 const message = await bot.api.sendMessage(12345, "Hi!");
-console.log(message_id);
+console.log(message.message_id);
 
 // Get information about the bot itself.
 const me = await bot.api.getMe();
