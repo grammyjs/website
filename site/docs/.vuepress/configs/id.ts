@@ -12,7 +12,7 @@ export const siteId: SiteLocaleConfig = {
 
 export const localeId: LocaleConfig<DefaultThemeLocaleData> = {
   "/id/": {
-    selectLanguageText: "Bahasa",
+    selectLanguageText: "🌏",
     selectLanguageName: "Indonesia",
     editLinkText: "Edit halaman ini di GitHub",
     contributorsText: "Kontributor",
