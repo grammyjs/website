@@ -362,6 +362,10 @@ export const localeId: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/id/hosting/supabase.html",
               },
               {
+                text: "Cloudflare Workers",
+                link: "/id/hosting/cloudflare-workers.html",
+              },
+              {
                 text: "Heroku",
                 link: "/id/hosting/heroku.html",
               },
