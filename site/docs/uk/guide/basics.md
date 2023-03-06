@@ -63,7 +63,7 @@ const me = await bot.api.getMe();
 bot.hears("ping", async (ctx) => {
   // `reply` — це псевдонім для `sendMessage` у тому самому чаті (дивіться наступний розділ).
   await ctx.reply("pong", {
-    // `reply_to_message_id` визначає фактичну властивість відповіді.
+    // `reply_to_message_id` встановлює власне відповідь на повідомлення.
     reply_to_message_id: ctx.msg.message_id,
   });
 });
