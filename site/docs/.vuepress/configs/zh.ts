@@ -11,7 +11,7 @@ export const siteZh: SiteLocaleConfig = {
 };
 
 export const localeZh: LocaleConfig<DefaultThemeLocaleData> = {
-  "/zh": {
+  "/zh/": {
     selectLanguageText: "语言",
     selectLanguageName: "简体中文",
     editLinkText: "在 GitHub 上编辑此页面",
