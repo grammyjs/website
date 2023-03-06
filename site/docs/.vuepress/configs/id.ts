@@ -227,6 +227,10 @@ export const localeId: LocaleConfig<DefaultThemeLocaleData> = {
                 text: "Parse Mode (parse-mode)",
                 link: "/id/plugins/parse-mode.html",
               },
+              {
+                text: "Chat Members (chat-members)",
+                link: "/id/plugins/chat-members.html",
+              },
             ],
           },
           {
@@ -356,6 +360,10 @@ export const localeId: LocaleConfig<DefaultThemeLocaleData> = {
               {
                 text: "Supabase Edge Functions",
                 link: "/id/hosting/supabase.html",
+              },
+              {
+                text: "Cloudflare Workers",
+                link: "/id/hosting/cloudflare-workers.html",
               },
               {
                 text: "Heroku",
