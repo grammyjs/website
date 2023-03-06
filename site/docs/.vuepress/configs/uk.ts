@@ -229,15 +229,15 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
             text: "Сторонні",
             children: [
               {
-                text: "Час у консолі",
+                text: "Вимірювання часу обробки запиту",
                 link: "/uk/plugins/console-time.html",
               },
               {
-                text: "Корисні проміжні ПЗ",
+                text: "Корисні middleware",
                 link: "/uk/plugins/middlewares.html",
               },
               {
-                text: "Автоцитата",
+                text: "Автоматичне встановлення відповіді",
                 link: "/uk/plugins/autoquote.html",
               },
               {
