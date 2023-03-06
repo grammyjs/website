@@ -3,7 +3,7 @@ import type { DefaultThemeLocaleData } from "@vuepress/theme-default";
 import type { LocaleConfig, SiteLocaleConfig } from "vuepress-vite";
 
 export const siteZh: SiteLocaleConfig = {
-  "/zh": {
+  "/zh/": {
     lang: "zh-CN",
     title: "grammY",
     description: "Telegram Bot 框架.",
@@ -15,12 +15,15 @@ export const localeZh: LocaleConfig<DefaultThemeLocaleData> = {
     selectLanguageText: "语言",
     selectLanguageName: "简体中文",
     editLinkText: "在 GitHub 上编辑此页面",
+    contributorsText: "TODO TRANSLATE",
+    lastUpdatedText: "TODO TRANSLATE",
     notFound: [
       "糟糕！这个页面不存在。",
       "无",
       "抱歉，这里还不存在内容。",
       "Error 404/ 页面不存在，但一只小可爱替代了他~",
       "回家吧，回到最初的美好。",
+      "TODO SYNC TRANSLATIONS"
     ],
     backToHome: "回到首页",
     navbar: [
@@ -246,7 +249,7 @@ export const localeZh: LocaleConfig<DefaultThemeLocaleData> = {
               },
               {
                 text: "[提交你的 PR!]",
-                link: "/zh/plugins/#create-your-own-plugins",
+                link: "/zh/plugins/#创建你自己的插件",
               },
             ],
           },
@@ -394,7 +397,7 @@ export const localeZh: LocaleConfig<DefaultThemeLocaleData> = {
 };
 
 export const docsearchZh: LocaleConfig<DocsearchLocaleData> = {
-  "/zh": {
+  "/zh/": {
     placeholder: "搜索",
     translations: {
       button: {
