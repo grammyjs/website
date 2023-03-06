@@ -15,15 +15,14 @@ export const localeZh: LocaleConfig<DefaultThemeLocaleData> = {
     selectLanguageText: "语言",
     selectLanguageName: "简体中文",
     editLinkText: "在 GitHub 上编辑此页面",
-    contributorsText: "TODO TRANSLATE",
-    lastUpdatedText: "TODO TRANSLATE",
+    contributorsText: "贡献者",
+    lastUpdatedText: "上次更新",
     notFound: [
       "糟糕！这个页面不存在。",
       "无",
       "抱歉，这里还不存在内容。",
       "Error 404/ 页面不存在，但一只小可爱替代了他~",
       "回家吧，回到最初的美好。",
-      "TODO SYNC TRANSLATIONS"
     ],
     backToHome: "回到首页",
     navbar: [
