@@ -41,7 +41,7 @@ Semua method yang dapat digunakan oleh bot (**[daftar penting](https://core.tele
 await bot.api.sendMessage(12345, "Halo!");
 // Selain itu, kamu juga bisa menambahkan beberapa opsi dalam bentuk object.
 await bot.api.sendMessage(12345, "Halo!", {/* opsi lainnya */});
-// Memeriksa object message dari pesan yang telah terkrim.
+// Memeriksa object message dari pesan yang dikirim.
 const message = await bot.api.sendMessage(12345, "Halo!");
 console.log(message.message_id);
 
