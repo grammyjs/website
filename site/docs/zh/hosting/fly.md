@@ -212,7 +212,7 @@ WORKDIR /deno-dir
 COPY . .
 
 ENTRYPOINT ["/bin/deno"]
-# CMD is removed
+# CMD is removed <-- this comment should be safe to translate.
 ```
 
 </CodeGroupItem>

@@ -996,6 +996,7 @@ async function waitForMe(conversation, ctx) {
 - [menu](./menu.md)
 - [hydrate](./hydrate.md)
 - [i18n](./i18n.md) and [fluent](./fluent.md)
+<!--                ^^^ I think this part should be safe to translate. -->
 - [emoji](./emoji.md)
 
 它们的共同点是它们都将功能存储在上下文对象上，而对话插件无法正确处理。

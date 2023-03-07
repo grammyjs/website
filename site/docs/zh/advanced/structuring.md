@@ -48,6 +48,7 @@ lists.on("message", (ctx) => {/* ... */});
 ```
 
 > 请注意，如果你使用 TypeScript ，你需要在创建 `Composer` 时传递你的 [自定义上下文类型](../guide/context.md#customizing-the-context-object)
+<!--                                                                                          ^^^ Broken anchor -->
 > 例如，你需要用 `new Composer<MyContext>()`。
 
 你也可以使用 [Error 边界](../guide/errors.md#error-边界) 去处理所有程序模块中可能出现的错误。

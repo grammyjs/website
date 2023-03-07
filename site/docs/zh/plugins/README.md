@@ -43,6 +43,7 @@ next: ./guide.md
 | Files                       | [`files`](./files.md)                                 | 轻松的文件处理                         |
 | Hydration                   | [`hydrate`](./hydrate.md)                             | 对从 API 调用返回的对象调用方法        |
 | Internationalization        | [`i18n`](./i18n.md) or [`fluent`](./fluent.md)        | 让你的机器人说多种语言                 |
+<!--                                               ^^^^ I think this part should be safe to translate. -->
 | Interactive Menus           | [`menu`](./menu.md)                                   | 设计具有灵活导航的动态按钮菜单         |
 | Parse Mode                  | [`parse-mode`](./parse-mode.md)                       | 简化消息格式化                         |
 | Rate Limiter                | [`ratelimiter`](./ratelimiter.md)                     | 自动限制向你的机器人发送垃圾消息的用户 |
