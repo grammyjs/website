@@ -36,7 +36,7 @@ next: ./guide.md
 | 插件                        | 包                                                    | 描述                                   |
 | --------------------------- | ----------------------------------------------------- | -------------------------------------- |
 | Sessions                    | _内置_                                                | 将用户数据存储在你的数据库中           |
-| Inline and Custom Keyboards | _内置_                                                | 简化构建 inline and custom keyboards   |
+| Inline and Custom Keyboards | _内置_                                                | 简化构建 inline 和 custom keyboards   |
 | Auto-retry                  | [`auto-retry`](./auto-retry.md)                       | 自动处理速率限制                       |
 | Conversations               | [`conversations`](./conversations.md)                 | 构建强大的对话界面和对话               |
 | Emoji                       | [`emoji`](./emoji.md)                                 | 简化在代码中使用 Emoji                 |
