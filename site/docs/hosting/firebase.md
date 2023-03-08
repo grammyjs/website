@@ -12,7 +12,7 @@ If you don't already have one, you can create it [here](https://accounts.google.
 This section guides you through the setup process.
 If you need more detailed explanations on each step that you'll take, refer to the [official Firebase documentation](https://firebase.google.com/docs/functions/get-started).
 
-### Create a Firebase Project
+### Creating a Firebase Project
 
 1. Go to the [Firebase console](https://console.firebase.google.com/) and click **Add Project**.
 2. If prompted, review and accept the Firebase terms.
@@ -22,19 +22,18 @@ If you need more detailed explanations on each step that you'll take, refer to t
 
 ### Setup Node.js and Firebase CLI
 
-To write functions and deploy them to the Cloud Functions runtime, you'll need to set up a Node.js environment and install the Firebase CLI.
+To write functions and deploy them to the Firebase Functions runtime, you'll need to set up a Node.js environment and install the Firebase CLI.
 
-> It's important to note that only Node.js versions 14, 16, and 18 are currently supported by Firebase Functions.
-> For more information on Node.js version support, please refer to [Set Node.js version](https://firebase.google.com/docs/functions/manage-functions#set_nodejs_version) section in their docs.
+> It's important to note that only the Node.js versions 14, 16, and 18 are currently supported by Firebase Functions.
+> For more on the supported Node.js versions, refer to [here](https://firebase.google.com/docs/functions/manage-functions#set_nodejs_version).
 
-Once you have Node.js and npm installed, you can install the Firebase CLI using your preferred method.
-To install it via npm, use the following command in your terminal:
+Once you have Node.js and NPM installed, install Firebase CLI globally:
 
 ```sh
 npm install -g firebase-tools
 ```
 
-### Initialize The Project
+### Initializing the Project
 
 1. Run `firebase login` to log in via the browser and authenticate the Firebase CLI.
 2. `cd` into your project's directory.
