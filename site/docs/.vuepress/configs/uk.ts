@@ -176,7 +176,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/uk/plugins/menu.html",
               },
               {
-                text: "Розмови без стану (stateless-question)",
+                text: "Питання без стану (stateless-question)",
                 link: "/uk/plugins/stateless-question.html",
               },
               {
