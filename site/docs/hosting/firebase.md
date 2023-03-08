@@ -35,7 +35,7 @@ npm install -g firebase-tools
 
 ### Initializing the Project
 
-1. Run `firebase login` to log in via the browser and authenticate the Firebase CLI.
+1. Run `firebase login` to open your browser and authenticate Firebase CLI with your account.
 2. `cd` into your project's directory.
 3. Run `firebase init functions`, and type `y` when asked whether you want to initialize a new codebase.
 4. Choose `use existing project` and select the project you created in Step 1.
