@@ -20,7 +20,7 @@ If you need more detailed explanations on each step that you'll take, refer to t
 4. Decide on whether you want to share analytics or not.
 5. Click **Create Project**.
 
-### Setup Node.js and Firebase CLI
+### Setting Things Up
 
 To write functions and deploy them to the Firebase Functions runtime, you'll need to set up a Node.js environment and install the Firebase CLI.
 
