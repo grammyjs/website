@@ -57,7 +57,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/uk/guide/api.html",
               },
               {
-                text: "Запити фільтрування і bot.on()",
+                text: "Запити фільтрування та bot.on()",
                 link: "/uk/guide/filter-queries.html",
               },
               {
