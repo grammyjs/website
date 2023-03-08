@@ -35,15 +35,14 @@ next: ./guide.md
 
 | 插件                        | 包                                                    | 描述                                   |
 | --------------------------- | ----------------------------------------------------- | -------------------------------------- |
-| Sessions                    | _built-in_                                            | 将用户数据存储在你的数据库中           |
-| Inline and Custom Keyboards | _built-in_                                            | 简化构建 inline and custom keyboards   |
+| Sessions                    | _内置_                                                | 将用户数据存储在你的数据库中           |
+| Inline and Custom Keyboards | _内置_                                                | 简化构建 inline and custom keyboards   |
 | Auto-retry                  | [`auto-retry`](./auto-retry.md)                       | 自动处理速率限制                       |
 | Conversations               | [`conversations`](./conversations.md)                 | 构建强大的对话界面和对话               |
 | Emoji                       | [`emoji`](./emoji.md)                                 | 简化在代码中使用 Emoji                 |
 | Files                       | [`files`](./files.md)                                 | 轻松的文件处理                         |
 | Hydration                   | [`hydrate`](./hydrate.md)                             | 对从 API 调用返回的对象调用方法        |
-| Internationalization        | [`i18n`](./i18n.md) or [`fluent`](./fluent.md)        | 让你的机器人说多种语言                 |
-<!--                                               ^^^^ I think this part should be safe to translate. -->
+| Internationalization        | [`i18n`](./i18n.md) 或者 [`fluent`](./fluent.md)      | 让你的机器人说多种语言                 |
 | Interactive Menus           | [`menu`](./menu.md)                                   | 设计具有灵活导航的动态按钮菜单         |
 | Parse Mode                  | [`parse-mode`](./parse-mode.md)                       | 简化消息格式化                         |
 | Rate Limiter                | [`ratelimiter`](./ratelimiter.md)                     | 自动限制向你的机器人发送垃圾消息的用户 |
