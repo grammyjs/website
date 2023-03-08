@@ -12,6 +12,7 @@ export const siteEs: SiteLocaleConfig = {
 
 export const localeEs: LocaleConfig<DefaultThemeLocaleData> = {
   "/es/": {
+    selectLanguageText: "🌍",
     selectLanguageName: "Español",
     editLinkText: "Editar esta página en GitHub",
     contributorsText: "Colaboradores",
@@ -357,6 +358,10 @@ export const localeEs: LocaleConfig<DefaultThemeLocaleData> = {
               {
                 text: "Supabase Edge Functions",
                 link: "/es/hosting/supabase.html",
+              },
+              {
+                text: "Cloudflare Workers",
+                link: "/es/hosting/cloudflare-workers.html",
               },
               {
                 text: "Heroku",
