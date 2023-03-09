@@ -37,7 +37,7 @@ Simply put, if you want the bot to be online all the time, you have to keep a co
 Because you most likely don't want to do that with your laptop, you should upload your code to a _hosting provider_ (in other words, someone else's computer, also known as a _server_), and let those people run it for you.
 
 There are countless companies that let you run your Telegram bot for free.
-This documentation covers a number of different hosting providers that we know work well with grammY (check the [Hosting](../hosting/comparison.md) section).
+This documentation covers a number of different hosting providers that we know work well with grammY (check the Hosting section).
 In the end, however, the choice of which provider to pick is up to you.
 Remember that running your code somewhere else means that whoever owns that "somewhere" has access to all your messages and the data of your users, so you should pick a provider that you can trust.
 
@@ -112,7 +112,6 @@ If you don't have much experience with programming yet, **it makes sense to star
 
 Even if you have written code for Node.js before, you should consider giving Deno a go.
 Many things that are hard under Node.js are a no-brainer under Deno.
-
 Deno
 
 - is much easier to install,

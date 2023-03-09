@@ -37,7 +37,7 @@ En pocas palabras, si quieres que el bot esté en línea todo el tiempo, tienes 
 Como lo más probable es que no quieras hacer eso con tu portátil, debes subir tu código a un _hosting provider_ (en otras palabras, el ordenador de otra persona, también conocido como _servidor_), y dejar que esa gente lo ejecute por ti.
 
 Hay innumerables compañías que te permiten ejecutar tu bot de Telegram de forma gratuita.
-Esta documentación cubre un número de diferentes proveedores de alojamiento que sabemos que funcionan bien con grammY (comprueba la sección [Alojamiento](../hosting/comparison.md)).
+Esta documentación cubre un número de diferentes proveedores de alojamiento que sabemos que funcionan bien con grammY (revisa la sección de Alojamiento).
 Al final, sin embargo, la elección de qué proveedor elegir depende de ti.
 Recuerda que ejecutar tu código en otro lugar significa que quien sea el dueño de ese "lugar" tiene acceso a todos tus mensajes y a los datos de tus usuarios, así que deberías elegir un proveedor en el que puedas confiar.
 
@@ -112,7 +112,6 @@ Si aún no tienes mucha experiencia en programación, **tiene sentido empezar co
 
 Incluso si has escrito código para Node.js antes, deberías considerar darle una oportunidad a Deno.
 Muchas cosas que son difíciles en Node.js son sencillas en Deno.
-
 Deno
 
 - es mucho más fácil de instalar,

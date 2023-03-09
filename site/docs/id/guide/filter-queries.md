@@ -14,7 +14,7 @@ Pemfilteran untuk jenis pesan lainnya diserahkan kepada developer bot masing-mas
 
 Sebaliknya, **grammY dilengkapi dengan bahasa query-nya sendiri** yang dapat digunakan untuk **memfilter pesan yang kamu inginkan**.
 
-grammY memiliki lebih dari 820 filter berbeda yang siap dipakai, dan tidak menutup kemungkinan lebih banyak lagi filter yang akan ditambahkan seiring berjalannya waktu.
+grammY memiliki lebih dari 650 filter berbeda yang siap dipakai, dan tidak menutup kemungkinan lebih banyak lagi filter yang akan ditambahkan seiring berjalannya waktu.
 Setiap filter yang valid dapat dilengkapi menggunakan auto-complete di code editor.
 Dengan demikian, kamu cukup mengetik `bot.on("")`, lalu buka auto-complete, kemudian telusuri semua query yang tersedia dengan cara mengetik sesuatu.
 

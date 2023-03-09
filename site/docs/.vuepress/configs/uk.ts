@@ -57,7 +57,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/uk/guide/api.html",
               },
               {
-                text: "Запити фільтрування та bot.on()",
+                text: "Фільтрування запитів і bot.on()",
                 link: "/uk/guide/filter-queries.html",
               },
               {
@@ -65,7 +65,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/uk/guide/commands.html",
               },
               {
-                text: "Middleware",
+                text: "Проміжне ПЗ",
                 link: "/uk/guide/middleware.html",
               },
               {
@@ -85,7 +85,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/uk/guide/games.html",
               },
               {
-                text: "Тривале опитування проти вебхуків",
+                text: "Довге опитування проти вебхуків",
                 link: "/uk/guide/deployment-types.html",
               },
             ],
@@ -99,7 +99,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
                 activeMatch: "^/advanced/$",
               },
               {
-                text: "Спрощення middleware",
+                text: "Спрощення проміжного ПЗ",
                 link: "/uk/advanced/middleware.html",
               },
               {
@@ -119,7 +119,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/uk/advanced/flood.html",
               },
               {
-                text: "Перетворювачі Bot API",
+                text: "Трансформатори Bot API",
                 link: "/uk/advanced/transformers.html",
               },
               {
@@ -127,7 +127,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/uk/advanced/proxy.html",
               },
               {
-                text: "Контрольний список для розгортання",
+                text: "Контрольний список розгортання",
                 link: "/uk/advanced/deployment.html",
               },
             ],
