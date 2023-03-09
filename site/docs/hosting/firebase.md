@@ -58,7 +58,7 @@ You can use this short example bot as a starting point:
 import * as functions from "firebase-functions";
 import { Bot, webhookCallback } from "grammy";
 
-const bot = new Bot(""); // <-- put your bot token here (https://t.me/BotFather)
+const bot = new Bot(""); // <-- put your bot token between the ""
 
 bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
 bot.command("ping", (ctx) => ctx.reply(`Pong! ${new Date()}`));
