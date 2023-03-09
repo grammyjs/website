@@ -107,7 +107,7 @@ That is the local URL of your cloud function.
 However, your function is only available to the localhost on your computer.
 To actually test your bot, you need to expose your function to the internet so that the Telegram API can send updates to your bot.
 There are several services, such as [localtunnel](https://localtunnel.me) or [ngrok](https://ngrok.com), that can help you with that.
-In this example, we will use localtunnel, as it does not shut down after an hour like ngrok does.
+In this example, we will be using localtunnel.
 
 First, let's install localtunnel:
 
@@ -115,23 +115,23 @@ First, let's install localtunnel:
 npm i -g localtunnel
 ```
 
-After that, you can expose the port `5001` to the internet:
+After that, you can forward the port `5001`:
 
 ```sh
 lt --port 5001
 ```
 
-localtunnel should give you a unique URL, such as `https://modern-heads-sink-80-132-166-120.loca.lt`
+localtunnel should give you a unique URL, such as `https://modern-heads-sink-80-132-166-120.loca.lt`.
 
 All that's left to do is to tell Telegram where to send the updates.
-You can do this by calling setWebhook.
+You can do this by calling `setWebhook`.
 For example, open a new tab in your browser and visit this URL:
 
 ```text:no-line-numbers
-https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<LT_URL>/<firebase-projectname>/us-central1/helloWorld
+https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<WEBHOOK_URL>/<firebase-projectname>/us-central1/helloWorld
 ```
 
-Replace `<BOT_TOKEN>` with your real bot token, and `<LT_URL>` with your own URL you received from localtunnel.
+Replace `<BOT_TOKEN>` with your real bot token, and `<WEBHOOK_URL>` with your own URL you got from localtunnel.
 
 You should now see this in your browser window.
 
@@ -177,6 +177,5 @@ If everything is set up correctly, you should see this response in your browser 
 }
 ```
 
-That's it!
-Your bot is ready to go.
+That's it, your bot is ready to go.
 Head over to Telegram and watch it respond to messages!
