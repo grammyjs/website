@@ -11,7 +11,6 @@
     "./site/docs/resources/",
     "./site/docs/es/",
     "./site/docs/id/",
-    "./site/docs/uk/",
     "./site/README.md"
   ]
 }
