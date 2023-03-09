@@ -276,7 +276,7 @@ If you want to use webhook replies, you can specify the `canUseWebhookReply` opt
 Pass a function that determines whether or not to use webhook reply for the given request, identified by method.
 
 ```ts
-const bot = new Bot(token, {
+const bot = new Bot(TOKEN, { // <-- put your bot token between the ""
   client: {
     // We accept the drawback of webhook replies for typing status.
     canUseWebhookReply: (method) => method === "sendChatAction",

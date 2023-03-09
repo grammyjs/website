@@ -26,7 +26,7 @@ const botToken = process.env.BOT_TOKEN;
 if (!botToken) {
   throw Error("BOT_TOKEN diperlukan!");
 }
-const bot = new Bot(botToken);
+const bot = new Bot(""); // <-- put your bot token between the ""
 
 const throttler = apiThrottler();
 bot.api.config.use(throttler);
@@ -50,7 +50,7 @@ const botToken = process.env.BOT_TOKEN;
 if (!botToken) {
   throw Error("BOT_TOKEN diperlukan!");
 }
-const bot = new Bot(botToken);
+const bot = new Bot(""); // <-- put your bot token between the ""
 
 const throttler = apiThrottler();
 bot.api.config.use(throttler);
@@ -74,7 +74,7 @@ const botToken = Deno.env.get("BOT_TOKEN");
 if (!botToken) {
   throw Error("BOT_TOKEN diperlukan!");
 }
-const bot = new Bot(botToken);
+const bot = new Bot(""); // <-- put your bot token between the ""
 
 const throttler = apiThrottler();
 bot.api.config.use(throttler);

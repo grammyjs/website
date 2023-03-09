@@ -168,7 +168,7 @@ Langkah berikutnya, buat `bot.ts` lalu tulis kode berikut:
 import { Bot } from "grammy";
 
 if (process.env.BOT_TOKEN == null) throw Error("Token bot tidak ditemukan!");
-export const bot = new Bot(`${process.env.BOT_TOKEN}`);
+export const bot = new Bot(process.env.BOT_TOKEN);
 
 bot.command("start", (ctx) => ctx.reply("Haloooo!"));
 bot.on("message", (ctx) => ctx.reply("Dapat pesan baru!"));

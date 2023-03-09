@@ -52,7 +52,7 @@ Edit `src/index.js` or `src/index.ts`, and write this code inside:
 // Note that we're importing from 'grammy/web', not 'grammy'.
 import { Bot, webhookCallback } from "grammy/web";
 
-// You can replace `BOT_TOKEN` with your bot token, but it is better to store it in an environment variable.
+// You can directly replace `BOT_TOKEN` with your bot token, but it is better to store it in an environment variable.
 // For more on this, see https://developers.cloudflare.com/workers/platform/environment-variables/#secrets-on-deployed-workers.
 // You should also replace `BOT_INFO` with your bot info obtained from `bot.api.getMe()`.
 const bot = new Bot(BOT_TOKEN, { botInfo: BOT_INFO });
