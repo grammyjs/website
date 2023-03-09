@@ -12,7 +12,7 @@ export const siteEn: SiteLocaleConfig = {
 
 export const localeEn: LocaleConfig<DefaultThemeLocaleData> = {
   "/": {
-    selectLanguageText: "Languages",
+    selectLanguageText: "🌎",
     selectLanguageName: "English",
     editLinkText: "Edit this page on GitHub",
     notFound: [
@@ -223,6 +223,10 @@ export const localeEn: LocaleConfig<DefaultThemeLocaleData> = {
                 text: "Parse Mode (parse-mode)",
                 link: "/plugins/parse-mode.html",
               },
+              {
+                text: "Chat Members (chat-members)",
+                link: "/plugins/chat-members.html",
+              },
             ],
           },
           {
@@ -352,6 +356,10 @@ export const localeEn: LocaleConfig<DefaultThemeLocaleData> = {
               {
                 text: "Supabase Edge Functions",
                 link: "/hosting/supabase.html",
+              },
+              {
+                text: "Cloudflare Workers",
+                link: "/hosting/cloudflare-workers.html",
               },
               {
                 text: "Heroku",
