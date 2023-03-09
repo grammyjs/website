@@ -268,7 +268,7 @@ const {
   createConversation,
 } = require("@grammyjs/conversations");
 
-const bot = new Bot("");
+const bot = new Bot(""); // <-- put your bot token between the ""
 
 bot.use(session({ initial: () => ({}) }));
 bot.use(conversations());
