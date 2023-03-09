@@ -212,7 +212,7 @@ WORKDIR /deno-dir
 COPY . .
 
 ENTRYPOINT ["/bin/deno"]
-# CMD is removed
+# CMD 被删掉了
 ```
 
 </CodeGroupItem>
