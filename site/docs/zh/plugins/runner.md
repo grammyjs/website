@@ -132,7 +132,7 @@ runner 是一个简单的循环，它从 source 中拉取 updates，并将它们
 这在安装 [session 中间件](./session.md) 时很有用，但它也确保了你的 bot 不会在同一个聊天中混乱消息的顺序。
 
 grammY runner 也提供了一个 `sequentialize` 中间件来实现这个目的。
-你可以查看这个 [部分](../advanced/scaling.md#concurrency-is-hard) 来学习如何使用它。
+你可以查看这个 [部分](../advanced/scaling.md#并发是困难的) 来学习如何使用它。
 
 我们现在将看一些更高级的使用。
 
