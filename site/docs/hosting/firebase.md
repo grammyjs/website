@@ -43,7 +43,7 @@ npm install -g firebase-tools
    - JavaScript
    - TypeScript
 
-   For this tutorial, select TypeScript.
+   For this tutorial, you can select either.
 
 6. Optionally, you can select ESLint.
 7. The CLI asks you if you want to install the dependencies with npm.
