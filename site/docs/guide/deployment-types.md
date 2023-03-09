@@ -46,7 +46,7 @@ ______________                                   _____________
 |            |    ---       nope.         --->   |           |
 |            |                                   |           |
 |            |   <--- are there messages? ---    |           |
-|  Telegram  |    ---       nope.         --->   |    Bot    |
+|  Telegram  |    ---       nope.         --->   |    Telegram bot    |
 |            |                                   |           |
 |            |   <--- are there messages? ---    |           |
 |            |    ---  yes, here you go   --->   |           |
