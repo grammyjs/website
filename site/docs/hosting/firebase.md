@@ -63,7 +63,7 @@ const bot = new Bot(""); // <-- put your bot token here (https://t.me/BotFather)
 bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
 bot.command("ping", (ctx) => ctx.reply(`Pong! ${new Date()}`));
 
-// During development, you can trigger your function at https://localhost/<firebase-projectname>/us-central1/helloworld
+// During development, you can trigger your function from https://localhost/<firebase-projectname>/us-central1/helloworld.
 export const helloWorld = functions.https.onRequest(webhookCallback(bot));
 ```
 
