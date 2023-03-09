@@ -324,7 +324,7 @@ bot.command("start", async (ctx) => {
 ```js
 const BOT_DEVELOPER = 123456; // bot developer chat identifier
 
-const bot = new Bot("");
+const bot = new Bot(""); // <-- put your bot token between the ""
 
 // Set custom properties on context objects.
 bot.use(async (ctx, next) => {

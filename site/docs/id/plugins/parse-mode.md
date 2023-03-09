@@ -46,7 +46,7 @@ const { bold, fmt, hydrateReply, italic, link } = require(
   "@grammyjs/parse-mode",
 );
 
-const bot = new Bot("");
+const bot = new Bot(""); // <-- put your bot token between the ""
 
 // Instal plugin-nya.
 bot.use(hydrateReply);
@@ -157,7 +157,7 @@ bot.start();
 const { Bot, Context } = require("grammy");
 const { hydrateReply, parseMode } = require("@grammyjs/parse-mode");
 
-const bot = new Bot("");
+const bot = new Bot(""); // <-- put your bot token between the ""
 
 // Install plugin-nya.
 bot.use(hydrateReply);

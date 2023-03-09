@@ -73,7 +73,7 @@ bot.use(hydrate());
 import { Bot } from "grammy";
 import { hydrate } from "@grammyjs/hydrate";
 
-const bot = new Bot("");
+const bot = new Bot(""); // <-- put your bot token between the ""
 
 bot.use(hydrate());
 ```
@@ -137,7 +137,7 @@ bot.api.config.use(hydrateApi());
 import { Bot } from "grammy";
 import { hydrateApi, hydrateContext } from "@grammyjs/hydrate";
 
-const bot = new Bot("");
+const bot = new Bot(""); // <-- put your bot token between the ""
 
 bot.use(hydrateContext());
 bot.api.config.use(hydrateApi());
