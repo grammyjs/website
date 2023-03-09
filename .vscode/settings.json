@@ -3,6 +3,7 @@
   "deno.enable": true,
   "deno.enablePaths": [
     // everything except .vuepress
+    "./site/README.md",
     "./site/docs/advanced/",
     "./site/docs/demo/",
     "./site/docs/guide/",
@@ -11,6 +12,6 @@
     "./site/docs/resources/",
     "./site/docs/es/",
     "./site/docs/id/",
-    "./site/README.md"
+    "./site/docs/uk/",
   ]
 }

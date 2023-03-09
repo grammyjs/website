@@ -6,7 +6,7 @@ export const siteUk: SiteLocaleConfig = {
   "/uk/": {
     lang: "uk-UA",
     title: "grammY",
-    description: "Фреймворк ботів Telegram.",
+    description: "Фреймворк для створення Telegram ботів.",
   },
 };
 
@@ -57,7 +57,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/uk/guide/api.html",
               },
               {
-                text: "Фільтрування запитів і bot.on()",
+                text: "Запити фільтрування та bot.on()",
                 link: "/uk/guide/filter-queries.html",
               },
               {
@@ -65,7 +65,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/uk/guide/commands.html",
               },
               {
-                text: "Проміжне ПЗ",
+                text: "Middleware",
                 link: "/uk/guide/middleware.html",
               },
               {
@@ -85,7 +85,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/uk/guide/games.html",
               },
               {
-                text: "Довге опитування проти вебхуків",
+                text: "Тривале опитування проти вебхуків",
                 link: "/uk/guide/deployment-types.html",
               },
             ],
@@ -99,7 +99,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
                 activeMatch: "^/advanced/$",
               },
               {
-                text: "Спрощення проміжного ПЗ",
+                text: "Спрощення middleware",
                 link: "/uk/advanced/middleware.html",
               },
               {
@@ -119,7 +119,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/uk/advanced/flood.html",
               },
               {
-                text: "Трансформатори Bot API",
+                text: "Перетворювачі Bot API",
                 link: "/uk/advanced/transformers.html",
               },
               {
@@ -127,7 +127,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/uk/advanced/proxy.html",
               },
               {
-                text: "Контрольний список розгортання",
+                text: "Контрольний список для розгортання",
                 link: "/uk/advanced/deployment.html",
               },
             ],
@@ -180,7 +180,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/uk/plugins/stateless-question.html",
               },
               {
-                text: "Конкуренція (runner)",
+                text: "Конкурентність (runner)",
                 link: "/uk/plugins/runner.html",
               },
               {
@@ -188,15 +188,15 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/uk/plugins/hydrate.html",
               },
               {
-                text: "Повтор запитів API (auto-retry)",
+                text: "Повтор запитів до API (auto-retry)",
                 link: "/uk/plugins/auto-retry.html",
               },
               {
-                text: "Обмеження переповнення (transformer-throttler)",
+                text: "Обмеження запитів до API (transformer-throttler)",
                 link: "/uk/plugins/transformer-throttler.html",
               },
               {
-                text: "Обмеження швидкості користувачів (ratelimiter)",
+                text: "Обмеження запитів від користувачів (ratelimiter)",
                 link: "/uk/plugins/ratelimiter.html",
               },
               {
@@ -220,7 +220,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/uk/plugins/emoji.html",
               },
               {
-                text: "Режим аналізу (parse-mode)",
+                text: "Режим форматування (parse-mode)",
                 link: "/uk/plugins/parse-mode.html",
               },
             ],
@@ -229,15 +229,15 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
             text: "Сторонні",
             children: [
               {
-                text: "Час у консолі",
+                text: "Вимірювання часу обробки запиту",
                 link: "/uk/plugins/console-time.html",
               },
               {
-                text: "Корисні проміжні ПЗ",
+                text: "Корисні middleware",
                 link: "/uk/plugins/middlewares.html",
               },
               {
-                text: "Автоцитата",
+                text: "Автоматичне встановлення відповіді",
                 link: "/uk/plugins/autoquote.html",
               },
               {
@@ -331,7 +331,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
         ],
       },
       {
-        text: "Хостінг",
+        text: "Хостинг",
         children: [
           {
             text: "Огляд",

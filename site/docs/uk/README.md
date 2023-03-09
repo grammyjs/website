@@ -20,9 +20,9 @@ permalink: /uk/
 ---
 
 <h6 align="right">… {{ [
-  'подумай, чомУ',
+  'подумайте, чомУ',
   'нова ера розробки ботів',
-  'бігає швидше за тебе',
+  'швидший за вас',
   'попереду ще одне оновлення',
   'може зробити все, окрім вечері',
   'легко, як з обійстя виховати козУ',
@@ -41,9 +41,9 @@ permalink: /uk/
 ```ts
 import { Bot } from "grammy";
 
-const bot = new Bot(""); // <-- помістіть тут маркер свого бота (https://t.me/BotFather)
+const bot = new Bot(""); // <-- Помістіть токен свого бота (https://t.me/BotFather)
 
-// Відповідайте "Привіт!" на будь-яке повідомлення.
+// Відповідаємо "Привіт!" на будь-яке повідомлення.
 bot.on("message", (ctx) => ctx.reply("Привіт!"));
 
 bot.start();
@@ -55,9 +55,9 @@ bot.start();
 ```js
 const { Bot } = require("grammy");
 
-const bot = new Bot(""); // <-- помістіть тут маркер свого бота (https://t.me/BotFather)
+const bot = new Bot(""); // <-- Помістіть токен свого бота (https://t.me/BotFather)
 
-// Відповідайте "Привіт!" на будь-яке повідомлення.
+// Відповідаємо "Привіт!" на будь-яке повідомлення.
 bot.on("message", (ctx) => ctx.reply("Привіт!"));
 
 bot.start();
@@ -69,9 +69,9 @@ bot.start();
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
-const bot = new Bot(""); // <-- помістіть тут маркер свого бота (https://t.me/BotFather)
+const bot = new Bot(""); // <-- Помістіть токен свого бота (https://t.me/BotFather)
 
-// Відповідайте "Привіт!" на будь-яке повідомлення.
+// Відповідаємо "Привіт!" на будь-яке повідомлення.
 bot.on("message", (ctx) => ctx.reply("Привіт!"));
 
 bot.start();
