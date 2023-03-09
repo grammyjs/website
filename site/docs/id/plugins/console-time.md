@@ -48,7 +48,7 @@ import {
   generateBeforeMiddleware,
 } from "telegraf-middleware-console-time";
 
-const bot = new Bot(/* ... */);
+const bot = new Bot(""); // <-- put your bot token between the ""
 
 // Gunakan BeforeMiddleware sebelum memuat middleware yang akan dites.
 bot.use(generateBeforeMiddleware("foo"));
