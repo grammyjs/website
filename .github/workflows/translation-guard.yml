@@ -14,5 +14,5 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-        - if: "!(contains(github.event.pull_request.labels.*.name, 'ready for translation') && contains(github.event.pull_request.labels.*.name, ':es: ES') && contains(github.event.pull_request.labels.*.name, ':indonesia: ID')) && !contains(github.event.pull_request.labels.*.name, 'not translatable')"
+        - if: "!(contains(github.event.pull_request.labels.*.name, 'ready for translation') && contains(github.event.pull_request.labels.*.name, ':es: ES') && contains(github.event.pull_request.labels.*.name, ':indonesia: ID')) && !contains(github.event.pull_request.labels.*.name, 'not translatable') && !contains(github.event.pull_request.labels.*.name, 'time-sensitive')"
           run: exit 1
