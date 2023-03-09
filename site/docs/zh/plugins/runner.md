@@ -194,8 +194,9 @@ grammY runner 为你提供了可以将 update 发送给 bot worker 的中间件�
 ### 使用 Bot Workers
 
 > 可以在 [grammY runner 仓库](https://github.com/grammyjs/runner/tree/main/examples) 中找到这方面的示例。
-> 我们将从创建中心 bot 实例开始，它获取 update 并将它们分发给 worker。
-> 让我们首先创建一个名为 `bot.ts` 的文件，其中包含以下内容。
+
+我们将从创建中心 bot 实例开始，它获取 update 并将它们分发给 worker。
+让我们首先创建一个名为 `bot.ts` 的文件，其中包含以下内容。
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
@@ -204,12 +205,16 @@ grammY runner 为你提供了可以将 update 发送给 bot worker 的中间件�
 // bot.ts
 import { Bot } from "grammy";
 import { distribute, run } from "@grammyjs/runner";
+
 // 创建 bot。
 const bot = new Bot("");
+
 // 可选地，在此处对 update 进行顺序化操作。
 // bot.use(sequentialize(...))
+
 // 在 bot worker 之间分发 update。
 bot.use(distribute(__dirname + "/worker"));
+
 // 使用多线程并发运行。
 run(bot);
 ```
@@ -221,12 +226,16 @@ run(bot);
 // bot.ts
 const { Bot } = require("grammy");
 const { distribute, run } = require("@grammyjs/runner");
+
 // 创建 bot。
 const bot = new Bot("");
+
 // 可选地，在此处对 update 进行顺序化操作。
 // bot.use(sequentialize(...))
+
 // 在 bot worker 之间分发 update。
 bot.use(distribute(__dirname + "/worker"));
+
 // 使用多线程并发运行。
 run(bot);
 ```
@@ -238,12 +247,16 @@ run(bot);
 // bot.ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { distribute, run } from "https://deno.land/x/grammy_runner_/mod.ts";
+
 // 创建 bot。
 const bot = new Bot("");
+
 // 可选地，在此处对 update 进行顺序化操作。
 // bot.use(sequentialize(...))
+
 // 在 bot worker 之间分发 update。
 bot.use(distribute(new URL("./worker.ts", import.meta.url)));
+
 // 使用多线程并发运行。
 run(bot);
 ```
@@ -260,8 +273,10 @@ run(bot);
 ```ts
 // worker.ts
 import { BotWorker } from "@grammyjs/runner";
+
 // 创建一个新的 bot worker。
 const bot = new BotWorker(""); // <-- 再次在这里传入你的 bot token
+
 // 添加消息处理逻辑。
 bot.on("message", (ctx) => ctx.reply("yay!"));
 ```
@@ -272,8 +287,10 @@ bot.on("message", (ctx) => ctx.reply("yay!"));
 ```ts
 // worker.ts
 const { BotWorker } = require("@grammyjs/runner");
+
 // 创建一个新的 bot worker。
 const bot = new BotWorker(""); // <-- 再次在这里传入你的 bot token
+
 // 添加消息处理逻辑。
 bot.on("message", (ctx) => ctx.reply("yay!"));
 ```
@@ -284,8 +301,10 @@ bot.on("message", (ctx) => ctx.reply("yay!"));
 ```ts
 // worker.ts
 import { BotWorker } from "https://deno.land/x/grammy_runner/mod.ts";
+
 // 创建一个新的 bot worker。
 const bot = new BotWorker(""); // <-- 再次在这里传入你的 bot token
+
 // 添加消息处理逻辑。
 bot.on("message", (ctx) => ctx.reply("yay!"));
 ```
@@ -295,9 +314,10 @@ bot.on("message", (ctx) => ctx.reply("yay!"));
 
 > 请注意，每个 worker 都能够将消息发送回 Telegram。
 > 这就是为什么你也必须把你的 bot token 给每个 worker。
-> 你不必启动 bot worker，或从文件中导出任何内容。
-> 创建一个 `BotWorker` 实例就足够了。
-> 它会自动监听 update。
+
+你不必启动 bot worker，或从文件中导出任何内容。
+创建一个 `BotWorker` 实例就足够了。
+它会自动监听 update。
 
 理解**只有原始 update** 会发送给 bot worker 是很重要的。
 换句话说，[上下文对象](../guide/context.md) 为每次 update 创建两次：一次在 `bot.ts` 中，以便它可以被分发给 bot worker，一次在 `worker.ts` 中，以便让它可以真正地被处理。
