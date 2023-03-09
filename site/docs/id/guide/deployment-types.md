@@ -281,7 +281,7 @@ Kalau kamu ingin memanfaatkan webhook reply, kamu bisa menambahkan opsi `canUseW
 Masukkan sebuah function yang menentukan apakah method tersebut memanfaatkan webhook reply atau tidak.
 
 ```ts
-const bot = new Bot(TOKEN, { // <-- put your bot token between the ""
+const bot = new Bot("", { // <-- put your bot token between the ""
   client: {
     // Kita hanya akan menggunakan webhook reply
     // jika method tersebut adalah "sendChatAction".
