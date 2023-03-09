@@ -42,9 +42,6 @@ npm install -g firebase-tools
 5. The CLI gives you two options for language support:
    - JavaScript
    - TypeScript
-
-   For this tutorial, you can select either.
-
 6. Optionally, you can select ESLint.
 7. The CLI asks you if you want to install the dependencies with npm.
    If you use another package manager like `yarn` or `pnpm` you can decline.
