@@ -22,7 +22,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
       "Загубилась, як кит у пустелі.",
       "Знайшлося все, окрім розуму...",
     ],
-    backToHome: "Ніколи не забувай, звідки ти",
+    backToHome: "Ніколи не забувайте, звідки ви",
     navbar: [
       { text: "Посібник", link: "/uk/guide/" },
       {
