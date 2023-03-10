@@ -34,7 +34,7 @@ import { Bot } from "grammy";
 import { run } from "@grammyjs/runner";
 
 // Create a bot.
-const bot = new Bot(""); // <-- pass your bot token here
+const bot = new Bot(""); // <-- put your bot token between the ""
 
 // Add the usual middleware, yada yada
 bot.on("message", (ctx) => ctx.reply("Got your message."));
@@ -51,7 +51,7 @@ const { Bot } = require("grammy");
 const { run } = require("@grammyjs/runner");
 
 // Create a bot.
-const bot = new Bot(""); // <-- pass your bot token here
+const bot = new Bot(""); <-- put your bot token between the ""
 
 // Add the usual middleware, yada yada
 bot.on("message", (ctx) => ctx.reply("Got your message."));
@@ -68,7 +68,7 @@ import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { run } from "https://deno.land/x/grammy_runner/mod.ts";
 
 // Create a bot.
-const bot = new Bot(""); // <-- pass your bot token here
+const bot = new Bot(""); // <-- put your bot token between the ""
 
 // Add the usual middleware, yada yada
 bot.on("message", (ctx) => ctx.reply("Got your message."));
@@ -208,7 +208,7 @@ import { Bot } from "grammy";
 import { distribute, run } from "@grammyjs/runner";
 
 // Create the bot.
-const bot = new Bot("");
+const bot = new Bot(""); // <-- put your bot token between the ""
 
 // Optionally, sequentialize updates here.
 // bot.use(sequentialize(...))
