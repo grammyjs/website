@@ -229,7 +229,7 @@ const { Bot } = require("grammy");
 const { distribute, run } = require("@grammyjs/runner");
 
 // Create the bot.
-const bot = new Bot("");
+const bot = new Bot(""); // <-- put your bot token between the ""
 
 // Optionally, sequentialize updates here.
 // bot.use(sequentialize(...))
