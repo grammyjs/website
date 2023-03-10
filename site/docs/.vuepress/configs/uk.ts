@@ -12,7 +12,7 @@ export const siteUk: SiteLocaleConfig = {
 
 export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
   "/uk/": {
-    selectLanguageText: "Мови",
+    selectLanguageText: "🌍",
     selectLanguageName: "Українська",
     editLinkText: "Редагувати цю сторінку на GitHub",
     notFound: [
