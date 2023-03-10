@@ -175,13 +175,13 @@ grammY runner 允许你创建多个 worker，它们可以在实际不同的核�
 相反，它必须从一个常规 `Bot` 接收。
 
 ```asciiart:no-line-numbers
-1. 获取 update                                   Bot
+1. 获取 update                                    Bot
                                               __// \\__
                                            __/  /   \  \__
-2. 发送 update 到 workers               __/    /     \    \__
+2. 发送 update 到 workers                __/    /     \    \__
                                      __/      /       \      \__
                                     /        /         \        \
-3. 处理 update           BotWorker   BotWorker   BotWorker   BotWorker
+3. 处理 update              BotWorker   BotWorker   BotWorker   BotWorker
 ```
 
 grammY runner 为你提供了可以将 update 发送给 bot worker 的中间件。
