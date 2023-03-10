@@ -46,7 +46,7 @@ run(bot);
 </CodeGroupItem>
  <CodeGroupItem title="JavaScript">
 
-```ts
+```js
 const { Bot } = require("grammy");
 const { run } = require("@grammyjs/runner");
 
@@ -223,7 +223,7 @@ run(bot);
 </CodeGroupItem>
  <CodeGroupItem title="JavaScript">
 
-```ts
+```js
 // bot.ts
 const { Bot } = require("grammy");
 const { distribute, run } = require("@grammyjs/runner");
@@ -247,7 +247,7 @@ run(bot);
 ```ts
 // bot.ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
-import { distribute, run } from "https://deno.land/x/grammy_runner_/mod.ts";
+import { distribute, run } from "https://deno.land/x/grammy_runner/mod.ts";
 
 // Create the bot.
 const bot = new Bot("");
@@ -285,7 +285,7 @@ bot.on("message", (ctx) => ctx.reply("yay!"));
 </CodeGroupItem>
  <CodeGroupItem title="JavaScript">
 
-```ts
+```js
 // worker.ts
 const { BotWorker } = require("@grammyjs/runner");
 
