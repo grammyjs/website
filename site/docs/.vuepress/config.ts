@@ -10,6 +10,7 @@ export default defineUserConfig({
     ...config.siteEs,
     ...config.siteId,
     ...config.siteRu,
+    ...config.siteZh,
   },
   shouldPrefetch: true,
 
@@ -20,6 +21,7 @@ export default defineUserConfig({
       ...config.localeEs,
       ...config.localeId,
       ...config.localeRu,
+      ...config.localeZh,
     },
     repo: "https://github.com/grammyjs/grammY",
     docsRepo: "https://github.com/grammyjs/website",
@@ -36,6 +38,7 @@ export default defineUserConfig({
       ...config.docsearchEs,
       ...config.docsearchId,
       ...config.docsearchRu,
+      ...config.docsearchZh,
     }),
     betterLineBreaks(),
     currentVersions(),

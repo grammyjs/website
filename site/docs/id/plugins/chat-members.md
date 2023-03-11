@@ -6,10 +6,10 @@ Plugin ini bekerja dengan cara memantau anggota grup dan channel, lalu menyimpan
 ## Pengenalan
 
 Sering kali, suatu bot perlu memiliki informasi semua pengguna dari suatu chat tertentu.
-Akan tetapi, saat ini, Telegram tidak memiliki method API yang memungkinkan kita untuk mendapatkan informasi tersebut.
+Sayangnya, hingga saat ini, Telegram belum memiliki method API yang memungkinkan kita untuk mendapatkan informasi tersebut.
 
 Plugin ini hadir untuk membantu!
-Ia mampu memantau event `chat_member` serta menyimpan semua objek `ChatMember` secara otomatis.
+Ia mampu memantau event `chat_member` serta menyimpan semua object `ChatMember` secara otomatis.
 
 ## Penggunaan
 
@@ -18,8 +18,8 @@ Ia mampu memantau event `chat_member` serta menyimpan semua objek `ChatMember` s
 Kamu bisa menggunakan [storage adapter](./session.md#storage-adapter-yang-tersedia) grammY yang valid atau
 instance dari kelas apapun yang mengimplementasikan interface [`StorageAdapter`](https://deno.land/x/grammy/mod.ts?s=StorageAdapter).
 
-Perhatikan bahwa, sesuai dengan dokumentasi resmi Telegram, bot kamu perlu mencantumkan update `chat_member` di array `allowed_updates`, seperti yang ditampilkan pada contoh di bawah.
-Ini berarti, kamu juga perlu mencantumkan event lain yang diperlukan.
+Perlu diketahui, berdasarkan [dokumentasi resmi Telegram](https://core.telegram.org/bots/api#getupdates), bot kamu perlu mencantumkan update `chat_member` di array `allowed_updates`, seperti yang ditampilkan pada contoh di bawah.
+Artinya, kamu juga perlu mencantumkan event lain yang diperlukan.
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
@@ -103,7 +103,7 @@ Plugin ini juga menambahkan function `ctx.chatMembers.getChatMember` untuk memer
 Apabila anggota itu ada di dalam penyimpanan, maka function akan mengembalikan informasi anggota tersebut.
 Sebaliknya, jika tidak tersedia, maka `ctx.api.getChatMember` akan dipanggil dan hasilnya akan disimpan ke dalam penyimpanan, sehingga pemanggilan berikutnya menjadi lebih cepat serta mengurangi pemanggilan berulang ke Telegram untuk user dan chat tersebut di masa mendatang.
 
-Berikut ini contohnya:
+Berikut contohnya:
 
 ```ts
 bot.on("message", async (ctx) => {
@@ -138,12 +138,12 @@ bot.on("message", async (ctx) => {
 });
 ```
 
-Perlu diperhatikan, apabila kamu tidak memberikan identifier chat dan property `chat` tidak tersedia di dalam context tersebut (misalnya, pada update inline query), maka nantinya akan menghasilkan error.
-Sama halnya juga terjadi apabila context tidak memiliki `ctx.from`.
+Function akan menghasilkan error apabila kamu tidak mencantumkan identifier chat atau property `chat` tidak tersedia di dalam context tersebut (misalnya, pada update inline query).
+Hal yang sama juga berlaku apabila context tidak memiliki `ctx.from`.
 
 ## Aggressive Storage
 
-Opsi konfigurasi `enableAggressiveStorage` akan menginstal middleware untuk menyimpan cache chat member tanpa bergantung pada event `chat_member`.
+Opsi konfigurasi `enableAggressiveStorage` akan menginstal middleware untuk menyimpan cache anggota chat tanpa bergantung pada event `chat_member`.
 Setiap adanya update, middleware akan memeriksa apakah `ctx.chat` dan `ctx.from` tersedia.
 Jika keduanya tersedia, ia kemudian memanggil `ctx.chatMembers.getChatMember` untuk menambahkan informasi anggota ke penyimpanan, jika informasi tersebut belum tersimpan.
 

@@ -11,6 +11,8 @@
     "./site/docs/resources/",
     "./site/docs/es/",
     "./site/docs/id/",
+    "./site/docs/ru",
+    "./site/docs/zh/",
     "./site/README.md"
   ]
 }
