@@ -74,9 +74,10 @@ La estructura de tu carpeta debería ser así:
 └── tsconfig.json
 ```
 
-Ahora, es el momento de abrir Telegram para crear una cuenta de bot, y obtener un token de autenticación para ella.
-Habla con [@BotFather](https://t.me/BotFather) para hacer esto.
-El token de autenticación se parece a `123456:aBcDeF_gHiJkLmNoP-q`.
+Ahora, es el momento de abrir Telegram para crear una cuenta bot, y obtener un token para ella.
+Habla con [@BotFather](https://t.me/BotFather) para hacerlo.
+El bot token se parece a `123456:aBcDeF_gHiJkLmNoP-q`.
+Se utiliza para autenticar tu bot.
 
 ¿Tienes el token? Ahora puedes codificar tu bot en el archivo `bot.ts`.
 Puedes copiar el siguiente ejemplo de bot en ese archivo, y pasar tu token al constructor `Bot`:
@@ -87,8 +88,8 @@ Puedes copiar el siguiente ejemplo de bot en ese archivo, y pasar tu token al co
 ```ts
 import { Bot } from "grammy";
 
-// Crea una instancia de la clase `Bot` y pásale tu token de autenticación.
-const bot = new Bot(""); // <-- pon tu token de autenticación entre los ""
+// Crea una instancia de la clase `Bot` y pásale tu token.
+const bot = new Bot(""); // <-- pon tu token entre los ""
 
 // Ahora puedes registrar oyentes en tu objeto bot `bot`.
 // grammY llamará a los listeners cuando los usuarios envíen mensajes a tu bot.
@@ -111,8 +112,8 @@ bot.start();
 ```js
 const { Bot } = require("grammy");
 
-// Crea una instancia de la clase `Bot` y pásale tu token de autenticación.
-const bot = new Bot(""); // <-- pon tu token de autenticación entre los ""
+// Crea una instancia de la clase `Bot` y pásale tu token.
+const bot = new Bot(""); // <-- pon tu token entre los ""
 
 // Ahora puedes registrar oyentes en tu objeto bot `bot`.
 // grammY llamará a los listeners cuando los usuarios envíen mensajes a tu bot.
@@ -175,9 +176,10 @@ cd ./my-bot
 touch bot.ts
 ```
 
-Ahora, es el momento de abrir Telegram para crear una cuenta de bot, y obtener un token de autenticación para él.
-Habla con [@BotFather](https://t.me/BotFather) para hacer esto.
-El token de autenticación se parece a `123456:aBcDeF_gHiJkLmNoP-q`.
+Ahora, es el momento de abrir Telegram para crear una cuenta bot, y obtener un token para ella.
+Habla con [@BotFather](https://t.me/BotFather) para hacerlo.
+El bot token se parece a `123456:aBcDeF_gHiJkLmNoP-q`.
+Se utiliza para autenticar tu bot.
 
 ¿Tienes el token? Ahora puedes codificar tu bot en el archivo `bot.ts`.
 Puedes copiar el siguiente ejemplo de bot en ese archivo, y pasar tu token al constructor `Bot`:
@@ -185,8 +187,8 @@ Puedes copiar el siguiente ejemplo de bot en ese archivo, y pasar tu token al co
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
-// Crea una instancia de la clase `Bot` y pásale tu token de autenticación.
-const bot = new Bot(""); // <-- pon tu token de autenticación entre los ""
+// Crea una instancia de la clase `Bot` y pásale tu token.
+const bot = new Bot(""); // <-- pon tu token entre los ""
 
 // Ahora puedes registrar oyentes en tu objeto bot `bot`.
 // grammY llamará a los listeners cuando los usuarios envíen mensajes a tu bot.
