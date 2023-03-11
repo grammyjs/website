@@ -91,7 +91,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
             ],
           },
           {
-            text: "Розвиток",
+            text: "Поглиблення",
             children: [
               {
                 text: "Огляд",
