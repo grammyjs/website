@@ -79,9 +79,8 @@ Struktur folder kurang lebih terlihat seperti ini:
 └── tsconfig.json
 ```
 
-Sekarang, buka aplikasi Telegram kamu untuk membuat sebuah akun bot beserta token otentikasinya.
-Chat [@BotFather](https://t.me/BotFather) untuk melakukannya.
-Token otentikasi kurang lebih mirip seperti ini `123456:aBcDeF_gHiJiJkLmNoP-q`.
+Sekarang, buka aplikasi Telegram kamu lalu chat [@BotFather](https://t.me/BotFather) untuk membuat sebuah akun bot beserta token bot-nya.
+Token bot digunakan untuk mengautentikasi bot kamu yang bentuknya kurang lebih mirip seperti ini `123456:aBcDeF_gHiJiJkLmNoP-q`.
 
 Sudah dapat tokennya? Sekarang kamu bisa menulis kode bot di file `bot.ts`.
 Kamu bisa menyalin contoh bot berikut ke dalam file. Jangan lupa untuk memasukkan token ke constructor `Bot`.
@@ -92,8 +91,8 @@ Kamu bisa menyalin contoh bot berikut ke dalam file. Jangan lupa untuk memasukka
 ```ts
 import { Bot } from "grammy";
 
-// Buat sebuah instance class `Bot` lalu masukkan token otentikasi ke dalamnya.
-const bot = new Bot(""); // <-- Taruh token di antara tanda petik ("").
+// Buat sebuah instance class `Bot` lalu masukkan token bot ke dalamnya.
+const bot = new Bot(""); // <-- Taruh token bot di antara tanda petik ("")
 
 // Sekarang, kamu bisa menambahkan listener ke object `bot`.
 // grammY akan memanggil listener ini ketika pengguna mengirim pesan ke bot.
@@ -116,8 +115,8 @@ bot.start();
 ```js
 const { Bot } = require("grammy");
 
-// Buat sebuah instance class `Bot` lalu masukkan token otentikasi ke dalamnya.
-const bot = new Bot(""); // <-- Taruh token di antara tanda petik ("").
+// Buat sebuah instance class `Bot` lalu masukkan token bot ke dalamnya.
+const bot = new Bot(""); // <-- Taruh token bot di antara tanda petik ("")
 
 // Sekarang, kamu bisa menambahkan listener ke object `bot`.
 // grammY akan memanggil listener ini ketika pengguna mengirim pesan ke bot.
@@ -180,18 +179,16 @@ cd ./my-bot
 touch bot.ts
 ```
 
-Sekarang, buka aplikasi Telegram kamu untuk membuat sebuah akun bot beserta token otentikasinya.
-Chat [@BotFather](https://t.me/BotFather) untuk melakukannya.
-Token otentikasi kurang lebih mirip seperti ini `123456:aBcDeF_gHiJiJkLmNoP-q`.
-
+Sekarang, buka aplikasi Telegram kamu lalu chat [@BotFather](https://t.me/BotFather) untuk membuat sebuah akun bot beserta token bot-nya.
+Token bot digunakan untuk mengautentikasi bot kamu yang bentuknya kurang lebih mirip seperti ini `123456:aBcDeF_gHiJiJkLmNoP-q`.
 Sudah dapat tokennya? Sekarang kamu bisa menulis kode bot di file `bot.ts`.
 Kamu bisa menyalin contoh bot berikut ke dalam file. Jangan lupa untuk memasukkan token ke constructor `Bot`.
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
-// Buat sebuah instance class `Bot` lalu masukkan token otentikasi ke dalamnya.
-const bot = new Bot(""); // <-- taruh token di antara tanda petik ("").
+// Buat sebuah instance class `Bot` lalu masukkan token bot ke dalamnya.
+const bot = new Bot(""); // <-- taruh token bot di antara tanda petik ("")
 
 // Sekarang, kamu bisa menambahkan listener ke object `bot`.
 // grammY akan memanggil listener ini ketika pengguna mengirim pesan ke bot.
