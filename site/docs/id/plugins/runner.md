@@ -421,7 +421,7 @@ Ada beberapa hal yang dilakukan function `run` untuk membantu kamu menggunakan s
 2. Membuat sebuah [source](#source) dari penyuplai update.
 3. Membuat sebuah penerima update untuk bot kamu.
 4. Membuat sebuah [sink](#sink) dari penerima update.
-5. Membuat sebuah runner dari source dan sink.
+5. Membuat sebuah [runner](#runner) dari source dan sink.
 6. Memulai runner.
 
 Kemudian, ia akan mengembalikan (return) handle dari runner tersebut, yang mana bisa kamu gunakan untuk mengontrol runner-nya.
