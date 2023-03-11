@@ -250,7 +250,7 @@ import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { distribute, run } from "https://deno.land/x/grammy_runner/mod.ts";
 
 // Create the bot.
-const bot = new Bot("");
+const bot = new Bot(""); // <-- put your bot token between the ""
 
 // Optionally, sequentialize updates here.
 // bot.use(sequentialize(...))
