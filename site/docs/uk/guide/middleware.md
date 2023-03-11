@@ -76,11 +76,11 @@ type NextFunction = () => Promise<void>;
 
 ```asciiart:no-line-numbers
 (ctx, next) => ...    |
-(ctx, next) => ...    |—————middleware, вищі за X
+(ctx, next) => ...    |—————вищий middleware відносно X
 (ctx, next) => ...    |
 (ctx, next) => ...       <— middleware X. Викликаємо `next`, щоб передати оновлення 🡳
 (ctx, next) => ...    |
-(ctx, next) => ...    |—————middleware, нижчі за X
+(ctx, next) => ...    |—————нижчий middleware відносно X
 (ctx, next) => ...    |
 ```
 
