@@ -39,8 +39,11 @@ Todos los métodos que los bots pueden utilizar (**[lista importante](https://co
 ```ts
 // Enviar un mensaje de texto al usuario 12345.
 await bot.api.sendMessage(12345, "Hi!");
-// Opcionalmente, puedes pasar un objeto de opciones.
+// Opcionalmente, puede pasar un objeto options.
 await bot.api.sendMessage(12345, "Hi!", {/* más opciones */});
+// Inspecciona el objeto del mensaje enviado.
+const message = await bot.api.sendMessage(12345, "Hi!");
+console.log(message.message_id);
 
 // Obtener información sobre el propio bot.
 const me = await bot.api.getMe();
