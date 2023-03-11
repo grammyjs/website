@@ -21,116 +21,11 @@ import { addReplyParam } from "@roziscoding/grammy-autoquote";
 const bot = new Bot("");
 
 bot.command("демо", async (ctx) => {
-	ctx.api.config.use(addReplyParam(ctx));
-	await ctx.reply("Демо команда!"); // це повідомлення буде з цитуванням повідомлення від користувача
+  ctx.api.config.use(addReplyParam(ctx));
+  await ctx.reply("Демо команда!"); // це повідомлення буде з цитуванням повідомлення від користувача
 });
 
 bot.start();
-```
-
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
-
-```js
-const { Bot } = require("grammy");
-const { addReplyParam } = require("@roziscoding/grammy-autoquote");
-
-const bot = new Bot("");
-
-bot.command("демо", async (ctx) => {
-	ctx.api.config.use(addReplyParam(ctx));
-	await ctx.reply("Демо команда!"); // це повідомлення буде з цитуванням повідомлення від користувача
-});
-
-bot.start();
-```
-
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
-
-```ts
-import { Bot } from "https://deno.land/x/grammy/mod.ts";
-import { addReplyParam } from "https://deno.land/x/grammy_autoquote/mod.ts";
-
-const bot = new Bot("");
-
-bot.command("демо", async (ctx) => {
-	ctx.api.config.use(addReplyParam(ctx));
-	await ctx.reply("Демо команда!"); // це повідомлення буде з цитуванням повідомлення від користувача
-});
-
-bot.start();
-```
-
-</CodeGroupItem>
-</CodeGroup>
-
-### У всіх обробниках
-
-Якщо ви хочете, щоб кожне надіслане повідомлення було відповіддю на повідомлення, яке його спричинило, ви можете застосувати плагін таким чином:
-
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
-
-```ts
-import { Bot } from "grammy";
-import { autoQuote } from "@roziscoding/grammy-autoquote";
-
-const bot = new Bot("");
-
-bot.use(autoQuote);
-
-bot.command("демо", async (ctx) => {
-	await ctx.reply("Демо команда!"); // це повідомлення буде з цитуванням повідомлення від користувача
-});
-
-bot.command("привіт", async (ctx) => {
-	await ctx.reply("Привіт :)"); // тут цитування повідомлення буде також
-});
-
-bot.start();
-```
-
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
-
-```js
-const { Bot } = require("grammy");
-const { autoQuote } = require("@roziscoding/grammy-autoquote");
-
-const bot = new Bot("");
-
-bot.use(autoQuote);
-
-bot.command("демо", async (ctx) => {
-	await ctx.reply("Демо команда!"); // це повідомлення буде з цитуванням повідомлення від користувача
-});
-
-bot.command("привіт", async (ctx) => {
-	await ctx.reply("Привіт :)"); // тут цитування повідомлення буде також
-});
-
-bot.start();
-```
-
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
-
-```ts
-import { Bot } from "https://deno.land/x/grammy/mod.ts";
-import { autoQuote } from "https://deno.land/x/grammy_autoquote/mod.ts";
-
-const bot = new Bot("");
-
-bot.use(autoQuote);
-
-bot.command("демо", async (ctx) => {
-	await ctx.reply("Демо команда!"); // це повідомлення буде з цитуванням повідомлення від користувача
-});
-
-bot.command("привіт", async (ctx) => {
-	await ctx.reply("Привіт :)"); // тут цитування повідомлення буде також
-});
 
 bot.start();
 ```
