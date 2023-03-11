@@ -39,10 +39,13 @@ Semua method yang dapat digunakan oleh bot (**[daftar penting](https://core.tele
 ```ts
 // Mengirim sebuah pesan ke pengguna 12345.
 await bot.api.sendMessage(12345, "Halo!");
-// Selain itu, kamu bisa menambahkan opsi ke object.
+// Selain itu, kamu juga bisa menambahkan beberapa opsi dalam bentuk object.
 await bot.api.sendMessage(12345, "Halo!", {/* opsi lainnya */});
+// Memeriksa object message dari pesan yang dikirim.
+const message = await bot.api.sendMessage(12345, "Halo!");
+console.log(message.message_id);
 
-// Memperoleh informasi tentang bot itu sendiri.
+// Memperoleh informasi mengenai bot itu sendiri.
 const me = await bot.api.getMe();
 
 // Dan lain-lain
