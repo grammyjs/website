@@ -165,8 +165,8 @@ Dengan kata lain, core yang cuma satu tersebut akan mengalami kesulitan untuk me
 Solusinya adalah bot workers!
 grammY runner bisa membuat beberapa workers untuk memproses update secara bersamaan (paralel) di core yang berbeda---menggunakan event loop yang berbeda serta memory yang terpisah.
 
-Di Node.js, grammY runner menggunakan [Worker Threads](https://nodejs.org/api/worker_threads.html).
-Sedangkan di Deno, grammY runner menggunakan [Web Workers](https://deno.land/manual/runtime/workers).
+grammY runner menggunakan [Worker Threads](https://nodejs.org/api/worker_threads.html) di Node.js.
+Sedangkan di Deno, ia menggunakan [Web Workers](https://deno.land/manual/runtime/workers).
 
 Secara konsep, grammY runner menyediakan sebuah class bernama `BotWorker` yang berfungsi untuk menangani update.
 Ia serupa dengan class `Bot` biasa, malahan ia meng-`extends` class `Bot` itu sendiri.
