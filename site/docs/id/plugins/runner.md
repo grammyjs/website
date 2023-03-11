@@ -168,7 +168,7 @@ grammY runner bisa membuat beberapa workers untuk memproses update secara bersam
 Di Node.js, grammY runner menggunakan [Worker Threads](https://nodejs.org/api/worker_threads.html).
 Sedangkan di Deno, grammY runner menggunakan [Web Workers](https://deno.land/manual/runtime/workers).
 
-Secara konsep, grammY runner menyediakan sebuah kelas bernama `BotWorker` yang berfungsi untuk menangani update.
+Secara konsep, grammY runner menyediakan sebuah class bernama `BotWorker` yang berfungsi untuk menangani update.
 Ia serupa dengan class `Bot` biasa, malahan ia meng-`extends Bot`.
 Perbedaan utamanya adalah `BotWorker` tidak bisa mengambil update.
 Sebaliknya, ia mengambil update dari `Bot` biasa yang mengontrol worker tersebut.
@@ -364,7 +364,7 @@ bot.use(distribute(workerFile, { count: 8 }));
 ```
 
 Perlu diperhatikan bahwa aplikasi kamu seharusnya tidak membuat thread lebih dari jumlah core yang tersedia di CPU kamu.
-Alih-alih meningkatkan, tindakan tersebut malah akan memperburuk performa.
+Alih-alih meningkatkan, tindakan tersebut malah akan memperburuk performa bot.
 
 ## Apa yang Sebenarnya Terjadi di Balik Layar
 
