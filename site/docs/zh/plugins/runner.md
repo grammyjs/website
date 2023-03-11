@@ -424,7 +424,7 @@ runner 是一个简单的循环，它从 source 中拉取 updates，并将它们
 2. 它从 update 供应者创建一个 [source](#source)。
 3. 它从你的 bot 创建一个 update 消费者。
 4. 它从 update 消费者者创建一个 [sink](#sink)。
-5. 它从 source 和 sink 创建一个 runner。
+5. 它从 source 和 sink 创建一个 [runner](#runner)。
 6. 它启动 runner。
 
 返回创建的 runner 的句柄，它可以让你控制 runner。
