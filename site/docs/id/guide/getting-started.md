@@ -181,6 +181,7 @@ touch bot.ts
 
 Sekarang, buka aplikasi Telegram kamu lalu chat [@BotFather](https://t.me/BotFather) untuk membuat sebuah akun bot beserta token bot-nya.
 Token bot digunakan untuk mengautentikasi bot kamu yang bentuknya kurang lebih mirip seperti ini `123456:aBcDeF_gHiJiJkLmNoP-q`.
+
 Sudah dapat tokennya? Sekarang kamu bisa menulis kode bot di file `bot.ts`.
 Kamu bisa menyalin contoh bot berikut ke dalam file. Jangan lupa untuk memasukkan token ke constructor `Bot`.
 
@@ -226,11 +227,10 @@ export DEBUG="grammy*"
 di terminal sebelum menjalankan bot.
 Ini mempermudah kamu untuk men-debug bot.
 
-Alih-alih menjalankan bot dengan cara tadi, kamu perlu menjalankan bot menggunakan
+Kemudian, jalankan bot dengan menambahkan flag `--allow-env` agar grammY bisa membaca environment variable `DEBUG`.
 
 ```sh
 deno run --allow-net --allow-env bot.ts
 ```
 
-sehingga grammY dapat mendeteksi bahwa `DEBUG` telah diatur.
 :::
