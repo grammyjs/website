@@ -113,7 +113,7 @@ Ia menggunakan memory secara konstan---selama kamu menentukan batas concurrency-
 
 Agar bot menyelesaikan tugasnya dengan benar, kamu [harus memberi sinyal berhenti](../advanced/reliability.md#menggunakan-grammy-runner) ke bot ketika proses hendak dimatikan.
 
-Kamu juga bisa menunggu runner untuk berhenti dengan cara menunggu `task`---atau memasang `await`---di [`RunnerHandle`](https://deno.land/x/grammy_runner/mod.ts?s=RunnerHandle) yang dikembalikan dari `run`.
+Kamu juga bisa menunggu runner berhenti dengan cara menunggu promise `task`---menggunakan `await`---di [`RunnerHandle`](https://deno.land/x/grammy_runner/mod.ts?s=RunnerHandle) yang dikembalikan dari `run`.
 
 ```ts
 const handle = run(bot);
@@ -169,7 +169,7 @@ Di Node.js, grammY runner menggunakan [Worker Threads](https://nodejs.org/api/wo
 Sedangkan di Deno, grammY runner menggunakan [Web Workers](https://deno.land/manual/runtime/workers).
 
 Secara konsep, grammY runner menyediakan sebuah class bernama `BotWorker` yang berfungsi untuk menangani update.
-Ia serupa dengan class `Bot` biasa, malahan ia meng-`extends Bot`.
+Ia serupa dengan class `Bot` biasa, malahan ia meng-`extends` class `Bot` itu sendiri.
 Perbedaan utamanya adalah `BotWorker` tidak bisa mengambil update.
 Sebaliknya, ia mengambil update dari `Bot` biasa yang mengontrol worker tersebut.
 
