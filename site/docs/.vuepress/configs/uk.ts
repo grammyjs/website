@@ -12,7 +12,7 @@ export const siteUk: SiteLocaleConfig = {
 
 export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
   "/uk/": {
-    selectLanguageText: "Мови",
+    selectLanguageText: "🌍",
     selectLanguageName: "Українська",
     editLinkText: "Редагувати цю сторінку на GitHub",
     notFound: [
@@ -22,7 +22,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
       "Загубилась, як кит у пустелі.",
       "Знайшлося все, окрім розуму...",
     ],
-    backToHome: "Ніколи не забувай, звідки ти",
+    backToHome: "Ніколи не забувайте, звідки ви",
     navbar: [
       { text: "Посібник", link: "/uk/guide/" },
       {
@@ -91,7 +91,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
             ],
           },
           {
-            text: "Розвиток",
+            text: "Поглиблення",
             children: [
               {
                 text: "Огляд",

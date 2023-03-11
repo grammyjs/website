@@ -26,7 +26,7 @@
 
 （公平地说，这并不是它真正的工作原理。
 但这样思考有助于你理解和使用这个插件！
-在实际情况中，函数的执行方式会有一点不同,但我们会在 [后面](#waiting-for-updates) 讨论这个问题。）
+在实际情况中，函数的执行方式会有一点不同,但我们会在 [后面](#等待-updates) 讨论这个问题。）
 
 ## 简单样例
 
@@ -995,7 +995,7 @@ async function waitForMe(conversation, ctx) {
 
 - [menu](./menu.md)
 - [hydrate](./hydrate.md)
-- [i18n](./i18n.md) and [fluent](./fluent.md)
+- [i18n](./i18n.md) 和 [fluent](./fluent.md)
 - [emoji](./emoji.md)
 
 它们的共同点是它们都将功能存储在上下文对象上，而对话插件无法正确处理。
