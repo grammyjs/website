@@ -21,8 +21,8 @@ import { addReplyParam } from "@roziscoding/grammy-autoquote";
 const bot = new Bot("");
 
 bot.command("демо", async (ctx) => {
-  ctx.api.config.use(addReplyParam(ctx));
-  await ctx.reply("Демо команда!"); // це повідомлення буде з цитуванням повідомлення від користувача
+	ctx.api.config.use(addReplyParam(ctx));
+	await ctx.reply("Демо команда!"); // це повідомлення буде з цитуванням повідомлення від користувача
 });
 
 bot.start();
@@ -38,8 +38,8 @@ const { addReplyParam } = require("@roziscoding/grammy-autoquote");
 const bot = new Bot("");
 
 bot.command("демо", async (ctx) => {
-  ctx.api.config.use(addReplyParam(ctx));
-  await ctx.reply("Демо команда!"); // це повідомлення буде з цитуванням повідомлення від користувача
+	ctx.api.config.use(addReplyParam(ctx));
+	await ctx.reply("Демо команда!"); // це повідомлення буде з цитуванням повідомлення від користувача
 });
 
 bot.start();
@@ -55,8 +55,8 @@ import { addReplyParam } from "https://deno.land/x/grammy_autoquote/mod.ts";
 const bot = new Bot("");
 
 bot.command("демо", async (ctx) => {
-  ctx.api.config.use(addReplyParam(ctx));
-  await ctx.reply("Демо команда!"); // це повідомлення буде з цитуванням повідомлення від користувача
+	ctx.api.config.use(addReplyParam(ctx));
+	await ctx.reply("Демо команда!"); // це повідомлення буде з цитуванням повідомлення від користувача
 });
 
 bot.start();
@@ -81,11 +81,11 @@ const bot = new Bot("");
 bot.use(autoQuote);
 
 bot.command("демо", async (ctx) => {
-  await ctx.reply("Демо команда!"); // це повідомлення буде з цитуванням повідомлення від користувача
+	await ctx.reply("Демо команда!"); // це повідомлення буде з цитуванням повідомлення від користувача
 });
 
 bot.command("привіт", async (ctx) => {
-  await ctx.reply("Привіт :)"); // тут цитування повідомлення буде також
+	await ctx.reply("Привіт :)"); // тут цитування повідомлення буде також
 });
 
 bot.start();
@@ -103,11 +103,11 @@ const bot = new Bot("");
 bot.use(autoQuote);
 
 bot.command("демо", async (ctx) => {
-  await ctx.reply("Демо команда!"); // це повідомлення буде з цитуванням повідомлення від користувача
+	await ctx.reply("Демо команда!"); // це повідомлення буде з цитуванням повідомлення від користувача
 });
 
 bot.command("привіт", async (ctx) => {
-  await ctx.reply("Привіт :)"); // тут цитування повідомлення буде також
+	await ctx.reply("Привіт :)"); // тут цитування повідомлення буде також
 });
 
 bot.start();
@@ -125,11 +125,11 @@ const bot = new Bot("");
 bot.use(autoQuote);
 
 bot.command("демо", async (ctx) => {
-  await ctx.reply("Демо команда!"); // це повідомлення буде з цитуванням повідомлення від користувача
+	await ctx.reply("Демо команда!"); // це повідомлення буде з цитуванням повідомлення від користувача
 });
 
 bot.command("привіт", async (ctx) => {
-  await ctx.reply("Привіт :)"); // тут цитування повідомлення буде також
+	await ctx.reply("Привіт :)"); // тут цитування повідомлення буде також
 });
 
 bot.start();
@@ -140,6 +140,6 @@ bot.start();
 
 ## Опис плагіна
 
-- Назва: Автоцитати
+- Назва: Autoquote
 - Джерело: <https://github.com/roziscoding/grammy-autoquote>
 - Довідка API: <https://deno.land/x/grammy_autoquote/mod.ts>
