@@ -222,7 +222,7 @@ run(bot);
  <CodeGroupItem title="JavaScript">
 
 ```js
-// bot.ts
+// bot.js
 const { Bot } = require("grammy");
 const { distribute, run } = require("@grammyjs/runner");
 
@@ -284,7 +284,7 @@ bot.on("message", (ctx) => ctx.reply("Hore!"));
  <CodeGroupItem title="JavaScript">
 
 ```js
-// worker.ts
+// worker.js
 const { BotWorker } = require("@grammyjs/runner");
 
 // Buat sebuah bot worker baru.
