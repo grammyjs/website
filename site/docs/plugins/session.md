@@ -561,7 +561,7 @@ bot.start();
 We maintain a collection of official storage adapters that allow you to store your session data in different places.
 Each of them will require you to register at a hosting provider, or to host your own storage solution.
 
-Visit [here](https://github.com/grammyjs/storages/tree/main/packages#grammy-storages) to see a list of currently supported adapters and get guide on using them.
+Visit [here](https://github.com/grammyjs/storages/tree/main/packages#grammy-storages) to see a list of currently supported adapters and get guidance on using them.
 
 ::: tip Your storage is not supported? No problem!
 Creating a custom storage adapter is extremely simple.
