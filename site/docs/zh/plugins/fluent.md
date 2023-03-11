@@ -82,7 +82,7 @@ welcome =
 但首先，我们需要配置 grammY 使用该插件。
 
 在所有其他方面之前，你需要配置你的 bot 使用 Fluent 上下文调味剂。
-如果你不熟悉这个概念，你应该阅读 [上下文调味剂](../guide/context.md#context-flavors) 的官方文档。
+如果你不熟悉这个概念，你应该阅读 [上下文调味剂](../guide/context.md#上下文调味剂) 的官方文档。
 
 ```ts
 import { Context } from "grammy";

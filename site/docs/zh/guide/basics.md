@@ -41,6 +41,9 @@ Bot 可以使用的所有方法（**[重要的列表](https://core.telegram.org/
 await bot.api.sendMessage(12345, "Hi!");
 // 你也可以选择性地传入一个选项对象。
 await bot.api.sendMessage(12345, "Hi!", {/* 其他选项 */});
+// 检查已发送消息的消息对象。
+const message = await bot.api.sendMessage(12345, "Hi!");
+console.log(message.message_id);
 
 // 获取有关 bot 本身的信息。
 const me = await bot.api.getMe();
