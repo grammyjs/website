@@ -425,7 +425,7 @@ The `run` function does a few things to help you use the above structure with ea
 2. It creates a [source](#source) from the update supplier.
 3. It creates an update consumer from your bot.
 4. It creates a [sink](#sink) from the update consumer.
-5. It creates a runner from the source and the sink.
+5. It creates a [runner](#runner) from the source and the sink.
 6. It starts the runner.
 
 The handle of the created runner is returned, which lets you control the runner.
