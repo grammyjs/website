@@ -16,7 +16,7 @@ jobs:
     steps:
       - run: |
           labels='${{ toJSON(github.event.pull_request.labels.*.name) }}'
-          language_labels=(":es: ES" ":indonesia: ID" ":cn: CN")
+          language_labels=(":es: ES" ":indonesia: ID" ":cn: ZH")
 
 
           has_label() {
