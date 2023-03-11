@@ -26,7 +26,7 @@ Artinya, kamu juga perlu mencantumkan event lain yang diperlukan.
 
 ```ts
 import { Bot, type Context, MemorySessionStorage } from "grammy";
-import { type ChatMember } from "grammy/types";
+import { type ChatMember } from "@grammyjs/types";
 import { chatMembers, type ChatMembersFlavor } from "@grammyjs/chat-members";
 
 type MyContext = Context & ChatMembersFlavor;

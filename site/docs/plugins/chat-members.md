@@ -24,7 +24,7 @@ This means you also need to specify any other events you'd like to receive.
 
 ```ts
 import { Bot, type Context, MemorySessionStorage } from "grammy";
-import { type ChatMember } from "grammy/types";
+import { type ChatMember } from "@grammyjs/types";
 import { chatMembers, type ChatMembersFlavor } from "@grammyjs/chat-members";
 
 type MyContext = Context & ChatMembersFlavor;
