@@ -47,7 +47,7 @@ export const lists = new Composer();
 lists.on("message", (ctx) => {/* ... */});
 ```
 
-> 请注意，如果你使用 TypeScript ，你需要在创建 `Composer` 时传递你的 [自定义上下文类型](../guide/context.md#customizing-the-context-object)
+> 请注意，如果你使用 TypeScript ，你需要在创建 `Composer` 时传递你的 [自定义上下文类型](../guide/context.md#定制你的上下文对象)。
 > 例如，你需要用 `new Composer<MyContext>()`。
 
 你也可以使用 [Error 边界](../guide/errors.md#error-边界) 去处理所有程序模块中可能出现的错误。
@@ -60,7 +60,7 @@ import { lists } from "./todo/list";
 const bot = new Bot("<token>");
 
 bot.use(lists);
-// ... 更多像 `todo` 一样的模块也可以像这样来使用
+// ... 更多像 `todo` 一样的模块也可以像这样来使用。
 
 bot.start();
 ```
