@@ -14,7 +14,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - run: |
+      - name: Check Labels
+        run: |
           labels='${{ toJSON(github.event.pull_request.labels.*.name) }}'
           language_labels=(":es: ES" ":indonesia: ID" ":cn: ZH")
 
@@ -35,4 +36,3 @@ jobs:
               echo "The pull request must at least have one of the following labels: ready for translation, time-sensitive, not translatable"
               exit 1
           fi
-
