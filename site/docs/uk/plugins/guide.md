@@ -66,7 +66,7 @@ export function onlyAccept<C extends Context>(str: string): Middleware<C> {
     const name = ctx.from?.first_name;
     // Допускаємо всі співпадаючі оновлення.
     if (name === undefined || name.includes(str)) {
-      // Передаємо керування потоком вниз по middleware.
+      // Викликаємо нижній middleware
       await next();
     } else {
       // Скажемо, що ми не працюємо з такими
