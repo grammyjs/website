@@ -80,12 +80,12 @@ const bot = new Bot("");
 
 bot.use(autoQuote);
 
-bot.command("демо", async (ctx) => {
-  await ctx.reply("Демо команда!"); // це повідомлення буде з цитуванням повідомлення від користувача
+bot.command("demo", async (ctx) => {
+  await ctx.reply("Демонстраційна команда!"); // це повідомлення буде відповіддю на повідомлення користувача
 });
 
-bot.command("привіт", async (ctx) => {
-  await ctx.reply("Привіт :)"); // тут цитування повідомлення буде також
+bot.command("hello", async (ctx) => {
+  await ctx.reply("Привіт :)"); // тут також буде встановлена відпоповідь на повідомлення користувача
 });
 
 bot.start();
