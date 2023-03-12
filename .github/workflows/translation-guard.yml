@@ -29,8 +29,6 @@ jobs:
                   if ! has_label "$language_label"; then
                       echo "Error: Missing language label '$language_label'"
                       exit 1
-                  else
-                      echo "Found language label '$language_label'"
                   fi
               done
           elif ! has_label "time-sensitive" && ! has_label "not translatable"; then
