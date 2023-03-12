@@ -34,7 +34,7 @@ You can use this short example bot as a starting point.
 import { serve } from "https://deno.land/std/http/server.ts";
 import { Bot, webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 
-const bot = new Bot(Deno.env.get("BOT_TOKEN") ?? "");
+const bot = new Bot(Deno.env.get("BOT_TOKEN") ?? ""); // <-- store your bot token in the 'BOT_TOKEN' environment variable
 
 bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
 bot.command("ping", (ctx) => ctx.reply(`Pong! ${new Date()}`));

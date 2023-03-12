@@ -238,7 +238,7 @@ import {
 type MyContext = Context & ConversationFlavor;
 type MyConversation = Conversation<MyContext>;
 
-const bot = new Bot<MyContext>("");
+const bot = new Bot<MyContext>(""); // <-- put your bot token between the ""
 
 bot.use(session({ initial: () => ({}) }));
 bot.use(conversations());
@@ -303,7 +303,7 @@ import {
 type MyContext = Context & ConversationFlavor;
 type MyConversation = Conversation<MyContext>;
 
-const bot = new Bot<MyContext>("");
+const bot = new Bot<MyContext>(""); // <-- put your bot token between the ""
 
 bot.use(session({ initial: () => ({}) }));
 bot.use(conversations());

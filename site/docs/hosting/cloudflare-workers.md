@@ -55,7 +55,7 @@ import { Bot, webhookCallback } from "grammy/web";
 // You can replace `""` with your bot token, but it is better to store it in an environment variable.
 // For more on this, see https://developers.cloudflare.com/workers/platform/environment-variables/#secrets-on-deployed-workers.
 // You should also replace `BOT_INFO` with your bot info obtained from `bot.api.getMe()`.
-const bot = new Bot("", { botInfo: BOT_INFO });
+const bot = new Bot("", { botInfo: BOT_INFO }); // <-- put your bot token between the ""
 
 bot.command("start", async (ctx) => {
   await ctx.reply("Hello, world!");

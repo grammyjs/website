@@ -61,7 +61,7 @@ import { hydrate, HydrateFlavor } from "@grammyjs/hydrate";
 
 type MyContext = HydrateFlavor<Context>;
 
-const bot = new Bot<MyContext>("");
+const bot = new Bot<MyContext>(""); // <-- put your bot token between the ""
 
 bot.use(hydrate());
 ```
@@ -90,7 +90,7 @@ import {
 
 type MyContext = HydrateFlavor<Context>;
 
-const bot = new Bot<MyContext>("");
+const bot = new Bot<MyContext>(""); // <-- put your bot token between the ""
 
 bot.use(hydrate());
 ```
@@ -124,7 +124,7 @@ import {
 type MyContext = HydrateFlavor<Context>;
 type MyApi = HydrateApiFlavor<Api>;
 
-const bot = new Bot<MyContext, MyApi>("");
+const bot = new Bot<MyContext, MyApi>(""); // <-- put your bot token between the ""
 
 bot.use(hydrateContext());
 bot.api.config.use(hydrateApi());
@@ -158,7 +158,7 @@ import {
 type MyContext = HydrateFlavor<Context>;
 type MyApi = HydrateApiFlavor<Api>;
 
-const bot = new Bot<MyContext, MyApi>("");
+const bot = new Bot<MyContext, MyApi>(""); // <-- put your bot token between the ""
 
 bot.use(hydrateContext());
 bot.api.config.use(hydrateApi());

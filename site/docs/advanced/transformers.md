@@ -100,7 +100,7 @@ type MyContext = Context & SomeContextFlavor;
 type MyApi = Api & SomeApiFlavor;
 
 // Use both flavors.
-const bot = new Bot<MyContext, MyApi>("my-token");
+const bot = new Bot<MyContext, MyApi>(""); // <-- put your bot token between the ""
 
 // Use a plugin.
 bot.api.config.use(somePlugin());
