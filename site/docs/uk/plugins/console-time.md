@@ -24,10 +24,10 @@ bot.command("start" /* , ... */);
 Цей код виведе щось на зразок цього:
 
 ```plaintext
-2020-03-31T14:32:36.974Z 490af message text Andrey 6 /старт: 926.247ms
-2020-03-31T14:32:57.750Z 490ag message text Andrey 6 /старт: 914.764ms
-2020-03-31T14:33:01.188Z 490ah message text Andrey 5 /стоп: 302.666ms
-2020-03-31T14:46:11.385Z 490ai message text Andrey 6 /старт: 892.452ms
+2020-03-31T14:32:36.974Z 490af message text Andrey 6 /start: 926.247ms
+2020-03-31T14:32:57.750Z 490ag message text Andrey 6 /start: 914.764ms
+2020-03-31T14:33:01.188Z 490ah message text Andrey 5 /stop: 302.666ms
+2020-03-31T14:46:11.385Z 490ai message text Andrey 6 /start: 892.452ms
 ```
 
 `490af` - це `update_id`.
