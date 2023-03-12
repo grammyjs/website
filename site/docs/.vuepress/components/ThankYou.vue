@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-import { reactive } from "vue";
+import { reactive, defineProps } from "vue";
 
+const props = defineProps<{ s: [string, string, string] }>();
 const contributor = reactive<Record<string, string>>({
   name: "",
   photo: "",
@@ -90,8 +91,8 @@ load();
   >
     <img v-bind:src="contributor.photo" />
     <p>
-      Thank you <span>{{ contributor.name }}</span> for being a contributor to
-      grammY.
+      {{ props.s[0] }}<span>{{ contributor.name }}</span
+      >{{ props.s[1] }}
     </p>
   </a>
 </template>
@@ -102,7 +103,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
   cursor: pointer;
   color: var(--c-text);
 }

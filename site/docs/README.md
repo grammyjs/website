@@ -84,7 +84,7 @@ Works! :tada:
 ---
 
 <ClientOnly>
-  <ThankYou />
+  <ThankYou :s="['Thank you ', 'Someone', ' for being a contributor to grammY.']" />
 </ClientOnly>
 
 <div style="font-size: 0.75rem;">
