@@ -79,7 +79,7 @@ export function onlyAccept<C extends Context>(str: string): Middleware<C> {
 Тепер ми можемо використовувати це в реальному боті:
 
 ```ts
-// Код плагіни знаходиться в файлі з назвою `plugin.ts`
+// Код плагіну знаходиться у файлі з назвою `plugin.ts`
 import { onlyAccept } from "./plugin.ts";
 import { Bot } from "./deps.deno.ts";
 
