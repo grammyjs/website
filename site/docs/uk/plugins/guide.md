@@ -140,7 +140,7 @@ export function autoChatAction(): Transformer {
 
 ```ts
 import { Bot, InputFile } from "./deps.deno.ts";
-// Код плагіни знаходиться в файлі з назвою `plugin.ts`
+// Код плагіну знаходиться у файлі з назвою `plugin.ts`
 import { autoChatAction } from "./plugin.ts";
 
 // Створюємо інстанс бота.
