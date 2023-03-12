@@ -58,7 +58,7 @@ prev: ../plugins/
 // Імпортуємо типи з grammY, ми реекспортуємо їх в `deps.deno.ts`.
 import type { Context, Middleware, NextFunction } from "./deps.deno.ts";
 
-// Ваш плагін може мати одну основну функцію, яка створює пmiddleware.
+// Ваш плагін може мати одну основну функцію, яка створює middleware.
 export function onlyAccept<C extends Context>(str: string): Middleware<C> {
   // Створюємо та повертаємо middleware.
   return async (ctx, next) => {
