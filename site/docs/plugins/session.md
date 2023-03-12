@@ -116,7 +116,7 @@ interface SessionData {
 // Flavor the context type to include sessions.
 type MyContext = Context & SessionFlavor<SessionData>;
 
-const bot = new Bot<MyContext>("");
+const bot = new Bot<MyContext>(""); // <-- put your bot token between the ""
 
 // Install session middleware, and define the initial session value.
 function initial(): SessionData {
@@ -177,7 +177,7 @@ interface SessionData {
 // Flavor the context type to include sessions.
 type MyContext = Context & SessionFlavor<SessionData>;
 
-const bot = new Bot<MyContext>("");
+const bot = new Bot<MyContext>(""); // <-- put your bot token between the ""
 
 // Install session middleware, and define the initial session value.
 function initial(): SessionData {

@@ -70,7 +70,7 @@ interface SessionData {
 }
 type MyContext = Context & SessionFlavor<SessionData>;
 
-const bot = new Bot<MyContext>("");
+const bot = new Bot<MyContext>(""); // <-- put your bot token between the ""
 
 // Use session.
 bot.use(session({ initial: (): SessionData => ({ step: "idle" }) }));
@@ -337,7 +337,7 @@ interface SessionData {
 }
 type MyContext = Context & SessionFlavor<SessionData>;
 
-const bot = new Bot<MyContext>("");
+const bot = new Bot<MyContext>(""); // <-- put your bot token between the ""
 
 // Use session.
 bot.use(session({ initial: (): SessionData => ({ step: "idle" }) }));

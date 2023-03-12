@@ -40,7 +40,7 @@ const socksAgent = new SocksProxyAgent({
   port: port, // put in the proxy port
 });
 
-const bot = new Bot("", {
+const bot = new Bot("", { // <-- put your bot token between the ""
   client: {
     baseFetchConfig: {
       agent: socksAgent,

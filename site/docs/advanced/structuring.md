@@ -57,7 +57,7 @@ Now, in `bot.ts`, you can install this module like so:
 ```ts
 import { lists } from "./todo/list";
 
-const bot = new Bot("<token>");
+const bot = new Bot(""); // <-- put your bot token between the ""
 
 bot.use(lists);
 // ... maybe more modules like `todo` here
