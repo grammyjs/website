@@ -1,6 +1,6 @@
 # Вимірювання часу обробки у консоль під час налагодження
 
-Якщо ви знайомі з JavaScript/TypeScript, ви, напевно, використовували [`console.log`](https://developer.mozilla.org/en-US/docs/Web/API/Console/log) або [`console.time`](https://developer.mozilla.org/en-US/docs/Web/API/Console/time), щоб перевірити, що відбувається під час налагодження.
+Якщо ви знайомі з JavaScript/TypeScript, ви, напевно, використовували [`console.log`](https://developer.mozilla.org/en-US/docs/Web/API/Console/log) або [`console.time`](https://developer.mozilla.org/en-US/docs/Web/API/Console/time), щоб під час налагодження перевірити, що відбувається.
 Під час роботи з вашим ботом або middlewares ви, можливо, захочете перевірити щось подібне: Що відбулося і як довго це зайняло?
 
 Цей плагін призначений для налагодження окремих запитів з метою вирішення окремих проблем.
