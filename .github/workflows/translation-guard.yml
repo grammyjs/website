@@ -27,12 +27,10 @@ jobs:
           if has_label "ready for translation"; then
               for language_label in $language_labels; do
                   if ! has_label "$language_label"; then
-                      echo "Error: Missing language label '$language_label'"
                       exit 1
                   fi
               done
           elif ! has_label "time-sensitive" && ! has_label "not translatable"; then
-              echo "Error: Missing required labels 'time-sensitive' or 'not translatable'"
               exit 1
           fi
 
