@@ -1,4 +1,4 @@
-name: Translation Guard
+name: test
 
 on:
   pull_request:
@@ -14,5 +14,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-        - if: "!(contains(github.event.pull_request.labels.*.name, 'ready for translation') && contains(github.event.pull_request.labels.*.name, ':es: ES') && contains(github.event.pull_request.labels.*.name, ':indonesia: ID')) && !contains(github.event.pull_request.labels.*.name, 'not translatable') && !contains(github.event.pull_request.labels.*.name, 'time-sensitive')"
-          run: exit 1
+      - run: |
+          labels='${{ toJSON(github.event.pull_request.labels.*.name) }}'
+          language_labels=(":es: ES" ":indonesia: ID" ":cn: CN")
+
+
+          has_label() {
+              [ `echo $labels | jq -rcM ". | index(\"$1\")"` != "null" ]
+          }
+
+
+          if has_label "ready for translation"; then
+              for language_label in $language_labels; do
+                  if ! has_label "$language_label"; then
+                      exit 1
+                  fi
+              done
+          elif ! has_label "time-sensitive" && ! has_label "not translatable"; then
+              exit 1
+          fi
+
