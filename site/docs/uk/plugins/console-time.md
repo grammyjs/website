@@ -18,7 +18,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 // Ваша реалізація
-bot.command("старт" /* , ... */);
+bot.command("start" /* , ... */);
 ```
 
 які будуть виводи із такого тексту:
