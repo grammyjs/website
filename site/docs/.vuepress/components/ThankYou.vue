@@ -7,21 +7,49 @@ const contributor = reactive<Record<string, string>>({
   href: "",
 });
 
+/**
+ * Returns a pseudo-random number between 0 and len which is seeded by the
+ * current date.
+ */
+async function pseudoRandom255(len: number): Promise<number> {
+  const enc = new TextEncoder();
+  const today = new Date();
+  const key = await window.crypto.subtle.importKey(
+    "raw",
+    enc.encode("grammy.dev"),
+    { name: "HMAC", hash: { name: "SHA-512" } },
+    false,
+    ["sign"]
+  );
+  const signature = await window.crypto.subtle.sign(
+    "HMAC",
+    key,
+    enc.encode(today.toDateString())
+  );
+  const arr = new Uint8Array(signature);
+  const res = arr.reduce((x, y) => x ^ y);
+  return Math.floor((res * len) / 255);
+}
+
 function getDay() {
   return Math.floor(Date.now() / 86400);
 }
 async function load() {
+  const day = getDay();
   let cachedContributor: Record<string, string | number> = {};
 
-  try {
-    cachedContributor = JSON.parse(localStorage.getItem("contributor") ?? "{}");
-  } catch (_err) {
-    //
+  const item = localStorage.getItem("contributor");
+  if (item) {
+    try {
+      cachedContributor = JSON.parse(item);
+    } catch (_err) {
+      // no parse, ignore
+    }
   }
 
   if (
     typeof cachedContributor.day === "number" &&
-    cachedContributor.day == getDay() &&
+    cachedContributor.day == day &&
     typeof cachedContributor.name === "string" &&
     typeof cachedContributor.photo === "string" &&
     typeof cachedContributor.href === "string"
@@ -37,14 +65,15 @@ async function load() {
   );
   if (res.status == 200) {
     const { contributors } = await res.json();
-    const contributor_ = contributors[getDay() % contributors.length];
+    const selectToday = await pseudoRandom255(contributors.length);
+    const contributor_ = contributors[selectToday];
 
     contributor.name = contributor_.name;
     contributor.photo = contributor_.avatar_url;
     contributor.href = `https://github.com/${contributor_.login}`;
     localStorage.setItem(
       "contributor",
-      JSON.stringify({ ...contributor, day: getDay() })
+      JSON.stringify({ ...contributor, day })
     );
   }
 }
