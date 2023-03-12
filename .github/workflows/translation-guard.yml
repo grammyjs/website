@@ -1,4 +1,4 @@
-name: test
+name: Translation Guard
 
 on:
   pull_request:
