@@ -111,7 +111,7 @@ import type { Transformer } from "./deps.deno.ts";
 export function autoChatAction(): Transformer {
   // Створюємо та повертаємо transformer функцію.
   return async (prev, method, payload, signal) => {
-    // Збережемо ідентифікатор функції setInterval для того, щоби потім можна було його зупинити.
+    // Збережемо ідентифікатор встановленого інтервалу, щоби потім можна було очистити його.
     let handle: ReturnType<typeof setTimeout> | undefined;
     if (method === "sendDocument" && "chat_id" in payload) {
       // Тепер ми знаємо, що документ було надіслано.
