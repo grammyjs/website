@@ -103,7 +103,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.33rem;
   cursor: pointer;
   color: var(--c-text);
 }
