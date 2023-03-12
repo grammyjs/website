@@ -138,7 +138,7 @@ bot.start();
 </CodeGroupItem>
 </CodeGroup>
 
-## Опис плагіна
+## Загальні відомості про плагін
 
 - Назва: Autoquote
 - Джерело: <https://github.com/roziscoding/grammy-autoquote>
