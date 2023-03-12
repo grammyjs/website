@@ -20,9 +20,9 @@ import { addReplyParam } from "@roziscoding/grammy-autoquote";
 
 const bot = new Bot("");
 
-bot.command("демо", async (ctx) => {
+bot.command("demo", async (ctx) => {
   ctx.api.config.use(addReplyParam(ctx));
-  await ctx.reply("Демо команда!"); // це повідомлення буде з цитуванням повідомлення від користувача
+  await ctx.reply("Демонстраційна команда!"); // це повідомлення буде відповіддю на повідомлення користувача
 });
 
 bot.start();
