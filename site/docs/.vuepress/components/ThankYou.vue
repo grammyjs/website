@@ -92,7 +92,7 @@ load();
     <img v-bind:src="contributor.photo" />
     <p>
       {{ props.s[0] }}<span>{{ contributor.name }}</span
-      >{{ props.s[1] }}
+      >{{ props.s[2] }}
     </p>
   </a>
 </template>
@@ -103,7 +103,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.33rem;
+  gap: 0.44rem;
   cursor: pointer;
   color: var(--c-text);
 }
