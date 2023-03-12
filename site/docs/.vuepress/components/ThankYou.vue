@@ -3,9 +3,10 @@ import { reactive, defineProps } from "vue";
 
 const props = defineProps<{ s: [string, string, string] }>();
 const contributor = reactive<Record<string, string>>({
+  login: "",
+  href: "",
   name: "",
   photo: "",
-  href: "",
 });
 
 /**
@@ -51,13 +52,15 @@ async function load() {
   if (
     typeof cachedContributor.day === "number" &&
     cachedContributor.day == day &&
+    typeof cachedContributor.login === "string" &&
+    typeof cachedContributor.href === "string" &&
     typeof cachedContributor.name === "string" &&
-    typeof cachedContributor.photo === "string" &&
-    typeof cachedContributor.href === "string"
+    typeof cachedContributor.photo === "string"
   ) {
+    contributor.login = cachedContributor.login;
+    contributor.href = cachedContributor.href;
     contributor.name = cachedContributor.name;
     contributor.photo = cachedContributor.photo;
-    contributor.href = cachedContributor.href;
     return;
   }
 
@@ -69,9 +72,10 @@ async function load() {
     const selectToday = await pseudoRandom255(contributors.length);
     const contributor_ = contributors[selectToday];
 
+    contributor.login = contributor_.login;
+    contributor.href = `https://github.com/${contributor_.login}`;
     contributor.name = contributor_.name;
     contributor.photo = contributor_.avatar_url;
-    contributor.href = `https://github.com/${contributor_.login}`;
     localStorage.setItem(
       "contributor",
       JSON.stringify({ ...contributor, day })
@@ -89,7 +93,7 @@ load();
     target="_blank"
     rel="noreferrer noopener"
   >
-    <img v-bind:src="contributor.photo" />
+    <img v-bind:alt="contributor.login" v-bind:src="contributor.photo" />
     <p>
       {{ props.s[0] }}<span>{{ contributor.name }}</span
       >{{ props.s[2] }}
