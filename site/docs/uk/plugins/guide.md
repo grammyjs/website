@@ -143,7 +143,7 @@ import { Bot, InputFile } from "./deps.deno.ts";
 // Код плагіну знаходиться у файлі з назвою `plugin.ts`
 import { autoChatAction } from "./plugin.ts";
 
-// Створюємо інстанс бота.
+// Створюємо екземпляр бота.
 const bot = new Bot(""); // <-- Помістіть токен свого бота (https://t.me/BotFather)
 
 // Використовуємо плагін.
