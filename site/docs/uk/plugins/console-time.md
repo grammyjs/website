@@ -49,7 +49,7 @@ import {
 
 const bot = new Bot(/* ... */);
 
-// Використовуйте BeforeMiddleware перед завантаженням тестувального middleware.
+// Використовуйте BeforeMiddleware перед встановленням middleware, що тестується.
 bot.use(generateBeforeMiddleware("foo"));
 
 // Middleware, який потрібно протестувати.
