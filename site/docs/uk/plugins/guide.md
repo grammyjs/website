@@ -126,7 +126,7 @@ export function autoChatAction(): Transformer {
     }
 
     try {
-      // Запускаємо актуальний метод з бота.
+      // Запускаємо справжній метод із бота.
       return await prev(method, payload, signal);
     } finally {
       // Зупиняємо інтервал, щоб припинити відправку дії в чат клієнту.
