@@ -119,7 +119,7 @@ export function autoChatAction(): Transformer {
         chat_id: payload.chat_id,
         action: "upload_document",
       };
-      // Постійно встановлюємл дію чату під час завантаження файлу.
+      // Постійно встановлюємо дію чату під час завантаження файлу.
       handle ??= setInterval(() => {
         prev("sendChatAction", actionPayload).catch(console.error);
       }, 5000);
