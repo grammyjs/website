@@ -129,7 +129,7 @@ export function autoChatAction(): Transformer {
       // Запускаємо справжній метод із бота.
       return await prev(method, payload, signal);
     } finally {
-      // Зупиняємо інтервал, щоб припинити відправку дії в чат клієнту.
+      // Очищаємо інтервал, щоб припинити надсилання дії в чат клієнту.
       clearInterval(handle);
     }
   };
