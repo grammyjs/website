@@ -26,7 +26,7 @@ jobs:
 
 
           if has_label "ready for translation"; then
-              for language_label in $language_labels; do
+              for language_label in "${language_labels[@]}"; do
                   if ! has_label "$language_label"; then
                       echo "Missing language label: $language_label"
                       exit 1
