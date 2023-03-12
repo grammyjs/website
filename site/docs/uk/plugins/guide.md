@@ -69,7 +69,7 @@ export function onlyAccept<C extends Context>(str: string): Middleware<C> {
       // Викликаємо нижній middleware
       await next();
     } else {
-      // Скажемо, що ми не працюємо з такими
+      // Скажемо їм, що ми не працюємо з такими
       await ctx.reply(`Я не буду з вами розмовляти! Ви не цікавитеся ${str}!`);
     }
   };
