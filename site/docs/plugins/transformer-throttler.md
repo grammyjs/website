@@ -21,10 +21,6 @@ import { Bot } from "grammy";
 import { run } from "@grammyjs/runner";
 import { apiThrottler } from "@grammyjs/transformer-throttler";
 
-const botToken = process.env.BOT_TOKEN;
-if (!botToken) {
-  throw Error("BOT_TOKEN is required");
-}
 const bot = new Bot(""); // <-- put your bot token between the ""
 
 const throttler = apiThrottler();
@@ -44,10 +40,6 @@ const { Bot } = require("grammy");
 const { run } = require("@grammyjs/runner");
 const { apiThrottler } = require("@grammyjs/transformer-throttler");
 
-const botToken = process.env.BOT_TOKEN;
-if (!botToken) {
-  throw Error("BOT_TOKEN is required");
-}
 const bot = new Bot(""); // <-- put your bot token between the ""
 
 const throttler = apiThrottler();
@@ -67,10 +59,6 @@ import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { run } from "https://deno.land/x/grammy_runner/mod.ts";
 import { apiThrottler } from "https://deno.land/x/grammy_transformer_throttler/mod.ts";
 
-const botToken = Deno.env.get("BOT_TOKEN");
-if (!botToken) {
-  throw Error("BOT_TOKEN is required");
-}
 const bot = new Bot(""); // <-- put your bot token between the ""
 
 const throttler = apiThrottler();
