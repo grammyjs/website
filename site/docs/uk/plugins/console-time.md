@@ -55,7 +55,7 @@ bot.use(generateBeforeMiddleware("foo"));
 // Middleware, який потрібно протестувати.
 bot.use(); /* ... */
 
-// Використовуйте AfterMiddleware після завантаження middleware, який ви тестуєте з тією самою міткою.
+// Використовуйте AfterMiddleware з тією самою міткою, після встановлення middleware, що тестується.
 bot.use(generateAfterMiddleware("foo"));
 
 // Інші middlewares/реалізації, вони займатимуть "внутрішній" час при використанні.
