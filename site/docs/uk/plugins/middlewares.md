@@ -28,7 +28,7 @@ bot.use(
   ignoreOld(),
   onlyAdmin((ctx) => ctx.reply("Тільки адміни можуть це робити!")),
   onlyPublic((ctx) =>
-    ctx.reply("Ви можете використовувати тільки публічні плагіни")
+    ctx.reply("Ви можете використовувати це тільки в публічних групах")
   ),
   onlySuperAdmin(env.SUPER_ADMIN_ID),
   sequentialize(),
