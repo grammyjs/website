@@ -84,7 +84,7 @@ bot.start();
 ---
 
 <ClientOnly>
-  <ThankYou :s="['Thank you ', 'Someone', ' for being a contributor to grammY.']" />
+  <ThankYou :s="['感谢X成为', 'Someone', '的贡献者']" />
 </ClientOnly>
 
 <div style="font-size: 0.75rem;">
