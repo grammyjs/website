@@ -562,7 +562,7 @@ bot.start();
 Kami memiliki daftar storage adapter resmi yang bisa kamu gunakan untuk menyimpan data session di berbagai tempat.
 Beberapa di antaranya mengharuskan kamu untuk mendaftar di sebuah penyedia layanan hosting, ataupun meng-hosting storage-mu sendiri.
 
-Kunjugi repository [berikut](https://github.com/grammyjs/storages/tree/main/packages#grammy-storages) untuk melihat adapter apa saja yang didukung serta mempelajari cara penggunaannya.
+Kunjungi repository [berikut](https://github.com/grammyjs/storages/tree/main/packages#grammy-storages) untuk melihat adapter apa saja yang didukung serta mempelajari cara penggunaannya.
 
 ::: tip Storage pilihanmu belum didukung? Tidak masalah!
 Membuat storage adapter sendiri sangat mudah dilakukan.
