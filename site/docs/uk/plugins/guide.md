@@ -55,7 +55,7 @@ prev: ../plugins/
 ```ts
 // plugin.ts
 
-// Імпортуємо типи з grammY (ми переекспортуємо їх в `deps.deno.ts`).
+// Імпортуємо типи з grammY, ми реекспортуємо їх в `deps.deno.ts`.
 import type { Context, Middleware, NextFunction } from "./deps.deno.ts";
 
 // Ваш плагін може мати одну основну функцію, яка створює пmiddleware.
