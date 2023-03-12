@@ -139,7 +139,7 @@ bot.start();
 ```js
 const { Bot, session } = require("grammy");
 
-const bot = new Bot(""); // <-- put your bot token between the ""
+const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间
 
 // 安装会话中间件，并定义会话初始值。
 function initial(): SessionData {

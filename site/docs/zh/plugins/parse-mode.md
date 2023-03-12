@@ -46,7 +46,7 @@ const { bold, fmt, hydrateReply, italic, link } = require(
   "@grammyjs/parse-mode",
 );
 
-const bot = new Bot(""); // <-- put your bot token between the ""
+const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间
 
 // 安装插件
 bot.use(hydrateReply);
@@ -151,7 +151,7 @@ bot.start();
 const { Bot, Context } = require("grammy");
 const { hydrateReply, parseMode } = require("@grammyjs/parse-mode");
 
-const bot = new Bot(""); // <-- put your bot token between the ""
+const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间
 
 // 安装插件
 bot.use(hydrateReply);

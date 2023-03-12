@@ -92,7 +92,6 @@ Bot token 看起来将类似于 `123456:aBcDeF_gHiJkLmNoP-q`。
 ```ts
 import { Bot } from "grammy";
 
-// 创建一个 `Bot` 类的实例，并将你的 bot token 传给它。
 const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间
 
 // 你现在可以在你的 bot 对象 `bot` 上注册监听器。
