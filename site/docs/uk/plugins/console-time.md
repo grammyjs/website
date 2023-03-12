@@ -21,7 +21,7 @@ if (process.env.NODE_ENV !== "production") {
 bot.command("start" /* , ... */);
 ```
 
-які будуть виводи із такого тексту:
+Цей код виведе щось на зразок цього:
 
 ```plaintext
 2020-03-31T14:32:36.974Z 490af message text Andrey 6 /старт: 926.247ms
