@@ -85,7 +85,7 @@ bot.start();
 
 <ClientOnly>
   <ThankYou />
-</ClientOnly>
+<ClientOnly />
 
 <div style="font-size: 0.75rem;">
 
