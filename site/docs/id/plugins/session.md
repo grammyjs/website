@@ -559,19 +559,10 @@ bot.start();
 
 ### Storage Eksternal
 
-Kami mengelola daftar storage adapter resmi yang bisa kamu gunakan untuk menyimpan data session di berbagai tempat.
-Masing-masing dari mereka mengharuskan kamu untuk mendaftar di sebuah penyedia layanan hosting, ataupun meng-hosting storage-mu sendiri.
+Kami memiliki daftar storage adapter resmi yang bisa kamu gunakan untuk menyimpan data session di berbagai tempat.
+Beberapa di antaranya mengharuskan kamu untuk mendaftar di sebuah penyedia layanan hosting, ataupun meng-hosting storage-mu sendiri.
 
-- Supabase: <https://github.com/grammyjs/storages/tree/main/packages/supabase>
-- Deta.sh Base: <https://github.com/grammyjs/storages/tree/main/packages/deta>
-- Google Firestore (hanya untuk Node.js): <https://github.com/grammyjs/storages/tree/main/packages/firestore>
-- Files: <https://github.com/grammyjs/storages/tree/main/packages/file>
-- MongoDB: <https://github.com/grammyjs/storages/tree/main/packages/mongodb>
-- Redis: <https://github.com/grammyjs/storages/tree/main/packages/redis>
-- PostgreSQL: <https://github.com/grammyjs/storages/tree/main/packages/psql>
-- TypeORM (hanya untuk Node.js): <https://github.com/grammyjs/storages/tree/main/packages/typeorm>
-- DenoDB (hanya untuk Deno): <https://github.com/grammyjs/storages/tree/main/packages/denodb>
-- Prisma (hanya untuk Node.js): <https://github.com/grammyjs/storages/tree/main/packages/prisma>
+Kunjungi repository [berikut](https://github.com/grammyjs/storages/tree/main/packages#grammy-storages) untuk melihat adapter apa saja yang didukung serta mempelajari cara penggunaannya.
 
 ::: tip Storage pilihanmu belum didukung? Tidak masalah!
 Membuat storage adapter sendiri sangat mudah dilakukan.

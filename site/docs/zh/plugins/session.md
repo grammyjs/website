@@ -557,19 +557,10 @@ bot.start();
 
 ### 外部存储解决方案
 
-我们维护了一个官方的存储适配器列表，允许你存储会话数据在不同的地方。
+我们维护了一系列官方存储适配器，允许你将会话数据存储在不同的地方。
 它们中的每一个都需要你在托管提供商处注册，或者托管你自己的存储解决方案。
 
-- Supabase: <https://github.com/grammyjs/storages/tree/main/packages/supabase>
-- Deta.sh Base: <https://github.com/grammyjs/storages/tree/main/packages/deta>
-- Google Firestore (Node.js-only): <https://github.com/grammyjs/storages/tree/main/packages/firestore>
-- Files: <https://github.com/grammyjs/storages/tree/main/packages/file>
-- MongoDB: <https://github.com/grammyjs/storages/tree/main/packages/mongodb>
-- Redis: <https://github.com/grammyjs/storages/tree/main/packages/redis>
-- PostgreSQL: <https://github.com/grammyjs/storages/tree/main/packages/psql>
-- TypeORM (Node.js-only): <https://github.com/grammyjs/storages/tree/main/packages/typeorm>
-- DenoDB (Deno-only): <https://github.com/grammyjs/storages/tree/main/packages/denodb>
-- Prisma (Node.js-only): https://github.com/grammyjs/storages/tree/main/packages/prisma
+访问 [此处](https://github.com/grammyjs/storages/tree/main/packages#grammy-storages) 查看当前支持的适配器列表并获得使用指南。
 
 ::: tip 你的存储解决方案还没被支持？没问题！
 创建一个自定义存储适配器非常简单。
