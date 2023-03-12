@@ -7,18 +7,45 @@ const contributor = reactive<Record<string, string>>({
   href: "",
 });
 
+function getDay() {
+  return Math.floor(Date.now() / 86400);
+}
 async function load() {
+  let cachedContributor: Record<string, string | number> = {};
+
+  try {
+    cachedContributor = JSON.parse(localStorage.getItem("contributor") ?? "{}");
+  } catch (_err) {
+    //
+  }
+
+  if (
+    typeof cachedContributor.day === "number" &&
+    cachedContributor.day == getDay() &&
+    typeof cachedContributor.name === "string" &&
+    typeof cachedContributor.photo === "string" &&
+    typeof cachedContributor.href === "string"
+  ) {
+    contributor.name = cachedContributor.name;
+    contributor.photo = cachedContributor.photo;
+    contributor.href = cachedContributor.href;
+    return;
+  }
+
   const res = await fetch(
     "https://raw.githubusercontent.com/grammyjs/grammY/main/.all-contributorsrc"
   );
   if (res.status == 200) {
     const { contributors } = await res.json();
-    const contributor_ =
-      contributors[Math.floor((Date.now() / 86400) % contributors.length)];
+    const contributor_ = contributors[getDay() % contributors.length];
 
     contributor.name = contributor_.name;
     contributor.photo = contributor_.avatar_url;
     contributor.href = `https://github.com/${contributor_.login}`;
+    localStorage.setItem(
+      "contributor",
+      JSON.stringify({ ...contributor, day: getDay() })
+    );
   }
 }
 
