@@ -35,7 +35,7 @@ bot.use(
 );
 ```
 
-## Middlewares
+## Усі middleware
 
 ### `ignoreOld`
 
