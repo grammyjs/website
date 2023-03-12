@@ -61,7 +61,7 @@ bot.use(
 
 Базовий [sequentialize](../advanced/scaling.md#concurrency-is-hard) middleware, який використовує chat id як послідовний ідентифікатор.
 
-## Опис плагіна
+## Загальні відомості про плагін
 
 - Назва: `grammy-middlewares`
 - Джерело: <https://github.com/backmeupplz/grammy-middlewares>
