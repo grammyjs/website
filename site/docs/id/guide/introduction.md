@@ -80,16 +80,25 @@ Dokumentasi grammY tidak akan mengajarimu bagaimana cara membuat suatu program d
 Jadi, kami mengharapkan kamu untuk belajar sendiri.
 Paling tidak, dengan membuat bot Telegram menggunakan grammY adalah awal yang baik untuk mulai belajar pemrograman! :rocket:
 
-::: tip Belajar Menulis Kode
+::: tip Belajar Ngoding
 Kamu bisa mulai belajar TypeScript melalui [tutorial resmi](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html) yang ditulis oleh tim TypeScript, lalu kembali ke sini jika sudah selesai.
-Jangan habiskan lebih dari 30 menit untuk melakukan hal-hal lain di internet—lihat koleksi foto kucing misalnya :cat:. Langsung kembali ke sini, selesaikan materi ini, kemudian kita bisa [memulai](./getting-started.md).
+Jangan habiskan lebih dari 30 menit untuk melakukan hal-hal lain di internet—lihat koleksi foto kucing misalnya :cat:.
+Langsung kembali ke sini, selesaikan materi ini, kemudian kita bisa [memulai](./getting-started.md).
 
-Jika menemukan syntax yang tidak kamu ketahui, atau mendapatkan pesan error yang tidak dimengerti, langsung saja cari di internet. Penjelasan serta solusinya sudah pasti tersedia di sana, misal di Stack Overflow.
+Jika menemukan syntax yang tidak kamu ketahui, atau mendapatkan pesan error yang tidak dimengerti, langsung saja cari di internet.
+Penjelasan serta solusinya kemungkinan besar sudah tersedia---misal di Stack Overflow.
 :::
 
-::: danger Tidak Usah Belajar Menulis Kode
+::: danger Malas Belajar Ngoding
 Luangkan waktumu sebentar untuk menonton [video 34 detik ini](https://youtu.be/8RtGlWmXGhA).
-:::
+
+> Catatan penerjemah:
+>
+> Mungkin video di atas akan sulit dimengerti untuk kamu yang belum terbiasa dengan bahasa Inggris.
+> Inti dari video tersebut adalah satu-satunya cara untuk belajar pemrograman---dengan cepat---adalah jangan terlalu banyak menonton video tutorial ataupun pelatihan-pelatihan semacamnya.
+> Teori memang penting, tetapi yang perlu kamu prioritaskan adalah memperbanyak latihan, alias praktik langsung ngoding.
+> Untuk versi bahasa Indonesia, mungkin yang mirip dengan video di atas adalah [video 3 menit ini](https://youtu.be/a6yeLjujJXo)---lebih tepatnya 18 detik pertama.
+> :::
 
 Dengan memilih grammY, kamu telah menggunakan sebuah bahasa pemrograman, yaitu TypeScript.
 Tapi, apa yang selanjutnya dilakukan setelah membuat kode TypeScript, bagaimana cara menjalankan kode tersebut?
