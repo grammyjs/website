@@ -41,7 +41,7 @@ import { EmojiFlavor, emojiParser } from "@grammyjs/emoji";
 // https://grammy.dev/id/guide/context.html#transformative-context-flavor
 type MyContext = EmojiFlavor<Context>;
 
-const bot = new Bot<MyContext>(""); // <-- taruh token bot-mu diantara "" 
+const bot = new Bot<MyContext>(""); // <-- taruh token bot-mu diantara ""
 
 bot.use(emojiParser());
 ```
