@@ -86,7 +86,7 @@ Berhasil! :tada:
 ---
 
 <ClientOnly>
-  <ThankYou :s="['Terima kasih kepada', 'Someone', 'karena telah menjadi kontributor grammY.']" />
+  <ThankYou :s="['Terima kasih ', 'Someone', ' telah menjadi kontributor grammY.']" />
 </ClientOnly>
 
 <div style="font-size: 0.75rem;">
