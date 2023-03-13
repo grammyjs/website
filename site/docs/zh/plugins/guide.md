@@ -79,7 +79,7 @@ export function onlyAccept<C extends Context>(str: string): Middleware<C> {
 ```ts
 import { onlyAccept } from "./testing.ts";
 import { Bot } from "./deps.deno.ts";
-const bot = new Bot(""); // <-- 把你的 bot token 放这里。
+const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间
 bot.use(onlyAccept("grammY"));
 bot.on("message", (ctx) => ctx.reply("You passed the middleware plugin"));
 bot.start();
@@ -134,7 +134,7 @@ import { Bot, InputFile } from "./deps.deno.ts";
 // 该插件的代码在一个名为 `plugin.ts` 的文件中。
 import { autoChatAction } from "./plugin.ts";
 // 创建一个 bot 实例。
-const bot = new Bot(""); // <-- 把你的 bot token 放这里。
+const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间
 // 使用插件。
 bot.api.config.use(autoChatAction());
 bot.hears("send me a document", async (ctx) => {
