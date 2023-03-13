@@ -85,7 +85,7 @@ Kemudian, kode di atas bisa kita terapkan ke bot:
 import { onlyAccept } from "./plugin.ts";
 import { Bot } from "./deps.deno.ts";
 
-const bot = new Bot(""); // <-- Isi token bot-mu di sini
+const bot = new Bot(""); // <-- taruh token bot-mu diantara ""
 
 bot.use(onlyAccept("grammY"));
 
@@ -150,7 +150,7 @@ import { Bot, InputFile } from "./deps.deno.ts";
 import { autoChatAction } from "./plugin.ts";
 
 // Buat sebuah instance bot.
-const bot = new Bot(""); // <-- Isi token bot-mu di sini
+const bot = new Bot(""); // <-- taruh token bot-mu diantara ""
 
 // Gunakan plugin-nya
 bot.api.config.use(autoChatAction());

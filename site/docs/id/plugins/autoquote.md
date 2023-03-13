@@ -23,7 +23,7 @@ Jika ingin me-reply pesan tertentu saja (misalnya hanya me-reply pesan command `
 import { Bot } from "grammy";
 import { addReplyParam } from "@roziscoding/grammy-autoquote";
 
-const bot = new Bot(""); // <-- put your bot token between the ""
+const bot = new Bot(""); // <-- taruh token bot-mu diantara ""
 
 bot.command("demo", async (ctx) => {
   ctx.api.config.use(addReplyParam(ctx));
@@ -40,7 +40,7 @@ bot.start();
 const { Bot } = require("grammy");
 const { addReplyParam } = require("@roziscoding/grammy-autoquote");
 
-const bot = new Bot(""); // <-- put your bot token between the ""
+const bot = new Bot(""); // <-- taruh token bot-mu diantara ""
 
 bot.command("demo", async (ctx) => {
   ctx.api.config.use(addReplyParam(ctx));
@@ -57,7 +57,7 @@ bot.start();
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { addReplyParam } from "https://deno.land/x/grammy_autoquote/mod.ts";
 
-const bot = new Bot(""); // <-- put your bot token between the ""
+const bot = new Bot(""); // <-- taruh token bot-mu diantara ""
 
 bot.command("demo", async (ctx) => {
   ctx.api.config.use(addReplyParam(ctx));
@@ -81,7 +81,7 @@ Jika ingin me-reply semua pesan yang masuk, kamu bisa melakukannya dengan cara s
 import { Bot } from "grammy";
 import { autoQuote } from "@roziscoding/grammy-autoquote";
 
-const bot = new Bot(""); // <-- put your bot token between the ""
+const bot = new Bot(""); // <-- taruh token bot-mu diantara ""
 
 bot.use(autoQuote);
 
@@ -103,7 +103,7 @@ bot.start();
 const { Bot } = require("grammy");
 const { autoQuote } = require("@roziscoding/grammy-autoquote");
 
-const bot = new Bot(""); // <-- put your bot token between the ""
+const bot = new Bot(""); // <-- taruh token bot-mu diantara ""
 
 bot.use(autoQuote);
 
@@ -125,7 +125,7 @@ bot.start();
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { autoQuote } from "https://deno.land/x/grammy_autoquote/mod.ts";
 
-const bot = new Bot(""); // <-- put your bot token between the ""
+const bot = new Bot(""); // <-- taruh token bot-mu diantara ""
 
 bot.use(autoQuote);
 
