@@ -73,8 +73,11 @@ Create a file named `app.ts` or `app.js`, or actually any name you like (but you
 ```ts{4}
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
-// Here, we take the bot token from the environment variable "BOT_TOKEN".
-const bot = new Bot(Deno.env.get("BOT_TOKEN") ?? ""); 
+// Here, we take the bot token from the environment variable BOT_TOKEN.
+const token = Deno.env.get("BOT_TOKEN");
+if (!token) throw new Error("BOT_TOKEN is unset");
+
+const bot = new Bot(token); 
 
 bot.command(
   "start",
