@@ -89,7 +89,7 @@ Berhasil! :tada:
   <ThankYou :s="['Terima kasih ', 'Someone', ' telah menjadi kontributor grammY.']" />
 </ClientOnly>
 
-<div style="font-size: 0.75rem;">
+<div style="font-size: 0.75rem; display: flex; justify-content: center;">
 
 © 2021-2023 &middot; grammY mendukung API Bot Telegram versi 6.6 yang [dirilis](https://core.telegram.org/bots/api#march-9-2023) pada tanggal 9 Maret 2023.
 (Fitur yang disorot: Terjemahan untuk Deskripsi Bot)
