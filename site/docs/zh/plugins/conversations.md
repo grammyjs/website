@@ -267,7 +267,7 @@ const {
   createConversation,
 } = require("@grammyjs/conversations");
 
-const bot = new Bot("");
+const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间
 
 bot.use(session({ initial: () => ({}) }));
 bot.use(conversations());

@@ -167,8 +167,8 @@ Next step, head over to `bot.ts`:
 ```ts
 import { Bot } from "grammy";
 
-if (process.env.BOT_TOKEN == null) throw Error("BOT_TOKEN is missing.");
-export const bot = new Bot(`${process.env.BOT_TOKEN}`);
+// Here, we take the bot token from the environment variable "BOT_TOKEN".
+export const bot = new Bot(process.env.BOT_TOKEN ?? "");
 
 bot.command("start", (ctx) => ctx.reply("Hello there!"));
 bot.on("message", (ctx) => ctx.reply("Got another message!"));
@@ -187,7 +187,7 @@ We can set the [bot information](https://deno.land/x/grammy/mod.ts?s=BotConfig#p
 2. Change our code at line 4 above and fill the value according to the results from `getMe`:
 
 ```ts
-export const bot = new Bot(`${process.env.BOT_TOKEN}`, {
+export const bot = new Bot(`${process.env.BOT_TOKEN}`, { // <-- store your bot token in the 'BOT_TOKEN' environment variable
   botInfo: {
     id: 111111111,
     is_bot: true,
@@ -230,7 +230,7 @@ Have it contain these lines of code:
 import { Bot } from "grammy";
 
 if (process.env.BOT_TOKEN == null) throw new Error("BOT_TOKEN is missing.");
-const bot = new Bot(process.env.BOT_TOKEN);
+const bot = new Bot(process.env.BOT_TOKEN); // <-- store your bot token in the 'BOT_TOKEN' environment variable
 
 bot.command(
   "start",

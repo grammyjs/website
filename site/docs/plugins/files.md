@@ -19,7 +19,7 @@ import { FileFlavor, hydrateFiles } from "@grammyjs/files";
 type MyContext = FileFlavor<Context>;
 
 // Create a bot.
-const bot = new Bot<MyContext>("BOT_TOKEN");
+const bot = new Bot<MyContext>(""); // <-- put your bot token between the ""
 
 // Use the plugin.
 bot.api.config.use(hydrateFiles(bot.token));
@@ -43,7 +43,7 @@ import { Bot } from "grammy";
 import { hydrateFiles } from "@grammyjs/files";
 
 // Create a bot.
-const bot = new Bot("BOT_TOKEN");
+const bot = new Bot(""); // <-- put your bot token between the ""
 
 // Use the plugin.
 bot.api.config.use(hydrateFiles(bot.token));
@@ -73,7 +73,7 @@ import {
 type MyContext = FileFlavor<Context>;
 
 // Create a bot.
-const bot = new Bot<MyContext>("BOT_TOKEN");
+const bot = new Bot<MyContext>(""); // <-- put your bot token between the ""
 
 // Use the plugin.
 bot.api.config.use(hydrateFiles(bot.token));
@@ -121,7 +121,7 @@ import { FileApiFlavor, FileFlavor, hydrateFiles } from "@grammyjs/files";
 type MyContext = FileFlavor<Context>;
 type MyApi = FileApiFlavor<Api>;
 
-const bot = new Bot<MyContext, MyApi>("");
+const bot = new Bot<MyContext, MyApi>(""); // <-- put your bot token between the ""
 // ...
 ```
 
@@ -139,7 +139,7 @@ import {
 type MyContext = FileFlavor<Context>;
 type MyApi = FileApiFlavor<Api>;
 
-const bot = new Bot<MyContext, MyApi>("");
+const bot = new Bot<MyContext, MyApi>(""); // <-- put your bot token between the ""
 // ...
 ```
 

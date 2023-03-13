@@ -36,7 +36,7 @@ import { EmojiFlavor, emojiParser } from "@grammyjs/emoji";
 // https://grammy.dev/zh/guide/context.html#转换式上下文调味剂
 type MyContext = EmojiFlavor<Context>;
 
-const bot = new Bot<MyContext>(""); // <-- 在 "" 之间填上你的 bot token。
+const bot = new Bot<MyContext>(""); // <-- 把你的 bot token 放在 "" 之间
 
 bot.use(emojiParser());
 ```
@@ -48,7 +48,7 @@ bot.use(emojiParser());
 const { Bot } = require("grammy");
 const { emojiParser } = require("@grammyjs/emoji");
 
-const bot = new Bot(""); // <-- 在 "" 之间填上你的 bot token。
+const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间
 
 bot.use(emojiParser());
 ```
@@ -68,7 +68,7 @@ import {
 // https://grammy.dev/zh/guide/context.html#转换式上下文调味剂
 type MyContext = EmojiFlavor<Context>;
 
-const bot = new Bot<MyContext>(""); // <-- 在 "" 之间填上你的 bot token。
+const bot = new Bot<MyContext>(""); // <-- 把你的 bot token 放在 "" 之间
 
 bot.use(emojiParser());
 ```

@@ -109,7 +109,7 @@ grammY 不会以任何方式触及抛出的错误，而是把它包装成一个 
 因此，看起来就好像包含错误的中间件运行了 `next`。
 
 ```ts
-const bot = new Bot("");
+const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间
 
 bot.use(/* A */);
 bot.use(/* B */);

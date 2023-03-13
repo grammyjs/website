@@ -200,7 +200,7 @@ function getDays(month: number, day: number) {
 const { Bot, Context, Keyboard, session, SessionFlavor } = require("grammy");
 const { Router } = require("@grammyjs/router");
 
-const bot = new Bot("");
+const bot = new Bot(""); // <-- pon tu token entre los ""
 
 // Usar sesiones.
 bot.use(session({ initial: () => ({ step: "idle" }) }));

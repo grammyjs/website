@@ -16,7 +16,7 @@ import { Bot } from "https://deno.land/x/grammy/mod.ts";
 const client = Deno.createHttpClient({
   proxy: { url: "http://host:port/" },
 });
-const bot = new Bot(TOKEN, {
+const bot = new Bot("", { // <-- 把你的 bot token 放在 "" 之间
   client: {
     baseFetchConfig: {
       // @ts-ignore
