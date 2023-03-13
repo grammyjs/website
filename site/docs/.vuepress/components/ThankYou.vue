@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { reactive, defineProps } from "vue";
+import { reactive } from "vue";
 
 const props = defineProps<{ s: [string, string, string] }>();
 const contributor = reactive<Record<string, string>>({
@@ -9,33 +9,10 @@ const contributor = reactive<Record<string, string>>({
   photo: "",
 });
 
-/**
- * Returns a pseudo-random number between 0 and len which is seeded by the
- * current date.
- */
-async function pseudoRandom255(len: number): Promise<number> {
-  const enc = new TextEncoder();
-  const today = new Date();
-  const key = await window.crypto.subtle.importKey(
-    "raw",
-    enc.encode("grammy.dev"),
-    { name: "HMAC", hash: { name: "SHA-512" } },
-    false,
-    ["sign"]
-  );
-  const signature = await window.crypto.subtle.sign(
-    "HMAC",
-    key,
-    enc.encode(today.toDateString())
-  );
-  const arr = new Uint8Array(signature);
-  const res = arr.reduce((x, y) => x ^ y);
-  return Math.floor((res * len) / 255);
-}
-
 function getDay() {
   return Math.floor(Date.now() / 86400);
 }
+
 async function load() {
   const day = getDay();
   let cachedContributor: Record<string, string | number> = {};
@@ -67,9 +44,10 @@ async function load() {
   const res = await fetch(
     "https://raw.githubusercontent.com/grammyjs/grammY/main/.all-contributorsrc"
   );
+
   if (res.status == 200) {
     const { contributors } = await res.json();
-    const selectToday = await pseudoRandom255(contributors.length);
+    const selectToday = day % contributors.length;
     const contributor_ = contributors[selectToday];
 
     contributor.login = contributor_.login;
