@@ -20,7 +20,7 @@ Ten en cuenta que las opciones por defecto están alineadas con los límites de 
 import { Bot } from "grammy";
 import { apiThrottler } from "@grammyjs/transformer-throttler";
 
-const bot = new Bot(""); // <-- put your bot token between the ""
+const bot = new Bot(""); // <-- pon tu token entre los ""
 
 const throttler = apiThrottler();
 bot.api.config.use(throttler);
@@ -36,7 +36,7 @@ bot.start();
 const { Bot } = require("grammy");
 const { apiThrottler } = require("@grammyjs/transformer-throttler");
 
-const bot = new Bot(""); // <-- put your bot token between the ""
+const bot = new Bot(""); // <-- pon tu token entre los ""
 
 const throttler = apiThrottler();
 bot.api.config.use(throttler);
@@ -52,7 +52,7 @@ bot.start();
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { apiThrottler } from "https://deno.land/x/grammy_transformer_throttler/mod.ts";
 
-const bot = new Bot(""); // <-- put your bot token between the ""
+const bot = new Bot(""); // <-- pon tu token entre los ""
 
 const throttler = apiThrottler();
 bot.api.config.use(throttler);

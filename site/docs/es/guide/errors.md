@@ -107,7 +107,7 @@ En ese caso, el middleware vallado no sólo actúa como si se hubiera completado
 Así, parece que el middleware dentro del límite de error ha llamado a `next`.
 
 ```ts
-const bot = new Bot(""); // <-- put your bot token between the ""
+const bot = new Bot(""); // <-- pon tu token entre los ""
 
 bot.use(/* A */);
 bot.use(/* B */);

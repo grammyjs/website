@@ -140,7 +140,7 @@ bot.start();
 ```js
 const { Bot, session } = require("grammy");
 
-const bot = new Bot(""); // <-- put your bot token between the ""
+const bot = new Bot(""); // <-- pon tu token entre los ""
 
 // Instalar el middleware de sesión, y definir el valor inicial de la sesión.
 function initial() {
@@ -475,7 +475,7 @@ interface SessionData {
 type MyContext = Context & SessionFlavor<SessionData>;
 
 // Crear el bot y registrar el middleware de sesión.
-const bot = new Bot<MyContext>(""); // <-- pon tu token de bot entre los ""
+const bot = new Bot<MyContext>(""); // <-- pon tu token entre los ""
 
 bot.use(session({
   initial: () => ({ count: 0 }),
@@ -500,7 +500,7 @@ const { Bot, session } = require("grammy");
 const { freeStorage } = require("@grammyjs/storage-free");
 
 // Crear el bot y registrar el middleware de sesión.
-const bot = new Bot(""); // <-- pon tu token de bot entre los ""
+const bot = new Bot(""); // <-- pon tu token entre los ""
 
 bot.use(session({
   initial: () => ({ count: 0 }),
@@ -536,7 +536,7 @@ interface SessionData {
 type MyContext = Context & SessionFlavor<SessionData>;
 
 // Crear el bot y registrar el middleware de sesión.
-const bot = new Bot<MyContext>(""); // <-- pon tu token de bot entre los ""
+const bot = new Bot<MyContext>(""); // <-- pon tu token entre los ""
 
 bot.use(session({
   initial: () => ({ count: 0 }),

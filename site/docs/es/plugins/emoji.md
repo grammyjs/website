@@ -39,7 +39,7 @@ import { EmojiFlavor, emojiParser } from "@grammyjs/emoji";
 // https://grammy.dev/es/guide/context.html#transformative-context-flavors
 type MyContext = EmojiFlavor<Context>;
 
-const bot = new Bot<MyContext>(""); // <-- pon tu token de bot entre los ""
+const bot = new Bot<MyContext>(""); // <-- pon tu token entre los ""
 
 bot.use(emojiParser());
 ```
@@ -51,7 +51,7 @@ bot.use(emojiParser());
 const { Bot } = require("grammy");
 const { emojiParser } = require("@grammyjs/emoji");
 
-const bot = new Bot(""); // <-- pon tu token de bot entre los ""
+const bot = new Bot(""); // <-- pon tu token entre los ""
 
 bot.use(emojiParser());
 ```
@@ -71,7 +71,7 @@ importar {
 // https://grammy.dev/es/guide/context.html#transformative-context-flavors
 tipo MyContext = EmojiFlavor<Context>;
 
-const bot = new Bot<MyContext>(""); // <-- pon tu token de bot entre los ""
+const bot = new Bot<MyContext>(""); // <-- pon tu token entre los ""
 
 bot.use(emojiParser());
 ```
