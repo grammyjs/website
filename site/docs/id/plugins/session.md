@@ -141,7 +141,7 @@ bot.start();
 ```js
 const { Bot, session } = require("grammy");
 
-const bot = new Bot(""); // <-- put your bot token between the ""
+const bot = new Bot(""); // <-- taruh token bot-mu diantara ""
 
 // Pasang middleware session, kemudian tentukan nilai awal session.
 function initial() {
