@@ -167,7 +167,6 @@ Next step, head over to `bot.ts`:
 ```ts
 import { Bot } from "grammy";
 
-// Here, we take the bot token from the environment variable BOT_TOKEN.
 const token = process.env.BOT_TOKEN;
 if (!token) throw new Error("BOT_TOKEN is unset");
 
