@@ -167,8 +167,10 @@ Langkah berikutnya, buat `bot.ts` lalu tulis kode berikut:
 ```ts
 import { Bot } from "grammy";
 
-if (process.env.BOT_TOKEN == null) throw Error("Token bot tidak ditemukan!");
-export const bot = new Bot(process.env.BOT_TOKEN);
+const token = process.env.BOT_TOKEN;
+if (!token) throw Error("Token bot tidak ditemukan!");
+
+export const bot = new Bot(token);
 
 bot.command("start", (ctx) => ctx.reply("Haloooo!"));
 bot.on("message", (ctx) => ctx.reply("Dapat pesan baru!"));
@@ -230,10 +232,10 @@ Pastikan ia memiliki baris-baris kode berikut:
 ```ts
 import { Bot } from "grammy";
 
-if (process.env.BOT_TOKEN == null) {
-  throw new Error("Token bot tidak ditemukan!");
-}
-const bot = new Bot(process.env.BOT_TOKEN);
+const token = process.env.BOT_TOKEN;
+if (!token) throw new Error("Token bot tidak ditemukan!");
+
+const bot = new Bot(token);
 
 bot.command(
   "start",
