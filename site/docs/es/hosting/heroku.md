@@ -167,8 +167,10 @@ Siguiente paso, dirígete a `bot.ts`:
 ```ts
 import { Bot } from "grammy";
 
-if (process.env.BOT_TOKEN == null) throw Error("Falta BOT_TOKEN.");
-export const bot = new Bot(`${process.env.BOT_TOKEN}`);
+const token = process.env.BOT_TOKEN;
+if (!token) throw Error("Falta BOT_TOKEN.");
+
+export const bot = new Bot(token);
 
 bot.command("start", (ctx) => ctx.reply("¡Hola!"));
 bot.on("message", (ctx) => ctx.reply("¡Tengo otro mensaje!"));
@@ -228,8 +230,10 @@ Que contenga estas líneas de código:
 ```ts
 import { Bot } from "grammy";
 
-if (process.env.BOT_TOKEN == null) throw new Error("Falta BOT_TOKEN.");
-const bot = new Bot(process.env.BOT_TOKEN);
+const token = process.env.BOT_TOKEN;
+if (!token) throw new Error("Falta BOT_TOKEN");
+
+const bot = new Bot(token);
 
 bot.command(
   "start",

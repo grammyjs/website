@@ -74,7 +74,10 @@ Crea un archivo llamado `app.ts` o `app.js`, o en realidad cualquier nombre que 
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
 // Aquí, tomamos el token del bot de la variable de entorno "BOT_TOKEN".
-const bot = new Bot(Deno.env.get("BOT_TOKEN") ?? ""); 
+const token = Deno.env.get("BOT_TOKEN");
+if (!token) throw new Error("Falta BOT_TOKEN");
+
+const bot = new Bot(token); 
 
 bot.command(
   "start",

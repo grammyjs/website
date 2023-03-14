@@ -40,7 +40,7 @@ bot 是用 [TypeScript](https://www.typescriptlang.org)（或JavaScript）编写
 ```ts
 import { Bot } from "grammy";
 
-const bot = new Bot(""); // <-- 把你的 bot token 放在这里 (https://t.me/BotFather)
+const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间 (https://t.me/BotFather)
 
 // 用"你好！"来回复任意信息
 bot.on("message", (ctx) => ctx.reply("你好！"));
@@ -54,7 +54,7 @@ bot.start();
 ```js
 const { Bot } = require("grammy");
 
-const bot = new Bot(""); // <-- 把你的 bot token 放在这里 (https://t.me/BotFather)
+const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间 (https://t.me/BotFather)
 
 // 用"你好！"来回复任意信息
 bot.on("message", (ctx) => ctx.reply("你好！"));
@@ -68,7 +68,7 @@ bot.start();
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
-const bot = new Bot(""); // <-- 把你的 bot token 放在这里 (https://t.me/BotFather)
+const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间 (https://t.me/BotFather)
 
 // 用"你好！"来回复任意信息
 bot.on("message", (ctx) => ctx.reply("你好！"));
