@@ -83,7 +83,7 @@ Ahora, se puede utilizar en un bot real:
 import { onlyAccept } from "./plugin.ts";
 import { Bot } from "./deps.deno.ts";
 
-const bot = new Bot(""); // <-- pon tu token entre los ""
+const bot = new Bot("");
 
 bot.use(onlyAccept("grammY"));
 
@@ -144,7 +144,7 @@ import { Bot, InputFile } from "./deps.deno.ts";
 import { autoChatAction } from "./plugin.ts";
 
 // Crear una instancia del bot.
-const bot = new Bot(""); // <-- pon tu token entre los ""
+const bot = new Bot("");
 
 // Utiliza el plugin.
 bot.api.config.use(autoChatAction());

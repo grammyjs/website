@@ -18,7 +18,7 @@ Sólo tienes que asegurarte de que el `uniqueIdentifier` es único dentro de tu 
 ```ts
 import { StatelessQuestion } from "@grammyjs/stateless-question";
 
-const bot = new Bot(""); // <-- pon tu token entre los ""
+const bot = new Bot("");
 
 const unicornQuestion = new StatelessQuestion("unicornio", (ctx) => {
   console.log(

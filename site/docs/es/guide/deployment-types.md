@@ -277,7 +277,7 @@ Si quieres usar las respuestas de los webhooks, puedes especificar la opción `c
 Pasar una función que determine si se utiliza o no la respuesta del webhook para la solicitud dada, identificada por el método.
 
 ```ts
-const bot = new Bot("", { // <-- pon tu token entre los ""
+const bot = new Bot("", {
   client: {
     // Aceptamos el inconveniente de las respuestas del webhook para escribir el estado.
     canUseWebhookReply: (method) => method === "sendChatAction",
