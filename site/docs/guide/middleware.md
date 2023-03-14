@@ -16,7 +16,7 @@ While it is not wrong to say that they are listening for updates, calling them "
 Suppose you write a bot like this:
 
 ```ts{8}
-const bot = new Bot(""); // <-- put your bot token between the ""
+const bot = new Bot(""); 
 
 bot.use(session());
 
@@ -91,7 +91,7 @@ It simply ignored `next`, hence not passing on the update.
 Let's try out something else with our new knowledge!
 
 ```ts
-const bot = new Bot(""); // <-- put your bot token between the ""
+const bot = new Bot(""); 
 
 bot.on(":text", (ctx) => ctx.reply("Text!"));
 bot.command("start", (ctx) => ctx.reply("Command!"));
@@ -253,7 +253,7 @@ Middleware objects are simply a wrapper for middleware functions.
 They are mostly used internally, but can sometimes also help third-party libraries, or be used in advanced use cases, such as with [Composer](https://deno.land/x/grammy/mod.ts?s=Composer):
 
 ```ts
-const bot = new Bot(""); // <-- put your bot token between the ""
+const bot = new Bot(""); 
 
 bot.use(/*...*/);
 bot.use(/*...*/);

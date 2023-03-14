@@ -116,7 +116,7 @@ interface SessionData {
 // Flavor the context type to include sessions.
 type MyContext = Context & SessionFlavor<SessionData>;
 
-const bot = new Bot<MyContext>(""); // <-- put your bot token between the ""
+const bot = new Bot<MyContext>(""); 
 
 // Install session middleware, and define the initial session value.
 function initial(): SessionData {
@@ -140,7 +140,7 @@ bot.start();
 ```js
 const { Bot, session } = require("grammy");
 
-const bot = new Bot(""); // <-- put your bot token between the ""
+const bot = new Bot(""); 
 
 // Install session middleware, and define the initial session value.
 function initial() {
@@ -177,7 +177,7 @@ interface SessionData {
 // Flavor the context type to include sessions.
 type MyContext = Context & SessionFlavor<SessionData>;
 
-const bot = new Bot<MyContext>(""); // <-- put your bot token between the ""
+const bot = new Bot<MyContext>(""); 
 
 // Install session middleware, and define the initial session value.
 function initial(): SessionData {
@@ -475,7 +475,7 @@ interface SessionData {
 type MyContext = Context & SessionFlavor<SessionData>;
 
 // Create the bot and register the session middleware.
-const bot = new Bot<MyContext>(""); // <-- put your bot token between the ""
+const bot = new Bot<MyContext>(""); 
 
 bot.use(session({
   initial: () => ({ count: 0 }),
@@ -500,7 +500,7 @@ const { Bot, session } = require("grammy");
 const { freeStorage } = require("@grammyjs/storage-free");
 
 // Create the bot and register the session middleware.
-const bot = new Bot(""); // <-- put your bot token between the ""
+const bot = new Bot(""); 
 
 bot.use(session({
   initial: () => ({ count: 0 }),
@@ -536,7 +536,7 @@ interface SessionData {
 type MyContext = Context & SessionFlavor<SessionData>;
 
 // Create the bot and register the session middleware.
-const bot = new Bot<MyContext>(""); // <-- put your bot token between the ""
+const bot = new Bot<MyContext>(""); 
 
 bot.use(session({
   initial: () => ({ count: 0 }),

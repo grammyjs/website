@@ -238,7 +238,7 @@ import {
 type MyContext = Context & ConversationFlavor;
 type MyConversation = Conversation<MyContext>;
 
-const bot = new Bot<MyContext>(""); // <-- put your bot token between the ""
+const bot = new Bot<MyContext>(""); 
 
 bot.use(session({ initial: () => ({}) }));
 bot.use(conversations());
@@ -268,7 +268,7 @@ const {
   createConversation,
 } = require("@grammyjs/conversations");
 
-const bot = new Bot(""); // <-- put your bot token between the ""
+const bot = new Bot(""); 
 
 bot.use(session({ initial: () => ({}) }));
 bot.use(conversations());
@@ -303,7 +303,7 @@ import {
 type MyContext = Context & ConversationFlavor;
 type MyConversation = Conversation<MyContext>;
 
-const bot = new Bot<MyContext>(""); // <-- put your bot token between the ""
+const bot = new Bot<MyContext>(""); 
 
 bot.use(session({ initial: () => ({}) }));
 bot.use(conversations());

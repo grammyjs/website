@@ -280,7 +280,7 @@ The new type `MyContext` now accurately describes the context objects our bot is
 We can use the new type by passing it to the `Bot` constructor.
 
 ```ts
-const bot = new Bot<MyContext>(""); // <-- put your bot token between the ""
+const bot = new Bot<MyContext>(""); 
 ```
 
 In summary, the setup will look like this:
@@ -300,7 +300,7 @@ type MyContext = Context & {
   config: BotConfig;
 };
 
-const bot = new Bot<MyContext>(""); // <-- put your bot token between the ""
+const bot = new Bot<MyContext>(""); 
 
 // Set custom properties on context objects.
 bot.use(async (ctx, next) => {
@@ -324,7 +324,7 @@ bot.command("start", async (ctx) => {
 ```js
 const BOT_DEVELOPER = 123456; // bot developer chat identifier
 
-const bot = new Bot(""); // <-- put your bot token between the ""
+const bot = new Bot(""); 
 
 // Set custom properties on context objects.
 bot.use(async (ctx, next) => {
@@ -391,7 +391,7 @@ class MyContext extends Context {
 }
 
 // Pass the constructor of the custom context class as an option.
-const bot = new Bot("", { // <-- put your bot token between the ""
+const bot = new Bot("", { 
   ContextConstructor: MyContext,
 });
 
@@ -421,7 +421,7 @@ class MyContext extends Context {
 }
 
 // Pass the constructor of the custom context class as an option.
-const bot = new Bot("", { // <-- put your bot token between the ""
+const bot = new Bot("", { 
   ContextConstructor: MyContext,
 });
 
@@ -452,7 +452,7 @@ class MyContext extends Context {
 }
 
 // Pass the constructor of the custom context class as an option.
-const bot = new Bot("", { // <-- put your bot token between the ""
+const bot = new Bot("", { 
   ContextConstructor: MyContext,
 });
 
