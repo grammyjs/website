@@ -25,7 +25,7 @@ const bot = new Bot(""); // <-- pon tu token entre los ""
 const throttler = apiThrottler();
 bot.api.config.use(throttler);
 
-bot.command("/example", (ctx) => ctx.reply("I am throttled"));
+bot.command("example", (ctx) => ctx.reply("I am throttled"));
 bot.start();
 ```
 
@@ -41,7 +41,7 @@ const bot = new Bot(""); // <-- pon tu token entre los ""
 const throttler = apiThrottler();
 bot.api.config.use(throttler);
 
-bot.command("/example", (ctx) => ctx.reply("I am throttled"));
+bot.command("example", (ctx) => ctx.reply("I am throttled"));
 bot.start();
 ```
 
@@ -57,7 +57,7 @@ const bot = new Bot(""); // <-- pon tu token entre los ""
 const throttler = apiThrottler();
 bot.api.config.use(throttler);
 
-bot.command("/example", (ctx) => ctx.reply("I am throttled"));
+bot.command("example", (ctx) => ctx.reply("I am throttled"));
 bot.start();
 ```
 
