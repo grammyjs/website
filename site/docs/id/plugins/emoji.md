@@ -41,7 +41,7 @@ import { EmojiFlavor, emojiParser } from "@grammyjs/emoji";
 // https://grammy.dev/id/guide/context.html#transformative-context-flavor
 type MyContext = EmojiFlavor<Context>;
 
-const bot = new Bot<MyContext>(""); // <-- taruh token bot-mu diantara ""
+const bot = new Bot<MyContext>("");
 
 bot.use(emojiParser());
 ```
@@ -53,7 +53,7 @@ bot.use(emojiParser());
 const { Bot } = require("grammy");
 const { emojiParser } = require("@grammyjs/emoji");
 
-const bot = new Bot(""); // <-- taruh token bot-mu diantara ""
+const bot = new Bot("");
 
 bot.use(emojiParser());
 ```
@@ -73,7 +73,7 @@ import {
 // https://grammy.dev/id/guide/context.html#transformative-context-flavor
 type MyContext = EmojiFlavor<Context>;
 
-const bot = new Bot<MyContext>(""); // <-- taruh token bot-mu diantara ""
+const bot = new Bot<MyContext>("");
 
 bot.use(emojiParser());
 ```

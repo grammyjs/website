@@ -269,7 +269,7 @@ const {
   createConversation,
 } = require("@grammyjs/conversations");
 
-const bot = new Bot(""); // <-- taruh token bot-mu diantara ""
+const bot = new Bot("");
 
 bot.use(session({ initial: () => ({}) }));
 bot.use(conversations());

@@ -106,7 +106,7 @@ Dalam hal ini, middleware yang dipagari tidak hanya bertindak seolah-olah proses
 Bisa dibilang, middleware yang berada di dalam error boundary terlihat seolah-olah memanggil `next`.
 
 ```ts
-const bot = new Bot(""); // <-- taruh token bot-mu diantara ""
+const bot = new Bot("");
 
 bot.use(/* A */);
 bot.use(/* B */);

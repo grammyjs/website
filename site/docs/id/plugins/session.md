@@ -141,7 +141,7 @@ bot.start();
 ```js
 const { Bot, session } = require("grammy");
 
-const bot = new Bot(""); // <-- taruh token bot-mu diantara ""
+const bot = new Bot("");
 
 // Pasang middleware session, kemudian tentukan nilai awal session.
 function initial() {
@@ -476,7 +476,7 @@ interface SessionData {
 type MyContext = Context & SessionFlavor<SessionData>;
 
 // Buat bot lalu masukkan middleware session.
-const bot = new Bot<MyContext>(""); // <-- Taruh token bot-mu diantara ""
+const bot = new Bot<MyContext>("");
 
 bot.use(session({
   initial: () => ({ hitung: 0 }),
@@ -501,7 +501,7 @@ const { Bot, session } = require("grammy");
 const { freeStorage } = require("@grammyjs/storage-free");
 
 // Buat bot lalu masukkan middleware session.
-const bot = new Bot(""); // <-- Taruh token bot-mu diantara ""
+const bot = new Bot("");
 
 bot.use(session({
   initial: () => ({ hitung: 0 }),
@@ -537,7 +537,7 @@ interface SessionData {
 type MyContext = Context & SessionFlavor<SessionData>;
 
 // Buat bot lalu masukkan middleware session.
-const bot = new Bot<MyContext>(""); // <-- Taruh token bot-mu diantara ""
+const bot = new Bot<MyContext>("");
 
 bot.use(session({
   initial: () => ({ hitung: 0 }),

@@ -19,7 +19,7 @@ import { Bot } from "grammy";
 import { Menu } from "@grammyjs/menu";
 
 // Buat sebuah bot.
-const bot = new Bot(""); // <-- taruh token bot-mu diantara ""
+const bot = new Bot("");
 
 // Buat menu sederhana.
 const menu = new Menu("menu-minuman")
@@ -45,7 +45,7 @@ const { Bot } = require("grammy");
 const { Menu } = require("@grammyjs/menu");
 
 // Buat sebuah bot.
-const bot = new Bot(""); // <-- taruh token bot-mu diantara ""
+const bot = new Bot("");
 
 // Buat menu sederhana.
 const menu = new Menu("menu-minuman")
@@ -71,7 +71,7 @@ import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { Menu } from "https://deno.land/x/grammy_menu/mod.ts";
 
 // Buat sebuah bot.
-const bot = new Bot(""); // <-- taruh token bot-mu diantara ""
+const bot = new Bot("");
 
 // Buat menu sederhana.
 const menu = new Menu("menu-minuman")
