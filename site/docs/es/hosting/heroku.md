@@ -231,7 +231,7 @@ Que contenga estas líneas de código:
 import { Bot } from "grammy";
 
 const token = process.env.BOT_TOKEN;
-if (!token) throw new Error("Falta BOT_TOKEN")
+if (!token) throw new Error("Falta BOT_TOKEN");
 
 const bot = new Bot(token);
 
