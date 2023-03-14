@@ -43,8 +43,7 @@ The difference may seem subtle, but wait until the next subsection to find out w
 You can install more middleware on an instance of `Composer` even after installing the `Composer` itself somewhere.
 
 ```ts
-// subclass of `Composer`
-const bot = new Bot("");
+const bot = new Bot(""); // subclass of `Composer`
 
 const composer = new Composer();
 bot.use(composer);
