@@ -30,7 +30,7 @@ const bot = new Bot(botToken);
 const throttler = apiThrottler();
 bot.api.config.use(throttler);
 
-bot.command("/example", (ctx) => ctx.reply("I am throttled"));
+bot.command("example", (ctx) => ctx.reply("I am throttled"));
 
 // 如果你使用了限流器，你可能想要使用一个 runner 来并发处理 update。
 run(bot);
@@ -53,7 +53,7 @@ const bot = new Bot(botToken);
 const throttler = apiThrottler();
 bot.api.config.use(throttler);
 
-bot.command("/example", (ctx) => ctx.reply("I am throttled"));
+bot.command("example", (ctx) => ctx.reply("I am throttled"));
 
 // 如果你使用了限流器，你可能想要使用一个 runner 来并发处理 update。
 run(bot);
@@ -76,7 +76,7 @@ const bot = new Bot(botToken);
 const throttler = apiThrottler();
 bot.api.config.use(throttler);
 
-bot.command("/example", (ctx) => ctx.reply("I am throttled"));
+bot.command("example", (ctx) => ctx.reply("I am throttled"));
 
 // 如果你使用了限流器，你可能想要使用一个 runner 来并发处理 update。
 run(bot);
