@@ -47,7 +47,7 @@ import {
   generateBeforeMiddleware,
 } from "telegraf-middleware-console-time";
 
-const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间
+const bot = new Bot("");
 
 // 在加载被测试中间件之前使用 BeforeMiddleware
 bot.use(generateBeforeMiddleware("foo"));

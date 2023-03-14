@@ -314,7 +314,7 @@ bot.command("start", async (ctx) => {
 ```js
 const BOT_DEVELOPER = 123456; // bot 开发者的聊天标识符
 
-const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间
+const bot = new Bot("");
 
 // 在上下文对象上设置自定义属性。
 bot.use(async (ctx, next) => {

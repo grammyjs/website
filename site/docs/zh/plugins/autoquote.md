@@ -19,7 +19,7 @@
 import { Bot } from "grammy";
 import { addReplyParam } from "@roziscoding/grammy-autoquote";
 
-const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间
+const bot = new Bot("");
 
 bot.command("demo", async (ctx) => {
   ctx.api.config.use(addReplyParam(ctx));
@@ -36,7 +36,7 @@ bot.start();
 const { Bot } = require("grammy");
 const { addReplyParam } = require("@roziscoding/grammy-autoquote");
 
-const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间
+const bot = new Bot("");
 
 bot.command("demo", async (ctx) => {
   ctx.api.config.use(addReplyParam(ctx));
@@ -53,7 +53,7 @@ bot.start();
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { addReplyParam } from "https://deno.land/x/grammy_autoquote/mod.ts";
 
-const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间
+const bot = new Bot("");
 
 bot.command("demo", async (ctx) => {
   ctx.api.config.use(addReplyParam(ctx));
@@ -77,7 +77,7 @@ bot.start();
 import { Bot } from "grammy";
 import { autoQuote } from "@roziscoding/grammy-autoquote";
 
-const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间
+const bot = new Bot("");
 
 bot.use(autoQuote);
 
@@ -99,7 +99,7 @@ bot.start();
 const { Bot } = require("grammy");
 const { autoQuote } = require("@roziscoding/grammy-autoquote");
 
-const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间
+const bot = new Bot("");
 
 bot.use(autoQuote);
 
@@ -121,7 +121,7 @@ bot.start();
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { autoQuote } from "https://deno.land/x/grammy_autoquote/mod.ts";
 
-const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间
+const bot = new Bot("");
 
 bot.use(autoQuote);
 

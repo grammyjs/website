@@ -18,7 +18,7 @@
 ```ts
 import { StatelessQuestion } from "@grammyjs/stateless-question";
 
-const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间
+const bot = new Bot("");
 
 const unicornQuestion = new StatelessQuestion("unicorns", (ctx) => {
   console.log("User thinks unicorns are doing:", ctx.message);
