@@ -27,7 +27,7 @@ const bot = new Bot(""); // <-- taruh token bot-mu diantara ""
 const throttler = apiThrottler();
 bot.api.config.use(throttler);
 
-bot.command("/example", (ctx) => ctx.reply("Aku di-throttler."));
+bot.command("example", (ctx) => ctx.reply("Aku di-throttler."));
 
 // Kalau kamu menggunakan throttler, kemungkinan besar kamu juga ingin
 // menggunakan runner untuk menangani update secara bersamaan.
@@ -47,7 +47,7 @@ const bot = new Bot(""); // <-- taruh token bot-mu diantara ""
 const throttler = apiThrottler();
 bot.api.config.use(throttler);
 
-bot.command("/example", (ctx) => ctx.reply("Aku di-throttler."));
+bot.command("example", (ctx) => ctx.reply("Aku di-throttler."));
 
 // Kalau kamu menggunakan throttler, kemungkinan besar kamu juga ingin
 // menggunakan runner untuk menangani update secara bersamaan.
@@ -67,7 +67,7 @@ const bot = new Bot(""); // <-- taruh token bot-mu diantara ""
 const throttler = apiThrottler();
 bot.api.config.use(throttler);
 
-bot.command("/example", (ctx) => ctx.reply("Aku di-throttler."));
+bot.command("example", (ctx) => ctx.reply("Aku di-throttler."));
 
 // Kalau kamu menggunakan throttler, kemungkinan besar kamu juga ingin
 // menggunakan runner untuk menangani update secara bersamaan.
