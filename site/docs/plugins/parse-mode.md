@@ -13,7 +13,7 @@ import { bold, fmt, hydrateReply, italic, link } from "@grammyjs/parse-mode";
 
 import type { ParseModeFlavor } from "@grammyjs/parse-mode";
 
-const bot = new Bot<ParseModeFlavor<Context>>(""); 
+const bot = new Bot<ParseModeFlavor<Context>>("");
 
 // Install the plugin.
 bot.use(hydrateReply);
@@ -46,7 +46,7 @@ const { bold, fmt, hydrateReply, italic, link } = require(
   "@grammyjs/parse-mode",
 );
 
-const bot = new Bot(""); 
+const bot = new Bot("");
 
 // Install the plugin.
 bot.use(hydrateReply);
@@ -85,7 +85,7 @@ import {
 
 import type { ParseModeFlavor } from "https://deno.land/x/grammy_parse_mode/mod.ts";
 
-const bot = new Bot<ParseModeFlavor<Context>>(""); 
+const bot = new Bot<ParseModeFlavor<Context>>("");
 
 // Install the plugin.
 bot.use(hydrateReply);
@@ -123,7 +123,7 @@ import { hydrateReply, parseMode } from "@grammyjs/parse-mode";
 
 import type { ParseModeFlavor } from "@grammyjs/parse-mode";
 
-const bot = new Bot<ParseModeFlavor<Context>>(""); 
+const bot = new Bot<ParseModeFlavor<Context>>("");
 
 // Install the plugin.
 bot.use(hydrateReply);
@@ -151,7 +151,7 @@ bot.start();
 const { Bot, Context } = require("grammy");
 const { hydrateReply, parseMode } = require("@grammyjs/parse-mode");
 
-const bot = new Bot(""); 
+const bot = new Bot("");
 
 // Install the plugin.
 bot.use(hydrateReply);
@@ -184,7 +184,7 @@ import {
 
 import type { ParseModeFlavor } from "https://deno.land/x/grammy_parse_mode/mod.ts";
 
-const bot = new Bot<ParseModeFlavor<Context>>(""); 
+const bot = new Bot<ParseModeFlavor<Context>>("");
 
 // Install the plugin.
 bot.use(hydrateReply);

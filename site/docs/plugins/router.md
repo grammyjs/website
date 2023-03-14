@@ -70,7 +70,7 @@ interface SessionData {
 }
 type MyContext = Context & SessionFlavor<SessionData>;
 
-const bot = new Bot<MyContext>(""); 
+const bot = new Bot<MyContext>("");
 
 // Use session.
 bot.use(session({ initial: (): SessionData => ({ step: "idle" }) }));
@@ -197,7 +197,7 @@ function getDays(month: number, day: number) {
 const { Bot, Context, Keyboard, session, SessionFlavor } = require("grammy");
 const { Router } = require("@grammyjs/router");
 
-const bot = new Bot(""); 
+const bot = new Bot("");
 
 // Use session.
 bot.use(session({ initial: () => ({ step: "idle" }) }));
@@ -337,7 +337,7 @@ interface SessionData {
 }
 type MyContext = Context & SessionFlavor<SessionData>;
 
-const bot = new Bot<MyContext>(""); 
+const bot = new Bot<MyContext>("");
 
 // Use session.
 bot.use(session({ initial: (): SessionData => ({ step: "idle" }) }));

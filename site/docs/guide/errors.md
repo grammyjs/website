@@ -107,7 +107,7 @@ In that case, the fenced middleware does not only act as if it had completed suc
 Thus, it looks like the middleware inside the error boundary has called `next`.
 
 ```ts
-const bot = new Bot(""); 
+const bot = new Bot("");
 
 bot.use(/* A */);
 bot.use(/* B */);

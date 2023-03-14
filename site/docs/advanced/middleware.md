@@ -13,7 +13,7 @@ While it is not wrong that you can use middleware in this linear fashion (also i
 Commonly, you see the following pattern.
 
 ```ts
-const bot = new Bot(""); 
+const bot = new Bot("");
 
 bot.use(/* ... */);
 bot.use(/* ... */);
@@ -44,7 +44,7 @@ You can install more middleware on an instance of `Composer` even after installi
 
 ```ts
 // subclass of `Composer`
-const bot = new Bot(""); 
+const bot = new Bot("");
 
 const composer = new Composer();
 bot.use(composer);

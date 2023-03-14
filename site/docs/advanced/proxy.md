@@ -17,7 +17,7 @@ import { Bot } from "https://deno.land/x/grammy/mod.ts";
 const client = Deno.createHttpClient({
   proxy: { url: "http://host:port/" },
 });
-const bot = new Bot("", { 
+const bot = new Bot("", {
   client: {
     baseFetchConfig: {
       // @ts-ignore
@@ -40,7 +40,7 @@ const socksAgent = new SocksProxyAgent({
   port: port, // put in the proxy port
 });
 
-const bot = new Bot("", { 
+const bot = new Bot("", {
   client: {
     baseFetchConfig: {
       agent: socksAgent,
