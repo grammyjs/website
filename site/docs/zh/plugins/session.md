@@ -499,7 +499,7 @@ const { Bot, session } = require("grammy");
 const { freeStorage } = require("@grammyjs/storage-free");
 
 // 创建 bot 并且注册会话中间件。
-const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 中间
+const bot = new Bot("");
 
 bot.use(session({
   initial: () => ({ count: 0 }),
