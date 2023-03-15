@@ -32,7 +32,7 @@ import { Bot } from "grammy";
 import { run } from "@grammyjs/runner";
 
 // Crear un bot.
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 // Añade el middleware habitual
 bot.on("message", (ctx) => ctx.reply("Got your message."));
@@ -49,7 +49,7 @@ const { Bot } = require("grammy");
 const { run } = require("@grammyjs/runner");
 
 // Crear un bot.
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 // Añade el middleware habitual
 bot.on("message", (ctx) => ctx.reply("Got your message."));
@@ -66,7 +66,7 @@ import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { run } from "https://deno.land/x/grammy_runner/mod.ts";
 
 // Crear un bot.
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 // Añade el middleware habitual
 bot.on("message", (ctx) => ctx.reply("Got your message."));

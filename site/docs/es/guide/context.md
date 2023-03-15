@@ -385,7 +385,7 @@ class MyContext extends Context {
 }
 
 // Pasar el constructor de la clase de contexto personalizado como una opción.
-const bot = new Bot("<token>", {
+const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
@@ -415,7 +415,7 @@ class MyContext extends Context {
 }
 
 // Pasar el constructor de la clase de contexto personalizado como una opción.
-const bot = new Bot("<token>", {
+const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
@@ -446,7 +446,7 @@ class MyContext extends Context {
 }
 
 // Pasar el constructor de la clase de contexto personalizado como una opción.
-const bot = new Bot("<token>", {
+const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 

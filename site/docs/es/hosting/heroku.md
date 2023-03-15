@@ -168,7 +168,7 @@ Siguiente paso, dirígete a `bot.ts`:
 import { Bot } from "grammy";
 
 const token = process.env.BOT_TOKEN;
-if (!token) throw Error("Falta BOT_TOKEN.");
+if (!token) throw new Error("Falta BOT_TOKEN.");
 
 export const bot = new Bot(token);
 
@@ -189,7 +189,10 @@ Podemos establecer la [información sobre el bot](https://deno.land/x/grammy/mod
 2. Cambia nuestro código en la línea 4 de arriba y rellena el valor de acuerdo con los resultados de `getMe`:
 
 ```ts
-export const bot = new Bot(`${process.env.BOT_TOKEN}`, {
+const token = process.env.BOT_TOKEN;
+if (!token) throw new Error("Falta BOT_TOKEN.");
+
+export const bot = new Bot(token, {
   botInfo: {
     id: 111111111,
     is_bot: true,
