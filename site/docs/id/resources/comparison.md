@@ -51,7 +51,7 @@ Di luar sana terdapat beberapa fork yang mencoba untuk mengelola code base lama 
 Terlebih lagi, ekosistem plugin Telegraf telah dipindahkan ke Telegraf 4.
 Banyak developer plugin tidak mau mengelola plugin untuk fork Telegraf dari pihak ketiga yang menggunakan versi usang.
 
-Dikarenakan pengembangan Telegraf terhenti diantara versi 3 dan 4, maka kita akan membandingkan grammY dengan kedua versi tersebut secara terpisah.
+Dikarenakan pengembangan Telegraf terhenti di antara versi 3 dan 4, maka kita akan membandingkan grammY dengan kedua versi tersebut secara terpisah.
 
 #### Dibandingkan dengan v3
 
