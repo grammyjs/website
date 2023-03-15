@@ -33,6 +33,7 @@ Prima di tutto, ogni istanza di `Bot` è un'istanza di `Composer`.
 
 Inoltre, dovresti sare che ogni metodo di `Composer` intrenamente chiama `use`.
 Per esempio, `filter` chiama solo `use` con alcuni middleware di biforcamento, mentre `on` chiama solo `filter` di nuovo con alcune funzioni predicato che comparano contro una certa  [query di filtri](../guide/filter-queries.md).
+
 Possiamo quinid limitarci a guardare `use` per ora, e il resto segue.
 
 Guardiamo ora un po' più in dettaglio cosa fa `Composer` con le tue chiamate`use`, e come si dfferenza da altri middleware.
