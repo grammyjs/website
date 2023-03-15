@@ -95,8 +95,10 @@ bot.start();
 ```ts{4}
 import { Bot } from "grammy";
 
-// Here, we take the bot token from "BOT_TOKEN" environment variable.
-const bot = new Bot(process.env.BOT_TOKEN ?? "");
+const token = process.env.BOT_TOKEN;
+if (!token) throw new Error("BOT_TOKEN is unset");
+
+const bot = new Bot(token);
 
 bot.command(
   "start",
