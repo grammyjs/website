@@ -35,7 +35,10 @@ Kamu bisa menggunakan contoh bot singkat ini sebagai entry point-nya.
 import { serve } from "https://deno.land/std/http/server.ts";
 import { Bot, webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 
-const bot = new Bot(Deno.env.get("BOT_TOKEN") ?? "");
+const token = Deno.env.get("BOT_TOKEN");
+if (!token) throw new Error("BOT_TOKEN belum diisi");
+
+const bot = new Bot(token);
 
 bot.command(
   "start",
