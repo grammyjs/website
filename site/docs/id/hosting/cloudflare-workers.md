@@ -55,7 +55,7 @@ import { Bot, webhookCallback } from "grammy/web";
 // Baris kode berikut mengasumsikan bahwa kamu sudah mengonfigurasi secret BOT_TOKEN dan BOT_INFO.
 // Lihat https://developers.cloudflare.com/workers/platform/environment-variables/#secrets-on-deployed-workers.
 // BOT_INFO diperoleh dari bot.api.getMe().
-const bot = new Bot(TOKEN_BOT, { botInfo: INFO_BOT });
+const bot = new Bot(BOT_TOKEN, { botInfo: BOT_INFO });
 
 bot.command("start", async (ctx) => {
   await ctx.reply("Halo, dunia!");

@@ -92,7 +92,7 @@ Kamu bisa menyalin contoh bot berikut ke dalam file. Jangan lupa untuk memasukka
 import { Bot } from "grammy";
 
 // Buat sebuah instance class `Bot` lalu masukkan token bot ke dalamnya.
-const bot = new Bot(""); // <-- taruh token bot-mu diantara ""
+const bot = new Bot(""); // <-- taruh token bot-mu di antara ""
 
 // Sekarang, kamu bisa menambahkan listener ke object `bot`.
 // grammY akan memanggil listener ini ketika pengguna mengirim pesan ke bot.
@@ -116,7 +116,7 @@ bot.start();
 const { Bot } = require("grammy");
 
 // Buat sebuah instance class `Bot` lalu masukkan token bot ke dalamnya.
-const bot = new Bot(""); // <-- taruh token bot-mu diantara ""
+const bot = new Bot(""); // <-- taruh token bot-mu di antara ""
 
 // Sekarang, kamu bisa menambahkan listener ke object `bot`.
 // grammY akan memanggil listener ini ketika pengguna mengirim pesan ke bot.
@@ -189,7 +189,7 @@ Kamu bisa menyalin contoh bot berikut ke dalam file. Jangan lupa untuk memasukka
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
 // Buat sebuah instance class `Bot` lalu masukkan token bot ke dalamnya.
-const bot = new Bot(""); // <-- taruh token bot-mu diantara ""
+const bot = new Bot(""); // <-- taruh token bot-mu di antara ""
 
 // Sekarang, kamu bisa menambahkan listener ke object `bot`.
 // grammY akan memanggil listener ini ketika pengguna mengirim pesan ke bot.

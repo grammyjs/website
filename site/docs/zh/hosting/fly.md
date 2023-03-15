@@ -95,8 +95,10 @@ bot.start();
 ```ts{4}
 import { Bot } from "grammy";
 
-// 在这里，我们从 "BOT_TOKEN" 环境变量中获取 bot token。
-const bot = new Bot(process.env.BOT_TOKEN ?? "");
+const token = process.env.BOT_TOKEN;
+if (!token) throw new Error("BOT_TOKEN is unset");
+
+const bot = new Bot(token);
 
 bot.command(
   "start",

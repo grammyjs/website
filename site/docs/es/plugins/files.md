@@ -43,7 +43,7 @@ import { Bot } from "grammy";
 import { hydrateFiles } from "@grammyjs/files";
 
 // Crea un bot.
-const bot = new Bot("BOT_TOKEN");
+const bot = new Bot("");
 
 // Usa el plugin.
 bot.api.config.use(hydrateFiles(bot.token));

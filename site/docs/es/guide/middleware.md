@@ -16,7 +16,7 @@ Aunque no es incorrecto decir que están escuchando las actualizaciones, llamarl
 Supongamos que escribes un bot como este:
 
 ```ts{8}
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 bot.use(session());
 
@@ -91,7 +91,7 @@ Simplemente ha ignorado `next`, por lo que no ha pasado la actualización.
 ¡Probemos otra cosa con nuestros nuevos conocimientos!
 
 ```ts
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 bot.on(":text", (ctx) => ctx.reply("¡Texto!"));
 bot.command("start", (ctx) => ctx.reply("¡Comando!"));
@@ -252,7 +252,7 @@ Los objetos middleware son simplemente una envoltura para las funciones middlewa
 Se utilizan sobre todo internamente, pero a veces también pueden ayudar a las bibliotecas de terceros, o ser utilizados en casos de uso avanzado, como con [Composer](https://deno.land/x/grammy/mod.ts?s=Composer):
 
 ```ts
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 bot.use(/*...*/);
 bot.use(/*...*/);

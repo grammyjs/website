@@ -51,7 +51,7 @@ import { chatMembers } from "@grammyjs/chat-members";
 
 const adapter = new MemorySessionStorage();
 
-const bot = new Bot("<tu token de bot>");
+const bot = new Bot("");
 
 bot.use(chatMembers(adapter));
 
