@@ -170,7 +170,7 @@ grammY runner lets you create several workers which can process your updates in 
 On Node.js, grammY runner uses [Worker Threads](https://nodejs.org/api/worker_threads.html).
 On Deno, grammY runner uses [Web Workers](https://deno.land/manual/runtime/workers).
 
-Concuptually, grammY runner provides you with a class called `BotWorker` which can handle updates.
+Conceptually, grammY runner provides you with a class called `BotWorker` which can handle updates.
 It is equivalent to the regular class `Bot` (in fact, it even `extends Bot`).
 The main difference between `BotWorker` and `Bot` is that `BotWorker` cannot fetch updates.
 Instead, it has to receive them from a regular `Bot` that controls its workers.
