@@ -165,16 +165,16 @@ Básicamente, un solo núcleo comenzará a luchar con el procesamiento JSON de t
 
 ### Bot Workers para la gestión de actualizaciones
 
-There is a simple way out: bot workers!
-grammY runner lets you create several workers which can process your updates in parallel on actually different cores (using different event loops and with separate memory).
+Hay una forma sencilla de solucionarlo: ¡los bot workers!
+grammY runner te permite crear varios workers que pueden procesar tus actualizaciones en paralelo en núcleos realmente diferentes (usando diferentes bucles de eventos y con memoria separada).
 
-On Node.js, grammY runner uses [Worker Threads](https://nodejs.org/api/worker_threads.html).
-On Deno, grammY runner uses [Web Workers](https://deno.land/manual/runtime/workers).
+En Node.js, grammY runner utiliza [Worker Threads](https://nodejs.org/api/worker_threads.html).
+En Deno, grammY runner usa [Web Workers](https://deno.land/manual/runtime/workers).
 
-Concuptually, grammY runner provides you with a class called `BotWorker` which can handle updates.
-It is equivalent to the regular class `Bot` (in fact, it even `extends Bot`).
-The main difference between `BotWorker` and `Bot` is that `BotWorker` cannot fetch updates.
-Instead, it has to receive them from a regular `Bot` that controls its workers.
+Conceptualmente, grammY runner te proporciona una clase llamada `BotWorker` que puede manejar actualizaciones.
+Es equivalente a la clase normal `Bot` (de hecho, incluso `extends Bot`).
+La principal diferencia entre `BotWorker` y `Bot` es que `BotWorker` no puede obtener actualizaciones.
+En su lugar, tiene que recibirlas de un `Bot` normal que controle a sus trabajadores.
 
 ```asciiart:no-line-numbers
 1. obtener actualizaciones                       Bot
