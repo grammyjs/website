@@ -34,7 +34,7 @@ import { Bot } from "grammy";
 import { run } from "@grammyjs/runner";
 
 // 创建一个 bot。
-const bot = new Bot(""); // <-- 在这里传入你的 bot token
+const bot = new Bot("");
 
 // 添加常见的中间件，bala bala
 bot.on("message", (ctx) => ctx.reply("Got your message."));
@@ -51,7 +51,7 @@ const { Bot } = require("grammy");
 const { run } = require("@grammyjs/runner");
 
 // 创建 bot
-const bot = new Bot(""); // <-- 在这里传入你的 bot token
+const bot = new Bot("");
 
 // 添加常见的中间件，bala bala
 bot.on("message", (ctx) => ctx.reply("Got your message."));
@@ -68,7 +68,7 @@ import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { run } from "https://deno.land/x/grammy_runner/mod.ts";
 
 // 创建 bot
-const bot = new Bot(""); // <-- 在这里传入你的 bot token
+const bot = new Bot("");
 
 // 添加常见的中间件，bala bala
 bot.on("message", (ctx) => ctx.reply("Got your message."));

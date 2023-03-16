@@ -33,7 +33,7 @@ import { Bot } from "grammy";
 import { run } from "@grammyjs/runner";
 
 // Buat sebuah bot.
-const bot = new Bot(""); // <-- taruh token bot kamu di antara tanda petik ("")
+const bot = new Bot("");
 
 // Tambahkan middleware seperti biasanya.
 bot.on("message", (ctx) => ctx.reply("Pesan diterima!"));
@@ -50,7 +50,7 @@ const { Bot } = require("grammy");
 const { run } = require("@grammyjs/runner");
 
 // Buat sebuah bot.
-const bot = new Bot(""); // <-- taruh token bot kamu di antara tanda petik ("")
+const bot = new Bot("");
 
 // Tambahkan middleware seperti biasanya.
 bot.on("message", (ctx) => ctx.reply("Pesan diterima!"));
@@ -67,7 +67,7 @@ import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { run } from "https://deno.land/x/grammy_runner/mod.ts";
 
 // Buat sebuah bot.
-const bot = new Bot(""); // <-- taruh token bot kamu di antara tanda petik ("")
+const bot = new Bot("");
 
 // Tambahkan middleware seperti biasanya.
 bot.on("message", (ctx) => ctx.reply("Pesan diterima!"));

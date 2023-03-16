@@ -33,10 +33,17 @@ supabase functions new telegram-bot
 ```ts
 import { serve } from "https://deno.land/std/http/server.ts";
 import { Bot, webhookCallback } from "https://deno.land/x/grammy/mod.ts";
-const bot = new Bot(Deno.env.get("BOT_TOKEN") ?? "");
+
+const token = Deno.env.get("BOT_TOKEN");
+if (!token) throw new Error("BOT_TOKEN is unset");
+
+const bot = new Bot(token);
+
 bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
 bot.command("ping", (ctx) => ctx.reply(`Pong! ${new Date()}`));
+
 const handleUpdate = webhookCallback(bot, "std/http");
+
 serve(async (req) => {
   try {
     const url = new URL(req.url);

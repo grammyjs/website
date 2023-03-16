@@ -19,7 +19,7 @@ import { Bot } from "grammy";
 import { Menu } from "@grammyjs/menu";
 
 // Buat sebuah bot.
-const bot = new Bot(""); // <-- Taruh token bot-mu diantara ""
+const bot = new Bot("");
 
 // Buat menu sederhana.
 const menu = new Menu("menu-minuman")
@@ -45,7 +45,7 @@ const { Bot } = require("grammy");
 const { Menu } = require("@grammyjs/menu");
 
 // Buat sebuah bot.
-const bot = new Bot(""); // <-- Taruh token bot-mu diantara ""
+const bot = new Bot("");
 
 // Buat menu sederhana.
 const menu = new Menu("menu-minuman")
@@ -71,7 +71,7 @@ import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { Menu } from "https://deno.land/x/grammy_menu/mod.ts";
 
 // Buat sebuah bot.
-const bot = new Bot(""); // <-- Taruh token bot-mu diantara ""
+const bot = new Bot("");
 
 // Buat menu sederhana.
 const menu = new Menu("menu-minuman")
@@ -289,7 +289,7 @@ bot.use(pengaturan);
 ```
 
 **Kamu bisa membuat beberapa menu tersendiri lalu membuatnya menjadi interaktif.**
-Contohnya, jika kamu membuat dua menu yang tidak saling berkaitan dan kamu tidak perlu bernavigasi diantara dua menu tersebut, kamu harus memasang keduanya secara terpisah.
+Contohnya, jika kamu membuat dua menu yang tidak saling berkaitan dan kamu tidak perlu bernavigasi di antara dua menu tersebut, kamu harus memasang keduanya secara terpisah.
 
 ```ts
 // Jika kamu memiliki menu-menu tersendiri seperti ini:
@@ -521,7 +521,7 @@ Ketika kamu mendaftarkan menu di hierarki navigasi yang luas, pada kenyataannya 
 Di balik layar, menu-menu yang berasal dari satu struktur ditambahkan ke tempat penampungan besar yang sama, lalu penampungan tersebut digunakan secara bersama-sama oleh semua instance terkait.
 Setiap menu bertanggung jawab untuk menu-menu lain di index tersebut, dan mereka dapat menangani dan me-render satu sama lain (Biasanya, hanya menu utama yang diteruskan ke `bot.use` dan dari situ ia kan menerima update.
 Jika kasusnya seperti itu, instance tersebut akan menangani penampungan secara keseluruhan).
-Hasilnya, kamu bisa menavigasi diantara menu tanpa batas, semua bisa dilakukan selama penanganan update terjadi dalam [kompleksitas waktu `O(1)`](https://en.wikipedia.org/wiki/Time_complexity#Constant_time) karena tidak perlu mencari ke seluruh hierarki untuk menemukan menu yang tepat untuk menangani tombol apapun yang ditekan.
+Hasilnya, kamu bisa menavigasi di antara menu tanpa batas, semua bisa dilakukan selama penanganan update terjadi dalam [kompleksitas waktu `O(1)`](https://en.wikipedia.org/wiki/Time_complexity#Constant_time) karena tidak perlu mencari ke seluruh hierarki untuk menemukan menu yang tepat untuk menangani tombol apapun yang ditekan.
 
 ## Ringkasan Plugin
 
