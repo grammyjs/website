@@ -29,7 +29,7 @@ const bot = new Bot("", {
 
 > Ingat! Gunakan flag `--unstable` supaya script di atas bisa berjalan.
 
-Berikut cara menggunakan proxy dengan package `socks5-https-client` ([npm](https://www.npmjs.com/package/socks-proxy-agent)) di Node.js:
+Berikut cara menggunakan proxy dengan package `socks-proxy-agent` ([npm](https://www.npmjs.com/package/socks-proxy-agent)) di Node.js:
 
 ```ts
 import { Bot } from "grammy";
