@@ -35,7 +35,7 @@ import { Bot } from "grammy";
 import { SocksProxyAgent } from "socks-proxy-agent";
 
 const socksAgent = new SocksProxyAgent({
-  host: host, // 输入代理主机
+  hostname: host, // 输入代理主机
   port: port, // 输入代理端口号
 });
 

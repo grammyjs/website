@@ -36,7 +36,7 @@ import { Bot } from "grammy";
 import { SocksProxyAgent } from "socks-proxy-agent";
 
 const socksAgent = new SocksProxyAgent({
-  host: host, // put in the proxy host
+  hostname: host, // put in the proxy host
   port: port, // put in the proxy port
 });
 
