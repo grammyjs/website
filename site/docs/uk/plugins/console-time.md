@@ -58,7 +58,7 @@ bot.use(); /* ... */
 // Використовуйте AfterMiddleware з тією самою міткою, після встановлення middleware, що тестується.
 bot.use(generateAfterMiddleware("foo"));
 
-// Інші middlewares/реалізації, вони займатимуть "внутрішній" час при використанні.
+// Усі інші middleware та код боту, рахуватимуться як "inner" при вимірюванні часу.
 bot.use(); /* ... */
 bot.on("message" /* ... */);
 ```
