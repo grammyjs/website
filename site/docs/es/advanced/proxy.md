@@ -29,17 +29,15 @@ const bot = new Bot("", {
 
 > Note that you need to run this with the `--unstable` flag.
 
-En Node.js, así es como usarías un proxy con el paquete `socks5-https-client` ([npm](https://www.npmjs.com/package/socks5-https-client)):
+En Node.js, así es como usarías un proxy con el paquete `socks-proxy-agent` ([npm](https://www.npmjs.com/package/socks-proxy-agent)):
 
 ```ts
 import { Bot } from "grammy";
-import SocksAgent from "socks5-https-client/lib/Agent";
+import { SocksProxyAgent } from "socks-proxy-agent";
 
-const socksAgent = new SocksAgent({
-  socksHost: proxyHost, // proxy host
-  socksPort: proxyPort, // proxy port
-  socksUsername: proxyUser, // nombre usuario
-  socksPassword: proxyPassword, // contraseña
+const socksAgent = new SocksProxyAgent({
+  hostname: host, // proxy host
+  port: port, // proxy port
 });
 
 const bot = new Bot("", {
