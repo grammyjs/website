@@ -78,12 +78,13 @@ pnpm add grammy
 └── tsconfig.json
 ```
 
-现在，是时候打开 Telegram 创建一个 bot 账户，并为其获得一个认证令牌。
+现在，是时候打开 Telegram 创建一个 bot 账户，并为其获得一个 bot token。
 与 [@BotFather](https://t.me/BotFather) 对话来完成这件事。
-认证令牌看起来将类似于 `123456:aBcDeF_gHiJkLmNoP-q`。
+Bot token 看起来将类似于 `123456:aBcDeF_gHiJkLmNoP-q`。
+这是用来认证你的 bot 的。
 
-拿到了令牌？你现在可以在 `bot.ts` 文件中编写你的 bot 代码。
-你可以把下面这个 bot 的例子复制到该文件中，并把你的令牌传给 `Bot` 构造函数。
+拿到 token 了吧？你现在可以在 `bot.ts` 文件中编写你的 bot 代码。
+你可以把下面这个 bot 的例子复制到该文件中，并把你的 token 传给 `Bot` 构造函数。
 
 <CodeGroup>
  <CodeGroupItem title="TypeScript" active>
@@ -91,8 +92,7 @@ pnpm add grammy
 ```ts
 import { Bot } from "grammy";
 
-// 创建一个 `Bot` 类的实例，并将你的认证令牌传给它。
-const bot = new Bot(""); // <-- 把你的认证令牌放在 "" 之间
+const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间
 
 // 你现在可以在你的 bot 对象 `bot` 上注册监听器。
 // 当用户向你的 bot 发送消息时，grammY 将调用已注册的监听器。
@@ -115,8 +115,8 @@ bot.start();
 ```js
 const { Bot } = require("grammy");
 
-// 创建一个 `Bot` 类的实例，并将你的认证令牌传给它。
-const bot = new Bot(""); // <-- 把你的认证令牌放在 "" 之间
+// 创建一个 `Bot` 类的实例，并将你的 bot token 传给它。
+const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间
 
 // 你现在可以在你的 bot 对象 `bot` 上注册监听器。
 // 当用户向你的 bot 发送消息时， grammY 将调用已注册的监听器。
@@ -178,18 +178,19 @@ cd ./my-bot
 touch bot.ts
 ```
 
-现在，是时候打开 Telegram 创建一个 bot 账户，并为其获得一个认证令牌。
+现在，是时候打开 Telegram 创建一个 bot 账户，并为其获得一个 bot token。
 与 [@BotFather](https://t.me/BotFather) 对话来完成这件事。
-认证令牌看起来将类似于 `123456:aBcDeF_gHiJkLmNoP-q`。
+Bot token 看起来将类似于 `123456:aBcDeF_gHiJkLmNoP-q`。
+这是用来认证你的 bot 的。
 
-拿到了令牌？你现在可以在 `bot.ts` 文件中编写你的 bot 代码。
-你可以把下面这个 bot 的例子复制到该文件中，并把你的令牌传给 `Bot` 构造函数。
+拿到 token 了吧？你现在可以在 `bot.ts` 文件中编写你的 bot 代码。
+你可以把下面这个 bot 的例子复制到该文件中，并把你的 token 传给 `Bot` 构造函数。
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
-// 创建一个 `Bot` 类的实例，并将你的认证令牌传给它。
-const bot = new Bot(""); // <-- 把你的认证令牌放在 "" 之间
+// 创建一个 `Bot` 类的实例，并将你的 bot token 传给它。
+const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间
 
 // 你现在可以在你的 bot 对象 `bot` 上注册监听器。
 // 当用户向你的 bot 发送消息时， grammY 将调用已注册的监听器。

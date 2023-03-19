@@ -21,16 +21,12 @@ import { Bot } from "grammy";
 import { run } from "@grammyjs/runner";
 import { apiThrottler } from "@grammyjs/transformer-throttler";
 
-const botToken = process.env.BOT_TOKEN;
-if (!botToken) {
-  throw Error("BOT_TOKEN is required");
-}
-const bot = new Bot(botToken);
+const bot = new Bot("");
 
 const throttler = apiThrottler();
 bot.api.config.use(throttler);
 
-bot.command("/example", (ctx) => ctx.reply("I am throttled"));
+bot.command("example", (ctx) => ctx.reply("I am throttled"));
 
 // 如果你使用了限流器，你可能想要使用一个 runner 来并发处理 update。
 run(bot);
@@ -44,16 +40,12 @@ const { Bot } = require("grammy");
 const { run } = require("@grammyjs/runner");
 const { apiThrottler } = require("@grammyjs/transformer-throttler");
 
-const botToken = process.env.BOT_TOKEN;
-if (!botToken) {
-  throw Error("BOT_TOKEN is required");
-}
-const bot = new Bot(botToken);
+const bot = new Bot("");
 
 const throttler = apiThrottler();
 bot.api.config.use(throttler);
 
-bot.command("/example", (ctx) => ctx.reply("I am throttled"));
+bot.command("example", (ctx) => ctx.reply("I am throttled"));
 
 // 如果你使用了限流器，你可能想要使用一个 runner 来并发处理 update。
 run(bot);
@@ -67,16 +59,12 @@ import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { run } from "https://deno.land/x/grammy_runner/mod.ts";
 import { apiThrottler } from "https://deno.land/x/grammy_transformer_throttler/mod.ts";
 
-const botToken = Deno.env.get("BOT_TOKEN");
-if (!botToken) {
-  throw Error("BOT_TOKEN is required");
-}
-const bot = new Bot(botToken);
+const bot = new Bot("");
 
 const throttler = apiThrottler();
 bot.api.config.use(throttler);
 
-bot.command("/example", (ctx) => ctx.reply("I am throttled"));
+bot.command("example", (ctx) => ctx.reply("I am throttled"));
 
 // 如果你使用了限流器，你可能想要使用一个 runner 来并发处理 update。
 run(bot);

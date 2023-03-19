@@ -88,7 +88,7 @@ import { Bot, Context, session } from "grammy";
 import { run, sequentialize } from "@grammyjs/runner";
 
 // Crear un bot.
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 // Construye un identificador único para el objeto `Context`.
 function getSessionKey(ctx: Context) {
@@ -115,7 +115,7 @@ const { Bot, Context, session } = require("grammy");
 const { run, sequentialize } = require("@grammyjs/runner");
 
 // Crear un bot.
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 // Construye un identificador único para el objeto `Context`.
 function getSessionKey(ctx) {
@@ -141,7 +141,7 @@ import { Bot, Context, session } from "https://deno.land/x/grammy/mod.ts";
 import { run, sequentialize } from "https://deno.land/x/grammy_runner/mod.ts";
 
 // Crear un bot.
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 // Construye un identificador único para el objeto `Context`.
 function getSessionKey(ctx: Context) {

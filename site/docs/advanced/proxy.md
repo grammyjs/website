@@ -17,7 +17,7 @@ import { Bot } from "https://deno.land/x/grammy/mod.ts";
 const client = Deno.createHttpClient({
   proxy: { url: "http://host:port/" },
 });
-const bot = new Bot(TOKEN, {
+const bot = new Bot("", {
   client: {
     baseFetchConfig: {
       // @ts-ignore
@@ -29,14 +29,14 @@ const bot = new Bot(TOKEN, {
 
 > Note that you need to run this with the `--unstable` flag.
 
-In Node.js, here is how you would use a proxy with the `socks5-https-client` package ([npm](https://www.npmjs.com/package/socks-proxy-agent)):
+In Node.js, here is how you would use a proxy with the `socks-proxy-agent` package ([npm](https://www.npmjs.com/package/socks-proxy-agent)):
 
 ```ts
 import { Bot } from "grammy";
 import { SocksProxyAgent } from "socks-proxy-agent";
 
 const socksAgent = new SocksProxyAgent({
-  host: host, // put in the proxy host
+  hostname: host, // put in the proxy host
   port: port, // put in the proxy port
 });
 

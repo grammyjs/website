@@ -73,8 +73,10 @@ app.listen(port, () => console.log(`listening on port ${port}`));
 ```ts{4}
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
-// 在这里，我们从 "BOT_TOKEN" 环境变量中获取 bot token。
-const bot = new Bot(Deno.env.get("BOT_TOKEN") ?? ""); 
+const token = Deno.env.get("BOT_TOKEN");
+if (!token) throw new Error("BOT_TOKEN is unset");
+
+const bot = new Bot(token); 
 
 bot.command(
   "start",
@@ -93,8 +95,10 @@ bot.start();
 ```ts{4}
 import { Bot } from "grammy";
 
-// 在这里，我们从 "BOT_TOKEN" 环境变量中获取 bot token。
-const bot = new Bot(process.env.BOT_TOKEN ?? "");
+const token = process.env.BOT_TOKEN;
+if (!token) throw new Error("BOT_TOKEN is unset");
+
+const bot = new Bot(token);
 
 bot.command(
   "start",

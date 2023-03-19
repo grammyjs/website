@@ -18,7 +18,7 @@ Kamu hanya perlu memastikan nilai `uniqueIdentifier`-nya benar-benar unik.
 ```ts
 import { StatelessQuestion } from "@grammyjs/stateless-question";
 
-const bot = new Bot(token);
+const bot = new Bot("");
 
 const unicornQuestion = new StatelessQuestion("unicorns", (ctx) => {
   console.log("User mengira unicorn sedang melakukan:", ctx.message);

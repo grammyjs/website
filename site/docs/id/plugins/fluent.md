@@ -97,25 +97,24 @@ Jika kamu masih merasa asing dengan konsep tersebut, sebaiknya kamu pahami terle
 import { Context } from "grammy";
 import { FluentContextFlavor } from "@grammyjs/fluent";
 
-// Tambahkan context type aplikasimu
-// dengan flavor interface yang telah disediakan.
-export type MyAppContext =
-  & Context
-  & FluentContextFlavor;
+// Tambahkan context type aplikasimu dengan flavor interface yang telah disediakan.
+export type MyAppContext = Context & FluentContextFlavor;
 ```
 
 Buat instance bot dengan cara berikut agar bisa menggunakan context type yang sudah ditambahkan tadi:
 
 ```ts
-const bot = new Bot<MyAppContext>();
+const bot = new Bot<MyAppContext>("");
 ```
 
 Langkah terakhir adalah menambahkan plugin Fluent itu sendiri ke grammY:
 
 ```ts
-bot.use(useFluent({
-  fluent,
-}));
+bot.use(
+  useFluent({
+    fluent,
+  }),
+);
 ```
 
 Pastikan untuk menambahkan [instance Fluent yang sudah dibuat sebelumnya](#inisialisasi-fluent).

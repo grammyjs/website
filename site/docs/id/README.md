@@ -15,7 +15,6 @@ features:
     details: grammY bersifat terbuka dan bisa ditambahkan dengan plugin yang kamu inginkan.
   - title: Dapat Diskalakan
     details: grammY selalu siap membantu ketika bot menjadi semakin populer dan semakin banyak trafiknya.
-footer: Hak Cipta © 2021-2023
 permalink: /id/
 ---
 
@@ -43,7 +42,7 @@ Bot ditulis menggunakan [TypeScript](https://www.typescriptlang.org) (atau JavaS
 ```ts
 import { Bot } from "grammy";
 
-const bot = new Bot(""); // <-- taruh token bot-mu di sini (https://t.me/BotFather)
+const bot = new Bot(""); // <-- taruh token bot-mu di antara "" (https://t.me/BotFather)
 
 // Balas pesan apapun dengan "Halo, apa kabar!".
 bot.on("message", (ctx) => ctx.reply("Halo, apa kabar!"));
@@ -57,7 +56,7 @@ bot.start();
 ```js
 const { Bot } = require("grammy");
 
-const bot = new Bot(""); // <-- taruh token bot-mu di sini (https://t.me/BotFather)
+const bot = new Bot(""); // <-- taruh token bot-mu di antara "" (https://t.me/BotFather)
 
 // Balas pesan apapun dengan "Halo, apa kabar!".
 bot.on("message", (ctx) => ctx.reply("Halo, apa kabar!"));
@@ -71,7 +70,7 @@ bot.start();
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
-const bot = new Bot(""); // <-- taruh token bot-mu di sini (https://t.me/BotFather)
+const bot = new Bot(""); // <-- taruh token bot-mu di antara "" (https://t.me/BotFather)
 
 // Balas pesan apapun dengan "Halo, apa kabar!".
 bot.on("message", (ctx) => ctx.reply("Halo, apa kabar!"));
@@ -86,5 +85,13 @@ Berhasil! :tada:
 
 ---
 
-grammY mendukung API Bot Telegram versi 6.5 yang [dirilis](https://core.telegram.org/bots/api#february-3-2023) pada tanggal 3 Februari 2023.
-(Fitur yang disorot: Request untuk Chat dan User)
+<ClientOnly>
+  <ThankYou :s="['Terima kasih ', 'Someone', ' telah menjadi kontributor grammY.']" />
+</ClientOnly>
+
+<div style="font-size: 0.75rem; display: flex; justify-content: center;">
+
+© 2021-2023 &middot; grammY mendukung API Bot Telegram versi 6.6 yang [dirilis](https://core.telegram.org/bots/api#march-9-2023) pada tanggal 9 Maret 2023.
+(Fitur yang disorot: Terjemahan untuk Deskripsi Bot)
+
+</div>

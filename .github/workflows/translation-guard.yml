@@ -14,5 +14,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-        - if: "!(contains(github.event.pull_request.labels.*.name, 'ready for translation') && contains(github.event.pull_request.labels.*.name, ':es: ES') && contains(github.event.pull_request.labels.*.name, ':indonesia: ID')) && !contains(github.event.pull_request.labels.*.name, 'not translatable')"
-          run: exit 1
+      - name: Check Labels
+        run: |
+          labels='${{ toJSON(github.event.pull_request.labels.*.name) }}'
+          language_labels=(":es: ES" ":indonesia: ID" ":cn: ZH")
+
+
+          has_label() {
+              [ `echo $labels | jq -rcM ". | index(\"$1\")"` != "null" ]
+          }
+
+
+          if has_label "ready for translation"; then
+              for language_label in "${language_labels[@]}"; do
+                  if ! has_label "$language_label"; then
+                      echo "Missing language label: $language_label"
+                      exit 1
+                  fi
+              done
+          elif ! has_label "time-sensitive" && ! has_label "not translatable"; then
+              echo "The pull request must at least have one of the following labels: ready for translation, time-sensitive, not translatable"
+              exit 1
+          fi

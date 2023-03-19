@@ -70,7 +70,10 @@ Secara garis besar, isinya kurang lebih seperti ini:
 ```ts
 import { Bot, webhookCallback } from "grammy";
 
-const bot = new Bot(process.env.BOT_TOKEN);
+const token = process.env.BOT_TOKEN;
+if (!token) throw new Error("BOT_TOKEN belum diisi");
+
+const bot = new Bot(token);
 
 export default webhookCallback(bot, "http");
 ```

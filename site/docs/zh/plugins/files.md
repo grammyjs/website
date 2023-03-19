@@ -4,7 +4,7 @@
 
 ## 下载文件
 
-你需要传递你的 bot 令牌给这个插件，因为它必须在下载文件时以你的 bot 身份进行认证。
+你需要传递你的 bot token 给这个插件，因为它必须在下载文件时以你的 bot 身份进行认证。
 然后这个插件在 `getFile` 调用结果上安装了 `download` 方法。
 例子：
 
@@ -43,7 +43,7 @@ import { Bot } from "grammy";
 import { hydrateFiles } from "@grammyjs/files";
 
 // 创建一个 bot。
-const bot = new Bot("BOT_TOKEN");
+const bot = new Bot("");
 
 // 使用插件。
 bot.api.config.use(hydrateFiles(bot.token));

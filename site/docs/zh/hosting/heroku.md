@@ -147,7 +147,7 @@ https://api.telegram.org/bot<bot_token>/setWebhook?url=<webhook_url>
 ```
 
 请注意，有些浏览器要求你在传递 `webhook_url` 前手动 [编码](https://en.wikipedia.org/wiki/Percent-encoding#Reserved_characters)。
-举个例子，如果我的有 bot 令牌 `abcd:1234` 和网址 `https://grammybot.herokuapp.com/secret_path`，那么我们的链接应该像这样：
+举个例子，如果我们有一个 bot token `abcd:1234` 和网址 `https://grammybot.herokuapp.com/secret_path`，那么我们的链接应该像这样：
 
 ```asciiart:no-line-numbers
 https://api.telegram.org/botabcd:1234/setWebhook?url=https%3A%2F%2Fgrammybot.herokuapp.com%2Fsecret_path
@@ -166,8 +166,10 @@ https://api.telegram.org/botabcd:1234/setWebhook?url=https%3A%2F%2Fgrammybot.her
 ```ts
 import { Bot } from "grammy";
 
-if (process.env.BOT_TOKEN == null) throw Error("BOT_TOKEN is missing.");
-export const bot = new Bot(`${process.env.BOT_TOKEN}`);
+const token = process.env.BOT_TOKEN;
+if (!token) throw Error("BOT_TOKEN is unset");
+
+export const bot = new Bot(token);
 
 bot.command("start", (ctx) => ctx.reply("Hello there!"));
 bot.on("message", (ctx) => ctx.reply("Got another message!"));
@@ -186,7 +188,10 @@ bot.on("message", (ctx) => ctx.reply("Got another message!"));
 2. 根据 `getMe` 的结果来修改我们上面第 4 行的代码：
 
 ```ts
-export const bot = new Bot(`${process.env.BOT_TOKEN}`, {
+const token = process.env.BOT_TOKEN;
+if (!token) throw new Error("BOT_TOKEN is unset");
+
+export const bot = new Bot(token, {
   botInfo: {
     id: 111111111,
     is_bot: true,
@@ -226,8 +231,10 @@ export const bot = new Bot(`${process.env.BOT_TOKEN}`, {
 ```ts
 import { Bot } from "grammy";
 
-if (process.env.BOT_TOKEN == null) throw new Error("BOT_TOKEN is missing.");
-const bot = new Bot(process.env.BOT_TOKEN);
+const token = process.env.BOT_TOKEN;
+if (!token) throw new Error("BOT_TOKEN unset");
+
+const bot = new Bot(token);
 
 bot.command(
   "start",

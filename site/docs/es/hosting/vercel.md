@@ -70,7 +70,10 @@ Debería ser más o menos así:
 ```ts
 import { Bot, webhookCallback } from "grammy";
 
-const bot = new Bot(process.env.BOT_TOKEN);
+const token = process.env.BOT_TOKEN;
+if (!token) throw new Error("Falta BOT_TOKEN.");
+
+const bot = new Bot(token);
 
 export default webhookCallback(bot, "http");
 ```
