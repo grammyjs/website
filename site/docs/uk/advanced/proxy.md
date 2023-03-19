@@ -29,14 +29,14 @@ const bot = new Bot("<токен>", {
 
 > Зауважте, що вам слід запускати цю програму з прапором `--unstable`.
 
-Ось як у Node.js можна використовувати проксі з пакетом `socks5-https-client` ([npm](https://www.npmjs.com/package/socks-proxy-agent)):
+Ось як у Node.js можна використовувати проксі з пакетом `ssocks-proxy-agent` ([npm](https://www.npmjs.com/package/socks-proxy-agent)):
 
 ```ts
 import { Bot } from "grammy";
 import { SocksProxyAgent } from "socks-proxy-agent";
 
 const socksAgent = new SocksProxyAgent({
-  host: host, // вкажіть хост проксі-сервера
+  hostname: host, // вкажіть хост проксі-сервера
   port: port, // вкажіть порт проксі-сервера
 });
 
