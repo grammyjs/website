@@ -10,14 +10,14 @@ next: ./files.md
 
 ::: tip Увімкніть inline режим
 За замовчуванням inline режим вимкнено.
-Зверніться до [@BotFather](https://t.me/BotFather), щоб увімкнути inline режим для свого бота, щоб почати отримувати inline запити.
+Для того, щоб отримувати inline запити, потрібно звернутися до [@BotFather](https://t.me/BotFather)(https://t.me/BotFather) та увімкнути inline режим для свого бота.
 :::
 
 > Перегляньте розділ про inline режим у [можливостях ботів Telegram](https://core.telegram.org/bots/features#inline-requests), створений командою Telegram.
 > Додатковими ресурсами є їхній [детальний опис](https://core.telegram.org/bots/inline) inline ботів, а також [оригінальна публікація в блозі](https://telegram.org/blog/inline-bots), яка анонсувала цю можливість, і розділ про inline режим у [довіднику Telegram Bot API](https://core.telegram.org/bots/api#inline-mode).
 > Це все варто прочитати, перш ніж застосовувати inline запити для вашого бота.
 
-Щойно користувач ініціює inline запит, тобто почне друкувати повідомлення, ввівши `@your_bot_name ...` у полі введення тексту, ваш бот отримуватиме оновлення про це.
+Щойно користувач ініціює inline запит, тобто почне друкувати повідомлення, ввівши `@your_bot_name ...` у полі введення тексту, ваш бот отримає оновлення про це.
 grammY має спеціальну підтримку для обробки inline запитів за допомогою методу `bot.inlineQuery()`, як описано в класі `Composer` у [довідці API grammY](https://deno.land/x/grammy/mod.ts?s=Composer#method_inlineQuery_0).
 Це дозволяє вам прослуховувати певні inline запити, які відповідають рядкам або регулярним виразам.
 Якщо ви хочете обробляти всі inline запити узагальнено, використовуйте `bot.on("inline_query")`.
