@@ -64,12 +64,12 @@ export function onlyAccept<C extends Context>(str: string): Middleware<C> {
   return async (ctx, next) => {
     // Отримуємо ім'я користувача.
     const name = ctx.from?.first_name;
-    // Допускаємо всі співпадаючі оновлення.
+    // Допускаємо оновлення, якщо воно відповідає умовам.
     if (name === undefined || name.includes(str)) {
       // Викликаємо нижній middleware
       await next();
     } else {
-      // Скажемо їм, що ми не працюємо з такими
+      // Якщо не відповідає умовам, скажемо, що ми з такими не працюємо.
       await ctx.reply(`Я не буду з вами розмовляти! Ви не цікавитеся ${str}!`);
     }
   };
