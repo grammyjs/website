@@ -154,7 +154,7 @@ run(bot, { runner: { fetch: { allowed_updates: [] } } });
 ## Multithreading
 
 > Multithreading tidak akan terlalu bermanfaat apabila bot kamu tidak menangani lebih dari 50 juta update per hari (>500 per detik).
-> [Skip bagian ini](#apa-yang-sebenarnya-terjadi-di-balik-layar) jika traffic bot jauh di bawah jumlah tersebut.
+> [Lewati bagian ini](#apa-yang-sebenarnya-terjadi-di-balik-layar) jika traffic bot jauh di bawah jumlah tersebut.
 
 JavaScript adalah single-threaded.
 Ini menakjubkan karena pada dasarnya [concurrency itu sulit](../advanced/scaling.md#concurrency-itu-sulit).
