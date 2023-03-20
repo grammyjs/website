@@ -58,12 +58,12 @@ You can use this short example bot as a starting point:
 import * as functions from "firebase-functions";
 import { Bot, webhookCallback } from "grammy";
 
-const bot = new Bot(""); // <-- put your bot token between the ""
+const bot = new Bot("");
 
 bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
 bot.command("ping", (ctx) => ctx.reply(`Pong! ${new Date()}`));
 
-// During development, you can trigger your function from https://localhost/<firebase-projectname>/us-central1/helloworld.
+// During development, you can trigger your function from https://localhost/<firebase-projectname>/us-central1/helloworld
 export const helloWorld = functions.https.onRequest(webhookCallback(bot));
 ```
 
@@ -153,7 +153,7 @@ To deploy your function, just run:
 firebase deploy
 ```
 
-The Firebase CLI will give you the url of your function once the deployment is completed.
+The Firebase CLI will give you the URL of your function once the deployment is completed.
 It should look something like `https://<REGION>.<MY_PROJECT.cloudfunctions.net/helloWorld`.
 For a more detailed explanation you can take a look at step 8. of the [get started guide](https://firebase.google.com/docs/functions/get-started#deploy-functions-to-a-production-environment).
 

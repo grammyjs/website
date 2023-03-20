@@ -58,7 +58,7 @@ npm install -g firebase-tools
 import * as functions from "firebase-functions";
 import { Bot, webhookCallback } from "grammy";
 
-const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间
+const bot = new Bot("");
 
 bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
 bot.command("ping", (ctx) => ctx.reply(`Pong! ${new Date()}`));
