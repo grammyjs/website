@@ -432,7 +432,7 @@ bot.use(session({
 </CodeGroupItem>
 <CodeGroupItem title="JavaScript">
 
-```ts
+```js
 const { freeStorage } = require("@grammyjs/storage-free");
 
 bot.use(session({
@@ -475,7 +475,7 @@ interface SessionData {
 type MyContext = Context & SessionFlavor<SessionData>;
 
 // Crear el bot y registrar el middleware de sesión.
-const bot = new Bot<MyContext>(""); // <-- pon tu token de bot entre los ""
+const bot = new Bot<MyContext>("");
 
 bot.use(session({
   initial: () => ({ count: 0 }),
@@ -495,12 +495,12 @@ bot.start();
 </CodeGroupItem>
 <CodeGroupItem title="JavaScript">
 
-```ts
+```js
 const { Bot, session } = require("grammy");
 const { freeStorage } = require("@grammyjs/storage-free");
 
 // Crear el bot y registrar el middleware de sesión.
-const bot = new Bot(""); // <-- pon tu token de bot entre los ""
+const bot = new Bot("");
 
 bot.use(session({
   initial: () => ({ count: 0 }),
@@ -536,7 +536,7 @@ interface SessionData {
 type MyContext = Context & SessionFlavor<SessionData>;
 
 // Crear el bot y registrar el middleware de sesión.
-const bot = new Bot<MyContext>(""); // <-- pon tu token de bot entre los ""
+const bot = new Bot<MyContext>("");
 
 bot.use(session({
   initial: () => ({ count: 0 }),
@@ -818,7 +818,7 @@ const enhanced = enhanceStorage({
 </CodeGroupItem>
 <CodeGroupItem title="JavaScript">
 
-```ts
+```js
 function addBirthdayToPets(old) {
   return {
     pets: old.petNames.map((name) => ({ name })),

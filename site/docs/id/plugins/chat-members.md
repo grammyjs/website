@@ -33,7 +33,7 @@ type MyContext = Context & ChatMembersFlavor;
 
 const adapter = new MemorySessionStorage<ChatMember>();
 
-const bot = new Bot<MyContext>("<token bot kamu>");
+const bot = new Bot<MyContext>("");
 
 bot.use(chatMembers(adapter));
 
@@ -53,7 +53,7 @@ import { chatMembers } from "@grammyjs/chat-members";
 
 const adapter = new MemorySessionStorage();
 
-const bot = new Bot("<token bot kamu>");
+const bot = new Bot("");
 
 bot.use(chatMembers(adapter));
 
@@ -83,7 +83,7 @@ type MyContext = Context & ChatMembersFlavor;
 
 const adapter = new MemorySessionStorage<ChatMember>();
 
-const bot = new Bot<MyContext>("<token bot kamu>");
+const bot = new Bot<MyContext>("");
 
 bot.use(chatMembers(adapter));
 

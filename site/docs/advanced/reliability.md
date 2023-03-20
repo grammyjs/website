@@ -25,7 +25,7 @@ As you are going to stop your instance during operation at some point again, you
 ```ts
 import { Bot } from "grammy";
 
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 // Stopping the bot when the Node process
 // is about to be terminated
@@ -42,7 +42,7 @@ await bot.start();
 ```js
 const { Bot } = require("grammy");
 
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 // Stopping the bot when the Node process
 // is about to be terminated
@@ -59,7 +59,7 @@ await bot.start();
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 // Stopping the bot when the Deno process
 // is about to be terminated
@@ -82,7 +82,7 @@ await bot.start();
 import { Bot } from "grammy";
 import { run } from "@grammyjs/runner";
 
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 const runner = run(bot);
 
@@ -101,7 +101,7 @@ process.once("SIGTERM", stopRunner);
 const { Bot } = require("grammy");
 const { run } = require("@grammyjs/runner");
 
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 const runner = run(bot);
 
@@ -119,7 +119,7 @@ process.once("SIGTERM", stopRunner);
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { run } from "https://deno.land/x/grammy_runner/mod.ts";
 
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 const runner = run(bot);
 

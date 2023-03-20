@@ -43,7 +43,7 @@ import { Bot } from "grammy";
 import { hydrateFiles } from "@grammyjs/files";
 
 // 创建一个 bot。
-const bot = new Bot("BOT_TOKEN");
+const bot = new Bot("");
 
 // 使用插件。
 bot.api.config.use(hydrateFiles(bot.token));

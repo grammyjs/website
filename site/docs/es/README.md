@@ -40,7 +40,7 @@ Bots están escritos en [TypeScript](https://www.typescriptlang.org) (o JavaScri
 ```ts
 import { Bot } from "grammy";
 
-const bot = new Bot(""); // <-- Pon el token del bot aquí (https://t.me/BotFather)
+const bot = new Bot(""); // <-- pon tu token entre los "" (https://t.me/BotFather)
 
 // Responde a cualquier mensaje con "¡Hola a todos!".
 bot.on("message", (ctx) => ctx.reply("¡Hola a todos!"));
@@ -54,7 +54,7 @@ bot.start();
 ```js
 const { Bot } = require("grammy");
 
-const bot = new Bot(""); // <-- Pon el token del bot aquí (https://t.me/BotFather)
+const bot = new Bot(""); // <-- pon tu token entre los "" (https://t.me/BotFather)
 
 // Responde a cualquier mensaje con "¡Hola a todos!".
 bot.on("message", (ctx) => ctx.reply("¡Hola a todos!"));
@@ -68,7 +68,7 @@ bot.start();
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
-const bot = new Bot(""); // <-- Pon el token del bot aquí (https://t.me/BotFather)
+const bot = new Bot(""); // <-- pon tu token entre los "" (https://t.me/BotFather)
 
 // Responde a cualquier mensaje con "¡Hola a todos!".
 bot.on("message", (ctx) => ctx.reply("¡Hola a todos!"));

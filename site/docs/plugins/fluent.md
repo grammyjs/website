@@ -95,7 +95,7 @@ export type MyAppContext = Context & FluentContextFlavor;
 You will need to create your bot instance the following way in order to use the augmented context type:
 
 ```ts
-const bot = new Bot<MyAppContext>();
+const bot = new Bot<MyAppContext>("");
 ```
 
 And the final step would be to register the Fluent plugin itself with grammY:
