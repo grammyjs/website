@@ -93,7 +93,8 @@ bot.on("msg:text"); // Sama dengan menggunakan `:text`
 
 #### `edit`
 
-Shortcut `edit` mengelompokkan pesan dan postingan channel yang diedit.
+Shortcut `edit` mengelompokkan pesan serta postingan channel yang diedit.
+Dengan kata lain, menggunakan `edit` serupa dengan menyimak event `"edited_message"` dan `"edited_channel_post"`.
 
 ```ts
 bot.on("edit"); // Semua pesan dan postingan yang diedit
@@ -105,6 +106,7 @@ bot.on("edit:location"); // Lokasi terkini (live location) yang diperbarui
 #### `:media`
 
 Shortcut `:media` mengelompokkan pesan foto dan video.
+Dengan kata lain, menggunakan `:media` serupa dengan menyimak event `":photo"` dan `":video"`.
 
 ```ts
 bot.on("message:media"); // pesan foto atau video
@@ -114,7 +116,8 @@ bot.on(":media"); // pesan atau postingan channel berupa media
 
 #### `:file`
 
-Shortcut `:file` menggabungkan semua pesan yang mengandung file.
+Shortcut `:file` mengelompokkan semua pesan yang mengandung file.
+Dengan kata lain, menggunakan `:file` serupa dengan menyimak event `":photo"`, `":animation"`, `":audio"`, `":document"`, `":video"`, `":video_note"`, `":voice"`, dan `":sticker"`.
 Dengan begitu, kamu bisa yakin kalau `await ctx.getFile()` pasti mengembalikan sebuah object file.
 
 ```ts
