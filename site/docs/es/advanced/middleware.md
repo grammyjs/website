@@ -13,7 +13,7 @@ Aunque no está mal que se pueda utilizar el middleware de esta forma lineal (ta
 Normalmente, se ve el siguiente patrón.
 
 ```ts
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 bot.use(/* ... */);
 bot.use(/* ... */);
@@ -43,7 +43,7 @@ La diferencia puede parecer sutil, pero espera hasta la siguiente subsección pa
 Puede instalar más middlewares en una instancia de `Composer` incluso después de instalar el propio `Composer` en algún lugar.
 
 ```ts
-const bot = new Bot("<token>"); // subclase de `Composer`
+const bot = new Bot(""); // subclase de `Composer`
 
 const composer = new Composer();
 bot.use(composer);

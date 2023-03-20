@@ -167,8 +167,10 @@ Langkah berikutnya, buat `bot.ts` lalu tulis kode berikut:
 ```ts
 import { Bot } from "grammy";
 
-if (process.env.BOT_TOKEN == null) throw Error("Token bot tidak ditemukan!");
-export const bot = new Bot(`${process.env.BOT_TOKEN}`);
+const token = process.env.BOT_TOKEN;
+if (!token) throw new Error("BOT_TOKEN belum diisi");
+
+export const bot = new Bot(token);
 
 bot.command("start", (ctx) => ctx.reply("Haloooo!"));
 bot.on("message", (ctx) => ctx.reply("Dapat pesan baru!"));
@@ -188,7 +190,10 @@ Kita bisa mengisi [informasi bot](https://deno.land/x/grammy/mod.ts?s=BotConfig#
 2. Ubah kode di baris ke-4 di atas dengan value yang telah kita dapat dari `getMe` tadi:
 
 ```ts
-export const bot = new Bot(`${process.env.BOT_TOKEN}`, {
+const token = process.env.BOT_TOKEN;
+if (!token) throw new Error("BOT_TOKEN belum diisi");
+
+export const bot = new Bot(token, {
   botInfo: {
     id: 111111111,
     is_bot: true,
@@ -230,10 +235,10 @@ Pastikan ia memiliki baris-baris kode berikut:
 ```ts
 import { Bot } from "grammy";
 
-if (process.env.BOT_TOKEN == null) {
-  throw new Error("Token bot tidak ditemukan!");
-}
-const bot = new Bot(process.env.BOT_TOKEN);
+const token = process.env.BOT_TOKEN;
+if (!token) throw new Error("BOT_TOKEN belum diisi");
+
+const bot = new Bot(token);
 
 bot.command(
   "start",

@@ -22,16 +22,12 @@ import { Bot } from "grammy";
 import { run } from "@grammyjs/runner";
 import { apiThrottler } from "@grammyjs/transformer-throttler";
 
-const botToken = process.env.BOT_TOKEN;
-if (!botToken) {
-  throw Error("BOT_TOKEN diperlukan!");
-}
-const bot = new Bot(botToken);
+const bot = new Bot("");
 
 const throttler = apiThrottler();
 bot.api.config.use(throttler);
 
-bot.command("/example", (ctx) => ctx.reply("Aku di-throttler."));
+bot.command("example", (ctx) => ctx.reply("Aku di-throttler."));
 
 // Kalau kamu menggunakan throttler, kemungkinan besar kamu juga ingin
 // menggunakan runner untuk menangani update secara bersamaan.
@@ -46,16 +42,12 @@ const { Bot } = require("grammy");
 const { run } = require("@grammyjs/runner");
 const { apiThrottler } = require("@grammyjs/transformer-throttler");
 
-const botToken = process.env.BOT_TOKEN;
-if (!botToken) {
-  throw Error("BOT_TOKEN diperlukan!");
-}
-const bot = new Bot(botToken);
+const bot = new Bot("");
 
 const throttler = apiThrottler();
 bot.api.config.use(throttler);
 
-bot.command("/example", (ctx) => ctx.reply("Aku di-throttler."));
+bot.command("example", (ctx) => ctx.reply("Aku di-throttler."));
 
 // Kalau kamu menggunakan throttler, kemungkinan besar kamu juga ingin
 // menggunakan runner untuk menangani update secara bersamaan.
@@ -70,16 +62,12 @@ import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { run } from "https://deno.land/x/grammy_runner/mod.ts";
 import { apiThrottler } from "https://deno.land/x/grammy_transformer_throttler/mod.ts";
 
-const botToken = Deno.env.get("BOT_TOKEN");
-if (!botToken) {
-  throw Error("BOT_TOKEN diperlukan!");
-}
-const bot = new Bot(botToken);
+const bot = new Bot("");
 
 const throttler = apiThrottler();
 bot.api.config.use(throttler);
 
-bot.command("/example", (ctx) => ctx.reply("Aku di-throttler."));
+bot.command("example", (ctx) => ctx.reply("Aku di-throttler."));
 
 // Kalau kamu menggunakan throttler, kemungkinan besar kamu juga ingin
 // menggunakan runner untuk menangani update secara bersamaan.

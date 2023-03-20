@@ -26,7 +26,7 @@ Sebelum mematikan bot atau instance yang sedang berjalan, kamu sebaiknya menangk
 ```ts
 import { Bot } from "grammy";
 
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 // Hentikan bot ketika proses Node.js akan dimatikan
 process.once("SIGINT", () => bot.stop());
@@ -42,7 +42,7 @@ await bot.start();
 ```js
 const { Bot } = require("grammy");
 
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 // Hentikan bot ketika proses Node.js akan dimatikan
 process.once("SIGINT", () => bot.stop());
@@ -58,7 +58,7 @@ await bot.start();
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 // Hentikan bot ketika proses Deno akan dimatikan
 Deno.addSignalListener("SIGINT", () => bot.stop());
@@ -80,7 +80,7 @@ await bot.start();
 import { Bot } from "grammy";
 import { run } from "@grammyjs/runner";
 
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 const runner = run(bot);
 
@@ -98,7 +98,7 @@ process.once("SIGTERM", stopRunner);
 const { Bot } = require("grammy");
 const { run } = require("@grammyjs/runner");
 
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 const runner = run(bot);
 
@@ -115,7 +115,7 @@ process.once("SIGTERM", stopRunner);
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { run } from "https://deno.land/x/grammy_runner/mod.ts";
 
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 const runner = run(bot);
 

@@ -25,7 +25,7 @@ next: ./flood.md
 ```ts
 import { Bot } from "grammy";
 
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 // 当 Node 进程将要被终止时，停止你的 bot。
 process.once("SIGINT", () => bot.stop());
@@ -41,7 +41,7 @@ await bot.start();
 ```js
 const { Bot } = require("grammy");
 
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 // 当 Node 进程将要被终止时，停止你的 bot。
 process.once("SIGINT", () => bot.stop());
@@ -57,7 +57,7 @@ await bot.start();
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 // 当 Deno 进程将要被终止时，停止你的 bot。
 Deno.addSignalListener("SIGINT", () => bot.stop());
@@ -79,7 +79,7 @@ await bot.start();
 import { Bot } from "grammy";
 import { run } from "@grammyjs/runner";
 
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 const runner = run(bot);
 
@@ -97,7 +97,7 @@ process.once("SIGTERM", stopRunner);
 const { Bot } = require("grammy");
 const { run } = require("@grammyjs/runner");
 
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 const runner = run(bot);
 
@@ -114,7 +114,7 @@ process.once("SIGTERM", stopRunner);
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { run } from "https://deno.land/x/grammy_runner/mod.ts";
 
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 const runner = run(bot);
 

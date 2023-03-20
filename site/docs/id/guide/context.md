@@ -282,7 +282,7 @@ Type baru `MyContext` sekarang secara akurat mendeskripsikan object context bot 
 Kamu bisa menggunakan type baru dengan memasangnya ke constructor `Bot`.
 
 ```ts
-const bot = new Bot<MyContext>("<token_bot_kamu>");
+const bot = new Bot<MyContext>("");
 ```
 
 Hasil akhirnya menjadi seperti ini:
@@ -302,7 +302,7 @@ type MyContext = Context & {
   config: BotConfig;
 };
 
-const bot = new Bot<MyContext>("<token_bot_kamu>");
+const bot = new Bot<MyContext>("");
 
 // Atur property yang diinginkan di object context.
 bot.use(async (ctx, next) => {
@@ -326,7 +326,7 @@ bot.command("start", async (ctx) => {
 ```js
 const BOT_DEVELOPER = 123456; // Id chat developer
 
-const bot = new Bot("<token_bot_kamu>");
+const bot = new Bot("");
 
 // Atur property yang diinginkan di object context.
 bot.use(async (ctx, next) => {
@@ -393,7 +393,7 @@ class MyContext extends Context {
 }
 
 // Masukkan constructor class context modifikasi sebagai sebuah opsi.
-const bot = new Bot("<token>", {
+const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
@@ -423,7 +423,7 @@ class MyContext extends Context {
 }
 
 // Masukkan constructor class context modifikasi sebagai sebuah opsi.
-const bot = new Bot("<token>", {
+const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
@@ -454,7 +454,7 @@ class MyContext extends Context {
 }
 
 // Masukkan constructor class context modifikasi sebagai sebuah opsi.
-const bot = new Bot("<token>", {
+const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
