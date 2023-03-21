@@ -30,4 +30,4 @@ Invece di risolvere il problema dopo il fatto, è molto meglio accodare tutte le
 grammY ti fornisce il [plugin throttler](../plugins/transformer-throttler.md) che fa automaticamente rispettare al tuo bot tutti i limiti di richieste accodando le richieste in uscita dal tuo bot in una coda di messaggi.
 Questo plugin è altrettanto semplice da configurare ma fa un lavoro molto migliore nel controllo del flood.
 Non c'è davvero alcuna buona ragione per usare [auto-retry](../plugins/auto-retry.md) invece che [plugin throttler](../plugins/transformer-throttler.md).
-In alcuni casi potrebbe avere senso usarli entrambi. 
+In alcuni casi potrebbe avere senso usarli entrambi.
