@@ -175,7 +175,7 @@ Se è cruciale evitarlo, è necessario usare sources e sinks del pacchetto gramm
 
 1. Fondamentalmente, dovresti creare un [sink](https://deno.land/x/grammy_runner/mod.ts?s=UpdateSink) che aggiunge alla coda e avviare un runner che fornisce solo la tua coda di messaggi.
 2. Successivamente, dovresti creare una [source](https://deno.land/x/grammy_runner/mod.ts?s=UpdateSource) che recupera nuovamente dalla coda di messaggi i dati.
-    In pratica, verranno eseguite due diverse istanze del grammY runner.
+   In pratica, verranno eseguite due diverse istanze del grammY runner.
 
 Questo processo generico descritto qua sopra è stato solo pensato e non implementato, per quanto ne sappiamo.
 [Contatta il gruppo Telegram](https://t.me/grammyjs) se hai qualche domanda o provi ad implementarlo e puoi condividere il tuo progresso.
