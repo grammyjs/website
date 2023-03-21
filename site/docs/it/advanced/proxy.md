@@ -9,7 +9,7 @@ grammY consente di configurare diverse opzioni relative a come vengono eseguite 
 Questo include l'inserimento di un payload personalizzato in ogni richeista, che può essere utilizzato per inizializzare un agente proxy.
 Consulta `ApiClientOptions` nella [grammY API Reference](https://deno.land/x/grammy/mod.ts?s=ApiClientOptions).
 
-In Deno, ecco come utilizzare un proxy `http`: 
+In Deno, ecco come utilizzare un proxy `http`:
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
