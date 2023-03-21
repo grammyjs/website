@@ -15,7 +15,7 @@ Jika kamu memerlukan penjelasan yang lebih detail untuk setiap langkah-langkahny
 ### Membuat Proyek Firebase
 
 1. Buka [Firebase console](https://console.firebase.google.com/) lalu klik **Add Project** untuk menambahkan project baru.
-2. Jika diminta, tinjau dan setujui syarat serta kebijakan Firebase.
+2. Setujui syarat dan ketentuan Firebase yang berlaku.
 3. Klik **Continue** untuk melanjutkan.
 4. Tentukan apakah kamu ingin menggunakan _analytic_ atau tidak.
 5. Klik **Create Project** untuk membuat project baru.
