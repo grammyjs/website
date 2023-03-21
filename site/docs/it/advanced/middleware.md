@@ -26,21 +26,21 @@ bot.start();
 ```
 
 Sembra esattamente una pila, ma dietro le quinte è in realtà un albero.
-Il cuore di questa funzionalità è la classe `Composer` ([riferimento](https://deno.land/x/grammy/mod.ts?s=Composer)) che costruisce questo albero.
+Il cuore di questa funzionalità è la classe `Composer` ([riferimento](https://deno.land/x/grammy/mod.ts?s=Composer)) che costruisce questa struttura ad albero.
 
 Prima di tutto, ogni istanza di `Bot` è un'istanza di `Composer`.
 È solo una sottoclasse, quindi `class Bot extends Composer`.
 
-Inoltre, è importante sapere che ogni metodo di `Composer` intrenamente chiama `use`.
-Per esempio, `filter` chiama solo `use` con alcuni middleware di diramazione, mentre `on` chiama di nuovo `filter` con alcune funzioni predicato che confronta gli aggiornamento con la data [query di filtro](../guide/filter-queries.md).
+Inoltre, è importante sapere che ogni metodo di `Composer` internamente chiama `use`.
+Per esempio, `filter` chiama solo `use` con alcuni middleware di diramazione, mentre `on` chiama di nuovo `filter` con alcune funzioni predicato che confronta i nuovi dati con la data [query di filtro](../guide/filter-queries.md).
 Possiamo quinid limitarci a guardare `use` per ora, e il resto seguirà.
 
-Guardiamo ora un po' più in dettaglio cosa fa `Composer` con le tue chiamate`use`, e come si dfferenza da altri middleware.
+Guardiamo ora un po' più in dettaglio come si comporta `Composer` con le chiamate `use`, e come si differenzia da altri middleware.
 La differenza potrebbe sembrare subdola, ma aspetta di vedere la prossima sottosezione per scoprire perchè ha conseguenze notevoli.
 
 ## Ampliamento di `Composer`
 
-Puoi installare più middleware in un' istanza di `Composer` anche dopo aver chiamato `Composer` stesso da qualche parte.
+Puoi installare più middleware in una stessa istanza di `Composer`, anche se questa è già stata installata.
 
 ```ts
 const bot = new Bot("<token>"); // sottoclasse di `Composer`
@@ -76,15 +76,15 @@ Riesci a vederlo?
 Come puoi immaginare, tutto il middleware verrà eseguito in ordine da `A` ad `L`.
 
 Altre librerie internamente appiattirebbero questo codice per renderlo equivalente a `composer.use(/* A */).use(/* B */).use(/* C */).use(/* D */)...` e via dicendo.
-Al contrario, grammY preserva l'albero da te specificato: un nodo base (`composer`) ha cinque figli (`A`, `B`, `D`, `H`, `J`), mentre il figlio `B` ha un altro figlio, `C`, e via dicendo.
+Al contrario, grammY preserva l'albero da te specificato: un nodo base (`composer`) ha cinque diramature (`A`, `B`, `D`, `H`, `J`), mentre il nodo `B` ha un'altra diramazione, `C`, e via dicendo.
 Questo albero verrà poi traversato da ogni aggiornamento in ordine di profondità, quindi passando in modo efficiente da `A` ad `L` in ordine lineare, come sei abituato su altri sistemi.
 
 Questo è reso possibile con la creazione di un nuovo `Composer` ogni volta che chiami `use` che verrà a sua volta esteso (come spiegato sopra).
 
 ## Concatenare le chiamate `use`
 
-Se utilizziamo solo `use`, non sarebbe troppo utile.
-Diventa più interesaste quando, per esempio, entra in gioco `filter`.
+Se utilizzassimo solo `use`, non sarebbe troppo utile.
+Diventa più interessante quando, per esempio, entra in gioco `filter`.
 
 Guarda questo:
 
