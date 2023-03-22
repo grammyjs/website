@@ -156,6 +156,9 @@ run(bot, { runner: { fetch: { allowed_updates: [] } } });
 
 ## Multithreading
 
+> There is no point to multithreading if your bot does not process at least 50 million updates per day (>500 per second).
+> [Skip this section](#how-it-works-behind-the-scenes) if your bot handles less traffic than that.
+
 JavaScript is single-threaded.
 This is amazing because [concurrency is hard](../advanced/scaling.md#concurrency-is-hard), meaning that if there is only a single thread, a lot of headache is naturally removed.
 
