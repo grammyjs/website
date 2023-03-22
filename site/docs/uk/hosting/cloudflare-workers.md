@@ -44,7 +44,7 @@ npx wrangler generate my-bot
 npm install grammy
 ```
 
-## Creating Your Bot
+## Створення вашого бота
 
 Відредагуйте `src/index.js` або `src/index.ts` та напишіть такий код всередині:
 
