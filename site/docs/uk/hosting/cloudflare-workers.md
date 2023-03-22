@@ -8,7 +8,7 @@
 
 ## Передумови
 
-Щоб продовжити, переконайтеся, що у вас є [аккаунт Cloudflare](https://dash.cloudflare.com/login) з налаштованою піддоменою [workers](https://dash.cloudflare.com/?account=workers) налаштуваннями.
+Щоб продовжити, переконайтеся, що у вас є [обліковий запис Cloudflare](https://dash.cloudflare.com/login) з [налаштованим](https://dash.cloudflare.com/?account=workers) піддоменом worker'ів.
 
 ## Налаштування
 
