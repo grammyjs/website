@@ -73,7 +73,7 @@ addEventListener("fetch", webhookCallback(bot, "cloudflare"));
 ```toml
 account_id = 'ідентифікатор облікового запису' # Отримайте його з панелі керування Cloudflare.
 name = 'my-bot' # Назва вашого бота, яка зʼявиться в URL-адресі вебхука: https://my-bot.my-subdomain.workers.dev
-main = "src/index.js"  # Основний файл робітника.
+main = "src/index.js"  # Основний файл worker'а.
 compatibility_date = "2023-01-16"
 ```
 
