@@ -18,7 +18,7 @@ No, it's not.
    If it is, then grammY will collect it in the options object called `other`.
    Pass `{ parameter_name: value }` in that place and it'll work.
    As always, TypeScript will auto-complete the parameter names for you.
-3. Perhaps double-check the method signature for [actions](../guide/context.md#available-actions) on `ctx` [here](https://deno.land/x/grammy/mod.ts?s=Context#Methods), or for API methods (`ctx.api`, `bot.api`) [here](https://deno.land/x/grammy@/mod.ts?s=Api#Methods).
+3. Perhaps double-check the method signature for [actions](../guide/context.md#available-actions) on `ctx` [here](https://deno.land/x/grammy/mod.ts?s=Context#Methods), or for API methods (`ctx.api`, `bot.api`) [here](https://deno.land/x/grammy/mod.ts?s=Api#Methods).
 
 ## Why Am I Getting This Error?
 
