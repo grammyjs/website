@@ -53,7 +53,7 @@ npm install grammy
 import { Bot, webhookCallback } from "grammy/web";
 
 // Наступний рядок коду передбачає, що ви налаштували секрети BOT_TOKEN та BOT_INFO.
-// Див. https://developers.cloudflare.com/workers/platform/environment-variables/#secrets-on-deployed-workers
+// Дивіться https://developers.cloudflare.com/workers/platform/environment-variables/#secrets-on-deployed-workers
 // BOT_INFO отримуємо за допомогою `bot.api.getMe()`.
 const bot = new Bot(BOT_TOKEN, { botInfo: BOT_INFO });
 
