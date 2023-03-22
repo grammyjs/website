@@ -9,7 +9,7 @@
 如果你使用长轮询的方式来托管你的机器人，并且希望它能够扩展，那么就没有办法避免并发处理 update，因为顺序处理 update 太慢了。
 因此，bots 将面临一系列的挑战。
 
-- 是否存在竞争条件？
+- 是否存在竞态条件？
 - 我们是否还能 `await` 中间件堆栈？我们必须用它来处理错误！
 - 如果中间件因为某种原因永远不能解决，是否会阻塞 bot？
 - 我们可以按顺序处理一些选定的 update 吗？
@@ -155,19 +155,22 @@ run(bot, { runner: { fetch: { allowed_updates: [] } } });
 
 ## 多线程
 
+> 如果你的 bot 每天不处理至少 5000 万个 update （每秒 >500 个），那么多线程就毫无意义。
+> 如果你的 bot 处理的流量比这少，那么请 [跳过此部分](#它背后是如何工作的)。
+
 JavaScript 是单线程的。
 这很棒棒，因为[并发是困难的](../advanced/scaling.md#并发是困难的)，这意味着如果只有一个线程，自然会消除很多令人头疼的问题。
 
 然而，如果你的 bot 负载非常高（我们说的是每秒 1000 个以上的 update），那么在单个内核上完成所有工作可能就不够了。
-基本上，单个核心在处理你的 bot 必须处理的所有消息的 JSON 时就开始心有余而力不足了。
+基本上，单个核心在处理你的 bot 所必须处理的所有消息的 JSON 时就开始心有余而力不足了。
 
 ### 用于处理 Update 的 Bot Worker
 
 这有一个简单的出路：bot worker！
 grammY runner 允许你创建多个 worker，它们可以在实际不同的核心（使用不同的事件循环和单独的内存）上并行处理你的 update。
 
-在 Node.js 中, grammY runner 使用 [Worker 线程](https://nodejs.org/api/worker_threads.html).
-在 Deno 中, grammY runner 使用 [Web Workers](https://deno.land/manual/runtime/workers).
+在 Node.js 中, grammY runner 使用 [Worker 线程](https://nodejs.org/api/worker_threads.html)。
+在 Deno 中, grammY runner 使用 [Web Workers](https://deno.land/manual/runtime/workers)。
 
 从概念上讲，grammY runner 为你提供了一个名为 `BotWorker` 的类，它可以处理 update。
 它等同于常规类 `Bot`（实际上，它甚至是 `extends Bot`）。
