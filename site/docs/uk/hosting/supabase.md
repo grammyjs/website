@@ -15,7 +15,7 @@ The result of this tutorial [can be seen in our example bots repository](https:/
 
 ## Налаштування
 
-Щоб розгорнути функцію Supabase Edge, вам потрібно створити обліковий запис Supabase, встановити їхній інтерфейс командного рядка та створити проект Supabase.
+Щоб розгорнути функцію Supabase Edge, вам потрібно створити обліковий запис Supabase, встановити їхній інтерфейс командного рядка та створити проєкт Supabase.
 Спочатку вам слід ознайомитися з [їхньою документацією](https://supabase.com/docs/guides/functions#prerequisites) та встановити необхідне програмне забезпечення.
 
 Створіть нову функцію Supabase, запустивши цю команду:
@@ -24,7 +24,7 @@ The result of this tutorial [can be seen in our example bots repository](https:/
 supabase functions new telegram-bot
 ```
 
-Після створення проекту функції Supabase ви можете написати свого бота.
+Після створення проєкту функції Supabase ви можете написати свого бота.
 
 ## Підготовка вашого коду
 
@@ -87,7 +87,7 @@ https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<PROJECT_NAME>.fu
 
 Замініть `<BOT_TOKEN>` на свій реальний токен бота.
 Також замініть друге входження `<BOT_TOKEN>` на свій реальний токен бота.
-Замініть `<PROJECT_NAME>` на назву вашого проекту Supabase.
+Замініть `<PROJECT_NAME>` на назву вашого проєкту Supabase.
 
 Тепер ви повинні побачити це на сторінці вашого браузера.
 
