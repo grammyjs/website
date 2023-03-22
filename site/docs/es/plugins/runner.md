@@ -157,7 +157,7 @@ run(bot, { runner: { fetch: { allowed_updates: [] } } });
 ## Multihilo
 
 > No tiene sentido el multithreading si tu bot no procesa al menos 50 millones de actualizaciones al día (>500 por segundo).
-> [Sáltate esta sección](#cómo-funciona-entre-bastidores) si tu bot maneja menos tráfico que eso.
+> [Sáltate esta sección](#como-funciona-entre-bastidores) si tu bot maneja menos tráfico que eso.
 
 JavaScript es monohilo.
 Esto es asombroso porque la [concurrencia es dificil](../advanced/scaling.md#la-concurrencia-es-dificil), lo que significa que si sólo hay un único hilo, naturalmente se eliminan muchos quebraderos de cabeza.
