@@ -13,7 +13,7 @@ next: ./context.md
 
 ```ts
 bot.on("message", (ctx) => {
-  const message = ctx.message; // об'єкт повідомлення
+  const message = ctx.message; // обʼєкт повідомлення
 });
 ```
 
@@ -21,10 +21,14 @@ bot.on("message", (ctx) => {
 
 ```ts
 // Оброблюємо команди, такі як /start.
-bot.command("start", (ctx) => {/* ... */});
+bot.command("start", (ctx) => {
+  /* ... */
+});
 
 // Зіставляємо текст повідомлення з рядком або регулярним виразом.
-bot.hears(/echo *(.+)?/, (ctx) => {/* ... */});
+bot.hears(/echo *(.+)?/, (ctx) => {
+  /* ... */
+});
 ```
 
 Ви можете скористатися автодоповненням у своєму редакторі коду, щоб побачити всі доступні параметри, або переглянути [всі методи](https://deno.land/x/grammy/mod.ts?s=Composer) класу `Composer`.
@@ -39,7 +43,9 @@ bot.hears(/echo *(.+)?/, (ctx) => {/* ... */});
 // Надсилаємо текстове повідомлення користувачу з id 12345.
 await bot.api.sendMessage(12345, "Привіт!");
 // За бажанням ми можемо передати об’єкт параметрів.
-await bot.api.sendMessage(12345, "Привіт!", {/* додаткові параметри */});
+await bot.api.sendMessage(12345, "Привіт!", {
+  /* додаткові параметри */
+});
 
 // Отримуємо інформацію про самого бота.
 const me = await bot.api.getMe();
@@ -89,7 +95,9 @@ bot.hears("ping", async (ctx) => {
 await bot.api.sendMessage(
   12345,
   "*Привіт\\!* _Ласкаво просимо_ до [grammY](https://grammy.dev)\\.",
-  { parse_mode: "MarkdownV2" },
+  {
+    parse_mode: "MarkdownV2",
+  },
 );
 ```
 
@@ -103,7 +111,9 @@ await bot.api.sendMessage(
 await bot.api.sendMessage(
   12345,
   '<b>Привіт!</b> <i>Ласкаво просимо</i> до <a href="https://grammy.dev">grammY</a>.',
-  { parse_mode: "HTML" },
+  {
+    parse_mode: "HTML",
+  },
 );
 ```
 

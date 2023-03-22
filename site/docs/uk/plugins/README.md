@@ -41,7 +41,7 @@ next: ./guide.md
 | Conversations               | [`conversations`](./conversations.md)                 | Створюйте потужні діалогові інтерфейси                                      |
 | Emoji                       | [`emoji`](./emoji.md)                                 | Спрощене використання емодзі в коді                                         |
 | Files                       | [`files`](./files.md)                                 | Легка робота з файлами                                                      |
-| Hydration                   | [`hydrate`](./hydrate.md)                             | Виклик методів в об'єктах, що повертаються з викликів API                   |
+| Hydration                   | [`hydrate`](./hydrate.md)                             | Виклик методів в обʼєктах, що повертаються з викликів API                   |
 | Internationalization        | [`i18n`](./i18n.md) or [`fluent`](./fluent.md)        | Дозвольте вашому боту розмовляти кількома мовами                            |
 | Interactive Menus           | [`menu`](./menu.md)                                   | Створюйте динамічні меню з кнопками та гнучкою навігацією                   |
 | Parse Mode                  | [`parse-mode`](./parse-mode.md)                       | Спрощене форматування повідомлень                                           |

@@ -11,7 +11,7 @@ next: ./api.md
 
 ```ts
 bot.on("message", (ctx) => {
-  // `ctx` - це об'єкт `Context`.
+  // `ctx` - це обʼєкт `Context`.
 });
 ```
 
@@ -124,7 +124,7 @@ if (ctx.hasCallbackQuery(/query-data-\d+/)) {
 
 Те саме стосується всіх інших перевірок.
 Перегляньте [довідку API про об’єкт контексту](https://deno.land/x/grammy/mod.ts?s=Context#method_has_0), щоб побачити список усіх has перевірок.
-Також перегляньте статичну властивість `Context.has` у [довідці API](https://deno.land/x/grammy/mod.ts?s=Context#Static_Properties), яка дозволяє створювати ефективні предикатні функції для дослідження багатьох об'єктів контексту.
+Також перегляньте статичну властивість `Context.has` у [довідці API](https://deno.land/x/grammy/mod.ts?s=Context#Static_Properties), яка дозволяє створювати ефективні предикатні функції для дослідження багатьох обʼєктів контексту.
 
 ## Доступні дії
 
@@ -563,11 +563,7 @@ type MyContext = FlavorX<FlavorY<FlavorZ<Context>>>;
 
 ```ts
 type MyContext = FlavorX<
-  FlavorY<
-    FlavorZ<
-      Context & FlavorA & FlavorB & FlavorC
-    >
-  >
+  FlavorY<FlavorZ<Context & FlavorA & FlavorB & FlavorC>>
 >;
 ```
 
