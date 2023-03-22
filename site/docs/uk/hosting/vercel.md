@@ -27,12 +27,12 @@
 
 ```json
 {
-	"functions": {
-		"api/bot.ts": {
-			"memory": 1024,
-			"maxDuration": 10
-		}
-	}
+  "functions": {
+    "api/bot.ts": {
+      "memory": 1024,
+      "maxDuration": 10
+    }
+  }
 }
 ```
 
@@ -107,9 +107,9 @@ Where `bot` is referring to your `bot.ts` or `bot.js` file.
 
 ```json
 {
-	"ok": true,
-	"result": true,
-	"description": "Webhook was set"
+  "ok": true,
+  "result": true,
+  "description": "Webhook was set"
 }
 ```
 
