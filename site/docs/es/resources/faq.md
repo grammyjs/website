@@ -15,10 +15,11 @@ Probablemente quieras entender mejor [esto](../guide).
 No, no es así.
 
 1. Asegúrate de que tienes instalada la última versión de grammY.
-2. Comprueba si el parámetro es opcional.
+2. Comprueba [aquí](https://core.telegram.org/bots/api) si el parámetro es opcional.
    Si lo es, entonces grammY lo recogerá en el objeto de opciones llamado `other`.
    Pasa `{ parameter_name: value }` en ese lugar y funcionará.
    Como siempre, TypeScript autocompletará los nombres de los parámetros por ti.
+3. Comprueba la firma del método para las [acciones disponibles](../guide/context.html#acciones-disponibles) en `ctx` [here](https://deno.land/x/grammy/mod.ts?s=Context#Methods), o para los métodos API (`ctx.api`, `bot.api`) [here](https://deno.land/x/grammy@/mod.ts?s=Api#Methods).
 
 ## ¿Por qué recibo este error?
 
