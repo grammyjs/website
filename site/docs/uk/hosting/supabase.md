@@ -3,13 +3,13 @@
 Цей посібник розповість вам, як ви можете розмістити ваших ботів grammY на [Supabase](https://supabase.com/).
 
 Зверніть увагу, що вам потрібен обліковий запис [GitHub](https://github.com), перш ніж ви зможете використовувати [Supabase Edge Functions](https://supabase.com/docs/guides/functions).
-Крім того, Supabase Edge Functions базуються на [Deno Deploy](https://deno.com/deploy), тому, як і в [нашому посібнику по Deno Deploy](./deno-deploy.md), цей посібник призначений тільки для користувачів Deno.
+Крім того, Supabase Edge Functions базуються на [Deno Deploy](https://deno.com/deploy), тому, як і [посібник по Deno Deploy](./deno-deploy.md), цей посібник призначений тільки для користувачів Deno.
 
 Supabase Edge Functions ідеально підходить для більшості простих ботів, але вам слід знати, що не всі можливості Deno доступні для застосунків, що працюють на Supabase Edge Functions.
 Наприклад, на Supabase Edge Functions немає файлової системи.
-Це так само, як і в багатьох інших безсерверних платформах, присвячених застосункам на Deno.
+Це така ж платформа, як і багато інших безсерверних платформ, але призначена для застосунків на Deno.
 
-Результат цього посібника можна переглянути в [нашому репозиторії прикладів ботів](https://github.com/grammyjs/examples/tree/main/supabase-edge-functions).
+Результат цього посібника можна переглянути в [репозиторії з прикладами ботів](https://github.com/grammyjs/examples/tree/main/supabase-edge-functions).
 
 ## Налаштування
 
@@ -28,7 +28,7 @@ supabase functions new telegram-bot
 
 > Не забудьте, що вам потрібно [запустити свого бота на вебхуках](../guide/deployment-types.md#як-використвувати-вебхуки), тому вам слід використовувати `webhookCallback` і не викликати `bot.start()` у своєму коді.
 
-Ви можете використати цей короткий приклад бота як початкову точку.
+Для початку ви можете скористатися цим простим прикладом бота.
 
 ```ts
 import { serve } from "https://deno.land/std/http/server.ts";
@@ -60,7 +60,7 @@ serve(async (req) => {
 ## Розгортання
 
 Тепер ви можете розгорнути свого бота на Supabase.
-Зверніть увагу, що вам потрібно вимкнути авторизацію JWT, оскільки Telegram використовує інший спосіб переконатися, що запити надходять саме з Telegram.
+Зверніть увагу, що вам потрібно вимкнути авторизацію JWT, оскільки Telegram використовує інший спосіб перевірки того, що запити надходять саме від Telegram.
 Ви можете розгорнути проєкт за допомогою цієї команди.
 
 ```sh
@@ -74,7 +74,7 @@ supabase functions deploy --no-verify-jwt telegram-bot
 supabase secrets set BOT_TOKEN=123:aBcDeF-gh
 ```
 
-Ваш проєкт Supabase Function працює.
+Тепер ваш проєкт на Supabase Function працює.
 Все, що залишається зробити, це повідомити Telegram, куди надсилати оновлення.
 Ви можете це зробити, викликавши `setWebhook`.
 Наприклад, відкрийте нову вкладку у вашому браузері та перейдіть за цим посиланням:
