@@ -93,7 +93,7 @@ https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<MY_BOT>.<MY_SUBD
 ```
 
 Замініть `<BOT_TOKEN>`, `<MY_BOT>` та `<MY_SUBDOMAIN>` своїми значеннями.
-Якщо налаштування пройшло успішно, ви побачите JSON-відповідь, схожу на цю:
+Якщо налаштування пройшло успішно, ви побачите відповідь у форматі JSON, схожу на цю:
 
 ```json
 {
