@@ -71,7 +71,7 @@ addEventListener("fetch", webhookCallback(bot, "cloudflare"));
 Перед розгортанням нам потрібно відредагувати файл `wrangler.toml`:
 
 ```toml
-account_id = 'ваш ідентифікатор облікового запису' # Отримайте його з панелі керування Cloudflare.
+account_id = 'ідентифікатор облікового запису' # Отримайте його з панелі керування Cloudflare.
 name = 'my-bot' # Назва вашого бота, яка зʼявиться в URL-адресі вебхука, наприклад: https://my-bot.my-subdomain.workers.dev
 main = "src/index.js"  # Основний файл робітника.
 compatibility_date = "2023-01-16"
