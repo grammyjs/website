@@ -18,7 +18,7 @@
    如果是，则 grammY 会将其收集到名为 `other` 的选项对象中。
    在那个地方传递 `{ parameter_name: value }` 就可以了。
    与以往一样，TypeScript 会为你自动补全参数名称。
-3. 也许在 [这里](https://deno.land/x/grammy/mod.ts?s=Context#Methods) 再次检查 `ctx` 上的 [操作](../guide/context.html#可用操作) 的方法签名，或在 [这里](https://deno.land/x/grammy@/mod.ts?s=Api#Methods) 检查 API 方法（`ctx.api`、`bot.api`）的方法签名。
+3. 也许在 [这里](https://deno.land/x/grammy/mod.ts?s=Context#Methods) 再次检查 `ctx` 上的 [操作](../guide/context.md#可用操作) 的方法签名，或在 [这里](https://deno.land/x/grammy@/mod.ts?s=Api#Methods) 检查 API 方法（`ctx.api`、`bot.api`）的方法签名。
 
 ## 为什么我会收到这个错误？
 
