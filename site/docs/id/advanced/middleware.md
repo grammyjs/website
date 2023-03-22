@@ -13,7 +13,7 @@ Meski tidak sepenuhnya salah, namun menyebutnya sebagai "tumpukan" atau _stack_ 
 Umumnya, kamu akan menemui pola seperti ini.
 
 ```ts
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 bot.use(/* ... */);
 bot.use(/* ... */);
@@ -43,7 +43,7 @@ Perbedaannya mungkin tidak begitu mencolok, tetapi tunggu hingga kita membahas m
 Kamu bisa memasang lebih banyak middleware di instance `Composer`, bahkan setelah memasang `Composer` itu sendiri di tempat lain.
 
 ```ts
-const bot = new Bot("<token>"); // subclass dari `Composer`
+const bot = new Bot(""); // subclass dari `Composer`
 
 const composer = new Composer();
 bot.use(composer);

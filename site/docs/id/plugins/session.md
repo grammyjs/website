@@ -433,7 +433,7 @@ bot.use(session({
 </CodeGroupItem>
 <CodeGroupItem title="JavaScript">
 
-```ts
+```js
 const { freeStorage } = require("@grammyjs/storage-free");
 
 bot.use(session({
@@ -476,7 +476,7 @@ interface SessionData {
 type MyContext = Context & SessionFlavor<SessionData>;
 
 // Buat bot lalu masukkan middleware session.
-const bot = new Bot<MyContext>(""); // <-- Taruh token bot-mu diantara ""
+const bot = new Bot<MyContext>("");
 
 bot.use(session({
   initial: () => ({ hitung: 0 }),
@@ -496,12 +496,12 @@ bot.start();
 </CodeGroupItem>
 <CodeGroupItem title="JavaScript">
 
-```ts
+```js
 const { Bot, session } = require("grammy");
 const { freeStorage } = require("@grammyjs/storage-free");
 
 // Buat bot lalu masukkan middleware session.
-const bot = new Bot(""); // <-- Taruh token bot-mu diantara ""
+const bot = new Bot("");
 
 bot.use(session({
   initial: () => ({ hitung: 0 }),
@@ -537,7 +537,7 @@ interface SessionData {
 type MyContext = Context & SessionFlavor<SessionData>;
 
 // Buat bot lalu masukkan middleware session.
-const bot = new Bot<MyContext>(""); // <-- Taruh token bot-mu diantara ""
+const bot = new Bot<MyContext>("");
 
 bot.use(session({
   initial: () => ({ hitung: 0 }),
@@ -559,19 +559,10 @@ bot.start();
 
 ### Storage Eksternal
 
-Kami mengelola daftar storage adapter resmi yang bisa kamu gunakan untuk menyimpan data session di berbagai tempat.
-Masing-masing dari mereka mengharuskan kamu untuk mendaftar di sebuah penyedia layanan hosting, ataupun meng-hosting storage-mu sendiri.
+Kami memiliki daftar storage adapter resmi yang bisa kamu gunakan untuk menyimpan data session di berbagai tempat.
+Beberapa di antaranya mengharuskan kamu untuk mendaftar di sebuah penyedia layanan hosting, ataupun meng-hosting storage-mu sendiri.
 
-- Supabase: <https://github.com/grammyjs/storages/tree/main/packages/supabase>
-- Deta.sh Base: <https://github.com/grammyjs/storages/tree/main/packages/deta>
-- Google Firestore (hanya untuk Node.js): <https://github.com/grammyjs/storages/tree/main/packages/firestore>
-- Files: <https://github.com/grammyjs/storages/tree/main/packages/file>
-- MongoDB: <https://github.com/grammyjs/storages/tree/main/packages/mongodb>
-- Redis: <https://github.com/grammyjs/storages/tree/main/packages/redis>
-- PostgreSQL: <https://github.com/grammyjs/storages/tree/main/packages/psql>
-- TypeORM (hanya untuk Node.js): <https://github.com/grammyjs/storages/tree/main/packages/typeorm>
-- DenoDB (hanya untuk Deno): <https://github.com/grammyjs/storages/tree/main/packages/denodb>
-- Prisma (hanya untuk Node.js): <https://github.com/grammyjs/storages/tree/main/packages/prisma>
+Kunjungi repository [berikut](https://github.com/grammyjs/storages/tree/main/packages#grammy-storages) untuk melihat adapter apa saja yang didukung serta mempelajari cara penggunaannya.
 
 ::: tip Storage pilihanmu belum didukung? Tidak masalah!
 Membuat storage adapter sendiri sangat mudah dilakukan.
@@ -835,7 +826,7 @@ const enhanced = enhanceStorage({
 </CodeGroupItem>
 <CodeGroupItem title="JavaScript">
 
-```ts
+```js
 function addBirthdayToPets(old) {
   return {
     pets: old.petNames.map((name) => ({ name })),

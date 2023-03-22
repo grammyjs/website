@@ -276,7 +276,7 @@ app.use(webhookCallback(bot, "oak"));
 传递一个函数，该函数决定是否对给定的请求使用 webhook 应答(由方法标识)。
 
 ```ts
-const bot = new Bot(token, {
+const bot = new Bot("", {
   client: {
     // 如果你愿意在某些方法上使用 webhook reply。
     canUseWebhookReply: (method) => method === "sendChatAction",

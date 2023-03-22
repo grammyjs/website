@@ -16,7 +16,7 @@ next: ./errors.md
 假设你写一个这样的 bot:
 
 ```ts{8}
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 bot.use(session());
 
@@ -91,7 +91,7 @@ type NextFunction = () => Promise<void>;
 让我们用我们的新知识尝试一下其他的东西吧!
 
 ```ts
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 bot.on(":text", (ctx) => ctx.reply("Text!"));
 bot.command("start", (ctx) => ctx.reply("Command!"));
@@ -253,7 +253,7 @@ bot.use(responseTime);
 它们大多在内部使用，但有时也可以帮助第三方库，或用于高级用例，如与 [Composer](https://deno.land/x/grammy/mod.ts?s=Composer)：
 
 ```ts
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 bot.use(/*...*/);
 bot.use(/*...*/);

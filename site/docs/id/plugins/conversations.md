@@ -420,7 +420,7 @@ Meski demikian, [plugin session](#menginstal-dan-memasuki-sebuah-percakapan) han
 Sehingga, jika kamu melempar sebuah error di dalam sebuah percakapan dan tidak segera menangkapnya sebelum error tersebut mencapai plugin session, maka status percakapan tersebut telah ditinggalkan tidak akan tersimpan.
 Akibatnya, pesan-pesan selanjutnya akan menghasilkan error yang sama.
 
-Kamu bisa mengatasinya dengan cara memasang sebuah [error boundary](../guide/errors.md#error-boundary) diantara session dan conversation terkait.
+Kamu bisa mengatasinya dengan cara memasang sebuah [error boundary](../guide/errors.md#error-boundary) di antara session dan conversation terkait.
 Dengan begitu, kamu bisa mencegah error mencapai [middleware tree](../advanced/middleware.md), yang mengakibatkan plugin session tidak dapat menulis data tersebut kembali.
 
 > Perlu diketahui bahwa jika kamu menggunakan in-memory sessions bawaan, semua perubahan pada data session akan langsung diterapkan saat itu juga, karena ia tidak memiliki storage backend.
@@ -1230,7 +1230,7 @@ Jika pemanggilan `wait` menghalangi sampai update berikutnya tiba, berarti pemro
   Ini mengakibatkan bot kamu terhalangi selamanya.
 - Untuk [grammY runner](./runner.md), bot tidak akan terhalangi.
   Tetapi, ketika memproses ribuan percakapan dari berbagai user secara paralel, ia akan mengonsumsi banyak sekali memory.
-  Jika banyak user yang berhenti merespon, bot akan terjebak diantara banyak sekali percakapan.
+  Jika banyak user yang berhenti merespon, bot akan terjebak di antara banyak sekali percakapan.
 - Webhooks juga mempunyai [masalahnya sendiri](../guide/deployment-types.md#mengakhiri-request-webhook-tepat-waktu) karena middleware yang terus berjalan tanpa henti.
 
 **State.**

@@ -16,7 +16,7 @@ Memanggilnya dengan sebutan "listener" hanyalah sebuah penyederhanaan saja, mesk
 Anggaplah kamu menulis bot seperti ini:
 
 ```ts{8}
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 bot.use(session());
 
@@ -92,7 +92,7 @@ Ia mengabaikan `next` begitu saja, sehingga update tidak diteruskan.
 Mari kita coba sesuatu yang lain dengan pengetahuan baru kita!
 
 ```ts
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 bot.on(":text", (ctx) => ctx.reply("Teks!"));
 bot.command("start", (ctx) => ctx.reply("Command!"));
@@ -254,7 +254,7 @@ Object middleware simpelnya adalah sebuah pembungkus dari suatu function middlew
 Kebanyakan cuma digunakan di internal, tetapi terkadang juga bisa membantu library pihak ketiga, atau digunakan untuk kasus tingkat lanjut, contohnya [Composer](https://deno.land/x/grammy/mod.ts?s=Composer):
 
 ```ts
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 bot.use(/*...*/);
 bot.use(/*...*/);

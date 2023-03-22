@@ -16,7 +16,7 @@ import { Bot } from "https://deno.land/x/grammy/mod.ts";
 const client = Deno.createHttpClient({
   proxy: { url: "http://host:port/" },
 });
-const bot = new Bot(TOKEN, {
+const bot = new Bot("", {
   client: {
     baseFetchConfig: {
       // @ts-ignore
@@ -28,14 +28,14 @@ const bot = new Bot(TOKEN, {
 
 > 请注意，你需要运行这个命令时加上 `--unstable` 参数。
 
-在 Node.js 中，下面是通过 [`socks5-https-client`](https://www.npmjs.com/package/socks-proxy-agent) 去使用代理的例子：
+在 Node.js 中，下面是通过 [`socks-proxy-agent`](https://www.npmjs.com/package/socks-proxy-agent) 去使用代理的例子：
 
 ```ts
 import { Bot } from "grammy";
 import { SocksProxyAgent } from "socks-proxy-agent";
 
 const socksAgent = new SocksProxyAgent({
-  host: host, // 输入代理主机
+  hostname: host, // 输入代理主机
   port: port, // 输入代理端口号
 });
 
