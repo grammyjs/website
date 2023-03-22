@@ -63,7 +63,7 @@ const bot = new Bot("");
 bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
 bot.command("ping", (ctx) => ctx.reply(`Pong! ${new Date()}`));
 
-// During development, you can trigger your function from https://localhost/<firebase-projectname>/us-central1/helloworld
+// During development, you can trigger your function from https://localhost/<firebase-projectname>/us-central1/helloWorld
 export const helloWorld = functions.https.onRequest(webhookCallback(bot));
 ```
 
@@ -161,7 +161,7 @@ After deploying, you need to tell Telegram where to send updates to your bot by 
 To do this, open a new browser tab and visit this URL:
 
 ```text:no-line-numbers
-https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<REGION>.<MY_PROJECT>.cloudfunctions.net/helloworld
+https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<REGION>.<MY_PROJECT>.cloudfunctions.net/helloWorld
 ```
 
 Replace `<BOT_TOKEN>` with your actual bot token, `<REGION>` with the name of the region where you deployed your function, and `<MY_PROJECT>` with the name of your Firebase project.

@@ -63,7 +63,7 @@ const bot = new Bot("");
 bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
 bot.command("ping", (ctx) => ctx.reply(`Pong! ${new Date()}`));
 
-// 在开发期间，你可以从 https://localhost/<firebase-projectname>/us-central1/helloworld 触发你的函数。
+// 在开发期间，你可以从 https://localhost/<firebase-projectname>/us-central1/helloWorld 触发你的函数。
 export const helloWorld = functions.https.onRequest(webhookCallback(bot));
 ```
 
@@ -161,7 +161,7 @@ firebase deploy
 为此，请打开一个新的浏览器选项卡并访问此 URL：
 
 ```text:no-line-numbers
-https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<REGION>.<MY_PROJECT>.cloudfunctions.net/helloworld
+https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<REGION>.<MY_PROJECT>.cloudfunctions.net/helloWorld
 ```
 
 将 `<BOT_TOKEN>` 替换为你实际的 bot token，将 `<REGION>` 替换为你部署函数的区域名称，并将 `<MY_PROJECT>` 替换为你的 Firebase 项目名称。

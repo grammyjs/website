@@ -66,7 +66,7 @@ bot.command(
 );
 bot.command("ping", (ctx) => ctx.reply(`Pong! ${new Date()}`));
 
-// Selama mengembangkan bot, kamu bisa men-trigger function kamu melalui https://localhost/<firebase-namaproyek>/us-central1/helloworld
+// Selama mengembangkan bot, kamu bisa men-trigger function kamu melalui https://localhost/<firebase-namaproyek>/us-central1/helloWorld
 export const helloWorld = functions.https.onRequest(webhookCallback(bot));
 ```
 
@@ -164,7 +164,7 @@ Setelah di-deploy, kamu perlu memberi tahu Telegram untuk mengirim update ke bot
 Buka sebuah tab browser baru, lalu kunjungi URL berikut:
 
 ```text:no-line-numbers
-https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<REGION>.<MY_PROJECT>.cloudfunctions.net/helloworld
+https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<REGION>.<MY_PROJECT>.cloudfunctions.net/helloWorld
 ```
 
 Ganti `<BOT_TOKEN>` dengan token bot-mu, `<REGION>` dengan nama region function kamu di-deploy, dan `<MY_PROJECT>` dengan nama proyek Firebase-mu.
