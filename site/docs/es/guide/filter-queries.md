@@ -93,7 +93,8 @@ bot.on("msg:text"); // exactamente lo mismo que `:text`.
 
 #### `edit`
 
-Este atajo de teclado `edit` agrupa los mensajes editados y los mensajes editados del canal.
+Este atajo `edit` agrupa los mensajes editados y los mensajes editados del canal.
+En otras palabras, usar `edit` equivale a escuchar los eventos `"edited_message"` y `"edited_channel_post"`.
 
 ```ts
 bot.on("edit"); // cualquier edición de mensajes o publicaciones del canal
@@ -105,6 +106,7 @@ bot.on("edit:location"); // actualización de la ubicación en vivo
 #### `:media`
 
 El atajo `:media` agrupa los mensajes de foto y vídeo.
+En otras palabras, utilizar `:media` equivale a escuchar tanto eventos `":photo"` como `":video"`.
 
 ```ts
 bot.on("message:media"); // mensajes de foto y video
@@ -115,6 +117,7 @@ bot.on(":media"); // mensajes multimedia o publicaciones del canal
 #### `:archivo`
 
 El atajo `:file` agrupa todos los mensajes que contienen un archivo.
+En otras palabras, utilizar `:file` equivale a escuchar los eventos `":photo"`, `":animation"`, `":audio"`, `":document"`, `":video"`, `":video_note"`, `":voice"`, y `":sticker"`.
 Por lo tanto, puedes estar seguro de que `await ctx.getFile()` te dará un objeto archivo.
 
 ```ts

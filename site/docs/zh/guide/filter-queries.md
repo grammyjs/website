@@ -94,6 +94,7 @@ bot.on("msg:text"); // 与 `:text` 完全一致
 #### `edit`
 
 这个 `edit` 快捷方式将编辑过的消息和编辑过的频道 posts 归纳其中。
+换句话说，使用 `edit` 与监听 `"edited_message"` 和 `"edited_channel_post"` 事件是等价的。
 
 ```ts
 bot.on("edit"); // 任何编辑过的消息和编辑过的频道 post
@@ -105,6 +106,7 @@ bot.on("edit:location"); // 实时位置更新
 #### `:media`
 
 `:media` 快捷方式将照片和视频消息归纳其中。
+换句话说，使用 `:media` 与监听 `":photo"` 和 `":video"` 事件是等价的。
 
 ```ts
 bot.on("message:media"); // 照片和视频消息
@@ -115,6 +117,7 @@ bot.on(":media"); // 媒体消息或者频道 posts
 #### `:file`
 
 `:file` 快捷方式将所有包含文件的归纳。
+换句话说，使用 `:file` 与监听 `":photo"`、`":animation"`、`":audio"`、`":document"`、`":video"`、`":video_note"`、`":voice"` 和 `":sticker"` 事件是等价的。
 因此，`await ctx.getFile()` 将会会返回给你一个文件对象。
 
 ```ts
