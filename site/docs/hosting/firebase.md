@@ -155,7 +155,7 @@ firebase deploy
 
 The Firebase CLI will give you the URL of your function once the deployment is completed.
 It should look something like `https://<REGION>.<MY_PROJECT.cloudfunctions.net/helloWorld`.
-For a more detailed explanation you can take a look at step 8. of the [get started guide](https://firebase.google.com/docs/functions/get-started#deploy-functions-to-a-production-environment).
+For a more detailed explanation you can take a look at step 8 of the [get started guide](https://firebase.google.com/docs/functions/get-started#deploy-functions-to-a-production-environment).
 
 After deploying, you need to tell Telegram where to send updates to your bot by calling the `setWebhook` method.
 To do this, open a new browser tab and visit this URL:
