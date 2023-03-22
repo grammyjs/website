@@ -94,6 +94,7 @@ bot.on("msg:text"); // exactly the same as `:text`
 #### `edit`
 
 This `edit` shortcut groups edited messages and edited channel posts.
+In other words, using `edit` is equivalent to listening for both `"edited_message"` and `"edited_channel_post"` events.
 
 ```ts
 bot.on("edit"); // any message or channel post edit
@@ -105,6 +106,7 @@ bot.on("edit:location"); // live location updated
 #### `:media`
 
 The `:media` shortcut groups photo and video messages.
+In other words, using `:media` is equivalent to listening for both `":photo"` and `":video"` events.
 
 ```ts
 bot.on("message:media"); // photo and video messages
@@ -115,6 +117,7 @@ bot.on(":media"); // media messages or channel posts
 #### `:file`
 
 The `:file` shortcut groups all messages that contain a file.
+In other words, using `:file` is equivalent to listening for `":photo"`, `":animation"`, `":audio"`, `":document"`, `":video"`, `":video_note"`, `":voice"`, and `":sticker"` events.
 Hence, you can be sure that `await ctx.getFile()` will give you a file object.
 
 ```ts
