@@ -103,19 +103,19 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/uk/advanced/middleware.html",
               },
               {
-                text: "Масштабування I: Велика кодова база",
+                text: "Масштабування I: велика кодова база",
                 link: "/uk/advanced/structuring.html",
               },
               {
-                text: "Масштабування II: Високе навантаження",
+                text: "Масштабування II: високе навантаження",
                 link: "/uk/advanced/scaling.html",
               },
               {
-                text: "Масштабування III: Надійність",
+                text: "Масштабування III: надійність",
                 link: "/uk/advanced/reliability.html",
               },
               {
-                text: "Масштабування IV: Обмеження переповнення",
+                text: "Масштабування IV: обмеження переповнення",
                 link: "/uk/advanced/flood.html",
               },
               {
@@ -360,6 +360,10 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
               {
                 text: "Fly",
                 link: "/uk/hosting/fly.html",
+              },
+              {
+                text: "Firebase Functions",
+                link: "/hosting/firebase.html",
               },
               {
                 text: "Google Cloud Functions",

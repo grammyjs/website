@@ -57,7 +57,7 @@ lists.on("message", (ctx) => {/* ... */});
 ```ts
 import { lists } from "./todo/list";
 
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 bot.use(lists);
 // ... 更多像 `todo` 一样的模块也可以像这样来使用。

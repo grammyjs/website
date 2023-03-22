@@ -432,7 +432,7 @@ bot.use(session({
 </CodeGroupItem>
 <CodeGroupItem title="JavaScript">
 
-```ts
+```js
 const { freeStorage } = require("@grammyjs/storage-free");
 
 bot.use(session({
@@ -475,7 +475,7 @@ interface SessionData {
 type MyContext = Context & SessionFlavor<SessionData>;
 
 // Crear el bot y registrar el middleware de sesión.
-const bot = new Bot<MyContext>(""); // <-- pon tu token de bot entre los ""
+const bot = new Bot<MyContext>("");
 
 bot.use(session({
   initial: () => ({ count: 0 }),
@@ -495,12 +495,12 @@ bot.start();
 </CodeGroupItem>
 <CodeGroupItem title="JavaScript">
 
-```ts
+```js
 const { Bot, session } = require("grammy");
 const { freeStorage } = require("@grammyjs/storage-free");
 
 // Crear el bot y registrar el middleware de sesión.
-const bot = new Bot(""); // <-- pon tu token de bot entre los ""
+const bot = new Bot("");
 
 bot.use(session({
   initial: () => ({ count: 0 }),
@@ -536,7 +536,7 @@ interface SessionData {
 type MyContext = Context & SessionFlavor<SessionData>;
 
 // Crear el bot y registrar el middleware de sesión.
-const bot = new Bot<MyContext>(""); // <-- pon tu token de bot entre los ""
+const bot = new Bot<MyContext>("");
 
 bot.use(session({
   initial: () => ({ count: 0 }),
@@ -558,19 +558,10 @@ bot.start();
 
 ### Soluciones de almacenamiento externo
 
-Mantenemos una lista de adaptadores de almacenamiento oficiales que le permiten almacenar sus datos de sesión en diferentes lugares.
+Mantenemos una colección de adaptadores de almacenamiento oficiales que le permiten almacenar los datos de su sesión en diferentes lugares.
 Cada uno de ellos requerirá que te registres en un proveedor de alojamiento, o que alojes tu propia solución de almacenamiento.
 
-- Supabase: <https://github.com/grammyjs/storage-supabase>
-- Deta.sh Base: <https://github.com/grammyjs/storage-deta>
-- Google Firestore (Node.js-only): <https://github.com/grammyjs/storage-firestore>
-- Files: <https://github.com/grammyjs/storages/tree/main/packages/file>
-- MongoDB: <https://github.com/grammyjs/storages/tree/main/packages/mongodb>
-- Redis: <https://github.com/grammyjs/storages/tree/main/packages/redis>
-- PostgreSQL: <https://github.com/grammyjs/storages/tree/main/packages/psql>
-- TypeORM (solo para Node.js): <https://github.com/grammyjs/storages/tree/main/packages/typeorm>
-- DenoDB (solo para Deno): https://github.com/grammyjs/storages/tree/main/packages/denodb
-- Prisma (solo para Node.js): https://github.com/grammyjs/storages/tree/main/packages/prisma
+Visite [aquí](https://github.com/grammyjs/storages/tree/main/packages#grammy-storages) para ver una lista de los adaptadores compatibles actualmente y obtener orientación sobre su uso.
 
 ::: tip ¿Su almacenamiento no es compatible? No hay problema.
 Crear un adaptador de almacenamiento personalizado es extremadamente sencillo.
@@ -827,7 +818,7 @@ const enhanced = enhanceStorage({
 </CodeGroupItem>
 <CodeGroupItem title="JavaScript">
 
-```ts
+```js
 function addBirthdayToPets(old) {
   return {
     pets: old.petNames.map((name) => ({ name })),

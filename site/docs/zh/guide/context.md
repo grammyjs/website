@@ -380,7 +380,7 @@ class MyContext extends Context {
 }
 
 // 作为一个选项，传入自定义上下文类的构造函数。
-const bot = new Bot("<token>", {
+const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
@@ -409,7 +409,7 @@ class MyContext extends Context {
 }
 
 // 作为一个选项，传入自定义 上下文类的构造函数。
-const bot = new Bot("<token>", {
+const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
@@ -439,7 +439,7 @@ class MyContext extends Context {
 }
 
 // 作为一个选项，传递自定义上下文类的构造函数。
-const bot = new Bot("<token>", {
+const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 

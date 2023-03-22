@@ -52,10 +52,10 @@ Tulis kode berikut ke dalam `src/index.js` atau `src/index.ts`:
 // Perhatikan bahwa kita meng-import dari 'grammy/web', bukan 'grammy'.
 import { Bot, webhookCallback } from "grammy/web";
 
-// Kamu bisa mengganti `TOKEN_BOT` dengan token bot kamu, tetapi disarankan untuk menyimpannya di sebuah environment variable.
-// Lebih detailnya, lihat https://developers.cloudflare.com/workers/platform/environment-variables/#secrets-on-deployed-workers.
-// Kamu sebaiknya juga mengganti `INFO_BOT` dengan info bot kamu yang didapatkan dari `bot.api.getMe()`.
-const bot = new Bot(TOKEN_BOT, { botInfo: INFO_BOT });
+// Baris kode berikut mengasumsikan bahwa kamu sudah mengonfigurasi secret BOT_TOKEN dan BOT_INFO.
+// Lihat https://developers.cloudflare.com/workers/platform/environment-variables/#secrets-on-deployed-workers.
+// BOT_INFO diperoleh dari bot.api.getMe().
+const bot = new Bot(BOT_TOKEN, { botInfo: BOT_INFO });
 
 bot.command("start", async (ctx) => {
   await ctx.reply("Halo, dunia!");

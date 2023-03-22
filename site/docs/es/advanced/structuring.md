@@ -57,7 +57,7 @@ Ahora, en `bot.ts`, puedes instalar este módulo así:
 ```ts
 import { lists } from "./todo/list";
 
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 bot.use(lists);
 // .. quizás más módulos como `todo` aquí
