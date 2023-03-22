@@ -14,10 +14,11 @@ Kamu mungkin tertarik untuk memahami [hal-hal berikut](../guide) terlebih dahulu
 Tentu saja tidak.
 
 1. Pastikan kamu sudah menginstal grammY versi terbaru.
-2. Cek apakah parameter tersebut termasuk opsional.
+2. Cek [di sini](https://core.telegram.org/bots/api) apakah parameter tersebut termasuk opsional.
    Jika iya, berarti grammY menaruh parameter tersebut di suatu options object bernama `other`.
    Kamu cuma perlu menulis `{ nama_parameter: value }` di options tersebut.
    Seperti biasa, TypeScript akan membantu kamu melengkapi nama parameter-nya secara otomatis.
+3. Cek ulang method signature untuk [aksi-aksi](../guide/context.md#aksi-yang-tersedia) yang ada di `ctx` [di sini](https://deno.land/x/grammy/mod.ts?s=Context#Methods), serta method API-nya (`ctx.api`, `bot.api`) [di sini](https://deno.land/x/grammy@/mod.ts?s=Api#Methods).
 
 ## Kenapa Saya Mengalami Error Ini?
 
