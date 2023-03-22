@@ -18,7 +18,7 @@ bot.on("message", (ctx) => {
 Ви можете використовувати об’єкт контексту, щоб
 
 - [отримати інформацію про повідомлення](#доступна-інформація),
-- [виконати дії у відповідь на повідомлення](#%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D0%BD%D1%96-%D0%B4%D1%96%D1%96).
+- [виконати дії у відповідь на повідомлення](#доступні-діі).
 
 Зауважте, що об’єкти контексту зазвичай називають `ctx`.
 
@@ -563,7 +563,11 @@ type MyContext = FlavorX<FlavorY<FlavorZ<Context>>>;
 
 ```ts
 type MyContext = FlavorX<
-  FlavorY<FlavorZ<Context & FlavorA & FlavorB & FlavorC>>
+  FlavorY<
+    FlavorZ<
+      Context & FlavorA & FlavorB & FlavorC
+    >
+  >
 >;
 ```
 
