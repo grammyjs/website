@@ -117,5 +117,5 @@ https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<MY_BOT>.<MY_SUBD
 npm run start
 ```
 
-Після запуску сервера розробки ви можете протестувати свого бота, надсиланням зразкових оновлень до нього за допомогою інструментів, таких як `curl`, [Insomnia](https://insomnia.rest) або [Postman](https://postman.com).
+Після запуску сервера розробки ви можете протестувати свого бота, надсилаючи приклади оновлень до нього за допомогою певних інструментів, як-от `curl`, [Insomnia](https://insomnia.rest) або [Postman](https://postman.com).
 Для прикладів оновлень зверніться [сюди](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates), а для отримання додаткової інформації про структуру оновлень зверніться [сюди](https://core.telegram.org/bots/api#update).
