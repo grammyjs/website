@@ -368,6 +368,10 @@ export const localeEs: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/es/hosting/fly.html",
               },
               {
+                text: "Firebase Functions",
+                link: "/es/hosting/firebase.html",
+              },
+              {
                 text: "Google Cloud Functions",
                 link: "/es/hosting/gcf.html",
               },
