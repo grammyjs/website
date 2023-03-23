@@ -243,19 +243,23 @@ app.use(webhookCallback(bot, "oak"));
 Через те, як працює цей підхід, нам зазвичай потрібен адаптер для кожного фреймворку, але, оскільки деякі фреймворки мають схожий інтерфейс, є адаптери, які працюють з кількома фреймворками.
 Нижче наведено таблицю, у якій описано доступні адаптери, фреймворки чи API, з якими вони працюють, а також середовища виконання, у яких вони доступні.
 
-| Адаптер          | Фреймворк або API                                             | Середовище виконання |
-| ---------------- | ------------------------------------------------------------- | -------------------- |
-| `std/http`       | `Deno.serve`,`Deno.upgradeHttp`,`Fresh`,`Ultra`,`Rutt`,`Sift` | Обидва               |
-| `oak`            | Oak                                                           | Обидва               |
-| `express`        | Express                                                       | Обидва               |
-| `koa`            | Koa                                                           | Обидва               |
-| `fastify`        | Fastify                                                       | Обидва               |
-| `serveHttp`      | `Deno.serveHttp`                                              | Deno                 |
-| `http` / `https` | Модуль `http` Node.js, Vercel                                 | Node                 |
-| `aws-lambda`     | AWS Lambda Functions                                          | Node                 |
-| `azure`          | Azure Functions                                               | Node                 |
-| `next-js`        | Next.js                                                       | Node                 |
-| `worktop`        | Фреймворк `worktop` для воркерів Cloudflare                   | Node                 |
+| Адаптер          | Фреймворк, API або середовище виконання                                        |
+| ---------------- | ------------------------------------------------------------------------------ |
+| `aws-lambda`     | AWS Lambda Functions                                                           |
+| `azure`          | Azure Functions                                                                |
+| `cloudflare`     | Cloudflare Workers                                                             |
+| `cloudflare-mod` | Cloudflare Module Workers                                                      |
+| `express`        | Express, Google Cloud Functions                                                |
+| `fastify`        | Fastify                                                                        |
+| `hono`           | Hono                                                                           |
+| `http`, `https`  | Модулі Node.js `http` або `https`, Vercel                                      |
+| `koa`            | Koa                                                                            |
+| `next-js`        | Next.js                                                                        |
+| `oak`            | Oak                                                                            |
+| `serveHttp`      | `Deno.serveHttp`                                                               |
+| `std/http`       | `Deno.serve`, `std/http`, `Deno.upgradeHttp`, `Fresh`, `Ultra`, `Rutt`, `Sift` |
+| `sveltekit`      | SvelteKit                                                                      |
+| `worktop`        | Worktop                                                                        |
 
 ### Відповідь вебхуку
 
