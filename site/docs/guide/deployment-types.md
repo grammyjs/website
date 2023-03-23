@@ -259,7 +259,7 @@ Below is a table containing the currently available adapters, and the framework,
 | `serveHttp`      | `Deno.serveHttp`                                                               |
 | `std/http`       | `Deno.serve`, `std/http`, `Deno.upgradeHttp`, `Fresh`, `Ultra`, `Rutt`, `Sift` |
 | `sveltekit`      | SvelteKit                                                                      |
-| `worktop`        | The `worktop` framework for Cloudflare Workers                                 |
+| `worktop`        | Worktop                                                      |
 
 ### Webhook Reply
 
