@@ -51,7 +51,7 @@ function disable() {
   position: fixed;
   top: 60px;
   right: 0;
-  z-index: 999;
+  z-index: 19;
   width: 100%;
   display: flex;
 }
