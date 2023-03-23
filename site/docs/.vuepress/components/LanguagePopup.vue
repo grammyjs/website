@@ -11,9 +11,18 @@ const popup = reactive({
   enabled: localStorage.getItem("disable_language_bar") == null,
 });
 
+const navigatorLanguage = (() => {
+  for (const language of navigator.languages) {
+    if (language in languages) {
+      return language;
+    }
+  }
+  return navigator.language;
+})();
+
 const language = computed(() =>
-  popup.enabled && navigator.language in languages
-    ? [navigator.language, languages[navigator.language]]
+  popup.enabled && navigatorLanguage in languages
+    ? [navigator.language, languages[navigatorLanguage]]
     : null
 );
 
