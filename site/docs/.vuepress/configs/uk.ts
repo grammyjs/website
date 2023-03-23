@@ -223,6 +223,10 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
                 text: "Режим форматування (parse-mode)",
                 link: "/uk/plugins/parse-mode.html",
               },
+              {
+                text: "Учаники чату (chat-members)",
+                link: "/uk/plugins/chat-members.html",
+              },
             ],
           },
           {
