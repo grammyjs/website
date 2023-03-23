@@ -372,6 +372,10 @@ export const localeZh: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/zh/hosting/fly.html",
               },
               {
+                text: "Firebase Functions",
+                link: "/zh/hosting/firebase.html",
+              },
+              {
                 text: "Google Cloud Functions",
                 link: "/zh/hosting/gcf.html",
               },
