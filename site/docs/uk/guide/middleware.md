@@ -151,7 +151,7 @@ async function responseTime(ctx, next) {
 </CodeGroupItem>
 </CodeGroup>
 
-Ми можемо встановити його в об'єкт `bot` за допомогою `bot.use()`:
+Ми можемо встановити його в обʼєкт `bot` за допомогою `bot.use()`:
 
 ```ts
 bot.use(responseTime);

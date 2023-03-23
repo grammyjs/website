@@ -13,7 +13,7 @@ next: ./context.md
 
 ```ts
 bot.on("message", (ctx) => {
-  const message = ctx.message; // об'єкт повідомлення
+  const message = ctx.message; // обʼєкт повідомлення
 });
 ```
 

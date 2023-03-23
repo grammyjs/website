@@ -147,7 +147,7 @@ Deno:
 Найкращим для Deno є Visual Studio Code, який часто називають просто VS Code.
 [Установіть його.](https://code.visualstudio.com/)
 
-Далі потрібно з'єднати VS Code і Deno.
+Далі потрібно зʼєднати VS Code і Deno.
 Це дуже просто: є розширення для VS Code, яке робить усе автоматично.
 Ви можете встановити його [як описано тут](https://marketplace.visualstudio.com/items?itemName=denoland.vscode-deno).
 
