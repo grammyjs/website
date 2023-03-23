@@ -371,7 +371,7 @@ Ten en cuenta que tu clase debe extender `Context`.
 
 ```ts
 import { Bot, Context } from "grammy";
-import type { Update, UserFromGetMe } from "@grammyjs/types";
+import type { Update, UserFromGetMe } from "grammy/types";
 
 // Definir una clase de contexto personalizada.
 class MyContext extends Context {
@@ -432,7 +432,7 @@ bot.start();
 
 ```ts
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
-import type { Update, UserFromGetMe } from "https://esm.sh/@grammyjs/types";
+import type { Update, UserFromGetMe } from "https://deno.land/x/grammy/types.ts";
 
 // Definir una clase de contexto personalizada.
 class MyContext extends Context {
