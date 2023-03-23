@@ -377,7 +377,7 @@ class MyContext extends Context {
 
 ```ts
 import { Bot, Context } from "grammy";
-import type { Update, UserFromGetMe } from "@grammyjs/types";
+import type { Update, UserFromGetMe } from "grammy/types";
 
 // Визначаємо власний клас контексту.
 class MyContext extends Context {
@@ -438,7 +438,10 @@ bot.start();
 
 ```ts
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
-import type { Update, UserFromGetMe } from "https://esm.sh/@grammyjs/types";
+import type {
+  Update,
+  UserFromGetMe,
+} from "https://deno.land/x/grammy/types.ts";
 
 // Визначаємо власний клас контексту.
 class MyContext extends Context {
