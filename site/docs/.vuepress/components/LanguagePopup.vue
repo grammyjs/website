@@ -46,7 +46,7 @@ function disable() {
   </div>
 </template>
 
-<style>
+<style scoped>
 .container {
   position: fixed;
   top: 60px;
