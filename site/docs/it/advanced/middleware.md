@@ -25,17 +25,17 @@ bot.on(/* ... */);
 bot.start();
 ```
 
-Sembra esattamente una pila, ma dietro le quinte è in realtà un albero.
+Sembra esattamente una pila, ma dietro le quinte è in realtà una struttura ad albero.
 Il cuore di questa funzionalità è la classe `Composer` ([riferimento](https://deno.land/x/grammy/mod.ts?s=Composer)) che costruisce questa struttura ad albero.
 
 Prima di tutto, ogni istanza di `Bot` è un'istanza di `Composer`.
 È solo una sottoclasse, quindi `class Bot extends Composer`.
 
 Inoltre, è importante sapere che ogni metodo di `Composer` internamente chiama `use`.
-Per esempio, `filter` chiama solo `use` con alcuni middleware di diramazione, mentre `on` chiama di nuovo `filter` con alcune funzioni predicato che confronta i nuovi dati con la data [query di filtro](../guide/filter-queries.md).
+Per esempio, `filter` chiama solo `use` con alcuni middleware di diramazione, mentre `on` chiama di nuovo `filter` con alcune funzioni predicato che confronta l' oggetto Update con la data [query di filtro](../guide/filter-queries.md).
 Possiamo quinid limitarci a guardare `use` per ora, e il resto seguirà.
 
-Guardiamo ora un po' più in dettaglio come si comporta `Composer` con le chiamate `use`, e come si differenzia da altri middleware.
+Guardiamo ora un po' più in dettaglio come si comporta `Composer` con le chiamate a `use`, e come si differenzia da altri middleware.
 La differenza potrebbe sembrare subdola, ma aspetta di vedere la prossima sottosezione per scoprire perchè ha conseguenze notevoli.
 
 ## Ampliamento di `Composer`
@@ -77,9 +77,9 @@ Come puoi immaginare, tutto il middleware verrà eseguito in ordine da `A` ad `L
 
 Altre librerie internamente appiattirebbero questo codice per renderlo equivalente a `composer.use(/* A */).use(/* B */).use(/* C */).use(/* D */)...` e via dicendo.
 Al contrario, grammY preserva l'albero da te specificato: un nodo base (`composer`) ha cinque diramature (`A`, `B`, `D`, `H`, `J`), mentre il nodo `B` ha un'altra diramazione, `C`, e via dicendo.
-Questo albero verrà poi traversato da ogni aggiornamento in ordine di profondità, quindi passando in modo efficiente da `A` ad `L` in ordine lineare, come sei abituato su altri sistemi.
+Questo albero verrà poi traversato da ogni nuovo Update in ordine di profondità, quindi passando in modo efficiente da `A` ad `L` in ordine lineare, come sei abituato su altri sistemi.
 
-Questo è reso possibile con la creazione di un nuovo `Composer` ogni volta che chiami `use` che verrà a sua volta esteso (come spiegato sopra).
+Questo è reso possibile tramite la creazione di una nuova istanza di `Composer` ogni volta che chiami `use`, che a sua volta verrà estesa (come spiegato sopra).
 
 ## Concatenare le chiamate `use`
 
@@ -102,8 +102,7 @@ Tuttavia, `filter` ritorna una istanza di `Composer` che abbiamo esteso con la c
 
 La linea 5 è equivalente alla linea 3 nel senso che sia `C` che `D` verranno eseguiti solo se `2` passa.
 
-Ricordi come chiamate a `bot.on()` potessero essere concatenate in modo da concatenare chiamate di filtro con AND?
-
+Ricordi come le chiamate a `bot.on()` possono essere unite in modo da concatenare i filtri con AND?
 Immagina questo:
 
 ```ts
@@ -117,6 +116,4 @@ composer.filter(/* 1 */).filter(/* 2 */).use(/* A */);
 Rivedi la sezione sul [come combinare le chiamate di filtro](../guide/filter-queries.md#combinazione-di-varie-chiavi) con le tue nuove conoscenze e goditi il tuo nuovo potere.
 
 Un caso speciale è `fork`, in quanto avvia due computazioni concorrenti, ovvero, intercalate nel ciclo degli eventi.
-Invece di ritornare l'istanza di `Composer` create dalla chiamata `use`, viene ritornato un `Composer` che riflette il calcolo biforcato.
-Questo permette modelli concisi come `bot.fork().on(":text").use(/* A */)`.
-`A` verrà quindi eseguito nel nuovo ramo della computazione parallela.
+Invece di ritornare l'istanza di `Composer` creata dalla chiamata `use`, viene ritornato un `Composer` che riflette il calcolo biforcato.
