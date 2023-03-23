@@ -14,10 +14,11 @@ You probably want to understand [this](../guide) better.
 No, it's not.
 
 1. Make sure you have the latest grammY version installed.
-2. Check if the parameter is optional.
+2. Check [here](https://core.telegram.org/bots/api) if the parameter is optional.
    If it is, then grammY will collect it in the options object called `other`.
    Pass `{ parameter_name: value }` in that place and it'll work.
    As always, TypeScript will auto-complete the parameter names for you.
+3. Perhaps double-check the method signature for [actions](../guide/context.md#available-actions) on `ctx` [here](https://deno.land/x/grammy/mod.ts?s=Context#Methods), or for API methods (`ctx.api`, `bot.api`) [here](https://deno.land/x/grammy/mod.ts?s=Api#Methods).
 
 ## Why Am I Getting This Error?
 
