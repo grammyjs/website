@@ -367,7 +367,7 @@ class MyContext extends Context {
 
 ```ts
 import { Bot, Context } from "grammy";
-import type { Update, UserFromGetMe } from "@grammyjs/types";
+import type { Update, UserFromGetMe } from "grammy/types";
 
 // 自定义一个上下文类。
 class MyContext extends Context {
@@ -426,7 +426,10 @@ bot.start();
 
 ```ts
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
-import type { Update, UserFromGetMe } from "https://esm.sh/@grammyjs/types";
+import type {
+  Update,
+  UserFromGetMe,
+} from "https://deno.land/x/grammy/types.ts";
 
 // 自定义一个上下文类
 class MyContext extends Context {
