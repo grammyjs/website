@@ -249,7 +249,7 @@ Below is a table containing the currently available adapters, and the framework,
 | `azure`          | Azure Functions                                                                |
 | `cloudflare`     | Cloudflare Workers                                                             |
 | `cloudflare-mod` | Cloudflare Module Workers                                                      |
-| `express`        | Express                                                                        |
+| `express`        | Express, Google Cloud Functions                                                |
 | `fastify`        | Fastify                                                                        |
 | `hono`           | Hono                                                                           |
 | `http`, `https`  | Node.js `http`/`https` modules, Vercel                                         |
