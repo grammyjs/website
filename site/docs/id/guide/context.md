@@ -379,7 +379,7 @@ Class kamu harus meng-extend `Context`.
 
 ```ts
 import { Bot, Context } from "grammy";
-import type { Update, UserFromGetMe } from "@grammyjs/types";
+import type { Update, UserFromGetMe } from "grammy/types";
 
 // Definisikan class context khusus.
 class MyContext extends Context {
@@ -440,7 +440,10 @@ bot.start();
 
 ```ts
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
-import type { Update, UserFromGetMe } from "https://esm.sh/@grammyjs/types";
+import type {
+  Update,
+  UserFromGetMe,
+} from "https://deno.land/x/grammy/types.ts";
 
 // Definisikan class context khusus.
 class MyContext extends Context {

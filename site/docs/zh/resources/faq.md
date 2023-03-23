@@ -14,10 +14,11 @@
 不，不是的。
 
 1. 确保安装了最新版本的 grammY。
-2. 检查参数是否可选。
+2. 在 [这里](https://core.telegram.org/bots/api) 查看参数是否是可选的。
    如果是，则 grammY 会将其收集到名为 `other` 的选项对象中。
    在那个地方传递 `{ parameter_name: value }` 就可以了。
    与以往一样，TypeScript 会为你自动补全参数名称。
+3. 也许在 [这里](https://deno.land/x/grammy/mod.ts?s=Context#Methods) 再次检查 `ctx` 上的 [操作](../guide/context.md#可用操作) 的方法签名，或在 [这里](https://deno.land/x/grammy/mod.ts?s=Api#Methods) 检查 API 方法（`ctx.api`、`bot.api`）的方法签名。
 
 ## 为什么我会收到这个错误？
 

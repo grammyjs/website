@@ -93,3 +93,7 @@ Works! :tada:
 (Last highlight: Translated Bot Descriptions)
 
 </div>
+
+<ClientOnly>
+  <LanguagePopup />
+</ClientOnly>
