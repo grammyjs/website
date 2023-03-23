@@ -11,18 +11,11 @@ const popup = reactive({
   enabled: localStorage.getItem("disable_language_bar") == null,
 });
 
-const navigatorLanguage = (() => {
-  for (const language of navigator.languages) {
-    if (language in languages) {
-      return language;
-    }
-  }
-  return navigator.language;
-})();
+const availableLanguage = navigator.languages.find((l) => l in languages);
 
-const language = computed(() =>
-  popup.enabled && navigatorLanguage in languages
-    ? [navigator.language, languages[navigatorLanguage]]
+const language = computed<string | null>(() =>
+  popup.enabled && availableLanguage !== undefined
+    ? languages[availableLanguage]
     : null
 );
 
@@ -36,8 +29,8 @@ function disable() {
   <div v-if="language" class="container">
     <div class="bar">
       <div class="content">
-        <a v-bind:href="`/${language[0]}`"
-          >The documentation is available in {{ language[1] }}.</a
+        <a v-bind:href="`/${availableLanguage}`"
+          >The documentation is available in {{ language }}.</a
         >
         <button @click="disable">
           <svg viewBox="0 0 10 10" height="11" fill="currentColor">
