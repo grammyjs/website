@@ -438,7 +438,10 @@ bot.start();
 
 ```ts
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
-import type { Update, UserFromGetMe } from "https://deno.land/x/grammy/types.ts";
+import type {
+  Update,
+  UserFromGetMe,
+} from "https://deno.land/x/grammy/types.ts";
 
 // Define a custom context class.
 class MyContext extends Context {
