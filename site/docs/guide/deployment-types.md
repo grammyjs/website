@@ -241,21 +241,25 @@ Each adapter is responsible for relaying input and output from the web framework
 The second parameter passed to `webhookCallback` ([API reference](https://deno.land/x/grammy/mod.ts?s=webhookCallback)) defines the framework adapter used to communicate with the web framework.
 
 Because of how this approach works, we usually need an adapter for each framework but, since some frameworks share a similiar interface, there are adapters that are known to work with multiple frameworks.
-Below is a table containing the currently available adapters, the frameworks or APIs they're known to work with, and the runtime(s) they are available on.
+Below is a table containing the currently available adapters, and the framework, APIs, or runtimes they are known to work with.
 
-| Adapter          | Framework/API(s)                                              | Runtime |
-| ---------------- | ------------------------------------------------------------- | ------- |
-| `std/http`       | `Deno.serve`,`Deno.upgradeHttp`,`Fresh`,`Ultra`,`Rutt`,`Sift` | Both    |
-| `oak`            | Oak                                                           | Both    |
-| `express`        | Express                                                       | Both    |
-| `koa`            | Koa                                                           | Both    |
-| `fastify`        | Fastify                                                       | Both    |
-| `serveHttp`      | `Deno.serveHttp`                                              | Deno    |
-| `http` / `https` | Node.js `http` module, Vercel                                 | Node    |
-| `aws-lambda`     | AWS Lambda Functions                                          | Node    |
-| `azure`          | Azure Functions                                               | Node    |
-| `next-js`        | Next.js                                                       | Node    |
-| `worktop`        | The `worktop` framework for Cloudflare workers                | Node    |
+| Adapter          | Framework/API/Runtime                                                          |
+| ---------------- | ------------------------------------------------------------------------------ |
+| `aws-lambda`     | AWS Lambda Functions                                                           |
+| `azure`          | Azure Functions                                                                |
+| `cloudflare`     | Cloudflare Workers                                                             |
+| `cloudflare-mod` | Cloudflare Module Workers                                                      |
+| `express`        | Express                                                                        |
+| `fastify`        | Fastify                                                                        |
+| `hono`           | Hono                                                                           |
+| `http`, `https`  | Node.js `http`/`https` modules, Vercel                                         |
+| `koa`            | Koa                                                                            |
+| `next-js`        | Next.js                                                                        |
+| `oak`            | Oak                                                                            |
+| `serveHttp`      | `Deno.serveHttp`                                                               |
+| `std/http`       | `Deno.serve`, `std/http`, `Deno.upgradeHttp`, `Fresh`, `Ultra`, `Rutt`, `Sift` |
+| `sveltekit`      | SvelteKit                                                                      |
+| `worktop`        | The `worktop` framework for Cloudflare workers                                 |
 
 ### Webhook Reply
 
