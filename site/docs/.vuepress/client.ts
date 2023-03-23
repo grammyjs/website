@@ -7,5 +7,9 @@ export default defineClientConfig({
       "ThankYou",
       defineAsyncComponent(() => import("./components/ThankYou.vue")),
     );
+    app.component(
+      "LanguagePopup",
+      defineAsyncComponent(() => import("./components/LanguagePopup.vue")),
+    );
   },
 });
