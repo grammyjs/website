@@ -1,8 +1,8 @@
 # Хостинг: Cloudflare Workers
 
-[Cloudflare Workers](https://workers.cloudflare.com/) - це загальнодоступна безсерверна обчислювальна платформа, яка пропонує зручне та просте рішення для запуску JavaScript на [межі мережі](https://en.wikipedia.org/wiki/Edge_computing).
+[Cloudflare Workers](https://workers.cloudflare.com/) - це загальнодоступна безсерверна обчислювальна платформа, яка пропонує зручне та просте рішення для запуску JavaScript за допомогою парадигми [кордонних обчислень](https://uk.wikipedia.org/wiki/Кордонні_обчислення).
 Маючи здатність обробляти HTTP трафік та базуючись на [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API), розробка ботів Telegram стає легкою справою.
-Крім того, ви можете розробляти [вебдодатки](https://core.telegram.org/bots/webapps) на межі мережі, і все це безкоштовно у межах певних лімітів.
+Крім того, ви можете розробляти [вебдодатки](https://core.telegram.org/bots/webapps) використовуючи кордонні обчислення, і все це безкоштовно у межах певних лімітів.
 
 Цей посібник допоможе вам розмістити вашого бота Telegram на Cloudflare Workers.
 
