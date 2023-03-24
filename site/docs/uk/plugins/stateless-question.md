@@ -1,6 +1,6 @@
 # Питання без стану (`stateless-question`)
 
-> Створення питань без стану для користувачів Telegram, які працюють у режимі конфіденційності
+> Створення питань без стану, які працюють у режимі конфіденційності, для користувачів Telegram.
 
 Ви хочете зберегти конфіденційність користувача з [увімкненним (за замовчуванням) приватним режимом Telegram](https://core.telegram.org/bots/features#privacy-mode), надсилати користувачам перекладені їхньою мовою питання та не зберігати стан того, що користувачі роблять в даний момент?
 
@@ -38,7 +38,7 @@ bot.command("rainbows", async (ctx) => {
   return unicornQuestion.replyWithMarkdown(ctx, text);
 });
 
-// Або надішліть своє питання вручну, але обовʼязково використовуйте `parse_mode` та `force_reply` (!).
+// Або надішліть своє питання вручну, але обовʼязково використовуйте `parse_mode` та `force_reply`!
 bot.command("unicorn", async (ctx) => {
   await ctx.replyWithMarkdown(
     "Що роблять єдинороги?" + unicornQuestion.messageSuffixMarkdown(),
