@@ -17,7 +17,7 @@ import { Bot } from "https://deno.land/x/grammy/mod.ts";
 const client = Deno.createHttpClient({
   proxy: { url: "http://host:port/" },
 });
-const bot = new Bot("<токен>", {
+const bot = new Bot("", {
   client: {
     baseFetchConfig: {
       // @ts-ignore
@@ -29,7 +29,7 @@ const bot = new Bot("<токен>", {
 
 > Зауважте, що вам слід запускати цю програму з прапором `--unstable`.
 
-Ось як у Node.js можна використовувати проксі з пакетом `ssocks-proxy-agent` ([npm](https://www.npmjs.com/package/socks-proxy-agent)):
+Ось як у Node.js можна використовувати проксі з пакетом `socks-proxy-agent` ([npm](https://www.npmjs.com/package/socks-proxy-agent)):
 
 ```ts
 import { Bot } from "grammy";
@@ -40,7 +40,7 @@ const socksAgent = new SocksProxyAgent({
   port: port, // вкажіть порт проксі-сервера
 });
 
-const bot = new Bot("<токен>", {
+const bot = new Bot("", {
   client: {
     baseFetchConfig: {
       agent: socksAgent,
@@ -50,7 +50,7 @@ const bot = new Bot("<токен>", {
 });
 ```
 
-> Зауважте, що вказівка `compress: true` є необов'язковою для оптимізації продуктивності.
+> Зауважте, що параметр `compress: true` є необовʼязковим для оптимізації продуктивності.
 > Це не має нічого спільного з підтримкою проксі.
 > Він є частиною значення за замовчуванням для `baseFetchConfig`, тому, якщо ви все ще хочете його використовувати, вам слід вказати його.
 
