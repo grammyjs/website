@@ -115,7 +115,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/uk/advanced/reliability.html",
               },
               {
-                text: "Масштабування IV: обмеження переповнення",
+                text: "Масштабування IV: дотримання лімітів",
                 link: "/uk/advanced/flood.html",
               },
               {
