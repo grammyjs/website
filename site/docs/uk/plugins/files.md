@@ -15,7 +15,7 @@
 import { Bot, Context } from "grammy";
 import { FileFlavor, hydrateFiles } from "@grammyjs/files";
 
-// Трансформуючий flavor для контексту
+// Перетворюючий flavor для контексту
 type MyContext = FileFlavor<Context>;
 
 // Створюємо бота.
@@ -24,11 +24,11 @@ const bot = new Bot<MyContext>("");
 // Використовуємо плагін.
 bot.api.config.use(hydrateFiles(bot.token));
 
-// Завантажуємо відео та GIF у тимчасові місця розташування.
+// Завантажуємо відео та GIF у тимчасове сховище.
 bot.on([":video", ":animation"], async (ctx) => {
   // Готуємо файл до завантаження.
   const file = await ctx.getFile();
-  // Завантажуємо файл у тимчасове місце розташування.
+  // Завантажуємо файл у тимчасове сховище.
   const path = await file.download();
   // Виводимо шлях до файлу.
   console.log("Файл збережено за шляхом ", path);
@@ -48,11 +48,11 @@ const bot = new Bot("");
 // Використовуємо плагін.
 bot.api.config.use(hydrateFiles(bot.token));
 
-// Завантажуємо відео та GIF у тимчасові місця розташування.
+// Завантажуємо відео та GIF у тимчасове сховище.
 bot.on([":video", ":animation"], async (ctx) => {
   // Готуємо файл до завантаження.
   const file = await ctx.getFile();
-  // Завантажуємо файл у тимчасове місце розташування.
+  // Завантажуємо файл у тимчасове сховище.
   const path = await file.download();
   // Виводимо шлях до файлу.
   console.log("Файл збережено за шляхом ", path);
@@ -69,7 +69,7 @@ import {
   hydrateFiles,
 } from "https://deno.land/x/grammy_files/mod.ts";
 
-// Трансформуючий flavor для контексту
+// Перетворюючий flavor для контексту
 type MyContext = FileFlavor<Context>;
 
 // Створюємо бота.
@@ -78,11 +78,11 @@ const bot = new Bot<MyContext>("");
 // Використовуємо плагін.
 bot.api.config.use(hydrateFiles(bot.token));
 
-// Завантажуємо відео та GIF у тимчасові місця розташування.
+// Завантажуємо відео та GIF у тимчасове сховище.
 bot.on([":video", ":animation"], async (ctx) => {
   // Готуємо файл до завантаження.
   const file = await ctx.getFile();
-  // Завантажуємо файл у тимчасове місце розташування.
+  // Завантажуємо файл у тимчасове сховище.
   const path = await file.download();
   // Виводимо шлях до файлу.
   console.log("Файл збережено за шляхом ", path);
@@ -92,11 +92,11 @@ bot.on([":video", ":animation"], async (ctx) => {
 </CodeGroupItem>
 </CodeGroup>
 
-Якщо ви не хочете створювати тимчасовий файл, ви можете передати методу `download` рядок із шляхом до файлу.
+Ви можете передати методу `download` рядок із шляхом для зберігання файлу, якщо не хочете створювати тимчасовий файл.
 Просто виконайте `await file.download("/шлях/до/файлу")`.
 
 Якщо ви хочете отримати лише URL-адресу файлу, щоб завантажити його самостійно, використовуйте `file.getUrl`.
-Він поверне посилання HTTPS на ваш файл, яке буде дійсним протягом принаймні однієї години.
+Цей метод поверне посилання HTTPS на ваш файл, яке буде дійсним протягом принаймні однієї години.
 
 ## Локальний сервер Bot API
 
@@ -109,7 +109,7 @@ bot.on([":video", ":animation"], async (ctx) => {
 
 За замовчуванням результати `await bot.api.getFile()` також матимуть методи `download` та `getUrl`.
 Однак це не відображатиметься у типах.
-Якщо вам потрібно їх викливати, вам також варто встановити [flavor для API](../advanced/transformers.md#flavor-для-api) з назвою `FileApiFlavor` на обʼєкті бота:
+Якщо вам потрібно їх викликати, вам також варто встановити [flavor для API](../advanced/transformers.md#flavor-для-api) з назвою `FileApiFlavor` на обʼєкті бота:
 
 <CodeGroup>
   <CodeGroupItem title="Node.js" active>
