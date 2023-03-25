@@ -14,7 +14,8 @@ But you lose your focus every time you need a new emoji, see:
 With this plugin, you just don't stop coding as also you don't lose your focus.
 There is also bad-frickin'-laggy systems and/or editors that doesn't like and don't show emojis, so you end up pasting a white square, like this sad-little-squary message: `I'm so happy □`.
 
-This plugin aim to solve these issues, handling for you the hard task of parsing emojis in all systems and letting you only search for them in a easy way (autocomplete is available). Now, the above steps can be reduced to this one:
+This plugin aims to solve these issues, handling for you the hard task of parsing emojis in all systems and letting you only search for them in a easy way (autocomplete is available).
+Now, the above steps can be reduced to this one:
 
 1. Describe the emoji you want and use it. Right in your code. Simple as that.
 
