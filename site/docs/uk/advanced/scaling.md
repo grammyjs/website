@@ -89,7 +89,7 @@ import { Bot, Context, session } from "grammy";
 import { run, sequentialize } from "@grammyjs/runner";
 
 // Створюємо бота.
-const bot = new Bot("<токен>");
+const bot = new Bot("");
 
 // Створюємо унікальний ідентифікатор для об'єкту `Context`.
 function getSessionKey(ctx: Context) {
@@ -101,7 +101,7 @@ bot.use(sequentialize(getSessionKey));
 bot.use(session({ getSessionKey }));
 
 // Додаємо звичайний middleware, тепер з підтримкою безпечних сеансів.
-bot.on("message", (ctx) => ctx.reply("Got your message."));
+bot.on("message", (ctx) => ctx.reply("Отримав ваше повідомлення."));
 
 // Все одно запускаємо бота паралельно!
 run(bot);
@@ -116,7 +116,7 @@ const { Bot, Context, session } = require("grammy");
 const { run, sequentialize } = require("@grammyjs/runner");
 
 // Створюємо бота.
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 // Створюємо унікальний ідентифікатор для об'єкту `Context`.
 function getSessionKey(ctx) {
@@ -128,7 +128,7 @@ bot.use(sequentialize(getSessionKey));
 bot.use(session({ getSessionKey }));
 
 // Додаємо звичайний middleware, тепер з підтримкою безпечних сеансів.
-bot.on("message", (ctx) => ctx.reply("Got your message."));
+bot.on("message", (ctx) => ctx.reply("Отримав ваше повідомлення."));
 
 // Все одно запускаємо бота паралельно!
 run(bot);
@@ -142,7 +142,7 @@ import { Bot, Context, session } from "https://deno.land/x/grammy/mod.ts";
 import { run, sequentialize } from "https://deno.land/x/grammy_runner/mod.ts";
 
 // Створюємо бота.
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 // Створюємо унікальний ідентифікатор для об'єкту `Context`.
 function getSessionKey(ctx: Context) {
@@ -154,7 +154,7 @@ bot.use(sequentialize(getSessionKey));
 bot.use(session({ getSessionKey }));
 
 // Додаємо звичайний middleware, тепер з підтримкою безпечних сеансів.
-bot.on("message", (ctx) => ctx.reply("Got your message."));
+bot.on("message", (ctx) => ctx.reply("Отримав ваше повідомлення."));
 
 // Все одно запускаємо бота паралельно!
 run(bot);
