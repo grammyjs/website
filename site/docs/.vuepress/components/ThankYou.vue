@@ -96,7 +96,7 @@ load();
     <img v-bind:alt="contributor.login" v-bind:src="contributor.photo" />
     <p>
       {{ props.s[0] }}<span>{{ contributor.name }}</span
-      >{{ props.s[2] }}
+      >{{ contributor.name.toLowerCase() == "knorpelsenf" ? (props.s[3] ?? props.s[2]) : props.s[2] }}
     </p>
   </a>
 </template>
