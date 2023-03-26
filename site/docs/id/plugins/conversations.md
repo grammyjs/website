@@ -480,7 +480,7 @@ Jangan lupa untuk menggunakan `await`.
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
 
-```ts{6,21}
+```ts{6,22}
 async function movie(conversation: MyConversation, ctx: MyContext) {
   // TODO: buat percakapannya
 }
@@ -508,7 +508,7 @@ bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 </CodeGroupItem>
  <CodeGroupItem title="JavaScript">
 
-```js{6,21}
+```js{6,22}
 async function movie(conversation, ctx) {
   // TODO: buat percakapannya
 }
@@ -538,7 +538,7 @@ bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 
 Perlu dicatat bahwa urutan pemasangan akan berpengaruh.
 Kamu harus menginstal plugin conversations (lihat baris ke-6) sebelum memanggil `await ctx.conversation.exit()`.
-Selain itu, handler-handler yang menangani cancel juga harus diinstal sebelum conversation aslinya (lihat baris ke-21) ditambahkan.
+Selain itu, handler-handler yang menangani cancel juga harus diinstal sebelum conversation aslinya (lihat baris ke-22) ditambahkan.
 
 ## Menunggu Update
 

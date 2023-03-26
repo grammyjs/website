@@ -482,7 +482,7 @@ Remember that you must `await` the call.
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
 
-```ts{6,21}
+```ts{6,22}
 async function movie(conversation: MyConversation, ctx: MyContext) {
   // TODO: code the conversation
 }
@@ -510,7 +510,7 @@ bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 </CodeGroupItem>
  <CodeGroupItem title="JavaScript">
 
-```js{6,21}
+```js{6,22}
 async function movie(conversation, ctx) {
   // TODO: code the conversation
 }
@@ -540,7 +540,7 @@ bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 
 Note that the order matters here.
 You must first install the conversations plugin (line 6) before you can call `await ctx.conversation.exit()`.
-Also, the generic cancel handlers must be installed before the actual conversations (line 21) are registered.
+Also, the generic cancel handlers must be installed before the actual conversations (line 22) are registered.
 
 ## Waiting for Updates
 
