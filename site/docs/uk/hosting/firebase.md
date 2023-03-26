@@ -121,7 +121,7 @@ npm i -g localtunnel
 lt --port 5001
 ```
 
-localtunnel повинен надати вам унікальний URL, наприклад, `https://modern-heads-sink-80-132-166-120.loca.lt`.
+localtunnel повинен надати вам унікальну URL-адресу, наприклад, `https://modern-heads-sink-80-132-166-120.loca.lt`.
 
 Все, що залишилося - це повідомити Telegram, куди надсилати оновлення.
 Ви можете зробити це, викликавши `setWebhook`.
