@@ -154,7 +154,7 @@ firebase deploy
 
 Firebase CLI надасть вам URL до вашої функції одразу після того, як розгортання буде завершено.
 Посилання повинно виглядати якось так: `https://<REGION>.<MY_PROJECT.cloudfunctions.net/helloWorld`.
-Для отримання докладнішої інформації ви можете звернутися до кроку 8 в [посібнику початку роботи](https://firebase.google.com/docs/functions/get-started?hl=ru#deploy-functions-to-a-production-environment).
+Для отримання докладнішої інформації ви можете звернутися до 8-го кроку в [посібнику початку роботи](https://firebase.google.com/docs/functions/get-started?hl=ru#deploy-functions-to-a-production-environment).
 
 Після розгортання вам потрібно повідомити Telegram, куди надсилати оновлення для вашого бота, викликавши метод `setWebhook`.
 Для цього відкрийте нову вкладку в браузері і відвідайте цю адресу:
