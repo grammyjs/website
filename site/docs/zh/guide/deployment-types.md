@@ -242,21 +242,25 @@ app.use(webhookCallback(bot, "oak"));
 传递给 `webhookCallback` 的第二个参数 ([API 参考](https://deno.land/x/grammy/mod.ts?s=webhookCallback)) 定义了用于与 Web 框架通信的框架适配器。
 
 由于这种方法的工作方式，我们通常需要为每个框架配备一个适配器，但是，由于某些框架共享相似的接口，因此已知适配器可以与多个框架一起工作。
-下表包含当前可用的适配器、可与哪些框架或 API使用，以及对应的运行时。
+下表包含当前可用的适配器，以及它们已知可使用的框架、API 或运行时。
 
-| 适配器           | 框架/API                                                      | 运行时   |
-| ---------------- | ------------------------------------------------------------- | -------- |
-| `std/http`       | `Deno.serve`,`Deno.upgradeHttp`,`Fresh`,`Ultra`,`Rutt`,`Sift` | 两者皆可 |
-| `oak`            | Oak                                                           | 两者皆可 |
-| `express`        | Express                                                       | 两者皆可 |
-| `koa`            | Koa                                                           | 两者皆可 |
-| `fastify`        | Fastify                                                       | 两者皆可 |
-| `serveHttp`      | `Deno.serveHttp`                                              | Deno     |
-| `http` / `https` | Node.js `http` module, Vercel                                 | Node     |
-| `aws-lambda`     | AWS Lambda Functions                                          | Node     |
-| `azure`          | Azure Functions                                               | Node     |
-| `next-js`        | Next.js                                                       | Node     |
-| `worktop`        | The `worktop` framework for Cloudflare workers                | Node     |
+| 适配器           | 框架/API/运行时                                                                |
+| ---------------- | ------------------------------------------------------------------------------ |
+| `aws-lambda`     | AWS Lambda Functions                                                           |
+| `azure`          | Azure Functions                                                                |
+| `cloudflare`     | Cloudflare Workers (Service Worker)                                            |
+| `cloudflare-mod` | Cloudflare Workers (Module Worker)                                             |
+| `express`        | Express, Google Cloud Functions                                                |
+| `fastify`        | Fastify                                                                        |
+| `hono`           | Hono                                                                           |
+| `http`, `https`  | Node.js `http`/`https` modules, Vercel                                         |
+| `koa`            | Koa                                                                            |
+| `next-js`        | Next.js                                                                        |
+| `oak`            | Oak                                                                            |
+| `serveHttp`      | `Deno.serveHttp`                                                               |
+| `std/http`       | `Deno.serve`, `std/http`, `Deno.upgradeHttp`, `Fresh`, `Ultra`, `Rutt`, `Sift` |
+| `sveltekit`      | SvelteKit                                                                      |
+| `worktop`        | Worktop                                                                        |
 
 ### Webhook Reply
 
