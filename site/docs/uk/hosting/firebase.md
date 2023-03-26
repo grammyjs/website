@@ -157,7 +157,7 @@ Firebase CLI надасть вам URL до вашої функції одраз
 Для отримання докладнішої інформації ви можете звернутися до кроку 8 в [посібнику початку роботи](https://firebase.google.com/docs/functions/get-started?hl=ru#deploy-functions-to-a-production-environment).
 
 Після розгортання вам потрібно повідомити Telegram, куди надсилати оновлення для вашого бота, викликавши метод `setWebhook`.
-Для цього відкрийте нову вкладку в браузері і відвідайте цей URL:
+Для цього відкрийте нову вкладку в браузері і відвідайте цю адресу:
 
 ```text:no-line-numbers
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<REGION>.<MY_PROJECT>.cloudfunctions.net/helloWorld
