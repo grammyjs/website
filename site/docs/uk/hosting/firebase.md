@@ -103,7 +103,7 @@ npm run build:watch
 +  functions[us-central1-helloWorld]: http function initialized (http://127.0.0.1:5001/<firebase-проєкт>/us-central1/helloWorld).
 ```
 
-Це локальний URL вашої хмарної функції.
+Це локальна URL-адреса вашої хмарної функції.
 Однак ваша функція доступна лише локально на вашому компʼютері.
 Щоб перевірити свого бота, вам потрібно викласти вашу функцію в Інтернеті, аби Telegram API міг відправляти оновлення вашому боту.
 Існує кілька сервісів, таких як [localtunnel](https://localtunnel.me) або [ngrok](https://ngrok.com), які можуть вам у цьому допомогти. У цьому прикладі ми будемо використовувати localtunnel.
