@@ -481,7 +481,7 @@ bot.errorBoundary(
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
 
-```ts{6,20}
+```ts{6,22}
 async function movie(conversation: MyConversation, ctx: MyContext) {
   // TODO: 编写对话
 }
@@ -509,7 +509,7 @@ bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 </CodeGroupItem>
  <CodeGroupItem title="JavaScript">
 
-```js{6,20}
+```js{6,22}
 async function movie(conversation, ctx) {
   // TODO: 编写对话
 }
@@ -539,7 +539,7 @@ bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 
 请注意，这里的顺序很重要。
 你必须先安装对话插件（第 6 行），然后才能调用 `await ctx.conversation.exit()`。
-此外，在实际的对话被注册之前，必须安装通用的取消处理程序（第 21 行）。
+此外，在实际的对话被注册之前，必须安装通用的取消处理程序（第 22 行）。
 
 ## 等待 Updates
 
