@@ -131,7 +131,7 @@ localtunnel повинен надати вам унікальну URL-адрес
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<WEBHOOK_URL>/<firebase-проєкт>/us-central1/helloWorld
 ```
 
-Замініть `<BOT_TOKEN>` на свій дійсний токен бота та `<WEBHOOK_URL>` на власний URL, який ви отримали від localtunnel.
+Замініть `<BOT_TOKEN>` на свій дійсний токен бота та `<WEBHOOK_URL>` на власну URL-адресу, яку ви отримали від localtunnel.
 
 Ви повинні побачити це у вікні свого браузера.
 
