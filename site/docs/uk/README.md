@@ -84,7 +84,7 @@ bot.start();
 ---
 
 <ClientOnly>
-  <ThankYou :s="['Дякуємо, ', 'незнайомцю', ', за внесок у grammY.']" />
+  <ThankYou :s="['Дякуємо, ', 'незнайомцю', ', за внесок у grammY.', ', за створення grammY.']" />
 </ClientOnly>
 
 <div style="font-size: 0.75rem; display: flex; justify-content: center;">
