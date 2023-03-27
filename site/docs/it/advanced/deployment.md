@@ -2,9 +2,9 @@
 prev: ./proxy.md
 ---
 
-# Elenco di verifiche quando lo distribuisci
+# Elenco di verifiche per quando lo distribuisci
 
-Ecco una lista di cose da tenere in mente quando vai a ospitare un bot di grandi dimensioni.
+Ecco una lista di cose da tenere in mente quando vuoi ospitare un bot di grandi dimensioni.
 
 > Potresti anche essere interessato nelle nostre guide per ospitare un bot.
 > Dai un'occhiata a **Ospitare / Guide** in cima alla pagina per vedere alcune delle piattaforme che hanno già guide dedicate.
@@ -30,12 +30,12 @@ Questo dipende dal modo in cui lo distribuisci.
 1. [Usa grammY runner.](../plugins/runner.md)
 2. [Usa `sequentialize` con lo stesso id di sessione del tuo middleware di sessione.](./scaling.md#la-concorrenza-e-difficile)
 3. Revisiona le opzioni di configurazione di `run` ([riferimento alla API](https://deno.land/x/grammy_runner/mod.ts?s=run)) e assicurati di adeguarlo alle tue necessità, o considera la possibilità di creare il tuo esecutore a partire da [sources](https://deno.land/x/grammy_runner/mod.ts?s=UpdateSource) e [sinks](https://deno.land/x/grammy_runner/mod.ts?s=UpdateSink).
-   La cosa principale da considerare è il carico massimo che vuoi sostenere con il tuo serverm per esempio quanti aggiornamenti saranno processati nello stesso momento.
-4. Considera di implementare uno [spegnimento graduale](../advanced/reliability.md#spegnimento-grazioso) per spegnere il tuo bot quando vuoi (per esempio per passare ad una nuova versione).
+   La cosa principale da considerare è il carico massimo che vuoi sostenere con il tuo server, per esempio quanti aggiornamenti saranno processati nello stesso momento.
+4. Considera di implementare uno [spegnimento graduale](../advanced/reliability.md#spegnimento-grazioso) per spegnere il tuo bot quando vuoi (ad esempio per passare ad una nuova versione).
 
 ### Webhooks
 
-1. Assicurati di non attuare nessuna operazione di lunga durata nel middleware, come il trasferimento di archivi di grandi dimensioni. [Questo porta a errori di tempo scaduto](../guide/deployment-types.md#terminare-le-richieste-dei-webhook-in-tempo) per i webhook, e duplica il processare degli aggiornamenti in quanto Telegram manderà nuovamente gli aggiornamenti a cui non si ha risposto velocemente. Considera invece la possibilità di utilizzare una coda di processi.
+1. Assicurati di non attuare nessuna operazione di lunga durata nel middleware, come il trasferimento di archivi di grandi dimensioni. [Questo porta a errori di tempo scaduto](../guide/deployment-types.md#terminare-le-richieste-dei-webhook-in-tempo) per i webhook, e duplica gli Update da processare in quanto Telegram manderà nuovamente gli aggiornamenti a cui non si risponde velocemente. Considera invece la possibilità di utilizzare una coda di processi.
 2. Familiarizza con la configurazione di `webhookCallback` ([riferimento alla API](https://deno.land/x/grammy/mod.ts?s=webhookCallback)).
 3. Se hai modificato l' opzione `getSessionKey` per la tua sessione, [usa `sequentialize` con la stessa funzione di risoluzione della chiave di sessione del middleware di sessione](./scaling.md#la-concorrenza-e-difficile).
 4. Se stai distribuendo su una piattaforma senza server o che scala automaticamente, [imposta le informazioni del bot](https://deno.land/x/grammy/mod.ts?s=BotConfig) per prevenire eccessive chiamate `getMe`.
@@ -48,7 +48,8 @@ Questo dipende dal modo in cui lo distribuisci.
 
 ## Prove
 
-Scrivi i test per il tuo bot. Questo si può fare con grammY in questo modo:
+Scrivi i test per il tuo bot.
+Questo si può fare con grammY in questo modo:
 
 1. Simula le richieste API in uscita usando le [funzioni transfromer](./transformers.md).
 2. Definisci e invia aggiornamenti di esempio al tuo bot tramite `bot.handleUpdate` ([riferimento alla API](https://deno.land/x/grammy/mod.ts?s=Bot#method_handleUpdate_0)). Prendi ispirazione da [questi esempi](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates) forniti dagli sviluppatori di Telegram.
@@ -56,7 +57,7 @@ Scrivi i test per il tuo bot. Questo si può fare con grammY in questo modo:
 ::: tip Contribuisci al framework di testing.
 
 Anche se grammY fornisce gli hook necessari per iniziare a scrivere test, sarebbe molto utile avere un framework dedicato.
-Questo è territorio ancora inesplorato, framework simili principalmente non esistono. Speriamo nel tuo contributo!
+Questo è territorio ancora inesplorato, framework di questo tipo praticamente non esistono. Confidiamo nel tuo contributo!
 
 Un esempio di come i test potrebbero essere fatti [può essere torvato qui](https://github.com/PavelPolyakov/grammy-with-tests).
 :::
