@@ -477,7 +477,7 @@ Recuerda que debes `await` la llamada.
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
 
-```ts{6,21}
+```ts{6,22}
 async function movie(conversation: MyConversation, ctx: MyContext) {
   // TODO: definir la conversación
 }
@@ -505,7 +505,7 @@ bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 </CodeGroupItem>
  <CodeGroupItem title="JavaScript">
 
-```js{6,21}
+```js{6,22}
 async function movie(conversation, ctx) {
   // TODO: definir la conversación
 }
@@ -535,7 +535,7 @@ bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 
 Tenga en cuenta que el orden es importante aquí.
 Primero debes instalar el plugin de conversaciones (línea 6) antes de poder llamar a `await ctx.conversation.exit()`.
-Además, los manejadores de cancelación genéricos deben ser instalados antes de que las conversaciones reales (línea 21) sean registradas.
+Además, los manejadores de cancelación genéricos deben ser instalados antes de que las conversaciones reales (línea 22) sean registradas.
 
 ## Esperar a las actualizaciones
 
