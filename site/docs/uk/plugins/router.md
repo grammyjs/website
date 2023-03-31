@@ -113,14 +113,14 @@ day.on("message:text", async (ctx) => {
   ctx.session.dayOfMonth = day;
   // Попередньо змінюємо крок форми
   ctx.session.step = "month";
-  await ctx.reply("Готово! А тепер надішліть мені місяць!", {
+  await ctx.reply("Готово! А тепер скажіть, якого місяця ви народилися?", {
     reply_markup: {
       one_time_keyboard: true,
       keyboard: new Keyboard()
-        .text("Січ").text("Лют").text("Бер").row()
-        .text("Квіт").text("Трав").text("Черв").row()
-        .text("Лип").text("Серп").text("Вер").row()
-        .text("Жовт").text("Лист").text("Груд").build(),
+        .text("січня").text("лютого").text("березня").row()
+        .text("квітня").text("травня").text("червня").row()
+        .text("липня").text("серпня").text("вересня").row()
+        .text("жовтня").text("листопада").text("грудня").build(),
     },
   });
 });
@@ -153,7 +153,7 @@ month.on("message:text", async (ctx) => {
   ctx.session.month = month;
   const diff = getDays(month, day);
   await ctx.reply(
-    `Ваш день народження ${day} ${months[month]}.
+    `Ваш день народження ${day}-го ${months[month]}.
 Це за ${diff} днів!`,
     { reply_markup: { remove_keyboard: true } },
   );
@@ -173,18 +173,18 @@ bot.start();
 
 // Утиліти для перетворення дат
 const months = [
-  "Січ",
-  "Лют",
-  "Бер",
-  "Квіт",
-  "Трав",
-  "Черв",
-  "Лип",
-  "Серп",
-  "Вер",
-  "Жовт",
-  "Лист",
-  "Груд",
+  "січня",
+  "лютого",
+  "березня",
+  "квітня",
+  "травня",
+  "червня",
+  "липня",
+  "серпня",
+  "вересня",
+  "жовтня",
+  "листопада",
+  "грудня",
 ];
 function getDays(month: number, day: number) {
   const bday = new Date();
@@ -246,14 +246,14 @@ day.on("message:text", async (ctx) => {
   ctx.session.dayOfMonth = day;
   // Попередньо змінюємо крок форми
   ctx.session.step = "month";
-  await ctx.reply("Готово! А тепер надішліть мені місяць!", {
+  await ctx.reply("Готово! А тепер скажіть, якого місяця ви народилися?", {
     reply_markup: {
       one_time_keyboard: true,
       keyboard: new Keyboard()
-        .text("Січ").text("Лют").text("Бер").row()
-        .text("Квіт").text("Трав").text("Черв").row()
-        .text("Лип").text("Серп").text("Вер").row()
-        .text("Жовт").text("Лист").text("Груд").build(),
+        .text("січня").text("лютого").text("березня").row()
+        .text("квітня").text("травня").text("червня").row()
+        .text("липня").text("серпня").text("вересня").row()
+        .text("жовтня").text("листопада").text("грудня").build(),
     },
   });
 });
@@ -286,7 +286,7 @@ month.on("message:text", async (ctx) => {
   ctx.session.month = month;
   const diff = getDays(month, day);
   await ctx.reply(
-    `Ваш день народження ${day} ${months[month]}.
+    `Ваш день народження ${day}-го ${months[month]}.
 Це за ${diff} днів!`,
     { reply_markup: { remove_keyboard: true } },
   );
@@ -306,18 +306,18 @@ bot.start();
 
 // Утиліти для перетворення дат
 const months = [
-  "Січ",
-  "Лют",
-  "Бер",
-  "Квіт",
-  "Трав",
-  "Черв",
-  "Лип",
-  "Серп",
-  "Вер",
-  "Жовт",
-  "Лист",
-  "Груд",
+  "січня",
+  "лютого",
+  "березня",
+  "квітня",
+  "травня",
+  "червня",
+  "липня",
+  "серпня",
+  "вересня",
+  "жовтня",
+  "листопада",
+  "грудня",
 ];
 function getDays(month: number, day: number) {
   const bday = new Date();
@@ -393,14 +393,14 @@ day.on("message:text", async (ctx) => {
   ctx.session.dayOfMonth = day;
   // Попередньо змінюємо крок форми
   ctx.session.step = "month";
-  await ctx.reply("Готово! А тепер надішліть мені місяць!", {
+  await ctx.reply("Готово! А тепер скажіть, якого місяця ви народилися?", {
     reply_markup: {
       one_time_keyboard: true,
       keyboard: new Keyboard()
-        .text("Січ").text("Лют").text("Бер").row()
-        .text("Квіт").text("Трав").text("Черв").row()
-        .text("Лип").text("Серп").text("Вер").row()
-        .text("Жовт").text("Лист").text("Груд").build(),
+        .text("січня").text("лютого").text("березня").row()
+        .text("квітня").text("травня").text("червня").row()
+        .text("липня").text("серпня").text("вересня").row()
+        .text("жовтня").text("листопада").text("грудня").build(),
     },
   });
 });
@@ -433,7 +433,7 @@ month.on("message:text", async (ctx) => {
   ctx.session.month = month;
   const diff = getDays(month, day);
   await ctx.reply(
-    `Ваш день народження ${day} ${months[month]}.
+    `Ваш день народження ${day}-го ${months[month]}.
 Це за ${diff} днів!`,
     { reply_markup: { remove_keyboard: true } },
   );
@@ -453,18 +453,18 @@ bot.start();
 
 // Утиліти для перетворення дат
 const months = [
-  "Січ",
-  "Лют",
-  "Бер",
-  "Квіт",
-  "Трав",
-  "Черв",
-  "Лип",
-  "Серп",
-  "Вер",
-  "Жовт",
-  "Лист",
-  "Груд",
+  "січня",
+  "лютого",
+  "березня",
+  "квітня",
+  "травня",
+  "червня",
+  "липня",
+  "серпня",
+  "вересня",
+  "жовтня",
+  "листопада",
+  "грудня",
 ];
 function getDays(month: number, day: number) {
   const bday = new Date();
