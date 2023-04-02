@@ -128,7 +128,7 @@ const bot = new Bot<ParseModeFlavor<Context>>("");
 // Встановлюємо плагін.
 bot.use(hydrateReply);
 
-// Встановлює режим форматування за замовчуванням для `ctx.reply`
+// Встановлюємо режим форматування за замовчуванням для `ctx.reply`
 bot.api.config.use(parseMode("MarkdownV2"));
 
 bot.command("demo", async (ctx) => {
@@ -156,7 +156,7 @@ const bot = new Bot("");
 // Встановлюємо плагін.
 bot.use(hydrateReply);
 
-// Встановлює режим форматування за замовчуванням для `ctx.reply`
+// Встановлюємо режим форматування за замовчуванням для `ctx.reply`
 bot.api.config.use(parseMode("MarkdownV2"));
 
 bot.command("demo", async (ctx) => {
@@ -189,7 +189,7 @@ const bot = new Bot<ParseModeFlavor<Context>>("");
 // Встановлюємо плагін.
 bot.use(hydrateReply);
 
-// Встановлює режим форматування за замовчуванням для `ctx.reply`
+// Встановлюємо режим форматування за замовчуванням для `ctx.reply`
 bot.api.config.use(parseMode("MarkdownV2"));
 
 bot.command("demo", async (ctx) => {
