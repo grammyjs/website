@@ -110,8 +110,8 @@ const menu = new Menu<MyContext>("ідентифікатор");
 
 ```ts
 const menu = new Menu("movements")
-  .text("^", (ctx) => ctx.reply("Вперед.!")).row()
-  .text("<", (ctx) => ctx.reply("Ліворуч.!"))
+  .text("^", (ctx) => ctx.reply("Вперед!")).row()
+  .text("<", (ctx) => ctx.reply("Ліворуч!"))
   .text(">", (ctx) => ctx.reply("Праворуч!")).row()
   .text("v", (ctx) => ctx.reply("Назад!"));
 ```
