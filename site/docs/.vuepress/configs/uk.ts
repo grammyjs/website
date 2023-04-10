@@ -224,7 +224,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/uk/plugins/parse-mode.html",
               },
               {
-                text: "Учаники чату (chat-members)",
+                text: "Учасники чату (chat-members)",
                 link: "/uk/plugins/chat-members.html",
               },
             ],
