@@ -4,9 +4,9 @@
 
 ## Вступ
 
-Більшість чатів складаються з більш ніж одного повідомлення (очевидно).
+Більшість чатів складаються з більш ніж одного повідомлення, що очевидно.
 
-Наприклад, ви можете поставити користувачеві запитання, а потім дочекатися відповіді.
+Наприклад, ви можете поставити користувачу запитання, а потім дочекатися відповіді.
 Це може навіть повторюватися кілька разів, тому розмова розвиватиметься.
 
 Замислившись над [middleware](../guide/middleware.md), ви помітите, що все базується на одному [обʼєкті контексту](../guide/context.md) для кожного обробника.
@@ -251,7 +251,7 @@ async function greeting(conversation: MyConversation, ctx: MyContext) {
 bot.use(createConversation(greeting));
 
 bot.command("start", async (ctx) => {
-  // вводимо оголошену функцію `greeting`
+  // Вводимо оголошену функцію `greeting`
   await ctx.conversation.enter("greeting");
 });
 
@@ -281,7 +281,7 @@ async function greeting(conversation, ctx) {
 bot.use(createConversation(greeting));
 
 bot.command("start", async (ctx) => {
-  // вводимо оголошену функцію `greeting`
+  // Вводимо оголошену функцію `greeting`
   await ctx.conversation.enter("greeting");
 });
 
@@ -316,7 +316,7 @@ async function greeting(conversation: MyConversation, ctx: MyContext) {
 bot.use(createConversation(greeting));
 
 bot.command("start", async (ctx) => {
-  // вводимо оголошену функцію `greeting`
+  // Вводимо оголошену функцію `greeting`
   await ctx.conversation.enter("greeting");
 });
 
@@ -477,7 +477,7 @@ bot.errorBoundary(
 Якщо ви хочете жорстко завершити розмову у вашому звичайному middleware, поки він очікує на введення користувачем певних даних, ви також можете використати `await ctx.conversation.exit()`.
 Це просто видалить дані плагіна розмов із сесії.
 Часто краще просто повернутися (`return`) з функції, але є кілька прикладів, де використання `await ctx.conversation.exit()` є зручним.
-Пам'ятайте, що ви повинні дочекатися (`await`) виконання методу.
+Памʼятайте, що ви повинні дочекатися (`await`) виконання методу.
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
@@ -1009,7 +1009,7 @@ async function waitForMe(conversation, ctx) {
 
 ```ts
 async function convo(conversation: MyConversation, ctx: MyContext) {
-  // Встановлюємо плагіни grammY
+  // Встановлюємо плагін grammY
   await conversation.run(plugin());
   // Продовжуємо визначати розмову ...
 }
@@ -1020,7 +1020,7 @@ async function convo(conversation: MyConversation, ctx: MyContext) {
 
 ```js
 async function convo(conversation, ctx) {
-  // Встановлюємо плагіни grammY
+  // Встановлюємо плагін grammY
   await conversation.run(plugin());
   // Продовжуємо визначати розмову ...
 }
@@ -1184,7 +1184,7 @@ const stats = await ctx.conversation.active();
 console.log(stats); // { "enterGroup": 1 }
 ```
 
-Це буде надано у вигляді обʼєкта, який має ідентифікатори розмов як ключі та і число, що вказує на кількість запущених розмов для кожного ідентифікатора.
+Це буде надано у вигляді обʼєкта, який має ідентифікатори розмов як ключі та число, що вказує на кількість запущених розмов для кожного ідентифікатора.
 
 ## Як це працює
 
@@ -1224,7 +1224,7 @@ console.log(stats); // { "enterGroup": 1 }
 Отже, якщо ми створимо розмови зі станом, вони можуть постійно випадково перериватися, оскільки деякі виклики `wait` не обробляються, а інший middleware несподівано виконується.
 Наслідком цього є велика кількість випадкових помилок і хаос.
 
-Проблем більше, але ви зрозуміли, про що йдеться мова.
+Проблем більше, але ви зрозуміли, про що йде мова.
 
 Отже, плагін розмов робить все інакше.
 Зовсім інакше.
@@ -1268,7 +1268,7 @@ if (Math.random() < 0.5) {
 
 ### Як перехопити виконання функції
 
-Концептуально кажучи, ключові слова `async` та `await` дають нам контроль над тим, де потік [витісняється](https://uk.wikipedia.org/wiki/%D0%92%D0%B8%D1%82%D0%B8%D1%81%D0%BA%D0%B0%D0%BB%D1%8C%D0%BD%D0%B0_%D0%B1%D0%B0%D0%B3%D0%B0%D1%82%D0%BE%D0%B7%D0%B0%D0%B4%D0%B0%D1%87%D0%BD%D1%96%D1%81%D1%82%D1%8C).
+Концептуально кажучи, ключові слова `async` та `await` дають нам контроль над тим, де потік [витісняється](https://uk.wikipedia.org/wiki/Витискальна_багатозадачність).
 Отже, якщо хтось викликає `await conversation.wait()`, яка є функцією нашої бібліотеки, ми маємо право витіснити виконання.
 
 Якщо говорити конкретніше, то секретний примітив ядра, який дозволяє нам переривати виконання функції, - це `Promise`, який ніколи не виконується (`resolve`).
