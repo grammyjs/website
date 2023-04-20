@@ -274,7 +274,7 @@ month.on("message:text", async (ctx) => {
     return;
   }
 
-   const month = Object.keys(months).indexOf(ctx.msg.text);
+  const month = Object.keys(months).indexOf(ctx.msg.text);
   if (month === -1) {
     await ctx.reply(
 "Цей місяць недійсний, \
