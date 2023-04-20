@@ -391,7 +391,7 @@ class MyContext extends Context {
 }
 
 // Передаємо конструктор спеціального класу контексту як параметр.
-const bot = new Bot("<token>", {
+const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
@@ -421,7 +421,7 @@ class MyContext extends Context {
 }
 
 // Передаємо конструктор спеціального класу контексту як параметр.
-const bot = new Bot("<token>", {
+const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
@@ -455,7 +455,7 @@ class MyContext extends Context {
 }
 
 // Передаємо конструктор спеціального класу контексту як параметр.
-const bot = new Bot("<token>", {
+const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
