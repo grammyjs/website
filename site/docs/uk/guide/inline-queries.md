@@ -8,13 +8,13 @@ next: ./files.md
 За допомогою inline-запитів користувачі можуть шукати, переглядати та надсилати контент, запропонований вашим ботом, у будь-якому чаті, навіть якщо бот не учасник цього чату.
 Для цього користувачі починають повідомлення з `@your_bot_name` і вибирають один із результатів.
 
-::: tip Увімкніть inline режим
-За замовчуванням inline режим вимкнено.
-Для того, щоб отримувати inline-запити, потрібно звернутися до [@BotFather](https://t.me/BotFather)(https://t.me/BotFather) та увімкнути inline режим для свого бота.
+::: tip Увімкніть inline-режим
+За замовчуванням inline-режим вимкнено.
+Для того, щоб отримувати inline-запити, потрібно звернутися до [@BotFather](https://t.me/BotFather)(https://t.me/BotFather) та увімкнути inline-режим для свого бота.
 :::
 
-> Перегляньте розділ про inline режим у [можливостях ботів Telegram](https://core.telegram.org/bots/features#inline-requests), створений командою Telegram.
-> Додатковими ресурсами є їхній [детальний опис](https://core.telegram.org/bots/inline) inline ботів, а також [оригінальна публікація в блозі](https://telegram.org/blog/inline-bots), яка анонсувала цю можливість, і розділ про inline режим у [довіднику Telegram Bot API](https://core.telegram.org/bots/api#inline-mode).
+> Перегляньте розділ про inline-режим у [можливостях ботів Telegram](https://core.telegram.org/bots/features#inline-requests), створений командою Telegram.
+> Додатковими ресурсами є їхній [детальний опис](https://core.telegram.org/bots/inline) inline ботів, а також [оригінальна публікація в блозі](https://telegram.org/blog/inline-bots), яка анонсувала цю можливість, і розділ про inline-режим у [довіднику Telegram Bot API](https://core.telegram.org/bots/api#inline-mode).
 > Це все варто прочитати, перш ніж застосовувати inline-запити для вашого бота.
 
 Щойно користувач ініціює inline-запит, тобто почне друкувати повідомлення, ввівши `@your_bot_name ...` у полі введення тексту, ваш бот отримає оновлення про це.
