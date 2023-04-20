@@ -246,7 +246,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
               },
               {
                 text: "[Відправте свій PR!]",
-                link: "/uk/plugins/#create-your-own-plugins",
+                link: "/uk/plugins/#створюйте-власні-плагіни",
               },
             ],
           },
@@ -367,7 +367,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
               },
               {
                 text: "Firebase Functions",
-                link: "/hosting/firebase.html",
+                link: "/uk/hosting/firebase.html",
               },
               {
                 text: "Google Cloud Functions",
