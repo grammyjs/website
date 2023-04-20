@@ -109,7 +109,7 @@ import type { Transformer } from "./deps.deno.ts";
 
 // Головна функція плагіну
 export function autoChatAction(): Transformer {
-  // Створюємо та повертаємо transformer функцію.
+  // Створюємо та повертаємо функцію-перетворювач.
   return async (prev, method, payload, signal) => {
     // Збережемо ідентифікатор встановленого інтервалу, щоби потім можна було очистити його.
     let handle: ReturnType<typeof setTimeout> | undefined;
