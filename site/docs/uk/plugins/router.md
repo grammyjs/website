@@ -113,14 +113,14 @@ day.on("message:text", async (ctx) => {
   ctx.session.dayOfMonth = day;
   // Попередньо змінюємо крок форми
   ctx.session.step = "month";
-  await ctx.reply("Готово! А тепер скажіть, якого місяця ви народилися?", {
+  await ctx.reply("Готово! А тепер скажіть, якого місяця ви народилися!", {
     reply_markup: {
       one_time_keyboard: true,
       keyboard: new Keyboard()
-        .text("січня").text("лютого").text("березня").row()
-        .text("квітня").text("травня").text("червня").row()
-        .text("липня").text("серпня").text("вересня").row()
-        .text("жовтня").text("листопада").text("грудня").build(),
+        .text("Січень").text("Лютий").text("Березень").row()
+        .text("Квітень").text("Травень").text("Червень").row()
+        .text("Липень").text("Серпень").text("Вересень").row()
+        .text("Жовтень").text("Листопад").text("Грудень").build(),
     },
   });
 });
@@ -136,12 +136,12 @@ month.on("message:text", async (ctx) => {
   // Наступна умова виконається, лише якщо дані сесії пошкоджено.
   const day = ctx.session.dayOfMonth;
   if (day === undefined) {
-    await ctx.reply("Спочатку мені потрібно дізнатися твій день місяця!");
+    await ctx.reply("Спочатку мені потрібно дізнатися день вашого народження!");
     ctx.session.step = "day";
     return;
   }
 
-  const month = months.indexOf(ctx.msg.text);
+  const month = Object.keys(months).indexOf(ctx.msg.text);
   if (month === -1) {
     await ctx.reply(
 "Цей місяць недійсний, \
@@ -153,7 +153,7 @@ month.on("message:text", async (ctx) => {
   ctx.session.month = month;
   const diff = getDays(month, day);
   await ctx.reply(
-    `Ваш день народження ${day}-го ${months[month]}.
+    `Ваш день народження ${day}-го ${Object.values(months)[month]}.
 Це за ${diff} днів!`,
     { reply_markup: { remove_keyboard: true } },
   );
@@ -172,20 +172,20 @@ bot.use(router); // реєструємо маршрутизатор
 bot.start();
 
 // Утиліти для перетворення дат
-const months = [
-  "січня",
-  "лютого",
-  "березня",
-  "квітня",
-  "травня",
-  "червня",
-  "липня",
-  "серпня",
-  "вересня",
-  "жовтня",
-  "листопада",
-  "грудня",
-];
+const months = {
+  "Січень": "січня",
+  "Лютий": "лютого",
+  "Березень": "березня",
+  "Квітень": "квітня",
+  "Травень": "травня",
+  "Червень": "червня",
+  "Липень": "липня",
+  "Серпень": "серпня",
+  "Вересень": "вересня",
+  "Жовтень": "жовтня",
+  "Листопад": "листопада",
+  "Грудень": "грудня",
+};
 function getDays(month: number, day: number) {
   const bday = new Date();
   const now = Date.now();
@@ -246,14 +246,14 @@ day.on("message:text", async (ctx) => {
   ctx.session.dayOfMonth = day;
   // Попередньо змінюємо крок форми
   ctx.session.step = "month";
-  await ctx.reply("Готово! А тепер скажіть, якого місяця ви народилися?", {
+  await ctx.reply("Готово! А тепер скажіть, якого місяця ви народилися!", {
     reply_markup: {
       one_time_keyboard: true,
       keyboard: new Keyboard()
-        .text("січня").text("лютого").text("березня").row()
-        .text("квітня").text("травня").text("червня").row()
-        .text("липня").text("серпня").text("вересня").row()
-        .text("жовтня").text("листопада").text("грудня").build(),
+        .text("Січень").text("Лютий").text("Березень").row()
+        .text("Квітень").text("Травень").text("Червень").row()
+        .text("Липень").text("Серпень").text("Вересень").row()
+        .text("Жовтень").text("Листопад").text("Грудень").build(),
     },
   });
 });
@@ -269,12 +269,12 @@ month.on("message:text", async (ctx) => {
   // Наступна умова виконається, лише якщо дані сесії пошкоджено.
   const day = ctx.session.dayOfMonth;
   if (day === undefined) {
-    await ctx.reply("Спочатку мені потрібно дізнатися твій день місяця!");
+    await ctx.reply("Спочатку мені потрібно дізнатися день вашого народження!");
     ctx.session.step = "day";
     return;
   }
 
-  const month = months.indexOf(ctx.msg.text);
+   const month = Object.keys(months).indexOf(ctx.msg.text);
   if (month === -1) {
     await ctx.reply(
 "Цей місяць недійсний, \
@@ -286,7 +286,7 @@ month.on("message:text", async (ctx) => {
   ctx.session.month = month;
   const diff = getDays(month, day);
   await ctx.reply(
-    `Ваш день народження ${day}-го ${months[month]}.
+    `Ваш день народження ${day}-го ${Object.values(months)[month]}.
 Це за ${diff} днів!`,
     { reply_markup: { remove_keyboard: true } },
   );
@@ -305,20 +305,20 @@ bot.use(router); // реєструємо маршрутизатор
 bot.start();
 
 // Утиліти для перетворення дат
-const months = [
-  "січня",
-  "лютого",
-  "березня",
-  "квітня",
-  "травня",
-  "червня",
-  "липня",
-  "серпня",
-  "вересня",
-  "жовтня",
-  "листопада",
-  "грудня",
-];
+const months = {
+  "Січень": "січня",
+  "Лютий": "лютого",
+  "Березень": "березня",
+  "Квітень": "квітня",
+  "Травень": "травня",
+  "Червень": "червня",
+  "Липень": "липня",
+  "Серпень": "серпня",
+  "Вересень": "вересня",
+  "Жовтень": "жовтня",
+  "Листопад": "листопада",
+  "Грудень": "грудня",
+};
 function getDays(month: number, day: number) {
   const bday = new Date();
   const now = Date.now();
@@ -393,14 +393,14 @@ day.on("message:text", async (ctx) => {
   ctx.session.dayOfMonth = day;
   // Попередньо змінюємо крок форми
   ctx.session.step = "month";
-  await ctx.reply("Готово! А тепер скажіть, якого місяця ви народилися?", {
+  await ctx.reply("Готово! А тепер скажіть, якого місяця ви народилися!", {
     reply_markup: {
       one_time_keyboard: true,
       keyboard: new Keyboard()
-        .text("січня").text("лютого").text("березня").row()
-        .text("квітня").text("травня").text("червня").row()
-        .text("липня").text("серпня").text("вересня").row()
-        .text("жовтня").text("листопада").text("грудня").build(),
+        .text("Січень").text("Лютий").text("Березень").row()
+        .text("Квітень").text("Травень").text("Червень").row()
+        .text("Липень").text("Серпень").text("Вересень").row()
+        .text("Жовтень").text("Листопад").text("Грудень").build(),
     },
   });
 });
@@ -416,12 +416,12 @@ month.on("message:text", async (ctx) => {
   // Наступна умова виконається, лише якщо дані сесії пошкоджено.
   const day = ctx.session.dayOfMonth;
   if (day === undefined) {
-    await ctx.reply("Спочатку мені потрібно дізнатися твій день місяця!");
+    await ctx.reply("Спочатку мені потрібно дізнатися день вашого народження!");
     ctx.session.step = "day";
     return;
   }
 
-  const month = months.indexOf(ctx.msg.text);
+  const month = Object.keys(months).indexOf(ctx.msg.text);
   if (month === -1) {
     await ctx.reply(
 "Цей місяць недійсний, \
@@ -433,7 +433,7 @@ month.on("message:text", async (ctx) => {
   ctx.session.month = month;
   const diff = getDays(month, day);
   await ctx.reply(
-    `Ваш день народження ${day}-го ${months[month]}.
+    `Ваш день народження ${day}-го ${Object.values(months)[month]}.
 Це за ${diff} днів!`,
     { reply_markup: { remove_keyboard: true } },
   );
@@ -452,20 +452,20 @@ bot.use(router); // реєструємо маршрутизатор
 bot.start();
 
 // Утиліти для перетворення дат
-const months = [
-  "січня",
-  "лютого",
-  "березня",
-  "квітня",
-  "травня",
-  "червня",
-  "липня",
-  "серпня",
-  "вересня",
-  "жовтня",
-  "листопада",
-  "грудня",
-];
+const months = {
+  "Січень": "січня",
+  "Лютий": "лютого",
+  "Березень": "березня",
+  "Квітень": "квітня",
+  "Травень": "травня",
+  "Червень": "червня",
+  "Липень": "липня",
+  "Серпень": "серпня",
+  "Вересень": "вересня",
+  "Жовтень": "жовтня",
+  "Листопад": "листопада",
+  "Грудень": "грудня",
+};
 function getDays(month: number, day: number) {
   const bday = new Date();
   const now = Date.now();
