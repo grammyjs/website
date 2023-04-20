@@ -16,7 +16,7 @@ next: ./errors.md
 Припустимо, ви написали такого бота:
 
 ```ts{8}
-const bot = new Bot("<токен>");
+const bot = new Bot("");
 
 bot.use(session());
 
@@ -91,7 +91,7 @@ type NextFunction = () => Promise<void>;
 Давайте спробуємо щось інше з нашими новими знаннями!
 
 ```ts
-const bot = new Bot("<токен>");
+const bot = new Bot("");
 
 bot.on(":text", (ctx) => ctx.reply("Текст!"));
 bot.command("start", (ctx) => ctx.reply("Команда!"));
@@ -253,7 +253,7 @@ bot.use(responseTime);
 Здебільшого вони використовуються внутрішньо, але іноді також можуть допомогти стороннім бібліотекам або використовуватися у складних випадках: наприклад, із [Composer](https://deno.land/x/grammy/mod.ts?s=Composer):
 
 ```ts
-const bot = new Bot("<токен>");
+const bot = new Bot("");
 
 bot.use(/*...*/);
 bot.use(/*...*/);
