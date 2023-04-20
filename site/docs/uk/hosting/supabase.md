@@ -34,8 +34,8 @@ supabase functions new telegram-bot
 import { serve } from "https://deno.land/std/http/server.ts";
 import { Bot, webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 
-const token = Deno.env.get("BOT_TOKEN");
-if (!token) throw new Error("BOT_TOKEN не встановлено");
+const token = Deno.env.get("токен-бота");
+if (!token) throw new Error("токен-бота не встановлено");
 
 const bot = new Bot(token);
 
@@ -71,7 +71,7 @@ supabase functions deploy --no-verify-jwt telegram-bot
 
 ```sh
 # Замініть 123:aBcDeF-gh на ваш реальний токен бота.
-supabase secrets set BOT_TOKEN=123:aBcDeF-gh
+supabase secrets set токен-бота=123:aBcDeF-gh
 ```
 
 Тепер ваш проєкт на Supabase Function працює.
@@ -80,12 +80,12 @@ supabase secrets set BOT_TOKEN=123:aBcDeF-gh
 Наприклад, відкрийте нову вкладку у вашому браузері та перейдіть за цим посиланням:
 
 ```plaintext
-https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<PROJECT_NAME>.functions.supabase.co/telegram-bot?secret=<BOT_TOKEN>
+https://api.telegram.org/bot<токен-бота>/setWebhook?url=https://<назва-проєкту>.functions.supabase.co/telegram-bot?secret=<токен-бота>
 ```
 
-Замініть `<BOT_TOKEN>` на свій реальний токен бота.
-Також замініть другий аргумент `<BOT_TOKEN>` на свій реальний токен бота.
-Замініть `<PROJECT_NAME>` на назву вашого проєкту Supabase.
+Замініть `<токен-бота>` на свій реальний токен бота.
+Також замініть другий аргумент `<токен-бота>` на свій реальний токен бота.
+Замініть `<назва-проєкту>` на назву вашого проєкту Supabase.
 
 Тепер ви повинні побачити на сторінці вашого браузера наступний текст.
 

@@ -128,10 +128,10 @@ localtunnel повинен надати вам унікальну URL-адрес
 Наприклад, відкрийте нову вкладку у своєму браузері та відвідайте цю адресу:
 
 ```text:no-line-numbers
-https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<WEBHOOK_URL>/<firebase-проєкт>/us-central1/helloWorld
+https://api.telegram.org/bot<токен-бота>/setWebhook?url=<адреса>/<firebase-проєкт>/us-central1/helloWorld
 ```
 
-Замініть `<BOT_TOKEN>` на свій дійсний токен бота та `<WEBHOOK_URL>` на власну URL-адресу, яку ви отримали від localtunnel.
+Замініть `<токен-бота>` на свій дійсний токен бота й `<адреса>` на власну URL-адресу, яку ви отримали від localtunnel.
 
 Ви повинні побачити це у вікні свого браузера.
 
@@ -154,17 +154,17 @@ firebase deploy
 ```
 
 Firebase CLI надасть вам URL-адресу вашої функції одразу після того, як розгортання буде завершено.
-Посилання повинно виглядати якось так: `https://<REGION>.<MY_PROJECT.cloudfunctions.net/helloWorld`.
+Посилання повинно виглядати якось так: `https://<регіон>.<назва-проєкту.cloudfunctions.net/helloWorld`.
 Для отримання докладнішої інформації ви можете звернутися до 8-го кроку в [посібнику початку роботи](https://firebase.google.com/docs/functions/get-started?hl=ru#deploy-functions-to-a-production-environment).
 
 Після розгортання вам потрібно повідомити Telegram, куди надсилати оновлення для вашого бота, викликавши метод `setWebhook`.
 Для цього відкрийте нову вкладку в браузері і відвідайте цю адресу:
 
 ```text:no-line-numbers
-https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<REGION>.<MY_PROJECT>.cloudfunctions.net/helloWorld
+https://api.telegram.org/bot<токен-бота>/setWebhook?url=https://<регіон>.<назва-проєкту>.cloudfunctions.net/helloWorld
 ```
 
-Замініть `<BOT_TOKEN>` на токен вашого бота, `<REGION>` на назву регіону, де ви розгорнули свою функцію, і `<MY_PROJECT>` на назву вашого проєкту Firebase.
+Замініть `<токен-бота>` на токен вашого бота, `<регіон>` на назву регіону, де ви розгорнули свою функцію, і `<назва-проєкту>` на назву вашого проєкту Firebase.
 Firebase CLI повинен надати вам повну URL-адресу вашої хмарної функції, тому ви можете просто вставити її після параметра `?url=` в методі `setWebhook`.
 
 Якщо все налаштовано правильно, ви повинні побачити цю відповідь у вікні вашого браузера:

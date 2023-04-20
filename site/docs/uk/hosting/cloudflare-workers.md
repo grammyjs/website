@@ -89,10 +89,10 @@ npm run deploy
 Відкрийте свій браузер і відвідайте цей URL:
 
 ```text
-https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<MY_BOT>.<MY_SUBDOMAIN>.workers.dev/
+https://api.telegram.org/bot<токен-бота>/setWebhook?url=https://<назва-бота>.<піддомен>.workers.dev/
 ```
 
-Замініть `<BOT_TOKEN>`, `<MY_BOT>` та `<MY_SUBDOMAIN>` своїми значеннями.
+Замініть `<токен-бота>`, `<назва-бота>` та `<піддомен>` своїми значеннями.
 Якщо налаштування пройшло успішно, ви побачите відповідь у форматі JSON, схожу на цю:
 
 ```json
