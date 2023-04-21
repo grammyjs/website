@@ -94,10 +94,10 @@ export default webhookCallback(bot, "http");
 Змініть наведену нижче URL-адресу на свої дані авторизації та відвідайте її у своєму браузері:
 
 ```md:no-line-numbers
-https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<HOST_URL>
+https://api.telegram.org/bot<токен-бота>/setWebhook?url=<адреса>
 ```
 
-`HOST_URL` потребує особливої уваги, оскільки потрібно використовувати домен вашого **застосунку Vercel з маршрутом до коду бота**: наприклад, `https://appname.vercel.app/api/bot`.
+`<адреса>` потребує особливої уваги, оскільки потрібно використовувати домен вашого **застосунку Vercel з маршрутом до коду бота**: наприклад, `https://appname.vercel.app/api/bot`.
 Де `bot` посилається на ваш файл `bot.ts` або `bot.js`.
 
 Після цього ви повинні побачити відповідь, схожу на цю:

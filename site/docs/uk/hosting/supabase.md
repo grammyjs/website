@@ -80,12 +80,12 @@ supabase secrets set BOT_TOKEN=123:aBcDeF-gh
 Наприклад, відкрийте нову вкладку у вашому браузері та перейдіть за цим посиланням:
 
 ```plaintext
-https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<PROJECT_NAME>.functions.supabase.co/telegram-bot?secret=<BOT_TOKEN>
+https://api.telegram.org/bot<токен-бота>/setWebhook?url=https://<назва-проєкту>.functions.supabase.co/telegram-bot?secret=<токен-бота>
 ```
 
-Замініть `<BOT_TOKEN>` на свій реальний токен бота.
-Також замініть другий аргумент `<BOT_TOKEN>` на свій реальний токен бота.
-Замініть `<PROJECT_NAME>` на назву вашого проєкту Supabase.
+Замініть `<токен-бота>` на свій реальний токен бота.
+Також замініть другий аргумент `<токен-бота>` на свій реальний токен бота.
+Замініть `<назва-проєкту>` на назву вашого проєкту Supabase.
 
 Тепер ви повинні побачити на сторінці вашого браузера наступний текст.
 

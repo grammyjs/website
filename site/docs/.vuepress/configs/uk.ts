@@ -65,7 +65,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/uk/guide/commands.html",
               },
               {
-                text: "Middleware",
+                text: "Проміжні обробники",
                 link: "/uk/guide/middleware.html",
               },
               {
@@ -99,7 +99,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
                 activeMatch: "^/advanced/$",
               },
               {
-                text: "Спрощення middleware",
+                text: "Можливості проміжних обробників",
                 link: "/uk/advanced/middleware.html",
               },
               {
@@ -224,7 +224,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/uk/plugins/parse-mode.html",
               },
               {
-                text: "Учаники чату (chat-members)",
+                text: "Учасники чату (chat-members)",
                 link: "/uk/plugins/chat-members.html",
               },
             ],
@@ -246,7 +246,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
               },
               {
                 text: "[Відправте свій PR!]",
-                link: "/uk/plugins/#create-your-own-plugins",
+                link: "/uk/plugins/#створюйте-власні-плагіни",
               },
             ],
           },
@@ -358,6 +358,10 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/uk/hosting/supabase.html",
               },
               {
+                text: "Cloudflare Workers",
+                link: "/uk/hosting/cloudflare-workers.html",
+              },
+              {
                 text: "Heroku",
                 link: "/uk/hosting/heroku.html",
               },
@@ -367,7 +371,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
               },
               {
                 text: "Firebase Functions",
-                link: "/hosting/firebase.html",
+                link: "/uk/hosting/firebase.html",
               },
               {
                 text: "Google Cloud Functions",

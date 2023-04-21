@@ -11,7 +11,7 @@ next: ./introduction.md
 
 ## Що таке grammY?
 
-grammY це фреймворк для створення ботів Telegram.
+grammY — це фреймворк для створення ботів Telegram.
 Його можна використовувати з TypeScript і JavaScript, він працює на Node.js, Deno та в браузері.
 
 Перегляньте [Вступ](./introduction.md), якщо ви новачок у написанні ботів Telegram, особливо якщо у вас невеликий досвід програмування.

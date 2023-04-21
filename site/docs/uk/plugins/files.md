@@ -15,7 +15,7 @@
 import { Bot, Context } from "grammy";
 import { FileFlavor, hydrateFiles } from "@grammyjs/files";
 
-// Перетворюючий flavor для контексту
+// Перетворювальний розширювач для контексту
 type MyContext = FileFlavor<Context>;
 
 // Створюємо бота.
@@ -69,7 +69,7 @@ import {
   hydrateFiles,
 } from "https://deno.land/x/grammy_files/mod.ts";
 
-// Перетворюючий flavor для контексту
+// Перетворювальний розширювач для контексту
 type MyContext = FileFlavor<Context>;
 
 // Створюємо бота.
@@ -107,9 +107,9 @@ bot.on([":video", ":animation"], async (ctx) => {
 
 ## Підтримка викликів `bot.api`
 
-За замовчуванням результати `await bot.api.getFile()` також матимуть методи `download` та `getUrl`.
+Результати `await bot.api.getFile()` також матимуть типові методи `download` та `getUrl`.
 Однак це не відображатиметься у типах.
-Якщо вам потрібно їх викликати, вам також варто встановити [flavor для API](../advanced/transformers.md#flavor-для-api) з назвою `FileApiFlavor` на обʼєкті бота:
+Якщо вам потрібно їх викликати, вам також варто встановити [розширювач для API](../advanced/transformers.md#розширювач-для-api) з назвою `FileApiFlavor` на обʼєкті бота:
 
 <CodeGroup>
   <CodeGroupItem title="Node.js" active>
