@@ -99,7 +99,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
                 activeMatch: "^/advanced/$",
               },
               {
-                text: "Спрощення middleware",
+                text: "Можливості проміжних обробників",
                 link: "/uk/advanced/middleware.html",
               },
               {
