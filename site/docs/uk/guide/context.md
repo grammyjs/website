@@ -11,7 +11,7 @@ next: ./api.md
 
 ```ts
 bot.on("message", (ctx) => {
-  // `ctx` - це обʼєкт `Context`.
+  // `ctx` — це обʼєкт `Context`.
 });
 ```
 
