@@ -24,7 +24,7 @@ const unicornQuestion = new StatelessQuestion("unicorns", (ctx) => {
   console.log("Користувач вважає, що єдинороги роблять:", ctx.message);
 });
 
-// Не забуваємо використати middleware.
+// Не забуваємо використати проміжний обробник.
 bot.use(unicornQuestion.middleware());
 
 bot.command("rainbows", async (ctx) => {
