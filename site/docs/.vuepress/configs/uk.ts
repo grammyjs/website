@@ -65,7 +65,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/uk/guide/commands.html",
               },
               {
-                text: "Middleware",
+                text: "Проміжні обробники",
                 link: "/uk/guide/middleware.html",
               },
               {
