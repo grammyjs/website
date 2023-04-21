@@ -32,8 +32,8 @@ next: ./deployment-types.md
    ```ts
    // Використовуємо команду start для виклику методу відповіді грою.
    bot.command("start", async (ctx) => {
-     // Передаємо назву гри, яку ми створили в BotFather: наприклад, "my_game".
-     await ctx.replyWithGame("my_game");
+     // Передаємо назву гри, яку ми створили в BotFather: наприклад, "моя-гра".
+     await ctx.replyWithGame("моя-гра");
    });
    ```
 
@@ -44,30 +44,30 @@ next: ./deployment-types.md
      // Отримаємо ідентифікатор чату користувача, якому потрібно надіслати гру, за допомогою `ctx.from.id`,
      // який повертає ідентифікатор чату користувача, який відправив команду start.
      const chatId = ctx.from.id;
-     await ctx.api.sendGame(chatid, "my_game");
+     await ctx.api.sendGame(chatid, "моя-гра");
    });
    ```
 
 > [Памʼятайте](./basics.md#надсилання-повідомлень), що ви можете вказати додаткові параметри під час надсилання повідомлень за допомогою обʼєкта параметрів типу `Other`.
 
 Ви також можете вказати спеціальну [вбудовану клавіатуру](../plugins/keyboard.md#вбудовані-клавіатури), щоб у грі відображалися кнопки.
-Її буде надіслано разом із кнопкою з написом `Грати в my_game`, де _my_game_ — це назва вашої гри.
+Її буде надіслано разом із кнопкою з написом `Запустити моя-гра`, де _моя-гра_ — це назва вашої гри.
 
 ```ts
 // Визначаємо нову вбудовану клавіатуру. Ви можете написати будь-який текст,
 // який буде показано на кнопці, але переконайтеся, що перша кнопка завжди є
 // кнопкою запуску гри!
 
-const keyboard = new InlineKeyboard().game("Запустити my_game");
+const keyboard = new InlineKeyboard().game("Запустити моя-гра");
 
 // Зверніть увагу, що ми використали game() на відміну від звичайної вбудованої клавіатури
 // де ми використовуємо url() або text()
 
 // Надсилаємо за допомогою методу `replyWithGame`
-await ctx.replyWithGame("my_game", { reply_markup: keyboard });
+await ctx.replyWithGame("моя-гра", { reply_markup: keyboard });
 
 // Надсилаємо за допомогою методу `api.sendGame`
-await ctx.api.sendGame(chatId, "my_game", { reply_markup: keyboard });
+await ctx.api.sendGame(chatId, "моя-гра", { reply_markup: keyboard });
 ```
 
 ## Оброблення зворотного виклику нашої ігрової кнопки
@@ -93,7 +93,7 @@ bot.on("callback_query:game_short_name", async (ctx) => {
 });
 
 bot.command("start", (ctx) => {
-  await ctx.replyWithGame("my_game", {
+  await ctx.replyWithGame("моя-гра", {
     reply_markup: keyboard,
     // Або ми можемо скористатися тут методом API відповідно до наших потреб.
   });
