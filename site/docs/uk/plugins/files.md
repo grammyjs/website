@@ -107,7 +107,7 @@ bot.on([":video", ":animation"], async (ctx) => {
 
 ## Підтримка викликів `bot.api`
 
-За замовчуванням результати `await bot.api.getFile()` також матимуть методи `download` та `getUrl`.
+Результати `await bot.api.getFile()` також матимуть типові методи `download` та `getUrl`.
 Однак це не відображатиметься у типах.
 Якщо вам потрібно їх викликати, вам також варто встановити [flavor для API](../advanced/transformers.md#flavor-для-api) з назвою `FileApiFlavor` на обʼєкті бота:
 

@@ -112,7 +112,7 @@ bot.start();
 </CodeGroupItem>
 </CodeGroup>
 
-## Використання (режим форматування за замовчуванням та методи відповіді)
+## Використання (типовий режим форматування та методи відповіді)
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
@@ -128,7 +128,7 @@ const bot = new Bot<ParseModeFlavor<Context>>("");
 // Встановлюємо плагін.
 bot.use(hydrateReply);
 
-// Встановлюємо режим форматування за замовчуванням для `ctx.reply`
+// Встановлюємо типовий режим форматування для `ctx.reply`
 bot.api.config.use(parseMode("MarkdownV2"));
 
 bot.command("demo", async (ctx) => {
@@ -156,7 +156,7 @@ const bot = new Bot("");
 // Встановлюємо плагін.
 bot.use(hydrateReply);
 
-// Встановлюємо режим форматування за замовчуванням для `ctx.reply`
+// Встановлюємо типовий режим форматування для `ctx.reply`
 bot.api.config.use(parseMode("MarkdownV2"));
 
 bot.command("demo", async (ctx) => {
@@ -189,7 +189,7 @@ const bot = new Bot<ParseModeFlavor<Context>>("");
 // Встановлюємо плагін.
 bot.use(hydrateReply);
 
-// Встановлюємо режим форматування за замовчуванням для `ctx.reply`
+// Встановлюємо типовий режим форматування для `ctx.reply`
 bot.api.config.use(parseMode("MarkdownV2"));
 
 bot.command("demo", async (ctx) => {
