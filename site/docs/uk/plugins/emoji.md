@@ -36,7 +36,7 @@ import { EmojiFlavor, emojiParser } from "@grammyjs/emoji";
 
 // Це називається розширювач для контексту
 // Ви можете прочитати про це докладніше за посиланням:
-// https://grammy.dev/uk/guide/context.html#перетворювальний-розширювач
+// https://grammy.dev/uk/guide/context.html#перетворювальнии-розширювач
 type MyContext = EmojiFlavor<Context>;
 
 const bot = new Bot<MyContext>("");
@@ -68,7 +68,7 @@ import {
 
 // Це називається розширювач для контексту
 // Ви можете прочитати про це докладніше за посиланням:
-// https://grammy.dev/uk/guide/context.html#перетворювальний-розширювач
+// https://grammy.dev/uk/guide/context.html#перетворювальнии-розширювач
 type MyContext = EmojiFlavor<Context>;
 
 const bot = new Bot<MyContext>("");
