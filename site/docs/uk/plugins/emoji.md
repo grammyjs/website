@@ -34,9 +34,9 @@
 import { Bot, Context } from "grammy";
 import { EmojiFlavor, emojiParser } from "@grammyjs/emoji";
 
-// Це називається flavor для контексту
+// Це називається розширювач для контексту
 // Ви можете прочитати про це докладніше за посиланням:
-// https://grammy.dev/uk/guide/context.html#перетворюючии-flavor
+// https://grammy.dev/uk/guide/context.html#перетворювальний-розширювач
 type MyContext = EmojiFlavor<Context>;
 
 const bot = new Bot<MyContext>("");
@@ -66,9 +66,9 @@ import {
   emojiParser,
 } from "https://deno.land/x/grammy_emoji/mod.ts";
 
-// Це називається flavor для контексту
+// Це називається розширювач для контексту
 // Ви можете прочитати про це докладніше за посиланням:
-// https://grammy.dev/uk/guide/context.html#перетворюючии-flavor
+// https://grammy.dev/uk/guide/context.html#перетворювальний-розширювач
 type MyContext = EmojiFlavor<Context>;
 
 const bot = new Bot<MyContext>("");

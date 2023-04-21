@@ -103,7 +103,7 @@ async function greeting(conversation, ctx) {
 
 **Другий параметр** не такий цікавий, це звичайний обʼєкт контексту.
 Як завжди, він називається `ctx` і використовує [ваш тип контексту](../guide/context.md#налаштування-обʼєкта-контексту), який може називатися `MyContext`.
-Плагін розмов експортує [flavor для контексту](../guide/context.md#додаючии-flavor), який називається `ConversationFlavor`.
+Плагін розмов експортує [розширювач для контексту](../guide/context.md#додавальний-розширювач), який називається `ConversationFlavor`.
 
 **Перший параметр** є центральним елементом цього плагіна.
 Він має загальну назву `conversation` і тип `Conversation` ([довідка API](https://deno.land/x/grammy_conversations/mod.ts?s=Conversation)).
