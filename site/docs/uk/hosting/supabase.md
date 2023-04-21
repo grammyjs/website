@@ -34,8 +34,8 @@ supabase functions new telegram-bot
 import { serve } from "https://deno.land/std/http/server.ts";
 import { Bot, webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 
-const token = Deno.env.get("токен-бота");
-if (!token) throw new Error("токен-бота не встановлено");
+const token = Deno.env.get("BOT_TOKEN");
+if (!token) throw new Error("BOT_TOKEN не встановлено");
 
 const bot = new Bot(token);
 
@@ -71,7 +71,7 @@ supabase functions deploy --no-verify-jwt telegram-bot
 
 ```sh
 # Замініть 123:aBcDeF-gh на ваш реальний токен бота.
-supabase secrets set токен-бота=123:aBcDeF-gh
+supabase secrets set BOT_TOKEN=123:aBcDeF-gh
 ```
 
 Тепер ваш проєкт на Supabase Function працює.
