@@ -31,7 +31,7 @@ For example, it is not possible to first send a custom keyboard along with a mes
 grammY has a simple and intuitive way to build up the inline keyboards that your bot can send along with a message.
 It provides a class called `InlineKeyboard` for this.
 
-> The buttons added by calling `switchInline`, `switchInlineCurrent`, and `switchInlineChosenChat` start inline queries.
+> The buttons added by calling `switchInline`, `switchInlineCurrent`, and `switchInlineChosen` start inline queries.
 > Check out the section about [Inline Queries](../guide/inline-queries.md) for more information about how they work.
 
 ### Building an Inline Keyboard
