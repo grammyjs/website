@@ -71,7 +71,7 @@ serve(async (req) => {
 5. Виконайте наступну команду:
 
 ```sh
-deployctl deploy --project <назва-проєкту> ./mod.ts --prod --token <токен-бота>
+deployctl deploy --project <назва-проєкту> ./mod.ts --prod --token <токен-доступу>
 ```
 
 6. Щоб налаштувати Github Actions, дивіться [це](https://github.com/denoland/deployctl/blob/main/action/README.md).
