@@ -211,7 +211,7 @@ import { Bot } from "grammy";
 import { distribute, run } from "@grammyjs/runner";
 
 // Створюємо бота.
-const bot = new Bot(""); // <-- помістіть токен бота між ""
+const bot = new Bot(""); // <-- Помістіть токен свого бота між ""
 
 // За бажанням, можемо впорядкувати оновлення.
 // bot.use(sequentialize(...))
@@ -232,7 +232,7 @@ const { Bot } = require("grammy");
 const { distribute, run } = require("@grammyjs/runner");
 
 // Створюємо бота.
-const bot = new Bot(""); // <-- помістіть токен бота між ""
+const bot = new Bot(""); // <-- Помістіть токен свого бота між ""
 
 // За бажанням, можемо впорядкувати оновлення.
 // bot.use(sequentialize(...))
@@ -253,7 +253,7 @@ import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { distribute, run } from "https://deno.land/x/grammy_runner/mod.ts";
 
 // Створюємо бота.
-const bot = new Bot(""); // <-- помістіть токен бота між ""
+const bot = new Bot(""); // <-- Помістіть токен свого бота між ""
 
 // За бажанням, можемо впорядкувати оновлення.
 // bot.use(sequentialize(...))

@@ -83,7 +83,7 @@ export function onlyAccept<C extends Context>(str: string): Middleware<C> {
 import { onlyAccept } from "./plugin.ts";
 import { Bot } from "./deps.deno.ts";
 
-const bot = new Bot(""); // <-- Помістіть токен свого бота (https://t.me/BotFather)
+const bot = new Bot("");
 
 bot.use(onlyAccept("grammY"));
 
@@ -144,7 +144,7 @@ import { Bot, InputFile } from "./deps.deno.ts";
 import { autoChatAction } from "./plugin.ts";
 
 // Створюємо екземпляр бота.
-const bot = new Bot(""); // <-- Помістіть токен свого бота (https://t.me/BotFather)
+const bot = new Bot("");
 
 // Використовуємо плагін.
 bot.api.config.use(autoChatAction());

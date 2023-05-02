@@ -40,7 +40,7 @@ permalink: /uk/
 ```ts
 import { Bot } from "grammy";
 
-const bot = new Bot(""); // <-- Помістіть токен свого бота (https://t.me/BotFather)
+const bot = new Bot(""); // <-- Помістіть токен свого бота між "" (https://t.me/BotFather)
 
 // Відповідаємо "Привіт!" на будь-яке повідомлення.
 bot.on("message", (ctx) => ctx.reply("Привіт!"));
@@ -54,7 +54,7 @@ bot.start();
 ```js
 const { Bot } = require("grammy");
 
-const bot = new Bot(""); // <-- Помістіть токен свого бота (https://t.me/BotFather)
+const bot = new Bot(""); // <-- Помістіть токен свого бота між "" (https://t.me/BotFather)
 
 // Відповідаємо "Привіт!" на будь-яке повідомлення.
 bot.on("message", (ctx) => ctx.reply("Привіт!"));
@@ -68,7 +68,7 @@ bot.start();
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
-const bot = new Bot(""); // <-- Помістіть токен свого бота (https://t.me/BotFather)
+const bot = new Bot(""); // <-- Помістіть токен свого бота між "" (https://t.me/BotFather)
 
 // Відповідаємо "Привіт!" на будь-яке повідомлення.
 bot.on("message", (ctx) => ctx.reply("Привіт!"));
