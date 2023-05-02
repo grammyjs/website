@@ -34,7 +34,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
               {
                 text: "Огляд",
                 link: "/uk/guide/",
-                activeMatch: "^/guide/$",
+                activeMatch: "^/uk/guide/$",
               },
               {
                 text: "Вступ",
@@ -96,7 +96,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
               {
                 text: "Огляд",
                 link: "/uk/advanced/",
-                activeMatch: "^/advanced/$",
+                activeMatch: "^/uk/advanced/$",
               },
               {
                 text: "Можливості проміжних обробників",
@@ -143,7 +143,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
               {
                 text: "Про плагіни",
                 link: "/uk/plugins/",
-                activeMatch: "^/plugins/$",
+                activeMatch: "^/uk/plugins/$",
               },
               {
                 text: "Як написати плагін",
