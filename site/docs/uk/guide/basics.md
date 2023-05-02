@@ -40,6 +40,9 @@ bot.hears(/echo *(.+)?/, (ctx) => {/* ... */});
 await bot.api.sendMessage(12345, "Привіт!");
 // За бажанням ми можемо передати обʼєкт параметрів.
 await bot.api.sendMessage(12345, "Привіт!", {/* додаткові параметри */});
+// Переглядаємо обʼєкт повідомлення надісланого повідомлення.
+const message = await bot.api.sendMessage(12345, "Привіт!");
+console.log(message.message_id);
 
 // Отримуємо інформацію про самого бота.
 const me = await bot.api.getMe();
