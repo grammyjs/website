@@ -280,7 +280,7 @@ app.use(webhookCallback(bot, "oak"));
 Передайте функцію, яка визначає, чи використовувати відповідь вебхуку для заданого запиту, визначеного методом.
 
 ```ts
-const bot = new Bot(token, {
+const bot = new Bot("", {
   client: {
     // Приймаємо недолік відповідей вебхуку для введення статусу.
     canUseWebhookReply: (method) => method === "sendChatAction",
