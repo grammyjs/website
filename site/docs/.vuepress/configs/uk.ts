@@ -246,7 +246,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
               },
               {
                 text: "[Відправте свій PR!]",
-                link: "/uk/plugins/#створюйте-власні-плагіни",
+                link: "/uk/plugins/#створюите-власні-плагіни",
               },
             ],
           },
