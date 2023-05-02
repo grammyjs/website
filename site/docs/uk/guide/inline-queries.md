@@ -10,7 +10,7 @@ next: ./files.md
 
 ::: tip Увімкніть inline-режим
 У типових налаштуванням бота inline-режим вимкнено.
-Для того, щоб отримувати inline-запити, потрібно звернутися до [@BotFather](https://t.me/BotFather)(https://t.me/BotFather) та увімкнути inline-режим для свого бота.
+Для того, щоб отримувати inline-запити, потрібно звернутися до [@BotFather](https://t.me/BotFather) та увімкнути inline-режим для свого бота.
 :::
 
 > Перегляньте розділ про inline-режим у [можливостях ботів Telegram](https://core.telegram.org/bots/features#inline-requests), створений командою Telegram.
