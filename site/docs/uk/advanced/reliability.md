@@ -61,7 +61,7 @@ import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
 const bot = new Bot("");
 
-// Зупиняємо бота, коли процес Node
+// Зупиняємо бота, коли процес Deno
 // наближається до завершення
 Deno.addSignalListener("SIGINT", () => bot.stop());
 Deno.addSignalListener("SIGTERM", () => bot.stop());
@@ -123,7 +123,7 @@ const bot = new Bot("");
 
 const runner = run(bot);
 
-// Зупиняємо бота, коли процес Node
+// Зупиняємо бота, коли процес Deno
 // наближається до завершення
 const stopRunner = () => runner.isRunning() && runner.stop();
 Deno.addSignalListener("SIGINT", stopRunner);
