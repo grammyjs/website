@@ -27,7 +27,7 @@ import { Bot } from "grammy";
 
 const bot = new Bot("");
 
-// 当 Node 进程将要被终止时，停止你的 bot。
+// 当 Node.js 进程将要被终止时，停止你的 bot。
 process.once("SIGINT", () => bot.stop());
 process.once("SIGTERM", () => bot.stop());
 
@@ -43,7 +43,7 @@ const { Bot } = require("grammy");
 
 const bot = new Bot("");
 
-// 当 Node 进程将要被终止时，停止你的 bot。
+// 当 Node.js 进程将要被终止时，停止你的 bot。
 process.once("SIGINT", () => bot.stop());
 process.once("SIGTERM", () => bot.stop());
 
@@ -83,7 +83,7 @@ const bot = new Bot("");
 
 const runner = run(bot);
 
-// 当 Node 进程将要被终止时，停止你的 bot。
+// 当 Node.js 进程将要被终止时，停止你的 bot。
 const stopRunner = () => runner.isRunning() && runner.stop();
 process.once("SIGINT", stopRunner);
 process.once("SIGTERM", stopRunner);
@@ -101,7 +101,7 @@ const bot = new Bot("");
 
 const runner = run(bot);
 
-// 当 Node 进程将要被终止时，停止你的 bot。
+// 当 Node.js 进程将要被终止时，停止你的 bot。
 const stopRunner = () => runner.isRunning() && runner.stop();
 process.once("SIGINT", stopRunner);
 process.once("SIGTERM", stopRunner);
