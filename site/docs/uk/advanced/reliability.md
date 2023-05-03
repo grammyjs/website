@@ -27,7 +27,7 @@ import { Bot } from "grammy";
 
 const bot = new Bot("");
 
-// Зупиняємо бота, коли процес Node
+// Зупиняємо бота, коли процес Node.js
 // наближається до завершення
 process.once("SIGINT", () => bot.stop());
 process.once("SIGTERM", () => bot.stop());
@@ -44,7 +44,7 @@ const { Bot } = require("grammy");
 
 const bot = new Bot("");
 
-// Зупиняємо бота, коли процес Node
+// Зупиняємо бота, коли процес Node.js
 // наближається до завершення
 process.once("SIGINT", () => bot.stop());
 process.once("SIGTERM", () => bot.stop());
@@ -86,7 +86,7 @@ const bot = new Bot("");
 
 const runner = run(bot);
 
-// Зупиняємо бота, коли процес Node
+// Зупиняємо бота, коли процес Node.js
 // наближається до завершення
 const stopRunner = () => runner.isRunning() && runner.stop();
 process.once("SIGINT", stopRunner);
@@ -105,7 +105,7 @@ const bot = new Bot("");
 
 const runner = run(bot);
 
-// Зупиняємо бота, коли процес Node
+// Зупиняємо бота, коли процес Node.js
 // наближається до завершення
 const stopRunner = () => runner.isRunning() && runner.stop();
 process.once("SIGINT", stopRunner);
