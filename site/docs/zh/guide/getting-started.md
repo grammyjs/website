@@ -218,14 +218,13 @@ deno run --allow-net bot.ts
 到 Telegram 去看你的 bot 对信息的回应吧!
 
 ::: tip 启用日志记录功能
-你可以通过运行以下程序来启用基本日志记录
+在运行你的 bot 之前，你可以在终端中运行以下命令来开启基本日志记录：
 
 ```sh
 export DEBUG="grammy*"
 ```
 
-在你执行`node bot.js`之前，先在你的终端机上使用`node bot.js`。
-这使你更容易调试你的 bot 。
+这样可以更容易地调试你的 bot。
 
 你现在需要用以下方法来运行 bot
 
