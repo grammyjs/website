@@ -46,7 +46,7 @@ run(bot);
 </CodeGroupItem>
  <CodeGroupItem title="JavaScript">
 
-```ts
+```js
 const { Bot } = require("grammy");
 const { run } = require("@grammyjs/runner");
 
