@@ -45,6 +45,12 @@ The main thing to know about them is that on serverless infrastructures you are 
 | DigitalOcean Apps      | $5         |                                                                                                            |                                                                                         | ❓      | ❓                           | ❓  | Not tested                                                                                       |
 | Fastly Compute@Edge    |            |                                                                                                            |                                                                                         | ❓      | ❓                           | ❓  |                                                                                                  |
 
+::: tip About render.com
+
+Render implements zero downtime deploys, meaning you'll always have one instance running. This will cause issues with polling, since only one instance can poll the telegram servers for updates.
+
+:::
+
 ### VPS
 
 A virtual private server is a virtual machine that you have full control over.
