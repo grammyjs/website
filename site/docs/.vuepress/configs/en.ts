@@ -15,6 +15,8 @@ export const localeEn: LocaleConfig<DefaultThemeLocaleData> = {
     selectLanguageText: "🌎",
     selectLanguageName: "English",
     editLinkText: "Edit this page on GitHub",
+    contributorsText: "Contributors",
+    lastUpdatedText: "Last Updated",
     notFound: [
       "Not Found",
       "Nope.",

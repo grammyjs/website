@@ -111,7 +111,7 @@ run(bot);
 
 <CodeGroupItem title="JavaScript">
 
-```ts
+```js
 const { Bot, Context, session } = require("grammy");
 const { run, sequentialize } = require("@grammyjs/runner");
 
