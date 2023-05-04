@@ -500,11 +500,11 @@ const { Bot, session } = require("grammy");
 const { freeStorage } = require("@grammyjs/storage-free");
 
 // Створюємо бота та реєструємо проміжний обробник сесії.
-const bot = new Bot<MyContext>("");
+const bot = new Bot("");
 
 bot.use(session({
   initial: () => ({ count: 0 }),
-  storage: freeStorage<SessionData>(bot.token),
+  storage: freeStorage(bot.token),
 }));
 
 // Використовуємо постійні дані сесії в обробниках оновлень.
