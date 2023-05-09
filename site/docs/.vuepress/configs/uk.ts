@@ -15,6 +15,8 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
     selectLanguageText: "🌍",
     selectLanguageName: "Українська",
     editLinkText: "Редагувати цю сторінку на GitHub",
+    contributorsText: "Учасники",
+    lastUpdatedText: "Востаннє оновлено",
     notFound: [
       "Не знайдено",
       "Тут для тебе нічого немає, вибач.",
