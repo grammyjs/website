@@ -7,7 +7,7 @@ This is why the grammY community is collecting their experiences on this page.
 ## What Is a Hosting Provider?
 
 In order to keep a bot online 24 hours a day, you need to run a computer 24 hours a day.
-As [mentioned in the introduction](../guide/introduction.html#how-to-keep-a-bot-running), you most likely don't want to do that with your laptop or home computer.
+As [mentioned in the introduction](../guide/introduction.md#how-to-keep-a-bot-running), you most likely don't want to do that with your laptop or home computer.
 Instead, you can ask a company to run the bot in the cloud.
 
 In other words, you just run it on someone else's computer.
