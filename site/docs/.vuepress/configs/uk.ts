@@ -239,7 +239,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/uk/plugins/console-time.html",
               },
               {
-                text: "Корисні middleware",
+                text: "Корисні проміжні обробники",
                 link: "/uk/plugins/middlewares.html",
               },
               {
