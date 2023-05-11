@@ -94,7 +94,7 @@ bot.start();
 
 <div style="font-size: 0.75rem;  display: flex; justify-content: center;">
 
-© 2021-2023 &middot; grammY es compatible con la API 6.6 de Telegram Bot que fue [lanzada](https://core.telegram.org/bots/api#march-9-2023) el 9 de Marzo de 2023.
-(Último punto destacado: Translated Bot Descriptions)
+© 2021-2023 &middot; grammY es compatible con la API 6.6 de Telegram Bot que fue [lanzada](https://core.telegram.org/bots/api#april-21-2023) el 21 de Abril del 2023.
+(Último punto destacado: varios nombres de bot, emoji personalizados y mejores consultas en línea)
 
 </div>
