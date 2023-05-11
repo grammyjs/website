@@ -30,7 +30,7 @@ Contohnya, kita tidak bisa mengirim keyboard custom sebagai pesan pertama lalu m
 
 grammY menyediakan class bernama `InlineKeyboard` yang bisa kamu gunakan untuk membuat keyboard inline dengan mudah dan simpel.
 
-> Baik tombol `switchInline` maupun `switchInlineCurrent` sama-sama memulai inline query.
+> Semua tombol yang menggunakan `switchInline`, `switchInlineCurrent`, atau `switchInlineChosen` akan memulai sebuah inline query.
 > Lihat materi tentang [Inline Query](../guide/inline-queries.md) untuk mengetahui cara kerjanya.
 
 ### Membuat Keyboard Inline
