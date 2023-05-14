@@ -555,4 +555,70 @@ GitHub безкоштовно пропонують певну кількість
 Тоді ви позбавитеся лімітів й зможете запускати конвеєри будь-якої складності й потужності (майже).
 :::
 
+### Приклад скрипту
+
+Ось приклад скрипту для GitHub для нашого прикладу бота:
+
+```yml
+name: Main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 'latest'
+      - run: npm ci
+      - name: Build
+        run: npm run build
+      - uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: dist/*.js
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/download-artifact@v3
+        with:
+          name: dist
+          path: dist/
+      - name: Deploy
+        uses: easingthemes/ssh-deploy@v4
+        env:
+          SOURCE: "dist package.json package-lock.json"
+          ARGS: "--delete -az"
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: "<цільовий-каталог>"
+          SCRIPT_AFTER: |
+            cd <цільовий-каталог>
+            npm i --omit=dev
+            pm2 start
+```
+
+де `<цільовий-каталог>` замініть на назву каталогу, в якому на сервері зберігається збірка бота.
+
+Цей скрипт послідовно виконує два завдання: `build` та `deploy`.
+Після виконання `build` артефакт роботи цього завдання, а саме каталог `dist`, в якому міститься збірка бота, передається до завдання `deploy`.
+
+Доставка файлів на сервер відбувається за допомогою утиліти `rsync`, яка впроваджується `easingthemes/ssh-deploy`.
+Після доставки файлів на сервері виконується команда, яка описана у змінній середовища `SCRIPT_AFTER`.
+У нашому випадку після доставки файлів ми переходимо в каталог бота, в якому встановлюємо всі залежності, окрім `devDependencies`, й перезапускаємо бота.
+
+Зауважте, що вам потрібно додати три [секретні змінні середовища](https://docs.github.com/en/actions/security-guides/encrypted-secrets/):
+
+1. `SSH_PRIVATE_KEY` - тут має зберігатися приватний ключ SSH.
+2. `REMOTE_HOST` - тут має зберігатися IP-адреса вашого серверу
+3. `REMOTE_USER` - тут має зберігатися імʼя користувача, від імені якого запускається бот.
+
 ## Підтримка безперервної роботи бота
