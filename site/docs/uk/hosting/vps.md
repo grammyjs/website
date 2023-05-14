@@ -45,7 +45,9 @@ export const bootstrap = async () => {
   const env = cleanEnv(process.env, {
     PORT: num({ default: 8000 }),
     BOT_TOKEN: str(),
-    PG_CONNECTION_STRING: url({ default: "postgres://bot_usr:bot_pwd@localhost:5432/bot_db" }),
+    PG_CONNECTION_STRING: url({
+      default: "postgres://bot_usr:bot_pwd@localhost:5432/bot_db",
+    }),
   });
   const bot = new Bot<MyContext>(env.BOT_TOKEN);
   const client = new Client({ connectionString: env.PG_CONNECTION_STRING });
@@ -64,7 +66,9 @@ export const bootstrap = async () => {
   }));
 
   bot.command("start", async (ctx) => {
-    await ctx.reply("Ласкаво просимо! Я рахуватиму, скільки разів ви надіслали 🍕.");
+    await ctx.reply(
+      "Ласкаво просимо! Я рахуватиму, скільки разів ви надіслали 🍕.",
+    );
   });
 
   bot.command("hunger", async (ctx) => {
