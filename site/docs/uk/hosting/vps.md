@@ -222,7 +222,7 @@ bootstrap().then(({ bot, env }) => {
 
 Спершу підключимося до VPS через SSH:
 
-```sh
+```sh:no-line-numbers
 ssh root@<ip-адреса>
 ```
 
@@ -241,13 +241,13 @@ ssh root@<ip-адреса>
 
 Щоб встановити Fastpanel виконайте наступну команду:
 
-```sh
+```sh:no-line-numbers
 wget http://repo.fastpanel.direct/install_fastpanel.sh -O - | bash -
 ```
 
 Після встановлення Fastpanel ви отримаєте повідомлення з даними доступу:
 
-```sh
+```sh:no-line-numbers
 Congratulations! FASTPANEL successfully installed and available now for you at https://<ip-адреса>:8888/ .
 Login: fastuser
 Password: <пароль>
@@ -629,7 +629,7 @@ PM2 — це менеджер демонів процесів для Node.js, я
 
 #### Встановлення
 
-```sh
+```sh:no-line-numbers
 npm install pm2@latest -g
 
 # Якщо ви використовуєте Yarn
@@ -665,7 +665,7 @@ module.exports = {
 
 Нижче наведено команди, за допомогою яких можна керувати застосунком.
 
-```sh
+```sh:no-line-numbers
 # Якщо файл `ecosystem.config.js` знаходиться в поточному каталозі,
 # ви можете нічого не вказувати, щоб запустити застосунок.
 # Якщо застосунок вже запущений, то ця команда перезапустить його.
@@ -695,7 +695,7 @@ pm2 delete <назва-застосунку>
 
 На сервері в терміналі виконайте наступну команду:
 
-```sh
+```sh:no-line-numbers
 pm2 startup
 ```
 
@@ -703,7 +703,7 @@ pm2 startup
 
 Після цього виконайте ще одну команду:
 
-```sh
+```sh:no-line-numbers
 pm2 save
 ```
 
