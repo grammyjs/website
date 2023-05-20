@@ -31,7 +31,7 @@
 grammY 有一个简单且直观的方式来构建 inline keyboard，让你的 bot 可以和信息一起发送 inline keyboard。
 它提供了一个叫做 `InlineKeyboard` 的类。
 
-> `switchInline` 和 `switchInlineCurrent` 按钮都可以启动 Inline Queries。
+> 通过调用 `switchInline`、`switchInlineCurrent` 和 `switchInlineChosen` 添加的按钮都可以启动 Inline Queries。
 > 你也可以查看 [Inline Queries](../guide/inline-queries.md) 的部分，来了解更多关于它们是怎样工作的。
 
 ### 构建一个 Inline Keyboard
