@@ -4,9 +4,6 @@
 
 ## Підготовка вашого коду
 
-> У цьому посібнику ми зосередимося на розгортанні бота на вебхуках.
-> Ми попередимо вас, коли певний крок не стосуватиметься тривалого опитування.
-
 Для початку ви можете скористатися наведеним нижче прикладом бота.
 Це дещо розширений [приклад використання сесії](../plugins/session.md#приклад-використання).
 
@@ -16,24 +13,8 @@
 Конвеєр для Node.js ускладнюється додатковим завданням збірки й налаштуванням звʼязку між двома завданням.
 Тож конвеєр CI/CD для Node.js буде кращим прикладом.
 
-Загалом бот складається з трьох файлів:
-
-1. `bot.ts` - тут відбувається власне налаштування логіки роботи бота.
-2. `polling.ts` - тут ми запускаємо бота за допомогою тривалого опитування.
-   Тривале опитування зручне для локальної розробки.
-3. `webhook.ts` - тут ми налаштовуємо бота для роботи на вебхуках за допомогою серверного фреймворку Fastify.
-
-Зауважте, що всі три вихідні файли розташовуються в одному каталозі.
-У нашому випадку це каталог `src`.
-
-<CodeGroup>
- <CodeGroupItem title="bot.ts" active>
-
 ```ts
-import { Bot, type Context, session, type SessionFlavor } from "grammy";
-import { PsqlAdapter } from "@grammyjs/storage-psql";
-import { Client } from "pg";
-import { cleanEnv, num, str, url } from "envalid";
+import { Bot, session, type Context, type SessionFlavor } from "grammy";
 
 interface SessionData {
   pizzaCount: number;
@@ -41,86 +22,32 @@ interface SessionData {
 
 type MyContext = Context & SessionFlavor<SessionData>;
 
-export const bootstrap = async () => {
-  const env = cleanEnv(process.env, {
-    PORT: num({ default: 8000 }),
-    BOT_TOKEN: str(),
-    PG_CONNECTION_STRING: url({
-      default: "postgres://bot_usr:bot_pwd@localhost:5432/bot_db",
-    }),
-  });
-  const bot = new Bot<MyContext>(env.BOT_TOKEN);
-  const client = new Client({ connectionString: env.PG_CONNECTION_STRING });
+const bot = new Bot<MyContext>("");
 
-  await client.connect();
+bot.use(session({
+  initial: () => ({ pizzaCount: 0 }),
+}));
 
-  bot.api.setMyCommands([
-    { command: "start", description: "Запустити бота" },
-    { command: "hunger", description: "Показати рівень голоду" },
-    { command: "reset", description: "Скинути рівень голоду" },
-  ]);
-
-  bot.use(session({
-    initial: () => ({ pizzaCount: 0 }),
-    storage: await PsqlAdapter.create({ tableName: "sessions", client }),
-  }));
-
-  bot.command("start", async (ctx) => {
-    await ctx.reply(
-      "Ласкаво просимо! Я рахуватиму, скільки разів ви надіслали 🍕.",
-    );
-  });
-
-  bot.command("hunger", async (ctx) => {
-    const count = ctx.session.pizzaCount;
-    await ctx.reply(`Ваш рівень голоду становить ${count}!`);
-  });
-
-  bot.command("reset", async (ctx) => {
-    ctx.session.pizzaCount = 0;
-    await ctx.reply("Ваш рівень голоду скинуто!");
-  });
-
-  bot.hears(/.*🍕.*/, (ctx) => ctx.session.pizzaCount++);
-
-  return { bot, env };
-};
-```
-
-</CodeGroupItem>
- <CodeGroupItem title="polling.ts">
-
-```ts
-import { bootstrap } from "./bot";
-
-bootstrap().then(async ({ bot }) => {
-  await bot.api.deleteWebhook();
-  bot.start();
+bot.command("start", async (ctx) => {
+  await ctx.reply(
+    "Ласкаво просимо! Я рахуватиму, скільки разів ви надіслали 🍕.",
+  );
 });
-```
 
-</CodeGroupItem>
- <CodeGroupItem title="webhook.ts">
-
-```ts
-import { webhookCallback } from "grammy";
-import { fastify } from "fastify";
-import { bootstrap } from "./bot";
-
-bootstrap().then(({ bot, env }) => {
-  const server = fastify();
-  server.post("/", webhookCallback(bot, "fastify"));
-  server.listen({ port: env.PORT });
+bot.command("hunger", async (ctx) => {
+  const count = ctx.session.pizzaCount;
+  await ctx.reply(`Ваш рівень голоду становить ${count}!`);
 });
+
+bot.command("reset", async (ctx) => {
+  ctx.session.pizzaCount = 0;
+  await ctx.reply("Ваш рівень голоду скинуто!");
+});
+
+bot.hears(/.*🍕.*/, (ctx) => ctx.session.pizzaCount++);
+
+bot.start();
 ```
-
-</CodeGroupItem>
-</CodeGroup>
-
-Як ви могли помітити, цей бот використовує сесію, яка зберігється у базі даних PostgreSQL.
-Також, якщо ви читали [посібник по Deno Deploy](./deno-deploy.md), ви могли помітити, що сервер реєструє обробник на кореневому шляху, а не секретному, наприклад, `/<токен-бота>`.
-Це тому, що обробкою секретного шляху займатиметься вебсервер Nginx.
-Тож вказувати секретний шлях у нашому застосунку буде зайвим.
 
 ## Налаштування сервера
 
