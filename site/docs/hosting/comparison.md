@@ -18,16 +18,20 @@ In other words, you just run it on someone else's computer.
 
 We have two comparison tables: one for [serverless](#serverless) hosting and one for [VPS](#vps).
 
-### Serverless
+### Serverless and PaaS
 
 Serverless means that you do not control a single machine on which your bot is run.
 Instead, these hosting providers will rather allow you to upload your code, and then start and stop different machines as necessary to make sure that your bot always works.
 
-This has the downside that your bot does not have access to a persistent storage by default, such as a local file system.
-Instead, you will often have to have a database separately and connect to it if you need to store data permanently.
-We therefore recommend you to use a different kind of hosting for more complex bots, e.g. a [VPS](./vps.md).
-
 The main thing to know about them is that on serverless infrastructures you are required to use [webhooks](../guide/deployment-types.md).
+
+On the other hand, PaaS (Platform as a Service) provides a similar but more controlable solution.
+You can choose how many machine instances will be serving your bot, and when they'll be running.
+Using [polling](../guide/deployment-types.md) is also possible with PaaS if the provider you choose lets you keep a single instance running.
+
+Serverless and PaaS have a downside that doesn't provide you with a persistent storage by default, such as a local file system.
+Instead, you will often have to have a database separately and connect to it if you need to store data permanently.
+We therefore recommend you to use a different kind of solution for more complex bots, e.g. [VPS](./vps.md).
 
 | Name                   | Min. price | Pricing                                                                                                    | Limits                                                                                  | Node.js | Deno                         | Web | Notes                                                                                            |
 | ---------------------- | ---------- | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | ------- | ---------------------------- | --- | ------------------------------------------------------------------------------------------------ |
