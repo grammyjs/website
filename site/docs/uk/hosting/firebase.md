@@ -63,7 +63,7 @@ const bot = new Bot("");
 bot.command("start", (ctx) => ctx.reply("Ласкаво просимо! Все працює."));
 bot.command("ping", (ctx) => ctx.reply(`Понг! ${new Date()}`));
 
-// Під час розробки ви можете запускати свою функцію за допомогою https://localhost/<firebase-проєкт>/us-central1/helloWorld.
+// Під час розробки ви можете запускати свою функцію за допомогою https://localhost/<firebase-проєкт>/us-central1/helloWorld
 export const helloWorld = functions.https.onRequest(webhookCallback(bot));
 ```
 

@@ -15,6 +15,8 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
     selectLanguageText: "🌍",
     selectLanguageName: "Українська",
     editLinkText: "Редагувати цю сторінку на GitHub",
+    contributorsText: "Учасники",
+    lastUpdatedText: "Востаннє оновлено",
     notFound: [
       "Не знайдено",
       "Тут для тебе нічого немає, вибач.",
@@ -237,7 +239,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/uk/plugins/console-time.html",
               },
               {
-                text: "Корисні middleware",
+                text: "Корисні проміжні обробники",
                 link: "/uk/plugins/middlewares.html",
               },
               {

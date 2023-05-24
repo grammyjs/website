@@ -47,7 +47,7 @@ import {
   generateBeforeMiddleware,
 } from "telegraf-middleware-console-time";
 
-const bot = new Bot(/* ... */);
+const bot = new Bot("");
 
 // Використовуйте BeforeMiddleware перед встановленням проміжного обробника, що тестується.
 bot.use(generateBeforeMiddleware("foo"));

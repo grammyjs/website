@@ -25,15 +25,15 @@ const fluent = new Fluent();
 ```ts
 await fluent.addTranslation({
   // Вказуємо одну або більше локалей, які підтримуються перекладом:
-  locales: "en",
+  locales: "uk",
 
   // Також можемо вказати безпосередньо зміст перекладу:
   source: "{ВМІСТ ВАШОГО ФАЙЛУ ПЕРЕКЛАДУ}",
 
   // Або файли перекладу:
   filePath: [
-    `${__dirname}/feature-1/translation.en.ftl`,
-    `${__dirname}/feature-2/translation.en.ftl`,
+    `${__dirname}/feature-1/translation.uk.ftl`,
+    `${__dirname}/feature-2/translation.uk.ftl`,
   ],
 
   // Усі аспекти Fluent легко налаштовуються:
