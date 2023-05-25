@@ -14,7 +14,7 @@
 Тож конвеєр CI/CD для Node.js буде кращим прикладом.
 
 ```ts
-import { Bot, session, type Context, type SessionFlavor } from "grammy";
+import { Bot, type Context, session, type SessionFlavor } from "grammy";
 
 interface SessionData {
   pizzaCount: number;
@@ -311,13 +311,13 @@ pm2 save
 Ось приклад файлу для запуску бота за допомогою `fastify`:
 
 ```ts
-import { webhookCallback } from 'grammy';
-import { fastify } from 'fastify';
-import { bot } from './bot';
+import { webhookCallback } from "grammy";
+import { fastify } from "fastify";
+import { bot } from "./bot";
 
 const server = fastify();
 
-server.post(`/${bot.token}`, webhookCallback(bot, 'fastify'));
+server.post(`/${bot.token}`, webhookCallback(bot, "fastify"));
 
 server.listen();
 ```
@@ -349,6 +349,118 @@ server.listen();
 Замість нього створіть новий запис типу `A` з іменем `www`, який вказуватиме на IP-адресу вашого VPS, а TTL вкажіть 3600.
 
 > У разі винекнення труднощів скористайтеся іншим способом, описаним у [базі знань](https://support.hostinger.com/uk/articles/1583227-%D1%8F%D0%BA-%D0%BD%D0%B0%D0%BF%D1%80%D0%B0%D0%B2%D0%B8%D1%82%D0%B8-%D0%B4%D0%BE%D0%BC%D0%B5%D0%BD-%D0%BD%D0%B0-vps).
+
+### Налаштування вебсервера
+
+Щоб сайт запрацював, а бот почав отримувати оновлення від Telegram, потрібно налаштувати вебсервер.
+Ми скористаємося [Caddy](https://caddyserver.com/).
+
+Caddy - це потужний вебсервер з відкритим вихідним кодом з автоматичним HTTPS.
+Він написаний на Go, тому він дуже швидкий. :zap:
+
+#### Встановлення
+
+Наступні 5 команд завантажать й автоматично запустять Caddy як службу systemd з назвою `caddy`.
+
+```sh:no-line-numbers
+apt install -y debian-keyring debian-archive-keyring apt-transport-https
+curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
+curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | tee /etc/apt/sources.list.d/caddy-stable.list
+apt update
+apt install caddy
+```
+
+Перевірте статус роботи Caddy:
+
+```sh:no-line-numbers
+systemctl status caddy
+```
+
+:::details Виправлення помилок
+Деякі хостинг-провайдери надають VPS із перевстановленим вебсервером, наприклад, [Apache](https://httpd.apache.org/).
+Кілька вебсерверів не можуть одночасно працювати на одній машині.
+Щоб Caddy працював, потрібно зупинити й вимкнути інший вебсервер:
+
+```sh:no-line-numbers
+systemctl stop apache2
+systemctl disable apache2
+```
+
+:::
+
+Тепер, якщо ви відкриєте у браузері IP-адресу свого сервера, то побачите типову сторінку з інструкцією по налашутванню Caddy.
+
+#### Конфігурування
+
+Щоб Caddy обробляв запити, які надходять до нашого домену, потрібно змінити конфігурацію Caddy.
+
+Виконайте наступну команду, щоб відкрити файл конфігурації Caddy:
+
+```sh:no-line-numbers
+nano /etc/caddy/Caddyfile
+```
+
+Ви побачите наступну типову конфігурацію:
+
+```text:no-line-numbers
+# The Caddyfile is an easy way to configure your Caddy web server.
+#
+# Unless the file starts with a global options block, the first
+# uncommented line is always the address of your site.
+#
+# To use your own domain name (with automatic HTTPS), first make
+# sure your domain's A/AAAA DNS records are properly pointed to
+# this machine's public IP, then replace ":80" below with your
+# domain name.
+
+:80 {
+  # Set this path to your site's directory.
+  root * /usr/share/caddy
+
+  # Enable the static file server.
+  file_server
+
+  # Another common task is to set up a reverse proxy:
+  # reverse_proxy localhost:8080
+
+  # Or serve a PHP site through php-fpm:
+  # php_fastcgi localhost:9000
+}
+
+# Refer to the Caddy docs for more information:
+# https://caddyserver.com/docs/caddyfile
+```
+
+Для роботи бота приведіть конфіг до наступного вигляду:
+
+```text:no-line-numbers
+<домен> {
+  root * /usr/share/caddy
+  file_server
+  reverse_proxy /<токен-бота> localhost:8000
+}
+```
+
+де `<домен>` замініть на ваш домен, а `<токен-бота>` замініть на токен вашого бота.
+
+Перезавантажте Caddy за допомогою наступної команди:
+
+```sh:no-line-numbers
+systemctl reload caddy
+```
+
+Тепер всі запити на адресу `https://<домен>/<токен-бота>` будуть переадресовуватися на адресу `http://localhost:8000/<токен-бота>`, на якій працює вебхук бота.
+
+#### Підключення вебхука до Telegram
+
+Залишилося лише сказати Telegram, куди надсилати оновлення.
+Для цього відкрийте браузер й відвідайте сторінку за наступним посиланням:
+
+```text:no-line-numbers
+https://api.telegram.org/bot<токен-бота>/setWebhook?url=https://<домен>/<токен-бота>
+```
+
+де `<токен-бота>` замініть токен вашого бота, а `<домен>` — на ваш домен виду `<назва>.<зона>`.
 
 ## CI/CD
 
