@@ -467,11 +467,11 @@ https://api.telegram.org/bot<токен-бота>/setWebhook?url=https://<дом
 [CI/CD](https://about.gitlab.com/topics/ci-cd/) - це важлива складова сучасного процесу розробки програмного забезпечення.
 Цей посібник охоплює майже весь [конвеєр CI/CD](https://about.gitlab.com/topics/ci-cd/cicd-pipeline/).
 
-Ми зосередимося на написанні скриптів для GitHub.
+Ми зосередимося на написанні скриптів для GitHub та GitLab.
 За поотреби ви з легкістю зможете адаптувати наведені нижче приклади для обраного вами сервісу для CI/CD, як-от Jenkins, Buddy тощо.
 
 :::tip Self-hosted runner
-GitHub безкоштовно пропонують певну кількість ресурсів для виконання ваших завдань.
+GitHub та GitLab безкоштовно пропонують певну кількість ресурсів для виконання ваших завдань.
 Проте в ході налаштування конвеєру ви можете швидко витрати їх всі, через що вам доведеться платити гроші за додаткові ресурси, інакше завдання не виконуватимуться.
 Щоб такого не сталося, рекомендуємо встановити на свій компʼютер self-hosted runner, щоб завдання виконувалися у вас на компʼютері.
 Тоді ви позбавитеся лімітів й зможете запускати конвеєри будь-якої складності й потужності (майже).
@@ -484,7 +484,8 @@ GitHub безкоштовно пропонують певну кількість
 
 ### Приклад скрипту
 
-Ось приклад скрипту для GitHub для нашого прикладу бота:
+<CodeGroup>
+  <CodeGroupItem title="GitHub" active>
 
 ```yml
 name: Main
@@ -547,3 +548,54 @@ jobs:
 1. `SSH_PRIVATE_KEY` - тут має зберігатися приватний ключ SSH.
 2. `REMOTE_HOST` - тут має зберігатися IP-адреса вашого серверу
 3. `REMOTE_USER` - тут має зберігатися імʼя користувача, від імені якого запускається бот.
+
+</CodeGroupItem>
+  <CodeGroupItem title="GitLab">
+
+```yml
+image: node:latest
+
+stages:
+  - build
+  - deploy
+
+Build:
+  stage: build
+  before_script: npm ci
+  script: npm run build
+  artifacts:
+    paths:
+      - dist/
+
+Deploy:
+  stage: deploy
+  before_script:
+    - "command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )"
+    - "command -v rsync >/dev/null || ( apt-get update -y && apt-get install rsync -y )"
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan "$REMOTE_HOST" >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+  script:
+    - rsync --delete -az dist package.json package-lock.json $REMOTE_USER@$REMOTE_HOST:<цільовий-каталог>
+    - ssh $REMOTE_USER@$REMOTE_HOST "cd <цільовий-каталог> && npm i --omit=dev && <команда-запуску>"
+```
+
+де `<цільовий-каталог>` замініть на назву каталогу, в якому на сервері зберігається збірка бота, а `<команда-запуску>` на команду запуску вашого бота, якою може бути виклик `pm2` або `systemctl`, наприклад.
+
+Цей скрипт послідовно виконує два завдання: `build` та `deploy`.
+Після виконання `build` артефакт роботи цього завдання, а саме каталог `dist`, в якому міститься збірка бота, передається до завдання `deploy`.
+
+Доставка файлів на сервер відбувається за допомогою утиліти `rsync`, яку ми маємо встановити перед виконаням основного скрипту.
+Після доставки файлів ми підключаємося до сервера за допомогою SSH, щоб виконати команду для встановлення всіх залежностей, окрім `devDependencies`, та перезапуску застосунку.
+
+Зауважте, що вам потрібно додати три [змінні середовища](https://docs.gitlab.com/ee/ci/variables/):
+
+1. `SSH_PRIVATE_KEY` - тут має зберігатися приватний ключ SSH.
+2. `REMOTE_HOST` - тут має зберігатися IP-адреса вашого серверу
+3. `REMOTE_USER` - тут має зберігатися імʼя користувача, від імені якого запускається бот.
+
+</CodeGroupItem>
+</CodeGroup>
