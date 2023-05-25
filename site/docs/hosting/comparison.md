@@ -25,9 +25,9 @@ Instead, these hosting providers will rather allow you to upload your code, and 
 
 The main thing to know about them is that on serverless infrastructures you are required to use [webhooks](../guide/deployment-types.md).
 
-On the other hand, PaaS (Platform as a Service) provides a similar but more controlable solution.
-You can choose how many machine instances will be serving your bot, and when they'll be running.
-Using [polling](../guide/deployment-types.md) is also possible with PaaS if the provider you choose lets you keep a single instance running.
+On the other hand, PaaS (Platform as a Service) provides a similar but more controllable solution.
+You can choose how many machine instances will be serving your bot, and when they are running.
+Using [polling](../guide/deployment-types.md) is also possible with PaaS if the provider you choose lets you keep exactly single instance running at all times.
 
 Serverless and PaaS have a downside that doesn't provide you with a persistent storage by default, such as a local file system.
 Instead, you will often have to have a database separately and connect to it if you need to store data permanently.
