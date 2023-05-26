@@ -13,8 +13,5 @@
     "./site/docs/id/",
     "./site/docs/zh/",
     "./site/README.md"
-  ],
-  "[markdown]": {
-    "editor.wordWrap": "off"
-  }
+  ]
 }
