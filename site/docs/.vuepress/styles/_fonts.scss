@@ -75,11 +75,8 @@
   font-family: "Source Code Pro";
   font-style: normal;
   font-weight: 400;
-  src: url("/fonts/source-code-pro-v22-cyrillic_cyrillic-ext_latin_latin-ext-regular.woff2") format("woff2");
-}
-
-body {
-  font-family: "Red Hat Text", "Noto Sans", sans-serif;
+  src: url("/fonts/source-code-pro-v22-cyrillic_cyrillic-ext_latin_latin-ext-regular.woff2")
+    format("woff2");
 }
 
 h1,
@@ -91,11 +88,7 @@ h6,
 .site-name,
 .sidebar-heading,
 th {
-  font-family: "Red Hat Display", "Noto Sans Display", sans-serif;
-}
-
-kbd,
-pre,
-code {
-  font-family: "Source Code Pro", monospace;
+  font-family: "Red Hat Display", "Noto Sans Display", -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
