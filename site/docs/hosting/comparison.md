@@ -24,6 +24,7 @@ Serverless means that you do not control a single machine on which your bot is r
 Instead, these hosting providers will rather allow you to upload your code, and then start and stop different machines as necessary to make sure that your bot always works.
 
 The main thing to know about them is that on serverless infrastructures you are required to use [webhooks](../guide/deployment-types.md).
+Most of providers below will have issues when you try running your bot with polling (`bot.start()` or [grammY runner](../plugins/runner.md)) on them.
 
 On the other hand, PaaS (Platform as a Service) provides a similar but more controllable solution.
 You can choose how many machine instances will be serving your bot, and when they are running.
