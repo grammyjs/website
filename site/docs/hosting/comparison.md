@@ -32,7 +32,6 @@ Using [polling](../guide/deployment-types.md) is also possible with PaaS if the 
 
 Serverless and PaaS have a downside that doesn't provide you with a persistent storage by default, such as a local file system.
 Instead, you will often have to have a database separately and connect to it if you need to store data permanently.
-We therefore recommend you to use a different kind of solution for more complex bots, e.g. [VPS](./vps.md).
 
 | Name                   | Min. price | Pricing                                                                                                    | Limits                                                                                  | Node.js | Deno                         | Web | Notes                                                                                            |
 | ---------------------- | ---------- | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | ------- | ---------------------------- | --- | ------------------------------------------------------------------------------------------------ |
