@@ -32,7 +32,7 @@ Misalnya, kamu bisa mengatur jumlah perangkat yang bekerja untuk menjalankan bot
 Menggunakan [polling](../guide/deployment-types.md) juga bisa di PaaS jika penyedia layanan tersebut memperbolehkan untuk membiarkan salah satu instance berjalan sepanjang waktu.
 
 Serverless dan PaaS memiliki kekurangan yang sama, yaitu tidak memiliki penyimpanan bawaan secara permanen, misalnya sistem file lokal.
-Oleh karena itu, biasanya database terpisah diperlukan untuk menyimpan data secara permanen.
+Oleh karena itu, biasanya diperlukan database yang terpisah untuk menyimpan data secara permanen.
 
 | Nama                   | Harga (min) | Biaya                                                                                                         | Batasan                                                                                              | Node.js                                                                                                 | Deno                                           | Web                                               | Catatan                                                                                                    |
 | ---------------------- | ----------- | ------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ---------------------------------------------- | ------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
