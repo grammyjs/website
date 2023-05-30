@@ -18,16 +18,21 @@ Dengan kata lain, kamu menjalankan bot di komputer milik orang lain.
 
 Kami menyediakan dua tabel perbandingan: satu untuk hosting [serverless](#serverless) dan satu untuk [VPS](#vps).
 
-### Serverless
+### Serverless dan PaaS
 
-Serverless artinya kamu tidak bisa mengontrol perangkat yang menjalankan bot kamu.
-Sebaliknya, penyedia hosting hanya mengizinkan kamu mengunggah kode, kemudian mereka akan memindahkan kode tersebut ke beberapa perangkat secara bergantian agar bot kamu bisa terus berjalan.
+Serverless artinya kamu tidak mengontrol perangkat yang menjalankan bot kamu.
+Sebaliknya, penyedia hosting-lah yang akan menghidupkan dan mematikan perangkat-perangkat yang dibutuhkan untuk menjalankan kode kamu.
+Karena alasan tersebut, akses yang diberikan ke kamu cuma sebatas untuk mengunggah kode yang akan dijalankan.
 
-Kekurangannya, karena perangkat selalu digilir, bot kamu tidak memiliki tempat penyimpanan permanen, misalnya tempat penyimpanan sistem file lokal.
-Akibatnya, kamu diharuskan memiliki sebuah database terpisah jika ingin menyimpan data secara permanen.
-Oleh karena itu, kami menyarankan kamu untuk menggunakan jenis hosting yang berbeda jika mengembangkan sebuah bot yang kompleks, contohnya sebuah [VPS](./vps.md).
+Selain itu, kamu juga perlu menggunakan [webhooks](../guide/deployment-types.md) ketika menggunakan serverless.
+Kebanyakan penyedia hosting di bawah ini akan mengalami kendala ketika kamu menjalankan bot menggunakan polling (`bot.start()` atau [grammY runner](../plugins/runner.md)).
 
-Selain itu, kamu juga diharuskan menggunakan [webhooks](../guide/deployment-types.md) ketika menggunakan serverless.
+Di sisi lain, PaaS (Platform as a Service) menyediakan layanan yang serupa, namun lebih bisa dikontrol.
+Misalnya, kamu bisa mengatur jumlah perangkat yang bekerja untuk menjalankan bot kamu.
+Menggunakan [polling](../guide/deployment-types.md) juga bisa di PaaS jika penyedia layanan tersebut memperbolehkan untuk membiarkan salah satu instance berjalan sepanjang waktu.
+
+Serverless dan PaaS memiliki kekurangan yang sama, yaitu tidak memiliki penyimpanan bawaan secara permanen, misalnya sistem file lokal.
+Oleh karena itu, biasanya database terpisah diperlukan untuk menyimpan data secara permanen.
 
 | Nama                   | Harga (min) | Biaya                                                                                                         | Batasan                                                                                              | Node.js                                                                                                 | Deno                                           | Web                                               | Catatan                                                                                                    |
 | ---------------------- | ----------- | ------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ---------------------------------------------- | ------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
