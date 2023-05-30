@@ -24,7 +24,7 @@ Serverless artinya kamu tidak mengontrol perangkat yang menjalankan bot kamu.
 Sebaliknya, penyedia hosting-lah yang akan menghidupkan dan mematikan perangkat-perangkat yang dibutuhkan untuk menjalankan kode kamu.
 Karena alasan tersebut, akses yang diberikan ke kamu cuma sebatas untuk mengunggah kode yang akan dijalankan.
 
-Selain itu, kamu juga perlu menggunakan [webhooks](../guide/deployment-types.md) ketika menggunakan serverless.
+Selain itu, kamu diharuskan menggunakan [webhooks](../guide/deployment-types.md) ketika menggunakan serverless.
 Kebanyakan penyedia hosting di bawah ini akan mengalami kendala ketika kamu menjalankan bot menggunakan polling (`bot.start()` atau [grammY runner](../plugins/runner.md)).
 
 Di sisi lain, PaaS (Platform as a Service) menyediakan layanan yang serupa, namun lebih bisa dikontrol.
