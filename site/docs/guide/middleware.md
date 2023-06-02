@@ -235,7 +235,7 @@ This includes `bot.api.sendMessage`, `ctx.reply`, and all other network calls.
 If your project is important to you, then you use linting tools that warn you if you ever forget to use `await` on a `Promise`.
 
 ::: tip Enable no-floating-promises
-Consider using [ESLint](https://eslint.org/) and configure it to use the [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-floating-promises.md) rule.
+Consider using [ESLint](https://eslint.org/) and configure it to use the [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-floating-promises.md) rule.
 This will make sure that you never forget to use `await` (by yelling at you).
 :::
 

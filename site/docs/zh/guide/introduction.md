@@ -138,7 +138,7 @@ Deno：
 
 #### 为开发准备环境
 
-如果你还没有安装 Deno，那么就先 [安装 Deno](https://deno.land/manual/getting_started/installation#download-and-install)。
+如果你还没有安装 Deno，那么就先 [安装 Deno](https://deno.com/manual/getting_started/installation#download-and-install)。
 
 你还需要一个非常适合编码的文本编辑器。
 最适合 Deno 的是 Visual Studio Code，通常简称为 VS Code。
