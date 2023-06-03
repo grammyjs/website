@@ -170,7 +170,7 @@ This makes it easier to debug your bot.
 
 ## Getting Started on Deno
 
-> This guide assumes that you have [Deno](https://deno.land) installed.
+> This guide assumes that you have [Deno](https://deno.com/runtime) installed.
 
 Create a new directory somewhere and create a new empty text file in it, e.g. called `bot.ts`.
 

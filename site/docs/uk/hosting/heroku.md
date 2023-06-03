@@ -316,7 +316,7 @@ worker: node dist/bot.js
 Ось посилання на інсталяцію:
 
 - [Інструкція для встановлення Git](https://git-scm.com/download/)
-- [Інструкція для встановлення Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
+- [Інструкція для встановлення Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli)
 
 Припускаємо, що ви вже маєте їх на своєму компʼютері й у вас відкритий термінал в кореневому каталозі проєкту.
 Тепер ініціалізуйте локальний репозиторій Git, запустивши цей код у вашому терміналі:

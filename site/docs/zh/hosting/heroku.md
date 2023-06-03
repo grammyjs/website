@@ -313,7 +313,7 @@ worker: node dist/bot.js
 这里是安装的链接：
 
 - [Git 安装说明](https://git-scm.com/download/)
-- [Heroku CLI 安装说明](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
+- [Heroku CLI 安装说明](https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli)
 
 假设你已经在你的机器里安装了它们，并且你在项目的根目录下打开了一个终端。
 现在在终端中运行这段代码来初始化本地 git 仓库：

@@ -107,7 +107,7 @@ Untuk itu, kamu perlu memasang beberapa software yang dapat _mengeksekusi_ kode 
 Jenis software ini disebut dengan _runtime environment_.
 Ia akan membaca file source code kamu kemudian mengerjakan apa pun yang diprogramkan di dalamnya.
 
-Terdapat dua runtime environment yang bisa kita pilih: [Deno](https://deno.land) dan [Node.js](https://nodejs.org).
+Terdapat dua runtime environment yang bisa kita pilih: [Deno](https://deno.com/runtime) dan [Node.js](https://nodejs.org).
 Jika kamu menjumpai orang-orang menyebut Node.js dengan sebutan _Node_ saja, mereka terlalu malas untuk menambahkan imbuhan ".js", meskipun maksudnya sama saja.
 
 > Mulai dari sini, kami akan membantu kamu memilih di antara kedua platform tersebut.
