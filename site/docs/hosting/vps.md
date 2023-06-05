@@ -6,7 +6,7 @@ A virtual private server, mostly known as VPS, is a virtual machine running in t
 
 To get started, you can use the bot shown in the [example of using a session](../plugins/session.md#example-usage).
 
-In the following, we will assume that the bot runs on Node.js
+In the following, we will assume that the bot runs on Node.js.
 Why only Node.js and not Deno or is it better for both runtimes?
 The answer is simple: the Deno pipeline would be very simple.
 A Node.js pipeline is complicated by the additional task of building and setting up communication between the two tasks.
@@ -23,7 +23,7 @@ There are several reasons for this:
 
 :::tip Analog of a server
 If you cannot or do not want to rent a server, you can replace it with a virtual machine.
-To do this, use an application such as [VirtualBox] (https://virtualbox.org/).
+To do this, use an application such as [VirtualBox](https://virtualbox.org/).
 Create a virtual machine with the desired Linux distribution and use it as a real server.
 :::
 
@@ -146,7 +146,7 @@ WantedBy=multi-user.target
 
 replacing `<token>` with your bot's token, `<launch-command>` with the command you received [above](#getting-the-start-command), and `<username>` with the name of the user on whose behalf the app is being started.
 
-> For more information on the unit files, visit [here](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/assembly_working-with-systemd-unit-files_configuring-basic-system-settings).
+> For more information on the unit files, read [this](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/assembly_working-with-systemd-unit-files_configuring-basic-system-settings).
 
 4. Reload systemd whenever you edit the service:
 
@@ -257,7 +257,7 @@ pm2 startup
 
 You will be provided with a command that you must execute to make PM2 automatically start after the server reboots.
 
-Після цього виконайте ще одну команду:
+Then run one more command:
 
 ```sh:no-line-numbers
 pm2 save
