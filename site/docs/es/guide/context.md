@@ -153,8 +153,6 @@ Fácil.
 Sin embargo, la verdadera fuerza es arreglar el punto 2.
 El objeto context te permite simplemente enviar una respuesta así:
 
-Traducción realizada con la versión gratuita del traductor www.DeepL.com/Translator
-
 ```ts
 bot.on("message", async (ctx) => {
   await ctx.reply("¡Recibí tu mensaje!");
