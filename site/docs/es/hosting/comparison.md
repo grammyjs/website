@@ -18,16 +18,22 @@ En otras palabras, simplemente lo ejecutas en el ordenador de otra persona.
 
 Tenemos dos tablas comparativas: una para el alojamiento [serverless](#serverless) y otra para el [VPS](#vps).
 
-### Serverless
+### Serverless and PaaS
 
 Serverless significa que usted no controla una sola máquina en la que se ejecuta su bot.
 En su lugar, estos proveedores de alojamiento te permitirán subir tu código, y luego iniciar y detener diferentes máquinas según sea necesario para asegurarse de que tu bot siempre funciona.
 
-Esto tiene el inconveniente de que tu bot no tiene acceso a un almacenamiento persistente por defecto, como un sistema de archivos local.
-En su lugar, a menudo tendrá que tener una base de datos por separado y conectarse a ella si necesita almacenar datos de forma permanente.
-Por lo tanto, le recomendamos que utilice un tipo de alojamiento diferente para los bots más complejos, por ejemplo, un [VPS](./vps.md).
-
 Lo principal que hay que saber sobre ellos es que en las infraestructuras sin servidor se requiere el uso de [webhooks](../guide/deployment-types.md).
+La mayoría de los proveedores de abajo tendrán problemas cuando intentes ejecutar tu bot con polling (`bot.start()` o [grammY runner](../plugins/runner.md)) en ellos.
+
+Por otro lado, PaaS (Plataforma como servicio) proporciona una solución similar pero más controlable.
+Puedes elegir cuántas instancias de máquina servirán a tu bot, y cuándo se ejecutarán.
+El uso de [polling](../guide/deployment-types.md) también es posible con PaaS si el proveedor que elijas te permite mantener exactamente una única instancia en ejecución en todo momento.
+
+Serverless y PaaS tienen el inconveniente de que no te proporcionan un almacenamiento persistente por defecto, como un sistema de archivos local.
+En su lugar, a menudo tendrás que tener una base de datos por separado y conectarte a ella si necesitas almacenar datos de forma permanente.
+
+Traducción realizada con la versión gratuita del traductor www.DeepL.com/Translator
 
 | Nombre                 | Precio mínimo | Precios                                                                                                       | Límites                                                                                                               | Node.js                                                                                                 | Deno                                           | Web                                               | Notas                                                                                              |
 | ---------------------- | ------------- | ------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ---------------------------------------------- | ------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
