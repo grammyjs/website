@@ -539,6 +539,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v3
         with:
           node-version: 'latest'
@@ -547,16 +549,18 @@ jobs:
         run: npm run build
       - uses: actions/upload-artifact@v3
         with:
-          name: dist
-          path: dist/*.js
+          name: source
+          path: |
+            dist/*.js
+            package.json
+            package-lock.json
   deploy:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
       - uses: actions/download-artifact@v3
         with:
-          name: dist
+          name: source
           path: dist/
       - name: Deploy
         uses: easingthemes/ssh-deploy@v4
@@ -657,6 +661,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: Deploy
         uses: easingthemes/ssh-deploy@v4
         env:
