@@ -16,7 +16,7 @@ En otras palabras, simplemente lo ejecutas en el ordenador de otra persona.
 
 > ¡Por favor, haz clic en el botón de edición en la parte inferior de la página para añadir más proveedores o para editar los existentes!
 
-Tenemos dos tablas comparativas: una para [alojamiento serverless and PaaS](#serverless-and-paas) y otra para [VPS](#vps).
+Tenemos dos tablas comparativas: una para [alojamiento serverless y PaaS](#serverless-y-paas) y otra para [VPS](#vps).
 
 ### Serverless y PaaS
 
