@@ -53,6 +53,7 @@ After payment you will be able to set up your server:
    Make a strong password and keep it in a safe place!
 6. **SSH key**.
    Skip this step.
+   We will set up SSH keys [later](#ssh-keys).
 
 After the server is created, you can connect to it using SSH:
 
