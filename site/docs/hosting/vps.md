@@ -353,6 +353,12 @@ We will use [Caddy](https://caddyserver.com/).
 
 Caddy is a powerful open source web server with automatic HTTPS.
 
+:::tip Web Server
+We use Caddy because, unlike mainstream web servers like Nginx or Apache, it automatically configures SSL certificates.
+This makes the article much easier.
+However, you are free to choose any web server you want.
+:::
+
 #### Installation
 
 The following 5 commands will download and automatically start Caddy as a systemd service called `caddy`.
