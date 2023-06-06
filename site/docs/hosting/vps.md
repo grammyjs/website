@@ -352,7 +352,6 @@ For the website to work and the bot to start receiving updates from Telegram, yo
 We will use [Caddy](https://caddyserver.com/).
 
 Caddy is a powerful open source web server with automatic HTTPS.
-It is written in Go, so it is very fast. :zap:
 
 #### Installation
 
