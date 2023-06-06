@@ -152,8 +152,6 @@ After=network.target
 
 [Service]
 Environment=BOT_TOKEN=<token>
-Type=simple
-User=<username>
 ExecStart=<start-command>
 Restart=on-failure
 
@@ -162,6 +160,16 @@ WantedBy=multi-user.target
 ```
 
 replacing `<token>` with your bot's token, `<launch-command>` with the command you received [above](#getting-the-start-command), and `<username>` with the name of the user on whose behalf the app is being started.
+
+A small explanation of the service configuration:
+
+- `After=network.target` - indicates that the application should be launched after the Internet module is loaded.
+- `Environment=BOT_TOKEN=<token>` - sets the environment variable.
+  Add new `Environment` if you need multiple environment variables.
+- `ExecStart=<start-command>` - sets the startup command.
+- `Restart=on-failure` - indicates that the application should restart after a crash.
+- `WantedBy=multi-user.target` - defines the system state in which the service should be launched.
+  `multi-user.target` - is a typical value for servers that defines the state of the system when everything works except the graphical interface, which simply does not exist.
 
 > For more information on the unit files, read [this](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/assembly_working-with-systemd-unit-files_configuring-basic-system-settings).
 
