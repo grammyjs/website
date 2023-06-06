@@ -18,7 +18,7 @@ En otras palabras, simplemente lo ejecutas en el ordenador de otra persona.
 
 Tenemos dos tablas comparativas: una para el alojamiento [serverless](#serverless) y otra para el [VPS](#vps).
 
-### Serverless and PaaS
+### Serverless y PaaS
 
 Serverless significa que usted no controla una sola máquina en la que se ejecuta su bot.
 En su lugar, estos proveedores de alojamiento te permitirán subir tu código, y luego iniciar y detener diferentes máquinas según sea necesario para asegurarse de que tu bot siempre funciona.
