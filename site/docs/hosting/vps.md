@@ -305,7 +305,10 @@ If you have created a new application and want to save it as well, simply run `p
 
 To run a bot on webhooks, you will need to use a web framework and not call `bot.start()`.
 
-Here's a sample code to start the bot using `fastify`, which you should add to the bot's main file:
+Here is a sample code to run the bot on webhooks that should be added to the main bot file:
+
+<CodeGroup>
+  <CodeGroupItem title="Node.js" active>
 
 ```ts
 import { webhookCallback } from "grammy";
@@ -317,6 +320,33 @@ server.post(`/${bot.token}`, webhookCallback(bot, "fastify"));
 
 server.listen();
 ```
+
+</CodeGroupItem>
+ <CodeGroupItem title="Deno">
+
+```ts
+import { serve } from "https://deno.land/std@0.178.0/http/server.ts";
+import { webhookCallback } from "https://deno.land/x/grammy@v1.14.1/mod.ts";
+
+const handleUpdate = webhookCallback(bot, "std/http");
+
+serve(async (req) => {
+  if (req.method === "POST") {
+    const url = new URL(req.url);
+    if (url.pathname.slice(1) === bot.token) {
+      try {
+        return await handleUpdate(req);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  }
+  return new Response();
+});
+```
+
+</CodeGroupItem>
+</CodeGroup>
 
 ### Domain Rental
 
