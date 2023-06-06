@@ -11,6 +11,11 @@ There are several reasons for this:
 2. It has a very rich documentation that thoroughly covers all the problem areas that a beginner may encounter.
 3. It offers powerful servers at fairly low prices.
 
+> You are free to choose the provider of your choice.
+> All providers provide the same services, so you won't have any problems with the technical part of this article.
+> You can take this part as an overview of how the server rental operation works.
+> If you are a beginner, you can use this guide to rent your first ever server!
+
 :::tip Analog of a server
 If you cannot or do not want to rent a server, you can replace it with a virtual machine.
 To do this, use an application such as [VirtualBox](https://virtualbox.org/).
