@@ -144,7 +144,7 @@ Perhatikan bahwa meskipun syntactic sugar ini bisa digunakan untuk bekerja denga
 Pesan service pada dasarnya adalah pesan untuk menginformasikan pengguna di dalam chat tersebut. Adakalanya dalam beberapa kasus, pesan itu tidak akan selalu terlihat.
 Misalnya, di grup besar atau supergroup tidak akan ada pesan service mengenai pengguna yang telah bergabung atau meninggalkan chat.
 Akibatnya, bot kamu bisa jadi tidak akan mendeteksinya.
-Oleh karena itu, kamu harus menyimak [update chat member](#update-chat-member).
+Oleh karena itu, kamu harus menyimak [update chat member](#update-member-chat).
 
 ## Mengombinasikan Beberapa Query
 
