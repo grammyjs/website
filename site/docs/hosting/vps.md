@@ -35,6 +35,9 @@ In any case, Hostinger provides a 30-day money-back guarantee.
 After payment you will be able to set up your server:
 
 1. **Location.**
+   We recommend that you choose the location closest to Amsterdam.
+   It is in Amsterdam that the Telegram server is located, which is responsible for ensuring the operation of bots.
+   If you use your own Bot API server, choose the location closest to it.
 2. **Server type.**
    Choose the option "Clean OS".
 3. **Operating system.**
