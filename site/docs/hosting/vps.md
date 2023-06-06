@@ -2,16 +2,6 @@
 
 A virtual private server, mostly known as VPS, is a virtual machine running in the cloud with its users having the full control of its system.
 
-## Preparing Your Code
-
-To get started, you can use the bot shown in the [example of using a session](../plugins/session.md#example-usage).
-
-In the following, we will assume that the bot runs on Node.js.
-Why only Node.js and not Deno or is it better for both runtimes?
-The answer is simple: the Deno pipeline would be very simple.
-A Node.js pipeline is complicated by the additional task of building and setting up communication between the two tasks.
-So a CI/CD pipeline for Node.js would be a better example.
-
 ## Server Rental
 
 We chose [Hostinger](https://hostinger.com/) as our host.
