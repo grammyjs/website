@@ -65,6 +65,15 @@ ssh root@<ip-address>
 
 replacing `<ip-address>` with the IP address of your server, which you can find on the server management page.
 
+:::tip Separate User for Each Application
+In this guide, all actions with the server will be performed as the root user.
+This is done on purpose to simplify the material.
+However, in reality, the root user should only be responsible for general services (web server, database, etc.), and applications should be run by individual non-root users.
+This approach ensures the security of confidential data and prevents hacking of the entire system.
+At the same time, it imposes some inconveniences.
+Describing all these points unnecessarily increases the complexity of the article, which we try to avoid.
+:::
+
 ## Starting the Bot
 
 We now have a server at our disposal where we can run the bot to keep it running around the clock.
