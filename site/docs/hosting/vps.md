@@ -95,13 +95,22 @@ systemd is a powerful service manager which is pre-installed on many Linux distr
 
 1. Get the full path of your runtime:
 
-```sh
-# If using Deno
-which deno
+<CodeGroup>
+  <CodeGroupItem title="Node.js" active>
 
-# If using Node.js
+```sh:no-line-numbers
+which deno
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="Deno">
+
+```sh:no-line-numbers
 which node
 ```
+
+</CodeGroupItem>
+</CodeGroup>
 
 2. You should have the full path of your entry file, too.
 
@@ -195,12 +204,29 @@ systemctl disable <service-name>
 
 ### Installing
 
-```sh
-npm install pm2@latest -g
+<CodeGroup>
+  <CodeGroupItem title="NPM" active>
 
-# If using Yarn
+```sh:no-line-numbers
+npm install -g pm2
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="Yarn">
+
+```sh:no-line-numbers
 yarn global add pm2
 ```
+
+</CodeGroupItem>
+ <CodeGroupItem title="pnpm">
+
+```sh:no-line-numbers
+pnpm add -g pm2
+```
+
+</CodeGroupItem>
+</CodeGroup>
 
 #### Creating an Application
 
