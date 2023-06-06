@@ -521,6 +521,8 @@ You can now connect to the server without having to enter a password.
 
 ### Example Script
 
+#### Node.js
+
 <CodeGroup>
   <CodeGroupItem title="GitHub" active>
 
@@ -616,8 +618,8 @@ Deploy:
     - ssh-keyscan "$REMOTE_HOST" >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
   script:
-    - rsync --delete -az dist package.json package-lock.json $REMOTE_USER@$REMOTE_HOST:<цільовий-каталог>
-    - ssh $REMOTE_USER@$REMOTE_HOST "cd <цільовий-каталог> && npm i --omit=dev && <команда-запуску>"
+    - rsync --delete -az dist package.json package-lock.json $REMOTE_USER@$REMOTE_HOST:<target-directory>
+    - ssh $REMOTE_USER@$REMOTE_HOST "cd <target-directory> && npm i --omit=dev && <start-command>"
 ```
 
 where `<target-directory>` is replaced with the name of the directory where the bot build is stored on the server, and `<start-command>` with the command to start your bot, which can be a call to `pm2` or `systemctl`, for example.
@@ -627,6 +629,90 @@ After `build` is executed, the artifact of this task, namely the `dist` director
 
 The files are delivered to the server using the `rsync` utility, which we must install before executing the main script.
 After the files are delivered, we connect to the server using SSH to run a command to install all dependencies except `devDependencies` and restart the application.
+
+Note that you need to add three [environment variables](https://docs.gitlab.com/ee/ci/variables/):
+
+1. `SSH_PRIVATE_KEY` - this is where the private SSH key you created in the [previous step](#ssh-keys) should be stored.
+2. `REMOTE_HOST` - the IP address of your server should be stored here
+3. `REMOTE_USER` - the name of the user on whose behalf the bot is launched should be stored here.
+
+</CodeGroupItem>
+</CodeGroup>
+
+#### Deno
+
+<CodeGroup>
+  <CodeGroupItem title="GitHub" active>
+
+```yml
+name: Main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploy
+        uses: easingthemes/ssh-deploy@v4
+        env:
+          SOURCE: "src deno.jsonc deno.lock"
+          ARGS: "--delete -az"
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: "<target-directory>"
+          SCRIPT_AFTER: |
+            cd <target-directory>
+            <start-command>
+```
+
+where `<target-directory>` is replaced with the name of the directory where the bot build is stored on the server, and `<start-command>` with the command to start your bot, which can be a call to `pm2` or `systemctl`, for example.
+
+This script sends files to the server using the `rsync` utility, which is implemented by `easingthemes/ssh-deploy`.
+After the files are delivered to the server, the command described in the `SCRIPT_AFTER` environment variable is executed.
+In our case, after the files are delivered, we go to the bot's directory and restart the bot.
+
+Note that you need to add three [secret environment variables](https://docs.github.com/en/actions/security-guides/encrypted-secrets/):
+
+1. `SSH_PRIVATE_KEY` - this is where the private SSH key you created in the [previous step](#ssh-keys) should be stored.
+2. `REMOTE_HOST` - the IP address of your server should be stored here
+3. `REMOTE_USER` - the name of the user on whose behalf the bot is launched should be stored here.
+
+</CodeGroupItem>
+  <CodeGroupItem title="GitLab">
+
+```yml
+image: denoland/deno:latest
+
+stages:
+  - deploy
+
+Deploy:
+  stage: deploy
+  before_script:
+    - "command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )"
+    - "command -v rsync >/dev/null || ( apt-get update -y && apt-get install rsync -y )"
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan "$REMOTE_HOST" >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+  script:
+    - rsync --delete -az src deno.jsonc deno.lock $REMOTE_USER@$REMOTE_HOST:<target-directory>
+    - ssh $REMOTE_USER@$REMOTE_HOST "cd <target-directory> && npm i --omit=dev && <start-command>"
+```
+
+where `<target-directory>` is replaced with the name of the directory where the bot build is stored on the server, and `<start-command>` with the command to start your bot, which can be a call to `pm2` or `systemctl`, for example.
+
+This script sends files to the server using the `rsync` utility, which is implemented by `easingthemes/ssh-deploy`.
+After the files are delivered to the server, the command described in the `SCRIPT_AFTER` environment variable is executed.
+In our case, after the files are delivered, we go to the bot's directory and restart the bot.
 
 Note that you need to add three [environment variables](https://docs.gitlab.com/ee/ci/variables/):
 
