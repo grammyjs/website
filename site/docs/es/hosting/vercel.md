@@ -1,11 +1,11 @@
 # Hosting: Funciones sin servidor de Vercel
 
-Este tutorial te guiará sobre cómo desplegar tu bot en [Vercel](https://vercel.com/) utilizando [Vercel Serverless Functions](https://vercel.com/docs/concepts/functions/serverless-y-paas-functions), asumiendo que ya tienes una cuenta en [Vercel](https://vercel.com).
+Este tutorial te guiará sobre cómo desplegar tu bot en [Vercel](https://vercel.com/) utilizando [Vercel Serverless Functions](https://vercel.com/docs/concepts/functions/serverless-functions), asumiendo que ya tienes una cuenta en [Vercel](https://vercel.com).
 
 ## Estructura del proyecto
 
 El único prerrequisito para empezar con **Vercel Serverless Functions** es mover tu código al directorio `api/` como se muestra a continuación.
-También puedes ver la [documentación de Vercel](https://vercel.com/docs/concepts/functions/serverless-y-paas-functions#deploying-serverless-y-paas-functions) para más información.
+También puedes ver la [documentación de Vercel](https://vercel.com/docs/concepts/functions/serverless-functions#deploying-serverless-functions) para más información.
 
 ```asciiart:no-line-numbers
 .
