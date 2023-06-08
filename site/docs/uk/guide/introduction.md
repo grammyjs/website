@@ -181,7 +181,7 @@ code .
 Ви можете зупинити бота за допомогою `Ctrl+C`.
 
 Готові?
-[Розпочніть роботу](./getting-started.md#getting-started-on-deno)! :robot:
+[Розпочніть роботу](./getting-started.md#початок-роботи-на-deno)! :robot:
 
 ### Передумови для Node.js
 

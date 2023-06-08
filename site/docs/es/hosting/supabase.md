@@ -26,7 +26,7 @@ Una vez que hayas creado un proyecto de Supabase Function, puedes escribir tu bo
 
 ## Preparando tu código
 
-> Recuerda que necesitas [ejecutar tu bot en webhhoks](../guide/deployment-types.md#cómo-usar-webhooks), por lo que debes usar `webhookCallback` y no llamar a `bot.start()` en tu código.
+> Recuerda que necesitas [ejecutar tu bot en webhhoks](../guide/deployment-types.md#como-usar-webhooks), por lo que debes usar `webhookCallback` y no llamar a `bot.start()` en tu código.
 
 Puedes utilizar este breve ejemplo de bot como punto de partida.
 

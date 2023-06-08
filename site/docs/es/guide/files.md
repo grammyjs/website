@@ -246,7 +246,7 @@ new InputFile({ url: "https://grammy.dev/images/Y.png" }); // equivalente
 
 ### Añadir un título
 
-Cuando se envían archivos, se pueden especificar más opciones en un objeto de opciones de tipo `Other`, exactamente como se explicó [anteriormente](./basics.md#envío-de-mensajes).
+Cuando se envían archivos, se pueden especificar más opciones en un objeto de opciones de tipo `Other`, exactamente como se explicó [anteriormente](./basics.md#envio-de-mensajes).
 Por ejemplo, esto le permite enviar subtítulos.
 
 ```ts

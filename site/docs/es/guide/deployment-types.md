@@ -21,7 +21,7 @@ Por ejemplo, algunos proveedores de infraestructura sólo admiten uno de los dos
 
 Tu bot puede atraerlos (long polling), o los servidores de Telegram pueden empujarlos a tu bot (webhooks).
 
-> Si ya sabes cómo funcionan estas cosas, desplázate hacia abajo para ver cómo usar [long polling](#cómo-utilizar-el-long-polling) o [webhooks](#cómo-usar-webhooks) con grammY.
+> Si ya sabes cómo funcionan estas cosas, desplázate hacia abajo para ver cómo usar [long polling](#como-utilizar-el-long-polling) o [webhooks](#como-usar-webhooks) con grammY.
 
 ## ¿Cómo funciona el Long Polling?
 

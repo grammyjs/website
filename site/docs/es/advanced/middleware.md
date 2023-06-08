@@ -114,7 +114,7 @@ composer.filter(/* 1 */).filter(/* 2 */).use(/* A */);
 
 `2` sólo se comprobará si `1` se mantiene, y `A` sólo se ejecutará si `2` (y por tanto `1`) se mantiene.
 
-Revisa la sección sobre [combinar consultas de filtro](../guide/filter-queries.md#combinación-de-varias-consultas) con tus nuevos conocimientos y siente tu nuevo poder.
+Revisa la sección sobre [combinar consultas de filtro](../guide/filter-queries.md#combinacion-de-varias-consultas) con tus nuevos conocimientos y siente tu nuevo poder.
 
 Un caso especial es `fork`, ya que inicia dos cálculos que son concurrentes, es decir, intercalados en el bucle de eventos.
 En lugar de devolver la instancia de `Composer` creada por la llamada subyacente `use`, devuelve un `Composer` que refleja el cálculo bifurcado.
