@@ -16,7 +16,7 @@ In other words, you just run it on someone else's computer.
 
 > Please click the edit button at the bottom of the page to add more providers or to edit existing ones!
 
-We have two comparison tables: one for [serverless](#serverless) hosting and one for [VPS](#vps).
+We have two comparison tables: one for [serverless](#serverless-and-paas) hosting and one for [VPS](#vps).
 
 ### Serverless and PaaS
 

@@ -16,7 +16,7 @@ Dengan kata lain, kamu menjalankan bot di komputer milik orang lain.
 
 > Silahkan tekan tombol edit di bawah halaman untuk menambahkan penyedia hosting lain atau mengedit daftar yang sudah ada!
 
-Kami menyediakan dua tabel perbandingan: satu untuk hosting [serverless](#serverless) dan satu untuk [VPS](#vps).
+Kami menyediakan dua tabel perbandingan: satu untuk hosting [serverless](#serverless-dan-paas) dan satu untuk [VPS](#vps).
 
 ### Serverless dan PaaS
 
