@@ -1,9 +1,9 @@
 {
-  "recommendations": [
-    "esbenp.prettier-vscode",
-    "davidanson.vscode-markdownlint",
-    "bierner.markdown-checkbox",
-    "denoland.vscode-deno",
-    "GitHub.vscode-pull-request-github"
-  ]
+	"recommendations": [
+		"esbenp.prettier-vscode",
+		"davidanson.vscode-markdownlint",
+		"bierner.markdown-checkbox",
+		"denoland.vscode-deno",
+		"GitHub.vscode-pull-request-github"
+	]
 }
