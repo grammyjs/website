@@ -13,7 +13,7 @@ grammY also provides methods to easily reply to these messages.
 The easiest way to listen for messages is via
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   const message = ctx.message; // the message object
 });
 ```
