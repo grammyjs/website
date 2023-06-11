@@ -214,4 +214,4 @@ code .
 
 还有信心吗？
 非常棒！
-[开始吧](./getting-started.md#getting-started-on-deno)！ :robot:
+[开始吧](./getting-started.md#通过-deno-开始)！ :robot:
