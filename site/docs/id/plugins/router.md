@@ -13,8 +13,8 @@ const router = new Router((ctx) => {
   return "key";
 });
 
-router.route("key", (ctx) => {/* ... */});
-router.route("key-lainnya", (ctx) => {/* ... */});
+router.route("key", async (ctx) => {/* ... */});
+router.route("key-lainnya", async (ctx) => {/* ... */});
 router.otherwise((ctx) => {/* ... */}); // Akan dipanggil jika tidak ada rute yang sesuai
 
 bot.use(router);
@@ -26,10 +26,10 @@ Plugin router dapat diintegrasikan dengan [middleware tree](../advanced/middlewa
 Contohnya, kamu bisa mem-filter update setelah mengatur rute mereka.
 
 ```ts
-router.route("key").on("message:text", (ctx) => {/* ... */});
+router.route("key").on("message:text", async (ctx) => {/* ... */});
 
 const other = router.otherwise();
-other.on(":text", (ctx) => {/* ... */});
+other.on(":text", async (ctx) => {/* ... */});
 other.use((ctx) => {/* ... */});
 ```
 

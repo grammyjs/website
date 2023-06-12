@@ -13,8 +13,8 @@ const router = new Router((ctx) => {
   return "ключ";
 });
 
-router.route("ключ", (ctx) => {/* ... */});
-router.route("інший ключ", (ctx) => {/* ... */});
+router.route("ключ", async (ctx) => {/* ... */});
+router.route("інший ключ", async (ctx) => {/* ... */});
 router.otherwise((ctx) => {/* ... */}); // викликається, якщо жоден маршрут не збігається
 
 bot.use(router);
@@ -26,10 +26,10 @@ bot.use(router);
 Наприклад, ви можете додатково фільтрувати оновлення після їх маршрутизації.
 
 ```ts
-router.route("ключ").on("message:text", (ctx) => {/* ... */});
+router.route("ключ").on("message:text", async (ctx) => {/* ... */});
 
 const other = router.otherwise();
-other.on(":text", (ctx) => {/* ... */});
+other.on(":text", async (ctx) => {/* ... */});
 other.use((ctx) => {/* ... */});
 ```
 

@@ -13,7 +13,7 @@ grammY juga menyediakan cara yang mudah untuk membalas pesan-pesan tersebut.
 Cara termudah untuk menyimak pesan adalah melalui
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   const message = ctx.message; // object pesan
 });
 ```
@@ -22,10 +22,10 @@ Selain itu, opsi-opsi lainnya juga tersedia:
 
 ```ts
 // Menangani perintah, misal /start.
-bot.command("start", (ctx) => { ... });
+bot.command("start", async (ctx) => { ... });
 
 // Mencocokkan teks pesan dengan sebuah string atau regular expression (regex).
-bot.hears(/echo *(.+)?/, (ctx) => { ... });
+bot.hears(/echo *(.+)?/, async (ctx) => { ... });
 ```
 
 Kamu bisa menggunakan fitur auto-complete di code editor untuk melihat semua pilihan yang tersedia, ataupun melihat secara manual [daftar method](https://deno.land/x/grammy/mod.ts?s=Composer) dari sebuah class `Composer`.

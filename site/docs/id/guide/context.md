@@ -11,7 +11,7 @@ Setiap kali kamu menambahkan listener ke object bot, listener ini akan menerima 
 
 ```ts
 // Ini adalah listener atau penyimak. Tugasnya menyimak pesan masuk.
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` adalah object `Context`.
 });
 ```
@@ -29,7 +29,7 @@ Ketika pengguna mengirim pesan ke bot, kamu dapat mengakses pesan itu melalui `c
 Sebagai contoh, untuk mendapatkan pesan teks, kamu dapat melakukan ini:
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `txt` akan memiliki type `string` ketika memproses pesan berjenis teks.
   // Atau bisa juga menjadi type `undefined` jika pesan tidak memiliki teks sama sekali,
   // Misalnya foto, stiker, dan jenis pesan lainnya.
@@ -45,7 +45,7 @@ Kalau kamu memasang listener untuk jenis pesan lainnya, `ctx` juga akan memberi 
 Contoh:
 
 ```ts
-bot.on("edited_message", (ctx) => {
+bot.on("edited_message", async (ctx) => {
   // Mendapatkan isi pesan baru yang diedit.
   const teksPesan = ctx.editedMessage.text;
 });
@@ -72,17 +72,17 @@ Ada sejumlah shortcut yang tersedia untuk object context.
 Dengan kata lain, kamu juga bisa melakukan ini:
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // Ambil isi pesan teks.
   const teks = ctx.msg.text;
 });
 
-bot.on("edited_message", (ctx) => {
+bot.on("edited_message", async (ctx) => {
   // Ambil isi pesan teks yang diedit.
   const teks = ctx.msg.text;
 });
 
-bot.on("message:entities", (ctx) => {
+bot.on("message:entities", async (ctx) => {
   // Ambil semua jenis entity.
   const entity = ctx.entities();
 
@@ -397,7 +397,7 @@ const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` sekarang mempunyai type `MyContext`!
   const prop = ctx.customProp;
 });
@@ -427,7 +427,7 @@ const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` sekarang mempunyai type `MyContext`!
   const prop = ctx.customProp;
 });
@@ -461,7 +461,7 @@ const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` sekarang mempunyai type `MyContext`!
   const prop = ctx.customProp;
 });
@@ -524,7 +524,7 @@ type MyContext = Context & SessionFlavor<string>;
 Sekarang kamu dapat menggunakan plugin session serta memiliki akses ke `ctx.session`:
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // Sekarang `str` memiliki type `string`.
   const str = ctx.session;
 });
