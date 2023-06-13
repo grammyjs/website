@@ -17,7 +17,7 @@ bot.on("message", (ctx) => {
 
 Puedes utilizar el objeto de contexto para:
 
-- [acceder a la información sobre el mensaje](#información-disponible)
+- [acceder a la información sobre el mensaje](#informacion-disponible)
 - [realizar acciones en respuesta al mensaje](#acciones-disponibles).
 
 Tenga en cuenta que los objetos `Context` se llaman comúnmente `ctx`.

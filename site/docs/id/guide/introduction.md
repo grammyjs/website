@@ -107,11 +107,11 @@ Untuk itu, kamu perlu memasang beberapa software yang dapat _mengeksekusi_ kode 
 Jenis software ini disebut dengan _runtime environment_.
 Ia akan membaca file source code kamu kemudian mengerjakan apa pun yang diprogramkan di dalamnya.
 
-Terdapat dua runtime environment yang bisa kita pilih: [Deno](https://deno.land) dan [Node.js](https://nodejs.org).
+Terdapat dua runtime environment yang bisa kita pilih: [Deno](https://deno.com/runtime) dan [Node.js](https://nodejs.org).
 Jika kamu menjumpai orang-orang menyebut Node.js dengan sebutan _Node_ saja, mereka terlalu malas untuk menambahkan imbuhan ".js", meskipun maksudnya sama saja.
 
 > Mulai dari sini, kami akan membantu kamu memilih di antara kedua platform tersebut.
-> Kalau sudah tahu mana yang ingin digunakan, silahkan lompat ke [persiapan untuk Node.js](#persiapan-untuk-nodejs) atau [persiapan untuk Deno](#persiapan-untuk-deno).
+> Kalau sudah tahu mana yang ingin digunakan, silahkan lompat ke [persiapan untuk Node.js](#persiapan-untuk-node-js) atau [persiapan untuk Deno](#persiapan-untuk-deno).
 
 Node.js adalah teknologi yang lebih stabil dan sudah lama dikembangkan.
 Oleh karena itu, tidak heran jika Node.js mampu mengerjakan hal-hal yang rumit, misalnya menghubungkan database yang tidak umum digunakan ataupun melakukan sesuatu yang berkaitan dengan _low-level system_.
@@ -147,7 +147,7 @@ Diantaranya adalah menginstal beberapa tool yang dibutuhkan.
 
 #### Menyiapkan Perangkat untuk Pengembangan
 
-Pertama-tama, [instal Deno](https://deno.land/manual/getting_started/installation#download-and-install) di perangkat kamu.
+Pertama-tama, [instal Deno](https://deno.com/manual/getting_started/installation#download-and-install) di perangkat kamu.
 
 Siapkan juga text editor yang sesuai untuk coding.
 Salah satu yang sesuai untuk Deno adalah Visual Studio Code, atau biasa disebut dengan VS Code.

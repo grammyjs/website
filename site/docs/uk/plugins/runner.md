@@ -171,7 +171,7 @@ JavaScript є однопоточним.
 Runner дозволяє створювати декілька worker'ів, які можуть обробляти ваші оновлення паралельно на різних ядрах, використовуючи різні цикли подій (`event loop`) та окрему памʼять.
 
 У Node.js runner використовує [Worker Threads](https://nodejs.org/api/worker_threads.html).
-У Deno runner використовує [Web Workers](https://deno.land/manual/runtime/workers).
+У Deno runner використовує [Web Workers](https://deno.com/manual/runtime/workers).
 
 Концептуально, runner надає вам клас під назвою `BotWorker`, який може обробляти оновлення.
 Він еквівалентний звичайному класу `Bot`: фактично, він навіть розширює (`extends`) клас `Bot`.

@@ -38,7 +38,7 @@
 
 > 如果你想使用 Vercel 的免费订阅，你的 `memory` 和 `maxDuration` 配置可能看起来像上面那样不绕过它的限制。
 
-如果你想了解有关 `vercel.json` 配置文件的更多信息，请参阅[其文档](https://vercel.com/docs/project-configuration)。
+如果你想了解有关 `vercel.json` 配置文件的更多信息，请参阅[其文档](https://vercel.com/docs/concepts/projects/project-configuration)。
 
 ## 配置 TypeScript
 

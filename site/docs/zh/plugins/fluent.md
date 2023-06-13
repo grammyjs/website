@@ -73,7 +73,7 @@ welcome =
 语句 `{$name}` 将会被替换为 `name` 变量的值，你需要自己传递给翻译函数。
 
 最后一条语句 (_第 5 行到第 9 行_) 定义了一个 **selector**（非常类似于 switch 语句），它接收应用于 `applesCount` 变量的特殊 `NUMBER` 函数的结果，并根据匹配的值选择三种可能的信息之一来渲染。
-`NUMBER` 函数将根据提供的值和使用的语言返回一个 [CLDR plural category](https://www.unicode.org/cldr/cldr-aux/charts/30/supplemental/language_plural_rules.md)。
+`NUMBER` 函数将根据提供的值和使用的语言返回一个 [CLDR plural category](https://www.unicode.org/cldr/cldr-aux/charts/30/supplemental/language_plural_rules.html)。
 这有效地实现了 pluralization。
 
 ## grammY 配置

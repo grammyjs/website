@@ -2,7 +2,7 @@
 
 这个指南告诉你如何将你的 grammY bots 托管到 [Supabase](https://supabase.com/).
 
-请注意，在使用 [Supabase Edge Functions](https://supabase.com/docs/guides/functions) 之前，你需要有一个 [GitHub](https://github.com) 账户。
+请注意，在使用 [Supabase Edge Functions](https://supabase.com/docs/guides/functions/quickstart) 之前，你需要有一个 [GitHub](https://github.com) 账户。
 此外，Supabase Edge Functions 是基于[Deno Deploy](https://deno.com/deploy)，所以就像 [我们的Deno Deploy指南](./deno-deploy.md) 一样，本指南只针对使用 Deno 的 grammY 用户。
 
 Supabase Edge Functions 是大多数简单 bot 的理想选择，并且你应该注意，Supabase Edge Functions 上运行的应用程序不一定完整支持 Deno 的所有功能。
@@ -14,7 +14,7 @@ Supabase Edge Functions 是大多数简单 bot 的理想选择，并且你应该
 ## 设置
 
 为了部署 Supabase Edge Functions，你需要创建一个 Supabase 账户，安装他们的 CLI，并创建一个 Supabase 项目。
-你应该首先 [按照他们的文档](https://supabase.com/docs/guides/functions#prerequisites) 来进行设置。
+你应该首先 [按照他们的文档](https://supabase.com/docs/guides/functions/quickstart#prerequisites) 来进行设置。
 
 通过运行这个命令来创建一个新的 Supabase Function：
 

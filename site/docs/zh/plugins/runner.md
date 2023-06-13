@@ -170,7 +170,7 @@ JavaScript 是单线程的。
 grammY runner 允许你创建多个 worker，它们可以在实际不同的核心（使用不同的事件循环和单独的内存）上并行处理你的 update。
 
 在 Node.js 中, grammY runner 使用 [Worker 线程](https://nodejs.org/api/worker_threads.html)。
-在 Deno 中, grammY runner 使用 [Web Workers](https://deno.land/manual/runtime/workers)。
+在 Deno 中, grammY runner 使用 [Web Workers](https://deno.com/manual/runtime/workers)。
 
 从概念上讲，grammY runner 为你提供了一个名为 `BotWorker` 的类，它可以处理 update。
 它等同于常规类 `Bot`（实际上，它甚至是 `extends Bot`）。

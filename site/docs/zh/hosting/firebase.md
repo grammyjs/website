@@ -155,7 +155,7 @@ firebase deploy
 
 部署完成后，Firebase CLI 将为你提供函数的 URL。
 它看上去应该类似于 `https://<REGION>.<MY_PROJECT.cloudfunctions.net/helloWorld`。
-有关更详细的说明，你可以查看 [入门指南](https://firebase.google.com/docs/functions/get-started#deploy-functions-to-a-production-环境) 中的步骤 8。
+有关更详细的说明，你可以查看 [入门指南](https://firebase.google.com/docs/functions/get-started#deploy-functions-to-a-production-environment) 中的步骤 8。
 
 部署后，你需要通过调用 `setWebhook` 方法告诉 Telegram 将 update 发送到你的 bot。
 为此，请打开一个新的浏览器选项卡并访问此 URL：
