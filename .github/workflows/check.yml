@@ -1,0 +1,27 @@
+name: Check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: ["opened", "edited", "synchronize"]
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup repo
+        uses: actions/checkout@v3
+
+      - uses: denoland/setup-deno@main
+        with:
+          deno-version: v1.x
+
+      - name: Check Formatting
+        run: deno fmt --config deno.json --check
+
+      - name: Check Links
+        if: github.ref == 'refs/heads/main'
+        run: |
+          cd site/docs
+          deno run --allow-read --allow-net https://raw.githubusercontent.com/grammyjs/link-checker/main/main.ts
