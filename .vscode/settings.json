@@ -16,6 +16,6 @@
     "./site/docs/zh/",
     "./site/README.md",
     "./site/api/",
-    "./site/docs/.vuepress/plugins/current-versions/build-index.ts",
+    "./site/docs/.vuepress/plugins/current-versions/build-index.ts"
   ]
 }
