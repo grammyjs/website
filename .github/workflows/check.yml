@@ -7,11 +7,10 @@ on:
     types: ["opened", "edited", "synchronize"]
 
 jobs:
-  format:
+  fmt:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup repo
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
       - uses: denoland/setup-deno@main
         with:
@@ -19,6 +18,15 @@ jobs:
 
       - name: Check Formatting
         run: deno fmt --config deno.json --check
+
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: denoland/setup-deno@main
+        with:
+          deno-version: v1.x
 
       - name: Check Links
         if: github.ref == 'refs/heads/main'
