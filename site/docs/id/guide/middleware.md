@@ -85,7 +85,7 @@ Tumpukan-tumpukan function tadi disebut _middleware stack_.
 ```
 
 Dari contoh sebelumnya, kita sekarang tahu mengapa `bot.on(":photo")` tidak ikut diperiksa.
-Itu karena middleware di `bot.on(":text", async (ctx) => { ... })` sudah menangani update-nya, sehingga tidak perlu memanggil `next`.
+Itu karena middleware di `bot.on(":text", (ctx) => { ... })` sudah menangani update-nya, sehingga tidak perlu memanggil `next`.
 Bahkan, `next` sama sekali tidak dinyatakan di parameter-nya.
 Ia mengabaikan `next` begitu saja, sehingga update tidak diteruskan.
 

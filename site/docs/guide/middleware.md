@@ -84,7 +84,7 @@ This stack of functions is the _middleware stack_.
 (ctx, next) => ...    |
 ```
 
-Looking back at our earlier example, we now know why `bot.on(":photo")` was never even checked: the middleware in `bot.on(":text", async (ctx) => { ... })` already handled the update, and it did not call `next`.
+Looking back at our earlier example, we now know why `bot.on(":photo")` was never even checked: the middleware in `bot.on(":text", (ctx) => { ... })` already handled the update, and it did not call `next`.
 In fact, it did not even specify `next` as a parameter.
 It simply ignored `next`, hence not passing on the update.
 

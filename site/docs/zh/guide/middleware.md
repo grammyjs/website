@@ -84,7 +84,7 @@ type NextFunction = () => Promise<void>;
 (ctx, next) => ...    |
 ```
 
-回顾我们之前的例子，我们现在知道为什么 `bot.on(":photo")` 从未被使用：`bot.on(":text", async (ctx) => { ... })` 中的中间件已经处理了更新，它没有调用 `next` 。
+回顾我们之前的例子，我们现在知道为什么 `bot.on(":photo")` 从未被使用：`bot.on(":text", (ctx) => { ... })` 中的中间件已经处理了更新，它没有调用 `next` 。
 事实上，它甚至没有把 `next` 作为一个参数。
 它只是忽略了 `next` ，因此没有传递更新。
 
