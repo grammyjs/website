@@ -24,11 +24,11 @@ La inferencia de tipos de `bot.on()` comprenderá la consulta de filtro que haya
 Por lo tanto, ajusta algunos tipos en el contexto que se sabe que existen.
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // Podría ser undefined si el mensaje recibido no tiene texto.
   const text: string | undefined = ctx.msg.text;
 });
-bot.on("message:text", (ctx) => {
+bot.on("message:text", async (ctx) => {
   // El texto siempre está definido porque este manejador es llamado cuando se recibe un mensaje de texto.
   const text: string = ctx.msg.text;
 });

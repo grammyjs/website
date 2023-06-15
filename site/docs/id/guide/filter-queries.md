@@ -23,11 +23,11 @@ Dengan demikian, kamu cukup mengetik `bot.on("")`, lalu buka auto-complete, kemu
 _Type inference_ `bot.on()` akan memahami filter query yang sedang kamu pilih. Dari situ, ia akan mengerucutkan beberapa type context yang ada.
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // Bisa jadi undefined kalau pesan yang diterima tidak ada teksnya.
   const text: string | undefined = ctx.msg.text;
 });
-bot.on("message:text", (ctx) => {
+bot.on("message:text", async (ctx) => {
   // Text selalu tersedia karena handler ini dipanggil
   // ketika pesan yang diterima hanya berupa teks.
   const text: string = ctx.msg.text;

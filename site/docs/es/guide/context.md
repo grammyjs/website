@@ -10,7 +10,7 @@ El objeto `Context` ([Referencia de la API de grammY](https://deno.land/x/grammy
 Siempre que registres un oyente en tu objeto bot, este oyente recibirá un objeto `Context`.
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` es el objeto `Context`.
 });
 ```
@@ -28,7 +28,7 @@ Cuando un usuario envía un mensaje a tu bot, puedes acceder a él a través de 
 Como ejemplo, para obtener el texto del mensaje, puedes hacer esto:
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` será un `string` cuando se procesen mensajes de texto.
   // Será `undefined` si el mensaje recibido no tiene ningún mensaje de texto,
   // por ejemplo, fotos, pegatinas y otros mensajes.
@@ -44,7 +44,7 @@ Si registras tu listener para otros tipos, `ctx` también te dará información 
 Ejemplo:
 
 ```ts
-bot.on("edited_message", (ctx) => {
+bot.on("edited_message", async (ctx) => {
   // Obtenga el nuevo texto editado del mensaje.
   const editedText = ctx.editedMessage.text;
 });
@@ -71,17 +71,17 @@ Hay una serie de accesos directos instalados en el objeto de contexto.
 En otras palabras, también puedes hacer esto:
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // Obtenga el texto del mensaje.
   const text = ctx.msg.text;
 });
 
-bot.on("edited_message", (ctx) => {
+bot.on("edited_message", async (ctx) => {
   // Obtener el nuevo texto editado del mensaje.
   const editedText = ctx.msg.text;
 });
 
-bot.on("message:entities", (ctx) => {
+bot.on("message:entities", async (ctx) => {
   // Obtener todas las entidades.
   const entities = ctx.entities();
   // Obtener el texto de la primera entidad.
@@ -387,7 +387,7 @@ const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` es ahora de tipo `MyContext`.
   const prop = ctx.customProp;
 });
@@ -417,7 +417,7 @@ const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` es ahora de tipo `MyContext`.
   const prop = ctx.customProp;
 });
@@ -451,7 +451,7 @@ const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` es ahora de tipo `MyContext`.
   const prop = ctx.customProp;
 });
@@ -514,7 +514,7 @@ type MyContext = Context & SessionFlavor<string>;
 Ahora puedes usar el plugin de sesión, y tienes acceso a `ctx.session`:
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // Ahora `str` es de tipo `string`.
   const str = ctx.session;
 });

@@ -10,7 +10,7 @@ next: ./api.md
 每当你在你的 bot 对象上注册一个监听器时，这个监听器将收到一个上下文对象。
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` 是一个 `Context` 对象。
 });
 ```
@@ -28,7 +28,7 @@ bot.on("message", (ctx) => {
 举个例子，要获得消息的文本，你可以这样做：
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `txt` 在处理文本信息时将是一个 `string`。
   // 如果收到的信息没有任何信息文本，它将是 `undefined`。
   // 例如，照片、贴纸和其他信息。
@@ -44,7 +44,7 @@ bot.on("message", (ctx) => {
 示例：
 
 ```ts
-bot.on("edited_message", (ctx) => {
+bot.on("edited_message", async (ctx) => {
   // 获得新的、经过编辑的信息文本。
   const editedText = ctx.editedMessage.text;
 });
@@ -71,15 +71,15 @@ bot.on("edited_message", (ctx) => {
 换句话说，你也可以这样做：
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // 获取接收到的信息的文本。
   const text = ctx.msg.text;
 });
-bot.on("edited_message", (ctx) => {
+bot.on("edited_message", async (ctx) => {
   // 获得新的、经过编辑的信息文本。
   const editedText = ctx.msg.text;
 });
-bot.on("message:entities", (ctx) => {
+bot.on("message:entities", async (ctx) => {
   // 获取所有实体.
   const entities = ctx.entities();
   // 获取第一个实体的文本.
@@ -384,7 +384,7 @@ const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` 现在成为了 `MyContext` 类型。
   const prop = ctx.customProp;
 });
@@ -413,7 +413,7 @@ const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` 现在成为了 `MyContext` 类型。
   const prop = ctx.customProp;
 });
@@ -446,7 +446,7 @@ const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` 现在成为了 `MyContext` 类型。
   const prop = ctx.customProp;
 });
@@ -509,7 +509,7 @@ type MyContext = Context & SessionFlavor<string>;
 现在你可以使用 session 插件了，你可以访问`ctx.session`。
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // 现在 `str` 是 `string` 类型的。
   const str = ctx.session;
 });

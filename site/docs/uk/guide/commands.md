@@ -51,7 +51,7 @@ await bot.api.setMyCommands([
 Ви можете отримати доступ до рядку з аргументами за допомогою `ctx.match`.
 
 ```ts
-bot.command("add", (ctx) => {
+bot.command("add", async (ctx) => {
   // `item` буде "яблучний пиріг", якщо користувач надішле "/add яблучний пиріг".
   const item = ctx.match;
 });

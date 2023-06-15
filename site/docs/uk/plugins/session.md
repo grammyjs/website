@@ -671,7 +671,7 @@ interface SessionData {
 
 ```ts
 // Звичайні строгі сесії
-bot.command("settings", (ctx) => {
+bot.command("settings", async (ctx) => {
   // `session` — це дані сесії
   const session = ctx.session;
 });
@@ -704,7 +704,7 @@ bot.command("settings", async (ctx) => {
 Це дозволить отримати наступний код:
 
 ```ts
-bot.command("reset", (ctx) => {
+bot.command("reset", async (ctx) => {
   // Набагато коротше, ніж спочатку `await ctx.session`:
   ctx.session = ctx.session.then((stats) => {
     stats.counter = 0;

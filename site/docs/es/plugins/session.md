@@ -669,7 +669,7 @@ En la práctica, en lugar de tener los datos de la sesión disponibles en `ctx.s
 
 ```ts
 // Sesiones por defecto (sesiones estrictas)
-bot.command("settings", (ctx) => {
+bot.command("settings", async (ctx) => {
   // `session` es el dato de la sesión
   const session = ctx.session;
 });
@@ -702,7 +702,7 @@ Si estableces que `ctx.session` sea una promesa, se `esperará` antes de escribi
 Esto permitiría el siguiente código:
 
 ```ts
-bot.command("reset", (ctx) => {
+bot.command("reset", async (ctx) => {
   // Mucho más corto que tener que `esperar ctx.session` primero:
   ctx.session = ctx.session.then((stats) => {
     stats.counter = 0;

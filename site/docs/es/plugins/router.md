@@ -13,8 +13,8 @@ const router = new Router((ctx) => {
   return "key";
 });
 
-router.route("key", (ctx) => {/* ... */});
-router.route("other-key", (ctx) => {/* ... */});
+router.route("key", async (ctx) => {/* ... */});
+router.route("other-key", async (ctx) => {/* ... */});
 router.otherwise((ctx) => {/* ... */}); // se llama si no hay ninguna ruta que coincida
 
 bot.use(router);
@@ -26,9 +26,9 @@ Naturalmente, el plugin del enrutador se integra perfectamente con las [jerarqu�
 Por ejemplo, puedes filtrar más las actualizaciones después de enrutarlas.
 
 ```ts
-router.route("key").on("message:text", (ctx) => {/* ... */});
+router.route("key").on("message:text", async (ctx) => {/* ... */});
 const other = router.otherwise();
-other.on(":text", (ctx) => {/* ... */});
+other.on(":text", async (ctx) => {/* ... */});
 other.use((ctx) => {/* ... */});
 ```
 

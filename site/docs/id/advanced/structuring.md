@@ -44,7 +44,7 @@ export const lists = new Composer();
 
 // Tambahkan beberapa handler di sini
 // yang fungsinya mengatur middleware kamu seperti biasanya.
-lists.on("message", (ctx) => {/* ... */});
+lists.on("message", async (ctx) => {/* ... */});
 ```
 
 > Catatan: Jika menggunakan TypeScript, kamu perlu menambahkan [custom context type](../guide/context.md#memodifikasi-object-context)-nya juga ketika membuat sebuah composer.

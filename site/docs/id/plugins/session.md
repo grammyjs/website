@@ -673,7 +673,7 @@ Dalam praktiknya, alih-alih memiliki data session di `ctx.session`, kamu sekaran
 
 ```ts
 // session bawaan (strict sessions)
-bot.command("settings", (ctx) => {
+bot.command("settings", async (ctx) => {
   // `session` adalah data session-nya
   const session = ctx.session;
 });
@@ -710,7 +710,7 @@ Kalau kamu menambahkan `ctx.session` sebagai sebuah promise, maka ia akan di-`aw
 Dengan begitu, kode berikut dapat dilakukan:
 
 ```ts
-bot.command("reset", (ctx) => {
+bot.command("reset", async (ctx) => {
   // Lebih singkat dibandingkan menggunakan `await ctx.session`:
   ctx.session = ctx.session.then((stats) => {
     stats.counter = 0;

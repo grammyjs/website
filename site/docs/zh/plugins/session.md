@@ -671,7 +671,7 @@ interface SessionData {
 
 ```ts
 // 默认会话 (严格会话)
-bot.command("settings", (ctx) => {
+bot.command("settings", async (ctx) => {
   // `session` 是会话数据
   const session = ctx.session;
 });
@@ -704,7 +704,7 @@ bot.command("settings", async (ctx) => {
 这样可以实现以下代码：
 
 ```ts
-bot.command("reset", (ctx) => {
+bot.command("reset", async (ctx) => {
   // 比 `await ctx.session` 要短得多：
   ctx.session = ctx.session.then((stats) => {
     stats.counter = 0;

@@ -13,8 +13,8 @@ const router = new Router((ctx) => {
   return "key";
 });
 
-router.route("key", (ctx) => {/* ... */});
-router.route("other-key", (ctx) => {/* ... */});
+router.route("key", async (ctx) => {/* ... */});
+router.route("other-key", async (ctx) => {/* ... */});
 router.otherwise((ctx) => {/* ... */}); // 如果没有匹配的路由，则调用此方法
 
 bot.use(router);
@@ -26,10 +26,10 @@ bot.use(router);
 例如，你可以在路由之后继续过滤 updates。
 
 ```ts
-router.route("key").on("message:text", (ctx) => {/* ... */});
+router.route("key").on("message:text", async (ctx) => {/* ... */});
 bot.use(router);
 const other = router.otherwise();
-other.on(":text", (ctx) => {/* ... */});
+other.on(":text", async (ctx) => {/* ... */});
 other.use((ctx) => {/* ... */});
 ```
 
