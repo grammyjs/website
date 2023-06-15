@@ -33,13 +33,13 @@ export default defineUserConfig({
   }),
 
   plugins: [
-    docsearch({
-      ...config.docsearchEn,
-      ...config.docsearchEs,
-      ...config.docsearchId,
-      ...config.docsearchUk,
-      ...config.docsearchZh,
-    }),
+    // docsearch({
+    //   ...config.docsearchEn,
+    //   ...config.docsearchEs,
+    //   ...config.docsearchId,
+    //   ...config.docsearchUk,
+    //   ...config.docsearchZh,
+    // }),
     betterLineBreaks(),
     currentVersions(),
   ],
