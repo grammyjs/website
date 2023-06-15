@@ -393,7 +393,7 @@ export const localeEn: LocaleConfig<DefaultThemeLocaleData> = {
       },
       {
         text: "API Reference",
-        link: "https://deno.land/x/grammy/mod.ts",
+        link: "/ref/core/",
       },
     ],
   },
