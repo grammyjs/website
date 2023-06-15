@@ -32,9 +32,15 @@ if (!out) throw new Error("no out!");
 const paths: Array<[string, string]> = Deno.args[1]
   ? [[Deno.args[1], join(out, "mod")]]
   : modules.map((
-    { mod, slug, entrypoint },
+    {
+      user = "grammyjs",
+      repo,
+      branch = "main",
+      slug,
+      entrypoint = "src/mod.ts",
+    },
   ) => [
-    `https://deno.land/x/${mod}/${entrypoint ?? "mod.ts"}`,
+    `https://raw.githubusercontent.com/${user}/${repo}/${branch}/${entrypoint}`,
     join(out, slug),
   ]);
 

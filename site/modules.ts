@@ -1,62 +1,68 @@
 export interface ModuleConfig {
-  mod: string;
+  user?: string;
+  repo: string;
+  branch?: string;
   slug: string;
   entrypoint?: string;
 }
 
 export const modules: ModuleConfig[] = [
-  { mod: "grammy", slug: "core" },
-  { mod: "grammy", slug: "api", entrypoint: "types.ts" },
-  { mod: "grammy_menu", slug: "menu" },
-  { mod: "grammy_runner", slug: "runner" },
-  { mod: "grammy_hydrate", slug: "hydrate" },
-  { mod: "grammy_transformer_throttler", slug: "transformer-throttler" },
-  { mod: "grammy_ratelimiter", slug: "ratelimiter" },
-  { mod: "grammy_files", slug: "files" },
-  { mod: "grammy_router", slug: "router" },
-  { mod: "grammy_emoji", slug: "emoji" },
-  { mod: "grammy_parse_mode", slug: "parse-mode" },
-  { mod: "grammy_conversations", slug: "conversations" },
-  { mod: "grammy_autoquote", slug: "autoquote" },
-  { mod: "grammy_i18n", slug: "i18n" },
+  { repo: "grammY", slug: "core" },
+  { repo: "grammY", slug: "api", entrypoint: "src/types.ts" },
+  { repo: "menu", slug: "menu" },
+  { repo: "runner", slug: "runner" },
+  { repo: "hydrate", slug: "hydrate" },
   {
-    mod: "grammy_storages",
+    repo: "transformer-throttler",
+    branch: "master",
+    slug: "transformer-throttler",
+  },
+  { repo: "ratelimiter", slug: "ratelimiter" },
+  { repo: "files", slug: "files" },
+  { repo: "router", slug: "router" },
+  { repo: "emoji", slug: "emoji" },
+  { repo: "parse-mode", slug: "parse-mode" },
+  { repo: "conversations", slug: "conversations" },
+  { user: "roziscoding", repo: "grammy-autoquote", slug: "autoquote" },
+  { repo: "i18n", slug: "i18n" },
+  {
+    repo: "storages",
     slug: "storages/denodb",
-    entrypoint: "denodb/src/mod.ts",
+    entrypoint: "packages/denodb/src/mod.ts",
   },
   {
-    mod: "grammy_storages",
+    repo: "storages",
     slug: "storages/deta",
-    entrypoint: "deta/src/mod.ts",
+    entrypoint: "packages/deta/src/mod.ts",
   },
   {
-    mod: "grammy_storages",
+    repo: "storages",
     slug: "storages/file",
-    entrypoint: "file/src/mod.ts",
+    entrypoint: "packages/file/src/mod.ts",
   },
   {
-    mod: "grammy_storages",
+    repo: "storages",
     slug: "storages/free",
-    entrypoint: "free/src/mod.ts",
+    entrypoint: "packages/free/src/mod.ts",
   },
   {
-    mod: "grammy_storages",
+    repo: "storages",
     slug: "storages/mongodb",
-    entrypoint: "mongodb/src/mod.ts",
+    entrypoint: "packages/mongodb/src/mod.ts",
   },
   {
-    mod: "grammy_storages",
+    repo: "storages",
     slug: "storages/psql",
-    entrypoint: "psql/src/mod.ts",
+    entrypoint: "packages/psql/src/mod.ts",
   },
   {
-    mod: "grammy_storages",
+    repo: "storages",
     slug: "storages/redis",
-    entrypoint: "redis/src/mod.ts",
+    entrypoint: "packages/redis/src/mod.ts",
   },
   {
-    mod: "grammy_storages",
+    repo: "storages",
     slug: "storages/supabase",
-    entrypoint: "supabase/src/mod.ts",
+    entrypoint: "packages/supabase/src/mod.ts",
   },
 ];
