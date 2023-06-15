@@ -23,4 +23,4 @@ jobs:
       - name: Check Links
         run: |
           cd site/docs
-          deno run --allow-read --allow-net https://esm.sh/gh/grammyjs/link-checker/main.ts
+          deno run --allow-read --allow-net https://raw.githubusercontent.com/grammyjs/link-checker/main/main.ts
