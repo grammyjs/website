@@ -21,6 +21,7 @@ jobs:
         run: deno fmt --config deno.json --check
 
       - name: Check Links
+        if: github.ref == 'refs/heads/main'
         run: |
           cd site/docs
           deno run --allow-read --allow-net https://raw.githubusercontent.com/grammyjs/link-checker/main/main.ts
