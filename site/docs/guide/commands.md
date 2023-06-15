@@ -9,7 +9,7 @@ Commands are special entities in Telegram messages, that serve as instructions f
 
 ## Usage
 
-> Revisit the commands section in the [Introduction for Developers](https://core.telegram.org/bots#commands) written by the Telegram team.
+> Revisit the commands section in the [Telegram Bot Features](https://core.telegram.org/bots/features#commands) written by the Telegram team.
 
 grammY provides special handling for commands (e.g. `/start` and `/help`).
 You can directly register listeners for certain commands via `bot.command()`.
@@ -61,12 +61,12 @@ Note that you can always access the entire message's text via `ctx.msg.text`.
 
 ## Deep Linking Support
 
-> Revisit the deep linking section in the [Introduction for Developers](https://core.telegram.org/bots#deep-linking) written by the Telegram team.
+> Revisit the deep linking section in the [Telegram Bot Features](https://core.telegram.org/bots/features#deep-linking) written by the Telegram team.
 
 When a user visits `https://t.me/your_bot_name?start=payload`, their Telegram client will show a START button that (when clicked) sends the string from the URL parameter along with the message, in this example, the message text will be `"/start payload"`.
 Telegram clients will not show the payload to the user (they will only see `"/start"` in the UI), however, your bot will receive it.
 grammY extracts this payload for you, and provides it under `ctx.match`.
-In our example, `ctx.match` would contain the string `"payload"`.
+In our example with the above link, `ctx.match` would contain the string `"payload"`.
 
 Deep linking is useful if you want to build a referral system, or track where users discovered your bot.
 For example, your bot could send a channel post with an [inline keyboard](../plugins/keyboard.md#inline-keyboards) button.
@@ -75,3 +75,6 @@ When a user clicks on the button underneath the post, their Telegram client will
 This way, your bot can identify where a user came from, and that they clicked the button underneath a specific channel post.
 
 Naturally, you can also embed such links anywhere else: on the web, in messages, in QR codes, etc.
+
+Check out this [section of the Telegram docs](https://core.telegram.org/api/links#bot-links) to see a full list of possible link formats.
+They also let you prompt users to add your bot to groups or channels, and optionally grant your bot the necessary admin rights.

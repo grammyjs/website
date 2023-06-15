@@ -1,8 +1,24 @@
 # FAQ
 
-Berikut ini adalah kumpulan pertanyaan yang sering diajukan mengenai [beberapa error yang sering terjadi](#kenapa-saya-mengalami-error-ini) dan [hal-hal seputar Deno](#pertanyaan-seputar-deno).
+Berikut ini adalah kumpulan pertanyaan yang sering ditanyakan mengenai [beberapa kendala yang sering terjadi](#kenapa-saya-mengalami-error-ini) dan [hal-hal lain seputar Deno](#pertanyaan-seputar-deno).
 
 Jika FAQ ini tidak menjawab pertanyaanmu, sebaiknya kamu juga membaca [FAQ Bot](https://core.telegram.org/bots/faq) yang ditulis oleh tim Telegram.
+
+## Di Mana Saya Bisa Menemukan Dokumentasi Mengenai Method?
+
+Di referensi API.
+Kamu mungkin tertarik untuk memahami [hal-hal berikut](../guide) terlebih dahulu.
+
+## Ada Parameter yang Tidak Tersedia di Method Tertentu!
+
+Tentu saja tidak.
+
+1. Pastikan kamu sudah menginstal grammY versi terbaru.
+2. Cek [di sini](https://core.telegram.org/bots/api) apakah parameter tersebut termasuk opsional.
+   Jika iya, berarti grammY menaruh parameter tersebut di suatu options object bernama `other`.
+   Kamu cuma perlu menulis `{ nama_parameter: value }` di options tersebut.
+   Seperti biasa, TypeScript akan membantu kamu melengkapi nama parameter-nya secara otomatis.
+3. Cek ulang method signature untuk [aksi-aksi](../guide/context.md#aksi-yang-tersedia) yang ada di `ctx` [di sini](https://deno.land/x/grammy/mod.ts?s=Context#Methods), serta method API-nya (`ctx.api`, `bot.api`) [di sini](https://deno.land/x/grammy/mod.ts?s=Api#Methods).
 
 ## Kenapa Saya Mengalami Error Ini?
 
@@ -17,6 +33,7 @@ Sebaiknya kamu membaca kembali dokumentasi Telegram di [bagian pemformatan](http
 Kamu bisa menyusun entities dengan mengirim pesan terkait menggunakan opsi `entities`.
 Teks pesanmu kemudian akan berisi string biasa, sehingga tidak perlu lagi menyaring karakter teks yang aneh.
 Meski kita jadi perlu menambahkan beberapa baris kode lagi, cara ini jauh lebih handal dan merupakan solusi yang cukup aman untuk permasalahan ini.
+Selain itu, kamu juga bisa menggunakan [plugin parse-mode](../plugins/parse-mode.md) untuk mengerjakannya dengan lebih mudah dan simpel.
 :::
 
 ### 401 Unauthorized

@@ -5,7 +5,7 @@ next: ./api.md
 
 # 上下文
 
-`Context` 对象（[grammY API 参考](/ref/core/Context.md)）是 grammY 的一个重要部分。
+`Context` 对象（[grammY API 参考](https://deno.land/x/grammy/mod.ts?s=Context)）是 grammY 的一个重要部分。
 
 每当你在你的 bot 对象上注册一个监听器时，这个监听器将收到一个上下文对象。
 
@@ -59,13 +59,14 @@ bot.on("edited_message", (ctx) => {
 
 在上下文对象上安装了一些快捷方式。
 
-| 快捷方式                  | 描述                                   |
-| --------------------- | ------------------------------------ |
-| `ctx.msg`             | 获取 `message` 对象，包括已编辑的信息对象           |
-| `ctx.chat`            | 获取 `chat` 对象                         |
+| 快捷方式              | 描述                                                         |
+| --------------------- | ------------------------------------------------------------ |
+| `ctx.msg`             | 获取 `message` 对象，包括已编辑的信息对象                    |
+| `ctx.chat`            | 获取 `chat` 对象                                             |
 | `ctx.senderChat`      | 从 `ctx.msg` 中获取发送者聊天对象（用于匿名通道/群组消息）。 |
-| `ctx.from`            | 获取消息的作者，回调查询，或其他东西的作者                |
-| `ctx.inlineMessageId` | 获取回调查询的内联信息标识符或选择的内联结果               |
+| `ctx.from`            | 获取消息的作者，回调查询，或其他东西的作者                   |
+| `ctx.inlineMessageId` | 获取回调查询的内联信息标识符或选择的内联结果                 |
+| `ctx.entities`        | 获取消息实体和它们的文本，可选择通过实体类型过滤             |
 
 换句话说，你也可以这样做：
 
@@ -78,9 +79,43 @@ bot.on("edited_message", (ctx) => {
   // 获得新的、经过编辑的信息文本。
   const editedText = ctx.msg.text;
 });
+bot.on("message:entities", (ctx) => {
+  // 获取所有实体.
+  const entities = ctx.entities();
+  // 获取第一个实体的文本.
+  entities[0].text;
+  // 获取Email实体.
+  const emails = ctx.entities("email");
+  // 获取手机和Email实体.
+  const phonesAndEmails = ctx.entities(["email", "phone"]);
+});
 ```
 
 因此，如果你愿意，你可以忘记 `ctx.message` 和 `ctx.channelPost` 以及 `ctx.editedMessage` 等等，而只是一直使用 `ctx.msg` 来代替。
+
+## 通过 Has Checks 进行检测
+
+上下文对象有一些方法可以让你为某些事情检测包含的数据。
+例如，你可以调用 `ctx.hasCommand("start")` 来查看上下文对象是否包含了一个 `/start` 命令。
+这就是为什么这些方法被统称为 _has checks_ 。
+::: 知道什么时候使用 Has Checks
+这与 `bot.command("start")` 使用的逻辑完全相同。
+请注意，你通常应该使用 [filter 查询](./filter-queries.md) 或者类似的方法。
+has checks 在 [conversations 插件](../plugins/conversations.md) 里面使用效果最好。
+:::
+has checks 正确地缩小了上下文类型的范围。
+这意味着，检查上下文是否具有回调查询数据，将告诉 TypeScript 该上下文具有 `ctx.callbackQuery.data` 字段。
+
+```ts
+if (ctx.hasCallbackQuery(/query-data-\d+/)) {
+  // 存在 `ctx.callbackQuery.data` 字段
+  const data: string = ctx.callbackQuery.data;
+}
+```
+
+这同样适用于所有其他 has checks。
+阅读 [上下文对象的 API 参考](https://deno.land/x/grammy/mod.ts?s=Context#method_has_0) 来获取查看 has checks 的列表。
+阅读 [API 参考](https://deno.land/x/grammy/mod.ts?s=Context#Static_Properties) 中的静态属性 `Context.has` ， 这能让你创建高效的判定函数来检测大量上下文对象。
 
 ## 可用操作
 
@@ -145,7 +180,7 @@ await ctx.reply("^ This is a message!", {
 在你的代码编辑器中使用自动完成来查看可用的选项。
 :::
 
-当然，`ctx.api` 上的每一个其他方法都有一个快捷方式，并且有正确的预填值，比如 `ctx.replyWithPhoto` 用来回复照片，或者 `ctx.exportChatInviteLink` 用来获取相应聊天的邀请链接。如果你想了解存在哪些快捷方式，那么自动完成是你的伙伴，还有 [grammY API 参考](/ref/core/Context.md)。
+当然，`ctx.api` 上的每一个其他方法都有一个快捷方式，并且有正确的预填值，比如 `ctx.replyWithPhoto` 用来回复照片，或者 `ctx.exportChatInviteLink` 用来获取相应聊天的邀请链接。如果你想了解存在哪些快捷方式，那么自动完成是你的伙伴，还有 [grammY API 参考](https://deno.land/x/grammy/mod.ts?s=Context)。
 
 请注意，你可能不希望总是在同一个聊天中做出回复。
 在这种情况下，你可以退回到使用 `ctx.api` 方法，并在调用它们时指定所有选项。
@@ -173,7 +208,7 @@ await ctx.reply("^ This is a message!", {
 在 [中间件](./middleware.md) 中，可以轻松完成定制。
 
 ::: tip 什么是中间件？
-本节需要对中间件有所了解，所以如果你还没有跳过到 [这一部分](./middleware.md)，那么这里有一个非常简短的总结。
+本节需要对中间件有所了解，所以如果你还没有跳过到这一 [部分](./middleware.md)，那么这里有一个非常简短的总结。
 
 你需要知道，多个处理程序可以处理相同的上下文对象。
 有一些特殊处理程序可以在任何其他处理程序之前修改 `ctx`，并且第一个处理程序的修改对所有后续处理程序都是可见的。
@@ -181,6 +216,7 @@ await ctx.reply("^ This is a message!", {
 
 这个思想是在注册其他监听器之前安装中间件。
 然后你可以在这些处理程序中设置你想要的属性。
+如果你在一个处理程序中 `ctx.yourCustomPropertyName = yourCustomValue`， 那么 `ctx.yourCustomPropertyName` 属性也能够在后续的处理程序中被使用。
 
 为了便于说明，我们假设你想要在上下文对象上设置一个属性 `ctx.config`。
 在这个例子中，我们将使用它来存储一些项目相关的配置，以便所有处理程序都能访问它。
@@ -299,7 +335,7 @@ bot.command("start", async (ctx) => {
 </CodeGroupItem>
 </CodeGroup>
 
-当然，自定义上下文类型也可以传递给其他处理中间件的东西，比如 [组合器](/ref/core/Composer.md)。
+当然，自定义上下文类型也可以传递给其他处理中间件的东西，比如 [组合器](https://deno.land/x/grammy/mod.ts?s=Composer)。
 
 ```ts
 const composer = new Composer<MyContext>();
@@ -319,7 +355,7 @@ class MyContext extends Context {
 }
 ```
 
-然而，我们建议你 [通过中间件](#通过中间件) 来自定义上下文对象，因为它更加灵活，并且在你想要安装插件的情况下工作得更好。
+然而，我们建议你 [通过中间件](#通过中间件-推荐) 来自定义上下文对象，因为它更加灵活，并且在你想要安装插件的情况下工作得更好。
 
 我们现在将看看如何为上下文对象使用自定义类。
 
@@ -331,7 +367,7 @@ class MyContext extends Context {
 
 ```ts
 import { Bot, Context } from "grammy";
-import type { Update, UserFromGetMe } from "@grammyjs/types";
+import type { Update, UserFromGetMe } from "grammy/types";
 
 // 自定义一个上下文类。
 class MyContext extends Context {
@@ -344,7 +380,7 @@ class MyContext extends Context {
 }
 
 // 作为一个选项，传入自定义上下文类的构造函数。
-const bot = new Bot("<token>", {
+const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
@@ -373,7 +409,7 @@ class MyContext extends Context {
 }
 
 // 作为一个选项，传入自定义 上下文类的构造函数。
-const bot = new Bot("<token>", {
+const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
@@ -390,7 +426,10 @@ bot.start();
 
 ```ts
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
-import type { Update, UserFromGetMe } from "https://esm.sh/@grammyjs/types";
+import type {
+  Update,
+  UserFromGetMe,
+} from "https://deno.land/x/grammy/types.ts";
 
 // 自定义一个上下文类
 class MyContext extends Context {
@@ -403,7 +442,7 @@ class MyContext extends Context {
 }
 
 // 作为一个选项，传递自定义上下文类的构造函数。
-const bot = new Bot("<token>", {
+const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
@@ -454,7 +493,7 @@ interface SessionFlavor<S> {
 }
 ```
 
-`SessionFlavor` 类型（[API 参考](/ref/core/SessionFlavor.md)）是清晰的：它只定义了属性 `session`。
+`SessionFlavor` 类型（[API 参考](https://deno.land/x/grammy/mod.ts?s=SessionFlavor)）是清晰的：它只定义了属性 `session`。
 它需要一个类型参数，用来定义会话数据的实际结构。
 
 这有什么用呢？
@@ -509,7 +548,6 @@ type MyContext = FlavorX<FlavorY<FlavorZ<Context>>>;
 ```
 
 在这里，顺序可能很重要，因为 `Context` 先转换为 `FlavorZ`， 然后再转换为 `FlavorY`，最后转换为 `FlavorX`。
-（在实践中，你不需要担心这个顺序，因为插件之间通常不会发生冲突。）
 
 你甚至可以混合添加式和转化式的，以"烹饪"出更佳的上下文。
 
@@ -522,3 +560,6 @@ type MyContext = FlavorX<
   >
 >;
 ```
+
+在安装多个插件时，请确保遵循此模式。
+大部分类型错误都是因为上下文调味剂的不正确组合。

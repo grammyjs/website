@@ -6,7 +6,7 @@ next: ./reliability.md
 # Escalando II: Alta carga
 
 Hacer que tu bot sea capaz de manejar una alta carga depende de si ejecutas tu bot [a través de un long polling o a través de webhooks](../guide/deployment-types.md).
-En cualquier caso, deberías leer algunas dificultades [a continuación](#la-concurrencia-es-difícil).
+En cualquier caso, deberías leer algunas dificultades [a continuación](#la-concurrencia-es-dificil).
 
 ## Long Polling
 
@@ -40,12 +40,12 @@ run(bot);
 El límite de concurrencia por defecto es de 500.
 Si quieres profundizar en el paquete, consulta [esta página](../plugins/runner.md).
 
-La concurrencia es difícil, así que revisa la [subsección de abajo](#concurrency-is-hard) para saber lo que debes tener en cuenta cuando uses grammY runner.
+La concurrencia es difícil, así que revisa la [subsección de abajo](#la-concurrencia-es-dificil) para saber lo que debes tener en cuenta cuando uses grammY runner.
 
 ## Webhooks
 
 Naturalmente, para que esto funcione bien bajo una alta carga, debes familiarizarte con [el uso de webhooks](../guide/deployment-types.md#como-usar-webhooks).
-Esto significa que todavía tienes que ser consciente de algunas consecuencias de la concurrencia, conferir la [subsección de abajo](#la-concurrencia-es-difícil).
+Esto significa que todavía tienes que ser consciente de algunas consecuencias de la concurrencia, conferir la [subsección de abajo](#la-concurrencia-es-dificil).
 
 Además, [recuerda que](../guide/deployment-types.md#terminar-las-solicitudes-de-webhooks-a-tiempo) Telegram entregará las actualizaciones del mismo chat en secuencia, pero las actualizaciones de diferentes chats de forma concurrente.
 
@@ -88,7 +88,7 @@ import { Bot, Context, session } from "grammy";
 import { run, sequentialize } from "@grammyjs/runner";
 
 // Crear un bot.
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 // Construye un identificador único para el objeto `Context`.
 function getSessionKey(ctx: Context) {
@@ -110,12 +110,12 @@ run(bot);
 
 <CodeGroupItem title="JavaScript">
 
-```ts
+```js
 const { Bot, Context, session } = require("grammy");
 const { run, sequentialize } = require("@grammyjs/runner");
 
 // Crear un bot.
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 // Construye un identificador único para el objeto `Context`.
 function getSessionKey(ctx) {
@@ -141,7 +141,7 @@ import { Bot, Context, session } from "https://deno.land/x/grammy/mod.ts";
 import { run, sequentialize } from "https://deno.land/x/grammy_runner/mod.ts";
 
 // Crear un bot.
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 // Construye un identificador único para el objeto `Context`.
 function getSessionKey(ctx: Context) {

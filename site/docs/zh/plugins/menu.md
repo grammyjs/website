@@ -20,7 +20,7 @@ import { Bot } from "grammy";
 import { Menu } from "@grammyjs/menu";
 
 // 创建一个 bot。
-const bot = new Bot("token");
+const bot = new Bot("");
 
 // 创建一个简单的菜单。
 const menu = new Menu("my-menu-identifier")
@@ -46,7 +46,7 @@ const { Bot } = require("grammy");
 const { Menu } = require("@grammyjs/menu");
 
 // 创建一个 bot。
-const bot = new Bot("token");
+const bot = new Bot("");
 
 // 创建一个简单的菜单。
 const menu = new Menu("my-menu-identifier")
@@ -72,7 +72,7 @@ import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { Menu } from "https://deno.land/x/grammy_menu/mod.ts";
 
 // 创建一个 bot。
-const bot = new Bot("token");
+const bot = new Bot("");
 
 // 创建一个简单的菜单。
 const menu = new Menu("my-menu-identifier")
@@ -122,7 +122,7 @@ const menu = new Menu("movements")
 使用 `row` 来结束当前行，并将所有后续按钮添加到新的一行。
 
 还有许多可用的按钮类型，例如打开 URL。
-请查看 [这个插件的 API 参考](/ref/menu/MenuRange.md)，以及 [Telegram Bot API 参考](https://core.telegram.org/bots/api#inlinekeyboardbutton) 了解更多关于 `InlineKeyboardButton`。
+请查看这个插件的 [API 参考](https://deno.land/x/grammy_menu/mod.ts?s=MenuRange) 了解更多关于 `MenuRange`，以及 [Telegram Bot API 参考](https://core.telegram.org/bots/api#inlinekeyboardbutton) 了解更多关于 `InlineKeyboardButton`。
 
 ## 发送菜单
 
@@ -535,4 +535,4 @@ const menu = new Menu("id", { fingerprint: (ctx) => ident(ctx) });
 
 - 名字：`menu`
 - 源码：<https://github.com/grammyjs/menu>
-- 参考：[menu](/ref/menu/)
+- 参考：<https://deno.land/x/grammy_menu/mod.ts>

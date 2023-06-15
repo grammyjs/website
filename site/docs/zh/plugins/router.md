@@ -1,7 +1,7 @@
 # 路由器（`router`）
 
-`Router` 类（[API 参考](/ref/router/)）提供了一种更为灵活的方式来结构化你的 bot，通过路由上下文对象到不同的部分代码。
-它是 `Composer` 的 `bot.route` 的更高级版本（[grammY API 参考](/ref/core/Composer.md#route))。
+`Router` 类（[API 参考](https://deno.land/x/grammy_router/router.ts)）提供了一种更为灵活的方式来结构化你的 bot，通过路由上下文对象到不同的部分代码。
+它是 `Composer` 的 `bot.route` 的更高级版本（[grammY API 参考](https://deno.land/x/grammy/mod.ts?s=Composer#method_route_0))。
 
 ## 示例
 
@@ -33,12 +33,16 @@ other.on(":text", (ctx) => {/* ... */});
 other.use((ctx) => {/* ... */});
 ```
 
-你可能还想回顾一下 [这一章节](../guide/filter-queries.md#将查询与其他方法相结合)，了解更多关于中间件的组合。
+你可能还想回顾一下这一 [章节](../guide/filter-queries.md#将查询与其他方法相结合)，了解更多关于中间件的组合。
 
 ## 绑定路由器和会话
 
 路由器与 [会话](./session.md) 可以完美结合。
 作为一个示例，结合路由器与会话可以让你在聊天界面中重新创建表单。
+
+> 请注意，更好的解决方案是使用 [对话插件](./conversations.md)。
+> 自该插件创建以来，此页面的其余部分已过时。
+> 我们将保留此页面作为那些使用路由器实现表单的参考。
 
 假设你想创建一个让用户知道他们生日剩余多少天的机器人。
 为了计算天数，机器人必须知道生日的月份（例如：6月）和日期（例如：15日）。
@@ -440,4 +444,4 @@ function getDays(month: number, day: number) {
 
 - 名字：`router`
 - 源码：<https://github.com/grammyjs/router>
-- 参考：[router](/ref/router/)
+- 参考：<https://deno.land/x/grammy_router/router.ts>

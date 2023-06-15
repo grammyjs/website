@@ -143,4 +143,4 @@ bot.start();
 
 - Name: Autoquote
 - Source: <https://github.com/roziscoding/grammy-autoquote>
-- API Reference: [autoquote](/ref/autoquote/)
+- API Reference: <https://deno.land/x/grammy_autoquote/mod.ts>

@@ -1,4 +1,4 @@
-# Plugin Hydration para grammY (`hydrate`)
+# Hidratar (`hydrate`)
 
 Este plugin instala métodos útiles en dos tipos de objetos, a saber
 
@@ -191,4 +191,4 @@ Todos los objetos se hidratan en
 
 - Nombre: `hydrate`
 - Fuente: <https://github.com/grammyjs/hydrate>
-- Referencia: [hydrate](/ref/hydrate/)
+- Referencia: <https://deno.land/x/grammy_hydrate/mod.ts>

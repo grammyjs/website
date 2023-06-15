@@ -38,8 +38,8 @@ Antes de sumergirte en algunos ejemplos prácticos, hay algunas reglas a las que
    (Podemos crear la página por ti si no estás seguro de cómo hacerlo).
 3. Elige una licencia permisiva como MIT o ISC.
 
-Finalmente, debes saber que aunque grammY soporta tanto Node.js como [Deno](https://deno.land/), es un proyecto Deno-first, y también te animamos a escribir tus plugins para Deno (¡y posteriormente con estilo!).
-Existe una práctica herramienta llamada [deno2node](https://github.com/wojpawlik/deno2node) que transpira tu código de Deno a Node.js para que podamos soportar ambas plataformas por igual.
+Finalmente, debes saber que aunque grammY soporta tanto Node.js como [Deno](https://deno.com/runtime), es un proyecto Deno-first, y también te animamos a escribir tus plugins para Deno (¡y posteriormente con estilo!).
+Existe una práctica herramienta llamada [deno2node](https://github.com/fromdeno/deno2node) que transpira tu código de Deno a Node.js para que podamos soportar ambas plataformas por igual.
 La compatibilidad con Deno sólo es un requisito estricto para los plugins oficiales, pero no para los de terceros.
 No obstante, se recomienda encarecidamente probar Deno.
 No querrá volver atrás.
@@ -83,7 +83,7 @@ Ahora, se puede utilizar en un bot real:
 import { onlyAccept } from "./plugin.ts";
 import { Bot } from "./deps.deno.ts";
 
-const bot = new Bot(""); // <-- pon tu token de bot aquí
+const bot = new Bot("");
 
 bot.use(onlyAccept("grammY"));
 
@@ -144,7 +144,7 @@ import { Bot, InputFile } from "./deps.deno.ts";
 import { autoChatAction } from "./plugin.ts";
 
 // Crear una instancia del bot.
-const bot = new Bot(""); // <-- pon tu token de bot aquí
+const bot = new Bot("");
 
 // Utiliza el plugin.
 bot.api.config.use(autoChatAction());
@@ -186,7 +186,7 @@ plugin-template/
 **`deps.deno.ts` y `deps.node.ts`**: Esto es para los desarrolladores que están dispuestos a escribir el plugin para Deno, y luego transpilarlo a Node.js.
 Como ya hemos mencionado, utilizamos la herramienta `deno2node` para transpilar nuestro código Deno a Node.js.
 `deno2node` tiene una característica que te permite proporcionarle archivos específicos para el tiempo de ejecución.
-Estos archivos deben ser adyacentes entre sí y seguir la estructura de nombres `*.deno.ts` y `*.node.ts` como se [explica en la documentación](https://github.com/wojpawlik/deno2node#runtime-specific-code).
+Estos archivos deben ser adyacentes entre sí y seguir la estructura de nombres `*.deno.ts` y `*.node.ts` como se [explica en la documentación](https://github.com/fromdeno/deno2node#runtime-specific-code).
 Por eso hay dos archivos: `deps.deno.ts` y `deps.node.ts`.
 Si hay alguna dependencia específica de Node.js, ponla en `deps.node.ts`, si no, déjala vacía.
 

@@ -1,7 +1,7 @@
-# Router (`router`)
+# Enrutador (`router`)
 
-La clase `Router` ([Referencia API](/ref/router/)) proporciona una forma de estructurar tu bot enrutando objetos de contexto a diferentes partes de tu código.
-Es una versión más sofisticada de `bot.route` en `Composer` ([grammY API Reference](/ref/core/Composer.md#route)).
+La clase `Router` ([Referencia API](https://deno.land/x/grammy_router/router.ts)) proporciona una forma de estructurar tu bot enrutando objetos de contexto a diferentes partes de tu código.
+Es una versión más sofisticada de `bot.route` en `Composer` ([grammY API Reference](https://deno.land/x/grammy/mod.ts?s=Composer#method_route_0)).
 
 ## Ejemplo
 
@@ -38,6 +38,10 @@ También puedes revisar [esta sección](../guide/filter-queries.md#combinacion-d
 
 Los enrutadores funcionan bien junto con las [sesiones](./session.md).
 A modo de ejemplo, la combinación de ambos conceptos permite recrear formularios en la interfaz del chat.
+
+> Tenga en cuenta que una solución mucho mejor es utilizar el [plugin de conversaciones](./conversations.md).
+> El resto de esta página está obsoleta desde que se creó ese plugin.
+> Mantendremos esta página como referencia para aquellos que usaban el enrutador para los formularios.
 
 Digamos que quieres construir un bot que le diga a los usuarios cuántos días faltan para su cumpleaños.
 Para calcular el número de días, el bot tiene que saber el mes (por ejemplo, junio) y el día del mes (por ejemplo, el 15) del cumpleaños.
@@ -475,4 +479,4 @@ Si ambos valores son conocidos, el bot calcula los días restantes y los envía 
 
 - Nombre: `router`
 - Fuente: <https://github.com/grammyjs/router>
-- Referencia: [router](/ref/router/)
+- Referencia: <https://deno.land/x/grammy_router/router.ts>

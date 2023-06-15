@@ -2,7 +2,7 @@
 next: ./introduction.md
 ---
 
-![logo](/grammY.png)
+![logo](/images/grammY.png)
 
 # 概述
 
@@ -22,7 +22,7 @@ grammY 是一个用于创建 Telegram Bot 的框架。它可以从 TypeScript �
 使用 grammY 编写 bot 的文档由三层构成。
 
 1. 高级 grammY 文档 _（这个网站）_
-2. [低级 grammY API 参考](https://doc.deno.land/https://deno.land/x/grammy/mod.ts)
+2. [低级 grammY API 参考](https://deno.land/x/grammy/mod.ts)
 3. [Telegram 的原始 HTTP API 参考](https://core.telegram.org/bots/api)
 
 **第一部分**（你正在看它！）解释了 Bot 是如何工作的以及如何使用 grammY。
@@ -30,7 +30,7 @@ grammY 是一个用于创建 Telegram Bot 的框架。它可以从 TypeScript �
 你可以从 _了解_ 部分开始。
 同时，请看一下我们的精彩的 _插件_ 集合，和 _示例_。
 
-**第二部分**是 [grammY API 参考](https://doc.deno.land/https://deno.land/x/grammy/mod.ts)，你也可以在页面顶部链接找到它。
+**第二部分**是 [grammY API 参考](https://deno.land/x/grammy/mod.ts)，你也可以在页面顶部链接找到它。
 这是一份关于 grammY 所提供的所有代码的详细概述。
 它是由 grammY 的代码自动生成的，并且包含所有有用的提示，通常通过悬停你的鼠标在 grammY 中的任何代码编辑器中找到。
 

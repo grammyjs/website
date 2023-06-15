@@ -9,7 +9,7 @@ Commands 是 Telegram 信息中的特殊对象，作为 bot 的指令存在。
 
 ## 使用方法
 
-> 重温 Telegram 团队编写的 [Introduction for Developers](https://core.telegram.org/bots#commands)中的 Commands 部分。
+> 重温 Telegram 团队编写的 [Telegram Bot 特性](https://core.telegram.org/bots/features#commands)中的 Commands 部分。
 
 grammY 为命令（例如 `/start` 和 `/help` ）提供了特殊处理。
 你可以通过 `bot.command()` 直接为某些命令注册监听器。
@@ -61,12 +61,12 @@ bot.command("add", (ctx) => {
 
 ## 深度链接支持
 
-> 重新温习 Telegram 团队的 [Introduction for Developers](https://core.telegram.org/bots#deep-linking) 中关于深度链接的部分。
+> 重新温习 Telegram 团队的 [Telegram Bot 特性](https://core.telegram.org/bots/features#deep-linking) 中关于深度链接的部分。
 
 当用户返回 `https://t.me/your_bot_name?start=payload` 时，他们的 `Telegram` 客户端将显示一个 `START` 按钮，点击后将 URL 参数中的字符串与信息一起发送，在这个例子中，消息文本将是 `start payload` 。
 Telegram 客户端不会向用户显示 `payload`（他们只会在页面中看到 `start`）。但是，你的 bot 会收到它。
 grammY 为你提取这个 `payload`，并在 `ctx.match` 下提供。
-在我们的例子中，`ctx.match` 将包含字符串 `payload`。
+在我们的使用了上面这个链接的例子中，`ctx.match` 将包含字符串 `payload`。
 
 如果你想建立一个推荐系统，或跟踪用户在哪里发现你的 bot ，那么深度链接是很有用的。
 例如，你的 bot 可以发送一个带有 [inline keyboard](../plugins/keyboard.md#inline-keyboards) 按钮的 channel post。
@@ -75,3 +75,6 @@ grammY 为你提取这个 `payload`，并在 `ctx.match` 下提供。
 这样，你的 bot 可以识别用户来自哪里，以及他们点击了哪个特定频道帖子下的按钮。
 
 当然，你也可以在其他任何地方嵌入这样的链接：在网络上、信息中、二维码中等等。
+
+阅读 [Telegram 文档的这个章节](https://core.telegram.org/api/links#bot-links) 查看可能的链接格式的完整列表。
+它们也能让你提示用户把你的 bot 添加到群组或频道中，并可选择授予你的 bot 必要的管理员权限。

@@ -14,11 +14,11 @@ Other filtering of messages is left to the developer, which often leads to endle
 
 On the contrary, **grammY ships with its own query language** that you can use in order to **filter for exactly the messages** you want.
 
-This allows for over 650 different filters to be used, and we may add more over time.
+This allows for over 820 different filters to be used, and we may add more over time.
 Every valid filter can be auto-completed in your code editor.
 Hence, you can simply type `bot.on("")`, open auto-complete, and search through all queries by typing something.
 
-![Filter Query Search](/filter-query-search.png)
+![Filter Query Search](/images/filter-query-search.png)
 
 The type inference of `bot.on()` will comprehend the filter query you picked.
 It therefore tightens a few types on the context that are known to exist.
@@ -94,6 +94,7 @@ bot.on("msg:text"); // exactly the same as `:text`
 #### `edit`
 
 This `edit` shortcut groups edited messages and edited channel posts.
+In other words, using `edit` is equivalent to listening for both `"edited_message"` and `"edited_channel_post"` events.
 
 ```ts
 bot.on("edit"); // any message or channel post edit
@@ -105,6 +106,7 @@ bot.on("edit:location"); // live location updated
 #### `:media`
 
 The `:media` shortcut groups photo and video messages.
+In other words, using `:media` is equivalent to listening for both `":photo"` and `":video"` events.
 
 ```ts
 bot.on("message:media"); // photo and video messages
@@ -115,6 +117,7 @@ bot.on(":media"); // media messages or channel posts
 #### `:file`
 
 The `:file` shortcut groups all messages that contain a file.
+In other words, using `:file` is equivalent to listening for `":photo"`, `":animation"`, `":audio"`, `":document"`, `":video"`, `":video_note"`, `":voice"`, and `":sticker"` events.
 Hence, you can be sure that `await ctx.getFile()` will give you a file object.
 
 ```ts
@@ -219,14 +222,14 @@ which can be used to detect status changes of other chat members, such as when p
 
 ### Combining Queries With Other Methods
 
-You can combine filter queries with other methods on the `Composer` class ([API Reference](/ref/core/Composer.md)), such as `command` or `filter`.
+You can combine filter queries with other methods on the `Composer` class ([API Reference](https://deno.land/x/grammy/mod.ts?s=Composer)), such as `command` or `filter`.
 This allows for powerful message handling patterns.
 
 ```ts
 bot.on(":forward_date").command("help"); // forwarded /help commands
 
 // Only handle commands in private chats.
-const pm = bot.filter((ctx) => ctx.chat?.type === "private");
+const pm = bot.chatType("private");
 pm.command("start");
 pm.command("help");
 ```
@@ -310,7 +313,7 @@ function handler(ctx: Filter<Context, ":text">) {
 bot.on(":text", handler);
 ```
 
-> Check out the API references for [`matchFilter`](/ref/core/matchFilter.md), [`Filter`](/ref/core/Filter.md), and [`FilterQuery`](/ref/core/FilterQuery.md) to read on.
+> Check out the API references for [`matchFilter`](https://deno.land/x/grammy/filter.ts?s=matchFilter), [`Filter`](https://deno.land/x/grammy/filter.ts?s=Filter), and [`FilterQuery`](https://deno.land/x/grammy/filter.ts?s=FilterQuery) to read on.
 
 ## The Query Language
 

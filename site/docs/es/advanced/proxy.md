@@ -7,7 +7,7 @@ next: ./deployment.md
 
 grammY le permite configurar una serie de cosas sobre cómo se realizan las peticiones de red.
 Esto incluye inyectar un payload personalizado en cada petición, que puede ser usado para instalar un agente proxy.
-Mira las `ApiClientOptions` en la [referencia de la API de grammY](/ref/core/ApiClientOptions.md).
+Mira las `ApiClientOptions` en la [referencia de la API de grammY](https://deno.land/x/grammy/mod.ts?s=ApiClientOptions).
 
 En Deno, así es como se usaría un proxy `http`:
 
@@ -17,7 +17,7 @@ import { Bot } from "https://deno.land/x/grammy/mod.ts";
 const client = Deno.createHttpClient({
   proxy: { url: "http://host:port/" },
 });
-const bot = new Bot(TOKEN, {
+const bot = new Bot("", {
   client: {
     baseFetchConfig: {
       // @ts-ignore
@@ -29,17 +29,15 @@ const bot = new Bot(TOKEN, {
 
 > Note that you need to run this with the `--unstable` flag.
 
-En Node.js, así es como usarías un proxy con el paquete `socks5-https-client` ([npm](https://www.npmjs.com/package/socks5-https-client)):
+En Node.js, así es como usarías un proxy con el paquete `socks-proxy-agent` ([npm](https://www.npmjs.com/package/socks-proxy-agent)):
 
 ```ts
 import { Bot } from "grammy";
-import SocksAgent from "socks5-https-client/lib/Agent";
+import { SocksProxyAgent } from "socks-proxy-agent";
 
-const socksAgent = new SocksAgent({
-  socksHost: proxyHost, // proxy host
-  socksPort: proxyPort, // proxy port
-  socksUsername: proxyUser, // nombre usuario
-  socksPassword: proxyPassword, // contraseña
+const socksAgent = new SocksProxyAgent({
+  hostname: host, // proxy host
+  port: port, // proxy port
 });
 
 const bot = new Bot("", {

@@ -10,7 +10,7 @@
 
 首先，安装一些依赖：
 
-```bash
+```sh
 # 创建项目目录。
 mkdir grammy-bot
 cd grammy-bot
@@ -97,7 +97,7 @@ npx tsc --init
 > 如果你决定使用长轮询，你可以跳过本节，跳转到 [关于长轮询的章节](#长轮询)。:rocket:
 
 简而言之，与长轮询不同的是，webhook 不会通过持续运行来获取 Telegram 传入的消息。
-这会减少服务器负载，并为我们节省大量的 [dyno 时间](https://devcenter.heroku.com/articles/free-dyno-hours)，尤其是当你在使用免费计划时。:grin:
+这会减少服务器负载，并为我们节省大量的 [dyno 时间](https://devcenter.heroku.com/articles/eco-dyno-hours)，尤其是当你在使用经济计划时。:grin:
 
 Okay，让我们继续！
 还记得我们之前创建的 `bot.ts` 吗？
@@ -132,7 +132,7 @@ app.listen(Number(process.env.PORT), async () => {
 让我们看一下上面的代码：
 
 - `process.env`：请记住，千万不要在我们的代码中存储凭证！
-  关于如何在 Heroku 中 [创建环境变量](https://www.freecodecamp.org/news/using-environment-variables-the-right-way/)，请前往 [这个指南](https://devcenter.heroku.com/articles/config-vars)。
+  关于如何在 Heroku 中创建 [环境变量](https://www.freecodecamp.org/news/using-environment-variables-the-right-way/)，请前往这个 [指南](https://devcenter.heroku.com/articles/config-vars)。
 - `secretPath`：它可以是我们的 `BOT_TOKEN` 或者任何随机字符串。最好的做法是按照 [Telegram 的解释](https://core.telegram.org/bots/api#setwebhook) 来隐藏我们的 bot 的路径。
 
 ::: tip ⚡ 优化（可选）
@@ -147,7 +147,7 @@ https://api.telegram.org/bot<bot_token>/setWebhook?url=<webhook_url>
 ```
 
 请注意，有些浏览器要求你在传递 `webhook_url` 前手动 [编码](https://en.wikipedia.org/wiki/Percent-encoding#Reserved_characters)。
-举个例子，如果我的有 bot 令牌 `abcd:1234` 和网址 `https://grammybot.herokuapp.com/secret_path`，那么我们的链接应该像这样：
+举个例子，如果我们有一个 bot token `abcd:1234` 和网址 `https://grammybot.herokuapp.com/secret_path`，那么我们的链接应该像这样：
 
 ```asciiart:no-line-numbers
 https://api.telegram.org/botabcd:1234/setWebhook?url=https%3A%2F%2Fgrammybot.herokuapp.com%2Fsecret_path
@@ -166,8 +166,10 @@ https://api.telegram.org/botabcd:1234/setWebhook?url=https%3A%2F%2Fgrammybot.her
 ```ts
 import { Bot } from "grammy";
 
-if (process.env.BOT_TOKEN == null) throw Error("BOT_TOKEN is missing.");
-export const bot = new Bot(`${process.env.BOT_TOKEN}`);
+const token = process.env.BOT_TOKEN;
+if (!token) throw Error("BOT_TOKEN is unset");
+
+export const bot = new Bot(token);
 
 bot.command("start", (ctx) => ctx.reply("Hello there!"));
 bot.on("message", (ctx) => ctx.reply("Got another message!"));
@@ -180,13 +182,16 @@ bot.on("message", (ctx) => ctx.reply("Got another message!"));
 
 ::: tip ⚡ 优化（可选）
 每次你的服务器启动时，grammY 会向 Telegram 请求 [bot 的信息](https://core.telegram.org/bots/api#getme)，以便在 `ctx.me` 下的 [上下文对象](../guide/context.md) 提供 bot 的信息。
-我们可以设置 [bot 的信息](/ref/core/BotConfig.md#botInfo) 以防止过多的 `getMe` 调用。
+我们可以设置 [bot 的信息](https://deno.land/x/grammy/mod.ts?s=BotConfig#prop_botInfo) 以防止过多的 `getMe` 调用。
 
 1. 在你最喜欢的浏览器中打开这个链接 `https://api.telegram.org/bot<bot_token>/getMe`，推荐使用 [Firefox](https://www.mozilla.org/en-US/firefox/)，因为它能格式化显示 `json` 数据。
 2. 根据 `getMe` 的结果来修改我们上面第 4 行的代码：
 
 ```ts
-export const bot = new Bot(`${process.env.BOT_TOKEN}`, {
+const token = process.env.BOT_TOKEN;
+if (!token) throw new Error("BOT_TOKEN is unset");
+
+export const bot = new Bot(token, {
   botInfo: {
     id: 111111111,
     is_bot: true,
@@ -206,7 +211,7 @@ export const bot = new Bot(`${process.env.BOT_TOKEN}`, {
 ## 长轮询
 
 ::: warning 在使用长轮询时，你的脚本会持续运行。
-除非你知道如何处理这种行为，否则确保你有足够的 [dyno 时间](https://devcenter.heroku.com/articles/free-dyno-hours)。
+除非你知道如何处理这种行为，否则确保你有足够的 [dyno 时间](https://devcenter.heroku.com/articles/eco-dyno-hours)。
 :::
 
 > 考虑使用 webhooks 吗？
@@ -226,8 +231,10 @@ export const bot = new Bot(`${process.env.BOT_TOKEN}`, {
 ```ts
 import { Bot } from "grammy";
 
-if (process.env.BOT_TOKEN == null) throw new Error("BOT_TOKEN is missing.");
-const bot = new Bot(process.env.BOT_TOKEN);
+const token = process.env.BOT_TOKEN;
+if (!token) throw new Error("BOT_TOKEN unset");
+
+const bot = new Bot(token);
 
 bot.command(
   "start",
@@ -251,7 +258,7 @@ bot.start();
 
 在你的终端中运行这段命令，将 TypeScript 文件编译为 JavaScript 文件：
 
-```bash
+```sh
 npx tsc
 ```
 
@@ -259,7 +266,7 @@ npx tsc
 
 ### 设置 `Procfile`
 
-目前 `Heroku` 有好几种 [dynos 类型](https://devcenter.heroku.com/articles/free-dyno-hours)。
+目前 `Heroku` 有好几种 [dynos 类型](https://devcenter.heroku.com/articles/dyno-types)。
 其中两个是：
 
 - **Web dynos**:
@@ -306,12 +313,12 @@ worker: node dist/bot.js
 这里是安装的链接：
 
 - [Git 安装说明](https://git-scm.com/download/)
-- [Heroku CLI 安装说明](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
+- [Heroku CLI 安装说明](https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli)
 
 假设你已经在你的机器里安装了它们，并且你在项目的根目录下打开了一个终端。
 现在在终端中运行这段代码来初始化本地 git 仓库：
 
-```bash
+```sh
 git init
 ```
 
@@ -370,7 +377,7 @@ tsconfig.json
 
 将文件提交到我们的 git 仓库：
 
-```bash
+```sh
 git add .
 git commit -m "My first commit"
 ```
@@ -383,7 +390,7 @@ git commit -m "My first commit"
 <CodeGroup>
   <CodeGroupItem title="新应用" active>
 
-```bash
+```sh
 heroku create
 git remote -v
 ```
@@ -391,7 +398,7 @@ git remote -v
 </CodeGroupItem>
   <CodeGroupItem title="已存在应用" active>
 
-```bash
+```sh
 heroku git:remote -a <myApp>
 ```
 
@@ -402,13 +409,13 @@ heroku git:remote -a <myApp>
 
 最后，按下 _红色按钮_，升空！:rocket:
 
-```bash
+```sh
 git push heroku main
 ```
 
 如果失败了，可能我们的 git 分支是 `master` 而不是 `main`。
 请按下这个 _蓝色按钮_：
 
-```bash
+```sh
 git push heroku master
 ```

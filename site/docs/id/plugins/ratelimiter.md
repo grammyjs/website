@@ -4,7 +4,7 @@ ratelimiter adalah sebuah middleware yang dibuat dari framework bot grammY ataup
 Simpelnya, plugin ini dapat membantu kamu dalam mencegah serangan spam ke bot.
 Supaya lebih paham, coba lihat ilustrasi berikut:
 
-![Peran ratelimiter dalam menangkis spam](/ratelimiter-role.png)
+![Peran ratelimiter dalam menangkis spam](/images/ratelimiter-role.png)
 
 ## Bagaimana Cara Kerjanya?
 
@@ -209,7 +209,7 @@ import { limit } from "@grammyjs/ratelimiter";
 bot.use(
   limit({
     keyGenerator: (ctx) => {
-      if (ctx.chat?.type === "group" || ctx.chat?.type === "supergroup") {
+      if (ctx.hasChatType(["group", "supergroup"])) {
         // Key ini harus berupa angka dalam format string, misal "123456".
         return ctx.chat.id.toString();
       }
@@ -227,7 +227,7 @@ const { limit } = require("@grammyjs/ratelimiter");
 bot.use(
   limit({
     keyGenerator: (ctx) => {
-      if (ctx.chat?.type === "group" || ctx.chat?.type === "supergroup") {
+      if (ctx.hasChatType(["group", "supergroup"])) {
         // Key ini harus berupa angka dalam format string, misal "123456".
         return ctx.chat.id.toString();
       }
@@ -245,7 +245,7 @@ import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
 bot.use(
   limit({
     keyGenerator: (ctx) => {
-      if (ctx.chat?.type === "group" || ctx.chat?.type === "supergroup") {
+      if (ctx.hasChatType(["group", "supergroup"])) {
         // Key ini harus berupa angka dalam format string, misal "123456".
         return ctx.chat.id.toString();
       }
@@ -263,4 +263,4 @@ Dari contoh di atas, kita menggunakan `chat.id` sebagai key unik untuk melakukan
 
 - Nama: `ratelimiter`
 - Sumber: <https://github.com/grammyjs/ratelimiter>
-- Referensi: [ratelimiter](/ref/ratelimiter/)
+- Referensi: <https://deno.land/x/grammy_ratelimiter/mod.ts>

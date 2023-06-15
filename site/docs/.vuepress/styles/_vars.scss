@@ -1,0 +1,19 @@
+// https://github.com/vuepress/vuepress-next/blob/main/ecosystem/theme-default/src/client/styles/vars.scss
+// oklch theme
+
+:root {
+  --c-bg-light-translucent: #eeeeee;
+
+  // brand colors
+  --c-brand: #009dca;
+  --c-brand-light: #27b5e6;
+
+  // custom container colors
+  --c-tip: #16afe0;
+
+  // fonts
+  --font-family: "Red Hat Text", "Noto Sans", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  --font-family-code: "Source Code Pro", "SF Mono", Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+}

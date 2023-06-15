@@ -36,7 +36,7 @@ Por lo tanto, si evitas el servidor Bot API que Telegram ejecuta por ti, y simpl
 ## Llamar a la API del Bot
 
 Cada método de la API del Bot tiene un equivalente en grammY.
-Ejemplo: `sendMessage` en el [Telegram Bot API Reference](https://core.telegram.org/bots/api#sendmessage) y en el [grammY API Reference](/ref/core/Api.md#sendMessage).
+Ejemplo: `sendMessage` en el [Telegram Bot API Reference](https://core.telegram.org/bots/api#sendmessage) y en el [grammY API Reference](https://deno.land/x/grammy/mod.ts?s=Api#method_sendMessage_0).
 
 ### Llamar a un Método
 
@@ -58,7 +58,7 @@ Estrictamente hablando, todos los métodos de la API del Bot esperan un objeto J
 Fíjate, sin embargo, en que `sendMessage` en el ejemplo anterior recibe dos argumentos, un identificador de chat y una cadena.
 grammY sabe que estos dos valores pertenecen a la propiedad `chat_id` y `text`, respectivamente, y construirá el objeto JSON correcto para ti.
 
-Como se mencionó [anteriormente](./basics.md#envío-de-mensajes), puede especificar otras opciones en el tercer argumento de tipo `Other`:
+Como se mencionó [anteriormente](./basics.md#envio-de-mensajes), puede especificar otras opciones en el tercer argumento de tipo `Other`:
 
 ```ts
 async function sendHelloTo12345() {
@@ -79,16 +79,25 @@ grammY viene con una cobertura completa de tipos de la API del Bot.
 El repositorio [`@grammyjs/types`](https://github.com/grammyjs/types) contiene las definiciones de tipos que grammY utiliza internamente.
 Estas definiciones de tipos también se exportan para que puedas usarlas en tu propio código.
 
+#### Definiciones de tipos en Deno
+
+En Deno, puede simplemente importar definiciones de tipos desde `types.ts`, que está justo al lado de `mod.ts`:
+
+```ts
+import { type Chat } from "https://deno.land/x/grammy/types.ts";
+```
+
 #### Definiciones de tipos en Node.js
 
-En Node.js, necesitas importar los tipos desde `grammy/types`.
+En Node.js, las cosas son más complicadas.
+Necesitas importar los tipos desde `grammy/types`.
 Por ejemplo, puedes acceder al tipo `Chat` de esta manera:
 
 ```ts
 import { type Chat } from "grammy/types";
 ```
 
-Oficialmente, Node.js sólo soporta la importación desde sub-rutas correctamente desde Node.js 16.
+Sin embargo, oficialmente, Node.js sólo soporta la importación desde sub-rutas correctamente desde Node.js 16.
 En consecuencia, TypeScript requiere que el `moduleResolution` se establezca en `node16` o `nodenext`.
 Ajusta tu `tsconfig.json` en consecuencia y añade la línea resaltada:
 
@@ -102,7 +111,7 @@ Ajusta tu `tsconfig.json` en consecuencia y añade la línea resaltada:
 }
 ```
 
-Sin embargo, esto también puede funcionar a veces sin ajustar la configuración de TypeScript.
+En algunos casos, esto también puede funcionar sin ajustar la configuración de TypeScript.
 
 ::: warning Autocompletar incorrecto
 
@@ -111,14 +120,6 @@ Si no cambias tu archivo `tsconfig.json` como se ha descrito anteriormente, pued
 Podrían cambiarse arbitrariamente en cualquier momento, por lo que te aconsejamos encarecidamente que importes desde `grammy/types` en su lugar.
 
 :::
-
-#### Definiciones de tipos en Deno
-
-En Deno, puedes simplemente importar definiciones de tipos desde `types.ts` que está justo al lado de `mod.ts`:
-
-```ts
-import { type Chat } from "https://deno.land/x/grammy/types.ts";
-```
 
 ### Haciendo llamadas a la API en bruto
 

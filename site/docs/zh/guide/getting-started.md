@@ -18,7 +18,7 @@ next: ./basics.md
 <CodeGroup>
  <CodeGroupItem title="NPM" active>
 
-```bash
+```sh
 # 创建并进入一个新的目录。
 mkdir my-bot
 cd my-bot
@@ -34,7 +34,7 @@ npm install grammy
 </CodeGroupItem>
  <CodeGroupItem title="Yarn">
 
-```bash
+```sh
 # 创建并进入一个新的目录。
 mkdir my-bot
 cd my-bot
@@ -50,7 +50,7 @@ yarn add grammy
 </CodeGroupItem>
 <CodeGroupItem title="pnpm">
 
-```bash
+```sh
 # 创建并进入一个新的目录。
 mkdir my-bot
 cd my-bot
@@ -78,12 +78,13 @@ pnpm add grammy
 └── tsconfig.json
 ```
 
-现在，是时候打开 Telegram 创建一个 bot 账户，并为其获得一个认证令牌。
+现在，是时候打开 Telegram 创建一个 bot 账户，并为其获得一个 bot token。
 与 [@BotFather](https://t.me/BotFather) 对话来完成这件事。
-认证令牌看起来将类似于 `123456:aBcDeF_gHiJkLmNoP-q`。
+Bot token 看起来将类似于 `123456:aBcDeF_gHiJkLmNoP-q`。
+这是用来认证你的 bot 的。
 
-拿到了令牌？你现在可以在 `bot.ts` 文件中编写你的 bot 代码。
-你可以把下面这个 bot 的例子复制到该文件中，并把你的令牌传给 `Bot` 构造函数。
+拿到 token 了吧？你现在可以在 `bot.ts` 文件中编写你的 bot 代码。
+你可以把下面这个 bot 的例子复制到该文件中，并把你的 token 传给 `Bot` 构造函数。
 
 <CodeGroup>
  <CodeGroupItem title="TypeScript" active>
@@ -91,8 +92,7 @@ pnpm add grammy
 ```ts
 import { Bot } from "grammy";
 
-// 创建一个 `Bot` 类的实例，并将你的认证令牌传给它。
-const bot = new Bot(""); // <-- 把你的认证令牌放在 "" 之间
+const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间
 
 // 你现在可以在你的 bot 对象 `bot` 上注册监听器。
 // 当用户向你的 bot 发送消息时，grammY 将调用已注册的监听器。
@@ -115,8 +115,8 @@ bot.start();
 ```js
 const { Bot } = require("grammy");
 
-// 创建一个 `Bot` 类的实例，并将你的认证令牌传给它。
-const bot = new Bot(""); // <-- 把你的认证令牌放在 "" 之间
+// 创建一个 `Bot` 类的实例，并将你的 bot token 传给它。
+const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间
 
 // 你现在可以在你的 bot 对象 `bot` 上注册监听器。
 // 当用户向你的 bot 发送消息时， grammY 将调用已注册的监听器。
@@ -138,7 +138,7 @@ bot.start();
 
 通过运行以下程序编译代码
 
-```bash
+```sh
 npx tsc
 ```
 
@@ -147,7 +147,7 @@ npx tsc
 
 现在你可以通过执行以下命令在终端来运行这个 bot：
 
-```bash
+```sh
 node bot.js
 ```
 
@@ -158,7 +158,7 @@ node bot.js
 ::: tip 启用日志记录功能
 你可以通过运行以下程序来启用基本日志记录
 
-```bash
+```sh
 export DEBUG="grammy*"
 ```
 
@@ -168,22 +168,29 @@ export DEBUG="grammy*"
 
 ## 通过 Deno 开始
 
-> 本指南假定你已经安装了 [Deno](https://deno.land) 。
+> 本指南假定你已经安装了 [Deno](https://deno.com/runtime) 。
 
 在某个地方创建一个新的目录，并在其中创建一个新的空文本文件，例如，称为 `bot.ts`。
 
-现在，是时候打开 Telegram 创建一个 bot 账户，并为其获得一个认证令牌。
-与 [@BotFather](https://t.me/BotFather) 对话来完成这件事。
-认证令牌看起来将类似于 `123456:aBcDeF_gHiJkLmNoP-q`。
+```sh
+mkdir ./my-bot
+cd ./my-bot
+touch bot.ts
+```
 
-拿到了令牌？你现在可以在 `bot.ts` 文件中编写你的 bot 代码。
-你可以把下面这个 bot 的例子复制到该文件中，并把你的令牌传给 `Bot` 构造函数。
+现在，是时候打开 Telegram 创建一个 bot 账户，并为其获得一个 bot token。
+与 [@BotFather](https://t.me/BotFather) 对话来完成这件事。
+Bot token 看起来将类似于 `123456:aBcDeF_gHiJkLmNoP-q`。
+这是用来认证你的 bot 的。
+
+拿到 token 了吧？你现在可以在 `bot.ts` 文件中编写你的 bot 代码。
+你可以把下面这个 bot 的例子复制到该文件中，并把你的 token 传给 `Bot` 构造函数。
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
-// 创建一个 `Bot` 类的实例，并将你的认证令牌传给它。
-const bot = new Bot(""); // <-- 把你的认证令牌放在 "" 之间
+// 创建一个 `Bot` 类的实例，并将你的 bot token 传给它。
+const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间
 
 // 你现在可以在你的 bot 对象 `bot` 上注册监听器。
 // 当用户向你的 bot 发送消息时， grammY 将调用已注册的监听器。
@@ -202,7 +209,7 @@ bot.start();
 
 现在你可以通过执行以下命令，在你的终端中运行该 bot：
 
-```bash
+```sh
 deno run --allow-net bot.ts
 ```
 
@@ -211,18 +218,17 @@ deno run --allow-net bot.ts
 到 Telegram 去看你的 bot 对信息的回应吧!
 
 ::: tip 启用日志记录功能
-你可以通过运行以下程序来启用基本日志记录
+在运行你的 bot 之前，你可以在终端中运行以下命令来开启基本日志记录：
 
-```bash
+```sh
 export DEBUG="grammy*"
 ```
 
-在你执行`node bot.js`之前，先在你的终端机上使用`node bot.js`。
-这使你更容易调试你的 bot 。
+这样可以更容易地调试你的 bot。
 
 你现在需要用以下方法来运行 bot
 
-```bash
+```sh
 deno run --allow-net --allow-env bot.ts
 ```
 

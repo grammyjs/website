@@ -11,7 +11,7 @@ En otras palabras, no utiliza ningún código de proyectos de la competencia, pe
 
 ::: tip Elige primero tu lenguaje de programación
 Dado que estás leyendo la documentación de un framework dentro del ecosistema JavaScript, es probable que estés buscando algo que funcione en Node.js (o Deno).
-Sin embargo, si ese no es tu caso, [desplázate hacia abajo](#comparación-con-frameworks-en-otros-lenguajes-de-programación) para ver una comparación de qué lenguajes de programación son adecuados para el desarrollo de bots.
+Sin embargo, si ese no es tu caso, [desplázate hacia abajo](#comparacion-con-frameworks-en-otros-lenguajes-de-programacion) para ver una comparación de qué lenguajes de programación son adecuados para el desarrollo de bots.
 Naturalmente, también encontrarás una breve comparación con frameworks de otros lenguajes (principalmente Python).
 :::
 
@@ -71,7 +71,7 @@ Como resultado, no hay un soporte fiable para el autocompletado o la corrección
 La experiencia demuestra que a menudo tienes que ejecutar tu bot para averiguar si tu código funciona.
 
 En cambio, grammY está escrito en TypeScript puro.
-Esto permite que tu editor de código (por ejemplo, VSCode) analice tu código mientras estás escribiendo, y te ayude.
+Esto permite que tu editor de código (por ejemplo, VS Code) analice tu código mientras estás escribiendo, y te ayude.
 Además, puede mostrar la API completa de Telegram Bot inline -la documentación del sitio web estará disponible al alcance de tu mano cuando pases el ratón sobre cualquier nombre o elemento de tu código.
 
 Otra ventaja notable es que por fin puedes **escribir tus propios bots en TypeScript**.

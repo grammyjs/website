@@ -6,7 +6,7 @@ Meski kamu bisa saja menulis sendiri kode untuk melakukan koneksi ke sebuah data
 
 ## Mengapa Kita Perlu Memikirkan Tempat Penyimpanan?
 
-Berbeda dengan akun user Telegram biasa, bot memiliki [cloud storage yang terbatas](https://core.telegram.org/bots#4-how-are-bots-different-from-humans) di Telegram cloud.
+Berbeda dengan akun user Telegram biasa, bot memiliki [penyimpanan cloud yang terbatas](https://core.telegram.org/bots#how-are-bots-different-from-users) di Telegram cloud.
 Akibatnya, ada beberapa hal yang tidak bisa kamu lakukan di bot:
 
 1. Kamu tidak bisa mengakses pesan lama yang pernah diterima oleh bot-mu.
@@ -48,7 +48,7 @@ Alhasil, bot kamu akan menyimpan sebuah map chat identifier ke beberapa data ses
 ```
 
 > Ketika kami menyebut database, kami benar-benar merujuk ke sebuah penyimpanan data, apapun bentuknya.
-> Termasuk file, cloud storage, atau lainnya.
+> Termasuk file, penyimpanan cloud, atau lainnya.
 
 OK, keren.
 Tapi, bagaimana sebenarnya cara kerja session di atas?
@@ -247,7 +247,7 @@ Kalau kamu tidak menentukan opsi tersebut, pembacaan `ctx.session` akan mengakib
 > Bagian ini membahas fitur lanjutan yang untuk sebagian besar orang bisa diabaikan.
 > Kamu bisa melanjutkan ke bagian [Menyimpan Data](#menyimpan-data).
 
-Kamu bisa menentukan session key mana yang akan digunakan dengan cara memasukkan sebuah function bernama `getSessionKey` ke [opsi session](/ref/core/SessionOptions.md#getSessionKey).
+Kamu bisa menentukan session key mana yang akan digunakan dengan cara memasukkan sebuah function bernama `getSessionKey` ke [opsi session](https://deno.land/x/grammy/mod.ts?s=SessionOptions#prop_getSessionKey).
 Dengan begitu, kamu bisa mengubah perilaku plugin session sepenuhnya.
 Secara bawaan, data disimpan per chat.
 Tetapi, dengan menggunakan `getSessionKey` kamu bisa menyimpan data entah itu per user, kombinasi per user dan chat, ataupun cara lainnya.
@@ -323,8 +323,48 @@ Contohnya, session key resolver bawaan tidak akan bekerja untuk update `poll`/`p
 Ketika kamu menjalankan bot di webhook, sebaiknya kamu tidak menggunakan opsi `getSessionKey`.
 Telegram mengirim webhook secara berurutan untuk setiap chat, oleh karena itu session key resolver bawaan adalah satu-satunya cara yang bisa menjamin untuk terhindar dari kehilangan data.
 
-Jika kamu terpaksa harus menggunakan opsi tersebut (yang mana masih bisa dilakukan), kamu harus paham betul dengan tindakan yang kamu lakukan. Pastikan memahami konsekuensi menggunakan konfigurasi ini dengan membaca [materi berikut](../guide/deployment-types.md), khususnya [yang ini](./runner.md#pemrosesan-secara-berurutan-jika-diperlukan).
+Jika kamu terpaksa harus menggunakan opsi tersebut (yang mana masih bisa dilakukan), kamu harus paham betul dengan tindakan yang kamu lakukan. Pastikan memahami konsekuensi menggunakan konfigurasi ini dengan membaca [materi berikut](../guide/deployment-types.md), khususnya [yang ini](./runner.md#pemrosesan-secara-berurutan-ketika-diperlukan).
 :::
+
+### Migrasi Chat
+
+Jika kamu menggunakan session untuk grup, kamu perlu tahu bahwa dalam kondisi tertentu (misalnya [di sini](https://github.com/telegramdesktop/tdesktop/issues/5593)), Telegram akan melakukan migrasi dari grup biasa menjadi supergroup.
+
+Meski migrasi hanya terjadi sekali untuk setiap grup, namun proses tersebut dapat menyebabkan masalah tersendiri.
+Sebab secara teknis, chat yang telah dimigrasi merupakan jenis chat yang berbeda, yang memiliki identifier yang berbeda pula. Sehingga, session yang digunakan pun juga berbeda.
+
+Hingga detik ini, kami masih belum menemukan solusi yang tepat untuk menyelesaikan permasalahan tersebut, sebab pesan dari kedua chat akan diidentifikasikan secara berbeda. Kondisi ini dapat menimbulkan data race.
+Meski begitu, terdapat beberapa cara untuk mengatasi masalah ini:
+
+- Mengabaikan masalah tersebut.
+  Data untuk session bot terkait akan direset ketika sebuah grup dimigrasi.
+  Sederhana, dapat diandalkan, serta memanfaatkan pengaturan default, namun dapat menimbulkan efek yang tidak diinginkan.
+  Misalnya, jika migrasi terjadi ketika user sedang berada di dalam suatu percakapan yang menggunakan [plugin conversations](./conversations.md), percakapan tersebut juga akan ikut direset.
+
+- Hanya menyimpanan data sementara---atau data dengan waktu yang terbatas (timeout)---di session, dan menggunakan database untuk menyimpan hal-hal penting untuk keperluan migrasi.
+  Dengan begitu kamu dapat memanfaatkan transaksi dan logika khusus untuk menangani akses data chat lama dan baru secara bersamaan.
+  Ini adalah cara yang paling tepat dan lebih bisa diandalkan, namun membutuhkan usaha dan performa lebih.
+
+- Secara teori, kita bisa mencocokkan kedua chat tersebut.
+  Namun, **tidak ada jaminan cara ini bisa diandalkan**.
+  API Bot Telegram akan mengirim sebuah update migrasi untuk masing-masing chat ketika migrasi terjadi (lihat property `migrate_to_chat_id` atau `migrate_from_chat_id` di [dokumentasi API Telegram](https://core.telegram.org/bots/api#message)).
+  Masalahnya, tidak ada jaminan kalau update tersebut dikirim sebelum pesan baru muncul di supergroup.
+  Bot kamu bisa saja menerima pesan dari supergroup terlebih dahulu tanpa mengetahui kalau migrasi telah dilakukan.
+  Akibatnya, ia tidak bisa mencocokkan kedua chat, yang menimbulkan masalah seperti yang telah kita bahas di atas.
+
+- Solusi lainnya adalah memanfaatkan [filter](../guide/filter-queries.md) untuk membatasi bot supaya bisa digunakan di supergroup saja, atau bisa juga membatasi fitur yang terkait dengan session hanya untuk supergroup.
+  Namun, kenyamanan user bisa terganggu dengan cara ini.
+
+- Membiarkan user untuk membuat keputusan secara eksplisit, "Chat ini telah dimigrasi, apakah Anda ingin melakukan migrasi data bot-nya juga?".
+  Dengan menerapkan penundaan tersebut, cara ini jauh lebih bisa diandalkan dan transparan daripada melakukan migrasi secara otomatis, namun memperburuk pengalaman pengguna (UX).
+
+Pada akhirnya, keputusan ada pada developer untuk mengatasi permasalahan tersebut.
+Karena fungsionalitas setiap bot berbeda, solusi yang dipilih bisa saja lebih baik dari lainnya.
+Apabila data session hanya berumur pendek (misal menerapkan timeout sementara), proses migrasi kemungkinan besar tidak akan menjadi masalah.
+Ketika proses migrasi terjadi, user hanya mengalami gangguan kecil (jika waktunya bersamaan) dan mereka cukup menjalankan ulang fitur tersebut.
+
+Mengabaikan permasalahan ini tentu merupakan cara yang paling mudah, namun perilaku ini penting untuk diketahui.
+Jika sebelumnya belum tahu, bisa jadi kamu akan kebingungan dan memakan waktu yang cukup lama untuk men-debug kode.
 
 ### Menyimpan Data
 
@@ -357,7 +397,7 @@ bot.use(session({
 Secara bawaan semua data disimpan di dalam RAM.
 Artinya, semua session akan terhapus di saat bot dihentikan.
 
-Kamu bisa menggunakan class `MemorySessionStorage` ([Referensi API](/ref/core/MemorySessionStorage.md)) dari package inti grammY jika kamu ingin mengatur penyimpanan data di RAM.
+Kamu bisa menggunakan class `MemorySessionStorage` ([Referensi API](https://deno.land/x/grammy/mod.ts?s=MemorySessionStorage)) dari package inti grammY jika kamu ingin mengatur penyimpanan data di RAM.
 
 ```ts
 bot.use(session({
@@ -372,7 +412,7 @@ bot.use(session({
 > Pengaplikasian skala-produksi harus menggunakan database mereka sendiri.
 > Daftar pilihan integrasi storage eksternal yang didukung tersedia [di bawah sini](#storage-eksternal).
 
-Keuntungan menggunakan grammY adalah kamu bisa mengakses cloud storage secara gratis.
+Keuntungan menggunakan grammY adalah kamu bisa mengakses penyimpanan cloud secara gratis.
 Ia tidak membutuhkan pengaturan sama sekali—semua autentikasi dilakukan menggunakan token bot-mu.
 Lihat [repositori berikut](https://github.com/grammyjs/storages/tree/main/packages/free)!
 
@@ -393,7 +433,7 @@ bot.use(session({
 </CodeGroupItem>
 <CodeGroupItem title="JavaScript">
 
-```ts
+```js
 const { freeStorage } = require("@grammyjs/storage-free");
 
 bot.use(session({
@@ -436,7 +476,7 @@ interface SessionData {
 type MyContext = Context & SessionFlavor<SessionData>;
 
 // Buat bot lalu masukkan middleware session.
-const bot = new Bot<MyContext>(""); // <-- Taruh token bot-mu diantara ""
+const bot = new Bot<MyContext>("");
 
 bot.use(session({
   initial: () => ({ hitung: 0 }),
@@ -456,12 +496,12 @@ bot.start();
 </CodeGroupItem>
 <CodeGroupItem title="JavaScript">
 
-```ts
+```js
 const { Bot, session } = require("grammy");
 const { freeStorage } = require("@grammyjs/storage-free");
 
 // Buat bot lalu masukkan middleware session.
-const bot = new Bot(""); // <-- Taruh token bot-mu diantara ""
+const bot = new Bot("");
 
 bot.use(session({
   initial: () => ({ hitung: 0 }),
@@ -497,7 +537,7 @@ interface SessionData {
 type MyContext = Context & SessionFlavor<SessionData>;
 
 // Buat bot lalu masukkan middleware session.
-const bot = new Bot<MyContext>(""); // <-- Taruh token bot-mu diantara ""
+const bot = new Bot<MyContext>("");
 
 bot.use(session({
   initial: () => ({ hitung: 0 }),
@@ -519,23 +559,14 @@ bot.start();
 
 ### Storage Eksternal
 
-Kami mengelola daftar storage adapter resmi yang bisa kamu gunakan untuk menyimpan data session di berbagai tempat.
-Masing-masing dari mereka mengharuskan kamu untuk mendaftar di sebuah penyedia layanan hosting, ataupun meng-hosting storage-mu sendiri.
+Kami memiliki daftar storage adapter resmi yang bisa kamu gunakan untuk menyimpan data session di berbagai tempat.
+Beberapa di antaranya mengharuskan kamu untuk mendaftar di sebuah penyedia layanan hosting, ataupun meng-hosting storage-mu sendiri.
 
-- Supabase: <https://github.com/grammyjs/storages/tree/main/packages/supabase>
-- Deta.sh Base: <https://github.com/grammyjs/storages/tree/main/packages/deta>
-- Google Firestore (hanya untuk Node.js): <https://github.com/grammyjs/storages/tree/main/packages/firestore>
-- Files: <https://github.com/grammyjs/storages/tree/main/packages/file>
-- MongoDB: <https://github.com/grammyjs/storages/tree/main/packages/mongodb>
-- Redis: <https://github.com/grammyjs/storages/tree/main/packages/redis>
-- PostgreSQL: <https://github.com/grammyjs/storages/tree/main/packages/psql>
-- TypeORM (hanya untuk Node.js): <https://github.com/grammyjs/storages/tree/main/packages/typeorm>
-- DenoDB (hanya untuk Deno): <https://github.com/grammyjs/storages/tree/main/packages/denodb>
-- Prisma (hanya untuk Node.js): <https://github.com/grammyjs/storages/tree/main/packages/prisma>
+Kunjungi repository [berikut](https://github.com/grammyjs/storages/tree/main/packages#grammy-storages) untuk melihat adapter apa saja yang didukung serta mempelajari cara penggunaannya.
 
 ::: tip Storage pilihanmu belum didukung? Tidak masalah!
 Membuat storage adapter sendiri sangat mudah dilakukan.
-Opsi `storage` bekerja dengan berbagai object yang menganut [interface berikut](/ref/core/StorageAdapter.md), sehingga kamu bisa melakukan koneksi ke storage-mu hanya dengan beberapa baris kode.
+Opsi `storage` bekerja dengan berbagai object yang menganut [interface berikut](https://deno.land/x/grammy/mod.ts?s=StorageAdapter), sehingga kamu bisa melakukan koneksi ke storage-mu hanya dengan beberapa baris kode.
 
 > Kalau kamu ingin mempublikasikan storage adapter buatanmu, silahkan ubah halaman ini dan sertakan juga link-nya agar orang-orang bisa menggunakannya.
 
@@ -556,10 +587,10 @@ Lihat bagian pemasangan di repositori masing-masing untuk mengetahui cara menghu
 
 Kamu juga bisa [scroll ke bawah](#peningkatan-storage) untuk mempelajari bagaimana plugin session bisa meningkatkan storage adapter.
 
-## Multi Session
+## Multi Sessions
 
 Plugin session mampu menyimpan beberapa fragmen data session di beberapa tempat.
-Cara kerjanya sama seperti kamu menginstal beberapa instance plugin session, tetapi untuk setiap instance-nya dipasang pengaturan yang berbeda.
+Cara kerjanya mirip ketika kamu menginstal beberapa instance plugin session, bedanya untuk setiap instance-nya dipasang pengaturan yang berbeda.
 
 Setiap fragmen data akan diberi nama sesuai dengan tempat di mana data tersebut disimpan.
 Dengan begitu, kamu bisa mengakses `ctx.session.foo` dan `ctx.session.bar`.
@@ -581,7 +612,7 @@ bot.use(session({
     // value bawaan juga tersedia
     storage: new MemorySessionStorage(),
     initial: () => undefined,
-    getSessionKey: (ctx) => ctx.from?.id.toString(),
+    getSessionKey: (ctx) => ctx.chat?.id.toString(),
   },
   bar: {
     initial: () => ({ prop: 0 }),
@@ -608,7 +639,7 @@ interface SessionData {
 
 Dengan begitu, kamu masih bisa menggunakan `SessionFlavor<SessionData>` di context object-mu.
 
-## Lazy Session
+## Lazy Sessions
 
 > Bagian ini membahas optimisasi performa yang untuk sebagian besar orang bisa diabaikan.
 > Silahkan lewati bagian ini jika dirasa tidak perlu.
@@ -701,15 +732,13 @@ Plugin session dapat meningkatkan kemampuan storage adapter dengan cara menambah
 Kedua fitur tersebut bisa diinstal dengan menggunakan function `enhanceStorage`.
 
 ```ts
-// Buat sebuah storage adapter.
-const storage = freeStorage(bot.token); // jangan lupa diatur
-// Tingkatkan kemampuan storage.
-const enhanced = enhanceStorage({
-  storage,
-  // tulis konfigurasinya di sini
-});
 // Gunakan storage adapter yang sudah ditingkatkan.
-bot.use(session({ storage: enhanced }));
+bot.use(session({
+  storage: enhanceStorage({
+    storage: freeStorage(bot.token), // jangan lupa diatur,
+    // tulis konfigurasinya di sini
+  }),
+}));
 ```
 
 Kamu juga bisa menggunakan kedua fitur secara bersamaan.
@@ -797,7 +826,7 @@ const enhanced = enhanceStorage({
 </CodeGroupItem>
 <CodeGroupItem title="JavaScript">
 
-```ts
+```js
 function addBirthdayToPets(old) {
   return {
     pets: old.petNames.map((name) => ({ name })),

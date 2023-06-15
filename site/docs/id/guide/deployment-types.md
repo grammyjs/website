@@ -101,7 +101,7 @@ ______________                                            _____________
 ```
 
 > Perlu dicatat bahwa pada kenyataannya, tidak ada koneksi yang akan tetap terbuka selama berjam-jam.
-> Request long polling mempunyai waktu timeout bawaan selama 30 detik untuk menghindari terjadinya berbagai [masalah teknis](https://tools.ietf.org/id/draft-loreto-http-bidirectional-07.html#timeouts).
+> Request long polling mempunyai waktu timeout bawaan selama 30 detik untuk menghindari terjadinya berbagai [masalah teknis](https://datatracker.ietf.org/doc/html/draft-loreto-http-bidirectional-07#section-5.5).
 > Kalau tidak ada pesan baru yang dikembalikan selama periode waktu tersebut, maka request akan dibatalkan dan dikirimkan kembali—tetapi konsep dasarnya masih tetap sama.
 
 Dengan menggunakan long polling, kamu akan menerima pesan baru yang sama cepatnya, sehingga tidak perlu lagi mengirim spam ke server Telegram.
@@ -154,7 +154,7 @@ Tempat-tempat yang cocok untuk menggunakan long polling:
 Kamu bisa menghemat banyak sekali request dan tidak perlu lagi menjaga koneksi tetap tersambung sepanjang waktu.
 Kamu bisa menggunakan layanan hosting yang secara otomatis menurunkan performa ketika tidak ada request yang masuk, yang berarti lebih hemat biaya.
 Kalau mau, kamu bahkan bisa [membuat panggilan API ketika membalas request dari Telegram](#webhook-reply), walaupun ia juga memiliki beberapa kekurangan yang harus diperhitungkan juga.
-Lihat konfigurasi opsinya [di sini](/ref/core/ApiClientOptions.md#canUseWebhookReply).
+Lihat konfigurasi opsinya [di sini](https://deno.land/x/grammy/mod.ts?s=ApiClientOptions#prop_canUseWebhookReply).
 
 Tempat-tempat yang cocok untuk menggunakan webhook:
 
@@ -193,7 +193,7 @@ Kalau kamu ingin menggunakan webhook, kamu harus mengintegrasikan bot kamu ke da
 Oleh karena itu, kami berharap kamu mampu menjalankan sebuah web server sederhana menggunakan framework pilihanmu.
 
 Setiap bot di grammY bisa dikonversi menjadi middleware untuk beberapa web framework, termasuk `express`, `koa`/`oak`, dsb.
-Kamu bisa meng-import function `webhookCallback` dari grammY untuk mengonversi bot-mu menjadi middleware untuk framework yang diinginkan.
+Kamu bisa membuat sebuah middleware untuk framework yang diinginkan dengan cara meng-import function `webhookCallback` ([Referensi API](https://deno.land/x/grammy/mod.ts?s=webhookCallback)).
 
 <CodeGroup>
  <CodeGroupItem title="TypeScript" active>
@@ -238,6 +238,34 @@ app.use(webhookCallback(bot, "oak"));
 
 Jika kamu berniat menjalankan bot di sebuah VPS menggunakan webhook, pastikan untuk membaca [panduan keren Marvin mengenai hal-hal tentang webhook](https://core.telegram.org/bots/webhooks) yang ditulis oleh tim Telegram.
 
+### Web Framework Adapter
+
+Untuk mendukung berbagai macam web framework, grammY menerapkan konsep **multi-adapter**.
+Adapter bertugas untuk meneruskan input dan output dari suatu web framework ke grammY, dan sebaliknya.
+Nah, jenis framework adapter yang digunakan untuk berkomunikasi dengan web framework tersebut ditentukan oleh parameter kedua yang kamu isi di `webhookCallback` ([Referensi API](https://deno.land/x/grammy/mod.ts?s=webhookCallback)).
+
+Karena menggunakan pendekatan dengan cara tersebut, biasanya kita membutuhkan sebuah adapter yang berbeda untuk setiap framework.
+Tetapi, berhubung beberapa framework memiliki interface yang mirip, kita bisa menggunakan adapter yang sama untuk beberapa framework sekaligus.
+Di bawah ini adalah tabel berisi berbagai macam adapter yang tersedia beserta jenis framework, API, dan runtime yang diketahui berfungsi dengan baik di grammY.
+
+| Adapter          | Framework/API/Runtime                                                          |
+| ---------------- | ------------------------------------------------------------------------------ |
+| `aws-lambda`     | AWS Lambda Functions                                                           |
+| `azure`          | Azure Functions                                                                |
+| `cloudflare`     | Cloudflare Workers                                                             |
+| `cloudflare-mod` | Cloudflare Module Workers                                                      |
+| `express`        | Express, Google Cloud Functions                                                |
+| `fastify`        | Fastify                                                                        |
+| `hono`           | Hono                                                                           |
+| `http`, `https`  | Node.js `http`/`https` modules, Vercel                                         |
+| `koa`            | Koa                                                                            |
+| `next-js`        | Next.js                                                                        |
+| `oak`            | Oak                                                                            |
+| `serveHttp`      | `Deno.serveHttp`                                                               |
+| `std/http`       | `Deno.serve`, `std/http`, `Deno.upgradeHttp`, `Fresh`, `Ultra`, `Rutt`, `Sift` |
+| `sveltekit`      | SvelteKit                                                                      |
+| `worktop`        | Worktop                                                                        |
+
 ### Webhook Reply
 
 Ketika menerima sebuah request webhook, bot kamu bisa memanggil satu method sebagai responnya.
@@ -253,11 +281,11 @@ Tetapi, terdapat beberapa kekurangan dibaliknya:
 4. Perlu diperhatikan juga bahwa beberapa type di grammY tidak mencerminkan hasil dari callback webhook yang telah dilakukan!
    Sebagai contoh, mereka akan selalu mengindikasikan bahwa kamu telah menerima object respon, sehingga ini menjadi tanggung jawab kamu untuk memastikan semua berjalan baik ketika melakukan optimasi kecil ini.
 
-Kalau kamu ingin memanfaatkan webhook reply, kamu bisa menambahkan opsi `canUseWebhookReply`di opsi `client` dari `BotConfig` kamu ([referensi API](/ref/core/BotConfig.md)).
+Kalau kamu ingin memanfaatkan webhook reply, kamu bisa menambahkan opsi `canUseWebhookReply`di opsi `client` dari `BotConfig` kamu ([referensi API](https://deno.land/x/grammy/mod.ts?s=BotConfig)).
 Masukkan sebuah function yang menentukan apakah method tersebut memanfaatkan webhook reply atau tidak.
 
 ```ts
-const bot = new Bot(token, {
+const bot = new Bot("", {
   client: {
     // Kita hanya akan menggunakan webhook reply
     // jika method tersebut adalah "sendChatAction".
@@ -381,11 +409,11 @@ ______________                                          _____________
 Kamu mungkin penasaran kenapa perilaku bawaan `webhookCallback` adalah melempar sebuah error, alih-alih mengakhiri request tersebut dengan baik.
 Pilihan desain ini dipilih karena pertimbangan berikut.
 
-Race condition sangat sulit direproduksi dan bahkan mungkin sangat jarang terjadi atau cuma terjadi sekali-sekali saja.
-Solusinya adalah _pastikan tidak sampai terjadi timeout_ dari awal.
-Jika itu dilakukan, kamu pasti ingin tahu apa yang sebenarnya terjadi, dengan begitu kamu bisa menyelidiki dan memperbaiki sumber masalahnya!
-Karena alasan tersebut, kamu mengharapkan sebuah error muncul di log kamu.
-Menyetel timeout handler ke `"return"`, mengabaikan timeout dan berpura-pura seolah-olah tidak terjadi apa-apa, adalah kebalikan dari perilaku yang kita inginkan dan tidak membantu sama sekali.
+Race condition sangatlah sulit untuk direproduksi karena sangat jarang terjadi.
+Untuk mengatasi permasalahan tersebut, dari awal _pastikan jangan sampai terjadi timeout_.
+Tetapi, Jika suatu saat itu terjadi, kamu pasti ingin tahu apa yang sebenarnya terjadi, dengan begitu kamu bisa menyelidiki dan memperbaiki sumber masalahnya.
+Karena alasan tersebutlah, alih-alih return, kamu pasti mengharapkan sebuah error muncul di log kamu.
+Sebaliknya, dengan menyetel timeout handler ke `"return"`, mengabaikan timeout dan berpura-pura seolah-olah tidak terjadi apa-apa, adalah kebalikan dari perilaku yang kita inginkan dan tidak ada artinya.
 
 Kalau kamu tetap melakukannya, kamu seakan-akan menggunakan antrian update di pengiriman webhook milik Telegram sebagai antrian queue milikmu.
 Ini ide yang buruk karena alasan-alasan yang telah dijabarkan di atas.

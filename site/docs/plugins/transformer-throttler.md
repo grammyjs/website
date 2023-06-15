@@ -1,6 +1,6 @@
 # Flood Control (`transformer-throttler`)
 
-This plugin enqueues outgoing API requests instance via [Bottleneck](https://github.com/SGrondin/bottleneck) in order to prevent your bot from hitting [rate limits](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this) as described in [this advanced section](../advanced/flood.md) of the documentation.
+This plugin enqueues outgoing API requests instance via [Bottleneck](https://github.com/SGrondin/bottleneck) in order to prevent your bot from hitting [rate limits](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this) as described in this [advanced section](../advanced/flood.md) of the documentation.
 
 ::: warning Undocumented API Limits Exist
 Telegram implements unspecified and undocumented rate limits for some API calls.
@@ -21,16 +21,12 @@ import { Bot } from "grammy";
 import { run } from "@grammyjs/runner";
 import { apiThrottler } from "@grammyjs/transformer-throttler";
 
-const botToken = process.env.BOT_TOKEN;
-if (!botToken) {
-  throw Error("BOT_TOKEN is required");
-}
-const bot = new Bot(botToken);
+const bot = new Bot("");
 
 const throttler = apiThrottler();
 bot.api.config.use(throttler);
 
-bot.command("/example", (ctx) => ctx.reply("I am throttled"));
+bot.command("example", (ctx) => ctx.reply("I am throttled"));
 
 // If you are using throttler, you most likely want to use a runner to handle updates concurrently.
 run(bot);
@@ -44,16 +40,12 @@ const { Bot } = require("grammy");
 const { run } = require("@grammyjs/runner");
 const { apiThrottler } = require("@grammyjs/transformer-throttler");
 
-const botToken = process.env.BOT_TOKEN;
-if (!botToken) {
-  throw Error("BOT_TOKEN is required");
-}
-const bot = new Bot(botToken);
+const bot = new Bot("");
 
 const throttler = apiThrottler();
 bot.api.config.use(throttler);
 
-bot.command("/example", (ctx) => ctx.reply("I am throttled"));
+bot.command("example", (ctx) => ctx.reply("I am throttled"));
 
 // If you are using throttler, you most likely want to use a runner to handle updates concurrently.
 run(bot);
@@ -67,16 +59,12 @@ import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { run } from "https://deno.land/x/grammy_runner/mod.ts";
 import { apiThrottler } from "https://deno.land/x/grammy_transformer_throttler/mod.ts";
 
-const botToken = Deno.env.get("BOT_TOKEN");
-if (!botToken) {
-  throw Error("BOT_TOKEN is required");
-}
-const bot = new Bot(botToken);
+const bot = new Bot("");
 
 const throttler = apiThrottler();
 bot.api.config.use(throttler);
 
-bot.command("/example", (ctx) => ctx.reply("I am throttled"));
+bot.command("example", (ctx) => ctx.reply("I am throttled"));
 
 // If you are using throttler, you most likely want to use a runner to handle updates concurrently.
 run(bot);
@@ -130,4 +118,4 @@ const outConfig = {
 
 - Name: `transformer-throttler`
 - Source: <https://github.com/grammyjs/transformer-throttler>
-- Reference: [transformer_throttler](/ref/transformer_throttler/)
+- Reference: <https://deno.land/x/grammy_transformer_throttler/mod.ts>

@@ -1,6 +1,7 @@
 name: Build
 
 on:
+  workflow_dispatch:
   push:
     branches: [main]
     paths:
@@ -15,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Setup repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
@@ -32,7 +33,7 @@ jobs:
         working-directory: site/
 
       - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v1.2
+        uses: nwtgck/actions-netlify@v2
         with:
           publish-dir: "./site/docs/.vuepress/dist"
           production-branch: main
@@ -42,6 +43,7 @@ jobs:
           enable-commit-comment: false
           overwrites-pull-request-comment: true
           fails-without-credentials: false
+          netlify-config-path: ./site/netlify.toml
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

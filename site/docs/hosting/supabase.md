@@ -2,7 +2,7 @@
 
 This guide tells you how you can host your grammY bots on [Supabase](https://supabase.com/).
 
-Please note that you need to have a [GitHub](https://github.com) account before you can use [Supabase Edge Functions](https://supabase.com/docs/guides/functions).
+Please note that you need to have a [GitHub](https://github.com) account before you can use [Supabase Edge Functions](https://supabase.com/docs/guides/functions/quickstart).
 Moreover, Supabase Edge Functions are based on [Deno Deploy](https://deno.com/deploy), so just like [our Deno Deploy guide](./deno-deploy.md), this guide is only for Deno users of grammY.
 
 Supabase Edge Functions is ideal for most simple bots, and you should note that not all Deno features are available for apps running on Supabase Edge Functions.
@@ -14,7 +14,7 @@ The result of this tutorial [can be seen in our example bots repository](https:/
 ## Setup
 
 In order to deploy a Supabase Edge Function, you will need to create a Supabase account, install their CLI, and create a Supabase project.
-You should first [follow their documentation](https://supabase.com/docs/guides/functions#prerequisites) to set things up.
+You should first [follow their documentation](https://supabase.com/docs/guides/functions/quickstart#prerequisites) to set things up.
 
 Create a new Supabase Function by running this command:
 
@@ -34,7 +34,10 @@ You can use this short example bot as a starting point.
 import { serve } from "https://deno.land/std/http/server.ts";
 import { Bot, webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 
-const bot = new Bot(Deno.env.get("BOT_TOKEN") ?? "");
+const token = Deno.env.get("BOT_TOKEN");
+if (!token) throw new Error("BOT_TOKEN is unset");
+
+const bot = new Bot(token);
 
 bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
 bot.command("ping", (ctx) => ctx.reply(`Pong! ${new Date()}`));

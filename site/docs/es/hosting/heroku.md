@@ -10,7 +10,7 @@ También asumimos que ya tienes una cuenta en Heroku.
 
 Primero, instala algunas dependencias:
 
-```bash
+```sh
 # Crear un directorio de proyecto.
 mkdir grammy-bot
 cd grammy-bot
@@ -97,7 +97,7 @@ Como hemos mencionado anteriormente, tenemos dos opciones para recibir datos de 
 > Si decides usar el long polling en su lugar, puedes saltarte esta sección y pasar a la [sección sobre long polling](#long-polling). :rocket:
 
 En resumen, a diferencia del long polling, los webhooks no se ejecutan continuamente para comprobar los mensajes entrantes de Telegram.
-Esto reducirá la carga del servidor y nos ahorrará un montón de [horas de dyno](https://devcenter.heroku.com/articles/free-dyno-hours), especialmente cuando estés usando la capa gratuita. :grin:
+Esto reducirá la carga del servidor y nos ahorrará un montón de [horas de dyno](https://devcenter.heroku.com/articles/eco-dyno-hours), especialmente si utiliza el plan Eco. :grin:
 
 Bien, ¡continuemos!
 ¿Recuerdas que hemos creado `bot.ts` antes?
@@ -167,8 +167,10 @@ Siguiente paso, dirígete a `bot.ts`:
 ```ts
 import { Bot } from "grammy";
 
-if (process.env.BOT_TOKEN == null) throw Error("Falta BOT_TOKEN.");
-export const bot = new Bot(`${process.env.BOT_TOKEN}`);
+const token = process.env.BOT_TOKEN;
+if (!token) throw new Error("Falta BOT_TOKEN.");
+
+export const bot = new Bot(token);
 
 bot.command("start", (ctx) => ctx.reply("¡Hola!"));
 bot.on("message", (ctx) => ctx.reply("¡Tengo otro mensaje!"));
@@ -181,13 +183,16 @@ Como siempre, esto es opcional.
 
 ::: tip ⚡ Optimización (opcional)
 Cada vez que tu servidor se inicie, grammY solicitará [información sobre el bot](https://core.telegram.org/bots/api#getme) a Telegram para proporcionarla en el [objeto de contexto](../guide/context.md) bajo `ctx.me`.
-Podemos establecer la [información sobre el bot](/ref/core/BotConfig.md#botInfo) para evitar un exceso de llamadas a `getMe`.
+Podemos establecer la [información sobre el bot](https://deno.land/x/grammy/mod.ts?s=BotConfig#prop_botInfo) para evitar un exceso de llamadas a `getMe`.
 
 1. Abre este enlace `https://api.telegram.org/bot<bot_token>/getMe` en tu navegador web favorito. Se recomienda usar [Firefox](https://www.mozilla.org/en-US/firefox/) ya que muestra muy bien el formato `json`.
 2. Cambia nuestro código en la línea 4 de arriba y rellena el valor de acuerdo con los resultados de `getMe`:
 
 ```ts
-export const bot = new Bot(`${process.env.BOT_TOKEN}`, {
+const token = process.env.BOT_TOKEN;
+if (!token) throw new Error("Falta BOT_TOKEN.");
+
+export const bot = new Bot(token, {
   botInfo: {
     id: 111111111,
     is_bot: true,
@@ -208,7 +213,7 @@ export const bot = new Bot(`${process.env.BOT_TOKEN}`, {
 ## Long Polling
 
 ::: warning Su script se ejecutará de forma continua cuando utilice el sondeo largo
-A menos que sepa cómo manejar este comportamiento, asegúrese de que tiene suficientes [horas de dyno](https://devcenter.heroku.com/articles/free-dyno-hours).
+A menos que sepa cómo manejar este comportamiento, asegúrese de que tiene suficientes [horas de dyno](https://devcenter.heroku.com/articles/eco-dyno-hours).
 :::
 
 > ¿Considerar el uso de webhooks?
@@ -228,8 +233,10 @@ Que contenga estas líneas de código:
 ```ts
 import { Bot } from "grammy";
 
-if (process.env.BOT_TOKEN == null) throw new Error("Falta BOT_TOKEN.");
-const bot = new Bot(process.env.BOT_TOKEN);
+const token = process.env.BOT_TOKEN;
+if (!token) throw new Error("Falta BOT_TOKEN");
+
+const bot = new Bot(token);
 
 bot.command(
   "start",
@@ -253,7 +260,7 @@ No... nuestro _Rocket Bot_ no está listo para ser lanzado todavía.
 
 Ejecute este código en su terminal para compilar los archivos TypeScript a JavaScript:
 
-```bash
+```sh
 npx tsc
 ```
 
@@ -261,7 +268,7 @@ Si se ejecuta con éxito y no imprime ningún error, nuestros archivos compilado
 
 ### Configurar el `Procfile`
 
-Por el momento, `Heroku` tiene varios [tipos de dynos](https://devcenter.heroku.com/articles/free-dyno-hours).
+Por el momento, `Heroku` tiene varios [tipos de dynos](https://devcenter.heroku.com/articles/dyno-types).
 Dos de ellos son:
 
 - **Web dynos**:
@@ -308,12 +315,12 @@ Vamos a desplegar nuestro bot usando [Git y Heroku Cli](https://devcenter.heroku
 Aquí está el enlace para la instalación:
 
 - [Instrucciones de instalación de Git](https://git-scm.com/download/)
-- [Instrucciones de instalación de Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
+- [Instrucciones de instalación de Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli)
 
 Suponiendo que ya los tienes en tu máquina, y tienes una terminal abierta en la raíz del directorio de nuestro proyecto.
 Ahora inicializa un repositorio git local ejecutando este código en tu terminal:
 
-```bash
+```sh
 git init
 ```
 
@@ -372,7 +379,7 @@ Nuestra estructura final de carpetas debería tener este aspecto:
 
 Confirmar los archivos a nuestro repositorio git:
 
-```bash
+```sh
 git add .
 git commit -m "My first commit"
 ```
@@ -385,7 +392,7 @@ De lo contrario, ejecute `Nueva aplicación`.
 <CodeGroup>
   <CodeGroupItem title="New app" active>
 
-```bash
+```sh
 heroku create
 git remote -v
 ```
@@ -393,7 +400,7 @@ git remote -v
 </CodeGroupItem>
   <CodeGroupItem title="Existing app" active>
 
-```bash
+```sh
 heroku git:remote -a <myApp>
 ```
 
@@ -404,13 +411,13 @@ heroku git:remote -a <myApp>
 
 Finalmente, pulsa el _botón rojo_ y ¡despega! :rocket:
 
-```bash
+```sh
 git push heroku main
 ```
 
 Si no funciona, es probable que nuestra rama git no sea `main` sino `master`.
 Pulsa este _botón azul_ en su lugar:
 
-```bash
+```sh
 git push heroku master
 ```

@@ -111,7 +111,7 @@ The first two methods are simple: you just pass the respective value as a `strin
 await ctx.replyWithPhoto(existingFileId);
 
 // Send via URL.
-await ctx.replyWithPhoto("https://grammy.dev/Y.png");
+await ctx.replyWithPhoto("https://grammy.dev/images/Y.png");
 
 // Alternatively, you use bot.api.sendPhoto() or ctx.api.sendPhoto().
 ```
@@ -119,7 +119,7 @@ await ctx.replyWithPhoto("https://grammy.dev/Y.png");
 ### Uploading Your Own Files
 
 grammY has good support for uploading your own files.
-You can do this by importing and using the `InputFile` class ([grammY API Reference](/ref/core/InputFile.md)).
+You can do this by importing and using the `InputFile` class ([grammY API Reference](https://deno.land/x/grammy/mod.ts?s=InputFile)).
 
 ```ts
 // Send a file via local path
@@ -221,8 +221,8 @@ This is very efficient.
 import { URL } from "url";
 
 // Download a file, and stream the response to Telegram.
-new InputFile(new URL("https://grammy.dev/Y.png"));
-new InputFile({ url: "https://grammy.dev/Y.png" }); // equivalent
+new InputFile(new URL("https://grammy.dev/images/Y.png"));
+new InputFile({ url: "https://grammy.dev/images/Y.png" }); // equivalent
 ```
 
 </CodeGroupItem>
@@ -230,8 +230,8 @@ new InputFile({ url: "https://grammy.dev/Y.png" }); // equivalent
 
 ```ts
 // Download a file, and stream the response to Telegram.
-new InputFile(new URL("https://grammy.dev/Y.png"));
-new InputFile({ url: "https://grammy.dev/Y.png" }); // equivalent
+new InputFile(new URL("https://grammy.dev/images/Y.png"));
+new InputFile({ url: "https://grammy.dev/images/Y.png" }); // equivalent
 ```
 
 </CodeGroupItem>

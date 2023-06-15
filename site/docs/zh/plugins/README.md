@@ -21,6 +21,40 @@ next: ./guide.md
 举个例子，[grammY runner](./runner.md) 插件（`runner`）需要通过 `npm install @grammyjs/runner` 来安装。
 （如果你在使用 Deno 而不是 Node.js，你应该从 <https://deno.land/x> 中导入插件，也就是从 `grammy_runner` 模块的 `mod.ts` 文件中导入）
 
+还有一些**第三方**插件。
+任何人都可以发布它们。
+我们不保证它们是最新的、文档齐全的或与其他插件一起工作的。
+如果你愿意，你自己的第三方插件也可以列在网站上，让更多的人知道。
+
+## 概述
+
+我们为你编制了一个简洁的概述，并为每个插件提供了简短的描述。
+安装插件既有趣又简单，我们希望你了解我们为你准备的内容。
+
+> 点击任何包名称以了解有关相应插件的更多信息
+
+| 插件                        | 包                                                    | 描述                                   |
+| --------------------------- | ----------------------------------------------------- | -------------------------------------- |
+| Sessions                    | _内置_                                                | 将用户数据存储在你的数据库中           |
+| Inline and Custom Keyboards | _内置_                                                | 简化构建 inline 和 custom keyboards    |
+| Auto-retry                  | [`auto-retry`](./auto-retry.md)                       | 自动处理速率限制                       |
+| Conversations               | [`conversations`](./conversations.md)                 | 构建强大的对话界面和对话               |
+| Emoji                       | [`emoji`](./emoji.md)                                 | 简化在代码中使用 Emoji                 |
+| Files                       | [`files`](./files.md)                                 | 轻松的文件处理                         |
+| Hydration                   | [`hydrate`](./hydrate.md)                             | 对从 API 调用返回的对象调用方法        |
+| Internationalization        | [`i18n`](./i18n.md) 或者 [`fluent`](./fluent.md)      | 让你的机器人说多种语言                 |
+| Interactive Menus           | [`menu`](./menu.md)                                   | 设计具有灵活导航的动态按钮菜单         |
+| Parse Mode                  | [`parse-mode`](./parse-mode.md)                       | 简化消息格式化                         |
+| Rate Limiter                | [`ratelimiter`](./ratelimiter.md)                     | 自动限制向你的机器人发送垃圾消息的用户 |
+| Router                      | [`router`](./router.md)                               | 将消息路由到代码的不同部分             |
+| Runner                      | [`runner`](./runner.md)                               | 大规模并发长轮询                       |
+| Stateless Question          | [`stateless-question`](./stateless-question.md)       | 创建没有数据存储的对话                 |
+| Flood Control               | [`transformer-throttler`](./transformer-throttler.md) | 自动排队 API 调用以防止洪水等待        |
+
+我们还有一些第三方插件！
+您可以在导航菜单 _插件_ > _第三方_ 下找到它们。
+一定要看一看！
+
 ## grammY 中的插件类型
 
 所有闪闪发光的东西都是金子，对吧？

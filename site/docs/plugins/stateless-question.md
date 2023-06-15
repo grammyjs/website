@@ -2,7 +2,7 @@
 
 > Create stateless questions to Telegram users working in privacy mode
 
-You want to keep the privacy of the user with [Telegrams privacy mode enabled (by default)](https://core.telegram.org/bots#privacy-mode), send users translated questions in their language and don't save the state what users are currently doing?
+You want to keep the privacy of the user with [Telegrams privacy mode enabled (by default)](https://core.telegram.org/bots/features#privacy-mode), send users translated questions in their language and don't save the state what users are currently doing?
 
 This plugin wants to solve this problem.
 
@@ -18,7 +18,7 @@ You only have to make sure the `uniqueIdentifier` is unique within your bot.
 ```ts
 import { StatelessQuestion } from "@grammyjs/stateless-question";
 
-const bot = new Bot(token);
+const bot = new Bot("");
 
 const unicornQuestion = new StatelessQuestion("unicorns", (ctx) => {
   console.log("User thinks unicorns are doing:", ctx.message);

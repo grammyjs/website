@@ -14,7 +14,7 @@
 
 第一件事是初始化一个 Fluent 实例：
 
-```typescript
+```ts
 import { Fluent } from "@moebius/fluent";
 
 const fluent = new Fluent();
@@ -22,7 +22,7 @@ const fluent = new Fluent();
 
 然后，需要添加至少一个翻译到 Fluent 实例中：
 
-```typescript
+```ts
 await fluent.addTranslation({
   // 指定你的翻译所支持的一个或多个地区：
   locales: "en",
@@ -73,7 +73,7 @@ welcome =
 语句 `{$name}` 将会被替换为 `name` 变量的值，你需要自己传递给翻译函数。
 
 最后一条语句 (_第 5 行到第 9 行_) 定义了一个 **selector**（非常类似于 switch 语句），它接收应用于 `applesCount` 变量的特殊 `NUMBER` 函数的结果，并根据匹配的值选择三种可能的信息之一来渲染。
-`NUMBER` 函数将根据提供的值和使用的语言返回一个 [CLDR plural category](https://www.unicode.org/cldr/cldr-aux/charts/30/supplemental/language_plural_rules.md)。
+`NUMBER` 函数将根据提供的值和使用的语言返回一个 [CLDR plural category](https://www.unicode.org/cldr/cldr-aux/charts/30/supplemental/language_plural_rules.html)。
 这有效地实现了 pluralization。
 
 ## grammY 配置
@@ -82,9 +82,9 @@ welcome =
 但首先，我们需要配置 grammY 使用该插件。
 
 在所有其他方面之前，你需要配置你的 bot 使用 Fluent 上下文调味剂。
-如果你不熟悉这个概念，你应该阅读 [上下文调味剂](../guide/context.md#context-flavors) 的官方文档。
+如果你不熟悉这个概念，你应该阅读 [上下文调味剂](../guide/context.md#上下文调味剂) 的官方文档。
 
-```typescript
+```ts
 import { Context } from "grammy";
 import { FluentContextFlavor } from "@grammyjs/fluent";
 
@@ -94,13 +94,13 @@ export type MyAppContext = Context & FluentContextFlavor;
 
 你需要使用下面的方式创建你的 bot 实例，以便使用扩展的上下文类型：
 
-```typescript
+```ts
 const bot = new Bot<MyAppContext>();
 ```
 
 最后一步是将 Fluent 插件注册到 grammY 中：
 
-```typescript
+```ts
 bot.use(
   useFluent({
     fluent,
@@ -115,7 +115,7 @@ bot.use(
 很好，我们已经有了渲染我们的消息的所有条件！
 让我们通过在我们的机器人中定义一个测试命令来做到这一点。
 
-```typescript
+```ts
 bot.command("i18n_test", async (ctx) => {
   // 调用 "translate" 或 "t" 来渲染消息，指定其 ID 和额外参数：
   await ctx.reply(

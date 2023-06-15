@@ -14,7 +14,7 @@ next: ./flood.md
 ## 优雅关闭
 
 对于使用了长轮询的 bot，还有更多的事要去考虑。
-当你打算在某个操作期间再次停止你的实例，你应该去考虑捕获 `SIGTERM` 和 `SIGINT` 事件，并调用 `bot.stop`（长轮询内置的） 方法或者通过它的 [处理](/ref/runner/RunnerHandle.md#stop) （grammY runner）来停止你的 bot。
+当你打算在某个操作期间再次停止你的实例，你应该去考虑捕获 `SIGTERM` 和 `SIGINT` 事件，并调用 `bot.stop`（长轮询内置的） 方法或者通过它的 [处理](https://deno.land/x/grammy_runner/mod.ts?s=RunnerHandle#prop_stop) （grammY runner）来停止你的 bot。
 
 ### 简单的长轮询
 
@@ -24,10 +24,13 @@ next: ./flood.md
 
 ```ts
 import { Bot } from "grammy";
-const bot = new Bot("<token>");
-// 当 Node 进程将要被终止时，停止你的 bot。
+
+const bot = new Bot("");
+
+// 当 Node.js 进程将要被终止时，停止你的 bot。
 process.once("SIGINT", () => bot.stop());
 process.once("SIGTERM", () => bot.stop());
+
 await bot.start();
 ```
 
@@ -37,10 +40,13 @@ await bot.start();
 
 ```js
 const { Bot } = require("grammy");
-const bot = new Bot("<token>");
-// 当 Node 进程将要被终止时，停止你的 bot。
+
+const bot = new Bot("");
+
+// 当 Node.js 进程将要被终止时，停止你的 bot。
 process.once("SIGINT", () => bot.stop());
 process.once("SIGTERM", () => bot.stop());
+
 await bot.start();
 ```
 
@@ -50,10 +56,13 @@ await bot.start();
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
-const bot = new Bot("<token>");
+
+const bot = new Bot("");
+
 // 当 Deno 进程将要被终止时，停止你的 bot。
 Deno.addSignalListener("SIGINT", () => bot.stop());
 Deno.addSignalListener("SIGTERM", () => bot.stop());
+
 await bot.start();
 ```
 
@@ -69,9 +78,12 @@ await bot.start();
 ```ts
 import { Bot } from "grammy";
 import { run } from "@grammyjs/runner";
-const bot = new Bot("<token>");
+
+const bot = new Bot("");
+
 const runner = run(bot);
-// 当 Node 进程将要被终止时，停止你的 bot。
+
+// 当 Node.js 进程将要被终止时，停止你的 bot。
 const stopRunner = () => runner.isRunning() && runner.stop();
 process.once("SIGINT", stopRunner);
 process.once("SIGTERM", stopRunner);
@@ -84,9 +96,12 @@ process.once("SIGTERM", stopRunner);
 ```js
 const { Bot } = require("grammy");
 const { run } = require("@grammyjs/runner");
-const bot = new Bot("<token>");
+
+const bot = new Bot("");
+
 const runner = run(bot);
-// 当 Node 进程将要被终止时，停止你的 bot。
+
+// 当 Node.js 进程将要被终止时，停止你的 bot。
 const stopRunner = () => runner.isRunning() && runner.stop();
 process.once("SIGINT", stopRunner);
 process.once("SIGTERM", stopRunner);
@@ -98,8 +113,11 @@ process.once("SIGTERM", stopRunner);
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { run } from "https://deno.land/x/grammy_runner/mod.ts";
-const bot = new Bot("<token>");
+
+const bot = new Bot("");
+
 const runner = run(bot);
+
 // 当 Deno 进程将要被终止时，停止你的 bot。
 const stopRunner = () => runner.isRunning() && runner.stop();
 Deno.addSignalListener("SIGINT", stopRunner);
@@ -117,7 +135,7 @@ Deno.addSignalListener("SIGTERM", stopRunner);
 如果因为一些原因，某人或者某事真的很难处理这过程，它将会变得更加复杂。
 
 本质上，bot 不能保证你的中间件只执行一次。
-阅读一下 [GitHub上的这个讨论](https://github.com/tdlib/telegram-bot-api/issues/126) 去了解更多为什么你的 bot 在某些极端情况下会重复发送信息（或者根本不发送）。
+阅读一下GitHub上的这个 [讨论](https://github.com/tdlib/telegram-bot-api/issues/126) 去了解更多 **为什么** 你的 bot 在某些极端情况下会重复发送信息（或者根本不发送）。
 本章剩下的部分主要是详细解释 grammY 在这些不常见的情况下会怎样表现，并且怎样去处理这些情况。
 
 > 如果你只关心怎样去编写一个 Telegram bot 的代码？[跳过本章剩下的部分](./flood.md)。
@@ -147,10 +165,10 @@ grammY 没有为你做这些工作，但是如果你认为其他人可以从中�
 结果是，如果你的实例被正确的（或错误的）时间被关闭了，可能会发生多达 100 个 update 无法再次获取，因为 Telegram 认为它们已被确认。
 这将会引起数据丢失。
 
-如果防止这种情况非常重要，那么应该使用 grammY 源程序库来组成自己的 update 管道，首先通过消息队列传递所有 update。
+如果防止这种情况非常重要，那么应该使用 grammY runner 库的沉（sink）和源（source）来组成自己的 update 管道，这个管道首先传递所有 update 到消息队列。
 
-1. 基本上来说，你必须创建一个发送到队列的接收器，并启动一个只提供消息队列的运行程序。
-2. 然后，你必须再次创建一个从消息队列提取的 [源](/ref/runner/UpdateSource.md) 。
+1. 基本上来说，你必须创建一个发送到消息队列的 [沉（sink）](https://deno.land/x/grammy_runner/mod.ts?s=UpdateSink)，并启动一个只提供消息队列的运行程序。
+2. 然后，你必须再次创建一个从消息队列提取的 [源（source）](https://deno.land/x/grammy_runner/mod.ts?s=UpdateSource) 。
    你将有效的运行两个不同的 grammY runner 实例。
 
 据我们所知，上述这个模糊的草案只是草图，还没有实现。

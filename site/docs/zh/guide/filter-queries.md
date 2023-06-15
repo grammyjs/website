@@ -14,11 +14,11 @@ next: ./commands.md
 
 相反，**grammY 带有自己的查询语言**，你可以用它来**筛选你想要的消息**。
 
-这允许使用超过 650 种不同的 filter 进行筛选，而且我们可能会随着时间的推移增加更多的过滤器。
+这允许使用超过 820 种不同的 filter 进行筛选，而且我们可能会随着时间的推移增加更多的过滤器。
 每个有效的 filter 都可以在你的代码编辑器中自动完成。
 因此，你可以简单地输入 `bot.on("")`，打开自动完成，并通过输入一些东西来搜索所有的查询。
 
-![Filter 参数查询](/filter-query-search.png)
+![Filter 参数查询](/images/filter-query-search.png)
 
 `bot.on()` 的类型推理将理解你挑选的 filter。
 因此，它在上下文中浓缩了一些已知存在的类型。
@@ -94,6 +94,7 @@ bot.on("msg:text"); // 与 `:text` 完全一致
 #### `edit`
 
 这个 `edit` 快捷方式将编辑过的消息和编辑过的频道 posts 归纳其中。
+换句话说，使用 `edit` 与监听 `"edited_message"` 和 `"edited_channel_post"` 事件是等价的。
 
 ```ts
 bot.on("edit"); // 任何编辑过的消息和编辑过的频道 post
@@ -105,6 +106,7 @@ bot.on("edit:location"); // 实时位置更新
 #### `:media`
 
 `:media` 快捷方式将照片和视频消息归纳其中。
+换句话说，使用 `:media` 与监听 `":photo"` 和 `":video"` 事件是等价的。
 
 ```ts
 bot.on("message:media"); // 照片和视频消息
@@ -115,6 +117,7 @@ bot.on(":media"); // 媒体消息或者频道 posts
 #### `:file`
 
 `:file` 快捷方式将所有包含文件的归纳。
+换句话说，使用 `:file` 与监听 `":photo"`、`":animation"`、`":audio"`、`":document"`、`":video"`、`":video_note"`、`":voice"` 和 `":sticker"` 事件是等价的。
 因此，`await ctx.getFile()` 将会会返回给你一个文件对象。
 
 ```ts
@@ -219,13 +222,13 @@ bot.on("chat_member");
 
 ### 将查询与其他方法相结合
 
-你可以将过滤器查询与 `Composer` 类（[API 参考](/ref/core/Composer.md)）的其他方法相结合，例如 `command` 或 `filter`。
+你可以将过滤器查询与 `Composer` 类（[API 参考](https://deno.land/x/grammy/mod.ts?s=Composer)）的其他方法相结合，例如 `command` 或 `filter`。
 这可以让你构建更复杂的消息处理模式。
 
 ```ts
 bot.on(":forward_date").command("help"); // 转发的 /help 命令
 // 只在私人聊天中处理命令。
-const pm = bot.filter((ctx) => ctx.chat?.type === "private");
+const pm = bot.chatType("private");
 pm.command("start");
 pm.command("help");
 ```
@@ -307,7 +310,7 @@ function handler(ctx: Filter<Context, ":text">) {
 bot.on(":text", handler);
 ```
 
-> 查看并阅读更多 [`matchFilter`](/ref/core/matchFilter.md)，[`Filter`](/ref/core/Filter.md) 和 [`FilterQuery`](/ref/core/FilterQuery.md) 的 API 参考。
+> 查看并阅读更多 [`matchFilter`](https://deno.land/x/grammy/filter.ts?s=matchFilter)，[`Filter`](https://deno.land/x/grammy/filter.ts?s=Filter) 和 [`FilterQuery`](https://deno.land/x/grammy/filter.ts?s=FilterQuery) 的 API 参考。
 
 ## 查询语言
 
@@ -325,7 +328,7 @@ bot.on(":text", handler);
 
 示例:
 
-| Filter 查询                    | L1 部分       | L2 部分        | L3 部分       |
+| Filter 查询                  | L1 部分     | L2 部分      | L3 部分     |
 | ---------------------------- | ----------- | ------------ | ----------- |
 | `"message"`                  | `"message"` | `undefined`  | `undefined` |
 | `"message:entities"`         | `"message"` | `"entities"` | `undefined` |

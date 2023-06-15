@@ -12,11 +12,11 @@ next: ./inline-queries.md
 
 然后，我们会把你遇到的错误分为三个种类。
 
-| 名称                                 | 用途                                              |
-| ---------------------------------- | ----------------------------------------------- |
-| [`Bot Errors`](#boterror-对象)       | 包含所有插件抛出的错误对象（比如下面这两种错误）                        |
+| 名称                                 | 用途                                                                |
+| ------------------------------------ | ------------------------------------------------------------------- |
+| [`Bot Errors`](#boterror-对象)       | 包含所有插件抛出的错误对象（比如下面这两种错误）                    |
 | [`Grammy Errors`](#grammyerror-对象) | 当 Bot API 返回 `ok: false` 时抛出, 表示你的API请求是无效的或失败的 |
-| [`Http Errors`](#httperror-对象)     | 当 BOT API 服务器无法连接时抛出                            |
+| [`Http Errors`](#httperror-对象)     | 当 BOT API 服务器无法连接时抛出                                     |
 
 更高级的错误处理机制 [链接](#error-边界)。
 
@@ -67,7 +67,7 @@ grammY 不会以任何方式触及抛出的错误，而是把它包装成一个 
 会给你一个名为 `err` 的对象， 你可以找到最根本的错误通过 `err.error`，
 同样，你可以到达相应的上下文对象通过 `err.ctx`。
 
-在 [grammY API 参考](/ref/core/BotError.md) 中了解 `BotError` 类。
+在 [grammY API 参考](https://deno.land/x/grammy/mod.ts?s=BotError) 中了解 `BotError` 类。
 
 ## `GrammyError` 对象
 
@@ -77,7 +77,7 @@ grammY 不会以任何方式触及抛出的错误，而是把它包装成一个 
 一个被抛出的`GrammyError` 意味着对应的 API 方法失败了。
 这个错误对象提供路径去查看 Telegram 后台返回的错误代码和描述。
 
-在 [grammY API 参考](/ref/core/GrammyError.md) 中了解 `GrammyError` 类。
+在 [grammY API 参考](https://deno.land/x/grammy/mod.ts?s=GrammyError) 中了解 `GrammyError` 类。
 
 ## `HttpError` 对象
 
@@ -87,9 +87,9 @@ grammY 不会以任何方式触及抛出的错误，而是把它包装成一个 
 
 除非你的网络不可用了或者 你的 Bot API 服务器暂时下线了，否则你基本看不到这种类型的错误。
 
-> 需要注意的是如果 Bot API 服务器能被链接，但是方法回调返回了 `ok: false`，这时就会抛出 [`GrammyError`](./errors.md#GrammyError对象) 作为代替。
+> 需要注意的是如果 Bot API 服务器能被链接，但是方法回调返回了 `ok: false`，这时就会抛出 [`GrammyError`](./errors.md#grammyerror-对象) 作为代替。
 
-在 [grammY API 参考](/ref/core/HttpError.md) 中了解 `HttpError` 类。
+在 [grammY API 参考](https://deno.land/x/grammy/mod.ts?s=HttpError) 中了解 `HttpError` 类。
 
 ## Error 边界
 

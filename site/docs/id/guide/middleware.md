@@ -16,7 +16,7 @@ Memanggilnya dengan sebutan "listener" hanyalah sebuah penyederhanaan saja, mesk
 Anggaplah kamu menulis bot seperti ini:
 
 ```ts{8}
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 bot.use(session());
 
@@ -43,7 +43,7 @@ Update **tidak** dicocokkan dengan konten foto karena middleware di `(*)` sudah 
 Kok bisa itu terjadi?
 Mari cari tahu!
 
-Klik [di sini](/ref/core/Middleware.md) untuk melihat type `Middleware` di referensi grammY:
+Klik [di sini](https://deno.land/x/grammy/mod.ts?s=Middleware) untuk melihat type `Middleware` di referensi grammY:
 
 ```ts
 // Menghilangkan beberapa type parameter supaya ringkas.
@@ -52,7 +52,7 @@ type Middleware = MiddlewareFn | MiddlewareObj;
 
 Aha!
 Middleware bisa berupa sebuah function ataupun object.
-Sejauh ini, kita cuma menggunakan function (`(ctx) => { ... }`). Mari kita abaikan object middleware untuk saat ini, dan menyelam lebih dalam menuju type `MiddlewareFn` ([referensi](/ref/core/MiddlewareFn.md)):
+Sejauh ini, kita cuma menggunakan function (`(ctx) => { ... }`). Mari kita abaikan object middleware untuk saat ini, dan menyelam lebih dalam menuju type `MiddlewareFn` ([referensi](https://deno.land/x/grammy/mod.ts?s=MiddlewareFn)):
 
 ```ts
 // Menghilangkan type parameter lagi.
@@ -92,7 +92,7 @@ Ia mengabaikan `next` begitu saja, sehingga update tidak diteruskan.
 Mari kita coba sesuatu yang lain dengan pengetahuan baru kita!
 
 ```ts
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 bot.on(":text", (ctx) => ctx.reply("Teks!"));
 bot.command("start", (ctx) => ctx.reply("Command!"));
@@ -236,7 +236,7 @@ Termasuk `bot.api.sendMessage`, `ctx.reply`, dan pemanggilan koneksi lainnya.
 Kalau proyek yang sedang kamu kerjakan memang serius, sebaiknya gunakan _linting tool_ yang akan mengingatkan disaat kamu lupa menggunakan `await` di dalam sebuah `Promise`.
 
 ::: tip Aktifkan no-floating-promises
-Pertimbangkan untuk menggunakan [ESLint](https://eslint.org/) dan menerapkan aturan [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-floating-promises.md).
+Pertimbangkan untuk menggunakan [ESLint](https://eslint.org/) dan menerapkan aturan [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-floating-promises.md).
 Ini akan memastikan kamu supaya tidak lupa menggunakan `await` (dengan cara mengomel ke kamu).
 :::
 
@@ -251,10 +251,10 @@ Perbedaan lainnya, tidak peduli berapapun argument yang diambil oleh middleware 
 
 Terdapat dua macam type middleware: function dan object.
 Object middleware simpelnya adalah sebuah pembungkus dari suatu function middleware.
-Kebanyakan cuma digunakan di internal, tetapi terkadang juga bisa membantu library pihak ketiga, atau digunakan untuk kasus tingkat lanjut, contohnya [Composer](/ref/core/Composer.md):
+Kebanyakan cuma digunakan di internal, tetapi terkadang juga bisa membantu library pihak ketiga, atau digunakan untuk kasus tingkat lanjut, contohnya [Composer](https://deno.land/x/grammy/mod.ts?s=Composer):
 
 ```ts
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 bot.use(/*...*/);
 bot.use(/*...*/);

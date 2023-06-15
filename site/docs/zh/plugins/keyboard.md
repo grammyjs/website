@@ -7,14 +7,14 @@
 
 让我们试着理清一下：
 
-| 术语                                       | 定义                                                                |
-| ---------------------------------------- | ----------------------------------------------------------------- |
-| [**Inline Keyboard**](#inline-keyboards) | 显示在聊天消息下面的一组按钮。                                                   |
-| [**自定义 Keyboard**](#自定义-keyboards)       | 代替用户的系统键盘显示的一组按钮。                                                 |
+| 术语                                     | 定义                                                                                               |
+| ---------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| [**Inline Keyboard**](#inline-keyboards) | 显示在聊天消息下面的一组按钮。                                                                     |
+| [**自定义 Keyboard**](#自定义-keyboards) | 代替用户的系统键盘显示的一组按钮。                                                                 |
 | **Inline keyboard button**               | inline keyboard 中的一个按钮，按下后会发送一个用户不可见的回调查询，有时候被称为 _inline button_。 |
-| **自定义 Keyboard button**                  | keyboard 中的一个按钮，按下后会发送带有其标签的文本信息，有时候被称为 _keyboard button_。        |
-| **`InlineKeyboard`**                     | grammY 中用来创建 inline keyboards 的类。                                 |
-| **`Keyboard`**                           | grammY 中用来创建自定义 keyboards 的类。                                     |
+| **自定义 Keyboard button**               | keyboard 中的一个按钮，按下后会发送带有其标签的文本信息，有时候被称为 _keyboard button_。          |
+| **`InlineKeyboard`**                     | grammY 中用来创建 inline keyboards 的类。                                                          |
+| **`Keyboard`**                           | grammY 中用来创建自定义 keyboards 的类。                                                           |
 
 > 请注意，自定义 keyboard 按钮和 inline keyboard 按钮也可以有其他功能，例如请求用户的位置，打开网站等等。
 > 为了简洁起见，我们省略了这一点。
@@ -26,19 +26,19 @@
 
 ## Inline Keyboards
 
-> 重温 Telegram 团队编写的 [Introduction for Developers](https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating) 中的 inline keyboard 部分。
+> 重温 Telegram 团队编写的 [Telegram Bot 特性](https://core.telegram.org/bots/features#inline-keyboards) 中的 inline keyboard 部分。
 
 grammY 有一个简单且直观的方式来构建 inline keyboard，让你的 bot 可以和信息一起发送 inline keyboard。
 它提供了一个叫做 `InlineKeyboard` 的类。
 
-> `switchInline` 和 `switchInlineCurrent` 按钮都可以启动 Inline Queries。
+> 通过调用 `switchInline`、`switchInlineCurrent` 和 `switchInlineChosen` 添加的按钮都可以启动 Inline Queries。
 > 你也可以查看 [Inline Queries](../guide/inline-queries.md) 的部分，来了解更多关于它们是怎样工作的。
 
 ### 构建一个 Inline Keyboard
 
 这里有三个例子来演示如何构建带有 `text` 按钮的 inline keyboard。
 
-你也可以使用其他方法，比如 `url`，让 Telegram 客户端打开一个 URL，或者 [grammY API 参考](/ref/core/InlineKeyboard.md#Methods) 和 [Telegram Bot API 参考](https://core.telegram.org/bots/api#inlinekeyboardbutton) 中列出的提供给 `InlineKeyboard` 方法。
+你也可以使用其他方法，比如 `url`，让 Telegram 客户端打开一个 URL，或者 [grammY API 参考](https://deno.land/x/grammy/mod.ts?s=InlineKeyboard#Methods) 和 [Telegram Bot API 参考](https://core.telegram.org/bots/api#inlinekeyboardbutton) 中列出的提供给 `InlineKeyboard` 方法。
 
 #### 示例 1
 
@@ -57,7 +57,7 @@ const inlineKeyboard = new InlineKeyboard()
 
 ##### 结果
 
-![示例 1](/inline-keyboard-example-1.webp)
+![示例 1](/images/inline-keyboard-example-1.webp)
 
 #### 示例 2
 
@@ -73,7 +73,7 @@ const inlineKeyboard = new InlineKeyboard()
 
 ##### 结果
 
-![示例 2](/inline-keyboard-example-2.webp)
+![示例 2](/images/inline-keyboard-example-2.webp)
 
 #### 示例 3
 
@@ -90,7 +90,7 @@ const inlineKeyboard = new InlineKeyboard().url(
 
 ##### 结果
 
-![示例 3](/inline-keyboard-example-3.webp)
+![示例 3](/images/inline-keyboard-example-3.webp)
 
 ### 发送一个 Inline Keyboard
 
@@ -162,7 +162,7 @@ bot.on("callback_query:data", async (ctx) => {
 作为一个简单的规则，当它从上下文中没有绝对明显的特征，而且不叫 inline keyboard 的时候，它可能就是一个自定义 keyboards。
 这是指用一组你可以定义的按钮来替换系统键盘的方法。
 
-> 重温 Telegram 团队编写的 [Introduction for Developers](https://core.telegram.org/bots#keyboards) 中的 keyboard 部分。
+> 重温 Telegram 团队编写的 [Telegram Bot 特性](https://core.telegram.org/bots/features#keyboards) 中的 keyboard 部分。
 
 grammY 有一个简单且直观的方式来构建回复 keyboard，让你的 bot 可以用它来替换用户的键盘。
 它提供了一个叫做 `Keyboard` 的类。
@@ -174,7 +174,7 @@ grammY 有一个简单且直观的方式来构建回复 keyboard，让你的 bot
 
 这里有三个例子来演示如何构建带有 `text` 按钮的自定义 keyboard。
 
-你也可以使用 `requestContact` 来请求电话号码，使用 `requestLocation` 来请求位置，使用 `requestPoll` 来请求投票。
+你也可以使用 `requestContact` 来请求电话号码，使用 `requestLocation` 来请求位置，使用 `requestPoll` 来请求投票，使用 `requestUser` 来请求用户, 使用 `requestChat` 请求聊天。
 
 #### 样例 1
 
@@ -192,7 +192,7 @@ const keyboard = new Keyboard()
 
 ##### 结果
 
-![样例 1](/keyboard-example-1.webp)
+![样例 1](/images/keyboard-example-1.webp)
 
 #### 样例 2
 
@@ -210,7 +210,7 @@ const keyboard = new Keyboard()
 
 ##### 结果
 
-![样例 2](/keyboard-example-2.webp)
+![样例 2](/images/keyboard-example-2.webp)
 
 #### 样例 3
 
@@ -226,7 +226,7 @@ const keyboard = new Keyboard()
 
 ##### 结果
 
-![样例 3](/keyboard-example-3.webp)
+![样例 3](/images/keyboard-example-3.webp)
 
 ### 发送一个自定义 Keyboard
 
@@ -246,6 +246,19 @@ await ctx.reply(text, {
 
 你也可以通过调用特殊方法给你的 keyboard 添加一个或者多个属性。
 它们不会添加任何新的按钮，而是定义 keyboard 的行为。
+
+#### 永久 Keyboards
+
+默认情况下，用户会看到一个图标，允许他们显示或隐藏你的机器人设置的自定义 keyboard。
+
+如果你希望在隐藏常规系统 keyboard 时始终显示自定义 keyboard，则可以调用 `persistent`。
+这样，用户将始终看到自定义 keyboard 或系统 keyboard。
+
+```ts
+new Keyboard()
+  .text("Skip")
+  .persistent();
+```
 
 #### 调整自定义 Keyboard 大小
 

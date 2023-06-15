@@ -110,7 +110,7 @@ Telegram bot 有 [三种方法](https://core.telegram.org/bots/api#sending-files
 await ctx.replyWithPhoto(existingFileId);
 
 // 通过 URL 发送
-await ctx.replyWithPhoto("https://grammy.dev/Y.png");
+await ctx.replyWithPhoto("https://grammy.dev/images/Y.png");
 
 // 或者，你可以使用 bot.api.sendPhoto() 或 ctx.api.sendPhoto()
 ```
@@ -118,7 +118,7 @@ await ctx.replyWithPhoto("https://grammy.dev/Y.png");
 ### 上传你自己的文件
 
 grammY 对上传文件有着很好的支持。
-您可以通过导入并使用 `InputFile` 类来实现这一点（[grammY API 指南](/ref/core/InputFile.md)）。
+您可以通过导入并使用 `InputFile` 类来实现这一点（[grammY API 指南](https://deno.land/x/grammy/mod.ts?s=InputFile)）。
 
 ```ts
 // 通过本地路径发送文件
@@ -211,7 +211,7 @@ new InputFile(function* () {
 这是非常高效的。
 
 > 请注意，Telegram 支持用许多种方法为你下载文件。
-> 如果可能，你应该选择 [通过 URL 发送文件](#通过-file_id-或者-url)，而不是使用 `InputFile` 来通过你的服务器流式传输文件内容。
+> 如果可能，你应该选择 [通过 URL 发送文件](#通过-file-id-或者-url)，而不是使用 `InputFile` 来通过你的服务器流式传输文件内容。
 
 <CodeGroup>
   <CodeGroupItem title="Node.js" active>
@@ -219,8 +219,8 @@ new InputFile(function* () {
 ```ts
 import { URL } from "url";
 // 下载一个文件，并将响应的内容流转到 Telegram。
-new InputFile(new URL("https://grammy.dev/Y.png"));
-new InputFile({ url: "https://grammy.dev/Y.png" }); // 等价的写法
+new InputFile(new URL("https://grammy.dev/images/Y.png"));
+new InputFile({ url: "https://grammy.dev/images/Y.png" }); // 等价的写法
 ```
 
 </CodeGroupItem>
@@ -228,8 +228,8 @@ new InputFile({ url: "https://grammy.dev/Y.png" }); // 等价的写法
 
 ```ts
 // 下载一个文件，并将响应的内容流转到 Telegram。
-new InputFile(new URL("https://grammy.dev/Y.png"));
-new InputFile({ url: "https://grammy.dev/Y.png" }); // 等价的写法
+new InputFile(new URL("https://grammy.dev/images/Y.png"));
+new InputFile({ url: "https://grammy.dev/images/Y.png" }); // 等价的写法
 ```
 
 </CodeGroupItem>

@@ -1,0 +1,14 @@
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+  cache-control = "max-age=604800" # 1 week
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+  cache-control = "max-age=604800" # 1 week
+
+[[headers]]
+  for = "/favicon.ico"
+  [headers.values]
+  cache-control = "max-age=604800" # 1 week

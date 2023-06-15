@@ -2,7 +2,7 @@
 next: ./introduction.md
 ---
 
-![logo](/grammY.png)
+![grammY](/images/grammY.png)
 
 # Gambaran Umum
 
@@ -23,7 +23,7 @@ Kalau kamu sudah tahu cara membuat aplikasi dengan Node.js atau Deno, ataupun su
 Dokumentasi bot grammY dibagi menjadi tiga area:
 
 1. Dokumentasi grammY tingkat tinggi _(website ini)_.
-2. [Referensi API grammY tingkat rendah](https://doc.deno.land/https://deno.land/x/grammy/mod.ts).
+2. [Referensi API grammY tingkat rendah](https://deno.land/x/grammy/mod.ts).
 3. [Referensi API HTTP murni yang dibuat oleh Telegram](https://core.telegram.org/bots/api).
 
 **Area pertama**—yang sedang kamu baca saat ini—berisi tutorial penggunaan grammY dan penjelasan mengenai cara kerja dari suatu bot.
@@ -31,7 +31,7 @@ Dokumen ini yang akan paling sering kamu gunakan.
 Kamu bisa memulai dari bab _Belajar_ di tab navigasi yang ada di bagian atas halaman ini.
 Jangan lupa untuk melihat koleksi _Plugin_ kami yang menakjubkan serta berbagai _Contoh_ yang sudah disediakan.
 
-**Area kedua** adalah [referensi API grammY](https://doc.deno.land/https://deno.land/x/grammy/mod.ts), yang juga bisa diakses melalui tab navigasi di bagian atas halaman.
+**Area kedua** adalah [referensi API grammY](https://deno.land/x/grammy/mod.ts), yang juga bisa diakses melalui tab navigasi di bagian atas halaman.
 Referensi ini berisi gambaran terperinci dari setiap bit kode yang disediakan grammY.
 Ia juga menghasilkan penjelasan-penjelasan bermanfaat dalam bentuk tooltip yang dibuat secara otomatis dari kode program grammY.
 Tooltip tersebut dapat ditemukan dengan mengarahkan kursor ke berbagai elemen grammY di kode editor.

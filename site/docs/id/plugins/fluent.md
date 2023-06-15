@@ -15,7 +15,7 @@ Ia dapat digunakan baik di Deno maupun Node.js.
 
 Pertama-tama, inisialisasi instance Fluent.
 
-```typescript
+```ts
 import { Fluent } from "@moebius/fluent";
 
 const fluent = new Fluent();
@@ -23,7 +23,7 @@ const fluent = new Fluent();
 
 Kemudian, kamu perlu menambahkan setidaknya satu terjemahan ke instance Fluent.
 
-```typescript
+```ts
 await fluent.addTranslation({
   // Tentukan satu atau lebih locale yang didukung oleh terjemahanmu:
   locales: "id",
@@ -93,29 +93,28 @@ Pertama-tama, kita perlu mengonfigurasi grammY untuk menggunakan plugin ini.
 Kamu juga perlu mengonfigurasi bot kamu untuk menggunakan Fluent context flavor.
 Jika kamu masih merasa asing dengan konsep tersebut, sebaiknya kamu pahami terlebih dahulu materi [Context Flavors](../guide/context.md#context-flavor).
 
-```typescript
+```ts
 import { Context } from "grammy";
 import { FluentContextFlavor } from "@grammyjs/fluent";
 
-// Tambahkan context type aplikasimu
-// dengan flavor interface yang telah disediakan.
-export type MyAppContext =
-  & Context
-  & FluentContextFlavor;
+// Tambahkan context type aplikasimu dengan flavor interface yang telah disediakan.
+export type MyAppContext = Context & FluentContextFlavor;
 ```
 
 Buat instance bot dengan cara berikut agar bisa menggunakan context type yang sudah ditambahkan tadi:
 
-```typescript
-const bot = new Bot<MyAppContext>();
+```ts
+const bot = new Bot<MyAppContext>("");
 ```
 
 Langkah terakhir adalah menambahkan plugin Fluent itu sendiri ke grammY:
 
-```typescript
-bot.use(useFluent({
-  fluent,
-}));
+```ts
+bot.use(
+  useFluent({
+    fluent,
+  }),
+);
 ```
 
 Pastikan untuk menambahkan [instance Fluent yang sudah dibuat sebelumnya](#inisialisasi-fluent).
@@ -125,7 +124,7 @@ Pastikan untuk menambahkan [instance Fluent yang sudah dibuat sebelumnya](#inisi
 Mantap, sekarang kita punya segalanya untuk me-render pesan kita!
 Mari kita buat percobaan dengan menentukan sebuah command di bot kita:
 
-```typescript
+```ts
 bot.command("i18n_test", async (ctx) => {
   // Panggil "translate" atau "t" helper untuk me-render pesan
   // dengan cara memasukkan ID-nya serta paramater tambahan lainnya:

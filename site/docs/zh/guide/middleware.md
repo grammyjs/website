@@ -16,7 +16,7 @@ next: ./errors.md
 假设你写一个这样的 bot:
 
 ```ts{8}
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 bot.use(session());
 
@@ -43,7 +43,7 @@ bot.start();
 这是如何工作的呢？
 让我们来了解一下。
 
-我们可以在 grammY 的参考资料中查看 `Middleware` [类型](/ref/core/Middleware.md)。
+我们可以在 grammY 的参考资料中查看 `Middleware` [类型](https://deno.land/x/grammy/mod.ts?s=Middleware)。
 
 ```ts
 // 为了简洁起见，省略了一些类型参数。
@@ -52,7 +52,7 @@ type Middleware = MiddlewareFn | MiddlewareObj;
 
 啊哈。
 中间件可以是一个函数或一个对象。
-我们只用了函数（`(ctx) => { ... }`），所以我们暂时忽略中间件对象，深入挖掘 `MiddlewareFn` 类型（[参考](/ref/core/MiddlewareFn.md)）。
+我们只用了函数（`(ctx) => { ... }`），所以我们暂时忽略中间件对象，深入挖掘 `MiddlewareFn` 类型（[参考](https://deno.land/x/grammy/mod.ts?s=MiddlewareFn)）。
 
 ```ts
 // 再次省略了类型参数。
@@ -91,7 +91,7 @@ type NextFunction = () => Promise<void>;
 让我们用我们的新知识尝试一下其他的东西吧!
 
 ```ts
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 bot.on(":text", (ctx) => ctx.reply("Text!"));
 bot.command("start", (ctx) => ctx.reply("Command!"));
@@ -235,7 +235,7 @@ bot.use(responseTime);
 如果你的项目对你很重要，那么你就会使用提示工具，如果你忘记在 `Promise` 上使用 `await`，工具会警告你。
 
 ::: tip 启用 no-floating-promises
-考虑使用 [ESLint](https://eslint.org/) 并配置它使用 [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-floating-promises.md) 规则。
+考虑使用 [ESLint](https://eslint.org/) 并配置它使用 [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-floating-promises.md) 规则。
 这将确保你永远不会忘记使用 `await`（通过不停的唠叨你）。
 :::
 
@@ -250,10 +250,10 @@ bot.use(responseTime);
 
 有两种类型的中间件：函数和对象。
 中间件对象只是中间件函数的一个封装器。
-它们大多在内部使用，但有时也可以帮助第三方库，或用于高级用例，如与 [Composer](/ref/core/Composer.md)：
+它们大多在内部使用，但有时也可以帮助第三方库，或用于高级用例，如与 [Composer](https://deno.land/x/grammy/mod.ts?s=Composer)：
 
 ```ts
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 bot.use(/*...*/);
 bot.use(/*...*/);

@@ -13,7 +13,7 @@ While it is not wrong that you can use middleware in this linear fashion (also i
 Commonly, you see the following pattern.
 
 ```ts
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 bot.use(/* ... */);
 bot.use(/* ... */);
@@ -26,7 +26,7 @@ bot.start();
 ```
 
 Looks pretty much like a stack, except, behind the scenes, it really is a tree.
-The heart of this functionality is the `Composer` class ([reference](/ref/core/Composer.md)) that builds up this tree.
+The heart of this functionality is the `Composer` class ([reference](https://deno.land/x/grammy/mod.ts?s=Composer)) that builds up this tree.
 
 First of all, every instance of `Bot` is an instance of `Composer`.
 It's just a subclass, so `class Bot extends Composer`.
@@ -43,12 +43,12 @@ The difference may seem subtle, but wait until the next subsection to find out w
 You can install more middleware on an instance of `Composer` even after installing the `Composer` itself somewhere.
 
 ```ts
-const bot = new Bot("<token>"); // subclass of `Composer`
+const bot = new Bot(""); // subclass of `Composer`
 
 const composer = new Composer();
 bot.use(composer);
 
-// These will be run:
+// These will be ran:
 composer.use(/* A */);
 composer.use(/* B */);
 composer.use(/* C */);

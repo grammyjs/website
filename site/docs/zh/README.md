@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: /Y.png
+heroImage: /images/Y.png
 actions:
   - text: 立刻开始
     link: /zh/guide/getting-started.html
@@ -15,7 +15,6 @@ features:
     details: grammY 是开放的，通过插件让它完全适合你的需要。
   - title: 可扩展
     details: grammY 在你 bot 拥有较多流量时提供可靠的帮助.
-footer: Copyright © 2021-2022
 permalink: /zh/
 ---
 
@@ -41,7 +40,7 @@ bot 是用 [TypeScript](https://www.typescriptlang.org)（或JavaScript）编写
 ```ts
 import { Bot } from "grammy";
 
-const bot = new Bot(""); // <-- 把你的 bot token 放在这里 (https://t.me/BotFather)
+const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间 (https://t.me/BotFather)
 
 // 用"你好！"来回复任意信息
 bot.on("message", (ctx) => ctx.reply("你好！"));
@@ -55,7 +54,7 @@ bot.start();
 ```js
 const { Bot } = require("grammy");
 
-const bot = new Bot(""); // <-- 把你的 bot token 放在这里 (https://t.me/BotFather)
+const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间 (https://t.me/BotFather)
 
 // 用"你好！"来回复任意信息
 bot.on("message", (ctx) => ctx.reply("你好！"));
@@ -69,7 +68,7 @@ bot.start();
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
-const bot = new Bot(""); // <-- 把你的 bot token 放在这里 (https://t.me/BotFather)
+const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间 (https://t.me/BotFather)
 
 // 用"你好！"来回复任意信息
 bot.on("message", (ctx) => ctx.reply("你好！"));
@@ -84,5 +83,18 @@ bot.start();
 
 ---
 
-grammY 支持 Telegram Bot API 6.2，该 API 于 2022 年 8 月 12 日 [发布](https://core.telegram.org/bots/api#august-12-2022)。
-(新增: 自定义 Emoji)
+<ClientOnly>
+  <ThankYou :s="[
+    '感谢 ',
+    '{name}',
+    ' 成为 grammY 的贡献者。',
+    ' 创建了 grammY。'
+  ]" />
+</ClientOnly>
+
+<div style="font-size: 0.75rem; display: flex; justify-content: center;">
+
+© 2021-2023 &middot; grammY 支持 Telegram Bot API 6.7，该 API 于 2023 年 4 月 21 日 [发布](https://core.telegram.org/bots/api#april-21-2023)。
+(新增: 多个机器人名称、自定义 emoji 和更好的 inline query)
+
+</div>

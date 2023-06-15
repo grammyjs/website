@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: /Y.png
+heroImage: /images/Y.png
 actions:
   - text: Get Started
     link: /guide/getting-started.html
@@ -15,7 +15,6 @@ features:
     details: grammY is open and can be extended by plugins to make it fit exactly your needs.
   - title: Scalable
     details: grammY has you covered when your bot gets popular and the traffic increases.
-footer: Copyright © 2021-2022
 permalink: /
 ---
 
@@ -41,7 +40,7 @@ Bots are written in [TypeScript](https://www.typescriptlang.org) (or JavaScript)
 ```ts
 import { Bot } from "grammy";
 
-const bot = new Bot(""); // <-- put your bot token here (https://t.me/BotFather)
+const bot = new Bot(""); // <-- put your bot token between the "" (https://t.me/BotFather)
 
 // Reply to any message with "Hi there!".
 bot.on("message", (ctx) => ctx.reply("Hi there!"));
@@ -55,7 +54,7 @@ bot.start();
 ```js
 const { Bot } = require("grammy");
 
-const bot = new Bot(""); // <-- put your bot token here (https://t.me/BotFather)
+const bot = new Bot(""); // <-- put your bot token between the "" (https://t.me/BotFather)
 
 // Reply to any message with "Hi there!".
 bot.on("message", (ctx) => ctx.reply("Hi there!"));
@@ -69,7 +68,7 @@ bot.start();
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
-const bot = new Bot(""); // <-- put your bot token here (https://t.me/BotFather)
+const bot = new Bot(""); // <-- put your bot token between the "" (https://t.me/BotFather)
 
 // Reply to any message with "Hi there!".
 bot.on("message", (ctx) => ctx.reply("Hi there!"));
@@ -84,5 +83,22 @@ Works! :tada:
 
 ---
 
-grammY supports the Telegram Bot API 6.2 which was [released](https://core.telegram.org/bots/api#august-12-2022) on August 12, 2022.
-(Last highlight: Custom Emoji)
+<ClientOnly>
+  <ThankYou :s="[
+    'Thank you, ',
+    '{name}',
+    ', for being a contributor to grammY.',
+    ', for creating grammY.'
+  ]" />
+</ClientOnly>
+
+<div style="font-size: 0.75rem; display: flex; justify-content: center;">
+
+© 2021-2023 &middot; grammY supports Telegram Bot API 6.7 which was [released](https://core.telegram.org/bots/api#april-21-2023) on April 21, 2023.
+(Last highlight: multiple bot names, custom emoji, and better inline queries)
+
+</div>
+
+<ClientOnly>
+  <LanguagePopup />
+</ClientOnly>

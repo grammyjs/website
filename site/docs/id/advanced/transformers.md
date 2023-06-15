@@ -14,7 +14,7 @@ _Function transformer_ adalah sebuah function yang menangani data yang keluar, c
 - Object payload yang cocok dengan suatu method tertentu.
 
 Alih-alih memasukkan `next` sebagai argument terakhir untuk memanggil middleware hilir (downstream), kamu akan menerima `prev` sebagai argument pertama untuk memanfaatkan function transformer hulu (upstream).
-Kalau dilihat dari _type signature_-nya `Transformer` ([referensi API grammY](/ref/core/Transformer.md)), kita bisa melihat bagaimana ia diimplentasikan.
+Kalau dilihat dari _type signature_-nya `Transformer` ([referensi API grammY](https://deno.land/x/grammy/mod.ts?s=Transformer)), kita bisa melihat bagaimana ia diimplentasikan.
 Perlu diketahui bahwa `Payload<M, R>` merujuk ke object payload yang akan dicocokkan dengan method yang diberikan, serta `ApiResponse<ApiCallResult<M, R>>` adalah type pengembalian dari method yang dipanggil.
 
 Function transformer yang terakhir dipanggil adalah pemanggilan bawaan yang melakukan beberapa hal seperti _JSON serialization_ untuk field tertentu dan terkadang juga memanggil `fetch`.
@@ -100,7 +100,7 @@ type MyContext = Context & SomeContextFlavor;
 type MyApi = Api & SomeApiFlavor;
 
 // Gunakan kedua flavor.
-const bot = new Bot<MyContext, MyApi>("my-token");
+const bot = new Bot<MyContext, MyApi>("");
 
 // Gunakan sebuah plugin.
 bot.api.config.use(somePlugin());

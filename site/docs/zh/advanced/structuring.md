@@ -20,7 +20,7 @@ next: ./scaling.md
    这些中的每一个单独部分都暴露出可以处理指定消息的中间件。
 2. 集中创建一个 bot 实例，通过将其安装到 bot 上来合并所有中间件。
 3. （可选的）集中提前找出更新，并且以正确的方式去发送这些更新。
-   你可能还想查看相关的 `bot.route`（[API 参考](/ref/core/Composer.md#route)） 或者 [路由器插件](../plugins/router.md)。
+   你可能还想查看相关的 `bot.route`（[API 参考](https://deno.land/x/grammy/mod.ts?s=Composer#method_route_0)） 或者 [路由器插件](../plugins/router.md)。
 
 你可以在 [Example Bot repository](https://github.com/grammyjs/examples/tree/main/scaling) 找到实现上面所提到的策略的一个可运行示例。
 
@@ -47,6 +47,9 @@ export const lists = new Composer();
 lists.on("message", (ctx) => {/* ... */});
 ```
 
+> 请注意，如果你使用 TypeScript ，你需要在创建 `Composer` 时传递你的 [自定义上下文类型](../guide/context.md#定制你的上下文对象)。
+> 例如，你需要用 `new Composer<MyContext>()`。
+
 你也可以使用 [Error 边界](../guide/errors.md#error-边界) 去处理所有程序模块中可能出现的错误。
 
 现在在 `bot.ts` 中，你可以像下面这样去使用你的模块：
@@ -54,15 +57,15 @@ lists.on("message", (ctx) => {/* ... */});
 ```ts
 import { lists } from "./todo/list";
 
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 bot.use(lists);
-// ... 更多像 `todo` 一样的模块也可以像这样来使用
+// ... 更多像 `todo` 一样的模块也可以像这样来使用。
 
 bot.start();
 ```
 
-可选地，如果你能够事先知道哪个中间件可以发挥相应的作用，你也可以使用 [router 插件](../plugins/router.md) 或者去绑定不同的模块。
+可选地，如果你能够事先知道哪个中间件可以发挥相应的作用，你也可以使用 [router 插件](../plugins/router.md) 或者 [`bot.route`](https://deno.land/x/grammy/mod.ts?s=Composer#method_route_0) 去绑定不同的模块。
 
 不过，需要记住的是，一般来说怎样去组织你的 bot 代码结构是很难去用一个具体的方式去描述的。
 就像在软件中，用最合理的方式去做就好啦 :wink:

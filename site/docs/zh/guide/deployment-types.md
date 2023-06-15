@@ -42,18 +42,18 @@ _第二天，你又想吃那个美味的冰淇淋了，所以你又回到同一�
 当 grammY 发送请求给 Telegram 服务器时，有新的消息发送给了你的 bot，Telegram 将最多 100 条的 updates 以数组的形式发送给你。
 
 ```asciiart:no-line-numbers
-______________                                   _____________
-|            |                                   |           |
-|            |   <---    有什么新的消息吗？  ---    |           |
-|            |    ---       没有           --->   |           |
-|            |                                   |           |
-|            |   <---    有什么新的消息吗？  ---    |           |
-|  Telegram  |    ---       没有           --->   |    Bot    |
-|            |                                   |           |
-|            |   <---    有什么新的消息吗？  ---    |           |
-|            |    ---       有！给你       --->   |           |
-|            |                                   |           |
-|____________|                                   |___________|
+______________                                     _____________
+|            |                                     |           |
+|            |   <---    有什么新的消息吗？  ---   |           |
+|            |    ---       没有           --->    |           |
+|            |                                     |           |
+|            |   <---    有什么新的消息吗？  ---   |           |
+|  Telegram  |    ---       没有           --->    |    Bot    |
+|            |                                     |           |
+|            |   <---    有什么新的消息吗？  ---   |           |
+|            |    ---       有！给你       --->    |           |
+|            |                                     |           |
+|____________|                                     |___________|
 ```
 
 显而易见，这样做有一些缺点。
@@ -82,22 +82,22 @@ _直到在下一个日出之前的几个小时，当地一家外卖公司的卡�
 _就好像什么都没发生过一样，你享受着你的冰淇淋，离开了世界上最不真实的冰淇淋店。_
 
 ```asciiart:no-line-numbers
-______________                                   _____________
-|            |                                   |           |
-|            |   <--- 这里有什么新消息吗？    ---    |           |
-|            |   .                               |           |
-|            |   .                               |           |
+______________                                     _____________
+|            |                                     |           |
+|            |   <--- 这里有什么新消息吗？  ---    |           |
+|            |   .                                 |           |
+|            |   .                                 |           |
 |            |   .     *一同等待*                  |           |
-|  Telegram  |   .                               |    Bot    |
-|            |   .                               |           |
-|            |   .                               |           |
-|            |    ---  是的，我们有新消息！   --->   |           |
-|            |                                   |           |
-|____________|                                   |___________|
+|  Telegram  |   .                                 |    Bot    |
+|            |   .                                 |           |
+|            |   .                                 |           |
+|            |    ---  是的，我们有新消息！ --->   |           |
+|            |                                     |           |
+|____________|                                     |___________|
 ```
 
 > 请注意，在现实中，没有连接将保持数小时。
-> 长轮询请求的默认超时时间为 30 秒（为了避免一些 [技术问题](https://tools.ietf.org/id/draft-loreto-http-bidirectional-07.html#timeouts)）
+> 长轮询请求的默认超时时间为 30 秒（为了避免一些 [技术问题](https://datatracker.ietf.org/doc/html/draft-loreto-http-bidirectional-07#section-5.5)）
 > 如果在这段时间之后没有返回任何新消息，那么请求将被取消并重新执行ー但总体信息保持不变。
 
 使用长轮询，你不需要污染 Telegram 的服务器，你仍然可以立即得到新的信息！
@@ -123,13 +123,13 @@ ______________                                   _____________
 |            |                                   |           |
 |            |                                   |           |
 |            |                                   |           |
-|            |         *一同等待*                  |           |
+|            |         *一同等待*                |           |
 |            |                                   |           |
 |  Telegram  |                                   |    Bot    |
 |            |                                   |           |
 |            |                                   |           |
-|            |    ---  你好，新的信息！   --->      |           |
-|            |   <---    谢谢你，兄弟      ---     |           |
+|            |    ---  你好，新的信息！   --->   |           |
+|            |   <---    谢谢你，兄弟      ---   |           |
 |____________|                                   |___________|
 ```
 
@@ -152,7 +152,7 @@ ______________                                   _____________
 你不需要一直让 bot 与 Telegram 保持连接。
 当没有请求时，你可以使用自动将基础结构收敛为零消耗的服务。
 如果你愿意， 你甚至可以 [在响应 Telegram 请求时调用 API](#webhook-reply), 即使这样会有很多缺点。
-你可以在 [这里](/ref/core/ApiClientOptions.md#canUseWebhookReply) 查看配置选项。
+你可以在 [这里](https://deno.land/x/grammy/mod.ts?s=ApiClientOptions#prop_canUseWebhookReply) 查看配置选项。
 
 Webhooks 可以在这些地方良好运行：
 
@@ -190,7 +190,7 @@ bot.start();
 因此，我们希望你能够选择一个合适的框架，去启动一个简单的 web 服务器。
 
 每个 grammY bot 都可以转换为许多 web 框架的中间件，包括 `express`，`koa`/`oak` 等等。
-你可以从 grammY 中导入 webhookCallback 函数，将你的 bot 服务转换成相应框架的中间件。
+你可以从 grammY 中导入 `webhookCallback` 函数 ([API 参考](https://deno.land/x/grammy/mod.ts?s=webhookCallback)) 为对应的框架创建一个中间件。
 
 <CodeGroup>
  <CodeGroupItem title="TypeScript" active>
@@ -235,6 +235,33 @@ app.use(webhookCallback(bot, "oak"));
 
 如果你考虑在 VPS 上使用 webhooks 运行你的 bot，请确保你阅读了 Telegram 团队写的 [Marvin's Marvellous Guide to All Things Webhook](https://core.telegram.org/bots/webhooks)。
 
+### Web 框架适配器
+
+为了支持多种不同的 web 框架，grammY 采用了 **适配器** 的概念.
+每个适配器负责将 Web 框架的输入和输出中继到 grammY，反之亦然。
+传递给 `webhookCallback` 的第二个参数 ([API 参考](https://deno.land/x/grammy/mod.ts?s=webhookCallback)) 定义了用于与 Web 框架通信的框架适配器。
+
+由于这种方法的工作方式，我们通常需要为每个框架配备一个适配器，但是，由于某些框架共享相似的接口，因此已知适配器可以与多个框架一起工作。
+下表包含当前可用的适配器，以及它们已知可使用的框架、API 或运行时。
+
+| 适配器           | 框架/API/运行时                                                                |
+| ---------------- | ------------------------------------------------------------------------------ |
+| `aws-lambda`     | AWS Lambda Functions                                                           |
+| `azure`          | Azure Functions                                                                |
+| `cloudflare`     | Cloudflare Workers (Service Worker)                                            |
+| `cloudflare-mod` | Cloudflare Workers (Module Worker)                                             |
+| `express`        | Express, Google Cloud Functions                                                |
+| `fastify`        | Fastify                                                                        |
+| `hono`           | Hono                                                                           |
+| `http`, `https`  | Node.js `http`/`https` modules, Vercel                                         |
+| `koa`            | Koa                                                                            |
+| `next-js`        | Next.js                                                                        |
+| `oak`            | Oak                                                                            |
+| `serveHttp`      | `Deno.serveHttp`                                                               |
+| `std/http`       | `Deno.serve`, `std/http`, `Deno.upgradeHttp`, `Fresh`, `Ultra`, `Rutt`, `Sift` |
+| `sveltekit`      | SvelteKit                                                                      |
+| `worktop`        | Worktop                                                                        |
+
 ### Webhook Reply
 
 当收到一个 webhook 请求时，你的 bot 可以在响应中调用一个方法。
@@ -249,11 +276,11 @@ app.use(webhookCallback(bot, "oak"));
 4. 还要注意的是，grammY 中的类型并不反映所执行的 webhook 回调的结果！
    例如，它们表明你总是接收到一个响应对象，但确保在使用这个次要的性能优化时，你将自己责任，努力让他不会出错。
 
-如果你想使用 webhook reply，你可以在你的 `BotConfig` 的 `client` 选项中指定 `canUseWebhookReply` 选项（[API 参考](/ref/core/BotConfig.md)）。
+如果你想使用 webhook reply，你可以在你的 `BotConfig` 的 `client` 选项中指定 `canUseWebhookReply` 选项（[API 参考](https://deno.land/x/grammy/mod.ts?s=BotConfig)）。
 传递一个函数，该函数决定是否对给定的请求使用 webhook 应答(由方法标识)。
 
 ```ts
-const bot = new Bot(token, {
+const bot = new Bot("", {
   client: {
     // 如果你愿意在某些方法上使用 webhook reply。
     canUseWebhookReply: (method) => method === "sendChatAction",
@@ -264,18 +291,18 @@ const bot = new Bot(token, {
 这就是 webhook 在内部的工作原理。
 
 ```asciiart:no-line-numbers
-______________                                   _____________
-|            |                                   |           |
-|            |                                   |           |
-|            |                                   |           |
+______________                                     _____________
+|            |                                     |           |
+|            |                                     |           |
+|            |                                     |           |
 |            |         *一同等待*                  |           |
-|            |                                   |           |
-|  Telegram  |                                   |    Bot    |
-|            |                                   |           |
-|            |                                   |           |
-|            |    --- 你好！这里有一条新消息 --->    |           |
+|            |                                     |           |
+|  Telegram  |                                     |    Bot    |
+|            |                                     |           |
+|            |                                     |           |
+|            |    --- 你好！这里有一条新消息 --->  |           |
 |            | <--- 好的，执行 sendChatAction ---  |           |
-|____________|                                   |___________|
+|____________|                                     |___________|
 ```
 
 ### 及时结束 Webhook 请求
@@ -298,20 +325,20 @@ Telegram 试图确保你的 bot 收到所有 update。
 这意味着它将多次执行所有 update 处理，包括发送任何响应消息。
 
 ```asciiart:no-line-numbers
-______________                                   _____________
-|            |                                   |           |
-|            | ---    你好，我这里有新信息    --->   |           |
-|            |                              .    |           |
-|            |        *bot 处理*             .    |           |
-|            |                              .    |           |
-|  Telegram  | --- 我说了有新消息！！！ --->         |    Bot    |
-|            |                              ..   |           |
+______________                                     _____________
+|            |                                     |           |
+|            | ---    你好，我这里有新信息    ---> |           |
+|            |                                .    |           |
+|            |        *bot 处理*              .    |           |
+|            |                                .    |           |
+|  Telegram  | --- 我说了有新消息！！！ --->       |    Bot    |
+|            |                                ..   |           |
 |            |        *bot 处理了第二次*      ..   |           |
-|            |                              ..   |           |
+|            |                                ..   |           |
 |            | ---      你好！！！！       --->    |           |
-|            |                              ...  |           |
+|            |                                ...  |           |
 |            |        *bot 处理了第三次*      ...  |           |
-|____________|                              ...  |___________|
+|____________|                                ...  |___________|
 ```
 
 这就是为什么 grammY 在 `webhookCallback` 中有着更短的超时时间（默认值：10 秒）。
@@ -359,14 +386,14 @@ ______________                                   _____________
 ```asciiart:no-line-numbers
 ______________                                   _____________
 |            |                                   |           |
-|            |   ---   你好，有新消息        --->   |           |
-|            |  <---     谢谢你兄弟         ---.   |           |
+|            |   ---   你好，有新消息     --->   |           |
+|            |  <---     谢谢你兄弟       ---.   |           |
 |            |                               .   |           |
 |            |                               .   |           |
-|  Telegram  |      *bot 队列工作中*           .   |    Bot    |
+|  Telegram  |      *bot 队列工作中*         .   |    Bot    |
 |            |                               .   |           |
 |            |                               .   |           |
-|            |  <---   返回了结果消息       ---     |           |
+|            |  <---   返回了结果消息    ---     |           |
 |            |   ---       好的           --->   |           |
 |____________|                                   |___________|
 ```

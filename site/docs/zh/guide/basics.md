@@ -28,7 +28,7 @@ bot.command("start", (ctx) => {/* ... */});
 bot.hears(/echo *+)?/, (ctx) => {/* ... */});
 ```
 
-你可以在你的代码编辑器中使用自动完成来查看所有可用的选项，或者查看 `Composer` 类的 [所有方法](/ref/core/Composer.md)。
+你可以在你的代码编辑器中使用自动完成来查看所有可用的选项，或者查看 `Composer` 类的 [所有方法](https://deno.land/x/grammy/mod.ts?s=Composer)。
 
 > [了解更多](./filter-queries.md) 关于使用 `bot.on()` 来筛选请求的内容。
 
@@ -41,6 +41,9 @@ Bot 可以使用的所有方法（**[重要的列表](https://core.telegram.org/
 await bot.api.sendMessage(12345, "Hi!");
 // 你也可以选择性地传入一个选项对象。
 await bot.api.sendMessage(12345, "Hi!", {/* 其他选项 */});
+// 检查已发送消息的消息对象。
+const message = await bot.api.sendMessage(12345, "Hi!");
+console.log(message.message_id);
 
 // 获取有关 bot 本身的信息。
 const me = await bot.api.getMe();
@@ -50,7 +53,7 @@ const me = await bot.api.getMe();
 
 每个方法都接受一个可选的 `Other` 类型的选项对象，它允许你为你的 API 调用设置更多选项。
 这些选项对象与上面列出的方法的选项对象完全对应。
-你也可以在你的代码编辑器中使用自动完成来查看所有可用的选项，或者查看 `Api` 类的 [所有方法](/ref/core/Api.md)。
+你也可以在你的代码编辑器中使用自动完成来查看所有可用的选项，或者查看 `Api` 类的 [所有方法](https://deno.land/x/grammy/mod.ts?s=Api)。
 本页的其余部分展示了一些相关示例。
 
 同时，请看 [下一节](./context.md)，以了解监听器的上下文对象如何使发送消息变得轻而易举！
@@ -114,11 +117,11 @@ await bot.api.sendMessage(
 
 ## 强行回复
 
-> 如果你的 bot 在群聊中以 [隐私模式](https://core.telegram.org/bots#privacy-mode) 运行，这应该会很有用。
+> 如果你的 bot 在群聊中以 [隐私模式](https://core.telegram.org/bots/features#privacy-mode) 运行，这应该会很有用。
 
 当你发送消息时，你可以让用户的 Telegram 客户端自动指定该消息为回复。
 这意味着，用户会自动回复你 bot 的消息（除非他们手动删除回复）。
-因此，即使在群聊中以 [隐私模式](https://core.telegram.org/bots#privacy-mode) 运行，你的 bot 也会收到用户的信息。
+因此，即使在群聊中以 [隐私模式](https://core.telegram.org/bots/features#privacy-mode) 运行，你的 bot 也会收到用户的信息。
 
 你可以像这样强行回复：
 

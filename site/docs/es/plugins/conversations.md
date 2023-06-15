@@ -102,13 +102,13 @@ async function saludo(conversation, ctx) {
 Veamos cuáles son los dos parámetros.
 
 _El segundo parámetro_* no es tan interesante, es sólo un objeto de contexto normal.
-Como siempre, se llama `ctx` y utiliza tu [tipo de contexto personalizado](../guide/context.md#customizing-the-context-object) (quizás llamado `MyContext`).
+Como siempre, se llama `ctx` y utiliza tu [tipo de contexto personalizado](../guide/context.md#personalizacion-del-objeto-de-contexto) (quizás llamado `MyContext`).
 El plugin de conversaciones exporta un [context flavor](../guide/context.md#additive-context-flavors) llamado `ConversationFlavor`.
 
 **El primer parámetro** es el elemento central de este plugin.
-Se llama comúnmente `conversation`, y tiene el tipo `Conversación` ([referencia de la API](/ref/conversations/Conversation.md)).
+Se llama comúnmente `conversation`, y tiene el tipo `Conversación` ([referencia de la API](https://deno.land/x/grammy_conversations/mod.ts?s=Conversation)).
 Puede ser usado como un manejador para controlar la conversación, como esperar la entrada del usuario, y más.
-El tipo `Conversation` espera su [tipo de contexto personalizado](../guide/context.md#customizing-the-context-object) como parámetro de tipo, por lo que a menudo utilizaría `Conversation<MyContext>`.
+El tipo `Conversation` espera su [tipo de contexto personalizado](../guide/context.md#personalizacion-del-objeto-de-contexto) como parámetro de tipo, por lo que a menudo utilizaría `Conversation<MyContext>`.
 
 En resumen, en TypeScript, tu función de construcción de conversación se verá así.
 
@@ -326,10 +326,64 @@ bot.start();
 </CodeGroupItem>
 </CodeGroup>
 
+### Instalación con datos de sesión personalizados
+
+Ten en cuenta que si utilizas TypeScript y quieres almacenar tus propios datos de sesión además de utilizar conversaciones, tendrás que proporcionar más información de tipo al compilador.
+Digamos que tienes esta interfaz que describe tus datos de sesión personalizados:
+
+```ts
+interface SessionData {
+  /** propiedad de sesión personalizada */
+  foo: string;
+}
+```
+
+Su tipo de contexto personalizado podría entonces tener el siguiente aspecto:
+
+```ts
+type MyContext = Context & SessionFlavor<SessionData> & ConversationFlavor;
+```
+
+Lo más importante es que al instalar el plugin de sesión con un almacenamiento externo, tendrás que proporcionar los datos de sesión explícitamente.
+Todos los adaptadores de almacenamiento te permiten pasar el `SessionData` como un parámetro de tipo.
+Por ejemplo, así es como tendrías que hacerlo con el [`almacenamiento gratuito`](./session.md#almacenamiento-gratuito) que proporciona grammY.
+
+```ts
+// Instalar el plugin de sesión.
+bot.use(session({
+  // Añade los tipos de sesión al adaptador.
+  storage: freeStorage<SessionData>(bot.token),
+  initial: () => ({ foo: "" }),
+}));
+```
+
+Puedes hacer lo mismo para todos los demás adaptadores de almacenamiento, como `new FileAdapter<SessionData>()` y así sucesivamente.
+
+### Instalación Con Sesiones Múltiples
+
+Naturalmente, puedes combinar conversaciones con [multi sesiones](./session.md#multi-sesiones).
+
+Este plugin almacena los datos de la conversación dentro de `session.conversation`.
+Esto significa que si quieres usar multi sesiones, tienes que especificar este fragmento.
+
+```ts
+// Instala el plugin de sesiones.
+bot.use(session({
+  type: "multi",
+  custom: {
+    initial: () => ({ foo: "" }),
+  },
+  conversation: {}, // puede dejarse vacío
+}));
+```
+
+De esta forma, puedes almacenar los datos de la conversación en un lugar diferente al de otros datos de la sesión.
+Por ejemplo, si dejas la configuración de conversación vacía como se ilustra arriba, el plugin de conversación almacenará todos los datos en memoria.
+
 ## Salir de una conversación
 
 La conversación se ejecutará hasta que su función de construcción de conversación se complete.
-Esto significa que puedes simplemente dejar una conversación usando `return`.
+Esto significa que puedes salir de una conversación simplemente usando `return` o `throw`.
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
@@ -358,18 +412,72 @@ async function hiAndBye(conversation, ctx) {
 
 (Sí, poner un `return` al final de la función es un poco inútil, pero se entiende la idea).
 
-También puedes lanzar un error.
-Esto también saldrá de la conversación.
-Recuerda [instalar un manejador de errores](../guide/errors.md) en tu bot.
+Si se produce un error, también se saldrá de la conversación.
+Sin embargo, el [plugin de sesión](#instalar-y-entrar-en-una-conversacion) sólo persigue los datos si el middleware se ejecuta con éxito.
+Por lo tanto, si lanzas un error dentro de tu conversación y no lo capturas antes de que llegue al plugin de sesión, no se guardará que la conversación fue abandonada.
+Como resultado, el siguiente mensaje causará el mismo error.
 
-Si quieres acabar con la conversación mientras espera la entrada del usuario, también puedes usar `await ctx.conversation.exit()`.
-A menudo es mejor quedarse con el simple retorno de la función, pero hay algunos ejemplos en los que el uso de `await ctx.conversation.exit()` es conveniente.
-Recuerda que debes `esperar` la llamada.
+Puedes mitigar esto instalando un [límite de error](../guide/errors.md#error-boundaries) entre la sesión y la conversación.
+De esta manera, puede evitar que el error se propague por el [árbol de middleware](../advanced/middleware.md) y por lo tanto permitir que el plugin de sesión vuelva a escribir los datos.
+
+> Tenga en cuenta que si está utilizando las sesiones en memoria por defecto, todos los cambios en los datos de la sesión se reflejan inmediatamente, porque no hay un backend de almacenamiento.
+> En ese caso, no es necesario utilizar los límites de error para abandonar una conversación lanzando un error.
+> Así es como los límites de error y las conversaciones podrían usarse juntos.
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
 
-```ts{6,21}
+```ts
+bot.use(session({
+  storage: freeStorage(bot.token), // ajustar
+  initial: () => ({}),
+}));
+bot.use(conversations());
+async function hiAndBye(conversation: MyConversation, ctx: MyContext) {
+  await ctx.reply("¡Hola! y ¡Adiós!");
+  // Abandona la conversación:
+  throw new Error("¡Atrápame si puedes!");
+}
+bot.errorBoundary(
+  (err) => console.error("¡La conversación arrojó un error!", err),
+  createConversation(greeting),
+);
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+bot.use(session({
+  storage: freeStorage(bot.token), // ajustar
+  initial: () => ({}),
+}));
+bot.use(conversations());
+async function hiAndBye(conversation, ctx) {
+  await ctx.reply("¡Hola! y ¡Adiós!");
+  // Abandona la conversación:
+  throw new Error("¡Atrápame si puedes!");
+}
+bot.errorBoundary(
+  (err) => console.error("¡La conversación arrojó un error!", err),
+  createConversation(greeting),
+);
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+Hagas lo que hagas, debes recordar [instalar un manejador de errores](../guide/errors.md) en tu bot.
+
+Si quieres acabar con la conversación desde tu middleware habitual mientras espera la entrada del usuario, también puedes usar `await ctx.conversation.exit()`.
+Esto simplemente borrará los datos del plugin de conversación de la sesión.
+A menudo es mejor quedarse con el simple retorno de la función, pero hay algunos ejemplos en los que el uso de `await ctx.conversation.exit()` es conveniente.
+Recuerda que debes `await` la llamada.
+
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
+
+```ts{6,22}
 async function movie(conversation: MyConversation, ctx: MyContext) {
   // TODO: definir la conversación
 }
@@ -397,7 +505,7 @@ bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 </CodeGroupItem>
  <CodeGroupItem title="JavaScript">
 
-```js{6,21}
+```js{6,22}
 async function movie(conversation, ctx) {
   // TODO: definir la conversación
 }
@@ -427,7 +535,7 @@ bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 
 Tenga en cuenta que el orden es importante aquí.
 Primero debes instalar el plugin de conversaciones (línea 6) antes de poder llamar a `await ctx.conversation.exit()`.
-Además, los manejadores de cancelación genéricos deben ser instalados antes de que las conversaciones reales (línea 21) sean registradas.
+Además, los manejadores de cancelación genéricos deben ser instalados antes de que las conversaciones reales (línea 22) sean registradas.
 
 ## Esperar a las actualizaciones
 
@@ -458,6 +566,68 @@ async function waitForMe(conversation, ctx) {
 
 Una actualización puede significar que se ha enviado un mensaje de texto, o que se ha pulsado un botón, o que se ha editado algo, o prácticamente cualquier otra acción realizada por el usuario.
 Consulta la lista completa en los documentos de Telegram [aquí](https://core.telegram.org/bots/api#update).
+
+El método `wait` siempre produce un nuevo [objeto context](../guide/context.md) que representa la actualización recibida.
+Esto significa que siempre se está tratando con tantos objetos context como actualizaciones se reciban durante la conversación.
+
+<CodeGroup>
+<CodeGroupItem title="TypeScript" active>
+
+```ts
+const TEAM_REVIEW_CHAT = -1001493653006;
+async function askUser(conversation: MyConversation, ctx: MyContext) {
+  // Pregunta al usuario por su dirección.
+  await ctx.reply("¿Podría decirnos su dirección?");
+
+  // Esperar a que el usuario envíe su dirección:
+  const userHomeAddressContext = await conversation.wait();
+
+  // Pregunta al usuario por su nacionalidad.
+  await ctx.reply("¿Podría indicar también su nacionalidad?");
+
+  // Esperar a que el usuario indique su nacionalidad:
+  const userNationalityContext = await conversation.wait();
+
+  await ctx.reply(
+    "Este era el último paso. Ahora que he recibido toda la información pertinente, la enviaré a nuestro equipo para que la revise. ¡Gracias!",
+  );
+
+  // Ahora copiamos las respuestas a otro chat para su revisión.
+  await userHomeAddressContext.copyMessage(TEAM_REVIEW_CHAT);
+  await userNationalityContext.copyMessage(TEAM_REVIEW_CHAT);
+}
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+const TEAM_REVIEW_CHAT = -1001493653006;
+async function askUser(conversation, ctx) {
+  // Pregunta al usuario por su dirección.
+  await ctx.reply("¿Podría decirnos su dirección?");
+
+  // Esperar a que el usuario envíe su dirección:
+  const userHomeAddressContext = await conversation.wait();
+
+  // Pregunta al usuario por su nacionalidad.
+  await ctx.reply("¿Podría indicar también su nacionalidad?");
+
+  // Esperar a que el usuario indique su nacionalidad:
+  const userNationalityContext = await conversation.wait();
+
+  await ctx.reply(
+    "Este era el último paso. Ahora que he recibido toda la información pertinente, la enviaré a nuestro equipo para que la revise. ¡Gracias!",
+  );
+
+  // Ahora copiamos las respuestas a otro chat para su revisión.
+  await userHomeAddressContext.copyMessage(TEAM_REVIEW_CHAT);
+  await userNationalityContext.copyMessage(TEAM_REVIEW_CHAT);
+}
+```
+
+</CodeGroupItem>
+</CodeGroup>
 
 Normalmente, fuera del plugin de conversaciones, cada una de estas actualizaciones sería manejada por el [sistema de middleware](../guide/middleware.md) de tu bot.
 Por lo tanto, tu bot manejaría la actualización a través de un objeto de contexto que se pasa a tus manejadores.
@@ -524,7 +694,7 @@ async function waitForText(conversation, ctx) {
 </CodeGroupItem>
 </CodeGroup>
 
-Consulta la [referencia de la API](/ref/conversations/ConversationHandle.md#wait) para ver todos los métodos disponibles que son similares a `wait`.
+Consulta la [referencia de la API](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#method_wait_0) para ver todos los métodos disponibles que son similares a `wait`.
 
 Veamos ahora cómo funcionan realmente las llamadas wait.
 Como se mencionó anteriormente, **no hacen _literalmente_ que tu bot espere**, aunque podemos programar las conversaciones como si ese fuera el caso.
@@ -568,19 +738,21 @@ if (conversation.random() < 0.5) { /* hace cosas */ }
 
 ### Regla III: Usar funciones de conveniencia
 
-Hay un montón de cosas instaladas en `conversación` que pueden ayudarte mucho.
-Tu código no se rompe exactamente si no las usas, pero puede ser lento o comportarse de forma confusa.
-Sin embargo, el usuario final puede no notar la diferencia.
+Hay un montón de cosas instaladas en `conversation` que pueden ayudarte mucho.
+Tu código a veces ni siquiera se rompe si no las usas, pero incluso así puede ser lento o comportarse de forma confusa.
 
 ```ts
-// Dormir a través de la conversación, mejora masiva del rendimiento
-await conversation.sleep(3000); // 3 segundos
+// `ctx.session` sólo persiste los cambios para el objeto de contexto más reciente
+conversation.session.myProp = 42; // ¡más fiable!
 
-// Depurar el registro a través de la conversación, no imprime registros confusos
-conversation.log("Hola, mundo");
+// Date.now() puede ser impreciso dentro de las conversaciones
+await conversation.now(); // ¡más preciso!
+
+// Depuración de logs mediante conversation, no imprime logs confusos
+conversation.log("Hola, mundo"); // ¡más transparente!
 ```
 
-Ten en cuenta que puedes hacer todo lo anterior a través de `conversation.external()`, pero esto puede ser tedioso de escribir, así que es más fácil usar las funciones de conveniencia ([referencia de la API](/ref/conversations/ConversationHandle.md#Methods)).
+Ten en cuenta que puedes hacer todo lo anterior a través de `conversation.external()`, pero esto puede ser tedioso de escribir, así que es más fácil usar las funciones de conveniencia ([referencia de la API](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#Methods)).
 
 ## Variables, bifurcaciones y bucles
 
@@ -809,7 +981,109 @@ async function waitForMe(conversation, ctx) {
 </CodeGroupItem>
 </CodeGroup>
 
-Como siempre, consulte la [referencia de la API](/ref/conversations/ConversationForm.md) para ver qué métodos están disponibles.
+Como siempre, consulte la [referencia de la API](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationForm) para ver qué métodos están disponibles.
+
+## Trabajando con Plugins
+
+Como se mencionó [anteriormente](#introduccion), los manejadores grammY siempre manejan una sola actualización.
+Sin embargo, con las conversaciones, puedes procesar muchas actualizaciones en secuencia como si todas estuvieran disponibles al mismo tiempo.
+Los plugins hacen esto posible almacenando objetos de contexto antiguos, y reabasteciéndolos más tarde.
+Esta es la razón por la que los objetos de contexto dentro de las conversaciones no siempre se ven afectados por algunos plugins de grammY de la manera que cabría esperar.
+Esto es relevante para los siguientes plugins:
+
+- [menu](./menu.md)
+- [hydrate](./hydrate.md)
+- [i18n](./i18n.md) y [fluent](./fluent.md)
+- [emoji](./emoji.md)
+
+Todos ellos tienen en común que almacenan funciones en el objeto de contexto, que el plugin de conversaciones no puede manejar correctamente.
+Por lo tanto, si quieres combinar conversaciones con uno de estos plugins de grammY, tendrás que utilizar una sintaxis especial para instalar el otro plugin dentro de cada conversación.
+Puedes instalar otros plugins dentro de las conversaciones usando `conversation.run`:
+
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
+
+```ts
+async function convo(conversation: MyConversation, ctx: MyContext) {
+  // Instala los plugins de grammY aquí
+  await conversation.run(plugin());
+  // Continúa definiendo la conversación ...
+}
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+async function convo(conversation, ctx) {
+  // Instala los plugins de grammY aquí
+  await conversation.run(plugin());
+  // Continúa definiendo la conversación ...
+}
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+Esto hará que el plugin esté disponible dentro de la conversación.
+
+Como ejemplo, si quieres usar un menú dentro de una conversación, tu código podría ser así.
+
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
+
+```ts
+async function convo(conversation: MyConversation, ctx: MyContext) {
+  const menu = new Menu<MyContext>()
+    .text("Click", (ctx) => ctx.reply("¡Hola!"));
+  await conversation.run(menu);
+  // Continuar definiendo la conversación ...
+}
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+async function convo(conversation, ctx) {
+  const menu = new Menu()
+    .text("Click", (ctx) => ctx.reply("¡Hola!"));
+  await conversation.run(menu);
+  // Continuar definiendo la conversación ...
+}
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+### Objetos de contexto personalizados
+
+Si estás usando un [objeto de contexto personalizado](../guide/context.md#personalizacion-del-objeto-de-contexto) y quieres instalar propiedades personalizadas en tus objetos de contexto antes de entrar en una conversación, entonces algunas de estas propiedades pueden perderse también.
+En cierto modo, el middleware que utilizas para personalizar tu objeto de contexto también puede considerarse un plugin.
+
+La solución más limpia es **evitar las propiedades de contexto personalizadas** por completo, o al menos sólo instalar propiedades serializables en el objeto de contexto.
+En otras palabras, si todas las propiedades de contexto personalizadas pueden persistir en una base de datos y ser restauradas después, no tienes que preocuparte de nada.
+
+Normalmente, existen otras soluciones a los problemas que se suelen resolver con las propiedades de contexto personalizadas.
+Por ejemplo, a menudo es posible simplemente obtenerlas dentro de la propia conversación, en lugar de obtenerlas dentro de un manejador.
+
+Si ninguna de estas cosas es una opción para ti, puedes intentar trastear tú mismo con `conversation.run`.
+Debes saber que debes llamar a `next` dentro del middleware pasado---de lo contrario, el manejo de actualizaciones será interceptado.
+
+El middleware se ejecutará para todas las actualizaciones pasadas cada vez que llegue una nueva actualización.
+Por ejemplo, si llegan tres objetos de contexto, esto es lo que ocurre:
+
+1. se recibe la primera actualización
+2. se ejecuta el middleware para la primera actualización
+3. se recibe la segunda actualización
+4. el middleware se ejecuta para la primera actualización
+5. el middleware se ejecuta para la segunda actualización
+6. se recibe la tercera actualización
+7. el middleware se ejecuta para la primera actualización
+8. el middleware se ejecuta para la segunda actualización
+9. el middleware se ejecuta para la tercera actualización
+
+Nótese que el middleware se ejecuta con la primera actualización tres veces.
 
 ## Conversaciones paralelas
 
@@ -900,7 +1174,7 @@ bot.on("chat_member")
 Puede ver cuántas conversaciones con qué identificador se están ejecutando.
 
 ```ts
-const stats = ctx.conversation.active;
+const stats = await ctx.conversation.active();
 console.log(stats); // { "enterGroup": 1 }
 ```
 
@@ -1007,4 +1281,4 @@ Como obviamente no queremos matar el runtime de JS, tenemos que atrapar esto de 
 
 - Name: `conversations`
 - Source: <https://github.com/grammyjs/conversations>
-- Reference: [conversations](/ref/conversations/)
+- Reference: <https://deno.land/x/grammy_conversations/mod.ts>

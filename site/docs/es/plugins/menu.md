@@ -5,7 +5,7 @@ Crea fácilmente menús interactivos.
 ## Introducción
 
 Un teclado en línea es un conjunto de botones debajo de un mensaje.
-grammY tiene un [plugin incorporado](./keyboard.md#inline-keyboards) para crear teclados en línea básicos.
+grammY tiene un [plugin incorporado](./keyboard.md#teclados-en-linea) para crear teclados en línea básicos.
 
 El plugin de menús lleva esta idea más allá y te permite crear menús ricos justo dentro del chat.
 Pueden tener botones interactivos, múltiples páginas con navegación entre ellas, y más.
@@ -20,7 +20,7 @@ import { Bot } from "grammy";
 import { Menu } from "@grammyjs/menu";
 
 // Crea un bot.
-const bot = new Bot("token");
+const bot = new Bot("");
 
 // Cree un menú sencillo.
 const menu = new Menu("mi-identificador-de-menu")
@@ -46,7 +46,7 @@ const { Bot } = require("grammy");
 const { Menu } = require("@grammyjs/menu");
 
 // Crea un bot.
-const bot = new Bot("token");
+const bot = new Bot("");
 
 // Cree un menú sencillo.
 const menu = new Menu("mi-identificador-de-menu")
@@ -72,7 +72,7 @@ import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { Menu } from "https://deno.land/x/grammy_menu/mod.ts";
 
 // Crea un bot.
-const bot = new Bot("token");
+const bot = new Bot("");
 
 // Cree un menú sencillo.
 const menu = new Menu("mi-identificador-de-menu")
@@ -122,7 +122,7 @@ Puede pasar una etiqueta y una función manejadora.
 Utilice `row` para terminar la fila actual, y añadir todos los botones posteriores a una nueva fila.
 
 Hay muchos más tipos de botones disponibles, por ejemplo, para abrir URLs.
-Echa un vistazo a la [Referencia API de este plugin](/ref/menu/MenuRange.md) para `MenuRange`, así como a la [Referencia API de Telegram Bot](https://core.telegram.org/bots/api#inlinekeyboardbutton) para `InlineKeyboardButton`.
+Echa un vistazo a la [Referencia API de este plugin](https://deno.land/x/grammy_menu/mod.ts?s=MenuRange) para `MenuRange`, así como a la [Referencia API de Telegram Bot](https://core.telegram.org/bots/api#inlinekeyboardbutton) para `InlineKeyboardButton`.
 
 ## Enviando un Menú
 
@@ -202,7 +202,7 @@ const menu = new Menu("time", { onMenuOutdated: false })
   );
 ```
 
-> El propósito de `onMenuOutdated` se explica [más abajo](#menús-y-huellas-anticuadas).
+> El propósito de `onMenuOutdated` se explica [más abajo](#menus-y-huellas-anticuadas).
 > Puedes ignorarlo por ahora.
 
 También puede actualizar el menú implícitamente editando el mensaje correspondiente.
@@ -422,7 +422,7 @@ Esto le permite pasar mensajes personalizados que se muestran al usuario.
 
 ## Menús y Huellas Anticuadas
 
-Digamos que tienes un menú donde un usuario puede activar y desactivar las notificaciones, como en el ejemplo [aquí arriba](#etiquetas-dinámicas).
+Digamos que tienes un menú donde un usuario puede activar y desactivar las notificaciones, como en el ejemplo [aquí arriba](#etiquetas-dinamicas).
 Ahora, si un usuario envía `/settings` dos veces, obtendrá el mismo menú dos veces.
 Pero, ¡cambiar la configuración de la notificación en uno de los dos mensajes no actualizará el otro!
 
@@ -510,7 +510,7 @@ Sin embargo, esta vez, no necesitamos el diseño completo - todo lo que necesita
 En consecuencia, el plugin del menú realizará una representación superficial para ser más eficiente.
 En otras palabras, el menú sólo se renderizará parcialmente.
 
-Una vez que se conoce el botón pulsado de nuevo (y hemos comprobado que el menú no está [desactualizado](#menús-y-huellas-anticuadas)), invocamos el manejador.
+Una vez que se conoce el botón pulsado de nuevo (y hemos comprobado que el menú no está [desactualizado](#menus-y-huellas-anticuadas)), invocamos el manejador.
 
 Internamente, el plugin de menús hace un gran uso de [API Transformer Functions](../advanced/transformers.md), por ejemplo, para renderizar rápidamente los menús salientes sobre la marcha.
 
@@ -525,4 +525,4 @@ Como resultado, puedes navegar entre menús arbitrarios sin límite, todo mientr
 
 - Nombre: `menu`
 - Fuente: <https://github.com/grammyjs/menu>
-- Referencia: [menu](/ref/menu/)
+- Referencia: <https://deno.land/x/grammy_menu/mod.ts>

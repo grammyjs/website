@@ -1,10 +1,10 @@
-# Usuarios con límite de velocidad (`ratelimiter`)
+# Limitador de velocidad (`ratelimiter`)
 
 ratelimiter es un middleware de limitación de tasa para los bots de Telegram hechos con los frameworks de bots grammY o [Telegraf](https://github.com/telegraf/telegraf).
 En términos simples, es un plugin que te ayuda a desviar el spam pesado en tus bots.
 Para entender mejor ratelimiter, puedes echar un vistazo a la siguiente ilustración:
 
-![El papel de ratelimiter para desviar el spam](/ratelimiter-role.png)
+![El papel de ratelimiter para desviar el spam](/images/ratelimiter-role.png)
 
 ## ¿Cómo funciona exactamente?
 
@@ -41,8 +41,8 @@ ratelimiter es agnóstico al controlador.
 
 Hay dos maneras de utilizar ratelimiter:
 
-- Aceptando los valores por defecto ([Configuración por defecto](#configuración-por-defecto)).
-- Pasando un objeto personalizado que contenga sus ajustes ([Configuración manual](#configuración-manual)).
+- Aceptando los valores por defecto ([Configuración por defecto](#configuracion-por-defecto)).
+- Pasando un objeto personalizado que contenga sus ajustes ([Configuración manual](#configuracion-manual)).
 
 ### Configuración por defecto
 
@@ -195,7 +195,7 @@ import { limit } from "@grammyjs/ratelimiter";
 bot.use(
   limit({
     keyGenerator: (ctx) => {
-      if (ctx.chat?.type === "group" || ctx.chat?.type === "supergroup") {
+      if (ctx.hasChatType(["group", "supergroup"])) {
         // Tenga en cuenta que la clave debe ser un número en formato de cadena como "123456789".
         return ctx.chat.id.toString();
       }
@@ -213,7 +213,7 @@ const { limit } = require("@grammyjs/ratelimiter");
 bot.use(
   limit({
     keyGenerator: (ctx) => {
-      if (ctx.chat?.type === "group" || ctx.chat?.type === "supergroup") {
+      if (ctx.hasChatType(["group", "supergroup"])) {
         // Tenga en cuenta que la clave debe ser un número en formato de cadena como "123456789".
         return ctx.chat.id.toString();
       }
@@ -231,7 +231,7 @@ import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
 bot.use(
   limit({
     keyGenerator: (ctx) => {
-      if (ctx.chat?.type === "group" || ctx.chat?.type === "supergroup") {
+      if (ctx.hasChatType(["group", "supergroup"])) {
         // Tenga en cuenta que la clave debe ser un número en formato de cadena como "123456789".
         return ctx.chat.id.toString();
       }
@@ -249,4 +249,4 @@ En este ejemplo, he utilizado `chat.id` como clave única para la limitación de
 
 - Nombre: `ratelimitador`
 - Fuente: <https://github.com/grammyjs/ratelimiter>
-- Referencia: [ratelimiter](/ref/ratelimiter/)
+- Referencia: <https://deno.land/x/grammy_ratelimiter/mod.ts>

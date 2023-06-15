@@ -14,11 +14,11 @@ Pemfilteran untuk jenis pesan lainnya diserahkan kepada developer bot masing-mas
 
 Sebaliknya, **grammY dilengkapi dengan bahasa query-nya sendiri** yang dapat digunakan untuk **memfilter pesan yang kamu inginkan**.
 
-grammY memiliki lebih dari 650 filter berbeda yang siap dipakai, dan tidak menutup kemungkinan lebih banyak lagi filter yang akan ditambahkan seiring berjalannya waktu.
+grammY memiliki lebih dari 820 filter berbeda yang siap dipakai, dan tidak menutup kemungkinan lebih banyak lagi filter yang akan ditambahkan seiring berjalannya waktu.
 Setiap filter yang valid dapat dilengkapi menggunakan auto-complete di code editor.
 Dengan demikian, kamu cukup mengetik `bot.on("")`, lalu buka auto-complete, kemudian telusuri semua query yang tersedia dengan cara mengetik sesuatu.
 
-![Pencarian Filter Query](/filter-query-search.png)
+![Pencarian Filter Query](/images/filter-query-search.png)
 
 _Type inference_ `bot.on()` akan memahami filter query yang sedang kamu pilih. Dari situ, ia akan mengerucutkan beberapa type context yang ada.
 
@@ -93,7 +93,8 @@ bot.on("msg:text"); // Sama dengan menggunakan `:text`
 
 #### `edit`
 
-Shortcut `edit` mengelompokkan pesan dan postingan channel yang diedit.
+Shortcut `edit` mengelompokkan pesan serta postingan channel yang diedit.
+Dengan kata lain, menggunakan `edit` serupa dengan menyimak event `"edited_message"` dan `"edited_channel_post"`.
 
 ```ts
 bot.on("edit"); // Semua pesan dan postingan yang diedit
@@ -105,6 +106,7 @@ bot.on("edit:location"); // Lokasi terkini (live location) yang diperbarui
 #### `:media`
 
 Shortcut `:media` mengelompokkan pesan foto dan video.
+Dengan kata lain, menggunakan `:media` serupa dengan menyimak event `":photo"` dan `":video"`.
 
 ```ts
 bot.on("message:media"); // pesan foto atau video
@@ -114,7 +116,8 @@ bot.on(":media"); // pesan atau postingan channel berupa media
 
 #### `:file`
 
-Shortcut `:file` menggabungkan semua pesan yang mengandung file.
+Shortcut `:file` mengelompokkan semua pesan yang mengandung file.
+Dengan kata lain, menggunakan `:file` serupa dengan menyimak event `":photo"`, `":animation"`, `":audio"`, `":document"`, `":video"`, `":video_note"`, `":voice"`, dan `":sticker"`.
 Dengan begitu, kamu bisa yakin kalau `await ctx.getFile()` pasti mengembalikan sebuah object file.
 
 ```ts
@@ -141,7 +144,7 @@ Perhatikan bahwa meskipun syntactic sugar ini bisa digunakan untuk bekerja denga
 Pesan service pada dasarnya adalah pesan untuk menginformasikan pengguna di dalam chat tersebut. Adakalanya dalam beberapa kasus, pesan itu tidak akan selalu terlihat.
 Misalnya, di grup besar atau supergroup tidak akan ada pesan service mengenai pengguna yang telah bergabung atau meninggalkan chat.
 Akibatnya, bot kamu bisa jadi tidak akan mendeteksinya.
-Oleh karena itu, kamu harus menyimak [update chat member](#update-chat-member).
+Oleh karena itu, kamu harus menyimak [update chat member](#update-member-chat).
 
 ## Mengombinasikan Beberapa Query
 
@@ -222,14 +225,14 @@ yang digunakan untuk mendeteksi perubahan status member chat lainnya, misalnya k
 
 ### Mengombinasikan Query dengan Method Lain
 
-Kamu bisa mengombinasikan beberapa filter query dengan method-method lain di class `Composer` ([API Reference](/ref/core/Composer.md)), misalnya `command` atau `filter`.
+Kamu bisa mengombinasikan beberapa filter query dengan method-method lain di class `Composer` ([API Reference](https://deno.land/x/grammy/mod.ts?s=Composer)), misalnya `command` atau `filter`.
 Dengan begitu, kamu bisa membuat pola penanganan pesan menjadi lebih fleksibel.
 
 ```ts
 bot.on(":forward_date").command("help"); // Command /help yang di-forward
 
 // Tangani command yang berasal dari private chat saja.
-const pm = bot.filter((ctx) => ctx.chat?.type === "private");
+const pm = bot.chatType("private");
 pm.command("start");
 pm.command("help");
 ```
@@ -313,7 +316,7 @@ function handler(ctx: Filter<Context, ":text">) {
 bot.on(":text", handler);
 ```
 
-> Lihat referensi API untuk [`matchFilter`](/ref/core/matchFilter.md), [`Filter`](/ref/core/Filter.md), dan [`FilterQuery`](/ref/core/FilterQuery.md).
+> Lihat referensi API untuk [`matchFilter`](https://deno.land/x/grammy/filter.ts?s=matchFilter), [`Filter`](https://deno.land/x/grammy/filter.ts?s=Filter), dan [`FilterQuery`](https://deno.land/x/grammy/filter.ts?s=FilterQuery).
 
 ## Bahasa Query
 

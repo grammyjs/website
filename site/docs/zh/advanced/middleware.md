@@ -13,7 +13,7 @@ next: ./structuring.md
 通常，你可以看到下面这样的模式：
 
 ```ts
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 bot.use(/* ... */);
 bot.use(/* ... */);
@@ -27,7 +27,7 @@ bot.start();
 
 看起来很像栈对吧，只不过，在背后的实现中，它实际是一棵树。
 
-该功能的核心是构建这棵树的 `Composer` 类 ([参考](/ref/core/Composer.md))。
+该功能的核心是构建这棵树的 `Composer` 类 ([参考](https://deno.land/x/grammy/mod.ts?s=Composer))。
 
 首先，每一个 `Bot` 的实例同样也是 `Composer` 的实例。
 它是一个子类，就像是 `class Bot extends Composer`。
@@ -44,7 +44,7 @@ bot.start();
 你可以在一个 `Composer` 实例上安装更多中间件尽管已经在某处安装了 `Composer` 它本身。
 
 ```ts
-const bot = new Bot("<token>"); // `Composer` 的子类
+const bot = new Bot(""); // `Composer` 的子类
 
 const composer = new Composer();
 bot.use(composer);

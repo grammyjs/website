@@ -14,11 +14,11 @@ El resto del filtrado de los mensajes se deja al desarrollador, lo que a menudo 
 
 Por el contrario, **grammY incluye su propio lenguaje de consulta** que puedes utilizar para **filtrar exactamente los mensajes** que quieras.
 
-Esto permite utilizar más de 500 filtros diferentes, y es posible que añadamos más con el tiempo.
+Esto permite utilizar más de 820 filtros diferentes, y es posible que añadamos más con el tiempo.
 Todos los filtros válidos se pueden autocompletar en el editor de código.
 Por lo tanto, puedes simplemente escribir `bot.on("")`, abrir el autocompletado, y buscar entre todas las consultas escribiendo algo
 
-![Filtro de búsqueda de consultas](/filter-query-search.png)
+![Filtro de búsqueda de consultas](/images/filter-query-search.png)
 
 La inferencia de tipos de `bot.on()` comprenderá la consulta de filtro que hayas elegido.
 Por lo tanto, ajusta algunos tipos en el contexto que se sabe que existen.
@@ -93,7 +93,8 @@ bot.on("msg:text"); // exactamente lo mismo que `:text`.
 
 #### `edit`
 
-Este atajo de teclado `edit` agrupa los mensajes editados y los mensajes editados del canal.
+Este atajo `edit` agrupa los mensajes editados y los mensajes editados del canal.
+En otras palabras, usar `edit` equivale a escuchar los eventos `"edited_message"` y `"edited_channel_post"`.
 
 ```ts
 bot.on("edit"); // cualquier edición de mensajes o publicaciones del canal
@@ -105,6 +106,7 @@ bot.on("edit:location"); // actualización de la ubicación en vivo
 #### `:media`
 
 El atajo `:media` agrupa los mensajes de foto y vídeo.
+En otras palabras, utilizar `:media` equivale a escuchar tanto eventos `":photo"` como `":video"`.
 
 ```ts
 bot.on("message:media"); // mensajes de foto y video
@@ -115,6 +117,7 @@ bot.on(":media"); // mensajes multimedia o publicaciones del canal
 #### `:archivo`
 
 El atajo `:file` agrupa todos los mensajes que contienen un archivo.
+En otras palabras, utilizar `:file` equivale a escuchar los eventos `":photo"`, `":animation"`, `":audio"`, `":document"`, `":video"`, `":video_note"`, `":voice"`, y `":sticker"`.
 Por lo tanto, puedes estar seguro de que `await ctx.getFile()` te dará un objeto archivo.
 
 ```ts
@@ -230,14 +233,14 @@ que se puede utilizar para detectar los cambios de estado de otros miembros del 
 
 ### Combinación de consultas con otros métodos
 
-Puedes combinar consultas de filtro con otros métodos de la clase `Composer` ([Referencia de la API](/ref/core/Composer.md)), como `command` o `filter`.
+Puedes combinar consultas de filtro con otros métodos de la clase `Composer` ([Referencia de la API](https://deno.land/x/grammy/mod.ts?s=Composer)), como `command` o `filter`.
 Esto permite crear potentes patrones de manejo de mensajes.
 
 ```ts
 bot.on(":forward_date").command("help"); // comandos /help reenviados
 
 // Solo maneja comandos en chats privados.
-const pm = bot.filter((ctx) => ctx.chat?.type === "private");
+const pm = bot.chatType("private");
 pm.command("start");
 pm.command("help");
 ```
@@ -321,7 +324,7 @@ function handler(ctx: Filter<Context, ":text">) {
 bot.on(":text", handler);
 ```
 
-> Consulta las referencias de la API para [`matchFilter`](/ref/core/matchFilter.md), [`Filter`](/ref/core/Filter.md), y [`FilterQuery`](/ref/core/FilterQuery.md) para seguir leyendo.
+> Consulta las referencias de la API para [`matchFilter`](https://deno.land/x/grammy/filter.ts?s=matchFilter), [`Filter`](https://deno.land/x/grammy/filter.ts?s=Filter), y [`FilterQuery`](https://deno.land/x/grammy/filter.ts?s=FilterQuery) para seguir leyendo.
 
 ## El lenguaje de consulta
 

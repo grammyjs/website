@@ -3,15 +3,19 @@
   "deno.enable": true,
   "deno.enablePaths": [
     // everything except .vuepress
+    "./site/README.md",
     "./site/docs/advanced/",
     "./site/docs/demo/",
     "./site/docs/guide/",
     "./site/docs/hosting/",
     "./site/docs/plugins/",
     "./site/docs/resources/",
+    "./site/docs/es/",
+    "./site/docs/id/",
+    "./site/docs/uk/",
     "./site/docs/zh/",
+    "./site/README.md",
     "./site/api/",
-    // but do include the indexing script
-    "./site/docs/.vuepress/plugins/current-versions/build-index.ts"
+    "./site/docs/.vuepress/plugins/current-versions/build-index.ts",
   ]
 }

@@ -37,8 +37,8 @@ Sebelum membahas beberapa contohnya, ada beberapa aturan yang harus diperhatikan
    (kami bisa membantu menambahkan halaman baru tersebut kalau kamu mengalami kesulitan).
 3. Pilih lisensi terbuka seperti MIT atau ISC.
 
-Yang terakhir, kamu perlu tahu bahwa meskipun grammY mendukung baik Node.js maupun [Deno](https://deno.land/), namun kami lebih mengutamakan proyek Deno. Oleh karena itu, kami menyarankan kamu untuk membuat plugin untuk Deno terlebih dahulu (dengan cara yang keren tentunya!).
-Ada sebuah tool keren bernama [deno2node](https://github.com/wojpawlik/deno2node) yang mampu mengubah kodemu dari Deno ke Node.js, sehingga kita bisa men-support kedua platform sama baiknya.
+Yang terakhir, kamu perlu tahu bahwa meskipun grammY mendukung baik Node.js maupun [Deno](https://deno.com/runtime), namun kami lebih mengutamakan proyek Deno. Oleh karena itu, kami menyarankan kamu untuk membuat plugin untuk Deno terlebih dahulu (dengan cara yang keren tentunya!).
+Ada sebuah tool keren bernama [deno2node](https://github.com/fromdeno/deno2node) yang mampu mengubah kodemu dari Deno ke Node.js, sehingga kita bisa men-support kedua platform sama baiknya.
 Dukungan untuk Deno adalah syarat yang wajib untuk plugin official, sedangkan plugin pihak-ketiga tidak diwajibkan.
 Terlepas dari itu semua, kami sangat menyarankan kamu untuk mencoba Deno.
 Setelah mencobanya, kami yakin kamu tidak ingin berpaling darinya.
@@ -85,7 +85,7 @@ Kemudian, kode di atas bisa kita terapkan ke bot:
 import { onlyAccept } from "./plugin.ts";
 import { Bot } from "./deps.deno.ts";
 
-const bot = new Bot(""); // <-- Isi token bot-mu di sini
+const bot = new Bot("");
 
 bot.use(onlyAccept("grammY"));
 
@@ -150,7 +150,7 @@ import { Bot, InputFile } from "./deps.deno.ts";
 import { autoChatAction } from "./plugin.ts";
 
 // Buat sebuah instance bot.
-const bot = new Bot(""); // <-- Isi token bot-mu di sini
+const bot = new Bot("");
 
 // Gunakan plugin-nya
 bot.api.config.use(autoChatAction());
@@ -194,7 +194,7 @@ plugin-template/
 **`deps.deno.ts` dan `deps.node.ts`**: File untuk para developer yang ingin menulis plugin untuk Deno, kemudian mengubahnya ke Node.js.
 Seperti yang sudah disebutkan sebelumnya, kita menggunakan tool `deno2node` untuk mengubah kode Deno kita menjadi Node.js.
 `deno2node` memiliki fitur yang menyediakan file runtime-khusus untuk kode tersebut.
-File-file tersebut harus berdampingan satu sama lain mengikuti struktur penamaan `*.deno.ts` dan `*.node.ts` seperti yang [dijelaskan di dokumentasi berikut](https://github.com/wojpawlik/deno2node#runtime-specific-code).
+File-file tersebut harus berdampingan satu sama lain mengikuti struktur penamaan `*.deno.ts` dan `*.node.ts` seperti yang [dijelaskan di dokumentasi berikut](https://github.com/fromdeno/deno2node#runtime-specific-code).
 Itulah kenapa terdapat dua buah file: `deps.deno.ts` dan `deps.node.ts`.
 Jika terdapat dependency Node.js yang lain, masukkan mereka ke dalam `deps.node.ts`, kalau tidak ada, biarkan kosong.
 

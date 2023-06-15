@@ -13,7 +13,7 @@ He decidido hacer la API homogénea.
 
 Algunas de las factories consumen parámetros opcionales o requeridos.
 
-```typescript
+```ts
 import {
   ignoreOld,
   onlyAdmin,
@@ -57,7 +57,7 @@ Tienes que proporcionar el id de superadministrador.
 
 ### `sequentialize`
 
-El middleware básico [sequentialize](../advanced/scaling.md#la-concurrencia-es-difícil) que toma el id del chat como identificador secuencial.
+El middleware básico [sequentialize](../advanced/scaling.md#la-concurrencia-es-dificil) que toma el id del chat como identificador secuencial.
 
 ## Resumen del plugin
 

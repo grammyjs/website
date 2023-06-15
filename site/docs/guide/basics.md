@@ -28,7 +28,7 @@ bot.command("start", (ctx) => {/* ... */});
 bot.hears(/echo *(.+)?/, (ctx) => {/* ... */});
 ```
 
-You can use auto-complete in your code editor to see all available options, or check out [all methods](/ref/core/Composer.md) of the `Composer` class.
+You can use auto-complete in your code editor to see all available options, or check out [all methods](https://deno.land/x/grammy/mod.ts?s=Composer) of the `Composer` class.
 
 > [Read more](./filter-queries.md) about filtering for specific message types with `bot.on()`.
 
@@ -41,6 +41,9 @@ All methods that bots can use (**[important list](https://core.telegram.org/bots
 await bot.api.sendMessage(12345, "Hi!");
 // Optionally, you can pass an options object.
 await bot.api.sendMessage(12345, "Hi!", {/* more options */});
+// Inspect the message object of the sent message.
+const message = await bot.api.sendMessage(12345, "Hi!");
+console.log(message.message_id);
 
 // Get information about the bot itself.
 const me = await bot.api.getMe();
@@ -50,7 +53,7 @@ const me = await bot.api.getMe();
 
 Every method takes an optional options object of type `Other`, which allows you to set further options for your API calls.
 These options objects correspond exactly with the options that you can find in list of methods linked above.
-You can also use auto-complete in your code editor to see all available options, or check out [all methods](/ref/core/Api.md) of the `Api` class.
+You can also use auto-complete in your code editor to see all available options, or check out [all methods](https://deno.land/x/grammy/mod.ts?s=Api) of the `Api` class.
 The rest of this page shows some examples for this.
 
 Also, check out the [next section](./context.md) to learn how the context object of a listener makes sending messages a breeze!
@@ -114,11 +117,11 @@ File handling is explained in greater depth in a [later section](./files.md#send
 
 ## Force Reply
 
-> This can be useful if your bot is running in [privacy mode](https://core.telegram.org/bots#privacy-mode) in group chats.
+> This can be useful if your bot is running in [privacy mode](https://core.telegram.org/bots/features#privacy-mode) in group chats.
 
 When you send a message, you can make the user's Telegram client automatically specify the message as reply.
 That means that the user will reply to your bot's message automatically (unless they remove the reply manually).
-As a result, your bot will receive the user's message even when running in [privacy mode](https://core.telegram.org/bots#privacy-mode) in group chats.
+As a result, your bot will receive the user's message even when running in [privacy mode](https://core.telegram.org/bots/features#privacy-mode) in group chats.
 
 You can force a reply like this:
 

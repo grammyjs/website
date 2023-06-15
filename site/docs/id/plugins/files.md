@@ -19,7 +19,7 @@ import { FileFlavor, hydrateFiles } from "@grammyjs/files";
 type MyContext = FileFlavor<Context>;
 
 // Buat sebuah bot.
-const bot = new Bot<MyContext>("BOT_TOKEN");
+const bot = new Bot<MyContext>("");
 
 // Gunakan plugin ini.
 bot.api.config.use(hydrateFiles(bot.token));
@@ -43,7 +43,7 @@ import { Bot } from "grammy";
 import { hydrateFiles } from "@grammyjs/files";
 
 // Buat sebuah bot.
-const bot = new Bot("BOT_TOKEN");
+const bot = new Bot("");
 
 // Gunakan plugin ini.
 bot.api.config.use(hydrateFiles(bot.token));
@@ -73,7 +73,7 @@ import {
 type MyContext = FileFlavor<Context>;
 
 // Buat sebuah bot.
-const bot = new Bot<MyContext>("BOT_TOKEN");
+const bot = new Bot<MyContext>("");
 
 // Gunakan plugin ini.
 bot.api.config.use(hydrateFiles(bot.token));
@@ -150,4 +150,4 @@ const bot = new Bot<MyContext, MyApi>("");
 
 - Nama: `files`
 - Sumber: <https://github.com/grammyjs/files>
-- Referensi: [files](/ref/files/)
+- Referensi: <https://deno.land/x/grammy_files/mod.ts>

@@ -20,7 +20,7 @@ import { Bot } from "grammy";
 import { Menu } from "@grammyjs/menu";
 
 // Create a bot.
-const bot = new Bot("token");
+const bot = new Bot("");
 
 // Create a simple menu.
 const menu = new Menu("my-menu-identifier")
@@ -46,7 +46,7 @@ const { Bot } = require("grammy");
 const { Menu } = require("@grammyjs/menu");
 
 // Create a bot.
-const bot = new Bot("token");
+const bot = new Bot("");
 
 // Create a simple menu.
 const menu = new Menu("my-menu-identifier")
@@ -72,7 +72,7 @@ import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { Menu } from "https://deno.land/x/grammy_menu/mod.ts";
 
 // Create a bot.
-const bot = new Bot("token");
+const bot = new Bot("");
 
 // Create a simple menu.
 const menu = new Menu("my-menu-identifier")
@@ -122,7 +122,7 @@ You can pass a label and a handler function.
 Use `row` to end the current row, and add all subsequent buttons to a new one.
 
 There are many more button types available, e.g. for opening URLs.
-Check out [this plugin's API Reference](/ref/menu/MenuRange.md) for `MenuRange`, as well as the [Telegram Bot API Reference](https://core.telegram.org/bots/api#inlinekeyboardbutton) for `InlineKeyboardButton`.
+Check out this plugin's [API Reference](https://deno.land/x/grammy_menu/mod.ts?s=MenuRange) for `MenuRange`, as well as the [Telegram Bot API Reference](https://core.telegram.org/bots/api#inlinekeyboardbutton) for `InlineKeyboardButton`.
 
 ## Sending a Menu
 
@@ -360,7 +360,7 @@ They allow you to arbitrarily change the structure of an existing menu instance,
 
 You can let a part of a menu's buttons be generated on the fly (or all of them if you want).
 We call this part of the menu a _dynamic range_.
-In other words, instead of defining the buttons directly on the menu, you can pass a factory function that creates a the buttons when the menu is rendered.
+In other words, instead of defining the buttons directly on the menu, you can pass a factory function that creates the buttons when the menu is rendered.
 The easiest way to create a dynamic range in this function is by using the `MenuRange` class that this plugin provides.
 A `MenuRange` provides you with exactly the same functions as a menu, but it does not have an identifier, and it cannot be registered.
 
@@ -530,4 +530,4 @@ As a result, you are able to navigate between arbitrary menus without limit, all
 
 - Name: `menu`
 - Source: <https://github.com/grammyjs/menu>
-- Reference: [menu](/ref/menu/)
+- Reference: <https://deno.land/x/grammy_menu/mod.ts>

@@ -14,7 +14,7 @@ Don't confuse this with [i18n](./i18n.md).
 
 The first thing you do is to initialize a Fluent instance:
 
-```typescript
+```ts
 import { Fluent } from "@moebius/fluent";
 
 const fluent = new Fluent();
@@ -22,7 +22,7 @@ const fluent = new Fluent();
 
 Then, you will need to add at least one translation to the Fluent instance:
 
-```typescript
+```ts
 await fluent.addTranslation({
   // Specify one or more locales supported by your translation:
   locales: "en",
@@ -84,7 +84,7 @@ But first, we will need to configure grammY to use the plugin.
 Before all else, you will need to configure your bot to use the Fluent context flavor.
 If you are not familiar with this concept, you should read the official docs on [Context Flavors](../guide/context.md#context-flavors).
 
-```typescript
+```ts
 import { Context } from "grammy";
 import { FluentContextFlavor } from "@grammyjs/fluent";
 
@@ -94,13 +94,13 @@ export type MyAppContext = Context & FluentContextFlavor;
 
 You will need to create your bot instance the following way in order to use the augmented context type:
 
-```typescript
-const bot = new Bot<MyAppContext>();
+```ts
+const bot = new Bot<MyAppContext>("");
 ```
 
 And the final step would be to register the Fluent plugin itself with grammY:
 
-```typescript
+```ts
 bot.use(
   useFluent({
     fluent,
@@ -115,7 +115,7 @@ Make sure to pass the [previously created Fluent instance](#initialize-fluent).
 Great, now we have everything in place to render our messages!
 Let's do that by defining a test command in our bot:
 
-```typescript
+```ts
 bot.command("i18n_test", async (ctx) => {
   // Call the "translate" or "t" helper to render the
   // message by specifying its ID and additional parameters:

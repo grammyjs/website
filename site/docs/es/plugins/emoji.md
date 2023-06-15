@@ -1,4 +1,4 @@
-# Plugin Emoji (`emoji`)
+# Emojis (`emoji`)
 
 Con este plugin, puedes insertar fácilmente emojis en tus respuestas buscándolos en lugar de copiar y pegar manualmente un emoji de la web en tu código.
 
@@ -39,7 +39,7 @@ import { EmojiFlavor, emojiParser } from "@grammyjs/emoji";
 // https://grammy.dev/es/guide/context.html#transformative-context-flavors
 type MyContext = EmojiFlavor<Context>;
 
-const bot = new Bot<MyContext>(""); // <-- pon tu token de bot entre los ""
+const bot = new Bot<MyContext>("");
 
 bot.use(emojiParser());
 ```
@@ -51,7 +51,7 @@ bot.use(emojiParser());
 const { Bot } = require("grammy");
 const { emojiParser } = require("@grammyjs/emoji");
 
-const bot = new Bot(""); // <-- pon tu token de bot entre los ""
+const bot = new Bot("");
 
 bot.use(emojiParser());
 ```
@@ -71,7 +71,7 @@ importar {
 // https://grammy.dev/es/guide/context.html#transformative-context-flavors
 tipo MyContext = EmojiFlavor<Context>;
 
-const bot = new Bot<MyContext>(""); // <-- pon tu token de bot entre los ""
+const bot = new Bot<MyContext>("");
 
 bot.use(emojiParser());
 ```
@@ -106,4 +106,4 @@ Si no estás familiarizado con esta sintaxis, puedes leer más sobre ella [aquí
 
 - Nombre: `emoji`
 - Fuente: <https://github.com/grammyjs/emoji>
-- Referencia: [emoji](/ref/emoji/)
+- Referencia: <https://deno.land/x/grammy_emoji/mod.ts>

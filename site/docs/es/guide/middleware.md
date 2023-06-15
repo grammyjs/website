@@ -16,7 +16,7 @@ Aunque no es incorrecto decir que están escuchando las actualizaciones, llamarl
 Supongamos que escribes un bot como este:
 
 ```ts{8}
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 bot.use(session());
 
@@ -43,7 +43,7 @@ La actualización **no** se comprueba para el contenido de una foto, porque el m
 Ahora, ¿cómo funciona esto?
 Averigüémoslo.
 
-Podemos inspeccionar el tipo `Middleware` en la referencia de grammY [aquí](/ref/core/Middleware.md):
+Podemos inspeccionar el tipo `Middleware` en la referencia de grammY [aquí](https://deno.land/x/grammy/mod.ts?s=Middleware):
 
 ```ts
 // Se han omitido algunos parámetros de tipo por razones de brevedad.
@@ -52,7 +52,7 @@ type Middleware = MiddlewareFn | MiddlewareObj;
 
 ¡Ajá!
 El middleware puede ser una función o un objeto.
-Sólo hemos utilizado funciones (`(ctx) => { ... }`) hasta ahora, así que ignoremos los objetos middleware por ahora, y profundicemos en el tipo `MiddlewareFn` ([reference](/ref/core/MiddlewareFn.md)):
+Sólo hemos utilizado funciones (`(ctx) => { ... }`) hasta ahora, así que ignoremos los objetos middleware por ahora, y profundicemos en el tipo `MiddlewareFn` ([reference](https://deno.land/x/grammy/mod.ts?s=MiddlewareFn)):
 
 ```ts
 // Vuelve a omitir los parámetros del tipo.
@@ -91,7 +91,7 @@ Simplemente ha ignorado `next`, por lo que no ha pasado la actualización.
 ¡Probemos otra cosa con nuestros nuevos conocimientos!
 
 ```ts
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 bot.on(":text", (ctx) => ctx.reply("¡Texto!"));
 bot.command("start", (ctx) => ctx.reply("¡Comando!"));
@@ -234,7 +234,7 @@ Esto incluye `bot.api.sendMessage`, `ctx.reply`, y todas las demás llamadas de 
 Si tu proyecto es importante para ti, entonces utiliza herramientas de linting que te avisen si alguna vez te olvidas de usar `await` en una `Promise`.
 
 ::: tip Habilitar las promesas no flotantes
-Considere utilizar [ESLint](https://eslint.org/) y configúrelo para que utilice la regla [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-floating-promises.md).
+Considere utilizar [ESLint](https://eslint.org/) y configúrelo para que utilice la regla [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-floating-promises.md).
 Esto se asegurará de que nunca se olvide de usar `await` (gritando).
 :::
 
@@ -249,10 +249,10 @@ Otra diferencia es que no importa cuántos argumentos tome tu middleware: `() =>
 
 Hay dos tipos de middleware: funciones y objetos.
 Los objetos middleware son simplemente una envoltura para las funciones middleware.
-Se utilizan sobre todo internamente, pero a veces también pueden ayudar a las bibliotecas de terceros, o ser utilizados en casos de uso avanzado, como con [Composer](/ref/core/Composer.md):
+Se utilizan sobre todo internamente, pero a veces también pueden ayudar a las bibliotecas de terceros, o ser utilizados en casos de uso avanzado, como con [Composer](https://deno.land/x/grammy/mod.ts?s=Composer):
 
 ```ts
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 bot.use(/*...*/);
 bot.use(/*...*/);

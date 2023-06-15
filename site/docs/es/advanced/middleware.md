@@ -13,7 +13,7 @@ Aunque no está mal que se pueda utilizar el middleware de esta forma lineal (ta
 Normalmente, se ve el siguiente patrón.
 
 ```ts
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 bot.use(/* ... */);
 bot.use(/* ... */);
@@ -26,7 +26,7 @@ bot.start();
 ```
 
 Se parece bastante a un stack, excepto que, detrás de las escenas, es realmente un árbol.
-El corazón de esta funcionalidad es la clase `Composer` ([referencia](/ref/core/Composer.md)) que construye este árbol.
+El corazón de esta funcionalidad es la clase `Composer` ([referencia](https://deno.land/x/grammy/mod.ts?s=Composer)) que construye este árbol.
 
 En primer lugar, cada instancia de `Bot` es una instancia de `Composer`.
 Es sólo una subclase, así que `class Bot extends Composer`.
@@ -43,7 +43,7 @@ La diferencia puede parecer sutil, pero espera hasta la siguiente subsección pa
 Puede instalar más middlewares en una instancia de `Composer` incluso después de instalar el propio `Composer` en algún lugar.
 
 ```ts
-const bot = new Bot("<token>"); // subclase de `Composer`
+const bot = new Bot(""); // subclase de `Composer`
 
 const composer = new Composer();
 bot.use(composer);
@@ -114,7 +114,7 @@ composer.filter(/* 1 */).filter(/* 2 */).use(/* A */);
 
 `2` sólo se comprobará si `1` se mantiene, y `A` sólo se ejecutará si `2` (y por tanto `1`) se mantiene.
 
-Revisa la sección sobre [combinar consultas de filtro](../guide/filter-queries.md#combinación-de-varias-consultas) con tus nuevos conocimientos y siente tu nuevo poder.
+Revisa la sección sobre [combinar consultas de filtro](../guide/filter-queries.md#combinacion-de-varias-consultas) con tus nuevos conocimientos y siente tu nuevo poder.
 
 Un caso especial es `fork`, ya que inicia dos cálculos que son concurrentes, es decir, intercalados en el bucle de eventos.
 En lugar de devolver la instancia de `Composer` creada por la llamada subyacente `use`, devuelve un `Composer` que refleja el cálculo bifurcado.

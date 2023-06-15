@@ -2,7 +2,7 @@
 
 Esta guía te explica cómo puedes alojar tus bots de grammY en [Supabase](https://supabase.com/).
 
-Ten en cuenta que necesitas tener una cuenta de [GitHub](https://github.com) antes de poder utilizar [Supabase Edge Functions](https://supabase.com/docs/guides/functions).
+Ten en cuenta que necesitas tener una cuenta de [GitHub](https://github.com) antes de poder utilizar [Supabase Edge Functions](https://supabase.com/docs/guides/functions/quickstart).
 Además, Supabase Edge Functions se basa en [Deno Deploy](https://deno.com/deploy), así que al igual que [nuestra guía de Deno Deploy](./deno-deploy.md), esta guía es sólo para usuarios de Deno de grammY.
 
 Supabase Edge Functions es ideal para la mayoría de los bots simples, y debes tener en cuenta que no todas las características de Deno están disponibles para las aplicaciones que se ejecutan en Supabase Edge Functions.
@@ -14,7 +14,7 @@ El resultado de este tutorial [se puede ver en nuestro repositorio de bots de ej
 ## Configuración
 
 Para desplegar una función de borde de Supabase, necesitarás crear una cuenta de Supabase, instalar su CLI, y crear un proyecto de Supabase.
-Primero debes [seguir su documentación](https://supabase.com/docs/guides/functions#prerequisites) para configurar las cosas.
+Primero debes [seguir su documentación](https://supabase.com/docs/guides/functions/quickstart#prerequisites) para configurar las cosas.
 
 Crea una nueva Función Supabase ejecutando este comando:
 
@@ -26,7 +26,7 @@ Una vez que hayas creado un proyecto de Supabase Function, puedes escribir tu bo
 
 ## Preparando tu código
 
-> Recuerda que necesitas [ejecutar tu bot en webhhoks](../guide/deployment-types.md#cómo-usar-webhooks), por lo que debes usar `webhookCallback` y no llamar a `bot.start()` en tu código.
+> Recuerda que necesitas [ejecutar tu bot en webhhoks](../guide/deployment-types.md#como-usar-webhooks), por lo que debes usar `webhookCallback` y no llamar a `bot.start()` en tu código.
 
 Puedes utilizar este breve ejemplo de bot como punto de partida.
 
@@ -34,7 +34,10 @@ Puedes utilizar este breve ejemplo de bot como punto de partida.
 import { serve } from "https://deno.land/std/http/server.ts";
 import { Bot, webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 
-const bot = new Bot(Deno.env.get("BOT_TOKEN") ?? "");
+const token = Deno.env.get("BOT_TOKEN");
+if (!token) throw new Error("Falta BOT_TOKEN.");
+
+const bot = new Bot(token);
 
 bot.command("start", (ctx) => ctx.reply("¡Bienvenido! En marcha");
 bot.command("ping", (ctx) => ctx.reply(`¡Pong! ${new Date()}`));

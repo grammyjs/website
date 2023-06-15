@@ -26,19 +26,19 @@ For example, it is not possible to first send a custom keyboard along with a mes
 
 ## Inline Keyboards
 
-> Revisit the inline keyboard section in the [Introduction for Developers](https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating) written by the Telegram team.
+> Revisit the inline keyboard section in the [Telegram Bot Features](https://core.telegram.org/bots/features#inline-keyboards) written by the Telegram team.
 
 grammY has a simple and intuitive way to build up the inline keyboards that your bot can send along with a message.
 It provides a class called `InlineKeyboard` for this.
 
-> Both `switchInline` and `switchInlineCurrent` buttons start inline queries.
+> The buttons added by calling `switchInline`, `switchInlineCurrent`, and `switchInlineChosen` start inline queries.
 > Check out the section about [Inline Queries](../guide/inline-queries.md) for more information about how they work.
 
 ### Building an Inline Keyboard
 
 Here are three examples how to build an inline keyboard with `text` buttons.
 
-You can also use other methods like `url` to let the Telegram clients open a URL, and many more options as listed in the [grammY API Reference](/ref/core/InlineKeyboard.md#Methods) as well as the [Telegram Bot API Reference](https://core.telegram.org/bots/api#inlinekeyboardbutton) for `InlineKeyboard`.
+You can also use other methods like `url` to let the Telegram clients open a URL, and many more options as listed in the [grammY API Reference](https://deno.land/x/grammy/mod.ts?s=InlineKeyboard#Methods) as well as the [Telegram Bot API Reference](https://core.telegram.org/bots/api#inlinekeyboardbutton) for `InlineKeyboard`.
 
 #### Example 1
 
@@ -57,7 +57,7 @@ const inlineKeyboard = new InlineKeyboard()
 
 ##### Result
 
-![Example 1](/inline-keyboard-example-1.webp)
+![Example 1](/images/inline-keyboard-example-1.webp)
 
 #### Example 2
 
@@ -73,7 +73,7 @@ const inlineKeyboard = new InlineKeyboard()
 
 ##### Result
 
-![Example 2](/inline-keyboard-example-2.webp)
+![Example 2](/images/inline-keyboard-example-2.webp)
 
 #### Example 3
 
@@ -90,7 +90,7 @@ const inlineKeyboard = new InlineKeyboard().url(
 
 ##### Result
 
-![Example 3](/inline-keyboard-example-3.webp)
+![Example 3](/images/inline-keyboard-example-3.webp)
 
 ### Sending an Inline Keyboard
 
@@ -162,7 +162,7 @@ First things first: custom keyboards are sometimes just called keyboards, someti
 As a simple rule of thumb, when it isn't absolutely obvious from the context and not called inline keyboard, it probably is a custom keyboard.
 This refers to a way to replace the system keyboard by a set of buttons that you can define.
 
-> Revisit the custom keyboard section in the [Introduction for Developers](https://core.telegram.org/bots#keyboards) written by the Telegram team.
+> Revisit the custom keyboard section in the [Telegram Bot Features](https://core.telegram.org/bots/features#keyboards) written by the Telegram team.
 
 grammY has a simple and intuitive way to build up the custom keyboards that your bot can use to replace the system keyboard.
 It provides a class called `Keyboard` for this.
@@ -174,7 +174,7 @@ Remember that you can listen for text message via `bot.on("message:text")` or `b
 
 Here are three examples how to build a custom keyboard with `text` buttons.
 
-You can also request the phone number with `requestContact`, the location with `requestLocation`, and a poll with `requestPoll`.
+You can also request the phone number with `requestContact`, the location with `requestLocation`, a poll with `requestPoll`, a user with `requestUser`, and a chat with `requestChat`.
 
 #### Example 1
 
@@ -192,7 +192,7 @@ const keyboard = new Keyboard()
 
 ##### Result
 
-![Example 1](/keyboard-example-1.webp)
+![Example 1](/images/keyboard-example-1.webp)
 
 #### Example 2
 
@@ -210,7 +210,7 @@ const keyboard = new Keyboard()
 
 ##### Result
 
-![Example 2](/keyboard-example-2.webp)
+![Example 2](/images/keyboard-example-2.webp)
 
 #### Example 3
 
@@ -226,7 +226,7 @@ const keyboard = new Keyboard()
 
 ##### Result
 
-![Example 3](/keyboard-example-3.webp)
+![Example 3](/images/keyboard-example-3.webp)
 
 ### Sending a Custom Keyboard
 
@@ -243,6 +243,19 @@ Naturally, all other methods that send messages other than text messages support
 
 You can also give your keyboard one or more further properties by calling special methods on it.
 They will not add any buttons, but rather define the behavior of the keyboard.
+
+#### Persistent Keyboards
+
+By default, users see an icon that allows them to show or hide the custom keyboard which your bot set.
+
+You can call `persistent` if you want the custom keyboard to always be shown when the regular system keyboard is hidden.
+That way, users will always see either the custom keyboard or the system keyboard.
+
+```ts
+new Keyboard()
+  .text("Skip")
+  .persistent();
+```
 
 #### Resize Custom Keyboard
 

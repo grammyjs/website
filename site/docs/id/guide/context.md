@@ -5,7 +5,7 @@ next: ./api.md
 
 # Context
 
-Object `Context` ([Referensi API grammY](/ref/core/Context.md)) merupakan komponen penting di grammY.
+Object `Context` ([Referensi API grammY](https://deno.land/x/grammy/mod.ts?s=Context)) merupakan komponen penting di grammY.
 
 Setiap kali kamu menambahkan listener ke object bot, listener ini akan menerima sebuah object context.
 
@@ -60,25 +60,40 @@ Object context selalu berisi informasi tentang bot-mu, yang dapat diakses melalu
 
 Ada sejumlah shortcut yang tersedia untuk object context.
 
-| Shortcut              | Deskripsi                                                                         |
-| --------------------- | --------------------------------------------------------------------------------- |
-| `ctx.msg`             | Mendapatkan object message, termasuk yang sudah diedit                            |
-| `ctx.chat`            | Mendapatkan object chat                                                           |
-| `ctx.senderChat`      | Mendapatkan object chat pengirim dari `ctx.msg` (untuk pesan grup/channel anonim) |
-| `ctx.from`            | Mendapatkan informasi penulis pesan, callback query, dan lainnya                  |
-| `ctx.inlineMessageId` | Mendapatkan id pesan inline dari callback query atau hasil inline yang dipilih    |
+| Shortcut              | Deskripsi                                                                             |
+| --------------------- | ------------------------------------------------------------------------------------- |
+| `ctx.msg`             | Mendapatkan object message, termasuk yang sudah diedit                                |
+| `ctx.chat`            | Mendapatkan object chat                                                               |
+| `ctx.senderChat`      | Mendapatkan object chat pengirim dari `ctx.msg` (untuk pesan grup/channel anonim)     |
+| `ctx.from`            | Mendapatkan informasi penulis pesan, callback query, dan lainnya                      |
+| `ctx.inlineMessageId` | Mendapatkan id pesan inline dari callback query atau hasil inline yang dipilih        |
+| `ctx.entities`        | Mendapatkan entity pesan beserta teksnya, dapat disaring berdasarkan jenis entity-nya |
 
 Dengan kata lain, kamu juga bisa melakukan ini:
 
 ```ts
 bot.on("message", (ctx) => {
-  // Mendapatkan isi teks pesan.
+  // Ambil isi pesan teks.
   const teks = ctx.msg.text;
 });
 
 bot.on("edited_message", (ctx) => {
-  // Mendapatkan isi teks pesan yang diedit.
+  // Ambil isi pesan teks yang diedit.
   const teks = ctx.msg.text;
+});
+
+bot.on("message:entities", (ctx) => {
+  // Ambil semua jenis entity.
+  const entity = ctx.entities();
+
+  // Ambil entity teks pertama.
+  entities[0].text;
+
+  // Ambil entity email.
+  const email = ctx.entities("email");
+
+  // Ambil entity telepon dan email.
+  const teleponDanEmail = ctx.entities(["email", "phone"]);
 });
 ```
 
@@ -110,8 +125,8 @@ if (ctx.hasCallbackQuery(/query-data-\d+/)) {
 ```
 
 Hal yang sama juga berlaku untuk has checks lainnya.
-Lihat [referensi API context object](/ref/core/Context.md#has) untuk mengetahui semua has checks yang tersedia.
-Selain itu, lihat juga [referensi API](/ref/core/Context.md#Static_Properties) untuk static property `Context.has` yang bisa kamu gunakan untuk membuat predicate function memeriksa beberapa context object secara efisien.
+Lihat [referensi API context object](https://deno.land/x/grammy/mod.ts?s=Context#method_has_0) untuk mengetahui semua has checks yang tersedia.
+Selain itu, lihat juga [referensi API](https://deno.land/x/grammy/mod.ts?s=Context#Static_Properties) untuk static property `Context.has` yang bisa kamu gunakan untuk membuat predicate function memeriksa beberapa context object secara efisien.
 
 ## Aksi yang Tersedia
 
@@ -178,7 +193,7 @@ Gunakan auto-complete untuk melihat opsi yang tersedia langsung di code editor.
 :::::
 
 Umumnya, setiap method di `ctx.api` memiliki shortcut dengan nilai yang sudah terisi sebelumnya, seperti `ctx.replyWithPhoto` untuk membalas menggunakan foto, atau `ctx.exportChatInviteLink` untuk mendapatkan link undangan chat yang bersangkutan.
-Jika ingin tahu pintasan apa saja yang tersedia, auto-complete beserta [Referensi API grammY](/ref/core/Context.md) adalah kawan baikmu.
+Jika ingin tahu pintasan apa saja yang tersedia, auto-complete beserta [Referensi API grammY](https://deno.land/x/grammy/mod.ts?s=Context) adalah kawan baikmu.
 
 Harap dicatat bahwa mungkin adakalanya kamu tidak ingin merespon ke chat yang sama.
 Untuk itu, kamu bisa kembali menggunakan method `ctx.api`, lalu menentukan sendiri opsi-opsinya.
@@ -210,12 +225,13 @@ Materi ini memerlukan pemahaman yang baik mengenai middleware. Jika kamu belum m
 Perlu kamu ketahui bahwa beberapa handler mampu memproses object context yang sama. Ada juga sebuah handler khusus yang berfungsi untuk memodifikasi `ctx` sebelum handler-handler lain dijalankan. Hasil modifikasi tersebut akan digunakan oleh handler-handler berikutnya.
 :::
 
-Idenya adalah kamu perlu memasang middleware terlebih dahulu sebelum listener-listener dijalankan.
-Dengan begitu, kamu bisa menentukan berbagai property yang diinginkan di dalam handler-handler tadi.
+Konsepnya adalah middleware harus dipasang sebelum listener.
+Dengan begitu, kamu bisa menambahkan property yang diinginkan ke berbagai handler.
+Misalnya, jika kamu menambahkan `ctx.namaCustomProperty = valueProperty` ke dalam handler tersebut, maka property `ctx.namaCustomProperty` juga akan tersedia untuk handler-handler yang lain.
 
-Sebagai ilustrasi, katakanlah kamu hendak mengatur property `ctx.config` dari object context.
-Di contoh berikut, kamu akan menggunakannya untuk menyimpan beberapa konfigurasi, dengan tujuan agar semua handler bisa mengaksesnya.
-Konfigurasi tersebut akan mempermudah bot untuk mendeteksi apakah pesan dikirim oleh pengguna biasa atau developer bot itu sendiri.
+Sebagai contoh, katakanlah kamu hendak menambahkan property `ctx.config` di object context.
+Nantinya, beberapa konfigurasi akan kita simpan di property tersebut agar bisa diakses oleh semua handler.
+Bot akan memakai konfigurasi tersebut untuk membedakan apakah pesan dikirim oleh user biasa atau developer bot itu sendiri.
 
 Tepat sesudah membuat bot, lakukan hal ini:
 
@@ -266,7 +282,7 @@ Type baru `MyContext` sekarang secara akurat mendeskripsikan object context bot 
 Kamu bisa menggunakan type baru dengan memasangnya ke constructor `Bot`.
 
 ```ts
-const bot = new Bot<MyContext>("<token_bot_kamu>");
+const bot = new Bot<MyContext>("");
 ```
 
 Hasil akhirnya menjadi seperti ini:
@@ -286,7 +302,7 @@ type MyContext = Context & {
   config: BotConfig;
 };
 
-const bot = new Bot<MyContext>("<token_bot_kamu>");
+const bot = new Bot<MyContext>("");
 
 // Atur property yang diinginkan di object context.
 bot.use(async (ctx, next) => {
@@ -310,7 +326,7 @@ bot.command("start", async (ctx) => {
 ```js
 const BOT_DEVELOPER = 123456; // Id chat developer
 
-const bot = new Bot("<token_bot_kamu>");
+const bot = new Bot("");
 
 // Atur property yang diinginkan di object context.
 bot.use(async (ctx, next) => {
@@ -331,7 +347,7 @@ bot.command("start", async (ctx) => {
 </CodeGroupItem>
 </CodeGroup>
 
-Type context modifikasi juga bisa diteruskan ke komponen lain yang menangani middleware, contohnya [composer](/ref/core/Composer.md).
+Type context modifikasi juga bisa diteruskan ke komponen lain yang menangani middleware, contohnya [composer](https://deno.land/x/grammy/mod.ts?s=Composer).
 
 ```ts
 const composer = new Composer<MyContext>();
@@ -363,7 +379,7 @@ Class kamu harus meng-extend `Context`.
 
 ```ts
 import { Bot, Context } from "grammy";
-import type { Update, UserFromGetMe } from "@grammyjs/types";
+import type { Update, UserFromGetMe } from "grammy/types";
 
 // Definisikan class context khusus.
 class MyContext extends Context {
@@ -377,7 +393,7 @@ class MyContext extends Context {
 }
 
 // Masukkan constructor class context modifikasi sebagai sebuah opsi.
-const bot = new Bot("<token>", {
+const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
@@ -407,7 +423,7 @@ class MyContext extends Context {
 }
 
 // Masukkan constructor class context modifikasi sebagai sebuah opsi.
-const bot = new Bot("<token>", {
+const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
@@ -424,7 +440,10 @@ bot.start();
 
 ```ts
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
-import type { Update, UserFromGetMe } from "https://esm.sh/@grammyjs/types";
+import type {
+  Update,
+  UserFromGetMe,
+} from "https://deno.land/x/grammy/types.ts";
 
 // Definisikan class context khusus.
 class MyContext extends Context {
@@ -438,7 +457,7 @@ class MyContext extends Context {
 }
 
 // Masukkan constructor class context modifikasi sebagai sebuah opsi.
-const bot = new Bot("<token>", {
+const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
@@ -489,7 +508,7 @@ interface SessionFlavor<S> {
 }
 ```
 
-Type `SessionFlavor` ([referensi API](/ref/core/SessionFlavor.md)) di atas cukup sederhana: ia hanya mendefinisikan property `session`.
+Type `SessionFlavor` ([referensi API](https://deno.land/x/grammy/mod.ts?s=SessionFlavor)) di atas cukup sederhana: ia hanya mendefinisikan property `session`.
 Ia mengambil type parameter yang akan mendefinisikan struktur asli dari sebuah data session.
 
 Lantas, manfaatnya apa?
@@ -543,7 +562,7 @@ Beberapa [transformative context flavor](#transformative-context-flavor) juga bi
 type ContextKu = FlavorX<FlavorY<FlavorZ<Context>>>;
 ```
 
-Di sini, urutan context flavor akan berpengaruh. `FlavorZ` mengubah `Context` terlebih dahulu, lalu dilanjutkan oleh `FlavorY`, dan hasilnya akan diubah kembali oleh `FlavorX`. Dalam praktiknya, ini tidak perlu dikhawatirkan karena plugin biasanya tidak saling berbenturan satu sama lain.
+Di sini, urutan context flavor akan berpengaruh. `FlavorZ` mengubah `Context` terlebih dahulu, lalu dilanjutkan oleh `FlavorY`, dan hasilnya akan diubah kembali oleh `FlavorX`.
 
 Bahkan kamu bisa mencampur flavor additive dan flavor transformative sekaligus:
 
@@ -556,3 +575,6 @@ type ContextKu = FlavorX<
   >
 >;
 ```
+
+Pastikan untuk selalu mengikuti pola ini ketika menginstal beberapa plugin.
+Kombinasi context flavor yang salah akan mengakibatkan berbagai macam type error.

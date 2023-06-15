@@ -1,6 +1,6 @@
 # 流量控制（`transformer-throttler`）
 
-这个插件通过 [Bottleneck](https://github.com/SGrondin/bottleneck) 对传出的 API 请求实例进行排队，以防止你的 bot 被 [限流](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this)，正如在 [这个高级部分](../advanced/flood.md) 的文档中描述的那样。
+这个插件通过 [Bottleneck](https://github.com/SGrondin/bottleneck) 对传出的 API 请求实例进行排队，以防止你的 bot 被 [限流](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this)，正如在这个 [高级部分](../advanced/flood.md) 的文档中描述的那样。
 
 ::: warning 不存在文档中的 API 限制
 Telegram 实现了一些未指定的和无文档的 API 调用的限制。
@@ -21,16 +21,12 @@ import { Bot } from "grammy";
 import { run } from "@grammyjs/runner";
 import { apiThrottler } from "@grammyjs/transformer-throttler";
 
-const botToken = process.env.BOT_TOKEN;
-if (!botToken) {
-  throw Error("BOT_TOKEN is required");
-}
-const bot = new Bot(botToken);
+const bot = new Bot("");
 
 const throttler = apiThrottler();
 bot.api.config.use(throttler);
 
-bot.command("/example", (ctx) => ctx.reply("I am throttled"));
+bot.command("example", (ctx) => ctx.reply("I am throttled"));
 
 // 如果你使用了限流器，你可能想要使用一个 runner 来并发处理 update。
 run(bot);
@@ -44,16 +40,12 @@ const { Bot } = require("grammy");
 const { run } = require("@grammyjs/runner");
 const { apiThrottler } = require("@grammyjs/transformer-throttler");
 
-const botToken = process.env.BOT_TOKEN;
-if (!botToken) {
-  throw Error("BOT_TOKEN is required");
-}
-const bot = new Bot(botToken);
+const bot = new Bot("");
 
 const throttler = apiThrottler();
 bot.api.config.use(throttler);
 
-bot.command("/example", (ctx) => ctx.reply("I am throttled"));
+bot.command("example", (ctx) => ctx.reply("I am throttled"));
 
 // 如果你使用了限流器，你可能想要使用一个 runner 来并发处理 update。
 run(bot);
@@ -67,16 +59,12 @@ import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { run } from "https://deno.land/x/grammy_runner/mod.ts";
 import { apiThrottler } from "https://deno.land/x/grammy_transformer_throttler/mod.ts";
 
-const botToken = Deno.env.get("BOT_TOKEN");
-if (!botToken) {
-  throw Error("BOT_TOKEN is required");
-}
-const bot = new Bot(botToken);
+const bot = new Bot("");
 
 const throttler = apiThrottler();
 bot.api.config.use(throttler);
 
-bot.command("/example", (ctx) => ctx.reply("I am throttled"));
+bot.command("example", (ctx) => ctx.reply("I am throttled"));
 
 // 如果你使用了限流器，你可能想要使用一个 runner 来并发处理 update。
 run(bot);
@@ -130,4 +118,4 @@ const outConfig = {
 
 - 名字：`transformer-throttler`
 - 源码：<https://github.com/grammyjs/transformer-throttler>
-- 参考：[transformer_throttler](/ref/transformer_throttler/)
+- 参考：<https://deno.land/x/grammy_transformer_throttler/mod.ts>

@@ -18,7 +18,7 @@ Do this by opening a terminal and typing:
 <CodeGroup>
  <CodeGroupItem title="NPM" active>
 
-```bash
+```sh
 # Create a new directory and change into it.
 mkdir my-bot
 cd my-bot
@@ -34,7 +34,7 @@ npm install grammy
 </CodeGroupItem>
  <CodeGroupItem title="Yarn">
 
-```bash
+```sh
 # Create a new directory and change into it.
 mkdir my-bot
 cd my-bot
@@ -50,7 +50,7 @@ yarn add grammy
 </CodeGroupItem>
   <CodeGroupItem title="pnpm">
 
-```bash
+```sh
 # Create a new directory and change into it.
 mkdir my-bot
 cd my-bot
@@ -78,9 +78,10 @@ Your folder structure should now look like this:
 └── tsconfig.json
 ```
 
-Now, it's time to open Telegram to create a bot account, and obtain an authentication token for it.
+Now, it's time to open Telegram to create a bot account, and obtain a bot token for it.
 Talk to [@BotFather](https://t.me/BotFather) to do this.
-The authentication token looks like `123456:aBcDeF_gHiJkLmNoP-q`.
+The bot token looks like `123456:aBcDeF_gHiJkLmNoP-q`.
+It is used to authenticate your bot.
 
 Got the token? You can now code your bot in the `bot.ts` file.
 You can copy the following example bot into that file, and pass your token to the `Bot` constructor:
@@ -91,8 +92,8 @@ You can copy the following example bot into that file, and pass your token to th
 ```ts
 import { Bot } from "grammy";
 
-// Create an instance of the `Bot` class and pass your authentication token to it.
-const bot = new Bot(""); // <-- put your authentication token between the ""
+// Create an instance of the `Bot` class and pass your bot token to it.
+const bot = new Bot(""); // <-- put your bot token between the ""
 
 // You can now register listeners on your bot object `bot`.
 // grammY will call the listeners when users send messages to your bot.
@@ -115,8 +116,8 @@ bot.start();
 ```js
 const { Bot } = require("grammy");
 
-// Create an instance of the `Bot` class and pass your authentication token to it.
-const bot = new Bot(""); // <-- put your authentication token between the ""
+// Create an instance of the `Bot` class and pass your bot token to it.
+const bot = new Bot(""); // <-- put your bot token between the ""
 
 // You can now register listeners on your bot object `bot`.
 // grammY will call the listeners when users send messages to your bot.
@@ -138,7 +139,7 @@ bot.start();
 
 Compile the code by running
 
-```bash
+```sh
 npx tsc
 ```
 
@@ -147,7 +148,7 @@ This generates the JavaScript file `bot.js`.
 
 You can now run the bot by executing
 
-```bash
+```sh
 node bot.js
 ```
 
@@ -159,7 +160,7 @@ Head over to Telegram to watch your bot respond to messages!
 ::: tip Enabling Logging
 You can enable basic logging by running
 
-```bash
+```sh
 export DEBUG="grammy*"
 ```
 
@@ -169,13 +170,20 @@ This makes it easier to debug your bot.
 
 ## Getting Started on Deno
 
-> This guide assumes that you have [Deno](https://deno.land) installed.
+> This guide assumes that you have [Deno](https://deno.com/runtime) installed.
 
 Create a new directory somewhere and create a new empty text file in it, e.g. called `bot.ts`.
 
-Now, it's time to open Telegram to create a bot account, and obtain an authentication token for it.
+```sh
+mkdir ./my-bot
+cd ./my-bot
+touch bot.ts
+```
+
+Now, it's time to open Telegram to create a bot account, and obtain a bot token for it.
 Talk to [@BotFather](https://t.me/BotFather) to do this.
-The authentication token looks like `123456:aBcDeF_gHiJkLmNoP-q`.
+The bot token looks like `123456:aBcDeF_gHiJkLmNoP-q`.
+It is used to authenticate your bot.
 
 Got the token? You can now code your bot in the `bot.ts` file.
 You can copy the following example bot into that file, and pass your token to the `Bot` constructor:
@@ -183,8 +191,8 @@ You can copy the following example bot into that file, and pass your token to th
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
-// Create an instance of the `Bot` class and pass your authentication token to it.
-const bot = new Bot(""); // <-- put your authentication token between the ""
+// Create an instance of the `Bot` class and pass your bot token to it.
+const bot = new Bot(""); // <-- put your bot token between the ""
 
 // You can now register listeners on your bot object `bot`.
 // grammY will call the listeners when users send messages to your bot.
@@ -203,7 +211,7 @@ bot.start();
 
 You can now run the bot by executing
 
-```bash
+```sh
 deno run --allow-net bot.ts
 ```
 
@@ -215,7 +223,7 @@ Head over to Telegram to watch your bot respond to messages!
 ::: tip Enabling Logging
 You can enable basic logging by running
 
-```bash
+```sh
 export DEBUG="grammy*"
 ```
 
@@ -224,7 +232,7 @@ This makes it easier to debug your bot.
 
 You now need to run the bot using
 
-```bash
+```sh
 deno run --allow-net --allow-env bot.ts
 ```
 

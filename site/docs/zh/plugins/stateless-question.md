@@ -2,7 +2,7 @@
 
 > 向隐私模式下的 Telegram 用户创建无状态问题
 
-你想在 [启用 Telegrams 隐私模式（默认）](https://core.telegram.org/bots#privacy-mode) 的情况下，保护用户的隐私，向用户发送他们所使用的语言的问题，并且不保存用户当前状态？
+你想在 [启用 Telegrams 隐私模式（默认）](https://core.telegram.org/bots/features#privacy-mode) 的情况下，保护用户的隐私，向用户发送他们所使用的语言的问题，并且不保存用户当前状态？
 
 这个插件想要解决这个问题。
 
@@ -18,7 +18,7 @@
 ```ts
 import { StatelessQuestion } from "@grammyjs/stateless-question";
 
-const bot = new Bot(token);
+const bot = new Bot("");
 
 const unicornQuestion = new StatelessQuestion("unicorns", (ctx) => {
   console.log("User thinks unicorns are doing:", ctx.message);

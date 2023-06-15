@@ -13,12 +13,12 @@ Por defecto, el soporte para el modo inline está desactivado.
 Debes ponerte en contacto con [@BotFather](https://t.me/BotFather) y habilitar el modo inline para tu bot, para empezar a recibir consultas inline.
 :::
 
-> Revisa la sección del modo inline en la [Introducción para desarrolladores](https://core.telegram.org/bots#inline-mode) escrita por el equipo de Telegram.
+> Revisa la sección del modo inline en las [Características de los bots de Telegram](https://core.telegram.org/bots/features#inline-requests) escrita por el equipo de Telegram.
 > Otros recursos son su [descripción detallada](https://core.telegram.org/bots/inline) de los bots en línea, así como el [post original del blog](https://telegram.org/blog/inline-bots) que anuncia la característica, y la sección del modo en línea en la [Referencia de la API de los bots de Telegram](https://core.telegram.org/bots/api#inline-mode).
 > Merece la pena leerlos todos antes de implementar las inline queries para tu bot.
 
 Una vez que un usuario desencadena una consulta en línea, es decir, inicia un mensaje escribiendo "@tu_nombre_del_bot ..." en el campo de entrada de texto, tu bot recibirá actualizaciones al respecto.
-grammY tiene un soporte especial para manejar las inline queries a través del método `bot.inlineQuery()`, como se documenta en la clase `Composer` en la [Referencia de la API de grammY](/ref/core/Composer.md#inlineQuery).
+grammY tiene un soporte especial para manejar las inline queries a través del método `bot.inlineQuery()`, como se documenta en la clase `Composer` en la [Referencia de la API de grammY](https://deno.land/x/grammy/mod.ts?s=Composer#method_inlineQuery_0).
 Le permite escuchar inline queries específicas que coincidan con cadenas o expresiones regulares.
 Si quieres manejar todas las inline queries genéricamente, usa `bot.on("inline_query")`.
 
@@ -54,7 +54,7 @@ bot.inlineQuery(/best bot (framework|library)/, async (ctx) => {
 bot.on("inline_query", (ctx) => ctx.answerInlineQuery([]));
 ```
 
-> [Recuerde](./basics.md#sending-messages) que siempre puede especificar más opciones al llamar a los métodos de la API utilizando el objeto de opciones de tipo `Other`.
+> [Recuerde](./basics.md#envio-de-mensajes) que siempre puede especificar más opciones al llamar a los métodos de la API utilizando el objeto de opciones de tipo `Other`.
 > Por ejemplo, esto le permite realizar la paginación para las consultas en línea a través de un desplazamiento.
 
 Tenga en cuenta que grammY puede autocompletar todos los campos de la estructura anterior por usted.

@@ -16,8 +16,8 @@ prev: ./proxy.md
 
 ## 发送消息
 
-1. 通过 path 或 `Buffer` 发送文件而不是通过 stream流，或者至少确保你 [了解这些风险](./transformers.md#use-cases-of-transformer-functions)。
-2. 使用 `bot.on("callback_query:data")` 作为回调处理 [响应所有回调查询](../plugins/keyboard.md#responding-to-clicks)
+1. 通过 path 或 `Buffer` 发送文件而不是通过 stream，或者至少确保你 [了解这些风险](./transformers.md#transformer-函数的使用用例)。
+2. 使用 `bot.on("callback_query:data")` 作为回调处理 [响应所有回调查询](../plugins/keyboard.md#响应点击)。
 3. 使用 [`transformer-throttler` 插件](../plugins/transformer-throttler.md) 去避免到达速率限制。
 4. **可选的**，考虑使用 [auto-retry 插件](../plugins/auto-retry.md) 去自动处理流量等待的错误。
 
@@ -29,7 +29,7 @@ prev: ./proxy.md
 
 1. [使用 grammY runner](../plugins/runner.md)
 2. [使用相同的 session 密钥处理函数作为 session 中间件来进行 `sequentialize`](./scaling.md#并发是困难的)
-3. 通过 `run`（[参考API](/ref/runner/run.md)）方法的配置选项并确保它们适合你的需求，或者甚至可以考虑用外部的 [资源](/ref/runner/UpdateSource.md) 和 [插槽](/ref/runner/UpdateSink.md) 来组成你自己的 runner。
+3. 通过 `run`（[参考API](https://deno.land/x/grammy_runner/mod.ts?s=run)）方法的配置选项并确保它们适合你的需求，或者甚至可以考虑用外部的 [资源](https://deno.land/x/grammy_runner/mod.ts?s=UpdateSource) 和 [插槽](https://deno.land/x/grammy_runner/mod.ts?s=UpdateSink) 来组成你自己的 runner。
    主要考虑的事情就是你想给你的服务器应用的最大负载，例如会有多少 update 会在同一时间内被处理。
 4. 当你想要结束你的 bot 的时候（或者切换版本的时候），为了优雅去停用你的 bot 可以考虑监听 `SIGINT` 和 `SIGTERM` 事件。
    这个可以通过 grammY runner 提供给你的处理来完成。
@@ -40,9 +40,9 @@ prev: ./proxy.md
 1. 确保你没有在你的中间件中执行任何长时间的操作，例如大文件的转换。
    这将导致 webhooks 的超时错误，并且 Telegram 将会重复发送未确认的 update。
    考虑用任何队列来代替。
-2. 让你自己熟悉 `webhookCallback`（[API参考](/ref/core/webhookCallback.md)）的配置。
-3. 如果你对你的 session 调整过 `getSessionKey` 选项，[使用相同的 session 密钥处理函数作为 session 中间件来进行 `sequentialize`](./scaling.md#concurrency-is-hard)。
-4. 如果你在一个 serverless 或者 autoscaling 平台上运行，[设置 bot 信息](/ref/core/BotConfig.md) 来阻止过多的 `getMe` 调用。
+2. 让你自己熟悉 `webhookCallback`（[API参考](https://deno.land/x/grammy/mod.ts?s=webhookCallback)）的配置。
+3. 如果你对你的 session 调整过 `getSessionKey` 选项，[使用相同的 session 密钥处理函数作为 session 中间件来进行 `sequentialize`](./scaling.md#并发是困难的)。
+4. 如果你在一个 serverless 或者 autoscaling 平台上运行，[设置 bot 信息](https://deno.land/x/grammy/mod.ts?s=BotConfig) 来阻止过多的 `getMe` 调用。
 5. 考虑使用 [Webhook Reply](../guide/deployment-types.md#webhook-reply) 。
 
 ## Sessions
@@ -56,7 +56,7 @@ prev: ./proxy.md
 可以使用 grammY 像这样做：
 
 1. 对外部的 API 请求使用 [transformer 函数](./transformers.md) 来进行 Mock。
-2. 通过 `bot.handleUpdate`（[API 参考](/ref/core/Bot.md#handleUpdate)）定义并发送一些测试 update 对象到你的 bot。考虑从 Telegram 团队提供的 [这些 update 对象](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates) 来获取一些灵感。
+2. 通过 `bot.handleUpdate`（[API 参考](https://deno.land/x/grammy/mod.ts?s=Bot#method_handleUpdate_0)）定义并发送一些测试 update 对象到你的 bot。考虑从 Telegram 团队提供的这些 [update 对象](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates) 来获取一些灵感。
 
 ::: tip 贡献测试框架
 虽然 grammY 提供了必要的 hooks 钩子去编写测试用例，但是如果对于 bot 来说有一个测试框架会更加有用。

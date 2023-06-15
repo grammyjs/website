@@ -106,7 +106,7 @@ As always, it is called `ctx` and uses your [custom context type](../guide/conte
 The conversations plugin exports a [context flavor](../guide/context.md#additive-context-flavors) called `ConversationFlavor`.
 
 **The first parameter** is the central element of this plugin.
-It is commonly named `conversation`, and it has the type `Conversation` ([API reference](/ref/conversations/Conversation.md)).
+It is commonly named `conversation`, and it has the type `Conversation` ([API reference](https://deno.land/x/grammy_conversations/mod.ts?s=Conversation)).
 It can be used as a handle to control the conversation, such as waiting for user input, and more.
 The type `Conversation` expects your [custom context type](../guide/context.md#customizing-the-context-object) as a type parameter, so you would often use `Conversation<MyContext>`.
 
@@ -326,10 +326,64 @@ bot.start();
 </CodeGroupItem>
 </CodeGroup>
 
+### Installation With Custom Session Data
+
+Note that if you use TypeScript and you want to store your own session data as well as use conversations, you will need to provide more type information to the compiler.
+Let's say you have this interface which describes your custom session data:
+
+```ts
+interface SessionData {
+  /** custom session property */
+  foo: string;
+}
+```
+
+Your custom context type might then look like this:
+
+```ts
+type MyContext = Context & SessionFlavor<SessionData> & ConversationFlavor;
+```
+
+Most importantly, when installing the session plugin with an external storage, you will have to provide the session data explicitly.
+All storage adapters allow you to pass the `SessionData` as a type parameter.
+For example, this is how you'd have to do it with the [`freeStorage`](./session.md#free-storage) that grammY provides.
+
+```ts
+// Install the session plugin.
+bot.use(session({
+  // Add session types to adapter.
+  storage: freeStorage<SessionData>(bot.token),
+  initial: () => ({ foo: "" }),
+}));
+```
+
+You can do the same thing for all other storage adapters, such as `new FileAdapter<SessionData>()` and so on.
+
+### Installation With Multi Sessions
+
+Naturally, you can combine conversations with [multi sessions](./session.md#multi-sessions).
+
+This plugin stores the conversation data inside `session.conversation`.
+This means that if you want to use multi sessions, you have to specify this fragment.
+
+```ts
+// Install the session plugin.
+bot.use(session({
+  type: "multi",
+  custom: {
+    initial: () => ({ foo: "" }),
+  },
+  conversation: {}, // may be left empty
+}));
+```
+
+This way, you can store the conversation data in a different place than other session data.
+For example, if you leave the conversation config empty as illustrated above, the conversation plugin will store all data in memory.
+
 ## Leaving a Conversation
 
 The conversation will run until your conversation builder function completes.
-This means that you can simply leave a conversation by using `return`.
+This means that you can simply leave a conversation by using `return` or `throw`.
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
@@ -358,18 +412,77 @@ async function hiAndBye(conversation, ctx) {
 
 (Yes, putting a `return` at the end of the function is a bit pointless, but you get the idea.)
 
-You can also throw an error.
-This will likewise exit the conversation.
-Remember to [install an error handler](../guide/errors.md) on your bot.
+Throwing an error will likewise exit the conversation.
+However, the [session plugin](#installing-and-entering-a-conversation) only persists data if the middleware runs successfully.
+Hence, if you throw an error inside your conversation and do not catch it before it reaches the session plugin, it will not be saved that the conversation was left.
+As a result, the next message will cause the same error.
 
-If you want to hard-kill the conversation while it is waiting for user input, you can also use `await ctx.conversation.exit()`.
+You can mitigate this by installing an [error boundary](../guide/errors.md#error-boundaries) between the session and the conversation.
+That way, you can prevent the error from propagating up the [middleware tree](../advanced/middleware.md) and hence permit the session plugin to write back the data.
+
+> Note that if you are using the default in-memory sessions, all changes to the session data are reflected immediately, because there is no storage backend.
+> In that case, you do not need to use error boundaries to leave a conversation by throwing an error.
+
+This is how error boundaries and conversations could be used together.
+
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
+
+```ts
+bot.use(session({
+  storage: freeStorage(bot.token), // adjust
+  initial: () => ({}),
+}));
+bot.use(conversations());
+
+async function hiAndBye(conversation: MyConversation, ctx: MyContext) {
+  await ctx.reply("Hi! And Bye!");
+  // Leave the conversation:
+  throw new Error("Catch me if you can!");
+}
+
+bot.errorBoundary(
+  (err) => console.error("Conversation threw an error!", err),
+  createConversation(greeting),
+);
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+bot.use(session({
+  storage: freeStorage(bot.token), // adjust
+  initial: () => ({}),
+}));
+bot.use(conversations());
+
+async function hiAndBye(conversation, ctx) {
+  await ctx.reply("Hi! And Bye!");
+  // Leave the conversation:
+  throw new Error("Catch me if you can!");
+}
+
+bot.errorBoundary(
+  (err) => console.error("Conversation threw an error!", err),
+  createConversation(greeting),
+);
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+Whatever you do, you should remember to [install an error handler](../guide/errors.md) on your bot.
+
+If you want to hard-kill the conversation from your regular middleware while it is waiting for user input, you can also use `await ctx.conversation.exit()`.
+This will simply erase the conversation plugin's data from the session.
 It's often better to stick with simply returning from the function, but there are a few examples where using `await ctx.conversation.exit()` is convenient.
 Remember that you must `await` the call.
 
 <CodeGroup>
   <CodeGroupItem title="TypeScript" active>
 
-```ts{6,21}
+```ts{6,22}
 async function movie(conversation: MyConversation, ctx: MyContext) {
   // TODO: code the conversation
 }
@@ -397,7 +510,7 @@ bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 </CodeGroupItem>
  <CodeGroupItem title="JavaScript">
 
-```js{6,21}
+```js{6,22}
 async function movie(conversation, ctx) {
   // TODO: code the conversation
 }
@@ -427,7 +540,7 @@ bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 
 Note that the order matters here.
 You must first install the conversations plugin (line 6) before you can call `await ctx.conversation.exit()`.
-Also, the generic cancel handlers must be installed before the actual conversations (line 21) are registered.
+Also, the generic cancel handlers must be installed before the actual conversations (line 22) are registered.
 
 ## Waiting for Updates
 
@@ -458,6 +571,68 @@ async function waitForMe(conversation, ctx) {
 
 An update can mean that a text message was sent, or a button was pressed, or something was edited, or virtually any other action was performed by the user.
 Check out the full list in the Telegram docs [here](https://core.telegram.org/bots/api#update).
+
+The `wait` method always yields a new [context object](../guide/context.md) representing the received update.
+That means you're always dealing with as many context objects as there are updates received during the conversation.
+
+<CodeGroup>
+<CodeGroupItem title="TypeScript" active>
+
+```ts
+const TEAM_REVIEW_CHAT = -1001493653006;
+async function askUser(conversation: MyConversation, ctx: MyContext) {
+  // Ask the user for their home address.
+  await ctx.reply("Could you state your home address?");
+
+  // Wait for the user to send their address:
+  const userHomeAddressContext = await conversation.wait();
+
+  // Ask the user for their nationality.
+  await ctx.reply("Could you also please state your nationality?");
+
+  // Wait for the user to state their nationality:
+  const userNationalityContext = await conversation.wait();
+
+  await ctx.reply(
+    "That was the final step. Now that I have received all relevant information, I will forward them to our team for review. Thank you!",
+  );
+
+  // We now copy the responses to another chat for review.
+  await userHomeAddressContext.copyMessage(TEAM_REVIEW_CHAT);
+  await userNationalityContext.copyMessage(TEAM_REVIEW_CHAT);
+}
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+const TEAM_REVIEW_CHAT = -1001493653006;
+async function askUser(conversation, ctx) {
+  // Ask the user for their home address.
+  await ctx.reply("Could you state your home address?");
+
+  // Wait for the user to send their address:
+  const userHomeAddressContext = await conversation.wait();
+
+  // Ask the user for their nationality.
+  await ctx.reply("Could you also please state your nationality?");
+
+  // Wait for the user to state their nationality:
+  const userNationalityContext = await conversation.wait();
+
+  await ctx.reply(
+    "That was the final step. Now that I have received all relevant information, I will forward them to our team for review. Thank you!",
+  );
+
+  // We now copy the responses to another chat for review.
+  await userHomeAddressContext.copyMessage(TEAM_REVIEW_CHAT);
+  await userNationalityContext.copyMessage(TEAM_REVIEW_CHAT);
+}
+```
+
+</CodeGroupItem>
+</CodeGroup>
 
 Usually, outside of the conversations plugin, each of these updates would be handled by the [middleware system](../guide/middleware.md) of your bot.
 Hence, your bot would handle the update via a context object which gets passed to your handlers.
@@ -524,7 +699,7 @@ async function waitForText(conversation, ctx) {
 </CodeGroupItem>
 </CodeGroup>
 
-Check out the [API reference](/ref/conversations/ConversationHandle.md#wait) to see all available methods that are similar to `wait`.
+Check out the [API reference](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#method_wait_0) to see all available methods that are similar to `wait`.
 
 ## Three Golden Rules of Conversations
 
@@ -566,18 +741,20 @@ if (conversation.random() < 0.5) { /* do stuff */ }
 ### Rule III: Use Convenience Functions
 
 There are a bunch of things installed on `conversation` which may greatly help you.
-Your code doesn't exactly break if you don't use them, but it can be slow or behave in a confusing way.
-The end user might not notice a difference, though.
+Your code sometimes does not even break if you don't use them, but even then it can be slow or behave in a confusing way.
 
 ```ts
-// Sleep via conversation, massive performance improvement
-await conversation.sleep(3000); // 3 seconds
+// `ctx.session` only persists changes for the most recent context object
+conversation.session.myProp = 42; // more reliable!
+
+// Date.now() can be inaccurate inside conversations
+await conversation.now(); // more accurate!
 
 // Debug logging via conversation, does not print confusing logs
-conversation.log("Hello, world");
+conversation.log("Hello, world"); // more transparent!
 ```
 
-Note that you can do all of the above via `conversation.external()`, but this can be tedious to type, so it's just easier to use the convenience functions ([API reference](/ref/conversations/ConversationHandle.md#Methods)).
+Note that you can do all of the above via `conversation.external()`, but this can be tedious to type, so it's just easier to use the convenience functions ([API reference](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#Methods)).
 
 ## Variables, Branching, and Loops
 
@@ -806,7 +983,113 @@ async function waitForMe(conversation, ctx) {
 </CodeGroupItem>
 </CodeGroup>
 
-As always, check out the [API reference](/ref/conversations/ConversationForm.md) to see which methods are available.
+As always, check out the [API reference](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationForm) to see which methods are available.
+
+## Working With Plugins
+
+As mentioned [earlier](#introduction), grammY handlers always only handle a single update.
+However, with conversations, you are able to process many updates in sequence as if they were all available at the same time.
+The plugin makes this possible by storing old context objects, and resupplying them later.
+
+This is why the context objects inside conversations are not always affected by some grammY plugins in the way one would expect.
+This is relevant for the following plugins:
+
+- [menu](./menu.md)
+- [hydrate](./hydrate.md)
+- [i18n](./i18n.md) and [fluent](./fluent.md)
+- [emoji](./emoji.md)
+
+They have in common that they all store functions on the context object, which the conversations plugin cannot handle correctly.
+Hence, if you want to combine conversations with one of these grammY plugins, you will have to use special syntax to install the other plugin inside each conversation.
+
+You can install other plugins inside conversations using `conversation.run`:
+
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
+
+```ts
+async function convo(conversation: MyConversation, ctx: MyContext) {
+  // Install grammY plugins here
+  await conversation.run(plugin());
+  // Continue defining the conversation ...
+}
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+async function convo(conversation, ctx) {
+  // Install grammY plugins here
+  await conversation.run(plugin());
+  // Continue defining the conversation ...
+}
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+This will make the plugin available inside the conversation.
+
+As an example, if you want to use a menu insde a conversation, your code could look like this.
+
+<CodeGroup>
+  <CodeGroupItem title="TypeScript" active>
+
+```ts
+async function convo(conversation: MyConversation, ctx: MyContext) {
+  const menu = new Menu<MyContext>()
+    .text("Click", (ctx) => ctx.reply("Hi!"));
+  await conversation.run(menu);
+
+  // Continue defining the conversation ...
+}
+```
+
+</CodeGroupItem>
+ <CodeGroupItem title="JavaScript">
+
+```js
+async function convo(conversation, ctx) {
+  const menu = new Menu()
+    .text("Click", (ctx) => ctx.reply("Hi!"));
+  await conversation.run(menu);
+
+  // Continue defining the conversation ...
+}
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+### Custom Context Objects
+
+If you are using a [custom context object](../guide/context.md#customizing-the-context-object) and you want to install custom properties on your context objects before a conversation is entered, then some of these properties can get lost, too.
+In a way, the middleware you use to customize your context object can be regarded as a plugin, as well.
+
+The cleanest solution is to **avoid custom context properties** entirely, or at least to only install serializable properties on the context object.
+In other words, if all custom context properties can be persisted in a database and be restored afterwards, you don't have to worry about anything.
+
+Typically, there are other solutions to the problems that you usually solve with via custom context properties.
+For example, it is often possible to just obtain them inside the conversation itself, rather than obtaining them inside a handler.
+
+If none of these things are an option for you, you can try messing around with `conversation.run` yourself.
+You should know that you must call `next` inside the passed middleware---otherwise, update handling will be intercepted.
+
+The middleware will be run for all past updates every time a new update arrives.
+For instance, if three context objects arrive, this is what happens:
+
+1. the first update is received
+2. the middleware runs for the first update
+3. the second update is received
+4. the middleware runs for the first update
+5. the middleware runs for the second update
+6. the third update is received
+7. the middleware runs for the first update
+8. the middleware runs for the second update
+9. the middleware runs for the third update
+
+Note that the middleware is run with first update thrice.
 
 ## Parallel Conversations
 
@@ -897,7 +1180,7 @@ bot.on("chat_member")
 You can see how many conversations with which identifier are running.
 
 ```ts
-const stats = ctx.conversation.active;
+const stats = await ctx.conversation.active();
 console.log(stats); // { "enterGroup": 1 }
 ```
 
@@ -945,7 +1228,7 @@ There are more problems, but you get the idea.
 
 Consequently, the conversations plugin does things differently.
 Very differently.
-As mentioned earlier, **they don't _literally_ make your bot wait**, even though we can program conversations as if that was the case.
+As mentioned earlier, **`wait` calls don't _literally_ make your bot wait**, even though we can program conversations as if that were the case.
 
 The conversations plugin tracks the execution of your function.
 When a wait call is reached, it serializes the state of execution into the session, and safely stores it in a database.
@@ -954,7 +1237,7 @@ If it finds that it left off in the middle of a conversation, it deserializes th
 It then resumes ordinary execution of your function—until the next `wait` call is reached, and the execution must be halted again.
 
 What do we mean by the state of execution?
-In a nutshell, it consists on three things:
+In a nutshell, it consists of three things:
 
 1. Incoming updates
 2. Outgoing API calls
@@ -1005,4 +1288,4 @@ How would you go about this?
 
 - Name: `conversations`
 - Source: <https://github.com/grammyjs/conversations>
-- Reference: [conversations](/ref/conversations/)
+- Reference: <https://deno.land/x/grammy_conversations/mod.ts>

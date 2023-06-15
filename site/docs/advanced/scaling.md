@@ -38,7 +38,7 @@ run(bot);
 ```
 
 The default concurrency limit is 500.
-If you want to dig deeper into the package, check out [this page](../plugins/runner.md).
+If you want to dig deeper into the package, check out this [page](../plugins/runner.md).
 
 Concurrency is hard, so check out the [subsection below](#concurrency-is-hard) to find out what you should keep in mind when using grammY runner.
 
@@ -69,7 +69,7 @@ Imagine this sequence of events:
 8. Bot is done processing B, and writes new session to database, hence overwriting the changes performed during processing A.
    Data loss due to WAR hazard!
 
-> Note: You could try use database transactions for your sessions, but then you can only detect the hazard and not prevent it.
+> Note: You could try to use database transactions for your sessions, but then you can only detect the hazard and not prevent it.
 > Trying to use a lock instead would effectively eliminate all concurrency.
 > It is much easier to avoid the hazard in the first place.
 
@@ -89,7 +89,7 @@ import { Bot, Context, session } from "grammy";
 import { run, sequentialize } from "@grammyjs/runner";
 
 // Create a bot.
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 // Build a unique identifier for the `Context` object.
 function getSessionKey(ctx: Context) {
@@ -111,12 +111,12 @@ run(bot);
 
 <CodeGroupItem title="JavaScript">
 
-```ts
+```js
 const { Bot, Context, session } = require("grammy");
 const { run, sequentialize } = require("@grammyjs/runner");
 
 // Create a bot.
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 // Build a unique identifier for the `Context` object.
 function getSessionKey(ctx) {
@@ -142,7 +142,7 @@ import { Bot, Context, session } from "https://deno.land/x/grammy/mod.ts";
 import { run, sequentialize } from "https://deno.land/x/grammy_runner/mod.ts";
 
 // Create a bot.
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 // Build a unique identifier for the `Context` object.
 function getSessionKey(ctx: Context) {

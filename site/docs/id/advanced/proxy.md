@@ -7,7 +7,7 @@ next: ./deployment.md
 
 Di grammY, kamu bisa mengatur bagaimana network request dilakukan.
 Termasuk menambahkan payload khusus ke setiap request yang akan digunakan untuk pemasangan proxy agent.
-Lihat `ApiClientOptions` di [Referensi API grammY](/ref/core/ApiClientOptions.md).
+Lihat `ApiClientOptions` di [Referensi API grammY](https://deno.land/x/grammy/mod.ts?s=ApiClientOptions).
 
 Berikut cara menggunakan proxy `http` di Deno:
 
@@ -17,7 +17,7 @@ import { Bot } from "https://deno.land/x/grammy/mod.ts";
 const client = Deno.createHttpClient({
   proxy: { url: "http://host:port/" },
 });
-const bot = new Bot(TOKEN, {
+const bot = new Bot("", {
   client: {
     baseFetchConfig: {
       // @ts-ignore
@@ -29,14 +29,14 @@ const bot = new Bot(TOKEN, {
 
 > Ingat! Gunakan flag `--unstable` supaya script di atas bisa berjalan.
 
-Berikut cara menggunakan proxy dengan package `socks5-https-client` ([npm](https://www.npmjs.com/package/socks-proxy-agent)) di Node.js:
+Berikut cara menggunakan proxy dengan package `socks-proxy-agent` ([npm](https://www.npmjs.com/package/socks-proxy-agent)) di Node.js:
 
 ```ts
 import { Bot } from "grammy";
 import { SocksProxyAgent } from "socks-proxy-agent";
 
 const socksAgent = new SocksProxyAgent({
-  host: host, // Masukkan host proxy
+  hostname: host, // Masukkan host proxy
   port: port, // Masukkan port proxy
 });
 

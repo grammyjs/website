@@ -37,7 +37,7 @@ Simply put, if you want the bot to be online all the time, you have to keep a co
 Because you most likely don't want to do that with your laptop, you should upload your code to a _hosting provider_ (in other words, someone else's computer, also known as a _server_), and let those people run it for you.
 
 There are countless companies that let you run your Telegram bot for free.
-This documentation covers a number of different hosting providers that we know work well with grammY (check the Hosting section).
+This documentation covers a number of different hosting providers that we know work well with grammY (check the [Hosting](../hosting/comparison.md) section).
 In the end, however, the choice of which provider to pick is up to you.
 Remember that running your code somewhere else means that whoever owns that "somewhere" has access to all your messages and the data of your users, so you should pick a provider that you can trust.
 
@@ -83,11 +83,11 @@ Remember, though: creating a Telegram bot with grammY is actually a good way to 
 You can start learning TypeScript with the [official tutorial](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html) written by the TypeScript team, and then move on from there.
 Don't spend more than 30 minutes reading things on the internet, then come back here, (read the rest of the section) and [get started](./getting-started.md).
 
-If you see unfamiliar syntax in the docs, or if you get an error message that you don't understand, google it—the explanation is already on the internet (e.g. on StackOverflow).
+If you see unfamiliar syntax in the docs, or if you get an error message that you don't understand, google it—the explanation is already on the internet (e.g. on Stack Overflow).
 :::
 
 ::: danger Not Learning How to Code
-Save yourself some time by watching [this 34 second long video](https://youtu.be/8RtGlWmXGhA).
+Save yourself some time by watching this [34-second video](https://youtu.be/8RtGlWmXGhA).
 :::
 
 By picking grammY, you have already decided on a programming language, namely TypeScript.
@@ -96,7 +96,7 @@ For that, you need to install some software which is able to _execute_ your code
 This type of software is called a _runtime environment_.
 It takes in your source code files and actually does whatever is programmed in them.
 
-For us, there are two runtime environments to choose from, [Deno](https://deno.land) and [Node.js](https://nodejs.org).
+For us, there are two runtime environments to choose from, [Deno](https://deno.com/runtime) and [Node.js](https://nodejs.org).
 (If you see people call it _Node_, they are just too lazy to type ".js", but they mean the same thing.)
 
 > The rest of this section helps you decide between these two platforms.
@@ -112,13 +112,15 @@ If you don't have much experience with programming yet, **it makes sense to star
 
 Even if you have written code for Node.js before, you should consider giving Deno a go.
 Many things that are hard under Node.js are a no-brainer under Deno.
-It has
 
-- no `package.json` file to configure,
-- no `node_modules` to maintain,
-- superior, built-in development tools,
-- substantially better security, and
-- many more advantages that do not fit here.
+Deno
+
+- is much easier to install,
+- does not require you to configure anything about your project,
+- uses much less disk space,
+- has superior, built-in development tools and great editor integration,
+- is way more secure, and
+- has many more advantages that do not fit here.
 
 Developing code under Deno is also a lot more fun.
 At least, that's our opinion.
@@ -129,9 +131,49 @@ Please choose what you think is best for you.
 
 ### Prerequisites for Deno
 
-[Install Deno](https://deno.land/#installation) if you have not done that already.
-When you have created your bot, for example in a file called `bot.ts`, you can run it via `deno run --allow-net bot.ts`.
-You can stop it again with `Ctrl+C`.
+Before you can start creating your bot, let's first spend a few minutes on a proper setup for software development.
+This means installing a few tools.
+
+#### Preparing Your Machine for Development
+
+[Install Deno](https://deno.com/manual/getting_started/installation#download-and-install) if you have not done it already.
+
+You also need a text editor that fits well with coding.
+The best one for Deno is Visual Studio Code, often just called VS Code.
+[Install it.](https://code.visualstudio.com/)
+
+Next, you need to connect VS Code and Deno.
+That's very simple: There is an extension for VS Code that does everything automatically.
+You can install it [as described here](https://marketplace.visualstudio.com/items?itemName=denoland.vscode-deno).
+
+Your system is now ready for bot development! :tada:
+
+#### Developing a Bot
+
+Create a new directory somewhere.
+It will contain your bot project.
+Open this new directory in VS Code.
+
+```sh
+mkdir ./my-bot
+cd ./my-bot
+code .
+```
+
+> If you’re on macOS and the `code` command is not available, just open VS Code, hit `Cmd+Shift+P`, type "shell command", and hit Enter.
+
+In VS Code, turn this empty directory into a Deno project.
+Hit `Ctrl+Shift+P`, type "deno init", and hit Enter.
+The bottom right of your editor should then display the version of Deno installed on your system.
+
+Your Deno development environment is ready.
+You can now start writing your bot.
+This is explained on the next page.
+
+One last thing:
+After you have created your bot, for example in a file called `bot.ts`, you can run it by typing `deno run --allow-net bot.ts` in your terminal.
+(Yes, writing software means using the terminal a lot, get used to it.)
+You can stop the bot again with `Ctrl+C`.
 
 Ready?
 [Get started](./getting-started.md#getting-started-on-deno)! :robot:
@@ -147,7 +189,7 @@ In order to run the `bot.js` file, you have to have [Node.js](https://nodejs.org
 
 In summary, this is what you have to do for Node.js:
 
-1. Create a source file `bot.ts` with TypeScript code, e.g. using [VSCode](https://code.visualstudio.com/) (or any other code editor).
+1. Create a source file `bot.ts` with TypeScript code, e.g. using [VS Code](https://code.visualstudio.com/) (or any other code editor).
 2. Compile the code by running a command in your terminal. This generates a file called `bot.js`.
 3. Run `bot.js` using Node.js, again from your terminal.
 
@@ -156,5 +198,18 @@ Hit `Ctrl+C` in your terminal to stop the process.
 This will stop your bot.
 Then, you need to repeat steps 2 and 3.
 
-Are you ready?
+::: tip Wait, what?
+
+Installing Node.js and setting up and configuring everything correctly takes a lot of time.
+If you have never done this before, you should expect to run into plenty of confusing problems that are hard to fix.
+
+This is why we sort of expect that you know how to set up your system, or that you are able to teach yourself.
+(Already installing Node.js _the right way_ is so complicated that it does not fit this page.)
+
+If you feel lost at this point, you should leave Node.js behind and use [Deno](#prerequisites-for-deno) instead.
+
+:::
+
+Still confident?
+Great!
 [Get started](./getting-started.md#getting-started-on-node-js)! :robot:

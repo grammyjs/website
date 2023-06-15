@@ -13,12 +13,12 @@ Inline mode tidak aktif secara bawaan.
 Jadi, kamu harus mengaktifkannya secara manual dengan cara menghubungi [@BotFather](https://t.me/BotFather).
 :::
 
-> Lihat bagian inline mode di [Pengantar untuk Developer](https://core.telegram.org/bots#inline-mode) yang ditulis oleh tim Telegram.
+> Lihat bagian inline mode di [Fitur-fitur Bot Telegram](https://core.telegram.org/bots/features#inline-requests) yang ditulis oleh tim Telegram.
 > Referensi lebih lanjut ada di [detail deskripsi](https://core.telegram.org/bots/inline) inline bot, [postingan blog Telegram](https://telegram.org/blog/inline-bots), serta bagian inline mode di [Referensi API Bot Telegram](https://core.telegram.org/bots/api#inline-mode).
 > Semua materi tadi patut dibaca sebelum mengimplementasikan inline query ke bot kamu.
 
 Ketika pengguna memicu inline query, misalnya dengan mengetik "@username\_bot ..." di kolom input pesan, bot kamu akan menerima update tersebut.
-grammY memiliki method khusus untuk menangani inline query, yaitu `bot.inlineQuery()`. Method ini juga didokumentasikan di [referensi API grammY](/ref/core/Composer.md#inlineQuery) bagian class `Composer`.
+grammY memiliki method khusus untuk menangani inline query, yaitu `bot.inlineQuery()`. Method ini juga didokumentasikan di [referensi API grammY](https://deno.land/x/grammy/mod.ts?s=Composer#method_inlineQuery_0) bagian class `Composer`.
 Method ini juga bisa menyimak inline query spesifik yang sesuai dengan suatu string atau regular expression.
 Jika kamu ingin menangani inline query secara keseluruhan, gunakan `bot.on("inline_query")`.
 

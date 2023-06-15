@@ -1,12 +1,12 @@
-# Sesiones y almacenamiento de datos (incorporado)
+# Sesiones y almacenamiento de datos (incluido)
 
-Aunque siempre puedes escribir tu propio código para conectarte a un almacenamiento de datos de tu elección, grammY soporta un patrón de almacenamiento muy conveniente llamado _sessions_.
+Aunque siempre puedes escribir tu propio código para conectarte a un almacenamiento de datos de tu elección, grammY soporta un patrón de almacenamiento muy conveniente llamado _sesiones_.
 
-> [Salta hacia abajo](#cómo-usar-las-sesiones) si sabes cómo funcionan las sesiones.
+> [Salta hacia abajo](#como-usar-las-sesiones) si sabes cómo funcionan las sesiones.
 
 ## ¿Por qué debemos pensar en el almacenamiento?
 
-A diferencia de las cuentas de usuarios regulares en Telegram, los bots tienen [almacenamiento limitado en la nube](https://core.telegram.org/bots#4-how-are-bots-different-from-humans) en la nube de Telegram.
+A diferencia de las cuentas de usuarios regulares en Telegram, los bots tienen [almacenamiento limitado en la nube](https://core.telegram.org/bots#how-are-bots-different-from-users) en la nube de Telegram.
 Como resultado, hay algunas cosas que no puedes hacer con los bots:
 
 1. No puedes acceder a los mensajes antiguos que recibió tu bot.
@@ -50,7 +50,8 @@ Efectivamente, tu bot almacenará un mapa desde un identificador de chat a unos 
 
 > Cuando decimos base de datos, en realidad nos referimos a cualquier solución de almacenamiento de datos.
 > Esto incluye archivos, almacenamiento en la nube o cualquier otra cosa.
-> Bien, pero ¿qué son las sesiones ahora?
+
+Bien, pero ¿qué son las sesiones ahora?
 
 Podemos instalar un middleware en el bot que proporcionará los datos de la sesión del chat en `ctx.session` para cada actualización.
 El plugin instalado hará algo antes y después de que nuestros manejadores sean llamados:
@@ -72,8 +73,9 @@ Simplemente modificamos los datos en `ctx.session`, y el plugin se encargará de
 ## Cuándo usar las sesiones
 
 > [Sáltate el paso](#como-usar-las-sesiones) si ya sabes que quieres usar sesiones.
-> Puedes pensar, esto es genial, ¡nunca más tendré que preocuparme por las bases de datos!
-> Y tienes razón, las sesiones son una solución ideal, pero sólo para algunos tipos de datos.
+
+Puede que pienses, esto es genial, ¡nunca más tendré que preocuparme por las bases de datos!
+Y tienes razón, las sesiones son una solución ideal, pero sólo para algunos tipos de datos.
 
 Según nuestra experiencia, hay casos de uso en los que las sesiones realmente brillan.
 Por otro lado, hay casos en los que una base de datos tradicional puede ser más adecuada.
@@ -89,7 +91,6 @@ Esta comparación puede ayudarte a decidir si utilizar las sesiones o no.
 | _Característica exclusiva_ | Requerida por algunos plugins de grammY.                      | Soporta transacciones de base de datos.                                                  |
 
 Esto no significa que las cosas _no puedan funcionar_ si eliges sesiones/bases de datos por encima de las otras.
-
 Por ejemplo, por supuesto que puedes almacenar grandes datos binarios en tu sesión.
 Sin embargo, tu bot no funcionaría tan bien como podría hacerlo de otro modo, por lo que recomendamos usar sesiones sólo cuando tengan sentido.
 
@@ -197,7 +198,7 @@ bot.start();
 </CodeGroupItem>
 </CodeGroup>
 
-Nótese que también tenemos que [ajustar el tipo de contexto](../guide/context.md#personalización-del-objeto-de-contexto) para que la sesión esté disponible en él.
+Nótese que también tenemos que [ajustar el tipo de contexto](../guide/context.md#personalizacion-del-objeto-de-contexto) para que la sesión esté disponible en él.
 El context flavor se llama `SessionFlavor`.
 
 ### Datos de la sesión inicial
@@ -245,7 +246,7 @@ Si no la especifica, la lectura de `ctx.session` arrojará un error para los nue
 > Esta sección describe una característica avanzada de la que la mayoría de la gente no tiene que preocuparse.
 > Es posible que desee continuar con la sección sobre [almacenamiento de sus datos](#almacenamiento-de-sus-datos).
 
-Puedes especificar qué clave de sesión usar pasando una función llamada `getSessionKey` a las [opciones](/ref/core/SessionOptions.md#getSessionKey).
+Puedes especificar qué clave de sesión usar pasando una función llamada `getSessionKey` a las [opciones](https://deno.land/x/grammy/mod.ts?s=SessionOptions#prop_getSessionKey).
 De esta manera, puedes cambiar fundamentalmente el funcionamiento del plugin de sesión.
 Por defecto, los datos se almacenan por chat.
 El uso de `getSessionKey` le permite almacenar los datos por usuario, o por combinación de usuario-chat, o como usted quiera.
@@ -322,8 +323,48 @@ Cuando estés ejecutando tu bot con webhooks, deberías evitar usar la opción `
 Telegram envía los webhooks secuencialmente por chat, por lo que la resolución de la clave de sesión por defecto es la única implementación que garantiza no causar pérdida de datos.
 
 Si debes usar la opción (que por supuesto sigue siendo posible), debes saber lo que estás haciendo.
-Asegúrese de entender las consecuencias de esta configuración leyendo el artículo [este](../guide/deployment-types.md) y especialmente [este](../plugins/runner.md#sequential-processing-where-necessary).
+Asegúrese de entender las consecuencias de esta configuración leyendo el artículo [este](../guide/deployment-types.md) y especialmente [este](../plugins/runner.md#procesamiento-secuencial-cuando-sea-necesario).
 :::
+
+### Migraciones de chat
+
+Si está utilizando sesiones para grupos, debe tener en cuenta que Telegram migra grupos regulares a supergrupos en determinadas circunstancias (por ejemplo, [aquí](https://github.com/telegramdesktop/tdesktop/issues/5593)).
+
+Esta migración solo ocurre una vez para cada grupo, pero puede causar inconsistencias.
+Esto se debe a que el chat migrado es técnicamente un chat completamente diferente que tiene un identificador diferente y, por lo tanto, su sesión se identificará de manera diferente.
+
+Actualmente, no existe una solución segura para este problema porque los mensajes de los dos chats también se identifican de manera diferente.
+Esto puede conducir a carreras de datos.
+Sin embargo, hay varias maneras de tratar este problema:
+
+- Ignorar el problema.
+  Los datos de la sesión del bot se restablecerán efectivamente cuando se migre un grupo.
+  Comportamiento simple, confiable y predeterminado, pero potencialmente inesperado una vez por chat.
+  Por ejemplo, si ocurre una migración mientras un usuario está en una conversación impulsada por el [complemento de conversaciones](./conversations.md), la conversación se restablecerá.
+
+- Solo almacenar datos temporales (o datos con tiempos de espera) en la sesión y usar una base de datos para las cosas importantes que deben migrarse cuando migra un chat.
+  Esto puede usar transacciones y lógica personalizada para manejar el acceso a datos simultáneos desde el chat antiguo y el nuevo.
+  Es mucho esfuerzo y tiene un costo de rendimiento, pero es la única forma verdaderamente confiable de resolver este problema.
+
+- En teoría, es posible implementar una solución alternativa que coincida con ambos chats **sin garantía de confiabilidad**.
+  La API de Telegram Bot envía una actualización de migración para cada uno de los dos chats una vez que se activa la migración (consulte las propiedades `migrate_to_chat_id` o `migrate_from_chat_id` en los [Documentos de la API de Telegram](https://core.telegram.org/bots/api#message)).
+  El problema es que no hay garantía de que estos mensajes se envíen antes de que aparezca un nuevo mensaje en el supergrupo.
+  Por lo tanto, el bot podría recibir un mensaje del nuevo supergrupo antes de que se dé cuenta de cualquier migración y, por lo tanto, no puede hacer coincidir los dos chats, lo que genera los problemas antes mencionados.
+
+- Otra solución alternativa sería limitar el bot solo para los supergrupos con [filtrado](../guide/filter-queries.md) (o limitar solo las funciones relacionadas con la sesión a los supergrupos).
+  Sin embargo, esto traslada la problemática/inconveniencia a los usuarios.
+
+- Dejar que los usuarios decidan explícitamente.
+  ("Este chat se migró, ¿quieres transferir los datos del bot?")
+  Mucho más confiable y transparente que las migraciones automáticas debido a la demora agregada artificialmente, pero peor UX.
+
+Finalmente, depende del desarrollador decidir cómo manejar este caso límite.
+Dependiendo de las funcionalidades del bot, se puede elegir una forma u otra.
+Si los datos en cuestión son de corta duración (por ejemplo, temporales, tiempos de espera involucrados), la migración es un problema menor.
+Un usuario experimentaría la migración como un contratiempo (si el momento no es el adecuado) y simplemente tendría que volver a ejecutar la función.
+
+Ignorar el problema es seguramente la forma más fácil, sin embargo, es importante conocer este comportamiento.
+De lo contrario, puede causar confusión y puede costar horas de tiempo de depuración.
 
 ### Almacenamiento de sus datos
 
@@ -332,17 +373,277 @@ Esto es conveniente cuando desarrollas tu bot o si ejecutas pruebas automáticas
 En producción, querrás persistir tus datos, por ejemplo en un archivo, una base de datos, o algún otro almacenamiento.
 
 Deberías utilizar la opción `storage` del middleware de sesión para conectarlo a tu almacén de datos.
-Puede que ya haya un adaptador de almacenamiento escrito para grammY que puedas utilizar (ver [abajo](#adaptadores-de-almacenamiento-conocidos), pero si no, normalmente sólo se necesitan 5 líneas de código para implementar uno tú mismo.
+Puede que ya haya un adaptador de almacenamiento escrito para grammY que puedas utilizar (ver [abajo](#adaptadores-de-almacenamiento-conocidos)), pero si no, normalmente sólo se necesitan 5 líneas de código para implementar uno tú mismo.
+
+## Adaptadores de almacenamiento conocidos
+
+Por defecto, las sesiones serán almacenadas [en su memoria](#ram-por-defecto) por el adaptador de almacenamiento incorporado.
+También puedes utilizar las sesiones persistentes que grammY [ofrece gratuitamente](#almacenamiento-gratuito), o conectarte a [almacenamientos externos](#soluciones-de-almacenamiento-externo).
+
+Así es como puedes instalar uno de los adaptadores de almacenamiento desde abajo.
+
+```ts
+const storageAdapter = ... // depende de la configuración
+
+bot.use(session({
+  initial: ...
+  storage: storageAdapter,
+}));
+```
+
+### RAM (por defecto)
+
+Por defecto, todos los datos se almacenan en la memoria RAM.
+Esto significa que todas las sesiones se pierden tan pronto como tu bot se detenga.
+
+Puedes usar la clase `MemorySessionStorage` ([API Reference](https://deno.land/x/grammy/mod.ts?s=MemorySessionStorage)) del paquete central de grammY si quieres configurar más cosas sobre el almacenamiento de datos en la RAM.
+
+```ts
+bot.use(session({
+  initial: ...
+  storage: new MemorySessionStorage() // también el valor por defecto
+}));
+```
+
+### Almacenamiento gratuito
+
+> El almacenamiento gratuito está pensado para ser utilizado en proyectos de aficionados.
+> Las aplicaciones a escala de producción deberían alojar su propia base de datos.
+> La lista de integraciones soportadas de soluciones de almacenamiento externo está [aquí abajo](#soluciones-de-almacenamiento-externo).
+
+Un beneficio de usar grammY es que obtienes acceso a almacenamiento gratuito en la nube.
+No requiere ninguna configuración - toda la autenticación se hace usando tu token de bot.
+¡Echa un vistazo a el [repositorio](https://github.com/grammyjs/storage-free)!
+
+Es muy fácil de usar:
+
+<CodeGroup>
+<CodeGroupItem title="TypeScript" active>
+
+```ts
+import { freeStorage } from "@grammyjs/storage-free";
+
+bot.use(session({
+  initial: ...
+  storage: freeStorage<SessionData>(bot.token),
+}));
+```
+
+</CodeGroupItem>
+<CodeGroupItem title="JavaScript">
+
+```js
+const { freeStorage } = require("@grammyjs/storage-free");
+
+bot.use(session({
+  initial: ...
+  storage: freeStorage(bot.token),
+}));
+```
+
+</CodeGroupItem>
+<CodeGroupItem title="Deno">
+
+```ts
+import { freeStorage } from "https://deno.land/x/grammy_storage/free/mod.ts";
+
+bot.use(session({
+  initial: ...
+  storage: freeStorage<SessionData>(bot.token),
+}));
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+Ya está.
+Tu bot ahora utilizará un almacenamiento de datos persistente.
+
+Aquí hay un ejemplo de bot completo que puedes copiar para probarlo.
+
+<CodeGroup>
+<CodeGroupItem title="TypeScript" active>
+
+```ts
+import { Bot, Context, session, SessionFlavor } from "grammy";
+import { freeStorage } from "@grammyjs/storage-free";
+
+// Definir la estructura de la sesión.
+interface SessionData {
+  count: number;
+}
+type MyContext = Context & SessionFlavor<SessionData>;
+
+// Crear el bot y registrar el middleware de sesión.
+const bot = new Bot<MyContext>("");
+
+bot.use(session({
+  initial: () => ({ count: 0 }),
+  storage: freeStorage<SessionData>(bot.token),
+}));
+
+// Utilizar datos de sesión persistentes en los manejadores de actualización.
+bot.on("message", async (ctx) => {
+  ctx.session.count++;
+  await ctx.reply(`Message count: ${ctx.session.count}`);
+});
+
+bot.catch((err) => console.error(err));
+bot.start();
+```
+
+</CodeGroupItem>
+<CodeGroupItem title="JavaScript">
+
+```js
+const { Bot, session } = require("grammy");
+const { freeStorage } = require("@grammyjs/storage-free");
+
+// Crear el bot y registrar el middleware de sesión.
+const bot = new Bot("");
+
+bot.use(session({
+  initial: () => ({ count: 0 }),
+  storage: freeStorage(bot.token),
+}));
+
+// Utilizar datos de sesión persistentes en los manejadores de actualización.
+bot.on("message", async (ctx) => {
+  ctx.session.count++;
+  await ctx.reply(`Message count: ${ctx.session.count}`);
+});
+
+bot.catch((err) => console.error(err));
+bot.start();
+```
+
+</CodeGroupItem>
+<CodeGroupItem title="Deno">
+
+```ts
+import {
+  Bot,
+  Context,
+  session,
+  SessionFlavor,
+} from "https://deno.land/x/grammy/mod.ts";
+import { freeStorage } from "https://deno.land/x/grammy_storage/free/mod.ts";
+
+// Definir la estructura de la sesión.
+interface SessionData {
+  count: number;
+}
+type MyContext = Context & SessionFlavor<SessionData>;
+
+// Crear el bot y registrar el middleware de sesión.
+const bot = new Bot<MyContext>("");
+
+bot.use(session({
+  initial: () => ({ count: 0 }),
+  storage: freeStorage<SessionData>(bot.token),
+}));
+
+// Utilizar datos de sesión persistentes en los manejadores de actualización.
+bot.on("message", async (ctx) => {
+  ctx.session.count++;
+  await ctx.reply(`Message count: ${ctx.session.count}`);
+});
+
+bot.catch((err) => console.error(err));
+bot.start();
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+### Soluciones de almacenamiento externo
+
+Mantenemos una colección de adaptadores de almacenamiento oficiales que le permiten almacenar los datos de su sesión en diferentes lugares.
+Cada uno de ellos requerirá que te registres en un proveedor de alojamiento, o que alojes tu propia solución de almacenamiento.
+
+Visite [aquí](https://github.com/grammyjs/storages/tree/main/packages#grammy-storages) para ver una lista de los adaptadores compatibles actualmente y obtener orientación sobre su uso.
+
+::: tip ¿Su almacenamiento no es compatible? No hay problema.
+Crear un adaptador de almacenamiento personalizado es extremadamente sencillo.
+La opción `storage` funciona con cualquier objeto que se adhiera a [esta interfaz](https://deno.land/x/grammy/mod.ts?s=StorageAdapter), por lo que puedes conectarte a tu almacenamiento con sólo unas líneas de código.
+
+> Si has publicado tu propio adaptador de almacenamiento, no dudes en editar esta página y enlazarla aquí, para que otras personas puedan utilizarla.
+
+:::
+
+Todos los adaptadores de almacenamiento pueden instalarse de la misma manera.
+En primer lugar, debes buscar el nombre del paquete del adaptador que hayas elegido.
+Por ejemplo, el adaptador de almacenamiento para Supabase se llama `supabase`.
+
+**En Node.js**, puedes instalar los adaptadores a través de `npm i @grammyjs/storage-<nombre>`.
+Por ejemplo, el adaptador de almacenamiento para Supabase puede instalarse mediante `npm i @grammyjs/storage-supabase`.
+
+**En Deno**, todos los adaptadores de almacenamiento se publican en el mismo módulo de Deno.
+A continuación, puede importar el adaptador que necesite desde su sub-ruta en `https://deno.land/x/grammy_storages/<adaptador>/src/mod.ts`.
+Por ejemplo, el adaptador de almacenamiento para Supabase puede importarse desde `https://deno.land/x/grammy_storages/supabase/src/mod.ts`.
+
+Consulta los repositorios respectivos sobre cada configuración individual.
+Contienen información sobre cómo conectarlos a tu solución de almacenamiento.
+
+## Multi Sesiones
+
+El plugin de sesión es capaz de almacenar diferentes fragmentos de sus datos de sesión en diferentes lugares.
+Básicamente, esto funciona como si usted instalara múltiples instancias independientes del plugin de sesión, cada una con una configuración diferente.
+
+Cada uno de estos fragmentos de datos tendrá un nombre bajo el cual puede almacenar sus datos.
+Entonces podrás acceder a `ctx.session.foo` y `ctx.session.bar` y estos valores serán cargados desde diferentes almacenamientos de datos, y también serán escritos de vuelta a diferentes almacenamientos de datos.
+Naturalmente, también se puede utilizar el mismo almacenamiento con una configuración diferente.
+
+También es posible utilizar diferentes [claves de sesión](#claves-de-sesion) para cada fragmento.
+Como resultado, puede almacenar algunos datos por chat y otros por usuario.
+
+> Si está utilizando [grammY runner](./runner.md), asegúrese de configurar `sequentialize` correctamente devolviendo **todas** las claves de sesión como restricciones de la función.
+
+Puede utilizar esta función pasando `type: "multi"` a la configuración de la sesión.
+A su vez, tendrás que configurar cada fragmento con su propia configuración.
+
+```ts
+bot.use(session({
+  type: "multi",
+  foo: {
+    // estos son también los valores por defecto
+    storage: new MemorySessionStorage(),
+    initial: () => undefined,
+    getSessionKey: (ctx) => ctx.chat?.id.toString(),
+  },
+  bar: {
+    initial: () => ({ prop: 0 }),
+    storage: freeStorage(bot.token),
+  },
+  baz: {},
+}));
+```
+
+Tenga en cuenta que debe añadir una entrada de configuración para cada fragmento que desee utilizar.
+Si deseas utilizar la configuración por defecto, puedes especificar un objeto vacío (como hacemos con `baz` en el ejemplo anterior).
+
+Sus datos de sesión seguirán consistiendo en un objeto con múltiples propiedades.
+Por ello, el sabor de su contexto no cambia.
+El ejemplo anterior podría utilizar esta interfaz al personalizar el objeto de contexto:
+
+```ts
+interface SessionData {
+  foo?: string;
+  bar: { prop: number };
+  baz: { width?: number; height?: number };
+}
+```
+
+Entonces puedes seguir usando `SessionFlavor<SessionData>` para tu objeto de contexto.
 
 ## Lazy Sessions
 
 > Esta sección describe una optimización del rendimiento de la que la mayoría de la gente no tiene que preocuparse.
-> Es posible que desee continuar con la sección sobre [adaptadores de almacenamiento conocidos](#adaptadores-de-almacenamiento-conocidos).
 
 Las lazy sessions son una implementación alternativa de las sesiones que puede reducir significativamente el tráfico de la base de datos de tu bot al omitir operaciones de lectura y escritura superfluas.
 
 Supongamos que tu bot está en un chat de grupo en el que no responde a los mensajes de texto normales, sino sólo a los comandos.
-Sin sesiones, esto sucedería:
+Sin sesiones, esto ocurriría:
 
 1. Se envía una actualización con un nuevo mensaje de texto a tu bot
 2. No se invoca ningún manejador, por lo que no se realiza ninguna acción
@@ -416,224 +717,148 @@ Los desarrolladores de plugins que hacen uso de `ctx.session` siempre deben perm
 En el código del plugin, simplemente espere `ctx.session` todo el tiempo: si se pasa un objeto no prometido, éste simplemente se evaluará a sí mismo, por lo que efectivamente sólo se escribe código para sesiones perezosas y así se soportan sesiones estrictas automáticamente.
 :::
 
-## Adaptadores de almacenamiento conocidos
+## Mejoras en el almacenamiento
 
-Por defecto, las sesiones serán almacenadas [en su memoria](#ram-por-defecto) por el adaptador de almacenamiento incorporado.
-También puedes utilizar las sesiones persistentes que grammY [ofrece gratuitamente](#free-storage), o conectarte a [almacenamientos externos](#soluciones-de-almacenamiento-externo).
+El plugin de sesión es capaz de mejorar cualquier adaptador de almacenamiento añadiendo más funciones al mismo: [tiempos de espera](#tiempos-de-espera) y [migraciones](#migraciones).
 
-Así es como puedes instalar uno de los adaptadores de almacenamiento desde abajo.
+Pueden ser instalados usando la función `enhanceStorage`.
 
 ```ts
-const storageAdapter = ... // depende de la configuración
-
+// Usar el adaptador de almacenamiento mejorado.
 bot.use(session({
-  initial: ...
-  storage: storageAdapter,
+  storage: enhanceStorage({
+    storage: freeStorage(bot.token), // ajusta esto
+    // más configuración aquí
+  }),
 }));
 ```
 
-### RAM (por defecto)
+También puedes usar ambos al mismo tiempo.
 
-Por defecto, todos los datos se almacenan en la memoria RAM.
-Esto significa que todas las sesiones se pierden tan pronto como tu bot se detenga.
+### Tiempos de espera
 
-Puedes usar la clase `MemorySessionStorage` ([API Reference](/ref/core/MemorySessionStorage.md)) del paquete central de grammY si quieres configurar más cosas sobre el almacenamiento de datos en la RAM.
+La mejora de los tiempos de espera puede añadir una fecha de caducidad a los datos de la sesión.
+Esto significa que puede especificar un período de tiempo, y si la sesión no se modifica durante este tiempo, los datos para el chat en particular serán eliminados.
+
+Puede utilizar los tiempos de espera de la sesión a través de la opción `millisecondsToLive`.
 
 ```ts
-bot.use(session({
-  initial: ...
-  storage: new MemorySessionStorage() // también el valor por defecto
-}));
+const enhanced = enhanceStorage({
+  almacenamiento,
+  millisecondsToLive: 30 * 60 * 1000, // 30 min
+});
 ```
 
-### Free Storage
+Tenga en cuenta que el borrado real de los datos sólo se producirá la próxima vez que se lean los datos de la sesión correspondiente.
 
-> El almacenamiento gratuito está pensado para ser utilizado en proyectos de aficionados.
-> Las aplicaciones a escala de producción deberían alojar su propia base de datos.
-> La lista de integraciones soportadas de soluciones de almacenamiento externo está [aquí abajo](#external-storage-solutions).
+### Migraciones
 
-Un beneficio de usar grammY es que obtienes acceso a almacenamiento gratuito en la nube.
-No requiere ninguna configuración - toda la autenticación se hace usando tu token de bot.
-¡Echa un vistazo a el [repositorio](https://github.com/grammyjs/storage-free)!
+Las migraciones son útiles si desarrollas más tu bot mientras ya existen datos de sesión.
+Puedes usarlas si quieres cambiar tus datos de sesión sin romper todos los datos anteriores.
 
-Es muy fácil de usar:
+Esto funciona dando números de versión a los datos, y luego escribiendo pequeñas funciones de migración.
+Las funciones de migración definen cómo actualizar los datos de sesión de una versión a la siguiente.
+
+Intentaremos ilustrar esto con un ejemplo.
+Supongamos que almacena información sobre la mascota de un usuario.
+Hasta ahora, sólo has almacenado los nombres de las mascotas en un array de cadenas en `ctx.session.petNames`.
+
+```ts
+interfaz SessionData {
+  petNames: string[];
+}
+```
+
+Ahora te haces a la idea de que también quieres almacenar la edad de las mascotas.
+
+Podrías hacer esto:
+
+```ts
+interfaz SessionData {
+  petNames: string[];
+  petBirthdays: number[];
+}
+```
+
+Esto no rompería tus datos de sesión existentes.
+Sin embargo, esto no es tan bueno, porque los nombres y los cumpleaños se almacenan ahora en lugares diferentes.
+Lo ideal sería que tus datos de sesión tuvieran este aspecto:
+
+```ts
+interfaz Pet {
+  nombre: cadena;
+  cumpleaños: número;
+}
+
+interfaz SessionData {
+  mascotas: Mascota[];
+}
+```
+
+Las funciones de migración permiten transformar el antiguo array de cadenas en el nuevo array de objetos mascota.
 
 <CodeGroup>
 <CodeGroupItem title="TypeScript" active>
 
 ```ts
-import { freeStorage } from "@grammyjs/storage-free";
+function addBirthdayToPets(old: { petNames: string[] }): SessionData {
+  return {
+    pets: old.petNames.map((name) => ({ name })),
+  };
+}
 
-bot.use(session({
-  initial: ...
-  storage: freeStorage<SessionData>(bot.token),
-}));
+const enhanced = enhanceStorage({
+  storage,
+  migrations: {
+    1: addBirthdayToPets,
+  },
+});
 ```
 
 </CodeGroupItem>
 <CodeGroupItem title="JavaScript">
 
-```ts
-const { freeStorage } = require("@grammyjs/storage-free");
+```js
+function addBirthdayToPets(old) {
+  return {
+    pets: old.petNames.map((name) => ({ name })),
+  };
+}
 
-bot.use(session({
-  initial: ...
-  storage: freeStorage(bot.token),
-}));
-```
-
-</CodeGroupItem>
-<CodeGroupItem title="Deno">
-
-```ts
-import { freeStorage } from "https://deno.land/x/grammy_storage/free/mod.ts";
-
-bot.use(session({
-  initial: ...
-  storage: freeStorage<SessionData>(bot.token),
-}));
+const enhanced = enhanceStorage({
+  storage,
+  migrations: {
+    1: addBirthdayToPets,
+  },
+});
 ```
 
 </CodeGroupItem>
 </CodeGroup>
 
-Ya está.
-Tu bot ahora utilizará un almacenamiento de datos persistente.
+Siempre que se lean los datos de la sesión, la mejora del almacenamiento comprobará si los datos de la sesión ya están en la versión `1`.
+Si la versión es inferior (o no existe porque no se utilizaba antes esta función), se ejecutará la función de migración.
+Esto actualiza los datos a la versión `1`.
+Por lo tanto, en tu bot, siempre puedes asumir que tus datos de sesión tienen la estructura más actualizada, y la mejora del almacenamiento se encargará del resto y migrará tus datos según sea necesario.
 
-Aquí hay un ejemplo de bot completo que puedes copiar para probarlo.
-
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
-
-```ts
-import { Bot, Context, session, SessionFlavor } from "grammy";
-import { freeStorage } from "@grammyjs/storage-free";
-
-// Definir la estructura de la sesión.
-interface SessionData {
-  count: number;
-}
-type MyContext = Context & SessionFlavor<SessionData>;
-
-// Crear el bot y registrar el middleware de sesión.
-const bot = new Bot<MyContext>(""); // <-- pon tu token de bot entre los ""
-
-bot.use(session({
-  initial: () => ({ count: 0 }),
-  storage: freeStorage<SessionData>(bot.token),
-}));
-
-// Utilizar datos de sesión persistentes en los manejadores de actualización.
-bot.on("message", async (ctx) => {
-  ctx.session.count++;
-  await ctx.reply(`Message count: ${ctx.session.count}`);
-});
-
-bot.catch((err) => console.error(err));
-bot.start();
-```
-
-</CodeGroupItem>
-<CodeGroupItem title="JavaScript">
+A medida que el tiempo evoluciona y tu bot cambia más, puedes añadir más y más funciones de migración:
 
 ```ts
-const { Bot, session } = require("grammy");
-const { freeStorage } = require("@grammyjs/storage-free");
-
-// Crear el bot y registrar el middleware de sesión.
-const bot = new Bot(""); // <-- pon tu token de bot entre los ""
-
-bot.use(session({
-  initial: () => ({ count: 0 }),
-  storage: freeStorage(bot.token),
-}));
-
-// Utilizar datos de sesión persistentes en los manejadores de actualización.
-bot.on("message", async (ctx) => {
-  ctx.session.count++;
-  await ctx.reply(`Message count: ${ctx.session.count}`);
+const enhanced = enhanceStorage({
+  almacenamiento,
+  migraciones: {
+    1: addBirthdayToPets,
+    2: addIsFavoriteFlagToPets,
+    3: addUserSettings,
+    10: extendUserSettings,
+    10.1: fixUserSettings,
+    11: compressData,
+  },
 });
-
-bot.catch((err) => console.error(err));
-bot.start();
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Deno">
-
-```ts
-import {
-  Bot,
-  Context,
-  session,
-  SessionFlavor,
-} from "https://deno.land/x/grammy/mod.ts";
-import { freeStorage } from "https://deno.land/x/grammy_storage/free/mod.ts";
-
-// Definir la estructura de la sesión.
-interface SessionData {
-  count: number;
-}
-type MyContext = Context & SessionFlavor<SessionData>;
-
-// Crear el bot y registrar el middleware de sesión.
-const bot = new Bot<MyContext>(""); // <-- pon tu token de bot entre los ""
-
-bot.use(session({
-  initial: () => ({ count: 0 }),
-  storage: freeStorage<SessionData>(bot.token),
-}));
-
-// Utilizar datos de sesión persistentes en los manejadores de actualización.
-bot.on("message", async (ctx) => {
-  ctx.session.count++;
-  await ctx.reply(`Message count: ${ctx.session.count}`);
-});
-
-bot.catch((err) => console.error(err));
-bot.start();
-```
-
-</CodeGroupItem>
-</CodeGroup>
-
-### Soluciones de almacenamiento externo
-
-Mantenemos una lista de adaptadores de almacenamiento oficiales que le permiten almacenar sus datos de sesión en diferentes lugares.
-Cada uno de ellos requerirá que te registres en un proveedor de alojamiento, o que alojes tu propia solución de almacenamiento.
-
-- Supabase: <https://github.com/grammyjs/storage-supabase>
-- Deta.sh Base: <https://github.com/grammyjs/storage-deta>
-- Google Firestore (Node.js-only): <https://github.com/grammyjs/storage-firestore>
-- Files: <https://github.com/grammyjs/storages/tree/main/packages/file>
-- MongoDB: <https://github.com/grammyjs/storages/tree/main/packages/mongodb>
-- Redis: <https://github.com/grammyjs/storages/tree/main/packages/redis>
-- PostgreSQL: <https://github.com/grammyjs/storages/tree/main/packages/psql>
-- TypeORM (solo para Node.js): <https://github.com/grammyjs/storages/tree/main/packages/typeorm>
-- DenoDB (solo para Deno): https://github.com/grammyjs/storages/tree/main/packages/denodb
-- Prisma (solo para Node.js): https://github.com/grammyjs/storages/tree/main/packages/prisma
-
-::: tip ¿Su almacenamiento no es compatible? No hay problema.
-Crear un adaptador de almacenamiento personalizado es extremadamente sencillo.
-La opción `storage` funciona con cualquier objeto que se adhiera a [esta interfaz](/ref/core/StorageAdapter.md), por lo que puedes conectarte a tu almacenamiento con sólo unas líneas de código.
-
-> Si has publicado tu propio adaptador de almacenamiento, no dudes en editar esta página y enlazarla aquí, para que otras personas puedan utilizarla.
-
-:::
-
-Todos los adaptadores de almacenamiento pueden instalarse de la misma manera.
-En primer lugar, debes buscar el nombre del paquete del adaptador que hayas elegido.
-Por ejemplo, el adaptador de almacenamiento para Supabase se llama `supabase`.
-
-**En Node.js**, puedes instalar los adaptadores a través de `npm i @grammyjs/storage-<nombre>`.
-Por ejemplo, el adaptador de almacenamiento para Supabase puede instalarse mediante `npm i @grammyjs/storage-supabase`.
-
-**En Deno**, todos los adaptadores de almacenamiento se publican en el mismo módulo de Deno.
-A continuación, puede importar el adaptador que necesite desde su sub-ruta en `https://deno.land/x/grammy_storages/<adaptador>/src/mod.ts`.
-Por ejemplo, el adaptador de almacenamiento para Supabase puede importarse desde `https://deno.land/x/grammy_storages/supabase/src/mod.ts`.
-
-Consulta los repositorios respectivos sobre cada configuración individual.
-Contienen información sobre cómo conectarlos a tu solución de almacenamiento.
+Puedes elegir cualquier número de JavaScript como versiones.
+No importa la evolución de los datos de sesión de un chat, en cuanto se lea, se migrará a través de las versiones hasta utilizar la estructura más reciente.
 
 ## Resumen del plugin
 

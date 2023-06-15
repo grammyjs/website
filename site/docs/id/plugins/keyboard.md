@@ -26,18 +26,18 @@ Contohnya, kita tidak bisa mengirim keyboard custom sebagai pesan pertama lalu m
 
 ## Keyboard Inline
 
-> Silahkan kunjungi bagian keyboard inline di materi [Pengenalan untuk Developer](https://core.telegram.org/bots#inline-keyboards-and-on-the-fly-updating) yang ditulis oleh tim Telegram.
+> Silahkan kunjungi bagian keyboard inline di materi [Fitur-fitur Bot Telegram](https://core.telegram.org/bots/features#inline-keyboards) yang ditulis oleh tim Telegram.
 
 grammY menyediakan class bernama `InlineKeyboard` yang bisa kamu gunakan untuk membuat keyboard inline dengan mudah dan simpel.
 
-> Baik tombol `switchInline` maupun `switchInlineCurrent` sama-sama memulai inline query.
+> Semua tombol yang menggunakan `switchInline`, `switchInlineCurrent`, atau `switchInlineChosen` akan memulai sebuah inline query.
 > Lihat materi tentang [Inline Query](../guide/inline-queries.md) untuk mengetahui cara kerjanya.
 
 ### Membuat Keyboard Inline
 
 Berikut ketiga contoh untuk membuat sebuah keyboard inline dengan tombol `text` di dalamnya.
 
-Kamu juga bisa menggunakan method lain seperti `url` agar aplikasi Telegram user bisa membuka sebuah URL, serta opsi-opsi `InlineKeyboard` lain yang tersedia baik di [Referensi API grammY](/ref/core/InlineKeyboard.md#Methods) maupun [Referensi API Bot Telegram](https://core.telegram.org/bots/api#inlinekeyboardbutton).
+Kamu juga bisa menggunakan method lain seperti `url` agar aplikasi Telegram user bisa membuka sebuah URL, serta opsi-opsi `InlineKeyboard` lain yang tersedia baik di [Referensi API grammY](https://deno.land/x/grammy/mod.ts?s=InlineKeyboard#Methods) maupun [Referensi API Bot Telegram](https://core.telegram.org/bots/api#inlinekeyboardbutton).
 
 #### Contoh 1
 
@@ -56,7 +56,7 @@ const inlineKeyboard = new InlineKeyboard()
 
 ##### Hasil
 
-![Hasil contoh 1](/inline-keyboard-example-1.webp)
+![Hasil contoh 1](/images/inline-keyboard-example-1.webp)
 
 #### Contoh 2
 
@@ -72,7 +72,7 @@ const inlineKeyboard = new InlineKeyboard()
 
 ##### Hasil
 
-![Hasil contoh 2](/inline-keyboard-example-2.webp)
+![Hasil contoh 2](/images/inline-keyboard-example-2.webp)
 
 #### Contoh 3
 
@@ -89,7 +89,7 @@ const inlineKeyboard = new InlineKeyboard().url(
 
 ##### Hasil
 
-![Hasil contoh 3](/inline-keyboard-example-3.webp)
+![Hasil contoh 3](/images/inline-keyboard-example-3.webp)
 
 ### Mengirim Keyboard Inline
 
@@ -166,7 +166,7 @@ Pertama-tama, keyboard custom terkadang hanya disebut sebagai keyboard, ada juga
 Gampangnya, ketika tidak disertai dengan konteks yang jelas serta tidak ada penyebutan keyboard inline di dalamnya, maka kemungkinan besar yang dimaksud adalah keyboard custom.
 Keyboard custom dapat mengganti keyboard sistem dengan beraneka tombol yang sudah kamu tentukan.
 
-> Kunjungi bagian keyboard custom di materi [Pengenalan untuk Developer](https://core.telegram.org/bots#keyboards) yang ditulis oleh tim Telegram.
+> Kunjungi bagian keyboard custom di dokumentasi [Fitur-fitur Bot Telegram](https://core.telegram.org/bots/features#keyboards) yang ditulis oleh tim Telegram.
 
 grammY menyediakan class bernama `Keyboard` yang bisa kamu gunakan untuk membuat keyboard custom dengan mudah dan simpel.
 
@@ -177,7 +177,7 @@ Kamu bisa menyimak pesan teks menggunakan `bot.on("message:text")` ataupun `bot.
 
 Berikut ketiga contoh cara membuat keyboard custom dengan tombol `text` di dalamnya.
 
-Kamu juga bisa meminta nomor telepon dengan `requestContact`, lokasi dengan `requestLocation`, dan voting dengan `requestPoll`.
+Kamu juga bisa meminta nomor telepon dengan `requestContact`, lokasi dengan `requestLocation`, voting dengan `requestPoll`, user dengan `requestUser`, dan chat dengan `requestChat`.
 
 #### Contoh 1
 
@@ -195,7 +195,7 @@ const keyboard = new Keyboard()
 
 ##### Hasil
 
-![Hasil Contoh 1](/keyboard-example-1.webp)
+![Hasil Contoh 1](/images/keyboard-example-1.webp)
 
 #### Contoh 2
 
@@ -213,7 +213,7 @@ const keyboard = new Keyboard()
 
 ##### Hasil
 
-![Hasil Contoh 2](/keyboard-example-2.webp)
+![Hasil Contoh 2](/images/keyboard-example-2.webp)
 
 #### Contoh 3
 
@@ -229,7 +229,7 @@ const keyboard = new Keyboard()
 
 ##### Hasil
 
-![Hasil Contoh 3](/keyboard-example-3.webp)
+![Hasil Contoh 3](/images/keyboard-example-3.webp)
 
 ### Mengirim Keyboard Custom
 
@@ -245,7 +245,20 @@ await ctx.reply(text, {
 Umumnya, semua method yang mengirim pesan selain pesan teks mendukung opsi-opsi yang serupa, seperti yang sudah dijelaskan di [Referensi API Bot Telegram](https://core.telegram.org/bots/api).
 
 Kamu juga bisa memberi beberapa property ke keyboard kamu dengan cara memanggil method khusus.
-Alih-alih menambahkan tombol baru, method-method berikut dapat mengubah perilaku sebuah keyboard:
+Alih-alih menambahkan tombol baru, method-method tersebut mengubah perilaku dari sebuah keyboard.
+
+#### Keyboard Persisten
+
+Secara bawaan, user bisa menggunakan sebuah tombol icon yang berfungsi untuk menampilkan dan menyembunyikan keyboard custom yang disetel oleh bot kamu.
+
+Kamu bisa memanggil `persistent` agar keyboard custom tetap ditampilkan ketika keyboard sistem disembunyikan.
+Dengan begitu, keyboard akan selalu ditampilkan ke user, baik itu keyboard custom ataupun keyboard sistem.
+
+```ts
+new Keyboard()
+  .text("Lewati")
+  .persistent();
+```
 
 #### Mengatur Ukuran Keyboard Custom
 

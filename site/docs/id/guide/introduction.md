@@ -37,7 +37,7 @@ Sederhananya, jika ingin bot tetap aktif sepanjang waktu, kamu harus terus menja
 Karena kemungkinan besar kamu tidak ingin melakukannya dengan komputer kesayanganmu, kamu harus mengunggah source code bot ke sebuah _penyedia hosting_—dengan kata lain, menggunakan komputer milik orang lain, yang juga dikenal sebagai _server_—dan biarkan orang tersebut yang menjalankannya untukmu.
 
 Ada banyak penyedia layanan di luar sana yang mengizinkan kamu untuk menjalankan bot Telegram secara gratis.
-Dokumentasi ini juga sudah menyediakan daftar beberapa penyedia hosting yang kami tahu bekerja dengan baik dengan grammY (lihat bab Sumber Daya).
+Dokumentasi ini juga sudah menyediakan daftar beberapa penyedia hosting yang kami tahu bekerja dengan baik dengan grammY (lihat di bagian [Hosting](../hosting/comparison.md).
 Namun, pada akhirnya, keputusan ada pada diri kamu untuk memilih penyedia layanan yang sesuai.
 Perlu diingat bahwa disaat kamu menjalankan kode di tempat lain, berarti siapa pun yang menguasai "tempat" tersebut memiliki akses ke semua pesan dan data penggunamu. Jadi, kamu harus bijak dalam memilih penyedia hosting yang dapat dipercaya.
 
@@ -80,15 +80,25 @@ Dokumentasi grammY tidak akan mengajarimu bagaimana cara membuat suatu program d
 Jadi, kami mengharapkan kamu untuk belajar sendiri.
 Paling tidak, dengan membuat bot Telegram menggunakan grammY adalah awal yang baik untuk mulai belajar pemrograman! :rocket:
 
-::: tip Belajar Menulis Kode
+::: tip Belajar Ngoding
 Kamu bisa mulai belajar TypeScript melalui [tutorial resmi](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html) yang ditulis oleh tim TypeScript, lalu kembali ke sini jika sudah selesai.
-Jangan habiskan lebih dari 30 menit untuk melakukan hal-hal lain di internet—lihat koleksi foto kucing misalnya :cat:. Langsung kembali ke sini, selesaikan materi ini, kemudian kita bisa [memulai](./getting-started.md).
+Jangan habiskan lebih dari 30 menit untuk melakukan hal-hal lain di internet—lihat koleksi foto kucing misalnya :cat:.
+Langsung kembali ke sini, selesaikan materi ini, kemudian kita bisa [memulai](./getting-started.md).
 
-Jika menemukan syntax yang tidak kamu ketahui, atau mendapatkan pesan error yang tidak dimengerti, langsung saja cari di internet. Penjelasan serta solusinya sudah pasti tersedia di sana, misal di StackOverflow.
+Jika menemukan syntax yang tidak kamu ketahui, atau mendapatkan pesan error yang tidak dimengerti, langsung saja cari di internet.
+Penjelasan serta solusinya kemungkinan besar sudah tersedia---misal di Stack Overflow.
 :::
 
-::: danger Tidak Usah Belajar Menulis Kode
+::: danger Malas Belajar Ngoding
 Luangkan waktumu sebentar untuk menonton [video 34 detik ini](https://youtu.be/8RtGlWmXGhA).
+
+> Catatan penerjemah:
+>
+> Mungkin video di atas akan sulit dimengerti untuk kamu yang belum terbiasa dengan bahasa Inggris.
+> Inti dari video tersebut adalah satu-satunya cara untuk belajar pemrograman---dengan cepat---adalah jangan terlalu banyak menonton video tutorial ataupun pelatihan-pelatihan semacamnya.
+> Teori memang penting, tetapi yang perlu kamu prioritaskan adalah memperbanyak latihan, alias praktik langsung ngoding.
+> Untuk versi bahasa Indonesia, mungkin yang mirip dengan video di atas adalah [video 3 menit ini](https://youtu.be/a6yeLjujJXo)---lebih tepatnya 18 detik pertama.
+
 :::
 
 Dengan memilih grammY, kamu telah menggunakan sebuah bahasa pemrograman, yaitu TypeScript.
@@ -97,10 +107,10 @@ Untuk itu, kamu perlu memasang beberapa software yang dapat _mengeksekusi_ kode 
 Jenis software ini disebut dengan _runtime environment_.
 Ia akan membaca file source code kamu kemudian mengerjakan apa pun yang diprogramkan di dalamnya.
 
-Terdapat dua runtime environment yang bisa kita pilih: [Deno](https://deno.land) dan [Node.js](https://nodejs.org).
+Terdapat dua runtime environment yang bisa kita pilih: [Deno](https://deno.com/runtime) dan [Node.js](https://nodejs.org).
 Jika kamu menjumpai orang-orang menyebut Node.js dengan sebutan _Node_ saja, mereka terlalu malas untuk menambahkan imbuhan ".js", meskipun maksudnya sama saja.
 
-> Mulai dari sini, kami akan membantu kamu memilih diantara kedua platform tersebut.
+> Mulai dari sini, kami akan membantu kamu memilih di antara kedua platform tersebut.
 > Kalau sudah tahu mana yang ingin digunakan, silahkan lompat ke [persiapan untuk Node.js](#persiapan-untuk-node-js) atau [persiapan untuk Deno](#persiapan-untuk-deno).
 
 Node.js adalah teknologi yang lebih stabil dan sudah lama dikembangkan.
@@ -113,13 +123,15 @@ Kalau kamu belum memiliki banyak pengalaman di dunia pemrograman, **memulai deng
 
 Malahan, jika sebelumnya pernah menulis kode menggunakan Node.js, kamu patut mempertimbangkan untuk mencoba Deno.
 Banyak hal rumit yang ada di Node.js sudah tidak perlu dipikirkan lagi di Deno.
-Berikut kelebihan Deno dibandingkan dengan Node.js:
 
-- Tidak ada file `package.json` untuk dikonfigurasi.
-- Tidak ada `node_modules` untuk diurusi.
-- Unggul, memiliki _development tool_ bawaan.
-- Sistem keamanan yang jauh lebih baik.
-- Dan banyak lagi keuntungan yang tidak bisa diuraikan di sini.
+Keunggulan Deno dibandingkan dengan Node.js:
+
+- Proses penginstalan sangat mudah.
+- Tidak perlu mengatur konfigurasi apapun.
+- Menggunakan kapasitas penyimpanan yang jauh lebih sedikit.
+- Memiliki _development tool_ bawaan yang lebih unggul serta integrasi code editor yang lebih baik.
+- Sistem keamanan yang jauh lebih aman.
+- Dan kelebihan-kelebihan lain yang tidak bisa diuraikan di sini.
 
 Menulis kode dengan Deno juga jauh lebih menyenangkan.
 Setidaknya, itulah pendapat kami.
@@ -130,8 +142,47 @@ Silakan pilih mana yang menurut kamu paling sesuai.
 
 ### Persiapan untuk Deno
 
-[Install Deno](https://deno.land/#installation) jika belum punya.
-Kalau sudah selesai membuat bot, misal disimpan di file bernama `bot.ts`, kamu dapat menjalankannya melalui `deno run --allow-net bot.ts` dan menghentikannya dengan tombol pintas `Ctrl+C`.
+Sebelum mulai membuat bot, mari terlebih dahulu menyiapkan lingkungan kerja pengembangan software yang sesuai.
+Diantaranya adalah menginstal beberapa tool yang dibutuhkan.
+
+#### Menyiapkan Perangkat untuk Pengembangan
+
+Pertama-tama, [instal Deno](https://deno.com/manual/getting_started/installation#download-and-install) di perangkat kamu.
+
+Siapkan juga text editor yang sesuai untuk coding.
+Salah satu yang sesuai untuk Deno adalah Visual Studio Code, atau biasa disebut dengan VS Code.
+Silahkan [diinstal](https://code.visualstudio.com/) juga.
+
+Selanjutnya, kamu perlu menghubungkan Deno dan VS Code.
+Caranya sangat mudah: VS Code punya extension yang bisa melakukan semua hal tersebut secara otomatis.
+Kamu bisa menginstalnya seperti yang telah [dijelaskan di sini](https://marketplace.visualstudio.com/items?itemName=denoland.vscode-deno).
+
+Perangkat kamu sekarang siap digunakan untuk mengembangkan bot! :tada:
+
+#### Mengembangkan Bot
+
+Buat sebuah direktori baru di suatu tempat.
+Direktori ini nantinya akan berisi proyek bot kamu.
+Setelah itu, buka direktori tersebut di VS Code.
+
+```sh
+mkdir ./my-bot
+cd ./my-bot
+code .
+```
+
+> Jika kamu menggunakan macOS dan command `code` tidak tersedia, cukup buka VS Code, tekan `Cmd+Shift+P`, ketik "shell command", kemudian tekan Enter.
+
+Di VS Code, ubah direktori kosong tersebut menjadi sebuah proyek Deno.
+Tekan `Ctrl+Shift+P`, ketik "deno init", kemudian tekan Enter.
+Jika berhasil, versi Deno yang terinstal di perangkat kamu akan ditampikan di bagian bawah kanan code editor.
+
+Lingkungan kerja untuk pengembangan Deno kamu sudah siap.
+Sekarang kamu bisa mulai menulis bot kamu.
+Penjelasannya ada di halaman berikutnya.
+
+Terakhir, setelah membuat bot, misalnya ditaruh di sebuah file bernama `bot.ts`, kamu bisa menjalankannya dengan mengetik `deno run --allow-net bot.ts` di terminal kamu---Yup, kamu akan sering berinteraksi dengan terminal ketika menulis sebuah program, jadi mulai sekarang biasakan dirimu.
+Kamu bisa menghentikan bot dengan menekan `Ctrl+C`.
 
 Sudah siap?
 [Mari kita mulai!](./getting-started.md#memulai-dengan-deno) :robot:
@@ -149,7 +200,7 @@ Untuk menjalankan file `bot.js`, kamu harus meng-install [Node.js](https://nodej
 
 Berikut tahap-tahap yang perlu dilakukan di Node.js:
 
-1. Buat source file `bot.ts` menggunakan TypeScript, misalnya dengan menggunakan [VSCode](https://code.visualstudio.com/) (atau kode editor lainnya).
+1. Buat source file `bot.ts` menggunakan TypeScript, misalnya dengan menggunakan [VS Code](https://code.visualstudio.com/) (atau kode editor lainnya).
 2. Compile kode dengan menjalankan perintah di terminal. Langkah ini akan menghasilkan file bernama `bot.js`.
 3. Jalankan `bot.js` menggunakan Node.js, sekali lagi dari terminal.
 
@@ -157,5 +208,17 @@ Setiap kali melakukan perubahan kode di `bot.ts`, kamu perlu memulai ulang prose
 Tekan `Ctrl+C` di terminal untuk menghentikan proses tersebut, yang nantinya juga akan menghentikan bot kamu.
 Kemudian, ulangi langkah 2 dan 3.
 
-Sudah siap?
-[Mari kita mulai!](./getting-started.md#memulai-dengan-node-js) :robot:
+::: tip Hah, maksudnya?
+
+Proses instalasi Node.js beserta pengaturan konfigurasinya memerlukan waktu yang tidak sedikit.
+Jika kamu belum pernah melakukannya, kemungkinan besar kamu akan mengalami berbagai masalah yang cukup rumit untuk diatasi.
+
+Itulah kenapa kami sedikit berharap kamu mengerti bagaimana mengatur sistem kamu, atau bahkan mempelajarinya secara mandiri---Proses penginstalan Node.js _dengan cara yang benar_ sangatlah rumit sehingga tidak cukup untuk kami menjelaskannya di halaman ini.
+
+Jika kamu merasa kebingungan di titik ini, sebaiknya tinggalkan Node.js dan beralih menggunakan [Deno](#persiapan-untuk-deno).
+
+:::
+
+Masih percaya diri?
+Keren!
+[Mari kita mulai](./getting-started.md#memulai-dengan-node-js)! :robot:

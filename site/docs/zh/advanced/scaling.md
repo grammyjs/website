@@ -89,7 +89,7 @@ import { Bot, Context, session } from "grammy";
 import { run, sequentialize } from "@grammyjs/runner";
 
 // 创建一个 bot。
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 // 为 `Context` 对象构建唯一标识符。
 function getSessionKey(ctx: Context) {
@@ -111,12 +111,12 @@ run(bot);
 
 <CodeGroupItem title="JavaScript">
 
-```ts
+```js
 const { Bot, Context, session } = require("grammy");
 const { run, sequentialize } = require("@grammyjs/runner");
 
 // 创建一个 bot。
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 // 为 `Context` 对象构建唯一标识符。
 function getSessionKey(ctx) {
@@ -142,7 +142,7 @@ import { Bot, Context, session } from "https://deno.land/x/grammy/mod.ts";
 import { run, sequentialize } from "https://deno.land/x/grammy_runner/mod.ts";
 
 // 创建一个 bot。
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 // 为 `Context` 对象构建唯一标识符。
 function getSessionKey(ctx: Context) {

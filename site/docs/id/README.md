@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: /Y.png
+heroImage: /images/Y.png
 actions:
   - text: Mulai
     link: /id/guide/getting-started.html
@@ -15,7 +15,6 @@ features:
     details: grammY bersifat terbuka dan bisa ditambahkan dengan plugin yang kamu inginkan.
   - title: Dapat Diskalakan
     details: grammY selalu siap membantu ketika bot menjadi semakin populer dan semakin banyak trafiknya.
-footer: Hak Cipta © 2021-2022
 permalink: /id/
 ---
 
@@ -43,7 +42,7 @@ Bot ditulis menggunakan [TypeScript](https://www.typescriptlang.org) (atau JavaS
 ```ts
 import { Bot } from "grammy";
 
-const bot = new Bot(""); // <-- taruh token bot-mu di sini (https://t.me/BotFather)
+const bot = new Bot(""); // <-- taruh token bot-mu di antara "" (https://t.me/BotFather)
 
 // Balas pesan apapun dengan "Halo, apa kabar!".
 bot.on("message", (ctx) => ctx.reply("Halo, apa kabar!"));
@@ -57,7 +56,7 @@ bot.start();
 ```js
 const { Bot } = require("grammy");
 
-const bot = new Bot(""); // <-- taruh token bot-mu di sini (https://t.me/BotFather)
+const bot = new Bot(""); // <-- taruh token bot-mu di antara "" (https://t.me/BotFather)
 
 // Balas pesan apapun dengan "Halo, apa kabar!".
 bot.on("message", (ctx) => ctx.reply("Halo, apa kabar!"));
@@ -71,7 +70,7 @@ bot.start();
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
-const bot = new Bot(""); // <-- taruh token bot-mu di sini (https://t.me/BotFather)
+const bot = new Bot(""); // <-- taruh token bot-mu di antara "" (https://t.me/BotFather)
 
 // Balas pesan apapun dengan "Halo, apa kabar!".
 bot.on("message", (ctx) => ctx.reply("Halo, apa kabar!"));
@@ -86,5 +85,18 @@ Berhasil! :tada:
 
 ---
 
-grammY mendukung API Bot Telegram versi 6.2 yang [dirilis](https://core.telegram.org/bots/api#august-12-2022) pada tanggal 12 Agustus 2022.
-(Fitur yang disorot: Emoji Khusus)
+<ClientOnly>
+  <ThankYou :s="[
+    'Terima kasih, ',
+    '{name}',
+    ', telah menjadi kontributor grammY.',
+    ', telah menciptakan grammY.'
+  ]" />
+</ClientOnly>
+
+<div style="font-size: 0.75rem; display: flex; justify-content: center;">
+
+© 2021-2023 &middot; grammY mendukung API Bot Telegram versi 6.7 yang [dirilis](https://core.telegram.org/bots/api#april-21-2023) pada tanggal 21 April 2023.
+(Fitur yang disorot: nama bot lebih dari satu, emoji khusus, dan inline queries yang lebih baik)
+
+</div>

@@ -14,7 +14,7 @@ Usa una regla de linting para asegurarte de que no puedes olvidar esto.
 ## Apagado correcto
 
 Para los bots que utilizan long polling, hay una cosa más a considerar.
-Como vas a detener tu instancia durante la operación en algún momento de nuevo, deberías considerar la captura de eventos `SIGTERM` y `SIGINT`, y llamar a `bot.stop` (long polling incorporado) o detener tu bot a través de su [manejador](/ref/runner/RunnerHandle.md#stop) (grammY runner):
+Como vas a detener tu instancia durante la operación en algún momento de nuevo, deberías considerar la captura de eventos `SIGTERM` y `SIGINT`, y llamar a `bot.stop` (long polling incorporado) o detener tu bot a través de su [manejador](https://deno.land/x/grammy_runner/mod.ts?s=RunnerHandle#prop_stop) (grammY runner):
 
 ### Simple long polling
 
@@ -25,9 +25,9 @@ Como vas a detener tu instancia durante la operación en algún momento de nuevo
 ```ts
 import { Bot } from "grammy";
 
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
-// Detener el bot cuando el proceso de Node
+// Detener el bot cuando el proceso de Node.js
 // está a punto de terminar
 process.once("SIGINT", () => bot.stop());
 process.once("SIGTERM", () => bot.stop());
@@ -42,9 +42,9 @@ await bot.start();
 ```js
 const { Bot } = require("grammy");
 
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
-// Detener el bot cuando el proceso de Node
+// Detener el bot cuando el proceso de Node.js
 // está a punto de terminar
 process.once("SIGINT", () => bot.stop());
 process.once("SIGTERM", () => bot.stop());
@@ -59,7 +59,7 @@ await bot.start();
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 // Detener el bot cuando el proceso de Deno
 // está a punto de terminar
@@ -82,11 +82,11 @@ await bot.start();
 import { Bot } from "grammy";
 import { run } from "@grammyjs/runner";
 
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 const runner = run(bot);
 
-// Detener el bot cuando el proceso de Node
+// Detener el bot cuando el proceso de Node.js
 // está a punto de terminar
 const stopRunner = () => runner.isRunning() && runner.stop();
 process.once("SIGINT", stopRunner);
@@ -101,11 +101,11 @@ process.once("SIGTERM", stopRunner);
 const { Bot } = require("grammy");
 const { run } = require("@grammyjs/runner");
 
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 const runner = run(bot);
 
-// Detener el bot cuando el proceso de Node
+// Detener el bot cuando el proceso de Node.js
 // está a punto de terminar
 const stopRunner = () => runner.isRunning() && runner.stop();
 process.once("SIGINT", stopRunner);
@@ -119,7 +119,7 @@ process.once("SIGTERM", stopRunner);
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { run } from "https://deno.land/x/grammy_runner/mod.ts";
 
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 const runner = run(bot);
 
@@ -174,9 +174,9 @@ Esto lleva a la pérdida de datos.
 
 Si es crucial prevenir esto, deberías usar las fuentes y sumideros del paquete grammY runner para componer tu propio pipeline de actualización que pase todas las actualizaciones a través de una cola de mensajes primero.
 
-1. Básicamente tendrías que crear un [sink](/ref/runner/UpdateSink.md) que empuje a la cola, e iniciar un corredor que sólo alimente tu cola de mensajes.
+1. Básicamente tendrías que crear un [sink](https://deno.land/x/grammy_runner/mod.ts?s=UpdateSink) que empuje a la cola, e iniciar un corredor que sólo alimente tu cola de mensajes.
 
-2. A continuación, tendría que crear un [source](/ref/runner/UpdateSource.md) que se alimente de la cola de mensajes de nuevo.
+2. A continuación, tendría que crear un [source](https://deno.land/x/grammy_runner/mod.ts?s=UpdateSource) que se alimente de la cola de mensajes de nuevo.
    Efectivamente, ejecutará dos instancias diferentes del corredor grammY.
 
 Este vago borrador descrito arriba sólo ha sido esbozado pero no implementado, según nuestro conocimiento.

@@ -6,7 +6,7 @@ While you can always just write you own code to connect to a data storage of you
 
 ## Why Must We Think About Storage?
 
-In opposite to regular user accounts on Telegram, bots have [limited cloud storage](https://core.telegram.org/bots#4-how-are-bots-different-from-humans) in the Telegram cloud.
+In opposite to regular user accounts on Telegram, bots have [limited cloud storage](https://core.telegram.org/bots#how-are-bots-different-from-users) in the Telegram cloud.
 As a result, there are a few things you cannot do with bots:
 
 1. You cannot access old messages that your bot received.
@@ -246,7 +246,7 @@ If you don't specify it, reading `ctx.session` will throw an error for new users
 > This section describes an advanced feature that most people do not have to worry about.
 > You may want to continue with the section about [storing your data](#storing-your-data).
 
-You can specify which session key to use by passing a function called `getSessionKey` to the [options](/ref/core/SessionOptions.md#getSessionKey).
+You can specify which session key to use by passing a function called `getSessionKey` to the [options](https://deno.land/x/grammy/mod.ts?s=SessionOptions#prop_getSessionKey).
 That way, you can fundamentally change the way how the session plugin works.
 By default, data is stored per chat.
 Using `getSessionKey` allows you to store data per user, or per user-chat combination, or however you want.
@@ -326,6 +326,46 @@ If you must use the option (which is of course still possible), you should know 
 Make sure you understand the consequences of this configuration by reading [this](../guide/deployment-types.md) article and especially [this](./runner.md#sequential-processing-where-necessary) one.
 :::
 
+### Chat Migrations
+
+If you are using sessions for groups, you should be aware that Telegram migrates regular groups to supergroups under certain circumstances (e.g. [here](https://github.com/telegramdesktop/tdesktop/issues/5593)).
+
+This migration only occurs once for each group, but it can cause inconsistencies.
+This is because the migrated chat is technically a completely different chat that has a different identifier, and hence its session will be identified differently.
+
+Currently, there is no safe solution for this problem because messages from the two chats are also differently identified.
+This can lead to data races.
+However, there are several ways of dealing with this issue:
+
+- Ignoring the problem.
+  The bot's session data will effectively reset when a group is migrated.
+  Simple, reliable, default behavior, but potentially unexpected once per chat.
+  For example, if a migration happens while a user is in a conversation powered by the [conversations plugin](./conversations.md), the conversation will be reset.
+
+- Only storing temporary data (or data with timeouts) in the session, and using a database for the important things that need to be migrated when a chat migrates.
+  This can then use transactions and custom logic to handle concurrent data access from the old and the new chat.
+  A lot of effort and has a performance cost, but the only truly reliable way to solve this problem.
+
+- It is theoretically possible to implement a workaround that matches both chats **without guarantee of reliability**.
+  The Telegram Bot API sends a migration update for each of the two chats once the migration was triggered (see the properties `migrate_to_chat_id` or `migrate_from_chat_id` in the [Telegram API Docs](https://core.telegram.org/bots/api#message)).
+  The issue is that there is no guarantee that these messages are sent before a new message in the supergroup appears.
+  Hence, the bot could receive a message from the new supergroup before it is aware of any migration and thus, it can not match the two chats, resulting in the aforementioned problems.
+
+- Another workaround would be to limit the bot only for supergroups with [filtering](../guide/filter-queries.md) (or limit only session related features to supergroups).
+  However, this shifts the problematic / inconvenience to the users.
+
+- Letting the users decide explicitly.
+  ("This chat was migrated, do you want to transfer the bot data?")
+  Much more reliable and transparent than automatic migrations due to the artificially added delay, but worse UX.
+
+Finally, it is up to the developer to decide how to deal with this edge case.
+Depending on the bot functionalities one might choose one way or another.
+If the data in question is short-lived (e.g. temporary, timeouts involved) the migration is less of a problem.
+A user would experience the migration as a hiccup (if the timing is bad) and would simply have to rerun the feature.
+
+Ignoring the problem is surely the easiest way, nevertheless it is important to know about this behavior.
+Otherwise it can cause confusion and might cost hours of debugging time.
+
 ### Storing Your Data
 
 In all examples above, the session data is stored in your RAM, so as soon as your bot is stopped, all data is lost.
@@ -356,7 +396,7 @@ bot.use(session({
 By default, all data will be stored in RAM.
 This means that all sessions are lost as soon as your bot stops.
 
-You can use the `MemorySessionStorage` class ([API Reference](/ref/core/MemorySessionStorage.md)) from the grammY core package if you want to configure further things about storing data in RAM.
+You can use the `MemorySessionStorage` class ([API Reference](https://deno.land/x/grammy/mod.ts?s=MemorySessionStorage)) from the grammY core package if you want to configure further things about storing data in RAM.
 
 ```ts
 bot.use(session({
@@ -392,7 +432,7 @@ bot.use(session({
 </CodeGroupItem>
 <CodeGroupItem title="JavaScript">
 
-```ts
+```js
 const { freeStorage } = require("@grammyjs/storage-free");
 
 bot.use(session({
@@ -435,7 +475,7 @@ interface SessionData {
 type MyContext = Context & SessionFlavor<SessionData>;
 
 // Create the bot and register the session middleware.
-const bot = new Bot<MyContext>(""); // <-- put your bot token between the ""
+const bot = new Bot<MyContext>("");
 
 bot.use(session({
   initial: () => ({ count: 0 }),
@@ -455,12 +495,12 @@ bot.start();
 </CodeGroupItem>
 <CodeGroupItem title="JavaScript">
 
-```ts
+```js
 const { Bot, session } = require("grammy");
 const { freeStorage } = require("@grammyjs/storage-free");
 
 // Create the bot and register the session middleware.
-const bot = new Bot(""); // <-- put your bot token between the ""
+const bot = new Bot("");
 
 bot.use(session({
   initial: () => ({ count: 0 }),
@@ -496,7 +536,7 @@ interface SessionData {
 type MyContext = Context & SessionFlavor<SessionData>;
 
 // Create the bot and register the session middleware.
-const bot = new Bot<MyContext>(""); // <-- put your bot token between the ""
+const bot = new Bot<MyContext>("");
 
 bot.use(session({
   initial: () => ({ count: 0 }),
@@ -518,23 +558,14 @@ bot.start();
 
 ### External Storage Solutions
 
-We maintain a list of official storage adapters that allow you to store your session data in different places.
+We maintain a collection of official storage adapters that allow you to store your session data in different places.
 Each of them will require you to register at a hosting provider, or to host your own storage solution.
 
-- Supabase: <https://github.com/grammyjs/storages/tree/main/packages/supabase>
-- Deta.sh Base: <https://github.com/grammyjs/storages/tree/main/packages/deta>
-- Google Firestore (Node.js-only): <https://github.com/grammyjs/storages/tree/main/packages/firestore>
-- Files: <https://github.com/grammyjs/storages/tree/main/packages/file>
-- MongoDB: <https://github.com/grammyjs/storages/tree/main/packages/mongodb>
-- Redis: <https://github.com/grammyjs/storages/tree/main/packages/redis>
-- PostgreSQL: <https://github.com/grammyjs/storages/tree/main/packages/psql>
-- TypeORM (Node.js-only): <https://github.com/grammyjs/storages/tree/main/packages/typeorm>
-- DenoDB (Deno-only): <https://github.com/grammyjs/storages/tree/main/packages/denodb>
-- Prisma (Node.js-only): <https://github.com/grammyjs/storages/tree/main/packages/prisma>
+Visit [here](https://github.com/grammyjs/storages/tree/main/packages#grammy-storages) to see a list of currently supported adapters and get guidance on using them.
 
 ::: tip Your storage is not supported? No problem!
 Creating a custom storage adapter is extremely simple.
-The `storage` option works with any object that adheres to [this interface](/ref/core/StorageAdapter.md), so you can connect to your storage just in a few lines of code.
+The `storage` option works with any object that adheres to this [interface](https://deno.land/x/grammy/mod.ts?s=StorageAdapter), so you can connect to your storage just in a few lines of code.
 
 > If you published your own storage adapter, feel free to edit this page and link it here, so that other people can use it.
 
@@ -577,10 +608,10 @@ In turn, you will need to configure each fragment with its own config.
 bot.use(session({
   type: "multi",
   foo: {
-    // there are also the default values
+    // these are also the default values
     storage: new MemorySessionStorage(),
     initial: () => undefined,
-    getSessionKey: (ctx) => ctx.from?.id.toString(),
+    getSessionKey: (ctx) => ctx.chat?.id.toString(),
   },
   bar: {
     initial: () => ({ prop: 0 }),
@@ -695,15 +726,13 @@ The session plugin is able to enhance any storage adapter by adding more feature
 They can be installed using the `enhanceStorage` function.
 
 ```ts
-// Create a storage adapter.
-const storage = freeStorage(bot.token); // adjust this
-// Enhance the storage adapter.
-const enhanced = enhanceStorage({
-  storage,
-  // more config here
-});
 // Use the enhanced storage adapter.
-bot.use(session({ storage: enhanced }));
+bot.use(session({
+  storage: enhanceStorage({
+    storage: freeStorage(bot.token), // adjust this
+    // more config here
+  }),
+}));
 ```
 
 You can also use both at the same time.
@@ -791,7 +820,7 @@ const enhanced = enhanceStorage({
 </CodeGroupItem>
 <CodeGroupItem title="JavaScript">
 
-```ts
+```js
 function addBirthdayToPets(old) {
   return {
     pets: old.petNames.map((name) => ({ name })),

@@ -13,7 +13,7 @@ Esto implica el manejo de los archivos que se adjuntan a los mensajes.
 ## Cómo funcionan los archivos para los bots de Telegram
 
 > Esta sección explica cómo funcionan los archivos para los bots de Telegram.
-> Si quieres saber cómo puedes trabajar con archivos en grammY desplázate hacia abajo para [descargar](#reciviendo-archivos) y [subir](#envío-de-archivos) archivos.
+> Si quieres saber cómo puedes trabajar con archivos en grammY desplázate hacia abajo para [descargar](#reciviendo-archivos) y [subir](#envio-de-archivos) archivos.
 
 Los archivos se almacenan por separado de los mensajes.
 Un archivo en los servidores de Telegram es identificado por un `file_id`, que es sólo una larga cadena de caracteres.
@@ -30,7 +30,7 @@ Esto significa que todos los archivos que el bot vea, tanto a través del envío
 
 Cuando un bot envía un mensaje, puede **especificar un `file_id` que haya visto antes**.
 Esto le permitirá enviar el archivo identificado, sin necesidad de subir los datos para ello.
-(Para ver cómo subir sus propios archivos, [desplácese hacia abajo](#envío-de-archivos).
+(Para ver cómo subir sus propios archivos, [desplácese hacia abajo](#envio-de-archivos).
 Puede reutilizar el mismo `file_id` tantas veces como quiera, por lo que podría enviar el mismo archivo a cinco chats diferentes, utilizando el mismo `file_id`.
 Sin embargo, debes asegurarte de utilizar el método correcto-por ejemplo, no puedes utilizar un `file_id` que identifique una foto al llamar a [`sendVideo`](https://core.telegram.org/bots/api#sendvideo).
 
@@ -117,7 +117,7 @@ Los dos primeros métodos son sencillos: sólo tienes que pasar el valor respect
 await ctx.replyWithPhoto(existingFileId);
 
 // Enviar a través de URL.
-await ctx.replyWithPhoto("https://grammy.dev/Y.png");
+await ctx.replyWithPhoto("https://grammy.dev/images/Y.png");
 
 // Alternativamente, se utiliza bot.api.sendPhoto() o ctx.api.sendPhoto().
 ```
@@ -125,7 +125,7 @@ await ctx.replyWithPhoto("https://grammy.dev/Y.png");
 ### Cómo subir tus propios archivos
 
 grammY tiene un buen soporte para subir tus propios archivos.
-Puedes hacerlo importando y utilizando la clase `InputFile` ([Referencia grammY API](/ref/core/InputFile.md)).
+Puedes hacerlo importando y utilizando la clase `InputFile` ([Referencia grammY API](https://deno.land/x/grammy/mod.ts?s=InputFile)).
 
 ```ts
 // Enviar un archivo a través de la ruta local
@@ -219,7 +219,7 @@ En su lugar, grammY sólo canalizará los datos, y sólo mantendrá una pequeña
 Esto es muy eficiente.
 
 > Ten en cuenta que Telegram soporta la descarga del archivo por ti en muchos métodos.
-> Si es posible, deberías preferir [enviar el archivo vía URL](#vía-id-archivo-o-url), en lugar de usar `InputFile` para transmitir el contenido del archivo a través de tu servidor.
+> Si es posible, deberías preferir [enviar el archivo vía URL](#mediante-file-id-o-url), en lugar de usar `InputFile` para transmitir el contenido del archivo a través de tu servidor.
 
 <CodeGroup>
   <CodeGroupItem title="Node.js" active>
@@ -228,8 +228,8 @@ Esto es muy eficiente.
 import { URL } from "url";
 
 // Descarga un archivo, y transmite la respuesta a Telegram.
-new InputFile(new URL("https://grammy.dev/Y.png"));
-new InputFile({ url: "https://grammy.dev/Y.png" }); // equivalente
+new InputFile(new URL("https://grammy.dev/images/Y.png"));
+new InputFile({ url: "https://grammy.dev/images/Y.png" }); // equivalente
 ```
 
 </CodeGroupItem>
@@ -237,8 +237,8 @@ new InputFile({ url: "https://grammy.dev/Y.png" }); // equivalente
 
 ```ts
 // Descargar un archivo, y transmitir la respuesta a Telegram.
-new InputFile(new URL("https://grammy.dev/Y.png"));
-new InputFile({ url: "https://grammy.dev/Y.png" }); // equivalente
+new InputFile(new URL("https://grammy.dev/images/Y.png"));
+new InputFile({ url: "https://grammy.dev/images/Y.png" }); // equivalente
 ```
 
 </CodeGroupItem>
@@ -246,7 +246,7 @@ new InputFile({ url: "https://grammy.dev/Y.png" }); // equivalente
 
 ### Añadir un título
 
-Cuando se envían archivos, se pueden especificar más opciones en un objeto de opciones de tipo `Other`, exactamente como se explicó [anteriormente](./basics.md#envío-de-mensajes).
+Cuando se envían archivos, se pueden especificar más opciones en un objeto de opciones de tipo `Other`, exactamente como se explicó [anteriormente](./basics.md#envio-de-mensajes).
 Por ejemplo, esto le permite enviar subtítulos.
 
 ```ts

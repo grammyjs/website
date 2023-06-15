@@ -36,7 +36,7 @@ Telegram 的后端允许你的 bot [发送文件](./files.md)，最大容量为 
 ## 调用 Bot API
 
 Bot API 的每一个方法在 grammY 中都有对应的方法。
-例如：[Telegram Bot API 参考](https://core.telegram.org/bots/api#sendmessage) 和 [grammY API 参考](/ref/core/Api.md#sendMessage) 中的 `sendMessage`。
+例如：[Telegram Bot API 参考](https://core.telegram.org/bots/api#sendmessage) 和 [grammY API 参考](https://deno.land/x/grammy/mod.ts?s=Api#method_sendMessage_0) 中的 `sendMessage`。
 
 ### 调用方法
 
@@ -79,15 +79,25 @@ grammY 提供了完整的 Bot API 的类型覆盖。
 [`@grammyjs/types`](https://github.com/grammyjs/types) 仓库包含 grammY 内部使用的类型定义。
 这些类型定义也被导出，因此你可以在你的代码中使用它们。
 
+#### 在 Deno 中的类型定义
+
+在 Deno 中, 你可以简单地从 `types.ts` 导入类型定义：
+
+```ts
+import { type Chat } from "https://deno.land/x/grammy/types.ts";
+```
+
 #### 在 Node.js 中的类型定义
 
-在 Node.js 中，你需要从 `grammy/types` 导入类型。
+在 Node.js 中，事情要复杂一点。
+你需要从 `grammy/types` 导入类型。
 例如，你可以通过如下方式获取 `Chat` 类型：
 
 ```ts
 import { type Chat } from "grammy/types";
 ```
 
+然而，自 Node.js 16 起 Node.js 才正式支持从子路径正确导入。
 因此，TypeScript 需要设置 `moduleResolution` 为 `node16` 或 `nodenext`。
 调整你的 `tsconfig.json` 并将以下列高亮行添加到配置文件中：
 
@@ -101,23 +111,13 @@ import { type Chat } from "grammy/types";
 }
 ```
 
-但是，有时候会出现玄学，你不设置 TypeScript 配置，也可能可以正常使用。
+在某些情况下，不调整 TypeScript 配置的也行。
 
 ::: warning 错误的自动补全
 
 如果你不按上述方法修改 `tsconfig.json` 文件，那么你的代码编辑器可能会在自动补全中提示你导入 `grammy/out/client` 或其他东西。
 **所有以 `grammy/out` 开头的路径都是内部的。请不要使用它们。**
 它们可能在任何时候被改变，所以我们强烈建议你从 `grammy/types` 导入。
-
-:::
-
-#### 在 Deno 中的类型定义
-
-在 Deno 中，你可以简单地从 `types.ts` 导入类型定义：
-
-```ts
-import { type Chat } from "https://deno.land/x/grammy/types.ts";
-```
 
 ### 调用原始方法
 

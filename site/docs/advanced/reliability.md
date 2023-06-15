@@ -14,7 +14,7 @@ Use a linting rule to make sure you cannot forget this.
 ## Graceful Shutdown
 
 For bots that are using long polling, there is one more thing to consider.
-As you are going to stop your instance during operation at some point again, you should consider catching `SIGTERM` and `SIGINT` events, and call `bot.stop` (built-in long polling) or stop your bot via its [handle](/ref/runner/RunnerHandle.md#stop) (grammY runner):
+As you are going to stop your instance during operation at some point again, you should consider catching `SIGTERM` and `SIGINT` events, and call `bot.stop` (built-in long polling) or stop your bot via its [handle](https://deno.land/x/grammy_runner/mod.ts?s=RunnerHandle#prop_stop) (grammY runner):
 
 ### Simple Long Polling
 
@@ -25,9 +25,9 @@ As you are going to stop your instance during operation at some point again, you
 ```ts
 import { Bot } from "grammy";
 
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
-// Stopping the bot when the Node process
+// Stopping the bot when the Node.js process
 // is about to be terminated
 process.once("SIGINT", () => bot.stop());
 process.once("SIGTERM", () => bot.stop());
@@ -42,9 +42,9 @@ await bot.start();
 ```js
 const { Bot } = require("grammy");
 
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
-// Stopping the bot when the Node process
+// Stopping the bot when the Node.js process
 // is about to be terminated
 process.once("SIGINT", () => bot.stop());
 process.once("SIGTERM", () => bot.stop());
@@ -59,7 +59,7 @@ await bot.start();
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 // Stopping the bot when the Deno process
 // is about to be terminated
@@ -82,11 +82,11 @@ await bot.start();
 import { Bot } from "grammy";
 import { run } from "@grammyjs/runner";
 
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 const runner = run(bot);
 
-// Stopping the bot when the Node process
+// Stopping the bot when the Node.js process
 // is about to be terminated
 const stopRunner = () => runner.isRunning() && runner.stop();
 process.once("SIGINT", stopRunner);
@@ -101,11 +101,11 @@ process.once("SIGTERM", stopRunner);
 const { Bot } = require("grammy");
 const { run } = require("@grammyjs/runner");
 
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 const runner = run(bot);
 
-// Stopping the bot when the Node process
+// Stopping the bot when the Node.js process
 // is about to be terminated
 const stopRunner = () => runner.isRunning() && runner.stop();
 process.once("SIGINT", stopRunner);
@@ -119,7 +119,7 @@ process.once("SIGTERM", stopRunner);
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { run } from "https://deno.land/x/grammy_runner/mod.ts";
 
-const bot = new Bot("<token>");
+const bot = new Bot("");
 
 const runner = run(bot);
 
@@ -141,7 +141,7 @@ What if your bot is processing financial transactions and you must consider a [`
 If for some reason someone or something actually hard-kills the process, it gets a bit more complicated.
 
 In essence, bots cannot guarantee an _exactly once_ execution of your middleware.
-Read [this discussion on GitHub](https://github.com/tdlib/telegram-bot-api/issues/126) in order to learn more about **why** your bot could send duplicate messages (or none at all) in extremely rare cases.
+Read this [discussion](https://github.com/tdlib/telegram-bot-api/issues/126) on GitHub in order to learn more about **why** your bot could send duplicate messages (or none at all) in extremely rare cases.
 The remainder of this section is elaborating on **how** grammY behaves under these unusual circumstances, and how to handle these situations.
 
 > Do you just care about coding a Telegram bot? [Skip the rest of this page.](./flood.md)
@@ -157,7 +157,7 @@ grammY does not do this for you, but feel free to PR if you think someone else c
 Long polling is more interesting.
 The built-in polling basically re-runs the most recent update batch that was fetched but could not complete.
 
-> Note that if you properly stop your bot with `bot.stop`, [the update offset](https://core.telegram.org/bots/api#getting-updates) will be synced with the Telegram servers by calling `getUpdates` with the correct offset but without processing the update data.
+> Note that if you properly stop your bot with `bot.stop`, the [update offset](https://core.telegram.org/bots/api#getting-updates) will be synced with the Telegram servers by calling `getUpdates` with the correct offset but without processing the update data.
 
 In other words, you will never loose any updates, however, it may happen that you re-process up to 100 updates that you have seen before.
 As calls to `sendMessage` are not idempotent, users may receive duplicate messages from your bot.
@@ -173,8 +173,8 @@ This leads to data loss.
 
 If it is crucial to prevent this, you should use the sources and sinks of the grammY runner package to compose your own update pipeline that passes all updates through a message queue first.
 
-1. You'd basically have to create a [sink](/ref/runner/UpdateSink.md) that pushes to the queue, and start one runner that only supplies your message queue.
-2. You'd then have to create a [source](/ref/runner/UpdateSource.md) that pulls from the message queue again.
+1. You'd basically have to create a [sink](https://deno.land/x/grammy_runner/mod.ts?s=UpdateSink) that pushes to the queue, and start one runner that only supplies your message queue.
+2. You'd then have to create a [source](https://deno.land/x/grammy_runner/mod.ts?s=UpdateSource) that pulls from the message queue again.
    You will effectively run two different instances of the grammY runner.
 
 This vague draft described above has only been sketched but not implemented, according to our knowledge.
