@@ -15,8 +15,8 @@ Telegram щедро надає інформацію про те, скільки 
 
 Ви можете встановити цей плагін на обʼєкт `bot.api` наступним чином:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { autoRetry } from "@grammyjs/auto-retry";
@@ -25,8 +25,8 @@ import { autoRetry } from "@grammyjs/auto-retry";
 bot.api.config.use(autoRetry());
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { autoRetry } = require("@grammyjs/auto-retry");
@@ -35,8 +35,8 @@ const { autoRetry } = require("@grammyjs/auto-retry");
 bot.api.config.use(autoRetry());
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { autoRetry } from "https://esm.sh/@grammyjs/auto-retry";
@@ -45,8 +45,8 @@ import { autoRetry } from "https://esm.sh/@grammyjs/auto-retry";
 bot.api.config.use(autoRetry());
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Якщо ви зараз викличете, наприклад, `sendMessage` й зіткнетеся з обмеженням, це виглядатиме ніби запит просто надзвичайно довго виконується.
 Насправді виконується декілька запитів HTTP з відповідними затримками між ними.

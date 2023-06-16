@@ -81,8 +81,8 @@ grammY runner 中封装了 `sequentialize()` 中间件来确保发生冲突的�
 你可以将其配置为与确定 session 密钥相同的功能 。
 它将通过减慢那些（也仅仅是那些）可能引起冲突的更新来避免上述所说的竞态。
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context, session } from "grammy";
@@ -107,9 +107,9 @@ bot.on("message", (ctx) => ctx.reply("Got your message."));
 run(bot);
 ```
 
-</CodeGroupItem>
+:::
 
-<CodeGroupItem title="JavaScript">
+:::code-group-item JavaScript
 
 ```js
 const { Bot, Context, session } = require("grammy");
@@ -134,8 +134,8 @@ bot.on("message", (ctx) => ctx.reply("Got your message."));
 run(bot);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot, Context, session } from "https://deno.land/x/grammy/mod.ts";
@@ -160,8 +160,8 @@ bot.on("message", (ctx) => ctx.reply("Got your message."));
 run(bot);
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 加入 [Telegram chat](https://t.me/grammyjs) 自由的讨论怎样在你的 bot 中使用 grammY。
 我们总是很高兴收到维护大型 bot 项目的朋友的来信，我们可以根据他们的经验来不断改进 grammY。

@@ -52,8 +52,8 @@ Ada dua cara untuk menginstal plugin ini:
 
 Plugin ini bisa diinstal secara langsung. Cara pemasangan yang seperti ini sudah cukup untuk kebanyakan pengguna.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context } from "grammy";
@@ -66,8 +66,8 @@ const bot = new Bot<MyContext>("");
 bot.use(hydrate());
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 import { Bot } from "grammy";
@@ -78,8 +78,8 @@ const bot = new Bot("");
 bot.use(hydrate());
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
@@ -95,8 +95,8 @@ const bot = new Bot<MyContext>("");
 bot.use(hydrate());
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### Pemasangan Tingkat Lanjut
 
@@ -109,8 +109,8 @@ Untuk kasus seperti itu, kamu sebaiknya menggunakan instalasi tingkat lanjut ini
 Instalasi ini akan mengintegrasikan context hydration dan hidrasi hasil pemanggilan API secara terpisah ke dalam bot kamu.
 Perlu diingat bahwa kamu sekarang perlu menginstal sebuah [API flavor](../advanced/transformers.md#menggunakan-api-flavor).
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Api, Bot, Context } from "grammy";
@@ -130,8 +130,8 @@ bot.use(hydrateContext());
 bot.api.config.use(hydrateApi());
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 import { Bot } from "grammy";
@@ -143,8 +143,8 @@ bot.use(hydrateContext());
 bot.api.config.use(hydrateApi());
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Api, Bot, Context } from "https://deno.land/x/grammy/mod.ts";
@@ -164,8 +164,8 @@ bot.use(hydrateContext());
 bot.api.config.use(hydrateApi());
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ## Object Apa Saja yang Dihidrasi
 

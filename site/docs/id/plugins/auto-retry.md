@@ -16,8 +16,8 @@ Jika kamu terus-menerus melanggar batas rate limit, Telegram akan mengambil tind
 
 Kamu bisa menginstal plugin ini di object `bot.api`:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { autoRetry } from "@grammyjs/auto-retry";
@@ -26,8 +26,8 @@ import { autoRetry } from "@grammyjs/auto-retry";
 bot.api.config.use(autoRetry());
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { autoRetry } = require("@grammyjs/auto-retry");
@@ -36,8 +36,8 @@ const { autoRetry } = require("@grammyjs/auto-retry");
 bot.api.config.use(autoRetry());
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { autoRetry } from "https://esm.sh/@grammyjs/auto-retry";
@@ -46,8 +46,8 @@ import { autoRetry } from "https://esm.sh/@grammyjs/auto-retry";
 bot.api.config.use(autoRetry());
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Sekarang, anggaplah kamu sedang memanggil `sendMessage`, lalu terkena rate limit, maka ia akan tampak seperti sebuah request yang diproses dengan sangat lama.
 Di balik layar, beberapa HTTP request sedang dilakukan dengan jeda waktu yang sesuai---berdasarkan durasi flood limit---di antara kedua request.

@@ -15,8 +15,8 @@ Create your first bot in minutes. (Scroll [down](#getting-started-on-deno) for a
 Create a new TypeScript project and install the `grammy` package.
 Do this by opening a terminal and typing:
 
-<CodeGroup>
- <CodeGroupItem title="NPM" active>
+::::code-group
+:::code-group-item NPM
 
 ```sh
 # Create a new directory and change into it.
@@ -31,8 +31,8 @@ npx tsc --init
 npm install grammy
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Yarn">
+:::
+:::code-group-item Yarn
 
 ```sh
 # Create a new directory and change into it.
@@ -47,8 +47,8 @@ npx tsc --init
 yarn add grammy
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="pnpm">
+:::
+:::code-group-item pnpm
 
 ```sh
 # Create a new directory and change into it.
@@ -63,8 +63,8 @@ npx tsc --init
 pnpm add grammy
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Create a new empty text file, e.g. called `bot.ts`.
 Your folder structure should now look like this:
@@ -86,8 +86,8 @@ It is used to authenticate your bot.
 Got the token? You can now code your bot in the `bot.ts` file.
 You can copy the following example bot into that file, and pass your token to the `Bot` constructor:
 
-<CodeGroup>
- <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot } from "grammy";
@@ -110,8 +110,8 @@ bot.on("message", (ctx) => ctx.reply("Got another message!"));
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot } = require("grammy");
@@ -134,8 +134,8 @@ bot.on("message", (ctx) => ctx.reply("Got another message!"));
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Compile the code by running
 

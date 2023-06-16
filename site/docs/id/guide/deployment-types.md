@@ -195,8 +195,8 @@ Oleh karena itu, kami berharap kamu mampu menjalankan sebuah web server sederhan
 Setiap bot di grammY bisa dikonversi menjadi middleware untuk beberapa web framework, termasuk `express`, `koa`/`oak`, dsb.
 Kamu bisa membuat sebuah middleware untuk framework yang diinginkan dengan cara meng-import function `webhookCallback` ([Referensi API](https://deno.land/x/grammy/mod.ts?s=webhookCallback)).
 
-<CodeGroup>
- <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import express from "express";
@@ -208,8 +208,8 @@ app.use(express.json()); // mengurai (parsing) body dari request JSON
 app.use(webhookCallback(bot, "express"));
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const express = require("express");
@@ -221,8 +221,8 @@ app.use(express.json()); // mengurai (parsing) body dari request JSON
 app.use(webhookCallback(bot, "express"));
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Application } from "https://deno.land/x/oak/mod.ts";
@@ -233,8 +233,8 @@ const app = new Application(); // atau framework apapun yang kamu gunakan
 app.use(webhookCallback(bot, "oak"));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 > Kamu tidak perlu memanggil `bot.start()` ketika menggunakan webhooks.
 

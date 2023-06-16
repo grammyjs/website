@@ -275,8 +275,8 @@ const bot = new Bot<MyContext>("");
 
 综上所述，设置将像这样：
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 const BOT_DEVELOPER = 123456; // bot 开发者的聊天标识符
@@ -308,8 +308,8 @@ bot.command("start", async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const BOT_DEVELOPER = 123456; // bot 开发者的聊天标识符
@@ -332,8 +332,8 @@ bot.command("start", async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 当然，自定义上下文类型也可以传递给其他处理中间件的东西，比如 [组合器](https://deno.land/x/grammy/mod.ts?s=Composer)。
 
@@ -362,8 +362,8 @@ class MyContext extends Context {
 当你构建你的 bot 时，你可以传递一个自定义上下文构造函数，这个函数将用于实例化上下文对象。
 请注意，你的类必须继承 `Context`。
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context } from "grammy";
@@ -392,8 +392,8 @@ bot.on("message", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript" active>
+:::
+:::code-group-item JavaScript
 
 ```ts
 const { Bot, Context } = require("grammy");
@@ -421,8 +421,8 @@ bot.on("message", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
@@ -454,8 +454,8 @@ bot.on("message", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 请注意，当你使用自定义上下文类的子类时，类型会被自动推断。
 你不再需要写 `Bot<MyContext>` 因为你已经在 `new Bot()` 的选项对象中指定了你的子类构造函数。

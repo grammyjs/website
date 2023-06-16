@@ -52,8 +52,8 @@ Hay dos maneras de instalar este plugin.
 
 Este plugin se puede instalar de una manera sencilla que debería ser suficiente para la mayoría de los usuarios.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context } from "grammy";
@@ -66,8 +66,8 @@ const bot = new Bot<MyContext>("");
 bot.use(hydrate());
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 import { Bot } from "grammy";
@@ -78,8 +78,8 @@ const bot = new Bot("");
 bot.use(hydrate());
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
@@ -95,8 +95,8 @@ const bot = new Bot<MyContext>("");
 bot.use(hydrate());
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### Instalación avanzada
 
@@ -109,8 +109,8 @@ En este caso, deberías utilizar esta instalación avanzada.
 Integrará la hidratación del contexto y la hidratación de los resultados de las llamadas a la API por separado en tu bot.
 Ten en cuenta que ahora también tienes que instalar un [API flavor](../advanced/transformers.md#api-flavoring).
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Api, Bot, Context } from "grammy";
@@ -130,8 +130,8 @@ bot.use(hydrateContext());
 bot.api.config.use(hydrateApi());
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 import { Bot } from "grammy";
@@ -143,8 +143,8 @@ bot.use(hydrateContext());
 bot.api.config.use(hydrateApi());
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Api, Bot, Context } from "https://deno.land/x/grammy/mod.ts";
@@ -164,8 +164,8 @@ bot.use(hydrateContext());
 bot.api.config.use(hydrateApi());
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ## Qué objetos se hidratan
 

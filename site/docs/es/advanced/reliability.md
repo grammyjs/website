@@ -18,9 +18,9 @@ Como vas a detener tu instancia durante la operación en algún momento de nuevo
 
 ### Simple long polling
 
-<CodeGroup>
+::::code-group
 
-<CodeGroupItem title="TypeScript" active>
+:::code-group-item TypeScript
 
 ```ts
 import { Bot } from "grammy";
@@ -35,9 +35,9 @@ process.once("SIGTERM", () => bot.stop());
 await bot.start();
 ```
 
-</CodeGroupItem>
+:::
 
-<CodeGroupItem title="JavaScript">
+:::code-group-item JavaScript
 
 ```js
 const { Bot } = require("grammy");
@@ -52,9 +52,9 @@ process.once("SIGTERM", () => bot.stop());
 await bot.start();
 ```
 
-</CodeGroupItem>
+:::
 
-<CodeGroupItem title="Deno">
+:::code-group-item Deno
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -69,14 +69,14 @@ Deno.addSignalListener("SIGTERM", () => bot.stop());
 await bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### Usando grammY runner
 
-<CodeGroup>
+::::code-group
 
-<CodeGroupItem title="TypeScript" active>
+:::code-group-item TypeScript
 
 ```ts
 import { Bot } from "grammy";
@@ -93,9 +93,9 @@ process.once("SIGINT", stopRunner);
 process.once("SIGTERM", stopRunner);
 ```
 
-</CodeGroupItem>
+:::
 
-<CodeGroupItem title="JavaScript">
+:::code-group-item JavaScript
 
 ```js
 const { Bot } = require("grammy");
@@ -112,8 +112,8 @@ process.once("SIGINT", stopRunner);
 process.once("SIGTERM", stopRunner);
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -130,8 +130,8 @@ Deno.addSignalListener("SIGINT", stopRunner);
 Deno.addSignalListener("SIGTERM", stopRunner);
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Eso es básicamente todo lo que hay que hacer para la fiabilidad, su instancia debería:registrado: nunca:tm: fallar ahora.
 

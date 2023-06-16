@@ -15,8 +15,8 @@ Telegram 不像别的服务那样直接限制你的请求，它会告诉你，�
 
 你可以在 `bot.api` 对象上安装这个插件：
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { autoRetry } from "@grammyjs/auto-retry";
@@ -25,8 +25,8 @@ import { autoRetry } from "@grammyjs/auto-retry";
 bot.api.config.use(autoRetry());
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { autoRetry } = require("@grammyjs/auto-retry");
@@ -35,8 +35,8 @@ const { autoRetry } = require("@grammyjs/auto-retry");
 bot.api.config.use(autoRetry());
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { autoRetry } from "https://esm.sh/@grammyjs/auto-retry";
@@ -45,8 +45,8 @@ import { autoRetry } from "https://esm.sh/@grammyjs/auto-retry";
 bot.api.config.use(autoRetry());
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 如果你现在在调用，比如说 `sendMessage` 并且碰到了速率限制，它只是会看起来需要请求特别长的时间。
 在内部会执行多个 HTTP 请求，并且添加适当的延迟。

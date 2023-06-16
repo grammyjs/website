@@ -51,8 +51,8 @@ Sekarang mari kita lihat cara pembuatannya!
 
 Pertama-tama, import beberapa package yang dibutuhkan.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import {
@@ -63,8 +63,8 @@ import {
 } from "@grammyjs/conversations";
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const {
@@ -73,8 +73,8 @@ const {
 } = require("@grammyjs/conversations");
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import {
@@ -85,8 +85,8 @@ import {
 } from "https://deno.land/x/grammy_conversations/mod.ts";
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Sekarang, kita bisa mendefinisikan interface conversation.
 
@@ -124,8 +124,8 @@ async function greeting(conversation: MyConversation, ctx: MyContext) {
 Sekarang, kamu bisa menentukan alur dari percakapannya di dalam conversation builder function.
 Sebelum membahas fitur-fitur dari plugin ini, mari kita lihat satu contoh lain yang lebih kompleks dibandingkan dengan [contoh sederhana](#contoh-sederhana) di atas.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function movie(conversation: MyConversation, ctx: MyContext) {
@@ -143,8 +143,8 @@ async function movie(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function movie(conversation, ctx) {
@@ -162,8 +162,8 @@ async function movie(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Bisakah kamu tebak bagaimana hasilnya?
 
@@ -223,8 +223,8 @@ bot.command("start", (ctx) => ctx.conversation.enter("nama-baru"));
 
 Hasil akhir kode kamu kurang lebih terlihat seperti ini:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context, session } from "grammy";
@@ -259,8 +259,8 @@ bot.command("start", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot, Context, session } = require("grammy");
@@ -290,8 +290,8 @@ bot.command("start", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot, Context, session } from "https://deno.land/x/grammy/mod.ts";
@@ -326,8 +326,8 @@ bot.command("start", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### Pemasangan Menggunakan Custom Session Data
 
@@ -388,8 +388,8 @@ Contohnya, jika kamu membiarkan konfigurasi conversation kosong seperti contoh d
 Percakapan akan terus berjalan hingga conversation builder function selesai melakukan tugasnya.
 Karena itu, kamu bisa meninggalkan sebuah percakapan cukup dengan menggunakan `return` atau `throw`.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function hiAndBye(conversation: MyConversation, ctx: MyContext) {
@@ -399,8 +399,8 @@ async function hiAndBye(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function hiAndBye(conversation, ctx) {
@@ -410,8 +410,8 @@ async function hiAndBye(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 (Iya.. iya.. Kami tahu menambahkan sebuah `return` di akhir function memang tidak terlalu bermanfaat, tetapi setidaknya kamu paham maksud yang kami sampaikan. :slightly_smiling_face:)
 
@@ -428,8 +428,8 @@ Dengan begitu, kamu bisa mencegah error mencapai [middleware tree](../advanced/m
 
 Berikut bagaimana error boundary dan conversation digunakan secara bersamaan.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 bot.use(session({
@@ -448,8 +448,8 @@ bot.errorBoundary(
 );
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 bot.use(session({
@@ -468,8 +468,8 @@ bot.errorBoundary(
 );
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Apapun cara yang dipakai, selalu ingat untuk [memasang sebuah error handler](../guide/errors.md) di bot kamu.
 
@@ -477,8 +477,8 @@ Jika ingin menghentikan secara paksa suatu percakapan yang sedang menunggu sebua
 Biasanya menggunakan `return` di function adalah cara yang lebih dianjurkan, tetapi ada kalanya di beberapa kondisi menggunakan `await ctx.conversation.exit()` jauh lebih nyaman.
 Jangan lupa untuk menggunakan `await`.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts{6,22}
 async function movie(conversation: MyConversation, ctx: MyContext) {
@@ -505,8 +505,8 @@ bot.use(createConversation(movie));
 bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js{6,22}
 async function movie(conversation, ctx) {
@@ -533,8 +533,8 @@ bot.use(createConversation(movie));
 bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Perlu dicatat bahwa urutan pemasangan akan berpengaruh.
 Kamu harus menginstal plugin conversations (lihat baris ke-6) sebelum memanggil `await ctx.conversation.exit()`.
@@ -544,8 +544,8 @@ Selain itu, handler-handler yang menangani cancel juga harus diinstal sebelum co
 
 Kamu bisa menyuruh `conversation` untuk menunggu update selanjutnya dari chat terkait.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function waitForMe(conversation: MyConversation, ctx: MyContext) {
@@ -554,8 +554,8 @@ async function waitForMe(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function waitForMe(conversation, ctx) {
@@ -564,8 +564,8 @@ async function waitForMe(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Sebuah update baru dapat terjadi karena adanya suatu event, diantaranya adalah pesan telah dikirim, tombol telah ditekan, pesan telah diubah, dan aksi-aksi lain yang dilakukan oleh user.
 Lihat daftar lengkapnya di [dokumentasi Telegram](https://core.telegram.org/bots/api#update).
@@ -573,8 +573,8 @@ Lihat daftar lengkapnya di [dokumentasi Telegram](https://core.telegram.org/bots
 Method `wait` selalu menghasilkan sebuah [context object](../guide/context.md) baru berisi update yang diterima.
 Artinya, kamu akan selalu berurusan dengan context object sebanyak update yang diterima selama percakapan berlangsung.
 
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 const CHAT_TIM_REVIEW = -1001493653006;
@@ -601,8 +601,8 @@ async function tanyaUser(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const CHAT_TIM_REVIEW = -1001493653006;
@@ -629,8 +629,8 @@ async function tanyaUser(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Biasanya, tanpa plugin conversations, setiap update akan diproses oleh [sistem middleware](../guide/middleware.md) bot.
 Sehingga, bot kamu akan memproses update tersebut melalui context object yang telah diteruskan ke beberapa handler kamu.
@@ -639,8 +639,8 @@ Sebaliknya, di plugin conversations, kamu akan memperoleh context object yang ba
 Sehingga, kamu bisa menangani masing-masing update dengan cara yang berbeda-beda berdasarkan object tersebut.
 Contohnya, kamu bisa mengecek pesan teks dengan cara seperti ini:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function waitForText(conversation: MyConversation, ctx: MyContext) {
@@ -653,8 +653,8 @@ async function waitForText(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function waitForText(conversation, ctx) {
@@ -667,14 +667,14 @@ async function waitForText(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Selain itu, ada banyak method selain `wait` yang bisa kamu gunakan untuk menunggu update tertentu saja.
 Salah satunya adalah `waitFor` yang memanfaatkan sebuah [filter query](../guide/filter-queries.md) untuk menunggu update yang cocok dengan query yang diberikan.
 Ini adalah kombinasi yang sempurna bila digunakan bersama [object destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment):
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function waitForText(conversation: MyConversation, ctx: MyContext) {
@@ -683,8 +683,8 @@ async function waitForText(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function waitForText(conversation, ctx) {
@@ -693,8 +693,8 @@ async function waitForText(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Lihat [referensi API](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#method_wait_0) untuk melihat semua method yang serupa dengan `wait`.
 
@@ -803,8 +803,8 @@ do {
 Kamu juga bisa membagi kode ke beberapa function lalu menggunakannya kembali.
 Berikut contoh captcha sederhana yang bisa dipakai berulang kali:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function captcha(conversation: MyConversation, ctx: MyContext) {
@@ -817,8 +817,8 @@ async function captcha(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function captcha(conversation, ctx) {
@@ -831,14 +831,14 @@ async function captcha(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Ia akan mengembalikan nilai `true` jika user menjawab dengan benar atau `false` jika salah.
 Kamu sekarang bisa menggunakannya di conversation builder function seperti ini:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function enterGroup(conversation: MyConversation, ctx: MyContext) {
@@ -849,8 +849,8 @@ async function enterGroup(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function enterGroup(conversation, ctx) {
@@ -861,8 +861,8 @@ async function enterGroup(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Perhatikan bagaimana function captcha di atas bisa digunakan kembali di berbagai tempat di kode kamu.
 
@@ -886,8 +886,8 @@ Dengan cara seperti itu, beberapa function bisa dibuat dan di-`export` di dalam 
 
 Kamu juga bisa membuat beberapa class:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 class Auth {
@@ -920,8 +920,8 @@ async function askForToken(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 class Auth {
@@ -954,8 +954,8 @@ async function askForToken(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Kami tidak merekomendasikan kamu untuk melakukan cara di atas.
 Kode di atas hanyalah sebuah contoh untuk menunjukkan bagaimana kamu bisa memanfaatkan fleksibilitas JavaScript untuk membuat struktur kode kamu.
@@ -968,8 +968,8 @@ Seperti yang sudah dijelaskan [sebelumnya](#menunggu-update), conversation handl
 
 Jika method-method tadi belum cukup, plugin conversations menyediakan beberapa function pembantu untuk membuat berbagai form menggunakan `conversation.form`.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function waitForMe(conversation: MyConversation, ctx: MyContext) {
@@ -978,8 +978,8 @@ async function waitForMe(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function waitForMe(conversation, ctx) {
@@ -988,8 +988,8 @@ async function waitForMe(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Seperti biasa, lihat [referensi API](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationForm) untuk mengetahui method apa saja yang tersedia.
 
@@ -1012,8 +1012,8 @@ Oleh karena itu, jika kamu ingin mengombinasikan plugin conversations dengan sal
 
 Kamu bisa menginstal plugin lain di dalam percakapan menggunakan `conversation.run`:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function convo(conversation: MyConversation, ctx: MyContext) {
@@ -1023,8 +1023,8 @@ async function convo(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function convo(conversation, ctx) {
@@ -1034,15 +1034,15 @@ async function convo(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Langkah di atas akan membuat plugin-nya tersedia untuk percakapan tersebut.
 
 Contohnya, jika kamu ingin menggunakan sebuah menu di dalam suatu percakapan, kode kamu kurang lebih akan terlihat seperti ini:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function convo(conversation: MyConversation, ctx: MyContext) {
@@ -1054,8 +1054,8 @@ async function convo(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function convo(conversation, ctx) {
@@ -1067,8 +1067,8 @@ async function convo(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### Custom Context Object
 
@@ -1131,8 +1131,8 @@ Ini memungkinkan kamu untuk mengobrol ke satu user saja di dalam sebuah chat gru
 
 Sebagai contoh, mari kita implementasikan kembali contoh captcha di atas, tetapi kali ini kita gunakan di percakapan paralel.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts{7}
 async function captcha(conversation: MyConversation, ctx: MyContext) {
@@ -1153,8 +1153,8 @@ async function enterGroup(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js{7}
 async function captcha(conversation, ctx) {
@@ -1175,8 +1175,8 @@ async function enterGroup(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Perhatikan bagaimana kita menunggu pesan yang berasal dari user tertentu saja.
 
