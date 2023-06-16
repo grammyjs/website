@@ -301,7 +301,7 @@ web: node dist/app.js
 ```
 
 :::
-<CodeGroupItem title="Тривале опитування">
+:::code-group-item Тривале опитування
 
 ```
 worker: node dist/bot.js

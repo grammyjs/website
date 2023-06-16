@@ -301,7 +301,7 @@ web: node dist/app.js
 ```
 
 :::
-<CodeGroupItem title="Long Polling">
+:::code-group-item Long Polling
 
 ```
 worker: node dist/bot.js

@@ -90,7 +90,7 @@ bot.start();
 ```
 
 :::
-<CodeGroupItem title="Node.js">
+:::code-group-item Node.js
 
 ```ts{4}
 import { Bot } from "grammy";
@@ -156,7 +156,7 @@ Your app is ready. Deploy with `flyctl deploy`
 ```
 
 :::
-<CodeGroupItem title="Node.js">
+:::code-group-item Node.js
 
 ```sh
 flyctl launch
@@ -255,7 +255,7 @@ ENTRYPOINT ["/bin/deno"]
    If you are using webhooks, make sure the port is same as the one in your [configuration](#webhooks) (`8000`).
 
 ::::code-group
-<CodeGroupItem title="Deno (Webhooks)" Active>
+:::code-group-item Deno (Webhooks)
 
 ```toml{7,11,12}
 # fly.toml
@@ -294,7 +294,7 @@ kill_timeout = 5
 ```
 
 :::
-<CodeGroupItem title="Deno (Long polling)" Active>
+:::code-group-item Deno (Long polling)
 
 ```toml{7}
 # fly.toml
@@ -310,7 +310,7 @@ kill_timeout = 5
 ```
 
 :::
-<CodeGroupItem title="Node.js (Webhooks)" Active>
+:::code-group-item Node.js (Webhooks)
 
 ```toml{7,11,18,19}
 # fly.toml
@@ -356,7 +356,7 @@ kill_timeout = 5
 ```
 
 :::
-<CodeGroupItem title="Node.js (Long polling)" Active>
+:::code-group-item Node.js (Long polling)
 
 ```toml{7,11,22,23}
 # fly.toml
