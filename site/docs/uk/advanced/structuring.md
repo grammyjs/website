@@ -44,7 +44,7 @@ src/
 export const lists = new Composer();
 
 // Реєструємо тут якісь обробники, які є звичайними проміжними обробниками.
-lists.on("message", (ctx) => {/* ... */});
+lists.on("message", async (ctx) => {/* ... */});
 ```
 
 > Зауважте, що якщо ви використовуєте TypeScript, вам потрібно передати ваш [власний тип контексту](../guide/context.md#налаштування-обʼєкта-контексту) під час створення екземпляру `Composer`.
@@ -82,8 +82,8 @@ grammY експортує визначення типів для всіх **зв
 Відповідно, обробник команди матиме тип `CommandMiddleware<MyContext>`, а обʼєкт контексту матиме тип `CommandContext<MyContext>`.
 Їх можна використовувати наступним чином.
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::::code-group
+:::code-group-item Node.js
 
 ```ts
 import {
@@ -103,8 +103,8 @@ bot.command(["start", "help"], commandMiddleware);
 bot.callbackQuery("query-data", callbackQueryMiddleware);
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import {
@@ -124,7 +124,7 @@ bot.command(["start", "help"], commandMiddleware);
 bot.callbackQuery("query-data", callbackQueryMiddleware);
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Перегляньте [довідку API щодо псевдонімів типів](https://deno.land/x/grammy/mod.ts#Type_Aliases), щоб ознайомитися з оглядом усіх псевдонімів типів, які експортує grammY.

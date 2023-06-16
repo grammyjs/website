@@ -12,8 +12,8 @@ This plugin sets the `reply_to_message_id` parameter to `ctx.msg.message_id` for
 
 If you want all messages sent within a specific context (like a specific command), you can specifically apply the plugin to them:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot } from "grammy";
@@ -29,8 +29,8 @@ bot.command("demo", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot } = require("grammy");
@@ -46,8 +46,8 @@ bot.command("demo", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -63,15 +63,15 @@ bot.command("demo", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### In for All Routes
 
 If you want every sent message to reply the messages that triggered them, you can apply the plugin this way:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot } from "grammy";
@@ -92,8 +92,8 @@ bot.command("hello", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot } = require("grammy");
@@ -114,8 +114,8 @@ bot.command("hello", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -136,8 +136,8 @@ bot.command("hello", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ## Plugin Summary
 

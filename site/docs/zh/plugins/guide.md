@@ -38,8 +38,8 @@ grammY 中主要有两种类型的插件：
    （如果你不确定怎么做，我们可以为你做这件事。）
 3. 选择一个许可证，比如 MIT 或 ISC。
 
-最后，你应该知道，尽管 grammY 同时支持 Node.js 和 [Deno](https://deno.land/)，但它是一个 Deno 优先的项目，我们也鼓励你为 Deno 编写你的插件（和在风格上）。
-有一个可以转换 Deno 代码到 Node.js 的工具，叫做 [deno2node](https://github.com/wojpawlik/deno2node)，所以我们可以同时支持这两个平台。
+最后，你应该知道，尽管 grammY 同时支持 Node.js 和 [Deno](https://deno.com/runtime)，但它是一个 Deno 优先的项目，我们也鼓励你为 Deno 编写你的插件（和在风格上）。
+有一个可以转换 Deno 代码到 Node.js 的工具，叫做 [deno2node](https://github.com/fromdeno/deno2node)，所以我们可以同时支持这两个平台。
 Deno 支持只是对官方插件的严格要求，而不是对第三方插件的。
 尽管如此，我们还是非常鼓励你去尝试一下 Deno。
 用过都说好。
@@ -173,7 +173,7 @@ plugin-template/
 **`deps.deno.ts` 和 `deps.node.ts`**：这是为那些愿意为 Deno 编写插件，然后将其转译为 Node.js 的开发者准备的。
 正如前面提到的，我们使用 `deno2node` 将 Deno 的代码转译为 Node.js。
 `deno2node` 有一个特性，允许你向它提供运行时的特定文件。
-这些文件应该是相邻的，并且按照如 [文档中解释](https://github.com/wojpawlik/deno2node#runtime-specific-code) 的 `*.deno.ts` 和 `*.node.ts` 的名称结构来命名。
+这些文件应该是相邻的，并且按照如 [文档中解释](https://github.com/fromdeno/deno2node#runtime-specific-code) 的 `*.deno.ts` 和 `*.node.ts` 的名称结构来命名。
 这就是为什么这里有两个文件：`deps.deno.ts` 和 `deps.node.ts`。
 如果有任何 Node.js 特定的依赖项，请放在 `deps.node.ts` 中，否则，请让它保持空白。
 

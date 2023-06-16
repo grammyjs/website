@@ -8,8 +8,8 @@ Plugin ini memerlukan token bot kamu untuk melakukan autentikasi ketika mengundu
 Jika berhasil, method `download` akan tersedia di hasil pemanggilan `getFile`.
 Contohnya,
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context } from "grammy";
@@ -35,8 +35,8 @@ bot.on([":video", ":animation"], async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 import { Bot } from "grammy";
@@ -59,8 +59,8 @@ bot.on([":video", ":animation"], async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
@@ -89,8 +89,8 @@ bot.on([":video", ":animation"], async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Kamu bisa memasukkan sebuah string berisi path file ke `download` jika kamu tidak ingin membuat file sementara.
 Cukup lakukan `await file.download("/path/ke/file")`.
@@ -111,8 +111,8 @@ Secara bawaan, hasil dari `await bot.api.getFile()` juga akan dilengkapi dengan 
 Namun, method-method ini tidak akan tampak di type tersebut.
 Jika kamu membutuhkannya, kamu juga bisa menginstal sebuah [API flavor](../advanced/transformers.md#menggunakan-api-flavor) `FileApiFlavor` di object bot tersebut.
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::::code-group
+:::code-group-item Node.js
 
 ```ts
 import { Api, Bot, Context } from "grammy";
@@ -125,8 +125,8 @@ const bot = new Bot<MyContext, MyApi>("");
 // ...
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Api, Bot, Context } from "https://deno.land/x/grammy/mod.ts";
@@ -143,8 +143,8 @@ const bot = new Bot<MyContext, MyApi>("");
 // ...
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ## Ringkasan Plugin
 

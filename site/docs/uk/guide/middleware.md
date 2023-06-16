@@ -84,7 +84,7 @@ type NextFunction = () => Promise<void>;
 (ctx, next) => ...    |
 ```
 
-Повертаючись до попереднього прикладу, тепер ми знаємо, чому `bot.on(":photo")` навіть не перевірявся: проміжний обробник в `bot.on(":text", (ctx) => { ... } )` вже обробив оновлення, тому й не викликав `next`.
+Повертаючись до попереднього прикладу, тепер ми знаємо, чому `bot.on(":photo")` навіть не перевірявся: проміжний обробник в `bot.on(":text", (ctx) => { ... })` вже обробив оновлення, тому й не викликав `next`.
 Фактично, `next` навіть не вказаний як аргумент функції.
 Таким чином, ми просто проігнорували `next`, отже, не передали обробку оновлення далі.
 
@@ -125,8 +125,8 @@ bot.start();
 Ось сигнатура функції для нашого проміжного обробника.
 Ви можете порівняти його з типом проміжного обробника, наведеного вище, і переконатися, що ми дійсно створили проміжний обробник.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 /** Вимірюємо час відповіді бота та виводимо його у `console` */
@@ -138,8 +138,8 @@ async function responseTime(
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 /** Вимірюємо час відповіді бота та виводимо його у `console` */
@@ -148,8 +148,8 @@ async function responseTime(ctx, next) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Ми можемо встановити його в обʼєкт `bot` за допомогою `bot.use()`:
 
@@ -167,8 +167,8 @@ bot.use(responseTime);
 
 Дуже важливо встановити наш проміжний обробник `responseTime` у бота у самому _початку_, на верхній рівень стеку. Це важливо тому, що ми хочемо вимірювати час _усіх_ операцій обробки оновлення.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 /** Вимірюємо час відповіді бота та виводимо його у `console` */
@@ -189,8 +189,8 @@ async function responseTime(
 bot.use(responseTime);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 /** Вимірюємо час відповіді бота та виводимо його у `console` */
@@ -208,8 +208,8 @@ async function responseTime(ctx, next) {
 bot.use(responseTime);
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Готово та працює! :heavy_check_mark:
 
@@ -235,7 +235,7 @@ bot.use(responseTime);
 Якщо ваш проєкт важливий для вас, ви напевно використовуєте інструменти лінтингу, які попереджають вас, якщо ви забули використати `await` на `Promise`.
 
 ::: tip Увімкніть no-floating-promises
-Розгляньте можливість використання [ESLint](https://eslint.org/) і налаштуйте його на використання [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-floating-promises.md).
+Розгляньте можливість використання [ESLint](https://eslint.org/) і налаштуйте його на використання [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-floating-promises.md).
 Це гарантує, що ви ніколи не забудете використати `await`, адже ESLint крикне на вас.
 :::
 

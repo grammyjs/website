@@ -12,8 +12,8 @@ grammY має [вбудований плагін](./keyboard.md#вбудован
 
 Ось простий приклад, який говорить сам за себе.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot } from "grammy";
@@ -38,8 +38,8 @@ bot.command("start", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot } = require("grammy");
@@ -64,8 +64,8 @@ bot.command("start", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -90,8 +90,8 @@ bot.command("start", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 > Переконайтеся, що ви встановили всі меню перед іншими проміжними обробниками, особливо перед проміжними обробниками, які використовують дані запиту зворотного виклику.
 

@@ -51,7 +51,7 @@ Calls via context objects of concurrently running middleware are left unaffected
 As soon as the respective middleware completes, the transformer function is discarded.
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // Install on all context objects that process messages.
   ctx.api.config.use((prev, method, payload, signal) =>
     prev(method, payload, signal)

@@ -48,7 +48,7 @@ Una ventaja de usar el método `api.sendGame` es que puedes especificar el `chat
    });
    ```
 
-> [Recuerde](./basics.md#envío-de-mensajes) que puede especificar más opciones al enviar mensajes utilizando el objeto de opciones de tipo `Other`.
+> [Recuerde](./basics.md#envio-de-mensajes) que puede especificar más opciones al enviar mensajes utilizando el objeto de opciones de tipo `Other`.
 
 También puedes especificar un [teclado en línea](../plugins/keyboard.md#teclados-en-linea) personalizado para que el juego muestre los botones.
 Por defecto, se enviará con un botón con nombre como `Play my_game`, donde _my_game_ es el nombre de su juego.
@@ -92,7 +92,7 @@ bot.on("callback_query:game_short_name", async (ctx) => {
   await ctx.answerCallbackQuery({ url: "your_game_url" });
 });
 
-bot.command("start", (ctx) => {
+bot.command("start", async (ctx) => {
   await ctx.replyWithGame("my_game", {
     reply_markup: keyboard,
     // O puede utilizar el método api aquí, según sus necesidades.

@@ -19,8 +19,8 @@ You can use a valid grammY [storage adapter](./session.md#known-storage-adapters
 Please note that as per the [official Telegram docs](https://core.telegram.org/bots/api#getupdates), your bot needs to specify the `chat_member` update in the `allowed_updates` array, as shown in the example below.
 This means you also need to specify any other events you'd like to receive.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, type Context, MemorySessionStorage } from "grammy";
@@ -41,9 +41,9 @@ bot.start({
 });
 ```
 
-</CodeGroupItem>
+:::
 
-<CodeGroupItem title="JavaScript">
+:::code-group-item JavaScript
 
 ```js
 import { Bot, MemorySessionStorage } from "grammy";
@@ -61,9 +61,9 @@ bot.start({
 });
 ```
 
-</CodeGroupItem>
+:::
 
-<CodeGroupItem title="Deno">
+:::code-group-item Deno
 
 ```ts
 import {
@@ -91,9 +91,9 @@ bot.start({
 });
 ```
 
-</CodeGroupItem>
+:::
 
-</CodeGroup>
+::::
 
 ### Reading Chat Members
 

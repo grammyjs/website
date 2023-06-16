@@ -4,8 +4,8 @@ Este plugin proporciona un transformador para establecer el `parse_mode` por def
 
 ## Uso (Mejorar la experiencia de formateo)
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context } from "grammy";
@@ -37,8 +37,8 @@ ${bold(fmt`negrita ${link("blink", "example.com")} negrita`)}`);
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot, Context } = require("grammy");
@@ -70,8 +70,8 @@ ${bold(fmt`negrita ${link("blink", "example.com")} negrita`)}`);
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
@@ -109,13 +109,13 @@ ${bold(fmt`negrita ${link("blink", "example.com")} negrita`)}`);
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ## Uso (modo de análisis sintáctico por defecto y métodos de respuesta)
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context } from "grammy";
@@ -146,8 +146,8 @@ bot.command("demo", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot, Context } = require("grammy");
@@ -176,8 +176,8 @@ bot.command("demo", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
@@ -211,8 +211,8 @@ bot.command("demo", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ## Resumen del plugin
 

@@ -138,8 +138,8 @@ await ctx.replyWithPhoto(new InputFile("/tmp/picture.jpg"));
 
 Якщо на вашій машині вже є файл, ви можете надіслати цей файл за допомогою grammY.
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::::code-group
+:::code-group-item Node.js
 
 ```ts
 import { createReadStream } from "fs";
@@ -151,8 +151,8 @@ new InputFile("/path/to/file");
 new InputFile(createReadStream("/path/to/file"));
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 // Надсилаємо локальний файл.
@@ -162,16 +162,16 @@ new InputFile("/path/to/file");
 new InputFile(await Deno.open("/path/to/file"));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 #### Надсилання вихідних двійкових даних
 
 Ви також можете надіслати обʼєкт `Buffer` або ітератор, який створює обʼєкти `Buffer`.
 У Deno ви також можете надіслати обʼєкти `Blob`.
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::::code-group
+:::code-group-item Node.js
 
 ```ts
 // Надсилаємо буфер або масив байтів.
@@ -184,8 +184,8 @@ new InputFile(function* () {
 });
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 // Надсилаємо blob.
@@ -201,8 +201,8 @@ new InputFile(function* () {
 });
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 #### Надсилання файлів через завантаження зі сторонніх джерел
 
@@ -214,8 +214,8 @@ new InputFile(function* () {
 > Зауважте, що Telegram підтримує надсилання файлу через URL у багатьох методах API.
 > Якщо можливо, вам слід віддати перевагу [надсиланню файлу через URL-адресу](#через-file-id-або-url-адресу), а не використовувати `InputFile` для потокової передачі вмісту файлу через ваш сервер.
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::::code-group
+:::code-group-item Node.js
 
 ```ts
 import { URL } from "url";
@@ -225,8 +225,8 @@ new InputFile(new URL("https://grammy.dev/images/Y.png"));
 new InputFile({ url: "https://grammy.dev/images/Y.png" }); // еквівалент
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 // Завантажуємо файл і передаємо відповідь Telegram.
@@ -234,8 +234,8 @@ new InputFile(new URL("https://grammy.dev/images/Y.png"));
 new InputFile({ url: "https://grammy.dev/images/Y.png" }); // еквівалент
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### Додавання підпису
 

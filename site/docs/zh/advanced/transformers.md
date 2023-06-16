@@ -50,7 +50,7 @@ bot.api.config.use((prev, method, payload) => undefined as any);
 一旦各自的中间件完成，transformer 函数就会被废弃。
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // 安装所有处理消息的上下文对象。
   ctx.api.config.use((prev, method, payload, signal) =>
     prev(method, payload, signal)

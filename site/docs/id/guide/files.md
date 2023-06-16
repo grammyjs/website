@@ -138,8 +138,8 @@ Berikut beberapa contoh bagaimana kamu bisa membuat `InputFile`.
 
 Kalau kamu sudah punya file yang tersimpan di komputermu, kamu bisa menyuruh grammY untuk mengunggah file tersebut.
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::::code-group
+:::code-group-item Node.js
 
 ```ts
 import { createReadStream } from "fs";
@@ -151,8 +151,8 @@ new InputFile("/path/ke/file");
 new InputFile(createReadStream("/path/ke/file"));
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 // Kirim file lokal
@@ -162,16 +162,16 @@ new InputFile("/path/ke/file");
 new InputFile(await Deno.open("/path/ke/file"));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 #### Mengunggah Raw Binary Data
 
 Kamu juga bisa mengirim object `Buffer`, maupun sebuah perulangan yang menghasilkan object `Buffer`.
 Di Deno, kamu bisa mengirim object `Blob` juga.
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::::code-group
+:::code-group-item Node.js
 
 ```ts
 // Kirim sebuah buffer atau array byte.
@@ -184,8 +184,8 @@ new InputFile(function* () {
 });
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 // Kirim sebuah blob.
@@ -201,8 +201,8 @@ new InputFile(function* () {
 });
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 #### Mengunduh dan Mengunggah File Kembali
 
@@ -214,8 +214,8 @@ Sangat efisien, bukan.
 > Perlu dicatat bahwa Telegram mendukung pengunduhan file dengan berbagai cara.
 > Jika memungkinkan, sebaiknya kamu [mengirim file menggunakan URL](#melalui-file-id-atau-url), daripada menggunakan `InputFile` untuk mengalirkan data file melalui server kamu.
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::::code-group
+:::code-group-item Node.js
 
 ```ts
 import { URL } from "url";
@@ -225,8 +225,8 @@ new InputFile(new URL("https://grammy.dev/images/Y.png"));
 new InputFile({ url: "https://grammy.dev/images/Y.png" }); // sama saja
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 // Unduh file lalu alirkan data ke Telegram.
@@ -234,8 +234,8 @@ new InputFile(new URL("https://grammy.dev/images/Y.png"));
 new InputFile({ url: "https://grammy.dev/images/Y.png" }); // sama saja
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### Menambahkan Caption
 

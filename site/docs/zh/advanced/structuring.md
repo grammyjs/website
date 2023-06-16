@@ -44,7 +44,7 @@ src/
 export const lists = new Composer();
 
 // 在这里注册一些处理的方法来处理你的中间件。
-lists.on("message", (ctx) => {/* ... */});
+lists.on("message", async (ctx) => {/* ... */});
 ```
 
 > 请注意，如果你使用 TypeScript ，你需要在创建 `Composer` 时传递你的 [自定义上下文类型](../guide/context.md#定制你的上下文对象)。

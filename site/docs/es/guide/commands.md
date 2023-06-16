@@ -51,7 +51,7 @@ Los usuarios pueden enviar **argumentos** junto con sus comandos.
 Puedes acceder a la cadena de argumentos a través de `ctx.match`.
 
 ```ts
-bot.command("add", (ctx) => {
+bot.command("add", async (ctx) => {
   // `item` será "apple pie" si un usuario envía "/add apple pie".
   const item = ctx.match;
 });

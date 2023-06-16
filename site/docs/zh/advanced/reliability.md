@@ -18,9 +18,9 @@ next: ./flood.md
 
 ### 简单的长轮询
 
-<CodeGroup>
+::::code-group
 
-<CodeGroupItem title="TypeScript" active>
+:::code-group-item TypeScript
 
 ```ts
 import { Bot } from "grammy";
@@ -34,9 +34,9 @@ process.once("SIGTERM", () => bot.stop());
 await bot.start();
 ```
 
-</CodeGroupItem>
+:::
 
-<CodeGroupItem title="JavaScript">
+:::code-group-item JavaScript
 
 ```js
 const { Bot } = require("grammy");
@@ -50,9 +50,9 @@ process.once("SIGTERM", () => bot.stop());
 await bot.start();
 ```
 
-</CodeGroupItem>
+:::
 
-<CodeGroupItem title="Deno">
+:::code-group-item Deno
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -66,14 +66,14 @@ Deno.addSignalListener("SIGTERM", () => bot.stop());
 await bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### 使用 grammY runner
 
-<CodeGroup>
+::::code-group
 
-<CodeGroupItem title="TypeScript" active>
+:::code-group-item TypeScript
 
 ```ts
 import { Bot } from "grammy";
@@ -89,9 +89,9 @@ process.once("SIGINT", stopRunner);
 process.once("SIGTERM", stopRunner);
 ```
 
-</CodeGroupItem>
+:::
 
-<CodeGroupItem title="JavaScript">
+:::code-group-item JavaScript
 
 ```js
 const { Bot } = require("grammy");
@@ -107,8 +107,8 @@ process.once("SIGINT", stopRunner);
 process.once("SIGTERM", stopRunner);
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -124,8 +124,8 @@ Deno.addSignalListener("SIGINT", stopRunner);
 Deno.addSignalListener("SIGTERM", stopRunner);
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 这就是基本的对可靠性所做的东西，你的实例现在将 :registered: 永远 :tm: 不会崩溃了。
 

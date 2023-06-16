@@ -13,8 +13,8 @@ Considera usar el [plugin auto-retry](./auto-retry.md) junto con este plugin, si
 Aquí hay un ejemplo de cómo usar este plugin con las opciones por defecto.
 Ten en cuenta que las opciones por defecto están alineadas con los límites de velocidad reales aplicados por Telegram, por lo que deberían estar bien.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot } from "grammy";
@@ -29,8 +29,8 @@ bot.command("example", (ctx) => ctx.reply("I am throttled"));
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot } = require("grammy");
@@ -45,8 +45,8 @@ bot.command("example", (ctx) => ctx.reply("I am throttled"));
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -61,8 +61,8 @@ bot.command("example", (ctx) => ctx.reply("I am throttled"));
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ## Configuración
 

@@ -25,8 +25,8 @@ Ia juga memiliki [Referensi API](https://deno.land/x/grammy_runner/mod.ts)-nya s
 
 Berikut contoh sederhananya:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot } from "grammy";
@@ -42,8 +42,8 @@ bot.on("message", (ctx) => ctx.reply("Pesan diterima!"));
 run(bot);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot } = require("grammy");
@@ -59,8 +59,8 @@ bot.on("message", (ctx) => ctx.reply("Pesan diterima!"));
 run(bot);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -76,8 +76,8 @@ bot.on("message", (ctx) => ctx.reply("Pesan diterima!"));
 run(bot);
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ## Pemrosesan Secara Berurutan ketika Diperlukan
 
@@ -169,7 +169,7 @@ Solusinya adalah bot workers!
 grammY runner bisa membuat beberapa workers untuk memproses update secara bersamaan (paralel) di core yang berbeda---menggunakan event loop yang berbeda serta memory yang terpisah.
 
 grammY runner menggunakan [Worker Threads](https://nodejs.org/api/worker_threads.html) di Node.js.
-Sedangkan di Deno, ia menggunakan [Web Workers](https://deno.land/manual/runtime/workers).
+Sedangkan di Deno, ia menggunakan [Web Workers](https://deno.com/manual/runtime/workers).
 
 Secara konsep, grammY runner menyediakan sebuah class bernama `BotWorker` yang berfungsi untuk menangani update.
 Ia serupa dengan class `Bot` biasa, malahan ia meng-`extends` class `Bot` itu sendiri.
@@ -200,8 +200,8 @@ Mari kita lihat bagaimana cara menggunakannya.
 Mari kita mulai dengan membuat sebuah instance bot utama untuk mengambil dan mendistribusikan update ke para workers.
 Buat sebuah file bernama `bot.ts` yang berisi kode berikut:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 // bot.ts
@@ -221,8 +221,8 @@ bot.use(distribute(__dirname + "/worker"));
 run(bot);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 // bot.js
@@ -242,8 +242,8 @@ bot.use(distribute(__dirname + "/worker"));
 run(bot);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 // bot.ts
@@ -263,14 +263,14 @@ bot.use(distribute(__dirname + "/worker"));
 run(bot);
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Di direktori yang sama dengan `bot.ts`, buat file kedua dengan nama `worker.ts` (seperti yang tertera di baris ke-12 pada kode di atas).
 Isinya adalah kode pemrosesan bot yang sesungguhnya.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 // worker.ts
@@ -283,8 +283,8 @@ const bot = new BotWorker(""); // <-- Masukkan lagi token bot kamu di sini
 bot.on("message", (ctx) => ctx.reply("Hore!"));
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 // worker.js
@@ -297,8 +297,8 @@ const bot = new BotWorker(""); // <-- Masukkan lagi token bot kamu di sini
 bot.on("message", (ctx) => ctx.reply("Hore!"));
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 // worker.ts
@@ -311,8 +311,8 @@ const bot = new BotWorker(""); // <-- Masukkan lagi token bot kamu di sini
 bot.on("message", (ctx) => ctx.reply("Hore!"));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 > Perlu dicatat bahwa setiap worker mampu mengirim pesan kembali ke Telegram.
 > Oleh karena itu, kamu diharuskan memasukkan token bot ke setiap worker.
@@ -329,8 +329,8 @@ Artinya, semua plugin harus dipasang di bot workers terkait.
 Untuk mengoptimalkan performa, kamu bisa mengabaikan update yang tidak ingin kamu tangani.
 Dengan begitu, bot kamu tidak perlu mengirim update tersebut ke worker, yang pada akhirnya akan diabaikan juga.
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::::code-group
+:::code-group-item Node.js
 
 ```ts
 // Bot kita hanya menangani pesan, edit, dan callback query.
@@ -341,8 +341,8 @@ bot.on(
 );
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 // Bot kita hanya menangani pesan, edit, dan callback query.
@@ -353,8 +353,8 @@ bot.on(
 );
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 :::
 

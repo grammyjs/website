@@ -16,18 +16,22 @@ In other words, you just run it on someone else's computer.
 
 > Please click the edit button at the bottom of the page to add more providers or to edit existing ones!
 
-We have two comparison tables: one for [serverless](#serverless) hosting and one for [VPS](#vps).
+We have two comparison tables: one for [serverless hosting and PaaS](#serverless-and-paas) and one for [VPS](#vps).
 
-### Serverless
+### Serverless and PaaS
 
 Serverless means that you do not control a single machine on which your bot is run.
 Instead, these hosting providers will rather allow you to upload your code, and then start and stop different machines as necessary to make sure that your bot always works.
 
-This has the downside that your bot does not have access to a persistent storage by default, such as a local file system.
-Instead, you will often have to have a database separately and connect to it if you need to store data permanently.
-We therefore recommend you to use a different kind of hosting for more complex bots, e.g. a [VPS](./vps.md).
-
 The main thing to know about them is that on serverless infrastructures you are required to use [webhooks](../guide/deployment-types.md).
+Most of providers below will have issues when you try running your bot with polling (`bot.start()` or [grammY runner](../plugins/runner.md)) on them.
+
+On the other hand, PaaS (Platform as a Service) provides a similar but more controllable solution.
+You can choose how many machine instances will be serving your bot, and when they are running.
+Using [polling](../guide/deployment-types.md) is also possible with PaaS if the provider you choose lets you keep exactly single instance running at all times.
+
+Serverless and PaaS have a downside that doesn't provide you with a persistent storage by default, such as a local file system.
+Instead, you will often have to have a database separately and connect to it if you need to store data permanently.
 
 | Name                   | Min. price | Pricing                                                                                                    | Limits                                                                                  | Node.js                                                                                                 | Deno                                           | Web                                               | Notes                                                                                                                                                              |
 | ---------------------- | ---------- | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ---------------------------------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |

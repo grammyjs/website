@@ -41,15 +41,15 @@ ratelimiter es agnóstico al controlador.
 
 Hay dos maneras de utilizar ratelimiter:
 
-- Aceptando los valores por defecto ([Configuración por defecto](#configuración-por-defecto)).
-- Pasando un objeto personalizado que contenga sus ajustes ([Configuración manual](#configuración-manual)).
+- Aceptando los valores por defecto ([Configuración por defecto](#configuracion-por-defecto)).
+- Pasando un objeto personalizado que contenga sus ajustes ([Configuración manual](#configuracion-manual)).
 
 ### Configuración por defecto
 
 Este fragmento demuestra la forma más sencilla de utilizar ratelimiter, que es aceptar el comportamiento por defecto:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { limit } from "@grammyjs/ratelimiter";
@@ -58,8 +58,8 @@ import { limit } from "@grammyjs/ratelimiter";
 bot.use(limit());
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { limit } = require("@grammyjs/ratelimiter");
@@ -68,8 +68,8 @@ const { limit } = require("@grammyjs/ratelimiter");
 bot.use(limit());
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
@@ -78,15 +78,15 @@ import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
 bot.use(limit());
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### Configuración manual
 
 Como se mencionó anteriormente, puedes pasar un objeto `Options` al método `limit()` para alterar el comportamiento del limitador.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import Redis from "ioredis";
@@ -116,8 +116,8 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const Redis = require("ioredis");
@@ -146,8 +146,8 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { connect } from "https://deno.land/x/redis/mod.ts";
@@ -176,8 +176,8 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Si dicho usuario envía más peticiones, el bot responde con _Por favor, absténgase de enviar demasiadas peticiones_.
 Esa petición no viajará más allá y muere inmediatamente ya que no llamamos a [next()](../guide/middleware.md#the-middleware-stack) en el middleware.
@@ -186,8 +186,8 @@ Esa petición no viajará más allá y muere inmediatamente ya que no llamamos a
 
 Otro caso de uso sería limitar las peticiones entrantes de un chat en lugar de un usuario específico:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { limit } from "@grammyjs/ratelimiter";
@@ -204,8 +204,8 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { limit } = require("@grammyjs/ratelimiter");
@@ -222,8 +222,8 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
@@ -240,8 +240,8 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 En este ejemplo, he utilizado `chat.id` como clave única para la limitación de la tasa.
 

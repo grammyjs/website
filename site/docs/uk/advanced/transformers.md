@@ -51,7 +51,7 @@ bot.api.config.use((prev, method, payload) => undefined as any);
 Як тільки відповідний проміжний обробник завершує роботу, перетворювач буде відкинуто.
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // Встановимо на всі обʼєкти контексту, які обробляють повідомлення.
   ctx.api.config.use((prev, method, payload, signal) =>
     prev(method, payload, signal)

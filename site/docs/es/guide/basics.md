@@ -13,7 +13,7 @@ grammY también proporciona métodos para responder fácilmente a estos mensajes
 La forma más fácil de escuchar los mensajes es a través de:
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   const message = ctx.message; // el mensaje
 });
 ```
@@ -22,10 +22,10 @@ Sin embargo, también hay otras opciones:
 
 ```ts
 // Maneja comandos, como /start.
-bot.command("start", (ctx) => {/* ... */});
+bot.command("start", async (ctx) => {/* ... */});
 
 // Compara el texto del mensaje con una cadena o una expresión regular.
-bot.hears(/echo *(.+)?/, (ctx) => {/* ... */});
+bot.hears(/echo *(.+)?/, async (ctx) => {/* ... */});
 ```
 
 Puedes utilizar la función de autocompletar en tu editor de código para ver todas las opciones disponibles, o consultar [todos los métodos](https://deno.land/x/grammy/mod.ts?s=Composer) de la clase `Composer`.

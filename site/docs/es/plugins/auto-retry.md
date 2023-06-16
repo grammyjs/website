@@ -15,8 +15,8 @@ Si regularmente cruzas el umbral de la cantidad de solicitudes que puedes realiz
 
 Puedes instalar este plugin en el objeto `bot.api`:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { autoRetry } from "@grammyjs/auto-retry";
@@ -25,8 +25,8 @@ import { autoRetry } from "@grammyjs/auto-retry";
 bot.api.config.use(autoRetry());
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { autoRetry } = require("@grammyjs/auto-retry");
@@ -35,8 +35,8 @@ const { autoRetry } = require("@grammyjs/auto-retry");
 bot.api.config.use(autoRetry());
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { autoRetry } from "https://esm.sh/@grammyjs/auto-retry";
@@ -45,8 +45,8 @@ import { autoRetry } from "https://esm.sh/@grammyjs/auto-retry";
 bot.api.config.use(autoRetry());
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Si ahora llama, por ejemplo, a `sendMessage` y se encuentra con un límite de velocidad, parecerá que la petición tarda un tiempo inusual.
 Bajo el capó, se están realizando múltiples peticiones HTTP, con los retrasos apropiados entre ellas.

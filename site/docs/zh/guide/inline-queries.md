@@ -13,7 +13,7 @@ next: ./files.md
 :::
 
 > 再次阅读 Telegram 团队所写 [Telegram Bot 特性](https://core.telegram.org/bots/features#inline-requests) 中关于 Inline mode 的部分。
-> 进一步的资源是他们的 inline bot 的 [详细描述](https://core.telegram.org/bots/Inline)，以及宣布该功能的 [原始博客文章](https://telegram.org/blog/Inline-bots)，以及 [Telegram bot API 参考](https://core.telegram.org/bots/API#Inline-mode) 中的 inline bot 部分。
+> 进一步的资源是他们的 inline bot 的 [详细描述](https://core.telegram.org/bots/Inline)，以及宣布该功能的 [原始博客文章](https://telegram.org/blog/Inline-bots)，以及 [Telegram bot API 参考](https://core.telegram.org/bots/api#inline-mode) 中的 inline bot 部分。
 > 当你想在 bot 上开启 inline queries 前，它们都值得一读。
 
 一旦用户触发了一个 inline queries，即在文本输入框中输入"@你机器人的名字"来启动一条消息，你的 bot 就会收到这方面的 update。

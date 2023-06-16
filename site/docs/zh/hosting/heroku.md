@@ -290,22 +290,22 @@ npx tsc
 
 对于我们的情况来说，应该是这样：
 
-<CodeGroup>
-<CodeGroupItem title="Webhook" active>
+::::code-group
+:::code-group-item Webhook
 
 ```
 web: node dist/app.js
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="长轮询">
+:::
+:::code-group-item $1
 
 ```
 worker: node dist/bot.js
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### 设置 Git
 
@@ -313,7 +313,7 @@ worker: node dist/bot.js
 这里是安装的链接：
 
 - [Git 安装说明](https://git-scm.com/download/)
-- [Heroku CLI 安装说明](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
+- [Heroku CLI 安装说明](https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli)
 
 假设你已经在你的机器里安装了它们，并且你在项目的根目录下打开了一个终端。
 现在在终端中运行这段代码来初始化本地 git 仓库：
@@ -334,8 +334,8 @@ tsconfig.json
 
 最终，我们的文件夹结构看起来应该是这样的：
 
-<CodeGroup>
-<CodeGroupItem title="Webhook" active>
+::::code-group
+:::code-group-item Webhook
 
 ```asciiart:no-line-numbers
 .
@@ -354,8 +354,8 @@ tsconfig.json
 └── .gitignore
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="长轮询">
+:::
+:::code-group-item $1
 
 ```asciiart:no-line-numbers
 .
@@ -372,8 +372,8 @@ tsconfig.json
 └── .gitignore
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 将文件提交到我们的 git 仓库：
 
@@ -387,23 +387,23 @@ git commit -m "My first commit"
 如果你已经创建了 [Heroku 应用](https://dashboard.heroku.com/apps/)，在下面的 `<myApp>` 中传入你的 `已存在应用` 的名称，然后运行代码。
 否则，请运行 `新应用`
 
-<CodeGroup>
-  <CodeGroupItem title="新应用" active>
+::::code-group
+:::code-group-item $1
 
 ```sh
 heroku create
 git remote -v
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="已存在应用" active>
+:::
+:::code-group-item $1
 
 ```sh
 heroku git:remote -a <myApp>
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### 部署代码
 

@@ -126,8 +126,8 @@ Kami akan mengilustrasikan konsep dari middleware dengan membuat function middle
 Berikut adalah _function signature_ untuk middleware kita.
 Kamu bisa membandingkannya dengan type middleware di atas, dan memastikan bahwa kita benar-benar sudah membuat sebuah middleware di sini.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 /** Ukur waktu respon bot, kemudian catat di `console` */
@@ -139,8 +139,8 @@ async function waktuRespon(
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 /** Ukur waktu respon bot, kemudian catat di `console` */
@@ -149,8 +149,8 @@ async function waktuRespon(ctx, next) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Lalu, kita bisa memasangnya ke instance `bot` dengan `bot.use()`:
 
@@ -168,8 +168,8 @@ Berikut yang akan kita lakukan:
 
 Penting untuk memasang middleware `waktuRespon` di urutan _pertama_ (di middleware stack paling atas) agar semua operasi yang dilakukan tercatat dalam pengukuran.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 /** Ukur waktu respon bot, kemudian catat di `console` */
@@ -190,8 +190,8 @@ async function waktuRespon(
 bot.use(waktuRespon);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 /** Ukur waktu respon bot, kemudian catat di `console` */
@@ -209,8 +209,8 @@ async function waktuRespon(ctx, next) {
 bot.use(waktuRespon);
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Sempurna! :heavy_check_mark:
 
@@ -236,7 +236,7 @@ Termasuk `bot.api.sendMessage`, `ctx.reply`, dan pemanggilan koneksi lainnya.
 Kalau proyek yang sedang kamu kerjakan memang serius, sebaiknya gunakan _linting tool_ yang akan mengingatkan disaat kamu lupa menggunakan `await` di dalam sebuah `Promise`.
 
 ::: tip Aktifkan no-floating-promises
-Pertimbangkan untuk menggunakan [ESLint](https://eslint.org/) dan menerapkan aturan [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-floating-promises.md).
+Pertimbangkan untuk menggunakan [ESLint](https://eslint.org/) dan menerapkan aturan [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-floating-promises.md).
 Ini akan memastikan kamu supaya tidak lupa menggunakan `await` (dengan cara mengomel ke kamu).
 :::
 

@@ -294,22 +294,22 @@ Lalu, tulis satu baris kode berikut:
 
 Untuk contoh kali ini, kita akan menulisnya seperti berikut:
 
-<CodeGroup>
-<CodeGroupItem title="Webhook" active>
+::::code-group
+:::code-group-item Webhook
 
 ```
 web: node dist/app.js
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Long Polling">
+:::
+:::code-group-item Long Polling
 
 ```
 worker: node dist/bot.js
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### Atur Git
 
@@ -317,7 +317,7 @@ Kita akan men-deploy bot menggunakan [Git dan Heroku CLI](https://devcenter.hero
 Berikut link cara penginstalannya:
 
 - [Instruksi menginstal Git](https://git-scm.com/download/)
-- [Instruksi menginstal Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
+- [Instruksi menginstal Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli)
 
 Kami mengasumsikan kamu telah menginstal kedua software tersebut, dan kamu juga sudah membuka terminal yang mengarah ke direktori root proyek kita.
 Sekarang, buat repositori git lokal dengan menjalankan kode ini di terminal:
@@ -338,8 +338,8 @@ tsconfig.json
 
 Hasil akhir struktur folder kita akan tampak seperti ini:
 
-<CodeGroup>
-<CodeGroupItem title="Webhook" active>
+::::code-group
+:::code-group-item Webhook
 
 ```asciiart:no-line-numbers
 .
@@ -358,8 +358,8 @@ Hasil akhir struktur folder kita akan tampak seperti ini:
 └── .gitignore
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Long Polling">
+:::
+:::code-group-item Long Polling
 
 ```asciiart:no-line-numbers
 .
@@ -376,8 +376,8 @@ Hasil akhir struktur folder kita akan tampak seperti ini:
 └── .gitignore
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Commit file-file tersebut ke repositori git kita:
 
@@ -391,23 +391,23 @@ git commit -m "Commit pertamaku"
 Jika kamu sudah membuat [Heroku app](https://dashboard.heroku.com/apps/), masukkan nama `app` tersebut ke `<myApp>` di bawah, kemudian jalankan kodenya.
 Kalau belum punya, jalankan `New app`.
 
-<CodeGroup>
-  <CodeGroupItem title="New app" active>
+::::code-group
+:::code-group-item New app
 
 ```sh
 heroku create
 git remote -v
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Existing app" active>
+:::
+:::code-group-item Existing app
 
 ```sh
 heroku git:remote -a <myApp>
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### Men-deploy Kode
 

@@ -19,9 +19,9 @@ Sebelum mematikan bot atau instance yang sedang berjalan, kamu sebaiknya menangk
 
 ### Long Polling Sederhana
 
-<CodeGroup>
+::::code-group
 
-<CodeGroupItem title="TypeScript" active>
+:::code-group-item TypeScript
 
 ```ts
 import { Bot } from "grammy";
@@ -35,9 +35,9 @@ process.once("SIGTERM", () => bot.stop());
 await bot.start();
 ```
 
-</CodeGroupItem>
+:::
 
-<CodeGroupItem title="JavaScript">
+:::code-group-item JavaScript
 
 ```js
 const { Bot } = require("grammy");
@@ -51,9 +51,9 @@ process.once("SIGTERM", () => bot.stop());
 await bot.start();
 ```
 
-</CodeGroupItem>
+:::
 
-<CodeGroupItem title="Deno">
+:::code-group-item Deno
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -67,14 +67,14 @@ Deno.addSignalListener("SIGTERM", () => bot.stop());
 await bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### Menggunakan grammY Runner
 
-<CodeGroup>
+::::code-group
 
-<CodeGroupItem title="TypeScript" active>
+:::code-group-item TypeScript
 
 ```ts
 import { Bot } from "grammy";
@@ -90,9 +90,9 @@ process.once("SIGINT", stopRunner);
 process.once("SIGTERM", stopRunner);
 ```
 
-</CodeGroupItem>
+:::
 
-<CodeGroupItem title="JavaScript">
+:::code-group-item JavaScript
 
 ```js
 const { Bot } = require("grammy");
@@ -108,8 +108,8 @@ process.once("SIGINT", stopRunner);
 process.once("SIGTERM", stopRunner);
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -125,8 +125,8 @@ Deno.addSignalListener("SIGINT", stopRunner);
 Deno.addSignalListener("SIGTERM", stopRunner);
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Itulah tips-tips untuk menjaga reliabilitas bot kamu. Jika diterapkan dengan benar, seharusnya tidak akan terjadi crash lagi di bot kamu.
 
