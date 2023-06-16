@@ -96,7 +96,7 @@ Below are two ways you can keep your bot running smoothly.
 
 systemd is a powerful service manager which is pre-installed on many Linux distributions, mainly Debian-based ones.
 
-### Getting the Start Command
+#### Getting the Start Command
 
 1. Get the full path of your runtime:
 
@@ -131,7 +131,7 @@ which node
 # /home/user/.nvm/versions/node/v16.9.1/bin/node /home/user/bot1/index.js
 ```
 
-### Creating the Service
+#### Creating the Service
 
 1. Go to the services directory:
 
@@ -184,7 +184,7 @@ A small explanation of the service configuration:
 systemctl daemon-reload
 ```
 
-### Managing the Service
+#### Managing the Service
 
 ```sh:no-line-numbers
 # Replace `<service-name>` with the file name of the service you created.
@@ -215,7 +215,7 @@ systemctl disable <service-name>
 > PM2 is designed specifically to run applications written in Node.js.
 > However, it can also be used to run applications written in other languages or for other frameworks.
 
-### Installing
+#### Installing
 
 <CodeGroup>
   <CodeGroupItem title="NPM" active>
