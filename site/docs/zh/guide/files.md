@@ -137,8 +137,8 @@ await ctx.replyWithPhoto(new InputFile("/tmp/picture.jpg"));
 
 如果你的机器中已经存储了一个文件，你可以让 garmmY 上传这个文件。
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::::code-group
+:::code-group-item Node.js
 
 ```ts
 import { createReadStream } from "fs";
@@ -150,8 +150,8 @@ new InputFile("/path/to/file");
 new InputFile(createReadStream("/path/to/file"));
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 // 发送一个本地文件。
@@ -161,16 +161,16 @@ new InputFile("/path/to/file");
 new InputFile(await Deno.open("/path/to/file"));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 #### 上传原始二进制数据
 
 你也可以发送一个 `Buffer` 对象，或者一个产生 `Buffer` 对象的迭代器。
 在 Deno 中，你也可以发送 `Blob` 对象。
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::::code-group
+:::code-group-item Node.js
 
 ```ts
 // 发送一个 buffer 或者一个 byte 数组。
@@ -183,8 +183,8 @@ new InputFile(function* () {
 });
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 // 发送一个 blob。
@@ -200,8 +200,8 @@ new InputFile(function* () {
 });
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 #### 下载和重新上传文件
 
@@ -213,8 +213,8 @@ new InputFile(function* () {
 > 请注意，Telegram 支持用许多种方法为你下载文件。
 > 如果可能，你应该选择 [通过 URL 发送文件](#通过-file_id-或者-url)，而不是使用 `InputFile` 来通过你的服务器流式传输文件内容。
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::::code-group
+:::code-group-item Node.js
 
 ```ts
 import { URL } from "url";
@@ -223,8 +223,8 @@ new InputFile(new URL("https://grammy.dev/images/Y.png"));
 new InputFile({ url: "https://grammy.dev/images/Y.png" }); // 等价的写法
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 // 下载一个文件，并将响应的内容流转到 Telegram。
@@ -232,8 +232,8 @@ new InputFile(new URL("https://grammy.dev/images/Y.png"));
 new InputFile({ url: "https://grammy.dev/images/Y.png" }); // 等价的写法
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### 添加一个标题
 

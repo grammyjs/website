@@ -125,8 +125,8 @@ Ilustraremos el concepto de middleware escribiendo una simple función de middle
 Aquí está la firma de la función para nuestro middleware.
 Puedes compararla con el tipo de middleware de arriba, y convencerte de que realmente tenemos un middleware aquí.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 /** Mide el tiempo de respuesta del bot, y lo registra en el `console` */
@@ -138,8 +138,8 @@ async function responseTime(
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 /** Mide el tiempo de respuesta del bot, y lo registra en el `console` */
@@ -148,8 +148,8 @@ async function responseTime(ctx, next) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Podemos instalarlo en nuestra instancia `bot` con `bot.use()`:
 
@@ -167,8 +167,8 @@ Esto es lo que queremos hacer:
 
 Es importante instalar nuestro middleware `responseTime` _primero_ en el bot (en la parte superior de la pila de middleware) para asegurarse de que todas las operaciones se incluyen en la medición.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 /** Mide el tiempo de respuesta del bot, y lo registra en el `console` */
@@ -189,8 +189,8 @@ async function responseTime(
 bot.use(responseTime);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 /** Mide el tiempo de respuesta del bot, y lo registra en el `console` */
@@ -207,8 +207,8 @@ async function responseTime(ctx, next) {
 bot.use(responseTime);
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Completo, ¡y funciona! :heavy_check_mark:
 

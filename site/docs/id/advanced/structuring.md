@@ -82,8 +82,8 @@ Kedua type tersebut parameternya ditulis ulang dengan [custom context object](..
 Oleh karena itu, command handler akan memiliki type `CommandMiddleware<MyContext>` serta `CommandContext<MyContext>` di context objectnya.
 Mereka bisa digunakan dengan cara seperti ini:
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::::code-group
+:::code-group-item Node.js
 
 ```ts
 import {
@@ -103,8 +103,8 @@ bot.command(["start", "help"], commandMiddleware);
 bot.callbackQuery("query-data", callbackQueryMiddleware);
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import {
@@ -124,7 +124,7 @@ bot.command(["start", "help"], commandMiddleware);
 bot.callbackQuery("query-data", callbackQueryMiddleware);
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Kunjungi [referensi API type aliases](https://deno.land/x/grammy/mod.ts#Type_Aliases) untuk melihat gambaran umum semua type aliases yang telah di-export oleh grammY.

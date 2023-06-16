@@ -56,8 +56,8 @@ Bot bisa memberi tahu user jumlah hari yang tersisa jika kedua hal tersebut dike
 
 Berikut cara implementasinya:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context, Keyboard, session, SessionFlavor } from "grammy";
@@ -196,8 +196,8 @@ function getDays(month: number, day: number) {
 }
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot, Context, Keyboard, session, SessionFlavor } = require("grammy");
@@ -329,8 +329,8 @@ function getDays(month, day) {
 }
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import {
@@ -475,8 +475,8 @@ function getDays(month: number, day: number) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Perhatikan session di atas memiliki property `step` untuk menyimpan step dari form tersebut, misalnya untuk mengetahui value mana yang sedang diisi.
 Router digunakan untuk berpindah antara middleware satu dengan lainnya ketika kedua isian `month` dan `dayOfMonth` telah terisi.

@@ -56,8 +56,8 @@ Ada dua cara dalam menggunakan ratelimiter:
 
 Berikut cara termudah dalam menggunakan ratelimiter dengan menerapkan perilaku bawaan:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { limit } from "@grammyjs/ratelimiter";
@@ -66,8 +66,8 @@ import { limit } from "@grammyjs/ratelimiter";
 bot.use(limit());
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { limit } = require("@grammyjs/ratelimiter");
@@ -76,8 +76,8 @@ const { limit } = require("@grammyjs/ratelimiter");
 bot.use(limit());
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
@@ -86,15 +86,15 @@ import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
 bot.use(limit());
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### Konfigurasi Manual
 
 Seperti yang sudah disebutkan di awal, kamu bisa menentukan object `Options` ke method `limit()` untuk mengatur perilaku limiter.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import Redis from "ioredis";
@@ -125,8 +125,8 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const Redis = require("ioredis");
@@ -157,8 +157,8 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { connect } from "https://deno.land/x/redis/mod.ts";
@@ -189,8 +189,8 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Seperti yang kamu lihat dari contoh di atas, setiap user hanya diperbolehkan mengirim 3 request setiap 2 detik.
 Jika user tersebut mengirim request melebihi batas yang telah kita tentukan, bot akan membalas dengan, _"Tolong jangan kirim request berlebihan"_.
@@ -200,8 +200,8 @@ Request tersebut kemudian akan diabaikan begitu saja karena kita tidak memanggil
 
 Contoh penggunaan lainnya adalah dengan membatasi request yang datang dari sebuah chat, alih-alih dari user tertentu:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { limit } from "@grammyjs/ratelimiter";
@@ -218,8 +218,8 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { limit } = require("@grammyjs/ratelimiter");
@@ -236,8 +236,8 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
@@ -254,8 +254,8 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Dari contoh di atas, kita menggunakan `chat.id` sebagai key unik untuk melakukan rate-limit.
 

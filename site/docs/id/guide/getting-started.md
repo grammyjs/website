@@ -16,8 +16,8 @@ Buat bot pertamamu dalam hitungan menit.
 Buat proyek TypeScript baru lalu instal package `grammy`.
 Lakukan dengan cara mengetikan kode berikut di terminal:
 
-<CodeGroup>
- <CodeGroupItem title="NPM" active>
+::::code-group
+:::code-group-item NPM
 
 ```sh
 # Buat direktori baru lalu masuk ke dalamnya.
@@ -32,8 +32,8 @@ npx tsc --init
 npm install grammy
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Yarn">
+:::
+:::code-group-item Yarn
 
 ```sh
 # Buat direktori baru lalu masuk ke dalamnya.
@@ -48,8 +48,8 @@ npx tsc --init
 yarn add grammy
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="pnpm">
+:::
+:::code-group-item pnpm
 
 ```sh
 # Buat direktori baru lalu masuk ke dalamnya.
@@ -64,8 +64,8 @@ npx tsc --init
 pnpm add grammy
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Kemudian, buat file teks kosong baru dengan nama `bot.ts`.
 Struktur folder kurang lebih terlihat seperti ini:
@@ -85,8 +85,8 @@ Token bot digunakan untuk mengautentikasi bot kamu yang bentuknya kurang lebih m
 Sudah dapat tokennya? Sekarang kamu bisa menulis kode bot di file `bot.ts`.
 Kamu bisa menyalin contoh bot berikut ke dalam file. Jangan lupa untuk memasukkan token ke constructor `Bot`.
 
-<CodeGroup>
- <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot } from "grammy";
@@ -109,8 +109,8 @@ bot.on("message", (ctx) => ctx.reply("Dapat pesan baru!"));
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot } = require("grammy");
@@ -133,8 +133,8 @@ bot.on("message", (ctx) => ctx.reply("Dapat pesan baru!"));
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Compile kode dengan menjalankan
 

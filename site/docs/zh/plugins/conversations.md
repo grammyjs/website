@@ -51,8 +51,8 @@ async function greeting(conversation, ctx) {
 
 首先，让我们导入几样东西。
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import {
@@ -63,8 +63,8 @@ import {
 } from "@grammyjs/conversations";
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const {
@@ -73,8 +73,8 @@ const {
 } = require("@grammyjs/conversations");
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import {
@@ -85,8 +85,8 @@ import {
 } from "https://deno.land/x/grammy_conversations/mod.ts";
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 有了这些方法，我们现在可以看一下怎么定义对话式界面。
 
@@ -123,8 +123,8 @@ async function greeting(conversation: MyConversation, ctx: MyContext) {
 你现在可以在你的对话生成器函数中定义对话了。
 在我们深入了解这个插件的每个功能之前，让我们看一下比上面的 [简单样例](#简单样例) 更复杂的例子。
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function movie(conversation: MyConversation, ctx: MyContext) {
@@ -142,8 +142,8 @@ async function movie(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function movie(conversation, ctx) {
@@ -161,8 +161,8 @@ async function movie(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 你能想象的出来这个 bot 将会怎样工作吗？
 
@@ -222,8 +222,8 @@ bot.command("start", (ctx) => ctx.conversation.enter("new-name"));
 
 总的来说，你的代码现在应该看起来像这样：
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context, session } from "grammy";
@@ -257,8 +257,8 @@ bot.command("start", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot, Context, session } = require("grammy");
@@ -287,8 +287,8 @@ bot.command("start", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot, Context, session } from "https://deno.land/x/grammy/mod.ts";
@@ -322,8 +322,8 @@ bot.command("start", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### 使用自定义会话数据进行安装
 
@@ -384,8 +384,8 @@ bot.use(session({
 对话将一直运行到你的对话生成器函数完成。
 也就是说你可以简单地通过使用 `return` 或 `throw` 离开一个对话。
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function hiAndBye(conversation: MyConversation, ctx: MyContext) {
@@ -395,8 +395,8 @@ async function hiAndBye(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function hiAndBye(conversation, ctx) {
@@ -406,8 +406,8 @@ async function hiAndBye(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 （当然了，在函数的末尾放一个 `return` 有点没有意义，但这是一个让你用于理解离开对话的例子）
 
@@ -424,8 +424,8 @@ async function hiAndBye(conversation, ctx) {
 
 这就是 error 边界和对话一起使用的方式。
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 bot.use(session({
@@ -446,8 +446,8 @@ bot.errorBoundary(
 );
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 bot.use(session({
@@ -468,8 +468,8 @@ bot.errorBoundary(
 );
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 无论你做什么，你都应该记得在你的机器人上 [安装错误处理程序](../guide/errors.md)。
 
@@ -478,8 +478,8 @@ bot.errorBoundary(
 通常情况下，简单地从函数返回来进行退出时更好的做法，但在一些情况中，使用 `await ctx.conversation.exit()` 更方便。
 请记住，你必须 `await` 这个调用。
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts{6,22}
 async function movie(conversation: MyConversation, ctx: MyContext) {
@@ -506,8 +506,8 @@ bot.use(createConversation(movie));
 bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js{6,22}
 async function movie(conversation, ctx) {
@@ -534,8 +534,8 @@ bot.use(createConversation(movie));
 bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 请注意，这里的顺序很重要。
 你必须先安装对话插件（第 6 行），然后才能调用 `await ctx.conversation.exit()`。
@@ -545,8 +545,8 @@ bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 
 你可以使用对话的处理程序 `conversation` 来等待特定聊天的下一个 update。
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function waitForMe(conversation: MyConversation, ctx: MyContext) {
@@ -555,8 +555,8 @@ async function waitForMe(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function waitForMe(conversation, ctx) {
@@ -565,8 +565,8 @@ async function waitForMe(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 一个 update 可以意味着用户发送了一条文本消息，或者按下了一个按钮，或者编辑了一些东西，或者是任何其他用户执行的动作。
 请在 [这里](https://core.telegram.org/bots/api#update) 参考 Telegram 官方文档。
@@ -574,8 +574,8 @@ async function waitForMe(conversation, ctx) {
 `wait` 方法总是产生一个新的 [上下文对象](../guide/context.md) 表示接收到的 update。
 这意味着你总是要处理与对话期间收到的 update 一样多的上下文对象。
 
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 const TEAM_REVIEW_CHAT = -1001493653006;
@@ -602,8 +602,8 @@ async function askUser(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const TEAM_REVIEW_CHAT = -1001493653006;
@@ -630,8 +630,8 @@ async function askUser(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 通常，在对话插件之外，这些 update 都是由你的 bot 的 [中间件系统](../guide/middleware.md) 处理的。
 因此，你的 bot 将通过一个上下文对象来处理这些 update，这个上下文对象会被传递给你的处理程序。
@@ -640,8 +640,8 @@ async function askUser(conversation, ctx) {
 然后，你可以根据这个对象以不同的方式处理不同的 update。
 例如，你可以检查文本消息：
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function waitForText(conversation: MyConversation, ctx: MyContext) {
@@ -654,8 +654,8 @@ async function waitForText(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function waitForText(conversation, ctx) {
@@ -668,15 +668,15 @@ async function waitForText(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 此外，在 `wait` 之外，还有一些其他方法，可以等待特定的 update。
 其中一个例子是 `waitFor`，它接受一个 [过滤器查询](../guide/filter-queries.md)，然后只等待匹配这个查询的 update。
 这与 [对象解构赋值](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) 结合使用非常强大：
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function waitForText(conversation: MyConversation, ctx: MyContext) {
@@ -685,8 +685,8 @@ async function waitForText(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function waitForText(conversation, ctx) {
@@ -695,8 +695,8 @@ async function waitForText(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 通过 [API 参考](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#method_wait_0) 来查看所有与 `wait` 类似的方法。
 
@@ -804,8 +804,8 @@ do {
 你也可以将你的代码分割几个函数，并重用它们。
 例如，你可以这样定义一个可重复使用的验证码函数。
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function captcha(conversation: MyConversation, ctx: MyContext) {
@@ -815,8 +815,8 @@ async function captcha(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function captcha(conversation, ctx) {
@@ -826,14 +826,14 @@ async function captcha(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 如果用户可以通过验证，返回 `true`，否则返回 `false`。
 现在，你可以在你的主对话生成器函数中使用它，如下所示：
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function enterGroup(conversation: MyConversation, ctx: MyContext) {
@@ -844,8 +844,8 @@ async function enterGroup(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function enterGroup(conversation, ctx) {
@@ -856,8 +856,8 @@ async function enterGroup(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 看，这样一来 captcha 函数就可以在不同的地方重复使用。
 
@@ -881,8 +881,8 @@ async function enterGroup(conversation, ctx) {
 
 如果你想，你还可以定义类。
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 class Auth {
@@ -914,8 +914,8 @@ async function askForToken(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 class Auth {
@@ -947,8 +947,8 @@ async function askForToken(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 这里的重点并不是说我们强烈建议你这么做。
 它是为了说明你可以使用 JavaScript 的无穷无尽的灵活性来组织你的代码。
@@ -959,8 +959,8 @@ async function askForToken(conversation, ctx) {
 
 如果这些方法不够，对话插件通过 `conversation.form` 提供了更多帮助函数来构建表单。
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function waitForMe(conversation: MyConversation, ctx: MyContext) {
@@ -969,8 +969,8 @@ async function waitForMe(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function waitForMe(conversation, ctx) {
@@ -979,8 +979,8 @@ async function waitForMe(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 像往常一样，查看 [API 参考](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationForm) 以了解哪些方法可用。
 
@@ -1003,8 +1003,8 @@ async function waitForMe(conversation, ctx) {
 
 你可以使用 `conversation.run` 在对话中安装其他插件：
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function convo(conversation: MyConversation, ctx: MyContext) {
@@ -1014,8 +1014,8 @@ async function convo(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function convo(conversation, ctx) {
@@ -1025,15 +1025,15 @@ async function convo(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 这将使该插件在对话中可用。
 
 例如，如果你想在对话中使用菜单，你的代码可能如下所示。
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function convo(conversation: MyConversation, ctx: MyContext) {
@@ -1045,8 +1045,8 @@ async function convo(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function convo(conversation, ctx) {
@@ -1058,8 +1058,8 @@ async function convo(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### 自定义上下文对象
 
@@ -1122,8 +1122,8 @@ async function convo(conversation, ctx) {
 
 举个例子，让我们重新使用平行对话的方式实现上面的验证码流程。
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts{4}
 async function captcha(conversation: MyConversation, ctx: MyContext) {
@@ -1141,8 +1141,8 @@ async function enterGroup(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js{4}
 async function captcha(conversation, ctx) {
@@ -1160,8 +1160,8 @@ async function enterGroup(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 请注意，我们是怎么样等待来自特定用户的消息的。
 

@@ -13,8 +13,8 @@
 1. 确保你有一个导出 `Bot` 对象的文件，以便你稍后可以导入它来运行。
 2. 创建一个名为 `app.ts` 或 `app.js` 的文件，或者你喜欢的任何名字（但你应该记住并将其用作要部署的主文件），其中包含以下内容：
 
-<CodeGroup>
-<CodeGroupItem title="Deno" active>
+::::code-group
+:::code-group-item Deno
 
 ```ts{11}
 import { serve } from "https://deno.land/std/http/server.ts";
@@ -38,8 +38,8 @@ serve(async (req) => {
 }, { port });
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Node.js" active>
+:::
+:::code-group-item Node.js
 
 ```ts{10}
 import express from "express";
@@ -57,8 +57,8 @@ app.use((_req, res) => res.status(200).send());
 app.listen(port, () => console.log(`listening on port ${port}`));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 我们建议你将处理程序放在某个秘密路径上，而不是根目录 (`/`)。
 如上面突出显示的行所示，我们使用bot token (`/<bot token>`) 作为秘密路径。
@@ -67,8 +67,8 @@ app.listen(port, () => console.log(`listening on port ${port}`));
 
 创建一个名为 `app.ts` 或 `app.js` 的文件，或者你喜欢的任何名字（但你应该记住并将其用作要部署的主文件），其中包含以下内容：
 
-<CodeGroup>
-<CodeGroupItem title="Deno" active>
+::::code-group
+:::code-group-item Deno
 
 ```ts{4}
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -89,7 +89,7 @@ Deno.addSignalListener("SIGTERM", () => bot.stop());
 bot.start();
 ```
 
-</CodeGroupItem>
+:::
 <CodeGroupItem title="Node.js">
 
 ```ts{4}
@@ -111,8 +111,8 @@ process.once("SIGTERM", () => bot.stop());
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 正如你在上面突出显示的行中看到的那样，我们从环境变量中获取了一些敏感值（你的bot token）。
 Fly 允许我们通过运行以下命令来存储该密钥：
@@ -134,8 +134,8 @@ flyctl secrets set BOT_TOKEN="AAAA:12345"
 2. 运行 `flyctl launch` 来为部署生成一个 `Dockerfile` 和 `fly.toml` 文件。
    但是**不要**部署。
 
-<CodeGroup>
-<CodeGroupItem title="Deno" Active>
+::::code-group
+:::code-group-item Deno
 
 ```sh
 flyctl launch
@@ -155,7 +155,7 @@ Wrote config file fly.toml
 Your app is ready. Deploy with `flyctl deploy`
 ```
 
-</CodeGroupItem>
+:::
 <CodeGroupItem title="Node.js">
 
 ```sh
@@ -178,8 +178,8 @@ Wrote config file fly.toml
 Your app is ready. Deploy with `flyctl deploy`
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 3. **Deno**：修改 Deno 版本并删除 `CMD`（如果 `Dockerfile` 文件中存在）。
    例如，在这种情况下，我们将 `DENO_VERSION` 更新为 `1.25.2`。
@@ -187,8 +187,8 @@ Your app is ready. Deploy with `flyctl deploy`
    **Node.js**：要修改 Node.js 版本，你需要在 `package.json` 中的 `"engines"` 属性中插入一个 `"node"` 属性。
    例如，我们在下面的示例中将 Node.js 版本更新为 `16.14.0`。
 
-<CodeGroup>
-<CodeGroupItem title="Deno" Active>
+::::code-group
+:::code-group-item Deno
 
 ```dockerfile{2,26}
 # Dockerfile
@@ -219,8 +219,8 @@ ENTRYPOINT ["/bin/deno"]
 # CMD 被删掉了
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Node.js" Active>
+:::
+:::code-group-item Node.js
 
 ```json{19}
 // package.json
@@ -246,15 +246,15 @@ ENTRYPOINT ["/bin/deno"]
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 4. 编辑 `fly.toml` 文件中的 `app`。
    下面示例中的路径 `./app.ts`（或 Node.js 的 `./app.js`）指的是主文件目录。
    你可以修改它们以匹配你的项目目录。
    如果你使用的是 webhook，请确保端口与你的 [配置](#webhooks) (`8000`) 中的端口相同。
 
-<CodeGroup>
+::::code-group
 <CodeGroupItem title="Deno (Webhooks)" Active>
 
 ```toml{7,11,12}
@@ -293,7 +293,7 @@ kill_timeout = 5
     timeout = "2s"
 ```
 
-</CodeGroupItem>
+:::
 <CodeGroupItem title="Deno (Long polling)" Active>
 
 ```toml{7}
@@ -309,7 +309,7 @@ kill_timeout = 5
 # 因为我们不监听 HTTP
 ```
 
-</CodeGroupItem>
+:::
 <CodeGroupItem title="Node.js (Webhooks)" Active>
 
 ```toml{7,11,18,19}
@@ -355,7 +355,7 @@ kill_timeout = 5
     timeout = "2s"
 ```
 
-</CodeGroupItem>
+:::
 <CodeGroupItem title="Node.js (Long polling)" Active>
 
 ```toml{7,11,22,23}
@@ -378,8 +378,8 @@ kill_timeout = 5
 # 因为我们不监听 HTTP
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 5. 运行 `flyctl deploy` 来部署你的代码。
 

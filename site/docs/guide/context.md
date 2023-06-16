@@ -285,8 +285,8 @@ const bot = new Bot<MyContext>("");
 
 In summary, the setup will look like this:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 const BOT_DEVELOPER = 123456; // bot developer chat identifier
@@ -318,8 +318,8 @@ bot.command("start", async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const BOT_DEVELOPER = 123456; // bot developer chat identifier
@@ -342,8 +342,8 @@ bot.command("start", async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Naturally, the custom context type can also be passed to other things which handle middleware, such as [composers](https://deno.land/x/grammy/mod.ts?s=Composer).
 
@@ -372,8 +372,8 @@ We will now see how to use custom classes for context objects.
 When constructing your bot, you can pass a custom context constructor that will be used to instantiate the context objects.
 Note that your class must extend `Context`.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context } from "grammy";
@@ -403,8 +403,8 @@ bot.on("message", (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript" active>
+:::
+:::code-group-item JavaScript
 
 ```ts
 const { Bot, Context } = require("grammy");
@@ -433,8 +433,8 @@ bot.on("message", (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
@@ -467,8 +467,8 @@ bot.on("message", (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Notice how the custom context type will be inferred automatically when you are using a subclass.
 You no longer need to write `Bot<MyContext>` because you already specified your subclass constructor in the options object of `new Bot()`.

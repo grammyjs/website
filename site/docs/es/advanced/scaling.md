@@ -80,8 +80,8 @@ grammY runner viene con el middleware `sequentialize()` que asegura que las actu
 Puedes configurarlo con la misma función que utilizas para determinar la clave de sesión.
 Entonces evitará la condición de carrera mencionada anteriormente, ralentizando aquellas (y sólo aquellas) actualizaciones que podrían causar una colisión.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context, session } from "grammy";
@@ -106,9 +106,9 @@ bot.on("message", (ctx) => ctx.reply("Got your message."));
 run(bot);
 ```
 
-</CodeGroupItem>
+:::
 
-<CodeGroupItem title="JavaScript">
+:::code-group-item JavaScript
 
 ```js
 const { Bot, Context, session } = require("grammy");
@@ -133,8 +133,8 @@ bot.on("message", (ctx) => ctx.reply("Got your message."));
 run(bot);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot, Context, session } from "https://deno.land/x/grammy/mod.ts";
@@ -159,8 +159,8 @@ bot.on("message", (ctx) => ctx.reply("Got your message."));
 run(bot);
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 No dudes en unirte al [chat de Telegram](https://t.me/grammyjs) para discutir cómo usar grammY runner con tu bot.
 Siempre estamos contentos de escuchar a las personas que mantienen grandes bots para que podamos mejorar grammY en base a su experiencia con el paquete.

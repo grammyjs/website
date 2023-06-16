@@ -26,8 +26,8 @@
 
 这里是一个简单的例子。
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot } from "grammy";
@@ -43,8 +43,8 @@ bot.on("message", (ctx) => ctx.reply("Got your message."));
 run(bot);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot } = require("grammy");
@@ -60,8 +60,8 @@ bot.on("message", (ctx) => ctx.reply("Got your message."));
 run(bot);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -77,8 +77,8 @@ bot.on("message", (ctx) => ctx.reply("Got your message."));
 run(bot);
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ## 为什么需要顺序处理？
 
@@ -201,8 +201,8 @@ grammY runner 为你提供了可以将 update 发送给 bot worker 的中间件�
 我们将从创建中心 bot 实例开始，它获取 update 并将它们分发给 worker。
 让我们首先创建一个名为 `bot.ts` 的文件，其中包含以下内容。
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 // bot.ts
@@ -222,8 +222,8 @@ bot.use(distribute(__dirname + "/worker"));
 run(bot);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 // bot.js
@@ -243,8 +243,8 @@ bot.use(distribute(__dirname + "/worker"));
 run(bot);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 // bot.ts
@@ -264,14 +264,14 @@ bot.use(distribute(new URL("./worker.ts", import.meta.url)));
 run(bot);
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 在 `bot.ts` 之后，我们创建了第二个，名为 `worker.ts` 的文件（如上面代码第 12 行所指定）。
 这将包含实际的 bot 逻辑。
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 // worker.ts
@@ -284,8 +284,8 @@ const bot = new BotWorker(""); // <-- 再次在这里传入你的 bot token
 bot.on("message", (ctx) => ctx.reply("yay!"));
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 // worker.js
@@ -298,8 +298,8 @@ const bot = new BotWorker(""); // <-- 再次在这里传入你的 bot token
 bot.on("message", (ctx) => ctx.reply("yay!"));
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 // worker.ts
@@ -312,8 +312,8 @@ const bot = new BotWorker(""); // <-- 再次在这里传入你的 bot token
 bot.on("message", (ctx) => ctx.reply("yay!"));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 > 请注意，每个 worker 都能够将消息发送回 Telegram。
 > 这就是为什么你也必须把你的 bot token 给每个 worker。
@@ -331,8 +331,8 @@ bot.on("message", (ctx) => ctx.reply("yay!"));
 作为性能优化，你可以丢弃不想处理的 update 。
 这样，你的 bot 就不必将更新发送给 worker，在那里就被忽略了。
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::::code-group
+:::code-group-item Node.js
 
 ```ts
 // 我们的 bot 只处理消息、编辑和 callback query。
@@ -343,8 +343,8 @@ bot.on(
 );
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 // 我们的 bot 只处理消息、编辑和 callback query。
@@ -355,8 +355,8 @@ bot.on(
 );
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 :::
 

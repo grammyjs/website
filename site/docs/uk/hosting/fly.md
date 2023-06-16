@@ -13,8 +13,8 @@
 1. Переконайтеся, що у вас є файл, який експортує ваш обʼєкт `Bot`, щоб ви могли імпортувати його пізніше для запуску.
 2. Створіть файл з назвою `app.ts` або `app.js` або насправді будь-якою назвою, яку ви хочете, але ви повинні памʼятати і використовувати його як головний файл для розгортання, з наступним вмістом:
 
-<CodeGroup>
-<CodeGroupItem title="Deno" active>
+::::code-group
+:::code-group-item Deno
 
 ```ts{11}
 import { serve } from "https://deno.land/std/http/server.ts";
@@ -38,8 +38,8 @@ serve(async (req) => {
 }, { port });
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Node.js" active>
+:::
+:::code-group-item Node.js
 
 ```ts{10}
 import express from "express";
@@ -57,8 +57,8 @@ app.use((_req, res) => res.status(200).send());
 app.listen(port, () => console.log(`працюю на порті ${port}`));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Ми радимо вам зареєструвати ваш обробник на деякому секретному шляху, а не на кореневому (`/`).
 Як показано на підсвіченому рядку вище, ми використовуємо токен бота (`/<токен бота>`) як секретний шлях.
@@ -67,8 +67,8 @@ app.listen(port, () => console.log(`працюю на порті ${port}`));
 
 Створіть файл з назвою `app.ts` або `app.js` або насправді будь-якою назвою, яку ви хочете, але ви повинні памʼятати і використовувати його як головний файл для розгортання, з наступним вмістом:
 
-<CodeGroup>
-<CodeGroupItem title="Deno" active>
+::::code-group
+:::code-group-item Deno
 
 ```ts{4}
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -89,7 +89,7 @@ Deno.addSignalListener("SIGTERM", () => bot.stop());
 bot.start();
 ```
 
-</CodeGroupItem>
+:::
 <CodeGroupItem title="Node.js">
 
 ```ts{4}
@@ -111,8 +111,8 @@ process.once("SIGTERM", () => bot.stop());
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Як ви можете побачити на підсвіченому рядку вище, ми отримуємо деякі конфіденційні значення (токен вашого бота) зі змінних середовища.
 Fly дозволяє нам зберігати цей секрет, виконавши цю команду:
@@ -134,8 +134,8 @@ flyctl secrets set BOT_TOKEN="AAAA:12345"
 2. Виконайте команду `flyctl launch`, щоб згенерувати файли `Dockerfile` та `fly.toml` для розгортання.
    Але **НЕ** розгортайте ваш проєкт.
 
-<CodeGroup>
-<CodeGroupItem title="Deno" Active>
+::::code-group
+:::code-group-item Deno
 
 ```sh
 flyctl launch
@@ -155,7 +155,7 @@ Wrote config file fly.toml
 Your app is ready. Deploy with `flyctl deploy`
 ```
 
-</CodeGroupItem>
+:::
 <CodeGroupItem title="Node.js">
 
 ```sh
@@ -178,8 +178,8 @@ Wrote config file fly.toml
 Your app is ready. Deploy with `flyctl deploy`
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 3. **Deno**: змініть версію Deno та видаліть `CMD`, якщо він існує, у файлі `Dockerfile`.
    Наприклад, у цьому випадку ми оновлюємо `DENO_VERSION` до `1.25.2`.
@@ -187,8 +187,8 @@ Your app is ready. Deploy with `flyctl deploy`
    **Node.js**: щоб змінити версію Node.js, вам потрібно вставити властивість `"node"` в межах властивості `"engines"` у `package.json`.
    Ми оновлюємо версію Node.js до `16.14.0` у наступному прикладі.
 
-<CodeGroup>
-<CodeGroupItem title="Deno" Active>
+::::code-group
+:::code-group-item Deno
 
 ```dockerfile{2,26}
 # Dockerfile
@@ -219,8 +219,8 @@ ENTRYPOINT ["/bin/deno"]
 # CMD видалено
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Node.js" Active>
+:::
+:::code-group-item Node.js
 
 ```json{19}
 // package.json
@@ -246,15 +246,15 @@ ENTRYPOINT ["/bin/deno"]
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 4. Відредагуйте `app` у файлі `fly.toml`.
    Шлях `./app.ts` або `./app.js` для Node.js у наведеному нижче прикладі вказує на розташування головного файлу.
    Ви можете змінити їх, щоб вони відповідали каталогу вашого проєкту.
    Якщо ви використовуєте вебхуки, переконайтеся, що порт відповідає тому, що ви вказали у своєму [конфігураційному файлі](#вебхуки) (`8000`).
 
-<CodeGroup>
+::::code-group
 <CodeGroupItem title="Deno (Вебхук)" Active>
 
 ```toml{7,11,12}
@@ -293,7 +293,7 @@ kill_timeout = 5
     timeout = "2s"
 ```
 
-</CodeGroupItem>
+:::
 <CodeGroupItem title="Deno (Тривале опитування)" Active>
 
 ```toml{7}
@@ -309,7 +309,7 @@ kill_timeout = 5
 # оскільки ми не прослуховуємо HTTP
 ```
 
-</CodeGroupItem>
+:::
 <CodeGroupItem title="Node.js (Вебхук)" Active>
 
 ```toml{7,11,18,19}
@@ -355,7 +355,7 @@ kill_timeout = 5
     timeout = "2s"
 ```
 
-</CodeGroupItem>
+:::
 <CodeGroupItem title="Node.js (Тривале опитування)" Active>
 
 ```toml{7,11,22,23}
@@ -377,8 +377,8 @@ kill_timeout = 5
 # Просто пропустіть увесь розділ [[services]], оскільки ми не прослуховуємо HTTP.
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 5. Запустіть `flyctl deploy` для розгортання вашого коду.
 

@@ -56,8 +56,8 @@ Only if both values are known, the bot can tell the user how many days are left.
 
 This is how a bot like that could be implemented:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context, Keyboard, session, SessionFlavor } from "grammy";
@@ -190,8 +190,8 @@ function getDays(month: number, day: number) {
 }
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot, Context, Keyboard, session, SessionFlavor } = require("grammy");
@@ -317,8 +317,8 @@ function getDays(month, day) {
 }
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import {
@@ -457,8 +457,8 @@ function getDays(month: number, day: number) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Note how the session has a property `step` that stores the step of the form, i.e. which value is currently being filled.
 The router is used to jump between different middleware that completes both the `month` and the `dayOfMonth` fields on the session.

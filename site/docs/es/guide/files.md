@@ -145,8 +145,8 @@ Así es como puedes construir `InputFile`s.
 
 Si ya tiene un archivo almacenado en su máquina, puede dejar que grammY cargue este archivo.
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::::code-group
+:::code-group-item Node.js
 
 ```ts
 import { createReadStream } from "fs";
@@ -158,8 +158,8 @@ new InputFile("/ruta/a/archivo");
 new InputFile(createReadStream("/ruta/a/archivo"));
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 // Enviar un archivo local.
@@ -169,16 +169,16 @@ new InputFile("/ruta/a/archivo");
 new InputFile(await Deno.open("/ruta/a/archivo"));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 #### Carga de datos binarios sin procesar
 
 También se puede enviar un objeto `Buffer`, o un iterador que produzca objetos `Buffer`.
 En Deno, también se pueden enviar objetos `Blob`.
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::::code-group
+:::code-group-item Node.js
 
 ```ts
 // Enviar un buffer o un array de bytes.
@@ -191,8 +191,8 @@ new InputFile(function* () {
 });
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 // Enviar un blob.
@@ -208,8 +208,8 @@ new InputFile(function* () {
 });
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 #### Descargar y volver a cargar un archivo
 
@@ -221,8 +221,8 @@ Esto es muy eficiente.
 > Ten en cuenta que Telegram soporta la descarga del archivo por ti en muchos métodos.
 > Si es posible, deberías preferir [enviar el archivo vía URL](#vía-id-archivo-o-url), en lugar de usar `InputFile` para transmitir el contenido del archivo a través de tu servidor.
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::::code-group
+:::code-group-item Node.js
 
 ```ts
 import { URL } from "url";
@@ -232,8 +232,8 @@ new InputFile(new URL("https://grammy.dev/images/Y.png"));
 new InputFile({ url: "https://grammy.dev/images/Y.png" }); // equivalente
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 // Descargar un archivo, y transmitir la respuesta a Telegram.
@@ -241,8 +241,8 @@ new InputFile(new URL("https://grammy.dev/images/Y.png"));
 new InputFile({ url: "https://grammy.dev/images/Y.png" }); // equivalente
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### Añadir un título
 

@@ -13,8 +13,8 @@ You can run your bot using both [webhooks or long polling](../guide/deployment-t
 1. Make sure that you have a file which exports your `Bot` object, so that you can import it later to run it.
 2. Create a file named `app.ts` or `app.js`, or actually any name you like (but you should be remembering and using this as the main file to deploy), with the following content:
 
-<CodeGroup>
-<CodeGroupItem title="Deno" active>
+::::code-group
+:::code-group-item Deno
 
 ```ts{11}
 import { serve } from "https://deno.land/std/http/server.ts";
@@ -38,8 +38,8 @@ serve(async (req) => {
 }, { port });
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Node.js" active>
+:::
+:::code-group-item Node.js
 
 ```ts{10}
 import express from "express";
@@ -57,8 +57,8 @@ app.use((_req, res) => res.status(200).send());
 app.listen(port, () => console.log(`listening on port ${port}`));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 We advise you to have your handler on some secret path rather than the root (`/`).
 As shown in the highlighted line above, we are using the bot token (`/<bot token>`) as the secret path.
@@ -67,8 +67,8 @@ As shown in the highlighted line above, we are using the bot token (`/<bot token
 
 Create a file named `app.ts` or `app.js`, or actually any name you like (but you should be remembering and using this as the main file to deploy), with the following content:
 
-<CodeGroup>
-<CodeGroupItem title="Deno" active>
+::::code-group
+:::code-group-item Deno
 
 ```ts{4}
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -89,7 +89,7 @@ Deno.addSignalListener("SIGTERM", () => bot.stop());
 bot.start();
 ```
 
-</CodeGroupItem>
+:::
 <CodeGroupItem title="Node.js">
 
 ```ts{4}
@@ -111,8 +111,8 @@ process.once("SIGTERM", () => bot.stop());
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 As you can see in the highlighted line above, we take some sensitive values (your bot token) from environment variables.
 Fly allow us to store that secret by running this command:
@@ -134,8 +134,8 @@ This is the easiest method to go with.
 2. Run `flyctl launch` to generate a `Dockerfile` and `fly.toml` file for deployment.
    But **DO NOT** deploy.
 
-<CodeGroup>
-<CodeGroupItem title="Deno" Active>
+::::code-group
+:::code-group-item Deno
 
 ```sh
 flyctl launch
@@ -155,7 +155,7 @@ Wrote config file fly.toml
 Your app is ready. Deploy with `flyctl deploy`
 ```
 
-</CodeGroupItem>
+:::
 <CodeGroupItem title="Node.js">
 
 ```sh
@@ -178,8 +178,8 @@ Wrote config file fly.toml
 Your app is ready. Deploy with `flyctl deploy`
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 3. **Deno**: Change the Deno version and remove `CMD` if exist within the `Dockerfile` file.
    For example, in this case, we update `DENO_VERSION` to `1.25.2`.
@@ -187,8 +187,8 @@ Your app is ready. Deploy with `flyctl deploy`
    **Node.js**: To change the Node.js version, you need to insert a `"node"` property inside an `"engines"` property inside `package.json`.
    For instance, we update the Node.js version to `16.14.0` in the example below.
 
-<CodeGroup>
-<CodeGroupItem title="Deno" Active>
+::::code-group
+:::code-group-item Deno
 
 ```dockerfile{2,26}
 # Dockerfile
@@ -219,8 +219,8 @@ ENTRYPOINT ["/bin/deno"]
 # CMD is removed
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Node.js" Active>
+:::
+:::code-group-item Node.js
 
 ```json{19}
 // package.json
@@ -246,15 +246,15 @@ ENTRYPOINT ["/bin/deno"]
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 4. Edit `app` inside the `fly.toml` file.
    The path `./app.ts` (or `./app.js` for Node.js) in the example below refers to the main file directory.
    You might modify them to match with your project's directory.
    If you are using webhooks, make sure the port is same as the one in your [configuration](#webhooks) (`8000`).
 
-<CodeGroup>
+::::code-group
 <CodeGroupItem title="Deno (Webhooks)" Active>
 
 ```toml{7,11,12}
@@ -293,7 +293,7 @@ kill_timeout = 5
     timeout = "2s"
 ```
 
-</CodeGroupItem>
+:::
 <CodeGroupItem title="Deno (Long polling)" Active>
 
 ```toml{7}
@@ -309,7 +309,7 @@ kill_timeout = 5
 # since we are not listening to HTTP
 ```
 
-</CodeGroupItem>
+:::
 <CodeGroupItem title="Node.js (Webhooks)" Active>
 
 ```toml{7,11,18,19}
@@ -355,7 +355,7 @@ kill_timeout = 5
     timeout = "2s"
 ```
 
-</CodeGroupItem>
+:::
 <CodeGroupItem title="Node.js (Long polling)" Active>
 
 ```toml{7,11,22,23}
@@ -377,8 +377,8 @@ kill_timeout = 5
 # Simply omitting the whole of the [[services]] section since we are not listening to HTTP.
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 5. Run `flyctl deploy` to deploy your code.
 

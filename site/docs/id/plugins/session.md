@@ -103,8 +103,8 @@ Kamu bisa menambahkan fitur session ke grammY menggunakan middleware session bui
 
 Berikut contoh bot yang menghitung jumlah pesan yang mengandung sebuah emoji kucing :cat::
 
-<CodeGroup>
- <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context, session, SessionFlavor } from "grammy";
@@ -135,8 +135,8 @@ bot.hears(/.*🐱.*/, (ctx) => ctx.session.hitungKucing++);
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot, session } = require("grammy");
@@ -159,8 +159,8 @@ bot.hears(/.*🐱.*/, (ctx) => ctx.session.hitungKucing++);
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import {
@@ -196,8 +196,8 @@ bot.hears(/.*🐱.*/, (ctx) => ctx.session.hitungKucing++);
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Perhatikan bahwa kita perlu [mengatur type context](../guide/context.md#memodifikasi-object-context) agar session tersedia di dalamnya.
 Flavor context untuk session kita sebut dengan `SessionFlavor`.
@@ -253,8 +253,8 @@ Secara bawaan, data disimpan per chat.
 Tetapi, dengan menggunakan `getSessionKey` kamu bisa menyimpan data entah itu per user, kombinasi per user dan chat, ataupun cara lainnya.
 Berikut ketiga contohnya:
 
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 // Simpan data per chat (bawaan)
@@ -283,8 +283,8 @@ function getSessionKey(ctx: Context): string | undefined {
 bot.use(session({ getSessionKey }));
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 // Simpan data per chat (bawaan)
@@ -313,8 +313,8 @@ function getSessionKey(ctx) {
 bot.use(session({ getSessionKey }));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Setiap kali `getSessionKey` mengembalikan `undefined`, `ctx.session` akan menghasilkan `undefined` juga.
 Contohnya, session key resolver bawaan tidak akan bekerja untuk update `poll`/`poll_answer` ataupun `inline_query`, karena mereka bukan bagian dari sebuah chat (`ctx.chat` menghasilkan `undefined`).
@@ -418,8 +418,8 @@ Lihat [repositori berikut](https://github.com/grammyjs/storages/tree/main/packag
 
 Cara pemasangannya sangat mudah:
 
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { freeStorage } from "@grammyjs/storage-free";
@@ -430,8 +430,8 @@ bot.use(session({
 }));
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { freeStorage } = require("@grammyjs/storage-free");
@@ -442,8 +442,8 @@ bot.use(session({
 }));
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { freeStorage } from "https://deno.land/x/grammy_storages/free/src/mod.ts";
@@ -454,16 +454,16 @@ bot.use(session({
 }));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Selesai!
 Bot kamu sekarang sudah menggunakan data storage permanen.
 
 Berikut contoh utuh yang bisa kamu coba:
 
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context, session, SessionFlavor } from "grammy";
@@ -493,8 +493,8 @@ bot.catch((err) => console.error(err));
 bot.start();
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot, session } = require("grammy");
@@ -518,8 +518,8 @@ bot.catch((err) => console.error(err));
 bot.start();
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import {
@@ -554,8 +554,8 @@ bot.catch((err) => console.error(err));
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### Storage Eksternal
 
@@ -805,8 +805,8 @@ interface SessionData {
 
 Function migrasi bisa kamu gunakan untuk mengubah string array yang lama menjadi array object pet yang baru.
 
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 function addBirthdayToPets(old: { petNames: string[] }): SessionData {
@@ -823,8 +823,8 @@ const enhanced = enhanceStorage({
 });
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 function addBirthdayToPets(old) {
@@ -841,8 +841,8 @@ const enhanced = enhanceStorage({
 });
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Setiap kali data session dibaca, fitur peningkatan storage akan mengecek apakah data session tersebut sudah berada di versi `1`.
 Jika versinya di bawah itu (atau bahkan tidak ditemukan karena kamu sebelumnya tidak menggunakan fitur ini), maka function migrasi akan dijalankan.

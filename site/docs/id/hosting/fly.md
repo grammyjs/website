@@ -13,8 +13,8 @@ Kamu bisa menjalankan bot menggunakan [webhooks ataupun long polling](../guide/d
 1. Pastikan kamu meng-export object `Bot` di dalam sebuah file agar nantinya bisa di-import ketika ingin menjalankannya.
 2. Buat sebuah file dengan nama `app.ts` atau `app.js`, ataupun nama lainnya sesuai dengan keinginanmu (tetapi kamu harus mengingatnya karena nanti file tersebut akan digunakan sebagai file deploy utama). File tersebut berisikan:
 
-<CodeGroup>
-<CodeGroupItem title="Deno" active>
+::::code-group
+:::code-group-item Deno
 
 ```ts{11}
 import { serve } from "https://deno.land/std/http/server.ts";
@@ -38,8 +38,8 @@ serve(async (req) => {
 }, { port });
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Node.js" active>
+:::
+:::code-group-item Node.js
 
 ```ts{10}
 import express from "express";
@@ -57,8 +57,8 @@ app.use((_req, res) => res.status(200).send());
 app.listen(port, () => console.log(`listening on port ${port}`));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Kami menganjurkan kamu untuk menaruh handler di direktori rahasia alih-alih menempatkanya di root (`/`).
 Di contoh kali ini, kita menggunakan token bot (`/<token bot>`) sebagai direktori rahasianya (perhatikan baris kode yang disorot).
@@ -68,8 +68,8 @@ Di contoh kali ini, kita menggunakan token bot (`/<token bot>`) sebagai direktor
 Buat sebuah file dengan nama `app.ts` atau `app.js`, ataupun nama lainnya sesuai dengan keinginanmu (tetapi kamu harus mengingatnya karena nanti file tersebut akan digunakan sebagai file deploy utama).
 File tersebut berisikan:
 
-<CodeGroup>
-<CodeGroupItem title="Deno" active>
+::::code-group
+:::code-group-item Deno
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -90,7 +90,7 @@ Deno.addSignalListener("SIGTERM", () => bot.stop());
 bot.start();
 ```
 
-</CodeGroupItem>
+:::
 <CodeGroupItem title="Node.js">
 
 ```ts
@@ -112,8 +112,8 @@ process.once("SIGTERM", () => bot.stop());
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Perhatikan baris kode yang disorot di atas, kita telah mengambil informasi sensitif (token bot kamu) dari environment variables.
 Kamu bisa menyimpan informasi tersebut dengan menjalankan perintah berikut:
@@ -135,8 +135,8 @@ Metode ini adalah cara yang termudah.
 2. Jalankan `flyctl launch` untuk membuat sebuah file `Dockerfile` dan `fly.toml` yang nantinya untuk digunakan saat deployment.
    Tetapi, **JANGAN** di-deploy terlebih dahulu.
 
-<CodeGroup>
-<CodeGroupItem title="Deno" Active>
+::::code-group
+:::code-group-item Deno
 
 ```sh
 flyctl launch
@@ -156,7 +156,7 @@ Wrote config file fly.toml
 Your app is ready. Deploy with `flyctl deploy`
 ```
 
-</CodeGroupItem>
+:::
 <CodeGroupItem title="Node.js">
 
 ```sh
@@ -179,8 +179,8 @@ Wrote config file fly.toml
 Your app is ready. Deploy with `flyctl deploy`
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 3. **Deno**: Ubah versi Deno dan hapus `CMD` di dalam file `Dockerfile`.
    Pada contoh di bawah, kami mengubah `DENO_VERSION` menjadi `1.25.2`.
@@ -188,8 +188,8 @@ Your app is ready. Deploy with `flyctl deploy`
    **Node.js**: Untuk mengubah versi Node.js, kamu perlu menambahkan property `node` ke dalam property `engine` yang berada di dalam file `package.json`.
    Pada contoh di bawah, kami mengubah versi Node.js menjadi `16.14.0`.
 
-<CodeGroup>
-<CodeGroupItem title="Deno" Active>
+::::code-group
+:::code-group-item Deno
 
 ```dockerfile{2,26}
 # Dockerfile
@@ -220,8 +220,8 @@ ENTRYPOINT ["/bin/deno"]
 # CMD tidak digunakan
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Node.js" Active>
+:::
+:::code-group-item Node.js
 
 ```json{19}
 // package.json
@@ -247,15 +247,15 @@ ENTRYPOINT ["/bin/deno"]
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 4. Ubah `app` di dalam file `fly.toml`.
    Path `./app.ts` (atau `./app.js` untuk Node.js) pada contoh di bawah mengacu pada direktori file utamanya.
    Kamu mungkin perlu mengaturnya agar sesuai dengan direktori proyek kamu.
    Kalau kamu menggunakan webhooks, pastikan port-nya sama dengan [konfigurasi](#webhooks) yang kamu miliki, dalam hal ini port-nya adalah `8000`.
 
-<CodeGroup>
+::::code-group
 <CodeGroupItem title="Deno (Webhooks)" Active>
 
 ```toml{7,11,12}
@@ -294,7 +294,7 @@ kill_timeout = 5
     timeout = "2s"
 ```
 
-</CodeGroupItem>
+:::
 <CodeGroupItem title="Deno (Long polling)" Active>
 
 ```toml{7}
@@ -309,7 +309,7 @@ kill_timeout = 5
 # Hapus semua bagian [[services]] karena kita tidak perlu menyimak HTTP
 ```
 
-</CodeGroupItem>
+:::
 <CodeGroupItem title="Node.js (Webhooks)" Active>
 
 ```toml{7,11,18,19}
@@ -355,7 +355,7 @@ kill_timeout = 5
     timeout = "2s"
 ```
 
-</CodeGroupItem>
+:::
 <CodeGroupItem title="Node.js (Long polling)" Active>
 
 ```toml{7,11,22,23}
@@ -377,8 +377,8 @@ kill_timeout = 5
 # Hapus semua bagian [[services]] karena kita tidak perlu menyimak HTTP
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 5. Jalankan `flyctl deploy` untuk men-deploy kode kamu.
 
