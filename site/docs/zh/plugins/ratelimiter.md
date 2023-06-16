@@ -30,7 +30,7 @@ ratelimiter 是用 grammY 或 [Telegraf](https://github.com/telegraf/telegraf) b
 
 `MEMORY_STORE` 或者内存中的跟踪是适用于大多数 bot 的，但如果你实现了 bot 集群，你将无法有效地使用内存存储。
 这就是为什么也提供了 Redis 选项。
-如果你使用 Deno，你可以传入 [ioredis](https://github.com/luin/ioredis) 或 [redis](https://deno.land/x/redis) 的客户端。
+如果你使用 Deno，你可以传入 [ioredis](https://github.com/redis/ioredis) 或 [redis](https://deno.land/x/redis) 的客户端。
 任何实现了 `incr` 和 `pexpire` 方法的 Redis 驱动器都可以正常工作。
 ratelimiter 与驱动器无关。
 
