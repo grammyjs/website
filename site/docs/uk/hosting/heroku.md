@@ -293,22 +293,22 @@ npx tsc
 
 У нашому випадку він має бути таким:
 
-<CodeGroup>
-<CodeGroupItem title="Вебхук" active>
+::::code-group
+:::code-group-item $1
 
 ```
 web: node dist/app.js
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Тривале опитування">
+:::
+:::code-group-item Тривале опитування
 
 ```
 worker: node dist/bot.js
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### Налаштування Git
 
@@ -337,8 +337,8 @@ tsconfig.json
 
 Кінцева структура каталогів повинна виглядати наступним чином:
 
-<CodeGroup>
-<CodeGroupItem title="Вебхук" active>
+::::code-group
+:::code-group-item $1
 
 ```asciiart:no-line-numbers
 .
@@ -357,8 +357,8 @@ tsconfig.json
 └── .gitignore
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Тривале опитування">
+:::
+:::code-group-item Тривале опитування
 
 ```asciiart:no-line-numbers
 .
@@ -375,8 +375,8 @@ tsconfig.json
 └── .gitignore
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Збережіть файли у репозиторії Git:
 
@@ -390,23 +390,23 @@ git commit -m "Мій перший коміт"
 Якщо ви вже створили [застосунок Heroku](https://dashboard.heroku.com/apps/), введіть назву вашого існуючого застосунку (`Existing app`) замість `<мій-застосунок>` нижче, а потім запустіть код.
 В іншому випадку запустіть новий застосунок (`New app`).
 
-<CodeGroup>
-  <CodeGroupItem title="Новий застосунок" active>
+::::code-group
+:::code-group-item Новий застосунок
 
 ```sh
 heroku create
 git remote -v
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Існуючий застосунок" active>
+:::
+:::code-group-item Існуючий застосунок
 
 ```sh
 heroku git:remote -a <мій-застосунок>
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### Розгортання коду
 

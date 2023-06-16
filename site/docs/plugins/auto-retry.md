@@ -15,8 +15,8 @@ If you regularly cross the threshold of how many requests you may perform, Teleg
 
 You can install this plugin on the `bot.api` object:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { autoRetry } from "@grammyjs/auto-retry";
@@ -25,8 +25,8 @@ import { autoRetry } from "@grammyjs/auto-retry";
 bot.api.config.use(autoRetry());
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { autoRetry } = require("@grammyjs/auto-retry");
@@ -35,8 +35,8 @@ const { autoRetry } = require("@grammyjs/auto-retry");
 bot.api.config.use(autoRetry());
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { autoRetry } from "https://esm.sh/@grammyjs/auto-retry";
@@ -45,8 +45,8 @@ import { autoRetry } from "https://esm.sh/@grammyjs/auto-retry";
 bot.api.config.use(autoRetry());
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 If you now call e.g. `sendMessage` and run into a rate limit, it will look like the request just takes unusually long.
 Under the hood, multiple HTTP requests are being performed, with the appropriate delays in between.

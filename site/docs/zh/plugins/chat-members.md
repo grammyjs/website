@@ -19,8 +19,8 @@
 请注意，根据 [Telegram 官方文档](https://core.telegram.org/bots/api#getupdates)，你的 bot 需要在 `allowed_updates` 数组中指定 `chat_member` update，如下例所示。
 这意味着你还需要指定你希望接收的任何其他事件。
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, type Context, MemorySessionStorage } from "grammy";
@@ -41,9 +41,9 @@ bot.start({
 });
 ```
 
-</CodeGroupItem>
+:::
 
-<CodeGroupItem title="JavaScript">
+:::code-group-item JavaScript
 
 ```js
 import { Bot, MemorySessionStorage } from "grammy";
@@ -61,9 +61,9 @@ bot.start({
 });
 ```
 
-</CodeGroupItem>
+:::
 
-<CodeGroupItem title="Deno">
+:::code-group-item Deno
 
 ```ts
 import {
@@ -91,9 +91,9 @@ bot.start({
 });
 ```
 
-</CodeGroupItem>
+:::
 
-</CodeGroup>
+::::
 
 ### 读取聊天成员
 

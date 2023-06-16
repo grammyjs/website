@@ -80,8 +80,8 @@ _grammY runner_ sudah dilengkapi dengan middleware `sequentialize()` yang fungsi
 Kamu bisa mengaturnya di function yang sama yang kamu gunakan untuk menentukan session key.
 Dengan begitu, race condition bisa dihindarkan dengan cara memperlambat update tersebut agar tidak bertabrakan satu sama lain.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context, session } from "grammy";
@@ -107,9 +107,9 @@ bot.on("message", (ctx) => ctx.reply("Pesan diterima."));
 run(bot);
 ```
 
-</CodeGroupItem>
+:::
 
-<CodeGroupItem title="JavaScript">
+:::code-group-item JavaScript
 
 ```js
 const { Bot, Context, session } = require("grammy");
@@ -135,8 +135,8 @@ bot.on("message", (ctx) => ctx.reply("Pesan diterima."));
 run(bot);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot, Context, session } from "https://deno.land/x/grammy/mod.ts";
@@ -162,8 +162,8 @@ bot.on("message", (ctx) => ctx.reply("Pesan diterima."));
 run(bot);
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Silahkan bergabung ke [chat Telegram grammY](https://t.me/grammyjs) untuk mendiskusikan cara menggunakan grammY runner di bot kamu.
 Kami selalu menantikan cerita dari orang-orang yang pernah mengelola bot-bot besar agar kami bisa meningkatkan grammY berdasarkan pengalaman mereka menggunakan package ini.

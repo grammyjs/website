@@ -12,8 +12,8 @@ Pueden tener botones interactivos, múltiples páginas con navegación entre ell
 
 Aquí hay un ejemplo simple que habla por sí mismo.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot } from "grammy";
@@ -38,8 +38,8 @@ bot.command("start", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot } = require("grammy");
@@ -64,8 +64,8 @@ bot.command("start", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -90,8 +90,8 @@ bot.command("start", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 > Asegúrese de instalar todos los menús antes de otros middleware, especialmente antes de los middleware que utilizan datos de consulta de devolución de llamada.
 

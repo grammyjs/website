@@ -192,8 +192,8 @@ bot.start();
 每个 grammY bot 都可以转换为许多 web 框架的中间件，包括 `express`，`koa`/`oak` 等等。
 你可以从 grammY 中导入 `webhookCallback` 函数 ([API 参考](https://deno.land/x/grammy/mod.ts?s=webhookCallback)) 为对应的框架创建一个中间件。
 
-<CodeGroup>
- <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import express from "express";
@@ -205,8 +205,8 @@ app.use(express.json()); // 解析 JSON 请求
 app.use(webhookCallback(bot, "express"));
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const express = require("express");
@@ -218,8 +218,8 @@ app.use(express.json()); // 解析 JSON 请求
 app.use(webhookCallback(bot, "express"));
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Application } from "https://deno.land/x/oak/mod.ts";
@@ -230,8 +230,8 @@ const app = new Application(); // 或者其它你正在使用的
 app.use(webhookCallback(bot, "oak"));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 如果你考虑在 VPS 上使用 webhooks 运行你的 bot，请确保你阅读了 Telegram 团队写的 [Marvin's Marvellous Guide to All Things Webhook](https://core.telegram.org/bots/webhooks)。
 

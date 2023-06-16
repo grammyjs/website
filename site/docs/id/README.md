@@ -36,8 +36,8 @@ Bot ditulis menggunakan [TypeScript](https://www.typescriptlang.org) (atau JavaS
 
 `npm install grammy` lalu tempel kode berikut:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot } from "grammy";
@@ -50,8 +50,8 @@ bot.on("message", (ctx) => ctx.reply("Halo, apa kabar!"));
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot } = require("grammy");
@@ -64,8 +64,8 @@ bot.on("message", (ctx) => ctx.reply("Halo, apa kabar!"));
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -78,8 +78,8 @@ bot.on("message", (ctx) => ctx.reply("Halo, apa kabar!"));
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Berhasil! :tada:
 

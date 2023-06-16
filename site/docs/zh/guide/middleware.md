@@ -125,8 +125,8 @@ bot.start();
 这里是我们中间件的函数签名。
 你可以把它与上面的中间件类型进行比较，并说服自己，我们在这里确实完成了一个中间件。
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 /** 统计 bot 的响应时间，并将其记录到 `console`。 */
@@ -138,8 +138,8 @@ async function responseTime(
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 /** 统计 bot 的响应时间，并将其记录到 `console`。 */
@@ -148,8 +148,8 @@ async function responseTime(ctx, next) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 我们可以用 `bot.use()` 把它安装到我们的 `bot` 实例中。
 
@@ -167,8 +167,8 @@ bot.use(responseTime);
 
 重要的是，要先在 bot 上安装我们的 `responseTime` 中间件（在中间件栈的顶部），以确保所有操作都包括在统计中。
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 /** 统计 bot 的响应时间，并将其记录到 `console`。 */
@@ -189,8 +189,8 @@ async function responseTime(
 bot.use(responseTime);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 /** 统计 bot 的响应时间，并将其记录到 `console`。 */
@@ -208,8 +208,8 @@ async function responseTime(ctx, next) {
 bot.use(responseTime);
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 完成，并且可以正常工作! :heavy_check_mark:
 

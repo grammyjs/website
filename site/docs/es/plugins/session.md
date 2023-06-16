@@ -102,8 +102,8 @@ Puedes añadir soporte de sesión a grammY utilizando el middleware de sesión i
 
 Aquí hay un ejemplo de bot que cuenta los mensajes que contienen un emoji de pizza :pizza::
 
-<CodeGroup>
- <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context, session, SessionFlavor } from "grammy";
@@ -134,8 +134,8 @@ bot.hears(/.*🍕.*/, (ctx) => ctx.session.pizzaCount++);
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot, session } = require("grammy");
@@ -158,8 +158,8 @@ bot.hears(/.*🍕.*/, (ctx) => ctx.session.pizzaCount++);
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import {
@@ -195,8 +195,8 @@ bot.hears(/.*🍕.*/, (ctx) => ctx.session.pizzaCount++);
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Nótese que también tenemos que [ajustar el tipo de contexto](../guide/context.md#personalizacion-del-objeto-de-contexto) para que la sesión esté disponible en él.
 El context flavor se llama `SessionFlavor`.
@@ -252,8 +252,8 @@ Por defecto, los datos se almacenan por chat.
 El uso de `getSessionKey` le permite almacenar los datos por usuario, o por combinación de usuario-chat, o como usted quiera.
 Aquí hay tres ejemplos:
 
-<CodeGroup>
- <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 // Almacena los datos por chat (por defecto).
@@ -282,8 +282,8 @@ function getSessionKey(ctx: Context): string | undefined {
 bot.use(session({ getSessionKey }));
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 // Almacena los datos por chat (por defecto).
@@ -312,8 +312,8 @@ function getSessionKey(ctx) {
 bot.use(session({ getSessionKey }));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Siempre que `getSessionKey` devuelva `undefined`, `ctx.session` estará `undefined`.
 Por ejemplo, el resolvedor de claves de sesión por defecto no funcionará para las actualizaciones de `poll`/`poll_answer` o `inline_query` porque no pertenecen a un chat (`ctx.chat` está `undefined`).
@@ -417,8 +417,8 @@ No requiere ninguna configuración - toda la autenticación se hace usando tu to
 
 Es muy fácil de usar:
 
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { freeStorage } from "@grammyjs/storage-free";
@@ -429,8 +429,8 @@ bot.use(session({
 }));
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { freeStorage } = require("@grammyjs/storage-free");
@@ -441,8 +441,8 @@ bot.use(session({
 }));
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { freeStorage } from "https://deno.land/x/grammy_storage/free/mod.ts";
@@ -453,16 +453,16 @@ bot.use(session({
 }));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Ya está.
 Tu bot ahora utilizará un almacenamiento de datos persistente.
 
 Aquí hay un ejemplo de bot completo que puedes copiar para probarlo.
 
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context, session, SessionFlavor } from "grammy";
@@ -492,8 +492,8 @@ bot.catch((err) => console.error(err));
 bot.start();
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot, session } = require("grammy");
@@ -517,8 +517,8 @@ bot.catch((err) => console.error(err));
 bot.start();
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import {
@@ -553,8 +553,8 @@ bot.catch((err) => console.error(err));
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### Soluciones de almacenamiento externo
 
@@ -797,8 +797,8 @@ interfaz SessionData {
 
 Las funciones de migración permiten transformar el antiguo array de cadenas en el nuevo array de objetos mascota.
 
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 function addBirthdayToPets(old: { petNames: string[] }): SessionData {
@@ -815,8 +815,8 @@ const enhanced = enhanceStorage({
 });
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 function addBirthdayToPets(old) {
@@ -833,8 +833,8 @@ const enhanced = enhanceStorage({
 });
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Siempre que se lean los datos de la sesión, la mejora del almacenamiento comprobará si los datos de la sesión ya están en la versión `1`.
 Si la versión es inferior (o no existe porque no se utilizaba antes esta función), se ejecutará la función de migración.

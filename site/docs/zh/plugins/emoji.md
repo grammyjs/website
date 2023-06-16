@@ -24,8 +24,8 @@
 
 你可以在你的 bot 上安装这个插件，像这样：
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context } from "grammy";
@@ -41,8 +41,8 @@ const bot = new Bot<MyContext>("");
 bot.use(emojiParser());
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot } = require("grammy");
@@ -53,8 +53,8 @@ const bot = new Bot("");
 bot.use(emojiParser());
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
@@ -73,8 +73,8 @@ const bot = new Bot<MyContext>("");
 bot.use(emojiParser());
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 现在你可以通过它们的名字来获得 emoji：
 

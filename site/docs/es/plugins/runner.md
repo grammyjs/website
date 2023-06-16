@@ -26,8 +26,8 @@ También tiene su propia [Referencia API](https://deno.land/x/grammy_runner/mod.
 
 He aquí un ejemplo sencillo.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot } from "grammy";
@@ -43,8 +43,8 @@ bot.on("message", (ctx) => ctx.reply("Got your message."));
 run(bot);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot } = require("grammy");
@@ -60,8 +60,8 @@ bot.on("message", (ctx) => ctx.reply("Got your message."));
 run(bot);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -77,8 +77,8 @@ bot.on("message", (ctx) => ctx.reply("Got your message."));
 run(bot);
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ## Procesamiento secuencial cuando sea necesario
 
@@ -202,8 +202,8 @@ Veamos ahora cómo se puede utilizar esto.
 Empezaremos creando la instancia central del bot que obtiene las actualizaciones y las distribuye entre los workers.
 Empecemos creando un archivo llamado `bot.ts` con el siguiente contenido.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 // bot.ts
@@ -223,8 +223,8 @@ bot.use(distribute(__dirname + "/worker"));
 run(bot);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 // bot.js
@@ -244,8 +244,8 @@ bot.use(distribute(__dirname + "/worker"));
 run(bot);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 // bot.ts
@@ -265,14 +265,14 @@ bot.use(distribute(new URL("./worker.ts", import.meta.url)));
 run(bot);
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Junto a `bot.ts`, creamos un segundo archivo llamado `worker.ts` (como se especifica en la línea 12 del código anterior).
 Este contendrá la lógica real del bot.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 // worker.ts
@@ -285,8 +285,8 @@ const bot = new BotWorker(""); // <-- pasa tu bot token aquí de nuevo.
 bot.on("message", (ctx) => ctx.reply("¡Viva!"));
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 // worker.js
@@ -299,8 +299,8 @@ const bot = new BotWorker(""); // <-- pasa tu bot token aquí de nuevo.
 bot.on("message", (ctx) => ctx.reply("¡Viva!"));
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 // worker.ts
@@ -313,8 +313,8 @@ const bot = new BotWorker(""); // <-- pasa tu bot token aquí de nuevo.
 bot.on("message", (ctx) => ctx.reply("¡Viva!"));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 > Ten en cuenta que cada worker puede enviar mensajes de vuelta a Telegram.
 > Esta es la razón por la que debes dar tu token bot a cada worker, también.
@@ -332,8 +332,8 @@ Esto significa que todos los plugins deben ser instalados en los bot workers.
 Como optimización del rendimiento, puedes descartar las actualizaciones que no quieras gestionar.
 De esta forma, tu bot no tiene que enviar la actualización a un worker, sólo para que sea ignorada allí.
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::::code-group
+:::code-group-item Node.js
 
 ```ts
 // Nuestro bot sólo maneja mensajes, ediciones y consultas de devolución de llamada,
@@ -344,8 +344,8 @@ bot.on(
 );
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 // Nuestro bot sólo maneja mensajes, ediciones y consultas de devolución de llamada,
@@ -356,8 +356,8 @@ bot.on(
 );
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 :::
 

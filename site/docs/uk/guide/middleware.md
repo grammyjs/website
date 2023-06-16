@@ -125,8 +125,8 @@ bot.start();
 Ось сигнатура функції для нашого проміжного обробника.
 Ви можете порівняти його з типом проміжного обробника, наведеного вище, і переконатися, що ми дійсно створили проміжний обробник.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 /** Вимірюємо час відповіді бота та виводимо його у `console` */
@@ -138,8 +138,8 @@ async function responseTime(
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 /** Вимірюємо час відповіді бота та виводимо його у `console` */
@@ -148,8 +148,8 @@ async function responseTime(ctx, next) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Ми можемо встановити його в обʼєкт `bot` за допомогою `bot.use()`:
 
@@ -167,8 +167,8 @@ bot.use(responseTime);
 
 Дуже важливо встановити наш проміжний обробник `responseTime` у бота у самому _початку_, на верхній рівень стеку. Це важливо тому, що ми хочемо вимірювати час _усіх_ операцій обробки оновлення.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 /** Вимірюємо час відповіді бота та виводимо його у `console` */
@@ -189,8 +189,8 @@ async function responseTime(
 bot.use(responseTime);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 /** Вимірюємо час відповіді бота та виводимо його у `console` */
@@ -208,8 +208,8 @@ async function responseTime(ctx, next) {
 bot.use(responseTime);
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Готово та працює! :heavy_check_mark:
 

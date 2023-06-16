@@ -48,8 +48,8 @@ ratelimiter 与驱动器无关。
 
 这个示例演示了最简单的方式来使用默认行为的 ratelimiter：
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { limit } from "@grammyjs/ratelimiter";
@@ -58,8 +58,8 @@ import { limit } from "@grammyjs/ratelimiter";
 bot.use(limit());
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { limit } = require("@grammyjs/ratelimiter");
@@ -68,8 +68,8 @@ const { limit } = require("@grammyjs/ratelimiter");
 bot.use(limit());
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
@@ -78,15 +78,15 @@ import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
 bot.use(limit());
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### 手动配置
 
 正如前面所说，你可以向 `limit()` 方法传入一个 `Options` 对象来改变 ratelimiter 的行为。
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import Redis from "ioredis";
@@ -116,8 +116,8 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const Redis = require("ioredis");
@@ -147,8 +147,8 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { connect } from "https://deno.land/x/redis/mod.ts";
@@ -178,8 +178,8 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 正如你在上面的示例中看到的，每个用户每 2 秒钟最多只能发送 3 次请求。
 如果该用户发送更多请求，机器人会回复 _Please refrain from sending too many requests!_。
@@ -189,8 +189,8 @@ bot.use(
 
 另一个用例是限制来自聊天室的请求而不是特定用户的请求：
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { limit } from "@grammyjs/ratelimiter";
@@ -207,8 +207,8 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { limit } = require("@grammyjs/ratelimiter");
@@ -225,8 +225,8 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
@@ -243,8 +243,8 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 在这个示例中，我使用 `chat.id` 作为限制的唯一键。
 

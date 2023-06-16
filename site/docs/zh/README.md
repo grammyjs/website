@@ -34,8 +34,8 @@ bot 是用 [TypeScript](https://www.typescriptlang.org)（或JavaScript）编写
 
 `npm install grammy` 并粘贴以下代码：
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot } from "grammy";
@@ -48,8 +48,8 @@ bot.on("message", (ctx) => ctx.reply("你好！"));
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot } = require("grammy");
@@ -62,8 +62,8 @@ bot.on("message", (ctx) => ctx.reply("你好！"));
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -76,8 +76,8 @@ bot.on("message", (ctx) => ctx.reply("你好！"));
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 运行成功！ :tada:
 

@@ -8,8 +8,8 @@ You need to pass your bot token to this plugin because it must authenticate as y
 This plugin then installs the `download` method on `getFile` call results.
 Example:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context } from "grammy";
@@ -35,8 +35,8 @@ bot.on([":video", ":animation"], async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 import { Bot } from "grammy";
@@ -59,8 +59,8 @@ bot.on([":video", ":animation"], async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
@@ -89,8 +89,8 @@ bot.on([":video", ":animation"], async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 You can pass a string with a file path to `download` if you don't want to create a temporary file.
 Just do `await file.download("/path/to/file")`.
@@ -111,8 +111,8 @@ By default, the results of `await bot.api.getFile()` will also be equipped with 
 However, this is not reflected in the types.
 If you need these calls, you should also install an [API flavor](../advanced/transformers.md#api-flavoring) on the bot object called `FileApiFlavor`:
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::::code-group
+:::code-group-item Node.js
 
 ```ts
 import { Api, Bot, Context } from "grammy";
@@ -125,8 +125,8 @@ const bot = new Bot<MyContext, MyApi>("");
 // ...
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Api, Bot, Context } from "https://deno.land/x/grammy/mod.ts";
@@ -143,8 +143,8 @@ const bot = new Bot<MyContext, MyApi>("");
 // ...
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ## Plugin Summary
 

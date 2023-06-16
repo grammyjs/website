@@ -19,8 +19,8 @@
 Зверніть увагу, що згідно з [офіційною документацією Telegram](https://core.telegram.org/bots/api#getupdates), ваш бот повинен вказати оновлення `chat_member` в масиві `allowed_updates`, як показано в прикладі нижче.
 Це означає, що вам також потрібно вказати всі інші оновлення, які ви також хотіли б отримувати.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, type Context, MemorySessionStorage } from "grammy";
@@ -41,9 +41,9 @@ bot.start({
 });
 ```
 
-</CodeGroupItem>
+:::
 
-<CodeGroupItem title="JavaScript">
+:::code-group-item JavaScript
 
 ```js
 import { Bot, MemorySessionStorage } from "grammy";
@@ -61,9 +61,9 @@ bot.start({
 });
 ```
 
-</CodeGroupItem>
+:::
 
-<CodeGroupItem title="Deno">
+:::code-group-item Deno
 
 ```ts
 import {
@@ -91,9 +91,9 @@ bot.start({
 });
 ```
 
-</CodeGroupItem>
+:::
 
-</CodeGroup>
+::::
 
 ### Читання учасників чату
 
