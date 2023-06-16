@@ -13,8 +13,8 @@ const router = new Router((ctx) => {
   return "key";
 });
 
-router.route("key", (ctx) => {/* ... */});
-router.route("other-key", (ctx) => {/* ... */});
+router.route("key", async (ctx) => {/* ... */});
+router.route("other-key", async (ctx) => {/* ... */});
 router.otherwise((ctx) => {/* ... */}); // called if no route matches
 
 bot.use(router);
@@ -26,10 +26,10 @@ Naturally, the router plugin integrates seamlessly with grammY's [middleware tre
 For example, you filter down updates further after routing them.
 
 ```ts
-router.route("key").on("message:text", (ctx) => {/* ... */});
+router.route("key").on("message:text", async (ctx) => {/* ... */});
 
 const other = router.otherwise();
-other.on(":text", (ctx) => {/* ... */});
+other.on(":text", async (ctx) => {/* ... */});
 other.use((ctx) => {/* ... */});
 ```
 

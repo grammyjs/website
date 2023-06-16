@@ -12,7 +12,7 @@ next: ./context.md
 Це найпростіший спосіб обробляти повідомлення
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   const message = ctx.message; // обʼєкт повідомлення
 });
 ```
@@ -21,10 +21,10 @@ bot.on("message", (ctx) => {
 
 ```ts
 // Оброблюємо команди, такі як /start.
-bot.command("start", (ctx) => {/* ... */});
+bot.command("start", async (ctx) => {/* ... */});
 
 // Зіставляємо текст повідомлення з рядком або регулярним виразом.
-bot.hears(/echo *(.+)?/, (ctx) => {/* ... */});
+bot.hears(/echo *(.+)?/, async (ctx) => {/* ... */});
 ```
 
 Ви можете скористатися автодоповненням у своєму редакторі коду, щоб побачити всі доступні параметри, або переглянути [всі методи](https://deno.land/x/grammy/mod.ts?s=Composer) класу `Composer`.

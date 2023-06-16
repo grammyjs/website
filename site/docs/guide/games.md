@@ -92,7 +92,7 @@ bot.on("callback_query:game_short_name", async (ctx) => {
   await ctx.answerCallbackQuery({ url: "your_game_url" });
 });
 
-bot.command("start", (ctx) => {
+bot.command("start", async (ctx) => {
   await ctx.replyWithGame("my_game", {
     reply_markup: keyboard,
     // Or you can use the api method here, according to your needs.

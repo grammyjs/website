@@ -316,7 +316,7 @@ We are going to deploy our bot using [Git and Heroku Cli](https://devcenter.hero
 Here is the link for the installation:
 
 - [Git installation instructions](https://git-scm.com/download/)
-- [Heroku CLI installation instructions](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
+- [Heroku CLI installation instructions](https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli)
 
 Assuming that you already have them in your machine, and you have a terminal open in the root of our project's directory.
 Now initialize a local git repository by running this code in your terminal:

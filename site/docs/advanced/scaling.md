@@ -69,7 +69,7 @@ Imagine this sequence of events:
 8. Bot is done processing B, and writes new session to database, hence overwriting the changes performed during processing A.
    Data loss due to WAR hazard!
 
-> Note: You could try use database transactions for your sessions, but then you can only detect the hazard and not prevent it.
+> Note: You could try to use database transactions for your sessions, but then you can only detect the hazard and not prevent it.
 > Trying to use a lock instead would effectively eliminate all concurrency.
 > It is much easier to avoid the hazard in the first place.
 

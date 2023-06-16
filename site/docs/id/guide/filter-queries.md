@@ -23,11 +23,11 @@ Dengan demikian, kamu cukup mengetik `bot.on("")`, lalu buka auto-complete, kemu
 _Type inference_ `bot.on()` akan memahami filter query yang sedang kamu pilih. Dari situ, ia akan mengerucutkan beberapa type context yang ada.
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // Bisa jadi undefined kalau pesan yang diterima tidak ada teksnya.
   const text: string | undefined = ctx.msg.text;
 });
-bot.on("message:text", (ctx) => {
+bot.on("message:text", async (ctx) => {
   // Text selalu tersedia karena handler ini dipanggil
   // ketika pesan yang diterima hanya berupa teks.
   const text: string = ctx.msg.text;
@@ -144,7 +144,7 @@ Perhatikan bahwa meskipun syntactic sugar ini bisa digunakan untuk bekerja denga
 Pesan service pada dasarnya adalah pesan untuk menginformasikan pengguna di dalam chat tersebut. Adakalanya dalam beberapa kasus, pesan itu tidak akan selalu terlihat.
 Misalnya, di grup besar atau supergroup tidak akan ada pesan service mengenai pengguna yang telah bergabung atau meninggalkan chat.
 Akibatnya, bot kamu bisa jadi tidak akan mendeteksinya.
-Oleh karena itu, kamu harus menyimak [update chat member](#update-chat-member).
+Oleh karena itu, kamu harus menyimak [update chat member](#update-member-chat).
 
 ## Mengombinasikan Beberapa Query
 

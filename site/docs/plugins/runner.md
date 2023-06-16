@@ -171,7 +171,7 @@ There is a simple way out: bot workers!
 grammY runner lets you create several workers which can process your updates in parallel on actually different cores (using different event loops and with separate memory).
 
 On Node.js, grammY runner uses [Worker Threads](https://nodejs.org/api/worker_threads.html).
-On Deno, grammY runner uses [Web Workers](https://deno.land/manual/runtime/workers).
+On Deno, grammY runner uses [Web Workers](https://deno.com/manual/runtime/workers).
 
 Conceptually, grammY runner provides you with a class called `BotWorker` which can handle updates.
 It is equivalent to the regular class `Bot` (in fact, it even `extends Bot`).

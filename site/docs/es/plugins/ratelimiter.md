@@ -41,8 +41,8 @@ ratelimiter es agnóstico al controlador.
 
 Hay dos maneras de utilizar ratelimiter:
 
-- Aceptando los valores por defecto ([Configuración por defecto](#configuración-por-defecto)).
-- Pasando un objeto personalizado que contenga sus ajustes ([Configuración manual](#configuración-manual)).
+- Aceptando los valores por defecto ([Configuración por defecto](#configuracion-por-defecto)).
+- Pasando un objeto personalizado que contenga sus ajustes ([Configuración manual](#configuracion-manual)).
 
 ### Configuración por defecto
 

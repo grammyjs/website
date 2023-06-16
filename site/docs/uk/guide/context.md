@@ -10,7 +10,7 @@ next: ./api.md
 Кожного разу, коли ви реєструєте обробника на своєму обʼєкті бота, цей обробник отримує обʼєкт контексту.
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` — це обʼєкт `Context`.
 });
 ```
@@ -28,7 +28,7 @@ bot.on("message", (ctx) => {
 Наприклад, щоб отримати текст повідомлення, ви можете зробити наступне:
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // Під час обробки текстових повідомлень `txt` буде типу `string`.
   // Також може бути `undefined`, якщо отримане повідомлення не містить текст.
   // Наприклад, фотографії, наліпки тощо.
@@ -44,7 +44,7 @@ bot.on("message", (ctx) => {
 Наприклад:
 
 ```ts
-bot.on("edited_message", (ctx) => {
+bot.on("edited_message", async (ctx) => {
   // Отримуємо новий, відредагований, текст повідомлення.
   const editedText = ctx.editedMessage.text;
 });
@@ -71,17 +71,17 @@ bot.on("edited_message", (ctx) => {
 Іншими словами, ви також можете зробити це:
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // Отримуємо текст повідомлення.
   const text = ctx.msg.text;
 });
 
-bot.on("edited_message", (ctx) => {
+bot.on("edited_message", async (ctx) => {
   // Отримуємо новий, відредагований, текст повідомлення.
   const editedText = ctx.msg.text;
 });
 
-bot.on("message:entities", (ctx) => {
+bot.on("message:entities", async (ctx) => {
   // Отримуємо всі сутності.
   const entities = ctx.entities();
 
@@ -395,7 +395,7 @@ const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` тепер має тип `MyContext`.
   const prop = ctx.customProp;
 });
@@ -425,7 +425,7 @@ const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` тепер має тип `MyContext`.
   const prop = ctx.customProp;
 });
@@ -459,7 +459,7 @@ const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` тепер має тип `MyContext`.
   const prop = ctx.customProp;
 });
@@ -522,7 +522,7 @@ type MyContext = Context & SessionFlavor<string>;
 Тепер ви можете використовувати плагін сесії та мати доступ до `ctx.session`:
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // Тепер `str` має тип `string`.
   const str = ctx.session;
 });

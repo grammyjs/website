@@ -6,7 +6,7 @@ Ten en cuenta que esta guía es solo para usuarios de Deno, y que necesitas tene
 
 Deno Deploy es ideal para la mayoría de los bots sencillos, y debe tener en cuenta que no todas las funciones de Deno están disponibles para las aplicaciones que se ejecutan en Deno Deploy.
 Por ejemplo, la plataforma solo admite un [conjunto limitado](https://deno.com/deploy/docs/runtime-fs) de las API del sistema de archivos disponibles en Deno.
-Es como las otras muchas plataformas serverless, pero dedicadas a las aplicaciones Deno.
+Es como las otras muchas plataformas serverless-y-paas, pero dedicadas a las aplicaciones Deno.
 
 El resultado de este tutorial [puede verse en nuestro repositorio de bots de ejemplo](https://github.com/grammyjs/examples/tree/main/deno-deploy).
 

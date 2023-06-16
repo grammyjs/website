@@ -5,7 +5,7 @@ next: ./basics.md
 
 # Comenzando
 
-Crea tu primer bot en minutos. (Desplázate [abajo](#comenzando-en-deno) para una guía de Deno.)
+Crea tu primer bot en minutos. (Desplázate [abajo](#introduccion-a-deno) para una guía de Deno.)
 
 ## Comenzando en Node.js
 
@@ -166,7 +166,7 @@ Esto facilita la depuración de tu bot.
 
 ## Introducción a Deno
 
-> Esta guía asume que tiene instalado [Deno](https://deno.land).
+> Esta guía asume que tiene instalado [Deno](https://deno.com/runtime).
 
 Crea un nuevo directorio en algún lugar y crea un nuevo archivo de texto vacío en él, por ejemplo, llamado `bot.ts`.
 

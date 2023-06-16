@@ -96,11 +96,11 @@ Para ello, necesitas instalar algún software que sea capaz de _ejecutar_ tu có
 Este tipo de software se llama _entorno de ejecución_.
 Toma tus archivos de código fuente y realmente hace lo que está programado en ellos.
 
-Para nosotros, hay dos entornos de ejecución para elegir, [Deno](https://deno.land) y [Node.js](https://nodejs.org).
+Para nosotros, hay dos entornos de ejecución para elegir, [Deno](https://deno.com/runtime) y [Node.js](https://nodejs.org).
 (Si ves que la gente lo llama _Node_, es que son demasiado perezosos para escribir ".js", pero significan lo mismo).
 
 > El resto de esta sección te ayuda a decidir entre estas dos plataformas.
-> Si ya sabes lo que quieres usar, salta a los [requisitos previos para Node.js](#requisitos-previos-para-nodejs) o los [de Deno](#requisitos-previos-para-deno).
+> Si ya sabes lo que quieres usar, salta a los [requisitos previos para Node.js](#requisitos-previos-para-node-js) o los [de Deno](#requisitos-previos-para-deno).
 
 Node.js es la tecnología más antigua y madura.
 Si necesitas conectarte a una base de datos extraña o hacer otras cosas de bajo nivel relacionadas con el sistema, es muy probable que puedas hacerlo con Node.js.
@@ -136,7 +136,7 @@ Esto significa instalar algunas herramientas.
 
 #### Preparando tu máquina para el desarrollo
 
-[Instala Deno](https://deno.land/manual/getting_started/installation#download-and-install) si aún no lo has hecho.
+[Instala Deno](https://deno.com/manual/getting_started/installation#download-and-install) si aún no lo has hecho.
 
 También necesita un editor de texto que se adapte bien a la codificación.
 El mejor para Deno es Visual Studio Code, a menudo llamado simplemente VS Code.
@@ -176,7 +176,7 @@ Después de haber creado su bot, por ejemplo en un archivo llamado `bot.ts`, pue
 Puedes parar el bot de nuevo con `Ctrl+C`.
 
 ¿Listo?
-¡[Empieza](./getting-started.md#introducción-a-deno)! :robot:
+¡[Empieza](./getting-started.md#introduccion-a-deno)! :robot:
 
 ### Requisitos previos para Node.js
 
@@ -206,7 +206,7 @@ Si nunca has hecho esto antes, deberías esperar encontrarte con un montón de p
 Por eso esperamos que sepas cómo configurar tu sistema, o que seas capaz de aprender por ti mismo.
 (Instalar Node.js _de la forma correcta_ es tan complicado que no cabe en esta página).
 
-Si te sientes perdido en este punto, deberías dejar Node.js y usar [Deno](#prerequisites-for-deno) en su lugar.
+Si te sientes perdido en este punto, deberías dejar Node.js y usar [Deno](#requisitos-previos-para-deno) en su lugar.
 
 :::
 

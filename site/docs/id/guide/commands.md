@@ -50,7 +50,7 @@ Seorang user bisa mengirim command beserta **argument**-nya.
 Kamu bisa memperoleh string argument tersebut melalui `ctx.match`.
 
 ```ts
-bot.command("add", (ctx) => {
+bot.command("add", async (ctx) => {
   // `item` akan menjadi "ayam geprek"
   // kalau pengguna mengirim pesan "/add ayam geprek".
   const item = ctx.match;

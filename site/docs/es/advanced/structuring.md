@@ -44,7 +44,7 @@ En `list.ts`, entonces harías algo así:
 export const lists = new Composer();
 
 // Registra aquí algunos handlers que manejen tu middleware de la forma habitual.
-lists.on("message", (ctx) => {/* ... */});
+lists.on("message", async (ctx) => {/* ... */});
 ```
 
 > Ten en cuenta que si usas TypeScript, necesitas pasar tu [tipo de contexto personalizado](../guide/context.md#personalizacion-del-objeto-de-contexto) al crear el compositor.

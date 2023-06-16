@@ -173,4 +173,4 @@ pm2 del <app_name>
 
 ### Informasi Lanjutan
 
-Untuk informasi lebih lanjut, silahkan lihat <https://pm2.keymetrics.io/docs>.
+Untuk informasi lebih lanjut, silahkan lihat <https://pm2.keymetrics.io/docs/usage/quick-start>.

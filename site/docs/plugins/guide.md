@@ -38,8 +38,8 @@ Before diving into some hands-on examples, there are some rules to pay attention
    (We can create the page for you if you are unsure how to do that.)
 3. Choose a permissive license such as MIT or ISC.
 
-Finally, you should know that even though grammY supports both Node.js and [Deno](https://deno.land/), it is a Deno-first project, and we also encourage you to write your plugins for Deno (and subsequently in style!).
-There is a handy-dandy tool called [deno2node](https://github.com/wojpawlik/deno2node) that transpiles your code from Deno to Node.js so we can support both platforms equally well.
+Finally, you should know that even though grammY supports both Node.js and [Deno](https://deno.com/runtime), it is a Deno-first project, and we also encourage you to write your plugins for Deno (and subsequently in style!).
+There is a handy-dandy tool called [deno2node](https://github.com/fromdeno/deno2node) that transpiles your code from Deno to Node.js so we can support both platforms equally well.
 Deno support is only a strict requirement for official plugins, but not for third-party ones.
 Nonetheless, it is very much encouraged to give Deno a try.
 You will not want to go back.
@@ -186,7 +186,7 @@ plugin-template/
 **`deps.deno.ts` and `deps.node.ts`**: This is for the developers who are willing to write the plugin for Deno, and then transpile it to Node.js.
 As mentioned before, we use the tool `deno2node` to transpile our Deno code for Node.js.
 `deno2node` has a feature that allows you to provide runtime-specific files to it.
-These files should be adjacent to each other and follow the `*.deno.ts` and `*.node.ts` name structure as [explained in the docs](https://github.com/wojpawlik/deno2node#runtime-specific-code).
+These files should be adjacent to each other and follow the `*.deno.ts` and `*.node.ts` name structure as [explained in the docs](https://github.com/fromdeno/deno2node#runtime-specific-code).
 This is why there are two files: `deps.deno.ts` and `deps.node.ts`.
 If there are any Node.js-specific dependencies, put them in `deps.node.ts`, otherwise, leave it empty.
 

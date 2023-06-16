@@ -671,7 +671,7 @@ In practice, instead of having the session data available under `ctx.session`, y
 
 ```ts
 // Default sessions (strict sessions)
-bot.command("settings", (ctx) => {
+bot.command("settings", async (ctx) => {
   // `session` is the session data
   const session = ctx.session;
 });
@@ -704,7 +704,7 @@ If you set `ctx.session` to be a promise, it will be `await`ed before writing th
 This would allow for the following code:
 
 ```ts
-bot.command("reset", (ctx) => {
+bot.command("reset", async (ctx) => {
   // Much shorter than having to `await ctx.session` first:
   ctx.session = ctx.session.then((stats) => {
     stats.counter = 0;

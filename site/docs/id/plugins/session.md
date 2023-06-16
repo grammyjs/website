@@ -323,7 +323,7 @@ Contohnya, session key resolver bawaan tidak akan bekerja untuk update `poll`/`p
 Ketika kamu menjalankan bot di webhook, sebaiknya kamu tidak menggunakan opsi `getSessionKey`.
 Telegram mengirim webhook secara berurutan untuk setiap chat, oleh karena itu session key resolver bawaan adalah satu-satunya cara yang bisa menjamin untuk terhindar dari kehilangan data.
 
-Jika kamu terpaksa harus menggunakan opsi tersebut (yang mana masih bisa dilakukan), kamu harus paham betul dengan tindakan yang kamu lakukan. Pastikan memahami konsekuensi menggunakan konfigurasi ini dengan membaca [materi berikut](../guide/deployment-types.md), khususnya [yang ini](./runner.md#pemrosesan-secara-berurutan-jika-diperlukan).
+Jika kamu terpaksa harus menggunakan opsi tersebut (yang mana masih bisa dilakukan), kamu harus paham betul dengan tindakan yang kamu lakukan. Pastikan memahami konsekuensi menggunakan konfigurasi ini dengan membaca [materi berikut](../guide/deployment-types.md), khususnya [yang ini](./runner.md#pemrosesan-secara-berurutan-ketika-diperlukan).
 :::
 
 ### Migrasi Chat
@@ -673,7 +673,7 @@ Dalam praktiknya, alih-alih memiliki data session di `ctx.session`, kamu sekaran
 
 ```ts
 // session bawaan (strict sessions)
-bot.command("settings", (ctx) => {
+bot.command("settings", async (ctx) => {
   // `session` adalah data session-nya
   const session = ctx.session;
 });
@@ -710,7 +710,7 @@ Kalau kamu menambahkan `ctx.session` sebagai sebuah promise, maka ia akan di-`aw
 Dengan begitu, kode berikut dapat dilakukan:
 
 ```ts
-bot.command("reset", (ctx) => {
+bot.command("reset", async (ctx) => {
   // Lebih singkat dibandingkan menggunakan `await ctx.session`:
   ctx.session = ctx.session.then((stats) => {
     stats.counter = 0;

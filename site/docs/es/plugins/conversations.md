@@ -102,13 +102,13 @@ async function saludo(conversation, ctx) {
 Veamos cuáles son los dos parámetros.
 
 _El segundo parámetro_* no es tan interesante, es sólo un objeto de contexto normal.
-Como siempre, se llama `ctx` y utiliza tu [tipo de contexto personalizado](../guide/context.md#customizing-the-context-object) (quizás llamado `MyContext`).
+Como siempre, se llama `ctx` y utiliza tu [tipo de contexto personalizado](../guide/context.md#personalizacion-del-objeto-de-contexto) (quizás llamado `MyContext`).
 El plugin de conversaciones exporta un [context flavor](../guide/context.md#additive-context-flavors) llamado `ConversationFlavor`.
 
 **El primer parámetro** es el elemento central de este plugin.
 Se llama comúnmente `conversation`, y tiene el tipo `Conversación` ([referencia de la API](https://deno.land/x/grammy_conversations/mod.ts?s=Conversation)).
 Puede ser usado como un manejador para controlar la conversación, como esperar la entrada del usuario, y más.
-El tipo `Conversation` espera su [tipo de contexto personalizado](../guide/context.md#customizing-the-context-object) como parámetro de tipo, por lo que a menudo utilizaría `Conversation<MyContext>`.
+El tipo `Conversation` espera su [tipo de contexto personalizado](../guide/context.md#personalizacion-del-objeto-de-contexto) como parámetro de tipo, por lo que a menudo utilizaría `Conversation<MyContext>`.
 
 En resumen, en TypeScript, tu función de construcción de conversación se verá así.
 
