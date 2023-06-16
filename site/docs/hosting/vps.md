@@ -82,7 +82,15 @@ Describing all these points unnecessarily increases the complexity of the articl
 
 We now have a server at our disposal where we can run the bot to keep it running around the clock.
 
-> To simplify the beginning of the article, we skipped the step of delivering the code to the server, but it is described [below](#ci-cd).
+> To simplify the beginning of the article, we skipped the step of delivering the code to the server automatically each time after pushing your code, but it is described [below](#ci-cd).
+>
+> For now, you can copy local files to a remote server using the following command:
+>
+> ```sh:no-line-numbers
+> scp <path-to-local-files> root@<ip-address>:<path-to-remote-directory>
+> ```
+>
+> replacing `<path-to-local-files>` with the path to local files, `<ip-address>` with the IP address of your server, and `<path-to-remote-directory>` with the path to the directory where the bot's source code should be stored on the server.
 
 :::tip Don't forget to install the runtime!
 To run the bot, you need to install Node.js or Deno on the server, depending on the runtime in which the bot will run.
