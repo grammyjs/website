@@ -4,6 +4,10 @@ A virtual private server, mostly known as VPS, is a virtual machine running in t
 
 ## Server Rental
 
+> You need to rent a VPS in order to follow this guide.
+> This first section will explain how to do that.
+> If you already have a VPS to work on, skip [down](#starting-the-bot).
+
 We chose [Hostinger](https://hostinger.com/) as our host.
 There are several reasons for this:
 
@@ -82,7 +86,8 @@ We now have a server at our disposal where we can run the bot to keep it running
 
 :::tip Don't forget to install the runtime!
 To run the bot, you need to install Node.js or Deno on the server, depending on the runtime in which the bot will run.
-This is beyond the scope of this article, so you will need to do it yourself. :wink:
+This is beyond the scope of this article, so you will need to do it yourself.
+You probably already did this when [getting started](../guide/getting-started.md), so you should be familiar with the steps. :wink:
 :::
 
 Below are two ways you can keep your bot running smoothly.
@@ -333,8 +338,8 @@ server.listen();
  <CodeGroupItem title="Deno">
 
 ```ts
-import { serve } from "https://deno.land/std@0.178.0/http/server.ts";
-import { webhookCallback } from "https://deno.land/x/grammy@v1.14.1/mod.ts";
+import { serve } from "https://deno.land/std/http/server.ts";
+import { webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 
 const handleUpdate = webhookCallback(bot, "std/http");
 
@@ -359,6 +364,7 @@ serve(async (req) => {
 ### Domain Rental
 
 To connect a bot running on webhooks to the outside world, you need to purchase a domain.
+We are going to explain this with Hostinger again, but there are many other services, too, and they all work similarly.
 
 Go to the [domain name search page](https://www.hostinger.com/domain-name-search).
 In the text input field, enter a domain name of the form `<name>.<zone>`.
@@ -382,7 +388,7 @@ Edit this record by changing the IP address in the "Points to" field to the IP a
 Next, find and delete the record of type `CNAME` with the name `www`.
 Instead, create a new record of type `A` with the name `www`, pointing to the IP address of your VPS, and set the TTL to 3600.
 
-> In the event of a difficulty, use the other method described in [knowledge base](https://support.hostinger.com/en/articles/1583227-how-to-point-domain-to-your-vps).
+> If you run into problems, use the other method described in [knowledge base](https://support.hostinger.com/en/articles/1583227-how-to-point-domain-to-your-vps).
 
 ### Setting up a Web Server
 
@@ -772,3 +778,6 @@ Note that you need to add three [environment variables](https://docs.gitlab.com/
 
 </CodeGroupItem>
 </CodeGroup>
+
+You should now see how every code push to the `main` branch will automatically be deployed to your VPS.
+Development go brrrrr :rocket:
