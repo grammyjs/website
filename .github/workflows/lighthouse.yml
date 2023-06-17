@@ -20,5 +20,5 @@ jobs:
         working-directory: site/
 
       - name: Run Lighthouse
-        run: lhci autorun
+        run: lhci autorun --collect.staticDistDir docs/.vuepress/dist
         working-directory: site/
