@@ -12,7 +12,7 @@ jobs:
           node-version: 16
 
       - name: Install dependencies
-        run: npm install && npm install -g @lhci/cli@0.12.x
+        run: npm install && npm install -g @lhci/cli@0.11.x
         working-directory: site/
 
       - name: Build site
