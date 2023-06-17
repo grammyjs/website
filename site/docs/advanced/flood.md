@@ -14,7 +14,7 @@ There is only one correct way to handle these situations:
 1. Wait for the specified number of seconds.
 2. Retry the request.
 
-Fortunetaly, there is a [plugin](../plugins/auto-retry.md) for that.
+Fortunately, there is a [plugin](../plugins/auto-retry.md) for that.
 
 That plugin is [very simple](https://github.com/grammyjs/auto-retry/blob/main/src/index.ts).
 It literally just sleeps and retries.
