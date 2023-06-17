@@ -21,7 +21,7 @@ There are several reasons for this:
 > If you are a beginner, you can use this guide to rent your first ever server!
 
 :::tip Analog of a server
-If you cannot or do not want to rent a server, you can replace it with a virtual machine.
+If you cannot or do not want to rent a server but you still want to play around with running a bot on a VPS, you can follow this tutorial on a virtual machine instead.
 To do this, use an application such as [VirtualBox](https://virtualbox.org/).
 Create a virtual machine with the desired Linux distribution and use it as a real server.
 :::
