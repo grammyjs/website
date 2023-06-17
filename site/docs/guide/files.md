@@ -138,8 +138,8 @@ Here are some examples on how you can construct `InputFile`s.
 
 If you already have a file stored on your machine, you can let grammY upload this file.
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::::code-group
+:::code-group-item Node.js
 
 ```ts
 import { createReadStream } from "fs";
@@ -151,8 +151,8 @@ new InputFile("/path/to/file");
 new InputFile(createReadStream("/path/to/file"));
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 // Send a local file.
@@ -162,16 +162,16 @@ new InputFile("/path/to/file");
 new InputFile(await Deno.open("/path/to/file"));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 #### Uploading Raw Binary Data
 
 You can also send a `Buffer` object, or an iterator that yields `Buffer` objects.
 On Deno, you can send `Blob` objects, too.
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::::code-group
+:::code-group-item Node.js
 
 ```ts
 // Send a buffer or a byte array.
@@ -184,8 +184,8 @@ new InputFile(function* () {
 });
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 // Send a blob.
@@ -201,8 +201,8 @@ new InputFile(function* () {
 });
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 #### Downloading and Reuploading a File
 
@@ -214,8 +214,8 @@ This is very efficient.
 > Note that Telegram supports downloading the file for you in many methods.
 > If possible, you should prefer to [send the file via URL](#via-file-id-or-url), instead of using `InputFile` to stream the file contents through your server.
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::::code-group
+:::code-group-item Node.js
 
 ```ts
 import { URL } from "url";
@@ -225,8 +225,8 @@ new InputFile(new URL("https://grammy.dev/images/Y.png"));
 new InputFile({ url: "https://grammy.dev/images/Y.png" }); // equivalent
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 // Download a file, and stream the response to Telegram.
@@ -234,8 +234,8 @@ new InputFile(new URL("https://grammy.dev/images/Y.png"));
 new InputFile({ url: "https://grammy.dev/images/Y.png" }); // equivalent
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### Adding a Caption
 

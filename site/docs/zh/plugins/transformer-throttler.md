@@ -13,8 +13,8 @@ Telegram 实现了一些未指定的和无文档的 API 调用的限制。
 这里是使用默认选项的一个示例。
 请注意，默认选项与 Telegram 所实现的限制率一致，因此它们应该可以正常使用。
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot } from "grammy";
@@ -32,8 +32,8 @@ bot.command("example", (ctx) => ctx.reply("I am throttled"));
 run(bot);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot } = require("grammy");
@@ -51,8 +51,8 @@ bot.command("example", (ctx) => ctx.reply("I am throttled"));
 run(bot);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -70,8 +70,8 @@ bot.command("example", (ctx) => ctx.reply("I am throttled"));
 run(bot);
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ## 配置
 

@@ -276,8 +276,8 @@ const bot = new Bot<MyContext>("");
 
 En resumen, la configuración se verá así:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 const BOT_DEVELOPER = 123456; // identificador del chat del desarrollador del bot
@@ -310,8 +310,8 @@ bot.command("start", async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const BOT_DEVELOPER = 123456; // identificador del chat del desarrollador del bot
@@ -334,8 +334,8 @@ bot.command("start", async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Naturalmente, el tipo de contexto personalizado también se puede pasar a otras cosas que manejan middleware, como [compositores](https://deno.land/x/grammy/mod.ts?s=Composer).
 
@@ -364,8 +364,8 @@ Ahora veremos cómo utilizar clases personalizadas para los objetos de contexto.
 Cuando construyas tu bot, puedes pasar un constructor de contexto personalizado que se utilizará para instanciar los objetos de contexto.
 Ten en cuenta que tu clase debe extender `Context`.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context } from "grammy";
@@ -395,8 +395,8 @@ bot.on("message", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript" active>
+:::
+:::code-group-item JavaScript
 
 ```ts
 const { Bot, Context } = require("grammy");
@@ -425,8 +425,8 @@ bot.on("message", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
@@ -459,8 +459,8 @@ bot.on("message", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Fíjate en que el tipo de contexto personalizado será inferido automáticamente cuando utilices una subclase.
 Ya no necesitas escribir `Bot<MiContexto>` porque ya has especificado el constructor de tu subclase en el objeto de opciones de `new Bot()`.

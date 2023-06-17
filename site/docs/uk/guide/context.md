@@ -285,8 +285,8 @@ const bot = new Bot<MyContext>("");
 
 У підсумку налаштування виглядатимуть наступним чином:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 const BOT_DEVELOPER = 123456; // ідентифікатор чату розробника бота
@@ -318,8 +318,8 @@ bot.command("start", async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const BOT_DEVELOPER = 123456; // ідентифікатор чату розробника бота
@@ -342,8 +342,8 @@ bot.command("start", async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Звичайно, власний тип контексту також можна передати іншим речам, які працюють з проміжними обробниками, наприклад в [Composer](https://deno.land/x/grammy/mod.ts?s=Composer).
 
@@ -372,8 +372,8 @@ class MyContext extends Context {
 Під час створення свого бота ви можете передати власний конструктор контексту, який використовуватиметься для створення екземплярів обʼєктів контексту.
 Зауважте, що ваш клас має розширювати `Context`.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context } from "grammy";
@@ -403,8 +403,8 @@ bot.on("message", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript" active>
+:::
+:::code-group-item JavaScript
 
 ```ts
 const { Bot, Context } = require("grammy");
@@ -433,8 +433,8 @@ bot.on("message", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
@@ -467,8 +467,8 @@ bot.on("message", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Зверніть увагу на те, як власний тип контексту буде виведено автоматично, коли ви використовуєте підклас.
 Вам більше не потрібно писати `Bot<MyContext>`, оскільки ви вже вказали свій конструктор підкласу в обʼєкті параметрів `new Bot()`.

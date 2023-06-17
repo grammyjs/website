@@ -292,22 +292,22 @@ A continuación, escriba este formato de código de una sola línea:
 
 Para nuestro caso debería serlo:
 
-<CodeGroup>
-<CodeGroupItem title="Webhook" active>
+::::code-group
+:::code-group-item Webhook
 
 ```
 web: node dist/app.js
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Long Polling">
+:::
+:::code-group-item Long Polling
 
 ```
 worker: node dist/bot.js
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### Configurar Git
 
@@ -336,8 +336,8 @@ tsconfig.json
 
 Nuestra estructura final de carpetas debería tener este aspecto:
 
-<CodeGroup>
-<CodeGroupItem title="Webhook" active>
+::::code-group
+:::code-group-item Webhook
 
 ```asciiart:no-line-numbers
 .
@@ -356,8 +356,8 @@ Nuestra estructura final de carpetas debería tener este aspecto:
 └── .gitignore
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Long Polling">
+:::
+:::code-group-item Long Polling
 
 ```asciiart:no-line-numbers
 .
@@ -374,8 +374,8 @@ Nuestra estructura final de carpetas debería tener este aspecto:
 └── .gitignore
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Confirmar los archivos a nuestro repositorio git:
 
@@ -389,23 +389,23 @@ git commit -m "My first commit"
 Si ya has creado una [aplicación Heroku](https://dashboard.heroku.com/apps/), pasa el nombre de tu `Aplicación existente` en `<miApp>` a continuación, y ejecuta el código.
 De lo contrario, ejecute `Nueva aplicación`.
 
-<CodeGroup>
-  <CodeGroupItem title="New app" active>
+::::code-group
+:::code-group-item New app
 
 ```sh
 heroku create
 git remote -v
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Existing app" active>
+:::
+:::code-group-item Existing app
 
 ```sh
 heroku git:remote -a <myApp>
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### Despliegue del código
 

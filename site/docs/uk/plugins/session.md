@@ -102,8 +102,8 @@
 
 Ось приклад бота, який підраховує повідомлення, що містять емодзі піци :pizza::
 
-<CodeGroup>
- <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context, session, SessionFlavor } from "grammy";
@@ -134,8 +134,8 @@ bot.hears(/.*🍕.*/, (ctx) => ctx.session.pizzaCount++);
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot, session } = require("grammy");
@@ -158,8 +158,8 @@ bot.hears(/.*🍕.*/, (ctx) => ctx.session.pizzaCount++);
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import {
@@ -195,8 +195,8 @@ bot.hears(/.*🍕.*/, (ctx) => ctx.session.pizzaCount++);
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Зверніть увагу, що нам також потрібно [налаштувати тип контексту](../guide/context.md#налаштування-обʼєкта-контексту), щоб зробити сесію доступним у ньому.
 Розширювач для контексту називається `SessionFlavor`.
@@ -252,8 +252,8 @@ bot.use(session({ initial: () => initialData })); // ЗЛО
 Використання `getSessionKey` дозволяє зберігати дані для кожного користувача, для кожної комбінації користувач-чат або як завгодно.
 Ось три приклади:
 
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 // Зберігаємо дані для кожного чату (за замовчуванням).
@@ -282,8 +282,8 @@ function getSessionKey(ctx: Context): string | undefined {
 bot.use(session({ getSessionKey }));
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 // Зберігаємо дані для кожного чату (за замовчуванням).
@@ -312,8 +312,8 @@ function getSessionKey(ctx) {
 bot.use(session({ getSessionKey }));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Щоразу, коли `getSessionKey` повертає `undefined`, `ctx.session` буде `undefined`.
 Наприклад, стандартний вирішувач ключів сесії не працюватиме для оновлень `poll`/`poll_answer` або `inline_query`, оскільки вони не належать до чату: `ctx.chat` буде `undefined`.
@@ -417,8 +417,8 @@ bot.use(session({
 
 Він дуже простий у використанні:
 
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { freeStorage } from "@grammyjs/storage-free";
@@ -429,8 +429,8 @@ bot.use(session({
 }));
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { freeStorage } = require("@grammyjs/storage-free");
@@ -441,8 +441,8 @@ bot.use(session({
 }));
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { freeStorage } from "https://deno.land/x/grammy_storages/free/src/mod.ts";
@@ -453,16 +453,16 @@ bot.use(session({
 }));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Готово!
 Тепер ваш бот використовуватиме постійне сховище даних.
 
 Ось повний приклад бота, який ви можете скопіювати, щоб спробувати.
 
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context, session, SessionFlavor } from "grammy";
@@ -492,8 +492,8 @@ bot.catch((err) => console.error(err));
 bot.start();
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot, session } = require("grammy");
@@ -517,8 +517,8 @@ bot.catch((err) => console.error(err));
 bot.start();
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import {
@@ -553,8 +553,8 @@ bot.catch((err) => console.error(err));
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### Рішення для зовнішніх сховищ
 
@@ -799,8 +799,8 @@ interface SessionData {
 
 Функції міграції дозволяють перетворити старий масив рядків у новий масив обʼєктів домашніх тваринок.
 
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 function addBirthdayToPets(old: { petNames: string[] }): SessionData {
@@ -817,8 +817,8 @@ const enhanced = enhanceStorage({
 });
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 function addBirthdayToPets(old) {
@@ -835,8 +835,8 @@ const enhanced = enhanceStorage({
 });
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Щоразу, коли зчитуються дані сесії, функція вдосконалення сховища перевіряє, чи дані сесії вже мають версію `1`.
 Якщо версія нижча або відсутня через те, що ви не використовували цю функцію раніше, буде запущено функцію міграції.

@@ -21,8 +21,8 @@ instance dari kelas apapun yang mengimplementasikan interface [`StorageAdapter`]
 Perlu diketahui, berdasarkan [dokumentasi resmi Telegram](https://core.telegram.org/bots/api#getupdates), bot kamu perlu mencantumkan update `chat_member` di array `allowed_updates`, seperti yang ditampilkan pada contoh di bawah.
 Artinya, kamu juga perlu mencantumkan event lain yang diperlukan.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, type Context, MemorySessionStorage } from "grammy";
@@ -43,9 +43,9 @@ bot.start({
 });
 ```
 
-</CodeGroupItem>
+:::
 
-<CodeGroupItem title="JavaScript">
+:::code-group-item JavaScript
 
 ```js
 import { Bot, MemorySessionStorage } from "grammy";
@@ -63,9 +63,9 @@ bot.start({
 });
 ```
 
-</CodeGroupItem>
+:::
 
-<CodeGroupItem title="Deno">
+:::code-group-item Deno
 
 ```ts
 import {
@@ -93,9 +93,9 @@ bot.start({
 });
 ```
 
-</CodeGroupItem>
+:::
 
-</CodeGroup>
+::::
 
 ### Membaca Anggota Chat
 

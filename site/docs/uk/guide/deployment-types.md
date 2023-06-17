@@ -191,8 +191,8 @@ bot.start();
 Кожного бота grammY можна перетворити на проміжний обробник для багатьох серверних фреймворків, зокрема `express`, `koa`/`oak` тощо.
 Ви можете імпортувати функцію `webhookCallback` ([довідка API](https://deno.land/x/grammy/mod.ts?s=webhookCallback)), щоб створити проміжний обробник для відповідного фреймворку.
 
-<CodeGroup>
- <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import express from "express";
@@ -204,8 +204,8 @@ app.use(express.json()); // перетворюємо тіло запиту JSON
 app.use(webhookCallback(bot, "express"));
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const express = require("express");
@@ -217,8 +217,8 @@ app.use(express.json()); // перетворюємо тіло запиту JSON
 app.use(webhookCallback(bot, "express"));
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Application } from "https://deno.land/x/oak/mod.ts";
@@ -229,8 +229,8 @@ const app = new Application(); // чи будь-що, що ви використ
 app.use(webhookCallback(bot, "oak"));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Обовʼязково прочитайте [чудовий путівник Марвіна про все, що стосується вебхуків](https://core.telegram.org/bots/webhooks), написаний командою Telegram, якщо ви плануєте запустити свого бота на вебхуках у VPS.
 

@@ -293,22 +293,22 @@ Then write this single line code format:
 
 For our case it should be:
 
-<CodeGroup>
-<CodeGroupItem title="Webhook" active>
+::::code-group
+:::code-group-item Webhook
 
 ```
 web: node dist/app.js
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Long Polling">
+:::
+:::code-group-item Long Polling
 
 ```
 worker: node dist/bot.js
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### Set up Git
 
@@ -337,8 +337,8 @@ tsconfig.json
 
 Our final folder structure should now look like this:
 
-<CodeGroup>
-<CodeGroupItem title="Webhook" active>
+::::code-group
+:::code-group-item Webhook
 
 ```asciiart:no-line-numbers
 .
@@ -357,8 +357,8 @@ Our final folder structure should now look like this:
 └── .gitignore
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Long Polling">
+:::
+:::code-group-item Long Polling
 
 ```asciiart:no-line-numbers
 .
@@ -375,8 +375,8 @@ Our final folder structure should now look like this:
 └── .gitignore
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Commit files to our git repository:
 
@@ -390,23 +390,23 @@ git commit -m "My first commit"
 If you have already created [Heroku app](https://dashboard.heroku.com/apps/), pass your `Existing app`'s name in `<myApp>` below, then run the code.
 Otherwise, run `New app`.
 
-<CodeGroup>
-  <CodeGroupItem title="New app" active>
+::::code-group
+:::code-group-item New app
 
 ```sh
 heroku create
 git remote -v
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Existing app" active>
+:::
+:::code-group-item Existing app
 
 ```sh
 heroku git:remote -a <myApp>
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### Deploying Code
 

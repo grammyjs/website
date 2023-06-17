@@ -8,8 +8,8 @@
 然后这个插件在 `getFile` 调用结果上安装了 `download` 方法。
 例子：
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context } from "grammy";
@@ -35,8 +35,8 @@ bot.on([":video", ":animation"], async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 import { Bot } from "grammy";
@@ -59,8 +59,8 @@ bot.on([":video", ":animation"], async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
@@ -89,8 +89,8 @@ bot.on([":video", ":animation"], async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 如果你不想创建临时文件，你可以传递一个文件路径到 `download`。
 像这样：`await file.download("/path/to/file")`。
@@ -111,8 +111,8 @@ bot.on([":video", ":animation"], async (ctx) => {
 但是，这并不会在类型中反映出来。
 如果你需要这些调用，你应该也安装一个叫作 `FileApiFlavor` 的 [API 调味剂](../advanced/transformers.md#api-调味剂) 在 bot 对象上。
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::::code-group
+:::code-group-item Node.js
 
 ```ts
 import { Api, Bot, Context } from "grammy";
@@ -125,8 +125,8 @@ const bot = new Bot<MyContext, MyApi>("");
 // ...
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Api, Bot, Context } from "https://deno.land/x/grammy/mod.ts";
@@ -143,8 +143,8 @@ const bot = new Bot<MyContext, MyApi>("");
 // ...
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ## 插件概述
 
