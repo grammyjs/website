@@ -73,7 +73,7 @@ Some think that it is bad to run into rate limits.
 They prefer to know the exact limits so they can throttle their bot.
 
 This is wrong.
-Rate limits are a useful tool for flood control, and if you respect them, this will have no negative consequences for your bot.
+Rate limits are a tool useful for flood control, and if you act accordingly, they won't have any negative impacts on your bot.
 That is to say, hitting rate limits does not lead to bans.
 Ignoring them does.
 
