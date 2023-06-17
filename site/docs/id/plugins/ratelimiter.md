@@ -38,7 +38,7 @@ Plugin ini menyediakan 5 opsi yang bisa diatur:
 `MEMORY_STORE` atau in-memory tracking cocok digunakan di sebagian besar bot.
 Namun, kalau kamu menggunakan cluster untuk bot kamu, maka kamu tidak bisa menggunakan penyimpanan in-memory secara efektif.
 Itulah kenapa kami juga menyediakan opsi Redis.
-Kamu bisa menerapkan Redis dengan [ioredis](https://github.com/luin/ioredis) atau [redis](https://deno.land/x/redis) jika kamu menggunakan Deno.
+Kamu bisa menerapkan Redis dengan [ioredis](https://github.com/redis/ioredis) atau [redis](https://deno.land/x/redis) jika kamu menggunakan Deno.
 Semua driver Redis yang menggunakan method `incr` dan `pexpire` seharusnya juga dapat bekerja sama baiknya.
 ratelimiter tidak berorientasi pada driver.
 

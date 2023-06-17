@@ -30,7 +30,7 @@ Este plugin expone 5 opciones personalizables:
 
 El `MEMORY_STORE` o el seguimiento en memoria es adecuado para la mayoría de los bots, sin embargo si implementas el clustering para tu bot no podrás utilizar el almacenamiento en memoria de forma efectiva.
 Por eso también se proporciona la opción Redis.
-Puedes pasar un cliente Redis desde [ioredis](https://github.com/luin/ioredis) o [redis](https://deno.land/x/redis) en caso de que uses deno.
+Puedes pasar un cliente Redis desde [ioredis](https://github.com/redis/ioredis) o [redis](https://deno.land/x/redis) en caso de que uses deno.
 En realidad, cualquier controlador de Redis que implemente los métodos `incr` y `pexpire` debería funcionar bien.
 ratelimiter es agnóstico al controlador.
 
