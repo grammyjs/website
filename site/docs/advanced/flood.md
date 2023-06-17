@@ -9,7 +9,7 @@ Telegram limits how many messages your bot can send each second.
 This means that any API request you perform could error with status code 429 (Too Many Requests) and a `retry_after` header as specified [here](https://core.telegram.org/bots/api#responseparameters).
 This can happen anytime.
 
-There is only one correct way to handle such errors.
+There is only one correct way to handle these situations:
 
 1. Wait for the specified number of seconds.
 2. Retry the request.
