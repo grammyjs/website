@@ -1,5 +1,6 @@
 ---
-prev: ./
+prev:
+  link: ./
 ---
 
 # 示例 Bots

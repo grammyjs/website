@@ -1,5 +1,6 @@
 ---
-next: ./examples.md
+next:
+  link: ./examples
 ---
 
 # Demostración del navegador en vivo

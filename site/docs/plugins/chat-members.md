@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Chat Members Plugin (`chat-members`)
 
 Automatically store information about users in a chat and retrieve it easily.
@@ -14,15 +19,14 @@ This plugin comes to the rescue: automatically listening to `chat_member` events
 
 ### Storing Chat Members
 
-You can use a valid grammY [storage adapter](./session.md#known-storage-adapters) or an instance of any class that implements the [`StorageAdapter`](https://deno.land/x/grammy/mod.ts?s=StorageAdapter) interface.
+You can use a valid grammY [storage adapter](./session#known-storage-adapters) or an instance of any class that implements the [`StorageAdapter`](https://deno.land/x/grammy/mod.ts?s=StorageAdapter) interface.
 
 Please note that as per the [official Telegram docs](https://core.telegram.org/bots/api#getupdates), your bot needs to specify the `chat_member` update in the `allowed_updates` array, as shown in the example below.
 This means you also need to specify any other events you'd like to receive.
 
-::::code-group
-:::code-group-item TypeScript
+:::code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, type Context, MemorySessionStorage } from "grammy";
 import { type ChatMember } from "grammy/types";
 import { chatMembers, type ChatMembersFlavor } from "@grammyjs/chat-members";
@@ -41,11 +45,7 @@ bot.start({
 });
 ```
 
-:::
-
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 import { Bot, MemorySessionStorage } from "grammy";
 import { chatMembers } from "@grammyjs/chat-members";
 
@@ -61,11 +61,7 @@ bot.start({
 });
 ```
 
-:::
-
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import {
   Bot,
   type Context,
@@ -92,8 +88,6 @@ bot.start({
 ```
 
 :::
-
-::::
 
 ### Reading Chat Members
 

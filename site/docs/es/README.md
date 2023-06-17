@@ -1,32 +1,42 @@
 ---
-home: true
-heroImage: /images/Y.png
-actions:
-  - text: Comenzar
-    link: /es/guide/getting-started.html
-    type: primary
-  - text: Introducción
-    link: /es/guide/introduction.html
-    type: secondary
+layout: home
+titleTemplate: false
+
+hero:
+  name: grammY
+  text: El Framework de Bots para Telegram.
+  tagline: 
+    - piensa en el por qué
+    - la nueva era del desarrollo de bots
+    - se ejecuta más rápido que tú
+    - una actualización por delante
+    - puede hacer todo menos lavar los platos
+    - fácil de exprimir limones
+    - cientos de millones de peticiones
+  image:
+    src: /images/Y.png
+    alt: Logotipo de grammY
+  actions:
+    - theme: brand
+      text: Comenzar
+      link: ./guide/getting-started
+    - theme: alt
+      text: Introducción
+      link: ./guide/introduction
+
 features:
-  - title: Fácil de usar
+  - icon: ⛱️
+    title: Fácil de usar
     details: grammY hace crear bots de Telegram tan simple que ya sabes como hacerlo.
-  - title: Flexible
+  - icon: 🧩
+    title: Flexible
     details: grammY es abierto y puede extenderse con plugins para adaptarse a tus necesidades.
-  - title: Escalable
+  - icon: 📈
+    title: Escalable
     details: grammY te tiene cubierto cuando tu bot se vuelve popular y el tráfico se incrementa.
-permalink: /es/
 ---
 
-<h6 align="right">… {{ [
-  'piensa en el por qué',
-  'la nueva era del desarrollo de bots',
-  'se ejecuta más rápido que tú',
-  'una actualización por delante',
-  'puede hacer todo menos lavar los platos',
-  'fácil de exprimir limones',
-  'cientos de millones de peticiones',
-][Math.floor(Math.random() * 7)] }}.</h6>
+<HomeContent>
 
 ## Quickstart
 
@@ -34,10 +44,9 @@ Bots están escritos en [TypeScript](https://www.typescriptlang.org) (o JavaScri
 
 `npm install grammy` y copia el siguiente código:
 
-::::code-group
-:::code-group-item TypeScript
+:::code-group
 
-```ts
+```ts [TypeScript]
 import { Bot } from "grammy";
 
 const bot = new Bot(""); // <-- pon tu token entre los "" (https://t.me/BotFather)
@@ -48,10 +57,7 @@ bot.on("message", (ctx) => ctx.reply("¡Hola a todos!"));
 bot.start();
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot } = require("grammy");
 
 const bot = new Bot(""); // <-- pon tu token entre los "" (https://t.me/BotFather)
@@ -62,10 +68,7 @@ bot.on("message", (ctx) => ctx.reply("¡Hola a todos!"));
 bot.start();
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
 const bot = new Bot(""); // <-- pon tu token entre los "" (https://t.me/BotFather)
@@ -77,7 +80,6 @@ bot.start();
 ```
 
 :::
-::::
 
 ¡Funciona! :tada:
 
@@ -98,3 +100,5 @@ bot.start();
 (Último punto destacado: varios nombres de bot, emoji personalizados y mejores consultas en línea)
 
 </div>
+
+</HomeContent>

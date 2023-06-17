@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Keyboard Custom dan Inline (Built-In)
 
 Bot kamu bisa menyediakan beberapa tombol untuk user, baik berupa [tombol di bawah pesan](#keyboard-inline) ataupun [mengganti keyboard user](#keyboard-custom) sepenuhnya dengan tombol.
@@ -31,7 +36,7 @@ Contohnya, kita tidak bisa mengirim keyboard custom sebagai pesan pertama lalu m
 grammY menyediakan class bernama `InlineKeyboard` yang bisa kamu gunakan untuk membuat keyboard inline dengan mudah dan simpel.
 
 > Semua tombol yang menggunakan `switchInline`, `switchInlineCurrent`, atau `switchInlineChosen` akan memulai sebuah inline query.
-> Lihat materi tentang [Inline Query](../guide/inline-queries.md) untuk mengetahui cara kerjanya.
+> Lihat materi tentang [Inline Query](../guide/inline-queries) untuk mengetahui cara kerjanya.
 
 ### Membuat Keyboard Inline
 
@@ -111,7 +116,7 @@ Gunakan inline keyboard kosong untuk menghapus semua tombol yang berada di bawah
 ::: tip Plugin Menu
 Kamu bisa saja mengakses raw update yang dikirimkan oleh Telegram dengan plugin keyboard.
 Tetapi, cara manual seperti itu akan sangat merepotkan.
-Kalau kamu menginginkan fitur inline keyboard yang lebih canggih lagi, silahkan kunjungi [menu plugin](./menu.md).
+Kalau kamu menginginkan fitur inline keyboard yang lebih canggih lagi, silahkan kunjungi [menu plugin](./menu).
 Dengan plugin tersebut kamu bisa membuat menu interaktif dengan mudah.
 :::
 
@@ -303,7 +308,7 @@ Pemanggilan `placeholder` di awal, tengah, ataupun terakhir, tidak akan mempenga
 
 #### Mengirim Keyboard Custom Secara Selektif
 
-Kamu bisa memanggil `selected` untuk menampilkan custom keyboard hanya untuk user yang username-nya disebut di isi pesan teks bot dan untuk pengirim pesan yang [di-reply](../guide/basics.md#mengirim-pesan-dengan-reply) oleh bot kamu.
+Kamu bisa memanggil `selected` untuk menampilkan custom keyboard hanya untuk user yang username-nya disebut di isi pesan teks bot dan untuk pengirim pesan yang [di-reply](../guide/basics#mengirim-pesan-dengan-reply) oleh bot kamu.
 
 ```ts
 new Keyboard()

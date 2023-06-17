@@ -1,6 +1,8 @@
 ---
-prev: ./commands.md
-next: ./errors.md
+prev:
+  link: ./commands
+next:
+  link: ./errors
 ---
 
 # 中间件
@@ -9,7 +11,7 @@ next: ./errors.md
 虽然说它们在监听更新是没有错的，但称它们为"监听者"又有些简单了。
 
 > 本节解释了什么是中间件，并以 grammY 为例，说明如何使用中间件。
-> 如果你正在寻找关于 grammY 实现中间件的特别之处的具体文档，请查看文档高级部分的 [Middleware Redux](../advanced/middleware.md)。
+> 如果你正在寻找关于 grammY 实现中间件的特别之处的具体文档，请查看文档高级部分的 [Middleware Redux](../advanced/middleware)。
 
 ## 中间件栈
 
@@ -63,7 +65,7 @@ type NextFunction = () => Promise<void>;
 
 所以，中间件需要两个参数!
 到目前为止我们只用了一个，即上下文对象 `ctx`。
-我们[已经知道](./context.md) `ctx` 是什么，但我们也看到一个名字为 `next` 的函数。
+我们[已经知道](./context) `ctx` 是什么，但我们也看到一个名字为 `next` 的函数。
 为了理解 `next` 是什么，我们必须把你安装在 bot 对象上的所有中间件作为一个整体来看。
 
 你可以把所有安装的中间件功能看作是若干层，它们相互堆叠在一起。
@@ -125,10 +127,9 @@ bot.start();
 这里是我们中间件的函数签名。
 你可以把它与上面的中间件类型进行比较，并说服自己，我们在这里确实完成了一个中间件。
 
-::::code-group
-:::code-group-item TypeScript
+:::code-group
 
-```ts
+```ts [TypeScript]
 /** 统计 bot 的响应时间，并将其记录到 `console`。 */
 async function responseTime(
   ctx: Context,
@@ -138,10 +139,7 @@ async function responseTime(
 }
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 /** 统计 bot 的响应时间，并将其记录到 `console`。 */
 async function responseTime(ctx, next) {
   // TODO：实现
@@ -149,7 +147,6 @@ async function responseTime(ctx, next) {
 ```
 
 :::
-::::
 
 我们可以用 `bot.use()` 把它安装到我们的 `bot` 实例中。
 
@@ -167,10 +164,9 @@ bot.use(responseTime);
 
 重要的是，要先在 bot 上安装我们的 `responseTime` 中间件（在中间件栈的顶部），以确保所有操作都包括在统计中。
 
-::::code-group
-:::code-group-item TypeScript
+:::code-group
 
-```ts
+```ts [TypeScript]
 /** 统计 bot 的响应时间，并将其记录到 `console`。 */
 async function responseTime(
   ctx: Context,
@@ -189,10 +185,7 @@ async function responseTime(
 bot.use(responseTime);
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 /** 统计 bot 的响应时间，并将其记录到 `console`。 */
 async function responseTime(ctx, next) {
   // 开始计时
@@ -209,7 +202,6 @@ bot.use(responseTime);
 ```
 
 :::
-::::
 
 完成，并且可以正常工作! :heavy_check_mark:
 
@@ -225,7 +217,7 @@ bot.use(responseTime);
 - :x: 你的 bot 可能会以难以重现的方式随机崩溃。
 - :x: 如果发生错误，你的错误处理程序将不会被调用。
   相反，你会看到一个 `UnhandledPromiseRejectionWarning` 发生，这可能会使你的 bot 进程崩溃。
-- :x: [grammY runner](../plugins/runner.md) 的抗压机制被打破，它可以保护你的服务器免受过高的负载，例如在负载高峰期。
+- :x: [grammY runner](../plugins/runner) 的抗压机制被打破，它可以保护你的服务器免受过高的负载，例如在负载高峰期。
 - :skull: 有时，它还会杀死你所有的无辜代码（是真的！）。:crying_cat_face:
 
 :::
@@ -235,7 +227,7 @@ bot.use(responseTime);
 如果你的项目对你很重要，那么你就会使用提示工具，如果你忘记在 `Promise` 上使用 `await`，工具会警告你。
 
 ::: tip 启用 no-floating-promises
-考虑使用 [ESLint](https://eslint.org/) 并配置它使用 [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-floating-promises.md) 规则。
+考虑使用 [ESLint](https://eslint.org/) 并配置它使用 [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-floating-promises) 规则。
 这将确保你永远不会忘记使用 `await`（通过不停的唠叨你）。
 :::
 
@@ -269,4 +261,4 @@ bot.use(/*...*/);
 // ...
 ```
 
-如果你想深入了解 grammY 如何实现中间件，请在文档的进阶部分查阅 [Middleware Redux](../advanced/middleware.md)。
+如果你想深入了解 grammY 如何实现中间件，请在文档的进阶部分查阅 [Middleware Redux](../advanced/middleware)。

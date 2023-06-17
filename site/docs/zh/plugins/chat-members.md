@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # 聊天成员插件 (`chat-members`)
 
 在聊天中自动存储有关用户的信息并轻松检索。
@@ -14,15 +19,14 @@
 
 ### 存储聊天成员
 
-你可以使用有效的 grammY [存储适配器](./session.md#已知的存储适配器) 或任何实现 [`StorageAdapter`](https://deno.land/x/grammy/mod.ts?s=StorageAdapter) 接口的类的实例。
+你可以使用有效的 grammY [存储适配器](./session#已知的存储适配器) 或任何实现 [`StorageAdapter`](https://deno.land/x/grammy/mod.ts?s=StorageAdapter) 接口的类的实例。
 
 请注意，根据 [Telegram 官方文档](https://core.telegram.org/bots/api#getupdates)，你的 bot 需要在 `allowed_updates` 数组中指定 `chat_member` update，如下例所示。
 这意味着你还需要指定你希望接收的任何其他事件。
 
-::::code-group
-:::code-group-item TypeScript
+:::code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, type Context, MemorySessionStorage } from "grammy";
 import { type ChatMember } from "grammy/types";
 import { chatMembers, type ChatMembersFlavor } from "@grammyjs/chat-members";
@@ -41,11 +45,7 @@ bot.start({
 });
 ```
 
-:::
-
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 import { Bot, MemorySessionStorage } from "grammy";
 import { chatMembers } from "@grammyjs/chat-members";
 
@@ -61,11 +61,7 @@ bot.start({
 });
 ```
 
-:::
-
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import {
   Bot,
   type Context,
@@ -92,8 +88,6 @@ bot.start({
 ```
 
 :::
-
-::::
 
 ### 读取聊天成员
 

@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Emoji 插件（`emoji`）
 
 有了这个插件，你可以轻松地在你的回复中插入搜索到的 emoji，而不是在你的代码中手动复制和粘贴网络上的一个 emoji。
@@ -24,16 +29,15 @@
 
 你可以在你的 bot 上安装这个插件，像这样：
 
-::::code-group
-:::code-group-item TypeScript
+:::code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context } from "grammy";
 import { EmojiFlavor, emojiParser } from "@grammyjs/emoji";
 
 // 这个被称为上下文调味剂
 // 你可以在这里阅读更多关于它们的信息：
-// https://grammy.dev/zh/guide/context.html#转换式上下文调味剂
+// https://grammy.dev/zh/guide/context#转换式上下文调味剂
 type MyContext = EmojiFlavor<Context>;
 
 const bot = new Bot<MyContext>("");
@@ -41,10 +45,7 @@ const bot = new Bot<MyContext>("");
 bot.use(emojiParser());
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot } = require("grammy");
 const { emojiParser } = require("@grammyjs/emoji");
 
@@ -53,10 +54,7 @@ const bot = new Bot("");
 bot.use(emojiParser());
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   EmojiFlavor,
@@ -65,7 +63,7 @@ import {
 
 // 这个被称为上下文调味剂
 // 你可以在这里阅读更多关于它们的信息：
-// https://grammy.dev/zh/guide/context.html#转换式上下文调味剂
+// https://grammy.dev/zh/guide/context#转换式上下文调味剂
 type MyContext = EmojiFlavor<Context>;
 
 const bot = new Bot<MyContext>("");
@@ -74,7 +72,6 @@ bot.use(emojiParser());
 ```
 
 :::
-::::
 
 现在你可以通过它们的名字来获得 emoji：
 

@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Автоматичне встановлення відповіді
 
 Іноді необхідно завжди надсилати повідомлення як відповіді, особливо для ботів, призначених для використання в групах.
@@ -12,10 +17,9 @@
 
 Якщо ви хочете, щоб всі повідомлення, надіслані в межах певного контексту, наприклад, певної команди, були оброблені плагіном, ви можете застосувати його спеціально до них:
 
-::::code-group
-:::code-group-item TypeScript
+:::code-group
 
-```ts
+```ts [TypeScript]
 import { Bot } from "grammy";
 import { addReplyParam } from "@roziscoding/grammy-autoquote";
 
@@ -29,10 +33,7 @@ bot.command("demo", async (ctx) => {
 bot.start();
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot } = require("grammy");
 const { addReplyParam } = require("@roziscoding/grammy-autoquote");
 
@@ -46,10 +47,7 @@ bot.command("demo", async (ctx) => {
 bot.start();
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { addReplyParam } from "https://deno.land/x/grammy_autoquote/mod.ts";
 
@@ -64,16 +62,14 @@ bot.start();
 ```
 
 :::
-::::
 
 ### У всіх обробниках
 
 Якщо ви хочете, щоб кожне надіслане повідомлення було відповіддю на повідомлення, яким було викликане, ви можете застосувати плагін ось так:
 
-::::code-group
-:::code-group-item TypeScript
+:::code-group
 
-```ts
+```ts [TypeScript]
 import { Bot } from "grammy";
 import { autoQuote } from "@roziscoding/grammy-autoquote";
 
@@ -92,10 +88,7 @@ bot.command("hello", async (ctx) => {
 bot.start();
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot } = require("grammy");
 const { autoQuote } = require("@roziscoding/grammy-autoquote");
 
@@ -114,10 +107,7 @@ bot.command("hello", async (ctx) => {
 bot.start();
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { autoQuote } from "https://deno.land/x/grammy_autoquote/mod.ts";
 
@@ -137,7 +127,6 @@ bot.start();
 ```
 
 :::
-::::
 
 ## Загальні відомості про плагін
 

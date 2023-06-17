@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # 调试时输出日志
 
 如果你熟悉 JavaScript / TypeScript，你可能使用 [`console.log`](https://developer.mozilla.org/en-US/docs/Web/API/Console/log) 或 [`console.time`](https://developer.mozilla.org/en-US/docs/Web/API/Console/time) 来检查你正在调试的事情。
@@ -24,7 +29,7 @@ bot.command("start" /* , ... */);
 
 它将输出这样的东西：
 
-```plaintext
+```txt
 2020-03-31T14:32:36.974Z 490af message text Edgar 6 /start: 926.247ms
 2020-03-31T14:32:57.750Z 490ag message text Edgar 6 /start: 914.764ms
 2020-03-31T14:33:01.188Z 490ah message text Edgar 5 /stop: 302.666ms
@@ -65,7 +70,7 @@ bot.on("message" /* ... */);
 
 它将输出这样的东西：
 
-```plaintext
+```txt
 490ai foo before: 304.185ms
 490ai foo inner: 83.122ms
 490ai foo after: 501.028ms

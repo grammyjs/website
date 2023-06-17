@@ -3,9 +3,10 @@
     "proseWrap": "preserve",
     "exclude": [
       "./site/node_modules/",
-      "./site/docs/.vuepress/.cache/",
-      "./site/docs/.vuepress/.temp/",
-      "./site/docs/.vuepress/dist/",
+      "./site/.vitepress/",
+      "./site/docs/.vitepress/cache/",
+      "./site/docs/.vitepress/temp/",
+      "./site/docs/.vitepress/dist/",
       "./site/package-lock.json"
     ]
   }

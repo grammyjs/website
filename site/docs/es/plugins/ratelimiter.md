@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Limitador de velocidad (`ratelimiter`)
 
 ratelimiter es un middleware de limitación de tasa para los bots de Telegram hechos con los frameworks de bots grammY o [Telegraf](https://github.com/telegraf/telegraf).
@@ -48,30 +53,23 @@ Hay dos maneras de utilizar ratelimiter:
 
 Este fragmento demuestra la forma más sencilla de utilizar ratelimiter, que es aceptar el comportamiento por defecto:
 
-::::code-group
-:::code-group-item TypeScript
+:::code-group
 
-```ts
+```ts [TypeScript]
 import { limit } from "@grammyjs/ratelimiter";
 
 // Limita el manejo de mensajes a un mensaje por segundo para cada usuario.
 bot.use(limit());
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { limit } = require("@grammyjs/ratelimiter");
 
 // Limita el manejo de mensajes a un mensaje por segundo para cada usuario.
 bot.use(limit());
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
 
 // Limita el manejo de mensajes a un mensaje por segundo para cada usuario.
@@ -79,16 +77,14 @@ bot.use(limit());
 ```
 
 :::
-::::
 
 ### Configuración manual
 
 Como se mencionó anteriormente, puedes pasar un objeto `Options` al método `limit()` para alterar el comportamiento del limitador.
 
-::::code-group
-:::code-group-item TypeScript
+:::code-group
 
-```ts
+```ts [TypeScript]
 import Redis from "ioredis";
 import { limit } from "@grammyjs/ratelimiter";
 
@@ -116,10 +112,7 @@ bot.use(
 );
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const Redis = require("ioredis");
 const { limit } = require("@grammyjs/ratelimiter");
 
@@ -146,10 +139,7 @@ bot.use(
 );
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { connect } from "https://deno.land/x/redis/mod.ts";
 import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
 
@@ -177,19 +167,17 @@ bot.use(
 ```
 
 :::
-::::
 
 Si dicho usuario envía más peticiones, el bot responde con _Por favor, absténgase de enviar demasiadas peticiones_.
-Esa petición no viajará más allá y muere inmediatamente ya que no llamamos a [next()](../guide/middleware.md#the-middleware-stack) en el middleware.
+Esa petición no viajará más allá y muere inmediatamente ya que no llamamos a [next()](../guide/middleware#the-middleware-stack) en el middleware.
 
 > Nota: Para evitar inundar los servidores de Telegram, `onLimitExceeded` sólo se ejecuta una vez en cada `timeFrame`.
 
 Otro caso de uso sería limitar las peticiones entrantes de un chat en lugar de un usuario específico:
 
-::::code-group
-:::code-group-item TypeScript
+:::code-group
 
-```ts
+```ts [TypeScript]
 import { limit } from "@grammyjs/ratelimiter";
 
 bot.use(
@@ -204,10 +192,7 @@ bot.use(
 );
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { limit } = require("@grammyjs/ratelimiter");
 
 bot.use(
@@ -222,10 +207,7 @@ bot.use(
 );
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
 
 bot.use(
@@ -241,7 +223,6 @@ bot.use(
 ```
 
 :::
-::::
 
 En este ejemplo, he utilizado `chat.id` como clave única para la limitación de la tasa.
 

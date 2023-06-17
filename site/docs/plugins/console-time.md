@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Console Logging While Debugging
 
 If you are familiar with JavaScript/TypeScript you probably used [`console.log`](https://developer.mozilla.org/en-US/docs/Web/API/Console/log) or [`console.time`](https://developer.mozilla.org/en-US/docs/Web/API/Console/time) to check what is happening while debugging something.
@@ -24,7 +29,7 @@ bot.command("start" /* , ... */);
 
 which will output stuff like this:
 
-```plaintext
+```txt
 2020-03-31T14:32:36.974Z 490af message text Edgar 6 /start: 926.247ms
 2020-03-31T14:32:57.750Z 490ag message text Edgar 6 /start: 914.764ms
 2020-03-31T14:33:01.188Z 490ah message text Edgar 5 /stop: 302.666ms
@@ -66,7 +71,7 @@ bot.on("message" /* ... */);
 
 This will output something like this:
 
-```plaintext
+```txt
 490ai foo before: 304.185ms
 490ai foo inner: 83.122ms
 490ai foo after: 501.028ms

@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Cómo se compara grammY con otros frameworks de bots
 
 Aunque grammY utiliza algunos conceptos conocidos de otros frameworks de bots (y frameworks web), fue escrito desde cero para una óptima legibilidad y rendimiento.
@@ -41,7 +46,7 @@ También se hizo más difícil para los nuevos usuarios empezar.
 **grammY da un paso atrás y replantea un marco de trabajo de bots de tipo seguro con la accesibilidad en primer lugar.**
 Esto permitió saltarse muchas de las frustrantes discusiones sobre cómo lidiar con extrañas tipografías internas.
 Permitió al proyecto tener un código limpio, consistente y compilable que proporciona a los usuarios excelentes tipos (=soporte de editores).
-La seguridad tipográfica a su vez permite características más avanzadas que cambian fundamentalmente la forma en que pensamos sobre el desarrollo de bots, como los [transformadores de la API](../advanced/transformers.md).
+La seguridad tipográfica a su vez permite características más avanzadas que cambian fundamentalmente la forma en que pensamos sobre el desarrollo de bots, como los [transformadores de la API](../advanced/transformers).
 
 Hoy en día, Telegraf 3 es obsoleto.
 Hay algunos forks no oficiales por ahí que tratan de mantener la base de código heredada al día con la evolución de la API de bots, pero su compatibilidad es desconocida.
@@ -53,7 +58,7 @@ Basándonos en el hecho de que Telegraf se encuentra en algún lugar entre la ve
 #### Comparación con la v3
 
 Dada su historia compartida, grammY y Telegraf tienen mucho en común.
-Ambos tienen un [sistema de middleware](../guide/middleware.md) en su núcleo.
+Ambos tienen un [sistema de middleware](../guide/middleware) en su núcleo.
 También comparten gran parte de su sintaxis básica:
 
 ```ts
@@ -79,7 +84,7 @@ Esto era difícil de hacer porque las anotaciones de tipo erróneas de Telegraf 
 Sin embargo, el código de tipo seguro es una gran ventaja para cualquier base de código no trivial.
 
 grammY y Telegraf tienen bases de código distintas.
-Al ser liberado del legado, grammY también podría hacer contribuciones sustanciales al sistema de middleware subyacente, permitiendo emocionantes casos de uso como [consultas de filtro](../guide/filter-queries.md), [límites de error](../guide/errors.md#error-boundaries), [transformadores de API](../advanced/transformers.md), y muchos más.
+Al ser liberado del legado, grammY también podría hacer contribuciones sustanciales al sistema de middleware subyacente, permitiendo emocionantes casos de uso como [consultas de filtro](../guide/filter-queries), [límites de error](../guide/errors#error-boundaries), [transformadores de API](../advanced/transformers), y muchos más.
 Esto también permite el desarrollo de valiosos plugins que son imposibles de trabajar bajo Telegraf.
 
 La principal ventaja de Telegraf sobre grammY es que sigue siendo **conocido por mucha más gente**.

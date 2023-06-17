@@ -1,6 +1,8 @@
 ---
-prev: ./middleware.md
-next: ./inline-queries.md
+prev:
+  link: ./middleware
+next:
+  link: ./inline-queries
 ---
 
 # Error Handling
@@ -26,7 +28,7 @@ How you catch errors will depend on your setup.
 
 ### Long Polling
 
-If you run your bot via `bot.start()`, or if you are using [grammY runner](../plugins/runner.md), then you should **install an error handler via `bot.catch`**.
+If you run your bot via `bot.start()`, or if you are using [grammY runner](../plugins/runner), then you should **install an error handler via `bot.catch`**.
 
 grammY has a default error handler installed that stops the bot if it was started by `bot.start()`.
 It then re-throws the error.
@@ -57,7 +59,7 @@ You should handle errors according to the conventions of that framework.
 
 ## The `BotError` Object
 
-The `BotError` object bundles up a thrown error with the corresponding [context object](./context.md) that caused the error to be thrown.
+The `BotError` object bundles up a thrown error with the corresponding [context object](./context) that caused the error to be thrown.
 This works as follows.
 
 Whatever error occurs while processing an update, grammY will catch the thrown error for you.
@@ -87,7 +89,7 @@ The error object holds information about why the request failed, which are avail
 
 You will rarely see this kind of error, unless your network infrastructure is unstable, or the Bot API server of your bot is temporarily offline.
 
-> Note that if the Bot API server can be contacted, but it returns `ok: false` for a given method call, a [`GrammyError`](./errors.md#the-grammyerror-object) is thrown instead.
+> Note that if the Bot API server can be contacted, but it returns `ok: false` for a given method call, a [`GrammyError`](./errors#the-grammyerror-object) is thrown instead.
 
 Check out the `HttpError` class in the [grammY API Reference](https://deno.land/x/grammy/mod.ts?s=HttpError).
 
@@ -142,7 +144,7 @@ In the above example, the `boundaryHandler` will be invoked for
 1. all middlewares that are passed to `bot.errorBoundary` after `boundaryHandler` (i.e. `Q`), and
 2. all middlewares that are installed on subsequently installed composer instances (i.e. `X`, `Y`, and `Z`).
 
-> Regarding point 2, you may want to skip ahead to the [advanced explanation](../advanced/middleware.md) of middleware to learn how chaining works in grammY.
+> Regarding point 2, you may want to skip ahead to the [advanced explanation](../advanced/middleware) of middleware to learn how chaining works in grammY.
 
 You can also apply an error boundary to a composer without calling `bot.errorBoundary`:
 

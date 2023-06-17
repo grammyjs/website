@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Router (`router`)
 
 The `Router` class ([API Reference](https://deno.land/x/grammy_router/router.ts)) provides a way to structure your bot by routing context objects to different parts of your code.
@@ -22,7 +27,7 @@ bot.use(router);
 
 ## Integration With Middleware
 
-Naturally, the router plugin integrates seamlessly with grammY's [middleware trees](../advanced/middleware.md).
+Naturally, the router plugin integrates seamlessly with grammY's [middleware trees](../advanced/middleware).
 For example, you filter down updates further after routing them.
 
 ```ts
@@ -33,14 +38,14 @@ other.on(":text", async (ctx) => {/* ... */});
 other.use((ctx) => {/* ... */});
 ```
 
-You may also want to revisit this [section](../guide/filter-queries.md#combining-queries-with-other-methods) about combining middleware handlers.
+You may also want to revisit this [section](../guide/filter-queries#combining-queries-with-other-methods) about combining middleware handlers.
 
 ## Combining Routers With Sessions
 
-Routers work well together with [sessions](./session.md).
+Routers work well together with [sessions](./session).
 As an example, combining the two concepts allows you to re-create forms in the chat interface.
 
-> Note that a much better solution is to use the [conversations plugin](./conversations.md).
+> Note that a much better solution is to use the [conversations plugin](./conversations).
 > The remainder of this page is obsolete since that plugin was created.
 > We will keep this page as a reference for those who used the router for forms.
 
@@ -56,10 +61,9 @@ Only if both values are known, the bot can tell the user how many days are left.
 
 This is how a bot like that could be implemented:
 
-::::code-group
-:::code-group-item TypeScript
+:::code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context, Keyboard, session, SessionFlavor } from "grammy";
 import { Router } from "@grammyjs/router";
 
@@ -190,10 +194,7 @@ function getDays(month: number, day: number) {
 }
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot, Context, Keyboard, session, SessionFlavor } = require("grammy");
 const { Router } = require("@grammyjs/router");
 
@@ -317,10 +318,7 @@ function getDays(month, day) {
 }
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import {
   Bot,
   Context,
@@ -458,7 +456,6 @@ function getDays(month: number, day: number) {
 ```
 
 :::
-::::
 
 Note how the session has a property `step` that stores the step of the form, i.e. which value is currently being filled.
 The router is used to jump between different middleware that completes both the `month` and the `dayOfMonth` fields on the session.

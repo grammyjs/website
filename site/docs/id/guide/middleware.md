@@ -1,6 +1,8 @@
 ---
-prev: ./commands.md
-next: ./errors.md
+prev:
+  link: ./commands
+next:
+  link: ./errors
 ---
 
 # Middleware
@@ -9,7 +11,7 @@ Middleware adalah sebuah sebutan untuk function-function listener yang dipasang 
 Memanggilnya dengan sebutan "listener" hanyalah sebuah penyederhanaan saja, meskipun tidak sepenuhnya salah juga karena mereka memang menyimak—atau _listening_—sebuah update.
 
 > Materi ini berisi penjelasan apa itu middleware, serta menggunakan grammY sebagai contoh ilustrasi bagaimana suatu middleware dapat digunakan.
-> Kalau kamu mencari dokumentasi khusus mengenai keistimewaan middleware buatan grammY, silahkan baca materi [Membangkitkan Middleware](../advanced/middleware.md) di bab Tingkat Lanjut.
+> Kalau kamu mencari dokumentasi khusus mengenai keistimewaan middleware buatan grammY, silahkan baca materi [Membangkitkan Middleware](../advanced/middleware) di bab Tingkat Lanjut.
 
 ## Middleware Stack
 
@@ -63,7 +65,7 @@ type NextFunction = () => Promise<void>;
 
 Ternyata, middleware mengambil dua buah parameter!
 Kita cuma memakai satu sejauh ini, yaitu object context `ctx`.
-Kita [sudah tahu](./context.md) apa itu `ctx`. Tetapi, kita juga melihat sebuah function dengan nama `next`.
+Kita [sudah tahu](./context) apa itu `ctx`. Tetapi, kita juga melihat sebuah function dengan nama `next`.
 Supaya bisa mengerti apa itu `next`, kita harus melihat secara keseluruhan middleware yang kamu pasang pada object bot-mu.
 
 Kamu bisa membayangkan semua function middleware yang terpasang sebagai lapisan-lapisan yang ditumpuk di atas satu sama lain.
@@ -126,10 +128,9 @@ Kami akan mengilustrasikan konsep dari middleware dengan membuat function middle
 Berikut adalah _function signature_ untuk middleware kita.
 Kamu bisa membandingkannya dengan type middleware di atas, dan memastikan bahwa kita benar-benar sudah membuat sebuah middleware di sini.
 
-::::code-group
-:::code-group-item TypeScript
+:::code-group
 
-```ts
+```ts [TypeScript]
 /** Ukur waktu respon bot, kemudian catat di `console` */
 async function waktuRespon(
   ctx: Context,
@@ -139,10 +140,7 @@ async function waktuRespon(
 }
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 /** Ukur waktu respon bot, kemudian catat di `console` */
 async function waktuRespon(ctx, next) {
   // TODO: Tulis implementasinya disini
@@ -150,7 +148,6 @@ async function waktuRespon(ctx, next) {
 ```
 
 :::
-::::
 
 Lalu, kita bisa memasangnya ke instance `bot` dengan `bot.use()`:
 
@@ -168,10 +165,9 @@ Berikut yang akan kita lakukan:
 
 Penting untuk memasang middleware `waktuRespon` di urutan _pertama_ (di middleware stack paling atas) agar semua operasi yang dilakukan tercatat dalam pengukuran.
 
-::::code-group
-:::code-group-item TypeScript
+:::code-group
 
-```ts
+```ts [TypeScript]
 /** Ukur waktu respon bot, kemudian catat di `console` */
 async function waktuRespon(
   ctx: Context,
@@ -190,10 +186,7 @@ async function waktuRespon(
 bot.use(waktuRespon);
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 /** Ukur waktu respon bot, kemudian catat di `console` */
 async function waktuRespon(ctx, next) {
   // Ambil waktu awal
@@ -210,7 +203,6 @@ bot.use(waktuRespon);
 ```
 
 :::
-::::
 
 Sempurna! :heavy_check_mark:
 
@@ -225,7 +217,7 @@ Kalau kamu memanggil `next()` tanpa `await`, beberapa hal tidak akan berjalan de
 - :x: Bot kamu akan crash secara acak yang sulit untuk direproduksi kembali.
 - :x: Saat terjadi error, _error handler_ tidak akan dipanggil.
   Akibatnya, kamu akan melihat sebuah `UnhandledPromiseRejectionWarning` yang membuat bot menjadi crash.
-- :x: Mekanisme backpressure [grammY runner](../plugins/runner.md)—yang berfungsi untuk melindungi server dari beban yang terlalu tinggi, misalnya saat terjadi lonjakan beban—menjadi tidak berfungsi.
+- :x: Mekanisme backpressure [grammY runner](../plugins/runner)—yang berfungsi untuk melindungi server dari beban yang terlalu tinggi, misalnya saat terjadi lonjakan beban—menjadi tidak berfungsi.
 - :skull: Terkadang, juga dapat membunuh kucing imut yang tidak berdosa. :crying_cat_face:
 
 :::
@@ -236,7 +228,7 @@ Termasuk `bot.api.sendMessage`, `ctx.reply`, dan pemanggilan koneksi lainnya.
 Kalau proyek yang sedang kamu kerjakan memang serius, sebaiknya gunakan _linting tool_ yang akan mengingatkan disaat kamu lupa menggunakan `await` di dalam sebuah `Promise`.
 
 ::: tip Aktifkan no-floating-promises
-Pertimbangkan untuk menggunakan [ESLint](https://eslint.org/) dan menerapkan aturan [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-floating-promises.md).
+Pertimbangkan untuk menggunakan [ESLint](https://eslint.org/) dan menerapkan aturan [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-floating-promises).
 Ini akan memastikan kamu supaya tidak lupa menggunakan `await` (dengan cara mengomel ke kamu).
 :::
 
@@ -270,4 +262,4 @@ bot.use(/*...*/);
 // ...
 ```
 
-Kalau ingin mempelajari lebih lanjut bagaimana grammY mengimplementasikan middleware, silahkan baca materi [Membangkitkan Middleware](../advanced/middleware.md) di bab Tingkat Lanjut.
+Kalau ingin mempelajari lebih lanjut bagaimana grammY mengimplementasikan middleware, silahkan baca materi [Membangkitkan Middleware](../advanced/middleware) di bab Tingkat Lanjut.

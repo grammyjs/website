@@ -1,6 +1,8 @@
 ---
-prev: ./middleware.md
-next: ./scaling.md
+prev:
+  link: ./middleware
+next:
+  link: ./scaling
 ---
 
 # Escalando I: Gran base de código
@@ -20,7 +22,7 @@ Dicho esto, una estrategia directa y probada para estructurar tu código es la s
    Cada una de estas partes expone el middleware que manejará los mensajes designados.
 2. Crea una instancia del bot de forma centralizada que aglutine todo el middleware instalándolo en el bot.
 3. (Opcional.) Pre-filtrar las actualizaciones de forma centralizada, y enviar las actualizaciones sólo de la forma correcta.
-   También puedes consultar `bot.route` ([Referencia de la API](https://deno.land/x/grammy/mod.ts?s=Composer#method_route_0)) o alternativamente el [router plugin](../plugins/router.md) para ello.
+   También puedes consultar `bot.route` ([Referencia de la API](https://deno.land/x/grammy/mod.ts?s=Composer#method_route_0)) o alternativamente el [router plugin](../plugins/router) para ello.
 
 Un ejemplo ejecutable que implementa la estrategia anterior puede encontrarse en el [Repositorio de ejemplos de bots](https://github.com/grammyjs/examples/tree/main/scaling).
 
@@ -47,10 +49,10 @@ export const lists = new Composer();
 lists.on("message", async (ctx) => {/* ... */});
 ```
 
-> Ten en cuenta que si usas TypeScript, necesitas pasar tu [tipo de contexto personalizado](../guide/context.md#personalizacion-del-objeto-de-contexto) al crear el compositor.
+> Ten en cuenta que si usas TypeScript, necesitas pasar tu [tipo de contexto personalizado](../guide/context#personalizacion-del-objeto-de-contexto) al crear el compositor.
 > Por ejemplo, necesitarás usar `new Composer<MyContext>()`.
 
-Opcionalmente, puedes usar un [error boundary](../guide/errors.md#error-boundaries) para manejar todos los errores que ocurran dentro de tu módulo.
+Opcionalmente, puedes usar un [error boundary](../guide/errors#error-boundaries) para manejar todos los errores que ocurran dentro de tu módulo.
 
 Ahora, en `bot.ts`, puedes instalar este módulo así:
 
@@ -65,7 +67,7 @@ bot.use(lists);
 bot.start();
 ```
 
-Opcionalmente, puedes utilizar el [plugin enrutador](../plugins/router.md) o [`bot.route`](https://deno.land/x/grammy/mod.ts?s=Composer#method_route_0) para agrupar los diferentes módulos, si eres capaz de determinar qué middleware es responsable por adelantado.
+Opcionalmente, puedes utilizar el [plugin enrutador](../plugins/router) o [`bot.route`](https://deno.land/x/grammy/mod.ts?s=Composer#method_route_0) para agrupar los diferentes módulos, si eres capaz de determinar qué middleware es responsable por adelantado.
 
 Sin embargo, recuerda que la forma exacta de cómo estructurar tu bot es muy difícil de decir genéricamente.
 Como siempre en el software, hazlo de la manera que tenga más sentido :wink:

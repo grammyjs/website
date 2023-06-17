@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Internationalization with Fluent (`fluent`)
 
 [Fluent](https://projectfluent.org/) is a localization system made by the Mozilla Foundation for natural-sounding translations.
@@ -5,9 +10,9 @@ It has a very powerful and elegant syntax that lets anyone write efficient and f
 This plugin takes advantage of this amazing localization system to make grammY-powered bots fluent with high-quality translations.
 
 ::: tip Not to Be Confused
-Don't confuse this with [i18n](./i18n.md).
+Don't confuse this with [i18n](./i18n).
 
-[i18n](./i18n.md) is an improved version of this plugin that works on both Deno and Node.js.
+[i18n](./i18n) is an improved version of this plugin that works on both Deno and Node.js.
 :::
 
 ## Initialize Fluent
@@ -82,7 +87,7 @@ Now let's see how this message above could be rendered by a bot.
 But first, we will need to configure grammY to use the plugin.
 
 Before all else, you will need to configure your bot to use the Fluent context flavor.
-If you are not familiar with this concept, you should read the official docs on [Context Flavors](../guide/context.md#context-flavors).
+If you are not familiar with this concept, you should read the official docs on [Context Flavors](../guide/context#context-flavors).
 
 ```ts
 import { Context } from "grammy";
@@ -131,7 +136,7 @@ bot.command("i18n_test", async (ctx) => {
 Now you can start your bot and use the `/i18n_test` command.
 It should render the following message:
 
-```text:no-line-numbers
+```txt:no-line-numbers
 Welcome, Slava, to the Apples Bot!
 You have 1 apple.
 ```

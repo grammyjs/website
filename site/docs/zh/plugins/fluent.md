@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # 使用 Fluent 进行国际化 (`fluent`)
 
 [Fluent](https://projectfluent.org/) 是 Mozilla 基金会制作的一个本地化系统，用于自然发音的翻译。
@@ -5,9 +10,9 @@
 这个插件利用了这个惊人的本地化系统，使得由 grammY 驱动的 bot 能够流畅地进行高质量的翻译。
 
 ::: tip 不要困惑
-不要将它与 [i18n](./i18n.md) 混淆。
+不要将它与 [i18n](./i18n) 混淆。
 
-[i18n](./i18n.md) 是这个插件的改进版，它可以在 Deno 和 Node.js 上使用。
+[i18n](./i18n) 是这个插件的改进版，它可以在 Deno 和 Node.js 上使用。
 :::
 
 ## 初始化 Fluent
@@ -82,7 +87,7 @@ welcome =
 但首先，我们需要配置 grammY 使用该插件。
 
 在所有其他方面之前，你需要配置你的 bot 使用 Fluent 上下文调味剂。
-如果你不熟悉这个概念，你应该阅读 [上下文调味剂](../guide/context.md#上下文调味剂) 的官方文档。
+如果你不熟悉这个概念，你应该阅读 [上下文调味剂](../guide/context#上下文调味剂) 的官方文档。
 
 ```ts
 import { Context } from "grammy";
@@ -130,7 +135,7 @@ bot.command("i18n_test", async (ctx) => {
 现在你可以启动你的 bot，并使用 `/i18n_test` 命令。
 它应该渲染以下消息：
 
-```text:no-line-numbers
+```txt:no-line-numbers
 Welcome, Slava, to the Apples Bot!
 You have 1 apple.
 ```

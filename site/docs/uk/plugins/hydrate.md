@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Гідратація для grammY (`hydrate`)
 
 Цей плагін встановлює корисні методи на два типи обʼєктів, а саме:
@@ -52,10 +57,9 @@ bot.on(":photo", async (ctx) => {
 
 Цей плагін можна встановити простим способом, якого має бути достатньо для більшості користувачів.
 
-::::code-group
-:::code-group-item TypeScript
+:::code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context } from "grammy";
 import { hydrate, HydrateFlavor } from "@grammyjs/hydrate";
 
@@ -66,10 +70,7 @@ const bot = new Bot<MyContext>("");
 bot.use(hydrate());
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 import { Bot } from "grammy";
 import { hydrate } from "@grammyjs/hydrate";
 
@@ -78,10 +79,7 @@ const bot = new Bot("");
 bot.use(hydrate());
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   hydrate,
@@ -96,7 +94,6 @@ bot.use(hydrate());
 ```
 
 :::
-::::
 
 ### Просунуте встановлення
 
@@ -107,12 +104,11 @@ bot.use(hydrate());
 У цьому випадку вам слід скористатися цим просунутим встановленням.
 
 Воно інтегрує гідратацію контексту та гідратацію результатів виклику API окремо у вашого бота.
-Зверніть увагу, що тепер вам також потрібно встановити [розширювач для API](../advanced/transformers.md#розширювач-для-api).
+Зверніть увагу, що тепер вам також потрібно встановити [розширювач для API](../advanced/transformers#розширювач-для-api).
 
-::::code-group
-:::code-group-item TypeScript
+:::code-group
 
-```ts
+```ts [TypeScript]
 import { Api, Bot, Context } from "grammy";
 import {
   hydrateApi,
@@ -130,10 +126,7 @@ bot.use(hydrateContext());
 bot.api.config.use(hydrateApi());
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 import { Bot } from "grammy";
 import { hydrateApi, hydrateContext } from "@grammyjs/hydrate";
 
@@ -143,10 +136,7 @@ bot.use(hydrateContext());
 bot.api.config.use(hydrateApi());
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Api, Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   hydrateApi,
@@ -165,7 +155,6 @@ bot.api.config.use(hydrateApi());
 ```
 
 :::
-::::
 
 ## Які обʼєкти піддаються гідратації
 

@@ -1,9 +1,14 @@
+---
+prev: false
+next: false
+---
+
 # Alojamiento: Heroku
 
 > Asumimos que tienes los conocimientos básicos sobre la creación de bots usando grammY.
-> Si aún no estás preparado, ¡no dudes en dirigirte a nuestra amigable [Guía](../guide)! :cohete:
+> Si aún no estás preparado, ¡no dudes en dirigirte a nuestra amigable [Guía](../guide/)! :cohete:
 
-Este tutorial te guiará en cómo desplegar un bot de Telegram en [Heroku](https://heroku.com/) usando [webhooks](../guide/deployment-types.md#¿como-funcionan-los-webhooks) o [long polling](../guide/deployment-types.md#¿como-funciona-el-long-polling).
+Este tutorial te guiará en cómo desplegar un bot de Telegram en [Heroku](https://heroku.com/) usando [webhooks](../guide/deployment-types#¿como-funcionan-los-webhooks) o [long polling](../guide/deployment-types#¿como-funciona-el-long-polling).
 También asumimos que ya tienes una cuenta en Heroku.
 
 ## Requisitos previos
@@ -44,11 +49,12 @@ Nuestra estructura de carpetas debería ser así:
 
 Después, abre `tsconfig.json` y cámbialo para usar esta configuración:
 
-```json{4}
+```json
 {
   "compilerOptions": {
     "target": "ESNEXT",
-    "module": "esnext", // cambiado de commonjs a esnext
+    "module": "CommonJS", //[!code --]
+    "module": "ESNext", // [!code ++] // cambiado de commonjs a esnext
     "lib": ["ES2021"],
     "outDir": "./dist/",
     "strict": true,
@@ -70,7 +76,7 @@ Nuestro `package.json` debería ser ahora similar a esto:
   "version": "0.0.1",
   "description": "",
   "main": "dist/app.js",
-  "type": "module", // añadir propiedad "type": "module"
+  "type": "module", // [!code ++] // añadir propiedad "type": "module"
   "scripts": {
     "dev-build": "tsc"
   },
@@ -90,7 +96,7 @@ Nuestro `package.json` debería ser ahora similar a esto:
 ```
 
 Como hemos mencionado anteriormente, tenemos dos opciones para recibir datos de Telegram: los webhooks y el long polling.
-¡Puedes aprender más sobre las dos ventajas y luego decidir cuál es la adecuada en [estos increíbles consejos](../guide/deployment-types.md)!
+¡Puedes aprender más sobre las dos ventajas y luego decidir cuál es la adecuada en [estos increíbles consejos](../guide/deployment-types)!
 
 ## Webhooks
 
@@ -157,7 +163,7 @@ https://api.telegram.org/botabcd:1234/setWebhook?url=https%3A%2F%2Fgrammybot.her
 :::
 
 ::: tip Optimización (opcional)
-Utilice [Webhook Reply](../guide/deployment-types.md#webhook-reply) para una mayor eficiencia.
+Utilice [Webhook Reply](../guide/deployment-types#webhook-reply) para una mayor eficiencia.
 :::
 
 ### Creando `bot.ts`
@@ -182,7 +188,7 @@ Pero antes de ir a los pasos de despliegue, podemos optimizar nuestro bot un poc
 Como siempre, esto es opcional.
 
 ::: tip ⚡ Optimización (opcional)
-Cada vez que tu servidor se inicie, grammY solicitará [información sobre el bot](https://core.telegram.org/bots/api#getme) a Telegram para proporcionarla en el [objeto de contexto](../guide/context.md) bajo `ctx.me`.
+Cada vez que tu servidor se inicie, grammY solicitará [información sobre el bot](https://core.telegram.org/bots/api#getme) a Telegram para proporcionarla en el [objeto de contexto](../guide/context) bajo `ctx.me`.
 Podemos establecer la [información sobre el bot](https://deno.land/x/grammy/mod.ts?s=BotConfig#prop_botInfo) para evitar un exceso de llamadas a `getMe`.
 
 1. Abre este enlace `https://api.telegram.org/bot<bot_token>/getMe` en tu navegador web favorito. Se recomienda usar [Firefox](https://www.mozilla.org/en-US/firefox/) ya que muestra muy bien el formato `json`.
@@ -249,7 +255,7 @@ bot.start();
 ¡Ya está!
 Estamos listos para desplegarlo.
 Bastante sencillo, ¿verdad? :smiley:
-Si crees que es demasiado fácil, ¡consulta nuestra [Lista de verificación de despliegue](../advanced/deployment.md#long-polling)! :rocket:
+Si crees que es demasiado fácil, ¡consulta nuestra [Lista de verificación de despliegue](../advanced/deployment#long-polling)! :rocket:
 
 ## Despliegue
 
@@ -292,22 +298,17 @@ A continuación, escriba este formato de código de una sola línea:
 
 Para nuestro caso debería serlo:
 
-::::code-group
-:::code-group-item Webhook
+:::code-group
 
-```
+```[Webhook]
 web: node dist/app.js
 ```
 
-:::
-:::code-group-item Long Polling
-
-```
+```[Long Polling]
 worker: node dist/bot.js
 ```
 
 :::
-::::
 
 ### Configurar Git
 
@@ -336,10 +337,9 @@ tsconfig.json
 
 Nuestra estructura final de carpetas debería tener este aspecto:
 
-::::code-group
-:::code-group-item Webhook
+:::code-group
 
-```asciiart:no-line-numbers
+```asciiart:no-line-numbers [Webhook]
 .
 ├── .git/
 ├── node_modules/
@@ -356,10 +356,7 @@ Nuestra estructura final de carpetas debería tener este aspecto:
 └── .gitignore
 ```
 
-:::
-:::code-group-item Long Polling
-
-```asciiart:no-line-numbers
+```asciiart:no-line-numbers [Long Polling]
 .
 ├── .git/
 ├── node_modules/
@@ -375,7 +372,6 @@ Nuestra estructura final de carpetas debería tener este aspecto:
 ```
 
 :::
-::::
 
 Confirmar los archivos a nuestro repositorio git:
 
@@ -389,23 +385,18 @@ git commit -m "My first commit"
 Si ya has creado una [aplicación Heroku](https://dashboard.heroku.com/apps/), pasa el nombre de tu `Aplicación existente` en `<miApp>` a continuación, y ejecuta el código.
 De lo contrario, ejecute `Nueva aplicación`.
 
-::::code-group
-:::code-group-item New app
+:::code-group
 
-```sh
+```sh [New app]
 heroku create
 git remote -v
 ```
 
-:::
-:::code-group-item Existing app
-
-```sh
+```sh [Existing app]
 heroku git:remote -a <myApp>
 ```
 
 :::
-::::
 
 ### Despliegue del código
 

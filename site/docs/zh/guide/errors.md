@@ -1,6 +1,8 @@
 ---
-prev: ./middleware.md
-next: ./inline-queries.md
+prev:
+  link: ./middleware
+next:
+  link: ./inline-queries
 ---
 
 # 错误处理
@@ -26,7 +28,7 @@ next: ./inline-queries.md
 
 ### 长轮询
 
-如果你运行 bot 通过 `bot.start()` 或者你使用 [grammY runner](../plugins/runner.md) 运行, 那么然后你应该**通过 `bot.catch` 安装一个错误处理器**。
+如果你运行 bot 通过 `bot.start()` 或者你使用 [grammY runner](../plugins/runner) 运行, 那么然后你应该**通过 `bot.catch` 安装一个错误处理器**。
 
 如果通过 `bot.start()` 启动， grammY 会安装一个默认的错误处理器。
 你的设置会决定程序如何捕捉错误。
@@ -56,7 +58,7 @@ bot.catch((err) => {
 
 ## `BotError` 对象
 
-`BotError` 对象将抛出的错误与导致该错误的对应的 [上下文对象](./context.md) 绑定在一起。
+`BotError` 对象将抛出的错误与导致该错误的对应的 [上下文对象](./context) 绑定在一起。
 
 其工作原理如下：
 
@@ -87,7 +89,7 @@ grammY 不会以任何方式触及抛出的错误，而是把它包装成一个 
 
 除非你的网络不可用了或者 你的 Bot API 服务器暂时下线了，否则你基本看不到这种类型的错误。
 
-> 需要注意的是如果 Bot API 服务器能被链接，但是方法回调返回了 `ok: false`，这时就会抛出 [`GrammyError`](./errors.md#grammyerror-对象) 作为代替。
+> 需要注意的是如果 Bot API 服务器能被链接，但是方法回调返回了 `ok: false`，这时就会抛出 [`GrammyError`](./errors#grammyerror-对象) 作为代替。
 
 在 [grammY API 参考](https://deno.land/x/grammy/mod.ts?s=HttpError) 中了解 `HttpError` 类。
 
@@ -144,7 +146,7 @@ function errorHandler(err: BotError) {
 1. 在 `bot.errorBoundary`（即 `Q`）之后传递给 `boundaryHandler` 的所有中间件
 2. 安装在随后安装的 composer 实例（即 `X`，`Y`，和 `Z`）上的所有中间件。
 
-> 关于第 2 点，你可能想要跳转到中间件的 [高级解释](../advanced/middleware.md) 中去学习如何在 grammY 中连接中间件。
+> 关于第 2 点，你可能想要跳转到中间件的 [高级解释](../advanced/middleware) 中去学习如何在 grammY 中连接中间件。
 
 你还可以将错误边界应用到一个没有调用 `bot.errorBoundary` 的 composer 中：
 

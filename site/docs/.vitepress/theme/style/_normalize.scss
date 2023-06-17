@@ -1,0 +1,26 @@
+.VPDoc {
+  p,
+  li {
+    text-align: justify;
+    text-justify: auto;
+    hyphens: auto;
+  }
+}
+
+.VPHomeFeatures .box {
+  .title {
+    font-size: 1.2rem;
+  }
+
+  .details {
+    font-size: 1rem;
+  }
+}
+
+.VPHomeHero .VPButton.medium {
+  font-size: 0.98rem;
+}
+
+:root .VPHome {
+  padding-bottom: 0px;
+}

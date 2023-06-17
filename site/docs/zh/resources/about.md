@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # 关于 grammY
 
 ## grammY 是什么？
@@ -37,7 +42,7 @@ grammY 是由 TypeScript 编写的，一个 JavaScript 的超集。
 
 ## grammY 和它的竞争对手相比如何？
 
-如果你来自不同编程语言或者不同的 JavaScript 框架，你可以查看我们 [框架之间的细节比较](./comparison.md)。
+如果你来自不同编程语言或者不同的 JavaScript 框架，你可以查看我们 [框架之间的细节比较](./comparison)。
 
 ## 怎么才能支持我们？
 

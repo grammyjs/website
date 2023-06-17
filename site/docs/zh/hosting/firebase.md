@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # 托管：Firebase Functions
 
 本教程将指导你完成将 bot 部署到 [Firebase Functions](https://firebase.google.com/docs/functions) 的过程。
@@ -27,7 +32,7 @@
 > 请务必注意，Firebase Functions 当前仅支持 Node.js 版本 14、16 和 18。
 > 有关受支持的 Node.js 版本的更多信息，请参阅 [此处](https://firebase.google.com/docs/functions/manage-functions#set_nodejs_version)。
 
-当你安装 Node.js 和 NPM 后，全局安装 Firebase CLI：
+当你安装 Node.js 和 npm 后，全局安装 Firebase CLI：
 
 ```sh
 npm install -g firebase-tools
@@ -127,7 +132,7 @@ localtunnel 应该给你一个唯一的 URL，例如 `https://modern-heads-sink-
 你可以通过调用 `setWebhook` 方法实现。
 例如，打开浏览器中的新标签页并访问以下 URL：
 
-```text:no-line-numbers
+```txt:no-line-numbers
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<WEBHOOK_URL>/<firebase-projectname>/us-central1/helloWorld
 ```
 
@@ -160,7 +165,7 @@ firebase deploy
 部署后，你需要通过调用 `setWebhook` 方法告诉 Telegram 将 update 发送到你的 bot。
 为此，请打开一个新的浏览器选项卡并访问此 URL：
 
-```text:no-line-numbers
+```txt:no-line-numbers
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<REGION>.<MY_PROJECT>.cloudfunctions.net/helloWorld
 ```
 

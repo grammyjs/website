@@ -1,6 +1,8 @@
 ---
-prev: ./filter-queries.md
-next: ./middleware.md
+prev:
+  link: ./filter-queries
+next:
+  link: ./middleware
 ---
 
 # Command
@@ -69,7 +71,7 @@ grammY kemudian mengambil payload tersebut, lalu meneruskannya ke `ctx.match`.
 Berdasarkan link dari contoh di atas, `ctx.match` akan berisi string `"migoreng"`.
 
 Deep linking akan bermanfaat ketika kamu ingin membuat sistem referral, ataupun melacak dari mana pengguna menemukan bot-mu.
-Contohnya, bot kamu bisa memposting di channel dengan menyertakan sebuah tombol [inline keyboard](../plugins/keyboard.md#keyboard-inline) di bawah postingan tersebut.
+Contohnya, bot kamu bisa memposting di channel dengan menyertakan sebuah tombol [inline keyboard](../plugins/keyboard#keyboard-inline) di bawah postingan tersebut.
 Tombol ini berisi URL yang mirip dengan contoh di atas, misal `https://t.me/username_bot_kamu?start=dari-postingan-channel-drama-ojol-nomor-123`.
 Ketika user memencet tombol tersebut, aplikasi Telegram mereka akan membuka chat pribadi dengan bot kamu, sambil menampilkan tombol MULAI seperti yang sudah dijelaskan di atas.
 Dengan cara tersebut, bot-mu bisa mengidentifikasi dari mana pengguna tersebut berasal melalui tombol khusus di bawah postingan channel tadi.

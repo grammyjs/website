@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Hosting: Deno Deploy
 
 Halaman ini berisi panduan mengenai langkah-langkah meng-hosting bot di [Deno Deploy](https://deno.com/deploy).
@@ -14,7 +19,7 @@ Hasil dari tutorial disini dapat dilihat di [repositori bot kami](https://github
 
 ## Menyiapkan Kode
 
-> Ingat! Kamu perlu [menjalankan bot dengan webhooks](../guide/deployment-types.md#bagaimana-cara-menggunakan-webhook), jadi kamu harus menggunakan `webhookCallback` alih-alih memanggil `bot.start()` di kodemu.
+> Ingat! Kamu perlu [menjalankan bot dengan webhooks](../guide/deployment-types#bagaimana-cara-menggunakan-webhook), jadi kamu harus menggunakan `webhookCallback` alih-alih memanggil `bot.start()` di kodemu.
 
 1. Pastikan kamu meng-export object bot di dalam sebuah file agar nantinya bisa di-import ketika ingin menjalankannya.
 2. Buat sebuah file dengan nama `mod.ts` atau `mod.js`, ataupun nama lainnya sesuai dengan keinginanmu (tetapi kamu harus mengingatnya karena nanti file tersebut akan digunakan sebagai file deploy utama). File tersebut berisikan:
@@ -77,7 +82,7 @@ Di contoh kali ini, kita menggunakan token bot (`/<token bot>`) sebagai direktor
 deployctl deploy --project <project> ./mod.ts --prod --token <token>
 ```
 
-6. Untuk menyiapkan GitHub Actions, dapat merujuk ke [sini](https://github.com/denoland/deployctl/blob/main/action/README.md).
+6. Untuk menyiapkan GitHub Actions, dapat merujuk ke [sini](https://github.com/denoland/deployctl/blob/main/action/README).
 
 ### Metode 3: Menggunakan URL
 
@@ -91,7 +96,7 @@ deployctl deploy --project <project> ./mod.ts --prod --token <token>
 
 Setelah mendapati bot-mu dapat berjalan, kamu harus melakukan konfigurasi pada pengaturan webhook untuk menggunakan URL bot-mu yang baru.
 
-```text:no-line-numbers
+```txt:no-line-numbers
 https://api.telegram.org/bot<token>/setWebhook?url=<url>
 ```
 

@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # FAQ
 
 这里收集了一些 [常见错误](#为什么我会收到这个错误) 和 [Deno](#关于-deno-的问题) 的常见问题。
@@ -18,7 +23,7 @@
    如果是，则 grammY 会将其收集到名为 `other` 的选项对象中。
    在那个地方传递 `{ parameter_name: value }` 就可以了。
    与以往一样，TypeScript 会为你自动补全参数名称。
-3. 也许在 [这里](https://deno.land/x/grammy/mod.ts?s=Context#Methods) 再次检查 `ctx` 上的 [操作](../guide/context.md#可用操作) 的方法签名，或在 [这里](https://deno.land/x/grammy/mod.ts?s=Api#Methods) 检查 API 方法（`ctx.api`、`bot.api`）的方法签名。
+3. 也许在 [这里](https://deno.land/x/grammy/mod.ts?s=Context#Methods) 再次检查 `ctx` 上的 [操作](../guide/context#可用操作) 的方法签名，或在 [这里](https://deno.land/x/grammy/mod.ts?s=Api#Methods) 检查 API 方法（`ctx.api`、`bot.api`）的方法签名。
 
 ## 为什么我会收到这个错误？
 
@@ -34,7 +39,7 @@
 然后你的消息文本可以是一个普通的字符串。
 这样以来，你不必担心对奇怪的字符进行转义。
 这可能会看起来需要更多代码，但实际上它是这个问题的最可靠和安全的解决方案。
-最重要的是，我们的 [parse-mode 插件](../plugins/parse-mode.md) 大大简化了这一点。
+最重要的是，我们的 [parse-mode 插件](../plugins/parse-mode) 大大简化了这一点。
 :::
 
 ### 401 Unauthorized
@@ -93,9 +98,9 @@ Telegram 会这样做以保护他们的用户。
 
 这里有几件事情你可以做：
 
-1. 阅读文档中的这篇 [文章](../advanced/flood.md) 以获得对情况的基本了解。
-2. 使用 [`transformer-throttler` 插件](../plugins/transformer-throttler.md)。
-3. 使用 [`auto-retry` 插件](../plugins/auto-retry.md)。
+1. 阅读文档中的这篇 [文章](../advanced/flood) 以获得对情况的基本了解。
+2. 使用 [`transformer-throttler` 插件](../plugins/transformer-throttler)。
+3. 使用 [`auto-retry` 插件](../plugins/auto-retry)。
 4. 在 [群聊](https://t.me/grammyjs) 中向我们寻求帮助。我们有经验丰富的人能帮你。
 5. 可以要求 Telegram 增加限制，但如果不先执行步骤 1-3，就不太可能发生这种情况。
 

@@ -1,13 +1,17 @@
+---
+prev: false
+next: false
+---
+
 # Parsear (`parse-mode`)
 
 Este plugin proporciona un transformador para establecer el `parse_mode` por defecto, y un middleware para hidratar el `Context` con los métodos variantes familiares de `reply` - es decir, `replyWithHTML`, `replyWithMarkdown`, etc.
 
 ## Uso (Mejorar la experiencia de formateo)
 
-::::code-group
-:::code-group-item TypeScript
+:::code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context } from "grammy";
 import { bold, fmt, hydrateReply, italic, link } from "@grammyjs/parse-mode";
 
@@ -37,10 +41,7 @@ ${bold(fmt`negrita ${link("blink", "example.com")} negrita`)}`);
 bot.start();
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot, Context } = require("grammy");
 const { bold, fmt, hydrateReply, italic, link } = require(
   "@grammyjs/parse-mode",
@@ -70,10 +71,7 @@ ${bold(fmt`negrita ${link("blink", "example.com")} negrita`)}`);
 bot.start();
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   bold,
@@ -110,14 +108,12 @@ bot.start();
 ```
 
 :::
-::::
 
 ## Uso (modo de análisis sintáctico por defecto y métodos de respuesta)
 
-::::code-group
-:::code-group-item TypeScript
+:::code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context } from "grammy";
 import { hydrateReply, parseMode } from "@grammyjs/parse-mode";
 
@@ -146,10 +142,7 @@ bot.command("demo", async (ctx) => {
 bot.start();
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot, Context } = require("grammy");
 const { hydrateReply, parseMode } = require("@grammyjs/parse-mode");
 
@@ -176,10 +169,7 @@ bot.command("demo", async (ctx) => {
 bot.start();
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   hydrateReply,
@@ -212,7 +202,6 @@ bot.start();
 ```
 
 :::
-::::
 
 ## Resumen del plugin
 

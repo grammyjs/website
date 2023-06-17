@@ -1,6 +1,8 @@
 ---
-prev: ./reliability.md
-next: ./transformers.md
+prev:
+  link: ./reliability
+next:
+  link: ./transformers
 ---
 
 # Peningkatan IV: Limitasi Flood
@@ -18,8 +20,8 @@ Jika kamu ingin solusi untuk jangka panjang, baca [bagian selanjutnya.](#solusi-
 
 Solusi paling simpel ketika request API gagal karena terkena rate limit adalah... tunggu hingga sisa waktu rate limit-nya habis lalu ulangi lagi request tersebut.
 
-Kamu bisa melakukannya menggunakan [plugin `auto-retry` yang super duper simpel](../plugins/auto-retry.md).
-Ia adalah sebuah [function transformer API](./transformers.md) yang berfungsi persis seperti namanya, coba-otomatis.
+Kamu bisa melakukannya menggunakan [plugin `auto-retry` yang super duper simpel](../plugins/auto-retry).
+Ia adalah sebuah [function transformer API](./transformers) yang berfungsi persis seperti namanya, coba-otomatis.
 
 Sayangnya, jika trafik bot kamu semakin lama semakin tinggi, misal bot kamu dimasukkan ke grup besar yang sangat ramai chat-nya, bot-mu akan sering sekali terkena rate limit hingga lonjakan trafik tersebut mereda.
 Kalau sudah begitu, siap-siap bot kamu kena surat tilang dari polisi Telegram, alias di-banned.
@@ -29,7 +31,7 @@ Kakek tua bijak pernah berkata, "Mencegah lebih baik daripada mengobati". Oleh k
 
 ## Solusi Sesungguhnya (Direkomendasikan)
 
-grammY menyediakan sebuah [plugin throttler](../plugins/transformer-throttler.md) yang berfungsi untuk membuat bot kamu mematuhi semua aturan rate limit dengan cara menampung semua request yang keluar ke dalam antrian pesan telebih dahulu.
+grammY menyediakan sebuah [plugin throttler](../plugins/transformer-throttler) yang berfungsi untuk membuat bot kamu mematuhi semua aturan rate limit dengan cara menampung semua request yang keluar ke dalam antrian pesan telebih dahulu.
 Plugin ini selain mudah dipasang juga mampu melakukan kontrol flood yang lebih baik dibandingkan cara sebelumnya.
-Sama sekali tidak ada alasan yang bagus untuk menggunakan [plugin auto-retry](../plugins/auto-retry.md) dibandingkan [plugin throttler](../plugins/transformer-throttler.md).
+Sama sekali tidak ada alasan yang bagus untuk menggunakan [plugin auto-retry](../plugins/auto-retry) dibandingkan [plugin throttler](../plugins/transformer-throttler).
 Dalam beberapa kasus, kombinasi keduanya juga bisa membantu.

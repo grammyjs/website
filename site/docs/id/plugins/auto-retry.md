@@ -1,8 +1,13 @@
+---
+prev: false
+next: false
+---
+
 # Pengulang Request API (`auto-retry`)
 
-> Pertimbangkan untuk menggunakan [plugin throttler](./transformer-throttler.md) alih-alih menggunakan plugin ini.
+> Pertimbangkan untuk menggunakan [plugin throttler](./transformer-throttler) alih-alih menggunakan plugin ini.
 
-Plugin ini adalah sebuah [API transformer function](../advanced/transformers.md).
+Plugin ini adalah sebuah [API transformer function](../advanced/transformers).
 Artinya, ia dapat mencegat dan memodifikasi HTTP request yang keluar secara langsung.
 Lebih tepatnya, plugin ini akan secara otomatis mendeteksi jika suatu API request gagal dilakukan dengan membawa value `retry_after`, misal dikarenakan rate limit.
 Ia akan menangkap error tersebut, lalu menunggu beberapa saat, kemudian mengirim request tersebut kembali.
@@ -16,30 +21,23 @@ Jika kamu terus-menerus melanggar batas rate limit, Telegram akan mengambil tind
 
 Kamu bisa menginstal plugin ini di object `bot.api`:
 
-::::code-group
-:::code-group-item TypeScript
+:::code-group
 
-```ts
+```ts [TypeScript]
 import { autoRetry } from "@grammyjs/auto-retry";
 
 // Pasang plugin-nya
 bot.api.config.use(autoRetry());
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { autoRetry } = require("@grammyjs/auto-retry");
 
 // Pasang plugin-nya
 bot.api.config.use(autoRetry());
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { autoRetry } from "https://esm.sh/@grammyjs/auto-retry";
 
 // Pasang plugin-nya
@@ -47,7 +45,6 @@ bot.api.config.use(autoRetry());
 ```
 
 :::
-::::
 
 Sekarang, anggaplah kamu sedang memanggil `sendMessage`, lalu terkena rate limit, maka ia akan tampak seperti sebuah request yang diproses dengan sangat lama.
 Di balik layar, beberapa HTTP request sedang dilakukan dengan jeda waktu yang sesuai---berdasarkan durasi flood limit---di antara kedua request.
@@ -56,7 +53,7 @@ Oleh sebab itu, durasi pemrosesan terasa lama karena adanya jeda waktu tersebut.
 Kamu bisa menentukan sebuah opsi `maxRetryAttempts` untuk menentukan jumlah maksimal pengulangan yang boleh dilakukan (bawaanya: 3) atau opsi `maxDelaySeconds` untuk menentukan batas maksimal durasi tunggu (bawaanya: 1 jam).
 
 Segera setelah jumlah maksimal pengulangan terlampaui, request-request berikutnya yang mengalami error tidak akan diulang kembali.
-Object error tersebut akan tetap diteruskan yang kemudian menghasilkan sebuah [`GrammyError`](../guide/errors.md#object-grammyerror).
+Object error tersebut akan tetap diteruskan yang kemudian menghasilkan sebuah [`GrammyError`](../guide/errors#object-grammyerror).
 
 Hal yang sama juga berlaku ketika request gagal dijalankan dengan `retry_after` lebih besar dari nilai `maxDelaySeconds` yang telah ditentukan.
 Request tersebut akan digagalkan saat itu juga.

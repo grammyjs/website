@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Manejo de archivos simplificado en grammY (`files`)
 
 Este plugin te permite descargar fácilmente archivos de los servidores de Telegram, y obtener una URL para que puedas descargar el archivo tú mismo.
@@ -8,10 +13,9 @@ Necesitas pasar el token de tu bot a este plugin porque debe autenticarse como t
 Este plugin entonces instala el método `download` en los resultados de la llamada `getFile`.
 Ejemplo:
 
-::::code-group
-:::code-group-item TypeScript
+:::code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context } from "grammy";
 import { FileFlavor, hydrateFiles } from "@grammyjs/files";
 
@@ -35,10 +39,7 @@ bot.on([":video", ":animation"], async (ctx) => {
 });
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 import { Bot } from "grammy";
 import { hydrateFiles } from "@grammyjs/files";
 
@@ -59,10 +60,7 @@ bot.on([":video", ":animation"], async (ctx) => {
 });
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   FileFlavor,
@@ -90,7 +88,6 @@ bot.on([":video", ":animation"], async (ctx) => {
 ```
 
 :::
-::::
 
 Puedes pasar una cadena con una ruta de archivo a `download` si no quieres crear un archivo temporal.
 Simplemente haga `await file.download("/ruta/al/archivo")`.
@@ -109,12 +106,11 @@ Tenga en cuenta que `await file.download()` simplemente copiará ese archivo loc
 
 Por defecto, los resultados de `await bot.api.getFile()` también contarán con los métodos `download` y `getUrl`.
 Sin embargo, esto no se refleja en los tipos.
-Si necesitas estas llamadas, también debes instalar un [API flavor](../advanced/transformers.md#api-flavoring) en el objeto bot llamado `FileApiFlavor`:
+Si necesitas estas llamadas, también debes instalar un [API flavor](../advanced/transformers#api-flavoring) en el objeto bot llamado `FileApiFlavor`:
 
-::::code-group
-:::code-group-item Node.js
+:::code-group
 
-```ts
+```ts [Node.js]
 import { Api, Bot, Context } from "grammy";
 import { FileApiFlavor, FileFlavor, hydrateFiles } from "@grammyjs/files";
 
@@ -125,10 +121,7 @@ const bot = new Bot<MyContext, MyApi>("");
 // ...
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Api, Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   FileApiFlavor,
@@ -144,7 +137,6 @@ const bot = new Bot<MyContext, MyApi>("");
 ```
 
 :::
-::::
 
 ## Resumen del plugin
 

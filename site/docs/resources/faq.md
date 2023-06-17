@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # FAQ
 
 Here is a collection of frequently asked questions regarding [common errors](#why-am-i-getting-this-error) and [Deno things](#questions-about-deno).
@@ -18,7 +23,7 @@ No, it's not.
    If it is, then grammY will collect it in the options object called `other`.
    Pass `{ parameter_name: value }` in that place and it'll work.
    As always, TypeScript will auto-complete the parameter names for you.
-3. Perhaps double-check the method signature for [actions](../guide/context.md#available-actions) on `ctx` [here](https://deno.land/x/grammy/mod.ts?s=Context#Methods), or for API methods (`ctx.api`, `bot.api`) [here](https://deno.land/x/grammy/mod.ts?s=Api#Methods).
+3. Perhaps double-check the method signature for [actions](../guide/context#available-actions) on `ctx` [here](https://deno.land/x/grammy/mod.ts?s=Context#Methods), or for API methods (`ctx.api`, `bot.api`) [here](https://deno.land/x/grammy/mod.ts?s=Api#Methods).
 
 ## Why Am I Getting This Error?
 
@@ -34,7 +39,7 @@ You can pre-parse the entities for Telegram if you want, and specify `entities` 
 Your message text could then be a regular string.
 That way, you don't have to worry about escaping weird characters.
 This may look like it needs more code, but in fact it is the far more reliable and fool-proof solution to this problem.
-Most importantly, this is greatly simplified by our [parse-mode plugin](../plugins/parse-mode.md).
+Most importantly, this is greatly simplified by our [parse-mode plugin](../plugins/parse-mode).
 :::
 
 ### 401 Unauthorized
@@ -93,9 +98,9 @@ You have already made sure to use the minimum number of API calls for the most c
 
 There are a few things you can do:
 
-1. Read this [article](../advanced/flood.md) in the docs to gain a basic understanding of the situation.
-2. Use the [`transformer-throttler` plugin](../plugins/transformer-throttler.md).
-3. Use the [`auto-retry` plugin](../plugins/auto-retry.md).
+1. Read this [article](../advanced/flood) in the docs to gain a basic understanding of the situation.
+2. Use the [`transformer-throttler` plugin](../plugins/transformer-throttler).
+3. Use the [`auto-retry` plugin](../plugins/auto-retry).
 4. Come ask us in the [group chat](https://t.me/grammyjs) for help.
    We have experienced people there.
 5. It is possible to ask Telegram to increase the limits, but this is very unlikely to happen if you did not do steps 1-3 first.

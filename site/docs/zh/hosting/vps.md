@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # 托管: VPS
 
 虚拟私人服务器，大多数时候被称为 VPS，是在云中运行的虚拟机，用户拥有其系统的完整控制权。
@@ -50,7 +55,7 @@ nano bot1.service
 
 3. 添加以下内容：
 
-```text
+```txt
 [Service]
 ExecStart=<start_command>
 Restart=on-failure

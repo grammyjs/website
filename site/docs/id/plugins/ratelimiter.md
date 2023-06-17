@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Rate Limit Pengguna (`ratelimiter`)
 
 ratelimiter adalah sebuah middleware yang dibuat dari framework bot grammY ataupun [Telegraf](https://github.com/telegraf/telegraf) yang berfungsi untuk mengatur rate-limit pengguna bot.
@@ -56,30 +61,23 @@ Ada dua cara dalam menggunakan ratelimiter:
 
 Berikut cara termudah dalam menggunakan ratelimiter dengan menerapkan perilaku bawaan:
 
-::::code-group
-:::code-group-item TypeScript
+:::code-group
 
-```ts
+```ts [TypeScript]
 import { limit } from "@grammyjs/ratelimiter";
 
 // Batasi menjadi 1 pesan per detik untuk setiap user.
 bot.use(limit());
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { limit } = require("@grammyjs/ratelimiter");
 
 // Batasi menjadi 1 pesan per detik untuk setiap user.
 bot.use(limit());
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
 
 // Batasi menjadi 1 pesan per detik untuk setiap user.
@@ -87,16 +85,14 @@ bot.use(limit());
 ```
 
 :::
-::::
 
 ### Konfigurasi Manual
 
 Seperti yang sudah disebutkan di awal, kamu bisa menentukan object `Options` ke method `limit()` untuk mengatur perilaku limiter.
 
-::::code-group
-:::code-group-item TypeScript
+:::code-group
 
-```ts
+```ts [TypeScript]
 import Redis from "ioredis";
 import { limit } from "@grammyjs/ratelimiter";
 
@@ -125,10 +121,7 @@ bot.use(
 );
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const Redis = require("ioredis");
 const { limit } = require("@grammyjs/ratelimiter");
 
@@ -157,10 +150,7 @@ bot.use(
 );
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { connect } from "https://deno.land/x/redis/mod.ts";
 import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
 
@@ -190,20 +180,18 @@ bot.use(
 ```
 
 :::
-::::
 
 Seperti yang kamu lihat dari contoh di atas, setiap user hanya diperbolehkan mengirim 3 request setiap 2 detik.
 Jika user tersebut mengirim request melebihi batas yang telah kita tentukan, bot akan membalas dengan, _"Tolong jangan kirim request berlebihan"_.
-Request tersebut kemudian akan diabaikan begitu saja karena kita tidak memanggil [next()](../guide/middleware.md#middleware-stack) di middleware.
+Request tersebut kemudian akan diabaikan begitu saja karena kita tidak memanggil [next()](../guide/middleware#middleware-stack) di middleware.
 
 > Catatan: Untuk menghindari flooding ke server Telegram, `onLimitExceeded` hanya akan dieksekusi sekali untuk setiap `timeFrame`.
 
 Contoh penggunaan lainnya adalah dengan membatasi request yang datang dari sebuah chat, alih-alih dari user tertentu:
 
-::::code-group
-:::code-group-item TypeScript
+:::code-group
 
-```ts
+```ts [TypeScript]
 import { limit } from "@grammyjs/ratelimiter";
 
 bot.use(
@@ -218,10 +206,7 @@ bot.use(
 );
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { limit } = require("@grammyjs/ratelimiter");
 
 bot.use(
@@ -236,10 +221,7 @@ bot.use(
 );
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
 
 bot.use(
@@ -255,7 +237,6 @@ bot.use(
 ```
 
 :::
-::::
 
 Dari contoh di atas, kita menggunakan `chat.id` sebagai key unik untuk melakukan rate-limit.
 

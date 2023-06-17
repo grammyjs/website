@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Хостинг: Cloudflare Workers
 
 [Cloudflare Workers](https://workers.cloudflare.com/) — це загальнодоступна безсерверна обчислювальна платформа, яка пропонує зручне та просте рішення для запуску JavaScript за допомогою парадигми [кордонних обчислень](https://uk.wikipedia.org/wiki/Кордонні_обчислення).
@@ -88,7 +93,7 @@ npm run deploy
 Нам потрібно повідомити Telegram, куди надсилати оновлення.
 Відкрийте свій браузер і відвідайте цей URL:
 
-```text
+```txt
 https://api.telegram.org/bot<токен-бота>/setWebhook?url=https://<назва-бота>.<піддомен>.workers.dev/
 ```
 

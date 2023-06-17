@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # About grammY
 
 ## What is grammY?
@@ -37,7 +42,7 @@ However, grammY can also run on Deno, which positions itself as the successor of
 
 ## How does grammY compare to its competitors?
 
-If you're coming from a different programming language or framework, you can check out our [detailed comparison between frameworks](./comparison.md).
+If you're coming from a different programming language or framework, you can check out our [detailed comparison between frameworks](./comparison).
 
 ## How can I support you?
 

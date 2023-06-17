@@ -1,6 +1,8 @@
 ---
-prev: ./files.md
-next: ./deployment-types.md
+prev:
+  link: ./files
+next:
+  link: ./deployment-types
 ---
 
 # Game
@@ -49,9 +51,9 @@ Keuntungan menggunakan method `api.sendGame` adalah kamu bisa menentukan `chat.i
    });
    ```
 
-> [Ingat!](./basics.md#mengirim-pesan) Saat mengirim pesan, kamu bisa menentukan opsi lebih lanjut menggunakan opsi-opsi yang disediakan oleh object type `Other`.
+> [Ingat!](./basics#mengirim-pesan) Saat mengirim pesan, kamu bisa menentukan opsi lebih lanjut menggunakan opsi-opsi yang disediakan oleh object type `Other`.
 
-Kamu juga bisa mengatur [inline keyboard](../plugins/keyboard.md#keyboard-inline) untuk menampilkan tombol khusus di pesan game tersebut.
+Kamu juga bisa mengatur [inline keyboard](../plugins/keyboard#keyboard-inline) untuk menampilkan tombol khusus di pesan game tersebut.
 Secara bawaan, ia akan dikirim dengan sebuah tombol bernama `Play my_game`, dimana _my_game_ adalah nama dari game kamu.
 
 ```ts
@@ -100,7 +102,7 @@ bot.command("start", async (ctx) => {
 });
 ```
 
-> Jangan lupa untuk memasang [error handler](./errors.md) ke bot kamu sebelum diluncurkan ke publik.
+> Jangan lupa untuk memasang [error handler](./errors) ke bot kamu sebelum diluncurkan ke publik.
 
 Di masa mendatang, kami mungkin akan melanjutkan artikel ini di materi tingkat lanjut dan FAQ, meski begitu kami rasa materi ini sudah cukup untuk dapat menjalankan game di Telegram.
 Selamat bersenang-senang! :space_invader:

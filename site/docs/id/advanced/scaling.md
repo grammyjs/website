@@ -1,11 +1,13 @@
 ---
-prev: ./structuring.md
-next: ./reliability.md
+prev:
+  link: ./structuring
+next:
+  link: ./reliability
 ---
 
 # Peningkatan II: Beban Kerja Tinggi
 
-Langkah-langkah untuk mengatasi bot yang bekerja dengan beban yang tinggi tergantung dari jenis deployment yang dipakai: [long polling atau webhook](../guide/deployment-types.md).
+Langkah-langkah untuk mengatasi bot yang bekerja dengan beban yang tinggi tergantung dari jenis deployment yang dipakai: [long polling atau webhook](../guide/deployment-types).
 Terlepas dari kedua jenis yang dipilih, kamu sebaiknya membaca beberapa jebakan [di bawah](#concurrency-itu-sulit) agar tidak menyesal di kemudian hari.
 
 ## Long Polling
@@ -26,7 +28,7 @@ Supaya memperoleh efisiensi yang maksimal, kita juga akan mengambil pesan baru s
 Idealnya, kita juga akan membatasi jumlah _concurrency_ supaya tidak membebani server secara berlebihan.
 
 Pemrosesan _concurrent_ tidak tersedia secara bawaan di pemasangan grammY.
-Sebagai gantinya, kamu bisa **menggunakan package [grammY runner](../plugins/runner.md)**.
+Sebagai gantinya, kamu bisa **menggunakan package [grammY runner](../plugins/runner)**.
 Package ini mendukung semua pemrosesan yang telah disebutkan di atas, bahkan penggunaanya pun juga simpel.
 
 ```ts
@@ -38,17 +40,17 @@ run(bot);
 ```
 
 Batas concurrency bawaan sebanyak 500.
-Kalau kamu ingin mempelajari lebih jauh mengenai plugin ini, lihat [halaman berikut](../plugins/runner.md).
+Kalau kamu ingin mempelajari lebih jauh mengenai plugin ini, lihat [halaman berikut](../plugins/runner).
 
 Concurrency memanglah sulit, oleh karena itu baca [materi di bawah](#concurrency-itu-sulit) untuk mengetahui apa yang harus diperhatikan ketika menggunakan grammY runner.
 
 ## Webhook
 
 Kalau kamu menjalankan bot menggunakan webhook, ia akan secara otomatis memproses update secara bersamaan (tidak perlu memasang plugin).
-Supaya bot bisa bekerja dengan baik saat terjadi lonjakan beban, kamu harus benar-benar paham [dalam menggunakan webhook](../guide/deployment-types.md#bagaimana-cara-menggunakan-webhook).
+Supaya bot bisa bekerja dengan baik saat terjadi lonjakan beban, kamu harus benar-benar paham [dalam menggunakan webhook](../guide/deployment-types#bagaimana-cara-menggunakan-webhook).
 Kamu juga perlu tahu beberapa konsekuensi yang ditimbulkan ketika menggunakan concurrency, lihat [materi di bawah](#concurrency-itu-sulit).
 
-[Perlu diingat](../guide/deployment-types.md#mengakhiri-request-webhook-tepat-waktu) juga bahwa Telegram akan mengirim update dari chat yang sama secara berurutan, sedangkan update dari chat yang berbeda akan dikirim secara bersamaan.
+[Perlu diingat](../guide/deployment-types#mengakhiri-request-webhook-tepat-waktu) juga bahwa Telegram akan mengirim update dari chat yang sama secara berurutan, sedangkan update dari chat yang berbeda akan dikirim secara bersamaan.
 
 ## Concurrency Itu Sulit
 
@@ -56,7 +58,7 @@ Beberapa masalah akan timbul jika bot kamu memproses semua update secara bersama
 Contohnya, saat dua pesan dari chat yang sama diterima oleh pemanggilan `getUpdates` yang sama pula, maka kedua pesan ini akan diproses secara bersamaan.
 Sehingga, kita tidak dapat memastikan urutan pesan tersebut sudah teracak atau tidak.
 
-Titik utama dimana kedua pesan dapat bertabrakan adalah disaat kamu menggunakan [session](../plugins/session.md), yang mana terjadinya [write-after-read hazard](https://en.wikipedia.org/wiki/Hazard_(computer_architecture)#Write_after_read_(WAR)) sangat mungkin terjadi.
+Titik utama dimana kedua pesan dapat bertabrakan adalah disaat kamu menggunakan [session](../plugins/session), yang mana terjadinya [write-after-read hazard](https://en.wikipedia.org/wiki/Hazard_(computer_architecture)#Write_after_read_(WAR)) sangat mungkin terjadi.
 Bayangkan kejadian berikut:
 
 1. Ani mengirim pesan A.
@@ -80,10 +82,9 @@ _grammY runner_ sudah dilengkapi dengan middleware `sequentialize()` yang fungsi
 Kamu bisa mengaturnya di function yang sama yang kamu gunakan untuk menentukan session key.
 Dengan begitu, race condition bisa dihindarkan dengan cara memperlambat update tersebut agar tidak bertabrakan satu sama lain.
 
-::::code-group
-:::code-group-item TypeScript
+:::code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context, session } from "grammy";
 import { run, sequentialize } from "@grammyjs/runner";
 
@@ -107,11 +108,7 @@ bot.on("message", (ctx) => ctx.reply("Pesan diterima."));
 run(bot);
 ```
 
-:::
-
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot, Context, session } = require("grammy");
 const { run, sequentialize } = require("@grammyjs/runner");
 
@@ -135,10 +132,7 @@ bot.on("message", (ctx) => ctx.reply("Pesan diterima."));
 run(bot);
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot, Context, session } from "https://deno.land/x/grammy/mod.ts";
 import { run, sequentialize } from "https://deno.land/x/grammy_runner/mod.ts";
 
@@ -163,7 +157,6 @@ run(bot);
 ```
 
 :::
-::::
 
 Silahkan bergabung ke [chat Telegram grammY](https://t.me/grammyjs) untuk mendiskusikan cara menggunakan grammY runner di bot kamu.
 Kami selalu menantikan cerita dari orang-orang yang pernah mengelola bot-bot besar agar kami bisa meningkatkan grammY berdasarkan pengalaman mereka menggunakan package ini.

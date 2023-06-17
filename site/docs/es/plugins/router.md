@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Enrutador (`router`)
 
 La clase `Router` ([Referencia API](https://deno.land/x/grammy_router/router.ts)) proporciona una forma de estructurar tu bot enrutando objetos de contexto a diferentes partes de tu código.
@@ -22,7 +27,7 @@ bot.use(router);
 
 ## Integración con Middleware
 
-Naturalmente, el plugin del enrutador se integra perfectamente con las [jerarquías de middleware de grammY](../advanced/middleware.md).
+Naturalmente, el plugin del enrutador se integra perfectamente con las [jerarquías de middleware de grammY](../advanced/middleware).
 Por ejemplo, puedes filtrar más las actualizaciones después de enrutarlas.
 
 ```ts
@@ -32,14 +37,14 @@ other.on(":text", async (ctx) => {/* ... */});
 other.use((ctx) => {/* ... */});
 ```
 
-También puedes revisar [esta sección](../guide/filter-queries.md#combinacion-de-consultas-con-otros-metodos) sobre la combinación de manejadores de middleware.
+También puedes revisar [esta sección](../guide/filter-queries#combinacion-de-consultas-con-otros-metodos) sobre la combinación de manejadores de middleware.
 
 ## Combinación de enrutadores con sesiones
 
-Los enrutadores funcionan bien junto con las [sesiones](./session.md).
+Los enrutadores funcionan bien junto con las [sesiones](./session).
 A modo de ejemplo, la combinación de ambos conceptos permite recrear formularios en la interfaz del chat.
 
-> Tenga en cuenta que una solución mucho mejor es utilizar el [plugin de conversaciones](./conversations.md).
+> Tenga en cuenta que una solución mucho mejor es utilizar el [plugin de conversaciones](./conversations).
 > El resto de esta página está obsoleta desde que se creó ese plugin.
 > Mantendremos esta página como referencia para aquellos que usaban el enrutador para los formularios.
 
@@ -55,10 +60,9 @@ Sólo si se conocen ambos valores, el bot puede decir al usuario cuántos días 
 
 Así es como se podría implementar un bot de este tipo:
 
-::::code-group
-:::code-group-item TypeScript
+:::code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context, Keyboard, session, SessionFlavor } from "grammy";
 import { Router } from "@grammyjs/router";
 
@@ -193,10 +197,7 @@ function getDays(month: number, day: number) {
 }
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot, Context, Keyboard, session, SessionFlavor } = require("grammy");
 const { Router } = require("@grammyjs/router");
 
@@ -324,10 +325,7 @@ function getDays(month, day) {
 }
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import {
   Bot,
   Context,
@@ -469,7 +467,6 @@ function getDays(month: number, day: number) {
 ```
 
 :::
-::::
 
 Observe cómo la sesión tiene una propiedad `step` que almacena el paso del formulario, es decir, qué valor se está rellenando actualmente.
 El router se utiliza para saltar entre diferentes middleware que completan los campos `month` y `dayOfMonth` de la sesión.

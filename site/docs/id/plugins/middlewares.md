@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Kumpulan Middleware yang Berguna
 
 Capek menulis middleware yang sama berulang kali?
@@ -61,7 +66,7 @@ Kamu perlu menyediakan id super admin-nya
 
 ### `sequentialize`
 
-Middleware [sequentialize](../advanced/scaling.md#concurrency-itu-sulit) sederhana yang menggunakan chat id sebagai identifier-nya sequential.
+Middleware [sequentialize](../advanced/scaling#concurrency-itu-sulit) sederhana yang menggunakan chat id sebagai identifier-nya sequential.
 
 ## Ringkasan Plugin
 

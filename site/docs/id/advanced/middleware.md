@@ -1,11 +1,13 @@
 ---
-prev: ./
-next: ./structuring.md
+prev:
+  link: ./
+next:
+  link: ./structuring
 ---
 
 # Membangkitkan Middleware
 
-Di [bab sebelumnya](../guide/middleware.md), kami telah menjelaskan middleware sebagai lapisan-lapisan function yang saling bertumpukan.
+Di [bab sebelumnya](../guide/middleware), kami telah menjelaskan middleware sebagai lapisan-lapisan function yang saling bertumpukan.
 Meski tidak sepenuhnya salah, namun menyebutnya sebagai "tumpukan" atau _stack_ hanyalah penyederhanaan supaya mudah dipahami.
 
 ## Middleware di grammY
@@ -32,7 +34,7 @@ Pertama-tama, setiap instance `Bot` adalah instance dari `Composer`.
 Ia hanyalah sebuah subclass. Oleh karena itu `class Bot extends Composer`.
 
 Kamu juga harus tahu bahwa setiap method `Composer` di dalamnya memanggil `use`.
-Sebagai contoh, `filter` memanggil `use` dengan beberapa percabangan middleware, sementara `on` memanggil `filter` lagi dengan beberapa _predicate function_ yang terdapat kecocokan antara update dan [filter query](../guide/filter-queries.md) yang diberikan.
+Sebagai contoh, `filter` memanggil `use` dengan beberapa percabangan middleware, sementara `on` memanggil `filter` lagi dengan beberapa _predicate function_ yang terdapat kecocokan antara update dan [filter query](../guide/filter-queries) yang diberikan.
 Untuk saat ini, kita cukupkan pembahasan mengenai `use` dan lanjut ke pembahasan berikutnya.
 
 Kita akan mengupas sedikit mengenai apa yang dilakukan `Composer` terhadap pemanggilan `use`, dan apa bedanya dengan sistem middleware lain di luar sana.
@@ -113,7 +115,7 @@ composer.filter(/* 1 */).filter(/* 2 */).use(/* A */);
 
 `2` hanya akan dievaluasi jika `1` terpenuhi, dan `A` hanya akan dijalankan jika `2` (serta `1`) terpenuhi.
 
-Coba kunjungi kembali materi mengenai [pengombinasian filter query](../guide/filter-queries.md#mengombinasikan-beberapa-query) dengan pengetahuan dan kekuatan barumu.
+Coba kunjungi kembali materi mengenai [pengombinasian filter query](../guide/filter-queries#mengombinasikan-beberapa-query) dengan pengetahuan dan kekuatan barumu.
 
 Khusus `fork` sedikit berbeda karena ia memulai dua komputasi secara bersamaan, misal disisipkan ke _event loop_.
 Alih-alih mengembalikan instance `Composer` yang dibuat oleh pemanggilan `use`, ia mengembalikan sebuah `Composer` yang merefleksikan komputasi percabangan.

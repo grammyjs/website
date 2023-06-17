@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # 托管：Deno Deploy
 
 这个指南告诉你如何将你的 grammY bots 托管到 [Deno Deploy](https://deno.com/deploy).
@@ -12,7 +17,7 @@ Deno Deploy 是大多数简单 bot 的理想选择，并且你应该注意，Den
 
 ## 准备你的代码
 
-> 请注意，你需要 [在 webhooks 上运行你的 bot](../guide/deployment-types.md#如何使用-webhooks)，所以你应该调用 `webhookCallback`，而不是 `bot.start()`。
+> 请注意，你需要 [在 webhooks 上运行你的 bot](../guide/deployment-types#如何使用-webhooks)，所以你应该调用 `webhookCallback`，而不是 `bot.start()`。
 
 1. 确保你有一个文件可以导出你的`Bot`对象，这样你就可以在以后导入它来运行它。
 2. 创建一个名为 `mod.ts` 或 `mod.js` 的文件，或任何你喜欢的名字（但你应该记住并使用这个文件作为部署的主要文件），其内容如下：
@@ -74,7 +79,7 @@ serve(async (req) => {
 deployctl deploy --project <project> ./mod.ts --prod --token <token>
 ```
 
-6. 配置 GitHub Action，请参考 [这里](https://github.com/denoland/deployctl/blob/main/action/README.md).
+6. 配置 GitHub Action，请参考 [这里](https://github.com/denoland/deployctl/blob/main/action/README).
 
 ### 方法 3：使用 URL
 
@@ -89,7 +94,7 @@ deployctl deploy --project <project> ./mod.ts --prod --token <token>
 在部署完成后，你需要配置你的 bot 的 webhook 设置来指向你的 app。
 为了配置 webhook，发送一个请求到
 
-```text:no-line-numbers
+```txt:no-line-numbers
 https://api.telegram.org/bot<token>/setWebhook?url=<url>
 ```
 

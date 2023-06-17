@@ -1,6 +1,8 @@
 ---
-prev: ./context.md
-next: ./filter-queries.md
+prev:
+  link: ./context
+next:
+  link: ./filter-queries
 ---
 
 # Bot API
@@ -24,12 +26,12 @@ This server will translate the request to Telegram's native protocol called MTPr
 Analogously, whenever a user responds, the inverse path is taken.
 
 ::: tip Circumventing File Size Limits
-The Telegram backend allows your bot to [send files](./files.md) up to 2000 MB.
+The Telegram backend allows your bot to [send files](./files) up to 2000 MB.
 However, the Bot API server that is responsible for translating the requests to HTTP restricts the file size to 50 MB for downloads and 20 MB for uploads.
 
 Hence, if you circumvent the Bot API server that Telegram runs for you, and simply [host your own Bot API server](https://core.telegram.org/bots/api#using-a-local-bot-api-server), you can allow your bot to send files up to 2000 MB.
 
-> Note: if you are working with large files over [long polling](./deployment-types.md), you should use [grammY runner](../plugins/runner.md).
+> Note: if you are working with large files over [long polling](./deployment-types), you should use [grammY runner](../plugins/runner).
 
 :::
 
@@ -40,7 +42,7 @@ Example: `sendMessage` in the [Telegram Bot API Reference](https://core.telegram
 
 ### Calling a Method
 
-You can call API methods via `bot.api`, or [equivalently](./context.md#available-actions) via `ctx.api`:
+You can call API methods via `bot.api`, or [equivalently](./context#available-actions) via `ctx.api`:
 
 ```ts
 async function sendHelloTo12345() {
@@ -58,7 +60,7 @@ Strictly speaking, all methods of the Bot API expect a JSON object with a number
 Notice, however, how `sendMessage` in the above example receives two arguments, a chat identifier and a string.
 grammY knows that these two values belong to the `chat_id` and the `text` property, respectively, and will build the correct JSON object for you.
 
-As mentioned [earlier](./basics.md#sending-messages), you can specify other options in the third argument of type `Other`:
+As mentioned [earlier](./basics#sending-messages), you can specify other options in the third argument of type `Other`:
 
 ```ts
 async function sendHelloTo12345() {
@@ -101,7 +103,7 @@ However, officially, Node.js only supports importing from sub-paths properly sin
 Consequently, TypeScript requires the `moduleResolution` to be set to `node16` or `nodenext`.
 Adjust your `tsconfig.json` accordingly and add the highlighted line:
 
-```json{4}
+```json
 {
   "compilerOptions": {
     // ...

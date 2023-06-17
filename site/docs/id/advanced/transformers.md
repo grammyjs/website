@@ -1,6 +1,8 @@
 ---
-prev: ./flood.md
-next: ./proxy.md
+prev:
+  link: ./flood
+next:
+  link: ./proxy
 ---
 
 # Transformer API Bot
@@ -69,12 +71,12 @@ Sehingga, pemanggilan `ctx.api` akan ditransformasikan oleh kedua transformer ba
 
 Function transformer sama fleksibelnya dengan middleware, serta penerapannya pun juga beragam.
 
-Sebagai contoh, [plugin menu grammY](../plugins/menu.md) menggunakan sebuah function transformer untuk mengubah output instance menu menjadi payload yang sesuai.
+Sebagai contoh, [plugin menu grammY](../plugins/menu) menggunakan sebuah function transformer untuk mengubah output instance menu menjadi payload yang sesuai.
 Kamu juga bisa bisa menggunakannya untuk:
 
-- Mengimplementasikan [pengaturan flood](../plugins/transformer-throttler.md),
+- Mengimplementasikan [pengaturan flood](../plugins/transformer-throttler),
 - _Mock_ request API selama pengetesan,
-- Mengatur [perilaku retry](../plugins/auto-retry.md),
+- Mengatur [perilaku retry](../plugins/auto-retry),
 - Dan lain-lain.
 
 Namun, perlu diperhatikan bahwa mengulang kembali (retry) pemanggilan API bisa memiliki efek samping yang aneh, contohnya disaat kamu memanggil `sendDocument` dan meneruskan instance stream ke `InputFile`, maka stream akan dibaca saat pertama kali request dicoba.
@@ -83,7 +85,7 @@ Oleh karena itu, cara yang lebih baik adalah dengan meneruskan path file ke `Inp
 
 ## Menggunakan API Flavor
 
-grammY memiliki fitur [context flavor](../guide/context.md#context-flavor) yang bisa digunakan untuk mengatur type context.
+grammY memiliki fitur [context flavor](../guide/context#context-flavor) yang bisa digunakan untuk mengatur type context.
 Flavor juga bisa digunakan di method API, baik yang secara langsung ada di object context seperti `ctx.reply` maupun semua method di `ctx.api` dan `ctx.api.raw`.
 Tetapi, kamu tidak bisa mengatur type `bot.api` dan `bot.api.raw` melalui context flavor.
 
@@ -113,4 +115,4 @@ bot.on("message", (ctx) => ctx.api.somePluginMethod());
 ```
 
 API flavor berjalan sama persis seperti context flavor. Baik jenis _additive_ maupun _transformative_ juga tersedia, dan berbagai macam API flavor juga bisa dikombinasikan sama halnya dengan yang kamu lakukan dengan context flavor.
-Kalau kamu belum paham bagaimana cara menggunakannya, baca kembali [materi tentang context flavor](../guide/context.md#context-flavor).
+Kalau kamu belum paham bagaimana cara menggunakannya, baca kembali [materi tentang context flavor](../guide/context#context-flavor).

@@ -1,6 +1,8 @@
 ---
-prev: ./middleware.md
-next: ./scaling.md
+prev:
+  link: ./middleware
+next:
+  link: ./scaling
 ---
 
 # Peningkatan I: Codebase Skala Besar
@@ -19,7 +21,7 @@ Berikut strategi yang sudah terbukti sesuai dalam penyusunan struktur kode.
 1. Kelompokkan hal-hal yang saling berkaitan di dalam file yang sama (atau di direktori yang sama, tergantung dari seberapa besar kode kamu).
 2. Buat sebuah instance bot terpusat yang menggabungkan semua middleware dengan cara memasangnya ke dalam bot.
 3. (Opsional) Filter update secara terpusat terlebih dahulu, lalu sebar update dengan cara yang sesuai.
-   Untuk melakukannya, silahkan cek `bot.route` ([API Reference](https://deno.land/x/grammy/mod.ts?s=Composer#method_route_0)) atau bisa juga menggunakan [plugin router](../plugins/router.md).
+   Untuk melakukannya, silahkan cek `bot.route` ([API Reference](https://deno.land/x/grammy/mod.ts?s=Composer#method_route_0)) atau bisa juga menggunakan [plugin router](../plugins/router).
 
 Contoh siap pakai yang mengimplementasikan strategi-strategi di atas bisa ditemukan di [Repositori Contoh Bot](https://github.com/grammyjs/examples/tree/main/scaling).
 
@@ -47,10 +49,10 @@ export const lists = new Composer();
 lists.on("message", async (ctx) => {/* ... */});
 ```
 
-> Catatan: Jika menggunakan TypeScript, kamu perlu menambahkan [custom context type](../guide/context.md#memodifikasi-object-context)-nya juga ketika membuat sebuah composer.
+> Catatan: Jika menggunakan TypeScript, kamu perlu menambahkan [custom context type](../guide/context#memodifikasi-object-context)-nya juga ketika membuat sebuah composer.
 > Contohnya, `new Composer<MyContext>()`.
 
-Sebagai tambahan, kamu bisa menambahkan sebuah [error boundary](../guide/errors.md#error-boundary) untuk mengatasi semua error yang terjadi di dalam module-mu.
+Sebagai tambahan, kamu bisa menambahkan sebuah [error boundary](../guide/errors#error-boundary) untuk mengatasi semua error yang terjadi di dalam module-mu.
 
 Sekarang, kamu bisa memasang module-nya di `bot.ts` seperti ini:
 
@@ -65,7 +67,7 @@ bot.use(lists);
 bot.start();
 ```
 
-Cara lainnya, kamu bisa menggunakan [plugin router](../plugins/router.md) atau [`bot.route`](https://deno.land/x/grammy/mod.ts?s=Composer#method_route_0) untuk menggabungkan module-module yang berbeda dengan menentukan middleware mana yang akan digunakan di awal.
+Cara lainnya, kamu bisa menggunakan [plugin router](../plugins/router) atau [`bot.route`](https://deno.land/x/grammy/mod.ts?s=Composer#method_route_0) untuk menggabungkan module-module yang berbeda dengan menentukan middleware mana yang akan digunakan di awal.
 
 Yang perlu diingat adalah tidak ada satu cara mutlak untuk mengatur struktur bot kamu, karena masing-masing bot memiliki kasus yang berbeda.
 Seperti biasa, pilih cara yang menurutmu paling sesuai dan cocok untuk bot kamu, karena kamulah sebagai pencipta yang paham mengenai seluk-beluk dari bot kamu. :wink:
@@ -78,14 +80,13 @@ Untuk melakukannya, kamu perlu menambahkan type definition middleware yang sesua
 
 grammY meng-export type definition untuk semua **type middleware yang telah dikerucutkan**, misalnya sebuah middleware yang bisa kamu tambahkan ke command handler.
 Selain itu, ia juga meng-export type definition beberapa **context object yang telah dikerucutkan** yang digunakan di middleware tersebut.
-Kedua type tersebut parameternya ditulis ulang dengan [custom context object](../guide/context.md#memodifikasi-object-context) kamu.
+Kedua type tersebut parameternya ditulis ulang dengan [custom context object](../guide/context#memodifikasi-object-context) kamu.
 Oleh karena itu, command handler akan memiliki type `CommandMiddleware<MyContext>` serta `CommandContext<MyContext>` di context objectnya.
 Mereka bisa digunakan dengan cara seperti ini:
 
-::::code-group
-:::code-group-item Node.js
+:::code-group
 
-```ts
+```ts [Node.js]
 import {
   type CallbackQueryMiddleware,
   type CommandContext,
@@ -103,10 +104,7 @@ bot.command(["start", "help"], commandMiddleware);
 bot.callbackQuery("query-data", callbackQueryMiddleware);
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import {
   type CallbackQueryMiddleware,
   type CommandContext,
@@ -125,6 +123,5 @@ bot.callbackQuery("query-data", callbackQueryMiddleware);
 ```
 
 :::
-::::
 
 Kunjungi [referensi API type aliases](https://deno.land/x/grammy/mod.ts#Type_Aliases) untuk melihat gambaran umum semua type aliases yang telah di-export oleh grammY.

@@ -1,5 +1,7 @@
 ---
-prev: ../plugins/
+prev:
+  link: ../plugins/
+next: false
 ---
 
 # The Hitchhiker's Guide to grammY Plugins
@@ -13,8 +15,8 @@ If you would like to develop your own plugin and publish it, or if you want to k
 
 There are two main types of plugins in grammY:
 
-- Middleware Plugins: The plugin's sole job is to return a [middleware function](../guide/middleware.md) that can be fed to a grammY bot.
-- Transformer Plugins: The plugin's sole job is to return a [transformer function](../advanced/transformers.md) that can be fed to a grammY bot.
+- Middleware Plugins: The plugin's sole job is to return a [middleware function](../guide/middleware) that can be fed to a grammY bot.
+- Transformer Plugins: The plugin's sole job is to return a [transformer function](../advanced/transformers) that can be fed to a grammY bot.
 
 However, you will sometimes find plugins that do both things.
 There are also other packages that are neither middleware nor transformer functions, but we will call them plugins anyway because they extend grammY in various ways.

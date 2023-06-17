@@ -1,10 +1,15 @@
+---
+prev: false
+next: false
+---
+
 # Хостинг: Fly
 
 У цьому посібнику ви дізнаєтеся про способи розміщення ваших ботів grammY на [Fly](https://fly.io), використовуючи Deno або Node.js.
 
 ## Підготовка коду
 
-Ви можете запустити свого бота, використовуючи [вебхуки або тривале опитування](../guide/deployment-types.md).
+Ви можете запустити свого бота, використовуючи [вебхуки або тривале опитування](../guide/deployment-types).
 
 ### Вебхуки
 
@@ -13,10 +18,9 @@
 1. Переконайтеся, що у вас є файл, який експортує ваш обʼєкт `Bot`, щоб ви могли імпортувати його пізніше для запуску.
 2. Створіть файл з назвою `app.ts` або `app.js` або насправді будь-якою назвою, яку ви хочете, але ви повинні памʼятати і використовувати його як головний файл для розгортання, з наступним вмістом:
 
-::::code-group
-:::code-group-item Deno
+:::code-group
 
-```ts{11}
+```ts{11} [Deno]
 import { serve } from "https://deno.land/std/http/server.ts";
 import { webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 // Ви можете змінити це на правильний спосіб імпорту вашого обʼєкта `Bot`.
@@ -38,10 +42,7 @@ serve(async (req) => {
 }, { port });
 ```
 
-:::
-:::code-group-item Node.js
-
-```ts{10}
+```ts{10} [Node.js]
 import express from "express";
 import { webhookCallback } from "grammy";
 // Ви можете змінити це на правильний спосіб імпорту вашого обʼєкта `Bot`.
@@ -58,7 +59,6 @@ app.listen(port, () => console.log(`працюю на порті ${port}`));
 ```
 
 :::
-::::
 
 Ми радимо вам зареєструвати ваш обробник на деякому секретному шляху, а не на кореневому (`/`).
 Як показано на підсвіченому рядку вище, ми використовуємо токен бота (`/<токен бота>`) як секретний шлях.
@@ -67,10 +67,9 @@ app.listen(port, () => console.log(`працюю на порті ${port}`));
 
 Створіть файл з назвою `app.ts` або `app.js` або насправді будь-якою назвою, яку ви хочете, але ви повинні памʼятати і використовувати його як головний файл для розгортання, з наступним вмістом:
 
-::::code-group
-:::code-group-item Deno
+:::code-group
 
-```ts{4}
+```ts{4} [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
 const token = Deno.env.get("BOT_TOKEN");
@@ -89,10 +88,7 @@ Deno.addSignalListener("SIGTERM", () => bot.stop());
 bot.start();
 ```
 
-:::
-:::code-group-item Node.js
-
-```ts{4}
+```ts{4} [Node.js]
 import { Bot } from "grammy";
 
 const token = process.env.BOT_TOKEN;
@@ -112,7 +108,6 @@ bot.start();
 ```
 
 :::
-::::
 
 Як ви можете побачити на підсвіченому рядку вище, ми отримуємо деякі конфіденційні значення (токен вашого бота) зі змінних середовища.
 Fly дозволяє нам зберігати цей секрет, виконавши цю команду:
@@ -134,14 +129,13 @@ flyctl secrets set BOT_TOKEN="AAAA:12345"
 2. Виконайте команду `flyctl launch`, щоб згенерувати файли `Dockerfile` та `fly.toml` для розгортання.
    Але **НЕ** розгортайте ваш проєкт.
 
-::::code-group
-:::code-group-item Deno
+:::code-group
 
-```sh
+```sh [Deno]
 flyctl launch
 ```
 
-```log:no-line-numbers{10}
+```log:no-line-numbers{10} [Log]
 Creating app in /my/telegram/bot
 Scanning source code
 Detected a Deno app
@@ -156,13 +150,14 @@ Your app is ready. Deploy with `flyctl deploy`
 ```
 
 :::
-:::code-group-item Node.js
 
-```sh
+:::code-group
+
+```sh [Node.js]
 flyctl launch
 ```
 
-```log:no-line-numbers{12}
+```log:no-line-numbers{12} [Log]
 Creating app in /my/telegram/bot
 Scanning source code
 Detected a NodeJS app
@@ -179,7 +174,6 @@ Your app is ready. Deploy with `flyctl deploy`
 ```
 
 :::
-::::
 
 3. **Deno**: змініть версію Deno та видаліть `CMD`, якщо він існує, у файлі `Dockerfile`.
    Наприклад, у цьому випадку ми оновлюємо `DENO_VERSION` до `1.25.2`.
@@ -187,10 +181,9 @@ Your app is ready. Deploy with `flyctl deploy`
    **Node.js**: щоб змінити версію Node.js, вам потрібно вставити властивість `"node"` в межах властивості `"engines"` у `package.json`.
    Ми оновлюємо версію Node.js до `16.14.0` у наступному прикладі.
 
-::::code-group
-:::code-group-item Deno
+:::code-group
 
-```dockerfile{2,26}
+```dockerfile{2,26} [Deno]
 # Dockerfile
 ARG DENO_VERSION=1.25.2
 ARG BIN_IMAGE=denoland/deno:bin-${DENO_VERSION}
@@ -219,10 +212,7 @@ ENTRYPOINT ["/bin/deno"]
 # CMD видалено
 ```
 
-:::
-:::code-group-item Node.js
-
-```json{19}
+```json [Node.js]{19}
 // package.json
 {
   "name": "grammy",
@@ -247,17 +237,15 @@ ENTRYPOINT ["/bin/deno"]
 ```
 
 :::
-::::
 
 4. Відредагуйте `app` у файлі `fly.toml`.
    Шлях `./app.ts` або `./app.js` для Node.js у наведеному нижче прикладі вказує на розташування головного файлу.
    Ви можете змінити їх, щоб вони відповідали каталогу вашого проєкту.
    Якщо ви використовуєте вебхуки, переконайтеся, що порт відповідає тому, що ви вказали у своєму [конфігураційному файлі](#вебхуки) (`8000`).
 
-::::code-group
-:::code-group-item Deno (Вебхук)
+:::code-group
 
-```toml{7,11,12}
+```toml{7,11,12} [Deno (Вебхук)]
 # fly.toml
 app = "grammy"
 kill_signal = "SIGINT"
@@ -293,10 +281,7 @@ kill_timeout = 5
     timeout = "2s"
 ```
 
-:::
-:::code-group-item Deno (Тривале опитування)
-
-```toml{7}
+```toml{7} [Deno (Тривале опитування)]
 # fly.toml
 app = "grammy"
 kill_signal = "SIGINT"
@@ -309,10 +294,7 @@ kill_timeout = 5
 # оскільки ми не прослуховуємо HTTP
 ```
 
-:::
-:::code-group-item Node.js (Вебхук)
-
-```toml{7,11,18,19}
+```toml{7,11,18,19} [Node.js (Вебхук)]
 # fly.toml
 app = "grammy"
 kill_signal = "SIGINT"
@@ -355,10 +337,7 @@ kill_timeout = 5
     timeout = "2s"
 ```
 
-:::
-:::code-group-item Node.js (Тривале опитування)
-
-```toml{7,11,22,23}
+```toml{7,11,22,23} [Node.js (Тривале опитування)]
 # fly.toml
 app = "grammy"
 kill_signal = "SIGINT"
@@ -378,7 +357,6 @@ kill_timeout = 5
 ```
 
 :::
-::::
 
 5. Запустіть `flyctl deploy` для розгортання вашого коду.
 

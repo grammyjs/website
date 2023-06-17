@@ -1,13 +1,17 @@
+---
+prev: false
+next: false
+---
+
 # Plugin Parse Mode (`parse-mode`)
 
 Plugin ini menyediakan sebuah transformer untuk menyetel pengaturan bawaan `parse_mode` dan sebuah middleware untuk menghidrasi `Context` dengan varian method `reply` yang lebih familiar, contohnya: `replyWithHTML`, `replyWithMarkdown`, dsb.
 
 ## Penggunaan (Melakukan Pemformatan dengan Mudah)
 
-::::code-group
-:::code-group-item TypeScript
+:::code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context } from "grammy";
 import { bold, fmt, hydrateReply, italic, link } from "@grammyjs/parse-mode";
 
@@ -37,10 +41,7 @@ ${bold(fmt`bold ${link("blink", "example.com")} bold`)}`);
 bot.start();
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot, Context } = require("grammy");
 const { bold, fmt, hydrateReply, italic, link } = require(
   "@grammyjs/parse-mode",
@@ -70,10 +71,7 @@ ${bold(fmt`bold ${link("blink", "example.com")} bold`)}`);
 bot.start();
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   bold,
@@ -110,14 +108,12 @@ bot.start();
 ```
 
 :::
-::::
 
 ## Penggunaan (Parse Mode dan Method Reply Bawaan)
 
-::::code-group
-:::code-group-item TypeScript
+:::code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context } from "grammy";
 import { hydrateReply, parseMode } from "@grammyjs/parse-mode";
 
@@ -150,10 +146,7 @@ bot.command("demo", async (ctx) => {
 bot.start();
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot, Context } = require("grammy");
 const { hydrateReply, parseMode } = require("@grammyjs/parse-mode");
 
@@ -184,10 +177,7 @@ bot.command("demo", async (ctx) => {
 bot.start();
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   hydrateReply,
@@ -224,7 +214,6 @@ bot.start();
 ```
 
 :::
-::::
 
 ## Ringkasan Plugin
 

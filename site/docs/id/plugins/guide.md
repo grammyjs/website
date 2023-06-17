@@ -1,5 +1,7 @@
 ---
-prev: ./
+prev:
+  link: ../plugins/
+next: false
 ---
 
 # Panduan Hitchhiker Menuju Plugin grammY
@@ -13,8 +15,8 @@ Jika kamu berkeinginan membuat dan mempublikasikan plugin-mu sendiri, ataupun cu
 
 Terdapat dua jenis plugin utama di grammY:
 
-- Plugin Middleware: Plugin yang bertugas mengembalikan sebuah [function middleware](../guide/middleware.md) yang akan dimanfaatkan oleh bot grammY.
-- Plugin Transformer: Plugin yang bertugas mengembalikan sebuah [function transformer](../advanced/transformers.md) yang akan dimanfaatkan oleh bot grammY.
+- Plugin Middleware: Plugin yang bertugas mengembalikan sebuah [function middleware](../guide/middleware) yang akan dimanfaatkan oleh bot grammY.
+- Plugin Transformer: Plugin yang bertugas mengembalikan sebuah [function transformer](../advanced/transformers) yang akan dimanfaatkan oleh bot grammY.
 
 Terkadang kamu akan menemui plugin yang menggunakan kedua jenis tersebut sekaligus. Bahkan ada juga package lain yang sama sekali bukan function middleware maupun transformer, tetapi kami tetap menyebutnya sebagai plugin karena mereka memperluas fungsionalitas grammY dengan cara-cara mereka sendiri.
 

@@ -1,0 +1,93 @@
+/**
+* <code> inside custom block
+* -------------------------------------------------------------------------- */
+
+:root {
+  .tip.custom-block code {
+    color: #009ecabd;
+  }
+  .warning.custom-block code {
+    color: #d97706b7;
+  }
+  .danger.custom-block code {
+    color: #fa5f79e2;
+  }
+
+  &.dark {
+    .tip.custom-block code {
+      color: #8ae2ff9c;
+    }
+    .warning.custom-block code {
+      color: #e7b624;
+    }
+  }
+}
+
+/**
+* blockquote inside custom block
+* -------------------------------------------------------------------------- */
+
+.tip.custom-block blockquote {
+  --vp-c-divider: #167ea746;
+
+  p {
+    color: #167ea7a6;
+
+    code {
+      color: #577e8e;
+      background-color: #1c262a;
+    }
+  }
+
+  .dark & {
+    --vp-c-divider: #517480;
+
+    p {
+      color: #517480;
+
+      code {
+        color: #577e8e;
+        background-color: #1c262a;
+      }
+    }
+  }
+}
+
+.dark .warning.custom-block blockquote {
+  --vp-c-divider: #a78e44;
+
+  p {
+    color: #9e8a4c;
+
+    code {
+      color: #ae9c4a;
+      background-color: #2a2923;
+    }
+  }
+}
+
+.danger.custom-block blockquote {
+  --vp-c-divider: #cd657642;
+
+  p {
+    color: #cd6576d2;
+
+    code {
+      color: #ad4c53;
+      background-color: #2e1e22;
+    }
+  }
+
+  .dark & {
+    --vp-c-divider: #aa5056;
+
+    p {
+      color: #a04c52;
+
+      code {
+        color: #ad4c53;
+        background-color: #2e1e22;
+      }
+    }
+  }
+}

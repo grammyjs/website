@@ -1,5 +1,6 @@
 ---
-next: ./examples.md
+next:
+  link: ./examples
 ---
 
 # Demo di Browser Secara Langsung

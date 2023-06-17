@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Hosting: Firebase Functions
 
 This tutorial will guide you through the process of deploying your bot to [Firebase Functions](https://firebase.google.com/docs/functions).
@@ -27,7 +32,7 @@ To write functions and deploy them to the Firebase Functions runtime, you'll nee
 > It's important to note that only the Node.js versions 14, 16, and 18 are currently supported by Firebase Functions.
 > For more on the supported Node.js versions, refer to [here](https://firebase.google.com/docs/functions/manage-functions#set_nodejs_version).
 
-Once you have Node.js and NPM installed, install Firebase CLI globally:
+Once you have Node.js and npm installed, install Firebase CLI globally:
 
 ```sh
 npm install -g firebase-tools
@@ -127,7 +132,7 @@ All that's left to do is to tell Telegram where to send the updates.
 You can do this by calling `setWebhook`.
 For example, open a new tab in your browser and visit this URL:
 
-```text:no-line-numbers
+```txt:no-line-numbers
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<WEBHOOK_URL>/<firebase-projectname>/us-central1/helloWorld
 ```
 
@@ -160,7 +165,7 @@ For a more detailed explanation you can take a look at step 8 of the [get starte
 After deploying, you need to tell Telegram where to send updates to your bot by calling the `setWebhook` method.
 To do this, open a new browser tab and visit this URL:
 
-```text:no-line-numbers
+```txt:no-line-numbers
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<REGION>.<MY_PROJECT>.cloudfunctions.net/helloWorld
 ```
 

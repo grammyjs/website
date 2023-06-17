@@ -1,9 +1,14 @@
+---
+prev: false
+next: false
+---
+
 # Hosting: Supabase Edge Functions
 
 This guide tells you how you can host your grammY bots on [Supabase](https://supabase.com/).
 
 Please note that you need to have a [GitHub](https://github.com) account before you can use [Supabase Edge Functions](https://supabase.com/docs/guides/functions/quickstart).
-Moreover, Supabase Edge Functions are based on [Deno Deploy](https://deno.com/deploy), so just like [our Deno Deploy guide](./deno-deploy.md), this guide is only for Deno users of grammY.
+Moreover, Supabase Edge Functions are based on [Deno Deploy](https://deno.com/deploy), so just like [our Deno Deploy guide](./deno-deploy), this guide is only for Deno users of grammY.
 
 Supabase Edge Functions is ideal for most simple bots, and you should note that not all Deno features are available for apps running on Supabase Edge Functions.
 For example, there is no file system on Supabase Edge Functions.
@@ -26,7 +31,7 @@ Once you have created a Supabase Function project, you can write your bot.
 
 ## Preparing Your Code
 
-> Remember that you need to [run your bot on webhooks](../guide/deployment-types.md#how-to-use-webhooks), so you should use `webhookCallback` and not call `bot.start()` in your code.
+> Remember that you need to [run your bot on webhooks](../guide/deployment-types#how-to-use-webhooks), so you should use `webhookCallback` and not call `bot.start()` in your code.
 
 You can use this short example bot as a starting point.
 
@@ -79,7 +84,7 @@ All that's left to do is to tell Telegram where to send the updates.
 You can do this by calling `setWebhook`.
 For example, open a new tab in your browser and visit this URL:
 
-```plaintext
+```txt
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<PROJECT_NAME>.functions.supabase.co/telegram-bot?secret=<BOT_TOKEN>
 ```
 

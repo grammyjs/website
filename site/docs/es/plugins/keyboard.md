@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Teclados en línea y personalizados (incluido)
 
 Tu bot puede enviar una serie de botones, ya sea para ser [mostrados debajo de un mensaje](#teclados-en-linea), o para [reemplazar el teclado del usuario](#teclados-personalizados).
@@ -32,7 +37,7 @@ grammY tiene una forma sencilla e intuitiva de construir los teclados en línea 
 Proporciona una clase llamada `InlineKeyboard` para esto.
 
 > Los botones añadidos al llamar a `switchInline`, `switchInlineCurrent`, y `switchInlineChosen` inician consultas inline.
-> Consulta la sección sobre [Inline Queries](../guide/inline-queries.md) para más información sobre su funcionamiento.
+> Consulta la sección sobre [Inline Queries](../guide/inline-queries) para más información sobre su funcionamiento.
 
 ### Construyendo un Teclado en Línea
 
@@ -112,7 +117,7 @@ Especifique un teclado en línea vacío para eliminar todos los botones debajo d
 ::: tip Menu Plugin
 El plugin de teclado te da acceso directo a los objetos de actualización que envía Telegram.
 Sin embargo, responder a los clics de esta manera puede ser tedioso.
-Si buscas una implementación de más alto nivel de los teclados en línea, echa un vistazo al [plugin de menús](./menu.md).
+Si buscas una implementación de más alto nivel de los teclados en línea, echa un vistazo al [plugin de menús](./menu).
 Hace que sea sencillo crear menús interactivos.
 :::
 
@@ -308,7 +313,7 @@ El resultado será siempre el mismo.
 
 #### Enviar selectivamente un Teclado Personalizado
 
-Puedes llamar a `selected` si quieres mostrar el teclado personalizado sólo a aquellos usuarios que sean @mencionados en el texto del objeto mensaje, y al remitente del mensaje original en caso de que tu mensaje sea una [respuesta](../guide/basics.md#enviando-mensajes-con-respuesta).
+Puedes llamar a `selected` si quieres mostrar el teclado personalizado sólo a aquellos usuarios que sean @mencionados en el texto del objeto mensaje, y al remitente del mensaje original en caso de que tu mensaje sea una [respuesta](../guide/basics#enviando-mensajes-con-respuesta).
 
 ```ts
 new Keyboard()

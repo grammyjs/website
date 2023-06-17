@@ -1,6 +1,8 @@
 ---
-prev: ./transformers.md
-next: ./deployment.md
+prev:
+  link: ./transformers
+next:
+  link: ./deployment
 ---
 
 # Підтримка проксі

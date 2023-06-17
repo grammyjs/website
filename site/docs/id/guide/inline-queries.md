@@ -1,6 +1,8 @@
 ---
-prev: ./errors.md
-next: ./files.md
+prev:
+  link: ./errors
+next:
+  link: ./files
 ---
 
 # Inline Query
@@ -54,7 +56,7 @@ Mereka bahkan punya website dan terjemahan yang keren! 👇",
 bot.on("inline_query", (ctx) => ctx.answerInlineQuery([]));
 ```
 
-> [Ingat](./basics.md#mengirim-pesan)! kamu bisa menggunakan opsi-opsi object yang disediakan oleh type `Other`.
+> [Ingat](./basics#mengirim-pesan)! kamu bisa menggunakan opsi-opsi object yang disediakan oleh type `Other`.
 > Contohnya, kamu bisa melakukan paginasi menggunakan opsi offset.
 
 Perlu diketahui bahwa grammY menyediakan auto-complete untuk semua struktur di atas.

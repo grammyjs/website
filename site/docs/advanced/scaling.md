@@ -1,11 +1,13 @@
 ---
-prev: ./structuring.md
-next: ./reliability.md
+prev:
+  link: ./structuring
+next:
+  link: ./reliability
 ---
 
 # Scaling Up II: High Load
 
-Making your bot able to handle high load depends on whether you run your bot [via long polling or via webhooks](../guide/deployment-types.md).
+Making your bot able to handle high load depends on whether you run your bot [via long polling or via webhooks](../guide/deployment-types).
 Either way, you should read up on some pitfalls [below](#concurrency-is-hard).
 
 ## Long Polling
@@ -26,7 +28,7 @@ In order to achieve maximum responsiveness, we'd also like to pull in new messag
 Ideally, we would also like to limit the concurrency to some fixed number to constrain the maximum server load.
 
 Concurrent processing is not shipped with the grammY core package.
-Instead, **the [grammY runner](../plugins/runner.md) package can be used** to run your bot.
+Instead, **the [grammY runner](../plugins/runner) package can be used** to run your bot.
 It supports all of the above out of the box, and it is extremely simple to use.
 
 ```ts
@@ -38,17 +40,17 @@ run(bot);
 ```
 
 The default concurrency limit is 500.
-If you want to dig deeper into the package, check out this [page](../plugins/runner.md).
+If you want to dig deeper into the package, check out this [page](../plugins/runner).
 
 Concurrency is hard, so check out the [subsection below](#concurrency-is-hard) to find out what you should keep in mind when using grammY runner.
 
 ## Webhooks
 
 If you run your bot on webhooks, it will automatically process updates concurrently as soon as they are received.
-Naturally, in order for this to work well under high load, you should make yourself familiar with [using webhooks](../guide/deployment-types.md#how-to-use-webhooks).
+Naturally, in order for this to work well under high load, you should make yourself familiar with [using webhooks](../guide/deployment-types#how-to-use-webhooks).
 This means that you still have to be aware of some consequences of concurrency, confer the [subsection below](#concurrency-is-hard).
 
-Also, [remember that](../guide/deployment-types.md#ending-webhook-requests-in-time) Telegram will deliver updates from the same chat in sequence, but updates from different chats concurrently.
+Also, [remember that](../guide/deployment-types#ending-webhook-requests-in-time) Telegram will deliver updates from the same chat in sequence, but updates from different chats concurrently.
 
 ## Concurrency Is Hard
 
@@ -56,7 +58,7 @@ If your bot processes all updates concurrently, this can cause a number of probl
 For example, if two messages from the same chat end up being received by the same `getUpdates` call, they would be processed concurrently.
 The order of messages inside the same chat can no longer be guaranteed.
 
-The main point where this can clash is when you use [sessions](../plugins/session.md), which may run into a write-after-read hazard.
+The main point where this can clash is when you use [sessions](../plugins/session), which may run into a write-after-read hazard.
 Imagine this sequence of events:
 
 1. Alice sends message A
@@ -81,10 +83,9 @@ grammY runner ships with `sequentialize()` middleware which makes sure that upda
 You can configure it with the very same function that you use to determine the session key.
 It will then avoid the above race condition by slowing down those (and only those) updates that would cause a collision.
 
-::::code-group
-:::code-group-item TypeScript
+:::code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context, session } from "grammy";
 import { run, sequentialize } from "@grammyjs/runner";
 
@@ -107,11 +108,7 @@ bot.on("message", (ctx) => ctx.reply("Got your message."));
 run(bot);
 ```
 
-:::
-
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot, Context, session } = require("grammy");
 const { run, sequentialize } = require("@grammyjs/runner");
 
@@ -134,10 +131,7 @@ bot.on("message", (ctx) => ctx.reply("Got your message."));
 run(bot);
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot, Context, session } from "https://deno.land/x/grammy/mod.ts";
 import { run, sequentialize } from "https://deno.land/x/grammy_runner/mod.ts";
 
@@ -161,7 +155,6 @@ run(bot);
 ```
 
 :::
-::::
 
 Feel free to join the [Telegram chat](https://t.me/grammyjs) to discuss how to use grammY runner with your bot.
 We are always happy to hear from people who maintain large bots so we can improve grammY based on their experience with the package.

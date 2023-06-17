@@ -1,5 +1,6 @@
 ---
-next: ./introduction.md
+next:
+  link: ./introduction
 ---
 
 ![grammY](/images/grammY.png)
@@ -14,9 +15,9 @@ Anggap saja rumah sendiri.
 grammY adalah sebuah framework untuk membuat bot Telegram.
 Framework ini bisa dipakai menggunakan TypeScript ataupun JavaScript, dan dapat berjalan di Node.js, Deno, bahkan browser sekalipun.
 
-Kalau kamu masih baru belajar membuat bot Telegram, apalagi belum berpengalaman dalam menulis kode program, silahkan memulai dari subbab [Pengenalan](./introduction.md).
+Kalau kamu masih baru belajar membuat bot Telegram, apalagi belum berpengalaman dalam menulis kode program, silahkan memulai dari subbab [Pengenalan](./introduction).
 
-Kalau kamu sudah tahu cara membuat aplikasi dengan Node.js atau Deno, ataupun sudah pernah membuat bot Telegram dengan framework bot lain, kamu bisa langsung [Memulai](./getting-started.md) dan menjalankan bot Telegram hanya dalam hitungan menit.
+Kalau kamu sudah tahu cara membuat aplikasi dengan Node.js atau Deno, ataupun sudah pernah membuat bot Telegram dengan framework bot lain, kamu bisa langsung [Memulai](./getting-started) dan menjalankan bot Telegram hanya dalam hitungan menit.
 
 ## Mengenai Dokumentasi Ini
 
@@ -40,7 +41,7 @@ Tooltip tersebut dapat ditemukan dengan mengarahkan kursor ke berbagai elemen gr
 API ini akan digunakan oleh grammY untuk memberi perintah ke bot kamu.
 Silahkan dipelajari untuk mengetahui opsi-opsi apa saja yang dapat kamu gunakan dalam pemanggilan API.
 
-::::: tip Bergabung dengan Komunitas!
+::: tip Bergabung dengan Komunitas!
 Kami memiliki [komunitas](https://t.me/grammyjs) di Telegram yang dengan senang hati menyambut hangat semua anggota baru (khusus chat Rusia ada [di sini](https://t.me/grammyjs_ru)).
 Silahkan bergabung untuk memperoleh bantuan, mengajukan pertanyaan, serta mempelajari tips dan trik dalam mengerjakan proyek botmu selanjutnya!
-:::::
+:::

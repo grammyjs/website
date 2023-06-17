@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Hosting: VPS
 
 Virtual Private Server, atau biasa dikenal dengan VPS, adalah sebuah perangkat virtual yang berjalan di cloud, dimana pemiliknya memiliki kendali penuh atas perangkat tersebut.
@@ -50,7 +55,7 @@ nano bot1.service
 
 3. Isi dengan konten berikut:
 
-```text
+```txt
 [Service]
 ExecStart=<start_command>
 Restart=on-failure

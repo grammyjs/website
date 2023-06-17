@@ -1,6 +1,8 @@
 ---
-prev: ./getting-started.md
-next: ./context.md
+prev:
+  link: ./getting-started
+next:
+  link: ./context
 ---
 
 # Mengirim dan Menerima Pesan
@@ -30,7 +32,7 @@ bot.hears(/echo *(.+)?/, async (ctx) => { ... });
 
 Kamu bisa menggunakan fitur auto-complete di code editor untuk melihat semua pilihan yang tersedia, ataupun melihat secara manual [daftar method](https://deno.land/x/grammy/mod.ts?s=Composer) dari sebuah class `Composer`.
 
-> [Baca lebih lanjut](./filter-queries.md) tentang pemfilteran untuk jenis pesan tertentu menggunakan `bot.on()`.
+> [Baca lebih lanjut](./filter-queries) tentang pemfilteran untuk jenis pesan tertentu menggunakan `bot.on()`.
 
 ## Mengirim Pesan
 
@@ -55,7 +57,7 @@ Setiap method memiliki opsi tambahan untuk object type `Other`, yang memungkinka
 Opsi-opsi dari object ini sama persis dengan opsi yang ada di daftar method di link atas tadi.
 Kamu juga dapat menggunakan fitur auto-complete di code editor untuk melihat semua opsi yang tersedia, ataupun melihat secara manual [daftar method](https://deno.land/x/grammy/mod.ts?s=Api) dari sebuah class `Api`.
 
-Selain itu, coba lihat [materi selanjutnya](./context.md) untuk mempelajari bagaimana object context dari suatu listener bisa membuat pengiriman pesan menjadi sangat mudah dilakukan!
+Selain itu, coba lihat [materi selanjutnya](./context) untuk mempelajari bagaimana object context dari suatu listener bisa membuat pengiriman pesan menjadi sangat mudah dilakukan!
 
 ## Mengirim Pesan dengan Reply
 
@@ -75,7 +77,7 @@ bot.hears("ping", async (ctx) => {
 
 > Perhatikan bahwa dengan mengirim pesan melalui `ctx.reply` **BUKAN** berarti kamu secara otomatis me-reply pesan begitu saja.
 > Sebaliknya, kamu harus mengisi `reply_to_message_id` untuk menentukan pesan mana yang mau di-reply.
-> Function `ctx.reply` cuma alias dari `ctx.api.sendMessage`, lihat [materi berikutnya](./context.md#aksi-yang-tersedia).
+> Function `ctx.reply` cuma alias dari `ctx.api.sendMessage`, lihat [materi berikutnya](./context#aksi-yang-tersedia).
 
 ## Mengirim Pesan dengan Format Tertentu
 
@@ -114,7 +116,7 @@ await bot.api.sendMessage(
 
 ## Mengirim File
 
-Pemrosesan file dijelaskan secara lengkap di [materi lain](./files.md#mengirim-file).
+Pemrosesan file dijelaskan secara lengkap di [materi lain](./files#mengirim-file).
 
 ## Reply Paksa (Force Reply)
 
