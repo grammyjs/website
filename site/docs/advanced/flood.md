@@ -107,10 +107,10 @@ Do not send many messages in parallel.
 Step 2 in the above list is done automatically by the auto-retry plugin, so the code will look like this:
 
 ```ts
-bot.api.config.use(autoRetry())
+bot.api.config.use(autoRetry());
 
 for (const [chatId, text] of broadcast) {
-    await bot.api.sendMessage(chatId, text);
+  await bot.api.sendMessage(chatId, text);
 }
 ```
 
