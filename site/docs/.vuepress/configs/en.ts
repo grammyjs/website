@@ -255,7 +255,62 @@ export const localeEn: LocaleConfig<DefaultThemeLocaleData> = {
         ],
       },
       {
-        text: "Examples",
+        text: "Hosting",
+        children: [
+          {
+            text: "Overview",
+            children: [
+              {
+                text: "Comparison",
+                link: "/hosting/comparison.html",
+              },
+            ],
+          },
+          {
+            text: "Tutorials",
+            children: [
+              {
+                text: "Deno Deploy",
+                link: "/hosting/deno-deploy.html",
+              },
+              {
+                text: "Supabase Edge Functions",
+                link: "/hosting/supabase.html",
+              },
+              {
+                text: "Cloudflare Workers",
+                link: "/hosting/cloudflare-workers.html",
+              },
+              {
+                text: "Heroku",
+                link: "/hosting/heroku.html",
+              },
+              {
+                text: "Fly",
+                link: "/hosting/fly.html",
+              },
+              {
+                text: "Firebase Functions",
+                link: "/hosting/firebase.html",
+              },
+              {
+                text: "Google Cloud Functions",
+                link: "/hosting/gcf.html",
+              },
+              {
+                text: "Vercel",
+                link: "/hosting/vercel.html",
+              },
+              {
+                text: "Virtual Private Server",
+                link: "/hosting/vps.html",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        text: "More",
         children: [
           {
             text: "Examples",
@@ -270,11 +325,6 @@ export const localeEn: LocaleConfig<DefaultThemeLocaleData> = {
               },
             ],
           },
-        ],
-      },
-      {
-        text: "Resources",
-        children: [
           {
             text: "grammY",
             children: [
@@ -331,61 +381,6 @@ export const localeEn: LocaleConfig<DefaultThemeLocaleData> = {
                 text: "Example Updates",
                 link:
                   "https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates",
-              },
-            ],
-          },
-        ],
-      },
-      {
-        text: "Hosting",
-        children: [
-          {
-            text: "Overview",
-            children: [
-              {
-                text: "Comparison",
-                link: "/hosting/comparison.html",
-              },
-            ],
-          },
-          {
-            text: "Tutorials",
-            children: [
-              {
-                text: "Deno Deploy",
-                link: "/hosting/deno-deploy.html",
-              },
-              {
-                text: "Supabase Edge Functions",
-                link: "/hosting/supabase.html",
-              },
-              {
-                text: "Cloudflare Workers",
-                link: "/hosting/cloudflare-workers.html",
-              },
-              {
-                text: "Heroku",
-                link: "/hosting/heroku.html",
-              },
-              {
-                text: "Fly",
-                link: "/hosting/fly.html",
-              },
-              {
-                text: "Firebase Functions",
-                link: "/hosting/firebase.html",
-              },
-              {
-                text: "Google Cloud Functions",
-                link: "/hosting/gcf.html",
-              },
-              {
-                text: "Vercel",
-                link: "/hosting/vercel.html",
-              },
-              {
-                text: "Virtual Private Server",
-                link: "/hosting/vps.html",
               },
             ],
           },
