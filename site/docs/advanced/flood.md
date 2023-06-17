@@ -59,7 +59,7 @@ From the [Bot FAQ](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-h
    **This only applies to bulk notifications,** i.e. if you proactively message many users.
    If you are just responding to messages from users, then it is no problem to send 1,000 or more messages per second.
 
-   When the Bot FAQ says that you should _"consider spreading out notifications over large intervals"_ then this does not mean that you should add any artificial delays.
+   When the Bot FAQ says that you should _"consider spreading out notifications over large intervals"_, it this does not mean that you should add any artificial delays.
    Instead, the main takeaway here is that sending bulk notifications is a process that will take many hours.
    You cannot expect to message all users instantly at the same time.
 
