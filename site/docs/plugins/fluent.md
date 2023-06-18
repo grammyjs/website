@@ -131,7 +131,7 @@ bot.command("i18n_test", async (ctx) => {
 Now you can start your bot and use the `/i18n_test` command.
 It should render the following message:
 
-```text:no-line-numbers
+```text
 Welcome, Slava, to the Apples Bot!
 You have 1 apple.
 ```
