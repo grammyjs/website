@@ -75,7 +75,7 @@ We just modify the data in `ctx.session`, and the plugin will take care of the r
 > [Skip ahead](#how-to-use-sessions) if you already know that you want to use sessions.
 
 You may think, this is great, I never have to worry about databases again!
-And you are right, sessions are an ideal solution—but only for some types of data.
+And you are right, sessions are an ideal solution---but only for some types of data.
 
 In our experience, there are use cases where sessions truly shine.
 On the other hand, there are cases where a traditional database may be better suited.
@@ -412,7 +412,7 @@ bot.use(session({
 > The list of supported integrations of external storage solutions is [down here](#external-storage-solutions).
 
 A benefit of using grammY is that you get access to free cloud storage.
-It requires zero setup—all authentication is done using your bot token.
+It requires zero setup---all authentication is done using your bot token.
 Check out the [repository](https://github.com/grammyjs/storages/tree/main/packages/free)!
 
 It is very easy to use:
