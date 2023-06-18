@@ -117,7 +117,7 @@ bot.start();
 正如你在上面突出显示的行中看到的那样，我们从环境变量中获取了一些敏感值（你的bot token）。
 Fly 允许我们通过运行以下命令来存储该密钥：
 
-```sh:no-line-numbers
+```sh
 flyctl secrets set BOT_TOKEN="AAAA:12345"
 ```
 
@@ -141,7 +141,7 @@ flyctl secrets set BOT_TOKEN="AAAA:12345"
 flyctl launch
 ```
 
-```log:no-line-numbers{10}
+```log{10}
 Creating app in /my/telegram/bot
 Scanning source code
 Detected a Deno app
@@ -162,7 +162,7 @@ Your app is ready. Deploy with `flyctl deploy`
 flyctl launch
 ```
 
-```log:no-line-numbers{12}
+```log{12}
 Creating app in /my/telegram/bot
 Scanning source code
 Detected a NodeJS app
@@ -419,7 +419,7 @@ jobs:
 如果你使用的是 webhook，在你的应用运行后，你应该配置 bot 的 webhook 设置以指向你的应用。
 为此，请发送请求至
 
-```md:no-line-numbers
+```md
 https://api.telegram.org/bot<token>/setWebhook?url=<url>
 ```
 

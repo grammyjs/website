@@ -117,7 +117,7 @@ bot.start();
 Як ви можете побачити на підсвіченому рядку вище, ми отримуємо деякі конфіденційні значення (токен вашого бота) зі змінних середовища.
 Fly дозволяє нам зберігати цей секрет, виконавши цю команду:
 
-```sh:no-line-numbers
+```sh
 flyctl secrets set BOT_TOKEN="AAAA:12345"
 ```
 
@@ -141,7 +141,7 @@ flyctl secrets set BOT_TOKEN="AAAA:12345"
 flyctl launch
 ```
 
-```log:no-line-numbers{10}
+```log{10}
 Creating app in /my/telegram/bot
 Scanning source code
 Detected a Deno app
@@ -162,7 +162,7 @@ Your app is ready. Deploy with `flyctl deploy`
 flyctl launch
 ```
 
-```log:no-line-numbers{12}
+```log{12}
 Creating app in /my/telegram/bot
 Scanning source code
 Detected a NodeJS app
@@ -418,7 +418,7 @@ jobs:
 Якщо ви використовуєте вебхуки, після запуску вашого застосунку, вам потрібно налаштувати вебхук вашого бота, щоб запити посилалися на ваш застосунок.
 Для цього відправте запит на
 
-```md:no-line-numbers
+```md
 https://api.telegram.org/bot<токен-бота>/setWebhook?url=<адреса>
 ```
 

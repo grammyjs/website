@@ -118,7 +118,7 @@ bot.start();
 Perhatikan baris kode yang disorot di atas, kita telah mengambil informasi sensitif (token bot kamu) dari environment variables.
 Kamu bisa menyimpan informasi tersebut dengan menjalankan perintah berikut:
 
-```sh:no-line-numbers
+```sh
 flyctl secrets set BOT_TOKEN="AAAA:12345"
 ```
 
@@ -142,7 +142,7 @@ Metode ini adalah cara yang termudah.
 flyctl launch
 ```
 
-```log:no-line-numbers{10}
+```log{10}
 Creating app in /my/telegram/bot
 Scanning source code
 Detected a Deno app
@@ -163,7 +163,7 @@ Your app is ready. Deploy with `flyctl deploy`
 flyctl launch
 ```
 
-```log:no-line-numbers{12}
+```log{12}
 Creating app in /my/telegram/bot
 Scanning source code
 Detected a NodeJS app
@@ -419,7 +419,7 @@ jobs:
 Setelah mendapati bot-mu dapat berjalan, kamu harus melakukan konfigurasi pada pengaturan webhook untuk menggunakan URL bot-mu yang baru.
 Untuk melakukannya, kirim sebuah request ke
 
-```md:no-line-numbers
+```md
 https://api.telegram.org/bot<token>/setWebhook?url=<url>
 ```
 
