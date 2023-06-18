@@ -288,7 +288,7 @@ Buat file dengan nama `Procfile` tanpa extension file di direktori root proyek k
 Contohnya, `Procfile.txt` dan `procfile` bukan nama yang valid.
 Lalu, tulis satu baris kode berikut:
 
-```
+```procfile
 <jenis dyno>: <perintah untuk menjalankan file entry kita>
 ```
 
@@ -297,14 +297,14 @@ Untuk contoh kali ini, kita akan menulisnya seperti berikut:
 ::::code-group
 :::code-group-item Webhook
 
-```
+```procfile
 web: node dist/app.js
 ```
 
 :::
 :::code-group-item Long Polling
 
-```
+```procfile
 worker: node dist/bot.js
 ```
 
@@ -330,7 +330,7 @@ Selanjutnya, kita perlu mencegah beberapa file tidak ikut terunggah ke server pr
 Buat sebuah file bernama `.gitignore` di direktori root proyek kita.
 Kemudian, tambahkan daftar berikut:
 
-```
+```text
 node_modules/
 src/
 tsconfig.json

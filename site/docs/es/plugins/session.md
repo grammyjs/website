@@ -41,7 +41,7 @@ En este caso, llamaríamos al identificador del chat la _clave de la sesión_.
 (Puedes leer más sobre las claves de sesión [aquí abajo](#claves-de-sesion).
 Efectivamente, tu bot almacenará un mapa desde un identificador de chat a unos datos de sesión personalizados, es decir, algo así:
 
-```json:no-line-numbers
+```json
 {
   "424242": { "pizzaCount": 24 },
   "987654": { "pizzaCount": 1729 }
