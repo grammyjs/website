@@ -418,7 +418,7 @@ jobs:
 If you are using webhooks, after getting your app running, you should configure your bot's webhook settings to point to your app.
 To do that, send a request to
 
-```md
+```text
 https://api.telegram.org/bot<token>/setWebhook?url=<url>
 ```
 

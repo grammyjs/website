@@ -417,7 +417,7 @@ jobs:
 Si estás utilizando webhooks, después de poner en marcha tu aplicación, debes configurar los ajustes de webhook de tu bot para que apunte a tu aplicación.
 Para ello, envía una petición a
 
-```md
+```text
 https://api.telegram.org/bot<token>/setWebhook?url=<url>
 ```
 

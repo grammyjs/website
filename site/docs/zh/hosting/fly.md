@@ -419,7 +419,7 @@ jobs:
 如果你使用的是 webhook，在你的应用运行后，你应该配置 bot 的 webhook 设置以指向你的应用。
 为此，请发送请求至
 
-```md
+```text
 https://api.telegram.org/bot<token>/setWebhook?url=<url>
 ```
 

@@ -93,7 +93,7 @@ export default webhookCallback(bot, "http");
 Наступним кроком є підключення вашого застосунку Vercel до Telegram.
 Змініть наведену нижче URL-адресу на свої дані авторизації та відвідайте її у своєму браузері:
 
-```md
+```text
 https://api.telegram.org/bot<токен-бота>/setWebhook?url=<адреса>
 ```
 
