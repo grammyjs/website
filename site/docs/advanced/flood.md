@@ -65,7 +65,9 @@ From the [Bot FAQ](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-h
 
 3. _"Also note that your bot will not be able to send more than 20 messages per minute to the same group."_
 
-   Again, pretty clear. Completely unrelated to bulk notifications or how many messages are sent in the group. And yet again, the auto-retry plugin will take care of this for you.
+   Again, pretty clear.
+   Completely unrelated to bulk notifications or how many messages are sent in the group.
+   And yet again, the auto-retry plugin will take care of this for you.
 
 ## Throttling
 
