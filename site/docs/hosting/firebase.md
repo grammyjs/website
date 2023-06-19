@@ -127,7 +127,7 @@ All that's left to do is to tell Telegram where to send the updates.
 You can do this by calling `setWebhook`.
 For example, open a new tab in your browser and visit this URL:
 
-```text:no-line-numbers
+```text
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<WEBHOOK_URL>/<firebase-projectname>/us-central1/helloWorld
 ```
 
@@ -135,7 +135,7 @@ Replace `<BOT_TOKEN>` with your real bot token, and `<WEBHOOK_URL>` with your ow
 
 You should now see this in your browser window.
 
-```json:no-line-numbers
+```json
 {
   "ok": true,
   "result": true,
@@ -160,7 +160,7 @@ For a more detailed explanation you can take a look at step 8 of the [get starte
 After deploying, you need to tell Telegram where to send updates to your bot by calling the `setWebhook` method.
 To do this, open a new browser tab and visit this URL:
 
-```text:no-line-numbers
+```text
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<REGION>.<MY_PROJECT>.cloudfunctions.net/helloWorld
 ```
 
@@ -169,7 +169,7 @@ The Firebase CLI should provide you with the full URL of your cloud function, so
 
 If everything is set up correctly, you should see this response in your browser window:
 
-```json:no-line-numbers
+```json
 {
   "ok": true,
   "result": true,

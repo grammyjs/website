@@ -89,7 +89,7 @@ deployctl deploy --project <назва-проєкту> ./mod.ts --prod --token <
 Після запуску застосунку вам потрібно налаштувати вебхук вашого бота так, щоб він вказував на URL-адресу вашого застосунку.
 Для цього надішліть запит на адресу
 
-```text:no-line-numbers
+```text
 https://api.telegram.org/bot<токен-бота>/setWebhook?url=<адреса>
 ```
 
