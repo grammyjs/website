@@ -138,7 +138,7 @@ bot.command("i18n_test", async (ctx) => {
 Sekarang, kamu bisa memulai bot-mu dan menggunakan command `/i18n_test`.
 Seharusnya, hasil render akan menampilkan pesan berikut:
 
-```text:no-line-numbers
+```text
 Selamat datang, Budi, di Bot Krupuk!
 Kamu cuma punya 1 krupuk.
 ```

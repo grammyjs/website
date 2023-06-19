@@ -131,7 +131,7 @@ bot.command("i18n_test", async (ctx) => {
 Ahora puedes iniciar tu bot y utilizar el comando `/i18n_test`.
 Debería mostrar el siguiente mensaje:
 
-```text:no-line-numbers
+```text
 ¡Bienvenido, Slava, al Bot de las Manzanas!
 Tienes 1 manzana.
 ```
