@@ -1,0 +1,9 @@
+{
+  "line-length": false,
+  "no-inline-html": false,
+  "no-duplicate-heading": false,
+  "no-trailing-punctuation": false,
+  "first-line-heading": false,
+  "link-fragments": false,
+  "ol-prefix": false
+}
