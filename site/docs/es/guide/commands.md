@@ -7,7 +7,7 @@ next: ./middleware.md
 
 Los comandos son entidades especiales en los mensajes de Telegram, que sirven como instrucciones para los bots.
 
-# Uso
+## Uso
 
 > Revisa la sección de comandos en las [Características de los bots de Telegram](https://core.telegram.org/bots/features#commands) escrita por el equipo de Telegram.
 

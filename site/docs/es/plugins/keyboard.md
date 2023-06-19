@@ -24,7 +24,7 @@ Ambos son mutuamente excluyentes.
 Además, el tipo de marcado de respuesta enviado no puede cambiarse posteriormente editando el mensaje.
 Por ejemplo, no es posible enviar primero un teclado personalizado junto con un mensaje, y luego editar el mensaje para utilizar un teclado en línea.
 
-# Teclados en línea
+## Teclados en línea
 
 > Revisa la sección del teclado en línea en las [Características de los bots de Telegram](https://core.telegram.org/bots/features#inline-keyboards) escrita por el equipo de Telegram.
 
