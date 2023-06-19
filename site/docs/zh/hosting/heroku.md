@@ -284,7 +284,7 @@ npx tsc
 也就是说，`Procfile.txt` 和 `procfile` 是无效的。
 然后以下面这个格式写入单行代码：
 
-```
+```procfile
 <dynos type>: <command for executing our main entry file>
 ```
 
@@ -293,14 +293,14 @@ npx tsc
 ::::code-group
 :::code-group-item Webhook
 
-```
+```procfile
 web: node dist/app.js
 ```
 
 :::
 :::code-group-item $1
 
-```
+```procfile
 worker: node dist/bot.js
 ```
 
@@ -326,7 +326,7 @@ git init
 在项目的根目录下创建一个名为 `.gitignore` 的文件。
 然后添加下列内容：
 
-```
+```text
 node_modules/
 src/
 tsconfig.json
