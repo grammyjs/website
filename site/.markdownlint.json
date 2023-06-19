@@ -2,7 +2,9 @@
   "line-length": false,
   "no-inline-html": false,
   "no-duplicate-heading": false,
-  "no-trailing-punctuation": false,
+  "no-trailing-punctuation": {
+    "punctuation": ".,;:。，；："
+  },
   "first-line-heading": false,
   "link-fragments": false,
   "ol-prefix": false
