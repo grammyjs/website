@@ -108,22 +108,22 @@ systemd is a powerful service manager which is pre-installed on many Linux distr
 
 1. Get the full path of your runtime:
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::::code-group
+:::code-group-item Node.js
 
 ```sh
 which deno
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::code-group-item
+:::code-group-item Deno
 
 ```sh
 which node
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::code-group-item
+::::
 
 2. You should have the full path of your entry file, too.
 
@@ -225,29 +225,29 @@ systemctl disable <service-name>
 
 #### Installing
 
-<CodeGroup>
-  <CodeGroupItem title="NPM" active>
+::::code-group
+:::code-group-item NPM
 
 ```sh
 npm install -g pm2
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Yarn">
+:::code-group-item
+:::code-group-item Yarn
 
 ```sh
 yarn global add pm2
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="pnpm">
+:::code-group-item
+:::code-group-item pnpm
 
 ```sh
 pnpm add -g pm2
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::code-group-item
+::::
 
 #### Creating an Application
 
@@ -328,8 +328,8 @@ To run a bot on webhooks, you will need to use a web framework and not call `bot
 
 Here is a sample code to run the bot on webhooks that should be added to the main bot file:
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::::code-group
+:::code-group-item Node.js
 
 ```ts
 import { webhookCallback } from "grammy";
@@ -342,8 +342,8 @@ server.post(`/${bot.token}`, webhookCallback(bot, "fastify"));
 server.listen();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::code-group-item
+:::code-group-item Deno
 
 ```ts
 import { serve } from "https://deno.land/std/http/server.ts";
@@ -366,8 +366,8 @@ serve(async (req) => {
 });
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::code-group-itemd
+::::
 
 ### Domain Rental
 
@@ -544,22 +544,22 @@ cd ~/.ssh
 
 Generate a new key pair:
 
-<CodeGroup>
-  <CodeGroupItem title="GitHub" active>
+::::code-group
+:::code-group-item GitHub
 
 ```sh
 ssh-keygen -t rsa -m PEM
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="GitLab">
+:::code-group-item
+:::code-group-item GitLab
 
 ```sh
 ssh-keygen -t ed25519
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::code-group-item
+::::
 
 This command will generate a public and private key of the type and format you want for GitHub and GitLab.
 You can also specify a custom key name if you wish.
@@ -581,8 +581,8 @@ You can now connect to the server without having to enter a password.
 
 #### Node.js
 
-<CodeGroup>
-  <CodeGroupItem title="GitHub" active>
+::::code-group
+:::code-group-item GitHub
 
 ```yml
 name: Main
@@ -650,8 +650,8 @@ Note that you need to add three [secret environment variables](https://docs.gith
 2. `REMOTE_HOST` - the IP address of your server should be stored here
 3. `REMOTE_USER` - the name of the user on whose behalf the bot is launched should be stored here.
 
-</CodeGroupItem>
-  <CodeGroupItem title="GitLab">
+:::code-group-item
+:::code-group-item GitLab
 
 ```yml
 image: node:latest
@@ -698,13 +698,13 @@ Note that you need to add three [environment variables](https://docs.gitlab.com/
 2. `REMOTE_HOST` - the IP address of your server should be stored here
 3. `REMOTE_USER` - the name of the user on whose behalf the bot is launched should be stored here.
 
-</CodeGroupItem>
-</CodeGroup>
+:::code-group-item
+::::
 
 #### Deno
 
-<CodeGroup>
-  <CodeGroupItem title="GitHub" active>
+::::code-group
+:::code-group-item GitHub
 
 ```yml
 name: Main
@@ -747,8 +747,8 @@ Note that you need to add three [secret environment variables](https://docs.gith
 2. `REMOTE_HOST` - the IP address of your server should be stored here
 3. `REMOTE_USER` - the name of the user on whose behalf the bot is launched should be stored here.
 
-</CodeGroupItem>
-  <CodeGroupItem title="GitLab">
+:::code-group-item
+:::code-group-item GitLab
 
 ```yml
 image: denoland/deno:latest
@@ -784,8 +784,8 @@ Note that you need to add three [environment variables](https://docs.gitlab.com/
 2. `REMOTE_HOST` - the IP address of your server should be stored here
 3. `REMOTE_USER` - the name of the user on whose behalf the bot is launched should be stored here.
 
-</CodeGroupItem>
-</CodeGroup>
+:::code-group-item
+::::
 
 You should now see how every code push to the `main` branch will automatically be deployed to your VPS.
 Development go brrrrr :rocket:
