@@ -23,7 +23,7 @@ bot.command("start" /* , ... */);
 
 Цей код виведе щось на зразок цього:
 
-```plaintext
+```text
 2020-03-31T14:32:36.974Z 490af message text Andrey 6 /start: 926.247ms
 2020-03-31T14:32:57.750Z 490ag message text Andrey 6 /start: 914.764ms
 2020-03-31T14:33:01.188Z 490ah message text Andrey 5 /stop: 302.666ms
@@ -65,7 +65,7 @@ bot.on("message" /* ... */);
 
 Цей код виведе щось на зразок цього:
 
-```plaintext
+```text
 490ai foo before: 304.185ms
 490ai foo inner: 83.122ms
 490ai foo after: 501.028ms

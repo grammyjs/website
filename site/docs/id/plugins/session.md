@@ -40,7 +40,7 @@ Kamu akan menggunakan chat identifier (chat id) sebagai key di database kamu, da
 Dari contoh di atas, kita bisa menggunakan chat identifier sebagai _session key_-nya (kamu bisa mempelajari lebih lanjut tentang session key di [bawah sini](#session-key)).
 Alhasil, bot kamu akan menyimpan sebuah map chat identifier ke beberapa data session khusus, contohnya seperti ini:
 
-```json:no-line-numbers
+```json
 {
   "271828": { "hitungKucing": 18 },
   "314159": { "hitungKucing": 265 }

@@ -41,7 +41,7 @@ In this case, we would call the chat identifier the _session key_.
 (You can read more about session keys [down here](#session-keys).)
 Effectively, your bot will store a map from a chat identifier to some custom session data, i.e. something like this:
 
-```json:no-line-numbers
+```json
 {
   "424242": { "pizzaCount": 24 },
   "987654": { "pizzaCount": 1729 }
