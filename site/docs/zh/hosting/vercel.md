@@ -94,7 +94,7 @@ export default webhookCallback(bot, "http");
 最后一步是将你的 Vercel 应用程序与 Telegram 连接。
 将以下 URL 修改为你的，并在你的浏览器中访问它：
 
-```md:no-line-numbers
+```text
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<HOST_URL>
 ```
 
