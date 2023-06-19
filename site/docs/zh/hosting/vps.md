@@ -60,7 +60,7 @@ WantedBy=multi-user.target
 ```
 
 > 用上面得到的命令替换 `<start_command>`。
-
+>
 > 另请注意，如果 Deno 是为 root 以外的其他用户安装的，你可能需要在 service 部分中指定，例如 `User=<the_user>`。
 > 有关 unit files 的更多信息，请访问 [这里](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/assembly_working-with-systemd-unit-files_configuring-basic-system-settings).
 
