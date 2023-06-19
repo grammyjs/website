@@ -36,7 +36,7 @@ It provides a class called `InlineKeyboard` for this.
 
 ### Building an Inline Keyboard
 
-You can build an inline keyboard by creating a new instance of the `InlineKeyboard` class, and by then adding buttons like to it via `.text()` and others.
+You can build an inline keyboard by creating a new instance of the `InlineKeyboard` class, and then adding buttons you like to it using `.text()` and its other methods.
 
 Here is an example:
 
@@ -52,7 +52,7 @@ const inlineKeyboard = new InlineKeyboard()
 ```
 
 Call `.row()` if you want to begin a new row of buttons.
-You can also use other methods like `.url()` to let the Telegram clients open a URL or do many other cool things.
+You can also use other methods like `.url()` to let the user's client open a specific URL or do other cool things.
 Be sure to check out [all methods](https://deno.land/x/grammy/mod.ts?s=InlineKeyboard#Methods) on the `InlineKeyboard` class.
 
 If you already have an array of strings that you would like to turn into an inline keyboard, you can use a second, alternative style for building inline keyboard instances.
