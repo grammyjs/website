@@ -134,7 +134,7 @@ Echemos un vistazo a nuestro código anterior:
 - `process.env`: Recuerda, ¡nunca almacenes credenciales en nuestro código!
   Para crear [variables de entorno](https://www.freecodecamp.org/news/using-environment-variables-the-right-way/) en Heroku, dirígete a [esta guía](https://devcenter.heroku.com/articles/config-vars).
 - `secretPath`: Puede ser nuestro `BOT_TOKEN` o cualquier cadena aleatoria.
-  Es una buena práctica ocultar la ruta de nuestro bot, tal y como se explica en Telegram (https://core.telegram.org/bots/api#setwebhook).
+  Es una buena práctica ocultar la ruta de nuestro bot como [explica Telegram](https://core.telegram.org/bots/api#setwebhook).
 
 ::: tip ⚡ Optimización (opcional)
 `bot.api.setWebhook` en la línea 14 siempre se ejecutará cuando Heroku inicie su servidor de nuevo.
@@ -147,7 +147,7 @@ Abre este enlace en tu navegador web después de desplegar nuestro bot:
 https://api.telegram.org/bot<bot_token>/setWebhook?url=<webhook_url>
 ```
 
-Ten en cuenta que algunos navegadores requieren que codifiques manualmente (https://en.wikipedia.org/wiki/Percent-encoding#Reserved_characters) la `webhook_url` antes de pasarla.
+Tenga en cuenta que algunos navegadores requieren que manualmente [codifique](https://en.wikipedia.org/wiki/Percent-encoding#Reserved_characters) la `webhook_url` antes de pasarla.
 Por ejemplo, si tenemos el token bot `abcd:1234` y la URL `https://grammybot.herokuapp.com/secret_path`, entonces nuestro enlace debería tener este aspecto:
 
 ```asciiart:no-line-numbers
