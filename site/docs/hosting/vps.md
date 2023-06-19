@@ -63,7 +63,7 @@ After the server is created, you can connect to it using SSH:
 
 > SSH (_Secure Shell_) is a network protocol for remote control of a computer (server) and file transfer.
 
-```sh:no-line-numbers
+```sh
 ssh root@<ip-address>
 ```
 
@@ -86,7 +86,7 @@ We now have a server at our disposal where we can run the bot to keep it running
 >
 > For now, you can copy local files to a remote server using the following command:
 >
-> ```sh:no-line-numbers
+> ```sh
 > scp <path-to-local-files> root@<ip-address>:<path-to-remote-directory>
 > ```
 >
@@ -111,14 +111,14 @@ systemd is a powerful service manager which is pre-installed on many Linux distr
 <CodeGroup>
   <CodeGroupItem title="Node.js" active>
 
-```sh:no-line-numbers
+```sh
 which deno
 ```
 
 </CodeGroupItem>
  <CodeGroupItem title="Deno">
 
-```sh:no-line-numbers
+```sh
 which node
 ```
 
@@ -188,13 +188,13 @@ A small explanation of the service configuration:
 
 4. Reload systemd whenever you edit the service:
 
-```sh:no-line-numbers
+```sh
 systemctl daemon-reload
 ```
 
 #### Managing the Service
 
-```sh:no-line-numbers
+```sh
 # Replace `<service-name>` with the file name of the service you created.
 
 # To start the service
@@ -228,21 +228,21 @@ systemctl disable <service-name>
 <CodeGroup>
   <CodeGroupItem title="NPM" active>
 
-```sh:no-line-numbers
+```sh
 npm install -g pm2
 ```
 
 </CodeGroupItem>
  <CodeGroupItem title="Yarn">
 
-```sh:no-line-numbers
+```sh
 yarn global add pm2
 ```
 
 </CodeGroupItem>
  <CodeGroupItem title="pnpm">
 
-```sh:no-line-numbers
+```sh
 pnpm add -g pm2
 ```
 
@@ -276,7 +276,7 @@ where `<app-name>` can be any identifier, and `<start command>` must be the actu
 
 Below are the commands you can use to control the application.
 
-```sh:no-line-numbers
+```sh
 # If the `ecosystem.config.js` file is in the current directory,
 # you can specify nothing to start the application.
 # If the application is already running, this command will restart it.
@@ -306,7 +306,7 @@ For the bot to resume work, you need to prepare PM2 for this.
 
 On the server in the terminal, run the following command:
 
-```sh:no-line-numbers
+```sh
 pm2 startup
 ```
 
@@ -314,7 +314,7 @@ You will be provided with a command that you must execute to make PM2 automatica
 
 Then run one more command:
 
-```sh:no-line-numbers
+```sh
 pm2 save
 ```
 
@@ -415,7 +415,7 @@ However, you are free to choose any web server you want.
 
 The following 5 commands will download and automatically start Caddy as a systemd service called `caddy`.
 
-```sh:no-line-numbers
+```sh
 apt install -y debian-keyring debian-archive-keyring apt-transport-https
 curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
 curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | tee /etc/apt/sources.list.d/caddy-stable.list
@@ -425,7 +425,7 @@ apt install caddy
 
 Check the status of Caddy:
 
-```sh:no-line-numbers
+```sh
 systemctl status caddy
 ```
 
@@ -434,7 +434,7 @@ Some hosting providers provide VPS with a pre-installed web server, for example,
 Multiple web servers cannot run on the same machine at the same time.
 For Caddy to work, you need to stop and shut down another web server:
 
-```sh:no-line-numbers
+```sh
 systemctl stop apache2
 systemctl disable apache2
 ```
@@ -449,13 +449,13 @@ In order for Caddy to process requests coming to our domain, we need to change t
 
 Run the following command to open the Caddy configuration file:
 
-```sh:no-line-numbers
+```sh
 nano /etc/caddy/Caddyfile
 ```
 
 You will see the following default configuration:
 
-```text:no-line-numbers
+```text
 # The Caddyfile is an easy way to configure your Caddy web server.
 #
 # Unless the file starts with a global options block, the first
@@ -486,7 +486,7 @@ You will see the following default configuration:
 
 For the bot to work, make the configuration look like this:
 
-```text:no-line-numbers
+```text
 <domain> {
   root * /usr/share/caddy
   file_server
@@ -498,7 +498,7 @@ replacing `<domain>` with your domain and `<token>` with your bot token.
 
 Reload Caddy every time as a site configuration file using the following command:
 
-```sh:no-line-numbers
+```sh
 systemctl reload caddy
 ```
 
@@ -509,7 +509,7 @@ Now all requests to the address `https://<domain>/<token>` will be redirected to
 All you have to do is tell Telegram where to send the updates.
 To do this, open your browser and visit the page at the following link:
 
-```text:no-line-numbers
+```text
 https://api.telegram.org/bot<token>/setWebhook?url=https://<domain>/<token>
 ```
 
@@ -538,7 +538,7 @@ The following commands should be run on your personal computer.
 
 Change to the directory with the SSH keys:
 
-```sh:no-line-numbers
+```sh
 cd ~/.ssh
 ```
 
@@ -547,14 +547,14 @@ Generate a new key pair:
 <CodeGroup>
   <CodeGroupItem title="GitHub" active>
 
-```sh:no-line-numbers
+```sh
 ssh-keygen -t rsa -m PEM
 ```
 
 </CodeGroupItem>
   <CodeGroupItem title="GitLab">
 
-```sh:no-line-numbers
+```sh
 ssh-keygen -t ed25519
 ```
 
@@ -567,7 +567,7 @@ Note that you should skip the fingerprint generation step (just press `Enter`).
 
 Next, send the **public** key to the server:
 
-```sh:no-line-numbers
+```sh
 ssh-copy-id -i <key-name>.pub root@<ip-address>
 ```
 
