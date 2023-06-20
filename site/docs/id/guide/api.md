@@ -76,9 +76,9 @@ Tetapi, grammY memudahkan kamu untuk menentukan berbagai object secara konsisten
 
 ### Type Definition untuk API
 
-grammY dilengkapi dengan berbagai macam type API Bot.
-Repositori [`@grammyjs/types`](https://github.com/grammyjs/types) ini berisi type definition yang digunakan oleh grammY.
-Type definition tersebut juga sudah di-export supaya bisa digunakan di kode kamu.
+grammY memiliki cakupan type API Bot yang cukup lengkap.
+Ia secara internal menggunakan type definition yang terdapat di repositori [`@grammyjs/types`](https://github.com/grammyjs/types).
+Selain itu, type definition tersebut juga sudah di-export langsung dari package inti `grammy` supaya bisa digunakan di kode kamu.
 
 #### Type Definition di Deno
 
