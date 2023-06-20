@@ -3,6 +3,7 @@ import * as config from "./configs";
 import { betterLineBreaks } from "./plugins/better-line-breaks";
 import { currentVersions } from "./plugins/current-versions/plugin";
 import { docsearch } from "./plugins/docsearch";
+import { betterAnchors } from "./plugins/better-anchors";
 
 export default defineUserConfig({
   locales: {
@@ -42,6 +43,7 @@ export default defineUserConfig({
     }),
     betterLineBreaks(),
     currentVersions(),
+    betterAnchors(),
   ],
 
   markdown: {
