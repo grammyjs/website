@@ -127,7 +127,7 @@ await ctx.replyWithPhoto(new InputFile("/tmp/picture.jpg"));
 // 或者，使用 bot.api.sendPhoto() 或 ctx.api.sendPhoto()
 ```
 
-`InputFile` 构建器不仅仅能适用于文件路径，也可以适用流，`Buffer` 对象，异步迭代器，这取决于你所使用的平台。
+`InputFile` 构建器不仅仅能适用于文件路径，也可以适用流，`Buffer` 对象，异步迭代器，这取决于你所使用的平台，或者一个创建这些东西的函数。
 所以你需要记住的是：**创造一个 `InputFile` 实例，并且把它传递到任何发送文件的方法**。
 `InputFile` 实例能够传递到所有发送上传文件的方法中。
 
