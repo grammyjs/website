@@ -26,8 +26,8 @@ It has its own [API Reference](https://deno.land/x/grammy_runner/mod.ts), too.
 
 Here is a simple example.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot } from "grammy";
@@ -43,8 +43,8 @@ bot.on("message", (ctx) => ctx.reply("Got your message."));
 run(bot);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot } = require("grammy");
@@ -60,8 +60,8 @@ bot.on("message", (ctx) => ctx.reply("Got your message."));
 run(bot);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -77,8 +77,8 @@ bot.on("message", (ctx) => ctx.reply("Got your message."));
 run(bot);
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ## Sequential Processing Where Necessary
 
@@ -171,7 +171,7 @@ There is a simple way out: bot workers!
 grammY runner lets you create several workers which can process your updates in parallel on actually different cores (using different event loops and with separate memory).
 
 On Node.js, grammY runner uses [Worker Threads](https://nodejs.org/api/worker_threads.html).
-On Deno, grammY runner uses [Web Workers](https://deno.land/manual/runtime/workers).
+On Deno, grammY runner uses [Web Workers](https://deno.com/manual/runtime/workers).
 
 Conceptually, grammY runner provides you with a class called `BotWorker` which can handle updates.
 It is equivalent to the regular class `Bot` (in fact, it even `extends Bot`).
@@ -202,8 +202,8 @@ Let's now see how this can be used.
 We will start out by creating the central bot instance that fetches updates and distributes them among workers.
 Let's start by creating a file called `bot.ts` with the following content.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 // bot.ts
@@ -223,8 +223,8 @@ bot.use(distribute(__dirname + "/worker"));
 run(bot);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 // bot.js
@@ -244,8 +244,8 @@ bot.use(distribute(__dirname + "/worker"));
 run(bot);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 // bot.ts
@@ -265,14 +265,14 @@ bot.use(distribute(new URL("./worker.ts", import.meta.url)));
 run(bot);
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Next to `bot.ts`, we create a second file called `worker.ts` (as specified on line 12 in the code above).
 This will contain the actual bot logic.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 // worker.ts
@@ -285,8 +285,8 @@ const bot = new BotWorker(""); // <-- pass your bot token here again
 bot.on("message", (ctx) => ctx.reply("yay!"));
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 // worker.js
@@ -299,8 +299,8 @@ const bot = new BotWorker(""); // <-- pass your bot token here again
 bot.on("message", (ctx) => ctx.reply("yay!"));
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 // worker.ts
@@ -313,8 +313,8 @@ const bot = new BotWorker(""); // <-- pass your bot token here again
 bot.on("message", (ctx) => ctx.reply("yay!"));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 > Note that each worker is able to send messages back to Telegram.
 > This is why you must give your bot token to each worker, too.
@@ -332,8 +332,8 @@ This means that all plugins must be installed in the bot workers.
 As a performance optimization, you can drop updates that you do not want to handle.
 That way, your bot does not have to send the update to a worker, only for it to be ignored there.
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::::code-group
+:::code-group-item Node.js
 
 ```ts
 // Our bot only handles messages, edits, and callback queries,
@@ -344,8 +344,8 @@ bot.on(
 );
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 // Our bot only handles messages, edits, and callback queries,
@@ -356,8 +356,8 @@ bot.on(
 );
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 :::
 

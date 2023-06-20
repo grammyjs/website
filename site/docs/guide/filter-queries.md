@@ -24,11 +24,11 @@ The type inference of `bot.on()` will comprehend the filter query you picked.
 It therefore tightens a few types on the context that are known to exist.
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // Could be undefined if the received message has no text.
   const text: string | undefined = ctx.msg.text;
 });
-bot.on("message:text", (ctx) => {
+bot.on("message:text", async (ctx) => {
   // Text is always defined because this handler is called when a text message is received.
   const text: string = ctx.msg.text;
 });

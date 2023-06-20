@@ -24,11 +24,11 @@ next: ./commands.md
 因此，它在上下文中浓缩了一些已知存在的类型。
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // 如果收到的消息没有文本，则可能是未定义的。
   const text: string | undefined = ctx.msg.text;
 });
-bot.on("message:text", (ctx) => {
+bot.on("message:text", async (ctx) => {
   // 文本总是被定义的，因为当收到一个文本消息时，这个处理程序被调用。
   const text: string = ctx.msg.text;
 });

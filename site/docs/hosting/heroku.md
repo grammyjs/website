@@ -287,28 +287,28 @@ Create file named `Procfile` without a file extension in the root directory of o
 For example, `Procfile.txt` and `procfile` are not valid.
 Then write this single line code format:
 
-```
+```procfile
 <dynos type>: <command for executing our main entry file>
 ```
 
 For our case it should be:
 
-<CodeGroup>
-<CodeGroupItem title="Webhook" active>
+::::code-group
+:::code-group-item Webhook
 
-```
+```procfile
 web: node dist/app.js
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Long Polling">
+:::
+:::code-group-item Long Polling
 
-```
+```procfile
 worker: node dist/bot.js
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### Set up Git
 
@@ -316,7 +316,7 @@ We are going to deploy our bot using [Git and Heroku Cli](https://devcenter.hero
 Here is the link for the installation:
 
 - [Git installation instructions](https://git-scm.com/download/)
-- [Heroku CLI installation instructions](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
+- [Heroku CLI installation instructions](https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli)
 
 Assuming that you already have them in your machine, and you have a terminal open in the root of our project's directory.
 Now initialize a local git repository by running this code in your terminal:
@@ -329,7 +329,7 @@ Next, we need to prevent unnecessary files from reaching our production server, 
 Create a file named `.gitignore` in root of our project's directory.
 Then add this list:
 
-```
+```text
 node_modules/
 src/
 tsconfig.json
@@ -337,8 +337,8 @@ tsconfig.json
 
 Our final folder structure should now look like this:
 
-<CodeGroup>
-<CodeGroupItem title="Webhook" active>
+::::code-group
+:::code-group-item Webhook
 
 ```asciiart:no-line-numbers
 .
@@ -357,8 +357,8 @@ Our final folder structure should now look like this:
 └── .gitignore
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Long Polling">
+:::
+:::code-group-item Long Polling
 
 ```asciiart:no-line-numbers
 .
@@ -375,8 +375,8 @@ Our final folder structure should now look like this:
 └── .gitignore
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Commit files to our git repository:
 
@@ -390,23 +390,23 @@ git commit -m "My first commit"
 If you have already created [Heroku app](https://dashboard.heroku.com/apps/), pass your `Existing app`'s name in `<myApp>` below, then run the code.
 Otherwise, run `New app`.
 
-<CodeGroup>
-  <CodeGroupItem title="New app" active>
+::::code-group
+:::code-group-item New app
 
 ```sh
 heroku create
 git remote -v
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Existing app" active>
+:::
+:::code-group-item Existing app
 
 ```sh
 heroku git:remote -a <myApp>
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### Deploying Code
 

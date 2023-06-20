@@ -24,11 +24,11 @@ next: ./commands.md
 Отже, буде звужено кілька типів у контексті, які, як відомо, присутні в повідомленні.
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // Може бути `undefined`, якщо отримане повідомлення не містить тексту.
   const text: string | undefined = ctx.msg.text;
 });
-bot.on("message:text", (ctx) => {
+bot.on("message:text", async (ctx) => {
   // Текст завжди наявний, оскільки цей обробник викликається під час отримання текстового повідомлення.
   const text: string = ctx.msg.text;
 });

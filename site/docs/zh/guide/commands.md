@@ -51,7 +51,7 @@ await bot.api.setMyCommands([
 你可以通过 `ctx.match` 访问参数字符串。
 
 ```ts
-bot.command("add", (ctx) => {
+bot.command("add", async (ctx) => {
   // `item` 将被赋值为 `apple pie` ， 如果一个用户输入了 `/add apple pie`。
   const item = ctx.match;
 });

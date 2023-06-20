@@ -14,8 +14,8 @@ Perlu diketahui, pengaturan opsi bawaan plugin ini menggunakan aturan rate limit
 Semestinya, pengaturan bawaan tersebut sudah cukup sesuai untuk sebagian besar bot.
 Berikut contoh penggunaan plugin ini dengan menggunakan opsi bawaan:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot } from "grammy";
@@ -34,8 +34,8 @@ bot.command("example", (ctx) => ctx.reply("Aku di-throttler."));
 run(bot);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot } = require("grammy");
@@ -54,8 +54,8 @@ bot.command("example", (ctx) => ctx.reply("Aku di-throttler."));
 run(bot);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -74,8 +74,8 @@ bot.command("example", (ctx) => ctx.reply("Aku di-throttler."));
 run(bot);
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ## Konfigurasi
 

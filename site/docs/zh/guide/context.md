@@ -10,7 +10,7 @@ next: ./api.md
 每当你在你的 bot 对象上注册一个监听器时，这个监听器将收到一个上下文对象。
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` 是一个 `Context` 对象。
 });
 ```
@@ -28,7 +28,7 @@ bot.on("message", (ctx) => {
 举个例子，要获得消息的文本，你可以这样做：
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `txt` 在处理文本信息时将是一个 `string`。
   // 如果收到的信息没有任何信息文本，它将是 `undefined`。
   // 例如，照片、贴纸和其他信息。
@@ -44,7 +44,7 @@ bot.on("message", (ctx) => {
 示例：
 
 ```ts
-bot.on("edited_message", (ctx) => {
+bot.on("edited_message", async (ctx) => {
   // 获得新的、经过编辑的信息文本。
   const editedText = ctx.editedMessage.text;
 });
@@ -71,15 +71,15 @@ bot.on("edited_message", (ctx) => {
 换句话说，你也可以这样做：
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // 获取接收到的信息的文本。
   const text = ctx.msg.text;
 });
-bot.on("edited_message", (ctx) => {
+bot.on("edited_message", async (ctx) => {
   // 获得新的、经过编辑的信息文本。
   const editedText = ctx.msg.text;
 });
-bot.on("message:entities", (ctx) => {
+bot.on("message:entities", async (ctx) => {
   // 获取所有实体.
   const entities = ctx.entities();
   // 获取第一个实体的文本.
@@ -275,8 +275,8 @@ const bot = new Bot<MyContext>("");
 
 综上所述，设置将像这样：
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 const BOT_DEVELOPER = 123456; // bot 开发者的聊天标识符
@@ -308,8 +308,8 @@ bot.command("start", async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const BOT_DEVELOPER = 123456; // bot 开发者的聊天标识符
@@ -332,8 +332,8 @@ bot.command("start", async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 当然，自定义上下文类型也可以传递给其他处理中间件的东西，比如 [组合器](https://deno.land/x/grammy/mod.ts?s=Composer)。
 
@@ -355,15 +355,15 @@ class MyContext extends Context {
 }
 ```
 
-然而，我们建议你 [通过中间件](#通过中间件) 来自定义上下文对象，因为它更加灵活，并且在你想要安装插件的情况下工作得更好。
+然而，我们建议你 [通过中间件](#通过中间件-推荐) 来自定义上下文对象，因为它更加灵活，并且在你想要安装插件的情况下工作得更好。
 
 我们现在将看看如何为上下文对象使用自定义类。
 
 当你构建你的 bot 时，你可以传递一个自定义上下文构造函数，这个函数将用于实例化上下文对象。
 请注意，你的类必须继承 `Context`。
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context } from "grammy";
@@ -384,7 +384,7 @@ const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` 现在成为了 `MyContext` 类型。
   const prop = ctx.customProp;
 });
@@ -392,8 +392,8 @@ bot.on("message", (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript" active>
+:::
+:::code-group-item JavaScript
 
 ```ts
 const { Bot, Context } = require("grammy");
@@ -413,7 +413,7 @@ const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` 现在成为了 `MyContext` 类型。
   const prop = ctx.customProp;
 });
@@ -421,8 +421,8 @@ bot.on("message", (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
@@ -446,7 +446,7 @@ const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` 现在成为了 `MyContext` 类型。
   const prop = ctx.customProp;
 });
@@ -454,8 +454,8 @@ bot.on("message", (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 请注意，当你使用自定义上下文类的子类时，类型会被自动推断。
 你不再需要写 `Bot<MyContext>` 因为你已经在 `new Bot()` 的选项对象中指定了你的子类构造函数。
@@ -509,7 +509,7 @@ type MyContext = Context & SessionFlavor<string>;
 现在你可以使用 session 插件了，你可以访问`ctx.session`。
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // 现在 `str` 是 `string` 类型的。
   const str = ctx.session;
 });

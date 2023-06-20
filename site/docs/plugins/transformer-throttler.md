@@ -13,8 +13,8 @@ Consider using the [auto-retry plugin](./auto-retry.md) together with this plugi
 Here is an example of how to use this plugin with the default options.
 Note that the default options are aligned with the actual rate limits enforced by Telegram, so they should be good to go.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot } from "grammy";
@@ -32,8 +32,8 @@ bot.command("example", (ctx) => ctx.reply("I am throttled"));
 run(bot);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot } = require("grammy");
@@ -51,8 +51,8 @@ bot.command("example", (ctx) => ctx.reply("I am throttled"));
 run(bot);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -70,8 +70,8 @@ bot.command("example", (ctx) => ctx.reply("I am throttled"));
 run(bot);
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ## Configuration
 

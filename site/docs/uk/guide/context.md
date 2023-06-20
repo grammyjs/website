@@ -10,7 +10,7 @@ next: ./api.md
 Кожного разу, коли ви реєструєте обробника на своєму обʼєкті бота, цей обробник отримує обʼєкт контексту.
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` — це обʼєкт `Context`.
 });
 ```
@@ -28,7 +28,7 @@ bot.on("message", (ctx) => {
 Наприклад, щоб отримати текст повідомлення, ви можете зробити наступне:
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // Під час обробки текстових повідомлень `txt` буде типу `string`.
   // Також може бути `undefined`, якщо отримане повідомлення не містить текст.
   // Наприклад, фотографії, наліпки тощо.
@@ -44,7 +44,7 @@ bot.on("message", (ctx) => {
 Наприклад:
 
 ```ts
-bot.on("edited_message", (ctx) => {
+bot.on("edited_message", async (ctx) => {
   // Отримуємо новий, відредагований, текст повідомлення.
   const editedText = ctx.editedMessage.text;
 });
@@ -71,17 +71,17 @@ bot.on("edited_message", (ctx) => {
 Іншими словами, ви також можете зробити це:
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // Отримуємо текст повідомлення.
   const text = ctx.msg.text;
 });
 
-bot.on("edited_message", (ctx) => {
+bot.on("edited_message", async (ctx) => {
   // Отримуємо новий, відредагований, текст повідомлення.
   const editedText = ctx.msg.text;
 });
 
-bot.on("message:entities", (ctx) => {
+bot.on("message:entities", async (ctx) => {
   // Отримуємо всі сутності.
   const entities = ctx.entities();
 
@@ -285,8 +285,8 @@ const bot = new Bot<MyContext>("");
 
 У підсумку налаштування виглядатимуть наступним чином:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 const BOT_DEVELOPER = 123456; // ідентифікатор чату розробника бота
@@ -318,8 +318,8 @@ bot.command("start", async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const BOT_DEVELOPER = 123456; // ідентифікатор чату розробника бота
@@ -342,8 +342,8 @@ bot.command("start", async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Звичайно, власний тип контексту також можна передати іншим речам, які працюють з проміжними обробниками, наприклад в [Composer](https://deno.land/x/grammy/mod.ts?s=Composer).
 
@@ -372,8 +372,8 @@ class MyContext extends Context {
 Під час створення свого бота ви можете передати власний конструктор контексту, який використовуватиметься для створення екземплярів обʼєктів контексту.
 Зауважте, що ваш клас має розширювати `Context`.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context } from "grammy";
@@ -395,7 +395,7 @@ const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` тепер має тип `MyContext`.
   const prop = ctx.customProp;
 });
@@ -403,8 +403,8 @@ bot.on("message", (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript" active>
+:::
+:::code-group-item JavaScript
 
 ```ts
 const { Bot, Context } = require("grammy");
@@ -425,7 +425,7 @@ const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` тепер має тип `MyContext`.
   const prop = ctx.customProp;
 });
@@ -433,8 +433,8 @@ bot.on("message", (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
@@ -459,7 +459,7 @@ const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` тепер має тип `MyContext`.
   const prop = ctx.customProp;
 });
@@ -467,8 +467,8 @@ bot.on("message", (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Зверніть увагу на те, як власний тип контексту буде виведено автоматично, коли ви використовуєте підклас.
 Вам більше не потрібно писати `Bot<MyContext>`, оскільки ви вже вказали свій конструктор підкласу в обʼєкті параметрів `new Bot()`.
@@ -522,7 +522,7 @@ type MyContext = Context & SessionFlavor<string>;
 Тепер ви можете використовувати плагін сесії та мати доступ до `ctx.session`:
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // Тепер `str` має тип `string`.
   const str = ctx.session;
 });

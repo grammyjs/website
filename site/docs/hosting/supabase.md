@@ -2,7 +2,7 @@
 
 This guide tells you how you can host your grammY bots on [Supabase](https://supabase.com/).
 
-Please note that you need to have a [GitHub](https://github.com) account before you can use [Supabase Edge Functions](https://supabase.com/docs/guides/functions).
+Please note that you need to have a [GitHub](https://github.com) account before you can use [Supabase Edge Functions](https://supabase.com/docs/guides/functions/quickstart).
 Moreover, Supabase Edge Functions are based on [Deno Deploy](https://deno.com/deploy), so just like [our Deno Deploy guide](./deno-deploy.md), this guide is only for Deno users of grammY.
 
 Supabase Edge Functions is ideal for most simple bots, and you should note that not all Deno features are available for apps running on Supabase Edge Functions.
@@ -14,7 +14,7 @@ The result of this tutorial [can be seen in our example bots repository](https:/
 ## Setup
 
 In order to deploy a Supabase Edge Function, you will need to create a Supabase account, install their CLI, and create a Supabase project.
-You should first [follow their documentation](https://supabase.com/docs/guides/functions#prerequisites) to set things up.
+You should first [follow their documentation](https://supabase.com/docs/guides/functions/quickstart#prerequisites) to set things up.
 
 Create a new Supabase Function by running this command:
 
@@ -79,7 +79,7 @@ All that's left to do is to tell Telegram where to send the updates.
 You can do this by calling `setWebhook`.
 For example, open a new tab in your browser and visit this URL:
 
-```plaintext
+```text
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<PROJECT_NAME>.functions.supabase.co/telegram-bot?secret=<BOT_TOKEN>
 ```
 

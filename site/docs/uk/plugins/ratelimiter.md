@@ -32,7 +32,7 @@ ratelimiter — це проміжний обробник для обмеженн
 
 Для більшості ботів підходить `MEMORY_STORE` або відстеження в памʼяті, однак якщо ви використовуєте кластеризацію для вашого бота, ви не зможете ефективно використовувати сховище в оперативній памʼяті.
 Ось чому ми також надаємо опцію Redis.
-Ви можете використовувати клієнт Redis з [ioredis](https://github.com/luin/ioredis) або [redis](https://deno.land/x/redis), якщо ви використовуєте Deno.
+Ви можете використовувати клієнт Redis з [ioredis](https://github.com/redis/ioredis) або [redis](https://deno.land/x/redis), якщо ви використовуєте Deno.
 Насправді, будь-який драйвер Redis, який реалізує методи `incr` і `pexpire`, має чудово працювати.
 ratelimiter не залежить від якогось конкретного драйверу.
 
@@ -50,8 +50,8 @@ ratelimiter не залежить від якогось конкретного �
 
 Цей фрагмент демонструє найпростіший спосіб використання ratelimiter, який полягає у використанні налаштувань за замовчуванням:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { limit } from "@grammyjs/ratelimiter";
@@ -60,8 +60,8 @@ import { limit } from "@grammyjs/ratelimiter";
 bot.use(limit());
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { limit } = require("@grammyjs/ratelimiter");
@@ -70,8 +70,8 @@ const { limit } = require("@grammyjs/ratelimiter");
 bot.use(limit());
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
@@ -80,15 +80,15 @@ import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
 bot.use(limit());
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### Ручне налаштування
 
 Як згадувалося раніше, ви можете передати обʼєкт `Options` методу `limit()`, щоб змінити поведінку обмежувача.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import Redis from "ioredis";
@@ -118,8 +118,8 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const Redis = require("ioredis");
@@ -149,8 +149,8 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { connect } from "https://deno.land/x/redis/mod.ts";
@@ -180,8 +180,8 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Як ви можете бачити в прикладі вище, кожному користувачеві дозволено надсилати 3 запити кожні 2 секунди.
 Якщо користувач надсилає більше запитів, бот відповідає _"Будь ласка, не надсилайте забагато запитів!"_.
@@ -191,8 +191,8 @@ bot.use(
 
 Іншим варіантом використання може бути обмеження вхідних запитів від чату, а не від конкретного користувача:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { limit } from "@grammyjs/ratelimiter";
@@ -209,8 +209,8 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { limit } = require("@grammyjs/ratelimiter");
@@ -227,8 +227,8 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
@@ -245,8 +245,8 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 У цьому прикладі ми використали `chat.id` як унікальний ключ для обмеження швидкості.
 

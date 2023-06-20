@@ -26,7 +26,7 @@ Por ejemplo, no es posible enviar primero un teclado personalizado junto con un 
 
 # Teclados en línea
 
-> Revisa la sección del teclado en línea en las [Características de los bots de Telegram](https://core.telegram.org/bots/features#teclados-en-linea-and-on-the-fly-updating) escrita por el equipo de Telegram.
+> Revisa la sección del teclado en línea en las [Características de los bots de Telegram](https://core.telegram.org/bots/features#inline-keyboards) escrita por el equipo de Telegram.
 
 grammY tiene una forma sencilla e intuitiva de construir los teclados en línea que tu bot puede enviar junto con un mensaje.
 Proporciona una clase llamada `InlineKeyboard` para esto.

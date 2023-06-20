@@ -172,4 +172,4 @@ pm2 del <nombre_de_la_aplicación>
 
 ### Información avanzada
 
-Para más información, consulte <https://pm2.keymetrics.io/docs>.
+Para más información, consulte <https://pm2.keymetrics.io/docs/usage/quick-start>.

@@ -34,8 +34,8 @@ permalink: /uk/
 
 `npm install grammy` і вставте наступний код:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot } from "grammy";
@@ -48,8 +48,8 @@ bot.on("message", (ctx) => ctx.reply("Привіт!"));
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot } = require("grammy");
@@ -62,8 +62,8 @@ bot.on("message", (ctx) => ctx.reply("Привіт!"));
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -76,8 +76,8 @@ bot.on("message", (ctx) => ctx.reply("Привіт!"));
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Працює! :tada:
 

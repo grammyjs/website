@@ -44,7 +44,7 @@ In `list.ts`, you would then do something like this:
 export const lists = new Composer();
 
 // Register some handlers here that handle your middleware the usual way.
-lists.on("message", (ctx) => {/* ... */});
+lists.on("message", async (ctx) => {/* ... */});
 ```
 
 > Note that if you use TypeScript, you need to pass your [custom context type](../guide/context.md#customizing-the-context-object) when creating the composer.
@@ -82,8 +82,8 @@ Both types are parameterized with your [custom context object](../guide/context.
 Hence, a command handler would have the type `CommandMiddleware<MyContext>` and its context object `CommandContext<MyContext>`.
 They can be used as follows.
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::::code-group
+:::code-group-item Node.js
 
 ```ts
 import {
@@ -103,8 +103,8 @@ bot.command(["start", "help"], commandMiddleware);
 bot.callbackQuery("query-data", callbackQueryMiddleware);
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import {
@@ -124,7 +124,7 @@ bot.command(["start", "help"], commandMiddleware);
 bot.callbackQuery("query-data", callbackQueryMiddleware);
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Check out the [type aliases API reference](https://deno.land/x/grammy/mod.ts#Type_Aliases) to see an overview over all type aliases that grammY exports.

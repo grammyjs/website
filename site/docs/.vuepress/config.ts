@@ -12,7 +12,7 @@ export default defineUserConfig({
     ...config.siteUk,
     ...config.siteZh,
   },
-  shouldPrefetch: true,
+  shouldPrefetch: false,
 
   theme: defaultTheme({
     logo: "/images/Y.png",

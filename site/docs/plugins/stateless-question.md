@@ -20,7 +20,7 @@ import { StatelessQuestion } from "@grammyjs/stateless-question";
 
 const bot = new Bot("");
 
-const unicornQuestion = new StatelessQuestion("unicorns", (ctx) => {
+const unicornQuestion = new StatelessQuestion("unicorns", async (ctx) => {
   console.log("User thinks unicorns are doing:", ctx.message);
 });
 

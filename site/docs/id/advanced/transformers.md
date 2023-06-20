@@ -51,7 +51,7 @@ Pemanggilan melalui object context dari middleware yang berjalan secara bersamaa
 Segera setelah middleware yang bersangkutan selesai, function transformer tersebut langsung dibuang.
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // Pasang di semua object context yang memproses pesan.
   ctx.api.config.use((prev, method, payload, signal) =>
     prev(method, payload, signal)

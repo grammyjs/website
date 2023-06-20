@@ -21,7 +21,7 @@ Por ejemplo, algunos proveedores de infraestructura sólo admiten uno de los dos
 
 Tu bot puede atraerlos (long polling), o los servidores de Telegram pueden empujarlos a tu bot (webhooks).
 
-> Si ya sabes cómo funcionan estas cosas, desplázate hacia abajo para ver cómo usar [long polling](#cómo-utilizar-el-long-polling) o [webhooks](#cómo-usar-webhooks) con grammY.
+> Si ya sabes cómo funcionan estas cosas, desplázate hacia abajo para ver cómo usar [long polling](#como-utilizar-el-long-polling) o [webhooks](#como-usar-webhooks) con grammY.
 
 ## ¿Cómo funciona el Long Polling?
 
@@ -192,8 +192,8 @@ Por lo tanto, esperamos que seas capaz de poner en marcha un servidor web simple
 Cada bot de grammY puede convertirse en un middleware para un número de frameworks web, incluyendo `express`, `koa`/`oak`, y más.
 Puedes importar la función `webhookCallback` ([API reference](https://deno.land/x/grammy/mod.ts?s=webhookCallback)) para crear un middleware para el framework correspondiente.
 
-<CodeGroup>
- <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import express from "express";
@@ -205,8 +205,8 @@ app.use(express.json()); // analiza el cuerpo de la petición JSON
 app.use(webhookCallback(bot, "express"));
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const express = require("express");
@@ -218,8 +218,8 @@ app.use(express.json()); // analiza el cuerpo de la petición JSON
 app.use(webhookCallback(bot, "express"));
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Application } from "https://deno.land/x/oak/mod.ts";
@@ -230,8 +230,8 @@ const app = new Application(); // o lo que sea que estés usando
 app.use(webhookCallback(bot, "oak"));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Asegúrate de leer [Marvin's Marvellous Guide to All Things Webhook](https://core.telegram.org/bots/webhooks) escrita por el equipo de Telegram si consideras ejecutar tu bot con webhooks en un VPS.
 

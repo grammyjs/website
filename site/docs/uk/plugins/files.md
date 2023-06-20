@@ -8,8 +8,8 @@
 Потім цей плагін встановлює метод `download` на результати виклику `getFile`.
 Наприклад:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context } from "grammy";
@@ -35,8 +35,8 @@ bot.on([":video", ":animation"], async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 import { Bot } from "grammy";
@@ -59,8 +59,8 @@ bot.on([":video", ":animation"], async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
@@ -89,8 +89,8 @@ bot.on([":video", ":animation"], async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Ви можете передати методу `download` рядок із шляхом для зберігання файлу, якщо не хочете створювати тимчасовий файл.
 Просто виконайте `await file.download("/шлях/до/файлу")`.
@@ -111,8 +111,8 @@ bot.on([":video", ":animation"], async (ctx) => {
 Однак це не відображатиметься у типах.
 Якщо вам потрібно їх викликати, вам також варто встановити [розширювач для API](../advanced/transformers.md#розширювач-для-api) з назвою `FileApiFlavor` на обʼєкті бота:
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::::code-group
+:::code-group-item Node.js
 
 ```ts
 import { Api, Bot, Context } from "grammy";
@@ -125,8 +125,8 @@ const bot = new Bot<MyContext, MyApi>("");
 // ...
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Api, Bot, Context } from "https://deno.land/x/grammy/mod.ts";
@@ -143,8 +143,8 @@ const bot = new Bot<MyContext, MyApi>("");
 // ...
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ## Загальні відомості про плагін
 

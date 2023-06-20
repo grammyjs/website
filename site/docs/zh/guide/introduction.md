@@ -96,7 +96,7 @@ grammY 文档不会教你如何编程，所以我们希望你能自学。
 这种类型的软件被称为 _运行时环境_。
 它接收你的源代码文件，并实际执行其中的任何程序。
 
-对我们来说，有两种运行时环境可供选择，[Deno](https://deno.land) 和 [Node.js](https://nodejs.org) 。
+对我们来说，有两种运行时环境可供选择，[Deno](https://deno.com/runtime) 和 [Node.js](https://nodejs.org) 。
 （如果你看到有人叫它 _Node_ ，他们只是懒得打 ".js" ，但他们的意思是一样的。）
 
 > 本节的其余部分将帮助你在这两个平台之间做出决定。
@@ -131,14 +131,14 @@ Deno：
 
 ### Deno 的前提条件
 
-[安装 Deno](https://deno.land/#installation)，这是一切的前提。
+[安装 Deno](https://deno.com/manual/getting_started/installation)，这是一切的前提。
 
 在开始创建你的 bot 之前，让我们先花几分钟时间为软件开发进行适当的设置。
 也就是安装一些工具。
 
 #### 为开发准备环境
 
-如果你还没有安装 Deno，那么就先 [安装 Deno](https://deno.land/manual/getting_started/installation#download-and-install)。
+如果你还没有安装 Deno，那么就先 [安装 Deno](https://deno.com/manual/getting_started/installation#download-and-install)。
 
 你还需要一个非常适合编码的文本编辑器。
 最适合 Deno 的是 Visual Studio Code，通常简称为 VS Code。
@@ -214,4 +214,4 @@ code .
 
 还有信心吗？
 非常棒！
-[开始吧](./getting-started.md#getting-started-on-deno)！ :robot:
+[开始吧](./getting-started.md#通过-deno-开始)！ :robot:

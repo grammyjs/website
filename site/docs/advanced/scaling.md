@@ -81,8 +81,8 @@ grammY runner ships with `sequentialize()` middleware which makes sure that upda
 You can configure it with the very same function that you use to determine the session key.
 It will then avoid the above race condition by slowing down those (and only those) updates that would cause a collision.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context, session } from "grammy";
@@ -107,9 +107,9 @@ bot.on("message", (ctx) => ctx.reply("Got your message."));
 run(bot);
 ```
 
-</CodeGroupItem>
+:::
 
-<CodeGroupItem title="JavaScript">
+:::code-group-item JavaScript
 
 ```js
 const { Bot, Context, session } = require("grammy");
@@ -134,8 +134,8 @@ bot.on("message", (ctx) => ctx.reply("Got your message."));
 run(bot);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot, Context, session } from "https://deno.land/x/grammy/mod.ts";
@@ -160,8 +160,8 @@ bot.on("message", (ctx) => ctx.reply("Got your message."));
 run(bot);
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Feel free to join the [Telegram chat](https://t.me/grammyjs) to discuss how to use grammY runner with your bot.
 We are always happy to hear from people who maintain large bots so we can improve grammY based on their experience with the package.

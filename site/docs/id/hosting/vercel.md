@@ -38,7 +38,7 @@ Sehingga, untuk contoh struktur kita tadi, isi file-nya kurang lebih terlihat se
 
 > Jika kamu menggunakan paket Vercel yang versi gratis, konfigurasi `memory` dan `maxDuration` kamu sebaiknya mengikuti contoh di atas agar batas limit tidak terlampaui.
 
-Jika kamu tertarik untuk mempelajari file konfigurasi `vercel.json` ini, silahkan baca [dokumentasi berikut](https://vercel.com/docs/project-configuration).
+Jika kamu tertarik untuk mempelajari file konfigurasi `vercel.json` ini, silahkan baca [dokumentasi berikut](https://vercel.com/docs/concepts/projects/project-configuration).
 
 ## Mengatur TypeScript
 
@@ -94,7 +94,7 @@ Jika sudah, klik deploy!
 Langkah yang terakhir adalah menghubungkan aplikasi Vercel kamu ke Telegram.
 Ubah URL berikut dengan informasi yang sesuai kemudian jalankan URL-nya di browser kamu:
 
-```md:no-line-numbers
+```text
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<HOST_URL>
 ```
 
