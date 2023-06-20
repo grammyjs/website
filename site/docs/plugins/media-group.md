@@ -56,7 +56,7 @@ const photo = InputMediaBuilder.photo("https://grammy.dev/images/Y.png");
 Further options can be provided in an options object at the end.
 
 ```ts
-const photo InputMediaBuilder.photo("https://grammy.dev/images/Y.png", {
+const photo = InputMediaBuilder.photo("https://grammy.dev/images/Y.png", {
   caption: "grammY is awesome",
   // etc
 });
