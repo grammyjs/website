@@ -273,14 +273,14 @@ For the time being, `Heroku` has several [types of dynos](https://devcenter.hero
 Two of them are:
 
 - **Web dynos**:
-  
+
   _Web dynos_ are dynos of the "web" process that receive HTTP traffic from routers.
   This kind of dyno has a timeout of 30 seconds for executing code.
   Also, it will sleep if there is no request to handle within a 30 minutes period.
   This type of dyno is quite suitable for _webhooks_.
 
 - **Worker dynos**:
-  
+
   _Worker dynos_ are typically used for background jobs.
   It does NOT have a timeout, and will NOT sleep if it does not handle any web requests.
   It fits _long polling_.
