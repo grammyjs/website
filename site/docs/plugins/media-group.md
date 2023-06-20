@@ -47,7 +47,7 @@ const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
 
 Check out all methods of `InputMediaBuilder` in the [API reference](https://deno.land/x/grammy/mod.ts?s=InputMediaBuilder).
 
-You can also directly pass URLs which Telegram fetches.
+You can also directly pass public URLs which Telegram fetches.
 
 ```ts
 const photo = InputMediaBuilder.photo("https://grammy.dev/images/Y.png");
@@ -64,7 +64,7 @@ const photo InputMediaBuilder.photo("https://grammy.dev/images/Y.png", {
 
 ## Sending a Media Group
 
-You can send a media group as follows.
+You can send a media group as follows:
 
 ```ts
 await ctx.replyWithMediaGroup([photo0, photo1, photo2, video]);
