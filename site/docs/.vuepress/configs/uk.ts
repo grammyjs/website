@@ -167,7 +167,7 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
             ],
           },
           {
-            text: "Офіціальні",
+            text: "Офіційні",
             children: [
               {
                 text: "Розмови (conversations)",
