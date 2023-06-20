@@ -300,7 +300,7 @@ web: node dist/app.js
 ```
 
 :::
-:::code-group-item $1
+:::code-group-item 长轮询
 
 ```procfile
 worker: node dist/bot.js
@@ -357,7 +357,7 @@ tsconfig.json
 ```
 
 :::
-:::code-group-item $1
+:::code-group-item 长轮询
 
 ```asciiart:no-line-numbers
 .
@@ -390,7 +390,7 @@ git commit -m "My first commit"
 否则，请运行 `新应用`
 
 ::::code-group
-:::code-group-item $1
+:::code-group-item 新应用
 
 ```sh
 heroku create
@@ -398,7 +398,7 @@ git remote -v
 ```
 
 :::
-:::code-group-item $1
+:::code-group-item 已存在应用
 
 ```sh
 heroku git:remote -a <myApp>

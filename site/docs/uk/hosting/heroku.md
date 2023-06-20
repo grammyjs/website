@@ -296,7 +296,7 @@ npx tsc
 У нашому випадку він має бути таким:
 
 ::::code-group
-:::code-group-item $1
+:::code-group-item Вебхук
 
 ```procfile
 web: node dist/app.js
@@ -340,7 +340,7 @@ tsconfig.json
 Кінцева структура каталогів повинна виглядати наступним чином:
 
 ::::code-group
-:::code-group-item $1
+:::code-group-item Вебхук
 
 ```asciiart:no-line-numbers
 .
