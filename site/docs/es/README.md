@@ -18,6 +18,8 @@ features:
 permalink: /es/
 ---
 
+<!-- markdownlint-disable no-inline-html -->
+
 <h6 align="right">… {{ [
   'piensa en el por qué',
   'la nueva era del desarrollo de bots',

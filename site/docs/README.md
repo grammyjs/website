@@ -18,6 +18,8 @@ features:
 permalink: /
 ---
 
+<!-- markdownlint-disable no-inline-html -->
+
 <h6 align="right">… {{ [
   'think of the whY',
   'a new era of bot development',

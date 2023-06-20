@@ -18,6 +18,8 @@ features:
 permalink: /uk/
 ---
 
+<!-- markdownlint-disable no-inline-html -->
+
 <h6 align="right">… {{ [
   'подумайте, чомУ',
   'нова ера розробки ботів',

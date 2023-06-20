@@ -272,13 +272,15 @@ Por el momento, `Heroku` tiene varios [tipos de dynos](https://devcenter.heroku.
 Dos de ellos son:
 
 - **Web dynos**:
-  <br> _Web dynos_ son dynos del proceso "web" que reciben tráfico HTTP de los routers.
+  
+  _Web dynos_ son dynos del proceso "web" que reciben tráfico HTTP de los routers.
   Este tipo de dyno tiene un tiempo de espera de 30 segundos para ejecutar código.
   Además, se suspenderá si no hay ninguna petición que atender en un periodo de 30 minutos.
   Este tipo de dyno es muy adecuado para los _webhooks_.
 
 - **Worker dynos**:
-  <br> _Worker dynos_ se utilizan normalmente para trabajos en segundo plano.
+  
+  _Worker dynos_ se utilizan normalmente para trabajos en segundo plano.
   NO tiene un tiempo de espera, y NO dormirá si no maneja ninguna petición web.
   Se adapta al _long polling_.
 

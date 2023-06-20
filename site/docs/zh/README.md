@@ -18,6 +18,8 @@ features:
 permalink: /zh/
 ---
 
+<!-- markdownlint-disable no-inline-html -->
+
 <h6 align="right">… {{ [
   '想到了什么？',
   'bot 开发的新时代',
