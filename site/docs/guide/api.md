@@ -77,7 +77,7 @@ grammY allows you to specify objects consistently across the API, and makes sure
 
 grammY ships with complete type coverage of the Bot API.
 The [`@grammyjs/types`](https://github.com/grammyjs/types) repository contains the type definitions that grammY uses internally.
-These type definitions are also exported so you can use them in your own code.
+These type definitions are also directly exported from the core `grammy` package so you can use them in your own code.
 
 #### Type Definitions on Deno
 
