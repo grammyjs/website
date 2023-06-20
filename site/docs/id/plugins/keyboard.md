@@ -7,7 +7,7 @@ Salahkan Telegram karena menggunakan kedua istilah aneh tersebut. :upside_down_f
 
 Mari kita perjelas sedikit istilah-istilah berikut agar tidak salah paham:
 
-| <div style="width:130px">Istilah</div>  | Keterangan                                                                                                                                                                       |
+| Istilah                                 | Keterangan                                                                                                                                                                       |
 | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [**Keyboard Inline**](#keyboard-inline) | Kumpulan tombol yang ditampilkan di bawah sebuah pesan di dalam chat.                                                                                                            |
 | [**Keyboard Custom**](#keyboard-custom) | Kumpulan tombol yang ditampilkan untuk menggantikan keyboard sistem user.                                                                                                        |

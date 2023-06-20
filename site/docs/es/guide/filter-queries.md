@@ -309,7 +309,7 @@ Análogamente, puedes hacer uso de los tipos de consulta de filtro que grammY ut
 
 ### Reutilización de los tipos de consulta de filtro
 
-Internamente, `matchFilter` utiliza los [type predicates] de TypeScript (https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates) para acotar el tipo de `ctx`.
+Internamente, `matchFilter` utiliza los [predicados de tipo](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates) de TypeScript para acotar el tipo de `ctx`.
 Toma un tipo `C extends Context` y un `Q extends FilterQuery` y produce `ctx is Filter<C, Q>`.
 En otras palabras, el tipo `Filter` es lo que realmente recibes para tu `ctx` en el middleware.
 
