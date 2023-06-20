@@ -77,7 +77,7 @@ grammY 允许你在整个 API 中统一的指定对象，并确保正确的属�
 
 grammY 提供了完整的 Bot API 的类型覆盖。
 [`@grammyjs/types`](https://github.com/grammyjs/types) 仓库包含 grammY 内部使用的类型定义。
-这些类型定义也被导出，因此你可以在你的代码中使用它们。
+这些类型定义也被直接从核心 `grammy` 包中导出，因此你可以在你的代码中使用它们。
 
 #### 在 Deno 中的类型定义
 
