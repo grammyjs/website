@@ -274,14 +274,14 @@ Jika berhasil dijalankan dan tidak ada pesan error yang muncul, file-file yang t
 Dua diantaranya adalah:
 
 - **Web dynos**:
-  
+
   _Web dynos_ adalah sebuah dyno untuk memproses "web" yang menerima traffic HTTP dari berbagai router.
   Dyno tipe ini memiliki waktu timeout selama 30 detik untuk menjalankan kode.
   Selain itu, ia akan tidur jika tidak ada request yang dikerjakan dalam rentang waktu 30 menit.
   Jenis dyno seperti ini cocok digunakan untuk _webhooks_.
 
 - **Worker dynos**:
-  
+
   _Worker dynos_ digunakan untuk memproses kode di belakang layar.
   Ia TIDAK memiliki waktu timeout dan TIDAK akan tidur jika tidak ada request web yang dikerjakan.
   Sehingga, ia cocok digunakan untuk _long polling_.

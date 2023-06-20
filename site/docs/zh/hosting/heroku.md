@@ -270,14 +270,14 @@ npx tsc
 其中两个是：
 
 - **Web dynos**:
-  
+
   _Web dynos_ 是接收来自路由器的 HTTP 流量的 "web" 进程。
   这种类型的 dyno 在执行代码时有 30 秒的超时限制。
   另外，如果在 30 分钟内没有需要处理的请求，它就会休眠。
   这种类型的 dyno 非常适合 _webhooks_。
 
 - **Worker dynos**:
-  
+
   _Worker dynos_ 通常用于后台工作。
   它没有超时限制，而且如果它不处理任何请求，它也不会休眠。
   它适合 _长轮询_。
@@ -300,7 +300,7 @@ web: node dist/app.js
 ```
 
 :::
-:::code-group-item $1
+:::code-group-item 长轮询
 
 ```procfile
 worker: node dist/bot.js
@@ -357,7 +357,7 @@ tsconfig.json
 ```
 
 :::
-:::code-group-item $1
+:::code-group-item 长轮询
 
 ```asciiart:no-line-numbers
 .
@@ -390,7 +390,7 @@ git commit -m "My first commit"
 否则，请运行 `新应用`
 
 ::::code-group
-:::code-group-item $1
+:::code-group-item 新应用
 
 ```sh
 heroku create
@@ -398,7 +398,7 @@ git remote -v
 ```
 
 :::
-:::code-group-item $1
+:::code-group-item 已存在应用
 
 ```sh
 heroku git:remote -a <myApp>

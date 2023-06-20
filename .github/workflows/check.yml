@@ -31,7 +31,7 @@ jobs:
       - name: Check Linting
         working-directory: ./site
         run: |
-          npm i -D markdownlint-cli2
+          npm ci
           npm run docs:lint
 
   links:
