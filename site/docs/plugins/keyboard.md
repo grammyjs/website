@@ -40,7 +40,7 @@ You can build an inline keyboard by creating a new instance of the `InlineKeyboa
 
 Here is an example:
 
-![Example 1](/images/inline-keyboard-example.webp)
+![Example](/images/inline-keyboard-example.webp)
 
 ```ts
 const inlineKeyboard = new InlineKeyboard()
