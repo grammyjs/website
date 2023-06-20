@@ -28,11 +28,11 @@ The first letter of the names of grammY entities (e.g., plugin names, chat names
 + grammY runner
 ```
 
-# 2
+## 2
 
 Use American English.
 This refers to both spelling and punctuation.
-After all, the source code is written in AmE, too.
+After all, the source code is written in American English, too.
 
 ## 3
 
