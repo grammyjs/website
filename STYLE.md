@@ -12,7 +12,7 @@ grammY’s name must always be written as “grammY”, regardless of its positi
 + grammY---the Telegram Bot Framework
 ```
 
-## 2
+## 1
 
 The first letter of the names of grammY entities (e.g., plugin names, chat names) must be in lowercase, regardless of the casing of its surroundings.
 
