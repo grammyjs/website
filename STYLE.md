@@ -21,6 +21,12 @@ The first letter of the names of grammY entities (e.g., plugin names, chat names
 + grammY runner
 ```
 
+# 2
+
+Use American English.
+This refers to both spelling and punctuation.
+After all, the source code is written in AmE, too.
+
 ## 3
 
 In English, the the headings must be in title case and follow the rules of [AP Stylebook](https://en.wikipedia.org/wiki/Title_case#AP_Stylebook).
