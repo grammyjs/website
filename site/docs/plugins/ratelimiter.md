@@ -32,7 +32,7 @@ This plugin exposes 5 customizable options:
 
 The `MEMORY_STORE` or the in-memory tracking is suitable for most bots, however if you implement clustering for your bot you will not be able to use the in-memory storage effectively.
 That's why the Redis option is provided as well.
-You can pass a Redis client from [ioredis](https://github.com/luin/ioredis) or [redis](https://deno.land/x/redis) in case you use Deno.
+You can pass a Redis client from [ioredis](https://github.com/redis/ioredis) or [redis](https://deno.land/x/redis) in case you use Deno.
 In reality, any Redis driver that implements the `incr` and `pexpire` methods should work just fine.
 ratelimiter is driver agnostic.
 

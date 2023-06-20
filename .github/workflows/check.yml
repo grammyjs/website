@@ -17,7 +17,7 @@ jobs:
           deno-version: v1.x
 
       - name: Check Formatting
-        run: deno fmt --config deno.json --check
+        run: deno fmt --check
 
   links:
     runs-on: ubuntu-latest
@@ -31,5 +31,4 @@ jobs:
       - name: Check Links
         if: github.ref == 'refs/heads/main'
         run: |
-          cd site/docs
-          deno run --allow-read --allow-net https://raw.githubusercontent.com/grammyjs/link-checker/main/main.ts
+          deno task check-links

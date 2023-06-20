@@ -94,7 +94,7 @@ Jika sudah, klik deploy!
 Langkah yang terakhir adalah menghubungkan aplikasi Vercel kamu ke Telegram.
 Ubah URL berikut dengan informasi yang sesuai kemudian jalankan URL-nya di browser kamu:
 
-```md:no-line-numbers
+```text
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<HOST_URL>
 ```
 
