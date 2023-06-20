@@ -100,7 +100,7 @@ For us, there are two runtime environments to choose from, [Deno](https://deno.c
 (If you see people call it _Node_, they are just too lazy to type ".js", but they mean the same thing.)
 
 > The rest of this section helps you decide between these two platforms.
-> If you already know what you want to use, jump down to the [prerequisites for Node.js](#prerequisites-for-node-js) or [those for Deno](#prerequisites-for-deno).
+> If you already know what you want to use, jump down to the [prerequisites for Node.js](#prerequisites-for-nodejs) or [those for Deno](#prerequisites-for-deno).
 
 Node.js is the older, more mature technology.
 If you need to connect to a funky database or do other low-level system-related things, chances are extremely high that you can do it with Node.js.

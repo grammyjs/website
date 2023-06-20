@@ -100,7 +100,7 @@ Para nosotros, hay dos entornos de ejecución para elegir, [Deno](https://deno.c
 (Si ves que la gente lo llama _Node_, es que son demasiado perezosos para escribir ".js", pero significan lo mismo).
 
 > El resto de esta sección te ayuda a decidir entre estas dos plataformas.
-> Si ya sabes lo que quieres usar, salta a los [requisitos previos para Node.js](#requisitos-previos-para-node-js) o los [de Deno](#requisitos-previos-para-deno).
+> Si ya sabes lo que quieres usar, salta a los [requisitos previos para Node.js](#requisitos-previos-para-nodejs) o los [de Deno](#requisitos-previos-para-deno).
 
 Node.js es la tecnología más antigua y madura.
 Si necesitas conectarte a una base de datos extraña o hacer otras cosas de bajo nivel relacionadas con el sistema, es muy probable que puedas hacerlo con Node.js.

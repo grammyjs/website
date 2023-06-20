@@ -18,7 +18,7 @@
    Якщо це так, то він знаходиться в обʼєкті необовʼязкових параметрів під назвою `other`.
    Передайте `{ назва_параметру: значення }` у цьому місці, тоді це спрацює.
    Звичайно, TypeScript буде автоматично доповнювати назви параметрів для вас.
-3. Перевірте [тут](https://deno.land/x/grammy/mod.ts?s=Context#Methods) сигнатуру [методу](../guide/context.md#доступні-діі) обʼєкту контексту `ctx` або перевірте [тут](https://deno.land/x/grammy/mod.ts?s=Api#Methods) сигнатуру методу API: `ctx.api`, `bot.api`.
+3. Перевірте [тут](https://deno.land/x/grammy/mod.ts?s=Context#Methods) сигнатуру [методу](../guide/context.md#доступні-дії) обʼєкту контексту `ctx` або перевірте [тут](https://deno.land/x/grammy/mod.ts?s=Api#Methods) сигнатуру методу API: `ctx.api`, `bot.api`.
 
 ## Чому я отримую цю помилку?
 
