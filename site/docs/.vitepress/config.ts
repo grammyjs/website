@@ -5,7 +5,7 @@ export default defineConfig({
   lastUpdated: true,
   appearance: "dark",
   cleanUrls: true,
-  ignoreDeadLinks: true,
+  // ignoreDeadLinks: true,
 
   locales: {
     ...config.siteEn,

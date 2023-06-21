@@ -12,7 +12,7 @@ If this FAQ does not answer your question, you should also have a look at the [B
 ## Where Can I Find Docs About a Method?
 
 In the API reference.
-You probably want to understand [this](../guide) better.
+You probably want to understand [this](../guide/) better.
 
 ## A Method Is Missing a Parameter!
 

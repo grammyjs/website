@@ -12,7 +12,7 @@ Jika FAQ ini tidak menjawab pertanyaanmu, sebaiknya kamu juga membaca [FAQ Bot](
 ## Di Mana Saya Bisa Menemukan Dokumentasi Mengenai Method?
 
 Di referensi API.
-Kamu mungkin tertarik untuk memahami [hal-hal berikut](../guide) terlebih dahulu.
+Kamu mungkin tertarik untuk memahami [hal-hal berikut](../guide/) terlebih dahulu.
 
 ## Ada Parameter yang Tidak Tersedia di Method Tertentu!
 
