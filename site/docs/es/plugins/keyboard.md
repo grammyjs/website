@@ -36,62 +36,43 @@ Proporciona una clase llamada `InlineKeyboard` para esto.
 
 ### Construyendo un Teclado en Línea
 
-Aquí hay tres ejemplos de cómo construir un teclado en línea con botones de `texto`.
+Puedes construir un teclado en línea creando una nueva instancia de la clase `InlineKeyboard`, y luego añadiéndole los botones que quieras usando `.text()` y sus otros métodos.
 
-También puedes usar otros métodos como `url` para permitir que los clientes de Telegram abran una URL, y muchas más opciones como se listan en la [Referencia de la API de grammY](https://deno.land/x/grammy/mod.ts?s=InlineKeyboard#Methods) así como en la [Referencia de la API de Telegram Bot](https://core.telegram.org/bots/api#inlinekeyboardbutton) para `InlineKeyboard`.
+Aquí tienes un ejemplo:
 
-#### Ejemplo 1
-
-Los botones para una navegación de paginación se pueden construir así:
-
-##### Código
+![Ejemplo](/images/inline-keyboard-example.webp)
 
 ```ts
 const inlineKeyboard = new InlineKeyboard()
-  .text("« 1", "first")
-  .text("‹ 3", "prev")
-  .text("· 4 ·", "stay")
-  .text("5 ›", "next")
-  .text("31 »", "last");
+  .text("« 1", "primero")
+  .text("‹ 3", "anterior")
+  .text("· 4 ·", "actual")
+  .text("5 ›", "siguiente")
+  .text("31 »", "último");
 ```
+Llama a `.row()` si quieres empezar una nueva fila de botones.
+También puedes usar otros métodos como `.url()` para permitir al cliente del usuario abrir una URL específica o hacer otras cosas interesantes.
+Asegúrate de revisar [todos los métodos](https://deno.land/x/grammy/mod.ts?s=InlineKeyboard#Methods) en la clase `InlineKeyboard`.
 
-##### Resultado
+Si ya tienes una cadena de caracteres que te gustaría convertir en un teclado en línea, puedes usar un segundo estilo alternativo para construir instancias de teclado en línea.
+La clase `InlineKeyboard` tiene métodos estáticos como `InlineKeyboard.text` que te permiten crear objetos botón.
+A su vez, puedes crear una instancia de teclado en línea a partir de un array de objetos botón utilizando `InlineKeyboard.from`.
 
-![Ejemplo 1](/images/inline-keyboard-example-1.webp)
-
-#### Ejemplo 2
-
-Un teclado en línea con botón de compartir puede ser construido así:
-
-##### Código
+De esta manera, puedes construir el teclado en línea anterior de una manera funcional.
 
 ```ts
-const inlineKeyboard = new InlineKeyboard()
-  .text("Get random music", "random").row()
-  .switchInline("Send music to friends");
+const labelDataPairs = [
+  ["« 1", "primero"],
+  ["‹ 3", "anterior"],
+  ["· 4 ·", "actual"],
+  ["5 ›", "siguiente"],
+  ["31 »", "último"],
+];
+const buttonRows = labelDataPairs
+  .map(([label, data]) => InlineKeyboard.text(label, data))
+  .map((button) => InlineKeyboard.row(button));
+const keyboard = InlineKeyboard.from(buttonRows);
 ```
-
-##### Resultado
-
-![Ejemplo 2](/images/inline-keyboard-example-2.webp)
-
-#### Ejemplo 3
-
-Los botones de la URL se pueden construir así:
-
-##### Código
-
-```ts
-const inlineKeyboard = new InlineKeyboard().url(
-  "Read on TechCrunch",
-  "https://techcrunch.com/2016/04/11/this-is-the-htc-10/",
-);
-```
-
-##### Resultado
-
-![Ejemplo 3](/images/inline-keyboard-example-3.webp)
-
 ### Envío de un Teclado en línea
 
 Puedes enviar un teclado en línea directamente a lo largo de un mensaje, sin importar si usas `bot.api.sendMessage`, `ctx.api.sendMessage`, o `ctx.reply`:
@@ -177,61 +158,41 @@ Recuerda que puedes escuchar los mensajes de texto a través de `bot.on("message
 
 ### Construyendo un Teclado Personalizado
 
-Aquí hay tres ejemplos de cómo construir un teclado con botones de `texto`.
+Puedes construir un teclado personalizado creando una nueva instancia de la clase `Keyboard`, y añadiéndole botones como `.text()` y otros.
+Llama a `.row()` para comenzar una nueva fila de botones.
 
-También puedes solicitar el número de teléfono con `requestContact`, la ubicación con `requestLocation`, una encuesta con `requestPoll`, un usuario con `requestUser`, y un chat con `requestChat`.
+Here is an example:
 
-#### Ejemplo 1
-
-Tres botones en una columna pueden ser construidos así:
-
-##### Código
+![Ejemplo](/images/keyboard-example.webp)
 
 ```ts
 const keyboard = new Keyboard()
-  .text("Yes, they certainly are").row()
-  .text("I'm not quite sure").row()
+  .text("Sí, ciertamente lo son").row()
+  .text("No estoy muy seguro").row()
   .text("No. 😈")
   .resized();
 ```
 
-##### Resultado
+También puedes enviar botones más potentes que soliciten el número de teléfono o la localización del usuario o que hagan otras cosas interesantes.
+Asegúrate de revisar [todos los métodos](https://deno.land/x/grammy/mod.ts?s=Keyboard#Methods) en la clase `Keyboard`.
 
-![Ejemplo 1](/images/keyboard-example-1.webp)
+Si ya tienes una cadena de caracteres que te gustaría convertir en un teclado, puedes usar un segundo estilo alternativo para construir instancias de teclado.
+La clase `Keyboard` tiene métodos estáticos como `Keyboard.text` que te permiten crear objetos botón.
+A su vez, puedes crear una instancia de teclado a partir de un array de objetos botón usando `Keyboard.from`.
 
-#### Ejemplo 2
-
-Un teclado de calculadora se puede construir así:
-
-##### Código
-
-```ts
-const keyboard = new Keyboard()
-  .text("7").text("8").text("9").text("*").row()
-  .text("4").text("5").text("6").text("/").row()
-  .text("1").text("2").text("3").text("-").row()
-  .text("0").text(".").text("=").text("+");
-```
-
-##### Resultado
-
-![Ejemplo 2](/images/keyboard-example-2.webp)
-
-#### Ejemplo 3
-
-Cuatro botones en una cuadrícula pueden ser construidos así:
-
-##### Código
+De esta manera, puedes construir el teclado anterior de una manera funcional.
 
 ```ts
-const keyboard = new Keyboard()
-  .text("A").text("B").row()
-  .text("C").text("D");
+const labels = [
+  "Sí, ciertamente lo son",
+  "No estoy muy seguro",
+  "No. 😈",
+];
+const buttonRows = labels
+  .map((label) => Keyboard.text(label))
+  .map((button) => Keyboard.row(button));
+const keyboard = Keyboard.from(buttonRows, { resize_keyboard: true });
 ```
-
-##### Resultado
-
-![Ejemplo 3](/images/keyboard-example-3.webp)
 
 ### Envío de un Teclado Personalizado
 
@@ -248,6 +209,7 @@ Naturalmente, todos los demás métodos que envían mensajes que no sean de text
 
 También puede dotar a su teclado de una o varias propiedades más llamando a métodos especiales sobre él.
 No añadirán ningún botón, sino que definirán el comportamiento del teclado.
+Ya hemos visto `resized` en el ejemplo anterior---aquí hay algunas cosas más que puedes hacer.
 
 #### Teclados persistentes
 
@@ -337,9 +299,7 @@ Si quieres manejar todos los clics de los botones a la vez, utiliza `bot.on("mes
 A menos que especifique `one_time_keyboard` como se describe [arriba](#teclado-personalizado-de-un-solo-uso), el teclado personalizado permanecerá abierto para el usuario (pero
 el usuario puede minimizarlo).
 
-Sólo puedes eliminar un teclado personalizado cuando envías un nuevo mensaje en el chat, al igual que sólo puedes especificar un nuevo teclado al enviar un mensaje.
-
-Pasar `{ remove_keyboard: true }` como `reply_markup` así:
+Sólo puedes eliminar un teclado personalizado cuando envías un nuevo mensaje en el chat, al igual que sólo puedes especificar un nuevo teclado al enviar un mensaje. Pasar `{ remove_keyboard: true }` como `reply_markup` así:
 
 ```ts
 await ctx.reply(text, {
@@ -347,14 +307,10 @@ await ctx.reply(text, {
 });
 ```
 
-Junto a `remove_keyboard`, puede establecer `selective: true` para eliminar el teclado personalizado sólo para los usuarios seleccionados.
-
-Esto funciona de forma análoga a [enviar selectivamente un teclado personalizado](#enviar-selectivamente-un-teclado-personalizado).
+Junto a `remove_keyboard`, puede establecer `selective: true` para eliminar el teclado personalizado sólo para los usuarios seleccionados. Esto funciona de forma análoga a [enviar selectivamente un teclado personalizado](#enviar-selectivamente-un-teclado-personalizado).
 
 ## Resumen del plugin
 
-Este plugin está incorporado en el núcleo de grammY.
-No necesitas instalar nada para usarlo.
-Simplemente importa todo desde el propio grammY.
+Este plugin está incorporado en el núcleo de grammY. No necesitas instalar nada para usarlo. Simplemente importa todo desde el propio grammY.
 
 Además, tanto la documentación como la referencia de la API de este plugin están unificadas con el paquete del núcleo.
