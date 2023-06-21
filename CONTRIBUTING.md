@@ -22,7 +22,7 @@ We have observed that the following workflow works well, and we usually try to s
 4. All translation happens and the labels for the respective languages are added.
 5. The PR now has at least one approval and all translations are ready, so it can be merged.
 
-> Make sure that your PRs have the “Allow edits by maintainers” option checked, so that we are able finalize and accept your PR in case of your disappearance.
+> Make sure that your PRs have the “Allow edits by maintainers” option checked, so that we are able finalize and accept your pull request.
 
 ## Translating
 
