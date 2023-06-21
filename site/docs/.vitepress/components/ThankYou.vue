@@ -88,14 +88,14 @@ load();
 
 <template>
   <a v-if="contributor.name" v-bind:href="contributor.href" target="_blank" rel="noreferrer noopener">
-    <img v-bind:alt="contributor.login" v-bind:src="contributor.photo" />
+    <img v-bind:alt="contributor.login" v-bind:src="contributor.photo" width="32" height="32"/>
     <p>
       {{ props.s[0] }}<span>{{ contributor.name }}</span>{{ contributor.name.toLowerCase() == "knorpelsenf" ? (props.s[3]
         ?? props.s[2]) : props.s[2] }}
     </p>
   </a>
   <div v-else id="footer-logo">
-    <img src="/images/Y.webp" alt="grammY logo"/>
+    <img src="/images/Y.webp" alt="grammY logo" width="32" height="32"/>
   </div>
 </template>
 
@@ -111,6 +111,7 @@ a {
   
   > img {
     height: 2rem;
+    width: 2rem;
     border-radius: 9999px;
   }
   

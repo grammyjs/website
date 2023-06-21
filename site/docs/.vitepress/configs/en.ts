@@ -1,5 +1,5 @@
 import type { LocalSearchTranslations } from "node_modules/vitepress/types/local-search";
-import type { DefaultTheme, LocaleConfig } from "vitepress";
+import type { LocaleConfig } from "vitepress";
 import { social } from "../shared/vars";
 import type { NotFound } from "../shared/types";
 
