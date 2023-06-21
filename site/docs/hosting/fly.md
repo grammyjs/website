@@ -112,7 +112,7 @@ bot.start();
 As you can see in the highlighted line above, we take some sensitive values (your bot token) from environment variables.
 Fly allow us to store that secret by running this command:
 
-```sh:no-line-numbers
+```sh
 flyctl secrets set BOT_TOKEN="AAAA:12345"
 ```
 
@@ -135,7 +135,7 @@ This is the easiest method to go with.
 flyctl launch
 ```
 
-```log:no-line-numbers{10} [Log]
+```log{10} [Log]
 Creating app in /my/telegram/bot
 Scanning source code
 Detected a Deno app
@@ -157,7 +157,7 @@ Your app is ready. Deploy with `flyctl deploy`
 flyctl launch
 ```
 
-```log:no-line-numbers{12} [Log]
+```log{12} [Log]
 Creating app in /my/telegram/bot
 Scanning source code
 Detected a NodeJS app
@@ -396,7 +396,7 @@ jobs:
 If you are using webhooks, after getting your app running, you should configure your bot's webhook settings to point to your app.
 To do that, send a request to
 
-```md:no-line-numbers
+```text
 https://api.telegram.org/bot<token>/setWebhook?url=<url>
 ```
 

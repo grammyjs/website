@@ -99,7 +99,7 @@ Una vez hecho esto, ¡puedes desplegarlo!
 El último paso es conectar tu aplicación Vercel con Telegram.
 Modifica la siguiente URL con tus credenciales y visítala desde tu navegador:
 
-```md:no-line-numbers
+```text
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<HOST_URL>
 ```
 

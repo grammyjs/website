@@ -79,7 +79,7 @@ grammY te permite especificar objetos de forma consistente a través de la API, 
 
 grammY viene con una cobertura completa de tipos de la API del Bot.
 El repositorio [`@grammyjs/types`](https://github.com/grammyjs/types) contiene las definiciones de tipos que grammY utiliza internamente.
-Estas definiciones de tipos también se exportan para que puedas usarlas en tu propio código.
+Estas definiciones de tipos también se exportan directamente desde el paquete `grammy` para que puedas utilizarlas en tu propio código.
 
 #### Definiciones de tipos en Deno
 

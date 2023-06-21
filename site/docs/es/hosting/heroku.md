@@ -292,7 +292,7 @@ Crear un archivo llamado `Procfile` sin extensión de archivo en el directorio r
 Por ejemplo, `Procfile.txt` y `procfile` no son válidos.
 A continuación, escriba este formato de código de una sola línea:
 
-```
+```procfile
 <tipo de dyno>: <omando para ejecutar nuestro archivo de entrada principal>
 ```
 
@@ -300,11 +300,11 @@ Para nuestro caso debería serlo:
 
 :::code-group
 
-```[Webhook]
+```procfile [Webhook]
 web: node dist/app.js
 ```
 
-```[Long Polling]
+```procfile [Long Polling]
 worker: node dist/bot.js
 ```
 
@@ -329,7 +329,7 @@ A continuación, tenemos que evitar que los archivos innecesarios lleguen a nues
 Crea un archivo llamado `.gitignore` en la raíz del directorio de nuestro proyecto.
 Luego añade esta lista:
 
-```
+```text
 node_modules/
 src/
 tsconfig.json

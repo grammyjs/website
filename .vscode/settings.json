@@ -1,5 +1,5 @@
 {
-  "deno.config": "./deno.json",
+  "deno.config": "./deno.jsonc",
   "deno.enable": true,
   "deno.enablePaths": [
     // everything except .vuepress

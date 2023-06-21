@@ -293,7 +293,7 @@ Create file named `Procfile` without a file extension in the root directory of o
 For example, `Procfile.txt` and `procfile` are not valid.
 Then write this single line code format:
 
-```
+```procfile
 <dynos type>: <command for executing our main entry file>
 ```
 
@@ -301,11 +301,11 @@ For our case it should be:
 
 :::code-group
 
-```[Webhook]
+```procfile [Webhook]
 web: node dist/app.js
 ```
 
-```[Long Polling]
+```procfile [Long Polling]
 worker: node dist/bot.js
 ```
 
@@ -330,7 +330,7 @@ Next, we need to prevent unnecessary files from reaching our production server, 
 Create a file named `.gitignore` in root of our project's directory.
 Then add this list:
 
-```
+```text
 node_modules/
 src/
 tsconfig.json

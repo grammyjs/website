@@ -293,7 +293,7 @@ npx tsc
 Наприклад, `Procfile.txt` і `procfile` не є дійсними.
 Далі напишіть цей код одним рядком у такому форматі:
 
-```
+```procfile
 <тип dyno>: <команда для виконання основного файлу>
 ```
 
@@ -301,11 +301,11 @@ npx tsc
 
 :::code-group
 
-```[$1]
+```procfile [Вебхук]
 web: node dist/app.js
 ```
 
-```[Тривале опитування]
+```procfile [Тривале опитування]
 worker: node dist/bot.js
 ```
 
@@ -330,7 +330,7 @@ git init
 Створіть файл з назвою `.gitignore` в кореневому каталозі проєкту.
 Потім додайте цей список:
 
-```
+```text
 node_modules/
 src/
 tsconfig.json
@@ -340,7 +340,7 @@ tsconfig.json
 
 :::code-group
 
-```asciiart:no-line-numbers [$1]
+```asciiart:no-line-numbers [Вебхук]
 .
 ├── .git/
 ├── node_modules/

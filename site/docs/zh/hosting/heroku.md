@@ -290,7 +290,7 @@ npx tsc
 也就是说，`Procfile.txt` 和 `procfile` 是无效的。
 然后以下面这个格式写入单行代码：
 
-```
+```procfile
 <dynos type>: <command for executing our main entry file>
 ```
 
@@ -298,11 +298,11 @@ npx tsc
 
 :::code-group
 
-```[Webhook]
+```procfile [Webhook]
 web: node dist/app.js
 ```
 
-```[$1]
+```procfile [长轮询]
 worker: node dist/bot.js
 ```
 
@@ -327,7 +327,7 @@ git init
 在项目的根目录下创建一个名为 `.gitignore` 的文件。
 然后添加下列内容：
 
-```
+```text
 node_modules/
 src/
 tsconfig.json
@@ -354,7 +354,7 @@ tsconfig.json
 └── .gitignore
 ```
 
-```asciiart:no-line-numbers [$1]
+```asciiart:no-line-numbers [长轮询]
 .
 ├── .git/
 ├── node_modules/
@@ -385,12 +385,12 @@ git commit -m "My first commit"
 
 :::code-group
 
-```sh [$1]
+```sh [新应用]
 heroku create
 git remote -v
 ```
 
-```sh [$1]
+```sh [已存在应用]
 heroku git:remote -a <myApp>
 ```
 
