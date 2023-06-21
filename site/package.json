@@ -5,7 +5,6 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "prepare": "npm run docs:index-versions",
     "docs:index-versions": "deno run --no-npm --allow-net docs/.vuepress/plugins/current-versions/build-index.ts > docs/.vuepress/plugins/current-versions/index.json",
     "docs:dev": "vitepress dev docs",
     "docs:host": "vitepress dev docs --host",
