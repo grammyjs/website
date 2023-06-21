@@ -1,6 +1,6 @@
 # Teclados en línea y personalizados (incluido)
 
-Tu bot puede enviar una serie de botones, ya sea para ser [mostrados debajo de un mensaje](#teclados-en-linea), o para [reemplazar el teclado del usuario](#teclados-personalizados).
+Tu bot puede enviar una serie de botones, ya sea para ser [mostrados debajo de un mensaje](#teclados-en-línea), o para [reemplazar el teclado del usuario](#teclados-personalizados).
 Se denominan _teclados en línea_ y _teclados personalizados_, respectivamente.
 Si crees que esto es confuso, es porque lo es.
 Gracias, Telegram, por este solapamiento terminológico.
@@ -9,7 +9,7 @@ Vamos a intentar aclararlo un poco:
 
 | Término                                               | Definición                                                                                                                                                      |
 | ----------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [**Teclado en Línea**](#teclados-en-linea)            | un conjunto de botones que se muestra debajo de un mensaje dentro del chat.                                                                                     |
+| [**Teclado en Línea**](#teclados-en-línea)            | un conjunto de botones que se muestra debajo de un mensaje dentro del chat.                                                                                     |
 | [**Teclado Personalizado**](#teclados-personalizados) | un conjunto de botones que se muestra en lugar del teclado del sistema del usuario.                                                                             |
 | **Botón del Teclado en Línea**                        | un botón en un teclado en línea, envía una consulta de devolución de llamada no visible para el usuario cuando se pulsa, a veces sólo se llama _inline button_. |
 | **Botón del Teclado Personalizado**                   | un botón en un teclado personalizado, envía un mensaje de texto con su etiqueta cuando se pulsa, a veces sólo se llama _keyboard button_.                       |
@@ -327,7 +327,7 @@ Tu bot no puede diferenciar entre los mensajes de texto ordinarios, y los mensaj
 
 Además, los botones siempre enviarán exactamente el mensaje que está escrito en ellos.
 Telegram no te permite crear botones que muestren un texto, pero que envíen otro.
-Si necesitas hacer esto, deberías usar un [teclado en línea](#teclados-en-linea) en su lugar.
+Si necesitas hacer esto, deberías usar un [teclado en línea](#teclados-en-línea) en su lugar.
 
 Para manejar el clic de un botón específico, puedes usar `bot.hears` con el mismo texto que pusiste en el botón.
 Si quieres manejar todos los clics de los botones a la vez, utiliza `bot.on("message:text")` e inspecciona `ctx.msg.text` para averiguar qué botón se ha pulsado, o si se ha enviado un mensaje de texto ordinario.

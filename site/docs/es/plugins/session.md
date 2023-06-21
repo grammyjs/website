@@ -2,7 +2,7 @@
 
 Aunque siempre puedes escribir tu propio código para conectarte a un almacenamiento de datos de tu elección, grammY soporta un patrón de almacenamiento muy conveniente llamado _sesiones_.
 
-> [Salta hacia abajo](#como-usar-las-sesiones) si sabes cómo funcionan las sesiones.
+> [Salta hacia abajo](#cómo-usar-las-sesiones) si sabes cómo funcionan las sesiones.
 
 ## ¿Por qué debemos pensar en el almacenamiento?
 
@@ -38,7 +38,7 @@ Su recuento de pizzas no debería cambiar, por supuesto, cuando su hermana añad
 Las sesiones son una forma elegante de almacenar datos _por chat_.
 Utilizarías el identificador del chat como clave en tu base de datos, y un contador como valor.
 En este caso, llamaríamos al identificador del chat la _clave de la sesión_.
-(Puedes leer más sobre las claves de sesión [aquí abajo](#claves-de-sesion).
+(Puedes leer más sobre las claves de sesión [aquí abajo](#claves-de-sesión).
 Efectivamente, tu bot almacenará un mapa desde un identificador de chat a unos datos de sesión personalizados, es decir, algo así:
 
 ```json
@@ -72,7 +72,7 @@ Simplemente modificamos los datos en `ctx.session`, y el plugin se encargará de
 
 ## Cuándo usar las sesiones
 
-> [Sáltate el paso](#como-usar-las-sesiones) si ya sabes que quieres usar sesiones.
+> [Sáltate el paso](#cómo-usar-las-sesiones) si ya sabes que quieres usar sesiones.
 
 Puede que pienses, esto es genial, ¡nunca más tendré que preocuparme por las bases de datos!
 Y tienes razón, las sesiones son una solución ideal, pero sólo para algunos tipos de datos.
@@ -594,7 +594,7 @@ Cada uno de estos fragmentos de datos tendrá un nombre bajo el cual puede almac
 Entonces podrás acceder a `ctx.session.foo` y `ctx.session.bar` y estos valores serán cargados desde diferentes almacenamientos de datos, y también serán escritos de vuelta a diferentes almacenamientos de datos.
 Naturalmente, también se puede utilizar el mismo almacenamiento con una configuración diferente.
 
-También es posible utilizar diferentes [claves de sesión](#claves-de-sesion) para cada fragmento.
+También es posible utilizar diferentes [claves de sesión](#claves-de-sesión) para cada fragmento.
 Como resultado, puede almacenar algunos datos por chat y otros por usuario.
 
 > Si está utilizando [grammY runner](./runner.md), asegúrese de configurar `sequentialize` correctamente devolviendo **todas** las claves de sesión como restricciones de la función.

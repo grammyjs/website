@@ -131,7 +131,7 @@ handle.task.then(() => {
 grammY runner consta de tres cosas: una fuente, un sumidero y un ejecutor.
 La fuente extrae actualizaciones, el sumidero consume actualizaciones, y el corredor configura y conecta los dos.
 
-> Puede encontrar una descripción detallada de cómo funciona internamente el corredor [aquí abajo](#como-funciona-entre-bastidores).
+> Puede encontrar una descripción detallada de cómo funciona internamente el corredor [aquí abajo](#cómo-funciona-entre-bastidores).
 
 Cada una de estas tres partes puede ser configurada a través de varias opciones.
 Esto puede reducir el tráfico de red, permitirte especificar las actualizaciones permitidas y mucho más.
@@ -157,7 +157,7 @@ run(bot, { runner: { fetch: { allowed_updates: [] } } });
 ## Multihilo
 
 > No tiene sentido el multithreading si tu bot no procesa al menos 50 millones de actualizaciones al día (>500 por segundo).
-> [Sáltate esta sección](#como-funciona-entre-bastidores) si tu bot maneja menos tráfico que eso.
+> [Sáltate esta sección](#cómo-funciona-entre-bastidores) si tu bot maneja menos tráfico que eso.
 
 JavaScript es monohilo.
 Esto es asombroso porque la [concurrencia es dificil](../advanced/scaling.md#la-concurrencia-es-dificil), lo que significa que si sólo hay un único hilo, naturalmente se eliminan muchos quebraderos de cabeza.

@@ -221,4 +221,4 @@ Simplemente instala grammY a través de npm con `npm install grammy`, y empieza 
 
 ## ¿Cómo enviar?
 
-Si tienes un plugin listo, puedes simplemente enviar un pull request en GitHub (de acuerdo con las [Reglas de Contribución](#reglas-de-contribucion)), o notificarnos en el [chat de la comunidad](https://t.me/grammyjs) para más ayuda.
+Si tienes un plugin listo, puedes simplemente enviar un pull request en GitHub (de acuerdo con las [Reglas de Contribución](#reglas-de-contribución)), o notificarnos en el [chat de la comunidad](https://t.me/grammyjs) para más ayuda.

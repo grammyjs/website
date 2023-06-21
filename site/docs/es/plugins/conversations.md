@@ -413,7 +413,7 @@ async function hiAndBye(conversation, ctx) {
 (Sí, poner un `return` al final de la función es un poco inútil, pero se entiende la idea).
 
 Si se produce un error, también se saldrá de la conversación.
-Sin embargo, el [plugin de sesión](#instalar-y-entrar-en-una-conversacion) sólo persigue los datos si el middleware se ejecuta con éxito.
+Sin embargo, el [plugin de sesión](#instalar-y-entrar-en-una-conversación) sólo persigue los datos si el middleware se ejecuta con éxito.
 Por lo tanto, si lanzas un error dentro de tu conversación y no lo capturas antes de que llegue al plugin de sesión, no se guardará que la conversación fue abandonada.
 Como resultado, el siguiente mensaje causará el mismo error.
 
@@ -704,7 +704,7 @@ Como se mencionó anteriormente, **no hacen _literalmente_ que tu bot espere**, 
 Hay tres reglas que se aplican al código que escribes dentro de una función constructora de conversaciones.
 Debes seguirlas si quieres que tu código se comporte correctamente.
 
-Desplázate [hacia abajo](#como-funciona) si quieres saber más sobre _por qué_ se aplican estas reglas, y qué hacen realmente las llamadas `wait` internamente.
+Desplázate [hacia abajo](#cómo-funciona) si quieres saber más sobre _por qué_ se aplican estas reglas, y qué hacen realmente las llamadas `wait` internamente.
 
 ### Regla I: Todos los efectos secundarios deben estar envueltos
 
@@ -985,7 +985,7 @@ Como siempre, consulte la [referencia de la API](https://deno.land/x/grammy_conv
 
 ## Trabajando con Plugins
 
-Como se mencionó [anteriormente](#introduccion), los manejadores grammY siempre manejan una sola actualización.
+Como se mencionó [anteriormente](#introducción), los manejadores grammY siempre manejan una sola actualización.
 Sin embargo, con las conversaciones, puedes procesar muchas actualizaciones en secuencia como si todas estuvieran disponibles al mismo tiempo.
 Los plugins hacen esto posible almacenando objetos de contexto antiguos, y reabasteciéndolos más tarde.
 Esta es la razón por la que los objetos de contexto dentro de las conversaciones no siempre se ven afectados por algunos plugins de grammY de la manera que cabría esperar.

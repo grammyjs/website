@@ -211,7 +211,7 @@ new InputFile(function* () {
 这是非常高效的。
 
 > 请注意，Telegram 支持用许多种方法为你下载文件。
-> 如果可能，你应该选择 [通过 URL 发送文件](#通过-file-id-或者-url)，而不是使用 `InputFile` 来通过你的服务器流式传输文件内容。
+> 如果可能，你应该选择 [通过 URL 发送文件](#通过-file_id-或者-url)，而不是使用 `InputFile` 来通过你的服务器流式传输文件内容。
 
 ::::code-group
 :::code-group-item Node.js

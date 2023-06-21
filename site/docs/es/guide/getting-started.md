@@ -5,7 +5,7 @@ next: ./basics.md
 
 # Comenzando
 
-Crea tu primer bot en minutos. (Desplázate [abajo](#introduccion-a-deno) para una guía de Deno.)
+Crea tu primer bot en minutos. (Desplázate [abajo](#introducción-a-deno) para una guía de Deno.)
 
 ## Comenzando en Node.js
 

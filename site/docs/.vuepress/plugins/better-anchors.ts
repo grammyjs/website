@@ -1,9 +1,15 @@
 import { type Plugin } from "vuepress-vite";
 
-const PROBLEM_CHARS_TEST_RE = /[йї_]/g;
+const PROBLEM_CHARS_TEST_RE = /[йїáéíóñú_]/g;
 const replacements: Record<string, string> = {
   й: "и",
   ї: "і",
+  á: 'a',
+  é: 'e',
+  í: 'i',
+  ó: 'o',
+  ñ: 'n',
+  ú: 'u',
   _: "-",
 };
 export function betterAnchors(): Plugin {

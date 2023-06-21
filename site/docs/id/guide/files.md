@@ -212,7 +212,7 @@ Sebaliknya, grammY cuma melewatkan data tersebut dan menyimpan sepotong kecil da
 Sangat efisien, bukan.
 
 > Perlu dicatat bahwa Telegram mendukung pengunduhan file dengan berbagai cara.
-> Jika memungkinkan, sebaiknya kamu [mengirim file menggunakan URL](#melalui-file-id-atau-url), daripada menggunakan `InputFile` untuk mengalirkan data file melalui server kamu.
+> Jika memungkinkan, sebaiknya kamu [mengirim file menggunakan URL](#melalui-file_id-atau-url), daripada menggunakan `InputFile` untuk mengalirkan data file melalui server kamu.
 
 ::::code-group
 :::code-group-item Node.js

@@ -11,7 +11,7 @@ En otras palabras, no utiliza ningún código de proyectos de la competencia, pe
 
 ::: tip Elige primero tu lenguaje de programación
 Dado que estás leyendo la documentación de un framework dentro del ecosistema JavaScript, es probable que estés buscando algo que funcione en Node.js (o Deno).
-Sin embargo, si ese no es tu caso, [desplázate hacia abajo](#comparacion-con-frameworks-en-otros-lenguajes-de-programacion) para ver una comparación de qué lenguajes de programación son adecuados para el desarrollo de bots.
+Sin embargo, si ese no es tu caso, [desplázate hacia abajo](#comparación-con-frameworks-en-otros-lenguajes-de-programación) para ver una comparación de qué lenguajes de programación son adecuados para el desarrollo de bots.
 Naturalmente, también encontrarás una breve comparación con frameworks de otros lenguajes (principalmente Python).
 :::
 

@@ -17,7 +17,7 @@ bot.on("message", async (ctx) => {
 
 Puedes utilizar el objeto de contexto para:
 
-- [acceder a la información sobre el mensaje](#informacion-disponible)
+- [acceder a la información sobre el mensaje](#información-disponible)
 - [realizar acciones en respuesta al mensaje](#acciones-disponibles).
 
 Tenga en cuenta que los objetos `Context` se llaman comúnmente `ctx`.
@@ -357,7 +357,7 @@ class MiContexto extends Context {
 }
 ```
 
-Sin embargo, te recomendamos que personalices el objeto contexto [vía middleware](#via-middleware-recomendado) porque es mucho más flexible y funciona mucho mejor si quieres instalar plugins.
+Sin embargo, te recomendamos que personalices el objeto contexto [vía middleware](#vía-middleware-recomendado) porque es mucho más flexible y funciona mucho mejor si quieres instalar plugins.
 
 Ahora veremos cómo utilizar clases personalizadas para los objetos de contexto.
 

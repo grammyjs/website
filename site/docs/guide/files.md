@@ -212,7 +212,7 @@ Instead, grammY will only pipe through the data, and only keep a small chunk of 
 This is very efficient.
 
 > Note that Telegram supports downloading the file for you in many methods.
-> If possible, you should prefer to [send the file via URL](#via-file-id-or-url), instead of using `InputFile` to stream the file contents through your server.
+> If possible, you should prefer to [send the file via URL](#via-file_id-or-url), instead of using `InputFile` to stream the file contents through your server.
 
 ::::code-group
 :::code-group-item Node.js
