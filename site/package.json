@@ -1,9 +1,6 @@
 {
-  "name": "grammy-website",
-  "version": "1.0.0",
-  "description": "Main documentation site for grammY",
-  "main": "index.js",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "prepare": "npm run docs:index-versions",
     "docs:index-versions": "deno run --no-npm --allow-net docs/.vuepress/plugins/current-versions/build-index.ts > docs/.vuepress/plugins/current-versions/index.json",
@@ -15,9 +12,6 @@
     "docs:serve": "serve docs/.vuepress/dist",
     "deno:version": "deno --version"
   },
-  "keywords": [],
-  "author": "KnorpelSenf",
-  "license": "MIT",
   "devDependencies": {
     "@vuepress/plugin-docsearch": "next",
     "serve": "^14.2.0",
