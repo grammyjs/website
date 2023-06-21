@@ -139,7 +139,7 @@ const pluginBuiltin = {
 };
 
 const pluginOfficial = {
-  text: "Офіціальні",
+  text: "Офіційні",
   items: [
     {
       text: "Розмови (conversations)",
