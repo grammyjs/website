@@ -5,7 +5,6 @@ export default defineConfig({
   lastUpdated: true,
   appearance: "dark",
   cleanUrls: true,
-  // ignoreDeadLinks: true,
 
   locales: {
     ...config.siteEn,
@@ -52,5 +51,11 @@ export default defineConfig({
   markdown: {
     lineNumbers: true,
     theme: "dracula-soft",
+  },
+
+  vite: {
+    build: {
+      chunkSizeWarningLimit: 1600,
+    },
   },
 });
