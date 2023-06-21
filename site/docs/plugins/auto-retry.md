@@ -4,7 +4,7 @@ This plugin is an [API transformer function](../advanced/transformers.md), which
 More specifically, this plugin will automatically detect if an API requests fails with a `retry_after` value, i.e. because of rate limiting.
 It will then catch the error, wait the specified period of time, and then retry the request.
 
-:::tip Flood Control and Broadcasting
+:::tip Flood Control
 Telegram will let you know if you send messages too fast.
 This is an important measure for flood control, as it makes sure that your bot does not put Telegram under too much load.
 Using this plugin is important because if you forget to respect 429 errors, Telegram may ban your bot.
