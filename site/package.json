@@ -15,7 +15,6 @@
   },
   "devDependencies": {
     "@vuepress/plugin-docsearch": "next",
-    "deno-bin": ">=1.31.1",
     "serve": "^14.2.0",
     "vuepress-vite": "2.0.0-beta.61"
   }
