@@ -4,12 +4,12 @@ const PROBLEM_CHARS_TEST_RE = /[йїáéíóñú_]/g;
 const replacements: Record<string, string> = {
   й: "и",
   ї: "і",
-  á: 'a',
-  é: 'e',
-  í: 'i',
-  ó: 'o',
-  ñ: 'n',
-  ú: 'u',
+  á: "a",
+  é: "e",
+  í: "i",
+  ó: "o",
+  ñ: "n",
+  ú: "u",
   _: "-",
 };
 export function betterAnchors(): Plugin {

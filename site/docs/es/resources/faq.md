@@ -1,7 +1,9 @@
 # FAQ
 
 <!-- markdownlint-disable link-fragments -->
+
 Aquí hay una colección de preguntas frecuentes sobre [errores comunes](#¿por-qué-recibo-este-error) y [cosas de Deno](#preguntas-sobre-deno).
+
 <!-- markdownlint-enable link-fragments -->
 
 Si este FAQ no responde a tu pregunta, también deberías echar un vistazo al [Bot FAQ](https://core.telegram.org/bots/faq) escrito por el equipo de Telegram.
