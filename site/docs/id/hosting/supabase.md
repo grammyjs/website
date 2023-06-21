@@ -88,7 +88,7 @@ Sisanya, kita perlu memberi tahu Telegram ke mana ia harus mengirim update-updat
 Kamu bisa melakukannya dengan memanggil `setWebhook`.
 Contohnya, buka sebuah tab baru di browser lalu kunjungi URL berikut:
 
-```text
+```txt
 https://api.telegram.org/bot<TOKEN_BOT>/setWebhook?url=https://<NAMA_PROYEK>.functions.supabase.co/telegram-bot?secret=<TOKEN_BOT>
 ```
 

@@ -135,7 +135,7 @@ Terakhir, beri tahu Telegram alamat pengiriman update-nya.
 Kamu bisa melakukannya dengan cara memanggil `setWebhook`.
 Buka tab baru di browser, lalu kunjungi URL berikut:
 
-```text
+```txt
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<WEBHOOK_URL>/<firebase-namaproyek>/us-central1/helloWorld
 ```
 
@@ -168,7 +168,7 @@ Untuk penjelasan lebih lanjut, kamu bisa melihat langkah ke-8 di [panduan memula
 Setelah di-deploy, kamu perlu memberi tahu Telegram untuk mengirim update ke bot kamu dengan cara memanggil method `setWebhook`.
 Buka sebuah tab browser baru, lalu kunjungi URL berikut:
 
-```text
+```txt
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<REGION>.<MY_PROJECT>.cloudfunctions.net/helloWorld
 ```
 

@@ -36,7 +36,7 @@ Crea las carpetas en el directorio raíz del proyecto.
 Luego, dentro de la carpeta `src`, crea un nuevo archivo llamado `bot.ts`.
 Nuestra estructura de carpetas debería ser así:
 
-```asciiart:no-line-numbers
+```txt:no-line-numbers
 .
 ├── node_modules/
 ├── dist/
@@ -149,14 +149,14 @@ Sin embargo, no necesitamos que este código se ejecute cada vez que llega una p
 Por lo tanto, podemos eliminar esta parte completamente, y ejecutar el `GET` sólo una vez manualmente.
 Abre este enlace en tu navegador web después de desplegar nuestro bot:
 
-```asciiart:no-line-numbers
+```txt:no-line-numbers
 https://api.telegram.org/bot<bot_token>/setWebhook?url=<webhook_url>
 ```
 
 Ten en cuenta que algunos navegadores requieren que codifiques manualmente (https://en.wikipedia.org/wiki/Percent-encoding#Reserved_characters) la `webhook_url` antes de pasarla.
 Por ejemplo, si tenemos el token bot `abcd:1234` y la URL `https://grammybot.herokuapp.com/secret_path`, entonces nuestro enlace debería tener este aspecto:
 
-```asciiart:no-line-numbers
+```txt:no-line-numbers
 https://api.telegram.org/botabcd:1234/setWebhook?url=https%3A%2F%2Fgrammybot.herokuapp.com%2Fsecret_path
 ```
 
@@ -292,7 +292,7 @@ Crear un archivo llamado `Procfile` sin extensión de archivo en el directorio r
 Por ejemplo, `Procfile.txt` y `procfile` no son válidos.
 A continuación, escriba este formato de código de una sola línea:
 
-```procfile
+```txt
 <tipo de dyno>: <omando para ejecutar nuestro archivo de entrada principal>
 ```
 
@@ -300,11 +300,11 @@ Para nuestro caso debería serlo:
 
 :::code-group
 
-```procfile [Webhook]
+```txt [Webhook]
 web: node dist/app.js
 ```
 
-```procfile [Long Polling]
+```txt [Long Polling]
 worker: node dist/bot.js
 ```
 
@@ -329,7 +329,7 @@ A continuación, tenemos que evitar que los archivos innecesarios lleguen a nues
 Crea un archivo llamado `.gitignore` en la raíz del directorio de nuestro proyecto.
 Luego añade esta lista:
 
-```text
+```txt
 node_modules/
 src/
 tsconfig.json
@@ -339,7 +339,7 @@ Nuestra estructura final de carpetas debería tener este aspecto:
 
 :::code-group
 
-```asciiart:no-line-numbers [Webhook]
+```txt:no-line-numbers [Webhook]
 .
 ├── .git/
 ├── node_modules/
@@ -356,7 +356,7 @@ Nuestra estructura final de carpetas debería tener este aspecto:
 └── .gitignore
 ```
 
-```asciiart:no-line-numbers [Long Polling]
+```txt:no-line-numbers [Long Polling]
 .
 ├── .git/
 ├── node_modules/

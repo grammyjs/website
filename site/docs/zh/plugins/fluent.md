@@ -56,7 +56,7 @@ Fluent 的语法很容易掌握。
 
 让我们从这个示例开始吧：
 
-```ftl
+```txt
 -bot-name = Apples Bot
 
 welcome =
@@ -135,7 +135,7 @@ bot.command("i18n_test", async (ctx) => {
 现在你可以启动你的 bot，并使用 `/i18n_test` 命令。
 它应该渲染以下消息：
 
-```text
+```txt
 Welcome, Slava, to the Apples Bot!
 You have 1 apple.
 ```

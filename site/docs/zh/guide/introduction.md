@@ -45,7 +45,7 @@ grammY 是一个库，它使编写这样一个 bot 变得超级简单。
 
 下面是一个（简化的）图表，说明当 Alice 与你的 bot 联系时，流程会是什么样子。
 
-```asciiart:no-line-numbers
+```txt:no-line-numbers
  _______      telegram         __________                     __________
 | Alice | —>  发送消息  —>  | Telegram | —> HTTP 请求 —> | 你的 bot |
  -------      给你的 bot       ----------                     ----------

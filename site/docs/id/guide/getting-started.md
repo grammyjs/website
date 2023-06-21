@@ -64,7 +64,7 @@ pnpm add grammy
 Kemudian, buat file teks kosong baru dengan nama `bot.ts`.
 Struktur folder kurang lebih terlihat seperti ini:
 
-```asciiart:no-line-numbers
+```txt:no-line-numbers
 .
 ├── bot.ts
 ├── node_modules/

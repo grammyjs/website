@@ -30,7 +30,7 @@ Un ejemplo ejecutable que implementa la estrategia anterior puede encontrarse en
 
 Para un bot muy simple que gestiona una lista de TODO, podrías imaginar esta estructura.
 
-```asciiart:no-line-numbers
+```txt:no-line-numbers
 src/
 ├── bot.ts
 └── todo/

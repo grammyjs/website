@@ -63,7 +63,7 @@ pnpm add grammy
 Створюємо новий порожній текстовий файл, якому дамо назву `bot.ts`, наприклад.
 Тепер структура каталогів має виглядати так:
 
-```asciiart:no-line-numbers
+```txt:no-line-numbers
 .
 ├── bot.ts
 ├── node_modules/

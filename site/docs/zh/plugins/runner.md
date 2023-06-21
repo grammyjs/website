@@ -174,7 +174,7 @@ grammY runner 允许你创建多个 worker，它们可以在实际不同的核�
 `BotWorker` 和 `Bot` 之间的主要区别在于 `BotWorker` 无法获取 update。
 相反，它必须从一个常规 `Bot` 接收。
 
-```asciiart:no-line-numbers
+```txt:no-line-numbers
 1. 获取 update                                    Bot
                                               __// \\__
                                            __/  /   \  \__
@@ -355,7 +355,7 @@ bot.use(distribute(workerFile, { count: 8 }));
 2. 它的 **sink** 提供 updates 给 bot。
 3. 它的 **runner** 组件连接 source 和 sink，并允许你启动和停止你的 bot。
 
-```asciiart:no-line-numbers
+```txt:no-line-numbers
 api.telegram.org <—> source <—> runner <—> sink <—> bot
 ```
 

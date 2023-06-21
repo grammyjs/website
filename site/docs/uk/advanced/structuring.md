@@ -30,7 +30,7 @@ next:
 
 Для дуже простого бота, який керує списком TODO, ви можете уявити собі таку структуру.
 
-```asciiart:no-line-numbers
+```txt:no-line-numbers
 src/
 ├── bot.ts
 └── todo/

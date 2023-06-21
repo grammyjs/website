@@ -45,7 +45,7 @@ Remember that running your code somewhere else means that whoever owns that "som
 
 Here is a (simplified) diagram of how the setup will look in the end when Alice contacts your bot:
 
-```asciiart:no-line-numbers
+```txt:no-line-numbers
 _________        sends a         ____________                    ____________
 | Alice | —> Telegram message —> | Telegram | —> HTTP request —> | your bot |
 —————————      to your bot       ————————————                    ————————————

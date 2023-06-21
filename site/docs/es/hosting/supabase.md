@@ -84,7 +84,7 @@ Todo lo que queda por hacer es decirle a Telegram dónde enviar las actualizacio
 Puedes hacerlo llamando a `setWebhook`.
 Por ejemplo, abre una nueva pestaña en tu navegador y visita esta URL:
 
-```text
+```txt
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<PROJECT_NAME>.functions.supabase.co/telegram-bot?secret=<BOT_TOKEN>
 ```
 

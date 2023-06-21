@@ -132,7 +132,7 @@ localtunnel повинен надати вам унікальну URL-адрес
 Ви можете зробити це, викликавши `setWebhook`.
 Наприклад, відкрийте нову вкладку у своєму браузері та відвідайте цю адресу:
 
-```text
+```txt
 https://api.telegram.org/bot<токен-бота>/setWebhook?url=<адреса>/<firebase-проєкт>/us-central1/helloWorld
 ```
 
@@ -165,7 +165,7 @@ Firebase CLI надасть вам URL-адресу вашої функції о
 Після розгортання вам потрібно повідомити Telegram, куди надсилати оновлення для вашого бота, викликавши метод `setWebhook`.
 Для цього відкрийте нову вкладку в браузері і відвідайте цю адресу:
 
-```text
+```txt
 https://api.telegram.org/bot<токен-бота>/setWebhook?url=https://<регіон>.<назва-проєкту>.cloudfunctions.net/helloWorld
 ```
 

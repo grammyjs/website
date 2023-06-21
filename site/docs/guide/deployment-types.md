@@ -41,7 +41,7 @@ If no messages are there, Telegram will return an empty list, indicating that no
 
 When grammY sends a request to Telegram and new messages have been sent to your bot in the meantime, Telegram will return them as an array of up to 100 update objects.
 
-```asciiart:no-line-numbers
+```txt:no-line-numbers
 ______________                                   _____________
 |            |                                   |           |
 |            |   <--- are there messages? ---    |           |
@@ -82,7 +82,7 @@ Two scoops with sprinkles, the usual?"_
 
 _As if nothing had happened, you enjoy your ice cream while leaving the world's most unrealistic ice cream parlor._
 
-```asciiart:no-line-numbers
+```txt:no-line-numbers
 ______________                                   _____________
 |            |                                   |           |
 |            |   <--- are there messages? ---    |           |
@@ -119,7 +119,7 @@ You tell your friend behind the counter where you live.
 He promises to head over to your apartment personally whenever new ice cream is there (because it would melt in the mail).
 Cool guy._
 
-```asciiart:no-line-numbers
+```txt:no-line-numbers
 ______________                                   _____________
 |            |                                   |           |
 |            |                                   |           |
@@ -286,7 +286,7 @@ const bot = new Bot("", {
 
 This is how webhook replies work under the hood.
 
-```asciiart:no-line-numbers
+```txt:no-line-numbers
 ______________                                   _____________
 |            |                                   |           |
 |            |                                   |           |
@@ -320,7 +320,7 @@ If you don't end a webhook request fast enough, Telegram will re-send the update
 As a result, your bot can unexpectedly process the same update multiple times.
 This means that it will perform all update handling, including the sending of any response messages, multiple times.
 
-```asciiart:no-line-numbers
+```txt:no-line-numbers
 ______________                                   _____________
 |            |                                   |           |
 |            | ---    hi, new message    --->    |           |
@@ -380,7 +380,7 @@ When it's done, it can send a message back to the chat.
 This is straightforward to do if you just use a simple in-memory queue.
 It can be a little more challenging if you're using a fault-tolerant external queuing system, that persists the state of all tasks, and can retry things even if your server suddenly dies.
 
-```asciiart:no-line-numbers
+```txt:no-line-numbers
 ______________                                   _____________
 |            |                                   |           |
 |            |   ---   hi, new message    --->   |           |

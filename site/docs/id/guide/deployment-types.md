@@ -44,7 +44,7 @@ Kalau tidak ada pesan yang tersedia, Telegram akan mengembalikan daftar kosong, 
 
 Lalu grammY mengirim sebuah request lagi ke Telegram, dan ternyata pesan-pesan baru telah tersedia. Telegram lantas mengembalikan pesan-pesan tersebut dalam bentuk sebuah array yang berisi maksimal 100 object update.
 
-```asciiart:no-line-numbers
+```txt:no-line-numbers
 ______________                                              _____________
 |            |                                              |           |
 |            |    <---       Apa ada pesan baru?     ---    |           |
@@ -87,7 +87,7 @@ Satu porsi extra ditambah krim susu, dibungkus seperti biasanya?"_
 _Seolah-olah tidak terjadi apa-apa, kamu membawa es cendol sambil berjalan pulang meninggalkan
 warung es cendol paling aneh sedunia._
 
-```asciiart:no-line-numbers
+```txt:no-line-numbers
 ______________                                            _____________
 |            |                                            |           |
 |            |   <---     Apa ada pesan baru?      ---    |           |
@@ -124,7 +124,7 @@ Kamu memberi tahu Pak Jenggot alamat rumahmu.
 Setelah itu, beliau berjanji untuk langsung mengantarkan es cendolnya setiap kali ada stok baru tersedia, sendiri (karena beliau bilang es cendolnya keburu cair kalau diantar dengan jasa ekspedisi).
 Pak Jenggot benar-benar penjual yang ramah dan baik hati._
 
-```asciiart:no-line-numbers
+```txt:no-line-numbers
 ______________                                                _____________
 |            |                                                |           |
 |            |                                                |           |
@@ -292,7 +292,7 @@ const bot = new Bot("", {
 
 Berikut cara kerja webhook reply di balik layar:
 
-```asciiart:no-line-numbers
+```txt:no-line-numbers
 ______________                                                       _____________
 |            |                                                       |           |
 |            |                                                       |           |
@@ -325,7 +325,7 @@ Telegram mempunyai timeout atau batas waktu untuk setiap update yang dikirim ke 
 Kalau kamu telat mengakhiri webhook, Telegram akan mengirim kembali update tersebut karena ia mengasumsikan update-nya gagal dikirim.
 Akibatnya, bot kamu secara tidak sengaja memproses update yang sama berulang kali, termasuk mengirim pesan ke pengguna.
 
-```asciiart:no-line-numbers
+```txt:no-line-numbers
 ______________                                                       _____________
 |            |                                                       |           |
 |            | ---          Permisi, ada pesan baru          --->    |           |
@@ -385,7 +385,7 @@ Ketika sudah selesai, ia bisa mengirim pesan kembali ke chat.
 Ini cukup mudah dilakukan kalau kamu hanya menggunakan queue sederhana di memory.
 Tetapi, akan cukup menantang jika kamu menggunakan _fault-tolerant external queuing system_, yang mana dapat mempertahankan keadaan dari semua tugas, lalu kamu bisa melanjutkan antrian tugas tersebut meskipun server-mu tiba-tiba padam.
 
-```asciiart:no-line-numbers
+```txt:no-line-numbers
 ______________                                          _____________
 |            |                                          |           |
 |            |   ---     permisi, pesan baru     --->   |           |

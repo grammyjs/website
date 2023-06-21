@@ -56,7 +56,7 @@ Puedes empezar mirando los [ejemplos oficiales](https://projectfluent.org/#examp
 
 Empecemos con este ejemplo por ahora:
 
-```ftl
+```txt
 -bot-name = Apples Bot
 
 welcome =
@@ -136,7 +136,7 @@ bot.command("i18n_test", async (ctx) => {
 Ahora puedes iniciar tu bot y utilizar el comando `/i18n_test`.
 Debería mostrar el siguiente mensaje:
 
-```text
+```txt
 ¡Bienvenido, Slava, al Bot de las Manzanas!
 Tienes 1 manzana.
 ```

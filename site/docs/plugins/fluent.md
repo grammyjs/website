@@ -56,7 +56,7 @@ You can start by looking at the [official examples](https://projectfluent.org/#e
 
 Let's start with this example for now:
 
-```ftl
+```txt
 -bot-name = Apples Bot
 
 welcome =
@@ -136,7 +136,7 @@ bot.command("i18n_test", async (ctx) => {
 Now you can start your bot and use the `/i18n_test` command.
 It should render the following message:
 
-```text
+```txt
 Welcome, Slava, to the Apples Bot!
 You have 1 apple.
 ```

@@ -175,7 +175,7 @@ Es equivalente a la clase normal `Bot` (de hecho, incluso `extends Bot`).
 La principal diferencia entre `BotWorker` y `Bot` es que `BotWorker` no puede obtener actualizaciones.
 En su lugar, tiene que recibirlas de un `Bot` normal que controle a sus trabajadores.
 
-```asciiart:no-line-numbers
+```txt:no-line-numbers
 1. obtener actualizaciones                       Bot
                                               __// \\__
                                            __/  /   \  \__
@@ -356,7 +356,7 @@ Cada corredor consta de tres partes diferentes.
 2. El **sink** suministra las actualizaciones a la instancia del bot.
 3. El componente **runner** conecta la fuente y el sumidero, y te permite iniciar y detener tu bot.
 
-```asciiart:no-line-numbers
+```txt:no-line-numbers
 api.telegram.org <—> source <—> runner <—> sink <—> bot
 ```
 

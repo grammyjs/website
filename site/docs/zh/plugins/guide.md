@@ -161,7 +161,7 @@ Telegram 建议只有在 "bot 的响应需要**明显**的时间才能到达时"
 
 建议的初始化文件夹结构：
 
-```asciiart:no-line-numbers
+```txt:no-line-numbers
 plugin-template/
 ├─ src/
 │  ├─ deps.deno.ts

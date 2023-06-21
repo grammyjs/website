@@ -76,7 +76,7 @@ type NextFunction = () => Promise<void>;
 
 这个函数栈就是 _中间件栈_。
 
-```asciiart:no-line-numbers
+```txt:no-line-numbers
 (ctx, next) => ...    |
 (ctx, next) => ...    |————— X 的上游中间件
 (ctx, next) => ...    |

@@ -29,7 +29,7 @@ bot.command("start" /* , ... */);
 
 Hasilnya akan mirip seperti ini:
 
-```text
+```txt
 2020-03-31T14:32:36.974Z 490af message text Edgar 6 /start: 926.247ms
 2020-03-31T14:32:57.750Z 490ag message text Edgar 6 /start: 914.764ms
 2020-03-31T14:33:01.188Z 490ah message text Edgar 5 /stop: 302.666ms
@@ -71,7 +71,7 @@ bot.on("message" /* ... */);
 
 Hasilnya kurang lebih seperti ini:
 
-```text
+```txt
 490ai foo before: 304.185ms
 490ai foo inner: 83.122ms
 490ai foo after: 501.028ms

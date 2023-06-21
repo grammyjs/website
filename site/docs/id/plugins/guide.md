@@ -182,7 +182,7 @@ Kamu bisa mengunduh kodenya dari [repositori format plugin kami di GitHub](https
 
 Struktur folder awal yang kami sarankan:
 
-```asciiart:no-line-numbers
+```txt:no-line-numbers
 plugin-template/
 ├─ src/
 │  ├─ deps.deno.ts

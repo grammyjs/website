@@ -59,7 +59,7 @@ pnpm add grammy
 Crea un nuevo archivo de texto vacío, por ejemplo, llamado `bot.ts`.
 La estructura de tu carpeta debería ser así:
 
-```asciiart:no-line-numbers
+```txt:no-line-numbers
 .
 ├── bot.ts
 ├── node_modules/

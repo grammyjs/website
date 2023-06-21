@@ -43,7 +43,7 @@ Recuerda que ejecutar tu código en otro lugar significa que quien sea el dueño
 
 Aquí hay un diagrama (simplificado) de cómo se verá la configuración al final cuando Alice se ponga en contacto con tu bot:
 
-```asciiart:no-line-numbers
+```txt:no-line-numbers
 _________    envía un mensaje     ____________                    ____________
 | Alice | —>   de Telegram     —> | Telegram | —> HTTP request —> | your bot |
 —————————       a tu bot          ————————————                    ————————————

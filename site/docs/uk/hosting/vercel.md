@@ -12,7 +12,7 @@ next: false
 Єдиною передумовою для початку роботи з **Vercel Serverless Functions** є переміщення вашого коду до каталогу `api/`, як показано нижче.
 Ви також можете переглянути [документацію Vercel](https://vercel.com/docs/concepts/functions/serverless-functions#deploying-serverless-functions) для отримання додаткової інформації.
 
-```asciiart:no-line-numbers
+```txt:no-line-numbers
 .
 ├── node_modules/
 ├── build/
@@ -98,7 +98,7 @@ export default webhookCallback(bot, "http");
 Наступним кроком є підключення вашого застосунку Vercel до Telegram.
 Змініть наведену нижче URL-адресу на свої дані авторизації та відвідайте її у своєму браузері:
 
-```text
+```txt
 https://api.telegram.org/bot<токен-бота>/setWebhook?url=<адреса>
 ```
 

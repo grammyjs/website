@@ -30,7 +30,7 @@ next:
 
 这是对于管理待办事项列表的非常简单的 bot ，你可以参考这种结构。
 
-```asciiart:no-line-numbers
+```txt:no-line-numbers
 src/
 ├── bot.ts
 └── todo/

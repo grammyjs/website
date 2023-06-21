@@ -56,7 +56,7 @@ await fluent.addTranslation({
 
 Давайте почнемо з цього прикладу:
 
-```ftl
+```txt
 -bot-name = Apples Bot
 
 welcome =
@@ -137,7 +137,7 @@ bot.command("i18n_test", async (ctx) => {
 Тепер ви можете запустити бота і скористатися командою `/i18n_test`.
 Вона повинна вивести наступне повідомлення:
 
-```text
+```txt
 Ласкаво просимо, Slava, до Apples Bot!
 У вас є 1 яблуко.
 ```

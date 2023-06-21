@@ -63,7 +63,7 @@ pnpm add grammy
 创建一个新的空文本文件，例如称为 `bot.ts`。
 你的文件夹结构现在应该看起来像这样。
 
-```asciiart:no-line-numbers
+```txt:no-line-numbers
 .
 ├── bot.ts
 ├── node_modules/

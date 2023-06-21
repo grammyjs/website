@@ -136,7 +136,7 @@ Metode ini adalah cara yang termudah.
 flyctl launch
 ```
 
-```log{10} [Log]
+```txt{10} [Log]
 Creating app in /my/telegram/bot
 Scanning source code
 Detected a Deno app
@@ -158,7 +158,7 @@ Your app is ready. Deploy with `flyctl deploy`
 flyctl launch
 ```
 
-```log{12} [Log]
+```txt{12} [Log]
 Creating app in /my/telegram/bot
 Scanning source code
 Detected a NodeJS app
@@ -397,7 +397,7 @@ jobs:
 Setelah mendapati bot-mu dapat berjalan, kamu harus melakukan konfigurasi pada pengaturan webhook untuk menggunakan URL bot-mu yang baru.
 Untuk melakukannya, kirim sebuah request ke
 
-```text
+```txt
 https://api.telegram.org/bot<token>/setWebhook?url=<url>
 ```
 

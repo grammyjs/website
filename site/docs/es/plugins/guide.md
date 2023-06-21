@@ -178,7 +178,7 @@ Puedes descargar el código desde [nuestro repositorio de plantillas de plugins 
 
 La estructura de carpetas sugerida inicialmente:
 
-```asciiart:no-line-numbers
+```txt:no-line-numbers
 plugin-template/
 ├─ src/
 │ ├─ deps.deno.ts

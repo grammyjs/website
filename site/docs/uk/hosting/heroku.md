@@ -36,7 +36,7 @@ npx tsc --init
 Далі, у каталозі `src` створіть новий файл з назвою `bot.ts`.
 Тепер структура каталогів має виглядати наступним чином:
 
-```asciiart:no-line-numbers
+```txt:no-line-numbers
 .
 ├── node_modules/
 ├── dist/
@@ -148,14 +148,14 @@ app.listen(Number(process.env.PORT), async () => {
 Тому ми можемо повністю видалити цю частину і виконати `GET` лише один раз вручну.
 Відкрийте наступне посилання у своєму браузері після розгортання бота:
 
-```asciiart:no-line-numbers
+```txt:no-line-numbers
 https://api.telegram.org/bot<токен-бота>/setWebhook?url=<адреса>
 ```
 
 Зверніть увагу, що деякі браузери вимагають ручного [кодування](https://uk.wikipedia.org/wiki/Відсоткове_кодування#Відсоткове_кодування_зарезервованих_символів) вашого `<адреса>` перед передачею його.
 Наприклад, якщо у нас є токен бота `abcd:1234` та URL-адреса `https://grammybot.herokuapp.com/secret_path`, то наше посилання повинно виглядати наступним чином:
 
-```asciiart:no-line-numbers
+```txt:no-line-numbers
 https://api.telegram.org/botabcd:1234/setWebhook?url=https%3A%2F%2Fgrammybot.herokuapp.com%2Fsecret_path
 ```
 
@@ -293,7 +293,7 @@ npx tsc
 Наприклад, `Procfile.txt` і `procfile` не є дійсними.
 Далі напишіть цей код одним рядком у такому форматі:
 
-```procfile
+```txt
 <тип dyno>: <команда для виконання основного файлу>
 ```
 
@@ -301,11 +301,11 @@ npx tsc
 
 :::code-group
 
-```procfile [Вебхук]
+```txt [Вебхук]
 web: node dist/app.js
 ```
 
-```procfile [Тривале опитування]
+```txt [Тривале опитування]
 worker: node dist/bot.js
 ```
 
@@ -330,7 +330,7 @@ git init
 Створіть файл з назвою `.gitignore` в кореневому каталозі проєкту.
 Потім додайте цей список:
 
-```text
+```txt
 node_modules/
 src/
 tsconfig.json
@@ -340,7 +340,7 @@ tsconfig.json
 
 :::code-group
 
-```asciiart:no-line-numbers [Вебхук]
+```txt:no-line-numbers [Вебхук]
 .
 ├── .git/
 ├── node_modules/
@@ -357,7 +357,7 @@ tsconfig.json
 └── .gitignore
 ```
 
-```asciiart:no-line-numbers [Тривале опитування]
+```txt:no-line-numbers [Тривале опитування]
 .
 ├── .git/
 ├── node_modules/
