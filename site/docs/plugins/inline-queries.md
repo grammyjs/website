@@ -5,7 +5,8 @@ To do this, they start a message with `@your_bot_name` and choose one of the res
 
 > Revisit the Inline mode section in the [Telegram Bot Features](https://core.telegram.org/bots/features#inline-requests) written by the Telegram team.
 > Further resources are their [detailed description](https://core.telegram.org/bots/inline) of inline bots, as well as the [original blog post](https://telegram.org/blog/inline-bots) announcing the feature, and the Inline mode section in the [Telegram Bot API Reference](https://core.telegram.org/bots/api#inline-mode).
-> They are all worth a read before implementing inline queries for your bot.
+> They are all worth a read before implementing inline queries for your bot, as inline queries are a little advanced.
+> If you do not feel like reading all of that, then rest assured that this page will walk you through every step.
 
 ## Enabling Inline Mode
 
@@ -44,70 +45,109 @@ Now that we know how to listen for inline query updates, we can answer them with
 Building result lists for inline queries is a tedious task because you need to construct [complex nested objects](https://core.telegram.org/bots/api#inlinequeryresult) with a variety of properties.
 Fortunately, you are using grammY, and of course there are helpers that make this task very simple.
 
-Every result needs a unique string identifier of the result, a title which is displayed in the results, and the actual message text that will be sent.
+Every result needs three things.
+
+1. A unique string identifier.
+2. A _result object_ that describes how to display the inline query result.
+   It can contain things like a title, a link, or an image.
+3. A _message content_ object that describes the content of the message which will be sent by the user if they pick this result.
+   In some cases, the message content can be inferred implicitly from the result object.
+   For example, if you want your result to be displayed as a GIF, then Telegram will understand that the message content will be that same GIF---unless you specify a message content object.
+
+grammY exports a buider for inline query results, named `InlineQueryResultBuilder`.
+Here are some examples for its usage.
 
 ::::code-group
 :::code-group-item TypeScript
 
 ```ts
-import { InlineQueryResultBuilder } from "grammy";
+import { InlineKeyboard, InlineQueryResultBuilder } from "grammy";
 
-// Build one result for now. Articles are text messages.
-const result = InlineQueryResultBuilder.article(
-  "id-0",
-  "Success!",
-  "This message was sent via your bot",
-);
+// Build a photo result.
+InlineQueryResultBuilder.photo("id-0", "https://grammy.dev/images/Y.png");
+
+// Build a result that displays a photo but sends a text message.
+InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/Y.png")
+  .text("This text will be sent instead of the photo");
+
+// Build a text result.
+InlineQueryResultBuilder.article("id-2", "Inline Queries")
+  .text("Great inline query docs: grammy.dev/guide/inline-queries");
+
+// Pass further options to the result.
+const keyboard = new InlineKeyboard()
+  .text("Aw yis", "call me back");
+InlineQueryResultBuilder.article("id-3", "Hit me", { reply_markup: keyboard })
+  .text("Push my buttons");
+
+// Pass further options to the message content.
+InlineQueryResultBuilder.article("id-4", "Inline Queries")
+  .text("**Outstanding** docs: grammy.dev", { parse_mode: "MarkdownV2" });
 ```
 
 :::
 ::: code-group-item JavaScript
 
 ```js
-const { InlineQueryResultBuilder } = require("grammy");
+const { InlineKeyboard, InlineQueryResultBuilder } = require("grammy");
 
-// Build one result for now. Articles are text messages.
-const result = InlineQueryResultBuilder.article(
-  "id-0",
-  "Success!",
-  "This message was sent via your bot",
-);
+// Build a photo result.
+InlineQueryResultBuilder.photo("id-0", "https://grammy.dev/images/Y.png");
+
+// Build a result that displays a photo but sends a text message.
+InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/Y.png")
+  .text("This text will be sent instead of the photo");
+
+// Build a text result.
+InlineQueryResultBuilder.article("id-2", "Inline Queries")
+  .text("Great inline query docs: grammy.dev/guide/inline-queries");
+
+// Pass further options to the result.
+const keyboard = new InlineKeyboard()
+  .text("Aw yis", "call me back");
+InlineQueryResultBuilder.article("id-3", "Hit me", { reply_markup: keyboard })
+  .text("Push my buttons");
+
+// Pass further options to the message content.
+InlineQueryResultBuilder.article("id-4", "Inline Queries")
+  .text("**Outstanding** docs: grammy.dev", { parse_mode: "MarkdownV2" });
 ```
 
 :::
 :::code-group-item Deno
 
 ```ts
-import { InlineQueryResultBuilder } from "https://deno.land/x/grammy/mod.ts";
+import {
+  InlineKeyboard,
+  InlineQueryResultBuilder,
+} from "https://deno.land/x/grammy/mod.ts";
 
-// Build one result for now. Articles are text messages.
-const result = InlineQueryResultBuilder.article(
-  "id-0",
-  "Success!",
-  "This message was sent via your bot",
-);
+// Build a photo result.
+InlineQueryResultBuilder.photo("id-0", "https://grammy.dev/images/Y.png");
+
+// Build a result that displays a photo but sends a text message.
+InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/Y.png")
+  .text("This text will be sent instead of the photo");
+
+// Build a text result.
+InlineQueryResultBuilder.article("id-2", "Inline Queries")
+  .text("Great inline query docs: grammy.dev/guide/inline-queries");
+
+// Pass further options to the result.
+const keyboard = new InlineKeyboard()
+  .text("Aw yis", "call me back");
+InlineQueryResultBuilder.article("id-3", "Hit me", { reply_markup: keyboard })
+  .text("Push my buttons");
+
+// Pass further options to the message content.
+InlineQueryResultBuilder.article("id-4", "Inline Queries")
+  .text("**Outstanding** docs: grammy.dev", { parse_mode: "MarkdownV2" });
 ```
 
 :::
 ::::
 
-Optionally, you can pass many more options such as a description for display in the result list, or an [inline keyboard](./keyboard.md#inline-keyboards) that will be attached to the sent message.
-
-```ts
-const result = InlineQueryResultBuilder.article(
-  "id-0",
-  "Success!",
-  "This message was sent via your bot",
-  {
-    description: "Pick me.",
-    reply_markup: new InlineKeyboard()
-      .switchInline("Spread the word!"),
-  },
-);
-```
-
-In addition, you can send many more types of messages---not just text messages.
-The respective methods are called `InlineQueryResultBuilder.photo`, `InlineQueryResultBuilder.audio`, and so on.
+Note that if you want to send files via existing file identifiers, you should use the `*Cached` methods.
 
 ```ts
 // Result for an audio file sent via file identifier.
@@ -127,29 +167,22 @@ After generating an array of inline query results using the [above](#building-in
 // Shameless self-advertising in one project's documentation
 // is the best kind of advertising.
 bot.inlineQuery(/best bot (framework|library)/, async (ctx) => {
-  // Define message content.
-  const content = {
-    message_text:
-"<b>grammY</b> is the best way to create your own Telegram bots. \
-They even have a pretty website! 👇",
-    parse_mode: "HTML",
-  };
-  // Define an inline keyboard with a URL button.
-  const keyboard = new InlineKeyboard()
-    .url("grammY website", "https://grammy.dev/");
-
   // Create a single inline query result.
-  const result = InlineQueryResultBuilder.article(
-    "id:grammy-website",
-    "grammY",
-    content,
-    { reply_markup: keyboard },
-  );
+  const result = InlineQueryResultBuilder
+    .article("id:grammy-website", "grammY", {
+      reply_markup: new InlineKeyboard()
+        .url("grammY website", "https://grammy.dev/"),
+    })
+    .text(
+      `<b>grammY</b> is the best way to create your own Telegram bots.
+They even have a pretty website! 👇`,
+      { parse_mode: "HTML" },
+    );
 
   // Answer the inline query.
   await ctx.answerInlineQuery(
     [result], // answer with result list
-    { cache_time: 30 * 24 * 3600 }, // one month in seconds
+    { cache_time: 30 * 24 * 3600 }, // 30 days in seconds
   );
 });
 
@@ -161,7 +194,7 @@ bot.on("inline_query", (ctx) => ctx.answerInlineQuery([]));
 For example, `answerInlineQuery` allows you to perform pagination for inline queries via an offset, as you can see [here](https://core.telegram.org/bots/api#answerinlinequery).
 
 :::tip Mixing Text and Media
-While it is allowed to send a result lists that contain both media and text elements, most Telegram client do not render them very well.
+While it is allowed to send a result lists that contain both media and text elements, most Telegram clients do not render them very well.
 From a user experience point of view, you should avoid them.
 :::
 
@@ -180,6 +213,7 @@ await ctx.answerInlineQuery(results, { button });
 
 When the user presses the button, a `/start` command message will be sent to your bot.
 The start parameter will be available via [deep linking](../guide/commands.md#deep-linking-support).
+In other words, using the above code snippet, `ctx.match` will have the value `"login"` in your command handler.
 
 If you then send an [inline keyboard](./keyboard.md#building-a-custom-keyboard) with a `switchInline` button, the user will be returned to the chat where they pressed the inline query results button initially.
 
@@ -213,7 +247,7 @@ Naturally, you can also listen for the updates the normal way via filter queries
 
 ```ts
 // Listen for specific result identifiers.
-bot.chosenInlineQuery(/id-[0-9]+/, async (ctx) => {
+bot.chosenInlineResult(/id-[0-9]+/, async (ctx) => {
   const match = ctx.match; // regex match object
   const query = ctx.chosenInlineResult.query; // used inline query
 });
@@ -225,9 +259,9 @@ bot.on("chosen_inline_result", async (ctx) => {
 ```
 
 Some bots set the feedback to 100 % and use it as a hack.
-They deliver dummy message content with no real content in `answerInlineQuery`.
+They deliver dummy messages with no real content in `answerInlineQuery`.
 Immediately after receiving a `chosen_inline_result` update, they edit the respective message and inject the real message content.
 
-These bots will not work for anonymous admins or when sending scheduled messages as no inline feedback can be received there.
+These bots will not work for anonymous admins or when sending scheduled messages, as no inline feedback can be received there.
 However, if this is not a problem for you, then this hack will allow you to not have to generate a lot of message content for messages that never end up being sent.
 This can save your bot resources.
