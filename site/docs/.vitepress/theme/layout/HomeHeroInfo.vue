@@ -11,7 +11,9 @@ defineProps<{
     <span class="clip">{{ name }}</span>
   </h1>
   <p v-if="text" class="text">{{ text }}</p>
-  <p v-if="tagline" class="tagline">… {{ tagline[Math.floor(Math.random() * tagline.length)] }}</p>
+  <ClientOnly>
+    <p v-if="tagline" class="tagline">… {{ tagline[Math.floor(Math.random() * tagline.length)] }}</p>
+  </ClientOnly>
 </template>
 
 <style scoped>

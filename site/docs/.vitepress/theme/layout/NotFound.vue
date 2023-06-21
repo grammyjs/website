@@ -44,17 +44,17 @@ const path = window.location.pathname
 
 <template>
   <div class="NotFound">
-    <p class="code">404</p>
-    <h1 class="title">{{ config.title }}</h1>
-    <div class="divider" />
-    <blockquote class="quote">
-      <p v-for="msg in msgParts" :key="msg">{{ msg }}</p>
-    </blockquote>
-    <div class="action">
-      <a class="link" :href="withBase(root)" :aria-label="config.ariaLabel">
-        {{ config.backToHome }}
-      </a>
-    </div>
+      <p class="code">404</p>
+        <h1 class="title">{{ config.title }}</h1>
+        <div class="divider" />
+        <blockquote class="quote">
+          <p v-for="msg in msgParts" :key="msg">{{ msg }}</p>
+        </blockquote>
+        <div class="action">
+          <a class="link" :href="withBase(root)" :aria-label="config.ariaLabel">
+            {{ config.backToHome }}
+          </a>
+        </div>
   </div>
 </template>
 
