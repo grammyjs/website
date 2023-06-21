@@ -9,23 +9,23 @@
 
 It is possible to translate the website to other languages, and anyone is very welcome to do so.
 
-Note that we’re taking translations very seriously.
-They should be loved as much as the English version.
+Note that we take translations very seriously.
+They should receive as much care as the English version.
 
 For example, Google Translate is already built into Google Chrome.
 Don’t bother to use software to create translations of the docs.
 If we create a translation of the docs for a new language, then because we want high quality translations written by native speakers or near-native speakers.
-Examples and real-world comparisons must be replaced by equivalents in the culture of the respective country.
+Examples and real-world comparisons must be replaced by equivalents in the respective culture.
 A good translation is hard and it takes time.
-We don’t want partial or outdated translations.
+We do not want partial or outdated translations.
 
-Anyone who wants to start a new language should ask themselves the following questions before putting any work into docs.
+Anyone who wants to start a new language should ask themselves the following questions before putting any work into translations.
 
 1. How much of the documentation do you want to translate?
    If the answer isn’t to get to 100 % eventually, don’t start.
 2. How long are you going to stick around in bot development?
-   grammY is young.
-   It evolves quickly and there are many articles that get changed often.
+   At grammY, we innovate.
+   Our ecosystem evolves quickly and there are many articles that get changed often.
    The translations must be kept in sync with the English original.
    Outdated and wrong docs are much worse than no docs.
    Many people only come here for a few months (and that’s fine!), but if you translate everything and then stop developing bots and stop updating the articles, we’ll have to remove that language again.
@@ -37,6 +37,9 @@ Anyone who wants to start a new language should ask themselves the following que
    However, if you can only work on it rarely, it’s going to take a very long time until you’re done.
    We don’t want to end up with 15 languages and none of them is done for months.
    If you can’t set aside enough free time to get this done, don’t start.
+   
+   From experience, we can tell that translating everything takes 500-800 hours.
+   This is a rough estimate, but these numbers already give you an idea why you should look out for other people to help you.
 
 Still eager to join us?
 Great!
