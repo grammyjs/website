@@ -418,7 +418,6 @@ export const siteEn: LocaleConfig = {
       },
       outline: {
         level: [2, 6],
-        label: "On this page",
       },
       editLink: {
         text: "Edit this page on GitHub",
@@ -426,22 +425,16 @@ export const siteEn: LocaleConfig = {
           "https://github.com/grammyjs/website/edit/main/site/docs/:path",
       },
       lastUpdatedText: "Last updated",
-      darkModeSwitchLabel: "Appearance", // only displayed in the mobile view.
-      sidebarMenuLabel: "Menu", // only displayed in the mobile view.
-      returnToTopLabel: "Return to top", // only displayed in the mobile view.
-      langMenuLabel: "Change language", // Aria-label
       socialLinks: [
         {
           link: social.telegram.link,
           icon: {
             svg: social.telegram.icon,
           },
-          ariaLabel: "grammY Telegram group link",
         },
         {
           link: social.github.link,
           icon: social.github.icon,
-          ariaLabel: "grammY repository link",
         },
       ],
     },
@@ -455,9 +448,6 @@ export const searchEn: LocalSearchTranslations = {
   },
   modal: {
     noResultsText: "No results for", // 'No result for "$keyword"'
-    displayDetails: "Display detailed list",
-    resetButtonTitle: "Reset search",
-    backButtonTitle: "Close search",
     footer: {
       selectText: "to select", // $enter to select
       selectKeyAriaLabel: "Enter key",
@@ -472,9 +462,7 @@ export const searchEn: LocalSearchTranslations = {
 
 export const notFoundEn: Record<string, NotFound> = {
   "/": {
-    title: "PAGE NOT FOUND",
     backToHome: "Take me hoooooooome",
-    ariaLabel: "Go to home",
     messages: [
       "Not Found",
       "Nope.",
