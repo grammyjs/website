@@ -8,7 +8,7 @@
   "exclude": [
     "docs/.vitepress/dist/**/*",
     "docs/.vitepress/cache/**/*",
-    "docs/.vitepress/temp/**/*"
+    "docs/.vitepress/.temp/**/*"
   ],
   "compilerOptions": {
     "composite": true,
