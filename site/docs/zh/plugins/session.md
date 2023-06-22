@@ -376,8 +376,12 @@ Telegram 在每次聊天时都会按照顺序发送 webhooks，因此默认的�
 
 ## 已知的存储适配器
 
+<!-- markdownlint-disable link-fragments -->
+
 默认情况下，会话会由内置的存储适配器存储[在你的内存中](#内存-默认)。
 你也可以使用 grammY [免费提供](#免费存储) 的存储适配器，或者连接到 [外部存储](#外部存储解决方案)。
+
+<!-- markdownlint-enable link-fragments -->
 
 你可以使用下面的一个存储适配器来安装它。
 

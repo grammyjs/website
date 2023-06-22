@@ -11,9 +11,13 @@ Telegram 对你的 bot 每秒钟能发送多少条信息进行了限制，详见
 
 ## 简单的解决方案
 
+<!-- markdownlint-disable link-fragments -->
+
 :::warning 这不是一个真正的解决方案
 这部分可以在短期内解决你遇到的问题，但是如果你正在编写一个 bot 那它应该要能拓展得比较好，相应的可以阅读 [下一小节](#实用的解决方案-推荐)
 :::
+
+<!-- markdownlint-enable link-fragments -->
 
 有一个非常简单的解决方案来到达速率限制：如果一个 API 请求由于速率限制而失败了，等待 Telegram 告诉你需要等待的时间就行了，然后重复这个请求。
 

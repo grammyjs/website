@@ -355,7 +355,11 @@ class MyContext extends Context {
 }
 ```
 
+<!-- markdownlint-disable link-fragments -->
+
 然而，我们建议你 [通过中间件](#通过中间件-推荐) 来自定义上下文对象，因为它更加灵活，并且在你想要安装插件的情况下工作得更好。
+
+<!-- markdownlint-enable link-fragments -->
 
 我们现在将看看如何为上下文对象使用自定义类。
 
