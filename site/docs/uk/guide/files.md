@@ -113,7 +113,7 @@ grammY не постачається в комплекті з власним з�
 await ctx.replyWithPhoto(existingFileId);
 
 // Надсилаємо через URL-адресу.
-await ctx.replyWithPhoto("https://grammy.dev/images/Y.png");
+await ctx.replyWithPhoto("https://grammy.dev/images/Y.webp");
 
 // Крім того, ви можете використовувати bot.api.sendPhoto() або ctx.api.sendPhoto().
 ```
@@ -212,14 +212,14 @@ new InputFile(function* () {
 import { URL } from "url";
 
 // Завантажуємо файл і передаємо відповідь Telegram.
-new InputFile(new URL("https://grammy.dev/images/Y.png"));
-new InputFile({ url: "https://grammy.dev/images/Y.png" }); // еквівалент
+new InputFile(new URL("https://grammy.dev/images/Y.webp"));
+new InputFile({ url: "https://grammy.dev/images/Y.webp" }); // еквівалент
 ```
 
 ```ts [Deno]
 // Завантажуємо файл і передаємо відповідь Telegram.
-new InputFile(new URL("https://grammy.dev/images/Y.png"));
-new InputFile({ url: "https://grammy.dev/images/Y.png" }); // еквівалент
+new InputFile(new URL("https://grammy.dev/images/Y.webp"));
+new InputFile({ url: "https://grammy.dev/images/Y.webp" }); // еквівалент
 ```
 
 :::

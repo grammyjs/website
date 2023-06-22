@@ -14,7 +14,7 @@ hero:
     - easy peasy lemon squeezY
     - hundreds of millions served
   image:
-    src: /images/Y.png
+    src: /images/Y.webp
     alt: grammY logo
   actions:
     - theme: brand

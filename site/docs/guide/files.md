@@ -113,7 +113,7 @@ The first two methods are simple: you just pass the respective value as a `strin
 await ctx.replyWithPhoto(existingFileId);
 
 // Send via URL.
-await ctx.replyWithPhoto("https://grammy.dev/images/Y.png");
+await ctx.replyWithPhoto("https://grammy.dev/images/Y.webp");
 
 // Alternatively, you use bot.api.sendPhoto() or ctx.api.sendPhoto().
 ```
@@ -212,14 +212,14 @@ This is very efficient.
 import { URL } from "url";
 
 // Download a file, and stream the response to Telegram.
-new InputFile(new URL("https://grammy.dev/images/Y.png"));
-new InputFile({ url: "https://grammy.dev/images/Y.png" }); // equivalent
+new InputFile(new URL("https://grammy.dev/images/Y.webp"));
+new InputFile({ url: "https://grammy.dev/images/Y.webp" }); // equivalent
 ```
 
 ```ts [Deno]
 // Download a file, and stream the response to Telegram.
-new InputFile(new URL("https://grammy.dev/images/Y.png"));
-new InputFile({ url: "https://grammy.dev/images/Y.png" }); // equivalent
+new InputFile(new URL("https://grammy.dev/images/Y.webp"));
+new InputFile({ url: "https://grammy.dev/images/Y.webp" }); // equivalent
 ```
 
 :::

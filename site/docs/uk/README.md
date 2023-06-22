@@ -14,7 +14,7 @@ hero:
     - легко, як з обійстя виховати козУ
     - обслуговано сотні мільйонів
   image:
-    src: /images/Y.png
+    src: /images/Y.webp
     alt: логотип grammY
   actions:
     - theme: brand

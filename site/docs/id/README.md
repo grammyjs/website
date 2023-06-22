@@ -16,7 +16,7 @@ hero:
     - dokumentasi yang lengkap dan berkualitas
     - honeY, grammY, sweetY
   image:
-    src: /images/Y.png
+    src: /images/Y.webp
     alt: logo grammY
   actions:
     - theme: brand

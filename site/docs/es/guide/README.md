@@ -3,7 +3,7 @@ next:
   link: ./introduction
 ---
 
-![grammY](/images/grammY.png)
+![grammY](/images/grammY.webp)
 
 # Resumen
 

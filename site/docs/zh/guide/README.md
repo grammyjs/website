@@ -3,7 +3,7 @@ next:
   link: ./introduction
 ---
 
-![logo](/images/grammY.png)
+![logo](/images/grammY.webp)
 
 # 概述
 
