@@ -1,60 +1,50 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { withBase, useData } from 'vitepress'
+import { withBase, useRoute } from 'vitepress'
 import { notFound } from '../../configs/main'
 
-function split(str: string): string[] {
+function splitNewLine(str: string): string[] {
   const parts = str.split(/(?<!\\)\n/g); // Matches "\n" that is not preceded by a backslash (\)
   return parts.map(part => part.replace(/\\n/g, '\\n')); // Replaces escaped "\n" with actual "\n"
 }
 
-const fallback = {
-  title: "PAGE NOT FOUND",
-  backToHome: "Take me hoooooooome",
-  ariaLabel: "Go to home",
-  messages: [
-    "Not Found",
-    "Nope.",
-    "nothin' here for ya, sorry",
-    "Error 404 \nThis Page Could Not Be Found But \nA Haiku Instead",
-    "Country rooooaaaads,",
-  ],
+const fullPath = useRoute().path;
+const paths = fullPath.split('/');
+const firstPath = paths[1];
+const lang = (firstPath && paths.pop() !== firstPath) ? firstPath : 'root';
+
+const root = ref(lang);
+const config = ref(notFound[lang]);
+const msgParts = ref(config.value?.messages);
+
+if (config.value) {
+  config.value = notFound[lang];
+  root.value = lang;
+} else {
+  config.value = notFound['root'];
 }
 
-const { site } = useData();
-const root = ref('/');
-const config = ref(fallback);
-const msgParts = ref(fallback.messages);
+const randomIndex = Math.floor(Math.random() * config.value.messages.length);
+const message = config.value.messages[randomIndex];
+msgParts.value = splitNewLine(message);
 
-const path = window.location.pathname
-  .replace(site.value.base, '')
-  .replace(/(^.*?\/).*$/, '/$1');
-
-  if (notFound[path]) {
-    config.value = notFound[path];
-    root.value = path
-  } else {
-    config.value = notFound['/']
-  }
-
-  const randomIndex = Math.floor(Math.random() * config.value.messages.length)
-  const message = config.value.messages[randomIndex];
-  msgParts.value = split(message);
 </script>
 
 <template>
   <div class="NotFound">
-      <p class="code">404</p>
-        <h1 class="title">{{ config.title }}</h1>
-        <div class="divider" />
-        <blockquote class="quote">
-          <p v-for="msg in msgParts" :key="msg">{{ msg }}</p>
-        </blockquote>
-        <div class="action">
-          <a class="link" :href="withBase(root)" :aria-label="config.ariaLabel">
-            {{ config.backToHome }}
-          </a>
-        </div>
+    <p class="code">404</p>
+    <ClientOnly> 
+      <h1 class="title">{{ config.title }}</h1>
+      <div class="divider" />
+      <blockquote class="quote">
+        <p v-for="msg in msgParts" :key="msg">{{ msg }}</p>
+      </blockquote>
+      <div class="action">
+        <a class="link" :href="withBase(root)" :aria-label="config.ariaLabel">
+          {{ config.backToHome }}
+        </a>
+      </div>
+    </ClientOnly>
   </div>
 </template>
 

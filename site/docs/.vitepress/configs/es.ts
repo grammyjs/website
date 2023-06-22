@@ -467,7 +467,7 @@ export const searchEs: LocalSearchTranslations = {
 };
 
 export const notFoundEs: Record<string, NotFound> = {
-  "/es/": {
+  es: {
     title: "PAGE NOT FOUND",
     backToHome: "Llévame a casa",
     ariaLabel: "Go to home",

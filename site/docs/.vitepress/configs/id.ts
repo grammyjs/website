@@ -462,7 +462,7 @@ export const searchId: LocalSearchTranslations = {
 };
 
 export const notFoundId: Record<string, NotFound> = {
-  "/id/": {
+  id: {
     title: "HALAMAN TIDAK DITEMUKAN",
     backToHome: "Putar balik, guys!",
     ariaLabel: "Pergi ke beranda",

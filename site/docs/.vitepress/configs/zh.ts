@@ -471,7 +471,7 @@ export const searchZh: LocalSearchTranslations = {
 };
 
 export const notFoundZh: Record<string, NotFound> = {
-  "/zh/": {
+  zh: {
     title: "PAGE NOT FOUND",
     backToHome: "回到首页",
     ariaLabel: "Go to home",

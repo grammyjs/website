@@ -14,9 +14,7 @@ const { frontmatter: fm } = useData()
       <HomeHeroInfo :name="fm.hero.name" :text="fm.hero.text" :tagline="fm.hero.tagline" />
     </template>
     <template #not-found>
-      <ClientOnly>
-        <NotFound />
-      </ClientOnly>
+      <NotFound />
     </template>
   </Layout>
 </template>

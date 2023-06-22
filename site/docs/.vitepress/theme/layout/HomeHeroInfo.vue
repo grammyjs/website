@@ -1,9 +1,18 @@
 <script setup lang="ts">
+import { onBeforeMount, ref } from "vue";
+
 defineProps<{
   name?: string
   text?: string
   tagline?: string[] | string
 }>();
+
+const showContent = ref(false);
+
+onBeforeMount(() => {
+  showContent.value = true;
+})
+
 </script>
 
 <template>
@@ -11,9 +20,12 @@ defineProps<{
     <span class="clip">{{ name }}</span>
   </h1>
   <p v-if="text" class="text">{{ text }}</p>
-  <ClientOnly>
+  <div v-if="showContent">
     <p v-if="tagline" class="tagline">… {{ tagline[Math.floor(Math.random() * tagline.length)] }}</p>
-  </ClientOnly>
+  </div>
+  <div v-else>
+    <p class="tagline">…</p>
+  </div>
 </template>
 
 <style scoped>
