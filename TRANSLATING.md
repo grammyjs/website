@@ -37,7 +37,7 @@ Anyone who wants to start a new language should ask themselves the following que
    However, if you can only work on it rarely, it’s going to take a very long time until you’re done.
    We don’t want to end up with 15 languages and none of them is done for months.
    If you can’t set aside enough free time to get this done, don’t start.
-   
+
    From experience, we can tell that translating everything takes 500-800 hours.
    This is a rough estimate, but these numbers already give you an idea why you should look out for other people to help you.
 
