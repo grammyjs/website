@@ -75,7 +75,7 @@ async function load() {
     contributor.login = contributor_.login;
     contributor.href = `https://github.com/${contributor_.login}`;
     contributor.name = contributor_.name;
-    contributor.photo = contributor_.avatar_url;
+    contributor.photo = contributor_.avatar_url + '&size=64';
     localStorage.setItem(
       "contributor",
       JSON.stringify({ ...contributor, day })
@@ -95,7 +95,7 @@ load();
     </p>
   </a>
   <div v-else id="footer-logo">
-    <img src="/images/Y.png" alt="grammY logo"/>
+    <img src="/images/Y.webp" alt="grammY logo"/>
   </div>
 </template>
 
