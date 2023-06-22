@@ -1,9 +1,6 @@
 {
-  "name": "grammy-website",
-  "version": "1.0.0",
-  "description": "Main documentation site for grammY",
-  "main": "index.js",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "docs:index-versions": "deno run --no-npm --allow-net docs/.vuepress/plugins/current-versions/build-index.ts > docs/.vuepress/plugins/current-versions/index.json",
     "docs:dev": "vitepress dev docs",
@@ -15,9 +12,6 @@
     "docs:fmt": "deno fmt",
     "docs:sitemap": "deno run --no-npm --allow-read=docs/.vitepress/dist --allow-write=docs/.vitepress/dist/sitemap.xml https://deno.land/x/sitemap@v1.1.0/cli.ts -b https://grammy.dev -r docs/.vitepress/dist"
   },
-  "keywords": [],
-  "author": "KnorpelSenf",
-  "license": "MIT",
   "devDependencies": {
     "@tsconfig/node18": "^2.0.1",
     "@types/node": "^20.3.1",
