@@ -94,6 +94,9 @@ load();
         ?? props.s[2]) : props.s[2] }}
     </p>
   </a>
+  <div v-else id="footer-logo">
+    <img src="/images/Y.png" alt="grammY logo"/>
+  </div>
 </template>
 
 <style scoped lang="scss">
@@ -127,6 +130,18 @@ a {
     > p > span {
       text-decoration: underline;
     }
+  }
+}
+
+#footer-logo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    height: 2rem;
+    border-radius: 9999px;
   }
 }
 </style>

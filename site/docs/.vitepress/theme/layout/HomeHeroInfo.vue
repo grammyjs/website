@@ -11,7 +11,7 @@ const showContent = ref(false);
 
 onBeforeMount(() => {
   showContent.value = true;
-})
+});
 
 </script>
 
