@@ -119,7 +119,7 @@ export const localeId: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/id/advanced/reliability.html",
               },
               {
-                text: "Peningkatan IV: Limitasi Flood",
+                text: "Peningkatan IV: Pembatasan Flood",
                 link: "/id/advanced/flood.html",
               },
               {
@@ -331,8 +331,7 @@ export const localeId: LocaleConfig<DefaultThemeLocaleData> = {
               },
               {
                 text: "Contoh Update",
-                link:
-                  "https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates",
+                link: "https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates",
               },
             ],
           },
