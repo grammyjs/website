@@ -86,7 +86,7 @@ Una vez que hayas llamado a `getFile`, puedes usar la ruta de archivo devuelta p
 
 ::: tip Plugin de archivos
 grammY no viene con su propio descargador de archivos, pero puedes instalar el [plugin oficial de archivos](../plugins/files.md).
-Esto te permite descargar archivos mediante `await file.download()`, y obtener una URL de descarga construida para ellos mediante `file.getUrl()`.
+Esto permite descargar archivos mediante `await file.download()`, y obtener una URL de descarga para ellos mediante `file.getUrl()`.
 :::
 
 ## Envío de archivos
@@ -134,8 +134,7 @@ await ctx.replyWithPhoto(new InputFile("/tmp/picture.jpg"));
 // alternativamente, usa bot.api.sendPhoto() o ctx.api.sendPhoto()
 ```
 
-El constructor `InputFile` no sólo toma rutas de archivos, sino también flujos, objetos `Buffer`, iteradores asíncronos, y -dependiendo de su plataforma- más.
-grammY convertirá automáticamente todos los formatos de archivo en objetos `Uint8Array` internamente, y construirá un flujo multipart/form-data a partir de ellos.
+El constructor `InputFile` no sólo toma rutas de archivos, sino también flujos, objetos `Buffer`, iteradores asíncronos, y -dependiendo de su plataforma- más, o una función que crea cualquiera de estas cosas.
 Todo lo que necesitas recordar es: **crear una instancia de `InputFile` y pasarla a cualquier método para enviar un archivo**.
 Las instancias de `InputFile` se pueden pasar a todos los métodos que aceptan el envío de archivos por carga.
 
