@@ -79,7 +79,7 @@ Setelah kamu memanggil `getFile`, kamu bisa menggunakan `file_path` untuk mengun
 
 ::: tip Plugin Files
 grammY tidak menyertakan pengunduh file secara bawaan, sebagai gantinya kamu bisa menggunakan [plugin files resmi](../plugins/files.md) yang telah kami sediakan.
-Dengan plugin tersebut, kamu bisa mengunduh file melalui `await file.download()` dan memperoleh URL unduhannya mengunakan `file.getUrl()`.
+Dengan plugin tersebut, kamu bisa mengunduh file melalui `await file.download()` dan memperoleh URL unduhannya menggunakan `file.getUrl()`.
 :::
 
 ## Mengirim File
