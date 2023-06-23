@@ -78,8 +78,8 @@ Kalau ingin mendapatkan file lain selagi menangani pesan, gunakan `ctx.api.getFi
 Setelah kamu memanggil `getFile`, kamu bisa menggunakan `file_path` untuk mengunduh file menggunakan URL ini `https://api.telegram.org/file/bot<token>/<file_path>`, di mana `<token>` adalah token bot kamu.
 
 ::: tip Plugin Files
-grammY tidak menyertakan pengunduh file secara bawaan, sebagai gantinya kamu bisa memasang [plugin files resmi](../plugins/files.md) yang telah kami sediakan.
-Kamu bisa mengunduh file dengan plugin tersebut melalui `await file.download()` dan membuat URL download mengunakan `file.getUrl()`.
+grammY tidak menyertakan pengunduh file secara bawaan, sebagai gantinya kamu bisa menggunakan [plugin files resmi](../plugins/files.md) yang telah kami sediakan.
+Dengan plugin tersebut, kamu bisa mengunduh file melalui `await file.download()` dan memperoleh URL unduhannya menggunakan `file.getUrl()`.
 :::
 
 ## Mengirim File
