@@ -78,8 +78,8 @@ Kalau ingin mendapatkan file lain selagi menangani pesan, gunakan `ctx.api.getFi
 Setelah kamu memanggil `getFile`, kamu bisa menggunakan `file_path` untuk mengunduh file menggunakan URL ini `https://api.telegram.org/file/bot<token>/<file_path>`, di mana `<token>` adalah token bot kamu.
 
 ::: tip Plugin Files
-grammY tidak menyertakan pengunduh file secara bawaan, sebagai gantinya kamu bisa memasang [plugin files resmi](../plugins/files.md) yang telah kami sediakan.
-Kamu bisa mengunduh file dengan plugin tersebut melalui `await file.download()` dan membuat URL download mengunakan `file.getUrl()`.
+grammY tidak menyertakan pengunduh file secara bawaan, sebagai gantinya kamu bisa menggunakan [plugin files resmi](../plugins/files.md) yang telah kami sediakan.
+Dengan plugin tersebut, kamu bisa mengunduh file melalui `await file.download()` dan memperoleh URL unduhannya menggunakan `file.getUrl()`.
 :::
 
 ## Mengirim File
@@ -128,7 +128,7 @@ await ctx.replyWithPhoto(new InputFile("/tmp/kocheng-oren-uwu.jpg"));
 // Alternatifnya, gunakan bot.api.sendPhoto() atau ctx.api.sendPhoto()
 ```
 
-Constructor `InputFile` tidak hanya mengambil path file, tetapi juga stream, object `Buffer`, perulangan async, dan—tergantung dari platform kamu—banyak lagi.
+Constructor `InputFile` tidak hanya menerima path file, tetapi juga stream, object `Buffer`, perulangan async, ataupun sebuah function yang mengembalikan salah satu dari item-item tersebut, dan bahkan tergantung dari platform yang kamu gunakan, bisa lebih banyak lagi.
 Yang perlu diingat adalah: **buat sebuah instance `InputFile` lalu teruskan ke method yang bertugas mengirim file**.
 Instance `InputFile` bisa diteruskan ke semua method yang menerima pengiriman file melalui unggahan.
 
