@@ -28,7 +28,7 @@ Contohnya, kita tidak bisa mengirim keyboard custom sebagai pesan pertama lalu m
 
 > Silahkan kunjungi bagian keyboard inline di materi [Fitur-fitur Bot Telegram](https://core.telegram.org/bots/features#inline-keyboards) yang ditulis oleh tim Telegram.
 
-grammY menyediakan class bernama `InlineKeyboard` yang bisa kamu gunakan untuk membuat keyboard inline dengan mudah dan simpel.
+grammY menyediakan class bernama `InlineKeyboard` yang bisa kamu gunakan untuk membuat keyboard inline dengan mudah.
 
 > Semua tombol yang menggunakan `switchInline`, `switchInlineCurrent`, atau `switchInlineChosen` akan memulai sebuah inline query.
 > Lihat materi tentang [Inline Query](../guide/inline-queries.md) untuk mengetahui cara kerjanya.
