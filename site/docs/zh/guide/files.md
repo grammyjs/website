@@ -79,7 +79,7 @@ bot.on("message:voice", async (ctx) => {
 
 ::: tip 文件插件
 grammY 没有捆绑自己的文件下载器，但是你可以安装 [官方文件插件](../plugins/files.md)。
-这允许你通过 `await file.download()` 下载文件，并通过 `file.getUrl()` 获取一个构造后的下载文件的 URL。
+这允许你通过 `await file.download()` 下载文件，以及通过 `file.getUrl()` 获取一个下载文件的 URL。
 :::
 
 ## 发送文件
