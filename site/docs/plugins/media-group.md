@@ -1,13 +1,13 @@
-# Pengelompokan Media (bawaan)
+# Media Groups (built-in)
 
-Plugin pengelompokan media atau media group berfungsi untuk mengirim kumpulan media melalui object `InputMedia`.
-Object `InputMedia` juga digunakan ketika mengubah pesan media, sehingga secara tidak langsung plugin ini juga membantu kamu mengubah suatu media.
+The media group plugin helps you send media groups by letting you build `InputMedia` objects.
+Incidentally, `InputMedia` object are also used when editing media messages, so this plugin also helps you to edit media.
 
-Perlu diingat, object `InputMedia` telah dijelaskan [di sini](https://core.telegram.org/bots/api#inputmedia).
+Remember that `InputMedia` objects are specified [here](https://core.telegram.org/bots/api#inputmedia).
 
-## Membuat Sebuah Object `InputMedia`
+## Building an `InputMedia` Object
 
-Kamu bisa menggunakan plugin dengan cara seperti ini:
+You can use this plugin like so:
 
 ::::code-group
 :::code-group-item TypeScript
@@ -15,7 +15,7 @@ Kamu bisa menggunakan plugin dengan cara seperti ini:
 ```ts
 import { InputMediaBuilder } from "grammy";
 
-const photo = InputMediaBuilder.photo(new InputFile("/tmp/foto.mp4"));
+const photo = InputMediaBuilder.photo(new InputFile("/tmp/photo.mp4"));
 const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
 // etc
 ```
@@ -26,7 +26,7 @@ const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
 ```js
 const { InputMediaBuilder } = require("grammy");
 
-const photo = InputMediaBuilder.photo(new InputFile("/tmp/foto.mp4"));
+const photo = InputMediaBuilder.photo(new InputFile("/tmp/photo.mp4"));
 const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
 // etc
 ```
@@ -37,7 +37,7 @@ const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
 ```ts
 import { InputMediaBuilder } from "https://deno.land/x/grammy/mod.ts";
 
-const photo = InputMediaBuilder.photo(new InputFile("/tmp/foto.mp4"));
+const photo = InputMediaBuilder.photo(new InputFile("/tmp/photo.mp4"));
 const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
 // etc
 ```
@@ -45,48 +45,48 @@ const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
 :::
 ::::
 
-Lihat semua method `InputMediaBuilder` yang tersedia di [referensi API](https://deno.land/x/grammy/mod.ts?s=InputMediaBuilder).
+Check out all methods of `InputMediaBuilder` in the [API reference](https://deno.land/x/grammy/mod.ts?s=InputMediaBuilder).
 
-Kamu juga bisa meneruskan URL publik secara langsung yang nantinya akan diunduh oleh Telegram.
+You can also directly pass public URLs which Telegram fetches.
 
 ```ts
 const photo = InputMediaBuilder.photo("https://grammy.dev/images/Y.png");
 ```
 
-Opsi lanjutan bisa disertakan di akhir dalam bentuk sebuah object opsi.
+Further options can be provided in an options object at the end.
 
 ```ts
 const photo = InputMediaBuilder.photo("https://grammy.dev/images/Y.png", {
-  caption: "grammY sangat mengagumkan",
+  caption: "grammY is awesome",
   // etc
 });
 ```
 
-## Mengirim Kumpulan Media
+## Sending a Media Group
 
-Kamu bisa mengirim kumpulan media seperti berikut:
+You can send a media group as follows:
 
 ```ts
 await ctx.replyWithMediaGroup([photo0, photo1, photo2, video]);
 ```
 
-Selain itu, kamu bisa meneruskan sebuah array object `InputMedia` ke `ctx.api.sendMediaGroup` atau `bot.api.sendMediaGroup`.
+Likewise, you can pass an array of `InputMedia` objects to `ctx.api.sendMediaGroup` or `bot.api.sendMediaGroup`.
 
-## Mengubah Pesan Media
+## Editing a Media Message
 
-Karena object `InputMedia` juga digunakan untuk mengubah pesan media, plugin ini juga bisa digunakan untuk hal yang serupa:
+Since `InputMedia` objects are also used to edit media messages, this plugin will assist you here, too:
 
 ```ts
 const newMedia = InputMediaBuilder.photo("https://grammy.dev/images/Y.png");
 await ctx.editMessageMedia(newMedia);
 ```
 
-Seperti biasa, ia juga bekerja di `ctx.api.editMessageMedia` dan `bot.api.editMessageMedia`.
+As always, this works for `ctx.api.editMessageMedia` and `bot.api.editMessageMedia`, too.
 
-## Ringkasan Plugin
+## Plugin Summary
 
-Plugin ini sudah tersedia secara bawaan.
-Sehingga, kamu tidak perlu menginstal apapun untuk menggunakannya.
-Cukup import semuanya dari grammY.
+This plugin is built-in into the core of grammY.
+You don't need to install anything to use it.
+Simply import everything from grammY itself.
 
-Selain itu, baik dokumentasi maupun referensi API plugin ini, telah dijadikan satu dengan package inti.
+Also, both the documentation and the API reference of this plugin are unified with the core package.
