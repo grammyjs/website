@@ -50,6 +50,7 @@ const inlineKeyboard = new InlineKeyboard()
   .text("5 ›", "siguiente")
   .text("31 »", "último");
 ```
+
 Llama a `.row()` si quieres empezar una nueva fila de botones.
 También puedes usar otros métodos como `.url()` para permitir al cliente del usuario abrir una URL específica o hacer otras cosas interesantes.
 Asegúrate de revisar [todos los métodos](https://deno.land/x/grammy/mod.ts?s=InlineKeyboard#Methods) en la clase `InlineKeyboard`.
@@ -73,6 +74,7 @@ const buttonRows = labelDataPairs
   .map((button) => InlineKeyboard.row(button));
 const keyboard = InlineKeyboard.from(buttonRows);
 ```
+
 ### Envío de un Teclado en línea
 
 Puedes enviar un teclado en línea directamente a lo largo de un mensaje, sin importar si usas `bot.api.sendMessage`, `ctx.api.sendMessage`, o `ctx.reply`:
