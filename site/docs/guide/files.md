@@ -80,7 +80,7 @@ Once you have called `getFile`, you can use the returned `file_path` to download
 
 ::: tip Files Plugin
 grammY does not come bundled with its own file downloader, but you can install the [official files plugin](../plugins/files.md).
-This allows you to download files via `await file.download()`, and to obtain a constructed download URL for them via `file.getUrl()`.
+This allows you to download files via `await file.download()`, and to obtain a download URL for them via `file.getUrl()`.
 :::
 
 ## Sending Files
