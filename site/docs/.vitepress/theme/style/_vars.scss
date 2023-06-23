@@ -103,10 +103,14 @@
 :root {
   // <code> bg inside custom container
   --vp-custom-block-tip-code-bg: #5bdbfe1c;
-  --vp-custom-block-warning-code-bg: #d9770612;
+  --vp-custom-block-warning-code-bg: #fef3e6;
   --vp-custom-block-danger-code-bg: #f43f5d16;
+  --vp-custom-block-details-code-bg: #ededee;
 
   &.dark {
+    --vp-custom-block-details-bg: #242429;
+    --vp-custom-block-details-code-bg: #313137;
+
     --vp-custom-block-tip-bg: #171d21;
     --vp-custom-block-tip-code-bg: #29a9ff14;
 
