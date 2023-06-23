@@ -102,7 +102,7 @@ ______________                                            _____________
 
 > Perlu dicatat bahwa pada kenyataannya, tidak ada koneksi yang akan tetap terbuka selama berjam-jam.
 > Request long polling mempunyai waktu timeout bawaan selama 30 detik untuk menghindari terjadinya berbagai [masalah teknis](https://datatracker.ietf.org/doc/html/draft-loreto-http-bidirectional-07#section-5.5).
-> Kalau tidak ada pesan baru yang dikembalikan selama periode waktu tersebut, maka request akan dibatalkan dan dikirimkan kembali—tetapi konsep dasarnya masih tetap sama.
+> Kalau tidak ada pesan baru yang dikembalikan selama periode waktu tersebut, maka request akan dibatalkan dan dikirimkan kembali---tetapi konsep dasarnya masih tetap sama.
 
 Dengan menggunakan long polling, kamu akan menerima pesan baru yang sama cepatnya, sehingga tidak perlu lagi mengirim spam ke server Telegram.
 Metode inilah yang akan dipakai grammY ketika kamu menjalankan `bot.start()`.
@@ -165,7 +165,7 @@ Tempat-tempat yang cocok untuk menggunakan webhook:
 ## Aku Masih Belum Tahu Mana yang Sebaiknya Dipilih
 
 Jika kamu tidak punya alasan yang bagus untuk menggunakan webhook, pilih saja long polling.
-Long polling tidak memiliki kekurangan yang mencolok, dan—berdasarkan pengalaman kami—kamu tidak perlu membuang-buang waktu melakukan perawatan atau maintenance.
+Long polling tidak memiliki kekurangan yang mencolok, dan---berdasarkan pengalaman kami---kamu tidak perlu membuang-buang waktu melakukan perawatan atau maintenance.
 Webhook bisa menjadi sedikit "nakal" dari waktu ke waktu (lihat [di bawah](#mengakhiri-request-webhook-tepat-waktu)).
 
 Apapun pilihannya, disaat kamu mengalami masalah yang cukup serius, seharusnya tidak terlalu sulit untuk beralih dari satu metode deployment ke metode deployment yang lain.
