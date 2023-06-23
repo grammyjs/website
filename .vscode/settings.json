@@ -2,7 +2,7 @@
   "deno.config": "./deno.jsonc",
   "deno.enable": true,
   "deno.enablePaths": [
-    // everything except .vuepress
+    // everything except .vitepress
     "./site/docs/advanced/",
     "./site/docs/demo/",
     "./site/docs/guide/",

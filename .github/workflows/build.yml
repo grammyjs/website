@@ -31,7 +31,7 @@ jobs:
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v2
         with:
-          publish-dir: "./site/docs/.vuepress/dist"
+          publish-dir: "./site/docs/.vitepress/dist"
           production-branch: main
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: ${{ github.event.pull_request.title }}
