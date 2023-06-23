@@ -82,3 +82,11 @@ await ctx.editMessageMedia(newMedia);
 ```
 
 As always, this works for `ctx.api.editMessageMedia` and `bot.api.editMessageMedia`, too.
+
+## Plugin Summary
+
+This plugin is built-in into the core of grammY.
+You don't need to install anything to use it.
+Simply import everything from grammY itself.
+
+Also, both the documentation and the API reference of this plugin are unified with the core package.
