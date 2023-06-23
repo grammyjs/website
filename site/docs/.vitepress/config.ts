@@ -51,6 +51,7 @@ export default defineConfig({
   markdown: {
     lineNumbers: true,
     theme: "dracula-soft",
+    typographer: true,
   },
 
   vite: {
