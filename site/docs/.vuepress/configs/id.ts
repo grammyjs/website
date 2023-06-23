@@ -166,6 +166,10 @@ export const localeId: LocaleConfig<DefaultThemeLocaleData> = {
                 text: "Keyboard Custom dan Inline",
                 link: "/id/plugins/keyboard.html",
               },
+              {
+                text: "Media Groups",
+                link: "/id/plugins/media-group.html",
+              },
             ],
           },
           {
@@ -331,8 +335,7 @@ export const localeId: LocaleConfig<DefaultThemeLocaleData> = {
               },
               {
                 text: "Contoh Update",
-                link:
-                  "https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates",
+                link: "https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates",
               },
             ],
           },
