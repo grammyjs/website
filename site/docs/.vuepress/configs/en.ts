@@ -162,7 +162,7 @@ export const localeEn: LocaleConfig<DefaultThemeLocaleData> = {
               },
               {
                 text: "Inline Queries",
-                link: "/plugins/inline-queries.html",
+                link: "/plugins/inline-query.html",
               },
             ],
           },
