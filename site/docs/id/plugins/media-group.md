@@ -17,7 +17,7 @@ import { InputMediaBuilder } from "grammy";
 
 const photo = InputMediaBuilder.photo(new InputFile("/tmp/foto.mp4"));
 const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
-// etc
+// dst
 ```
 
 :::
@@ -28,7 +28,7 @@ const { InputMediaBuilder } = require("grammy");
 
 const photo = InputMediaBuilder.photo(new InputFile("/tmp/foto.mp4"));
 const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
-// etc
+// dst
 ```
 
 :::
@@ -39,7 +39,7 @@ import { InputMediaBuilder } from "https://deno.land/x/grammy/mod.ts";
 
 const photo = InputMediaBuilder.photo(new InputFile("/tmp/foto.mp4"));
 const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
-// etc
+// dst
 ```
 
 :::
@@ -58,7 +58,7 @@ Opsi lanjutan bisa disertakan di akhir dalam bentuk sebuah object opsi.
 ```ts
 const photo = InputMediaBuilder.photo("https://grammy.dev/images/Y.png", {
   caption: "grammY sangat mengagumkan",
-  // etc
+  // dst
 });
 ```
 
