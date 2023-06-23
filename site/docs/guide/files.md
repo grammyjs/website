@@ -80,7 +80,7 @@ Once you have called `getFile`, you can use the returned `file_path` to download
 
 ::: tip Files Plugin
 grammY does not come bundled with its own file downloader, but you can install the [official files plugin](../plugins/files.md).
-This allows you to download files via `await file.download()`, and to obtain a constructed download URL for them via `file.getUrl()`.
+This allows you to download files via `await file.download()`, and to obtain a download URL for them via `file.getUrl()`.
 :::
 
 ## Sending Files
@@ -128,7 +128,7 @@ await ctx.replyWithPhoto(new InputFile("/tmp/picture.jpg"));
 // alternatively, use bot.api.sendPhoto() or ctx.api.sendPhoto()
 ```
 
-The `InputFile` constructor not only takes file paths, but also streams, `Buffer` objects, async iterators, and—depending on your platform—more.
+The `InputFile` constructor not only takes file paths, but also streams, `Buffer` objects, async iterators, and—depending on your platform—more, or a function that creates any of these things.
 All you need to remember is: **create an instance of `InputFile` and pass it to any method to send a file**.
 Instances of `InputFile` can be passed to all methods that accept sending files by upload.
 
