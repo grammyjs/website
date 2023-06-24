@@ -167,7 +167,7 @@ export const localeId: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/id/plugins/keyboard.html",
               },
               {
-                text: "Media Groups",
+                text: "Pengelompokan Media",
                 link: "/id/plugins/media-group.html",
               },
             ],
