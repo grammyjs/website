@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import DefaultTheme from 'vitepress/theme'
+import DefaultTheme from 'vitepress/theme-without-fonts'
 import { useData } from 'vitepress'
 import HomeHeroInfo from "./HomeHeroInfo.vue";
 import NotFound from './NotFound.vue';
 
-const { Layout } = DefaultTheme
+const { Layout } = DefaultTheme as any;
 const { frontmatter: fm } = useData()
 </script>
 
