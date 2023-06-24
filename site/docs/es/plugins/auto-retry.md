@@ -54,7 +54,7 @@ Bajo el capó, se están realizando múltiples peticiones HTTP, con los retrasos
 Puede pasar un objeto de opciones que especifique un número máximo de reintentos (`maxRetryAttempts`, por defecto: 3), o un umbral para un tiempo máximo de espera (`maxDelaySeconds`, por defecto: 1 hora).
 
 Tan pronto como se agote el número máximo de reintentos, los siguientes errores para la misma petición no se volverán a intentar.
-En su lugar, se pasa el objeto de error de Telegram, fallando efectivamente la petición con un [`GrammyError`](/es/guide/errors.md#the-grammyerror-object).
+En su lugar, se pasa el objeto de error de Telegram, fallando efectivamente la petición con un [`GrammyError`](../guide/errors.md#el-objeto-grammyerror).
 
 De forma similar, si la petición falla con `retry_after` mayor que lo especificado por la opción `maxDelaySeconds`, la petición fallará inmediatamente.
 
