@@ -1,5 +1,6 @@
 import { defineConfig } from "vitepress";
 import * as config from "./configs";
+import { markdown } from "./plugins";
 
 export default defineConfig({
   lastUpdated: true,
@@ -52,6 +53,7 @@ export default defineConfig({
     lineNumbers: true,
     theme: "dracula-soft",
     typographer: true,
+    config: markdown,
   },
 
   vite: {

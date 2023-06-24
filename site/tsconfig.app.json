@@ -3,7 +3,8 @@
   "include": [
     "env.d.ts",
     "docs/.vitepress/**/*",
-    "docs/.vitepress/**/*.vue"
+    "docs/.vitepress/**/*.vue",
+    "docs/.vitepress/plugins/current-versions/*.json"
   ],
   "exclude": [
     "docs/.vitepress/dist/**/*",

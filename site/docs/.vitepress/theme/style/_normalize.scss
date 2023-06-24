@@ -1,3 +1,10 @@
+:root {
+  code,
+  a {
+    hyphens: none;
+  }
+} // neither hyphenate inline code snippets nor links, we are injeting <wbr> tags there
+
 .VPDoc {
   p,
   li {
