@@ -17,7 +17,7 @@ next: false
 
 如果你想让所有在特定上下文的消息进行回复（比如特定的命令），你可以专门应用这个插件到它们上面：
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot } from "grammy";
@@ -67,7 +67,7 @@ bot.start();
 
 如果你希望每条发送的消息都回复触发它的消息，你可以通过这样的方式应用这个插件：
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot } from "grammy";

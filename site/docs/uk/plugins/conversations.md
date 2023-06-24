@@ -56,7 +56,7 @@ async function greeting(conversation, ctx) {
 
 Спершу давайте імпортуємо кілька речей.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import {
@@ -121,7 +121,7 @@ async function greeting(conversation: MyConversation, ctx: MyContext) {
 Усередині функції побудови розмови ви можете визначити, як має виглядати ваша розмова.
 Перш ніж ми детально розберемо кожну функцію цього плагіна, давайте розглянемо більш складний приклад, ніж [простий](#простии-приклад) вище.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function movie(conversation: MyConversation, ctx: MyContext) {
@@ -215,7 +215,7 @@ bot.command("start", (ctx) => ctx.conversation.enter("нова-назва"));
 
 Загалом ваш код тепер повинен виглядати приблизно так:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context, session } from "grammy";
@@ -369,7 +369,7 @@ bot.use(session({
 Розмова триватиме доти, доки не завершиться функція побудови розмови.
 Це означає, що ви можете вийти з розмови за допомогою `return` або `throw`.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function hiAndBye(conversation: MyConversation, ctx: MyContext) {
@@ -404,7 +404,7 @@ async function hiAndBye(conversation, ctx) {
 
 Отже, межі помилок та сесії можуть використовуватися разом.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 bot.use(session({
@@ -453,7 +453,7 @@ bot.errorBoundary(
 Часто краще просто повернутися (`return`) з функції, але є кілька прикладів, де використання `await ctx.conversation.exit()` є зручним.
 Памʼятайте, що ви повинні дочекатися (`await`) виконання методу.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]{6,22}
 async function movie(conversation: MyConversation, ctx: MyContext) {
@@ -515,7 +515,7 @@ bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 
 Ви можете використовувати обʼєкт розмови `conversation` для очікування наступного оновлення у цьому конкретному чаті.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function waitForMe(conversation: MyConversation, ctx: MyContext) {
@@ -539,7 +539,7 @@ async function waitForMe(conversation, ctx) {
 Метод `wait` завжди повертає новий [обʼєкт контексту](../guide/context), який представляє отримане оновлення.
 Це означає, що ви завжди маєте справу з такою кількістю обʼєктів контексту, яка відповідає кількості оновлень, отриманих під час розмови.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 const TEAM_REVIEW_CHAT = -1001493653006;
@@ -600,7 +600,7 @@ async function askUser(conversation, ctx) {
 Зі свого боку ви можете обробляти різні оновлення по-різному на основі цього обʼєкта.
 Наприклад, ви можете перевіряти наявність текстових повідомлень:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function waitForText(conversation: MyConversation, ctx: MyContext) {
@@ -630,7 +630,7 @@ async function waitForText(conversation, ctx) {
 Одним з прикладів є `waitFor`, який отримує [запит фільтрування](../guide/filter-queries), а потім очікує лише оновлення, які відповідають наданому запиту.
 Це особливо ефективно у поєднанні з [деструктуризацією обʼєктів](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment):
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function waitForText(conversation: MyConversation, ctx: MyContext) {
@@ -754,7 +754,7 @@ do {
 Ви також можете розділити код на кілька функцій і використовувати їх повторно.
 Наприклад, так можна визначити багаторазову капчу.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function captcha(conversation: MyConversation, ctx: MyContext) {
@@ -777,7 +777,7 @@ async function captcha(conversation, ctx) {
 Вона повертає `true`, якщо користувач може пройти, інакше `false`.
 Тепер ви можете використовувати її у вашій основній функції побудови розмови наступним чином:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function enterGroup(conversation: MyConversation, ctx: MyContext) {
@@ -821,7 +821,7 @@ async function enterGroup(conversation, ctx) {
 
 Якщо ви хочете, ви також можете визначати класи.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 class Auth {
@@ -894,7 +894,7 @@ async function askForToken(conversation, ctx) {
 
 Якщо цих методів недостатньо, плагін розмов надає ще більше допоміжних методів для створення форм за допомогою `conversation.form`.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function waitForMe(conversation: MyConversation, ctx: MyContext) {
@@ -933,7 +933,7 @@ async function waitForMe(conversation, ctx) {
 
 Ви можете встановити інші плагіни всередині розмов за допомогою `conversation.run`:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function convo(conversation: MyConversation, ctx: MyContext) {
@@ -957,7 +957,7 @@ async function convo(conversation, ctx) {
 
 Наприклад, якщо ви хочете використовувати меню всередині розмови, ваш код може виглядати так.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function convo(conversation: MyConversation, ctx: MyContext) {
@@ -1042,7 +1042,7 @@ async function convo(conversation, ctx) {
 
 Для прикладу, давайте застосуємо приклад з капчею знову, але цього разу з паралельними розмовами.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]{4}
 async function captcha(conversation: MyConversation, ctx: MyContext) {

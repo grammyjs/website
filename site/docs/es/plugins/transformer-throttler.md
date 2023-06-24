@@ -18,7 +18,7 @@ Considera usar el [plugin auto-retry](./auto-retry) junto con este plugin, si es
 Aquí hay un ejemplo de cómo usar este plugin con las opciones por defecto.
 Ten en cuenta que las opciones por defecto están alineadas con los límites de velocidad reales aplicados por Telegram, por lo que deberían estar bien.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot } from "grammy";

@@ -29,7 +29,7 @@ next: false
 
 你可以在你的 bot 上安装这个插件，像这样：
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context } from "grammy";

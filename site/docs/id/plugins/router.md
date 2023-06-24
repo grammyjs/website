@@ -61,7 +61,7 @@ Bot bisa memberi tahu user jumlah hari yang tersisa jika kedua hal tersebut dike
 
 Berikut cara implementasinya:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context, Keyboard, session, SessionFlavor } from "grammy";

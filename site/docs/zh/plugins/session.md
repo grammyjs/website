@@ -106,7 +106,7 @@ next: false
 
 下面是一个计算含有披萨表情 :pizza: 的信息的 bot 例子
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context, session, SessionFlavor } from "grammy";
@@ -248,7 +248,7 @@ bot.use(session({ initial: { initialData } })); // 邪恶的
 使用 `getSessionKey`，你可以按每个用户，或每个用户-聊天组合，或任何你想要的方式存储数据。
 这里有三个示例：
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 // 为每个聊天存储数据（默认）。
@@ -408,7 +408,7 @@ bot.use(session({
 
 它非常容易使用：
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { freeStorage } from "@grammyjs/storage-free";
@@ -444,7 +444,7 @@ bot.use(session({
 
 这是一个完整的 bot 示例，你可以复制它来试试。
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context, session, SessionFlavor } from "grammy";
@@ -775,7 +775,7 @@ interface SessionData {
 
 迁移函数让你可以将旧字符串数组转换为新的宠物对象数组。
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 function addBirthdayToPets(old: { petNames: string[] }): SessionData {

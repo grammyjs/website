@@ -20,7 +20,7 @@ next:
 
 ### 简单的长轮询
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot } from "grammy";
@@ -62,7 +62,7 @@ await bot.start();
 
 ### 使用 grammY runner
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot } from "grammy";

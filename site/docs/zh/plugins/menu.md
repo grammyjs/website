@@ -17,7 +17,7 @@ grammY 有一个 [内置插件](./keyboard#inline-keyboards) 可以创建基本�
 
 这里是一个简单的例子，不言自明。
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot } from "grammy";

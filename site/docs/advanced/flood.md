@@ -13,7 +13,7 @@ If you ignore these errors, your bot may eventually be banned.
 
 ## The Simple Solution
 
-:::warning Not a Real Solution
+::: warning Not a Real Solution
 This section solves your problem short-term, but if you are building a bot that should actually scale well, read the [next subsection](#the-real-solution-recommended) instead.
 :::
 

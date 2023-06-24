@@ -46,7 +46,7 @@ Bot ditulis menggunakan [TypeScript](https://www.typescriptlang.org) (atau JavaS
 
 `npm install grammy` lalu tempel kode berikut:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot } from "grammy";

@@ -20,7 +20,7 @@ If you regularly cross the threshold of how many requests you may perform, Teleg
 
 You can install this plugin on the `bot.api` object:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { autoRetry } from "@grammyjs/auto-retry";

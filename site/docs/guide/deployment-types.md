@@ -193,7 +193,7 @@ We therefore expect you to be able to start a simple web server with a framework
 Every grammY bot can be converted to middleware for a number of web frameworks, including `express`, `koa`/`oak`, and more.
 You can import the `webhookCallback` function ([API reference](https://deno.land/x/grammy/mod.ts?s=webhookCallback)) to create a middleware for the respective framework.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import express from "express";

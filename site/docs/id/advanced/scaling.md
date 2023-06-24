@@ -82,7 +82,7 @@ _grammY runner_ sudah dilengkapi dengan middleware `sequentialize()` yang fungsi
 Kamu bisa mengaturnya di function yang sama yang kamu gunakan untuk menentukan session key.
 Dengan begitu, race condition bisa dihindarkan dengan cara memperlambat update tersebut agar tidak bertabrakan satu sama lain.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context, session } from "grammy";

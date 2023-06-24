@@ -84,7 +84,7 @@ Kedua type tersebut parameternya ditulis ulang dengan [custom context object](..
 Oleh karena itu, command handler akan memiliki type `CommandMiddleware<MyContext>` serta `CommandContext<MyContext>` di context objectnya.
 Mereka bisa digunakan dengan cara seperti ini:
 
-:::code-group
+::: code-group
 
 ```ts [Node.js]
 import {

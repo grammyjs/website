@@ -20,7 +20,7 @@ Telegram щедро надає інформацію про те, скільки 
 
 Ви можете встановити цей плагін на обʼєкт `bot.api` наступним чином:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { autoRetry } from "@grammyjs/auto-retry";

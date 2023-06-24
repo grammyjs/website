@@ -18,7 +18,7 @@ Kamu bisa menjalankan bot menggunakan [webhooks ataupun long polling](../guide/d
 1. Pastikan kamu meng-export object `Bot` di dalam sebuah file agar nantinya bisa di-import ketika ingin menjalankannya.
 2. Buat sebuah file dengan nama `app.ts` atau `app.js`, ataupun nama lainnya sesuai dengan keinginanmu (tetapi kamu harus mengingatnya karena nanti file tersebut akan digunakan sebagai file deploy utama). File tersebut berisikan:
 
-:::code-group
+::: code-group
 
 ```ts{11} [Deno]
 import { serve } from "https://deno.land/std/http/server.ts";
@@ -68,7 +68,7 @@ Di contoh kali ini, kita menggunakan token bot (`/<token bot>`) sebagai direktor
 Buat sebuah file dengan nama `app.ts` atau `app.js`, ataupun nama lainnya sesuai dengan keinginanmu (tetapi kamu harus mengingatnya karena nanti file tersebut akan digunakan sebagai file deploy utama).
 File tersebut berisikan:
 
-:::code-group
+::: code-group
 
 ```ts [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -130,7 +130,7 @@ Metode ini adalah cara yang termudah.
 2. Jalankan `flyctl launch` untuk membuat sebuah file `Dockerfile` dan `fly.toml` yang nantinya untuk digunakan saat deployment.
    Tetapi, **JANGAN** di-deploy terlebih dahulu.
 
-:::code-group
+::: code-group
 
 ```sh [Deno]
 flyctl launch
@@ -152,7 +152,7 @@ Your app is ready. Deploy with `flyctl deploy`
 
 :::
 
-:::code-group
+::: code-group
 
 ```sh [Node.js]
 flyctl launch
@@ -182,7 +182,7 @@ Your app is ready. Deploy with `flyctl deploy`
    **Node.js**: Untuk mengubah versi Node.js, kamu perlu menambahkan property `node` ke dalam property `engine` yang berada di dalam file `package.json`.
    Pada contoh di bawah, kami mengubah versi Node.js menjadi `16.14.0`.
 
-:::code-group
+::: code-group
 
 ```dockerfile{2,26} [Deno]
 # Dockerfile
@@ -244,7 +244,7 @@ ENTRYPOINT ["/bin/deno"]
    Kamu mungkin perlu mengaturnya agar sesuai dengan direktori proyek kamu.
    Kalau kamu menggunakan webhooks, pastikan port-nya sama dengan [konfigurasi](#webhooks) yang kamu miliki, dalam hal ini port-nya adalah `8000`.
 
-:::code-group
+::: code-group
 
 ```toml [Deno (Webhooks)]{7,11,12}
 # fly.toml

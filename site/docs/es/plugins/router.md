@@ -60,7 +60,7 @@ Sólo si se conocen ambos valores, el bot puede decir al usuario cuántos días 
 
 Así es como se podría implementar un bot de este tipo:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context, Keyboard, session, SessionFlavor } from "grammy";

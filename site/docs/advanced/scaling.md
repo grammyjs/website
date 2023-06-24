@@ -83,7 +83,7 @@ grammY runner ships with `sequentialize()` middleware which makes sure that upda
 You can configure it with the very same function that you use to determine the session key.
 It will then avoid the above race condition by slowing down those (and only those) updates that would cause a collision.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context, session } from "grammy";

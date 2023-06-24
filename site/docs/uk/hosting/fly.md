@@ -18,7 +18,7 @@ next: false
 1. Переконайтеся, що у вас є файл, який експортує ваш обʼєкт `Bot`, щоб ви могли імпортувати його пізніше для запуску.
 2. Створіть файл з назвою `app.ts` або `app.js` або насправді будь-якою назвою, яку ви хочете, але ви повинні памʼятати і використовувати його як головний файл для розгортання, з наступним вмістом:
 
-:::code-group
+::: code-group
 
 ```ts{11} [Deno]
 import { serve } from "https://deno.land/std/http/server.ts";
@@ -67,7 +67,7 @@ app.listen(port, () => console.log(`працюю на порті ${port}`));
 
 Створіть файл з назвою `app.ts` або `app.js` або насправді будь-якою назвою, яку ви хочете, але ви повинні памʼятати і використовувати його як головний файл для розгортання, з наступним вмістом:
 
-:::code-group
+::: code-group
 
 ```ts{4} [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -129,7 +129,7 @@ flyctl secrets set BOT_TOKEN="AAAA:12345"
 2. Виконайте команду `flyctl launch`, щоб згенерувати файли `Dockerfile` та `fly.toml` для розгортання.
    Але **НЕ** розгортайте ваш проєкт.
 
-:::code-group
+::: code-group
 
 ```sh [Deno]
 flyctl launch
@@ -151,7 +151,7 @@ Your app is ready. Deploy with `flyctl deploy`
 
 :::
 
-:::code-group
+::: code-group
 
 ```sh [Node.js]
 flyctl launch
@@ -181,7 +181,7 @@ Your app is ready. Deploy with `flyctl deploy`
    **Node.js**: щоб змінити версію Node.js, вам потрібно вставити властивість `"node"` в межах властивості `"engines"` у `package.json`.
    Ми оновлюємо версію Node.js до `16.14.0` у наступному прикладі.
 
-:::code-group
+::: code-group
 
 ```dockerfile{2,26} [Deno]
 # Dockerfile
@@ -243,7 +243,7 @@ ENTRYPOINT ["/bin/deno"]
    Ви можете змінити їх, щоб вони відповідали каталогу вашого проєкту.
    Якщо ви використовуєте вебхуки, переконайтеся, що порт відповідає тому, що ви вказали у своєму [конфігураційному файлі](#вебхуки) (`8000`).
 
-:::code-group
+::: code-group
 
 ```toml{7,11,12} [Deno (Вебхук)]
 # fly.toml

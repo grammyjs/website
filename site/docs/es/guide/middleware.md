@@ -127,7 +127,7 @@ Ilustraremos el concepto de middleware escribiendo una simple función de middle
 Aquí está la firma de la función para nuestro middleware.
 Puedes compararla con el tipo de middleware de arriba, y convencerte de que realmente tenemos un middleware aquí.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 /** Mide el tiempo de respuesta del bot, y lo registra en el `console` */
@@ -164,7 +164,7 @@ Esto es lo que queremos hacer:
 
 Es importante instalar nuestro middleware `responseTime` _primero_ en el bot (en la parte superior de la pila de middleware) para asegurarse de que todas las operaciones se incluyen en la medición.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 /** Mide el tiempo de respuesta del bot, y lo registra en el `console` */

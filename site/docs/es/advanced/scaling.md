@@ -82,7 +82,7 @@ grammY runner viene con el middleware `sequentialize()` que asegura que las actu
 Puedes configurarlo con la misma función que utilizas para determinar la clave de sesión.
 Entonces evitará la condición de carrera mencionada anteriormente, ralentizando aquellas (y sólo aquellas) actualizaciones que podrían causar una colisión.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context, session } from "grammy";

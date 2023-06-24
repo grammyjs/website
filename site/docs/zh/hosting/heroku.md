@@ -296,7 +296,7 @@ npx tsc
 
 对于我们的情况来说，应该是这样：
 
-:::code-group
+::: code-group
 
 ```procfile [Webhook]
 web: node dist/app.js
@@ -335,7 +335,7 @@ tsconfig.json
 
 最终，我们的文件夹结构看起来应该是这样的：
 
-:::code-group
+::: code-group
 
 ```asciiart:no-line-numbers [Webhook]
 .
@@ -383,7 +383,7 @@ git commit -m "My first commit"
 如果你已经创建了 [Heroku 应用](https://dashboard.heroku.com/apps/)，在下面的 `<myApp>` 中传入你的 `已存在应用` 的名称，然后运行代码。
 否则，请运行 `新应用`
 
-:::code-group
+::: code-group
 
 ```sh [新应用]
 heroku create

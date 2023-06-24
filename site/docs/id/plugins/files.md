@@ -13,7 +13,7 @@ Plugin ini memerlukan token bot kamu untuk melakukan autentikasi ketika mengundu
 Jika berhasil, method `download` akan tersedia di hasil pemanggilan `getFile`.
 Contohnya,
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context } from "grammy";
@@ -108,7 +108,7 @@ Secara bawaan, hasil dari `await bot.api.getFile()` juga akan dilengkapi dengan 
 Namun, method-method ini tidak akan tampak di type tersebut.
 Jika kamu membutuhkannya, kamu juga bisa menginstal sebuah [API flavor](../advanced/transformers#menggunakan-api-flavor) `FileApiFlavor` di object bot tersebut.
 
-:::code-group
+::: code-group
 
 ```ts [Node.js]
 import { Api, Bot, Context } from "grammy";

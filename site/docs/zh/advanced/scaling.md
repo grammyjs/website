@@ -83,7 +83,7 @@ grammY runner 中封装了 `sequentialize()` 中间件来确保发生冲突的�
 你可以将其配置为与确定 session 密钥相同的功能 。
 它将通过减慢那些（也仅仅是那些）可能引起冲突的更新来避免上述所说的竞态。
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context, session } from "grammy";

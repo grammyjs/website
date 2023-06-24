@@ -55,7 +55,7 @@ There are two ways of using ratelimiter:
 
 This snippet demonstrates the easiest way of using ratelimiter, which is accepting the default behavior:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { limit } from "@grammyjs/ratelimiter";
@@ -84,7 +84,7 @@ bot.use(limit());
 
 As mentioned earlier, you can pass an `Options` object to the `limit()` method to alter the limiter's behavior.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import Redis from "ioredis";
@@ -180,7 +180,7 @@ That request will not travel further and dies immediately as we do not call [nex
 
 Another use case would be limiting the incoming requests from a chat instead of a specific user:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { limit } from "@grammyjs/ratelimiter";

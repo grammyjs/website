@@ -20,7 +20,7 @@ As you are going to stop your instance during operation at some point again, you
 
 ### Simple Long Polling
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot } from "grammy";
@@ -65,7 +65,7 @@ await bot.start();
 
 ### Using grammY runner
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot } from "grammy";

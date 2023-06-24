@@ -9,7 +9,7 @@ Plugin ini menyediakan sebuah transformer untuk menyetel pengaturan bawaan `pars
 
 ## Penggunaan (Melakukan Pemformatan dengan Mudah)
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context } from "grammy";
@@ -111,7 +111,7 @@ bot.start();
 
 ## Penggunaan (Parse Mode dan Method Reply Bawaan)
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context } from "grammy";

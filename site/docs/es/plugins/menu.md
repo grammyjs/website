@@ -17,7 +17,7 @@ Pueden tener botones interactivos, múltiples páginas con navegación entre ell
 
 Aquí hay un ejemplo simple que habla por sí mismo.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot } from "grammy";

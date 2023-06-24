@@ -127,7 +127,7 @@ bot.start();
 这里是我们中间件的函数签名。
 你可以把它与上面的中间件类型进行比较，并说服自己，我们在这里确实完成了一个中间件。
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 /** 统计 bot 的响应时间，并将其记录到 `console`。 */
@@ -164,7 +164,7 @@ bot.use(responseTime);
 
 重要的是，要先在 bot 上安装我们的 `responseTime` 中间件（在中间件栈的顶部），以确保所有操作都包括在统计中。
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 /** 统计 bot 的响应时间，并将其记录到 `console`。 */

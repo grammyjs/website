@@ -57,7 +57,7 @@ Ada dua cara untuk menginstal plugin ini:
 
 Plugin ini bisa diinstal secara langsung. Cara pemasangan yang seperti ini sudah cukup untuk kebanyakan pengguna.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context } from "grammy";
@@ -106,7 +106,7 @@ Untuk kasus seperti itu, kamu sebaiknya menggunakan instalasi tingkat lanjut ini
 Instalasi ini akan mengintegrasikan context hydration dan hidrasi hasil pemanggilan API secara terpisah ke dalam bot kamu.
 Perlu diingat bahwa kamu sekarang perlu menginstal sebuah [API flavor](../advanced/transformers#menggunakan-api-flavor).
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Api, Bot, Context } from "grammy";

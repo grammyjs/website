@@ -84,7 +84,7 @@ grammY експортує визначення типів для всіх **зв
 Відповідно, обробник команди матиме тип `CommandMiddleware<MyContext>`, а обʼєкт контексту матиме тип `CommandContext<MyContext>`.
 Їх можна використовувати наступним чином.
 
-:::code-group
+::: code-group
 
 ```ts [Node.js]
 import {

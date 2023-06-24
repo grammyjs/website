@@ -20,7 +20,7 @@ next:
 
 ### Просте тривале опитування
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot } from "grammy";
@@ -65,7 +65,7 @@ await bot.start();
 
 ### Використовуючи плагін для конкурентості (runner)
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot } from "grammy";

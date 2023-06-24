@@ -56,7 +56,7 @@ Sekarang mari kita lihat cara pembuatannya!
 
 Pertama-tama, import beberapa package yang dibutuhkan.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import {
@@ -121,7 +121,7 @@ async function greeting(conversation: MyConversation, ctx: MyContext) {
 Sekarang, kamu bisa menentukan alur dari percakapannya di dalam conversation builder function.
 Sebelum membahas fitur-fitur dari plugin ini, mari kita lihat satu contoh lain yang lebih kompleks dibandingkan dengan [contoh sederhana](#contoh-sederhana) di atas.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function movie(conversation: MyConversation, ctx: MyContext) {
@@ -215,7 +215,7 @@ bot.command("start", (ctx) => ctx.conversation.enter("nama-baru"));
 
 Hasil akhir kode kamu kurang lebih terlihat seperti ini:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context, session } from "grammy";
@@ -372,7 +372,7 @@ Contohnya, jika kamu membiarkan konfigurasi conversation kosong seperti contoh d
 Percakapan akan terus berjalan hingga conversation builder function selesai melakukan tugasnya.
 Karena itu, kamu bisa meninggalkan sebuah percakapan cukup dengan menggunakan `return` atau `throw`.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function hiAndBye(conversation: MyConversation, ctx: MyContext) {
@@ -407,7 +407,7 @@ Dengan begitu, kamu bisa mencegah error mencapai [middleware tree](../advanced/m
 
 Berikut bagaimana error boundary dan conversation digunakan secara bersamaan.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 bot.use(session({
@@ -451,7 +451,7 @@ Jika ingin menghentikan secara paksa suatu percakapan yang sedang menunggu sebua
 Biasanya menggunakan `return` di function adalah cara yang lebih dianjurkan, tetapi ada kalanya di beberapa kondisi menggunakan `await ctx.conversation.exit()` jauh lebih nyaman.
 Jangan lupa untuk menggunakan `await`.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]{6,22}
 async function movie(conversation: MyConversation, ctx: MyContext) {
@@ -513,7 +513,7 @@ Selain itu, handler-handler yang menangani cancel juga harus diinstal sebelum co
 
 Kamu bisa menyuruh `conversation` untuk menunggu update selanjutnya dari chat terkait.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function waitForMe(conversation: MyConversation, ctx: MyContext) {
@@ -537,7 +537,7 @@ Lihat daftar lengkapnya di [dokumentasi Telegram](https://core.telegram.org/bots
 Method `wait` selalu menghasilkan sebuah [context object](../guide/context) baru berisi update yang diterima.
 Artinya, kamu akan selalu berurusan dengan context object sebanyak update yang diterima selama percakapan berlangsung.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 const CHAT_TIM_REVIEW = -1001493653006;
@@ -598,7 +598,7 @@ Sebaliknya, di plugin conversations, kamu akan memperoleh context object yang ba
 Sehingga, kamu bisa menangani masing-masing update dengan cara yang berbeda-beda berdasarkan object tersebut.
 Contohnya, kamu bisa mengecek pesan teks dengan cara seperti ini:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function waitForText(conversation: MyConversation, ctx: MyContext) {
@@ -627,7 +627,7 @@ async function waitForText(conversation, ctx) {
 Selain itu, ada banyak method selain `wait` yang bisa kamu gunakan untuk menunggu update tertentu saja.
 Salah satunya adalah `waitFor` yang memanfaatkan sebuah [filter query](../guide/filter-queries) untuk menunggu update yang cocok dengan query yang diberikan.
 Ini adalah kombinasi yang sempurna bila digunakan bersama [object destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment):
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function waitForText(conversation: MyConversation, ctx: MyContext) {
@@ -752,7 +752,7 @@ do {
 Kamu juga bisa membagi kode ke beberapa function lalu menggunakannya kembali.
 Berikut contoh captcha sederhana yang bisa dipakai berulang kali:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function captcha(conversation: MyConversation, ctx: MyContext) {
@@ -781,7 +781,7 @@ async function captcha(conversation, ctx) {
 Ia akan mengembalikan nilai `true` jika user menjawab dengan benar atau `false` jika salah.
 Kamu sekarang bisa menggunakannya di conversation builder function seperti ini:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function enterGroup(conversation: MyConversation, ctx: MyContext) {
@@ -825,7 +825,7 @@ Dengan cara seperti itu, beberapa function bisa dibuat dan di-`export` di dalam 
 
 Kamu juga bisa membuat beberapa class:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 class Auth {
@@ -902,7 +902,7 @@ Seperti yang sudah dijelaskan [sebelumnya](#menunggu-update), conversation handl
 
 Jika method-method tadi belum cukup, plugin conversations menyediakan beberapa function pembantu untuk membuat berbagai form menggunakan `conversation.form`.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function waitForMe(conversation: MyConversation, ctx: MyContext) {
@@ -941,7 +941,7 @@ Oleh karena itu, jika kamu ingin mengombinasikan plugin conversations dengan sal
 
 Kamu bisa menginstal plugin lain di dalam percakapan menggunakan `conversation.run`:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function convo(conversation: MyConversation, ctx: MyContext) {
@@ -965,7 +965,7 @@ Langkah di atas akan membuat plugin-nya tersedia untuk percakapan tersebut.
 
 Contohnya, jika kamu ingin menggunakan sebuah menu di dalam suatu percakapan, kode kamu kurang lebih akan terlihat seperti ini:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function convo(conversation: MyConversation, ctx: MyContext) {
@@ -1050,7 +1050,7 @@ Ini memungkinkan kamu untuk mengobrol ke satu user saja di dalam sebuah chat gru
 
 Sebagai contoh, mari kita implementasikan kembali contoh captcha di atas, tetapi kali ini kita gunakan di percakapan paralel.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]{7}
 async function captcha(conversation: MyConversation, ctx: MyContext) {

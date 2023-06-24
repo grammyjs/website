@@ -26,7 +26,7 @@ instance dari kelas apapun yang mengimplementasikan interface [`StorageAdapter`]
 Perlu diketahui, berdasarkan [dokumentasi resmi Telegram](https://core.telegram.org/bots/api#getupdates), bot kamu perlu mencantumkan update `chat_member` di array `allowed_updates`, seperti yang ditampilkan pada contoh di bawah.
 Artinya, kamu juga perlu mencantumkan event lain yang diperlukan.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, type Context, MemorySessionStorage } from "grammy";

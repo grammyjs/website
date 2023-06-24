@@ -24,7 +24,7 @@ next: false
 请注意，根据 [Telegram 官方文档](https://core.telegram.org/bots/api#getupdates)，你的 bot 需要在 `allowed_updates` 数组中指定 `chat_member` update，如下例所示。
 这意味着你还需要指定你希望接收的任何其他事件。
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, type Context, MemorySessionStorage } from "grammy";

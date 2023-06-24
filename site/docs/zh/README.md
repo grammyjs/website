@@ -44,7 +44,7 @@ bot 是用 [TypeScript](https://www.typescriptlang.org)（或JavaScript）编写
 
 `npm install grammy` 并粘贴以下代码：
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot } from "grammy";

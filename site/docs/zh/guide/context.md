@@ -277,7 +277,7 @@ const bot = new Bot<MyContext>("");
 
 综上所述，设置将像这样：
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 const BOT_DEVELOPER = 123456; // bot 开发者的聊天标识符
@@ -359,7 +359,7 @@ class MyContext extends Context {
 当你构建你的 bot 时，你可以传递一个自定义上下文构造函数，这个函数将用于实例化上下文对象。
 请注意，你的类必须继承 `Context`。
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context } from "grammy";

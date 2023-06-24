@@ -84,7 +84,7 @@ Both types are parameterized with your [custom context object](../guide/context#
 Hence, a command handler would have the type `CommandMiddleware<MyContext>` and its context object `CommandContext<MyContext>`.
 They can be used as follows.
 
-:::code-group
+::: code-group
 
 ```ts [Node.js]
 import {

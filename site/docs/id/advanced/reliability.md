@@ -21,7 +21,7 @@ Sebelum mematikan bot atau instance yang sedang berjalan, kamu sebaiknya menangk
 
 ### Long Polling Sederhana
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot } from "grammy";
@@ -63,7 +63,7 @@ await bot.start();
 
 ### Menggunakan grammY Runner
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot } from "grammy";

@@ -56,7 +56,7 @@ Let's see how it's done!
 
 First of all, lets import a few things.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import {
@@ -121,7 +121,7 @@ async function greeting(conversation: MyConversation, ctx: MyContext) {
 Inside of your conversation builder function, you can now define how the conversation should look.
 Before we go in depth about every feature of this plugin, let's have a look at a more complex example than the [simple one](#simple-example) above.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function movie(conversation: MyConversation, ctx: MyContext) {
@@ -215,7 +215,7 @@ bot.command("start", (ctx) => ctx.conversation.enter("new-name"));
 
 In total, your code should now roughly look like this:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context, session } from "grammy";
@@ -369,7 +369,7 @@ For example, if you leave the conversation config empty as illustrated above, th
 The conversation will run until your conversation builder function completes.
 This means that you can simply leave a conversation by using `return` or `throw`.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function hiAndBye(conversation: MyConversation, ctx: MyContext) {
@@ -404,7 +404,7 @@ That way, you can prevent the error from propagating up the [middleware tree](..
 
 This is how error boundaries and conversations could be used together.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 bot.use(session({
@@ -453,9 +453,9 @@ This will simply erase the conversation plugin's data from the session.
 It's often better to stick with simply returning from the function, but there are a few examples where using `await ctx.conversation.exit()` is convenient.
 Remember that you must `await` the call.
 
-:::code-group
+::: code-group
 
-```ts [TypeScript]{6,22}
+```ts{6,22} [TypeScript]
 async function movie(conversation: MyConversation, ctx: MyContext) {
   // TODO: code the conversation
 }
@@ -480,7 +480,7 @@ bot.use(createConversation(movie));
 bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 ```
 
-```js [JavaScript]{6,22}
+```js{6,22} [JavaScript]
 async function movie(conversation, ctx) {
   // TODO: code the conversation
 }
@@ -515,7 +515,7 @@ Also, the generic cancel handlers must be installed before the actual conversati
 
 You can use the conversation handle `conversation` to wait for the next update in this particular chat.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function waitForMe(conversation: MyConversation, ctx: MyContext) {
@@ -539,7 +539,7 @@ Check out the full list in the Telegram docs [here](https://core.telegram.org/bo
 The `wait` method always yields a new [context object](../guide/context) representing the received update.
 That means you're always dealing with as many context objects as there are updates received during the conversation.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 const TEAM_REVIEW_CHAT = -1001493653006;
@@ -600,7 +600,7 @@ In conversations, you will obtain this new context object from the `wait` call.
 In turn, you can handle different updates differently based on this object.
 For example, you can check for text messages:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function waitForText(conversation: MyConversation, ctx: MyContext) {
@@ -630,7 +630,7 @@ In addition, there are a number of other methods alongside `wait` that let you w
 One example is `waitFor` which takes a [filter query](../guide/filter-queries) and then only waits for updates that match the provided query.
 This is especially powerful in combination with [object destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment):
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function waitForText(conversation: MyConversation, ctx: MyContext) {
@@ -754,7 +754,7 @@ do {
 You can also split up your code in several functions, and reuse them.
 For example, this is how you can define a reusable captcha.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function captcha(conversation: MyConversation, ctx: MyContext) {
@@ -777,7 +777,7 @@ async function captcha(conversation, ctx) {
 It returns `true` if the user may pass, and `false` otherwise.
 You can now use it in your main conversation builder function like this:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function enterGroup(conversation: MyConversation, ctx: MyContext) {
@@ -821,7 +821,7 @@ That way, you can define some functions in one file, `export` them, and then `im
 
 If you want, you can also define classes.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 class Auth {
@@ -894,7 +894,7 @@ As mentioned [earlier](#waiting-for-updates), there are several different utilit
 
 If these methods are not enough, the conversations plugin provides even more helper functions for building forms via `conversation.form`.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function waitForMe(conversation: MyConversation, ctx: MyContext) {
@@ -933,7 +933,7 @@ Hence, if you want to combine conversations with one of these grammY plugins, yo
 
 You can install other plugins inside conversations using `conversation.run`:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function convo(conversation: MyConversation, ctx: MyContext) {
@@ -957,7 +957,7 @@ This will make the plugin available inside the conversation.
 
 As an example, if you want to use a menu insde a conversation, your code could look like this.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function convo(conversation: MyConversation, ctx: MyContext) {
@@ -1042,9 +1042,9 @@ This allows you to chat with a single user only in a group chat.
 
 For instance, let's implement the captcha example from up here again, but this time with parallel conversations.
 
-:::code-group
+::: code-group
 
-```ts [TypeScript]{4}
+```ts{4} [TypeScript]
 async function captcha(conversation: MyConversation, ctx: MyContext) {
   if (ctx.from === undefined) return false;
   await ctx.reply("Prove you are human! What is the answer to everything?");
@@ -1060,7 +1060,7 @@ async function enterGroup(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-```js [JavaScript]{4}
+```js{4} [JavaScript]
 async function captcha(conversation, ctx) {
   if (ctx.from === undefined) return false;
   await ctx.reply("Prove you are human! What is the answer to everything?");

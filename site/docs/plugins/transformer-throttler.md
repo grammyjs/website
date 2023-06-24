@@ -18,7 +18,7 @@ Consider using the [auto-retry plugin](./auto-retry) together with this plugin, 
 Here is an example of how to use this plugin with the default options.
 Note that the default options are aligned with the actual rate limits enforced by Telegram, so they should be good to go.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot } from "grammy";

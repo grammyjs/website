@@ -61,7 +61,7 @@ other.use((ctx) => {/* ... */});
 
 Ось як можна реалізувати такого бота:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context, Keyboard, session, SessionFlavor } from "grammy";

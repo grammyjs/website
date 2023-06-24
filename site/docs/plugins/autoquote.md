@@ -17,7 +17,7 @@ This plugin sets the `reply_to_message_id` parameter to `ctx.msg.message_id` for
 
 If you want all messages sent within a specific context (like a specific command), you can specifically apply the plugin to them:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot } from "grammy";
@@ -67,7 +67,7 @@ bot.start();
 
 If you want every sent message to reply the messages that triggered them, you can apply the plugin this way:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot } from "grammy";

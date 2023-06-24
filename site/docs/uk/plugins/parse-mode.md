@@ -9,7 +9,7 @@ next: false
 
 ## Використання (покращення досвіду форматування)
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context } from "grammy";
@@ -111,7 +111,7 @@ bot.start();
 
 ## Використання (типовий режим форматування та методи відповіді)
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context } from "grammy";

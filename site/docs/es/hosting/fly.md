@@ -18,7 +18,7 @@ Puedes ejecutar tu bot usando ambos [webhooks o long polling](../guide/deploymen
 1. Asegúrate de tener un archivo que exporte tu objeto `Bot`, para poder importarlo después y ejecutarlo.
 2. Crea un archivo llamado `app.ts` o `app.js`, o en realidad cualquier nombre que te guste (pero deberías recordarlo y usarlo como el archivo principal para desplegar), con el siguiente contenido:
 
-:::code-group
+::: code-group
 
 ```ts{11} [Deno]
 import { serve } from "https://deno.land/std/http/server.ts";
@@ -67,7 +67,7 @@ Como se muestra en la línea resaltada arriba, estamos usando el token del bot (
 
 Crea un archivo llamado `app.ts` o `app.js`, o en realidad cualquier nombre que te guste (pero deberías recordar y usar este como el archivo principal para desplegar), con el siguiente contenido:
 
-:::code-group
+::: code-group
 
 ```ts{4} [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -129,7 +129,7 @@ Este es el método más sencillo.
 2. Ejecuta `flyctl launch` para generar un `Dockerfile` y un archivo `fly.toml` para el despliegue.
    Pero **NO** despliega.
 
-:::code-group
+::: code-group
 
 ```sh [Deno]
 flyctl launch
@@ -151,7 +151,7 @@ Your app is ready. Deploy with `flyctl deploy`
 
 :::
 
-:::code-group
+::: code-group
 
 ```sh [Node.js]
 flyctl launch
@@ -181,7 +181,7 @@ Your app is ready. Deploy with `flyctl deploy`
    **Node.js**: Para cambiar la versión de Node.js, necesitas insertar una propiedad `"node"` dentro de una propiedad `"engines"` dentro de `package.json`.
    Por ejemplo, actualizamos la versión de Node.js a `16.14.0` en el siguiente ejemplo.
 
-:::code-group
+::: code-group
 
 ```dockerfile{2,26} [Deno]
 # Dockerfile
@@ -243,7 +243,7 @@ ENTRYPOINT ["/bin/deno"]
    Puedes modificarlos para que coincidan con el directorio de tu proyecto.
    Si estás usando webhooks, asegúrate de que el puerto es el mismo que el de tu [configuración](#webhooks) (`8000`).
 
-:::code-group
+::: code-group
 
 ```toml [Deno (Webhooks)]{7,11,12}
 # fly.toml

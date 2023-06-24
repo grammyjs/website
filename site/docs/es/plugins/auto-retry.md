@@ -20,7 +20,7 @@ Si regularmente cruzas el umbral de la cantidad de solicitudes que puedes realiz
 
 Puedes instalar este plugin en el objeto `bot.api`:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { autoRetry } from "@grammyjs/auto-retry";

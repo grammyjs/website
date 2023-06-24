@@ -17,7 +17,7 @@ Create your first bot in minutes. (Scroll [down](#getting-started-on-deno) for a
 Create a new TypeScript project and install the `grammy` package.
 Do this by opening a terminal and typing:
 
-:::code-group
+::: code-group
 
 ```sh [npm]
 # Create a new directory and change into it.
@@ -80,7 +80,7 @@ It is used to authenticate your bot.
 Got the token? You can now code your bot in the `bot.ts` file.
 You can copy the following example bot into that file, and pass your token to the `Bot` constructor:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot } from "grammy";

@@ -13,7 +13,7 @@ You need to pass your bot token to this plugin because it must authenticate as y
 This plugin then installs the `download` method on `getFile` call results.
 Example:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context } from "grammy";
@@ -108,7 +108,7 @@ By default, the results of `await bot.api.getFile()` will also be equipped with 
 However, this is not reflected in the types.
 If you need these calls, you should also install an [API flavor](../advanced/transformers#api-flavoring) on the bot object called `FileApiFlavor`:
 
-:::code-group
+::: code-group
 
 ```ts [Node.js]
 import { Api, Bot, Context } from "grammy";

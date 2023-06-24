@@ -108,7 +108,7 @@ Kamu bisa menambahkan fitur session ke grammY menggunakan middleware session bui
 
 Berikut contoh bot yang menghitung jumlah pesan yang mengandung sebuah emoji kucing :cat::
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context, session, SessionFlavor } from "grammy";
@@ -250,7 +250,7 @@ Secara bawaan, data disimpan per chat.
 Tetapi, dengan menggunakan `getSessionKey` kamu bisa menyimpan data entah itu per user, kombinasi per user dan chat, ataupun cara lainnya.
 Berikut ketiga contohnya:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 // Simpan data per chat (bawaan)
@@ -410,7 +410,7 @@ Lihat [repositori berikut](https://github.com/grammyjs/storages/tree/main/packag
 
 Cara pemasangannya sangat mudah:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { freeStorage } from "@grammyjs/storage-free";
@@ -446,7 +446,7 @@ Bot kamu sekarang sudah menggunakan data storage permanen.
 
 Berikut contoh utuh yang bisa kamu coba:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context, session, SessionFlavor } from "grammy";
@@ -781,7 +781,7 @@ interface SessionData {
 
 Function migrasi bisa kamu gunakan untuk mengubah string array yang lama menjadi array object pet yang baru.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 function addBirthdayToPets(old: { petNames: string[] }): SessionData {

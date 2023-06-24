@@ -30,7 +30,7 @@ Ia juga memiliki [Referensi API](https://deno.land/x/grammy_runner/mod.ts)-nya s
 
 Berikut contoh sederhananya:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot } from "grammy";
@@ -197,7 +197,7 @@ Mari kita lihat bagaimana cara menggunakannya.
 Mari kita mulai dengan membuat sebuah instance bot utama untuk mengambil dan mendistribusikan update ke para workers.
 Buat sebuah file bernama `bot.ts` yang berisi kode berikut:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 // bot.ts
@@ -258,7 +258,7 @@ run(bot);
 Di direktori yang sama dengan `bot.ts`, buat file kedua dengan nama `worker.ts` (seperti yang tertera di baris ke-12 pada kode di atas).
 Isinya adalah kode pemrosesan bot yang sesungguhnya.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 // worker.ts
@@ -310,7 +310,7 @@ Artinya, semua plugin harus dipasang di bot workers terkait.
 Untuk mengoptimalkan performa, kamu bisa mengabaikan update yang tidak ingin kamu tangani.
 Dengan begitu, bot kamu tidak perlu mengirim update tersebut ke worker, yang pada akhirnya akan diabaikan juga.
 
-:::code-group
+::: code-group
 
 ```ts [Node.js]
 // Bot kita hanya menangani pesan, edit, dan callback query.

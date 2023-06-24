@@ -44,7 +44,7 @@ Bots están escritos en [TypeScript](https://www.typescriptlang.org) (o JavaScri
 
 `npm install grammy` y copia el siguiente código:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot } from "grammy";

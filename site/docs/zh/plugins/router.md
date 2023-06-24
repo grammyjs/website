@@ -61,7 +61,7 @@ other.use((ctx) => {/* ... */});
 
 这是如何实现这样的机器人的示例：
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context, Keyboard, session, SessionFlavor } from "grammy";

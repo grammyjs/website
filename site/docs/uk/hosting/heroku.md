@@ -299,7 +299,7 @@ npx tsc
 
 У нашому випадку він має бути таким:
 
-:::code-group
+::: code-group
 
 ```procfile [Вебхук]
 web: node dist/app.js
@@ -338,7 +338,7 @@ tsconfig.json
 
 Кінцева структура каталогів повинна виглядати наступним чином:
 
-:::code-group
+::: code-group
 
 ```asciiart:no-line-numbers [Вебхук]
 .
@@ -386,7 +386,7 @@ git commit -m "Мій перший коміт"
 Якщо ви вже створили [застосунок Heroku](https://dashboard.heroku.com/apps/), введіть назву вашого існуючого застосунку (`Existing app`) замість `<мій-застосунок>` нижче, а потім запустіть код.
 В іншому випадку запустіть новий застосунок (`New app`).
 
-:::code-group
+::: code-group
 
 ```sh [Новий застосунок]
 heroku create

@@ -21,7 +21,7 @@ Plugin ini memasang parameter `reply_to_message_id` ke `ctx.msg.message_id` untu
 
 Jika ingin me-reply pesan tertentu saja (misalnya hanya me-reply pesan command `demo`), maka kamu bisa melakukannya dengan cara seperti ini:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot } from "grammy";
@@ -71,7 +71,7 @@ bot.start();
 
 Jika ingin me-reply semua pesan yang masuk, kamu bisa melakukannya dengan cara seperti ini:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot } from "grammy";

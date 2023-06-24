@@ -13,7 +13,7 @@ next: false
 Потім цей плагін встановлює метод `download` на результати виклику `getFile`.
 Наприклад:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context } from "grammy";
@@ -108,7 +108,7 @@ bot.on([":video", ":animation"], async (ctx) => {
 Однак це не відображатиметься у типах.
 Якщо вам потрібно їх викликати, вам також варто встановити [розширювач для API](../advanced/transformers#розширювач-для-api) з назвою `FileApiFlavor` на обʼєкті бота:
 
-:::code-group
+::: code-group
 
 ```ts [Node.js]
 import { Api, Bot, Context } from "grammy";

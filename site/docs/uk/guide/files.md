@@ -140,7 +140,7 @@ await ctx.replyWithPhoto(new InputFile("/tmp/picture.jpg"));
 
 Якщо на вашій машині вже є файл, ви можете надіслати цей файл за допомогою grammY.
 
-:::code-group
+::: code-group
 
 ```ts [Node.js]
 import { createReadStream } from "fs";
@@ -167,7 +167,7 @@ new InputFile(await Deno.open("/path/to/file"));
 Ви також можете надіслати обʼєкт `Buffer` або ітератор, який створює обʼєкти `Buffer`.
 У Deno ви також можете надіслати обʼєкти `Blob`.
 
-:::code-group
+::: code-group
 
 ```ts [Node.js]
 // Надсилаємо буфер або масив байтів.
@@ -206,7 +206,7 @@ new InputFile(function* () {
 > Зауважте, що Telegram підтримує надсилання файлу через URL у багатьох методах API.
 > Якщо можливо, вам слід віддати перевагу [надсиланню файлу через URL-адресу](#через-file-id-або-url-адресу), а не використовувати `InputFile` для потокової передачі вмісту файлу через ваш сервер.
 
-:::code-group
+::: code-group
 
 ```ts [Node.js]
 import { URL } from "url";

@@ -19,7 +19,7 @@ Perlu diketahui, pengaturan opsi bawaan plugin ini menggunakan aturan rate limit
 Semestinya, pengaturan bawaan tersebut sudah cukup sesuai untuk sebagian besar bot.
 Berikut contoh penggunaan plugin ini dengan menggunakan opsi bawaan:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot } from "grammy";

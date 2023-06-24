@@ -140,7 +140,7 @@ Berikut beberapa contoh bagaimana kamu bisa membuat `InputFile`.
 
 Kalau kamu sudah punya file yang tersimpan di komputermu, kamu bisa menyuruh grammY untuk mengunggah file tersebut.
 
-:::code-group
+::: code-group
 
 ```ts [Node.js]
 import { createReadStream } from "fs";
@@ -167,7 +167,7 @@ new InputFile(await Deno.open("/path/ke/file"));
 Kamu juga bisa mengirim object `Buffer`, maupun sebuah perulangan yang menghasilkan object `Buffer`.
 Di Deno, kamu bisa mengirim object `Blob` juga.
 
-:::code-group
+::: code-group
 
 ```ts [Node.js]
 // Kirim sebuah buffer atau array byte.
@@ -206,7 +206,7 @@ Sangat efisien, bukan.
 > Perlu dicatat bahwa Telegram mendukung pengunduhan file dengan berbagai cara.
 > Jika memungkinkan, sebaiknya kamu [mengirim file menggunakan URL](#melalui-file-id-atau-url), daripada menggunakan `InputFile` untuk mengalirkan data file melalui server kamu.
 
-:::code-group
+::: code-group
 
 ```ts [Node.js]
 import { URL } from "url";

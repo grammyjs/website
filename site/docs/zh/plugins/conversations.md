@@ -56,7 +56,7 @@ async function greeting(conversation, ctx) {
 
 首先，让我们导入几样东西。
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import {
@@ -120,7 +120,7 @@ async function greeting(conversation: MyConversation, ctx: MyContext) {
 你现在可以在你的对话生成器函数中定义对话了。
 在我们深入了解这个插件的每个功能之前，让我们看一下比上面的 [简单样例](#简单样例) 更复杂的例子。
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function movie(conversation: MyConversation, ctx: MyContext) {
@@ -214,7 +214,7 @@ bot.command("start", (ctx) => ctx.conversation.enter("new-name"));
 
 总的来说，你的代码现在应该看起来像这样：
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context, session } from "grammy";
@@ -368,7 +368,7 @@ bot.use(session({
 对话将一直运行到你的对话生成器函数完成。
 也就是说你可以简单地通过使用 `return` 或 `throw` 离开一个对话。
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function hiAndBye(conversation: MyConversation, ctx: MyContext) {
@@ -403,7 +403,7 @@ async function hiAndBye(conversation, ctx) {
 
 这就是 error 边界和对话一起使用的方式。
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 bot.use(session({
@@ -452,7 +452,7 @@ bot.errorBoundary(
 通常情况下，简单地从函数返回来进行退出时更好的做法，但在一些情况中，使用 `await ctx.conversation.exit()` 更方便。
 请记住，你必须 `await` 这个调用。
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]{6,22}
 async function movie(conversation: MyConversation, ctx: MyContext) {
@@ -514,7 +514,7 @@ bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 
 你可以使用对话的处理程序 `conversation` 来等待特定聊天的下一个 update。
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function waitForMe(conversation: MyConversation, ctx: MyContext) {
@@ -538,7 +538,7 @@ async function waitForMe(conversation, ctx) {
 `wait` 方法总是产生一个新的 [上下文对象](../guide/context) 表示接收到的 update。
 这意味着你总是要处理与对话期间收到的 update 一样多的上下文对象。
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 const TEAM_REVIEW_CHAT = -1001493653006;
@@ -599,7 +599,7 @@ async function askUser(conversation, ctx) {
 然后，你可以根据这个对象以不同的方式处理不同的 update。
 例如，你可以检查文本消息：
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function waitForText(conversation: MyConversation, ctx: MyContext) {
@@ -629,7 +629,7 @@ async function waitForText(conversation, ctx) {
 其中一个例子是 `waitFor`，它接受一个 [过滤器查询](../guide/filter-queries)，然后只等待匹配这个查询的 update。
 这与 [对象解构赋值](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) 结合使用非常强大：
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function waitForText(conversation: MyConversation, ctx: MyContext) {
@@ -753,7 +753,7 @@ do {
 你也可以将你的代码分割几个函数，并重用它们。
 例如，你可以这样定义一个可重复使用的验证码函数。
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function captcha(conversation: MyConversation, ctx: MyContext) {
@@ -776,7 +776,7 @@ async function captcha(conversation, ctx) {
 如果用户可以通过验证，返回 `true`，否则返回 `false`。
 现在，你可以在你的主对话生成器函数中使用它，如下所示：
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function enterGroup(conversation: MyConversation, ctx: MyContext) {
@@ -820,7 +820,7 @@ async function enterGroup(conversation, ctx) {
 
 如果你想，你还可以定义类。
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 class Auth {
@@ -893,7 +893,7 @@ async function askForToken(conversation, ctx) {
 
 如果这些方法不够，对话插件通过 `conversation.form` 提供了更多帮助函数来构建表单。
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function waitForMe(conversation: MyConversation, ctx: MyContext) {
@@ -932,7 +932,7 @@ async function waitForMe(conversation, ctx) {
 
 你可以使用 `conversation.run` 在对话中安装其他插件：
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function convo(conversation: MyConversation, ctx: MyContext) {
@@ -956,7 +956,7 @@ async function convo(conversation, ctx) {
 
 例如，如果你想在对话中使用菜单，你的代码可能如下所示。
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function convo(conversation: MyConversation, ctx: MyContext) {
@@ -1041,7 +1041,7 @@ async function convo(conversation, ctx) {
 
 举个例子，让我们重新使用平行对话的方式实现上面的验证码流程。
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]{4}
 async function captcha(conversation: MyConversation, ctx: MyContext) {

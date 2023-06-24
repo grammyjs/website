@@ -107,7 +107,7 @@ You can add session support to grammY by using the built-in session middleware.
 
 Here is an example bot that counts messages containing a pizza emoji :pizza::
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context, session, SessionFlavor } from "grammy";
@@ -249,7 +249,7 @@ By default, data is stored per chat.
 Using `getSessionKey` allows you to store data per user, or per user-chat combination, or however you want.
 Here are three examples:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 // Stores data per chat (default).
@@ -409,7 +409,7 @@ Check out the [repository](https://github.com/grammyjs/storages/tree/main/packag
 
 It is very easy to use:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { freeStorage } from "@grammyjs/storage-free";
@@ -445,7 +445,7 @@ Your bot will now use a persistent data storage.
 
 Here is a full example bot that you can copy to try it out.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context, session, SessionFlavor } from "grammy";
@@ -775,7 +775,7 @@ interface SessionData {
 
 Migration functions let you transform the old string array into the new array of pet objects.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 function addBirthdayToPets(old: { petNames: string[] }): SessionData {

@@ -107,7 +107,7 @@ next: false
 
 Ось приклад бота, який підраховує повідомлення, що містять емодзі піци :pizza::
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context, session, SessionFlavor } from "grammy";
@@ -249,7 +249,7 @@ bot.use(session({ initial: () => initialData })); // ЗЛО
 Використання `getSessionKey` дозволяє зберігати дані для кожного користувача, для кожної комбінації користувач-чат або як завгодно.
 Ось три приклади:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 // Зберігаємо дані для кожного чату (за замовчуванням).
@@ -409,7 +409,7 @@ bot.use(session({
 
 Він дуже простий у використанні:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { freeStorage } from "@grammyjs/storage-free";
@@ -445,7 +445,7 @@ bot.use(session({
 
 Ось повний приклад бота, який ви можете скопіювати, щоб спробувати.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context, session, SessionFlavor } from "grammy";
@@ -775,7 +775,7 @@ interface SessionData {
 
 Функції міграції дозволяють перетворити старий масив рядків у новий масив обʼєктів домашніх тваринок.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 function addBirthdayToPets(old: { petNames: string[] }): SessionData {

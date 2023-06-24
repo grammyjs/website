@@ -194,7 +194,7 @@ bot.start();
 每个 grammY bot 都可以转换为许多 web 框架的中间件，包括 `express`，`koa`/`oak` 等等。
 你可以从 grammY 中导入 `webhookCallback` 函数 ([API 参考](https://deno.land/x/grammy/mod.ts?s=webhookCallback)) 为对应的框架创建一个中间件。
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import express from "express";

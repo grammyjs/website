@@ -194,7 +194,7 @@ Por lo tanto, esperamos que seas capaz de poner en marcha un servidor web simple
 Cada bot de grammY puede convertirse en un middleware para un número de frameworks web, incluyendo `express`, `koa`/`oak`, y más.
 Puedes importar la función `webhookCallback` ([API reference](https://deno.land/x/grammy/mod.ts?s=webhookCallback)) para crear un middleware para el framework correspondiente.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import express from "express";

@@ -13,7 +13,7 @@ Kalau masih bandel melanggar limit tersebut, bot kamu bisa-bisa di-banned oleh p
 
 ## Solusi Paling Simpel
 
-:::warning Bukan Solusi Sesungguhnya
+::: warning Bukan Solusi Sesungguhnya
 Solusi berikut hanya akan menyelesaikan masalah untuk sementara waktu.
 Jika kamu ingin solusi untuk jangka panjang, baca [bagian selanjutnya.](#solusi-sesungguhnya-direkomendasikan)
 :::

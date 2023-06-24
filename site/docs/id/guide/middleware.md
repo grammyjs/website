@@ -128,7 +128,7 @@ Kami akan mengilustrasikan konsep dari middleware dengan membuat function middle
 Berikut adalah _function signature_ untuk middleware kita.
 Kamu bisa membandingkannya dengan type middleware di atas, dan memastikan bahwa kita benar-benar sudah membuat sebuah middleware di sini.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 /** Ukur waktu respon bot, kemudian catat di `console` */
@@ -165,7 +165,7 @@ Berikut yang akan kita lakukan:
 
 Penting untuk memasang middleware `waktuRespon` di urutan _pertama_ (di middleware stack paling atas) agar semua operasi yang dilakukan tercatat dalam pengukuran.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 /** Ukur waktu respon bot, kemudian catat di `console` */

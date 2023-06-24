@@ -300,7 +300,7 @@ Lalu, tulis satu baris kode berikut:
 
 Untuk contoh kali ini, kita akan menulisnya seperti berikut:
 
-:::code-group
+::: code-group
 
 ```procfile [Webhook]
 web: node dist/app.js
@@ -339,7 +339,7 @@ tsconfig.json
 
 Hasil akhir struktur folder kita akan tampak seperti ini:
 
-:::code-group
+::: code-group
 
 ```asciiart:no-line-numbers [Webhook]
 .
@@ -387,7 +387,7 @@ git commit -m "Commit pertamaku"
 Jika kamu sudah membuat [Heroku app](https://dashboard.heroku.com/apps/), masukkan nama `app` tersebut ke `<myApp>` di bawah, kemudian jalankan kodenya.
 Kalau belum punya, jalankan `New app`.
 
-:::code-group
+::: code-group
 
 ```sh [New app]
 heroku create

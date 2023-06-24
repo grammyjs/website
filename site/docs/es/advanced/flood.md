@@ -13,7 +13,7 @@ Si ignoras estos errores, tu bot puede acabar siendo baneado.
 
 ## La solución sencilla
 
-:::warning No es una solución real
+::: warning No es una solución real
 Esta sección resuelve tu problema a corto plazo, pero si estás construyendo un bot que realmente debe escalar bien, lee la [siguiente subsección](#la-solucion-real-recomendada) en su lugar.
 :::
 

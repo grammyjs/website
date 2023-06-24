@@ -53,7 +53,7 @@ ratelimiter 与驱动器无关。
 
 这个示例演示了最简单的方式来使用默认行为的 ratelimiter：
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { limit } from "@grammyjs/ratelimiter";
@@ -82,7 +82,7 @@ bot.use(limit());
 
 正如前面所说，你可以向 `limit()` 方法传入一个 `Options` 对象来改变 ratelimiter 的行为。
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import Redis from "ioredis";
@@ -178,7 +178,7 @@ bot.use(
 
 另一个用例是限制来自聊天室的请求而不是特定用户的请求：
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { limit } from "@grammyjs/ratelimiter";

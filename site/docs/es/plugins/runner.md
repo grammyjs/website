@@ -31,7 +31,7 @@ También tiene su propia [Referencia API](https://deno.land/x/grammy_runner/mod.
 
 He aquí un ejemplo sencillo.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot } from "grammy";
@@ -199,7 +199,7 @@ Veamos ahora cómo se puede utilizar esto.
 Empezaremos creando la instancia central del bot que obtiene las actualizaciones y las distribuye entre los workers.
 Empecemos creando un archivo llamado `bot.ts` con el siguiente contenido.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 // bot.ts
@@ -260,7 +260,7 @@ run(bot);
 Junto a `bot.ts`, creamos un segundo archivo llamado `worker.ts` (como se especifica en la línea 12 del código anterior).
 Este contendrá la lógica real del bot.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 // worker.ts
@@ -313,7 +313,7 @@ Esto significa que todos los plugins deben ser instalados en los bot workers.
 Como optimización del rendimiento, puedes descartar las actualizaciones que no quieras gestionar.
 De esta forma, tu bot no tiene que enviar la actualización a un worker, sólo para que sea ignorada allí.
 
-:::code-group
+::: code-group
 
 ```ts [Node.js]
 // Nuestro bot sólo maneja mensajes, ediciones y consultas de devolución de llamada,

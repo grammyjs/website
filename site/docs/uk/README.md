@@ -44,7 +44,7 @@ features:
 
 `npm install grammy` і вставте наступний код:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot } from "grammy";

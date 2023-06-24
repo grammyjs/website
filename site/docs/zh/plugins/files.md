@@ -13,7 +13,7 @@ next: false
 然后这个插件在 `getFile` 调用结果上安装了 `download` 方法。
 例子：
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context } from "grammy";
@@ -108,7 +108,7 @@ bot.on([":video", ":animation"], async (ctx) => {
 但是，这并不会在类型中反映出来。
 如果你需要这些调用，你应该也安装一个叫作 `FileApiFlavor` 的 [API 调味剂](../advanced/transformers#api-调味剂) 在 bot 对象上。
 
-:::code-group
+::: code-group
 
 ```ts [Node.js]
 import { Api, Bot, Context } from "grammy";

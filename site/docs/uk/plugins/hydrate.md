@@ -57,7 +57,7 @@ bot.on(":photo", async (ctx) => {
 
 Цей плагін можна встановити простим способом, якого має бути достатньо для більшості користувачів.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context } from "grammy";
@@ -106,7 +106,7 @@ bot.use(hydrate());
 Воно інтегрує гідратацію контексту та гідратацію результатів виклику API окремо у вашого бота.
 Зверніть увагу, що тепер вам також потрібно встановити [розширювач для API](../advanced/transformers#розширювач-для-api).
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Api, Bot, Context } from "grammy";

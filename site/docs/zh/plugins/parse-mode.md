@@ -9,7 +9,7 @@ next: false
 
 ## 使用方法 (改善格式化体验)
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context } from "grammy";
@@ -111,7 +111,7 @@ bot.start();
 
 ## 使用方法 (默认解析模式和回复方法)
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context } from "grammy";

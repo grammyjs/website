@@ -57,7 +57,7 @@ bot.on(":photo", async (ctx) => {
 
 这个插件可以简单直接地安装，应该可以满足绝大多数用户。
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context } from "grammy";
@@ -106,7 +106,7 @@ bot.use(hydrate());
 它将会在你的 bot 中分别集成上下文 hydration 和 API 调用结果 hydration。
 请注意，你还需要安装一个 [API 调味剂](../advanced/transformers#api-调味剂)。
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Api, Bot, Context } from "grammy";

@@ -287,7 +287,7 @@ const bot = new Bot<MyContext>("");
 
 In summary, the setup will look like this:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 const BOT_DEVELOPER = 123456; // bot developer chat identifier
@@ -369,7 +369,7 @@ We will now see how to use custom classes for context objects.
 When constructing your bot, you can pass a custom context constructor that will be used to instantiate the context objects.
 Note that your class must extend `Context`.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context } from "grammy";

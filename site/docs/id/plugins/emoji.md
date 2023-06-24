@@ -34,7 +34,7 @@ Kamu bisa membacanya lebih lanjut [di sini](https://developer.mozilla.org/en-US/
 
 Kamu bisa menginstal plugin ini di bot kamu dengan cara seperti ini:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context } from "grammy";

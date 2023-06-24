@@ -287,7 +287,7 @@ const bot = new Bot<MyContext>("");
 
 У підсумку налаштування виглядатимуть наступним чином:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 const BOT_DEVELOPER = 123456; // ідентифікатор чату розробника бота
@@ -369,7 +369,7 @@ class MyContext extends Context {
 Під час створення свого бота ви можете передати власний конструктор контексту, який використовуватиметься для створення екземплярів обʼєктів контексту.
 Зауважте, що ваш клас має розширювати `Context`.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context } from "grammy";

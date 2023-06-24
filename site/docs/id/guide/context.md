@@ -289,7 +289,7 @@ const bot = new Bot<MyContext>("");
 
 Hasil akhirnya menjadi seperti ini:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 const BOT_DEVELOPER = 123456; // Id chat developer
@@ -371,7 +371,7 @@ Ketika membuat bot, kamu bisa meneruskan constructor context hasil modifikasi ya
 Ingat!
 Class kamu harus meng-extend `Context`.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context } from "grammy";

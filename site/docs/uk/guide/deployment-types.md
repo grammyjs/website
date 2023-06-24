@@ -193,7 +193,7 @@ bot.start();
 Кожного бота grammY можна перетворити на проміжний обробник для багатьох серверних фреймворків, зокрема `express`, `koa`/`oak` тощо.
 Ви можете імпортувати функцію `webhookCallback` ([довідка API](https://deno.land/x/grammy/mod.ts?s=webhookCallback)), щоб створити проміжний обробник для відповідного фреймворку.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import express from "express";

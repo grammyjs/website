@@ -17,7 +17,7 @@ grammY має [вбудований плагін](./keyboard#вбудовані-
 
 Ось простий приклад, який говорить сам за себе.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot } from "grammy";

@@ -9,7 +9,7 @@ This plugin provides a transformer for setting default `parse_mode`, and a middl
 
 ## Usage (Improving Formatting Experience)
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context } from "grammy";
@@ -111,7 +111,7 @@ bot.start();
 
 ## Usage (Default Parse Mode and Reply Methods)
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context } from "grammy";

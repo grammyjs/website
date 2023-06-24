@@ -18,7 +18,7 @@ Buat bot pertamamu dalam hitungan menit.
 Buat proyek TypeScript baru lalu instal package `grammy`.
 Lakukan dengan cara mengetikan kode berikut di terminal:
 
-:::code-group
+::: code-group
 
 ```sh [npm]
 # Buat direktori baru lalu masuk ke dalamnya.
@@ -79,7 +79,7 @@ Token bot digunakan untuk mengautentikasi bot kamu yang bentuknya kurang lebih m
 Sudah dapat tokennya? Sekarang kamu bisa menulis kode bot di file `bot.ts`.
 Kamu bisa menyalin contoh bot berikut ke dalam file. Jangan lupa untuk memasukkan token ke constructor `Bot`.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot } from "grammy";

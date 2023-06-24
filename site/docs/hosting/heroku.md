@@ -299,7 +299,7 @@ Then write this single line code format:
 
 For our case it should be:
 
-:::code-group
+::: code-group
 
 ```procfile [Webhook]
 web: node dist/app.js
@@ -338,7 +338,7 @@ tsconfig.json
 
 Our final folder structure should now look like this:
 
-:::code-group
+::: code-group
 
 ```asciiart:no-line-numbers [Webhook]
 .
@@ -386,7 +386,7 @@ git commit -m "My first commit"
 If you have already created [Heroku app](https://dashboard.heroku.com/apps/), pass your `Existing app`'s name in `<myApp>` below, then run the code.
 Otherwise, run `New app`.
 
-:::code-group
+::: code-group
 
 ```sh [New app]
 heroku create

@@ -18,7 +18,7 @@ next: false
 1. 确保你有一个导出 `Bot` 对象的文件，以便你稍后可以导入它来运行。
 2. 创建一个名为 `app.ts` 或 `app.js` 的文件，或者你喜欢的任何名字（但你应该记住并将其用作要部署的主文件），其中包含以下内容：
 
-:::code-group
+::: code-group
 
 ```ts{11} [Deno]
 import { serve } from "https://deno.land/std/http/server.ts";
@@ -67,7 +67,7 @@ app.listen(port, () => console.log(`listening on port ${port}`));
 
 创建一个名为 `app.ts` 或 `app.js` 的文件，或者你喜欢的任何名字（但你应该记住并将其用作要部署的主文件），其中包含以下内容：
 
-:::code-group
+::: code-group
 
 ```ts{4} [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -129,7 +129,7 @@ flyctl secrets set BOT_TOKEN="AAAA:12345"
 2. 运行 `flyctl launch` 来为部署生成一个 `Dockerfile` 和 `fly.toml` 文件。
    但是**不要**部署。
 
-:::code-group
+::: code-group
 
 ```sh [Deno]
 flyctl launch
@@ -151,7 +151,7 @@ Your app is ready. Deploy with `flyctl deploy`
 
 :::
 
-:::code-group
+::: code-group
 
 ```sh [Node.js]
 flyctl launch
@@ -181,7 +181,7 @@ Your app is ready. Deploy with `flyctl deploy`
    **Node.js**：要修改 Node.js 版本，你需要在 `package.json` 中的 `"engines"` 属性中插入一个 `"node"` 属性。
    例如，我们在下面的示例中将 Node.js 版本更新为 `16.14.0`。
 
-:::code-group
+::: code-group
 
 ```dockerfile{2,26} [Deno]
 # Dockerfile
@@ -243,7 +243,7 @@ ENTRYPOINT ["/bin/deno"]
    你可以修改它们以匹配你的项目目录。
    如果你使用的是 webhook，请确保端口与你的 [配置](#webhooks) (`8000`) 中的端口相同。
 
-:::code-group
+::: code-group
 
 ```toml [Deno (Webhooks)]{7,11,12}
 # fly.toml

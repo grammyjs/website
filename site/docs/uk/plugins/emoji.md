@@ -32,7 +32,7 @@ next: false
 
 Ви можете встановити цей плагін на свого бота наступним чином:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context } from "grammy";

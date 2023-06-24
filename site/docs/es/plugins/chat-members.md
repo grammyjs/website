@@ -24,7 +24,7 @@ Puedes usar un [adaptador de almacenamiento](./session#adaptadores-de-almacenami
 Por favor, ten en cuenta que según la [documentación oficial de Telegram](https://core.telegram.org/bots/api#getupdates), tu bot necesita especificar la actualización `chat_member` en el array `allowed_updates`, como se muestra en el ejemplo de abajo.
 Esto significa que también necesitas especificar cualquier otro evento que quieras recibir.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, type Context, MemorySessionStorage } from "grammy";

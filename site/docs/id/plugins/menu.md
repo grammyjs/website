@@ -16,7 +16,7 @@ Plugin menu mengembangkannya lebih jauh agar kamu bisa membuat menu yang bervari
 
 Berikut contoh-contohnya:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot } from "grammy";

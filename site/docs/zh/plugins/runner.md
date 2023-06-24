@@ -31,7 +31,7 @@ next: false
 
 这里是一个简单的例子。
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot } from "grammy";
@@ -198,7 +198,7 @@ grammY runner 为你提供了可以将 update 发送给 bot worker 的中间件�
 我们将从创建中心 bot 实例开始，它获取 update 并将它们分发给 worker。
 让我们首先创建一个名为 `bot.ts` 的文件，其中包含以下内容。
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 // bot.ts
@@ -259,7 +259,7 @@ run(bot);
 在 `bot.ts` 之后，我们创建了第二个，名为 `worker.ts` 的文件（如上面代码第 12 行所指定）。
 这将包含实际的 bot 逻辑。
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 // worker.ts
@@ -312,7 +312,7 @@ bot.on("message", (ctx) => ctx.reply("yay!"));
 作为性能优化，你可以丢弃不想处理的 update 。
 这样，你的 bot 就不必将更新发送给 worker，在那里就被忽略了。
 
-:::code-group
+::: code-group
 
 ```ts [Node.js]
 // 我们的 bot 只处理消息、编辑和 callback query。

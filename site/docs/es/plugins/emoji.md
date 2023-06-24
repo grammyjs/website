@@ -32,7 +32,7 @@ Puedes leer más sobre ellas [aquí](https://developer.mozilla.org/es/docs/Web/J
 
 Puedes instalar este plugin en tu bot así:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context } from "grammy";

@@ -9,7 +9,7 @@ Este plugin proporciona un transformador para establecer el `parse_mode` por def
 
 ## Uso (Mejorar la experiencia de formateo)
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context } from "grammy";
@@ -111,7 +111,7 @@ bot.start();
 
 ## Uso (modo de análisis sintáctico por defecto y métodos de respuesta)
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context } from "grammy";

@@ -56,7 +56,7 @@ Fácil, ¿verdad?
 
 En primer lugar, vamos a importar algunas cosas.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import {
@@ -121,7 +121,7 @@ async function greeting(conversation: MyConversation, ctx: MyContext) {
 Dentro de su función de construcción de conversación, ahora puede definir cómo debe ser la conversación.
 Antes de profundizar en cada una de las características de este plugin, echemos un vistazo a un ejemplo más complejo que el [simple](#ejemplo-simple) anterior.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function movie(conversation: MyConversation, ctx: MyContext) {
@@ -215,7 +215,7 @@ bot.command("start", (ctx) => ctx.conversation.enter("new-name"));
 
 En total, tu código debería tener ahora más o menos este aspecto:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context, session } from "grammy";
@@ -369,7 +369,7 @@ Por ejemplo, si dejas la configuración de conversación vacía como se ilustra 
 La conversación se ejecutará hasta que su función de construcción de conversación se complete.
 Esto significa que puedes salir de una conversación simplemente usando `return` o `throw`.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function hiAndBye(conversation: MyConversation, ctx: MyContext) {
@@ -403,7 +403,7 @@ De esta manera, puede evitar que el error se propague por el [árbol de middlewa
 > En ese caso, no es necesario utilizar los límites de error para abandonar una conversación lanzando un error.
 > Así es como los límites de error y las conversaciones podrían usarse juntos.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 bot.use(session({
@@ -448,7 +448,7 @@ Esto simplemente borrará los datos del plugin de conversación de la sesión.
 A menudo es mejor quedarse con el simple retorno de la función, pero hay algunos ejemplos en los que el uso de `await ctx.conversation.exit()` es conveniente.
 Recuerda que debes `await` la llamada.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]{6,22}
 async function movie(conversation: MyConversation, ctx: MyContext) {
@@ -510,7 +510,7 @@ Además, los manejadores de cancelación genéricos deben ser instalados antes d
 
 Puedes usar el manejador de conversación `conversation` para esperar la siguiente actualización en este chat en particular.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function waitForMe(conversation: MyConversation, ctx: MyContext) {
@@ -534,7 +534,7 @@ Consulta la lista completa en los documentos de Telegram [aquí](https://core.te
 El método `wait` siempre produce un nuevo [objeto context](../guide/context) que representa la actualización recibida.
 Esto significa que siempre se está tratando con tantos objetos context como actualizaciones se reciban durante la conversación.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 const TEAM_REVIEW_CHAT = -1001493653006;
@@ -595,7 +595,7 @@ En las conversaciones, obtendrá este nuevo objeto de contexto de la llamada `wa
 A su vez, puedes manejar diferentes actualizaciones de manera diferente en base a este objeto.
 Por ejemplo, puedes comprobar si hay mensajes de texto:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function waitForText(conversation: MyConversation, ctx: MyContext) {
@@ -625,7 +625,7 @@ Además, existen otros métodos junto a `wait` que permiten esperar sólo actual
 Un ejemplo es `waitFor` que toma una [consulta de filtro](../guide/filter-queries) y luego sólo espera las actualizaciones que coincidan con la consulta proporcionada.
 Esto es especialmente potente en combinación con [desestructuración de objetos](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment):
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function waitForText(conversation: MyConversation, ctx: MyContext) {
@@ -752,7 +752,7 @@ do {
 También puedes dividir tu código en varias funciones, y reutilizarlas.
 Por ejemplo, así es como puedes definir un captcha reutilizable.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function captcha(conversation: MyConversation, ctx: MyContext) {
@@ -775,7 +775,7 @@ async function captcha(conversation, ctx) {
 Devuelve `true` si el usuario puede pasar, y `false` en caso contrario.
 Ahora puedes usarlo en tu función principal del constructor de conversación así:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function enterGroup(conversation: MyConversation, ctx: MyContext) {
@@ -819,7 +819,7 @@ De esta manera, puedes definir algunas funciones en un archivo, `exportarlas`, y
 
 Si quieres, también puedes definir clases.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 class Auth {
@@ -892,7 +892,7 @@ Como se mencionó [anteriormente](#esperar-a-las-actualizaciones), hay varias fu
 
 Si estos métodos no son suficientes, el plugin de conversaciones proporciona aún más funciones de ayuda para construir formularios a través de `conversation.form`.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function waitForMe(conversation: MyConversation, ctx: MyContext) {
@@ -929,7 +929,7 @@ Todos ellos tienen en común que almacenan funciones en el objeto de contexto, q
 Por lo tanto, si quieres combinar conversaciones con uno de estos plugins de grammY, tendrás que utilizar una sintaxis especial para instalar el otro plugin dentro de cada conversación.
 Puedes instalar otros plugins dentro de las conversaciones usando `conversation.run`:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function convo(conversation: MyConversation, ctx: MyContext) {
@@ -953,7 +953,7 @@ Esto hará que el plugin esté disponible dentro de la conversación.
 
 Como ejemplo, si quieres usar un menú dentro de una conversación, tu código podría ser así.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 async function convo(conversation: MyConversation, ctx: MyContext) {
@@ -1036,7 +1036,7 @@ Esto te permite chatear con un solo usuario en un chat de grupo.
 
 Por ejemplo, vamos a implementar el ejemplo del captcha de aquí arriba de nuevo, pero esta vez con conversaciones paralelas.
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]{4}
 async function captcha(conversation: MyConversation, ctx: MyContext) {

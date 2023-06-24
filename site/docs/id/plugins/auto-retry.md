@@ -21,7 +21,7 @@ Jika kamu terus-menerus melanggar batas rate limit, Telegram akan mengambil tind
 
 Kamu bisa menginstal plugin ini di object `bot.api`:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { autoRetry } from "@grammyjs/auto-retry";

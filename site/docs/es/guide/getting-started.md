@@ -17,7 +17,7 @@ Crea tu primer bot en minutos. (Desplázate [abajo](#introduccion-a-deno) para u
 Crea un nuevo proyecto TypeScript e instala el paquete `grammy`.
 Hazlo abriendo un terminal y escribiendo:
 
-:::code-group
+::: code-group
 
 ```sh [npm]
 # Crea un nuevo directorio y entra en él.
@@ -76,7 +76,7 @@ Se utiliza para autenticar tu bot.
 ¿Tienes el token? Ahora puedes codificar tu bot en el archivo `bot.ts`.
 Puedes copiar el siguiente ejemplo de bot en ese archivo, y pasar tu token al constructor `Bot`:
 
-:::code-group
+::: code-group
 
 ```ts [TypeScript]
 import { Bot } from "grammy";

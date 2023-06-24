@@ -146,7 +146,7 @@ Así es como puedes construir `InputFile`s.
 
 Si ya tiene un archivo almacenado en su máquina, puede dejar que grammY cargue este archivo.
 
-:::code-group
+::: code-group
 
 ```ts [Node.js]
 import { createReadStream } from "fs";
@@ -173,7 +173,7 @@ new InputFile(await Deno.open("/ruta/a/archivo"));
 También se puede enviar un objeto `Buffer`, o un iterador que produzca objetos `Buffer`.
 En Deno, también se pueden enviar objetos `Blob`.
 
-:::code-group
+::: code-group
 
 ```ts [Node.js]
 // Enviar un buffer o un array de bytes.
@@ -212,7 +212,7 @@ Esto es muy eficiente.
 > Ten en cuenta que Telegram soporta la descarga del archivo por ti en muchos métodos.
 > Si es posible, deberías preferir [enviar el archivo vía URL](#mediante-file-id-o-url), en lugar de usar `InputFile` para transmitir el contenido del archivo a través de tu servidor.
 
-:::code-group
+::: code-group
 
 ```ts [Node.js]
 import { URL } from "url";
