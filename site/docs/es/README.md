@@ -5,7 +5,7 @@ titleTemplate: false
 hero:
   name: grammY
   text: El Framework de Bots para Telegram.
-  tagline: 
+  taglines: 
     - piensa en el por qué
     - la nueva era del desarrollo de bots
     - se ejecuta más rápido que tú

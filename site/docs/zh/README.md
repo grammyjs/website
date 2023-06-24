@@ -5,7 +5,7 @@ titleTemplate: false
 hero:
   name: grammY
   text: Telegram Bot 框架。
-  tagline: 
+  taglines: 
     - 想到了什么？
     - bot 开发的新时代
     - 运行更快

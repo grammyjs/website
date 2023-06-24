@@ -5,7 +5,7 @@ titleTemplate: false
 hero:
   name: grammY
   text: Фреймворк для створення Telegram ботів.
-  tagline: 
+  taglines: 
     - подумайте, чомУ
     - нова ера розробки ботів
     - швидший за вас

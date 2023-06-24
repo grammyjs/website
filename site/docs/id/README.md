@@ -5,7 +5,7 @@ titleTemplate: false
 hero:
   name: grammY
   text: Framework Bot Telegram.
-  tagline: 
+  taglines: 
     - tak perlu lagi mengeluh "whY!?"
     - era baru pengembangan bot
     - bekerja lebih cepat dibanding kamu

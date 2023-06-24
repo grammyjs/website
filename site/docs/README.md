@@ -5,7 +5,7 @@ titleTemplate: false
 hero:
   name: grammY
   text: The Telegram Bot Framework.
-  tagline: 
+  taglines: 
     - think of the whY
     - a new era of bot development
     - runs faster than you

@@ -4,7 +4,7 @@ import { onBeforeMount, ref } from "vue";
 defineProps<{
   name?: string
   text?: string
-  tagline?: string[] | string
+  taglines?: string[]
 }>();
 
 const showContent = ref(false);
@@ -21,7 +21,7 @@ onBeforeMount(() => {
   </h1>
   <p v-if="text" class="text">{{ text }}</p>
   <div v-if="showContent">
-    <p v-if="tagline" class="tagline">… {{ tagline[Math.floor(Math.random() * tagline.length)] }}</p>
+    <p v-if="taglines" class="tagline">… {{ taglines[Math.floor(Math.random() * taglines.length)] }}</p>
   </div>
   <div v-else>
     <p class="tagline">…</p>
