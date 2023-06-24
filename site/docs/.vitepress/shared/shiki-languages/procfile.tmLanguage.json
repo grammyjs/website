@@ -1,65 +1,65 @@
 {
   "source_info": "// https://github.com/benspaulding/vscode-procfile/blob/main/syntaxes/procfile.tmLanguage.json",
-	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-	"name": "Procfile",
-	"scopeName": "source.procfile",
-	"uuid": "1D076C29-FDFB-4CCA-B215-B6459BCDEC45",
-	"fileTypes": ["Procfile", ".procfile"],
-	"embeddedLanguages": {
-		"meta.embedded.line.shell": "shell"
-	},
-	"patterns": [
-		{
-			"include": "#process"
-		},
-		{
-			"include": "#ignored"
-		}
-	],
-	"repository": {
-		"process": {
-			"comment": "A named process to run",
-			"contentName": "meta.function.procfile",
-			"begin": "^(?=[\\w-]+:)",
-			"end": "$",
-			"patterns": [
-				{
-					"contentName": "support.function.procfile",
-					"begin": "^(?=[\\w-]+:)",
-					"end": "(?<=:)",
-					"patterns": [
-						{
-							"comment": "Process names with special meaning on Heroku",
-							"name": "keyword.heroku.procfile",
-							"match": "^(web|release)(?=:)"
-						},
-						{
-							"comment": "A process name",
-							"name": "entity.name.function.procfile",
-							"match": "^[\\w-]+(?=:)"
-						},
-						{
-							"name": "punctuation.separator.colon.procfile",
-							"match": "(?<=[\\w-]):"
-						}
-					]
-				},
-				{
-					"name": "meta.embedded.line.shell",
-					"begin": "(?<=[\\w-]:)",
-					"end": "$",
-					"patterns": [
-						{
-							"include": "source.shell"
-						}
-					]
-				}
-			]
-		},
-		"ignored": {
-			"comment": "Anything that is not a process is ignored",
-			"name": "comment.line.procfile",
-			"match": "^(?![\\w-]+:).*$"
-		}
-	}
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Procfile",
+  "scopeName": "source.procfile",
+  "uuid": "1D076C29-FDFB-4CCA-B215-B6459BCDEC45",
+  "fileTypes": ["Procfile", ".procfile"],
+  "embeddedLanguages": {
+    "meta.embedded.line.shell": "shell"
+  },
+  "patterns": [
+    {
+      "include": "#process"
+    },
+    {
+      "include": "#ignored"
+    }
+  ],
+  "repository": {
+    "process": {
+      "comment": "A named process to run",
+      "contentName": "meta.function.procfile",
+      "begin": "^(?=[\\w-]+:)",
+      "end": "$",
+      "patterns": [
+        {
+          "contentName": "support.function.procfile",
+          "begin": "^(?=[\\w-]+:)",
+          "end": "(?<=:)",
+          "patterns": [
+            {
+              "comment": "Process names with special meaning on Heroku",
+              "name": "keyword.heroku.procfile",
+              "match": "^(web|release)(?=:)"
+            },
+            {
+              "comment": "A process name",
+              "name": "entity.name.function.procfile",
+              "match": "^[\\w-]+(?=:)"
+            },
+            {
+              "name": "punctuation.separator.colon.procfile",
+              "match": "(?<=[\\w-]):"
+            }
+          ]
+        },
+        {
+          "name": "meta.embedded.line.shell",
+          "begin": "(?<=[\\w-]:)",
+          "end": "$",
+          "patterns": [
+            {
+              "include": "source.shell"
+            }
+          ]
+        }
+      ]
+    },
+    "ignored": {
+      "comment": "Anything that is not a process is ignored",
+      "name": "comment.line.procfile",
+      "match": "^(?![\\w-]+:).*$"
+    }
+  }
 }
