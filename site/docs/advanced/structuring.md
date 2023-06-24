@@ -30,7 +30,7 @@ A runnable example that implements the above strategy can be found in the [Examp
 
 For a very simple bot that manages a TODO list, you could imagine this structure.
 
-```txt:no-line-numbers
+```asciiart:no-line-numbers
 src/
 ├── bot.ts
 └── todo/

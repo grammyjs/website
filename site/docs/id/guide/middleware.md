@@ -76,7 +76,7 @@ Artinya, kalau kamu tidak memanggil `next` di middleware, maka lapisan middlewar
 
 Tumpukan-tumpukan function tadi disebut _middleware stack_.
 
-```txt:no-line-numbers
+```asciiart:no-line-numbers
 (ctx, next) => ...    |
 (ctx, next) => ...    |————— middleware hulu dari X (upstream)
 (ctx, next) => ...    |

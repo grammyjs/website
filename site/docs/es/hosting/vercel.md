@@ -12,7 +12,7 @@ Este tutorial te guiará sobre cómo desplegar tu bot en [Vercel](https://vercel
 El único prerrequisito para empezar con **Vercel Serverless Functions** es mover tu código al directorio `api/` como se muestra a continuación.
 También puedes ver la [documentación de Vercel](https://vercel.com/docs/concepts/functions/serverless-functions#deploying-serverless-functions) para más información.
 
-```txt:no-line-numbers
+```asciiart:no-line-numbers
 .
 ├── node_modules/
 ├── build/
@@ -99,7 +99,7 @@ Una vez hecho esto, ¡puedes desplegarlo!
 El último paso es conectar tu aplicación Vercel con Telegram.
 Modifica la siguiente URL con tus credenciales y visítala desde tu navegador:
 
-```txt
+```text
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<HOST_URL>
 ```
 

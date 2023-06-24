@@ -36,7 +36,7 @@ Create the folders in the project's root directory.
 Then, inside folder `src`, create a new file named `bot.ts`.
 Our folder structure should now look like this:
 
-```txt:no-line-numbers
+```asciiart:no-line-numbers
 .
 ├── node_modules/
 ├── dist/
@@ -149,14 +149,14 @@ However, we do not need this code to run every time a request is coming.
 Therefore, we can delete this part completely, and execute the `GET` only once manually.
 Open this link on your web browser after deploying our bot:
 
-```txt:no-line-numbers
+```asciiart:no-line-numbers
 https://api.telegram.org/bot<bot_token>/setWebhook?url=<webhook_url>
 ```
 
 Note that some browsers require you to manually [encode](https://en.wikipedia.org/wiki/Percent-encoding#Reserved_characters) the `webhook_url` before passing it.
 For instance, if we have bot token `abcd:1234` and URL `https://grammybot.herokuapp.com/secret_path`, then our link should look like this:
 
-```txt:no-line-numbers
+```asciiart:no-line-numbers
 https://api.telegram.org/botabcd:1234/setWebhook?url=https%3A%2F%2Fgrammybot.herokuapp.com%2Fsecret_path
 ```
 
@@ -293,7 +293,7 @@ Create file named `Procfile` without a file extension in the root directory of o
 For example, `Procfile.txt` and `procfile` are not valid.
 Then write this single line code format:
 
-```txt
+```procfile
 <dynos type>: <command for executing our main entry file>
 ```
 
@@ -301,11 +301,11 @@ For our case it should be:
 
 :::code-group
 
-```txt [Webhook]
+```procfile [Webhook]
 web: node dist/app.js
 ```
 
-```txt [Long Polling]
+```procfile [Long Polling]
 worker: node dist/bot.js
 ```
 
@@ -330,7 +330,7 @@ Next, we need to prevent unnecessary files from reaching our production server, 
 Create a file named `.gitignore` in root of our project's directory.
 Then add this list:
 
-```txt
+```text
 node_modules/
 src/
 tsconfig.json
@@ -340,7 +340,7 @@ Our final folder structure should now look like this:
 
 :::code-group
 
-```txt:no-line-numbers [Webhook]
+```asciiart:no-line-numbers [Webhook]
 .
 ├── .git/
 ├── node_modules/
@@ -357,7 +357,7 @@ Our final folder structure should now look like this:
 └── .gitignore
 ```
 
-```txt:no-line-numbers [Long Polling]
+```asciiart:no-line-numbers [Long Polling]
 .
 ├── .git/
 ├── node_modules/

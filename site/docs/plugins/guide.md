@@ -174,7 +174,7 @@ You can download the code from [our plugin template repository on GitHub](https:
 
 The initially suggested folder structure:
 
-```txt:no-line-numbers
+```asciiart:no-line-numbers
 plugin-template/
 ├─ src/
 │  ├─ deps.deno.ts

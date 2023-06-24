@@ -36,7 +36,7 @@ Buat kedua folder tersebut di direktori root proyek.
 Selanjutnya, buat sebuah file baru bernama `bot.ts` di dalam folder `src`.
 Struktur folder kita kurang lebih mirip seperti ini:
 
-```txt:no-line-numbers
+```asciiart:no-line-numbers
 .
 ├── node_modules/
 ├── dist/
@@ -149,14 +149,14 @@ Kita tidak perlu baris kode ini dijalankan setiap kali ada request masuk.
 Oleh karena itu, kita bisa menghapusnya dan hanya menjalankan `GET` sekali secara manual.
 Buka link ini di web browser setelah men-deploy bot:
 
-```txt:no-line-numbers
+```asciiart:no-line-numbers
 https://api.telegram.org/bot<token_bot>/setWebhook?url=<url_webhook>
 ```
 
 Perlu diperhatikan bahwa beberapa browser mengharuskan kamu secara manual [meng-encode](https://en.wikipedia.org/wiki/Percent-encoding#Reserved_characters) `url_webhook` sebelum ditambahkan ke URL.
 Contohnya, jika kamu memiliki token bot `abcd:1234` dan URL `https://grammybot.herokuapp.com/secret_path`, link tersebut seharusnya akan tampak seperti ini:
 
-```txt:no-line-numbers
+```asciiart:no-line-numbers
 https://api.telegram.org/botabcd:1234/setWebhook?url=https%3A%2F%2Fgrammybot.herokuapp.com%2Fsecret_path
 ```
 
@@ -294,7 +294,7 @@ Buat file dengan nama `Procfile` tanpa extension file di direktori root proyek k
 Contohnya, `Procfile.txt` dan `procfile` bukan nama yang valid.
 Lalu, tulis satu baris kode berikut:
 
-```txt
+```procfile
 <jenis dyno>: <perintah untuk menjalankan file entry kita>
 ```
 
@@ -302,11 +302,11 @@ Untuk contoh kali ini, kita akan menulisnya seperti berikut:
 
 :::code-group
 
-```txt [Webhook]
+```procfile [Webhook]
 web: node dist/app.js
 ```
 
-```txt [Long Polling]
+```procfile [Long Polling]
 worker: node dist/bot.js
 ```
 
@@ -331,7 +331,7 @@ Selanjutnya, kita perlu mencegah beberapa file tidak ikut terunggah ke server pr
 Buat sebuah file bernama `.gitignore` di direktori root proyek kita.
 Kemudian, tambahkan daftar berikut:
 
-```txt
+```text
 node_modules/
 src/
 tsconfig.json
@@ -341,7 +341,7 @@ Hasil akhir struktur folder kita akan tampak seperti ini:
 
 :::code-group
 
-```txt:no-line-numbers [Webhook]
+```asciiart:no-line-numbers [Webhook]
 .
 ├── .git/
 ├── node_modules/
@@ -358,7 +358,7 @@ Hasil akhir struktur folder kita akan tampak seperti ini:
 └── .gitignore
 ```
 
-```txt:no-line-numbers [Long Polling]
+```asciiart:no-line-numbers [Long Polling]
 .
 ├── .git/
 ├── node_modules/

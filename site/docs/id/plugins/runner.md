@@ -173,7 +173,7 @@ Ia serupa dengan class `Bot` biasa, malahan ia meng-`extends` class `Bot` itu se
 Perbedaan utamanya adalah `BotWorker` tidak bisa mengambil update.
 Sebaliknya, ia mengambil update dari `Bot` biasa yang mengontrol worker tersebut.
 
-```txt:no-line-numbers
+```asciiart:no-line-numbers
 1. ambil update                                  Bot
                                               __// \\__
                                            __/  /   \  \__
@@ -353,7 +353,7 @@ Setiap runner terdiri atas tiga bagian yang berbeda:
 2. **Sink** menyuplai update ke bot instance.
 3. Komponen **runner** menghubungkan source dan sink, serta memungkinkan kamu untuk memulai dan menghentikan bot.
 
-```txt:no-line-numbers
+```asciiart:no-line-numbers
 api.telegram.org <—> source <—> runner <—> sink <—> bot
 ```
 

@@ -16,7 +16,7 @@ Telegram Bot API — це специфікація цього інтерфейс
 
 Цю систему можна візуалізувати наступним чином:
 
-```txt:no-line-numbers
+```asciiart:no-line-numbers
 ( ( ( Telegram ) MTProto API ) Bot HTTP API ) <-- бот підключається тут
 ```
 

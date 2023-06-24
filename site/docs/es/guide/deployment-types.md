@@ -41,7 +41,7 @@ Si no hay mensajes, Telegram devolverá una lista vacía, indicando que no se ha
 
 Cuando grammY envía una petición a Telegram y se han enviado nuevos mensajes a tu bot mientras tanto, Telegram los devolverá como un array de hasta 100 objetos de actualización.
 
-```txt:no-line-numbers
+```asciiart:no-line-numbers
 ______________                                   _____________
 |            |                                   |           |
 |            |   <---   ¿hay mensajes?    ---    |           |
@@ -82,7 +82,7 @@ Dos cucharadas con virutas, lo de siempre"._
 
 _Como si no hubiera pasado nada, disfrutas de tu helado mientras sales de la heladería más irreal del mundo._
 
-```txt:no-line-numbers
+```asciiart:no-line-numbers
 ______________                                   _____________
 |            |                                   |           |
 |            |   <---   ¿hay mensajes?    ---    |           |
@@ -119,7 +119,7 @@ Le dices a tu amigo del mostrador dónde vives.
 Él promete ir personalmente a tu apartamento cada vez que haya un nuevo helado (porque se derretiría en el correo).
 Un tipo genial._
 
-```txt:no-line-numbers
+```asciiart:no-line-numbers
 ______________                                   _____________
 |            |                                   |           |
 |            |                                   |           |
@@ -287,7 +287,7 @@ const bot = new Bot("", {
 
 Así es como funcionan las respuestas de los webhooks bajo el capó.
 
-```txt:no-line-numbers
+```asciiart:no-line-numbers
 ______________                                   _____________
 |            |                                   |           |
 |            |                                   |           |
@@ -321,7 +321,7 @@ Si no terminas una solicitud de webhook lo suficientemente rápido, Telegram vol
 Como resultado, tu bot puede procesar inesperadamente la misma actualización varias veces.
 Esto significa que realizará todo el manejo de la actualización, incluyendo el envío de cualquier mensaje de respuesta, múltiples veces.
 
-```txt:no-line-numbers
+```asciiart:no-line-numbers
 ______________                                   _____________
 |            |                                   |           |
 |            | ---   hola, nuevo mensaje  --->   |           |
@@ -381,7 +381,7 @@ Cuando haya terminado, puede enviar un mensaje de vuelta al chat.
 Esto es sencillo de hacer si se utiliza una simple cola en memoria.
 Puede ser un poco más desafiante si estás usando un sistema de colas externo tolerante a fallos, que persiste el estado de todas las tareas, y puede reintentar las cosas incluso si tu servidor muere repentinamente.
 
-```txt:no-line-numbers
+```asciiart:no-line-numbers
 ______________                                   _____________
 |            |                                   |           |
 |            |   ---  hola, nuevo mensaje --->   |           |

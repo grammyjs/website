@@ -36,7 +36,7 @@ npx tsc --init
 然后，在 `src` 文件夹中创建一个名为 `bot.ts` 的新文件。
 现在，我们的文件夹目录结构应该是这样的：
 
-```txt:no-line-numbers
+```asciiart:no-line-numbers
 .
 ├── node_modules/
 ├── dist/
@@ -148,14 +148,14 @@ app.listen(Number(process.env.PORT), async () => {
 因此，我们完全可以删除这一部分，只需要手动执行一次 `GET`。
 在部署我们的 bot 之后，在你的浏览器上打开这个链接：
 
-```txt:no-line-numbers
+```asciiart:no-line-numbers
 https://api.telegram.org/bot<bot_token>/setWebhook?url=<webhook_url>
 ```
 
 请注意，有些浏览器要求你在传递 `webhook_url` 前手动 [编码](https://en.wikipedia.org/wiki/Percent-encoding#Reserved_characters)。
 举个例子，如果我们有一个 bot token `abcd:1234` 和网址 `https://grammybot.herokuapp.com/secret_path`，那么我们的链接应该像这样：
 
-```txt:no-line-numbers
+```asciiart:no-line-numbers
 https://api.telegram.org/botabcd:1234/setWebhook?url=https%3A%2F%2Fgrammybot.herokuapp.com%2Fsecret_path
 ```
 
@@ -290,7 +290,7 @@ npx tsc
 也就是说，`Procfile.txt` 和 `procfile` 是无效的。
 然后以下面这个格式写入单行代码：
 
-```txt
+```procfile
 <dynos type>: <command for executing our main entry file>
 ```
 
@@ -298,11 +298,11 @@ npx tsc
 
 :::code-group
 
-```txt [Webhook]
+```procfile [Webhook]
 web: node dist/app.js
 ```
 
-```txt [长轮询]
+```procfile [长轮询]
 worker: node dist/bot.js
 ```
 
@@ -327,7 +327,7 @@ git init
 在项目的根目录下创建一个名为 `.gitignore` 的文件。
 然后添加下列内容：
 
-```txt
+```text
 node_modules/
 src/
 tsconfig.json
@@ -337,7 +337,7 @@ tsconfig.json
 
 :::code-group
 
-```txt:no-line-numbers [Webhook]
+```asciiart:no-line-numbers [Webhook]
 .
 ├── .git/
 ├── node_modules/
@@ -354,7 +354,7 @@ tsconfig.json
 └── .gitignore
 ```
 
-```txt:no-line-numbers [长轮询]
+```asciiart:no-line-numbers [长轮询]
 .
 ├── .git/
 ├── node_modules/

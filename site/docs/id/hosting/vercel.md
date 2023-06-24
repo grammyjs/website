@@ -12,7 +12,7 @@ Di tutorial kali ini, kami akan memandu kamu untuk men-deploy bot di [Vercel](ht
 Untuk menggunakan **Vercel Serverless Functions**, kamu cuma perlu memindahkan kode ke direktori `api/` seperti contoh di bawah.
 Silahkan baca [dokumentasi Vercel](https://vercel.com/docs/concepts/functions/serverless-functions#deploying-serverless-functions) untuk info lebih lanjut.
 
-```txt:no-line-numbers
+```asciiart:no-line-numbers
 .
 ├── node_modules/
 ├── build/
@@ -99,7 +99,7 @@ Jika sudah, klik deploy!
 Langkah yang terakhir adalah menghubungkan aplikasi Vercel kamu ke Telegram.
 Ubah URL berikut dengan informasi yang sesuai kemudian jalankan URL-nya di browser kamu:
 
-```txt
+```text
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<HOST_URL>
 ```
 

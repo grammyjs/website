@@ -32,7 +32,7 @@ npx wrangler generate my-bot
 当项目初始化时，`cd` 进入 `my-bot` 或你初始化的项目的目录。
 根据你初始化项目的方式，你应该看到类似于以下的文件结构：
 
-```txt:no-line-numbers
+```asciiart:no-line-numbers
 .
 ├── node_modules
 ├── package.json

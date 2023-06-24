@@ -45,7 +45,7 @@ Perlu diingat bahwa disaat kamu menjalankan kode di tempat lain, berarti siapa p
 
 Berikut ini adalah diagram (yang disederhanakan) bagaimana alur yang terjadi ketika pengguna—sebut saja namanya Budi—mengakses bot kamu:
 
-```txt:no-line-numbers
+```asciiart:no-line-numbers
 ________        mengirim         ____________                     ____________
 | Budi | —>  pesan Telegram  —> |  Telegram  | —> HTTP request —> | bot kamu |
 ————————       ke bot kamu       ————————————                     ————————————

@@ -94,7 +94,7 @@ deployctl deploy --project <project> ./mod.ts --prod --token <token>
 Después de poner en marcha tu aplicación, debes configurar los ajustes de los webhooks de tu bot para que apunten a tu aplicación.
 Para ello, envía una petición a
 
-```txt
+```text
 https://api.telegram.org/bot<token>/setWebhook?url=<url>
 ```
 

@@ -29,7 +29,7 @@ Contoh siap pakai yang mengimplementasikan strategi-strategi di atas bisa ditemu
 
 Untuk bot sederhana yang menangani _TODO list_, kamu bisa menggunakan struktur berikut.
 
-```txt:no-line-numbers
+```asciiart:no-line-numbers
 src/
 ├── bot.ts
 └── todo/

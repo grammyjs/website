@@ -135,7 +135,7 @@ flyctl secrets set BOT_TOKEN="AAAA:12345"
 flyctl launch
 ```
 
-```txt{10} [Log]
+```log{10} [Log]
 Creating app in /my/telegram/bot
 Scanning source code
 Detected a Deno app
@@ -157,7 +157,7 @@ Your app is ready. Deploy with `flyctl deploy`
 flyctl launch
 ```
 
-```txt{12} [Log]
+```log{12} [Log]
 Creating app in /my/telegram/bot
 Scanning source code
 Detected a NodeJS app
@@ -396,7 +396,7 @@ jobs:
 Якщо ви використовуєте вебхуки, після запуску вашого застосунку, вам потрібно налаштувати вебхук вашого бота, щоб запити посилалися на ваш застосунок.
 Для цього відправте запит на
 
-```txt
+```text
 https://api.telegram.org/bot<токен-бота>/setWebhook?url=<адреса>
 ```
 

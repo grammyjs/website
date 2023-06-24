@@ -175,7 +175,7 @@ It is equivalent to the regular class `Bot` (in fact, it even `extends Bot`).
 The main difference between `BotWorker` and `Bot` is that `BotWorker` cannot fetch updates.
 Instead, it has to receive them from a regular `Bot` that controls its workers.
 
-```txt:no-line-numbers
+```asciiart:no-line-numbers
 1. fetch updates                                 Bot
                                               __// \\__
                                            __/  /   \  \__
@@ -356,7 +356,7 @@ Every runner consists of three different parts.
 2. The **sink** supplies the bot instance with updates.
 3. The **runner** component connects source and sink, and allows you to start and stop your bot.
 
-```txt:no-line-numbers
+```asciiart:no-line-numbers
 api.telegram.org <—> source <—> runner <—> sink <—> bot
 ```
 

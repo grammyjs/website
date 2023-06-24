@@ -16,7 +16,7 @@ Puedes encontrarla enlazada en la pestaña de Recursos.
 
 La configuración se puede visualizar así:
 
-```txt:no-line-numbers
+```asciiart:no-line-numbers
 ( ( ( Telegram ) MTProto API ) Bot HTTP API ) <-- el bot se conecta aquí
 ```
 

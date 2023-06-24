@@ -84,7 +84,7 @@ supabase secrets set BOT_TOKEN=123:aBcDeF-gh
 你可以通过调用 `setWebhook` 来实现。
 例如，在浏览器中打开一个新的标签页，并访问这个 URL：
 
-```txt
+```text
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<PROJECT_NAME>.functions.supabase.co/telegram-bot?secret=<BOT_TOKEN>
 ```
 

@@ -135,7 +135,7 @@ flyctl secrets set BOT_TOKEN="AAAA:12345"
 flyctl launch
 ```
 
-```txt{10} [Log]
+```log{10} [Log]
 Creating app in /my/telegram/bot
 Scanning source code
 Detected a Deno app
@@ -157,7 +157,7 @@ Your app is ready. Deploy with `flyctl deploy`
 flyctl launch
 ```
 
-```txt{12} [Log]
+```log{12} [Log]
 Creating app in /my/telegram/bot
 Scanning source code
 Detected a NodeJS app
@@ -397,7 +397,7 @@ jobs:
 如果你使用的是 webhook，在你的应用运行后，你应该配置 bot 的 webhook 设置以指向你的应用。
 为此，请发送请求至
 
-```txt
+```text
 https://api.telegram.org/bot<token>/setWebhook?url=<url>
 ```
 

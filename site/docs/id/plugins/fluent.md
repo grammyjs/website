@@ -58,7 +58,7 @@ Kamu bisa memulainya dengan meniru [contoh resmi berikut](https://projectfluent.
 
 Untuk saat ini, mari kita mulai dengan contoh berikut:
 
-```txt
+```ftl
 -bot-name = Bot Krupuk
 
 welcome =
@@ -143,7 +143,7 @@ bot.command("i18n_test", async (ctx) => {
 Sekarang, kamu bisa memulai bot-mu dan menggunakan command `/i18n_test`.
 Seharusnya, hasil render akan menampilkan pesan berikut:
 
-```txt
+```text
 Selamat datang, Budi, di Bot Krupuk!
 Kamu cuma punya 1 krupuk.
 ```

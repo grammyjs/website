@@ -32,7 +32,7 @@ Allí, puedes elegir entre JavaScript o TypeScript.
 Cuando el proyecto esté inicializado, `cd` en `my-bot` o en el directorio en el que hayas inicializado tu proyecto.
 Dependiendo de cómo inicializaste el proyecto, deberías ver una estructura de archivos similar a la siguiente:
 
-```txt:no-line-numbers
+```asciiart:no-line-numbers
 .
 ├── node_modules
 ├── package.json

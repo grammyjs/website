@@ -16,7 +16,7 @@ Telegram Bot 的 API 是这个接口的规范，即一个 [很长的列表](http
 
 请求的步骤可以被可视化为这样：
 
-```txt:no-line-numbers
+```asciiart:no-line-numbers
 ( ( ( Telegram ) MTProto API ) Bot HTTP API ) <-- bot 在此连接
 ```
 

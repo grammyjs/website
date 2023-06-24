@@ -76,7 +76,7 @@ type NextFunction = () => Promise<void>;
 
 Цей стек функцій називається _стеком проміжних обробників_.
 
-```txt:no-line-numbers
+```asciiart:no-line-numbers
 (ctx, next) => ...    |
 (ctx, next) => ...    |—————вищий проміжний обробник відносно X
 (ctx, next) => ...    |

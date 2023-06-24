@@ -76,7 +76,7 @@ Esto también significa que si no llamas a `next` en tu middleware, las capas su
 
 Este stack de funciones es la _middleware stack_.
 
-```txt:no-line-numbers
+```asciiart:no-line-numbers
 (ctx, next) => ...    |
 (ctx, next) => ...    |—————upstream middleware de X
 (ctx, next) => ...    |

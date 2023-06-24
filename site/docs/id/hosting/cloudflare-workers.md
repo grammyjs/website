@@ -32,7 +32,7 @@ Dari situ, kamu juga bisa memilih untuk menggunakan JavaScript atau TypeScript.
 Ketika proyek sudah dibuat, `cd` ke dalam `bot-ku-sayang` atau direktori manapun yang telah kamu buat di proyek tadi.
 Tergantung dari bagaimana kamu membuatnya, struktur file proyek setidaknya mirip seperti ini:
 
-```txt:no-line-numbers
+```asciiart:no-line-numbers
 .
 ├── node_modules
 ├── package.json

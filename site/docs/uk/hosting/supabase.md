@@ -84,7 +84,7 @@ supabase secrets set BOT_TOKEN=123:aBcDeF-gh
 Ви можете це зробити, викликавши `setWebhook`.
 Наприклад, відкрийте нову вкладку у вашому браузері та перейдіть за цим посиланням:
 
-```txt
+```text
 https://api.telegram.org/bot<токен-бота>/setWebhook?url=https://<назва-проєкту>.functions.supabase.co/telegram-bot?secret=<токен-бота>
 ```
 

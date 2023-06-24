@@ -16,7 +16,7 @@ Kamu dapat menemukannya tertaut di tab Sumber Daya di atas halaman.
 
 Pemasangannya bisa dianalogikan seperti ini:
 
-```txt:no-line-numbers
+```asciiart:no-line-numbers
 ( ( ( Telegram ) API MTProto ) API HTTP Bot ) <-- bot melakukan koneksi ke sini
 ```
 

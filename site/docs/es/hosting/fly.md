@@ -135,7 +135,7 @@ Este es el método más sencillo.
 flyctl launch
 ```
 
-```txt{10} [Log]
+```log{10} [Log]
 Creating app in /my/telegram/bot
 Scanning source code
 Detected a Deno app
@@ -157,7 +157,7 @@ Your app is ready. Deploy with `flyctl deploy`
 flyctl launch
 ```
 
-```txt{12} [Log]
+```log{12} [Log]
 Creating app in /my/telegram/bot
 Scanning source code
 Detected a NodeJS app
@@ -395,7 +395,7 @@ jobs:
 Si estás utilizando webhooks, después de poner en marcha tu aplicación, debes configurar los ajustes de webhook de tu bot para que apunte a tu aplicación.
 Para ello, envía una petición a
 
-```txt
+```text
 https://api.telegram.org/bot<token>/setWebhook?url=<url>
 ```
 
