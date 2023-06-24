@@ -19,7 +19,7 @@ Untungnya, terdapat sebuah [plugin](../plugins/auto-retry.md) untuk melakukan ha
 Cara kerja plugin ini [sangat sederhana](https://github.com/grammyjs/auto-retry/blob/main/src/index.ts).
 Ia hanya tidur (menunggu) dan mengulang kembali (kirim ulang permintaan).
 Sayangnya, cara kerja yang seperti itu memiliki dampak yang cukup signifikan: **semua permintaan menjadi lambat**.
-Artinya, ketika kamu menjalankan bot di sebuah webhooks, [secara teknis kamu memerlukan sebuah antrian atau queque](../guide/deployment-types.md#mengakhiri-request-webhook-tepat-waktu), atau cara lainnya dengan mengonfigurasi [plugin auto-retry](../plugins/auto-retry.md) sedemikian rupa sehingga ita tidak memakan banyak waktu---tetapi dampaknya bot kamu bisa melewatkan beberapa permintaan.
+Artinya, ketika kamu menjalankan bot di sebuah webhooks, [secara teknis kamu memerlukan sebuah antrian atau queque](../guide/deployment-types.md#mengakhiri-request-webhook-tepat-waktu), atau cara lainnya dengan mengonfigurasi [plugin auto-retry](../plugins/auto-retry.md) sedemikian rupa sehingga ia tidak memakan banyak waktu---tetapi dampaknya bot kamu bisa melewatkan beberapa permintaan.
 
 ## Berapa Lama Sebenarnya Durasi Pembatasannya
 
@@ -28,13 +28,13 @@ Tidak tentu.
 Terima saja kenyataan itu.
 
 Kita bisa mengukur seberapa banyak permintaan yang bisa dilakukan, tetapi angka tepatnya tidak diketahui (Jika seseorang mengaku tahu jumlah tepat batasannya, berarti ia belum mendapatkan informasi ini).
-Batasan ini bersifat dinamis yang bisa kamu temukan sendiri dengan melakukan beberpa uji coba ke Bot API.
-Dari situ uji coba tersebut, kamu akan mengetahui rentang batasannya selalu berubah-ubah berdasarkan jenis permintaan, jumlah pengguna, dan berbagai faktor lain yang tidak kita ketahui dengan pasti.
+Batasan ini bersifat dinamis yang bisa kamu temukan sendiri dengan melakukan uji coba ke Bot API.
+Dari pengujian tersebut, kamu akan mengetahui rentang batasnya selalu berubah-ubah berdasarkan jenis permintaan, jumlah pengguna, dan berbagai faktor lain yang tidak kita ketahui dengan pasti.
 
 Berikut beberapa asumsi keliru mengenai batas kelajuan (rate limit):
 
 - Saya baru saja membuat bot, sehingga tidak mungkin menerima error _flood wait_.
-- Bot saya tidak akan menerima error _flood wait_ karena volume lalu lintas pengiriman tidak terlalu padat.
+- Bot saya tidak akan menerima error _flood wait_ karena lalu lintas pengirimannya tidak terlalu padat.
 - Fitur di bot saya tidak begitu sering dipakai, sehingga error _flood wait_ tidak akan terjadi.
 - Bot saya memiliki jarak waktu pemanggilan API yang cukup, sehingga error _flood wait_ tidak akan terjadi.
 - Pemanggilan method tertentu tidak akan memicu error _flood wait_.
@@ -45,7 +45,7 @@ Semua asumsi di atas adalah keliru.
 
 Mari kita jabarkan apa saja yang telah kita _ketahui_.
 
-## Asumsi Aman Mengenai Batas Kelajuan (Rate Limit)
+## Asumsi yang Benar Mengenai Batas Kelajuan (Rate Limit)
 
 Berdasarkan [FAQ Bot](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this), kita tahu beberapa batasan yang tidak boleh dilanggar, selamanya.
 
@@ -55,7 +55,7 @@ Berdasarkan [FAQ Bot](https://core.telegram.org/bots/faq#my-bot-is-hitting-limit
 
 2. _"Jika kamu mengirim notifikasi masal ke beberapa pengguna, API tidak akan mengizinkan lebih dari 30 pesan per detik. Pertimbangkan untuk menyebarkan notifikasi dalam rentang waktu yang cukup lama: 8---12 jam untuk mendapatkan hasil yang terbaik."_
 
-   **Ini hanya berlaku untuk notifikasi masal** misal disaat kamu mengirim pesan terus-menerus ke banyak pengguna.
+   **Ini hanya berlaku untuk notifikasi masal**, misal disaat kamu mengirim pesan secara terus-menerus ke banyak pengguna.
    Kalau hanya merespon pesan dari pengguna, maka tidak masalah untuk mengirim 1000 pesan atau lebih dalam satu detik.
 
    Ketika FAQ Bot berkata _"pertimbangkan untuk menyebarkan notifikasi dalam rentang waktu yang cukup lama"_, bukan berarti kamu diharuskan menerapkan penundaan buatan.
@@ -80,13 +80,13 @@ Tetapi mengabaikan _rate limit_ lah yang menyebabkan pemblokiran terjadi.
 
 Terlebih [menurut Telegram](https://t.me/tdlibchat/47285) mengetahui jumlah pasti batasan tersebut adalah "tidak berguna dan berbahaya".
 
-Dikatakan _tidak berguna_ karena meski tahu jumlahn pastinya, kamu tetap saja perlu menangani error _flood wait_.
+Dikatakan _tidak berguna_ karena meski tahu jumlah pastinya, kamu tetap saja perlu menangani error _flood wait_.
 Misalnya ketika server API Bot mengembalikan kode 429 karena server dipadamkan untuk melakukan mulai ulang selama pemeliharaan.
 
 Dikatakan _berbahaya_ karena jika kamu menerapkan penundaan permintaan buatan untuk menghindari terkena pembatasan, performa bot kamu akan menurun jauh.
 Itulah kenapa kamu sebaiknya selalu mengirim permintaan secepat mungkin dengan tetap mematuhi semua error _flood wait_ (menggunakan plugin auto-retry).
 
-Kalau begitu, jika melambatkan permintaan adalah ide yang buruk, lantas bagaimana caranya melakukan
+Jika melambatkan permintaan adalah ide yang buruk, lantas bagaimana caranya melakukan
 penyebaran pesan (broadcasting)?
 
 ## Cara Menyebarkan Pesan
