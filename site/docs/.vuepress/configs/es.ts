@@ -166,7 +166,7 @@ export const localeEs: LocaleConfig<DefaultThemeLocaleData> = {
               },
               {
                 text: "Medios de comunicación",
-                link: "/plugins/media-group.html",
+                link: "/es/plugins/media-group.html",
               },
             ],
           },
