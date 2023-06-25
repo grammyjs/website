@@ -1,18 +1,31 @@
 <script setup lang="ts">
-import { onBeforeMount, ref } from "vue";
+import { onMounted, ref, watch } from 'vue'
 
-defineProps<{
-  name?: string
-  text?: string
-  taglines?: string[]
-}>();
+const props = defineProps({
+  name: String,
+  text: String,
+  taglines: Array<string>
+});
 
 const showContent = ref(false);
+const tagline = ref('');
 
-onBeforeMount(() => {
+watch(props, (newProps) => {
+  pickTagline(newProps.taglines);
+})
+
+onMounted(() => {
+  pickTagline(props.taglines);
   showContent.value = true;
 });
 
+function pickTagline(newTaglines: string[] | undefined) {
+  if (newTaglines !== undefined && newTaglines.length > 0) {
+    const randomIndex = Math.floor(Math.random() * newTaglines.length);
+
+    tagline.value = newTaglines[randomIndex];
+  }
+}
 </script>
 
 <template>
@@ -20,12 +33,9 @@ onBeforeMount(() => {
     <span class="clip">{{ name }}</span>
   </h1>
   <p v-if="text" class="text">{{ text }}</p>
-  <div v-if="showContent">
-    <p v-if="taglines" class="tagline">… {{ taglines[Math.floor(Math.random() * taglines.length)] }}</p>
-  </div>
-  <div v-else>
-    <p class="tagline">…</p>
-  </div>
+  <p class="tagline">…
+    <span v-if="showContent" :key="tagline" class="tagline"> {{ tagline }}</span>
+  </p>
 </template>
 
 <style scoped>
