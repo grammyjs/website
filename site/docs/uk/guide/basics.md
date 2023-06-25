@@ -63,7 +63,7 @@ const me = await bot.api.getMe();
 
 ```ts
 bot.hears("ping", async (ctx) => {
-  // `reply` — це псевдонім для `sendMessage` у тому самому чаті (дивіться наступний розділ).
+  // `reply` --- це псевдонім для `sendMessage` у тому самому чаті (дивіться наступний розділ).
   await ctx.reply("pong", {
     // `reply_to_message_id` встановлює власне відповідь на повідомлення.
     reply_to_message_id: ctx.msg.message_id,
@@ -73,7 +73,7 @@ bot.hears("ping", async (ctx) => {
 
 > Зауважте, що надсилання повідомлення через `ctx.reply` **НЕ** означає, що ви автоматично встановлюєте відповідь на отримане повідомлення.
 > Ви повинні вказати `reply_to_message_id` для цього.
-> Метод `ctx.reply` — це лише псевдонім для `ctx.api.sendMessage`, дивіться [наступний розділ](./context.md#доступні-діі).
+> Метод `ctx.reply` --- це лише псевдонім для `ctx.api.sendMessage`, дивіться [наступний розділ](./context.md#доступні-діі).
 
 ## Надсилання повідомлення з форматуванням
 
