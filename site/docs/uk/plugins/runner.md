@@ -383,7 +383,7 @@ bot.use(distribute(workerFile, { count: 8 }));
 3. Компонент **runner** зʼєднує джерело і поглинач, а також дозволяє запускати і зупиняти бота.
 
 ```asciiart:no-line-numbers
-api.telegram.org <---> джерело <---> runner <---> поглинач <---> бот
+api.telegram.org <—> джерело <—> runner <—> поглинач <—> бот
 ```
 
 ### Джерело

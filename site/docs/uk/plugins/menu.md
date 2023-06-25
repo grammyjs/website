@@ -197,7 +197,7 @@ const menu = new Menu("toggle")
 ```ts
 const menu = new Menu("time", { onMenuOutdated: false })
   .text(
-    () => new Date().toLocaleString(), // напис на кнопці --- поточний час
+    () => new Date().toLocaleString(), // напис на кнопці — поточний час
     (ctx) => ctx.menu.update(), // після натискання кнопки оновлюємо час
   );
 ```

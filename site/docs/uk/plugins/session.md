@@ -672,15 +672,15 @@ interface SessionData {
 ```ts
 // Звичайні строгі сесії
 bot.command("settings", async (ctx) => {
-  // `session` --- це дані сесії
+  // `session` — це дані сесії
   const session = ctx.session;
 });
 
 // Ліниві сесії
 bot.command("settings", async (ctx) => {
-  // `promise` --- це дані сесії, огорнуті в `Promise`
+  // `promise` — це дані сесії, огорнуті в `Promise`
   const promise = ctx.session;
-  // `session` --- це дані сесії
+  // `session` — це дані сесії
   const session = await ctx.session;
 });
 ```
