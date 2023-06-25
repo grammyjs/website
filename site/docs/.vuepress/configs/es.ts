@@ -164,6 +164,10 @@ export const localeEs: LocaleConfig<DefaultThemeLocaleData> = {
                 text: "Teclados lineales y personalizados",
                 link: "/es/plugins/keyboard.html",
               },
+              {
+                text: "Medios de comunicación",
+                link: "/plugins/media-group.html",
+              },
             ],
           },
           {
