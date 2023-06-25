@@ -79,7 +79,7 @@ bot.on("message:voice", async (ctx) => {
 
 ::: tip 文件插件
 grammY 没有捆绑自己的文件下载器，但是你可以安装 [官方文件插件](../plugins/files.md)。
-这允许你通过 `await file.download()` 下载文件，并通过 `file.getUrl()` 获取一个构造后的下载文件的 URL。
+这允许你通过 `await file.download()` 下载文件，以及通过 `file.getUrl()` 获取一个下载文件的 URL。
 :::
 
 ## 发送文件
@@ -127,7 +127,8 @@ await ctx.replyWithPhoto(new InputFile("/tmp/picture.jpg"));
 // 或者，使用 bot.api.sendPhoto() 或 ctx.api.sendPhoto()
 ```
 
-`InputFile` 构建器不仅仅能适用于文件路径，也可以适用流、`Buffer` 对象、异步迭代器，以及更多（这取决于你所使用的平台）。
+`InputFile` 构建器不仅仅能适用于文件路径，也可以适用流，`Buffer` 对象，异步迭代器，这取决于你所使用的平台，或者一个创建这些东西的函数。
+
 所以你需要记住的是：**创造一个 `InputFile` 实例，并且把它传递到任何发送文件的方法**。
 `InputFile` 实例能够传递到所有发送上传文件的方法中。
 
