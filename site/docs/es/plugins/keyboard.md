@@ -69,10 +69,9 @@ const labelDataPairs = [
   ["5 ›", "siguiente"],
   ["31 »", "último"],
 ];
-const buttonRows = labelDataPairs
-  .map(([label, data]) => InlineKeyboard.text(label, data))
-  .map((button) => InlineKeyboard.row(button));
-const keyboard = InlineKeyboard.from(buttonRows);
+const buttonRow = labelDataPairs
+  .map(([label, data]) => InlineKeyboard.text(label, data));
+const keyboard = InlineKeyboard.from([buttonRow]);
 ```
 
 ### Envío de un Teclado en línea

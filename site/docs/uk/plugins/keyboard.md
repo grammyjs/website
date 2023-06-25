@@ -69,10 +69,9 @@ const labelDataPairs = [
   ["5 ›", "next"],
   ["31 »", "last"],
 ];
-const buttonRows = labelDataPairs
-  .map(([label, data]) => InlineKeyboard.text(label, data))
-  .map((button) => InlineKeyboard.row(button));
-const keyboard = InlineKeyboard.from(buttonRows);
+const buttonRow = labelDataPairs
+  .map(([label, data]) => InlineKeyboard.text(label, data));
+const keyboard = InlineKeyboard.from([buttonRow]);
 ```
 
 ### Надсилання вбудованої клавіатури

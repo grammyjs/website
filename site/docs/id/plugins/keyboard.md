@@ -68,10 +68,9 @@ const labelDataPairs = [
   ["5 ›", "selanjutnya"],
   ["31 »", "akhir"],
 ];
-const buttonRows = labelDataPairs
-  .map(([label, data]) => InlineKeyboard.text(label, data))
-  .map((button) => InlineKeyboard.row(button));
-const keyboard = InlineKeyboard.from(buttonRows);
+const buttonRow = labelDataPairs
+  .map(([label, data]) => InlineKeyboard.text(label, data));
+const keyboard = InlineKeyboard.from([buttonRow]);
 ```
 
 ### Mengirim Keyboard Inline
