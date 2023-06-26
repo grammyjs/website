@@ -221,7 +221,7 @@ If you then send an [inline keyboard](./keyboard.md#building-a-custom-keyboard) 
 bot
   .command("start")
   .filter((ctx) => ctx.match === "login", async (ctx) => {
-    // User is coming from inline query results
+    // User is coming from inline query results.
     await ctx.reply("DM open, you can go back now!", {
       reply_markup: new InlineKeyboard()
         .switchInline("Go back"),
