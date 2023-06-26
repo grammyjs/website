@@ -63,7 +63,7 @@ Node.js, not Node.
 
 ## 6
 
-Smart punctuation must not be used in Markdown sources. 
+Smart punctuation must not be used in Markdown sources.
 
 ```diff
 - “” ‘’ … —
@@ -78,4 +78,3 @@ Be consistent.
 - Now that you have set the BOT_TOKEN env var, it's time to set the DENO_DEPLOY_TOKEN variable.
 + Now that you have set the BOT_TOKEN variable, it's time to set the DENO_DEPLOY_TOKEN variable.
 ```
-
