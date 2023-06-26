@@ -97,7 +97,7 @@ ______________                                   _____________
 
 > Note that in reality, no connection would be kept open for hours.
 > Long polling requests have a default timeout of 30 seconds (in order to avoid a number of [technical problems](https://datatracker.ietf.org/doc/html/draft-loreto-http-bidirectional-07#section-5.5)).
-> If no new messages are returned after this period of time, then the request will be cancelled and resent—but the general concept stays the same.
+> If no new messages are returned after this period of time, then the request will be cancelled and resent---but the general concept stays the same.
 
 Using long polling, you don't need to spam Telegram's servers, and still you get new messages immediately!
 Nifty.
@@ -162,7 +162,7 @@ Places where webhooks work well include:
 ## I Still Have No Idea What to Use
 
 Then go for long polling.
-If you don't have a good reason to use webhooks, then note that there are no major drawbacks to long polling, and—according to our experience—you will spend much less time fixing things.
+If you don't have a good reason to use webhooks, then note that there are no major drawbacks to long polling, and---according to our experience---you will spend much less time fixing things.
 Webhooks can be a bit nasty from time to time (see [below](#ending-webhook-requests-in-time)).
 
 Whatever you choose, if you ever run into serious problems, it should not be too hard to switch to the other deployment type after the fact.
@@ -348,7 +348,7 @@ If your middleware finishes before that, the function `webhookCallback` will res
 In that case, everything is fine.
 However, if your middleware does not finish before grammY's timeout, `webhookCallback` will throw an error.
 This means that you can handle the error in your web framework.
-If you don't have that error handling, Telegram will send the same update again—but at least you will have error logs now, to tell you that something is wrong.
+If you don't have that error handling, Telegram will send the same update again---but at least you will have error logs now, to tell you that something is wrong.
 
 Once Telegram sends an update to your bot for the second time, it is unlikely that your handling of it will be faster than the first time.
 As a result, it will likely timeout again, and Telegram will send the update again.
