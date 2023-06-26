@@ -1041,37 +1041,6 @@ async function convo(conversation, ctx) {
 
 This will make the plugin available inside the conversation.
 
-As an example, if you want to use a menu insde a conversation, your code could look like this.
-
-::::code-group
-:::code-group-item TypeScript
-
-```ts
-async function convo(conversation: MyConversation, ctx: MyContext) {
-  const menu = new Menu<MyContext>()
-    .text("Click", (ctx) => ctx.reply("Hi!"));
-  await conversation.run(menu);
-
-  // Continue defining the conversation ...
-}
-```
-
-:::
-:::code-group-item JavaScript
-
-```js
-async function convo(conversation, ctx) {
-  const menu = new Menu()
-    .text("Click", (ctx) => ctx.reply("Hi!"));
-  await conversation.run(menu);
-
-  // Continue defining the conversation ...
-}
-```
-
-:::
-::::
-
 ### Custom Context Objects
 
 If you are using a [custom context object](../guide/context.md#customizing-the-context-object) and you want to install custom properties on your context objects before a conversation is entered, then some of these properties can get lost, too.
