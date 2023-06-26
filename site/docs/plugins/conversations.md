@@ -995,6 +995,7 @@ This is why the context objects inside conversations are not always affected by 
 With the [menu plugin](./menu.md), these concepts clash very badly.
 While menus _can_ work inside conversations, we do not recommend to use these two plugins together.
 Instead, use the regular [inline keyboard plugin](./keyboard.md#inline-keyboards) (until we add native menus support for conversations).
+You can wait for specific callback queries using `await conversation.waitForCallbackQuery` or any query using `await conversation.waitFor("callback_query")`.
 
 Other plugins work fine.
 Some of them just need to be installed differently from how you would usually do it.
