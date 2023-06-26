@@ -56,7 +56,7 @@ const photo = InputMediaBuilder.photo("https://grammy.dev/images/Y.png");
 Інші параметри можуть бути надані в обʼєкті параметрів в кінці.
 
 ```ts
-const photo InputMediaBuilder.photo("https://grammy.dev/images/Y.png", {
+const photo = InputMediaBuilder.photo("https://grammy.dev/images/Y.png", {
   caption: "grammY чудовий",
   // тощо
 });
