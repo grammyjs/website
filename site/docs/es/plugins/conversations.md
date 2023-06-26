@@ -989,9 +989,33 @@ Como se mencionó [anteriormente](#introduccion), los manejadores grammY siempre
 Sin embargo, con las conversaciones, puedes procesar muchas actualizaciones en secuencia como si todas estuvieran disponibles al mismo tiempo.
 Los plugins hacen esto posible almacenando objetos de contexto antiguos, y reabasteciéndolos más tarde.
 Esta es la razón por la que los objetos de contexto dentro de las conversaciones no siempre se ven afectados por algunos plugins de grammY de la manera que cabría esperar.
+
+:::warning Menús interactivos dentro de conversaciones
+Con el [plugin de menú](./menu.md), estos conceptos chocan mucho.
+Aunque los menús _pueden_ funcionar dentro de las conversaciones, no recomendamos usar estos dos plugins juntos.
+En su lugar, utilice el plugin [inline keyboard plugin](./keyboard.md#teclados-en-linea) (hasta que añadamos soporte nativo de menús para conversaciones).
+Puedes esperar consultas específicas usando `await conversation.waitForCallbackQuery("my-query")` o cualquier consulta usando `await conversation.waitFor("callback_query")`.
+
+```ts
+const keyboard = new InlineKeyboard()
+  .text("A", "a").text("B", "b");
+await ctx.reply("A or B?", { reply_markup: keyboard });
+const response = await conversation.waitForCallbackQuery(["a", "b"], {
+  otherwise: (ctx) => ctx.reply("¡Usa los botones!", { reply_markup: keyboard }),
+});
+if (response.match === "a") {
+  // Usuario selecciona "A".
+} else {
+  // Usuario selecciona "B".
+}
+```
+:::
+
+Otros plugins funcionan bien.
+Algunos de ellos sólo necesitan ser instalados de manera diferente de cómo lo haría normalmente.
+
 Esto es relevante para los siguientes plugins:
 
-- [menu](./menu.md)
 - [hydrate](./hydrate.md)
 - [i18n](./i18n.md) y [fluent](./fluent.md)
 - [emoji](./emoji.md)
@@ -1026,35 +1050,6 @@ async function convo(conversation, ctx) {
 ::::
 
 Esto hará que el plugin esté disponible dentro de la conversación.
-
-Como ejemplo, si quieres usar un menú dentro de una conversación, tu código podría ser así.
-
-::::code-group
-:::code-group-item TypeScript
-
-```ts
-async function convo(conversation: MyConversation, ctx: MyContext) {
-  const menu = new Menu<MyContext>()
-    .text("Click", (ctx) => ctx.reply("¡Hola!"));
-  await conversation.run(menu);
-  // Continuar definiendo la conversación ...
-}
-```
-
-:::
-:::code-group-item JavaScript
-
-```js
-async function convo(conversation, ctx) {
-  const menu = new Menu()
-    .text("Click", (ctx) => ctx.reply("¡Hola!"));
-  await conversation.run(menu);
-  // Continuar definiendo la conversación ...
-}
-```
-
-:::
-::::
 
 ### Objetos de contexto personalizados
 
