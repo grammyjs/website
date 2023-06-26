@@ -32,7 +32,7 @@ grammY has a simple and intuitive way to build up the inline keyboards that your
 It provides a class called `InlineKeyboard` for this.
 
 > The buttons added by calling `switchInline`, `switchInlineCurrent`, and `switchInlineChosen` start inline queries.
-> Check out the section about [Inline Queries](./inline-query.md) for more information about how they work.
+> Check out the section about [Inline Queries](./inline-query.md) for more information on how they work.
 
 ### Building an Inline Keyboard
 

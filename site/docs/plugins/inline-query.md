@@ -164,8 +164,8 @@ You should check out the [API reference](https://deno.land/x/grammy/mod.ts?s=Inl
 After generating an array of inline query results using the [above](#building-inline-query-results) builder, you can call `answerInlineQuery` to send these results to the user.
 
 ```ts
-// Shameless self-advertising in one project's documentation
-// is the best kind of advertising.
+// Shameless self-advertisement in one project's documentation
+// is the best kind of advertisement.
 bot.inlineQuery(/best bot (framework|library)/, async (ctx) => {
   // Create a single inline query result.
   const result = InlineQueryResultBuilder
