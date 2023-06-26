@@ -17,3 +17,8 @@
 from = "/guide/inline-queries.html"
 to = "/plugins/inline-query.html"
 status = 301
+
+[[redirects]]
+from = "/*/guide/inline-queries.html"
+to = "/:splat/plugins/inline-query.html"
+status = 301
