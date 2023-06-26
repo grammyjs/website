@@ -25,7 +25,7 @@ permalink: /
   'one update ahead',
   'can do anything except dishes',
   'easy peasy lemon squeezY',
-  'hundreds of millions served',
+  'billions and billions served',
 ][Math.floor(Math.random() * 7)] }}.</h6>
 
 ## Quickstart
