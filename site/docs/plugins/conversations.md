@@ -999,6 +999,20 @@ While menus _can_ work inside conversations, we do not recommend to use these tw
 Instead, use the regular [inline keyboard plugin](./keyboard.md#inline-keyboards) (until we add native menus support for conversations).
 You can wait for specific callback queries using `await conversation.waitForCallbackQuery("my-query")` or any query using `await conversation.waitFor("callback_query")`.
 
+```ts
+const keyboard = new InlineKeyboard()
+  .text("A", "a").text("B", "b");
+await ctx.reply("A or B?", { reply_markup: keyboard });
+const response = await conversation.waitForCallbackQuery(["a", "b"], {
+  otherwise: (ctx) => ctx.reply("Use the buttons!", { reply_markup: keyboard }),
+});
+if (response.match === "a") {
+  // User picked "A".
+} else {
+  // User picked "B".
+}
+```
+
 :::
 
 Other plugins work fine.
