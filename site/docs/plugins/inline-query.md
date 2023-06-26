@@ -72,7 +72,7 @@ InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/Y.png")
 
 // Build a text result.
 InlineQueryResultBuilder.article("id-2", "Inline Queries")
-  .text("Great inline query docs: grammy.dev/guide/inline-queries");
+  .text("Great inline query docs: grammy.dev/plugins/inline-query");
 
 // Pass further options to the result.
 const keyboard = new InlineKeyboard()
@@ -100,7 +100,7 @@ InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/Y.png")
 
 // Build a text result.
 InlineQueryResultBuilder.article("id-2", "Inline Queries")
-  .text("Great inline query docs: grammy.dev/guide/inline-queries");
+  .text("Great inline query docs: grammy.dev/plugins/inline-query");
 
 // Pass further options to the result.
 const keyboard = new InlineKeyboard()
@@ -131,7 +131,7 @@ InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/Y.png")
 
 // Build a text result.
 InlineQueryResultBuilder.article("id-2", "Inline Queries")
-  .text("Great inline query docs: grammy.dev/guide/inline-queries");
+  .text("Great inline query docs: grammy.dev/plugins/inline-query");
 
 // Pass further options to the result.
 const keyboard = new InlineKeyboard()
