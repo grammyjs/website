@@ -42,3 +42,40 @@ In English, the the headings must be in title case and follow the rules of [AP S
 - ## With great style comes great responsibility
 + ## With Great Style Comes Great Responsibility
 ```
+
+## 4
+
+Articles must reside outside link texts unless they are part of the identity of the referred entity.
+
+```diff
+- See [the Bot API documentation](...).
++ See the [Bot API documentation](...).
+```
+
+## 5
+
+Node.js, not Node.
+
+```diff
+- both Deno and Node
++ both Deno and Node.js
+```
+
+## 6
+
+Smart punctuation must not be used in Markdown sources. 
+
+```diff
+- “” ‘’ … —
++ "" '' ... ---
+```
+
+## 7
+
+Be consistent.
+
+```diff
+- Now that you have set the BOT_TOKEN env var, it's time to set the DENO_DEPLOY_TOKEN variable.
++ Now that you have set the BOT_TOKEN variable, it's time to set the DENO_DEPLOY_TOKEN variable.
+```
+
