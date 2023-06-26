@@ -340,6 +340,10 @@ bot.command("publish", async (ctx) => {
 
 Payloads also work well together with dynamic ranges.
 
+> Note that using [dynamic buttons](#dynamic-ranges) which generate based on the payload might not work.
+> This happens because when the menu is partially rendered upon a button press, the payload would be the same as that pressed button's payload.
+> This makes the menu to be considered as [outdated](#outdated-menus-and-fingerprints) and therefore will not work.
+
 ## Dynamic Ranges
 
 So far, we've only seen how to change the text on a button dynamically.
