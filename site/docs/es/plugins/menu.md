@@ -506,7 +506,7 @@ Un menú sólo manejará las pulsaciones de los botones si:
 
 Cuando un usuario pulsa un botón de un menú, necesitamos encontrar el manejador que se añadió a ese botón en el momento en que se renderizó el menú.
 Por lo tanto, simplemente renderizamos el viejo menú de nuevo.
-Sin embargo, esta vez, no necesitamos el diseño completo - todo lo que necesitamos es la estructura general, y ese botón específico.
+Sin embargo, esta vez, no necesitamos el diseño completo---todo lo que necesitamos es la estructura general, y ese botón específico.
 En consecuencia, el plugin del menú realizará una representación superficial para ser más eficiente.
 En otras palabras, el menú sólo se renderizará parcialmente.
 
