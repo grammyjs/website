@@ -81,7 +81,7 @@ const newMedia = InputMediaBuilder.photo("https://grammy.dev/images/Y.png");
 await ctx.editMessageMedia(newMedia);
 ```
 
-Як і завжди, це працює для `ctx.api.editMessageMedia` та `bot.api.editMessageMedia`.
+Як і завжди, це також працює для `ctx.api.editMessageMedia` та `bot.api.editMessageMedia`.
 
 ## Загальні відомості про плагін
 
