@@ -32,7 +32,7 @@ grammY tiene una forma sencilla e intuitiva de construir los teclados en línea 
 Proporciona una clase llamada `InlineKeyboard` para esto.
 
 > Los botones añadidos al llamar a `switchInline`, `switchInlineCurrent`, y `switchInlineChosen` inician consultas inline.
-> Consulta la sección sobre [Inline Queries](../guide/inline-queries.md) para más información sobre su funcionamiento.
+> Consulta la sección sobre [Consultas en línea](./inline-query.md) para obtener más información sobre su funcionamiento.
 
 ### Construyendo un Teclado en Línea
 
