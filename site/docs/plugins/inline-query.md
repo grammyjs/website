@@ -32,7 +32,7 @@ bot.inlineQuery(/best bot (framework|library)/, async (ctx) => {
   const query = ctx.inlineQuery.query; // query string
 });
 
-// Listen for any inline query
+// Listen for any inline query.
 bot.on("inline_query", async (ctx) => {
   const query = ctx.inlineQuery.query; // query string
 });
@@ -50,7 +50,7 @@ Every result needs three things.
 1. A unique string identifier.
 2. A _result object_ that describes how to display the inline query result.
    It can contain things like a title, a link, or an image.
-3. A _message content_ object that describes the content of the message which will be sent by the user if they pick this result.
+3. A _message content object_ that describes the content of the message which will be sent by the user if they pick this result.
    In some cases, the message content can be inferred implicitly from the result object.
    For example, if you want your result to be displayed as a GIF, then Telegram will understand that the message content will be that same GIF---unless you specify a message content object.
 
