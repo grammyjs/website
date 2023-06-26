@@ -39,6 +39,6 @@ After all, the source code is written in American English, too.
 In English, the the headings must be in title case and follow the rules of [AP Stylebook](https://en.wikipedia.org/wiki/Title_case#AP_Stylebook).
 
 ```diff
-- ## Notes regarding the possibilities of facing errors
-+ ## Notes Regarding the Possibilities of Facing Errors
+- ## With great style comes great responsibility
++ ## With Great Style Comes Great Responsibility
 ```
