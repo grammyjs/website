@@ -511,7 +511,7 @@ A menu will only handle button presses if:
 
 When a user presses a menu's button, we need to find the handler that was added to that button at the time the menu was rendered.
 Hence, we simply render the old menu again.
-However, this time, we don't actually need the full layout—all we need is the overall structure, and that one specific button.
+However, this time, we don't actually need the full layout---all we need is the overall structure, and that one specific button.
 Consequently, the menu plugin will perform a shallow rendering in order to be more efficient.
 In other words, the menu will only be rendered partially.
 

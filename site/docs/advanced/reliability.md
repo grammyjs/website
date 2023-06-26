@@ -149,7 +149,7 @@ The remainder of this section is elaborating on **how** grammY behaves under the
 ### Webhook
 
 If you are running your bot on webhooks, the Bot API server will retry delivering updates to your bot if it does not respond with `OK` in time.
-That pretty much defines the behavior of the system comprehensively—if you need to prevent processing duplicate updates, you should build your own de-duplication based on `update_id`.
+That pretty much defines the behavior of the system comprehensively---if you need to prevent processing duplicate updates, you should build your own de-duplication based on `update_id`.
 grammY does not do this for you, but feel free to PR if you think someone else could profit from this.
 
 ### Long Polling

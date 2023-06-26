@@ -121,7 +121,7 @@ Algunas razones importantes por las que nos gusta más Deno que Node.js:
 - No es necesario mantener `package.json` o `node_modules`.
 - Tiene una biblioteca estándar revisada.
 
-> Deno fue fundado por Ryan Dahl-la misma persona que inventó Node.js.
+> Deno fue fundado por Ryan Dahl---la misma persona que inventó Node.js.
 > Él resumió sus 10 arrepentimientos sobre Node.js en [este video](https://youtu.be/M3BM9TB-8yA).
 
 grammY en sí mismo es Deno-first, y está respaldado para soportar Node.js igualmente bien.

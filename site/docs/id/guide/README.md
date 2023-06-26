@@ -26,7 +26,7 @@ Dokumentasi bot grammY dibagi menjadi tiga area:
 2. [Referensi API grammY tingkat rendah](https://deno.land/x/grammy/mod.ts).
 3. [Referensi API HTTP murni yang dibuat oleh Telegram](https://core.telegram.org/bots/api).
 
-**Area pertama**—yang sedang kamu baca saat ini—berisi tutorial penggunaan grammY dan penjelasan mengenai cara kerja dari suatu bot.
+**Area pertama**---yang sedang kamu baca saat ini---berisi tutorial penggunaan grammY dan penjelasan mengenai cara kerja dari suatu bot.
 Dokumen ini yang akan paling sering kamu gunakan.
 Kamu bisa memulai dari bab _Belajar_ di tab navigasi yang ada di bagian atas halaman ini.
 Jangan lupa untuk melihat koleksi _Plugin_ kami yang menakjubkan serta berbagai _Contoh_ yang sudah disediakan.
