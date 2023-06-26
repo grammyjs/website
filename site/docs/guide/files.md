@@ -128,7 +128,7 @@ await ctx.replyWithPhoto(new InputFile("/tmp/picture.jpg"));
 // alternatively, use bot.api.sendPhoto() or ctx.api.sendPhoto()
 ```
 
-The `InputFile` constructor not only takes file paths, but also streams, `Buffer` objects, async iterators, and—depending on your platform—more.
+The `InputFile` constructor not only takes file paths, but also streams, `Buffer` objects, async iterators, and—depending on your platform—more, or a function that creates any of these things.
 All you need to remember is: **create an instance of `InputFile` and pass it to any method to send a file**.
 Instances of `InputFile` can be passed to all methods that accept sending files by upload.
 
