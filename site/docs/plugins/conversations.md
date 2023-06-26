@@ -990,11 +990,16 @@ As always, check out the [API reference](https://deno.land/x/grammy_conversation
 As mentioned [earlier](#introduction), grammY handlers always only handle a single update.
 However, with conversations, you are able to process many updates in sequence as if they were all available at the same time.
 The plugin makes this possible by storing old context objects, and resupplying them later.
-
 This is why the context objects inside conversations are not always affected by some grammY plugins in the way one would expect.
+
+With the [menu plugin](./menu.md), these concepts clash very badly.
+While menus _can_ work inside conversations, we do not recommend to use these two plugins together.
+Instead, use the regular [inline keyboard plugin](./keyboard.md#inline-keyboards) (until we add native menus support for conversations).
+
+Other plugins work fine.
+Some of them just need to be installed differently from how you would usually do it.
 This is relevant for the following plugins:
 
-- [menu](./menu.md)
 - [hydrate](./hydrate.md)
 - [i18n](./i18n.md) and [fluent](./fluent.md)
 - [emoji](./emoji.md)
