@@ -265,3 +265,11 @@ Immediately after receiving a `chosen_inline_result` update, they edit the respe
 These bots will not work for anonymous admins or when sending scheduled messages, as no inline feedback can be received there.
 However, if this is not a problem for you, then this hack will allow you to not have to generate a lot of message content for messages that never end up being sent.
 This can save your bot resources.
+
+## Plugin Summary
+
+This plugin is built-in into the core of grammY.
+You don't need to install anything to use it.
+Simply import everything from grammY itself.
+
+Also, both the documentation and the API reference of this plugin are unified with the core package.
