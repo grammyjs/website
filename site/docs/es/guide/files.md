@@ -30,9 +30,9 @@ Esto significa que todos los archivos que el bot vea, tanto a través del envío
 
 Cuando un bot envía un mensaje, puede **especificar un `file_id` que haya visto antes**.
 Esto le permitirá enviar el archivo identificado, sin necesidad de subir los datos para ello.
-(Para ver cómo subir sus propios archivos, [desplácese hacia abajo](#envio-de-archivos).
+(Para ver cómo subir sus propios archivos, [desplácese hacia abajo](#envio-de-archivos).)
 Puede reutilizar el mismo `file_id` tantas veces como quiera, por lo que podría enviar el mismo archivo a cinco chats diferentes, utilizando el mismo `file_id`.
-Sin embargo, debes asegurarte de utilizar el método correcto-por ejemplo, no puedes utilizar un `file_id` que identifique una foto al llamar a [`sendVideo`](https://core.telegram.org/bots/api#sendvideo).
+Sin embargo, debes asegurarte de utilizar el método correcto---por ejemplo, no puedes utilizar un `file_id` que identifique una foto al llamar a [`sendVideo`](https://core.telegram.org/bots/api#sendvideo).
 
 Cada bot tiene su propio conjunto de `file_id` para los archivos a los que puede acceder.
 No puedes usar de forma fiable un `file_id` del bot de tu amigo, para acceder a un archivo con _tu_ bot.
@@ -134,7 +134,7 @@ await ctx.replyWithPhoto(new InputFile("/tmp/picture.jpg"));
 // alternativamente, usa bot.api.sendPhoto() o ctx.api.sendPhoto()
 ```
 
-El constructor `InputFile` no sólo toma rutas de archivos, sino también flujos, objetos `Buffer`, iteradores asíncronos, y -dependiendo de su plataforma- más, o una función que crea cualquiera de estas cosas.
+El constructor `InputFile` no sólo toma rutas de archivos, sino también flujos, objetos `Buffer`, iteradores asíncronos, y---dependiendo de su plataforma---más, o una función que crea cualquiera de estas cosas.
 Todo lo que necesitas recordar es: **crear una instancia de `InputFile` y pasarla a cualquier método para enviar un archivo**.
 Las instancias de `InputFile` se pueden pasar a todos los métodos que aceptan el envío de archivos por carga.
 
