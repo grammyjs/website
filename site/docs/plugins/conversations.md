@@ -1227,7 +1227,7 @@ The conversations plugin tracks the execution of your function.
 When a wait call is reached, it serializes the state of execution into the session, and safely stores it in a database.
 When the next update arrives, it first inspects the session data.
 If it finds that it left off in the middle of a conversation, it deserializes the state of execution, takes your conversation builder function, and replays it up to the point of the last `wait` call.
-It then resumes ordinary execution of your function—until the next `wait` call is reached, and the execution must be halted again.
+It then resumes ordinary execution of your function---until the next `wait` call is reached, and the execution must be halted again.
 
 What do we mean by the state of execution?
 In a nutshell, it consists of three things:

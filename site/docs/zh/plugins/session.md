@@ -411,7 +411,7 @@ bot.use(session({
 > 支持的外部存储解决方案的支持请参考 [这里](#外部存储解决方案)。
 
 使用 grammY 的一个好处是你可以使用免费的云存储。
-它不需要任何配置，所有的认证都是痛使用你的 bot token 完成的。
+它不需要任何配置，所有的认证都是使用你的 bot token 完成的。
 查看 [这个仓库](https://github.com/grammyjs/storages/tree/main/packages/free)！
 
 它非常容易使用：

@@ -29,7 +29,7 @@ Semua perubahan kode telah di-review oleh berbagai pihak, dioptimalkan berulang 
 
 ## Bahasa pemrograman apa yang grammY gunakan?
 
-grammY ditulis dari nol menggunakan TypeScript—sebuah superset JavaScript.
+grammY ditulis dari nol menggunakan TypeScript---sebuah superset JavaScript.
 Oleh karena itu, ia bisa berjalan di Node.js.
 
 Namun, grammY juga bisa berjalan di Deno, yang memposisikan dirinya sebagai penerus Node.js.
