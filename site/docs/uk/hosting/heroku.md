@@ -53,8 +53,7 @@ npx tsc --init
 {
   "compilerOptions": {
     "target": "ESNEXT",
-    "module": "CommonJS", //[!code --]
-    "module": "ESNext", // [!code ++] // змінено з CommonJS на ESNext.
+    "module": "ESNext", // [!code hl] // змінено з CommonJS на ESNext.
     "lib": ["ES2021"],
     "outDir": "./dist/",
     "strict": true,
@@ -76,7 +75,7 @@ npx tsc --init
   "version": "0.0.1",
   "description": "",
   "main": "dist/app.js",
-  "type": "module", // [!code ++] // встановлюємо параметр "type": "module"
+  "type": "module", // [!code hl] // встановлюємо параметр "type": "module"
   "scripts": {
     "dev-build": "tsc"
   },

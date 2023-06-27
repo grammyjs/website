@@ -53,8 +53,7 @@ Setelah itu, buka file `tsconfig.json` lalu ubah konfigurasinya menjadi seperti 
 {
   "compilerOptions": {
     "target": "ESNEXT",
-    "module": "CommonJS", //[!code --]
-    "module": "ESNext", // [!code ++] // ubah dari commonjs menjadi esnext
+    "module": "ESNext", // [!code hl] // ubah dari commonjs menjadi esnext
     "lib": ["ES2021"],
     "outDir": "./dist/",
     "strict": true,
@@ -76,7 +75,7 @@ File `package.json` kita kurang lebih tampak seperti ini:
   "version": "0.0.1",
   "description": "",
   "main": "dist/app.js",
-  "type": "module", // [!code ++] // tambah property "type": "module"
+  "type": "module", // [!code hl] // tambah property "type": "module"
   "scripts": {
     "dev-build": "tsc"
   },

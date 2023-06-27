@@ -53,8 +53,7 @@ npx tsc --init
 {
   "compilerOptions": {
     "target": "ESNEXT",
-    "module": "CommonJS", //[!code --]
-    "module": "ESNext", // [!code ++] // 把 commonjs 改成 esnext
+    "module": "ESNext", // [!code hl] // 把 commonjs 改成 esnext
     "lib": ["ES2021"],
     "outDir": "./dist/",
     "strict": true,
@@ -76,7 +75,7 @@ npx tsc --init
   "version": "0.0.1",
   "description": "",
   "main": "dist/app.js",
-  "type": "module", // [!code ++] // 添加 "type": "module"
+  "type": "module", // [!code hl] // 添加 "type": "module"
   "scripts": {
     "dev-build": "tsc"
   },
