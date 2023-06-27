@@ -1,17 +1,15 @@
 # Pengulang Request API (`auto-retry`)
 
-> Pertimbangkan untuk menggunakan [plugin throttler](./transformer-throttler.md) alih-alih menggunakan plugin ini.
-
 Plugin ini adalah sebuah [API transformer function](../advanced/transformers.md).
 Artinya, ia dapat mencegat dan memodifikasi HTTP request yang keluar secara langsung.
 Lebih tepatnya, plugin ini akan secara otomatis mendeteksi jika suatu API request gagal dilakukan dengan membawa value `retry_after`, misal dikarenakan rate limit.
 Ia akan menangkap error tersebut, lalu menunggu beberapa saat, kemudian mengirim request tersebut kembali.
 
-::: warning Gunakan Server API Bot dengan Bijak
-Telegram dengan baik hati menyediakan informasi berapa lama bot kamu harus menunggu sebelum request selanjutnya boleh dikirim.
-Saat terkena flood limit, plugin `auto-retry` akan menjaga performa bot kamu dengan cara mengirim kembali request yang gagal dikirim.
-Namun, **auto-retry sebaiknya tidak dipakai** untuk menghindari rate limit yang terjadi pada operasi sehari-hari.
-Jika kamu terus-menerus melanggar batas rate limit, Telegram akan mengambil tindakan berupa pembatasan bot atau bahkan memblokir bot kamu sepenuhnya.
+::: tip Kontrol Flood
+Untuk memastikan bot kamu tidak "membanjiri" server, Telegram menerapkan _pengendalian "banjir"_ atau _flood control_.
+Mereka akan memberitahu kamu disaat bot mengirim pesan terlalu cepat.
+Jika kamu mengabaikan error 429 yang diberikan, Telegram selanjutnya akan memblokir bot kamu.
+Itulah kenapa menggunakan plugin ini cukup penting.
 :::
 
 Kamu bisa menginstal plugin ini di object `bot.api`:
