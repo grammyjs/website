@@ -49,8 +49,7 @@ npm install grammy
 Edit `src/index.js` or `src/index.ts`, and write this code inside:
 
 ```ts
-// Note that we're importing from 'grammy/web', not 'grammy'.
-import { Bot, webhookCallback } from "grammy/web";
+import { Bot, webhookCallback } from "grammy";
 
 // The following line of code assumes that you have configured the secrets BOT_TOKEN and BOT_INFO.
 // See https://developers.cloudflare.com/workers/platform/environment-variables/#secrets-on-deployed-workers.
