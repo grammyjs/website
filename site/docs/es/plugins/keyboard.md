@@ -162,7 +162,7 @@ Recuerda que puedes escuchar los mensajes de texto a través de `bot.on("message
 Puedes construir un teclado personalizado creando una nueva instancia de la clase `Keyboard`, y añadiéndole botones como `.text()` y otros.
 Llama a `.row()` para comenzar una nueva fila de botones.
 
-Here is an example:
+He aquí un ejemplo:
 
 ![Ejemplo](/images/keyboard-example.webp)
 
@@ -185,8 +185,8 @@ De esta manera, puedes construir el teclado anterior de una manera funcional.
 
 ```ts
 const labels = [
-  "Sí, ciertamente lo son",
-  "No estoy muy seguro",
+  "Yes, they certainly are",
+  "I'm not quite sure",
   "No. 😈",
 ];
 const buttonRows = labels
