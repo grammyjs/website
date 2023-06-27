@@ -164,6 +164,10 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
                 text: "Вбудовані та власні клавіатури",
                 link: "/uk/plugins/keyboard.html",
               },
+              {
+                text: "Медіагрупи",
+                link: "/uk/plugins/media-group.html",
+              },
             ],
           },
           {
