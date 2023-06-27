@@ -52,7 +52,7 @@ Installing plugins is fun and easy, and we want you to know what we have in stor
 | Router                      | [`router`](./router.md)                               | Route messages to different parts of your code       |
 | Runner                      | [`runner`](./runner.md)                               | Perform long polling concurrently and at scale       |
 | Stateless Question          | [`stateless-question`](./stateless-question.md)       | Create dialogs without a data storage                |
-| Flood Control               | [`transformer-throttler`](./transformer-throttler.md) | Slow down API calls                                  |
+| Throttler                   | [`transformer-throttler`](./transformer-throttler.md) | Slow down API calls                                  |
 
 We also have some third-party plugins!
 You can find them in the navigation menu under _Plugins_ > _Third-Party_.
