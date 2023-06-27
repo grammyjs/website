@@ -33,26 +33,26 @@ Installing plugins is fun and easy, and we want you to know what we have in stor
 
 > Click on any package name to learn more about the respective plugin.
 
-| Plugin                      | Package                                               | Description                                          |
-| --------------------------- | ----------------------------------------------------- | ---------------------------------------------------- |
-| Sessions                    | _built-in_                                            | Store user data in your database                     |
-| Inline and Custom Keyboards | _built-in_                                            | Simplify building inline and custom keyboards        |
-| Media Groups                | _built-in_                                            | Simplify sending media groups and editing media      |
-| Inline Queries              | _built-in_                                            | Easily build results for inline queries              |
-| Auto-retry                  | [`auto-retry`](./auto-retry.md)                       | Automatically handle rate limiting                   |
-| Conversations               | [`conversations`](./conversations.md)                 | Build powerful conversational interfaces and dialogs |
-| Chat Members                | [`chat-members`](./chat-members.md)                   | Track which user joined which chat                   |
-| Emoji                       | [`emoji`](./emoji.md)                                 | Simplify using emoji in code                         |
-| Files                       | [`files`](./files.md)                                 | Easily handle files                                  |
-| Hydration                   | [`hydrate`](./hydrate.md)                             | Call methods on objects returned from API calls      |
-| Internationalization        | [`i18n`](./i18n.md) or [`fluent`](./fluent.md)        | Let your bot speak multiple languages                |
-| Interactive Menus           | [`menu`](./menu.md)                                   | Design dynamic button menus with flexible navigation |
-| Parse Mode                  | [`parse-mode`](./parse-mode.md)                       | Simplify message formatting                          |
-| Rate Limiter                | [`ratelimiter`](./ratelimiter.md)                     | Automatically restrict users who spam your bot       |
-| Router                      | [`router`](./router.md)                               | Route messages to different parts of your code       |
-| Runner                      | [`runner`](./runner.md)                               | Perform long polling concurrently and at scale       |
-| Stateless Question          | [`stateless-question`](./stateless-question.md)       | Create dialogs without a data storage                |
-| Throttler                   | [`transformer-throttler`](./transformer-throttler.md) | Slow down API calls                                  |
+| Plugin                                        | Package                                               | Description                                          |
+| --------------------------------------------- | ----------------------------------------------------- | ---------------------------------------------------- |
+| [Sessions](./session.md)                      | _built-in_                                            | Store user data in your database                     |
+| [Inline and Custom Keyboards](./keyboard.md)  | _built-in_                                            | Simplify building inline and custom keyboards        |
+| [Media Groups](./media-group.md)              | _built-in_                                            | Simplify sending media groups and editing media      |
+| [Inline Queries](./inline-query.md)           | _built-in_                                            | Easily build results for inline queries              |
+| [Auto-retry](./auto-retry.md)                 | [`auto-retry`](./auto-retry.md)                       | Automatically handle rate limiting                   |
+| [Conversations](./conversations.md)           | [`conversations`](./conversations.md)                 | Build powerful conversational interfaces and dialogs |
+| [Chat Members](./chat-members.md)             | [`chat-members`](./chat-members.md)                   | Track which user joined which chat                   |
+| [Emoji](./emoji.md)                           | [`emoji`](./emoji.md)                                 | Simplify using emoji in code                         |
+| [Files](./files.md)                           | [`files`](./files.md)                                 | Easily handle files                                  |
+| [Hydration](./hydrate.md)                     | [`hydrate`](./hydrate.md)                             | Call methods on objects returned from API calls      |
+| [Internationalization](./i18n.md)             | [`i18n`](./i18n.md) or [`fluent`](./fluent.md)        | Let your bot speak multiple languages                |
+| [Interactive Menus](./menu.md)                | [`menu`](./menu.md)                                   | Design dynamic button menus with flexible navigation |
+| [Parse Mode](./parse-mode.md)                 | [`parse-mode`](./parse-mode.md)                       | Simplify message formatting                          |
+| [Rate Limiter](./ratelimiter.md)              | [`ratelimiter`](./ratelimiter.md)                     | Automatically restrict users who spam your bot       |
+| [Router](./router.md)                         | [`router`](./router.md)                               | Route messages to different parts of your code       |
+| [Runner](./runner.md)                         | [`runner`](./runner.md)                               | Perform long polling concurrently and at scale       |
+| [Stateless Question](./stateless-question.md) | [`stateless-question`](./stateless-question.md)       | Create dialogs without a data storage                |
+| [Throttler](./transformer-throttler.md)       | [`transformer-throttler`](./transformer-throttler.md) | Slow down API calls                                  |
 
 We also have some third-party plugins!
 You can find them in the navigation menu under _Plugins_ > _Third-Party_.
