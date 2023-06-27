@@ -75,10 +75,6 @@ export const localeZh: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/zh/guide/errors.html",
               },
               {
-                text: "Inline Queries",
-                link: "/zh/guide/inline-queries.html",
-              },
-              {
                 text: "文件管理",
                 link: "/zh/guide/files.html",
               },
@@ -163,6 +159,10 @@ export const localeZh: LocaleConfig<DefaultThemeLocaleData> = {
               {
                 text: "Inline 与自定义 Keyboards",
                 link: "/zh/plugins/keyboard.html",
+              },
+              {
+                text: "Inline Queries",
+                link: "/zh/plugins/inline-query.html",
               },
             ],
           },

@@ -32,7 +32,7 @@ grammY 有一个简单且直观的方式来构建 inline keyboard，让你的 bo
 它提供了一个叫做 `InlineKeyboard` 的类。
 
 > 通过调用 `switchInline`、`switchInlineCurrent` 和 `switchInlineChosen` 添加的按钮都可以启动 Inline Queries。
-> 你也可以查看 [Inline Queries](../guide/inline-queries.md) 的部分，来了解更多关于它们是怎样工作的。
+> 你也可以查看 [Inline Queries](./inline-query.md) 的部分，来了解更多关于它们是怎样工作的。
 
 ### 构建一个 Inline Keyboard
 
