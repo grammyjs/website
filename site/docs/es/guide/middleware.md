@@ -114,7 +114,7 @@ Puedes solucionar el problema invirtiendo el orden de las líneas 3 y 4.
 Si llamas a `next` en la línea 3, se enviarán dos respuestas.
 
 **La función `bot.use()` simplemente registra el middleware que recibe todas las actualizaciones.
-Esta es la razón por la que `session()` se instala a través de `bot.use()` -queremos que el plugin opere sobre todas las actualizaciones, sin importar los datos que contenga.
+Esta es la razón por la que `session()` se instala a través de `bot.use()`---queremos que el plugin opere sobre todas las actualizaciones, sin importar los datos que contenga.
 
 Tener un middleware stack es una propiedad extremadamente poderosa de cualquier framework web, y este patrón es ampliamente popular (no sólo para los bots de Telegram).
 

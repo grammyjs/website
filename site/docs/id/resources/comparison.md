@@ -80,7 +80,7 @@ Akibatnya, dukungan auto-complete atau spell-checking untuk kode bot tidak dapat
 
 Sebaliknya, grammY sepenuhnya ditulis menggunakan TypeScript.
 Kelebihannya, code editor (misalnya VS Code) dapat menganalisa kode kamu untuk memberikan saran ketika kamu mengetik sesuatu.
-Terlebih lagi, ia mampu menampilkan secara lengkap inline API Bot Telegram—dokumentasi dari website akan ditampilkan secara langsung ketika meng-hover nama atau elemen kode menggunakan kursor mouse.
+Terlebih lagi, ia mampu menampilkan secara lengkap inline API Bot Telegram---dokumentasi dari website akan ditampilkan secara langsung ketika meng-hover nama atau elemen kode menggunakan kursor mouse.
 
 Kelebihan utama lainnya adalah sekarang kamu bisa **menulis bot menggunakan TypeScript**.
 Sebelumnya, ini adalah pekerjaan yang tidak mudah dilakukan karena type annotation milik Telegraf tidak dapat meng-compile kode, meski tidak ada error di dalamnya.
@@ -148,7 +148,7 @@ Kamu pasti tidak menginginkan itu terjadi---selain mi goreng itu sendiri tentuny
 ### Framework Lainnya
 
 Apakah kamu merasa framework favoritmu di beberapa aspek tertentu lebih baik dibandingkan dengan grammY?
-Silahkan ubah halaman ini dan tambahkan perbandingannya—atau kamu juga bisa menyampaikan pendapatmu di [chat grup grammY](https://t.me/grammyjs)!
+Silahkan ubah halaman ini dan tambahkan perbandingannya---atau kamu juga bisa menyampaikan pendapatmu di [chat grup grammY](https://t.me/grammyjs)!
 
 ## Perbandingan dengan Framework Bahasa Pemrograman Lainnya
 
@@ -183,7 +183,7 @@ Karena beberapa orang memiliki selera yang berbeda, maka informasi-informasi ini
 5. **Dukungan `async`/`await`.**
    Mengendalikan sebuah concurrency adalah hal yang populer di dalam dunia pemrograman.
    Tidak heran, selama bertahun-tahun pemrograman asynchronous mengalami kenaikan tren.
-   PTB—framework bot terbesar untuk Python—[mengumumkan sedang melakukan migrasi](https://t.me/pythontelegrambotchannel/94) ke pemrograman asynchronous pada bulan Januari 2021, yang diharapkan akan rampung dalam waktu "2 tahun" ke depan.
+   PTB---framework bot terbesar untuk Python---[mengumumkan sedang melakukan migrasi](https://t.me/pythontelegrambotchannel/94) ke pemrograman asynchronous pada bulan Januari 2021, yang diharapkan akan rampung dalam waktu "2 tahun" ke depan.
    grammY sudah melakukannya dari awal.
    (Framework Python lain yang tidak terlalu populer mungkin sudah melakukan migrasi terlebih dahulu.
    Abaikan poin ini jika kamu menggunakan framework Python yang sudah mendukung `async`/`await`.)

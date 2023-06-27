@@ -19,8 +19,7 @@ Berikut hal-hal yang perlu diperhatikan ketika meng-hosting bot dengan skala yan
 
 1. Kirim file mengunakan `path` atau `buffer`, bukan dengan `stream`, atau setidaknya kamu [tahu jebakan-jebakannya](./transformers#penggunaan-function-transformer).
 2. Gunakan `bot.on("callback_query:data")` sebagai penanganan _fallback_ untuk [menanggapi semua callback query](../plugins/keyboard#merespon-ketika-tombol-ditekan).
-3. Gunakan [plugin `transformer-throttler`](../plugins/transformer-throttler) agar terhindari dari rate limit.
-4. **Opsional.** Gunakan [plugin `auto-retry`](../plugins/auto-retry) untuk menangani error `flood wait` secara otomatis.
+3. Gunakan [plugin `auto-retry`](../plugins/auto-retry) untuk menangani _flood wait_ (durasi tunggu karena terlalu banyak mengirim request ke Telegram) secara otomatis.
 
 ## Penskalaan
 

@@ -1141,7 +1141,7 @@ El plugin de conversaciones rastrea la ejecución de su función.
 Cuando se alcanza una llamada de espera, serializa el estado de ejecución en la sesión, y lo almacena de forma segura en una base de datos.
 Cuando llega la siguiente actualización, primero inspecciona los datos de la sesión.
 Si encuentra que lo dejó en medio de una conversación, deserializa el estado de ejecución, toma su función constructora de conversación y la reproduce hasta el punto de la última llamada `wait`.
-A continuación, reanuda la ejecución ordinaria de tu función, hasta que se alcanza la siguiente llamada `wait`, y la ejecución debe ser detenida de nuevo.
+A continuación, reanuda la ejecución ordinaria de tu función---hasta que se alcanza la siguiente llamada `wait`, y la ejecución debe ser detenida de nuevo.
 
 ¿Qué entendemos por estado de ejecución?
 En pocas palabras, consiste en tres cosas

@@ -133,6 +133,10 @@ const pluginBuiltin = {
       text: "Keyboard Custom dan Inline",
       link: "/id/plugins/keyboard",
     },
+    {
+      text: "Pengelompokan Media",
+      link: "/id/plugins/media-group",
+    },
   ],
 };
 const pluginOfficial = {

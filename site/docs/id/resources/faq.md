@@ -125,7 +125,7 @@ Berikut beberapa alasan kenapa kami lebih menyukai Deno dibandingkan dengan Node
 - Tidak perlu mengurus `package.json` dan `node_modules`.
 - Ia memiliki sebuah library standar yang sudah di-review.
 
-> Deno diciptakan oleh Ryan Dahl—orang yang sama yang menciptakan Node.js.
+> Deno diciptakan oleh Ryan Dahl---orang yang sama yang menciptakan Node.js.
 > Dia mengutarakan 10 penyesalannya mengenai Node.js di [video ini](https://youtu.be/M3BM9TB-8yA).
 
 grammY sendiri lebih memprioritaskan Deno, dari situ ia disusun ulang agar dapat mendukung Node.js sama baiknya.

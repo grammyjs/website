@@ -86,7 +86,7 @@ It is therefore a more reliable way to pass file paths to `InputFile`, so grammY
 ## API Flavoring
 
 grammY features [context flavors](../guide/context#context-flavors) that can be used to adjust the context type.
-This includes API methods—both those that are directly on the context object such as `ctx.reply`, and all methods in `ctx.api` and `ctx.api.raw`.
+This includes API methods---both those that are directly on the context object such as `ctx.reply`, and all methods in `ctx.api` and `ctx.api.raw`.
 However, you cannot adjust the types of `bot.api` and `bot.api.raw` via context flavors.
 
 This is why grammY supports _API flavors_.

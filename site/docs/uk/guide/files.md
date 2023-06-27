@@ -18,7 +18,7 @@ next:
 Файли зберігаються окремо від повідомлень.
 Файл на серверах Telegram ідентифікується `file_id`, який є просто довгим набором символів.
 
-`AgADBAADZRAxGyhM3FKSE4qKa-RODckQHxsoABDHe0BDC1GzpGACAAEC` — це приклад `file_id`.
+`AgADBAADZRAxGyhM3FKSE4qKa-RODckQHxsoABDHe0BDC1GzpGACAAEC` --- це приклад `file_id`.
 
 Кожного разу, коли ваш бот **отримує** повідомлення з файлом, він отримує не повні дані файлу, а лише його `file_id`.
 Якщо вашому боту потрібно завантажити файл, він може зробити це, викликавши метод `getFile` ([довідка Telegram Bot API](https://core.telegram.org/bots/api#getfile)).

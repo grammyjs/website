@@ -3,7 +3,7 @@ prev: false
 next: false
 ---
 
-# Keyboard Custom dan Inline (Built-In)
+# Keyboard Custom dan Inline (bawaan)
 
 Bot kamu bisa menyediakan beberapa tombol untuk user, baik berupa [tombol di bawah pesan](#keyboard-inline) ataupun [mengganti keyboard user](#keyboard-custom) sepenuhnya dengan tombol.
 Keduanya secara berurutan bernama _keyboard inline_ dan _keyboard custom_.

@@ -75,7 +75,7 @@ bot 通过 HTTP 请求与 Telegram 互动。
 
 > 如果你已经知道如何开发 Deno 或 Node.js 应用程序，请跳过本页面的其余部分，[开始](./getting-started)。
 
-这里有一些关于编程的趣事--这些事情对编程是必不可少的，但大家却很少解释，因为大多数开发者认为它们是不言而喻的。
+这里有一些关于编程的事情——对编程是必不可少的事情，但大家却很少解释，因为大多数开发者认为它们是不言而喻的。
 
 在下一节中，你将通过编写一个包含编程语言 [TypeScript](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html) 源代码的文本文件来创建一个 bot。
 grammY 文档不会教你如何编程，所以我们希望你能自学。
@@ -85,7 +85,7 @@ grammY 文档不会教你如何编程，所以我们希望你能自学。
 你可以从 TypeScript 团队编写的 [官方教程](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html) 开始学习 TypeScript，然后再从这里开始。
 这些东西不会花费你太多的时间，接着你可以回到这里阅读剩下的部分，并 [开始](./getting-started)。
 
-如果你在文档中看到不熟悉的语法，或者你得到一个你不理解的错误信息，请用谷歌搜索它--互联网拥有一切（例如在 Stack Overflow 上）。
+如果你在文档中看到不熟悉的语法，或者你得到一个你不理解的错误信息，请用谷歌搜索它——互联网上已经有解释了（例如在 Stack Overflow 上）。
 :::
 
 ::: danger 拒绝编程！

@@ -506,7 +506,7 @@ Sebuah menu hanya akan memroses penekanan tombol jika:
 
 Ketika user menekan tombol menu, kita harus menemukan handler yang telah ditambahkan ke tombol tersebut saat menu di-render sebelumnya.
 Dengan cara seperti itu, kita cukup me-render ulang menu sebelumnya.
-Tetapi, untuk kali ini, kita tidak membutuhkan layout-nya secara utuh—yang kita butuhkan adalah struktur secara keseluruhan, serta tombol spesifik tersebut.
+Tetapi, untuk kali ini, kita tidak membutuhkan layout-nya secara utuh---yang kita butuhkan adalah struktur secara keseluruhan, serta tombol spesifik tersebut.
 Sehingga, plugin menu akan melakukan pe-render-an tipis-tipis supaya lebih efisien.
 Dengan kata lain, menu tersebut akan di-render sebagian saja.
 

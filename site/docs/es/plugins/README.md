@@ -67,14 +67,14 @@ Hablemos de las diferencias.
 ### Tipo I: Plugins Middleware
 
 [Middleware](../guide/middleware) es una función que maneja los datos entrantes en varias formas.
-Los plugins de middleware son plugins que se introducen en un bot como -bueno, lo has adivinado- middleware.
+Los plugins de middleware son plugins que se introducen en un bot como---bueno, lo has adivinado---middleware.
 Esto significa que se instalan a través de `bot.use`.
 
 ### Tipo II: Plugins transformadores
 
 Una [función transformadora](../advanced/transformers) es lo contrario del middleware.
 Es una función que maneja los datos de salida.
-Los plugins transformadores son plugins que se introducen en un bot como una función transformadora (¡lo has adivinado!).
+Los plugins transformadores son plugins que se introducen en un bot como una---¡lo has adivinado!---función transformadora.
 Esto significa que los instalas a través de `bot.api.config.use`.
 
 ## Crear tus propios plugins

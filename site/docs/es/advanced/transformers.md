@@ -84,7 +84,7 @@ Por lo tanto, es una forma más fiable de pasar las rutas de los archivos a `Inp
 ## API Flavoring
 
 grammY cuenta con [context flavors](../guide/context#context-flavors) que pueden ser usados para ajustar el tipo de contexto.
-Esto incluye los métodos de la API, tanto los que están directamente en el objeto de contexto como `ctx.reply`, y todos los métodos en `ctx.api` y `ctx.api.raw`.
+Esto incluye los métodos de la API---tanto los que están directamente en el objeto de contexto como `ctx.reply`, y todos los métodos en `ctx.api` y `ctx.api.raw`.
 Sin embargo, no puedes ajustar los tipos de `bot.api` y `bot.api.raw` a través de los context flavors.
 
 Por eso grammY admite los _API flavors_.

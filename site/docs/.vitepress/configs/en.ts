@@ -135,6 +135,10 @@ const pluginBuiltin = {
       text: "Inline and Custom Keyboards",
       link: "/plugins/keyboard",
     },
+    {
+      text: "Media Groups",
+      link: "/plugins/media-group",
+    },
   ],
 };
 

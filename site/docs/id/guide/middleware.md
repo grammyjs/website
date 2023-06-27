@@ -8,7 +8,7 @@ next:
 # Middleware
 
 Middleware adalah sebuah sebutan untuk function-function listener yang dipasang di `bot.on()`, `bot.command`, serta _sibling-sibling_ lain yang serupa.
-Memanggilnya dengan sebutan "listener" hanyalah sebuah penyederhanaan saja, meskipun tidak sepenuhnya salah juga karena mereka memang menyimak—atau _listening_—sebuah update.
+Memanggilnya dengan sebutan "listener" hanyalah sebuah penyederhanaan saja, meskipun tidak sepenuhnya salah juga karena mereka memang menyimak---atau _listening_---sebuah update.
 
 > Materi ini berisi penjelasan apa itu middleware, serta menggunakan grammY sebagai contoh ilustrasi bagaimana suatu middleware dapat digunakan.
 > Kalau kamu mencari dokumentasi khusus mengenai keistimewaan middleware buatan grammY, silahkan baca materi [Membangkitkan Middleware](../advanced/middleware) di bab Tingkat Lanjut.
@@ -69,7 +69,7 @@ Kita [sudah tahu](./context) apa itu `ctx`. Tetapi, kita juga melihat sebuah fun
 Supaya bisa mengerti apa itu `next`, kita harus melihat secara keseluruhan middleware yang kamu pasang pada object bot-mu.
 
 Kamu bisa membayangkan semua function middleware yang terpasang sebagai lapisan-lapisan yang ditumpuk di atas satu sama lain.
-Midleware pertama—`session` berdasarkan contoh kita tadi—adalah lapisan teratas, sehingga ia akan menerima setiap update terlebih dahulu.
+Midleware pertama---`session` berdasarkan contoh kita tadi---adalah lapisan teratas, sehingga ia akan menerima setiap update terlebih dahulu.
 Kemudian, ia akan memutuskan apakah update tersebut akan diproses atau diteruskan ke lapisan berikutnya (handler command `/start`).
 Function `next` dapat digunakan untuk memanggil middleware berikutnya, yang sering kali disebut _downstream middleware_ atau middleware hilir.
 Artinya, kalau kamu tidak memanggil `next` di middleware, maka lapisan middleware di bawahnya tidak akan dipanggil.
@@ -117,7 +117,7 @@ Kalau kamu memanggil `next` di baris 3, dua respon akan dikirim.
 **Function `bot.use()` menerima semua update yang akan diteruskan ke middleware terkait.**
 Itulah kenapa `session()` dipasang ke `bot.use()` karena kita ingin plugin tersebut beroperasi di semua update, tidak peduli apapun isinya.
 
-Middleware stack merupakan properti yang benar-benar berguna untuk framework web manapun, dan model yang seperti ini sangat populer digunakan di berbagai tempat—tidak hanya untuk bot Telegram.
+Middleware stack merupakan properti yang benar-benar berguna untuk framework web manapun, dan model yang seperti ini sangat populer digunakan di berbagai tempat---tidak hanya untuk bot Telegram.
 
 Sekarang, mari kita coba membuat sendiri potongan kecil middleware untuk mengilustrasikan dengan lebih baik bagaimana cara kerjanya.
 
@@ -217,7 +217,7 @@ Kalau kamu memanggil `next()` tanpa `await`, beberapa hal tidak akan berjalan de
 - :x: Bot kamu akan crash secara acak yang sulit untuk direproduksi kembali.
 - :x: Saat terjadi error, _error handler_ tidak akan dipanggil.
   Akibatnya, kamu akan melihat sebuah `UnhandledPromiseRejectionWarning` yang membuat bot menjadi crash.
-- :x: Mekanisme backpressure [grammY runner](../plugins/runner)—yang berfungsi untuk melindungi server dari beban yang terlalu tinggi, misalnya saat terjadi lonjakan beban—menjadi tidak berfungsi.
+- :x: Mekanisme backpressure [grammY runner](../plugins/runner)---yang berfungsi untuk melindungi server dari beban yang terlalu tinggi, misalnya saat terjadi lonjakan beban---menjadi tidak berfungsi.
 - :skull: Terkadang, juga dapat membunuh kucing imut yang tidak berdosa. :crying_cat_face:
 
 :::
@@ -236,7 +236,7 @@ Ini akan memastikan kamu supaya tidak lupa menggunakan `await` (dengan cara meng
 
 Di grammY, middleware mengembalikan sebuah `Promise` yang nantinya akan di-`await`. Tetapi, ia juga bisa di-_synchronous_.
 
-Berbanding terbalik dengan sistem middleware lainnya,—contohnya di `express`—kamu tidak bisa meneruskan _error value_ ke `next`.
+Berbanding terbalik dengan sistem middleware lainnya,---contohnya di `express`---kamu tidak bisa meneruskan _error value_ ke `next`.
 `next` tidak mengambil argument apapun.
 Kalau ingin menghasilkan error, kamu cukup `throw` error.
 Perbedaan lainnya, tidak peduli berapapun argument yang diambil oleh middleware kamu, `() => {}` akan diberlakukan layaknya sebuah `(ctx) => {}` atau `(ctx, next) => {}`.

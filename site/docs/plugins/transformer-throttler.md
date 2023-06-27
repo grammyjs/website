@@ -5,12 +5,14 @@ next: false
 
 # Flood Control (`transformer-throttler`)
 
+> Consider using the [auto-retry plugin](./auto-retry) instead.
+
 This plugin enqueues outgoing API requests instance via [Bottleneck](https://github.com/SGrondin/bottleneck) in order to prevent your bot from hitting [rate limits](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this) as described in this [advanced section](../advanced/flood) of the documentation.
 
 ::: warning Undocumented API Limits Exist
 Telegram implements unspecified and undocumented rate limits for some API calls.
 These undocumented limits are **not accounted for** by the throttler.
-Consider using the [auto-retry plugin](./auto-retry) together with this plugin, if you are experiencing floodwait errors for certain API calls, such as `api.sendContact`.
+If you still want to use this plugin, consider using the [auto-retry plugin](./auto-retry) together with it.
 :::
 
 ## Usage

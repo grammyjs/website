@@ -121,6 +121,10 @@ const pluginIntroduction = {
       text: "Як написати плагін",
       link: "/uk/plugins/guide",
     },
+    {
+      text: "Медіагрупи",
+      link: "/uk/plugins/media-group",
+    },
   ],
 };
 

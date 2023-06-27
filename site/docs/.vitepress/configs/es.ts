@@ -135,6 +135,10 @@ const pluginBuiltin = {
       text: "Teclados lineales y personalizados",
       link: "/es/plugins/keyboard",
     },
+    {
+      text: "Medios de comunicación",
+      link: "/es/plugins/media-group",
+    },
   ],
 };
 

@@ -464,7 +464,7 @@ bot.start();
 Perhatikan bagaimana type context hasil modifikasi sudah ditentukan secara otomatis ketika kamu menggunakan subclass.
 Sehingga, kamu tidak perlu lagi menulis `Bot<MyContext>` karena constructor subclass sudah ditentukan di dalam opsi object `new Bot()`.
 
-Akan tetapi, dengan menggunakan metode ini membuatnya sangat sulit—bahkan mungkin mustahil—untuk menginstal plugin, karena plugin-plugin tersebut sering kali mengharuskan kamu untuk menggunakan context flavor.
+Akan tetapi, dengan menggunakan metode ini membuatnya sangat sulit---bahkan mungkin mustahil---untuk menginstal plugin, karena plugin-plugin tersebut sering kali mengharuskan kamu untuk menggunakan context flavor.
 
 ## Context Flavor
 
@@ -533,7 +533,7 @@ type ContextKu = FlavorA<Context>;
 
 Selebihnya sama saja.
 
-Setiap plugin—yang resmi—sudah tercantum di dalam dokumentasinya apakah harus menggunakan context flavor jenis _additive_ atau _transformative_.
+Setiap plugin---yang resmi---sudah tercantum di dalam dokumentasinya apakah harus menggunakan context flavor jenis _additive_ atau _transformative_.
 
 ### Mengombinasikan Context Flavor yang Berbeda
 

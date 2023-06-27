@@ -85,7 +85,7 @@ Proses ini memungkinkan untuk membuat instance baru dari `Composer` setiap kali 
 
 ## Menggabungkan Pemanggilan `use`
 
-Kalau kita hanya menggunakan satu `use`, itu tidak akan terlalu bag-_use_ — _maaf, garing_ :grimacing:.
+Kalau kita hanya menggunakan satu `use`, itu tidak akan terlalu bag-_use_ --- _maaf, garing_ :grimacing:.
 Akan semakin menarik ketika kita menambahkan sesuatu ke dalamnya, misal `filter`.
 
 Lihat kode berikut:

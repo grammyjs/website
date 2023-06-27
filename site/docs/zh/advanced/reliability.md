@@ -16,7 +16,7 @@ next:
 ## 优雅关闭
 
 对于使用了长轮询的 bot，还有更多的事要去考虑。
-当你打算在某个操作期间再次停止你的实例，你应该去考虑捕获 `SIGTERM` 和 `SIGINT` 事件，并调用 `bot.stop`（长轮询内置的） 方法或者通过它的 [处理](https://deno.land/x/grammy_runner/mod.ts?s=RunnerHandle#prop_stop) （grammY runner）来停止你的 bot。
+当你打算在某个操作期间再次停止你的实例，你应该去考虑捕获 `SIGTERM` 和 `SIGINT` 事件，并调用 `bot.stop`（长轮询内置的）方法或者通过它的 [处理](https://deno.land/x/grammy_runner/mod.ts?s=RunnerHandle#prop_stop) （grammY runner）来停止你的 bot。
 
 ### 简单的长轮询
 
@@ -116,14 +116,14 @@ Deno.addSignalListener("SIGTERM", stopRunner);
 如果因为一些原因，某人或者某事真的很难处理这过程，它将会变得更加复杂。
 
 本质上，bot 不能保证你的中间件只执行一次。
-阅读一下GitHub上的这个 [讨论](https://github.com/tdlib/telegram-bot-api/issues/126) 去了解更多 **为什么** 你的 bot 在某些极端情况下会重复发送信息（或者根本不发送）。
+阅读一下 GitHub 上的这个 [讨论](https://github.com/tdlib/telegram-bot-api/issues/126) 去了解更多 **为什么** 你的 bot 在某些极端情况下会重复发送信息（或者根本不发送）。
 本章剩下的部分主要是详细解释 grammY 在这些不常见的情况下会怎样表现，并且怎样去处理这些情况。
 
 > 如果你只关心怎样去编写一个 Telegram bot 的代码？[跳过本章剩下的部分](./flood)。
 
 ### Webhook
 
-如果你在 webhooks 模式下运行你的 bot，如果你的bot没有及时返回正确响应 Bot API 服务器将会再次尝试传送 updates 到你的 bot。
+如果你在 webhooks 模式下运行你的 bot，如果你的 bot 没有及时返回正确响应 Bot API 服务器将会再次尝试传送 updates 到你的 bot。
 这基本上全面定义了系统的行为，如果你需要阻止处理重复的 updates，你应该基于 `update_id` 来构建你自己的重复数据删除。
 grammY 没有为你做这些工作，但是如果你认为其他人可以从中获得收益，你可以向我们提交 PR 。
 

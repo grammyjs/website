@@ -3,7 +3,7 @@ prev: false
 next: false
 ---
 
-# Session dan Penyimpanan Data (Built-In)
+# Session dan Penyimpanan Data (bawaan)
 
 Meski kamu bisa saja menulis sendiri kode untuk melakukan koneksi ke sebuah data storage favoritmu, namun grammY sudah menyediakan sebuah skema penyimpanan praktis yang disebut dengan _session_.
 
@@ -80,7 +80,7 @@ Cukup dengan memodifikasi data di `ctx.session`, lalu plugin akan mengurus sisan
 > [Lewati](#cara-menggunakan-session) jika kamu sudah yakin akan menggunakan session.
 
 Kamu mungkin sekarang berpikir, "Sip! sekarang aku tidak perlu capek-capek mengatur database lagi."
-Yup, kamu benar, session merupakan solusi yang ideal—untuk tipe data tertentu saja.
+Yup, kamu benar, session merupakan solusi yang ideal---untuk tipe data tertentu saja.
 
 Berdasarkan pengalaman kami, ada beberapa situasi dimana session benar-benar berjaya.
 Di sisi lain, ada situasi-situasi tertentu dimana sebuah database tradisional mungkin lebih cocok dipakai.
@@ -405,7 +405,7 @@ bot.use(session({
 > Daftar pilihan integrasi storage eksternal yang didukung tersedia [di bawah sini](#storage-eksternal).
 
 Keuntungan menggunakan grammY adalah kamu bisa mengakses penyimpanan cloud secara gratis.
-Ia tidak membutuhkan pengaturan sama sekali—semua autentikasi dilakukan menggunakan token bot-mu.
+Ia tidak membutuhkan pengaturan sama sekali---semua autentikasi dilakukan menggunakan token bot-mu.
 Lihat [repositori berikut](https://github.com/grammyjs/storages/tree/main/packages/free)!
 
 Cara pemasangannya sangat mudah:

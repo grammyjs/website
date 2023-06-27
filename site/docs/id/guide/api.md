@@ -27,7 +27,7 @@ Analogi yang sama juga berlaku ketika pengguna mengirim pesan ke bot, hanya saja
 
 ::: tip Mengatasi Limitasi Ukuran File
 Backend Telegram memungkinkan bot untuk [mengirim file](./files) berukuran hingga 2000 MB.
-Namun, server API Bot—yang bertanggung jawab untuk menerjemahkan request ke HTTP—membatasi ukuran file hanya sebesar 50 MB untuk unduhan dan 20 MB untuk unggahan.
+Namun, server API Bot---yang bertanggung jawab untuk menerjemahkan request ke HTTP---membatasi ukuran file hanya sebesar 50 MB untuk unduhan dan 20 MB untuk unggahan.
 
 Untuk menyiasati batasan tersebut, kamu bisa [meng-hosting server API Bot sendiri](https://core.telegram.org/bots/api#using-a-local-bot-api-server) supaya bot kamu bisa mengirim file dengan ukuran hingga 2000 MB.
 

@@ -80,7 +80,7 @@ Simplemente modificamos los datos en `ctx.session`, y el plugin se encargará de
 > [Sáltate el paso](#como-usar-las-sesiones) si ya sabes que quieres usar sesiones.
 
 Puede que pienses, esto es genial, ¡nunca más tendré que preocuparme por las bases de datos!
-Y tienes razón, las sesiones son una solución ideal, pero sólo para algunos tipos de datos.
+Y tienes razón, las sesiones son una solución ideal---pero sólo para algunos tipos de datos.
 
 Según nuestra experiencia, hay casos de uso en los que las sesiones realmente brillan.
 Por otro lado, hay casos en los que una base de datos tradicional puede ser más adecuada.
@@ -404,7 +404,7 @@ bot.use(session({
 > La lista de integraciones soportadas de soluciones de almacenamiento externo está [aquí abajo](#soluciones-de-almacenamiento-externo).
 
 Un beneficio de usar grammY es que obtienes acceso a almacenamiento gratuito en la nube.
-No requiere ninguna configuración - toda la autenticación se hace usando tu token de bot.
+No requiere ninguna configuración---toda la autenticación se hace usando tu token de bot.
 ¡Echa un vistazo a el [repositorio](https://github.com/grammyjs/storage-free)!
 
 Es muy fácil de usar:

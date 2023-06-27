@@ -5,12 +5,14 @@ next: false
 
 # Kontrol Flood (`transformer-throttler`)
 
+> Pertimbangkan untuk menggunakan [plugin auto-retry](./auto-retry).
+
 Plugin ini menjaga bot kamu agar terhindar dari [rate limit](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this)---lihat [materi tingkat lanjut berikut](../advanced/flood)---dengan cara membuat daftar antrian API request yang keluar menggunakan [Bottleneck](https://github.com/SGrondin/bottleneck).
 
 ::: warning Aturan Pembatasan API yang Tidak Didokumentasikan
-Telegram juga memiliki beberapa aturan rate limit yang tidak didokumentasikan.
+Telegram memiliki beberapa aturan rate limit yang tidak didokumentasikan.
 Sayangnya, aturan-aturan tersebut **tidak diperhitungkan** oleh throttler.
-Oleh karena itu, kalau kamu mengalami error floodwait untuk beberapa pemanggilan API, misalnya `api.sendContact`, maka kami menyarankan untuk memasang [plugin auto-retry](./auto-retry) dan plugin ini secara beriringan.
+Jika kamu hendak menggunakan plugin ini, sebaiknya gunakan juga [plugin auto-retry](./auto-retry).
 :::
 
 ## Penggunaan
