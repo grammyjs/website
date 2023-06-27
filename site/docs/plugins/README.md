@@ -41,6 +41,7 @@ Installing plugins is fun and easy, and we want you to know what we have in stor
 | Inline Queries              | _built-in_                                            | Easily build results for inline queries              |
 | Auto-retry                  | [`auto-retry`](./auto-retry.md)                       | Automatically handle rate limiting                   |
 | Conversations               | [`conversations`](./conversations.md)                 | Build powerful conversational interfaces and dialogs |
+| Chat Members                | [`chat-members`](./chat-members.md)                   | Track which user joined which chat                   |
 | Emoji                       | [`emoji`](./emoji.md)                                 | Simplify using emoji in code                         |
 | Files                       | [`files`](./files.md)                                 | Easily handle files                                  |
 | Hydration                   | [`hydrate`](./hydrate.md)                             | Call methods on objects returned from API calls      |
