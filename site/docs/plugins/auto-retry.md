@@ -7,7 +7,7 @@ It will then catch the error, wait the specified period of time, and then retry 
 ::: tip Flood Control
 Telegram will let you know if you send messages too fast.
 This is an important measure for flood control, as it makes sure that your bot does not put Telegram under too much load.
-Using this plugin is important because if you forget to respect 429 errors, Telegram may ban your bot.
+Using this plugin is important because if you forget to respect [429 errors](../resources/faq.md#_429-too-many-requests-retry-after-x), Telegram may ban your bot.
 :::
 
 You can install this plugin on the `bot.api` object:
