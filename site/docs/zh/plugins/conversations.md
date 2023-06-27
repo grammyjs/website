@@ -989,11 +989,35 @@ async function waitForMe(conversation, ctx) {
 正如 [前面](#介绍) 所述，grammY 处理程序始终只处理单个 update。
 但是，通过对话，你可以按顺序处理许多 update，就好像它们同时可用一样。
 插件通过存储旧的上下文对象并在以后重新提供它们来实现这一点。
-
 这就是为什么对话中的上下文对象并不总是像人们预期的那样受到某些 grammY 插件的影响。
+
+:::warning 对话中的互动菜单
+
+使用 [menu 插件](./menu.md)，这些概念会产生很严重的冲突。
+虽然菜单_可以_在对话中使用，但我们不建议同时使用这两个插件。
+取而代之地，使用常规的 [inline keyboard 插件](./keyboard.md#inline-keyboards)（直到我们为对话添加原生菜单支持）。
+你可以使用 `await conversation.waitForCallbackQuery("my-query")` 等待特定的回调查询，或者使用 `await conversation.waitFor("callback_query")` 等待任何查询。
+
+```ts
+const keyboard = new InlineKeyboard()
+  .text("A", "a").text("B", "b");
+await ctx.reply("A or B?", { reply_markup: keyboard });
+const response = await conversation.waitForCallbackQuery(["a", "b"], {
+  otherwise: (ctx) => ctx.reply("Use the buttons!", { reply_markup: keyboard }),
+});
+if (response.match === "a") {
+  // 用户选择 "A".
+} else {
+  // 用户选择 "B".
+}
+```
+
+:::
+
+其他插件运行正常。
+其中一些只是需要以不同于通常的方式安装。
 这与以下插件相关：
 
-- [menu](./menu.md)
 - [hydrate](./hydrate.md)
 - [i18n](./i18n.md) 和 [fluent](./fluent.md)
 - [emoji](./emoji.md)
@@ -1029,37 +1053,6 @@ async function convo(conversation, ctx) {
 ::::
 
 这将使该插件在对话中可用。
-
-例如，如果你想在对话中使用菜单，你的代码可能如下所示。
-
-::::code-group
-:::code-group-item TypeScript
-
-```ts
-async function convo(conversation: MyConversation, ctx: MyContext) {
-  const menu = new Menu<MyContext>()
-    .text("Click", (ctx) => ctx.reply("Hi!"));
-  await conversation.run(menu);
-
-  // 继续定义对话 ...
-}
-```
-
-:::
-:::code-group-item JavaScript
-
-```js
-async function convo(conversation, ctx) {
-  const menu = new Menu()
-    .text("Click", (ctx) => ctx.reply("Hi!"));
-  await conversation.run(menu);
-
-  // 继续定义对话 ...
-}
-```
-
-:::
-::::
 
 ### 自定义上下文对象
 
