@@ -18,8 +18,7 @@ prev: ./proxy.md
 
 1. 通过 path 或 `Buffer` 发送文件而不是通过 stream，或者至少确保你 [了解这些风险](./transformers.md#transformer-函数的使用用例)。
 2. 使用 `bot.on("callback_query:data")` 作为回调处理 [响应所有回调查询](../plugins/keyboard.md#响应点击)。
-3. 使用 [`transformer-throttler` 插件](../plugins/transformer-throttler.md) 去避免到达速率限制。
-4. **可选的**，考虑使用 [auto-retry 插件](../plugins/auto-retry.md) 去自动处理流量等待的错误。
+3. 使用 [auto-retry 插件](../plugins/auto-retry.md) 去自动处理流量等待的错误。
 
 ## 伸缩性
 
