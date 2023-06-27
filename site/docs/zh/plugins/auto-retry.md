@@ -7,7 +7,7 @@
 ::: tip 洪水控制
 Telegram 会在你发送消息过快时向你发出提醒。
 这是洪水控制的重要措施，它确保你的 bot 不会给 Telegram 造成过大的负荷。
-使用这个插件非常重要，因为如果你忘记遵循 429 错误，Telegram 可能会封禁你的 bot。
+使用这个插件非常重要，因为如果你忘记遵循 [429 错误](../resources/faq.md#429-too-many-requests-retry-after-x)，Telegram 可能会封禁你的 bot。
 :::
 
 你可以在 `bot.api` 对象上安装这个插件：
