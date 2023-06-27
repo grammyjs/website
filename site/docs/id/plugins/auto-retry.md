@@ -8,7 +8,7 @@ Ia akan menangkap error tersebut, lalu menunggu beberapa saat, kemudian mengirim
 ::: tip Kontrol Flood
 Untuk memastikan bot kamu tidak "membanjiri" server, Telegram menerapkan _pengendalian "banjir"_ atau _flood control_.
 Mereka akan memberitahu kamu disaat bot mengirim pesan terlalu cepat.
-Jika kamu mengabaikan error 429 yang diberikan, Telegram selanjutnya akan memblokir bot kamu.
+Jika kamu mengabaikan [error 429](../resources/faq.md#429-too-many-requests-retry-after-x) yang diberikan, Telegram selanjutnya akan memblokir bot kamu.
 Itulah kenapa menggunakan plugin ini cukup penting.
 :::
 
