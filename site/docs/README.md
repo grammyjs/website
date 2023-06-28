@@ -12,7 +12,7 @@ hero:
     - one update ahead
     - can do anything except dishes
     - easy peasy lemon squeezY
-    - hundreds of millions served
+    - billions and billions served
   image:
     src: /images/Y.webp
     alt: grammY logo
@@ -36,19 +36,7 @@ features:
     details: grammY has you covered when your bot gets popular and the traffic increases.
 ---
 
-<<<<<<< HEAD
 <HomeContent>
-=======
-<h6 align="right">… {{ [
-  'think of the whY',
-  'a new era of bot development',
-  'runs faster than you',
-  'one update ahead',
-  'can do anything except dishes',
-  'easy peasy lemon squeezY',
-  'billions and billions served',
-][Math.floor(Math.random() * 7)] }}.</h6>
->>>>>>> main
 
 ## Quickstart
 
