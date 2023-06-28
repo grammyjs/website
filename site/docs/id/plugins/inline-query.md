@@ -74,7 +74,7 @@ InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/Y.png")
 // Buat sebuah hasil teks.
 InlineQueryResultBuilder.article("id-2", "Inline Query")
   .text(
-    "Dokumentasi inline query yang menakjubkan: grammy.dev/plugins/inline-query",
+    "Dokumentasi inline query yang menakjubkan: grammy.dev/id/plugins/inline-query",
   );
 
 // Meneruskan opsi lanjutan ke hasil.
@@ -108,7 +108,7 @@ InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/Y.png")
 // Buat sebuah hasil teks.
 InlineQueryResultBuilder.article("id-2", "Inline Query")
   .text(
-    "Dokumentasi inline query yang menakjubkan: grammy.dev/plugins/inline-query",
+    "Dokumentasi inline query yang menakjubkan: grammy.dev/id/plugins/inline-query",
   );
 
 // Meneruskan opsi lanjutan ke hasil.
@@ -145,7 +145,7 @@ InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/Y.png")
 // Buat sebuah hasil teks.
 InlineQueryResultBuilder.article("id-2", "Inline Query")
   .text(
-    "Dokumentasi inline query yang menakjubkan: grammy.dev/plugins/inline-query",
+    "Dokumentasi inline query yang menakjubkan: grammy.dev/id/plugins/inline-query",
   );
 
 // Meneruskan opsi lanjutan ke hasil.
@@ -189,7 +189,7 @@ bot.inlineQuery(/(framework|library) bot terbaik/, async (ctx) => {
   const result = InlineQueryResultBuilder
     .article("id:grammy-website", "grammY", {
       reply_markup: new InlineKeyboard()
-        .url("website grammY", "https://grammy.dev/"),
+        .url("website grammY", "https://grammy.dev/id/"),
     })
     .text(
       `<b>grammY</b> adalah cara terbaik untuk membuat bot Telegram.
