@@ -12,7 +12,7 @@ hero:
     - 及时更新
     - 除了洗碗，我都能做
     - 像做柠檬汁一样简单
-    - 数以亿计的服务
+    - 已处理数十亿请求
   image:
     src: /images/Y.webp
     alt: grammY 徽标
@@ -31,29 +31,11 @@ features:
   - icon: 🧩
     title: 灵活
     details: grammY 是开放的，通过插件让它完全适合你的需要。
-<<<<<<< HEAD
   - icon: 📈
     title: 可扩展
     details: grammY 在你 bot 拥有较多流量时提供可靠的帮助.
----
 
 <HomeContent>
-=======
-  - title: 可扩展
-    details: grammY 在你的 bot 拥有较多流量时提供可靠的帮助.
-permalink: /zh/
----
-
-<h6 align="right">… {{ [
-  '想到了什么？',
-  'bot 开发的新时代',
-  '运行更快',
-  '及时更新',
-  '除了洗碗，我都能做',
-  '像做柠檬汁一样简单',
-  '已处理数十亿请求',
-][Math.floor(Math.random() * 7)] }}.</h6>
->>>>>>> main
 
 ## 快速开始
 
