@@ -38,7 +38,7 @@ next: ./guide.md
 | [Sessions](./session.md)                      | _вбудовано_                                           | Зберігання даних користувачів в базі                         |
 | [Inline and Custom Keyboards](./keyboard.md)  | _вбудовано_                                           | Спрощене створення вбудованих і кастомних клавіатур          |
 | [Media Groups](./media-group.md)              | _вбудовано_                                           | Спрощене надсилання та редагування медіагруп                 |
-| [Inline Queries](./inline-query.md)           | _вбудовано_                                           | Легко будуйте результати для вбудованих запитів              |
+| [Inline Queries](./inline-query.md)           | _вбудовано_                                           | Легко будуйте результати для inline-запитів                  |
 | [Auto-retry](./auto-retry.md)                 | [`auto-retry`](./auto-retry.md)                       | Автоматичне оброблення лімітів                               |
 | [Conversations](./conversations.md)           | [`conversations`](./conversations.md)                 | Створюйте потужні діалогові інтерфейси                       |
 | [Chat Members](./chat-members.md)             | [`chat-members`](./chat-members.md)                   | Відстежуйте, хто з користувачів приєднався до якого чату     |
