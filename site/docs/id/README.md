@@ -12,7 +12,7 @@ hero:
     - selangkah lebih maju
     - bisa melakukan apa saja, kecuali mencuci piring
     - buatnya so easY, hati jadi happY
-    - ratusan juta telah terlayani
+    - miliaran telah terlayani
     - dokumentasi yang lengkap dan berkualitas
     - honeY, grammY, sweetY
   image:
@@ -38,21 +38,7 @@ features:
     details: grammY selalu siap membantu ketika bot menjadi semakin populer dan ramai digunakan.
 ---
 
-<<<<<<< HEAD
 <HomeContent>
-=======
-<h6 align="right">… {{ [
-  'tak perlu lagi mengeluh "whY!?"',
-  'era baru pengembangan bot',
-  'bekerja lebih cepat dibanding kamu',
-  'selangkah lebih maju',
-  'bisa melakukan apa saja, kecuali mencuci piring',
-  'buatnya so easY, hati jadi happY',
-  'miliaran telah terlayani',
-  'dokumentasi yang lengkap dan berkualitas',
-  'honeY, grammY, sweetY',
-][Math.floor(Math.random() * 9)] }}.</h6>
->>>>>>> main
 
 ## Mulai Cepat
 

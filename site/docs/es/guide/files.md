@@ -1,13 +1,6 @@
 ---
-<<<<<<< HEAD
-prev:
-  link: ./inline-queries
-next:
-  link: ./games
-=======
-prev: ./errors.md
-next: ./games.md
->>>>>>> main
+prev: ./errors
+next: ./games
 ---
 
 # Manejo de archivos

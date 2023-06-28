@@ -1,13 +1,6 @@
 ---
-<<<<<<< HEAD
-prev:
-  link: ./middleware
-next:
-  link: ./inline-queries
-=======
-prev: ./middleware.md
-next: ./files.md
->>>>>>> main
+prev: ./middleware
+next: ./files
 ---
 
 # 错误处理
