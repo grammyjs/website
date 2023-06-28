@@ -37,19 +37,19 @@ grammY 有一个简单且直观的方式来构建 inline keyboard，让你的 bo
 它提供了一个叫做 `InlineKeyboard` 的类。
 
 > 通过调用 `switchInline`、`switchInlineCurrent` 和 `switchInlineChosen` 添加的按钮都可以启动 Inline Queries。
+<<<<<<< HEAD
 > 你也可以查看 [Inline Queries](../guide/inline-queries) 的部分，来了解更多关于它们是怎样工作的。
+=======
+> 你也可以查看 [Inline Queries](./inline-query.md) 的部分，来了解更多关于它们是怎样工作的。
+>>>>>>> main
 
 ### 构建一个 Inline Keyboard
 
-这里有三个例子来演示如何构建带有 `text` 按钮的 inline keyboard。
+你可以通过创建 `InlineKeyboard` 类的新实例，然后使用 `.text()` 和其他方法向其中添加你喜欢的按钮，来构建一个 inline keyboard。
 
-你也可以使用其他方法，比如 `url`，让 Telegram 客户端打开一个 URL，或者 [grammY API 参考](https://deno.land/x/grammy/mod.ts?s=InlineKeyboard#Methods) 和 [Telegram Bot API 参考](https://core.telegram.org/bots/api#inlinekeyboardbutton) 中列出的提供给 `InlineKeyboard` 方法。
+以下是一个示例：
 
-#### 示例 1
-
-构建分页导航按钮：
-
-##### 代码
+![示例](/images/inline-keyboard-example.webp)
 
 ```ts
 const inlineKeyboard = new InlineKeyboard()
@@ -60,42 +60,28 @@ const inlineKeyboard = new InlineKeyboard()
   .text("31 »", "last");
 ```
 
-##### 结果
+如果你想开始新的一行按钮，请调用 `.row()` 方法。
+你还可以使用其他方法，比如 `.url()` 让用户的客户端打开特定的 URL 或执行其他酷炫的操作。
+请务必查看 `InlineKeyboard` 类上的 [所有方法](https://deno.land/x/grammy/mod.ts?s=InlineKeyboard#Methods)。
 
-![示例 1](/images/inline-keyboard-example-1.webp)
+如果你已经有一个字符串数组，并希望将其转换为 inline keyboard，你可以使用第二种方式来构建 inline keyboard 实例。
+`InlineKeyboard` 类具有像 `InlineKeyboard.text` 这样的静态方法，可以用来创建按钮对象。
+然后，你可以使用 `InlineKeyboard.from` 从按钮对象数组创建 inline keyboard 实例。
 
-#### 示例 2
-
-构建一个带有分享按钮的 inline keyboard：
-
-##### 代码
-
-```ts
-const inlineKeyboard = new InlineKeyboard()
-  .text("Get random music", "random").row()
-  .switchInline("Send music to friends");
-```
-
-##### 结果
-
-![示例 2](/images/inline-keyboard-example-2.webp)
-
-#### 示例 3
-
-构建 URL 按钮：
-
-##### 代码
+这样，你可以以一种实用的方式构建上述的 inline keyboard。
 
 ```ts
-const inlineKeyboard = new InlineKeyboard().url(
-  "Read on TechCrunch",
-  "https://techcrunch.com/2016/04/11/this-is-the-htc-10/",
-);
+const labelDataPairs = [
+  ["« 1", "first"],
+  ["‹ 3", "prev"],
+  ["· 4 ·", "stay"],
+  ["5 ›", "next"],
+  ["31 »", "last"],
+];
+const buttonRow = labelDataPairs
+  .map(([label, data]) => InlineKeyboard.text(label, data));
+const keyboard = InlineKeyboard.from([buttonRow]);
 ```
-
-##### 结果
-
-![示例 3](/images/inline-keyboard-example-3.webp)
 
 ### 发送一个 Inline Keyboard
 
@@ -177,15 +163,12 @@ grammY 有一个简单且直观的方式来构建回复 keyboard，让你的 bot
 
 ### 构建一个自定义 Keyboard
 
-这里有三个例子来演示如何构建带有 `text` 按钮的自定义 keyboard。
+你可以通过创建 `Keyboard` 类的新实例，并通过 `.text()` 等方法向其中添加按钮来构建自定义 keyboard。
+调用 `.row()` 可以开始新的一行按钮。
 
-你也可以使用 `requestContact` 来请求电话号码，使用 `requestLocation` 来请求位置，使用 `requestPoll` 来请求投票，使用 `requestUser` 来请求用户, 使用 `requestChat` 请求聊天。
+以下是一个示例：
 
-#### 样例 1
-
-构建一行三个按钮：
-
-##### 代码
+![示例](/images/keyboard-example.webp)
 
 ```ts
 const keyboard = new Keyboard()
@@ -195,43 +178,26 @@ const keyboard = new Keyboard()
   .resized();
 ```
 
-##### 结果
+你还可以发送更强大的按钮，请求用户的电话号码或位置，或执行其他酷炫的操作。
+请务必查看 `Keyboard` 类上的 [所有方法](https://deno.land/x/grammy/mod.ts?s=Keyboard#Methods)。
 
-![样例 1](/images/keyboard-example-1.webp)
+如果你已经有一个字符串数组，并希望将其转换为 keyboard，你可以使用第二种方式来构建 keyboard 实例。
+`Keyboard` 类具有像 `Keyboard.text` 这样的静态方法，可以用来创建按钮对象。
+然后，你可以使用 `Keyboard.from` 从按钮对象数组创建 keyboard 实例。
 
-#### 样例 2
-
-构建一个计算器：
-
-##### 代码
-
-```ts
-const keyboard = new Keyboard()
-  .text("7").text("8").text("9").text("*").row()
-  .text("4").text("5").text("6").text("/").row()
-  .text("1").text("2").text("3").text("-").row()
-  .text("0").text(".").text("=").text("+");
-```
-
-##### 结果
-
-![样例 2](/images/keyboard-example-2.webp)
-
-#### 样例 3
-
-构建一个网格中的四个按钮：
-
-##### 代码
+这样，你可以以一种实用的方式构建上述的 inline keyboard。
 
 ```ts
-const keyboard = new Keyboard()
-  .text("A").text("B").row()
-  .text("C").text("D");
+const labels = [
+  "Yes, they certainly are",
+  "I'm not quite sure",
+  "No. 😈",
+];
+const buttonRows = labels
+  .map((label) => Keyboard.text(label))
+  .map((button) => Keyboard.row(button));
+const keyboard = Keyboard.from(buttonRows, { resize_keyboard: true });
 ```
-
-##### 结果
-
-![样例 3](/images/keyboard-example-3.webp)
 
 ### 发送一个自定义 Keyboard
 
@@ -246,11 +212,9 @@ await ctx.reply(text, {
 
 当然，除了文本消息以外，其他发送消息的方法都支持相同的选项，即 [Telegram Bot API 参考](https://core.telegram.org/bots/api) 中所规定的。
 
-如果你想在你的信息中指定更多选项，你可能需要创建你自己的 `reply_markup` 对象。
-在这种情况下，你必须在传递你的对象时使用 `keyboard.build()`。
-
 你也可以通过调用特殊方法给你的 keyboard 添加一个或者多个属性。
 它们不会添加任何新的按钮，而是定义 keyboard 的行为。
+在上面的示例中，我们已经看到了 `resized`，下面是一些你可以做的其他事情。
 
 #### 永久 Keyboards
 

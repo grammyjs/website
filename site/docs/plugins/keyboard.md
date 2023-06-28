@@ -37,19 +37,19 @@ grammY has a simple and intuitive way to build up the inline keyboards that your
 It provides a class called `InlineKeyboard` for this.
 
 > The buttons added by calling `switchInline`, `switchInlineCurrent`, and `switchInlineChosen` start inline queries.
+<<<<<<< HEAD
 > Check out the section about [Inline Queries](../guide/inline-queries) for more information about how they work.
+=======
+> Check out the section about [Inline Queries](./inline-query.md) for more information on how they work.
+>>>>>>> main
 
 ### Building an Inline Keyboard
 
-Here are three examples how to build an inline keyboard with `text` buttons.
+You can build an inline keyboard by creating a new instance of the `InlineKeyboard` class, and then adding buttons you like to it using `.text()` and its other methods.
 
-You can also use other methods like `url` to let the Telegram clients open a URL, and many more options as listed in the [grammY API Reference](https://deno.land/x/grammy/mod.ts?s=InlineKeyboard#Methods) as well as the [Telegram Bot API Reference](https://core.telegram.org/bots/api#inlinekeyboardbutton) for `InlineKeyboard`.
+Here is an example:
 
-#### Example 1
-
-Buttons for a pagination navigation can be built like this:
-
-##### Code
+![Example](/images/inline-keyboard-example.webp)
 
 ```ts
 const inlineKeyboard = new InlineKeyboard()
@@ -60,42 +60,28 @@ const inlineKeyboard = new InlineKeyboard()
   .text("31 »", "last");
 ```
 
-##### Result
+Call `.row()` if you want to begin a new row of buttons.
+You can also use other methods like `.url()` to let the user's client open a specific URL or do other cool things.
+Be sure to check out [all methods](https://deno.land/x/grammy/mod.ts?s=InlineKeyboard#Methods) on the `InlineKeyboard` class.
 
-![Example 1](/images/inline-keyboard-example-1.webp)
+If you already have an array of strings that you would like to turn into an inline keyboard, you can use a second, alternative style for building inline keyboard instances.
+The `InlineKeyboard` class has static methods such as `InlineKeyboard.text` that let you create button objects.
+In turn, you can create an inline keyboard instance from array of button objects using `InlineKeyboard.from`.
 
-#### Example 2
-
-An inline keyboard with share button can be built like this:
-
-##### Code
-
-```ts
-const inlineKeyboard = new InlineKeyboard()
-  .text("Get random music", "random").row()
-  .switchInline("Send music to friends");
-```
-
-##### Result
-
-![Example 2](/images/inline-keyboard-example-2.webp)
-
-#### Example 3
-
-URL buttons can be built like this:
-
-##### Code
+That way, you can build the above inline keyboard in a functional way.
 
 ```ts
-const inlineKeyboard = new InlineKeyboard().url(
-  "Read on TechCrunch",
-  "https://techcrunch.com/2016/04/11/this-is-the-htc-10/",
-);
+const labelDataPairs = [
+  ["« 1", "first"],
+  ["‹ 3", "prev"],
+  ["· 4 ·", "stay"],
+  ["5 ›", "next"],
+  ["31 »", "last"],
+];
+const buttonRow = labelDataPairs
+  .map(([label, data]) => InlineKeyboard.text(label, data));
+const keyboard = InlineKeyboard.from([buttonRow]);
 ```
-
-##### Result
-
-![Example 3](/images/inline-keyboard-example-3.webp)
 
 ### Sending an Inline Keyboard
 
@@ -177,15 +163,12 @@ Remember that you can listen for text message via `bot.on("message:text")` or `b
 
 ### Building a Custom Keyboard
 
-Here are three examples how to build a custom keyboard with `text` buttons.
+You can build a custom keyboard by creating a new instance of the `Keyboard` class, and by then adding buttons like to it via `.text()` and others.
+Call `.row()` to begin a new row of buttons.
 
-You can also request the phone number with `requestContact`, the location with `requestLocation`, a poll with `requestPoll`, a user with `requestUser`, and a chat with `requestChat`.
+Here is an example:
 
-#### Example 1
-
-Three buttons in one column can be built like this:
-
-##### Code
+![Example](/images/keyboard-example.webp)
 
 ```ts
 const keyboard = new Keyboard()
@@ -195,43 +178,26 @@ const keyboard = new Keyboard()
   .resized();
 ```
 
-##### Result
+You can also send more powerful buttons that request the user's phone number or location or do other cool things.
+Be sure to check out [all methods](https://deno.land/x/grammy/mod.ts?s=Keyboard#Methods) on the `Keyboard` class.
 
-![Example 1](/images/keyboard-example-1.webp)
+If you already have an array of strings that you would like to turn into a keyboard, you can use a second, alternative style for building keyboard instances.
+The `Keyboard` class has static methods such as `Keyboard.text` that let you create button objects.
+In turn, you can create a keyboard instance from array of button objects using `Keyboard.from`.
 
-#### Example 2
-
-A calculator pad can be built like this:
-
-##### Code
-
-```ts
-const keyboard = new Keyboard()
-  .text("7").text("8").text("9").text("*").row()
-  .text("4").text("5").text("6").text("/").row()
-  .text("1").text("2").text("3").text("-").row()
-  .text("0").text(".").text("=").text("+");
-```
-
-##### Result
-
-![Example 2](/images/keyboard-example-2.webp)
-
-#### Example 3
-
-Four buttons in a grid can be built like this:
-
-##### Code
+That way, you can build the above keyboard in a functional way.
 
 ```ts
-const keyboard = new Keyboard()
-  .text("A").text("B").row()
-  .text("C").text("D");
+const labels = [
+  "Yes, they certainly are",
+  "I'm not quite sure",
+  "No. 😈",
+];
+const buttonRows = labels
+  .map((label) => Keyboard.text(label))
+  .map((button) => Keyboard.row(button));
+const keyboard = Keyboard.from(buttonRows, { resize_keyboard: true });
 ```
-
-##### Result
-
-![Example 3](/images/keyboard-example-3.webp)
 
 ### Sending a Custom Keyboard
 
@@ -248,6 +214,7 @@ Naturally, all other methods that send messages other than text messages support
 
 You can also give your keyboard one or more further properties by calling special methods on it.
 They will not add any buttons, but rather define the behavior of the keyboard.
+We have already seen `resized` in the example above---here are a few more things you can do.
 
 #### Persistent Keyboards
 

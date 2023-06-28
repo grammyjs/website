@@ -1,16 +1,19 @@
 ---
+<<<<<<< HEAD
 prev:
   link: ./inline-queries
 next:
   link: ./games
+=======
+prev: ./errors.md
+next: ./games.md
+>>>>>>> main
 ---
 
 # Manejo de archivos
 
 Los bots de Telegram no sólo pueden enviar y recibir mensajes de texto, sino también muchos otros tipos de mensajes, como fotos y vídeos.
 Esto implica el manejo de los archivos que se adjuntan a los mensajes.
-
-## How Files Work for Telegram Bots
 
 ## Cómo funcionan los archivos para los bots de Telegram
 

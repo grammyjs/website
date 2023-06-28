@@ -36,7 +36,19 @@ features:
     details: grammY te tiene cubierto cuando tu bot se vuelve popular y el tráfico se incrementa.
 ---
 
+<<<<<<< HEAD
 <HomeContent>
+=======
+<h6 align="right">… {{ [
+  'piensa en el por qué',
+  'la nueva era del desarrollo de bots',
+  'se ejecuta más rápido que tú',
+  'una actualización por delante',
+  'puede hacer todo menos lavar los platos',
+  'fácil de exprimir limones',
+  'miles y miles de millones de peticiones',
+][Math.floor(Math.random() * 7)] }}.</h6>
+>>>>>>> main
 
 ## Quickstart
 

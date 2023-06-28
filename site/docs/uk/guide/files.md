@@ -1,8 +1,13 @@
 ---
+<<<<<<< HEAD
 prev:
   link: ./inline-queries
 next:
   link: ./games
+=======
+prev: ./errors.md
+next: ./games.md
+>>>>>>> main
 ---
 
 # Обробка файлів

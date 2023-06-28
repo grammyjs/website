@@ -1,8 +1,6 @@
 ---
-prev:
-  link: ./middleware
-next:
-  link: ./inline-queries
+prev: ./middleware
+next: ./files
 ---
 
 # Manejo de errores
