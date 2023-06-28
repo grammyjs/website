@@ -1,19 +1,19 @@
 {
-	"deno.config": "./deno.json",
-	"deno.enable": true,
-	"deno.enablePaths": [
-		// everything except .vuepress
-		"./site/README.md",
-		"./site/docs/advanced/",
-		"./site/docs/demo/",
-		"./site/docs/guide/",
-		"./site/docs/hosting/",
-		"./site/docs/plugins/",
-		"./site/docs/resources/",
-		"./site/docs/es/",
-		"./site/docs/id/",
-		"./site/docs/uk/",
-		"./site/docs/zh/",
-		"./site/README.md"
-	]
+  "deno.config": "./deno.jsonc",
+  "deno.enable": true,
+  "deno.enablePaths": [
+    // everything except .vuepress
+    "./site/README.md",
+    "./site/docs/advanced/",
+    "./site/docs/demo/",
+    "./site/docs/guide/",
+    "./site/docs/hosting/",
+    "./site/docs/plugins/",
+    "./site/docs/resources/",
+    "./site/docs/es/",
+    "./site/docs/id/",
+    "./site/docs/uk/",
+    "./site/docs/zh/",
+    "./site/README.md"
+  ]
 }
