@@ -190,7 +190,7 @@ They even have a pretty website! 👇`,
 bot.on("inline_query", (ctx) => ctx.answerInlineQuery([]));
 ```
 
-[Remember](./basics.md#sending-messages) that you can always specify further options when calling API methods by using the options object of type `Other`.
+[Remember](../guide//basics.md#sending-messages) that you can always specify further options when calling API methods by using the options object of type `Other`.
 For example, `answerInlineQuery` allows you to perform pagination for inline queries via an offset, as you can see [here](https://core.telegram.org/bots/api#answerinlinequery).
 
 :::tip Mixing Text and Media

@@ -208,7 +208,7 @@ Mereka bahkan punya website dengan terjemahan yang keren! 👇`,
 bot.on("inline_query", (ctx) => ctx.answerInlineQuery([]));
 ```
 
-[Ingat!](./basics.md#sending-messages)
+[Ingat!](../guide/basics.md#mengirim-pesan)
 Kamu bisa menentukan opsi lanjutan ketika memanggil method API menggunakan object opsi type `Other`.
 Contohnya, dengan `answerInlineQuery`, kamu bisa membuat paginasi untuk inline query menggunakan sebuah offset, seperti yang bisa dilihat [di sini](https://core.telegram.org/bots/api#answerinlinequery).
 

@@ -196,7 +196,7 @@ bot.inlineQuery(/mejor bot (framework|library)/, async (ctx) => {
 bot.on("inline_query", (ctx) => ctx.answerInlineQuery([]));
 ```
 
-[Recuerda](./basics.md#envío-de-mensajes) que siempre puedes especificar más opciones cuando llames a métodos de la API utilizando el objeto options de tipo `Other`.
+[Recuerda](../guide/basics.html#envio-de-mensajes) que siempre puedes especificar más opciones cuando llames a métodos de la API utilizando el objeto options de tipo `Other`.
 Por ejemplo, `answerInlineQuery` le permite realizar la paginación para consultas en línea a través de un desplazamiento, como puede ver [aquí](https://core.telegram.org/bots/api#answerinlinequery).
 
 :::tip Mezcla de texto y medios
