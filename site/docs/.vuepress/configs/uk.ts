@@ -161,6 +161,10 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/uk/plugins/keyboard.html",
               },
               {
+                text: "Медіагрупи",
+                link: "/uk/plugins/media-group.html",
+              },
+              {
                 text: "Inline-запити",
                 link: "/uk/plugins/inline-query.html",
               },

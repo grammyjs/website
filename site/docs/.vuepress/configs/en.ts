@@ -161,6 +161,10 @@ export const localeEn: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/plugins/keyboard.html",
               },
               {
+                text: "Media Groups",
+                link: "/plugins/media-group.html",
+              },
+              {
                 text: "Inline Queries",
                 link: "/plugins/inline-query.html",
               },

@@ -161,6 +161,10 @@ export const localeEs: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/es/plugins/keyboard.html",
               },
               {
+                text: "Medios de comunicación",
+                link: "/es/plugins/media-group.html",
+              },
+              {
                 text: "Consultas lineales",
                 link: "/es/guide/inline-queries.html",
               },
