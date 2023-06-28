@@ -48,10 +48,6 @@ const learnGuide = {
       link: "/es/guide/errors",
     },
     {
-      text: "Consultas lineales",
-      link: "/es/guide/inline-queries",
-    },
-    {
       text: "Manejo de archivos",
       link: "/es/guide/files",
     },
@@ -138,6 +134,10 @@ const pluginBuiltin = {
     {
       text: "Medios de comunicación",
       link: "/es/plugins/media-group",
+    },
+    {
+      text: "Consultas lineales",
+      link: "/es/plugins/inline-query",
     },
   ],
 };

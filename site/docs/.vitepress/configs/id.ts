@@ -48,10 +48,6 @@ const learnGuide = {
       link: "/id/guide/errors",
     },
     {
-      text: "Inline Query",
-      link: "/id/guide/inline-queries",
-    },
-    {
       text: "Menangani File",
       link: "/id/guide/files",
     },
@@ -136,6 +132,10 @@ const pluginBuiltin = {
     {
       text: "Pengelompokan Media",
       link: "/id/plugins/media-group",
+    },
+    {
+      text: "Inline Query",
+      link: "/id/plugins/inline-query",
     },
   ],
 };

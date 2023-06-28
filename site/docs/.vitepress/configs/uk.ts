@@ -48,10 +48,6 @@ const learnGuide = {
       link: "/uk/guide/errors",
     },
     {
-      text: "Вбудовані запити",
-      link: "/uk/guide/inline-queries",
-    },
-    {
       text: "Обробка файлів",
       link: "/uk/guide/files",
     },
@@ -138,6 +134,10 @@ const pluginBuiltin = {
     {
       text: "Вбудовані та власні клавіатури",
       link: "/uk/plugins/keyboard",
+    }, // TODO: only 3 items?
+    {
+      text: "Inline-запити",
+      link: "/uk/plugins/inline-query",
     },
   ],
 };

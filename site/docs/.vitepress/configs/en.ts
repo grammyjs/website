@@ -48,10 +48,6 @@ const learnGuide = {
       link: "/guide/errors",
     },
     {
-      text: "Inline Queries",
-      link: "/guide/inline-queries",
-    },
-    {
       text: "File Handling",
       link: "/guide/files",
     },
@@ -138,6 +134,10 @@ const pluginBuiltin = {
     {
       text: "Media Groups",
       link: "/plugins/media-group",
+    },
+    {
+      text: "Inline Queries",
+      link: "/plugins/inline-query",
     },
   ],
 };

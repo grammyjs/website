@@ -48,10 +48,6 @@ const learnGuide = {
       link: "/zh/guide/errors",
     },
     {
-      text: "Inline Queries",
-      link: "/zh/guide/inline-queries",
-    },
-    {
       text: "文件管理",
       link: "/zh/guide/files",
     },
@@ -138,6 +134,10 @@ const pluginBuiltin = {
     {
       text: "媒体组",
       link: "/zh/plugins/media-group",
+    },
+    {
+      text: "Inline Queries",
+      link: "/zh/plugins/inline-query",
     },
   ],
 };
