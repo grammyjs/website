@@ -1004,7 +1004,8 @@ const keyboard = new InlineKeyboard()
   .text("A", "a").text("Б", "б");
 await ctx.reply("A чи Б?", { reply_markup: keyboard });
 const response = await conversation.waitForCallbackQuery(["a", "б"], {
-  otherwise: (ctx) => ctx.reply("Використовуйте кнопки!", { reply_markup: keyboard }),
+  otherwise: (ctx) =>
+    ctx.reply("Використовуйте кнопки!", { reply_markup: keyboard }),
 });
 if (response.match === "a") {
   // Користувач обрав "A".

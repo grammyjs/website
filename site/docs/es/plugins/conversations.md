@@ -1001,7 +1001,8 @@ const keyboard = new InlineKeyboard()
   .text("A", "a").text("B", "b");
 await ctx.reply("A or B?", { reply_markup: keyboard });
 const response = await conversation.waitForCallbackQuery(["a", "b"], {
-  otherwise: (ctx) => ctx.reply("¡Usa los botones!", { reply_markup: keyboard }),
+  otherwise: (ctx) =>
+    ctx.reply("¡Usa los botones!", { reply_markup: keyboard }),
 });
 if (response.match === "a") {
   // Usuario selecciona "A".
@@ -1009,6 +1010,7 @@ if (response.match === "a") {
   // Usuario selecciona "B".
 }
 ```
+
 :::
 
 Otros plugins funcionan bien.
