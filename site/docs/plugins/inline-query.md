@@ -54,7 +54,7 @@ Every result needs three things.
    In some cases, the message content can be inferred implicitly from the result object.
    For example, if you want your result to be displayed as a GIF, then Telegram will understand that the message content will be that same GIF---unless you specify a message content object.
 
-grammY exports a buider for inline query results, named `InlineQueryResultBuilder`.
+grammY exports a builder for inline query results, named `InlineQueryResultBuilder`.
 Here are some examples for its usage.
 
 ::::code-group
