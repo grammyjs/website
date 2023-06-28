@@ -9,10 +9,9 @@ Remember that `InputMedia` objects are specified [here](https://core.telegram.or
 
 You can use this plugin like so:
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { InputMediaBuilder } from "grammy";
 
 const photo = InputMediaBuilder.photo(new InputFile("/tmp/photo.mp4"));
@@ -31,10 +30,7 @@ const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
 // etc
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { InputMediaBuilder } from "https://deno.land/x/grammy/mod.ts";
 
 const photo = InputMediaBuilder.photo(new InputFile("/tmp/photo.mp4"));
@@ -43,7 +39,6 @@ const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
 ```
 
 :::
-::::
 
 Check out all methods of `InputMediaBuilder` in the [API reference](https://deno.land/x/grammy/mod.ts?s=InputMediaBuilder).
 

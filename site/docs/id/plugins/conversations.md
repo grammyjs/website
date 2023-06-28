@@ -816,7 +816,7 @@ Error handling semestinya juga bisa digunakan di function kamu.
 Statement `try`/`catch` biasa juga dapat bekerja dengan baik di berbagai function.
 Lagi pula, conversations hanyalah sebuah JavaScript, jadi seharusnya tidak ada masalah.
 
-Kalau function conversation utama melempar sebuah error, maka error tersebut akan diteruskan ke [mekanisme penanganan error](../guide//errors) kamu.
+Kalau function conversation utama melempar sebuah error, maka error tersebut akan diteruskan ke [mekanisme penanganan error](../guide/errors) kamu.
 
 ## Module dan Class
 

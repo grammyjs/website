@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Inline-запити
 
 За допомогою inline-запитів користувачі можуть шукати, переглядати та надсилати контент, запропонований вашим ботом, у будь-якому чаті, навіть якщо бот не учасник цього чату.
@@ -60,10 +65,9 @@ bot.on("inline_query", async (ctx) => {
 grammY експортує будівельника для результатів inline-запитів, який називається `InlineQueryResultBuilder`.
 Ось кілька прикладів його використання:
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { InlineKeyboard, InlineQueryResultBuilder } from "grammy";
 
 // Будуємо результат з фото.
@@ -96,10 +100,7 @@ InlineQueryResultBuilder.article("id-4", "Inline-запити")
   );
 ```
 
-:::
-::: code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { InlineKeyboard, InlineQueryResultBuilder } = require("grammy");
 
 // Будуємо результат з фото.
@@ -132,10 +133,7 @@ InlineQueryResultBuilder.article("id-4", "Inline-запити")
   );
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import {
   InlineKeyboard,
   InlineQueryResultBuilder,
@@ -172,7 +170,6 @@ InlineQueryResultBuilder.article("id-4", "Inline-запити")
 ```
 
 :::
-::::
 
 Зауважте, що якщо ви хочете надіслати файли за допомогою існуючих ідентифікаторів файлів, вам потрібно використовувати методи `*Cached`.
 
@@ -182,7 +179,7 @@ const audioFileId = "AgADBAADZRAxGyhM3FKSE4qKa-RODckQHxsoABDHe0BDC1GzpGACAAEC";
 InlineQueryResultBuilder.audioCached("id-0", audioFileId);
 ```
 
-> Дізнайтеся більше про ідентифікатори файлів [тут](../guide/files.md#як-працюють-фаили-для-ботів-telegram).
+> Дізнайтеся більше про ідентифікатори файлів [тут](../guide/files#як-працюють-фаили-для-ботів-telegram).
 
 Вам слід переглянути [довідку API](https://deno.land/x/grammy/mod.ts?s=InlineQueryResultBuilder) `InlineQueryResultBuilder` і, можливо, також [специфікацію](https://core.telegram.org/bots/api#inlinequeryresult) `InlineQueryResult`, щоб побачити всі доступні параметри.
 
@@ -220,10 +217,10 @@ bot.inlineQuery(
 bot.on("inline_query", (ctx) => ctx.answerInlineQuery([]));
 ```
 
-[Памʼятайте](../guide/basics.md#надсилання-повідомлень), що ви завжди можете вказати додаткові параметри під час виклику методів API за допомогою обʼєкта параметрів типу `Other`.
+[Памʼятайте](../guide/basics#надсилання-повідомлень), що ви завжди можете вказати додаткові параметри під час виклику методів API за допомогою обʼєкта параметрів типу `Other`.
 Наприклад, `answerInlineQuery` дозволяє виконувати розбиття на сторінки для inline-запитів через зсув (offset), як ви можете побачити [тут](https://core.telegram.org/bots/api#answerinlinequery).
 
-:::tip Поєднання тексту та медіа
+::: tip Поєднання тексту та медіа
 Хоча дозволяється надсилати списки результатів, які містять як медіа, так і текстові елементи, більшість клієнтів Telegram не дуже добре їх відображають.
 З точки зору користувацького досвіду, їх варто уникати.
 :::
@@ -242,10 +239,10 @@ await ctx.answerInlineQuery(results, { button });
 ```
 
 Коли користувач натисне кнопку, вашому боту буде надіслано командне повідомлення `/start`.
-Параметр start (`start_parameter`) буде доступний через [deep linking](../guide/commands.md#підтримка-deep-linking).
+Параметр start (`start_parameter`) буде доступний через [deep linking](../guide/commands#підтримка-deep-linking).
 Іншими словами, використовуючи вищенаведений фрагмент коду, `ctx.match` матиме значення `"вхід"` у вашому обробнику команди.
 
-Якщо ви надішлете [вбудовану клавіатуру](./keyboard.md#побудова-вбудованоі-клавіатури) з кнопкою `switchInline`, користувач буде повернутий до чату, де він спочатку натиснув кнопку результатів inline-запиту.
+Якщо ви надішлете [вбудовану клавіатуру](./keyboard#побудова-вбудованоі-клавіатури) з кнопкою `switchInline`, користувач буде повернутий до чату, де він спочатку натиснув кнопку результатів inline-запиту.
 
 ```ts
 bot
@@ -264,7 +261,7 @@ bot
 
 Отже, ви можете виконати, наприклад, процедуру входу в систему в приватному чаті з користувачем, перш ніж надсилати результати запиту.
 Діалог може тривати деякий час, перш ніж ви відправите користувача назад.
-Наприклад, ви можете [провести коротку розмову](./conversations.md#встановлення-та-вхід-до-розмови) за допомогою плагіна розмов (`conversations`).
+Наприклад, ви можете [провести коротку розмову](./conversations#встановлення-та-вхід-до-розмови) за допомогою плагіна розмов (`conversations`).
 
 ## Отримання зворотного звʼязку про вибрані результати
 

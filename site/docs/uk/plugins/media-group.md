@@ -9,10 +9,9 @@
 
 Ви можете використовувати цей плагін ось так:
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { InputMediaBuilder } from "grammy";
 
 const photo = InputMediaBuilder.photo(new InputFile("/tmp/photo.mp4"));
@@ -31,10 +30,7 @@ const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
 // тощо
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { InputMediaBuilder } from "https://deno.land/x/grammy/mod.ts";
 
 const photo = InputMediaBuilder.photo(new InputFile("/tmp/photo.mp4"));
@@ -43,7 +39,6 @@ const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
 ```
 
 :::
-::::
 
 Ознайомтеся зі всіма методами `InputMediaBuilder` у [довідці API](https://deno.land/x/grammy/mod.ts?s=InputMediaBuilder).
 
