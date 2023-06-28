@@ -1,6 +1,6 @@
 ---
 prev: ./middleware.md
-next: ./inline-queries.md
+next: ./files.md
 ---
 
 # Обробка помилок
