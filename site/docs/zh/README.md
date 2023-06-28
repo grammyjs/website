@@ -33,7 +33,7 @@ features:
     details: grammY 是开放的，通过插件让它完全适合你的需要。
   - icon: 📈
     title: 可扩展
-    details: grammY 在你 bot 拥有较多流量时提供可靠的帮助.
+    details: grammY 在你的 bot 拥有较多流量时提供可靠的帮助.
 ---
 
 <HomeContent>
