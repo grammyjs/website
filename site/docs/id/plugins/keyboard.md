@@ -28,22 +28,18 @@ Contohnya, kita tidak bisa mengirim keyboard custom sebagai pesan pertama lalu m
 
 > Silahkan kunjungi bagian keyboard inline di materi [Fitur-fitur Bot Telegram](https://core.telegram.org/bots/features#inline-keyboards) yang ditulis oleh tim Telegram.
 
-grammY menyediakan class bernama `InlineKeyboard` yang bisa kamu gunakan untuk membuat keyboard inline dengan mudah dan simpel.
+grammY menyediakan class bernama `InlineKeyboard` yang bisa kamu gunakan untuk membuat keyboard inline dengan mudah.
 
 > Semua tombol yang menggunakan `switchInline`, `switchInlineCurrent`, atau `switchInlineChosen` akan memulai sebuah inline query.
 > Lihat materi tentang [Inline Query](./inline-query.md) untuk mengetahui cara kerjanya.
 
 ### Membuat Keyboard Inline
 
-Berikut ketiga contoh untuk membuat sebuah keyboard inline dengan tombol `text` di dalamnya.
+Sebuah keyboard inline bisa dibentuk dengan cara membuat sebuah instance class `InlineKeyboard`, kemudian tambahkan tombol yang diinginkan menggunakan `.text()` dan method lainnya.
 
-Kamu juga bisa menggunakan method lain seperti `url` agar aplikasi Telegram user bisa membuka sebuah URL, serta opsi-opsi `InlineKeyboard` lain yang tersedia baik di [Referensi API grammY](https://deno.land/x/grammy/mod.ts?s=InlineKeyboard#Methods) maupun [Referensi API Bot Telegram](https://core.telegram.org/bots/api#inlinekeyboardbutton).
+Berikut contohnya:
 
-#### Contoh 1
-
-Tombol untuk navigasi halaman bisa dibuat dengan cara seperti ini:
-
-##### Kode
+![Contoh tangkapan layar dari sebuah keyboard inline](/images/inline-keyboard-example.webp)
 
 ```ts
 const inlineKeyboard = new InlineKeyboard()
@@ -54,42 +50,28 @@ const inlineKeyboard = new InlineKeyboard()
   .text("31 »", "akhir");
 ```
 
-##### Hasil
+Sebuah baris tombol baru bisa ditambahkan dengan cara memanggil `.row()`.
+Kamu juga bisa menggunakan berbagai method yang lain, misalnya `.url()` yang berfungsi agar perangkat pengguna mampu membuka sebuah link tertentu atau hal-hal keren lainnya.
+Silahkan lihat [daftar semua method](https://deno.land/x/grammy/mod.ts?s=InlineKeyboard#Methods) yang tersedia di class `InlineKeyboard`.
 
-![Hasil contoh 1](/images/inline-keyboard-example-1.webp)
+Jika kamu sudah memiliki sebuah array string yang hendak diubah menjadi sebuah keyboard inline, kamu bisa menggunakan gaya penulisan yang kedua.
+Class `InlineKeyboard` memiliki beberapa method static, salah satunya `InlineKeyboard.text` yang berfungsi untuk membuat beberapa object tombol.
+Setelah itu, kamu bisa membuat sebuah instance keyboard inline dari array object tombol tadi menggunakan `InlineKeyboard.from`.
 
-#### Contoh 2
-
-Tombol berbagi untuk keyboard inline bisa dibuat dengan cara seperti ini:
-
-##### Kode
-
-```ts
-const inlineKeyboard = new InlineKeyboard()
-  .text("Get random music", "acak").row()
-  .switchInline("Send music to friends");
-```
-
-##### Hasil
-
-![Hasil contoh 2](/images/inline-keyboard-example-2.webp)
-
-#### Contoh 3
-
-Tombol URL bisa dibuat dengan cara seperti ini:
-
-##### Kode
+Dengan begitu, kamu bisa membuat keyboard inline di atas dengan gaya penulisan fungsional.
 
 ```ts
-const inlineKeyboard = new InlineKeyboard().url(
-  "Read on TechCrunch",
-  "https://techcrunch.com/2016/04/11/this-is-the-htc-10/",
-);
+const labelDataPairs = [
+  ["« 1", "awal"],
+  ["‹ 3", "sebelumnya"],
+  ["· 4 ·", "saat ini"],
+  ["5 ›", "selanjutnya"],
+  ["31 »", "akhir"],
+];
+const buttonRow = labelDataPairs
+  .map(([label, data]) => InlineKeyboard.text(label, data));
+const keyboard = InlineKeyboard.from([buttonRow]);
 ```
-
-##### Hasil
-
-![Hasil contoh 3](/images/inline-keyboard-example-3.webp)
 
 ### Mengirim Keyboard Inline
 
@@ -175,15 +157,12 @@ Kamu bisa menyimak pesan teks menggunakan `bot.on("message:text")` ataupun `bot.
 
 ### Membuat Keyboard Custom
 
-Berikut ketiga contoh cara membuat keyboard custom dengan tombol `text` di dalamnya.
+Kamu bisa membuat sebuah keyboard custom dengan cara membuat sebuah instance class `Keyboard` baru, kemudian tambahkan tombol-tombolnya melalui `.text()` dan lainnya.
+Panggil `.row()` untuk membuat sebuah baris tombol baru
 
-Kamu juga bisa meminta nomor telepon dengan `requestContact`, lokasi dengan `requestLocation`, voting dengan `requestPoll`, user dengan `requestUser`, dan chat dengan `requestChat`.
+Berikut salah satu contohnya:
 
-#### Contoh 1
-
-Sebuah kolom berisi tiga tombol bisa dibuat dengan cara seperti ini:
-
-##### Kode
+![Contoh tangkapan layar keyboard custom](/images/keyboard-example.webp)
 
 ```ts
 const keyboard = new Keyboard()
@@ -193,43 +172,26 @@ const keyboard = new Keyboard()
   .resized();
 ```
 
-##### Hasil
+Kamu juga bisa menggunakan tombol canggih lainnya untuk meminta nomor telepon pengguna, lokasi, atau hal-hal keren lainnya.
+Silahkan lihat [daftar semua method](https://deno.land/x/grammy/mod.ts?s=Keyboard#Methods) yang tersedia di class `Keyboard`.
 
-![Hasil Contoh 1](/images/keyboard-example-1.webp)
+Jika kamu sudah memiliki sebuah array string yang hendak dijadikan sebuah keyboard, kamu bisa menggunakan gaya penulisan kedua.
+Class `Keyboard` memiliki beberapa method static, salah satunya `Keyboard.text` untuk membuat object tombol.
+Dari situ, kamu bisa membuat sebuah instance keyboard dari array object tombol menggunakan `Keyboard.from`.
 
-#### Contoh 2
-
-Sebuah panel kalkulator bisa dibuat dengan cara seperti ini:
-
-##### Kode
-
-```ts
-const keyboard = new Keyboard()
-  .text("7").text("8").text("9").text("*").row()
-  .text("4").text("5").text("6").text("/").row()
-  .text("1").text("2").text("3").text("-").row()
-  .text("0").text(".").text("=").text("+");
-```
-
-##### Hasil
-
-![Hasil Contoh 2](/images/keyboard-example-2.webp)
-
-#### Contoh 3
-
-Empat tombol di dalam sebuah grid bisa dibuat dengan cara seperti ini:
-
-##### Kode
+Dengan begitu, kamu bisa membuat keyboard di atas dengan gaya penulisan fungsional.
 
 ```ts
-const keyboard = new Keyboard()
-  .text("A").text("B").row()
-  .text("C").text("D");
+const labels = [
+  "Yes, they certainly are",
+  "I'm not quite sure",
+  "No. 😈",
+];
+const buttonRows = labels
+  .map((label) => Keyboard.text(label))
+  .map((button) => Keyboard.row(button));
+const keyboard = Keyboard.from(buttonRows, { resize_keyboard: true });
 ```
-
-##### Hasil
-
-![Hasil Contoh 3](/images/keyboard-example-3.webp)
 
 ### Mengirim Keyboard Custom
 
@@ -246,6 +208,7 @@ Umumnya, semua method yang mengirim pesan selain pesan teks mendukung opsi-opsi 
 
 Kamu juga bisa memberi beberapa property ke keyboard kamu dengan cara memanggil method khusus.
 Alih-alih menambahkan tombol baru, method-method tersebut mengubah perilaku dari sebuah keyboard.
+Di atas tadi, kita sudah melihat contoh `resized`---berikut beberapa hal yang bisa kamu lakukan:
 
 #### Keyboard Persisten
 
