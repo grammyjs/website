@@ -38,7 +38,7 @@
 
 > Якщо ви хочете використовувати безкоштовний тарифний план Vercel, ваші конфігурації `memory` та `maxDuration` мають виглядати так, як показано вище, щоб не виходити за межі безкоштовних лімітів.
 
-Якщо ви хочете дізнатися більше про файл конфігурації `vercel.json`, дивіться [документацію Vercel](https://vercel.com/docs/project-configuration).
+Якщо ви хочете дізнатися більше про файл конфігурації `vercel.json`, дивіться [документацію Vercel](https://vercel.com/docs/concepts/projects/project-configuration).
 
 ## Налаштування TypeScript
 
@@ -93,7 +93,7 @@ export default webhookCallback(bot, "http");
 Наступним кроком є підключення вашого застосунку Vercel до Telegram.
 Змініть наведену нижче URL-адресу на свої дані авторизації та відвідайте її у своєму браузері:
 
-```md:no-line-numbers
+```text
 https://api.telegram.org/bot<токен-бота>/setWebhook?url=<адреса>
 ```
 

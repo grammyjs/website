@@ -1,6 +1,6 @@
 ---
 prev: ./middleware.md
-next: ./inline-queries.md
+next: ./files.md
 ---
 
 # Menangani Error
@@ -12,11 +12,11 @@ Materi ini akan mengajarimu [cara menangkap error](#menangkap-error) yang dilemp
 
 Setelah itu, kita akan membahas tiga jenis error yang biasa ditemukan di bot:
 
-| Nama                                | Keterangan                                                                                                                 |
-| ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| [`BotError`](#objek-boterror)       | Object error yang membungkus error apapun yang dilempar di middleware (contohnya, dua error di bawah).                     |
-| [`GrammyError`](#objek-grammyerror) | Dilempar ketika server API Bot mengembalikan `ok: false`, yang mengindikasikan bahwa permintaan API gagal dan tidak valid. |
-| [`HttpError`](#objek-httperror)     | Dilempar jika server API Bot tidak bisa dijangkau.                                                                         |
+| Nama                                 | Keterangan                                                                                                                 |
+| ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------- |
+| [`BotError`](#object-boterror)       | Object error yang membungkus error apapun yang dilempar di middleware (contohnya, dua error di bawah).                     |
+| [`GrammyError`](#object-grammyerror) | Dilempar ketika server API Bot mengembalikan `ok: false`, yang mengindikasikan bahwa permintaan API gagal dan tidak valid. |
+| [`HttpError`](#object-httperror)     | Dilempar jika server API Bot tidak bisa dijangkau.                                                                         |
 
 Mekanisme penanganan error tingkat lanjut bisa kamu temukan lebih banyak [di bawah sini](#error-boundary).
 
@@ -168,7 +168,7 @@ function errorHandler(err: BotError) {
 
 `boundaryHandler` di atas akan dipanggil untuk middleware yang terkait dengan `protected`.
 
-Kalau kamu ingin dengan sengaja membuat error melewati batas error boundary—maksudnya meneruskannya keluar—kamu bisa melempar ulang sebuah error di dalam error handler.
+Kalau kamu ingin dengan sengaja membuat error melewati batas error boundary---maksudnya meneruskannya keluar---kamu bisa melempar ulang sebuah error di dalam error handler.
 Kemudian, error tersebut akan diteruskan ke error boundary berikutnya yang ada di sekitarnya.
 
 Dengan kata lain, kamu bisa menganggap error handler yang dipasang melalui `bot.catch` sebagai lapisan terluar error boundary.

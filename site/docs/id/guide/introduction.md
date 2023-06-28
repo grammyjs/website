@@ -34,14 +34,14 @@ Meski bot sekarang sudah bisa berjalan, namun saat kamu menghentikan bot-nya (at
 > Lewati bagian ini jika kamu cuma ingin bermain-main dengan bot, langsung lompat ke [Persiapan untuk Memulai](#persiapan-untuk-memulai).
 
 Sederhananya, jika ingin bot tetap aktif sepanjang waktu, kamu harus terus menjalankan komputer selama 24 jam setiap hari.
-Karena kemungkinan besar kamu tidak ingin melakukannya dengan komputer kesayanganmu, kamu harus mengunggah source code bot ke sebuah _penyedia hosting_—dengan kata lain, menggunakan komputer milik orang lain, yang juga dikenal sebagai _server_—dan biarkan orang tersebut yang menjalankannya untukmu.
+Karena kemungkinan besar kamu tidak ingin melakukannya dengan komputer kesayanganmu, kamu harus mengunggah source code bot ke sebuah _penyedia hosting_---dengan kata lain, menggunakan komputer milik orang lain, yang juga dikenal sebagai _server_---dan biarkan orang tersebut yang menjalankannya untukmu.
 
 Ada banyak penyedia layanan di luar sana yang mengizinkan kamu untuk menjalankan bot Telegram secara gratis.
 Dokumentasi ini juga sudah menyediakan daftar beberapa penyedia hosting yang kami tahu bekerja dengan baik dengan grammY (lihat di bagian [Hosting](../hosting/comparison.md).
 Namun, pada akhirnya, keputusan ada pada diri kamu untuk memilih penyedia layanan yang sesuai.
 Perlu diingat bahwa disaat kamu menjalankan kode di tempat lain, berarti siapa pun yang menguasai "tempat" tersebut memiliki akses ke semua pesan dan data penggunamu. Jadi, kamu harus bijak dalam memilih penyedia hosting yang dapat dipercaya.
 
-Berikut ini adalah diagram (yang disederhanakan) bagaimana alur yang terjadi ketika pengguna—sebut saja namanya Budi—mengakses bot kamu:
+Berikut ini adalah diagram (yang disederhanakan) bagaimana alur yang terjadi ketika pengguna---sebut saja namanya Budi---mengakses bot kamu:
 
 ```asciiart:no-line-numbers
 ________        mengirim         ____________                     ____________
@@ -73,7 +73,7 @@ Kamu akan mengetahuinya nanti seiring membaca dokumentasi-dokumentasi ini.
 > Lewati sisa halaman ini jika sudah tahu cara mengembangkan aplikasi Deno atau Node.js.
 > Lompat ke [materi selanjutnya](./getting-started.md).
 
-Ada satu hal yang menarik di dalam dunia pemrograman—hal-hal penting yang dianggap sepele dalam menulis kode sangat jarang dibahas, karena sebagian besar developer sering kali berpikir bahwa hal itu sudah sangat jelas. Sehingga, mereka merasa sudah tak perlu menjelaskannya lagi karena mengira semua orang juga sudah pasti paham.
+Ada satu hal yang menarik di dalam dunia pemrograman---hal-hal penting yang dianggap sepele dalam menulis kode sangat jarang dibahas, karena sebagian besar developer sering kali berpikir bahwa hal itu sudah sangat jelas. Sehingga, mereka merasa sudah tak perlu menjelaskannya lagi karena mengira semua orang juga sudah pasti paham.
 
 Pada bagian selanjutnya, kamu akan membuat kode program dalam bahasa pemrograman [TypeScript](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html).
 Dokumentasi grammY tidak akan mengajarimu bagaimana cara membuat suatu program dari dasar.
@@ -82,7 +82,7 @@ Paling tidak, dengan membuat bot Telegram menggunakan grammY adalah awal yang ba
 
 ::: tip Belajar Ngoding
 Kamu bisa mulai belajar TypeScript melalui [tutorial resmi](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html) yang ditulis oleh tim TypeScript, lalu kembali ke sini jika sudah selesai.
-Jangan habiskan lebih dari 30 menit untuk melakukan hal-hal lain di internet—lihat koleksi foto kucing misalnya :cat:.
+Jangan habiskan lebih dari 30 menit untuk melakukan hal-hal lain di internet---lihat koleksi foto kucing misalnya :cat:.
 Langsung kembali ke sini, selesaikan materi ini, kemudian kita bisa [memulai](./getting-started.md).
 
 Jika menemukan syntax yang tidak kamu ketahui, atau mendapatkan pesan error yang tidak dimengerti, langsung saja cari di internet.
@@ -107,11 +107,11 @@ Untuk itu, kamu perlu memasang beberapa software yang dapat _mengeksekusi_ kode 
 Jenis software ini disebut dengan _runtime environment_.
 Ia akan membaca file source code kamu kemudian mengerjakan apa pun yang diprogramkan di dalamnya.
 
-Terdapat dua runtime environment yang bisa kita pilih: [Deno](https://deno.land) dan [Node.js](https://nodejs.org).
+Terdapat dua runtime environment yang bisa kita pilih: [Deno](https://deno.com/runtime) dan [Node.js](https://nodejs.org).
 Jika kamu menjumpai orang-orang menyebut Node.js dengan sebutan _Node_ saja, mereka terlalu malas untuk menambahkan imbuhan ".js", meskipun maksudnya sama saja.
 
 > Mulai dari sini, kami akan membantu kamu memilih di antara kedua platform tersebut.
-> Kalau sudah tahu mana yang ingin digunakan, silahkan lompat ke [persiapan untuk Node.js](#persiapan-untuk-nodejs) atau [persiapan untuk Deno](#persiapan-untuk-deno).
+> Kalau sudah tahu mana yang ingin digunakan, silahkan lompat ke [persiapan untuk Node.js](#persiapan-untuk-node-js) atau [persiapan untuk Deno](#persiapan-untuk-deno).
 
 Node.js adalah teknologi yang lebih stabil dan sudah lama dikembangkan.
 Oleh karena itu, tidak heran jika Node.js mampu mengerjakan hal-hal yang rumit, misalnya menghubungkan database yang tidak umum digunakan ataupun melakukan sesuatu yang berkaitan dengan _low-level system_.
@@ -147,7 +147,7 @@ Diantaranya adalah menginstal beberapa tool yang dibutuhkan.
 
 #### Menyiapkan Perangkat untuk Pengembangan
 
-Pertama-tama, [instal Deno](https://deno.land/manual/getting_started/installation#download-and-install) di perangkat kamu.
+Pertama-tama, [instal Deno](https://deno.com/manual/getting_started/installation#download-and-install) di perangkat kamu.
 
 Siapkan juga text editor yang sesuai untuk coding.
 Salah satu yang sesuai untuk Deno adalah Visual Studio Code, atau biasa disebut dengan VS Code.

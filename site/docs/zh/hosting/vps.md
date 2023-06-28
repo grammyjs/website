@@ -171,4 +171,4 @@ pm2 del <app_name>
 
 ### 高级用法
 
-更多信息，请参考 <https://pm2.keymetrics.io/docs>。
+更多信息，请参考 <https://pm2.keymetrics.io/docs/usage/quick-start>。

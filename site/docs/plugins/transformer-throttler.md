@@ -1,11 +1,13 @@
 # Flood Control (`transformer-throttler`)
 
+> Consider using the [auto-retry plugin](./auto-retry.md) instead.
+
 This plugin enqueues outgoing API requests instance via [Bottleneck](https://github.com/SGrondin/bottleneck) in order to prevent your bot from hitting [rate limits](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this) as described in this [advanced section](../advanced/flood.md) of the documentation.
 
 ::: warning Undocumented API Limits Exist
 Telegram implements unspecified and undocumented rate limits for some API calls.
 These undocumented limits are **not accounted for** by the throttler.
-Consider using the [auto-retry plugin](./auto-retry.md) together with this plugin, if you are experiencing floodwait errors for certain API calls, such as `api.sendContact`.
+If you still want to use this plugin, consider using the [auto-retry plugin](./auto-retry.md) together with it.
 :::
 
 ## Usage
@@ -13,8 +15,8 @@ Consider using the [auto-retry plugin](./auto-retry.md) together with this plugi
 Here is an example of how to use this plugin with the default options.
 Note that the default options are aligned with the actual rate limits enforced by Telegram, so they should be good to go.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot } from "grammy";
@@ -32,8 +34,8 @@ bot.command("example", (ctx) => ctx.reply("I am throttled"));
 run(bot);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot } = require("grammy");
@@ -51,8 +53,8 @@ bot.command("example", (ctx) => ctx.reply("I am throttled"));
 run(bot);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -70,8 +72,8 @@ bot.command("example", (ctx) => ctx.reply("I am throttled"));
 run(bot);
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ## Configuration
 

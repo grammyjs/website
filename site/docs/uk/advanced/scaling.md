@@ -40,7 +40,7 @@ run(bot);
 Початковий ліміт паралельності складає 500.
 Якщо ви хочете глибше вивчити пакет, перегляньте цю [сторінку](../plugins/runner.md).
 
-Паралелізм — це складно, тому перегляньте [підрозділ нижче](#паралелізм-складнии), щоб дізнатися, про що слід памʼятати при використанні цього плагіну.
+Паралелізм --- це складно, тому перегляньте [підрозділ нижче](#паралелізм-складнии), щоб дізнатися, про що слід памʼятати при використанні цього плагіну.
 
 ## Вебхуки
 
@@ -81,8 +81,8 @@ run(bot);
 Ви можете налаштувати його за допомогою тієї самої функції, яку ви використовуєте для визначення ключа сесії.
 Тоді він уникне вищезгаданого стану гонки, сповільнивши виключно ті оновлення, які могли б спричинити колізію.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context, session } from "grammy";
@@ -107,9 +107,9 @@ bot.on("message", (ctx) => ctx.reply("Отримав ваше повідомле
 run(bot);
 ```
 
-</CodeGroupItem>
+:::
 
-<CodeGroupItem title="JavaScript">
+:::code-group-item JavaScript
 
 ```js
 const { Bot, Context, session } = require("grammy");
@@ -134,8 +134,8 @@ bot.on("message", (ctx) => ctx.reply("Отримав ваше повідомле
 run(bot);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot, Context, session } from "https://deno.land/x/grammy/mod.ts";
@@ -160,8 +160,8 @@ bot.on("message", (ctx) => ctx.reply("Отримав ваше повідомле
 run(bot);
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Приєднуйтесь до [чату Telegram](https://t.me/grammyjs), щоб обговорити використання плагіну для конкурентності (runner) для вашого бота.
 Ми завжди раді почути відгук від людей, які підтримують великих ботів, щоб ми могли покращити grammY на основі їхнього досвіду роботи з пакетом.

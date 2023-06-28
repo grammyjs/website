@@ -51,8 +51,8 @@ Fácil, ¿verdad?
 
 En primer lugar, vamos a importar algunas cosas.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import {
@@ -63,8 +63,8 @@ import {
 } from "@grammyjs/conversations";
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const {
@@ -73,8 +73,8 @@ const {
 } = require("@grammyjs/conversations");
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import {
@@ -85,8 +85,8 @@ import {
 } from "https://deno.land/x/grammy_conversations/mod.ts";
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Una vez aclarado esto, podemos ver cómo definir las interfaces conversacionales.
 
@@ -102,13 +102,13 @@ async function saludo(conversation, ctx) {
 Veamos cuáles son los dos parámetros.
 
 _El segundo parámetro_* no es tan interesante, es sólo un objeto de contexto normal.
-Como siempre, se llama `ctx` y utiliza tu [tipo de contexto personalizado](../guide/context.md#customizing-the-context-object) (quizás llamado `MyContext`).
+Como siempre, se llama `ctx` y utiliza tu [tipo de contexto personalizado](../guide/context.md#personalizacion-del-objeto-de-contexto) (quizás llamado `MyContext`).
 El plugin de conversaciones exporta un [context flavor](../guide/context.md#additive-context-flavors) llamado `ConversationFlavor`.
 
 **El primer parámetro** es el elemento central de este plugin.
 Se llama comúnmente `conversation`, y tiene el tipo `Conversación` ([referencia de la API](https://deno.land/x/grammy_conversations/mod.ts?s=Conversation)).
 Puede ser usado como un manejador para controlar la conversación, como esperar la entrada del usuario, y más.
-El tipo `Conversation` espera su [tipo de contexto personalizado](../guide/context.md#customizing-the-context-object) como parámetro de tipo, por lo que a menudo utilizaría `Conversation<MyContext>`.
+El tipo `Conversation` espera su [tipo de contexto personalizado](../guide/context.md#personalizacion-del-objeto-de-contexto) como parámetro de tipo, por lo que a menudo utilizaría `Conversation<MyContext>`.
 
 En resumen, en TypeScript, tu función de construcción de conversación se verá así.
 
@@ -124,8 +124,8 @@ async function greeting(conversation: MyConversation, ctx: MyContext) {
 Dentro de su función de construcción de conversación, ahora puede definir cómo debe ser la conversación.
 Antes de profundizar en cada una de las características de este plugin, echemos un vistazo a un ejemplo más complejo que el [simple](#ejemplo-simple) anterior.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function movie(conversation: MyConversation, ctx: MyContext) {
@@ -143,8 +143,8 @@ async function movie(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function movie(conversation, ctx) {
@@ -162,8 +162,8 @@ async function movie(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ¿Puedes averiguar cómo funcionará este bot?
 
@@ -223,8 +223,8 @@ bot.command("start", (ctx) => ctx.conversation.enter("new-name"));
 
 En total, tu código debería tener ahora más o menos este aspecto:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context, session } from "grammy";
@@ -258,8 +258,8 @@ bot.command("start", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot, Context, session } = require("grammy");
@@ -288,8 +288,8 @@ bot.command("start", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot, Context, session } from "https://deno.land/x/grammy/mod.ts";
@@ -323,8 +323,8 @@ bot.command("start", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### Instalación con datos de sesión personalizados
 
@@ -385,8 +385,8 @@ Por ejemplo, si dejas la configuración de conversación vacía como se ilustra 
 La conversación se ejecutará hasta que su función de construcción de conversación se complete.
 Esto significa que puedes salir de una conversación simplemente usando `return` o `throw`.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function hiAndBye(conversation: MyConversation, ctx: MyContext) {
@@ -396,8 +396,8 @@ async function hiAndBye(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function hiAndBye(conversation, ctx) {
@@ -407,8 +407,8 @@ async function hiAndBye(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 (Sí, poner un `return` al final de la función es un poco inútil, pero se entiende la idea).
 
@@ -424,8 +424,8 @@ De esta manera, puede evitar que el error se propague por el [árbol de middlewa
 > En ese caso, no es necesario utilizar los límites de error para abandonar una conversación lanzando un error.
 > Así es como los límites de error y las conversaciones podrían usarse juntos.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 bot.use(session({
@@ -444,8 +444,8 @@ bot.errorBoundary(
 );
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 bot.use(session({
@@ -464,8 +464,8 @@ bot.errorBoundary(
 );
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Hagas lo que hagas, debes recordar [instalar un manejador de errores](../guide/errors.md) en tu bot.
 
@@ -474,8 +474,8 @@ Esto simplemente borrará los datos del plugin de conversación de la sesión.
 A menudo es mejor quedarse con el simple retorno de la función, pero hay algunos ejemplos en los que el uso de `await ctx.conversation.exit()` es conveniente.
 Recuerda que debes `await` la llamada.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts{6,22}
 async function movie(conversation: MyConversation, ctx: MyContext) {
@@ -502,8 +502,8 @@ bot.use(createConversation(movie));
 bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js{6,22}
 async function movie(conversation, ctx) {
@@ -530,8 +530,8 @@ bot.use(createConversation(movie));
 bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Tenga en cuenta que el orden es importante aquí.
 Primero debes instalar el plugin de conversaciones (línea 6) antes de poder llamar a `await ctx.conversation.exit()`.
@@ -541,8 +541,8 @@ Además, los manejadores de cancelación genéricos deben ser instalados antes d
 
 Puedes usar el manejador de conversación `conversation` para esperar la siguiente actualización en este chat en particular.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function waitForMe(conversation: MyConversation, ctx: MyContext) {
@@ -551,8 +551,8 @@ async function waitForMe(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function waitForMe(conversation, ctx) {
@@ -561,8 +561,8 @@ async function waitForMe(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Una actualización puede significar que se ha enviado un mensaje de texto, o que se ha pulsado un botón, o que se ha editado algo, o prácticamente cualquier otra acción realizada por el usuario.
 Consulta la lista completa en los documentos de Telegram [aquí](https://core.telegram.org/bots/api#update).
@@ -570,8 +570,8 @@ Consulta la lista completa en los documentos de Telegram [aquí](https://core.te
 El método `wait` siempre produce un nuevo [objeto context](../guide/context.md) que representa la actualización recibida.
 Esto significa que siempre se está tratando con tantos objetos context como actualizaciones se reciban durante la conversación.
 
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 const TEAM_REVIEW_CHAT = -1001493653006;
@@ -598,8 +598,8 @@ async function askUser(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const TEAM_REVIEW_CHAT = -1001493653006;
@@ -626,8 +626,8 @@ async function askUser(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Normalmente, fuera del plugin de conversaciones, cada una de estas actualizaciones sería manejada por el [sistema de middleware](../guide/middleware.md) de tu bot.
 Por lo tanto, tu bot manejaría la actualización a través de un objeto de contexto que se pasa a tus manejadores.
@@ -636,8 +636,8 @@ En las conversaciones, obtendrá este nuevo objeto de contexto de la llamada `wa
 A su vez, puedes manejar diferentes actualizaciones de manera diferente en base a este objeto.
 Por ejemplo, puedes comprobar si hay mensajes de texto:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function waitForText(conversation: MyConversation, ctx: MyContext) {
@@ -650,8 +650,8 @@ async function waitForText(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function waitForText(conversation, ctx) {
@@ -664,15 +664,15 @@ async function waitForText(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Además, existen otros métodos junto a `wait` que permiten esperar sólo actualizaciones específicas.
 Un ejemplo es `waitFor` que toma una [consulta de filtro](../guide/filter-queries.md) y luego sólo espera las actualizaciones que coincidan con la consulta proporcionada.
 Esto es especialmente potente en combinación con [desestructuración de objetos](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment):
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function waitForText(conversation: MyConversation, ctx: MyContext) {
@@ -681,8 +681,8 @@ async function waitForText(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function waitForText(conversation, ctx) {
@@ -691,8 +691,8 @@ async function waitForText(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Consulta la [referencia de la API](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#method_wait_0) para ver todos los métodos disponibles que son similares a `wait`.
 
@@ -803,8 +803,8 @@ do {
 También puedes dividir tu código en varias funciones, y reutilizarlas.
 Por ejemplo, así es como puedes definir un captcha reutilizable.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function captcha(conversation: MyConversation, ctx: MyContext) {
@@ -814,8 +814,8 @@ async function captcha(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function captcha(conversation, ctx) {
@@ -825,14 +825,14 @@ async function captcha(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Devuelve `true` si el usuario puede pasar, y `false` en caso contrario.
 Ahora puedes usarlo en tu función principal del constructor de conversación así:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function enterGroup(conversation: MyConversation, ctx: MyContext) {
@@ -843,8 +843,8 @@ async function enterGroup(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function enterGroup(conversation, ctx) {
@@ -855,8 +855,8 @@ async function enterGroup(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Vea cómo la función captcha puede ser reutilizada en diferentes lugares de su código.
 
@@ -880,8 +880,8 @@ De esta manera, puedes definir algunas funciones en un archivo, `exportarlas`, y
 
 Si quieres, también puedes definir clases.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 class Auth {
@@ -913,8 +913,8 @@ async function askForToken(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 class Auth {
@@ -946,8 +946,8 @@ async function askForToken(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 El punto aquí no es tanto que recomendemos estrictamente hacer esto.
 Se trata más bien de un ejemplo de cómo puede utilizar las infinitas flexibilidades de JavaScript para estructurar su código.
@@ -958,8 +958,8 @@ Como se mencionó [anteriormente](#esperar-a-las-actualizaciones), hay varias fu
 
 Si estos métodos no son suficientes, el plugin de conversaciones proporciona aún más funciones de ayuda para construir formularios a través de `conversation.form`.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function waitForMe(conversation: MyConversation, ctx: MyContext) {
@@ -968,8 +968,8 @@ async function waitForMe(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function waitForMe(conversation, ctx) {
@@ -978,8 +978,8 @@ async function waitForMe(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Como siempre, consulte la [referencia de la API](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationForm) para ver qué métodos están disponibles.
 
@@ -1000,8 +1000,8 @@ Todos ellos tienen en común que almacenan funciones en el objeto de contexto, q
 Por lo tanto, si quieres combinar conversaciones con uno de estos plugins de grammY, tendrás que utilizar una sintaxis especial para instalar el otro plugin dentro de cada conversación.
 Puedes instalar otros plugins dentro de las conversaciones usando `conversation.run`:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function convo(conversation: MyConversation, ctx: MyContext) {
@@ -1011,8 +1011,8 @@ async function convo(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function convo(conversation, ctx) {
@@ -1022,15 +1022,15 @@ async function convo(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Esto hará que el plugin esté disponible dentro de la conversación.
 
 Como ejemplo, si quieres usar un menú dentro de una conversación, tu código podría ser así.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function convo(conversation: MyConversation, ctx: MyContext) {
@@ -1041,8 +1041,8 @@ async function convo(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function convo(conversation, ctx) {
@@ -1053,8 +1053,8 @@ async function convo(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### Objetos de contexto personalizados
 
@@ -1117,8 +1117,8 @@ Esto te permite chatear con un solo usuario en un chat de grupo.
 
 Por ejemplo, vamos a implementar el ejemplo del captcha de aquí arriba de nuevo, pero esta vez con conversaciones paralelas.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts{4}
 async function captcha(conversation: MyConversation, ctx: MyContext) {
@@ -1136,8 +1136,8 @@ async function enterGroup(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js{4}
 async function captcha(conversation, ctx) {
@@ -1155,8 +1155,8 @@ async function enterGroup(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Observa cómo sólo esperamos los mensajes de un usuario en particular.
 
@@ -1227,7 +1227,7 @@ El plugin de conversaciones rastrea la ejecución de su función.
 Cuando se alcanza una llamada de espera, serializa el estado de ejecución en la sesión, y lo almacena de forma segura en una base de datos.
 Cuando llega la siguiente actualización, primero inspecciona los datos de la sesión.
 Si encuentra que lo dejó en medio de una conversación, deserializa el estado de ejecución, toma su función constructora de conversación y la reproduce hasta el punto de la última llamada `wait`.
-A continuación, reanuda la ejecución ordinaria de tu función, hasta que se alcanza la siguiente llamada `wait`, y la ejecución debe ser detenida de nuevo.
+A continuación, reanuda la ejecución ordinaria de tu función---hasta que se alcanza la siguiente llamada `wait`, y la ejecución debe ser detenida de nuevo.
 
 ¿Qué entendemos por estado de ejecución?
 En pocas palabras, consiste en tres cosas

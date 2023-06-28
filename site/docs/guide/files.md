@@ -1,5 +1,5 @@
 ---
-prev: ./inline-queries.md
+prev: ./errors.md
 next: ./games.md
 ---
 
@@ -30,7 +30,7 @@ When a bot sends a message, it can **specify a `file_id` that it has seen before
 This will allow it to send the identified file, without needing to upload the data for it.
 (To see how to upload your own files, [scroll down](#sending-files).)
 You can reuse the same `file_id` as often as you want, so you could send the same file to five different chats, using the same `file_id`.
-However, you must make sure to use the correct method—for example, you cannot use a `file_id` that identifies a photo when calling [`sendVideo`](https://core.telegram.org/bots/api#sendvideo).
+However, you must make sure to use the correct method---for example, you cannot use a `file_id` that identifies a photo when calling [`sendVideo`](https://core.telegram.org/bots/api#sendvideo).
 
 Every bot has its own set of `file_id`s for the files that it can access.
 You cannot reliably use a `file_id` from your friend's bot, to access a file with _your_ bot.
@@ -80,7 +80,7 @@ Once you have called `getFile`, you can use the returned `file_path` to download
 
 ::: tip Files Plugin
 grammY does not come bundled with its own file downloader, but you can install the [official files plugin](../plugins/files.md).
-This allows you to download files via `await file.download()`, and to obtain a constructed download URL for them via `file.getUrl()`.
+This allows you to download files via `await file.download()`, and to obtain a download URL for them via `file.getUrl()`.
 :::
 
 ## Sending Files
@@ -128,7 +128,7 @@ await ctx.replyWithPhoto(new InputFile("/tmp/picture.jpg"));
 // alternatively, use bot.api.sendPhoto() or ctx.api.sendPhoto()
 ```
 
-The `InputFile` constructor not only takes file paths, but also streams, `Buffer` objects, async iterators, and—depending on your platform—more.
+The `InputFile` constructor not only takes file paths, but also streams, `Buffer` objects, async iterators, and---depending on your platform---more, or a function that creates any of these things.
 All you need to remember is: **create an instance of `InputFile` and pass it to any method to send a file**.
 Instances of `InputFile` can be passed to all methods that accept sending files by upload.
 
@@ -138,8 +138,8 @@ Here are some examples on how you can construct `InputFile`s.
 
 If you already have a file stored on your machine, you can let grammY upload this file.
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::::code-group
+:::code-group-item Node.js
 
 ```ts
 import { createReadStream } from "fs";
@@ -151,8 +151,8 @@ new InputFile("/path/to/file");
 new InputFile(createReadStream("/path/to/file"));
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 // Send a local file.
@@ -162,16 +162,16 @@ new InputFile("/path/to/file");
 new InputFile(await Deno.open("/path/to/file"));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 #### Uploading Raw Binary Data
 
 You can also send a `Buffer` object, or an iterator that yields `Buffer` objects.
 On Deno, you can send `Blob` objects, too.
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::::code-group
+:::code-group-item Node.js
 
 ```ts
 // Send a buffer or a byte array.
@@ -184,8 +184,8 @@ new InputFile(function* () {
 });
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 // Send a blob.
@@ -201,8 +201,8 @@ new InputFile(function* () {
 });
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 #### Downloading and Reuploading a File
 
@@ -214,8 +214,8 @@ This is very efficient.
 > Note that Telegram supports downloading the file for you in many methods.
 > If possible, you should prefer to [send the file via URL](#via-file-id-or-url), instead of using `InputFile` to stream the file contents through your server.
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::::code-group
+:::code-group-item Node.js
 
 ```ts
 import { URL } from "url";
@@ -225,8 +225,8 @@ new InputFile(new URL("https://grammy.dev/images/Y.png"));
 new InputFile({ url: "https://grammy.dev/images/Y.png" }); // equivalent
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 // Download a file, and stream the response to Telegram.
@@ -234,8 +234,8 @@ new InputFile(new URL("https://grammy.dev/images/Y.png"));
 new InputFile({ url: "https://grammy.dev/images/Y.png" }); // equivalent
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### Adding a Caption
 

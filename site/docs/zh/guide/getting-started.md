@@ -15,8 +15,8 @@ next: ./basics.md
 创建一个新的 TypeScript 项目并安装 `grammy` 包。
 通过打开终端并键入以下内容来完成。
 
-<CodeGroup>
- <CodeGroupItem title="NPM" active>
+::::code-group
+:::code-group-item NPM
 
 ```sh
 # 创建并进入一个新的目录。
@@ -31,8 +31,8 @@ npx tsc --init
 npm install grammy
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Yarn">
+:::
+:::code-group-item Yarn
 
 ```sh
 # 创建并进入一个新的目录。
@@ -47,8 +47,8 @@ npx tsc --init
 yarn add grammy
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="pnpm">
+:::
+:::code-group-item pnpm
 
 ```sh
 # 创建并进入一个新的目录。
@@ -63,8 +63,8 @@ npx tsc --init
 pnpm add grammy
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 创建一个新的空文本文件，例如称为 `bot.ts`。
 你的文件夹结构现在应该看起来像这样。
@@ -86,8 +86,8 @@ Bot token 看起来将类似于 `123456:aBcDeF_gHiJkLmNoP-q`。
 拿到 token 了吧？你现在可以在 `bot.ts` 文件中编写你的 bot 代码。
 你可以把下面这个 bot 的例子复制到该文件中，并把你的 token 传给 `Bot` 构造函数。
 
-<CodeGroup>
- <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot } from "grammy";
@@ -109,8 +109,8 @@ bot.on("message", (ctx) => ctx.reply("Got another message!"));
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot } = require("grammy");
@@ -133,8 +133,8 @@ bot.on("message", (ctx) => ctx.reply("Got another message!"));
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 通过运行以下程序编译代码
 
@@ -168,7 +168,7 @@ export DEBUG="grammy*"
 
 ## 通过 Deno 开始
 
-> 本指南假定你已经安装了 [Deno](https://deno.land) 。
+> 本指南假定你已经安装了 [Deno](https://deno.com/runtime) 。
 
 在某个地方创建一个新的目录，并在其中创建一个新的空文本文件，例如，称为 `bot.ts`。
 

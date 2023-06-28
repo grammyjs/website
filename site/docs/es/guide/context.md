@@ -10,14 +10,14 @@ El objeto `Context` ([Referencia de la API de grammY](https://deno.land/x/grammy
 Siempre que registres un oyente en tu objeto bot, este oyente recibirá un objeto `Context`.
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` es el objeto `Context`.
 });
 ```
 
 Puedes utilizar el objeto de contexto para:
 
-- [acceder a la información sobre el mensaje](#información-disponible)
+- [acceder a la información sobre el mensaje](#informacion-disponible)
 - [realizar acciones en respuesta al mensaje](#acciones-disponibles).
 
 Tenga en cuenta que los objetos `Context` se llaman comúnmente `ctx`.
@@ -28,7 +28,7 @@ Cuando un usuario envía un mensaje a tu bot, puedes acceder a él a través de 
 Como ejemplo, para obtener el texto del mensaje, puedes hacer esto:
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` será un `string` cuando se procesen mensajes de texto.
   // Será `undefined` si el mensaje recibido no tiene ningún mensaje de texto,
   // por ejemplo, fotos, pegatinas y otros mensajes.
@@ -44,7 +44,7 @@ Si registras tu listener para otros tipos, `ctx` también te dará información 
 Ejemplo:
 
 ```ts
-bot.on("edited_message", (ctx) => {
+bot.on("edited_message", async (ctx) => {
   // Obtenga el nuevo texto editado del mensaje.
   const editedText = ctx.editedMessage.text;
 });
@@ -71,17 +71,17 @@ Hay una serie de accesos directos instalados en el objeto de contexto.
 En otras palabras, también puedes hacer esto:
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // Obtenga el texto del mensaje.
   const text = ctx.msg.text;
 });
 
-bot.on("edited_message", (ctx) => {
+bot.on("edited_message", async (ctx) => {
   // Obtener el nuevo texto editado del mensaje.
   const editedText = ctx.msg.text;
 });
 
-bot.on("message:entities", (ctx) => {
+bot.on("message:entities", async (ctx) => {
   // Obtener todas las entidades.
   const entities = ctx.entities();
   // Obtener el texto de la primera entidad.
@@ -276,8 +276,8 @@ const bot = new Bot<MyContext>("");
 
 En resumen, la configuración se verá así:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 const BOT_DEVELOPER = 123456; // identificador del chat del desarrollador del bot
@@ -310,8 +310,8 @@ bot.command("start", async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const BOT_DEVELOPER = 123456; // identificador del chat del desarrollador del bot
@@ -334,8 +334,8 @@ bot.command("start", async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Naturalmente, el tipo de contexto personalizado también se puede pasar a otras cosas que manejan middleware, como [compositores](https://deno.land/x/grammy/mod.ts?s=Composer).
 
@@ -364,8 +364,8 @@ Ahora veremos cómo utilizar clases personalizadas para los objetos de contexto.
 Cuando construyas tu bot, puedes pasar un constructor de contexto personalizado que se utilizará para instanciar los objetos de contexto.
 Ten en cuenta que tu clase debe extender `Context`.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context } from "grammy";
@@ -387,7 +387,7 @@ const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` es ahora de tipo `MyContext`.
   const prop = ctx.customProp;
 });
@@ -395,8 +395,8 @@ bot.on("message", (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript" active>
+:::
+:::code-group-item JavaScript
 
 ```ts
 const { Bot, Context } = require("grammy");
@@ -417,7 +417,7 @@ const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` es ahora de tipo `MyContext`.
   const prop = ctx.customProp;
 });
@@ -425,8 +425,8 @@ bot.on("message", (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
@@ -451,7 +451,7 @@ const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` es ahora de tipo `MyContext`.
   const prop = ctx.customProp;
 });
@@ -459,8 +459,8 @@ bot.on("message", (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Fíjate en que el tipo de contexto personalizado será inferido automáticamente cuando utilices una subclase.
 Ya no necesitas escribir `Bot<MiContexto>` porque ya has especificado el constructor de tu subclase en el objeto de opciones de `new Bot()`.
@@ -514,7 +514,7 @@ type MyContext = Context & SessionFlavor<string>;
 Ahora puedes usar el plugin de sesión, y tienes acceso a `ctx.session`:
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // Ahora `str` es de tipo `string`.
   const str = ctx.session;
 });

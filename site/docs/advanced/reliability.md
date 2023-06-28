@@ -18,9 +18,9 @@ As you are going to stop your instance during operation at some point again, you
 
 ### Simple Long Polling
 
-<CodeGroup>
+::::code-group
 
-<CodeGroupItem title="TypeScript" active>
+:::code-group-item TypeScript
 
 ```ts
 import { Bot } from "grammy";
@@ -35,9 +35,9 @@ process.once("SIGTERM", () => bot.stop());
 await bot.start();
 ```
 
-</CodeGroupItem>
+:::
 
-<CodeGroupItem title="JavaScript">
+:::code-group-item JavaScript
 
 ```js
 const { Bot } = require("grammy");
@@ -52,9 +52,9 @@ process.once("SIGTERM", () => bot.stop());
 await bot.start();
 ```
 
-</CodeGroupItem>
+:::
 
-<CodeGroupItem title="Deno">
+:::code-group-item Deno
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -69,14 +69,14 @@ Deno.addSignalListener("SIGTERM", () => bot.stop());
 await bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### Using grammY runner
 
-<CodeGroup>
+::::code-group
 
-<CodeGroupItem title="TypeScript" active>
+:::code-group-item TypeScript
 
 ```ts
 import { Bot } from "grammy";
@@ -93,9 +93,9 @@ process.once("SIGINT", stopRunner);
 process.once("SIGTERM", stopRunner);
 ```
 
-</CodeGroupItem>
+:::
 
-<CodeGroupItem title="JavaScript">
+:::code-group-item JavaScript
 
 ```js
 const { Bot } = require("grammy");
@@ -112,8 +112,8 @@ process.once("SIGINT", stopRunner);
 process.once("SIGTERM", stopRunner);
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -130,8 +130,8 @@ Deno.addSignalListener("SIGINT", stopRunner);
 Deno.addSignalListener("SIGTERM", stopRunner);
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 That's basically all there is to reliability, your instance should:registered: never:tm: crash now.
 
@@ -149,7 +149,7 @@ The remainder of this section is elaborating on **how** grammY behaves under the
 ### Webhook
 
 If you are running your bot on webhooks, the Bot API server will retry delivering updates to your bot if it does not respond with `OK` in time.
-That pretty much defines the behavior of the system comprehensively—if you need to prevent processing duplicate updates, you should build your own de-duplication based on `update_id`.
+That pretty much defines the behavior of the system comprehensively---if you need to prevent processing duplicate updates, you should build your own de-duplication based on `update_id`.
 grammY does not do this for you, but feel free to PR if you think someone else could profit from this.
 
 ### Long Polling

@@ -13,8 +13,8 @@ const router = new Router((ctx) => {
   return "ключ";
 });
 
-router.route("ключ", (ctx) => {/* ... */});
-router.route("інший ключ", (ctx) => {/* ... */});
+router.route("ключ", async (ctx) => {/* ... */});
+router.route("інший ключ", async (ctx) => {/* ... */});
 router.otherwise((ctx) => {/* ... */}); // викликається, якщо жоден маршрут не збігається
 
 bot.use(router);
@@ -26,10 +26,10 @@ bot.use(router);
 Наприклад, ви можете додатково фільтрувати оновлення після їх маршрутизації.
 
 ```ts
-router.route("ключ").on("message:text", (ctx) => {/* ... */});
+router.route("ключ").on("message:text", async (ctx) => {/* ... */});
 
 const other = router.otherwise();
-other.on(":text", (ctx) => {/* ... */});
+other.on(":text", async (ctx) => {/* ... */});
 other.use((ctx) => {/* ... */});
 ```
 
@@ -45,7 +45,7 @@ other.use((ctx) => {/* ... */});
 > Ми збережемо цю сторінку як довідник для тих, хто використовував маршрутизатор для створення форм.
 
 Припустимо, ви хочете створити бота, який повідомляє користувачам, скільки днів залишилося до їхнього дня народження.
-Щоб обчислити кількість днів, бот повинен знати дату дня народження, а саме місяць і день, наприклад, місяць — червень, день місяця — 15-й.
+Щоб обчислити кількість днів, бот повинен знати дату дня народження, а саме місяць і день, наприклад, місяць --- червень, день місяця --- 15-й.
 
 Тому бот повинен задати два питання:
 
@@ -56,8 +56,8 @@ other.use((ctx) => {/* ... */});
 
 Ось як можна реалізувати такого бота:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context, Keyboard, session, SessionFlavor } from "grammy";
@@ -197,8 +197,8 @@ function getDays(month: number, day: number) {
 }
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot, Context, Keyboard, session, SessionFlavor } = require("grammy");
@@ -330,8 +330,8 @@ function getDays(month: number, day: number) {
 }
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import {
@@ -477,8 +477,8 @@ function getDays(month: number, day: number) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Зверніть увагу, що сесія має властивість `step`, яка зберігає крок форми, тобто яке значення наразі заповнюється.
 Маршрутизатор використовується для переходу між різними проміжними обробниками, які заповнюють поля `month` і `dayOfMonth` у сесії.

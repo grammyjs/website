@@ -13,8 +13,8 @@ const router = new Router((ctx) => {
   return "key";
 });
 
-router.route("key", (ctx) => {/* ... */});
-router.route("other-key", (ctx) => {/* ... */});
+router.route("key", async (ctx) => {/* ... */});
+router.route("other-key", async (ctx) => {/* ... */});
 router.otherwise((ctx) => {/* ... */}); // 如果没有匹配的路由，则调用此方法
 
 bot.use(router);
@@ -26,10 +26,10 @@ bot.use(router);
 例如，你可以在路由之后继续过滤 updates。
 
 ```ts
-router.route("key").on("message:text", (ctx) => {/* ... */});
+router.route("key").on("message:text", async (ctx) => {/* ... */});
 bot.use(router);
 const other = router.otherwise();
-other.on(":text", (ctx) => {/* ... */});
+other.on(":text", async (ctx) => {/* ... */});
 other.use((ctx) => {/* ... */});
 ```
 
@@ -56,8 +56,8 @@ other.use((ctx) => {/* ... */});
 
 这是如何实现这样的机器人的示例：
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context, Keyboard, session, SessionFlavor } from "grammy";
@@ -182,8 +182,8 @@ function getDays(month: number, day: number) {
 }
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot, Context, Keyboard, session, SessionFlavor } = require("grammy");
@@ -301,8 +301,8 @@ function getDays(month, day) {
 }
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import {
@@ -433,8 +433,8 @@ function getDays(month: number, day: number) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 请注意，会话有一个属性 `step`，它存储表单的步骤，即当前正在填写的值。
 路由器用于跳转到不同的中间件，完成 `month` 和 `dayOfMonth` 字段的填写。

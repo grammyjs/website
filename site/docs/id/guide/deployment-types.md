@@ -102,7 +102,7 @@ ______________                                            _____________
 
 > Perlu dicatat bahwa pada kenyataannya, tidak ada koneksi yang akan tetap terbuka selama berjam-jam.
 > Request long polling mempunyai waktu timeout bawaan selama 30 detik untuk menghindari terjadinya berbagai [masalah teknis](https://datatracker.ietf.org/doc/html/draft-loreto-http-bidirectional-07#section-5.5).
-> Kalau tidak ada pesan baru yang dikembalikan selama periode waktu tersebut, maka request akan dibatalkan dan dikirimkan kembali—tetapi konsep dasarnya masih tetap sama.
+> Kalau tidak ada pesan baru yang dikembalikan selama periode waktu tersebut, maka request akan dibatalkan dan dikirimkan kembali---tetapi konsep dasarnya masih tetap sama.
 
 Dengan menggunakan long polling, kamu akan menerima pesan baru yang sama cepatnya, sehingga tidak perlu lagi mengirim spam ke server Telegram.
 Metode inilah yang akan dipakai grammY ketika kamu menjalankan `bot.start()`.
@@ -165,7 +165,7 @@ Tempat-tempat yang cocok untuk menggunakan webhook:
 ## Aku Masih Belum Tahu Mana yang Sebaiknya Dipilih
 
 Jika kamu tidak punya alasan yang bagus untuk menggunakan webhook, pilih saja long polling.
-Long polling tidak memiliki kekurangan yang mencolok, dan—berdasarkan pengalaman kami—kamu tidak perlu membuang-buang waktu melakukan perawatan atau maintenance.
+Long polling tidak memiliki kekurangan yang mencolok, dan---berdasarkan pengalaman kami---kamu tidak perlu membuang-buang waktu melakukan perawatan atau maintenance.
 Webhook bisa menjadi sedikit "nakal" dari waktu ke waktu (lihat [di bawah](#mengakhiri-request-webhook-tepat-waktu)).
 
 Apapun pilihannya, disaat kamu mengalami masalah yang cukup serius, seharusnya tidak terlalu sulit untuk beralih dari satu metode deployment ke metode deployment yang lain.
@@ -195,8 +195,8 @@ Oleh karena itu, kami berharap kamu mampu menjalankan sebuah web server sederhan
 Setiap bot di grammY bisa dikonversi menjadi middleware untuk beberapa web framework, termasuk `express`, `koa`/`oak`, dsb.
 Kamu bisa membuat sebuah middleware untuk framework yang diinginkan dengan cara meng-import function `webhookCallback` ([Referensi API](https://deno.land/x/grammy/mod.ts?s=webhookCallback)).
 
-<CodeGroup>
- <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import express from "express";
@@ -208,8 +208,8 @@ app.use(express.json()); // mengurai (parsing) body dari request JSON
 app.use(webhookCallback(bot, "express"));
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const express = require("express");
@@ -221,8 +221,8 @@ app.use(express.json()); // mengurai (parsing) body dari request JSON
 app.use(webhookCallback(bot, "express"));
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Application } from "https://deno.land/x/oak/mod.ts";
@@ -233,8 +233,10 @@ const app = new Application(); // atau framework apapun yang kamu gunakan
 app.use(webhookCallback(bot, "oak"));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
+
+> Kamu tidak perlu memanggil `bot.start()` ketika menggunakan webhooks.
 
 Jika kamu berniat menjalankan bot di sebuah VPS menggunakan webhook, pastikan untuk membaca [panduan keren Marvin mengenai hal-hal tentang webhook](https://core.telegram.org/bots/webhooks) yang ditulis oleh tim Telegram.
 

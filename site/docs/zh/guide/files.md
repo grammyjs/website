@@ -1,5 +1,5 @@
 ---
-prev: ./inline-queries.md
+prev: ./errors.md
 next: ./games.md
 ---
 
@@ -30,7 +30,7 @@ Telegram 服务器上的文件由 `file_id` 标识，它是一个长字符串。
 这就会发送那个被识别到的文件。
 （要查看如何上传你自己的文件，请 [向下滚动](#发送文件)。）
 你可以多次使用同一个 `file_id`，从而你可以通过同一个 `file_id` 发送同样的文件到五个不同的聊天室。
-但是，请确保你使用了正确的方法 ---- 例如，你不可以用一个标识图片的 `file_id` 来调用 [`sendVideo`](https://core.telegram.org/bots/api#sendvideo)。
+但是，请确保你使用了正确的方法，例如，你不可以用一个标识图片的 `file_id` 来调用 [`sendVideo`](https://core.telegram.org/bots/api#sendvideo)。
 
 每一个 bot 都有它独立的 `file_id` 集合，集合包含了所有它自己能调用的文件。
 你不能可靠地使用你朋友的机器人的 `file_id`，来访问你的机器人的文件。每个机器人会对同一个文件使用不同的标识符。
@@ -79,7 +79,7 @@ bot.on("message:voice", async (ctx) => {
 
 ::: tip 文件插件
 grammY 没有捆绑自己的文件下载器，但是你可以安装 [官方文件插件](../plugins/files.md)。
-这允许你通过 `await file.download()` 下载文件，并通过 `file.getUrl()` 获取一个构造后的下载文件的 URL。
+这允许你通过 `await file.download()` 下载文件，以及通过 `file.getUrl()` 获取一个下载文件的 URL。
 :::
 
 ## 发送文件
@@ -127,7 +127,8 @@ await ctx.replyWithPhoto(new InputFile("/tmp/picture.jpg"));
 // 或者，使用 bot.api.sendPhoto() 或 ctx.api.sendPhoto()
 ```
 
-`InputFile` 构建器不仅仅能适用于文件路径，也可以适用流，`Buffer` 对象，异步迭代器，这取决于你所使用的平台。
+`InputFile` 构建器不仅仅能适用于文件路径，也可以适用流，`Buffer` 对象，异步迭代器，这取决于你所使用的平台，或者一个创建这些东西的函数。
+
 所以你需要记住的是：**创造一个 `InputFile` 实例，并且把它传递到任何发送文件的方法**。
 `InputFile` 实例能够传递到所有发送上传文件的方法中。
 
@@ -137,8 +138,8 @@ await ctx.replyWithPhoto(new InputFile("/tmp/picture.jpg"));
 
 如果你的机器中已经存储了一个文件，你可以让 garmmY 上传这个文件。
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::::code-group
+:::code-group-item Node.js
 
 ```ts
 import { createReadStream } from "fs";
@@ -150,8 +151,8 @@ new InputFile("/path/to/file");
 new InputFile(createReadStream("/path/to/file"));
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 // 发送一个本地文件。
@@ -161,16 +162,16 @@ new InputFile("/path/to/file");
 new InputFile(await Deno.open("/path/to/file"));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 #### 上传原始二进制数据
 
 你也可以发送一个 `Buffer` 对象，或者一个产生 `Buffer` 对象的迭代器。
 在 Deno 中，你也可以发送 `Blob` 对象。
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::::code-group
+:::code-group-item Node.js
 
 ```ts
 // 发送一个 buffer 或者一个 byte 数组。
@@ -183,8 +184,8 @@ new InputFile(function* () {
 });
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 // 发送一个 blob。
@@ -200,8 +201,8 @@ new InputFile(function* () {
 });
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 #### 下载和重新上传文件
 
@@ -211,10 +212,10 @@ new InputFile(function* () {
 这是非常高效的。
 
 > 请注意，Telegram 支持用许多种方法为你下载文件。
-> 如果可能，你应该选择 [通过 URL 发送文件](#通过-file_id-或者-url)，而不是使用 `InputFile` 来通过你的服务器流式传输文件内容。
+> 如果可能，你应该选择 [通过 URL 发送文件](#通过-file-id-或者-url)，而不是使用 `InputFile` 来通过你的服务器流式传输文件内容。
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::::code-group
+:::code-group-item Node.js
 
 ```ts
 import { URL } from "url";
@@ -223,8 +224,8 @@ new InputFile(new URL("https://grammy.dev/images/Y.png"));
 new InputFile({ url: "https://grammy.dev/images/Y.png" }); // 等价的写法
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 // 下载一个文件，并将响应的内容流转到 Telegram。
@@ -232,8 +233,8 @@ new InputFile(new URL("https://grammy.dev/images/Y.png"));
 new InputFile({ url: "https://grammy.dev/images/Y.png" }); // 等价的写法
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### 添加一个标题
 

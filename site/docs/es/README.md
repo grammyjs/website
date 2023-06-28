@@ -25,7 +25,7 @@ permalink: /es/
   'una actualización por delante',
   'puede hacer todo menos lavar los platos',
   'fácil de exprimir limones',
-  'cientos de millones de peticiones',
+  'miles y miles de millones de peticiones',
 ][Math.floor(Math.random() * 7)] }}.</h6>
 
 ## Quickstart
@@ -34,8 +34,8 @@ Bots están escritos en [TypeScript](https://www.typescriptlang.org) (o JavaScri
 
 `npm install grammy` y copia el siguiente código:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot } from "grammy";
@@ -48,8 +48,8 @@ bot.on("message", (ctx) => ctx.reply("¡Hola a todos!"));
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot } = require("grammy");
@@ -62,8 +62,8 @@ bot.on("message", (ctx) => ctx.reply("¡Hola a todos!"));
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -76,8 +76,8 @@ bot.on("message", (ctx) => ctx.reply("¡Hola a todos!"));
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ¡Funciona! :tada:
 

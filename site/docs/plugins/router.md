@@ -13,8 +13,8 @@ const router = new Router((ctx) => {
   return "key";
 });
 
-router.route("key", (ctx) => {/* ... */});
-router.route("other-key", (ctx) => {/* ... */});
+router.route("key", async (ctx) => {/* ... */});
+router.route("other-key", async (ctx) => {/* ... */});
 router.otherwise((ctx) => {/* ... */}); // called if no route matches
 
 bot.use(router);
@@ -26,10 +26,10 @@ Naturally, the router plugin integrates seamlessly with grammY's [middleware tre
 For example, you filter down updates further after routing them.
 
 ```ts
-router.route("key").on("message:text", (ctx) => {/* ... */});
+router.route("key").on("message:text", async (ctx) => {/* ... */});
 
 const other = router.otherwise();
-other.on(":text", (ctx) => {/* ... */});
+other.on(":text", async (ctx) => {/* ... */});
 other.use((ctx) => {/* ... */});
 ```
 
@@ -56,8 +56,8 @@ Only if both values are known, the bot can tell the user how many days are left.
 
 This is how a bot like that could be implemented:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context, Keyboard, session, SessionFlavor } from "grammy";
@@ -190,8 +190,8 @@ function getDays(month: number, day: number) {
 }
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot, Context, Keyboard, session, SessionFlavor } = require("grammy");
@@ -317,8 +317,8 @@ function getDays(month, day) {
 }
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import {
@@ -457,8 +457,8 @@ function getDays(month: number, day: number) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Note how the session has a property `step` that stores the step of the form, i.e. which value is currently being filled.
 The router is used to jump between different middleware that completes both the `month` and the `dayOfMonth` fields on the session.

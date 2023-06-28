@@ -18,9 +18,9 @@ Como vas a detener tu instancia durante la operación en algún momento de nuevo
 
 ### Simple long polling
 
-<CodeGroup>
+::::code-group
 
-<CodeGroupItem title="TypeScript" active>
+:::code-group-item TypeScript
 
 ```ts
 import { Bot } from "grammy";
@@ -35,9 +35,9 @@ process.once("SIGTERM", () => bot.stop());
 await bot.start();
 ```
 
-</CodeGroupItem>
+:::
 
-<CodeGroupItem title="JavaScript">
+:::code-group-item JavaScript
 
 ```js
 const { Bot } = require("grammy");
@@ -52,9 +52,9 @@ process.once("SIGTERM", () => bot.stop());
 await bot.start();
 ```
 
-</CodeGroupItem>
+:::
 
-<CodeGroupItem title="Deno">
+:::code-group-item Deno
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -69,14 +69,14 @@ Deno.addSignalListener("SIGTERM", () => bot.stop());
 await bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### Usando grammY runner
 
-<CodeGroup>
+::::code-group
 
-<CodeGroupItem title="TypeScript" active>
+:::code-group-item TypeScript
 
 ```ts
 import { Bot } from "grammy";
@@ -93,9 +93,9 @@ process.once("SIGINT", stopRunner);
 process.once("SIGTERM", stopRunner);
 ```
 
-</CodeGroupItem>
+:::
 
-<CodeGroupItem title="JavaScript">
+:::code-group-item JavaScript
 
 ```js
 const { Bot } = require("grammy");
@@ -112,8 +112,8 @@ process.once("SIGINT", stopRunner);
 process.once("SIGTERM", stopRunner);
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -130,8 +130,8 @@ Deno.addSignalListener("SIGINT", stopRunner);
 Deno.addSignalListener("SIGTERM", stopRunner);
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Eso es básicamente todo lo que hay que hacer para la fiabilidad, su instancia debería:registrado: nunca:tm: fallar ahora.
 
@@ -149,8 +149,7 @@ El resto de esta sección se refiere a **cómo** se comporta grammY bajo estas c
 ### Webhook
 
 Si estás ejecutando tu bot con webhooks, el servidor de la API del bot reintentará entregar actualizaciones a tu bot si no responde con `OK` a tiempo.
-Esto define el comportamiento del sistema de forma exhaustiva.
-Si necesitas evitar el procesamiento de actualizaciones duplicadas, deberás construir tu propia desduplicación basada en `update_id`.
+Esto define el comportamiento del sistema de forma exhaustiva---si necesitas evitar el procesamiento de actualizaciones duplicadas, deberás construir tu propia desduplicación basada en `update_id`.
 grammY no hace esto por ti, pero siéntete libre de PR si crees que alguien más podría beneficiarse de esto.
 
 ### Long Polling

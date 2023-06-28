@@ -112,7 +112,7 @@ bot.start();
 如果你在第 3 行调用 `next` ，就会有两个响应被发送。
 
 **`bot.use()` 函数只是注册了接收所有更新的中间件**
-这就是为什么 `session()` 要通过 `bot.use()` 来安装的原因--我们希望这个插件能对所有的更新进行操作，不管包含什么数据。
+这就是为什么 `session()` 要通过 `bot.use()` 来安装的原因，我们希望这个插件能对所有的更新进行操作，不管包含什么数据。
 
 拥有一个中间件栈是任何网络框架的一个极其强大的属性，这种模式广泛流行（不仅仅是Telegram Bot）。
 
@@ -125,8 +125,8 @@ bot.start();
 这里是我们中间件的函数签名。
 你可以把它与上面的中间件类型进行比较，并说服自己，我们在这里确实完成了一个中间件。
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 /** 统计 bot 的响应时间，并将其记录到 `console`。 */
@@ -138,8 +138,8 @@ async function responseTime(
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 /** 统计 bot 的响应时间，并将其记录到 `console`。 */
@@ -148,8 +148,8 @@ async function responseTime(ctx, next) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 我们可以用 `bot.use()` 把它安装到我们的 `bot` 实例中。
 
@@ -167,8 +167,8 @@ bot.use(responseTime);
 
 重要的是，要先在 bot 上安装我们的 `responseTime` 中间件（在中间件栈的顶部），以确保所有操作都包括在统计中。
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 /** 统计 bot 的响应时间，并将其记录到 `console`。 */
@@ -189,8 +189,8 @@ async function responseTime(
 bot.use(responseTime);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 /** 统计 bot 的响应时间，并将其记录到 `console`。 */
@@ -208,8 +208,8 @@ async function responseTime(ctx, next) {
 bot.use(responseTime);
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 完成，并且可以正常工作! :heavy_check_mark:
 
@@ -235,7 +235,7 @@ bot.use(responseTime);
 如果你的项目对你很重要，那么你就会使用提示工具，如果你忘记在 `Promise` 上使用 `await`，工具会警告你。
 
 ::: tip 启用 no-floating-promises
-考虑使用 [ESLint](https://eslint.org/) 并配置它使用 [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-floating-promises.md) 规则。
+考虑使用 [ESLint](https://eslint.org/) 并配置它使用 [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-floating-promises.md) 规则。
 这将确保你永远不会忘记使用 `await`（通过不停的唠叨你）。
 :::
 

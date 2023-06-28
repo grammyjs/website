@@ -9,7 +9,7 @@ _Filter query_ merupakan argument pertama dari `bot.on()` yang berbentuk string.
 
 ## Pengenalan
 
-Sebagian besar framework bot—atau bahkan semuanya?—hanya menyediakan pemfilteran update yang sederhana, misalnya cuma disediakan `on("message")` dan sejenisnya.
+Sebagian besar framework bot---atau bahkan semuanya?---hanya menyediakan pemfilteran update yang sederhana, misalnya cuma disediakan `on("message")` dan sejenisnya.
 Pemfilteran untuk jenis pesan lainnya diserahkan kepada developer bot masing-masing untuk ditangani sendiri, yang mana sering kali mengarah ke penggunaan statemen `if` yang tidak ada habisnya di dalam kode mereka.
 
 Sebaliknya, **grammY dilengkapi dengan bahasa query-nya sendiri** yang dapat digunakan untuk **memfilter pesan yang kamu inginkan**.
@@ -23,11 +23,11 @@ Dengan demikian, kamu cukup mengetik `bot.on("")`, lalu buka auto-complete, kemu
 _Type inference_ `bot.on()` akan memahami filter query yang sedang kamu pilih. Dari situ, ia akan mengerucutkan beberapa type context yang ada.
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // Bisa jadi undefined kalau pesan yang diterima tidak ada teksnya.
   const text: string | undefined = ctx.msg.text;
 });
-bot.on("message:text", (ctx) => {
+bot.on("message:text", async (ctx) => {
   // Text selalu tersedia karena handler ini dipanggil
   // ketika pesan yang diterima hanya berupa teks.
   const text: string = ctx.msg.text;
@@ -83,7 +83,7 @@ _Query engine_ grammY memiliki shortcut yang dapat mengelompokkan query-query ya
 
 #### `msg`
 
-Shortcut `msg`—bukan msg micin, loh ya :grimacing:—mengelompokkan pesan dan postingan channel.
+Shortcut `msg`---bukan msg micin, loh ya :grimacing:---mengelompokkan pesan dan postingan channel.
 Dengan menggunakan `msg`sama halnya dengan menyimak aktivitas `message` dan `channel_post`.
 
 ```ts
@@ -144,7 +144,7 @@ Perhatikan bahwa meskipun syntactic sugar ini bisa digunakan untuk bekerja denga
 Pesan service pada dasarnya adalah pesan untuk menginformasikan pengguna di dalam chat tersebut. Adakalanya dalam beberapa kasus, pesan itu tidak akan selalu terlihat.
 Misalnya, di grup besar atau supergroup tidak akan ada pesan service mengenai pengguna yang telah bergabung atau meninggalkan chat.
 Akibatnya, bot kamu bisa jadi tidak akan mendeteksinya.
-Oleh karena itu, kamu harus menyimak [update chat member](#update-chat-member).
+Oleh karena itu, kamu harus menyimak [update chat member](#update-member-chat).
 
 ## Mengombinasikan Beberapa Query
 
@@ -344,7 +344,7 @@ Contoh:
 
 Meski type system bisa menangkap semua filter query yang tidak valid di compile time, namun grammY tetap memeriksa semua filter query di runtime selama proses penyusunan.
 Setiap filter query akan dicocokkan dengan struktur validasi untuk diperiksa apakah query tersebut memang valid.
-Dengan begitu, ia akan langsung gagal saat itu juga—alih-alih gagal di runtime—ketika hasilnya tidak valid, karena pernah terjadi sebelumnya, ketika bug di TypeScript menyebabkan masalah serius terhadap _type inference system_ lanjutan yang menjadi penyokong filter query.
+Dengan begitu, ia akan langsung gagal saat itu juga---alih-alih gagal di runtime---ketika hasilnya tidak valid, karena pernah terjadi sebelumnya, ketika bug di TypeScript menyebabkan masalah serius terhadap _type inference system_ lanjutan yang menjadi penyokong filter query.
 Jika suatu saat bug tersebut muncul, kita bisa mencegah masalah serupa terjadi lagi.
 Selain itu, kamu juga akan diberikan pesan error yang lebih bermanfaat.
 

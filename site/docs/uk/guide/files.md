@@ -1,5 +1,5 @@
 ---
-prev: ./inline-queries.md
+prev: ./errors.md
 next: ./games.md
 ---
 
@@ -16,7 +16,7 @@ next: ./games.md
 Файли зберігаються окремо від повідомлень.
 Файл на серверах Telegram ідентифікується `file_id`, який є просто довгим набором символів.
 
-`AgADBAADZRAxGyhM3FKSE4qKa-RODckQHxsoABDHe0BDC1GzpGACAAEC` — це приклад `file_id`.
+`AgADBAADZRAxGyhM3FKSE4qKa-RODckQHxsoABDHe0BDC1GzpGACAAEC` --- це приклад `file_id`.
 
 Кожного разу, коли ваш бот **отримує** повідомлення з файлом, він отримує не повні дані файлу, а лише його `file_id`.
 Якщо вашому боту потрібно завантажити файл, він може зробити це, викликавши метод `getFile` ([довідка Telegram Bot API](https://core.telegram.org/bots/api#getfile)).
@@ -80,7 +80,7 @@ bot.on("message:voice", async (ctx) => {
 
 ::: tip Плагін файлів
 grammY не постачається в комплекті з власним завантажувачем файлів, але ви можете встановити [офіційний плагін файлів](../plugins/files.md).
-Він дає змогу завантажувати файли за допомогою `await file.download()` і отримувати заповнену URL-адресу для завантаження за допомогою `file.getUrl()`.
+Він дає змогу завантажувати файли за допомогою `await file.download()` і отримувати URL-адресу для завантаження за допомогою `file.getUrl()`.
 :::
 
 ## Надсилання файлів
@@ -128,7 +128,7 @@ await ctx.replyWithPhoto(new InputFile("/tmp/picture.jpg"));
 // Як альтернативу, можемо використати bot.api.sendPhoto() або ctx.api.sendPhoto()
 ```
 
-Конструктор `InputFile` не лише приймає шляхи до файлів, але й потоки, обʼєкти `Buffer`, асинхронні ітератори та, залежно від вашої платформи, багато іншого.
+Конструктор `InputFile` не лише приймає шляхи до файлів, але й потоки, обʼєкти `Buffer`, асинхронні ітератори та, залежно від вашої платформи, багато іншого або функцію, яка створює будь-яку з цих речей.
 Вам потрібно памʼятати, що треба **створити екземпляр `InputFile` і передати його будь-якому методу для надсилання файлу**.
 Екземпляри `InputFile` можна передати всім методам, які підтримують надсилання файлів з серверу.
 
@@ -138,8 +138,8 @@ await ctx.replyWithPhoto(new InputFile("/tmp/picture.jpg"));
 
 Якщо на вашій машині вже є файл, ви можете надіслати цей файл за допомогою grammY.
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::::code-group
+:::code-group-item Node.js
 
 ```ts
 import { createReadStream } from "fs";
@@ -151,8 +151,8 @@ new InputFile("/path/to/file");
 new InputFile(createReadStream("/path/to/file"));
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 // Надсилаємо локальний файл.
@@ -162,16 +162,16 @@ new InputFile("/path/to/file");
 new InputFile(await Deno.open("/path/to/file"));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 #### Надсилання вихідних двійкових даних
 
 Ви також можете надіслати обʼєкт `Buffer` або ітератор, який створює обʼєкти `Buffer`.
 У Deno ви також можете надіслати обʼєкти `Blob`.
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::::code-group
+:::code-group-item Node.js
 
 ```ts
 // Надсилаємо буфер або масив байтів.
@@ -184,8 +184,8 @@ new InputFile(function* () {
 });
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 // Надсилаємо blob.
@@ -201,8 +201,8 @@ new InputFile(function* () {
 });
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 #### Надсилання файлів через завантаження зі сторонніх джерел
 
@@ -214,8 +214,8 @@ new InputFile(function* () {
 > Зауважте, що Telegram підтримує надсилання файлу через URL у багатьох методах API.
 > Якщо можливо, вам слід віддати перевагу [надсиланню файлу через URL-адресу](#через-file-id-або-url-адресу), а не використовувати `InputFile` для потокової передачі вмісту файлу через ваш сервер.
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::::code-group
+:::code-group-item Node.js
 
 ```ts
 import { URL } from "url";
@@ -225,8 +225,8 @@ new InputFile(new URL("https://grammy.dev/images/Y.png"));
 new InputFile({ url: "https://grammy.dev/images/Y.png" }); // еквівалент
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 // Завантажуємо файл і передаємо відповідь Telegram.
@@ -234,8 +234,8 @@ new InputFile(new URL("https://grammy.dev/images/Y.png"));
 new InputFile({ url: "https://grammy.dev/images/Y.png" }); // еквівалент
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### Додавання підпису
 

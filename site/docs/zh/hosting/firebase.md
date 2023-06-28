@@ -127,7 +127,7 @@ localtunnel 应该给你一个唯一的 URL，例如 `https://modern-heads-sink-
 你可以通过调用 `setWebhook` 方法实现。
 例如，打开浏览器中的新标签页并访问以下 URL：
 
-```text:no-line-numbers
+```text
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<WEBHOOK_URL>/<firebase-projectname>/us-central1/helloWorld
 ```
 
@@ -135,7 +135,7 @@ https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<WEBHOOK_URL>/<firebase-p
 
 你现在应该能在浏览器窗口中看到这个。
 
-```json:no-line-numbers
+```json
 {
   "ok": true,
   "result": true,
@@ -155,12 +155,12 @@ firebase deploy
 
 部署完成后，Firebase CLI 将为你提供函数的 URL。
 它看上去应该类似于 `https://<REGION>.<MY_PROJECT.cloudfunctions.net/helloWorld`。
-有关更详细的说明，你可以查看 [入门指南](https://firebase.google.com/docs/functions/get-started#deploy-functions-to-a-production-环境) 中的步骤 8。
+有关更详细的说明，你可以查看 [入门指南](https://firebase.google.com/docs/functions/get-started#deploy-functions-to-a-production-environment) 中的步骤 8。
 
 部署后，你需要通过调用 `setWebhook` 方法告诉 Telegram 将 update 发送到你的 bot。
 为此，请打开一个新的浏览器选项卡并访问此 URL：
 
-```text:no-line-numbers
+```text
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<REGION>.<MY_PROJECT>.cloudfunctions.net/helloWorld
 ```
 
@@ -169,7 +169,7 @@ Firebase CLI 应该为你提供了云函数的完整 URL，因此你只需将其
 
 如果一切设置正确，你应该会在浏览器窗口中看到以下响应：
 
-```json:no-line-numbers
+```json
 {
   "ok": true,
   "result": true,

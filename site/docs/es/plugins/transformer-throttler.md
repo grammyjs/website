@@ -1,11 +1,13 @@
 # Control de flujo (`transformer-throttler`)
 
+> Considere usar el [plugin auto-retry](./auto-retry.md) en su lugar.
+
 Este plugin pone en cola la instancia de solicitudes de API salientes a través de [Bottleneck](https://github.com/SGrondin/bottleneck) para evitar que su bot alcance los [límites de velocidad](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this) como se describe en [esta sección avanzada](../advanced/flood.md) de la documentación.
 
 ::: warning Existen límites no documentados en la API
 Telegram implementa límites de velocidad no especificados y no documentados para algunas llamadas de la API.
 Estos límites no documentados **no son tenidos en cuenta** por el estrangulador.
-Considera usar el [plugin auto-retry](./auto-retry.md) junto con este plugin, si estás experimentando errores de floodwait para ciertas llamadas a la API, como `api.sendContact`.
+Si aún desea utilizar este plugin, considere la posibilidad de utilizar el [auto-retry plugin](./auto-retry.md) junto con él.
 :::
 
 ## Uso
@@ -13,8 +15,8 @@ Considera usar el [plugin auto-retry](./auto-retry.md) junto con este plugin, si
 Aquí hay un ejemplo de cómo usar este plugin con las opciones por defecto.
 Ten en cuenta que las opciones por defecto están alineadas con los límites de velocidad reales aplicados por Telegram, por lo que deberían estar bien.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot } from "grammy";
@@ -29,8 +31,8 @@ bot.command("example", (ctx) => ctx.reply("I am throttled"));
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot } = require("grammy");
@@ -45,8 +47,8 @@ bot.command("example", (ctx) => ctx.reply("I am throttled"));
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -61,8 +63,8 @@ bot.command("example", (ctx) => ctx.reply("I am throttled"));
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ## Configuración
 

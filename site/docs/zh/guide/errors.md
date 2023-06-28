@@ -1,6 +1,6 @@
 ---
 prev: ./middleware.md
-next: ./inline-queries.md
+next: ./files.md
 ---
 
 # 错误处理
@@ -87,7 +87,7 @@ grammY 不会以任何方式触及抛出的错误，而是把它包装成一个 
 
 除非你的网络不可用了或者 你的 Bot API 服务器暂时下线了，否则你基本看不到这种类型的错误。
 
-> 需要注意的是如果 Bot API 服务器能被链接，但是方法回调返回了 `ok: false`，这时就会抛出 [`GrammyError`](./errors.md#GrammyError对象) 作为代替。
+> 需要注意的是如果 Bot API 服务器能被链接，但是方法回调返回了 `ok: false`，这时就会抛出 [`GrammyError`](./errors.md#grammyerror-对象) 作为代替。
 
 在 [grammY API 参考](https://deno.land/x/grammy/mod.ts?s=HttpError) 中了解 `HttpError` 类。
 

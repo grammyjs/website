@@ -11,8 +11,8 @@ Plugin menu mengembangkannya lebih jauh agar kamu bisa membuat menu yang bervari
 
 Berikut contoh-contohnya:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot } from "grammy";
@@ -37,8 +37,8 @@ bot.command("start", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot } = require("grammy");
@@ -63,8 +63,8 @@ bot.command("start", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -89,8 +89,8 @@ bot.command("start", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 > Pastikan semua menu dipasang sebelum middleware, khususnya sebelum middleware yang menggunakan data callback query.
 
@@ -509,7 +509,7 @@ Sebuah menu hanya akan memroses penekanan tombol jika:
 
 Ketika user menekan tombol menu, kita harus menemukan handler yang telah ditambahkan ke tombol tersebut saat menu di-render sebelumnya.
 Dengan cara seperti itu, kita cukup me-render ulang menu sebelumnya.
-Tetapi, untuk kali ini, kita tidak membutuhkan layout-nya secara utuh—yang kita butuhkan adalah struktur secara keseluruhan, serta tombol spesifik tersebut.
+Tetapi, untuk kali ini, kita tidak membutuhkan layout-nya secara utuh---yang kita butuhkan adalah struktur secara keseluruhan, serta tombol spesifik tersebut.
 Sehingga, plugin menu akan melakukan pe-render-an tipis-tipis supaya lebih efisien.
 Dengan kata lain, menu tersebut akan di-render sebagian saja.
 

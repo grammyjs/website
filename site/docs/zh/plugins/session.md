@@ -41,7 +41,7 @@
 （你可以在 [这里](#会话密钥) 阅读更多关于会话密钥的信息。）
 实际上，你的 bot 将存储一个键为聊天标识符，值为自定义会话数据的字典，即类似这样的东西：
 
-```json:no-line-numbers
+```json
 {
   "424242": { "pizzaCount": 24 },
   "987654": { "pizzaCount": 1729 }
@@ -101,8 +101,8 @@
 
 下面是一个计算含有披萨表情 :pizza: 的信息的 bot 例子
 
-<CodeGroup>
- <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context, session, SessionFlavor } from "grammy";
@@ -133,8 +133,8 @@ bot.hears(/.*🍕.*/, (ctx) => ctx.session.pizzaCount++);
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot, session } = require("grammy");
@@ -157,8 +157,8 @@ bot.hears(/.*🍕.*/, (ctx) => ctx.session.pizzaCount++);
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import {
@@ -194,8 +194,8 @@ bot.hears(/.*🍕.*/, (ctx) => ctx.session.pizzaCount++);
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 请注意，我们还必须 [调整上下文类型](../guide/context.md#定制你的上下文对象)，使得会话可以在上下文上使用。
 上下文修饰器被称为 `SessionFlavor`。
@@ -251,8 +251,8 @@ bot.use(session({ initial: { initialData } })); // 邪恶的
 使用 `getSessionKey`，你可以按每个用户，或每个用户-聊天组合，或任何你想要的方式存储数据。
 这里有三个示例：
 
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 // 为每个聊天存储数据（默认）。
@@ -281,8 +281,8 @@ function getSessionKey(ctx: Context): string | undefined {
 bot.use(session({ getSessionKey }));
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 // 为每个聊天存储数据（默认）。
@@ -311,8 +311,8 @@ function getSessionKey(ctx) {
 bot.use(session({ getSessionKey }));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 当 `getSessionKey` 返回 `undefined` 时，`ctx.session` 也会被设置为 `undefined`。
 举个例子，默认的会话密钥解析器不能处理 `poll`/`poll_answer` update 或 `inline_query` update，因为它们不属于一个聊天（`ctx.chat` 是 `undefined`）。
@@ -411,13 +411,13 @@ bot.use(session({
 > 支持的外部存储解决方案的支持请参考 [这里](#外部存储解决方案)。
 
 使用 grammY 的一个好处是你可以使用免费的云存储。
-它不需要任何配置，所有的认证都是痛使用你的 bot token 完成的。
+它不需要任何配置，所有的认证都是使用你的 bot token 完成的。
 查看 [这个仓库](https://github.com/grammyjs/storages/tree/main/packages/free)！
 
 它非常容易使用：
 
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { freeStorage } from "@grammyjs/storage-free";
@@ -428,8 +428,8 @@ bot.use(session({
 }));
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { freeStorage } = require("@grammyjs/storage-free");
@@ -440,8 +440,8 @@ bot.use(session({
 }));
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { freeStorage } from "https://deno.land/x/grammy_storages/free/src/mod.ts";
@@ -452,16 +452,16 @@ bot.use(session({
 }));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 完成！
 你的 bot 将会使用一个持久的数据存储。
 
 这是一个完整的 bot 示例，你可以复制它来试试。
 
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context, session, SessionFlavor } from "grammy";
@@ -491,8 +491,8 @@ bot.catch((err) => console.error(err));
 bot.start();
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot, session } = require("grammy");
@@ -516,8 +516,8 @@ bot.catch((err) => console.error(err));
 bot.start();
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import {
@@ -552,8 +552,8 @@ bot.catch((err) => console.error(err));
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### 外部存储解决方案
 
@@ -671,7 +671,7 @@ interface SessionData {
 
 ```ts
 // 默认会话 (严格会话)
-bot.command("settings", (ctx) => {
+bot.command("settings", async (ctx) => {
   // `session` 是会话数据
   const session = ctx.session;
 });
@@ -704,7 +704,7 @@ bot.command("settings", async (ctx) => {
 这样可以实现以下代码：
 
 ```ts
-bot.command("reset", (ctx) => {
+bot.command("reset", async (ctx) => {
   // 比 `await ctx.session` 要短得多：
   ctx.session = ctx.session.then((stats) => {
     stats.counter = 0;
@@ -799,8 +799,8 @@ interface SessionData {
 
 迁移函数让你可以将旧字符串数组转换为新的宠物对象数组。
 
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 function addBirthdayToPets(old: { petNames: string[] }): SessionData {
@@ -817,8 +817,8 @@ const enhanced = enhanceStorage({
 });
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 function addBirthdayToPets(old) {
@@ -835,8 +835,8 @@ const enhanced = enhanceStorage({
 });
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 每当读取会话数据时，存储增强功能都会检查会话数据是否已经处于版本 `1`。
 如果版本较低（或因为你之前未使用此功能而丢失），则将运行迁移功能。

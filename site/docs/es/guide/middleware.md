@@ -112,7 +112,7 @@ Puedes solucionar el problema invirtiendo el orden de las líneas 3 y 4.
 Si llamas a `next` en la línea 3, se enviarán dos respuestas.
 
 **La función `bot.use()` simplemente registra el middleware que recibe todas las actualizaciones.
-Esta es la razón por la que `session()` se instala a través de `bot.use()` -queremos que el plugin opere sobre todas las actualizaciones, sin importar los datos que contenga.
+Esta es la razón por la que `session()` se instala a través de `bot.use()`---queremos que el plugin opere sobre todas las actualizaciones, sin importar los datos que contenga.
 
 Tener un middleware stack es una propiedad extremadamente poderosa de cualquier framework web, y este patrón es ampliamente popular (no sólo para los bots de Telegram).
 
@@ -125,8 +125,8 @@ Ilustraremos el concepto de middleware escribiendo una simple función de middle
 Aquí está la firma de la función para nuestro middleware.
 Puedes compararla con el tipo de middleware de arriba, y convencerte de que realmente tenemos un middleware aquí.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 /** Mide el tiempo de respuesta del bot, y lo registra en el `console` */
@@ -138,8 +138,8 @@ async function responseTime(
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 /** Mide el tiempo de respuesta del bot, y lo registra en el `console` */
@@ -148,8 +148,8 @@ async function responseTime(ctx, next) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Podemos instalarlo en nuestra instancia `bot` con `bot.use()`:
 
@@ -167,8 +167,8 @@ Esto es lo que queremos hacer:
 
 Es importante instalar nuestro middleware `responseTime` _primero_ en el bot (en la parte superior de la pila de middleware) para asegurarse de que todas las operaciones se incluyen en la medición.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 /** Mide el tiempo de respuesta del bot, y lo registra en el `console` */
@@ -189,8 +189,8 @@ async function responseTime(
 bot.use(responseTime);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 /** Mide el tiempo de respuesta del bot, y lo registra en el `console` */
@@ -207,8 +207,8 @@ async function responseTime(ctx, next) {
 bot.use(responseTime);
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Completo, ¡y funciona! :heavy_check_mark:
 
@@ -234,7 +234,7 @@ Esto incluye `bot.api.sendMessage`, `ctx.reply`, y todas las demás llamadas de 
 Si tu proyecto es importante para ti, entonces utiliza herramientas de linting que te avisen si alguna vez te olvidas de usar `await` en una `Promise`.
 
 ::: tip Habilitar las promesas no flotantes
-Considere utilizar [ESLint](https://eslint.org/) y configúrelo para que utilice la regla [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-floating-promises.md).
+Considere utilizar [ESLint](https://eslint.org/) y configúrelo para que utilice la regla [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-floating-promises.md).
 Esto se asegurará de que nunca se olvide de usar `await` (gritando).
 :::
 

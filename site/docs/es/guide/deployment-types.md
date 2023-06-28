@@ -21,7 +21,7 @@ Por ejemplo, algunos proveedores de infraestructura sólo admiten uno de los dos
 
 Tu bot puede atraerlos (long polling), o los servidores de Telegram pueden empujarlos a tu bot (webhooks).
 
-> Si ya sabes cómo funcionan estas cosas, desplázate hacia abajo para ver cómo usar [long polling](#cómo-utilizar-el-long-polling) o [webhooks](#cómo-usar-webhooks) con grammY.
+> Si ya sabes cómo funcionan estas cosas, desplázate hacia abajo para ver cómo usar [long polling](#como-utilizar-el-long-polling) o [webhooks](#como-usar-webhooks) con grammY.
 
 ## ¿Cómo funciona el Long Polling?
 
@@ -97,7 +97,7 @@ ______________                                   _____________
 
 > Tenga en cuenta que, en realidad, ninguna conexión se mantendría abierta durante horas.
 > Las solicitudes de long polling ienen un tiempo de espera por defecto de 30 segundos (para evitar una serie de [problemas técnicos](https://datatracker.ietf.org/doc/html/draft-loreto-http-bidirectional-07#section-5.5)).
-> Si no se devuelven nuevos mensajes después de este período de tiempo, la solicitud se cancelará y se volverá a enviar, pero el concepto general sigue siendo el mismo.
+> Si no se devuelven nuevos mensajes después de este período de tiempo, la solicitud se cancelará y se volverá a enviar---pero el concepto general sigue siendo el mismo.
 
 Usando un long polling, no necesitas enviar spam a los servidores de Telegram, ¡y aún así recibes nuevos mensajes inmediatamente!
 Muy ingenioso.
@@ -163,7 +163,7 @@ Los lugares donde los webhooks funcionan bien incluyen:
 ## Aún no tengo idea de qué usar
 
 Entonces opte por el long polling.
-Si no tienes una buena razón para usar webhooks, entonces ten en cuenta que no hay mayores inconvenientes en el long polling, y -según nuestra experiencia- pasarás mucho menos tiempo arreglando cosas.
+Si no tienes una buena razón para usar webhooks, entonces ten en cuenta que no hay mayores inconvenientes en el long polling, y---según nuestra experiencia---pasarás mucho menos tiempo arreglando cosas.
 Los webhooks pueden ser un poco desagradables de vez en cuando (ver [abajo](#terminar-las-solicitudes-de-webhooks-a-tiempo)).
 
 Elijas lo que elijas, si alguna vez te encuentras con problemas serios, no debería ser demasiado difícil cambiar al otro tipo de despliegue después del hecho.
@@ -192,8 +192,8 @@ Por lo tanto, esperamos que seas capaz de poner en marcha un servidor web simple
 Cada bot de grammY puede convertirse en un middleware para un número de frameworks web, incluyendo `express`, `koa`/`oak`, y más.
 Puedes importar la función `webhookCallback` ([API reference](https://deno.land/x/grammy/mod.ts?s=webhookCallback)) para crear un middleware para el framework correspondiente.
 
-<CodeGroup>
- <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import express from "express";
@@ -205,8 +205,8 @@ app.use(express.json()); // analiza el cuerpo de la petición JSON
 app.use(webhookCallback(bot, "express"));
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const express = require("express");
@@ -218,8 +218,8 @@ app.use(express.json()); // analiza el cuerpo de la petición JSON
 app.use(webhookCallback(bot, "express"));
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Application } from "https://deno.land/x/oak/mod.ts";
@@ -230,8 +230,10 @@ const app = new Application(); // o lo que sea que estés usando
 app.use(webhookCallback(bot, "oak"));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
+
+> Ten en cuenta que no debes llamar a `bot.start()` cuando uses webhooks.
 
 Asegúrate de leer [Marvin's Marvellous Guide to All Things Webhook](https://core.telegram.org/bots/webhooks) escrita por el equipo de Telegram si consideras ejecutar tu bot con webhooks en un VPS.
 
@@ -347,7 +349,7 @@ Si tu middleware termina antes de eso, la función `webhookCallback` responderá
 En ese caso, todo está bien.
 Sin embargo, si tu middleware no termina antes del tiempo de espera de grammY, `webhookCallback` lanzará un error.
 Esto significa que puedes manejar el error en tu framework web.
-Si no tienes ese manejo de errores, Telegram enviará la misma actualización de nuevo, pero al menos tendrás registros de errores ahora, para decirte que algo está mal.
+Si no tienes ese manejo de errores, Telegram enviará la misma actualización de nuevo---pero al menos tendrás registros de errores ahora, para decirte que algo está mal.
 
 Una vez que Telegram envía una actualización a tu bot por segunda vez, es poco probable que su manejo sea más rápido que la primera vez.
 Como resultado, es probable que se agote el tiempo de espera de nuevo, y que Telegram envíe la actualización de nuevo.

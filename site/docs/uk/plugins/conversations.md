@@ -51,8 +51,8 @@ async function greeting(conversation, ctx) {
 
 Спершу давайте імпортуємо кілька речей.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import {
@@ -63,8 +63,8 @@ import {
 } from "@grammyjs/conversations";
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const {
@@ -73,8 +73,8 @@ const {
 } = require("@grammyjs/conversations");
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import {
@@ -85,8 +85,8 @@ import {
 } from "https://deno.land/x/grammy_conversations/mod.ts";
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Тепер ми можемо розглянути, як визначати розмовні інтерфейси.
 
@@ -124,8 +124,8 @@ async function greeting(conversation: MyConversation, ctx: MyContext) {
 Усередині функції побудови розмови ви можете визначити, як має виглядати ваша розмова.
 Перш ніж ми детально розберемо кожну функцію цього плагіна, давайте розглянемо більш складний приклад, ніж [простий](#простии-приклад) вище.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function movie(conversation: MyConversation, ctx: MyContext) {
@@ -143,8 +143,8 @@ async function movie(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function movie(conversation, ctx) {
@@ -162,8 +162,8 @@ async function movie(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Чи можете ви зрозуміти, як працюватиме цей бот?
 
@@ -223,8 +223,8 @@ bot.command("start", (ctx) => ctx.conversation.enter("нова-назва"));
 
 Загалом ваш код тепер повинен виглядати приблизно так:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context, session } from "grammy";
@@ -258,8 +258,8 @@ bot.command("start", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot, Context, session } = require("grammy");
@@ -288,8 +288,8 @@ bot.command("start", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot, Context, session } from "https://deno.land/x/grammy/mod.ts";
@@ -323,8 +323,8 @@ bot.command("start", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### Встановлення з власними даними сесії
 
@@ -385,8 +385,8 @@ bot.use(session({
 Розмова триватиме доти, доки не завершиться функція побудови розмови.
 Це означає, що ви можете вийти з розмови за допомогою `return` або `throw`.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function hiAndBye(conversation: MyConversation, ctx: MyContext) {
@@ -396,8 +396,8 @@ async function hiAndBye(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function hiAndBye(conversation, ctx) {
@@ -407,8 +407,8 @@ async function hiAndBye(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Так, додавати `return` в кінці функції трохи безглуздо, але ідею ви зрозуміли.
 
@@ -425,8 +425,8 @@ async function hiAndBye(conversation, ctx) {
 
 Отже, межі помилок та сесії можуть використовуватися разом.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 bot.use(session({
@@ -447,8 +447,8 @@ bot.errorBoundary(
 );
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 bot.use(session({
@@ -469,8 +469,8 @@ bot.errorBoundary(
 );
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Що б ви не робили, не забудьте [встановити обробник помилок](../guide/errors.md) у вашому боті.
 
@@ -479,8 +479,8 @@ bot.errorBoundary(
 Часто краще просто повернутися (`return`) з функції, але є кілька прикладів, де використання `await ctx.conversation.exit()` є зручним.
 Памʼятайте, що ви повинні дочекатися (`await`) виконання методу.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts{6,22}
 async function movie(conversation: MyConversation, ctx: MyContext) {
@@ -507,8 +507,8 @@ bot.use(createConversation(movie));
 bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js{6,22}
 async function movie(conversation, ctx) {
@@ -535,8 +535,8 @@ bot.use(createConversation(movie));
 bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Зверніть увагу, що тут важливий порядок.
 Ви повинні спочатку встановити плагін розмов, що показано на 6-у рядку, перш ніж викликати `await ctx.conversation.exit()`.
@@ -546,8 +546,8 @@ bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 
 Ви можете використовувати обʼєкт розмови `conversation` для очікування наступного оновлення у цьому конкретному чаті.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function waitForMe(conversation: MyConversation, ctx: MyContext) {
@@ -556,8 +556,8 @@ async function waitForMe(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function waitForMe(conversation, ctx) {
@@ -566,8 +566,8 @@ async function waitForMe(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Оновлення може означати, що було надіслано текстове повідомлення, натиснуто кнопку, щось відредаговано або практично будь-яку іншу дію користувача.
 Повний список можна знайти в документації Telegram [тут](https://core.telegram.org/bots/api#update).
@@ -575,8 +575,8 @@ async function waitForMe(conversation, ctx) {
 Метод `wait` завжди повертає новий [обʼєкт контексту](../guide/context.md), який представляє отримане оновлення.
 Це означає, що ви завжди маєте справу з такою кількістю обʼєктів контексту, яка відповідає кількості оновлень, отриманих під час розмови.
 
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 const TEAM_REVIEW_CHAT = -1001493653006;
@@ -603,8 +603,8 @@ async function askUser(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const TEAM_REVIEW_CHAT = -1001493653006;
@@ -631,8 +631,8 @@ async function askUser(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Зазвичай поза плагіном розмов кожне з цих оновлень обробляється [системою проміжних обробників](../guide/middleware.md) вашого бота.
 Отже, ваш бот оброблятиме оновлення через обʼєкт контексту, який передаватиметься вашим обробникам.
@@ -641,8 +641,8 @@ async function askUser(conversation, ctx) {
 Зі свого боку ви можете обробляти різні оновлення по-різному на основі цього обʼєкта.
 Наприклад, ви можете перевіряти наявність текстових повідомлень:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function waitForText(conversation: MyConversation, ctx: MyContext) {
@@ -655,8 +655,8 @@ async function waitForText(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function waitForText(conversation, ctx) {
@@ -669,15 +669,15 @@ async function waitForText(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Крім того, поряд з `wait` існує низка інших методів, які дозволяють вам очікувати лише певні оновлення.
 Одним з прикладів є `waitFor`, який отримує [запит фільтрування](../guide/filter-queries.md), а потім очікує лише оновлення, які відповідають наданому запиту.
 Це особливо ефективно у поєднанні з [деструктуризацією обʼєктів](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment):
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function waitForText(conversation: MyConversation, ctx: MyContext) {
@@ -686,8 +686,8 @@ async function waitForText(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function waitForText(conversation, ctx) {
@@ -696,8 +696,8 @@ async function waitForText(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Зверніться до [довідки API](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#method_wait_0), щоб переглянути всі доступні методи, схожі на `wait`.
 
@@ -805,8 +805,8 @@ do {
 Ви також можете розділити код на кілька функцій і використовувати їх повторно.
 Наприклад, так можна визначити багаторазову капчу.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function captcha(conversation: MyConversation, ctx: MyContext) {
@@ -816,8 +816,8 @@ async function captcha(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function captcha(conversation, ctx) {
@@ -827,14 +827,14 @@ async function captcha(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Вона повертає `true`, якщо користувач може пройти, інакше `false`.
 Тепер ви можете використовувати її у вашій основній функції побудови розмови наступним чином:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function enterGroup(conversation: MyConversation, ctx: MyContext) {
@@ -845,8 +845,8 @@ async function enterGroup(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function enterGroup(conversation, ctx) {
@@ -857,8 +857,8 @@ async function enterGroup(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Подивіться, як функцію капчі можна повторно використовувати в різних місцях вашого коду.
 
@@ -871,7 +871,7 @@ async function enterGroup(conversation, ctx) {
 
 Звичайно, ви також можете використовувати обробку помилок у своїх функціях.
 Звичайні оператори `try`/`catch` працюють чудово, в тому числі й у функціях.
-Зрештою, розмови — це всього лише JavaScript.
+Зрештою, розмови --- це всього лише JavaScript.
 
 Якщо основна функція розмови викине помилку, вона пошириться далі в [механізми обробки помилок](../guide/errors.md) вашого бота.
 
@@ -882,8 +882,8 @@ async function enterGroup(conversation, ctx) {
 
 Якщо ви хочете, ви також можете визначати класи.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 class Auth {
@@ -915,8 +915,8 @@ async function askForToken(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 class Auth {
@@ -948,8 +948,8 @@ async function askForToken(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Справа не в тому, що ми наполегливо рекомендуємо вам це робити.
 Це скоріше приклад того, як можна використовувати безмежну гнучкість JavaScript для структурування коду.
@@ -960,8 +960,8 @@ async function askForToken(conversation, ctx) {
 
 Якщо цих методів недостатньо, плагін розмов надає ще більше допоміжних методів для створення форм за допомогою `conversation.form`.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function waitForMe(conversation: MyConversation, ctx: MyContext) {
@@ -970,8 +970,8 @@ async function waitForMe(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function waitForMe(conversation, ctx) {
@@ -980,8 +980,8 @@ async function waitForMe(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Як завжди, зверніться до [довідки API](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationForm), щоб дізнатися, які методи доступні.
 
@@ -1004,8 +1004,8 @@ async function waitForMe(conversation, ctx) {
 
 Ви можете встановити інші плагіни всередині розмов за допомогою `conversation.run`:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function convo(conversation: MyConversation, ctx: MyContext) {
@@ -1015,8 +1015,8 @@ async function convo(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function convo(conversation, ctx) {
@@ -1026,15 +1026,15 @@ async function convo(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Це зробить плагін доступним всередині розмови.
 
 Наприклад, якщо ви хочете використовувати меню всередині розмови, ваш код може виглядати так.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 async function convo(conversation: MyConversation, ctx: MyContext) {
@@ -1046,8 +1046,8 @@ async function convo(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 async function convo(conversation, ctx) {
@@ -1059,8 +1059,8 @@ async function convo(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### Власні обʼєкти контексту
 
@@ -1123,8 +1123,8 @@ async function convo(conversation, ctx) {
 
 Для прикладу, давайте застосуємо приклад з капчею знову, але цього разу з паралельними розмовами.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts{4}
 async function captcha(conversation: MyConversation, ctx: MyContext) {
@@ -1142,8 +1142,8 @@ async function enterGroup(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js{4}
 async function captcha(conversation, ctx) {
@@ -1161,8 +1161,8 @@ async function enterGroup(conversation, ctx) {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Зверніть увагу, що ми очікуємо лише на повідомлення від певного користувача.
 
@@ -1271,7 +1271,7 @@ if (Math.random() < 0.5) {
 Концептуально кажучи, ключові слова `async` та `await` дають нам контроль над тим, де потік [витісняється](https://uk.wikipedia.org/wiki/Витискальна_багатозадачність).
 Отже, якщо хтось викликає `await conversation.wait()`, яка є функцією нашої бібліотеки, ми маємо право витіснити виконання.
 
-Якщо говорити конкретніше, то секретний примітив ядра, який дозволяє нам переривати виконання функції, — це `Promise`, який ніколи не завершується (`resolve`).
+Якщо говорити конкретніше, то секретний примітив ядра, який дозволяє нам переривати виконання функції, --- це `Promise`, який ніколи не завершується (`resolve`).
 
 ```ts
 await new Promise<never>(() => {}); // БУМ

@@ -11,7 +11,7 @@ Setiap kali kamu menambahkan listener ke object bot, listener ini akan menerima 
 
 ```ts
 // Ini adalah listener atau penyimak. Tugasnya menyimak pesan masuk.
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` adalah object `Context`.
 });
 ```
@@ -29,7 +29,7 @@ Ketika pengguna mengirim pesan ke bot, kamu dapat mengakses pesan itu melalui `c
 Sebagai contoh, untuk mendapatkan pesan teks, kamu dapat melakukan ini:
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `txt` akan memiliki type `string` ketika memproses pesan berjenis teks.
   // Atau bisa juga menjadi type `undefined` jika pesan tidak memiliki teks sama sekali,
   // Misalnya foto, stiker, dan jenis pesan lainnya.
@@ -45,7 +45,7 @@ Kalau kamu memasang listener untuk jenis pesan lainnya, `ctx` juga akan memberi 
 Contoh:
 
 ```ts
-bot.on("edited_message", (ctx) => {
+bot.on("edited_message", async (ctx) => {
   // Mendapatkan isi pesan baru yang diedit.
   const teksPesan = ctx.editedMessage.text;
 });
@@ -72,17 +72,17 @@ Ada sejumlah shortcut yang tersedia untuk object context.
 Dengan kata lain, kamu juga bisa melakukan ini:
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // Ambil isi pesan teks.
   const teks = ctx.msg.text;
 });
 
-bot.on("edited_message", (ctx) => {
+bot.on("edited_message", async (ctx) => {
   // Ambil isi pesan teks yang diedit.
   const teks = ctx.msg.text;
 });
 
-bot.on("message:entities", (ctx) => {
+bot.on("message:entities", async (ctx) => {
   // Ambil semua jenis entity.
   const entity = ctx.entities();
 
@@ -287,8 +287,8 @@ const bot = new Bot<MyContext>("");
 
 Hasil akhirnya menjadi seperti ini:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 const BOT_DEVELOPER = 123456; // Id chat developer
@@ -320,8 +320,8 @@ bot.command("start", async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const BOT_DEVELOPER = 123456; // Id chat developer
@@ -344,8 +344,8 @@ bot.command("start", async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Type context modifikasi juga bisa diteruskan ke komponen lain yang menangani middleware, contohnya [composer](https://deno.land/x/grammy/mod.ts?s=Composer).
 
@@ -374,8 +374,8 @@ Ketika membuat bot, kamu bisa meneruskan constructor context hasil modifikasi ya
 Ingat!
 Class kamu harus meng-extend `Context`.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context } from "grammy";
@@ -397,7 +397,7 @@ const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` sekarang mempunyai type `MyContext`!
   const prop = ctx.customProp;
 });
@@ -405,8 +405,8 @@ bot.on("message", (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript" active>
+:::
+:::code-group-item JavaScript
 
 ```ts
 const { Bot, Context } = require("grammy");
@@ -427,7 +427,7 @@ const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` sekarang mempunyai type `MyContext`!
   const prop = ctx.customProp;
 });
@@ -435,8 +435,8 @@ bot.on("message", (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
@@ -461,7 +461,7 @@ const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` sekarang mempunyai type `MyContext`!
   const prop = ctx.customProp;
 });
@@ -469,13 +469,13 @@ bot.on("message", (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Perhatikan bagaimana type context hasil modifikasi sudah ditentukan secara otomatis ketika kamu menggunakan subclass.
 Sehingga, kamu tidak perlu lagi menulis `Bot<MyContext>` karena constructor subclass sudah ditentukan di dalam opsi object `new Bot()`.
 
-Akan tetapi, dengan menggunakan metode ini membuatnya sangat sulit—bahkan mungkin mustahil—untuk menginstal plugin, karena plugin-plugin tersebut sering kali mengharuskan kamu untuk menggunakan context flavor.
+Akan tetapi, dengan menggunakan metode ini membuatnya sangat sulit---bahkan mungkin mustahil---untuk menginstal plugin, karena plugin-plugin tersebut sering kali mengharuskan kamu untuk menggunakan context flavor.
 
 ## Context Flavor
 
@@ -524,7 +524,7 @@ type MyContext = Context & SessionFlavor<string>;
 Sekarang kamu dapat menggunakan plugin session serta memiliki akses ke `ctx.session`:
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // Sekarang `str` memiliki type `string`.
   const str = ctx.session;
 });
@@ -544,7 +544,7 @@ type ContextKu = FlavorA<Context>;
 
 Selebihnya sama saja.
 
-Setiap plugin—yang resmi—sudah tercantum di dalam dokumentasinya apakah harus menggunakan context flavor jenis _additive_ atau _transformative_.
+Setiap plugin---yang resmi---sudah tercantum di dalam dokumentasinya apakah harus menggunakan context flavor jenis _additive_ atau _transformative_.
 
 ### Mengombinasikan Context Flavor yang Berbeda
 

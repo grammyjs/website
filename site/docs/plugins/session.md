@@ -41,7 +41,7 @@ In this case, we would call the chat identifier the _session key_.
 (You can read more about session keys [down here](#session-keys).)
 Effectively, your bot will store a map from a chat identifier to some custom session data, i.e. something like this:
 
-```json:no-line-numbers
+```json
 {
   "424242": { "pizzaCount": 24 },
   "987654": { "pizzaCount": 1729 }
@@ -75,7 +75,7 @@ We just modify the data in `ctx.session`, and the plugin will take care of the r
 > [Skip ahead](#how-to-use-sessions) if you already know that you want to use sessions.
 
 You may think, this is great, I never have to worry about databases again!
-And you are right, sessions are an ideal solution—but only for some types of data.
+And you are right, sessions are an ideal solution---but only for some types of data.
 
 In our experience, there are use cases where sessions truly shine.
 On the other hand, there are cases where a traditional database may be better suited.
@@ -102,8 +102,8 @@ You can add session support to grammY by using the built-in session middleware.
 
 Here is an example bot that counts messages containing a pizza emoji :pizza::
 
-<CodeGroup>
- <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context, session, SessionFlavor } from "grammy";
@@ -134,8 +134,8 @@ bot.hears(/.*🍕.*/, (ctx) => ctx.session.pizzaCount++);
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot, session } = require("grammy");
@@ -158,8 +158,8 @@ bot.hears(/.*🍕.*/, (ctx) => ctx.session.pizzaCount++);
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import {
@@ -195,8 +195,8 @@ bot.hears(/.*🍕.*/, (ctx) => ctx.session.pizzaCount++);
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Note how we also have to [adjust the context type](../guide/context.md#customizing-the-context-object) to make the session available on it.
 The context flavor is called `SessionFlavor`.
@@ -252,8 +252,8 @@ By default, data is stored per chat.
 Using `getSessionKey` allows you to store data per user, or per user-chat combination, or however you want.
 Here are three examples:
 
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 // Stores data per chat (default).
@@ -282,8 +282,8 @@ function getSessionKey(ctx: Context): string | undefined {
 bot.use(session({ getSessionKey }));
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 // Stores data per chat (default).
@@ -312,8 +312,8 @@ function getSessionKey(ctx) {
 bot.use(session({ getSessionKey }));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Whenever `getSessionKey` returns `undefined`, `ctx.session` will be `undefined`.
 For example, the default session key resolver will not work for `poll`/`poll_answer` updates or `inline_query` updates because they do not belong to a chat (`ctx.chat` is `undefined`).
@@ -412,13 +412,13 @@ bot.use(session({
 > The list of supported integrations of external storage solutions is [down here](#external-storage-solutions).
 
 A benefit of using grammY is that you get access to free cloud storage.
-It requires zero setup—all authentication is done using your bot token.
+It requires zero setup---all authentication is done using your bot token.
 Check out the [repository](https://github.com/grammyjs/storages/tree/main/packages/free)!
 
 It is very easy to use:
 
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { freeStorage } from "@grammyjs/storage-free";
@@ -429,8 +429,8 @@ bot.use(session({
 }));
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { freeStorage } = require("@grammyjs/storage-free");
@@ -441,8 +441,8 @@ bot.use(session({
 }));
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { freeStorage } from "https://deno.land/x/grammy_storages/free/src/mod.ts";
@@ -453,16 +453,16 @@ bot.use(session({
 }));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Done!
 Your bot will now use a persistent data storage.
 
 Here is a full example bot that you can copy to try it out.
 
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot, Context, session, SessionFlavor } from "grammy";
@@ -492,8 +492,8 @@ bot.catch((err) => console.error(err));
 bot.start();
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot, session } = require("grammy");
@@ -517,8 +517,8 @@ bot.catch((err) => console.error(err));
 bot.start();
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import {
@@ -553,8 +553,8 @@ bot.catch((err) => console.error(err));
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### External Storage Solutions
 
@@ -671,7 +671,7 @@ In practice, instead of having the session data available under `ctx.session`, y
 
 ```ts
 // Default sessions (strict sessions)
-bot.command("settings", (ctx) => {
+bot.command("settings", async (ctx) => {
   // `session` is the session data
   const session = ctx.session;
 });
@@ -704,7 +704,7 @@ If you set `ctx.session` to be a promise, it will be `await`ed before writing th
 This would allow for the following code:
 
 ```ts
-bot.command("reset", (ctx) => {
+bot.command("reset", async (ctx) => {
   // Much shorter than having to `await ctx.session` first:
   ctx.session = ctx.session.then((stats) => {
     stats.counter = 0;
@@ -799,8 +799,8 @@ interface SessionData {
 
 Migration functions let you transform the old string array into the new array of pet objects.
 
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 function addBirthdayToPets(old: { petNames: string[] }): SessionData {
@@ -817,8 +817,8 @@ const enhanced = enhanceStorage({
 });
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 function addBirthdayToPets(old) {
@@ -835,8 +835,8 @@ const enhanced = enhanceStorage({
 });
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Whenever session data is read, the storage enhancement will check if the session data is already at version `1`.
 If the version is lower (or missing because you were not using this feature before) then the migration function will be run.

@@ -50,7 +50,7 @@ Las llamadas a través de objetos de contexto de middleware que se ejecutan simu
 Tan pronto como el middleware respectivo se completa, la función transformadora se descarta.
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // Se instala en todos los objetos de contexto que procesan mensajes.
   ctx.api.config.use((prev, method, payload, signal) =>
     prev(method, payload, signal)
@@ -82,7 +82,7 @@ Por lo tanto, es una forma más fiable de pasar las rutas de los archivos a `Inp
 ## API Flavoring
 
 grammY cuenta con [context flavors](../guide/context.md#context-flavors) que pueden ser usados para ajustar el tipo de contexto.
-Esto incluye los métodos de la API, tanto los que están directamente en el objeto de contexto como `ctx.reply`, y todos los métodos en `ctx.api` y `ctx.api.raw`.
+Esto incluye los métodos de la API---tanto los que están directamente en el objeto de contexto como `ctx.reply`, y todos los métodos en `ctx.api` y `ctx.api.raw`.
 Sin embargo, no puedes ajustar los tipos de `bot.api` y `bot.api.raw` a través de los context flavors.
 
 Por eso grammY admite los _API flavors_.

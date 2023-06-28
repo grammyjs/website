@@ -287,28 +287,28 @@ npx tsc
 Наприклад, `Procfile.txt` і `procfile` не є дійсними.
 Далі напишіть цей код одним рядком у такому форматі:
 
-```
+```procfile
 <тип dyno>: <команда для виконання основного файлу>
 ```
 
 У нашому випадку він має бути таким:
 
-<CodeGroup>
-<CodeGroupItem title="Вебхук" active>
+::::code-group
+:::code-group-item Вебхук
 
-```
+```procfile
 web: node dist/app.js
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Тривале опитування">
+:::
+:::code-group-item Тривале опитування
 
-```
+```procfile
 worker: node dist/bot.js
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### Налаштування Git
 
@@ -316,7 +316,7 @@ worker: node dist/bot.js
 Ось посилання на інсталяцію:
 
 - [Інструкція для встановлення Git](https://git-scm.com/download/)
-- [Інструкція для встановлення Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
+- [Інструкція для встановлення Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli)
 
 Припускаємо, що ви вже маєте їх на своєму компʼютері й у вас відкритий термінал в кореневому каталозі проєкту.
 Тепер ініціалізуйте локальний репозиторій Git, запустивши цей код у вашому терміналі:
@@ -329,7 +329,7 @@ git init
 Створіть файл з назвою `.gitignore` в кореневому каталозі проєкту.
 Потім додайте цей список:
 
-```
+```text
 node_modules/
 src/
 tsconfig.json
@@ -337,8 +337,8 @@ tsconfig.json
 
 Кінцева структура каталогів повинна виглядати наступним чином:
 
-<CodeGroup>
-<CodeGroupItem title="Вебхук" active>
+::::code-group
+:::code-group-item Вебхук
 
 ```asciiart:no-line-numbers
 .
@@ -357,8 +357,8 @@ tsconfig.json
 └── .gitignore
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Тривале опитування">
+:::
+:::code-group-item Тривале опитування
 
 ```asciiart:no-line-numbers
 .
@@ -375,8 +375,8 @@ tsconfig.json
 └── .gitignore
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 Збережіть файли у репозиторії Git:
 
@@ -390,23 +390,23 @@ git commit -m "Мій перший коміт"
 Якщо ви вже створили [застосунок Heroku](https://dashboard.heroku.com/apps/), введіть назву вашого існуючого застосунку (`Existing app`) замість `<мій-застосунок>` нижче, а потім запустіть код.
 В іншому випадку запустіть новий застосунок (`New app`).
 
-<CodeGroup>
-  <CodeGroupItem title="Новий застосунок" active>
+::::code-group
+:::code-group-item Новий застосунок
 
 ```sh
 heroku create
 git remote -v
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Існуючий застосунок" active>
+:::
+:::code-group-item Існуючий застосунок
 
 ```sh
 heroku git:remote -a <мій-застосунок>
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### Розгортання коду
 

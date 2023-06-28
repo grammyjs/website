@@ -12,8 +12,8 @@ Pueden tener botones interactivos, múltiples páginas con navegación entre ell
 
 Aquí hay un ejemplo simple que habla por sí mismo.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot } from "grammy";
@@ -38,8 +38,8 @@ bot.command("start", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot } = require("grammy");
@@ -64,8 +64,8 @@ bot.command("start", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -90,8 +90,8 @@ bot.command("start", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 > Asegúrese de instalar todos los menús antes de otros middleware, especialmente antes de los middleware que utilizan datos de consulta de devolución de llamada.
 
@@ -202,7 +202,7 @@ const menu = new Menu("time", { onMenuOutdated: false })
   );
 ```
 
-> El propósito de `onMenuOutdated` se explica [más abajo](#menús-y-huellas-anticuadas).
+> El propósito de `onMenuOutdated` se explica [más abajo](#menus-y-huellas-anticuadas).
 > Puedes ignorarlo por ahora.
 
 También puede actualizar el menú implícitamente editando el mensaje correspondiente.
@@ -422,7 +422,7 @@ Esto le permite pasar mensajes personalizados que se muestran al usuario.
 
 ## Menús y Huellas Anticuadas
 
-Digamos que tienes un menú donde un usuario puede activar y desactivar las notificaciones, como en el ejemplo [aquí arriba](#etiquetas-dinámicas).
+Digamos que tienes un menú donde un usuario puede activar y desactivar las notificaciones, como en el ejemplo [aquí arriba](#etiquetas-dinamicas).
 Ahora, si un usuario envía `/settings` dos veces, obtendrá el mismo menú dos veces.
 Pero, ¡cambiar la configuración de la notificación en uno de los dos mensajes no actualizará el otro!
 
@@ -506,11 +506,11 @@ Un menú sólo manejará las pulsaciones de los botones si:
 
 Cuando un usuario pulsa un botón de un menú, necesitamos encontrar el manejador que se añadió a ese botón en el momento en que se renderizó el menú.
 Por lo tanto, simplemente renderizamos el viejo menú de nuevo.
-Sin embargo, esta vez, no necesitamos el diseño completo - todo lo que necesitamos es la estructura general, y ese botón específico.
+Sin embargo, esta vez, no necesitamos el diseño completo---todo lo que necesitamos es la estructura general, y ese botón específico.
 En consecuencia, el plugin del menú realizará una representación superficial para ser más eficiente.
 En otras palabras, el menú sólo se renderizará parcialmente.
 
-Una vez que se conoce el botón pulsado de nuevo (y hemos comprobado que el menú no está [desactualizado](#menús-y-huellas-anticuadas)), invocamos el manejador.
+Una vez que se conoce el botón pulsado de nuevo (y hemos comprobado que el menú no está [desactualizado](#menus-y-huellas-anticuadas)), invocamos el manejador.
 
 Internamente, el plugin de menús hace un gran uso de [API Transformer Functions](../advanced/transformers.md), por ejemplo, para renderizar rápidamente los menús salientes sobre la marcha.
 

@@ -51,7 +51,7 @@ Calls via context objects of concurrently running middleware are left unaffected
 As soon as the respective middleware completes, the transformer function is discarded.
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // Install on all context objects that process messages.
   ctx.api.config.use((prev, method, payload, signal) =>
     prev(method, payload, signal)
@@ -84,7 +84,7 @@ It is therefore a more reliable way to pass file paths to `InputFile`, so grammY
 ## API Flavoring
 
 grammY features [context flavors](../guide/context.md#context-flavors) that can be used to adjust the context type.
-This includes API methods—both those that are directly on the context object such as `ctx.reply`, and all methods in `ctx.api` and `ctx.api.raw`.
+This includes API methods---both those that are directly on the context object such as `ctx.reply`, and all methods in `ctx.api` and `ctx.api.raw`.
 However, you cannot adjust the types of `bot.api` and `bot.api.raw` via context flavors.
 
 This is why grammY supports _API flavors_.

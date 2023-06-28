@@ -73,7 +73,7 @@ You will get to know them as you go.
 
 > Skip the rest of this page if you already know how to develop a Deno or a Node.js application, and [get started](./getting-started.md).
 
-Here are a few interesting things about programming—things that are essential to coding, yet rarely explained because most developers think they are self-evident.
+Here are a few interesting things about programming---things that are essential to coding, yet rarely explained because most developers think they are self-evident.
 
 In the next section, you will create a bot by writing a text file that contains source code in the programming language [TypeScript](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html).
 The grammY documentation will not teach you how to program, so we expect you to teach yourself.
@@ -83,7 +83,7 @@ Remember, though: creating a Telegram bot with grammY is actually a good way to 
 You can start learning TypeScript with the [official tutorial](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html) written by the TypeScript team, and then move on from there.
 Don't spend more than 30 minutes reading things on the internet, then come back here, (read the rest of the section) and [get started](./getting-started.md).
 
-If you see unfamiliar syntax in the docs, or if you get an error message that you don't understand, google it—the explanation is already on the internet (e.g. on Stack Overflow).
+If you see unfamiliar syntax in the docs, or if you get an error message that you don't understand, google it---the explanation is already on the internet (e.g. on Stack Overflow).
 :::
 
 ::: danger Not Learning How to Code
@@ -96,7 +96,7 @@ For that, you need to install some software which is able to _execute_ your code
 This type of software is called a _runtime environment_.
 It takes in your source code files and actually does whatever is programmed in them.
 
-For us, there are two runtime environments to choose from, [Deno](https://deno.land) and [Node.js](https://nodejs.org).
+For us, there are two runtime environments to choose from, [Deno](https://deno.com/runtime) and [Node.js](https://nodejs.org).
 (If you see people call it _Node_, they are just too lazy to type ".js", but they mean the same thing.)
 
 > The rest of this section helps you decide between these two platforms.
@@ -136,7 +136,7 @@ This means installing a few tools.
 
 #### Preparing Your Machine for Development
 
-[Install Deno](https://deno.land/manual/getting_started/installation#download-and-install) if you have not done it already.
+[Install Deno](https://deno.com/manual/getting_started/installation#download-and-install) if you have not done it already.
 
 You also need a text editor that fits well with coding.
 The best one for Deno is Visual Studio Code, often just called VS Code.

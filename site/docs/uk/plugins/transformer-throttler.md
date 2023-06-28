@@ -5,7 +5,7 @@
 ::: warning Існують недокументовані ліміти API
 Telegram реалізує невизначені та недокументовані обмеження запитів для деяких викликів API.
 Ці недокументовані обмеження **не враховуються** плагіном.
-Розгляньте можливість використання [плагіна `auto-retry`](./auto-retry.md) разом з цим плагіном, якщо у вас виникають помилки `floodwait` для певних викликів API, таких як `api.sendContact`.
+Якщо ви все ще хочете використовувати цей плагін, розгляньте можливість використання [плагіну `auto-retry`](./auto-retry.md) разом з ним.
 :::
 
 ## Використання
@@ -13,8 +13,8 @@ Telegram реалізує невизначені та недокументова
 Ось приклад використання цього плагіна з параметрами за замовчуванням.
 Зверніть увагу, що типові налаштування відповідають фактичним обмеженням швидкості, які застосовує Telegram, тому вони повинні нормально працювати.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::::code-group
+:::code-group-item TypeScript
 
 ```ts
 import { Bot } from "grammy";
@@ -32,8 +32,8 @@ bot.command("example", (ctx) => ctx.reply("Я обмежений"));
 run(bot);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
+:::
+:::code-group-item JavaScript
 
 ```js
 const { Bot } = require("grammy");
@@ -51,8 +51,8 @@ bot.command("example", (ctx) => ctx.reply("Я обмежений"));
 run(bot);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -70,8 +70,8 @@ bot.command("example", (ctx) => ctx.reply("Я обмежений"));
 run(bot);
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ## Налаштування
 

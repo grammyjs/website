@@ -77,10 +77,6 @@ export const localeId: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/id/guide/errors.html",
               },
               {
-                text: "Inline Query",
-                link: "/id/guide/inline-queries.html",
-              },
-              {
                 text: "Menangani File",
                 link: "/id/guide/files.html",
               },
@@ -165,6 +161,14 @@ export const localeId: LocaleConfig<DefaultThemeLocaleData> = {
               {
                 text: "Keyboard Custom dan Inline",
                 link: "/id/plugins/keyboard.html",
+              },
+              {
+                text: "Pengelompokan Media",
+                link: "/id/plugins/media-group.html",
+              },
+              {
+                text: "Inline Query",
+                link: "/id/plugins/inline-query.html",
               },
             ],
           },

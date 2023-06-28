@@ -75,10 +75,6 @@ export const localeEs: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/es/guide/errors.html",
               },
               {
-                text: "Consultas lineales",
-                link: "/es/guide/inline-queries.html",
-              },
-              {
                 text: "Manejo de archivos",
                 link: "/es/guide/files.html",
               },
@@ -163,6 +159,14 @@ export const localeEs: LocaleConfig<DefaultThemeLocaleData> = {
               {
                 text: "Teclados lineales y personalizados",
                 link: "/es/plugins/keyboard.html",
+              },
+              {
+                text: "Medios de comunicación",
+                link: "/es/plugins/media-group.html",
+              },
+              {
+                text: "Consultas lineales",
+                link: "/es/plugins/inline-query.html",
               },
             ],
           },

@@ -1,3 +1,0 @@
----
-prev: ./deployment-types.md
----

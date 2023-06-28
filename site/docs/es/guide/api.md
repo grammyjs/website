@@ -58,7 +58,7 @@ Estrictamente hablando, todos los métodos de la API del Bot esperan un objeto J
 Fíjate, sin embargo, en que `sendMessage` en el ejemplo anterior recibe dos argumentos, un identificador de chat y una cadena.
 grammY sabe que estos dos valores pertenecen a la propiedad `chat_id` y `text`, respectivamente, y construirá el objeto JSON correcto para ti.
 
-Como se mencionó [anteriormente](./basics.md#envío-de-mensajes), puede especificar otras opciones en el tercer argumento de tipo `Other`:
+Como se mencionó [anteriormente](./basics.md#envio-de-mensajes), puede especificar otras opciones en el tercer argumento de tipo `Other`:
 
 ```ts
 async function sendHelloTo12345() {
@@ -77,7 +77,7 @@ grammY te permite especificar objetos de forma consistente a través de la API, 
 
 grammY viene con una cobertura completa de tipos de la API del Bot.
 El repositorio [`@grammyjs/types`](https://github.com/grammyjs/types) contiene las definiciones de tipos que grammY utiliza internamente.
-Estas definiciones de tipos también se exportan para que puedas usarlas en tu propio código.
+Estas definiciones de tipos también se exportan directamente desde el paquete `grammy` para que puedas utilizarlas en tu propio código.
 
 #### Definiciones de tipos en Deno
 

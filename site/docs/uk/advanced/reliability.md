@@ -18,9 +18,9 @@ next: ./flood.md
 
 ### Просте тривале опитування
 
-<CodeGroup>
+::::code-group
 
-<CodeGroupItem title="TypeScript" active>
+:::code-group-item TypeScript
 
 ```ts
 import { Bot } from "grammy";
@@ -35,9 +35,9 @@ process.once("SIGTERM", () => bot.stop());
 await bot.start();
 ```
 
-</CodeGroupItem>
+:::
 
-<CodeGroupItem title="JavaScript">
+:::code-group-item JavaScript
 
 ```js
 const { Bot } = require("grammy");
@@ -52,9 +52,9 @@ process.once("SIGTERM", () => bot.stop());
 await bot.start();
 ```
 
-</CodeGroupItem>
+:::
 
-<CodeGroupItem title="Deno">
+:::code-group-item Deno
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -69,14 +69,14 @@ Deno.addSignalListener("SIGTERM", () => bot.stop());
 await bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 ### Використовуючи плагін для конкурентості (runner)
 
-<CodeGroup>
+::::code-group
 
-<CodeGroupItem title="TypeScript" active>
+:::code-group-item TypeScript
 
 ```ts
 import { Bot } from "grammy";
@@ -93,9 +93,9 @@ process.once("SIGINT", stopRunner);
 process.once("SIGTERM", stopRunner);
 ```
 
-</CodeGroupItem>
+:::
 
-<CodeGroupItem title="JavaScript">
+:::code-group-item JavaScript
 
 ```js
 const { Bot } = require("grammy");
@@ -112,8 +112,8 @@ process.once("SIGINT", stopRunner);
 process.once("SIGTERM", stopRunner);
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Deno">
+:::
+:::code-group-item Deno
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -130,8 +130,8 @@ Deno.addSignalListener("SIGINT", stopRunner);
 Deno.addSignalListener("SIGTERM", stopRunner);
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+::::
 
 По великому рахунку, це все, що стосується надійності; зараз ваш екземпляр повинен:registered: ніколи:tm: не падати.
 
@@ -149,7 +149,7 @@ Deno.addSignalListener("SIGTERM", stopRunner);
 ### Вебхук
 
 Якщо ви запускаєте бота на вебхуках, сервер Bot API повторить спробу доставити оновлення вашому боту, якщо він не відповість `OK` вчасно.
-Це значною мірою визначає поведінку системи - якщо вам потрібно запобігти обробці дублікатів оновлень, вам слід створити власну дедуплікацію на основі `update_id`.
+Це значною мірою визначає поведінку системи --- якщо вам потрібно запобігти обробці дублікатів оновлень, вам слід створити власну дедуплікацію на основі `update_id`.
 grammY не робить цього для вас, але не соромтеся робити PR, якщо вважаєте, що це буде корисно ще для когось.
 
 ### Тривале опитування
