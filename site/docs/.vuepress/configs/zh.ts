@@ -164,6 +164,10 @@ export const localeZh: LocaleConfig<DefaultThemeLocaleData> = {
                 text: "Inline 与自定义 Keyboards",
                 link: "/zh/plugins/keyboard.html",
               },
+              {
+                text: "媒体组",
+                link: "/zh/plugins/media-group.html",
+              },
             ],
           },
           {

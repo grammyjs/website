@@ -166,6 +166,10 @@ export const localeId: LocaleConfig<DefaultThemeLocaleData> = {
                 text: "Keyboard Custom dan Inline",
                 link: "/id/plugins/keyboard.html",
               },
+              {
+                text: "Pengelompokan Media",
+                link: "/id/plugins/media-group.html",
+              },
             ],
           },
           {
