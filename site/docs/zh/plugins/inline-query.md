@@ -159,7 +159,6 @@ InlineQueryResultBuilder.audioCached("id-0", audioFileId);
 
 你应该阅读 `InlineQueryResultBuilder` 的 [API 参考](https://deno.land/x/grammy/mod.ts?s=InlineQueryResultBuilder) 和 `InlineQueryResult` 的 [规范](https://core.telegram.org/bots/api#inlinequeryresult) 来查看所有可用选项。
 
-
 ## 回复 Inline Query
 
 在使用 [上述](#构建-inline-query-结果) 构建器生成 inline query 结果的数组后，你可以调用 `answerInlineQuery` 将这些结果发送给用户。
@@ -191,7 +190,8 @@ They even have a pretty website! 👇`,
 bot.on("inline_query", (ctx) => ctx.answerInlineQuery([]));
 ```
 
-[别忘了](../guide/basics.md#发送信息)，当调用 API 方法时，你始终可以使用类型为 `Other` 的选项对象来指定更多选项。例如，你可以在 [这里](https://core.telegram.org/bots/api#answerinlinequery) 看到，`answerInlineQuery` 允许你通过偏移量来进行 inline query 分页。
+[别忘了](../guide/basics.md#发送信息)，当调用 API 方法时，你始终可以使用类型为 `Other` 的选项对象来指定更多选项。
+例如，你可以在 [这里](https://core.telegram.org/bots/api#answerinlinequery) 看到，`answerInlineQuery` 允许你通过偏移量来进行 inline query 分页。
 
 :::tip 混合文本和媒体
 虽然允许发送同时包含媒体和文本元素的结果列表，但大多数 Telegram 客户端并不能很好地渲染它们。
