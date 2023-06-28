@@ -1,5 +1,5 @@
 ---
-prev: ./inline-queries.md
+prev: ./errors.md
 next: ./games.md
 ---
 
