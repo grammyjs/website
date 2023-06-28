@@ -173,8 +173,8 @@ He aquí un ejemplo:
 
 ```ts
 const keyboard = new Keyboard()
-  .text("Sí, ciertamente lo son").row()
-  .text("No estoy muy seguro").row()
+  .text("Yes, they certainly are").row()
+  .text("I'm not quite sure").row()
   .text("No. 😈")
   .resized();
 ```
