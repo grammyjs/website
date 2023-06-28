@@ -75,10 +75,6 @@ export const localeEn: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/guide/errors.html",
               },
               {
-                text: "Inline Queries",
-                link: "/guide/inline-queries.html",
-              },
-              {
                 text: "File Handling",
                 link: "/guide/files.html",
               },
@@ -167,6 +163,10 @@ export const localeEn: LocaleConfig<DefaultThemeLocaleData> = {
               {
                 text: "Media Groups",
                 link: "/plugins/media-group.html",
+              },
+              {
+                text: "Inline Queries",
+                link: "/plugins/inline-query.html",
               },
             ],
           },

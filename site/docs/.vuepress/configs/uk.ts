@@ -75,10 +75,6 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/uk/guide/errors.html",
               },
               {
-                text: "Вбудовані запити",
-                link: "/uk/guide/inline-queries.html",
-              },
-              {
                 text: "Обробка файлів",
                 link: "/uk/guide/files.html",
               },
@@ -167,6 +163,10 @@ export const localeUk: LocaleConfig<DefaultThemeLocaleData> = {
               {
                 text: "Медіагрупи",
                 link: "/uk/plugins/media-group.html",
+              },
+              {
+                text: "Inline-запити",
+                link: "/uk/plugins/inline-query.html",
               },
             ],
           },

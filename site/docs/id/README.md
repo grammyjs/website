@@ -25,7 +25,7 @@ permalink: /id/
   'selangkah lebih maju',
   'bisa melakukan apa saja, kecuali mencuci piring',
   'buatnya so easY, hati jadi happY',
-  'ratusan juta telah terlayani',
+  'miliaran telah terlayani',
   'dokumentasi yang lengkap dan berkualitas',
   'honeY, grammY, sweetY',
 ][Math.floor(Math.random() * 9)] }}.</h6>
