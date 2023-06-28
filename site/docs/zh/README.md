@@ -34,6 +34,7 @@ features:
   - icon: 📈
     title: 可扩展
     details: grammY 在你 bot 拥有较多流量时提供可靠的帮助.
+---
 
 <HomeContent>
 
