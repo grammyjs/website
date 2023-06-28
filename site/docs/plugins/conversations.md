@@ -1054,6 +1054,8 @@ async function convo(conversation, ctx) {
   const menu = new Menu()
     .text("Click", (ctx) => ctx.reply("Hi!"));
   await conversation.run(menu);
+  await ctx.reply("Check out this menu:", { reply_markup: menu });
+  await conversation.wait();
 
   // Continue defining the conversation ...
 }
