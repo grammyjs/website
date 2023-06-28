@@ -5,7 +5,7 @@ next: false
 
 # 流量控制（`transformer-throttler`）
 
-> 考虑使用 [auto-retry 插件](./auto-retry.md) 代替。
+> 考虑使用 [auto-retry 插件](./auto-retry) 代替。
 
 这个插件通过 [Bottleneck](https://github.com/SGrondin/bottleneck) 对传出的 API 请求实例进行排队，以防止你的 bot 被 [限流](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this)，正如在这个 [高级部分](../advanced/flood) 的文档中描述的那样。
 
