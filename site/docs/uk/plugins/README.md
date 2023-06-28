@@ -33,26 +33,26 @@ next: ./guide.md
 
 > Натисніть на будь-яку назву пакета, щоб дізнатися більше про відповідний плагін.
 
-| Плагін                                        | Пакет                                                 | Опис                                                          |
-| --------------------------------------------- | ----------------------------------------------------- | --------------------------------------------------------------|
-| [Sessions](./session.md)                      | _вбудовано_                                           | Зберігання даних користувачів в базі                          |
-| [Inline and Custom Keyboards](./keyboard.md)  | _вбудовано_                                           | Спрощене створення вбудованих і кастомних клавіатур           |
-| [Media Groups](./media-group.md)              | _вбудовано_                                           | Спрощене надсилання та редагування груп медіа                 |
+| Плагін                                        | Пакет                                                 | Опис                                                         |
+| --------------------------------------------- | ----------------------------------------------------- | ------------------------------------------------------------ |
+| [Sessions](./session.md)                      | _вбудовано_                                           | Зберігання даних користувачів в базі                         |
+| [Inline and Custom Keyboards](./keyboard.md)  | _вбудовано_                                           | Спрощене створення вбудованих і кастомних клавіатур          |
+| [Media Groups](./media-group.md)              | _вбудовано_                                           | Спрощене надсилання та редагування груп медіа                |
 | [Inline Queries](./inline-query.md)           | _вбудовано_                                           | Легко будуйте результати для вбудованих запитів              |
-| [Auto-retry](./auto-retry.md)                 | [`auto-retry`](./auto-retry.md)                       | Автоматичне оброблення лімітів                                |
-| [Conversations](./conversations.md)           | [`conversations`](./conversations.md)                 | Створюйте потужні діалогові інтерфейси                        |
-| [Chat Members](./chat-members.md)             | [`chat-members`](./chat-members.md)                   | Відстежуйте, хто з користувачів приєднався до якого чату      |
-| [Emoji](./emoji.md)                           | [`emoji`](./emoji.md)                                 | Спрощене використання емодзі в коді                           |
-| [Files](./files.md)                           | [`files`](./files.md)                                 | Легка робота з файлами                                        |
-| [Hydration](./hydrate.md)                     | [`hydrate`](./hydrate.md)                             | Виклик методів в обʼєктах, що повертаються з викликів API     |
-| [Internationalization](./i18n.md)             | [`i18n`](./i18n.md) або [`fluent`](./fluent.md)       | Дозвольте вашому боту розмовляти кількома мовами              |
-| [Interactive Menus](./menu.md)                | [`menu`](./menu.md)                                   | Створюйте динамічні меню з кнопками та гнучкою навігацією     |
-| [Parse Mode](./parse-mode.md)                 | [`parse-mode`](./parse-mode.md)                       | Спрощене форматування повідомлень                             |
-| [Rate Limiter](./ratelimiter.md)              | [`ratelimiter`](./ratelimiter.md)                     | Автоматичне обмеження користувачів, які спамлять вашого бота  |
-| [Router](./router.md)                         | [`router`](./router.md)                               | Направляйте повідомлення в різні частини коду                 |
-| [Runner](./runner.md)                         | [`runner`](./runner.md)                               | Багатопоточне довге очікування з масштабуванням               |
-| [Stateless Question](./stateless-question.md) | [`stateless-question`](./stateless-question.md)       | Створення діалогів без використання сховища даних             |
-| [Throttler](./transformer-throttler.md)       | [`transformer-throttler`](./transformer-throttler.md) | Сповільнення викликів API кількості запитів                   |
+| [Auto-retry](./auto-retry.md)                 | [`auto-retry`](./auto-retry.md)                       | Автоматичне оброблення лімітів                               |
+| [Conversations](./conversations.md)           | [`conversations`](./conversations.md)                 | Створюйте потужні діалогові інтерфейси                       |
+| [Chat Members](./chat-members.md)             | [`chat-members`](./chat-members.md)                   | Відстежуйте, хто з користувачів приєднався до якого чату     |
+| [Emoji](./emoji.md)                           | [`emoji`](./emoji.md)                                 | Спрощене використання емодзі в коді                          |
+| [Files](./files.md)                           | [`files`](./files.md)                                 | Легка робота з файлами                                       |
+| [Hydration](./hydrate.md)                     | [`hydrate`](./hydrate.md)                             | Виклик методів в обʼєктах, що повертаються з викликів API    |
+| [Internationalization](./i18n.md)             | [`i18n`](./i18n.md) або [`fluent`](./fluent.md)       | Дозвольте вашому боту розмовляти кількома мовами             |
+| [Interactive Menus](./menu.md)                | [`menu`](./menu.md)                                   | Створюйте динамічні меню з кнопками та гнучкою навігацією    |
+| [Parse Mode](./parse-mode.md)                 | [`parse-mode`](./parse-mode.md)                       | Спрощене форматування повідомлень                            |
+| [Rate Limiter](./ratelimiter.md)              | [`ratelimiter`](./ratelimiter.md)                     | Автоматичне обмеження користувачів, які спамлять вашого бота |
+| [Router](./router.md)                         | [`router`](./router.md)                               | Направляйте повідомлення в різні частини коду                |
+| [Runner](./runner.md)                         | [`runner`](./runner.md)                               | Багатопоточне довге очікування з масштабуванням              |
+| [Stateless Question](./stateless-question.md) | [`stateless-question`](./stateless-question.md)       | Створення діалогів без використання сховища даних            |
+| [Throttler](./transformer-throttler.md)       | [`transformer-throttler`](./transformer-throttler.md) | Сповільнення викликів API кількості запитів                  |
 
 У нас також є кілька сторонніх плагінів!
 Ви можете знайти їх у навігаційному меню в розділі _Плагіни_ > _Сторонні_.
