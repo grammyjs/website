@@ -166,7 +166,7 @@ export const localeEs: LocaleConfig<DefaultThemeLocaleData> = {
               },
               {
                 text: "Consultas lineales",
-                link: "/es/guide/inline-queries.html",
+                link: "/es/plugins/inline-query.html",
               },
             ],
           },
