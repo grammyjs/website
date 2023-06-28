@@ -162,7 +162,7 @@ export const localeZh: LocaleConfig<DefaultThemeLocaleData> = {
               },
               {
                 text: "媒体组",
-                link: "/zh/plugins/media-group.htm",
+                link: "/zh/plugins/media-group.html",
               },
               {
                 text: "Inline Queries",
