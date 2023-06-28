@@ -72,7 +72,9 @@ InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/Y.png")
 
 // Construir un resultado de texto.
 InlineQueryResultBuilder.article("id-2", "Consultas en línea")
-  .text("Gran documentación sobre consultas en línea: grammy.dev/plugins/inline-query");
+  .text(
+    "Gran documentación sobre consultas en línea: grammy.dev/plugins/inline-query",
+  );
 
 // Pasar más opciones al resultado.
 const keyboard = new InlineKeyboard()
@@ -100,7 +102,9 @@ InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/Y.png")
 
 // Construir un resultado de texto.
 InlineQueryResultBuilder.article("id-2", "Consultas en línea")
-  .text("Gran documentación sobre consultas en línea: grammy.dev/plugins/inline-query");
+  .text(
+    "Gran documentación sobre consultas en línea: grammy.dev/plugins/inline-query",
+  );
 
 // Pasar más opciones al resultado.
 const keyboard = new InlineKeyboard()
@@ -131,7 +135,9 @@ InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/Y.png")
 
 // Construir un resultado de texto.
 InlineQueryResultBuilder.article("id-2", "Consultas en línea")
-  .text("Gran documentación sobre consultas en línea: grammy.dev/plugins/inline-query");
+  .text(
+    "Gran documentación sobre consultas en línea: grammy.dev/plugins/inline-query",
+  );
 
 // Pasar más opciones al resultado.
 const keyboard = new InlineKeyboard()
