@@ -1,12 +1,15 @@
 {
-	"fmt": {
-		"proseWrap": "preserve",
-		"exclude": [
-			"./site/node_modules/",
-			"./site/docs/.vuepress/.cache/",
-			"./site/docs/.vuepress/.temp/",
-			"./site/docs/.vuepress/dist/",
-			"./site/package-lock.json"
-		]
-	}
+  "tasks": {
+    "check-links": "deno run --allow-read --allow-net https://raw.githubusercontent.com/grammyjs/link-checker/main/main.ts site/docs"
+  },
+  "fmt": {
+    "proseWrap": "preserve",
+    "exclude": [
+      "./site/node_modules/",
+      "./site/docs/.vuepress/.cache/",
+      "./site/docs/.vuepress/.temp/",
+      "./site/docs/.vuepress/dist/",
+      "./site/package-lock.json"
+    ]
+  }
 }
