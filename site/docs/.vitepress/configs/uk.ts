@@ -134,7 +134,11 @@ const pluginBuiltin = {
     {
       text: "Вбудовані та власні клавіатури",
       link: "/uk/plugins/keyboard",
-    }, // TODO: only 3 items?
+    },
+    {
+      text: "Медіагрупи",
+      link: "/uk/plugins/media-group",
+    },
     {
       text: "Inline-запити",
       link: "/uk/plugins/inline-query",
