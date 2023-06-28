@@ -29,3 +29,5 @@ After you click, you will see two buttons:
 - **Connect <payment_provider> Test**. Connecting usually takes some seconds. You'll receive a payment token that you can use for development. These tokens are in the format `12345:TEST:12345abcd`.
 
 - **Connect <payment_provider> Live**. Clicking on this button will redirect you to the official provider bot. There, you'll need to complete basic verification and submit all the necessary documents for further consideration. Live tokens have the format `12345:LIVE:12345abcd`.
+
+At this point we will be looking at test payments, since nothing will change in the real token mode, you don't have to worry about that.
