@@ -19,10 +19,7 @@ const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
 // dst
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { InputMediaBuilder } = require("grammy");
 
 const photo = InputMediaBuilder.photo(new InputFile("/tmp/foto.mp4"));
