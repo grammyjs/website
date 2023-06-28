@@ -25,7 +25,7 @@ permalink: /es/
   'una actualización por delante',
   'puede hacer todo menos lavar los platos',
   'fácil de exprimir limones',
-  'cientos de millones de peticiones',
+  'miles y miles de millones de peticiones',
 ][Math.floor(Math.random() * 7)] }}.</h6>
 
 ## Quickstart
