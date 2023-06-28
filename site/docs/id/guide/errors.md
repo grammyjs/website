@@ -1,6 +1,5 @@
 ---
 prev: ./middleware.md
-next: ./inline-queries.md
 ---
 
 # Menangani Error
