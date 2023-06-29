@@ -6,7 +6,7 @@
     "docs:index-versions": "deno run --no-npm --allow-net docs/.vitepress/plugins/current-versions/build-index.ts > docs/.vitepress/plugins/current-versions/index.json",
     "docs:dev": "vitepress dev docs",
     "docs:host": "vitepress dev docs --host",
-    "docs:build": "vitepress build docs && npm run docs:sitemap",
+    "docs:build": "npm run docs:vitepress && npm run docs:sitemap",
     "docs:serve": "vitepress serve docs",
     "docs:preview": "npm run docs:build && npm run docs:serve",
     "docs:vitepress": "node --max-old-space-size=8000 ./node_modules/.bin/vitepress build docs",
