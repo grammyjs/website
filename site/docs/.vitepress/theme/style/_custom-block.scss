@@ -1,4 +1,43 @@
 /**
+ * code block
+ * ------------------------------------------------------------------------- */
+:root {
+  .warning.custom-block {
+    color: #ff8c1b;
+    border-color: #ff8c1b;
+    .custom-block-title {
+      color: #ff8c1b;
+    }
+  }
+
+  &.dark {
+    .tip.custom-block {
+      color: #53c4ea;
+      border-color: #2db7e5;
+      background-color: #182128;
+    }
+
+    .warning.custom-block {
+      .custom-block-title {
+        color: #fdba29;
+      }
+      color: #fdba29;
+      border-color: #fcad03;
+      background-color: #1e1e1e;
+    }
+
+    .danger.custom-block {
+      .custom-block-title {
+        color: #f2183c;
+      }
+      color: #f33958;
+      border-color: #f2183c;
+      background-color: #1f181d;
+    }
+  }
+}
+
+/**
  * code block inside custom block
  * ------------------------------------------------------------------------- */
 
@@ -12,13 +51,13 @@
 
 :root {
   .tip.custom-block code {
-    color: #009ecabd;
+    color: #577e8e;
   }
   .warning.custom-block code {
-    color: #d97706b7;
+    color: #e29945;
   }
   .danger.custom-block code {
-    color: #fa5f79e2;
+    color: #f96e86;
   }
   .details.custom-block code {
     color: #8c8ba4;
@@ -26,10 +65,10 @@
 
   &.dark {
     .tip.custom-block code {
-      color: #8ae2ff9c;
+      color: #5d9ab2;
     }
     .warning.custom-block code {
-      color: #e7b624;
+      color: #b89c47;
     }
   }
 }
@@ -38,98 +77,86 @@
 * blockquote inside custom block
 * -------------------------------------------------------------------------- */
 
-:root {
-  .tip.custom-block blockquote {
-    --vp-c-divider: #167ea746;
+.tip.custom-block blockquote {
+  --vp-c-divider: #bad7e3;
+
+  p {
+    color: #65a9c4;
+
+    code {
+      color: #577e8e;
+    }
+  }
+
+  :root.dark & {
+    --vp-c-divider: #517480;
 
     p {
-      color: #167ea7a6;
-
-      code {
-        color: #577e8e;
-      }
-    }
-
-    .dark & {
-      --vp-c-divider: #517480;
-
-      p {
-        color: #517480;
-
-        code {
-          color: #577e8e;
-        }
-      }
+      color: #6598a8;
     }
   }
 }
 
-:root {
-  .warning.custom-block blockquote {
-    --vp-c-divider: #fad8b0;
+.warning.custom-block blockquote {
+  --vp-c-divider: #fad8b0;
+
+  p {
+    color: #e6a04f;
+
+    code {
+      color: #ae9c4a;
+    }
+  }
+
+  :root.dark & {
+    --vp-c-divider: #806f3e;
 
     p {
-      color: #e6a04f;
+      color: #b59c50;
 
       code {
         color: #ae9c4a;
-      }
-    }
-
-    .dark & {
-      --vp-c-divider: #a78e44;
-
-      p {
-        color: #9e8a4c;
-
-        code {
-          color: #ae9c4a;
-          background-color: #2a2923;
-        }
+        background-color: #2a2923;
       }
     }
   }
 }
 
-:root {
-  .danger.custom-block blockquote {
-    --vp-c-divider: #f2c9cc;
+.danger.custom-block blockquote {
+  --vp-c-divider: #f2c9cc;
+
+  p {
+    color: #e48696;
+
+    code {
+      color: #e18389;
+    }
+  }
+
+  :root.dark & {
+    --vp-c-divider: #aa5056;
 
     p {
-      color: #e48696;
+      color: #b55f65;
 
       code {
-        color: #e18389;
-      }
-    }
-
-    .dark & {
-      --vp-c-divider: #aa5056;
-
-      p {
-        color: #a04c52;
-
-        code {
-          color: #ad4c53;
-          background-color: #2e1e22;
-        }
+        color: #dc6d74;
+        background-color: #2e1e22;
       }
     }
   }
 }
 
-:root {
-  .details.custom-block blockquote {
+.details.custom-block blockquote {
+  p {
+    color: #8c8ba4;
+  }
+
+  :root.dark & {
+    --vp-c-divider: #575665;
+
     p {
-      color: rgba(60, 60, 67, 0.6);
-    }
-
-    .dark & {
-      --vp-c-divider: #575665;
-
-      p {
-        color: rgba(235, 235, 245, 0.5);
-      }
+      color: #8c8ba4;
     }
   }
 }
