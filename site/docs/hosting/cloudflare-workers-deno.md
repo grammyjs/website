@@ -2,11 +2,13 @@
 
 [Cloudflare Workers](https://workers.cloudflare.com/) is a public serverless computing platform that offers a convenient and simple solution for running small workloads at the [edge](https://en.wikipedia.org/wiki/Edge_computing).
 
-This guide will take you through the process of hosting your Telegram bot on Cloudflare Workers.
+This guide will take you through the process of hosting your bot on Cloudflare Workers.
 
 :::tip Looking for the Node.js Version?
+
 This tutorial explains how to deploy a Telegram bot to Cloudflare Workers using Deno.
 If you're looking for the Node.js version, please check out [this tutorial](./cloudflare-workers.md) instead.
+
 :::
 
 ## Prerequisites
@@ -20,13 +22,13 @@ Make sure you have [Deno](https://deno.land/) and [Denoflare](https://denoflare.
 Create a new directory, and create a new file `.denoflare` in that directory.
 Put the following contents in the file:
 
-> Note: The "$schema" key in the following JSON code specifies a fixed version in its URL ("v0.5.11").
+> Note: The "$schema" key in the following JSON code specifies a fixed version in its URL ("v0.5.12").
 > At the time of writing, this was the latest version available.
 > You should update them to the [newest version](https://github.com/skymethod/denoflare/releases).
 
 ```json
 {
-  "$schema": "https://raw.githubusercontent.com/skymethod/denoflare/v0.5.11/common/config.schema.json",
+  "$schema": "https://raw.githubusercontent.com/skymethod/denoflare/v0.5.12/common/config.schema.json",
   "scripts": {
     "my-bot": {
       "path": "bot.ts",
@@ -56,10 +58,7 @@ When creating your API token, you can choose the `Edit Cloudflare Workers` prese
 Create a new file named `bot.ts` and put the following contents in it:
 
 ```ts
-import {
-  Bot,
-  webhookCallback,
-} from "https://deno.land/x/grammy/mod.ts";
+import { Bot, webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 import { UserFromGetMe } from "https://deno.land/x/grammy/types.ts";
 
 interface Environment {
