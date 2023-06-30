@@ -991,6 +991,7 @@ Los plugins hacen esto posible almacenando objetos de contexto antiguos, y reaba
 Esta es la razón por la que los objetos de contexto dentro de las conversaciones no siempre se ven afectados por algunos plugins de grammY de la manera que cabría esperar.
 
 :::warning Menús interactivos dentro de conversaciones
+
 Con el [plugin de menú](./menu.md), estos conceptos chocan mucho.
 Aunque los menús _pueden_ funcionar dentro de las conversaciones, no recomendamos usar estos dos plugins juntos.
 En su lugar, utilice el plugin [inline keyboard plugin](./keyboard.md#teclados-en-linea) (hasta que añadamos soporte nativo de menús para conversaciones).
