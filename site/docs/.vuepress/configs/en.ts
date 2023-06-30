@@ -364,7 +364,7 @@ export const localeEn: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/hosting/supabase.html",
               },
               {
-                text: "Cloudflare Workers (Node)",
+                text: "Cloudflare Workers (Node.js)",
                 link: "/hosting/cloudflare-workers.html",
               },
               {
