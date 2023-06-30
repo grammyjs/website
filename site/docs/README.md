@@ -31,7 +31,7 @@ features:
   - icon: 🧩
     title: Flexible
     details: grammY is open and can be extended by plugins to make it fit exactly your needs.
-  - icon: 📈
+  - icon: 🏆
     title: Scalable
     details: grammY has you covered when your bot gets popular and the traffic increases.
 ---
