@@ -38,7 +38,7 @@ Antes de sumergirte en algunos ejemplos prácticos, hay algunas reglas a las que
    (Podemos crear la página por ti si no estás seguro de cómo hacerlo).
 3. Elige una licencia permisiva como MIT o ISC.
 
-Finalmente, debes saber que aunque grammY soporta tanto Node.js como [Deno](https://deno.com/runtime), es un proyecto Deno-first, y también te animamos a escribir tus plugins para Deno (¡y posteriormente con estilo!).
+Finalmente, debes saber que aunque grammY soporta tanto Node.js como [Deno](https://deno.land), es un proyecto Deno-first, y también te animamos a escribir tus plugins para Deno (¡y posteriormente con estilo!).
 Existe una práctica herramienta llamada [deno2node](https://github.com/fromdeno/deno2node) que transpira tu código de Deno a Node.js para que podamos soportar ambas plataformas por igual.
 La compatibilidad con Deno sólo es un requisito estricto para los plugins oficiales, pero no para los de terceros.
 No obstante, se recomienda encarecidamente probar Deno.
