@@ -1,6 +1,8 @@
 ---
-prev: ./middleware
-next: ./files
+prev:
+  link: ./middleware
+next:
+  link: ./files
 ---
 
 # Обробка помилок

@@ -1,6 +1,8 @@
 ---
-prev: ./middleware
-next: ./files
+prev:
+  link: ./middleware
+next:
+  link: ./files
 ---
 
 # 错误处理

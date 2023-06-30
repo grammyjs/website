@@ -1,6 +1,8 @@
 ---
-prev: ./api
-next: ./commands
+prev:
+  link: ./api
+next:
+  link: ./commands
 ---
 
 # Запити фільтрування і `bot.on()`

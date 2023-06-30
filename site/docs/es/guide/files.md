@@ -1,6 +1,8 @@
 ---
-prev: ./errors
-next: ./games
+prev:
+  link: ./errors
+next:
+  link: ./games
 ---
 
 # Manejo de archivos
