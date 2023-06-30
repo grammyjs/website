@@ -1,5 +1,5 @@
 ---
-prev: ./inline-queries.md
+prev: ./errors.md
 next: ./games.md
 ---
 
@@ -30,7 +30,7 @@ Telegram 服务器上的文件由 `file_id` 标识，它是一个长字符串。
 这就会发送那个被识别到的文件。
 （要查看如何上传你自己的文件，请 [向下滚动](#发送文件)。）
 你可以多次使用同一个 `file_id`，从而你可以通过同一个 `file_id` 发送同样的文件到五个不同的聊天室。
-但是，请确保你使用了正确的方法 ---- 例如，你不可以用一个标识图片的 `file_id` 来调用 [`sendVideo`](https://core.telegram.org/bots/api#sendvideo)。
+但是，请确保你使用了正确的方法，例如，你不可以用一个标识图片的 `file_id` 来调用 [`sendVideo`](https://core.telegram.org/bots/api#sendvideo)。
 
 每一个 bot 都有它独立的 `file_id` 集合，集合包含了所有它自己能调用的文件。
 你不能可靠地使用你朋友的机器人的 `file_id`，来访问你的机器人的文件。每个机器人会对同一个文件使用不同的标识符。
@@ -128,6 +128,7 @@ await ctx.replyWithPhoto(new InputFile("/tmp/picture.jpg"));
 ```
 
 `InputFile` 构建器不仅仅能适用于文件路径，也可以适用流，`Buffer` 对象，异步迭代器，这取决于你所使用的平台，或者一个创建这些东西的函数。
+
 所以你需要记住的是：**创造一个 `InputFile` 实例，并且把它传递到任何发送文件的方法**。
 `InputFile` 实例能够传递到所有发送上传文件的方法中。
 

@@ -1,11 +1,13 @@
 # Control de flujo (`transformer-throttler`)
 
+> Considere usar el [plugin auto-retry](./auto-retry.md) en su lugar.
+
 Este plugin pone en cola la instancia de solicitudes de API salientes a través de [Bottleneck](https://github.com/SGrondin/bottleneck) para evitar que su bot alcance los [límites de velocidad](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this) como se describe en [esta sección avanzada](../advanced/flood.md) de la documentación.
 
 ::: warning Existen límites no documentados en la API
 Telegram implementa límites de velocidad no especificados y no documentados para algunas llamadas de la API.
 Estos límites no documentados **no son tenidos en cuenta** por el estrangulador.
-Considera usar el [plugin auto-retry](./auto-retry.md) junto con este plugin, si estás experimentando errores de floodwait para ciertas llamadas a la API, como `api.sendContact`.
+Si aún desea utilizar este plugin, considere la posibilidad de utilizar el [auto-retry plugin](./auto-retry.md) junto con él.
 :::
 
 ## Uso

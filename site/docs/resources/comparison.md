@@ -72,7 +72,7 @@ Experience shows that you often have to run your bot to find out whether your co
 
 In contrast, grammY is written in pure TypeScript.
 This allows your code editor (e.g. VS Code) to analyze your code while you are typing, and assist you.
-In addition, it can show the complete Telegram Bot API inline—the website's documentation will be available right at your fingertips when hovering your mouse over any name or element of your code.
+In addition, it can show the complete Telegram Bot API inline---the website's documentation will be available right at your fingertips when hovering your mouse over any name or element of your code.
 
 Another remarkable advantage is that you are finally able to **write your own bots in TypeScript**.
 This was hard to do because the wrong type annotations of Telegraf were preventing perfectly correct code from compiling, thus effectively encouraging users not to check their code in the first place.
@@ -138,7 +138,7 @@ You don't want that.
 ### Other Frameworks
 
 Do you think that your favorite framework is better than grammY in some respect?
-Feel free to edit this page and add a comparison—or tell us what you think in the [group chat](https://t.me/grammyjs)!
+Feel free to edit this page and add a comparison---or tell us what you think in the [group chat](https://t.me/grammyjs)!
 
 ## Comparison With Frameworks in Other Programming Languages
 
@@ -160,7 +160,7 @@ People have different taste, so take this section with a grain of salt.
    With the types come auto-completion at every step of development, as well as helpful tooltips with explanations and links.
 
 2. **Easier to scale up code base.**
-   The type system has a second advantage—it lets you scale the code base of your bot.
+   The type system has a second advantage---it lets you scale the code base of your bot.
    This is much harder to do for projects written in a language with worse type safety.
 
 3. **Easier to scale up load.**

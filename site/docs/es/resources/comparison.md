@@ -72,7 +72,7 @@ La experiencia demuestra que a menudo tienes que ejecutar tu bot para averiguar 
 
 En cambio, grammY está escrito en TypeScript puro.
 Esto permite que tu editor de código (por ejemplo, VS Code) analice tu código mientras estás escribiendo, y te ayude.
-Además, puede mostrar la API completa de Telegram Bot inline -la documentación del sitio web estará disponible al alcance de tu mano cuando pases el ratón sobre cualquier nombre o elemento de tu código.
+Además, puede mostrar la API completa de Telegram Bot inline---la documentación del sitio web estará disponible al alcance de tu mano cuando pases el ratón sobre cualquier nombre o elemento de tu código.
 
 Otra ventaja notable es que por fin puedes **escribir tus propios bots en TypeScript**.
 Esto era difícil de hacer porque las anotaciones de tipo erróneas de Telegraf estaban impidiendo que el código perfectamente correcto se compilara, animando así efectivamente a los usuarios a no comprobar su código en primer lugar.
@@ -138,7 +138,7 @@ Usted no quiere eso.
 ### Otros Frameworks
 
 ¿Crees que tu framework favorito es mejor que grammY en algún aspecto?
-No dudes en editar esta página y añadir una comparación, o dinos lo que piensas en el [chat de grupo](https://t.me/grammyjs).
+No dudes en editar esta página y añadir una comparación---o dinos lo que piensas en el [chat de grupo](https://t.me/grammyjs).
 
 ## Comparación con Frameworks en otros lenguajes de programación
 
@@ -160,7 +160,7 @@ La gente tiene diferentes gustos, así que toma esta sección con un grano de sa
    Con los tipos viene el autocompletado en cada paso del desarrollo, así como útiles tooltips con explicaciones y enlaces.
 
 2. **Más fácil de escalar la base de código.**
-   El sistema de tipos tiene una segunda ventaja: te permite escalar la base de código de tu bot.
+   El sistema de tipos tiene una segunda ventaja---te permite escalar la base de código de tu bot.
    Esto es mucho más difícil de hacer para proyectos escritos en un lenguaje con peor seguridad de tipos.
 
 3. **Más fácil de escalar la carga.**

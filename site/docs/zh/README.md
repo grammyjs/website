@@ -14,7 +14,7 @@ features:
   - title: 灵活
     details: grammY 是开放的，通过插件让它完全适合你的需要。
   - title: 可扩展
-    details: grammY 在你 bot 拥有较多流量时提供可靠的帮助.
+    details: grammY 在你的 bot 拥有较多流量时提供可靠的帮助.
 permalink: /zh/
 ---
 
@@ -25,7 +25,7 @@ permalink: /zh/
   '及时更新',
   '除了洗碗，我都能做',
   '像做柠檬汁一样简单',
-  '数以亿计的服务',
+  '已处理数十亿请求',
 ][Math.floor(Math.random() * 7)] }}.</h6>
 
 ## 快速开始

@@ -112,7 +112,7 @@ You can fix the issue by flipping the order of lines 3 and 4.
 If you called `next` on line 3, two responses would be sent.
 
 **The `bot.use()` function simply registers middleware that receives all updates.**
-This is why `session()` is installed via `bot.use()`—we want the plugin to operate on all updates, no matter what data is contained.
+This is why `session()` is installed via `bot.use()`---we want the plugin to operate on all updates, no matter what data is contained.
 
 Having a middleware stack is an extremely powerful property of any web framework, and this pattern is widely popular (not just for Telegram bots).
 

@@ -1,5 +1,5 @@
 ---
-prev: ./inline-queries.md
+prev: ./errors.md
 next: ./games.md
 ---
 
@@ -30,7 +30,7 @@ When a bot sends a message, it can **specify a `file_id` that it has seen before
 This will allow it to send the identified file, without needing to upload the data for it.
 (To see how to upload your own files, [scroll down](#sending-files).)
 You can reuse the same `file_id` as often as you want, so you could send the same file to five different chats, using the same `file_id`.
-However, you must make sure to use the correct method—for example, you cannot use a `file_id` that identifies a photo when calling [`sendVideo`](https://core.telegram.org/bots/api#sendvideo).
+However, you must make sure to use the correct method---for example, you cannot use a `file_id` that identifies a photo when calling [`sendVideo`](https://core.telegram.org/bots/api#sendvideo).
 
 Every bot has its own set of `file_id`s for the files that it can access.
 You cannot reliably use a `file_id` from your friend's bot, to access a file with _your_ bot.
@@ -128,7 +128,7 @@ await ctx.replyWithPhoto(new InputFile("/tmp/picture.jpg"));
 // alternatively, use bot.api.sendPhoto() or ctx.api.sendPhoto()
 ```
 
-The `InputFile` constructor not only takes file paths, but also streams, `Buffer` objects, async iterators, and—depending on your platform—more, or a function that creates any of these things.
+The `InputFile` constructor not only takes file paths, but also streams, `Buffer` objects, async iterators, and---depending on your platform---more, or a function that creates any of these things.
 All you need to remember is: **create an instance of `InputFile` and pass it to any method to send a file**.
 Instances of `InputFile` can be passed to all methods that accept sending files by upload.
 
