@@ -6,13 +6,13 @@ hero:
   name: grammY
   text: The Telegram Bot Framework.
   taglines: 
-    - think of the whY
-    - a new era of bot development
-    - runs faster than you
-    - one update ahead
-    - can do anything except dishes
-    - easy peasy lemon squeezY
-    - billions and billions served
+    - think of the whY.
+    - a new era of bot development.
+    - runs faster than you.
+    - one update ahead.
+    - can do anything except dishes.
+    - easy peasy lemon squeezY.
+    - billions and billions served.
   image:
     src: /images/Y.webp
     alt: grammY logo

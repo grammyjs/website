@@ -6,15 +6,15 @@ hero:
   name: grammY
   text: Framework Bot Telegram.
   taglines: 
-    - tak perlu lagi mengeluh "whY!?"
-    - era baru pengembangan bot
-    - bekerja lebih cepat dibanding kamu
-    - selangkah lebih maju
-    - bisa melakukan apa saja, kecuali mencuci piring
-    - buatnya so easY, hati jadi happY
-    - miliaran telah terlayani
-    - dokumentasi yang lengkap dan berkualitas
-    - honeY, grammY, sweetY
+    - tak perlu lagi mengeluh "whY!?".
+    - era baru pengembangan bot.
+    - bekerja lebih cepat dibanding kamu.
+    - selangkah lebih maju.
+    - bisa melakukan apa saja, kecuali mencuci piring.
+    - buatnya so easY, hati jadi happY.
+    - miliaran telah terlayani.
+    - dokumentasi yang lengkap dan berkualitas.
+    - honeY, grammY, sweetY.
   image:
     src: /images/Y.webp
     alt: logo grammY
