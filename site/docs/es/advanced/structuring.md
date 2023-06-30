@@ -1,10 +1,3 @@
----
-prev:
-  link: ./middleware
-next:
-  link: ./scaling
----
-
 # Escalando I: Gran base de código
 
 Tan pronto como tu bot crezca en complejidad, te vas a enfrentar al reto de cómo estructurar la base de código de tu aplicación.

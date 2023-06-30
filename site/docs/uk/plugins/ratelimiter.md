@@ -1,8 +1,3 @@
----
-prev: false
-next: false
----
-
 # Обмеження запитів від користувачів (`ratelimiter`)
 
 ratelimiter --- це проміжний обробник для обмеження кількості запитів до ботів, створених за допомогою grammY або [Telegraf](https://github.com/telegraf/telegraf).

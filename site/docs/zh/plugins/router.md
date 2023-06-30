@@ -1,8 +1,3 @@
----
-prev: false
-next: false
----
-
 # 路由器（`router`）
 
 `Router` 类（[API 参考](https://deno.land/x/grammy_router/router.ts)）提供了一种更为灵活的方式来结构化你的 bot，通过路由上下文对象到不同的部分代码。

@@ -1,8 +1,3 @@
----
-prev: false
-next: false
----
-
 # 文件助手（`files`）
 
 这个插件允许你轻松地从 Telegram 服务器下载文件，并且获取一个URL，以便你自己下载文件。

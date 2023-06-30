@@ -1,10 +1,3 @@
----
-prev:
-  link: ../guide/
-next:
-  link: ./getting-started
----
-
 # 简介
 
 Telegram Bot 是一个特殊的用户账户，由一个程序自动运行。

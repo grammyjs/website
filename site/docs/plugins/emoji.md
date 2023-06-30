@@ -1,8 +1,3 @@
----
-prev: false
-next: false
----
-
 # Emoji Plugin (`emoji`)
 
 With this plugin, you can easily insert emojis on your replies searching for them instead of manually copying and pasting an emoji from web at your code.

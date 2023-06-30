@@ -1,8 +1,3 @@
----
-prev: false
-next: false
----
-
 # Internationalization with Fluent (`fluent`)
 
 [Fluent](https://projectfluent.org/) is a localization system made by the Mozilla Foundation for natural-sounding translations.

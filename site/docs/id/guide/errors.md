@@ -1,10 +1,3 @@
----
-prev:
-  link: ./middleware
-next:
-  link: ./files
----
-
 # Menangani Error
 
 Setiap error yang disebabkan oleh middleware akan ditangkap oleh grammY.

@@ -1,10 +1,3 @@
----
-prev:
-  link: ./basics
-next:
-  link: ./api
----
-
 # 上下文
 
 `Context` 对象（[grammY API 参考](https://deno.land/x/grammy/mod.ts?s=Context)）是 grammY 的一个重要部分。

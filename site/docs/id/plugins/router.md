@@ -1,8 +1,3 @@
----
-prev: false
-next: false
----
-
 # Router (`router`)
 
 Class `Router` ([Referensi API](https://deno.land/x/grammy_router/router.ts)) berfungsi untuk mengatur rute suatu object context ke berbagai tempat di kode kamu.

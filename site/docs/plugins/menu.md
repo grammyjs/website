@@ -1,8 +1,3 @@
----
-prev: false
-next: false
----
-
 # Interactive Menus (`menu`)
 
 Easily create interactive menus.

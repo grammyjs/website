@@ -1,8 +1,3 @@
----
-prev:
-  link: ./proxy
----
-
 # Deployment Checklist
 
 Here is a list of things that you may want to keep in mind when hosting a large bot.

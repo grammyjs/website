@@ -1,10 +1,3 @@
----
-prev:
-  link: ./files
-next:
-  link: ./deployment-types
----
-
 # 游戏
 
 ## 介绍

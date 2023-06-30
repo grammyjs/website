@@ -1,8 +1,3 @@
----
-prev: false
-next: false
----
-
 # Enrutador (`router`)
 
 La clase `Router` ([Referencia API](https://deno.land/x/grammy_router/router.ts)) proporciona una forma de estructurar tu bot enrutando objetos de contexto a diferentes partes de tu código.

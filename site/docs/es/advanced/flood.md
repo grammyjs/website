@@ -1,10 +1,3 @@
----
-prev:
-  link: ./reliability
-next:
-  link: ./transformers
----
-
 # Escalando IV: Límites
 
 Telegram restringe cuántos mensajes puede enviar su bot por segundo, que se puede consultar en [Bot FAQ](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this).

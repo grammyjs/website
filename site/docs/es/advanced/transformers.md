@@ -1,10 +1,3 @@
----
-prev:
-  link: ./flood
-next:
-  link: ./proxy
----
-
 # Transformadores de la API del Bot
 
 El middleware es una función que maneja un objeto de contexto, es decir, datos entrantes.

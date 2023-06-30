@@ -1,8 +1,3 @@
----
-prev: false
-next: false
----
-
 # Hidratar (`hydrate`)
 
 Este plugin instala métodos útiles en dos tipos de objetos, a saber

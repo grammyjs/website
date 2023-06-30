@@ -1,10 +1,3 @@
----
-prev:
-  link: ./flood
-next:
-  link: ./proxy
----
-
 # Bot API Transformers
 
 Middleware is a function that handles a context object, i.e. incoming data.

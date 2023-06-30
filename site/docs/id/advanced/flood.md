@@ -1,10 +1,3 @@
----
-prev:
-  link: ./reliability
-next:
-  link: ./transformers
----
-
 # Peningkatan IV: Limitasi Flood
 
 Berdasarkan [FAQ Bot](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this), Telegram melakukan pembatasan terhadap jumlah maksimal pesan yang boleh dikirim oleh sebuah bot per detiknya.

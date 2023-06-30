@@ -1,8 +1,3 @@
----
-next:
-  link: ./guide
----
-
 # What Is a Plugin?
 
 We want grammY to be concise and minimal, but extensible.

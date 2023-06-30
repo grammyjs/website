@@ -1,10 +1,3 @@
----
-prev:
-  link: ./basics
-next:
-  link: ./api
----
-
 # Контекст
 
 Обʼєкт `Context` ([довідник API grammY](https://deno.land/x/grammy/mod.ts?s=Context)) є важливою частиною grammY.

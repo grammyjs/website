@@ -1,10 +1,3 @@
----
-prev:
-  link: ./filter-queries
-next:
-  link: ./middleware
----
-
 # Commands
 
 Commands 是 Telegram 信息中的特殊对象，作为 bot 的指令存在。

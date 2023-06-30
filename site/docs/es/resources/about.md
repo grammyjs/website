@@ -1,6 +1,7 @@
 ---
-prev: false
-next: false
+next:
+  text: Preguntas frecuentes
+  link: ./faq
 ---
 
 # Sobre grammY

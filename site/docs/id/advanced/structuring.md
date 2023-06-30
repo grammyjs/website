@@ -1,10 +1,3 @@
----
-prev:
-  link: ./middleware
-next:
-  link: ./scaling
----
-
 # Peningkatan I: Codebase Skala Besar
 
 Ketika bot-mu terus berkembang dan semakin kompleks, kamu akan mengalami kesulitan dalam mengatur struktur codebase untuk aplikasimu.

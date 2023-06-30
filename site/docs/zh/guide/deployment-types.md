@@ -1,6 +1,4 @@
 ---
-prev:
-  link: ./games
 next: false
 ---
 

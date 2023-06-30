@@ -1,10 +1,3 @@
----
-prev:
-  link: ./errors
-next:
-  link: ./games
----
-
 # Manejo de archivos
 
 Los bots de Telegram no sólo pueden enviar y recibir mensajes de texto, sino también muchos otros tipos de mensajes, como fotos y vídeos.

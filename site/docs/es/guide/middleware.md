@@ -1,10 +1,3 @@
----
-prev:
-  link: ./commands
-next:
-  link: ./errors
----
-
 # Middleware
 
 Las funciones de escucha que se pasan a `bot.on()`, `bot.command()`, y sus hermanos, se llaman _middleware_.

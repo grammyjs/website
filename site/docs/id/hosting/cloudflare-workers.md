@@ -1,8 +1,3 @@
----
-prev: false
-next: false
----
-
 # Hosting: Cloudflare Workers
 
 [Cloudflare Workers](https://workers.cloudflare.com/) adalah sebuah platform pengkomputasian serverless publik yang menawarkan solusi simpel dan nyaman untuk menjalankan JavaScript di [edge](https://en.wikipedia.org/wiki/Edge_computing).

@@ -1,8 +1,3 @@
----
-prev: false
-next: false
----
-
 # Internacionalización con Fluent (`fluent`)
 
 [Fluent](https://projectfluent.org/) es un sistema de localización creado por la Fundación Mozilla para realizar traducciones naturales.

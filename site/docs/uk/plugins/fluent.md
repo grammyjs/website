@@ -1,8 +1,3 @@
----
-prev: false
-next: false
----
-
 # Інтернаціоналізація за допомогою Fluent (`fluent`)
 
 [Fluent](https://projectfluent.org/) --- це система локалізації, створена Mozilla Foundation для створення перекладів з природнім звучанням.

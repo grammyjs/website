@@ -1,6 +1,7 @@
 ---
-prev: false
-next: false
+prev:
+  text: Sobre grammY
+  link: ./about
 ---
 
 # FAQ

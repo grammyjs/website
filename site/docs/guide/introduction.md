@@ -1,10 +1,3 @@
----
-prev:
-  link: ../guide/
-next:
-  link: ./getting-started
----
-
 # Introduction
 
 A Telegram bot is a special user account that is automated by a program.

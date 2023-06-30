@@ -1,8 +1,3 @@
----
-prev: false
-next: false
----
-
 # Teclados en línea y personalizados (incluido)
 
 Tu bot puede enviar una serie de botones, ya sea para ser [mostrados debajo de un mensaje](#teclados-en-linea), o para [reemplazar el teclado del usuario](#teclados-personalizados).

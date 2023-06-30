@@ -1,10 +1,3 @@
----
-prev:
-  link: ./transformers
-next:
-  link: ./deployment
----
-
 # Proxy Support
 
 grammY let's you configure a number of things about how network requests are performed.

@@ -1,10 +1,3 @@
----
-prev:
-  link: ./introduction
-next:
-  link: ./basics
----
-
 # 入门
 
 在几分钟内创建你的第一个 bot。（[向下滚动](#通过-deno-开始) 查看 Deno 指南）。

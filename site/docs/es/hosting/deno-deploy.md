@@ -1,6 +1,5 @@
 ---
 prev: false
-next: false
 ---
 
 # Alojamiento: Deno Deploy

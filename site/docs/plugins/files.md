@@ -1,8 +1,3 @@
----
-prev: false
-next: false
----
-
 # File Handling Simplified in grammY (`files`)
 
 This plugin allows you to easily download files from Telegram servers, and to obtain a URL so you can download the file yourself.

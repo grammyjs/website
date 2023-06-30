@@ -1,10 +1,3 @@
----
-prev:
-  link: ./context
-next:
-  link: ./filter-queries
----
-
 # API Bot
 
 ## Informasi Umum

@@ -1,6 +1,5 @@
 ---
 prev: false
-next: false
 ---
 
 # Session dan Penyimpanan Data (bawaan)

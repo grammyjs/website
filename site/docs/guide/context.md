@@ -1,10 +1,3 @@
----
-prev:
-  link: ./basics
-next:
-  link: ./api
----
-
 # Context
 
 The `Context` object ([grammY API Reference](https://deno.land/x/grammy/mod.ts?s=Context)) is an important part of grammY.

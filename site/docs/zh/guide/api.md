@@ -1,10 +1,3 @@
----
-prev:
-  link: ./context
-next:
-  link: ./filter-queries
----
-
 # Bot API
 
 ## 基本信息

@@ -1,10 +1,3 @@
----
-prev:
-  link: ../guide/
-next:
-  link: ./getting-started
----
-
 # Pengenalan
 
 Bot Telegram adalah sebuah akun khusus yang dijalankan secara otomatis oleh sebuah program.

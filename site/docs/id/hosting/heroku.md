@@ -1,8 +1,3 @@
----
-prev: false
-next: false
----
-
 # Hosting: Heroku
 
 > Kami mengasumsikan bahwa kamu sudah memiliki pengetahuan dasar dalam membuat sebuah bot menggunakan grammY.

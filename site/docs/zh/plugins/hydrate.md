@@ -1,8 +1,3 @@
----
-prev: false
-next: false
----
-
 # Hydration（`hydrate`）
 
 这个插件会安装一些有用的方法在两种类型的对象，即

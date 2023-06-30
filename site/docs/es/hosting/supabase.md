@@ -1,8 +1,3 @@
----
-prev: false
-next: false
----
-
 # Hosting: Supabase Edge Functions
 
 Esta guía te explica cómo puedes alojar tus bots de grammY en [Supabase](https://supabase.com/).

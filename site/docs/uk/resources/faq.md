@@ -1,6 +1,7 @@
 ---
-prev: false
-next: false
+prev:
+  text: Про grammY
+  link: ./about
 ---
 
 # Часті Питання

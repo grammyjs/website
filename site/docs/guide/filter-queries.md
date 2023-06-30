@@ -1,10 +1,3 @@
----
-prev:
-  link: ./api
-next:
-  link: ./commands
----
-
 # Filter Queries and `bot.on()`
 
 The first argument of `bot.on()` is a string called _filter query_.

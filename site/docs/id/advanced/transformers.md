@@ -1,10 +1,3 @@
----
-prev:
-  link: ./flood
-next:
-  link: ./proxy
----
-
 # Transformer API Bot
 
 Middleware adalah sebuah function yang menangani sebuah object context, misalnya data yang masuk.

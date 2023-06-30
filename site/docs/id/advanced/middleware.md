@@ -1,10 +1,3 @@
----
-prev:
-  link: ./
-next:
-  link: ./structuring
----
-
 # Membangkitkan Middleware
 
 Di [bab sebelumnya](../guide/middleware), kami telah menjelaskan middleware sebagai lapisan-lapisan function yang saling bertumpukan.

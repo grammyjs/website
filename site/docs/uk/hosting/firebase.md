@@ -1,8 +1,3 @@
----
-prev: false
-next: false
----
-
 # Хостинг: Firebase Functions
 
 Цей посібник допоможе вам розгорнути вашого бота на [Firebase Functions](https://firebase.google.com/docs/functions).

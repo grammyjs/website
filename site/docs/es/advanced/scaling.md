@@ -1,10 +1,3 @@
----
-prev:
-  link: ./structuring
-next:
-  link: ./reliability
----
-
 # Escalando II: Alta carga
 
 Hacer que tu bot sea capaz de manejar una alta carga depende de si ejecutas tu bot [a través de un long polling o a través de webhooks](../guide/deployment-types).

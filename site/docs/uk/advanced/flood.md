@@ -1,10 +1,3 @@
----
-prev:
-  link: ./reliability
-next:
-  link: ./transformers
----
-
 # Масштабування IV: дотримання лімітів
 
 Telegram обмежує кількість повідомлень, які ваш бот може надсилати за секунду: дивіться [часті питання про ботів](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this).

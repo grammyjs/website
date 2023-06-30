@@ -1,10 +1,3 @@
----
-prev:
-  link: ./getting-started
-next:
-  link: ./context
----
-
 # 发送和接收信息
 
 一旦你用 `bot.start()` 启动你的 bot，grammY 将为你的监听器提供用户发送给你的 bot 的信息。

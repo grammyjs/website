@@ -1,8 +1,3 @@
----
-prev: false
-next: false
----
-
 # Hosting: Fly
 
 Halaman ini berisi panduan mengenai cara-cara meng-hosting bot di [Fly](https://fly.io), baik menggunakan Deno maupun Node.js.

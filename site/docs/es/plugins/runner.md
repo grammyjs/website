@@ -1,8 +1,3 @@
----
-prev: false
-next: false
----
-
 # Concurrencia (`runner`)
 
 Este paquete se puede utilizar si ejecutas tu bot [usando long polling](../guide/deployment-types), y quieres que los mensajes se procesen concurrentemente.

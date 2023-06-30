@@ -1,8 +1,3 @@
----
-prev: false
-next: false
----
-
 # 指令过滤（`command-filter`）
 
 即将推出，请稍后再来。

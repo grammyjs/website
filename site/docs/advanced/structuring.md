@@ -1,10 +1,3 @@
----
-prev:
-  link: ./middleware
-next:
-  link: ./scaling
----
-
 # Scaling Up I: Large Codebase
 
 As soon as your bot grows in complexity, you are going to face the challenge of how to structure your application code base.

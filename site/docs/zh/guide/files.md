@@ -1,10 +1,3 @@
----
-prev:
-  link: ./errors
-next:
-  link: ./games
----
-
 # 文件管理
 
 Telegram bot 不仅可以发送和接受文本，还可以发送许多其他种类的消息，比如图片和视频。

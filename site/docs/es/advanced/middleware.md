@@ -1,10 +1,3 @@
----
-prev:
-  link: ./
-next:
-  link: ./structuring
----
-
 # Middleware Redux
 
 En está guía, [introdujimos el middleware](../guide/middleware) como un stack de funciones.

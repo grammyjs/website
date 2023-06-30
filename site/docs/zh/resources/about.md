@@ -1,6 +1,7 @@
 ---
-prev: false
-next: false
+next:
+  text: FAQ
+  link: ./faq
 ---
 
 # 关于 grammY

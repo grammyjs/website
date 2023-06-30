@@ -1,10 +1,3 @@
----
-prev:
-  link: ./middleware
-next:
-  link: ./files
----
-
 # 错误处理
 
 由中间件造成的每一个错误都会被 grammY 捕获。

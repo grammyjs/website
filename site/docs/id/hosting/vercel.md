@@ -1,8 +1,3 @@
----
-prev: false
-next: false
----
-
 # Hosting: Vercel Serverless Functions
 
 Di tutorial kali ini, kami akan memandu kamu untuk men-deploy bot di [Vercel](https://vercel.com/) dengan menggunakan [Vercel Serverless Functions](https://vercel.com/docs/concepts/functions/serverless-functions), tentunya dengan asumsi kamu sudah memiliki sebuah akun [Vercel](https://vercel.com).

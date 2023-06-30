@@ -1,10 +1,3 @@
----
-prev:
-  link: ./reliability
-next:
-  link: ./transformers
----
-
 # Scaling Up IV: Flood Limits
 
 Telegram restricts how many messages your bot can send per second, confer the [Bot FAQ](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this).

@@ -1,10 +1,3 @@
----
-prev:
-  link: ./introduction
-next:
-  link: ./basics
----
-
 # Comenzando
 
 Crea tu primer bot en minutos. (Desplázate [abajo](#introduccion-a-deno) para una guía de Deno.)

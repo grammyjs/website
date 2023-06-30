@@ -1,8 +1,3 @@
----
-prev: false
-next: false
----
-
 # Internasionalisasi dengan Fluent (`fluent`)
 
 [Fluent](https://projectfluent.org/) adalah sebuah sistem penerjemah bahasa yang dibuat oleh Mozilla Foundation dengan tujuan supaya hasil terjemahan terdengar lebih natural.

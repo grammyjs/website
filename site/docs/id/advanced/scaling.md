@@ -1,10 +1,3 @@
----
-prev:
-  link: ./structuring
-next:
-  link: ./reliability
----
-
 # Peningkatan II: Beban Kerja Tinggi
 
 Langkah-langkah untuk mengatasi bot yang bekerja dengan beban yang tinggi tergantung dari jenis deployment yang dipakai: [long polling atau webhook](../guide/deployment-types).

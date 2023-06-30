@@ -1,8 +1,3 @@
----
-prev: false
-next: false
----
-
 # Hosting: Firebase Functions
 
 Panduan ini akan membimbing kamu untuk men-deploy bot di [Firebase Functions](https://firebase.google.com/docs/functions).

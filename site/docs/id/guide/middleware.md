@@ -1,10 +1,3 @@
----
-prev:
-  link: ./commands
-next:
-  link: ./errors
----
-
 # Middleware
 
 Middleware adalah sebuah sebutan untuk function-function listener yang dipasang di `bot.on()`, `bot.command`, serta _sibling-sibling_ lain yang serupa.

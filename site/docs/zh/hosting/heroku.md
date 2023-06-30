@@ -1,8 +1,3 @@
----
-prev: false
-next: false
----
-
 # 托管：Heroku
 
 > 我们假设你有关于如何使用 grammY 创建 bot 的基本知识。

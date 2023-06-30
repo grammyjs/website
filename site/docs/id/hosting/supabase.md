@@ -1,8 +1,3 @@
----
-prev: false
-next: false
----
-
 # Hosting: Supabase Edge Functions
 
 Halaman ini berisi panduan mengenai langkah-langkah meng-hosting bot grammY di [Supabase](https://supabase.com/).

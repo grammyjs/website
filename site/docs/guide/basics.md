@@ -1,10 +1,3 @@
----
-prev:
-  link: ./getting-started
-next:
-  link: ./context
----
-
 # Sending and Receiving Messages
 
 As soon as you start your bot with `bot.start()`, grammY will supply your listeners with the messages that users send to your bot.

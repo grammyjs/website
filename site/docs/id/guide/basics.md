@@ -1,10 +1,3 @@
----
-prev:
-  link: ./getting-started
-next:
-  link: ./context
----
-
 # Mengirim dan Menerima Pesan
 
 Begitu kamu menjalankan bot dengan `bot.start()`, grammY akan menyuplai listener dengan pesan-pesan yang telah dikirim oleh user ke bot kamu.

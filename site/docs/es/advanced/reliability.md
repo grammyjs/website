@@ -1,10 +1,3 @@
----
-prev:
-  link: ./scaling
-next:
-  link: ./flood
----
-
 # Escalando III: Fiabilidad
 
 Si te aseguraste de tener un adecuado [manejo de errores](../guide/errors) para tu bot, básicamente estás listo para ir.

@@ -1,8 +1,3 @@
----
-prev: false
-next: false
----
-
 # 托管：Firebase Functions
 
 本教程将指导你完成将 bot 部署到 [Firebase Functions](https://firebase.google.com/docs/functions) 的过程。

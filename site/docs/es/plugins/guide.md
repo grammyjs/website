@@ -1,12 +1,6 @@
 ---
-prev:
-  link: ../plugins/
 next: false
 ---
-
----
-
-## prev: falsenext: false
 
 # La Guía del Autoestopista de los Plugins de grammY
 

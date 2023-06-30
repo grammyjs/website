@@ -1,7 +1,5 @@
 ---
 prev: false
-next:
-  link: ./middleware
 ---
 
 # Огляд просунутих тем

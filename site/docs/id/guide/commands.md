@@ -1,10 +1,3 @@
----
-prev:
-  link: ./filter-queries
-next:
-  link: ./middleware
----
-
 # Command
 
 Command atau perintah adalah entity khusus di dalam pesan Telegram yang berfungsi sebagai instruksi untuk sebuah bot.

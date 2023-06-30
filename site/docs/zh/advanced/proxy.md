@@ -1,10 +1,3 @@
----
-prev:
-  link: ./transformers
-next:
-  link: ./deployment
----
-
 # 代理支持
 
 grammY 可以让你对网络请求如何执行进行配置。

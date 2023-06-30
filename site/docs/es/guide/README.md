@@ -1,8 +1,3 @@
----
-next:
-  link: ./introduction
----
-
 ![grammY](/images/grammY.webp)
 
 # Resumen

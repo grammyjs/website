@@ -1,6 +1,7 @@
 ---
-prev: false
-next: false
+next:
+  text: ЧаПи
+  link: ./faq
 ---
 
 # Про grammY

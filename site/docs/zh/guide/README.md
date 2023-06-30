@@ -1,8 +1,3 @@
----
-next:
-  link: ./introduction
----
-
 ![logo](/images/grammY.webp)
 
 # 概述

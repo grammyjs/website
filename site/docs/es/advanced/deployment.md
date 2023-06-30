@@ -1,8 +1,3 @@
----
-prev:
-  link: ./proxy
----
-
 # Lista de verificaciones en despliegues
 
 Lista de cosas a tener en cuanta cuando vayas a alojar un bot grande.

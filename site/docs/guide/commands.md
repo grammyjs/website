@@ -1,10 +1,3 @@
----
-prev:
-  link: ./filter-queries
-next:
-  link: ./middleware
----
-
 # Commands
 
 Commands are special entities in Telegram messages, that serve as instructions for bots.

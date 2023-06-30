@@ -1,10 +1,3 @@
----
-prev:
-  link: ./flood
-next:
-  link: ./proxy
----
-
 # Bot API Transformers（转换器）
 
 中间件是一个可以处理上下文对象的处理函数，例如处理输入的数据。

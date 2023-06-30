@@ -1,8 +1,3 @@
----
-prev: false
-next: false
----
-
 # 托管: Fly
 
 本指南介绍了使用 Deno 或 Node.js 在 [Fly](https://fly.io) 上托管 grammY bot 的方法。

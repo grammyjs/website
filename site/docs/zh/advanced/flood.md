@@ -1,10 +1,3 @@
----
-prev:
-  link: ./reliability
-next:
-  link: ./transformers
----
-
 # 关注点四：流量限制
 
 Telegram 对你的 bot 每秒钟能发送多少条信息进行了限制，详见 [Bot FAQ](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this)。

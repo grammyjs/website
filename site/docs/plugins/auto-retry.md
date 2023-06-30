@@ -1,8 +1,3 @@
----
-prev: false
-next: false
----
-
 # Retry API Requests (`auto-retry`)
 
 This plugin is an [API transformer function](../advanced/transformers), which means that it let's you intercept and modify outgoing HTTP requests on the fly.

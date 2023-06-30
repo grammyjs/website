@@ -1,10 +1,3 @@
----
-prev:
-  link: ./introduction
-next:
-  link: ./basics
----
-
 # Memulai
 
 Buat bot pertamamu dalam hitungan menit.

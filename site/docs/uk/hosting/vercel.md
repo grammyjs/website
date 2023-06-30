@@ -1,8 +1,3 @@
----
-prev: false
-next: false
----
-
 # Хостинг: Vercel Serverless Functions
 
 У цьому посібнику ви дізнаєтесь, як розгорнути свого бота на [Vercel](https://vercel.com/) за допомогою [Vercel Serverless Functions](https://vercel.com/docs/concepts/functions/serverless-functions); передбачається, що у вас вже є обліковий запис [Vercel](https://vercel.com).

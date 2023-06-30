@@ -1,10 +1,3 @@
----
-prev:
-  link: ./api
-next:
-  link: ./commands
----
-
 # Filter 参数与 `bot.on()`
 
 `bot.on()` 的第一个参数是一个叫做 _filter 参数_ 的字符串。

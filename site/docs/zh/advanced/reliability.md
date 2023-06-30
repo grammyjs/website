@@ -1,10 +1,3 @@
----
-prev:
-  link: ./scaling
-next:
-  link: ./flood
----
-
 # 关注点三：可靠性
 
 如果你确保你的 bot 有正确的 [错误处理](../guide/errors)，基本就可以运行了。

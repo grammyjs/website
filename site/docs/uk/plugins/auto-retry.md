@@ -1,8 +1,3 @@
----
-prev: false
-next: false
----
-
 # Повтор запитів до API (`auto-retry`)
 
 > Розгляньте можливість використання [плагіна `transformer-throttler`](./transformer-throttler) замість `auto-retry`.

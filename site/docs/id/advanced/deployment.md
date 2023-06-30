@@ -1,8 +1,3 @@
----
-prev:
-  link: ./proxy
----
-
 # Daftar Periksa Deployment
 
 Berikut hal-hal yang perlu diperhatikan ketika meng-hosting bot dengan skala yang besar.

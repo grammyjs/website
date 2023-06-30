@@ -1,10 +1,3 @@
----
-prev:
-  link: ./transformers
-next:
-  link: ./deployment
----
-
 # Dukungan Proxy
 
 Di grammY, kamu bisa mengatur bagaimana network request dilakukan.

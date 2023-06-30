@@ -1,8 +1,3 @@
----
-prev: false
-next: false
----
-
 # 互动菜单 (`menu`)
 
 轻松地创建一个互动菜单。

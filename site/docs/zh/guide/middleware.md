@@ -1,10 +1,3 @@
----
-prev:
-  link: ./commands
-next:
-  link: ./errors
----
-
 # 中间件
 
 传递给 `bot.on()`，`bot.command()` 和它们的兄弟姐妹的监听器函数被称为 _中间件_。

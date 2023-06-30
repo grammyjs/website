@@ -1,10 +1,3 @@
----
-prev:
-  link: ./api
-next:
-  link: ./commands
----
-
 # Consultas de filtro y `bot.on()`
 
 El primer argumento de `bot.on()` es una cadena llamada _filter query_.

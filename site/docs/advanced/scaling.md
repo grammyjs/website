@@ -1,10 +1,3 @@
----
-prev:
-  link: ./structuring
-next:
-  link: ./reliability
----
-
 # Scaling Up II: High Load
 
 Making your bot able to handle high load depends on whether you run your bot [via long polling or via webhooks](../guide/deployment-types).

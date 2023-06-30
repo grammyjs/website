@@ -1,10 +1,3 @@
----
-prev:
-  link: ./scaling
-next:
-  link: ./flood
----
-
 # Peningkatan III: Reliabilitas
 
 Sebelum memulai, pastikan kamu sudah memasang [error handler](../guide/errors) yang sesuai dengan bot-mu.

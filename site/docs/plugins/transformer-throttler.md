@@ -1,8 +1,3 @@
----
-prev: false
-next: false
----
-
 # Flood Control (`transformer-throttler`)
 
 > Consider using the [auto-retry plugin](./auto-retry) instead.

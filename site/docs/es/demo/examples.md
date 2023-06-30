@@ -1,8 +1,3 @@
----
-prev:
-  link: ./
----
-
 # Ejemplos de bots
 
 Próximamente, vuelva más tarde.

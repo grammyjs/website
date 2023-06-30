@@ -1,10 +1,3 @@
----
-prev:
-  link: ./scaling
-next:
-  link: ./flood
----
-
 # Scaling Up III: Reliability
 
 If you made sure you have proper [error handling](../guide/errors) for your bot, you are basically good to go.

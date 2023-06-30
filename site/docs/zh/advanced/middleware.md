@@ -1,10 +1,3 @@
----
-prev:
-  link: ./
-next:
-  link: ./structuring
----
-
 # 重构中间件
 
 在指南中，[我们介绍了中间件](../guide/middleware) 作为一个函数栈。

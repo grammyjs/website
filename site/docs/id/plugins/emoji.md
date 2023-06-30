@@ -1,8 +1,3 @@
----
-prev: false
-next: false
----
-
 # Plugin Emoji (`emoji`)
 
 Dengan plugin ini, kamu bisa menambahkan emoji secara otomatis di pesan balasanmu tanpa perlu bolak-balik copy-paste emoji dari web ke kode kamu.

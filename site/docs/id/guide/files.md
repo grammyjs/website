@@ -1,10 +1,3 @@
----
-prev:
-  link: ./errors
-next:
-  link: ./games
----
-
 # Menangani File
 
 Bot Telegram tidak hanya bisa menerima dan mengirim pesan teks, tetapi juga jenis pesan lainnya, seperti foto dan video.

@@ -1,10 +1,3 @@
----
-prev:
-  link: ./structuring
-next:
-  link: ./reliability
----
-
 # 关注点二：高负载
 
 你的 bot 能够处理高负载的消息取决于你有没有让它处于 [长轮询状态运行或者通过使用 webhooks](../guide/deployment-types)。

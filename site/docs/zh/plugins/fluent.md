@@ -1,8 +1,3 @@
----
-prev: false
-next: false
----
-
 # 使用 Fluent 进行国际化 (`fluent`)
 
 [Fluent](https://projectfluent.org/) 是 Mozilla 基金会制作的一个本地化系统，用于自然发音的翻译。

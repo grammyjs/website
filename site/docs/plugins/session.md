@@ -1,6 +1,5 @@
 ---
 prev: false
-next: false
 ---
 
 # Sessions and Storing Data (built-in)

@@ -1,8 +1,3 @@
----
-next:
-  link: ./guide
----
-
 # Apa Itu Plugin?
 
 Kami ingin grammY menjadi ringkas dan minimal, tetapi bisa diperluas.

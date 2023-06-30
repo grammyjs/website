@@ -1,10 +1,3 @@
----
-prev:
-  link: ./errors
-next:
-  link: ./games
----
-
 # File Handling
 
 Telegram bots can not only send and receive text messages, but also many other kinds of messages, such as photos and videos.

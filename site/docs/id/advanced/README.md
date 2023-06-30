@@ -1,7 +1,5 @@
 ---
 prev: false
-next:
-  link: ./middleware
 ---
 
 # Gambaran Umum Topik Tingkat Lanjut

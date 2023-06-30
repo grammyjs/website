@@ -1,10 +1,3 @@
----
-prev:
-  link: ./commands
-next:
-  link: ./errors
----
-
 # Middleware
 
 The listener functions that are being passed to `bot.on()`, `bot.command()`, and their siblings, are called _middleware_.

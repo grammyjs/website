@@ -1,6 +1,4 @@
 ---
-prev:
-  link: ../plugins/
 next: false
 ---
 

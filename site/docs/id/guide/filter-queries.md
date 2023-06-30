@@ -1,10 +1,3 @@
----
-prev:
-  link: ./api
-next:
-  link: ./commands
----
-
 # Filter Query dan `bot.on()`
 
 _Filter query_ merupakan argument pertama dari `bot.on()` yang berbentuk string.
