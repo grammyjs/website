@@ -316,7 +316,7 @@ worker: node dist/bot.js
 Kita akan men-deploy bot menggunakan [Git dan Heroku CLI](https://devcenter.heroku.com/articles/git).
 Berikut link cara penginstalannya:
 
-- [Instruksi menginstal Git](https://git-scm.com/download/)
+- [Instruksi menginstal Git](https://git-scm.com/download)
 - [Instruksi menginstal Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli)
 
 Kami mengasumsikan kamu telah menginstal kedua software tersebut, dan kamu juga sudah membuka terminal yang mengarah ke direktori root proyek kita.

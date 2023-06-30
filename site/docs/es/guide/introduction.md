@@ -140,7 +140,7 @@ Esto significa instalar algunas herramientas.
 
 También necesita un editor de texto que se adapte bien a la codificación.
 El mejor para Deno es Visual Studio Code, a menudo llamado simplemente VS Code.
-[Instálelo.](https://code.visualstudio.com/)
+[Instálelo.](https://code.visualstudio.com)
 
 A continuación, debe conectar VS Code y Deno.
 Es muy sencillo: Existe una extensión para VS Code que lo hace todo automáticamente.
