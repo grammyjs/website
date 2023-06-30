@@ -142,7 +142,7 @@ Deno：
 
 你还需要一个非常适合编码的文本编辑器。
 最适合 Deno 的是 Visual Studio Code，通常简称为 VS Code。
-[安装它。](https://code.visualstudio.com/)
+[安装它。](https://code.visualstudio.com)
 
 接下来，你需要连接 VS Code 和 Deno。
 这非常简单：有一个 VS Code 的扩展可以自动完成所有事情。
