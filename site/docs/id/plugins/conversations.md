@@ -927,11 +927,36 @@ Seperti biasa, lihat [referensi API](https://deno.land/x/grammy_conversations/mo
 Seperti yang telah dijelaskan [sebelumnya](#pengenalan), handler grammY selalu memproses satu update saja.
 Namun, dengan percakapan, kamu bisa memproses banyak update secara berurutan seolah-olah semuanya tersedia di waktu yang sama.
 Plugin ini bisa melakukan hal tersebut dengan cara menyimpan context object yang lama lalu diperbarui di waktu selanjutnya.
-
 Itulah kenapa plugin-plugin grammY tidak selalu bisa mempengaruhi context object di dalam percakapan seperti yang diharapkan.
+
+::: warning Menu Interaktif di Dalam Percakapan
+
+Konsep ini bertolak belakang dengan [plugin menu](./menu).
+Meski menu _bisa_ bekerja di dalam percakapan, namun kami tidak menyarankan untuk menggunakan kedua plugin ini secara bersamaan.
+Sebagai gantinya, gunakan [plugin keyboard inline](./keyboard#keyboard-inline) biasa (hingga kami menambahkan dukungan menu asli untuk percakapan).
+Kamu bisa menunggu kueri callback tertentu menggunakan `await conversation.waitForCallbackQuery("kueri-ku")` atau semua kueri menggunakan `await conversation.waitFor("kueri_callback")`.
+
+```ts
+const keyboard = new InlineKeyboard()
+  .text("A", "a").text("B", "b");
+await ctx.reply("Pilih A atau B?", { reply_markup: keyboard });
+const response = await conversation.waitForCallbackQuery(["a", "b"], {
+  otherwise: (ctx) =>
+    ctx.reply("Gunakan tombol berikut!", { reply_markup: keyboard }),
+});
+if (response.match === "a") {
+  // User memilih "A".
+} else {
+  // User memilih "B".
+}
+```
+
+:::
+
+Sedangkan untuk plugin lainnya bisa berjalan dengan baik.
+Beberapa diantaranya cuma perlu diinstal dengan cara yang berbeda.
 Ini berlaku untuk plugin-plugin berikut:
 
-- [menu](./menu)
 - [hydrate](./hydrate)
 - [i18n](./i18n) dan [fluent](./fluent)
 - [emoji](./emoji)
@@ -961,33 +986,7 @@ async function convo(conversation, ctx) {
 
 :::
 
-Langkah di atas akan membuat plugin-nya tersedia untuk percakapan tersebut.
-
-Contohnya, jika kamu ingin menggunakan sebuah menu di dalam suatu percakapan, kode kamu kurang lebih akan terlihat seperti ini:
-
-::: code-group
-
-```ts [TypeScript]
-async function convo(conversation: MyConversation, ctx: MyContext) {
-  const menu = new Menu<MyContext>()
-    .text("Tekan", (ctx) => ctx.reply("Halo!"));
-  await conversation.run(menu);
-
-  // Lanjutkan menulis percakapannya ...
-}
-```
-
-```js [JavaScript]
-async function convo(conversation, ctx) {
-  const menu = new Menu()
-    .text("Tekan", (ctx) => ctx.reply("Halo!"));
-  await conversation.run(menu);
-
-  // Lanjutkan menulis percakapannya ...
-}
-```
-
-:::
+Dengan cara seperti itu, plugin akan tersedia untuk percakapan tersebut.
 
 ### Custom Context Object
 

@@ -307,7 +307,7 @@ worker: node dist/bot.js
 我们将使用 [Git 和 Heroku Cli](https://devcenter.heroku.com/articles/git) 来部署我们的 bot。
 这里是安装的链接：
 
-- [Git 安装说明](https://git-scm.com/download/)
+- [Git 安装说明](https://git-scm.com/download)
 - [Heroku CLI 安装说明](https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli)
 
 假设你已经在你的机器里安装了它们，并且你在项目的根目录下打开了一个终端。

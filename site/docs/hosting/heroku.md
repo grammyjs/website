@@ -310,7 +310,7 @@ worker: node dist/bot.js
 We are going to deploy our bot using [Git and Heroku Cli](https://devcenter.heroku.com/articles/git).
 Here is the link for the installation:
 
-- [Git installation instructions](https://git-scm.com/download/)
+- [Git installation instructions](https://git-scm.com/download)
 - [Heroku CLI installation instructions](https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli)
 
 Assuming that you already have them in your machine, and you have a terminal open in the root of our project's directory.

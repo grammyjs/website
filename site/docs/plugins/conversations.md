@@ -919,11 +919,35 @@ As always, check out the [API reference](https://deno.land/x/grammy_conversation
 As mentioned [earlier](#introduction), grammY handlers always only handle a single update.
 However, with conversations, you are able to process many updates in sequence as if they were all available at the same time.
 The plugin makes this possible by storing old context objects, and resupplying them later.
-
 This is why the context objects inside conversations are not always affected by some grammY plugins in the way one would expect.
+
+::: warning Interactive Menus Inside Conversations
+
+With the [menu plugin](./menu), these concepts clash very badly.
+While menus _can_ work inside conversations, we do not recommend to use these two plugins together.
+Instead, use the regular [inline keyboard plugin](./keyboard#inline-keyboards) (until we add native menus support for conversations).
+You can wait for specific callback queries using `await conversation.waitForCallbackQuery("my-query")` or any query using `await conversation.waitFor("callback_query")`.
+
+```ts
+const keyboard = new InlineKeyboard()
+  .text("A", "a").text("B", "b");
+await ctx.reply("A or B?", { reply_markup: keyboard });
+const response = await conversation.waitForCallbackQuery(["a", "b"], {
+  otherwise: (ctx) => ctx.reply("Use the buttons!", { reply_markup: keyboard }),
+});
+if (response.match === "a") {
+  // User picked "A".
+} else {
+  // User picked "B".
+}
+```
+
+:::
+
+Other plugins work fine.
+Some of them just need to be installed differently from how you would usually do it.
 This is relevant for the following plugins:
 
-- [menu](./menu)
 - [hydrate](./hydrate)
 - [i18n](./i18n) and [fluent](./fluent)
 - [emoji](./emoji)
@@ -954,32 +978,6 @@ async function convo(conversation, ctx) {
 :::
 
 This will make the plugin available inside the conversation.
-
-As an example, if you want to use a menu insde a conversation, your code could look like this.
-
-::: code-group
-
-```ts [TypeScript]
-async function convo(conversation: MyConversation, ctx: MyContext) {
-  const menu = new Menu<MyContext>()
-    .text("Click", (ctx) => ctx.reply("Hi!"));
-  await conversation.run(menu);
-
-  // Continue defining the conversation ...
-}
-```
-
-```js [JavaScript]
-async function convo(conversation, ctx) {
-  const menu = new Menu()
-    .text("Click", (ctx) => ctx.reply("Hi!"));
-  await conversation.run(menu);
-
-  // Continue defining the conversation ...
-}
-```
-
-:::
 
 ### Custom Context Objects
 

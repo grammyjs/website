@@ -86,7 +86,7 @@ const learnAdvanced = {
       link: "/id/advanced/reliability",
     },
     {
-      text: "Peningkatan IV: Limitasi Flood",
+      text: "Peningkatan IV: Pembatasan Flood",
       link: "/id/advanced/flood",
     },
     {

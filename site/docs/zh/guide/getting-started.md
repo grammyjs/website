@@ -150,7 +150,7 @@ export DEBUG="grammy*"
 
 ## 通过 Deno 开始
 
-> 本指南假定你已经安装了 [Deno](https://deno.com/runtime) 。
+> 本指南假定你已经安装了 [Deno](https://deno.land) 。
 
 在某个地方创建一个新的目录，并在其中创建一个新的空文本文件，例如，称为 `bot.ts`。
 

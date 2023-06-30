@@ -91,7 +91,7 @@ For that, you need to install some software which is able to _execute_ your code
 This type of software is called a _runtime environment_.
 It takes in your source code files and actually does whatever is programmed in them.
 
-For us, there are two runtime environments to choose from, [Deno](https://deno.com/runtime) and [Node.js](https://nodejs.org).
+For us, there are two runtime environments to choose from, [Deno](https://deno.land) and [Node.js](https://nodejs.org).
 (If you see people call it _Node_, they are just too lazy to type ".js", but they mean the same thing.)
 
 > The rest of this section helps you decide between these two platforms.
@@ -135,7 +135,7 @@ This means installing a few tools.
 
 You also need a text editor that fits well with coding.
 The best one for Deno is Visual Studio Code, often just called VS Code.
-[Install it](https://code.visualstudio.com/).
+[Install it.](https://code.visualstudio.com)
 
 Next, you need to connect VS Code and Deno.
 That's very simple: There is an extension for VS Code that does everything automatically.

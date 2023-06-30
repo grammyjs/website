@@ -158,13 +158,13 @@ const audioFileId = "AgADBAADZRAxGyhM3FKSE4qKa-RODckQHxsoABDHe0BDC1GzpGACAAEC";
 InlineQueryResultBuilder.audioCached("id-0", audioFileId);
 ```
 
-> Lee más sobre los identificadores de archivo [aquí](../guide/files#cómo-funcionan-los-archivos-para-los-bots-de-telegram).
+> Lee más sobre los identificadores de archivo [aquí](../guide/files#como-funcionan-los-archivos-para-los-bots-de-telegram).
 
 Deberías consultar la [referencia API](https://deno.land/x/grammy/mod.ts?s=InlineQueryResultBuilder) de `InlineQueryResultBuilder` y quizás también la [especificación](https://core.telegram.org/bots/api#inlinequeryresult) de `InlineQueryResult` para ver todas las opciones disponibles.
 
 ## Responder consultas en línea
 
-Después de generar un array de resultados de consultas en línea utilizando el constructor de [arriba](#construcción-de-resultados-de-consultas-en-línea), puedes llamar a `answerInlineQuery` para enviar estos resultados al usuario.
+Después de generar un array de resultados de consultas en línea utilizando el constructor de [arriba](#construccion-de-resultados-de-consultas-en-linea), puedes llamar a `answerInlineQuery` para enviar estos resultados al usuario.
 
 ```ts
 // La autopublicidad desvergonzada en la documentación de un proyecto
@@ -193,7 +193,7 @@ bot.inlineQuery(/mejor bot (framework|library)/, async (ctx) => {
 bot.on("inline_query", (ctx) => ctx.answerInlineQuery([]));
 ```
 
-[Recuerda](../guide/basics.html#envio-de-mensajes) que siempre puedes especificar más opciones cuando llames a métodos de la API utilizando el objeto options de tipo `Other`.
+[Recuerda](../guide/basics#envio-de-mensajes) que siempre puedes especificar más opciones cuando llames a métodos de la API utilizando el objeto options de tipo `Other`.
 Por ejemplo, `answerInlineQuery` le permite realizar la paginación para consultas en línea a través de un desplazamiento, como puede ver [aquí](https://core.telegram.org/bots/api#answerinlinequery).
 
 ::: tip Mezcla de texto y medios
@@ -234,7 +234,7 @@ bot
 
 De esta forma, puede realizar, por ejemplo, procedimientos de inicio de sesión en un chat privado con el usuario antes de entregar los resultados de la consulta en línea.
 El diálogo puede ir y venir un poco antes de devolverlos.
-Por ejemplo, puedes [introducir una conversación corta](./conversations#instalar-y-entrar-en-una-conversación) con el plugin de conversaciones.
+Por ejemplo, puedes [introducir una conversación corta](./conversations#instalar-y-entrar-en-una-conversacion) con el plugin de conversaciones.
 
 ## Obtener información sobre los resultados elegidos
 
