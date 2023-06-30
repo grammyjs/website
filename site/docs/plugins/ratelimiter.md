@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Rate Limit Users (`ratelimiter`)
 
 ratelimiter is a rate-limiting middleware for Telegram bots made with grammY or [Telegraf](https://github.com/telegraf/telegraf) bot frameworks.

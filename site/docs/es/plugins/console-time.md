@@ -1,5 +1,6 @@
 ---
 prev: false
+next: false
 ---
 
 # Registro en la consola mientras se depura

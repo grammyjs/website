@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # 重试 API 请求（`auto-retry`）
 
 这个插件是一个 [API 转换函数](../advanced/transformers)，这意味着它可以让你动态地拦截和修改传出的 HTTP 请求。

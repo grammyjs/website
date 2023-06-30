@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # 限制用户速率 (`ratelimiter`)
 
 ratelimiter 是用 grammY 或 [Telegraf](https://github.com/telegraf/telegraf) bot 框架制作的一个限速中间件。

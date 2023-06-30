@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Inline 与自定义 Keyboards（内置）
 
 你的 bot 可以发送一些按钮，可以 [显示在信息下面](#inline-keyboards)，也可以 [替换用户的键盘](#自定义-keyboards)。

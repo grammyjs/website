@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Kontrol Flood (`transformer-throttler`)
 
 > Pertimbangkan untuk menggunakan [plugin auto-retry](./auto-retry).

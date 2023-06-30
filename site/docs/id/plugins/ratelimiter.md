@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Rate Limit Pengguna (`ratelimiter`)
 
 ratelimiter adalah sebuah middleware yang dibuat dari framework bot grammY ataupun [Telegraf](https://github.com/telegraf/telegraf) yang berfungsi untuk mengatur rate-limit pengguna bot.

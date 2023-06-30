@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Обмеження запитів до API (`transformer-throttler`)
 
 Цей плагін виконує вихідні запити до API в черзі через [Bottleneck](https://github.com/SGrondin/bottleneck), щоб запобігти перевищенню вашим ботом [лімітів](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this), як це описано в [просунутому розділі](../advanced/flood) документації.

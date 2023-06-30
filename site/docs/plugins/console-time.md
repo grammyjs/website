@@ -1,5 +1,6 @@
 ---
 prev: false
+next: false
 ---
 
 # Console Logging While Debugging

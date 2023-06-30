@@ -1,11 +1,16 @@
+---
+prev: false
+next: false
+---
+
 # Interactive Menus (`menu`)
 
 Easily create interactive menus.
 
-# Introduction
+## Introduction
 
 An inline keyboard is an array of buttons underneath a message.
-grammY has a [built-in plugin](./keyboard#inline-keyboards) to create basic inline keyboards.
+grammY has a [built-in plugin](./keyboard##inline-keyboards) to create basic inline keyboards.
 
 The menu plugin takes this idea further and lets you create rich menus right inside the chat.
 They can have interactive buttons, multiple pages with navigation between them, and more.
@@ -87,15 +92,15 @@ bot.start();
 
 > Make sure that you install all menus before other middleware, especially before middleware that uses callback query data.
 
-Naturally, if you are using a [custom context type](../guide/context#customizing-the-context-object), you can pass it to `Menu` too.
+Naturally, if you are using a [custom context type](../guide/context##customizing-the-context-object), you can pass it to `Menu` too.
 
 ```ts
 const menu = new Menu<MyContext>("id");
 ```
 
-## Adding Buttons
+#### Adding Buttons
 
-The menu plugin lays out your keyboards exactly like the [plugin for inline keyboards](./keyboard#building-an-inline-keyboard) does.
+The menu plugin lays out your keyboards exactly like the [plugin for inline keyboards](./keyboard##building-an-inline-keyboard) does.
 The class `Menu` replaces the class `InlineKeyboard`.
 
 Here is an example for a menu that has four buttons in a 1-2-1 row shape.
@@ -114,9 +119,9 @@ You can pass a label and a handler function.
 Use `row` to end the current row, and add all subsequent buttons to a new one.
 
 There are many more button types available, e.g. for opening URLs.
-Check out this plugin's [API Reference](https://deno.land/x/grammy_menu/mod.ts?s=MenuRange) for `MenuRange`, as well as the [Telegram Bot API Reference](https://core.telegram.org/bots/api#inlinekeyboardbutton) for `InlineKeyboardButton`.
+Check out this plugin's [API Reference](https://deno.land/x/grammy_menu/mod.ts?s=MenuRange) for `MenuRange`, as well as the [Telegram Bot API Reference](https://core.telegram.org/bots/api##inlinekeyboardbutton) for `InlineKeyboardButton`.
 
-## Sending a Menu
+#### Sending a Menu
 
 You must first install a menu.
 This makes it interactive.
@@ -133,7 +138,7 @@ bot.command("menu", async (ctx) => {
 });
 ```
 
-## Dynamic Labels
+#### Dynamic Labels
 
 Whenever you put a label string on a button, you can also pass a function `(ctx: Context) => string` to get a dynamic label on the button.
 This function may or may not be `async`.
@@ -178,7 +183,7 @@ It is not a good idea to actually store user settings in a `Set` object, because
 Instead, consider using a database or the [session plugin](./session) if you want to store data.
 :::
 
-# Updating or Closing the Menu
+## Updating or Closing the Menu
 
 When a button handler is called, a number of useful functions are available on `ctx.menu`.
 
@@ -194,7 +199,7 @@ const menu = new Menu("time", { onMenuOutdated: false })
   );
 ```
 
-> The purpose of `onMenuOutdated` is explained [below](#outdated-menus-and-fingerprints).
+> The purpose of `onMenuOutdated` is explained [below](##outdated-menus-and-fingerprints).
 > You can ignore it for now.
 
 You can also update the menu implicitly by editing the corresponding message.
@@ -226,7 +231,7 @@ This should only be used when necessary.
 If you want to close a menu, i.e. remove all buttons, you can call `ctx.menu.close()`.
 Again, this will be performed lazily.
 
-# Navigation Between Menus
+## Navigation Between Menus
 
 You can easily create menus with several pages, and navigation between them.
 Every page has its own instance of `Menu`.
@@ -292,7 +297,7 @@ bot.use(menuA);
 bot.use(menuB);
 ```
 
-# Payloads
+## Payloads
 
 You can store short text payloads along with all navigation and text buttons.
 When the respective handlers are invoked, the text payload will be available under `ctx.match`.
@@ -332,7 +337,7 @@ bot.command("publish", async (ctx) => {
 
 Payloads also work well together with dynamic ranges.
 
-# Dynamic Ranges
+## Dynamic Ranges
 
 So far, we've only seen how to change the text on a button dynamically.
 You can also dynamically adjust the structure of a menu in order to add and remove buttons on the fly.
@@ -393,7 +398,7 @@ menu.dynamic((ctx, range) => {
 ```
 
 It is important that your factory function works in a certain way, otherwise your menus may show strange behavior or even throw errors.
-As menus are always [rendered twice](#how-does-it-work) (once when the menu is sent, and once when a button is pressed), you need to make sure that:
+As menus are always [rendered twice](##how-does-it-work) (once when the menu is sent, and once when a button is pressed), you need to make sure that:
 
 1. **You do not have any side-effects in the function that builds the dynamic range.**
    Do not send messages.
@@ -403,9 +408,9 @@ As menus are always [rendered twice](#how-does-it-work) (once when the menu is s
 2. **Your function is stable**, i.e. it does not depend on randomness, the current time, or other fast-changing data sources.
    It has to generate the same buttons the first and the second time the menu is rendered.
    Otherwise, the menu plugin cannot match the correct handler with the pressed button.
-   Instead, it will [detect](#outdated-menus-and-fingerprints) that your menu is outdated, and refuse to call the handlers.
+   Instead, it will [detect](##outdated-menus-and-fingerprints) that your menu is outdated, and refuse to call the handlers.
 
-# Answering Callback Queries Manually
+## Answering Callback Queries Manually
 
 The menu plugin will call `answerCallbackQuery` automatically for its own buttons.
 You can set `autoAnswer: false` if you want to disable this.
@@ -417,9 +422,9 @@ const menu = new Menu("id", { autoAnswer: false });
 You will now have to call `answerCallbackQuery` yourself.
 This allows you to pass custom messages that are displayed to the user.
 
-# Outdated Menus and Fingerprints
+## Outdated Menus and Fingerprints
 
-Let's say you have a menu where a user can toggle notifications on and off, such as in the example [up here](#dynamic-labels).
+Let's say you have a menu where a user can toggle notifications on and off, such as in the example [up here](##dynamic-labels).
 Now, if a user sends `/settings` twice, they will get the same menu twice.
 But, changing the notification setting on one of the two messages will not update the other!
 
@@ -474,7 +479,7 @@ const menu = new Menu("id", { fingerprint: (ctx) => ident(ctx) });
 The fingerprint string will replace the above heuristic.
 This way, you can be sure that outdated menus are always detected.
 
-# How Does It Work
+## How Does It Work
 
 The menu plugin works completely without storing any data.
 This is important for large bots with millions of users.
@@ -507,7 +512,7 @@ However, this time, we don't actually need the full layout---all we need is the 
 Consequently, the menu plugin will perform a shallow rendering in order to be more efficient.
 In other words, the menu will only be rendered partially.
 
-Once the pressed button is known again (and we have checked that the menu is not [outdated](#outdated-menus-and-fingerprints)), we invoke the handler.
+Once the pressed button is known again (and we have checked that the menu is not [outdated](##outdated-menus-and-fingerprints)), we invoke the handler.
 
 Internally, the menu plugin makes heavy use of [API Transformer Functions](../advanced/transformers), for example, to quickly render outgoing menus on the fly.
 
@@ -516,9 +521,9 @@ Under the hood, all menus of that one structure are added to the same large pool
 Every menu is responsible for every other one in the index, and they can handle and render each other.
 (Most often, it is only the root menu that is actually passed to `bot.use` and that receives any updates.
 In such cases, this one instance will handle the complete pool.)
-As a result, you are able to navigate between arbitrary menus without limit, all while the update handling can happen in [`O(1)` time complexity](https://en.wikipedia.org/wiki/Time_complexity#Constant_time) because there is no need to search through entire hierarchies to find the right menu to handle any given button click.
+As a result, you are able to navigate between arbitrary menus without limit, all while the update handling can happen in [`O(1)` time complexity](https://en.wikipedia.org/wiki/Time_complexity##Constant_time) because there is no need to search through entire hierarchies to find the right menu to handle any given button click.
 
-# Plugin Summary
+## Plugin Summary
 
 - Name: `menu`
 - Source: <https://github.com/grammyjs/menu>

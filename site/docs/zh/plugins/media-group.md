@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # 媒体组（内置）
 
 媒体组插件通过允许你构建 `InputMedia` 对象来帮助你发送媒体组。

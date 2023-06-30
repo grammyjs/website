@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Emojis (`emoji`)
 
 Con este plugin, puedes insertar fácilmente emojis en tus respuestas buscándolos en lugar de copiar y pegar manualmente un emoji de la web en tu código.

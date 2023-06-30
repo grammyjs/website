@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Medios de comunicación (incorporado)
 
 El plugin de grupo de medios te ayuda a enviar grupos de medios permitiéndote construir objetos `InputMedia`.

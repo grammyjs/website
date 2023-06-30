@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Limitador de velocidad (`ratelimiter`)
 
 ratelimiter es un middleware de limitación de tasa para los bots de Telegram hechos con los frameworks de bots grammY o [Telegraf](https://github.com/telegraf/telegraf).

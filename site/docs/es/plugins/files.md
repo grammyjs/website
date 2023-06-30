@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Manejo de archivos simplificado en grammY (`files`)
 
 Este plugin te permite descargar fácilmente archivos de los servidores de Telegram, y obtener una URL para que puedas descargar el archivo tú mismo.

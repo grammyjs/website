@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Conjunto de middlewares útiles
 
 Seguí reescribiendo los mismos middlewares una y otra vez para todos mis bots así que decidí extraerlos todos a un paquete separado.

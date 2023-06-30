@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Menús interactivos (`menu`)
 
 Crea fácilmente menús interactivos.

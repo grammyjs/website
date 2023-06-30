@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # 并发 (`runner`)
 
 如果你使用 [长轮询](../guide/deployment-types) 的方式运行你的机器人，你可以使用这个包来并发处理消息。

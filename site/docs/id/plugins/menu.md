@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Menu Interaktif (`menu`)
 
 Membuat menu interaktif dengan mudah.

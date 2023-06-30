@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Control de flujo (`transformer-throttler`)
 
 > Considere usar el [plugin auto-retry](./auto-retry) en su lugar.

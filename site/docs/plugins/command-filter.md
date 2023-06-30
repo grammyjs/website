@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Command Filtering (`command-filter`)
 
 Coming soon, please come back later.

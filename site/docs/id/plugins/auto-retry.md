@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Pengulang Request API (`auto-retry`)
 
 Plugin ini adalah sebuah [API transformer function](../advanced/transformers).

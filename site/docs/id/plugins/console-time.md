@@ -1,5 +1,6 @@
 ---
 prev: false
+next: false
 ---
 
 # Menggunakan Console Log untuk Men-debug

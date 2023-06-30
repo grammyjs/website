@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Media Groups (built-in)
 
 The media group plugin helps you send media groups by letting you build `InputMedia` objects.

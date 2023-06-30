@@ -1,5 +1,6 @@
 ---
 prev: false
+next: false
 ---
 
 # Sesiones y almacenamiento de datos (incluido)

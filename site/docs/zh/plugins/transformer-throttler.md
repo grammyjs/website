@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # 流量控制（`transformer-throttler`）
 
 > 考虑使用 [auto-retry 插件](./auto-retry) 代替。
