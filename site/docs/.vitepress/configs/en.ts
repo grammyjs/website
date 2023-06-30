@@ -429,6 +429,10 @@ export const siteEn: LocaleConfig = {
         pattern:
           "https://github.com/grammyjs/website/edit/main/site/docs/:path",
       },
+      docFooter: {
+        prev: "Previous page",
+        next: "Next page",
+      },
       lastUpdatedText: "Last updated",
       darkModeSwitchLabel: "Appearance", // only displayed in the mobile view.
       sidebarMenuLabel: "Menu", // only displayed in the mobile view.

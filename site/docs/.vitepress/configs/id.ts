@@ -417,11 +417,14 @@ export const siteId: LocaleConfig = {
       },
       editLink: {
         text: "Ubah halaman ini di GitHub",
-
         pattern:
           "https://github.com/grammyjs/website/edit/main/site/docs/:path",
       },
-      lastUpdatedText: "Terakhir Diperbarui",
+      docFooter: {
+        prev: "Halaman sebelumnya",
+        next: "Halaman selanjutnya",
+      },
+      lastUpdatedText: "Terakhir diperbarui",
       darkModeSwitchLabel: "Tampilan", // only displayed in the mobile view.
       sidebarMenuLabel: "Menu", // only displayed in the mobile view.
       returnToTopLabel: "Kembali ke atas", // only displayed in the mobile view.
