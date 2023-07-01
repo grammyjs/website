@@ -1,4 +1,4 @@
-# Stateless Question (`stateless-question`)
+# Pertanyaan Tanpa Status (`stateless-question`)
 
 > Membuat stateless question di mode privasi
 

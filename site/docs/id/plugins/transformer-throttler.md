@@ -1,4 +1,4 @@
-# Kontrol Flood (`transformer-throttler`)
+# Pengatur Laju API (`transformer-throttler`)
 
 > Pertimbangkan untuk menggunakan [plugin auto-retry](./auto-retry.md).
 

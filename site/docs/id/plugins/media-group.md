@@ -1,4 +1,4 @@
-# Pengelompokan Media (bawaan)
+# Kelompok Media (bawaan)
 
 Plugin pengelompokan media atau media group berfungsi untuk mengirim kumpulan media melalui object `InputMedia`.
 Object `InputMedia` juga digunakan ketika mengubah pesan media, sehingga secara tidak langsung plugin ini juga membantu kamu mengubah suatu media.

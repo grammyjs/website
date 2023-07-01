@@ -1,4 +1,4 @@
-# Concurrency Menggunakan grammY runner (`runner`)
+# Runner (`runner`)
 
 Plugin ini dapat digunakan untuk memproses berbagai pesan secara bersamaan ketika bot dijalankan [menggunakan long polling](../guide/deployment-types.md).
 

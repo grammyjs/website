@@ -1,4 +1,4 @@
-# Session dan Penyimpanan Data (bawaan)
+# Sesi dan Penyimpanan Data (bawaan)
 
 Meski kamu bisa saja menulis sendiri kode untuk melakukan koneksi ke sebuah data storage favoritmu, namun grammY sudah menyediakan sebuah skema penyimpanan praktis yang disebut dengan _session_.
 

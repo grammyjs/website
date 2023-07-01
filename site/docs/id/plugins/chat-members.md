@@ -1,4 +1,4 @@
-# Plugin Chat Members (`chat-members`)
+# Anggota Chat (`chat-members`)
 
 Mengambil serta menyimpan informasi user dari suatu chat secara mudah dan otomatis.
 Plugin ini bekerja dengan cara memantau anggota grup dan channel, lalu menyimpannya ke dalam sebuah daftar.

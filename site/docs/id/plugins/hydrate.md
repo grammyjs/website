@@ -1,4 +1,4 @@
-# Plugin Hidrasi untuk grammY (`hydrate`)
+# Hidrasi (`hydrate`)
 
 Plugin ini akan menginstal method-method yang berguna di dua macam object, yaitu
 
