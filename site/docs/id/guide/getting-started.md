@@ -169,7 +169,7 @@ Ini mempermudah kamu untuk men-debug bot.
 
 ## Memulai dengan Deno
 
-> Kami mengasumsikan bahwa kamu sudah menginstal [Deno](https://deno.com/runtime).
+> Kami mengasumsikan bahwa kamu sudah menginstal [Deno](https://deno.land).
 
 Buat direktori baru di suatu tempat lalu buat file teks kosong baru di dalamnya, misalnya kita namakan `bot.ts`.
 

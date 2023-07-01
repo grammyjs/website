@@ -166,7 +166,7 @@ Esto facilita la depuración de tu bot.
 
 ## Introducción a Deno
 
-> Esta guía asume que tiene instalado [Deno](https://deno.com/runtime).
+> Esta guía asume que tiene instalado [Deno](https://deno.land).
 
 Crea un nuevo directorio en algún lugar y crea un nuevo archivo de texto vacío en él, por ejemplo, llamado `bot.ts`.
 
