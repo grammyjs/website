@@ -9,7 +9,7 @@ Entonces atrapará el error, esperará el período de tiempo especificado, y lue
 ::: tip Control de inundaciones
 Telegram te avisará si envías mensajes demasiado rápido.
 Esta es una medida importante para el control de inundaciones, ya que se asegura de que tu bot no someta a Telegram a demasiada carga.
-Usar este plugin es importante porque si olvidas respetar [429 errores](../resources/faq.md#_429-too-many-requests-retry-after-x), Telegram puede banear tu bot.
+Usar este plugin es importante porque si olvidas respetar [errores 429](../resources/faq.md#_429-too-many-requests-retry-after-x), Telegram puede banear tu bot.
 :::
 
 Puedes instalar este plugin en el objeto `bot.api`:
