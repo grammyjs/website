@@ -33,26 +33,26 @@ Instalar plugins es divertido y fácil, y queremos que sepas lo que tenemos para
 
 > Haga clic en el nombre de cualquier paquete para obtener más información sobre el respectivo plugin.
 
-| Plugin                                        | Package                                               | Description                                          |
-| --------------------------------------------- | ----------------------------------------------------- | ---------------------------------------------------- |
-| [Sesiones](./session.md)                      | _built-in_                                            | Almacena los datos de los usuarios en su base de datos                     |
-| [Teclados en línea y personalizados](./keyboard.md)  | _built-in_                                            | Simplifique la creación de teclados en línea y personalizados        |
-| [Grupos de medios](./media-group.md)              | _built-in_                                            | Simplificar el envío de grupos de medios y la edición de medios      |
-| [Consultas en línea](./inline-query.md)           | _built-in_                                            | Construya fácilmente resultados para consultas en línea              |
-| [Auto-reintento](./auto-retry.md)                 | [`auto-retry`](./auto-retry.md)                       | Gestión automática de la limitación de velocidad                   |
-| [Conversaciones](./conversations.md)           | [`conversations`](./conversations.md)                 | Construya potentes interfaces y diálogos conversacionales |
-| [Miembros de chat](./chat-members.md)             | [`chat-members`](./chat-members.md)                   | Saber qué usuario se ha unido a qué chat                   |
-| [Emojis](./emoji.md)                           | [`emoji`](./emoji.md)                                 | Simplificar el uso de emoji en el código                         |
-| [Archivos](./files.md)                           | [`files`](./files.md)                                 | Manejar archivos fácilmente                                  |
-| [Hidratar](./hydrate.md)                     | [`hydrate`](./hydrate.md)                             | Llamar a métodos de objetos devueltos por llamadas a la API      |
-| [Internacionalización](./i18n.md)             | [`i18n`](./i18n.md) or [`fluent`](./fluent.md)        | Deja que tu bot hable varios idiomas                |
-| [Menús interactivos](./menu.md)                | [`menu`](./menu.md)                                   | Diseñe menús de botones dinámicos con navegación flexible |
-| [Parsear](./parse-mode.md)                 | [`parse-mode`](./parse-mode.md)                       | Simplificar el formato de los mensajes                          |
-| [Limitador de velocidad](./ratelimiter.md)              | [`ratelimiter`](./ratelimiter.md)                     | Restringe automáticamente a los usuarios que envían spam a tu bot       |
-| [Enrutador](./router.md)                         | [`router`](./router.md)                               | Dirija los mensajes a diferentes partes de su código       |
-| [Concurrencia](./runner.md)                         | [`runner`](./runner.md)                               | Realizar long polling de forma simultánea y a escala       |
-| [Preguntas sin estado](./stateless-question.md) | [`stateless-question`](./stateless-question.md)       | Crear diálogos sin almacenamiento de datos                |
-| [Control de flujo](./transformer-throttler.md)       | [`transformer-throttler`](./transformer-throttler.md) | Ralentizar las llamadas a la API                                  |
+| Plugin                                              | Paquete                                               | Descripción                                                       |
+| --------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------------------- |
+| [Sesiones](./session.md)                            | _incluido_                                            | Almacena los datos de los usuarios en su base de datos            |
+| [Teclados en línea y personalizados](./keyboard.md) | _incluido_                                            | Simplifique la creación de teclados en línea y personalizados     |
+| [Grupos de medios](./media-group.md)                | _incluido_                                            | Simplificar el envío de grupos de medios y la edición de medios   |
+| [Consultas en línea](./inline-query.md)             | _incluido_                                            | Construya fácilmente resultados para consultas en línea           |
+| [Auto-reintento](./auto-retry.md)                   | [`auto-retry`](./auto-retry.md)                       | Gestión automática de la limitación de velocidad                  |
+| [Conversaciones](./conversations.md)                | [`conversations`](./conversations.md)                 | Construya potentes interfaces y diálogos conversacionales         |
+| [Miembros de chat](./chat-members.md)               | [`chat-members`](./chat-members.md)                   | Saber qué usuario se ha unido a qué chat                          |
+| [Emojis](./emoji.md)                                | [`emoji`](./emoji.md)                                 | Simplificar el uso de emoji en el código                          |
+| [Archivos](./files.md)                              | [`files`](./files.md)                                 | Manejar archivos fácilmente                                       |
+| [Hidratar](./hydrate.md)                            | [`hydrate`](./hydrate.md)                             | Llamar a métodos de objetos devueltos por llamadas a la API       |
+| [Internacionalización](./i18n.md)                   | [`i18n`](./i18n.md) or [`fluent`](./fluent.md)        | Deja que tu bot hable varios idiomas                              |
+| [Menús interactivos](./menu.md)                     | [`menu`](./menu.md)                                   | Diseñe menús de botones dinámicos con navegación flexible         |
+| [Parsear](./parse-mode.md)                          | [`parse-mode`](./parse-mode.md)                       | Simplificar el formato de los mensajes                            |
+| [Limitador de velocidad](./ratelimiter.md)          | [`ratelimiter`](./ratelimiter.md)                     | Restringe automáticamente a los usuarios que envían spam a tu bot |
+| [Enrutador](./router.md)                            | [`router`](./router.md)                               | Dirija los mensajes a diferentes partes de su código              |
+| [Concurrencia](./runner.md)                         | [`runner`](./runner.md)                               | Realizar long polling de forma simultánea y a escala              |
+| [Preguntas sin estado](./stateless-question.md)     | [`stateless-question`](./stateless-question.md)       | Crear diálogos sin almacenamiento de datos                        |
+| [Control de flujo](./transformer-throttler.md)      | [`transformer-throttler`](./transformer-throttler.md) | Ralentizar las llamadas a la API                                  |
 
 También tenemos algunos plugins de terceros.
 Puedes encontrarlos en el menú de navegación en _Complementos_ > _De Terceros_.
