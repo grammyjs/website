@@ -78,7 +78,7 @@ Here, we are using the bot token (`/<bot token>`).
 deployctl deploy --project <project> ./mod.ts --prod --token <token>
 ```
 
-6. To set up Github Actions, refer to [this](https://github.com/denoland/deployctl/blob/main/action/README).
+6. To set up Github Actions, refer to [this](https://github.com/denoland/deployctl/blob/main/action/README.md).
 
 ### Method 3: With URL
 

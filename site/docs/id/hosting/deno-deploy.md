@@ -81,7 +81,7 @@ Di contoh kali ini, kita menggunakan token bot (`/<token bot>`) sebagai direktor
 deployctl deploy --project <project> ./mod.ts --prod --token <token>
 ```
 
-6. Untuk menyiapkan GitHub Actions, dapat merujuk ke [sini](https://github.com/denoland/deployctl/blob/main/action/README).
+6. Untuk menyiapkan GitHub Actions, dapat merujuk ke [sini](https://github.com/denoland/deployctl/blob/main/action/README.md).
 
 ### Metode 3: Menggunakan URL
 

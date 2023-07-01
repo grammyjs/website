@@ -78,7 +78,7 @@ serve(async (req) => {
 deployctl deploy --project <назва-проєкту> ./mod.ts --prod --token <токен-доступу>
 ```
 
-6. Щоб налаштувати Github Actions, дивіться [це](https://github.com/denoland/deployctl/blob/main/action/README).
+6. Щоб налаштувати Github Actions, дивіться [це](https://github.com/denoland/deployctl/blob/main/action/README.md).
 
 ### 3-й метод: за допомогою URL
 
