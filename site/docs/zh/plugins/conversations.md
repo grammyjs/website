@@ -1001,9 +1001,9 @@ async function waitForMe(conversation, ctx) {
 ```ts
 const keyboard = new InlineKeyboard()
   .text("A", "a").text("B", "b");
-await ctx.reply("A or B?", { reply_markup: keyboard });
+await ctx.reply("A还是B？", { reply_markup: keyboard });
 const response = await conversation.waitForCallbackQuery(["a", "b"], {
-  otherwise: (ctx) => ctx.reply("Use the buttons!", { reply_markup: keyboard }),
+  otherwise: (ctx) => ctx.reply("点击按钮！", { reply_markup: keyboard }),
 });
 if (response.match === "a") {
   // 用户选择 "A".
