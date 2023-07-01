@@ -96,7 +96,7 @@ grammY 文档不会教你如何编程，所以我们希望你能自学。
 这种类型的软件被称为 _运行时环境_。
 它接收你的源代码文件，并实际执行其中的任何程序。
 
-对我们来说，有两种运行时环境可供选择，[Deno](https://deno.com/runtime) 和 [Node.js](https://nodejs.org) 。
+对我们来说，有两种运行时环境可供选择，[Deno](https://deno.land) 和 [Node.js](https://nodejs.org) 。
 （如果你看到有人叫它 _Node_ ，他们只是懒得打 ".js" ，但他们的意思是一样的。）
 
 > 本节的其余部分将帮助你在这两个平台之间做出决定。
@@ -142,7 +142,7 @@ Deno：
 
 你还需要一个非常适合编码的文本编辑器。
 最适合 Deno 的是 Visual Studio Code，通常简称为 VS Code。
-[安装它。](https://code.visualstudio.com/)
+[安装它。](https://code.visualstudio.com)
 
 接下来，你需要连接 VS Code 和 Deno。
 这非常简单：有一个 VS Code 的扩展可以自动完成所有事情。

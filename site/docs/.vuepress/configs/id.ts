@@ -115,7 +115,7 @@ export const localeId: LocaleConfig<DefaultThemeLocaleData> = {
                 link: "/id/advanced/reliability.html",
               },
               {
-                text: "Peningkatan IV: Limitasi Flood",
+                text: "Peningkatan IV: Pembatasan Flood",
                 link: "/id/advanced/flood.html",
               },
               {
