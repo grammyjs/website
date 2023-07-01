@@ -1,6 +1,6 @@
-# Pertanyaan Tanpa Status (`stateless-question`)
+# Pertanyaan Nirstatus (`stateless-question`)
 
-> Membuat stateless question di mode privasi
+> Membuat stateless question (pertanyaan nirstatus) di mode privasi
 
 Apakah kamu ingin mengirim pertanyaan menggunakan bahasa yang sedang digunakan user tanpa perlu mematikan [mode privasi Telegram](https://core.telegram.org/bots/features#privacy-mode) serta tidak menyimpan statusnya saat ini?
 

@@ -1,7 +1,7 @@
 # Keyboard Tersuai dan Sebaris (bawaan)
 
 Bot kamu bisa menyediakan beberapa tombol untuk user, baik berupa [tombol di bawah pesan](#keyboard-inline) ataupun [mengganti keyboard user](#keyboard-custom) sepenuhnya dengan tombol.
-Keduanya secara berurutan bernama _keyboard inline_ dan _keyboard custom_.
+Keduanya secara berurutan bernama _keyboard custom (keyboard tersuai)_ dan _keyboard inline (keyboard sebaris)_.
 Kalau kamu merasa penamaannya sedikit membingungkan, memang betul adanya.
 Salahkan Telegram karena menggunakan kedua istilah aneh tersebut. :upside_down_face:
 
@@ -9,12 +9,12 @@ Mari kita perjelas sedikit istilah-istilah berikut agar tidak salah paham:
 
 | <div style="width:130px">Istilah</div>  | Keterangan                                                                                                                                                                       |
 | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [**Keyboard Inline**](#keyboard-inline) | Kumpulan tombol yang ditampilkan di bawah sebuah pesan di dalam chat.                                                                                                            |
 | [**Keyboard Custom**](#keyboard-custom) | Kumpulan tombol yang ditampilkan untuk menggantikan keyboard sistem user.                                                                                                        |
-| **Tombol Keyboard Inline**              | Sebuah tombol di keyboard inline. Ketika tombol ditekan, ia akan mengirimkan sebuah callback query yang tidak terlihat oleh user. Terkadang cuma disebut dengan _tombol inline_. |
+| [**Keyboard Inline**](#keyboard-inline) | Kumpulan tombol yang ditampilkan di bawah sebuah pesan di dalam chat.                                                                                                            |
 | **Tombol Keyboard Custom**              | Sebuah tombol di keyboard. Ketika tombol ditekan, ia akan mengirimkan sebuah pesan yang berisi teks tertentu, terkadang cuma disebut dengan _tombol keyboard_.                   |
-| **`InlineKeyboard`**                    | Sebuah class di grammY untuk membuat keyboard inline.                                                                                                                            |
+| **Tombol Keyboard Inline**              | Sebuah tombol di keyboard inline. Ketika tombol ditekan, ia akan mengirimkan sebuah callback query yang tidak terlihat oleh user. Terkadang cuma disebut dengan _tombol inline_. |
 | **`Keyboard`**                          | Sebuah class di grammY untuk membuat keyboard custom.                                                                                                                            |
+| **`InlineKeyboard`**                    | Sebuah class di grammY untuk membuat keyboard inline.                                                                                                                            |
 
 > Perlu diketahui bahwa keyboard custom dan keyboard inline juga bisa memiliki fungsi lain, seperti meminta lokasi user, membuka sebuah website, dan lain-lain.
 > Kami sengaja tidak menjelaskannya untuk mempersingkat materi.

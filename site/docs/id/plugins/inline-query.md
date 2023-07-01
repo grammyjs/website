@@ -1,6 +1,6 @@
 # Kueri Sebaris
 
-User bisa mencari, memilih, dan mengirim konten dari hasil yang disarankan oleh bot menggunakan inline query, meski bot tersebut tidak berada di dalam grup mereka.
+User bisa mencari, memilih, dan mengirim konten dari hasil yang disarankan oleh bot menggunakan inline query (kueri sebaris), meski bot tersebut tidak berada di dalam grup mereka.
 Caranya, user cukup menulis `@username_bot` di awal pesan, lalu memilih dari hasil yang diberikan.
 
 > Kunjungi bagian inline mode di [Fitur-fitur Bot Telegram](https://core.telegram.org/bots/features#inline-requests) yang ditulis oleh tim Telegram.
