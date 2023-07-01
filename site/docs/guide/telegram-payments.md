@@ -16,7 +16,7 @@ Outdated _mobile_ apps released after May 2017 only support basic chat payments 
 
 ## Prerequisites
 
-To get started and understand how payments work in Telegram, you need to choose a payment provider from [this](https://core.telegram.org/bots/payments#supported-payment-providers) list.
+To get started and understand how payments work in Telegram, you need to choose a payment provider from this [list](https://core.telegram.org/bots/payments#supported-payment-providers).
 
 **Payment Provider** - this is a company that offers online services for merchants and banks to facilitate electronic payments, including smart cards, bank payments like direct debits, and other banking transactions.
 
