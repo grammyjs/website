@@ -49,7 +49,7 @@ Memasang plugin-plugin ini cukup mudah dan menyenangkan, dan kami ingin kalian s
 | [Penghambat Laju User](./ratelimiter.md)           | [`ratelimiter`](./ratelimiter.md)                     | Otomatis membatasi user yang melakukan spam ke bot kamu              |
 | [Perutean](./router.md)                            | [`router`](./router.md)                               | Mengarahkan pesan ke beberapa bagian di kode kamu                    |
 | [Runner](./runner.md)                              | [`runner`](./runner.md)                               | Menggunakan long polling secara bersamaan dalam skala besar          |
-| [Pertanyaan Tanpa Status](./stateless-question.md) | [`stateless-question`](./stateless-question.md)       | Membuat dialog tanpa menggunakan penyimpanan data                    |
+| [Pertanyaan Nirstatus](./stateless-question.md)    | [`stateless-question`](./stateless-question.md)       | Membuat dialog tanpa menggunakan penyimpanan data                    |
 | [Pengatur Laju API](./transformer-throttler.md)    | [`transformer-throttler`](./transformer-throttler.md) | Memperlambat pemanggilan API                                         |
 
 Kami juga punya plugin pihak ketiga!
