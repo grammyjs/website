@@ -27,23 +27,26 @@ Memasang plugin-plugin ini cukup mudah dan menyenangkan, dan kami ingin kalian s
 
 > Klik nama package berikut untuk mempelajari lebih lanjut mengenai plugin tersebut.
 
-| Plugin                     | Package                                            | Deskripsi                                                                            |
-| -------------------------- | -------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| Session                    | _[bawaan](./session)_                              | Menyimpan data user di database kamu                                                 |
-| Keyboard Custom dan Inline | _[bawaan](./keyboard)_                             | Membuat keyboard custom dan inline dengan mudah                                      |
-| Pengulang Request API      | [`auto-retry`](./auto-retry)                       | Menangani rate limit secara otomatis                                                 |
-| Percakapan                 | [`conversations`](./conversations)                 | Membuat antarmuka percakapan dan dialog                                              |
-| Emoji                      | [`emoji`](./emoji)                                 | Menggunakan emoji di kode dengan mudah                                               |
-| File                       | [`files`](./files)                                 | Menangani file dengan mudah                                                          |
-| Hidrasi                    | [`hydrate`](./hydrate)                             | Memanggil method untuk object yang dikembalikan dari pemanggilan API                 |
-| Internationalization       | [`i18n`](./i18n) atau [`fluent`](./fluent)         | Membuat bot kamu bisa berbicara dengan berbagai bahasa                               |
-| Menu Interaktif            | [`menu`](./menu)                                   | Mendesain tombol menu secara dinamis dengan navigasi yang fleksibel                  |
-| Parse Mode                 | [`parse-mode`](./parse-mode)                       | Memformat pesan dengan mudah                                                         |
-| Rate Limit User            | [`ratelimiter`](./ratelimiter)                     | Otomatis membatasi user yang melakukan spam ke bot kamu                              |
-| Router                     | [`router`](./router)                               | Mengarahkan pesan ke beberapa bagian di kode kamu                                    |
-| Runner                     | [`runner`](./runner)                               | Menggunakan long polling secara bersamaan dalam skala besar                          |
-| Stateless Question         | [`stateless-question`](./stateless-question)       | Membuat dialog tanpa menggunakan penyimpanan data                                    |
-| Kontrol Flood              | [`transformer-throttler`](./transformer-throttler) | Membuat antrian pemanggilan API secara otomatis untuk mencegah terjadinya flood wait |
+| Plugin                                             | Paket                                                 | Deskripsi                                                            |
+| -------------------------------------------------- | ----------------------------------------------------- | -------------------------------------------------------------------- |
+| [Sesi](./session)                               | _bawaan_                                              | Menyimpan data user di database kamu                                 |
+| [Keyboard Tersuai dan Sebaris](./keyboard)      | _bawaan_                                              | Membuat keyboard custom dan inline dengan mudah                      |
+| [Kelompok Media](./media-group)                 | _bawaan_                                              | Mengubah dan mengirim kelompok media dengan mudah                    |
+| [Kueri Sebaris](./inline-query)                 | _bawaan_                                              | Menciptakan hasil kueri sebaris (inline query) dengan mudah          |
+| [Pengulang Request API](./auto-retry)           | [`auto-retry`](./auto-retry)                       | Menangani rate limit secara otomatis                                 |
+| [Percakapan](./conversations)                   | [`conversations`](./conversations)                 | Membuat antarmuka percakapan dan dialog                              |
+| [Anggota Chat](./chat-members)                  | [`chat-members`](./chat-members)                   | Memantau chat mana yang sedang diikuti oleh pengguna                 |
+| [Emoji](./emoji)                                | [`emoji`](./emoji)                                 | Menggunakan emoji di kode dengan mudah                               |
+| [File](./files)                                 | [`files`](./files)                                 | Menangani file dengan mudah                                          |
+| [Hidrasi](./hydrate)                            | [`hydrate`](./hydrate)                             | Memanggil method untuk object yang dikembalikan dari pemanggilan API |
+| [Internasionalisasi](./i18n)                    | [`i18n`](./i18n) atau [`fluent`](./fluent)      | Membuat bot kamu bisa berbicara dengan berbagai bahasa               |
+| [Menu Interaktif](./menu)                       | [`menu`](./menu)                                   | Mendesain tombol menu secara dinamis dengan navigasi yang fleksibel  |
+| [Mode Urai](./parse-mode)                       | [`parse-mode`](./parse-mode)                       | Memformat pesan dengan mudah                                         |
+| [Penghambat Laju User](./ratelimiter)           | [`ratelimiter`](./ratelimiter)                     | Otomatis membatasi user yang melakukan spam ke bot kamu              |
+| [Perutean](./router)                            | [`router`](./router)                               | Mengarahkan pesan ke beberapa bagian di kode kamu                    |
+| [Runner](./runner)                              | [`runner`](./runner)                               | Menggunakan long polling secara bersamaan dalam skala besar          |
+| [Pertanyaan Tanpa Status](./stateless-question) | [`stateless-question`](./stateless-question)       | Membuat dialog tanpa menggunakan penyimpanan data                    |
+| [Pengatur Laju API](./transformer-throttler)    | [`transformer-throttler`](./transformer-throttler) | Memperlambat pemanggilan API                                         |
 
 Kami juga punya plugin pihak ketiga!
 Kamu bisa menemukannya di menu navigasi _Plugin_ > _Pihak Ketiga_.

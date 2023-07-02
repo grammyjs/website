@@ -29,23 +29,26 @@
 
 > Натисніть на будь-яку назву пакета, щоб дізнатися більше про відповідний плагін.
 
-| Плагін                      | Пакет                                              | Опис                                                                        |
-| --------------------------- | -------------------------------------------------- | --------------------------------------------------------------------------- |
-| Sessions                    | _[вбудовано](./session)_                           | Зберігання даних користувачів в базі                                        |
-| Inline and Custom Keyboards | _[вбудовано](./keyboard)_                          | Спрощення створення вбудованих і кастомних клавіатур                        |
-| Auto-retry                  | [`auto-retry`](./auto-retry)                       | Автоматичне оброблення лімітів                                              |
-| Conversations               | [`conversations`](./conversations)                 | Створюйте потужні діалогові інтерфейси                                      |
-| Emoji                       | [`emoji`](./emoji)                                 | Спрощене використання емодзі в коді                                         |
-| Files                       | [`files`](./files)                                 | Легка робота з файлами                                                      |
-| Hydration                   | [`hydrate`](./hydrate)                             | Виклик методів в обʼєктах, що повертаються з викликів API                   |
-| Internationalization        | [`i18n`](./i18n) or [`fluent`](./fluent)           | Дозвольте вашому боту розмовляти кількома мовами                            |
-| Interactive Menus           | [`menu`](./menu)                                   | Створюйте динамічні меню з кнопками та гнучкою навігацією                   |
-| Parse Mode                  | [`parse-mode`](./parse-mode)                       | Спрощене форматування повідомлень                                           |
-| Rate Limiter                | [`ratelimiter`](./ratelimiter)                     | Автоматичне обмеження користувачів, які спамлять вашого бота                |
-| Router                      | [`router`](./router)                               | Направляйте повідомлення в різні частини коду                               |
-| Runner                      | [`runner`](./runner)                               | Багатопоточне довге очікування (long polling) з масштабуванням              |
-| Stateless Question          | [`stateless-question`](./stateless-question)       | Створення діалогів без використання сховища даних                           |
-| Flood Control               | [`transformer-throttler`](./transformer-throttler) | Створення черги викликів до API для запобігання надмірної кількості запитів |
+| Плагін                                        | Пакет                                                 | Опис                                                         |
+| --------------------------------------------- | ----------------------------------------------------- | ------------------------------------------------------------ |
+| [Sessions](./session)                      | _вбудовано_                                           | Зберігання даних користувачів в базі                         |
+| [Inline and Custom Keyboards](./keyboard)  | _вбудовано_                                           | Спрощене створення вбудованих і кастомних клавіатур          |
+| [Media Groups](./media-group)              | _вбудовано_                                           | Спрощене надсилання та редагування медіагруп                 |
+| [Inline Queries](./inline-query)           | _вбудовано_                                           | Легко будуйте результати для inline-запитів                  |
+| [Auto-retry](./auto-retry)                 | [`auto-retry`](./auto-retry)                       | Автоматичне оброблення лімітів                               |
+| [Conversations](./conversations)           | [`conversations`](./conversations)                 | Створюйте потужні діалогові інтерфейси                       |
+| [Chat Members](./chat-members)             | [`chat-members`](./chat-members)                   | Відстежуйте, хто з користувачів приєднався до якого чату     |
+| [Emoji](./emoji)                           | [`emoji`](./emoji)                                 | Спрощене використання емодзі в коді                          |
+| [Files](./files)                           | [`files`](./files)                                 | Легка робота з файлами                                       |
+| [Hydration](./hydrate)                     | [`hydrate`](./hydrate)                             | Виклик методів в обʼєктах, що повертаються з викликів API    |
+| [Internationalization](./i18n)             | [`i18n`](./i18n) або [`fluent`](./fluent)       | Дозвольте вашому боту розмовляти кількома мовами             |
+| [Interactive Menus](./menu)                | [`menu`](./menu)                                   | Створюйте динамічні меню з кнопками та гнучкою навігацією    |
+| [Parse Mode](./parse-mode)                 | [`parse-mode`](./parse-mode)                       | Спрощене форматування повідомлень                            |
+| [Rate Limiter](./ratelimiter)              | [`ratelimiter`](./ratelimiter)                     | Автоматичне обмеження користувачів, які спамлять вашого бота |
+| [Router](./router)                         | [`router`](./router)                               | Направляйте повідомлення в різні частини коду                |
+| [Runner](./runner)                         | [`runner`](./runner)                               | Багатопоточне довге очікування з масштабуванням              |
+| [Stateless Question](./stateless-question) | [`stateless-question`](./stateless-question)       | Створення діалогів без використання сховища даних            |
+| [Throttler](./transformer-throttler)       | [`transformer-throttler`](./transformer-throttler) | Сповільнення викликів API кількості запитів                  |
 
 У нас також є кілька сторонніх плагінів!
 Ви можете знайти їх у навігаційному меню в розділі _Плагіни_ > _Сторонні_.
