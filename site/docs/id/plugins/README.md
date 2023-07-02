@@ -27,19 +27,19 @@ Memasang plugin-plugin ini cukup mudah dan menyenangkan, dan kami ingin kalian s
 
 > Klik nama package berikut untuk mempelajari lebih lanjut mengenai plugin tersebut.
 
-| Plugin                                             | Paket                                                 | Deskripsi                                                            |
-| -------------------------------------------------- | ----------------------------------------------------- | -------------------------------------------------------------------- |
-| [Sesi](./session)                               | _bawaan_                                              | Menyimpan data user di database kamu                                 |
-| [Keyboard Tersuai dan Sebaris](./keyboard)      | _bawaan_                                              | Membuat keyboard custom dan inline dengan mudah                      |
-| [Kelompok Media](./media-group)                 | _bawaan_                                              | Mengubah dan mengirim kelompok media dengan mudah                    |
-| [Kueri Sebaris](./inline-query)                 | _bawaan_                                              | Menciptakan hasil kueri sebaris (inline query) dengan mudah          |
+| Plugin                                          | Paket                                              | Deskripsi                                                            |
+| ----------------------------------------------- | -------------------------------------------------- | -------------------------------------------------------------------- |
+| [Sesi](./session)                               | _bawaan_                                           | Menyimpan data user di database kamu                                 |
+| [Keyboard Tersuai dan Sebaris](./keyboard)      | _bawaan_                                           | Membuat keyboard custom dan inline dengan mudah                      |
+| [Kelompok Media](./media-group)                 | _bawaan_                                           | Mengubah dan mengirim kelompok media dengan mudah                    |
+| [Kueri Sebaris](./inline-query)                 | _bawaan_                                           | Menciptakan hasil kueri sebaris (inline query) dengan mudah          |
 | [Pengulang Request API](./auto-retry)           | [`auto-retry`](./auto-retry)                       | Menangani rate limit secara otomatis                                 |
 | [Percakapan](./conversations)                   | [`conversations`](./conversations)                 | Membuat antarmuka percakapan dan dialog                              |
 | [Anggota Chat](./chat-members)                  | [`chat-members`](./chat-members)                   | Memantau chat mana yang sedang diikuti oleh pengguna                 |
 | [Emoji](./emoji)                                | [`emoji`](./emoji)                                 | Menggunakan emoji di kode dengan mudah                               |
 | [File](./files)                                 | [`files`](./files)                                 | Menangani file dengan mudah                                          |
 | [Hidrasi](./hydrate)                            | [`hydrate`](./hydrate)                             | Memanggil method untuk object yang dikembalikan dari pemanggilan API |
-| [Internasionalisasi](./i18n)                    | [`i18n`](./i18n) atau [`fluent`](./fluent)      | Membuat bot kamu bisa berbicara dengan berbagai bahasa               |
+| [Internasionalisasi](./i18n)                    | [`i18n`](./i18n) atau [`fluent`](./fluent)         | Membuat bot kamu bisa berbicara dengan berbagai bahasa               |
 | [Menu Interaktif](./menu)                       | [`menu`](./menu)                                   | Mendesain tombol menu secara dinamis dengan navigasi yang fleksibel  |
 | [Mode Urai](./parse-mode)                       | [`parse-mode`](./parse-mode)                       | Memformat pesan dengan mudah                                         |
 | [Penghambat Laju User](./ratelimiter)           | [`ratelimiter`](./ratelimiter)                     | Otomatis membatasi user yang melakukan spam ke bot kamu              |

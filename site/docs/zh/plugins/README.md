@@ -29,19 +29,19 @@
 
 > 点击任何包名称以了解有关相应插件的更多信息
 
-| 插件                                          | 包                                                    | 描述                                   |
-| --------------------------------------------- | ----------------------------------------------------- | -------------------------------------- |
-| [Sessions](./session)                      | _内置_                                                | 将用户数据存储在你的数据库中           |
-| [Inline and Custom Keyboards](./keyboard)  | _内置_                                                | 简化构建 inline 和 custom keyboard     |
-| [Media Groups](./media-group)              | _内置_                                                | 简化媒体组的发送和编辑                 |
-| [Inline Queries](./inline-query)           | _内置_                                                | 轻松构建 inline query 的结果           |
+| 插件                                       | 包                                                 | 描述                                   |
+| ------------------------------------------ | -------------------------------------------------- | -------------------------------------- |
+| [Sessions](./session)                      | _内置_                                             | 将用户数据存储在你的数据库中           |
+| [Inline and Custom Keyboards](./keyboard)  | _内置_                                             | 简化构建 inline 和 custom keyboard     |
+| [Media Groups](./media-group)              | _内置_                                             | 简化媒体组的发送和编辑                 |
+| [Inline Queries](./inline-query)           | _内置_                                             | 轻松构建 inline query 的结果           |
 | [Auto-retry](./auto-retry)                 | [`auto-retry`](./auto-retry)                       | 自动处理速率限制                       |
 | [Conversations](./conversations)           | [`conversations`](./conversations)                 | 构建强大的对话界面和对话               |
 | [Chat Members](./chat-members)             | [`chat-members`](./chat-members)                   | 跟踪哪个用户加入了哪个聊天             |
 | [Emoji](./emoji)                           | [`emoji`](./emoji)                                 | 简化在代码中 Emoji 的使用              |
 | [Files](./files)                           | [`files`](./files)                                 | 轻松处理文件                           |
 | [Hydration](./hydrate)                     | [`hydrate`](./hydrate)                             | 对从 API 调用返回的对象调用方法        |
-| [Internationalization](./i18n)             | [`i18n`](./i18n) or [`fluent`](./fluent)        | 让你的机器人说多种语言                 |
+| [Internationalization](./i18n)             | [`i18n`](./i18n) or [`fluent`](./fluent)           | 让你的机器人说多种语言                 |
 | [Interactive Menus](./menu)                | [`menu`](./menu)                                   | 设计具有灵活导航的动态按钮菜单         |
 | [Parse Mode](./parse-mode)                 | [`parse-mode`](./parse-mode)                       | 简化消息格式化                         |
 | [Rate Limiter](./ratelimiter)              | [`ratelimiter`](./ratelimiter)                     | 自动限制向你的机器人发送垃圾消息的用户 |
