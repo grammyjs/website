@@ -33,23 +33,26 @@ next: ./guide.md
 
 > 点击任何包名称以了解有关相应插件的更多信息
 
-| 插件                        | 包                                                    | 描述                                   |
-| --------------------------- | ----------------------------------------------------- | -------------------------------------- |
-| Sessions                    | _内置_                                                | 将用户数据存储在你的数据库中           |
-| Inline and Custom Keyboards | _内置_                                                | 简化构建 inline 和 custom keyboards    |
-| Auto-retry                  | [`auto-retry`](./auto-retry.md)                       | 自动处理速率限制                       |
-| Conversations               | [`conversations`](./conversations.md)                 | 构建强大的对话界面和对话               |
-| Emoji                       | [`emoji`](./emoji.md)                                 | 简化在代码中使用 Emoji                 |
-| Files                       | [`files`](./files.md)                                 | 轻松的文件处理                         |
-| Hydration                   | [`hydrate`](./hydrate.md)                             | 对从 API 调用返回的对象调用方法        |
-| Internationalization        | [`i18n`](./i18n.md) 或者 [`fluent`](./fluent.md)      | 让你的机器人说多种语言                 |
-| Interactive Menus           | [`menu`](./menu.md)                                   | 设计具有灵活导航的动态按钮菜单         |
-| Parse Mode                  | [`parse-mode`](./parse-mode.md)                       | 简化消息格式化                         |
-| Rate Limiter                | [`ratelimiter`](./ratelimiter.md)                     | 自动限制向你的机器人发送垃圾消息的用户 |
-| Router                      | [`router`](./router.md)                               | 将消息路由到代码的不同部分             |
-| Runner                      | [`runner`](./runner.md)                               | 大规模并发长轮询                       |
-| Stateless Question          | [`stateless-question`](./stateless-question.md)       | 创建没有数据存储的对话                 |
-| Flood Control               | [`transformer-throttler`](./transformer-throttler.md) | 自动排队 API 调用以防止洪水等待        |
+| 插件                                          | 包                                                    | 描述                                   |
+| --------------------------------------------- | ----------------------------------------------------- | -------------------------------------- |
+| [Sessions](./session.md)                      | _内置_                                                | 将用户数据存储在你的数据库中           |
+| [Inline and Custom Keyboards](./keyboard.md)  | _内置_                                                | 简化构建 inline 和 custom keyboard     |
+| [Media Groups](./media-group.md)              | _内置_                                                | 简化媒体组的发送和编辑                 |
+| [Inline Queries](./inline-query.md)           | _内置_                                                | 轻松构建 inline query 的结果           |
+| [Auto-retry](./auto-retry.md)                 | [`auto-retry`](./auto-retry.md)                       | 自动处理速率限制                       |
+| [Conversations](./conversations.md)           | [`conversations`](./conversations.md)                 | 构建强大的对话界面和对话               |
+| [Chat Members](./chat-members.md)             | [`chat-members`](./chat-members.md)                   | 跟踪哪个用户加入了哪个聊天             |
+| [Emoji](./emoji.md)                           | [`emoji`](./emoji.md)                                 | 简化在代码中 Emoji 的使用              |
+| [Files](./files.md)                           | [`files`](./files.md)                                 | 轻松处理文件                           |
+| [Hydration](./hydrate.md)                     | [`hydrate`](./hydrate.md)                             | 对从 API 调用返回的对象调用方法        |
+| [Internationalization](./i18n.md)             | [`i18n`](./i18n.md) or [`fluent`](./fluent.md)        | 让你的机器人说多种语言                 |
+| [Interactive Menus](./menu.md)                | [`menu`](./menu.md)                                   | 设计具有灵活导航的动态按钮菜单         |
+| [Parse Mode](./parse-mode.md)                 | [`parse-mode`](./parse-mode.md)                       | 简化消息格式化                         |
+| [Rate Limiter](./ratelimiter.md)              | [`ratelimiter`](./ratelimiter.md)                     | 自动限制向你的机器人发送垃圾消息的用户 |
+| [Router](./router.md)                         | [`router`](./router.md)                               | 将消息路由到代码的不同部分             |
+| [Runner](./runner.md)                         | [`runner`](./runner.md)                               | 大规模并发长轮询                       |
+| [Stateless Question](./stateless-question.md) | [`stateless-question`](./stateless-question.md)       | 创建没有数据存储的对话                 |
+| [Throttler](./transformer-throttler.md)       | [`transformer-throttler`](./transformer-throttler.md) | 减慢 API 调用速度                      |
 
 我们还有一些第三方插件！
 您可以在导航菜单 _插件_ > _第三方_ 下找到它们。
