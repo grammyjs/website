@@ -27,13 +27,16 @@ hero:
       link: ./guide/introduction
 
 features:
-  - icon: ⛱️
+  - icon:
+      src: /icons/beach.png
     title: Mudah Digunakan
     details: grammY menjadikan pembuatan bot Telegram begitu simpel sehingga kamu pun langsung tahu cara membuatnya.
-  - icon: 🧩
+  - icon:
+      src: /icons/puzzle.png
     title: Fleksibel
     details: grammY bersifat terbuka dan bisa ditambahkan dengan plugin yang kamu inginkan.
-  - icon: 🏆
+  - icon:
+      src: /icons/rocket.png
     title: Dapat Diskalakan
     details: grammY selalu siap membantu ketika bot menjadi semakin populer dan ramai digunakan.
 ---

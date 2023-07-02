@@ -25,13 +25,16 @@ hero:
       link: ./guide/introduction
 
 features:
-  - icon: ⛱️
+  - icon:
+      src: /icons/beach.png
     title: Fácil de usar
     details: grammY hace crear bots de Telegram tan simple que ya sabes como hacerlo.
-  - icon: 🧩
+  - icon:
+      src: /icons/puzzle.png
     title: Flexible
     details: grammY es abierto y puede extenderse con plugins para adaptarse a tus necesidades.
-  - icon: 🏆
+  - icon:
+      src: /icons/rocket.png
     title: Escalable
     details: grammY te tiene cubierto cuando tu bot se vuelve popular y el tráfico se incrementa.
 ---

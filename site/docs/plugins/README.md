@@ -29,19 +29,19 @@ Installing plugins is fun and easy, and we want you to know what we have in stor
 
 > Click on any package name to learn more about the respective plugin.
 
-| Plugin                                        | Package                                               | Description                                          |
-| --------------------------------------------- | ----------------------------------------------------- | ---------------------------------------------------- |
-| [Sessions](./session)                      | _built-in_                                            | Store user data in your database                     |
-| [Inline and Custom Keyboards](./keyboard)  | _built-in_                                            | Simplify building inline and custom keyboards        |
-| [Media Groups](./media-group)              | _built-in_                                            | Simplify sending media groups and editing media      |
-| [Inline Queries](./inline-query)           | _built-in_                                            | Easily build results for inline queries              |
+| Plugin                                     | Package                                            | Description                                          |
+| ------------------------------------------ | -------------------------------------------------- | ---------------------------------------------------- |
+| [Sessions](./session)                      | _built-in_                                         | Store user data in your database                     |
+| [Inline and Custom Keyboards](./keyboard)  | _built-in_                                         | Simplify building inline and custom keyboards        |
+| [Media Groups](./media-group)              | _built-in_                                         | Simplify sending media groups and editing media      |
+| [Inline Queries](./inline-query)           | _built-in_                                         | Easily build results for inline queries              |
 | [Auto-retry](./auto-retry)                 | [`auto-retry`](./auto-retry)                       | Automatically handle rate limiting                   |
 | [Conversations](./conversations)           | [`conversations`](./conversations)                 | Build powerful conversational interfaces and dialogs |
 | [Chat Members](./chat-members)             | [`chat-members`](./chat-members)                   | Track which user joined which chat                   |
 | [Emoji](./emoji)                           | [`emoji`](./emoji)                                 | Simplify using emoji in code                         |
 | [Files](./files)                           | [`files`](./files)                                 | Easily handle files                                  |
 | [Hydration](./hydrate)                     | [`hydrate`](./hydrate)                             | Call methods on objects returned from API calls      |
-| [Internationalization](./i18n)             | [`i18n`](./i18n) or [`fluent`](./fluent)        | Let your bot speak multiple languages                |
+| [Internationalization](./i18n)             | [`i18n`](./i18n) or [`fluent`](./fluent)           | Let your bot speak multiple languages                |
 | [Interactive Menus](./menu)                | [`menu`](./menu)                                   | Design dynamic button menus with flexible navigation |
 | [Parse Mode](./parse-mode)                 | [`parse-mode`](./parse-mode)                       | Simplify message formatting                          |
 | [Rate Limiter](./ratelimiter)              | [`ratelimiter`](./ratelimiter)                     | Automatically restrict users who spam your bot       |

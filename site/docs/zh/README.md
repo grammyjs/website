@@ -25,13 +25,16 @@ hero:
       link: ./guide/introduction
 
 features:
-  - icon: ⛱️
+  - icon:
+      src: /icons/beach.png
     title: 易用
     details: grammY 使创建 Telegram Bot 变得如此简单！
-  - icon: 🧩
+  - icon:
+      src: /icons/puzzle.png
     title: 灵活
     details: grammY 是开放的，通过插件让它完全适合你的需要。
-  - icon: 🏆
+  - icon:
+      src: /icons/rocket.png
     title: 可扩展
     details: grammY 在你的 bot 拥有较多流量时提供可靠的帮助.
 ---
