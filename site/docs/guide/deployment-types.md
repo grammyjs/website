@@ -1,5 +1,6 @@
 ---
 prev: ./games.md
+next: ./telegram-payments.md
 ---
 
 # Long Polling vs. Webhooks

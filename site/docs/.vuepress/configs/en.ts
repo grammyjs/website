@@ -86,6 +86,10 @@ export const localeEn: LocaleConfig<DefaultThemeLocaleData> = {
                 text: "Long Polling vs. Webhooks",
                 link: "/guide/deployment-types.html",
               },
+              {
+                text: "Telegram Payments",
+                "link": "/guide/telegram-payments.md"
+              }
             ],
           },
           {
