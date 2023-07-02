@@ -45,7 +45,7 @@ Instalar plugins es divertido y fácil, y queremos que sepas lo que tenemos para
 | [Emojis](./emoji.md)                                | [`emoji`](./emoji.md)                                 | Simplificar el uso de emoji en el código                          |
 | [Archivos](./files.md)                              | [`files`](./files.md)                                 | Manejar archivos fácilmente                                       |
 | [Hidratar](./hydrate.md)                            | [`hydrate`](./hydrate.md)                             | Llamar a métodos de objetos devueltos por llamadas a la API       |
-| [Internacionalización](./i18n.md)                   | [`i18n`](./i18n.md) o [`fluent`](./fluent.md)        | Deja que tu bot hable varios idiomas                              |
+| [Internacionalización](./i18n.md)                   | [`i18n`](./i18n.md) o [`fluent`](./fluent.md)         | Deja que tu bot hable varios idiomas                              |
 | [Menús interactivos](./menu.md)                     | [`menu`](./menu.md)                                   | Diseñe menús de botones dinámicos con navegación flexible         |
 | [Parsear](./parse-mode.md)                          | [`parse-mode`](./parse-mode.md)                       | Simplificar el formato de los mensajes                            |
 | [Limitador de velocidad](./ratelimiter.md)          | [`ratelimiter`](./ratelimiter.md)                     | Restringe automáticamente a los usuarios que envían spam a tu bot |
