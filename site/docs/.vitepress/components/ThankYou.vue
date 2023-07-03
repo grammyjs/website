@@ -21,12 +21,12 @@ async function pseudoRandom255(len: number): Promise<number> {
     enc.encode("grammy.dev"),
     { name: "HMAC", hash: { name: "SHA-512" } },
     false,
-    ["sign"]
+    ["sign"],
   );
   const signature = await window.crypto.subtle.sign(
     "HMAC",
     key,
-    enc.encode(today.toDateString())
+    enc.encode(today.toDateString()),
   );
   const arr = new Uint8Array(signature);
   const res = arr.reduce((x, y) => x ^ y);
@@ -65,7 +65,7 @@ async function load() {
   }
 
   const res = await fetch(
-    "https://raw.githubusercontent.com/grammyjs/grammY/main/.all-contributorsrc"
+    "https://raw.githubusercontent.com/grammyjs/grammY/main/.all-contributorsrc",
   );
   if (res.status == 200) {
     const { contributors } = await res.json();
@@ -75,10 +75,10 @@ async function load() {
     contributor.login = contributor_.login;
     contributor.href = `https://github.com/${contributor_.login}`;
     contributor.name = contributor_.name;
-    contributor.photo = contributor_.avatar_url + '&size=64';
+    contributor.photo = contributor_.avatar_url + "&size=64";
     localStorage.setItem(
       "contributor",
-      JSON.stringify({ ...contributor, day })
+      JSON.stringify({ ...contributor, day }),
     );
   }
 }
@@ -87,62 +87,51 @@ load();
 </script>
 
 <template>
-  <a v-if="contributor.name" v-bind:href="contributor.href" target="_blank" rel="noreferrer noopener">
-    <img v-bind:alt="contributor.login" v-bind:src="contributor.photo" width="32" height="32"/>
+  <div v-if="contributor.name" id="thankyou">
+    <img
+      v-bind:alt="contributor.login"
+      v-bind:src="contributor.photo"
+      width="32"
+      height="32"
+    />
     <p>
-      {{ props.s[0] }}<span>{{ contributor.name }}</span>{{ contributor.name.toLowerCase() == "knorpelsenf" ? (props.s[3]
-        ?? props.s[2]) : props.s[2] }}
+      {{ props.s[0] }}
+      <a
+        v-bind:href="contributor.href"
+        target="_blank"
+        rel="noreferrer noopener"
+        >{{ contributor.name }}</a
+      >{{
+        contributor.name.toLowerCase() == "knorpelsenf"
+          ? props.s[3] ?? props.s[2]
+          : props.s[2]
+      }}
     </p>
-  </a>
-  <div v-else id="footer-logo">
-    <img src="/images/Y.webp" alt="grammY logo" width="32" height="32"/>
+  </div>
+  <div v-else id="thankyou">
+    <img src="/images/Y.webp" alt="grammY logo" width="32" height="32" />
   </div>
 </template>
 
-<style scoped lang="scss">
-a {
+<style lang="scss">
+#thankyou {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.44rem;
-  cursor: pointer;
-  color: var(--vp-c-text-1);
-  
-  > img {
+  img {
     height: 2rem;
     width: 2rem;
     border-radius: 9999px;
   }
-  
-  > p {
+  p {
+    margin: 0;
     font-size: 0.85rem;
-    margin: 0px;
-
-    span {
-      color: var(--vp-c-brand);
+    font-weight: bold;
+    a {
       font-weight: bold;
     }
-  }
-
-  &:hover {
-    text-decoration: none;
-
-    > p > span {
-      text-decoration: underline;
-    }
-  }
-}
-
-#footer-logo {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  img {
-    height: 2rem;
-    border-radius: 9999px;
   }
 }
 </style>

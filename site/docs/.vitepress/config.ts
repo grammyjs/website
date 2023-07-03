@@ -21,6 +21,7 @@ export default defineConfig({
   themeConfig: {
     logo: "/images/Y.webp",
     siteTitle: "grammY",
+    externalLinkIcon: true,
     search: {
       provider: "local",
       options: {
