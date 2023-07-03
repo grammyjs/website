@@ -1,0 +1,11 @@
+:root {
+  tr:nth-child(2n) code {
+    background-color: #eeeeee;
+  }
+
+  &.dark {
+    tr:nth-child(2n) code {
+      background-color: #2a2f36;
+    }
+  }
+}

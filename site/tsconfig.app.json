@@ -1,0 +1,18 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "include": [
+    "env.d.ts",
+    "docs/.vitepress/**/*",
+    "docs/.vitepress/**/*.vue",
+    "docs/.vitepress/plugins/current-versions/*.json"
+  ],
+  "exclude": [
+    "docs/.vitepress/dist/**/*",
+    "docs/.vitepress/cache/**/*",
+    "docs/.vitepress/.temp/**/*"
+  ],
+  "compilerOptions": {
+    "composite": true,
+    "baseUrl": "."
+  }
+}

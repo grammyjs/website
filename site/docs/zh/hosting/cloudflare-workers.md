@@ -88,7 +88,7 @@ npm run deploy
 我们需要告诉 Telegram 将 update 发送到哪里。
 打开浏览器并访问这个 URL：
 
-```text
+```txt
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<MY_BOT>.<MY_SUBDOMAIN>.workers.dev/
 ```
 

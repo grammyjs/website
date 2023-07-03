@@ -1,11 +1,6 @@
----
-prev: ./structuring.md
-next: ./reliability.md
----
-
 # Escalando II: Alta carga
 
-Hacer que tu bot sea capaz de manejar una alta carga depende de si ejecutas tu bot [a través de un long polling o a través de webhooks](../guide/deployment-types.md).
+Hacer que tu bot sea capaz de manejar una alta carga depende de si ejecutas tu bot [a través de un long polling o a través de webhooks](../guide/deployment-types).
 En cualquier caso, deberías leer algunas dificultades [a continuación](#la-concurrencia-es-dificil).
 
 ## Long Polling
@@ -26,7 +21,7 @@ Para conseguir la máxima capacidad de respuesta, también nos gustaría recibir
 Idealmente, también nos gustaría limitar la concurrencia a algún número fijo para restringir la carga máxima del servidor.
 
 El procesamiento concurrente no está incluido en el paquete central de grammY.
-En su lugar, **el paquete [grammY runner](../plugins/runner.md) puede ser utilizado** para ejecutar tu bot.
+En su lugar, **el paquete [grammY runner](../plugins/runner) puede ser utilizado** para ejecutar tu bot.
 Soporta todo lo anterior fuera de la caja, y es extremadamente simple de usar.
 
 ```ts
@@ -38,16 +33,16 @@ run(bot);
 ```
 
 El límite de concurrencia por defecto es de 500.
-Si quieres profundizar en el paquete, consulta [esta página](../plugins/runner.md).
+Si quieres profundizar en el paquete, consulta [esta página](../plugins/runner).
 
 La concurrencia es difícil, así que revisa la [subsección de abajo](#la-concurrencia-es-dificil) para saber lo que debes tener en cuenta cuando uses grammY runner.
 
 ## Webhooks
 
-Naturalmente, para que esto funcione bien bajo una alta carga, debes familiarizarte con [el uso de webhooks](../guide/deployment-types.md#como-usar-webhooks).
+Naturalmente, para que esto funcione bien bajo una alta carga, debes familiarizarte con [el uso de webhooks](../guide/deployment-types#como-usar-webhooks).
 Esto significa que todavía tienes que ser consciente de algunas consecuencias de la concurrencia, conferir la [subsección de abajo](#la-concurrencia-es-dificil).
 
-Además, [recuerda que](../guide/deployment-types.md#terminar-las-solicitudes-de-webhooks-a-tiempo) Telegram entregará las actualizaciones del mismo chat en secuencia, pero las actualizaciones de diferentes chats de forma concurrente.
+Además, [recuerda que](../guide/deployment-types#terminar-las-solicitudes-de-webhooks-a-tiempo) Telegram entregará las actualizaciones del mismo chat en secuencia, pero las actualizaciones de diferentes chats de forma concurrente.
 
 ## La concurrencia es difícil
 
@@ -55,7 +50,7 @@ Si tu bot procesa todas las actualizaciones de forma concurrente, esto puede cau
 Por ejemplo, si dos mensajes del mismo chat acaban siendo recibidos por la misma llamada `getUpdates`, se procesarían concurrentemente.
 Ya no se puede garantizar el orden de los mensajes dentro del mismo chat.
 
-El principal punto en el que esto puede chocar es cuando se utiliza [sessiones](../plugins/session.md), que puede encontrarse con un peligro de escritura después de lectura.
+El principal punto en el que esto puede chocar es cuando se utiliza [sessiones](../plugins/session), que puede encontrarse con un peligro de escritura después de lectura.
 Imagina esta secuencia de eventos:
 
 1. Alice envía el mensaje A
@@ -80,10 +75,9 @@ grammY runner viene con el middleware `sequentialize()` que asegura que las actu
 Puedes configurarlo con la misma función que utilizas para determinar la clave de sesión.
 Entonces evitará la condición de carrera mencionada anteriormente, ralentizando aquellas (y sólo aquellas) actualizaciones que podrían causar una colisión.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context, session } from "grammy";
 import { run, sequentialize } from "@grammyjs/runner";
 
@@ -106,11 +100,7 @@ bot.on("message", (ctx) => ctx.reply("Got your message."));
 run(bot);
 ```
 
-:::
-
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot, Context, session } = require("grammy");
 const { run, sequentialize } = require("@grammyjs/runner");
 
@@ -133,10 +123,7 @@ bot.on("message", (ctx) => ctx.reply("Got your message."));
 run(bot);
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot, Context, session } from "https://deno.land/x/grammy/mod.ts";
 import { run, sequentialize } from "https://deno.land/x/grammy_runner/mod.ts";
 
@@ -160,7 +147,6 @@ run(bot);
 ```
 
 :::
-::::
 
 No dudes en unirte al [chat de Telegram](https://t.me/grammyjs) para discutir cómo usar grammY runner con tu bot.
 Siempre estamos contentos de escuchar a las personas que mantienen grandes bots para que podamos mejorar grammY en base a su experiencia con el paquete.

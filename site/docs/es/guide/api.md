@@ -1,8 +1,3 @@
----
-prev: ./context.md
-next: ./filter-queries.md
----
-
 # API del Bot
 
 ## Información general
@@ -24,12 +19,12 @@ Este servidor traducirá la petición al protocolo nativo de Telegram llamado MT
 De forma análoga, cada vez que un usuario responde, se realiza el camino inverso.
 
 ::: tip Rludir los límites de tamaño de los archivos
-El backend de Telegram permite a tu bot [enviar archivos](./files.md) de hasta 2000 MB.
+El backend de Telegram permite a tu bot [enviar archivos](./files) de hasta 2000 MB.
 Sin embargo, el servidor de la API del bot que se encarga de traducir las peticiones a HTTP restringe el tamaño de los archivos a 50 MB para las descargas y 20 MB para las subidas.
 
 Por lo tanto, si evitas el servidor Bot API que Telegram ejecuta por ti, y simplemente [alojas tu propio servidor Bot API](https://core.telegram.org/bots/api#using-a-local-bot-api-server), puedes permitir que tu bot envíe archivos de hasta 2000 MB.
 
-> Nota: si estás trabajando con archivos grandes a través de [long polling](./deployment-types.md), deberías usar [grammY runner](../plugins/runner.md).
+> Nota: si estás trabajando con archivos grandes a través de [long polling](./deployment-types), deberías usar [grammY runner](../plugins/runner).
 
 :::
 
@@ -40,7 +35,7 @@ Ejemplo: `sendMessage` en el [Telegram Bot API Reference](https://core.telegram.
 
 ### Llamar a un Método
 
-Puedes llamar a los métodos de la API a través de `bot.api`, o [equivalentemente](./context.md#acciones-disponibles) a través de `ctx.api`:
+Puedes llamar a los métodos de la API a través de `bot.api`, o [equivalentemente](./context#acciones-disponibles) a través de `ctx.api`:
 
 ```ts
 async function sendHelloTo12345() {
@@ -58,7 +53,7 @@ Estrictamente hablando, todos los métodos de la API del Bot esperan un objeto J
 Fíjate, sin embargo, en que `sendMessage` en el ejemplo anterior recibe dos argumentos, un identificador de chat y una cadena.
 grammY sabe que estos dos valores pertenecen a la propiedad `chat_id` y `text`, respectivamente, y construirá el objeto JSON correcto para ti.
 
-Como se mencionó [anteriormente](./basics.md#envio-de-mensajes), puede especificar otras opciones en el tercer argumento de tipo `Other`:
+Como se mencionó [anteriormente](./basics#envio-de-mensajes), puede especificar otras opciones en el tercer argumento de tipo `Other`:
 
 ```ts
 async function sendHelloTo12345() {
@@ -101,7 +96,7 @@ Sin embargo, oficialmente, Node.js sólo soporta la importación desde sub-rutas
 En consecuencia, TypeScript requiere que el `moduleResolution` se establezca en `node16` o `nodenext`.
 Ajusta tu `tsconfig.json` en consecuencia y añade la línea resaltada:
 
-```json{4}
+```json
 {
   "compilerOptions": {
     // ...

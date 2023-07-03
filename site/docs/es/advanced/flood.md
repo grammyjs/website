@@ -1,8 +1,3 @@
----
-prev: ./reliability.md
-next: ./transformers.md
----
-
 # Escalando IV: Límites
 
 Telegram limita el número de mensajes que tu bot puede enviar cada segundo.
@@ -14,12 +9,12 @@ Sólo hay una forma correcta de manejar estas situaciones:
 1. Esperar el número de segundos especificado.
 2. Reintentar la petición.
 
-Afortunadamente, existe un [plugin](../plugins/auto-retry.md) para ello.
+Afortunadamente, existe un [plugin](../plugins/auto-retry) para ello.
 
 Ese plugin es [muy simple](https://github.com/grammyjs/auto-retry/blob/main/src/index.ts).
 Literalmente sólo duerme y reintenta.
 Sin embargo, usarlo tiene una implicación mayor: **cualquier petición puede ser lenta**.
-Esto significa que cuando ejecutas tu bot con webhooks, [técnicamente tienes que usar una cola](../guide/deployment-types.md#terminar-las-solicitudes-de-webhooks-a-tiempo) hagas lo que hagas, o bien tienes que configurar el plugin auto-retry de forma que nunca tarde mucho tiempo---pero entonces tu bot puede saltarse algunas peticiones.
+Esto significa que cuando ejecutas tu bot con webhooks, [técnicamente tienes que usar una cola](../guide/deployment-types#terminar-las-solicitudes-de-webhooks-a-tiempo) hagas lo que hagas, o bien tienes que configurar el plugin auto-retry de forma que nunca tarde mucho tiempo---pero entonces tu bot puede saltarse algunas peticiones.
 
 ## Cuáles son los límites exactos
 

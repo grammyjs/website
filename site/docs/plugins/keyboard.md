@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Inline and Custom Keyboards (built-in)
 
 Your bot may send a number of buttons, either to be [displayed underneath a message](#inline-keyboards), or to [replace the user's keyboard](#custom-keyboards).
@@ -32,7 +37,7 @@ grammY has a simple and intuitive way to build up the inline keyboards that your
 It provides a class called `InlineKeyboard` for this.
 
 > The buttons added by calling `switchInline`, `switchInlineCurrent`, and `switchInlineChosen` start inline queries.
-> Check out the section about [Inline Queries](./inline-query.md) for more information on how they work.
+> Check out the section about [Inline Queries](./inline-query) for more information on how they work.
 
 ### Building an Inline Keyboard
 
@@ -94,7 +99,7 @@ Specify an empty inline keyboard to remove all buttons underneath a message.
 ::: tip Menu Plugin
 The keyboard plugin gives you raw access to the update objects that Telegram sends.
 However, responding to clicks this way can be tedious.
-If you are looking for a more high-level implementation of inline keyboards, check out the [menu plugin](./menu.md).
+If you are looking for a more high-level implementation of inline keyboards, check out the [menu plugin](./menu).
 It makes it simple to create interactive menus.
 :::
 
@@ -266,7 +271,7 @@ The result will always be the same.
 
 #### Selectively Send Custom Keyboards
 
-You can call `selected` if you want to show the custom keyboard only to those users that are @-mentioned in the text of the message object, and to the sender of the original message in case your message is a [reply](../guide/basics.md#sending-messages-with-reply).
+You can call `selected` if you want to show the custom keyboard only to those users that are @-mentioned in the text of the message object, and to the sender of the original message in case your message is a [reply](../guide/basics#sending-messages-with-reply).
 
 ```ts
 new Keyboard()

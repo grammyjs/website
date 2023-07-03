@@ -1,3 +1,7 @@
+---
+next: false
+---
+
 # Daftar Perbandingan Penyedia Hosting
 
 Ada banyak penyedia hosting yang mengizinkan kamu menjalankan bot di server mereka.
@@ -7,7 +11,7 @@ Itulah kenapa komunitas grammY mengumpulkan review dari beberapa pengguna yang m
 ## Apa itu Penyedia Hosting?
 
 Agar bot bisa berjalan selama 24 jam sehari, kamu memerlukan sebuah komputer yang dapat berjalan selama itu juga.
-Seperti yang telah [dijelaskan di pengenalan](../guide/introduction.md#cara-membuat-bot-tetap-berjalan), kamu pasti tidak ingin melakukannya di laptop ataupun pc rumah kamu.
+Seperti yang telah [dijelaskan di pengenalan](../guide/introduction#cara-membuat-bot-tetap-berjalan), kamu pasti tidak ingin melakukannya di laptop ataupun pc rumah kamu.
 Jadi, kamu perlu menyewa komputer dari suatu perusahaan untuk menjalankan bot di cloud.
 
 Dengan kata lain, kamu menjalankan bot di komputer milik orang lain.
@@ -24,12 +28,12 @@ Serverless artinya kamu tidak mengontrol perangkat yang menjalankan bot kamu.
 Sebaliknya, penyedia hosting-lah yang akan menghidupkan dan mematikan perangkat-perangkat yang dibutuhkan untuk menjalankan kode kamu.
 Karena alasan tersebut, akses yang diberikan ke kamu cuma sebatas untuk mengunggah kode yang akan dijalankan.
 
-Selain itu, kamu diharuskan menggunakan [webhooks](../guide/deployment-types.md) ketika menggunakan serverless.
-Kebanyakan penyedia hosting di bawah ini akan mengalami kendala ketika kamu menjalankan bot menggunakan polling (`bot.start()` atau [grammY runner](../plugins/runner.md)).
+Selain itu, kamu diharuskan menggunakan [webhooks](../guide/deployment-types) ketika menggunakan serverless.
+Kebanyakan penyedia hosting di bawah ini akan mengalami kendala ketika kamu menjalankan bot menggunakan polling (`bot.start()` atau [grammY runner](../plugins/runner)).
 
 Di sisi lain, PaaS (Platform as a Service) menyediakan layanan yang serupa, namun lebih bisa dikontrol.
 Misalnya, kamu bisa mengatur jumlah perangkat yang bekerja untuk menjalankan bot kamu.
-Menggunakan [polling](../guide/deployment-types.md) juga bisa di PaaS jika penyedia layanan tersebut memperbolehkan untuk membiarkan salah satu instance berjalan sepanjang waktu.
+Menggunakan [polling](../guide/deployment-types) juga bisa di PaaS jika penyedia layanan tersebut memperbolehkan untuk membiarkan salah satu instance berjalan sepanjang waktu.
 
 Serverless dan PaaS memiliki kekurangan yang sama, yaitu tidak memiliki penyimpanan bawaan secara permanen, misalnya sistem file lokal.
 Oleh karena itu, biasanya diperlukan database yang terpisah untuk menyimpan data secara permanen.
@@ -58,7 +62,7 @@ Di sana, kamu bisa menginstal berbagai macam software, melakukan pembaruan siste
 
 Kamu bisa menjalankan bot baik menggunakan long polling ataupun webhooks di sebuah VPS.
 
-Lihat tutorial pemasangan bot ke sebuah VPS [berikut](./vps.md).
+Lihat tutorial pemasangan bot ke sebuah VPS [berikut](./vps).
 
 | Nama          | Harga (min) | Ping ke API Bot                           | Pilihan Termurah                   |
 | ------------- | ----------- | ----------------------------------------- | ---------------------------------- |

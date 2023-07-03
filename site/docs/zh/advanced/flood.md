@@ -1,8 +1,3 @@
----
-prev: ./reliability.md
-next: ./transformers.md
----
-
 # 关注点四：流量限制
 
 Telegram 对你的 bot 每秒钟能发送多少条信息进行了限制。
@@ -14,12 +9,12 @@ Telegram 对你的 bot 每秒钟能发送多少条信息进行了限制。
 1. 等待指定的秒数。
 2. 重试请求。
 
-幸运的是，有一个 [插件](../plugins/auto-retry.md) 可以做到这一点。
+幸运的是，有一个 [插件](../plugins/auto-retry) 可以做到这一点。
 
 该插件 [非常简单](https://github.com/grammyjs/auto-retry/blob/main/src/index.ts)。
 它实际上只是暂停一段时间然后重试。
 然而，使用它主要是有一个潜在假设：**任何请求都可能很慢**。
-这意味着当你以 webhook 的方式运行你的 bot 时，不管你做什么，[你都不得不使用一个队列](../guide/deployment-types.md#及时结束-webhook-请求)，否则你需要配置自动重试插件并确保它不会花费太多时间，但这样一来你的 bot 可能会跳过一些请求。
+这意味着当你以 webhook 的方式运行你的 bot 时，不管你做什么，[你都不得不使用一个队列](../guide/deployment-types#及时结束-webhook-请求)，否则你需要配置自动重试插件并确保它不会花费太多时间，但这样一来你的 bot 可能会跳过一些请求。
 
 ## 确切的限制是什么
 
