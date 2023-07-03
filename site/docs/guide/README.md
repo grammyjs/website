@@ -16,7 +16,7 @@ If you know how to write an application for Node.js or Deno or have already crea
 
 ## About the Documentation
 
-The documentation for grammY bots is divided into three layers.
+The grammY documentation is divided into three layers.
 
 1. High-level grammY docs _(this website)_
 2. [Low-level grammY API reference](https://deno.land/x/grammy/mod.ts)
