@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # 路由器（`router`）
 
 `Router` 类（[API 参考](https://deno.land/x/grammy_router/router.ts)）提供了一种更为灵活的方式来结构化你的 bot，通过路由上下文对象到不同的部分代码。
@@ -22,7 +27,7 @@ bot.use(router);
 
 ## 与中间件集成
 
-自然，路由器插件与 grammY 的 [中间件树](../advanced/middleware.md) 可以无缝集成。
+自然，路由器插件与 grammY 的 [中间件树](../advanced/middleware) 可以无缝集成。
 例如，你可以在路由之后继续过滤 updates。
 
 ```ts
@@ -33,14 +38,14 @@ other.on(":text", async (ctx) => {/* ... */});
 other.use((ctx) => {/* ... */});
 ```
 
-你可能还想回顾一下这一 [章节](../guide/filter-queries.md#将查询与其他方法相结合)，了解更多关于中间件的组合。
+你可能还想回顾一下这一 [章节](../guide/filter-queries#将查询与其他方法相结合)，了解更多关于中间件的组合。
 
 ## 绑定路由器和会话
 
-路由器与 [会话](./session.md) 可以完美结合。
+路由器与 [会话](./session) 可以完美结合。
 作为一个示例，结合路由器与会话可以让你在聊天界面中重新创建表单。
 
-> 请注意，更好的解决方案是使用 [对话插件](./conversations.md)。
+> 请注意，更好的解决方案是使用 [对话插件](./conversations)。
 > 自该插件创建以来，此页面的其余部分已过时。
 > 我们将保留此页面作为那些使用路由器实现表单的参考。
 
@@ -56,10 +61,9 @@ other.use((ctx) => {/* ... */});
 
 这是如何实现这样的机器人的示例：
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context, Keyboard, session, SessionFlavor } from "grammy";
 import { Router } from "@grammyjs/router";
 
@@ -182,10 +186,7 @@ function getDays(month: number, day: number) {
 }
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot, Context, Keyboard, session, SessionFlavor } = require("grammy");
 const { Router } = require("@grammyjs/router");
 
@@ -301,10 +302,7 @@ function getDays(month, day) {
 }
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import {
   Bot,
   Context,
@@ -434,7 +432,6 @@ function getDays(month: number, day: number) {
 ```
 
 :::
-::::
 
 请注意，会话有一个属性 `step`，它存储表单的步骤，即当前正在填写的值。
 路由器用于跳转到不同的中间件，完成 `month` 和 `dayOfMonth` 字段的填写。

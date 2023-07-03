@@ -1,14 +1,9 @@
----
-prev: ../guide/
-next: ./getting-started.md
----
-
 # Introducción
 
 Un bot de Telegram es una cuenta de usuario especial que está automatizada por un programa.
 Cualquiera puede crear un bot de Telegram, el único prerrequisito es que sepas un poco de codificación.
 
-> Si ya sabes cómo crear bots, dirígete a [Cómo empezar](./getting-started.md)
+> Si ya sabes cómo crear bots, dirígete a [Cómo empezar](./getting-started)
 
 grammY es una biblioteca que hace que sea súper sencillo escribir un bot de este tipo.
 
@@ -37,7 +32,7 @@ En pocas palabras, si quieres que el bot esté en línea todo el tiempo, tienes 
 Como lo más probable es que no quieras hacer eso con tu portátil, debes subir tu código a un _hosting provider_ (en otras palabras, el ordenador de otra persona, también conocido como _servidor_), y dejar que esa gente lo ejecute por ti.
 
 Hay innumerables compañías que te permiten ejecutar tu bot de Telegram de forma gratuita.
-Esta documentación cubre un número de diferentes proveedores de alojamiento que sabemos que funcionan bien con grammY (comprueba la sección [Alojamiento](../hosting/comparison.md)).
+Esta documentación cubre un número de diferentes proveedores de alojamiento que sabemos que funcionan bien con grammY (comprueba la sección [Alojamiento](../hosting/comparison)).
 Al final, sin embargo, la elección de qué proveedor elegir depende de ti.
 Recuerda que ejecutar tu código en otro lugar significa que quien sea el dueño de ese "lugar" tiene acceso a todos tus mensajes y a los datos de tus usuarios, así que deberías elegir un proveedor en el que puedas confiar.
 
@@ -71,7 +66,7 @@ Las conocerás a medida que vayas avanzando.
 
 ## Requisitos previos para empezar
 
-> Sáltate el resto de esta página si ya sabes cómo desarrollar una aplicación Deno o Node.js, y [empieza](./getting-started.md).
+> Sáltate el resto de esta página si ya sabes cómo desarrollar una aplicación Deno o Node.js, y [empieza](./getting-started).
 
 Aquí hay algunas cosas interesantes sobre la programación---cosas que son esenciales para la codificación, pero que rara vez se explican porque la mayoría de los desarrolladores piensan que son evidentes.
 
@@ -81,7 +76,7 @@ Sin embargo, recuerda: ¡crear un bot de Telegram con grammY es una buena manera
 
 ::: tip Aprender a codificar
 Puedes empezar a aprender TypeScript con el [tutorial oficial](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html) escrito por el equipo de TypeScript, y luego avanzar desde ahí.
-No pases más de 30 minutos leyendo cosas en internet, luego vuelve aquí, (lee el resto de la sección) y [empieza](./getting-started.md).
+No pases más de 30 minutos leyendo cosas en internet, luego vuelve aquí, (lee el resto de la sección) y [empieza](./getting-started).
 
 Si ves una sintaxis desconocida en los documentos, o si recibes un mensaje de error que no entiendes, búscalo en Google---la explicación ya está en Internet (por ejemplo, en Stack Overflow).
 :::
@@ -176,7 +171,7 @@ Después de haber creado su bot, por ejemplo en un archivo llamado `bot.ts`, pue
 Puedes parar el bot de nuevo con `Ctrl+C`.
 
 ¿Listo?
-¡[Empieza](./getting-started.md#introduccion-a-deno)! :robot:
+¡[Empieza](./getting-started#introduccion-a-deno)! :robot:
 
 ### Requisitos previos para Node.js
 
@@ -212,4 +207,4 @@ Si te sientes perdido en este punto, deberías dejar Node.js y usar [Deno](#requ
 
 ¿Aún confiado?
 ¡Genial!
-¡[Empieza](./getting-started.md#comenzando-en-node-js)! :robot:
+¡[Empieza](./getting-started#comenzando-en-node-js)! :robot:

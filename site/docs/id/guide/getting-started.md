@@ -1,8 +1,3 @@
----
-prev: ./introduction.md
-next: ./basics.md
----
-
 # Memulai
 
 Buat bot pertamamu dalam hitungan menit.
@@ -11,15 +6,14 @@ Buat bot pertamamu dalam hitungan menit.
 ## Memulai dengan Node.js
 
 > Kami mengasumsikan bahwa kamu sudah menginstal [Node.js](https://nodejs.org), dan seharusnya `npm` juga sudah disertakan di paket pemasangannya.
-> Kalau tidak paham dengan apa yang kami maksud barusan, lihat [Pengenalan](./introduction.md)!
+> Kalau tidak paham dengan apa yang kami maksud barusan, lihat [Pengenalan](./introduction)!
 
 Buat proyek TypeScript baru lalu instal package `grammy`.
 Lakukan dengan cara mengetikan kode berikut di terminal:
 
-::::code-group
-:::code-group-item NPM
+::: code-group
 
-```sh
+```sh [npm]
 # Buat direktori baru lalu masuk ke dalamnya.
 mkdir my-bot
 cd my-bot
@@ -32,10 +26,7 @@ npx tsc --init
 npm install grammy
 ```
 
-:::
-:::code-group-item Yarn
-
-```sh
+```sh [Yarn]
 # Buat direktori baru lalu masuk ke dalamnya.
 mkdir my-bot
 cd my-bot
@@ -47,9 +38,6 @@ npx tsc --init
 # Pasang grammY.
 yarn add grammy
 ```
-
-:::
-:::code-group-item pnpm
 
 ```sh
 # Buat direktori baru lalu masuk ke dalamnya.
@@ -65,7 +53,6 @@ pnpm add grammy
 ```
 
 :::
-::::
 
 Kemudian, buat file teks kosong baru dengan nama `bot.ts`.
 Struktur folder kurang lebih terlihat seperti ini:
@@ -85,10 +72,9 @@ Token bot digunakan untuk mengautentikasi bot kamu yang bentuknya kurang lebih m
 Sudah dapat tokennya? Sekarang kamu bisa menulis kode bot di file `bot.ts`.
 Kamu bisa menyalin contoh bot berikut ke dalam file. Jangan lupa untuk memasukkan token ke constructor `Bot`.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot } from "grammy";
 
 // Buat sebuah instance class `Bot` lalu masukkan token bot ke dalamnya.
@@ -109,10 +95,7 @@ bot.on("message", (ctx) => ctx.reply("Dapat pesan baru!"));
 bot.start();
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot } = require("grammy");
 
 // Buat sebuah instance class `Bot` lalu masukkan token bot ke dalamnya.
@@ -134,7 +117,6 @@ bot.start();
 ```
 
 :::
-::::
 
 Compile kode dengan menjalankan
 

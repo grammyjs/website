@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Вимірювання часу обробки у консоль під час налагодження
 
 Якщо ви знайомі з JavaScript/TypeScript, ви, напевно, використовували [`console.log`](https://developer.mozilla.org/en-US/docs/Web/API/Console/log) або [`console.time`](https://developer.mozilla.org/en-US/docs/Web/API/Console/time), щоб під час налагодження перевірити, що відбувається.

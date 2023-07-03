@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Inline Queries
 
 With inline queries, users can search for, browse, and send content suggested by your bot in any chat, even if it is not a member there.
@@ -57,10 +62,9 @@ Every result needs three things.
 grammY exports a builder for inline query results, named `InlineQueryResultBuilder`.
 Here are some examples for its usage.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { InlineKeyboard, InlineQueryResultBuilder } from "grammy";
 
 // Build a photo result.
@@ -85,10 +89,7 @@ InlineQueryResultBuilder.article("id-4", "Inline Queries")
   .text("**Outstanding** docs: grammy.dev", { parse_mode: "MarkdownV2" });
 ```
 
-:::
-::: code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { InlineKeyboard, InlineQueryResultBuilder } = require("grammy");
 
 // Build a photo result.
@@ -113,10 +114,7 @@ InlineQueryResultBuilder.article("id-4", "Inline Queries")
   .text("**Outstanding** docs: grammy.dev", { parse_mode: "MarkdownV2" });
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import {
   InlineKeyboard,
   InlineQueryResultBuilder,
@@ -145,7 +143,6 @@ InlineQueryResultBuilder.article("id-4", "Inline Queries")
 ```
 
 :::
-::::
 
 Note that if you want to send files via existing file identifiers, you should use the `*Cached` methods.
 
@@ -155,7 +152,7 @@ const audioFileId = "AgADBAADZRAxGyhM3FKSE4qKa-RODckQHxsoABDHe0BDC1GzpGACAAEC";
 InlineQueryResultBuilder.audioCached("id-0", audioFileId);
 ```
 
-> Read more about file identifiers [here](../guide/files.md#how-files-work-for-telegram-bots).
+> Read more about file identifiers [here](../guide/files#how-files-work-for-telegram-bots).
 
 You should check out the [API reference](https://deno.land/x/grammy/mod.ts?s=InlineQueryResultBuilder) of `InlineQueryResultBuilder` and maybe also the [specification](https://core.telegram.org/bots/api#inlinequeryresult) of `InlineQueryResult` to see all available options.
 
@@ -190,10 +187,10 @@ They even have a pretty website! 👇`,
 bot.on("inline_query", (ctx) => ctx.answerInlineQuery([]));
 ```
 
-[Remember](../guide//basics.md#sending-messages) that you can always specify further options when calling API methods by using the options object of type `Other`.
+[Remember](../guide/basics#sending-messages) that you can always specify further options when calling API methods by using the options object of type `Other`.
 For example, `answerInlineQuery` allows you to perform pagination for inline queries via an offset, as you can see [here](https://core.telegram.org/bots/api#answerinlinequery).
 
-:::tip Mixing Text and Media
+::: tip Mixing Text and Media
 While it is allowed to send a result lists that contain both media and text elements, most Telegram clients do not render them very well.
 From a user experience point of view, you should avoid them.
 :::
@@ -212,10 +209,10 @@ await ctx.answerInlineQuery(results, { button });
 ```
 
 When the user presses the button, a `/start` command message will be sent to your bot.
-The start parameter will be available via [deep linking](../guide/commands.md#deep-linking-support).
+The start parameter will be available via [deep linking](../guide/commands#deep-linking-support).
 In other words, using the above code snippet, `ctx.match` will have the value `"login"` in your command handler.
 
-If you then send an [inline keyboard](./keyboard.md#building-a-custom-keyboard) with a `switchInline` button, the user will be returned to the chat where they pressed the inline query results button initially.
+If you then send an [inline keyboard](./keyboard#building-a-custom-keyboard) with a `switchInline` button, the user will be returned to the chat where they pressed the inline query results button initially.
 
 ```ts
 bot
@@ -231,7 +228,7 @@ bot
 
 That way, you can perform e.g. login procedures in a private chat with the user before delivering inline query results.
 The dialogue can go back and forth a bit before you send them back.
-For example, you can [enter a short conversation](./conversations.md#installing-and-entering-a-conversation) with the conversations plugin.
+For example, you can [enter a short conversation](./conversations#installing-and-entering-a-conversation) with the conversations plugin.
 
 ## Getting Feedback About Chosen Results
 

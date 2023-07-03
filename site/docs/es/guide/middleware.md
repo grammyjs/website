@@ -1,15 +1,10 @@
----
-prev: ./commands.md
-next: ./errors.md
----
-
 # Middleware
 
 Las funciones de escucha que se pasan a `bot.on()`, `bot.command()`, y sus hermanos, se llaman _middleware_.
 Aunque no es incorrecto decir que están escuchando las actualizaciones, llamarlos "oyentes" es una simplificación.
 
 > Esta sección explica qué es el middleware, y utiliza grammY como ejemplo para ilustrar cómo se puede utilizar.
-> Si buscas documentación específica sobre lo que hace especial a la implementación de middleware de grammY, revisa [Middleware Redux](../advanced/middleware.md) en la sección avanzada de la documentación.
+> Si buscas documentación específica sobre lo que hace especial a la implementación de middleware de grammY, revisa [Middleware Redux](../advanced/middleware) en la sección avanzada de la documentación.
 
 ## The Middleware Stack
 
@@ -63,7 +58,7 @@ type NextFunction = () => Promise<void>;
 
 Por lo tanto, ¡el middleware toma dos parámetros!
 Hasta ahora sólo hemos utilizado uno, el objeto de contexto `ctx`.
-Ya sabemos (./context.md) lo que es `ctx`, pero también vemos una función con el nombre `next`.
+Ya sabemos (./context) lo que es `ctx`, pero también vemos una función con el nombre `next`.
 Para entender qué es `next`, tenemos que ver todo el middleware que se instala en el objeto bot como un todo.
 
 Puedes ver todas las funciones de middleware instaladas como un número de capas que se apilan unas sobre otras.
@@ -125,10 +120,9 @@ Ilustraremos el concepto de middleware escribiendo una simple función de middle
 Aquí está la firma de la función para nuestro middleware.
 Puedes compararla con el tipo de middleware de arriba, y convencerte de que realmente tenemos un middleware aquí.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 /** Mide el tiempo de respuesta del bot, y lo registra en el `console` */
 async function responseTime(
   ctx: Context,
@@ -138,10 +132,7 @@ async function responseTime(
 }
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 /** Mide el tiempo de respuesta del bot, y lo registra en el `console` */
 async function responseTime(ctx, next) {
   // TODO: implementar
@@ -149,7 +140,6 @@ async function responseTime(ctx, next) {
 ```
 
 :::
-::::
 
 Podemos instalarlo en nuestra instancia `bot` con `bot.use()`:
 
@@ -167,10 +157,9 @@ Esto es lo que queremos hacer:
 
 Es importante instalar nuestro middleware `responseTime` _primero_ en el bot (en la parte superior de la pila de middleware) para asegurarse de que todas las operaciones se incluyen en la medición.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 /** Mide el tiempo de respuesta del bot, y lo registra en el `console` */
 async function responseTime(
   ctx: Context,
@@ -189,10 +178,7 @@ async function responseTime(
 bot.use(responseTime);
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 /** Mide el tiempo de respuesta del bot, y lo registra en el `console` */
 async function responseTime(ctx, next) {
   // tomar el tiempo antes
@@ -208,7 +194,6 @@ bot.use(responseTime);
 ```
 
 :::
-::::
 
 Completo, ¡y funciona! :heavy_check_mark:
 
@@ -224,7 +209,7 @@ Si alguna vez llamas a `next()` sin la palabra clave `await`, varias cosas se ro
 - :x: Tu bot puede fallar aleatoriamente de forma difícil de reproducir.
 - :x: Si ocurre un error, su manejador de errores no será llamado por él.
   En su lugar, verás que se producirá un `UnhandledPromiseRejectionWarning`, que puede hacer que tu proceso bot se caiga.
-- :x: Se rompe el mecanismo de backpressure de [grammY runner](../plugins/runner.md), que protege a tu servidor de una carga excesiva, como por ejemplo durante los picos de carga.
+- :x: Se rompe el mecanismo de backpressure de [grammY runner](../plugins/runner), que protege a tu servidor de una carga excesiva, como por ejemplo durante los picos de carga.
 - :skull: A veces, también mata a todos tus inocentes gatitos. :crying_cat_face:
 
 :::
@@ -268,4 +253,4 @@ bot.use(/*...*/);
 // ...
 ```
 
-Si quieres profundizar en cómo grammY implementa el middleware, consulta [Middleware Redux](../advanced/middleware.md) en la sección avanzada de la documentación.
+Si quieres profundizar en cómo grammY implementa el middleware, consulta [Middleware Redux](../advanced/middleware) en la sección avanzada de la documentación.

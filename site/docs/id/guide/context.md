@@ -1,8 +1,3 @@
----
-prev: ./basics.md
-next: ./api.md
----
-
 # Context
 
 Object `Context` ([Referensi API grammY](https://deno.land/x/grammy/mod.ts?s=Context)) merupakan komponen penting di grammY.
@@ -108,8 +103,8 @@ Itulah kenapa method ini dinamakan _has checks_.
 ::: tip Kapan Waktu yang Tepat untuk Menggunakan Has Checks?
 
 Method ini menggunakan logika yang sama yang digunakan oleh `bot.command("start")`.
-Kami menyarankan kamu untuk selalu menggunakan [filter queries](./filter-queries.md) dan method-method lain yang serupa.
-has checks sebaiknya digunakan di [plugin conversations](../plugins/conversations.md).
+Kami menyarankan kamu untuk selalu menggunakan [filter queries](./filter-queries) dan method-method lain yang serupa.
+has checks sebaiknya digunakan di [plugin conversations](../plugins/conversations).
 
 :::
 
@@ -173,11 +168,11 @@ Mantap! :tada:
 Di balik layar, context _sudah tahu id chat pesan tersebut_, yaitu `ctx.msg.chat.id`. Jadi, ia hanya perlu menyediakan method `reply` untuk mengirim pesan kembali ke chat yang sama.
 Untuk melakukannya, `reply` memanggil kembali `sendMessage` dengan id chat yang sudah terisi sebelumnya. Sehingga, kamu tidak perlu menuliskan id chat lagi.
 
-Efeknya, semua method pada object context sekarang bisa menggunakan opsi-opsi dari object type `Other`, seperti yang sudah dijelaskan [sebelumnya](./basics.md#mengirim-pesan).
+Efeknya, semua method pada object context sekarang bisa menggunakan opsi-opsi dari object type `Other`, seperti yang sudah dijelaskan [sebelumnya](./basics#mengirim-pesan).
 Opsi ini dapat digunakan untuk memasukkan konfigurasi lebih lanjut ke setiap pemanggilan API.
 
-::::: tip Fitur Reply Telegram
-Meskipun method ini disebut `ctx.reply` di grammY (dan juga di kebanyakan framework lainnya), ia tidak menggunakan [fitur reply dari Telegram](https://telegram.org/blog/replies-mentions-hashtags#replies) dimana pesan sebelumnya terhubung satu sama lain. Lihat [materi sebelumnya](./basics.md#mengirim-pesan-dengan-reply) mengenai fitur reply.
+::: tip Fitur Reply Telegram
+Meskipun method ini disebut `ctx.reply` di grammY (dan juga di kebanyakan framework lainnya), ia tidak menggunakan [fitur reply dari Telegram](https://telegram.org/blog/replies-mentions-hashtags#replies) dimana pesan sebelumnya terhubung satu sama lain. Lihat [materi sebelumnya](./basics#mengirim-pesan-dengan-reply) mengenai fitur reply.
 
 Kalau kamu membaca [Referensi API Bot Telegram](https://core.telegram.org/bots/api#sendmessage), di situ terdapat sejumlah opsi, seperti `parse_mode`, `disable_web_page_preview`, dan `reply_to_message_id`.
 Nah, yang opsi terakhir ini bisa digunakan untuk membuat pesan menjadi sebuah reply:
@@ -190,7 +185,7 @@ await ctx.reply("^ Aku me-reply pesan ini!", {
 
 Opsi object yang sama dapat juga digunakan di `bot.api.sendMessage` dan `ctx.api.sendMessage`.
 Gunakan auto-complete untuk melihat opsi yang tersedia langsung di code editor.
-:::::
+:::
 
 Umumnya, setiap method di `ctx.api` memiliki shortcut dengan nilai yang sudah terisi sebelumnya, seperti `ctx.replyWithPhoto` untuk membalas menggunakan foto, atau `ctx.exportChatInviteLink` untuk mendapatkan link undangan chat yang bersangkutan.
 Jika ingin tahu pintasan apa saja yang tersedia, auto-complete beserta [Referensi API grammY](https://deno.land/x/grammy/mod.ts?s=Context) adalah kawan baikmu.
@@ -207,7 +202,7 @@ Bahkan, object update tidak hanya berisi pesan baru, tetapi juga hal-hal lain, s
 
 Untuk setiap update yang masuk, akan dibuatkan persis satu object context baru. Sehingga, context untuk update yang berbeda adalah object yang tidak saling berkaitan. Mereka hanya mereferensikan informasi bot yang sama melalui `ctx.me`.
 
-Object context yang sama untuk satu update akan didistribusikan ke semua [middleware](./middleware.md) bot.
+Object context yang sama untuk satu update akan didistribusikan ke semua [middleware](./middleware) bot.
 
 ## Memodifikasi Object Context
 
@@ -217,10 +212,10 @@ Kamu dapat memasang property punyamu sendiri ke sebuah object context.
 
 ### Melalui Middleware (Direkomendasikan)
 
-Modifikasi bisa dilakukan dengan mudah melalui [middleware](./middleware.md).
+Modifikasi bisa dilakukan dengan mudah melalui [middleware](./middleware).
 
 ::: tip Middleware? Tupperware jenis apa, tuh?
-Materi ini memerlukan pemahaman yang baik mengenai middleware. Jika kamu belum membaca [materi middleware](./middleware.md), berikut ringkasan singkatnya.
+Materi ini memerlukan pemahaman yang baik mengenai middleware. Jika kamu belum membaca [materi middleware](./middleware), berikut ringkasan singkatnya.
 
 Perlu kamu ketahui bahwa beberapa handler mampu memproses object context yang sama. Ada juga sebuah handler khusus yang berfungsi untuk memodifikasi `ctx` sebelum handler-handler lain dijalankan. Hasil modifikasi tersebut akan digunakan oleh handler-handler berikutnya.
 :::
@@ -287,10 +282,9 @@ const bot = new Bot<MyContext>("");
 
 Hasil akhirnya menjadi seperti ini:
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 const BOT_DEVELOPER = 123456; // Id chat developer
 
 // Tentukan type context hasil modifikasi.
@@ -320,10 +314,7 @@ bot.command("start", async (ctx) => {
 });
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const BOT_DEVELOPER = 123456; // Id chat developer
 
 const bot = new Bot("");
@@ -345,7 +336,6 @@ bot.command("start", async (ctx) => {
 ```
 
 :::
-::::
 
 Type context modifikasi juga bisa diteruskan ke komponen lain yang menangani middleware, contohnya [composer](https://deno.land/x/grammy/mod.ts?s=Composer).
 
@@ -353,7 +343,7 @@ Type context modifikasi juga bisa diteruskan ke komponen lain yang menangani mid
 const composer = new Composer<MyContext>();
 ```
 
-Beberapa plugin juga mengharuskan kamu menentukan type context modifikasi, contohnya plugin [router](../plugins/router.md) dan plugin [menu](../plugins/menu.md). Type semacam ini dinamakan dengan _context flavor_, seperti yang dijelaskan [di bawah sini](#context-flavor).
+Beberapa plugin juga mengharuskan kamu menentukan type context modifikasi, contohnya plugin [router](../plugins/router) dan plugin [menu](../plugins/menu). Type semacam ini dinamakan dengan _context flavor_, seperti yang dijelaskan [di bawah sini](#context-flavor).
 
 ### Melalui Inheritance
 
@@ -374,10 +364,9 @@ Ketika membuat bot, kamu bisa meneruskan constructor context hasil modifikasi ya
 Ingat!
 Class kamu harus meng-extend `Context`.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context } from "grammy";
 import type { Update, UserFromGetMe } from "grammy/types";
 
@@ -405,10 +394,7 @@ bot.on("message", async (ctx) => {
 bot.start();
 ```
 
-:::
-:::code-group-item JavaScript
-
-```ts
+```js [JavaScript]
 const { Bot, Context } = require("grammy");
 
 // Definisikan class context khusus.
@@ -435,10 +421,7 @@ bot.on("message", async (ctx) => {
 bot.start();
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import type {
   Update,
@@ -470,7 +453,6 @@ bot.start();
 ```
 
 :::
-::::
 
 Perhatikan bagaimana type context hasil modifikasi sudah ditentukan secara otomatis ketika kamu menggunakan subclass.
 Sehingga, kamu tidak perlu lagi menulis `Bot<MyContext>` karena constructor subclass sudah ditentukan di dalam opsi object `new Bot()`.
@@ -490,7 +472,7 @@ Context flavor terdiri atas dua jenis.
 Jenis yang paling sederhana disebut dengan _additive context flavor_. Kapanpun kita berbicara mengenai context flavor, yang kita maksud adalah jenis ini.
 Mari kita lihat bagaimana cara kerjanya.
 
-Sebagai contoh, ketika kamu memiliki [data session](../plugins/session.md), maka kamu harus menambahkan `ctx.session` ke dalam type context tersebut.
+Sebagai contoh, ketika kamu memiliki [data session](../plugins/session), maka kamu harus menambahkan `ctx.session` ke dalam type context tersebut.
 Jika tidak dilakukan
 
 1. Kamu tidak bisa memasang plugin sessions bawaan; dan

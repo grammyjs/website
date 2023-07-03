@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # 文件助手（`files`）
 
 这个插件允许你轻松地从 Telegram 服务器下载文件，并且获取一个URL，以便你自己下载文件。
@@ -8,10 +13,9 @@
 然后这个插件在 `getFile` 调用结果上安装了 `download` 方法。
 例子：
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context } from "grammy";
 import { FileFlavor, hydrateFiles } from "@grammyjs/files";
 
@@ -35,10 +39,7 @@ bot.on([":video", ":animation"], async (ctx) => {
 });
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 import { Bot } from "grammy";
 import { hydrateFiles } from "@grammyjs/files";
 
@@ -59,10 +60,7 @@ bot.on([":video", ":animation"], async (ctx) => {
 });
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   FileFlavor,
@@ -90,7 +88,6 @@ bot.on([":video", ":animation"], async (ctx) => {
 ```
 
 :::
-::::
 
 如果你不想创建临时文件，你可以传递一个文件路径到 `download`。
 像这样：`await file.download("/path/to/file")`。
@@ -109,12 +106,11 @@ bot.on([":video", ":animation"], async (ctx) => {
 
 默认情况下，`await bot.api.getFile()` 的结果将会被配备上 `download` 和 `getUrl` 方法。
 但是，这并不会在类型中反映出来。
-如果你需要这些调用，你应该也安装一个叫作 `FileApiFlavor` 的 [API 调味剂](../advanced/transformers.md#api-调味剂) 在 bot 对象上。
+如果你需要这些调用，你应该也安装一个叫作 `FileApiFlavor` 的 [API 调味剂](../advanced/transformers#api-调味剂) 在 bot 对象上。
 
-::::code-group
-:::code-group-item Node.js
+::: code-group
 
-```ts
+```ts [Node.js]
 import { Api, Bot, Context } from "grammy";
 import { FileApiFlavor, FileFlavor, hydrateFiles } from "@grammyjs/files";
 
@@ -125,10 +121,7 @@ const bot = new Bot<MyContext, MyApi>("");
 // ...
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Api, Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   FileApiFlavor,
@@ -144,7 +137,6 @@ const bot = new Bot<MyContext, MyApi>("");
 ```
 
 :::
-::::
 
 ## 插件概述
 

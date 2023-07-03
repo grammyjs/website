@@ -1,0 +1,122 @@
+// https://github.com/vuejs/vitepress/blob/main/src/client/theme-default/styles/vars.css
+// oklch theme
+
+/**
+ * Colors Base
+ *
+ * These are the pure base color presets. Most of the time, you should not be
+ * using these colors directly in the theme but rather use "Colors Theme"
+ * instead because those are "Theme (light or dark)" dependant.
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-c-green: #1793bc; // Tip container border
+  --vp-c-green-dark: var(--vp-c-green); // Tip container text
+
+  &.dark {
+    --vp-c-yellow: #eaa102; // Warning container text and border
+  }
+}
+
+/**
+ * Colors Theme
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-c-bg: #eeeeee;
+
+  --vp-c-brand: #009dca;
+  --vp-c-brand-dark: #0094bd; // Main button when hovered
+  --vp-c-brand-darker: #0089af; // Main button when pressed
+  --vp-c-brand-lighter: #86d7f2; // Main button border
+
+  --vp-c-divider: #d1d4da; // Divider line in the main content
+  --vp-c-gutter: var(--vp-c-divider); // Border at the bottom of navbar
+
+  &.dark {
+    --vp-c-bg: #181a1e;
+
+    --vp-c-bg-elv: var(--vp-c-mute-dark); // Navbar menu bg
+    --vp-c-bg-elv-mute: var(
+      --vp-c-bg-soft-down
+    ); // Navbar menu item when hovered
+
+    --vp-c-bg-soft: #1f2329; // Background of VPFeature at home page (feature box)
+    --vp-c-bg-soft-down: #2b333c; // Background icon of VPFeature at home page (feature box with icon)
+
+    --vp-c-bg-alt: #101114; // Search bg and Code container tab bg (--vp-code-tab-bg) use this var
+
+    --vp-c-brand-dark: #0089af; // Main button when hovered
+    --vp-c-brand-darker: #006783; // Main button when pressed
+
+    --vp-c-divider: #363a43; // Divider line in the main content
+    --vp-c-gutter: var(--vp-c-divider); // Border at the bottom of navbar
+
+    --vp-c-mute: #23272d; // Alt button bg, <code> bg, dark mode toogle
+    --vp-c-mute-dark: #1e2228; // Alt button when hovered
+    --vp-c-mute-darker: #191c22; // Alt button when pressed
+  }
+}
+
+/**
+ * Typography
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-font-family-base: "Red Hat Text", "Noto Sans", "Inter var", "Inter",
+    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Helvetica, Arial, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", Oxygen, Ubuntu,
+    Cantarell, "Fira Sans", "Droid Sans", sans-serif;
+  --vp-font-family-mono: "Source Code Pro", "SF Mono", Consolas, Monaco,
+    "Andale Mono", "Ubuntu Mono", monospace;
+}
+
+/**
+ * Component: Code
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-code-block-bg: #1d1f25;
+  --vp-code-block-bg-light: #353a45; // Copy button
+  --vp-code-block-divider-color: #424856; // Divider line in Code container
+
+  --vp-code-line-highlight-color: #2b2e37;
+
+  --vp-code-tab-bg: #282c34;
+
+  &.dark {
+    --vp-code-block-bg: #0a0b0d;
+    --vp-code-block-bg-light: #14191c; // Copy button
+    --vp-code-block-divider-color: #1e2228; // Divider line in Code container
+
+    --vp-code-line-highlight-color: #1d1e24c0;
+
+    --vp-code-tab-bg: var(--vp-c-bg-alt);
+  }
+}
+
+/**
+* Component: Custom Block
+* -------------------------------------------------------------------------- */
+
+:root {
+  // <code> bg inside custom container
+  --vp-custom-block-tip-code-bg: #5bdbfe1c;
+  --vp-custom-block-warning-code-bg: #fef3e6;
+  --vp-custom-block-danger-code-bg: #f43f5d16;
+  --vp-custom-block-details-code-bg: #ededee;
+
+  &.dark {
+    --vp-custom-block-details-bg: #242429;
+    --vp-custom-block-details-code-bg: #313137;
+
+    --vp-custom-block-tip-bg: #171d21;
+    --vp-custom-block-tip-code-bg: #29a9ff14;
+
+    --vp-custom-block-warning-bg: #21211f;
+    --vp-custom-block-warning-code-bg: #eaa10216;
+
+    --vp-custom-block-danger-bg: #21191d;
+  }
+}

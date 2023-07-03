@@ -1,11 +1,6 @@
----
-prev: ./scaling.md
-next: ./flood.md
----
-
 # 关注点三：可靠性
 
-如果你确保你的 bot 有正确的 [错误处理](../guide/errors.md)，基本就可以运行了。
+如果你确保你的 bot 有正确的 [错误处理](../guide/errors)，基本就可以运行了。
 所有可能发生的错误（失败的 API 调用、失败的网络请求、失败的数据库查询、失败的中间件，等等）都被捕获。
 
 你应当确保总是去 `await` 所有的 Promise，或者如果你不想等待的事情，至少也要调用 `catch` 去捕获错误。
@@ -18,11 +13,9 @@ next: ./flood.md
 
 ### 简单的长轮询
 
-::::code-group
+::: code-group
 
-:::code-group-item TypeScript
-
-```ts
+```ts [TypeScript]
 import { Bot } from "grammy";
 
 const bot = new Bot("");
@@ -34,11 +27,7 @@ process.once("SIGTERM", () => bot.stop());
 await bot.start();
 ```
 
-:::
-
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot } = require("grammy");
 
 const bot = new Bot("");
@@ -50,11 +39,7 @@ process.once("SIGTERM", () => bot.stop());
 await bot.start();
 ```
 
-:::
-
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
 const bot = new Bot("");
@@ -67,15 +52,12 @@ await bot.start();
 ```
 
 :::
-::::
 
 ### 使用 grammY runner
 
-::::code-group
+::: code-group
 
-:::code-group-item TypeScript
-
-```ts
+```ts [TypeScript]
 import { Bot } from "grammy";
 import { run } from "@grammyjs/runner";
 
@@ -89,11 +71,7 @@ process.once("SIGINT", stopRunner);
 process.once("SIGTERM", stopRunner);
 ```
 
-:::
-
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot } = require("grammy");
 const { run } = require("@grammyjs/runner");
 
@@ -107,10 +85,7 @@ process.once("SIGINT", stopRunner);
 process.once("SIGTERM", stopRunner);
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { run } from "https://deno.land/x/grammy_runner/mod.ts";
 
@@ -125,7 +100,6 @@ Deno.addSignalListener("SIGTERM", stopRunner);
 ```
 
 :::
-::::
 
 这就是基本的对可靠性所做的东西，你的实例现在将 :registered: 永远 :tm: 不会崩溃了。
 
@@ -138,7 +112,7 @@ Deno.addSignalListener("SIGTERM", stopRunner);
 阅读一下 GitHub 上的这个 [讨论](https://github.com/tdlib/telegram-bot-api/issues/126) 去了解更多 **为什么** 你的 bot 在某些极端情况下会重复发送信息（或者根本不发送）。
 本章剩下的部分主要是详细解释 grammY 在这些不常见的情况下会怎样表现，并且怎样去处理这些情况。
 
-> 如果你只关心怎样去编写一个 Telegram bot 的代码？[跳过本章剩下的部分](./flood.md)。
+> 如果你只关心怎样去编写一个 Telegram bot 的代码？[跳过本章剩下的部分](./flood)。
 
 ### Webhook
 
@@ -159,7 +133,7 @@ grammY 没有为你做这些工作，但是如果你认为其他人可以从中�
 
 ### grammY Runner
 
-如果你在并发模式使用 [grammY runner](../plugins/runner.md)， 下一次的 `getUpdates` 调用可能会在你的中间件处理当前批处理的第一个 update 之前执行。
+如果你在并发模式使用 [grammY runner](../plugins/runner)， 下一次的 `getUpdates` 调用可能会在你的中间件处理当前批处理的第一个 update 之前执行。
 因此，update 偏移量被提前 [确认](https://core.telegram.org/bots/api#getupdates) 。
 这是高并发性的代价，不幸的是，如果不降低吞吐量和响应能力，就无法避免这种代价。
 结果是，如果你的实例被正确的（或错误的）时间被关闭了，可能会发生多达 100 个 update 无法再次获取，因为 Telegram 认为它们已被确认。
@@ -174,5 +148,5 @@ grammY 没有为你做这些工作，但是如果你认为其他人可以从中�
 据我们所知，上述这个模糊的草案只是草图，还没有实现。
 如果你有问题或者你想尝试并分享你的进展，请 [联系 Telegram group](https://t.me/grammyjs) 。
 
-另一方面，如果你的 bot 出于高负载并且 update 轮循由于 [自动加载限制](../plugins/runner.md#sink) 而减慢，那么再次获取 update 的机会将会增加，这将导致再次重复发送消息。
+另一方面，如果你的 bot 出于高负载并且 update 轮循由于 [自动加载限制](../plugins/runner#sink) 而减慢，那么再次获取 update 的机会将会增加，这将导致再次重复发送消息。
 因此，完全并发的代价是既不能保证 _至少一次处理，也不能保证_ 最多一次处理。

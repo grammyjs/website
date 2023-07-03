@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Menu Interaktif (`menu`)
 
 Membuat menu interaktif dengan mudah.
@@ -5,16 +10,15 @@ Membuat menu interaktif dengan mudah.
 ## Pengenalan
 
 Keyboard inline merupakan sebuah array berisi kumpulan tombol yang berada di bawah pesan.
-grammY memiliki [sebuah plugin yang tersedia secara built-in](./keyboard.md#keyboard-inline) untuk membuat keyboard inline sederhana.
+grammY memiliki [sebuah plugin yang tersedia secara built-in](./keyboard#keyboard-inline) untuk membuat keyboard inline sederhana.
 
 Plugin menu mengembangkannya lebih jauh agar kamu bisa membuat menu yang bervariasi di dalam sebuah chat, seperti tombol interaktif, halaman dengan navigasi di dalamnya, dan sebagainya.
 
 Berikut contoh-contohnya:
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot } from "grammy";
 import { Menu } from "@grammyjs/menu";
 
@@ -37,10 +41,7 @@ bot.command("start", async (ctx) => {
 bot.start();
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot } = require("grammy");
 const { Menu } = require("@grammyjs/menu");
 
@@ -63,10 +64,7 @@ bot.command("start", async (ctx) => {
 bot.start();
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { Menu } from "https://deno.land/x/grammy_menu/mod.ts";
 
@@ -90,11 +88,10 @@ bot.start();
 ```
 
 :::
-::::
 
 > Pastikan semua menu dipasang sebelum middleware, khususnya sebelum middleware yang menggunakan data callback query.
 
-Jika kamu menggunakan [custom context type](../guide/context.md#memodifikasi-object-context), kamu juga bisa memasangnya ke `Menu`.
+Jika kamu menggunakan [custom context type](../guide/context#memodifikasi-object-context), kamu juga bisa memasangnya ke `Menu`.
 
 ```ts
 const menu = new Menu<MyContext>("id-menu");
@@ -102,7 +99,7 @@ const menu = new Menu<MyContext>("id-menu");
 
 ## Menambahkan Tombol
 
-Plugin menu mengatur tata letak keyboard kamu persis seperti yang [plugin keyboard inline](./keyboard.md#membuat-keyboard-inline) lakukan.
+Plugin menu mengatur tata letak keyboard kamu persis seperti yang [plugin keyboard inline](./keyboard#membuat-keyboard-inline) lakukan.
 Di plugin menu, class `InlineKeyboard` akan digantikan oleh class `Menu`.
 
 Berikut contoh menu yang memiliki empat tombol dengan tata letak baris 1-2-1.
@@ -182,7 +179,7 @@ Panggil `ctx.menu.update()` agar menu kamu di-render ulang.
 Contoh di atas menunjukkan cara menggunakan menu plugin.
 Sebenarnya menyimpan pengaturan user di sebuah object `Set` bukanlah ide yang bagus, karena data akan hilang ketika bot atau server kamu berhenti bekerja.
 
-Sebaiknya gunakan sebuah database atau [plugin session](./session.md) untuk menyimpan data.
+Sebaiknya gunakan sebuah database atau [plugin session](./session) untuk menyimpan data.
 :::
 
 ## Memperbarui atau Menutup Menu
@@ -309,7 +306,7 @@ Ini berguna untuk menyimpan data kecil di dalam sebuah menu.
 
 > Payload tidak bisa digunakan untuk menyimpan data dalam jumlah besar.
 > Satu-satunya yang bisa kamu simpan adalah string pendek kurang dari 50 byte, misalnya sebuah index ataupun sebuah identifier.
-> Jika kamu ingin menyimpan data user seperti identifier file, URL, dan lain-lain, kamu bisa menggunakan [sessions](./session.md).
+> Jika kamu ingin menyimpan data user seperti identifier file, URL, dan lain-lain, kamu bisa menggunakan [sessions](./session).
 
 Berikut contoh menu yang mengingat nama si penulis pesan di dalam payload-nya.
 Contoh penggunaan lainnya misal untuk menyimpan index dari menu paginasi.
@@ -377,7 +374,7 @@ menu
 > Catatan terjemahan: Setiap kali kami menyebut function range builder atau function factory, maka kami merujuk ke sebuah function yang menciptakan tombol-tombol rentang dinamis untuk menu tersebut.
 
 Function range builder yang kamu tambahkan ke `dynamic` mungkin saja berupa `async`, sehingga kamu bisa membaca data dari sebuah API atau database sebelum mengembalikan range menu baru.
-**Di kebanyakan kasus, membuat rentang dinamis berdasarkan data [session](./session.md) adalah cara yang lebih direkomendasikan.**
+**Di kebanyakan kasus, membuat rentang dinamis berdasarkan data [session](./session) adalah cara yang lebih direkomendasikan.**
 
 Function range builder mengambil sebuah object context sebagai argument pertamanya (object context tidak dicantumkan di contoh di atas).
 Pilihan lainnya, kamu bisa memperoleh instance `MenuRange` baru di argument kedua setelah `ctx`.
@@ -515,7 +512,7 @@ Dengan kata lain, menu tersebut akan di-render sebagian saja.
 
 Ketika tombol yang ditekan sudah diketahui kembali (dan kita sudah memastikan menu tidak [kedaluwarsa](#menu-kedaluwarsa-beserta-fingerprint-nya)), kita akan memanggil handler tersebut.
 
-Secara internal, plugin menu sepenuhnya memanfaatkan [Function Transformer API](../advanced/transformers.md), contohnya untuk me-render secara cepat menu yang keluar saat itu juga.
+Secara internal, plugin menu sepenuhnya memanfaatkan [Function Transformer API](../advanced/transformers), contohnya untuk me-render secara cepat menu yang keluar saat itu juga.
 
 Ketika kamu mendaftarkan menu di hierarki navigasi yang luas, pada kenyataannya mereka tidak akan menyimpan referensi tersebut secara eksplisit.
 Di balik layar, menu-menu yang berasal dari satu struktur ditambahkan ke tempat penampungan besar yang sama, lalu penampungan tersebut digunakan secara bersama-sama oleh semua instance terkait.

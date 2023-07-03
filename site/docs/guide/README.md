@@ -1,8 +1,4 @@
----
-next: ./introduction.md
----
-
-![grammY](/images/grammY.png)
+![grammY](/images/grammY.webp)
 
 # Overview
 
@@ -14,9 +10,9 @@ You've come to the right place.
 grammY is a framework for creating Telegram bots.
 It can be used from TypeScript and JavaScript and runs on Node.js, Deno, and in the browser.
 
-Check out the [Introduction](./introduction.md) if you're new to writing Telegram bots, especially if you have little coding experience.
+Check out the [Introduction](./introduction) if you're new to writing Telegram bots, especially if you have little coding experience.
 
-If you know how to write an application for Node.js or Deno or have already created a Telegram bot with another bot framework, get up and running in minutes with our [Getting Started](./getting-started.md) guide.
+If you know how to write an application for Node.js or Deno or have already created a Telegram bot with another bot framework, get up and running in minutes with our [Getting Started](./getting-started) guide.
 
 ## About the Documentation
 
