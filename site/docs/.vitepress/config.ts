@@ -7,7 +7,7 @@ export default defineConfig({
   lastUpdated: true,
   appearance: "dark",
   cleanUrls: true,
-  cacheDir: ".vitepress/.cache",
+  cacheDir: ".vitepress/cache",
   outDir: ".vitepress/dist",
 
   locales: {
