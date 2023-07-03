@@ -39,6 +39,12 @@
   margin: 0;
 }
 
-:root .external-link-icon-enabled :is(.vp-doc a[href*="://"], .vp-doc a[target="_blank"])::after {
-  content: '';
+:root .external-link-icon-enabled :is(.vp-doc a[href*="://"], .vp-doc a[target="_blank"])::after
+{
+  content: "";
+}
+
+// 404 page
+.NotFound .quote {
+  max-width: 100%; // instead of 256px
 }
