@@ -422,30 +422,34 @@ export const siteZh: LocaleConfig = {
       },
       outline: {
         level: [2, 6],
-        label: "On this page",
+        label: "On this page", *
       },
       editLink: {
         text: "在 GitHub 上编辑此页面",
         pattern:
           "https://github.com/grammyjs/website/edit/main/site/docs/:path",
       },
+      docFooter: {
+        prev: "Previous page", *
+        next: "Next page", *
+      },
       lastUpdatedText: "上次更新",
-      darkModeSwitchLabel: "Appearance", // only displayed in the mobile view.
-      sidebarMenuLabel: "Menu", // only displayed in the mobile view.
-      returnToTopLabel: "Return to top", // only displayed in the mobile view.
-      langMenuLabel: "Change language", // Aria-label
+      darkModeSwitchLabel: "Appearance", * // only displayed in the mobile view.
+      sidebarMenuLabel: "Menu", * // only displayed in the mobile view.
+      returnToTopLabel: "Return to top", * // only displayed in the mobile view.
+      langMenuLabel: "Change language", * // Aria-label
       socialLinks: [
         {
           link: social.telegram.link,
           icon: {
             svg: social.telegram.icon,
           },
-          ariaLabel: "grammY Telegram group link",
+          ariaLabel: "grammY Telegram group link", *
         },
         {
           link: social.github.link,
           icon: social.github.icon,
-          ariaLabel: "grammY repository link",
+          ariaLabel: "grammY repository link", *
         },
       ],
     },
@@ -459,9 +463,9 @@ export const searchZh: LocalSearchTranslations = {
   },
   modal: {
     noResultsText: "没有结果", // 'No result for "$keyword"'
-    displayDetails: "Display detailed list",
-    resetButtonTitle: "Reset search",
-    backButtonTitle: "Close search",
+    displayDetails: "Display detailed list", *
+    resetButtonTitle: "Reset search", *
+    backButtonTitle: "Close search", *
     footer: {
       selectText: "选择", // $enter to select
       selectKeyAriaLabel: "回车键",
@@ -476,9 +480,9 @@ export const searchZh: LocalSearchTranslations = {
 
 export const notFoundZh: Record<string, NotFound> = {
   zh: {
-    title: "PAGE NOT FOUND",
+    title: "PAGE NOT FOUND", *
     backToHome: "回到首页",
-    ariaLabel: "Go to home",
+    ariaLabel: "Go to home", *
     messages: [
       "糟糕！这个页面不存在。",
       "无",

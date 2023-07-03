@@ -422,30 +422,34 @@ export const siteUk: LocaleConfig = {
       },
       outline: {
         level: [2, 6],
-        label: "On this page",
+        label: "On this page", *
       },
       editLink: {
         text: "Редагувати цю сторінку на GitHub",
         pattern:
           "https://github.com/grammyjs/website/edit/main/site/docs/:path",
       },
+      docFooter: {
+        prev: "Previous page", *
+        next: "Next page", *
+      },
       lastUpdatedText: "Востаннє оновлено",
-      darkModeSwitchLabel: "Appearance", // only displayed in the mobile view.
-      sidebarMenuLabel: "Menu", // only displayed in the mobile view.
-      returnToTopLabel: "Return to top", // only displayed in the mobile view.
-      langMenuLabel: "Change language", // Aria-label
+      darkModeSwitchLabel: "Appearance", *// only displayed in the mobile view.
+      sidebarMenuLabel: "Menu", * // only displayed in the mobile view.
+      returnToTopLabel: "Return to top", * // only displayed in the mobile view.
+      langMenuLabel: "Change language", * // Aria-label
       socialLinks: [
         {
           link: social.telegram.link,
           icon: {
             svg: social.telegram.icon,
           },
-          ariaLabel: "grammY Telegram group link",
+          ariaLabel: "grammY Telegram group link", *
         },
         {
           link: social.github.link,
           icon: social.github.icon,
-          ariaLabel: "grammY repository link",
+          ariaLabel: "grammY repository link", *
         },
       ],
     },
@@ -459,9 +463,9 @@ export const searchUk: LocalSearchTranslations = {
   },
   modal: {
     noResultsText: "Немає результатів для", // 'No result for "$keyword"'
-    displayDetails: "Display detailed list",
-    resetButtonTitle: "Reset search",
-    backButtonTitle: "Close search",
+    displayDetails: "Display detailed list", *
+    resetButtonTitle: "Reset search", *
+    backButtonTitle: "Close search", *
     footer: {
       selectText: "обрати", // $enter to select
       selectKeyAriaLabel: "клавіша Enter",
@@ -476,9 +480,9 @@ export const searchUk: LocalSearchTranslations = {
 
 export const notFoundUk: Record<string, NotFound> = {
   uk: {
-    title: "PAGE NOT FOUND",
+    title: "PAGE NOT FOUND", *
     backToHome: "Ніколи не забувайте, звідки ви",
-    ariaLabel: "Go to home",
+    ariaLabel: "Go to home", *
     messages: [
       "Не знайдено",
       "Тут для тебе нічого немає, вибач.",
