@@ -7,8 +7,10 @@ In addition, you can even develop [Web Apps](https://core.telegram.org/bots/weba
 This guide will take you through the process of hosting your Telegram bots on Cloudflare Workers.
 
 :::tip Looking for the Deno Version?
+
 This tutorial explains how to deploy a Telegram bot to Cloudflare Workers using Node.js.
-If you're looking for the Deno version, please check out [this tutorial](./cloudflare-workers-deno.md) instead.
+If you're looking for the Deno version, please check out [this tutorial](./cloudflare-workers) instead.
+
 :::
 
 ## Prerequisites
