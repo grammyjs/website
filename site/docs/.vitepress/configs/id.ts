@@ -474,13 +474,13 @@ export const notFoundId: Record<string, NotFound> = {
     backToHome: "Putar balik, guys!",
     ariaLabel: "Pergi ke beranda",
     messages: [
-      "Halaman tidak ditemukan.",
+      "Halaman tak bertuan.",
       "Zonk!",
       "Maaf, tidak ada apa-apa di sini.",
       "Perjalanan ini \nTerasa sangat menyedihkan",
       "Hey, Google! \nTunjukkan jalan ke halaman yang saya cari",
       "Belum beruntung. Coba lagi.",
-      "Pat nol pat peg not fon.",
+      "Empat nol empat page not found.",
     ],
   },
 };
