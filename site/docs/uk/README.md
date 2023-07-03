@@ -25,16 +25,13 @@ hero:
       link: ./guide/introduction
 
 features:
-  - icon:
-      src: /icons/beach.png
+  - icon: <img class="VPImage" src="/icons/beach-animation.webp" alt="beach animation" width="32" height="32">
     title: Простий у використанні
     details: grammY робить створення ботів Telegram настільки простим, що ви вже знаєте, як це зробити.
-  - icon:
-      src: /icons/palette.png
+  - icon: <img class="VPImage" src="/icons/palette-animation.webp" alt="palette animation" width="32" height="32">
     title: Гнучкий
     details: grammY відкритий і може бути розширений за допомогою плагінів, щоб точно відповідати вашим потребам.
-  - icon:
-      src: /icons/rocket.png
+  - icon: <img class="VPImage" src="/icons/rocket-animation.webp" alt="rocket animation" width="32" height="32">
     title: Масштабований
     details: grammY допоможе вам, коли ваш бот стане популярним і трафік зросте.
 ---

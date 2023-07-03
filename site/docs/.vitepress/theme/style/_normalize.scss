@@ -33,9 +33,10 @@
 }
 
 // Home feature icons (cards)
-:root .VPFeature .VPImage {
+:root .VPFeature .icon .VPImage {
   width: 32px;
   height: 32px;
+  margin: 0;
 }
 
 :root .external-link-icon-enabled :is(.vp-doc a[href*="://"], .vp-doc a[target="_blank"])::after {

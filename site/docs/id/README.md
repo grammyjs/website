@@ -27,16 +27,13 @@ hero:
       link: ./guide/introduction
 
 features:
-  - icon:
-      src: /icons/beach.png
+  - icon: <img class="VPImage" src="/icons/beach-animation.webp" alt="beach animation" width="32" height="32">
     title: Mudah Digunakan
     details: grammY menjadikan pembuatan bot Telegram begitu simpel sehingga kamu pun langsung tahu cara membuatnya.
-  - icon:
-      src: /icons/palette.png
+  - icon: <img class="VPImage" src="/icons/palette-animation.webp" alt="palette animation" width="32" height="32">
     title: Fleksibel
     details: grammY bersifat terbuka dan bisa ditambahkan dengan plugin yang kamu inginkan.
-  - icon:
-      src: /icons/rocket.png
+  - icon: <img class="VPImage" src="/icons/rocket-animation.webp" alt="rocket animation" width="32" height="32">
     title: Dapat Diskalakan
     details: grammY selalu siap membantu ketika bot menjadi semakin populer dan ramai digunakan.
 ---

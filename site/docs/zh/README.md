@@ -25,16 +25,13 @@ hero:
       link: ./guide/introduction
 
 features:
-  - icon:
-      src: /icons/beach.png
+  - icon: <img class="VPImage" src="/icons/beach-animation.webp" alt="beach animation" width="32" height="32">
     title: 易用
     details: grammY 使创建 Telegram Bot 变得如此简单！
-  - icon:
-      src: /icons/palette.png
+  - icon: <img class="VPImage" src="/icons/palette-animation.webp" alt="palette animation" width="32" height="32">
     title: 灵活
     details: grammY 是开放的，通过插件让它完全适合你的需要。
-  - icon:
-      src: /icons/rocket.png
+  - icon: <img class="VPImage" src="/icons/rocket-animation.webp" alt="rocket animation" width="32" height="32">
     title: 可扩展
     details: grammY 在你的 bot 拥有较多流量时提供可靠的帮助.
 ---
