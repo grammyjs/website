@@ -26,7 +26,7 @@ hero:
 
 features:
   - icon: <img class="VPImage" src="/icons/beach-animation.webp" alt="beach animation" width="32" height="32">
-    title: Easy to Use
+    title: Easy-to-use
     details: grammY makes creating Telegram bots so simple you already know how to do it.
   - icon: <img class="VPImage" src="/icons/palette-animation.webp" alt="palette animation" width="32" height="32">
     title: Flexible
