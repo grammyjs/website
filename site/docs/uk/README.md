@@ -30,7 +30,7 @@ features:
     title: Простий у використанні
     details: grammY робить створення ботів Telegram настільки простим, що ви вже знаєте, як це зробити.
   - icon:
-      src: /icons/puzzle.png
+      src: /icons/palette.png
     title: Гнучкий
     details: grammY відкритий і може бути розширений за допомогою плагінів, щоб точно відповідати вашим потребам.
   - icon:

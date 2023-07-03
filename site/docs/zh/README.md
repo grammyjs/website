@@ -30,7 +30,7 @@ features:
     title: 易用
     details: grammY 使创建 Telegram Bot 变得如此简单！
   - icon:
-      src: /icons/puzzle.png
+      src: /icons/palette.png
     title: 灵活
     details: grammY 是开放的，通过插件让它完全适合你的需要。
   - icon:
