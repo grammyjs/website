@@ -1,7 +1,9 @@
 # Documentation
 
 [Documentation for grammY.](https://grammy.dev)
-Contributions are welcome!
+~~Contributions are welcome!~~
+
+**CONTRIBUTIONS ARE CURRENTLY DISABLED, PLEASE COME BACK LATER**
 
 The `logos/` directory only contains the logos of grammY—all website-related things are in `site/`.
 
