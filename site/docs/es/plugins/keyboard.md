@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Teclados en línea y personalizados (incluido)
 
 Tu bot puede enviar una serie de botones, ya sea para ser [mostrados debajo de un mensaje](#teclados-en-linea), o para [reemplazar el teclado del usuario](#teclados-personalizados).
@@ -24,7 +29,7 @@ Ambos son mutuamente excluyentes.
 Además, el tipo de marcado de respuesta enviado no puede cambiarse posteriormente editando el mensaje.
 Por ejemplo, no es posible enviar primero un teclado personalizado junto con un mensaje, y luego editar el mensaje para utilizar un teclado en línea.
 
-# Teclados en línea
+## Teclados en línea
 
 > Revisa la sección del teclado en línea en las [Características de los bots de Telegram](https://core.telegram.org/bots/features#inline-keyboards) escrita por el equipo de Telegram.
 
@@ -32,7 +37,7 @@ grammY tiene una forma sencilla e intuitiva de construir los teclados en línea 
 Proporciona una clase llamada `InlineKeyboard` para esto.
 
 > Los botones añadidos al llamar a `switchInline`, `switchInlineCurrent`, y `switchInlineChosen` inician consultas inline.
-> Consulta la sección sobre [Consultas en línea](./inline-query.md) para obtener más información sobre su funcionamiento.
+> Consulta la sección sobre [Consultas en línea](./inline-query) para obtener más información sobre su funcionamiento.
 
 ### Construyendo un Teclado en Línea
 
@@ -94,7 +99,7 @@ Especifique un teclado en línea vacío para eliminar todos los botones debajo d
 ::: tip Menu Plugin
 El plugin de teclado te da acceso directo a los objetos de actualización que envía Telegram.
 Sin embargo, responder a los clics de esta manera puede ser tedioso.
-Si buscas una implementación de más alto nivel de los teclados en línea, echa un vistazo al [plugin de menús](./menu.md).
+Si buscas una implementación de más alto nivel de los teclados en línea, echa un vistazo al [plugin de menús](./menu).
 Hace que sea sencillo crear menús interactivos.
 :::
 
@@ -168,8 +173,8 @@ He aquí un ejemplo:
 
 ```ts
 const keyboard = new Keyboard()
-  .text("Sí, ciertamente lo son").row()
-  .text("No estoy muy seguro").row()
+  .text("Yes, they certainly are").row()
+  .text("I'm not quite sure").row()
   .text("No. 😈")
   .resized();
 ```
@@ -271,7 +276,7 @@ El resultado será siempre el mismo.
 
 #### Enviar selectivamente un Teclado Personalizado
 
-Puedes llamar a `selected` si quieres mostrar el teclado personalizado sólo a aquellos usuarios que sean @mencionados en el texto del objeto mensaje, y al remitente del mensaje original en caso de que tu mensaje sea una [respuesta](../guide/basics.md#enviando-mensajes-con-respuesta).
+Puedes llamar a `selected` si quieres mostrar el teclado personalizado sólo a aquellos usuarios que sean @mencionados en el texto del objeto mensaje, y al remitente del mensaje original en caso de que tu mensaje sea una [respuesta](../guide/basics#enviando-mensajes-con-respuesta).
 
 ```ts
 new Keyboard()

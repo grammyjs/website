@@ -1,41 +1,39 @@
+---
+prev: false
+next: false
+---
+
 # 重试 API 请求（`auto-retry`）
 
-这个插件是一个 [API 转换函数](../advanced/transformers.md)，这意味着它可以让你动态地拦截和修改传出的 HTTP 请求。
+这个插件是一个 [API 转换函数](../advanced/transformers)，这意味着它可以让你动态地拦截和修改传出的 HTTP 请求。
 更具体一点，这个插件将自动检测一个 API 请求是否失败（比如说因为速率限制），并且使用返回值中的 `retry_after`。
 它会自动捕捉错误，等待指定时间后重试请求。
 
 ::: tip 洪水控制
 Telegram 会在你发送消息过快时向你发出提醒。
 这是洪水控制的重要措施，它确保你的 bot 不会给 Telegram 造成过大的负荷。
-使用这个插件非常重要，因为如果你忘记遵循 429 错误，Telegram 可能会封禁你的 bot。
+使用这个插件非常重要，因为如果你忘记遵循 [429 错误](../resources/faq#_429-too-many-requests-retry-after-x)，Telegram 可能会封禁你的 bot。
 :::
 
 你可以在 `bot.api` 对象上安装这个插件：
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { autoRetry } from "@grammyjs/auto-retry";
 
 // 使用插件。
 bot.api.config.use(autoRetry());
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { autoRetry } = require("@grammyjs/auto-retry");
 
 // 使用插件。
 bot.api.config.use(autoRetry());
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { autoRetry } from "https://esm.sh/@grammyjs/auto-retry";
 
 // 安装插件
@@ -43,7 +41,6 @@ bot.api.config.use(autoRetry());
 ```
 
 :::
-::::
 
 如果你现在在调用，比如说 `sendMessage` 并且碰到了速率限制，它只是会看起来需要请求特别长的时间。
 在内部会执行多个 HTTP 请求，并且添加适当的延迟。
@@ -51,7 +48,7 @@ bot.api.config.use(autoRetry());
 你可以传入一个选项对象，指定最大的重试次数（`maxRetryAttempts`，默认值：3）或者最大的等待时间阈值（`maxDelaySeconds`，默认值：一小时）。
 
 一旦耗尽最大重试次数，将不会再次重试相同错误的请求。
-相反，来自 Telegram 的错误对象会被包装成 [`GrammyError`](../guide/errors.md#grammyerror-对象) 抛出。
+相反，来自 Telegram 的错误对象会被包装成 [`GrammyError`](../guide/errors#grammyerror-对象) 抛出。
 
 同样的，如果请求失败时 `retry_after` 大于 `maxDelaySeconds` 所指定的时间，请求会立即失败。
 

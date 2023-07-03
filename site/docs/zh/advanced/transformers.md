@@ -1,8 +1,3 @@
----
-prev: ./flood.md
-next: ./proxy.md
----
-
 # Bot API Transformers（转换器）
 
 中间件是一个可以处理上下文对象的处理函数，例如处理输入的数据。
@@ -68,12 +63,12 @@ bot.on("message", async (ctx) => {
 
 Transformer 函数像中间件一样灵活，并且他们也有很多不同的应用。
 
-例如，[grammY menu 插件](../plugins/menu.md) 使用了一个 transformer 函数来将 menu 实例转换成一个正确的 payload。
+例如，[grammY menu 插件](../plugins/menu) 使用了一个 transformer 函数来将 menu 实例转换成一个正确的 payload。
 你也可以用它们来：
 
-- 实现 [流量控制](../plugins/transformer-throttler.md)
+- 实现 [流量控制](../plugins/transformer-throttler)
 - 测试期间用来 mock API 请求
-- 增加 [重试行为](../plugins/auto-retry.md)
+- 增加 [重试行为](../plugins/auto-retry)
 - 或者更多其它的事情
 
 注意，不过重试一个 API 调用会有偶然的副作用：如果你调用 `senDocument` 并且将一个可读流实例传递给 `InputFile`，可读流将会在尝试请求时第一时间被读取。
@@ -82,7 +77,7 @@ Transformer 函数像中间件一样灵活，并且他们也有很多不同的�
 
 ## API 调味剂
 
-grammY 具有 [上下文调味剂](../guide/context.md#上下文调味剂) 可以用于调整上下文类型。
+grammY 具有 [上下文调味剂](../guide/context#上下文调味剂) 可以用于调整上下文类型。
 这包括 API 方法——包括那些直接包含在上下文对象中的像 `ctx.reply` ，并且在 `ctx.api` 和 `ctx.api.raw` 中的方法。
 不过你不能通过上下文调味剂来调整 `bot.api` 和 `bot.api.raw` 的类型。
 
@@ -113,4 +108,4 @@ bot.on("message", (ctx) => ctx.api.somePluginMethod());
 
 API 调味剂与上下文调味剂的工作方式完全相似。
 这里有附加的和变革性的 API 调味剂，可以像处理上下文调味剂一样组合多个 API 调味剂。
-如果你还不太清楚这是如何工作的，去查看这里面的指导信息 [关于上下文调味剂的小节](../guide/context.md#上下文调味剂) 。
+如果你还不太清楚这是如何工作的，去查看这里面的指导信息 [关于上下文调味剂的小节](../guide/context#上下文调味剂) 。

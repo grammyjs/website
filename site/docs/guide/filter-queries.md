@@ -1,8 +1,3 @@
----
-prev: ./api.md
-next: ./commands.md
----
-
 # Filter Queries and `bot.on()`
 
 The first argument of `bot.on()` is a string called _filter query_.
@@ -18,7 +13,7 @@ This allows for over 820 different filters to be used, and we may add more over 
 Every valid filter can be auto-completed in your code editor.
 Hence, you can simply type `bot.on("")`, open auto-complete, and search through all queries by typing something.
 
-![Filter Query Search](/images/filter-query-search.png)
+![Filter Query Search](/images/filter-query-search.webp)
 
 The type inference of `bot.on()` will comprehend the filter query you picked.
 It therefore tightens a few types on the context that are known to exist.
@@ -72,7 +67,7 @@ bot.on("::email"); // messages or channel posts with email in text or caption
 ```
 
 Leaving out the _first_ value matches both messages and channel posts.
-[Remember](./context.md#available-actions) that `ctx.msg` gives you access to both messages or channel posts, whichever is matched by the query.
+[Remember](./context#available-actions) that `ctx.msg` gives you access to both messages or channel posts, whichever is matched by the query.
 
 Leaving out the _second_ value matches both entities and caption entities.
 You can leave out both the first and the second part at the same time.
@@ -196,7 +191,7 @@ As an example, it can detect that `ctx.msg.text` is a required property for the 
 ## Useful Tips
 
 Here are some less-known features of filter queries that can come in handy.
-Some of them are a little advanced, so feel free to move on to the [next section](./commands.md).
+Some of them are a little advanced, so feel free to move on to the [next section](./commands).
 
 ### Chat Member Updates
 

@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # 媒体组（内置）
 
 媒体组插件通过允许你构建 `InputMedia` 对象来帮助你发送媒体组。
@@ -9,10 +14,9 @@
 
 你可以这样使用这个插件：
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { InputMediaBuilder } from "grammy";
 
 const photo = InputMediaBuilder.photo(new InputFile("/tmp/photo.mp4"));
@@ -20,10 +24,7 @@ const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
 // 其他
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { InputMediaBuilder } = require("grammy");
 
 const photo = InputMediaBuilder.photo(new InputFile("/tmp/photo.mp4"));
@@ -31,10 +32,7 @@ const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
 // 其他
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { InputMediaBuilder } from "https://deno.land/x/grammy/mod.ts";
 
 const photo = InputMediaBuilder.photo(new InputFile("/tmp/photo.mp4"));
@@ -43,7 +41,6 @@ const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
 ```
 
 :::
-::::
 
 请查看 [API 参考文档](https://deno.land/x/grammy/mod.ts?s=InputMediaBuilder) 中 `InputMediaBuilder` 的所有方法。
 

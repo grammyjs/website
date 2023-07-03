@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Consultas en línea
 
 Con las consultas en línea, los usuarios pueden buscar, examinar y enviar contenido sugerido por tu bot en cualquier chat, aunque no sea miembro del mismo.
@@ -57,10 +62,9 @@ Cada resultado necesita tres cosas.
 grammY exporta un constructor para resultados de consulta en línea, llamado `InlineQueryResultBuilder`.
 Aquí hay algunos ejemplos de su uso.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { InlineKeyboard, InlineQueryResultBuilder } from "grammy";
 
 // Construye un resultado de foto.
@@ -87,10 +91,7 @@ InlineQueryResultBuilder.article("id-4", "Consultas en línea")
   .text("Documentos **destacados**: grammy.dev", { parse_mode: "MarkdownV2" });
 ```
 
-:::
-::: code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { InlineKeyboard, InlineQueryResultBuilder } = require("grammy");
 
 // Construye un resultado de foto.
@@ -117,10 +118,7 @@ InlineQueryResultBuilder.article("id-4", "Consultas en línea")
   .text("Documentos **destacados**: grammy.dev", { parse_mode: "MarkdownV2" });
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import {
   InlineKeyboard,
   InlineQueryResultBuilder,
@@ -151,7 +149,6 @@ InlineQueryResultBuilder.article("id-4", "Consultas en línea")
 ```
 
 :::
-::::
 
 Tenga en cuenta que si desea enviar archivos a través de identificadores de archivo existentes, debe utilizar los métodos `*Cached`.
 
@@ -161,13 +158,13 @@ const audioFileId = "AgADBAADZRAxGyhM3FKSE4qKa-RODckQHxsoABDHe0BDC1GzpGACAAEC";
 InlineQueryResultBuilder.audioCached("id-0", audioFileId);
 ```
 
-> Lee más sobre los identificadores de archivo [aquí](../guide/files.md#cómo-funcionan-los-archivos-para-los-bots-de-telegram).
+> Lee más sobre los identificadores de archivo [aquí](../guide/files#como-funcionan-los-archivos-para-los-bots-de-telegram).
 
 Deberías consultar la [referencia API](https://deno.land/x/grammy/mod.ts?s=InlineQueryResultBuilder) de `InlineQueryResultBuilder` y quizás también la [especificación](https://core.telegram.org/bots/api#inlinequeryresult) de `InlineQueryResult` para ver todas las opciones disponibles.
 
 ## Responder consultas en línea
 
-Después de generar un array de resultados de consultas en línea utilizando el constructor de [arriba](#construcción-de-resultados-de-consultas-en-línea), puedes llamar a `answerInlineQuery` para enviar estos resultados al usuario.
+Después de generar un array de resultados de consultas en línea utilizando el constructor de [arriba](#construccion-de-resultados-de-consultas-en-linea), puedes llamar a `answerInlineQuery` para enviar estos resultados al usuario.
 
 ```ts
 // La autopublicidad desvergonzada en la documentación de un proyecto
@@ -196,10 +193,10 @@ bot.inlineQuery(/mejor bot (framework|library)/, async (ctx) => {
 bot.on("inline_query", (ctx) => ctx.answerInlineQuery([]));
 ```
 
-[Recuerda](../guide/basics.html#envio-de-mensajes) que siempre puedes especificar más opciones cuando llames a métodos de la API utilizando el objeto options de tipo `Other`.
+[Recuerda](../guide/basics#envio-de-mensajes) que siempre puedes especificar más opciones cuando llames a métodos de la API utilizando el objeto options de tipo `Other`.
 Por ejemplo, `answerInlineQuery` le permite realizar la paginación para consultas en línea a través de un desplazamiento, como puede ver [aquí](https://core.telegram.org/bots/api#answerinlinequery).
 
-:::tip Mezcla de texto y medios
+::: tip Mezcla de texto y medios
 Aunque está permitido enviar listas de resultados que contengan elementos multimedia y de texto, la mayoría de los clientes de Telegram no los renderizan muy bien.
 Desde el punto de vista de la experiencia de usuario, deberías evitarlas.
 :::
@@ -218,10 +215,10 @@ await ctx.answerInlineQuery(results, { button });
 ```
 
 Cuando el usuario pulse el botón, se enviará un mensaje de comando `/start` a tu bot.
-El parámetro start estará disponible a través de [deep linking](../guide/commands.md#soporte-de-deep-linking).
+El parámetro start estará disponible a través de [deep linking](../guide/commands#soporte-de-deep-linking).
 En otras palabras, utilizando el fragmento de código anterior, `ctx.match` tendrá el valor `"login"` en tu manejador de comandos.
 
-Si a continuación envía un [teclado en línea](./keyboard.md#construyendo-un-teclado-personalizado) con un botón `switchInline`, el usuario será devuelto al chat donde pulsó inicialmente el botón de resultados de consulta en línea.
+Si a continuación envía un [teclado en línea](./keyboard#construyendo-un-teclado-personalizado) con un botón `switchInline`, el usuario será devuelto al chat donde pulsó inicialmente el botón de resultados de consulta en línea.
 
 ```ts
 bot
@@ -237,7 +234,7 @@ bot
 
 De esta forma, puede realizar, por ejemplo, procedimientos de inicio de sesión en un chat privado con el usuario antes de entregar los resultados de la consulta en línea.
 El diálogo puede ir y venir un poco antes de devolverlos.
-Por ejemplo, puedes [introducir una conversación corta](./conversations.md#instalar-y-entrar-en-una-conversación) con el plugin de conversaciones.
+Por ejemplo, puedes [introducir una conversación corta](./conversations#instalar-y-entrar-en-una-conversacion) con el plugin de conversaciones.
 
 ## Obtener información sobre los resultados elegidos
 

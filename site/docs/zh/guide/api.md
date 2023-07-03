@@ -1,8 +1,3 @@
----
-prev: ./context.md
-next: ./filter-queries.md
----
-
 # Bot API
 
 ## 基本信息
@@ -24,12 +19,12 @@ Telegram Bot 的 API 是这个接口的规范，即一个 [很长的列表](http
 类似地，每当用户返回响应时，会采取相反的路径。
 
 ::: tip 绕过文件大小限制
-Telegram 的后端允许你的 bot [发送文件](./files.md)，最大容量为 2000 MB 。
+Telegram 的后端允许你的 bot [发送文件](./files)，最大容量为 2000 MB 。
 负责将请求转换为 HTTP 的 Bot API 服务器将文件大小限制为下载 50 MB，上传 20 MB。
 
 因此，如果你绕过 Telegram 为你运行的 Bot API 服务器，[使用你自己托管的 Bot API 服务器](https://core.telegram.org/bots/api#using-a-local-bot-api-server)，你可以允许向你的 bot 发送最大可达 2000 MB 的文件。
 
-> 注意：如果你在 [长轮询](./deployment-types.md) 上处理大文件，你应该使用 [grammY runner](../plugins/runner.md)。
+> 注意：如果你在 [长轮询](./deployment-types) 上处理大文件，你应该使用 [grammY runner](../plugins/runner)。
 
 :::
 
@@ -40,7 +35,7 @@ Bot API 的每一个方法在 grammY 中都有对应的方法。
 
 ### 调用方法
 
-你可以通过 `bot.api` 调用 API 方法，或者调用 [等价](./context.md#可用操作) 的 `ctx.api`。
+你可以通过 `bot.api` 调用 API 方法，或者调用 [等价](./context#可用操作) 的 `ctx.api`。
 
 ```ts
 async function sendHelloTo12345() {
@@ -58,7 +53,7 @@ async function sendHelloTo12345() {
 但请注意，上例中的 `sendMessage` 如何接收两个参数？即一个聊天标识符和一个字符串。
 grammY 知道这两个值分别属于 `chat_id` 和 `text` 属性，并将为你构建正确的 JSON 对象。
 
-正如 [前面](./basics.md#发送信息) 提到的，你可以在 `Other` 类型的第三个参数中指定其他选项：
+正如 [前面](./basics#发送信息) 提到的，你可以在 `Other` 类型的第三个参数中指定其他选项：
 
 ```ts
 async function sendHelloTo12345() {
@@ -101,7 +96,7 @@ import { type Chat } from "grammy/types";
 因此，TypeScript 需要设置 `moduleResolution` 为 `node16` 或 `nodenext`。
 调整你的 `tsconfig.json` 并将以下列高亮行添加到配置文件中：
 
-```json{4}
+```json
 {
   "compilerOptions": {
     // ...

@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Inline Query
 
 User bisa mencari, memilih, dan mengirim konten dari hasil yang disarankan oleh bot menggunakan inline query, meski bot tersebut tidak berada di dalam grup mereka.
@@ -58,10 +63,9 @@ Setiap hasil memerlukan tiga hal:
 grammY mengekspor sebuah _builder_ atau pembangun hasil query inline bernama `InlineQueryResultBuilder`.
 Berikut contoh penggunaanya.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { InlineKeyboard, InlineQueryResultBuilder } from "grammy";
 
 // Membuat sebuah hasil foto.
@@ -92,10 +96,7 @@ InlineQueryResultBuilder.article("id-4", "Inline Query")
   });
 ```
 
-:::
-::: code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { InlineKeyboard, InlineQueryResultBuilder } = require("grammy");
 
 // Membuat sebuah hasil foto.
@@ -126,10 +127,7 @@ InlineQueryResultBuilder.article("id-4", "Inline Query")
   });
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import {
   InlineKeyboard,
   InlineQueryResultBuilder,
@@ -164,7 +162,6 @@ InlineQueryResultBuilder.article("id-4", "Inline Query")
 ```
 
 :::
-::::
 
 Perlu diperhatikan, jika kamu ingin mengirim berkas menggunakan pengidentifikasi berkas yang sudah ada, kamu perlu menggunakan method `*Cached`.
 
@@ -174,7 +171,7 @@ const audioFileId = "AgADBAADZRAxGyhM3FKSE4qKa-RODckQHxsoABDHe0BDC1GzpGACAAEC";
 InlineQueryResultBuilder.audioCached("id-0", audioFileId);
 ```
 
-> Baca lebih lanjut mengenai pengidentifikasi berkas [di sini](../guide/files.md#bagaimana-file-bekerja-di-bot-telegram).
+> Baca lebih lanjut mengenai pengidentifikasi berkas [di sini](../guide/files#bagaimana-file-bekerja-di-bot-telegram).
 
 Kamu sebaiknya membaca [referensi API](https://deno.land/x/grammy/mod.ts?s=InlineQueryResultBuilder) `InlineQueryResultBuilder` dan mungkin juga [spesifikasi](https://core.telegram.org/bots/api#inlinequeryresult) `InlineQueryResult` untuk melihat opsi-opsi yang tersedia.
 
@@ -208,11 +205,11 @@ Mereka bahkan punya website dengan terjemahan yang keren! 👇`,
 bot.on("inline_query", (ctx) => ctx.answerInlineQuery([]));
 ```
 
-[Ingat!](../guide/basics.md#mengirim-pesan)
+[Ingat!](../guide/basics#mengirim-pesan)
 Kamu bisa menentukan opsi lanjutan ketika memanggil method API menggunakan object opsi type `Other`.
 Contohnya, dengan `answerInlineQuery`, kamu bisa membuat paginasi untuk inline query menggunakan sebuah offset, seperti yang bisa dilihat [di sini](https://core.telegram.org/bots/api#answerinlinequery).
 
-:::tip Mencampur Teks dan Media
+::: tip Mencampur Teks dan Media
 Meski diperbolehkan untuk mengirim sebuah daftar hasil yang mengandung kedua element media dan teks, namun sebagian besar aplikasi Telegram tidak mampu menampilkan hasilnya dengan baik.
 Demi kenyamanan pengguna, lebih baik tidak dilakukan.
 :::
@@ -231,10 +228,10 @@ await ctx.answerInlineQuery(results, { button });
 ```
 
 Ketika user menekan tombol tersebut, sebuah pesan perintah `/start` akan dikirim ke bot kamu.
-Parameter start-nya tersedia melalui [penautan mendalam](../guide/commands.md#dukungan-deep-linking).
+Parameter start-nya tersedia melalui [penautan mendalam](../guide/commands#dukungan-deep-linking).
 Artinya, dari potongan kode di atas, `ctx.match` akan mendapatkan nilai `"login"` di penanganan perintah kamu.
 
-Jika setelahnya kamu mengirim sebuah [inline keyboard](./keyboard.md#membuat-keyboard-inline) menggunakan sebuah tombol `switchInline`, user akan dibawa kembali ke chat dimana mereka menekan tombol hasil inline query di awal.
+Jika setelahnya kamu mengirim sebuah [inline keyboard](./keyboard#membuat-keyboard-inline) menggunakan sebuah tombol `switchInline`, user akan dibawa kembali ke chat dimana mereka menekan tombol hasil inline query di awal.
 
 ```ts
 bot
@@ -250,7 +247,7 @@ bot
 
 Dengan cara seperti itu, kamu bisa melakukan banyak hal, misalnya prosedur login di obrolan pribadi dengan user sebelum mengirimkan hasil inline query.
 Percakapannya bisa dilakukan beberapa kali sebelum kamu mengirim mereka kembali.
-Sebagai contoh, kamu bisa [memasuki sebuah percakapan singkat](./conversations.md#menginstal-dan-memasuki-sebuah-percakapan) menggunakan plugin percakapan.
+Sebagai contoh, kamu bisa [memasuki sebuah percakapan singkat](./conversations#menginstal-dan-memasuki-sebuah-percakapan) menggunakan plugin percakapan.
 
 ## Mendapatkan Umpan Balik dari Hasil yang Dipilih
 

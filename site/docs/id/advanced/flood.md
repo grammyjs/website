@@ -1,8 +1,3 @@
----
-prev: ./reliability.md
-next: ./transformers.md
----
-
 # Peningkatan IV: Pembatasan Flood
 
 Telegram memiliki limit atau batas maksimal terhadap jumlah pesan yang dikirim suatu bot setiap detiknya.
@@ -14,12 +9,12 @@ Hanya ada satu cara yang tepat untuk mengatasi permasalahan tersebut:
 1. Tunggu hingga waktu yang telah ditentukan.
 2. Coba kirimkan lagi permintaannya.
 
-Untungnya, terdapat sebuah [plugin](../plugins/auto-retry.md) untuk melakukan hal tersebut.
+Untungnya, terdapat sebuah [plugin](../plugins/auto-retry) untuk melakukan hal tersebut.
 
 Cara kerja plugin ini [sangat sederhana](https://github.com/grammyjs/auto-retry/blob/main/src/index.ts).
 Ia hanya tidur (menunggu) dan mengulang kembali (kirim ulang permintaan).
 Sayangnya, cara kerja yang seperti itu memiliki dampak yang cukup signifikan: **semua permintaan menjadi lambat**.
-Artinya, ketika kamu menjalankan bot di sebuah webhooks, [secara teknis kamu memerlukan sebuah antrian atau queque](../guide/deployment-types.md#mengakhiri-request-webhook-tepat-waktu), atau cara lainnya dengan mengonfigurasi [plugin auto-retry](../plugins/auto-retry.md) sedemikian rupa sehingga ia tidak memakan banyak waktu---tetapi dampaknya bot kamu bisa melewatkan beberapa permintaan.
+Artinya, ketika kamu menjalankan bot di sebuah webhooks, [secara teknis kamu memerlukan sebuah antrian atau queque](../guide/deployment-types#mengakhiri-request-webhook-tepat-waktu), atau cara lainnya dengan mengonfigurasi [plugin auto-retry](../plugins/auto-retry) sedemikian rupa sehingga ia tidak memakan banyak waktu---tetapi dampaknya bot kamu bisa melewatkan beberapa permintaan.
 
 ## Berapa Lama Sebenarnya Durasi Pembatasannya
 

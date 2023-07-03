@@ -1,8 +1,3 @@
----
-prev: ./errors.md
-next: ./games.md
----
-
 # 文件管理
 
 Telegram bot 不仅可以发送和接受文本，还可以发送许多其他种类的消息，比如图片和视频。
@@ -69,16 +64,16 @@ bot.on("message:voice", async (ctx) => {
 ```
 
 ::: tip 传入一个自定义个 file_id 给 `getFile` 方法
-在上下文对象中，`getFile` 是一个 [快捷方式](./context.md#快捷方式)，它可以在当前的消息中下载文件。
+在上下文对象中，`getFile` 是一个 [快捷方式](./context#快捷方式)，它可以在当前的消息中下载文件。
 如果你想要在处理消息的时候拿到不同的文件，请使用 `ctx.api.getFile(file_id)`。
 :::
 
-> 如果你想要去接收所有类型的文件，了解使用 [`:media` 和 `:file` 快捷方式](./filter-queries.md#快捷方式) 用于筛选查询。
+> 如果你想要去接收所有类型的文件，了解使用 [`:media` 和 `:file` 快捷方式](./filter-queries#快捷方式) 用于筛选查询。
 
 一旦你调用了 `getFile`，你可以使用返回的 `file_path` 下载文件，使用这个 URL `https://api.telegram.org/file/bot<token>/<file_path>`，其中 `<token>` 必须用你的 bot token 替换。
 
 ::: tip 文件插件
-grammY 没有捆绑自己的文件下载器，但是你可以安装 [官方文件插件](../plugins/files.md)。
+grammY 没有捆绑自己的文件下载器，但是你可以安装 [官方文件插件](../plugins/files)。
 这允许你通过 `await file.download()` 下载文件，以及通过 `file.getUrl()` 获取一个下载文件的 URL。
 :::
 
@@ -110,7 +105,7 @@ Telegram bot 有 [三种方法](https://core.telegram.org/bots/api#sending-files
 await ctx.replyWithPhoto(existingFileId);
 
 // 通过 URL 发送
-await ctx.replyWithPhoto("https://grammy.dev/images/Y.png");
+await ctx.replyWithPhoto("https://grammy.dev/images/Y.webp");
 
 // 或者，你可以使用 bot.api.sendPhoto() 或 ctx.api.sendPhoto()
 ```
@@ -138,10 +133,9 @@ await ctx.replyWithPhoto(new InputFile("/tmp/picture.jpg"));
 
 如果你的机器中已经存储了一个文件，你可以让 garmmY 上传这个文件。
 
-::::code-group
-:::code-group-item Node.js
+::: code-group
 
-```ts
+```ts [Node.js]
 import { createReadStream } from "fs";
 
 // 发送一个本地文件。
@@ -151,10 +145,7 @@ new InputFile("/path/to/file");
 new InputFile(createReadStream("/path/to/file"));
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 // 发送一个本地文件。
 new InputFile("/path/to/file");
 
@@ -163,17 +154,15 @@ new InputFile(await Deno.open("/path/to/file"));
 ```
 
 :::
-::::
 
 #### 上传原始二进制数据
 
 你也可以发送一个 `Buffer` 对象，或者一个产生 `Buffer` 对象的迭代器。
 在 Deno 中，你也可以发送 `Blob` 对象。
 
-::::code-group
-:::code-group-item Node.js
+::: code-group
 
-```ts
+```ts [Node.js]
 // 发送一个 buffer 或者一个 byte 数组。
 const buffer = Uint8Array.from([65, 66, 67]);
 new InputFile(buffer); // "ABC"
@@ -184,10 +173,7 @@ new InputFile(function* () {
 });
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 // 发送一个 blob。
 const blob = new Blob("ABC", { type: "text/plain" });
 new InputFile(blob);
@@ -202,7 +188,6 @@ new InputFile(function* () {
 ```
 
 :::
-::::
 
 #### 下载和重新上传文件
 
@@ -214,31 +199,26 @@ new InputFile(function* () {
 > 请注意，Telegram 支持用许多种方法为你下载文件。
 > 如果可能，你应该选择 [通过 URL 发送文件](#通过-file-id-或者-url)，而不是使用 `InputFile` 来通过你的服务器流式传输文件内容。
 
-::::code-group
-:::code-group-item Node.js
+::: code-group
 
-```ts
+```ts [Node.js]
 import { URL } from "url";
 // 下载一个文件，并将响应的内容流转到 Telegram。
-new InputFile(new URL("https://grammy.dev/images/Y.png"));
-new InputFile({ url: "https://grammy.dev/images/Y.png" }); // 等价的写法
+new InputFile(new URL("https://grammy.dev/images/Y.webp"));
+new InputFile({ url: "https://grammy.dev/images/Y.webp" }); // 等价的写法
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 // 下载一个文件，并将响应的内容流转到 Telegram。
-new InputFile(new URL("https://grammy.dev/images/Y.png"));
-new InputFile({ url: "https://grammy.dev/images/Y.png" }); // 等价的写法
+new InputFile(new URL("https://grammy.dev/images/Y.webp"));
+new InputFile({ url: "https://grammy.dev/images/Y.webp" }); // 等价的写法
 ```
 
 :::
-::::
 
 ### 添加一个标题
 
-正如 [前面](./basics.md#发送信息) 所解释的，当发送文件时，你可以在 `Other` 类型的选项对象中指定更多的选项。
+正如 [前面](./basics#发送信息) 所解释的，当发送文件时，你可以在 `Other` 类型的选项对象中指定更多的选项。
 例如，这让你可以指定文件的标题。
 
 ```ts
@@ -262,4 +242,4 @@ grammY 本身可以不受限制地发送文件，但是 Telegram 在他们的 [�
 托管一个 Bot API 服务器与 grammY 无关。
 然而，grammY 支持在配置 bot 需要调用的所有必要方法。
 
-另外，你可能想要在 [这里](./api.md) 重温一下我们关于 Bot API 的指引文档。
+另外，你可能想要在 [这里](./api) 重温一下我们关于 Bot API 的指引文档。

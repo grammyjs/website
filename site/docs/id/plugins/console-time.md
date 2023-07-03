@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Menggunakan Console Log untuk Men-debug
 
 Jika kamu sudah terbiasa dengan JavaScript/TypeScript, kemungkinan besar kamu sering menggunakan [`console.log`](https://developer.mozilla.org/en-US/docs/Web/API/Console/log) atau [`console.time`](https://developer.mozilla.org/en-US/docs/Web/API/Console/time) untuk men-debug suatu program.

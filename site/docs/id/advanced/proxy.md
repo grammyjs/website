@@ -1,8 +1,3 @@
----
-prev: ./transformers.md
-next: ./deployment.md
----
-
 # Dukungan Proxy
 
 Di grammY, kamu bisa mengatur bagaimana network request dilakukan.

@@ -93,7 +93,7 @@ npm run deploy
 We need to tell Telegram where to send updates to.
 Open your browser and visit this URL:
 
-```text
+```txt
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<MY_BOT>.<MY_SUBDOMAIN>.workers.dev/
 ```
 

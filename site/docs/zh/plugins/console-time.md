@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # 调试时输出日志
 
 如果你熟悉 JavaScript / TypeScript，你可能使用 [`console.log`](https://developer.mozilla.org/en-US/docs/Web/API/Console/log) 或 [`console.time`](https://developer.mozilla.org/en-US/docs/Web/API/Console/time) 来检查你正在调试的事情。

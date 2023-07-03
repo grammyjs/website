@@ -1,3 +1,7 @@
+---
+next: false
+---
+
 # Bagaimana jika grammY Dibandingkan dengan Framework Bot Lainnya?
 
 grammY dibuat dari nol untuk memperoleh performa yang optimal serta mudah untuk dikelola.
@@ -44,7 +48,7 @@ Selain itu, ia juga membuat user baru kesulitan untuk memulai.
 **grammY mencoba mengambil langkah dengan membuat sebuah framework bot yang mendukung type-safe, tetapi bisa digunakan dengan mudah**.
 Dengan begitu, kita bisa terhindar dari diskusi panas mengenai permasalahan typing internal yang aneh tadi.
 Ia juga harus bisa menghasilkan sebuah proyek yang rapi, konsisten, serta compile code yang menyediakan user sebuah type yang sempurna (=support code editor yang lebih baik).
-Type safety menyediakan fitur-fitur lanjutan yang secara fundamental mengubah cara pandang kita dalam mengembangkan sebuah bot, contohnya [transformer API](../advanced//transformers.md).
+Type safety menyediakan fitur-fitur lanjutan yang secara fundamental mengubah cara pandang kita dalam mengembangkan sebuah bot, contohnya [transformer API](../advanced//transformers).
 
 Sekarang, Telegraf 3 sudah usang.
 Di luar sana terdapat beberapa fork yang mencoba untuk mengelola code base lama tersebut agar selalu up-to-date dengan API Bot Telegram yang terus berkembang, tetapi kompatibilitasnya masih perlu dipertanyakan.
@@ -56,7 +60,7 @@ Dikarenakan pengembangan Telegraf terhenti di antara versi 3 dan 4, maka kita ak
 #### Dibandingkan dengan v3
 
 Karena memiliki sejarah yang serupa, grammY dan Telegraf memiliki banyak kesamaan.
-Mereka berdua menggunakan sebuah [sistem middleware](../guide/middleware.md) sebagai dasarnya.
+Mereka berdua menggunakan sebuah [sistem middleware](../guide/middleware) sebagai dasarnya.
 Syntax-syntax dasar yang digunakan juga tidak terlalu berbeda:
 
 ```ts
@@ -83,7 +87,7 @@ Akibatnya, beberapa user diharuskan menonaktifkan pengecekan kode ketika menggun
 Padahal, type-safe adalah salah satu fitur unggulan untuk semua jenis code base.
 
 grammY dan Telegraf memiliki perbedaan code base.
-Karena sudah menggunakan kode terbaru, grammY sekarang mampu memodifikasi sistem middleware untuk beberapa penggunaan menarik lainnya, seperti [filter query](../guide/filter-queries.md), [error boundary](../guide/errors.md#error-boundary), [transformer API](../advanced/transformers.md), dan lain sebagainya.
+Karena sudah menggunakan kode terbaru, grammY sekarang mampu memodifikasi sistem middleware untuk beberapa penggunaan menarik lainnya, seperti [filter query](../guide/filter-queries), [error boundary](../guide/errors#error-boundary), [transformer API](../advanced/transformers), dan lain sebagainya.
 Ini juga membuka kemungkinan untuk mengembangkan plugin-plugin bermanfaat yang sebelumnya tidak mungkin dilakukan di Telegraf.
 
 Kelebihan utama Telegraf dibandingkan grammY adalah **ia lebih populer**.

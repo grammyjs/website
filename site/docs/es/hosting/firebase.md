@@ -27,7 +27,7 @@ Para escribir funciones y desplegarlas en Firebase Functions, necesitarás confi
 > Es importante tener en cuenta que actualmente sólo las versiones 14, 16 y 18 de Node.js son compatibles con Firebase Functions.
 > Para más información sobre las versiones de Node.js soportadas, consulte [aquí](https://firebase.google.com/docs/functions/manage-functions#set_nodejs_version).
 
-Una vez que tengas Node.js y NPM instalados, instala Firebase CLI globalmente:
+Una vez que tengas Node.js y npm instalados, instala Firebase CLI globalmente:
 
 ```sh
 npm install -g firebase-tools

@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Inline 与自定义 Keyboards（内置）
 
 你的 bot 可以发送一些按钮，可以 [显示在信息下面](#inline-keyboards)，也可以 [替换用户的键盘](#自定义-keyboards)。
@@ -32,7 +37,7 @@ grammY 有一个简单且直观的方式来构建 inline keyboard，让你的 bo
 它提供了一个叫做 `InlineKeyboard` 的类。
 
 > 通过调用 `switchInline`、`switchInlineCurrent` 和 `switchInlineChosen` 添加的按钮都可以启动 Inline Queries。
-> 你也可以查看 [Inline Queries](./inline-query.md) 的部分，来了解更多关于它们是怎样工作的。
+> 你也可以查看 [Inline Queries](./inline-query) 的部分，来了解更多关于它们是怎样工作的。
 
 ### 构建一个 Inline Keyboard
 
@@ -94,7 +99,7 @@ await ctx.reply(text, {
 ::: tip 菜单插件
 keyboard 插件让你可以获取到 Telegram 发送的 update 对象。
 然而，这种方式可能会很麻烦。
-如果你想要一个更高级的实现，请查看 [菜单插件](./menu.md)。
+如果你想要一个更高级的实现，请查看 [菜单插件](./menu)。
 它使得创建交互式菜单更加简单。
 :::
 
@@ -266,7 +271,7 @@ new Keyboard()
 
 #### 选择性地发送自定义 Keyboard
 
-如果你想只向消息对象的文本中提到的 @ 的用户显示自定义 keyboard，你可以调用 `selected`，如果你的消息是 [回复](../guide/basics.md#发送带回复的信息)，则向原始消息的发送者显示。
+如果你想只向消息对象的文本中提到的 @ 的用户显示自定义 keyboard，你可以调用 `selected`，如果你的消息是 [回复](../guide/basics#发送带回复的信息)，则向原始消息的发送者显示。
 
 ```ts
 new Keyboard()

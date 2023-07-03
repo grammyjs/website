@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Conversations (`conversations`)
 
 Create powerful conversational interfaces with ease.
@@ -9,7 +14,7 @@ Most chats consist of more than just one single message. (duh)
 For example, you may want to ask the user a question, and then wait for the response.
 This may even go back and forth several times, so that a conversation unfolds.
 
-When you think about [middleware](../guide/middleware.md), you will notice that everything is based around a single [context object](../guide/context.md) per handler.
+When you think about [middleware](../guide/middleware), you will notice that everything is based around a single [context object](../guide/context) per handler.
 This means that you always only handle a single message in isolation.
 It is not easy to write something like "check the text three messages ago" or something.
 
@@ -51,10 +56,9 @@ Let's see how it's done!
 
 First of all, lets import a few things.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import {
   type Conversation,
   type ConversationFlavor,
@@ -63,20 +67,14 @@ import {
 } from "@grammyjs/conversations";
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const {
   conversations,
   createConversation,
 } = require("@grammyjs/conversations");
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import {
   type Conversation,
   type ConversationFlavor,
@@ -86,7 +84,6 @@ import {
 ```
 
 :::
-::::
 
 With that out of the way, we can now have a look at how to define conversational interfaces.
 
@@ -102,13 +99,13 @@ async function greeting(conversation, ctx) {
 Let's see what the two parameters are.
 
 **The second parameter** is not that interesting, it is just a regular context object.
-As always, it is called `ctx` and uses your [custom context type](../guide/context.md#customizing-the-context-object) (maybe called `MyContext`).
-The conversations plugin exports a [context flavor](../guide/context.md#additive-context-flavors) called `ConversationFlavor`.
+As always, it is called `ctx` and uses your [custom context type](../guide/context#customizing-the-context-object) (maybe called `MyContext`).
+The conversations plugin exports a [context flavor](../guide/context#additive-context-flavors) called `ConversationFlavor`.
 
 **The first parameter** is the central element of this plugin.
 It is commonly named `conversation`, and it has the type `Conversation` ([API reference](https://deno.land/x/grammy_conversations/mod.ts?s=Conversation)).
 It can be used as a handle to control the conversation, such as waiting for user input, and more.
-The type `Conversation` expects your [custom context type](../guide/context.md#customizing-the-context-object) as a type parameter, so you would often use `Conversation<MyContext>`.
+The type `Conversation` expects your [custom context type](../guide/context#customizing-the-context-object) as a type parameter, so you would often use `Conversation<MyContext>`.
 
 In summary, in TypeScript, your conversation builder function will look like this.
 
@@ -124,10 +121,9 @@ async function greeting(conversation: MyConversation, ctx: MyContext) {
 Inside of your conversation builder function, you can now define how the conversation should look.
 Before we go in depth about every feature of this plugin, let's have a look at a more complex example than the [simple one](#simple-example) above.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 async function movie(conversation: MyConversation, ctx: MyContext) {
   await ctx.reply("How many favorite movies do you have?");
   const count = await conversation.form.number();
@@ -143,10 +139,7 @@ async function movie(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 async function movie(conversation, ctx) {
   await ctx.reply("How many favorite movies do you have?");
   const count = await conversation.form.number();
@@ -163,13 +156,12 @@ async function movie(conversation, ctx) {
 ```
 
 :::
-::::
 
 Can you figure out how this bot will work?
 
 ## Installing and Entering a Conversation
 
-First of all, you **must** use the [session plugin](./session.md) if you want to use the conversations plugin.
+First of all, you **must** use the [session plugin](./session) if you want to use the conversations plugin.
 You also have to install the conversations plugin itself, before you can register individual conversations on your bot.
 
 ```ts
@@ -223,10 +215,9 @@ bot.command("start", (ctx) => ctx.conversation.enter("new-name"));
 
 In total, your code should now roughly look like this:
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context, session } from "grammy";
 import {
   type Conversation,
@@ -258,10 +249,7 @@ bot.command("start", async (ctx) => {
 bot.start();
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot, Context, session } = require("grammy");
 const {
   conversations,
@@ -288,10 +276,7 @@ bot.command("start", async (ctx) => {
 bot.start();
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot, Context, session } from "https://deno.land/x/grammy/mod.ts";
 import {
   type Conversation,
@@ -324,7 +309,6 @@ bot.start();
 ```
 
 :::
-::::
 
 ### Installation With Custom Session Data
 
@@ -346,7 +330,7 @@ type MyContext = Context & SessionFlavor<SessionData> & ConversationFlavor;
 
 Most importantly, when installing the session plugin with an external storage, you will have to provide the session data explicitly.
 All storage adapters allow you to pass the `SessionData` as a type parameter.
-For example, this is how you'd have to do it with the [`freeStorage`](./session.md#free-storage) that grammY provides.
+For example, this is how you'd have to do it with the [`freeStorage`](./session#free-storage) that grammY provides.
 
 ```ts
 // Install the session plugin.
@@ -361,7 +345,7 @@ You can do the same thing for all other storage adapters, such as `new FileAdapt
 
 ### Installation With Multi Sessions
 
-Naturally, you can combine conversations with [multi sessions](./session.md#multi-sessions).
+Naturally, you can combine conversations with [multi sessions](./session#multi-sessions).
 
 This plugin stores the conversation data inside `session.conversation`.
 This means that if you want to use multi sessions, you have to specify this fragment.
@@ -385,10 +369,9 @@ For example, if you leave the conversation config empty as illustrated above, th
 The conversation will run until your conversation builder function completes.
 This means that you can simply leave a conversation by using `return` or `throw`.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 async function hiAndBye(conversation: MyConversation, ctx: MyContext) {
   await ctx.reply("Hi! And Bye!");
   // Leave the conversation:
@@ -396,10 +379,7 @@ async function hiAndBye(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 async function hiAndBye(conversation, ctx) {
   await ctx.reply("Hi! And Bye!");
   // Leave the conversation:
@@ -408,7 +388,6 @@ async function hiAndBye(conversation, ctx) {
 ```
 
 :::
-::::
 
 (Yes, putting a `return` at the end of the function is a bit pointless, but you get the idea.)
 
@@ -417,18 +396,17 @@ However, the [session plugin](#installing-and-entering-a-conversation) only pers
 Hence, if you throw an error inside your conversation and do not catch it before it reaches the session plugin, it will not be saved that the conversation was left.
 As a result, the next message will cause the same error.
 
-You can mitigate this by installing an [error boundary](../guide/errors.md#error-boundaries) between the session and the conversation.
-That way, you can prevent the error from propagating up the [middleware tree](../advanced/middleware.md) and hence permit the session plugin to write back the data.
+You can mitigate this by installing an [error boundary](../guide/errors#error-boundaries) between the session and the conversation.
+That way, you can prevent the error from propagating up the [middleware tree](../advanced/middleware) and hence permit the session plugin to write back the data.
 
 > Note that if you are using the default in-memory sessions, all changes to the session data are reflected immediately, because there is no storage backend.
 > In that case, you do not need to use error boundaries to leave a conversation by throwing an error.
 
 This is how error boundaries and conversations could be used together.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 bot.use(session({
   storage: freeStorage(bot.token), // adjust
   initial: () => ({}),
@@ -447,10 +425,7 @@ bot.errorBoundary(
 );
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 bot.use(session({
   storage: freeStorage(bot.token), // adjust
   initial: () => ({}),
@@ -470,19 +445,17 @@ bot.errorBoundary(
 ```
 
 :::
-::::
 
-Whatever you do, you should remember to [install an error handler](../guide/errors.md) on your bot.
+Whatever you do, you should remember to [install an error handler](../guide/errors) on your bot.
 
 If you want to hard-kill the conversation from your regular middleware while it is waiting for user input, you can also use `await ctx.conversation.exit()`.
 This will simply erase the conversation plugin's data from the session.
 It's often better to stick with simply returning from the function, but there are a few examples where using `await ctx.conversation.exit()` is convenient.
 Remember that you must `await` the call.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts{6,22}
+```ts{6,22} [TypeScript]
 async function movie(conversation: MyConversation, ctx: MyContext) {
   // TODO: code the conversation
 }
@@ -507,10 +480,7 @@ bot.use(createConversation(movie));
 bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js{6,22}
+```js{6,22} [JavaScript]
 async function movie(conversation, ctx) {
   // TODO: code the conversation
 }
@@ -536,7 +506,6 @@ bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 ```
 
 :::
-::::
 
 Note that the order matters here.
 You must first install the conversations plugin (line 6) before you can call `await ctx.conversation.exit()`.
@@ -546,20 +515,16 @@ Also, the generic cancel handlers must be installed before the actual conversati
 
 You can use the conversation handle `conversation` to wait for the next update in this particular chat.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 async function waitForMe(conversation: MyConversation, ctx: MyContext) {
   // Wait for the next update:
   const newContext = await conversation.wait();
 }
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 async function waitForMe(conversation, ctx) {
   // Wait for the next update:
   const newContext = await conversation.wait();
@@ -567,18 +532,16 @@ async function waitForMe(conversation, ctx) {
 ```
 
 :::
-::::
 
 An update can mean that a text message was sent, or a button was pressed, or something was edited, or virtually any other action was performed by the user.
 Check out the full list in the Telegram docs [here](https://core.telegram.org/bots/api#update).
 
-The `wait` method always yields a new [context object](../guide/context.md) representing the received update.
+The `wait` method always yields a new [context object](../guide/context) representing the received update.
 That means you're always dealing with as many context objects as there are updates received during the conversation.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 const TEAM_REVIEW_CHAT = -1001493653006;
 async function askUser(conversation: MyConversation, ctx: MyContext) {
   // Ask the user for their home address.
@@ -603,10 +566,7 @@ async function askUser(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const TEAM_REVIEW_CHAT = -1001493653006;
 async function askUser(conversation, ctx) {
   // Ask the user for their home address.
@@ -632,19 +592,17 @@ async function askUser(conversation, ctx) {
 ```
 
 :::
-::::
 
-Usually, outside of the conversations plugin, each of these updates would be handled by the [middleware system](../guide/middleware.md) of your bot.
+Usually, outside of the conversations plugin, each of these updates would be handled by the [middleware system](../guide/middleware) of your bot.
 Hence, your bot would handle the update via a context object which gets passed to your handlers.
 
 In conversations, you will obtain this new context object from the `wait` call.
 In turn, you can handle different updates differently based on this object.
 For example, you can check for text messages:
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 async function waitForText(conversation: MyConversation, ctx: MyContext) {
   // Wait for the next update:
   ctx = await conversation.wait();
@@ -655,10 +613,7 @@ async function waitForText(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 async function waitForText(conversation, ctx) {
   // Wait for the next update:
   ctx = await conversation.wait();
@@ -670,26 +625,21 @@ async function waitForText(conversation, ctx) {
 ```
 
 :::
-::::
 
 In addition, there are a number of other methods alongside `wait` that let you wait for specific updates only.
-One example is `waitFor` which takes a [filter query](../guide/filter-queries.md) and then only waits for updates that match the provided query.
+One example is `waitFor` which takes a [filter query](../guide/filter-queries) and then only waits for updates that match the provided query.
 This is especially powerful in combination with [object destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment):
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 async function waitForText(conversation: MyConversation, ctx: MyContext) {
   // Wait for the next text message update:
   const { msg: { text } } = await conversation.waitFor("message:text");
 }
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 async function waitForText(conversation, ctx) {
   // Wait for the next text message update:
   const { msg: { text } } = await conversation.waitFor("message:text");
@@ -697,7 +647,6 @@ async function waitForText(conversation, ctx) {
 ```
 
 :::
-::::
 
 Check out the [API reference](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#method_wait_0) to see all available methods that are similar to `wait`.
 
@@ -805,10 +754,9 @@ do {
 You can also split up your code in several functions, and reuse them.
 For example, this is how you can define a reusable captcha.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 async function captcha(conversation: MyConversation, ctx: MyContext) {
   await ctx.reply("Prove you are human! What is the answer to everything?");
   const { message } = await conversation.wait();
@@ -816,10 +764,7 @@ async function captcha(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 async function captcha(conversation, ctx) {
   await ctx.reply("Prove you are human! What is the answer to everything?");
   const { message } = await conversation.wait();
@@ -828,15 +773,13 @@ async function captcha(conversation, ctx) {
 ```
 
 :::
-::::
 
 It returns `true` if the user may pass, and `false` otherwise.
 You can now use it in your main conversation builder function like this:
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 async function enterGroup(conversation: MyConversation, ctx: MyContext) {
   const ok = await captcha(conversation, ctx);
 
@@ -845,10 +788,7 @@ async function enterGroup(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 async function enterGroup(conversation, ctx) {
   const ok = await captcha(conversation, ctx);
 
@@ -858,7 +798,6 @@ async function enterGroup(conversation, ctx) {
 ```
 
 :::
-::::
 
 See how the captcha function can be reused in different places in your code.
 
@@ -873,7 +812,7 @@ Naturally, you can use error handling in your functions, too.
 Regular `try`/`catch` statements work just fine, also across functions.
 After all, conversations are just JavaScript.
 
-If the main conversation function throws an error, the error will propagate further into the [error handling mechanisms](../guide/errors.md) of your bot.
+If the main conversation function throws an error, the error will propagate further into the [error handling mechanisms](../guide/errors) of your bot.
 
 ## Modules and Classes
 
@@ -882,10 +821,9 @@ That way, you can define some functions in one file, `export` them, and then `im
 
 If you want, you can also define classes.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 class Auth {
   public token?: string;
 
@@ -915,10 +853,7 @@ async function askForToken(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 class Auth {
   constructor(conversation) {
     this.#conversation = conversation;
@@ -949,7 +884,6 @@ async function askForToken(conversation, ctx) {
 ```
 
 :::
-::::
 
 The point here is not so much that we strictly recommend you to do this.
 It is rather meant as an example for how you can use the endless flexibilities of JavaScript to structure your code.
@@ -960,20 +894,16 @@ As mentioned [earlier](#waiting-for-updates), there are several different utilit
 
 If these methods are not enough, the conversations plugin provides even more helper functions for building forms via `conversation.form`.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 async function waitForMe(conversation: MyConversation, ctx: MyContext) {
   await ctx.reply("How old are you?");
   const age: number = await conversation.form.number();
 }
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 async function waitForMe(conversation, ctx) {
   await ctx.reply("How old are you?");
   const age = await conversation.form.number();
@@ -981,7 +911,6 @@ async function waitForMe(conversation, ctx) {
 ```
 
 :::
-::::
 
 As always, check out the [API reference](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationForm) to see which methods are available.
 
@@ -990,24 +919,47 @@ As always, check out the [API reference](https://deno.land/x/grammy_conversation
 As mentioned [earlier](#introduction), grammY handlers always only handle a single update.
 However, with conversations, you are able to process many updates in sequence as if they were all available at the same time.
 The plugin makes this possible by storing old context objects, and resupplying them later.
-
 This is why the context objects inside conversations are not always affected by some grammY plugins in the way one would expect.
+
+::: warning Interactive Menus Inside Conversations
+
+With the [menu plugin](./menu), these concepts clash very badly.
+While menus _can_ work inside conversations, we do not recommend to use these two plugins together.
+Instead, use the regular [inline keyboard plugin](./keyboard#inline-keyboards) (until we add native menus support for conversations).
+You can wait for specific callback queries using `await conversation.waitForCallbackQuery("my-query")` or any query using `await conversation.waitFor("callback_query")`.
+
+```ts
+const keyboard = new InlineKeyboard()
+  .text("A", "a").text("B", "b");
+await ctx.reply("A or B?", { reply_markup: keyboard });
+const response = await conversation.waitForCallbackQuery(["a", "b"], {
+  otherwise: (ctx) => ctx.reply("Use the buttons!", { reply_markup: keyboard }),
+});
+if (response.match === "a") {
+  // User picked "A".
+} else {
+  // User picked "B".
+}
+```
+
+:::
+
+Other plugins work fine.
+Some of them just need to be installed differently from how you would usually do it.
 This is relevant for the following plugins:
 
-- [menu](./menu.md)
-- [hydrate](./hydrate.md)
-- [i18n](./i18n.md) and [fluent](./fluent.md)
-- [emoji](./emoji.md)
+- [hydrate](./hydrate)
+- [i18n](./i18n) and [fluent](./fluent)
+- [emoji](./emoji)
 
 They have in common that they all store functions on the context object, which the conversations plugin cannot handle correctly.
 Hence, if you want to combine conversations with one of these grammY plugins, you will have to use special syntax to install the other plugin inside each conversation.
 
 You can install other plugins inside conversations using `conversation.run`:
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 async function convo(conversation: MyConversation, ctx: MyContext) {
   // Install grammY plugins here
   await conversation.run(plugin());
@@ -1015,10 +967,7 @@ async function convo(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 async function convo(conversation, ctx) {
   // Install grammY plugins here
   await conversation.run(plugin());
@@ -1027,44 +976,12 @@ async function convo(conversation, ctx) {
 ```
 
 :::
-::::
 
 This will make the plugin available inside the conversation.
 
-As an example, if you want to use a menu insde a conversation, your code could look like this.
-
-::::code-group
-:::code-group-item TypeScript
-
-```ts
-async function convo(conversation: MyConversation, ctx: MyContext) {
-  const menu = new Menu<MyContext>()
-    .text("Click", (ctx) => ctx.reply("Hi!"));
-  await conversation.run(menu);
-
-  // Continue defining the conversation ...
-}
-```
-
-:::
-:::code-group-item JavaScript
-
-```js
-async function convo(conversation, ctx) {
-  const menu = new Menu()
-    .text("Click", (ctx) => ctx.reply("Hi!"));
-  await conversation.run(menu);
-
-  // Continue defining the conversation ...
-}
-```
-
-:::
-::::
-
 ### Custom Context Objects
 
-If you are using a [custom context object](../guide/context.md#customizing-the-context-object) and you want to install custom properties on your context objects before a conversation is entered, then some of these properties can get lost, too.
+If you are using a [custom context object](../guide/context#customizing-the-context-object) and you want to install custom properties on your context objects before a conversation is entered, then some of these properties can get lost, too.
 In a way, the middleware you use to customize your context object can be regarded as a plugin, as well.
 
 The cleanest solution is to **avoid custom context properties** entirely, or at least to only install serializable properties on the context object.
@@ -1123,10 +1040,9 @@ This allows you to chat with a single user only in a group chat.
 
 For instance, let's implement the captcha example from up here again, but this time with parallel conversations.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts{4}
+```ts{4} [TypeScript]
 async function captcha(conversation: MyConversation, ctx: MyContext) {
   if (ctx.from === undefined) return false;
   await ctx.reply("Prove you are human! What is the answer to everything?");
@@ -1142,10 +1058,7 @@ async function enterGroup(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js{4}
+```js{4} [JavaScript]
 async function captcha(conversation, ctx) {
   if (ctx.from === undefined) return false;
   await ctx.reply("Prove you are human! What is the answer to everything?");
@@ -1162,7 +1075,6 @@ async function enterGroup(conversation, ctx) {
 ```
 
 :::
-::::
 
 Note how we only wait for messages from a particular user.
 
@@ -1214,10 +1126,10 @@ If wait calls would block until the next update arrives, it means that the middl
 
 - For built-in polling, this means that no further updates can be processed until the current one is done.
   Hence, the bot would simply be blocked forever.
-- For [grammY runner](./runner.md), the bot would not be blocked.
+- For [grammY runner](./runner), the bot would not be blocked.
   However, when processing thousands of conversations in parallel with different users, it would consume potentially very large amounts of memory.
   If many users stop responding, this leaves the bot stuck in the middle of countless conversations.
-- Webhooks have their own whole [category of problems](../guide/deployment-types.md#ending-webhook-requests-in-time) with long-running middleware.
+- Webhooks have their own whole [category of problems](../guide/deployment-types#ending-webhook-requests-in-time) with long-running middleware.
 
 **State.**
 On serverless infrastructure such as cloud functions, we cannot actually assume that the same instance handles two subsequent updates from the same user.

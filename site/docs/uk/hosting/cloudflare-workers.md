@@ -88,7 +88,7 @@ npm run deploy
 Нам потрібно повідомити Telegram, куди надсилати оновлення.
 Відкрийте свій браузер і відвідайте цей URL:
 
-```text
+```txt
 https://api.telegram.org/bot<токен-бота>/setWebhook?url=https://<назва-бота>.<піддомен>.workers.dev/
 ```
 

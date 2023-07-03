@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Inline Queries
 
 使用 inline query，用户可以在任何聊天中搜索、浏览和发送你的 bot 建议的内容，即使他们不是该聊天的成员。
@@ -57,10 +62,9 @@ bot.on("inline_query", async (ctx) => {
 grammY 为 inline query 结果导出了一个名为 `InlineQueryResultBuilder` 的构建器。
 以下是一些使用示例。
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { InlineKeyboard, InlineQueryResultBuilder } from "grammy";
 
 // 构建一个图片结果。
@@ -85,10 +89,7 @@ InlineQueryResultBuilder.article("id-4", "Inline Queries")
   .text("**Outstanding** docs: grammy.dev", { parse_mode: "MarkdownV2" });
 ```
 
-:::
-::: code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { InlineKeyboard, InlineQueryResultBuilder } = require("grammy");
 
 // 构建一个图片结果。
@@ -113,10 +114,7 @@ InlineQueryResultBuilder.article("id-4", "Inline Queries")
   .text("**Outstanding** docs: grammy.dev", { parse_mode: "MarkdownV2" });
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import {
   InlineKeyboard,
   InlineQueryResultBuilder,
@@ -145,7 +143,6 @@ InlineQueryResultBuilder.article("id-4", "Inline Queries")
 ```
 
 :::
-::::
 
 请注意，如果你希望通过现有文件标识符发送文件，你应该使用 `*Cached` 方法。
 
@@ -155,7 +152,7 @@ const audioFileId = "AgADBAADZRAxGyhM3FKSE4qKa-RODckQHxsoABDHe0BDC1GzpGACAAEC";
 InlineQueryResultBuilder.audioCached("id-0", audioFileId);
 ```
 
-> [点击此处](../guide/files.md#文件怎么在-telegram-bot-程序中工作) 阅读有关文件标识符的更多信息。
+> [点击此处](../guide/files#文件怎么在-telegram-bot-程序中工作) 阅读有关文件标识符的更多信息。
 
 你应该阅读 `InlineQueryResultBuilder` 的 [API 参考](https://deno.land/x/grammy/mod.ts?s=InlineQueryResultBuilder) 和 `InlineQueryResult` 的 [规范](https://core.telegram.org/bots/api#inlinequeryresult) 来查看所有可用选项。
 
@@ -190,10 +187,10 @@ They even have a pretty website! 👇`,
 bot.on("inline_query", (ctx) => ctx.answerInlineQuery([]));
 ```
 
-[别忘了](../guide/basics.md#发送信息)，当调用 API 方法时，你始终可以使用类型为 `Other` 的选项对象来指定更多选项。
+[别忘了](../guide/basics#发送信息)，当调用 API 方法时，你始终可以使用类型为 `Other` 的选项对象来指定更多选项。
 例如，你可以在 [这里](https://core.telegram.org/bots/api#answerinlinequery) 看到，`answerInlineQuery` 允许你通过偏移量来进行 inline query 分页。
 
-:::tip 混合文本和媒体
+::: tip 混合文本和媒体
 虽然允许发送同时包含媒体和文本元素的结果列表，但大多数 Telegram 客户端并不能很好地渲染它们。
 从用户体验的角度来看，你应该避免这种情况。
 :::
@@ -212,10 +209,10 @@ await ctx.answerInlineQuery(results, { button });
 ```
 
 当用户按下按钮时，将向你的 bot 发送一个 `/start` 命令消息。
-启动参数将通过 [深度链接](../guide/commands.md#深度链接支持) 提供。
+启动参数将通过 [深度链接](../guide/commands#深度链接支持) 提供。
 换句话说，使用上述代码片段，在你的命令处理程序中，`ctx.match` 将具有值 `"login"`。
 
-如果你随后使用一个 `switchInline` 按钮发送一个 [inline keyboard](./keyboard.md#构建一个-inline-keyboard)，用户将返回到最初按下 inline query 结果按钮的聊天界面。
+如果你随后使用一个 `switchInline` 按钮发送一个 [inline keyboard](./keyboard#构建一个-inline-keyboard)，用户将返回到最初按下 inline query 结果按钮的聊天界面。
 
 ```ts
 bot
@@ -231,7 +228,7 @@ bot
 
 这样，你可以在发送 inline query 结果之前，在私聊中执行诸如登录之类的程序。
 在将它们发送回去之前，可以来回进行一些对话交流。
-例如，你可以使用对话插件 [进行简短对话](./conversations.md#安装并进入对话)。
+例如，你可以使用对话插件 [进行简短对话](./conversations#安装并进入对话)。
 
 ## 获取关于选中结果的反馈
 

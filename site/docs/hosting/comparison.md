@@ -1,3 +1,7 @@
+---
+next: false
+---
+
 # Comparison of Hosting Providers
 
 There are many different hosting providers that allow you to run your bot.
@@ -7,7 +11,7 @@ This is why the grammY community is collecting their experiences on this page.
 ## What Is a Hosting Provider?
 
 In order to keep a bot online 24 hours a day, you need to run a computer 24 hours a day.
-As [mentioned in the introduction](../guide/introduction.md#how-to-keep-a-bot-running), you most likely don't want to do that with your laptop or home computer.
+As [mentioned in the introduction](../guide/introduction#how-to-keep-a-bot-running), you most likely don't want to do that with your laptop or home computer.
 Instead, you can ask a company to run the bot in the cloud.
 
 In other words, you just run it on someone else's computer.
@@ -23,12 +27,12 @@ We have two comparison tables: one for [serverless hosting and PaaS](#serverless
 Serverless means that you do not control a single machine on which your bot is run.
 Instead, these hosting providers will rather allow you to upload your code, and then start and stop different machines as necessary to make sure that your bot always works.
 
-The main thing to know about them is that on serverless infrastructures you are required to use [webhooks](../guide/deployment-types.md).
-Most of providers below will have issues when you try running your bot with polling (`bot.start()` or [grammY runner](../plugins/runner.md)) on them.
+The main thing to know about them is that on serverless infrastructures you are required to use [webhooks](../guide/deployment-types).
+Most of providers below will have issues when you try running your bot with polling (`bot.start()` or [grammY runner](../plugins/runner)) on them.
 
 On the other hand, PaaS (Platform as a Service) provides a similar but more controllable solution.
 You can choose how many machine instances will be serving your bot, and when they are running.
-Using [polling](../guide/deployment-types.md) is also possible with PaaS if the provider you choose lets you keep exactly single instance running at all times.
+Using [polling](../guide/deployment-types) is also possible with PaaS if the provider you choose lets you keep exactly single instance running at all times.
 
 Serverless and PaaS have a downside that doesn't provide you with a persistent storage by default, such as a local file system.
 Instead, you will often have to have a database separately and connect to it if you need to store data permanently.
@@ -57,7 +61,7 @@ You can install any software there, and you are responsible for system upgrades 
 
 On a VPS, you can run bots using both long polling or webhooks.
 
-Check out the [tutorial](./vps.md) on how to host grammY bots on a VPS.
+Check out the [tutorial](./vps) on how to host grammY bots on a VPS.
 
 | Name          | Min. price | Ping to Bot API                           | Cheapest option                    |
 | ------------- | ---------- | ----------------------------------------- | ---------------------------------- |
