@@ -20,7 +20,7 @@ There are several reasons for this:
 > You can take this part as an overview of how the server rental operation works.
 > If you are a beginner, you can use this guide to rent your first ever server!
 
-:::tip Analog of a server
+::: tip Analog of a server
 If you cannot or do not want to rent a server but you still want to play around with running a bot on a VPS, you can follow this tutorial on a virtual machine instead.
 To do this, use an application such as [VirtualBox](https://virtualbox.org/).
 Create a virtual machine with the desired Linux distribution and use it as a real server.
@@ -34,7 +34,7 @@ The resources of VPS 1 are enough for bots with a small audience, and even more 
 Go back to the "VPS 1" card and click the "Add" button.
 You will be automatically redirected to the checkout page, where you will also immediately register with Hostinger.
 
-:::warning Change the rental term!
+::: warning Change the rental term!
 The typical lease term is 2 years (a marketing ploy), and it costs a lot of money.
 You probably don't need it, so you can start by renting a server for a month, which is much cheaper.
 
@@ -69,7 +69,7 @@ ssh root@<ip-address>
 
 replacing `<ip-address>` with the IP address of your server, which you can find on the server management page.
 
-:::tip Separate User for Each Application
+::: tip Separate User for Each Application
 In this guide, all actions with the server will be performed as the root user.
 This is done on purpose to simplify the material.
 However, in reality, the root user should only be responsible for general services (web server, database, etc.), and applications should be run by individual non-root users.
@@ -108,22 +108,17 @@ systemd is a powerful service manager which is pre-installed on many Linux distr
 
 1. Get the full path of your runtime:
 
-::::code-group
-:::code-group-item Node.js
+::: code-group
 
-```sh
+```sh [Deno]
 which deno
 ```
 
-:::code-group-item
-:::code-group-item Deno
-
-```sh
+```sh [Node.js]
 which node
 ```
 
-:::code-group-item
-::::
+:::
 
 2. You should have the full path of your entry file, too.
 
@@ -225,29 +220,21 @@ systemctl disable <service-name>
 
 #### Installing
 
-::::code-group
-:::code-group-item NPM
+::: code-group
 
-```sh
+```sh [NPM]
 npm install -g pm2
 ```
 
-:::code-group-item
-:::code-group-item Yarn
-
-```sh
+```sh [Yarn]
 yarn global add pm2
 ```
 
-:::code-group-item
-:::code-group-item pnpm
-
-```sh
+```sh [pnpm]
 pnpm add -g pm2
 ```
 
-:::code-group-item
-::::
+:::
 
 #### Creating an Application
 
@@ -328,10 +315,9 @@ To run a bot on webhooks, you will need to use a web framework and not call `bot
 
 Here is a sample code to run the bot on webhooks that should be added to the main bot file:
 
-::::code-group
-:::code-group-item Node.js
+::: code-group
 
-```ts
+```ts [Node.js]
 import { webhookCallback } from "grammy";
 import { fastify } from "fastify";
 
@@ -342,10 +328,7 @@ server.post(`/${bot.token}`, webhookCallback(bot, "fastify"));
 server.listen();
 ```
 
-:::code-group-item
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { serve } from "https://deno.land/std/http/server.ts";
 import { webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 
@@ -366,8 +349,7 @@ serve(async (req) => {
 });
 ```
 
-:::code-group-itemd
-::::
+:::
 
 ### Domain Rental
 
@@ -405,7 +387,7 @@ We will use [Caddy](https://caddyserver.com/).
 
 Caddy is a powerful open source web server with automatic HTTPS.
 
-:::tip Web Server
+::: tip Web Server
 We use Caddy because, unlike mainstream web servers like Nginx or Apache, it automatically configures SSL certificates.
 This makes the article much easier.
 However, you are free to choose any web server you want.
@@ -429,7 +411,7 @@ Check the status of Caddy:
 systemctl status caddy
 ```
 
-:::details Troubleshooting
+::: details Troubleshooting
 Some hosting providers provide VPS with a pre-installed web server, for example, [Apache](https://httpd.apache.org/).
 Multiple web servers cannot run on the same machine at the same time.
 For Caddy to work, you need to stop and shut down another web server:
@@ -544,22 +526,17 @@ cd ~/.ssh
 
 Generate a new key pair:
 
-::::code-group
-:::code-group-item GitHub
+::: code-group
 
-```sh
+```sh [GitHub]
 ssh-keygen -t rsa -m PEM
 ```
 
-:::code-group-item
-:::code-group-item GitLab
-
-```sh
+```sh [GitLab]
 ssh-keygen -t ed25519
 ```
 
-:::code-group-item
-::::
+:::
 
 This command will generate a public and private key of the type and format you want for GitHub and GitLab.
 You can also specify a custom key name if you wish.
@@ -577,12 +554,9 @@ Note that the **public** key can be located on many servers, and the **private**
 
 You can now connect to the server without having to enter a password.
 
-### Example Script
+### Example Scripts
 
-#### Node.js
-
-::::code-group
-:::code-group-item GitHub
+#### Node.js (GitHub)
 
 ```yml
 name: Main
@@ -650,8 +624,7 @@ Note that you need to add three [secret environment variables](https://docs.gith
 2. `REMOTE_HOST` - the IP address of your server should be stored here
 3. `REMOTE_USER` - the name of the user on whose behalf the bot is launched should be stored here.
 
-:::code-group-item
-:::code-group-item GitLab
+#### Node.js (GitLab)
 
 ```yml
 image: node:latest
@@ -698,13 +671,7 @@ Note that you need to add three [environment variables](https://docs.gitlab.com/
 2. `REMOTE_HOST` - the IP address of your server should be stored here
 3. `REMOTE_USER` - the name of the user on whose behalf the bot is launched should be stored here.
 
-:::code-group-item
-::::
-
-#### Deno
-
-::::code-group
-:::code-group-item GitHub
+#### Deno (GitHub)
 
 ```yml
 name: Main
@@ -747,8 +714,7 @@ Note that you need to add three [secret environment variables](https://docs.gith
 2. `REMOTE_HOST` - the IP address of your server should be stored here
 3. `REMOTE_USER` - the name of the user on whose behalf the bot is launched should be stored here.
 
-:::code-group-item
-:::code-group-item GitLab
+#### Deno (GitLab)
 
 ```yml
 image: denoland/deno:latest
@@ -783,9 +749,6 @@ Note that you need to add three [environment variables](https://docs.gitlab.com/
 1. `SSH_PRIVATE_KEY` - this is where the private SSH key you created in the [previous step](#ssh-keys) should be stored.
 2. `REMOTE_HOST` - the IP address of your server should be stored here
 3. `REMOTE_USER` - the name of the user on whose behalf the bot is launched should be stored here.
-
-:::code-group-item
-::::
 
 You should now see how every code push to the `main` branch will automatically be deployed to your VPS.
 Development go brrrrr :rocket:
