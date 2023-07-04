@@ -1,10 +1,15 @@
-# Хостинг: Cloudflare Workers
+# Хостинг: Cloudflare Workers (Deno)
 
-[Cloudflare Workers](https://workers.cloudflare.com/) --- це загальнодоступна безсерверна обчислювальна платформа, яка пропонує зручне та просте рішення для запуску JavaScript за допомогою парадигми [кордонних обчислень](https://uk.wikipedia.org/wiki/Кордонні_обчислення).
-Маючи здатність обробляти HTTP трафік та базуючись на [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API), розробка ботів Telegram стає легкою справою.
-Крім того, ви можете розробляти [вебдодатки](https://core.telegram.org/bots/webapps) використовуючи кордонні обчислення, і все це безкоштовно у межах певних лімітів.
+[Cloudflare Workers](https://workers.cloudflare.com/) --- це загальнодоступна безсерверна обчислювальна платформа, яка пропонує зручне та просте рішення для запуску невеликих обчислень за допомогою парадигми [кордонних обчислень](https://uk.wikipedia.org/wiki/Кордонні_обчислення).
 
-Цей посібник допоможе вам розмістити вашого бота Telegram на Cloudflare Workers.
+Цей посібник допоможе вам розмістити вашого бота на Cloudflare Workers.
+
+:::tip Шукаєте версію для Node.js?
+
+Цей посібник пояснює, як розгорнути бота Telegram на Cloudflare Workers за допомогою Deno.
+Якщо ви шукаєте версію для Node.js, перегляньте [цей посібник](./cloudflare-workers-nodejs).
+
+:::
 
 ## Передумови
 
@@ -12,83 +17,97 @@
 
 ## Налаштування
 
-Спочатку створіть новий проєкт:
+Переконайтеся, що у вас встановлені [Deno](https://deno.land/) та [Denoflare](https://denoflare.dev/).
 
-```sh
-npx wrangler generate my-bot
+Створіть новий каталог, в якому у свою чергу створіть новий файл `.denoflare`.
+Внесіть до файлу наступний вміст:
+
+> Примітка: ключове слово "$schema" у наведеному нижче коді JSON вказує на фіксовану версію в URL-адресі, а саме "v0.5.12".
+> На момент написання посібник це була остання доступна версія.
+> Вам слід оновити її до [найновішої версії](https://github.com/skymethod/denoflare/releases).
+
+```json
+{
+  "$schema": "https://raw.githubusercontent.com/skymethod/denoflare/v0.5.12/common/config.schema.json",
+  "scripts": {
+    "my-bot": {
+      "path": "bot.ts",
+      "localPort": 3030,
+      "bindings": {
+        "BOT_TOKEN": {
+          "value": "<ваш-токен-бота>"
+        }
+      },
+      "workersDev": true
+    }
+  },
+  "profiles": {
+    "account1": {
+      "accountId": "<ідентифікатор-вашого-акаунта>",
+      "apiToken": "<ваш-токен-API>"
+    }
+  }
+}
 ```
 
-Ви можете змінити `my-bot` на будь-що інше.
-Це буде назвою вашого бота та каталогу проєкту.
-
-Після запуску вищезазначеної команди слідуйте інструкціям, які ви бачите, щоб ініціалізувати проєкт.
-Там ви можете вибрати між JavaScript або TypeScript.
-
-Коли проєкт ініціалізовано, виконайте команду `cd my-bot` або перейдіть в каталог проєкту, який ви ініціалізували.
-В залежності від того, як ви ініціалізували проєкт, ви повинні побачити структуру файлів, схожу на таку:
-
-```asciiart:no-line-numbers
-.
-├── node_modules
-├── package.json
-├── package-lock.json
-├── src
-│   ├── index.js
-│   └── index.test.js
-└── wrangler.toml
-```
-
-Далі встановіть `grammy` та інші пакети, які вам можуть знадобитись:
-
-```sh
-npm install grammy
-```
+Переконайтеся, що ви замінили `<ідентифікатор-вашого-акаунта>`, `<ваш-токен-API>` і `<ваш-токен-бота>` належним чином.
+При створенні токена API ви можете вибрати пресет `Edit Cloudflare Workers` з попередньо налаштованих дозволів.
 
 ## Створення вашого бота
 
-Відредагуйте `src/index.js` або `src/index.ts` та напишіть такий код всередині:
+Створіть новий файл з назвою `bot.ts` і помістіть в нього наступний вміст:
 
 ```ts
-// Зверніть увагу, що ми імпортуємо з 'grammy/web', а не з 'grammy'.
-import { Bot, webhookCallback } from "grammy/web";
+import { Bot, webhookCallback } from "https://deno.land/x/grammy/mod.ts";
+import { UserFromGetMe } from "https://deno.land/x/grammy/types.ts";
 
-// Наступний рядок коду передбачає, що ви налаштували секрети BOT_TOKEN та BOT_INFO.
-// Дивіться https://developers.cloudflare.com/workers/platform/environment-variables/#secrets-on-deployed-workers
-// BOT_INFO отримуємо за допомогою `bot.api.getMe()`.
-const bot = new Bot(BOT_TOKEN, { botInfo: BOT_INFO });
+interface Environment {
+  BOT_TOKEN: string;
+}
 
-bot.command("start", async (ctx) => {
-  await ctx.reply("Привіт, світ!");
-});
+let botInfo: UserFromGetMe | undefined = undefined;
 
-addEventListener("fetch", webhookCallback(bot, "cloudflare"));
+export default {
+  async fetch(request: Request, env: Environment) {
+    try {
+      const bot = new Bot(env.BOT_TOKEN, { botInfo });
+
+      if (botInfo === undefined) {
+        await bot.init();
+        botInfo = bot.botInfo;
+      }
+
+      bot.command("start", (ctx) => ctx.reply("Ласкаво просимо! Бот запущений."));
+      bot.on("message", (ctx) => ctx.reply("Отримав ще одне повідомлення!"));
+
+      const cb = webhookCallback(bot, "cloudflare-mod");
+
+      return await cb(request);
+    } catch (e) {
+      return new Response(e.message);
+    }
+  },
+};
 ```
-
-Вищезазначений бот відповідає "Привіт, світ!", коли отримує `/start`.
 
 ## Розгортання вашого бота
 
-Перед розгортанням нам потрібно відредагувати файл `wrangler.toml`:
-
-```toml
-account_id = 'ідентифікатор облікового запису' # Отримайте його з панелі керування Cloudflare.
-name = 'my-bot' # Назва вашого бота, яка зʼявиться в URL-адресі вебхука: https://my-bot.my-subdomain.workers.dev
-main = "src/index.js"  # Основний файл worker'а.
-compatibility_date = "2023-01-16"
-```
-
-Після цього ви можете розгорнути бота за допомогою наступної команди:
+Це так само просто, як бігати:
 
 ```sh
-npm run deploy
+denoflare push my-bot
 ```
+
+У результаті виконання вищенаведеної команди ви отримаєте хост, на якому запущений worker.
+Зверніть увагу на рядок, що містить щось на кшталт `<ваш-бот>.<ваш-піддомен>.workers.dev`.
+Це хост, на якому ваш бот чекає на виклик.
 
 ## Встановлення вашого вебхуку
 
 Нам потрібно повідомити Telegram, куди надсилати оновлення.
 Відкрийте свій браузер і відвідайте цей URL:
 
-```txt
+```text
 https://api.telegram.org/bot<токен-бота>/setWebhook?url=https://<назва-бота>.<піддомен>.workers.dev/
 ```
 
@@ -114,7 +133,7 @@ https://api.telegram.org/bot<токен-бота>/setWebhook?url=https://<наз
 Просто запустіть наступну команду:
 
 ```sh
-npm run start
+denoflare serve my-bot
 ```
 
 Після запуску сервера розробки ви можете протестувати свого бота, надсилаючи приклади оновлень до нього за допомогою певних інструментів, як-от `curl`, [Insomnia](https://insomnia.rest) або [Postman](https://postman.com).
