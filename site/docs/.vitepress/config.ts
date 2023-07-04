@@ -5,7 +5,6 @@ import path from "path";
 
 export default defineConfig({
   lastUpdated: true,
-  appearance: "dark",
   cleanUrls: true,
   cacheDir: ".vitepress/cache",
   outDir: ".vitepress/dist",
