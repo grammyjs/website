@@ -4,7 +4,7 @@
 
 This guide will take you through the process of hosting your bot on Cloudflare Workers.
 
-:::tip Looking for the Node.js Version?
+::: tip Looking for the Node.js Version?
 
 This tutorial explains how to deploy a Telegram bot to Cloudflare Workers using Deno.
 If you're looking for the Node.js version, please check out [this tutorial](./cloudflare-workers-nodejs) instead.

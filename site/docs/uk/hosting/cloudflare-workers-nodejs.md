@@ -6,7 +6,7 @@
 
 Цей посібник допоможе вам розмістити вашого бота Telegram на Cloudflare Workers.
 
-:::tip Шукаєте версію для Deno?
+::: tip Шукаєте версію для Deno?
 
 Цей посібник пояснює, як розгорнути бота Telegram на Cloudflare Workers за допомогою Node.js.
 Якщо ви шукаєте версію для Deno, перегляньте [цей посібник](./cloudflare-workers).
