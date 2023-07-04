@@ -48,3 +48,15 @@
 .NotFound .quote {
   max-width: 100%; // instead of 256px
 }
+
+#home-content h2:first-child {
+  margin-top: 3.5rem;
+  padding-top: 2rem;
+}
+
+#home-footer {
+  margin-top: 3rem;
+  p {
+    line-height: 1.3rem;
+  }
+}
