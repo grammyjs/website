@@ -77,7 +77,10 @@ export default {
         botInfo = bot.botInfo;
       }
 
-      bot.command("start", (ctx) => ctx.reply("Ласкаво просимо! Бот запущений."));
+      bot.command(
+        "start",
+        (ctx) => ctx.reply("Ласкаво просимо! Бот запущений."),
+      );
       bot.on("message", (ctx) => ctx.reply("Отримав ще одне повідомлення!"));
 
       const cb = webhookCallback(bot, "cloudflare-mod");
