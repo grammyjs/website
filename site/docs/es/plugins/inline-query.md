@@ -68,10 +68,10 @@ Aquí hay algunos ejemplos de su uso.
 import { InlineKeyboard, InlineQueryResultBuilder } from "grammy";
 
 // Construye un resultado de foto.
-InlineQueryResultBuilder.photo("id-0", "https://grammy.dev/images/Y.png");
+InlineQueryResultBuilder.photo("id-0", "https://grammy.dev/images/Y.jpeg");
 
 // Crear un resultado que muestre una foto pero envíe un mensaje de texto.
-InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/Y.png")
+InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/Y.jpeg")
   .text("Se enviará este texto en lugar de la foto");
 
 // Construir un resultado de texto.
@@ -95,10 +95,10 @@ InlineQueryResultBuilder.article("id-4", "Consultas en línea")
 const { InlineKeyboard, InlineQueryResultBuilder } = require("grammy");
 
 // Construye un resultado de foto.
-InlineQueryResultBuilder.photo("id-0", "https://grammy.dev/images/Y.png");
+InlineQueryResultBuilder.photo("id-0", "https://grammy.dev/images/Y.jpeg");
 
 // Crear un resultado que muestre una foto pero envíe un mensaje de texto.
-InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/Y.png")
+InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/Y.jpeg")
   .text("Se enviará este texto en lugar de la foto");
 
 // Construir un resultado de texto.
@@ -125,10 +125,10 @@ import {
 } from "https://deno.land/x/grammy/mod.ts";
 
 // Construye un resultado de foto.
-InlineQueryResultBuilder.photo("id-0", "https://grammy.dev/images/Y.png");
+InlineQueryResultBuilder.photo("id-0", "https://grammy.dev/images/Y.jpeg");
 
 // Crear un resultado que muestre una foto pero envíe un mensaje de texto.
-InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/Y.png")
+InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/Y.jpeg")
   .text("Se enviará este texto en lugar de la foto");
 
 // Construir un resultado de texto.

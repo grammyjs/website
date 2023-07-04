@@ -14,7 +14,7 @@ hero:
     - 像做柠檬汁一样简单。
     - 已处理数十亿请求。
   image:
-    src: /images/Y.webp
+    src: /images/Y.svg
     alt: grammY 徽标
   actions:
     - theme: brand

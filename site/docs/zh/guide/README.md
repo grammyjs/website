@@ -1,4 +1,4 @@
-![logo](/images/grammY.webp)
+![logo](/images/grammY.svg)
 
 # 概述
 

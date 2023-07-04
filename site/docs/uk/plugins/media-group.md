@@ -47,13 +47,13 @@ const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
 Ви також можете безпосередньо передавати публічні URL-адреси, які запросить (`fetch`) Telegram.
 
 ```ts
-const photo = InputMediaBuilder.photo("https://grammy.dev/images/Y.png");
+const photo = InputMediaBuilder.photo("https://grammy.dev/images/Y.jpeg");
 ```
 
 Інші параметри можуть бути надані в обʼєкті параметрів в кінці.
 
 ```ts
-const photo = InputMediaBuilder.photo("https://grammy.dev/images/Y.png", {
+const photo = InputMediaBuilder.photo("https://grammy.dev/images/Y.jpeg", {
   caption: "grammY чудовий",
   // тощо
 });
@@ -74,7 +74,7 @@ await ctx.replyWithMediaGroup([photo0, photo1, photo2, video]);
 Оскільки обʼєкти `InputMedia` також використовуються для редагування медіаповідомлень, цей плагін допоможе вам і тут:
 
 ```ts
-const newMedia = InputMediaBuilder.photo("https://grammy.dev/images/Y.png");
+const newMedia = InputMediaBuilder.photo("https://grammy.dev/images/Y.jpeg");
 await ctx.editMessageMedia(newMedia);
 ```
 

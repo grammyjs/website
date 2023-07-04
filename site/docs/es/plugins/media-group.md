@@ -47,13 +47,13 @@ Echa un vistazo a todos los métodos de `InputMediaBuilder` en la [referencia AP
 También puedes pasar directamente URLs públicas que Telegram obtiene.
 
 ```ts
-const photo = InputMediaBuilder.photo("https://grammy.dev/images/Y.png");
+const photo = InputMediaBuilder.photo("https://grammy.dev/images/Y.jpeg");
 ```
 
 Se pueden proporcionar más opciones en un objeto de opciones al final.
 
 ```ts
-const photo = InputMediaBuilder.photo("https://grammy.dev/images/Y.png", {
+const photo = InputMediaBuilder.photo("https://grammy.dev/images/Y.jpeg", {
   caption: "grammY es impresionante",
   // etc
 });
@@ -74,7 +74,7 @@ Del mismo modo, puedes pasar un array de objetos `InputMedia` a `ctx.api.sendMed
 Dado que los objetos `InputMedia` también se utilizan para editar mensajes multimedia, este plugin también te ayudará en este caso:
 
 ```ts
-const newMedia = InputMediaBuilder.photo("https://grammy.dev/images/Y.png");
+const newMedia = InputMediaBuilder.photo("https://grammy.dev/images/Y.jpeg");
 await ctx.editMessageMedia(newMedia);
 ```
 

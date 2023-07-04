@@ -14,7 +14,7 @@ hero:
     - easy peasy lemon squeezY.
     - billions and billions served.
   image:
-    src: /images/Y.webp
+    src: /images/Y.svg
     alt: grammY logo
   actions:
     - theme: brand

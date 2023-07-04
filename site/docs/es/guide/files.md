@@ -110,7 +110,7 @@ Los dos primeros métodos son sencillos: sólo tienes que pasar el valor respect
 await ctx.replyWithPhoto(existingFileId);
 
 // Enviar a través de URL.
-await ctx.replyWithPhoto("https://grammy.dev/images/Y.webp");
+await ctx.replyWithPhoto("https://grammy.dev/images/Y.jpeg");
 
 // Alternativamente, se utiliza bot.api.sendPhoto() o ctx.api.sendPhoto().
 ```
@@ -209,14 +209,14 @@ Esto es muy eficiente.
 import { URL } from "url";
 
 // Descarga un archivo, y transmite la respuesta a Telegram.
-new InputFile(new URL("https://grammy.dev/images/Y.webp"));
-new InputFile({ url: "https://grammy.dev/images/Y.webp" }); // equivalente
+new InputFile(new URL("https://grammy.dev/images/Y.jpeg"));
+new InputFile({ url: "https://grammy.dev/images/Y.jpeg" }); // equivalente
 ```
 
 ```ts [Deno]
 // Descargar un archivo, y transmitir la respuesta a Telegram.
-new InputFile(new URL("https://grammy.dev/images/Y.webp"));
-new InputFile({ url: "https://grammy.dev/images/Y.webp" }); // equivalente
+new InputFile(new URL("https://grammy.dev/images/Y.jpeg"));
+new InputFile({ url: "https://grammy.dev/images/Y.jpeg" }); // equivalente
 ```
 
 :::

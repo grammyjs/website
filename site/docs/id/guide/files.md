@@ -105,7 +105,7 @@ Dua method yang pertama cukup simpel: kamu hanya perlu mengisi value sebagai seb
 await ctx.replyWithPhoto(idFilenya);
 
 // Kirim melalui URL.
-await ctx.replyWithPhoto("https://grammy.dev/images/Y.webp");
+await ctx.replyWithPhoto("https://grammy.dev/images/Y.jpeg");
 
 // Alternatifnya, kamu bisa menggunakan
 // bot.api.sendPhoto() atau ctx.api.sendPhoto().
@@ -206,14 +206,14 @@ Sangat efisien, bukan.
 import { URL } from "url";
 
 // Unduh file lalu alirkan data ke Telegram.
-new InputFile(new URL("https://grammy.dev/images/Y.webp"));
-new InputFile({ url: "https://grammy.dev/images/Y.webp" }); // sama saja
+new InputFile(new URL("https://grammy.dev/images/Y.jpeg"));
+new InputFile({ url: "https://grammy.dev/images/Y.jpeg" }); // sama saja
 ```
 
 ```ts [Deno]
 // Unduh file lalu alirkan data ke Telegram.
-new InputFile(new URL("https://grammy.dev/images/Y.webp"));
-new InputFile({ url: "https://grammy.dev/images/Y.webp" }); // sama saja
+new InputFile(new URL("https://grammy.dev/images/Y.jpeg"));
+new InputFile({ url: "https://grammy.dev/images/Y.jpeg" }); // sama saja
 ```
 
 :::

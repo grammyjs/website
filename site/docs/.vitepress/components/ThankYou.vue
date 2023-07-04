@@ -109,7 +109,7 @@ load();
     </p>
   </div>
   <div v-else id="thankyou">
-    <img src="/images/Y.webp" alt="grammY logo" width="32" height="32" />
+    <img src="/images/Y.svg" alt="grammY logo" width="32" height="32" />
   </div>
 </template>
 

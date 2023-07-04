@@ -71,10 +71,10 @@ grammY експортує будівельника для результатів
 import { InlineKeyboard, InlineQueryResultBuilder } from "grammy";
 
 // Будуємо результат з фото.
-InlineQueryResultBuilder.photo("id-0", "https://grammy.dev/images/Y.png");
+InlineQueryResultBuilder.photo("id-0", "https://grammy.dev/images/Y.jpeg");
 
 // Будуємо результат, який відображає фотографію, але надсилає текстове повідомлення.
-InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/Y.png")
+InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/Y.jpeg")
   .text("Цей текст буде надіслано замість фотографії.");
 
 // Будуємо текстовий результат.
@@ -104,10 +104,10 @@ InlineQueryResultBuilder.article("id-4", "Inline-запити")
 const { InlineKeyboard, InlineQueryResultBuilder } = require("grammy");
 
 // Будуємо результат з фото.
-InlineQueryResultBuilder.photo("id-0", "https://grammy.dev/images/Y.png");
+InlineQueryResultBuilder.photo("id-0", "https://grammy.dev/images/Y.jpeg");
 
 // Будуємо результат, який відображає фотографію, але надсилає текстове повідомлення.
-InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/Y.png")
+InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/Y.jpeg")
   .text("Цей текст буде надіслано замість фотографії.");
 
 // Будуємо текстовий результат.
@@ -140,10 +140,10 @@ import {
 } from "https://deno.land/x/grammy/mod.ts";
 
 // Будуємо результат з фото.
-InlineQueryResultBuilder.photo("id-0", "https://grammy.dev/images/Y.png");
+InlineQueryResultBuilder.photo("id-0", "https://grammy.dev/images/Y.jpeg");
 
 // Будуємо результат, який відображає фотографію, але надсилає текстове повідомлення.
-InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/Y.png")
+InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/Y.jpeg")
   .text("Цей текст буде надіслано замість фотографії.");
 
 // Будуємо текстовий результат.

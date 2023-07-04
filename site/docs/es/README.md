@@ -14,7 +14,7 @@ hero:
     - fácil de exprimir limones.
     - miles y miles de millones de peticiones.
   image:
-    src: /images/Y.webp
+    src: /images/Y.svg
     alt: Logotipo de grammY
   actions:
     - theme: brand

@@ -68,10 +68,10 @@ grammY 为 inline query 结果导出了一个名为 `InlineQueryResultBuilder` �
 import { InlineKeyboard, InlineQueryResultBuilder } from "grammy";
 
 // 构建一个图片结果。
-InlineQueryResultBuilder.photo("id-0", "https://grammy.dev/images/Y.png");
+InlineQueryResultBuilder.photo("id-0", "https://grammy.dev/images/Y.jpeg");
 
 // 构建一个显示为图片但发送的是文本消息的结果。
-InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/Y.png")
+InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/Y.jpeg")
   .text("This text will be sent instead of the photo");
 
 // 构建一个文本结果。
@@ -93,10 +93,10 @@ InlineQueryResultBuilder.article("id-4", "Inline Queries")
 const { InlineKeyboard, InlineQueryResultBuilder } = require("grammy");
 
 // 构建一个图片结果。
-InlineQueryResultBuilder.photo("id-0", "https://grammy.dev/images/Y.png");
+InlineQueryResultBuilder.photo("id-0", "https://grammy.dev/images/Y.jpeg");
 
 // 构建一个显示为图片但发送的是文本消息的结果。
-InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/Y.png")
+InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/Y.jpeg")
   .text("This text will be sent instead of the photo");
 
 // 构建一个文本结果。
@@ -121,10 +121,10 @@ import {
 } from "https://deno.land/x/grammy/mod.ts";
 
 // 构建一个图片结果。
-InlineQueryResultBuilder.photo("id-0", "https://grammy.dev/images/Y.png");
+InlineQueryResultBuilder.photo("id-0", "https://grammy.dev/images/Y.jpeg");
 
 // 构建一个显示为图片但发送的是文本消息的结果。
-InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/Y.png")
+InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/Y.jpeg")
   .text("This text will be sent instead of the photo");
 
 // 构建一个文本结果。
