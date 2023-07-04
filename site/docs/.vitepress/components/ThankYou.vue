@@ -88,12 +88,22 @@ load();
 
 <template>
   <div v-if="contributor.name" id="thankyou">
-    <img
-      v-bind:alt="contributor.login"
-      v-bind:src="contributor.photo"
-      width="32"
-      height="32"
-    />
+    <div id="avatar-container">
+      <img
+        id="love-icon"
+        src="/icons/love.svg"
+        alt="love icon"
+        width="32"
+        height="32"
+      />
+      <img
+        id="github-avatar"
+        v-bind:alt="contributor.login"
+        v-bind:src="contributor.photo"
+        width="32"
+        height="32"
+      />
+    </div>
     <p>
       {{ props.s[0] }}
       <a
@@ -133,5 +143,16 @@ load();
       font-weight: bold;
     }
   }
+}
+
+#avatar-container,
+#love-icon {
+  position: relative;
+}
+
+#github-avatar {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 </style>
