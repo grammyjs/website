@@ -1,6 +1,6 @@
 # Хостинг: Cloudflare Workers
 
-[Cloudflare Workers](https://workers.cloudflare.com/) — це загальнодоступна безсерверна обчислювальна платформа, яка пропонує зручне та просте рішення для запуску JavaScript за допомогою парадигми [кордонних обчислень](https://uk.wikipedia.org/wiki/Кордонні_обчислення).
+[Cloudflare Workers](https://workers.cloudflare.com/) --- це загальнодоступна безсерверна обчислювальна платформа, яка пропонує зручне та просте рішення для запуску JavaScript за допомогою парадигми [кордонних обчислень](https://uk.wikipedia.org/wiki/Кордонні_обчислення).
 Маючи здатність обробляти HTTP трафік та базуючись на [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API), розробка ботів Telegram стає легкою справою.
 Крім того, ви можете розробляти [вебдодатки](https://core.telegram.org/bots/webapps) використовуючи кордонні обчислення, і все це безкоштовно у межах певних лімітів.
 
@@ -88,7 +88,7 @@ npm run deploy
 Нам потрібно повідомити Telegram, куди надсилати оновлення.
 Відкрийте свій браузер і відвідайте цей URL:
 
-```text
+```txt
 https://api.telegram.org/bot<токен-бота>/setWebhook?url=https://<назва-бота>.<піддомен>.workers.dev/
 ```
 

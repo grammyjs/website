@@ -1,3 +1,9 @@
+---
+next:
+  text: FAQ
+  link: ./faq
+---
+
 # Tentang grammY
 
 ## Apa itu grammY?
@@ -29,7 +35,7 @@ Semua perubahan kode telah di-review oleh berbagai pihak, dioptimalkan berulang 
 
 ## Bahasa pemrograman apa yang grammY gunakan?
 
-grammY ditulis dari nol menggunakan TypeScript—sebuah superset JavaScript.
+grammY ditulis dari nol menggunakan TypeScript---sebuah superset JavaScript.
 Oleh karena itu, ia bisa berjalan di Node.js.
 
 Namun, grammY juga bisa berjalan di Deno, yang memposisikan dirinya sebagai penerus Node.js.
@@ -37,7 +43,7 @@ Namun, grammY juga bisa berjalan di Deno, yang memposisikan dirinya sebagai pene
 
 ## Bagaimana grammY jika dibandingkan dengan kompetitor lainnya?
 
-Jika kamu datang dari framework atau bahasa pemrograman yang berbeda, kamu bisa melihat [daftar perbandingan lengkap antar-framework](./comparison.md) yang telah kami sediakan.
+Jika kamu datang dari framework atau bahasa pemrograman yang berbeda, kamu bisa melihat [daftar perbandingan lengkap antar-framework](./comparison) yang telah kami sediakan.
 
 ## Saya ingin mendukung proyek ini. Bagaimana cara melakukannya?
 

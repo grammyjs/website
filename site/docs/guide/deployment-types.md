@@ -1,5 +1,5 @@
 ---
-prev: ./games.md
+next: false
 ---
 
 # Long Polling vs. Webhooks
@@ -97,7 +97,7 @@ ______________                                   _____________
 
 > Note that in reality, no connection would be kept open for hours.
 > Long polling requests have a default timeout of 30 seconds (in order to avoid a number of [technical problems](https://datatracker.ietf.org/doc/html/draft-loreto-http-bidirectional-07#section-5.5)).
-> If no new messages are returned after this period of time, then the request will be cancelled and resent—but the general concept stays the same.
+> If no new messages are returned after this period of time, then the request will be cancelled and resent---but the general concept stays the same.
 
 Using long polling, you don't need to spam Telegram's servers, and still you get new messages immediately!
 Nifty.
@@ -162,12 +162,12 @@ Places where webhooks work well include:
 ## I Still Have No Idea What to Use
 
 Then go for long polling.
-If you don't have a good reason to use webhooks, then note that there are no major drawbacks to long polling, and—according to our experience—you will spend much less time fixing things.
+If you don't have a good reason to use webhooks, then note that there are no major drawbacks to long polling, and---according to our experience---you will spend much less time fixing things.
 Webhooks can be a bit nasty from time to time (see [below](#ending-webhook-requests-in-time)).
 
 Whatever you choose, if you ever run into serious problems, it should not be too hard to switch to the other deployment type after the fact.
 With grammY, you only have to touch a few lines of code.
-The setup of your [middleware](./middleware.md) is the same.
+The setup of your [middleware](./middleware) is the same.
 
 ## How to Use Long Polling
 
@@ -181,7 +181,7 @@ to run your bot with a very simple form of long polling.
 It processes all updates sequentially.
 This makes your bot very easy to debug, and all behavior very predictable, because there is no concurrency involved.
 
-If you want your messages to be handled concurrently by grammY, or you worry about throughput, check out the section about [grammY runner](../plugins/runner.md).
+If you want your messages to be handled concurrently by grammY, or you worry about throughput, check out the section about [grammY runner](../plugins/runner).
 
 ## How to Use Webhooks
 
@@ -191,10 +191,9 @@ We therefore expect you to be able to start a simple web server with a framework
 Every grammY bot can be converted to middleware for a number of web frameworks, including `express`, `koa`/`oak`, and more.
 You can import the `webhookCallback` function ([API reference](https://deno.land/x/grammy/mod.ts?s=webhookCallback)) to create a middleware for the respective framework.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import express from "express";
 
 const app = express(); // or whatever you're using
@@ -204,10 +203,7 @@ app.use(express.json()); // parse the JSON request body
 app.use(webhookCallback(bot, "express"));
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const express = require("express");
 
 const app = express(); // or whatever you're using
@@ -217,10 +213,7 @@ app.use(express.json()); // parse the JSON request body
 app.use(webhookCallback(bot, "express"));
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Application } from "https://deno.land/x/oak/mod.ts";
 
 const app = new Application(); // or whatever you're using
@@ -230,7 +223,8 @@ app.use(webhookCallback(bot, "oak"));
 ```
 
 :::
-::::
+
+> Note that you must not call `bot.start()` when using webhooks.
 
 > Note that you must not call `bot.start()` when using webhooks.
 
@@ -348,7 +342,7 @@ If your middleware finishes before that, the function `webhookCallback` will res
 In that case, everything is fine.
 However, if your middleware does not finish before grammY's timeout, `webhookCallback` will throw an error.
 This means that you can handle the error in your web framework.
-If you don't have that error handling, Telegram will send the same update again—but at least you will have error logs now, to tell you that something is wrong.
+If you don't have that error handling, Telegram will send the same update again---but at least you will have error logs now, to tell you that something is wrong.
 
 Once Telegram sends an update to your bot for the second time, it is unlikely that your handling of it will be faster than the first time.
 As a result, it will likely timeout again, and Telegram will send the update again.

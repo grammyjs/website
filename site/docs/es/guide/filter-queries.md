@@ -1,8 +1,3 @@
----
-prev: ./api.md
-next: ./commands.md
----
-
 # Consultas de filtro y `bot.on()`
 
 El primer argumento de `bot.on()` es una cadena llamada _filter query_.
@@ -18,7 +13,7 @@ Esto permite utilizar más de 820 filtros diferentes, y es posible que añadamos
 Todos los filtros válidos se pueden autocompletar en el editor de código.
 Por lo tanto, puedes simplemente escribir `bot.on("")`, abrir el autocompletado, y buscar entre todas las consultas escribiendo algo
 
-![Filtro de búsqueda de consultas](/images/filter-query-search.png)
+![Filtro de búsqueda de consultas](/images/filter-query-search.webp)
 
 La inferencia de tipos de `bot.on()` comprenderá la consulta de filtro que hayas elegido.
 Por lo tanto, ajusta algunos tipos en el contexto que se sabe que existen.
@@ -72,7 +67,7 @@ bot.on("::email"); // mensajes o publicaciones de canales con email en texto o p
 ```
 
 Si se omite el valor _first_, se pueden obtener tanto los mensajes como los mensajes del canal.
-[Recuerde](./context.md#acciones-disponibles) que `ctx.msg` le da acceso tanto a los mensajes como a las publicaciones del canal, lo que coincida con la consulta.
+[Recuerde](./context#acciones-disponibles) que `ctx.msg` le da acceso tanto a los mensajes como a las publicaciones del canal, lo que coincida con la consulta.
 
 Si se omite el valor _segundo_, se obtiene acceso tanto a las entidades como a los subtítulos.
 Puede omitir tanto la primera como la segunda parte al mismo tiempo.
@@ -207,7 +202,7 @@ Como ejemplo, puede detectar que `ctx.msg.text` es una propiedad necesaria para 
 ## Consejos útiles
 
 Aquí hay algunas características menos conocidas de las consultas de filtro que pueden ser útiles.
-Algunas de ellas son un poco avanzadas, así que no dudes en pasar a la [siguiente sección](./commands.md).
+Algunas de ellas son un poco avanzadas, así que no dudes en pasar a la [siguiente sección](./commands).
 
 ### Actualizaciones de los miembros del chat
 

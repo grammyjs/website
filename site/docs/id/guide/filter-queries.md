@@ -1,15 +1,10 @@
----
-prev: ./api.md
-next: ./commands.md
----
-
 # Filter Query dan `bot.on()`
 
 _Filter query_ merupakan argument pertama dari `bot.on()` yang berbentuk string.
 
 ## Pengenalan
 
-Sebagian besar framework bot—atau bahkan semuanya?—hanya menyediakan pemfilteran update yang sederhana, misalnya cuma disediakan `on("message")` dan sejenisnya.
+Sebagian besar framework bot---atau bahkan semuanya?---hanya menyediakan pemfilteran update yang sederhana, misalnya cuma disediakan `on("message")` dan sejenisnya.
 Pemfilteran untuk jenis pesan lainnya diserahkan kepada developer bot masing-masing untuk ditangani sendiri, yang mana sering kali mengarah ke penggunaan statemen `if` yang tidak ada habisnya di dalam kode mereka.
 
 Sebaliknya, **grammY dilengkapi dengan bahasa query-nya sendiri** yang dapat digunakan untuk **memfilter pesan yang kamu inginkan**.
@@ -18,7 +13,7 @@ grammY memiliki lebih dari 820 filter berbeda yang siap dipakai, dan tidak menut
 Setiap filter yang valid dapat dilengkapi menggunakan auto-complete di code editor.
 Dengan demikian, kamu cukup mengetik `bot.on("")`, lalu buka auto-complete, kemudian telusuri semua query yang tersedia dengan cara mengetik sesuatu.
 
-![Pencarian Filter Query](/images/filter-query-search.png)
+![Pencarian Filter Query](/images/filter-query-search.webp)
 
 _Type inference_ `bot.on()` akan memahami filter query yang sedang kamu pilih. Dari situ, ia akan mengerucutkan beberapa type context yang ada.
 
@@ -72,7 +67,7 @@ bot.on("::email"); // Seluruh pesan dan postingan channel yang mengandung email 
 ```
 
 Mengosongkan value _pertama_ akan mencocokkan pesan serta postingan channel.
-[Perlu diingat](./context.md#aksi-yang-tersedia) bahwa `ctx.msg` memberi kamu akses ke pesan dan postingan channel manapun yang cocok dengan query yang diberikan.
+[Perlu diingat](./context#aksi-yang-tersedia) bahwa `ctx.msg` memberi kamu akses ke pesan dan postingan channel manapun yang cocok dengan query yang diberikan.
 
 Mengosongkan value _kedua_ akan mencocokkan entity, baik di pesan maupun di caption.
 Kamu bisa menghilangkan bagian pertama dan kedua secara bersamaan.
@@ -83,7 +78,7 @@ _Query engine_ grammY memiliki shortcut yang dapat mengelompokkan query-query ya
 
 #### `msg`
 
-Shortcut `msg`—bukan msg micin, loh ya :grimacing:—mengelompokkan pesan dan postingan channel.
+Shortcut `msg`---bukan msg micin, loh ya :grimacing:---mengelompokkan pesan dan postingan channel.
 Dengan menggunakan `msg`sama halnya dengan menyimak aktivitas `message` dan `channel_post`.
 
 ```ts
@@ -198,7 +193,7 @@ Contohnya, dari potongan kode di atas, _type inference_ dapat mendeteksi kalau `
 ## Tips Berguna
 
 Berikut ini fitur-fitur filter query yang kurang begitu terkenal tetapi bisa sangat membantu.
-Beberapa diantaranya merupakan fitur tingkat lanjut, silahkan baca [materi berikutnya](./commands.md).
+Beberapa diantaranya merupakan fitur tingkat lanjut, silahkan baca [materi berikutnya](./commands).
 
 ### Update Member Chat
 
@@ -344,7 +339,7 @@ Contoh:
 
 Meski type system bisa menangkap semua filter query yang tidak valid di compile time, namun grammY tetap memeriksa semua filter query di runtime selama proses penyusunan.
 Setiap filter query akan dicocokkan dengan struktur validasi untuk diperiksa apakah query tersebut memang valid.
-Dengan begitu, ia akan langsung gagal saat itu juga—alih-alih gagal di runtime—ketika hasilnya tidak valid, karena pernah terjadi sebelumnya, ketika bug di TypeScript menyebabkan masalah serius terhadap _type inference system_ lanjutan yang menjadi penyokong filter query.
+Dengan begitu, ia akan langsung gagal saat itu juga---alih-alih gagal di runtime---ketika hasilnya tidak valid, karena pernah terjadi sebelumnya, ketika bug di TypeScript menyebabkan masalah serius terhadap _type inference system_ lanjutan yang menjadi penyokong filter query.
 Jika suatu saat bug tersebut muncul, kita bisa mencegah masalah serupa terjadi lagi.
 Selain itu, kamu juga akan diberikan pesan error yang lebih bermanfaat.
 

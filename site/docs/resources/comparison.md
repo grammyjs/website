@@ -1,3 +1,7 @@
+---
+next: false
+---
+
 # How grammY Compares to Other Bot Frameworks
 
 While grammY uses some concepts known from other bot frameworks (and web frameworks), it was written from scratch for optimal readability and performance.
@@ -41,7 +45,7 @@ It also got harder for new users to get started.
 **grammY takes a step back and rethinks a type-safe bot framework with approachability first.**
 This allowed to skip a lot of the frustrating discussions around how to cope with strange internal typings.
 It enabled the project to have clean, consistent, compiling code that provides users with excellent types (=editor support).
-Type safety in turn permits more advanced features that fundamentally change how we think about bot development, such as [API transformers](../advanced/transformers.md).
+Type safety in turn permits more advanced features that fundamentally change how we think about bot development, such as [API transformers](../advanced/transformers).
 
 Today, Telegraf 3 is outdated.
 There are some unofficial forks out there that try to keep the legacy code base up to date with the evolvement of the Bot API, but their compatibility is unknown.
@@ -53,7 +57,7 @@ Based on the fact that Telegraf hangs somewhere between version 3 and 4, it make
 #### Comparison to v3
 
 Given their shared history, grammY and Telegraf have a lot in common.
-They both have a [middleware system](../guide/middleware.md) in their core.
+They both have a [middleware system](../guide/middleware) in their core.
 They also share a lot of their basic syntax:
 
 ```ts
@@ -72,14 +76,14 @@ Experience shows that you often have to run your bot to find out whether your co
 
 In contrast, grammY is written in pure TypeScript.
 This allows your code editor (e.g. VS Code) to analyze your code while you are typing, and assist you.
-In addition, it can show the complete Telegram Bot API inline—the website's documentation will be available right at your fingertips when hovering your mouse over any name or element of your code.
+In addition, it can show the complete Telegram Bot API inline---the website's documentation will be available right at your fingertips when hovering your mouse over any name or element of your code.
 
 Another remarkable advantage is that you are finally able to **write your own bots in TypeScript**.
 This was hard to do because the wrong type annotations of Telegraf were preventing perfectly correct code from compiling, thus effectively encouraging users not to check their code in the first place.
 However, type-safe code is a major advantage for any non-trivial code base.
 
 grammY and Telegraf have distinct code bases.
-Being freed from the legacy, grammY could also make substantial contributions to the underlying middleware system, enabling exciting use cases such as [filter queries](../guide/filter-queries.md), [error boundaries](../guide/errors.md#error-boundaries), [API transformers](../advanced/transformers.md), and many more.
+Being freed from the legacy, grammY could also make substantial contributions to the underlying middleware system, enabling exciting use cases such as [filter queries](../guide/filter-queries), [error boundaries](../guide/errors#error-boundaries), [API transformers](../advanced/transformers), and many more.
 This also enables the development of valuable plugins that are impossible to work under Telegraf.
 
 The main advantage of Telegraf over grammY is that it is still **known by a lot more people**.
@@ -138,7 +142,7 @@ You don't want that.
 ### Other Frameworks
 
 Do you think that your favorite framework is better than grammY in some respect?
-Feel free to edit this page and add a comparison—or tell us what you think in the [group chat](https://t.me/grammyjs)!
+Feel free to edit this page and add a comparison---or tell us what you think in the [group chat](https://t.me/grammyjs)!
 
 ## Comparison With Frameworks in Other Programming Languages
 
@@ -160,7 +164,7 @@ People have different taste, so take this section with a grain of salt.
    With the types come auto-completion at every step of development, as well as helpful tooltips with explanations and links.
 
 2. **Easier to scale up code base.**
-   The type system has a second advantage—it lets you scale the code base of your bot.
+   The type system has a second advantage---it lets you scale the code base of your bot.
    This is much harder to do for projects written in a language with worse type safety.
 
 3. **Easier to scale up load.**

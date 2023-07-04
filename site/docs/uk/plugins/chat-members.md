@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Учасники чату (`chat-members`)
 
 Автоматично зберігайте інформацію про користувачів у чаті та легко отримуйте її.
@@ -14,15 +19,14 @@
 
 ### Зберігання учасників чату
 
-Ви можете використовувати дійсний [адаптер сховища](./session.md#відомі-адаптери-сховищ) або екземпляр будь-якого класу, що реалізує інтерфейс [`StorageAdapter`](https://deno.land/x/grammy/mod.ts?s=StorageAdapter).
+Ви можете використовувати дійсний [адаптер сховища](./session#відомі-адаптери-сховищ) або екземпляр будь-якого класу, що реалізує інтерфейс [`StorageAdapter`](https://deno.land/x/grammy/mod.ts?s=StorageAdapter).
 
 Зверніть увагу, що згідно з [офіційною документацією Telegram](https://core.telegram.org/bots/api#getupdates), ваш бот повинен вказати оновлення `chat_member` в масиві `allowed_updates`, як показано в прикладі нижче.
 Це означає, що вам також потрібно вказати всі інші оновлення, які ви також хотіли б отримувати.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, type Context, MemorySessionStorage } from "grammy";
 import { type ChatMember } from "grammy/types";
 import { chatMembers, type ChatMembersFlavor } from "@grammyjs/chat-members";
@@ -41,11 +45,7 @@ bot.start({
 });
 ```
 
-:::
-
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 import { Bot, MemorySessionStorage } from "grammy";
 import { chatMembers } from "@grammyjs/chat-members";
 
@@ -61,11 +61,7 @@ bot.start({
 });
 ```
 
-:::
-
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import {
   Bot,
   type Context,
@@ -92,8 +88,6 @@ bot.start({
 ```
 
 :::
-
-::::
 
 ### Читання учасників чату
 

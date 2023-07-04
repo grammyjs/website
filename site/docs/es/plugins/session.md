@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Sesiones y almacenamiento de datos (incluido)
 
 Aunque siempre puedes escribir tu propio código para conectarte a un almacenamiento de datos de tu elección, grammY soporta un patrón de almacenamiento muy conveniente llamado _sesiones_.
@@ -75,7 +80,7 @@ Simplemente modificamos los datos en `ctx.session`, y el plugin se encargará de
 > [Sáltate el paso](#como-usar-las-sesiones) si ya sabes que quieres usar sesiones.
 
 Puede que pienses, esto es genial, ¡nunca más tendré que preocuparme por las bases de datos!
-Y tienes razón, las sesiones son una solución ideal, pero sólo para algunos tipos de datos.
+Y tienes razón, las sesiones son una solución ideal---pero sólo para algunos tipos de datos.
 
 Según nuestra experiencia, hay casos de uso en los que las sesiones realmente brillan.
 Por otro lado, hay casos en los que una base de datos tradicional puede ser más adecuada.
@@ -102,10 +107,9 @@ Puedes añadir soporte de sesión a grammY utilizando el middleware de sesión i
 
 Aquí hay un ejemplo de bot que cuenta los mensajes que contienen un emoji de pizza :pizza::
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context, session, SessionFlavor } from "grammy";
 
 // Definir la forma de nuestra sesión.
@@ -134,10 +138,7 @@ bot.hears(/.*🍕.*/, (ctx) => ctx.session.pizzaCount++);
 bot.start();
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot, session } = require("grammy");
 
 const bot = new Bot("");
@@ -158,10 +159,7 @@ bot.hears(/.*🍕.*/, (ctx) => ctx.session.pizzaCount++);
 bot.start();
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import {
   Bot,
   Context,
@@ -196,9 +194,8 @@ bot.start();
 ```
 
 :::
-::::
 
-Nótese que también tenemos que [ajustar el tipo de contexto](../guide/context.md#personalizacion-del-objeto-de-contexto) para que la sesión esté disponible en él.
+Nótese que también tenemos que [ajustar el tipo de contexto](../guide/context#personalizacion-del-objeto-de-contexto) para que la sesión esté disponible en él.
 El context flavor se llama `SessionFlavor`.
 
 ### Datos de la sesión inicial
@@ -252,10 +249,9 @@ Por defecto, los datos se almacenan por chat.
 El uso de `getSessionKey` le permite almacenar los datos por usuario, o por combinación de usuario-chat, o como usted quiera.
 Aquí hay tres ejemplos:
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 // Almacena los datos por chat (por defecto).
 function getSessionKey(ctx: Context): string | undefined {
   // Permite que todos los usuarios de un chat grupal compartan la misma sesión,
@@ -282,10 +278,7 @@ function getSessionKey(ctx: Context): string | undefined {
 bot.use(session({ getSessionKey }));
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 // Almacena los datos por chat (por defecto).
 function getSessionKey(ctx) {
   // Permite que todos los usuarios de un chat grupal compartan la misma sesión,
@@ -313,7 +306,6 @@ bot.use(session({ getSessionKey }));
 ```
 
 :::
-::::
 
 Siempre que `getSessionKey` devuelva `undefined`, `ctx.session` estará `undefined`.
 Por ejemplo, el resolvedor de claves de sesión por defecto no funcionará para las actualizaciones de `poll`/`poll_answer` o `inline_query` porque no pertenecen a un chat (`ctx.chat` está `undefined`).
@@ -323,7 +315,7 @@ Cuando estés ejecutando tu bot con webhooks, deberías evitar usar la opción `
 Telegram envía los webhooks secuencialmente por chat, por lo que la resolución de la clave de sesión por defecto es la única implementación que garantiza no causar pérdida de datos.
 
 Si debes usar la opción (que por supuesto sigue siendo posible), debes saber lo que estás haciendo.
-Asegúrese de entender las consecuencias de esta configuración leyendo el artículo [este](../guide/deployment-types.md) y especialmente [este](../plugins/runner.md#procesamiento-secuencial-cuando-sea-necesario).
+Asegúrese de entender las consecuencias de esta configuración leyendo el artículo [este](../guide/deployment-types) y especialmente [este](../plugins/runner#procesamiento-secuencial-cuando-sea-necesario).
 :::
 
 ### Migraciones de chat
@@ -340,7 +332,7 @@ Sin embargo, hay varias maneras de tratar este problema:
 - Ignorar el problema.
   Los datos de la sesión del bot se restablecerán efectivamente cuando se migre un grupo.
   Comportamiento simple, confiable y predeterminado, pero potencialmente inesperado una vez por chat.
-  Por ejemplo, si ocurre una migración mientras un usuario está en una conversación impulsada por el [complemento de conversaciones](./conversations.md), la conversación se restablecerá.
+  Por ejemplo, si ocurre una migración mientras un usuario está en una conversación impulsada por el [complemento de conversaciones](./conversations), la conversación se restablecerá.
 
 - Solo almacenar datos temporales (o datos con tiempos de espera) en la sesión y usar una base de datos para las cosas importantes que deben migrarse cuando migra un chat.
   Esto puede usar transacciones y lógica personalizada para manejar el acceso a datos simultáneos desde el chat antiguo y el nuevo.
@@ -351,7 +343,7 @@ Sin embargo, hay varias maneras de tratar este problema:
   El problema es que no hay garantía de que estos mensajes se envíen antes de que aparezca un nuevo mensaje en el supergrupo.
   Por lo tanto, el bot podría recibir un mensaje del nuevo supergrupo antes de que se dé cuenta de cualquier migración y, por lo tanto, no puede hacer coincidir los dos chats, lo que genera los problemas antes mencionados.
 
-- Otra solución alternativa sería limitar el bot solo para los supergrupos con [filtrado](../guide/filter-queries.md) (o limitar solo las funciones relacionadas con la sesión a los supergrupos).
+- Otra solución alternativa sería limitar el bot solo para los supergrupos con [filtrado](../guide/filter-queries) (o limitar solo las funciones relacionadas con la sesión a los supergrupos).
   Sin embargo, esto traslada la problemática/inconveniencia a los usuarios.
 
 - Dejar que los usuarios decidan explícitamente.
@@ -412,15 +404,14 @@ bot.use(session({
 > La lista de integraciones soportadas de soluciones de almacenamiento externo está [aquí abajo](#soluciones-de-almacenamiento-externo).
 
 Un beneficio de usar grammY es que obtienes acceso a almacenamiento gratuito en la nube.
-No requiere ninguna configuración - toda la autenticación se hace usando tu token de bot.
+No requiere ninguna configuración---toda la autenticación se hace usando tu token de bot.
 ¡Echa un vistazo a el [repositorio](https://github.com/grammyjs/storage-free)!
 
 Es muy fácil de usar:
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { freeStorage } from "@grammyjs/storage-free";
 
 bot.use(session({
@@ -429,10 +420,7 @@ bot.use(session({
 }));
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { freeStorage } = require("@grammyjs/storage-free");
 
 bot.use(session({
@@ -441,10 +429,7 @@ bot.use(session({
 }));
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { freeStorage } from "https://deno.land/x/grammy_storage/free/mod.ts";
 
 bot.use(session({
@@ -454,17 +439,15 @@ bot.use(session({
 ```
 
 :::
-::::
 
 Ya está.
 Tu bot ahora utilizará un almacenamiento de datos persistente.
 
 Aquí hay un ejemplo de bot completo que puedes copiar para probarlo.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context, session, SessionFlavor } from "grammy";
 import { freeStorage } from "@grammyjs/storage-free";
 
@@ -492,10 +475,7 @@ bot.catch((err) => console.error(err));
 bot.start();
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot, session } = require("grammy");
 const { freeStorage } = require("@grammyjs/storage-free");
 
@@ -517,10 +497,7 @@ bot.catch((err) => console.error(err));
 bot.start();
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import {
   Bot,
   Context,
@@ -554,7 +531,6 @@ bot.start();
 ```
 
 :::
-::::
 
 ### Soluciones de almacenamiento externo
 
@@ -597,7 +573,7 @@ Naturalmente, también se puede utilizar el mismo almacenamiento con una configu
 También es posible utilizar diferentes [claves de sesión](#claves-de-sesion) para cada fragmento.
 Como resultado, puede almacenar algunos datos por chat y otros por usuario.
 
-> Si está utilizando [grammY runner](./runner.md), asegúrese de configurar `sequentialize` correctamente devolviendo **todas** las claves de sesión como restricciones de la función.
+> Si está utilizando [grammY runner](./runner), asegúrese de configurar `sequentialize` correctamente devolviendo **todas** las claves de sesión como restricciones de la función.
 
 Puede utilizar esta función pasando `type: "multi"` a la configuración de la sesión.
 A su vez, tendrás que configurar cada fragmento con su propia configuración.
@@ -797,10 +773,9 @@ interfaz SessionData {
 
 Las funciones de migración permiten transformar el antiguo array de cadenas en el nuevo array de objetos mascota.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 function addBirthdayToPets(old: { petNames: string[] }): SessionData {
   return {
     pets: old.petNames.map((name) => ({ name })),
@@ -815,10 +790,7 @@ const enhanced = enhanceStorage({
 });
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 function addBirthdayToPets(old) {
   return {
     pets: old.petNames.map((name) => ({ name })),
@@ -834,7 +806,6 @@ const enhanced = enhanceStorage({
 ```
 
 :::
-::::
 
 Siempre que se lean los datos de la sesión, la mejora del almacenamiento comprobará si los datos de la sesión ya están en la versión `1`.
 Si la versión es inferior (o no existe porque no se utilizaba antes esta función), se ejecutará la función de migración.

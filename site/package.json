@@ -3,19 +3,24 @@
   "license": "MIT",
   "scripts": {
     "prepare": "npm run docs:index-versions",
-    "docs:index-versions": "deno run --no-npm --allow-net docs/.vuepress/plugins/current-versions/build-index.ts > docs/.vuepress/plugins/current-versions/index.json",
-    "docs:dev": "vuepress-vite dev docs",
-    "docs:build": "npm run docs:vuepress && npm run docs:sitemap",
-    "docs:vuepress": "node --max-old-space-size=8000 ./node_modules/.bin/vuepress-vite build docs",
+    "docs:index-versions": "deno run --no-npm --allow-net docs/.vitepress/plugins/current-versions/build-index.ts > docs/.vitepress/plugins/current-versions/index.json",
+    "docs:dev": "vitepress dev docs",
+    "docs:host": "vitepress dev docs --host",
+    "docs:build": "npm run docs:vitepress && npm run docs:sitemap",
+    "docs:serve": "vitepress serve docs",
+    "docs:preview": "npm run docs:build && npm run docs:serve",
+    "docs:vitepress": "node --max-old-space-size=8000 ./node_modules/.bin/vitepress build docs",
     "docs:fmt": "deno fmt",
-    "docs:sitemap": "deno run --no-npm --allow-read=docs/.vuepress/dist --allow-write=docs/.vuepress/dist/sitemap.xml https://deno.land/x/sitemap@v1.1.0/cli.ts -b https://grammy.dev -r docs/.vuepress/dist",
-    "docs:serve": "serve docs/.vuepress/dist",
+    "docs:sitemap": "deno run --no-npm --allow-read=docs/.vitepress/dist --allow-write=docs/.vitepress/dist/sitemap.xml https://deno.land/x/sitemap@v1.1.0/cli.ts -b https://grammy.dev -r docs/.vitepress/dist --clean",
     "deno:version": "deno --version"
   },
   "devDependencies": {
-    "@vuepress/plugin-docsearch": "next",
-    "deno-bin": ">=1.31.1",
-    "serve": "^14.2.0",
-    "vuepress-vite": "2.0.0-beta.61"
+    "@tsconfig/node18": "^18.2.0",
+    "@types/markdown-it": "^12.2.3",
+    "@types/node": "^20.3.3",
+    "@vue/tsconfig": "^0.4.0",
+    "deno-bin": ">=1.34.3",
+    "sass": "^1.63.6",
+    "vitepress": "^1.0.0-beta.5"
   }
 }

@@ -1,14 +1,9 @@
----
-prev: ../guide/
-next: ./getting-started.md
----
-
 # Pengenalan
 
 Bot Telegram adalah sebuah akun khusus yang dijalankan secara otomatis oleh sebuah program.
 Siapa saja bisa membuat bot Telegram, asalkan ia menguasai _coding_ meskipun cuma sedikit.
 
-> Kalau sudah tahu cara membuat bot, lompat ke materi [Memulai](./getting-started.md)!
+> Kalau sudah tahu cara membuat bot, lompat ke materi [Memulai](./getting-started)!
 
 Sedangkan grammY adalah sebuah _library_ untuk mempermudah pembuatan sebuah bot.
 
@@ -34,14 +29,14 @@ Meski bot sekarang sudah bisa berjalan, namun saat kamu menghentikan bot-nya (at
 > Lewati bagian ini jika kamu cuma ingin bermain-main dengan bot, langsung lompat ke [Persiapan untuk Memulai](#persiapan-untuk-memulai).
 
 Sederhananya, jika ingin bot tetap aktif sepanjang waktu, kamu harus terus menjalankan komputer selama 24 jam setiap hari.
-Karena kemungkinan besar kamu tidak ingin melakukannya dengan komputer kesayanganmu, kamu harus mengunggah source code bot ke sebuah _penyedia hosting_—dengan kata lain, menggunakan komputer milik orang lain, yang juga dikenal sebagai _server_—dan biarkan orang tersebut yang menjalankannya untukmu.
+Karena kemungkinan besar kamu tidak ingin melakukannya dengan komputer kesayanganmu, kamu harus mengunggah source code bot ke sebuah _penyedia hosting_---dengan kata lain, menggunakan komputer milik orang lain, yang juga dikenal sebagai _server_---dan biarkan orang tersebut yang menjalankannya untukmu.
 
 Ada banyak penyedia layanan di luar sana yang mengizinkan kamu untuk menjalankan bot Telegram secara gratis.
-Dokumentasi ini juga sudah menyediakan daftar beberapa penyedia hosting yang kami tahu bekerja dengan baik dengan grammY (lihat di bagian [Hosting](../hosting/comparison.md).
+Dokumentasi ini juga sudah menyediakan daftar beberapa penyedia hosting yang kami tahu bekerja dengan baik dengan grammY (lihat di bagian [Hosting](../hosting/comparison).
 Namun, pada akhirnya, keputusan ada pada diri kamu untuk memilih penyedia layanan yang sesuai.
 Perlu diingat bahwa disaat kamu menjalankan kode di tempat lain, berarti siapa pun yang menguasai "tempat" tersebut memiliki akses ke semua pesan dan data penggunamu. Jadi, kamu harus bijak dalam memilih penyedia hosting yang dapat dipercaya.
 
-Berikut ini adalah diagram (yang disederhanakan) bagaimana alur yang terjadi ketika pengguna—sebut saja namanya Budi—mengakses bot kamu:
+Berikut ini adalah diagram (yang disederhanakan) bagaimana alur yang terjadi ketika pengguna---sebut saja namanya Budi---mengakses bot kamu:
 
 ```asciiart:no-line-numbers
 ________        mengirim         ____________                     ____________
@@ -71,9 +66,9 @@ Kamu akan mengetahuinya nanti seiring membaca dokumentasi-dokumentasi ini.
 ## Persiapan untuk Memulai
 
 > Lewati sisa halaman ini jika sudah tahu cara mengembangkan aplikasi Deno atau Node.js.
-> Lompat ke [materi selanjutnya](./getting-started.md).
+> Lompat ke [materi selanjutnya](./getting-started).
 
-Ada satu hal yang menarik di dalam dunia pemrograman—hal-hal penting yang dianggap sepele dalam menulis kode sangat jarang dibahas, karena sebagian besar developer sering kali berpikir bahwa hal itu sudah sangat jelas. Sehingga, mereka merasa sudah tak perlu menjelaskannya lagi karena mengira semua orang juga sudah pasti paham.
+Ada satu hal yang menarik di dalam dunia pemrograman---hal-hal penting yang dianggap sepele dalam menulis kode sangat jarang dibahas, karena sebagian besar developer sering kali berpikir bahwa hal itu sudah sangat jelas. Sehingga, mereka merasa sudah tak perlu menjelaskannya lagi karena mengira semua orang juga sudah pasti paham.
 
 Pada bagian selanjutnya, kamu akan membuat kode program dalam bahasa pemrograman [TypeScript](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html).
 Dokumentasi grammY tidak akan mengajarimu bagaimana cara membuat suatu program dari dasar.
@@ -82,8 +77,8 @@ Paling tidak, dengan membuat bot Telegram menggunakan grammY adalah awal yang ba
 
 ::: tip Belajar Ngoding
 Kamu bisa mulai belajar TypeScript melalui [tutorial resmi](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html) yang ditulis oleh tim TypeScript, lalu kembali ke sini jika sudah selesai.
-Jangan habiskan lebih dari 30 menit untuk melakukan hal-hal lain di internet—lihat koleksi foto kucing misalnya :cat:.
-Langsung kembali ke sini, selesaikan materi ini, kemudian kita bisa [memulai](./getting-started.md).
+Jangan habiskan lebih dari 30 menit untuk melakukan hal-hal lain di internet---lihat koleksi foto kucing misalnya :cat:.
+Langsung kembali ke sini, selesaikan materi ini, kemudian kita bisa [memulai](./getting-started).
 
 Jika menemukan syntax yang tidak kamu ketahui, atau mendapatkan pesan error yang tidak dimengerti, langsung saja cari di internet.
 Penjelasan serta solusinya kemungkinan besar sudah tersedia---misal di Stack Overflow.
@@ -107,7 +102,7 @@ Untuk itu, kamu perlu memasang beberapa software yang dapat _mengeksekusi_ kode 
 Jenis software ini disebut dengan _runtime environment_.
 Ia akan membaca file source code kamu kemudian mengerjakan apa pun yang diprogramkan di dalamnya.
 
-Terdapat dua runtime environment yang bisa kita pilih: [Deno](https://deno.com/runtime) dan [Node.js](https://nodejs.org).
+Terdapat dua runtime environment yang bisa kita pilih: [Deno](https://deno.land) dan [Node.js](https://nodejs.org).
 Jika kamu menjumpai orang-orang menyebut Node.js dengan sebutan _Node_ saja, mereka terlalu malas untuk menambahkan imbuhan ".js", meskipun maksudnya sama saja.
 
 > Mulai dari sini, kami akan membantu kamu memilih di antara kedua platform tersebut.
@@ -185,7 +180,7 @@ Terakhir, setelah membuat bot, misalnya ditaruh di sebuah file bernama `bot.ts`,
 Kamu bisa menghentikan bot dengan menekan `Ctrl+C`.
 
 Sudah siap?
-[Mari kita mulai!](./getting-started.md#memulai-dengan-deno) :robot:
+[Mari kita mulai!](./getting-started#memulai-dengan-deno) :robot:
 
 ### Persiapan untuk Node.js
 
@@ -221,4 +216,4 @@ Jika kamu merasa kebingungan di titik ini, sebaiknya tinggalkan Node.js dan bera
 
 Masih percaya diri?
 Keren!
-[Mari kita mulai](./getting-started.md#memulai-dengan-node-js)! :robot:
+[Mari kita mulai](./getting-started#memulai-dengan-node-js)! :robot:

@@ -50,7 +50,7 @@ nano bot1.service
 
 3. Añade el siguiente contenido:
 
-```text
+```txt
 [Service]
 ExecStart=<comando_de_inicio>
 Restart=on-failure

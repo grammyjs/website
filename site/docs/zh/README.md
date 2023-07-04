@@ -1,32 +1,42 @@
 ---
-home: true
-heroImage: /images/Y.png
-actions:
-  - text: 立刻开始
-    link: /zh/guide/getting-started.html
-    type: primary
-  - text: 介绍
-    link: /zh/guide/introduction.html
-    type: secondary
+layout: home
+titleTemplate: false
+
+hero:
+  name: grammY
+  text: Telegram Bot 框架。
+  taglines: 
+    - 想到了什么？
+    - bot 开发的新时代。
+    - 运行更快。
+    - 及时更新。
+    - 除了洗碗，我都能做。
+    - 像做柠檬汁一样简单。
+    - 已处理数十亿请求。
+  image:
+    src: /images/Y.webp
+    alt: grammY 徽标
+  actions:
+    - theme: brand
+      text: 立刻开始
+      link: ./guide/getting-started
+    - theme: alt
+      text: 介绍
+      link: ./guide/introduction
+
 features:
-  - title: 易用
+  - icon: <img class="VPImage" src="/icons/beach-animation.webp" alt="beach animation" width="32" height="32">
+    title: 易用
     details: grammY 使创建 Telegram Bot 变得如此简单！
-  - title: 灵活
+  - icon: <img class="VPImage" src="/icons/palette-animation.webp" alt="palette animation" width="32" height="32">
+    title: 灵活
     details: grammY 是开放的，通过插件让它完全适合你的需要。
-  - title: 可扩展
-    details: grammY 在你 bot 拥有较多流量时提供可靠的帮助.
-permalink: /zh/
+  - icon: <img class="VPImage" src="/icons/rocket-animation.webp" alt="rocket animation" width="32" height="32">
+    title: 可扩展
+    details: grammY 在你的 bot 拥有较多流量时提供可靠的帮助.
 ---
 
-<h6 align="right">… {{ [
-  '想到了什么？',
-  'bot 开发的新时代',
-  '运行更快',
-  '及时更新',
-  '除了洗碗，我都能做',
-  '像做柠檬汁一样简单',
-  '数以亿计的服务',
-][Math.floor(Math.random() * 7)] }}.</h6>
+<HomeContent>
 
 ## 快速开始
 
@@ -34,10 +44,9 @@ bot 是用 [TypeScript](https://www.typescriptlang.org)（或JavaScript）编写
 
 `npm install grammy` 并粘贴以下代码：
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot } from "grammy";
 
 const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间 (https://t.me/BotFather)
@@ -48,10 +57,7 @@ bot.on("message", (ctx) => ctx.reply("你好！"));
 bot.start();
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot } = require("grammy");
 
 const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间 (https://t.me/BotFather)
@@ -62,10 +68,7 @@ bot.on("message", (ctx) => ctx.reply("你好！"));
 bot.start();
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
 const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间 (https://t.me/BotFather)
@@ -77,7 +80,6 @@ bot.start();
 ```
 
 :::
-::::
 
 运行成功！ :tada:
 
@@ -98,3 +100,5 @@ bot.start();
 (新增: 多个机器人名称、自定义 emoji 和更好的 inline query)
 
 </div>
+
+</HomeContent>
