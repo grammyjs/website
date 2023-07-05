@@ -85,6 +85,8 @@ bot.start();
 
 Works! :tada:
 
+<footer id="home-footer">
+
 ---
 
 <ClientOnly>
@@ -102,9 +104,8 @@ Works! :tada:
 (Last highlight: multiple bot names, custom emoji, and better inline queries)
 
 </div>
-
+</footer>
 <ClientOnly>
   <LanguagePopup />
 </ClientOnly>
-
 </HomeContent>

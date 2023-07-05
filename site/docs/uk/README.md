@@ -85,6 +85,8 @@ bot.start();
 
 Працює! :tada:
 
+<footer id="home-footer">
+
 ---
 
 <ClientOnly>
@@ -101,5 +103,5 @@ bot.start();
 Остання зміна: декілька псевдонімів ботів, користувацькі емодзі та кращі inline-запити.
 
 </div>
-
+</footer>
 </HomeContent>
