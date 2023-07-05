@@ -22,24 +22,17 @@ export default defineConfig({
     siteTitle: "grammY",
     externalLinkIcon: true,
     search: {
-      provider: "local",
+      provider: "algolia",
       options: {
+        apiKey: "33782ffb584887e3b8cdf9e760ea8e60",
+        indexName: "grammy",
+        appId: "RBF5Q0D7QV",
         locales: {
-          root: {
-            translations: config.searchEn,
-          },
-          es: {
-            translations: config.searchEs,
-          },
-          id: {
-            translations: config.searchId,
-          },
-          uk: {
-            translations: config.searchUk,
-          },
-          zh: {
-            translations: config.searchZh,
-          },
+          ...config.searchEn,
+          ...config.searchEs,
+          ...config.searchId,
+          ...config.searchUk,
+          ...config.searchZh,
         },
       },
     },

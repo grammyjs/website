@@ -1,4 +1,4 @@
-import type { LocalSearchTranslations } from "node_modules/vitepress/types/local-search";
+import type { DocSearchProps } from "node_modules/vitepress/types/docsearch";
 import type { LocaleConfig } from "vitepress";
 import { social } from "../shared/vars";
 import type { NotFound } from "../shared/types";
@@ -456,24 +456,50 @@ export const siteEn: LocaleConfig = {
   },
 };
 
-export const searchEn: LocalSearchTranslations = {
-  button: {
-    buttonText: "Search",
-    buttonAriaLabel: "Search",
-  },
-  modal: {
-    noResultsText: "No results for", // 'No result for "$keyword"'
-    displayDetails: "Display detailed list",
-    resetButtonTitle: "Reset search",
-    backButtonTitle: "Close search",
-    footer: {
-      selectText: "to select", // $enter to select
-      selectKeyAriaLabel: "Enter key",
-      navigateText: "to navigate", // $arrow to navigate
-      navigateUpKeyAriaLabel: "Arrow up",
-      navigateDownKeyAriaLabel: "Arrow down",
-      closeText: "to close", // $esc to close
-      closeKeyAriaLabel: "Escape key",
+export const searchEn: Record<string, Partial<DocSearchProps>> = {
+  root: {
+    placeholder: "Search",
+    translations: {
+      button: {
+        buttonText: "Search",
+        buttonAriaLabel: "Search",
+      },
+      modal: {
+        searchBox: {
+          resetButtonTitle: "Clear the query",
+          resetButtonAriaLabel: "Clear the query",
+          cancelButtonText: "Cancel",
+          cancelButtonAriaLabel: "Cancel",
+        },
+        startScreen: {
+          recentSearchesTitle: "Recent",
+          noRecentSearchesText: "No recent searches",
+          saveRecentSearchButtonTitle: "Save this search",
+          removeRecentSearchButtonTitle: "Remove this search from history",
+          favoriteSearchesTitle: "Favorite",
+          removeFavoriteSearchButtonTitle: "Remove this search from favorites",
+        },
+        errorScreen: {
+          titleText: "Unable to fetch results",
+          helpText: "You might want to check your network connection.",
+        },
+        footer: {
+          selectText: "to select",
+          selectKeyAriaLabel: "Enter key",
+          navigateText: "to navigate",
+          navigateUpKeyAriaLabel: "Arrow up",
+          navigateDownKeyAriaLabel: "Arrow down",
+          closeText: "to close",
+          closeKeyAriaLabel: "Escape key",
+          searchByText: "Search by",
+        },
+        noResultsScreen: {
+          noResultsText: "No results for",
+          suggestedQueryText: "Try searching for",
+          reportMissingResultsText: "Believe this query should return results?",
+          reportMissingResultsLinkText: "Let us know.",
+        },
+      },
     },
   },
 };

@@ -1,4 +1,4 @@
-import type { LocalSearchTranslations } from "node_modules/vitepress/types/local-search";
+import type { DocSearchProps } from "node_modules/vitepress/types/docsearch";
 import type { LocaleConfig } from "vitepress";
 import { social } from "../shared/vars";
 import type { NotFound } from "../shared/types";
@@ -452,24 +452,51 @@ export const siteUk: LocaleConfig = {
   },
 };
 
-export const searchUk: LocalSearchTranslations = {
-  button: {
-    buttonText: "Шукати",
-    buttonAriaLabel: "Шукати",
-  },
-  modal: {
-    noResultsText: "Немає результатів для", // 'No result for "$keyword"'
-    displayDetails: "Display detailed list",
-    resetButtonTitle: "Reset search",
-    backButtonTitle: "Close search",
-    footer: {
-      selectText: "обрати", // $enter to select
-      selectKeyAriaLabel: "клавіша Enter",
-      navigateText: "пересуватися", // $arrow to navigate
-      navigateUpKeyAriaLabel: "Стрілка вгору",
-      navigateDownKeyAriaLabel: "Стрілка вниз",
-      closeText: "закрити", // $esc to close
-      closeKeyAriaLabel: "клавіша Escape",
+export const searchUk: Record<string, Partial<DocSearchProps>> = {
+  uk: {
+    placeholder: "Шукати",
+    translations: {
+      button: {
+        buttonText: "Шукати",
+        buttonAriaLabel: "Шукати",
+      },
+      modal: {
+        searchBox: {
+          resetButtonTitle: "Очистити запит",
+          resetButtonAriaLabel: "Очистити запит",
+          cancelButtonText: "Скасувати",
+          cancelButtonAriaLabel: "Скасувати",
+        },
+        startScreen: {
+          recentSearchesTitle: "Останні",
+          noRecentSearchesText: "Немає останніх пошуків",
+          saveRecentSearchButtonTitle: "Зберегти цей пошук",
+          removeRecentSearchButtonTitle: "Видалити цей пошук з історії",
+          favoriteSearchesTitle: "Улюблені",
+          removeFavoriteSearchButtonTitle: "Видалити цей пошук з улюблених",
+        },
+        errorScreen: {
+          titleText: "Не вдалося отримати результати",
+          helpText: "Ви можете перевірити підключення до мережі.",
+        },
+        footer: {
+          selectText: "обрати",
+          selectKeyAriaLabel: "клавіша Enter",
+          navigateText: "пересуватися",
+          navigateUpKeyAriaLabel: "Стрілка вгору",
+          navigateDownKeyAriaLabel: "Стрілка вниз",
+          closeText: "закрити",
+          closeKeyAriaLabel: "клавіша Escape",
+          searchByText: "Шукати за допомогою",
+        },
+        noResultsScreen: {
+          noResultsText: "Немає результатів для",
+          suggestedQueryText: "Спробуйте пошукати",
+          reportMissingResultsText:
+            "Вважаєте, що цей запит повинен повернути результати?",
+          reportMissingResultsLinkText: "Дайте нам знати.",
+        },
+      },
     },
   },
 };

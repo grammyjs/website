@@ -1,4 +1,4 @@
-import type { LocalSearchTranslations } from "node_modules/vitepress/types/local-search";
+import type { DocSearchProps } from "node_modules/vitepress/types/docsearch";
 import type { LocaleConfig } from "vitepress";
 import { social } from "../shared/vars";
 import type { NotFound } from "../shared/types";
@@ -446,24 +446,51 @@ export const siteId: LocaleConfig = {
     },
   },
 };
-export const searchId: LocalSearchTranslations = {
-  button: {
-    buttonText: "Cari",
-    buttonAriaLabel: "Cari",
-  },
-  modal: {
-    noResultsText: "Tidak ada hasil untuk", // 'No result for "$keyword"'
-    displayDetails: "Tampilkan daftar lengkapnya",
-    resetButtonTitle: "Atur ulang pencarian",
-    backButtonTitle: "Tutup pencarian",
-    footer: {
-      selectText: "untuk memilih", // $enter to select
-      selectKeyAriaLabel: "enter",
-      navigateText: "untuk bernavigasi", // $arrow to navigate
-      navigateUpKeyAriaLabel: "panah atas",
-      navigateDownKeyAriaLabel: "panah bawah",
-      closeText: "untuk menutup", // $esc to close
-      closeKeyAriaLabel: "Escapekey",
+export const searchId: Record<string, Partial<DocSearchProps>> = {
+  id: {
+    placeholder: "Cari",
+    translations: {
+      button: {
+        buttonText: "Cari",
+        buttonAriaLabel: "Cari",
+      },
+      modal: {
+        searchBox: {
+          resetButtonTitle: "Hapus kueri",
+          resetButtonAriaLabel: "Hapus kueri",
+          cancelButtonText: "Batal",
+          cancelButtonAriaLabel: "Batal",
+        },
+        startScreen: {
+          recentSearchesTitle: "Terkini",
+          noRecentSearchesText: "Belum ada pencarian terkini",
+          saveRecentSearchButtonTitle: "Simpan pencarian ini",
+          removeRecentSearchButtonTitle: "Hapus pencarian ini dari riwayat",
+          favoriteSearchesTitle: "Favorit",
+          removeFavoriteSearchButtonTitle: "Hapus pencarian ini dari favorit",
+        },
+        errorScreen: {
+          titleText: "Pencarian gagal dilakukan",
+          helpText: "Coba periksa koneksi internet kamu.",
+        },
+        footer: {
+          selectText: "pilih",
+          selectKeyAriaLabel: "tombol Enter",
+          navigateText: "navigasi",
+          navigateUpKeyAriaLabel: "Ke atas",
+          navigateDownKeyAriaLabel: "Ke bawah",
+          closeText: "tutup",
+          closeKeyAriaLabel: "tombol Escape",
+          searchByText: "Cari menggunakan",
+        },
+        noResultsScreen: {
+          noResultsText: "Tidak ditemukan hasil untuk",
+          suggestedQueryText: "Coba cari",
+          reportMissingResultsText:
+            "Apakah hasil kueri ini seharusnya tersedia?",
+          reportMissingResultsLinkText: "Beritahu kami.",
+        },
+      },
     },
   },
 };

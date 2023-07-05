@@ -1,4 +1,4 @@
-import type { LocalSearchTranslations } from "node_modules/vitepress/types/local-search";
+import type { DocSearchProps } from "node_modules/vitepress/types/docsearch";
 import type { LocaleConfig } from "vitepress";
 import { social } from "../shared/vars";
 import type { NotFound } from "../shared/types";
@@ -452,24 +452,50 @@ export const siteZh: LocaleConfig = {
   },
 };
 
-export const searchZh: LocalSearchTranslations = {
-  button: {
-    buttonText: "搜索",
-    buttonAriaLabel: "搜索",
-  },
-  modal: {
-    noResultsText: "没有结果", // 'No result for "$keyword"'
-    displayDetails: "Display detailed list",
-    resetButtonTitle: "Reset search",
-    backButtonTitle: "Close search",
-    footer: {
-      selectText: "选择", // $enter to select
-      selectKeyAriaLabel: "回车键",
-      navigateText: "导航", // $arrow to navigate
-      navigateUpKeyAriaLabel: "上键",
-      navigateDownKeyAriaLabel: "下键",
-      closeText: "关闭", // $esc to close
-      closeKeyAriaLabel: "Esc键",
+export const searchZh: Record<string, Partial<DocSearchProps>> = {
+  zh: {
+    placeholder: "搜索",
+    translations: {
+      button: {
+        buttonText: "搜索",
+        buttonAriaLabel: "搜索",
+      },
+      modal: {
+        searchBox: {
+          resetButtonTitle: "清除查询",
+          resetButtonAriaLabel: "清除查询",
+          cancelButtonText: "取消",
+          cancelButtonAriaLabel: "取消",
+        },
+        startScreen: {
+          recentSearchesTitle: "最近搜索",
+          noRecentSearchesText: "没有最近搜索",
+          saveRecentSearchButtonTitle: "保存此搜索",
+          removeRecentSearchButtonTitle: "从历史中删除此搜索",
+          favoriteSearchesTitle: "收藏",
+          removeFavoriteSearchButtonTitle: "从收藏中删除此搜索",
+        },
+        errorScreen: {
+          titleText: "无法获取结果",
+          helpText: "你可能需要检查你的网络连接",
+        },
+        footer: {
+          selectText: "选择",
+          selectKeyAriaLabel: "回车键",
+          navigateText: "导航",
+          navigateUpKeyAriaLabel: "上键",
+          navigateDownKeyAriaLabel: "下键",
+          closeText: "关闭",
+          closeKeyAriaLabel: "Esc键",
+          searchByText: "按搜索",
+        },
+        noResultsScreen: {
+          noResultsText: "没有结果",
+          suggestedQueryText: "试试搜索",
+          reportMissingResultsText: "相信这个查询应该返回结果？",
+          reportMissingResultsLinkText: "让我们知道。",
+        },
+      },
     },
   },
 };
