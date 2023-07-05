@@ -1,0 +1,50 @@
+:root {
+  code,
+  a {
+    hyphens: none;
+  }
+} // neither hyphenate inline code snippets nor links, we are injeting <wbr> tags there
+
+.VPDoc {
+  p,
+  li {
+    text-align: justify;
+    text-justify: auto;
+    hyphens: auto;
+  }
+}
+
+.VPHomeFeatures .box {
+  .title {
+    font-size: 1.2rem;
+  }
+
+  .details {
+    font-size: 1rem;
+  }
+}
+
+.VPHomeHero .VPButton.medium {
+  font-size: 0.98rem;
+}
+
+:root .VPHome {
+  padding-bottom: 0px;
+}
+
+// Home feature icons (cards)
+:root .VPFeature .icon .VPImage {
+  width: 32px;
+  height: 32px;
+  margin: 0;
+}
+
+:root .external-link-icon-enabled :is(.vp-doc a[href*="://"], .vp-doc a[target="_blank"])::after
+{
+  content: "";
+}
+
+// 404 page
+.NotFound .quote {
+  max-width: 100%; // instead of 256px
+}

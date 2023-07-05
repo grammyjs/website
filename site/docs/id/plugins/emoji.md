@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Plugin Emoji (`emoji`)
 
 Dengan plugin ini, kamu bisa menambahkan emoji secara otomatis di pesan balasanmu tanpa perlu bolak-balik copy-paste emoji dari web ke kode kamu.
@@ -29,16 +34,15 @@ Kamu bisa membacanya lebih lanjut [di sini](https://developer.mozilla.org/en-US/
 
 Kamu bisa menginstal plugin ini di bot kamu dengan cara seperti ini:
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context } from "grammy";
 import { EmojiFlavor, emojiParser } from "@grammyjs/emoji";
 
 // Ini dinamakan Context Flavor
 // Kamu bisa membacanya di sini:
-// https://grammy.dev/id/guide/context.html#transformative-context-flavor
+// https://grammy.dev/id/guide/context#transformative-context-flavor
 type MyContext = EmojiFlavor<Context>;
 
 const bot = new Bot<MyContext>("");
@@ -46,10 +50,7 @@ const bot = new Bot<MyContext>("");
 bot.use(emojiParser());
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot } = require("grammy");
 const { emojiParser } = require("@grammyjs/emoji");
 
@@ -58,10 +59,7 @@ const bot = new Bot("");
 bot.use(emojiParser());
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   EmojiFlavor,
@@ -70,7 +68,7 @@ import {
 
 // Ini dinamakan Context Flavor
 // Kamu bisa membacanya di sini:
-// https://grammy.dev/id/guide/context.html#transformative-context-flavor
+// https://grammy.dev/id/guide/context#transformative-context-flavor
 type MyContext = EmojiFlavor<Context>;
 
 const bot = new Bot<MyContext>("");
@@ -79,7 +77,6 @@ bot.use(emojiParser());
 ```
 
 :::
-::::
 
 Sekarang, kamu bisa mencari emoji berdasarkan namanya:
 

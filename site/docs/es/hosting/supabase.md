@@ -3,7 +3,7 @@
 Esta guía te explica cómo puedes alojar tus bots de grammY en [Supabase](https://supabase.com/).
 
 Ten en cuenta que necesitas tener una cuenta de [GitHub](https://github.com) antes de poder utilizar [Supabase Edge Functions](https://supabase.com/docs/guides/functions/quickstart).
-Además, Supabase Edge Functions se basa en [Deno Deploy](https://deno.com/deploy), así que al igual que [nuestra guía de Deno Deploy](./deno-deploy.md), esta guía es sólo para usuarios de Deno de grammY.
+Además, Supabase Edge Functions se basa en [Deno Deploy](https://deno.com/deploy), así que al igual que [nuestra guía de Deno Deploy](./deno-deploy), esta guía es sólo para usuarios de Deno de grammY.
 
 Supabase Edge Functions es ideal para la mayoría de los bots simples, y debes tener en cuenta que no todas las características de Deno están disponibles para las aplicaciones que se ejecutan en Supabase Edge Functions.
 Por ejemplo, no hay sistema de archivos en Supabase Edge Functions.
@@ -26,7 +26,7 @@ Una vez que hayas creado un proyecto de Supabase Function, puedes escribir tu bo
 
 ## Preparando tu código
 
-> Recuerda que necesitas [ejecutar tu bot en webhhoks](../guide/deployment-types.md#como-usar-webhooks), por lo que debes usar `webhookCallback` y no llamar a `bot.start()` en tu código.
+> Recuerda que necesitas [ejecutar tu bot en webhhoks](../guide/deployment-types#como-usar-webhooks), por lo que debes usar `webhookCallback` y no llamar a `bot.start()` en tu código.
 
 Puedes utilizar este breve ejemplo de bot como punto de partida.
 

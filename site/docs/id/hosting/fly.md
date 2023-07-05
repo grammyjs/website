@@ -4,7 +4,7 @@ Halaman ini berisi panduan mengenai cara-cara meng-hosting bot di [Fly](https://
 
 ## Menyiapkan Kode
 
-Kamu bisa menjalankan bot menggunakan [webhooks ataupun long polling](../guide/deployment-types.md).
+Kamu bisa menjalankan bot menggunakan [webhooks ataupun long polling](../guide/deployment-types).
 
 ### Webhooks
 
@@ -13,10 +13,9 @@ Kamu bisa menjalankan bot menggunakan [webhooks ataupun long polling](../guide/d
 1. Pastikan kamu meng-export object `Bot` di dalam sebuah file agar nantinya bisa di-import ketika ingin menjalankannya.
 2. Buat sebuah file dengan nama `app.ts` atau `app.js`, ataupun nama lainnya sesuai dengan keinginanmu (tetapi kamu harus mengingatnya karena nanti file tersebut akan digunakan sebagai file deploy utama). File tersebut berisikan:
 
-::::code-group
-:::code-group-item Deno
+::: code-group
 
-```ts{11}
+```ts{11} [Deno]
 import { serve } from "https://deno.land/std/http/server.ts";
 import { webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 // Kamu mungkin perlu mengubah ini agar object bot-mu bisa di-import.
@@ -38,10 +37,7 @@ serve(async (req) => {
 }, { port });
 ```
 
-:::
-:::code-group-item Node.js
-
-```ts{10}
+```ts{10} [Node.js]
 import express from "express";
 import { webhookCallback } from "grammy";
 // Kamu mungkin perlu mengubah ini agar object bot-mu bisa di-import.
@@ -58,7 +54,6 @@ app.listen(port, () => console.log(`listening on port ${port}`));
 ```
 
 :::
-::::
 
 Kami menganjurkan kamu untuk menaruh handler di direktori rahasia alih-alih menempatkanya di root (`/`).
 Di contoh kali ini, kita menggunakan token bot (`/<token bot>`) sebagai direktori rahasianya (perhatikan baris kode yang disorot).
@@ -68,10 +63,9 @@ Di contoh kali ini, kita menggunakan token bot (`/<token bot>`) sebagai direktor
 Buat sebuah file dengan nama `app.ts` atau `app.js`, ataupun nama lainnya sesuai dengan keinginanmu (tetapi kamu harus mengingatnya karena nanti file tersebut akan digunakan sebagai file deploy utama).
 File tersebut berisikan:
 
-::::code-group
-:::code-group-item Deno
+::: code-group
 
-```ts
+```ts [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
 const token = Deno.env.get("BOT_TOKEN");
@@ -90,10 +84,7 @@ Deno.addSignalListener("SIGTERM", () => bot.stop());
 bot.start();
 ```
 
-:::
-:::code-group-item Node.js
-
-```ts
+```ts [Node.js]
 import { Bot } from "grammy";
 
 const token = process.env.BOT_TOKEN;
@@ -113,7 +104,6 @@ bot.start();
 ```
 
 :::
-::::
 
 Perhatikan baris kode yang disorot di atas, kita telah mengambil informasi sensitif (token bot kamu) dari environment variables.
 Kamu bisa menyimpan informasi tersebut dengan menjalankan perintah berikut:
@@ -135,14 +125,13 @@ Metode ini adalah cara yang termudah.
 2. Jalankan `flyctl launch` untuk membuat sebuah file `Dockerfile` dan `fly.toml` yang nantinya untuk digunakan saat deployment.
    Tetapi, **JANGAN** di-deploy terlebih dahulu.
 
-::::code-group
-:::code-group-item Deno
+::: code-group
 
-```sh
+```sh [Deno]
 flyctl launch
 ```
 
-```log{10}
+```log{10} [Log]
 Creating app in /my/telegram/bot
 Scanning source code
 Detected a Deno app
@@ -157,13 +146,14 @@ Your app is ready. Deploy with `flyctl deploy`
 ```
 
 :::
-:::code-group-item Node.js
 
-```sh
+::: code-group
+
+```sh [Node.js]
 flyctl launch
 ```
 
-```log{12}
+```log{12} [Log]
 Creating app in /my/telegram/bot
 Scanning source code
 Detected a NodeJS app
@@ -180,7 +170,6 @@ Your app is ready. Deploy with `flyctl deploy`
 ```
 
 :::
-::::
 
 3. **Deno**: Ubah versi Deno dan hapus `CMD` di dalam file `Dockerfile`.
    Pada contoh di bawah, kami mengubah `DENO_VERSION` menjadi `1.25.2`.
@@ -188,10 +177,9 @@ Your app is ready. Deploy with `flyctl deploy`
    **Node.js**: Untuk mengubah versi Node.js, kamu perlu menambahkan property `node` ke dalam property `engine` yang berada di dalam file `package.json`.
    Pada contoh di bawah, kami mengubah versi Node.js menjadi `16.14.0`.
 
-::::code-group
-:::code-group-item Deno
+::: code-group
 
-```dockerfile{2,26}
+```dockerfile{2,26} [Deno]
 # Dockerfile
 ARG DENO_VERSION=1.25.2
 ARG BIN_IMAGE=denoland/deno:bin-${DENO_VERSION}
@@ -220,10 +208,7 @@ ENTRYPOINT ["/bin/deno"]
 # CMD tidak digunakan
 ```
 
-:::
-:::code-group-item Node.js
-
-```json{19}
+```json [Node.js]{19}
 // package.json
 {
   "name": "grammy",
@@ -248,17 +233,15 @@ ENTRYPOINT ["/bin/deno"]
 ```
 
 :::
-::::
 
 4. Ubah `app` di dalam file `fly.toml`.
    Path `./app.ts` (atau `./app.js` untuk Node.js) pada contoh di bawah mengacu pada direktori file utamanya.
    Kamu mungkin perlu mengaturnya agar sesuai dengan direktori proyek kamu.
    Kalau kamu menggunakan webhooks, pastikan port-nya sama dengan [konfigurasi](#webhooks) yang kamu miliki, dalam hal ini port-nya adalah `8000`.
 
-::::code-group
-:::code-group-item Deno (Webhooks)
+::: code-group
 
-```toml{7,11,12}
+```toml [Deno (Webhooks)]{7,11,12}
 # fly.toml
 app = "grammy"
 kill_signal = "SIGINT"
@@ -294,10 +277,7 @@ kill_timeout = 5
     timeout = "2s"
 ```
 
-:::
-:::code-group-item Deno (Long polling)
-
-```toml{7}
+```toml [Deno (Long Polling)]{7}
 # fly.toml
 app = "grammy"
 kill_signal = "SIGINT"
@@ -309,10 +289,7 @@ kill_timeout = 5
 # Hapus semua bagian [[services]] karena kita tidak perlu menyimak HTTP
 ```
 
-:::
-:::code-group-item Node.js (Webhooks)
-
-```toml{7,11,18,19}
+```toml [Node.js (Webhooks)]{7,11,18,19}
 # fly.toml
 app = "grammy"
 kill_signal = "SIGINT"
@@ -355,10 +332,7 @@ kill_timeout = 5
     timeout = "2s"
 ```
 
-:::
-:::code-group-item Node.js (Long polling)
-
-```toml{7,11,22,23}
+```toml [Node.js (Long polling)]{7,11,22,23}
 # fly.toml
 app = "grammy"
 kill_signal = "SIGINT"
@@ -378,7 +352,6 @@ kill_timeout = 5
 ```
 
 :::
-::::
 
 5. Jalankan `flyctl deploy` untuk men-deploy kode kamu.
 

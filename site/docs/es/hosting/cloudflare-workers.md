@@ -88,7 +88,7 @@ npm run deploy
 Necesitamos decirle a Telegram a dónde enviar las actualizaciones.
 Abre tu navegador y visita esta URL:
 
-```text
+```txt
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<MY_BOT>.<MY_SUBDOMAIN>.workers.dev/
 ```
 

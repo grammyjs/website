@@ -1,8 +1,3 @@
----
-prev: ./filter-queries.md
-next: ./middleware.md
----
-
 # Command
 
 Command atau perintah adalah entity khusus di dalam pesan Telegram yang berfungsi sebagai instruksi untuk sebuah bot.
@@ -63,13 +58,13 @@ Perlu dicatat bahwa seluruh isi teks pesan selalu bisa diakses melalui `ctx.msg.
 
 > Lihat bagian deep linking di dokumentasi [Fitur-fitur Bot Telegram](https://core.telegram.org/bots/features#deep-linking) yang ditulis oleh tim Telegram.
 
-Ketika pengguna mengunjungi `https://t.me/username_bot_kamu?start=migoreng`, aplikasi Telegram mereka akan menampilkan sebuah tombol MULAI yang—kalau dipencet—akan mengirim pesan beserta string dari parameter URL-nya. Dari contoh tadi, isi pesannya akan menjadi `"/start migoreng"`. Nah,`"migoreng"` ini adalah muatannya atau disebut dengan `payload`.
+Ketika pengguna mengunjungi `https://t.me/username_bot_kamu?start=migoreng`, aplikasi Telegram mereka akan menampilkan sebuah tombol MULAI yang---kalau dipencet---akan mengirim pesan beserta string dari parameter URL-nya. Dari contoh tadi, isi pesannya akan menjadi `"/start migoreng"`. Nah,`"migoreng"` ini adalah muatannya atau disebut dengan `payload`.
 Aplikasi Telegram akan menyembunyikan isi payload tersebut dari pengguna, yang mereka lihat cuma `"/start"`. Tetapi, bot kamu tetap akan menerima pesannya secara utuh.
 grammY kemudian mengambil payload tersebut, lalu meneruskannya ke `ctx.match`.
 Berdasarkan link dari contoh di atas, `ctx.match` akan berisi string `"migoreng"`.
 
 Deep linking akan bermanfaat ketika kamu ingin membuat sistem referral, ataupun melacak dari mana pengguna menemukan bot-mu.
-Contohnya, bot kamu bisa memposting di channel dengan menyertakan sebuah tombol [inline keyboard](../plugins/keyboard.md#keyboard-inline) di bawah postingan tersebut.
+Contohnya, bot kamu bisa memposting di channel dengan menyertakan sebuah tombol [inline keyboard](../plugins/keyboard#keyboard-inline) di bawah postingan tersebut.
 Tombol ini berisi URL yang mirip dengan contoh di atas, misal `https://t.me/username_bot_kamu?start=dari-postingan-channel-drama-ojol-nomor-123`.
 Ketika user memencet tombol tersebut, aplikasi Telegram mereka akan membuka chat pribadi dengan bot kamu, sambil menampilkan tombol MULAI seperti yang sudah dijelaskan di atas.
 Dengan cara tersebut, bot-mu bisa mengidentifikasi dari mana pengguna tersebut berasal melalui tombol khusus di bawah postingan channel tadi.

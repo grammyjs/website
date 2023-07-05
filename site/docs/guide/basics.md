@@ -1,8 +1,3 @@
----
-prev: ./getting-started.md
-next: ./context.md
----
-
 # Sending and Receiving Messages
 
 As soon as you start your bot with `bot.start()`, grammY will supply your listeners with the messages that users send to your bot.
@@ -30,7 +25,7 @@ bot.hears(/echo *(.+)?/, async (ctx) => {/* ... */});
 
 You can use auto-complete in your code editor to see all available options, or check out [all methods](https://deno.land/x/grammy/mod.ts?s=Composer) of the `Composer` class.
 
-> [Read more](./filter-queries.md) about filtering for specific message types with `bot.on()`.
+> [Read more](./filter-queries) about filtering for specific message types with `bot.on()`.
 
 ## Sending Messages
 
@@ -56,7 +51,7 @@ These options objects correspond exactly with the options that you can find in l
 You can also use auto-complete in your code editor to see all available options, or check out [all methods](https://deno.land/x/grammy/mod.ts?s=Api) of the `Api` class.
 The rest of this page shows some examples for this.
 
-Also, check out the [next section](./context.md) to learn how the context object of a listener makes sending messages a breeze!
+Also, check out the [next section](./context) to learn how the context object of a listener makes sending messages a breeze!
 
 ## Sending Messages With Reply
 
@@ -74,7 +69,7 @@ bot.hears("ping", async (ctx) => {
 
 > Note that only sending a message via `ctx.reply` does **NOT** mean you are automatically replying to anything.
 > Instead, you should specify `reply_to_message_id` for this.
-> The function `ctx.reply` is just an alias for `ctx.api.sendMessage`, see the [next section](./context.md#available-actions).
+> The function `ctx.reply` is just an alias for `ctx.api.sendMessage`, see the [next section](./context#available-actions).
 
 ## Sending Message With Formatting
 
@@ -113,7 +108,7 @@ await bot.api.sendMessage(
 
 ## Sending Files
 
-File handling is explained in greater depth in a [later section](./files.md#sending-files).
+File handling is explained in greater depth in a [later section](./files#sending-files).
 
 ## Force Reply
 

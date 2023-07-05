@@ -1,11 +1,18 @@
+---
+prev: false
+next: false
+---
+
 # 流量控制（`transformer-throttler`）
 
-这个插件通过 [Bottleneck](https://github.com/SGrondin/bottleneck) 对传出的 API 请求实例进行排队，以防止你的 bot 被 [限流](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this)，正如在这个 [高级部分](../advanced/flood.md) 的文档中描述的那样。
+> 考虑使用 [auto-retry 插件](./auto-retry) 代替。
+
+这个插件通过 [Bottleneck](https://github.com/SGrondin/bottleneck) 对传出的 API 请求实例进行排队，以防止你的 bot 被 [限流](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this)，正如在这个 [高级部分](../advanced/flood) 的文档中描述的那样。
 
 ::: warning 不存在文档中的 API 限制
 Telegram 实现了一些未指定的和无文档的 API 调用的限制。
 这些无文档的限制**不被限流器计算**。
-如果你在某些 API 调用出现 floodwait 错误，例如 `api.sendContact`，请考虑将 [auto-retry 插件](./auto-retry.md) 和这个插件一起使用。
+如果你仍然想使用这个插件，请考虑将 [auto-retry 插件](./auto-retry) 和这个插件一起使用。
 :::
 
 ## 使用方法
@@ -13,10 +20,9 @@ Telegram 实现了一些未指定的和无文档的 API 调用的限制。
 这里是使用默认选项的一个示例。
 请注意，默认选项与 Telegram 所实现的限制率一致，因此它们应该可以正常使用。
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot } from "grammy";
 import { run } from "@grammyjs/runner";
 import { apiThrottler } from "@grammyjs/transformer-throttler";
@@ -32,10 +38,7 @@ bot.command("example", (ctx) => ctx.reply("I am throttled"));
 run(bot);
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot } = require("grammy");
 const { run } = require("@grammyjs/runner");
 const { apiThrottler } = require("@grammyjs/transformer-throttler");
@@ -51,10 +54,7 @@ bot.command("example", (ctx) => ctx.reply("I am throttled"));
 run(bot);
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { run } from "https://deno.land/x/grammy_runner/mod.ts";
 import { apiThrottler } from "https://deno.land/x/grammy_transformer_throttler/mod.ts";
@@ -71,7 +71,6 @@ run(bot);
 ```
 
 :::
-::::
 
 ## 配置
 

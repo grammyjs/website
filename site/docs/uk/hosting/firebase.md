@@ -27,7 +27,7 @@
 > Важливо зауважити, що на даний момент Firebase Functions підтримує версії Node.js 14, 16 та 18.
 > Для отримання додаткової інформації про підтримувані версії Node.js зверніться [сюди](https://firebase.google.com/docs/functions/manage-functions?hl=ru#set_nodejs_version).
 
-Після встановлення Node.js та NPM, глобально встановіть Firebase CLI:
+Після встановлення Node.js та npm, глобально встановіть Firebase CLI:
 
 ```sh
 npm install -g firebase-tools
@@ -123,7 +123,7 @@ lt --port 5001
 
 localtunnel повинен надати вам унікальну URL-адресу, наприклад, `https://modern-heads-sink-80-132-166-120.loca.lt`.
 
-Все, що залишилося — це повідомити Telegram, куди надсилати оновлення.
+Все, що залишилося --- це повідомити Telegram, куди надсилати оновлення.
 Ви можете зробити це, викликавши `setWebhook`.
 Наприклад, відкрийте нову вкладку у своєму браузері та відвідайте цю адресу:
 

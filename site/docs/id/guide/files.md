@@ -1,8 +1,3 @@
----
-prev: ./inline-queries.md
-next: ./games.md
----
-
 # Menangani File
 
 Bot Telegram tidak hanya bisa menerima dan mengirim pesan teks, tetapi juga jenis pesan lainnya, seperti foto dan video.
@@ -44,7 +39,7 @@ Oleh karena itu, selalu gunakan `file_id` yang memang diperuntukkan khusus untuk
 
 Di sisi lain, bot bisa saja secara kebetulan mendapat `file_id` yang berbeda untuk satu file yang sama.
 Karenanya, kamu tidak bisa mengandalkan `file_id` untuk membandingkan apakah dua file identik atau tidak.
-Kalau bot kamu—atau beberapa bot—perlu mengidentifikasi file yang sama dari waktu ke waktu, kamu harus menggunakan value dari `file_unique_id` yang bot terima bersamaan dengan `file_id`.
+Kalau bot kamu---atau beberapa bot---perlu mengidentifikasi file yang sama dari waktu ke waktu, kamu harus menggunakan value dari `file_unique_id` yang bot terima bersamaan dengan `file_id`.
 `file_unique_id` tidak bisa digunakan untuk mengunduh file, namun value-nya akan selalu sama untuk setiap file yang diberikan, bahkan untuk setiap bot.
 
 ## Menerima File
@@ -69,16 +64,16 @@ bot.on("message:voice", async (ctx) => {
 ```
 
 ::: tip Meneruskan file_id Lain ke getFile
-Di object context, `getFile` adalah [sebuah shortcut](./context.md#shortcut) yang mengambil informasi file dari pesan tersebut saja.
+Di object context, `getFile` adalah [sebuah shortcut](./context#shortcut) yang mengambil informasi file dari pesan tersebut saja.
 Kalau ingin mendapatkan file lain selagi menangani pesan, gunakan `ctx.api.getFile(file_id)`.
 :::
 
-> Lihat [shortcut `:media` dan `:file`](./filter-queries.md#shortcut) di filter query untuk menerima berbagai macam file.
+> Lihat [shortcut `:media` dan `:file`](./filter-queries#shortcut) di filter query untuk menerima berbagai macam file.
 
 Setelah kamu memanggil `getFile`, kamu bisa menggunakan `file_path` untuk mengunduh file menggunakan URL ini `https://api.telegram.org/file/bot<token>/<file_path>`, di mana `<token>` adalah token bot kamu.
 
 ::: tip Plugin Files
-grammY tidak menyertakan pengunduh file secara bawaan, sebagai gantinya kamu bisa menggunakan [plugin files resmi](../plugins/files.md) yang telah kami sediakan.
+grammY tidak menyertakan pengunduh file secara bawaan, sebagai gantinya kamu bisa menggunakan [plugin files resmi](../plugins/files) yang telah kami sediakan.
 Dengan plugin tersebut, kamu bisa mengunduh file melalui `await file.download()` dan memperoleh URL unduhannya menggunakan `file.getUrl()`.
 :::
 
@@ -110,7 +105,7 @@ Dua method yang pertama cukup simpel: kamu hanya perlu mengisi value sebagai seb
 await ctx.replyWithPhoto(idFilenya);
 
 // Kirim melalui URL.
-await ctx.replyWithPhoto("https://grammy.dev/images/Y.png");
+await ctx.replyWithPhoto("https://grammy.dev/images/Y.webp");
 
 // Alternatifnya, kamu bisa menggunakan
 // bot.api.sendPhoto() atau ctx.api.sendPhoto().
@@ -129,6 +124,7 @@ await ctx.replyWithPhoto(new InputFile("/tmp/kocheng-oren-uwu.jpg"));
 ```
 
 Constructor `InputFile` tidak hanya menerima path file, tetapi juga stream, object `Buffer`, perulangan async, ataupun sebuah function yang mengembalikan salah satu dari item-item tersebut, dan bahkan tergantung dari platform yang kamu gunakan, bisa lebih banyak lagi.
+
 Yang perlu diingat adalah: **buat sebuah instance `InputFile` lalu teruskan ke method yang bertugas mengirim file**.
 Instance `InputFile` bisa diteruskan ke semua method yang menerima pengiriman file melalui unggahan.
 
@@ -138,10 +134,9 @@ Berikut beberapa contoh bagaimana kamu bisa membuat `InputFile`.
 
 Kalau kamu sudah punya file yang tersimpan di komputermu, kamu bisa menyuruh grammY untuk mengunggah file tersebut.
 
-::::code-group
-:::code-group-item Node.js
+::: code-group
 
-```ts
+```ts [Node.js]
 import { createReadStream } from "fs";
 
 // Kirim file lokal
@@ -151,10 +146,7 @@ new InputFile("/path/ke/file");
 new InputFile(createReadStream("/path/ke/file"));
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 // Kirim file lokal
 new InputFile("/path/ke/file");
 
@@ -163,17 +155,15 @@ new InputFile(await Deno.open("/path/ke/file"));
 ```
 
 :::
-::::
 
 #### Mengunggah Raw Binary Data
 
 Kamu juga bisa mengirim object `Buffer`, maupun sebuah perulangan yang menghasilkan object `Buffer`.
 Di Deno, kamu bisa mengirim object `Blob` juga.
 
-::::code-group
-:::code-group-item Node.js
+::: code-group
 
-```ts
+```ts [Node.js]
 // Kirim sebuah buffer atau array byte.
 const buffer = Uint8Array.from([65, 66, 67]);
 new InputFile(buffer); // "ABC"
@@ -184,10 +174,7 @@ new InputFile(function* () {
 });
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 // Kirim sebuah blob.
 const blob = new Blob("ABC", { type: "text/plain" });
 new InputFile(blob);
@@ -202,7 +189,6 @@ new InputFile(function* () {
 ```
 
 :::
-::::
 
 #### Mengunduh dan Mengunggah File Kembali
 
@@ -214,32 +200,27 @@ Sangat efisien, bukan.
 > Perlu dicatat bahwa Telegram mendukung pengunduhan file dengan berbagai cara.
 > Jika memungkinkan, sebaiknya kamu [mengirim file menggunakan URL](#melalui-file_id-atau-url), daripada menggunakan `InputFile` untuk mengalirkan data file melalui server kamu.
 
-::::code-group
-:::code-group-item Node.js
+::: code-group
 
-```ts
+```ts [Node.js]
 import { URL } from "url";
 
 // Unduh file lalu alirkan data ke Telegram.
-new InputFile(new URL("https://grammy.dev/images/Y.png"));
-new InputFile({ url: "https://grammy.dev/images/Y.png" }); // sama saja
+new InputFile(new URL("https://grammy.dev/images/Y.webp"));
+new InputFile({ url: "https://grammy.dev/images/Y.webp" }); // sama saja
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 // Unduh file lalu alirkan data ke Telegram.
-new InputFile(new URL("https://grammy.dev/images/Y.png"));
-new InputFile({ url: "https://grammy.dev/images/Y.png" }); // sama saja
+new InputFile(new URL("https://grammy.dev/images/Y.webp"));
+new InputFile({ url: "https://grammy.dev/images/Y.webp" }); // sama saja
 ```
 
 :::
-::::
 
 ### Menambahkan Caption
 
-Ketika mengirim file, kamu bisa menentukan opsi lebih lanjut di pilihan object type `Other`, persis seperti yang sudah dijelaskan [sebelumnya](./basics.md#mengirim-pesan).
+Ketika mengirim file, kamu bisa menentukan opsi lebih lanjut di pilihan object type `Other`, persis seperti yang sudah dijelaskan [sebelumnya](./basics#mengirim-pesan).
 Kode berikut akan mengirimkan caption.
 
 ```ts
@@ -268,4 +249,4 @@ Lihat dokumentasi resminya [di sini](https://core.telegram.org/bots/api#using-a-
 Meng-hosting server API Bot tidak ada hubungannya dengan grammY.
 Meski begitu, grammY mendukung method-method yang dibutuhkan untuk mengatur bot kamu agar dapat menggunakan server API Bot milikmu sendiri.
 
-Kamu mungkin ingin mengunjungi materi sebelumnya mengenai skema API Bot [di sini](./api.md).
+Kamu mungkin ingin mengunjungi materi sebelumnya mengenai skema API Bot [di sini](./api).

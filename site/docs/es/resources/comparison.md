@@ -1,3 +1,7 @@
+---
+next: false
+---
+
 # Cómo se compara grammY con otros frameworks de bots
 
 Aunque grammY utiliza algunos conceptos conocidos de otros frameworks de bots (y frameworks web), fue escrito desde cero para una óptima legibilidad y rendimiento.
@@ -41,7 +45,7 @@ También se hizo más difícil para los nuevos usuarios empezar.
 **grammY da un paso atrás y replantea un marco de trabajo de bots de tipo seguro con la accesibilidad en primer lugar.**
 Esto permitió saltarse muchas de las frustrantes discusiones sobre cómo lidiar con extrañas tipografías internas.
 Permitió al proyecto tener un código limpio, consistente y compilable que proporciona a los usuarios excelentes tipos (=soporte de editores).
-La seguridad tipográfica a su vez permite características más avanzadas que cambian fundamentalmente la forma en que pensamos sobre el desarrollo de bots, como los [transformadores de la API](../advanced/transformers.md).
+La seguridad tipográfica a su vez permite características más avanzadas que cambian fundamentalmente la forma en que pensamos sobre el desarrollo de bots, como los [transformadores de la API](../advanced/transformers).
 
 Hoy en día, Telegraf 3 es obsoleto.
 Hay algunos forks no oficiales por ahí que tratan de mantener la base de código heredada al día con la evolución de la API de bots, pero su compatibilidad es desconocida.
@@ -53,7 +57,7 @@ Basándonos en el hecho de que Telegraf se encuentra en algún lugar entre la ve
 #### Comparación con la v3
 
 Dada su historia compartida, grammY y Telegraf tienen mucho en común.
-Ambos tienen un [sistema de middleware](../guide/middleware.md) en su núcleo.
+Ambos tienen un [sistema de middleware](../guide/middleware) en su núcleo.
 También comparten gran parte de su sintaxis básica:
 
 ```ts
@@ -72,14 +76,14 @@ La experiencia demuestra que a menudo tienes que ejecutar tu bot para averiguar 
 
 En cambio, grammY está escrito en TypeScript puro.
 Esto permite que tu editor de código (por ejemplo, VS Code) analice tu código mientras estás escribiendo, y te ayude.
-Además, puede mostrar la API completa de Telegram Bot inline -la documentación del sitio web estará disponible al alcance de tu mano cuando pases el ratón sobre cualquier nombre o elemento de tu código.
+Además, puede mostrar la API completa de Telegram Bot inline---la documentación del sitio web estará disponible al alcance de tu mano cuando pases el ratón sobre cualquier nombre o elemento de tu código.
 
 Otra ventaja notable es que por fin puedes **escribir tus propios bots en TypeScript**.
 Esto era difícil de hacer porque las anotaciones de tipo erróneas de Telegraf estaban impidiendo que el código perfectamente correcto se compilara, animando así efectivamente a los usuarios a no comprobar su código en primer lugar.
 Sin embargo, el código de tipo seguro es una gran ventaja para cualquier base de código no trivial.
 
 grammY y Telegraf tienen bases de código distintas.
-Al ser liberado del legado, grammY también podría hacer contribuciones sustanciales al sistema de middleware subyacente, permitiendo emocionantes casos de uso como [consultas de filtro](../guide/filter-queries.md), [límites de error](../guide/errors.md#error-boundaries), [transformadores de API](../advanced/transformers.md), y muchos más.
+Al ser liberado del legado, grammY también podría hacer contribuciones sustanciales al sistema de middleware subyacente, permitiendo emocionantes casos de uso como [consultas de filtro](../guide/filter-queries), [límites de error](../guide/errors#error-boundaries), [transformadores de API](../advanced/transformers), y muchos más.
 Esto también permite el desarrollo de valiosos plugins que son imposibles de trabajar bajo Telegraf.
 
 La principal ventaja de Telegraf sobre grammY es que sigue siendo **conocido por mucha más gente**.
@@ -138,7 +142,7 @@ Usted no quiere eso.
 ### Otros Frameworks
 
 ¿Crees que tu framework favorito es mejor que grammY en algún aspecto?
-No dudes en editar esta página y añadir una comparación, o dinos lo que piensas en el [chat de grupo](https://t.me/grammyjs).
+No dudes en editar esta página y añadir una comparación---o dinos lo que piensas en el [chat de grupo](https://t.me/grammyjs).
 
 ## Comparación con Frameworks en otros lenguajes de programación
 
@@ -160,7 +164,7 @@ La gente tiene diferentes gustos, así que toma esta sección con un grano de sa
    Con los tipos viene el autocompletado en cada paso del desarrollo, así como útiles tooltips con explicaciones y enlaces.
 
 2. **Más fácil de escalar la base de código.**
-   El sistema de tipos tiene una segunda ventaja: te permite escalar la base de código de tu bot.
+   El sistema de tipos tiene una segunda ventaja---te permite escalar la base de código de tu bot.
    Esto es mucho más difícil de hacer para proyectos escritos en un lenguaje con peor seguridad de tipos.
 
 3. **Más fácil de escalar la carga.**

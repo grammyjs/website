@@ -1,3 +1,9 @@
+---
+prev:
+  text: Tentang grammY
+  link: ./about
+---
+
 # FAQ
 
 Berikut ini adalah kumpulan pertanyaan yang sering ditanyakan mengenai [beberapa kendala yang sering terjadi](#kenapa-saya-mengalami-error-ini) dan [hal-hal lain seputar Deno](#pertanyaan-seputar-deno).
@@ -7,7 +13,7 @@ Jika FAQ ini tidak menjawab pertanyaanmu, sebaiknya kamu juga membaca [FAQ Bot](
 ## Di Mana Saya Bisa Menemukan Dokumentasi Mengenai Method?
 
 Di referensi API.
-Kamu mungkin tertarik untuk memahami [hal-hal berikut](../guide) terlebih dahulu.
+Kamu mungkin tertarik untuk memahami [hal-hal berikut](../guide/) terlebih dahulu.
 
 ## Ada Parameter yang Tidak Tersedia di Method Tertentu!
 
@@ -18,7 +24,7 @@ Tentu saja tidak.
    Jika iya, berarti grammY menaruh parameter tersebut di suatu options object bernama `other`.
    Kamu cuma perlu menulis `{ nama_parameter: value }` di options tersebut.
    Seperti biasa, TypeScript akan membantu kamu melengkapi nama parameter-nya secara otomatis.
-3. Cek ulang method signature untuk [aksi-aksi](../guide/context.md#aksi-yang-tersedia) yang ada di `ctx` [di sini](https://deno.land/x/grammy/mod.ts?s=Context#Methods), serta method API-nya (`ctx.api`, `bot.api`) [di sini](https://deno.land/x/grammy/mod.ts?s=Api#Methods).
+3. Cek ulang method signature untuk [aksi-aksi](../guide/context#aksi-yang-tersedia) yang ada di `ctx` [di sini](https://deno.land/x/grammy/mod.ts?s=Context#Methods), serta method API-nya (`ctx.api`, `bot.api`) [di sini](https://deno.land/x/grammy/mod.ts?s=Api#Methods).
 
 ## Kenapa Saya Mengalami Error Ini?
 
@@ -33,7 +39,7 @@ Sebaiknya kamu membaca kembali dokumentasi Telegram di [bagian pemformatan](http
 Kamu bisa menyusun entities dengan mengirim pesan terkait menggunakan opsi `entities`.
 Teks pesanmu kemudian akan berisi string biasa, sehingga tidak perlu lagi menyaring karakter teks yang aneh.
 Meski kita jadi perlu menambahkan beberapa baris kode lagi, cara ini jauh lebih handal dan merupakan solusi yang cukup aman untuk permasalahan ini.
-Selain itu, kamu juga bisa menggunakan [plugin parse-mode](../plugins/parse-mode.md) untuk mengerjakannya dengan lebih mudah dan simpel.
+Selain itu, kamu juga bisa menggunakan [plugin parse-mode](../plugins/parse-mode) untuk mengerjakannya dengan lebih mudah dan simpel.
 :::
 
 ### 401 Unauthorized
@@ -92,9 +98,9 @@ Kamu sudah berupaya untuk melakukan pemanggilan API seminimal mungkin, tetapi _t
 
 Ada beberapa cara yang bisa kamu lakukan:
 
-1. Baca [materi ini](../advanced/flood.md) supaya paham dengan situasi yang dialami.
-2. Gunakan [plugin `transformer-throttler`](../plugins/transformer-throttler.md).
-3. Gunakan [plugin `auto-retry`](../plugins/auto-retry.md).
+1. Baca [materi ini](../advanced/flood) supaya paham dengan situasi yang dialami.
+2. Gunakan [plugin `transformer-throttler`](../plugins/transformer-throttler).
+3. Gunakan [plugin `auto-retry`](../plugins/auto-retry).
 4. Minta bantuan kami [di grup](https://t.me/grammyjs).
    Kami memiliki beberapa orang yang berpengalaman di sana.
 5. Meminta Telegram untuk meningkatkan batasan tersebut.
@@ -120,7 +126,7 @@ Berikut beberapa alasan kenapa kami lebih menyukai Deno dibandingkan dengan Node
 - Tidak perlu mengurus `package.json` dan `node_modules`.
 - Ia memiliki sebuah library standar yang sudah di-review.
 
-> Deno diciptakan oleh Ryan Dahl—orang yang sama yang menciptakan Node.js.
+> Deno diciptakan oleh Ryan Dahl---orang yang sama yang menciptakan Node.js.
 > Dia mengutarakan 10 penyesalannya mengenai Node.js di [video ini](https://youtu.be/M3BM9TB-8yA).
 
 grammY sendiri lebih memprioritaskan Deno, dari situ ia disusun ulang agar dapat mendukung Node.js sama baiknya.

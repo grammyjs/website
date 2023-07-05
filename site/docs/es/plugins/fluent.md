@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Internacionalización con Fluent (`fluent`)
 
 [Fluent](https://projectfluent.org/) es un sistema de localización creado por la Fundación Mozilla para realizar traducciones naturales.
@@ -5,9 +10,9 @@ Tiene una sintaxis muy potente y elegante que permite a cualquiera escribir trad
 Este plugin aprovecha este increíble sistema de localización para hacer que los bots alimentados por grammY sean fluidos con traducciones de alta calidad.
 
 ::: tip No se debe confundir
-No confundas esto con [i18n](./i18n.md).
+No confundas esto con [i18n](./i18n).
 
-[i18n](./i18n.md) es una versión mejorada de este plugin que funciona tanto en Deno como en Node.js.
+[i18n](./i18n) es una versión mejorada de este plugin que funciona tanto en Deno como en Node.js.
 :::
 
 ## Inicializar Fluent
@@ -82,7 +87,7 @@ Ahora vamos a ver cómo este mensaje de arriba podría ser renderizado por un bo
 Pero primero, necesitaremos configurar grammY para usar el plugin.
 
 Antes que nada, necesitarás configurar tu bot para que utilice el sabor de contexto Fluent.
-Si no estás familiarizado con este concepto, deberías leer los documentos oficiales sobre [Context Flavors](../guide/context.md#context-flavors).
+Si no estás familiarizado con este concepto, deberías leer los documentos oficiales sobre [Context Flavors](../guide/context#context-flavors).
 
 ```ts
 import { Context } from "grammy";

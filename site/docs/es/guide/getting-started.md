@@ -1,8 +1,3 @@
----
-prev: ./introduction.md
-next: ./basics.md
----
-
 # Comenzando
 
 Crea tu primer bot en minutos. (Desplázate [abajo](#introducción-a-deno) para una guía de Deno.)
@@ -10,15 +5,14 @@ Crea tu primer bot en minutos. (Desplázate [abajo](#introducción-a-deno) para 
 ## Comenzando en Node.js
 
 > Esta guía asume que tienes [Node.js](https://nodejs.org) instalado, y `npm` debería venir con él.
-> Si no sabes qué son estas cosas, ¡consulta nuestra [Introducción](./introduction.md)!
+> Si no sabes qué son estas cosas, ¡consulta nuestra [Introducción](./introduction)!
 
 Crea un nuevo proyecto TypeScript e instala el paquete `grammy`.
 Hazlo abriendo un terminal y escribiendo:
 
-::::code-group
-:::code-group-item NPM
+::: code-group
 
-```sh
+```sh [npm]
 # Crea un nuevo directorio y entra en él.
 mkdir my-bot
 cd my-bot
@@ -31,10 +25,7 @@ npx tsc --init
 npm install grammy
 ```
 
-:::
-:::code-group-item Yarn
-
-```sh
+```sh [Yarn]
 # Crea un nuevo directorio y entra en él.
 mkdir my-bot
 cd my-bot
@@ -44,9 +35,6 @@ npx tsc --init
 # Instala grammY.
 yarn add grammy
 ```
-
-:::
-:::code-group-item pnpm
 
 ```sh
 # Crea un nuevo directorio y entra en él.
@@ -60,7 +48,6 @@ pnpm add grammy
 ```
 
 :::
-::::
 
 Crea un nuevo archivo de texto vacío, por ejemplo, llamado `bot.ts`.
 La estructura de tu carpeta debería ser así:
@@ -82,10 +69,9 @@ Se utiliza para autenticar tu bot.
 ¿Tienes el token? Ahora puedes codificar tu bot en el archivo `bot.ts`.
 Puedes copiar el siguiente ejemplo de bot en ese archivo, y pasar tu token al constructor `Bot`:
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot } from "grammy";
 
 // Crea una instancia de la clase `Bot` y pásale tu token.
@@ -106,10 +92,7 @@ bot.on("message", (ctx) => ctx.reply("¡Tengo otro mensaje!"));
 bot.start();
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot } = require("grammy");
 
 // Crea una instancia de la clase `Bot` y pásale tu token.
@@ -131,7 +114,6 @@ bot.start();
 ```
 
 :::
-::::
 
 Compila el código ejecutando
 
@@ -166,7 +148,7 @@ Esto facilita la depuración de tu bot.
 
 ## Introducción a Deno
 
-> Esta guía asume que tiene instalado [Deno](https://deno.com/runtime).
+> Esta guía asume que tiene instalado [Deno](https://deno.land).
 
 Crea un nuevo directorio en algún lugar y crea un nuevo archivo de texto vacío en él, por ejemplo, llamado `bot.ts`.
 

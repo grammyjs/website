@@ -1,14 +1,7 @@
----
-prev: ./inline-queries.md
-next: ./games.md
----
-
 # Manejo de archivos
 
 Los bots de Telegram no sólo pueden enviar y recibir mensajes de texto, sino también muchos otros tipos de mensajes, como fotos y vídeos.
 Esto implica el manejo de los archivos que se adjuntan a los mensajes.
-
-## How Files Work for Telegram Bots
 
 ## Cómo funcionan los archivos para los bots de Telegram
 
@@ -30,9 +23,9 @@ Esto significa que todos los archivos que el bot vea, tanto a través del envío
 
 Cuando un bot envía un mensaje, puede **especificar un `file_id` que haya visto antes**.
 Esto le permitirá enviar el archivo identificado, sin necesidad de subir los datos para ello.
-(Para ver cómo subir sus propios archivos, [desplácese hacia abajo](#envío-de-archivos).
+(Para ver cómo subir sus propios archivos, [desplácese hacia abajo](#envío-de-archivos).)
 Puede reutilizar el mismo `file_id` tantas veces como quiera, por lo que podría enviar el mismo archivo a cinco chats diferentes, utilizando el mismo `file_id`.
-Sin embargo, debes asegurarte de utilizar el método correcto-por ejemplo, no puedes utilizar un `file_id` que identifique una foto al llamar a [`sendVideo`](https://core.telegram.org/bots/api#sendvideo).
+Sin embargo, debes asegurarte de utilizar el método correcto---por ejemplo, no puedes utilizar un `file_id` que identifique una foto al llamar a [`sendVideo`](https://core.telegram.org/bots/api#sendvideo).
 
 Cada bot tiene su propio conjunto de `file_id` para los archivos a los que puede acceder.
 No puedes usar de forma fiable un `file_id` del bot de tu amigo, para acceder a un archivo con _tu_ bot.
@@ -76,16 +69,16 @@ bot.on("message:voice", async (ctx) => {
 ```
 
 ::: tip Pasar un file_id personalizado a getFile
-En el objeto de contexto, `getFile` es un [acceso directo](../guide/context.md#atajos), y obtendrá la información de un archivo en el mensaje actual.
+En el objeto de contexto, `getFile` es un [acceso directo](../guide/context#atajos), y obtendrá la información de un archivo en el mensaje actual.
 Si quieres obtener un archivo diferente mientras manejas un mensaje, utiliza `ctx.api.getFile(file_id)` en su lugar.
 :::
 
-> Consulta the [`:media` and `:file` shortcuts](../guide/filter-queries.md#accesos-directos) para las consultas de filtro si quieres recibir cualquier tipo de archivo.
+> Consulta the [`:media` and `:file` shortcuts](../guide/filter-queries#accesos-directos) para las consultas de filtro si quieres recibir cualquier tipo de archivo.
 
 Una vez que hayas llamado a `getFile`, puedes usar la ruta de archivo devuelta para descargar el archivo usando esta URL `https://api.telegram.org/file/bot<token>/<ruta del archivo>`, donde `<token>` debe ser reemplazado por tu token de bot.
 
 ::: tip Plugin de archivos
-grammY no viene con su propio descargador de archivos, pero puedes instalar el [plugin oficial de archivos](../plugins/files.md).
+grammY no viene con su propio descargador de archivos, pero puedes instalar el [plugin oficial de archivos](../plugins/files).
 Esto permite descargar archivos mediante `await file.download()`, y obtener una URL de descarga para ellos mediante `file.getUrl()`.
 :::
 
@@ -117,7 +110,7 @@ Los dos primeros métodos son sencillos: sólo tienes que pasar el valor respect
 await ctx.replyWithPhoto(existingFileId);
 
 // Enviar a través de URL.
-await ctx.replyWithPhoto("https://grammy.dev/images/Y.png");
+await ctx.replyWithPhoto("https://grammy.dev/images/Y.webp");
 
 // Alternativamente, se utiliza bot.api.sendPhoto() o ctx.api.sendPhoto().
 ```
@@ -134,7 +127,7 @@ await ctx.replyWithPhoto(new InputFile("/tmp/picture.jpg"));
 // alternativamente, usa bot.api.sendPhoto() o ctx.api.sendPhoto()
 ```
 
-El constructor `InputFile` no sólo toma rutas de archivos, sino también flujos, objetos `Buffer`, iteradores asíncronos, y -dependiendo de su plataforma- más, o una función que crea cualquiera de estas cosas.
+El constructor `InputFile` no sólo toma rutas de archivos, sino también flujos, objetos `Buffer`, iteradores asíncronos, y---dependiendo de su plataforma---más, o una función que crea cualquiera de estas cosas.
 Todo lo que necesitas recordar es: **crear una instancia de `InputFile` y pasarla a cualquier método para enviar un archivo**.
 Las instancias de `InputFile` se pueden pasar a todos los métodos que aceptan el envío de archivos por carga.
 
@@ -144,10 +137,9 @@ Así es como puedes construir `InputFile`s.
 
 Si ya tiene un archivo almacenado en su máquina, puede dejar que grammY cargue este archivo.
 
-::::code-group
-:::code-group-item Node.js
+::: code-group
 
-```ts
+```ts [Node.js]
 import { createReadStream } from "fs";
 
 // Enviar un archivo local.
@@ -157,10 +149,7 @@ new InputFile("/ruta/a/archivo");
 new InputFile(createReadStream("/ruta/a/archivo"));
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 // Enviar un archivo local.
 new InputFile("/ruta/a/archivo");
 
@@ -169,17 +158,15 @@ new InputFile(await Deno.open("/ruta/a/archivo"));
 ```
 
 :::
-::::
 
 #### Carga de datos binarios sin procesar
 
 También se puede enviar un objeto `Buffer`, o un iterador que produzca objetos `Buffer`.
 En Deno, también se pueden enviar objetos `Blob`.
 
-::::code-group
-:::code-group-item Node.js
+::: code-group
 
-```ts
+```ts [Node.js]
 // Enviar un buffer o un array de bytes.
 const buffer = Uint8Array.from([65, 66, 67]);
 new InputFile(buffer); // "ABC"
@@ -190,10 +177,7 @@ new InputFile(function* () {
 });
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 // Enviar un blob.
 const blob = new Blob("ABC", { type: "text/plain" });
 new InputFile(blob);
@@ -208,7 +192,6 @@ new InputFile(function* () {
 ```
 
 :::
-::::
 
 #### Descargar y volver a cargar un archivo
 
@@ -220,32 +203,27 @@ Esto es muy eficiente.
 > Ten en cuenta que Telegram soporta la descarga del archivo por ti en muchos métodos.
 > Si es posible, deberías preferir [enviar el archivo vía URL](#mediante-file_id-o-url), en lugar de usar `InputFile` para transmitir el contenido del archivo a través de tu servidor.
 
-::::code-group
-:::code-group-item Node.js
+::: code-group
 
-```ts
+```ts [Node.js]
 import { URL } from "url";
 
 // Descarga un archivo, y transmite la respuesta a Telegram.
-new InputFile(new URL("https://grammy.dev/images/Y.png"));
-new InputFile({ url: "https://grammy.dev/images/Y.png" }); // equivalente
+new InputFile(new URL("https://grammy.dev/images/Y.webp"));
+new InputFile({ url: "https://grammy.dev/images/Y.webp" }); // equivalente
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 // Descargar un archivo, y transmitir la respuesta a Telegram.
-new InputFile(new URL("https://grammy.dev/images/Y.png"));
-new InputFile({ url: "https://grammy.dev/images/Y.png" }); // equivalente
+new InputFile(new URL("https://grammy.dev/images/Y.webp"));
+new InputFile({ url: "https://grammy.dev/images/Y.webp" }); // equivalente
 ```
 
 :::
-::::
 
 ### Añadir un título
 
-Cuando se envían archivos, se pueden especificar más opciones en un objeto de opciones de tipo `Other`, exactamente como se explicó [anteriormente](./basics.md#envio-de-mensajes).
+Cuando se envían archivos, se pueden especificar más opciones en un objeto de opciones de tipo `Other`, exactamente como se explicó [anteriormente](./basics#envio-de-mensajes).
 Por ejemplo, esto le permite enviar subtítulos.
 
 ```ts
@@ -269,4 +247,4 @@ Consulta la documentación oficial al respecto [aquí](https://core.telegram.org
 Alojar tu propio servidor Bot API no tiene, en sí mismo, nada que ver con grammY.
 Sin embargo, grammY soporta todos los métodos que se necesitan para configurar tu bot para usar tu propio servidor Bot API.
 
-Además, es posible que quieras volver a visitar un capítulo anterior de esta guía sobre la configuración del Bot API [aquí](./api.md).
+Además, es posible que quieras volver a visitar un capítulo anterior de esta guía sobre la configuración del Bot API [aquí](./api).

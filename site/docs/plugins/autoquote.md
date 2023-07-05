@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Always Replying to Messages
 
 It is sometimes necessary to always send messages as replies, especially for bots that are meant to be used in groups.
@@ -12,10 +17,9 @@ This plugin sets the `reply_to_message_id` parameter to `ctx.msg.message_id` for
 
 If you want all messages sent within a specific context (like a specific command), you can specifically apply the plugin to them:
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot } from "grammy";
 import { addReplyParam } from "@roziscoding/grammy-autoquote";
 
@@ -29,10 +33,7 @@ bot.command("demo", async (ctx) => {
 bot.start();
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot } = require("grammy");
 const { addReplyParam } = require("@roziscoding/grammy-autoquote");
 
@@ -46,10 +47,7 @@ bot.command("demo", async (ctx) => {
 bot.start();
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { addReplyParam } from "https://deno.land/x/grammy_autoquote/mod.ts";
 
@@ -64,16 +62,14 @@ bot.start();
 ```
 
 :::
-::::
 
 ### In for All Routes
 
 If you want every sent message to reply the messages that triggered them, you can apply the plugin this way:
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot } from "grammy";
 import { autoQuote } from "@roziscoding/grammy-autoquote";
 
@@ -92,10 +88,7 @@ bot.command("hello", async (ctx) => {
 bot.start();
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot } = require("grammy");
 const { autoQuote } = require("@roziscoding/grammy-autoquote");
 
@@ -114,10 +107,7 @@ bot.command("hello", async (ctx) => {
 bot.start();
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { autoQuote } from "https://deno.land/x/grammy_autoquote/mod.ts";
 
@@ -137,7 +127,6 @@ bot.start();
 ```
 
 :::
-::::
 
 ## Plugin Summary
 

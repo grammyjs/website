@@ -4,7 +4,7 @@ This guide tells you about the ways you can host your grammY bots on [Fly](https
 
 ## Preparing Your Code
 
-You can run your bot using both [webhooks or long polling](../guide/deployment-types.md).
+You can run your bot using both [webhooks or long polling](../guide/deployment-types).
 
 ### Webhooks
 
@@ -13,10 +13,9 @@ You can run your bot using both [webhooks or long polling](../guide/deployment-t
 1. Make sure that you have a file which exports your `Bot` object, so that you can import it later to run it.
 2. Create a file named `app.ts` or `app.js`, or actually any name you like (but you should be remembering and using this as the main file to deploy), with the following content:
 
-::::code-group
-:::code-group-item Deno
+::: code-group
 
-```ts{11}
+```ts{11} [Deno]
 import { serve } from "https://deno.land/std/http/server.ts";
 import { webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 // You might modify this to the correct way to import your `Bot` object.
@@ -38,10 +37,7 @@ serve(async (req) => {
 }, { port });
 ```
 
-:::
-:::code-group-item Node.js
-
-```ts{10}
+```ts{10} [Node.js]
 import express from "express";
 import { webhookCallback } from "grammy";
 // You might modify this to the correct way to import your `Bot` object.
@@ -58,7 +54,6 @@ app.listen(port, () => console.log(`listening on port ${port}`));
 ```
 
 :::
-::::
 
 We advise you to have your handler on some secret path rather than the root (`/`).
 As shown in the highlighted line above, we are using the bot token (`/<bot token>`) as the secret path.
@@ -67,10 +62,9 @@ As shown in the highlighted line above, we are using the bot token (`/<bot token
 
 Create a file named `app.ts` or `app.js`, or actually any name you like (but you should be remembering and using this as the main file to deploy), with the following content:
 
-::::code-group
-:::code-group-item Deno
+::: code-group
 
-```ts{4}
+```ts{4} [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
 const token = Deno.env.get("BOT_TOKEN");
@@ -89,10 +83,7 @@ Deno.addSignalListener("SIGTERM", () => bot.stop());
 bot.start();
 ```
 
-:::
-:::code-group-item Node.js
-
-```ts{4}
+```ts{4} [Node.js]
 import { Bot } from "grammy";
 
 const token = process.env.BOT_TOKEN;
@@ -112,7 +103,6 @@ bot.start();
 ```
 
 :::
-::::
 
 As you can see in the highlighted line above, we take some sensitive values (your bot token) from environment variables.
 Fly allow us to store that secret by running this command:
@@ -134,14 +124,13 @@ This is the easiest method to go with.
 2. Run `flyctl launch` to generate a `Dockerfile` and `fly.toml` file for deployment.
    But **DO NOT** deploy.
 
-::::code-group
-:::code-group-item Deno
+::: code-group
 
-```sh
+```sh [Deno]
 flyctl launch
 ```
 
-```log{10}
+```log{10} [Log]
 Creating app in /my/telegram/bot
 Scanning source code
 Detected a Deno app
@@ -156,13 +145,14 @@ Your app is ready. Deploy with `flyctl deploy`
 ```
 
 :::
-:::code-group-item Node.js
 
-```sh
+::: code-group
+
+```sh [Node.js]
 flyctl launch
 ```
 
-```log{12}
+```log{12} [Log]
 Creating app in /my/telegram/bot
 Scanning source code
 Detected a NodeJS app
@@ -179,7 +169,6 @@ Your app is ready. Deploy with `flyctl deploy`
 ```
 
 :::
-::::
 
 3. **Deno**: Change the Deno version and remove `CMD` if exist within the `Dockerfile` file.
    For example, in this case, we update `DENO_VERSION` to `1.25.2`.
@@ -187,10 +176,9 @@ Your app is ready. Deploy with `flyctl deploy`
    **Node.js**: To change the Node.js version, you need to insert a `"node"` property inside an `"engines"` property inside `package.json`.
    For instance, we update the Node.js version to `16.14.0` in the example below.
 
-::::code-group
-:::code-group-item Deno
+::: code-group
 
-```dockerfile{2,26}
+```dockerfile{2,26} [Deno]
 # Dockerfile
 ARG DENO_VERSION=1.25.2
 ARG BIN_IMAGE=denoland/deno:bin-${DENO_VERSION}
@@ -219,10 +207,7 @@ ENTRYPOINT ["/bin/deno"]
 # CMD is removed
 ```
 
-:::
-:::code-group-item Node.js
-
-```json{19}
+```json [Node.js]{19}
 // package.json
 {
   "name": "grammy",
@@ -247,17 +232,15 @@ ENTRYPOINT ["/bin/deno"]
 ```
 
 :::
-::::
 
 4. Edit `app` inside the `fly.toml` file.
    The path `./app.ts` (or `./app.js` for Node.js) in the example below refers to the main file directory.
    You might modify them to match with your project's directory.
    If you are using webhooks, make sure the port is same as the one in your [configuration](#webhooks) (`8000`).
 
-::::code-group
-:::code-group-item Deno (Webhooks)
+::: code-group
 
-```toml{7,11,12}
+```toml [Deno (Webhooks)]{7,11,12}
 # fly.toml
 app = "grammy"
 kill_signal = "SIGINT"
@@ -293,10 +276,7 @@ kill_timeout = 5
     timeout = "2s"
 ```
 
-:::
-:::code-group-item Deno (Long polling)
-
-```toml{7}
+```toml [Deno (Long Polling)]{7}
 # fly.toml
 app = "grammy"
 kill_signal = "SIGINT"
@@ -309,10 +289,7 @@ kill_timeout = 5
 # since we are not listening to HTTP
 ```
 
-:::
-:::code-group-item Node.js (Webhooks)
-
-```toml{7,11,18,19}
+```toml [Node.js (Webhooks)]{7,11,18,19}
 # fly.toml
 app = "grammy"
 kill_signal = "SIGINT"
@@ -355,10 +332,7 @@ kill_timeout = 5
     timeout = "2s"
 ```
 
-:::
-:::code-group-item Node.js (Long polling)
-
-```toml{7,11,22,23}
+```toml [Node.js (Long polling)]{7,11,22,23}
 # fly.toml
 app = "grammy"
 kill_signal = "SIGINT"
@@ -378,7 +352,6 @@ kill_timeout = 5
 ```
 
 :::
-::::
 
 5. Run `flyctl deploy` to deploy your code.
 

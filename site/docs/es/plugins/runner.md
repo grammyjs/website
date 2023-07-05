@@ -1,8 +1,13 @@
+---
+prev: false
+next: false
+---
+
 # Concurrencia (`runner`)
 
-Este paquete se puede utilizar si ejecutas tu bot [usando long polling](../guide/deployment-types.md), y quieres que los mensajes se procesen concurrentemente.
+Este paquete se puede utilizar si ejecutas tu bot [usando long polling](../guide/deployment-types), y quieres que los mensajes se procesen concurrentemente.
 
-> Asegúrate de entender [Scaling Up II](../advanced/scaling.md#long-polling) antes de usar el runner de grammY.
+> Asegúrate de entender [Scaling Up II](../advanced/scaling#long-polling) antes de usar el runner de grammY.
 
 ## Por qué necesitamos un Bot Runner
 
@@ -26,10 +31,9 @@ También tiene su propia [Referencia API](https://deno.land/x/grammy_runner/mod.
 
 He aquí un ejemplo sencillo.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot } from "grammy";
 import { run } from "@grammyjs/runner";
 
@@ -43,10 +47,7 @@ bot.on("message", (ctx) => ctx.reply("Got your message."));
 run(bot);
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot } = require("grammy");
 const { run } = require("@grammyjs/runner");
 
@@ -60,10 +61,7 @@ bot.on("message", (ctx) => ctx.reply("Got your message."));
 run(bot);
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { run } from "https://deno.land/x/grammy_runner/mod.ts";
 
@@ -78,15 +76,14 @@ run(bot);
 ```
 
 :::
-::::
 
 ## Procesamiento secuencial cuando sea necesario
 
 Lo más probable es que quieras tener la garantía de que los mensajes del mismo chat se procesan en orden.
-Esto es útil cuando se instala [session middleware](./session.md), pero también asegura que tu bot no confunda el orden de los mensajes en el mismo chat.
+Esto es útil cuando se instala [session middleware](./session), pero también asegura que tu bot no confunda el orden de los mensajes en el mismo chat.
 
 grammY runner exporta el middleware `sequentialize` que se encarga de esto.
-Puedes consultar esta [sección](../advanced/scaling.md#la-concurrencia-es-dificil) para aprender a usarlo.
+Puedes consultar esta [sección](../advanced/scaling#la-concurrencia-es-dificil) para aprender a usarlo.
 
 Ahora vamos a ver un uso más avanzado del plugin.
 
@@ -115,7 +112,7 @@ Necesita memoria constante (a menos que especifiques concurrencia infinita), y n
 
 ## Apagado gradual
 
-Para que el bot complete su trabajo correctamente, [debes indicarle](../advanced/reliability.md#usando-grammy-runner) que se detenga cuando el proceso esté a punto de ser destruido.
+Para que el bot complete su trabajo correctamente, [debes indicarle](../advanced/reliability#usando-grammy-runner) que se detenga cuando el proceso esté a punto de ser destruido.
 
 Ten en cuenta que puedes esperar a que el runner `await` la `task` en el [`RunnerHandle`](https://deno.land/x/grammy_runner/mod.ts?s=RunnerHandle) devuelto por `run`.
 
@@ -160,7 +157,7 @@ run(bot, { runner: { fetch: { allowed_updates: [] } } });
 > [Sáltate esta sección](#cómo-funciona-entre-bastidores) si tu bot maneja menos tráfico que eso.
 
 JavaScript es monohilo.
-Esto es asombroso porque la [concurrencia es dificil](../advanced/scaling.md#la-concurrencia-es-dificil), lo que significa que si sólo hay un único hilo, naturalmente se eliminan muchos quebraderos de cabeza.
+Esto es asombroso porque la [concurrencia es dificil](../advanced/scaling#la-concurrencia-es-dificil), lo que significa que si sólo hay un único hilo, naturalmente se eliminan muchos quebraderos de cabeza.
 
 Sin embargo, si tu bot tiene una carga extremadamente alta (estamos hablando de 1000 actualizaciones por segundo y más), entonces hacer todo en un solo núcleo puede que ya no sea suficiente.
 Básicamente, un solo núcleo comenzará a luchar con el procesamiento JSON de todos los mensajes que tu bot tiene que manejar.
@@ -202,10 +199,9 @@ Veamos ahora cómo se puede utilizar esto.
 Empezaremos creando la instancia central del bot que obtiene las actualizaciones y las distribuye entre los workers.
 Empecemos creando un archivo llamado `bot.ts` con el siguiente contenido.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 // bot.ts
 import { Bot } from "grammy";
 import { distribute, run } from "@grammyjs/runner";
@@ -223,10 +219,7 @@ bot.use(distribute(__dirname + "/worker"));
 run(bot);
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 // bot.js
 const { Bot } = require("grammy");
 const { distribute, run } = require("@grammyjs/runner");
@@ -244,10 +237,7 @@ bot.use(distribute(__dirname + "/worker"));
 run(bot);
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 // bot.ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { distribute, run } from "https://deno.land/x/grammy_runner/mod.ts";
@@ -266,15 +256,13 @@ run(bot);
 ```
 
 :::
-::::
 
 Junto a `bot.ts`, creamos un segundo archivo llamado `worker.ts` (como se especifica en la línea 12 del código anterior).
 Este contendrá la lógica real del bot.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 // worker.ts
 import { BotWorker } from "@grammyjs/runner";
 
@@ -285,10 +273,7 @@ const bot = new BotWorker(""); // <-- pasa tu bot token aquí de nuevo.
 bot.on("message", (ctx) => ctx.reply("¡Viva!"));
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 // worker.js
 const { BotWorker } = require("@grammyjs/runner");
 
@@ -299,10 +284,7 @@ const bot = new BotWorker(""); // <-- pasa tu bot token aquí de nuevo.
 bot.on("message", (ctx) => ctx.reply("¡Viva!"));
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 // worker.ts
 import { BotWorker } from "https://deno.land/x/grammy_runner/mod.ts";
 
@@ -314,7 +296,6 @@ bot.on("message", (ctx) => ctx.reply("¡Viva!"));
 ```
 
 :::
-::::
 
 > Ten en cuenta que cada worker puede enviar mensajes de vuelta a Telegram.
 > Esta es la razón por la que debes dar tu token bot a cada worker, también.
@@ -324,7 +305,7 @@ Es suficiente con crear una instancia de `BotWorker`.
 Escuchará las actualizaciones automáticamente.
 
 Es importante entender que **sólo las actualizaciones en bruto** se envían a los bot workers.
-En otras palabras, los [objetos de contexto](../guide/context.md) se crean dos veces para cada actualización: una en `bot.ts` para que pueda ser distribuida a un bot worker, y otra en `worker.ts` para que pueda ser realmente manejada.
+En otras palabras, los [objetos de contexto](../guide/context) se crean dos veces para cada actualización: una en `bot.ts` para que pueda ser distribuida a un bot worker, y otra en `worker.ts` para que pueda ser realmente manejada.
 Es más: las propiedades que se instalan en el objeto de contexto en `bot.ts` no se envían a los bot workers.
 Esto significa que todos los plugins deben ser instalados en los bot workers.
 
@@ -332,10 +313,9 @@ Esto significa que todos los plugins deben ser instalados en los bot workers.
 Como optimización del rendimiento, puedes descartar las actualizaciones que no quieras gestionar.
 De esta forma, tu bot no tiene que enviar la actualización a un worker, sólo para que sea ignorada allí.
 
-::::code-group
-:::code-group-item Node.js
+::: code-group
 
-```ts
+```ts [Node.js]
 // Nuestro bot sólo maneja mensajes, ediciones y consultas de devolución de llamada,
 // por lo que podemos ignorar el resto de actualizaciones y no distribuirlas.
 bot.on(
@@ -344,10 +324,7 @@ bot.on(
 );
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 // Nuestro bot sólo maneja mensajes, ediciones y consultas de devolución de llamada,
 // por lo que podemos ignorar el resto de actualizaciones y no distribuirlas.
 bot.on(
@@ -355,9 +332,6 @@ bot.on(
   distribute(new URL("./worker.ts", import.meta.url)),
 );
 ```
-
-:::
-::::
 
 :::
 

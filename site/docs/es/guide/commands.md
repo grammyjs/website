@@ -1,8 +1,3 @@
----
-prev: ./filter-queries.md
-next: ./middleware.md
----
-
 # Comandos
 
 Los comandos son entidades especiales en los mensajes de Telegram, que sirven como instrucciones para los bots.
@@ -69,7 +64,7 @@ grammY extrae este payload por ti, y lo proporciona bajo `ctx.match`.
 En nuestro ejemplo con el enlace anterior, `ctx.match` contendría la cadena `"payload"`.
 
 La vinculación profunda es útil si quieres construir un sistema de referencias, o rastrear dónde los usuarios descubrieron tu bot.
-Por ejemplo, tu bot podría enviar un mensaje de canal con un botón del [teclado en línea](../plugins/keyboard.md#teclados-en-linea).
+Por ejemplo, tu bot podría enviar un mensaje de canal con un botón del [teclado en línea](../plugins/keyboard#teclados-en-linea).
 El botón contiene una URL como la de arriba, por ejemplo `https://t.me/your_bot_name?start=awesome-channel-post-12345`.
 Cuando un usuario haga clic en el botón debajo de la publicación, su cliente de Telegram abrirá un chat con tu bot, y mostrará el botón START como se ha descrito anteriormente.
 De esta manera, tu bot puede identificar de dónde viene un usuario, y que hizo clic en el botón debajo de una publicación específica del canal.
