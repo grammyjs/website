@@ -12,7 +12,7 @@ const replacements: Record<string, string> = {
   ú: "u",
   _: "-",
 };
-export const betterAnchors = (md: MarkdownIt)=> {
+export const betterAnchors = (md: MarkdownIt) => {
   md.inline.ruler.before("text", "better-anchors", (state) => {
     state.tokens.forEach((token) => {
       if (token.type !== "link_open") return;
@@ -34,4 +34,4 @@ export const betterAnchors = (md: MarkdownIt)=> {
     });
     return false;
   });
-}
+};
