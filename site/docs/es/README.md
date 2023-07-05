@@ -83,6 +83,8 @@ bot.start();
 
 ¡Funciona! :tada:
 
+<footer id="home-footer">
+
 ---
 
 <ClientOnly>
@@ -100,5 +102,5 @@ bot.start();
 (Último punto destacado: varios nombres de bot, emoji personalizados y mejores consultas en línea)
 
 </div>
-
+</footer>
 </HomeContent>

@@ -83,6 +83,8 @@ bot.start();
 
 运行成功！ :tada:
 
+<footer id="home-footer">
+
 ---
 
 <ClientOnly>
@@ -100,5 +102,5 @@ bot.start();
 (新增: 多个机器人名称、自定义 emoji 和更好的 inline query)
 
 </div>
-
+</footer>
 </HomeContent>

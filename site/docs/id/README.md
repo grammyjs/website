@@ -85,6 +85,8 @@ bot.start();
 
 Berhasil! :tada:
 
+<footer id="home-footer">
+
 ---
 
 <ClientOnly>
@@ -102,5 +104,5 @@ Berhasil! :tada:
 (Fitur yang disorot: nama bot lebih dari satu, emoji khusus, dan inline queries yang lebih baik)
 
 </div>
-
+</footer>
 </HomeContent>
