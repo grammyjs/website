@@ -1,3 +1,5 @@
+<!-- markdownlint-disable first-line-heading -->
+
 ![grammY](/images/grammY.webp)
 
 # Огляд

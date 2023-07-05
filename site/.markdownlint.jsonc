@@ -2,8 +2,7 @@
   "line-length": false,
   "no-duplicate-heading": false,
   "no-trailing-punctuation": {
-    "punctuation": ".,;:。，；："
+    "punctuation": ".,;:。，；：" // everything except exclamation points
   },
-  "first-line-heading": false,
   "ol-prefix": false
 }
