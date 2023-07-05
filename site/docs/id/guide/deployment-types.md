@@ -230,8 +230,6 @@ app.use(webhookCallback(bot, "oak"));
 
 > Kamu tidak perlu memanggil `bot.start()` ketika menggunakan webhooks.
 
-> Kamu tidak perlu memanggil `bot.start()` ketika menggunakan webhooks.
-
 Jika kamu berniat menjalankan bot di sebuah VPS menggunakan webhook, pastikan untuk membaca [panduan keren Marvin mengenai hal-hal tentang webhook](https://core.telegram.org/bots/webhooks) yang ditulis oleh tim Telegram.
 
 ### Web Framework Adapter
