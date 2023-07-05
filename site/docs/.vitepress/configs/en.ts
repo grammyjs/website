@@ -346,7 +346,7 @@ const hostingTutorials = {
 export const siteEn: LocaleConfig = {
   root: {
     label: "English",
-    lang: "en",
+    lang: "en-US",
     title: "grammY",
     description: "The Telegram Bot Framework.",
     themeConfig: {
