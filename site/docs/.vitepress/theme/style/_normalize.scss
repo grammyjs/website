@@ -42,6 +42,11 @@
 :root .external-link-icon-enabled :is(.vp-doc a[href*="://"], .vp-doc a[target="_blank"])::after
 {
   content: "";
+  margin-left: 2px;
+}
+
+:root :is(.vp-external-link-icon, .vp-doc a[href*="://"], .vp-doc a[target="_blank"])::after {
+  margin-left: 2px;
 }
 
 // 404 page
