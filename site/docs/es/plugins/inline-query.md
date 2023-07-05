@@ -164,7 +164,7 @@ Deberías consultar la [referencia API](https://deno.land/x/grammy/mod.ts?s=Inli
 
 ## Responder consultas en línea
 
-Después de generar un array de resultados de consultas en línea utilizando el constructor de [arriba](#construccion-de-resultados-de-consultas-en-linea), puedes llamar a `answerInlineQuery` para enviar estos resultados al usuario.
+Después de generar un array de resultados de consultas en línea utilizando el constructor de [arriba](#construcción-de-resultados-de-consultas-en-línea), puedes llamar a `answerInlineQuery` para enviar estos resultados al usuario.
 
 ```ts
 // La autopublicidad desvergonzada en la documentación de un proyecto
