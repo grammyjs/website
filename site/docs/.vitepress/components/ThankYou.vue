@@ -135,6 +135,7 @@ load();
   img {
     height: 2rem;
     width: 2rem;
+    max-width: none;
     border-radius: 9999px;
   }
   p {
