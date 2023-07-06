@@ -90,9 +90,11 @@ load();
   <div v-if="contributor.name" id="thankyou">
     <div id="avatar-container">
       <img
-        id="love-icon"
-        src="/icons/love.svg"
-        alt="love icon"
+        id="identicon"
+        v-bind:src="
+          'https://identicons.github.com/' + contributor.login + '.png'
+        "
+        alt="contributor's identicon"
         width="32"
         height="32"
       />
@@ -146,7 +148,7 @@ load();
 }
 
 #avatar-container,
-#love-icon {
+#identicon {
   position: relative;
 }
 
