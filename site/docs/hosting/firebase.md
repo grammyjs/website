@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Hosting: Firebase Functions
 
 This tutorial will guide you through the process of deploying your bot to [Firebase Functions](https://firebase.google.com/docs/functions).
