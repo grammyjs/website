@@ -8,7 +8,7 @@ A virtual private server, mostly known as VPS, is a virtual machine running in t
 > This first section will explain how to do that.
 > If you already have a VPS to work on, skip [down](#starting-the-bot).
 
-We chose [Hostinger](https://hostinger.com/) as our host.
+We choose [Hostinger](https://hostinger.com) as our host.
 There are several reasons for this:
 
 1. It is multilingual, so you will find it convenient and easy to use.
@@ -22,13 +22,13 @@ There are several reasons for this:
 
 ::: tip Analog of a server
 If you cannot or do not want to rent a server but you still want to play around with running a bot on a VPS, you can follow this tutorial on a virtual machine instead.
-To do this, use an application such as [VirtualBox](https://virtualbox.org/).
+To do this, use an application such as [VirtualBox](https://virtualbox.org).
 Create a virtual machine with the desired Linux distribution and use it as a real server.
 :::
 
-Go to the [VPS tariff catalog](https://hostinger.com/vps-hosting/).
+Go to the [VPS tariff catalog](https://hostinger.com/vps-hosting).
 We will use the "VPS 1" plan.
-Below you can see a comparison table that describes the offered server resources and limits.
+Below, you can see a comparison table that describes the offered server resources and limits.
 The resources of VPS 1 are enough for bots with a small audience, and even more so for our test bot.
 
 Go back to the "VPS 1" card and click the "Add" button.
@@ -41,7 +41,7 @@ You probably don't need it, so you can start by renting a server for a month, wh
 In any case, Hostinger provides a 30-day money-back guarantee.
 :::
 
-After payment you will be able to set up your server:
+After payment, you will be able to set up your server:
 
 1. **Location.**
    We recommend that you choose the location closest to Amsterdam.
@@ -213,7 +213,7 @@ systemctl disable <service-name>
 
 ### PM2
 
-[PM2](https://pm2.keymetrics.io/) is a daemon process manager for Node.js that will help you manage and keep your app online 24/7.
+[PM2](https://pm2.keymetrics.io) is a daemon process manager for Node.js that will help you manage and keep your app online 24/7.
 
 > PM2 is designed specifically to run applications written in Node.js.
 > However, it can also be used to run applications written in other languages or for other frameworks.
@@ -241,7 +241,7 @@ pnpm add -g pm2
 PM2 offers two ways to create an application:
 
 1. Use the command line interface.
-2. Use the [configuration file](https://pm2.keymetrics.io/docs/usage/application-declaration/).
+2. Use the [configuration file](https://pm2.keymetrics.io/docs/usage/application-declaration).
 
 The first method is convenient when getting to know PM2.
 However, during deployment, you should use the second method, which is what we did in our case.
@@ -311,7 +311,7 @@ If you have created a new application and want to save it as well, simply run `p
 
 ## Running the Bot on Webhooks
 
-To run a bot on webhooks, you will need to use a web framework and not call `bot.start()`.
+To run a bot on webhooks, you will need to use a web framework and **NOT** call `bot.start()`.
 
 Here is a sample code to run the bot on webhooks that should be added to the main bot file:
 
@@ -367,7 +367,7 @@ Pay for the domain.
 #### Domain Pointing to VPS
 
 Before your domain can work with your VPS, you need to point the domain to your server.
-To do this, in the [Hostinger Control Panel](https://hpanel.hostinger.com/), click the "Manage" button next to your domain.
+To do this, in the [Hostinger Control Panel](https://hpanel.hostinger.com), click the "Manage" button next to your domain.
 Next, go to the DNS record management page by clicking on the "DNS / Name Servers" button in the menu on the left.
 
 > First, find out the IP address of your VPS.
@@ -383,7 +383,7 @@ Instead, create a new record of type `A` with the name `www`, pointing to the IP
 ### Setting up a Web Server
 
 For the website to work and the bot to start receiving updates from Telegram, you need to set up a web server.
-We will use [Caddy](https://caddyserver.com/).
+We will use [Caddy](https://caddyserver.com).
 
 Caddy is a powerful open source web server with automatic HTTPS.
 
@@ -412,7 +412,7 @@ systemctl status caddy
 ```
 
 ::: details Troubleshooting
-Some hosting providers provide VPS with a pre-installed web server, for example, [Apache](https://httpd.apache.org/).
+Some hosting providers provide VPS with a pre-installed web server, for example, [Apache](https://httpd.apache.org).
 Multiple web servers cannot run on the same machine at the same time.
 For Caddy to work, you need to stop and shut down another web server:
 
@@ -499,8 +499,8 @@ replacing `<token>` with your bot token and `<domain>` with your domain.
 
 ## CI/CD
 
-[CI/CD](https://about.gitlab.com/topics/ci-cd/) is an important part of the modern software development process.
-This guide covers almost all of the [CI/CD pipeline](https://about.gitlab.com/topics/ci-cd/cicd-pipeline/).
+[CI/CD](https://about.gitlab.com/topics/ci-cd) is an important part of the modern software development process.
+This guide covers almost all of the [CI/CD pipeline](https://about.gitlab.com/topics/ci-cd/cicd-pipeline).
 
 We will focus on writing scripts for GitHub and GitLab.
 You can easily adapt the examples below to your CI/CD service of choice, such as Jenkins, Buddy, etc., if needed.
@@ -618,7 +618,7 @@ Files are delivered to the server using the `rsync` utility, which is implemente
 After the files are delivered to the server, the command described in the `SCRIPT_AFTER` environment variable is executed.
 In our case, after the files are delivered, we go to the bot directory, where we install all the dependencies except `devDependencies`, and restart the bot.
 
-Note that you need to add three [secret environment variables](https://docs.github.com/en/actions/security-guides/encrypted-secrets/):
+Note that you need to add three [secret environment variables](https://docs.github.com/en/actions/security-guides/encrypted-secrets):
 
 1. `SSH_PRIVATE_KEY` - this is where the private SSH key you created in the [previous step](#ssh-keys) should be stored.
 2. `REMOTE_HOST` - the IP address of your server should be stored here
@@ -665,7 +665,7 @@ After `build` is executed, the artifact of this task, namely the `dist` director
 The files are delivered to the server using the `rsync` utility, which we must install before executing the main script.
 After the files are delivered, we connect to the server using SSH to run a command to install all dependencies except `devDependencies` and restart the application.
 
-Note that you need to add three [environment variables](https://docs.gitlab.com/ee/ci/variables/):
+Note that you need to add three [environment variables](https://docs.gitlab.com/ee/ci/variables):
 
 1. `SSH_PRIVATE_KEY` - this is where the private SSH key you created in the [previous step](#ssh-keys) should be stored.
 2. `REMOTE_HOST` - the IP address of your server should be stored here
@@ -708,7 +708,7 @@ This script sends files to the server using the `rsync` utility, which is implem
 After the files are delivered to the server, the command described in the `SCRIPT_AFTER` environment variable is executed.
 In our case, after the files are delivered, we go to the bot's directory and restart the bot.
 
-Note that you need to add three [secret environment variables](https://docs.github.com/en/actions/security-guides/encrypted-secrets/):
+Note that you need to add three [secret environment variables](https://docs.github.com/en/actions/security-guides/encrypted-secrets):
 
 1. `SSH_PRIVATE_KEY` - this is where the private SSH key you created in the [previous step](#ssh-keys) should be stored.
 2. `REMOTE_HOST` - the IP address of your server should be stored here
@@ -744,7 +744,7 @@ This script sends files to the server using the `rsync` utility, which is implem
 After the files are delivered to the server, the command described in the `SCRIPT_AFTER` environment variable is executed.
 In our case, after the files are delivered, we go to the bot's directory and restart the bot.
 
-Note that you need to add three [environment variables](https://docs.gitlab.com/ee/ci/variables/):
+Note that you need to add three [environment variables](https://docs.gitlab.com/ee/ci/variables):
 
 1. `SSH_PRIVATE_KEY` - this is where the private SSH key you created in the [previous step](#ssh-keys) should be stored.
 2. `REMOTE_HOST` - the IP address of your server should be stored here
