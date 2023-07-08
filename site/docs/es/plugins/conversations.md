@@ -197,7 +197,6 @@ El objeto de contexto actual se pasa como segundo argumento a la función de con
 Por ejemplo, si inicias tu conversación con `await ctx.reply(ctx.message.text)`, contendrá la actualización que contiene `/start`.
 
 ::: tip Cambiar el identificador de la conversación
-
 Por defecto, tienes que pasar el nombre de la función a `ctx.conversation.enter()`.
 Sin embargo, si prefieres utilizar un identificador diferente, puedes especificarlo así
 
@@ -669,9 +668,7 @@ const response = await conversation.external(() => externalApi());
 Esto incluye tanto la lectura de datos como la realización de efectos secundarios (como la escritura en una base de datos).
 
 ::: tip Comparable a React
-
 Si estás familiarizado con React, puede que conozcas un concepto comparable de `useEffect`.
-
 :::
 
 ### Regla II: Todo comportamiento aleatorio debe estar envuelto
@@ -920,7 +917,6 @@ Los plugins hacen esto posible almacenando objetos de contexto antiguos, y reaba
 Esta es la razón por la que los objetos de contexto dentro de las conversaciones no siempre se ven afectados por algunos plugins de grammY de la manera que cabría esperar.
 
 ::: warning Menús interactivos dentro de conversaciones
-
 Con el [plugin de menú](./menu), estos conceptos chocan mucho.
 Aunque los menús _pueden_ funcionar dentro de las conversaciones, no recomendamos usar estos dos plugins juntos.
 En su lugar, utilice el plugin [inline keyboard plugin](./keyboard#teclados-en-linea) (hasta que añadamos soporte nativo de menús para conversaciones).

@@ -212,7 +212,6 @@ If you ever call `next()` without the `await` keyword, several things will break
   Instead, you will see that an `UnhandledPromiseRejectionWarning` will occur, which may crash your bot process.
 - :x: The backpressure mechanism of [grammY runner](../plugins/runner) breaks, which protects your server from overly-high load, such as during load spikes.
 - :skull: Sometimes, it also kills all of your innocent kittens. :crying_cat_face:
-
 :::
 
 The rule that you should use `await` is especially important for `next()`, but it actually applies to any expression in general that returns a `Promise`.

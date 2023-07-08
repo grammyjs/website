@@ -211,7 +211,6 @@ Si alguna vez llamas a `next()` sin la palabra clave `await`, varias cosas se ro
   En su lugar, verás que se producirá un `UnhandledPromiseRejectionWarning`, que puede hacer que tu proceso bot se caiga.
 - :x: Se rompe el mecanismo de backpressure de [grammY runner](../plugins/runner), que protege a tu servidor de una carga excesiva, como por ejemplo durante los picos de carga.
 - :skull: A veces, también mata a todos tus inocentes gatitos. :crying_cat_face:
-
 :::
 
 La regla de usar `await` es especialmente importante para `next()`, pero en realidad se aplica a cualquier expresión en general que devuelva una `Promise`.

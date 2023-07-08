@@ -196,7 +196,6 @@ bot.command("start", async (ctx) => {
 举个例子，如果你用 `await ctx.reply(ctx.message.text)` 开始对话，它将包含 `/start` 在内的 update。
 
 ::: tip 改变对话标识符
-
 默认情况下，你必须向 `ctx.conversation.enter()` 传入函数的名称。
 然而，如果你喜欢使用一个不同的标识符，你可以这样指定它：
 
@@ -670,9 +669,7 @@ const response = await conversation.external(() => externalApi());
 这包括读取数据，以及执行副作用（例如写入数据库）。
 
 ::: tip 可与 React 媲美
-
 如果你熟悉 React，你会发现它和 `useEffect` 的概念相似。
-
 :::
 
 ### 规则二：所有随机行为必须被封装
@@ -921,7 +918,6 @@ async function waitForMe(conversation, ctx) {
 这就是为什么对话中的上下文对象并不总是像人们预期的那样受到某些 grammY 插件的影响。
 
 ::: warning 对话中的互动菜单
-
 使用 [menu 插件](./menu)，这些概念会产生很严重的冲突。
 虽然菜单_可以_在对话中使用，但我们不建议同时使用这两个插件。
 取而代之地，使用常规的 [inline keyboard 插件](./keyboard#inline-keyboards)（直到我们为对话添加原生菜单支持）。

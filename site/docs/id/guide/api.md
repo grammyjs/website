@@ -25,7 +25,6 @@ Namun, server API Bot---yang bertanggung jawab untuk menerjemahkan request ke HT
 Untuk menyiasati batasan tersebut, kamu bisa [meng-hosting server API Bot sendiri](https://core.telegram.org/bots/api#using-a-local-bot-api-server) supaya bot kamu bisa mengirim file dengan ukuran hingga 2000 MB.
 
 > Catatan: Jika menangani file-file berukuran besar menggunakan [long polling](./deployment-types), kamu sebaiknya menggunakan [grammY runner](../plugins/runner).
-
 :::
 
 ## Memanggil API Bot
@@ -110,12 +109,10 @@ Atur `tsconfig.json` dengan benar lalu tambahkan baris yang disorot berikut:
 Terkadang ia juga bisa bekerja meski kita tidak mengatur konfigurasi Typescript-nya terlebih dahulu.
 
 ::: warning Keliru Menyetel Auto-complete
-
 Jika kamu tidak mengubah file `tsconfig.json` seperti yang telah dijelaskan di atas, kemungkinan besar auto-complete code editor kamu akan menyarankan untuk meng-import types dari `grammy/out/client` atau semacamnya.
 **Semua path yang dimulai dengan `grammy/out` adalah file internal. Jangan digunakan!**
 File tersebut bisa berubah sewaktu-waktu.
 Oleh karena itu, kami sangat menyarankan kamu untuk meng-import dari `grammy/types`.
-
 :::
 
 ### Membuat Panggilan Raw API

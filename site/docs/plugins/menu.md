@@ -335,6 +335,16 @@ bot.command("publish", async (ctx) => {
 });
 ```
 
+::: tip Limitations
+Payloads cannot be used to actually store any significant amounts of data.
+The only thing you can store are short strings of typically less than 50 bytes, such as an index or an identifier.
+If you really want to store user data such as a file identifier, a URL, or anything else, you should use [sessions](./session).
+
+Also, note that the payload is always generated based on the current context object.
+This means that it matters _where from_ you navigate to the menu, which can lead to surprising results.
+As an example, when a menu is [outdated](#outdated-menus-and-fingerprints), it will be re-rendered _based on the button click of the outdated menu_.
+:::
+
 Payloads also work well together with dynamic ranges.
 
 ## Dynamic Ranges

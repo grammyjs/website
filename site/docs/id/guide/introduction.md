@@ -93,7 +93,6 @@ Luangkan waktumu sebentar untuk menonton [video 34 detik ini](https://youtu.be/8
 > Inti dari video tersebut adalah satu-satunya cara untuk belajar pemrograman---dengan cepat---adalah jangan terlalu banyak menonton video tutorial ataupun pelatihan-pelatihan semacamnya.
 > Teori memang penting, tetapi yang perlu kamu prioritaskan adalah memperbanyak latihan, alias praktik langsung ngoding.
 > Untuk versi bahasa Indonesia, mungkin yang mirip dengan video di atas adalah [video 3 menit ini](https://youtu.be/a6yeLjujJXo)---lebih tepatnya 18 detik pertama.
-
 :::
 
 Dengan memilih grammY, kamu telah menggunakan sebuah bahasa pemrograman, yaitu TypeScript.
@@ -204,14 +203,12 @@ Tekan `Ctrl+C` di terminal untuk menghentikan proses tersebut, yang nantinya jug
 Kemudian, ulangi langkah 2 dan 3.
 
 ::: tip Hah, maksudnya?
-
 Proses instalasi Node.js beserta pengaturan konfigurasinya memerlukan waktu yang tidak sedikit.
 Jika kamu belum pernah melakukannya, kemungkinan besar kamu akan mengalami berbagai masalah yang cukup rumit untuk diatasi.
 
 Itulah kenapa kami sedikit berharap kamu mengerti bagaimana mengatur sistem kamu, atau bahkan mempelajarinya secara mandiri---Proses penginstalan Node.js _dengan cara yang benar_ sangatlah rumit sehingga tidak cukup untuk kami menjelaskannya di halaman ini.
 
 Jika kamu merasa kebingungan di titik ini, sebaiknya tinggalkan Node.js dan beralih menggunakan [Deno](#persiapan-untuk-deno).
-
 :::
 
 Masih percaya diri?

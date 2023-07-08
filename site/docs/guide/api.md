@@ -25,7 +25,6 @@ However, the Bot API server that is responsible for translating the requests to 
 Hence, if you circumvent the Bot API server that Telegram runs for you, and simply [host your own Bot API server](https://core.telegram.org/bots/api#using-a-local-bot-api-server), you can allow your bot to send files up to 2000 MB.
 
 > Note: if you are working with large files over [long polling](./deployment-types), you should use [grammY runner](../plugins/runner).
-
 :::
 
 ## Calling the Bot API
@@ -109,11 +108,9 @@ Adjust your `tsconfig.json` accordingly and add the highlighted line:
 In some cases, this can also work without adjusting your TypeScript configuration.
 
 ::: warning Wrong Autocomplete
-
 If you do not change your `tsconfig.json` file as described above, it may happen that your code editor suggests in autocomplete to import types from `grammy/out/client` or something.
 **All paths starting with `grammy/out` are internal. Do not use them.**
 They could be changed arbitrarily at any point in time, so we strongly advise you to import from `grammy/types` instead.
-
 :::
 
 ### Making Raw API Calls

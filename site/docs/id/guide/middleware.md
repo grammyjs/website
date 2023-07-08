@@ -212,7 +212,6 @@ Kalau kamu memanggil `next()` tanpa `await`, beberapa hal tidak akan berjalan de
   Akibatnya, kamu akan melihat sebuah `UnhandledPromiseRejectionWarning` yang membuat bot menjadi crash.
 - :x: Mekanisme backpressure [grammY runner](../plugins/runner)---yang berfungsi untuk melindungi server dari beban yang terlalu tinggi, misalnya saat terjadi lonjakan beban---menjadi tidak berfungsi.
 - :skull: Terkadang, juga dapat membunuh kucing imut yang tidak berdosa. :crying_cat_face:
-
 :::
 
 Aturannya adalah kamu harus menggunakan `await`, khususnya untuk `next()`.

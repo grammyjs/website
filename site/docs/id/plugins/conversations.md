@@ -197,7 +197,6 @@ Context object-nya akan diteruskan ke conversation builder function sebagai argu
 Contohnya, jika kamu membuat conversation dengan `await ctx.reply(ctx.message.text)`, ia akan memiliki update yang di dalamnya terdapat `/start`.
 
 ::: tip Mengubah Conversation Identifier
-
 Secara bawaan, kamu diharuskan mengisi nama function ke `ctx.conversation.enter()`.
 Jika kamu memilih untuk menggunakan identifier yang berbeda, kamu bisa melakukannya dengan cara seperti ini:
 
@@ -668,9 +667,7 @@ const response = await conversation.external(() => externalApi());
 Ini termasuk pembacaan data maupun melakukan [side-effect](https://softwareengineering.stackexchange.com/questions/40297/what-is-a-side-effect) (misalnya menulis ke sebuah database).
 
 ::: tip Serupa dengan React
-
 Jika kamu familiar dengan React, kamu mungkin paham sebuah konsep yang serupa dengan `useEffect`.
-
 :::
 
 ### Aturan II: Semua Perilaku Acak Harus Dibungkus
@@ -930,7 +927,6 @@ Plugin ini bisa melakukan hal tersebut dengan cara menyimpan context object yang
 Itulah kenapa plugin-plugin grammY tidak selalu bisa mempengaruhi context object di dalam percakapan seperti yang diharapkan.
 
 ::: warning Menu Interaktif di Dalam Percakapan
-
 Konsep ini bertolak belakang dengan [plugin menu](./menu).
 Meski menu _bisa_ bekerja di dalam percakapan, namun kami tidak menyarankan untuk menggunakan kedua plugin ini secara bersamaan.
 Sebagai gantinya, gunakan [plugin keyboard inline](./keyboard#keyboard-inline) biasa (hingga kami menambahkan dukungan menu asli untuk percakapan).

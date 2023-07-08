@@ -131,7 +131,6 @@ bot.on("message:left_chat_member:me"); // tu bot abandonó el chat (fue eliminad
 ```
 
 ::: tip Filtrar por propiedades del usuario
-
 Si quieres filtrar por otras propiedades de un usuario, necesitas realizar una petición adicional, por ejemplo `await ctx.getAuthor()` para el autor del mensaje.
 Las consultas de filtrado no realizarán secretamente otras peticiones a la API por ti.
 Sigue siendo sencillo realizar este tipo de filtrado:

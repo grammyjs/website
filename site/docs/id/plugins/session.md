@@ -545,7 +545,6 @@ Membuat storage adapter sendiri sangat mudah dilakukan.
 Opsi `storage` bekerja dengan berbagai object yang menganut [interface berikut](https://deno.land/x/grammy/mod.ts?s=StorageAdapter), sehingga kamu bisa melakukan koneksi ke storage-mu hanya dengan beberapa baris kode.
 
 > Kalau kamu ingin mempublikasikan storage adapter buatanmu, silahkan ubah halaman ini dan sertakan juga link-nya agar orang-orang bisa menggunakannya.
-
 :::
 
 Semua storage adapter bisa diinstal dengan cara yang sama.

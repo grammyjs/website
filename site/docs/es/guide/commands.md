@@ -24,7 +24,6 @@ grammY maneja esto automáticamente por ti, así que `bot.command("start")` coin
 Puedes elegir coincidir sólo con comandos específicos especificando `bot.command("start@your_bot_name")`.
 
 ::: tip Sugerir comandos a los usuarios
-
 Puedes llamar a:
 
 ```ts
