@@ -212,6 +212,7 @@ bot.use(responseTime);
   相反，你会看到一个 `UnhandledPromiseRejectionWarning` 发生，这可能会使你的 bot 进程崩溃。
 - :x: [grammY runner](../plugins/runner) 的抗压机制被打破，它可以保护你的服务器免受过高的负载，例如在负载高峰期。
 - :skull: 有时，它还会杀死你所有的无辜代码（是真的！）。:crying_cat_face:
+
 :::
 
 你应该在 `next()` 前使用 `await` 这一规则是特别重要的，但它实际上适用于任何返回 `Promise` 的一般表达式。
