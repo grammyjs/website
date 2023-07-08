@@ -25,6 +25,7 @@ However, the Bot API server that is responsible for translating the requests to 
 Hence, if you circumvent the Bot API server that Telegram runs for you, and simply [host your own Bot API server](https://core.telegram.org/bots/api#using-a-local-bot-api-server), you can allow your bot to send files up to 2000 MB.
 
 > Note: if you are working with large files over [long polling](./deployment-types), you should use [grammY runner](../plugins/runner).
+
 :::
 
 ## Calling the Bot API

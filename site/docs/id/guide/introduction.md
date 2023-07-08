@@ -93,6 +93,7 @@ Luangkan waktumu sebentar untuk menonton [video 34 detik ini](https://youtu.be/8
 > Inti dari video tersebut adalah satu-satunya cara untuk belajar pemrograman---dengan cepat---adalah jangan terlalu banyak menonton video tutorial ataupun pelatihan-pelatihan semacamnya.
 > Teori memang penting, tetapi yang perlu kamu prioritaskan adalah memperbanyak latihan, alias praktik langsung ngoding.
 > Untuk versi bahasa Indonesia, mungkin yang mirip dengan video di atas adalah [video 3 menit ini](https://youtu.be/a6yeLjujJXo)---lebih tepatnya 18 detik pertama.
+
 :::
 
 Dengan memilih grammY, kamu telah menggunakan sebuah bahasa pemrograman, yaitu TypeScript.

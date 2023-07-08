@@ -25,6 +25,7 @@ Telegram 的后端允许你的 bot [发送文件](./files)，最大容量为 200
 因此，如果你绕过 Telegram 为你运行的 Bot API 服务器，[使用你自己托管的 Bot API 服务器](https://core.telegram.org/bots/api#using-a-local-bot-api-server)，你可以允许向你的 bot 发送最大可达 2000 MB 的文件。
 
 > 注意：如果你在 [长轮询](./deployment-types) 上处理大文件，你应该使用 [grammY runner](../plugins/runner)。
+
 :::
 
 ## 调用 Bot API

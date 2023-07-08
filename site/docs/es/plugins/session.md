@@ -544,6 +544,7 @@ Crear un adaptador de almacenamiento personalizado es extremadamente sencillo.
 La opción `storage` funciona con cualquier objeto que se adhiera a [esta interfaz](https://deno.land/x/grammy/mod.ts?s=StorageAdapter), por lo que puedes conectarte a tu almacenamiento con sólo unas líneas de código.
 
 > Si has publicado tu propio adaptador de almacenamiento, no dudes en editar esta página y enlazarla aquí, para que otras personas puedan utilizarla.
+
 :::
 
 Todos los adaptadores de almacenamiento pueden instalarse de la misma manera.

@@ -25,6 +25,7 @@ Namun, server API Bot---yang bertanggung jawab untuk menerjemahkan request ke HT
 Untuk menyiasati batasan tersebut, kamu bisa [meng-hosting server API Bot sendiri](https://core.telegram.org/bots/api#using-a-local-bot-api-server) supaya bot kamu bisa mengirim file dengan ukuran hingga 2000 MB.
 
 > Catatan: Jika menangani file-file berukuran besar menggunakan [long polling](./deployment-types), kamu sebaiknya menggunakan [grammY runner](../plugins/runner).
+
 :::
 
 ## Memanggil API Bot
