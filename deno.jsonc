@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "check-links": "deno run --allow-read --allow-net https://raw.githubusercontent.com/grammyjs/link-checker/main/main.ts site/docs"
+    "check-links": "deno run --allow-read --allow-net https://raw.githubusercontent.com/grammyjs/link-checker/main/main.ts --clean-url --dir=site/docs"
   },
   "fmt": {
     "proseWrap": "preserve",
