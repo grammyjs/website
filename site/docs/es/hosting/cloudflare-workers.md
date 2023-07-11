@@ -5,7 +5,7 @@ next: false
 
 # Alojamiento: Cloudflare Workers
 
-[Cloudflare Workers](https://workers.cloudflare.com/) es una plataforma pública de computación sin servidor que ofrece una solución conveniente y simple para ejecutar JavaScript en el [edge](https://en.wikipedia.org/wiki/Edge_computing).
+[Cloudflare Workers](https://workers.cloudflare.com) es una plataforma pública de computación sin servidor que ofrece una solución conveniente y simple para ejecutar JavaScript en el [edge](https://en.wikipedia.org/wiki/Edge_computing).
 Al tener la capacidad de manejar tráfico HTTP y estar basada en la [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API), construir bots para Telegram se convierte en algo muy sencillo.
 Además, puedes incluso desarrollar [Web Apps](https://core.telegram.org/bots/webapps) en el edge, todo gratis dentro de ciertas cuotas.
 
