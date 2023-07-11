@@ -1,8 +1,6 @@
-# Hosting: Cloudflare Workers
+# Hosting: Cloudflare Workers (Deno)
 
-[Cloudflare Workers](https://workers.cloudflare.com/) adalah sebuah platform pengkomputasian serverless publik yang menawarkan solusi simpel dan nyaman untuk menjalankan JavaScript di [edge](https://en.wikipedia.org/wiki/Edge_computing).
-Dengan kemampuannya untuk menangani lalu lintas HTPP serta ditenagai oleh [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API), mengembangkan bot Telegram menjadi sangat mudah.
-Tidak berhenti di situ, kamu bahkan bisa mengembangkan [Web Apps](https://core.telegram.org/bots/webapps) di edge, semua tanpa biaya dengan kuota tertentu.
+[Cloudflare Workers](https://workers.cloudflare.com) adalah sebuah platform pengkomputasian serverless publik yang menawarkan solusi simpel dan nyaman untuk menjalankan beban kerja yang tidak terlalu berat di [edge](https://en.wikipedia.org/wiki/Edge_computing).
 
 Panduan ini akan menuntun kamu melakukan hosting bot Telegram di Cloudflare Workers.
 
@@ -12,83 +10,101 @@ Untuk mengikuti panduan ini, pastikan kamu sudah memiliki sebuah [akun Cloudflar
 
 ## Menyiapkan Proyek
 
-Pertama-tama, buat sebuah proyek baru:
+Pastikan kamu sudah menginstal [Deno](https://deno.land) dan [Denoflare](https://denoflare.dev).
 
-```sh
-npx wrangler generate bot-ku-sayang
+Buat sebuah direktori baru, lalu buat sebuah file bernama `.denoflare` di dalamnya.
+Isi file dengan konten berikut:
+
+> Catatan: Key "$schema" pada kode JSON berikut berisi versi tertaut di URL-nya ("v0.5.12").
+> Ketika dokumentasi ini dibuat, itu merupakan versi yang paling terbaru.
+> Kamu perlu memperbaruinya ke [versi yang terbaru](https://github.com/skymethod/denoflare/releases).
+
+```json
+{
+  "$schema": "https://raw.githubusercontent.com/skymethod/denoflare/v0.5.12/common/config.schema.json",
+  "scripts": {
+    "my-bot": {
+      "path": "bot.ts",
+      "localPort": 3030,
+      "bindings": {
+        "BOT_TOKEN": {
+          "value": "TOKEN_BOT_KAMU"
+        }
+      },
+      "workersDev": true
+    }
+  },
+  "profiles": {
+    "account1": {
+      "accountId": "ID_AKUN_KAMU",
+      "apiToken": "TOKEN_API_KAMU"
+    }
+  }
+}
 ```
 
-Kamu bisa mengubah `bot-ku-sayang` dengan nama lainnya.
-Nama tersebut akan menjadi nama untuk bot kamu serta direktori proyeknya.
-
-Setelah menjalankan perintah di atas, ikuti instruksi yang tampilkan untuk membuat proyek tersebut.
-Dari situ, kamu juga bisa memilih untuk menggunakan JavaScript atau TypeScript.
-
-Ketika proyek sudah dibuat, `cd` ke dalam `bot-ku-sayang` atau direktori manapun yang telah kamu buat di proyek tadi.
-Tergantung dari bagaimana kamu membuatnya, struktur file proyek setidaknya mirip seperti ini:
-
-```asciiart:no-line-numbers
-.
-├── node_modules
-├── package.json
-├── package-lock.json
-├── src
-│   ├── index.js
-│   └── index.test.js
-└── wrangler.toml
-```
-
-Selanjutnya, install `grammy` dan package lain yang kamu butuhkan:
-
-```sh
-npm install grammy
-```
+Pastikan untuk mengganti `ID_AKUN_KAMU`, `TOKEN_API_KAMU`, dan `TOKEN_BOT_KAMU` dengan nilai yang sesuai.
+Ketika membuat token API, kamu bisa memilih pra atur `Edit Cloudflare Workers` dari perizinan yang telah diatur.
 
 ## Membuat Bot
 
-Tulis kode berikut ke dalam `src/index.js` atau `src/index.ts`:
+Buat sebuah file baru bernama `bot.ts` lalu isi dengan kode berikut:
 
 ```ts
-// Perhatikan bahwa kita meng-import dari 'grammy/web', bukan 'grammy'.
-import { Bot, webhookCallback } from "grammy/web";
+import { Bot, webhookCallback } from "https://deno.land/x/grammy/mod.ts";
+import { UserFromGetMe } from "https://deno.land/x/grammy/types.ts";
 
-// Baris kode berikut mengasumsikan bahwa kamu sudah mengonfigurasi secret BOT_TOKEN dan BOT_INFO.
-// Lihat https://developers.cloudflare.com/workers/platform/environment-variables/#secrets-on-deployed-workers.
-// BOT_INFO diperoleh dari bot.api.getMe().
-const bot = new Bot(BOT_TOKEN, { botInfo: BOT_INFO });
+interface Environment {
+  BOT_TOKEN: string;
+}
 
-bot.command("start", async (ctx) => {
-  await ctx.reply("Halo, dunia!");
-});
+let botInfo: UserFromGetMe | undefined = undefined;
 
-addEventListener("fetch", webhookCallback(bot, "cloudflare"));
+export default {
+  async fetch(request: Request, env: Environment) {
+    try {
+      const bot = new Bot(env.BOT_TOKEN, { botInfo });
+
+      if (botInfo === undefined) {
+        await bot.init();
+        botInfo = bot.botInfo;
+      }
+
+      bot.command(
+        "start",
+        (ctx) => ctx.reply("Selamat datang! Bot berjalan dengan baik."),
+      );
+      bot.on("message", (ctx) => ctx.reply("Dapat pesan baru!"));
+
+      const cb = webhookCallback(bot, "cloudflare-mod");
+
+      return await cb(request);
+    } catch (e) {
+      return new Response(e.message);
+    }
+  },
+};
 ```
-
-Bot pada contoh di atas akan membalas "Halo, dunia!" ketika menerima command `/start`.
 
 ## Men-deploy Bot
 
-Sebelum di-deploy, kita perlu mengubah `wrangler.toml`:
-
-```toml
-account_id = 'id_akun kamu' # Ambil dari Cloudflare dashboard.
-name = 'bot-ku-sayang' # Nama bot kamu, yang akan muncul di URL webhook, misalnya: https://bot-ku-sayang.subdomain-ku.workers.dev
-main = "src/index.js"  # File utama untuk worker.
-compatibility_date = "2023-01-16"
-```
-
-Selanjutnya, kamu bisa deploy bot menggunakan perintah berikut:
+Caranya mudah sekali.
+Cukup jalankan perintah berikut:
 
 ```sh
-npm run deploy
+denoflare push my-bot
 ```
+
+Hasil keluaran atau output dari perintah di atas berisi host tempat worker-nya dijalankan.
+Cari baris yang mengandung string serupa dengan `<BOT_KU>.<SUBDOMAIN_KU>.workers.dev`.
+String tersebut adalah alamat atau host dimana bot kamu menunggu untuk dipanggil.
 
 ## Mengatur Webhook
 
-Kita perlu memberi tahu Telegram lokasi atau alamat pengiriman update.
+Kita perlu memberi tahu Telegram ke mana update seharusnya dikirim.
 Buka browser kamu lalu kunjungi URL ini:
 
-```txt
+```text
 https://api.telegram.org/bot<TOKEN_BOT>/setWebhook?url=https://<BOT_KU>.<SUBDOMAIN_KU>.workers.dev/
 ```
 
@@ -114,7 +130,7 @@ Untuk melakukan pengujian dan debugging, kamu bisa menjalankan sebuah server pen
 Cukup jalankan perintah berikut:
 
 ```sh
-npm run start
+denoflare serve my-bot
 ```
 
 Ketika server pengembangan dimulai, kamu bisa menguji bot kamu dengan cara mengirimkan sampel update ke bot tersebut menggunakan alat seperti `curl`, [Insomnia](https://insomnia.rest), atau [Postman](https://postman.com).

@@ -305,8 +305,12 @@ const hostingTutorials = {
       link: "/id/hosting/supabase",
     },
     {
-      text: "Cloudflare Workers",
-      link: "/id/hosting/cloudflare-workers",
+      text: "Cloudflare Workers (Deno)",
+      link: "id/hosting/cloudflare-workers",
+    },
+    {
+      text: "Cloudflare Workers (Node.js)",
+      link: "id/hosting/cloudflare-workers-nodejs",
     },
     {
       text: "Heroku",
