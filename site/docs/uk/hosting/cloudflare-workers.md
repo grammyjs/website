@@ -20,7 +20,7 @@ next: false
 
 ## Налаштування
 
-Переконайтеся, що у вас встановлені [Deno](https://deno.land/) та [Denoflare](https://denoflare.dev/).
+Переконайтеся, що у вас встановлені [Deno](https://deno.land) та [Denoflare](https://denoflare.dev).
 
 Створіть новий каталог, в якому у свою чергу створіть новий файл `.denoflare`.
 Внесіть до файлу наступний вміст:
