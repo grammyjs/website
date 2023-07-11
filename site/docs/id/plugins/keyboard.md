@@ -193,7 +193,7 @@ const labels = [
   "No. 😈",
 ];
 const buttonRows = labels
-  .map((label) => [Keyboard.text(label)])
+  .map((label) => [Keyboard.text(label)]);
 const keyboard = Keyboard.from(buttonRows, { resize_keyboard: true });
 ```
 
