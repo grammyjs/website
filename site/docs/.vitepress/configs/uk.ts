@@ -318,7 +318,7 @@ const hostingTutorials = {
     },
     {
       text: "Cloudflare Workers (Node.js)",
-      link: "/hosting/cloudflare-workers-nodejs",
+      link: "/uk/hosting/cloudflare-workers-nodejs",
     },
     {
       text: "Heroku",
