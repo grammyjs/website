@@ -21,7 +21,7 @@ Buat sebuah direktori baru, lalu buat sebuah file bernama `.denoflare` di dalamn
 Isi file dengan konten berikut:
 
 > Catatan: Key "$schema" pada kode JSON berikut berisi versi tertaut di URL-nya ("v0.5.12").
-> Ketika dokumentasi ini dibuat, itu merupakan versi yang paling terbaru.
+> Ketika dokumentasi ini dibuat, itu merupakan versi yang paling baru.
 > Kamu perlu memperbaruinya ke [versi yang terbaru](https://github.com/skymethod/denoflare/releases).
 
 ```json{2,9,17-18}
@@ -101,7 +101,7 @@ denoflare push my-bot
 ```
 
 Hasil keluaran atau output dari perintah di atas berisi host tempat worker-nya dijalankan.
-Cari baris yang mengandung string serupa dengan `<BOT_KU>.<SUBDOMAIN_KU>.workers.dev`.
+Cari baris yang mengandung string serupa yang dengan `<BOT_KU>.<SUBDOMAIN_KU>.workers.dev`.
 String tersebut adalah alamat atau host dimana bot kamu menunggu untuk dipanggil.
 
 ## Mengatur Webhook
