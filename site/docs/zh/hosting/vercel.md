@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # 托管: Vercel Serverless Functions
 
 本教程将指导你如何使用 [Vercel Serverless Functions](https://vercel.com/docs/concepts/functions/serverless-functions) 将 bot 部署到 [Vercel](https://vercel.com/)，假设你已经拥有 [Vercel](https://vercel.com) 帐户。

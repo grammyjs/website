@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Alojamiento: Firebase Functions
 
 Este tutorial le guiará a través del proceso de despliegue de su bot en [Firebase Functions](https://firebase.google.com/docs/functions).

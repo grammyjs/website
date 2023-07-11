@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Hosting: Fly
 
 Esta guía te explica las formas de alojar tus bots de grammY en [Fly](https://fly.io), ya sea usando Deno o Node.js.
