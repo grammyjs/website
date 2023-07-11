@@ -1,16 +1,14 @@
 # Хостинг: Cloudflare Workers (Node.js)
 
-[Cloudflare Workers](https://workers.cloudflare.com/) --- це загальнодоступна безсерверна обчислювальна платформа, яка пропонує зручне та просте рішення для запуску JavaScript за допомогою парадигми [кордонних обчислень](https://uk.wikipedia.org/wiki/Кордонні_обчислення).
+[Cloudflare Workers](https://workers.cloudflare.com) --- це загальнодоступна безсерверна обчислювальна платформа, яка пропонує зручне та просте рішення для запуску JavaScript за допомогою парадигми [кордонних обчислень](https://uk.wikipedia.org/wiki/Кордонні_обчислення).
 Маючи здатність обробляти HTTP трафік та базуючись на [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API), розробка ботів Telegram стає легкою справою.
 Крім того, ви можете розробляти [вебдодатки](https://core.telegram.org/bots/webapps) використовуючи кордонні обчислення, і все це безкоштовно у межах певних лімітів.
 
 Цей посібник допоможе вам розмістити вашого бота Telegram на Cloudflare Workers.
 
 ::: tip Шукаєте версію для Deno?
-
 Цей посібник пояснює, як розгорнути бота Telegram на Cloudflare Workers за допомогою Node.js.
 Якщо ви шукаєте версію для Deno, перегляньте [цей посібник](./cloudflare-workers).
-
 :::
 
 ## Передумови

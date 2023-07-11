@@ -1,14 +1,12 @@
 # Hosting: Cloudflare Workers (Deno)
 
-[Cloudflare Workers](https://workers.cloudflare.com/) is a public serverless computing platform that offers a convenient and simple solution for running small workloads at the [edge](https://en.wikipedia.org/wiki/Edge_computing).
+[Cloudflare Workers](https://workers.cloudflare.com) is a public serverless computing platform that offers a convenient and simple solution for running small workloads at the [edge](https://en.wikipedia.org/wiki/Edge_computing).
 
 This guide will take you through the process of hosting your bot on Cloudflare Workers.
 
 ::: tip Looking for the Node.js Version?
-
 This tutorial explains how to deploy a Telegram bot to Cloudflare Workers using Deno.
 If you're looking for the Node.js version, please check out [this tutorial](./cloudflare-workers-nodejs) instead.
-
 :::
 
 ## Prerequisites
@@ -17,7 +15,7 @@ To follow along, please make sure that you have a [Cloudflare account](https://d
 
 ## Setting Things Up
 
-Make sure you have [Deno](https://deno.land/) and [Denoflare](https://denoflare.dev/) installed.
+Make sure you have [Deno](https://deno.land) and [Denoflare](https://denoflare.dev) installed.
 
 Create a new directory, and create a new file `.denoflare` in that directory.
 Put the following contents in the file:
