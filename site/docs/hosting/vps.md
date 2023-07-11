@@ -67,7 +67,7 @@ After the server is created, you can connect to it using SSH:
 ssh root@<ip-address>
 ```
 
-replacing `<ip-address>` with the IP address of your server, which you can find on the server management page.
+> Replace `<ip-address>` with the IP address of your server, which you can find on the server management page.
 
 ::: tip Separate User for Each Application
 In this guide, all actions with the server will be performed as the root user.
@@ -90,7 +90,7 @@ We now have a server at our disposal where we can run the bot to keep it running
 > scp <path-to-local-files> root@<ip-address>:<path-to-remote-directory>
 > ```
 >
-> replacing `<path-to-local-files>` with the path to local files, `<ip-address>` with the IP address of your server, and `<path-to-remote-directory>` with the path to the directory where the bot's source code should be stored on the server.
+> Replace `<path-to-local-files>` with the path to local files, `<ip-address>` with the IP address of your server, and `<path-to-remote-directory>` with the path to the directory where the bot's source code should be stored on the server.
 
 :::tip Don't forget to install the runtime!
 To run the bot, you need to install Node.js or Deno on the server, depending on the runtime in which the bot will run.
@@ -148,7 +148,7 @@ cd /etc/systemd/system
 nano <app-name>.service
 ```
 
-replacing `<app-name>` with any identifier.
+> Replace `<app-name>` with any identifier.
 
 > `<app-name>.service` will be the name of your service.
 
@@ -167,7 +167,7 @@ Restart=on-failure
 WantedBy=multi-user.target
 ```
 
-replacing `<token>` with your bot's token, `<launch-command>` with the command you received [above](#getting-the-start-command), and `<username>` with the name of the user on whose behalf the app is being started.
+> Replace `<token>` with your bot's token, `<launch-command>` with the command you received [above](#getting-the-start-command), and `<username>` with the name of the user on whose behalf the app is being started.
 
 A small explanation of the service configuration:
 
@@ -476,7 +476,7 @@ For the bot to work, make the configuration look like this:
 }
 ```
 
-replacing `<domain>` with your domain and `<token>` with your bot token.
+> Replace `<domain>` with your domain and `<token>` with your bot token.
 
 Reload Caddy every time as a site configuration file using the following command:
 
@@ -495,7 +495,7 @@ To do this, open your browser and visit the page at the following link:
 https://api.telegram.org/bot<token>/setWebhook?url=https://<domain>/<token>
 ```
 
-replacing `<token>` with your bot token and `<domain>` with your domain.
+> Replace `<token>` with your bot token and `<domain>` with your domain.
 
 ## CI/CD
 
@@ -548,7 +548,7 @@ Next, send the **public** key to the server:
 ssh-copy-id -i <key-name>.pub root@<ip-address>
 ```
 
-replacing `<key-name>` with the name of the generated key and `<ip-address>` with the IP address of your server.
+> Replace `<key-name>` with the name of the generated key and `<ip-address>` with the IP address of your server.
 
 Note that the **public** key can be located on many servers, and the **private** key should be only with you and GitHub or GitLab.
 
