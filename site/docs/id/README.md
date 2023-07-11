@@ -15,6 +15,7 @@ hero:
     - miliaran telah terlayani.
     - dokumentasi yang lengkap dan berkualitas.
     - honeY, grammY, sweetY.
+    - ditenagai oleh obsesi.
   image:
     src: /images/Y.webp
     alt: logo grammY
