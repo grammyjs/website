@@ -306,11 +306,11 @@ const hostingTutorials = {
     },
     {
       text: "Cloudflare Workers (Deno)",
-      link: "id/hosting/cloudflare-workers",
+      link: "/id/hosting/cloudflare-workers",
     },
     {
       text: "Cloudflare Workers (Node.js)",
-      link: "id/hosting/cloudflare-workers-nodejs",
+      link: "/id/hosting/cloudflare-workers-nodejs",
     },
     {
       text: "Heroku",
