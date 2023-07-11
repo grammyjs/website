@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Hosting: Cloudflare Workers (Deno)
 
 [Cloudflare Workers](https://workers.cloudflare.com) is a public serverless computing platform that offers a convenient and simple solution for running small workloads at the [edge](https://en.wikipedia.org/wiki/Edge_computing).

@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Хостинг: Cloudflare Workers (Node.js)
 
 [Cloudflare Workers](https://workers.cloudflare.com) --- це загальнодоступна безсерверна обчислювальна платформа, яка пропонує зручне та просте рішення для запуску JavaScript за допомогою парадигми [кордонних обчислень](https://uk.wikipedia.org/wiki/Кордонні_обчислення).
