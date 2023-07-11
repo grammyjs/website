@@ -69,6 +69,12 @@ ssh root@<ip-address>
 
 > Replace `<ip-address>` with the IP address of your server, which you can find on the server management page.
 
+::: tip Configuring SSH
+It can be difficult and tedious to remember which IP address and whose name you need to connect to a server.
+To eliminate these routine steps and improve your server experience, you can configure SSH by creating a `~/.ssh/config` (<https://linuxhandbook.com/ssh-config-file/>) file on your computer that stores all the data you need to connect to the server under certain arbitrary identifiers.
+This is beyond the scope of this article, so you will need to configure it yourself.
+:::
+
 ::: tip Separate User for Each Application
 In this guide, all actions with the server will be performed as the root user.
 This is done on purpose to simplify the material.
