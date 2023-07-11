@@ -71,7 +71,7 @@ ssh root@<ip-address>
 
 ::: tip Configuring SSH
 It can be difficult and tedious to remember which IP address and whose name you need to connect to a server.
-To eliminate these routine steps and improve your server experience, you can configure SSH by creating a `~/.ssh/config` (<https://linuxhandbook.com/ssh-config-file/>) file on your computer that stores all the data you need to connect to the server under certain arbitrary identifiers.
+To eliminate these routine steps and improve your server experience, you can configure SSH by creating a `~/.ssh/config` (<https://linuxhandbook.com/ssh-config-file>) file on your computer that stores all the data you need to connect to the server under certain arbitrary identifiers.
 This is beyond the scope of this article, so you will need to configure it yourself.
 :::
 
@@ -104,7 +104,7 @@ This is beyond the scope of this article, so you will need to do it yourself.
 You probably already did this when [getting started](../guide/getting-started.md), so you should be familiar with the steps. :wink:
 :::
 
-Below are two ways you can keep your bot running smoothly.
+Below are two ways you can keep your bot running smoothly: using [systemd](#systemd) or [PM2](#pm2).
 
 ### systemd
 
@@ -177,13 +177,13 @@ WantedBy=multi-user.target
 
 A small explanation of the service configuration:
 
-- `After=network.target` - indicates that the application should be launched after the Internet module is loaded.
-- `Environment=BOT_TOKEN=<token>` - sets the environment variable.
+- `After=network.target` --- indicates that the application should be launched after the Internet module is loaded.
+- `Environment=BOT_TOKEN=<token>` --- sets the environment variable.
   Add new `Environment` if you need multiple environment variables.
-- `ExecStart=<start-command>` - sets the startup command.
-- `Restart=on-failure` - indicates that the application should restart after a crash.
-- `WantedBy=multi-user.target` - defines the system state in which the service should be launched.
-  `multi-user.target` - is a typical value for servers that defines the state of the system when everything works except the graphical interface, which simply does not exist.
+- `ExecStart=<start-command>` --- sets the startup command.
+- `Restart=on-failure` --- indicates that the application should restart after a crash.
+- `WantedBy=multi-user.target` --- defines the system state in which the service should be launched.
+  `multi-user.target` --- is a typical value for servers that defines the state of the system when everything works except the graphical interface, which simply does not exist.
 
 > For more information on the unit files, read [this](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/assembly_working-with-systemd-unit-files_configuring-basic-system-settings).
 
