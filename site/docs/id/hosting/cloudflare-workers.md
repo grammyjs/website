@@ -4,6 +4,11 @@
 
 Panduan ini akan menuntun kamu melakukan hosting bot Telegram di Cloudflare Workers.
 
+::: tip Mencari Versi yang Node.js?
+Tutorial ini berisi langkah-langkah untuk men-deploy bot Telegram ke Cloudflare Workers menggunakan Deno.
+Jika kamu sedang mencari versi yang Node.js, silahkan beralih ke [tutorial berikut](./cloudflare-workers-nodejs.md).
+:::
+
 ## Persiapan
 
 Untuk mengikuti panduan ini, pastikan kamu sudah memiliki sebuah [akun Cloudflare](https://dash.cloudflare.com/login) beserta subdomain workers yang sudah [dikonfigurasi](https://dash.cloudflare.com/?account=workers).
