@@ -24,7 +24,7 @@
 > На момент написання посібник це була остання доступна версія.
 > Вам слід оновити її до [найновішої версії](https://github.com/skymethod/denoflare/releases).
 
-```json
+```json{2,9,17-18}
 {
   "$schema": "https://raw.githubusercontent.com/skymethod/denoflare/v0.5.12/common/config.schema.json",
   "scripts": {

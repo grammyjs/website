@@ -24,7 +24,7 @@ Put the following contents in the file:
 > At the time of writing, this was the latest version available.
 > You should update them to the [newest version](https://github.com/skymethod/denoflare/releases).
 
-```json
+```json{2,9,17-18}
 {
   "$schema": "https://raw.githubusercontent.com/skymethod/denoflare/v0.5.12/common/config.schema.json",
   "scripts": {

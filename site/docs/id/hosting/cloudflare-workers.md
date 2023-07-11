@@ -19,7 +19,7 @@ Isi file dengan konten berikut:
 > Ketika dokumentasi ini dibuat, itu merupakan versi yang paling terbaru.
 > Kamu perlu memperbaruinya ke [versi yang terbaru](https://github.com/skymethod/denoflare/releases).
 
-```json
+```json{2,9,17-18}
 {
   "$schema": "https://raw.githubusercontent.com/skymethod/denoflare/v0.5.12/common/config.schema.json",
   "scripts": {
