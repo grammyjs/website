@@ -346,7 +346,7 @@ const hostingTutorials = {
 export const siteZh: LocaleConfig = {
   zh: {
     label: "简体中文",
-    lang: "zh",
+    lang: "zh-CN",
     title: "grammY",
     description: "Telegram Bot 框架。",
     themeConfig: {
