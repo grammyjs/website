@@ -196,7 +196,7 @@ const labels = [
 ];
 const buttonRows = labels
   .map((label) => [Keyboard.text(label)]);
-const keyboard = Keyboard.from(buttonRows, { resize_keyboard: true });
+const keyboard = Keyboard.from(buttonRows).resized();
 ```
 
 ### Envío de un Teclado Personalizado
