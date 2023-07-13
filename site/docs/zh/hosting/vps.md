@@ -12,13 +12,13 @@ systemd 是一个强大的服务管理器，它预安装在大多数 Linux 发�
 
 1. 获取你的运行时的完整路径：
 
-```sh
-# 如果使用 Deno
-which deno
+   ```sh
+   # 如果使用 Deno
+   which deno
 
-# 如果使用 Node.js
-which node
-```
+   # 如果使用 Node.js
+   which node
+   ```
 
 2. 你也应该有你的入口文件的完整路径。
 
@@ -38,33 +38,32 @@ which node
 
 1. 进入服务目录
 
-```sh
-cd /etc/systemd/system
-```
+   ```sh
+   cd /etc/systemd/system
+   ```
 
 2. 用编辑器打开你的新服务文件：
 
-```sh
-nano bot1.service
-```
+   ```sh
+   nano bot1.service
+   ```
 
 3. 添加以下内容：
 
-```txt
-[Service]
-ExecStart=<start_command>
-Restart=on-failure
+   ```txt
+   [Service]
+   ExecStart=<start_command>
+   Restart=on-failure
 
-[Install]
-WantedBy=multi-user.target
-```
+   [Install]
+   WantedBy=multi-user.target
+   ```
 
-> 用上面得到的命令替换 `<start_command>`。
->
-> 另请注意，如果 Deno 是为 root 以外的其他用户安装的，你可能需要在 service 部分中指定，例如 `User=<the_user>`。
-> 有关 unit files 的更多信息，请访问 [这里](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/assembly_working-with-systemd-unit-files_configuring-basic-system-settings).
+   > 用上面得到的命令替换 `<start_command>`。
+   > 另请注意，如果 Deno 是为 root 以外的其他用户安装的，你可能需要在 service 部分中指定，例如 `User=<the_user>`。
+   > 有关 unit files 的更多信息，请访问 [这里](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/assembly_working-with-systemd-unit-files_configuring-basic-system-settings).
 
-3. 每当你编辑服务时，都要重新加载 systemd：
+4. 每当你编辑服务时，都要重新加载 systemd：
 
 ```sh
 systemctl daemon-reload

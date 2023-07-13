@@ -3,6 +3,5 @@
   "no-duplicate-heading": false,
   "no-trailing-punctuation": {
     "punctuation": ".,;:。，；：" // everything except exclamation points
-  },
-  "ol-prefix": false
+  }
 }

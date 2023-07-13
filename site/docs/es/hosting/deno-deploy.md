@@ -57,7 +57,7 @@ Aquí, estamos usando el token del bot (`/<bot token>`).
 1. Crea un repositorio en GitHub, puede ser privado o público.
 2. Empuja tu código.
 
-> Es recomendable que tengas una única rama estable y que hagas tus pruebas en otras ramas, para que no te ocurran cosas inesperadas.
+   > Es recomendable que tengas una única rama estable y que hagas tus pruebas en otras ramas, para que no te ocurran cosas inesperadas.
 
 3. Visita tu [Deno Deploy dashboard](https://dash.deno.com/projects).
 4. Haz clic en "Nuevo proyecto", y ve a la sección "Despliegue desde el repositorio de GitHub".
@@ -74,9 +74,9 @@ Aquí, estamos usando el token del bot (`/<bot token>`).
 4. [Crear un token de acceso](https://dash.deno.com/user/access-tokens).
 5. Ejecuta el siguiente comando:
 
-```sh
-deployctl deploy --project <project> ./mod.ts --prod --token <token>
-```
+   ```sh
+   deployctl deploy --project <project> ./mod.ts --prod --token <token>
+   ```
 
 6. Para configurar las acciones de Github, consulte [esto](https://github.com/denoland/deployctl/blob/main/action/README.md).
 

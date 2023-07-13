@@ -12,13 +12,13 @@ systemd is a powerful service manager which is pre-installed on many Linux distr
 
 1. Get the full path of your runtime:
 
-```sh
-# If using Deno
-which deno
+   ```sh
+   # If using Deno
+   which deno
 
-# If using Node.js
-which node
-```
+   # If using Node.js
+   which node
+   ```
 
 2. You should have the full path of your entry file, too.
 
@@ -38,33 +38,32 @@ which node
 
 1. Go to the services directory:
 
-```sh
-cd /etc/systemd/system
-```
+   ```sh
+   cd /etc/systemd/system
+   ```
 
 2. Open your new service file with an editor:
 
-```sh
-nano bot1.service
-```
+   ```sh
+   nano bot1.service
+   ```
 
 3. Add the following content:
 
-```txt
-[Service]
-ExecStart=<start_command>
-Restart=on-failure
+   ```txt
+   [Service]
+   ExecStart=<start_command>
+   Restart=on-failure
 
-[Install]
-WantedBy=multi-user.target
-```
+   [Install]
+   WantedBy=multi-user.target
+   ```
 
-> Replace `<start_command>` with the command you got above.
->
-> Also note that if Deno is installed for a different user other than root, you may need to specify it in the service section like `User=<the_user>`.
-> For more information on the unit files, visit [here](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/assembly_working-with-systemd-unit-files_configuring-basic-system-settings).
+   > Replace `<start_command>` with the command you got above.
+   > Also note that if Deno is installed for a different user other than root, you may need to specify it in the service section like `User=<the_user>`.
+   > For more information on the unit files, visit [here](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/assembly_working-with-systemd-unit-files_configuring-basic-system-settings).
 
-3. Reload systemd whenever you edit the service:
+4. Reload systemd whenever you edit the service:
 
 ```sh
 systemctl daemon-reload

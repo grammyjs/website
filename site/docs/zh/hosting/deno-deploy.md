@@ -57,7 +57,7 @@ serve(async (req) => {
 1. 在 GitHub 上创建一个新的仓库，它可以是私有的或公开的。
 2. 将你的代码推送到这个仓库。
 
-> 建议你有一个单一且稳定的分支，然后在其他分支中进行测试，这样你就不会发送一些意外的事情。
+   > 建议你有一个单一且稳定的分支，然后在其他分支中进行测试，这样你就不会发送一些意外的事情。
 
 3. 访问你的 [Deno Deploy 仪表台](https://dash.deno.com/projects)。
 4. 点击 "New Project"，然后进入 "Deploy from GitHub repository" 部分
@@ -74,9 +74,9 @@ serve(async (req) => {
 4. [创建一个访问 token](https://dash.deno.com/user/access-tokens).
 5. 执行以下命令：
 
-```sh
-deployctl deploy --project <project> ./mod.ts --prod --token <token>
-```
+   ```sh
+   deployctl deploy --project <project> ./mod.ts --prod --token <token>
+   ```
 
 6. 配置 GitHub Action，请参考 [这里](https://github.com/denoland/deployctl/blob/main/action/README.md).
 

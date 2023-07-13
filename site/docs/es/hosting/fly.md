@@ -124,51 +124,51 @@ Este es el método más sencillo.
 2. Ejecuta `flyctl launch` para generar un `Dockerfile` y un archivo `fly.toml` para el despliegue.
    Pero **NO** despliega.
 
-::: code-group
+   ::: code-group
 
-```sh [Deno]
-flyctl launch
-```
+   ```sh [Deno]
+   flyctl launch
+   ```
 
-```log{10} [Log]
-Creating app in /my/telegram/bot
-Scanning source code
-Detected a Deno app
-? App Name (leave blank to use an auto-generated name): grammy
-Automatically selected personal organization: CatDestroyer
-? Select region: ams (Amsterdam, Netherlands)
-Created app grammy in organization personal
-Wrote config file fly.toml
-? Would you like to set up a Postgresql database now? No
-? Would you like to deploy now? No
-Your app is ready. Deploy with `flyctl deploy`
-```
+   ```log{10} [Log]
+   Creating app in /my/telegram/bot
+   Scanning source code
+   Detected a Deno app
+   ? App Name (leave blank to use an auto-generated name): grammy
+   Automatically selected personal organization: CatDestroyer
+   ? Select region: ams (Amsterdam, Netherlands)
+   Created app grammy in organization personal
+   Wrote config file fly.toml
+   ? Would you like to set up a Postgresql database now? No
+   ? Would you like to deploy now? No
+   Your app is ready. Deploy with `flyctl deploy`
+   ```
 
-:::
+   :::
 
-::: code-group
+   ::: code-group
 
-```sh [Node.js]
-flyctl launch
-```
+   ```sh [Node.js]
+   flyctl launch
+   ```
 
-```log{12} [Log]
-Creating app in /my/telegram/bot
-Scanning source code
-Detected a NodeJS app
-Using the following build configuration:
-        Builder: heroku/buildpacks:20
-? App Name (leave blank to use an auto-generated name): grammy
-Automatically selected personal organization: CatDestroyer
-? Select region: ams (Amsterdam, Netherlands)
-Created app grammy in organization personal
-Wrote config file fly.toml
-? Would you like to set up a Postgresql database now? No
-? Would you like to deploy now? No
-Your app is ready. Deploy with `flyctl deploy`
-```
+   ```log{12} [Log]
+   Creating app in /my/telegram/bot
+   Scanning source code
+   Detected a NodeJS app
+   Using the following build configuration:
+           Builder: heroku/buildpacks:20
+   ? App Name (leave blank to use an auto-generated name): grammy
+   Automatically selected personal organization: CatDestroyer
+   ? Select region: ams (Amsterdam, Netherlands)
+   Created app grammy in organization personal
+   Wrote config file fly.toml
+   ? Would you like to set up a Postgresql database now? No
+   ? Would you like to deploy now? No
+   Your app is ready. Deploy with `flyctl deploy`
+   ```
 
-:::
+   :::
 
 3. **Deno**: Cambiar la versión de Deno y eliminar `CMD` si existe en el archivo `Dockerfile`.
    Por ejemplo, en este caso, actualizamos `DENO_VERSION` a `1.25.2`.
@@ -176,181 +176,181 @@ Your app is ready. Deploy with `flyctl deploy`
    **Node.js**: Para cambiar la versión de Node.js, necesitas insertar una propiedad `"node"` dentro de una propiedad `"engines"` dentro de `package.json`.
    Por ejemplo, actualizamos la versión de Node.js a `16.14.0` en el siguiente ejemplo.
 
-::: code-group
+   ::: code-group
 
-```dockerfile{2,26} [Deno]
-# Dockerfile
-ARG DENO_VERSION=1.25.2
-ARG BIN_IMAGE=denoland/deno:bin-${DENO_VERSION}
-FROM ${BIN_IMAGE} AS bin
+   ```dockerfile{2,26} [Deno]
+   # Dockerfile
+   ARG DENO_VERSION=1.25.2
+   ARG BIN_IMAGE=denoland/deno:bin-${DENO_VERSION}
+   FROM ${BIN_IMAGE} AS bin
 
-FROM frolvlad/alpine-glibc:alpine-3.13
+   FROM frolvlad/alpine-glibc:alpine-3.13
 
-RUN apk --no-cache add ca-certificates
+   RUN apk --no-cache add ca-certificates
 
-RUN addgroup --gid 1000 deno \
-  && adduser --uid 1000 --disabled-password deno --ingroup deno \
-  && mkdir /deno-dir/ \
-  && chown deno:deno /deno-dir/
+   RUN addgroup --gid 1000 deno \
+     && adduser --uid 1000 --disabled-password deno --ingroup deno \
+     && mkdir /deno-dir/ \
+     && chown deno:deno /deno-dir/
 
-ENV DENO_DIR /deno-dir/
-ENV DENO_INSTALL_ROOT /usr/local
+   ENV DENO_DIR /deno-dir/
+   ENV DENO_INSTALL_ROOT /usr/local
 
-ARG DENO_VERSION
-ENV DENO_VERSION=${DENO_VERSION}
-COPY --from=bin /deno /bin/deno
+   ARG DENO_VERSION
+   ENV DENO_VERSION=${DENO_VERSION}
+   COPY --from=bin /deno /bin/deno
 
-WORKDIR /deno-dir
-COPY . .
+   WORKDIR /deno-dir
+   COPY . .
 
-ENTRYPOINT ["/bin/deno"]
-# CMD es eliminado
-```
+   ENTRYPOINT ["/bin/deno"]
+   # CMD es eliminado
+   ```
 
-```json [Node.js]{19}
-// package.json
-{
-  "name": "grammy",
-  "version": "1.0.0",
-  "description": "grammy",
-  "main": "app.js",
-  "author": "itsmeMario",
-  "license": "MIT",
-  "dependencies": {
-    "express": "^4.18.1",
-    "grammy": "^1.11.0"
-  },
-  "devDependencies": {
-    "@types/express": "^4.17.14",
-    "@types/node": "^18.7.18",
-    "typescript": "^4.8.3"
-  },
-  "engines": {
-    "node": "16.14.0"
-  }
-}
-```
+   ```json [Node.js]{19}
+   // package.json
+   {
+     "name": "grammy",
+     "version": "1.0.0",
+     "description": "grammy",
+     "main": "app.js",
+     "author": "itsmeMario",
+     "license": "MIT",
+     "dependencies": {
+       "express": "^4.18.1",
+       "grammy": "^1.11.0"
+     },
+     "devDependencies": {
+       "@types/express": "^4.17.14",
+       "@types/node": "^18.7.18",
+       "typescript": "^4.8.3"
+     },
+     "engines": {
+       "node": "16.14.0"
+     }
+   }
+   ```
 
-:::
+   :::
 
 4. Edita `app` dentro del archivo `fly.toml`.
    La ruta `./app.ts` (o `./app.js` para Node.js) en el ejemplo de abajo se refiere al directorio del archivo principal.
    Puedes modificarlos para que coincidan con el directorio de tu proyecto.
    Si estás usando webhooks, asegúrate de que el puerto es el mismo que el de tu [configuración](#webhooks) (`8000`).
 
-::: code-group
+   ::: code-group
 
-```toml [Deno (Webhooks)]{7,11,12}
-# fly.toml
-app = "grammy"
-kill_signal = "SIGINT"
-kill_timeout = 5
+   ```toml [Deno (Webhooks)]{7,11,12}
+   # fly.toml
+   app = "grammy"
+   kill_signal = "SIGINT"
+   kill_timeout = 5
 
-[processes]
-  app = "run --allow-net ./app.ts"
+   [processes]
+     app = "run --allow-net ./app.ts"
 
-[[services]]
-  http_checks = []
-  internal_port = 8000
-  processes = ["app"]
-  protocol = "tcp"
-  script_checks = []
-  [services.concurrency]
-    hard_limit = 25
-    soft_limit = 20
-    type = "connections"
+   [[services]]
+     http_checks = []
+     internal_port = 8000
+     processes = ["app"]
+     protocol = "tcp"
+     script_checks = []
+     [services.concurrency]
+       hard_limit = 25
+       soft_limit = 20
+       type = "connections"
 
-  [[services.ports]]
-    force_https = true
-    handlers = ["http"]
-    port = 80
+     [[services.ports]]
+       force_https = true
+       handlers = ["http"]
+       port = 80
 
-  [[services.ports]]
-    handlers = ["tls", "http"]
-    port = 443
+     [[services.ports]]
+       handlers = ["tls", "http"]
+       port = 443
 
-  [[services.tcp_checks]]
-    grace_period = "1s"
-    interval = "15s"
-    restart_limit = 0
-    timeout = "2s"
-```
+     [[services.tcp_checks]]
+       grace_period = "1s"
+       interval = "15s"
+       restart_limit = 0
+       timeout = "2s"
+   ```
 
-```toml [Deno (Long Polling)]{7}
-# fly.toml
-app = "grammy"
-kill_signal = "SIGINT"
-kill_timeout = 5
+   ```toml [Deno (Long Polling)]{7}
+   # fly.toml
+   app = "grammy"
+   kill_signal = "SIGINT"
+   kill_timeout = 5
 
-[processes]
-  app = "run --allow-net ./app.ts"
+   [processes]
+     app = "run --allow-net ./app.ts"
 
-# Simplemente omitiendo toda la sección de [[services]] ya que no estamos escuchando HTTP.
-```
+   # Simplemente omitiendo toda la sección de [[services]] ya que no estamos escuchando HTTP.
+   ```
 
-```toml [Node.js (Webhooks)]{7,11,18,19}
-# fly.toml
-app = "grammy"
-kill_signal = "SIGINT"
-kill_timeout = 5
+   ```toml [Node.js (Webhooks)]{7,11,18,19}
+   # fly.toml
+   app = "grammy"
+   kill_signal = "SIGINT"
+   kill_timeout = 5
 
-[processes]
-  app = "node ./build/app.js"
+   [processes]
+     app = "node ./build/app.js"
 
-# Ajuste la variable de entorno NODE_ENV para suprimir la advertencia
-[build.args]
-  NODE_ENV = "production"
+   # Ajuste la variable de entorno NODE_ENV para suprimir la advertencia
+   [build.args]
+     NODE_ENV = "production"
 
-[build]
-  builder = "heroku/buildpacks:20"
+   [build]
+     builder = "heroku/buildpacks:20"
 
-[[services]]
-  http_checks = []
-  internal_port = 8000
-  processes = ["app"]
-  protocol = "tcp"
-  script_checks = []
-  [services.concurrency]
-    hard_limit = 25
-    soft_limit = 20
-    type = "connections"
+   [[services]]
+     http_checks = []
+     internal_port = 8000
+     processes = ["app"]
+     protocol = "tcp"
+     script_checks = []
+     [services.concurrency]
+       hard_limit = 25
+       soft_limit = 20
+       type = "connections"
 
-  [[services.ports]]
-    force_https = true
-    handlers = ["http"]
-    port = 80
+     [[services.ports]]
+       force_https = true
+       handlers = ["http"]
+       port = 80
 
-  [[services.ports]]
-    handlers = ["tls", "http"]
-    port = 443
+     [[services.ports]]
+       handlers = ["tls", "http"]
+       port = 443
 
-  [[services.tcp_checks]]
-    grace_period = "1s"
-    interval = "15s"
-    restart_limit = 0
-    timeout = "2s"
-```
+     [[services.tcp_checks]]
+       grace_period = "1s"
+       interval = "15s"
+       restart_limit = 0
+       timeout = "2s"
+   ```
 
-```toml [Node.js (Long polling)]{7,11,22,23}
-# fly.toml
-app = "grammy"
-kill_signal = "SIGINT"
-kill_timeout = 5
+   ```toml [Node.js (Long polling)]{7,11,22,23}
+   # fly.toml
+   app = "grammy"
+   kill_signal = "SIGINT"
+   kill_timeout = 5
 
-[processes]
-  app = "node ./build/app.js"
+   [processes]
+     app = "node ./build/app.js"
 
-# Ajuste la variable de entorno NODE_ENV para suprimir la advertencia
-[build.args]
-  NODE_ENV = "production"
+   # Ajuste la variable de entorno NODE_ENV para suprimir la advertencia
+   [build.args]
+     NODE_ENV = "production"
 
-[build]
-  builder = "heroku/buildpacks:20"
+   [build]
+     builder = "heroku/buildpacks:20"
 
-# Simplemente omitiendo toda la sección de [[servicios]] ya que no estamos escuchando HTTP.
-```
+   # Simplemente omitiendo toda la sección de [[servicios]] ya que no estamos escuchando HTTP.
+   ```
 
-:::
+   :::
 
 5. Ejecuta `flyctl deploy` para desplegar tu código.
 
@@ -365,20 +365,20 @@ Visite <https://fly.io/docs/app-guides/continuous-deployment-with-github-actions
 4. Ve a Configuración, elige Secretos y crea un secreto llamado `FLY_API_TOKEN` con el valor del token del paso 2.
 5. Crea `.github/workflows/main.yml` con estos contenidos:
 
-```yml
-name: Fly Deploy
-on: [push]
-env:
-  FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
-jobs:
-  deploy:
-      name: Deploy app
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v2
-        - uses: superfly/flyctl-actions/setup-flyctl@master
-        - run: flyctl deploy --remote-only
-```
+   ```yml
+   name: Fly Deploy
+   on: [push]
+   env:
+     FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+   jobs:
+     deploy:
+         name: Deploy app
+         runs-on: ubuntu-latest
+         steps:
+           - uses: actions/checkout@v2
+           - uses: superfly/flyctl-actions/setup-flyctl@master
+           - run: flyctl deploy --remote-only
+   ```
 
 6. Sigue los pasos 2 a 4 del [Método 1](#método-1-con-flyctl) anterior.
    Recuerda saltarte el último paso (paso 5) ya que no vamos a desplegar el código directamente.

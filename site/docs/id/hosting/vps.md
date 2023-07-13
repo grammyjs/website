@@ -12,13 +12,13 @@ systemd adalah sebuah service manager yang sudah terinstal secara bawaan di berb
 
 1. Memperoleh path lengkap runtime:
 
-```sh
-# Jika menggunakan Deno
-which deno
+   ```sh
+   # Jika menggunakan Deno
+   which deno
 
-# Jika menggunakan Node.js
-which node
-```
+   # Jika menggunakan Node.js
+   which node
+   ```
 
 2. Kamu harus tahu path lengkap file entry-nya juga.
 
@@ -38,33 +38,32 @@ which node
 
 1. Arahkan pointer ke direktori service-nya:
 
-```sh
-cd /etc/systemd/system
-```
+   ```sh
+   cd /etc/systemd/system
+   ```
 
 2. Buka file service baru kamu di sebuah text editor:
 
-```sh
-nano bot1.service
-```
+   ```sh
+   nano bot1.service
+   ```
 
 3. Isi dengan konten berikut:
 
-```txt
-[Service]
-ExecStart=<start_command>
-Restart=on-failure
+   ```txt
+   [Service]
+   ExecStart=<start_command>
+   Restart=on-failure
 
-[Install]
-WantedBy=multi-user.target
-```
+   [Install]
+   WantedBy=multi-user.target
+   ```
 
-> Ganti `<start_command>` dengan command yang telah kamu buat di atas tadi.
->
-> Perlu diperhatikan, jika Deno terinstal untuk user selain root, kamu juga perlu menambahkan `User=<nama_user>` di bagian service.
-> Untuk informasi lebih lanjut mengenai unit file ini, silahkan kunjungi [halaman berikut](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/assembly_working-with-systemd-unit-files_configuring-basic-system-settings).
+   > Ganti `<start_command>` dengan command yang telah kamu buat di atas tadi.
+   > Perlu diperhatikan, jika Deno terinstal untuk user selain root, kamu juga perlu menambahkan `User=<nama_user>` di bagian service.
+   > Untuk informasi lebih lanjut mengenai unit file ini, silahkan kunjungi [halaman berikut](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/assembly_working-with-systemd-unit-files_configuring-basic-system-settings).
 
-3. Mulai ulang systemd setiap kali service mengalami perubahan:
+4. Mulai ulang systemd setiap kali service mengalami perubahan:
 
 ```sh
 systemctl daemon-reload

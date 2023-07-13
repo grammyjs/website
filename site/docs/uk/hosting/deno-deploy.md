@@ -57,7 +57,7 @@ serve(async (req) => {
 1. Створіть репозиторій на GitHub, він може бути як приватним, так і загальнодоступним.
 2. Завантажте свій код.
 
-> Рекомендується мати одну стабільну гілку, а тестувати свої напрацювання в інших гілках, щоб уникнути непередбачуваних помилок.
+   > Рекомендується мати одну стабільну гілку, а тестувати свої напрацювання в інших гілках, щоб уникнути непередбачуваних помилок.
 
 3. Відвідайте свою [панель керування Deno Deploy](https://dash.deno.com/projects).
 4. Натисніть на "New Project" і перейдіть до розділу "Deploy from GitHub repository".
@@ -74,9 +74,9 @@ serve(async (req) => {
 4. [Створіть токен доступу](https://dash.deno.com/user/access-tokens).
 5. Виконайте наступну команду:
 
-```sh
-deployctl deploy --project <назва-проєкту> ./mod.ts --prod --token <токен-доступу>
-```
+   ```sh
+   deployctl deploy --project <назва-проєкту> ./mod.ts --prod --token <токен-доступу>
+   ```
 
 6. Щоб налаштувати Github Actions, дивіться [це](https://github.com/denoland/deployctl/blob/main/action/README.md).
 

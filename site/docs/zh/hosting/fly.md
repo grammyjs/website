@@ -124,51 +124,51 @@ flyctl secrets set BOT_TOKEN="AAAA:12345"
 2. 运行 `flyctl launch` 来为部署生成一个 `Dockerfile` 和 `fly.toml` 文件。
    但是**不要**部署。
 
-::: code-group
+   ::: code-group
 
-```sh [Deno]
-flyctl launch
-```
+   ```sh [Deno]
+   flyctl launch
+   ```
 
-```log{10} [Log]
-Creating app in /my/telegram/bot
-Scanning source code
-Detected a Deno app
-? App Name (leave blank to use an auto-generated name): grammy
-Automatically selected personal organization: CatDestroyer
-? Select region: ams (Amsterdam, Netherlands)
-Created app grammy in organization personal
-Wrote config file fly.toml
-? Would you like to set up a Postgresql database now? No
-? Would you like to deploy now? No
-Your app is ready. Deploy with `flyctl deploy`
-```
+   ```log{10} [Log]
+   Creating app in /my/telegram/bot
+   Scanning source code
+   Detected a Deno app
+   ? App Name (leave blank to use an auto-generated name): grammy
+   Automatically selected personal organization: CatDestroyer
+   ? Select region: ams (Amsterdam, Netherlands)
+   Created app grammy in organization personal
+   Wrote config file fly.toml
+   ? Would you like to set up a Postgresql database now? No
+   ? Would you like to deploy now? No
+   Your app is ready. Deploy with `flyctl deploy`
+   ```
 
-:::
+   :::
 
-::: code-group
+   ::: code-group
 
-```sh [Node.js]
-flyctl launch
-```
+   ```sh [Node.js]
+   flyctl launch
+   ```
 
-```log{12} [Log]
-Creating app in /my/telegram/bot
-Scanning source code
-Detected a NodeJS app
-Using the following build configuration:
-        Builder: heroku/buildpacks:20
-? App Name (leave blank to use an auto-generated name): grammy
-Automatically selected personal organization: CatDestroyer
-? Select region: ams (Amsterdam, Netherlands)
-Created app grammy in organization personal
-Wrote config file fly.toml
-? Would you like to set up a Postgresql database now? No
-? Would you like to deploy now? No
-Your app is ready. Deploy with `flyctl deploy`
-```
+   ```log{12} [Log]
+   Creating app in /my/telegram/bot
+   Scanning source code
+   Detected a NodeJS app
+   Using the following build configuration:
+    Builder: heroku/buildpacks:20
+   ? App Name (leave blank to use an auto-generated name): grammy
+   Automatically selected personal organization: CatDestroyer
+   ? Select region: ams (Amsterdam, Netherlands)
+   Created app grammy in organization personal
+   Wrote config file fly.toml
+   ? Would you like to set up a Postgresql database now? No
+   ? Would you like to deploy now? No
+   Your app is ready. Deploy with `flyctl deploy`
+   ```
 
-:::
+   :::
 
 3. **Deno**：修改 Deno 版本并删除 `CMD`（如果 `Dockerfile` 文件中存在）。
    例如，在这种情况下，我们将 `DENO_VERSION` 更新为 `1.25.2`。
@@ -176,183 +176,183 @@ Your app is ready. Deploy with `flyctl deploy`
    **Node.js**：要修改 Node.js 版本，你需要在 `package.json` 中的 `"engines"` 属性中插入一个 `"node"` 属性。
    例如，我们在下面的示例中将 Node.js 版本更新为 `16.14.0`。
 
-::: code-group
+   ::: code-group
 
-```dockerfile{2,26} [Deno]
-# Dockerfile
-ARG DENO_VERSION=1.25.2
-ARG BIN_IMAGE=denoland/deno:bin-${DENO_VERSION}
-FROM ${BIN_IMAGE} AS bin
+   ```dockerfile{2,26} [Deno]
+   # Dockerfile
+   ARG DENO_VERSION=1.25.2
+   ARG BIN_IMAGE=denoland/deno:bin-${DENO_VERSION}
+   FROM ${BIN_IMAGE} AS bin
 
-FROM frolvlad/alpine-glibc:alpine-3.13
+   FROM frolvlad/alpine-glibc:alpine-3.13
 
-RUN apk --no-cache add ca-certificates
+   RUN apk --no-cache add ca-certificates
 
-RUN addgroup --gid 1000 deno \
-  && adduser --uid 1000 --disabled-password deno --ingroup deno \
-  && mkdir /deno-dir/ \
-  && chown deno:deno /deno-dir/
+   RUN addgroup --gid 1000 deno \
+   && adduser --uid 1000 --disabled-password deno --ingroup deno \
+   && mkdir /deno-dir/ \
+   && chown deno:deno /deno-dir/
 
-ENV DENO_DIR /deno-dir/
-ENV DENO_INSTALL_ROOT /usr/local
+   ENV DENO_DIR /deno-dir/
+   ENV DENO_INSTALL_ROOT /usr/local
 
-ARG DENO_VERSION
-ENV DENO_VERSION=${DENO_VERSION}
-COPY --from=bin /deno /bin/deno
+   ARG DENO_VERSION
+   ENV DENO_VERSION=${DENO_VERSION}
+   COPY --from=bin /deno /bin/deno
 
-WORKDIR /deno-dir
-COPY . .
+   WORKDIR /deno-dir
+   COPY . .
 
-ENTRYPOINT ["/bin/deno"]
-# CMD 被删掉了
-```
+   ENTRYPOINT ["/bin/deno"]
+   # CMD 被删掉了
+   ```
 
-```json [Node.js]{19}
-// package.json
-{
-  "name": "grammy",
-  "version": "1.0.0",
-  "description": "grammy",
-  "main": "app.js",
-  "author": "itsmeMario",
-  "license": "MIT",
-  "dependencies": {
-    "express": "^4.18.1",
-    "grammy": "^1.11.0"
-  },
-  "devDependencies": {
-    "@types/express": "^4.17.14",
-    "@types/node": "^18.7.18",
-    "typescript": "^4.8.3"
-  },
-  "engines": {
-    "node": "16.14.0"
-  }
-}
-```
+   ```json [Node.js]{19}
+   // package.json
+   {
+   "name": "grammy",
+   "version": "1.0.0",
+   "description": "grammy",
+   "main": "app.js",
+   "author": "itsmeMario",
+   "license": "MIT",
+   "dependencies": {
+     "express": "^4.18.1",
+     "grammy": "^1.11.0"
+   },
+   "devDependencies": {
+     "@types/express": "^4.17.14",
+     "@types/node": "^18.7.18",
+     "typescript": "^4.8.3"
+   },
+   "engines": {
+     "node": "16.14.0"
+   }
+   }
+   ```
 
-:::
+   :::
 
 4. 编辑 `fly.toml` 文件中的 `app`。
    下面示例中的路径 `./app.ts`（或 Node.js 的 `./app.js`）指的是主文件目录。
    你可以修改它们以匹配你的项目目录。
    如果你使用的是 webhook，请确保端口与你的 [配置](#webhooks) (`8000`) 中的端口相同。
 
-::: code-group
+   ::: code-group
 
-```toml [Deno (Webhooks)]{7,11,12}
-# fly.toml
-app = "grammy"
-kill_signal = "SIGINT"
-kill_timeout = 5
+   ```toml [Deno (Webhooks)]{7,11,12}
+   # fly.toml
+   app = "grammy"
+   kill_signal = "SIGINT"
+   kill_timeout = 5
 
-[processes]
-  app = "run --allow-net ./app.ts"
+   [processes]
+   app = "run --allow-net ./app.ts"
 
-[[services]]
-  http_checks = []
-  internal_port = 8000
-  processes = ["app"]
-  protocol = "tcp"
-  script_checks = []
-  [services.concurrency]
-    hard_limit = 25
-    soft_limit = 20
-    type = "connections"
+   [[services]]
+   http_checks = []
+   internal_port = 8000
+   processes = ["app"]
+   protocol = "tcp"
+   script_checks = []
+   [services.concurrency]
+     hard_limit = 25
+     soft_limit = 20
+     type = "connections"
 
-  [[services.ports]]
-    force_https = true
-    handlers = ["http"]
-    port = 80
+   [[services.ports]]
+     force_https = true
+     handlers = ["http"]
+     port = 80
 
-  [[services.ports]]
-    handlers = ["tls", "http"]
-    port = 443
+   [[services.ports]]
+     handlers = ["tls", "http"]
+     port = 443
 
-  [[services.tcp_checks]]
-    grace_period = "1s"
-    interval = "15s"
-    restart_limit = 0
-    timeout = "2s"
-```
+   [[services.tcp_checks]]
+     grace_period = "1s"
+     interval = "15s"
+     restart_limit = 0
+     timeout = "2s"
+   ```
 
-```toml [Deno (Long Polling)]{7}
-# fly.toml
-app = "grammy"
-kill_signal = "SIGINT"
-kill_timeout = 5
+   ```toml [Deno (Long Polling)]{7}
+   # fly.toml
+   app = "grammy"
+   kill_signal = "SIGINT"
+   kill_timeout = 5
 
-[processes]
-  app = "run --allow-net ./app.ts"
+   [processes]
+   app = "run --allow-net ./app.ts"
 
-# 直接忽略整个 [[services]] 部分
-# 因为我们不监听 HTTP
-```
+   # 直接忽略整个 [[services]] 部分
+   # 因为我们不监听 HTTP
+   ```
 
-```toml [Node.js (Webhooks)]{7,11,18,19}
-# fly.toml
-app = "grammy"
-kill_signal = "SIGINT"
-kill_timeout = 5
+   ```toml [Node.js (Webhooks)]{7,11,18,19}
+   # fly.toml
+   app = "grammy"
+   kill_signal = "SIGINT"
+   kill_timeout = 5
 
-[processes]
-  app = "node ./build/app.js"
+   [processes]
+   app = "node ./build/app.js"
 
-# 调整 NODE_ENV 环境变量以抑制警告
-[build.args]
-  NODE_ENV = "production"
+   # 调整 NODE_ENV 环境变量以抑制警告
+   [build.args]
+   NODE_ENV = "production"
 
-[build]
-  builder = "heroku/buildpacks:20"
+   [build]
+   builder = "heroku/buildpacks:20"
 
-[[services]]
-  http_checks = []
-  internal_port = 8000
-  processes = ["app"]
-  protocol = "tcp"
-  script_checks = []
-  [services.concurrency]
-    hard_limit = 25
-    soft_limit = 20
-    type = "connections"
+   [[services]]
+   http_checks = []
+   internal_port = 8000
+   processes = ["app"]
+   protocol = "tcp"
+   script_checks = []
+   [services.concurrency]
+     hard_limit = 25
+     soft_limit = 20
+     type = "connections"
 
-  [[services.ports]]
-    force_https = true
-    handlers = ["http"]
-    port = 80
+   [[services.ports]]
+     force_https = true
+     handlers = ["http"]
+     port = 80
 
-  [[services.ports]]
-    handlers = ["tls", "http"]
-    port = 443
+   [[services.ports]]
+     handlers = ["tls", "http"]
+     port = 443
 
-  [[services.tcp_checks]]
-    grace_period = "1s"
-    interval = "15s"
-    restart_limit = 0
-    timeout = "2s"
-```
+   [[services.tcp_checks]]
+     grace_period = "1s"
+     interval = "15s"
+     restart_limit = 0
+     timeout = "2s"
+   ```
 
-```toml [Node.js (Long polling)]{7,11,22,23}
-# fly.toml
-app = "grammy"
-kill_signal = "SIGINT"
-kill_timeout = 5
+   ```toml [Node.js (Long polling)]{7,11,22,23}
+   # fly.toml
+   app = "grammy"
+   kill_signal = "SIGINT"
+   kill_timeout = 5
 
-[processes]
-  app = "node ./build/app.js"
+   [processes]
+   app = "node ./build/app.js"
 
-# 调整 NODE_ENV 环境变量以抑制警告
-[build.args]
-  NODE_ENV = "production"
+   # 调整 NODE_ENV 环境变量以抑制警告
+   [build.args]
+   NODE_ENV = "production"
 
-[build]
-  builder = "heroku/buildpacks:20"
+   [build]
+   builder = "heroku/buildpacks:20"
 
-# 直接忽略整个 [[services]] 部分
-# 因为我们不监听 HTTP
-```
+   # 直接忽略整个 [[services]] 部分
+   # 因为我们不监听 HTTP
+   ```
 
-:::
+   :::
 
 5. 运行 `flyctl deploy` 来部署你的代码。
 
@@ -367,20 +367,20 @@ kill_timeout = 5
 4. 跳转到设置，选择 Secrets 并使用第 2 步中的 token 创建一个名为 `FLY_API_TOKEN` 的密钥。
 5. 使用以下内容创建 `.github/workflows/main.yml`：
 
-```yml
-name: Fly Deploy
-on: [push]
-env:
-  FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
-jobs:
-  deploy:
-      name: Deploy app
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v2
-        - uses: superfly/flyctl-actions/setup-flyctl@master
-        - run: flyctl deploy --remote-only
-```
+   ```yml
+   name: Fly Deploy
+   on: [push]
+   env:
+   FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+   jobs:
+   deploy:
+     name: Deploy app
+     runs-on: ubuntu-latest
+     steps:
+     - uses: actions/checkout@v2
+     - uses: superfly/flyctl-actions/setup-flyctl@master
+     - run: flyctl deploy --remote-only
+   ```
 
 6. 按照上述 [方法 1](#方法-1-通过-flyctl) 中的步骤 2 至 4 进行操作。
    请记住跳过最后一步（第 5 步），因为我们没有直接部署代码。
