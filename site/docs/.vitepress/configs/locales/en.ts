@@ -1,7 +1,7 @@
 import type { DocSearchProps } from "node_modules/vitepress/types/docsearch";
 import type { LocaleConfig } from "vitepress";
-import { social } from "../shared/vars";
-import type { NotFound } from "../shared/types";
+import { social } from "../../shared/vars";
+import type { NotFound } from "../../shared/types";
 
 const learnGuide = {
   text: "Guide",

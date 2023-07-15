@@ -1,7 +1,8 @@
 import { defineConfig } from "vitepress";
-import * as config from "./configs";
+import * as locale from "./configs/locales";
 import { markdown } from "./plugins";
 import path from "path";
+import { algolia } from "./configs/algolia";
 
 export default defineConfig({
   lastUpdated: true,
@@ -10,32 +11,18 @@ export default defineConfig({
   outDir: ".vitepress/dist",
 
   locales: {
-    ...config.siteEn,
-    ...config.siteEs,
-    ...config.siteId,
-    ...config.siteUk,
-    ...config.siteZh,
+    ...locale.siteEn,
+    ...locale.siteEs,
+    ...locale.siteId,
+    ...locale.siteUk,
+    ...locale.siteZh,
   },
 
   themeConfig: {
     logo: "/images/Y.webp",
     siteTitle: "grammY",
     externalLinkIcon: true,
-    search: {
-      provider: "algolia",
-      options: {
-        apiKey: "33782ffb584887e3b8cdf9e760ea8e60",
-        indexName: "grammy",
-        appId: "RBF5Q0D7QV",
-        locales: {
-          ...config.searchEn,
-          ...config.searchEs,
-          ...config.searchId,
-          ...config.searchUk,
-          ...config.searchZh,
-        },
-      },
-    },
+    search: algolia,
   },
 
   rewrites: {
