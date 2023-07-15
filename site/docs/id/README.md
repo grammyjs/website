@@ -15,6 +15,7 @@ hero:
     - miliaran telah terlayani.
     - dokumentasi yang lengkap dan berkualitas.
     - honeY, grammY, sweetY.
+    - bikin bot tak pernah sebahagia ini.
   image:
     src: /images/Y.webp
     alt: logo grammY
