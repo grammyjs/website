@@ -13,6 +13,7 @@ hero:
     - can do anything except dishes.
     - easy peasy lemon squeezY.
     - billions and billions served.
+    - even grannY can rock grammY!
   image:
     src: /images/Y.webp
     alt: grammY logo
