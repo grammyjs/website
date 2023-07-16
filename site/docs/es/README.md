@@ -13,6 +13,7 @@ hero:
     - puede hacer todo menos lavar los platos.
     - fácil de exprimir limones.
     - miles y miles de millones de peticiones.
+    - impulsado por la obsesión.
   image:
     src: /images/Y.webp
     alt: Logotipo de grammY

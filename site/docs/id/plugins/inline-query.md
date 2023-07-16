@@ -3,7 +3,7 @@ prev: false
 next: false
 ---
 
-# Inline Query
+# Inline Query (bawaan)
 
 User bisa mencari, memilih, dan mengirim konten dari hasil yang disarankan oleh bot menggunakan inline query, meski bot tersebut tidak berada di dalam grup mereka.
 Caranya, user cukup menulis `@username_bot` di awal pesan, lalu memilih dari hasil yang diberikan.
