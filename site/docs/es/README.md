@@ -9,6 +9,7 @@ hero:
     - piensa en el por qué.
     - la nueva era del desarrollo de bots.
     - se ejecuta más rápido que tú.
+    - diviértete haciendo bots.
     - una actualización por delante.
     - puede hacer todo menos lavar los platos.
     - fácil de exprimir limones.
