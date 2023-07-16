@@ -233,7 +233,7 @@ const bot = new Bot(""); // <-- put your bot token between the ""
 // Distribute the updates among bot workers.
 bot.use(distribute(__dirname + "/worker"));
 
-// Run the concurrently with multi-threading.
+// Run the bot concurrently with multi-threading.
 run(bot);
 ```
 
@@ -251,7 +251,7 @@ const bot = new Bot(""); // <-- put your bot token between the ""
 // Distribute the updates among bot workers.
 bot.use(distribute(new URL("./worker.ts", import.meta.url)));
 
-// Run the concurrently with multi-threading.
+// Run the bot concurrently with multi-threading.
 run(bot);
 ```
 
