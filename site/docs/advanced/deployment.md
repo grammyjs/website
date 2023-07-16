@@ -34,7 +34,7 @@ This depends on your deployment type.
    [This leads to timeout errors](../guide/deployment-types#ending-webhook-requests-in-time) for the webhooks, and duplicate update processing as Telegram will re-send non-acknowledged updates.
    Consider using a task queuing system instead.
 2. Make yourself familiar with the configuration of `webhookCallback` ([API reference](https://deno.land/x/grammy/mod.ts?s=webhookCallback)).
-3. Create a new secret key and add it to both `webhookCallback` as the `secretToken` parameter and `bot.api.setWebhook` via its `secret_token` parameter to ensure that api calls are secure (internally it setups a `X-Telegram-Bot-Api-Secret-Token` header).
+3. To make sure API calls are secure, you can either expose the webhook endpoint in a secret path (for example `/{YOUR_BOT_TOKEN}`) or create a new secret key and add it to both `webhookCallback` as the `secretToken` parameter and `bot.api.setWebhook` via its `secret_token` parameter (internally it setups a `X-Telegram-Bot-Api-Secret-Token` header).
 3. If you adjusted the `getSessionKey` option for your session, [use `sequentialize` with the same session key resolver function as your session middleware](./scaling#concurrency-is-hard).
 4. If you are running on a serverless or autoscaling platform, [set the bot information](https://deno.land/x/grammy/mod.ts?s=BotConfig) to prevent excessive `getMe` calls.
 5. Consider using [webhook replies](../guide/deployment-types#webhook-reply).
