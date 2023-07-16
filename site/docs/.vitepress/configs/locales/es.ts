@@ -1,7 +1,7 @@
-import type { LocalSearchTranslations } from "node_modules/vitepress/types/local-search";
+import type { DocSearchProps } from "node_modules/vitepress/types/docsearch";
 import type { LocaleConfig } from "vitepress";
-import { social } from "../shared/vars";
-import type { NotFound } from "../shared/types";
+import { social } from "../../shared/vars";
+import type { NotFound } from "../../shared/types";
 
 const learnGuide = {
   text: "Guía",
@@ -448,24 +448,52 @@ export const siteEs: LocaleConfig = {
   },
 };
 
-export const searchEs: LocalSearchTranslations = {
-  button: {
-    buttonText: "Buscar",
-    buttonAriaLabel: "Buscar",
-  },
-  modal: {
-    noResultsText: "No hay resultados para", // 'No result for "$keyword"'
-    displayDetails: "Display detailed list",
-    resetButtonTitle: "Reset search",
-    backButtonTitle: "Close search",
-    footer: {
-      selectText: "para seleccionar", // $enter to select
-      selectKeyAriaLabel: "Enter",
-      navigateText: "para navegar", // $arrow to navigate
-      navigateUpKeyAriaLabel: "Flecha arriba",
-      navigateDownKeyAriaLabel: "Flecha abajo",
-      closeText: "para cerrar", // $esc to close
-      closeKeyAriaLabel: "Escape",
+export const searchEs: Record<string, Partial<DocSearchProps>> = {
+  es: {
+    placeholder: "Buscar",
+    translations: {
+      button: {
+        buttonText: "Buscar",
+        buttonAriaLabel: "Buscar",
+      },
+      modal: {
+        searchBox: {
+          resetButtonTitle: "Borrar la consulta",
+          resetButtonAriaLabel: "Borrar la consulta",
+          cancelButtonText: "Cancelar",
+          cancelButtonAriaLabel: "Cancelar",
+        },
+        startScreen: {
+          recentSearchesTitle: "Recientes",
+          noRecentSearchesText: "No hay búsquedas recientes",
+          saveRecentSearchButtonTitle: "Guardar esta búsqueda",
+          removeRecentSearchButtonTitle: "Eliminar esta búsqueda del historial",
+          favoriteSearchesTitle: "Favorito",
+          removeFavoriteSearchButtonTitle:
+            "Eliminar esta búsqueda de los favoritos",
+        },
+        errorScreen: {
+          titleText: "No se pueden obtener resultados",
+          helpText: "Puede que quieras comprobar tu conexión de red.",
+        },
+        footer: {
+          selectText: "para seleccionar",
+          selectKeyAriaLabel: "Enter",
+          navigateText: "para navegar",
+          navigateUpKeyAriaLabel: "Flecha arriba",
+          navigateDownKeyAriaLabel: "Flecha abajo",
+          closeText: "para cerrar",
+          closeKeyAriaLabel: "Escape",
+          searchByText: "Buscar por",
+        },
+        noResultsScreen: {
+          noResultsText: "No hay resultados para",
+          suggestedQueryText: "Intenta buscar por",
+          reportMissingResultsText:
+            "¿Crees que esta consulta debería devolver resultados?",
+          reportMissingResultsLinkText: "Háganoslo saber.",
+        },
+      },
     },
   },
 };

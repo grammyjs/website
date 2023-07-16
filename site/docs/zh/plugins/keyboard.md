@@ -190,9 +190,8 @@ const labels = [
   "No. 😈",
 ];
 const buttonRows = labels
-  .map((label) => Keyboard.text(label))
-  .map((button) => Keyboard.row(button));
-const keyboard = Keyboard.from(buttonRows, { resize_keyboard: true });
+  .map((label) => [Keyboard.text(label)]);
+const keyboard = Keyboard.from(buttonRows).resized();
 ```
 
 ### 发送一个自定义 Keyboard

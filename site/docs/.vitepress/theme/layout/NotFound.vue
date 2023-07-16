@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { withBase, useRoute } from 'vitepress'
-import { notFound } from '../../configs/main'
+import { notFound } from '../../configs/locales/main'
 
 function splitNewLine(str: string): string[] {
   const parts = str.split(/(?<!\\)\n/g); // Matches "\n" that is not preceded by a backslash (\)
