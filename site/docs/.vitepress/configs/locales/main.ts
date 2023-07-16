@@ -1,4 +1,4 @@
-import type { NotFound } from "../shared/types";
+import type { NotFound } from "../../shared/types";
 import * as config from "./index";
 
 export const notFound: Record<string, NotFound> = {
