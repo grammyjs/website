@@ -418,7 +418,7 @@ export const siteEs: LocaleConfig = {
       },
       outline: {
         level: [2, 6],
-        label: "On this page", *
+        label: "En esta página",
       },
       editLink: {
         text: "Editar esta página en GitHub",
@@ -426,26 +426,26 @@ export const siteEs: LocaleConfig = {
           "https://github.com/grammyjs/website/edit/main/site/docs/:path",
       },
       docFooter: {
-        prev: "Previous page", *
-        next: "Next page", *
+        prev: "Página anterior",
+        next: "Página siguiente",
       },
       lastUpdatedText: "Última actualización",
-      darkModeSwitchLabel: "Appearance", * // only displayed in the mobile view.
-      sidebarMenuLabel: "Menu", * // only displayed in the mobile view.
-      returnToTopLabel: "Return to top", * // only displayed in the mobile view.
-      langMenuLabel: "Change language", * // Aria-label
+      darkModeSwitchLabel: "Apariencia", // only displayed in the mobile view.
+      sidebarMenuLabel: "Menú", // only displayed in the mobile view.
+      returnToTopLabel: "Volver arriba", // only displayed in the mobile view.
+      langMenuLabel: "Cambiar de idioma", // Aria-label
       socialLinks: [
         {
           link: social.telegram.link,
           icon: {
             svg: social.telegram.icon,
           },
-          ariaLabel: "grammY Telegram group link", *
+          ariaLabel: "Enlace al grupo de Telegram de grammY",
         },
         {
           link: social.github.link,
           icon: social.github.icon,
-          ariaLabel: "grammY repository link", *
+          ariaLabel: "Enlace al repositorio de grammY",
         },
       ],
     },
@@ -459,9 +459,9 @@ export const searchEs: LocalSearchTranslations = {
   },
   modal: {
     noResultsText: "No hay resultados para", // 'No result for "$keyword"'
-    displayDetails: "Display detailed list", *
-    resetButtonTitle: "Reset search", *
-    backButtonTitle: "Close search", *
+    displayDetails: "Mostrar lista detallada",
+    resetButtonTitle: "Restablecer búsqueda",
+    backButtonTitle: "Cerrar búsqueda",
     footer: {
       selectText: "para seleccionar", // $enter to select
       selectKeyAriaLabel: "Enter",
@@ -476,9 +476,9 @@ export const searchEs: LocalSearchTranslations = {
 
 export const notFoundEs: Record<string, NotFound> = {
   es: {
-    title: "PAGE NOT FOUND", *
+    title: "PÁGINA NO ENCONTRADA",
     backToHome: "Llévame a casa",
-    ariaLabel: "Go to home", *
+    ariaLabel: "Ir al inicio",
     messages: [
       "¡Uy! Esta página no existe",
       "Nop.",
