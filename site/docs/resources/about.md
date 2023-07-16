@@ -54,6 +54,6 @@ There are a number of great ways to support this project!
 - Help out with the [Documentation](https://github.com/grammyjs/website).
 - Assist people in the community chats in [English](https://t.me/grammyjs) or [Russian](https://t.me/grammyjs_ru).
 - Or just come tell us what you think!
-  Leaving a few words about your favorite feature, helps us determine the direction of the project.
+  Leaving a few words about your favorite feature helps us determine the direction of the project.
 
 Currently, we do not take any donations or other financial support.
