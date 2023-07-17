@@ -48,7 +48,7 @@ Selain itu, ia juga membuat user baru kesulitan untuk memulai.
 **grammY mencoba mengambil langkah dengan membuat sebuah framework bot yang mendukung type-safe, tetapi bisa digunakan dengan mudah**.
 Dengan begitu, kita bisa terhindar dari diskusi panas mengenai permasalahan typing internal yang aneh tadi.
 Ia juga harus bisa menghasilkan sebuah proyek yang rapi, konsisten, serta compile code yang menyediakan user sebuah type yang sempurna (=support code editor yang lebih baik).
-Type safety menyediakan fitur-fitur lanjutan yang secara fundamental mengubah cara pandang kita dalam mengembangkan sebuah bot, contohnya [transformer API](../advanced//transformers).
+Type safety menyediakan fitur-fitur lanjutan yang secara fundamental mengubah cara pandang kita dalam mengembangkan sebuah bot, contohnya [transformer API](../advanced/transformers).
 
 Sekarang, Telegraf 3 sudah usang.
 Di luar sana terdapat beberapa fork yang mencoba untuk mengelola code base lama tersebut agar selalu up-to-date dengan API Bot Telegram yang terus berkembang, tetapi kompatibilitasnya masih perlu dipertanyakan.

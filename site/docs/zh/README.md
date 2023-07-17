@@ -13,6 +13,7 @@ hero:
     - 除了洗碗，我都能做。
     - 像做柠檬汁一样简单。
     - 已处理数十亿请求。
+    - 由执念驱动。
   image:
     src: /images/Y.svg
     alt: grammY 徽标
