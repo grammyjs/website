@@ -304,29 +304,44 @@ Kamu bisa menyimpan payload teks singkat di semua navigasi dan tombol teks.
 Ketika handler tersebut dipanggil, payload teks akan tersedia di `ctx.match`.
 Ini berguna untuk menyimpan data kecil di dalam sebuah menu.
 
-> Payload tidak bisa digunakan untuk menyimpan data dalam jumlah besar.
-> Satu-satunya yang bisa kamu simpan adalah string pendek kurang dari 50 byte, misalnya sebuah index ataupun sebuah identifier.
-> Jika kamu ingin menyimpan data user seperti identifier file, URL, dan lain-lain, kamu bisa menggunakan [sessions](./session).
-
-Berikut contoh menu yang mengingat nama si penulis pesan di dalam payload-nya.
+Berikut contoh menu yang mengingat waktu saat ini di dalam payload-nya.
 Contoh penggunaan lainnya misal untuk menyimpan index dari menu paginasi.
 
 ```ts
-function buatPayload(ctx: Context) {
-  return ctx.from?.first_name ?? "";
+function generatePayload() {
+  return Date.now().toString();
 }
-
-const menu = new Menu("simpan-nama-penulis-di-payload")
+const menu = new Menu("simpan-waktu-saat-ini-di-payload")
   .text(
-    { text: "Siapa penulis pesan ini?", payload: buatPayload },
-    (ctx) => ctx.reply(`Aku ditulis oleh ${ctx.match}!`),
+    { text: "BATALKAN!", payload: generatePayload },
+    async (ctx) => {
+      // Beri pengguna waktu selama 5 detik untuk membatalkan operasi tersebut.
+      const text = Date.now() - Number(ctx.match) < 5000
+        ? "Operasi berhasil dibatalkan."
+        : "Terlambat. Video kucingmu terlanjur viral di internet.";
+      await ctx.reply(text);
+    },
   );
-
 bot.use(menu);
-bot.command("menu", async (ctx) => {
-  await ctx.reply("Aku telah membuat sebuah menu!", { reply_markup: menu });
+bot.command("publikasi", async (ctx) => {
+  await ctx.reply(
+    "Video akan dikirim. Kamu punya waktu selama 5 detik untuk membatalkannya.",
+    {
+      reply_markup: menu,
+    },
+  );
 });
 ```
+
+::: tip Batasan
+Payload tidak bisa digunakan untuk menyimpan data dalam jumlah besar.
+Satu-satunya yang bisa kamu simpan adalah string pendek berukuran kurang dari 50 byte, misalnya sebuah index ataupun sebuah identifier.
+Jika kamu ingin menyimpan data user seperti identifier file, URL, dan lain-lain, kamu bisa menggunakan [sessions](./session).
+
+Selain itu, perhatikan bahwa payload selalu dihasilkan berdasarkan objek context saat ini.
+Artinya, _posisi asal_ sebelum kamu bernavigasi ke menu akan mempengaruhi hasilnya.
+Misalnya, ketika suatu menu sudah [kedaluwarsa](#menu-kedaluwarsa-beserta-fingerprint-nya), ia akan di-render ulang _berdasarkan tombol menu kedaluwarsa tersebut_.
+:::
 
 Payload juga bekerja dengan baik untuk [rentang dinamis](#rentang-dinamis).
 
