@@ -434,7 +434,7 @@ export const siteUk: LocaleConfig = {
         next: "Наступна сторінка", 
       },
       lastUpdatedText: "Востаннє оновлено",
-      darkModeSwitchLabel: "Appearance", // only displayed in the mobile view.
+      darkModeSwitchLabel: "Вигляд", // only displayed in the mobile view.
       sidebarMenuLabel: "Меню",  // only displayed in the mobile view.
       returnToTopLabel: "Повернутися до початку",  // only displayed in the mobile view.
       langMenuLabel: "Змінити мову", // Aria-label
