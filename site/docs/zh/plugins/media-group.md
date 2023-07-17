@@ -47,13 +47,13 @@ const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
 你也可以直接传递公开的 URL 给 Telegram 抓取。
 
 ```ts
-const photo = InputMediaBuilder.photo("https://grammy.dev/images/Y.jpeg");
+const photo = InputMediaBuilder.photo("https://grammy.dev/images/grammY.png");
 ```
 
 在最后可以提供一个选项对象来提供更多选项。
 
 ```ts
-const photo = InputMediaBuilder.photo("https://grammy.dev/images/Y.jpeg", {
+const photo = InputMediaBuilder.photo("https://grammy.dev/images/grammY.png", {
   caption: "grammY is awesome",
   // 其他
 });
@@ -74,7 +74,9 @@ await ctx.replyWithMediaGroup([photo0, photo1, photo2, video]);
 由于 `InputMedia` 对象也用于编辑媒体消息，这个插件也会在这方面为你提供帮助：
 
 ```ts
-const newMedia = InputMediaBuilder.photo("https://grammy.dev/images/Y.jpeg");
+const newMedia = InputMediaBuilder.photo(
+  "https://grammy.dev/images/grammY.png",
+);
 await ctx.editMessageMedia(newMedia);
 ```
 

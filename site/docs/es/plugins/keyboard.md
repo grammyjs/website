@@ -45,7 +45,7 @@ Puedes construir un teclado en línea creando una nueva instancia de la clase `I
 
 Aquí tienes un ejemplo:
 
-![Ejemplo](/images/inline-keyboard-example.webp)
+![Ejemplo](/images/inline-keyboard-example.png)
 
 ```ts
 const inlineKeyboard = new InlineKeyboard()
@@ -169,7 +169,7 @@ Llama a `.row()` para comenzar una nueva fila de botones.
 
 He aquí un ejemplo:
 
-![Ejemplo](/images/keyboard-example.webp)
+![Ejemplo](/images/keyboard-example.png)
 
 ```ts
 const keyboard = new Keyboard()

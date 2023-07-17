@@ -45,7 +45,7 @@ grammY 有一个简单且直观的方式来构建 inline keyboard，让你的 bo
 
 以下是一个示例：
 
-![示例](/images/inline-keyboard-example.webp)
+![示例](/images/inline-keyboard-example.png)
 
 ```ts
 const inlineKeyboard = new InlineKeyboard()
@@ -164,7 +164,7 @@ grammY 有一个简单且直观的方式来构建回复 keyboard，让你的 bot
 
 以下是一个示例：
 
-![示例](/images/keyboard-example.webp)
+![示例](/images/keyboard-example.png)
 
 ```ts
 const keyboard = new Keyboard()

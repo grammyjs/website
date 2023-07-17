@@ -47,13 +47,13 @@ Lihat semua method `InputMediaBuilder` yang tersedia di [referensi API](https://
 Kamu juga bisa meneruskan URL publik secara langsung yang nantinya akan diunduh oleh Telegram.
 
 ```ts
-const photo = InputMediaBuilder.photo("https://grammy.dev/images/Y.jpeg");
+const photo = InputMediaBuilder.photo("https://grammy.dev/images/grammY.png");
 ```
 
 Opsi lanjutan bisa disertakan di akhir dalam bentuk sebuah object opsi.
 
 ```ts
-const photo = InputMediaBuilder.photo("https://grammy.dev/images/Y.jpeg", {
+const photo = InputMediaBuilder.photo("https://grammy.dev/images/grammY.png", {
   caption: "grammY sangat mengagumkan",
   // dst
 });
@@ -74,7 +74,9 @@ Selain itu, kamu bisa meneruskan sebuah array object `InputMedia` ke `ctx.api.se
 Karena object `InputMedia` juga digunakan untuk mengubah pesan media, plugin ini juga bisa digunakan untuk hal yang serupa:
 
 ```ts
-const newMedia = InputMediaBuilder.photo("https://grammy.dev/images/Y.jpeg");
+const newMedia = InputMediaBuilder.photo(
+  "https://grammy.dev/images/grammY.png",
+);
 await ctx.editMessageMedia(newMedia);
 ```
 

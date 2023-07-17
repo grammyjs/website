@@ -9,7 +9,7 @@ ratelimiter 是用 grammY 或 [Telegraf](https://github.com/telegraf/telegraf) b
 简单来说，它是一个帮助你的 bot 阻塞垃圾信息的插件。
 要更好地理解 ratelimiter，你可以看下面的图示：
 
-![速率限制器在抵御垃圾信息中的作用](/images/ratelimiter-role.webp)
+![速率限制器在抵御垃圾信息中的作用](/images/ratelimiter-role.png)
 
 ## 它是如何工作的？
 

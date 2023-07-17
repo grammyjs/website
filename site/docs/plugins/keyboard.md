@@ -45,7 +45,7 @@ You can build an inline keyboard by creating a new instance of the `InlineKeyboa
 
 Here is an example:
 
-![Example](/images/inline-keyboard-example.webp)
+![Example](/images/inline-keyboard-example.png)
 
 ```ts
 const inlineKeyboard = new InlineKeyboard()
@@ -164,7 +164,7 @@ Call `.row()` to begin a new row of buttons.
 
 Here is an example:
 
-![Example](/images/keyboard-example.webp)
+![Example](/images/keyboard-example.png)
 
 ```ts
 const keyboard = new Keyboard()
