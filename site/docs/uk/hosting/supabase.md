@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Хостинг: Supabase Edge Functions
 
 Цей посібник розповість вам, як ви можете розмістити ваших ботів grammY на [Supabase](https://supabase.com/).

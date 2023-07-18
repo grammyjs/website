@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Hosting: Fly
 
 This guide tells you about the ways you can host your grammY bots on [Fly](https://fly.io), either using Deno or Node.js.

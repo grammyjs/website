@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # 托管: Cloudflare Workers
 
 [Cloudflare Workers](https://workers.cloudflare.com/) 是一个公共 serverless 计算平台，为在 [边缘](https://en.wikipedia.org/wiki/Edge_computing) 运行 JavaScript 提供了一种方便简单的解决方案。
