@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Alojamiento: Cloudflare Workers
 
 [Cloudflare Workers](https://workers.cloudflare.com/) es una plataforma pública de computación sin servidor que ofrece una solución conveniente y simple para ejecutar JavaScript en el [edge](https://en.wikipedia.org/wiki/Edge_computing).

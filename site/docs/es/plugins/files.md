@@ -7,6 +7,8 @@ next: false
 
 Este plugin te permite descargar fácilmente archivos de los servidores de Telegram, y obtener una URL para que puedas descargar el archivo tú mismo.
 
+> [Recuerda](../guide/files) cómo funcionan los archivos y cómo subirlos.
+
 ## Descargando Archivos
 
 Necesitas pasar el token de tu bot a este plugin porque debe autenticarse como tu bot cuando descarga archivos.

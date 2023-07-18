@@ -3,7 +3,7 @@ prev: false
 next: false
 ---
 
-# Inline Queries
+# Inline Queries (built-in)
 
 With inline queries, users can search for, browse, and send content suggested by your bot in any chat, even if it is not a member there.
 To do this, they start a message with `@your_bot_name` and choose one of the results.

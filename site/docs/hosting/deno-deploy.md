@@ -1,5 +1,6 @@
 ---
 prev: false
+next: false
 ---
 
 # Hosting: Deno Deploy

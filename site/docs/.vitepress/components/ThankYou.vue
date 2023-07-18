@@ -88,12 +88,24 @@ load();
 
 <template>
   <div v-if="contributor.name" id="thankyou">
-    <img
-      v-bind:alt="contributor.login"
-      v-bind:src="contributor.photo"
-      width="32"
-      height="32"
-    />
+    <div id="avatar-container">
+      <img
+        id="identicon"
+        v-bind:src="
+          'https://identicons.github.com/' + contributor.login + '.png'
+        "
+        alt="contributor's identicon"
+        width="32"
+        height="32"
+      />
+      <img
+        id="github-avatar"
+        v-bind:alt="contributor.login"
+        v-bind:src="contributor.photo"
+        width="32"
+        height="32"
+      />
+    </div>
     <p>
       {{ props.s[0] }}
       <a
@@ -123,6 +135,7 @@ load();
   img {
     height: 2rem;
     width: 2rem;
+    max-width: none;
     border-radius: 9999px;
   }
   p {
@@ -133,5 +146,16 @@ load();
       font-weight: bold;
     }
   }
+}
+
+#avatar-container,
+#identicon {
+  position: relative;
+}
+
+#github-avatar {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 </style>

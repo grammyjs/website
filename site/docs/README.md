@@ -14,6 +14,7 @@ hero:
     - can do anything except dishes.
     - easy peasy lemon squeezY.
     - billions and billions served.
+    - powered by obsession.
   image:
     src: /images/Y.webp
     alt: grammY logo
