@@ -21,7 +21,6 @@ next: false
 ::: code-group
 
 ```ts{11} [Deno]
-import { serve } from "https://deno.land/std/http/server.ts";
 import { webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 // 你可以将其修改为导入 `Bot` 对象的正确方式
 import { bot } from "./bot.ts";

@@ -21,7 +21,6 @@ Kamu bisa menjalankan bot menggunakan [webhooks ataupun long polling](../guide/d
 ::: code-group
 
 ```ts{11} [Deno]
-import { serve } from "https://deno.land/std/http/server.ts";
 import { webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 // Kamu mungkin perlu mengubah ini agar object bot-mu bisa di-import.
 import { bot } from "./bot.ts";

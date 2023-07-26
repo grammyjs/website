@@ -21,7 +21,6 @@ next: false
 ::: code-group
 
 ```ts{11} [Deno]
-import { serve } from "https://deno.land/std/http/server.ts";
 import { webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 // Ви можете змінити це на правильний спосіб імпорту вашого обʼєкта `Bot`.
 import { bot } from "./bot.ts";
