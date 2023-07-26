@@ -1,5 +1,5 @@
 ---
-prev: ../plugins/
+next: false
 ---
 
 # La Guía del Autoestopista de los Plugins de grammY
@@ -13,8 +13,8 @@ Si quieres desarrollar tu propio plugin y publicarlo, o si quieres saber cómo f
 
 Hay dos tipos principales de plugins en grammY:
 
-- Plugins de Middleware: El único trabajo del plugin es devolver una [función middleware](../guide/middleware.md) que puede ser alimentada a un bot de grammY.
-- Plugins transformadores: El único trabajo del plugin es devolver una [función transformadora](../advanced/transformers.md) que puede ser alimentada a un bot de grammY.
+- Plugins de Middleware: El único trabajo del plugin es devolver una [función middleware](../guide/middleware) que puede ser alimentada a un bot de grammY.
+- Plugins transformadores: El único trabajo del plugin es devolver una [función transformadora](../advanced/transformers) que puede ser alimentada a un bot de grammY.
 
 Sin embargo, a veces encontrarás plugins que hacen ambas cosas.
 También hay otros paquetes que no son ni middleware ni funciones transformadoras, pero los llamaremos plugins de todos modos porque extienden grammY de varias maneras.
@@ -38,7 +38,7 @@ Antes de sumergirte en algunos ejemplos prácticos, hay algunas reglas a las que
    (Podemos crear la página por ti si no estás seguro de cómo hacerlo).
 3. Elige una licencia permisiva como MIT o ISC.
 
-Finalmente, debes saber que aunque grammY soporta tanto Node.js como [Deno](https://deno.com/runtime), es un proyecto Deno-first, y también te animamos a escribir tus plugins para Deno (¡y posteriormente con estilo!).
+Finalmente, debes saber que aunque grammY soporta tanto Node.js como [Deno](https://deno.land), es un proyecto Deno-first, y también te animamos a escribir tus plugins para Deno (¡y posteriormente con estilo!).
 Existe una práctica herramienta llamada [deno2node](https://github.com/fromdeno/deno2node) que transpira tu código de Deno a Node.js para que podamos soportar ambas plataformas por igual.
 La compatibilidad con Deno sólo es un requisito estricto para los plugins oficiales, pero no para los de terceros.
 No obstante, se recomienda encarecidamente probar Deno.

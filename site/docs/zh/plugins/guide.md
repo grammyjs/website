@@ -1,5 +1,5 @@
 ---
-prev: ../plugins/
+next: false
 ---
 
 # grammy 插件的搭便车指南
@@ -13,8 +13,8 @@ prev: ../plugins/
 
 grammY 中主要有两种类型的插件：
 
-- 中间件插件：该插件的唯一工作是返回一个 [中间件函数](../guide/middleware.md)，可以喂给 grammY bot。
-- 转化器插件：该插件的唯一工作是返回一个 [转换器函数](../advanced/transformers.md)，可以喂给 grammY bot。
+- 中间件插件：该插件的唯一工作是返回一个 [中间件函数](../guide/middleware)，可以喂给 grammY bot。
+- 转化器插件：该插件的唯一工作是返回一个 [转换器函数](../advanced/transformers)，可以喂给 grammY bot。
 
 然而，有时候你会发现插件同时做这两件事。
 还有一些软件包既不是中间件，也不是转化器函数，但我们还是称它们为插件，因为它们以各种方式扩展了 grammY。
@@ -38,7 +38,7 @@ grammY 中主要有两种类型的插件：
    （如果你不确定怎么做，我们可以为你做这件事。）
 3. 选择一个许可证，比如 MIT 或 ISC。
 
-最后，你应该知道，尽管 grammY 同时支持 Node.js 和 [Deno](https://deno.com/runtime)，但它是一个 Deno 优先的项目，我们也鼓励你为 Deno 编写你的插件（和在风格上）。
+最后，你应该知道，尽管 grammY 同时支持 Node.js 和 [Deno](https://deno.land)，但它是一个 Deno 优先的项目，我们也鼓励你为 Deno 编写你的插件（和在风格上）。
 有一个可以转换 Deno 代码到 Node.js 的工具，叫做 [deno2node](https://github.com/fromdeno/deno2node)，所以我们可以同时支持这两个平台。
 Deno 支持只是对官方插件的严格要求，而不是对第三方插件的。
 尽管如此，我们还是非常鼓励你去尝试一下 Deno。

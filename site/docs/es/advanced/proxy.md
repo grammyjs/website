@@ -1,8 +1,3 @@
----
-prev: ./transformers.md
-next: ./deployment.md
----
-
 # Soporte Proxy
 
 grammY le permite configurar una serie de cosas sobre cómo se realizan las peticiones de red.

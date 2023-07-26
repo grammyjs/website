@@ -1,13 +1,17 @@
+---
+prev: false
+next: false
+---
+
 # Режим форматування (`parse-mode`)
 
 Цей плагін надає перетворювач для встановлення стандартного `parse_mode`, а також проміжний обробник для гідратації `Context` звичними варіантами методу `reply`, а саме: `replyWithHTML`, `replyWithMarkdown` тощо.
 
 ## Використання (покращення досвіду форматування)
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context } from "grammy";
 import { bold, fmt, hydrateReply, italic, link } from "@grammyjs/parse-mode";
 
@@ -37,10 +41,7 @@ ${bold(fmt`жирний ${link("жирне посилання", "example.com")} 
 bot.start();
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot, Context } = require("grammy");
 const { bold, fmt, hydrateReply, italic, link } = require(
   "@grammyjs/parse-mode",
@@ -70,10 +71,7 @@ ${bold(fmt`жирний ${link("жирне посилання", "example.com")} 
 bot.start();
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   bold,
@@ -110,14 +108,12 @@ bot.start();
 ```
 
 :::
-::::
 
 ## Використання (типовий режим форматування та методи відповіді)
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context } from "grammy";
 import { hydrateReply, parseMode } from "@grammyjs/parse-mode";
 
@@ -144,10 +140,7 @@ bot.command("demo", async (ctx) => {
 bot.start();
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot, Context } = require("grammy");
 const { hydrateReply, parseMode } = require("@grammyjs/parse-mode");
 
@@ -172,10 +165,7 @@ bot.command("demo", async (ctx) => {
 bot.start();
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   hydrateReply,
@@ -206,7 +196,6 @@ bot.start();
 ```
 
 :::
-::::
 
 ## Загальні відомості про плагін
 

@@ -1,8 +1,13 @@
+---
+prev: false
+next: false
+---
+
 # 并发 (`runner`)
 
-如果你使用 [长轮询](../guide/deployment-types.md) 的方式运行你的机器人，你可以使用这个包来并发处理消息。
+如果你使用 [长轮询](../guide/deployment-types) 的方式运行你的机器人，你可以使用这个包来并发处理消息。
 
-> 在使用 grammY runner 之前，请确保你了解 [关注点二：高负载](../advanced/scaling.md#长轮询)。
+> 在使用 grammY runner 之前，请确保你了解 [关注点二：高负载](../advanced/scaling#长轮询)。
 
 ## 为什么我们需要一个 bot runner
 
@@ -26,10 +31,9 @@
 
 这里是一个简单的例子。
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot } from "grammy";
 import { run } from "@grammyjs/runner";
 
@@ -43,10 +47,7 @@ bot.on("message", (ctx) => ctx.reply("Got your message."));
 run(bot);
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot } = require("grammy");
 const { run } = require("@grammyjs/runner");
 
@@ -60,10 +61,7 @@ bot.on("message", (ctx) => ctx.reply("Got your message."));
 run(bot);
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { run } from "https://deno.land/x/grammy_runner/mod.ts";
 
@@ -78,15 +76,14 @@ run(bot);
 ```
 
 :::
-::::
 
 ## 为什么需要顺序处理？
 
 最有可能的原因是，你想保证同一个聊天中的消息被顺序处理。
-这在安装 [session 中间件](./session.md) 时很有用，但它也确保了你的 bot 不会在同一个聊天中混乱消息的顺序。
+这在安装 [session 中间件](./session) 时很有用，但它也确保了你的 bot 不会在同一个聊天中混乱消息的顺序。
 
 grammY runner 也提供了一个 `sequentialize` 中间件来实现这个目的。
-你可以查看这个 [部分](../advanced/scaling.md#并发是困难的) 来学习如何使用它。
+你可以查看这个 [部分](../advanced/scaling#并发是困难的) 来学习如何使用它。
 
 我们现在将看一些更高级的使用。
 
@@ -114,7 +111,7 @@ grammY runner 将在运行时自动解决所有必要的约束，并在必要时
 
 ## 优雅关闭
 
-为了让 bot 正确地完成工作，你应该在进程即将被销毁时，[发出信号](../advanced/reliability.md#使用-grammy-runner) 让 bot 停止。
+为了让 bot 正确地完成工作，你应该在进程即将被销毁时，[发出信号](../advanced/reliability#使用-grammy-runner) 让 bot 停止。
 
 请注意， 你可以通过 `await` 那个从 `run` 返回的 [`RunnerHandle`](https://deno.land/x/grammy_runner/mod.ts?s=RunnerHandle) 中的 `task` 来等待 runner 停止。
 
@@ -159,7 +156,7 @@ run(bot, { runner: { fetch: { allowed_updates: [] } } });
 > 如果你的 bot 处理的流量比这少，那么请 [跳过此部分](#它背后是如何工作的)。
 
 JavaScript 是单线程的。
-这很棒棒，因为[并发是困难的](../advanced/scaling.md#并发是困难的)，这意味着如果只有一个线程，自然会消除很多令人头疼的问题。
+这很棒棒，因为[并发是困难的](../advanced/scaling#并发是困难的)，这意味着如果只有一个线程，自然会消除很多令人头疼的问题。
 
 然而，如果你的 bot 负载非常高（我们说的是每秒 1000 个以上的 update），那么在单个内核上完成所有工作可能就不够了。
 基本上，单个核心在处理你的 bot 所必须处理的所有消息的 JSON 时就开始心有余而力不足了。
@@ -201,10 +198,9 @@ grammY runner 为你提供了可以将 update 发送给 bot worker 的中间件�
 我们将从创建中心 bot 实例开始，它获取 update 并将它们分发给 worker。
 让我们首先创建一个名为 `bot.ts` 的文件，其中包含以下内容。
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 // bot.ts
 import { Bot } from "grammy";
 import { distribute, run } from "@grammyjs/runner";
@@ -222,10 +218,7 @@ bot.use(distribute(__dirname + "/worker"));
 run(bot);
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 // bot.js
 const { Bot } = require("grammy");
 const { distribute, run } = require("@grammyjs/runner");
@@ -243,10 +236,7 @@ bot.use(distribute(__dirname + "/worker"));
 run(bot);
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 // bot.ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { distribute, run } from "https://deno.land/x/grammy_runner/mod.ts";
@@ -265,15 +255,13 @@ run(bot);
 ```
 
 :::
-::::
 
 在 `bot.ts` 之后，我们创建了第二个，名为 `worker.ts` 的文件（如上面代码第 12 行所指定）。
 这将包含实际的 bot 逻辑。
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 // worker.ts
 import { BotWorker } from "@grammyjs/runner";
 
@@ -284,10 +272,7 @@ const bot = new BotWorker(""); // <-- 再次在这里传入你的 bot token
 bot.on("message", (ctx) => ctx.reply("yay!"));
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 // worker.js
 const { BotWorker } = require("@grammyjs/runner");
 
@@ -298,10 +283,7 @@ const bot = new BotWorker(""); // <-- 再次在这里传入你的 bot token
 bot.on("message", (ctx) => ctx.reply("yay!"));
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 // worker.ts
 import { BotWorker } from "https://deno.land/x/grammy_runner/mod.ts";
 
@@ -313,7 +295,6 @@ bot.on("message", (ctx) => ctx.reply("yay!"));
 ```
 
 :::
-::::
 
 > 请注意，每个 worker 都能够将消息发送回 Telegram。
 > 这就是为什么你也必须把你的 bot token 给每个 worker。
@@ -323,7 +304,7 @@ bot.on("message", (ctx) => ctx.reply("yay!"));
 它会自动监听 update。
 
 理解**只有原始 update** 会发送给 bot worker 是很重要的。
-换句话说，[上下文对象](../guide/context.md) 为每次 update 创建两次：一次在 `bot.ts` 中，以便它可以被分发给 bot worker，一次在 `worker.ts` 中，以便让它可以真正地被处理。
+换句话说，[上下文对象](../guide/context) 为每次 update 创建两次：一次在 `bot.ts` 中，以便它可以被分发给 bot worker，一次在 `worker.ts` 中，以便让它可以真正地被处理。
 更重要的是：安装在 `bot.ts` 中的上下文对象上的属性不会发送给 bot worker。
 这意味着所有插件都必须安装在 bot worker 中。
 
@@ -331,10 +312,9 @@ bot.on("message", (ctx) => ctx.reply("yay!"));
 作为性能优化，你可以丢弃不想处理的 update 。
 这样，你的 bot 就不必将更新发送给 worker，在那里就被忽略了。
 
-::::code-group
-:::code-group-item Node.js
+::: code-group
 
-```ts
+```ts [Node.js]
 // 我们的 bot 只处理消息、编辑和 callback query。
 // 因此我们可以忽略其他所有 update ，不分发它们。
 bot.on(
@@ -343,10 +323,7 @@ bot.on(
 );
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 // 我们的 bot 只处理消息、编辑和 callback query。
 // 因此我们可以忽略其他所有 update ，不分发它们。
 bot.on(
@@ -354,9 +331,6 @@ bot.on(
   distribute(new URL("./worker.ts", import.meta.url)),
 );
 ```
-
-:::
-::::
 
 :::
 

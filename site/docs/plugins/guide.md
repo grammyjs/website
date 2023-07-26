@@ -1,5 +1,5 @@
 ---
-prev: ../plugins/
+next: false
 ---
 
 # The Hitchhiker's Guide to grammY Plugins
@@ -13,8 +13,8 @@ If you would like to develop your own plugin and publish it, or if you want to k
 
 There are two main types of plugins in grammY:
 
-- Middleware Plugins: The plugin's sole job is to return a [middleware function](../guide/middleware.md) that can be fed to a grammY bot.
-- Transformer Plugins: The plugin's sole job is to return a [transformer function](../advanced/transformers.md) that can be fed to a grammY bot.
+- Middleware Plugins: The plugin's sole job is to return a [middleware function](../guide/middleware) that can be fed to a grammY bot.
+- Transformer Plugins: The plugin's sole job is to return a [transformer function](../advanced/transformers) that can be fed to a grammY bot.
 
 However, you will sometimes find plugins that do both things.
 There are also other packages that are neither middleware nor transformer functions, but we will call them plugins anyway because they extend grammY in various ways.
@@ -38,7 +38,7 @@ Before diving into some hands-on examples, there are some rules to pay attention
    (We can create the page for you if you are unsure how to do that.)
 3. Choose a permissive license such as MIT or ISC.
 
-Finally, you should know that even though grammY supports both Node.js and [Deno](https://deno.com/runtime), it is a Deno-first project, and we also encourage you to write your plugins for Deno (and subsequently in style!).
+Finally, you should know that even though grammY supports both Node.js and [Deno](https://deno.land), it is a Deno-first project, and we also encourage you to write your plugins for Deno (and subsequently in style!).
 There is a handy-dandy tool called [deno2node](https://github.com/fromdeno/deno2node) that transpiles your code from Deno to Node.js so we can support both platforms equally well.
 Deno support is only a strict requirement for official plugins, but not for third-party ones.
 Nonetheless, it is very much encouraged to give Deno a try.

@@ -1,11 +1,6 @@
----
-prev: ./
-next: ./structuring.md
----
-
 # Middleware Redux
 
-En está guía, [introdujimos el middleware](../guide/middleware.md) como un stack de funciones.
+En está guía, [introdujimos el middleware](../guide/middleware) como un stack de funciones.
 Aunque no está mal que se pueda utilizar el middleware de esta forma lineal (también en grammY), llamarlo sólo stack es una simplificación.
 
 ## Middleware en grammY
@@ -32,7 +27,7 @@ En primer lugar, cada instancia de `Bot` es una instancia de `Composer`.
 Es sólo una subclase, así que `class Bot extends Composer`.
 
 Además, debes saber que cada método de `Composer` llama internamente a `use`.
-Por ejemplo, `filter` sólo llama a `use` con algún middleware de bifurcación, mientras que `on` sólo llama a `filter` de nuevo con alguna función de predicado que compara las actualizaciones con la [consulta de filtro dada](../guide/filter-queries.md).
+Por ejemplo, `filter` sólo llama a `use` con algún middleware de bifurcación, mientras que `on` sólo llama a `filter` de nuevo con alguna función de predicado que compara las actualizaciones con la [consulta de filtro dada](../guide/filter-queries).
 Por lo tanto, podemos limitarnos a mirar `use` por ahora, y el resto sigue.
 
 Ahora tenemos que sumergirnos un poco en los detalles de lo que hace `Composer` con sus llamadas `use`, y en qué se diferencia de otros sistemas de middleware que existen.
@@ -114,7 +109,7 @@ composer.filter(/* 1 */).filter(/* 2 */).use(/* A */);
 
 `2` sólo se comprobará si `1` se mantiene, y `A` sólo se ejecutará si `2` (y por tanto `1`) se mantiene.
 
-Revisa la sección sobre [combinar consultas de filtro](../guide/filter-queries.md#combinacion-de-varias-consultas) con tus nuevos conocimientos y siente tu nuevo poder.
+Revisa la sección sobre [combinar consultas de filtro](../guide/filter-queries#combinacion-de-varias-consultas) con tus nuevos conocimientos y siente tu nuevo poder.
 
 Un caso especial es `fork`, ya que inicia dos cálculos que son concurrentes, es decir, intercalados en el bucle de eventos.
 En lugar de devolver la instancia de `Composer` creada por la llamada subyacente `use`, devuelve un `Composer` que refleja el cálculo bifurcado.

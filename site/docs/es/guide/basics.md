@@ -1,8 +1,3 @@
----
-prev: ./getting-started.md
-next: ./context.md
----
-
 # Envío y recepción de mensajes
 
 Tan pronto como inicies tu bot con `bot.start()`, grammY suministrará a tus oyentes los mensajes que los usuarios envíen a tu bot.
@@ -30,7 +25,7 @@ bot.hears(/echo *(.+)?/, async (ctx) => {/* ... */});
 
 Puedes utilizar la función de autocompletar en tu editor de código para ver todas las opciones disponibles, o consultar [todos los métodos](https://deno.land/x/grammy/mod.ts?s=Composer) de la clase `Composer`.
 
-> [Leer más](./filter-queries.md) sobre el filtrado de tipos de mensajes específicos con `bot.on()`.
+> [Leer más](./filter-queries) sobre el filtrado de tipos de mensajes específicos con `bot.on()`.
 
 ## Envío de mensajes
 
@@ -56,7 +51,7 @@ Estos objetos de opciones se corresponden exactamente con las opciones que puede
 También puedes utilizar el autocompletado en tu editor de código para ver todas las opciones disponibles, o consultar [todos los métodos](https://deno.land/x/grammy/mod.ts?s=Api) de la clase `Api`.
 El resto de esta página muestra algunos ejemplos para esto.
 
-También, revisa la [siguiente sección](./context.md) para aprender cómo el objeto context de un listener hace que el envío de mensajes sea un juego de niños.
+También, revisa la [siguiente sección](./context) para aprender cómo el objeto context de un listener hace que el envío de mensajes sea un juego de niños.
 
 ## Enviando Mensajes con Respuesta
 
@@ -74,7 +69,7 @@ bot.hears("ping", async (ctx) => {
 
 > Tenga en cuenta que sólo el envío de un mensaje a través de `ctx.reply` no **significa que usted está respondiendo automáticamente a cualquier cosa.
 > En su lugar, debes especificar `reply_to_message_id` para ello.
-> La función `ctx.reply` es sólo un alias de `ctx.api.sendMessage`, ver la [siguiente sección](./context.md#acciones-disponibles).
+> La función `ctx.reply` es sólo un alias de `ctx.api.sendMessage`, ver la [siguiente sección](./context#acciones-disponibles).
 
 ## Envío de mensajes con formato
 
@@ -113,7 +108,7 @@ await bot.api.sendMessage(
 
 ## Envío de archivos
 
-El manejo de archivos se explica con mayor profundidad en una [sección posterior] (./files.md#sending-files).
+El manejo de archivos se explica con mayor profundidad en una [sección posterior] (./files#sending-files).
 
 ## Forzar respuesta
 

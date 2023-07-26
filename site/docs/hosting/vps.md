@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Hosting: VPS
 
 A virtual private server, mostly known as VPS, is a virtual machine running in the cloud with its users having the full control of its system.
@@ -50,7 +55,7 @@ nano bot1.service
 
 3. Add the following content:
 
-```text
+```txt
 [Service]
 ExecStart=<start_command>
 Restart=on-failure

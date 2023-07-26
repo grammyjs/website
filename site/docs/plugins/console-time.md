@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Console Logging While Debugging
 
 If you are familiar with JavaScript/TypeScript you probably used [`console.log`](https://developer.mozilla.org/en-US/docs/Web/API/Console/log) or [`console.time`](https://developer.mozilla.org/en-US/docs/Web/API/Console/time) to check what is happening while debugging something.

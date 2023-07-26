@@ -1,10 +1,15 @@
+---
+prev: false
+next: false
+---
+
 # 限制用户速率 (`ratelimiter`)
 
 ratelimiter 是用 grammY 或 [Telegraf](https://github.com/telegraf/telegraf) bot 框架制作的一个限速中间件。
 简单来说，它是一个帮助你的 bot 阻塞垃圾信息的插件。
 要更好地理解 ratelimiter，你可以看下面的图示：
 
-![速率限制器在抵御垃圾信息中的作用](/images/ratelimiter-role.png)
+![速率限制器在抵御垃圾信息中的作用](/images/ratelimiter-role.webp)
 
 ## 它是如何工作的？
 
@@ -48,30 +53,23 @@ ratelimiter 与驱动器无关。
 
 这个示例演示了最简单的方式来使用默认行为的 ratelimiter：
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { limit } from "@grammyjs/ratelimiter";
 
 // 将每个用户的信息处理限制在每秒一条信息。
 bot.use(limit());
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { limit } = require("@grammyjs/ratelimiter");
 
 // 将每个用户的信息处理限制在每秒一条信息。
 bot.use(limit());
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
 
 // 将每个用户的信息处理限制在每秒一条信息。
@@ -79,16 +77,14 @@ bot.use(limit());
 ```
 
 :::
-::::
 
 ### 手动配置
 
 正如前面所说，你可以向 `limit()` 方法传入一个 `Options` 对象来改变 ratelimiter 的行为。
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import Redis from "ioredis";
 import { limit } from "@grammyjs/ratelimiter";
 
@@ -116,10 +112,7 @@ bot.use(
 );
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const Redis = require("ioredis");
 const { limit } = require("@grammyjs/ratelimiter");
 
@@ -147,10 +140,7 @@ bot.use(
 );
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { connect } from "https://deno.land/x/redis/mod.ts";
 import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
 
@@ -179,20 +169,18 @@ bot.use(
 ```
 
 :::
-::::
 
 正如你在上面的示例中看到的，每个用户每 2 秒钟最多只能发送 3 次请求。
 如果该用户发送更多请求，机器人会回复 _Please refrain from sending too many requests!_。
-由于我们不调用 [next()](../guide/middleware.md#中间件栈)，这个请求将被立即关闭。
+由于我们不调用 [next()](../guide/middleware#中间件栈)，这个请求将被立即关闭。
 
 > 请注意：为了避免 Telegram 服务器被请求淹没，`onLimitExceeded` 只会在每个 `timeFrame` 中执行一次。
 
 另一个用例是限制来自聊天室的请求而不是特定用户的请求：
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { limit } from "@grammyjs/ratelimiter";
 
 bot.use(
@@ -207,10 +195,7 @@ bot.use(
 );
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { limit } = require("@grammyjs/ratelimiter");
 
 bot.use(
@@ -225,10 +210,7 @@ bot.use(
 );
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
 
 bot.use(
@@ -244,7 +226,6 @@ bot.use(
 ```
 
 :::
-::::
 
 在这个示例中，我使用 `chat.id` 作为限制的唯一键。
 

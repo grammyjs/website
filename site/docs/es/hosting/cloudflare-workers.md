@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Alojamiento: Cloudflare Workers
 
 [Cloudflare Workers](https://workers.cloudflare.com/) es una plataforma pública de computación sin servidor que ofrece una solución conveniente y simple para ejecutar JavaScript en el [edge](https://en.wikipedia.org/wiki/Edge_computing).
@@ -88,7 +93,7 @@ npm run deploy
 Necesitamos decirle a Telegram a dónde enviar las actualizaciones.
 Abre tu navegador y visita esta URL:
 
-```text
+```txt
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<MY_BOT>.<MY_SUBDOMAIN>.workers.dev/
 ```
 

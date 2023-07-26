@@ -6,9 +6,9 @@
     "proseWrap": "preserve",
     "exclude": [
       "./site/node_modules/",
-      "./site/docs/.vuepress/.cache/",
-      "./site/docs/.vuepress/.temp/",
-      "./site/docs/.vuepress/dist/",
+      "./site/docs/.vitepress/cache/",
+      "./site/docs/.vitepress/temp/",
+      "./site/docs/.vitepress/dist/",
       "./site/package-lock.json"
     ]
   }

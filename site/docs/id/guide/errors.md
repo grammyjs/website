@@ -1,8 +1,3 @@
----
-prev: ./middleware.md
-next: ./files.md
----
-
 # Menangani Error
 
 Setiap error yang disebabkan oleh middleware akan ditangkap oleh grammY.
@@ -26,7 +21,7 @@ Cara menangkap error bisa berbeda-beda tergantung dari jenis pemasangan botmu. D
 
 ### Long Polling
 
-Kalau kamu menjalankan bot melalui `bot.start()` atau menggunakan [grammY runner](../plugins/runner.md), maka kamu bisa **memasang error handler melalui `bot.catch`**.
+Kalau kamu menjalankan bot melalui `bot.start()` atau menggunakan [grammY runner](../plugins/runner), maka kamu bisa **memasang error handler melalui `bot.catch`**.
 
 grammY memiliki error handler bawaan yang dapat menghentikan bot jika dijalankan melalui `bot.start()`, setelah itu ia akan melempar kembali error tersebut.
 Langkah-langkah yang selanjutnya dilakukan setelah menerima error tersebut tergantung dari platform yang kamu gunakan.
@@ -56,7 +51,7 @@ Selanjutnya, kamu harus menangani error sesuai dengan panduan dari framework ter
 
 ## Object `BotError`
 
-Object `BotError` mengemas error yang dilempar bersama dengan [object context](./context.md) terkait yang menjadi penyebab dari error tersebut.
+Object `BotError` mengemas error yang dilempar bersama dengan [object context](./context) terkait yang menjadi penyebab dari error tersebut.
 
 grammY akan menangkap error yang terjadi saat memproses sebuah update.
 Object context seringkali bermanfaat untuk bisa menemukan penyebab dari suatu error.
@@ -85,7 +80,7 @@ Object error ini berisi informasi mengenai alasan permintaan tersebut tidak dapa
 
 Kamu akan jarang melihat error semacam ini, kecuali koneksi internet kamu memang tidak stabil, atau server API Bot tidak tersedia untuk sementara waktu.
 
-> Perlu dicatat bahwa jika server API Bot bisa dihubungi, tetapi mengembalikan `ok: false` untuk pemanggilan method tertentu, justru [`GrammyError`](./errors.md#object-grammyerror) yang akan dilempar.
+> Perlu dicatat bahwa jika server API Bot bisa dihubungi, tetapi mengembalikan `ok: false` untuk pemanggilan method tertentu, justru [`GrammyError`](./errors#object-grammyerror) yang akan dilempar.
 
 Lihat class `HttpError` di [Referensi API grammY](https://deno.land/x/grammy/mod.ts?s=HttpError).
 
@@ -142,7 +137,7 @@ Dari contoh di atas, `boundaryHandler` akan dipanggil untuk:
 1. Semua middleware yang diteruskan ke `bot.errorBoundary` setelah `boundaryHandler`, yaitu `Q`.
 2. Semua midleware yang dipasang pada instance composer berikutnya, yaitu `X`, `Y`, dan `Z`.
 
-> Mengenai poin 2, kamu bisa melompat ke [materi lanjutan middleware](../advanced/middleware.md) untuk mempelajari bagaimana cara kerja perangkaian atau chaining di grammY.
+> Mengenai poin 2, kamu bisa melompat ke [materi lanjutan middleware](../advanced/middleware) untuk mempelajari bagaimana cara kerja perangkaian atau chaining di grammY.
 
 Kamu juga bisa menerapkan error boundary ke sebuah composer tanpa memanggil `bot.errorBoundary`:
 

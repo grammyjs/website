@@ -1,8 +1,3 @@
----
-prev: ./context.md
-next: ./filter-queries.md
----
-
 # API Bot
 
 ## Informasi Umum
@@ -24,12 +19,12 @@ Server ini akan menerjemahkan request tadi menjadi protokol utama Telegram yang 
 Analogi yang sama juga berlaku ketika pengguna mengirim pesan ke bot, hanya saja alurnya dibalik.
 
 ::: tip Mengatasi Limitasi Ukuran File
-Backend Telegram memungkinkan bot untuk [mengirim file](./files.md) berukuran hingga 2000 MB.
+Backend Telegram memungkinkan bot untuk [mengirim file](./files) berukuran hingga 2000 MB.
 Namun, server API Bot---yang bertanggung jawab untuk menerjemahkan request ke HTTP---membatasi ukuran file hanya sebesar 50 MB untuk unduhan dan 20 MB untuk unggahan.
 
 Untuk menyiasati batasan tersebut, kamu bisa [meng-hosting server API Bot sendiri](https://core.telegram.org/bots/api#using-a-local-bot-api-server) supaya bot kamu bisa mengirim file dengan ukuran hingga 2000 MB.
 
-> Catatan: Jika menangani file-file berukuran besar menggunakan [long polling](./deployment-types.md), kamu sebaiknya menggunakan [grammY runner](../plugins/runner.md).
+> Catatan: Jika menangani file-file berukuran besar menggunakan [long polling](./deployment-types), kamu sebaiknya menggunakan [grammY runner](../plugins/runner).
 
 :::
 
@@ -40,7 +35,7 @@ Contohnya, `sendMessage` baik di [Referensi API Bot Telegram](https://core.teleg
 
 ### Memanggil Method
 
-Kamu dapat memanggil method API melalui `bot.api`, atau [dengan cara yang sama](./context.md#aksi-yang-tersedia) melalui `ctx.api`:
+Kamu dapat memanggil method API melalui `bot.api`, atau [dengan cara yang sama](./context#aksi-yang-tersedia) melalui `ctx.api`:
 
 ```ts
 async function kirimHaloKe12345() {
@@ -59,7 +54,7 @@ Sejatinya, semua method API Bot mengharapkan sebuah object JSON dengan sejumlah 
 Namun, coba perhatikan bagaimana `sendMessage` dalam contoh di atas hanya menerima dua argument: id chat dan sebuah string.
 grammY paham bahwa kedua nilai ini adalah property `chat_id` dan `text`, dari situ ia akan menyusun object JSON yang sesuai untukmu.
 
-Seperti yang telah disebutkan [sebelumnya](./basics.md#mengirim-pesan), kamu bisa menentukan opsi lain di argument ketiga type `Other`:
+Seperti yang telah disebutkan [sebelumnya](./basics#mengirim-pesan), kamu bisa menentukan opsi lain di argument ketiga type `Other`:
 
 ```ts
 async function kirimHaloKe12345() {
@@ -102,7 +97,7 @@ Namun, Node.js---secara resmi---baru mendukung fitur import dari sub-path mulai 
 Sehingga, kamu perlu mengubah `moduleResolution` menjadi `node16` atau `nodenext`.
 Atur `tsconfig.json` dengan benar lalu tambahkan baris yang disorot berikut:
 
-```json{4}
+```json
 {
   "compilerOptions": {
     // ...

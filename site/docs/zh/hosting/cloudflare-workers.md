@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # 托管: Cloudflare Workers
 
 [Cloudflare Workers](https://workers.cloudflare.com/) 是一个公共 serverless 计算平台，为在 [边缘](https://en.wikipedia.org/wiki/Edge_computing) 运行 JavaScript 提供了一种方便简单的解决方案。
@@ -88,7 +93,7 @@ npm run deploy
 我们需要告诉 Telegram 将 update 发送到哪里。
 打开浏览器并访问这个 URL：
 
-```text
+```txt
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<MY_BOT>.<MY_SUBDOMAIN>.workers.dev/
 ```
 

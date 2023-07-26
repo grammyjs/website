@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # 托管：Firebase Functions
 
 本教程将指导你完成将 bot 部署到 [Firebase Functions](https://firebase.google.com/docs/functions) 的过程。
@@ -27,7 +32,7 @@
 > 请务必注意，Firebase Functions 当前仅支持 Node.js 版本 14、16 和 18。
 > 有关受支持的 Node.js 版本的更多信息，请参阅 [此处](https://firebase.google.com/docs/functions/manage-functions#set_nodejs_version)。
 
-当你安装 Node.js 和 NPM 后，全局安装 Firebase CLI：
+当你安装 Node.js 和 npm 后，全局安装 Firebase CLI：
 
 ```sh
 npm install -g firebase-tools

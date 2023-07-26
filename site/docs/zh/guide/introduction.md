@@ -1,14 +1,9 @@
----
-prev: /zh/guide/
-next: ./getting-started.md
----
-
 # 简介
 
 Telegram Bot 是一个特殊的用户账户，由一个程序自动运行。
 任何人都可以创建 Telegram Bot ，唯一的前提条件是你要懂得一点编程。
 
-> 如果你已经知道如何创建 Bot，请前往 [入门](./getting-started.md)！
+> 如果你已经知道如何创建 Bot，请前往 [入门](./getting-started)！
 
 grammY 是一个库，它使编写这样一个 bot 变得超级简单。
 
@@ -37,7 +32,7 @@ grammY 是一个库，它使编写这样一个 bot 变得超级简单。
 因为你很可能不想用你的笔记本电脑做这个，你应该把你的代码上传到一个 _主机提供商_（换句话说，别人的电脑，也被称为 _服务器_），让那些人替你运行它。
 
 有无数的公司可以让你免费运行你的 Telegram Bot。
-本文档涵盖了一些不同的托管服务提供商，我们知道它们与 grammY 配合得很好（请查看 [托管](../hosting/comparison.md) 章节）。
+本文档涵盖了一些不同的托管服务提供商，我们知道它们与 grammY 配合得很好（请查看 [托管](../hosting/comparison) 章节）。
 选择哪个供应商由你决定。
 请记住，在其他地方运行你的代码，意味着无论谁拥有这个"地方"，都可以访问你的所有信息和你的用户数据，所以你应该选择一个你可以信任的供应商。
 
@@ -71,7 +66,7 @@ bot 通过 HTTP 请求与 Telegram 互动。
 
 ## 开始的前提条件
 
-> 如果你已经知道如何开发 Deno 或 Node.js 应用程序，请跳过本页面的其余部分，[开始](./getting-started.md)。
+> 如果你已经知道如何开发 Deno 或 Node.js 应用程序，请跳过本页面的其余部分，[开始](./getting-started)。
 
 这里有一些关于编程的事情——对编程是必不可少的事情，但大家却很少解释，因为大多数开发者认为它们是不言而喻的。
 
@@ -81,7 +76,7 @@ grammY 文档不会教你如何编程，所以我们希望你能自学。
 
 ::: tip 学习编程
 你可以从 TypeScript 团队编写的 [官方教程](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html) 开始学习 TypeScript，然后再从这里开始。
-这些东西不会花费你太多的时间，接着你可以回到这里阅读剩下的部分，并 [开始](./getting-started.md)。
+这些东西不会花费你太多的时间，接着你可以回到这里阅读剩下的部分，并 [开始](./getting-started)。
 
 如果你在文档中看到不熟悉的语法，或者你得到一个你不理解的错误信息，请用谷歌搜索它——互联网上已经有解释了（例如在 Stack Overflow 上）。
 :::
@@ -96,7 +91,7 @@ grammY 文档不会教你如何编程，所以我们希望你能自学。
 这种类型的软件被称为 _运行时环境_。
 它接收你的源代码文件，并实际执行其中的任何程序。
 
-对我们来说，有两种运行时环境可供选择，[Deno](https://deno.com/runtime) 和 [Node.js](https://nodejs.org) 。
+对我们来说，有两种运行时环境可供选择，[Deno](https://deno.land) 和 [Node.js](https://nodejs.org) 。
 （如果你看到有人叫它 _Node_ ，他们只是懒得打 ".js" ，但他们的意思是一样的。）
 
 > 本节的其余部分将帮助你在这两个平台之间做出决定。
@@ -142,7 +137,7 @@ Deno：
 
 你还需要一个非常适合编码的文本编辑器。
 最适合 Deno 的是 Visual Studio Code，通常简称为 VS Code。
-[安装它。](https://code.visualstudio.com/)
+[安装它。](https://code.visualstudio.com)
 
 接下来，你需要连接 VS Code 和 Deno。
 这非常简单：有一个 VS Code 的扩展可以自动完成所有事情。
@@ -178,7 +173,7 @@ code .
 你可以使用 `Ctrl+C` 停止 bot。
 
 都准备好了吗?
-[开始吧](./getting-started.md#通过-deno-开始)！ :robot:
+[开始吧](./getting-started#通过-deno-开始)！ :robot:
 
 ### Node.js 的前提条件
 
@@ -214,4 +209,4 @@ code .
 
 还有信心吗？
 非常棒！
-[开始吧](./getting-started.md#通过-deno-开始)！ :robot:
+[开始吧](./getting-started#通过-deno-开始)！ :robot:

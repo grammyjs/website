@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Registro en la consola mientras se depura
 
 Si estás familiarizado con JavaScript / TypeScript probablemente hayas utilizado [`console.log`](https://developer.mozilla.org/en-US/docs/Web/API/Console/log) o [`console.time`](https://developer.mozilla.org/en-US/docs/Web/API/Console/time) para comprobar lo que está sucediendo mientras depuras algo.

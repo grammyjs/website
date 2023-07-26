@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Comparación de proveedores de alojamiento
 
 Hay muchos proveedores de alojamiento diferentes que te permiten ejecutar tu bot.
@@ -7,7 +12,7 @@ Por ello, la comunidad de grammY está recopilando sus experiencias en esta pág
 ## ¿Qué es un proveedor de alojamiento?
 
 Para mantener un bot online las 24 horas del día, es necesario que un ordenador funcione las 24 horas del día.
-Como [se mencionó en la introducción](../guide/introduction.md#como-mantener-un-bot-en-funcionamiento), lo más probable es que no quieras hacer eso con tu ordenador portátil o doméstico.
+Como [se mencionó en la introducción](../guide/introduction#como-mantener-un-bot-en-funcionamiento), lo más probable es que no quieras hacer eso con tu ordenador portátil o doméstico.
 En su lugar, puedes pedir a una empresa que ejecute el bot en la nube.
 
 En otras palabras, simplemente lo ejecutas en el ordenador de otra persona.
@@ -23,12 +28,12 @@ Tenemos dos tablas comparativas: una para [alojamiento serverless y PaaS](#serve
 Serverless significa que usted no controla una sola máquina en la que se ejecuta su bot.
 En su lugar, estos proveedores de alojamiento te permitirán subir tu código, y luego iniciar y detener diferentes máquinas según sea necesario para asegurarse de que tu bot siempre funciona.
 
-Lo principal que hay que saber sobre ellos es que en las infraestructuras sin servidor se requiere el uso de [webhooks](../guide/deployment-types.md).
-La mayoría de los proveedores de abajo tendrán problemas cuando intentes ejecutar tu bot con polling (`bot.start()` o [grammY runner](../plugins/runner.md)) en ellos.
+Lo principal que hay que saber sobre ellos es que en las infraestructuras sin servidor se requiere el uso de [webhooks](../guide/deployment-types).
+La mayoría de los proveedores de abajo tendrán problemas cuando intentes ejecutar tu bot con polling (`bot.start()` o [grammY runner](../plugins/runner)) en ellos.
 
 Por otro lado, PaaS (Plataforma como servicio) proporciona una solución similar pero más controlable.
 Puedes elegir cuántas instancias de máquina servirán a tu bot, y cuándo se ejecutarán.
-El uso de [polling](../guide/deployment-types.md) también es posible con PaaS si el proveedor que elijas te permite mantener exactamente una única instancia en ejecución en todo momento.
+El uso de [polling](../guide/deployment-types) también es posible con PaaS si el proveedor que elijas te permite mantener exactamente una única instancia en ejecución en todo momento.
 
 Serverless y PaaS tienen el inconveniente de que no te proporcionan un almacenamiento persistente por defecto, como un sistema de archivos local.
 En su lugar, a menudo tendrás que tener una base de datos por separado y conectarte a ella si necesitas almacenar datos de forma permanente.
@@ -57,7 +62,7 @@ Puedes instalar cualquier software allí, y eres responsable de las actualizacio
 
 En un VPS, puedes ejecutar bots usando tanto long polling como webhooks.
 
-Consulta el [tutorial](./vps.md) sobre cómo alojar bots de grammY en un VPS.
+Consulta el [tutorial](./vps) sobre cómo alojar bots de grammY en un VPS.
 
 | Nombre        | Precio mínimo | Ping a Bot API                            | Opción más barata                  |
 | ------------- | ------------- | ----------------------------------------- | ---------------------------------- |

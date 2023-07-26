@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Hosting: Cloudflare Workers
 
 [Cloudflare Workers](https://workers.cloudflare.com/) adalah sebuah platform pengkomputasian serverless publik yang menawarkan solusi simpel dan nyaman untuk menjalankan JavaScript di [edge](https://en.wikipedia.org/wiki/Edge_computing).
@@ -88,7 +93,7 @@ npm run deploy
 Kita perlu memberi tahu Telegram lokasi atau alamat pengiriman update.
 Buka browser kamu lalu kunjungi URL ini:
 
-```text
+```txt
 https://api.telegram.org/bot<TOKEN_BOT>/setWebhook?url=https://<BOT_KU>.<SUBDOMAIN_KU>.workers.dev/
 ```
 

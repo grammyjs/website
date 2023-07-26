@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Alojamiento: VPS
 
 Un servidor virtual privado, mayormente conocido como VPS, es una máquina virtual que se ejecuta en la nube y cuyos usuarios tienen el control total de su sistema.
@@ -50,7 +55,7 @@ nano bot1.service
 
 3. Añade el siguiente contenido:
 
-```text
+```txt
 [Service]
 ExecStart=<comando_de_inicio>
 Restart=on-failure

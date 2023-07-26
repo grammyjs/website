@@ -1,5 +1,5 @@
 ---
-prev: ./
+next: false
 ---
 
 # Panduan Hitchhiker Menuju Plugin grammY
@@ -13,8 +13,8 @@ Jika kamu berkeinginan membuat dan mempublikasikan plugin-mu sendiri, ataupun cu
 
 Terdapat dua jenis plugin utama di grammY:
 
-- Plugin Middleware: Plugin yang bertugas mengembalikan sebuah [function middleware](../guide/middleware.md) yang akan dimanfaatkan oleh bot grammY.
-- Plugin Transformer: Plugin yang bertugas mengembalikan sebuah [function transformer](../advanced/transformers.md) yang akan dimanfaatkan oleh bot grammY.
+- Plugin Middleware: Plugin yang bertugas mengembalikan sebuah [function middleware](../guide/middleware) yang akan dimanfaatkan oleh bot grammY.
+- Plugin Transformer: Plugin yang bertugas mengembalikan sebuah [function transformer](../advanced/transformers) yang akan dimanfaatkan oleh bot grammY.
 
 Terkadang kamu akan menemui plugin yang menggunakan kedua jenis tersebut sekaligus. Bahkan ada juga package lain yang sama sekali bukan function middleware maupun transformer, tetapi kami tetap menyebutnya sebagai plugin karena mereka memperluas fungsionalitas grammY dengan cara-cara mereka sendiri.
 
@@ -37,7 +37,7 @@ Sebelum membahas beberapa contohnya, ada beberapa aturan yang harus diperhatikan
    (kami bisa membantu menambahkan halaman baru tersebut kalau kamu mengalami kesulitan).
 3. Pilih lisensi terbuka seperti MIT atau ISC.
 
-Yang terakhir, kamu perlu tahu bahwa meskipun grammY mendukung baik Node.js maupun [Deno](https://deno.com/runtime), namun kami lebih mengutamakan proyek Deno. Oleh karena itu, kami menyarankan kamu untuk membuat plugin untuk Deno terlebih dahulu (dengan cara yang keren tentunya!).
+Yang terakhir, kamu perlu tahu bahwa meskipun grammY mendukung baik Node.js maupun [Deno](https://deno.land), namun kami lebih mengutamakan proyek Deno. Oleh karena itu, kami menyarankan kamu untuk membuat plugin untuk Deno terlebih dahulu (dengan cara yang keren tentunya!).
 Ada sebuah tool keren bernama [deno2node](https://github.com/fromdeno/deno2node) yang mampu mengubah kodemu dari Deno ke Node.js, sehingga kita bisa men-support kedua platform sama baiknya.
 Dukungan untuk Deno adalah syarat yang wajib untuk plugin official, sedangkan plugin pihak-ketiga tidak diwajibkan.
 Terlepas dari itu semua, kami sangat menyarankan kamu untuk mencoba Deno.

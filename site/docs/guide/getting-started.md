@@ -1,8 +1,3 @@
----
-prev: ./introduction.md
-next: ./basics.md
----
-
 # Getting Started
 
 Create your first bot in minutes. (Scroll [down](#getting-started-on-deno) for a Deno guide.)
@@ -10,15 +5,14 @@ Create your first bot in minutes. (Scroll [down](#getting-started-on-deno) for a
 ## Getting Started on Node.js
 
 > This guide assumes that you have [Node.js](https://nodejs.org) installed, and `npm` should come with it.
-> If you don't know what these things are, check out our [Introduction](./introduction.md)!
+> If you don't know what these things are, check out our [Introduction](./introduction)!
 
 Create a new TypeScript project and install the `grammy` package.
 Do this by opening a terminal and typing:
 
-::::code-group
-:::code-group-item NPM
+::: code-group
 
-```sh
+```sh [npm]
 # Create a new directory and change into it.
 mkdir my-bot
 cd my-bot
@@ -31,10 +25,7 @@ npx tsc --init
 npm install grammy
 ```
 
-:::
-:::code-group-item Yarn
-
-```sh
+```sh [Yarn]
 # Create a new directory and change into it.
 mkdir my-bot
 cd my-bot
@@ -47,10 +38,7 @@ npx tsc --init
 yarn add grammy
 ```
 
-:::
-:::code-group-item pnpm
-
-```sh
+```sh [pnpm]
 # Create a new directory and change into it.
 mkdir my-bot
 cd my-bot
@@ -64,7 +52,6 @@ pnpm add grammy
 ```
 
 :::
-::::
 
 Create a new empty text file, e.g. called `bot.ts`.
 Your folder structure should now look like this:
@@ -86,10 +73,9 @@ It is used to authenticate your bot.
 Got the token? You can now code your bot in the `bot.ts` file.
 You can copy the following example bot into that file, and pass your token to the `Bot` constructor:
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot } from "grammy";
 
 // Create an instance of the `Bot` class and pass your bot token to it.
@@ -110,10 +96,7 @@ bot.on("message", (ctx) => ctx.reply("Got another message!"));
 bot.start();
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot } = require("grammy");
 
 // Create an instance of the `Bot` class and pass your bot token to it.
@@ -135,7 +118,6 @@ bot.start();
 ```
 
 :::
-::::
 
 Compile the code by running
 
@@ -170,7 +152,7 @@ This makes it easier to debug your bot.
 
 ## Getting Started on Deno
 
-> This guide assumes that you have [Deno](https://deno.com/runtime) installed.
+> This guide assumes that you have [Deno](https://deno.land) installed.
 
 Create a new directory somewhere and create a new empty text file in it, e.g. called `bot.ts`.
 

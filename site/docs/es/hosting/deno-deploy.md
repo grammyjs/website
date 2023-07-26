@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Alojamiento: Deno Deploy
 
 Esta guía te explica cómo puedes alojar tus bots de grammy en [Deno Deploy](https://deno.com/deploy).
@@ -12,7 +17,7 @@ El resultado de este tutorial [puede verse en nuestro repositorio de bots de eje
 
 ## Preparación de su código
 
-> Recuerda que necesitas [ejecutar tu bot en webhhoks](../guide/deployment-types.md#como-usar-webhooks), por lo que debes usar `webhookCallback` y no llamar a `bot.start()` en tu código.
+> Recuerda que necesitas [ejecutar tu bot en webhhoks](../guide/deployment-types#como-usar-webhooks), por lo que debes usar `webhookCallback` y no llamar a `bot.start()` en tu código.
 
 1. Asegúrate de que tienes un archivo que exporta tu objeto `Bot`, para que puedas importarlo después para ejecutarlo.
 2. Crea un archivo llamado `mod.ts` o `mod.js`, o en realidad cualquier nombre que te guste (pero deberías recordar y usar este como el archivo principal para desplegar), con el siguiente contenido:

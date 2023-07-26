@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Medios de comunicación (incorporado)
 
 El plugin de grupo de medios te ayuda a enviar grupos de medios permitiéndote construir objetos `InputMedia`.
@@ -9,10 +14,9 @@ Recuerda que los objetos `InputMedia` se especifican [aquí](https://core.telegr
 
 Puede utilizar este plugin de la siguiente manera:
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { InputMediaBuilder } from "grammy";
 
 const photo = InputMediaBuilder.photo(new InputFile("/tmp/photo.mp4"));
@@ -20,10 +24,7 @@ const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
 // etc
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { InputMediaBuilder } = require("grammy");
 
 const photo = InputMediaBuilder.photo(new InputFile("/tmp/photo.mp4"));
@@ -31,10 +32,7 @@ const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
 // etc
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { InputMediaBuilder } from "https://deno.land/x/grammy/mod.ts";
 
 const photo = InputMediaBuilder.photo(new InputFile("/tmp/photo.mp4"));
@@ -43,7 +41,6 @@ const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
 ```
 
 :::
-::::
 
 Echa un vistazo a todos los métodos de `InputMediaBuilder` en la [referencia API](https://deno.land/x/grammy/mod.ts?s=InputMediaBuilder).
 
