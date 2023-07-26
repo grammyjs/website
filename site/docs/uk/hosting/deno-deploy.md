@@ -18,14 +18,13 @@ Deno Deploy ідеально підходить для більшості про
 2. Створіть файл з назвою `mod.ts` або `mod.js` або насправді будь-якою назвою, яку ви хочете, але ви повинні памʼятати та використовувати його як головний файл для розгортання, із наступним вмістом:
 
 ```ts
-import { serve } from "https://deno.land/std/http/server.ts";
 import { webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 // Ви можете змінити це на правильний спосіб імпорту вашого обʼєкта `Bot`.
 import bot from "./bot.ts";
 
 const handleUpdate = webhookCallback(bot, "std/http");
 
-serve(async (req) => {
+Deno.serve(async (req) => {
   if (req.method === "POST") {
     const url = new URL(req.url);
     if (url.pathname.slice(1) === bot.token) {

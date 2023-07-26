@@ -20,14 +20,13 @@ Hasil dari tutorial disini dapat dilihat di [repositori bot kami](https://github
 2. Buat sebuah file dengan nama `mod.ts` atau `mod.js`, ataupun nama lainnya sesuai dengan keinginanmu (tetapi kamu harus mengingatnya karena nanti file tersebut akan digunakan sebagai file deploy utama). File tersebut berisikan:
 
 ```ts
-import { serve } from "https://deno.land/std/http/server.ts";
 import { webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 // Kamu mungkin perlu mengubah ini agar dapat melakukan import pada object bot-mu.
 import bot from "./bot.ts";
 
 const handleUpdate = webhookCallback(bot, "std/http");
 
-serve(async (req) => {
+Deno.serve(async (req) => {
   if (req.method === "POST") {
     const url = new URL(req.url);
     if (url.pathname.slice(1) === bot.token) {
