@@ -21,7 +21,6 @@ Puedes ejecutar tu bot usando ambos [webhooks o long polling](../guide/deploymen
 ::: code-group
 
 ```ts{11} [Deno]
-import { serve } from "https://deno.land/std/http/server.ts";
 import { webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 // Podrías modificar esto a la forma correcta de importar tu objeto `Bot`.
 import { bot } from "./bot.ts";
@@ -29,7 +28,7 @@ import { bot } from "./bot.ts";
 const port = 8000;
 const handleUpdate = webhookCallback(bot, "std/http");
 
-serve(async (req) => {
+Deno.serve(async (req) => {
   const url = new URL(req.url);
   if (req.method === "POST" && url.pathname.slice(1) === bot.token) {
     try {
