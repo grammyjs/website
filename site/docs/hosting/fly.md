@@ -28,7 +28,7 @@ import { bot } from "./bot.ts";
 const port = 8000;
 const handleUpdate = webhookCallback(bot, "std/http");
 
-Deno.serve(async (req) => {
+Deno.serve({ port }, async (req) => {
   const url = new URL(req.url);
   if (req.method === "POST" && url.pathname.slice(1) === bot.token) {
     try {
@@ -38,7 +38,7 @@ Deno.serve(async (req) => {
     }
   }
   return new Response();
-}, { port });
+});
 ```
 
 ```ts{10} [Node.js]
