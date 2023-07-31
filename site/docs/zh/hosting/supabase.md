@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # 托管：Supabase Edge Functions
 
 这个指南告诉你如何将你的 grammY bots 托管到 [Supabase](https://supabase.com/).
@@ -31,7 +36,6 @@ supabase functions new telegram-bot
 你可以使用这个简单的示例 bot 作为一个起点。
 
 ```ts
-import { serve } from "https://deno.land/std/http/server.ts";
 import { Bot, webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 
 const token = Deno.env.get("BOT_TOKEN");
@@ -44,7 +48,7 @@ bot.command("ping", (ctx) => ctx.reply(`Pong! ${new Date()}`));
 
 const handleUpdate = webhookCallback(bot, "std/http");
 
-serve(async (req) => {
+Deno.serve(async (req) => {
   try {
     const url = new URL(req.url);
     if (url.searchParams.get("secret") !== bot.token) {
@@ -54,6 +58,7 @@ serve(async (req) => {
   } catch (err) {
     console.error(err);
   }
+  return new Response();
 });
 ```
 

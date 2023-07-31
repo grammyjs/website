@@ -303,10 +303,6 @@ You can store short text payloads along with all navigation and text buttons.
 When the respective handlers are invoked, the text payload will be available under `ctx.match`.
 This is useful because it lets you store a little bit of data in a menu.
 
-> Payloads cannot be used to actually store any significant amounts of data.
-> The only thing you can store are short strings of typically less than 50 bytes, such as an index or an identifier.
-> If you really want to store user data such as a file identifier, a URL, or anything else, you should use [sessions](./session).
-
 Here is an example menu that remembers current time in the payload.
 Other use cases could be, for example, to store the index in a paginated menu.
 
@@ -335,6 +331,16 @@ bot.command("publish", async (ctx) => {
 });
 ```
 
+::: tip Limitations
+Payloads cannot be used to actually store any significant amounts of data.
+The only thing you can store are short strings of typically less than 50 bytes, such as an index or an identifier.
+If you really want to store user data such as a file identifier, a URL, or anything else, you should use [sessions](./session).
+
+Also, note that the payload is always generated based on the current context object.
+This means that it matters _where from_ you navigate to the menu, which can lead to surprising results.
+As an example, when a menu is [outdated](#outdated-menus-and-fingerprints), it will be re-rendered _based on the button click of the outdated menu_.
+:::
+
 Payloads also work well together with dynamic ranges.
 
 ## Dynamic Ranges
@@ -353,6 +359,7 @@ Your bot would slow down more and more, and eventually crash.
 
 However, you can make use of the dynamic ranges described in this section.
 They allow you to arbitrarily change the structure of an existing menu instance, so they are equally powerful.
+Use dynamic ranges!
 :::
 
 You can let a part of a menu's buttons be generated on the fly (or all of them if you want).
