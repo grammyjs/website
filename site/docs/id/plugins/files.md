@@ -7,6 +7,8 @@ next: false
 
 Plugin ini memudahkan kamu untuk mengunduh file dari server Telegram dan memperoleh URL-nya agar kamu dapat mengunduh file tersebut secara mandiri.
 
+> [Coba ingat kembali](../guide/files) cara kerja file, dan cara mengunggahnya.
+
 ## Mengunduh File
 
 Plugin ini memerlukan token bot kamu untuk melakukan autentikasi ketika mengunduh sebuah file.

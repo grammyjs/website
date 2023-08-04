@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Hosting: Vercel Serverless Functions
 
 This tutorial will guide you on how to deploy your bot to [Vercel](https://vercel.com/) by using [Vercel Serverless Functions](https://vercel.com/docs/concepts/functions/serverless-functions), assuming that you already have a [Vercel](https://vercel.com) account.

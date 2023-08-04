@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Hosting: Supabase Edge Functions
 
 Halaman ini berisi panduan mengenai langkah-langkah meng-hosting bot grammY di [Supabase](https://supabase.com/).
@@ -32,7 +37,6 @@ Setelah berhasil membuat sebuah proyek Supabase Function, sekarang kamu bisa men
 Kamu bisa menggunakan contoh bot singkat ini sebagai entry point-nya.
 
 ```ts
-import { serve } from "https://deno.land/std/http/server.ts";
 import { Bot, webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 
 const token = Deno.env.get("BOT_TOKEN");
@@ -48,7 +52,7 @@ bot.command("ping", (ctx) => ctx.reply(`Pong! ${new Date()}`));
 
 const handleUpdate = webhookCallback(bot, "std/http");
 
-serve(async (req) => {
+Deno.serve(async (req) => {
   try {
     const url = new URL(req.url);
     if (url.searchParams.get("secret") !== bot.token) {
@@ -58,6 +62,7 @@ serve(async (req) => {
   } catch (err) {
     console.error(err);
   }
+  return new Response();
 });
 ```
 

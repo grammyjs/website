@@ -3,7 +3,7 @@ prev: false
 next: false
 ---
 
-# Consultas en línea
+# Consultas en línea (incorporado)
 
 Con las consultas en línea, los usuarios pueden buscar, examinar y enviar contenido sugerido por tu bot en cualquier chat, aunque no sea miembro del mismo.
 Para ello, inician un mensaje con `@nombre_de_tu_bot` y eligen uno de los resultados.
