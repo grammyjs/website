@@ -14,11 +14,6 @@ A virtual private server, mostly known as VPS, is a virtual machine running in t
 > If you already have a VPS to work on, skip [down](#starting-the-bot).
 
 We choose [Hostinger](https://hostinger.com) as our host.
-There are several reasons for this:
-
-1. It is multilingual, so you will find it convenient and easy to use.
-2. It has a very rich documentation that thoroughly covers all the problem areas that a beginner may encounter.
-3. It offers powerful servers at fairly low prices.
 
 > You are free to choose the provider of your choice.
 > All providers provide the same services, so you won't have any problems with the technical part of this article.
