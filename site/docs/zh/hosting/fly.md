@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # 托管: Fly
 
 本指南介绍了使用 Deno 或 Node.js 在 [Fly](https://fly.io) 上托管 grammY bot 的方法。
@@ -16,7 +21,6 @@
 ::: code-group
 
 ```ts{11} [Deno]
-import { serve } from "https://deno.land/std/http/server.ts";
 import { webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 // 你可以将其修改为导入 `Bot` 对象的正确方式
 import { bot } from "./bot.ts";
@@ -24,7 +28,7 @@ import { bot } from "./bot.ts";
 const port = 8000;
 const handleUpdate = webhookCallback(bot, "std/http");
 
-serve(async (req) => {
+Deno.serve({ port }, async (req) => {
   const url = new URL(req.url);
   if (req.method === "POST" && url.pathname.slice(1) === bot.token) {
     try {
@@ -34,7 +38,7 @@ serve(async (req) => {
     }
   }
   return new Response();
-}, { port });
+});
 ```
 
 ```ts{10} [Node.js]

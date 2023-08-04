@@ -9,10 +9,12 @@ hero:
     - think of the whY.
     - a new era of bot development.
     - runs faster than you.
+    - have fun making bots.
     - one update ahead.
     - can do anything except dishes.
     - easy peasy lemon squeezY.
     - billions and billions served.
+    - powered by obsession.
   image:
     src: /images/Y.webp
     alt: grammY logo

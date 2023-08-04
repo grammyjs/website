@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Hosting: Heroku
 
 > We assume that you have the basic knowledge about creating bots using grammY.

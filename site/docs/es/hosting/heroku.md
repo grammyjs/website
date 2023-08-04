@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Alojamiento: Heroku
 
 > Asumimos que tienes los conocimientos básicos sobre la creación de bots usando grammY.

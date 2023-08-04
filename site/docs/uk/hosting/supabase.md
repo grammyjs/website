@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Хостинг: Supabase Edge Functions
 
 Цей посібник розповість вам, як ви можете розмістити ваших ботів grammY на [Supabase](https://supabase.com/).
@@ -31,7 +36,6 @@ supabase functions new telegram-bot
 Для початку ви можете скористатися цим простим прикладом бота.
 
 ```ts
-import { serve } from "https://deno.land/std/http/server.ts";
 import { Bot, webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 
 const token = Deno.env.get("BOT_TOKEN");
@@ -44,7 +48,7 @@ bot.command("ping", (ctx) => ctx.reply(`Понг! ${new Date()}`));
 
 const handleUpdate = webhookCallback(bot, "std/http");
 
-serve(async (req) => {
+Deno.serve(async (req) => {
   try {
     const url = new URL(req.url);
     if (url.searchParams.get("secret") !== bot.token) {
@@ -54,6 +58,7 @@ serve(async (req) => {
   } catch (err) {
     console.error(err);
   }
+  return new Response();
 });
 ```
 
