@@ -430,13 +430,13 @@ export const siteUk: LocaleConfig = {
           "https://github.com/grammyjs/website/edit/main/site/docs/:path",
       },
       docFooter: {
-        prev: "Попередня сторінка", 
-        next: "Наступна сторінка", 
+        prev: "Попередня сторінка",
+        next: "Наступна сторінка",
       },
       lastUpdatedText: "Востаннє оновлено",
       darkModeSwitchLabel: "Вигляд", // only displayed in the mobile view.
-      sidebarMenuLabel: "Меню",  // only displayed in the mobile view.
-      returnToTopLabel: "Повернутися до початку",  // only displayed in the mobile view.
+      sidebarMenuLabel: "Меню", // only displayed in the mobile view.
+      returnToTopLabel: "Повернутися до початку", // only displayed in the mobile view.
       langMenuLabel: "Змінити мову", // Aria-label
       socialLinks: [
         {
@@ -449,7 +449,7 @@ export const siteUk: LocaleConfig = {
         {
           link: social.github.link,
           icon: social.github.icon,
-          ariaLabel: "Посилання на репозиторій grammY", 
+          ariaLabel: "Посилання на репозиторій grammY",
         },
       ],
     },
@@ -464,7 +464,7 @@ export const searchUk: LocalSearchTranslations = {
   modal: {
     noResultsText: "Немає результатів для", // 'No result for "$keyword"'
     displayDetails: "Показати детальний список",
-    resetButtonTitle: "Скинути пошук", 
+    resetButtonTitle: "Скинути пошук",
     backButtonTitle: "Закрити пошук",
     footer: {
       selectText: "обрати", // $enter to select
