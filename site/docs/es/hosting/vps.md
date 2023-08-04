@@ -24,15 +24,15 @@ systemd es un potente gestor de servicios que viene preinstalado en muchas distr
 
 3. Tu comando de inicio debería ser como el siguiente
 
-```sh
-<ruta_de_entrada_completa> <opciones> <ruta_de_archivo_de_entrada_completa>
+   ```sh
+   <ruta_de_entrada_completa> <opciones> <ruta_de_archivo_de_entrada_completa>
 
-# Ejemplo de Deno:
-# /home/user/.deno/bin/deno --allow-all /home/user/bot1/mod.ts
+   # Ejemplo de Deno:
+   # /home/user/.deno/bin/deno --allow-all /home/user/bot1/mod.ts
 
-# Ejemplo de Node.js:
-# /home/user/.nvm/versions/node/v16.9.1/bin/node /home/user/bot1/index.js
-```
+   # Ejemplo de Node.js:
+   # /home/user/.nvm/versions/node/v16.9.1/bin/node /home/user/bot1/index.js
+   ```
 
 ### Creación del servicio
 
@@ -65,9 +65,9 @@ systemd es un potente gestor de servicios que viene preinstalado en muchas distr
 
 4. Recarga systemd cada vez que edites el servicio:
 
-```sh
-systemctl daemon-reload
-```
+   ```sh
+   systemctl daemon-reload
+   ```
 
 ### Manejando el servicio
 

@@ -187,22 +187,22 @@ bot.on("message", (ctx) => ctx.reply("Отримав інше повідомле
 1. Відкрийте посилання `https://api.telegram.org/bot<токен-бота>/getMe` в вашому улюбленному браузері. Рекомендується [Firefox](https://www.mozilla.org/en-US/firefox/), бо він чудово працює з форматом `json`.
 2. Змініть код на 4-му рядку вище і заповніть значення відповідно до результатів, отриманих з `getMe`:
 
-```ts
-const token = process.env.BOT_TOKEN;
-if (!token) throw new Error("BOT_TOKEN не вказано");
+   ```ts
+   const token = process.env.BOT_TOKEN;
+   if (!token) throw new Error("BOT_TOKEN не вказано");
 
-export const bot = new Bot(token, {
-  botInfo: {
-    id: 111111111,
-    is_bot: true,
-    first_name: "xxxxxxxxx",
-    username: "xxxxxxbot",
-    can_join_groups: true,
-    can_read_all_group_messages: false,
-    supports_inline_queries: false,
-  },
-});
-```
+   export const bot = new Bot(token, {
+     botInfo: {
+       id: 111111111,
+       is_bot: true,
+       first_name: "xxxxxxxxx",
+       username: "xxxxxxbot",
+       can_join_groups: true,
+       can_read_all_group_messages: false,
+       supports_inline_queries: false,
+     },
+   });
+   ```
 
 :::
 

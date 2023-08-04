@@ -24,15 +24,15 @@ systemd is a powerful service manager which is pre-installed on many Linux distr
 
 3. Your start command should look like the following:
 
-```sh
-<full_runtime_path> <options> <full_entry_file_path>
+   ```sh
+   <full_runtime_path> <options> <full_entry_file_path>
 
-# Deno example:
-# /home/user/.deno/bin/deno --allow-all /home/user/bot1/mod.ts
+   # Deno example:
+   # /home/user/.deno/bin/deno --allow-all /home/user/bot1/mod.ts
 
-# Node.js example:
-# /home/user/.nvm/versions/node/v16.9.1/bin/node /home/user/bot1/index.js
-```
+   # Node.js example:
+   # /home/user/.nvm/versions/node/v16.9.1/bin/node /home/user/bot1/index.js
+   ```
 
 ### Creating the Service
 
@@ -65,9 +65,9 @@ systemd is a powerful service manager which is pre-installed on many Linux distr
 
 4. Reload systemd whenever you edit the service:
 
-```sh
-systemctl daemon-reload
-```
+   ```sh
+   systemctl daemon-reload
+   ```
 
 ### Managing the Service
 

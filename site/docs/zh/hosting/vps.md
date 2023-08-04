@@ -24,15 +24,15 @@ systemd 是一个强大的服务管理器，它预安装在大多数 Linux 发�
 
 3. 你的启动命令应该像下面这样：
 
-```sh
-<完整的运行时路径> <选项> <完整的入口文件路径>
+   ```sh
+   <完整的运行时路径> <选项> <完整的入口文件路径>
 
-# Deno 样例:
-# /home/user/.deno/bin/deno --allow-all /home/user/bot1/mod.ts
+   # Deno 样例:
+   # /home/user/.deno/bin/deno --allow-all /home/user/bot1/mod.ts
 
-# Node.js 样例:
-# /home/user/.nvm/versions/node/v16.9.1/bin/node /home/user/bot1/index.js
-```
+   # Node.js 样例:
+   # /home/user/.nvm/versions/node/v16.9.1/bin/node /home/user/bot1/index.js
+   ```
 
 ### 创建服务
 
@@ -65,9 +65,9 @@ systemd 是一个强大的服务管理器，它预安装在大多数 Linux 发�
 
 4. 每当你编辑服务时，都要重新加载 systemd：
 
-```sh
-systemctl daemon-reload
-```
+   ```sh
+   systemctl daemon-reload
+   ```
 
 ### 管理服务
 

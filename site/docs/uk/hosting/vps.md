@@ -24,15 +24,15 @@ systemd --- це потужний менеджер служб, який пере
 
 3. Ваша команда запуску повинна виглядати наступним чином:
 
-```sh
-<повний-шлях-до-середовища-виконання> <параметри> <повний-шлях-до-файлу-входу>
+   ```sh
+   <повний-шлях-до-середовища-виконання> <параметри> <повний-шлях-до-файлу-входу>
 
-# Приклад для Deno:
-# /home/user/.deno/bin/deno --allow-all /home/user/bot1/mod.ts
+   # Приклад для Deno:
+   # /home/user/.deno/bin/deno --allow-all /home/user/bot1/mod.ts
 
-# Приклад для Node.js:
-# /home/user/.nvm/versions/node/v16.9.1/bin/node /home/user/bot1/index.js
-```
+   # Приклад для Node.js:
+   # /home/user/.nvm/versions/node/v16.9.1/bin/node /home/user/bot1/index.js
+   ```
 
 ### Створення служби
 
@@ -65,9 +65,9 @@ systemd --- це потужний менеджер служб, який пере
 
 4. Перезавантажуйте systemd кожного разу, коли ви редагуєте службу:
 
-```sh
-systemctl daemon-reload
-```
+   ```sh
+   systemctl daemon-reload
+   ```
 
 ### Управління службою
 

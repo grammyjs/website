@@ -24,15 +24,15 @@ systemd adalah sebuah service manager yang sudah terinstal secara bawaan di berb
 
 3. Command start kamu kurang lebih terlihat seperti ini:
 
-```sh
-<path_lengkap_runtime> <opsi> <path_lengkap_file_entry>
+   ```sh
+   <path_lengkap_runtime> <opsi> <path_lengkap_file_entry>
 
-# Contoh untuk Deno:
-# /home/user/.deno/bin/deno --allow-all /home/user/bot1/mod.ts
+   # Contoh untuk Deno:
+   # /home/user/.deno/bin/deno --allow-all /home/user/bot1/mod.ts
 
-# Contoh untuk Node.js:
-# /home/user/.nvm/versions/node/v16.9.1/bin/node /home/user/bot1/index.js
-```
+   # Contoh untuk Node.js:
+   # /home/user/.nvm/versions/node/v16.9.1/bin/node /home/user/bot1/index.js
+   ```
 
 ### Membuat Service
 
@@ -65,9 +65,9 @@ systemd adalah sebuah service manager yang sudah terinstal secara bawaan di berb
 
 4. Mulai ulang systemd setiap kali service mengalami perubahan:
 
-```sh
-systemctl daemon-reload
-```
+   ```sh
+   systemctl daemon-reload
+   ```
 
 ### Mengelola Service
 
