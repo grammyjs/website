@@ -5,7 +5,7 @@ next: false
 
 # Hosting: VPS
 
-A virtual private server, mostly known as VPS, is a virtual machine running in the cloud with its users having the full control of its system.
+A virtual private server, mostly known as VPS, is a virtual machine running in the cloud with its users having full control over the system.
 
 ## Server Rental
 
@@ -20,7 +20,7 @@ We choose [Hostinger](https://hostinger.com) as our host.
 > You can take this part as an overview of how the server rental operation works.
 > If you are a beginner, you can use this guide to rent your first ever server!
 
-::: tip Analog of a server
+::: tip Analog of a Server
 If you cannot or do not want to rent a server but you still want to play around with running a bot on a VPS, you can follow this tutorial on a virtual machine instead.
 To do this, use an application such as [VirtualBox](https://virtualbox.org).
 Create a virtual machine with the desired Linux distribution and use it as a real server.
@@ -34,7 +34,7 @@ The resources of VPS 1 are enough for bots with a small audience, and even more 
 Go back to the "VPS 1" card and click the "Add" button.
 You will be automatically redirected to the checkout page, where you will also immediately register with Hostinger.
 
-::: warning Change the rental term!
+::: warning Change the Rental Term!
 The typical lease term is 2 years (a marketing ploy), and it costs a lot of money.
 You probably don't need it, so you can start by renting a server for a month, which is much cheaper.
 
@@ -46,7 +46,7 @@ After payment, you will be able to set up your server:
 1. **Location.**
    We recommend that you choose the location closest to Amsterdam.
    It is in Amsterdam that the Telegram server is located, which is responsible for ensuring the operation of bots.
-   If you use your own Bot API server, choose the location closest to it.
+   If you use your own Bot API server, choose the location closest to it instead.
 2. **Server type.**
    Choose the option "Clean OS".
 3. **Operating system.**
@@ -511,7 +511,7 @@ This guide covers almost all of the [CI/CD pipeline](https://about.gitlab.com/to
 We will focus on writing scripts for GitHub and GitLab.
 You can easily adapt the examples below to your CI/CD service of choice, such as Jenkins, Buddy, etc., if needed.
 
-:::tip Self-hosted runner
+:::tip Self-hosted Runner
 GitHub and GitLab offer a certain amount of resources for free to complete your tasks.
 However, when setting up your pipeline, you may quickly use them all up, which will require you to pay money for additional resources or the tasks will not run.
 To prevent this from happening, we recommend installing a self-hosted runner on your computer so that tasks run on your computer.
@@ -564,6 +564,8 @@ You can now connect to the server without having to enter a password.
 
 #### Node.js (GitHub)
 
+Use
+
 ```yml
 name: Main
 
@@ -615,7 +617,7 @@ jobs:
             <start-command>
 ```
 
-where `<target-directory>` is replaced with the name of the directory where the bot build is stored on the server, and `<start-command>` with the command to start your bot, which can be a call to `pm2` or `systemctl`, for example.
+where `<target-directory>` is replaced with the name of the directory where the bot build is stored on the server, and `<start-command>` with the command to start your bot, which can for example be a call to `pm2` or `systemctl`.
 
 This script sequentially performs two tasks: `build` and `deploy`.
 After `build` is executed, the artifact of this task, namely the `dist` directory containing the bot build, is passed to the `deploy` task.
@@ -626,11 +628,13 @@ In our case, after the files are delivered, we go to the bot directory, where we
 
 Note that you need to add three [secret environment variables](https://docs.github.com/en/actions/security-guides/encrypted-secrets):
 
-1. `SSH_PRIVATE_KEY` - this is where the private SSH key you created in the [previous step](#ssh-keys) should be stored.
-2. `REMOTE_HOST` - the IP address of your server should be stored here
-3. `REMOTE_USER` - the name of the user on whose behalf the bot is launched should be stored here.
+1. `SSH_PRIVATE_KEY`---this is where the private SSH key you created in the [previous step](#ssh-keys) should be stored.
+2. `REMOTE_HOST`---the IP address of your server should be stored here
+3. `REMOTE_USER`---the name of the user on whose behalf the bot is launched should be stored here.
 
 #### Node.js (GitLab)
+
+Use
 
 ```yml
 image: node:latest
@@ -663,7 +667,7 @@ Deploy:
     - ssh $REMOTE_USER@$REMOTE_HOST "cd <target-directory> && npm i --omit=dev && <start-command>"
 ```
 
-where `<target-directory>` is replaced with the name of the directory where the bot build is stored on the server, and `<start-command>` with the command to start your bot, which can be a call to `pm2` or `systemctl`, for example.
+where `<target-directory>` is replaced with the name of the directory where the bot build is stored on the server, and `<start-command>` with the command to start your bot, which can for example be a call to `pm2` or `systemctl`.
 
 This script sequentially performs two tasks: `build` and `deploy`.
 After `build` is executed, the artifact of this task, namely the `dist` directory containing the bot build, is passed to the `deploy` task.
@@ -673,11 +677,13 @@ After the files are delivered, we connect to the server using SSH to run a comma
 
 Note that you need to add three [environment variables](https://docs.gitlab.com/ee/ci/variables):
 
-1. `SSH_PRIVATE_KEY` - this is where the private SSH key you created in the [previous step](#ssh-keys) should be stored.
-2. `REMOTE_HOST` - the IP address of your server should be stored here
-3. `REMOTE_USER` - the name of the user on whose behalf the bot is launched should be stored here.
+1. `SSH_PRIVATE_KEY`---this is where the private SSH key you created in the [previous step](#ssh-keys) should be stored.
+2. `REMOTE_HOST`---the IP address of your server should be stored here
+3. `REMOTE_USER`---the name of the user on whose behalf the bot is launched should be stored here.
 
 #### Deno (GitHub)
+
+Use
 
 ```yml
 name: Main
@@ -708,7 +714,7 @@ jobs:
             <start-command>
 ```
 
-where `<target-directory>` is replaced with the name of the directory where the bot build is stored on the server, and `<start-command>` with the command to start your bot, which can be a call to `pm2` or `systemctl`, for example.
+where `<target-directory>` is replaced with the name of the directory where the bot build is stored on the server, and `<start-command>` with the command to start your bot, which can for example be a call to `pm2` or `systemctl`.
 
 This script sends files to the server using the `rsync` utility, which is implemented by `easingthemes/ssh-deploy`.
 After the files are delivered to the server, the command described in the `SCRIPT_AFTER` environment variable is executed.
@@ -716,11 +722,13 @@ In our case, after the files are delivered, we go to the bot's directory and res
 
 Note that you need to add three [secret environment variables](https://docs.github.com/en/actions/security-guides/encrypted-secrets):
 
-1. `SSH_PRIVATE_KEY` - this is where the private SSH key you created in the [previous step](#ssh-keys) should be stored.
-2. `REMOTE_HOST` - the IP address of your server should be stored here
-3. `REMOTE_USER` - the name of the user on whose behalf the bot is launched should be stored here.
+1. `SSH_PRIVATE_KEY`---this is where the private SSH key you created in the [previous step](#ssh-keys) should be stored.
+2. `REMOTE_HOST`---the IP address of your server should be stored here
+3. `REMOTE_USER`---the name of the user on whose behalf the bot is launched should be stored here.
 
 #### Deno (GitLab)
+
+Use
 
 ```yml
 image: denoland/deno:latest
@@ -744,7 +752,7 @@ Deploy:
     - ssh $REMOTE_USER@$REMOTE_HOST "cd <target-directory> && npm i --omit=dev && <start-command>"
 ```
 
-where `<target-directory>` is replaced with the name of the directory where the bot build is stored on the server, and `<start-command>` with the command to start your bot, which can be a call to `pm2` or `systemctl`, for example.
+where `<target-directory>` is replaced with the name of the directory where the bot build is stored on the server, and `<start-command>` with the command to start your bot, which can for example be a call to `pm2` or `systemctl`.
 
 This script sends files to the server using the `rsync` utility, which is implemented by `easingthemes/ssh-deploy`.
 After the files are delivered to the server, the command described in the `SCRIPT_AFTER` environment variable is executed.
@@ -752,9 +760,9 @@ In our case, after the files are delivered, we go to the bot's directory and res
 
 Note that you need to add three [environment variables](https://docs.gitlab.com/ee/ci/variables):
 
-1. `SSH_PRIVATE_KEY` - this is where the private SSH key you created in the [previous step](#ssh-keys) should be stored.
-2. `REMOTE_HOST` - the IP address of your server should be stored here
-3. `REMOTE_USER` - the name of the user on whose behalf the bot is launched should be stored here.
+1. `SSH_PRIVATE_KEY`---this is where the private SSH key you created in the [previous step](#ssh-keys) should be stored.
+2. `REMOTE_HOST`---the IP address of your server should be stored here
+3. `REMOTE_USER`---the name of the user on whose behalf the bot is launched should be stored here.
 
 You should now see how every code push to the `main` branch will automatically be deployed to your VPS.
 Development go brrrrr :rocket:
