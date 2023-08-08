@@ -341,7 +341,7 @@ Si realmente quieres almacenar datos de usuario como un identificador de fichero
 
 Además, tenga en cuenta que la carga útil siempre se genera basándose en el objeto de contexto actual.
 Esto significa que importa _desde_ dónde se navega al menú, lo que puede dar lugar a resultados sorprendentes.
-Por ejemplo, cuando un menú está [desactualizado](#menus-y-huellas-anticuadas), se volverá a renderizar _basándose en el clic del botón del menú desactualizado_.
+Por ejemplo, cuando un menú está [desactualizado](#menús-y-huellas-anticuadas), se volverá a renderizar _basándose en el clic del botón del menú desactualizado_.
 :::
 
 Payloads también funcionan bien junto con los rangos dinámicos.
