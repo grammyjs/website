@@ -27,7 +27,7 @@ A documentação do grammY é dividida em três camadas.
 A seção _Aprenda_ é sempre um bom start.
 Mas também passe pela nossa grande coleção de _Plugins_, e dê uma olhada nos _Exemplos_.
 
-**A segunda parte** é a  [referência da API do grammY](https://deno.land/x/grammy/mod.ts), linkado no topo da página.
+**A segunda parte** é a [referência da API do grammY](https://deno.land/x/grammy/mod.ts), linkado no topo da página.
 É uma visão geral bem detalhada de cada pedacinho de código que o grammY fornece.
 É gerada automaticamente a partir do código do grammY e contém todas as explicações úteis das dicas de ferramenta, que são geralmente encontradas quando você passa seu cursor sobre um elemento do grammY em um editor de código.
 
