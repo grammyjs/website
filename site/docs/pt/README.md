@@ -4,7 +4,7 @@ titleTemplate: false
 
 hero:
   name: grammY
-  text: O Framework de Bots do Telegram.
+  text: O Framework de Bots para o Telegram.
   taglines: 
     - lembre-se do Y.
     - uma nova era de desenvolvimento de bots.
@@ -20,7 +20,7 @@ hero:
     alt: logo do grammY
   actions:
     - theme: brand
-      text: Primeiros passos
+      text: Primeiros Passos
       link: ./guide/getting-started
     - theme: alt
       text: Introdução
@@ -100,7 +100,7 @@ Funciona! :tada:
 
 <div style="font-size: 0.75rem; display: flex; justify-content: center;">
 
-© 2021-2023 &middot; grammY suporta a API de bots do Telegram 6.7 que foi [lançada](https://core.telegram.org/bots/api#april-21-2023) em 21 de Abril de 2023.
+© 2021-2023 &middot; grammY suporta a API de bots para o Telegram 6.7 que foi [lançada](https://core.telegram.org/bots/api#april-21-2023) em 21 de Abril de 2023.
 (Último destaque: múltiplos nomes de bot, emojis customizáveis e melhor inline queries)
 
 </div>
