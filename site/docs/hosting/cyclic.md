@@ -50,7 +50,7 @@ After that, open `tsconfig.json` and change it to use this configuration:
 {
   "compilerOptions": {
     "outDir": "dist",
-    "srcDir": "./src",
+    "rootDir": "./src",
     "esModuleInterop": true,
     "strict": true
   }
@@ -81,7 +81,7 @@ Our `package.json` should now be similar to this:
     "@types/node-fetch": "^2.6.4",
     "typescript": "^5.1.6"
   },
-  "keywords": [],
+  "keywords": []
 }
 ```
 
@@ -89,7 +89,7 @@ Our `package.json` should now be similar to this:
 
 > Remember that you should not call `bot.start()` in your code when using webhooks.
 
-Create a file named `app.ts`, or actually any name you like (but you should be remembering and using this as the main file to deploy), with the following content:
+Create a file named `app.ts` in the src directory, or actually any name you like (but you should be remembering and using this as the main file to deploy), with the following content:
 
 ```ts{10} [Node.js]
 import express from 'express';
