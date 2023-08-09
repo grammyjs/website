@@ -341,7 +341,7 @@ const hostingTutorials = {
       link: "/hosting/vercel",
     },
     {
-      text: "Cyclic.sh",
+      text: "Cyclic",
       link: "/hosting/cyclic",
     },
     {

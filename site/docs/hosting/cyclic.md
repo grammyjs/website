@@ -3,13 +3,13 @@ prev: false
 next: false
 ---
 
-# Hosting: Cyclic.sh
+# Hosting: Cyclic
 
-This guide tells you about the ways you can host your grammY bots on [Cyclic.sh](https://cyclic.sh/), using Node.js.
+This guide tells you about the ways you can host your grammY bots on [Cyclic](https://cyclic.sh/), using Node.js.
 
 ## Prerequisites
 
-To follow along, you need to have a [Github](https://github.com/) and [Cyclic.sh](https://cyclic.sh/) account.
+To follow along, you need to have a [Github](https://github.com/) and [Cyclic](https://cyclic.sh/) account.
 First, install some dependencies:
 
 ```sh
@@ -137,7 +137,7 @@ Nodemon will watch your `index.ts` file and restart your bot on every code chang
 
 > It is recommended that you have a single stable branch and you do your testing stuff in other branches, so that you won't get some unexpected things happen.
 
-1. Visit your [Cyclic.sh dashboard](https://app.cyclic.sh).
+1. Visit your [Cyclic dashboard](https://app.cyclic.sh).
 2. Click on "Link Your Own" and choose your repository.
 3. Click on "Advanced", then "Variables" and add your `BOT_TOKEN`.
 4. Click on "Connect Cyclic" to deploy your bot.
