@@ -7,4 +7,5 @@ export const notFound: Record<string, NotFound> = {
   ...config.notFoundEs,
   ...config.notFoundUk,
   ...config.notFoundZh,
+  ...config.notFoundPt,
 };
