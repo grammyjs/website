@@ -6,7 +6,7 @@ hero:
   name: grammY
   text: O Framework de Bots para o Telegram.
   taglines: 
-    - lembre-se do Y.
+    - pense nos porquês.
     - uma nova era de desenvolvimento de bots.
     - funciona mais rápido que você.
     - divirta-se criando bots.
