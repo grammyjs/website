@@ -29,7 +29,7 @@ hero:
 features:
   - icon: <img class="VPImage" src="/icons/beach-animation.webp" alt="animação de praia" width="32" height="32">
     title: Fácil de usar
-    details: grammY torna criar bots do Telegram tão simples que você já sabe como fazer isso.
+    details: O grammY torna criar bots do Telegram tão simples que você já sabe como fazer isso.
   - icon: <img class="VPImage" src="/icons/palette-animation.webp" alt="animação de paleta de cores" width="32" height="32">
     title: Flexível
     details: grammY é aberto e pode ser extendido por plugins para caber exatamente nas suas necessidades.
