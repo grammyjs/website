@@ -19,10 +19,10 @@ cd grammy-bot
 npm init --y
 
 # Install main dependencies.
-npm install grammy express
+npm install grammy express dotenv
 
 # Install development dependencies.
-npm install -D typescript @types/express @types/node
+npm install -D typescript ts-node nodemon @types/express @types/node
 
 # Create TypeScript config.
 npx tsc --init
@@ -58,7 +58,7 @@ After that, open `tsconfig.json` and change it to use this configuration:
 }
 ```
 
-And then we have to add a `start` and `build` script to our `package.json`.
+And then we have to add `start`, `build` and `dev` scripts to our `package.json`.
 Our `package.json` should now be similar to this:
 
 ```json{6}
@@ -69,7 +69,8 @@ Our `package.json` should now be similar to this:
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "dev": "nodemon src/index.ts"
   },
   "license": "ISC",
   "dependencies": {
@@ -88,28 +89,46 @@ Our `package.json` should now be similar to this:
 
 ### Webhooks
 
-> Remember that you should not call `bot.start()` in your code when using webhooks.
-
 Create a file named `app.ts` in the src directory, or actually any name you like (but you should be remembering and using this as the main file to deploy), with the following content:
 
 ```ts{10} [Node.js]
-import express from 'express';
+import express from "express";
 import { Bot, webhookCallback } from "grammy";
+import "dotenv/config";
 
 const bot = new Bot(process.env.BOT_TOKEN || "");
 
 bot.command("start", (ctx) => ctx.reply("Hello World!"))
 
-const port = process.env.PORT || 3000;
-const app = express();
-app.use(express.json());
-app.use(`/${bot.token}`, webhookCallback(bot, "express"));
-
-app.listen(port, () => console.log(`listening on port ${port}`));
+if (process.env.NODE_ENV === "DEVELOPMENT") {
+	bot.start();
+} else {
+	const port = process.env.PORT || 3000;
+	const app = express();
+	app.use(express.json());
+	app.use(`/${bot.token}`, webhookCallback(bot, "express"));
+	app.listen(port, () => console.log(`listening on port ${port}`));
+}
 ```
 
 We advise you to have your handler on some secret path rather than the root (`/`).
 As shown in the highlighted line above, we are using the bot token (`/<bot token>`) as the secret path.
+
+### Local Development
+
+Create a `.env` file at the root of your project with the following content:
+```
+BOT_TOKEN = <Your-Bot-Token>
+NODE_ENV = DEVELOPMENT
+```
+
+And then run the following command:
+```shell
+npm run dev
+```
+
+Nodemon will watch your `index.ts` file and restart your bot on every code change.
+
 
 ## Deploying
 
