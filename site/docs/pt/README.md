@@ -29,13 +29,13 @@ hero:
 features:
   - icon: <img class="VPImage" src="/icons/beach-animation.webp" alt="animação de praia" width="32" height="32">
     title: Fácil de usar
-    details: grammY torna criar bots do Telegram tão simples que você já sabe como fazer isso.
+    details: O grammY torna criar bots do Telegram tão simples que você já sabe como fazer isso.
   - icon: <img class="VPImage" src="/icons/palette-animation.webp" alt="animação de paleta de cores" width="32" height="32">
     title: Flexível
-    details: grammY é aberto e pode ser extendido por plugins para caber exatamente nas suas necessidades.
+    details: O grammY é aberto e pode ser extendido por plugins para caber exatamente nas suas necessidades.
   - icon: <img class="VPImage" src="/icons/rocket-animation.webp" alt="animação de foguete" width="32" height="32">
     title: Escalável
-    details: grammY te dá cobertura quando o seu bot fica popular e o tráfego aumenta.
+    details: O grammY te dá cobertura quando o seu bot fica popular e o tráfego aumenta.
 ---
 
 <HomeContent>
@@ -100,7 +100,7 @@ Funciona! :tada:
 
 <div style="font-size: 0.75rem; display: flex; justify-content: center;">
 
-© 2021-2023 &middot; grammY suporta a API de bots para o Telegram 6.7 que foi [lançada](https://core.telegram.org/bots/api#april-21-2023) em 21 de Abril de 2023.
+© 2021-2023 &middot; O grammY suporta a API de bots para o Telegram 6.7 que foi [lançada](https://core.telegram.org/bots/api#april-21-2023) em 21 de Abril de 2023.
 (Último destaque: múltiplos nomes de bot, emojis customizáveis e melhor inline queries)
 
 </div>
