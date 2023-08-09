@@ -22,7 +22,7 @@ npm init --y
 npm install grammy express
 
 # Install development dependencies.
-npm install -D typescript @types/express @types/node @types/node-fetch
+npm install -D typescript @types/express @types/node
 
 # Create TypeScript config.
 npx tsc --init
@@ -52,6 +52,7 @@ After that, open `tsconfig.json` and change it to use this configuration:
     "outDir": "dist",
     "rootDir": "./src",
     "esModuleInterop": true,
+    "skipLibCheck": true,
     "strict": true
   }
 }
