@@ -380,7 +380,7 @@ export const sitePt: LocaleConfig = {
                   link: "https://github.com/grammyjs/awesome-grammY",
                 },
                 {
-                  text: "Repositorio de Bots de Exemplo",
+                  text: "Repositório de Bots de Exemplo",
                   link: "https://github.com/grammyjs/examples",
                 },
               ],
@@ -513,8 +513,8 @@ export const searchPt: Record<string, Partial<DocSearchProps>> = {
 export const notFoundPt: Record<string, NotFound> = {
   root: {
     title: "PÁGINA NÃO ENCONTRADA",
-    backToHome: "Me leve pra casa",
-    ariaLabel: "Go to home",
+    backToHome: "Ir para o início",
+    ariaLabel: "Ir para o início",
     messages: [
       "Eita! Essa página não existe.",
       "Não.",
