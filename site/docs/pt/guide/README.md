@@ -34,7 +34,7 @@ A seção _Aprenda_ é sempre um bom start, mas também vale a pena conferir nos
 A referência de API do grammY aponta pra lá sempre que faz sentido.
 Dê uma olhada lá quando estiver interessado em opções detalhadas que você pode passar para chamadas de API.
 
-::: dica: Entre na Comunidade!
+::: tip: Entre na Comunidade!
 Nós temos um [chat da comunidade](https://t.me/grammyjs) amigável no Telegram que é bem receptivo com novos membros. (Você pode encontrar o chat russo [aqui](https://t.me/grammyjs_ru).)
 Junte-se a nós para receber ajuda, fazer perguntas e aprender dicas e macetes para o seu próximo projeto de bot.
 :::
