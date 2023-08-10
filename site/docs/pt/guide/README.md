@@ -14,7 +14,7 @@ Dê uma olhada na [Introdução](./introduction) se você está começando no mu
 
 Se você sabe como escrever uma aplicação em Node.js ou Deno ou já criou algum bot do Telegram com outro framework para bots, comece em poucos minutos com o nosso guia de [Primeiros Passos](./getting-started).
 
-## Sobre a documentação
+## Sobre a Documentação
 
 A documentação do grammY é dividida em três camadas.
 
