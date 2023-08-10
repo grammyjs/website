@@ -65,13 +65,13 @@ Sua estrutura de diretórios deve ficar mais ou menos assim:
 └── tsconfig.json
 ```
 
-Agora, é hora de abrir o Telegram para criar uma conta de bot e obter um token de bot para ele.
+Agora, é hora de abrir o Telegram para criar um bot e obter um token para ele.
 Fale com o [@BotFather](https://t.me/BotFather) para fazer isso.
 O token do bot é algo como `123456:aBcDeF_gHiJkLmNoP-q`.
 Ele é usado para autenticar seu bot.
 
 Pegou o token? Agora você pode escrever o código do seu bot no arquivo `bot.ts`.
-Você pode copiar o seguinte bot de exemplo para esse arquivo, e passar seu token para o construtor `Bot`:
+Copie o seguinte bot de exemplo para esse arquivo, e passar seu token para o construtor `Bot`:
 
 ::: code-group
 
@@ -85,7 +85,7 @@ const bot = new Bot(""); // <-- coloque o token do seu bot entre ""
 // O grammY irá chamar os listeners quando usuários enviarem mensagens para seu bot.
 
 // Trata o comando /start.
-bot.command("start", (ctx) => ctx.reply("Boas vindas! Online e roteando 😎"));
+bot.command("start", (ctx) => ctx.reply("Boas vindas! Online e roteando :sunglasses:"));
 // Trata outras mensagens.
 bot.on("message", (ctx) => ctx.reply("Chegou outra mensagem!"));
 
@@ -162,13 +162,13 @@ cd ./meu-bot
 touch bot.ts
 ```
 
-Agora, é hora de abrir o Telegram para criar uma conta de bot e obter um token de bot para ele.
+Agora, é hora de abrir o Telegram para criar um bot e obter um token para ele.
 Fale com o [@BotFather](https://t.me/BotFather) para fazer isso.
 O token do bot é algo como `123456:aBcDeF_gHiJkLmNoP-q`.
 Ele é usado para autenticar seu bot.
 
 Pegou o token? Agora você pode escrever o código do seu bot no arquivo `bot.ts`.
-Você pode copiar o seguinte bot de exemplo para esse arquivo, e passar seu token para o construtor `Bot`:
+Copie o seguinte bot de exemplo para esse arquivo, e passar seu token para o construtor `Bot`:
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
