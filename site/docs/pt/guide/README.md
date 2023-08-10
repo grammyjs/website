@@ -24,8 +24,7 @@ A documentação do grammY é dividida em três camadas.
 
 **A primeira parte** (você está olhando pra ela!) explica como os bots funcionam e como usar o grammY.
 É o que você vai ver com mais frequência.
-A seção _Aprenda_ é sempre um bom start.
-Mas também passe pela nossa grande coleção de _Plugins_, e dê uma olhada nos _Exemplos_.
+A seção _Aprenda_ é sempre um bom start, mas também vale a pena conferir nossa grande coleção de _Plugins_, e dar uma olhada nos _Exemplos_.
 
 **A segunda parte** é a [referência da API do grammY](https://deno.land/x/grammy/mod.ts), linkado no topo da página.
 É uma visão geral bem detalhada de cada pedacinho de código que o grammY fornece.
