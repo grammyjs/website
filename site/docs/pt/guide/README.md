@@ -36,5 +36,5 @@ Dê uma olhada lá quando estiver interessado em opções detalhadas que você p
 
 ::: dica: Entre na Comunidade!
 Nós temos um [chat da comunidade](https://t.me/grammyjs) amigável no Telegram que é bem receptivo com novos membros. (Você pode encontrar o chat russo [aqui](https://t.me/grammyjs_ru).)
-Junte-se a nós para receber assistência, fazer perguntas e aprender dicas e macetes para o seu próximo projeto com bot.
+Junte-se a nós para receber ajuda, fazer perguntas e aprender dicas e macetes para o seu próximo projeto de bot.
 :::
