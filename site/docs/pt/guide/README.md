@@ -2,7 +2,7 @@
 
 # Visão Geral
 
-Bem-vindo ao grammY!
+Boas vindas ao grammY!
 Você veio para o lugar certo.
 
 ## O Que É o grammY?
