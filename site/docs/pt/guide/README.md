@@ -18,7 +18,7 @@ Se você sabe como escrever uma aplicação em Node.js ou Deno ou já criou algu
 
 A documentação do grammY é dividida em três camadas.
 
-1. Documentação do grammY de alto nível _(this website)_
+1. Documentação do grammY de alto nível _(este site)_
 2. [Referência da API de baixo nível do grammY](https://deno.land/x/grammy/mod.ts)
 3. [Referência da API HTTP bruta do Telegram](https://core.telegram.org/bots/api)
 
