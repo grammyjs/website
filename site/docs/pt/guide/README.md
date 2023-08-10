@@ -28,7 +28,7 @@ A seção _Aprenda_ é sempre um bom start, mas também vale a pena conferir nos
 
 **A segunda parte** é a [referência de API do grammY](https://deno.land/x/grammy/mod.ts), linkado no topo da página.
 É uma visão detalhada de cada pedacinho de código que o grammY fornece.
-É gerada automaticamente a partir do código do grammY e contém todas as explicações úteis das dicas de ferramenta, que são geralmente encontradas quando você passa seu cursor sobre um elemento do grammY em um editor de código.
+É gerada automaticamente a partir do código do grammY e contém todas as explicações úteis que são geralmente encontradas quando você passa seu cursor sobre um elemento do grammY em um editor de código.
 
 **A terceira parte** é fornecida pelo Telegram e lista as definições brutas da [API HTTP](https://core.telegram.org/bots/api) à qual o grammY vai se conectar por debaixo dos panos.
 A referência de API do grammY aponta pra lá sempre que faz sentido.
