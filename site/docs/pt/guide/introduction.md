@@ -207,4 +207,4 @@ Se você tá se sentindo confuso nesse momento, você deve deixar Node.js pra tr
 
 Ainda confiante?
 Ótimo!
-[Primeiros Passos](./getting-started#getting-started-on-node-js)! :robot:
+[Bora Começar](./getting-started#getting-started-on-node-js)! :robot:
