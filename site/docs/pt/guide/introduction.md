@@ -99,7 +99,7 @@ Para nós, existem dois ambientes de execução para escolher, [Deno](https://de
 
 O Node.js é uma tecnologia mais velha e madura.
 Se você precisa se conectar a um banco de dados diferente ou outras coisas de baixo nível relacionadas ao sistema, muito provavelmente você vai conseguir fazer isso com Node.js.
-Deno é relativamente novo, então as vezes ainda falta suporte para algumas coisas avançadas.
+O Deno é relativamente novo, então as vezes ainda falta suporte para algumas coisas avançadas.
 Hoje em dia, muitos servidores utilizam Node.js.
 
 Por outro lado, Deno é significativamente mais fácil de aprender e usar.
