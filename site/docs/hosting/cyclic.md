@@ -43,7 +43,7 @@ Your project's root directory should now look like this:
 └── tsconfig.json
 ```
 
-After that, open `tsconfig.json` and change it to use this configuration:
+Then, open `tsconfig.json`, and rewrite its contents to use this configuration:
 
 ```json
 {
