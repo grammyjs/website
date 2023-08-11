@@ -10,7 +10,7 @@ This guide tells you how you can host your grammY bots on [Cyclic](https://cycli
 ## Prerequisites
 
 To follow along, you need to have a [Github](https://github.com/) and [Cyclic](https://cyclic.sh/) account.
-First, install some dependencies:
+First, initialize your project and install some dependencies:
 
 ```sh
 # Create a project directory.
