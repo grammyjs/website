@@ -74,13 +74,15 @@ Our `package.json` should now be similar to this:
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
-    "grammy": "^1.17.2"
+    "grammy": "^1.17.2",
+    "dotenv": "^16.3.1"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
     "@types/node": "^20.4.9",
-    "@types/node-fetch": "^2.6.4",
     "typescript": "^5.1.6"
+    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1"
   },
   "keywords": []
 }
