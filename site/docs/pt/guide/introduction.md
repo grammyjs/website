@@ -61,7 +61,7 @@ Bots interagem com o telegram via requisições HTTP.
 Toda vez que seu bot envia ou recebe mensagens, requisições HTTP vão e voltam entre os servidores do Telegram e o seu servidor/computador.
 
 Por debaixo dos panos, o grammY implementa toda essa comunicação pra você, de modo que você pode simplesmente digitar `sendMessage` no seu código e a mensagem será enviada.
-Além disso, tem uma variedade de outras coisas úteis que o grammY para deixar mais simples criar seu bot.
+Além disso, tem uma variedade de outras coisas úteis que o grammY faz para deixar mais simples criar seu bot.
 Você vai conhecê-las conforme avançar.
 
 ## Pré-Requisitos para os Primeiros Passos
