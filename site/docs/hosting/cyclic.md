@@ -13,7 +13,7 @@ To follow along, you need to have a [Github](https://github.com/) and [Cyclic](h
 First, initialize your project and install some dependencies:
 
 ```sh
-# Create a project directory.
+# Initialize the project.
 mkdir grammy-bot
 cd grammy-bot
 npm init -y
