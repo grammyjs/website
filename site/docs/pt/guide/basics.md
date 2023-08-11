@@ -67,13 +67,13 @@ bot.hears("ping", async (ctx) => {
 });
 ```
 
-> Note que apenas enviar a mensagem através do `ctx.reply` **NÃO** significa que você está de fato respondendo a nada.
+> Note que apenas enviar a mensagem através do `ctx.reply` **NÃO** significa que você está de fato respondendo alguma coisa.
 > Ao invés disso, você precisa especificar `reply_to_message_id` para que isso aconteça.
 > A função `ctx.reply` é apenas um atalho para `ctx.api.sendMessage`, veja a [próxima seção](./context#available-actions)
 
 ## Enviando Mensagens Com Formatação
 
-> Veja a [seção sobre opções de formatação](https://core.telegram.org/bots/api#formatting-options) na Referência da API de Bots do Telegram crida pelo time do Telegram.
+> Veja a [seção sobre opções de formatação](https://core.telegram.org/bots/api#formatting-options) na Referência da API de Bots do Telegram criada pelo time do Telegram.
 
 Você pode enviar mensagens com texto em **negrito** ou _itálico_, usar URLs, e mais.
 Existem duas formas de fazer isso, conforme descrito na [seção sobre opções de formatação](https://core.telegram.org/bots/api#formatting-options), que são Markdown e HTML.
