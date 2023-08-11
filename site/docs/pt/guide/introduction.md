@@ -97,7 +97,7 @@ Para nós, existem dois ambientes de execução para escolher, [Deno](https://de
 > O resto dessa seção te ajuda a decidir entre essas duas plataformas.
 > Se você já sabe o que quer usar, pule para os [pré-requisitos para Node.js](#pré-requisitos-para-o-node-js) ou [para Deno](#pré-requisitos-para-o-deno).
 
-Node.js é uma tecnologia mais velha e madura.
+O Node.js é uma tecnologia mais velha e madura.
 Se você precisa se conectar a um banco de dados diferente ou outras coisas de baixo nível relacionadas ao sistema, muito provavelmente você vai conseguir fazer isso com Node.js.
 Deno é relativamente novo, então as vezes ainda falta suporte para algumas coisas avançadas.
 Hoje em dia, muitos servidores utilizam Node.js.
