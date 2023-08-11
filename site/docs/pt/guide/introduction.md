@@ -75,7 +75,7 @@ A documentação do grammY não vai te ensinar a programar, então esperamos que
 Mas lembre-se: Criar bots para Telegram com o grammY é na verdade uma ótima forma de aprender a programar! :rocket:
 
 ::: tip Como Aprender a Programar
-Você pode começar a aprender TypeScript com o [tutorial oficial](<https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html>) escrito pelo time do TypeScript e, depois, continuar a partir daí.
+Você pode começar a aprender TypeScript com o [tutorial oficial](<https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html>) escrito pelo time do TypeScript e continuar a partir daí.
 Não gaste mais do que 30 minutos lendo coisas na internet, então volte aqui, (leia o resto da seção) e dê seus [primeiros passos](./getting-started).
 
 Se você vir alguma sintaxe estranha na documentação, ou se receber uma mensagem de erro que você não entende, pesquise ela no google---a explicação já está na internet (por exemplo, no site Stack Overflow).
