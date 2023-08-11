@@ -134,7 +134,7 @@ Isso significa instalar algumas ferramentas.
 [Instale o Deno](https://deno.com/manual/getting_started/installation#download-and-install), caso não tenha feito isso ainda.
 
 Você também precisa de um editor de texto que funciona bem com programação.
-O melhor para o Deno é o Visual Studio Code, geralmente chamado de apenas VS Code.
+O melhor para o Deno é o Visual Studio Code, geralmente chamado apenas de VS Code.
 [Instale ele.](https://code.visualstudio.com)
 
 Depois, você precisa conectar o VS Code ao Deno.
