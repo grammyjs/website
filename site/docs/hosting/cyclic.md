@@ -28,7 +28,7 @@ npm install -D typescript ts-node nodemon @types/express @types/node
 npx tsc --init
 ```
 
-We will store our TypeScript files inside a folder `src`, and our compiled files in a folder `dist`.
+We will store our TypeScript files inside `src/`, and our compiled files in `dist/`.
 Create the folders in the project's root directory.
 Then, inside folder `src`, create a new file named `bot.ts`.
 Our folder structure should now look like this:
