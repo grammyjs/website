@@ -16,7 +16,7 @@ First, install some dependencies:
 # Create a project directory.
 mkdir grammy-bot
 cd grammy-bot
-npm init --y
+npm init -y
 
 # Install main dependencies.
 npm install grammy express dotenv
