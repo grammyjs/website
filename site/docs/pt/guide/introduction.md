@@ -24,7 +24,7 @@ Já tá quase acabando…
 ## Como Manter um Bot Rodando
 
 …a não ser que você esteja levando o seu projeto a sério.
-Se você parar o seu bot (ou desligar o seu computador), seu bot congela e não vai responder à nenhuma mensagem.
+Se você parar o seu bot (ou desligar o seu computador), seu bot congela e não vai responder a nenhuma mensagem.
 
 > Pule essa seção se você só quer brincar com bots, e [continue aqui em baixo com os pré-requisitos](#pré-requisitos-para-os-primeiros-passos) para os primeiros passos.
 
