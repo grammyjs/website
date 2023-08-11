@@ -201,7 +201,7 @@ Se você nunca fez isso antes, espere se meter em problemas bem confusos que sã
 É por isso que nós meio que esperamos que você saiba configurar seu sistema, ou pelo menos que saiba aprender sozinho.
 (Instalar Node.js _da forma correta_ é tão complicado que não cabe aqui nessa página.)
 
-Se você tá se sentindo confuso nesse momento, você deve deixar Node.js pra trás e usar o [Deno](#pré-requisitos-para-o-deno) no lugar.
+Se você tá se sentindo confuso nesse momento, aconselhamos deixar o Node.js pra trás e usar o [Deno](#pré-requisitos-para-o-deno) no lugar.
 
 :::
 
