@@ -5,7 +5,7 @@ Qualquer pessoa pode criar um bot do Telegram, o único pré-requisito é que vo
 
 > Se você já sabe como criar bots, avance para os [Primeiros Passos](./getting-started)!
 
-grammY é uma biblioteca que torna a criação desses bots uma tarefa bem simples.
+O grammY é uma biblioteca que torna a criação desses bots uma tarefa bem simples.
 
 ## Como Escrever um Bot
 
