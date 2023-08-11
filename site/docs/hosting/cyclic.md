@@ -24,7 +24,7 @@ npm install grammy express dotenv
 # Install development dependencies.
 npm install -D typescript ts-node nodemon @types/express @types/node
 
-# Create TypeScript config.
+# Initialize TypeScript config.
 npx tsc --init
 ```
 
