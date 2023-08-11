@@ -65,11 +65,11 @@ Our `package.json` should now be similar to this:
   "name": "grammy-bot",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "main": "dist/bot.js",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/index.js",
-    "dev": "nodemon src/index.ts"
+    "start": "node dist/bot.js",
+    "dev": "nodemon src/bot.ts"
   },
   "license": "ISC",
   "dependencies": {
@@ -90,7 +90,7 @@ Our `package.json` should now be similar to this:
 
 ### Webhooks
 
-Create a file named `app.ts` in the src directory, or actually any name you like (but you should be remembering and using this as the main file to deploy), with the following content:
+Open up the `bot.ts` file located in your `src` directory and paste the following content:
 
 ```ts{10} [Node.js]
 import express from "express";
@@ -128,7 +128,7 @@ And then run the following command:
 npm run dev
 ```
 
-Nodemon will watch your `index.ts` file and restart your bot on every code change.
+Nodemon will watch your `bot.ts` file and restart your bot on every code change.
 
 
 ## Deploying
