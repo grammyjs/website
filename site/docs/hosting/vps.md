@@ -48,7 +48,7 @@ After payment, you will be able to set up your server:
    It is in Amsterdam that the Telegram server is located, which is responsible for ensuring the operation of bots.
    If you use your own Bot API server, choose the location closest to it instead.
 2. **Server type.**
-   Choose the option "Clean OS".
+   Choose the option "Clean OS."
 3. **Operating system.**
    We will use Ubuntu 22.04.
    If you choose a different system, some steps may be different, so be careful.
@@ -61,18 +61,18 @@ After payment, you will be able to set up your server:
 
 After the server is created, you can connect to it using SSH:
 
-> SSH (_Secure Shell_) is a network protocol for remote control of a computer (server) and file transfer.
+> SSH (_Secure Shell_) is a network protocol that can be used to remotely control a computer.
 
 ```sh
 ssh root@<ip-address>
 ```
 
-> Replace `<ip-address>` with the IP address of your server, which you can find on the server management page.
+> Replace `<ip-address>` with the IP address of your server which you can find on the server management page.
 
 ::: tip Configuring SSH
 It can be difficult and tedious to remember which IP address and whose name you need to connect to a server.
 To eliminate these routine steps and improve your server experience, you can configure SSH by creating a `~/.ssh/config` (<https://linuxhandbook.com/ssh-config-file>) file on your computer that stores all the data you need to connect to the server under certain arbitrary identifiers.
-This is beyond the scope of this article, so you will need to configure it yourself.
+This is beyond the scope of this article, so you'll have to configure it yourself.
 :::
 
 ::: tip Separate User for Each Application
