@@ -5,7 +5,7 @@ next: false
 
 # Hosting: Cyclic
 
-This guide tells you how you can host your grammY bots on [Cyclic](https://cyclic.sh/).
+This guide tells you how you can host your grammY bots on [Cyclic](https://cyclic.sh).
 
 ## Prerequisites
 
