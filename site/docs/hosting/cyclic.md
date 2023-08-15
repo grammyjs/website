@@ -147,7 +147,7 @@ Nodemon will watch your `bot.ts` file and restart your bot on every code change.
 
 ### Setting the Webhook URL
 
-If you are using webhooks, after getting your app running, you should configure your bot's webhook settings to point to your app.
+If you are using webhooks, after your first deployment, you should configure your bot's webhook settings to point to your app.
 To do that, send a request to
 
 ```text
