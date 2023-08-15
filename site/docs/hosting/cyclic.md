@@ -141,7 +141,7 @@ Nodemon will watch your `bot.ts` file and restart your bot on every code change.
 > It is recommended that you have a single stable branch and you do your testing in separate branches, so that you won't land unexpected behaviors to production.
 
 1. Visit your [Cyclic dashboard](https://app.cyclic.sh).
-2. Click on "Link Your Own" and choose your repository.
+2. Click "Link Your Own" and select your repository.
 3. Click on "Advanced", then "Variables" and add your `BOT_TOKEN`.
 4. Click on "Connect Cyclic" to deploy your bot.
 
