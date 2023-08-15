@@ -112,7 +112,7 @@ if (process.env.NODE_ENV === "DEVELOPMENT") {
 }
 ```
 
-We advise you to have your handler on some secret path rather than the root (`/`).
+We recommend that you have your webhook handler on a secret path rather than `/`.
 As shown in the highlighted line above, we are using the bot token (`/<bot token>`) as the secret path.
 
 ### Local Development
