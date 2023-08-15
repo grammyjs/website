@@ -124,7 +124,8 @@ BOT_TOKEN = <Your-Bot-Token>
 NODE_ENV = DEVELOPMENT
 ```
 
-And then run the following command:
+After that, run your `dev` script:
+
 ```shell
 npm run dev
 ```
