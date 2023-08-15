@@ -120,8 +120,8 @@ As shown in the highlighted line above, we are using the `/<bot-token>` instead 
 Create a `.env` file at the root of your project with the following contents:
 
 ```
-BOT_TOKEN = <Your-Bot-Token>
-NODE_ENV = DEVELOPMENT
+BOT_TOKEN=<bot-token>
+NODE_ENV=DEVELOPMENT
 ```
 
 After that, run your `dev` script:
