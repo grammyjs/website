@@ -92,7 +92,7 @@ Our `package.json` should now be similar to this:
 
 Open `src/bots.ts` write the following contents to it:
 
-```ts{10} [Node.js]
+```ts{10}
 import express from "express";
 import { Bot, webhookCallback } from "grammy";
 import "dotenv/config";
