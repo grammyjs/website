@@ -700,7 +700,7 @@ await conversation.now(); // lebih akurat!
 conversation.log("Hello, world"); // lebih transparan!
 ```
 
-Perlu diketahui, sebagian besar dari hal-hal di atas juga bisa dilakukan melalui `conversation.external()`, namun akan jauh lebih mudah lagi dengan menggunakan function pembantu ([referensi API](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#Methods)).
+Perlu diketahui, sebagian besar dari hal-hal di atas juga bisa dilakukan melalui `conversation.external()`, namun menggunakan function pembantu ([referensi API](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#Methods)) jauh lebih mudah.
 
 ## Variable, Percabangan, dan Perulangan
 
