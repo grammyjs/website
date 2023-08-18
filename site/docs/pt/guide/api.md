@@ -3,7 +3,7 @@
 ## Informações Gerais
 
 Os bots do Telegram se comunicam com os servidores do Telegram por meio de solicitações HTTP.
-A Bot API do Telegram é a especificação dessa interface, ou seja, uma [longa lista](https://core.telegram.org/bots/api) de métodos e tipos de dados, comumente chamada de referência.
+A API de bots do Telegram é a especificação dessa interface, ou seja, uma [longa lista](https://core.telegram.org/bots/api) de métodos e tipos de dados, comumente chamada de referência.
 Ela define tudo o que os bots do Telegram podem fazer.
 Você pode encontrá-la vinculada na aba Recursos.
 
