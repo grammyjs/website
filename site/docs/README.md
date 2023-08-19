@@ -100,8 +100,7 @@ Works! :tada:
 
 <div style="font-size: 0.75rem; display: flex; justify-content: center;">
 
-© 2021-2023 &middot; grammY supports Telegram Bot API 6.7 which was [released](https://core.telegram.org/bots/api#april-21-2023) on April 21, 2023.
-(Last highlight: multiple bot names, custom emoji, and better inline queries)
+© 2021-2023 &middot; grammY supports Telegram Bot API 6.8 which was [released](https://core.telegram.org/bots/api#april-21-2023) on August 18, 2023.
 
 </div>
 </footer>
