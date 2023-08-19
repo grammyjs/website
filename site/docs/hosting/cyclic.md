@@ -132,7 +132,6 @@ npm run dev
 
 Nodemon will watch your `bot.ts` file and restart your bot on every code change.
 
-
 ## Deploying
 
 1. Create a repository on GitHub, it can be either private or public.
