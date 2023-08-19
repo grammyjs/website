@@ -97,4 +97,4 @@ To do that, send a request to
 https://api.telegram.org/bot<token>/setWebhook?url=<url>
 ```
 
-replacing `<token>` with your bot's token, and `<url>` with the full URL of your app along with the path to the webhook handler.
+replacing `<token>` with your bot token, and `<url>` with the full URL of your app along with the path to the webhook handler.
