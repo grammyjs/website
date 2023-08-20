@@ -49,7 +49,7 @@ Then, open `tsconfig.json`, and rewrite its contents to use this configuration:
 {
   "compilerOptions": {
     "outDir": "dist",
-    "rootDir": "./src",
+    "rootDir": "src",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "strict": true
@@ -80,7 +80,7 @@ Our `package.json` should now be similar to this:
   "devDependencies": {
     "@types/express": "^4.17.17",
     "@types/node": "^20.4.9",
-    "typescript": "^5.1.6"
+    "typescript": "^5.1.6",
     "nodemon": "^3.0.1",
     "ts-node": "^10.9.1"
   },
@@ -126,7 +126,7 @@ NODE_ENV=DEVELOPMENT
 
 After that, run your `dev` script:
 
-```shell
+```sh
 npm run dev
 ```
 
@@ -137,7 +137,7 @@ Nodemon will watch your `bot.ts` file and restart your bot on every code change.
 1. Create a repository on GitHub, it can be either private or public.
 2. Push your code.
 
-> It is recommended that you have a single stable branch and you do your testing in separate branches, so that you won't land unexpected behaviors to production.
+   > It is recommended that you have a single stable branch and you do your testing in separate branches, so that you won't land unexpected behaviors to production.
 
 1. Visit your [Cyclic dashboard](https://app.cyclic.sh).
 2. Click "Link Your Own" and select your repository.
