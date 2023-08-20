@@ -137,7 +137,7 @@ Nodemon will watch your `bot.ts` file and restart your bot on every code change.
 1. Create a repository on GitHub, it can be either private or public.
 2. Push your code.
 
-   > It is recommended that you have a single stable branch and you do your testing in separate branches, so that you won't land unexpected behaviors to production.
+> It is recommended that you have a single stable branch and you do your testing in separate branches, so that you won't land unexpected behaviors to production.
 
 1. Visit your [Cyclic dashboard](https://app.cyclic.sh).
 2. Click "Link Your Own" and select your repository.
