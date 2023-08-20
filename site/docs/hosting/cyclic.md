@@ -90,7 +90,7 @@ Our `package.json` should now be similar to this:
 
 ### Webhooks
 
-Open `src/bots.ts` write the following contents to it:
+Open `src/bot.ts` write the following contents to it:
 
 ```ts{10}
 import express from "express";
