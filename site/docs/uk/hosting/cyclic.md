@@ -60,7 +60,7 @@ npx tsc --init
 Після цього ви повинні додати до вашого `package.json` скрипти `start`, `build` і `dev`.
 Тепер ваш `package.json` має виглядати приблизно так:
 
-```json{6}
+```json{6-10}
 {
   "name": "grammy-bot",
   "version": "1.0.0",
@@ -92,7 +92,7 @@ npx tsc --init
 
 Відкрийте файл `src/bot.ts` і запишіть до нього наступний вміст:
 
-```ts{10}
+```ts{15}
 import express from "express";
 import { Bot, webhookCallback } from "grammy";
 import "dotenv/config";

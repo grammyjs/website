@@ -60,7 +60,7 @@ Then, open `tsconfig.json`, and rewrite its contents to use this configuration:
 And then we have to add `start`, `build` and `dev` scripts to our `package.json`.
 Our `package.json` should now be similar to this:
 
-```json{6}
+```json{6-10}
 {
   "name": "grammy-bot",
   "version": "1.0.0",
@@ -92,7 +92,7 @@ Our `package.json` should now be similar to this:
 
 Open `src/bot.ts` write the following contents to it:
 
-```ts{10}
+```ts{15}
 import express from "express";
 import { Bot, webhookCallback } from "grammy";
 import "dotenv/config";
