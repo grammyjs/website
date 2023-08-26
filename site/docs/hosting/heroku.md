@@ -165,7 +165,7 @@ https://api.telegram.org/botabcd:1234/setWebhook?url=https%3A%2F%2Fgrammybot.her
 Use [Webhook Reply](../guide/deployment-types#webhook-reply) for more efficiency.
 :::
 
-### Creating `bot.ts` for a Webhooks
+### Creating `bot.ts` (Webhooks)
 
 Next step, head over to `bot.ts`:
 
@@ -231,7 +231,7 @@ If you want to do this once an hour, you can do that easily.
 That's something you cannot control with webhooks.
 If your bot gets flooded with messages, you will see a lot of webhooks requests, however, you can more easily limit the rate of updates to process with long polling.
 
-### Creating `bot.ts` for a Long Polling
+### Creating `bot.ts` (Long Polling)
 
 Let's open the `bot.ts` file that we have created earlier.
 Have it contain these lines of code:
