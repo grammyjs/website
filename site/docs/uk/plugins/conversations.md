@@ -703,7 +703,7 @@ await conversation.now(); // точніше!
 conversation.log("Hello, world"); // прозоріше!
 ```
 
-Зауважте, що ви можете зробити все це за допомогою `conversation.external()`, але може бути нудно писати так багато коду, який щоразу повторюється, тому простіше скористатися зручними методами ([довідка API](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#Methods)).
+Зауважте, що ви можете зробити майже все це за допомогою `conversation.external()`, але може бути нудно писати так багато коду, який щоразу повторюється, тому простіше скористатися зручними методами ([довідка API](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#Methods)).
 
 ## Змінні, розгалуження та цикли
 
