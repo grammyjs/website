@@ -384,7 +384,7 @@ Visite <https://fly.io/docs/app-guides/continuous-deployment-with-github-actions
            - run: flyctl deploy --remote-only
    ```
 
-6. Sigue los pasos 2 a 4 del [Método 1](#método-1-con-flyctl) anterior.
+6. Sigue los pasos 2 a 4 del [Método 1](#metodo-1-con-flyctl) anterior.
    Recuerda saltarte el último paso (paso 5) ya que no vamos a desplegar el código directamente.
 7. Confirma tus cambios y envíalos a GitHub.
 8. A partir de ahora, cada vez que envíes un cambio, la aplicación se desplegará automáticamente.

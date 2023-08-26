@@ -199,7 +199,7 @@ const menu = new Menu("time", { onMenuOutdated: false })
   );
 ```
 
-> El propósito de `onMenuOutdated` se explica [más abajo](#menús-y-huellas-anticuadas).
+> El propósito de `onMenuOutdated` se explica [más abajo](#menus-y-huellas-anticuadas).
 > Puedes ignorarlo por ahora.
 
 También puede actualizar el menú implícitamente editando el mensaje correspondiente.
@@ -341,7 +341,7 @@ Si realmente quieres almacenar datos de usuario como un identificador de fichero
 
 Además, tenga en cuenta que la carga útil siempre se genera basándose en el objeto de contexto actual.
 Esto significa que importa _desde_ dónde se navega al menú, lo que puede dar lugar a resultados sorprendentes.
-Por ejemplo, cuando un menú está [desactualizado](#menús-y-huellas-anticuadas), se volverá a renderizar _basándose en el clic del botón del menú desactualizado_.
+Por ejemplo, cuando un menú está [desactualizado](#menus-y-huellas-anticuadas), se volverá a renderizar _basándose en el clic del botón del menú desactualizado_.
 :::
 
 Payloads también funcionan bien junto con los rangos dinámicos.
@@ -426,7 +426,7 @@ Esto le permite pasar mensajes personalizados que se muestran al usuario.
 
 ## Menús y Huellas Anticuadas
 
-Digamos que tienes un menú donde un usuario puede activar y desactivar las notificaciones, como en el ejemplo [aquí arriba](#etiquetas-dinámicas).
+Digamos que tienes un menú donde un usuario puede activar y desactivar las notificaciones, como en el ejemplo [aquí arriba](#etiquetas-dinamicas).
 Ahora, si un usuario envía `/settings` dos veces, obtendrá el mismo menú dos veces.
 Pero, ¡cambiar la configuración de la notificación en uno de los dos mensajes no actualizará el otro!
 
@@ -514,7 +514,7 @@ Sin embargo, esta vez, no necesitamos el diseño completo---todo lo que necesita
 En consecuencia, el plugin del menú realizará una representación superficial para ser más eficiente.
 En otras palabras, el menú sólo se renderizará parcialmente.
 
-Una vez que se conoce el botón pulsado de nuevo (y hemos comprobado que el menú no está [desactualizado](#menús-y-huellas-anticuadas)), invocamos el manejador.
+Una vez que se conoce el botón pulsado de nuevo (y hemos comprobado que el menú no está [desactualizado](#menus-y-huellas-anticuadas)), invocamos el manejador.
 
 Internamente, el plugin de menús hace un gran uso de [API Transformer Functions](../advanced/transformers), por ejemplo, para renderizar rápidamente los menús salientes sobre la marcha.
 
