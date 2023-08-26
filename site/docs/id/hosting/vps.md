@@ -3,6 +3,8 @@ prev: false
 next: false
 ---
 
+<!-- markdownlint-disable no-duplicate-heading -->
+
 # Hosting: VPS
 
 Virtual Private Server, atau biasa dikenal dengan VPS, adalah sebuah perangkat virtual yang berjalan di cloud, dimana pemiliknya memiliki kendali penuh atas perangkat tersebut.

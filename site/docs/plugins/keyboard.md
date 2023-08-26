@@ -94,7 +94,7 @@ Naturally, all other methods that send messages other than text messages support
 For example, you can edit a keyboard by calling `editMessageReplyMarkup`, and passing the new `InlineKeyboard` instance as `reply_markup`.
 Specify an empty inline keyboard to remove all buttons underneath a message.
 
-### Responding to Clicks
+### Responding to Clicks on the Inline Keyboard
 
 ::: tip Menu Plugin
 The keyboard plugin gives you raw access to the update objects that Telegram sends.
@@ -282,7 +282,7 @@ new Keyboard()
 It does not matter whether you call `selected` first, last or somewhere in between.
 The result will always be the same.
 
-### Responding to Clicks
+### Responding to Clicks on the Custom Keyboard
 
 As mentioned earlier, all that custom keyboards do is sending regular text messages.
 Your bot cannot differentiate between ordinary text messages, and text messages that were sent by clicking a button.
