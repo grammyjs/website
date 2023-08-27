@@ -3,6 +3,8 @@ prev: false
 next: false
 ---
 
+<!-- markdownlint-disable no-duplicate-heading -->
+
 # Alojamiento: VPS
 
 Un servidor virtual privado, mayormente conocido como VPS, es una máquina virtual que se ejecuta en la nube y cuyos usuarios tienen el control total de su sistema.
