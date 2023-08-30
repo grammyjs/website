@@ -1,4 +1,4 @@
-![grammY](/images/grammY.webp)
+![grammY](/images/grammY.svg)
 
 # Gambaran Umum
 

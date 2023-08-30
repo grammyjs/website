@@ -16,7 +16,7 @@ hero:
     - billions and billions served.
     - powered by obsession.
   image:
-    src: /images/Y.webp
+    src: /images/Y.svg
     alt: grammY logo
   actions:
     - theme: brand
