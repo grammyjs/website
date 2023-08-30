@@ -1,5 +1,6 @@
 ---
 prev: false
+next: false
 ---
 
 # Hosting: Deno Deploy
@@ -22,14 +23,13 @@ The result of this tutorial [can be seen in our example bots repository](https:/
 2. Create a file named `mod.ts` or `mod.js`, or actually any name you like (but you should be remembering and using this as the main file to deploy), with the following content:
 
 ```ts
-import { serve } from "https://deno.land/std/http/server.ts";
 import { webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 // You might modify this to the correct way to import your `Bot` object.
 import bot from "./bot.ts";
 
 const handleUpdate = webhookCallback(bot, "std/http");
 
-serve(async (req) => {
+Deno.serve(async (req) => {
   if (req.method === "POST") {
     const url = new URL(req.url);
     if (url.pathname.slice(1) === bot.token) {
@@ -97,4 +97,4 @@ To do that, send a request to
 https://api.telegram.org/bot<token>/setWebhook?url=<url>
 ```
 
-replacing `<token>` with your bot's token, and `<url>` with the full URL of your app along with the path to the webhook handler.
+replacing `<token>` with your bot token, and `<url>` with the full URL of your app along with the path to the webhook handler.
