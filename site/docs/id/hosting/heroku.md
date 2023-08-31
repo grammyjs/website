@@ -165,7 +165,7 @@ https://api.telegram.org/botabcd:1234/setWebhook?url=https%3A%2F%2Fgrammybot.her
 Gunakan [Webhook Reply](../guide/deployment-types#webhook-reply) agar lebih efisien.
 :::
 
-### Membuat `bot.ts`
+### Membuat `bot.ts` (Webhooks)
 
 Langkah berikutnya, buat `bot.ts` lalu tulis kode berikut:
 
@@ -232,7 +232,7 @@ Jika ingin melakukannya setiap satu jam sekali, kamu bisa melakukannya dengan sa
 Hal-hal semacam itu yang tidak bisa kamu kontrol di webhooks.
 Jika bot kamu dibanjiri banyak pesan, kamu akan melihat banyak sekali request webhooks, sedangkan di long polling kamu bisa membatasinya dengan mudah.
 
-### Membuat `bot.ts`
+### Membuat `bot.ts` (Long Polling)
 
 Mari kita buka file `bot.ts` yang telah kita buat di awal tadi.
 Pastikan ia memiliki baris-baris kode berikut:
