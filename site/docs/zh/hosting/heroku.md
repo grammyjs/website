@@ -164,7 +164,7 @@ https://api.telegram.org/botabcd:1234/setWebhook?url=https%3A%2F%2Fgrammybot.her
 使用 [Webhook Reply](../guide/deployment-types#webhook-reply) 以提高效率。
 :::
 
-### 创建 `bot.ts`
+### 创建 `bot.ts` (Webhook)
 
 下一步，前往 `bot.ts`：
 
@@ -226,9 +226,9 @@ bot.on("message", (ctx) => ctx.reply("Got another message!"));
 有些时候它适用于不需要快速响应和处理大量数据的数据收集 bot。
 你可以通过长轮询的方式来每个小时运行一次来获取消息。
 这是你没办法用 webhook 控制的。
-如果你的 bot 收到大量的消息，你会看到大量的 webhook 请求，但是如果你使用的是长轮询，你可以限制更新速度再处理它们。
+如果你的 bot 收到大量的消息，你会看到大量的 webhook 请求，但是你可以使用长轮询更轻松地控制处理 update 的速度。
 
-### 创建 `bot.ts`
+### 创建 `bot.ts` (Long Polling)
 
 让我们打开我们之前创建的 `bot.ts` 文件。
 添加如下几行代码：
