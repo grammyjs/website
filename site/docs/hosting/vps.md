@@ -27,15 +27,14 @@ Create a virtual machine with the desired Linux distribution and use it as a rea
 :::
 
 Go to the [VPS tariff catalog](https://hostinger.com/vps-hosting).
-We will use the "VPS 1" plan.
-Below, you can see a comparison table that describes the offered server resources and limits.
-The resources of VPS 1 are enough for bots with a small audience, and even more so for our test bot.
+We will use the "KVM 1" plan.
+The resources of "KVM 1" are enough for bots with a large audience, and even more so for our test bot.
 
-Go back to the "VPS 1" card and click the "Add" button.
+Go back to the "KVM 1" card and click the "Add to cart" button.
 You will be automatically redirected to the checkout page, where you will also immediately register with Hostinger.
 
 ::: warning Change the Rental Term!
-The typical lease term is 2 years (a marketing ploy), and it costs a lot of money.
+The typical lease term is 1 year (a marketing ploy), and it costs a lot of money.
 You probably don't need it, so you can start by renting a server for a month, which is much cheaper.
 
 In any case, Hostinger provides a 30-day money-back guarantee.
