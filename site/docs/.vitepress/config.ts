@@ -19,7 +19,7 @@ export default defineConfig({
   },
 
   themeConfig: {
-    logo: "/images/Y.webp",
+    logo: "/images/Y.svg",
     siteTitle: "grammY",
     externalLinkIcon: true,
     search: algolia,

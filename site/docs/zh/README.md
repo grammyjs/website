@@ -16,7 +16,7 @@ hero:
     - 已处理数十亿请求。
     - 由执念驱动。
   image:
-    src: /images/Y.webp
+    src: /images/Y.svg
     alt: grammY 徽标
   actions:
     - theme: brand

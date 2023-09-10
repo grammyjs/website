@@ -13,7 +13,7 @@ grammY memiliki lebih dari 820 filter berbeda yang siap dipakai, dan tidak menut
 Setiap filter yang valid dapat dilengkapi menggunakan auto-complete di code editor.
 Dengan demikian, kamu cukup mengetik `bot.on("")`, lalu buka auto-complete, kemudian telusuri semua query yang tersedia dengan cara mengetik sesuatu.
 
-![Pencarian Filter Query](/images/filter-query-search.webp)
+![Pencarian Filter Query](/images/filter-query-search.png)
 
 _Type inference_ `bot.on()` akan memahami filter query yang sedang kamu pilih. Dari situ, ia akan mengerucutkan beberapa type context yang ada.
 
