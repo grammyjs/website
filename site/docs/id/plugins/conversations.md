@@ -492,7 +492,7 @@ bot.command("cancel", async (ctx) => {
   await ctx.reply("Keluar.");
 });
 
-// Keluar dari percakapan `movie` ketika tombol `cancel` 
+// Keluar dari percakapan `movie` ketika tombol `cancel`
 // di inline keyboard ditekan
 bot.callbackQuery("cancel", async (ctx) => {
   await ctx.conversation.exit("movie");
@@ -1055,7 +1055,7 @@ Sebagai contoh, mari kita implementasikan kembali contoh captcha di atas, tetapi
 async function captcha(conversation: MyConversation, ctx: MyContext) {
   if (ctx.from === undefined) return false;
   await ctx.reply(
-    "Buktikan kalau kamu manusia! \
+"Buktikan kalau kamu manusia! \
     Apa jawaban untuk kehidupan, alam semesta, dan semuanya?",
   );
   const { message } = await conversation.waitFrom(ctx.from);
@@ -1074,7 +1074,7 @@ async function enterGroup(conversation: MyConversation, ctx: MyContext) {
 async function captcha(conversation, ctx) {
   if (ctx.from === undefined) return false;
   await ctx.reply(
-    "Buktikan kalau kamu manusia! \
+"Buktikan kalau kamu manusia! \
     Apa jawaban untuk kehidupan, alam semesta, dan semuanya?",
   );
   const { message } = await conversation.waitFrom(ctx.from);
