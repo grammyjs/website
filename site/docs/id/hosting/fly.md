@@ -215,24 +215,24 @@ Metode ini adalah cara yang termudah.
    ```json [Node.js]{19}
    // package.json
    {
-   "name": "grammy",
-   "version": "1.0.0",
-   "description": "grammy",
-   "main": "app.js",
-   "author": "itsmeMario",
-   "license": "MIT",
-   "dependencies": {
-      "express": "^4.18.1",
-      "grammy": "^1.11.0"
-   },
-   "devDependencies": {
-      "@types/express": "^4.17.14",
-      "@types/node": "^18.7.18",
-      "typescript": "^4.8.3"
-   },
-   "engines": {
-      "node": "16.14.0"
-   }
+     "name": "grammy",
+     "version": "1.0.0",
+     "description": "grammy",
+     "main": "app.js",
+     "author": "itsmeMario",
+     "license": "MIT",
+     "dependencies": {
+       "express": "^4.18.1",
+       "grammy": "^1.11.0"
+     },
+     "devDependencies": {
+       "@types/express": "^4.17.14",
+       "@types/node": "^18.7.18",
+       "typescript": "^4.8.3"
+     },
+     "engines": {
+       "node": "16.14.0"
+     }
    }
    ```
 
