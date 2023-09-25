@@ -119,7 +119,7 @@ Seperti yang terlihat pada baris yang disorot di atas, kita menggunakan path `/<
 
 Buat sebuah file `.env` di root proyek lalu isi dengan konten berikut:
 
-```
+```text
 BOT_TOKEN=<bot-token>
 NODE_ENV=DEVELOPMENT
 ```
@@ -136,9 +136,7 @@ Nodemon akan memantau file `bot.ts` dan memulai ulang bot ketika terjadi perubah
 
 1. Buat sebuah repositori di GitHub, bisa berupa privat ataupun publik.
 2. Push kodenya.
-
-> Disarankan memiliki branch utama untuk produksi dan branch terpisah untuk melakukan pengetesan agar tidak terjadi hal-hal yang tidak diinginkan di tahap produksi.
-
+   > Disarankan memiliki branch utama untuk produksi dan branch terpisah untuk melakukan pengetesan agar tidak terjadi hal-hal yang tidak diinginkan di tahap produksi.
 3. Kunjungi [dashboard Cyclic](https://app.cyclic.sh).
 4. Klik "Link Your Own" lalu pilih repositorinya.
 5. Pergi ke Advanced > Variables, kemudian tambahkan `BOT_TOKEN`-nya.
