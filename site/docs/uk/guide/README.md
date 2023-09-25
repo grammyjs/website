@@ -1,6 +1,6 @@
 <!-- markdownlint-disable first-line-heading -->
 
-![grammY](/images/grammY.webp)
+![grammY](/images/grammY.svg)
 
 # Огляд
 

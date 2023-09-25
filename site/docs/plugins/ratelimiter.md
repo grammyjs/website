@@ -9,7 +9,7 @@ ratelimiter is a rate-limiting middleware for Telegram bots made with grammY or 
 In simple terms, it is a plugin that helps you deflect heavy spamming in your bots.
 To understand ratelimiter better, you can take a look at the following illustration:
 
-![ratelimiter's role in deflecting spam](/images/ratelimiter-role.webp)
+![ratelimiter's role in deflecting spam](/images/ratelimiter-role.png)
 
 ## How Does It Work Exactly?
 

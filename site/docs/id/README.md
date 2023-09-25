@@ -18,7 +18,7 @@ hero:
     - bikin bot tak pernah sebahagia ini.
     - ditenagai oleh obsesi.
   image:
-    src: /images/Y.webp
+    src: /images/Y.svg
     alt: logo grammY
   actions:
     - theme: brand

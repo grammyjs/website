@@ -16,7 +16,7 @@ hero:
     - обслуговано мільярди і мільярди.
     - живлений одержимістю.
   image:
-    src: /images/Y.webp
+    src: /images/Y.svg
     alt: логотип grammY
   actions:
     - theme: brand

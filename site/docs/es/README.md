@@ -16,7 +16,7 @@ hero:
     - miles y miles de millones de peticiones.
     - impulsado por la obsesión.
   image:
-    src: /images/Y.webp
+    src: /images/Y.svg
     alt: Logotipo de grammY
   actions:
     - theme: brand

@@ -45,7 +45,7 @@ grammY надає клас під назвою `InlineKeyboard`.
 
 Ось приклад:
 
-![Приклад](/images/inline-keyboard-example.webp)
+![Приклад](/images/inline-keyboard-example.png)
 
 ```ts
 const inlineKeyboard = new InlineKeyboard()
@@ -164,7 +164,7 @@ grammY надає клас під назвою `Keyboard`.
 
 Ось приклад:
 
-![Приклад](/images/keyboard-example.webp)
+![Приклад](/images/keyboard-example.png)
 
 ```ts
 const keyboard = new Keyboard()

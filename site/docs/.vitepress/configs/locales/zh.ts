@@ -341,6 +341,10 @@ const hostingTutorials = {
       link: "/zh/hosting/vercel",
     },
     {
+      text: "Cyclic",
+      link: "/zh/hosting/cyclic",
+    },
+    {
       text: "Virtual Private Server",
       link: "/zh/hosting/vps",
     },

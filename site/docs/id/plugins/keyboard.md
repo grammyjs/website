@@ -44,7 +44,7 @@ Sebuah keyboard inline bisa dibentuk dengan cara membuat sebuah instance class `
 
 Berikut contohnya:
 
-![Contoh tangkapan layar dari sebuah keyboard inline](/images/inline-keyboard-example.webp)
+![Contoh tangkapan layar dari sebuah keyboard inline](/images/inline-keyboard-example.png)
 
 ```ts
 const inlineKeyboard = new InlineKeyboard()
@@ -167,7 +167,7 @@ Panggil `.row()` untuk membuat sebuah baris tombol baru
 
 Berikut salah satu contohnya:
 
-![Contoh tangkapan layar keyboard custom](/images/keyboard-example.webp)
+![Contoh tangkapan layar keyboard custom](/images/keyboard-example.png)
 
 ```ts
 const keyboard = new Keyboard()
