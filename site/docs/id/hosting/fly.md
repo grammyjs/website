@@ -411,5 +411,5 @@ Kamu juga bisa menggunakan `.dockerignore` untuk mencegah file-file yang tidak d
 
 ## Referensi
 
-- <https://fly.io/docs/languages-and-frameworks/deno/>
-- <https://fly.io/docs/languages-and-frameworks/node/>
+- <https://fly.io/docs/js/frameworks/deno/>
+- <https://fly.io/docs/js/>

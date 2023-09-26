@@ -20,7 +20,7 @@ Untuk mengikuti panduan ini, pastikan kamu sudah memiliki sebuah [akun Cloudflar
 
 ## Menyiapkan Proyek
 
-Pastikan kamu sudah menginstal [Deno](https://deno.land) dan [Denoflare](https://denoflare.dev).
+Pastikan kamu sudah menginstal [Deno](https://deno.com) dan [Denoflare](https://denoflare.dev).
 
 Buat sebuah direktori baru, lalu buat sebuah file bernama `.denoflare` di dalamnya.
 Isi file dengan konten berikut:

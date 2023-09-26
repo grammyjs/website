@@ -12,7 +12,7 @@ Kamu diharuskan memiliki akun [GitHub](https://github.com) untuk membuat akun [D
 
 Deno Deploy cocok dipakai untuk bot yang sederhana.
 Namun, tidak semua fitur Deno tersedia di Deno Deploy.
-Diantaranya adalah [terbatasnya](https://deno.com/deploy/docs/runtime-fs) API file system Deno yang didukung.
+Diantaranya adalah [terbatasnya](https://docs.deno.com/deploy/api/runtime-fs) API file system Deno yang didukung.
 Deno Deploy serupa dengan platform serverless lainnya, bedanya ia diperuntukkan untuk aplikasi Deno saja.
 
 Hasil dari tutorial disini dapat dilihat di [repositori bot kami](https://github.com/grammyjs/examples/tree/main/deno-deploy).
