@@ -5,12 +5,12 @@ next: false
 
 # Хостинг: Vercel Serverless Functions
 
-У цьому посібнику ви дізнаєтесь, як розгорнути свого бота на [Vercel](https://vercel.com/) за допомогою [Vercel Serverless Functions](https://vercel.com/docs/concepts/functions/serverless-functions); передбачається, що у вас вже є обліковий запис [Vercel](https://vercel.com).
+У цьому посібнику ви дізнаєтесь, як розгорнути свого бота на [Vercel](https://vercel.com/) за допомогою [Vercel Serverless Functions](https://vercel.com/docs/functions/serverless-functions); передбачається, що у вас вже є обліковий запис [Vercel](https://vercel.com).
 
 ## Структура проєкту
 
 Єдиною передумовою для початку роботи з **Vercel Serverless Functions** є переміщення вашого коду до каталогу `api/`, як показано нижче.
-Ви також можете переглянути [документацію Vercel](https://vercel.com/docs/concepts/functions/serverless-functions#deploying-serverless-functions) для отримання додаткової інформації.
+Ви також можете переглянути [документацію Vercel](https://vercel.com/docs/functions/serverless-functions#deploying-serverless-functions) для отримання додаткової інформації.
 
 ```asciiart:no-line-numbers
 .
@@ -43,7 +43,7 @@ next: false
 
 > Якщо ви хочете використовувати безкоштовний тарифний план Vercel, ваші конфігурації `memory` та `maxDuration` мають виглядати так, як показано вище, щоб не виходити за межі безкоштовних лімітів.
 
-Якщо ви хочете дізнатися більше про файл конфігурації `vercel.json`, дивіться [документацію Vercel](https://vercel.com/docs/concepts/projects/project-configuration).
+Якщо ви хочете дізнатися більше про файл конфігурації `vercel.json`, дивіться [документацію Vercel](https://vercel.com/docs/projects/project-configuration).
 
 ## Налаштування TypeScript
 
