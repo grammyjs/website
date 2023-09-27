@@ -409,5 +409,5 @@ También puedes utilizar `.dockerignore` para no copiar ningún otro archivo que
 
 ## Reference
 
-- <https://fly.io/docs/languages-and-frameworks/deno/>
-- <https://fly.io/docs/languages-and-frameworks/node/>
+- <https://fly.io/docs/js/frameworks/deno/>
+- <https://fly.io/docs/js/>

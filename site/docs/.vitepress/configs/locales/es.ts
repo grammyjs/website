@@ -338,7 +338,7 @@ const hostingTutorials = {
     },
     {
       text: "Cyclic",
-      link: "/hosting/cyclic",
+      link: "/es/hosting/cyclic",
     },
     {
       text: "Servidor Privado Virtual",

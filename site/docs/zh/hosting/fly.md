@@ -411,5 +411,5 @@ https://api.telegram.org/bot<token>/setWebhook?url=<url>
 
 ## 参考
 
-- <https://fly.io/docs/languages-and-frameworks/deno/>
-- <https://fly.io/docs/languages-and-frameworks/node/>
+- <https://fly.io/docs/js/frameworks/deno/>
+- <https://fly.io/docs/js/>

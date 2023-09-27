@@ -20,7 +20,7 @@ next: false
 
 ## 设置
 
-请确保你已经安装了 [Deno](https://deno.land) 和 [Denoflare](https://denoflare.dev)。
+请确保你已经安装了 [Deno](https://deno.com) 和 [Denoflare](https://denoflare.dev)。
 
 创建一个新目录，并在该目录中创建一个名为 `.denoflare` 的新文件。
 将以下内容放入文件中：

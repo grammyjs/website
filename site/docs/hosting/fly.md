@@ -410,5 +410,5 @@ You can also use `.dockerignore` to not copy any other files which aren't needed
 
 ## Reference
 
-- <https://fly.io/docs/languages-and-frameworks/deno/>
-- <https://fly.io/docs/languages-and-frameworks/node/>
+- <https://fly.io/docs/js/frameworks/deno/>
+- <https://fly.io/docs/js/>
