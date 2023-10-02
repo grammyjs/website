@@ -119,7 +119,7 @@ Como se muestra en la línea resaltada arriba, estamos usando `/<bot-token>` en 
 
 Cree un archivo `.env` en la raíz de su proyecto con el siguiente contenido:
 
-```
+```text
 BOT_TOKEN=<bot-token>
 NODE_ENV=DEVELOPMENT
 ```
@@ -136,9 +136,7 @@ Nodemon vigilará tu archivo `bot.ts` y reiniciará tu bot en cada cambio de có
 
 1. Crea un repositorio en GitHub, puede ser privado o público.
 2. Empuja tu código.
-
-> Es recomendable que tengas una única rama estable y hagas tus pruebas en ramas separadas, para no desplegar comportamientos inesperados en producción.
-
+   > Es recomendable que tengas una única rama estable y hagas tus pruebas en ramas separadas, para no desplegar comportamientos inesperados en producción.
 3. Visita tu [Cyclic dashboard](https://app.cyclic.sh).
 4. Haz clic en "Link Your Own" y selecciona tu repositorio.
 5. Vaya a Avanzado > Variables y añada su `BOT_TOKEN`.

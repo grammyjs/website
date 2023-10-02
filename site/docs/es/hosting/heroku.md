@@ -165,7 +165,7 @@ https://api.telegram.org/botabcd:1234/setWebhook?url=https%3A%2F%2Fgrammybot.her
 Utilice [Webhook Reply](../guide/deployment-types#webhook-reply) para una mayor eficiencia.
 :::
 
-### Creando `bot.ts`
+### Creando `bot.ts` (Webhooks)
 
 Siguiente paso, dirígete a `bot.ts`:
 
@@ -193,22 +193,22 @@ Podemos establecer la [información sobre el bot](https://deno.land/x/grammy/mod
 1. Abre este enlace `https://api.telegram.org/bot<bot_token>/getMe` en tu navegador web favorito. Se recomienda usar [Firefox](https://www.mozilla.org/en-US/firefox/) ya que muestra muy bien el formato `json`.
 2. Cambia nuestro código en la línea 4 de arriba y rellena el valor de acuerdo con los resultados de `getMe`:
 
-```ts
-const token = process.env.BOT_TOKEN;
-if (!token) throw new Error("Falta BOT_TOKEN.");
+   ```ts
+   const token = process.env.BOT_TOKEN;
+   if (!token) throw new Error("Falta BOT_TOKEN.");
 
-export const bot = new Bot(token, {
-  botInfo: {
-    id: 111111111,
-    is_bot: true,
-    first_name: "xxxxxxxxx",
-    username: "xxxxxxbot",
-    can_join_groups: true,
-    can_read_all_group_messages: false,
-    supports_inline_queries: false,
-  },
-});
-```
+   export const bot = new Bot(token, {
+     botInfo: {
+       id: 111111111,
+       is_bot: true,
+       first_name: "xxxxxxxxx",
+       username: "xxxxxxbot",
+       can_join_groups: true,
+       can_read_all_group_messages: false,
+       supports_inline_queries: false,
+     },
+   });
+   ```
 
 :::
 
@@ -230,7 +230,7 @@ Si quieres hacerlo una vez por hora, puedes hacerlo fácilmente.
 Eso es algo que no puedes controlar con los webhooks.
 Si tu bot se inunda de mensajes, verás muchas peticiones de webhooks, sin embargo, puedes limitar más fácilmente la tasa de actualizaciones a procesar con un long polling.
 
-### Creando `bot.ts`
+### Creando `bot.ts` (Long Polling)
 
 Abramos el archivo `bot.ts` que hemos creado anteriormente.
 Que contenga estas líneas de código:
@@ -277,13 +277,15 @@ Por el momento, `Heroku` tiene varios [tipos de dynos](https://devcenter.heroku.
 Dos de ellos son:
 
 - **Web dynos**:
-  <br> _Web dynos_ son dynos del proceso "web" que reciben tráfico HTTP de los routers.
+
+  _Web dynos_ son dynos del proceso "web" que reciben tráfico HTTP de los routers.
   Este tipo de dyno tiene un tiempo de espera de 30 segundos para ejecutar código.
   Además, se suspenderá si no hay ninguna petición que atender en un periodo de 30 minutos.
   Este tipo de dyno es muy adecuado para los _webhooks_.
 
 - **Worker dynos**:
-  <br> _Worker dynos_ se utilizan normalmente para trabajos en segundo plano.
+
+  _Worker dynos_ se utilizan normalmente para trabajos en segundo plano.
   NO tiene un tiempo de espera, y NO dormirá si no maneja ninguna petición web.
   Se adapta al _long polling_.
 

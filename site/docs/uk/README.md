@@ -38,6 +38,8 @@ features:
     details: grammY допоможе вам, коли ваш бот стане популярним і трафік зросте.
 ---
 
+<!-- markdownlint-disable no-inline-html -->
+
 <HomeContent>
 
 ## Швидкий старт

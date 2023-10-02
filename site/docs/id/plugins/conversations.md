@@ -1028,7 +1028,7 @@ Jika dua member bergabung secara bersamaan, bot seharusnya mampu melakukan dua p
 Itulah kenapa plugin conversation menyediakan cara agar kamu bisa membuat beberapa percakapan untuk setiap chat di waktu yang bersamaan.
 Contohnya, kita bisa memiliki lima percakapan yang berbeda dengan lima user baru dan di waktu yang sama melakukan percakapan dengan seorang admin mengenai pengaturan chat yang baru.
 
-### Bagaimana Cara Kerjanya?
+### Proses yang Terjadi di Balik Layar
 
 Setiap update yang masuk akan diproses oleh salah satu dari beberapa percakapan yang aktif.
 Mirip dengan handle di middleware, percakapan-percakapan tadi akan dipanggil secara berurutan berdasarkan siapa yang lebih dulu dipasang.

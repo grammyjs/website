@@ -3,8 +3,6 @@ prev: false
 next: false
 ---
 
-# 托管: Cloudflare Workers
-
 # 托管: Cloudflare Workers (Deno)
 
 [Cloudflare Workers](https://workers.cloudflare.com) 是一个公共的无服务器计算平台，为在 [边缘](https://en.wikipedia.org/wiki/Edge_computing) 上运行小型工作负载提供了便捷且简单的解决方案。

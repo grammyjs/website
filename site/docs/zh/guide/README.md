@@ -1,4 +1,6 @@
-![logo](/images/grammY.svg)
+<!-- markdownlint-disable first-line-heading -->
+
+![grammY](/images/grammY.svg)
 
 # 概述
 
