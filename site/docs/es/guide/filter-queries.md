@@ -120,35 +120,24 @@ bot.on(":file"); // archivos en mensajes o mensajes del canal
 bot.on("edit:file"); // ediciones de mensajes de archivos o mensajes de canales de archivos
 ```
 
-### Consejos útiles
+### Azúcar sintáctico
 
+Hay dos casos especiales para las partes de consulta que hacen más cómodo el filtrado para usuarios.
 Puedes detectar bots en las consultas con la parte de consulta `:is_bot`.
-El azúcar sintáctico `:me` se puede utilizar para referirse a tu bot desde una consulta, que comparará los identificadores de usuario por ti.
+El azúcar sintáctico `:me` se puede utilizar para referirse a su bot desde dentro de una consulta, que comparará los identificadores de usuario para usted.
 
 ```ts
-bot.on("message:new_chat_members:is_bot"); // un bot se ha unido al chat
-bot.on("message:left_chat_member:me"); // tu bot abandonó el chat (fue eliminado)
+// Un mensaje de servicio sobre un bot que se unió al chat
+bot.on("message:new_chat_members:is_bot");
+// Un mensaje de servicio sobre un bot que se ha dado de baja
+bot.on("message:left_chat_member:me");
 ```
 
-::: tip Filtrar por propiedades del usuario
-
-Si quieres filtrar por otras propiedades de un usuario, necesitas realizar una petición adicional, por ejemplo `await ctx.getAuthor()` para el autor del mensaje.
-Las consultas de filtrado no realizarán secretamente otras peticiones a la API por ti.
-Sigue siendo sencillo realizar este tipo de filtrado:
-
-```ts
-bot.on("message").filter(
-  async (ctx) => {
-    const user = await ctx.getAuthor();
-    return user.status === "creator" || user.status === "administrator";
-  },
-  (ctx) => {
-    // Maneja mensajes de creadores y administradores.
-  },
-);
-```
-
-:::
+Ten en cuenta que, aunque este azúcar sintáctico es útil para trabajar con mensajes de servicio, no debe utilizarse para detectar si alguien se une o abandona un chat.
+Los mensajes de servicio son mensajes que informan a los usuarios en el chat, y algunos de ellos no serán visibles en todos los casos.
+Por ejemplo, en los grupos grandes, no habrá mensajes de servicio sobre los usuarios que se unen o abandonan el chat.
+Por lo tanto, es posible que tu bot no se dé cuenta de ello.
+En su lugar, deberías escuchar las [actualizaciones de los miembros del chat](#actualizaciones-de-los-miembros-del-chat).
 
 ## Combinación de varias consultas
 
@@ -304,7 +293,7 @@ Análogamente, puedes hacer uso de los tipos de consulta de filtro que grammY ut
 
 ### Reutilización de los tipos de consulta de filtro
 
-Internamente, `matchFilter` utiliza los [type predicates] de TypeScript (https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates) para acotar el tipo de `ctx`.
+Internamente, `matchFilter` utiliza los [predicados de tipo](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates) de TypeScript para acotar el tipo de `ctx`.
 Toma un tipo `C extends Context` y un `Q extends FilterQuery` y produce `ctx is Filter<C, Q>`.
 En otras palabras, el tipo `Filter` es lo que realmente recibes para tu `ctx` en el middleware.
 

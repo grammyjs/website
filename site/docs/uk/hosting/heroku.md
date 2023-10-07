@@ -164,7 +164,7 @@ https://api.telegram.org/botabcd:1234/setWebhook?url=https%3A%2F%2Fgrammybot.her
 Використовуйте [відповідь вебхуку](../guide/deployment-types#відповідь-вебхуку) для більшої ефективності.
 :::
 
-### Створення `bot.ts`
+### Створення `bot.ts` (вебхук)
 
 Наступним кроком перейдіть до файлу `bot.ts`:
 
@@ -192,22 +192,22 @@ bot.on("message", (ctx) => ctx.reply("Отримав інше повідомле
 1. Відкрийте посилання `https://api.telegram.org/bot<токен-бота>/getMe` в вашому улюбленному браузері. Рекомендується [Firefox](https://www.mozilla.org/en-US/firefox/), бо він чудово працює з форматом `json`.
 2. Змініть код на 4-му рядку вище і заповніть значення відповідно до результатів, отриманих з `getMe`:
 
-```ts
-const token = process.env.BOT_TOKEN;
-if (!token) throw new Error("BOT_TOKEN не вказано");
+   ```ts
+   const token = process.env.BOT_TOKEN;
+   if (!token) throw new Error("BOT_TOKEN не вказано");
 
-export const bot = new Bot(token, {
-  botInfo: {
-    id: 111111111,
-    is_bot: true,
-    first_name: "xxxxxxxxx",
-    username: "xxxxxxbot",
-    can_join_groups: true,
-    can_read_all_group_messages: false,
-    supports_inline_queries: false,
-  },
-});
-```
+   export const bot = new Bot(token, {
+     botInfo: {
+       id: 111111111,
+       is_bot: true,
+       first_name: "xxxxxxxxx",
+       username: "xxxxxxbot",
+       can_join_groups: true,
+       can_read_all_group_messages: false,
+       supports_inline_queries: false,
+     },
+   });
+   ```
 
 :::
 
@@ -230,7 +230,7 @@ export const bot = new Bot(token, {
 Але цього не можна контролювати за допомогою вебхуків.
 Якщо ваш бот буде завалений повідомленнями, вам прийде багато запитів на вебхук, проте за допомогою тривалого опитування ви можете легко обмежити швидкість обробки оновлень.
 
-### Створення `bot.ts`
+### Створення `bot.ts` (тривале опитування)
 
 Давайте відкриємо файл `bot.ts`, який ми створили раніше.
 Він має містити наступний код:
@@ -278,13 +278,15 @@ npx tsc
 Два з них:
 
 - **Веб dyno**:
-  <br> _Веб dyno_ процесу "web", які отримують HTTP трафік від маршрутизаторів.
+
+  _Веб dyno_ процесу "web", які отримують HTTP трафік від маршрутизаторів.
   Цей тип dyno має 30-ти секундний тайм-аут для виконання коду.
   Крім того, він засинає, якщо протягом 30-ти хвилин не було запиту для обробки.
   Цей тип dyno цілком підходить для _вебхуків_.
 
 - **Worker dyno**:
-  <br> _Worker dyno_ зазвичай використовуються для фонових задач.
+
+  _Worker dyno_ зазвичай використовуються для фонових задач.
   Він НЕ має тайм-ауту і НЕ засинає, якщо не обробляє жодного вебзапиту.
   Він підходить для _тривалого опитування_.
 

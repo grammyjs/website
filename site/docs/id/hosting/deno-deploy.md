@@ -12,7 +12,7 @@ Kamu diharuskan memiliki akun [GitHub](https://github.com) untuk membuat akun [D
 
 Deno Deploy cocok dipakai untuk bot yang sederhana.
 Namun, tidak semua fitur Deno tersedia di Deno Deploy.
-Diantaranya adalah [terbatasnya](https://deno.com/deploy/docs/runtime-fs) API file system Deno yang didukung.
+Diantaranya adalah [terbatasnya](https://docs.deno.com/deploy/api/runtime-fs) API file system Deno yang didukung.
 Deno Deploy serupa dengan platform serverless lainnya, bedanya ia diperuntukkan untuk aplikasi Deno saja.
 
 Hasil dari tutorial disini dapat dilihat di [repositori bot kami](https://github.com/grammyjs/examples/tree/main/deno-deploy).
@@ -60,7 +60,7 @@ Di contoh kali ini, kita menggunakan token bot (`/<token bot>`) sebagai direktor
 1. Buat sebuah repositori di GitHub, bisa dalam bentuk private ataupun publik.
 2. Taruh kodemu di dalam repositori tersebut.
 
-> Direkomendasikan untuk mempunyai satu branch stabil dan branch lain untuk pengetesan supaya branch utama kamu terhindar dari hal-hal yang tidak diinginkan.
+   > Direkomendasikan untuk mempunyai satu branch stabil dan branch lain untuk pengetesan supaya branch utama kamu terhindar dari hal-hal yang tidak diinginkan.
 
 3. Kunjungi [dashboard Deno Deploy](https://dash.deno.com/projects).
 4. Pilih "New Project", lalu pergi ke bagian "Deploy from GitHub repository".
@@ -77,9 +77,9 @@ Di contoh kali ini, kita menggunakan token bot (`/<token bot>`) sebagai direktor
 4. Buat [token akses](https://dash.deno.com/user/access-tokens) baru.
 5. Jalankan dengan perintah:
 
-```sh
-deployctl deploy --project <project> ./mod.ts --prod --token <token>
-```
+   ```sh
+   deployctl deploy --project <project> ./mod.ts --prod --token <token>
+   ```
 
 6. Untuk menyiapkan GitHub Actions, dapat merujuk ke [sini](https://github.com/denoland/deployctl/blob/main/action/README.md).
 

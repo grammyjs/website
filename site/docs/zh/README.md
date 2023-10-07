@@ -38,6 +38,8 @@ features:
     details: grammY 在你的 bot 拥有较多流量时提供可靠的帮助.
 ---
 
+<!-- markdownlint-disable no-inline-html -->
+
 <HomeContent>
 
 ## 快速开始

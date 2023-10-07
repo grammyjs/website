@@ -118,7 +118,7 @@ if (process.env.NODE_ENV === "DEVELOPMENT") {
 
 在你的项目的根目录下创建一个包含以下内容的 `.env` 的文件：
 
-```
+```text
 BOT_TOKEN=<bot-token>
 NODE_ENV=DEVELOPMENT
 ```
@@ -135,9 +135,7 @@ Nodemon 将监视你的 `bot.ts` 文件，并在每次代码更改时重新启�
 
 1. 在 Github 上创建一个仓库，可以是私有的也可以是公开的。
 2. 推送你的代码。
-
-> 建议你有一个的稳定分支，以及在单独的分支中进行测试，这样就不会在生产环境中出现意外的行为。
-
+   > 建议你有一个的稳定分支，以及在单独的分支中进行测试，这样就不会在生产环境中出现意外的行为。
 3. 访问你的 [Cyclic dashboard](https://app.cyclic.sh)。
 4. 点击 “Link Your Own” 并选择你的仓库。
 5. 跳转到 Advanced > Variables，并添加你的 `BOT_TOKEN`。

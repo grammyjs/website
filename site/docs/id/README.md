@@ -40,6 +40,8 @@ features:
     details: grammY selalu siap membantu ketika bot menjadi semakin populer dan ramai digunakan.
 ---
 
+<!-- markdownlint-disable no-inline-html -->
+
 <HomeContent>
 
 ## Mulai Cepat
