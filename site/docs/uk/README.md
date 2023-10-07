@@ -101,7 +101,7 @@ bot.start();
 
 <div style="font-size: 0.75rem; display: flex; justify-content: center;">
 
-© 2021-2023 &middot; grammY підтримує Telegram Bot API 6.8, який був [випущений](https://core.telegram.org/bots/api#august-18-2023) 18-го серпня 2023 року.
+© 2021-2023 &middot; grammY підтримує Telegram Bot API 6.9, який був [випущений](https://core.telegram.org/bots/api#september-22-2023) 22-го вересня 2023 року.
 Остання зміна: історії.
 
 </div>
