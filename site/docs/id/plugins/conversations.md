@@ -197,7 +197,6 @@ Context object-nya akan diteruskan ke conversation builder function sebagai argu
 Contohnya, jika kamu membuat conversation dengan `await ctx.reply(ctx.message.text)`, ia akan memiliki update yang di dalamnya terdapat `/start`.
 
 ::: tip Mengubah Conversation Identifier
-
 Secara bawaan, kamu diharuskan mengisi nama function ke `ctx.conversation.enter()`.
 Jika kamu memilih untuk menggunakan identifier yang berbeda, kamu bisa melakukannya dengan cara seperti ini:
 
@@ -668,9 +667,7 @@ const response = await conversation.external(() => externalApi());
 Ini termasuk pembacaan data maupun melakukan [side-effect](https://softwareengineering.stackexchange.com/questions/40297/what-is-a-side-effect) (misalnya menulis ke sebuah database).
 
 ::: tip Serupa dengan React
-
 Jika kamu familiar dengan React, kamu mungkin paham sebuah konsep yang serupa dengan `useEffect`.
-
 :::
 
 ### Aturan II: Semua Perilaku Acak Harus Dibungkus
@@ -757,7 +754,7 @@ Berikut contoh captcha sederhana yang bisa dipakai berulang kali:
 ```ts [TypeScript]
 async function captcha(conversation: MyConversation, ctx: MyContext) {
   await ctx.reply(
-"Buktikan kalau kamu manusia! \
+    "Buktikan kalau kamu manusia! \
     Apa jawaban untuk kehidupan, alam semesta, dan semuanya?",
   );
   const { message } = await conversation.wait();
@@ -768,7 +765,7 @@ async function captcha(conversation: MyConversation, ctx: MyContext) {
 ```js [JavaScript]
 async function captcha(conversation, ctx) {
   await ctx.reply(
-"Buktikan kalau kamu manusia! \
+    "Buktikan kalau kamu manusia! \
     Apa jawaban untuk kehidupan, alam semesta, dan semuanya?",
   );
   const { message } = await conversation.wait();
@@ -836,7 +833,7 @@ class Auth {
   authenticate(ctx: MyContext) {
     const link = getAuthLink(); // ambil link autentikasi dari sistem kamu
     await ctx.reply(
-"Buka link ini untuk mendapatkan sebuah token \
+      "Buka link ini untuk mendapatkan sebuah token \
       lalu kirim tokennya ke aku: " + link,
     );
     ctx = await this.conversation.wait();
@@ -867,7 +864,7 @@ class Auth {
   authenticate(ctx) {
     const link = getAuthLink(); // ambil link autentikasi dari sistem kamu
     await ctx.reply(
-"Buka link ini untuk mendapatkan sebuah token \
+      "Buka link ini untuk mendapatkan sebuah token \
       lalu kirim tokennya ke aku: " + link,
     );
     ctx = await this.#conversation.wait();
@@ -930,7 +927,6 @@ Plugin ini bisa melakukan hal tersebut dengan cara menyimpan context object yang
 Itulah kenapa plugin-plugin grammY tidak selalu bisa mempengaruhi context object di dalam percakapan seperti yang diharapkan.
 
 ::: warning Menu Interaktif di Dalam Percakapan
-
 Konsep ini bertolak belakang dengan [plugin menu](./menu).
 Meski menu _bisa_ bekerja di dalam percakapan, namun kami tidak menyarankan untuk menggunakan kedua plugin ini secara bersamaan.
 Sebagai gantinya, gunakan [plugin keyboard inline](./keyboard#keyboard-inline) biasa (hingga kami menambahkan dukungan menu asli untuk percakapan).
@@ -1055,7 +1051,7 @@ Sebagai contoh, mari kita implementasikan kembali contoh captcha di atas, tetapi
 async function captcha(conversation: MyConversation, ctx: MyContext) {
   if (ctx.from === undefined) return false;
   await ctx.reply(
-"Buktikan kalau kamu manusia! \
+    "Buktikan kalau kamu manusia! \
     Apa jawaban untuk kehidupan, alam semesta, dan semuanya?",
   );
   const { message } = await conversation.waitFrom(ctx.from);
@@ -1074,7 +1070,7 @@ async function enterGroup(conversation: MyConversation, ctx: MyContext) {
 async function captcha(conversation, ctx) {
   if (ctx.from === undefined) return false;
   await ctx.reply(
-"Buktikan kalau kamu manusia! \
+    "Buktikan kalau kamu manusia! \
     Apa jawaban untuk kehidupan, alam semesta, dan semuanya?",
   );
   const { message } = await conversation.waitFrom(ctx.from);

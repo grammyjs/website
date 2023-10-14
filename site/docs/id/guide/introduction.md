@@ -204,14 +204,12 @@ Tekan `Ctrl+C` di terminal untuk menghentikan proses tersebut, yang nantinya jug
 Kemudian, ulangi langkah 2 dan 3.
 
 ::: tip Hah, maksudnya?
-
 Proses instalasi Node.js beserta pengaturan konfigurasinya memerlukan waktu yang tidak sedikit.
 Jika kamu belum pernah melakukannya, kemungkinan besar kamu akan mengalami berbagai masalah yang cukup rumit untuk diatasi.
 
 Itulah kenapa kami sedikit berharap kamu mengerti bagaimana mengatur sistem kamu, atau bahkan mempelajarinya secara mandiri---Proses penginstalan Node.js _dengan cara yang benar_ sangatlah rumit sehingga tidak cukup untuk kami menjelaskannya di halaman ini.
 
 Jika kamu merasa kebingungan di titik ini, sebaiknya tinggalkan Node.js dan beralih menggunakan [Deno](#persiapan-untuk-deno).
-
 :::
 
 Masih percaya diri?

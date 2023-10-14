@@ -194,7 +194,6 @@ Esto detendrá tu bot.
 Entonces, necesitas repetir los pasos 2 y 3.
 
 ::: tip Espera, ¿qué?
-
 Instalar Node.js y configurar todo correctamente lleva mucho tiempo.
 Si nunca has hecho esto antes, deberías esperar encontrarte con un montón de problemas confusos que son difíciles de solucionar.
 
@@ -202,7 +201,6 @@ Por eso esperamos que sepas cómo configurar tu sistema, o que seas capaz de apr
 (Instalar Node.js _de la forma correcta_ es tan complicado que no cabe en esta página).
 
 Si te sientes perdido en este punto, deberías dejar Node.js y usar [Deno](#requisitos-previos-para-deno) en su lugar.
-
 :::
 
 ¿Aún confiado?

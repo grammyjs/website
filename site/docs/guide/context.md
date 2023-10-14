@@ -100,11 +100,9 @@ For example, you can call `ctx.hasCommand("start")` to see if the context object
 This is why the methods are collectively named _has checks_.
 
 ::: tip Know When to Use Has Checks
-
 This is the exact same logic that is used by `bot.command("start")`.
 Note that you should usually use [filter queries](./filter-queries) and similar methods.
 Using has checks works best inside the [conversations plugin](../plugins/conversations).
-
 :::
 
 The has checks correctly narrow down the context type.

@@ -109,7 +109,6 @@ import { type Chat } from "grammy/types";
 在某些情况下，不调整 TypeScript 配置的也行。
 
 ::: warning 错误的自动补全
-
 如果你不按上述方法修改 `tsconfig.json` 文件，那么你的代码编辑器可能会在自动补全中提示你导入 `grammy/out/client` 或其他东西。
 **所有以 `grammy/out` 开头的路径都是内部的。请不要使用它们。**
 它们可能在任何时候被改变，所以我们强烈建议你从 `grammy/types` 导入。
