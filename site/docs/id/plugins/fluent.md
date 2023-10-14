@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Internasionalisasi dengan Fluent (`fluent`)
 
 [Fluent](https://projectfluent.org/) adalah sebuah sistem penerjemah bahasa yang dibuat oleh Mozilla Foundation dengan tujuan supaya hasil terjemahan terdengar lebih natural.
@@ -5,9 +10,9 @@ Ia memiliki sebuah syntax yang canggih dan elegan, sehingga memungkinkan siapa p
 Plugin ini memanfaatkan sistem penerjemah tersebut untuk membuat bot grammY menjadi fasih serta menghasilkan terjemahan berkualitas tinggi.
 
 ::: tip Fluent vs i18n
-Jangan bingung membedakan plugin ini dengan plugin [i18n](./i18n.md).
+Jangan bingung membedakan plugin ini dengan plugin [i18n](./i18n).
 
-Plugin [i18n](./i18n.md) merupakan versi upgrade dari plugin ini.
+Plugin [i18n](./i18n) merupakan versi upgrade dari plugin ini.
 Ia dapat digunakan baik di Deno maupun Node.js.
 :::
 
@@ -91,7 +96,7 @@ Sekarang, mari kita lihat bagaimana pesan di atas bisa di-render oleh sebuah bot
 Pertama-tama, kita perlu mengonfigurasi grammY untuk menggunakan plugin ini.
 
 Kamu juga perlu mengonfigurasi bot kamu untuk menggunakan Fluent context flavor.
-Jika kamu masih merasa asing dengan konsep tersebut, sebaiknya kamu pahami terlebih dahulu materi [Context Flavors](../guide/context.md#context-flavor).
+Jika kamu masih merasa asing dengan konsep tersebut, sebaiknya kamu pahami terlebih dahulu materi [Context Flavors](../guide/context#context-flavor).
 
 ```ts
 import { Context } from "grammy";

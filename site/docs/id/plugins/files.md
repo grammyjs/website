@@ -1,6 +1,13 @@
+---
+prev: false
+next: false
+---
+
 # Menangani File dengan Mudah di grammY (`files`)
 
 Plugin ini memudahkan kamu untuk mengunduh file dari server Telegram dan memperoleh URL-nya agar kamu dapat mengunduh file tersebut secara mandiri.
+
+> [Coba ingat kembali](../guide/files) cara kerja file, dan cara mengunggahnya.
 
 ## Mengunduh File
 
@@ -8,10 +15,9 @@ Plugin ini memerlukan token bot kamu untuk melakukan autentikasi ketika mengundu
 Jika berhasil, method `download` akan tersedia di hasil pemanggilan `getFile`.
 Contohnya,
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context } from "grammy";
 import { FileFlavor, hydrateFiles } from "@grammyjs/files";
 
@@ -35,10 +41,7 @@ bot.on([":video", ":animation"], async (ctx) => {
 });
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 import { Bot } from "grammy";
 import { hydrateFiles } from "@grammyjs/files";
 
@@ -59,10 +62,7 @@ bot.on([":video", ":animation"], async (ctx) => {
 });
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   FileFlavor,
@@ -90,7 +90,6 @@ bot.on([":video", ":animation"], async (ctx) => {
 ```
 
 :::
-::::
 
 Kamu bisa memasukkan sebuah string berisi path file ke `download` jika kamu tidak ingin membuat file sementara.
 Cukup lakukan `await file.download("/path/ke/file")`.
@@ -109,12 +108,11 @@ Perlu dicatat, `await file.download()` mulai sekarang akan menyalin file yang te
 
 Secara bawaan, hasil dari `await bot.api.getFile()` juga akan dilengkapi dengan method `download` dan `getUrl`.
 Namun, method-method ini tidak akan tampak di type tersebut.
-Jika kamu membutuhkannya, kamu juga bisa menginstal sebuah [API flavor](../advanced/transformers.md#menggunakan-api-flavor) `FileApiFlavor` di object bot tersebut.
+Jika kamu membutuhkannya, kamu juga bisa menginstal sebuah [API flavor](../advanced/transformers#menggunakan-api-flavor) `FileApiFlavor` di object bot tersebut.
 
-::::code-group
-:::code-group-item Node.js
+::: code-group
 
-```ts
+```ts [Node.js]
 import { Api, Bot, Context } from "grammy";
 import { FileApiFlavor, FileFlavor, hydrateFiles } from "@grammyjs/files";
 
@@ -125,10 +123,7 @@ const bot = new Bot<MyContext, MyApi>("");
 // ...
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Api, Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   FileApiFlavor,
@@ -144,7 +139,6 @@ const bot = new Bot<MyContext, MyApi>("");
 ```
 
 :::
-::::
 
 ## Ringkasan Plugin
 

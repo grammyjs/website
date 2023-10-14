@@ -1,11 +1,6 @@
----
-prev: ./scaling.md
-next: ./flood.md
----
-
 # Peningkatan III: Reliabilitas
 
-Sebelum memulai, pastikan kamu sudah memasang [error handler](../guide/errors.md) yang sesuai dengan bot-mu.
+Sebelum memulai, pastikan kamu sudah memasang [error handler](../guide/errors) yang sesuai dengan bot-mu.
 Semua error yang kemungkinan besar bisa terjadi (pemanggilan API yang gagal, koneksi yang tidak tersambung, query database yang gagal dilakukan, middleware yang tidak berjalan dengan baik, dsb) harus bisa ditangkap dan ditangani dengan baik.
 
 Kamu juga sebaiknya menggunakan `await` di setiap promise.
@@ -19,11 +14,9 @@ Sebelum mematikan bot atau instance yang sedang berjalan, kamu sebaiknya menangk
 
 ### Long Polling Sederhana
 
-::::code-group
+::: code-group
 
-:::code-group-item TypeScript
-
-```ts
+```ts [TypeScript]
 import { Bot } from "grammy";
 
 const bot = new Bot("");
@@ -35,11 +28,7 @@ process.once("SIGTERM", () => bot.stop());
 await bot.start();
 ```
 
-:::
-
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot } = require("grammy");
 
 const bot = new Bot("");
@@ -51,11 +40,7 @@ process.once("SIGTERM", () => bot.stop());
 await bot.start();
 ```
 
-:::
-
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
 const bot = new Bot("");
@@ -68,15 +53,12 @@ await bot.start();
 ```
 
 :::
-::::
 
 ### Menggunakan grammY Runner
 
-::::code-group
+::: code-group
 
-:::code-group-item TypeScript
-
-```ts
+```ts [TypeScript]
 import { Bot } from "grammy";
 import { run } from "@grammyjs/runner";
 
@@ -90,11 +72,7 @@ process.once("SIGINT", stopRunner);
 process.once("SIGTERM", stopRunner);
 ```
 
-:::
-
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot } = require("grammy");
 const { run } = require("@grammyjs/runner");
 
@@ -108,10 +86,7 @@ process.once("SIGINT", stopRunner);
 process.once("SIGTERM", stopRunner);
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { run } from "https://deno.land/x/grammy_runner/mod.ts";
 
@@ -126,7 +101,6 @@ Deno.addSignalListener("SIGTERM", stopRunner);
 ```
 
 :::
-::::
 
 Itulah tips-tips untuk menjaga reliabilitas bot kamu. Jika diterapkan dengan benar, seharusnya tidak akan terjadi crash lagi di bot kamu.
 
@@ -138,7 +112,7 @@ Masalah akan menjadi sedikit rumit ketika dihadapkan dengan kondisi yang menghar
 Akibatnya, bot tidak bisa menjamin eksekusi middleware kamu dijalankan tepat satu kali. Simak [diskusi di GitHub ini](https://github.com/tdlib/telegram-bot-api/issues/126) untuk mengetahui **kenapa** bot kamu mengirim pesan duplikat (atau bahkan tidak mengirim pesan sama kali) di suatu kondisi tertentu.
 Di materi ini kita akan memahami **bagaimana** grammY bertindak di kondisi yang tidak biasa tersebut, serta bagaimana kita bisa mengatasinya dengan baik.
 
-> Apakah kamu cuma tertarik untuk membuat bot Telegram? Silahkan [lewati sisa halaman ini.](./flood.md)
+> Apakah kamu cuma tertarik untuk membuat bot Telegram? Silahkan [lewati sisa halaman ini.](./flood)
 
 ### Webhook
 
@@ -160,7 +134,7 @@ Tetapi, dengan cara demikian _setidaknya satu_ pemrosesan bisa terjamin.
 
 ### grammY Runner
 
-Kalau kamu menggunakan [grammY runner](../plugins/runner.md) di mode _concurrent_, pemanggilan `getUpdates` berikutnya berpotensi dilakukan sebelum middleware kamu selesai memproses update pertama dari _batch_ tersebut.
+Kalau kamu menggunakan [grammY runner](../plugins/runner) di mode _concurrent_, pemanggilan `getUpdates` berikutnya berpotensi dilakukan sebelum middleware kamu selesai memproses update pertama dari _batch_ tersebut.
 Itulah kenapa, [update offset](https://core.telegram.org/bots/api#getupdates)-nya terkonfirmasi sebelum waktunya.
 Ini adalah efek dari penggunaan concurrency secara maksimal, dan sayangnya, kita tidak bisa menghindarinya tanpa mengurangi responsifitas dan jumlah output-nya.
 Dampaknya, jika bot kamu dihentikan di momen yang tidak tepat, 100 update yang sebelumnya sudah diminta tetapi belum diproses, tidak bisa diminta lagi karena Telegram telah menandainya sebagai sudah diproses.
@@ -176,5 +150,5 @@ Dengan begitu, kamu menjalankan dua instance grammY runner yang berbeda.
 Konsep tadi adalah sebuah ide berdasarkan pengetahuan yang kami punya, tetapi ide tersebut belum pernah diterapkan.
 Silahkan [hubungi grup Telegram kami](https://t.me/grammyjs) kalau kamu mempunyai beberapa pertanyaan atau bahkan kamu berhasil melakukannya dan ingin membagikannya ke kami.
 
-Di sisi lain, kalau bot kamu sedang mengalami beban tinggi yang mengakibatkan polling update menjadi terlambat karena [pembatasan beban yang dilakukan secara otomatis](../plugins/runner.md#sink), maka kemungkinan besar beberapa update akan di-fetch lagi, yang mengakibatkan pemrosesan pesan duplikat.
+Di sisi lain, kalau bot kamu sedang mengalami beban tinggi yang mengakibatkan polling update menjadi terlambat karena [pembatasan beban yang dilakukan secara otomatis](../plugins/runner#sink), maka kemungkinan besar beberapa update akan di-fetch lagi, yang mengakibatkan pemrosesan pesan duplikat.
 Oleh karena itu, efek yang dihasilkan dari penggunaan concurency secara penuh adalah tidak ada yang bisa menjamin pemrosesan dilakukan baik _setidaknya sekali_ ataupun _paling banyak sekali_.

@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Хостинг: Deno Deploy
 
 Цей посібник розповідає про способи, які дозволяють розмістити ваших ботів на grammY на [Deno Deploy](https://deno.com/deploy).
@@ -5,27 +10,26 @@
 Зверніть увагу, що цей посібник призначений лише для користувачів Deno, а також для створення облікового запису на [Deno Deploy](https://deno.com/deploy) вам потрібно мати обліковий запис на [GitHub](https://github.com).
 
 Deno Deploy ідеально підходить для більшості простих ботів, проте варто зазначити, що не всі функції Deno доступні для застосунків, що працюють на Deno Deploy.
-Наприклад, платформа підтримує лише [обмежений набір](https://deno.com/deploy/docs/runtime-fs) API файлової системи, які доступні в Deno.
+Наприклад, платформа підтримує лише [обмежений набір](https://docs.deno.com/deploy/api/runtime-fs) API файлової системи, які доступні в Deno.
 Це така ж платформа, як і багато інших безсерверних платформ, але призначена для застосунків на Deno.
 
 Результат цього посібника [можна побачити в репозиторії з прикладами ботів](https://github.com/grammyjs/examples/tree/main/deno-deploy).
 
 ## Підготовка вашого коду
 
-> Памʼятайте, що вам потрібно [запустити свого бота на вебхуках](../guide/deployment-types.md#як-використовувати-вебхуки), тому ви повинні використовувати `webhookCallback` і не викликати `bot.start()` у своєму коді.
+> Памʼятайте, що вам потрібно [запустити свого бота на вебхуках](../guide/deployment-types#як-використовувати-вебхуки), тому ви повинні використовувати `webhookCallback` і не викликати `bot.start()` у своєму коді.
 
 1. Переконайтеся, що у вас є файл, який експортує ваш обʼєкт `Bot`, щоб ви могли імпортувати його пізніше для запуску.
 2. Створіть файл з назвою `mod.ts` або `mod.js` або насправді будь-якою назвою, яку ви хочете, але ви повинні памʼятати та використовувати його як головний файл для розгортання, із наступним вмістом:
 
 ```ts
-import { serve } from "https://deno.land/std/http/server.ts";
 import { webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 // Ви можете змінити це на правильний спосіб імпорту вашого обʼєкта `Bot`.
 import bot from "./bot.ts";
 
 const handleUpdate = webhookCallback(bot, "std/http");
 
-serve(async (req) => {
+Deno.serve(async (req) => {
   if (req.method === "POST") {
     const url = new URL(req.url);
     if (url.pathname.slice(1) === bot.token) {
@@ -53,7 +57,7 @@ serve(async (req) => {
 1. Створіть репозиторій на GitHub, він може бути як приватним, так і загальнодоступним.
 2. Завантажте свій код.
 
-> Рекомендується мати одну стабільну гілку, а тестувати свої напрацювання в інших гілках, щоб уникнути непередбачуваних помилок.
+   > Рекомендується мати одну стабільну гілку, а тестувати свої напрацювання в інших гілках, щоб уникнути непередбачуваних помилок.
 
 3. Відвідайте свою [панель керування Deno Deploy](https://dash.deno.com/projects).
 4. Натисніть на "New Project" і перейдіть до розділу "Deploy from GitHub repository".
@@ -70,9 +74,9 @@ serve(async (req) => {
 4. [Створіть токен доступу](https://dash.deno.com/user/access-tokens).
 5. Виконайте наступну команду:
 
-```sh
-deployctl deploy --project <назва-проєкту> ./mod.ts --prod --token <токен-доступу>
-```
+   ```sh
+   deployctl deploy --project <назва-проєкту> ./mod.ts --prod --token <токен-доступу>
+   ```
 
 6. Щоб налаштувати Github Actions, дивіться [це](https://github.com/denoland/deployctl/blob/main/action/README.md).
 

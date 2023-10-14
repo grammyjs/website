@@ -1,32 +1,46 @@
 ---
-home: true
-heroImage: /images/Y.png
-actions:
-  - text: Розпочати
-    link: /uk/guide/getting-started.html
-    type: primary
-  - text: Вступ
-    link: /uk/guide/introduction.html
-    type: secondary
+layout: home
+titleTemplate: false
+
+hero:
+  name: grammY
+  text: Фреймворк для створення Telegram ботів.
+  taglines: 
+    - подумайте, чомУ.
+    - нова ера розробки ботів.
+    - швидший за вас.
+    - отримуйте задоволення від створення ботів.
+    - попереду ще одне оновлення.
+    - може зробити все, окрім вечері.
+    - легко, як з обійстя виховати козУ.
+    - обслуговано мільярди і мільярди.
+    - живлений одержимістю.
+  image:
+    src: /images/Y.svg
+    alt: логотип grammY
+  actions:
+    - theme: brand
+      text: Розпочати
+      link: ./guide/getting-started
+    - theme: alt
+      text: Вступ
+      link: ./guide/introduction
+
 features:
-  - title: Простий у використанні
+  - icon: <img class="VPImage" src="/icons/beach-animation.webp" alt="beach animation" width="32" height="32">
+    title: Простий у використанні
     details: grammY робить створення ботів Telegram настільки простим, що ви вже знаєте, як це зробити.
-  - title: Гнучкий
+  - icon: <img class="VPImage" src="/icons/palette-animation.webp" alt="palette animation" width="32" height="32">
+    title: Гнучкий
     details: grammY відкритий і може бути розширений за допомогою плагінів, щоб точно відповідати вашим потребам.
-  - title: Масштабований
+  - icon: <img class="VPImage" src="/icons/rocket-animation.webp" alt="rocket animation" width="32" height="32">
+    title: Масштабований
     details: grammY допоможе вам, коли ваш бот стане популярним і трафік зросте.
-permalink: /uk/
 ---
 
-<h6 align="right">… {{ [
-  'подумайте, чомУ',
-  'нова ера розробки ботів',
-  'швидший за вас',
-  'попереду ще одне оновлення',
-  'може зробити все, окрім вечері',
-  'легко, як з обійстя виховати козУ',
-  'обслуговано сотні мільйонів',
-][Math.floor(Math.random() * 7)] }}.</h6>
+<!-- markdownlint-disable no-inline-html -->
+
+<HomeContent>
 
 ## Швидкий старт
 
@@ -34,10 +48,9 @@ permalink: /uk/
 
 `npm install grammy` і вставте наступний код:
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot } from "grammy";
 
 const bot = new Bot(""); // <-- Помістіть токен свого бота між "" (https://t.me/BotFather)
@@ -48,10 +61,7 @@ bot.on("message", (ctx) => ctx.reply("Привіт!"));
 bot.start();
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot } = require("grammy");
 
 const bot = new Bot(""); // <-- Помістіть токен свого бота між "" (https://t.me/BotFather)
@@ -62,10 +72,7 @@ bot.on("message", (ctx) => ctx.reply("Привіт!"));
 bot.start();
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
 const bot = new Bot(""); // <-- Помістіть токен свого бота між "" (https://t.me/BotFather)
@@ -77,9 +84,10 @@ bot.start();
 ```
 
 :::
-::::
 
 Працює! :tada:
+
+<footer id="home-footer">
 
 ---
 
@@ -93,11 +101,9 @@ bot.start();
 
 <div style="font-size: 0.75rem; display: flex; justify-content: center;">
 
-© 2021-2023 &middot; grammY підтримує Telegram Bot API 6.7, який був [випущений](https://core.telegram.org/bots/api#april-21-2023) 21-го квітня 2023 року.
-Остання зміна: декілька псевдонімів ботів, користувацькі емодзі та кращі inline-запити.
+© 2021-2023 &middot; grammY підтримує Telegram Bot API 6.9, який був [випущений](https://core.telegram.org/bots/api#september-22-2023) 22-го вересня 2023 року.
+Остання зміна: історії.
 
 </div>
-
-<ClientOnly>
-  <LanguagePopup />
-</ClientOnly>
+</footer>
+</HomeContent>

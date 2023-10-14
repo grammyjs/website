@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Stateless Question (`stateless-question`)
 
 > Membuat stateless question di mode privasi

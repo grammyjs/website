@@ -1,8 +1,3 @@
----
-prev: ./flood.md
-next: ./proxy.md
----
-
 # Bot API Transformers
 
 Middleware is a function that handles a context object, i.e. incoming data.
@@ -69,12 +64,12 @@ Thus, calls to `ctx.api` will be transformed by both those transformers on `ctx.
 
 Transformer functions are as flexible as middleware, and they have just as many different applications.
 
-For instance, the [grammY menu plugin](../plugins/menu.md) installs a transformer function to turn outgoing menu instances into the correct payload.
+For instance, the [grammY menu plugin](../plugins/menu) installs a transformer function to turn outgoing menu instances into the correct payload.
 You can also use them to
 
-- implement [flood control](../plugins/transformer-throttler.md),
+- implement [flood control](../plugins/transformer-throttler),
 - mock API requests during testing,
-- add [retry behavior](../plugins/auto-retry.md), or
+- add [retry behavior](../plugins/auto-retry), or
 - more.
 
 Note, however, that retrying an API call can have odd side-effects: if you call `sendDocument` and pass a readable stream instance to `InputFile`, then the stream will be read the first time the request is tried.
@@ -83,7 +78,7 @@ It is therefore a more reliable way to pass file paths to `InputFile`, so grammY
 
 ## API Flavoring
 
-grammY features [context flavors](../guide/context.md#context-flavors) that can be used to adjust the context type.
+grammY features [context flavors](../guide/context#context-flavors) that can be used to adjust the context type.
 This includes API methods---both those that are directly on the context object such as `ctx.reply`, and all methods in `ctx.api` and `ctx.api.raw`.
 However, you cannot adjust the types of `bot.api` and `bot.api.raw` via context flavors.
 
@@ -114,4 +109,4 @@ bot.on("message", (ctx) => ctx.api.somePluginMethod());
 
 API flavors work exactly analogously to context flavors.
 There are both additive and transformative API flavors, and multiple API flavors can be combined the same way as you would do with context flavors.
-If you are unsure how this works, head back to the [section about context flavors](../guide/context.md#context-flavors) in the guide.
+If you are unsure how this works, head back to the [section about context flavors](../guide/context#context-flavors) in the guide.

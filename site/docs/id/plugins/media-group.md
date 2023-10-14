@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Pengelompokan Media (bawaan)
 
 Plugin pengelompokan media atau media group berfungsi untuk mengirim kumpulan media melalui object `InputMedia`.
@@ -9,10 +14,9 @@ Perlu diingat, object `InputMedia` telah dijelaskan [di sini](https://core.teleg
 
 Kamu bisa menggunakan plugin dengan cara seperti ini:
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { InputMediaBuilder } from "grammy";
 
 const photo = InputMediaBuilder.photo(new InputFile("/tmp/foto.mp4"));
@@ -20,10 +24,7 @@ const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
 // dst
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { InputMediaBuilder } = require("grammy");
 
 const photo = InputMediaBuilder.photo(new InputFile("/tmp/foto.mp4"));
@@ -31,10 +32,7 @@ const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
 // dst
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { InputMediaBuilder } from "https://deno.land/x/grammy/mod.ts";
 
 const photo = InputMediaBuilder.photo(new InputFile("/tmp/foto.mp4"));
@@ -43,20 +41,19 @@ const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
 ```
 
 :::
-::::
 
 Lihat semua method `InputMediaBuilder` yang tersedia di [referensi API](https://deno.land/x/grammy/mod.ts?s=InputMediaBuilder).
 
 Kamu juga bisa meneruskan URL publik secara langsung yang nantinya akan diunduh oleh Telegram.
 
 ```ts
-const photo = InputMediaBuilder.photo("https://grammy.dev/images/Y.png");
+const photo = InputMediaBuilder.photo("https://grammy.dev/images/grammY.png");
 ```
 
 Opsi lanjutan bisa disertakan di akhir dalam bentuk sebuah object opsi.
 
 ```ts
-const photo = InputMediaBuilder.photo("https://grammy.dev/images/Y.png", {
+const photo = InputMediaBuilder.photo("https://grammy.dev/images/grammY.png", {
   caption: "grammY sangat mengagumkan",
   // dst
 });
@@ -77,7 +74,9 @@ Selain itu, kamu bisa meneruskan sebuah array object `InputMedia` ke `ctx.api.se
 Karena object `InputMedia` juga digunakan untuk mengubah pesan media, plugin ini juga bisa digunakan untuk hal yang serupa:
 
 ```ts
-const newMedia = InputMediaBuilder.photo("https://grammy.dev/images/Y.png");
+const newMedia = InputMediaBuilder.photo(
+  "https://grammy.dev/images/grammY.png",
+);
 await ctx.editMessageMedia(newMedia);
 ```
 

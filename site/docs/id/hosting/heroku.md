@@ -1,9 +1,14 @@
+---
+prev: false
+next: false
+---
+
 # Hosting: Heroku
 
 > Kami mengasumsikan bahwa kamu sudah memiliki pengetahuan dasar dalam membuat sebuah bot menggunakan grammY.
-> Jika belum, silahkan baca [panduan](../guide) yang telah kami buat dengan sepenuh hati! :heart:
+> Jika belum, silahkan baca [panduan](../guide/) yang telah kami buat dengan sepenuh hati! :heart:
 
-Tutorial ini akan mengajari kamu cara men-deploy bot Telegram ke [Heroku](https://heroku.com/), baik menggunakan [webhooks](../guide/deployment-types.md#bagaimana-cara-kerja-webhook) maupun [long polling](../guide/deployment-types.md#bagaimana-cara-kerja-long-polling).
+Tutorial ini akan mengajari kamu cara men-deploy bot Telegram ke [Heroku](https://heroku.com/), baik menggunakan [webhooks](../guide/deployment-types#bagaimana-cara-kerja-webhook) maupun [long polling](../guide/deployment-types#bagaimana-cara-kerja-long-polling).
 Kami juga mengasumsikan kalau kamu sudah mempunyai akun Heroku.
 
 ## Persiapan
@@ -44,11 +49,11 @@ Struktur folder kita kurang lebih mirip seperti ini:
 
 Setelah itu, buka file `tsconfig.json` lalu ubah konfigurasinya menjadi seperti ini:
 
-```json{4}
+```json
 {
   "compilerOptions": {
     "target": "ESNEXT",
-    "module": "esnext", // ubah dari commonjs menjadi esnext
+    "module": "ESNext", // [!code hl] // ubah dari commonjs menjadi esnext
     "lib": ["ES2021"],
     "outDir": "./dist/",
     "strict": true,
@@ -70,7 +75,7 @@ File `package.json` kita kurang lebih tampak seperti ini:
   "version": "0.0.1",
   "description": "",
   "main": "dist/app.js",
-  "type": "module",  // tambah property "type": "module"
+  "type": "module", // [!code hl] // tambah property "type": "module"
   "scripts": {
     "dev-build": "tsc"
   },
@@ -90,7 +95,7 @@ File `package.json` kita kurang lebih tampak seperti ini:
 ```
 
 Seperti yang sudah dijelaskan di awal, kita memiliki dua opsi untuk menerima data dari Telegram: webhook dan long polling.
-Kamu bisa mempelajari kelebihan dan kekurangan dari kedua jenis deployment tersebut di [materi ini](../guide/deployment-types.md)!
+Kamu bisa mempelajari kelebihan dan kekurangan dari kedua jenis deployment tersebut di [materi ini](../guide/deployment-types)!
 
 ## Webhooks
 
@@ -157,10 +162,10 @@ https://api.telegram.org/botabcd:1234/setWebhook?url=https%3A%2F%2Fgrammybot.her
 :::
 
 ::: tip ⚡ Optimisasi (opsional)
-Gunakan [Webhook Reply](../guide/deployment-types.md#webhook-reply) agar lebih efisien.
+Gunakan [Webhook Reply](../guide/deployment-types#webhook-reply) agar lebih efisien.
 :::
 
-### Membuat `bot.ts`
+### Membuat `bot.ts` (Webhooks)
 
 Langkah berikutnya, buat `bot.ts` lalu tulis kode berikut:
 
@@ -182,29 +187,29 @@ Sebelum kita melangkah ke tahap deployment, kita bisa melakukan optimisasi kecil
 Seperti biasa, langkah ini adalah opsional.
 
 ::: tip ⚡ Optimisasi (opsional)
-Setiap kali server dimulai, grammY akan mengambil sejumlah [informasi mengenai bot terkait](https://core.telegram.org/bots/api#getme) dari Telegram agar `ctx.me` tersedia di [object context](../guide/context.md).
+Setiap kali server dimulai, grammY akan mengambil sejumlah [informasi mengenai bot terkait](https://core.telegram.org/bots/api#getme) dari Telegram agar `ctx.me` tersedia di [object context](../guide/context).
 Kita bisa mengisi [informasi bot](https://deno.land/x/grammy/mod.ts?s=BotConfig#prop_botInfo) tersebut secara manual untuk menghindari pemanggilan `getMe` secara berlebihan.
 
 1. Buka link `https://api.telegram.org/bot<bot_token>/getMe` di web browser favoritmu.
    Kami merekomendasikan untuk menggunakan browser [Firefox](https://www.mozilla.org/en-US/firefox/) karena ia mampu menampilkan format `json` dengan baik.
 2. Ubah kode di baris ke-4 di atas dengan value yang telah kita dapat dari `getMe` tadi:
 
-```ts
-const token = process.env.BOT_TOKEN;
-if (!token) throw new Error("BOT_TOKEN belum diisi");
+   ```ts
+   const token = process.env.BOT_TOKEN;
+   if (!token) throw new Error("BOT_TOKEN belum diisi");
 
-export const bot = new Bot(token, {
-  botInfo: {
-    id: 111111111,
-    is_bot: true,
-    first_name: "xxxxxxxxx",
-    username: "xxxxxxbot",
-    can_join_groups: true,
-    can_read_all_group_messages: false,
-    supports_inline_queries: false,
-  },
-});
-```
+   export const bot = new Bot(token, {
+     botInfo: {
+       id: 111111111,
+       is_bot: true,
+       first_name: "xxxxxxxxx",
+       username: "xxxxxxbot",
+       can_join_groups: true,
+       can_read_all_group_messages: false,
+       supports_inline_queries: false,
+     },
+   });
+   ```
 
 :::
 
@@ -227,7 +232,7 @@ Jika ingin melakukannya setiap satu jam sekali, kamu bisa melakukannya dengan sa
 Hal-hal semacam itu yang tidak bisa kamu kontrol di webhooks.
 Jika bot kamu dibanjiri banyak pesan, kamu akan melihat banyak sekali request webhooks, sedangkan di long polling kamu bisa membatasinya dengan mudah.
 
-### Membuat `bot.ts`
+### Membuat `bot.ts` (Long Polling)
 
 Mari kita buka file `bot.ts` yang telah kita buat di awal tadi.
 Pastikan ia memiliki baris-baris kode berikut:
@@ -251,7 +256,7 @@ bot.start();
 Selesai!
 Kita siap untuk men-deploy-nya.
 Cukup simpel, bukan? :smiley:
-Jika kamu pikir ini terlalu mudah, coba lihat [daftar Deployment](../advanced/deployment.md#long-polling) yang telah kami buat! :rocket:
+Jika kamu pikir ini terlalu mudah, coba lihat [daftar Deployment](../advanced/deployment#long-polling) yang telah kami buat! :rocket:
 
 ## Deployment
 
@@ -274,13 +279,15 @@ Jika berhasil dijalankan dan tidak ada pesan error yang muncul, file-file yang t
 Dua diantaranya adalah:
 
 - **Web dynos**:
-  <br> _Web dynos_ adalah sebuah dyno untuk memproses "web" yang menerima traffic HTTP dari berbagai router.
+
+  _Web dynos_ adalah sebuah dyno untuk memproses "web" yang menerima traffic HTTP dari berbagai router.
   Dyno tipe ini memiliki waktu timeout selama 30 detik untuk menjalankan kode.
   Selain itu, ia akan tidur jika tidak ada request yang dikerjakan dalam rentang waktu 30 menit.
   Jenis dyno seperti ini cocok digunakan untuk _webhooks_.
 
 - **Worker dynos**:
-  <br> _Worker dynos_ digunakan untuk memproses kode di belakang layar.
+
+  _Worker dynos_ digunakan untuk memproses kode di belakang layar.
   Ia TIDAK memiliki waktu timeout dan TIDAK akan tidur jika tidak ada request web yang dikerjakan.
   Sehingga, ia cocok digunakan untuk _long polling_.
 
@@ -294,29 +301,24 @@ Lalu, tulis satu baris kode berikut:
 
 Untuk contoh kali ini, kita akan menulisnya seperti berikut:
 
-::::code-group
-:::code-group-item Webhook
+::: code-group
 
-```procfile
+```procfile [Webhook]
 web: node dist/app.js
 ```
 
-:::
-:::code-group-item Long Polling
-
-```procfile
+```procfile [Long Polling]
 worker: node dist/bot.js
 ```
 
 :::
-::::
 
 ### Atur Git
 
 Kita akan men-deploy bot menggunakan [Git dan Heroku CLI](https://devcenter.heroku.com/articles/git).
 Berikut link cara penginstalannya:
 
-- [Instruksi menginstal Git](https://git-scm.com/download/)
+- [Instruksi menginstal Git](https://git-scm.com/download)
 - [Instruksi menginstal Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli)
 
 Kami mengasumsikan kamu telah menginstal kedua software tersebut, dan kamu juga sudah membuka terminal yang mengarah ke direktori root proyek kita.
@@ -338,10 +340,9 @@ tsconfig.json
 
 Hasil akhir struktur folder kita akan tampak seperti ini:
 
-::::code-group
-:::code-group-item Webhook
+::: code-group
 
-```asciiart:no-line-numbers
+```asciiart:no-line-numbers [Webhook]
 .
 ├── .git/
 ├── node_modules/
@@ -358,10 +359,7 @@ Hasil akhir struktur folder kita akan tampak seperti ini:
 └── .gitignore
 ```
 
-:::
-:::code-group-item Long Polling
-
-```asciiart:no-line-numbers
+```asciiart:no-line-numbers [Long Polling]
 .
 ├── .git/
 ├── node_modules/
@@ -377,7 +375,6 @@ Hasil akhir struktur folder kita akan tampak seperti ini:
 ```
 
 :::
-::::
 
 Commit file-file tersebut ke repositori git kita:
 
@@ -391,23 +388,18 @@ git commit -m "Commit pertamaku"
 Jika kamu sudah membuat [Heroku app](https://dashboard.heroku.com/apps/), masukkan nama `app` tersebut ke `<myApp>` di bawah, kemudian jalankan kodenya.
 Kalau belum punya, jalankan `New app`.
 
-::::code-group
-:::code-group-item New app
+::: code-group
 
-```sh
+```sh [New app]
 heroku create
 git remote -v
 ```
 
-:::
-:::code-group-item Existing app
-
-```sh
+```sh [Existing app]
 heroku git:remote -a <myApp>
 ```
 
 :::
-::::
 
 ### Men-deploy Kode
 

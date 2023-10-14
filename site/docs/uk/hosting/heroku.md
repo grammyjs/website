@@ -1,9 +1,14 @@
+---
+prev: false
+next: false
+---
+
 # Хостинг: Heroku
 
 > Ми припускаємо, що у вас є базові знання про створення ботів за допомогою grammY.
-> Якщо ви ще не готові, не соромтеся перейти до нашого дружнього [посібника](../guide)! :rocket:
+> Якщо ви ще не готові, не соромтеся перейти до нашого дружнього [посібника](../guide/)! :rocket:
 
-Цей посібник навчить вас, як розгорнути бота Telegram на [Heroku](https://heroku.com/) за допомогою [вебхуків](../guide/deployment-types.md#як-використовувати-вебхуки) або [тривалого опитування](../guide/deployment-types.md#як-використовувати-тривале-опитування).
+Цей посібник навчить вас, як розгорнути бота Telegram на [Heroku](https://heroku.com/) за допомогою [вебхуків](../guide/deployment-types#як-використовувати-вебхуки) або [тривалого опитування](../guide/deployment-types#як-використовувати-тривале-опитування).
 Ми також припускаємо, що у вас вже є обліковий запис Heroku.
 
 ## Передумови
@@ -44,11 +49,11 @@ npx tsc --init
 
 Після цього відкрийте `tsconfig.json` і змініть його, щоб використовувати таку конфігурацію:
 
-```json{4}
+```json
 {
   "compilerOptions": {
     "target": "ESNEXT",
-    "module": "esnext", // змінено з CommonJS на ESNext.
+    "module": "ESNext", // [!code hl] // змінено з CommonJS на ESNext.
     "lib": ["ES2021"],
     "outDir": "./dist/",
     "strict": true,
@@ -70,7 +75,7 @@ npx tsc --init
   "version": "0.0.1",
   "description": "",
   "main": "dist/app.js",
-  "type": "module",  // встановлюємо параметр "type": "module"
+  "type": "module", // [!code hl] // встановлюємо параметр "type": "module"
   "scripts": {
     "dev-build": "tsc"
   },
@@ -90,7 +95,7 @@ npx tsc --init
 ```
 
 Як вже згадувалося раніше, у нас є два варіанти як отримувати дані від Telegram: вебхуки та тривале опитування.
-Ви можете дізнатися більше про переваги обох методів та вирішити, який з них підходить для вас, перейшовши за цим посиланням до [чудових порад](../guide/deployment-types.md)!
+Ви можете дізнатися більше про переваги обох методів та вирішити, який з них підходить для вас, перейшовши за цим посиланням до [чудових порад](../guide/deployment-types)!
 
 ## Вебхуки
 
@@ -156,10 +161,10 @@ https://api.telegram.org/botabcd:1234/setWebhook?url=https%3A%2F%2Fgrammybot.her
 :::
 
 ::: tip ⚡ Оптимізація (не обовʼязково)
-Використовуйте [відповідь вебхуку](../guide/deployment-types.md#відповідь-вебхуку) для більшої ефективності.
+Використовуйте [відповідь вебхуку](../guide/deployment-types#відповідь-вебхуку) для більшої ефективності.
 :::
 
-### Створення `bot.ts`
+### Створення `bot.ts` (вебхук)
 
 Наступним кроком перейдіть до файлу `bot.ts`:
 
@@ -181,28 +186,28 @@ bot.on("message", (ctx) => ctx.reply("Отримав інше повідомле
 Як зазвичай, це не обовʼязково.
 
 ::: tip ⚡ Оптимізація (не обовʼязково)
-Кожного разу, коли ваш сервер запускається, grammY буде запитувати [інформацію про бота](https://core.telegram.org/bots/api#getme) з Telegram з метою надання цієї інформації в [обʼєкту контексту](../guide/context.md) в `ctx.me`.
+Кожного разу, коли ваш сервер запускається, grammY буде запитувати [інформацію про бота](https://core.telegram.org/bots/api#getme) з Telegram з метою надання цієї інформації в [обʼєкту контексту](../guide/context) в `ctx.me`.
 Ми можемо встановити [інформацію про бота](https://deno.land/x/grammy/mod.ts?s=BotConfig#prop_botInfo), щоб запобігти надмірним викликам `getMe`.
 
 1. Відкрийте посилання `https://api.telegram.org/bot<токен-бота>/getMe` в вашому улюбленному браузері. Рекомендується [Firefox](https://www.mozilla.org/en-US/firefox/), бо він чудово працює з форматом `json`.
 2. Змініть код на 4-му рядку вище і заповніть значення відповідно до результатів, отриманих з `getMe`:
 
-```ts
-const token = process.env.BOT_TOKEN;
-if (!token) throw new Error("BOT_TOKEN не вказано");
+   ```ts
+   const token = process.env.BOT_TOKEN;
+   if (!token) throw new Error("BOT_TOKEN не вказано");
 
-export const bot = new Bot(token, {
-  botInfo: {
-    id: 111111111,
-    is_bot: true,
-    first_name: "xxxxxxxxx",
-    username: "xxxxxxbot",
-    can_join_groups: true,
-    can_read_all_group_messages: false,
-    supports_inline_queries: false,
-  },
-});
-```
+   export const bot = new Bot(token, {
+     botInfo: {
+       id: 111111111,
+       is_bot: true,
+       first_name: "xxxxxxxxx",
+       username: "xxxxxxbot",
+       can_join_groups: true,
+       can_read_all_group_messages: false,
+       supports_inline_queries: false,
+     },
+   });
+   ```
 
 :::
 
@@ -225,7 +230,7 @@ export const bot = new Bot(token, {
 Але цього не можна контролювати за допомогою вебхуків.
 Якщо ваш бот буде завалений повідомленнями, вам прийде багато запитів на вебхук, проте за допомогою тривалого опитування ви можете легко обмежити швидкість обробки оновлень.
 
-### Створення `bot.ts`
+### Створення `bot.ts` (тривале опитування)
 
 Давайте відкриємо файл `bot.ts`, який ми створили раніше.
 Він має містити наступний код:
@@ -250,7 +255,7 @@ bot.start();
 Ось і все!
 Ми готові розгорнути його.
 Досить просто, чи не так? :smiley:
-Якщо ви думаєте, що це занадто просто, перевірте наш [контрольний список розгортання](../advanced/deployment.md#тривале-опитування-long-polling)! :rocket:
+Якщо ви думаєте, що це занадто просто, перевірте наш [контрольний список розгортання](../advanced/deployment#тривале-опитування-long-polling)! :rocket:
 
 ## Розгортання
 
@@ -273,13 +278,15 @@ npx tsc
 Два з них:
 
 - **Веб dyno**:
-  <br> _Веб dyno_ процесу "web", які отримують HTTP трафік від маршрутизаторів.
+
+  _Веб dyno_ процесу "web", які отримують HTTP трафік від маршрутизаторів.
   Цей тип dyno має 30-ти секундний тайм-аут для виконання коду.
   Крім того, він засинає, якщо протягом 30-ти хвилин не було запиту для обробки.
   Цей тип dyno цілком підходить для _вебхуків_.
 
 - **Worker dyno**:
-  <br> _Worker dyno_ зазвичай використовуються для фонових задач.
+
+  _Worker dyno_ зазвичай використовуються для фонових задач.
   Він НЕ має тайм-ауту і НЕ засинає, якщо не обробляє жодного вебзапиту.
   Він підходить для _тривалого опитування_.
 
@@ -293,29 +300,24 @@ npx tsc
 
 У нашому випадку він має бути таким:
 
-::::code-group
-:::code-group-item Вебхук
+::: code-group
 
-```procfile
+```procfile [Вебхук]
 web: node dist/app.js
 ```
 
-:::
-:::code-group-item Тривале опитування
-
-```procfile
+```procfile [Тривале опитування]
 worker: node dist/bot.js
 ```
 
 :::
-::::
 
 ### Налаштування Git
 
 Ми збираємося розгорнути бота за допомогою [Git та Heroku CLI](https://devcenter.heroku.com/articles/git).
 Ось посилання на інсталяцію:
 
-- [Інструкція для встановлення Git](https://git-scm.com/download/)
+- [Інструкція для встановлення Git](https://git-scm.com/download)
 - [Інструкція для встановлення Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli)
 
 Припускаємо, що ви вже маєте їх на своєму компʼютері й у вас відкритий термінал в кореневому каталозі проєкту.
@@ -337,10 +339,9 @@ tsconfig.json
 
 Кінцева структура каталогів повинна виглядати наступним чином:
 
-::::code-group
-:::code-group-item Вебхук
+::: code-group
 
-```asciiart:no-line-numbers
+```asciiart:no-line-numbers [Вебхук]
 .
 ├── .git/
 ├── node_modules/
@@ -357,10 +358,7 @@ tsconfig.json
 └── .gitignore
 ```
 
-:::
-:::code-group-item Тривале опитування
-
-```asciiart:no-line-numbers
+```asciiart:no-line-numbers [Тривале опитування]
 .
 ├── .git/
 ├── node_modules/
@@ -376,7 +374,6 @@ tsconfig.json
 ```
 
 :::
-::::
 
 Збережіть файли у репозиторії Git:
 
@@ -390,23 +387,18 @@ git commit -m "Мій перший коміт"
 Якщо ви вже створили [застосунок Heroku](https://dashboard.heroku.com/apps/), введіть назву вашого існуючого застосунку (`Existing app`) замість `<мій-застосунок>` нижче, а потім запустіть код.
 В іншому випадку запустіть новий застосунок (`New app`).
 
-::::code-group
-:::code-group-item Новий застосунок
+::: code-group
 
-```sh
+```sh [Новий застосунок]
 heroku create
 git remote -v
 ```
 
-:::
-:::code-group-item Існуючий застосунок
-
-```sh
+```sh [Існуючий застосунок]
 heroku git:remote -a <мій-застосунок>
 ```
 
 :::
-::::
 
 ### Розгортання коду
 

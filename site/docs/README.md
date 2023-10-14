@@ -1,32 +1,46 @@
 ---
-home: true
-heroImage: /images/Y.png
-actions:
-  - text: Get Started
-    link: /guide/getting-started.html
-    type: primary
-  - text: Introduction
-    link: /guide/introduction.html
-    type: secondary
+layout: home
+titleTemplate: false
+
+hero:
+  name: grammY
+  text: The Telegram Bot Framework.
+  taglines: 
+    - think of the whY.
+    - a new era of bot development.
+    - runs faster than you.
+    - have fun making bots.
+    - one update ahead.
+    - can do anything except dishes.
+    - easy peasy lemon squeezY.
+    - billions and billions served.
+    - powered by obsession.
+  image:
+    src: /images/Y.svg
+    alt: grammY logo
+  actions:
+    - theme: brand
+      text: Get Started
+      link: ./guide/getting-started
+    - theme: alt
+      text: Introduction
+      link: ./guide/introduction
+
 features:
-  - title: Easy to Use
+  - icon: <img class="VPImage" src="/icons/beach-animation.webp" alt="beach animation" width="32" height="32">
+    title: Easy-to-use
     details: grammY makes creating Telegram bots so simple you already know how to do it.
-  - title: Flexible
+  - icon: <img class="VPImage" src="/icons/palette-animation.webp" alt="palette animation" width="32" height="32">
+    title: Flexible
     details: grammY is open and can be extended by plugins to make it fit exactly your needs.
-  - title: Scalable
+  - icon: <img class="VPImage" src="/icons/rocket-animation.webp" alt="rocket animation" width="32" height="32">
+    title: Scalable
     details: grammY has you covered when your bot gets popular and the traffic increases.
-permalink: /
 ---
 
-<h6 align="right">… {{ [
-  'think of the whY',
-  'a new era of bot development',
-  'runs faster than you',
-  'one update ahead',
-  'can do anything except dishes',
-  'easy peasy lemon squeezY',
-  'hundreds of millions served',
-][Math.floor(Math.random() * 7)] }}.</h6>
+<!-- markdownlint-disable no-inline-html -->
+
+<HomeContent>
 
 ## Quickstart
 
@@ -34,10 +48,9 @@ Bots are written in [TypeScript](https://www.typescriptlang.org) (or JavaScript)
 
 `npm install grammy` and paste the following code:
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot } from "grammy";
 
 const bot = new Bot(""); // <-- put your bot token between the "" (https://t.me/BotFather)
@@ -48,10 +61,7 @@ bot.on("message", (ctx) => ctx.reply("Hi there!"));
 bot.start();
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot } = require("grammy");
 
 const bot = new Bot(""); // <-- put your bot token between the "" (https://t.me/BotFather)
@@ -62,10 +72,7 @@ bot.on("message", (ctx) => ctx.reply("Hi there!"));
 bot.start();
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
 const bot = new Bot(""); // <-- put your bot token between the "" (https://t.me/BotFather)
@@ -77,9 +84,10 @@ bot.start();
 ```
 
 :::
-::::
 
 Works! :tada:
+
+<footer id="home-footer">
 
 ---
 
@@ -94,11 +102,12 @@ Works! :tada:
 
 <div style="font-size: 0.75rem; display: flex; justify-content: center;">
 
-© 2021-2023 &middot; grammY supports Telegram Bot API 6.7 which was [released](https://core.telegram.org/bots/api#april-21-2023) on April 21, 2023.
-(Last highlight: multiple bot names, custom emoji, and better inline queries)
+© 2021-2023 &middot; grammY supports Telegram Bot API 6.9 which was [released](https://core.telegram.org/bots/api#september-22-2023) on September 22, 2023.
+(Last highlight: Stories)
 
 </div>
-
+</footer>
 <ClientOnly>
   <LanguagePopup />
 </ClientOnly>
+</HomeContent>

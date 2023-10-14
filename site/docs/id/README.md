@@ -1,34 +1,48 @@
 ---
-home: true
-heroImage: /images/Y.png
-actions:
-  - text: Mulai
-    link: /id/guide/getting-started.html
-    type: primary
-  - text: Pengenalan
-    link: /id/guide/introduction.html
-    type: secondary
+layout: home
+titleTemplate: false
+
+hero:
+  name: grammY
+  text: Framework Bot Telegram.
+  taglines: 
+    - tak perlu lagi mengeluh "whY!?".
+    - era baru pengembangan bot.
+    - bekerja lebih cepat dibanding kamu.
+    - selangkah lebih maju.
+    - bisa melakukan apa saja, kecuali mencuci piring.
+    - buatnya so easY, hati jadi happY.
+    - miliaran telah terlayani.
+    - dokumentasi yang lengkap dan berkualitas.
+    - honeY, grammY, sweetY.
+    - bikin bot tak pernah sebahagia ini.
+    - ditenagai oleh obsesi.
+  image:
+    src: /images/Y.svg
+    alt: logo grammY
+  actions:
+    - theme: brand
+      text: Mulai
+      link: ./guide/getting-started
+    - theme: alt
+      text: Pengenalan
+      link: ./guide/introduction
+
 features:
-  - title: Mudah Digunakan
+  - icon: <img class="VPImage" src="/icons/beach-animation.webp" alt="beach animation" width="32" height="32">
+    title: Mudah Digunakan
     details: grammY menjadikan pembuatan bot Telegram begitu simpel sehingga kamu pun langsung tahu cara membuatnya.
-  - title: Fleksibel
+  - icon: <img class="VPImage" src="/icons/palette-animation.webp" alt="palette animation" width="32" height="32">
+    title: Fleksibel
     details: grammY bersifat terbuka dan bisa ditambahkan dengan plugin yang kamu inginkan.
-  - title: Dapat Diskalakan
-    details: grammY selalu siap membantu ketika bot menjadi semakin populer dan semakin banyak trafiknya.
-permalink: /id/
+  - icon: <img class="VPImage" src="/icons/rocket-animation.webp" alt="rocket animation" width="32" height="32">
+    title: Dapat Diskalakan
+    details: grammY selalu siap membantu ketika bot menjadi semakin populer dan ramai digunakan.
 ---
 
-<h6 align="right">… {{ [
-  'tak perlu lagi mengeluh "whY!?"',
-  'era baru pengembangan bot',
-  'bekerja lebih cepat dibanding kamu',
-  'selangkah lebih maju',
-  'bisa melakukan apa saja, kecuali mencuci piring',
-  'buatnya so easY, hati jadi happY',
-  'ratusan juta telah terlayani',
-  'dokumentasi yang lengkap dan berkualitas',
-  'honeY, grammY, sweetY',
-][Math.floor(Math.random() * 9)] }}.</h6>
+<!-- markdownlint-disable no-inline-html -->
+
+<HomeContent>
 
 ## Mulai Cepat
 
@@ -36,10 +50,9 @@ Bot ditulis menggunakan [TypeScript](https://www.typescriptlang.org) (atau JavaS
 
 `npm install grammy` lalu tempel kode berikut:
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot } from "grammy";
 
 const bot = new Bot(""); // <-- taruh token bot-mu di antara "" (https://t.me/BotFather)
@@ -50,10 +63,7 @@ bot.on("message", (ctx) => ctx.reply("Halo, apa kabar!"));
 bot.start();
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot } = require("grammy");
 
 const bot = new Bot(""); // <-- taruh token bot-mu di antara "" (https://t.me/BotFather)
@@ -64,10 +74,7 @@ bot.on("message", (ctx) => ctx.reply("Halo, apa kabar!"));
 bot.start();
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
 const bot = new Bot(""); // <-- taruh token bot-mu di antara "" (https://t.me/BotFather)
@@ -79,9 +86,10 @@ bot.start();
 ```
 
 :::
-::::
 
 Berhasil! :tada:
+
+<footer id="home-footer">
 
 ---
 
@@ -96,7 +104,9 @@ Berhasil! :tada:
 
 <div style="font-size: 0.75rem; display: flex; justify-content: center;">
 
-© 2021-2023 &middot; grammY mendukung API Bot Telegram versi 6.7 yang [dirilis](https://core.telegram.org/bots/api#april-21-2023) pada tanggal 21 April 2023.
-(Fitur yang disorot: nama bot lebih dari satu, emoji khusus, dan inline queries yang lebih baik)
+© 2021-2023 &middot; grammY mendukung API Bot Telegram versi 6.9 yang [dirilis](https://core.telegram.org/bots/api#september-22-2023) pada tanggal 22 September 2023.
+(Fitur yang disorot: Cerita)
 
 </div>
+</footer>
+</HomeContent>

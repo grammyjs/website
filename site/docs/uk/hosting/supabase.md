@@ -1,9 +1,14 @@
+---
+prev: false
+next: false
+---
+
 # Хостинг: Supabase Edge Functions
 
 Цей посібник розповість вам, як ви можете розмістити ваших ботів grammY на [Supabase](https://supabase.com/).
 
 Зверніть увагу, що вам потрібен обліковий запис [GitHub](https://github.com), перш ніж ви зможете використовувати [Supabase Edge Functions](https://supabase.com/docs/guides/functions/quickstart).
-Крім того, Supabase Edge Functions базуються на [Deno Deploy](https://deno.com/deploy), тому, як і [посібник по Deno Deploy](./deno-deploy.md), цей посібник призначений тільки для користувачів Deno.
+Крім того, Supabase Edge Functions базуються на [Deno Deploy](https://deno.com/deploy), тому, як і [посібник по Deno Deploy](./deno-deploy), цей посібник призначений тільки для користувачів Deno.
 
 Supabase Edge Functions ідеально підходить для більшості простих ботів, але вам слід знати, що не всі можливості Deno доступні для застосунків, що працюють на Supabase Edge Functions.
 Наприклад, на Supabase Edge Functions немає файлової системи.
@@ -26,12 +31,11 @@ supabase functions new telegram-bot
 
 ## Підготовка вашого коду
 
-> Не забудьте, що вам потрібно [запустити свого бота на вебхуках](../guide/deployment-types.md#як-використовувати-вебхуки), тому вам слід використовувати `webhookCallback` і не викликати `bot.start()` у своєму коді.
+> Не забудьте, що вам потрібно [запустити свого бота на вебхуках](../guide/deployment-types#як-використовувати-вебхуки), тому вам слід використовувати `webhookCallback` і не викликати `bot.start()` у своєму коді.
 
 Для початку ви можете скористатися цим простим прикладом бота.
 
 ```ts
-import { serve } from "https://deno.land/std/http/server.ts";
 import { Bot, webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 
 const token = Deno.env.get("BOT_TOKEN");
@@ -44,7 +48,7 @@ bot.command("ping", (ctx) => ctx.reply(`Понг! ${new Date()}`));
 
 const handleUpdate = webhookCallback(bot, "std/http");
 
-serve(async (req) => {
+Deno.serve(async (req) => {
   try {
     const url = new URL(req.url);
     if (url.searchParams.get("secret") !== bot.token) {
@@ -54,6 +58,7 @@ serve(async (req) => {
   } catch (err) {
     console.error(err);
   }
+  return new Response();
 });
 ```
 

@@ -1,32 +1,46 @@
 ---
-home: true
-heroImage: /images/Y.png
-actions:
-  - text: Comenzar
-    link: /es/guide/getting-started.html
-    type: primary
-  - text: Introducción
-    link: /es/guide/introduction.html
-    type: secondary
+layout: home
+titleTemplate: false
+
+hero:
+  name: grammY
+  text: El Framework de Bots para Telegram.
+  taglines: 
+    - piensa en el por qué.
+    - la nueva era del desarrollo de bots.
+    - se ejecuta más rápido que tú.
+    - diviértete haciendo bots.
+    - una actualización por delante.
+    - puede hacer todo menos lavar los platos.
+    - fácil de exprimir limones.
+    - miles y miles de millones de peticiones.
+    - impulsado por la obsesión.
+  image:
+    src: /images/Y.svg
+    alt: Logotipo de grammY
+  actions:
+    - theme: brand
+      text: Comenzar
+      link: ./guide/getting-started
+    - theme: alt
+      text: Introducción
+      link: ./guide/introduction
+
 features:
-  - title: Fácil de usar
+  - icon: <img class="VPImage" src="/icons/beach-animation.webp" alt="beach animation" width="32" height="32">
+    title: Fácil de usar
     details: grammY hace crear bots de Telegram tan simple que ya sabes como hacerlo.
-  - title: Flexible
+  - icon: <img class="VPImage" src="/icons/palette-animation.webp" alt="palette animation" width="32" height="32">
+    title: Flexible
     details: grammY es abierto y puede extenderse con plugins para adaptarse a tus necesidades.
-  - title: Escalable
+  - icon: <img class="VPImage" src="/icons/rocket-animation.webp" alt="rocket animation" width="32" height="32">
+    title: Escalable
     details: grammY te tiene cubierto cuando tu bot se vuelve popular y el tráfico se incrementa.
-permalink: /es/
 ---
 
-<h6 align="right">… {{ [
-  'piensa en el por qué',
-  'la nueva era del desarrollo de bots',
-  'se ejecuta más rápido que tú',
-  'una actualización por delante',
-  'puede hacer todo menos lavar los platos',
-  'fácil de exprimir limones',
-  'cientos de millones de peticiones',
-][Math.floor(Math.random() * 7)] }}.</h6>
+<!-- markdownlint-disable no-inline-html -->
+
+<HomeContent>
 
 ## Quickstart
 
@@ -34,10 +48,9 @@ Bots están escritos en [TypeScript](https://www.typescriptlang.org) (o JavaScri
 
 `npm install grammy` y copia el siguiente código:
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot } from "grammy";
 
 const bot = new Bot(""); // <-- pon tu token entre los "" (https://t.me/BotFather)
@@ -48,10 +61,7 @@ bot.on("message", (ctx) => ctx.reply("¡Hola a todos!"));
 bot.start();
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot } = require("grammy");
 
 const bot = new Bot(""); // <-- pon tu token entre los "" (https://t.me/BotFather)
@@ -62,10 +72,7 @@ bot.on("message", (ctx) => ctx.reply("¡Hola a todos!"));
 bot.start();
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
 const bot = new Bot(""); // <-- pon tu token entre los "" (https://t.me/BotFather)
@@ -77,9 +84,10 @@ bot.start();
 ```
 
 :::
-::::
 
 ¡Funciona! :tada:
+
+<footer id="home-footer">
 
 ---
 
@@ -94,7 +102,9 @@ bot.start();
 
 <div style="font-size: 0.75rem;  display: flex; justify-content: center;">
 
-© 2021-2023 &middot; grammY es compatible con la API 6.7 de Telegram Bot que fue [lanzada](https://core.telegram.org/bots/api#april-21-2023) el 21 de Abril del 2023.
-(Último punto destacado: varios nombres de bot, emoji personalizados y mejores consultas en línea)
+© 2021-2023 &middot; grammY soporta Telegram Bot API 6.9 que fue [liberada](https://core.telegram.org/bots/api#september-22-2023) el 22 de Septiembre del 2023.
+(Última novedad: Historias)
 
 </div>
+</footer>
+</HomeContent>

@@ -1,5 +1,5 @@
 ---
-prev: ./games.md
+next: false
 ---
 
 # Long Polling vs. Webhooks
@@ -96,7 +96,7 @@ ______________                                   _____________
 ```
 
 > Tenga en cuenta que, en realidad, ninguna conexión se mantendría abierta durante horas.
-> Las solicitudes de long polling ienen un tiempo de espera por defecto de 30 segundos (para evitar una serie de [problemas técnicos](https://datatracker.ietf.org/doc/html/draft-loreto-http-bidirectional-07#section-5.5)).
+> Las solicitudes de long polling ienen un tiempo de espera por defecto de 30 segundos (para evitar una serie de [problemas técnicos](https://datatracker.ietf.org/doc/html/rfc6202#section-5.5)).
 > Si no se devuelven nuevos mensajes después de este período de tiempo, la solicitud se cancelará y se volverá a enviar---pero el concepto general sigue siendo el mismo.
 
 Usando un long polling, no necesitas enviar spam a los servidores de Telegram, ¡y aún así recibes nuevos mensajes inmediatamente!
@@ -168,7 +168,7 @@ Los webhooks pueden ser un poco desagradables de vez en cuando (ver [abajo](#ter
 
 Elijas lo que elijas, si alguna vez te encuentras con problemas serios, no debería ser demasiado difícil cambiar al otro tipo de despliegue después del hecho.
 Con grammY, sólo tienes que tocar unas pocas líneas de código.
-La configuración de su [middleware](./middleware.md) es la misma.
+La configuración de su [middleware](./middleware) es la misma.
 
 ## Cómo utilizar el Long Polling
 
@@ -182,7 +182,7 @@ para ejecutar su bot con una forma muy simple de long polling.
 Procesa todas las actualizaciones secuencialmente.
 Esto hace que tu bot sea muy fácil de depurar, y todo el comportamiento muy predecible, porque no hay concurrencia involucrada.
 
-Si quieres que tus mensajes sean manejados concurrentemente por grammY, o te preocupa el rendimiento, revisa la sección sobre [grammY runner](../plugins/runner.md).
+Si quieres que tus mensajes sean manejados concurrentemente por grammY, o te preocupa el rendimiento, revisa la sección sobre [grammY runner](../plugins/runner).
 
 ## Cómo usar Webhooks
 
@@ -192,10 +192,9 @@ Por lo tanto, esperamos que seas capaz de poner en marcha un servidor web simple
 Cada bot de grammY puede convertirse en un middleware para un número de frameworks web, incluyendo `express`, `koa`/`oak`, y más.
 Puedes importar la función `webhookCallback` ([API reference](https://deno.land/x/grammy/mod.ts?s=webhookCallback)) para crear un middleware para el framework correspondiente.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import express from "express";
 
 const app = express(); // o lo que sea que estés usando
@@ -205,10 +204,7 @@ app.use(express.json()); // analiza el cuerpo de la petición JSON
 app.use(webhookCallback(bot, "express"));
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const express = require("express");
 
 const app = express(); // o lo que sea que estés usando
@@ -218,10 +214,7 @@ app.use(express.json()); // analiza el cuerpo de la petición JSON
 app.use(webhookCallback(bot, "express"));
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Application } from "https://deno.land/x/oak/mod.ts";
 
 const app = new Application(); // o lo que sea que estés usando
@@ -231,7 +224,6 @@ app.use(webhookCallback(bot, "oak"));
 ```
 
 :::
-::::
 
 > Ten en cuenta que no debes llamar a `bot.start()` cuando uses webhooks.
 

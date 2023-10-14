@@ -1,98 +1,121 @@
-# 托管: Cloudflare Workers
+---
+prev: false
+next: false
+---
 
-[Cloudflare Workers](https://workers.cloudflare.com/) 是一个公共 serverless 计算平台，为在 [边缘](https://en.wikipedia.org/wiki/Edge_computing) 运行 JavaScript 提供了一种方便简单的解决方案。
-能够处理 HTTP 流量并基于 [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API)，构建 Telegram bot 变得轻而易举。
-此外，你甚至可以在边缘开发 [Web Apps](https://core.telegram.org/bots/webapps)，所有这些都在一定额度内免费。
+# 托管: Cloudflare Workers (Deno)
 
-本指南将带你完成在 Cloudflare Workers 上托管 Telegram bot 的过程。
+[Cloudflare Workers](https://workers.cloudflare.com) 是一个公共的无服务器计算平台，为在 [边缘](https://en.wikipedia.org/wiki/Edge_computing) 上运行小型工作负载提供了便捷且简单的解决方案。
+
+本指南将引导你完成在 Cloudflare Workers 上托管 bot 的过程。
+
+::: tip 正在寻找 Node.js 版本？
+本教程介绍如何使用 Deno 将 Telegram bot 部署到 Cloudflare Workers。
+如果你正在寻找 Node.js 版本，请查看 [这个教程](./cloudflare-workers-nodejs)。
+:::
 
 ## 先决条件
 
-请确保你有一个 [Cloudflare 帐户](https://dash.cloudflare.com/login)，并 [已配置](https://dash.cloudflare.com/?account=workers) 你的 workers 子域名.
+请确保你已经拥有 [Cloudflare 帐户](https://dash.cloudflare.com/login)，并且已经 [配置](https://dash.cloudflare.com/?account=workers) 了你的 workers 子域名，以便跟随操作。
 
 ## 设置
 
-首先，创建一个新项目：
+请确保你已经安装了 [Deno](https://deno.com) 和 [Denoflare](https://denoflare.dev)。
 
-```sh
-npx wrangler generate my-bot
+创建一个新目录，并在该目录中创建一个名为 `.denoflare` 的新文件。
+将以下内容放入文件中：
+
+> 注意：以下 JSON 代码中的 "$schema" 键在其 URL 中指定了一个固定版本（"v0.5.12"）。
+> 在撰写本文时，这是最新可用的版本。
+> 你应该将它们更新为 [最新版本](https://github.com/skymethod/denoflare/releases)。
+
+```json{2,9,17-18}
+{
+  "$schema": "https://raw.githubusercontent.com/skymethod/denoflare/v0.5.12/common/config.schema.json",
+  "scripts": {
+    "my-bot": {
+      "path": "bot.ts",
+      "localPort": 3030,
+      "bindings": {
+        "BOT_TOKEN": {
+          "value": "YOUR_BOT_TOKEN"
+        }
+      },
+      "workersDev": true
+    }
+  },
+  "profiles": {
+    "account1": {
+      "accountId": "YOUR_ACCOUNT_ID",
+      "apiToken": "YOUR_API_TOKEN"
+    }
+  }
+}
 ```
 
-你可以将 `my-bot` 更改为你想要的任何内容。
-这将是你的 bot 的名字和项目目录。
-
-运行上述命令后，按照你看到的说明初始化项目。
-在那里，你可以选择 JavaScript 或 TypeScript。
-
-当项目初始化时，`cd` 进入 `my-bot` 或你初始化的项目的目录。
-根据你初始化项目的方式，你应该看到类似于以下的文件结构：
-
-```asciiart:no-line-numbers
-.
-├── node_modules
-├── package.json
-├── package-lock.json
-├── src
-│   ├── index.js
-│   └── index.test.js
-└── wrangler.toml
-```
-
-接下来，安装 `grammy` 和你可能需要的其他软件包：
-
-```sh
-npm install grammy
-```
+请确保正确替换 `YOUR_ACCOUNT_ID`、`YOUR_API_TOKEN` 和 `YOUR_BOT_TOKEN`。
+在创建 API token 时，你可以从预配置的权限中选择 `Edit Cloudflare Workers` 预设选项。
 
 ## 创建你的 bot
 
-编辑 `src/index.js` 或 `src/index.ts`，在里面写下这段代码：
+创建一个名为 `bot.ts` 的新文件，并将以下内容放入其中：
 
 ```ts
-import { Bot, webhookCallback } from "grammy";
+import { Bot, webhookCallback } from "https://deno.land/x/grammy/mod.ts";
+import { UserFromGetMe } from "https://deno.land/x/grammy/types.ts";
 
-// 你可以将 `BOT_TOKEN` 替换为你的 bot token，但最好将其存储在环境变量中。
-// 更多有关信息，请参阅 https://developers.cloudflare.com/workers/platform/environment-variables/#secrets-on-deployed-workers.
-// 你还应该将 `BOT_INFO` 替换为从 `bot.api.getMe()` 获得的 bot 信息。
-const bot = new Bot(BOT_TOKEN, { botInfo: BOT_INFO });
+interface Environment {
+  BOT_TOKEN: string;
+}
 
-bot.command("start", async (ctx) => {
-  await ctx.reply("Hello, world!");
-});
+let botInfo: UserFromGetMe | undefined = undefined;
 
-addEventListener("fetch", webhookCallback(bot, "cloudflare"));
+export default {
+  async fetch(request: Request, env: Environment) {
+    try {
+      const bot = new Bot(env.BOT_TOKEN, { botInfo });
+
+      if (botInfo === undefined) {
+        await bot.init();
+        botInfo = bot.botInfo;
+      }
+
+      bot.command("start", (ctx) => ctx.reply("欢迎！已启动并正在运行。"));
+      bot.on("message", (ctx) => ctx.reply("又收到了一条消息!"));
+
+      const cb = webhookCallback(bot, "cloudflare-mod");
+
+      return await cb(request);
+    } catch (e) {
+      return new Response(e.message);
+    }
+  },
+};
 ```
-
-上面示例的 bot 收到 `/start` 时，它将回复“Hello, world!”。
 
 ## 部署你的 bot
 
-在部署之前，我们需要编辑 `wrangler.toml`：
-
-```toml
-account_id = 'your account_id' # 从 Cloudflare Dashboard 获取它。
-name = 'my-bot' # 你的 bot 的名字, 将出现在 webhook URL 中, 例如: https://my-bot.my-subdomain.workers.dev
-main = "src/index.js"  # Worker 的入口文件
-compatibility_date = "2023-01-16"
-```
-
-然后，你可以使用以下命令进行部署：
+只需运行以下命令：
 
 ```sh
-npm run deploy
+denoflare push my-bot
 ```
 
-## 设置你的 Webhook
+上述命令的输出会告诉你正在运行的 worker 的地址。
+留意包含类似 `<MY_BOT>.<MY_SUBDOMAIN>.workers.dev` 的行。
+那就是你的 bot 的地址。
 
-我们需要告诉 Telegram 将 update 发送到哪里。
-打开浏览器并访问这个 URL：
+## 设置你的 webhook
+
+我们需要告诉 Telegram 把 update 发送到哪里。
+打开你的浏览器并访问以下网址：
 
 ```text
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<MY_BOT>.<MY_SUBDOMAIN>.workers.dev/
 ```
 
-将 `<BOT_TOKEN>`、`<MY_BOT>` 和 `<MY_SUBDOMAIN>` 替换为你的值。
-如果设置成功，你将看到如下 JSON 响应：
+用你自己的值替换 `<BOT_TOKEN>`，`<MY_BOT>` 和 `<MY_SUBDOMAIN>`。
+如果设置成功，你将会看到一个像这样的 JSON 响应：
 
 ```json
 {
@@ -104,17 +127,17 @@ https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<MY_BOT>.<MY_SUBD
 
 ## 测试你的 bot
 
-打开你的 Telegram 应用程序，然后启动你的 bot。
-如果它响应，则表示你可以开始了！
+打开你的 Telegram 应用，然后启动你的 bot。
+如果它有响应，就表示一切都搞定了！
 
 ## 调试你的 bot
 
-出于测试和调试目的，你可以在将 bot 部署到生产环境之前运行本地或远程开发服务器。
-只需运行以下命令：
+为了测试和调试，在部署你的 bot 到生产环境之前，你可以先在本地或远程开发服务器上运行。
+只需执行以下命令：
 
 ```sh
-npm run start
+denoflare serve my-bot
 ```
 
-开发服务器启动后，你可以使用 `curl`、[Insomnia](https://insomnia.rest) 或 [Postman](https://postman.com) 等工具向其发送示例 update 来测试你的 bot.
-请参阅 [此处](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates) 获取 update 示例和 [此处](https://core.telegram.org/bots/api#update) 获取有关 update 结构的更多信息。
+一旦开发服务器启动，你可以使用 `curl`、[Insomnia](https://insomnia.rest) 或 [Postman](https://postman.com) 等工具发送示例 update 来测试你的 bot。
+请参阅 [此处](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates) 查看有关 update 示例和 [此处](https://core.telegram.org/bots/api#update) 查看有关 update 结构的更多信息。

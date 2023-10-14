@@ -1,13 +1,18 @@
+---
+prev: false
+next: false
+---
+
 # Flood Control (`transformer-throttler`)
 
-> Consider using the [auto-retry plugin](./auto-retry.md) instead.
+> Consider using the [auto-retry plugin](./auto-retry) instead.
 
-This plugin enqueues outgoing API requests instance via [Bottleneck](https://github.com/SGrondin/bottleneck) in order to prevent your bot from hitting [rate limits](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this) as described in this [advanced section](../advanced/flood.md) of the documentation.
+This plugin enqueues outgoing API requests instance via [Bottleneck](https://github.com/SGrondin/bottleneck) in order to prevent your bot from hitting [rate limits](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this) as described in this [advanced section](../advanced/flood) of the documentation.
 
 ::: warning Undocumented API Limits Exist
 Telegram implements unspecified and undocumented rate limits for some API calls.
 These undocumented limits are **not accounted for** by the throttler.
-If you still want to use this plugin, consider using the [auto-retry plugin](./auto-retry.md) together with it.
+If you still want to use this plugin, consider using the [auto-retry plugin](./auto-retry) together with it.
 :::
 
 ## Usage
@@ -15,10 +20,9 @@ If you still want to use this plugin, consider using the [auto-retry plugin](./a
 Here is an example of how to use this plugin with the default options.
 Note that the default options are aligned with the actual rate limits enforced by Telegram, so they should be good to go.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot } from "grammy";
 import { run } from "@grammyjs/runner";
 import { apiThrottler } from "@grammyjs/transformer-throttler";
@@ -34,10 +38,7 @@ bot.command("example", (ctx) => ctx.reply("I am throttled"));
 run(bot);
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot } = require("grammy");
 const { run } = require("@grammyjs/runner");
 const { apiThrottler } = require("@grammyjs/transformer-throttler");
@@ -53,10 +54,7 @@ bot.command("example", (ctx) => ctx.reply("I am throttled"));
 run(bot);
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { run } from "https://deno.land/x/grammy_runner/mod.ts";
 import { apiThrottler } from "https://deno.land/x/grammy_transformer_throttler/mod.ts";
@@ -73,7 +71,6 @@ run(bot);
 ```
 
 :::
-::::
 
 ## Configuration
 

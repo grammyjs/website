@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Media Groups (built-in)
 
 The media group plugin helps you send media groups by letting you build `InputMedia` objects.
@@ -9,10 +14,9 @@ Remember that `InputMedia` objects are specified [here](https://core.telegram.or
 
 You can use this plugin like so:
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { InputMediaBuilder } from "grammy";
 
 const photo = InputMediaBuilder.photo(new InputFile("/tmp/photo.mp4"));
@@ -20,10 +24,7 @@ const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
 // etc
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { InputMediaBuilder } = require("grammy");
 
 const photo = InputMediaBuilder.photo(new InputFile("/tmp/photo.mp4"));
@@ -31,10 +32,7 @@ const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
 // etc
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { InputMediaBuilder } from "https://deno.land/x/grammy/mod.ts";
 
 const photo = InputMediaBuilder.photo(new InputFile("/tmp/photo.mp4"));
@@ -43,20 +41,19 @@ const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
 ```
 
 :::
-::::
 
 Check out all methods of `InputMediaBuilder` in the [API reference](https://deno.land/x/grammy/mod.ts?s=InputMediaBuilder).
 
 You can also directly pass public URLs which Telegram fetches.
 
 ```ts
-const photo = InputMediaBuilder.photo("https://grammy.dev/images/Y.png");
+const photo = InputMediaBuilder.photo("https://grammy.dev/images/grammY.png");
 ```
 
 Further options can be provided in an options object at the end.
 
 ```ts
-const photo = InputMediaBuilder.photo("https://grammy.dev/images/Y.png", {
+const photo = InputMediaBuilder.photo("https://grammy.dev/images/grammY.png", {
   caption: "grammY is awesome",
   // etc
 });
@@ -77,7 +74,9 @@ Likewise, you can pass an array of `InputMedia` objects to `ctx.api.sendMediaGro
 Since `InputMedia` objects are also used to edit media messages, this plugin will assist you here, too:
 
 ```ts
-const newMedia = InputMediaBuilder.photo("https://grammy.dev/images/Y.png");
+const newMedia = InputMediaBuilder.photo(
+  "https://grammy.dev/images/grammY.png",
+);
 await ctx.editMessageMedia(newMedia);
 ```
 

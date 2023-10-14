@@ -1,10 +1,18 @@
-# Hosting: Cloudflare Workers
+---
+prev: false
+next: false
+---
 
-[Cloudflare Workers](https://workers.cloudflare.com/) is a public serverless computing platform that offers a convenient and simple solution for running JavaScript at the [edge](https://en.wikipedia.org/wiki/Edge_computing).
-Having the ability to handle HTTP traffic and being based on the [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API), building Telegram bots becomes a breeze.
-In addition, you can even develop [Web Apps](https://core.telegram.org/bots/webapps) at the edge, all for free within certain quotas.
+# Hosting: Cloudflare Workers (Deno)
 
-This guide will take you through the process of hosting your Telegram bots on Cloudflare Workers.
+[Cloudflare Workers](https://workers.cloudflare.com) is a public serverless computing platform that offers a convenient and simple solution for running small workloads at the [edge](https://en.wikipedia.org/wiki/Edge_computing).
+
+This guide will take you through the process of hosting your bot on Cloudflare Workers.
+
+::: tip Looking for the Node.js Version?
+This tutorial explains how to deploy a Telegram bot to Cloudflare Workers using Deno.
+If you're looking for the Node.js version, please check out [this tutorial](./cloudflare-workers-nodejs) instead.
+:::
 
 ## Prerequisites
 
@@ -12,75 +20,90 @@ To follow along, please make sure that you have a [Cloudflare account](https://d
 
 ## Setting Things Up
 
-First, create a new project:
+Make sure you have [Deno](https://deno.com) and [Denoflare](https://denoflare.dev) installed.
 
-```sh
-npx wrangler generate my-bot
+Create a new directory, and create a new file `.denoflare` in that directory.
+Put the following contents in the file:
+
+> Note: The "$schema" key in the following JSON code specifies a fixed version in its URL ("v0.5.12").
+> At the time of writing, this was the latest version available.
+> You should update them to the [newest version](https://github.com/skymethod/denoflare/releases).
+
+```json{2,9,17-18}
+{
+  "$schema": "https://raw.githubusercontent.com/skymethod/denoflare/v0.5.12/common/config.schema.json",
+  "scripts": {
+    "my-bot": {
+      "path": "bot.ts",
+      "localPort": 3030,
+      "bindings": {
+        "BOT_TOKEN": {
+          "value": "YOUR_BOT_TOKEN"
+        }
+      },
+      "workersDev": true
+    }
+  },
+  "profiles": {
+    "account1": {
+      "accountId": "YOUR_ACCOUNT_ID",
+      "apiToken": "YOUR_API_TOKEN"
+    }
+  }
+}
 ```
 
-You can change `my-bot` to whatever you want.
-This will be the name of your bot and the project directory.
-
-After running the above command, follow the instructions you see to initialize the project.
-There, you can choose between JavaScript or TypeScript.
-
-When the project is initialized, `cd` into `my-bot` or whatever directory you initialized your project in.
-Depending on how you initialized the project, you should see a file structure similar to the following:
-
-```asciiart:no-line-numbers
-.
-├── node_modules
-├── package.json
-├── package-lock.json
-├── src
-│   ├── index.js
-│   └── index.test.js
-└── wrangler.toml
-```
-
-Next, install `grammy`, and other packages you might need:
-
-```sh
-npm install grammy
-```
+Make sure to replace `YOUR_ACCOUNT_ID`, `YOUR_API_TOKEN`, and `YOUR_BOT_TOKEN` appropriately.
+When creating your API token, you can choose the `Edit Cloudflare Workers` preset from the pre-configured permissions.
 
 ## Creating Your Bot
 
-Edit `src/index.js` or `src/index.ts`, and write this code inside:
+Create a new file named `bot.ts` and put the following contents in it:
 
 ```ts
-import { Bot, webhookCallback } from "grammy";
+import { Bot, webhookCallback } from "https://deno.land/x/grammy/mod.ts";
+import { UserFromGetMe } from "https://deno.land/x/grammy/types.ts";
 
-// The following line of code assumes that you have configured the secrets BOT_TOKEN and BOT_INFO.
-// See https://developers.cloudflare.com/workers/platform/environment-variables/#secrets-on-deployed-workers.
-// The BOT_INFO is obtained from `bot.api.getMe()`.
-const bot = new Bot(BOT_TOKEN, { botInfo: BOT_INFO });
+interface Environment {
+  BOT_TOKEN: string;
+}
 
-bot.command("start", async (ctx) => {
-  await ctx.reply("Hello, world!");
-});
+let botInfo: UserFromGetMe | undefined = undefined;
 
-addEventListener("fetch", webhookCallback(bot, "cloudflare"));
+export default {
+  async fetch(request: Request, env: Environment) {
+    try {
+      const bot = new Bot(env.BOT_TOKEN, { botInfo });
+
+      if (botInfo === undefined) {
+        await bot.init();
+        botInfo = bot.botInfo;
+      }
+
+      bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
+      bot.on("message", (ctx) => ctx.reply("Got another message!"));
+
+      const cb = webhookCallback(bot, "cloudflare-mod");
+
+      return await cb(request);
+    } catch (e) {
+      return new Response(e.message);
+    }
+  },
+};
 ```
-
-The above example bot replies "Hello, world!" when it receives `/start`.
 
 ## Deploying Your Bot
 
-Before deploying, we need to edit `wrangler.toml`:
-
-```toml
-account_id = 'your account_id' # Get this from Cloudflare's dashboard.
-name = 'my-bot' # Your bot's name, which will appear in the webhook URL, for example: https://my-bot.my-subdomain.workers.dev
-main = "src/index.js"  # The entry file of the worker.
-compatibility_date = "2023-01-16"
-```
-
-You can then deploy using the following command:
+It's as easy as running:
 
 ```sh
-npm run deploy
+denoflare push my-bot
 ```
+
+The output of the above command will provide you with the host the worker is running on.
+Watch out for a line containing something like `<MY_BOT>.<MY_SUBDOMAIN>.workers.dev`.
+That's the host where your bot is waiting to be called.
 
 ## Setting Your Webhook
 
@@ -113,7 +136,7 @@ For testing and debugging purposes, you can run a local or remote development se
 Simply run the following command:
 
 ```sh
-npm run start
+denoflare serve my-bot
 ```
 
 Once the development server has started, you can test your bot by sending sample updates to it using tools like `curl`, [Insomnia](https://insomnia.rest), or [Postman](https://postman.com).

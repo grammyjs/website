@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Router (`router`)
 
 Class `Router` ([Referensi API](https://deno.land/x/grammy_router/router.ts)) berfungsi untuk mengatur rute suatu object context ke berbagai tempat di kode kamu.
@@ -22,7 +27,7 @@ bot.use(router);
 
 ## Integrasi ke Middleware
 
-Plugin router dapat diintegrasikan dengan [middleware tree](../advanced/middleware.md) grammY.
+Plugin router dapat diintegrasikan dengan [middleware tree](../advanced/middleware) grammY.
 Contohnya, kamu bisa mem-filter update setelah mengatur rute mereka.
 
 ```ts
@@ -33,14 +38,14 @@ other.on(":text", async (ctx) => {/* ... */});
 other.use((ctx) => {/* ... */});
 ```
 
-Kamu mungkin juga tertarik untuk membaca materi lain mengenai [pengombinasian handler middleware.](../guide/filter-queries.md#mengombinasikan-query-dengan-method-lain)
+Kamu mungkin juga tertarik untuk membaca materi lain mengenai [pengombinasian handler middleware.](../guide/filter-queries#mengombinasikan-query-dengan-method-lain)
 
 ## Mengombinasikan Router dengan Session
 
-Router juga bisa dikombinasikan dengan [session](./session.md).
+Router juga bisa dikombinasikan dengan [session](./session).
 Misalnya, kamu dapat membuat kembali form di interface chat dengan mengombinasikan keduanya.
 
-> Catatan: [Plugin conversations](./conversations.md) menyediakan metode yang lebih baik dari plugin ini.
+> Catatan: [Plugin conversations](./conversations) menyediakan metode yang lebih baik dari plugin ini.
 > Oleh karena itu, isi dari halaman ini sebenarnya sudah tidak berlaku lagi.
 > Namun, kami tetap menyediakan dokumentasi ini sebagai rujukan untuk para pengguna yang masih menggunakan plugin router untuk membuat form.
 
@@ -56,10 +61,9 @@ Bot bisa memberi tahu user jumlah hari yang tersisa jika kedua hal tersebut dike
 
 Berikut cara implementasinya:
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context, Keyboard, session, SessionFlavor } from "grammy";
 import { Router } from "@grammyjs/router";
 
@@ -196,10 +200,7 @@ function getDays(month: number, day: number) {
 }
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot, Context, Keyboard, session, SessionFlavor } = require("grammy");
 const { Router } = require("@grammyjs/router");
 
@@ -329,10 +330,7 @@ function getDays(month, day) {
 }
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import {
   Bot,
   Context,
@@ -476,7 +474,6 @@ function getDays(month: number, day: number) {
 ```
 
 :::
-::::
 
 Perhatikan session di atas memiliki property `step` untuk menyimpan step dari form tersebut, misalnya untuk mengetahui value mana yang sedang diisi.
 Router digunakan untuk berpindah antara middleware satu dengan lainnya ketika kedua isian `month` dan `dayOfMonth` telah terisi.

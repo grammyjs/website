@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Set of useful middlewares
 
 I kept rewriting the same middlewares again and again for all of my bots so I decided to extract them all to a separate package.
@@ -57,7 +62,7 @@ You have to provide the super admin id.
 
 ### `sequentialize`
 
-The basic [sequentialize](../advanced/scaling.md#concurrency-is-hard) middleware that takes the chat id as a sequential identifier.
+The basic [sequentialize](../advanced/scaling#concurrency-is-hard) middleware that takes the chat id as a sequential identifier.
 
 ## Plugin Summary
 
