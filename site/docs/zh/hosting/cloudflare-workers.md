@@ -49,8 +49,7 @@ npm install grammy
 编辑 `src/index.js` 或 `src/index.ts`，在里面写下这段代码：
 
 ```ts
-// 请注意，我们是从 `grammy/web` 而不是 `grammy` 导入。
-import { Bot, webhookCallback } from "grammy/web";
+import { Bot, webhookCallback } from "grammy";
 
 // 你可以将 `BOT_TOKEN` 替换为你的 bot token，但最好将其存储在环境变量中。
 // 更多有关信息，请参阅 https://developers.cloudflare.com/workers/platform/environment-variables/#secrets-on-deployed-workers.

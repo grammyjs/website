@@ -49,8 +49,7 @@ npm install grammy
 Tulis kode berikut ke dalam `src/index.js` atau `src/index.ts`:
 
 ```ts
-// Perhatikan bahwa kita meng-import dari 'grammy/web', bukan 'grammy'.
-import { Bot, webhookCallback } from "grammy/web";
+import { Bot, webhookCallback } from "grammy";
 
 // Baris kode berikut mengasumsikan bahwa kamu sudah mengonfigurasi secret BOT_TOKEN dan BOT_INFO.
 // Lihat https://developers.cloudflare.com/workers/platform/environment-variables/#secrets-on-deployed-workers.
