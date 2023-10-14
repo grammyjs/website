@@ -303,10 +303,6 @@ Puede almacenar cargas útiles de texto cortas junto con todos los botones de na
 Cuando los respectivos manejadores son invocados, la carga útil de texto estará disponible bajo `ctx.match`.
 Esto es útil porque le permite almacenar un poco de información en un menú.
 
-> Payloads no pueden utilizarse para almacenar realmente cantidades significativas de datos.
-> Lo único que puede almacenar son cadenas cortas de típicamente menos de 50 bytes, como un índice o un identificador.
-> Si realmente quiere almacenar datos del usuario, como un identificador de archivo, una URL o cualquier otra cosa, debe utilizar [sesiones](./session).
-
 Este es un ejemplo de menú que recuerda la hora actual en el payload.
 Otros casos de uso podrían ser, por ejemplo, almacenar el índice en un menú paginado.
 
@@ -338,6 +334,16 @@ bot.command("publish", async (ctx) => {
 });
 ```
 
+::: tip Limitaciones
+Las cargas útiles no pueden utilizarse para almacenar cantidades significativas de datos.
+Lo único que puede almacenar son cadenas cortas de típicamente menos de 50 bytes, como un índice o un identificador.
+Si realmente quieres almacenar datos de usuario como un identificador de fichero, una URL, o cualquier otra cosa, deberías usar [sessions](./session).
+
+Además, tenga en cuenta que la carga útil siempre se genera basándose en el objeto de contexto actual.
+Esto significa que importa _desde_ dónde se navega al menú, lo que puede dar lugar a resultados sorprendentes.
+Por ejemplo, cuando un menú está [desactualizado](#menus-y-huellas-anticuadas), se volverá a renderizar _basándose en el clic del botón del menú desactualizado_.
+:::
+
 Payloads también funcionan bien junto con los rangos dinámicos.
 
 ## Rangos dinámicos
@@ -355,6 +361,7 @@ Tu bot se ralentizaría cada vez más, y finalmente se colgaría.
 
 Sin embargo, puedes hacer uso de los rangos dinámicos descritos en esta sección.
 Te permiten cambiar arbitrariamente la estructura de una instancia de menú existente, por lo que son igualmente potentes.
+¡Utilice rangos dinámicos!
 :::
 
 Puede dejar que una parte de los botones de un menú se genere sobre la marcha (o todos ellos si lo desea).

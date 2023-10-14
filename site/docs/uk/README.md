@@ -9,12 +9,14 @@ hero:
     - подумайте, чомУ.
     - нова ера розробки ботів.
     - швидший за вас.
+    - отримуйте задоволення від створення ботів.
     - попереду ще одне оновлення.
     - може зробити все, окрім вечері.
     - легко, як з обійстя виховати козУ.
     - обслуговано мільярди і мільярди.
+    - живлений одержимістю.
   image:
-    src: /images/Y.webp
+    src: /images/Y.svg
     alt: логотип grammY
   actions:
     - theme: brand
@@ -35,6 +37,8 @@ features:
     title: Масштабований
     details: grammY допоможе вам, коли ваш бот стане популярним і трафік зросте.
 ---
+
+<!-- markdownlint-disable no-inline-html -->
 
 <HomeContent>
 
@@ -97,8 +101,8 @@ bot.start();
 
 <div style="font-size: 0.75rem; display: flex; justify-content: center;">
 
-© 2021-2023 &middot; grammY підтримує Telegram Bot API 6.7, який був [випущений](https://core.telegram.org/bots/api#april-21-2023) 21-го квітня 2023 року.
-Остання зміна: декілька псевдонімів ботів, користувацькі емодзі та кращі inline-запити.
+© 2021-2023 &middot; grammY підтримує Telegram Bot API 6.9, який був [випущений](https://core.telegram.org/bots/api#september-22-2023) 22-го вересня 2023 року.
+Остання зміна: історії.
 
 </div>
 </footer>

@@ -12,7 +12,7 @@ Salahkan Telegram karena menggunakan kedua istilah aneh tersebut. :upside_down_f
 
 Mari kita perjelas sedikit istilah-istilah berikut agar tidak salah paham:
 
-| <div style="width:130px">Istilah</div>  | Keterangan                                                                                                                                                                       |
+| Istilah                                 | Keterangan                                                                                                                                                                       |
 | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [**Keyboard Inline**](#keyboard-inline) | Kumpulan tombol yang ditampilkan di bawah sebuah pesan di dalam chat.                                                                                                            |
 | [**Keyboard Custom**](#keyboard-custom) | Kumpulan tombol yang ditampilkan untuk menggantikan keyboard sistem user.                                                                                                        |
@@ -44,7 +44,7 @@ Sebuah keyboard inline bisa dibentuk dengan cara membuat sebuah instance class `
 
 Berikut contohnya:
 
-![Contoh tangkapan layar dari sebuah keyboard inline](/images/inline-keyboard-example.webp)
+![Contoh tangkapan layar dari sebuah keyboard inline](/images/inline-keyboard-example.png)
 
 ```ts
 const inlineKeyboard = new InlineKeyboard()
@@ -93,7 +93,7 @@ Umumnya, semua method yang mengirim pesan selain pesan teks mendukung opsi-opsi 
 Contohnya, kamu bisa mengubah tampilan keyboard dengan cara memanggil `editMessageReplyMarkup`, kemudian memasukkan instance `InlineKeyboard` baru sebagai `reply_markup`-nya.
 Gunakan inline keyboard kosong untuk menghapus semua tombol yang berada di bawah pesan tersebut.
 
-### Merespon Ketika Tombol Ditekan
+### Merespon Ketika Tombol Keyboard Inline Ditekan
 
 ::: tip Plugin Menu
 Kamu bisa saja mengakses raw update yang dikirimkan oleh Telegram dengan plugin keyboard.
@@ -167,7 +167,7 @@ Panggil `.row()` untuk membuat sebuah baris tombol baru
 
 Berikut salah satu contohnya:
 
-![Contoh tangkapan layar keyboard custom](/images/keyboard-example.webp)
+![Contoh tangkapan layar keyboard custom](/images/keyboard-example.png)
 
 ```ts
 const keyboard = new Keyboard()
@@ -193,9 +193,8 @@ const labels = [
   "No. 😈",
 ];
 const buttonRows = labels
-  .map((label) => Keyboard.text(label))
-  .map((button) => Keyboard.row(button));
-const keyboard = Keyboard.from(buttonRows, { resize_keyboard: true });
+  .map((label) => [Keyboard.text(label)]);
+const keyboard = Keyboard.from(buttonRows).resized();
 ```
 
 ### Mengirim Keyboard Custom
@@ -282,7 +281,7 @@ new Keyboard()
 
 Pemanggilan `selected` di awal, tengah, ataupun terakhir, tidak akan mempengaruhi hasilnya.
 
-### Merespon Ketika Tombol Ditekan
+### Merespon Ketika Tombol Keyboard Custom Ditekan
 
 Seperti yang sudah disebutkan di awal, semua keyboard custom mengirim pesan teks biasa.
 Bot kamu tidak bisa membedakan antara pesan teks yang berasal dari ketikan user dengan pesan teks yang berasal dari tombol yang ditekan.

@@ -15,8 +15,10 @@ hero:
     - miliaran telah terlayani.
     - dokumentasi yang lengkap dan berkualitas.
     - honeY, grammY, sweetY.
+    - bikin bot tak pernah sebahagia ini.
+    - ditenagai oleh obsesi.
   image:
-    src: /images/Y.webp
+    src: /images/Y.svg
     alt: logo grammY
   actions:
     - theme: brand
@@ -37,6 +39,8 @@ features:
     title: Dapat Diskalakan
     details: grammY selalu siap membantu ketika bot menjadi semakin populer dan ramai digunakan.
 ---
+
+<!-- markdownlint-disable no-inline-html -->
 
 <HomeContent>
 
@@ -100,8 +104,8 @@ Berhasil! :tada:
 
 <div style="font-size: 0.75rem; display: flex; justify-content: center;">
 
-© 2021-2023 &middot; grammY mendukung API Bot Telegram versi 6.7 yang [dirilis](https://core.telegram.org/bots/api#april-21-2023) pada tanggal 21 April 2023.
-(Fitur yang disorot: nama bot lebih dari satu, emoji khusus, dan inline queries yang lebih baik)
+© 2021-2023 &middot; grammY mendukung API Bot Telegram versi 6.9 yang [dirilis](https://core.telegram.org/bots/api#september-22-2023) pada tanggal 22 September 2023.
+(Fitur yang disorot: Cerita)
 
 </div>
 </footer>

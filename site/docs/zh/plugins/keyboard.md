@@ -45,7 +45,7 @@ grammY 有一个简单且直观的方式来构建 inline keyboard，让你的 bo
 
 以下是一个示例：
 
-![示例](/images/inline-keyboard-example.webp)
+![示例](/images/inline-keyboard-example.png)
 
 ```ts
 const inlineKeyboard = new InlineKeyboard()
@@ -94,7 +94,7 @@ await ctx.reply(text, {
 比如说，你可以通过调用 `editMessageReplyMarkup` 来编辑一个 keyboard，并将新的 `InlineKeyboard` 实例作为 `reply_markup` 来传递。
 指定一个空的 inline keyboard 可以移除信息下方的所有按钮。
 
-### 响应点击
+### 响应 Inline Keyboard 的点击
 
 ::: tip 菜单插件
 keyboard 插件让你可以获取到 Telegram 发送的 update 对象。
@@ -164,7 +164,7 @@ grammY 有一个简单且直观的方式来构建回复 keyboard，让你的 bot
 
 以下是一个示例：
 
-![示例](/images/keyboard-example.webp)
+![示例](/images/keyboard-example.png)
 
 ```ts
 const keyboard = new Keyboard()
@@ -190,9 +190,8 @@ const labels = [
   "No. 😈",
 ];
 const buttonRows = labels
-  .map((label) => Keyboard.text(label))
-  .map((button) => Keyboard.row(button));
-const keyboard = Keyboard.from(buttonRows, { resize_keyboard: true });
+  .map((label) => [Keyboard.text(label)]);
+const keyboard = Keyboard.from(buttonRows).resized();
 ```
 
 ### 发送一个自定义 Keyboard
@@ -283,7 +282,7 @@ new Keyboard()
 不管你是最开始调用 `selected`，还是最后调用，还是在某个地方的两者之间调用，都没有关系。
 结果都是一样的。
 
-### 响应点击
+### 响应自定义 Keyboard 的点击
 
 正如前面所说的，自定义 keyboards 所做的就是发送普通的文本消息。
 你的 bot 不能区分普通文本消息和通过点击按钮发送的文本消息。

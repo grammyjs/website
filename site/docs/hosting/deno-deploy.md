@@ -1,5 +1,6 @@
 ---
 prev: false
+next: false
 ---
 
 # Hosting: Deno Deploy
@@ -9,7 +10,7 @@ This guide tells you about the ways you can host your grammY bots on [Deno Deplo
 Please note that this guide is only for Deno users, and you need to have a [GitHub](https://github.com) account for creating a [Deno Deploy](https://deno.com/deploy) account.
 
 Deno Deploy is ideal for most simple bots, and you should note that not all Deno features are available for apps running on Deno Deploy.
-For example, the platform only supports a [limited set](https://deno.com/deploy/docs/runtime-fs) of the file system APIs available in Deno.
+For example, the platform only supports a [limited set](https://docs.deno.com/deploy/api/runtime-fs) of the file system APIs available in Deno.
 It's just like the other many serverless platforms, but dedicated for Deno apps.
 
 The result of this tutorial [can be seen in our example bots repository](https://github.com/grammyjs/examples/tree/main/deno-deploy).
@@ -22,14 +23,13 @@ The result of this tutorial [can be seen in our example bots repository](https:/
 2. Create a file named `mod.ts` or `mod.js`, or actually any name you like (but you should be remembering and using this as the main file to deploy), with the following content:
 
 ```ts
-import { serve } from "https://deno.land/std/http/server.ts";
 import { webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 // You might modify this to the correct way to import your `Bot` object.
 import bot from "./bot.ts";
 
 const handleUpdate = webhookCallback(bot, "std/http");
 
-serve(async (req) => {
+Deno.serve(async (req) => {
   if (req.method === "POST") {
     const url = new URL(req.url);
     if (url.pathname.slice(1) === bot.token) {
@@ -57,7 +57,7 @@ Here, we are using the bot token (`/<bot token>`).
 1. Create a repository on GitHub, it can be either private or public.
 2. Push your code.
 
-> It is recommended that you have a single stable branch and you do your testing stuff in other branches, so that you won't get some unexpected things happen.
+   > It is recommended that you have a single stable branch and you do your testing stuff in other branches, so that you won't get some unexpected things happen.
 
 3. Visit your [Deno Deploy dashboard](https://dash.deno.com/projects).
 4. Click on "New Project", and go to the "Deploy from GitHub repository" section.
@@ -74,9 +74,9 @@ Here, we are using the bot token (`/<bot token>`).
 4. [Create an access token](https://dash.deno.com/user/access-tokens).
 5. Run the following command:
 
-```sh
-deployctl deploy --project <project> ./mod.ts --prod --token <token>
-```
+   ```sh
+   deployctl deploy --project <project> ./mod.ts --prod --token <token>
+   ```
 
 6. To set up Github Actions, refer to [this](https://github.com/denoland/deployctl/blob/main/action/README.md).
 
@@ -97,4 +97,4 @@ To do that, send a request to
 https://api.telegram.org/bot<token>/setWebhook?url=<url>
 ```
 
-replacing `<token>` with your bot's token, and `<url>` with the full URL of your app along with the path to the webhook handler.
+replacing `<token>` with your bot token, and `<url>` with the full URL of your app along with the path to the webhook handler.

@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Hosting: Heroku
 
 > Kami mengasumsikan bahwa kamu sudah memiliki pengetahuan dasar dalam membuat sebuah bot menggunakan grammY.
@@ -160,7 +165,7 @@ https://api.telegram.org/botabcd:1234/setWebhook?url=https%3A%2F%2Fgrammybot.her
 Gunakan [Webhook Reply](../guide/deployment-types#webhook-reply) agar lebih efisien.
 :::
 
-### Membuat `bot.ts`
+### Membuat `bot.ts` (Webhooks)
 
 Langkah berikutnya, buat `bot.ts` lalu tulis kode berikut:
 
@@ -189,22 +194,22 @@ Kita bisa mengisi [informasi bot](https://deno.land/x/grammy/mod.ts?s=BotConfig#
    Kami merekomendasikan untuk menggunakan browser [Firefox](https://www.mozilla.org/en-US/firefox/) karena ia mampu menampilkan format `json` dengan baik.
 2. Ubah kode di baris ke-4 di atas dengan value yang telah kita dapat dari `getMe` tadi:
 
-```ts
-const token = process.env.BOT_TOKEN;
-if (!token) throw new Error("BOT_TOKEN belum diisi");
+   ```ts
+   const token = process.env.BOT_TOKEN;
+   if (!token) throw new Error("BOT_TOKEN belum diisi");
 
-export const bot = new Bot(token, {
-  botInfo: {
-    id: 111111111,
-    is_bot: true,
-    first_name: "xxxxxxxxx",
-    username: "xxxxxxbot",
-    can_join_groups: true,
-    can_read_all_group_messages: false,
-    supports_inline_queries: false,
-  },
-});
-```
+   export const bot = new Bot(token, {
+     botInfo: {
+       id: 111111111,
+       is_bot: true,
+       first_name: "xxxxxxxxx",
+       username: "xxxxxxbot",
+       can_join_groups: true,
+       can_read_all_group_messages: false,
+       supports_inline_queries: false,
+     },
+   });
+   ```
 
 :::
 
@@ -227,7 +232,7 @@ Jika ingin melakukannya setiap satu jam sekali, kamu bisa melakukannya dengan sa
 Hal-hal semacam itu yang tidak bisa kamu kontrol di webhooks.
 Jika bot kamu dibanjiri banyak pesan, kamu akan melihat banyak sekali request webhooks, sedangkan di long polling kamu bisa membatasinya dengan mudah.
 
-### Membuat `bot.ts`
+### Membuat `bot.ts` (Long Polling)
 
 Mari kita buka file `bot.ts` yang telah kita buat di awal tadi.
 Pastikan ia memiliki baris-baris kode berikut:
@@ -274,13 +279,15 @@ Jika berhasil dijalankan dan tidak ada pesan error yang muncul, file-file yang t
 Dua diantaranya adalah:
 
 - **Web dynos**:
-  <br> _Web dynos_ adalah sebuah dyno untuk memproses "web" yang menerima traffic HTTP dari berbagai router.
+
+  _Web dynos_ adalah sebuah dyno untuk memproses "web" yang menerima traffic HTTP dari berbagai router.
   Dyno tipe ini memiliki waktu timeout selama 30 detik untuk menjalankan kode.
   Selain itu, ia akan tidur jika tidak ada request yang dikerjakan dalam rentang waktu 30 menit.
   Jenis dyno seperti ini cocok digunakan untuk _webhooks_.
 
 - **Worker dynos**:
-  <br> _Worker dynos_ digunakan untuk memproses kode di belakang layar.
+
+  _Worker dynos_ digunakan untuk memproses kode di belakang layar.
   Ia TIDAK memiliki waktu timeout dan TIDAK akan tidur jika tidak ada request web yang dikerjakan.
   Sehingga, ia cocok digunakan untuk _long polling_.
 

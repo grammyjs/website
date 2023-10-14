@@ -45,7 +45,7 @@ Puedes construir un teclado en línea creando una nueva instancia de la clase `I
 
 Aquí tienes un ejemplo:
 
-![Ejemplo](/images/inline-keyboard-example.webp)
+![Ejemplo](/images/inline-keyboard-example.png)
 
 ```ts
 const inlineKeyboard = new InlineKeyboard()
@@ -94,7 +94,7 @@ Naturalmente, todos los demás métodos que envían mensajes que no sean de text
 Por ejemplo, puedes editar un teclado llamando a `editMessageReplyMarkup`, y pasando la nueva instancia de `InlineKeyboard` como `reply_markup`.
 Especifique un teclado en línea vacío para eliminar todos los botones debajo de un mensaje.
 
-### Respondiendo a los clics
+### Respondiendo a las pulsaciones del teclado en línea
 
 ::: tip Menu Plugin
 El plugin de teclado te da acceso directo a los objetos de actualización que envía Telegram.
@@ -169,7 +169,7 @@ Llama a `.row()` para comenzar una nueva fila de botones.
 
 He aquí un ejemplo:
 
-![Ejemplo](/images/keyboard-example.webp)
+![Ejemplo](/images/keyboard-example.png)
 
 ```ts
 const keyboard = new Keyboard()
@@ -195,9 +195,8 @@ const labels = [
   "No. 😈",
 ];
 const buttonRows = labels
-  .map((label) => Keyboard.text(label))
-  .map((button) => Keyboard.row(button));
-const keyboard = Keyboard.from(buttonRows, { resize_keyboard: true });
+  .map((label) => [Keyboard.text(label)]);
+const keyboard = Keyboard.from(buttonRows).resized();
 ```
 
 ### Envío de un Teclado Personalizado
@@ -288,7 +287,7 @@ new Keyboard()
 No importa si llama a `selected` primero, último o en algún punto intermedio.
 El resultado será siempre el mismo.
 
-### Respondiendo a los clics
+### Respuesta a pulsaciones del teclado personalizado
 
 Como se mencionó anteriormente, todo lo que hacen los teclado personalizado es enviar mensajes de texto normales.
 Tu bot no puede diferenciar entre los mensajes de texto ordinarios, y los mensajes de texto que fueron enviados al hacer clic en un botón.

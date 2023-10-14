@@ -3,7 +3,7 @@ prev: false
 next: false
 ---
 
-# Inline Query
+# Inline Query (bawaan)
 
 User bisa mencari, memilih, dan mengirim konten dari hasil yang disarankan oleh bot menggunakan inline query, meski bot tersebut tidak berada di dalam grup mereka.
 Caranya, user cukup menulis `@username_bot` di awal pesan, lalu memilih dari hasil yang diberikan.
@@ -69,10 +69,10 @@ Berikut contoh penggunaanya.
 import { InlineKeyboard, InlineQueryResultBuilder } from "grammy";
 
 // Membuat sebuah hasil foto.
-InlineQueryResultBuilder.photo("id-0", "https://grammy.dev/images/Y.png");
+InlineQueryResultBuilder.photo("id-0", "https://grammy.dev/images/grammY.png");
 
 // Membuat sebuah hasil yang menampilkan sebuah foto, tetapi dikirim dalam bentuk sebuah pesan teks.
-InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/Y.png")
+InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/grammY.png")
   .text("Alih-alih foto, teks ini yang akan dikirim.");
 
 // Buat sebuah hasil teks.
@@ -100,10 +100,10 @@ InlineQueryResultBuilder.article("id-4", "Inline Query")
 const { InlineKeyboard, InlineQueryResultBuilder } = require("grammy");
 
 // Membuat sebuah hasil foto.
-InlineQueryResultBuilder.photo("id-0", "https://grammy.dev/images/Y.png");
+InlineQueryResultBuilder.photo("id-0", "https://grammy.dev/images/grammY.png");
 
 // Membuat sebuah hasil yang menampilkan sebuah foto, tetapi dikirim dalam bentuk sebuah pesan teks.
-InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/Y.png")
+InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/grammY.png")
   .text("Alih-alih foto, teks ini yang akan dikirim.");
 
 // Buat sebuah hasil teks.
@@ -134,10 +134,10 @@ import {
 } from "https://deno.land/x/grammy/mod.ts";
 
 // Membuat sebuah hasil foto.
-InlineQueryResultBuilder.photo("id-0", "https://grammy.dev/images/Y.png");
+InlineQueryResultBuilder.photo("id-0", "https://grammy.dev/images/grammY.png");
 
 // Membuat sebuah hasil yang menampilkan sebuah foto, tetapi dikirim dalam bentuk sebuah pesan teks.
-InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/Y.png")
+InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/grammY.png")
   .text("Alih-alih foto, teks ini yang akan dikirim.");
 
 // Buat sebuah hasil teks.

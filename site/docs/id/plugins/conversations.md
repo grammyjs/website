@@ -491,7 +491,7 @@ bot.command("cancel", async (ctx) => {
   await ctx.reply("Keluar.");
 });
 
-// Keluar dari percakapan `movie` ketika tombol `cancel` 
+// Keluar dari percakapan `movie` ketika tombol `cancel`
 // di inline keyboard ditekan
 bot.callbackQuery("cancel", async (ctx) => {
   await ctx.conversation.exit("movie");
@@ -697,7 +697,7 @@ await conversation.now(); // lebih akurat!
 conversation.log("Hello, world"); // lebih transparan!
 ```
 
-Perlu diketahui bahwa kamu juga bisa melakukan hal-hal di atas melalui `conversation.external()`, tetapi akan jauh lebih mudah untuk menggunakan function pembantu ([referensi API](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#Methods)).
+Perlu diketahui, sebagian besar dari hal-hal di atas juga bisa dilakukan melalui `conversation.external()`, namun menggunakan function pembantu ([referensi API](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#Methods)) jauh lebih mudah.
 
 ## Variable, Percabangan, dan Perulangan
 
@@ -1024,7 +1024,7 @@ Jika dua member bergabung secara bersamaan, bot seharusnya mampu melakukan dua p
 Itulah kenapa plugin conversation menyediakan cara agar kamu bisa membuat beberapa percakapan untuk setiap chat di waktu yang bersamaan.
 Contohnya, kita bisa memiliki lima percakapan yang berbeda dengan lima user baru dan di waktu yang sama melakukan percakapan dengan seorang admin mengenai pengaturan chat yang baru.
 
-### Bagaimana Cara Kerjanya?
+### Proses yang Terjadi di Balik Layar
 
 Setiap update yang masuk akan diproses oleh salah satu dari beberapa percakapan yang aktif.
 Mirip dengan handle di middleware, percakapan-percakapan tadi akan dipanggil secara berurutan berdasarkan siapa yang lebih dulu dipasang.
@@ -1051,7 +1051,7 @@ Sebagai contoh, mari kita implementasikan kembali contoh captcha di atas, tetapi
 async function captcha(conversation: MyConversation, ctx: MyContext) {
   if (ctx.from === undefined) return false;
   await ctx.reply(
-    "Buktikan kalau kamu manusia! \
+"Buktikan kalau kamu manusia! \
     Apa jawaban untuk kehidupan, alam semesta, dan semuanya?",
   );
   const { message } = await conversation.waitFrom(ctx.from);
@@ -1070,7 +1070,7 @@ async function enterGroup(conversation: MyConversation, ctx: MyContext) {
 async function captcha(conversation, ctx) {
   if (ctx.from === undefined) return false;
   await ctx.reply(
-    "Buktikan kalau kamu manusia! \
+"Buktikan kalau kamu manusia! \
     Apa jawaban untuk kehidupan, alam semesta, dan semuanya?",
   );
   const { message } = await conversation.waitFrom(ctx.from);

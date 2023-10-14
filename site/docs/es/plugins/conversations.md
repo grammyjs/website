@@ -463,7 +463,7 @@ bot.command("cancel", async (ctx) => {
   await ctx.reply("Saliendo.");
 });
 
-// Salir siempre de la conversación de la `movie` 
+// Salir siempre de la conversación de la `movie`
 // cuando se pulsa el botón de `cancel` del teclado en línea.
 bot.callbackQuery("cancel", async (ctx) => {
   await ctx.conversation.exit("movie");
@@ -488,7 +488,7 @@ bot.command("cancel", async (ctx) => {
   await ctx.reply("Saliendo.");
 });
 
-// Salir siempre de la conversación de la `movie` 
+// Salir siempre de la conversación de la `movie`
 // cuando se pulsa el botón de `cancel` del teclado en línea.
 bot.callbackQuery("cancel", async (ctx) => {
   await ctx.conversation.exit("movie");
@@ -698,7 +698,7 @@ await conversation.now(); // ¡más preciso!
 conversation.log("Hola, mundo"); // ¡más transparente!
 ```
 
-Ten en cuenta que puedes hacer todo lo anterior a través de `conversation.external()`, pero esto puede ser tedioso de escribir, así que es más fácil usar las funciones de conveniencia ([referencia de la API](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#Methods)).
+Tenga en cuenta que puede hacer la mayor parte de lo anterior a través de `conversation.external()`, pero esto puede ser tedioso de escribir, por lo que es más fácil utilizar las funciones de conveniencia ([referencia de la API](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#Methods)).
 
 ## Variables, bifurcaciones y bucles
 

@@ -7,6 +7,8 @@ next: false
 
 This plugin allows you to easily download files from Telegram servers, and to obtain a URL so you can download the file yourself.
 
+> [Remember](../guide/files) how files work, and how to upload them.
+
 ## Downloading Files
 
 You need to pass your bot token to this plugin because it must authenticate as your bot when it downloads files.

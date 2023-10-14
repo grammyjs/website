@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # 托管：Heroku
 
 > 我们假设你有关于如何使用 grammY 创建 bot 的基本知识。
@@ -159,7 +164,7 @@ https://api.telegram.org/botabcd:1234/setWebhook?url=https%3A%2F%2Fgrammybot.her
 使用 [Webhook Reply](../guide/deployment-types#webhook-reply) 以提高效率。
 :::
 
-### 创建 `bot.ts`
+### 创建 `bot.ts` （Webhook）
 
 下一步，前往 `bot.ts`：
 
@@ -187,22 +192,22 @@ bot.on("message", (ctx) => ctx.reply("Got another message!"));
 1. 在你最喜欢的浏览器中打开这个链接 `https://api.telegram.org/bot<bot_token>/getMe`，推荐使用 [Firefox](https://www.mozilla.org/en-US/firefox/)，因为它能格式化显示 `json` 数据。
 2. 根据 `getMe` 的结果来修改我们上面第 4 行的代码：
 
-```ts
-const token = process.env.BOT_TOKEN;
-if (!token) throw new Error("BOT_TOKEN is unset");
+   ```ts
+   const token = process.env.BOT_TOKEN;
+   if (!token) throw new Error("BOT_TOKEN is unset");
 
-export const bot = new Bot(token, {
-  botInfo: {
-    id: 111111111,
-    is_bot: true,
-    first_name: "xxxxxxxxx",
-    username: "xxxxxxbot",
-    can_join_groups: true,
-    can_read_all_group_messages: false,
-    supports_inline_queries: false,
-  },
-});
-```
+   export const bot = new Bot(token, {
+     botInfo: {
+       id: 111111111,
+       is_bot: true,
+       first_name: "xxxxxxxxx",
+       username: "xxxxxxbot",
+       can_join_groups: true,
+       can_read_all_group_messages: false,
+       supports_inline_queries: false,
+     },
+   });
+   ```
 
 :::
 酷！现在是时候准备我们的部署环境了！
@@ -221,9 +226,9 @@ export const bot = new Bot(token, {
 有些时候它适用于不需要快速响应和处理大量数据的数据收集 bot。
 你可以通过长轮询的方式来每个小时运行一次来获取消息。
 这是你没办法用 webhook 控制的。
-如果你的 bot 收到大量的消息，你会看到大量的 webhook 请求，但是如果你使用的是长轮询，你可以限制更新速度再处理它们。
+如果你的 bot 收到大量的消息，你会看到大量的 webhook 请求，但是你可以使用长轮询更轻松地控制处理 update 的速度。
 
-### 创建 `bot.ts`
+### 创建 `bot.ts` （长轮询）
 
 让我们打开我们之前创建的 `bot.ts` 文件。
 添加如下几行代码：
@@ -270,13 +275,15 @@ npx tsc
 其中两个是：
 
 - **Web dynos**:
-  <br> _Web dynos_ 是接收来自路由器的 HTTP 流量的 "web" 进程。
+
+  _Web dynos_ 是接收来自路由器的 HTTP 流量的 "web" 进程。
   这种类型的 dyno 在执行代码时有 30 秒的超时限制。
   另外，如果在 30 分钟内没有需要处理的请求，它就会休眠。
   这种类型的 dyno 非常适合 _webhooks_。
 
 - **Worker dynos**:
-  <br> _Worker dynos_ 通常用于后台工作。
+
+  _Worker dynos_ 通常用于后台工作。
   它没有超时限制，而且如果它不处理任何请求，它也不会休眠。
   它适合 _长轮询_。
 

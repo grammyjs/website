@@ -9,12 +9,14 @@ hero:
     - think of the whY.
     - a new era of bot development.
     - runs faster than you.
+    - have fun making bots.
     - one update ahead.
     - can do anything except dishes.
     - easy peasy lemon squeezY.
     - billions and billions served.
+    - powered by obsession.
   image:
-    src: /images/Y.webp
+    src: /images/Y.svg
     alt: grammY logo
   actions:
     - theme: brand
@@ -35,6 +37,8 @@ features:
     title: Scalable
     details: grammY has you covered when your bot gets popular and the traffic increases.
 ---
+
+<!-- markdownlint-disable no-inline-html -->
 
 <HomeContent>
 
@@ -98,8 +102,8 @@ Works! :tada:
 
 <div style="font-size: 0.75rem; display: flex; justify-content: center;">
 
-© 2021-2023 &middot; grammY supports Telegram Bot API 6.7 which was [released](https://core.telegram.org/bots/api#april-21-2023) on April 21, 2023.
-(Last highlight: multiple bot names, custom emoji, and better inline queries)
+© 2021-2023 &middot; grammY supports Telegram Bot API 6.9 which was [released](https://core.telegram.org/bots/api#september-22-2023) on September 22, 2023.
+(Last highlight: Stories)
 
 </div>
 </footer>

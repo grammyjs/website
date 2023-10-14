@@ -1,11 +1,16 @@
+---
+prev: false
+next: false
+---
+
 # Hosting: Funciones sin servidor de Vercel
 
-Este tutorial te guiará sobre cómo desplegar tu bot en [Vercel](https://vercel.com/) utilizando [Vercel Serverless Functions](https://vercel.com/docs/concepts/functions/serverless-functions), asumiendo que ya tienes una cuenta en [Vercel](https://vercel.com).
+Este tutorial te guiará sobre cómo desplegar tu bot en [Vercel](https://vercel.com/) utilizando [Vercel Serverless Functions](https://vercel.com/docs/functions/serverless-functions), asumiendo que ya tienes una cuenta en [Vercel](https://vercel.com).
 
 ## Estructura del proyecto
 
 El único prerrequisito para empezar con **Vercel Serverless Functions** es mover tu código al directorio `api/` como se muestra a continuación.
-También puedes ver la [documentación de Vercel](https://vercel.com/docs/concepts/functions/serverless-functions#deploying-serverless-functions) para más información.
+También puedes ver la [documentación de Vercel](https://vercel.com/docs/functions/serverless-functions#deploying-serverless-functions) para más información.
 
 ```asciiart:no-line-numbers
 .
@@ -38,7 +43,7 @@ Para nuestra estructura de ejemplo, su contenido sería:
 
 > Si quieres usar la suscripción gratuita de Vercel, tus configuraciones `memory` y `maxDuration` podrían ser como las de arriba para no saltarse sus límites.
 
-Si quieres saber más sobre el archivo de configuración `vercel.json`, consulta [su documentación](https://vercel.com/docs/concepts/projects/project-configuration).
+Si quieres saber más sobre el archivo de configuración `vercel.json`, consulta [su documentación](https://vercel.com/docs/projects/project-configuration).
 
 ## Configuración de TypeScript
 

@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Hosting: Heroku
 
 > We assume that you have the basic knowledge about creating bots using grammY.
@@ -160,7 +165,7 @@ https://api.telegram.org/botabcd:1234/setWebhook?url=https%3A%2F%2Fgrammybot.her
 Use [Webhook Reply](../guide/deployment-types#webhook-reply) for more efficiency.
 :::
 
-### Creating `bot.ts`
+### Creating `bot.ts` (Webhooks)
 
 Next step, head over to `bot.ts`:
 
@@ -188,22 +193,22 @@ We can set the [bot information](https://deno.land/x/grammy/mod.ts?s=BotConfig#p
 1. Open this link `https://api.telegram.org/bot<bot_token>/getMe` in your favorite web browser. [Firefox](https://www.mozilla.org/en-US/firefox/) is recommended since it displays `json` format nicely.
 2. Change our code at line 4 above and fill the value according to the results from `getMe`:
 
-```ts
-const token = process.env.BOT_TOKEN;
-if (!token) throw new Error("BOT_TOKEN is unset");
+   ```ts
+   const token = process.env.BOT_TOKEN;
+   if (!token) throw new Error("BOT_TOKEN is unset");
 
-export const bot = new Bot(token, {
-  botInfo: {
-    id: 111111111,
-    is_bot: true,
-    first_name: "xxxxxxxxx",
-    username: "xxxxxxbot",
-    can_join_groups: true,
-    can_read_all_group_messages: false,
-    supports_inline_queries: false,
-  },
-});
-```
+   export const bot = new Bot(token, {
+     botInfo: {
+       id: 111111111,
+       is_bot: true,
+       first_name: "xxxxxxxxx",
+       username: "xxxxxxbot",
+       can_join_groups: true,
+       can_read_all_group_messages: false,
+       supports_inline_queries: false,
+     },
+   });
+   ```
 
 :::
 
@@ -226,7 +231,7 @@ If you want to do this once an hour, you can do that easily.
 That's something you cannot control with webhooks.
 If your bot gets flooded with messages, you will see a lot of webhooks requests, however, you can more easily limit the rate of updates to process with long polling.
 
-### Creating `bot.ts`
+### Creating `bot.ts` (Long Polling)
 
 Let's open the `bot.ts` file that we have created earlier.
 Have it contain these lines of code:
@@ -273,13 +278,15 @@ For the time being, `Heroku` has several [types of dynos](https://devcenter.hero
 Two of them are:
 
 - **Web dynos**:
-  <br> _Web dynos_ are dynos of the "web" process that receive HTTP traffic from routers.
+
+  _Web dynos_ are dynos of the "web" process that receive HTTP traffic from routers.
   This kind of dyno has a timeout of 30 seconds for executing code.
   Also, it will sleep if there is no request to handle within a 30 minutes period.
   This type of dyno is quite suitable for _webhooks_.
 
 - **Worker dynos**:
-  <br> _Worker dynos_ are typically used for background jobs.
+
+  _Worker dynos_ are typically used for background jobs.
   It does NOT have a timeout, and will NOT sleep if it does not handle any web requests.
   It fits _long polling_.
 

@@ -96,7 +96,7 @@ ______________                                   _____________
 ```
 
 > Tenga en cuenta que, en realidad, ninguna conexión se mantendría abierta durante horas.
-> Las solicitudes de long polling ienen un tiempo de espera por defecto de 30 segundos (para evitar una serie de [problemas técnicos](https://datatracker.ietf.org/doc/html/draft-loreto-http-bidirectional-07#section-5.5)).
+> Las solicitudes de long polling ienen un tiempo de espera por defecto de 30 segundos (para evitar una serie de [problemas técnicos](https://datatracker.ietf.org/doc/html/rfc6202#section-5.5)).
 > Si no se devuelven nuevos mensajes después de este período de tiempo, la solicitud se cancelará y se volverá a enviar---pero el concepto general sigue siendo el mismo.
 
 Usando un long polling, no necesitas enviar spam a los servidores de Telegram, ¡y aún así recibes nuevos mensajes inmediatamente!

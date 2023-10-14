@@ -9,12 +9,14 @@ hero:
     - piensa en el por qué.
     - la nueva era del desarrollo de bots.
     - se ejecuta más rápido que tú.
+    - diviértete haciendo bots.
     - una actualización por delante.
     - puede hacer todo menos lavar los platos.
     - fácil de exprimir limones.
     - miles y miles de millones de peticiones.
+    - impulsado por la obsesión.
   image:
-    src: /images/Y.webp
+    src: /images/Y.svg
     alt: Logotipo de grammY
   actions:
     - theme: brand
@@ -35,6 +37,8 @@ features:
     title: Escalable
     details: grammY te tiene cubierto cuando tu bot se vuelve popular y el tráfico se incrementa.
 ---
+
+<!-- markdownlint-disable no-inline-html -->
 
 <HomeContent>
 
@@ -98,8 +102,8 @@ bot.start();
 
 <div style="font-size: 0.75rem;  display: flex; justify-content: center;">
 
-© 2021-2023 &middot; grammY es compatible con la API 6.7 de Telegram Bot que fue [lanzada](https://core.telegram.org/bots/api#april-21-2023) el 21 de Abril del 2023.
-(Último punto destacado: varios nombres de bot, emoji personalizados y mejores consultas en línea)
+© 2021-2023 &middot; grammY soporta Telegram Bot API 6.9 que fue [liberada](https://core.telegram.org/bots/api#september-22-2023) el 22 de Septiembre del 2023.
+(Última novedad: Historias)
 
 </div>
 </footer>

@@ -3,7 +3,7 @@ prev: false
 next: false
 ---
 
-# Inline Queries
+# Inline Queries（内置）
 
 使用 inline query，用户可以在任何聊天中搜索、浏览和发送你的 bot 建议的内容，即使他们不是该聊天的成员。
 要实现这一点，他们可以在消息中以 `@your_bot_name` 开头并选择一个结果。
@@ -68,10 +68,10 @@ grammY 为 inline query 结果导出了一个名为 `InlineQueryResultBuilder` �
 import { InlineKeyboard, InlineQueryResultBuilder } from "grammy";
 
 // 构建一个图片结果。
-InlineQueryResultBuilder.photo("id-0", "https://grammy.dev/images/Y.png");
+InlineQueryResultBuilder.photo("id-0", "https://grammy.dev/images/grammY.png");
 
 // 构建一个显示为图片但发送的是文本消息的结果。
-InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/Y.png")
+InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/grammY.png")
   .text("This text will be sent instead of the photo");
 
 // 构建一个文本结果。
@@ -93,10 +93,10 @@ InlineQueryResultBuilder.article("id-4", "Inline Queries")
 const { InlineKeyboard, InlineQueryResultBuilder } = require("grammy");
 
 // 构建一个图片结果。
-InlineQueryResultBuilder.photo("id-0", "https://grammy.dev/images/Y.png");
+InlineQueryResultBuilder.photo("id-0", "https://grammy.dev/images/grammY.png");
 
 // 构建一个显示为图片但发送的是文本消息的结果。
-InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/Y.png")
+InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/grammY.png")
   .text("This text will be sent instead of the photo");
 
 // 构建一个文本结果。
@@ -121,10 +121,10 @@ import {
 } from "https://deno.land/x/grammy/mod.ts";
 
 // 构建一个图片结果。
-InlineQueryResultBuilder.photo("id-0", "https://grammy.dev/images/Y.png");
+InlineQueryResultBuilder.photo("id-0", "https://grammy.dev/images/grammY.png");
 
 // 构建一个显示为图片但发送的是文本消息的结果。
-InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/Y.png")
+InlineQueryResultBuilder.photo("id-1", "https://grammy.dev/images/grammY.png")
   .text("This text will be sent instead of the photo");
 
 // 构建一个文本结果。
