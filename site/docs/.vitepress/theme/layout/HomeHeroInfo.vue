@@ -19,8 +19,8 @@ onMounted(() => {
   pickTagline(props.taglines);
   showContent.value = true;
   if (!import.meta.env.SSR) {
-    if (document.readyState === "complete") playIcons(); else
-      window.addEventListener("load", () => playIcons());
+    if (document.readyState === "complete") delayedHydrateIcons();
+    else window.addEventListener("load", () => delayedHydrateIcons());
   }
 });
 
@@ -32,8 +32,29 @@ function pickTagline(newTaglines: string[] | undefined) {
   }
 }
 
-function playIcons() {
-  setTimeout(() => requestAnimationFrame(() => import(lottiePlayer)), 5000);
+function delayedHydrateIcons(timeout = 5_000){
+  setTimeout(() => requestAnimationFrame(hydrateIcons), timeout);
+}
+
+function hydrateIcons() {
+  import(lottiePlayer).then(() => {
+    document.querySelectorAll("[data-tgs]").forEach(icon => {
+      const { alt, className, parentNode, dataset: { tgs: src } } = icon;
+      const player = document.createElement("tgs-player");
+      player.toggleAttribute("disableCheck", true);
+      player.toggleAttribute("autoplay", true);
+      player.toggleAttribute("loop", true);
+      player.setAttribute("src", src);
+      player.setAttribute("alt", alt);
+      player.style.display = "none";
+      player.className = className;
+      parentNode?.appendChild(player);
+      player.addEventListener("ready", () => {
+        parentNode?.removeChild(icon);
+        player.style.display = "unset";
+      });
+    });
+  });
 }
 </script>
 
