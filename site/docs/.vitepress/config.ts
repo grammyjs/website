@@ -82,4 +82,16 @@ export default defineConfig({
       chunkSizeWarningLimit: 1600,
     },
   },
+  head: [
+    [
+      "script",
+      {
+        async: "",
+      },
+      `
+      const lottiePlayer = "https://unpkg.com/@lottiefiles/lottie-player@2.0.2/dist/tgs-player.js";
+      window.lottiePromise = new Promise(resolve => setTimeout(() => import(lottiePlayer).then(resolve), 3_000));
+      `,
+    ],
+  ],
 });
