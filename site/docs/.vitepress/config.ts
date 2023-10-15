@@ -82,4 +82,15 @@ export default defineConfig({
       chunkSizeWarningLimit: 1600,
     },
   },
+
+  head: [
+    [
+      "script",
+      {
+        async: "",
+        src:
+          "https://unpkg.com/@lottiefiles/lottie-player@latest/dist/tgs-player.js",
+      },
+    ],
+  ],
 });
