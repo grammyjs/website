@@ -17,6 +17,9 @@ watch(props, (newProps) => {
 onMounted(() => {
   pickTagline(props.taglines);
   showContent.value = true;
+  if (!import.meta.env.SSR) { // @ts-ignore
+    import("https://unpkg.com/@lottiefiles/lottie-player@latest/dist/tgs-player.js");
+  }
 });
 
 function pickTagline(newTaglines: string[] | undefined) {
