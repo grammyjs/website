@@ -9,6 +9,7 @@ const props = defineProps({
 
 const showContent = ref(false);
 const tagline = ref('');
+const lottiePlayer = "https://unpkg.com/@lottiefiles/lottie-player@latest/dist/tgs-player.js";
 
 watch(props, (newProps) => {
   pickTagline(newProps.taglines);
@@ -32,11 +33,7 @@ function pickTagline(newTaglines: string[] | undefined) {
 }
 
 function playIcons() {
-  const players = document.querySelectorAll("tgs-player");
-  players.forEach(player => {
-    player.setAttribute("autoplay", "autoplay");
-    player.play?.();
-  });
+  setTimeout(() => requestAnimationFrame(() => import(lottiePlayer)), 1000);
 }
 </script>
 

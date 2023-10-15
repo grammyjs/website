@@ -85,10 +85,11 @@ export default defineConfig({
 
   head: [
     [
-      "script",
+      "link",
       {
-        async: "",
-        src:
+        as: "script",
+        rel: "preload",
+        href:
           "https://unpkg.com/@lottiefiles/lottie-player@latest/dist/tgs-player.js",
       },
     ],
