@@ -33,7 +33,7 @@ function pickTagline(newTaglines: string[] | undefined) {
 }
 
 function playIcons() {
-  setTimeout(() => requestAnimationFrame(() => import(lottiePlayer)), 1000);
+  setTimeout(() => requestAnimationFrame(() => import(lottiePlayer)), 10000);
 }
 </script>
 

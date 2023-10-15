@@ -82,7 +82,6 @@ export default defineConfig({
       chunkSizeWarningLimit: 1600,
     },
   },
-
   head: [
     [
       "link",
