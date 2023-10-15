@@ -9,7 +9,7 @@ const props = defineProps({
 
 const showContent = ref(false);
 const tagline = ref('');
-const lottiePlayer = "https://unpkg.com/@lottiefiles/lottie-player@latest/dist/tgs-player.js";
+const lottiePlayer = "https://unpkg.com/@lottiefiles/lottie-player@2.0.2/dist/tgs-player.js";
 
 watch(props, (newProps) => {
   pickTagline(newProps.taglines);
