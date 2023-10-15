@@ -29,10 +29,6 @@ function pickTagline(newTaglines: string[] | undefined) {
   }
 }
 
-function delayedHydrateIcons(timeout = 3_000){
-  setTimeout(() => requestAnimationFrame(hydrateIcons), timeout);
-}
-
 function hydrateIcons() {
   window.lottiePromise?.then(() => {
     document.querySelectorAll("[data-tgs]").forEach(icon => {
