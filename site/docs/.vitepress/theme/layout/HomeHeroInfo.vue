@@ -17,6 +17,10 @@ watch(props, (newProps) => {
 onMounted(() => {
   pickTagline(props.taglines);
   showContent.value = true;
+  if (!import.meta.env.SSR) {
+    if (document.readyState === "complete") playIcons(); else
+      window.addEventListener("load", () => playIcons());
+  }
 });
 
 function pickTagline(newTaglines: string[] | undefined) {
@@ -25,6 +29,14 @@ function pickTagline(newTaglines: string[] | undefined) {
 
     tagline.value = newTaglines[randomIndex];
   }
+}
+
+function playIcons() {
+  const players = document.querySelectorAll("tgs-player");
+  players.forEach(player => {
+    player.setAttribute("autoplay", "autoplay");
+    player.play?.();
+  });
 }
 </script>
 
