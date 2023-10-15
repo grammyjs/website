@@ -32,7 +32,7 @@ function pickTagline(newTaglines: string[] | undefined) {
   }
 }
 
-function delayedHydrateIcons(timeout = 5_000){
+function delayedHydrateIcons(timeout = 1_000){
   setTimeout(() => requestAnimationFrame(hydrateIcons), timeout);
 }
 
