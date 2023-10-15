@@ -83,6 +83,22 @@ const bot = new Bot(token);
 export default webhookCallback(bot, "http");
 ```
 
+::: tip grammY have a limited support for [Vercel Edge Functions](https://vercel.com/docs/functions/edge-functions)
+
+This mean that you can use core grammY package and some plugins, but other may be incompatible due node-specific dependencies that currently not supported by [Edge Runtime](https://edge-runtime.vercel.app).
+
+Currently, we don't have a compatible list of plugins, so you need to test it by self.
+
+Add this line to snippet above if you want switch to Edge Functions:
+
+```ts
+export const config = {
+  runtime: "edge",
+};
+```
+
+:::
+
 ## In Vercel's Dashboard
 
 Assuming that you already have a Vercel account your GitHub is connected to, add a new project and select your bot's repository.
