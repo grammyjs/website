@@ -9,6 +9,7 @@ const props = defineProps({
 
 const showContent = ref(false);
 const tagline = ref('');
+const lottiePlayer = "https://unpkg.com/@lottiefiles/lottie-player@latest/dist/tgs-player.js";
 
 watch(props, (newProps) => {
   pickTagline(newProps.taglines);
@@ -17,8 +18,9 @@ watch(props, (newProps) => {
 onMounted(() => {
   pickTagline(props.taglines);
   showContent.value = true;
-  if (!import.meta.env.SSR) { // @ts-ignore
-    import("https://unpkg.com/@lottiefiles/lottie-player@latest/dist/tgs-player.js");
+  if (!import.meta.env.SSR) {
+    if (document.readyState === "complete") import(lottiePlayer); else
+      window.addEventListener("load", () => import(lottiePlayer));
   }
 });
 
