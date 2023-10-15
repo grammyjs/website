@@ -199,22 +199,11 @@ new InputFile(function* () {
 > 请注意，Telegram 支持用许多种方法为你下载文件。
 > 如果可能，你应该选择 [通过 URL 发送文件](#通过-file-id-或者-url)，而不是使用 `InputFile` 来通过你的服务器流式传输文件内容。
 
-::: code-group
-
-```ts [Node.js]
-import { URL } from "url";
+```ts
 // 下载一个文件，并将响应的内容流转到 Telegram。
 new InputFile(new URL("https://grammy.dev/images/grammY.png"));
 new InputFile({ url: "https://grammy.dev/images/grammY.png" }); // 等价的写法
 ```
-
-```ts [Deno]
-// 下载一个文件，并将响应的内容流转到 Telegram。
-new InputFile(new URL("https://grammy.dev/images/grammY.png"));
-new InputFile({ url: "https://grammy.dev/images/grammY.png" }); // 等价的写法
-```
-
-:::
 
 ### 添加一个标题
 

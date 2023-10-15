@@ -200,23 +200,11 @@ Sangat efisien, bukan.
 > Perlu dicatat bahwa Telegram mendukung pengunduhan file dengan berbagai cara.
 > Jika memungkinkan, sebaiknya kamu [mengirim file menggunakan URL](#melalui-file-id-atau-url), daripada menggunakan `InputFile` untuk mengalirkan data file melalui server kamu.
 
-::: code-group
-
-```ts [Node.js]
-import { URL } from "url";
-
+```ts
 // Unduh file lalu alirkan data ke Telegram.
 new InputFile(new URL("https://grammy.dev/images/grammY.png"));
 new InputFile({ url: "https://grammy.dev/images/grammY.png" }); // sama saja
 ```
-
-```ts [Deno]
-// Unduh file lalu alirkan data ke Telegram.
-new InputFile(new URL("https://grammy.dev/images/grammY.png"));
-new InputFile({ url: "https://grammy.dev/images/grammY.png" }); // sama saja
-```
-
-:::
 
 ### Menambahkan Caption
 
