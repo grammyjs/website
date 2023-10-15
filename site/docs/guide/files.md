@@ -199,23 +199,11 @@ This is very efficient.
 > Note that Telegram supports downloading the file for you in many methods.
 > If possible, you should prefer to [send the file via URL](#via-file-id-or-url), instead of using `InputFile` to stream the file contents through your server.
 
-::: code-group
-
-```ts [Node.js]
-import { URL } from "url";
-
+```ts
 // Download a file, and stream the response to Telegram.
 new InputFile(new URL("https://grammy.dev/images/grammY.png"));
 new InputFile({ url: "https://grammy.dev/images/grammY.png" }); // equivalent
 ```
-
-```ts [Deno]
-// Download a file, and stream the response to Telegram.
-new InputFile(new URL("https://grammy.dev/images/grammY.png"));
-new InputFile({ url: "https://grammy.dev/images/grammY.png" }); // equivalent
-```
-
-:::
 
 ### Adding a Caption
 
