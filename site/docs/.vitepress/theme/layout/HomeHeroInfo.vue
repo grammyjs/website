@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue'
+import { onMounted, onUpdated, nextTick, ref, watch } from "vue";
 
 const props = defineProps({
   name: String,
@@ -9,7 +9,6 @@ const props = defineProps({
 
 const showContent = ref(false);
 const tagline = ref('');
-const lottiePlayer = "https://unpkg.com/@lottiefiles/lottie-player@2.0.2/dist/tgs-player.js";
 
 watch(props, (newProps) => {
   pickTagline(newProps.taglines);
@@ -18,11 +17,9 @@ watch(props, (newProps) => {
 onMounted(() => {
   pickTagline(props.taglines);
   showContent.value = true;
-  if (!import.meta.env.SSR) {
-    if (document.readyState === "complete") delayedHydrateIcons();
-    else window.addEventListener("load", () => delayedHydrateIcons());
-  }
 });
+
+onUpdated(() => nextTick(hydrateIcons));
 
 function pickTagline(newTaglines: string[] | undefined) {
   if (newTaglines !== undefined && newTaglines.length > 0) {
@@ -37,7 +34,7 @@ function delayedHydrateIcons(timeout = 3_000){
 }
 
 function hydrateIcons() {
-  import(lottiePlayer).then(() => {
+  window.lottiePromise?.then(() => {
     document.querySelectorAll("[data-tgs]").forEach(icon => {
       const { alt, className, parentNode, dataset: { tgs: src } } = icon;
       const player = document.createElement("tgs-player");
