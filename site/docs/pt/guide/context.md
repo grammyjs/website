@@ -25,7 +25,7 @@ Como exemplo, para obter o texto da mensagem, você pode fazer o seguinte:
 ```ts
 bot.on("message", async (ctx) => {
   // `txt` será uma `string` ao processar mensagens de texto.
-  // Será `indefinido` se a mensagem recebida não tiver nenhum texto de mensagem,
+  // Será `undefined` se a mensagem recebida não tiver nenhum texto de mensagem,
   // por exemplo, fotos, stickers e outras mensagens.
   const txt = ctx.message.text;
 });
@@ -59,7 +59,8 @@ Existem vários atalhos instalados no objeto de contexto.
 | `ctx.msg`             | Obtém o objeto da mensagem, inclusive as mensagens editadas                                         |
 | `ctx.chat`            | Obtém o objeto do chat                                                                              |
 | `ctx.senderChat`      | Obtém o objeto de chat do remetente de `ctx.msg` (para mensagens de canal/grupos anônimos)          |
-| `ctx.from`            | Obtém o autor da mensagem, consulta de callback ou outras coisas                                    |
+| `ctx.from`            | Obtém o autor da mensagem, callback query ou outras coisas                                    |
+
 | `ctx.inlineMessageId` | Obtém o identificador da mensagem inline para callback queries ou resultados inline escolhidos      |
 | `ctx.entities`        | Obtém as entidades da mensagem e seu texto, opcionalmente filtrados por tipo de entidade            |
 
@@ -91,18 +92,21 @@ bot.on("message:entities", async (ctx) => {
 });
 ```
 
-Ainda, se quiser, pode ignorar `ctx.message`, `ctx.channelPost`, `ctx.editedMessage`, etc e simplesmente usar sempre `ctx.msg` no lugar.
+Ainda, se preferir, você pode ignorar `ctx.message`, `ctx.channelPost`, `ctx.editedMessage`, etc e simplesmente usar sempre `ctx.msg` no lugar.
+
 
 ## Sondagem via Verificações "Has"
 
 O objeto de contexto tem alguns métodos que permitem sondar os dados contidos para coisas específicas.
 Por exemplo, você pode chamar `ctx.hasCommand("start")` para ver se o objeto de contexto contém um comando `/start`.
-É por isso que os métodos são coletivamente chamados _verificações has_.
+É por isso que os métodos são coletivamente chamados de _verificações has_.
+
 
 ::: tip Saber Quando Usar Verificações "Has"
 
 Essa é exatamente a mesma lógica usada por `bot.command("start")`.
-Note que você normalmente deve usar [filter queries](./filter-queries) e métodos similares.
+Note que normalmente é melhor usar [filter queries](./filter-queries) e métodos similares.
+
 Usar verificações "has" funciona melhor dentro do [plugin de conversas](../plugins/conversations).
 
 :::
@@ -136,7 +140,8 @@ bot.on("message", async (ctx) => {
 });
 ```
 
-Você pode notar duas coisas que não são ideais sobre isso:
+É possível notar duas coisas que não são ideais aqui:
+
 
 1. Precisamos ter acesso ao objeto `bot`.
    Isso significa que temos que passar o objeto `bot` por todo o nosso código para poder responder, o que é chato quando você tem mais de um arquivo e define seu listener em algum outro lugar.
@@ -162,7 +167,8 @@ bot.on("message", (ctx) => ctx.reply("Entendi!"));
 
 Da hora! :tada:
 
-Por baixo dos panos, o contexto _já conhece o identificador do chat_ (nomeadamente `ctx.msg.chat.id`), então ele te dá o método `reply` para apenas enviar uma mensagem de volta para o mesmo chat.
+Por baixo dos panos, o contexto _já conhece o identificador do chat_ (ou seja, `ctx.msg.chat.id`), então ele te dá o método `reply` para apenas enviar uma mensagem de volta para o mesmo chat.
+
 Internamente, `reply` novamente chama `sendMessage` com o identificador do chat pré-preenchido para você.
 
 Consequentemente, todos os métodos no objeto de contexto aceitam objetos de opções do tipo `Other` como explicado [anteriormente](./basics#enviando-mensagens).
@@ -172,7 +178,8 @@ Isso pode ser usado para passar mais configurações para cada chamada de API.
 Mesmo que o método seja chamado de `ctx.reply` no grammY (e em muitos outros frameworks), ele não utiliza a [funcionalidade de resposta do Telegram](https://telegram.org/blog/replies-mentions-hashtags#replies), onde uma mensagem anterior é vinculada.
 
 Se você verificar o que `sendMessage` pode fazer na [Referência da API de Bots do Telegram](https://core.telegram.org/bots/api#sendmessage), verá várias opções, como `parse_mode`, `disable_web_page_preview` e `reply_to_message_id`.
-Este último pode ser usado para fazer uma mensagem como resposta:
+Este último pode ser usado para enviar uma mensagem como resposta:
+
 
 ```ts
 await ctx.reply("^ Esta é uma mensagem!", {
@@ -184,13 +191,17 @@ O mesmo objeto de opções pode ser passado para `bot.api.sendMessage` e `ctx.ap
 Use o auto-completar para ver as opções disponíveis diretamente no seu editor de código.
 :::
 
-Naturalmente, todos os outros métodos em `ctx.api` têm atalhos com os valores pré-preenchidos corretos, como `ctx.replyWithPhoto` para responder com uma foto, ou `ctx.exportChatInviteLink` para obter um link de convite para o bate-papo correspondente.
+Naturalmente, todos os outros métodos em `ctx.api` têm atalhos com os valores pré-preenchidos corretos, como `ctx.replyWithPhoto` para responder com uma foto, ou `ctx.exportChatInviteLink` para obter um link de convite para o chat correspondente.
+
 Se você deseja ter uma visão geral sobre quais atalhos existem, então o auto-completar é seu amigo, juntamente com a [Referência da API do grammY](https://deno.land/x/grammy/mod.ts?s=Context).
 
-Note que você pode não querer reagir sempre no mesmo bate-papo.
+Note que você pode não querer reagir sempre no mesmo chat.
+
 Nesse caso, você pode simplesmente recorrer ao uso dos métodos `ctx.api` e especificar todas as opções ao chamá-los.
-Por exemplo, se você receber uma mensagem da Alice e quiser reagir enviando uma mensagem para o Bob, então você não pode usar `ctx.reply` porque sempre enviará mensagens para o bate-papo com a Alice.
-Em vez disso, chame `ctx.api.sendMessage` e especifique o identificador do bate-papo do Bob.
+Por exemplo, se você receber uma mensagem da Alice e quiser reagir enviando uma mensagem para o Bob, então você não pode usar `ctx.reply` porque sempre enviará mensagens para o chat com a Alice.
+
+Em vez disso, chame `ctx.api.sendMessage` e especifique o identificador do chat do Bob.
+
 
 ## Como os Objetos de Contexto São Criados
 
@@ -221,7 +232,8 @@ Existem handlers especiais que podem modificar `ctx` antes que qualquer outro ha
 
 A ideia é instalar middlewares antes de registrar outros listeners.
 Você pode então definir as propriedades que deseja dentro desses middlewares.
-Se você fizer `ctx.nomeDaSuaPropriedadePersonalizada = seuValorPersonalizado` dentro de um handler assim, então a propriedade `ctx.nomeDaSuaPropriedadePersonalizada` estará disponível nos handlers restantes também.
+Se você fizer `ctx.nomeDaSuaPropriedadePersonalizada = seuValorPersonalizado` dentro de um handler, a propriedade `ctx.nomeDaSuaPropriedadePersonalizada` estará disponível nos handlers restantes também.
+
 
 Para fins de ilustração, vamos supor que você queira definir uma propriedade chamada `ctx.config` no objeto de contexto.
 Neste exemplo, vamos usá-lo para armazenar alguma configuração sobre o projeto para que todos os handlers tenham acesso a ela.
@@ -230,7 +242,8 @@ A configuração tornará mais fácil detectar se o bot está sendo usado por se
 Logo após criar seu bot, faça o seguinte:
 
 ```ts
-const BOT_DEVELOPER = 123456; // identificador do bate-papo do desenvolvedor do bot
+const BOT_DEVELOPER = 123456; // identificador do chat do desenvolvedor do bot
+
 
 bot.use(async (ctx, next) => {
   // Modifique o objeto de contexto aqui definindo a configuração.
