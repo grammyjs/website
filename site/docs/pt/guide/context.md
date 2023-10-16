@@ -54,15 +54,15 @@ O objeto de contexto sempre contém informações sobre o seu bot, acessíveis a
 
 Existem vários atalhos instalados no objeto de contexto.
 
-| Atalho                | Descrição                                                                                           |
-| --------------------- | ----------------------------------------------------------------------------------------------------|
-| `ctx.msg`             | Obtém o objeto da mensagem, inclusive as mensagens editadas                                         |
-| `ctx.chat`            | Obtém o objeto do chat                                                                              |
-| `ctx.senderChat`      | Obtém o objeto de chat do remetente de `ctx.msg` (para mensagens de canal/grupos anônimos)          |
-| `ctx.from`            | Obtém o autor da mensagem, callback query ou outras coisas                                    |
+| Atalho           | Descrição                                                                                  |
+| ---------------- | ------------------------------------------------------------------------------------------ |
+| `ctx.msg`        | Obtém o objeto da mensagem, inclusive as mensagens editadas                                |
+| `ctx.chat`       | Obtém o objeto do chat                                                                     |
+| `ctx.senderChat` | Obtém o objeto de chat do remetente de `ctx.msg` (para mensagens de canal/grupos anônimos) |
+| `ctx.from`       | Obtém o autor da mensagem, callback query ou outras coisas                                 |
 
-| `ctx.inlineMessageId` | Obtém o identificador da mensagem inline para callback queries ou resultados inline escolhidos      |
-| `ctx.entities`        | Obtém as entidades da mensagem e seu texto, opcionalmente filtrados por tipo de entidade            |
+| `ctx.inlineMessageId` | Obtém o identificador da mensagem inline para callback queries ou resultados inline escolhidos |
+| `ctx.entities` | Obtém as entidades da mensagem e seu texto, opcionalmente filtrados por tipo de entidade |
 
 Em outras palavras, você também pode fazer isso:
 
@@ -94,13 +94,11 @@ bot.on("message:entities", async (ctx) => {
 
 Ainda, se preferir, você pode ignorar `ctx.message`, `ctx.channelPost`, `ctx.editedMessage`, etc e simplesmente usar sempre `ctx.msg` no lugar.
 
-
 ## Sondagem via Verificações "Has"
 
 O objeto de contexto tem alguns métodos que permitem sondar os dados contidos para coisas específicas.
 Por exemplo, você pode chamar `ctx.hasCommand("start")` para ver se o objeto de contexto contém um comando `/start`.
 É por isso que os métodos são coletivamente chamados de _verificações has_.
-
 
 ::: tip Saber Quando Usar Verificações "Has"
 
@@ -142,7 +140,6 @@ bot.on("message", async (ctx) => {
 
 É possível notar duas coisas que não são ideais aqui:
 
-
 1. Precisamos ter acesso ao objeto `bot`.
    Isso significa que temos que passar o objeto `bot` por todo o nosso código para poder responder, o que é chato quando você tem mais de um arquivo e define seu listener em algum outro lugar.
 2. Precisamos pegar o identificador do chat do contexto e passá-lo explicitamente para `sendMessage` novamente.
@@ -180,7 +177,6 @@ Mesmo que o método seja chamado de `ctx.reply` no grammY (e em muitos outros fr
 Se você verificar o que `sendMessage` pode fazer na [Referência da API de Bots do Telegram](https://core.telegram.org/bots/api#sendmessage), verá várias opções, como `parse_mode`, `disable_web_page_preview` e `reply_to_message_id`.
 Este último pode ser usado para enviar uma mensagem como resposta:
 
-
 ```ts
 await ctx.reply("^ Esta é uma mensagem!", {
   reply_to_message_id: ctx.msg.message_id,
@@ -201,7 +197,6 @@ Nesse caso, você pode simplesmente recorrer ao uso dos métodos `ctx.api` e esp
 Por exemplo, se você receber uma mensagem da Alice e quiser reagir enviando uma mensagem para o Bob, então você não pode usar `ctx.reply` porque sempre enviará mensagens para o chat com a Alice.
 
 Em vez disso, chame `ctx.api.sendMessage` e especifique o identificador do chat do Bob.
-
 
 ## Como os Objetos de Contexto São Criados
 
@@ -234,7 +229,6 @@ A ideia é instalar middlewares antes de registrar outros listeners.
 Você pode então definir as propriedades que deseja dentro desses middlewares.
 Se você fizer `ctx.nomeDaSuaPropriedadePersonalizada = seuValorPersonalizado` dentro de um handler, a propriedade `ctx.nomeDaSuaPropriedadePersonalizada` estará disponível nos handlers restantes também.
 
-
 Para fins de ilustração, vamos supor que você queira definir uma propriedade chamada `ctx.config` no objeto de contexto.
 Neste exemplo, vamos usá-lo para armazenar alguma configuração sobre o projeto para que todos os handlers tenham acesso a ela.
 A configuração tornará mais fácil detectar se o bot está sendo usado por seu desenvolvedor ou por usuários regulares.
@@ -243,7 +237,6 @@ Logo após criar seu bot, faça o seguinte:
 
 ```ts
 const BOT_DEVELOPER = 123456; // identificador do chat do desenvolvedor do bot
-
 
 bot.use(async (ctx, next) => {
   // Modifique o objeto de contexto aqui definindo a configuração.
