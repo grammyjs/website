@@ -106,7 +106,7 @@ The first two methods are simple: you just pass the respective value as a `strin
 await ctx.replyWithPhoto(existingFileId);
 
 // Send via URL.
-await ctx.replyWithPhoto("https://grammy.dev/images/Y.webp");
+await ctx.replyWithPhoto("https://grammy.dev/images/grammY.png");
 
 // Alternatively, you use bot.api.sendPhoto() or ctx.api.sendPhoto().
 ```
@@ -199,23 +199,11 @@ This is very efficient.
 > Note that Telegram supports downloading the file for you in many methods.
 > If possible, you should prefer to [send the file via URL](#via-file-id-or-url), instead of using `InputFile` to stream the file contents through your server.
 
-::: code-group
-
-```ts [Node.js]
-import { URL } from "url";
-
+```ts
 // Download a file, and stream the response to Telegram.
-new InputFile(new URL("https://grammy.dev/images/Y.webp"));
-new InputFile({ url: "https://grammy.dev/images/Y.webp" }); // equivalent
+new InputFile(new URL("https://grammy.dev/images/grammY.png"));
+new InputFile({ url: "https://grammy.dev/images/grammY.png" }); // equivalent
 ```
-
-```ts [Deno]
-// Download a file, and stream the response to Telegram.
-new InputFile(new URL("https://grammy.dev/images/Y.webp"));
-new InputFile({ url: "https://grammy.dev/images/Y.webp" }); // equivalent
-```
-
-:::
 
 ### Adding a Caption
 

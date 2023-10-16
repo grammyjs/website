@@ -5,12 +5,12 @@ next: false
 
 # 托管: Vercel Serverless Functions
 
-本教程将指导你如何使用 [Vercel Serverless Functions](https://vercel.com/docs/concepts/functions/serverless-functions) 将 bot 部署到 [Vercel](https://vercel.com/)，假设你已经拥有 [Vercel](https://vercel.com) 帐户。
+本教程将指导你如何使用 [Vercel Serverless Functions](https://vercel.com/docs/functions/serverless-functions) 将 bot 部署到 [Vercel](https://vercel.com/)，假设你已经拥有 [Vercel](https://vercel.com) 帐户。
 
 ## 项目结构
 
 开始使用 **Vercel Serverless Functions** 的唯一先决条件是将代码移动到 `api/` 目录，如下所示。
-你还可以查看 [Vercel 的文档](https://vercel.com/docs/concepts/functions/serverless-functions#deploying-serverless-functions) 了解更多信息。
+你还可以查看 [Vercel 的文档](https://vercel.com/docs/functions/serverless-functions#deploying-serverless-functions) 了解更多信息。
 
 ```asciiart:no-line-numbers
 .
@@ -43,7 +43,7 @@ next: false
 
 > 如果你想使用 Vercel 的免费订阅，你的 `memory` 和 `maxDuration` 配置可能看起来像上面那样不绕过它的限制。
 
-如果你想了解有关 `vercel.json` 配置文件的更多信息，请参阅[其文档](https://vercel.com/docs/concepts/projects/project-configuration)。
+如果你想了解有关 `vercel.json` 配置文件的更多信息，请参阅[其文档](https://vercel.com/docs/projects/project-configuration)。
 
 ## 配置 TypeScript
 

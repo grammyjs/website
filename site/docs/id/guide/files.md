@@ -105,7 +105,7 @@ Dua method yang pertama cukup simpel: kamu hanya perlu mengisi value sebagai seb
 await ctx.replyWithPhoto(idFilenya);
 
 // Kirim melalui URL.
-await ctx.replyWithPhoto("https://grammy.dev/images/Y.webp");
+await ctx.replyWithPhoto("https://grammy.dev/images/grammY.png");
 
 // Alternatifnya, kamu bisa menggunakan
 // bot.api.sendPhoto() atau ctx.api.sendPhoto().
@@ -200,23 +200,11 @@ Sangat efisien, bukan.
 > Perlu dicatat bahwa Telegram mendukung pengunduhan file dengan berbagai cara.
 > Jika memungkinkan, sebaiknya kamu [mengirim file menggunakan URL](#melalui-file-id-atau-url), daripada menggunakan `InputFile` untuk mengalirkan data file melalui server kamu.
 
-::: code-group
-
-```ts [Node.js]
-import { URL } from "url";
-
+```ts
 // Unduh file lalu alirkan data ke Telegram.
-new InputFile(new URL("https://grammy.dev/images/Y.webp"));
-new InputFile({ url: "https://grammy.dev/images/Y.webp" }); // sama saja
+new InputFile(new URL("https://grammy.dev/images/grammY.png"));
+new InputFile({ url: "https://grammy.dev/images/grammY.png" }); // sama saja
 ```
-
-```ts [Deno]
-// Unduh file lalu alirkan data ke Telegram.
-new InputFile(new URL("https://grammy.dev/images/Y.webp"));
-new InputFile({ url: "https://grammy.dev/images/Y.webp" }); // sama saja
-```
-
-:::
 
 ### Menambahkan Caption
 

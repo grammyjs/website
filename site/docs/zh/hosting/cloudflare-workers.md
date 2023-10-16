@@ -3,8 +3,6 @@ prev: false
 next: false
 ---
 
-# 托管: Cloudflare Workers
-
 # 托管: Cloudflare Workers (Deno)
 
 [Cloudflare Workers](https://workers.cloudflare.com) 是一个公共的无服务器计算平台，为在 [边缘](https://en.wikipedia.org/wiki/Edge_computing) 上运行小型工作负载提供了便捷且简单的解决方案。
@@ -22,7 +20,7 @@ next: false
 
 ## 设置
 
-请确保你已经安装了 [Deno](https://deno.land) 和 [Denoflare](https://denoflare.dev)。
+请确保你已经安装了 [Deno](https://deno.com) 和 [Denoflare](https://denoflare.dev)。
 
 创建一个新目录，并在该目录中创建一个名为 `.denoflare` 的新文件。
 将以下内容放入文件中：
