@@ -95,6 +95,7 @@ export const config = {
 };
 ```
 :::
+
 ## In Vercel's Dashboard
 
 Assuming that you already have a Vercel account your GitHub is connected to, add a new project and select your bot's repository.
