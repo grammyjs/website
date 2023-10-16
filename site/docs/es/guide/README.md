@@ -1,4 +1,6 @@
-![grammY](/images/grammY.webp)
+<!-- markdownlint-disable first-line-heading -->
+
+![grammY](/images/grammY.svg)
 
 # Resumen
 

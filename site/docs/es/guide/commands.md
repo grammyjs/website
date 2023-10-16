@@ -2,7 +2,7 @@
 
 Los comandos son entidades especiales en los mensajes de Telegram, que sirven como instrucciones para los bots.
 
-# Uso
+## Uso
 
 > Revisa la sección de comandos en las [Características de los bots de Telegram](https://core.telegram.org/bots/features#commands) escrita por el equipo de Telegram.
 
@@ -24,7 +24,6 @@ grammY maneja esto automáticamente por ti, así que `bot.command("start")` coin
 Puedes elegir coincidir sólo con comandos específicos especificando `bot.command("start@your_bot_name")`.
 
 ::: tip Sugerir comandos a los usuarios
-
 Puedes llamar a:
 
 ```ts

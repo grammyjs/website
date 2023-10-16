@@ -101,11 +101,9 @@ Contohnya, kamu bisa memanggil `ctx.hasCommand("start")` untuk memeriksa apakah 
 Itulah kenapa method ini dinamakan _has checks_.
 
 ::: tip Kapan Waktu yang Tepat untuk Menggunakan Has Checks?
-
 Method ini menggunakan logika yang sama yang digunakan oleh `bot.command("start")`.
 Kami menyarankan kamu untuk selalu menggunakan [filter queries](./filter-queries) dan method-method lain yang serupa.
 has checks sebaiknya digunakan di [plugin conversations](../plugins/conversations).
-
 :::
 
 has checks secara tepat mengerucutkan type context terkait.

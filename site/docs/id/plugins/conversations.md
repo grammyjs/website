@@ -197,7 +197,6 @@ Context object-nya akan diteruskan ke conversation builder function sebagai argu
 Contohnya, jika kamu membuat conversation dengan `await ctx.reply(ctx.message.text)`, ia akan memiliki update yang di dalamnya terdapat `/start`.
 
 ::: tip Mengubah Conversation Identifier
-
 Secara bawaan, kamu diharuskan mengisi nama function ke `ctx.conversation.enter()`.
 Jika kamu memilih untuk menggunakan identifier yang berbeda, kamu bisa melakukannya dengan cara seperti ini:
 
@@ -668,9 +667,7 @@ const response = await conversation.external(() => externalApi());
 Ini termasuk pembacaan data maupun melakukan [side-effect](https://softwareengineering.stackexchange.com/questions/40297/what-is-a-side-effect) (misalnya menulis ke sebuah database).
 
 ::: tip Serupa dengan React
-
 Jika kamu familiar dengan React, kamu mungkin paham sebuah konsep yang serupa dengan `useEffect`.
-
 :::
 
 ### Aturan II: Semua Perilaku Acak Harus Dibungkus
@@ -700,7 +697,7 @@ await conversation.now(); // lebih akurat!
 conversation.log("Hello, world"); // lebih transparan!
 ```
 
-Perlu diketahui bahwa kamu juga bisa melakukan hal-hal di atas melalui `conversation.external()`, tetapi akan jauh lebih mudah untuk menggunakan function pembantu ([referensi API](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#Methods)).
+Perlu diketahui, sebagian besar dari hal-hal di atas juga bisa dilakukan melalui `conversation.external()`, namun menggunakan function pembantu ([referensi API](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#Methods)) jauh lebih mudah.
 
 ## Variable, Percabangan, dan Perulangan
 
@@ -757,7 +754,7 @@ Berikut contoh captcha sederhana yang bisa dipakai berulang kali:
 ```ts [TypeScript]
 async function captcha(conversation: MyConversation, ctx: MyContext) {
   await ctx.reply(
-"Buktikan kalau kamu manusia! \
+    "Buktikan kalau kamu manusia! \
     Apa jawaban untuk kehidupan, alam semesta, dan semuanya?",
   );
   const { message } = await conversation.wait();
@@ -768,7 +765,7 @@ async function captcha(conversation: MyConversation, ctx: MyContext) {
 ```js [JavaScript]
 async function captcha(conversation, ctx) {
   await ctx.reply(
-"Buktikan kalau kamu manusia! \
+    "Buktikan kalau kamu manusia! \
     Apa jawaban untuk kehidupan, alam semesta, dan semuanya?",
   );
   const { message } = await conversation.wait();
@@ -836,7 +833,7 @@ class Auth {
   authenticate(ctx: MyContext) {
     const link = getAuthLink(); // ambil link autentikasi dari sistem kamu
     await ctx.reply(
-"Buka link ini untuk mendapatkan sebuah token \
+      "Buka link ini untuk mendapatkan sebuah token \
       lalu kirim tokennya ke aku: " + link,
     );
     ctx = await this.conversation.wait();
@@ -867,7 +864,7 @@ class Auth {
   authenticate(ctx) {
     const link = getAuthLink(); // ambil link autentikasi dari sistem kamu
     await ctx.reply(
-"Buka link ini untuk mendapatkan sebuah token \
+      "Buka link ini untuk mendapatkan sebuah token \
       lalu kirim tokennya ke aku: " + link,
     );
     ctx = await this.#conversation.wait();
@@ -930,7 +927,6 @@ Plugin ini bisa melakukan hal tersebut dengan cara menyimpan context object yang
 Itulah kenapa plugin-plugin grammY tidak selalu bisa mempengaruhi context object di dalam percakapan seperti yang diharapkan.
 
 ::: warning Menu Interaktif di Dalam Percakapan
-
 Konsep ini bertolak belakang dengan [plugin menu](./menu).
 Meski menu _bisa_ bekerja di dalam percakapan, namun kami tidak menyarankan untuk menggunakan kedua plugin ini secara bersamaan.
 Sebagai gantinya, gunakan [plugin keyboard inline](./keyboard#keyboard-inline) biasa (hingga kami menambahkan dukungan menu asli untuk percakapan).
@@ -1028,7 +1024,7 @@ Jika dua member bergabung secara bersamaan, bot seharusnya mampu melakukan dua p
 Itulah kenapa plugin conversation menyediakan cara agar kamu bisa membuat beberapa percakapan untuk setiap chat di waktu yang bersamaan.
 Contohnya, kita bisa memiliki lima percakapan yang berbeda dengan lima user baru dan di waktu yang sama melakukan percakapan dengan seorang admin mengenai pengaturan chat yang baru.
 
-### Bagaimana Cara Kerjanya?
+### Proses yang Terjadi di Balik Layar
 
 Setiap update yang masuk akan diproses oleh salah satu dari beberapa percakapan yang aktif.
 Mirip dengan handle di middleware, percakapan-percakapan tadi akan dipanggil secara berurutan berdasarkan siapa yang lebih dulu dipasang.

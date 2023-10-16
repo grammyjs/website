@@ -3,6 +3,8 @@ prev: false
 next: false
 ---
 
+<!-- markdownlint-disable no-duplicate-heading -->
+
 # Alojamiento: VPS
 
 Un servidor virtual privado, mayormente conocido como VPS, es una máquina virtual que se ejecuta en la nube y cuyos usuarios tienen el control total de su sistema.
@@ -17,63 +19,62 @@ systemd es un potente gestor de servicios que viene preinstalado en muchas distr
 
 1. Obtenga la ruta completa de su tiempo de ejecución:
 
-```sh
-# Si se utiliza Deno
-which deno
+   ```sh
+   # Si se utiliza Deno
+   which deno
 
-# Si se utiliza Node.js
-which node
-```
+   # Si se utiliza Node.js
+   which node
+   ```
 
 2. También debes tener la ruta completa de tu archivo de entrada.
 
 3. Tu comando de inicio debería ser como el siguiente
 
-```sh
-<ruta_de_entrada_completa> <opciones> <ruta_de_archivo_de_entrada_completa>
+   ```sh
+   <ruta_de_entrada_completa> <opciones> <ruta_de_archivo_de_entrada_completa>
 
-# Ejemplo de Deno:
-# /home/user/.deno/bin/deno --allow-all /home/user/bot1/mod.ts
+   # Ejemplo de Deno:
+   # /home/user/.deno/bin/deno --allow-all /home/user/bot1/mod.ts
 
-# Ejemplo de Node.js:
-# /home/user/.nvm/versions/node/v16.9.1/bin/node /home/user/bot1/index.js
-```
+   # Ejemplo de Node.js:
+   # /home/user/.nvm/versions/node/v16.9.1/bin/node /home/user/bot1/index.js
+   ```
 
 ### Creación del servicio
 
 1. Ve al directorio de servicios:
 
-```sh
-cd /etc/systemd/system
-```
+   ```sh
+   cd /etc/systemd/system
+   ```
 
 2. Abre tu nuevo archivo de servicio con un editor:
 
-```sh
-nano bot1.service
-```
+   ```sh
+   nano bot1.service
+   ```
 
 3. Añade el siguiente contenido:
 
-```txt
-[Service]
-ExecStart=<comando_de_inicio>
-Restart=on-failure
+   ```txt
+   [Service]
+   ExecStart=<comando_de_inicio>
+   Restart=on-failure
 
-[Install]
-WantedBy=multi-user.target
-```
+   [Install]
+   WantedBy=multi-user.target
+   ```
 
-> Sustituye `<comando_de_inicio>` por el comando que tienes arriba.
->
-> Tenga en cuenta también que si Deno está instalado para un usuario distinto de root, puede que tenga que especificarlo en la sección de servicio como `User=<el_usuario>`.
-> Para más información sobre los archivos de unidad, visite [aquí](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/assembly_working-with-systemd-unit-files_configuring-basic-system-settings).
+   > Sustituye `<comando_de_inicio>` por el comando que tienes arriba.
+   > Tenga en cuenta también que si Deno está instalado para un usuario distinto de root, puede que tenga que especificarlo en la sección de servicio como `User=<el_usuario>`.
+   > Para más información sobre los archivos de unidad, visite [aquí](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/assembly_working-with-systemd-unit-files_configuring-basic-system-settings).
 
-3. Recarga systemd cada vez que edites el servicio:
+4. Recarga systemd cada vez que edites el servicio:
 
-```sh
-systemctl daemon-reload
-```
+   ```sh
+   systemctl daemon-reload
+   ```
 
 ### Manejando el servicio
 

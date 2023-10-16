@@ -91,7 +91,7 @@ Para ello, necesitas instalar algún software que sea capaz de _ejecutar_ tu có
 Este tipo de software se llama _entorno de ejecución_.
 Toma tus archivos de código fuente y realmente hace lo que está programado en ellos.
 
-Para nosotros, hay dos entornos de ejecución para elegir, [Deno](https://deno.land) y [Node.js](https://nodejs.org).
+Para nosotros, hay dos entornos de ejecución para elegir, [Deno](https://deno.com) y [Node.js](https://nodejs.org).
 (Si ves que la gente lo llama _Node_, es que son demasiado perezosos para escribir ".js", pero significan lo mismo).
 
 > El resto de esta sección te ayuda a decidir entre estas dos plataformas.
@@ -131,7 +131,7 @@ Esto significa instalar algunas herramientas.
 
 #### Preparando tu máquina para el desarrollo
 
-[Instala Deno](https://deno.com/manual/getting_started/installation#download-and-install) si aún no lo has hecho.
+[Instala Deno](https://docs.deno.com/runtime/manual/getting_started/installation#download-and-install) si aún no lo has hecho.
 
 También necesita un editor de texto que se adapte bien a la codificación.
 El mejor para Deno es Visual Studio Code, a menudo llamado simplemente VS Code.
@@ -194,7 +194,6 @@ Esto detendrá tu bot.
 Entonces, necesitas repetir los pasos 2 y 3.
 
 ::: tip Espera, ¿qué?
-
 Instalar Node.js y configurar todo correctamente lleva mucho tiempo.
 Si nunca has hecho esto antes, deberías esperar encontrarte con un montón de problemas confusos que son difíciles de solucionar.
 
@@ -202,7 +201,6 @@ Por eso esperamos que sepas cómo configurar tu sistema, o que seas capaz de apr
 (Instalar Node.js _de la forma correcta_ es tan complicado que no cabe en esta página).
 
 Si te sientes perdido en este punto, deberías dejar Node.js y usar [Deno](#requisitos-previos-para-deno) en su lugar.
-
 :::
 
 ¿Aún confiado?

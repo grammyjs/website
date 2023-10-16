@@ -97,7 +97,7 @@ bot.command("birthday", async (ctx) => {
     // Починаємо опитування, якщо деякої інформації не вистачає
     ctx.session.step = "day";
     await ctx.reply(
-"Будь ласка, надішліть мені день \
+      "Будь ласка, надішліть мені день \
 вашого народження у числовому форматі!",
     );
   }
@@ -148,7 +148,7 @@ month.on("message:text", async (ctx) => {
   const month = Object.keys(months).indexOf(ctx.msg.text);
   if (month === -1) {
     await ctx.reply(
-"Цей місяць недійсний, \
+      "Цей місяць недійсний, \
 будь ласка, скористайтеся однією з кнопок!",
     );
     return;
@@ -371,7 +371,7 @@ bot.command("birthday", async (ctx) => {
     // Починаємо опитування, якщо деякої інформації не вистачає
     ctx.session.step = "day";
     await ctx.reply(
-"Будь ласка, надішліть мені день \
+      "Будь ласка, надішліть мені день \
 вашого народження у вигляді числа!",
     );
   }
@@ -422,7 +422,7 @@ month.on("message:text", async (ctx) => {
   const month = Object.keys(months).indexOf(ctx.msg.text);
   if (month === -1) {
     await ctx.reply(
-"Цей місяць недійсний, \
+      "Цей місяць недійсний, \
 будь ласка, скористайтеся однією з кнопок!",
     );
     return;

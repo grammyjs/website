@@ -97,11 +97,9 @@ Por ejemplo, puede llamar a `ctx.hasCommand("start")` para ver si el objeto de c
 Esta es la razón por la que los métodos se denominan colectivamente _has checks_.
 
 ::: tip Saber cuándo usar Has Checks
-
 Esta es exactamente la misma lógica que utiliza `bot.command("start")`.
 Tenga en cuenta que normalmente debería utilizar [consultas de filtro](./filter-queries) y métodos similares.
 El uso de las comprobaciones has funciona mejor dentro del plugin [conversaciones](../plugins/conversations).
-
 :::
 
 Las comprobaciones has acotan correctamente el tipo de contexto.

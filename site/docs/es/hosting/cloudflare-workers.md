@@ -20,7 +20,7 @@ Para seguir adelante, por favor asegúrese de que tiene una [cuenta de Cloudflar
 
 ## Puesta a punto
 
-Asegúrate de tener instalados [Deno](https://deno.land) y [Denoflare](https://denoflare.dev).
+Asegúrate de tener instalados [Deno](https://deno.com) y [Denoflare](https://denoflare.dev).
 
 Cree un nuevo directorio, y cree un nuevo archivo `.denoflare` en ese directorio.
 Ponga el siguiente contenido en el archivo:

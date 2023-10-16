@@ -45,7 +45,7 @@ You can build an inline keyboard by creating a new instance of the `InlineKeyboa
 
 Here is an example:
 
-![Example](/images/inline-keyboard-example.webp)
+![Example](/images/inline-keyboard-example.png)
 
 ```ts
 const inlineKeyboard = new InlineKeyboard()
@@ -94,7 +94,7 @@ Naturally, all other methods that send messages other than text messages support
 For example, you can edit a keyboard by calling `editMessageReplyMarkup`, and passing the new `InlineKeyboard` instance as `reply_markup`.
 Specify an empty inline keyboard to remove all buttons underneath a message.
 
-### Responding to Clicks
+### Responding to Inline Keyboard Clicks
 
 ::: tip Menu Plugin
 The keyboard plugin gives you raw access to the update objects that Telegram sends.
@@ -164,7 +164,7 @@ Call `.row()` to begin a new row of buttons.
 
 Here is an example:
 
-![Example](/images/keyboard-example.webp)
+![Example](/images/keyboard-example.png)
 
 ```ts
 const keyboard = new Keyboard()
@@ -282,7 +282,7 @@ new Keyboard()
 It does not matter whether you call `selected` first, last or somewhere in between.
 The result will always be the same.
 
-### Responding to Clicks
+### Responding to Custom Keyboard Clicks
 
 As mentioned earlier, all that custom keyboards do is sending regular text messages.
 Your bot cannot differentiate between ordinary text messages, and text messages that were sent by clicking a button.

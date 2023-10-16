@@ -20,7 +20,7 @@ To follow along, please make sure that you have a [Cloudflare account](https://d
 
 ## Setting Things Up
 
-Make sure you have [Deno](https://deno.land) and [Denoflare](https://denoflare.dev) installed.
+Make sure you have [Deno](https://deno.com) and [Denoflare](https://denoflare.dev) installed.
 
 Create a new directory, and create a new file `.denoflare` in that directory.
 Put the following contents in the file:

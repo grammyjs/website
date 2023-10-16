@@ -13,7 +13,7 @@ This allows for over 820 different filters to be used, and we may add more over 
 Every valid filter can be auto-completed in your code editor.
 Hence, you can simply type `bot.on("")`, open auto-complete, and search through all queries by typing something.
 
-![Filter Query Search](/images/filter-query-search.webp)
+![Filter Query Search](/images/filter-query-search.png)
 
 The type inference of `bot.on()` will comprehend the filter query you picked.
 It therefore tightens a few types on the context that are known to exist.

@@ -109,11 +109,9 @@ Ajusta tu `tsconfig.json` en consecuencia y añade la línea resaltada:
 En algunos casos, esto también puede funcionar sin ajustar la configuración de TypeScript.
 
 ::: warning Autocompletar incorrecto
-
 Si no cambias tu archivo `tsconfig.json` como se ha descrito anteriormente, puede ocurrir que tu editor de código sugiera en el autocompletado importar tipos de `grammy/out/client` o algo así.
 **Todas las rutas que comienzan con `grammy/out` son internas. No las utilices.
 Podrían cambiarse arbitrariamente en cualquier momento, por lo que te aconsejamos encarecidamente que importes desde `grammy/types` en su lugar.
-
 :::
 
 ### Haciendo llamadas a la API en bruto

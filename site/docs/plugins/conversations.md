@@ -197,7 +197,6 @@ The current context object is passed as the second argument to the conversation 
 For example, if you start your conversation with `await ctx.reply(ctx.message.text)`, it will contain the update that contains `/start`.
 
 ::: tip Change the Conversation Identifier
-
 By default, you have to pass the name of the function to `ctx.conversation.enter()`.
 However, if you prefer to use a different identifier, you can specify it like so:
 
@@ -671,9 +670,7 @@ const response = await conversation.external(() => externalApi());
 This includes both reading data, as well as performing side-effects (such as writing to a database).
 
 ::: tip Comparable to React
-
 If you are familiar with React, you may know a comparable concept from `useEffect`.
-
 :::
 
 ### Rule II: All Random Behavior Must Be Wrapped
@@ -703,7 +700,7 @@ await conversation.now(); // more accurate!
 conversation.log("Hello, world"); // more transparent!
 ```
 
-Note that you can do all of the above via `conversation.external()`, but this can be tedious to type, so it's just easier to use the convenience functions ([API reference](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#Methods)).
+Note that you can do most of the above via `conversation.external()`, but this can be tedious to type, so it's just easier to use the convenience functions ([API reference](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#Methods)).
 
 ## Variables, Branching, and Loops
 
@@ -922,7 +919,6 @@ The plugin makes this possible by storing old context objects, and resupplying t
 This is why the context objects inside conversations are not always affected by some grammY plugins in the way one would expect.
 
 ::: warning Interactive Menus Inside Conversations
-
 With the [menu plugin](./menu), these concepts clash very badly.
 While menus _can_ work inside conversations, we do not recommend to use these two plugins together.
 Instead, use the regular [inline keyboard plugin](./keyboard#inline-keyboards) (until we add native menus support for conversations).

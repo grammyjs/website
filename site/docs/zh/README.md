@@ -16,7 +16,7 @@ hero:
     - 已处理数十亿请求。
     - 由执念驱动。
   image:
-    src: /images/Y.webp
+    src: /images/Y.svg
     alt: grammY 徽标
   actions:
     - theme: brand
@@ -37,6 +37,8 @@ features:
     title: 可扩展
     details: grammY 在你的 bot 拥有较多流量时提供可靠的帮助.
 ---
+
+<!-- markdownlint-disable no-inline-html -->
 
 <HomeContent>
 
@@ -100,8 +102,8 @@ bot.start();
 
 <div style="font-size: 0.75rem; display: flex; justify-content: center;">
 
-© 2021-2023 &middot; grammY 支持 Telegram Bot API 6.7，该 API 于 2023 年 4 月 21 日 [发布](https://core.telegram.org/bots/api#april-21-2023)。
-(新增: 多个机器人名称、自定义 emoji 和更好的 inline query)
+© 2021-2023 &middot; grammY 支持 Telegram Bot API 6.9，该 API 于 2023 年 9 月 22 日 [发布](https://core.telegram.org/bots/api#september-22-2023)。
+(新增: story)
 
 </div>
 </footer>
