@@ -754,7 +754,7 @@ Berikut contoh captcha sederhana yang bisa dipakai berulang kali:
 ```ts [TypeScript]
 async function captcha(conversation: MyConversation, ctx: MyContext) {
   await ctx.reply(
-"Buktikan kalau kamu manusia! \
+    "Buktikan kalau kamu manusia! \
     Apa jawaban untuk kehidupan, alam semesta, dan semuanya?",
   );
   const { message } = await conversation.wait();
@@ -765,7 +765,7 @@ async function captcha(conversation: MyConversation, ctx: MyContext) {
 ```js [JavaScript]
 async function captcha(conversation, ctx) {
   await ctx.reply(
-"Buktikan kalau kamu manusia! \
+    "Buktikan kalau kamu manusia! \
     Apa jawaban untuk kehidupan, alam semesta, dan semuanya?",
   );
   const { message } = await conversation.wait();
@@ -833,7 +833,7 @@ class Auth {
   authenticate(ctx: MyContext) {
     const link = getAuthLink(); // ambil link autentikasi dari sistem kamu
     await ctx.reply(
-"Buka link ini untuk mendapatkan sebuah token \
+      "Buka link ini untuk mendapatkan sebuah token \
       lalu kirim tokennya ke aku: " + link,
     );
     ctx = await this.conversation.wait();
@@ -864,7 +864,7 @@ class Auth {
   authenticate(ctx) {
     const link = getAuthLink(); // ambil link autentikasi dari sistem kamu
     await ctx.reply(
-"Buka link ini untuk mendapatkan sebuah token \
+      "Buka link ini untuk mendapatkan sebuah token \
       lalu kirim tokennya ke aku: " + link,
     );
     ctx = await this.#conversation.wait();
@@ -1051,7 +1051,7 @@ Sebagai contoh, mari kita implementasikan kembali contoh captcha di atas, tetapi
 async function captcha(conversation: MyConversation, ctx: MyContext) {
   if (ctx.from === undefined) return false;
   await ctx.reply(
-"Buktikan kalau kamu manusia! \
+    "Buktikan kalau kamu manusia! \
     Apa jawaban untuk kehidupan, alam semesta, dan semuanya?",
   );
   const { message } = await conversation.waitFrom(ctx.from);
@@ -1070,7 +1070,7 @@ async function enterGroup(conversation: MyConversation, ctx: MyContext) {
 async function captcha(conversation, ctx) {
   if (ctx.from === undefined) return false;
   await ctx.reply(
-"Buktikan kalau kamu manusia! \
+    "Buktikan kalau kamu manusia! \
     Apa jawaban untuk kehidupan, alam semesta, dan semuanya?",
   );
   const { message } = await conversation.waitFrom(ctx.from);
