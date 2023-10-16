@@ -98,7 +98,7 @@ bot.command("ulangtahun", async (ctx) => {
     // Informasi tidak tersedia, masuk ke mode form router
     ctx.session.step = "day";
     await ctx.reply(
-      "Kirim hari \
+"Kirim hari \
 ulang tahunmu dalam format angka!",
     );
   }
@@ -147,7 +147,7 @@ month.on("message:text", async (ctx) => {
   const month = months.indexOf(ctx.msg.text);
   if (month === -1) {
     await ctx.reply(
-      "Ups, itu bukan bulan yang valid. \
+"Ups, itu bukan bulan yang valid. \
 Silahkan gunakan tombol berikut!",
     );
     return;
@@ -228,7 +228,7 @@ bot.command("ulangtahun", async (ctx) => {
     // Informasi tidak tersedia, masuk ke mode form router
     ctx.session.step = "day";
     await ctx.reply(
-      "Kirim tanggal \
+"Kirim tanggal \
 ulang tahunmu dalam format angka!",
     );
   }
@@ -277,7 +277,7 @@ month.on("message:text", async (ctx) => {
   const month = months.indexOf(ctx.msg.text);
   if (month === -1) {
     await ctx.reply(
-      "Ups, itu bukan bulan yang valid. \
+"Ups, itu bukan bulan yang valid. \
 Gunakan tombol berikut!",
     );
     return;
@@ -371,7 +371,7 @@ bot.command("ulangtahun", async (ctx) => {
     // Informasi tidak tersedia, masuk ke mode form router
     ctx.session.step = "day";
     await ctx.reply(
-      "Kirim tanggal \
+"Kirim tanggal \
 ulang tahunmu dalam format angka!",
     );
   }
@@ -420,7 +420,7 @@ month.on("message:text", async (ctx) => {
   const month = months.indexOf(ctx.msg.text);
   if (month === -1) {
     await ctx.reply(
-      "Ups, itu bukan bulan yang valid. \
+"Ups, itu bukan bulan yang valid. \
 Silahkan gunakan tombol berikut!",
     );
     return;

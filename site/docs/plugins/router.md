@@ -96,7 +96,7 @@ bot.command("birthday", async (ctx) => {
     // Missing information, enter router-based form
     ctx.session.step = "day";
     await ctx.reply(
-      "Please send me the day of month \
+"Please send me the day of month \
 of your birthday as a number!",
     );
   }
@@ -143,7 +143,7 @@ month.on("message:text", async (ctx) => {
   const month = months.indexOf(ctx.msg.text);
   if (month === -1) {
     await ctx.reply(
-      "That is not a valid month, \
+"That is not a valid month, \
 please use one of the buttons!",
     );
     return;
@@ -220,7 +220,7 @@ bot.command("birthday", async (ctx) => {
     // Missing information, enter router-based form
     ctx.session.step = "day";
     await ctx.reply(
-      "Please send me the day of month \
+"Please send me the day of month \
 of your birthday as a number!",
     );
   }
@@ -267,7 +267,7 @@ month.on("message:text", async (ctx) => {
   const month = months.indexOf(ctx.msg.text);
   if (month === -1) {
     await ctx.reply(
-      "That is not a valid month, \
+"That is not a valid month, \
 please use one of the buttons!",
     );
     return;
@@ -357,7 +357,7 @@ bot.command("birthday", async (ctx) => {
     // Missing information, enter router-based form
     ctx.session.step = "day";
     await ctx.reply(
-      "Please send me the day of month \
+"Please send me the day of month \
 of your birthday as a number!",
     );
   }
@@ -404,7 +404,7 @@ month.on("message:text", async (ctx) => {
   const month = months.indexOf(ctx.msg.text);
   if (month === -1) {
     await ctx.reply(
-      "That is not a valid month, \
+"That is not a valid month, \
 please use one of the buttons!",
     );
     return;

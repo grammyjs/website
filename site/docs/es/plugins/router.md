@@ -95,7 +95,7 @@ bot.command("birthday", async (ctx) => {
     // Falta información, introduzca el formulario basado en el router
     ctx.session.step = "day";
     await ctx.reply(
-      "¡Por favor, envíame el día del mes \
+"¡Por favor, envíame el día del mes \
  de tu cumpleaños como un número!",
     );
   }
@@ -144,7 +144,7 @@ month.on("message:text", async (ctx) => {
   const month = months.indexOf(ctx.msg.text);
   if (month === -1) {
     await ctx.reply(
-      "¡Ese no es un mes válido, \
+"¡Ese no es un mes válido, \
 por favor, utilice uno de los botones",
     );
     return;
@@ -223,7 +223,7 @@ bot.command("birthday", async (ctx) => {
     // Falta información, introduzca el formulario basado en el router.
     ctx.session.step = "day";
     await ctx.reply(
-      "¡Por favor, envíame el día del mes \
+"¡Por favor, envíame el día del mes \
  de tu cumpleaños como un número!",
     );
   }
@@ -272,7 +272,7 @@ month.on("message:text", async (ctx) => {
   const month = months.indexOf(ctx.msg.text);
   if (month === -1) {
     await ctx.reply(
-      "¡Ese no es un mes válido, \
+"¡Ese no es un mes válido, \
 por favor, utilice uno de los botones",
     );
     return;
@@ -364,7 +364,7 @@ bot.command("birthday", async (ctx) => {
     // Falta información, introduzca el formulario basado en el router
     ctx.session.step = "day";
     await ctx.reply(
-      "¡Por favor, envíame el día del mes \
+"¡Por favor, envíame el día del mes \
  de tu cumpleaños como un número!",
     );
   }
@@ -413,7 +413,7 @@ month.on("message:text", async (ctx) => {
   const month = months.indexOf(ctx.msg.text);
   if (month === -1) {
     await ctx.reply(
-      "¡Ese no es un mes válido, \
+"¡Ese no es un mes válido, \
 por favor, utilice uno de los botones",
     );
     return;
