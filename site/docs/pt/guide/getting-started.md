@@ -106,7 +106,10 @@ const bot = new Bot(""); // <-- coloque o token do seu bot entre ""
 // O grammY irá chamar os listeners quando usuários enviarem mensagens para seu bot.
 
 // Trata o comando /start.
-bot.command("start", (ctx) => ctx.reply("Boas vindas! Online e roteando :sunglasses:"));
+bot.command(
+  "start",
+  (ctx) => ctx.reply("Boas vindas! Online e roteando :sunglasses:"),
+);
 // Trata outras mensagens.
 bot.on("message", (ctx) => ctx.reply("Chegou outra mensagem!"));
 
