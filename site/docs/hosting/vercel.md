@@ -89,6 +89,7 @@ This means that you can use core grammY package and some plugins, but other may 
 Currently, we don't have a comprehensive list of compatible plugins, so you need to test it by yourself.
 
 Add this line to snippet above if you want to switch to Edge Functions:
+
 ```ts
 export const config = {
   runtime: "edge",
