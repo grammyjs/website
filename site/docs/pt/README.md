@@ -38,6 +38,8 @@ features:
     details: O grammY te dá cobertura quando o seu bot fica popular e o tráfego aumenta.
 ---
 
+<!-- markdownlint-disable no-inline-html -->
+
 <HomeContent>
 
 ## Início rápido
