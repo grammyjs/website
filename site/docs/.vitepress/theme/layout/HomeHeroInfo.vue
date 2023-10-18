@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { onMounted, onUpdated, nextTick, ref, watch } from "vue";
-import "lazy-lottie-player/lazy-tgs-player.mjs";
 
 const props = defineProps({
   name: String,
@@ -18,6 +17,8 @@ watch(props, (newProps) => {
 onMounted(() => {
   pickTagline(props.taglines);
   showContent.value = true;
+  // @ts-ignore
+  void import("lazy-lottie-player/lazy-tgs-player.mjs");
 });
 
 onUpdated(() => nextTick(hydrateIcons));
@@ -35,7 +36,9 @@ function hydrateIcons() {
   document.querySelectorAll("lazy-tgs-player").forEach(player => {
     const box = player.closest(".box");
     if (!box) return;
+    // @ts-ignore
     box.addEventListener("mouseenter", () => player.play?.());
+    // @ts-ignore
     box.addEventListener("mouseleave", () => player.pause?.());
   });
 }
