@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onUpdated, nextTick, ref, watch } from "vue";
+import "lazy-lottie-player/lazy-tgs-player.mjs";
 
 const props = defineProps({
   name: String,
@@ -30,6 +31,7 @@ function pickTagline(newTaglines: string[] | undefined) {
 }
 
 function hydrateIcons() {
+  if (window.matchMedia("(hover: none)").matches) return;
   document.querySelectorAll("lazy-tgs-player").forEach(player => {
     const box = player.closest(".box");
     if (!box) return;

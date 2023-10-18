@@ -82,14 +82,4 @@ export default defineConfig({
       chunkSizeWarningLimit: 1600,
     },
   },
-  head: [
-    [
-      "script",
-      {
-        async: "",
-        type: "module",
-        src: "https://cdn.jsdelivr.net/gh/PonomareVlad/lazy-lottie-player@main/lazy-tgs-player.mjs",
-      },
-    ],
-  ],
 });
