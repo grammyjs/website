@@ -326,11 +326,11 @@ Nos referimos ao fragmento dos dois pontos ao final da string de query como _fra
 
 Exemplo:
 
-| Filter Query                 | Fragmento L1   | Fragmento L2    | Fragmento L3   |
-| ---------------------------- | ----------- | ------------ | ----------- |
-| `"message"`                  | `"message"` | `undefined`  | `undefined` |
-| `"message:entities"`         | `"message"` | `"entities"` | `undefined` |
-| `"message:entities:mention"` | `"message"` | `"entities"` | `"mention"` |
+| Filter Query                 | Fragmento L1 | Fragmento L2 | Fragmento L3 |
+| ---------------------------- | ------------ | ------------ | ------------ |
+| `"message"`                  | `"message"`  | `undefined`  | `undefined`  |
+| `"message:entities"`         | `"message"`  | `"entities"` | `undefined`  |
+| `"message:entities:mention"` | `"message"`  | `"entities"` | `"mention"`  |
 
 ### Validação da Query
 
