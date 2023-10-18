@@ -7,6 +7,7 @@ const props = defineProps({
   taglines: Array<string>
 });
 
+const hasHover = () => window.matchMedia("(hover: hover)").matches;
 const showContent = ref(false);
 const tagline = ref('');
 
@@ -17,8 +18,8 @@ watch(props, (newProps) => {
 onMounted(() => {
   pickTagline(props.taglines);
   showContent.value = true;
-  // @ts-ignore
-  void import("lazy-lottie-player/lazy-tgs-player.mjs");
+  if (hasHover()) // @ts-ignore
+    void import("lazy-lottie-player/lazy-tgs-player.mjs");
 });
 
 onUpdated(() => nextTick(hydrateIcons));
@@ -32,7 +33,7 @@ function pickTagline(newTaglines: string[] | undefined) {
 }
 
 function hydrateIcons() {
-  if (window.matchMedia("(hover: none)").matches) return;
+  if (!hasHover()) return;
   document.querySelectorAll("lazy-tgs-player").forEach(player => {
     const box = player.closest(".box");
     if (!box) return;
