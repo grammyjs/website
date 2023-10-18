@@ -29,13 +29,13 @@ hero:
       link: ./guide/introduction
 
 features:
-  - icon: <img class="VPImage" src="/icons/beach.svg" alt="beach animation" data-tgs="/icons/beach-animation.tgs">
+  - icon: <lazy-tgs-player class="VPImage" src="/icons/beach-animation.tgs"><img src="/icons/beach.svg" alt="beach animation"></lazy-tgs-player>
     title: Mudah Digunakan
     details: grammY menjadikan pembuatan bot Telegram begitu simpel sehingga kamu pun langsung tahu cara membuatnya.
-  - icon: <img class="VPImage" src="/icons/palette.svg" alt="palette animation" data-tgs="/icons/palette-animation.tgs">
+  - icon: <lazy-tgs-player class="VPImage" src="/icons/palette-animation.tgs"><img src="/icons/palette.svg" alt="palette animation"></lazy-tgs-player>
     title: Fleksibel
     details: grammY bersifat terbuka dan bisa ditambahkan dengan plugin yang kamu inginkan.
-  - icon: <img class="VPImage" src="/icons/rocket.svg" alt="rocket animation" data-tgs="/icons/rocket-animation.tgs">
+  - icon: <lazy-tgs-player class="VPImage" src="/icons/rocket-animation.tgs"><img src="/icons/rocket.svg" alt="rocket animation"></lazy-tgs-player>
     title: Dapat Diskalakan
     details: grammY selalu siap membantu ketika bot menjadi semakin populer dan ramai digunakan.
 ---

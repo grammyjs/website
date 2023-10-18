@@ -30,23 +30,11 @@ function pickTagline(newTaglines: string[] | undefined) {
 }
 
 function hydrateIcons() {
-  window.lottiePromise?.then(() => {
-    document.querySelectorAll("[data-tgs]").forEach(icon => {
-      const { alt, className, parentNode, dataset: { tgs: src } } = icon;
-      const player = document.createElement("tgs-player");
-      player.toggleAttribute("disableCheck", true);
-      player.toggleAttribute("autoplay", true);
-      player.toggleAttribute("loop", true);
-      player.setAttribute("src", src);
-      player.setAttribute("alt", alt);
-      player.style.display = "none";
-      player.className = className;
-      parentNode?.appendChild(player);
-      player.addEventListener("ready", () => {
-        parentNode?.removeChild(icon);
-        player.style.display = "unset";
-      });
-    });
+  document.querySelectorAll("lazy-tgs-player").forEach(player => {
+    const box = player.closest(".box");
+    if (!box) return;
+    box.addEventListener("mouseenter", () => player.play?.());
+    box.addEventListener("mouseleave", () => player.pause?.());
   });
 }
 </script>

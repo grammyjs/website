@@ -27,13 +27,13 @@ hero:
       link: ./guide/introduction
 
 features:
-  - icon: <img class="VPImage" src="/icons/beach.svg" alt="beach animation" data-tgs="/icons/beach-animation.tgs">
+  - icon: <lazy-tgs-player class="VPImage" src="/icons/beach-animation.tgs"><img src="/icons/beach.svg" alt="beach animation"></lazy-tgs-player>
     title: 易用
     details: grammY 使创建 Telegram Bot 变得如此简单！
-  - icon: <img class="VPImage" src="/icons/palette.svg" alt="palette animation" data-tgs="/icons/palette-animation.tgs">
+  - icon: <lazy-tgs-player class="VPImage" src="/icons/palette-animation.tgs"><img src="/icons/palette.svg" alt="palette animation"></lazy-tgs-player>
     title: 灵活
     details: grammY 是开放的，通过插件让它完全适合你的需要。
-  - icon: <img class="VPImage" src="/icons/rocket.svg" alt="rocket animation" data-tgs="/icons/rocket-animation.tgs">
+  - icon: <lazy-tgs-player class="VPImage" src="/icons/rocket-animation.tgs"><img src="/icons/rocket.svg" alt="rocket animation"></lazy-tgs-player>
     title: 可扩展
     details: grammY 在你的 bot 拥有较多流量时提供可靠的帮助.
 ---

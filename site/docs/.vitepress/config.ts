@@ -87,11 +87,9 @@ export default defineConfig({
       "script",
       {
         async: "",
+        type: "module",
+        src: "https://cdn.jsdelivr.net/gh/PonomareVlad/lazy-lottie-player@main/lazy-tgs-player.mjs",
       },
-      `
-      const lottiePlayer = "https://unpkg.com/@lottiefiles/lottie-player@2.0.2/dist/tgs-player.js";
-      window.lottiePromise = import(lottiePlayer);
-      `,
     ],
   ],
 });

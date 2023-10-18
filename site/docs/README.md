@@ -27,13 +27,13 @@ hero:
       link: ./guide/introduction
 
 features:
-  - icon: <img class="VPImage" src="/icons/beach.svg" alt="beach animation" data-tgs="/icons/beach-animation.tgs">
+  - icon: <lazy-tgs-player class="VPImage" src="/icons/beach-animation.tgs"><img src="/icons/beach.svg" alt="beach animation"></lazy-tgs-player>
     title: Easy-to-use
     details: grammY makes creating Telegram bots so simple you already know how to do it.
-  - icon: <img class="VPImage" src="/icons/palette.svg" alt="palette animation" data-tgs="/icons/palette-animation.tgs">
+  - icon: <lazy-tgs-player class="VPImage" src="/icons/palette-animation.tgs"><img src="/icons/palette.svg" alt="palette animation"></lazy-tgs-player>
     title: Flexible
     details: grammY is open and can be extended by plugins to make it fit exactly your needs.
-  - icon: <img class="VPImage" src="/icons/rocket.svg" alt="rocket animation" data-tgs="/icons/rocket-animation.tgs">
+  - icon: <lazy-tgs-player class="VPImage" src="/icons/rocket-animation.tgs"><img src="/icons/rocket.svg" alt="rocket animation"></lazy-tgs-player>
     title: Scalable
     details: grammY has you covered when your bot gets popular and the traffic increases.
 ---
