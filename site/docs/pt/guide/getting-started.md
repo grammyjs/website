@@ -110,6 +110,7 @@ bot.command(
   "start",
   (ctx) => ctx.reply("Boas vindas! Online e roteando :sunglasses:"),
 );
+
 // Trata outras mensagens.
 bot.on("message", (ctx) => ctx.reply("Chegou outra mensagem!"));
 
