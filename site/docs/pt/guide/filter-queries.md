@@ -123,8 +123,8 @@ bot.on("edit:file"); // edições de mensagens de arquivo ou posts de canal de a
 
 ### Açúcar Sintático
 
-Existem dois casos especiais pedaços de query que tornam a filtragem de usuários mais conveniente.
-Você pode detectar bots em queries com o pedaço de query `:is_bot`.
+Existem dois casos especiais de fragmento de query que tornam a filtragem de usuários mais conveniente.
+Você pode detectar bots em queries com o fragmento de query `:is_bot`.
 O açúcar sintático `:me` pode ser usado para se referir ao seu bot de dentro de uma query, que irá comparar os identificadores de usuário para você.
 
 ```ts
@@ -142,7 +142,6 @@ Em vez disso, você deve ouvir [updates de membros do chat](#chat-member-updates
 
 ## Combinando Múltiplas Queries
 
-You can combine any number of filter queries with AND as well as OR operations.
 Você pode combinar qualquer número de filter queries com operações AND e OR.
 
 ### Combinando com OR
@@ -219,7 +218,7 @@ que pode ser usado para detectar alterações de status de outros membros do cha
 
 ### Combinando Queries com Outros Métodos
 
-Você pode combinar filter queries com outros métodos na classe `Composer` ([API Reference](https://deno.land/x/grammy/mod.ts?s=Composer)), como `command` ou `filter`.
+Você pode combinar filter queries com outros métodos na classe `Composer` ([Referência de API](https://deno.land/x/grammy/mod.ts?s=Composer)), como `command` ou `filter`.
 Isso permite padrões poderosos de manipulação de mensagens.
 
 ```ts
@@ -309,7 +308,7 @@ function handler(ctx: Filter<Context, ":text">) {
 bot.on(":text", handler);
 ```
 
-> Confira as referências da API para [`matchFilter`](https://deno.land/x/grammy/filter.ts?s=matchFilter), [`Filter`](https://deno.land/x/grammy/filter.ts?s=Filter) e [`FilterQuery`](https://deno.land/x/grammy/filter.ts?s=FilterQuery) para ler mais.
+> Confira as referências de API para [`matchFilter`](https://deno.land/x/grammy/filter.ts?s=matchFilter), [`Filter`](https://deno.land/x/grammy/filter.ts?s=Filter) e [`FilterQuery`](https://deno.land/x/grammy/filter.ts?s=FilterQuery) para ler mais.
 
 ## A Linguagem de Query
 
@@ -317,17 +316,17 @@ bot.on(":text", handler);
 
 ### Estrutura da Query
 
-Toda query consiste em até três pedaços de query.
-Dependendo de quantos pedaços de query uma query tem, diferenciamos entre queries L1, L2 e L3, como `"message"`, `"message:entities"` e `"message:entities:url"`, respectivamente.
+Toda query consiste em até três fragmentos de query.
+Dependendo de quantos fragmentos de query uma query tem, diferenciamos entre queries L1, L2 e L3, como `"message"`, `"message:entities"` e `"message:entities:url"`, respectivamente.
 
-Os pedaços de query são separados por dois pontos (`:`).
-Nos referimos ao pedaço anterior aos dois pontos ou ao final da string de query como _pedaço L1_ de uma query.
-Nos referimos ao pedaço dos dois pontos ao segundo dois pontos ou ao final da string de query como _pedaço L2_ da query.
-Nos referimos ao pedaço dos dois pontos ao final da string de query como _pedaço L3_ da query.
+Os fragmentos de query são separados por dois pontos (`:`).
+Nos referimos ao fragmento anterior aos dois pontos ou ao final da string de query como _fragmento L1_ de uma query.
+Nos referimos ao fragmento dos dois pontos ao segundo dois pontos ou ao final da string de query como _fragmento L2_ da query.
+Nos referimos ao fragmento dos dois pontos ao final da string de query como _fragmento L3_ da query.
 
 Exemplo:
 
-| Filter Query                 | Pedaço L1   | Pedaço L2    | Pedaço L3   |
+| Filter Query                 | Fragmento L1   | Fragmento L2    | Fragmento L3   |
 | ---------------------------- | ----------- | ------------ | ----------- |
 | `"message"`                  | `"message"` | `undefined`  | `undefined` |
 | `"message:entities"`         | `"message"` | `"entities"` | `undefined` |
@@ -347,8 +346,8 @@ Nesse caso, você receberá mensagens de erro úteis.
 
 A validação das filter queries acontece apenas uma vez, quando o bot é inicializado e `bot.on()` é chamado.
 
-Na inicialização, o grammY deriva uma função de predicado da filter query dividindo-a em seus pedaços de query.
-Cada pedaço será mapeado para uma função que executa uma única verificação `in`, ou duas verificações se o pedaço for omitido e dois valores precisarem ser verificados.
+Na inicialização, o grammY deriva uma função de predicado da filter query dividindo-a em seus fragmentos de query.
+Cada fragmento será mapeado para uma função que executa uma única verificação `in`, ou duas verificações se o pedaço for omitido e dois valores precisarem ser verificados.
 Essas funções são então combinadas para formar um predicado que só precisa verificar quantos valores forem relevantes para a query, sem iterar sobre as chaves do objeto `Update`.
 
 Este sistema usa menos operações do que algumas bibliotecas concorrentes, que precisam realizar verificações de contenção em arrays ao rotear atualizações.
