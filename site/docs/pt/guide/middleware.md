@@ -89,12 +89,12 @@ Vamos experimentar outra coisa com nosso novo conhecimento!
 const bot = new Bot("");
 
 bot.on(":text", (ctx) => ctx.reply("Texto!"));
-bot.command("start", (ctx) => ctx.reply("Commando!"));
+bot.command("start", (ctx) => ctx.reply("Comando!"));
 
 bot.start();
 ```
 
-Se você executar o bot acima e enviar `/start`, nunca verá uma resposta dizendo `Commando!`.
+Se você executar o bot acima e enviar `/start`, nunca verá uma resposta dizendo `Comando!`.
 Vamos inspecionar o que acontece:
 
 1. Você envia `"/start"` para o bot.
@@ -133,7 +133,6 @@ async function responseTime(
 ```
 
 ```js [JavaScript]
-/** Measures the response time of the bot, and logs it to `console` */
 /** Mede o tempo de resposta do bot e o registra no `console` */
 async function responseTime(ctx, next) {
   // TODO: implementar
@@ -208,7 +207,7 @@ Se você chamar `next()` sem a palavra-chave `await`, várias coisas vão quebra
 - :x: Sua pilha de middlewares será executada na ordem errada.
 - :x: Você pode perder dados.
 - :x: Algumas mensagens podem não ser enviadas.
-- :x: Seu bot pode travar aleatoriamente de maneiras difíceis de reproduzir.
+- :x: Seu bot pode quebrar aleatoriamente de maneiras difíceis de reproduzir.
 - :x: Se ocorrer um erro, seu tratamento de erros não será chamado para ele.
   Em vez disso, você verá que ocorrerá um `UnhandledPromiseRejectionWarning`, que pode travar o processo do seu bot.
 - :x: O mecanismo de backpressure do [grammY runner](../plugins/runner) quebra, o que protege seu servidor de cargas excessivamente altas, como durante picos de carga.
@@ -227,7 +226,7 @@ Isso garantirá que você nunca esqueça de usar `await` (gritando com você).
 
 ## Propriedades de Middlewares no grammY
 
-No grammY, middlewares podem retornar uma `Promise` (que será chamada com `await`), mas também pode ser síncrono.
+No grammY, middlewares podem retornar uma `Promise` (que será chamada com `await`), mas também podem ser síncronos.
 
 Em contraste com outros sistemas de middleware (como o do `express`), você não pode passar valores de erro para `next`.
 `next` não recebe nenhum argumento.
