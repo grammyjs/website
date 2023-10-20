@@ -14,7 +14,7 @@ Supabase Edge Functions cocok untuk sebagian besar bot yang memiliki fungsi sede
 Contohnya, Supabase Edge Functions tidak menyediakan fitur file system.
 Ia serupa dengan platform serverless lainnya, namun hanya ditujukan untuk aplikasi Deno.
 
-Hasil dari tutorial ini bisa dilihat di [repositori bot kami](https://github.com/grammyjs/examples/tree/main/supabase-edge-functions).
+Hasil dari tutorial ini bisa dilihat di [repositori bot kami](https://github.com/grammyjs/examples/tree/main/setups/supabase-edge-functions).
 
 ## Pemasangan
 
