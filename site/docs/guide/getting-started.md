@@ -17,6 +17,9 @@ Do this by opening a terminal and typing:
 mkdir my-bot
 cd my-bot
 
+# Create a package.json to track our dependencies
+npm init -y
+
 # Set up TypeScript (skip if you use JavaScript).
 npm install -D typescript
 npx tsc --init
