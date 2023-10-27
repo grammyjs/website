@@ -25,7 +25,7 @@ Seu bot pode ou puxá-las do servidor (long polling), ou os servidores do Telegr
 
 ## Como Long Polling Funciona?
 
-_Imagine que você está comprando uma bola de sorvete na sua confiável sorveteria.
+_Imagine que você está comprando uma bola de sorvete na sua sorveteria de confiança.
 Você caminha até o atendente e pede o seu tipo favorito de sorvete.
 Infelizmente, ele te avisa que esse sabor está esgotado._
 
