@@ -363,7 +363,7 @@ A extensão desse problema é desconhecida e depende do seu bot.
 
 #### Como Resolver Esse Problema
 
-Essa resposta é mais fácil de dizer do que implementar.
+Essa resposta é mais fácil de falar do que de fazer.
 **É seu dever garantir que seu middleware termine rápido o suficiente.**
 Não use middlewares grandes demais.
 Sim, nós sabemos que você talvez _queira_ ter tarefas longas.
