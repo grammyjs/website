@@ -336,7 +336,7 @@ ______________                                   _____________
 ```
 
 É por isso que o grammY tem seu próprio e mais curto timeout dentro de `webhookCallback` (padrão: 10 segundos).
-Se o seu middleware terminar antes disso, a função `webhookCallback` vai responder ao webhookd automaticamente.
+Se o seu middleware terminar antes disso, a função `webhookCallback` vai responder ao webhook automaticamente.
 Nesse caso, tudo ocorre normalmente.
 Entretanto, se o seu middleware não terminar antes do timeout do grammY, `webhookCallback` vai lançar um erro.
 Isso significa que você pode tratar o erro no seu framework web.
