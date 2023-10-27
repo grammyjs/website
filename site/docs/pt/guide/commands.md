@@ -18,7 +18,7 @@ bot.command("help" /* , ... */);
 bot.command(["a", "b", "c", "d"] /* , ... */);
 ```
 
-Observe que apenas os comandos que estão no início de uma mensagem são tratados, então se um usuário enviar `"POr favor não envie /start para esse bot!"`, então seu listener não será chamado, mesmo que o comando `/start` _esteja_ contido na mensagem.
+Observe que apenas os comandos que estão no início de uma mensagem são tratados, então se um usuário enviar `"Por favor não envie /start para esse bot!"`, então seu listener não será chamado, mesmo que o comando `/start` _esteja_ contido na mensagem.
 
 O Telegram suporta o envio de comandos direcionados a bots, ou seja, comandos que terminam com `@nome_do_seu_bot`.
 O grammY trata isso automaticamente para você, então `bot.command("start")` irá corresponder a mensagens com `/start` e com `/start@nome_do_seu_bot` como comandos.
