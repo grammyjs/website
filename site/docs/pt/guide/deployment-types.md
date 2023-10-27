@@ -354,7 +354,7 @@ Você pode fazer isso passando `"return"` como o terceiro argumento de `webhookC
 Entretanto, enquanto este comportamento tem alguns casos de uso válidos, esta solução geralmente causa mais problemas do que resolve.
 
 Lembre-se de que uma vez que você responde à requisição do webhook, o Telegram vai enviar o próximo update para aquele chat.
-Entretanto, como o antigo update ainda está sendop processado, dois updates que seriam previamente processados sequencialmente, são repentinamente processados em paralelo.
+Entretanto, como o antigo update ainda está sendo processado, dois updates que seriam previamente processados sequencialmente são repentinamente processados em paralelo.
 Isso pode levar a race conditions.
 Por exemplo, o plugin de sessão vai inevitavalmente quebrar devido a riscos de [WAR](https://en.wikipedia.org/wiki/Hazard_(computer_architecture)#Write_after_read_(WAR)).
 **Isso causa perda de dados!**
