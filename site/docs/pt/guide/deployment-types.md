@@ -17,7 +17,7 @@ Você pode pensar sobre toda a discussão de webhook vs. long polling como uma q
 Em outras palavras, há duas formas fundamentalmente diferentes de hospedar seu bot (rodar ele em algum servidor), e elas diferem entre si na maneira que as mensagens chegam ao seu bot, e podem ser processadas pelo grammY.
 
 Essa escolha importa muito quando você precisa decidir onde hospedar seu bot.
-Por exemplo, alguns provedores de infraestrutura apenas suportam um dos dois tipos de deploy.
+Por exemplo, alguns provedores de infraestrutura suportam apenas um dos dois tipos de deploy.
 
 Seu bot pode ou puxá-las do servidor (long polling), ou os servidores do Telegram podem enviá-las para o seu bot (webhooks).
 
