@@ -52,7 +52,7 @@ Você deve lidar com erros de acordo com as convenções desse framework.
 
 ## O Objeto `BotError`
 
-O objeto `BotError` agrupa um erro lançado com o objeto de contexto correspondente que levou o erro a ser lançado.
+O objeto `BotError` agrupa um erro lançado com o [objeto de contexto](./context) correspondente que levou o erro a ser lançado.
 Isso funciona da seguinte forma.
 
 Qualquer erro que ocorra durante o processamento de uma atualização será capturado pelo grammY para você.
@@ -97,7 +97,7 @@ Em outras palavras, se um erro for lançado em uma parte especialmente protegida
 Em vez disso, um tratamento de erro dedicado é invocado e a parte cercada do middleware finge ser concluída com êxito.
 Este é um recurso do sistema de middleware do grammY, portanto, as barreiras de erro não se importam se você está executando seu bot com webhooks ou long polling.
 
-Opcionalmente, você pode optar por, em vez disso, permitir que a execução do middleware _resuma_ normalmente após o erro ser tratado, continuando logo após a barreira de erro.
+Opcionalmente, você pode optar por, em vez disso, permitir que a execução do middleware _continue_ normalmente após o erro ser tratado, continuando logo após a barreira de erro.
 Nesse caso, o middleware cercado não apenas age como se tivesse sido concluído com êxito, mas também passa o fluxo de controle para o próximo middleware que foi instalado após a barreira de erro.
 Assim, parece que o middleware dentro da barreira de erro chamou `next`.
 
@@ -119,7 +119,7 @@ bot.use(/* D */);
 bot.catch(errorHandler);
 
 function boundaryHandler(err: BotError, next: NextFunction) {
-  console.error("Error in Q, X, Y, or Z!", err);
+  console.error("Erro em Q, X, Y, ou Z!", err);
   /*
    * Você poderia chamar `next` se quiser executar
    * o middleware em C em caso de erro:
