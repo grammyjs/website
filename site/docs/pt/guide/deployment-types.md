@@ -6,7 +6,7 @@ next: false
 
 Seu bot recebe mensagens do servidor do Telegram de duas maneiras.
 Elas são chamadas _long polling_ e _webhooks_.
-grammY suporta os dois jeitos, enquanto long polling é o padrão.
+O grammY suporta os dois jeitos, e long polling é o padrão.
 
 Esta seção primeiro descreve o que long polling e webhooks são, então, por sua vez, descreve algumas das vantagens e desvantagens de usar cada um dos métodos de deploy.
 Também iremos cobrir como usar cada um deles com o grammY.
