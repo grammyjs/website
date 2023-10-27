@@ -344,7 +344,7 @@ Se você não tem esse tratamento de erro, o Telegram vai enviar o mesmo update 
 
 Uma vez que o Telegram envia o update para o seu bot pela segunda vez, é improvável que o seu tratamento será mais rápido que da primeira vez.
 Como resultado, ele provavelmente vai receber um timeout novamente, e o Telegram vai enviar o update de novo.
-Por isso, seu bot não verá o update apenas duas vezes, mas algumas dúzias de vezes, até o telegram parar de tentar.
+Por isso, seu bot não verá o update apenas duas vezes, mas algumas dúzias de vezes, até o Telegram parar de tentar.
 Você pode observar seu bot começar a spammar usuários enquanto tenta tratar todos esses updates (que são na verdade o mesmo toda vez).
 
 #### Por Que Terminar uma Requisição de Webhook Cedo Também É Perigoso
