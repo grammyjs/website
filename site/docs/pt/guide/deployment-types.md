@@ -308,7 +308,7 @@ Quando o Telegram envia um update de um chat do seu bot, ele vai esperar você t
 Em outras palavras, o Telegram vai entregar os updates de um mesmo chat em sequência, e updates de chats diferentes serão enviadas concorrentemente.
 (A fonte desta informação está [aqui](https://github.com/tdlib/telegram-bot-api/issues/75#issuecomment-755436496).)
 
-O Telegram garantir que o seu bot recebe todos os updates.
+O Telegram garante que o seu bot receberá todos os updates.
 Isso significa que se uma entrega de update falha para um chat, os updates subsequentes aguardarão até que o primeiro obtenha sucesso para serem entregues.
 
 #### Por Que Não Terminar uma Requisição de Webhook É Perigoso
