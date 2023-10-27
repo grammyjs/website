@@ -68,7 +68,7 @@ e então responder a requisição com aquelas novas mensagens.
 _Hora do sorverte de novo!
 O atendendente já te cumprimenta pelo primeiro nome agora.
 Depois de perguntar sobre o seu sabor favorito, o atendente sorri pra você e congela.
-Na verdad, você não recebe resposta nenhuma.
+Na verdade, você não recebe resposta nenhuma.
 Então decide esperar, sorrindo de volta firmemente.
 E você espera.
 E espera._
