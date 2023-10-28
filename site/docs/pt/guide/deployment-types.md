@@ -95,6 +95,7 @@ ______________                                   _____________
 |            |                                   |           |
 |____________|                                   |___________|
 ```
+
 > Note que na verdade, a conexão seria mantida por horas.
 > Requisições long polling possuem um timeout padrão de 30 segundos (para evitar alguns [problemas técnicos](https://datatracker.ietf.org/doc/html/rfc6202#section-5.5)).
 > Se nenhuma mensagem nova é retornada depois desse período de tempo, então a requisição será cancelada e reenviada---Mas o conceito geral permanece o mesmo.
