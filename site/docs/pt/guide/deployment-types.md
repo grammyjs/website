@@ -175,7 +175,7 @@ A configuração dos seus [middlewares](./middleware) é a mesma.
 Chame
 
 ```ts
-bot.start()
+bot.start();
 ```
 
 para rodar seu bot com uma forme bem simples de long polling.
