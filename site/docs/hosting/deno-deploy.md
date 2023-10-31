@@ -13,7 +13,7 @@ Deno Deploy is ideal for most simple bots, and you should note that not all Deno
 For example, the platform only supports a [limited set](https://docs.deno.com/deploy/api/runtime-fs) of the file system APIs available in Deno.
 It's just like the other many serverless platforms, but dedicated for Deno apps.
 
-The result of this tutorial [can be seen in our example bots repository](https://github.com/grammyjs/examples/tree/main/deno-deploy).
+The result of this tutorial [can be seen in our example bots repository](https://github.com/grammyjs/examples/tree/main/setups/deno-deploy).
 
 ## Preparing Your Code
 
