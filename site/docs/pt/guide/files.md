@@ -56,7 +56,9 @@ bot.on("message:voice", async (ctx) => {
   await ctx.reply(`Sua mensagem de voz tem ${duration} segundos de duração.`);
 
   const fileId = voice.file_id;
-  await ctx.reply("O identificador de arquivo da sua mensagem de voz é: " + fileId);
+  await ctx.reply(
+    "O identificador de arquivo da sua mensagem de voz é: " + fileId,
+  );
 
   const file = await ctx.getFile(); // válido por pelo menos uma hora
   const path = file.file_path; // caminho do arquivo no servidor da Bot API
