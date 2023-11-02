@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Hydration（`hydrate`）
 
 这个插件会安装一些有用的方法在两种类型的对象，即
@@ -52,10 +57,9 @@ bot.on(":photo", async (ctx) => {
 
 这个插件可以简单直接地安装，应该可以满足绝大多数用户。
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context } from "grammy";
 import { hydrate, HydrateFlavor } from "@grammyjs/hydrate";
 
@@ -66,10 +70,7 @@ const bot = new Bot<MyContext>("");
 bot.use(hydrate());
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 import { Bot } from "grammy";
 import { hydrate } from "@grammyjs/hydrate";
 
@@ -78,10 +79,7 @@ const bot = new Bot("");
 bot.use(hydrate());
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   hydrate,
@@ -95,8 +93,7 @@ const bot = new Bot<MyContext>("");
 bot.use(hydrate());
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 ### 高级安装
 
@@ -107,12 +104,11 @@ bot.use(hydrate());
 在这种情况下，你应该使用高级安装。
 
 它将会在你的 bot 中分别集成上下文 hydration 和 API 调用结果 hydration。
-请注意，你还需要安装一个 [API 调味剂](../advanced/transformers.md#api-调味剂)。
+请注意，你还需要安装一个 [API 调味剂](../advanced/transformers#api-调味剂)。
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Api, Bot, Context } from "grammy";
 import {
   hydrateApi,
@@ -130,10 +126,7 @@ bot.use(hydrateContext());
 bot.api.config.use(hydrateApi());
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 import { Bot } from "grammy";
 import { hydrateApi, hydrateContext } from "@grammyjs/hydrate";
 
@@ -143,10 +136,7 @@ bot.use(hydrateContext());
 bot.api.config.use(hydrateApi());
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import { Api, Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   hydrateApi,
@@ -164,8 +154,7 @@ bot.use(hydrateContext());
 bot.api.config.use(hydrateApi());
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 ## 什么对象会被 hydrated
 

@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Емодзі (`emoji`)
 
 За допомогою цього плагіна ви можете легко вставляти емодзі у свої відповіді, шукаючи їх безпосередньо у редакторі коду, замість того, щоб вручну копіювати і вставляти емодзі з Інтернету у свій код.
@@ -27,16 +32,15 @@
 
 Ви можете встановити цей плагін на свого бота наступним чином:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context } from "grammy";
 import { EmojiFlavor, emojiParser } from "@grammyjs/emoji";
 
 // Це називається розширювач для контексту
 // Ви можете прочитати про це докладніше за посиланням:
-// https://grammy.dev/uk/guide/context.html#перетворювальнии-розширювач
+// https://grammy.dev/uk/guide/context#перетворювальнии-розширювач
 type MyContext = EmojiFlavor<Context>;
 
 const bot = new Bot<MyContext>("");
@@ -44,10 +48,7 @@ const bot = new Bot<MyContext>("");
 bot.use(emojiParser());
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 const { Bot } = require("grammy");
 const { emojiParser } = require("@grammyjs/emoji");
 
@@ -56,10 +57,7 @@ const bot = new Bot("");
 bot.use(emojiParser());
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   EmojiFlavor,
@@ -68,7 +66,7 @@ import {
 
 // Це називається розширювач для контексту
 // Ви можете прочитати про це докладніше за посиланням:
-// https://grammy.dev/uk/guide/context.html#перетворювальнии-розширювач
+// https://grammy.dev/uk/guide/context#перетворювальнии-розширювач
 type MyContext = EmojiFlavor<Context>;
 
 const bot = new Bot<MyContext>("");
@@ -76,8 +74,7 @@ const bot = new Bot<MyContext>("");
 bot.use(emojiParser());
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 Тепер ви можете отримувати емодзі за їхніми назвами:
 

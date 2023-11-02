@@ -1,9 +1,14 @@
+---
+prev: false
+next: false
+---
+
 # 托管：Heroku
 
 > 我们假设你有关于如何使用 grammY 创建 bot 的基本知识。
-> 如果你还没有准备好，不要犹豫，请查看我们十分友好的 [指南](../guide) ！ :rocket:
+> 如果你还没有准备好，不要犹豫，请查看我们十分友好的 [指南](../guide/) ！ :rocket:
 
-本教程将指导你如何通过 [webhooks](../guide/deployment-types.md#webhooks-是如何工作的) 或者 [长轮询](../guide/deployment-types.md#长轮询是如何工作的) 将 Telegram bot 部署到 [Heroku](https://heroku.com/)。
+本教程将指导你如何通过 [webhooks](../guide/deployment-types#webhooks-是如何工作的) 或者 [长轮询](../guide/deployment-types#长轮询是如何工作的) 将 Telegram bot 部署到 [Heroku](https://heroku.com/)。
 我们还假设你已经有了一个 Heroku 账户。
 
 ## 前提条件
@@ -44,11 +49,11 @@ npx tsc --init
 
 然后，将 `tsconfig.json` 修改为如下配置：
 
-```json{4}
+```json
 {
   "compilerOptions": {
     "target": "ESNEXT",
-    "module": "esnext", // 把 commonjs 改成 esnext
+    "module": "ESNext", // [!code hl] // 把 commonjs 改成 esnext
     "lib": ["ES2021"],
     "outDir": "./dist/",
     "strict": true,
@@ -70,7 +75,7 @@ npx tsc --init
   "version": "0.0.1",
   "description": "",
   "main": "dist/app.js",
-  "type": "module", // 添加 "type": "module"
+  "type": "module", // [!code hl] // 添加 "type": "module"
   "scripts": {
     "dev-build": "tsc"
   },
@@ -90,7 +95,7 @@ npx tsc --init
 ```
 
 上面我们提到了，我们有两个选择来接收 Telegram 的数据，webhooks 和长轮询。
-你可以在 [这里](../guide/deployment-types.md) 了解更多关于两者之间的优缺点，再决定使用哪一个。
+你可以在 [这里](../guide/deployment-types) 了解更多关于两者之间的优缺点，再决定使用哪一个。
 
 ## Webhooks
 
@@ -156,10 +161,10 @@ https://api.telegram.org/botabcd:1234/setWebhook?url=https%3A%2F%2Fgrammybot.her
 :::
 
 ::: tip ⚡ 优化（可选）
-使用 [Webhook Reply](../guide/deployment-types.md#webhook-reply) 以提高效率。
+使用 [Webhook Reply](../guide/deployment-types#webhook-reply) 以提高效率。
 :::
 
-### 创建 `bot.ts`
+### 创建 `bot.ts` （Webhook）
 
 下一步，前往 `bot.ts`：
 
@@ -181,28 +186,28 @@ bot.on("message", (ctx) => ctx.reply("Got another message!"));
 和刚才一样，这是可选的。
 
 ::: tip ⚡ 优化（可选）
-每次你的服务器启动时，grammY 会向 Telegram 请求 [bot 的信息](https://core.telegram.org/bots/api#getme)，以便在 `ctx.me` 下的 [上下文对象](../guide/context.md) 提供 bot 的信息。
+每次你的服务器启动时，grammY 会向 Telegram 请求 [bot 的信息](https://core.telegram.org/bots/api#getme)，以便在 `ctx.me` 下的 [上下文对象](../guide/context) 提供 bot 的信息。
 我们可以设置 [bot 的信息](https://deno.land/x/grammy/mod.ts?s=BotConfig#prop_botInfo) 以防止过多的 `getMe` 调用。
 
 1. 在你最喜欢的浏览器中打开这个链接 `https://api.telegram.org/bot<bot_token>/getMe`，推荐使用 [Firefox](https://www.mozilla.org/en-US/firefox/)，因为它能格式化显示 `json` 数据。
 2. 根据 `getMe` 的结果来修改我们上面第 4 行的代码：
 
-```ts
-const token = process.env.BOT_TOKEN;
-if (!token) throw new Error("BOT_TOKEN is unset");
+   ```ts
+   const token = process.env.BOT_TOKEN;
+   if (!token) throw new Error("BOT_TOKEN is unset");
 
-export const bot = new Bot(token, {
-  botInfo: {
-    id: 111111111,
-    is_bot: true,
-    first_name: "xxxxxxxxx",
-    username: "xxxxxxbot",
-    can_join_groups: true,
-    can_read_all_group_messages: false,
-    supports_inline_queries: false,
-  },
-});
-```
+   export const bot = new Bot(token, {
+     botInfo: {
+       id: 111111111,
+       is_bot: true,
+       first_name: "xxxxxxxxx",
+       username: "xxxxxxbot",
+       can_join_groups: true,
+       can_read_all_group_messages: false,
+       supports_inline_queries: false,
+     },
+   });
+   ```
 
 :::
 酷！现在是时候准备我们的部署环境了！
@@ -221,9 +226,9 @@ export const bot = new Bot(token, {
 有些时候它适用于不需要快速响应和处理大量数据的数据收集 bot。
 你可以通过长轮询的方式来每个小时运行一次来获取消息。
 这是你没办法用 webhook 控制的。
-如果你的 bot 收到大量的消息，你会看到大量的 webhook 请求，但是如果你使用的是长轮询，你可以限制更新速度再处理它们。
+如果你的 bot 收到大量的消息，你会看到大量的 webhook 请求，但是你可以使用长轮询更轻松地控制处理 update 的速度。
 
-### 创建 `bot.ts`
+### 创建 `bot.ts` （长轮询）
 
 让我们打开我们之前创建的 `bot.ts` 文件。
 添加如下几行代码：
@@ -247,7 +252,7 @@ bot.start();
 就是这样！
 我们已经准备好去部署它了。
 看起来是不是非常简单？:smiley:
-如果你觉得这太简单了，可以查看我们的 [部署清单](../advanced/deployment.md#长轮询)！:rocket:
+如果你觉得这太简单了，可以查看我们的 [部署清单](../advanced/deployment#长轮询)！:rocket:
 
 ## 部署
 
@@ -270,13 +275,15 @@ npx tsc
 其中两个是：
 
 - **Web dynos**:
-  <br> _Web dynos_ 是接收来自路由器的 HTTP 流量的 "web" 进程。
+
+  _Web dynos_ 是接收来自路由器的 HTTP 流量的 "web" 进程。
   这种类型的 dyno 在执行代码时有 30 秒的超时限制。
   另外，如果在 30 分钟内没有需要处理的请求，它就会休眠。
   这种类型的 dyno 非常适合 _webhooks_。
 
 - **Worker dynos**:
-  <br> _Worker dynos_ 通常用于后台工作。
+
+  _Worker dynos_ 通常用于后台工作。
   它没有超时限制，而且如果它不处理任何请求，它也不会休眠。
   它适合 _长轮询_。
 
@@ -284,35 +291,30 @@ npx tsc
 也就是说，`Procfile.txt` 和 `procfile` 是无效的。
 然后以下面这个格式写入单行代码：
 
-```
+```procfile
 <dynos type>: <command for executing our main entry file>
 ```
 
 对于我们的情况来说，应该是这样：
 
-<CodeGroup>
-<CodeGroupItem title="Webhook" active>
+::: code-group
 
-```
+```procfile [Webhook]
 web: node dist/app.js
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="长轮询">
-
-```
+```procfile [长轮询]
 worker: node dist/bot.js
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 ### 设置 Git
 
 我们将使用 [Git 和 Heroku Cli](https://devcenter.heroku.com/articles/git) 来部署我们的 bot。
 这里是安装的链接：
 
-- [Git 安装说明](https://git-scm.com/download/)
+- [Git 安装说明](https://git-scm.com/download)
 - [Heroku CLI 安装说明](https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli)
 
 假设你已经在你的机器里安装了它们，并且你在项目的根目录下打开了一个终端。
@@ -326,7 +328,7 @@ git init
 在项目的根目录下创建一个名为 `.gitignore` 的文件。
 然后添加下列内容：
 
-```
+```text
 node_modules/
 src/
 tsconfig.json
@@ -334,10 +336,9 @@ tsconfig.json
 
 最终，我们的文件夹结构看起来应该是这样的：
 
-<CodeGroup>
-<CodeGroupItem title="Webhook" active>
+::: code-group
 
-```asciiart:no-line-numbers
+```asciiart:no-line-numbers [Webhook]
 .
 ├── .git/
 ├── node_modules/
@@ -354,10 +355,7 @@ tsconfig.json
 └── .gitignore
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="长轮询">
-
-```asciiart:no-line-numbers
+```asciiart:no-line-numbers [长轮询]
 .
 ├── .git/
 ├── node_modules/
@@ -372,8 +370,7 @@ tsconfig.json
 └── .gitignore
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 将文件提交到我们的 git 仓库：
 
@@ -387,23 +384,18 @@ git commit -m "My first commit"
 如果你已经创建了 [Heroku 应用](https://dashboard.heroku.com/apps/)，在下面的 `<myApp>` 中传入你的 `已存在应用` 的名称，然后运行代码。
 否则，请运行 `新应用`
 
-<CodeGroup>
-  <CodeGroupItem title="新应用" active>
+::: code-group
 
-```sh
+```sh [新应用]
 heroku create
 git remote -v
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="已存在应用" active>
-
-```sh
+```sh [已存在应用]
 heroku git:remote -a <myApp>
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 ### 部署代码
 

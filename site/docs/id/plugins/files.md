@@ -1,6 +1,13 @@
+---
+prev: false
+next: false
+---
+
 # Menangani File dengan Mudah di grammY (`files`)
 
 Plugin ini memudahkan kamu untuk mengunduh file dari server Telegram dan memperoleh URL-nya agar kamu dapat mengunduh file tersebut secara mandiri.
+
+> [Coba ingat kembali](../guide/files) cara kerja file, dan cara mengunggahnya.
 
 ## Mengunduh File
 
@@ -8,10 +15,9 @@ Plugin ini memerlukan token bot kamu untuk melakukan autentikasi ketika mengundu
 Jika berhasil, method `download` akan tersedia di hasil pemanggilan `getFile`.
 Contohnya,
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context } from "grammy";
 import { FileFlavor, hydrateFiles } from "@grammyjs/files";
 
@@ -35,10 +41,7 @@ bot.on([":video", ":animation"], async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 import { Bot } from "grammy";
 import { hydrateFiles } from "@grammyjs/files";
 
@@ -59,10 +62,7 @@ bot.on([":video", ":animation"], async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   FileFlavor,
@@ -89,8 +89,7 @@ bot.on([":video", ":animation"], async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 Kamu bisa memasukkan sebuah string berisi path file ke `download` jika kamu tidak ingin membuat file sementara.
 Cukup lakukan `await file.download("/path/ke/file")`.
@@ -109,12 +108,11 @@ Perlu dicatat, `await file.download()` mulai sekarang akan menyalin file yang te
 
 Secara bawaan, hasil dari `await bot.api.getFile()` juga akan dilengkapi dengan method `download` dan `getUrl`.
 Namun, method-method ini tidak akan tampak di type tersebut.
-Jika kamu membutuhkannya, kamu juga bisa menginstal sebuah [API flavor](../advanced/transformers.md#menggunakan-api-flavor) `FileApiFlavor` di object bot tersebut.
+Jika kamu membutuhkannya, kamu juga bisa menginstal sebuah [API flavor](../advanced/transformers#menggunakan-api-flavor) `FileApiFlavor` di object bot tersebut.
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::: code-group
 
-```ts
+```ts [Node.js]
 import { Api, Bot, Context } from "grammy";
 import { FileApiFlavor, FileFlavor, hydrateFiles } from "@grammyjs/files";
 
@@ -125,10 +123,7 @@ const bot = new Bot<MyContext, MyApi>("");
 // ...
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import { Api, Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   FileApiFlavor,
@@ -143,8 +138,7 @@ const bot = new Bot<MyContext, MyApi>("");
 // ...
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 ## Ringkasan Plugin
 

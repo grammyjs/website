@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Питання без стану (`stateless-question`)
 
 > Створення питань без стану, які працюють у режимі конфіденційності, для користувачів Telegram.
@@ -20,7 +25,7 @@ import { StatelessQuestion } from "@grammyjs/stateless-question";
 
 const bot = new Bot("");
 
-const unicornQuestion = new StatelessQuestion("unicorns", (ctx) => {
+const unicornQuestion = new StatelessQuestion("unicorns", async (ctx) => {
   console.log("Користувач вважає, що єдинороги роблять:", ctx.message);
 });
 

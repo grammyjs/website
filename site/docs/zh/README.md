@@ -1,32 +1,46 @@
 ---
-home: true
-heroImage: /images/Y.png
-actions:
-  - text: 立刻开始
-    link: /zh/guide/getting-started.html
-    type: primary
-  - text: 介绍
-    link: /zh/guide/introduction.html
-    type: secondary
+layout: home
+titleTemplate: false
+
+hero:
+  name: grammY
+  text: Telegram Bot 框架。
+  taglines: 
+    - 想到了什么？
+    - bot 开发的新时代。
+    - 运行更快。
+    - 愉快地创建 bot。
+    - 及时更新。
+    - 除了洗碗，我都能做。
+    - 像做柠檬汁一样简单。
+    - 已处理数十亿请求。
+    - 由执念驱动。
+  image:
+    src: /images/Y.svg
+    alt: grammY 徽标
+  actions:
+    - theme: brand
+      text: 立刻开始
+      link: ./guide/getting-started
+    - theme: alt
+      text: 介绍
+      link: ./guide/introduction
+
 features:
-  - title: 易用
+  - icon: <lazy-tgs-player class="VPImage" src="/icons/beach-animation.tgs"><img src="/icons/beach.svg" alt="beach animation"></lazy-tgs-player>
+    title: 易用
     details: grammY 使创建 Telegram Bot 变得如此简单！
-  - title: 灵活
+  - icon: <lazy-tgs-player class="VPImage" src="/icons/palette-animation.tgs"><img src="/icons/palette.svg" alt="palette animation"></lazy-tgs-player>
+    title: 灵活
     details: grammY 是开放的，通过插件让它完全适合你的需要。
-  - title: 可扩展
-    details: grammY 在你 bot 拥有较多流量时提供可靠的帮助.
-permalink: /zh/
+  - icon: <lazy-tgs-player class="VPImage" src="/icons/rocket-animation.tgs"><img src="/icons/rocket.svg" alt="rocket animation"></lazy-tgs-player>
+    title: 可扩展
+    details: grammY 在你的 bot 拥有较多流量时提供可靠的帮助.
 ---
 
-<h6 align="right">… {{ [
-  '想到了什么？',
-  'bot 开发的新时代',
-  '运行更快',
-  '及时更新',
-  '除了洗碗，我都能做',
-  '像做柠檬汁一样简单',
-  '数以亿计的服务',
-][Math.floor(Math.random() * 7)] }}.</h6>
+<!-- markdownlint-disable no-inline-html -->
+
+<HomeContent>
 
 ## 快速开始
 
@@ -34,10 +48,9 @@ bot 是用 [TypeScript](https://www.typescriptlang.org)（或JavaScript）编写
 
 `npm install grammy` 并粘贴以下代码：
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot } from "grammy";
 
 const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间 (https://t.me/BotFather)
@@ -48,10 +61,7 @@ bot.on("message", (ctx) => ctx.reply("你好！"));
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 const { Bot } = require("grammy");
 
 const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间 (https://t.me/BotFather)
@@ -62,10 +72,7 @@ bot.on("message", (ctx) => ctx.reply("你好！"));
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
 const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间 (https://t.me/BotFather)
@@ -76,10 +83,11 @@ bot.on("message", (ctx) => ctx.reply("你好！"));
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 运行成功！ :tada:
+
+<footer id="home-footer">
 
 ---
 
@@ -94,7 +102,9 @@ bot.start();
 
 <div style="font-size: 0.75rem; display: flex; justify-content: center;">
 
-© 2021-2023 &middot; grammY 支持 Telegram Bot API 6.7，该 API 于 2023 年 4 月 21 日 [发布](https://core.telegram.org/bots/api#april-21-2023)。
-(新增: 多个机器人名称、自定义 emoji 和更好的 inline query)
+© 2021-2023 &middot; grammY 支持 Telegram Bot API 6.9，该 API 于 2023 年 9 月 22 日 [发布](https://core.telegram.org/bots/api#september-22-2023)。
+(新增: story)
 
 </div>
+</footer>
+</HomeContent>

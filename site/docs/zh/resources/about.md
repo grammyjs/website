@@ -1,3 +1,9 @@
+---
+next:
+  text: FAQ
+  link: ./faq
+---
+
 # 关于 grammY
 
 ## grammY 是什么？
@@ -21,7 +27,7 @@ grammY 是由一个志愿者团队开发的，他们在空闲时间负责核心�
 
 ## grammY 是如何开发的？
 
-grammY 是一个完全免费并且开源的软件。
+grammY 是一个完全自由并且开源的软件。
 你可以在 [GitHub](https://github.com/grammyjs/grammY) 上获取它的源码。
 
 我们欢迎所有的贡献。
@@ -29,7 +35,7 @@ grammY 是一个完全免费并且开源的软件。
 
 ## grammY 使用什么编程语言？
 
-grammY 是由 TypeScript 编写的，一个 JavaScript 的超集。
+grammY 是由 TypeScript 编写的——一个 JavaScript 的超集。
 因此，它可以在 Node.js 上运行。
 
 但是，grammY 也可以在 Deno（它将自己定义为 Node.js 的继承者）上运行。
@@ -37,7 +43,7 @@ grammY 是由 TypeScript 编写的，一个 JavaScript 的超集。
 
 ## grammY 和它的竞争对手相比如何？
 
-如果你来自不同编程语言或者不同的 JavaScript 框架，你可以查看我们 [框架之间的细节比较](./comparison.md)。
+如果你来自不同编程语言或者不同的 JavaScript 框架，你可以查看我们 [框架之间的细节比较](./comparison)。
 
 ## 怎么才能支持我们？
 

@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Rate Limit Users (`ratelimiter`)
 
 ratelimiter is a rate-limiting middleware for Telegram bots made with grammY or [Telegraf](https://github.com/telegraf/telegraf) bot frameworks.
@@ -32,7 +37,7 @@ This plugin exposes 5 customizable options:
 
 The `MEMORY_STORE` or the in-memory tracking is suitable for most bots, however if you implement clustering for your bot you will not be able to use the in-memory storage effectively.
 That's why the Redis option is provided as well.
-You can pass a Redis client from [ioredis](https://github.com/luin/ioredis) or [redis](https://deno.land/x/redis) in case you use Deno.
+You can pass a Redis client from [ioredis](https://github.com/redis/ioredis) or [redis](https://deno.land/x/redis) in case you use Deno.
 In reality, any Redis driver that implements the `incr` and `pexpire` methods should work just fine.
 ratelimiter is driver agnostic.
 
@@ -50,47 +55,38 @@ There are two ways of using ratelimiter:
 
 This snippet demonstrates the easiest way of using ratelimiter, which is accepting the default behavior:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { limit } from "@grammyjs/ratelimiter";
 
 // Limits message handling to a message per second for each user.
 bot.use(limit());
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 const { limit } = require("@grammyjs/ratelimiter");
 
 // Limits message handling to a message per second for each user.
 bot.use(limit());
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
 
 // Limits message handling to a message per second for each user.
 bot.use(limit());
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 ### Manual Configuration
 
 As mentioned earlier, you can pass an `Options` object to the `limit()` method to alter the limiter's behavior.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import Redis from "ioredis";
 import { limit } from "@grammyjs/ratelimiter";
 
@@ -118,10 +114,7 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 const Redis = require("ioredis");
 const { limit } = require("@grammyjs/ratelimiter");
 
@@ -149,10 +142,7 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import { connect } from "https://deno.land/x/redis/mod.ts";
 import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
 
@@ -180,21 +170,19 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 As you can see in the example above, each user is allowed to send 3 requests every 2 seconds.
 If said user sends more requests, the bot replies with _Please refrain from sending too many requests_.
-That request will not travel further and dies immediately as we do not call [next()](../guide/middleware.md#the-middleware-stack) in the middleware.
+That request will not travel further and dies immediately as we do not call [next()](../guide/middleware#the-middleware-stack) in the middleware.
 
 > Note: To avoid flooding Telegram servers, `onLimitExceeded` is only executed once in every `timeFrame`.
 
 Another use case would be limiting the incoming requests from a chat instead of a specific user:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { limit } from "@grammyjs/ratelimiter";
 
 bot.use(
@@ -209,10 +197,7 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 const { limit } = require("@grammyjs/ratelimiter");
 
 bot.use(
@@ -227,10 +212,7 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
 
 bot.use(
@@ -245,8 +227,7 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 In this example, I have used `chat.id` as the unique key for rate-limiting.
 

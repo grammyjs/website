@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Hydration Plugin for grammY (`hydrate`)
 
 This plugin installs useful methods on two types of objects, namely
@@ -52,10 +57,9 @@ There are two ways to install this plugin.
 
 This plugin can be installed in a straightforward way that should be enough for most users.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context } from "grammy";
 import { hydrate, HydrateFlavor } from "@grammyjs/hydrate";
 
@@ -66,10 +70,7 @@ const bot = new Bot<MyContext>("");
 bot.use(hydrate());
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 import { Bot } from "grammy";
 import { hydrate } from "@grammyjs/hydrate";
 
@@ -78,10 +79,7 @@ const bot = new Bot("");
 bot.use(hydrate());
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   hydrate,
@@ -95,8 +93,7 @@ const bot = new Bot<MyContext>("");
 bot.use(hydrate());
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 ### Advanced Installation
 
@@ -107,12 +104,11 @@ However, some bots may need to make calls to `bot.api`.
 In this case, you should use this advanced installation.
 
 It will integrate context hydration and API call result hydration separately into your bot.
-Note that you now also have to install an [API flavor](../advanced/transformers.md#api-flavoring).
+Note that you now also have to install an [API flavor](../advanced/transformers#api-flavoring).
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Api, Bot, Context } from "grammy";
 import {
   hydrateApi,
@@ -130,10 +126,7 @@ bot.use(hydrateContext());
 bot.api.config.use(hydrateApi());
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 import { Bot } from "grammy";
 import { hydrateApi, hydrateContext } from "@grammyjs/hydrate";
 
@@ -143,10 +136,7 @@ bot.use(hydrateContext());
 bot.api.config.use(hydrateApi());
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import { Api, Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   hydrateApi,
@@ -164,8 +154,7 @@ bot.use(hydrateContext());
 bot.api.config.use(hydrateApi());
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 ## What Objects Are Hydrated
 

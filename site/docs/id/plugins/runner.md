@@ -1,8 +1,13 @@
+---
+prev: false
+next: false
+---
+
 # Concurrency Menggunakan grammY runner (`runner`)
 
-Plugin ini dapat digunakan untuk memproses berbagai pesan secara bersamaan ketika bot dijalankan [menggunakan long polling](../guide/deployment-types.md).
+Plugin ini dapat digunakan untuk memproses berbagai pesan secara bersamaan ketika bot dijalankan [menggunakan long polling](../guide/deployment-types).
 
-> Sebelum menggunakan grammY runner, pastikan kamu paham betul materi [Peningkatan II](../advanced/scaling.md#long-polling).
+> Sebelum menggunakan grammY runner, pastikan kamu paham betul materi [Peningkatan II](../advanced/scaling#long-polling).
 
 ## Kenapa Kita Perlu Runner
 
@@ -25,10 +30,9 @@ Ia juga memiliki [Referensi API](https://deno.land/x/grammy_runner/mod.ts)-nya s
 
 Berikut contoh sederhananya:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot } from "grammy";
 import { run } from "@grammyjs/runner";
 
@@ -42,10 +46,7 @@ bot.on("message", (ctx) => ctx.reply("Pesan diterima!"));
 run(bot);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 const { Bot } = require("grammy");
 const { run } = require("@grammyjs/runner");
 
@@ -59,10 +60,7 @@ bot.on("message", (ctx) => ctx.reply("Pesan diterima!"));
 run(bot);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { run } from "https://deno.land/x/grammy_runner/mod.ts";
 
@@ -76,15 +74,14 @@ bot.on("message", (ctx) => ctx.reply("Pesan diterima!"));
 run(bot);
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 ## Pemrosesan Secara Berurutan ketika Diperlukan
 
-Kemungkinan besar, kamu ingin memastikan pesan yang berasal dari chat yang sama diproses secara berurutan agar urutan pesannya tidak berubah ketika [session middleware](./session.md) dipasang.
+Kemungkinan besar, kamu ingin memastikan pesan yang berasal dari chat yang sama diproses secara berurutan agar urutan pesannya tidak berubah ketika [session middleware](./session) dipasang.
 
 grammY runner bisa mengatasinya dengan cara meng-export middleware `sequentialize`.
-Kamu bisa mempelajari cara penggunaannya di [materi berikut](../advanced/scaling.md#concurrency-itu-sulit).
+Kamu bisa mempelajari cara penggunaannya di [materi berikut](../advanced/scaling#concurrency-itu-sulit).
 
 Sekarang kita akan mempelajari lebih dalam penggunaan plugin ini.
 
@@ -111,7 +108,7 @@ Ia menggunakan memory secara konstan---selama kamu menentukan batas concurrency-
 
 ## Graceful Shutdown
 
-Agar bot menyelesaikan tugasnya dengan benar, kamu [harus memberi sinyal berhenti](../advanced/reliability.md#menggunakan-grammy-runner) ke bot ketika proses hendak dimatikan.
+Agar bot menyelesaikan tugasnya dengan benar, kamu [harus memberi sinyal berhenti](../advanced/reliability#menggunakan-grammy-runner) ke bot ketika proses hendak dimatikan.
 
 Kamu juga bisa menunggu runner berhenti dengan cara menunggu promise `task`---menggunakan `await`---di [`RunnerHandle`](https://deno.land/x/grammy_runner/mod.ts?s=RunnerHandle) yang dikembalikan dari `run`.
 
@@ -157,7 +154,7 @@ run(bot, { runner: { fetch: { allowed_updates: [] } } });
 > [Lewati bagian ini](#apa-yang-sebenarnya-terjadi-di-balik-layar) jika traffic bot jauh di bawah jumlah tersebut.
 
 JavaScript adalah single-threaded.
-Ini menakjubkan karena pada dasarnya [concurrency itu sulit](../advanced/scaling.md#concurrency-itu-sulit).
+Ini menakjubkan karena pada dasarnya [concurrency itu sulit](../advanced/scaling#concurrency-itu-sulit).
 Karena dengan menggunakan satu core saja, secara tidak langsung berbagai permasalahan bisa dihindari.
 
 Namun, jika bot kamu memiliki beban kerja yang sangat tinggi (katakanlah 1000 update lebih per detik), memproses semuanya menggunakan satu core tidaklah cukup.
@@ -169,7 +166,7 @@ Solusinya adalah bot workers!
 grammY runner bisa membuat beberapa workers untuk memproses update secara bersamaan (paralel) di core yang berbeda---menggunakan event loop yang berbeda serta memory yang terpisah.
 
 grammY runner menggunakan [Worker Threads](https://nodejs.org/api/worker_threads.html) di Node.js.
-Sedangkan di Deno, ia menggunakan [Web Workers](https://deno.com/manual/runtime/workers).
+Sedangkan di Deno, ia menggunakan [Web Workers](https://docs.deno.com/runtime/manual/runtime/workers).
 
 Secara konsep, grammY runner menyediakan sebuah class bernama `BotWorker` yang berfungsi untuk menangani update.
 Ia serupa dengan class `Bot` biasa, malahan ia meng-`extends` class `Bot` itu sendiri.
@@ -200,10 +197,9 @@ Mari kita lihat bagaimana cara menggunakannya.
 Mari kita mulai dengan membuat sebuah instance bot utama untuk mengambil dan mendistribusikan update ke para workers.
 Buat sebuah file bernama `bot.ts` yang berisi kode berikut:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 // bot.ts
 import { Bot } from "grammy";
 import { distribute, run } from "@grammyjs/runner";
@@ -221,10 +217,7 @@ bot.use(distribute(__dirname + "/worker"));
 run(bot);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 // bot.js
 const { Bot } = require("grammy");
 const { distribute, run } = require("@grammyjs/runner");
@@ -242,10 +235,7 @@ bot.use(distribute(__dirname + "/worker"));
 run(bot);
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 // bot.ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { distribute, run } from "https://deno.land/x/grammy_runner/mod.ts";
@@ -263,16 +253,14 @@ bot.use(distribute(__dirname + "/worker"));
 run(bot);
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 Di direktori yang sama dengan `bot.ts`, buat file kedua dengan nama `worker.ts` (seperti yang tertera di baris ke-12 pada kode di atas).
 Isinya adalah kode pemrosesan bot yang sesungguhnya.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 // worker.ts
 import { BotWorker } from "@grammyjs/runner";
 
@@ -283,10 +271,7 @@ const bot = new BotWorker(""); // <-- Masukkan lagi token bot kamu di sini
 bot.on("message", (ctx) => ctx.reply("Hore!"));
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 // worker.js
 const { BotWorker } = require("@grammyjs/runner");
 
@@ -297,10 +282,7 @@ const bot = new BotWorker(""); // <-- Masukkan lagi token bot kamu di sini
 bot.on("message", (ctx) => ctx.reply("Hore!"));
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 // worker.ts
 import { BotWorker } from "https://deno.land/x/grammy_runner/mod.ts";
 
@@ -311,8 +293,7 @@ const bot = new BotWorker(""); // <-- Masukkan lagi token bot kamu di sini
 bot.on("message", (ctx) => ctx.reply("Hore!"));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 > Perlu dicatat bahwa setiap worker mampu mengirim pesan kembali ke Telegram.
 > Oleh karena itu, kamu diharuskan memasukkan token bot ke setiap worker.
@@ -321,7 +302,7 @@ Kamu tidak perlu memulai bot worker-nya, atau meng-export sesuatu dari file ters
 Cukup buat sebuah instance `BotWorker`, kemudian ia akan menyimak update secara otomatis.
 
 Penting untuk diketahui bahwa **hanya raw update**---update "mentah" atau asli dari Telegram yang sama sekali belum diproses---yang dikirim ke bot workers.
-Dengan kata lain, [context object](../guide/context.md) dibuat dua kali untuk setiap update: sekali di `bot.ts` agar bisa didistribusikan ke bot worker terkait, dan sekali di `worker.ts` untuk diproses.
+Dengan kata lain, [context object](../guide/context) dibuat dua kali untuk setiap update: sekali di `bot.ts` agar bisa didistribusikan ke bot worker terkait, dan sekali di `worker.ts` untuk diproses.
 Selain itu, property yang berada di context object di `bot.ts` tidak akan dikirim ke bot worker.
 Artinya, semua plugin harus dipasang di bot workers terkait.
 
@@ -329,10 +310,9 @@ Artinya, semua plugin harus dipasang di bot workers terkait.
 Untuk mengoptimalkan performa, kamu bisa mengabaikan update yang tidak ingin kamu tangani.
 Dengan begitu, bot kamu tidak perlu mengirim update tersebut ke worker, yang pada akhirnya akan diabaikan juga.
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::: code-group
 
-```ts
+```ts [Node.js]
 // Bot kita hanya menangani pesan, edit, dan callback query.
 // Oleh karena itu, kita bisa mengabaikan dan tidak mendistribusikan update yang lain.
 bot.on(
@@ -341,10 +321,7 @@ bot.on(
 );
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 // Bot kita hanya menangani pesan, edit, dan callback query.
 // Oleh karena itu, kita bisa mengabaikan dan tidak mendistribusikan update yang lain.
 bot.on(
@@ -352,9 +329,6 @@ bot.on(
   distribute(new URL("./worker.ts", import.meta.url)),
 );
 ```
-
-</CodeGroupItem>
-</CodeGroup>
 
 :::
 

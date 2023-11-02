@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # 一套有用的中间件
 
 我一直在为我所有的 bot 写重复的中间件，所以我决定把它们全部提取到一个单独的包中。
@@ -52,7 +57,7 @@ bot.use(
 
 ### `sequentialize`
 
-基本的 [顺序化](../advanced/scaling.md#并发是困难的) 中间件，将聊天 id 作为一个顺序标识。
+基本的 [顺序化](../advanced/scaling#并发是困难的) 中间件，将聊天 id 作为一个顺序标识。
 
 ## 插件概述
 

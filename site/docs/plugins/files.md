@@ -1,6 +1,13 @@
+---
+prev: false
+next: false
+---
+
 # File Handling Simplified in grammY (`files`)
 
 This plugin allows you to easily download files from Telegram servers, and to obtain a URL so you can download the file yourself.
+
+> [Remember](../guide/files) how files work, and how to upload them.
 
 ## Downloading Files
 
@@ -8,10 +15,9 @@ You need to pass your bot token to this plugin because it must authenticate as y
 This plugin then installs the `download` method on `getFile` call results.
 Example:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context } from "grammy";
 import { FileFlavor, hydrateFiles } from "@grammyjs/files";
 
@@ -35,10 +41,7 @@ bot.on([":video", ":animation"], async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 import { Bot } from "grammy";
 import { hydrateFiles } from "@grammyjs/files";
 
@@ -59,10 +62,7 @@ bot.on([":video", ":animation"], async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   FileFlavor,
@@ -89,8 +89,7 @@ bot.on([":video", ":animation"], async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 You can pass a string with a file path to `download` if you don't want to create a temporary file.
 Just do `await file.download("/path/to/file")`.
@@ -109,12 +108,11 @@ Note that `await file.download()` will now simply copy that locally present file
 
 By default, the results of `await bot.api.getFile()` will also be equipped with `download` and `getUrl` methods.
 However, this is not reflected in the types.
-If you need these calls, you should also install an [API flavor](../advanced/transformers.md#api-flavoring) on the bot object called `FileApiFlavor`:
+If you need these calls, you should also install an [API flavor](../advanced/transformers#api-flavoring) on the bot object called `FileApiFlavor`:
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::: code-group
 
-```ts
+```ts [Node.js]
 import { Api, Bot, Context } from "grammy";
 import { FileApiFlavor, FileFlavor, hydrateFiles } from "@grammyjs/files";
 
@@ -125,10 +123,7 @@ const bot = new Bot<MyContext, MyApi>("");
 // ...
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import { Api, Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   FileApiFlavor,
@@ -143,8 +138,7 @@ const bot = new Bot<MyContext, MyApi>("");
 // ...
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 ## Plugin Summary
 

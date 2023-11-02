@@ -1,4 +1,9 @@
-# Session dan Penyimpanan Data (Built-In)
+---
+prev: false
+next: false
+---
+
+# Session dan Penyimpanan Data (bawaan)
 
 Meski kamu bisa saja menulis sendiri kode untuk melakukan koneksi ke sebuah data storage favoritmu, namun grammY sudah menyediakan sebuah skema penyimpanan praktis yang disebut dengan _session_.
 
@@ -40,7 +45,7 @@ Kamu akan menggunakan chat identifier (chat id) sebagai key di database kamu, da
 Dari contoh di atas, kita bisa menggunakan chat identifier sebagai _session key_-nya (kamu bisa mempelajari lebih lanjut tentang session key di [bawah sini](#session-key)).
 Alhasil, bot kamu akan menyimpan sebuah map chat identifier ke beberapa data session khusus, contohnya seperti ini:
 
-```json:no-line-numbers
+```json
 {
   "271828": { "hitungKucing": 18 },
   "314159": { "hitungKucing": 265 }
@@ -75,7 +80,7 @@ Cukup dengan memodifikasi data di `ctx.session`, lalu plugin akan mengurus sisan
 > [Lewati](#cara-menggunakan-session) jika kamu sudah yakin akan menggunakan session.
 
 Kamu mungkin sekarang berpikir, "Sip! sekarang aku tidak perlu capek-capek mengatur database lagi."
-Yup, kamu benar, session merupakan solusi yang ideal—untuk tipe data tertentu saja.
+Yup, kamu benar, session merupakan solusi yang ideal---untuk tipe data tertentu saja.
 
 Berdasarkan pengalaman kami, ada beberapa situasi dimana session benar-benar berjaya.
 Di sisi lain, ada situasi-situasi tertentu dimana sebuah database tradisional mungkin lebih cocok dipakai.
@@ -103,10 +108,9 @@ Kamu bisa menambahkan fitur session ke grammY menggunakan middleware session bui
 
 Berikut contoh bot yang menghitung jumlah pesan yang mengandung sebuah emoji kucing :cat::
 
-<CodeGroup>
- <CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context, session, SessionFlavor } from "grammy";
 
 // Tentukan bentuk session kita.
@@ -135,10 +139,7 @@ bot.hears(/.*🐱.*/, (ctx) => ctx.session.hitungKucing++);
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 const { Bot, session } = require("grammy");
 
 const bot = new Bot("");
@@ -159,10 +160,7 @@ bot.hears(/.*🐱.*/, (ctx) => ctx.session.hitungKucing++);
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import {
   Bot,
   Context,
@@ -196,10 +194,9 @@ bot.hears(/.*🐱.*/, (ctx) => ctx.session.hitungKucing++);
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
-Perhatikan bahwa kita perlu [mengatur type context](../guide/context.md#memodifikasi-object-context) agar session tersedia di dalamnya.
+Perhatikan bahwa kita perlu [mengatur type context](../guide/context#memodifikasi-object-context) agar session tersedia di dalamnya.
 Flavor context untuk session kita sebut dengan `SessionFlavor`.
 
 ### Data Awal Session
@@ -253,10 +250,9 @@ Secara bawaan, data disimpan per chat.
 Tetapi, dengan menggunakan `getSessionKey` kamu bisa menyimpan data entah itu per user, kombinasi per user dan chat, ataupun cara lainnya.
 Berikut ketiga contohnya:
 
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 // Simpan data per chat (bawaan)
 function getSessionKey(ctx: Context): string | undefined {
   // Biarkan semua user di chat grup yang sama berbagi session yang sama juga,
@@ -283,10 +279,7 @@ function getSessionKey(ctx: Context): string | undefined {
 bot.use(session({ getSessionKey }));
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 // Simpan data per chat (bawaan)
 function getSessionKey(ctx) {
   // Biarkan semua user di chat grup yang sama berbagi session yang sama juga,
@@ -313,8 +306,7 @@ function getSessionKey(ctx) {
 bot.use(session({ getSessionKey }));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 Setiap kali `getSessionKey` mengembalikan `undefined`, `ctx.session` akan menghasilkan `undefined` juga.
 Contohnya, session key resolver bawaan tidak akan bekerja untuk update `poll`/`poll_answer` ataupun `inline_query`, karena mereka bukan bagian dari sebuah chat (`ctx.chat` menghasilkan `undefined`).
@@ -323,7 +315,7 @@ Contohnya, session key resolver bawaan tidak akan bekerja untuk update `poll`/`p
 Ketika kamu menjalankan bot di webhook, sebaiknya kamu tidak menggunakan opsi `getSessionKey`.
 Telegram mengirim webhook secara berurutan untuk setiap chat, oleh karena itu session key resolver bawaan adalah satu-satunya cara yang bisa menjamin untuk terhindar dari kehilangan data.
 
-Jika kamu terpaksa harus menggunakan opsi tersebut (yang mana masih bisa dilakukan), kamu harus paham betul dengan tindakan yang kamu lakukan. Pastikan memahami konsekuensi menggunakan konfigurasi ini dengan membaca [materi berikut](../guide/deployment-types.md), khususnya [yang ini](./runner.md#pemrosesan-secara-berurutan-ketika-diperlukan).
+Jika kamu terpaksa harus menggunakan opsi tersebut (yang mana masih bisa dilakukan), kamu harus paham betul dengan tindakan yang kamu lakukan. Pastikan memahami konsekuensi menggunakan konfigurasi ini dengan membaca [materi berikut](../guide/deployment-types), khususnya [yang ini](./runner#pemrosesan-secara-berurutan-ketika-diperlukan).
 :::
 
 ### Migrasi Chat
@@ -339,7 +331,7 @@ Meski begitu, terdapat beberapa cara untuk mengatasi masalah ini:
 - Mengabaikan masalah tersebut.
   Data untuk session bot terkait akan direset ketika sebuah grup dimigrasi.
   Sederhana, dapat diandalkan, serta memanfaatkan pengaturan default, namun dapat menimbulkan efek yang tidak diinginkan.
-  Misalnya, jika migrasi terjadi ketika user sedang berada di dalam suatu percakapan yang menggunakan [plugin conversations](./conversations.md), percakapan tersebut juga akan ikut direset.
+  Misalnya, jika migrasi terjadi ketika user sedang berada di dalam suatu percakapan yang menggunakan [plugin conversations](./conversations), percakapan tersebut juga akan ikut direset.
 
 - Hanya menyimpanan data sementara---atau data dengan waktu yang terbatas (timeout)---di session, dan menggunakan database untuk menyimpan hal-hal penting untuk keperluan migrasi.
   Dengan begitu kamu dapat memanfaatkan transaksi dan logika khusus untuk menangani akses data chat lama dan baru secara bersamaan.
@@ -352,7 +344,7 @@ Meski begitu, terdapat beberapa cara untuk mengatasi masalah ini:
   Bot kamu bisa saja menerima pesan dari supergroup terlebih dahulu tanpa mengetahui kalau migrasi telah dilakukan.
   Akibatnya, ia tidak bisa mencocokkan kedua chat, yang menimbulkan masalah seperti yang telah kita bahas di atas.
 
-- Solusi lainnya adalah memanfaatkan [filter](../guide/filter-queries.md) untuk membatasi bot supaya bisa digunakan di supergroup saja, atau bisa juga membatasi fitur yang terkait dengan session hanya untuk supergroup.
+- Solusi lainnya adalah memanfaatkan [filter](../guide/filter-queries) untuk membatasi bot supaya bisa digunakan di supergroup saja, atau bisa juga membatasi fitur yang terkait dengan session hanya untuk supergroup.
   Namun, kenyamanan user bisa terganggu dengan cara ini.
 
 - Membiarkan user untuk membuat keputusan secara eksplisit, "Chat ini telah dimigrasi, apakah Anda ingin melakukan migrasi data bot-nya juga?".
@@ -413,15 +405,14 @@ bot.use(session({
 > Daftar pilihan integrasi storage eksternal yang didukung tersedia [di bawah sini](#storage-eksternal).
 
 Keuntungan menggunakan grammY adalah kamu bisa mengakses penyimpanan cloud secara gratis.
-Ia tidak membutuhkan pengaturan sama sekali—semua autentikasi dilakukan menggunakan token bot-mu.
+Ia tidak membutuhkan pengaturan sama sekali---semua autentikasi dilakukan menggunakan token bot-mu.
 Lihat [repositori berikut](https://github.com/grammyjs/storages/tree/main/packages/free)!
 
 Cara pemasangannya sangat mudah:
 
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { freeStorage } from "@grammyjs/storage-free";
 
 bot.use(session({
@@ -430,10 +421,7 @@ bot.use(session({
 }));
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 const { freeStorage } = require("@grammyjs/storage-free");
 
 bot.use(session({
@@ -442,10 +430,7 @@ bot.use(session({
 }));
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import { freeStorage } from "https://deno.land/x/grammy_storages/free/src/mod.ts";
 
 bot.use(session({
@@ -454,18 +439,16 @@ bot.use(session({
 }));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 Selesai!
 Bot kamu sekarang sudah menggunakan data storage permanen.
 
 Berikut contoh utuh yang bisa kamu coba:
 
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context, session, SessionFlavor } from "grammy";
 import { freeStorage } from "@grammyjs/storage-free";
 
@@ -493,10 +476,7 @@ bot.catch((err) => console.error(err));
 bot.start();
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 const { Bot, session } = require("grammy");
 const { freeStorage } = require("@grammyjs/storage-free");
 
@@ -518,10 +498,7 @@ bot.catch((err) => console.error(err));
 bot.start();
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import {
   Bot,
   Context,
@@ -554,8 +531,7 @@ bot.catch((err) => console.error(err));
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 ### Storage Eksternal
 
@@ -600,7 +576,7 @@ Selain itu, kamu juga bisa menggunakan storage yang sama menggunakan konfigurasi
 Penggunaan [session key](#session-key) yang berbeda untuk setiap fragmen data juga bisa dilakukan.
 Sehingga, kamu bisa menyimpan beberapa data untuk setiap chat dan beberapa data lain untuk setiap user.
 
-> Kalau kamu menggunakan [grammY runner](./runner.md), jangan lupa untuk mengatur `sequentialize` secara tepat dengan cara mengembalikan **semua** session key sebagai constraint dari function terkait.
+> Kalau kamu menggunakan [grammY runner](./runner), jangan lupa untuk mengatur `sequentialize` secara tepat dengan cara mengembalikan **semua** session key sebagai constraint dari function terkait.
 
 Kamu bisa menggunakan fitur ini dengan cara menambahkan `type: "multi"` ke konfigurasi session.
 Setelah itu, kamu perlu mengatur konfigurasi untuk setiap fragmen.
@@ -673,7 +649,7 @@ Dalam praktiknya, alih-alih memiliki data session di `ctx.session`, kamu sekaran
 
 ```ts
 // session bawaan (strict sessions)
-bot.command("settings", (ctx) => {
+bot.command("settings", async (ctx) => {
   // `session` adalah data session-nya
   const session = ctx.session;
 });
@@ -710,7 +686,7 @@ Kalau kamu menambahkan `ctx.session` sebagai sebuah promise, maka ia akan di-`aw
 Dengan begitu, kode berikut dapat dilakukan:
 
 ```ts
-bot.command("reset", (ctx) => {
+bot.command("reset", async (ctx) => {
   // Lebih singkat dibandingkan menggunakan `await ctx.session`:
   ctx.session = ctx.session.then((stats) => {
     stats.counter = 0;
@@ -805,10 +781,9 @@ interface SessionData {
 
 Function migrasi bisa kamu gunakan untuk mengubah string array yang lama menjadi array object pet yang baru.
 
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 function addBirthdayToPets(old: { petNames: string[] }): SessionData {
   return {
     pets: old.petNames.map((name) => ({ name })),
@@ -823,10 +798,7 @@ const enhanced = enhanceStorage({
 });
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 function addBirthdayToPets(old) {
   return {
     pets: old.petNames.map((name) => ({ name })),
@@ -841,8 +813,7 @@ const enhanced = enhanceStorage({
 });
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 Setiap kali data session dibaca, fitur peningkatan storage akan mengecek apakah data session tersebut sudah berada di versi `1`.
 Jika versinya di bawah itu (atau bahkan tidak ditemukan karena kamu sebelumnya tidak menggunakan fitur ini), maka function migrasi akan dijalankan.

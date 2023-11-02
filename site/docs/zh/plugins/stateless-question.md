@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # 无状态问题 (`stateless-question`)
 
 > 向隐私模式下的 Telegram 用户创建无状态问题
@@ -20,7 +25,7 @@ import { StatelessQuestion } from "@grammyjs/stateless-question";
 
 const bot = new Bot("");
 
-const unicornQuestion = new StatelessQuestion("unicorns", (ctx) => {
+const unicornQuestion = new StatelessQuestion("unicorns", async (ctx) => {
   console.log("User thinks unicorns are doing:", ctx.message);
 });
 

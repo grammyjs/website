@@ -1,13 +1,17 @@
+---
+prev: false
+next: false
+---
+
 # 解析模式（`parse-mode`）
 
 这个插件提供了一个设置默认的 `parse_mode` 的 transformer，以及一个中间件，用于将 `Context` 中的 `reply` 方法转换成常用的 `replyWithHTML`，`replyWithMarkdown`，等等方法。
 
 ## 使用方法 (改善格式化体验)
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context } from "grammy";
 import { bold, fmt, hydrateReply, italic, link } from "@grammyjs/parse-mode";
 
@@ -37,10 +41,7 @@ ${bold(fmt`bold ${link("blink", "example.com")} bold`)}`);
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 const { Bot, Context } = require("grammy");
 const { bold, fmt, hydrateReply, italic, link } = require(
   "@grammyjs/parse-mode",
@@ -70,10 +71,7 @@ ${bold(fmt`bold ${link("blink", "example.com")} bold`)}`);
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   bold,
@@ -109,15 +107,13 @@ ${bold(fmt`bold ${link("blink", "example.com")} bold`)}`);
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 ## 使用方法 (默认解析模式和回复方法)
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context } from "grammy";
 import { hydrateReply, parseMode } from "@grammyjs/parse-mode";
 
@@ -144,10 +140,7 @@ bot.command("demo", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 const { Bot, Context } = require("grammy");
 const { hydrateReply, parseMode } = require("@grammyjs/parse-mode");
 
@@ -172,10 +165,7 @@ bot.command("demo", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   hydrateReply,
@@ -205,8 +195,7 @@ bot.command("demo", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 ## 插件概述
 

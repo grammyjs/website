@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Hosting: Firebase Functions
 
 Panduan ini akan membimbing kamu untuk men-deploy bot di [Firebase Functions](https://firebase.google.com/docs/functions).
@@ -27,7 +32,7 @@ Untuk membuat sebuah function serta men-deploy-nya ke runtime Firebase Functions
 > Perlu diketahui bahwa Firebase Functions hanya mendukung Node.js versi 14, 16, dan 18.
 > Untuk informasi lebih lanjut mengenai versi Node.js yang didukung, lihat [dokumentasi berikut](https://firebase.google.com/docs/functions/manage-functions#set_nodejs_version).
 
-Sesudah Node.js dan NPM terpasang, instal Firebase CLI secara global:
+Sesudah Node.js dan npm terpasang, instal Firebase CLI secara global:
 
 ```sh
 npm install -g firebase-tools
@@ -130,7 +135,7 @@ Terakhir, beri tahu Telegram alamat pengiriman update-nya.
 Kamu bisa melakukannya dengan cara memanggil `setWebhook`.
 Buka tab baru di browser, lalu kunjungi URL berikut:
 
-```text:no-line-numbers
+```text
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<WEBHOOK_URL>/<firebase-namaproyek>/us-central1/helloWorld
 ```
 
@@ -138,7 +143,7 @@ Ganti `<BOT_TOKEN>` dengan token bot kamu, dan `<WEBHOOK_URL>` dengan URL yang k
 
 Jika semuanya berjalan dengan baik, Telegram akan membalas dengan:
 
-```json:no-line-numbers
+```json
 {
   "ok": true,
   "result": true,
@@ -163,7 +168,7 @@ Untuk penjelasan lebih lanjut, kamu bisa melihat langkah ke-8 di [panduan memula
 Setelah di-deploy, kamu perlu memberi tahu Telegram untuk mengirim update ke bot kamu dengan cara memanggil method `setWebhook`.
 Buka sebuah tab browser baru, lalu kunjungi URL berikut:
 
-```text:no-line-numbers
+```text
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<REGION>.<MY_PROJECT>.cloudfunctions.net/helloWorld
 ```
 
@@ -172,7 +177,7 @@ Firebase CLI semestinya sudah menyediakan URL lengkap cloud function kamu, sehin
 
 Jika semuanya berjalan lancar, kamu akan menerima respon berikut dari Telegram:
 
-```json:no-line-numbers
+```json
 {
   "ok": true,
   "result": true,

@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # 总是回复消息
 
 有时候有必要总是将消息作为回复发送，特别是对于那些打算要在群组中使用的 bot。
@@ -12,10 +17,9 @@
 
 如果你想让所有在特定上下文的消息进行回复（比如特定的命令），你可以专门应用这个插件到它们上面：
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot } from "grammy";
 import { addReplyParam } from "@roziscoding/grammy-autoquote";
 
@@ -29,10 +33,7 @@ bot.command("demo", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 const { Bot } = require("grammy");
 const { addReplyParam } = require("@roziscoding/grammy-autoquote");
 
@@ -46,10 +47,7 @@ bot.command("demo", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { addReplyParam } from "https://deno.land/x/grammy_autoquote/mod.ts";
 
@@ -63,17 +61,15 @@ bot.command("demo", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 ### 在所有路由中
 
 如果你希望每条发送的消息都回复触发它的消息，你可以通过这样的方式应用这个插件：
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot } from "grammy";
 import { autoQuote } from "@roziscoding/grammy-autoquote";
 
@@ -92,10 +88,7 @@ bot.command("hello", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 const { Bot } = require("grammy");
 const { autoQuote } = require("@roziscoding/grammy-autoquote");
 
@@ -114,10 +107,7 @@ bot.command("hello", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { autoQuote } from "https://deno.land/x/grammy_autoquote/mod.ts";
 
@@ -136,8 +126,7 @@ bot.command("hello", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 ## 插件概述
 

@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # 会话与数据存储（内置）
 
 你可以通过自己编写代码来实现连接你选择的数据存储，但是 grammY 提供了一个非常方便的存储模式，称为 _会话_。
@@ -41,7 +46,7 @@
 （你可以在 [这里](#会话密钥) 阅读更多关于会话密钥的信息。）
 实际上，你的 bot 将存储一个键为聊天标识符，值为自定义会话数据的字典，即类似这样的东西：
 
-```json:no-line-numbers
+```json
 {
   "424242": { "pizzaCount": 24 },
   "987654": { "pizzaCount": 1729 }
@@ -101,10 +106,9 @@
 
 下面是一个计算含有披萨表情 :pizza: 的信息的 bot 例子
 
-<CodeGroup>
- <CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context, session, SessionFlavor } from "grammy";
 
 // 定义我们的会话。
@@ -133,10 +137,7 @@ bot.hears(/.*🍕.*/, (ctx) => ctx.session.pizzaCount++);
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 const { Bot, session } = require("grammy");
 
 const bot = new Bot("");
@@ -157,10 +158,7 @@ bot.hears(/.*🍕.*/, (ctx) => ctx.session.pizzaCount++);
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import {
   Bot,
   Context,
@@ -194,10 +192,9 @@ bot.hears(/.*🍕.*/, (ctx) => ctx.session.pizzaCount++);
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
-请注意，我们还必须 [调整上下文类型](../guide/context.md#定制你的上下文对象)，使得会话可以在上下文上使用。
+请注意，我们还必须 [调整上下文类型](../guide/context#定制你的上下文对象)，使得会话可以在上下文上使用。
 上下文修饰器被称为 `SessionFlavor`。
 
 ### 初始化会话数据
@@ -251,10 +248,9 @@ bot.use(session({ initial: { initialData } })); // 邪恶的
 使用 `getSessionKey`，你可以按每个用户，或每个用户-聊天组合，或任何你想要的方式存储数据。
 这里有三个示例：
 
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 // 为每个聊天存储数据（默认）。
 function getSessionKey(ctx: Context): string | undefined {
   // 让群聊中的所有用户共享同一个会话，
@@ -281,10 +277,7 @@ function getSessionKey(ctx: Context): string | undefined {
 bot.use(session({ getSessionKey }));
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 // 为每个聊天存储数据（默认）。
 function getSessionKey(ctx) {
   // 让群聊中的所有用户共享同一个会话，
@@ -311,8 +304,7 @@ function getSessionKey(ctx) {
 bot.use(session({ getSessionKey }));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 当 `getSessionKey` 返回 `undefined` 时，`ctx.session` 也会被设置为 `undefined`。
 举个例子，默认的会话密钥解析器不能处理 `poll`/`poll_answer` update 或 `inline_query` update，因为它们不属于一个聊天（`ctx.chat` 是 `undefined`）。
@@ -322,7 +314,7 @@ bot.use(session({ getSessionKey }));
 Telegram 在每次聊天时都会按照顺序发送 webhooks，因此默认的会话密钥解析器是唯一能保证不会丢失数据的实现。
 
 如果你必须使用该选项（当然，这仍然是可能的），你应该知道你在做什么。
-通过阅读 [这个](../guide/deployment-types.md)，特别是 [这个](./runner.md#为什么需要顺序处理)，确保你了解使用这个配置的后果。
+通过阅读 [这个](../guide/deployment-types)，特别是 [这个](./runner#为什么需要顺序处理)，确保你了解使用这个配置的后果。
 :::
 
 ### 聊天迁移
@@ -339,7 +331,7 @@ Telegram 在每次聊天时都会按照顺序发送 webhooks，因此默认的�
 - 忽略这个问题。
   迁移群组时，bot 的会话数据将有效重置。
   简单、可靠、默认行为，但每个聊天可能出现一次潜在的意外。
-  例如，如果在用户处于由 [对话插件](./conversations.md) 支持的对话中时发生迁移，则对话将被重置。
+  例如，如果在用户处于由 [对话插件](./conversations) 支持的对话中时发生迁移，则对话将被重置。
 
 - 只在会话中存储临时数据（或超时数据），并使用数据库存储聊天迁移时需要迁移的重要内容。
   然后，这可以使用事务和自定义逻辑来处理来自旧聊天和新聊天的并发数据访问。
@@ -350,7 +342,7 @@ Telegram 在每次聊天时都会按照顺序发送 webhooks，因此默认的�
   但问题是无法保证在超级群组中的新消息出现之前发送这些消息。
   因此， bot 可以在意识到任何迁移之前收到来自新超级群组的消息，因此，它无法匹配两个聊天，从而导致上述问题。
 
-- 另一种解决方法是使用 [filtering](../guide/filter-queries.md) 将 bot 仅限制为超级群组（或仅将会话相关功能限制为超级群组）。
+- 另一种解决方法是使用 [filtering](../guide/filter-queries) 将 bot 仅限制为超级群组（或仅将会话相关功能限制为超级群组）。
   但是，这将问题/不便转移给了用户。
 
 - 让用户明确决定。
@@ -411,15 +403,14 @@ bot.use(session({
 > 支持的外部存储解决方案的支持请参考 [这里](#外部存储解决方案)。
 
 使用 grammY 的一个好处是你可以使用免费的云存储。
-它不需要任何配置，所有的认证都是痛使用你的 bot token 完成的。
+它不需要任何配置，所有的认证都是使用你的 bot token 完成的。
 查看 [这个仓库](https://github.com/grammyjs/storages/tree/main/packages/free)！
 
 它非常容易使用：
 
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { freeStorage } from "@grammyjs/storage-free";
 
 bot.use(session({
@@ -428,10 +419,7 @@ bot.use(session({
 }));
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 const { freeStorage } = require("@grammyjs/storage-free");
 
 bot.use(session({
@@ -440,10 +428,7 @@ bot.use(session({
 }));
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import { freeStorage } from "https://deno.land/x/grammy_storages/free/src/mod.ts";
 
 bot.use(session({
@@ -452,18 +437,16 @@ bot.use(session({
 }));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 完成！
 你的 bot 将会使用一个持久的数据存储。
 
 这是一个完整的 bot 示例，你可以复制它来试试。
 
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context, session, SessionFlavor } from "grammy";
 import { freeStorage } from "@grammyjs/storage-free";
 
@@ -491,10 +474,7 @@ bot.catch((err) => console.error(err));
 bot.start();
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 const { Bot, session } = require("grammy");
 const { freeStorage } = require("@grammyjs/storage-free");
 
@@ -516,10 +496,7 @@ bot.catch((err) => console.error(err));
 bot.start();
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import {
   Bot,
   Context,
@@ -552,8 +529,7 @@ bot.catch((err) => console.error(err));
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 ### 外部存储解决方案
 
@@ -598,7 +574,7 @@ bot.start();
 为每个片段使用不同的 [会话密钥](#会话密钥) 也是可以的。
 因此，你可以为每个聊天存储一些数据，为每个用户存储一些数据。
 
-> 如果你使用的是 [grammY runner](./runner.md)，请确保通过返回**所有**会话密钥作为函数的约束来正确配置 `sequentialize`。
+> 如果你使用的是 [grammY runner](./runner)，请确保通过返回**所有**会话密钥作为函数的约束来正确配置 `sequentialize`。
 
 你可以通过将 `type: "multi"` 传递给会话配置来使用此功能。
 反过来，你将需要使用它自己的配置来配置每个片段。
@@ -671,7 +647,7 @@ interface SessionData {
 
 ```ts
 // 默认会话 (严格会话)
-bot.command("settings", (ctx) => {
+bot.command("settings", async (ctx) => {
   // `session` 是会话数据
   const session = ctx.session;
 });
@@ -704,7 +680,7 @@ bot.command("settings", async (ctx) => {
 这样可以实现以下代码：
 
 ```ts
-bot.command("reset", (ctx) => {
+bot.command("reset", async (ctx) => {
   // 比 `await ctx.session` 要短得多：
   ctx.session = ctx.session.then((stats) => {
     stats.counter = 0;
@@ -799,10 +775,9 @@ interface SessionData {
 
 迁移函数让你可以将旧字符串数组转换为新的宠物对象数组。
 
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 function addBirthdayToPets(old: { petNames: string[] }): SessionData {
   return {
     pets: old.petNames.map((name) => ({ name })),
@@ -817,10 +792,7 @@ const enhanced = enhanceStorage({
 });
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 function addBirthdayToPets(old) {
   return {
     pets: old.petNames.map((name) => ({ name })),
@@ -835,8 +807,7 @@ const enhanced = enhanceStorage({
 });
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 每当读取会话数据时，存储增强功能都会检查会话数据是否已经处于版本 `1`。
 如果版本较低（或因为你之前未使用此功能而丢失），则将运行迁移功能。

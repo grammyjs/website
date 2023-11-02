@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Selalu Reply Pesan
 
 > Catatan terjemahan: Kami membedakan istilah `balas` dengan `reply` agar tidak rancu.
@@ -16,10 +21,9 @@ Plugin ini memasang parameter `reply_to_message_id` ke `ctx.msg.message_id` untu
 
 Jika ingin me-reply pesan tertentu saja (misalnya hanya me-reply pesan command `demo`), maka kamu bisa melakukannya dengan cara seperti ini:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot } from "grammy";
 import { addReplyParam } from "@roziscoding/grammy-autoquote";
 
@@ -33,10 +37,7 @@ bot.command("demo", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 const { Bot } = require("grammy");
 const { addReplyParam } = require("@roziscoding/grammy-autoquote");
 
@@ -50,10 +51,7 @@ bot.command("demo", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { addReplyParam } from "https://deno.land/x/grammy_autoquote/mod.ts";
 
@@ -67,17 +65,15 @@ bot.command("demo", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 ### Untuk Semua Pesan
 
 Jika ingin me-reply semua pesan yang masuk, kamu bisa melakukannya dengan cara seperti ini:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot } from "grammy";
 import { autoQuote } from "@roziscoding/grammy-autoquote";
 
@@ -96,10 +92,7 @@ bot.command("halo", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 const { Bot } = require("grammy");
 const { autoQuote } = require("@roziscoding/grammy-autoquote");
 
@@ -118,10 +111,7 @@ bot.command("halo", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { autoQuote } from "https://deno.land/x/grammy_autoquote/mod.ts";
 
@@ -140,8 +130,7 @@ bot.command("halo", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 ## Ringkasan Plugin
 

@@ -1,11 +1,6 @@
----
-prev: ./transformers.md
-next: ./deployment.md
----
-
 # Proxy Support
 
-grammY let's you configure a number of things about how network requests are performed.
+grammY lets you configure a number of things about how network requests are performed.
 This includes injecting a custom payload into every request, which can be used to install a proxy agent.
 Check out the `ApiClientOptions` in the [grammY API Reference](https://deno.land/x/grammy/mod.ts?s=ApiClientOptions).
 

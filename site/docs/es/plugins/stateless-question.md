@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Preguntas sin estado (`stateless-question`)
 
 > Crear preguntas sin estado a los usuarios de Telegram que trabajan en modo de privacidad
@@ -20,7 +25,7 @@ import { StatelessQuestion } from "@grammyjs/stateless-question";
 
 const bot = new Bot("");
 
-const unicornQuestion = new StatelessQuestion("unicornio", (ctx) => {
+const unicornQuestion = new StatelessQuestion("unicornio", async (ctx) => {
   console.log(
     "El usuario cree que los unicornios están haciendo:",
     ctx.message,

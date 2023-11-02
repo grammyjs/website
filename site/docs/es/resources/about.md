@@ -1,3 +1,9 @@
+---
+next:
+  text: Preguntas frecuentes
+  link: ./faq
+---
+
 # Sobre grammY
 
 ## ¿Qué es grammY?
@@ -29,7 +35,7 @@ Todos los cambios en el código son revisados por varios pares de ojos, optimiza
 
 ## ¿Qué lenguaje de programación utiliza grammY?
 
-grammY está escrito desde el principio en TypeScript, un superconjunto de JavaScript.
+grammY está escrito desde el principio en TypeScript---un superconjunto de JavaScript.
 Por lo tanto, se ejecuta en Node.js.
 
 Sin embargo, grammY también puede ejecutarse en Deno, que se posiciona como el sucesor de Node.js.
@@ -37,7 +43,7 @@ Sin embargo, grammY también puede ejecutarse en Deno, que se posiciona como el 
 
 ## ¿Cómo se compara grammY con sus competidores?
 
-Si vienes de un lenguaje de programación o marco de trabajo diferente, puedes revisar nuestra [comparación detallada entre marcos de trabajo](./comparison.md).
+Si vienes de un lenguaje de programación o marco de trabajo diferente, puedes revisar nuestra [comparación detallada entre marcos de trabajo](./comparison).
 
 ## ¿Cómo puedo apoyarlo?
 

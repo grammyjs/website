@@ -19,6 +19,7 @@ pnpm-lock.yaml
 # Caches
 .temp
 .cache
+cache/
 
 # dist directory
 dist/

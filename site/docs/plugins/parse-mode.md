@@ -1,13 +1,17 @@
+---
+prev: false
+next: false
+---
+
 # Parse Mode Plugin (`parse-mode`)
 
 This plugin provides a transformer for setting default `parse_mode`, and a middleware for hydrating `Context` with familiar `reply` variant methods - i.e. `replyWithHTML`, `replyWithMarkdown`, etc.
 
 ## Usage (Improving Formatting Experience)
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context } from "grammy";
 import { bold, fmt, hydrateReply, italic, link } from "@grammyjs/parse-mode";
 
@@ -37,10 +41,7 @@ ${bold(fmt`bold ${link("blink", "example.com")} bold`)}`);
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 const { Bot, Context } = require("grammy");
 const { bold, fmt, hydrateReply, italic, link } = require(
   "@grammyjs/parse-mode",
@@ -70,10 +71,7 @@ ${bold(fmt`bold ${link("blink", "example.com")} bold`)}`);
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   bold,
@@ -109,15 +107,13 @@ ${bold(fmt`bold ${link("blink", "example.com")} bold`)}`);
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 ## Usage (Default Parse Mode and Reply Methods)
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context } from "grammy";
 import { hydrateReply, parseMode } from "@grammyjs/parse-mode";
 
@@ -144,10 +140,7 @@ bot.command("demo", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 const { Bot, Context } = require("grammy");
 const { hydrateReply, parseMode } = require("@grammyjs/parse-mode");
 
@@ -172,10 +165,7 @@ bot.command("demo", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   hydrateReply,
@@ -205,8 +195,7 @@ bot.command("demo", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 ## Plugin Summary
 

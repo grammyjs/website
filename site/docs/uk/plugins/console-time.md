@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Вимірювання часу обробки у консоль під час налагодження
 
 Якщо ви знайомі з JavaScript/TypeScript, ви, напевно, використовували [`console.log`](https://developer.mozilla.org/en-US/docs/Web/API/Console/log) або [`console.time`](https://developer.mozilla.org/en-US/docs/Web/API/Console/time), щоб під час налагодження перевірити, що відбувається.
@@ -23,16 +28,16 @@ bot.command("start" /* , ... */);
 
 Цей код виведе щось на зразок цього:
 
-```plaintext
-2020-03-31T14:32:36.974Z 490af message text Andrey 6 /start: 926.247ms
-2020-03-31T14:32:57.750Z 490ag message text Andrey 6 /start: 914.764ms
-2020-03-31T14:33:01.188Z 490ah message text Andrey 5 /stop: 302.666ms
-2020-03-31T14:46:11.385Z 490ai message text Andrey 6 /start: 892.452ms
+```text
+2020-03-31T14:32:36.974Z 490af message text Andrii 6 /start: 926.247ms
+2020-03-31T14:32:57.750Z 490ag message text Andrii 6 /start: 914.764ms
+2020-03-31T14:33:01.188Z 490ah message text Andrii 5 /stop: 302.666ms
+2020-03-31T14:46:11.385Z 490ai message text Andrii 6 /start: 892.452ms
 ```
 
-`490af` — це `update_id`.
+`490af` --- це `update_id`.
 
-Число перед командами — це загальна довжина вмісту.
+Число перед командами --- це загальна довжина вмісту.
 Це корисно, коли потрібно врахувати максимальну довжину для таких речей, як дані зворотного виклику.
 
 Сам вміст скорочується, щоб запобігти засміченню журналу.
@@ -65,7 +70,7 @@ bot.on("message" /* ... */);
 
 Цей код виведе щось на зразок цього:
 
-```plaintext
+```text
 490ai foo before: 304.185ms
 490ai foo inner: 83.122ms
 490ai foo after: 501.028ms

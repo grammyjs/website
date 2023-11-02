@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Plugin Hidrasi untuk grammY (`hydrate`)
 
 Plugin ini akan menginstal method-method yang berguna di dua macam object, yaitu
@@ -52,10 +57,9 @@ Ada dua cara untuk menginstal plugin ini:
 
 Plugin ini bisa diinstal secara langsung. Cara pemasangan yang seperti ini sudah cukup untuk kebanyakan pengguna.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context } from "grammy";
 import { hydrate, HydrateFlavor } from "@grammyjs/hydrate";
 
@@ -66,10 +70,7 @@ const bot = new Bot<MyContext>("");
 bot.use(hydrate());
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 import { Bot } from "grammy";
 import { hydrate } from "@grammyjs/hydrate";
 
@@ -78,10 +79,7 @@ const bot = new Bot("");
 bot.use(hydrate());
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   hydrate,
@@ -95,8 +93,7 @@ const bot = new Bot<MyContext>("");
 bot.use(hydrate());
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 ### Pemasangan Tingkat Lanjut
 
@@ -107,12 +104,11 @@ Namun, beberapa bot mungkin perlu untuk memanggil `bot.api`.
 Untuk kasus seperti itu, kamu sebaiknya menggunakan instalasi tingkat lanjut ini.
 
 Instalasi ini akan mengintegrasikan context hydration dan hidrasi hasil pemanggilan API secara terpisah ke dalam bot kamu.
-Perlu diingat bahwa kamu sekarang perlu menginstal sebuah [API flavor](../advanced/transformers.md#menggunakan-api-flavor).
+Perlu diingat bahwa kamu sekarang perlu menginstal sebuah [API flavor](../advanced/transformers#menggunakan-api-flavor).
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Api, Bot, Context } from "grammy";
 import {
   hydrateApi,
@@ -130,10 +126,7 @@ bot.use(hydrateContext());
 bot.api.config.use(hydrateApi());
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 import { Bot } from "grammy";
 import { hydrateApi, hydrateContext } from "@grammyjs/hydrate";
 
@@ -143,10 +136,7 @@ bot.use(hydrateContext());
 bot.api.config.use(hydrateApi());
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import { Api, Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   hydrateApi,
@@ -164,8 +154,7 @@ bot.use(hydrateContext());
 bot.api.config.use(hydrateApi());
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 ## Object Apa Saja yang Dihidrasi
 

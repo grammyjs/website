@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Menús interactivos (`menu`)
 
 Crea fácilmente menús interactivos.
@@ -5,17 +10,16 @@ Crea fácilmente menús interactivos.
 ## Introducción
 
 Un teclado en línea es un conjunto de botones debajo de un mensaje.
-grammY tiene un [plugin incorporado](./keyboard.md#teclados-en-linea) para crear teclados en línea básicos.
+grammY tiene un [plugin incorporado](./keyboard#teclados-en-linea) para crear teclados en línea básicos.
 
 El plugin de menús lleva esta idea más allá y te permite crear menús ricos justo dentro del chat.
 Pueden tener botones interactivos, múltiples páginas con navegación entre ellas, y más.
 
 Aquí hay un ejemplo simple que habla por sí mismo.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot } from "grammy";
 import { Menu } from "@grammyjs/menu";
 
@@ -38,10 +42,7 @@ bot.command("start", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 const { Bot } = require("grammy");
 const { Menu } = require("@grammyjs/menu");
 
@@ -64,10 +65,7 @@ bot.command("start", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { Menu } from "https://deno.land/x/grammy_menu/mod.ts";
 
@@ -90,12 +88,11 @@ bot.command("start", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 > Asegúrese de instalar todos los menús antes de otros middleware, especialmente antes de los middleware que utilizan datos de consulta de devolución de llamada.
 
-Naturalmente, si está utilizando un [tipo de contexto personalizado](../guide/context.md#personalizacion-del-objeto-de-contexto), puede pasarlo a `Menu` también.
+Naturalmente, si está utilizando un [tipo de contexto personalizado](../guide/context#personalizacion-del-objeto-de-contexto), puede pasarlo a `Menu` también.
 
 ```ts
 const menu = new Menu<MyContext>("id");
@@ -103,7 +100,7 @@ const menu = new Menu<MyContext>("id");
 
 ## Adding Buttons
 
-El plugin de menús presenta sus teclados exactamente como lo hace el [plugin para teclados en línea] (./keyboard.md#building-an-inline-keyboard).
+El plugin de menús presenta sus teclados exactamente como lo hace el [plugin para teclados en línea] (./keyboard#building-an-inline-keyboard).
 La clase `Menu` reemplaza a la clase `InlineKeyboard`.
 
 Aquí hay un ejemplo para un menú que tiene cuatro botones en forma de fila 1-2-1.
@@ -183,7 +180,7 @@ Llama a `ctx.menu.update()` para asegurarte de que tu menú se volverá a render
 El ejemplo anterior demuestra cómo utilizar el plugin de menú.
 No es una buena idea almacenar la configuración del usuario en un objeto `Set`, porque entonces todos los datos se perderán cuando se detenga el servidor.
 
-En su lugar, considere el uso de una base de datos o el [plugin de sesión] (./session.md) si desea almacenar datos.
+En su lugar, considere el uso de una base de datos o el [plugin de sesión] (./session) si desea almacenar datos.
 :::
 
 ## Actualizar o cerrar el menú
@@ -306,10 +303,6 @@ Puede almacenar cargas útiles de texto cortas junto con todos los botones de na
 Cuando los respectivos manejadores son invocados, la carga útil de texto estará disponible bajo `ctx.match`.
 Esto es útil porque le permite almacenar un poco de información en un menú.
 
-> Payloads no pueden utilizarse para almacenar realmente cantidades significativas de datos.
-> Lo único que puede almacenar son cadenas cortas de típicamente menos de 50 bytes, como un índice o un identificador.
-> Si realmente quiere almacenar datos del usuario, como un identificador de archivo, una URL o cualquier otra cosa, debe utilizar [sesiones](./session.md).
-
 Este es un ejemplo de menú que recuerda la hora actual en el payload.
 Otros casos de uso podrían ser, por ejemplo, almacenar el índice en un menú paginado.
 
@@ -341,6 +334,16 @@ bot.command("publish", async (ctx) => {
 });
 ```
 
+::: tip Limitaciones
+Las cargas útiles no pueden utilizarse para almacenar cantidades significativas de datos.
+Lo único que puede almacenar son cadenas cortas de típicamente menos de 50 bytes, como un índice o un identificador.
+Si realmente quieres almacenar datos de usuario como un identificador de fichero, una URL, o cualquier otra cosa, deberías usar [sessions](./session).
+
+Además, tenga en cuenta que la carga útil siempre se genera basándose en el objeto de contexto actual.
+Esto significa que importa _desde_ dónde se navega al menú, lo que puede dar lugar a resultados sorprendentes.
+Por ejemplo, cuando un menú está [desactualizado](#menus-y-huellas-anticuadas), se volverá a renderizar _basándose en el clic del botón del menú desactualizado_.
+:::
+
 Payloads también funcionan bien junto con los rangos dinámicos.
 
 ## Rangos dinámicos
@@ -358,6 +361,7 @@ Tu bot se ralentizaría cada vez más, y finalmente se colgaría.
 
 Sin embargo, puedes hacer uso de los rangos dinámicos descritos en esta sección.
 Te permiten cambiar arbitrariamente la estructura de una instancia de menú existente, por lo que son igualmente potentes.
+¡Utilice rangos dinámicos!
 :::
 
 Puede dejar que una parte de los botones de un menú se genere sobre la marcha (o todos ellos si lo desea).
@@ -390,7 +394,7 @@ menu.dynamic(() => {
 ```
 
 La función de generación de rangos que se pasa a `dynamic` puede ser `async`, por lo que incluso se pueden realizar llamadas a la API o hacer comunicación con la base de datos antes de devolver el nuevo rango del menú.
-**En muchos casos, tiene sentido generar un rango dinámico basado en los datos de [session](./session.md).**
+**En muchos casos, tiene sentido generar un rango dinámico basado en los datos de [session](./session).**
 
 Además, la función de construcción de rangos toma un objeto de contexto como primer argumento.
 (Esto no se especifica en el ejemplo anterior).
@@ -506,13 +510,13 @@ Un menú sólo manejará las pulsaciones de los botones si:
 
 Cuando un usuario pulsa un botón de un menú, necesitamos encontrar el manejador que se añadió a ese botón en el momento en que se renderizó el menú.
 Por lo tanto, simplemente renderizamos el viejo menú de nuevo.
-Sin embargo, esta vez, no necesitamos el diseño completo - todo lo que necesitamos es la estructura general, y ese botón específico.
+Sin embargo, esta vez, no necesitamos el diseño completo---todo lo que necesitamos es la estructura general, y ese botón específico.
 En consecuencia, el plugin del menú realizará una representación superficial para ser más eficiente.
 En otras palabras, el menú sólo se renderizará parcialmente.
 
 Una vez que se conoce el botón pulsado de nuevo (y hemos comprobado que el menú no está [desactualizado](#menus-y-huellas-anticuadas)), invocamos el manejador.
 
-Internamente, el plugin de menús hace un gran uso de [API Transformer Functions](../advanced/transformers.md), por ejemplo, para renderizar rápidamente los menús salientes sobre la marcha.
+Internamente, el plugin de menús hace un gran uso de [API Transformer Functions](../advanced/transformers), por ejemplo, para renderizar rápidamente los menús salientes sobre la marcha.
 
 Cuando se registran los menús en una gran jerarquía de navegación, de hecho no almacenan estas referencias explícitamente.
 Bajo el capó, todos los menús de esa estructura se añaden al mismo pool grande, y ese pool se comparte entre todas las instancias contenidas.

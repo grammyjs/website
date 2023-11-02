@@ -1,0 +1,15 @@
+{
+  "tasks": {
+    "check-links": "deno run -r --allow-read --allow-net https://raw.githubusercontent.com/grammyjs/link-checker/main/main.ts --clean-url --dir=site/docs"
+  },
+  "fmt": {
+    "proseWrap": "preserve",
+    "exclude": [
+      "./site/node_modules/",
+      "./site/docs/.vitepress/cache/",
+      "./site/docs/.vitepress/temp/",
+      "./site/docs/.vitepress/dist/",
+      "./site/package-lock.json"
+    ]
+  }
+}

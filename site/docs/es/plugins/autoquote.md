@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Responder siempre a los mensajes
 
 A veces es necesario enviar siempre los mensajes como respuestas, especialmente para los bots que están destinados a ser utilizados en grupos.
@@ -12,10 +17,9 @@ Este plugin establece el parámetro `reply_to_message_id` a `ctx.msg.message_id`
 
 Si quieres que todos los mensajes se envíen dentro de un contexto específico (como un comando específico), puedes aplicar el plugin específicamente a ellos:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot } from "grammy";
 import { addReplyParam } from "@roziscoding/grammy-autoquote";
 
@@ -29,10 +33,7 @@ bot.command("demo", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 const { Bot } = require("grammy");
 const { addReplyParam } = require("@roziscoding/grammy-autoquote");
 
@@ -46,10 +47,7 @@ bot.command("demo", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { addReplyParam } from "https://deno.land/x/grammy_autoquote/mod.ts";
 
@@ -63,17 +61,15 @@ bot.command("demo", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 ### Para todas las rutas
 
 Si quieres que todos los mensajes enviados respondan a los mensajes que los desencadenaron, puedes aplicar el plugin de esta manera:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot } from "grammy";
 import { autoQuote } from "@roziscoding/grammy-autoquote";
 
@@ -92,10 +88,7 @@ bot.command("hola", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 const { Bot } = require("grammy");
 const { autoQuote } = require("@roziscoding/grammy-autoquote");
 
@@ -114,10 +107,7 @@ bot.command("hola", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { autoQuote } from "https://deno.land/x/grammy_autoquote/mod.ts";
 
@@ -136,8 +126,7 @@ bot.command("hola", async (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 ## Resumen del plugin
 

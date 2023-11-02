@@ -1,0 +1,6 @@
+{
+  "name": "Plain Text",
+  "scopeName": "text.plain",
+  "fileTypes": ["txt"],
+  "patterns": []
+}

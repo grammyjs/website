@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Emojis (`emoji`)
 
 Con este plugin, puedes insertar fácilmente emojis en tus respuestas buscándolos en lugar de copiar y pegar manualmente un emoji de la web en tu código.
@@ -27,16 +32,15 @@ Puedes leer más sobre ellas [aquí](https://developer.mozilla.org/es/docs/Web/J
 
 Puedes instalar este plugin en tu bot así:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context } from "grammy";
 import { EmojiFlavor, emojiParser } from "@grammyjs/emoji";
 
 // Esto se llama Context Flavoring
 // Puedes leer más en:
-// https://grammy.dev/es/guide/context.html#transformative-context-flavors
+// https://grammy.dev/es/guide/context#transformative-context-flavors
 type MyContext = EmojiFlavor<Context>;
 
 const bot = new Bot<MyContext>("");
@@ -44,10 +48,7 @@ const bot = new Bot<MyContext>("");
 bot.use(emojiParser());
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 const { Bot } = require("grammy");
 const { emojiParser } = require("@grammyjs/emoji");
 
@@ -56,10 +57,7 @@ const bot = new Bot("");
 bot.use(emojiParser());
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 importar {
   EmojiFlavor,
@@ -68,7 +66,7 @@ importar {
 
 // Esto se llama Context Flavoring
 // Puedes leer más en:
-// https://grammy.dev/es/guide/context.html#transformative-context-flavors
+// https://grammy.dev/es/guide/context#transformative-context-flavors
 tipo MyContext = EmojiFlavor<Context>;
 
 const bot = new Bot<MyContext>("");
@@ -76,8 +74,7 @@ const bot = new Bot<MyContext>("");
 bot.use(emojiParser());
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 Ahora puedes obtener emojis por sus nombres:
 

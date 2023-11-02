@@ -1,8 +1,3 @@
----
-prev: ./basics.md
-next: ./api.md
----
-
 # Context
 
 The `Context` object ([grammY API Reference](https://deno.land/x/grammy/mod.ts?s=Context)) is an important part of grammY.
@@ -10,7 +5,7 @@ The `Context` object ([grammY API Reference](https://deno.land/x/grammy/mod.ts?s
 Whenever you register a listener on your bot object, this listener will receive a context object.
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` is the `Context` object.
 });
 ```
@@ -28,7 +23,7 @@ When a user sends a message to your bot, you can access it via `ctx.message`.
 As an example, to get the message text, you can do this:
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `txt` will be a `string` when processing text messages.
   // It will be `undefined` if the received message does not have any message text,
   // e.g. photos, stickers, and other messages.
@@ -44,7 +39,7 @@ If you register your listener for other types, `ctx` will also give you informat
 Example:
 
 ```ts
-bot.on("edited_message", (ctx) => {
+bot.on("edited_message", async (ctx) => {
   // Get the new, edited, text of the message.
   const editedText = ctx.editedMessage.text;
 });
@@ -71,17 +66,17 @@ There are a number of shortcuts installed on the context object.
 In other words, you can also do this:
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // Get the text of the message.
   const text = ctx.msg.text;
 });
 
-bot.on("edited_message", (ctx) => {
+bot.on("edited_message", async (ctx) => {
   // Get the new, edited, text of the message.
   const editedText = ctx.msg.text;
 });
 
-bot.on("message:entities", (ctx) => {
+bot.on("message:entities", async (ctx) => {
   // Get all the entities.
   const entities = ctx.entities();
 
@@ -105,11 +100,9 @@ For example, you can call `ctx.hasCommand("start")` to see if the context object
 This is why the methods are collectively named _has checks_.
 
 ::: tip Know When to Use Has Checks
-
 This is the exact same logic that is used by `bot.command("start")`.
-Note that you should usually use [filter queries](./filter-queries.md) and similar methods.
-Using has checks works best inside the [conversations plugin](../plugins/conversations.md).
-
+Note that you should usually use [filter queries](./filter-queries) and similar methods.
+Using has checks works best inside the [conversations plugin](../plugins/conversations).
 :::
 
 The has checks correctly narrow down the context type.
@@ -170,7 +163,7 @@ Neat! :tada:
 Under the hood, the context _already knows its chat identifier_ (namely `ctx.msg.chat.id`), so it gives you the `reply` method to just send a message back to the same chat.
 Internally, `reply` again calls `sendMessage` with the chat identifier pre-filled for you.
 
-Consequently, all methods on the context object take options objects of type `Other` as explained [earlier](./basics.md#sending-messages).
+Consequently, all methods on the context object take options objects of type `Other` as explained [earlier](./basics#sending-messages).
 This can be used to pass further configuration to every API call.
 
 ::: tip Telegram Reply Feature
@@ -205,7 +198,7 @@ In fact, update objects can not only contain new messages, but also all other so
 A fresh context object is created exactly once for every incoming update.
 Contexts for different updates are completely unrelated objects, they only reference the same bot information via `ctx.me`.
 
-The same context object for one update will be shared by all installed middleware ([docs](./middleware.md)) on the bot.
+The same context object for one update will be shared by all installed middleware ([docs](./middleware)) on the bot.
 
 ## Customizing the Context Object
 
@@ -215,10 +208,10 @@ You can install your own properties on the context object if you want.
 
 ### Via Middleware (Recommended)
 
-The customizations can be easily done in [middleware](./middleware.md).
+The customizations can be easily done in [middleware](./middleware).
 
 ::: tip Middlewhat?
-This section requires an understanding of middleware, so in case you have not skipped ahead to this [section](./middleware.md) yet, here is a very brief summary.
+This section requires an understanding of middleware, so in case you have not skipped ahead to this [section](./middleware) yet, here is a very brief summary.
 
 All you really need to know is that several handlers can process the same context object.
 There are special handlers which can modify `ctx` before any other handlers are run, and the modifications of the first handler will be visible to all subsequent handlers.
@@ -285,10 +278,9 @@ const bot = new Bot<MyContext>("");
 
 In summary, the setup will look like this:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 const BOT_DEVELOPER = 123456; // bot developer chat identifier
 
 // Define custom context type.
@@ -318,10 +310,7 @@ bot.command("start", async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 const BOT_DEVELOPER = 123456; // bot developer chat identifier
 
 const bot = new Bot("");
@@ -342,8 +331,7 @@ bot.command("start", async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 Naturally, the custom context type can also be passed to other things which handle middleware, such as [composers](https://deno.land/x/grammy/mod.ts?s=Composer).
 
@@ -351,7 +339,7 @@ Naturally, the custom context type can also be passed to other things which hand
 const composer = new Composer<MyContext>();
 ```
 
-Some plugins will also require you to pass a custom context type, such as the [router](../plugins/router.md) or the [menu](../plugins/menu.md) plugin.
+Some plugins will also require you to pass a custom context type, such as the [router](../plugins/router) or the [menu](../plugins/menu) plugin.
 Check out their docs to see how they can use a custom context type.
 These types are called context flavors, as described [down here](#context-flavors).
 
@@ -372,10 +360,9 @@ We will now see how to use custom classes for context objects.
 When constructing your bot, you can pass a custom context constructor that will be used to instantiate the context objects.
 Note that your class must extend `Context`.
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context } from "grammy";
 import type { Update, UserFromGetMe } from "grammy/types";
 
@@ -395,7 +382,7 @@ const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` is now of type `MyContext`.
   const prop = ctx.customProp;
 });
@@ -403,10 +390,7 @@ bot.on("message", (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript" active>
-
-```ts
+```js [JavaScript]
 const { Bot, Context } = require("grammy");
 
 // Define a custom context class.
@@ -425,7 +409,7 @@ const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` is now of type `MyContext`.
   const prop = ctx.customProp;
 });
@@ -433,10 +417,7 @@ bot.on("message", (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import type {
   Update,
@@ -459,7 +440,7 @@ const bot = new Bot("", {
   ContextConstructor: MyContext,
 });
 
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // `ctx` is now of type `MyContext`.
   const prop = ctx.customProp;
 });
@@ -467,8 +448,7 @@ bot.on("message", (ctx) => {
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 Notice how the custom context type will be inferred automatically when you are using a subclass.
 You no longer need to write `Bot<MyContext>` because you already specified your subclass constructor in the options object of `new Bot()`.
@@ -488,7 +468,7 @@ As implied above, there are two different kinds of context flavors.
 The basic one is called _additive context flavor_, and whenever we talk about context flavoring, we just mean this basic form.
 Let's look at how it works.
 
-As an example, when you have [session data](../plugins/session.md), you must register `ctx.session` on the context type.
+As an example, when you have [session data](../plugins/session), you must register `ctx.session` on the context type.
 Otherwise,
 
 1. you cannot install the built-in sessions plugin, and
@@ -522,7 +502,7 @@ type MyContext = Context & SessionFlavor<string>;
 You can now use the session plugin, and you have access to `ctx.session`:
 
 ```ts
-bot.on("message", (ctx) => {
+bot.on("message", async (ctx) => {
   // Now `str` is of type `string`.
   const str = ctx.session;
 });

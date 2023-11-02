@@ -1,3 +1,10 @@
+---
+prev: false
+next: false
+---
+
+<!-- markdownlint-disable no-duplicate-heading -->
+
 # Хостинг: VPS
 
 Віртуальний приватний сервер, відомий переважно як VPS, є віртуальною машиною, яка працює в хмарі, а користувачі мають повний контроль над її системою.
@@ -6,69 +13,68 @@
 
 ## systemd
 
-systemd — це потужний менеджер служб, який передвстановлений у багатьох дистрибутивах Linux, переважно на основі Debian.
+systemd --- це потужний менеджер служб, який передвстановлений у багатьох дистрибутивах Linux, переважно на основі Debian.
 
 ### Отримання команди запуску
 
 1. Отримайте повний шлях до вашого середовища виконання:
 
-```sh
-# Якщо ви використовуєте Deno
-which deno
+   ```sh
+   # Якщо ви використовуєте Deno
+   which deno
 
-# Якщо ви використовуєте Node.js
-which node
-```
+   # Якщо ви використовуєте Node.js
+   which node
+   ```
 
 2. Ви також повинні мати повний шлях до файлу, який є точкою входу вашого застосунку.
 
 3. Ваша команда запуску повинна виглядати наступним чином:
 
-```sh
-<повний-шлях-до-середовища-виконання> <параметри> <повний-шлях-до-файлу-входу>
+   ```sh
+   <повний-шлях-до-середовища-виконання> <параметри> <повний-шлях-до-файлу-входу>
 
-# Приклад для Deno:
-# /home/user/.deno/bin/deno --allow-all /home/user/bot1/mod.ts
+   # Приклад для Deno:
+   # /home/user/.deno/bin/deno --allow-all /home/user/bot1/mod.ts
 
-# Приклад для Node.js:
-# /home/user/.nvm/versions/node/v16.9.1/bin/node /home/user/bot1/index.js
-```
+   # Приклад для Node.js:
+   # /home/user/.nvm/versions/node/v16.9.1/bin/node /home/user/bot1/index.js
+   ```
 
 ### Створення служби
 
 1. Перейдіть до каталогу служб:
 
-```sh
-cd /etc/systemd/system
-```
+   ```sh
+   cd /etc/systemd/system
+   ```
 
 2. Відкрийте ваш новий файл служби за допомогою редактора:
 
-```sh
-nano bot1.service
-```
+   ```sh
+   nano bot1.service
+   ```
 
 3. Додайте наступний вміст:
 
-```text
-[Service]
-ExecStart=<команда-запуску>
-Restart=on-failure
+   ```txt
+   [Service]
+   ExecStart=<команда-запуску>
+   Restart=on-failure
 
-[Install]
-WantedBy=multi-user.target
-```
+   [Install]
+   WantedBy=multi-user.target
+   ```
 
-> Замініть `<команда-запуску>` на команду, яку ви отримали вище.
->
-> Також зверніть увагу, що якщо Deno встановлено для іншого користувача, а не root, вам може знадобитися додати `User=<імʼя-користувача>` в розділі `[Service]`.
-> Для отримання додаткової інформації про файли служб відвідайте [цей сайт](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/assembly_working-with-systemd-unit-files_configuring-basic-system-settings).
+   > Замініть `<команда-запуску>` на команду, яку ви отримали вище.
+   > Також зверніть увагу, що якщо Deno встановлено для іншого користувача, а не root, вам може знадобитися додати `User=<імʼя-користувача>` в розділі `[Service]`.
+   > Для отримання додаткової інформації про файли служб відвідайте [цей сайт](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/assembly_working-with-systemd-unit-files_configuring-basic-system-settings).
 
-3. Перезавантажуйте systemd кожного разу, коли ви редагуєте службу:
+4. Перезавантажуйте systemd кожного разу, коли ви редагуєте службу:
 
-```sh
-systemctl daemon-reload
-```
+   ```sh
+   systemctl daemon-reload
+   ```
 
 ### Управління службою
 
@@ -113,7 +119,7 @@ systemctl disable <назва-служби>
 
 ## PM2 (тільки для Node.js)
 
-PM2 — це менеджер демонів процесів для Node.js, який допоможе вам керувати та тримати ваш застосунок у режимі онлайн 24/7.
+PM2 --- це менеджер демонів процесів для Node.js, який допоможе вам керувати та тримати ваш застосунок у режимі онлайн 24/7.
 
 ### Встановлення
 

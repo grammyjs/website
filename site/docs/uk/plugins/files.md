@@ -1,6 +1,13 @@
+---
+prev: false
+next: false
+---
+
 # Спрощена обробка файлів у grammY (`files`)
 
 Цей плагін дозволяє легко завантажувати файли з серверів Telegram, а також отримувати URL-адресу, щоб ви могли завантажити файл самостійно.
+
+> [Пригадайте](../guide/files), як працюють файли та як їх завантажувати.
 
 ## Завантаження файлів
 
@@ -8,10 +15,9 @@
 Потім цей плагін встановлює метод `download` на результати виклику `getFile`.
 Наприклад:
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context } from "grammy";
 import { FileFlavor, hydrateFiles } from "@grammyjs/files";
 
@@ -35,10 +41,7 @@ bot.on([":video", ":animation"], async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 import { Bot } from "grammy";
 import { hydrateFiles } from "@grammyjs/files";
 
@@ -59,10 +62,7 @@ bot.on([":video", ":animation"], async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import { Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   FileFlavor,
@@ -89,8 +89,7 @@ bot.on([":video", ":animation"], async (ctx) => {
 });
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 Ви можете передати методу `download` рядок із шляхом для зберігання файлу, якщо не хочете створювати тимчасовий файл.
 Просто виконайте `await file.download("/шлях/до/файлу")`.
@@ -109,12 +108,11 @@ bot.on([":video", ":animation"], async (ctx) => {
 
 Результати `await bot.api.getFile()` також матимуть типові методи `download` та `getUrl`.
 Однак це не відображатиметься у типах.
-Якщо вам потрібно їх викликати, вам також варто встановити [розширювач для API](../advanced/transformers.md#розширювач-для-api) з назвою `FileApiFlavor` на обʼєкті бота:
+Якщо вам потрібно їх викликати, вам також варто встановити [розширювач для API](../advanced/transformers#розширювач-для-api) з назвою `FileApiFlavor` на обʼєкті бота:
 
-<CodeGroup>
-  <CodeGroupItem title="Node.js" active>
+::: code-group
 
-```ts
+```ts [Node.js]
 import { Api, Bot, Context } from "grammy";
 import { FileApiFlavor, FileFlavor, hydrateFiles } from "@grammyjs/files";
 
@@ -125,10 +123,7 @@ const bot = new Bot<MyContext, MyApi>("");
 // ...
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import { Api, Bot, Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   FileApiFlavor,
@@ -143,8 +138,7 @@ const bot = new Bot<MyContext, MyApi>("");
 // ...
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 ## Загальні відомості про плагін
 

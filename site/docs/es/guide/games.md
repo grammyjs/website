@@ -1,8 +1,3 @@
----
-prev: ./files.md
-next: ./deployment-types.md
----
-
 # Juegos
 
 ## Introducción
@@ -48,9 +43,9 @@ Una ventaja de usar el método `api.sendGame` es que puedes especificar el `chat
    });
    ```
 
-> [Recuerde](./basics.md#envio-de-mensajes) que puede especificar más opciones al enviar mensajes utilizando el objeto de opciones de tipo `Other`.
+> [Recuerde](./basics#envio-de-mensajes) que puede especificar más opciones al enviar mensajes utilizando el objeto de opciones de tipo `Other`.
 
-También puedes especificar un [teclado en línea](../plugins/keyboard.md#teclados-en-linea) personalizado para que el juego muestre los botones.
+También puedes especificar un [teclado en línea](../plugins/keyboard#teclados-en-linea) personalizado para que el juego muestre los botones.
 Por defecto, se enviará con un botón con nombre como `Play my_game`, donde _my_game_ es el nombre de su juego.
 
 ```ts
@@ -92,7 +87,7 @@ bot.on("callback_query:game_short_name", async (ctx) => {
   await ctx.answerCallbackQuery({ url: "your_game_url" });
 });
 
-bot.command("start", (ctx) => {
+bot.command("start", async (ctx) => {
   await ctx.replyWithGame("my_game", {
     reply_markup: keyboard,
     // O puede utilizar el método api aquí, según sus necesidades.
@@ -100,7 +95,7 @@ bot.command("start", (ctx) => {
 });
 ```
 
-> Recuerda añadir un adecuado [manejo de errores](./errors.md) a tu bot antes de ponerlo en marcha.
+> Recuerda añadir un adecuado [manejo de errores](./errors) a tu bot antes de ponerlo en marcha.
 
 Puede que ampliemos este artículo en el futuro con más secciones avanzadas y preguntas frecuentes, pero esto es ya todo lo que necesitas para empezar tu juego en Telegram.
 ¡Diviértete jugando! :space_invader:

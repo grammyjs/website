@@ -7,11 +7,10 @@ on:
     types: ["opened", "edited", "synchronize"]
 
 jobs:
-  format:
+  fmt:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup repo
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
       - uses: denoland/setup-deno@main
         with:
@@ -20,8 +19,31 @@ jobs:
       - name: Check Formatting
         run: deno fmt --check
 
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: latest
+
+      - name: Check Linting
+        working-directory: ./site
+        run: |
+          npm ci
+          npm run docs:lint
+
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: denoland/setup-deno@main
+        with:
+          deno-version: v1.x
+
       - name: Check Links
         if: github.ref == 'refs/heads/main'
         run: |
-          cd site/docs
-          deno run --allow-read --allow-net https://raw.githubusercontent.com/grammyjs/link-checker/main/main.ts
+          deno task check-links

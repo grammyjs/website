@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # 限制用户速率 (`ratelimiter`)
 
 ratelimiter 是用 grammY 或 [Telegraf](https://github.com/telegraf/telegraf) bot 框架制作的一个限速中间件。
@@ -30,7 +35,7 @@ ratelimiter 是用 grammY 或 [Telegraf](https://github.com/telegraf/telegraf) b
 
 `MEMORY_STORE` 或者内存中的跟踪是适用于大多数 bot 的，但如果你实现了 bot 集群，你将无法有效地使用内存存储。
 这就是为什么也提供了 Redis 选项。
-如果你使用 Deno，你可以传入 [ioredis](https://github.com/luin/ioredis) 或 [redis](https://deno.land/x/redis) 的客户端。
+如果你使用 Deno，你可以传入 [ioredis](https://github.com/redis/ioredis) 或 [redis](https://deno.land/x/redis) 的客户端。
 任何实现了 `incr` 和 `pexpire` 方法的 Redis 驱动器都可以正常工作。
 ratelimiter 与驱动器无关。
 
@@ -48,47 +53,38 @@ ratelimiter 与驱动器无关。
 
 这个示例演示了最简单的方式来使用默认行为的 ratelimiter：
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { limit } from "@grammyjs/ratelimiter";
 
 // 将每个用户的信息处理限制在每秒一条信息。
 bot.use(limit());
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 const { limit } = require("@grammyjs/ratelimiter");
 
 // 将每个用户的信息处理限制在每秒一条信息。
 bot.use(limit());
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
 
 // 将每个用户的信息处理限制在每秒一条信息。
 bot.use(limit());
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 ### 手动配置
 
 正如前面所说，你可以向 `limit()` 方法传入一个 `Options` 对象来改变 ratelimiter 的行为。
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import Redis from "ioredis";
 import { limit } from "@grammyjs/ratelimiter";
 
@@ -116,10 +112,7 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 const Redis = require("ioredis");
 const { limit } = require("@grammyjs/ratelimiter");
 
@@ -147,10 +140,7 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import { connect } from "https://deno.land/x/redis/mod.ts";
 import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
 
@@ -178,21 +168,19 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 正如你在上面的示例中看到的，每个用户每 2 秒钟最多只能发送 3 次请求。
 如果该用户发送更多请求，机器人会回复 _Please refrain from sending too many requests!_。
-由于我们不调用 [next()](../guide/middleware.md#中间件栈)，这个请求将被立即关闭。
+由于我们不调用 [next()](../guide/middleware#中间件栈)，这个请求将被立即关闭。
 
 > 请注意：为了避免 Telegram 服务器被请求淹没，`onLimitExceeded` 只会在每个 `timeFrame` 中执行一次。
 
 另一个用例是限制来自聊天室的请求而不是特定用户的请求：
 
-<CodeGroup>
-  <CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { limit } from "@grammyjs/ratelimiter";
 
 bot.use(
@@ -207,10 +195,7 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 const { limit } = require("@grammyjs/ratelimiter");
 
 bot.use(
@@ -225,10 +210,7 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-  <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
 
 bot.use(
@@ -243,8 +225,7 @@ bot.use(
 );
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 在这个示例中，我使用 `chat.id` 作为限制的唯一键。
 

@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Sessions and Storing Data (built-in)
 
 While you can always just write you own code to connect to a data storage of your choice, grammY supports a very convenient storage pattern called _sessions_.
@@ -41,7 +46,7 @@ In this case, we would call the chat identifier the _session key_.
 (You can read more about session keys [down here](#session-keys).)
 Effectively, your bot will store a map from a chat identifier to some custom session data, i.e. something like this:
 
-```json:no-line-numbers
+```json
 {
   "424242": { "pizzaCount": 24 },
   "987654": { "pizzaCount": 1729 }
@@ -75,7 +80,7 @@ We just modify the data in `ctx.session`, and the plugin will take care of the r
 > [Skip ahead](#how-to-use-sessions) if you already know that you want to use sessions.
 
 You may think, this is great, I never have to worry about databases again!
-And you are right, sessions are an ideal solution—but only for some types of data.
+And you are right, sessions are an ideal solution---but only for some types of data.
 
 In our experience, there are use cases where sessions truly shine.
 On the other hand, there are cases where a traditional database may be better suited.
@@ -102,10 +107,9 @@ You can add session support to grammY by using the built-in session middleware.
 
 Here is an example bot that counts messages containing a pizza emoji :pizza::
 
-<CodeGroup>
- <CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context, session, SessionFlavor } from "grammy";
 
 // Define the shape of our session.
@@ -134,10 +138,7 @@ bot.hears(/.*🍕.*/, (ctx) => ctx.session.pizzaCount++);
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 const { Bot, session } = require("grammy");
 
 const bot = new Bot("");
@@ -158,10 +159,7 @@ bot.hears(/.*🍕.*/, (ctx) => ctx.session.pizzaCount++);
 bot.start();
 ```
 
-</CodeGroupItem>
- <CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import {
   Bot,
   Context,
@@ -195,10 +193,9 @@ bot.hears(/.*🍕.*/, (ctx) => ctx.session.pizzaCount++);
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
-Note how we also have to [adjust the context type](../guide/context.md#customizing-the-context-object) to make the session available on it.
+Note how we also have to [adjust the context type](../guide/context#customizing-the-context-object) to make the session available on it.
 The context flavor is called `SessionFlavor`.
 
 ### Initial Session Data
@@ -252,10 +249,9 @@ By default, data is stored per chat.
 Using `getSessionKey` allows you to store data per user, or per user-chat combination, or however you want.
 Here are three examples:
 
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 // Stores data per chat (default).
 function getSessionKey(ctx: Context): string | undefined {
   // Let all users in a group chat share the same session,
@@ -282,10 +278,7 @@ function getSessionKey(ctx: Context): string | undefined {
 bot.use(session({ getSessionKey }));
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 // Stores data per chat (default).
 function getSessionKey(ctx) {
   // Let all users in a group chat share the same session,
@@ -312,8 +305,7 @@ function getSessionKey(ctx) {
 bot.use(session({ getSessionKey }));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 Whenever `getSessionKey` returns `undefined`, `ctx.session` will be `undefined`.
 For example, the default session key resolver will not work for `poll`/`poll_answer` updates or `inline_query` updates because they do not belong to a chat (`ctx.chat` is `undefined`).
@@ -323,7 +315,7 @@ When you are running your bot on webhooks, you should avoid using the option `ge
 Telegram sends webhooks sequentially per chat, so the default session key resolver is the only implementation that guarantees not to cause data loss.
 
 If you must use the option (which is of course still possible), you should know what you are doing.
-Make sure you understand the consequences of this configuration by reading [this](../guide/deployment-types.md) article and especially [this](./runner.md#sequential-processing-where-necessary) one.
+Make sure you understand the consequences of this configuration by reading [this](../guide/deployment-types) article and especially [this](./runner#sequential-processing-where-necessary) one.
 :::
 
 ### Chat Migrations
@@ -340,7 +332,7 @@ However, there are several ways of dealing with this issue:
 - Ignoring the problem.
   The bot's session data will effectively reset when a group is migrated.
   Simple, reliable, default behavior, but potentially unexpected once per chat.
-  For example, if a migration happens while a user is in a conversation powered by the [conversations plugin](./conversations.md), the conversation will be reset.
+  For example, if a migration happens while a user is in a conversation powered by the [conversations plugin](./conversations), the conversation will be reset.
 
 - Only storing temporary data (or data with timeouts) in the session, and using a database for the important things that need to be migrated when a chat migrates.
   This can then use transactions and custom logic to handle concurrent data access from the old and the new chat.
@@ -351,7 +343,7 @@ However, there are several ways of dealing with this issue:
   The issue is that there is no guarantee that these messages are sent before a new message in the supergroup appears.
   Hence, the bot could receive a message from the new supergroup before it is aware of any migration and thus, it can not match the two chats, resulting in the aforementioned problems.
 
-- Another workaround would be to limit the bot only for supergroups with [filtering](../guide/filter-queries.md) (or limit only session related features to supergroups).
+- Another workaround would be to limit the bot only for supergroups with [filtering](../guide/filter-queries) (or limit only session related features to supergroups).
   However, this shifts the problematic / inconvenience to the users.
 
 - Letting the users decide explicitly.
@@ -412,15 +404,14 @@ bot.use(session({
 > The list of supported integrations of external storage solutions is [down here](#external-storage-solutions).
 
 A benefit of using grammY is that you get access to free cloud storage.
-It requires zero setup—all authentication is done using your bot token.
+It requires zero setup---all authentication is done using your bot token.
 Check out the [repository](https://github.com/grammyjs/storages/tree/main/packages/free)!
 
 It is very easy to use:
 
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { freeStorage } from "@grammyjs/storage-free";
 
 bot.use(session({
@@ -429,10 +420,7 @@ bot.use(session({
 }));
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 const { freeStorage } = require("@grammyjs/storage-free");
 
 bot.use(session({
@@ -441,10 +429,7 @@ bot.use(session({
 }));
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import { freeStorage } from "https://deno.land/x/grammy_storages/free/src/mod.ts";
 
 bot.use(session({
@@ -453,18 +438,16 @@ bot.use(session({
 }));
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 Done!
 Your bot will now use a persistent data storage.
 
 Here is a full example bot that you can copy to try it out.
 
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context, session, SessionFlavor } from "grammy";
 import { freeStorage } from "@grammyjs/storage-free";
 
@@ -492,10 +475,7 @@ bot.catch((err) => console.error(err));
 bot.start();
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 const { Bot, session } = require("grammy");
 const { freeStorage } = require("@grammyjs/storage-free");
 
@@ -517,10 +497,7 @@ bot.catch((err) => console.error(err));
 bot.start();
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Deno">
-
-```ts
+```ts [Deno]
 import {
   Bot,
   Context,
@@ -553,8 +530,7 @@ bot.catch((err) => console.error(err));
 bot.start();
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 ### External Storage Solutions
 
@@ -599,7 +575,7 @@ Naturally, you can also use the same storage with different configuration.
 It is also possible to use different [session keys](#session-keys) for each fragment.
 As a result, you can store some data per chat and some data per user.
 
-> If you are using [grammY runner](./runner.md), make sure to configure `sequentialize` correctly by returning **all** session keys as constraints from the function.
+> If you are using [grammY runner](./runner), make sure to configure `sequentialize` correctly by returning **all** session keys as constraints from the function.
 
 You can use this feature by passing `type: "multi"` to the session configuration.
 In turn, you will need to configure each fragment with its own config.
@@ -671,7 +647,7 @@ In practice, instead of having the session data available under `ctx.session`, y
 
 ```ts
 // Default sessions (strict sessions)
-bot.command("settings", (ctx) => {
+bot.command("settings", async (ctx) => {
   // `session` is the session data
   const session = ctx.session;
 });
@@ -704,7 +680,7 @@ If you set `ctx.session` to be a promise, it will be `await`ed before writing th
 This would allow for the following code:
 
 ```ts
-bot.command("reset", (ctx) => {
+bot.command("reset", async (ctx) => {
   // Much shorter than having to `await ctx.session` first:
   ctx.session = ctx.session.then((stats) => {
     stats.counter = 0;
@@ -799,10 +775,9 @@ interface SessionData {
 
 Migration functions let you transform the old string array into the new array of pet objects.
 
-<CodeGroup>
-<CodeGroupItem title="TypeScript" active>
+::: code-group
 
-```ts
+```ts [TypeScript]
 function addBirthdayToPets(old: { petNames: string[] }): SessionData {
   return {
     pets: old.petNames.map((name) => ({ name })),
@@ -817,10 +792,7 @@ const enhanced = enhanceStorage({
 });
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="JavaScript">
-
-```js
+```js [JavaScript]
 function addBirthdayToPets(old) {
   return {
     pets: old.petNames.map((name) => ({ name })),
@@ -835,8 +807,7 @@ const enhanced = enhanceStorage({
 });
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
 
 Whenever session data is read, the storage enhancement will check if the session data is already at version `1`.
 If the version is lower (or missing because you were not using this feature before) then the migration function will be run.
