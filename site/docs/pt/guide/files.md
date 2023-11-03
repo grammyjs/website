@@ -71,7 +71,7 @@ No objeto de contexto, `getFile` é um [atalho](./context#atalhos) e buscará in
 Se você quiser obter um arquivo diferente ao tratar uma mensagem, use `ctx.api.getFile(file_id)` em vez disso.
 :::
 
-> Confira os atalhos [`:media` e `:file`](./filter-queries#atalhos) para consultas de filtro se você quiser receber qualquer tipo de arquivo.
+> Confira os atalhos [`:media` e `:file`](./filter-queries#atalhos) para filter queries se você quiser receber qualquer tipo de arquivo.
 
 Depois de chamar `getFile`, você pode usar o `file_path` retornado para baixar o arquivo usando esta URL `https://api.telegram.org/file/bot<token>/<file_path>`, onde `<token>` deve ser substituído pelo token do seu bot.
 
@@ -110,7 +110,7 @@ await ctx.replyWithPhoto(existingFileId);
 // Enviar via URL.
 await ctx.replyWithPhoto("https://grammy.dev/images/grammY.png");
 
-// Alternativamente, você usa bot.api.sendPhoto() ou ctx.api.sendPhoto().
+// Alternativamente, você pode usar bot.api.sendPhoto() ou ctx.api.sendPhoto().
 ```
 
 ### Enviando Seus Próprios Arquivos
