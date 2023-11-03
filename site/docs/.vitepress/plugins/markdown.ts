@@ -1,6 +1,6 @@
 import MarkdownIt from "markdown-it";
-import { betterLineBreaks, currentVersions } from ".";
+import { betterLineBreaks, currentVersions, htmlInCodeBlocks } from ".";
 
 export const markdown = (md: MarkdownIt) => {
-  md.use(currentVersions).use(betterLineBreaks);
+  md.use(currentVersions).use(betterLineBreaks).use(htmlInCodeBlocks);
 };

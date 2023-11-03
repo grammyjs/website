@@ -401,7 +401,7 @@ export const siteEn: LocaleConfig = {
         },
         {
           text: "API Reference",
-          link: "https://deno.land/x/grammy/mod.ts",
+          link: "/ref/core/",
         },
       ],
       sidebar: {
