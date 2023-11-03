@@ -28,7 +28,7 @@ const paths: [string, string, string][] = Deno.args[1]
       slug,
       entrypoint = "src/mod.ts",
     }) => [
-    //   "file:///home/roj/Projects/grammY/src/mod.ts",
+      //   "file:///home/roj/Projects/grammY/src/mod.ts",
       `https://raw.githubusercontent.com/${user}/${repo}/${branch}/${entrypoint}`,
       path.join(out, slug),
       slug,
@@ -107,7 +107,7 @@ for (const [nodes, path_, slug] of refs) {
   {
     const filename = path.join(path_, "README.md");
     console.log(filename);
-    const content = renderToString(<ToC>{nodes}</ToC>);
+    const content = renderToString(<ToC getLink={getLink}>{nodes}</ToC>);
     Deno.writeTextFileSync(filename, content);
   }
   console.log("Wrote", path_);
