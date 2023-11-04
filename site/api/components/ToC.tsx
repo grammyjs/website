@@ -22,7 +22,11 @@ function S(
 }
 
 export function ToC(
-  { children: nodes, getLink }: { children: DocNode[]; getLink: LinkGetter },
+  { children: nodes, name, getLink }: {
+    children: DocNode[];
+    name: string;
+    getLink: LinkGetter;
+  },
 ) {
   if (!nodes.length) {
     return null;
@@ -32,7 +36,7 @@ export function ToC(
 
   return (
     <>
-      <H1>Index</H1>
+      <H1>{name} Reference</H1>
       <S getLink={getLink} title="Classes">{k("class")}</S>
       <S getLink={getLink} title="Variables">{k("variable")}</S>
       <S getLink={getLink} title="Functions">{k("function")}</S>
