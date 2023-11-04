@@ -498,6 +498,7 @@ function LiteralMethods(
     <>
       {methods.map((
         { name, kind, optional, computed, returnType, typeParams, params },
+        i,
       ) => {
         const item = (
           <span>
@@ -526,10 +527,10 @@ function LiteralMethods(
                   {" "}
                 </span>
               )
-              : "; "}
+              : ""}
           </span>
         );
-        return <>{";\n  "}{item}</>;
+        return <>{(i == 0 ? "" : ";") + "\n  "}{item}</>;
       })}
     </>
   );
