@@ -1,6 +1,6 @@
 import { modules } from "../modules.ts";
 import * as path from "std/path/mod.ts";
-import { doc } from "deno_doc/mod.ts";
+// import { doc } from "deno_doc/mod.ts";
 import { renderToString } from "preact-render-to-string";
 import { Class } from "./components/Class.tsx";
 import { Function } from "./components/Function.tsx";
@@ -11,16 +11,16 @@ import { Interface } from "./components/Interface.tsx";
 import { Variable } from "./components/Variable.tsx";
 import { TypeAlias } from "./components/TypeAlias.tsx";
 
-/// deno-lint-ignore no-explicit-any require-await
-// async function doc(...a: any): Promise<any[]> {
-//   return JSON.parse(Deno.readTextFileSync("doc.json"));
-// }
+// deno-lint-ignore no-explicit-any require-await
+async function doc(...a: any): Promise<any[]> {
+  return JSON.parse(Deno.readTextFileSync("doc.json"));
+}
 
 const out = Deno.args[0];
 if (!out) throw new Error("no out!");
 
-const paths: [string, string, string][] = Deno.args[1]
-  ? [[Deno.args[1], path.join(out, "mod"), "core"]]
+const paths: [string, string, string, string][] = Deno.args[1]
+  ? [[Deno.args[1], path.join(out, "mod"), "core", "Core API"]]
   : modules.map(
     ({
       user = "grammyjs",
@@ -28,18 +28,20 @@ const paths: [string, string, string][] = Deno.args[1]
       branch = "main",
       slug,
       entrypoint = "src/mod.ts",
+      name
     }) => [
-      //   "file:///home/roj/Projects/grammY/src/mod.ts",
-      `https://raw.githubusercontent.com/${user}/${repo}/${branch}/${entrypoint}`,
+        "file:///home/roj/Projects/grammY/src/mod.ts",
+      // `https://raw.githubusercontent.com/${user}/${repo}/${branch}/${entrypoint}`,
       path.join(out, slug),
       slug,
+      name
     ],
   );
 
 console.log("Generating docs for", paths.length, "modules");
 
-const refs: Array<[DocNode[], string, string]> = await Promise.all(
-  paths.map(async ([id, path, slug]) => {
+const refs: Array<[DocNode[], string, string, string]> = await Promise.all(
+  paths.map(async ([id, path, slug, name]) => {
     let nodes = await doc(id);
     const names = new Set<string>();
     nodes = nodes.filter((v) => {
@@ -49,7 +51,7 @@ const refs: Array<[DocNode[], string, string]> = await Promise.all(
         names.add(v.name);
       }
     });
-    return [nodes.sort((a, b) => a.name.localeCompare(b.name)), path, slug];
+    return [nodes.sort((a, b) => a.name.localeCompare(b.name)), path, slug, name];
   }),
 );
 
@@ -99,7 +101,7 @@ try {
 }
 
 console.log("Creating files");
-for (const [nodes, path_, slug] of refs) {
+for (const [nodes, path_, slug, name] of refs) {
   const getLink = (repr: string) => {
     const node = nodes.find((v) => v.name == repr);
     if (node !== undefined) {
@@ -118,7 +120,7 @@ for (const [nodes, path_, slug] of refs) {
 editLink: false
 ---
 
-${renderToString(<ToC getLink={getLink}>{nodes}</ToC>)}`;
+${renderToString(<ToC name={name} getLink={getLink}>{nodes}</ToC>)}`;
 
     Deno.writeTextFileSync(filename, content);
   }
