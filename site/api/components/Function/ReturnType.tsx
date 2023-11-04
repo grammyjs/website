@@ -14,7 +14,6 @@ export function ReturnType(
 ) {
   return (
     <>
-      <H3>Return Type</H3>
       <CodeBlock>
         <TsType getLink={getLink}>{ret}</TsType>
       </CodeBlock>
