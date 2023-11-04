@@ -401,7 +401,7 @@ export const siteEn: LocaleConfig = {
         },
         {
           text: "API Reference",
-          link: "/ref/core/",
+          link: "/api/core/",
         },
       ],
       sidebar: {

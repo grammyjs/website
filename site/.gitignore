@@ -25,5 +25,5 @@ cache/
 dist/
 
 # generated API reference files
-docs/ref/
-!docs/ref/README.md
+docs/api/
+!docs/api/README.md
