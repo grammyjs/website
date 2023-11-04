@@ -1,23 +1,33 @@
 import { ComponentChildren } from "preact";
 
 export function P(
-  { children, doc }: { children?: ComponentChildren; doc?: false } | {
+  props: { children?: ComponentChildren; doc?: false } | {
     children?: string;
     doc: true;
   },
 ) {
-  if (doc) {
+  if (props.doc && props.children) {
+    props.children = props.children.replaceAll(
+      /\n```(ts)\n/,
+      "\n```ts:no-line-numbers\n",
+    );
+  }
+  if (props.doc) {
     return (
       <>
         {"\n\n"}
-        <p
+        <div
           dangerouslySetInnerHTML={{
-            __html: children ? `\n\n${children}\n\n` : "",
+            __html: props.children
+              ? `\n\n${
+                props.children.replaceAll(">", "&gt;").replaceAll("<", "&lt;")
+              }\n\n`
+              : "",
           }}
         />
         {"\n\n"}
       </>
     );
   }
-  return <>{"\n\n"}{children}{"\n\n"}</>;
+  return <>{"\n\n"}{props.children}{"\n\n"}</>;
 }

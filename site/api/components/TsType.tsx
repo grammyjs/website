@@ -723,7 +723,11 @@ function ParamRest({
     <>
       <span style="color:#F286C4;">...</span>
       <Param getLink={getLink}>{param.arg}</Param>
-      {param.tsType && <>: <TsType getLink={getLink}>{param.tsType}</TsType></>}
+      {param.tsType && (
+        <>
+          : <TsType getLink={getLink}>{param.tsType}</TsType>
+        </>
+      )}
     </>
   );
 }
