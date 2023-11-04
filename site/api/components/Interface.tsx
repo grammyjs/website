@@ -16,7 +16,7 @@ export function Interface(
   return (
     <>
       <H1>{iface.name}</H1>
-      <P>{iface.jsDoc?.doc}</P>
+      <P doc>{iface.jsDoc?.doc}</P>
       <Sector title="Properties" show={!!props.length}>
         <Properties getLink={getLink}>{props}</Properties>
       </Sector>

@@ -21,7 +21,7 @@ export function Function(
   return (
     <>
       <H1>{func.name}</H1>
-      <P>{func.jsDoc?.doc}</P>
+      <P doc>{func.jsDoc?.doc}</P>
       <Sector title="Type Parameters" show={!!typeParams.length}>
         <TypeParams getLink={getLink}>{typeParams}</TypeParams>
       </Sector>

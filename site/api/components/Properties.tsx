@@ -26,7 +26,7 @@ export function Properties({
             <PropertyName hasType={!!v.tsType} class>{v}</PropertyName>{" "}
             {v.tsType && <TsType getLink={getLink}>{v.tsType}</TsType>};
           </CodeBlock>
-          <P>{"jsDoc" in v && v.jsDoc}</P>
+          {"jsDoc" in v && <P doc>{v.jsDoc?.doc}</P>}
         </>
       ))}
     </>

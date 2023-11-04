@@ -3,6 +3,7 @@ import { Params, TsType } from "./TsType.tsx";
 import { LinkGetter } from "./types.ts";
 import { CodeBlock } from "./CodeBlock.tsx";
 import { H3 } from "./H3.tsx";
+import { P } from "./P.tsx";
 
 export function Method({
   children: method,
@@ -46,7 +47,7 @@ export function Method({
         ;
       </CodeBlock>
       {"\n\n"}
-      {method.jsDoc?.doc}
+      <P doc>{method.jsDoc?.doc}</P>
       {"\n\n\n\n"}
     </>
   );

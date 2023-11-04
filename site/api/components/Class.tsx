@@ -25,7 +25,7 @@ export function Class(
   return (
     <>
       <H1>{klass.name}</H1>
-      <P>{klass.jsDoc?.doc}</P>
+      <P doc>{klass.jsDoc?.doc}</P>
       <Sector title="Constructors" show={!!ctors.length}>
         <Constructors getLink={getLink}>
           {ctors.map((v) => ({
