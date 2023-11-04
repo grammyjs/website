@@ -73,7 +73,11 @@ function createDoc(
       break;
   }
   if (component != null) {
-    const contents = renderToString(component);
+    const contents = `---
+editLink: false
+---
+
+${renderToString(component)}`;
     const filename = path.join(path_, `${node.name}.md`);
     Deno.mkdirSync(path.dirname(filename), { recursive: true });
     Deno.writeTextFileSync(filename, contents, { append: true });
@@ -107,7 +111,12 @@ for (const [nodes, path_, slug] of refs) {
   {
     const filename = path.join(path_, "README.md");
     console.log(filename);
-    const content = renderToString(<ToC getLink={getLink}>{nodes}</ToC>);
+    const content = `---
+editLink: false
+---
+
+${renderToString(<ToC getLink={getLink}>{nodes}</ToC>)}`;
+
     Deno.writeTextFileSync(filename, content);
   }
   console.log("Wrote", path_);

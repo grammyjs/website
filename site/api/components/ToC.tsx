@@ -1,8 +1,5 @@
 import {
   DocNode,
-  DocNodeClass,
-  DocNodeFunction,
-  DocNodeInterface,
   DocNodeKind,
 } from "deno_doc/types.d.ts";
 import { H1 } from "./H1.tsx";
