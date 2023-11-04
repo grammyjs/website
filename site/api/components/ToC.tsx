@@ -1,7 +1,4 @@
-import {
-  DocNode,
-  DocNodeKind,
-} from "deno_doc/types.d.ts";
+import { DocNode, DocNodeKind } from "deno_doc/types.d.ts";
 import { H1 } from "./H1.tsx";
 import { Sector } from "./Sector.tsx";
 import { LinkGetter } from "./types.ts";
@@ -40,7 +37,7 @@ export function ToC(
       <S getLink={getLink} title="Variables">{k("variable")}</S>
       <S getLink={getLink} title="Functions">{k("function")}</S>
       <S getLink={getLink} title="Interfaces">{k("interface")}</S>
-      {/* <S title="Type Aliases">{k("typeAlias")}</S> */}
+      <S getLink={getLink} title="Type Aliases">{k("typeAlias")}</S>
     </>
   );
 }

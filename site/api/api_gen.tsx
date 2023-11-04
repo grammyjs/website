@@ -9,6 +9,7 @@ import { ToC } from "./components/ToC.tsx";
 import { JSX } from "preact/jsx-runtime";
 import { Interface } from "./components/Interface.tsx";
 import { Variable } from "./components/Variable.tsx";
+import { TypeAlias } from "./components/TypeAlias.tsx";
 
 /// deno-lint-ignore no-explicit-any require-await
 // async function doc(...a: any): Promise<any[]> {
@@ -71,6 +72,8 @@ function createDoc(
     case "interface":
       component = <Interface getLink={getLink}>{node}</Interface>;
       break;
+    case "typeAlias":
+      component = <TypeAlias getLink={getLink}>{node}</TypeAlias>;
   }
   if (component != null) {
     const contents = `---

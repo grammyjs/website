@@ -316,7 +316,7 @@ function This() {
   return <>this</>;
 }
 
-function TypeParam_({
+export function TypeParam_({
   children: param,
   constraint = "extends",
   getLink,
@@ -336,7 +336,7 @@ function TypeParam_({
       )}
       {param.default && (
         <>
-          <>=</>
+          {" = "}
           <TsType getLink={getLink}>{param.default}</TsType>
         </>
       )}
@@ -727,7 +727,7 @@ function ParamRest({
   );
 }
 
-function Param({
+export function Param({
   children: param,
   optional = false,
   getLink,

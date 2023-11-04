@@ -6,7 +6,7 @@ import {
 import { PropertyName } from "./PropertyName.tsx";
 import { TsType } from "./TsType.tsx";
 import { LinkGetter } from "./types.ts";
-import { H3 } from "./H2%20copy.tsx";
+import { H3 } from "./H3.tsx";
 import { CodeBlock } from "./CodeBlock.tsx";
 import { P } from "./P.tsx";
 

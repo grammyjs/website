@@ -7,7 +7,7 @@ import { PropertyName } from "./PropertyName.tsx";
 import { Params, TsType } from "./TsType.tsx";
 import { LinkGetter } from "./types.ts";
 import { CodeBlock } from "./CodeBlock.tsx";
-import { H3 } from "./H2%20copy.tsx";
+import { H3 } from "./H3.tsx";
 
 export function Method({
   children: method,
