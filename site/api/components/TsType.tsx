@@ -120,6 +120,9 @@ function TypeParams({
   children: TsTypeDef[];
   getLink: LinkGetter;
 }) {
+  if (!typeParams.length) {
+    return null;
+  }
   return (
     <>
       <span class="opacity-50">&lt;</span>
@@ -136,7 +139,7 @@ function TypeParams({
   );
 }
 
-function TypeRef({
+export function TypeRef({
   getLink,
   children: typeRef,
 }: {
