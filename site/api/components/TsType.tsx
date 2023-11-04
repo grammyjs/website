@@ -700,7 +700,7 @@ function ParamObject({
   for (let i = 0; i < param.props.length; i++) {
     props.push(<ObjectPat getLink={getLink}>{param.props[i]}</ObjectPat>);
     if (i < param.props.length - 1) {
-      props.push(<span>,</span>);
+      props.push(<span>,{" "}</span>);
     }
   }
   return (
