@@ -73,3 +73,12 @@
     margin-top: 24px;
   }
 }
+
+.typeRef {
+  text-decoration-color: #97E1F1 !important;
+}
+
+.typeRef::after {
+  content: none !important;
+  display: none !important;
+}

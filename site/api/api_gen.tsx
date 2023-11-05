@@ -1,6 +1,6 @@
 import { modules } from "../modules.ts";
 import * as path from "std/path/mod.ts";
-// import { doc } from "deno_doc/mod.ts";
+import { doc } from "deno_doc/mod.ts";
 import { renderToString } from "preact-render-to-string";
 import { Class } from "./components/Class.tsx";
 import { Function } from "./components/Function.tsx";
@@ -10,11 +10,12 @@ import { JSX } from "preact/jsx-runtime";
 import { Interface } from "./components/Interface.tsx";
 import { Variable } from "./components/Variable.tsx";
 import { TypeAlias } from "./components/TypeAlias.tsx";
+import links from "./links.ts";
 
-// deno-lint-ignore no-explicit-any require-await
-async function doc(...a: any): Promise<any[]> {
-  return JSON.parse(Deno.readTextFileSync("doc.json"));
-}
+/// deno-lint-ignore no-explicit-any require-await
+// async function doc(...a: any): Promise<any[]> {
+//   return JSON.parse(Deno.readTextFileSync("doc.json"));
+// }
 
 const out = Deno.args[0];
 if (!out) throw new Error("no out!");
@@ -28,13 +29,13 @@ const paths: [string, string, string, string][] = Deno.args[1]
       branch = "main",
       slug,
       entrypoint = "src/mod.ts",
-      name
+      name,
     }) => [
-        "file:///home/roj/Projects/grammY/src/mod.ts",
-      // `https://raw.githubusercontent.com/${user}/${repo}/${branch}/${entrypoint}`,
+      // "file:///home/roj/Projects/grammY/src/mod.ts",
+      `https://raw.githubusercontent.com/${user}/${repo}/${branch}/${entrypoint}`,
       path.join(out, slug),
       slug,
-      name
+      name,
     ],
   );
 
@@ -51,7 +52,12 @@ const refs: Array<[DocNode[], string, string, string]> = await Promise.all(
         names.add(v.name);
       }
     });
-    return [nodes.sort((a, b) => a.name.localeCompare(b.name)), path, slug, name];
+    return [
+      nodes.sort((a, b) => a.name.localeCompare(b.name)),
+      path,
+      slug,
+      name,
+    ];
   }),
 );
 
@@ -107,7 +113,7 @@ for (const [nodes, path_, slug, name] of refs) {
     if (node !== undefined) {
       return "/ref/" + slug + "/" + encodeURIComponent(repr);
     } else {
-      return null;
+      return links[repr] ?? null;
     }
   };
   for (const node of nodes) {

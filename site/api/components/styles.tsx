@@ -9,7 +9,11 @@ export function StyleStrLit({ children }: { children?: ComponentChildren }) {
 }
 
 export function StyleTypeRef({ children }: { children?: ComponentChildren }) {
-  return <span style="color:#97E1F1;font-style:italic">{children}</span>;
+  return (
+    <span style="color:#97E1F1;font-style:italic;">
+      {children}
+    </span>
+  );
 }
 
 export function StyleCallee({ children }: { children?: ComponentChildren }) {

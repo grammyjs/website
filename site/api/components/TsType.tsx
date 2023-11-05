@@ -144,8 +144,15 @@ export function TypeRef({
   const link = getLink(typeRef.typeName);
   let name: JSX.Element;
   if (link != null) {
+    const differentOrigin = !link.startsWith("/");
     name = (
-      <a href={link} style={{ textDecoration: "underline" }}>
+      <a
+        href={link}
+        class="typeRef"
+        style={{ textDecoration: "underline" }}
+        target={differentOrigin ? "blank" : undefined}
+        rel={differentOrigin ? undefined : "noopener noreferrer"}
+      >
         <StyleTypeRef>{typeRef.typeName}</StyleTypeRef>
       </a>
     );
