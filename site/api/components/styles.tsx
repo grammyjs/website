@@ -19,3 +19,7 @@ export function StyleTypeRef({ children }: { children?: ComponentChildren }) {
 export function StyleCallee({ children }: { children?: ComponentChildren }) {
   return <span style="color:#62E884">{children}</span>;
 }
+
+export function StyleNum({ children }: { children?: ComponentChildren }) {
+  return <span style="color:#BF9EEE">{children}</span>;
+}

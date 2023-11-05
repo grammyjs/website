@@ -26,7 +26,13 @@ import {
 import { JSX } from "preact/jsx-runtime";
 import { PropertyName } from "./PropertyName.tsx";
 import { LinkGetter } from "./types.ts";
-import { StyleCallee, StyleKw, StyleStrLit, StyleTypeRef } from "./styles.tsx";
+import {
+  StyleCallee,
+  StyleKw,
+  StyleNum,
+  StyleStrLit,
+  StyleTypeRef,
+} from "./styles.tsx";
 
 export function TsType({
   getLink,
@@ -97,11 +103,16 @@ function Literal({ children: literal }: { children: LiteralDef }) {
     case "string":
       return <StyleStrLit>"{literal.string}"</StyleStrLit>;
     case "bigInt":
-      return <>{literal.string}n</>;
+      return (
+        <>
+          <StyleNum>{literal.string}</StyleNum>
+          <StyleKw>n</StyleKw>
+        </>
+      );
     case "number":
-      return <>{literal.number}</>;
+      return <StyleNum>{literal.number}</StyleNum>;
     case "boolean":
-      return <>{literal.boolean}</>;
+      return <StyleTypeRef>{literal.boolean.toString()}</StyleTypeRef>;
     case "template":
       break;
   }
