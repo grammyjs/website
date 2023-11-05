@@ -375,7 +375,7 @@ function FnOrConstructor({
     <>
       {constructor ? <StyleKw>{"new "}</StyleKw> : ""}
       <TypeParams_ getLink={getLink}>{typeParams}</TypeParams_>(
-      <Params getLink={getLink}>{params}</Params>) =&gt;{" "}
+      <Params getLink={getLink}>{params}</Params>) <StyleKw>=&gt;</StyleKw>{" "}
       <TsType getLink={getLink}>{tsType}</TsType>
     </>
   );
@@ -390,9 +390,9 @@ function Conditional({
 }) {
   return (
     <>
-      <TsType getLink={getLink}>{conditional.checkType}</TsType> extends{" "}
-      <TsType getLink={getLink}>{conditional.extendsType}</TsType> ?{" "}
-      <TsType getLink={getLink}>{conditional.trueType}</TsType> :{" "}
+      <TsType getLink={getLink}>{conditional.checkType}</TsType> <StyleKw>extends</StyleKw>{" "}
+      <TsType getLink={getLink}>{conditional.extendsType}</TsType> <StyleKw>?</StyleKw>{" "}
+      <TsType getLink={getLink}>{conditional.trueType}</TsType> <StyleKw>:</StyleKw>{" "}
       <TsType getLink={getLink}>{conditional.falseType}</TsType>
     </>
   );
