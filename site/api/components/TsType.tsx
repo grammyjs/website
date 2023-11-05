@@ -133,16 +133,11 @@ function TypeParams({
   }
   return (
     <>
-      <span class="opacity-50">&lt;</span>
+      &lt;
       {typeParams
         .map((v) => <TsType getLink={getLink}>{v}</TsType>)
-        .reduce((a, b) => (
-          <>
-            {a}
-            <span class="opacity-50">,</span> {b}
-          </>
-        ))}
-      <span class="opacity-50">&gt;</span>
+        .reduce((a, b) => <>{a}, {b}</>)}
+      &gt;
     </>
   );
 }
@@ -207,11 +202,7 @@ function Intersection({
 }) {
   return intersection
     .map((v) => <TsType getLink={getLink}>{v}</TsType>)
-    .reduce((a, b) => (
-      <>
-        {a} <span class="opacity-50">&</span> {b}
-      </>
-    ));
+    .reduce((a, b) => <>{a} & {b}</>);
 }
 
 function Array({
@@ -223,8 +214,7 @@ function Array({
 }) {
   return (
     <>
-      <TsType getLink={getLink}>{array}</TsType>
-      <span class="opacity-50">[]</span>
+      <TsType getLink={getLink}>{array}</TsType>[]
     </>
   );
 }
@@ -238,16 +228,9 @@ function Tuple({
 }) {
   return (
     <>
-      <span class="opacity-50">[</span>
-      {tuple
+      [{tuple
         .map((v) => <TsType getLink={getLink}>{v}</TsType>)
-        .reduce((a, b) => (
-          <>
-            {a}
-            <span class="opacity-50">,</span> {b}
-          </>
-        ))}
-      <span class="opacity-50">]</span>
+        .reduce((a, b) => <>{a}, {b}</>)}]
     </>
   );
 }
@@ -365,10 +348,10 @@ export function TypeParams_({
   for (let i = 0; i < params.length; i++) {
     items.push(<TypeParam_ getLink={getLink}>{params[i]}</TypeParam_>);
     if (i < params.length - 1) {
-      items.push(<span>,</span>);
+      items.push(<>{", "}</>);
     }
   }
-  return <span>&lt;{items}&gt;</span>;
+  return <>&lt;{items}&gt;</>;
 }
 
 function FnOrConstructor({
@@ -380,12 +363,12 @@ function FnOrConstructor({
 }) {
   const { constructor, typeParams, params, tsType } = children;
   return (
-    <span>
-      {constructor ? <span>new{" "}</span> : ""}
+    <>
+      {constructor ? <StyleKw>{"new "}</StyleKw> : ""}
       <TypeParams_ getLink={getLink}>{typeParams}</TypeParams_>(
       <Params getLink={getLink}>{params}</Params>) =&gt;{" "}
       <TsType getLink={getLink}>{tsType}</TsType>
-    </span>
+    </>
   );
 }
 
@@ -399,10 +382,8 @@ function Conditional({
   return (
     <>
       <TsType getLink={getLink}>{conditional.checkType}</TsType> extends{" "}
-      <TsType getLink={getLink}>{conditional.extendsType}</TsType>{" "}
-      <span class="opacity-50">?</span>{" "}
-      <TsType getLink={getLink}>{conditional.trueType}</TsType>{" "}
-      <span class="opacity-50">:</span>{" "}
+      <TsType getLink={getLink}>{conditional.extendsType}</TsType> ?{" "}
+      <TsType getLink={getLink}>{conditional.trueType}</TsType> :{" "}
       <TsType getLink={getLink}>{conditional.falseType}</TsType>
     </>
   );
@@ -415,11 +396,11 @@ function IndexedAccess(
   },
 ) {
   return (
-    <span>
+    <>
       <TsType getLink={getLink}>{objType}</TsType>[<TsType getLink={getLink}>
         {indexType}
       </TsType>]
-    </span>
+    </>
   );
 }
 
@@ -434,17 +415,17 @@ function LiteralIndexSignatures(
   }
   const items = signatures.map(({ params, readonly, tsType }) => {
     const item = (
-      <span>
-        {readonly ? <span>readonly{" "}</span> : undefined}[<Params
+      <>
+        {readonly ? <StyleKw>{"readonly "}</StyleKw> : undefined}[<Params
           getLink={getLink}
         >
           {params}
         </Params>]{tsType && (
-          <span>
+          <>
             : <TsType getLink={getLink}>{tsType}</TsType>
-          </span>
+          </>
         )};{" "}
-      </span>
+      </>
     );
     return <>{"  "}{item}</>;
   });
@@ -461,18 +442,18 @@ function LiteralCallSignatures(
     <>
       {items.map(({ typeParams, params, tsType }) => {
         const item = (
-          <span>
+          <>
             <TypeParams_ getLink={getLink}>{typeParams}</TypeParams_>(<Params
               getLink={getLink}
             >
               {params}
             </Params>){tsType &&
               (
-                <span>
+                <>
                   : <TsType getLink={getLink}>{tsType}</TsType>
-                </span>
+                </>
               )};{" "}
-          </span>
+          </>
         );
         return <>{"  "}{item}</>;
       })}
@@ -493,8 +474,8 @@ function LiteralProperties(
     <>
       {props
         .map(({ name, readonly, computed, optional, tsType }) => (
-          <span>
-            {readonly ? <span>readonly{" "}</span> : undefined}
+          <>
+            {readonly ? <StyleKw>{"readonly "}</StyleKw> : undefined}
             {computed ? `[${name}]` : name}
             {optional ? "?" : undefined}
             {tsType
@@ -504,7 +485,7 @@ function LiteralProperties(
                 </>
               )
               : ""}
-          </span>
+          </>
         ))
         .reduce((a, b) => <>{a}; {b}</>)}
     </>
@@ -524,14 +505,14 @@ function LiteralMethods(
         i,
       ) => {
         const item = (
-          <span>
+          <>
             {kind === "getter"
-              ? <span>get{" "}</span>
+              ? <StyleKw>{"get "}</StyleKw>
               : kind === "setter"
-              ? <span>set{" "}</span>
+              ? <StyleKw>{"set "}</StyleKw>
               : undefined}
             {name === "new"
-              ? <span>{name}{" "}</span>
+              ? <StyleKw>{name}{" "}</StyleKw>
               : computed
               ? `[${name}]`
               : <StyleCallee>{name}</StyleCallee>}
@@ -545,13 +526,13 @@ function LiteralMethods(
             {params.length < 3 ? "" : "  "}
             ){returnType
               ? (
-                <span>
+                <>
                   : <TsType getLink={getLink}>{returnType}</TsType>
                   {" "}
-                </span>
+                </>
               )
               : ""}
-          </span>
+          </>
         );
         return <>{(i == 0 ? "" : ";") + "\n  "}{item}</>;
       })}
@@ -574,7 +555,7 @@ function TypeLiteral(
   }
   const multiline = maxLen >= 3;
   return (
-    <span>
+    <>
       &#123;{multiline ? "\n" : " "}
       <LiteralIndexSignatures getLink={getLink}>
         {indexSignatures}
@@ -586,7 +567,7 @@ function TypeLiteral(
       <LiteralMethods getLink={getLink}>{methods}</LiteralMethods>
       {multiline ? "\n" : " "}
       &#125;
-    </span>
+    </>
   );
 }
 
@@ -597,16 +578,16 @@ function TypePredicate(
   },
 ) {
   return (
-    <span>
+    <>
       {asserts ? <StyleKw>{"asserts "}</StyleKw> : undefined}
       {param.type === "this" ? <StyleKw>this</StyleKw> : param.name}
       {type && (
-        <span>
+        <>
           <StyleKw>{" is "}</StyleKw>
           <TsType getLink={getLink}>{type}</TsType>
-        </span>
+        </>
       )}
-    </span>
+    </>
   );
 }
 
@@ -622,15 +603,15 @@ function ParamArray({
   getLink: LinkGetter;
 }) {
   return (
-    <span>
+    <>
       [{param.elements.map((e) => e && <Param getLink={getLink}>{e}</Param>)}]
       {param.optional || optional ? "?" : ""}
       {param.tsType && (
-        <span>
+        <>
           : <TsType getLink={getLink}>{param.tsType}</TsType>
-        </span>
+        </>
       )}
-    </span>
+    </>
   );
 }
 
@@ -642,12 +623,12 @@ function ParamAssign({
   getLink: LinkGetter;
 }) {
   return (
-    <span>
+    <>
       <Param optional getLink={getLink}>
         {param.left}
       </Param>
       {param.tsType && <TsType getLink={getLink}>{param.tsType}</TsType>}
-    </span>
+    </>
   );
 }
 
@@ -748,18 +729,18 @@ function ParamObject({
   for (let i = 0; i < param.props.length; i++) {
     props.push(<ObjectPat getLink={getLink}>{param.props[i]}</ObjectPat>);
     if (i < param.props.length - 1) {
-      props.push(<span>,{" "}</span>);
+      props.push(<>{", "}</>);
     }
   }
   return (
-    <span>
+    <>
       &#123; {props} &#125;{param.optional || optional ? "?" : ""}
       {param.tsType && (
-        <span>
+        <>
           : <TsType getLink={getLink}>{param.tsType}</TsType>
-        </span>
+        </>
       )}
-    </span>
+    </>
   );
 }
 
@@ -842,7 +823,7 @@ export function Params({
         </>,
       );
       if (i < params.length - 1) {
-        items.push(<span>,{" "}</span>);
+        items.push(<>{", "}</>);
       }
     }
     return <>{items}</>;
@@ -854,7 +835,8 @@ export function Params({
         .map((param) => <Param getLink={getLink}>{param}</Param>)
         .reduce((a, b) => (
           <>
-            {a},{"\n  " + indent}
+            {a}
+            {",\n  " + indent}
             {b}
           </>
         ))}
