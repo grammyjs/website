@@ -20,7 +20,9 @@ import {
   TsTypeLiteralDef,
   TsTypeOperatorDef,
   TsTypeParamDef,
+  TsTypePredicateDef,
   TsTypeRefDef,
+  TsTypeTypePredicateDef,
 } from "deno_doc/types.d.ts";
 import { JSX } from "preact/jsx-runtime";
 import { PropertyName } from "./PropertyName.tsx";
@@ -80,6 +82,8 @@ export function TsType({
     case "typeLiteral":
       return <TypeLiteral getLink={getLink}>{tt.typeLiteral}</TypeLiteral>;
     case "typePredicate":
+      return <TypePredicate getLink={getLink}>{tt.typePredicate}
+      </TypePredicate>;
   }
   return <>{tt.kind}</>;
 }
@@ -567,6 +571,28 @@ function TypeLiteral(
       <LiteralMethods getLink={getLink}>{methods}</LiteralMethods>
       {multiline ? "\n" : " "}
       &#125;
+    </span>
+  );
+}
+
+function TypePredicate(
+  { children: { asserts, param, type }, getLink }: {
+    children: TsTypePredicateDef;
+    getLink: LinkGetter;
+  },
+) {
+  return (
+    <span>
+      {asserts ? <span style="color:#F286C4;">asserts{" "}</span> : undefined}
+      {param.type === "this"
+        ? <span style="color:#F286C4;">this</span>
+        : param.name}
+      {type && (
+        <span>
+          {" is "}
+          <TsType getLink={getLink}>{type}</TsType>
+        </span>
+      )}
     </span>
   );
 }
