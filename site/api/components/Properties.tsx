@@ -1,8 +1,4 @@
-import {
-  ClassPropertyDef,
-  InterfacePropertyDef,
-  LiteralPropertyDef,
-} from "deno_doc/types.d.ts";
+import { ClassPropertyDef, InterfacePropertyDef } from "deno_doc/types.d.ts";
 import { PropertyName } from "./PropertyName.tsx";
 import { TsType } from "./TsType.tsx";
 import { LinkGetter } from "./types.ts";
@@ -15,7 +11,7 @@ export function Properties({
   children: i,
 }: {
   getLink: LinkGetter;
-  children: InterfacePropertyDef[] | LiteralPropertyDef[] | ClassPropertyDef[];
+  children: InterfacePropertyDef[] | ClassPropertyDef[];
 }) {
   return (
     <>
@@ -23,6 +19,9 @@ export function Properties({
         <>
           <H3>{v.name}</H3>
           <CodeBlock>
+            {"isStatic" in v && v.isStatic && <>static{" "}</>}
+            {"isAbstract" in v && v.isAbstract && <>abstract{" "}</>}
+            {v.readonly && <>readonly{" "}</>}
             <PropertyName hasType={!!v.tsType} class>{v}</PropertyName>
             {v.tsType && (
               <>
