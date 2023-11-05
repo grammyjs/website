@@ -1,5 +1,5 @@
 import { ClassMethodDef } from "deno_doc/types.d.ts";
-import { Params, TsType } from "./TsType.tsx";
+import { Params, TsType, TypeParams_ } from "./TsType.tsx";
 import { LinkGetter } from "./types.ts";
 import { CodeBlock } from "./CodeBlock.tsx";
 import { H3 } from "./H3.tsx";
@@ -30,7 +30,10 @@ export function Method({
           : (
             ""
           )}
-        <span style="color: #62E884">{method.name}</span>(
+        <span style="color: #62E884">{method.name}</span>
+        <TypeParams_ getLink={getLink}>
+          {method.functionDef.typeParams}
+        </TypeParams_>(
         <Params getLink={getLink}>{method.functionDef.params}</Params>)
         {method.functionDef.returnType
           ? (
