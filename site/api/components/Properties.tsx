@@ -5,6 +5,7 @@ import { LinkGetter } from "./types.ts";
 import { H3 } from "./H3.tsx";
 import { CodeBlock } from "./CodeBlock.tsx";
 import { P } from "./P.tsx";
+import { StyleKw } from "./styles.tsx";
 
 export function Properties({
   getLink,
@@ -19,9 +20,11 @@ export function Properties({
         <>
           <H3>{v.name}</H3>
           <CodeBlock>
-            {"isStatic" in v && v.isStatic && <>static{" "}</>}
-            {"isAbstract" in v && v.isAbstract && <>abstract{" "}</>}
-            {v.readonly && <>readonly{" "}</>}
+            {"isStatic" in v && v.isStatic && <StyleKw>{"static "}</StyleKw>}
+            {"isAbstract" in v && v.isAbstract && (
+              <StyleKw>{"abstract "}</StyleKw>
+            )}
+            {v.readonly && <StyleKw>{"readonly "}</StyleKw>}
             <PropertyName hasType={!!v.tsType} class>{v}</PropertyName>
             {v.tsType && (
               <>

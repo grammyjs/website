@@ -26,6 +26,7 @@ import {
 import { JSX } from "preact/jsx-runtime";
 import { PropertyName } from "./PropertyName.tsx";
 import { LinkGetter } from "./types.ts";
+import { StyleCallee, StyleKw, StyleStrLit, StyleTypeRef } from "./styles.tsx";
 
 export function TsType({
   getLink,
@@ -88,22 +89,13 @@ export function TsType({
 }
 
 function Keyword({ children: keyword }: { children: string }) {
-  return (
-    <span
-      style={{
-        color: "#97E1F1",
-        fontStyle: "italic",
-      }}
-    >
-      {keyword}
-    </span>
-  );
+  return <StyleTypeRef>{keyword}</StyleTypeRef>;
 }
 
 function Literal({ children: literal }: { children: LiteralDef }) {
   switch (literal.kind) {
     case "string":
-      return <span style="color:#E7EE98;">"{literal.string}"</span>;
+      return <StyleStrLit>"{literal.string}"</StyleStrLit>;
     case "bigInt":
       return <>{literal.string}n</>;
     case "number":
@@ -153,23 +145,12 @@ export function TypeRef({
   let name: JSX.Element;
   if (link != null) {
     name = (
-      <a
-        href={link}
-        style={{
-          color: "#97E1F1",
-          fontStyle: "italic",
-          textDecoration: "underline",
-        }}
-      >
-        {typeRef.typeName}
+      <a href={link} style={{ textDecoration: "underline" }}>
+        <StyleTypeRef>{typeRef.typeName}</StyleTypeRef>
       </a>
     );
   } else {
-    name = (
-      <span style={{ color: "#97E1F1", fontStyle: "italic" }}>
-        {typeRef.typeName}
-      </span>
-    );
+    name = <StyleTypeRef>{typeRef.typeName}</StyleTypeRef>;
   }
   return (
     <>
@@ -192,7 +173,7 @@ function Union({
     .map((v) => <TsType getLink={getLink}>{v}</TsType>)
     .reduce((a, b) => (
       <>
-        {a} <span style="color:#F286C4;">|</span> {b}
+        {a} <StyleKw>|</StyleKw> {b}
       </>
     ));
 }
@@ -289,7 +270,7 @@ function Rest({
 }) {
   return (
     <>
-      <span class="opacity-50">...</span>
+      <StyleKw>...</StyleKw>
       <TsType getLink={getLink}>{rest}</TsType>
     </>
   );
@@ -518,7 +499,7 @@ function LiteralMethods(
               ? <span>{name}{" "}</span>
               : computed
               ? `[${name}]`
-              : <span style="color: #62E884">{name}</span>}
+              : <StyleCallee>{name}</StyleCallee>}
             {optional ? "?" : undefined}
             <TypeParams_ getLink={getLink}>{typeParams}</TypeParams_>(<Params
               indent="  "
@@ -582,13 +563,11 @@ function TypePredicate(
 ) {
   return (
     <span>
-      {asserts ? <span style="color:#F286C4;">asserts{" "}</span> : undefined}
-      {param.type === "this"
-        ? <span style="color:#F286C4;">this</span>
-        : param.name}
+      {asserts ? <StyleKw>{"asserts "}</StyleKw> : undefined}
+      {param.type === "this" ? <StyleKw>this</StyleKw> : param.name}
       {type && (
         <span>
-          {" is "}
+          <StyleKw>{" is "}</StyleKw>
           <TsType getLink={getLink}>{type}</TsType>
         </span>
       )}
@@ -698,7 +677,8 @@ function ObjectRestPat({
 }) {
   return (
     <>
-      ...<Param getLink={getLink}>{children.arg}</Param>
+      <StyleKw>...</StyleKw>
+      <Param getLink={getLink}>{children.arg}</Param>
     </>
   );
 }
@@ -757,7 +737,7 @@ function ParamRest({
 }) {
   return (
     <>
-      <span style="color:#F286C4;">...</span>
+      <StyleKw>...</StyleKw>
       <Param getLink={getLink}>{param.arg}</Param>
       {param.tsType && (
         <>
