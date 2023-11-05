@@ -570,13 +570,17 @@ function LiteralMethods(
     getLink: LinkGetter;
   },
 ) {
+  if (!methods.length) {
+    return null;
+  }
   return (
     <>
+      {"  "}
       {methods.map((
         { name, kind, optional, computed, returnType, typeParams, params },
         i,
       ) => {
-        const item = (
+        return (
           <>
             {kind === "getter"
               ? <StyleKw>{"get "}</StyleKw>
@@ -601,14 +605,13 @@ function LiteralMethods(
                 <>
                   <StyleKw>{": "}</StyleKw>
                   <TsType getLink={getLink}>{returnType}</TsType>
-                  {" "}
                 </>
               )
               : ""}
+            {"; "}
           </>
         );
-        return <>{(i == 0 ? "" : ";") + "\n  "}{item}</>;
-      })}
+      }).reduce((a, b) => <>{a}{"\n  "}{b}</>)}
     </>
   );
 }
