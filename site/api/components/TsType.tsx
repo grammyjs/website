@@ -303,7 +303,12 @@ function TypeQuery({
   getLink: LinkGetter;
   children: string;
 }) {
-  return <>{typeQuery}</>;
+  return (
+    <>
+      <StyleKw>{"typeof "}</StyleKw>
+      {typeQuery}
+    </>
+  );
 }
 
 function This() {
