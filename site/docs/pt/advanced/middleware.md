@@ -20,7 +20,7 @@ bot.on(/* ... */);
 bot.start();
 ```
 
-Parece muito com uma pilha, exceto, nos bastidores, é realmente uma árvore.
+Parece muito com uma pilha, exceto que, nos bastidores, é na verdade uma árvore.
 O coração dessa funcionalidade é a classe `Composer` ([referência](https://deno.land/x/grammy/mod.ts?s=Composer)) que constrói essa árvore.
 
 Em primeiro lugar, cada instância de `Bot` é uma instância de `Composer`.
@@ -35,7 +35,7 @@ A diferença pode parecer sutil, mas espere até a próxima subseção para desc
 
 ## Aumentando `Composer`
 
-Você pode instalar mais middleware em uma instância de `Composer` mesmo depois de instalar o `Composer` em algum lugar.
+Você pode instalar mais middlewares em uma instância de `Composer` mesmo depois de instalar o `Composer` em algum lugar.
 
 ```ts
 const bot = new Bot(""); // subclasse de `Composer`
@@ -108,7 +108,7 @@ composer.filter(/* 1 */).filter(/* 2 */).use(/* A */);
 
 `2` só será verificado se `1` for verdadeiro, e `A` só será executado se `2` (e assim `1`) for verdadeiro.
 
-Reveja a seção sobre [combinação de consultas de filtro](../guide/filter-queries.md#combinando-múltiplas-queries) com seu novo conhecimento e sinta seu novo poder.
+Reveja a seção sobre [combinação de filter queries](../guide/filter-queries.md#combinando-múltiplas-queries) com seu novo conhecimento e sinta seu novo poder.
 
 Um caso especial aqui é `fork`, pois ele inicia duas computações que são concorrentes, ou seja, intercaladas no loop de eventos.
 Em vez de retornar a instância de `Composer` criada pela chamada `use` subjacente, ela retorna um `Composer` que reflete a computação bifurcada.
