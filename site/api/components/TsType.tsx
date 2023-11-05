@@ -312,7 +312,7 @@ function TypeQuery({
 }
 
 function This() {
-  return <>this</>;
+  return <StyleTypeRef>this</StyleTypeRef>;
 }
 
 export function TypeParam_({
