@@ -9,7 +9,7 @@ A resposta é qualquer coisa, qualquer jogo HTML5 que você tenha desenvolvido v
 
 ## Configurando um Jogo Com Seu Bot via @BotFather
 
-Para simplicidade, vamos assumir que a essa altura você deve ter configurado um bot e um jogo associado ao seu bot em [@BotFather](https://t.me/BotFather).
+Para simplicidade, vamos assumir que a essa altura você deve ter configurado um bot e um jogo associado ao seu bot no [@BotFather](https://t.me/BotFather).
 Se você ainda não fez isso, confira este [artigo](https://core.telegram.org/bots/games) do time do Telegram.
 
 > Nota: Nós aprenderemos apenas o desenvolvimento do lado do bot.
@@ -39,7 +39,7 @@ Uma vantagem de usar o método `api.sendGame` é que você pode especificar o `c
      // Você pode obter o identificador do chat do usuário para enviar seu jogo com `ctx.from.id`.
      // que te dá o identificador do chat do usuário que invocou o comando start.
      const chatId = ctx.from.id;
-     await ctx.api.sendGame(chatid, "meu_jogo");
+     await ctx.api.sendGame(chatId, "meu_jogo");
    });
    ```
 
@@ -71,7 +71,7 @@ Para fornecer lógica ao botão quando ele é pressionado, e para redirecionar n
 Tudo o que precisamos fazer é:
 
 ```ts
-// Passe a url do seu jogo aqui que deve estar hospedado na web.
+// Passe a url do seu jogo que deve estar hospedado na web aqui.
 
 bot.on("callback_query:game_short_name", async (ctx) => {
   await ctx.answerCallbackQuery({ url: "url_do_seu_jogo" });
