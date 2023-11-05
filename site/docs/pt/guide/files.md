@@ -35,7 +35,7 @@ Isso significa que você não pode simplesmente adivinhar um `file_id` e acessar
 ::: warning Usando `file_id`s estrangeiros
 Observe que, em alguns casos, é _tecnicamente_ possível que um `file_id` de outro bot pareça funcionar corretamente.
 **No entanto**, usar um `file_id` estrangeiro assim é perigoso, pois pode parar de funcionar a qualquer momento, sem aviso.
-Portanto, sempre certifique-se de que quaisquer `file_id`s que você usar eram originalmente para o seu bot.
+Portanto, sempre certifique-se de que quaisquer `file_id`s que você usar serão originalmente do seu bot.
 :::
 
 Por outro lado, é possível que um bot eventualmente veja o mesmo arquivo identificado por diferentes `file_id`s.
@@ -159,6 +159,7 @@ new InputFile(await Deno.open("/path/to/file"));
 
 #### Enviando Dados Binários Brutos
 
+Você também pode enviar um objeto `Buffer`, ou um iterador que entrega objetos `Buffer`.
 No Deno, você também pode enviar objetos `Blob`.
 
 ::: code-group
