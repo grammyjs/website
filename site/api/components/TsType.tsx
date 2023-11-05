@@ -14,11 +14,14 @@ import {
   ParamIdentifierDef,
   ParamObjectDef,
   ParamRestDef,
+  TruePlusMinus,
   TsConditionalDef,
   TsFnOrConstructorDef,
   TsIndexedAccessDef,
+  TsMappedTypeDef,
   TsTypeDef,
   TsTypeLiteralDef,
+  TsTypeMappedDef,
   TsTypeOperatorDef,
   TsTypeParamDef,
   TsTypePredicateDef,
@@ -86,7 +89,7 @@ export function TsType({
       return <IndexedAccess getLink={getLink}>{tt.indexedAccess}
       </IndexedAccess>;
     case "mapped":
-      break;
+      return <Mapped getLink={getLink}>{tt.mappedType}</Mapped>;
     case "typeLiteral":
       return <TypeLiteral getLink={getLink}>{tt.typeLiteral}</TypeLiteral>;
     case "typePredicate":
@@ -414,6 +417,61 @@ function IndexedAccess(
       </TsType>]
     </>
   );
+}
+
+function Mapped(
+  { children: { readonly, typeParam, nameType, optional, tsType }, getLink }: {
+    children: TsMappedTypeDef;
+    getLink: LinkGetter;
+  },
+) {
+  return (
+    <>
+      <MappedReadOnly>{readonly}</MappedReadOnly>
+      [<TypeParam_ constraint="in" getLink={getLink}>{typeParam}</TypeParam_>
+      {nameType && (
+        <>
+          <StyleKw>in keyof{" "}</StyleKw>
+          <TsType getLink={getLink}>{nameType}</TsType>
+        </>
+      )}]<MappedOptional>{optional}</MappedOptional>
+      {tsType && (
+        <>
+          <StyleKw>:</StyleKw> <TsType getLink={getLink}>{tsType}</TsType>
+        </>
+      )};
+    </>
+  );
+}
+
+function MappedReadOnly(
+  { children: readonly }: { children: TruePlusMinus | undefined },
+) {
+  switch (readonly) {
+    case true:
+      return <StyleKw>readonly{" "}</StyleKw>;
+    case "+":
+      return <StyleKw>+readonly{" "}</StyleKw>;
+    case "-":
+      return <StyleKw>-readonly{" "}</StyleKw>;
+    default:
+      return null;
+  }
+}
+
+function MappedOptional(
+  { children: optional }: { children: TruePlusMinus | undefined },
+) {
+  switch (optional) {
+    case true:
+      return <StyleKw>?</StyleKw>;
+    case "+":
+      return <StyleKw>+?</StyleKw>;
+    case "-":
+      return <StyleKw>-?</StyleKw>;
+    default:
+      return null;
+  }
 }
 
 function LiteralIndexSignatures(
