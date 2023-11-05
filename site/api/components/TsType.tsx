@@ -16,6 +16,7 @@ import {
   ParamRestDef,
   TsConditionalDef,
   TsFnOrConstructorDef,
+  TsIndexedAccessDef,
   TsTypeDef,
   TsTypeLiteralDef,
   TsTypeOperatorDef,
@@ -82,7 +83,8 @@ export function TsType({
     case "infer":
       break;
     case "indexedAccess":
-      break;
+      return <IndexedAccess getLink={getLink}>{tt.indexedAccess}
+      </IndexedAccess>;
     case "mapped":
       break;
     case "typeLiteral":
@@ -403,6 +405,21 @@ function Conditional({
       <span class="opacity-50">:</span>{" "}
       <TsType getLink={getLink}>{conditional.falseType}</TsType>
     </>
+  );
+}
+
+function IndexedAccess(
+  { children: { objType, indexType }, getLink }: {
+    children: TsIndexedAccessDef;
+    getLink: LinkGetter;
+  },
+) {
+  return (
+    <span>
+      <TsType getLink={getLink}>{objType}</TsType>[<TsType getLink={getLink}>
+        {indexType}
+      </TsType>]
+    </span>
   );
 }
 
