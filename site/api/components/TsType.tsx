@@ -329,13 +329,13 @@ export function TypeParam_({
       <>{param.name}</>
       {param.constraint && (
         <>
-          <>{` ${constraint} `}</>
+          <StyleKw>{` ${constraint} `}</StyleKw>
           <TsType getLink={getLink}>{param.constraint}</TsType>
         </>
       )}
       {param.default && (
         <>
-          {" = "}
+          <StyleKw>{" = "}</StyleKw>
           <TsType getLink={getLink}>{param.default}</TsType>
         </>
       )}
