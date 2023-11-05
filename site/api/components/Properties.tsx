@@ -23,8 +23,13 @@ export function Properties({
         <>
           <H3>{v.name}</H3>
           <CodeBlock>
-            <PropertyName hasType={!!v.tsType} class>{v}</PropertyName>{" "}
-            {v.tsType && <TsType getLink={getLink}>{v.tsType}</TsType>};
+            <PropertyName hasType={!!v.tsType} class>{v}</PropertyName>
+            {v.tsType && (
+              <>
+                {" "}
+                <TsType getLink={getLink}>{v.tsType}</TsType>
+              </>
+            )};
           </CodeBlock>
           {"jsDoc" in v && <P doc>{v.jsDoc?.doc}</P>}
         </>
