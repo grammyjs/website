@@ -21,7 +21,6 @@ import {
   TsMappedTypeDef,
   TsTypeDef,
   TsTypeLiteralDef,
-  TsTypeMappedDef,
   TsTypeOperatorDef,
   TsTypeParamDef,
   TsTypePredicateDef,

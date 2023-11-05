@@ -1,6 +1,5 @@
 import { JsDoc, JsDocTagReturn, TsTypeDef } from "deno_doc/types.d.ts";
 import { LinkGetter } from "../types.ts";
-import { H3 } from "../H3.tsx";
 import { CodeBlock } from "../CodeBlock.tsx";
 import { TsType } from "../TsType.tsx";
 import { P } from "../P.tsx";
