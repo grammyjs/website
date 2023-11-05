@@ -1,7 +1,0 @@
-{
-  "line-length": false,
-  "link-fragments": false,
-  "no-trailing-punctuation": {
-    "punctuation": ".,;:。，；：" // everything except exclamation points
-  }
-}
