@@ -5,6 +5,8 @@ import { P } from "./P.tsx";
 import { LinkGetter } from "./types.ts";
 import { Sector } from "./Sector.tsx";
 
+import { Loc } from "./Loc.tsx";
+
 export function Interface(
   { children: iface, getLink }: {
     children: DocNodeInterface;
@@ -17,6 +19,7 @@ export function Interface(
     <>
       <H1>{iface.name}</H1>
       <P doc>{iface.jsDoc?.doc}</P>
+      <Loc>{iface}</Loc>
       <Sector title="Properties" show={!!props.length}>
         <Properties getLink={getLink}>{props}</Properties>
       </Sector>

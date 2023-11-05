@@ -6,6 +6,7 @@ import { Sector } from "./Sector.tsx";
 import { TypeParams } from "./TypeParams.tsx";
 import { CodeBlock } from "./CodeBlock.tsx";
 import { P } from "./P.tsx";
+import { Loc } from "./Loc.tsx";
 
 export function TypeAlias(
   { getLink, children: typeAlias }: {
@@ -19,6 +20,7 @@ export function TypeAlias(
     <>
       <H1>{typeAlias.name}</H1>
       <P doc>{typeAlias.jsDoc?.doc}</P>
+      <Loc>{typeAlias}</Loc>
       <Sector title="Type Parameters" show={!!typeParams.length}>
         <TypeParams getLink={getLink}>{typeParams}</TypeParams>
       </Sector>

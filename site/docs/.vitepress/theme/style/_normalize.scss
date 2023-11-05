@@ -75,10 +75,19 @@
 }
 
 .typeRef {
-  text-decoration-color: #97E1F1 !important;
+  text-decoration-color: #97e1f1 !important;
+
+  &::after {
+    content: none !important;
+    display: none !important;
+  }
 }
 
-.typeRef::after {
-  content: none !important;
-  display: none !important;
+p.src {
+  margin: 0 !important;
+
+  & > sup.src > a::after {
+    content: none !important;
+    display: none !important;
+  }
 }

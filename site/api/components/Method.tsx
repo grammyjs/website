@@ -4,6 +4,7 @@ import { LinkGetter } from "./types.ts";
 import { CodeBlock } from "./CodeBlock.tsx";
 import { H3 } from "./H3.tsx";
 import { P } from "./P.tsx";
+import { Loc } from "./Loc.tsx";
 
 export function Method({
   children: method,
@@ -49,9 +50,8 @@ export function Method({
           )}
         ;
       </CodeBlock>
-      {"\n\n"}
       <P doc>{method.jsDoc?.doc}</P>
-      {"\n\n\n\n"}
+      <Loc>{method}</Loc>
     </>
   );
 }

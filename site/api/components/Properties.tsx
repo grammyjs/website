@@ -6,6 +6,7 @@ import { H3 } from "./H3.tsx";
 import { CodeBlock } from "./CodeBlock.tsx";
 import { P } from "./P.tsx";
 import { StyleKw } from "./styles.tsx";
+import { Loc } from "./Loc.tsx";
 
 export function Properties({
   getLink,
@@ -34,6 +35,7 @@ export function Properties({
             )};
           </CodeBlock>
           {"jsDoc" in v && <P doc>{v.jsDoc?.doc}</P>}
+          <Loc>{v}</Loc>
         </>
       ))}
     </>

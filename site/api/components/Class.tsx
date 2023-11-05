@@ -10,6 +10,7 @@ import { TypeParams } from "./TypeParams.tsx";
 import { newGetLink } from "./util.ts";
 import { CodeBlock } from "./CodeBlock.tsx";
 import { TypeRef } from "./TsType.tsx";
+import { Loc } from "./Loc.tsx";
 
 export function Class(
   { children: klass, getLink: oldGetLink }: {
@@ -28,6 +29,7 @@ export function Class(
     <>
       <H1>{klass.name}</H1>
       <P doc>{klass.jsDoc?.doc}</P>
+      <Loc>{klass}</Loc>
       <Sector title="Extends" show={!!klass.classDef.extends}>
         <CodeBlock>
           <TypeRef getLink={getLink}>

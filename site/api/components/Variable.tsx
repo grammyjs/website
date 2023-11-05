@@ -5,6 +5,7 @@ import { LinkGetter } from "./types.ts";
 import { Sector } from "./Sector.tsx";
 import { CodeBlock } from "./CodeBlock.tsx";
 import { TsType } from "./TsType.tsx";
+import { Loc } from "./Loc.tsx";
 
 export function Variable(
   { children: varr, getLink }: {
@@ -16,6 +17,7 @@ export function Variable(
     <>
       <H1>{varr.name}</H1>
       <P doc>{varr.jsDoc?.doc}</P>
+      <Loc>{varr}</Loc>
       <Sector title="Type" show={!!varr.variableDef.tsType}>
         <CodeBlock>
           <TsType getLink={getLink}>{varr.variableDef.tsType!}</TsType>

@@ -7,6 +7,7 @@ import { TypeParams } from "./TypeParams.tsx";
 import { Parameters } from "./Function/Parameters.tsx";
 import { newGetLink } from "./util.ts";
 import { ReturnType } from "./Function/ReturnType.tsx";
+import { Loc } from "./Loc.tsx";
 
 export function Function(
   { children: func, getLink: oldGetLink }: {
@@ -22,6 +23,7 @@ export function Function(
     <>
       <H1>{func.name}</H1>
       <P doc>{func.jsDoc?.doc}</P>
+      <Loc>{func}</Loc>
       <Sector title="Type Parameters" show={!!typeParams.length}>
         <TypeParams getLink={getLink}>{typeParams}</TypeParams>
       </Sector>
