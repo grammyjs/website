@@ -152,7 +152,7 @@ export function TypeRef({
   const link = getLink(typeRef.typeName);
   let name: JSX.Element;
   if (link != null) {
-    const differentOrigin = !link.startsWith("/");
+    const differentOrigin = link.startsWith("http");
     name = (
       <a
         href={link}
