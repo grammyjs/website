@@ -390,9 +390,12 @@ function Conditional({
 }) {
   return (
     <>
-      <TsType getLink={getLink}>{conditional.checkType}</TsType> <StyleKw>extends</StyleKw>{" "}
-      <TsType getLink={getLink}>{conditional.extendsType}</TsType> <StyleKw>?</StyleKw>{" "}
-      <TsType getLink={getLink}>{conditional.trueType}</TsType> <StyleKw>:</StyleKw>{" "}
+      <TsType getLink={getLink}>{conditional.checkType}</TsType>{" "}
+      <StyleKw>extends</StyleKw>{" "}
+      <TsType getLink={getLink}>{conditional.extendsType}</TsType>{" "}
+      <StyleKw>?</StyleKw>{" "}
+      <TsType getLink={getLink}>{conditional.trueType}</TsType>{" "}
+      <StyleKw>:</StyleKw>{" "}
       <TsType getLink={getLink}>{conditional.falseType}</TsType>
     </>
   );
@@ -431,7 +434,8 @@ function LiteralIndexSignatures(
           {params}
         </Params>]{tsType && (
           <>
-            : <TsType getLink={getLink}>{tsType}</TsType>
+            <StyleKw>{": "}</StyleKw>
+            <TsType getLink={getLink}>{tsType}</TsType>
           </>
         )};{" "}
       </>
@@ -459,7 +463,8 @@ function LiteralCallSignatures(
             </Params>){tsType &&
               (
                 <>
-                  : <TsType getLink={getLink}>{tsType}</TsType>
+                  <StyleKw>{": "}</StyleKw>
+                  <TsType getLink={getLink}>{tsType}</TsType>
                 </>
               )};{" "}
           </>
@@ -490,7 +495,8 @@ function LiteralProperties(
             {tsType
               ? (
                 <>
-                  : <TsType getLink={getLink}>{tsType}</TsType>
+                  <StyleKw>{": "}</StyleKw>
+                  <TsType getLink={getLink}>{tsType}</TsType>
                 </>
               )
               : ""}
@@ -536,7 +542,8 @@ function LiteralMethods(
             ){returnType
               ? (
                 <>
-                  : <TsType getLink={getLink}>{returnType}</TsType>
+                  <StyleKw>{": "}</StyleKw>
+                  <TsType getLink={getLink}>{returnType}</TsType>
                   {" "}
                 </>
               )
@@ -617,7 +624,8 @@ function ParamArray({
       {param.optional || optional ? "?" : ""}
       {param.tsType && (
         <>
-          : <TsType getLink={getLink}>{param.tsType}</TsType>
+          <StyleKw>{": "}</StyleKw>
+          <TsType getLink={getLink}>{param.tsType}</TsType>
         </>
       )}
     </>
@@ -746,7 +754,8 @@ function ParamObject({
       &#123; {props} &#125;{param.optional || optional ? "?" : ""}
       {param.tsType && (
         <>
-          : <TsType getLink={getLink}>{param.tsType}</TsType>
+          <StyleKw>{": "}</StyleKw>
+          <TsType getLink={getLink}>{param.tsType}</TsType>
         </>
       )}
     </>
@@ -766,7 +775,8 @@ function ParamRest({
       <Param getLink={getLink}>{param.arg}</Param>
       {param.tsType && (
         <>
-          : <TsType getLink={getLink}>{param.tsType}</TsType>
+          <StyleKw>{": "}</StyleKw>
+          <TsType getLink={getLink}>{param.tsType}</TsType>
         </>
       )}
     </>
