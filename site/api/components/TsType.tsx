@@ -377,7 +377,7 @@ function FnOrConstructor({
   const { constructor, typeParams, params, tsType } = children;
   return (
     <span>
-      {constructor ? <span>new</span> : ""}
+      {constructor ? <span>new{" "}</span> : ""}
       <TypeParams_ getLink={getLink}>{typeParams}</TypeParams_>(
       <Params getLink={getLink}>{params}</Params>) =&gt;{" "}
       <TsType getLink={getLink}>{tsType}</TsType>
@@ -467,26 +467,27 @@ function LiteralProperties(
     getLink: LinkGetter;
   },
 ) {
+  if (!props.length) {
+    return null;
+  }
   return (
     <>
-      {props.map(({ name, readonly, computed, optional, tsType }) => {
-        const item = (
+      {props
+        .map(({ name, readonly, computed, optional, tsType }) => (
           <span>
             {readonly ? <span>readonly{" "}</span> : undefined}
             {computed ? `[${name}]` : name}
             {optional ? "?" : undefined}
             {tsType
               ? (
-                <span>
+                <>
                   : <TsType getLink={getLink}>{tsType}</TsType>
-                  {" "}
-                </span>
+                </>
               )
-              : "; "}
+              : ""}
           </span>
-        );
-        return <>{"  "}{item}</>;
-      })}
+        ))
+        .reduce((a, b) => <>{a}; {b}</>)}
     </>
   );
 }
@@ -546,9 +547,16 @@ function TypeLiteral(
   },
 ) {
   const { indexSignatures, callSignatures, properties, methods } = typeLiteral;
+  const maxLen = indexSignatures.length + callSignatures.length +
+    properties.length +
+    methods.length;
+  if (!maxLen) {
+    return <>{"{}"}</>;
+  }
+  const multiline = maxLen >= 3;
   return (
     <span>
-      &#123;
+      &#123;{multiline ? "\n" : " "}
       <LiteralIndexSignatures getLink={getLink}>
         {indexSignatures}
       </LiteralIndexSignatures>
@@ -557,7 +565,7 @@ function TypeLiteral(
       </LiteralCallSignatures>
       <LiteralProperties getLink={getLink}>{properties}</LiteralProperties>
       <LiteralMethods getLink={getLink}>{methods}</LiteralMethods>
-      {"\n"}
+      {multiline ? "\n" : " "}
       &#125;
     </span>
   );
