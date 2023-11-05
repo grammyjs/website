@@ -202,7 +202,11 @@ function Intersection({
 }) {
   return intersection
     .map((v) => <TsType getLink={getLink}>{v}</TsType>)
-    .reduce((a, b) => <>{a} & {b}</>);
+    .reduce((a, b) => (
+      <>
+        {a} <StyleKw>&</StyleKw> {b}
+      </>
+    ));
 }
 
 function Array({
