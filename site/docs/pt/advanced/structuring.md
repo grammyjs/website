@@ -12,7 +12,7 @@ Você é livre para estruturar seu código como quiser, e não há uma solução
 Dito isso, uma estratégia direta e comprovada para estruturar seu código é a seguinte.
 
 1. Agrupe as coisas que pertencem semanticamente juntas no mesmo arquivo (ou, dependendo do tamanho do código, diretório).
-   Cada uma dessas partes expõe middleware que tratará as mensagens designadas.
+   Cada uma dessas partes expõe middlewares que tratarão as mensagens designadas.
 2. Crie uma instância de bot centralmente que mescla todos os middlewares instalando-os no bot.
 3. (Opcional.) Pré-filtre as atualizações centralmente e envie as atualizações apenas para o caminho correto.
    Você também pode querer conferir `bot.route` ([Referência de API](https://deno.land/x/grammy/mod.ts?s=Composer#method_route_0)) ou, alternativamente, o [plugin router](../plugins/router) para isso.
