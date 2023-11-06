@@ -13,7 +13,7 @@ Aqui está uma lista de coisas que você talvez queria ter em mente ao hospedar 
 ## Envio de Mensagens
 
 1. Envie arquivos pelo caminho ou `Buffer` em vez streams, ou ao menos tenha certeza que você [conhece as armadilhas](./transformers#casos-de-uso-de-funções-transformadoras).
-2. Use `bot.on("callback_query:data")` como o handler reserva para [reagir a todas callback queries](../plugins/keyboard#respondendo-a-clicks).
+2. Use `bot.on("callback_query:data")` como o handler reserva para [reagir a todas as callback queries](../plugins/keyboard#respondendo-a-clicks).
 3. Use o [plugin de `auto-retry`]((../plugins/auto-retry)) para lidar automaticamente com erros de espera por flood.
 
 ## Escalando
