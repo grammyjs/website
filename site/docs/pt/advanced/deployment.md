@@ -8,7 +8,7 @@ Aqui está uma lista de coisas que você talvez queria ter em mente ao hospedar 
 ## Erros
 
 1. [Instale um tratamento de erro com `bot.catch` (long polling) ou no seu framework web (webhooks).](../guide/errors)
-2. Use `await` em todas as suas promessas e instale um **linter**, com regras que garantam isso, para que você nunca se esqueça.
+2. Use `await` em todas as suas `Promise`s e instale um **linter**, com regras que garantam isso, para que você nunca se esqueça.
 
 ## Envio de Mensagens
 
