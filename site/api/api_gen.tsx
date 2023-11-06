@@ -4,7 +4,10 @@ import { doc } from "deno_doc/mod.ts";
 import { renderToString } from "preact-render-to-string";
 import { Class } from "./components/Class.tsx";
 import { Function } from "./components/Function.tsx";
-import { type DocNode } from "deno_doc/types.d.ts";
+import {
+  type DocNode,
+  DocNodeNamespace,
+} from "deno_doc/types.d.ts";
 import { ToC } from "./components/ToC.tsx";
 import { JSX } from "preact/jsx-runtime";
 import { Interface } from "./components/Interface.tsx";
@@ -43,15 +46,7 @@ console.log("Generating docs for", paths.length, "modules");
 
 const refs: Array<[DocNode[], string, string, string]> = await Promise.all(
   paths.map(async ([id, path, slug, name]) => {
-    let nodes = await doc(id);
-    const names = new Set<string>();
-    nodes = nodes.filter((v) => {
-      try {
-        return !names.has(v.name);
-      } finally {
-        names.add(v.name);
-      }
-    });
+    const nodes = await doc(id);
     return [
       nodes.sort((a, b) => a.name.localeCompare(b.name)),
       path,
@@ -61,10 +56,30 @@ const refs: Array<[DocNode[], string, string, string]> = await Promise.all(
   }),
 );
 
+const namespaceGetLink = (
+  slug: string,
+  namespace: DocNodeNamespace,
+  getLink: (typeRef: string) => string | null,
+): typeof getLink => {
+  return (typeRef) => {
+    const node_ = namespace.namespaceDef.elements.find((v) =>
+      v.name == typeRef
+    );
+    if (node_ !== undefined) {
+      return "/ref/" + slug + "/" + namespace.name + "/" +
+        encodeURIComponent(typeRef);
+    } else {
+      return getLink(typeRef);
+    }
+  };
+};
+
 function createDoc(
   node: DocNode,
   path_: string,
   getLink: (repr: string) => string | null,
+  slug: string,
+  namespace?: DocNodeNamespace,
 ) {
   let component: JSX.Element | null = null;
   switch (node.kind) {
@@ -78,10 +93,24 @@ function createDoc(
       component = <Function getLink={getLink}>{node}</Function>;
       break;
     case "interface":
-      component = <Interface getLink={getLink}>{node}</Interface>;
+      component = <Interface 
+      getLink={namespace !== undefined
+        ? namespaceGetLink(slug, namespace, getLink)
+        : getLink}
+      namespace={namespace}>{node}</Interface>;
       break;
     case "typeAlias":
-      component = <TypeAlias getLink={getLink}>{node}</TypeAlias>;
+      component = (
+        <TypeAlias
+          getLink={namespace !== undefined
+            ? namespaceGetLink(slug, namespace, getLink)
+            : getLink}
+          namespace={namespace}
+        >
+          {node}
+        </TypeAlias>
+      );
+      break;
   }
   if (component != null) {
     const contents = `---
@@ -117,16 +146,42 @@ for (const [nodes, path_, slug, name] of refs) {
     }
   };
   for (const node of nodes) {
-    createDoc(node, path_, getLink);
+    if (node.name == "Chat") {
+      console.log(node.kind);
+    }
+    if (node.kind == "namespace") {
+      for (const el of node.namespaceDef.elements) {
+        createDoc(
+          el,
+          path.join(path_, node.name),
+          namespaceGetLink(slug, node, getLink),
+          slug,
+        );
+      }
+    } else {
+      createDoc(
+        node,
+        path_,
+        getLink,
+        slug,
+        (node.kind == "typeAlias" || node.kind == "interface")
+          ? nodes.filter((v): v is DocNodeNamespace => v.kind == "namespace")
+            .find((v) => v.name == node.name)
+          : undefined,
+      );
+    }
   }
   {
     const filename = path.join(path_, "README.md");
-    console.log(filename);
     const content = `---
 editLink: false
 ---
 
-${renderToString(<ToC name={name} getLink={getLink}>{nodes}</ToC>)}`;
+${
+      renderToString(
+        <ToC name={name + " Reference"} getLink={getLink}>{nodes}</ToC>,
+      )
+    }`;
 
     Deno.writeTextFileSync(filename, content);
   }

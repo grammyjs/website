@@ -24,7 +24,7 @@ function S(
 export function ToC(
   { children: nodes, name, getLink }: {
     children: DocNode[];
-    name: string;
+    name?: string;
     getLink: LinkGetter;
   },
 ) {
@@ -36,7 +36,7 @@ export function ToC(
 
   return (
     <>
-      <H1>{name} Reference</H1>
+      {name && <H1>{name}</H1>}
       <S getLink={getLink} title="Classes">{k("class")}</S>
       <S getLink={getLink} title="Variables">{k("variable")}</S>
       <S getLink={getLink} title="Functions">{k("function")}</S>
