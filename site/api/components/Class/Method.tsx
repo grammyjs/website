@@ -1,18 +1,24 @@
-import { ClassMethodDef } from "deno_doc/types.d.ts";
-import { Params, TsType, TypeParams_ } from "./TsType.tsx";
-import { LinkGetter } from "./types.ts";
-import { CodeBlock } from "./CodeBlock.tsx";
-import { H3 } from "./H3.tsx";
-import { P } from "./P.tsx";
-import { Loc } from "./Loc.tsx";
+import { ClassMethodDef, JsDoc } from "deno_doc/types.d.ts";
+import { Params, TsType, TypeParams_ } from "../TsType.tsx";
+import { LinkGetter } from "../types.ts";
+import { CodeBlock } from "../CodeBlock.tsx";
+import { H3 } from "../H3.tsx";
+import { P } from "../P.tsx";
+import { Loc } from "../Loc.tsx";
 
 export function Method({
   children: method,
   getLink,
+  inheritDoc
 }: {
   children: ClassMethodDef;
   getLink: LinkGetter;
+  inheritDoc: () => JsDoc | undefined
 }) {
+  const inherit =  method.jsDoc?.tags?.some((v) =>
+      v.kind == "unsupported" && v.value == "@inheritdoc"
+  )
+  const jsDoc = inherit ? inheritDoc() : method.jsDoc
   return (
     <>
       <H3>
@@ -50,7 +56,7 @@ export function Method({
           )}
         ;
       </CodeBlock>
-      <P doc>{method.jsDoc?.doc}</P>
+      <P doc>{jsDoc?.doc}</P>
       <Loc>{method}</Loc>
     </>
   );

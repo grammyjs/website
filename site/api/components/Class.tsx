@@ -1,5 +1,5 @@
 import { DocNodeClass } from "deno_doc/types.d.ts";
-import { Method } from "./Method.tsx";
+import { Method } from "./Class/Method.tsx";
 import { Properties } from "./Properties.tsx";
 import { Constructors } from "./Class/Constructors.tsx";
 import { H1 } from "./H1.tsx";
@@ -13,9 +13,10 @@ import { TypeRef } from "./TsType.tsx";
 import { Loc } from "./Loc.tsx";
 
 export function Class(
-  { children: klass, getLink: oldGetLink }: {
+  { children: klass, getLink: oldGetLink, parent }: {
     children: DocNodeClass;
     getLink: LinkGetter;
+    parent: DocNodeClass | undefined;
   },
 ) {
   const typeParams = klass.classDef.typeParams;
@@ -55,10 +56,26 @@ export function Class(
         <Properties getLink={getLink}>{props}</Properties>
       </Sector>
       <Sector title="Methods" show={!!methods.length}>
-        {methods.map((v) => <Method getLink={getLink}>{v}</Method>)}
+        {methods.map((v) => (
+          <Method
+            getLink={getLink}
+            inheritDoc={() =>
+                parent?.classDef.methods.find((v_) => (v_.name == v.name) && !v_.isStatic)?.jsDoc}
+          >
+            {v}
+          </Method>
+        ))}
       </Sector>
       <Sector title="Static Methods" show={!!staticMethods.length}>
-        {staticMethods.map((v) => <Method getLink={getLink}>{v}</Method>)}
+        {staticMethods.map((v) => (
+          <Method
+            getLink={getLink}
+            inheritDoc={() =>
+              parent?.classDef.methods.find((v_) => (v_.name == v.name) && v_.isStatic)?.jsDoc}
+          >
+            {v}
+          </Method>
+        ))}
       </Sector>
     </>
   );

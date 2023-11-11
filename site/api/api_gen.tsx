@@ -6,6 +6,7 @@ import { Class } from "./components/Class.tsx";
 import { Function } from "./components/Function.tsx";
 import {
   type DocNode,
+  DocNodeClass,
   DocNodeNamespace,
 } from "deno_doc/types.d.ts";
 import { ToC } from "./components/ToC.tsx";
@@ -80,11 +81,12 @@ function createDoc(
   getLink: (repr: string) => string | null,
   slug: string,
   namespace?: DocNodeNamespace,
+  classParent?: DocNodeClass,
 ) {
   let component: JSX.Element | null = null;
   switch (node.kind) {
     case "class":
-      component = <Class getLink={getLink}>{node}</Class>;
+      component = <Class getLink={getLink} parent={classParent}>{node}</Class>;
       break;
     case "variable":
       component = <Variable getLink={getLink}>{node}</Variable>;
@@ -93,11 +95,16 @@ function createDoc(
       component = <Function getLink={getLink}>{node}</Function>;
       break;
     case "interface":
-      component = <Interface 
-      getLink={namespace !== undefined
-        ? namespaceGetLink(slug, namespace, getLink)
-        : getLink}
-      namespace={namespace}>{node}</Interface>;
+      component = (
+        <Interface
+          getLink={namespace !== undefined
+            ? namespaceGetLink(slug, namespace, getLink)
+            : getLink}
+          namespace={namespace}
+        >
+          {node}
+        </Interface>
+      );
       break;
     case "typeAlias":
       component = (
@@ -136,6 +143,10 @@ try {
 }
 
 console.log("Creating files");
+let allNodes = new Array<DocNode>();
+for (const [nodes] of refs) {
+  allNodes = allNodes.concat(nodes);
+}
 for (const [nodes, path_, slug, name] of refs) {
   const getLink = (repr: string) => {
     const node = nodes.find((v) => v.name == repr);
@@ -156,6 +167,16 @@ for (const [nodes, path_, slug, name] of refs) {
           path.join(path_, node.name),
           namespaceGetLink(slug, node, getLink),
           slug,
+          undefined,
+          ((el.kind == "class" && el.classDef.extends !== undefined)
+            ? node.namespaceDef.elements.find((v) =>
+              v.kind == "class" &&
+              v.name == (el as DocNodeClass).classDef.extends
+            ) ?? allNodes.find((v) =>
+              v.kind == "class" &&
+              v.name == (el as DocNodeClass).classDef.extends
+            )
+            : undefined) as DocNodeClass | undefined,
         );
       }
     } else {
@@ -168,6 +189,12 @@ for (const [nodes, path_, slug, name] of refs) {
           ? nodes.filter((v): v is DocNodeNamespace => v.kind == "namespace")
             .find((v) => v.name == node.name)
           : undefined,
+        ((node.kind == "class" && node.classDef.extends !== undefined)
+          ? allNodes.find((v) =>
+            v.kind == "class" &&
+            v.name == (node as DocNodeClass).classDef.extends
+          )
+          : undefined) as DocNodeClass | undefined,
       );
     }
   }
