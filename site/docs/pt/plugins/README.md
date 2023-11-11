@@ -7,7 +7,7 @@ Plugins são desenhados como funcionalidades extras adicionadas a uma aplicaçã
 
 ## Plugins no grammY
 
-Alguns plugins já são **built-in** na lib grammY porque assumimos que muitos bots vão utilizá-los.
+Alguns plugins já são **built-in** na lib central do grammY porque assumimos que muitos bots vão utilizá-los.
 Isso facilita  que novos usuários os usem, sem precisar instalar algo a mais.
 
 A maioria dos plugins são publicados junto com o pacote principal do grammY, nós os chamamos de plugins **oficiais**.
