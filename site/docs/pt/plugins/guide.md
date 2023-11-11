@@ -191,11 +191,10 @@ Esses arquivos devem estar adjacentes e seguir a estrutura de nomes `*.deno.ts` 
 Esse é o porquê de ter os dois arquivos: `deps.deno.ts` e `deps.node.ts`.
 Se houver qualquer dependência específica de Node.js, coloque-a no `deps.node.ts`, se não, deixe em branco.
 
-
 > _**Nota**_: Você talvez use outras ferramentas como [deno dnt](https://github.com/denoland/dnt) para transpilar seu código deno ou usar estruturas de pastas diferentes.
 > A ferramenta é irrelevante, o principal ponto aqui é que escrever código Deno é melhor e mais fácil.
 
-**`tsconfig.json`**: Esse é o arquivo de configuração do compilador TypeScript usado pelo  `deno2node` para transpilar seu código.
+**`tsconfig.json`**: Esse é o arquivo de configuração do compilador TypeScript usado pelo `deno2node` para transpilar seu código.
 Um arquivo padrão é oferecido no repositório como sugestão.
 Ele corresponde a configuração TypeScript que o Deno usa internamente, e recomendamos que você mantenha assim.
 
