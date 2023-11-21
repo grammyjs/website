@@ -14,11 +14,16 @@
   cache-control = "max-age=604800" # 1 week
 
 [[redirects]]
+from = "/ref"
+to = "/ref/core"
+status = 301
+
+[[redirects]]
 from = "/guide/inline-queries.html"
-to = "/plugins/inline-query.html"
+to = "/plugins/inline-query"
 status = 301
 
 [[redirects]]
 from = "/*/guide/inline-queries.html"
-to = "/:splat/plugins/inline-query.html"
+to = "/:splat/plugins/inline-query"
 status = 301
