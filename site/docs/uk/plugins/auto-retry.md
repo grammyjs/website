@@ -66,4 +66,4 @@ autoRetry({
 
 - Назва: `auto-retry`
 - [Джерело](https://github.com/grammyjs/auto-retry)
-- Довідка: <https://doc.deno.land/https://raw.githubusercontent.com/grammyjs/auto-retry/main/src/index.ts>
+- [Довідка](/ref/auto-retry/)

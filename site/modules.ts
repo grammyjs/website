@@ -120,6 +120,16 @@ export const modules: ModuleConfig[] = [
     ),
   },
   {
+    repo: "auto-retry",
+    slug: "auto-retry",
+    entrypoint: "src/index.ts",
+    name: "Auto Retry",
+    description: desc(
+      "the [auto retry plugin](/plugins/auto-retry)",
+      "the auto retry plugin",
+    ),
+  },
+  {
     user: "roziscoding",
     repo: "grammy-autoquote",
     slug: "autoquote",
