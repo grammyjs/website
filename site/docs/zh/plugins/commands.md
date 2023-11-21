@@ -11,4 +11,4 @@ next: false
 
 - 名字：`commands`
 - 源码：<https://github.com/grammyjs/commands>
-- [参考](/ref/commands/)
+- 参考

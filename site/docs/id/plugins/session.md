@@ -244,7 +244,7 @@ Kalau kamu tidak menentukan opsi tersebut, pembacaan `ctx.session` akan mengakib
 > Bagian ini membahas fitur lanjutan yang untuk sebagian besar orang bisa diabaikan.
 > Kamu bisa melanjutkan ke bagian [Menyimpan Data](#menyimpan-data).
 
-Kamu bisa menentukan session key mana yang akan digunakan dengan cara memasukkan sebuah function bernama `getSessionKey` ke [opsi session](ref/core/SessionOptions#getsessionkey).
+Kamu bisa menentukan session key mana yang akan digunakan dengan cara memasukkan sebuah function bernama `getSessionKey` ke [opsi session](/ref/core/SessionOptions#getsessionkey).
 Dengan begitu, kamu bisa mengubah perilaku plugin session sepenuhnya.
 Secara bawaan, data disimpan per chat.
 Tetapi, dengan menggunakan `getSessionKey` kamu bisa menyimpan data entah itu per user, kombinasi per user dan chat, ataupun cara lainnya.

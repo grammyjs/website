@@ -11,4 +11,4 @@ Coming soon, please come back later.
 
 - Name: `commands`
 - Source: <https://github.com/grammyjs/commands>
-- [Reference](/ref/commands/)
+- Reference

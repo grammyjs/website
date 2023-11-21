@@ -152,7 +152,7 @@ ______________                                   _____________
 你不需要一直让 bot 与 Telegram 保持连接。
 当没有请求时，你可以使用自动将基础结构收敛为零消耗的服务。
 如果你愿意， 你甚至可以 [在响应 Telegram 请求时调用 API](#webhook-reply), 即使这样会有很多缺点。
-你可以在 [这里](ref/core/ApiClientOptions#canusewebhookreply) 查看配置选项。
+你可以在 [这里](/ref/core/ApiClientOptions#canusewebhookreply) 查看配置选项。
 
 Webhooks 可以在这些地方良好运行：
 

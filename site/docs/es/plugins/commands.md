@@ -11,4 +11,4 @@ Próximamente, por favor vuelva más tarde.
 
 - Nombre del plugin: `commands`
 - Fuente: <https://github.com/grammyjs/commands>
-- [Referencia](/ref/commands/)
+- Referencia

@@ -9,7 +9,7 @@ Usa una regla de linting para asegurarte de que no puedes olvidar esto.
 ## Apagado correcto
 
 Para los bots que utilizan long polling, hay una cosa más a considerar.
-Como vas a detener tu instancia durante la operación en algún momento de nuevo, deberías considerar la captura de eventos `SIGTERM` y `SIGINT`, y llamar a `bot.stop` (long polling incorporado) o detener tu bot a través de su [manejador](ref/runner/RunnerHandle#stop) (grammY runner):
+Como vas a detener tu instancia durante la operación en algún momento de nuevo, deberías considerar la captura de eventos `SIGTERM` y `SIGINT`, y llamar a `bot.stop` (long polling incorporado) o detener tu bot a través de su [manejador](/ref/runner/RunnerHandle#stop) (grammY runner):
 
 ### Simple long polling
 

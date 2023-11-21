@@ -51,7 +51,7 @@
 可以使用 grammY 像这样做：
 
 1. 对外部的 API 请求使用 [transformer 函数](./transformers) 来进行 Mock。
-2. 通过 `bot.handleUpdate`（[API 参考](ref/core/Bot#handleupdate)）定义并发送一些测试 update 对象到你的 bot。考虑从 Telegram 团队提供的这些 [update 对象](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates) 来获取一些灵感。
+2. 通过 `bot.handleUpdate`（[API 参考](/ref/core/Bot#handleupdate)）定义并发送一些测试 update 对象到你的 bot。考虑从 Telegram 团队提供的这些 [update 对象](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates) 来获取一些灵感。
 
 ::: tip 贡献测试框架
 虽然 grammY 提供了必要的 hooks 钩子去编写测试用例，但是如果对于 bot 来说有一个测试框架会更加有用。

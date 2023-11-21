@@ -152,7 +152,7 @@ No necesitas mantener una conexión de red abierta en todo momento.
 Puedes utilizar servicios que reduzcan automáticamente tu infraestructura a cero cuando no haya peticiones.
 Si quieres, puedes incluso [hacer una llamada a la API al responder a la petición de Telegram](#webhook-reply), aunque esto tiene una serie de inconvenientes.
 
-Consulta la opción de configuración [aquí](ref/core/ApiClientOptions#canusewebhookreply).
+Consulta la opción de configuración [aquí](/ref/core/ApiClientOptions#canusewebhookreply).
 
 Los lugares donde los webhooks funcionan bien incluyen:
 

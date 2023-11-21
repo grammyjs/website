@@ -113,7 +113,7 @@ if (ctx.hasCallbackQuery(/query-data-\d+/)) {
 ```
 
 Lo mismo se aplica a todas las demás comprobaciones de has.
-Consulta la [referencia de la API del objeto context](ref/core/Context#has) para ver una lista de todas las comprobaciones has.
+Consulta la [referencia de la API del objeto context](/ref/core/Context#has) para ver una lista de todas las comprobaciones has.
 También puedes consultar la propiedad estática `Context.has` en la [referencia de la API](/ref/core/Context#has) que te permite crear funciones de predicado eficientes para comprobar muchos objetos de contexto.
 
 ## Acciones disponibles

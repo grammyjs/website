@@ -372,7 +372,7 @@ The source is an async iterator of update batches, but it can be active or inact
 
 grammY runner ships with three possible sink implementations, a sequential one (same behavior as `bot.start()`), a batched one (mainly useful for backwards compatibility with other frameworks), and a fully concurrent one (used by `run`).
 All of them operate on `UpdateConsumer` objects ([API reference](/ref/runner/UpdateConsumer)) which are straightforward to create from a bot instance.
-If you want make one yourself, be sure to check out `handleUpdate` on the `Bot` instance of grammY ([API reference](ref/core/Bot#handleupdate)).
+If you want make one yourself, be sure to check out `handleUpdate` on the `Bot` instance of grammY ([API reference](/ref/core/Bot#handleupdate)).
 
 The sink contains a queue ([API reference](/ref/runner/DecayingDeque)) of individual updates that are currently being processed.
 Adding new updates to the queue will immediately make the update consumer handle them, and return a promise that resolves as soon as there is capacity in the queue again.

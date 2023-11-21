@@ -647,7 +647,7 @@ async function waitForText(conversation, ctx) {
 
 :::
 
-Зверніться до [довідки API](ref/conversations/ConversationHandle#wait), щоб переглянути всі доступні методи, схожі на `wait`.
+Зверніться до [довідки API](/ref/conversations/ConversationHandle#wait), щоб переглянути всі доступні методи, схожі на `wait`.
 
 ## Три золоті правила розмов
 
@@ -700,7 +700,7 @@ await conversation.now(); // точніше!
 conversation.log("Hello, world"); // прозоріше!
 ```
 
-Зауважте, що ви можете зробити майже все це за допомогою `conversation.external()`, але може бути нудно писати так багато коду, який щоразу повторюється, тому простіше скористатися зручними методами ([довідка API](/ref/core/ConversationHandle#methods)).
+Зауважте, що ви можете зробити майже все це за допомогою `conversation.external()`, але може бути нудно писати так багато коду, який щоразу повторюється, тому простіше скористатися зручними методами ([довідка API](/ref/conversations/ConversationHandle#methods)).
 
 ## Змінні, розгалуження та цикли
 

@@ -49,7 +49,7 @@ Lakukan berbagai pengujian untuk bot.
 Berikut cara melakukannya dengan grammY:
 
 1. _Mock_ request API yang keluar menggunakan [function transformer](./transformers).
-2. Tentukan dan kirim berbagai sampel object update ke bot melalui `bot.handleUpdate` ([referensi API](ref/core/Bot#handleupdate)).
+2. Tentukan dan kirim berbagai sampel object update ke bot melalui `bot.handleUpdate` ([referensi API](/ref/core/Bot#handleupdate)).
    Pertimbangkan untuk mengambil beberapa inspirasi dari [object update](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates) yang telah disediakan oleh tim Telegram.
 
 ::: tip Berkontribusi untuk Pengujian Framework

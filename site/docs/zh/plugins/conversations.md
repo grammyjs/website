@@ -646,7 +646,7 @@ async function waitForText(conversation, ctx) {
 
 :::
 
-通过 [API 参考](ref/conversations/ConversationHandle#wait) 来查看所有与 `wait` 类似的方法。
+通过 [API 参考](/ref/conversations/ConversationHandle#wait) 来查看所有与 `wait` 类似的方法。
 
 ## 对话的三条黄金法则
 
@@ -699,7 +699,7 @@ await conversation.now(); // 更精确！
 conversation.log("Hello, world"); // 更透明！
 ```
 
-请注意，你可以使用 `conversation.external()` 来执行大多数上述操作，但这可能会很麻烦，所以我们提供了一些便捷函数（[API 参考](/ref/core/ConversationHandle#methods)）。
+请注意，你可以使用 `conversation.external()` 来执行大多数上述操作，但这可能会很麻烦，所以我们提供了一些便捷函数（[API 参考](/ref/conversations/ConversationHandle#methods)）。
 
 ## 变量，分支和循环
 

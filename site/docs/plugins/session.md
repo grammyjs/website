@@ -243,7 +243,7 @@ If you don't specify it, reading `ctx.session` will throw an error for new users
 > This section describes an advanced feature that most people do not have to worry about.
 > You may want to continue with the section about [storing your data](#storing-your-data).
 
-You can specify which session key to use by passing a function called `getSessionKey` to the [options](ref/core/SessionOptions#getsessionkey).
+You can specify which session key to use by passing a function called `getSessionKey` to the [options](/ref/core/SessionOptions#getsessionkey).
 That way, you can fundamentally change the way how the session plugin works.
 By default, data is stored per chat.
 Using `getSessionKey` allows you to store data per user, or per user-chat combination, or however you want.

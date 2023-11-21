@@ -6,7 +6,7 @@ next: false
 # Маршрутизатор (`router`)
 
 Клас `Router` ([довідка API](/ref/router/) надає спосіб структурувати вашого бота шляхом маршрутизації обʼєктів контексту до різних частин вашого коду.
-Це більш досконала версія `bot.route` у `Composer` ([довідка grammY API](ref/core/Composer#route)).
+Це більш досконала версія `bot.route` у `Composer` ([довідка grammY API](/ref/core/Composer#route)).
 
 ## Приклад
 

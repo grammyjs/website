@@ -6,7 +6,7 @@ next: false
 # Enrutador (`router`)
 
 La clase `Router` ([Referencia API](/ref/router/) proporciona una forma de estructurar tu bot enrutando objetos de contexto a diferentes partes de tu código.
-Es una versión más sofisticada de `bot.route` en `Composer` ([grammY API Reference](ref/core/Composer#route)).
+Es una versión más sofisticada de `bot.route` en `Composer` ([grammY API Reference](/ref/core/Composer#route)).
 
 ## Ejemplo
 

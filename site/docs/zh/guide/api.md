@@ -31,7 +31,7 @@ Telegram 的后端允许你的 bot [发送文件](./files)，最大容量为 200
 ## 调用 Bot API
 
 Bot API 的每一个方法在 grammY 中都有对应的方法。
-例如：[Telegram Bot API 参考](https://core.telegram.org/bots/api#sendmessage) 和 [grammY API 参考](ref/core/Api#sendmessage) 中的 `sendMessage`。
+例如：[Telegram Bot API 参考](https://core.telegram.org/bots/api#sendmessage) 和 [grammY API 参考](/ref/core/Api#sendmessage) 中的 `sendMessage`。
 
 ### 调用方法
 

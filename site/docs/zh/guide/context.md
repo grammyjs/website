@@ -109,7 +109,7 @@ if (ctx.hasCallbackQuery(/query-data-\d+/)) {
 ```
 
 这同样适用于所有其他 has checks。
-阅读 [上下文对象的 API 参考](ref/core/Context#has) 来获取查看 has checks 的列表。
+阅读 [上下文对象的 API 参考](/ref/core/Context#has) 来获取查看 has checks 的列表。
 阅读 [API 参考](/ref/core/Context#has) 中的静态属性 `Context.has` ， 这能让你创建高效的判定函数来检测大量上下文对象。
 
 ## 可用操作

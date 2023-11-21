@@ -26,7 +26,7 @@ next: false
 ## 处理 Inline Query
 
 一旦用户触发了 inline query，即通过在文本输入框中输入“@your_bot_name ...”开始一条消息，你的 bot 将收到与此相关的 update。
-通过 `bot.inlineQuery()` 方法，grammY 支持处理 inline query，详见 [grammY API参考](ref/core/Composer#inlinequery) 中的 `Composer` 类文档。
+通过 `bot.inlineQuery()` 方法，grammY 支持处理 inline query，详见 [grammY API参考](/ref/core/Composer#inlinequery) 中的 `Composer` 类文档。
 该方法允许你监听与字符串或正则表达式匹配的特定 inline query。
 如果你希望通用地处理所有 inline query，请使用 `bot.on("inline_query")`。
 

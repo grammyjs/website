@@ -11,4 +11,4 @@ Segera hadir, silahkan datang lagi di lain waktu.
 
 - Nama: `commands`
 - Sumber: <https://github.com/grammyjs/commands>
-- [Referensi](/ref/commands/)
+- Referensi

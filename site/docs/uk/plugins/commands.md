@@ -11,4 +11,4 @@ next: false
 
 - Назва: `commands`
 - Джерело: <https://github.com/grammyjs/commands>
-- [Довідка](/ref/commands/)
+- Довідка

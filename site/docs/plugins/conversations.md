@@ -647,7 +647,7 @@ async function waitForText(conversation, ctx) {
 
 :::
 
-Check out the [API reference](ref/conversations/ConversationHandle#wait) to see all available methods that are similar to `wait`.
+Check out the [API reference](/ref/conversations/ConversationHandle#wait) to see all available methods that are similar to `wait`.
 
 ## Three Golden Rules of Conversations
 
@@ -700,7 +700,7 @@ await conversation.now(); // more accurate!
 conversation.log("Hello, world"); // more transparent!
 ```
 
-Note that you can do most of the above via `conversation.external()`, but this can be tedious to type, so it's just easier to use the convenience functions ([API reference](/ref/core/ConversationHandle#methods)).
+Note that you can do most of the above via `conversation.external()`, but this can be tedious to type, so it's just easier to use the convenience functions ([API reference](/ref/conversations/ConversationHandle#methods)).
 
 ## Variables, Branching, and Loops
 

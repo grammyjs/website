@@ -243,7 +243,7 @@ Si no la especifica, la lectura de `ctx.session` arrojará un error para los nue
 > Esta sección describe una característica avanzada de la que la mayoría de la gente no tiene que preocuparse.
 > Es posible que desee continuar con la sección sobre [almacenamiento de sus datos](#almacenamiento-de-sus-datos).
 
-Puedes especificar qué clave de sesión usar pasando una función llamada `getSessionKey` a las [opciones](ref/core/SessionOptions#getsessionkey).
+Puedes especificar qué clave de sesión usar pasando una función llamada `getSessionKey` a las [opciones](/ref/core/SessionOptions#getsessionkey).
 De esta manera, puedes cambiar fundamentalmente el funcionamiento del plugin de sesión.
 Por defecto, los datos se almacenan por chat.
 El uso de `getSessionKey` le permite almacenar los datos por usuario, o por combinación de usuario-chat, o como usted quiera.

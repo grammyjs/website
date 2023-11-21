@@ -154,7 +154,7 @@ Tempat-tempat yang cocok untuk menggunakan long polling:
 Kamu bisa menghemat banyak sekali request dan tidak perlu lagi menjaga koneksi tetap tersambung sepanjang waktu.
 Kamu bisa menggunakan layanan hosting yang secara otomatis menurunkan performa ketika tidak ada request yang masuk, yang berarti lebih hemat biaya.
 Kalau mau, kamu bahkan bisa [membuat panggilan API ketika membalas request dari Telegram](#webhook-reply), walaupun ia juga memiliki beberapa kekurangan yang harus diperhitungkan juga.
-Lihat konfigurasi opsinya [di sini](ref/core/ApiClientOptions#canusewebhookreply).
+Lihat konfigurasi opsinya [di sini](/ref/core/ApiClientOptions#canusewebhookreply).
 
 Tempat-tempat yang cocok untuk menggunakan webhook:
 

@@ -10,7 +10,7 @@ Pakai _linting rule_ supaya kamu tidak lupa menggunakannya.
 ## Graceful shutdown
 
 Ada satu hal yang harus diperhatikan khusus untuk bot-bot yang menggunakan long polling.
-Sebelum mematikan bot atau instance yang sedang berjalan, kamu sebaiknya menangkap event `SIGTERM` dan `SIGINT` terlebih dahulu, kemudian panggil `bot.stop` (built-in di long polling) atau hentikan bot menggunakan [handle](ref/runner/RunnerHandle#stop) (grammY runner)
+Sebelum mematikan bot atau instance yang sedang berjalan, kamu sebaiknya menangkap event `SIGTERM` dan `SIGINT` terlebih dahulu, kemudian panggil `bot.stop` (built-in di long polling) atau hentikan bot menggunakan [handle](/ref/runner/RunnerHandle#stop) (grammY runner)
 
 ### Long Polling Sederhana
 

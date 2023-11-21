@@ -46,7 +46,7 @@ Esto depende del tipo de despliegue.
 Escribe tests para tu bot. Esto se puede hacer con grammY así
 
 1. Simular las peticiones salientes de la API utilizando [funciones de transformación](./transformers).
-2. Define y envía ejemplos de actualización a tu bot via `bot.handleUpdate` ([referencia API](ref/core/Bot#handleupdate)). Considere inspirarse en [estos ejemplos](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates) proporcionados por el equipo de Telegram.
+2. Define y envía ejemplos de actualización a tu bot via `bot.handleUpdate` ([referencia API](/ref/core/Bot#handleupdate)). Considere inspirarse en [estos ejemplos](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates) proporcionados por el equipo de Telegram.
 
 ::: tip Contribuye al framework de testing.
 Aunque grammY proporciona lo necesario para empezar a escribir tests, sería muy útil tener un framework para los bots.

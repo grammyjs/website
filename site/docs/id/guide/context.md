@@ -118,7 +118,7 @@ if (ctx.hasCallbackQuery(/query-data-\d+/)) {
 ```
 
 Hal yang sama juga berlaku untuk has checks lainnya.
-Lihat [referensi API context object](ref/core/Context#has) untuk mengetahui semua has checks yang tersedia.
+Lihat [referensi API context object](/ref/core/Context#has) untuk mengetahui semua has checks yang tersedia.
 Selain itu, lihat juga [referensi API](/ref/core/Context#has) untuk static property `Context.has` yang bisa kamu gunakan untuk membuat predicate function memeriksa beberapa context object secara efisien.
 
 ## Aksi yang Tersedia

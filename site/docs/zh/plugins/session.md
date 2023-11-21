@@ -242,7 +242,7 @@ bot.use(session({ initial: { initialData } })); // 邪恶的
 > 本章节介绍一个大多数人不需要关心的高级特性。
 > 你可能想继续阅读有关 [存储数据](#储存你的数据) 的章节。
 
-你可以通过向 [options](ref/core/SessionOptions#getsessionkey) 传入一个名为 `getSessionKey` 的函数来指定会话使用哪个会话密钥。
+你可以通过向 [options](/ref/core/SessionOptions#getsessionkey) 传入一个名为 `getSessionKey` 的函数来指定会话使用哪个会话密钥。
 这样，你可以从根本上改变会话插件的工作方式。
 默认情况下，会话数据存储在每个聊天中。
 使用 `getSessionKey`，你可以按每个用户，或每个用户-聊天组合，或任何你想要的方式存储数据。

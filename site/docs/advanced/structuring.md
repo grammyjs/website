@@ -15,7 +15,7 @@ That being said, a straightforward and proven strategy to structure your code is
    Every single one of these parts exposes middleware that will handle the designated messages.
 2. Create a bot instance centrally that merges all middleware by installing it onto the bot.
 3. (Optional.) Pre-filter the updates centrally, and send down updates the right way only.
-   You may also want to check out `bot.route` ([API Reference](ref/core/Composer#route)) or alternatively the [router plugin](../plugins/router) for that.
+   You may also want to check out `bot.route` ([API Reference](/ref/core/Composer#route)) or alternatively the [router plugin](../plugins/router) for that.
 
 A runnable example that implements the above strategy can be found in the [Example Bot repository](https://github.com/grammyjs/examples/tree/main/scaling).
 
@@ -60,7 +60,7 @@ bot.use(lists);
 bot.start();
 ```
 
-Optionally, you can use the [router plugin](../plugins/router) or [`bot.route`](ref/core/Composer#route) to bundle up the different modules, if you're able to determine which middleware is responsible upfront.
+Optionally, you can use the [router plugin](../plugins/router) or [`bot.route`](/ref/core/Composer#route) to bundle up the different modules, if you're able to determine which middleware is responsible upfront.
 
 However, remember that the exact way of how to structure your bot is very hard to say generically.
 As always in software, do it in a way that makes the most sense :wink:

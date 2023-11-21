@@ -6,7 +6,7 @@ next: false
 # Router (`router`)
 
 The `Router` class ([API Reference](/ref/router/) provides a way to structure your bot by routing context objects to different parts of your code.
-It is a more sophisticated version of `bot.route` on `Composer` ([grammY API Reference](ref/core/Composer#route)).
+It is a more sophisticated version of `bot.route` on `Composer` ([grammY API Reference](/ref/core/Composer#route)).
 
 ## Example
 
