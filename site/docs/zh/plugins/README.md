@@ -15,7 +15,7 @@
 官方插件与 grammY 同步发布，确保插件与 grammY 的运行一致性。
 官方插件文档的每一节标题中都有软件包（即插件）的名称。
 举个例子，[grammY runner](./runner) 插件（`runner`）需要通过 `npm install @grammyjs/runner` 来安装。
-（如果你在使用 Deno 而不是 Node.js，你应该从 <https://deno.land/x/> 中导入插件，也就是从 `grammy_runner` 模块的 `mod.ts` 文件中导入）
+（如果你在使用 Deno 而不是 Node.js，你应该从 <https://deno.land/x> 中导入插件，也就是从 `grammy_runner` 模块的 `mod.ts` 文件中导入）
 
 还有一些**第三方**插件。
 任何人都可以发布它们。
