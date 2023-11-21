@@ -119,7 +119,7 @@ const menu = new Menu("movements")
 使用 `row` 来结束当前行，并将所有后续按钮添加到新的一行。
 
 还有许多可用的按钮类型，例如打开 URL。
-请查看这个插件的 [API 参考](https://deno.land/x/grammy_menu/mod.ts?s=MenuRange) 了解更多关于 `MenuRange`，以及 [Telegram Bot API 参考](https://core.telegram.org/bots/api#inlinekeyboardbutton) 了解更多关于 `InlineKeyboardButton`。
+请查看这个插件的 [API 参考](/ref/menu/MenuRange) 了解更多关于 `MenuRange`，以及 [Telegram Bot API 参考](https://core.telegram.org/bots/api#inlinekeyboardbutton) 了解更多关于 `InlineKeyboardButton`。
 
 ## 发送菜单
 
@@ -539,4 +539,4 @@ const menu = new Menu("id", { fingerprint: (ctx) => ident(ctx) });
 
 - 名字：`menu`
 - 源码：<https://github.com/grammyjs/menu>
-- 参考：<https://deno.land/x/grammy_menu/mod.ts>
+- [参考](/ref/menu/)

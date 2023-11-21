@@ -103,4 +103,4 @@ Si no estás familiarizado con esta sintaxis, puedes leer más sobre ella [aquí
 
 - Nombre: `emoji`
 - Fuente: <https://github.com/grammyjs/emoji>
-- Referencia: <https://deno.land/x/grammy_emoji/mod.ts>
+- [Referencia](/ref/emoji/)

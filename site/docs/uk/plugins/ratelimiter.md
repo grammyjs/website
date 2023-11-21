@@ -235,4 +235,4 @@ bot.use(
 
 - Назва: `ratelimiter`
 - Джерело: <https://github.com/grammyjs/ratelimiter>
-- Довідка: <https://deno.land/x/grammy_ratelimiter/mod.ts>
+- [Довідка](/ref/ratelimiter/)

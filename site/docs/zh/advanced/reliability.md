@@ -9,7 +9,7 @@
 ## 优雅关闭
 
 对于使用了长轮询的 bot，还有更多的事要去考虑。
-当你打算在某个操作期间再次停止你的实例，你应该去考虑捕获 `SIGTERM` 和 `SIGINT` 事件，并调用 `bot.stop`（长轮询内置的）方法或者通过它的 [处理](https://deno.land/x/grammy_runner/mod.ts?s=RunnerHandle#prop_stop) （grammY runner）来停止你的 bot。
+当你打算在某个操作期间再次停止你的实例，你应该去考虑捕获 `SIGTERM` 和 `SIGINT` 事件，并调用 `bot.stop`（长轮询内置的）方法或者通过它的 [处理](ref/runner/RunnerHandle#stop) （grammY runner）来停止你的 bot。
 
 ### 简单的长轮询
 
@@ -141,8 +141,8 @@ grammY 没有为你做这些工作，但是如果你认为其他人可以从中�
 
 如果防止这种情况非常重要，那么应该使用 grammY runner 库的沉（sink）和源（source）来组成自己的 update 管道，这个管道首先传递所有 update 到消息队列。
 
-1. 基本上来说，你必须创建一个发送到消息队列的 [沉（sink）](https://deno.land/x/grammy_runner/mod.ts?s=UpdateSink)，并启动一个只提供消息队列的运行程序。
-2. 然后，你必须再次创建一个从消息队列提取的 [源（source）](https://deno.land/x/grammy_runner/mod.ts?s=UpdateSource) 。
+1. 基本上来说，你必须创建一个发送到消息队列的 [沉（sink）](/ref/runner/UpdateSink)，并启动一个只提供消息队列的运行程序。
+2. 然后，你必须再次创建一个从消息队列提取的 [源（source）](/ref/runner/UpdateSource) 。
    你将有效的运行两个不同的 grammY runner 实例。
 
 据我们所知，上述这个模糊的草案只是草图，还没有实现。

@@ -103,7 +103,7 @@ async function greeting(conversation, ctx) {
 Плагін розмов експортує [розширювач для контексту](../guide/context#додавальнии-розширювач), який називається `ConversationFlavor`.
 
 **Перший параметр** є центральним елементом цього плагіна.
-Він має загальну назву `conversation` і тип `Conversation` ([довідка API](https://deno.land/x/grammy_conversations/mod.ts?s=Conversation)).
+Він має загальну назву `conversation` і тип `Conversation` ([довідка API](/ref/conversations/Conversation)).
 Його можна використовувати як обʼєкт для керування розмовою, наприклад, для очікування на введення користувачем певних даних тощо.
 Тип `Conversation` очікує [ваш тип контексту](../guide/context#налаштування-обʼєкта-контексту) як параметр типу, тому вам варто використовувати `Conversation<MyContext>`.
 
@@ -647,7 +647,7 @@ async function waitForText(conversation, ctx) {
 
 :::
 
-Зверніться до [довідки API](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#method_wait_0), щоб переглянути всі доступні методи, схожі на `wait`.
+Зверніться до [довідки API](ref/conversations/ConversationHandle#wait), щоб переглянути всі доступні методи, схожі на `wait`.
 
 ## Три золоті правила розмов
 
@@ -700,7 +700,7 @@ await conversation.now(); // точніше!
 conversation.log("Hello, world"); // прозоріше!
 ```
 
-Зауважте, що ви можете зробити майже все це за допомогою `conversation.external()`, але може бути нудно писати так багато коду, який щоразу повторюється, тому простіше скористатися зручними методами ([довідка API](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#Methods)).
+Зауважте, що ви можете зробити майже все це за допомогою `conversation.external()`, але може бути нудно писати так багато коду, який щоразу повторюється, тому простіше скористатися зручними методами ([довідка API](/ref/core/ConversationHandle#methods)).
 
 ## Змінні, розгалуження та цикли
 
@@ -909,7 +909,7 @@ async function waitForMe(conversation, ctx) {
 
 :::
 
-Як завжди, зверніться до [довідки API](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationForm), щоб дізнатися, які методи доступні.
+Як завжди, зверніться до [довідки API](/ref/conversations/ConversationForm), щоб дізнатися, які методи доступні.
 
 ## Робота з плагінами
 
@@ -1197,4 +1197,4 @@ await new Promise<never>(() => {}); // БУМ
 
 - Назва: `conversations`
 - Джерело: <https://github.com/grammyjs/conversations>
-- Довідка: <https://deno.land/x/grammy_conversations/mod.ts>
+- [Довідка](/ref/conversations/)

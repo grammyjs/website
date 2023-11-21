@@ -26,7 +26,7 @@ next: false
 ## 处理 Inline Query
 
 一旦用户触发了 inline query，即通过在文本输入框中输入“@your_bot_name ...”开始一条消息，你的 bot 将收到与此相关的 update。
-通过 `bot.inlineQuery()` 方法，grammY 支持处理 inline query，详见 [grammY API参考](https://deno.land/x/grammy/mod.ts?s=Composer#method_inlineQuery_0) 中的 `Composer` 类文档。
+通过 `bot.inlineQuery()` 方法，grammY 支持处理 inline query，详见 [grammY API参考](ref/core/Composer#inlinequery) 中的 `Composer` 类文档。
 该方法允许你监听与字符串或正则表达式匹配的特定 inline query。
 如果你希望通用地处理所有 inline query，请使用 `bot.on("inline_query")`。
 
@@ -154,7 +154,7 @@ InlineQueryResultBuilder.audioCached("id-0", audioFileId);
 
 > [点击此处](../guide/files#文件怎么在-telegram-bot-程序中工作) 阅读有关文件标识符的更多信息。
 
-你应该阅读 `InlineQueryResultBuilder` 的 [API 参考](https://deno.land/x/grammy/mod.ts?s=InlineQueryResultBuilder) 和 `InlineQueryResult` 的 [规范](https://core.telegram.org/bots/api#inlinequeryresult) 来查看所有可用选项。
+你应该阅读 `InlineQueryResultBuilder` 的 [API 参考](/ref/core/InlineQueryResultBuilder) 和 `InlineQueryResult` 的 [规范](https://core.telegram.org/bots/api#inlinequeryresult) 来查看所有可用选项。
 
 ## 回复 Inline Query
 

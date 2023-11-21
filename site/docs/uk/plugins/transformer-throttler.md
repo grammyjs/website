@@ -115,4 +115,4 @@ const outConfig = {
 
 - Назва: `transformer-throttler`
 - Джерело: <https://github.com/grammyjs/transformer-throttler>
-- Довідка: <https://deno.land/x/grammy_transformer_throttler/mod.ts>
+- [Довідка](/ref/transformer-throttler/)

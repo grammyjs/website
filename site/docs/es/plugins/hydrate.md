@@ -180,4 +180,4 @@ Todos los objetos se hidratan en
 
 - Nombre: `hydrate`
 - Fuente: <https://github.com/grammyjs/hydrate>
-- Referencia: <https://deno.land/x/grammy_hydrate/mod.ts>
+- [Referencia](/ref/hydrate/)

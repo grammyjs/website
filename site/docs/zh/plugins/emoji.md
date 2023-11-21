@@ -98,4 +98,4 @@ bot.command("ping", async (ctx) => {
 
 - 名字：`emoji`
 - 源码：<https://github.com/grammyjs/emoji>
-- 参考：<https://deno.land/x/grammy_emoji/mod.ts>
+- [参考](/ref/emoji/)

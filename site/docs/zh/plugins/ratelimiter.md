@@ -233,4 +233,4 @@ bot.use(
 
 - 名字：`ratelimiter`
 - 源码：<https://github.com/grammyjs/ratelimiter>
-- 参考：<https://deno.land/x/grammy_ratelimiter/mod.ts>
+- [参考](/ref/ratelimiter/)

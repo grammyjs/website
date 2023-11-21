@@ -102,4 +102,4 @@ bot.command("ping", async (ctx) => {
 
 - Назва: `emoji`
 - Джерело: <https://github.com/grammyjs/emoji>
-- Довідка: <https://deno.land/x/grammy_emoji/mod.ts>
+- [Довідка](/ref/emoji/)

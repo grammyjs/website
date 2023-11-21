@@ -144,4 +144,4 @@ const bot = new Bot<MyContext, MyApi>("");
 
 - Nombre: `files`
 - Fuente: <https://github.com/grammyjs/files>
-- Referencia: <https://deno.land/x/grammy_files/mod.ts>
+- [Referencia](/ref/files/)

@@ -179,4 +179,4 @@ Semua object dihidrasi di
 
 - Nama: `hydrate`
 - Sumber: <https://github.com/grammyjs/hydrate>
-- Referensi: <https://deno.land/x/grammy_hydrate/mod.ts>
+- [Referensi](/ref/hydrate/)

@@ -144,4 +144,4 @@ const bot = new Bot<MyContext, MyApi>("");
 
 - 名字：`files`
 - 源码：<https://github.com/grammyjs/files>
-- 参考：<https://deno.land/x/grammy_files/mod.ts>
+- [参考](/ref/files/)

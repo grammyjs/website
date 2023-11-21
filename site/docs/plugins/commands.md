@@ -11,4 +11,4 @@ Coming soon, please come back later.
 
 - Name: `commands`
 - Source: <https://github.com/grammyjs/commands>
-- Reference: <https://deno.land/x/grammy_commands/mod.ts>
+- [Reference](/ref/commands/)

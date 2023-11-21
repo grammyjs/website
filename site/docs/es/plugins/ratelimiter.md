@@ -230,4 +230,4 @@ En este ejemplo, he utilizado `chat.id` como clave única para la limitación de
 
 - Nombre: `ratelimitador`
 - Fuente: <https://github.com/grammyjs/ratelimiter>
-- Referencia: <https://deno.land/x/grammy_ratelimiter/mod.ts>
+- [Referencia](/ref/ratelimiter/)

@@ -117,4 +117,4 @@ const outConfig = {
 
 - Name: `transformer-throttler`
 - Source: <https://github.com/grammyjs/transformer-throttler>
-- Reference: <https://deno.land/x/grammy_transformer_throttler/mod.ts>
+- [Reference](/ref/transformer-throttler/)

@@ -132,4 +132,4 @@ bot.start();
 
 - Назва: Autoquote
 - Джерело: <https://github.com/roziscoding/grammy-autoquote>
-- Довідка API: <https://deno.land/x/grammy_autoquote/mod.ts>
+- [Довідка API](/ref/autoquote/)

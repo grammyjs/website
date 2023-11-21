@@ -144,4 +144,4 @@ const bot = new Bot<MyContext, MyApi>("");
 
 - Nama: `files`
 - Sumber: <https://github.com/grammyjs/files>
-- Referensi: <https://deno.land/x/grammy_files/mod.ts>
+- [Referensi](/ref/files/)

@@ -102,7 +102,7 @@ async function greeting(conversation, ctx) {
 一如既往，它被称为 `ctx`，并使用你的 [自定义上下文类型](../guide/context#定制你的上下文对象)（可能称为 `MyContext`）。
 
 **第一个参数**是这个插件的核心元素。
-它通常被命名为 `conversation`，它的类型是 `Conversation`（[API 参考](https://deno.land/x/grammy_conversations/mod.ts?s=Conversation)）。
+它通常被命名为 `conversation`，它的类型是 `Conversation`（[API 参考](/ref/conversations/Conversation)）。
 它可以用于控制对话，比如等待用户输入等等。
 `Conversation` 类型会希望你使用你的 [自定义上下文类型](../guide/context#定制你的上下文对象) 作为它的类型参数，所以你通常会用的的是 `Conversation<MyContext>`。
 
@@ -646,7 +646,7 @@ async function waitForText(conversation, ctx) {
 
 :::
 
-通过 [API 参考](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#method_wait_0) 来查看所有与 `wait` 类似的方法。
+通过 [API 参考](ref/conversations/ConversationHandle#wait) 来查看所有与 `wait` 类似的方法。
 
 ## 对话的三条黄金法则
 
@@ -699,7 +699,7 @@ await conversation.now(); // 更精确！
 conversation.log("Hello, world"); // 更透明！
 ```
 
-请注意，你可以使用 `conversation.external()` 来执行大多数上述操作，但这可能会很麻烦，所以我们提供了一些便捷函数（[API 参考](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#method_wait_0)）。
+请注意，你可以使用 `conversation.external()` 来执行大多数上述操作，但这可能会很麻烦，所以我们提供了一些便捷函数（[API 参考](/ref/core/ConversationHandle#methods)）。
 
 ## 变量，分支和循环
 
@@ -908,7 +908,7 @@ async function waitForMe(conversation, ctx) {
 
 :::
 
-像往常一样，查看 [API 参考](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationForm) 以了解哪些方法可用。
+像往常一样，查看 [API 参考](/ref/conversations/ConversationForm) 以了解哪些方法可用。
 
 ## 使用插件
 
@@ -1195,4 +1195,4 @@ await new Promise<never>(() => {}); // BOOM
 
 - 名字：`conversations`
 - 源码：<https://github.com/grammyjs/conversations>
-- 参考：<https://deno.land/x/grammy_conversations/mod.ts>
+- [参考](/ref/conversations/)
