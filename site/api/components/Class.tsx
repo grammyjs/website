@@ -60,7 +60,9 @@ export function Class(
           <Method
             getLink={getLink}
             inheritDoc={() =>
-                parent?.classDef.methods.find((v_) => (v_.name == v.name) && !v_.isStatic)?.jsDoc}
+              parent?.classDef.methods.find((v_) =>
+                (v_.name == v.name) && !v_.isStatic
+              )?.jsDoc}
           >
             {v}
           </Method>
@@ -71,7 +73,9 @@ export function Class(
           <Method
             getLink={getLink}
             inheritDoc={() =>
-              parent?.classDef.methods.find((v_) => (v_.name == v.name) && v_.isStatic)?.jsDoc}
+              parent?.classDef.methods.find((v_) =>
+                (v_.name == v.name) && v_.isStatic
+              )?.jsDoc}
           >
             {v}
           </Method>

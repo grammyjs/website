@@ -9,16 +9,16 @@ import { Loc } from "../Loc.tsx";
 export function Method({
   children: method,
   getLink,
-  inheritDoc
+  inheritDoc,
 }: {
   children: ClassMethodDef;
   getLink: LinkGetter;
-  inheritDoc: () => JsDoc | undefined
+  inheritDoc: () => JsDoc | undefined;
 }) {
-  const inherit =  method.jsDoc?.tags?.some((v) =>
-      v.kind == "unsupported" && v.value == "@inheritdoc"
-  )
-  const jsDoc = inherit ? inheritDoc() : method.jsDoc
+  const inherit = method.jsDoc?.tags?.some((v) =>
+    v.kind == "unsupported" && v.value == "@inheritdoc"
+  );
+  const jsDoc = inherit ? inheritDoc() : method.jsDoc;
   return (
     <>
       <H3>
