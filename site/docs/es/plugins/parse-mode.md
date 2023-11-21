@@ -206,5 +206,5 @@ bot.start();
 ## Resumen del plugin
 
 - Nombre: `parse-mode`
-- Fuente: <https://github.com/grammyjs/parse-mode>
+- [Fuente](https://github.com/grammyjs/parse-mode)
 - [Referencia](/ref/parse-mode/)

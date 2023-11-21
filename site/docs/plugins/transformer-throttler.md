@@ -116,5 +116,5 @@ const outConfig = {
 ## Plugin Summary
 
 - Name: `transformer-throttler`
-- Source: <https://github.com/grammyjs/transformer-throttler>
+- [Source](https://github.com/grammyjs/transformer-throttler)
 - [Reference](/ref/transformer-throttler/)

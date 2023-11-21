@@ -143,5 +143,5 @@ const bot = new Bot<MyContext, MyApi>("");
 ## 插件概述
 
 - 名字：`files`
-- 源码：<https://github.com/grammyjs/files>
+- [源码](https://github.com/grammyjs/files)
 - [参考](/ref/files/)

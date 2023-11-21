@@ -146,5 +146,5 @@ bot.on("message", async (ctx) => {
 ## 插件概述
 
 - 名字: `chat-members`
-- 源码: <https://github.com/grammyjs/chat-members>
+- [源码](https://github.com/grammyjs/chat-members)
 - [参考](/ref/chat-members/)

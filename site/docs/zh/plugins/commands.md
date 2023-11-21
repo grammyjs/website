@@ -10,5 +10,5 @@ next: false
 ## 插件概述
 
 - 名字：`commands`
-- 源码：<https://github.com/grammyjs/commands>
+- [源码](https://github.com/grammyjs/commands)
 - 参考

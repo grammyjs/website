@@ -229,5 +229,5 @@ En este ejemplo, he utilizado `chat.id` como clave única para la limitación de
 ## Resumen del plugin
 
 - Nombre: `ratelimitador`
-- Fuente: <https://github.com/grammyjs/ratelimiter>
+- [Fuente](https://github.com/grammyjs/ratelimiter)
 - [Referencia](/ref/ratelimiter/)

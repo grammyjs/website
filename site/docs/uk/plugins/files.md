@@ -143,5 +143,5 @@ const bot = new Bot<MyContext, MyApi>("");
 ## Загальні відомості про плагін
 
 - Назва: `files`
-- Джерело: <https://github.com/grammyjs/files>
+- [Джерело](https://github.com/grammyjs/files)
 - [Довідка](/ref/files/)

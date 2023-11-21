@@ -1196,5 +1196,5 @@ await new Promise<never>(() => {}); // БУМ
 ## Загальні відомості про плагін
 
 - Назва: `conversations`
-- Джерело: <https://github.com/grammyjs/conversations>
+- [Джерело](https://github.com/grammyjs/conversations)
 - [Довідка](/ref/conversations/)

@@ -146,5 +146,5 @@ bot.on("message", async (ctx) => {
 ## Загальні відомості про плагін
 
 - Назва: `chat-members`
-- Джерело: <https://github.com/grammyjs/chat-members>
+- [Джерело](https://github.com/grammyjs/chat-members)
 - [Довідка](/ref/chat-members/)

@@ -538,5 +538,5 @@ const menu = new Menu("id", { fingerprint: (ctx) => ident(ctx) });
 ## 插件概述
 
 - 名字：`menu`
-- 源码：<https://github.com/grammyjs/menu>
+- [源码](https://github.com/grammyjs/menu)
 - [参考](/ref/menu/)

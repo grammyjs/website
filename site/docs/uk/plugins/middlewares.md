@@ -69,5 +69,5 @@ bot.use(
 ## Загальні відомості про плагін
 
 - Назва: `grammy-middlewares`
-- Джерело: <https://github.com/backmeupplz/grammy-middlewares>
+- [Джерело](https://github.com/backmeupplz/grammy-middlewares)
 - Довідка: <https://github.com/backmeupplz/grammy-middlewares>

@@ -148,5 +148,5 @@ Hanya gunakan ini apabila kamu _benar-benar_ paham dengan perilaku, resiko, dan 
 ## Ringkasan Plugin
 
 - Nama: `chat-members`
-- Sumber: <https://github.com/grammyjs/chat-members>
+- [Sumber](https://github.com/grammyjs/chat-members)
 - [Referensi](/ref/chat-members/)

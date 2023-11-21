@@ -1193,5 +1193,5 @@ Como obviamente no queremos matar el runtime de JS, tenemos que atrapar esto de 
 ## Resumen del plugin
 
 - Name: `conversations`
-- Source: <https://github.com/grammyjs/conversations>
+- [Fuente](https://github.com/grammyjs/conversations)
 - [Reference](/ref/conversations/)

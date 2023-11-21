@@ -218,5 +218,5 @@ bot.start();
 ## Ringkasan Plugin
 
 - Nama: `parse-mode`
-- Sumber: <https://github.com/grammyjs/parse-mode>
+- [Sumber](https://github.com/grammyjs/parse-mode)
 - [Referensi](/ref/parse-mode/)

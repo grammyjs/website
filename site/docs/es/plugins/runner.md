@@ -410,5 +410,5 @@ Se devuelve el manejador del runner creado, lo que permite controlar el runner.
 ## Resumen del plugin
 
 - Nombre: `runner`
-- Fuente: <https://github.com/grammyjs/runner>
+- [Fuente](https://github.com/grammyjs/runner)
 - [Referencia](/ref/runner/)

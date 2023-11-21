@@ -475,5 +475,5 @@ Si ambos valores son conocidos, el bot calcula los días restantes y los envía 
 ## Resumen del plugin
 
 - Nombre: `router`
-- Fuente: <https://github.com/grammyjs/router>
+- [Fuente](https://github.com/grammyjs/router)
 - [Referencia](/ref/router/)>

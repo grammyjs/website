@@ -65,5 +65,5 @@ autoRetry({
 ## Загальні відомості про плагін
 
 - Назва: `auto-retry`
-- Джерело: <https://github.com/grammyjs/auto-retry>
+- [Джерело](https://github.com/grammyjs/auto-retry)
 - Довідка: <https://doc.deno.land/https://raw.githubusercontent.com/grammyjs/auto-retry/main/src/index.ts>

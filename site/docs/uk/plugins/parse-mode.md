@@ -200,5 +200,5 @@ bot.start();
 ## Загальні відомості про плагін
 
 - Назва: `parse-mode`
-- Джерело: <https://github.com/grammyjs/parse-mode>
+- [Джерело](https://github.com/grammyjs/parse-mode)
 - [Довідка](/ref/parse-mode/)

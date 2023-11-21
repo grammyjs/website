@@ -533,5 +533,5 @@ const menu = new Menu("id", { fingerprint: (ctx) => ident(ctx) });
 ## Загальні відомості про плагін
 
 - Назва: `menu`
-- Джерело: <https://github.com/grammyjs/menu>
+- [Джерело](https://github.com/grammyjs/menu)
 - [Довідка](/ref/menu/)

@@ -533,5 +533,5 @@ As a result, you are able to navigate between arbitrary menus without limit, all
 ## Plugin Summary
 
 - Name: `menu`
-- Source: <https://github.com/grammyjs/menu>
+- [Source](https://github.com/grammyjs/menu)
 - [Reference](/ref/menu/)

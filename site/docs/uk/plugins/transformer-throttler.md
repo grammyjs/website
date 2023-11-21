@@ -114,5 +114,5 @@ const outConfig = {
 ## Загальні відомості про плагін
 
 - Назва: `transformer-throttler`
-- Джерело: <https://github.com/grammyjs/transformer-throttler>
+- [Джерело](https://github.com/grammyjs/transformer-throttler)
 - [Довідка](/ref/transformer-throttler/)

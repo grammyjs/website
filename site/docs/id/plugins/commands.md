@@ -10,5 +10,5 @@ Segera hadir, silahkan datang lagi di lain waktu.
 ## Ringkasan Plugin
 
 - Nama: `commands`
-- Sumber: <https://github.com/grammyjs/commands>
+- [Sumber](https://github.com/grammyjs/commands)
 - Referensi

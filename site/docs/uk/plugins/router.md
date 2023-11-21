@@ -484,5 +484,5 @@ function getDays(month: number, day: number) {
 ## Загальні відомості про плагін
 
 - Назва: `router`
-- Джерело: <https://github.com/grammyjs/router>
+- [Джерело](https://github.com/grammyjs/router)
 - [Довідка](/ref/router/)>

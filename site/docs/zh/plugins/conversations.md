@@ -1194,5 +1194,5 @@ await new Promise<never>(() => {}); // BOOM
 ## 插件概述
 
 - 名字：`conversations`
-- 源码：<https://github.com/grammyjs/conversations>
+- [源码](https://github.com/grammyjs/conversations)
 - [参考](/ref/conversations/)

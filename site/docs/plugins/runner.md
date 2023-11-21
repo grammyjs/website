@@ -410,5 +410,5 @@ The handle of the created runner is returned, which lets you control the runner.
 ## Plugin Summary
 
 - Name: `runner`
-- Source: <https://github.com/grammyjs/runner>
+- [Source](https://github.com/grammyjs/runner)
 - [Reference](/ref/runner/)

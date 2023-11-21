@@ -528,5 +528,5 @@ Como resultado, puedes navegar entre menús arbitrarios sin límite, todo mientr
 ## Resumen del plugin
 
 - Nombre: `menu`
-- Fuente: <https://github.com/grammyjs/menu>
+- [Fuente](https://github.com/grammyjs/menu)
 - [Referencia](/ref/menu/)

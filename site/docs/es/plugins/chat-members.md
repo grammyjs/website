@@ -146,5 +146,5 @@ Utilízalo sólo si _realmente_ sabes lo que estás haciendo y estás de acuerdo
 ## Resumen del plugin
 
 - Nombre: `chat-members`
-- Fuente: <https://github.com/grammyjs/chat-members>
+- [Fuente](https://github.com/grammyjs/chat-members)
 - [Referencia](/ref/chat-members/)

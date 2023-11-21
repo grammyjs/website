@@ -97,5 +97,5 @@ bot.command("ping", async (ctx) => {
 ## 插件概述
 
 - 名字：`emoji`
-- 源码：<https://github.com/grammyjs/emoji>
+- [源码](https://github.com/grammyjs/emoji)
 - [参考](/ref/emoji/)

@@ -409,5 +409,5 @@ runner 是一个简单的循环，它从 source 中拉取 updates，并将它们
 ## 插件概述
 
 - 名字：`runner`
-- 源码：<https://github.com/grammyjs/runner>
+- [源码](https://github.com/grammyjs/runner)
 - [参考](/ref/runner/)

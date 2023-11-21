@@ -1208,5 +1208,5 @@ Lantas, bagaimana cara kamu melakukannya?
 ## Ringkasan Plugin
 
 - Nama: `conversations`
-- Sumber: <https://github.com/grammyjs/conversations>
+- [Sumber](https://github.com/grammyjs/conversations)
 - [Referensi](/ref/conversations/)

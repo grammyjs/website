@@ -101,5 +101,5 @@ bot.command("ping", async (ctx) => {
 ## Загальні відомості про плагін
 
 - Назва: `emoji`
-- Джерело: <https://github.com/grammyjs/emoji>
+- [Джерело](https://github.com/grammyjs/emoji)
 - [Довідка](/ref/emoji/)

@@ -64,5 +64,5 @@ autoRetry({
 ## Resumen del plugin
 
 - Nombre: `auto-retry`
-- Fuente: <https://github.com/grammyjs/auto-retry>
-- Reference: <https://doc.deno.land/https://raw.githubusercontent.com/grammyjs/auto-retry/main/src/index.ts>
+- [Fuente](https://github.com/grammyjs/auto-retry)
+- Referencia de la API: <https://doc.deno.land/https://raw.githubusercontent.com/grammyjs/auto-retry/main/src/index.ts>

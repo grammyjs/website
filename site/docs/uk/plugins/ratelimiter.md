@@ -234,5 +234,5 @@ bot.use(
 ## Загальні відомості про плагін
 
 - Назва: `ratelimiter`
-- Джерело: <https://github.com/grammyjs/ratelimiter>
+- [Джерело](https://github.com/grammyjs/ratelimiter)
 - [Довідка](/ref/ratelimiter/)

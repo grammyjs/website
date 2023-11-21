@@ -406,5 +406,5 @@ Kemudian, ia akan mengembalikan (return) handle dari runner tersebut, yang mana 
 ## Ringkasan Plugin
 
 - Nama: `runner`
-- Sumber: <https://github.com/grammyjs/runner>
+- [Sumber](https://github.com/grammyjs/runner)
 - [Referensi](/ref/runner/)

@@ -200,5 +200,5 @@ bot.start();
 ## 插件概述
 
 - 名字：`parse-mode`
-- 源码：<https://github.com/grammyjs/parse-mode>
+- [源码](https://github.com/grammyjs/parse-mode)
 - [参考](/ref/parse-mode/)

@@ -538,5 +538,5 @@ Hasilnya, kamu bisa menavigasi di antara menu tanpa batas, semua bisa dilakukan 
 ## Ringkasan Plugin
 
 - Nama: `menu`
-- Sumber: <https://github.com/grammyjs/menu>
+- [Sumber](https://github.com/grammyjs/menu)
 - [Referensi](/ref/menu/)

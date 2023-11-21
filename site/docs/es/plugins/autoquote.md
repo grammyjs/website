@@ -131,5 +131,5 @@ bot.start();
 ## Resumen del plugin
 
 - Nombre: Autoquote
-- Fuente: <https://github.com/roziscoding/grammy-autoquote>
+- [Fuente](https://github.com/roziscoding/grammy-autoquote)
 - [Referencia de la API](/ref/autoquote/)

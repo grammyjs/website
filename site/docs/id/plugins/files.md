@@ -143,5 +143,5 @@ const bot = new Bot<MyContext, MyApi>("");
 ## Ringkasan Plugin
 
 - Nama: `files`
-- Sumber: <https://github.com/grammyjs/files>
+- [Sumber](https://github.com/grammyjs/files)
 - [Referensi](/ref/files/)

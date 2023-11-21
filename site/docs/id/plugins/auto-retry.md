@@ -69,5 +69,5 @@ Error tersebut akan langsung diulang kembali dengan tetap mematuhi opsi `maxRetr
 ## Ringkasan Plugin
 
 - Nama: `auto-retry`
-- Sumber: <https://github.com/grammyjs/auto-retry>
+- [Sumber](https://github.com/grammyjs/auto-retry)
 - Referensi: <https://doc.deno.land/https://raw.githubusercontent.com/grammyjs/auto-retry/main/src/index.ts>

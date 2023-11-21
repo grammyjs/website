@@ -10,5 +10,5 @@ Próximamente, por favor vuelva más tarde.
 ## Resumen del plugin
 
 - Nombre del plugin: `commands`
-- Fuente: <https://github.com/grammyjs/commands>
+- [Fuente](https://github.com/grammyjs/commands)
 - Referencia

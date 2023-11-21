@@ -482,5 +482,5 @@ Ketika kedua nilai tersebut diketahui, bot akan menghitung sisa harinya lalu men
 ## Ringkasan Plugin
 
 - Nama: `router`
-- Sumber: <https://github.com/grammyjs/router>
+- [Sumber](https://github.com/grammyjs/router)
 - [Referensi](/ref/router/)>

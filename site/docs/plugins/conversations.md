@@ -1195,5 +1195,5 @@ How would you go about this?
 ## Plugin Summary
 
 - Name: `conversations`
-- Source: <https://github.com/grammyjs/conversations>
+- [Source](https://github.com/grammyjs/conversations)
 - [Reference](/ref/conversations/)

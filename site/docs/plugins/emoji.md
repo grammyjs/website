@@ -102,5 +102,5 @@ If you're unfamiliar with this syntax, you can read more about it [here](https:/
 ## Plugin Summary
 
 - Name: `emoji`
-- Source: <https://github.com/grammyjs/emoji>
+- [Source](https://github.com/grammyjs/emoji)
 - [Reference](/ref/emoji/)
