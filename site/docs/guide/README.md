@@ -32,7 +32,7 @@ Also check out our great collection of _Plugins_, and have a look at the _Exampl
 **The second part** is the [grammY API reference](/ref/core/), linked at the top of the page.
 This is a detailed overview of every single bit of code that grammY provides.
 It is automatically generated from grammY's code and contains all of the useful tooltip explanations, normally found by hovering your cursor over any element of grammY in a code editor.
-(Each plugin has its own API reference linked at the bottom of the respective plugin page.)
+(Each plugin has its own API reference linked in the plugin summary of the respective plugin page.)
 
 **The third part** is provided by Telegram and lists the raw definitions of the [HTTP API](https://core.telegram.org/bots/api) that grammY will connect to under the hood.
 The grammY API reference links to it wherever that makes sense.
