@@ -3,6 +3,7 @@ import { CodeBlock } from "../CodeBlock.tsx";
 import { Loc } from "../Loc.tsx";
 import { P } from "../P.tsx";
 import { Params } from "../TsType.tsx";
+import { StyleKw } from "../styles.tsx";
 import { LinkGetter } from "../types.ts";
 
 export function Constructors({
@@ -18,7 +19,7 @@ export function Constructors({
   return ctors.map((v) => (
     <>
       <CodeBlock>
-        {v.accessibility ? `${v.accessibility} ` : undefined}
+        {v.accessibility ? <StyleKw>`${v.accessibility} `</StyleKw> : undefined}
         <span style="color: rgb(98, 232, 132);">{v.name}</span>(
         <Params getLink={getLink}>{v.params}</Params>);
       </CodeBlock>
