@@ -19,7 +19,9 @@ export function Constructors({
   return ctors.map((v) => (
     <>
       <CodeBlock>
-        {v.accessibility ? <StyleKw>{v.accessibility}{" "}</StyleKw> : undefined}
+        {v.accessibility
+          ? <StyleKw>{v.accessibility}{" "}</StyleKw>
+          : undefined}
         <span style="color: rgb(98, 232, 132);">{v.name}</span>(
         <Params getLink={getLink}>{v.params}</Params>);
       </CodeBlock>
