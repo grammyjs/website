@@ -157,9 +157,6 @@ for (const [nodes, path_, slug, name] of refs) {
     }
   };
   for (const node of nodes) {
-    if (node.name == "Chat") {
-      console.log(node.kind);
-    }
     if (node.kind == "namespace") {
       for (const el of node.namespaceDef.elements) {
         createDoc(
