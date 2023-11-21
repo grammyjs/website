@@ -1,3 +1,5 @@
+// COMMITTED HERE FOR TRANSPARENCY ONLY
+// Changing this file won't automatically update the crawler configuration.
 new Crawler({
   appId: "RBF5Q0D7QV",
   apiKey: "...",
