@@ -19,37 +19,37 @@ import links from "./links.ts";
 const out = Deno.args[0];
 if (!out) throw new Error("no out!");
 
-const paths: [string, string, string, string][] = Deno.args[1]
-  ? [[Deno.args[1], path.join(out, "mod"), "core", "Core API"]]
-  : modules.map(
-    ({
-      user = "grammyjs",
-      repo,
-      branch = "main",
-      slug,
-      entrypoint = "src/mod.ts",
-      name,
-    }) => [
-      `https://raw.githubusercontent.com/${user}/${repo}/${branch}/${entrypoint}`,
-      path.join(out, slug),
-      slug,
-      name,
-    ],
-  );
+const paths: [string, string, string, string, string][] = modules.map(
+  ({
+    user = "grammyjs",
+    repo,
+    branch = "main",
+    slug,
+    entrypoint = "src/mod.ts",
+    name,
+    description,
+  }) => [
+    `https://raw.githubusercontent.com/${user}/${repo}/${branch}/${entrypoint}`,
+    path.join(out, slug),
+    slug,
+    name,
+    description,
+  ],
+);
 
 console.log("Generating docs for", paths.length, "modules");
 
-const refs: Array<[DocNode[], string, string, string]> = await Promise.all(
-  paths.map(async ([id, path, slug, name]) => {
+const refs: Array<[DocNode[], string, string, string, string]> = await Promise
+  .all(paths.map(async ([id, path, slug, name, description]) => {
     const nodes = await doc(id);
     return [
       nodes.sort((a, b) => a.name.localeCompare(b.name)),
       path,
       slug,
       name,
+      description,
     ];
-  }),
-);
+  }));
 
 const namespaceGetLink = (
   slug: string,
@@ -141,7 +141,7 @@ try {
 console.log("Creating files");
 let count = 0;
 const allNodes = refs.map(([nodes]) => nodes).flat();
-for (const [nodes, path_, slug, name] of refs) {
+for (const [nodes, path_, slug, name, description] of refs) {
   const getLink = (repr: string) => {
     const node = nodes.find((v) => v.name == repr);
     if (node !== undefined) {
@@ -197,7 +197,13 @@ editLink: false
 
 ${
       renderToString(
-        <ToC name={name + " Reference"} getLink={getLink}>{nodes}</ToC>,
+        <ToC
+          name={name + " Reference"}
+          description={description}
+          getLink={getLink}
+        >
+          {nodes}
+        </ToC>,
       )
     }`;
 
