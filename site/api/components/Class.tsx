@@ -56,17 +56,18 @@ export function Class(
         <Properties getLink={getLink}>{props}</Properties>
       </Sector>
       <Sector title="Methods" show={!!methods.length}>
-        {methods.map((v) => (
-          <Method
-            getLink={getLink}
-            inheritDoc={() =>
-              parent?.classDef.methods.find((v_) =>
-                (v_.name == v.name) && !v_.isStatic
-              )?.jsDoc}
-          >
-            {v}
-          </Method>
-        ))}
+        {methods.filter((v) => v.accessibility !== "private")
+          .map((v) => (
+            <Method
+              getLink={getLink}
+              inheritDoc={() =>
+                parent?.classDef.methods.find((v_) =>
+                  (v_.name == v.name) && !v_.isStatic
+                )?.jsDoc}
+            >
+              {v}
+            </Method>
+          ))}
       </Sector>
       <Sector title="Static Methods" show={!!staticMethods.length}>
         {staticMethods.map((v) => (
