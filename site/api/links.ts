@@ -6,6 +6,8 @@ export default {
   "AsyncIterable":
     "https://developer.mozilla.org/docs/Web/JavaScript/Reference/Iteration_protocols#the_async_iterator_and_async_iterable_protocols",
   "Blob": "https://developer.mozilla.org/docs/Web/API/Blob",
+  "Error":
+    "https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error",
   "Iterable":
     "https://developer.mozilla.org/docs/Web/JavaScript/Reference/Iteration_protocols#the_iterator_protocol",
   "Promise":
