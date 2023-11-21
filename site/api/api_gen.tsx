@@ -122,7 +122,9 @@ ${renderToString(component)}`;
     const filename = path.join(path_, `${node.name}.md`);
     Deno.mkdirSync(path.dirname(filename), { recursive: true });
     Deno.writeTextFileSync(filename, contents, { append: true });
+    return true;
   }
+  return false;
 }
 
 console.log("Purging output folder", out);
@@ -137,10 +139,8 @@ try {
 }
 
 console.log("Creating files");
-let allNodes = new Array<DocNode>();
-for (const [nodes] of refs) {
-  allNodes = allNodes.concat(nodes);
-}
+let count = 0;
+const allNodes = refs.map(([nodes]) => nodes).flat();
 for (const [nodes, path_, slug, name] of refs) {
   const getLink = (repr: string) => {
     const node = nodes.find((v) => v.name == repr);
@@ -168,7 +168,7 @@ for (const [nodes, path_, slug, name] of refs) {
               v.name == (el as DocNodeClass).classDef.extends
             )
             : undefined) as DocNodeClass | undefined,
-        );
+        ) && count++;
       }
     } else {
       createDoc(
@@ -186,7 +186,7 @@ for (const [nodes, path_, slug, name] of refs) {
             v.name == (node as DocNodeClass).classDef.extends
           )
           : undefined) as DocNodeClass | undefined,
-      );
+      ) && count++;
     }
   }
   {
@@ -202,8 +202,9 @@ ${
     }`;
 
     Deno.writeTextFileSync(filename, content);
+    count++;
   }
   console.log("Wrote", path_);
 }
 
-console.log("Done.");
+console.log("Done writing", count, "files.");
