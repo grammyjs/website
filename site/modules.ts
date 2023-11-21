@@ -111,6 +111,15 @@ export const modules: ModuleConfig[] = [
     ),
   },
   {
+    repo: "chat-members",
+    slug: "chat-members",
+    name: "Chat Members",
+    description: desc(
+      "the [chat members plugin](/plugins/chat-members)",
+      "the chat members plugin",
+    ),
+  },
+  {
     user: "roziscoding",
     repo: "grammy-autoquote",
     slug: "autoquote",
