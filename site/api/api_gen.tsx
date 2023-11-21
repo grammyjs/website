@@ -16,11 +16,6 @@ import { Variable } from "./components/Variable.tsx";
 import { TypeAlias } from "./components/TypeAlias.tsx";
 import links from "./links.ts";
 
-/// deno-lint-ignore no-explicit-any require-await
-// async function doc(...a: any): Promise<any[]> {
-//   return JSON.parse(Deno.readTextFileSync("doc.json"));
-// }
-
 const out = Deno.args[0];
 if (!out) throw new Error("no out!");
 
@@ -35,7 +30,6 @@ const paths: [string, string, string, string][] = Deno.args[1]
       entrypoint = "src/mod.ts",
       name,
     }) => [
-      // "file:///home/roj/Projects/grammY/src/mod.ts",
       `https://raw.githubusercontent.com/${user}/${repo}/${branch}/${entrypoint}`,
       path.join(out, slug),
       slug,
