@@ -25,5 +25,6 @@ cache/
 dist/
 
 # generated API reference files
+doc.json
 docs/ref/
 !docs/ref/README.md
