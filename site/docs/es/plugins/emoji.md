@@ -102,5 +102,5 @@ Si no estás familiarizado con esta sintaxis, puedes leer más sobre ella [aquí
 ## Resumen del plugin
 
 - Nombre: `emoji`
-- Fuente: <https://github.com/grammyjs/emoji>
-- Referencia: <https://deno.land/x/grammy_emoji/mod.ts>
+- [Fuente](https://github.com/grammyjs/emoji)
+- [Referencia](/ref/emoji/)

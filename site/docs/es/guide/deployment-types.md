@@ -152,7 +152,7 @@ No necesitas mantener una conexión de red abierta en todo momento.
 Puedes utilizar servicios que reduzcan automáticamente tu infraestructura a cero cuando no haya peticiones.
 Si quieres, puedes incluso [hacer una llamada a la API al responder a la petición de Telegram](#webhook-reply), aunque esto tiene una serie de inconvenientes.
 
-Consulta la opción de configuración [aquí](https://deno.land/x/grammy/mod.ts?s=ApiClientOptions#prop_canUseWebhookReply).
+Consulta la opción de configuración [aquí](/ref/core/ApiClientOptions#canusewebhookreply).
 
 Los lugares donde los webhooks funcionan bien incluyen:
 
@@ -190,7 +190,7 @@ Si quieres ejecutar grammY con webhooks, puedes integrar tu bot en un servidor w
 Por lo tanto, esperamos que seas capaz de poner en marcha un servidor web simple con un framework de tu elección.
 
 Cada bot de grammY puede convertirse en un middleware para un número de frameworks web, incluyendo `express`, `koa`/`oak`, y más.
-Puedes importar la función `webhookCallback` ([API reference](https://deno.land/x/grammy/mod.ts?s=webhookCallback)) para crear un middleware para el framework correspondiente.
+Puedes importar la función `webhookCallback` ([API reference](/ref/core/webhookCallback)) para crear un middleware para el framework correspondiente.
 
 ::: code-group
 
@@ -233,7 +233,7 @@ Asegúrate de leer [Marvin's Marvellous Guide to All Things Webhook](https://cor
 
 Con el fin de soportar muchos frameworks web diferentes, grammY adopta el concepto de **adaptadores**.
 Cada adaptador es responsable de retransmitir la entrada y salida desde el framework web a grammY y viceversa.
-El segundo parámetro pasado a `webhookCallback` ([API reference](https://deno.land/x/grammy/mod.ts?s=webhookCallback)) define el adaptador del framework usado para comunicarse con el framework web.
+El segundo parámetro pasado a `webhookCallback` ([API reference](/ref/core/webhookCallback)) define el adaptador del framework usado para comunicarse con el framework web.
 
 Debido a cómo funciona este enfoque, normalmente necesitamos un adaptador para cada framework pero, dado que algunos frameworks comparten una interfaz similar, hay adaptadores que se sabe que funcionan con múltiples frameworks.
 A continuación se muestra una tabla con los adaptadores disponibles actualmente, los frameworks o APIs con los que se sabe que funcionan y los tiempos de ejecución en los que están disponibles.
@@ -271,7 +271,7 @@ Sin embargo, hay una serie de inconvenientes al utilizar esto:
 4. ¡Ten en cuenta también que los tipos en grammY no reflejan las consecuencias de una devolución de llamada de webhooks realizada!
    Por ejemplo, indican que siempre se recibe un objeto de respuesta, por lo que es tu propia responsabilidad asegurarte de que no estás metiendo la pata al utilizar esta pequeña optimización de rendimiento.
 
-Si quieres usar las respuestas de los webhooks, puedes especificar la opción `canUseWebhookReply` en la opción `client` de tu `BotConfig` ([Referencia API](https://deno.land/x/grammy/mod.ts?s=BotConfig)).
+Si quieres usar las respuestas de los webhooks, puedes especificar la opción `canUseWebhookReply` en la opción `client` de tu `BotConfig` ([Referencia API](/ref/core/BotConfig)).
 Pasar una función que determine si se utiliza o no la respuesta del webhook para la solicitud dada, identificada por el método.
 
 ```ts

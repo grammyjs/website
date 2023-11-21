@@ -131,5 +131,5 @@ bot.start();
 ## Plugin Summary
 
 - Name: Autoquote
-- Source: <https://github.com/roziscoding/grammy-autoquote>
-- API Reference: <https://deno.land/x/grammy_autoquote/mod.ts>
+- [Source](https://github.com/roziscoding/grammy-autoquote)
+- [API Reference](/ref/autoquote/)

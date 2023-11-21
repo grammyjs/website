@@ -1,5 +1,6 @@
 import { DocNode, DocNodeKind } from "deno_doc/types.d.ts";
 import { H1 } from "./H1.tsx";
+import { P } from "./P.tsx";
 import { Sector } from "./Sector.tsx";
 import { LinkGetter } from "./types.ts";
 
@@ -22,9 +23,10 @@ function S(
 }
 
 export function ToC(
-  { children: nodes, name, getLink }: {
+  { children: nodes, name, description, getLink }: {
     children: DocNode[];
     name?: string;
+    description?: string;
     getLink: LinkGetter;
   },
 ) {
@@ -37,6 +39,7 @@ export function ToC(
   return (
     <>
       {name && <H1>{name}</H1>}
+      <P>{description}</P>
       <S getLink={getLink} title="Classes">{k("class")}</S>
       <S getLink={getLink} title="Variables">{k("variable")}</S>
       <S getLink={getLink} title="Functions">{k("function")}</S>

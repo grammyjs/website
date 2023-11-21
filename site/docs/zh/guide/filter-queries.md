@@ -217,7 +217,7 @@ bot.on("chat_member");
 
 ### 将查询与其他方法相结合
 
-你可以将过滤器查询与 `Composer` 类（[API 参考](https://deno.land/x/grammy/mod.ts?s=Composer)）的其他方法相结合，例如 `command` 或 `filter`。
+你可以将过滤器查询与 `Composer` 类（[API 参考](/ref/core/Composer)）的其他方法相结合，例如 `command` 或 `filter`。
 这可以让你构建更复杂的消息处理模式。
 
 ```ts
@@ -305,7 +305,7 @@ function handler(ctx: Filter<Context, ":text">) {
 bot.on(":text", handler);
 ```
 
-> 查看并阅读更多 [`matchFilter`](https://deno.land/x/grammy/filter.ts?s=matchFilter)，[`Filter`](https://deno.land/x/grammy/filter.ts?s=Filter) 和 [`FilterQuery`](https://deno.land/x/grammy/filter.ts?s=FilterQuery) 的 API 参考。
+> 查看并阅读更多 [`matchFilter`](/ref/core/matchFilter)，[`Filter`](/ref/core/Filter) 和 [`FilterQuery`](/ref/core/FilterQuery) 的 API 参考。
 
 ## 查询语言
 

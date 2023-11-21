@@ -58,7 +58,7 @@ const inlineKeyboard = new InlineKeyboard()
 
 Llama a `.row()` si quieres empezar una nueva fila de botones.
 También puedes usar otros métodos como `.url()` para permitir al cliente del usuario abrir una URL específica o hacer otras cosas interesantes.
-Asegúrate de revisar [todos los métodos](https://deno.land/x/grammy/mod.ts?s=InlineKeyboard#Methods) en la clase `InlineKeyboard`.
+Asegúrate de revisar [todos los métodos](/ref/core/InlineKeyboard#methods) en la clase `InlineKeyboard`.
 
 Si ya tienes una cadena de caracteres que te gustaría convertir en un teclado en línea, puedes usar un segundo estilo alternativo para construir instancias de teclado en línea.
 La clase `InlineKeyboard` tiene métodos estáticos como `InlineKeyboard.text` que te permiten crear objetos botón.
@@ -180,7 +180,7 @@ const keyboard = new Keyboard()
 ```
 
 También puedes enviar botones más potentes que soliciten el número de teléfono o la localización del usuario o que hagan otras cosas interesantes.
-Asegúrate de revisar [todos los métodos](https://deno.land/x/grammy/mod.ts?s=Keyboard#Methods) en la clase `Keyboard`.
+Asegúrate de revisar [todos los métodos](/ref/core/Keyboard#methods) en la clase `Keyboard`.
 
 Si ya tienes una cadena de caracteres que te gustaría convertir en un teclado, puedes usar un segundo estilo alternativo para construir instancias de teclado.
 La clase `Keyboard` tiene métodos estáticos como `Keyboard.text` que te permiten crear objetos botón.

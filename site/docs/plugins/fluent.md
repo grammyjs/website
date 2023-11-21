@@ -157,4 +157,4 @@ You will just need to create several translation files and make sure that all th
 ## Plugin Summary
 
 - Name: `fluent`
-- Source: <https://github.com/grammyjs/fluent>
+- [Source](https://github.com/grammyjs/fluent)

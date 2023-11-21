@@ -232,5 +232,5 @@ bot.use(
 ## 插件概述
 
 - 名字：`ratelimiter`
-- 源码：<https://github.com/grammyjs/ratelimiter>
-- 参考：<https://deno.land/x/grammy_ratelimiter/mod.ts>
+- [源码](https://github.com/grammyjs/ratelimiter)
+- [参考](/ref/ratelimiter/)
