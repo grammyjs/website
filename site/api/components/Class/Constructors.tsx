@@ -1,7 +1,10 @@
 import { ClassConstructorDef } from "deno_doc/types.d.ts";
-import { LinkGetter } from "../types.ts";
-import { Params } from "../TsType.tsx";
 import { CodeBlock } from "../CodeBlock.tsx";
+import { Loc } from "../Loc.tsx";
+import { P } from "../P.tsx";
+import { Params } from "../TsType.tsx";
+import { StyleKw } from "../styles.tsx";
+import { LinkGetter } from "../types.ts";
 
 export function Constructors({
   children: ctors,
@@ -13,13 +16,17 @@ export function Constructors({
   if (!ctors.length) {
     return null;
   }
-  const items = ctors.map(({ accessibility, name, params }, i) => (
+  return ctors.map((v) => (
     <>
-      {accessibility ? `${accessibility} ` : undefined}
-      <span style="color: rgb(98, 232, 132);">{name}</span>(
-      <Params getLink={getLink}>{params}</Params>);
-      {"\n"}
+      <CodeBlock>
+        {v.accessibility
+          ? <StyleKw>{v.accessibility}{" "}</StyleKw>
+          : undefined}
+        <span style="color: rgb(98, 232, 132);">{v.name}</span>(
+        <Params getLink={getLink}>{v.params}</Params>);
+      </CodeBlock>
+      {"jsDoc" in v && <P doc>{v.jsDoc?.doc}</P>}
+      <Loc>{v}</Loc>
     </>
   ));
-  return <CodeBlock>{items}</CodeBlock>;
 }
