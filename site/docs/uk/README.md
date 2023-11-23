@@ -23,8 +23,8 @@ hero:
       text: Розпочати
       link: ./guide/getting-started
     - theme: alt
-      text: Вступ
-      link: ./guide/introduction
+      text: Документація
+      link: ./guide/
 
 features:
   - icon: <lazy-tgs-player class="VPImage" src="/icons/beach-animation.tgs"><img src="/icons/beach.svg" alt="beach animation"></lazy-tgs-player>

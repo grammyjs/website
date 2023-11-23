@@ -23,8 +23,8 @@ hero:
       text: Comenzar
       link: ./guide/getting-started
     - theme: alt
-      text: Introducción
-      link: ./guide/introduction
+      text: Documentación
+      link: ./guide/
 
 features:
   - icon: <lazy-tgs-player class="VPImage" src="/icons/beach-animation.tgs"><img src="/icons/beach.svg" alt="beach animation"></lazy-tgs-player>
