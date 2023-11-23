@@ -217,7 +217,7 @@ which can be used to detect status changes of other chat members, such as when p
 
 ### Combining Queries With Other Methods
 
-You can combine filter queries with other methods on the `Composer` class ([API Reference](https://deno.land/x/grammy/mod.ts?s=Composer)), such as `command` or `filter`.
+You can combine filter queries with other methods on the `Composer` class ([API Reference](/ref/core/Composer)), such as `command` or `filter`.
 This allows for powerful message handling patterns.
 
 ```ts
@@ -308,7 +308,7 @@ function handler(ctx: Filter<Context, ":text">) {
 bot.on(":text", handler);
 ```
 
-> Check out the API references for [`matchFilter`](https://deno.land/x/grammy/filter.ts?s=matchFilter), [`Filter`](https://deno.land/x/grammy/filter.ts?s=Filter), and [`FilterQuery`](https://deno.land/x/grammy/filter.ts?s=FilterQuery) to read on.
+> Check out the API references for [`matchFilter`](/ref/core/matchFilter), [`Filter`](/ref/core/Filter), and [`FilterQuery`](/ref/core/FilterQuery) to read on.
 
 ## The Query Language
 

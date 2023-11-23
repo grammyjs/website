@@ -178,5 +178,5 @@ Semua object dihidrasi di
 ## Ringkasan Plugin
 
 - Nama: `hydrate`
-- Sumber: <https://github.com/grammyjs/hydrate>
-- Referensi: <https://deno.land/x/grammy_hydrate/mod.ts>
+- [Sumber](https://github.com/grammyjs/hydrate)
+- [Referensi](/ref/hydrate/)

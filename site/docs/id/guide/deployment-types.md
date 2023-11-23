@@ -154,7 +154,7 @@ Tempat-tempat yang cocok untuk menggunakan long polling:
 Kamu bisa menghemat banyak sekali request dan tidak perlu lagi menjaga koneksi tetap tersambung sepanjang waktu.
 Kamu bisa menggunakan layanan hosting yang secara otomatis menurunkan performa ketika tidak ada request yang masuk, yang berarti lebih hemat biaya.
 Kalau mau, kamu bahkan bisa [membuat panggilan API ketika membalas request dari Telegram](#webhook-reply), walaupun ia juga memiliki beberapa kekurangan yang harus diperhitungkan juga.
-Lihat konfigurasi opsinya [di sini](https://deno.land/x/grammy/mod.ts?s=ApiClientOptions#prop_canUseWebhookReply).
+Lihat konfigurasi opsinya [di sini](/ref/core/ApiClientOptions#canusewebhookreply).
 
 Tempat-tempat yang cocok untuk menggunakan webhook:
 
@@ -193,7 +193,7 @@ Kalau kamu ingin menggunakan webhook, kamu harus mengintegrasikan bot kamu ke da
 Oleh karena itu, kami berharap kamu mampu menjalankan sebuah web server sederhana menggunakan framework pilihanmu.
 
 Setiap bot di grammY bisa dikonversi menjadi middleware untuk beberapa web framework, termasuk `express`, `koa`/`oak`, dsb.
-Kamu bisa membuat sebuah middleware untuk framework yang diinginkan dengan cara meng-import function `webhookCallback` ([Referensi API](https://deno.land/x/grammy/mod.ts?s=webhookCallback)).
+Kamu bisa membuat sebuah middleware untuk framework yang diinginkan dengan cara meng-import function `webhookCallback` ([Referensi API](/ref/core/webhookCallback)).
 
 ::: code-group
 
@@ -236,7 +236,7 @@ Jika kamu berniat menjalankan bot di sebuah VPS menggunakan webhook, pastikan un
 
 Untuk mendukung berbagai macam web framework, grammY menerapkan konsep **multi-adapter**.
 Adapter bertugas untuk meneruskan input dan output dari suatu web framework ke grammY, dan sebaliknya.
-Nah, jenis framework adapter yang digunakan untuk berkomunikasi dengan web framework tersebut ditentukan oleh parameter kedua yang kamu isi di `webhookCallback` ([Referensi API](https://deno.land/x/grammy/mod.ts?s=webhookCallback)).
+Nah, jenis framework adapter yang digunakan untuk berkomunikasi dengan web framework tersebut ditentukan oleh parameter kedua yang kamu isi di `webhookCallback` ([Referensi API](/ref/core/webhookCallback)).
 
 Karena menggunakan pendekatan dengan cara tersebut, biasanya kita membutuhkan sebuah adapter yang berbeda untuk setiap framework.
 Tetapi, berhubung beberapa framework memiliki interface yang mirip, kita bisa menggunakan adapter yang sama untuk beberapa framework sekaligus.
@@ -275,7 +275,7 @@ Tetapi, terdapat beberapa kekurangan dibaliknya:
 4. Perlu diperhatikan juga bahwa beberapa type di grammY tidak mencerminkan hasil dari callback webhook yang telah dilakukan!
    Sebagai contoh, mereka akan selalu mengindikasikan bahwa kamu telah menerima object respon, sehingga ini menjadi tanggung jawab kamu untuk memastikan semua berjalan baik ketika melakukan optimasi kecil ini.
 
-Kalau kamu ingin memanfaatkan webhook reply, kamu bisa menambahkan opsi `canUseWebhookReply`di opsi `client` dari `BotConfig` kamu ([referensi API](https://deno.land/x/grammy/mod.ts?s=BotConfig)).
+Kalau kamu ingin memanfaatkan webhook reply, kamu bisa menambahkan opsi `canUseWebhookReply`di opsi `client` dari `BotConfig` kamu ([referensi API](/ref/core/BotConfig)).
 Masukkan sebuah function yang menentukan apakah method tersebut memanfaatkan webhook reply atau tidak.
 
 ```ts

@@ -63,4 +63,4 @@ bot.command("unicorn", async (ctx) => {
 ## Загальні відомості про плагін
 
 - Назва: `stateless-question`
-- Джерело: <https://github.com/grammyjs/stateless-question>
+- [Джерело](https://github.com/grammyjs/stateless-question)

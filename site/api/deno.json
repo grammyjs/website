@@ -1,7 +1,7 @@
 {
   "lock": false,
   "imports": {
-    "std/": "https://deno.land/std@0.205.0/",
+    "std/": "https://deno.land/std@0.207.0/",
     "preact": "https://esm.sh/preact@10.18.1",
     "preact/": "https://esm.sh/preact@10.18.1/",
     "preact-render-to-string": "https://esm.sh/*preact-render-to-string@6.2.2",

@@ -19,7 +19,7 @@ next: false
 
 ### Зберігання учасників чату
 
-Ви можете використовувати дійсний [адаптер сховища](./session#відомі-адаптери-сховищ) або екземпляр будь-якого класу, що реалізує інтерфейс [`StorageAdapter`](https://deno.land/x/grammy/mod.ts?s=StorageAdapter).
+Ви можете використовувати дійсний [адаптер сховища](./session#відомі-адаптери-сховищ) або екземпляр будь-якого класу, що реалізує інтерфейс [`StorageAdapter`](/ref/core/StorageAdapter).
 
 Зверніть увагу, що згідно з [офіційною документацією Telegram](https://core.telegram.org/bots/api#getupdates), ваш бот повинен вказати оновлення `chat_member` в масиві `allowed_updates`, як показано в прикладі нижче.
 Це означає, що вам також потрібно вказати всі інші оновлення, які ви також хотіли б отримувати.
@@ -146,5 +146,5 @@ bot.on("message", async (ctx) => {
 ## Загальні відомості про плагін
 
 - Назва: `chat-members`
-- Джерело: <https://github.com/grammyjs/chat-members>
-- Довідка: <https://deno.land/x/grammy_chat_members/mod.ts>
+- [Джерело](https://github.com/grammyjs/chat-members)
+- [Довідка](/ref/chat-members/)

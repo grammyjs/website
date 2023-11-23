@@ -16,46 +16,40 @@ import { Variable } from "./components/Variable.tsx";
 import { TypeAlias } from "./components/TypeAlias.tsx";
 import links from "./links.ts";
 
-/// deno-lint-ignore no-explicit-any require-await
-// async function doc(...a: any): Promise<any[]> {
-//   return JSON.parse(Deno.readTextFileSync("doc.json"));
-// }
-
 const out = Deno.args[0];
 if (!out) throw new Error("no out!");
 
-const paths: [string, string, string, string][] = Deno.args[1]
-  ? [[Deno.args[1], path.join(out, "mod"), "core", "Core API"]]
-  : modules.map(
-    ({
-      user = "grammyjs",
-      repo,
-      branch = "main",
-      slug,
-      entrypoint = "src/mod.ts",
-      name,
-    }) => [
-      // "file:///home/roj/Projects/grammY/src/mod.ts",
-      `https://raw.githubusercontent.com/${user}/${repo}/${branch}/${entrypoint}`,
-      path.join(out, slug),
-      slug,
-      name,
-    ],
-  );
+const paths: [string, string, string, string, string][] = modules.map(
+  ({
+    user = "grammyjs",
+    repo,
+    branch = "main",
+    slug,
+    entrypoint = "src/mod.ts",
+    name,
+    description,
+  }) => [
+    `https://raw.githubusercontent.com/${user}/${repo}/${branch}/${entrypoint}`,
+    path.join(out, slug),
+    slug,
+    name,
+    description,
+  ],
+);
 
 console.log("Generating docs for", paths.length, "modules");
 
-const refs: Array<[DocNode[], string, string, string]> = await Promise.all(
-  paths.map(async ([id, path, slug, name]) => {
+const refs: Array<[DocNode[], string, string, string, string]> = await Promise
+  .all(paths.map(async ([id, path, slug, name, description]) => {
     const nodes = await doc(id);
     return [
       nodes.sort((a, b) => a.name.localeCompare(b.name)),
       path,
       slug,
       name,
+      description,
     ];
-  }),
-);
+  }));
 
 const namespaceGetLink = (
   slug: string,
@@ -128,7 +122,9 @@ ${renderToString(component)}`;
     const filename = path.join(path_, `${node.name}.md`);
     Deno.mkdirSync(path.dirname(filename), { recursive: true });
     Deno.writeTextFileSync(filename, contents, { append: true });
+    return true;
   }
+  return false;
 }
 
 console.log("Purging output folder", out);
@@ -143,11 +139,9 @@ try {
 }
 
 console.log("Creating files");
-let allNodes = new Array<DocNode>();
-for (const [nodes] of refs) {
-  allNodes = allNodes.concat(nodes);
-}
-for (const [nodes, path_, slug, name] of refs) {
+let count = 0;
+const allNodes = refs.map(([nodes]) => nodes).flat();
+for (const [nodes, path_, slug, name, description] of refs) {
   const getLink = (repr: string) => {
     const node = nodes.find((v) => v.name == repr);
     if (node !== undefined) {
@@ -157,9 +151,6 @@ for (const [nodes, path_, slug, name] of refs) {
     }
   };
   for (const node of nodes) {
-    if (node.name == "Chat") {
-      console.log(node.kind);
-    }
     if (node.kind == "namespace") {
       for (const el of node.namespaceDef.elements) {
         createDoc(
@@ -177,7 +168,7 @@ for (const [nodes, path_, slug, name] of refs) {
               v.name == (el as DocNodeClass).classDef.extends
             )
             : undefined) as DocNodeClass | undefined,
-        );
+        ) && count++;
       }
     } else {
       createDoc(
@@ -195,7 +186,7 @@ for (const [nodes, path_, slug, name] of refs) {
             v.name == (node as DocNodeClass).classDef.extends
           )
           : undefined) as DocNodeClass | undefined,
-      );
+      ) && count++;
     }
   }
   {
@@ -206,13 +197,20 @@ editLink: false
 
 ${
       renderToString(
-        <ToC name={name + " Reference"} getLink={getLink}>{nodes}</ToC>,
+        <ToC
+          name={name + " Reference"}
+          description={description}
+          getLink={getLink}
+        >
+          {nodes}
+        </ToC>,
       )
     }`;
 
     Deno.writeTextFileSync(filename, content);
+    count++;
   }
   console.log("Wrote", path_);
 }
 
-console.log("Done.");
+console.log("Done writing", count, "files.");

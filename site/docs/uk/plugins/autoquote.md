@@ -131,5 +131,5 @@ bot.start();
 ## Загальні відомості про плагін
 
 - Назва: Autoquote
-- Джерело: <https://github.com/roziscoding/grammy-autoquote>
-- Довідка API: <https://deno.land/x/grammy_autoquote/mod.ts>
+- [Джерело](https://github.com/roziscoding/grammy-autoquote)
+- [Довідка API](/ref/autoquote/)

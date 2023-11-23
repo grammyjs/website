@@ -1,9 +1,6 @@
 import list from "./modules.json" assert { type: "json" };
 
-const urls = [
-  ...list.modules.map((id) => `https://deno.land/x/${id}`),
-  "https://deno.land/std",
-];
+const urls = list.modules.map((id) => `https://deno.land/x/${id}`);
 
 async function redirect(source: string) {
   const response = await fetch(source);

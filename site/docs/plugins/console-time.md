@@ -82,4 +82,4 @@ This indicates the checked middleware alone took 800ms and isn't as performant a
 
 ## Plugin Summary
 
-- Source: <https://github.com/EdJoPaTo/telegraf-middleware-console-time>
+- [Source](https://github.com/EdJoPaTo/telegraf-middleware-console-time)

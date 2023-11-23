@@ -220,7 +220,7 @@ yang digunakan untuk mendeteksi perubahan status member chat lainnya, misalnya k
 
 ### Mengombinasikan Query dengan Method Lain
 
-Kamu bisa mengombinasikan beberapa filter query dengan method-method lain di class `Composer` ([API Reference](https://deno.land/x/grammy/mod.ts?s=Composer)), misalnya `command` atau `filter`.
+Kamu bisa mengombinasikan beberapa filter query dengan method-method lain di class `Composer` ([API Reference](/ref/core/Composer)), misalnya `command` atau `filter`.
 Dengan begitu, kamu bisa membuat pola penanganan pesan menjadi lebih fleksibel.
 
 ```ts
@@ -311,7 +311,7 @@ function handler(ctx: Filter<Context, ":text">) {
 bot.on(":text", handler);
 ```
 
-> Lihat referensi API untuk [`matchFilter`](https://deno.land/x/grammy/filter.ts?s=matchFilter), [`Filter`](https://deno.land/x/grammy/filter.ts?s=Filter), dan [`FilterQuery`](https://deno.land/x/grammy/filter.ts?s=FilterQuery).
+> Lihat referensi API untuk [`matchFilter`](/ref/core/matchFilter), [`Filter`](/ref/core/Filter), dan [`FilterQuery`](/ref/core/FilterQuery).
 
 ## Bahasa Query
 

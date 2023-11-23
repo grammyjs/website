@@ -1,6 +1,6 @@
 # Context
 
-El objeto `Context` ([Referencia de la API de grammY](https://deno.land/x/grammy/mod.ts?s=Context)) es una parte importante de grammY.
+El objeto `Context` ([Referencia de la API de grammY](/ref/core/Context)) es una parte importante de grammY.
 
 Siempre que registres un oyente en tu objeto bot, este oyente recibirá un objeto `Context`.
 
@@ -113,8 +113,8 @@ if (ctx.hasCallbackQuery(/query-data-\d+/)) {
 ```
 
 Lo mismo se aplica a todas las demás comprobaciones de has.
-Consulta la [referencia de la API del objeto context](https://deno.land/x/grammy/mod.ts?s=Context#method_has_0) para ver una lista de todas las comprobaciones has.
-También puedes consultar la propiedad estática `Context.has` en la [referencia de la API](https://deno.land/x/grammy/mod.ts?s=Context#Static_Properties) que te permite crear funciones de predicado eficientes para comprobar muchos objetos de contexto.
+Consulta la [referencia de la API del objeto context](/ref/core/Context#has) para ver una lista de todas las comprobaciones has.
+También puedes consultar la propiedad estática `Context.has` en la [referencia de la API](/ref/core/Context#has) que te permite crear funciones de predicado eficientes para comprobar muchos objetos de contexto.
 
 ## Acciones disponibles
 
@@ -176,7 +176,7 @@ El mismo objeto de opciones se puede pasar a `bot.api.sendMessage` y `ctx.api.se
 Utiliza el autocompletado para ver las opciones disponibles directamente en tu editor de código.
 :::
 
-Naturalmente, todos los demás métodos de `ctx.api` tienen un acceso directo con los valores correctos precompletados, como `ctx.replyWithPhoto` para responder con una foto, o `ctx.exportChatInviteLink` para obtener un enlace de invitación para el chat correspondiente. Si quieres tener una visión general de los accesos directos que existen, el autocompletado es tu amigo, junto con la [Referencia de la API de grammY](https://deno.land/x/grammy/mod.ts?s=Context).
+Naturalmente, todos los demás métodos de `ctx.api` tienen un acceso directo con los valores correctos precompletados, como `ctx.replyWithPhoto` para responder con una foto, o `ctx.exportChatInviteLink` para obtener un enlace de invitación para el chat correspondiente. Si quieres tener una visión general de los accesos directos que existen, el autocompletado es tu amigo, junto con la [Referencia de la API de grammY](/ref/core/Context).
 
 Ten en cuenta que puede que no quieras reaccionar siempre en el mismo chat.
 En este caso, puedes volver a utilizar los métodos `ctx.api`, y especificar todas las opciones al llamarlos.
@@ -325,7 +325,7 @@ bot.command("start", async (ctx) => {
 
 :::
 
-Naturalmente, el tipo de contexto personalizado también se puede pasar a otras cosas que manejan middleware, como [compositores](https://deno.land/x/grammy/mod.ts?s=Composer).
+Naturalmente, el tipo de contexto personalizado también se puede pasar a otras cosas que manejan middleware, como [compositores](/ref/core/Composer).
 
 ```ts
 const composer = new Composer<MyContext>();
@@ -478,7 +478,7 @@ interface SessionFlavor<S> {
 }
 ```
 
-El tipo `SessionFlavor` ([Referencia API](https://deno.land/x/grammy/mod.ts?s=SessionFlavor)) es sencillo: sólo define la propiedad `session`.
+El tipo `SessionFlavor` ([Referencia API](/ref/core/SessionFlavor)) es sencillo: sólo define la propiedad `session`.
 Toma un parámetro de tipo que definirá la estructura real de los datos de la sesión.
 
 ¿Qué utilidad tiene esto?

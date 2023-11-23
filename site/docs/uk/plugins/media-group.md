@@ -42,7 +42,7 @@ const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
 
 :::
 
-Ознайомтеся зі всіма методами `InputMediaBuilder` у [довідці API](https://deno.land/x/grammy/mod.ts?s=InputMediaBuilder).
+Ознайомтеся зі всіма методами `InputMediaBuilder` у [довідці API](/ref/core/InputMediaBuilder).
 
 Ви також можете безпосередньо передавати публічні URL-адреси, які запросить (`fetch`) Telegram.
 

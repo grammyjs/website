@@ -103,5 +103,5 @@ Jika kamu belum familiar dengan syntax tersebut, pahami terlebih dahulu [materi 
 ## Ringkasan Plugin
 
 - Nama: `emoji`
-- Sumber: <https://github.com/grammyjs/emoji>
-- Referensi: <https://deno.land/x/grammy_emoji/mod.ts>
+- [Sumber](https://github.com/grammyjs/emoji)
+- [Referensi](/ref/emoji/)

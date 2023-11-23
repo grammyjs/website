@@ -23,7 +23,7 @@ bot.command("start", async (ctx) => { ... });
 bot.hears(/echo *(.+)?/, async (ctx) => { ... });
 ```
 
-Kamu bisa menggunakan fitur auto-complete di code editor untuk melihat semua pilihan yang tersedia, ataupun melihat secara manual [daftar method](https://deno.land/x/grammy/mod.ts?s=Composer) dari sebuah class `Composer`.
+Kamu bisa menggunakan fitur auto-complete di code editor untuk melihat semua pilihan yang tersedia, ataupun melihat secara manual [daftar method](/ref/core/Composer) dari sebuah class `Composer`.
 
 > [Baca lebih lanjut](./filter-queries) tentang pemfilteran untuk jenis pesan tertentu menggunakan `bot.on()`.
 
@@ -48,7 +48,7 @@ const me = await bot.api.getMe();
 
 Setiap method memiliki opsi tambahan untuk object type `Other`, yang memungkinkan kamu untuk menetapkan opsi tambahan ketika memanggil API.
 Opsi-opsi dari object ini sama persis dengan opsi yang ada di daftar method di link atas tadi.
-Kamu juga dapat menggunakan fitur auto-complete di code editor untuk melihat semua opsi yang tersedia, ataupun melihat secara manual [daftar method](https://deno.land/x/grammy/mod.ts?s=Api) dari sebuah class `Api`.
+Kamu juga dapat menggunakan fitur auto-complete di code editor untuk melihat semua opsi yang tersedia, ataupun melihat secara manual [daftar method](/ref/core/Api) dari sebuah class `Api`.
 
 Selain itu, coba lihat [materi selanjutnya](./context) untuk mempelajari bagaimana object context dari suatu listener bisa membuat pengiriman pesan menjadi sangat mudah dilakukan!
 
