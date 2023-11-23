@@ -37,7 +37,6 @@ export default defineConfig({
     theme: "dracula-soft",
     typographer: true,
     config: markdown,
-
     languages: [
       {
         id: "plaintext",
