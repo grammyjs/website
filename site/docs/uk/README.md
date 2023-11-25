@@ -23,17 +23,17 @@ hero:
       text: Розпочати
       link: ./guide/getting-started
     - theme: alt
-      text: Вступ
-      link: ./guide/introduction
+      text: Документація
+      link: ./guide/
 
 features:
-  - icon: <lazy-tgs-player class="VPImage" src="/icons/beach-animation.tgs"><img src="/icons/beach.svg" alt="beach animation"></lazy-tgs-player>
+  - icon: <lazy-tgs-player class="VPImage" src="/icons/beach-animation.tgs"><img src="/icons/beach.svg" alt="анімація пляжу"></lazy-tgs-player>
     title: Простий у використанні
     details: grammY робить створення ботів Telegram настільки простим, що ви вже знаєте, як це зробити.
-  - icon: <lazy-tgs-player class="VPImage" src="/icons/palette-animation.tgs"><img src="/icons/palette.svg" alt="palette animation"></lazy-tgs-player>
+  - icon: <lazy-tgs-player class="VPImage" src="/icons/palette-animation.tgs"><img src="/icons/palette.svg" alt="анімація палітри"></lazy-tgs-player>
     title: Гнучкий
     details: grammY відкритий і може бути розширений за допомогою плагінів, щоб точно відповідати вашим потребам.
-  - icon: <lazy-tgs-player class="VPImage" src="/icons/rocket-animation.tgs"><img src="/icons/rocket.svg" alt="rocket animation"></lazy-tgs-player>
+  - icon: <lazy-tgs-player class="VPImage" src="/icons/rocket-animation.tgs"><img src="/icons/rocket.svg" alt="анімація ракети"></lazy-tgs-player>
     title: Масштабований
     details: grammY допоможе вам, коли ваш бот стане популярним і трафік зросте.
 ---
