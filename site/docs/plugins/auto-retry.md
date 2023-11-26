@@ -1,44 +1,39 @@
+---
+prev: false
+next: false
+---
+
 # Retry API Requests (`auto-retry`)
 
-> Consider using the [throttler plugin](./transformer-throttler.md) instead.
-
-This plugin is an [API transformer function](../advanced/transformers.md), which means that it let's you intercept and modify outgoing HTTP requests on the fly.
+This plugin is an [API transformer function](../advanced/transformers), which means that it let's you intercept and modify outgoing HTTP requests on the fly.
 More specifically, this plugin will automatically detect if an API requests fails with a `retry_after` value, i.e. because of rate limiting.
 It will then catch the error, wait the specified period of time, and then retry the request.
 
-::: warning Be Gentle With the Bot API Server
-Telegram is generously providing information about how long your bot must wait before the next request.
-Using the `auto-retry` plugin will allow your bot to perform better during load spikes, as the requests will not simply fail because of the flood limit.
-However, **auto-retry should not be used** if you want to avoid hitting rate limits on a regular basis.
-If you regularly cross the threshold of how many requests you may perform, Telegram may take measures such as restricting or banning your bot.
+::: tip Flood Control
+Telegram will let you know if you send messages too fast.
+This is an important measure for flood control, as it makes sure that your bot does not put Telegram under too much load.
+Using this plugin is important because if you forget to respect [429 errors](../resources/faq#_429-too-many-requests-retry-after-x), Telegram may ban your bot.
 :::
 
 You can install this plugin on the `bot.api` object:
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { autoRetry } from "@grammyjs/auto-retry";
 
 // Use the plugin.
 bot.api.config.use(autoRetry());
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { autoRetry } = require("@grammyjs/auto-retry");
 
 // Use the plugin.
 bot.api.config.use(autoRetry());
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { autoRetry } from "https://esm.sh/@grammyjs/auto-retry";
 
 // Use the plugin.
@@ -46,7 +41,6 @@ bot.api.config.use(autoRetry());
 ```
 
 :::
-::::
 
 If you now call e.g. `sendMessage` and run into a rate limit, it will look like the request just takes unusually long.
 Under the hood, multiple HTTP requests are being performed, with the appropriate delays in between.
@@ -54,7 +48,7 @@ Under the hood, multiple HTTP requests are being performed, with the appropriate
 You may pass an options object that specifies a maximum number of retries (`maxRetryAttempts`, default: 3), or a threshold for a maximum time to wait (`maxDelaySeconds`, default: 1 hour).
 
 As soon as the maximum number of retries is exhausted, subsequent errors for the same request will not be retried again.
-Instead, the error object from Telegram is passed on, effectively failing the request with a [`GrammyError`](../guide/errors.md#the-grammyerror-object).
+Instead, the error object from Telegram is passed on, effectively failing the request with a [`GrammyError`](../guide/errors#the-grammyerror-object).
 
 Similarly, if the request ever fails with `retry_after` larger than what is specified by the option `maxDelaySeconds`, the request will fail immediately.
 

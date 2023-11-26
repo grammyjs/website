@@ -1,11 +1,16 @@
+---
+prev: false
+next: false
+---
+
 # Hosting: Vercel Serverless Functions
 
-Di tutorial kali ini, kami akan memandu kamu untuk men-deploy bot di [Vercel](https://vercel.com/) dengan menggunakan [Vercel Serverless Functions](https://vercel.com/docs/concepts/functions/serverless-functions), tentunya dengan asumsi kamu sudah memiliki sebuah akun [Vercel](https://vercel.com).
+Di tutorial kali ini, kami akan memandu kamu untuk men-deploy bot di [Vercel](https://vercel.com/) dengan menggunakan [Vercel Serverless Functions](https://vercel.com/docs/functions/serverless-functions), tentunya dengan asumsi kamu sudah memiliki sebuah akun [Vercel](https://vercel.com).
 
 ## Struktur Proyek
 
 Untuk menggunakan **Vercel Serverless Functions**, kamu cuma perlu memindahkan kode ke direktori `api/` seperti contoh di bawah.
-Silahkan baca [dokumentasi Vercel](https://vercel.com/docs/concepts/functions/serverless-functions#deploying-serverless-functions) untuk info lebih lanjut.
+Silahkan baca [dokumentasi Vercel](https://vercel.com/docs/functions/serverless-functions#deploying-serverless-functions) untuk info lebih lanjut.
 
 ```asciiart:no-line-numbers
 .
@@ -38,7 +43,7 @@ Sehingga, untuk contoh struktur kita tadi, isi file-nya kurang lebih terlihat se
 
 > Jika kamu menggunakan paket Vercel yang versi gratis, konfigurasi `memory` dan `maxDuration` kamu sebaiknya mengikuti contoh di atas agar batas limit tidak terlampaui.
 
-Jika kamu tertarik untuk mempelajari file konfigurasi `vercel.json` ini, silahkan baca [dokumentasi berikut](https://vercel.com/docs/concepts/projects/project-configuration).
+Jika kamu tertarik untuk mempelajari file konfigurasi `vercel.json` ini, silahkan baca [dokumentasi berikut](https://vercel.com/docs/projects/project-configuration).
 
 ## Mengatur TypeScript
 

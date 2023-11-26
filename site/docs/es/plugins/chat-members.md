@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Plugin para miembros del chat (`chat-members`)
 
 Almacena automáticamente información sobre los usuarios de un chat y recupérala fácilmente.
@@ -14,15 +19,14 @@ Este plugin viene al rescate: escucha automáticamente los eventos `chat_member`
 
 ### Almacenamiento de miembros del chat
 
-Puedes usar un [adaptador de almacenamiento](./session.md#adaptadores-de-almacenamiento-conocidos) válido de grammY o una instancia de cualquier clase que implemente la interfaz [`StorageAdapter`](https://deno.land/x/grammy/mod.ts?s=StorageAdapter).
+Puedes usar un [adaptador de almacenamiento](./session#adaptadores-de-almacenamiento-conocidos) válido de grammY o una instancia de cualquier clase que implemente la interfaz [`StorageAdapter`](https://deno.land/x/grammy/mod.ts?s=StorageAdapter).
 
 Por favor, ten en cuenta que según la [documentación oficial de Telegram](https://core.telegram.org/bots/api#getupdates), tu bot necesita especificar la actualización `chat_member` en el array `allowed_updates`, como se muestra en el ejemplo de abajo.
 Esto significa que también necesitas especificar cualquier otro evento que quieras recibir.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, type Context, MemorySessionStorage } from "grammy";
 import { type ChatMember } from "grammy/types";
 import { chatMembers, type ChatMembersFlavor } from "@grammyjs/chat-members";
@@ -41,11 +45,7 @@ bot.start({
 });
 ```
 
-:::
-
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 import { Bot, MemorySessionStorage } from "grammy";
 import { chatMembers } from "@grammyjs/chat-members";
 
@@ -61,11 +61,7 @@ bot.start({
 });
 ```
 
-:::
-
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import {
   Bot,
   type Context,
@@ -92,8 +88,6 @@ bot.start({
 ```
 
 :::
-
-::::
 
 ### Lectura de Miembros del Chat
 

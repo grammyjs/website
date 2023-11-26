@@ -1,8 +1,3 @@
----
-prev: ./api.md
-next: ./commands.md
----
-
 # Filter Query dan `bot.on()`
 
 _Filter query_ merupakan argument pertama dari `bot.on()` yang berbentuk string.
@@ -72,7 +67,7 @@ bot.on("::email"); // Seluruh pesan dan postingan channel yang mengandung email 
 ```
 
 Mengosongkan value _pertama_ akan mencocokkan pesan serta postingan channel.
-[Perlu diingat](./context.md#aksi-yang-tersedia) bahwa `ctx.msg` memberi kamu akses ke pesan dan postingan channel manapun yang cocok dengan query yang diberikan.
+[Perlu diingat](./context#aksi-yang-tersedia) bahwa `ctx.msg` memberi kamu akses ke pesan dan postingan channel manapun yang cocok dengan query yang diberikan.
 
 Mengosongkan value _kedua_ akan mencocokkan entity, baik di pesan maupun di caption.
 Kamu bisa menghilangkan bagian pertama dan kedua secara bersamaan.
@@ -198,7 +193,7 @@ Contohnya, dari potongan kode di atas, _type inference_ dapat mendeteksi kalau `
 ## Tips Berguna
 
 Berikut ini fitur-fitur filter query yang kurang begitu terkenal tetapi bisa sangat membantu.
-Beberapa diantaranya merupakan fitur tingkat lanjut, silahkan baca [materi berikutnya](./commands.md).
+Beberapa diantaranya merupakan fitur tingkat lanjut, silahkan baca [materi berikutnya](./commands).
 
 ### Update Member Chat
 

@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # Розмови (`conversations`)
 
 З легкістю створюйте потужні розмовні інтерфейси.
@@ -9,7 +14,7 @@
 Наприклад, ви можете поставити користувачу запитання, а потім дочекатися відповіді.
 Це можна повторювати кілька разів, створюючи таким чином розмову.
 
-Замислившись над [проміжними обробниками](../guide/middleware.md), ви помітите, що все базується на одному [обʼєкті контексту](../guide/context.md) для кожного обробника.
+Замислившись над [проміжними обробниками](../guide/middleware), ви помітите, що все базується на одному [обʼєкті контексту](../guide/context) для кожного обробника.
 Це означає, що ви завжди обробляєте лише одне повідомлення, до того ж ізольовано.
 Непросто написати щось на кшталт "перевірити текст три повідомлення тому" або щось подібне.
 
@@ -51,10 +56,9 @@ async function greeting(conversation, ctx) {
 
 Спершу давайте імпортуємо кілька речей.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import {
   type Conversation,
   type ConversationFlavor,
@@ -63,20 +67,14 @@ import {
 } from "@grammyjs/conversations";
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const {
   conversations,
   createConversation,
 } = require("@grammyjs/conversations");
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import {
   type Conversation,
   type ConversationFlavor,
@@ -86,7 +84,6 @@ import {
 ```
 
 :::
-::::
 
 Тепер ми можемо розглянути, як визначати розмовні інтерфейси.
 
@@ -102,13 +99,13 @@ async function greeting(conversation, ctx) {
 Давайте подивимося, що це за два параметри.
 
 **Другий параметр** не такий цікавий, це звичайний обʼєкт контексту.
-Як завжди, він називається `ctx` і використовує [ваш тип контексту](../guide/context.md#налаштування-обʼєкта-контексту), який може називатися `MyContext`.
-Плагін розмов експортує [розширювач для контексту](../guide/context.md#додавальнии-розширювач), який називається `ConversationFlavor`.
+Як завжди, він називається `ctx` і використовує [ваш тип контексту](../guide/context#налаштування-обʼєкта-контексту), який може називатися `MyContext`.
+Плагін розмов експортує [розширювач для контексту](../guide/context#додавальнии-розширювач), який називається `ConversationFlavor`.
 
 **Перший параметр** є центральним елементом цього плагіна.
 Він має загальну назву `conversation` і тип `Conversation` ([довідка API](https://deno.land/x/grammy_conversations/mod.ts?s=Conversation)).
 Його можна використовувати як обʼєкт для керування розмовою, наприклад, для очікування на введення користувачем певних даних тощо.
-Тип `Conversation` очікує [ваш тип контексту](../guide/context.md#налаштування-обʼєкта-контексту) як параметр типу, тому вам варто використовувати `Conversation<MyContext>`.
+Тип `Conversation` очікує [ваш тип контексту](../guide/context#налаштування-обʼєкта-контексту) як параметр типу, тому вам варто використовувати `Conversation<MyContext>`.
 
 Підсумовуючи, у TypeScript ваша функція побудови розмови матиме наступний вигляд.
 
@@ -124,10 +121,9 @@ async function greeting(conversation: MyConversation, ctx: MyContext) {
 Усередині функції побудови розмови ви можете визначити, як має виглядати ваша розмова.
 Перш ніж ми детально розберемо кожну функцію цього плагіна, давайте розглянемо більш складний приклад, ніж [простий](#простии-приклад) вище.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 async function movie(conversation: MyConversation, ctx: MyContext) {
   await ctx.reply("Скільки у вас улюблених фільмів?");
   const count = await conversation.form.number();
@@ -143,10 +139,7 @@ async function movie(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 async function movie(conversation, ctx) {
   await ctx.reply("Скільки у вас улюблених фільмів?");
   const count = await conversation.form.number();
@@ -163,13 +156,12 @@ async function movie(conversation, ctx) {
 ```
 
 :::
-::::
 
 Чи можете ви зрозуміти, як працюватиме цей бот?
 
 ## Встановлення та вхід до розмови
 
-По-перше, якщо ви хочете використовувати плагін розмов, ви **повинні** використовувати [плагін сесії](./session.md).
+По-перше, якщо ви хочете використовувати плагін розмов, ви **повинні** використовувати [плагін сесії](./session).
 Ви також повинні встановити сам плагін розмов, перш ніж ви зможете реєструвати окремі розмови у вашому боті.
 
 ```ts
@@ -205,7 +197,6 @@ bot.command("start", async (ctx) => {
 Наприклад, якщо ви почнете розмову з `await ctx.reply(ctx.message.text)`, вона міститиме оновлення, яке містить `/start`.
 
 ::: tip Зміна ідентифікатора розмови
-
 Головним чином ви повинні передати назву функції до `ctx.conversation.enter()`.
 Однак, якщо ви бажаєте використовувати інший ідентифікатор, ви можете вказати його ось так:
 
@@ -223,10 +214,9 @@ bot.command("start", (ctx) => ctx.conversation.enter("нова-назва"));
 
 Загалом ваш код тепер повинен виглядати приблизно так:
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot, Context, session } from "grammy";
 import {
   type Conversation,
@@ -258,10 +248,7 @@ bot.command("start", async (ctx) => {
 bot.start();
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot, Context, session } = require("grammy");
 const {
   conversations,
@@ -288,10 +275,7 @@ bot.command("start", async (ctx) => {
 bot.start();
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot, Context, session } from "https://deno.land/x/grammy/mod.ts";
 import {
   type Conversation,
@@ -324,7 +308,6 @@ bot.start();
 ```
 
 :::
-::::
 
 ### Встановлення з власними даними сесії
 
@@ -346,7 +329,7 @@ type MyContext = Context & SessionFlavor<SessionData> & ConversationFlavor;
 
 Найважливіше, що при встановленні плагіна сесії із зовнішнім сховищем, вам необхідно надати дані сесії в явному вигляді.
 Всі адаптери сховищ дозволяють передавати `SessionData` як параметр типу.
-Ось, наприклад, як це треба робити при використанні [`freeStorage` (безкоштовне сховище)](./session.md#безкоштовне-сховище), який надає grammY.
+Ось, наприклад, як це треба робити при використанні [`freeStorage` (безкоштовне сховище)](./session#безкоштовне-сховище), який надає grammY.
 
 ```ts
 // Встановлюємо плагін сесії.
@@ -361,7 +344,7 @@ bot.use(session({
 
 ### Встановлення з декількома сесіями
 
-Авжеж ви можете обʼєднати розмови з [декількома сесіями](./session.md#декілька-сесіи).
+Авжеж ви можете обʼєднати розмови з [декількома сесіями](./session#декілька-сесіи).
 
 Цей плагін зберігає дані розмови всередині властивості `session.conversation`.
 Це означає, що якщо ви хочете використовувати декілька сесій, ви повинні вказати цей фрагмент.
@@ -385,10 +368,9 @@ bot.use(session({
 Розмова триватиме доти, доки не завершиться функція побудови розмови.
 Це означає, що ви можете вийти з розмови за допомогою `return` або `throw`.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 async function hiAndBye(conversation: MyConversation, ctx: MyContext) {
   await ctx.reply("Привіт! І бувайте!");
   // Виходимо з розмови:
@@ -396,10 +378,7 @@ async function hiAndBye(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 async function hiAndBye(conversation, ctx) {
   await ctx.reply("Привіт! І бувайте!");
   // Виходимо з розмови:
@@ -408,7 +387,6 @@ async function hiAndBye(conversation, ctx) {
 ```
 
 :::
-::::
 
 Так, додавати `return` в кінці функції трохи безглуздо, але ідею ви зрозуміли.
 
@@ -417,18 +395,36 @@ async function hiAndBye(conversation, ctx) {
 Отже, якщо ви викините помилку під час розмови і не перехопите її до того, як вона дійде до плагіна сесії, дані про те, що ви вийшли з розмови, не буде збережено.
 Тож наступне повідомлення спричинить ту саму помилку.
 
-Ви можете помʼякшити цю проблему, встановивши [межу помилок](../guide/errors.md#межі-помилок) між сесією та розмовою.
-Тоді ви зможете запобігти поширенню помилки вгору по [дереву проміжних обробників](../advanced/middleware.md), а значить дозволите плагіну сесії записати дані.
+Ви можете помʼякшити цю проблему, встановивши [межу помилок](../guide/errors#межі-помилок) між сесією та розмовою.
+Тоді ви зможете запобігти поширенню помилки вгору по [дереву проміжних обробників](../advanced/middleware), а значить дозволите плагіну сесії записати дані.
 
 > Зауважте, що якщо ви використовуєте звичайні сесії, вбудовані у памʼять, всі зміни в даних сесії відображаються миттєво, оскільки немає серверної частини сховища даних.
 > У цьому випадку вам не потрібно використовувати межі помилок, щоб вийти з розмови, викинувши помилку.
 
 Отже, межі помилок та сесії можуть використовуватися разом.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
+bot.use(session({
+  storage: freeStorage(bot.token), // налаштуйте як вам потрібно
+  initial: () => ({}),
+}));
+bot.use(conversations());
+
+async function hiAndBye(conversation: MyConversation, ctx: MyContext) {
+  await ctx.reply("Привіт! І бувайте!");
+  // Виходимо з розмови:
+  throw new Error("Спіймайте мене, якщо зможете!");
+}
+
+bot.errorBoundary(
+  (err) => console.error("Розмова викинула помилку!", err),
+  createConversation(greeting),
+);
+```
+
+```js [JavaScript]
 bot.use(session({
   storage: freeStorage(bot.token), // налаштуйте як вам потрібно
   initial: () => ({}),
@@ -448,41 +444,17 @@ bot.errorBoundary(
 ```
 
 :::
-:::code-group-item JavaScript
 
-```js
-bot.use(session({
-  storage: freeStorage(bot.token), // налаштуйте як вам потрібно
-  initial: () => ({}),
-}));
-bot.use(conversations());
-
-async function hiAndBye(conversation: MyConversation, ctx: MyContext) {
-  await ctx.reply("Привіт! І бувайте!");
-  // Виходимо з розмови:
-  throw new Error("Спіймайте мене, якщо зможете!");
-}
-
-bot.errorBoundary(
-  (err) => console.error("Розмова викинула помилку!", err),
-  createConversation(greeting),
-);
-```
-
-:::
-::::
-
-Що б ви не робили, не забудьте [встановити обробник помилок](../guide/errors.md) у вашому боті.
+Що б ви не робили, не забудьте [встановити обробник помилок](../guide/errors) у вашому боті.
 
 Якщо ви хочете жорстко завершити розмову у вашому звичайному проміжному обробнику, поки вона очікує на введення користувачем певних даних, ви також можете використати `await ctx.conversation.exit()`.
 Це просто видалить дані плагіна розмов із сесії.
 Часто краще просто повернутися (`return`) з функції, але є кілька прикладів, де використання `await ctx.conversation.exit()` є зручним.
 Памʼятайте, що ви повинні дочекатися (`await`) виконання методу.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts{6,22}
+```ts [TypeScript]{6,22}
 async function movie(conversation: MyConversation, ctx: MyContext) {
   // TODO: запрограмувати розмову
 }
@@ -507,10 +479,7 @@ bot.use(createConversation(movie));
 bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js{6,22}
+```js [JavaScript]{6,22}
 async function movie(conversation, ctx) {
   // TODO: запрограмувати розмову
 }
@@ -536,7 +505,6 @@ bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 ```
 
 :::
-::::
 
 Зверніть увагу, що тут важливий порядок.
 Ви повинні спочатку встановити плагін розмов, що показано на 6-у рядку, перш ніж викликати `await ctx.conversation.exit()`.
@@ -546,20 +514,16 @@ bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 
 Ви можете використовувати обʼєкт розмови `conversation` для очікування наступного оновлення у цьому конкретному чаті.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 async function waitForMe(conversation: MyConversation, ctx: MyContext) {
   // Очікуємо наступне оновлення:
   const newContext = await conversation.wait();
 }
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 async function waitForMe(conversation, ctx) {
   // Очікуємо наступне оновлення:
   const newContext = await conversation.wait();
@@ -567,18 +531,16 @@ async function waitForMe(conversation, ctx) {
 ```
 
 :::
-::::
 
 Оновлення може означати, що було надіслано текстове повідомлення, натиснуто кнопку, щось відредаговано або практично будь-яку іншу дію користувача.
 Повний список можна знайти в документації Telegram [тут](https://core.telegram.org/bots/api#update).
 
-Метод `wait` завжди повертає новий [обʼєкт контексту](../guide/context.md), який представляє отримане оновлення.
+Метод `wait` завжди повертає новий [обʼєкт контексту](../guide/context), який представляє отримане оновлення.
 Це означає, що ви завжди маєте справу з такою кількістю обʼєктів контексту, яка відповідає кількості оновлень, отриманих під час розмови.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 const TEAM_REVIEW_CHAT = -1001493653006;
 async function askUser(conversation: MyConversation, ctx: MyContext) {
   // Запитуємо у користувача його домашню адресу.
@@ -603,10 +565,7 @@ async function askUser(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const TEAM_REVIEW_CHAT = -1001493653006;
 async function askUser(conversation, ctx) {
   // Запитуємо у користувача його домашню адресу.
@@ -632,19 +591,17 @@ async function askUser(conversation, ctx) {
 ```
 
 :::
-::::
 
-Зазвичай поза плагіном розмов кожне з цих оновлень обробляється [системою проміжних обробників](../guide/middleware.md) вашого бота.
+Зазвичай поза плагіном розмов кожне з цих оновлень обробляється [системою проміжних обробників](../guide/middleware) вашого бота.
 Отже, ваш бот оброблятиме оновлення через обʼєкт контексту, який передаватиметься вашим обробникам.
 
 У розмовах ви отримаєте цей новий обʼєкт контексту за допомогою виклику `wait`.
 Зі свого боку ви можете обробляти різні оновлення по-різному на основі цього обʼєкта.
 Наприклад, ви можете перевіряти наявність текстових повідомлень:
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 async function waitForText(conversation: MyConversation, ctx: MyContext) {
   // Очікуємо наступне оновлення:
   ctx = await conversation.wait();
@@ -655,10 +612,7 @@ async function waitForText(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 async function waitForText(conversation, ctx) {
   // Очікуємо наступне оновлення:
   ctx = await conversation.wait();
@@ -670,26 +624,21 @@ async function waitForText(conversation, ctx) {
 ```
 
 :::
-::::
 
 Крім того, поряд з `wait` існує низка інших методів, які дозволяють вам очікувати лише певні оновлення.
-Одним з прикладів є `waitFor`, який отримує [запит фільтрування](../guide/filter-queries.md), а потім очікує лише оновлення, які відповідають наданому запиту.
+Одним з прикладів є `waitFor`, який отримує [запит фільтрування](../guide/filter-queries), а потім очікує лише оновлення, які відповідають наданому запиту.
 Це особливо ефективно у поєднанні з [деструктуризацією обʼєктів](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment):
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 async function waitForText(conversation: MyConversation, ctx: MyContext) {
   // Очікуємо наступне оновлення текстового повідомлення:
   const { msg: { text } } = await conversation.waitFor("message:text");
 }
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 async function waitForText(conversation, ctx) {
   // Очікуємо наступне оновлення текстового повідомлення:
   const { msg: { text } } = await conversation.waitFor("message:text");
@@ -697,7 +646,6 @@ async function waitForText(conversation, ctx) {
 ```
 
 :::
-::::
 
 Зверніться до [довідки API](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#method_wait_0), щоб переглянути всі доступні методи, схожі на `wait`.
 
@@ -722,9 +670,7 @@ const response = await conversation.external(() => externalApi());
 Це включає як читання даних, так і виконання побічних ефектів, наприклад, запис до бази даних.
 
 ::: tip Порівняння з React
-
 Якщо ви знайомі з React, ви можете знати схожу концепцію з `useEffect`.
-
 :::
 
 ### 2-е правило: будь-яка випадкова поведінка повинна бути загорнута
@@ -754,7 +700,7 @@ await conversation.now(); // точніше!
 conversation.log("Hello, world"); // прозоріше!
 ```
 
-Зауважте, що ви можете зробити все це за допомогою `conversation.external()`, але може бути нудно писати так багато коду, який щоразу повторюється, тому простіше скористатися зручними методами ([довідка API](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#Methods)).
+Зауважте, що ви можете зробити майже все це за допомогою `conversation.external()`, але може бути нудно писати так багато коду, який щоразу повторюється, тому простіше скористатися зручними методами ([довідка API](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationHandle#Methods)).
 
 ## Змінні, розгалуження та цикли
 
@@ -805,10 +751,9 @@ do {
 Ви також можете розділити код на кілька функцій і використовувати їх повторно.
 Наприклад, так можна визначити багаторазову капчу.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 async function captcha(conversation: MyConversation, ctx: MyContext) {
   await ctx.reply("Доведіть, що ви людина! Яка відповідь на все?");
   const { message } = await conversation.wait();
@@ -816,10 +761,7 @@ async function captcha(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 async function captcha(conversation, ctx) {
   await ctx.reply("Доведіть, що ви людина! Яка відповідь на все?");
   const { message } = await conversation.wait();
@@ -828,15 +770,13 @@ async function captcha(conversation, ctx) {
 ```
 
 :::
-::::
 
 Вона повертає `true`, якщо користувач може пройти, інакше `false`.
 Тепер ви можете використовувати її у вашій основній функції побудови розмови наступним чином:
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 async function enterGroup(conversation: MyConversation, ctx: MyContext) {
   const ok = await captcha(conversation, ctx);
 
@@ -845,10 +785,7 @@ async function enterGroup(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 async function enterGroup(conversation, ctx) {
   const ok = await captcha(conversation, ctx);
 
@@ -858,7 +795,6 @@ async function enterGroup(conversation, ctx) {
 ```
 
 :::
-::::
 
 Подивіться, як функцію капчі можна повторно використовувати в різних місцях вашого коду.
 
@@ -873,7 +809,7 @@ async function enterGroup(conversation, ctx) {
 Звичайні оператори `try`/`catch` працюють чудово, в тому числі й у функціях.
 Зрештою, розмови --- це всього лише JavaScript.
 
-Якщо основна функція розмови викине помилку, вона пошириться далі в [механізми обробки помилок](../guide/errors.md) вашого бота.
+Якщо основна функція розмови викине помилку, вона пошириться далі в [механізми обробки помилок](../guide/errors) вашого бота.
 
 ## Модулі та класи
 
@@ -882,10 +818,9 @@ async function enterGroup(conversation, ctx) {
 
 Якщо ви хочете, ви також можете визначати класи.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 class Auth {
   public token?: string;
 
@@ -915,10 +850,7 @@ async function askForToken(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 class Auth {
   constructor(conversation) {
     this.#conversation = conversation;
@@ -949,7 +881,6 @@ async function askForToken(conversation, ctx) {
 ```
 
 :::
-::::
 
 Справа не в тому, що ми наполегливо рекомендуємо вам це робити.
 Це скоріше приклад того, як можна використовувати безмежну гнучкість JavaScript для структурування коду.
@@ -960,20 +891,16 @@ async function askForToken(conversation, ctx) {
 
 Якщо цих методів недостатньо, плагін розмов надає ще більше допоміжних методів для створення форм за допомогою `conversation.form`.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 async function waitForMe(conversation: MyConversation, ctx: MyContext) {
   await ctx.reply("Скільки вам років?");
   const age: number = await conversation.form.number();
 }
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 async function waitForMe(conversation, ctx) {
   await ctx.reply("Скільки вам років?");
   const age = await conversation.form.number();
@@ -981,7 +908,6 @@ async function waitForMe(conversation, ctx) {
 ```
 
 :::
-::::
 
 Як завжди, зверніться до [довідки API](https://deno.land/x/grammy_conversations/mod.ts?s=ConversationForm), щоб дізнатися, які методи доступні.
 
@@ -990,24 +916,47 @@ async function waitForMe(conversation, ctx) {
 Як згадувалося [раніше](#вступ), обробники grammY завжди обробляють лише одне оновлення.
 Однак за допомогою розмов ви можете обробляти багато оновлень послідовно, ніби всі вони доступні одночасно.
 Плагін робить це можливим завдяки збереженню старих обʼєктів контексту та їх повторному завантаженню пізніше.
-
 Ось чому деякі плагіни grammY не завжди впливають на обʼєкти контексту всередині розмов так, як очікується.
+
+::: warning Інтерактивні меню всередині розмов
+З плагіном [menu](./menu) ці концепції дуже погано поєднуються.
+Хоча меню _можуть_ працювати всередині розмов, ми не рекомендуємо використовувати ці два плагіни разом.
+Замість цього використовуйте звичайний [плагін вбудованої клавіатури](./keyboard#вбудовані-клавіатури), доки ми не додамо підтримку меню для розмов.
+Ви можете чекати на певні запити зворотного виклику за допомогою `await conversation.waitForCallbackQuery("мій-запит")` або на будь-який запит за допомогою `await conversation.waitFor("callback_query")`.
+
+```ts
+const keyboard = new InlineKeyboard()
+  .text("A", "a").text("Б", "б");
+await ctx.reply("A чи Б?", { reply_markup: keyboard });
+const response = await conversation.waitForCallbackQuery(["a", "б"], {
+  otherwise: (ctx) =>
+    ctx.reply("Використовуйте кнопки!", { reply_markup: keyboard }),
+});
+if (response.match === "a") {
+  // Користувач обрав "A".
+} else {
+  // Користувач обрав "Б".
+}
+```
+
+:::
+
+Інші плагіни працюють нормально.
+Деякі з них просто потрібно встановити не так, як ви зазвичай це робите.
 Це стосується наступних плагінів:
 
-- [меню](./menu.md),
-- [гідратація (`hydrate`)](./hydrate.md),
-- інтернаціоналізація за допомогою [`i18n`](./i18n.md) чи [`fluent`](./fluent.md),
-- [емодзі](./emoji.md).
+- [гідратація (`hydrate`)](./hydrate),
+- інтернаціоналізація за допомогою [`i18n`](./i18n) чи [`fluent`](./fluent),
+- [емодзі](./emoji).
 
 Спільним для них є те, що всі вони зберігають функції на обʼєкті контексту, з яким плагін розмов не може коректно працювати.
 Отже, якщо ви хочете обʼєднати розмови з одним із цих плагінів grammY, вам доведеться використовувати спеціальний синтаксис для встановлення іншого плагіна всередині кожної розмови.
 
 Ви можете встановити інші плагіни всередині розмов за допомогою `conversation.run`:
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 async function convo(conversation: MyConversation, ctx: MyContext) {
   // Встановлюємо плагін grammY
   await conversation.run(plugin());
@@ -1015,10 +964,7 @@ async function convo(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 async function convo(conversation, ctx) {
   // Встановлюємо плагін grammY
   await conversation.run(plugin());
@@ -1027,44 +973,12 @@ async function convo(conversation, ctx) {
 ```
 
 :::
-::::
 
 Це зробить плагін доступним всередині розмови.
 
-Наприклад, якщо ви хочете використовувати меню всередині розмови, ваш код може виглядати так.
-
-::::code-group
-:::code-group-item TypeScript
-
-```ts
-async function convo(conversation: MyConversation, ctx: MyContext) {
-  const menu = new Menu<MyContext>()
-    .text("Натиснути", (ctx) => ctx.reply("Привіт!"));
-  await conversation.run(menu);
-
-  // Продовжуємо визначати розмову ...
-}
-```
-
-:::
-:::code-group-item JavaScript
-
-```js
-async function convo(conversation, ctx) {
-  const menu = new Menu()
-    .text("Натиснути", (ctx) => ctx.reply("Привіт!"));
-  await conversation.run(menu);
-
-  // Продовжуємо визначати розмову ...
-}
-```
-
-:::
-::::
-
 ### Власні обʼєкти контексту
 
-Якщо ви використовуєте [власний обʼєкт контексту](../guide/context.md#налаштування-обʼєкта-контексту) й хочете встановити власні властивості на ваші обʼєкти контексту перед початком розмови, то деякі з цих властивостей також можуть бути втрачені.
+Якщо ви використовуєте [власний обʼєкт контексту](../guide/context#налаштування-обʼєкта-контексту) й хочете встановити власні властивості на ваші обʼєкти контексту перед початком розмови, то деякі з цих властивостей також можуть бути втрачені.
 Певною мірою проміжний обробник, який ви використовуєте для налаштування обʼєкта контексту, також можна вважати плагіном.
 
 Найчистішим рішенням є повне **уникнення власних властивостей контексту** або, принаймні, встановлення на обʼєкті контексту лише тих властивостей, які можна серіалізувати.
@@ -1123,10 +1037,9 @@ async function convo(conversation, ctx) {
 
 Для прикладу, давайте застосуємо приклад з капчею знову, але цього разу з паралельними розмовами.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts{4}
+```ts [TypeScript]{4}
 async function captcha(conversation: MyConversation, ctx: MyContext) {
   if (ctx.from === undefined) return false;
   await ctx.reply("Доведіть, що ви людина! Яка відповідь на все?");
@@ -1142,10 +1055,7 @@ async function enterGroup(conversation: MyConversation, ctx: MyContext) {
 }
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js{4}
+```js [JavaScript]{4}
 async function captcha(conversation, ctx) {
   if (ctx.from === undefined) return false;
   await ctx.reply("Доведіть, що ви людина! Яка відповідь на все?");
@@ -1162,7 +1072,6 @@ async function enterGroup(conversation, ctx) {
 ```
 
 :::
-::::
 
 Зверніть увагу, що ми очікуємо лише на повідомлення від певного користувача.
 
@@ -1214,10 +1123,10 @@ console.log(stats); // { "enterGroup": 1 }
 
 - Для вбудованого тривалого опитування це означає, що жодне наступне оновлення не може бути оброблене, поки не завершиться поточне.
   Отже, бот буде просто заблоковано назавжди.
-- Для [плагіну для конкурентності (runner)](./runner.md) бот не буде заблокований.
+- Для [плагіну для конкурентності (runner)](./runner) бот не буде заблокований.
   Однак, обробляючи тисячі розмов паралельно з різними користувачами, він потенційно споживатиме дуже великі обсяги памʼяті.
   Якщо багато користувачів перестануть відповідати, бот застрягне посеред незліченної кількості розмов.
-- Вебхуки мають свою власну [категорію проблем](../guide/deployment-types.md#своєчасне-завершення-запитів-вебхуків) з довготривалими проміжними обробниками.
+- Вебхуки мають свою власну [категорію проблем](../guide/deployment-types#своєчасне-завершення-запитів-вебхуків) з довготривалими проміжними обробниками.
 
 **Стан.**
 У безсерверній інфраструктурі, як-от хмарні функції, ми не можемо припускати, що один і той самий екземпляр обробляє два наступних оновлення від одного й того ж користувача.

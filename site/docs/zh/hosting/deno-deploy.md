@@ -1,3 +1,8 @@
+---
+prev: false
+next: false
+---
+
 # 托管：Deno Deploy
 
 这个指南告诉你如何将你的 grammY bots 托管到 [Deno Deploy](https://deno.com/deploy).
@@ -5,27 +10,26 @@
 请注意，这个指南只适用于 Deno 用户，你需要一个 [GitHub](https://github.com) 账户来创建一个 [Deno Deploy](https://deno.com/deploy) 账户。
 
 Deno Deploy 是大多数简单 bot 的理想选择，并且你应该注意，Deno Deploy 上运行的应用程序不一定完整支持 Deno 的所有功能。
-例如，平台仅支持 Deno 中可用的文件系统 API 的 [有限集](https://deno.com/deploy/docs/runtime-fs)。
+例如，平台仅支持 Deno 中可用的文件系统 API 的 [有限集](https://docs.deno.com/deploy/api/runtime-fs)。
 它就像其他许多 serverless 平台一样，但专门用于 Deno 应用程序。
 
-这个教程的结果 [可以在我们的示例 bot 仓库中看到](https://github.com/grammyjs/examples/tree/main/deno-deploy)。
+这个教程的结果 [可以在我们的示例 bot 仓库中看到](https://github.com/grammyjs/examples/tree/main/setups/deno-deploy)。
 
 ## 准备你的代码
 
-> 请注意，你需要 [在 webhooks 上运行你的 bot](../guide/deployment-types.md#如何使用-webhooks)，所以你应该调用 `webhookCallback`，而不是 `bot.start()`。
+> 请注意，你需要 [在 webhooks 上运行你的 bot](../guide/deployment-types#如何使用-webhooks)，所以你应该调用 `webhookCallback`，而不是 `bot.start()`。
 
 1. 确保你有一个文件可以导出你的`Bot`对象，这样你就可以在以后导入它来运行它。
 2. 创建一个名为 `mod.ts` 或 `mod.js` 的文件，或任何你喜欢的名字（但你应该记住并使用这个文件作为部署的主要文件），其内容如下：
 
 ```ts
-import { serve } from "https://deno.land/std/http/server.ts";
 import { webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 // 你可以将其修改为正确的方式来导入你的 `Bot` 对象。
 import bot from "./bot.ts";
 
 const handleUpdate = webhookCallback(bot, "std/http");
 
-serve(async (req) => {
+Deno.serve(async (req) => {
   if (req.method === "POST") {
     const url = new URL(req.url);
     if (url.pathname.slice(1) === bot.token) {
@@ -53,7 +57,7 @@ serve(async (req) => {
 1. 在 GitHub 上创建一个新的仓库，它可以是私有的或公开的。
 2. 将你的代码推送到这个仓库。
 
-> 建议你有一个单一且稳定的分支，然后在其他分支中进行测试，这样你就不会发送一些意外的事情。
+   > 建议你有一个单一且稳定的分支，然后在其他分支中进行测试，这样你就不会发送一些意外的事情。
 
 3. 访问你的 [Deno Deploy 仪表台](https://dash.deno.com/projects)。
 4. 点击 "New Project"，然后进入 "Deploy from GitHub repository" 部分
@@ -70,9 +74,9 @@ serve(async (req) => {
 4. [创建一个访问 token](https://dash.deno.com/user/access-tokens).
 5. 执行以下命令：
 
-```sh
-deployctl deploy --project <project> ./mod.ts --prod --token <token>
-```
+   ```sh
+   deployctl deploy --project <project> ./mod.ts --prod --token <token>
+   ```
 
 6. 配置 GitHub Action，请参考 [这里](https://github.com/denoland/deployctl/blob/main/action/README.md).
 

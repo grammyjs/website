@@ -1,15 +1,20 @@
+---
+prev: false
+next: false
+---
+
 # Hosting: Supabase Edge Functions
 
 This guide tells you how you can host your grammY bots on [Supabase](https://supabase.com/).
 
 Please note that you need to have a [GitHub](https://github.com) account before you can use [Supabase Edge Functions](https://supabase.com/docs/guides/functions/quickstart).
-Moreover, Supabase Edge Functions are based on [Deno Deploy](https://deno.com/deploy), so just like [our Deno Deploy guide](./deno-deploy.md), this guide is only for Deno users of grammY.
+Moreover, Supabase Edge Functions are based on [Deno Deploy](https://deno.com/deploy), so just like [our Deno Deploy guide](./deno-deploy), this guide is only for Deno users of grammY.
 
 Supabase Edge Functions is ideal for most simple bots, and you should note that not all Deno features are available for apps running on Supabase Edge Functions.
 For example, there is no file system on Supabase Edge Functions.
 It's just like the other many serverless platforms, but dedicated for Deno apps.
 
-The result of this tutorial [can be seen in our example bots repository](https://github.com/grammyjs/examples/tree/main/supabase-edge-functions).
+The result of this tutorial [can be seen in our example bots repository](https://github.com/grammyjs/examples/tree/main/setups/supabase-edge-functions).
 
 ## Setup
 
@@ -26,12 +31,11 @@ Once you have created a Supabase Function project, you can write your bot.
 
 ## Preparing Your Code
 
-> Remember that you need to [run your bot on webhooks](../guide/deployment-types.md#how-to-use-webhooks), so you should use `webhookCallback` and not call `bot.start()` in your code.
+> Remember that you need to [run your bot on webhooks](../guide/deployment-types#how-to-use-webhooks), so you should use `webhookCallback` and not call `bot.start()` in your code.
 
 You can use this short example bot as a starting point.
 
 ```ts
-import { serve } from "https://deno.land/std/http/server.ts";
 import { Bot, webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 
 const token = Deno.env.get("BOT_TOKEN");
@@ -44,7 +48,7 @@ bot.command("ping", (ctx) => ctx.reply(`Pong! ${new Date()}`));
 
 const handleUpdate = webhookCallback(bot, "std/http");
 
-serve(async (req) => {
+Deno.serve(async (req) => {
   try {
     const url = new URL(req.url);
     if (url.searchParams.get("secret") !== bot.token) {
@@ -54,6 +58,7 @@ serve(async (req) => {
   } catch (err) {
     console.error(err);
   }
+  return new Response();
 });
 ```
 

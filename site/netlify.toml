@@ -12,3 +12,13 @@
   for = "/favicon.ico"
   [headers.values]
   cache-control = "max-age=604800" # 1 week
+
+[[redirects]]
+from = "/guide/inline-queries.html"
+to = "/plugins/inline-query.html"
+status = 301
+
+[[redirects]]
+from = "/*/guide/inline-queries.html"
+to = "/:splat/plugins/inline-query.html"
+status = 301

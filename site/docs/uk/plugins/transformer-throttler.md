@@ -1,11 +1,16 @@
+---
+prev: false
+next: false
+---
+
 # Обмеження запитів до API (`transformer-throttler`)
 
-Цей плагін виконує вихідні запити до API в черзі через [Bottleneck](https://github.com/SGrondin/bottleneck), щоб запобігти перевищенню вашим ботом [лімітів](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this), як це описано в [просунутому розділі](../advanced/flood.md) документації.
+Цей плагін виконує вихідні запити до API в черзі через [Bottleneck](https://github.com/SGrondin/bottleneck), щоб запобігти перевищенню вашим ботом [лімітів](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this), як це описано в [просунутому розділі](../advanced/flood) документації.
 
 ::: warning Існують недокументовані ліміти API
 Telegram реалізує невизначені та недокументовані обмеження запитів для деяких викликів API.
 Ці недокументовані обмеження **не враховуються** плагіном.
-Розгляньте можливість використання [плагіна `auto-retry`](./auto-retry.md) разом з цим плагіном, якщо у вас виникають помилки `floodwait` для певних викликів API, таких як `api.sendContact`.
+Якщо ви все ще хочете використовувати цей плагін, розгляньте можливість використання [плагіну `auto-retry`](./auto-retry) разом з ним.
 :::
 
 ## Використання
@@ -13,10 +18,9 @@ Telegram реалізує невизначені та недокументова
 Ось приклад використання цього плагіна з параметрами за замовчуванням.
 Зверніть увагу, що типові налаштування відповідають фактичним обмеженням швидкості, які застосовує Telegram, тому вони повинні нормально працювати.
 
-::::code-group
-:::code-group-item TypeScript
+::: code-group
 
-```ts
+```ts [TypeScript]
 import { Bot } from "grammy";
 import { run } from "@grammyjs/runner";
 import { apiThrottler } from "@grammyjs/transformer-throttler";
@@ -32,10 +36,7 @@ bot.command("example", (ctx) => ctx.reply("Я обмежений"));
 run(bot);
 ```
 
-:::
-:::code-group-item JavaScript
-
-```js
+```js [JavaScript]
 const { Bot } = require("grammy");
 const { run } = require("@grammyjs/runner");
 const { apiThrottler } = require("@grammyjs/transformer-throttler");
@@ -51,10 +52,7 @@ bot.command("example", (ctx) => ctx.reply("Я обмежений"));
 run(bot);
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { run } from "https://deno.land/x/grammy_runner/mod.ts";
 import { apiThrottler } from "https://deno.land/x/grammy_transformer_throttler/mod.ts";
@@ -71,7 +69,6 @@ run(bot);
 ```
 
 :::
-::::
 
 ## Налаштування
 

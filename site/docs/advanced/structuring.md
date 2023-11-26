@@ -1,8 +1,3 @@
----
-prev: ./middleware.md
-next: ./scaling.md
----
-
 # Scaling Up I: Large Codebase
 
 As soon as your bot grows in complexity, you are going to face the challenge of how to structure your application code base.
@@ -20,7 +15,7 @@ That being said, a straightforward and proven strategy to structure your code is
    Every single one of these parts exposes middleware that will handle the designated messages.
 2. Create a bot instance centrally that merges all middleware by installing it onto the bot.
 3. (Optional.) Pre-filter the updates centrally, and send down updates the right way only.
-   You may also want to check out `bot.route` ([API Reference](https://deno.land/x/grammy/mod.ts?s=Composer#method_route_0)) or alternatively the [router plugin](../plugins/router.md) for that.
+   You may also want to check out `bot.route` ([API Reference](https://deno.land/x/grammy/mod.ts?s=Composer#method_route_0)) or alternatively the [router plugin](../plugins/router) for that.
 
 A runnable example that implements the above strategy can be found in the [Example Bot repository](https://github.com/grammyjs/examples/tree/main/scaling).
 
@@ -47,10 +42,10 @@ export const lists = new Composer();
 lists.on("message", async (ctx) => {/* ... */});
 ```
 
-> Note that if you use TypeScript, you need to pass your [custom context type](../guide/context.md#customizing-the-context-object) when creating the composer.
+> Note that if you use TypeScript, you need to pass your [custom context type](../guide/context#customizing-the-context-object) when creating the composer.
 > For example, you'll need to use `new Composer<MyContext>()`.
 
-Optionally, you can use an [error boundary](../guide/errors.md#error-boundaries) to handle all errors that happen inside your module.
+Optionally, you can use an [error boundary](../guide/errors#error-boundaries) to handle all errors that happen inside your module.
 
 Now, in `bot.ts`, you can install this module like so:
 
@@ -65,7 +60,7 @@ bot.use(lists);
 bot.start();
 ```
 
-Optionally, you can use the [router plugin](../plugins/router.md) or [`bot.route`](https://deno.land/x/grammy/mod.ts?s=Composer#method_route_0) to bundle up the different modules, if you're able to determine which middleware is responsible upfront.
+Optionally, you can use the [router plugin](../plugins/router) or [`bot.route`](https://deno.land/x/grammy/mod.ts?s=Composer#method_route_0) to bundle up the different modules, if you're able to determine which middleware is responsible upfront.
 
 However, remember that the exact way of how to structure your bot is very hard to say generically.
 As always in software, do it in a way that makes the most sense :wink:
@@ -78,14 +73,13 @@ This requires you to add the correct middleware type definitions to your handler
 
 grammY exports type definitions for all **narrowed types of middleware**, such as the middleware that you can pass to command handlers.
 In addition, it exports the type definitions for the **narrowed context objects** that are being used in that middleware.
-Both types are parameterized with your [custom context object](../guide/context.md#customizing-the-context-object).
+Both types are parameterized with your [custom context object](../guide/context#customizing-the-context-object).
 Hence, a command handler would have the type `CommandMiddleware<MyContext>` and its context object `CommandContext<MyContext>`.
 They can be used as follows.
 
-::::code-group
-:::code-group-item Node.js
+::: code-group
 
-```ts
+```ts [Node.js]
 import {
   type CallbackQueryMiddleware,
   type CommandContext,
@@ -103,10 +97,7 @@ bot.command(["start", "help"], commandMiddleware);
 bot.callbackQuery("query-data", callbackQueryMiddleware);
 ```
 
-:::
-:::code-group-item Deno
-
-```ts
+```ts [Deno]
 import {
   type CallbackQueryMiddleware,
   type CommandContext,
@@ -125,6 +116,5 @@ bot.callbackQuery("query-data", callbackQueryMiddleware);
 ```
 
 :::
-::::
 
 Check out the [type aliases API reference](https://deno.land/x/grammy/mod.ts#Type_Aliases) to see an overview over all type aliases that grammY exports.

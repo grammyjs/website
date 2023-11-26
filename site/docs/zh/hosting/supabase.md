@@ -1,15 +1,20 @@
+---
+prev: false
+next: false
+---
+
 # 托管：Supabase Edge Functions
 
 这个指南告诉你如何将你的 grammY bots 托管到 [Supabase](https://supabase.com/).
 
 请注意，在使用 [Supabase Edge Functions](https://supabase.com/docs/guides/functions/quickstart) 之前，你需要有一个 [GitHub](https://github.com) 账户。
-此外，Supabase Edge Functions 是基于[Deno Deploy](https://deno.com/deploy)，所以就像 [我们的Deno Deploy指南](./deno-deploy.md) 一样，本指南只针对使用 Deno 的 grammY 用户。
+此外，Supabase Edge Functions 是基于[Deno Deploy](https://deno.com/deploy)，所以就像 [我们的Deno Deploy指南](./deno-deploy) 一样，本指南只针对使用 Deno 的 grammY 用户。
 
 Supabase Edge Functions 是大多数简单 bot 的理想选择，并且你应该注意，Supabase Edge Functions 上运行的应用程序不一定完整支持 Deno 的所有功能。
 例如，Supabase Edge Functions 上没有文件系统。
 它就像其他许多 serverless 平台一样，但专门用于 Deno 应用程序。
 
-这个教程的结果 [可以在我们的示例 bot 仓库中看到](https://github.com/grammyjs/examples/tree/main/supabase-edge-functions)。
+这个教程的结果 [可以在我们的示例 bot 仓库中看到](https://github.com/grammyjs/examples/tree/main/setups/supabase-edge-functions)。
 
 ## 设置
 
@@ -26,12 +31,11 @@ supabase functions new telegram-bot
 
 ## 准备你的代码
 
-> 请注意，你需要 [在 webhooks 上运行你的 bot](../guide/deployment-types.md#如何使用-webhooks)，所以你应该调用 `webhookCallback`，而不是 `bot.start()`。
+> 请注意，你需要 [在 webhooks 上运行你的 bot](../guide/deployment-types#如何使用-webhooks)，所以你应该调用 `webhookCallback`，而不是 `bot.start()`。
 
 你可以使用这个简单的示例 bot 作为一个起点。
 
 ```ts
-import { serve } from "https://deno.land/std/http/server.ts";
 import { Bot, webhookCallback } from "https://deno.land/x/grammy/mod.ts";
 
 const token = Deno.env.get("BOT_TOKEN");
@@ -44,7 +48,7 @@ bot.command("ping", (ctx) => ctx.reply(`Pong! ${new Date()}`));
 
 const handleUpdate = webhookCallback(bot, "std/http");
 
-serve(async (req) => {
+Deno.serve(async (req) => {
   try {
     const url = new URL(req.url);
     if (url.searchParams.get("secret") !== bot.token) {
@@ -54,6 +58,7 @@ serve(async (req) => {
   } catch (err) {
     console.error(err);
   }
+  return new Response();
 });
 ```
 
