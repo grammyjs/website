@@ -25,8 +25,8 @@ hero:
       text: Mulai
       link: ./guide/getting-started
     - theme: alt
-      text: Pengenalan
-      link: ./guide/introduction
+      text: Dokumentasi
+      link: ./guide/
 
 features:
   - icon: <lazy-tgs-player class="VPImage" src="/icons/beach-animation.tgs"><img src="/icons/beach.svg" alt="beach animation"></lazy-tgs-player>
