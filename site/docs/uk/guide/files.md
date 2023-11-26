@@ -199,23 +199,11 @@ new InputFile(function* () {
 > Зауважте, що Telegram підтримує надсилання файлу через URL у багатьох методах API.
 > Якщо можливо, вам слід віддати перевагу [надсиланню файлу через URL-адресу](#через-file-id-або-url-адресу), а не використовувати `InputFile` для потокової передачі вмісту файлу через ваш сервер.
 
-::: code-group
-
-```ts [Node.js]
-import { URL } from "url";
-
+```ts
 // Завантажуємо файл і передаємо відповідь Telegram.
 new InputFile(new URL("https://grammy.dev/images/grammY.png"));
 new InputFile({ url: "https://grammy.dev/images/grammY.png" }); // еквівалент
 ```
-
-```ts [Deno]
-// Завантажуємо файл і передаємо відповідь Telegram.
-new InputFile(new URL("https://grammy.dev/images/grammY.png"));
-new InputFile({ url: "https://grammy.dev/images/grammY.png" }); // еквівалент
-```
-
-:::
 
 ### Додавання підпису
 

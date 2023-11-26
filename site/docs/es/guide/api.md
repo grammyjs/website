@@ -20,7 +20,7 @@ De forma análoga, cada vez que un usuario responde, se realiza el camino invers
 
 ::: tip Rludir los límites de tamaño de los archivos
 El backend de Telegram permite a tu bot [enviar archivos](./files) de hasta 2000 MB.
-Sin embargo, el servidor de la API del bot que se encarga de traducir las peticiones a HTTP restringe el tamaño de los archivos a 50 MB para las descargas y 20 MB para las subidas.
+Sin embargo, el servidor de la API del bot que se encarga de traducir las peticiones a HTTP restringe el tamaño de los archivos a 20 MB para las descargas y 50 MB para las subidas.
 
 Por lo tanto, si evitas el servidor Bot API que Telegram ejecuta por ti, y simplemente [alojas tu propio servidor Bot API](https://core.telegram.org/bots/api#using-a-local-bot-api-server), puedes permitir que tu bot envíe archivos de hasta 2000 MB.
 

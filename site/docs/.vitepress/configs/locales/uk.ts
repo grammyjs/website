@@ -430,7 +430,7 @@ export const siteUk: LocaleConfig = {
       },
       outline: {
         level: [2, 6],
-        label: "On this page",
+        label: "На цій сторінці",
       },
       editLink: {
         text: "Редагувати цю сторінку на GitHub",
@@ -438,22 +438,22 @@ export const siteUk: LocaleConfig = {
           "https://github.com/grammyjs/website/edit/main/site/docs/:path",
       },
       lastUpdatedText: "Востаннє оновлено",
-      darkModeSwitchLabel: "Appearance", // only displayed in the mobile view.
-      sidebarMenuLabel: "Menu", // only displayed in the mobile view.
-      returnToTopLabel: "Return to top", // only displayed in the mobile view.
-      langMenuLabel: "Change language", // Aria-label
+      darkModeSwitchLabel: "Вигляд", // only displayed in the mobile view.
+      sidebarMenuLabel: "Меню", // only displayed in the mobile view.
+      returnToTopLabel: "До гори", // only displayed in the mobile view.
+      langMenuLabel: "Змінити мову", // Aria-label
       socialLinks: [
         {
           link: social.telegram.link,
           icon: {
             svg: social.telegram.icon,
           },
-          ariaLabel: "grammY Telegram group link",
+          ariaLabel: "Посилання на групу Telegram grammY",
         },
         {
           link: social.github.link,
           icon: social.github.icon,
-          ariaLabel: "grammY repository link",
+          ariaLabel: "Посилання на репозиторій grammY",
         },
       ],
     },
@@ -513,7 +513,7 @@ export const notFoundUk: Record<string, NotFound> = {
   uk: {
     title: "PAGE NOT FOUND",
     backToHome: "Ніколи не забувайте, звідки ви",
-    ariaLabel: "Go to home",
+    ariaLabel: "Повернутися на головну",
     messages: [
       "Не знайдено",
       "Тут для тебе нічого немає, вибач.",

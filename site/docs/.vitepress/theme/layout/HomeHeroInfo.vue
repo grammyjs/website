@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue'
+import { onMounted, onUpdated, nextTick, ref, watch } from "vue";
 
 const props = defineProps({
   name: String,
@@ -7,6 +7,7 @@ const props = defineProps({
   taglines: Array<string>
 });
 
+const hasHover = () => window.matchMedia("(hover: hover)").matches;
 const showContent = ref(false);
 const tagline = ref('');
 
@@ -17,7 +18,11 @@ watch(props, (newProps) => {
 onMounted(() => {
   pickTagline(props.taglines);
   showContent.value = true;
+  if (hasHover()) // @ts-ignore
+    void import("lazy-lottie-player/lazy-tgs-player.mjs");
 });
+
+onUpdated(() => nextTick(hydrateIcons));
 
 function pickTagline(newTaglines: string[] | undefined) {
   if (newTaglines !== undefined && newTaglines.length > 0) {
@@ -25,6 +30,18 @@ function pickTagline(newTaglines: string[] | undefined) {
 
     tagline.value = newTaglines[randomIndex];
   }
+}
+
+function hydrateIcons() {
+  if (!hasHover()) return;
+  document.querySelectorAll("lazy-tgs-player").forEach(player => {
+    const box = player.closest(".box");
+    if (!box) return;
+    // @ts-ignore
+    box.addEventListener("mouseenter", () => player.play?.());
+    // @ts-ignore
+    box.addEventListener("mouseleave", () => player.pause?.());
+  });
 }
 </script>
 

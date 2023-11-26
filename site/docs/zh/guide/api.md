@@ -20,7 +20,7 @@ Telegram Bot 的 API 是这个接口的规范，即一个 [很长的列表](http
 
 ::: tip 绕过文件大小限制
 Telegram 的后端允许你的 bot [发送文件](./files)，最大容量为 2000 MB 。
-负责将请求转换为 HTTP 的 Bot API 服务器将文件大小限制为下载 50 MB，上传 20 MB。
+负责将请求转换为 HTTP 的 Bot API 服务器将文件大小限制为下载 20 MB，上传 50 MB。
 
 因此，如果你绕过 Telegram 为你运行的 Bot API 服务器，[使用你自己托管的 Bot API 服务器](https://core.telegram.org/bots/api#using-a-local-bot-api-server)，你可以允许向你的 bot 发送最大可达 2000 MB 的文件。
 
