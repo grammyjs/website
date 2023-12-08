@@ -211,7 +211,7 @@ new InputFile({ url: "https://grammy.dev/images/grammY.png" }); // 等价的写�
 例如，这让你可以指定文件的标题。
 
 ```ts
-// 发送一个本地文件给用户 1235，并且添加一个标题 "photo.jpg"。
+// 发送一个本地文件给用户 12345，并且添加一个标题 "photo.jpg"。
 await bot.api.sendPhoto(12345, new InputFile("/path/to/photo.jpg"), {
   caption: "photo.jpg",
 });
