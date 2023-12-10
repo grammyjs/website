@@ -34,7 +34,6 @@ export default defineConfig({
 
   markdown: {
     lineNumbers: true,
-    theme: "dracula-soft",
     typographer: true,
     config: markdown,
     languages: [

@@ -2,19 +2,27 @@
  * code block
  * ------------------------------------------------------------------------- */
 :root {
+  .tip.custom-block {
+    color: var(--vp-c-green-dark);
+    // border-color: #2db7e5;
+    background-color: #E9F8FD;
+  }
+
   .warning.custom-block {
     color: #ff8c1b;
-    border-color: #ff8c1b;
     .custom-block-title {
       color: #ff8c1b;
     }
   }
 
+  .danger.custom-block {
+    color: #f33958;
+  }
+
   &.dark {
     .tip.custom-block {
       color: #53c4ea;
-      border-color: #2db7e5;
-      background-color: #182128;
+      background-color: #06242F;
     }
 
     .warning.custom-block {
@@ -22,17 +30,14 @@
         color: #fdba29;
       }
       color: #fdba29;
-      border-color: #fcad03;
-      background-color: #1e1e1e;
+      background-color: #272418;
     }
 
     .danger.custom-block {
       .custom-block-title {
         color: #f2183c;
       }
-      color: #f33958;
-      border-color: #f2183c;
-      background-color: #1f181d;
+      background-color: #291c24;
     }
   }
 }
