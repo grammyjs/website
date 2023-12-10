@@ -1,0 +1,11 @@
+{
+  "name": "Plain Text",
+  "scopeName": "text.plain",
+  "displayName": "Plain Text",
+  "fileTypes": ["txt", "text", "plain"],
+  "patterns": [],
+  "repository": {
+    "$self": {},
+    "$base": {}
+  }
+}

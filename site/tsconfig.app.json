@@ -4,7 +4,8 @@
     "env.d.ts",
     "docs/.vitepress/**/*",
     "docs/.vitepress/**/*.vue",
-    "docs/.vitepress/plugins/current-versions/*.json"
+    "docs/.vitepress/plugins/current-versions/*.json",
+    "docs/.vitepress/shared/**/*.json"
   ],
   "exclude": [
     "docs/.vitepress/dist/**/*",
