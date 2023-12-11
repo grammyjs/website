@@ -215,7 +215,7 @@ Cuando se envían archivos, se pueden especificar más opciones en un objeto de 
 Por ejemplo, esto le permite enviar subtítulos.
 
 ```ts
-// Enviar una foto desde un archivo local al usuario 1235 con el título "foto.jpg".
+// Enviar una foto desde un archivo local al usuario 12345 con el título "foto.jpg".
 await bot.api.sendPhoto(12345, new InputFile("/ruta/a/foto.jpg"), {
   título: "foto.jpg",
 });

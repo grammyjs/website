@@ -37,7 +37,7 @@ src/
 ```ts
 export const lists = new Composer();
 
-// 在这里注册一些处理的方法来处理你的中间件。
+// 在这里注册一些处理程序来处理你的中间件。
 lists.on("message", async (ctx) => {/* ... */});
 ```
 
@@ -63,3 +63,57 @@ bot.start();
 
 不过，需要记住的是，一般来说怎样去组织你的 bot 代码结构是很难去用一个具体的方式去描述的。
 就像在软件中，用最合理的方式去做就好啦 :wink:
+
+## 提取的中间件的类型定义
+
+上面使用 composer 的结构效果很好。
+但是，有时你可能会发现自己想要将处理程序提取到函数中，而不是创建一个新的 composer 并向其添加逻辑。
+这要求你将正确的中间件类型定义添加到处理程序中，因为它们无法再通过 composer 被推断出来。
+
+grammY 导出所有 **收窄 (narrowed) 的中间件类型** 的类型定义，例如可以传递给命令处理程序的中间件。
+此外，它还导出该中间件中使用的 **收窄 (narrowed) 的上下文对象** 的类型定义。
+这两种类型都使用你的 [自定义上下文对象](../guide/context#定制你的上下文对象) 进行参数化。
+因此，一个命令处理程序将具有 `CommandMiddleware<MyContext>` 类型及其上下文对象 `CommandContext<MyContext>`。
+它们可以按如下方式使用。
+
+::: code-group
+
+```ts [Node.js]
+import {
+  type CallbackQueryMiddleware,
+  type CommandContext,
+  type NextFunction,
+} from "grammy";
+
+function commandMiddleware(ctx: CommandContext<MyContext>, next: NextFunction) {
+  // 处理命令
+}
+const callbackQueryMiddleware: CallbackQueryMiddleware<MyContext> = (ctx) => {
+  // 处理 callback query
+};
+
+bot.command(["start", "help"], commandMiddleware);
+bot.callbackQuery("query-data", callbackQueryMiddleware);
+```
+
+```ts [Deno]
+import {
+  type CallbackQueryMiddleware,
+  type CommandContext,
+  type NextFunction,
+} from "https://deno.land/x/grammy/mod.ts";
+
+function commandMiddleware(ctx: CommandContext<MyContext>, next: NextFunction) {
+  // 处理命令
+}
+const callbackQueryMiddleware: CallbackQueryMiddleware<MyContext> = (ctx) => {
+  // 处理 callback query
+};
+
+bot.command(["start", "help"], commandMiddleware);
+bot.callbackQuery("query-data", callbackQueryMiddleware);
+```
+
+:::
+
+阅读 [类型别名 API 参考](https://deno.land/x/grammy/mod.ts#Type_Aliases) 以查看 grammY 导出的所有类型别名。
