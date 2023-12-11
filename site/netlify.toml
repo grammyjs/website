@@ -27,23 +27,28 @@ status = 301
 from = "/*"
 to = "/404.html"
 status = 404
+force = true
 
 [[redirects]]
 from = "/es/*"
 to = "/es/404.html"
 status = 404
+force = true
 
 [[redirects]]
 from = "/id/*"
 to = "/id/404.html"
 status = 404
+force = true
 
 [[redirects]]
 from = "/uk/*"
 to = "/uk/404.html"
 status = 404
+force = true
 
 [[redirects]]
 from = "/zh/*"
 to = "/zh/404.html"
 status = 404
+force = true
