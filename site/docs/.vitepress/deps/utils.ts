@@ -1,7 +1,7 @@
 import { withBase } from "vitepress";
 import { lookup } from "mrmime";
 import { useData } from "vitepress";
-import { isExternal } from "./shared";
+import { isExternal } from "./shared.js";
 export function throttleAndDebounce(fn: () => void, delay: number | undefined) {
   let timeoutId: string | number | NodeJS.Timeout | undefined;
   let called = false;

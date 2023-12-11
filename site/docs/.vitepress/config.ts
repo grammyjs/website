@@ -1,7 +1,7 @@
 import { defineConfig } from "vitepress";
-import * as locale from "./configs/locales";
-import { markdown } from "./plugins";
-import { algolia } from "./configs/algolia";
+import * as locale from "./configs/locales/index.js";
+import { markdown } from "./plugins/index.js";
+import { algolia } from "./configs/algolia/index.js";
 import plaintext from "./shared/syntaxes/plaintext.tmLanguage.json";
 
 export default defineConfig({

@@ -1,6 +1,6 @@
-import type { DocSearchProps } from "node_modules/vitepress/types/docsearch";
+import type { DocSearchProps } from "node_modules/vitepress/types/docsearch.js";
 import type { LocaleConfig } from "vitepress";
-import { social } from "../../shared/vars";
+import { social } from "../../shared/vars.js";
 
 const learnGuide = {
   text: "Panduan",

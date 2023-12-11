@@ -17,10 +17,7 @@
     "deno:version": "deno --version"
   },
   "devDependencies": {
-    "@tsconfig/node18": "^18.2.2",
     "@types/markdown-it": "^13.0.7",
-    "@types/node": "^20.10.0",
-    "@vue/tsconfig": "^0.4.0",
     "deno-bin": ">=1.38.3",
     "lazy-lottie-player": "0.0.1",
     "markdownlint-cli2": "^0.11.0",
