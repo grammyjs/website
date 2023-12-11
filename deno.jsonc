@@ -7,7 +7,7 @@
     "exclude": [
       "./site/node_modules/",
       "./site/docs/.vitepress/cache/",
-      "./site/docs/.vitepress/temp/",
+      "./site/docs/.vitepress/.temp/",
       "./site/docs/.vitepress/dist/",
       "./site/package-lock.json"
     ]

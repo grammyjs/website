@@ -1,7 +1,6 @@
 import type { DocSearchProps } from "node_modules/vitepress/types/docsearch";
 import type { LocaleConfig } from "vitepress";
 import { social } from "../../shared/vars";
-import type { NotFound } from "../../shared/types";
 
 const learnGuide = {
   text: "Guía",
@@ -452,6 +451,19 @@ export const siteEs: LocaleConfig = {
           ariaLabel: "grammY repository link",
         },
       ],
+      notFound: {
+        code: "404",
+        title: "PAGE NOT FOUND",
+        linkText: "Llévame a casa",
+        linkLabel: "Go to home",
+        messages: [
+          "¡Uy! Esta página no existe",
+          "Nop.",
+          "Nada aquí para ti, lo siento",
+          "Error 404 \n¡Houston, tenemos un problema!",
+          "Vuelveeeee, vuelve a casaaaaa, por navidad",
+        ],
+      },
     },
   },
 };
@@ -503,20 +515,5 @@ export const searchEs: Record<string, Partial<DocSearchProps>> = {
         },
       },
     },
-  },
-};
-
-export const notFoundEs: Record<string, NotFound> = {
-  es: {
-    title: "PAGE NOT FOUND",
-    backToHome: "Llévame a casa",
-    ariaLabel: "Go to home",
-    messages: [
-      "¡Uy! Esta página no existe",
-      "Nop.",
-      "Nada aquí para ti, lo siento",
-      "Error 404 \n¡Houston, tenemos un problema!",
-      "Vuelveeeee, vuelve a casaaaaa, por navidad",
-    ],
   },
 };
