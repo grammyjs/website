@@ -73,7 +73,7 @@ Esto requiere que añadas las definiciones de tipo middleware correctas a tus ha
 
 grammY exporta definiciones de tipo para todos los **tipos limitados de middleware**, como el middleware que puedes pasar a los manejadores de comandos.
 Además, exporta las definiciones de tipo para los **objetos de contexto restringido** que se están utilizando en ese middleware.
-Ambos tipos se parametrizan con tu [objeto de contexto personalizado](../guide/context#customizing-the-context-object).
+Ambos tipos se parametrizan con tu [objeto de contexto personalizado](../guide/context#personalización-del-objeto-de-contexto).
 Así, un manejador de comandos tendría el tipo `CommandMiddleware<MyContext>` y su objeto de contexto `CommandContext<MyContext>`.
 Se pueden utilizar de la siguiente manera.
 
