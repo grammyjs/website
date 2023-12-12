@@ -5,7 +5,7 @@ next: false
 
 # Registro en la consola mientras se depura
 
-Si estás familiarizado con JavaScript / TypeScript probablemente hayas utilizado [`console.log`](https://developer.mozilla.org/en-US/docs/Web/API/Console/log) o [`console.time`](https://developer.mozilla.org/en-US/docs/Web/API/Console/time) para comprobar lo que está sucediendo mientras depuras algo.
+Si estás familiarizado con JavaScript / TypeScript probablemente hayas utilizado [`console.log`](https://developer.mozilla.org/en-US/docs/Web/API/console/log_static) o [`console.time`](https://developer.mozilla.org/en-US/docs/Web/API/console/time_static) para comprobar lo que está sucediendo mientras depuras algo.
 Mientras trabajas en tu bot o middleware puede que quieras comprobar algo similar: ¿Qué ha pasado y cuánto tiempo ha tardado?
 
 Este plugin está interesado en peticiones individuales para depurar problemas individuales.

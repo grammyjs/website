@@ -13,7 +13,7 @@
 ## 发送消息
 
 1. 通过 path 或 `Buffer` 发送文件而不是通过 stream，或者至少确保你 [了解这些风险](./transformers#transformer-函数的使用用例)。
-2. 使用 `bot.on("callback_query:data")` 作为回调处理 [响应所有回调查询](../plugins/keyboard#响应点击)。
+2. 使用 `bot.on("callback_query:data")` 作为回调处理 [响应所有回调查询](../plugins/keyboard#响应-inline-keyboard-的点击)。
 3. 使用 [auto-retry 插件](../plugins/auto-retry) 去自动处理流量等待的错误。
 
 ## 伸缩性
