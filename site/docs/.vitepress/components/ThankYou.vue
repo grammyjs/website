@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { ref, onMounted } from "vue";
+import { reactive } from "vue";
 
 const props = defineProps<{ s: [string, string, string, string] }>();
-const contributor = ref({
+const contributor = reactive({
   login: "",
   href: "",
   name: "",
@@ -17,7 +17,7 @@ const contributor = ref({
  */
 async function pseudoRandom255(len: number): Promise<number> {
   const enc = new TextEncoder();
-  const today = new Date(2023, 12, 3);
+  const today = new Date();
   const key = await window.crypto.subtle.importKey(
     "raw",
     enc.encode("grammy.dev"),
@@ -39,8 +39,7 @@ function getDay() {
   return Math.floor(Date.now() / 86400);
 }
 
-async function loadContributorData() {
-  let identiconUrl = '';
+async function load() {
   const day = getDay();
   let cachedContributor: Record<string, string | number> = {};
 
@@ -63,12 +62,12 @@ async function loadContributorData() {
     typeof cachedContributor.identicon === "string" &&
     typeof cachedContributor.show === "boolean"
   ) {
-    contributor.value.login = cachedContributor.login;
-    contributor.value.href = cachedContributor.href;
-    contributor.value.name = cachedContributor.name;
-    contributor.value.photo = cachedContributor.photo;
-    contributor.value.identicon = cachedContributor.identicon;
-    contributor.value.show = cachedContributor.show;
+    contributor.login = cachedContributor.login;
+    contributor.href = cachedContributor.href;
+    contributor.name = cachedContributor.name;
+    contributor.photo = cachedContributor.photo;
+    contributor.identicon = cachedContributor.identicon;
+    contributor.show = cachedContributor.show;
     return;
   }
 
@@ -92,42 +91,40 @@ async function loadContributorData() {
       if (!res.ok) { throw res }
 
       const { login, name, avatar_url, html_url } = await res.json();
-      contributor.value.login = login;
-      contributor.value.href = html_url;
-      contributor.value.name = name;
-      contributor.value.photo = avatar_url + "&size=64";
+      contributor.login = login;
+      contributor.href = html_url;
+      contributor.name = name;
+      contributor.photo = avatar_url + "&size=64";
     } catch (error) {
       // Fallback. Use the old details.
-      contributor.value.login = contributor_.login;
-      contributor.value.href = `https://github.com/${contributor_.login}`;
-      contributor.value.name = contributor_.name;
-      contributor.value.photo = contributor_.avatar_url + "&size=64";
+      contributor.login = contributor_.login;
+      contributor.href = `https://github.com/${contributor_.login}`;
+      contributor.name = contributor_.name;
+      contributor.photo = contributor_.avatar_url + "&size=64";
     }
     
     try {
-      const res = await fetch(`https://identicons.github.com/${contributor.value.login}.png`);
+      const res = await fetch(`https://identicons.github.com/${contributor.login}.png`);
       if (!res.ok) { throw res }
-      contributor.value.identicon = `https://identicons.github.com/${contributor.value.login}.png`
+      contributor.identicon = `https://identicons.github.com/${contributor.login}.png`
     } catch (error) {
       // The GitHub account has been deleted. Generate the identicon from DiceBear API.
-      contributor.value.identicon = `https://api.dicebear.com/7.x/identicon/png?seed=${contributor.value.login}&size=48&scale=80&backgroundColor=f0f0f0`
+      contributor.identicon = `https://api.dicebear.com/7.x/identicon/png?seed=${contributor.login}&size=48&scale=80&backgroundColor=f0f0f0`
       
     }
 
-    contributor.value.show = true;
+    contributor.show = true;
     localStorage.setItem(
       "contributor",
-      JSON.stringify({ ...contributor.value, day }),
+      JSON.stringify({ ...contributor, day }),
     );
   }
   catch (error) {
-    contributor.value.show = false
+    contributor.show = false
   }
 }
 
-onMounted(() => {
-  loadContributorData();
-});
+load();
 </script>
 
 <template>
