@@ -11,7 +11,7 @@ new Crawler({
   exclusionPatterns: [],
   ignoreCanonicalTo: false,
   discoveryPatterns: ["https://grammy.dev/**"],
-  schedule: "at 05:16 on Saturday",
+  schedule: "at 11:55 on Wednesday",
   actions: [
     {
       indexName: "grammy",
