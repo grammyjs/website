@@ -73,7 +73,6 @@ async function load() {
 
   try {
     const res = await fetch("https://raw.githubusercontent.com/grammyjs/grammY/main/.all-contributorsrc");
-
     if (!res.ok) { throw res }
     
     const { contributors } = await res.json();
@@ -110,7 +109,6 @@ async function load() {
     } catch (error) {
       // The GitHub account has been deleted. Generate the identicon from DiceBear API.
       contributor.identicon = `https://api.dicebear.com/7.x/identicon/png?seed=${contributor.login}&size=48&scale=80&backgroundColor=f0f0f0`
-      
     }
 
     contributor.show = true;
