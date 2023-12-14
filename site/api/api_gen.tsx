@@ -1,4 +1,5 @@
 import { modules } from "../modules.ts";
+import * as fs from "std/fs/mod.ts";
 import * as path from "std/path/mod.ts";
 import { doc } from "deno_doc/mod.ts";
 import { renderToString } from "preact-render-to-string";
@@ -114,13 +115,12 @@ function createDoc(
       break;
   }
   if (component != null) {
-    const contents = `---
-editLink: false
----
-
-${renderToString(component)}`;
     const filename = path.join(path_, `${node.name}.md`);
-    Deno.mkdirSync(path.dirname(filename), { recursive: true });
+    let contents = renderToString(component);
+    fs.ensureDirSync(path.dirname(filename));
+    if (!fs.exists(filename, { isFile: true })) {
+      contents = "---\neditLink: false\n---\n\n" + contents;
+    }
     Deno.writeTextFileSync(filename, contents, { append: true });
     return true;
   }
