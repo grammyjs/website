@@ -1,7 +1,6 @@
-import type { DocSearchProps } from "node_modules/vitepress/types/docsearch";
+import type { DocSearchProps } from "node_modules/vitepress/types/docsearch.js";
 import type { LocaleConfig } from "vitepress";
-import { social } from "../../shared/vars";
-import type { NotFound } from "../../shared/types";
+import { social } from "../../shared/vars.js";
 
 const learnGuide = {
   text: "Посібник",
@@ -456,6 +455,19 @@ export const siteUk: LocaleConfig = {
           ariaLabel: "Посилання на репозиторій grammY",
         },
       ],
+      notFound: {
+        code: "404",
+        title: "PAGE NOT FOUND",
+        linkText: "Ніколи не забувайте, звідки ви",
+        linkLabel: "Повернутися на головну",
+        messages: [
+          "Не знайдено",
+          "Тут для тебе нічого немає, вибач.",
+          "Error 404 \nЦю сторінку не вдалося знайти.",
+          "Загубилась, як кит у пустелі.",
+          "Знайшлося все, окрім розуму...",
+        ],
+      },
     },
   },
 };
@@ -506,20 +518,5 @@ export const searchUk: Record<string, Partial<DocSearchProps>> = {
         },
       },
     },
-  },
-};
-
-export const notFoundUk: Record<string, NotFound> = {
-  uk: {
-    title: "PAGE NOT FOUND",
-    backToHome: "Ніколи не забувайте, звідки ви",
-    ariaLabel: "Повернутися на головну",
-    messages: [
-      "Не знайдено",
-      "Тут для тебе нічого немає, вибач.",
-      "Error 404 \nЦю сторінку не вдалося знайти.",
-      "Загубилась, як кит у пустелі.",
-      "Знайшлося все, окрім розуму...",
-    ],
   },
 };

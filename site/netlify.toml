@@ -22,3 +22,23 @@ status = 301
 from = "/*/guide/inline-queries.html"
 to = "/:splat/plugins/inline-query.html"
 status = 301
+
+[[redirects]]
+from = "/es/*"
+to = "/es/404.html"
+
+[[redirects]]
+from = "/id/*"
+to = "/id/404.html"
+
+[[redirects]]
+from = "/uk/*"
+to = "/uk/404.html"
+
+[[redirects]]
+from = "/zh/*"
+to = "/zh/404.html"
+
+[[redirects]]
+from = "/*"
+to = "/404.html"

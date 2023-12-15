@@ -1,4 +1,4 @@
-import { escapeHtml } from "./shared";
+import { escapeHtml } from "./shared.js";
 import MarkdownIt from "markdown-it";
 
 export const betterLineBreaks = (md: MarkdownIt) => {
