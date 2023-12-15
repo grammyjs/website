@@ -1,6 +1,7 @@
 {
   "private": true,
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "prepare": "npm run docs:index-versions",
     "docs:genapi": "deno run -A --allow-net --allow-read --allow-write=docs/ref api/api_gen.tsx docs/ref",
@@ -17,14 +18,11 @@
     "deno:version": "deno --version"
   },
   "devDependencies": {
-    "@tsconfig/node18": "^18.2.0",
-    "@types/markdown-it": "^12.2.3",
-    "@types/node": "^20.3.3",
-    "@vue/tsconfig": "^0.4.0",
-    "deno-bin": ">=1.34.3",
+    "@types/markdown-it": "^13.0.7",
+    "deno-bin": ">=1.38.3",
     "lazy-lottie-player": "0.0.1",
-    "markdownlint-cli2": "^0.8.1",
-    "sass": "^1.63.6",
-    "vitepress": "^1.0.0-beta.5"
+    "markdownlint-cli2": "^0.11.0",
+    "sass": "^1.69.5",
+    "vitepress": "^1.0.0-rc.31"
   }
 }

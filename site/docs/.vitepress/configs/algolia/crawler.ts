@@ -3,7 +3,7 @@
 
 new Crawler({
   appId: "RBF5Q0D7QV",
-  apiKey: "33782ffb584887e3b8cdf9e760ea8e60",
+  apiKey: "...",
   rateLimit: 8,
   startUrls: ["https://grammy.dev"],
   renderJavaScript: false,
@@ -19,7 +19,7 @@ new Crawler({
       recordExtractor: ({ helpers }) => {
         return helpers.docsearch({
           recordProps: {
-            content: ".content p, .content li",
+            content: ".content p, .content li, .content code",
             lvl0: {
               selectors: ".VPSidebarItem.is-active .text",
               defaultValue: "Documentation",
@@ -32,7 +32,7 @@ new Crawler({
             lvl6: ".content h6",
           },
           indexHeadings: true,
-          aggregateContent: true,
+          aggregateContent: false,
           recordVersion: "v3",
         });
       },
