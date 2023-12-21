@@ -54,7 +54,7 @@ Talk to [@BotFather](https://t.me/BotFather) to see what your token is.
 
 You probably tried to send a message to a user and then you ran into this issue.
 
-When a user blocks your bot, you are no able to send messages to them or interact with them in any other way (except if your bot was invited to a group chat where the user is a member).
+When a user blocks your bot, you are not able to send messages to them or interact with them in any other way (except if your bot was invited to a group chat where the user is a member).
 Telegram does this to protect their users.
 You cannot do anything about it.
 
