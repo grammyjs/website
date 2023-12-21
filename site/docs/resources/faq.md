@@ -100,11 +100,10 @@ You have already made sure to use the minimum number of API calls for the most c
 There are a few things you can do:
 
 1. Read this [article](../advanced/flood) in the docs to gain a basic understanding of the situation.
-2. Use the [`transformer-throttler` plugin](../plugins/transformer-throttler).
-3. Use the [`auto-retry` plugin](../plugins/auto-retry).
-4. Come ask us in the [group chat](https://t.me/grammyjs) for help.
+2. Use the [`auto-retry` plugin](../plugins/auto-retry).
+3. Come ask us in the [group chat](https://t.me/grammyjs) for help.
    We have experienced people there.
-5. It is possible to ask Telegram to increase the limits, but this is very unlikely to happen if you did not do steps 1-3 first.
+4. It is possible to ask Telegram to increase the limits, but this is very unlikely to happen if you did not do steps 1-3 first.
 
 ### Cannot find type definition file for 'node-fetch'
 
