@@ -100,10 +100,9 @@ Telegram 会这样做以保护他们的用户。
 这里有几件事情你可以做：
 
 1. 阅读文档中的这篇 [文章](../advanced/flood) 以获得对情况的基本了解。
-2. 使用 [`transformer-throttler` 插件](../plugins/transformer-throttler)。
-3. 使用 [`auto-retry` 插件](../plugins/auto-retry)。
-4. 在 [群聊](https://t.me/grammyjs) 中向我们寻求帮助。我们有经验丰富的人能帮你。
-5. 可以要求 Telegram 增加限制，但如果不先执行步骤 1-3，就不太可能发生这种情况。
+2. 使用 [`auto-retry` 插件](../plugins/auto-retry)。
+3. 在 [群聊](https://t.me/grammyjs) 中向我们寻求帮助。我们有经验丰富的人能帮你。
+4. 可以要求 Telegram 增加限制，但如果不先执行步骤 1-3，就不太可能发生这种情况。
 
 ### Cannot find type definition file for 'node-fetch'
 
