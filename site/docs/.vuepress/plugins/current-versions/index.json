@@ -1,0 +1,17 @@
+{
+  "https://deno.land/x/grammy/": "https://deno.land/x/grammy@v1.15.3/",
+  "https://deno.land/x/grammy_menu/": "https://deno.land/x/grammy_menu@v1.1.3/",
+  "https://deno.land/x/grammy_runner/": "https://deno.land/x/grammy_runner@v2.0.3/",
+  "https://deno.land/x/grammy_hydrate/": "https://deno.land/x/grammy_hydrate@v1.3.1/",
+  "https://deno.land/x/grammy_transformer_throttler/": "https://deno.land/x/grammy_transformer_throttler@v1.2.1/",
+  "https://deno.land/x/grammy_ratelimiter/": "https://deno.land/x/grammy_ratelimiter@v1.1.6/",
+  "https://deno.land/x/grammy_files/": "https://deno.land/x/grammy_files@v1.0.4/",
+  "https://deno.land/x/grammy_router/": "https://deno.land/x/grammy_router@v2.0.0/",
+  "https://deno.land/x/grammy_emoji/": "https://deno.land/x/grammy_emoji@v1.1.2/",
+  "https://deno.land/x/grammy_parse_mode/": "https://deno.land/x/grammy_parse_mode@1.5.0/",
+  "https://deno.land/x/grammy_storages/": "https://deno.land/x/grammy_storages@v2.1.4/",
+  "https://deno.land/x/grammy_conversations/": "https://deno.land/x/grammy_conversations@v1.1.1/",
+  "https://deno.land/x/grammy_autoquote/": "https://deno.land/x/grammy_autoquote@v1.1.2/",
+  "https://deno.land/x/grammy_i18n/": "https://deno.land/x/grammy_i18n@v1.0.1/",
+  "https://deno.land/std/": "https://deno.land/std@0.181.0/"
+}
