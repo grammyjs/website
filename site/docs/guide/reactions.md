@@ -6,7 +6,7 @@ There are two types of reactions, emoji reactions and custom emoji reactions.
 ## Reacting to Messages
 
 Bots can add a single emoji reaction to a message.
-If a [Telegram Premium](https://telegram.org/faq_premium?setln=en) user added a custom emoji reaction to a message, bots can also add the same reaction to this message, too.
+If a [Telegram Premium](https://telegram.org/faq_premium?setln=en) user added a custom emoji reaction to a message, bots can add the same reaction to this message, too.
 
 This is how you can react to messages.
 
@@ -28,13 +28,11 @@ As usualy, TypeScript will auto-complete the possible emoji for you.
 The list of available emoji reactions can be found [here](https://core.telegram.org/bots/api#reactiontypeemoji).
 
 ::: tip Emoji Plugin
-
 It can be ugly to program with emoji.
 Not all systems can display your source code properly.
 Also, it is annoying to copy them from Google all the time.
 
-Let the [emoji plugin](../plugins/emoji.md#reactions) help you!
-
+Let the [emoji plugin](../plugins/emoji.md#useful-data-for-reactions) help you!
 :::
 
 Naturally, if your bot handles custom emoji reactions by premium users, you can listen for them, too.
