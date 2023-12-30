@@ -99,7 +99,7 @@ bot.on("message_reaction", (ctx) => {
 });
 ```
 
-> Skip ahead to [reactions](./reactions.md) if you are interested in them.
+> Skip ahead to [Reactions](./reactions.md) if you are interested in them.
 
 Hence, if you want to, you can forget about `ctx.message` and `ctx.channelPost` and `ctx.editedMessage` and so on and so forth, and just always use `ctx.msg` instead.
 
@@ -179,7 +179,7 @@ This can be used to pass further configuration to every API call.
 ::: tip Telegram Reply Feature
 Even though the method is called `ctx.reply` in grammY (and many other frameworks), it does not use the [reply feature of Telegram](https://telegram.org/blog/replies-mentions-hashtags#replies) where a previous message is linked.
 
-If you look up what `sendMessage` can do in the [Telegram Bot API Reference](https://core.telegram.org/bots/api#sendmessage), you will see a number of options, such as `parse_mode`, `link_preview_options`, and `reply_parameters`.
+If you look up what `sendMessage` can do in the [Bot API Reference](https://core.telegram.org/bots/api#sendmessage), you will see a number of options, such as `parse_mode`, `link_preview_options`, and `reply_parameters`.
 The latter can be used to make a message a reply:
 
 ```ts

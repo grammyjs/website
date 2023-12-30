@@ -1,7 +1,7 @@
 # Reactions
 
 Bots can work with message reactions.
-There are two types of reactions, emoji reactions and custom emoji reactions.
+There are two types of reactions: emoji reactions and custom emoji reactions.
 
 ## Reacting to Messages
 
@@ -24,13 +24,13 @@ bot.on("message", async (ctx) => {
 await bot.api.setMessageReaction(chat_id, message_id, "💯");
 ```
 
-As usualy, TypeScript will auto-complete the possible emoji for you.
+As usual, TypeScript will provide auto-complete for the emojis you can use.
 The list of available emoji reactions can be found [here](https://core.telegram.org/bots/api#reactiontypeemoji).
 
 ::: tip Emoji Plugin
 It can be ugly to program with emoji.
 Not all systems can display your source code properly.
-Also, it is annoying to copy them from Google all the time.
+Also, it is annoying to copy them from different places all the time.
 
 Let the [emoji plugin](../plugins/emoji.md#useful-data-for-reactions) help you!
 :::

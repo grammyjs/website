@@ -72,7 +72,7 @@ bot.hears("ping", async (ctx) => {
 > The function `ctx.reply` is just an alias for `ctx.api.sendMessage`, see the [next section](./context#available-actions).
 
 The reply parameters also allow you to reply to messages in other chats, as well as to quote parts of a message---or even both at the same time!
-Have a look at the [documentation](https://core.telegram.org/bots/api#replyparameters) that Telegram provides for reply parameters.
+Have a look at Bot API's [reply parameters documentation](https://core.telegram.org/bots/api#replyparameters).
 
 ## Sending Message With Formatting
 
