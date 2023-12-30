@@ -167,4 +167,4 @@ bot.on("message_reaction_count", async (ctx) => {
 });
 ```
 
-Be sure to check out [the specification](https://core.telegram.org/bots/api#messagereactioncountupdated) for message reaction count updates.
+Be sure to check out the [specification](https://core.telegram.org/bots/api#messagereactioncountupdated) for message reaction count updates.
