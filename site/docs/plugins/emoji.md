@@ -107,7 +107,7 @@ This is equally annoying, and since this plugin is the wet dream of all your emo
 You can import `Reactions` from this plugin and then use it as follows.
 
 ```ts
-bot.on("message", ctx => ctx.react(Reactions.thumbs_up))
+bot.on("message", (ctx) => ctx.react(Reactions.thumbs_up));
 ```
 
 How nice.
