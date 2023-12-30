@@ -6,7 +6,10 @@ There are two types of reactions: emoji reactions and custom emoji reactions.
 ## Reacting to Messages
 
 Bots can add a single emoji reaction to a message.
-If a [Telegram Premium](https://telegram.org/faq_premium?setln=en) user added a custom emoji reaction to a message, bots can add the same reaction to this message, too.
+
+In same cases, bots can also react with custom emoji (even though bots cannot have [Telegram Premium](https://telegram.org/faq_premium?setln=en)).
+When a premium user adds a custom emoji reaction to a message, bots can later add the same reaction to this message.
+In addition, if a chat administrator explicitly allows custom emoji to be used, they can be used by the bots in that chat, too.
 
 This is how you can react to messages.
 
