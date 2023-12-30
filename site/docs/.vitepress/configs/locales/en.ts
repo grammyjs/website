@@ -39,6 +39,10 @@ const learnGuide = {
       link: "/guide/commands",
     },
     {
+      text: "Reactions",
+      link: "/guide/reactions",
+    },
+    {
       text: "Middleware",
       link: "/guide/middleware",
     },
