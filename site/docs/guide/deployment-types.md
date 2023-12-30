@@ -250,7 +250,7 @@ Below is a table containing the currently available adapters, and the framework,
 | `http`, `https`    | Node.js `http`/`https` modules, Vercel                                         |
 | `koa`              | Koa                                                                            |
 | `next-js`          | Next.js                                                                        |
-| `nttp`             | NHttp                                                                          |
+| `nhttp`             | NHttp                                                                          |
 | `oak`              | Oak                                                                            |
 | `serveHttp`        | `Deno.serveHttp`                                                               |
 | `std/http`         | `Deno.serve`, `std/http`, `Deno.upgradeHttp`, `Fresh`, `Ultra`, `Rutt`, `Sift` |
