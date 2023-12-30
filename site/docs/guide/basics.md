@@ -55,21 +55,24 @@ Also, check out the [next section](./context) to learn how the context object of
 
 ## Sending Messages With Reply
 
-You can use the Telegram reply-to feature by specifying the message identifier to reply to using `reply_to_message_id`.
+You can use the Telegram reply-to feature by specifying the message identifier to reply to using `reply_parameters`.
 
 ```ts
 bot.hears("ping", async (ctx) => {
   // `reply` is an alias for `sendMessage` in the same chat (see next section).
   await ctx.reply("pong", {
-    // `reply_to_message_id` specifies the actual reply feature.
-    reply_to_message_id: ctx.msg.message_id,
+    // `reply_parameters` specifies the actual reply feature.
+    reply_paramters: { message_id: ctx.msg.message_id },
   });
 });
 ```
 
 > Note that only sending a message via `ctx.reply` does **NOT** mean you are automatically replying to anything.
-> Instead, you should specify `reply_to_message_id` for this.
+> Instead, you should specify `reply_parameters` for this.
 > The function `ctx.reply` is just an alias for `ctx.api.sendMessage`, see the [next section](./context#available-actions).
+
+The reply parameters also allow you to reply to messages in other chats, as well as to quote parts of a message---or even both at the same time!
+Have a look at Bot API's [reply parameters documentation](https://core.telegram.org/bots/api#replyparameters).
 
 ## Sending Message With Formatting
 

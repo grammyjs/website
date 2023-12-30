@@ -1,7 +1,6 @@
-import type { DocSearchProps } from "node_modules/vitepress/types/docsearch";
+import type { DocSearchProps } from "node_modules/vitepress/types/docsearch.js";
 import type { LocaleConfig } from "vitepress";
-import { social } from "../../shared/vars";
-import type { NotFound } from "../../shared/types";
+import { social } from "../../shared/vars.js";
 
 const learnGuide = {
   text: "指南",
@@ -456,6 +455,19 @@ export const siteZh: LocaleConfig = {
           ariaLabel: "grammY repository link",
         },
       ],
+      notFound: {
+        code: "404",
+        title: "PAGE NOT FOUND",
+        linkText: "回到首页",
+        linkLabel: "Go to home",
+        messages: [
+          "糟糕！这个页面不存在。",
+          "无",
+          "抱歉，这里还不存在内容。",
+          "Error 404 \n页面不存在，但一只小可爱替代了他~",
+          "回家吧，回到最初的美好。",
+        ],
+      },
     },
   },
 };
@@ -505,20 +517,5 @@ export const searchZh: Record<string, Partial<DocSearchProps>> = {
         },
       },
     },
-  },
-};
-
-export const notFoundZh: Record<string, NotFound> = {
-  zh: {
-    title: "PAGE NOT FOUND",
-    backToHome: "回到首页",
-    ariaLabel: "Go to home",
-    messages: [
-      "糟糕！这个页面不存在。",
-      "无",
-      "抱歉，这里还不存在内容。",
-      "Error 404 \n页面不存在，但一只小可爱替代了他~",
-      "回家吧，回到最初的美好。",
-    ],
   },
 };

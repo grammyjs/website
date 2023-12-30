@@ -1,5 +1,5 @@
 import type { DefaultTheme } from "vitepress";
-import * as locale from "../locales";
+import * as locale from "../locales/index.js";
 
 export const algolia: DefaultTheme.Config["search"] = {
   provider: "algolia",

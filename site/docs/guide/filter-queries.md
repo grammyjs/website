@@ -163,7 +163,7 @@ If you want to install some piece of middleware behind the AND concatenation of 
 
 ```ts
 // Matches forwarded URLs
-bot.on("::url").on(":forward_date" /* , ... */);
+bot.on("::url").on(":forward_origin" /* , ... */);
 // Matches photos that contain a hashtag in a photo's caption
 bot.on(":photo").on("::hashtag" /* , ... */);
 ```
@@ -178,7 +178,7 @@ It is technically possible to combine filter queries to more complicated formula
 ```ts
 bot
   // Matches all channel posts or forwarded messages ...
-  .on(["channel_post", ":forward_date"])
+  .on(["channel_post", ":forward_origin"])
   // ... that contain text ...
   .on(":text")
   // ... with at least one URL, hashtag, or cashtag.
@@ -221,7 +221,7 @@ You can combine filter queries with other methods on the `Composer` class ([API 
 This allows for powerful message handling patterns.
 
 ```ts
-bot.on(":forward_date").command("help"); // forwarded /help commands
+bot.on(":forward_origin").command("help"); // forwarded /help commands
 
 // Only handle commands in private chats.
 const pm = bot.chatType("private");
