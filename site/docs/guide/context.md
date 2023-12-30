@@ -62,6 +62,7 @@ There are a number of shortcuts installed on the context object.
 | `ctx.from`            | Gets the author of the message, callback query, or other things                     |
 | `ctx.inlineMessageId` | Gets the inline message identifier for callback queries or chosen inline results    |
 | `ctx.entities`        | Gets the message entities and their text, optionally filtered by entity type        |
+| `ctx.reactions`       | Gets the reactions from an update in a way that is easy to work with                |
 
 In other words, you can also do this:
 
@@ -89,7 +90,16 @@ bot.on("message:entities", async (ctx) => {
   // Get phone and email entities.
   const phonesAndEmails = ctx.entities(["email", "phone"]);
 });
+
+bot.on("message_reaction", (ctx) => {
+  const { emojiAdded } = ctx.reactions();
+  if (emojiAdded.includes("🎉")) {
+    await ctx.reply("partY");
+  }
+});
 ```
+
+> Skip ahead to [reactions](./reactions.md) if you are interested in them.
 
 Hence, if you want to, you can forget about `ctx.message` and `ctx.channelPost` and `ctx.editedMessage` and so on and so forth, and just always use `ctx.msg` instead.
 

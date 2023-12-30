@@ -92,7 +92,7 @@ bot.on("message_reaction:new_reaction:emoji", (ctx) => {/* ... */});
 bot.on("message_reaction:old_reaction:custom_emoji", (ctx) => {/* ... */});
 ```
 
-While these two arrays of [`ReactionType` objects](https://core.telegram.org/bots/api#reactiontype) technically give you all the information you need in order to handle reaction updates, it can still be a bit cumbersome to work with.
+While these two arrays of [`ReactionType` objects](https://core.telegram.org/bots/api#reactiontype) technically give you all the information you need in order to handle reaction updates, they can still be a bit cumbersome to work with.
 This is why grammY can compute more useful things from the update.
 
 ### Inspecting How Reactions Changed
