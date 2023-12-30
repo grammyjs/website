@@ -35,12 +35,12 @@ const learnGuide = {
       link: "/guide/filter-queries",
     },
     {
-      text: "Reactions",
-      link: "/guide/reactions",
-    },
-    {
       text: "Commands",
       link: "/guide/commands",
+    },
+    {
+      text: "Reactions",
+      link: "/guide/reactions",
     },
     {
       text: "Middleware",
