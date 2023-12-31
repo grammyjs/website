@@ -70,9 +70,6 @@ bot.hears("ping", async (ctx) => {
 > Ви повинні вказати `reply_paramters` для цього.
 > Метод `ctx.reply` --- це лише псевдонім для `ctx.api.sendMessage`, дивіться [наступний розділ](./context#доступні-діі).
 
-The reply parameters also allow you to reply to messages in other chats, as well as to quote parts of a message---or even both at the same time!
-Have a look at Bot API's [reply parameters documentation](https://core.telegram.org/bots/api#replyparameters).
-
 Параметри відповіді також дозволяють вам відповідати на повідомлення в інших чатах, а також цитувати частини повідомлення, або навіть і те, і інше одночасно!
 Ознайомтеся з [документацією Bot API параметрів відповіді](https://core.telegram.org/bots/api#replyparameters).
 
