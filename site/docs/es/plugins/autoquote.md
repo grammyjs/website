@@ -6,10 +6,13 @@ next: false
 # Responder siempre a los mensajes
 
 A veces es necesario enviar siempre los mensajes como respuestas, especialmente para los bots que están destinados a ser utilizados en grupos.
-Normalmente hacemos esto añadiendo el parámetro `reply_to_message_id` a los métodos que envían el mensaje: `sendText`, `reply`, `sendPhoto`, `replyWithPhoto` y otros.
+Normalmente lo hacemos añadiendo `reply_parameters` a los métodos que envían el mensaje: `sendText`, `reply`, `sendPhoto`, `replyWithPhoto` y etc.
 Sin embargo, si estás haciendo esto para cada mensaje, puede ser un desastre y aburrido.
 
-Este plugin establece el parámetro `reply_to_message_id` a `ctx.msg.message_id` para todos los métodos `reply*` y `send*` que lo soportan para hacer que cada mensaje sea una respuesta al mensaje que lo activó.
+Este plugin establece el parámetro obsoleto `reply_to_message_id` a `ctx.msg.message_id` para todos los métodos `reply*` y `send*` que lo soportan para hacer que cada mensaje sea una respuesta al mensaje que lo activó.
+
+> El parámetro `reply_to_message_id` sigue siendo soportado por la API del Bot por compatibilidad con versiones anteriores.
+> El nuevo código debe utilizar `reply_paramters` en su lugar.
 
 ## Uso
 

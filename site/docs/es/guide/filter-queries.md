@@ -163,7 +163,7 @@ Si quieres instalar alguna pieza de middleware detrás de la concatenación AND 
 
 ```ts
 // Coincide con las URLs reenviadas
-bot.on("::url").on(":forward_date" /* , ... */);
+bot.on("::url").on(":forward_origin" /* , ... */);
 // Coincide con las fotos que contienen un hashtag en el pie de foto
 bot.on(":photo").on("::hashtag" /* , ... */);
 ```
@@ -178,7 +178,7 @@ Es técnicamente posible combinar consultas de filtro a fórmulas más complicad
 ```ts
 bot
   // Coincide con todas las publicaciones del canal o los mensajes reenviados ...
-  .on(["channel_post", ":forward_date"])
+  .on(["channel_post", ":forward_origin"])
   // ... que contengan texto ...
   .on(":text")
   // ... con al menos una URL, un hashtag o un cashtag.
@@ -221,7 +221,7 @@ Puedes combinar consultas de filtro con otros métodos de la clase `Composer` ([
 Esto permite crear potentes patrones de manejo de mensajes.
 
 ```ts
-bot.on(":forward_date").command("help"); // comandos /help reenviados
+bot.on(":forward_origin").command("help"); // comandos /help reenviados
 
 // Solo maneja comandos en chats privados.
 const pm = bot.chatType("private");
