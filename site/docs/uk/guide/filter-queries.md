@@ -163,7 +163,7 @@ bot.on(["::hashtag", "::email", "::mention"] /* , ... */);
 
 ```ts
 // Відповідає пересланим URL-адресам
-bot.on("::url").on(":forward_date" /* , ... */);
+bot.on("::url").on(":forward_origin" /* , ... */);
 // Відповідає фотографіям, які містять хештег у підписі
 bot.on(":photo").on("::hashtag" /* , ... */);
 ```
@@ -178,7 +178,7 @@ bot.on(":photo").on("::hashtag" /* , ... */);
 ```ts
 bot
   // Відповідає будь-яким дописам каналів або пересланим повідомленям, ...
-  .on(["channel_post", ":forward_date"])
+  .on(["channel_post", ":forward_origin"])
   // ... які містять текст ...
   .on(":text")
   // ... принаймні з однією URL-адресою, хештегом або кештегом.
@@ -221,7 +221,7 @@ bot.on("chat_member");
 Це дозволяє створювати потужні сценарії обробки повідомлень.
 
 ```ts
-bot.on(":forward_date").command("help"); // переслані команди /help
+bot.on(":forward_origin").command("help"); // переслані команди /help
 
 // Обробляємо команди лише в приватних чатах.
 const pm = bot.chatType("private");

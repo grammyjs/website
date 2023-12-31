@@ -54,21 +54,27 @@ const me = await bot.api.getMe();
 
 ## Надсилання повідомлень із відповіддю
 
-Ви можете скористатися методом відповіді Telegram, вказавши ідентифікатор повідомлення, на яке потрібно відповісти, за допомогою `reply_to_message_id`.
+Ви можете скористатися методом відповіді Telegram, вказавши ідентифікатор повідомлення, на яке потрібно відповісти, за допомогою `reply_parameters`.
 
 ```ts
 bot.hears("ping", async (ctx) => {
   // `reply` — це псевдонім для `sendMessage` у тому самому чаті (дивіться наступний розділ).
   await ctx.reply("pong", {
-    // `reply_to_message_id` встановлює власне відповідь на повідомлення.
-    reply_to_message_id: ctx.msg.message_id,
+    // `reply_parameters` встановлює власне відповідь на повідомлення.
+    reply_paramters: { message_id: ctx.msg.message_id },
   });
 });
 ```
 
 > Зауважте, що надсилання повідомлення через `ctx.reply` **НЕ** означає, що ви автоматично встановлюєте відповідь на отримане повідомлення.
-> Ви повинні вказати `reply_to_message_id` для цього.
+> Ви повинні вказати `reply_paramters` для цього.
 > Метод `ctx.reply` --- це лише псевдонім для `ctx.api.sendMessage`, дивіться [наступний розділ](./context#доступні-діі).
+
+The reply parameters also allow you to reply to messages in other chats, as well as to quote parts of a message---or even both at the same time!
+Have a look at Bot API's [reply parameters documentation](https://core.telegram.org/bots/api#replyparameters).
+
+Параметри відповіді також дозволяють вам відповідати на повідомлення в інших чатах, а також цитувати частини повідомлення, або навіть і те, і інше одночасно!
+Ознайомтеся з [документацією Bot API параметрів відповіді](https://core.telegram.org/bots/api#replyparameters).
 
 ## Надсилання повідомлення з форматуванням
 
