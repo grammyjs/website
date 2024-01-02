@@ -240,7 +240,7 @@ app.use(webhookCallback(bot, "oak"));
 | Адаптер            | Фреймворк, API або середовище виконання                                        |
 | ------------------ | ------------------------------------------------------------------------------ |
 | `aws-lambda`       | AWS Lambda Functions                                                           |
-| `aws-lambda-async` | AWS Lambda Functions з `async/await`                                           |  
+| `aws-lambda-async` | AWS Lambda Functions з `async/await`                                           |
 | `azure`            | Azure Functions                                                                |
 | `cloudflare`       | Cloudflare Workers                                                             |
 | `cloudflare-mod`   | Cloudflare Module Workers                                                      |
