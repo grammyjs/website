@@ -254,6 +254,7 @@ Di bawah ini adalah tabel berisi berbagai macam adapter yang tersedia beserta je
 | `http`, `https`  | Node.js `http`/`https` modules, Vercel                                         |
 | `koa`            | Koa                                                                            |
 | `next-js`        | Next.js                                                                        |
+| `nhttp`          | NHttp                                                                          |
 | `oak`            | Oak                                                                            |
 | `serveHttp`      | `Deno.serveHttp`                                                               |
 | `std/http`       | `Deno.serve`, `std/http`, `Deno.upgradeHttp`, `Fresh`, `Ultra`, `Rutt`, `Sift` |
