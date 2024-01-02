@@ -63,6 +63,7 @@ Ada sejumlah shortcut yang tersedia untuk object context.
 | `ctx.from`            | Mendapatkan informasi penulis pesan, callback query, dan lainnya                      |
 | `ctx.inlineMessageId` | Mendapatkan id pesan inline dari callback query atau hasil inline yang dipilih        |
 | `ctx.entities`        | Mendapatkan entity pesan beserta teksnya, dapat disaring berdasarkan jenis entity-nya |
+| `ctx.reactions`       | Mendapatkan reaksi dari suatu update dengan mudah                                     |
 
 Dengan kata lain, kamu juga bisa melakukan ini:
 
@@ -90,7 +91,17 @@ bot.on("message:entities", async (ctx) => {
   // Ambil entity telepon dan email.
   const teleponDanEmail = ctx.entities(["email", "phone"]);
 });
+
+bot.on("message_reaction", (ctx) => {
+  const { emojiAdded } = ctx.reactions();
+  if (emojiAdded.includes("🎉")) {
+    await ctx.reply("Pesta!");
+  }
+});
 ```
+
+> Tertarik dengan reaksi?
+> Lompat ke [dokumentasi Reaksi](./reactions).
 
 Bahkan, jika mau, kamu bisa mengabaikan `ctx.message`, `ctx.channelPost`, `ctx.editedMessage` dan seterusnya, cukup gunakan `ctx.msg` saja.
 
@@ -172,12 +183,12 @@ Opsi ini dapat digunakan untuk memasukkan konfigurasi lebih lanjut ke setiap pem
 ::: tip Fitur Reply Telegram
 Meskipun method ini disebut `ctx.reply` di grammY (dan juga di kebanyakan framework lainnya), ia tidak menggunakan [fitur reply dari Telegram](https://telegram.org/blog/replies-mentions-hashtags#replies) dimana pesan sebelumnya terhubung satu sama lain. Lihat [materi sebelumnya](./basics#mengirim-pesan-dengan-reply) mengenai fitur reply.
 
-Kalau kamu membaca [Referensi API Bot Telegram](https://core.telegram.org/bots/api#sendmessage), di situ terdapat sejumlah opsi, seperti `parse_mode`, `disable_web_page_preview`, dan `reply_to_message_id`.
+Kalau kamu membaca bagian `sendMessage` di [Referensi API Bot](https://core.telegram.org/bots/api#sendmessage), ia memiliki beberapa opsi yang bisa digunakan, seperti `parse_mode`, `link_preview_options`, dan `reply_parameters`.
 Nah, yang opsi terakhir ini bisa digunakan untuk membuat pesan menjadi sebuah reply:
 
 ```ts
 await ctx.reply("^ Aku me-reply pesan ini!", {
-  reply_to_message_id: ctx.msg.message_id,
+  reply_parameters: { message_id: ctx.msg.message_id },
 });
 ```
 
