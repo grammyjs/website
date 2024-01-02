@@ -99,7 +99,7 @@ bot.on("message_reaction", (ctx) => {
 });
 ```
 
-> Skip ahead to [Reactions](./reactions.md) if you are interested in them.
+> Skip ahead to [Reactions](./reactions) if you are interested in them.
 
 Hence, if you want to, you can forget about `ctx.message` and `ctx.channelPost` and `ctx.editedMessage` and so on and so forth, and just always use `ctx.msg` instead.
 
