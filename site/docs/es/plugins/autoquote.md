@@ -12,7 +12,7 @@ Sin embargo, si estás haciendo esto para cada mensaje, puede ser un desastre y 
 Este plugin establece el parámetro obsoleto `reply_to_message_id` a `ctx.msg.message_id` para todos los métodos `reply*` y `send*` que lo soportan para hacer que cada mensaje sea una respuesta al mensaje que lo activó.
 
 > El parámetro `reply_to_message_id` sigue siendo soportado por la API del Bot por compatibilidad con versiones anteriores.
-> El nuevo código debe utilizar `reply_paramters` en su lugar.
+> El nuevo código debe utilizar `reply_parameters` en su lugar.
 
 ## Uso
 

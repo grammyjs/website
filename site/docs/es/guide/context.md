@@ -96,7 +96,7 @@ bot.on("message_reaction", (ctx) => {
 });
 ```
 
-> Vaya a [Reacciones](./reactions.md) si está interesado en ellas.
+> Vaya a [Reacciones](./reactions) si está interesado en ellas.
 
 Por lo tanto, si lo desea, puede olvidarse de `ctx.message` y `ctx.channelPost` y `ctx.editedMessage` y así sucesivamente, y sólo utilizar siempre `ctx.msg` en su lugar.
 

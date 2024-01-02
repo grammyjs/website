@@ -86,7 +86,7 @@ bot.on("message_reaction", async (ctx) => {
 });
 ```
 
-grammY le permite filtrar aún más las actualizaciones con [consultas de filtro especiales](./filter-queries.md) para el tipo de reacción.
+grammY le permite filtrar aún más las actualizaciones con [consultas de filtro especiales](./filter-queries) para el tipo de reacción.
 
 ```ts
 // Actualizaciones en las que la reacción actual contiene al menos un emoji.
@@ -100,7 +100,7 @@ Por eso grammY puede calcular cosas más útiles a partir de la actualización.
 
 ### Inspeccionar Cómo Cambiaron las Reacciones
 
-Hay un [atajo de contexto](./context.md#atajos) llamado `ctx.reactions` que te permite ver cómo cambió exactamente una reacción.
+Hay un [atajo de contexto](./context#atajos) llamado `ctx.reactions` que te permite ver cómo cambió exactamente una reacción.
 
 Así es como puedes usar `ctx.reactions` para detectar si un usuario elimina su voto positivo (pero lo perdona si aún mantiene su reacción de ok).
 
@@ -164,7 +164,7 @@ bot.on("message_reaction_count", async (ctx) => {
   // De nuevo, sólo podemos ver el identificador del mensaje.
   const message = counts.message_id;
   // Aquí hay una lista de reacciones con un recuento.
-  const { reactions } = count;
+  const { reactions } = counts;
 });
 ```
 

@@ -36,7 +36,7 @@ const learnGuide = {
     },
     {
       text: "Reacciones",
-      link: "/guide/reactions",
+      link: "/es/guide/reactions",
     },
     {
       text: "Comandos",

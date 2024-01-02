@@ -101,7 +101,7 @@ Si no estás familiarizado con esta sintaxis, puedes leer más sobre ella [aquí
 
 ## Datos útiles para Reacciones
 
-Cuando usas [reacciones](../guide/reactions.md) con tu bot, ¡tendrás que programar mucho con emoji, también!
+Cuando usas [reacciones](../guide/reactions) con tu bot, ¡tendrás que programar mucho con emoji, también!
 Esto es igualmente molesto, y ya que este plugin es el sueño húmedo de todo tu uso de emoji, puede ayudarte con las reacciones, también.
 
 Puedes importar `Reactions` desde este plugin y luego usarlo como sigue.

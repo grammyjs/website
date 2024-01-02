@@ -62,7 +62,7 @@ bot.hears("ping", async (ctx) => {
   // `reply` es un alias de `sendMessage` en el mismo chat (ver siguiente sección).
   await ctx.reply("pong", {
     // `reply_parameters` especifica la función de respuesta real.
-    reply_paramters: { message_id: ctx.msg.message_id },
+    reply_parameters: { message_id: ctx.msg.message_id },
   });
 });
 ```
