@@ -42,7 +42,7 @@ Naturally, if your bot handles custom emoji reactions by premium users, you can 
 
 ```ts
 bot.reaction(
-  { type: "custom_emoji", custom_emoji_id: "identifer-string" },
+  { type: "custom_emoji", custom_emoji_id: "identifier-string" },
   async (ctx) => {/* ... */},
 );
 ```
@@ -164,7 +164,7 @@ bot.on("message_reaction_count", async (ctx) => {
   // Again, we can only see the message identifer.
   const message = counts.message_id;
   // Here is a list of reactions with a count.
-  const { reactions } = count;
+  const { reactions } = counts;
 });
 ```
 
