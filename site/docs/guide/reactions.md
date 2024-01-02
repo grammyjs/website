@@ -35,7 +35,7 @@ It can be ugly to program with emoji.
 Not all systems can display your source code properly.
 Also, it is annoying to copy them from different places all the time.
 
-Let the [emoji plugin](../plugins/emoji.md#useful-data-for-reactions) help you!
+Let the [emoji plugin](../plugins/emoji#useful-data-for-reactions) help you!
 :::
 
 Naturally, if your bot handles custom emoji reactions by premium users, you can listen for them, too.
@@ -86,7 +86,7 @@ bot.on("message_reaction", async (ctx) => {
 });
 ```
 
-grammY lets you filter down the updates even more with special [filter queries](./filter-queries.md) for the reaction type.
+grammY lets you filter down the updates even more with special [filter queries](./filter-queries) for the reaction type.
 
 ```ts
 // Updates where the current reaction contains at least one emoji.
@@ -100,7 +100,7 @@ This is why grammY can compute more useful things from the update.
 
 ### Inspecting How Reactions Changed
 
-There is a [context shortcut](./context.md#shortcuts) called `ctx.reactions` that lets you see how exactly a reaction changed.
+There is a [context shortcut](./context#shortcuts) called `ctx.reactions` that lets you see how exactly a reaction changed.
 
 Here is how you can use `ctx.reactions` to detect if a user removes their upvote (but forgives them if they still keep their ok hand reaction).
 
