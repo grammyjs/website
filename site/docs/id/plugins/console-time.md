@@ -5,7 +5,7 @@ next: false
 
 # Menggunakan Console Log untuk Men-debug
 
-Jika kamu sudah terbiasa dengan JavaScript/TypeScript, kemungkinan besar kamu sering menggunakan [`console.log`](https://developer.mozilla.org/en-US/docs/Web/API/Console/log) atau [`console.time`](https://developer.mozilla.org/en-US/docs/Web/API/Console/time) untuk men-debug suatu program.
+Jika kamu sudah terbiasa dengan JavaScript/TypeScript, kemungkinan besar kamu sering menggunakan [`console.log`](https://developer.mozilla.org/en-US/docs/Web/API/console/log_static) atau [`console.time`](https://developer.mozilla.org/en-US/docs/Web/API/console/time_static) untuk men-debug suatu program.
 Ketika bekerja dengan sebuah bot atau middleware, kamu mungkin juga perlu untuk melakukan hal yang serupa: Apa yang sebenarnya terjadi, dan berapa lama waktu yang dibutuhkan?
 
 Plugin ini bertujuan untuk men-debug satu permasalahan khusus.

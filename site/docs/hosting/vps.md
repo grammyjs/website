@@ -68,7 +68,7 @@ systemd is a powerful service manager which is pre-installed on many Linux distr
 
    > Replace `<start_command>` with the command you got above.
    > Also note that if Deno is installed for a different user other than root, you may need to specify it in the service section like `User=<the_user>`.
-   > For more information on the unit files, visit [here](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/assembly_working-with-systemd-unit-files_configuring-basic-system-settings).
+   > For more information on the unit files, visit [here](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/using_systemd_unit_files_to_customize_and_optimize_your_system/assembly_working-with-systemd-unit-files_working-with-systemd).
 
 4. Reload systemd whenever you edit the service:
 

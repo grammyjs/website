@@ -10,7 +10,7 @@ next: false
 ## 项目结构
 
 开始使用 **Vercel Serverless Functions** 的唯一先决条件是将代码移动到 `api/` 目录，如下所示。
-你还可以查看 [Vercel 的文档](https://vercel.com/docs/functions/serverless-functions#deploying-serverless-functions) 了解更多信息。
+你还可以查看 [Vercel 的文档](https://vercel.com/docs/functions/serverless-functions/quickstart) 了解更多信息。
 
 ```asciiart:no-line-numbers
 .

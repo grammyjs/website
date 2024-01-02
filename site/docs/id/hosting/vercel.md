@@ -10,7 +10,7 @@ Di tutorial kali ini, kami akan memandu kamu untuk men-deploy bot di [Vercel](ht
 ## Struktur Proyek
 
 Untuk menggunakan **Vercel Serverless Functions**, kamu cuma perlu memindahkan kode ke direktori `api/` seperti contoh di bawah.
-Silahkan baca [dokumentasi Vercel](https://vercel.com/docs/functions/serverless-functions#deploying-serverless-functions) untuk info lebih lanjut.
+Silahkan baca [dokumentasi Vercel](https://vercel.com/docs/functions/serverless-functions/quickstart) untuk info lebih lanjut.
 
 ```asciiart:no-line-numbers
 .

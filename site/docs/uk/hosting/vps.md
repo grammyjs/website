@@ -68,7 +68,7 @@ systemd --- це потужний менеджер служб, який пере
 
    > Замініть `<команда-запуску>` на команду, яку ви отримали вище.
    > Також зверніть увагу, що якщо Deno встановлено для іншого користувача, а не root, вам може знадобитися додати `User=<імʼя-користувача>` в розділі `[Service]`.
-   > Для отримання додаткової інформації про файли служб відвідайте [цей сайт](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/assembly_working-with-systemd-unit-files_configuring-basic-system-settings).
+   > Для отримання додаткової інформації про файли служб відвідайте [цей сайт](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/using_systemd_unit_files_to_customize_and_optimize_your_system/assembly_working-with-systemd-unit-files_working-with-systemd).
 
 4. Перезавантажуйте systemd кожного разу, коли ви редагуєте службу:
 
