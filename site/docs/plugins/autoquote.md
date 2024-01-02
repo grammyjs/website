@@ -12,7 +12,7 @@ However, if you're doing this for every single message, it can get messy and bor
 This plugin sets the deprecated `reply_to_message_id` parameter to `ctx.msg.message_id` for all `reply*` and `send*` methods that support it to make every message a reply to the message that triggered it.
 
 > The `reply_to_message_id` parameter is still supported by the Bot API for backwards compatibility.
-> New code should use `reply_paramters` instead.
+> New code should use `reply_parameters` instead.
 
 ## Usage
 
