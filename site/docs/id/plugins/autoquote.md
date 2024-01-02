@@ -13,7 +13,7 @@ Terkadang kita perlu untuk selalu me-reply pesan, khususnya untuk bot yang digun
 Kita bisa melakukannya dengan cara menambahkan parameter `reply_parameters` ke berbagai method pengirim pesan: `sendText`, `reply`, `sendPhoto`, `replyWithPhoto` dan lain-lain.
 Namun, jika kamu melakukannya untuk setiap pesan yang masuk, cepat atau lambat kode kamu akan menjadi berantakan dan membosankan karena mengulang hal yang sama.
 
-Plugin ini memasang parameter `reply_to_message_id` yang telah usang (lihat catatan di bawah) ke `ctx.msg.message_id` untuk semua method`reply*` dan `send*` agar setiap pesan yang dikehendaki langsung di-reply secara otomatis.
+Plugin ini memasang parameter `reply_to_message_id` yang telah usang (lihat catatan di bawah) ke `ctx.msg.message_id` untuk semua method `reply*` dan `send*` agar setiap pesan yang dikehendaki langsung di-reply secara otomatis.
 
 > Parameter `reply_to_message_id` masih didukung oleh API Bot untuk kompatibilitas.
 > Kode yang baru disarankan menggunakan `reply_parameters`.

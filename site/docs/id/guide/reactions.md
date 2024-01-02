@@ -27,13 +27,13 @@ bot.on("message", async (ctx) => {
 await bot.api.setMessageReaction(chat_id, message_id, "💯");
 ```
 
-Seperti biasa, TypeScript akan menyediakan auto-complete emoji-emoji yang bisa digunakan.
+Seperti biasa, TypeScript akan menyediakan auto-complete daftar emoji yang bisa digunakan.
 Daftar reaksi emoji yang tersedia ada di [halaman berikut](https://core.telegram.org/bots/api#reactiontypeemoji).
 
 ::: tip Plugin Emoji
 Membuat program yang melibatkan emoji seringkali merepotkan.
 Tidak semua sistem mampu menampilkan source code kamu dengan benar.
-Selain itu, menyalin emoji dari tempat lain berulang kali sungguh menyebalkan.
+Selain itu, menyalin emoji dari tempat lain berulang kali tentu melelahkan.
 
 Serahkan semua masalahmu ke [plugin emoji](../plugins/emoji#data-praktis-untuk-reaksi)!
 :::
@@ -47,7 +47,7 @@ bot.reaction(
 );
 ```
 
-Untuk menggunakan kode di atas, kamu perlu mengetahui id emoji tersuai terkait terlebih dahulu.
+Untuk menggunakan kode di atas, kamu perlu mengetahui id emoji tersuainya.
 
 Sekarang kita tahu bagaimana cara merekasi suatu pesan, selanjutnya mari kita lihat bagaimana cara menangani reaksi dari user.
 
@@ -72,7 +72,7 @@ Handler di atas akan terpicu ketika user menambahkan sebuah reaksi emoji baru ke
 ### Menangani Perubahan Reaksi yang Tidak Terduga
 
 Meski tidak terlihat di UI aplikasi Telegram resmi, user sebenarnya mampu mengubah beberapa reaksi sekaligus.
-Itulah kenapa update reaksi menyediakan dua daftar: reaksi sebelumnya dan setelahnya.
+Itulah kenapa update reaksi menyediakan dua daftar: reaksi sebelumnya dan reaksi yang baru.
 Dengan begitu, bot bisa menangani perubahan tak terduga di daftar reaksi.
 
 ```ts
@@ -102,7 +102,7 @@ Itulah kenapa grammY menyediakan beberapa fungsionalitas yang lebih praktis dari
 
 Untuk melihat perubahan reaksi, grammY menyediakan sebuah [shortcut context](./context#shortcut) bernama `ctx.reactions`.
 
-Berikut ini cara menggunakan `ctx.reactions` untuk mendeteksi suatu user yang menghapus "jempol ke atas" (dukungan/upvote) tetapi memaafkannya jika ia menggantinya dengan reaksi "tangan OK".
+Berikut ini cara menggunakan `ctx.reactions` untuk mendeteksi suatu user yang menghapus dukungan/upvote tetapi memaafkannya jika ia menggantinya dengan reaksi "tangan OK".
 
 ```ts
 bot.on("message_reaction", async (ctx) => {
@@ -120,26 +120,26 @@ bot.on("message_reaction", async (ctx) => {
 });
 ```
 
-Terdapat empat array yang dikembalikan oleh `ctx.reaction`: emoji yang ditambahkan, emoji yang dihapus, emoji yang sama (tidak berubah), dan sebuah daftar yang berisi daftar perubahannya.
+Terdapat empat array yang dikembalikan oleh `ctx.reaction`: emoji yang ditambahkan, emoji yang dihapus, emoji yang sama (tidak berubah), dan sebuah daftar yang berisi hasil perubahannya.
 Khusus emoji tersuai, terdapat empat array tambahan yang membawa informasi serupa:
 
 ```ts
 const {
-  /** Emoji yang saat ini ada di reaksinya user terkait */
+  /** Emoji yang saat ini ada di reaksi */
   emoji,
-  /** Emoji baru yang ditambahkan ke reaksinya user terkait */
+  /** Emoji yang baru ditambahkan */
   emojiAdded,
-  /** Emoji yang tidak mengalami perubahan di reaksinya user terkait */
+  /** Emoji yang tidak mengalami perubahan */
   emojiKept,
-  /** Emoji yang dihapus dari reaksinya user terkait */
+  /** Emoji yang dihapus dari reaksi */
   emojiRemoved,
-  /** Emoji tersuai yang saat ini ada di reaksinya user terkait */
+  /** Emoji tersuai yang saat ini ada di reaksi */
   customEmoji,
-  /** Emoji tersuai baru yang ditambahkan ke reaksinya user terkait */
+  /** Emoji tersuai yang baru ditambahkan */
   customEmojiAdded,
-  /** Emoji tersuai yang tidak mengalami perubahan di reaksinya user terkait */
+  /** Emoji tersuai yang tidak mengalami perubahan */
   customEmojiKept,
-  /** Emoji tersuai yang dihapus dari reaksinya user terkait */
+  /** Emoji tersuai yang dihapus dari reaksi */
   customEmojiRemoved,
 } = ctx.reactions();
 ```
@@ -149,9 +149,9 @@ Sekarang, mari kita lihat untuk yang channel.
 
 ### Menangani Update Perhitungan Reaksi
 
-Di chat pribadi, grup, dan supergroup, user yang mereaksi suatu pesan bisa kita dapatkan.
-Sayangnya, untuk postingan channel, kita hanya disediakan daftar reaksi anonim.
-Oleh karena itu, mustahil untuk mengetahui siapa saja yang mereaksi postingan tertentu.
+Di chat pribadi, grup, dan supergroup, user yang mereaksi suatu pesan bisa kita dapatkan dengan mudah.
+Sayangnya, untuk postingan channel, kita disediakan daftar reaksi anonimnya saja.
+Oleh karena itu, mustahil untuk mengetahui siapa saja yang mereaksi postingan tersebut.
 Hal yang sama juga berlaku untuk postingan channel yang diteruskan secara otomatis ke grup diskusi yang tersambung dengan channel tersebut.
 
 Untuk kedua kasus di atas, bot akan menerima sebuah update `message_reaction_count`.
@@ -168,4 +168,4 @@ bot.on("message_reaction_count", async (ctx) => {
 });
 ```
 
-Pastikan mengecek [spesifikasi](https://core.telegram.org/bots/api#messagereactioncountupdated) update perhitungan reaksi pesan.
+Spesifikasi update perhitungan reaksi pesan bisa dilihat di [dokumentasi berikut](https://core.telegram.org/bots/api#messagereactioncountupdated).

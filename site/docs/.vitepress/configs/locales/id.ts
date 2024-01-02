@@ -39,7 +39,7 @@ const learnGuide = {
       link: "/id/guide/commands",
     },
     {
-      text: "Reactions",
+      text: "Reaksi",
       link: "/id/guide/reactions",
     },
     {
