@@ -27,3 +27,16 @@ We have observed that the following workflow works well, and we usually try to s
 ## Translating
 
 See the [Translation Guide](./TRANSLATING.md).
+
+## Commit Messages
+
+We don’t follow conventional commits in this repository.
+So don’t use tags like chore, ci, etc.
+Follow the way most of the past commits are written, and these general rules:
+
+- The commit message can start with a tag like “[Language Name]” if it is only modifying a specific language.
+- The first letter of the commit message must be in uppercase.
+- The first letter of proper nouns must be in uppercase.
+
+Note that you don’t have to follow these rules if you are pushing to a branch other than `main`.
+In that case, only your pull request’s title should follow these rules.
