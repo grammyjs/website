@@ -182,7 +182,7 @@ code .
 然后你会有两个文件：你的原始 `bot.ts` ，和一个生成的 `bot.js` ，它又可以被 Node.js 运行。
 所有这些的确切命令将在下一节中介绍，当你真正创建一个 bot 时，但重要的是要知道这些步骤是必要的。
 
-为了运行 `bot.js` 文件，你必须安装[Node.js](https://nodejs.org/zh-cn/)。
+为了运行 `bot.js` 文件，你必须安装[Node.js](https://nodejs.org/en/)。
 
 你将 Node.js 所要做的事情有下面这些：
 

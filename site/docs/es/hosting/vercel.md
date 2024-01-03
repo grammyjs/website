@@ -10,7 +10,7 @@ Este tutorial te guiará sobre cómo desplegar tu bot en [Vercel](https://vercel
 ## Estructura del proyecto
 
 El único prerrequisito para empezar con **Vercel Serverless Functions** es mover tu código al directorio `api/` como se muestra a continuación.
-También puedes ver la [documentación de Vercel](https://vercel.com/docs/functions/serverless-functions#deploying-serverless-functions) para más información.
+También puedes ver la [documentación de Vercel](https://vercel.com/docs/functions/serverless-functions/quickstart) para más información.
 
 ```asciiart:no-line-numbers
 .

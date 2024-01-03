@@ -68,7 +68,7 @@ systemd adalah sebuah service manager yang sudah terinstal secara bawaan di berb
 
    > Ganti `<start_command>` dengan command yang telah kamu buat di atas tadi.
    > Perlu diperhatikan, jika Deno terinstal untuk user selain root, kamu juga perlu menambahkan `User=<nama_user>` di bagian service.
-   > Untuk informasi lebih lanjut mengenai unit file ini, silahkan kunjungi [halaman berikut](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/assembly_working-with-systemd-unit-files_configuring-basic-system-settings).
+   > Untuk informasi lebih lanjut mengenai unit file ini, silahkan kunjungi [halaman berikut](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/using_systemd_unit_files_to_customize_and_optimize_your_system/assembly_working-with-systemd-unit-files_working-with-systemd).
 
 4. Mulai ulang systemd setiap kali service mengalami perubahan:
 
