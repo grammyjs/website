@@ -67,9 +67,9 @@ bot.start();
 
 :::
 
-### Untuk Semua Pesan
+### Untuk Setiap Pesan
 
-Jika ingin me-reply semua pesan yang masuk, kamu bisa melakukannya dengan cara seperti ini:
+Jika ingin me-reply setiap pesan yang masuk, kamu bisa melakukannya dengan cara seperti ini:
 
 ::: code-group
 
