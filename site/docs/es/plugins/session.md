@@ -504,7 +504,7 @@ import {
   session,
   SessionFlavor,
 } from "https://deno.land/x/grammy/mod.ts";
-import { freeStorage } from "https://deno.land/x/grammy_storages@v2.4.1/free/src/mod.ts";
+import { freeStorage } from "https://deno.land/x/grammy_storages/free/src/mod.ts";
 
 // Definir la estructura de la sesión.
 interface SessionData {
