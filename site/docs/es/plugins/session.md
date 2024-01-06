@@ -430,7 +430,7 @@ bot.use(session({
 ```
 
 ```ts [Deno]
-import { freeStorage } from "https://deno.land/x/grammy_storage/free/mod.ts";
+import { freeStorage } from "https://deno.land/x/grammy_storages@v2.4.1/free/src/mod.ts";
 
 bot.use(session({
   initial: ...
@@ -504,7 +504,7 @@ import {
   session,
   SessionFlavor,
 } from "https://deno.land/x/grammy/mod.ts";
-import { freeStorage } from "https://deno.land/x/grammy_storage/free/mod.ts";
+import { freeStorage } from "https://deno.land/x/grammy_storages@v2.4.1/free/src/mod.ts";
 
 // Definir la estructura de la sesión.
 interface SessionData {
