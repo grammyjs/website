@@ -71,7 +71,7 @@ Deno.serve(async (req) => {
 1. 访问你的 [Deno Deploy 仪表台](https://dash.deno.com/projects).
 2. 点击 "New Project"，然后再选择 "Empty Project".
 3. 安装 [`deployctl`](https://github.com/denoland/deployctl).
-4. [创建一个访问 token](https://dash.deno.com/user/access-tokens).
+4. [创建一个访问 token](https://dash.deno.com/account#access-tokens).
 5. 执行以下命令：
 
    ```sh
