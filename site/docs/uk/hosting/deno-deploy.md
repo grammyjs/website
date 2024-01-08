@@ -71,7 +71,7 @@ Deno.serve(async (req) => {
 1. Відвідайте свою [панель керування Deno Deploy](https://dash.deno.com/projects).
 2. Натисніть на "New Project", а потім на "Empty Project".
 3. Встановіть [`deployctl`](https://github.com/denoland/deployctl).
-4. [Створіть токен доступу](https://dash.deno.com/user/access-tokens).
+4. [Створіть токен доступу](https://dash.deno.com/account#access-tokens).
 5. Виконайте наступну команду:
 
    ```sh
