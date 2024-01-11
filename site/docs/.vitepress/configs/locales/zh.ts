@@ -39,6 +39,10 @@ const learnGuide = {
       link: "/zh/guide/commands",
     },
     {
+      text: "反应",
+      link: "/guide/reactions",
+    },
+    {
       text: "中间件",
       link: "/zh/guide/middleware",
     },
