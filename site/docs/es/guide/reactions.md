@@ -42,7 +42,7 @@ Naturalmente, si tu bot gestiona reacciones emoji personalizadas de usuarios pre
 
 ```ts
 bot.reaction(
-  { type: "custom_emoji", custom_emoji_id: "identifer-string" },
+  { type: "custom_emoji", custom_emoji_id: "identifier-string" },
   async (ctx) => {/* ... */},
 );
 ```
