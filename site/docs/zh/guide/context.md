@@ -99,7 +99,7 @@ bot.on("message_reaction", (ctx) => {
 });
 ```
 
-> 如果你对它们感兴趣，请直接跳至 ​​[反应](./reactions.md)。
+> 如果你对它们感兴趣，请直接跳至 ​​[反应](./reactions)。
 
 因此，如果你愿意，你可以忘记 `ctx.message` 和 `ctx.channelPost` 以及 `ctx.editedMessage` 等等，而只是一直使用 `ctx.msg` 来代替。
 

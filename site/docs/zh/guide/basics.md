@@ -62,7 +62,7 @@ bot.hears("ping", async (ctx) => {
   // `reply` 是同一聊天中 `sendMessage` 的别名（见下一节）。
   await ctx.reply("pong", {
     // `reply_parameters` 指定实际的回复哪一条信息。
-    reply_paramters: { message_id: ctx.msg.message_id },
+    reply_parameters: { message_id: ctx.msg.message_id },
   });
 });
 ```

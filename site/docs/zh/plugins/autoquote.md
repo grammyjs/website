@@ -14,7 +14,7 @@ next: false
 对于的所有 `reply*` 和 `send*` 方法，此插件将已弃用的 `reply_to_message_id` 参数设置为 `ctx.msg.message_id`，以使每条消息都是对触发它的消息的回复。
 
 > 为了向后兼容，Bot API 仍然支持 `reply_to_message_id` 参数。
-> 新代码应该使用 `reply_paramters` 来代替。
+> 新代码应该使用 `reply_parameters` 来代替。
 
 ## 使用方式
 

@@ -35,7 +35,7 @@ await bot.api.setMessageReaction(chat_id, message_id, "💯");
 并非所有系统都可以正确显示你的源代码。
 而且，总是从不同的地方复制它们也很烦人。
 
-让 [emoji 插件](../plugins/emoji#useful-data-for-reactions) 帮助你！
+让 [emoji 插件](../plugins/emoji#有用的反应数据) 帮助你！
 :::
 
 当然，如果你的 bot 可以处理高级用户的自定义 emoji 反应，你也可以监听它们。
@@ -100,9 +100,8 @@ bot.on("message_reaction:old_reaction:custom_emoji", (ctx) => {/* ... */});
 
 ### 查看反应如何变化
 
-有一个名为 `ctx.reactions` 的 [上下文快捷方式](./context#shortcuts)，可让你查看反应到底是如何变化的。
+有一个名为 `ctx.reactions` 的 [上下文快捷方式](./context#快捷方式)，可让你查看反应到底是如何变化的。
 
-Here is how you can use `ctx.reactions` to detect if a user removes their upvote (but forgives them if they still keep their ok hand reaction).
 以下是如何使用 `ctx.reactions` 来检测用户是否取消了他们的点赞（但如果他们仍然保持ok手势反应，则原谅他们）。
 
 ```ts

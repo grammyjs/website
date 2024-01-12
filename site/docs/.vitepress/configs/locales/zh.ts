@@ -40,7 +40,7 @@ const learnGuide = {
     },
     {
       text: "反应",
-      link: "/guide/reactions",
+      link: "/zh/guide/reactions",
     },
     {
       text: "中间件",
