@@ -94,7 +94,7 @@ https://api.telegram.org/bot<TOKEN_BOT>/setWebhook?url=https://<ID_REFERENSI_PRO
 
 Ganti `<TOKEN_BOT>` dengan token bot kamu yang asli.
 Jangan lupa untuk mengganti `<TOKEN_BOT>` yang kedua dengan token bot-mu juga.
-Ganti `<ID_REFERENSI_PROYEK>` dengan id referensi proyek Supabase kamu.
+Ganti `<ID_REFERENSI_PROYEK>` dengan ID referensi proyek Supabase kamu.
 
 Jika berhasil, kamu akan melihat string JSON berikut di jendela browser:
 
