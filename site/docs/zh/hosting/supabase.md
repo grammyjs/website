@@ -90,7 +90,7 @@ https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<PROJECT_REFERENC
 
 将 `<BOT_TOKEN>` 替换为你的 bot 的 token。
 同时，将第二次出现的 `<BOT_TOKEN>` 替换为你的 bot 的 token。
-将 `<PROJECT_REFERENCE_ID>` 替换为你的 Supabase 项目的reference ID。
+将 `<PROJECT_REFERENCE_ID>` 替换为你的 Supabase 项目的 reference ID。
 
 你应该会在你的浏览器窗口中看到这个。
 
