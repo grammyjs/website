@@ -16,7 +16,7 @@ This plugin sets the deprecated `reply_to_message_id` parameter to `ctx.msg.mess
 
 ## Usage
 
-### In Specific Routes
+### In a Specific Context
 
 If you want all messages sent within a specific context (like a specific command), you can specifically apply the plugin to them:
 
@@ -66,7 +66,7 @@ bot.start();
 
 :::
 
-### In for All Routes
+### In Every Context
 
 If you want every sent message to reply the messages that triggered them, you can apply the plugin this way:
 
