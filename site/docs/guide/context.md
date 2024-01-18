@@ -62,7 +62,7 @@ There are a number of shortcuts installed on the context object.
 | `ctx.from`            | Gets the author of the message, callback query, or other things                     |
 | `ctx.inlineMessageId` | Gets the inline message identifier for callback queries or chosen inline results    |
 | `ctx.entities`        | Gets the message entities and their text, optionally filtered by entity type        |
-| `ctx.reactions`       | Gets the reactions from an update in a way that is easy to work with                |
+| `ctx.reactions`       | Gets the reactions from an update in a [way that is easy to work with](./reactions#inspecting-how-reactions-changed |
 
 In other words, you can also do this:
 
