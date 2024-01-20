@@ -16,7 +16,7 @@ Este plugin establece el parámetro obsoleto `reply_to_message_id` a `ctx.msg.me
 
 ## Uso
 
-### En Rutas Específicas
+### En un contexto específico
 
 Si quieres que todos los mensajes se envíen dentro de un contexto específico (como un comando específico), puedes aplicar el plugin específicamente a ellos:
 
@@ -66,7 +66,7 @@ bot.start();
 
 :::
 
-### Para todas las rutas
+### En todos los contextos
 
 Si quieres que todos los mensajes enviados respondan a los mensajes que los desencadenaron, puedes aplicar el plugin de esta manera:
 
