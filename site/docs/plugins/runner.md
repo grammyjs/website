@@ -118,7 +118,7 @@ Note that you can wait for the runner to terminate by `await`ing the `task` in t
 ```ts
 const handle = run(bot);
 
-handle.task.then(() => {
+handle.task().then(() => {
   console.log("Bot done processing!");
 });
 ```
