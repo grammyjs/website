@@ -556,7 +556,11 @@ type MyContext = FlavorX<FlavorY<FlavorZ<Context>>>;
 
 ```ts
 type MyContext = FlavorX<
-  FlavorY<FlavorZ<Context & FlavorA & FlavorB & FlavorC>>
+  FlavorY<
+    FlavorZ<
+      Context & FlavorA & FlavorB & FlavorC
+    >
+  >
 >;
 ```
 
