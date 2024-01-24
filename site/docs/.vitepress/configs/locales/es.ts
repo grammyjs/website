@@ -35,6 +35,10 @@ const learnGuide = {
       link: "/es/guide/filter-queries",
     },
     {
+      text: "Reacciones",
+      link: "/es/guide/reactions",
+    },
+    {
       text: "Comandos",
       link: "/es/guide/commands",
     },

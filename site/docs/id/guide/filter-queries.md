@@ -165,7 +165,7 @@ Kalau ingin memasang beberapa bagian middleware dibalik penggabungan AND dari du
 
 ```ts
 // Mencocokkan URL yang di-forward
-bot.on("::url").on(":forward_date" /* , ... */);
+bot.on("::url").on(":forward_origin" /* , ... */);
 // Mencocokkan foto yang mengandung hashtag di caption-nya
 bot.on(":photo").on("::hashtag" /* , ... */);
 ```
@@ -180,7 +180,7 @@ Secara teknis kamu bisa mengombinasikan filter query ke rangkaian yang lebih kom
 ```ts
 bot
   // Mencocokkan semua potingan channel atau pesan terusan ...
-  .on(["channel_post", ":forward_date"])
+  .on(["channel_post", ":forward_origin"])
   // ... yang berupa teks ...
   .on(":text")
   // ... dan berisi sekurang-kurangnya satu url, hashtag, atau cashtag.
@@ -224,7 +224,7 @@ Kamu bisa mengombinasikan beberapa filter query dengan method-method lain di cla
 Dengan begitu, kamu bisa membuat pola penanganan pesan menjadi lebih fleksibel.
 
 ```ts
-bot.on(":forward_date").command("help"); // Command /help yang di-forward
+bot.on(":forward_origin").command("help"); // Command /help yang di-forward
 
 // Tangani command yang berasal dari private chat saja.
 const pm = bot.chatType("private");

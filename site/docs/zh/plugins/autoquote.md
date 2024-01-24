@@ -6,10 +6,15 @@ next: false
 # 总是回复消息
 
 有时候有必要总是将消息作为回复发送，特别是对于那些打算要在群组中使用的 bot。
-我们通常通过在发送消息的方法中添加 `reply_to_message_id` 参数来实现这一点：`sendText`, `reply`, `sendPhoto`, `replyWithPhoto` 等等。
+我们通常通过在发送消息的方法中添加 `reply_parameters` 来实现这一点：`sendText`, `reply`, `sendPhoto`, `replyWithPhoto` 等等。
 然而，如果你对每一条消息都这样做，这会使得代码变得很无聊和繁琐。
 
 这个插件将所有 `reply*` 和 `send*` 方法的 `reply_to_message_id` 参数设置为 `ctx.msg.message_id`，以便每条消息都是对触发这条消息的回复。
+
+对于的所有 `reply*` 和 `send*` 方法，此插件将已弃用的 `reply_to_message_id` 参数设置为 `ctx.msg.message_id`，以使每条消息都是对触发它的消息的回复。
+
+> 为了向后兼容，Bot API 仍然支持 `reply_to_message_id` 参数。
+> 新代码应该使用 `reply_parameters` 来代替。
 
 ## 使用方式
 

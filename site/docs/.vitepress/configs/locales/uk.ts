@@ -39,6 +39,10 @@ const learnGuide = {
       link: "/uk/guide/commands",
     },
     {
+      text: "Реакції",
+      link: "/uk/guide/reactions",
+    },
+    {
       text: "Проміжні обробники",
       link: "/uk/guide/middleware",
     },

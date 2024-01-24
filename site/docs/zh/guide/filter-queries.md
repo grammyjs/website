@@ -163,7 +163,7 @@ bot.on(["::hashtag", "::email", "::mention"] /* , ... */);
 
 ```ts
 // 匹配转发的 URL
-bot.on("::url").on(":forward_date" /* , ... */);
+bot.on("::url").on(":forward_origin" /* , ... */);
 // 匹配在标题中含有标签的照片
 bot.on(":photo").on("::hashtag" /* , ... */);
 ```
@@ -178,7 +178,7 @@ bot.on(":photo").on("::hashtag" /* , ... */);
 ```ts
 bot
   // 匹配所有频道的帖子或转发的消息 ...
-  .on(["channel_post", ":forward_date"])
+  .on(["channel_post", ":forward_origin"])
   // ... 包含文本. ...
   .on(":text")
   // ... 至少有一个 URL，hashtag 或 cashtag。
@@ -221,7 +221,7 @@ bot.on("chat_member");
 这可以让你构建更复杂的消息处理模式。
 
 ```ts
-bot.on(":forward_date").command("help"); // 转发的 /help 命令
+bot.on(":forward_origin").command("help"); // 转发的 /help 命令
 // 只在私人聊天中处理命令。
 const pm = bot.chatType("private");
 pm.command("start");
