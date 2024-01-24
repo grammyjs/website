@@ -54,14 +54,14 @@ The context object always contains information about your bot, accessible via `c
 
 There are a number of shortcuts installed on the context object.
 
-| Shortcut              | Description                                                                                                         |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `ctx.msg`             | Gets the message object, also edited ones                                                                           |
-| `ctx.chat`            | Gets the chat object                                                                                                |
-| `ctx.senderChat`      | Gets the sender chat object out of `ctx.msg` (for anonymous channel/group messages)                                 |
-| `ctx.from`            | Gets the author of the message, callback query, or other things                                                     |
-| `ctx.inlineMessageId` | Gets the inline message identifier for callback queries or chosen inline results                                    |
-| `ctx.entities`        | Gets the message entities and their text, optionally filtered by entity type                                        |
+| Shortcut              | Description                                                                                                          |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `ctx.msg`             | Gets the message object, also edited ones                                                                            |
+| `ctx.chat`            | Gets the chat object                                                                                                 |
+| `ctx.senderChat`      | Gets the sender chat object out of `ctx.msg` (for anonymous channel/group messages)                                  |
+| `ctx.from`            | Gets the author of the message, callback query, or other things                                                      |
+| `ctx.inlineMessageId` | Gets the inline message identifier for callback queries or chosen inline results                                     |
+| `ctx.entities`        | Gets the message entities and their text, optionally filtered by entity type                                         |
 | `ctx.reactions`       | Gets the reactions from an update in a [way that is easy to work with](./reactions#inspecting-how-reactions-changed) |
 
 In other words, you can also do this:
