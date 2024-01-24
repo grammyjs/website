@@ -55,21 +55,24 @@ const me = await bot.api.getMe();
 
 ## 发送带回复的信息
 
-你可以使用 Telegram 的回复功能，使用 `reply_to_message_id` 指定要回复的信息标识符。
+你可以使用 Telegram 的回复功能，使用 `reply_parameters` 指定要回复的信息标识符。
 
 ```ts
 bot.hears("ping", async (ctx) => {
   // `reply` 是同一聊天中 `sendMessage` 的别名（见下一节）。
   await ctx.reply("pong", {
-    // `reply_to_message_id` 指定实际的回复哪一条信息。
-    reply_to_message_id: ctx.msg.message_id,
+    // `reply_parameters` 指定实际的回复哪一条信息。
+    reply_parameters: { message_id: ctx.msg.message_id },
   });
 });
 ```
 
 > 注意，只通过 `ctx.reply` 发送消息**并不**意味着你会自动回复任何东西。
-> 相反，你应该为此指定 `reply_to_message_id` 。
+> 相反，你应该为此指定 `reply_parameters` 。
 > 函数 `ctx.reply` 只是 `ctx.api.sendMessage` 的一个别名，见 [下一节](./context#可用操作)。
+
+回复参数还允许你回复其他聊天中的消息，以及引用消息的部分内容，甚至同时引用这两者！
+请查看 Bot API 的 [回复参数文档](https://core.telegram.org/bots/api#replyparameters)。
 
 ## 发送格式化的信息
 
