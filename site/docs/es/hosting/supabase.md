@@ -85,12 +85,12 @@ Puedes hacerlo llamando a `setWebhook`.
 Por ejemplo, abre una nueva pestaña en tu navegador y visita esta URL:
 
 ```text
-https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<PROJECT_NAME>.functions.supabase.co/telegram-bot?secret=<BOT_TOKEN>
+https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<PROJECT_REFERENCE_ID>.supabase.co/functions/v1/telegram-bot?secret=<BOT_TOKEN>
 ```
 
 Sustituye `<BOT_TOKEN>` por tu token de bot real.
 Además, sustituye la segunda aparición de `<BOT_TOKEN>` por tu token de bot real.
-Sustituye `<PROJECT_NAME>` por el nombre de tu proyecto Supabase.
+Sustituye `<PROJECT_REFERENCE_ID>` con el ID de referencia de tu proyecto Supabase.
 
 Ahora deberías ver esto en la ventana de tu navegador.
 
