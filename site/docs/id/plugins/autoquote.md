@@ -13,10 +13,9 @@ Terkadang kita perlu untuk selalu me-reply pesan, khususnya untuk bot yang digun
 Kita bisa melakukannya dengan cara menambahkan parameter `reply_parameters` ke berbagai method pengirim pesan: `sendText`, `reply`, `sendPhoto`, `replyWithPhoto` dan lain-lain.
 Namun, jika kamu melakukannya untuk setiap pesan yang masuk, cepat atau lambat kode kamu akan menjadi berantakan dan membosankan karena mengulang hal yang sama.
 
-Plugin ini memasang parameter `reply_to_message_id` yang telah usang (lihat catatan di bawah) ke `ctx.msg.message_id` untuk semua method `reply*` dan `send*` agar setiap pesan yang dikehendaki langsung di-reply secara otomatis.
+Plugin ini menyetel property `reply_parameters` ke semua method `reply*` dan `send*` agar setiap pesan dan chat yang dikehendaki di-reply secara otomatis.
 
-> Parameter `reply_to_message_id` masih didukung oleh API Bot untuk kompatibilitas.
-> Kode yang baru disarankan menggunakan `reply_parameters`.
+Untuk memaksa bot tetap mengirim pesan meski pesan yang di-reply tidak tersedia, kamu bisa menyertakan sebuah object dengan property `allowSendingWithoutReply` ke paramater `options` di function `addReplyParam` ataupun `autoQuote`.
 
 ## Penggunaan
 
@@ -82,7 +81,7 @@ import { autoQuote } from "@roziscoding/grammy-autoquote";
 
 const bot = new Bot("");
 
-bot.use(autoQuote);
+bot.use(autoQuote());
 
 bot.command("demo", async (ctx) => {
   await ctx.reply("Command demo!"); // Ini akan me-reply pesan user
@@ -101,7 +100,7 @@ const { autoQuote } = require("@roziscoding/grammy-autoquote");
 
 const bot = new Bot("");
 
-bot.use(autoQuote);
+bot.use(autoQuote());
 
 bot.command("demo", async (ctx) => {
   await ctx.reply("Command demo!"); // Ini akan me-reply pesan user
@@ -120,7 +119,7 @@ import { autoQuote } from "https://deno.land/x/grammy_autoquote/mod.ts";
 
 const bot = new Bot("");
 
-bot.use(autoQuote);
+bot.use(autoQuote());
 
 bot.command("demo", async (ctx) => {
   await ctx.reply("Command demo!"); // Ini akan me-reply pesan user
