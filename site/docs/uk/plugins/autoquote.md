@@ -9,10 +9,9 @@ next: false
 Зазвичай ми робимо це, додаючи параметр `reply_parameters` до методів, які надсилають повідомлення: `sendText`, `reply`, `sendPhoto`, `replyWithPhoto` тощо.
 Однак, якщо ви робите це для кожного повідомлення окремо, це може бути трудомістким і нудним.
 
-Цей плагін встановлює застарілий параметр `reply_to_message_id` зі значенням `ctx.msg.message_id` для всіх методів `reply*` та `send*`, які підтримують його, щоб кожне повідомлення ставало відповіддю на повідомлення, яке його викликало.
+Цей плагін встановлює властивість `reply_parameters` для всіх методів `reply*` і `end*`, які підтримують його, щоб кожне повідомлення ставало відповіддю на повідомлення і чат, які його викликали.
 
-> Параметр `reply_to_message_id` все ще підтримується Bot API для зворотної сумісності.
-> У новому коді слід використовувати `reply_parameters`.
+Ви можете передати обʼєкт опцій з властивістю `allowSendingWithoutReply` до функцій `addReplyParam` та `autoQuote`, що дозволить вашому боту надсилати повідомлення, навіть якщо повідомлення, на яке він відповідає, більше не існує.
 
 ## Використання
 
@@ -78,7 +77,7 @@ import { autoQuote } from "@roziscoding/grammy-autoquote";
 
 const bot = new Bot("");
 
-bot.use(autoQuote);
+bot.use(autoQuote());
 
 bot.command("demo", async (ctx) => {
   await ctx.reply("Демонстраційна команда!"); // це повідомлення буде відповіддю на повідомлення користувача
@@ -97,7 +96,7 @@ const { autoQuote } = require("@roziscoding/grammy-autoquote");
 
 const bot = new Bot("");
 
-bot.use(autoQuote);
+bot.use(autoQuote());
 
 bot.command("demo", async (ctx) => {
   await ctx.reply("Демонстраційна команда!"); // це повідомлення буде відповіддю на повідомлення користувача
@@ -116,7 +115,7 @@ import { autoQuote } from "https://deno.land/x/grammy_autoquote/mod.ts";
 
 const bot = new Bot("");
 
-bot.use(autoQuote);
+bot.use(autoQuote());
 
 bot.command("demo", async (ctx) => {
   await ctx.reply("Демонстраційна команда!"); // це повідомлення буде відповіддю на повідомлення користувача
