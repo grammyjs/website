@@ -55,15 +55,15 @@ Object context selalu berisi informasi tentang bot-mu, yang dapat diakses melalu
 
 Ada sejumlah shortcut yang tersedia untuk object context.
 
-| Shortcut              | Deskripsi                                                                             |
-| --------------------- | ------------------------------------------------------------------------------------- |
-| `ctx.msg`             | Mendapatkan object message, termasuk yang sudah diedit                                |
-| `ctx.chat`            | Mendapatkan object chat                                                               |
-| `ctx.senderChat`      | Mendapatkan object chat pengirim dari `ctx.msg` (untuk pesan grup/channel anonim)     |
-| `ctx.from`            | Mendapatkan informasi penulis pesan, callback query, dan lainnya                      |
-| `ctx.inlineMessageId` | Mendapatkan id pesan inline dari callback query atau hasil inline yang dipilih        |
-| `ctx.entities`        | Mendapatkan entity pesan beserta teksnya, dapat disaring berdasarkan jenis entity-nya |
-| `ctx.reactions`       | Mendapatkan reaksi dari suatu update dengan mudah                                     |
+| Shortcut              | Deskripsi                                                                                  |
+| --------------------- | ------------------------------------------------------------------------------------------ |
+| `ctx.msg`             | Mendapatkan object message, termasuk yang sudah diedit                                     |
+| `ctx.chat`            | Mendapatkan object chat                                                                    |
+| `ctx.senderChat`      | Mendapatkan object chat pengirim dari `ctx.msg` (untuk pesan grup/channel anonim)          |
+| `ctx.from`            | Mendapatkan informasi penulis pesan, callback query, dan lainnya                           |
+| `ctx.inlineMessageId` | Mendapatkan id pesan inline dari callback query atau hasil inline yang dipilih             |
+| `ctx.entities`        | Mendapatkan entity pesan beserta teksnya, dapat disaring berdasarkan jenis entity-nya      |
+| `ctx.reactions`       | Mendapatkan reaksi dari suatu update [dengan mudah](./reactions#menyimak-perubahan-reaksi) |
 
 Dengan kata lain, kamu juga bisa melakukan ini:
 

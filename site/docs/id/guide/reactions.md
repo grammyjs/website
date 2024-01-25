@@ -38,17 +38,6 @@ Selain itu, menyalin emoji dari tempat lain berulang kali tentu melelahkan.
 Serahkan semua masalahmu ke [plugin emoji](../plugins/emoji#data-praktis-untuk-reaksi)!
 :::
 
-Secara umum, bot bisa menyimak reaksi emoji tersuai dari user premium dengan cara berikut:
-
-```ts
-bot.reaction(
-  { type: "custom_emoji", custom_emoji_id: "string-identifikasi" },
-  async (ctx) => {/* ... */},
-);
-```
-
-Untuk menggunakan kode di atas, kamu perlu mengetahui id emoji tersuainya.
-
 Sekarang kita tahu bagaimana cara merekasi suatu pesan, selanjutnya mari kita lihat bagaimana cara menangani reaksi dari user.
 
 ## Menerima Update Reaksi
@@ -69,6 +58,17 @@ bot.reaction(["👍", "👎"], (ctx) => ctx.reply("Terima kasih atas jempolnya")
 
 Handler di atas akan terpicu ketika user menambahkan sebuah reaksi emoji baru ke suatu pesan.
 
+Secara umum, bot bisa menyimak reaksi emoji tersuai dari user premium dengan cara berikut:
+
+```ts
+bot.reaction(
+  { type: "custom_emoji", custom_emoji_id: "string-identifikasi" },
+  async (ctx) => {/* ... */},
+);
+```
+
+Untuk menggunakan kode di atas, kamu perlu mengetahui id emoji tersuainya terlebih dahulu.
+
 ### Menangani Perubahan Reaksi yang Tidak Terduga
 
 Meski tidak terlihat di UI aplikasi Telegram resmi, user sebenarnya mampu mengubah beberapa reaksi sekaligus.
@@ -79,7 +79,7 @@ Dengan begitu, bot bisa menangani perubahan tak terduga di daftar reaksi.
 bot.on("message_reaction", async (ctx) => {
   const reaction = ctx.messageReaction;
   // Di sini, kita hanya memperoleh id pesan, bukan isi pesannya.
-  const message = ctx.messageReaction.message_id;
+  const message = reaction.message_id;
   // Perubahan akan terlihat dengan membandingkan kedua daftar berikut.
   const old = reaction.old_reaction; // reaksi sebelumnya
   const now = reaction.new_reaction; // reaksi saat ini
