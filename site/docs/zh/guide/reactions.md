@@ -38,17 +38,6 @@ await bot.api.setMessageReaction(chat_id, message_id, "💯");
 让 [emoji 插件](../plugins/emoji#有用的反应数据) 帮助你！
 :::
 
-当然，如果你的 bot 可以处理高级用户的自定义 emoji 反应，你也可以监听它们。
-
-```ts
-bot.reaction(
-  { type: "custom_emoji", custom_emoji_id: "identifier-string" },
-  async (ctx) => {/* ... */},
-);
-```
-
-这就需要你提前知道自定义 emoji 的标识符。
-
 现在你已经知道 bot 如何对消息做出反应，让我们看看如何处理用户的反应。
 
 ## 接收有关反应的 Update
@@ -69,6 +58,17 @@ bot.reaction(["👍", "👎"], (ctx) => ctx.reply("漂亮的大拇指"));
 
 每当用户向消息添加新的 emoji 反应时，这些处理程序就会触发。
 
+当然，如果你的 bot 可以处理高级用户的自定义 emoji 反应，你也可以监听它们。
+
+```ts
+bot.reaction(
+  { type: "custom_emoji", custom_emoji_id: "identifier-string" },
+  async (ctx) => {/* ... */},
+);
+```
+
+这就需要你提前知道自定义 emoji 的标识符。
+
 ### 处理任意变化的反应
 
 尽管这在任何官方 Telegram 客户端的 UI 中都不可见，但用户实际上可以一次更改多个反应。
@@ -79,7 +79,7 @@ bot.reaction(["👍", "👎"], (ctx) => ctx.reply("漂亮的大拇指"));
 bot.on("message_reaction", async (ctx) => {
   const reaction = ctx.messageReaction;
   // 我们只接收消息标识符，而不接收消息内容。
-  const message = ctx.messageReaction.message_id;
+  const message = reaction``.message_id;
   // 这两个列表之间的差异展示了变化。
   const old = reaction.old_reaction; // 之前的
   const now = reaction.new_reaction; // 当前的
