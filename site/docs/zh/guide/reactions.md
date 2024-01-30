@@ -79,7 +79,7 @@ bot.reaction(
 bot.on("message_reaction", async (ctx) => {
   const reaction = ctx.messageReaction;
   // 我们只接收消息标识符，而不接收消息内容。
-  const message = reaction``.message_id;
+  const message = reaction.message_id;
   // 这两个列表之间的差异展示了变化。
   const old = reaction.old_reaction; // 之前的
   const now = reaction.new_reaction; // 当前的
