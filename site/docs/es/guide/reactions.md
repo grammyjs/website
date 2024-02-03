@@ -38,17 +38,6 @@ Además, es molesto copiarlos de diferentes lugares todo el tiempo.
 ¡Deja que el [plugin emoji](../plugins/emoji.md#datos-utiles-para-reacciones) te ayude!
 :::
 
-Naturalmente, si tu bot gestiona reacciones emoji personalizadas de usuarios premium, también puedes escucharlas.
-
-```ts
-bot.reaction(
-  { type: "custom_emoji", custom_emoji_id: "identifier-string" },
-  async (ctx) => {/* ... */},
-);
-```
-
-Esto requiere que conozcas de antemano el identificador del emoji personalizado.
-
 Ahora que ya sabes cómo puede reaccionar tu bot a los mensajes, veamos cómo podemos manejar las reacciones de tus usuarios.
 
 ## Recepción de actualizaciones sobre reacciones
@@ -69,6 +58,17 @@ bot.reaction(["👍", "👎"], (ctx) => ctx.reply("Nice thumb"));
 
 Estos controladores se activarán cada vez que un usuario añada una nueva reacción emoji a un mensaje.
 
+Naturalmente, si tu bot gestiona reacciones emoji personalizadas de usuarios premium, también puedes escucharlas.
+
+```ts
+bot.reaction(
+  { type: "custom_emoji", custom_emoji_id: "identifier-string" },
+  async (ctx) => {/* ... */},
+);
+```
+
+Esto requiere que conozcas de antemano el identificador del emoji personalizado.
+
 ### Manejo de cambios arbitrarios en las reacciones
 
 Aunque esto no es visible en la interfaz de usuario de ningún cliente oficial de Telegram, los usuarios pueden cambiar varias reacciones a la vez.
@@ -79,7 +79,7 @@ Esto permite a tu bot manejar cambios arbitrarios en la lista de reacciones.
 bot.on("message_reaction", async (ctx) => {
   const reaction = ctx.messageReaction;
   // Sólo recibimos el identificador del mensaje, no su contenido.
-  const message = ctx.messageReaction.message_id;
+  const message = reaction.message_id;
   // La diferencia entre estas dos listas describe el cambio.
   const old = reaction.old_reaction; // anterior
   const now = reaction.new_reaction; // actual
