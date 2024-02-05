@@ -9,10 +9,9 @@ A veces es necesario enviar siempre los mensajes como respuestas, especialmente 
 Normalmente lo hacemos añadiendo `reply_parameters` a los métodos que envían el mensaje: `sendText`, `reply`, `sendPhoto`, `replyWithPhoto` y etc.
 Sin embargo, si estás haciendo esto para cada mensaje, puede ser un desastre y aburrido.
 
-Este plugin establece el parámetro obsoleto `reply_to_message_id` a `ctx.msg.message_id` para todos los métodos `reply*` y `send*` que lo soportan para hacer que cada mensaje sea una respuesta al mensaje que lo activó.
+Este plugin establece las propiedades de `reply_parameters` para todos los métodos `reply*` y `send*` que lo soportan para hacer que cada mensaje sea una respuesta al mensaje y chat que lo desencadenó.
 
-> El parámetro `reply_to_message_id` sigue siendo soportado por la API del Bot por compatibilidad con versiones anteriores.
-> El nuevo código debe utilizar `reply_parameters` en su lugar.
+Puedes pasar un objeto options con la propiedad `allowSendingWithoutReply` a las funciones `addReplyParam` y `autoQuote`, lo que permitirá a tu bot enviar mensajes incluso si el mensaje al que se está respondiendo ya no existe.
 
 ## Uso
 
@@ -78,7 +77,7 @@ import { autoQuote } from "@roziscoding/grammy-autoquote";
 
 const bot = new Bot("");
 
-bot.use(autoQuote);
+bot.use(autoQuote());
 
 bot.command("demo", async (ctx) => {
   await ctx.reply("¡Comando demo!"); // esto va a citar el mensaje del usuario
@@ -97,7 +96,7 @@ const { autoQuote } = require("@roziscoding/grammy-autoquote");
 
 const bot = new Bot("");
 
-bot.use(autoQuote);
+bot.use(autoQuote());
 
 bot.command("demo", async (ctx) => {
   await ctx.reply("¡Comando demo!"); // esto va a citar el mensaje del usuario
@@ -116,7 +115,7 @@ import { autoQuote } from "https://deno.land/x/grammy_autoquote/mod.ts";
 
 const bot = new Bot("");
 
-bot.use(autoQuote);
+bot.use(autoQuote());
 
 bot.command("demo", async (ctx) => {
   await ctx.reply("¡Comando demo!"); // esto va a citar el mensaje del usuario
