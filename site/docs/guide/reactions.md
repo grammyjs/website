@@ -59,7 +59,7 @@ bot.start({
 You may want to import `API_CONSTANTS` from grammY and then specify
 
 ```ts
-  allowed_updates: API_CONSTANTS.ALL_UPDATE_TYPES
+allowed_updates: API_CONSTANTS.ALL_UPDATE_TYPES;
 ```
 
 in order to receive all updates.
