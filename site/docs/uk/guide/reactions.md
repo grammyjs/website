@@ -66,7 +66,7 @@ allowed_updates: API_CONSTANTS.ALL_UPDATE_TYPES;
 Обов'язково перегляньте [довідку API](https://deno.land/x/grammy@v1.20.4/mod.ts?s=ApiConstants#prop_ALL_UPDATE_TYPES).
 :::
 
-[grammY runner](../plugins/runner.md#advanced-options) і `setWebhhok` мають схожі способи вказати `allowed_udpates`.
+[Плагін для конкурентності (runner)](../plugins/runner.md#просунуті-параметри) і `setWebhhok` мають схожі способи вказати `allowed_udpates`.
 
 Тепер, коли ваш бот може отримувати оновлення реакцій, давайте подивимося, як він з ними впорається!
 
