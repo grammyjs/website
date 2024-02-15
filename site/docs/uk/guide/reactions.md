@@ -116,13 +116,9 @@ grammY надає вам можливість ще більше відфільт
 
 ```ts
 // Оновлення, в яких поточна реакція містить принаймні один емодзі.
-bot.on("message_reaction:new_reaction:emoji", (ctx) => {
-  /* ... */
-});
+bot.on("message_reaction:new_reaction:emoji", (ctx) => {/* ... */});
 // Оновлення, в яких попередня реакція містила принаймні один користувацький емодзі.
-bot.on("message_reaction:old_reaction:custom_emoji", (ctx) => {
-  /* ... */
-});
+bot.on("message_reaction:old_reaction:custom_emoji", (ctx) => {/* ... */});
 ```
 
 Хоча ці два масиви [об'єктів `ReactionType`](https://core.telegram.org/bots/api#reactiontype) технічно надають вам усю інформацію, необхідну для обробки оновлень реакцій, вони все одно можуть бути дещо громіздкими для роботи.
