@@ -65,7 +65,7 @@ allowed_updates: API_CONSTANTS.ALL_UPDATE_TYPES;
 Jangan lupa untuk membaca [Referensi API](https://deno.land/x/grammy/mod.ts?s=ApiConstants#prop_ALL_UPDATE_TYPES)-nya.
 :::
 
-Di [grammY runner](../plugins/runner.md#opsi-tingkat-lanjut) dan `setWebhook`, `allowed_updates` juga bisa diatur dengan cara yang sama.
+Di [grammY runner](../plugins/runner#opsi-tingkat-lanjut) dan `setWebhook`, `allowed_updates` juga bisa diatur dengan cara yang sama.
 
 Sekarang bot sudah bisa menerima update reaksi.
 Selanjutnya, mari kita lihat cara menangani update tersebut!
