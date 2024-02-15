@@ -66,7 +66,7 @@ in order to receive all updates.
 Be sure to check out the [API reference](https://deno.land/x/grammy/mod.ts?s=ApiConstants#prop_ALL_UPDATE_TYPES).
 :::
 
-[grammY runner](../plugins/runner.md#advanced-options) and `setWebhhok` have similar ways to specify `allowed_udpates`.
+[grammY runner](../plugins/runner.md#advanced-options) and `setWebhook` have similar ways to specify `allowed_updates`.
 
 Now that your bot can receive reaction updates, let's see how it can handle them!
 
