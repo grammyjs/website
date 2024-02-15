@@ -62,7 +62,7 @@ Untuk menerima semua jenis update, import `API_CONSTANTS` dari grammY lalu cantu
 allowed_updates: API_CONSTANTS.ALL_UPDATE_TYPES;
 ```
 
-Jangan lupa untuk membaca [Referensi API](https://deno.land/x/grammy/mod.ts?s=ApiConstants#prop_ALL_UPDATE_TYPES)-nya.
+Jangan lupa untuk membaca [Referensi API](https://deno.land/x/grammy@v1.20.4/mod.ts?s=ApiConstants#prop_ALL_UPDATE_TYPES)-nya.
 :::
 
 Di [grammY runner](../plugins/runner.md#opsi-tingkat-lanjut) dan `setWebhhok`, `allowed_udpates` juga bisa diatur dengan cara yang sama.
