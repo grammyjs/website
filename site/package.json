@@ -18,10 +18,10 @@
   },
   "devDependencies": {
     "@types/markdown-it": "^13.0.7",
-    "deno-bin": ">=1.38.3",
+    "deno-bin": ">=1.40.4",
     "lazy-lottie-player": "0.0.1",
-    "markdownlint-cli2": "^0.11.0",
-    "sass": "^1.69.5",
-    "vitepress": "^1.0.0-rc.31"
+    "markdownlint-cli2": "^0.12.1",
+    "sass": "^1.70.0",
+    "vitepress": "^1.0.0-rc.42"
   }
 }
