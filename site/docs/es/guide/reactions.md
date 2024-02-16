@@ -46,6 +46,30 @@ Existen varias formas de gestionar las actualizaciones sobre las reacciones.
 En los chats privados y de grupo, tu bot recibirá una actualización `message_reaction` si un usuario cambia su reacción a un mensaje.
 En los canales (o en las publicaciones de canal reenviadas automáticamente en los grupos), tu bot recibirá una actualización `message_reaction_count` que sólo muestra el recuento total de reacciones, pero sin revelar quién ha reaccionado.
 
+Ambos tipos de reacciones deben estar activados para poder recibirlas.
+Por ejemplo, con el polling incorporado, puedes habilitarlas así:
+
+```ts
+bot.start({
+  allowed_updates: ["message", "message_reaction", "message_reaction_count"],
+});
+```
+
+::: tip Habilitar todos los tipos de actualización
+Puede que quieras importar `API_CONSTANTS` de grammY y luego especificar
+
+```ts
+allowed_updates: API_CONSTANTS.ALL_UPDATE_TYPES;
+```
+
+para recibir todas las actualizaciones.
+Asegúrese de consultar la [referencia API](https://deno.land/x/grammy/mod.ts?s=ApiConstants#prop_ALL_UPDATE_TYPES).
+:::
+
+[grammY runner](../plugins/runner#opciones-avanzadas) y `setWebhook` tienen formas similares de especificar `allowed_updates`.
+
+Ahora que tu bot puede recibir actualizaciones de reacción, ¡vamos a ver cómo puede manejarlas!
+
 ### Manejo de nuevas reacciones
 
 Es muy sencillo manejar reacciones recién añadidas.
