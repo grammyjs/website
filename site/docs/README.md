@@ -40,8 +40,6 @@ features:
 
 <!-- markdownlint-disable no-inline-html -->
 
-<HomeContent>
-
 ## Quickstart
 
 Bots are written in [TypeScript](https://www.typescriptlang.org) (or JavaScript) and run on various platforms, including [Node.js](https://nodejs.org).
@@ -110,4 +108,3 @@ Works! :tada:
 <ClientOnly>
   <LanguagePopup />
 </ClientOnly>
-</HomeContent>

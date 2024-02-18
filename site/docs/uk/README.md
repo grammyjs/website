@@ -40,8 +40,6 @@ features:
 
 <!-- markdownlint-disable no-inline-html -->
 
-<HomeContent>
-
 ## Швидкий старт
 
 Боти, написані на [TypeScript](https://www.typescriptlang.org) або JavaScript, працюють на різних платформах, зокрема [Node.js](https://nodejs.org).
@@ -106,4 +104,3 @@ bot.start();
 
 </div>
 </footer>
-</HomeContent>

@@ -42,8 +42,6 @@ features:
 
 <!-- markdownlint-disable no-inline-html -->
 
-<HomeContent>
-
 ## Mulai Cepat
 
 Bot ditulis menggunakan [TypeScript](https://www.typescriptlang.org) (atau JavaScript) dan dapat berjalan di berbagai platform, termasuk [Node.js](https://nodejs.org).
@@ -109,4 +107,3 @@ Berhasil! :tada:
 
 </div>
 </footer>
-</HomeContent>
