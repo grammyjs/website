@@ -100,8 +100,8 @@ bot.start();
 
 <div style="font-size: 0.75rem; display: flex; justify-content: center;">
 
-© 2021-2024 &middot; grammY 支持 Telegram Bot API 7.0，该 API 于 2023 年 12 月 29 日 [发布](https://core.telegram.org/bots/api#december-29-2023)。
-(新增: 反应)
+© 2021-2024 &middot; grammY 支持 Telegram Bot API 7.1，该 API 于 2024 年 2 月 16 日 [发布](https://core.telegram.org/bots/api#february-16-2024)。
+(新增: 群组助推)
 
 </div>
 </footer>
