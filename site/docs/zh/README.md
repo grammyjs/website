@@ -40,8 +40,6 @@ features:
 
 <!-- markdownlint-disable no-inline-html -->
 
-<HomeContent>
-
 ## 快速开始
 
 bot 是用 [TypeScript](https://www.typescriptlang.org)（或JavaScript）编写的，并在各种平台上运行，包括 [Node.js](https://nodejs.org) 。
@@ -107,4 +105,3 @@ bot.start();
 
 </div>
 </footer>
-</HomeContent>
