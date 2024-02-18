@@ -46,6 +46,30 @@ await bot.api.setMessageReaction(chat_id, message_id, "💯");
 在私聊和群聊中，如果用户更改了对消息的反应，你的 bot 将收到 `message_reaction` update。
 在频道（自动转发到群聊中的频道帖子）中，你的 bot 将收到 `message_reaction_count` update，该 update 仅显示反应总数，但不会透露谁做出了反应。
 
+这两种类型的反应都需要先启用才能接收。
+例如，通过内置轮询，你可以像这样启用它们：
+
+```ts
+bot.start({
+  allowed_updates: ["message", "message_reaction", "message_reaction_count"],
+});
+```
+
+::: tip 启用所有 update 类型
+你需要从 grammY 导入 `API_CONSTANTS`，然后设置
+
+```ts
+allowed_updates: API_CONSTANTS.ALL_UPDATE_TYPES;
+```
+
+来接收所有 update。
+请务必查看 [API 参考](https://deno.land/x/grammy/mod.ts?s=ApiConstants#prop_ALL_UPDATE_TYPES)。
+:::
+
+[grammY runner](../plugins/runner#高级选项) 和 `setWebhook` 有着相同的方式来设置 `allowed_updates`。
+
+现在你的 bot 可以接收反应 update，让我们看看它是如何处理它们的！
+
 ### 处理新的反应
 
 处理新添加的反应非常简单。
