@@ -10,7 +10,7 @@
     "docs:build": "npm run docs:vitepress && npm run docs:sitemap",
     "docs:serve": "vitepress serve docs",
     "docs:preview": "npm run docs:build && npm run docs:serve",
-    "docs:vitepress": "node --max-old-space-size=8000 ./node_modules/.bin/vitepress build docs",
+    "docs:vitepress": "vitepress build docs",
     "docs:fmt": "deno fmt",
     "docs:lint": "markdownlint-cli2 \"./docs/**/*.md\" \"#node_modules\"",
     "docs:sitemap": "deno run --no-npm --allow-read=docs/.vitepress/dist --allow-write=docs/.vitepress/dist/sitemap.xml https://deno.land/x/sitemap@v1.1.0/cli.ts -b https://grammy.dev -r docs/.vitepress/dist --clean",
