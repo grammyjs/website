@@ -46,6 +46,30 @@ Terdapat beberapa cara untuk menangani update berupa reaksi.
 Di chat pribadi dan grup, bot akan menerima sebuah update `message_reaction` jika seorang user mengubah reaksi suatu pesan.
 Di channel (atau postingan channel yang diteruskan ke grup secara otomatis), bot akan menerima sebuah update `message_reaction_count` yang berisi jumlah total reaksinya saja, tanpa menampilkan siapa yang mereaksi.
 
+Untuk menerima update kedua jenis reaksi tersebut, kamu perlu mengaktifkannya terlebih dahulu.
+Berikut contoh cara mengaktifkannya dengan menggunakan [long polling](./deployment-types#long-polling-vs-webhook) bawaan.
+
+```ts
+bot.start({
+  allowed_updates: ["message", "message_reaction", "message_reaction_count"],
+});
+```
+
+::: tip Mengaktifkan Semua Jenis Update
+Untuk menerima semua jenis update, import `API_CONSTANTS` dari grammY lalu cantumkan di bagian `allowed_updates`.
+
+```ts
+allowed_updates: API_CONSTANTS.ALL_UPDATE_TYPES;
+```
+
+Jangan lupa untuk membaca [Referensi API](https://deno.land/x/grammy/mod.ts?s=ApiConstants#prop_ALL_UPDATE_TYPES)-nya.
+:::
+
+Di [grammY runner](../plugins/runner#opsi-tingkat-lanjut) dan `setWebhook`, `allowed_updates` juga bisa diatur dengan cara yang sama.
+
+Sekarang bot sudah bisa menerima update reaksi.
+Selanjutnya, mari kita lihat cara menangani update tersebut!
+
 ### Menangani Reaksi Baru
 
 Menangani reaksi yang baru saja ditambahkan sangatlah mudah.
