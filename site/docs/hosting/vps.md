@@ -162,7 +162,7 @@ nano <app-name>.service
 ```text
 [Unit]
 After=network.target
-                                  
+
 [Service]
 Environment=BOT_TOKEN=<token>
 ExecStart=<start-command>
@@ -172,7 +172,7 @@ Restart=on-failure
 WantedBy=multi-user.target
 ```
 
-> Replace `<token>` with your bot's token, `<launch-command>` with the command you received [above](#getting-the-start-command), and `<username>` with the name of the user on whose behalf the app is being started.
+> Replace `<token>` with your bot's token, `<start-command>` with the command you received [above](#getting-the-start-command), and `<username>` with the name of the user on whose behalf the app is being started.
 
 A small explanation of the service configuration:
 
@@ -184,7 +184,7 @@ A small explanation of the service configuration:
 - `WantedBy=multi-user.target` --- defines the system state in which the service should be launched.
   `multi-user.target` --- is a typical value for servers that defines the state of the system when everything works except the graphical interface, which simply does not exist.
 
-> For more information on the unit files, read [this](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/assembly_working-with-systemd-unit-files_configuring-basic-system-settings).
+> For more information on the unit files, read [this](https://access.redhat.com/documentation/te-in/red_hat_enterprise_linux/9/html/using_systemd_unit_files_to_customize_and_optimize_your_system/assembly_working-with-systemd-unit-files_working-with-systemd).
 
 4. Reload systemd whenever you edit the service:
 
@@ -402,12 +402,14 @@ However, you are free to choose any web server you want.
 The following 5 commands will download and automatically start Caddy as a systemd service called `caddy`.
 
 ```sh
-apt install -y debian-keyring debian-archive-keyring apt-transport-https
+apt install -y debian-keyring debian-archive-keyring apt-transport-https curl
 curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
 curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | tee /etc/apt/sources.list.d/caddy-stable.list
 apt update
 apt install caddy
 ```
+
+> See the [Caddy installation guide](https://caddyserver.com/docs/install) for other installation options.
 
 Check the status of Caddy:
 
@@ -581,7 +583,7 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-node@v3
         with:
-          node-version: 'latest'
+          node-version: "latest"
       - run: npm ci
       - name: Build
         run: npm run build
