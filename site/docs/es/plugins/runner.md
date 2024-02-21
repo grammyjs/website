@@ -94,11 +94,13 @@ En su lugar, puede devolver _una lista de cadenas de identificadores de restricc
 Por ejemplo, podría devolver tanto el identificador de chat como el identificador de usuario del autor del mensaje.
 
 ```ts
-bot.use(sequentialize((ctx) => {
-  const chat = ctx.chat?.id.toString();
-  const user = ctx.from?.id.toString();
-  return [chat, user].filter((con) => con !== undefined);
-}));
+bot.use(
+  sequentialize((ctx) => {
+    const chat = ctx.chat?.id.toString();
+    const user = ctx.from?.id.toString();
+    return [chat, user].filter((con) => con !== undefined);
+  }),
+);
 ```
 
 Esto aseguraría que los mensajes en el mismo chat se ordenen correctamente.
@@ -118,7 +120,7 @@ Ten en cuenta que puedes esperar a que el runner `await` la `task` en el [`Runne
 
 ```ts
 const handle = run(bot);
-handle.task.then(() => {
+handle.task().then(() => {
   console.log("¡Procesamiento de Bot hecho!");
 });
 ```
@@ -168,7 +170,7 @@ Hay una forma sencilla de solucionarlo: ¡los bot workers!
 grammY runner te permite crear varios workers que pueden procesar tus actualizaciones en paralelo en núcleos realmente diferentes (usando diferentes bucles de eventos y con memoria separada).
 
 En Node.js, grammY runner utiliza [Worker Threads](https://nodejs.org/api/worker_threads.html).
-En Deno, grammY runner usa [Web Workers](https://deno.com/manual/runtime/workers).
+En Deno, grammY runner usa [Web Workers](https://docs.deno.com/runtime/manual/runtime/workers).
 
 Conceptualmente, grammY runner te proporciona una clase llamada `BotWorker` que puede manejar actualizaciones.
 Es equivalente a la clase normal `Bot` (de hecho, incluso `extends Bot`).

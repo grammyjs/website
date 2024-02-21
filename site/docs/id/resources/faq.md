@@ -99,11 +99,10 @@ Kamu sudah berupaya untuk melakukan pemanggilan API seminimal mungkin, tetapi _t
 Ada beberapa cara yang bisa kamu lakukan:
 
 1. Baca [materi ini](../advanced/flood) supaya paham dengan situasi yang dialami.
-2. Gunakan [plugin `transformer-throttler`](../plugins/transformer-throttler).
-3. Gunakan [plugin `auto-retry`](../plugins/auto-retry).
-4. Minta bantuan kami [di grup](https://t.me/grammyjs).
+2. Gunakan [plugin `auto-retry`](../plugins/auto-retry).
+3. Minta bantuan kami [di grup](https://t.me/grammyjs).
    Kami memiliki beberapa orang yang berpengalaman di sana.
-5. Meminta Telegram untuk meningkatkan batasan tersebut.
+4. Meminta Telegram untuk meningkatkan batasan tersebut.
    Cara ini kemungkinan besar tidak akan berhasil jika kamu tidak melakukan langkah 1–3 terlebih dahulu.
 
 ### Cannot find type definition file for 'node-fetch'

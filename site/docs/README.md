@@ -16,29 +16,29 @@ hero:
     - billions and billions served.
     - powered by obsession.
   image:
-    src: /images/Y.webp
+    src: /images/Y.svg
     alt: grammY logo
   actions:
     - theme: brand
       text: Get Started
       link: ./guide/getting-started
     - theme: alt
-      text: Introduction
-      link: ./guide/introduction
+      text: Documentation
+      link: ./guide/
 
 features:
-  - icon: <img class="VPImage" src="/icons/beach-animation.webp" alt="beach animation" width="32" height="32">
+  - icon: <lazy-tgs-player class="VPImage" src="/icons/beach-animation.tgs"><img src="/icons/beach.svg" alt="beach animation"></lazy-tgs-player>
     title: Easy-to-use
     details: grammY makes creating Telegram bots so simple you already know how to do it.
-  - icon: <img class="VPImage" src="/icons/palette-animation.webp" alt="palette animation" width="32" height="32">
+  - icon: <lazy-tgs-player class="VPImage" src="/icons/palette-animation.tgs"><img src="/icons/palette.svg" alt="palette animation"></lazy-tgs-player>
     title: Flexible
     details: grammY is open and can be extended by plugins to make it fit exactly your needs.
-  - icon: <img class="VPImage" src="/icons/rocket-animation.webp" alt="rocket animation" width="32" height="32">
+  - icon: <lazy-tgs-player class="VPImage" src="/icons/rocket-animation.tgs"><img src="/icons/rocket.svg" alt="rocket animation"></lazy-tgs-player>
     title: Scalable
     details: grammY has you covered when your bot gets popular and the traffic increases.
 ---
 
-<HomeContent>
+<!-- markdownlint-disable no-inline-html -->
 
 ## Quickstart
 
@@ -100,12 +100,11 @@ Works! :tada:
 
 <div style="font-size: 0.75rem; display: flex; justify-content: center;">
 
-© 2021-2023 &middot; grammY supports Telegram Bot API 6.7 which was [released](https://core.telegram.org/bots/api#april-21-2023) on April 21, 2023.
-(Last highlight: multiple bot names, custom emoji, and better inline queries)
+© 2021-2024 &middot; grammY supports Telegram Bot API 7.1 which was [released](https://core.telegram.org/bots/api#february-16-2024) on February 16, 2024.
+(Last highlight: Group Chat Boosts)
 
 </div>
 </footer>
 <ClientOnly>
   <LanguagePopup />
 </ClientOnly>
-</HomeContent>

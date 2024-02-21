@@ -91,7 +91,7 @@ grammY 文档不会教你如何编程，所以我们希望你能自学。
 这种类型的软件被称为 _运行时环境_。
 它接收你的源代码文件，并实际执行其中的任何程序。
 
-对我们来说，有两种运行时环境可供选择，[Deno](https://deno.land) 和 [Node.js](https://nodejs.org) 。
+对我们来说，有两种运行时环境可供选择，[Deno](https://deno.com) 和 [Node.js](https://nodejs.org) 。
 （如果你看到有人叫它 _Node_ ，他们只是懒得打 ".js" ，但他们的意思是一样的。）
 
 > 本节的其余部分将帮助你在这两个平台之间做出决定。
@@ -126,14 +126,14 @@ Deno：
 
 ### Deno 的前提条件
 
-[安装 Deno](https://deno.com/manual/getting_started/installation)，这是一切的前提。
+[安装 Deno](https://docs.deno.com/runtime/manual/getting_started/installation)，这是一切的前提。
 
 在开始创建你的 bot 之前，让我们先花几分钟时间为软件开发进行适当的设置。
 也就是安装一些工具。
 
 #### 为开发准备环境
 
-如果你还没有安装 Deno，那么就先 [安装 Deno](https://deno.com/manual/getting_started/installation#download-and-install)。
+如果你还没有安装 Deno，那么就先 [安装 Deno](https://docs.deno.com/runtime/manual/getting_started/installation#download-and-install)。
 
 你还需要一个非常适合编码的文本编辑器。
 最适合 Deno 的是 Visual Studio Code，通常简称为 VS Code。
@@ -182,7 +182,7 @@ code .
 然后你会有两个文件：你的原始 `bot.ts` ，和一个生成的 `bot.js` ，它又可以被 Node.js 运行。
 所有这些的确切命令将在下一节中介绍，当你真正创建一个 bot 时，但重要的是要知道这些步骤是必要的。
 
-为了运行 `bot.js` 文件，你必须安装[Node.js](https://nodejs.org/zh-cn/)。
+为了运行 `bot.js` 文件，你必须安装[Node.js](https://nodejs.org/en/)。
 
 你将 Node.js 所要做的事情有下面这些：
 
@@ -196,7 +196,6 @@ code .
 然后，你需要重复步骤 2 和 3。
 
 ::: tip 等等, 什么?
-
 安装 Node.js 并正确设置和配置所有内容需要花费大量时间。
 如果你以前从未这样做过，你应该预料到会遇到大量难以解决的令人困惑的问题。
 
@@ -204,7 +203,6 @@ code .
 （以 _正确的方式_ 安装 Node.js 太复杂了，不适合这个页面。）
 
 如果此时你感到迷茫，你应该抛开 Node.js，转而使用 [Deno](#deno-的前提条件)。
-
 :::
 
 还有信心吗？

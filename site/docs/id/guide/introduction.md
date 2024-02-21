@@ -102,7 +102,7 @@ Untuk itu, kamu perlu memasang beberapa software yang dapat _mengeksekusi_ kode 
 Jenis software ini disebut dengan _runtime environment_.
 Ia akan membaca file source code kamu kemudian mengerjakan apa pun yang diprogramkan di dalamnya.
 
-Terdapat dua runtime environment yang bisa kita pilih: [Deno](https://deno.land) dan [Node.js](https://nodejs.org).
+Terdapat dua runtime environment yang bisa kita pilih: [Deno](https://deno.com) dan [Node.js](https://nodejs.org).
 Jika kamu menjumpai orang-orang menyebut Node.js dengan sebutan _Node_ saja, mereka terlalu malas untuk menambahkan imbuhan ".js", meskipun maksudnya sama saja.
 
 > Mulai dari sini, kami akan membantu kamu memilih di antara kedua platform tersebut.
@@ -142,7 +142,7 @@ Diantaranya adalah menginstal beberapa tool yang dibutuhkan.
 
 #### Menyiapkan Perangkat untuk Pengembangan
 
-Pertama-tama, [instal Deno](https://deno.com/manual/getting_started/installation#download-and-install) di perangkat kamu.
+Pertama-tama, [instal Deno](https://docs.deno.com/runtime/manual/getting_started/installation#download-and-install) di perangkat kamu.
 
 Siapkan juga text editor yang sesuai untuk coding.
 Salah satu yang sesuai untuk Deno adalah Visual Studio Code, atau biasa disebut dengan VS Code.
@@ -204,14 +204,12 @@ Tekan `Ctrl+C` di terminal untuk menghentikan proses tersebut, yang nantinya jug
 Kemudian, ulangi langkah 2 dan 3.
 
 ::: tip Hah, maksudnya?
-
 Proses instalasi Node.js beserta pengaturan konfigurasinya memerlukan waktu yang tidak sedikit.
 Jika kamu belum pernah melakukannya, kemungkinan besar kamu akan mengalami berbagai masalah yang cukup rumit untuk diatasi.
 
 Itulah kenapa kami sedikit berharap kamu mengerti bagaimana mengatur sistem kamu, atau bahkan mempelajarinya secara mandiri---Proses penginstalan Node.js _dengan cara yang benar_ sangatlah rumit sehingga tidak cukup untuk kami menjelaskannya di halaman ini.
 
 Jika kamu merasa kebingungan di titik ini, sebaiknya tinggalkan Node.js dan beralih menggunakan [Deno](#persiapan-untuk-deno).
-
 :::
 
 Masih percaya diri?

@@ -10,10 +10,10 @@ next: false
 Зверніть увагу, що цей посібник призначений лише для користувачів Deno, а також для створення облікового запису на [Deno Deploy](https://deno.com/deploy) вам потрібно мати обліковий запис на [GitHub](https://github.com).
 
 Deno Deploy ідеально підходить для більшості простих ботів, проте варто зазначити, що не всі функції Deno доступні для застосунків, що працюють на Deno Deploy.
-Наприклад, платформа підтримує лише [обмежений набір](https://deno.com/deploy/docs/runtime-fs) API файлової системи, які доступні в Deno.
+Наприклад, платформа підтримує лише [обмежений набір](https://docs.deno.com/deploy/api/runtime-fs) API файлової системи, які доступні в Deno.
 Це така ж платформа, як і багато інших безсерверних платформ, але призначена для застосунків на Deno.
 
-Результат цього посібника [можна побачити в репозиторії з прикладами ботів](https://github.com/grammyjs/examples/tree/main/deno-deploy).
+Результат цього посібника [можна побачити в репозиторії з прикладами ботів](https://github.com/grammyjs/examples/tree/main/setups/deno-deploy).
 
 ## Підготовка вашого коду
 
@@ -57,7 +57,7 @@ Deno.serve(async (req) => {
 1. Створіть репозиторій на GitHub, він може бути як приватним, так і загальнодоступним.
 2. Завантажте свій код.
 
-> Рекомендується мати одну стабільну гілку, а тестувати свої напрацювання в інших гілках, щоб уникнути непередбачуваних помилок.
+   > Рекомендується мати одну стабільну гілку, а тестувати свої напрацювання в інших гілках, щоб уникнути непередбачуваних помилок.
 
 3. Відвідайте свою [панель керування Deno Deploy](https://dash.deno.com/projects).
 4. Натисніть на "New Project" і перейдіть до розділу "Deploy from GitHub repository".
@@ -71,12 +71,12 @@ Deno.serve(async (req) => {
 1. Відвідайте свою [панель керування Deno Deploy](https://dash.deno.com/projects).
 2. Натисніть на "New Project", а потім на "Empty Project".
 3. Встановіть [`deployctl`](https://github.com/denoland/deployctl).
-4. [Створіть токен доступу](https://dash.deno.com/user/access-tokens).
+4. [Створіть токен доступу](https://dash.deno.com/account#access-tokens).
 5. Виконайте наступну команду:
 
-```sh
-deployctl deploy --project <назва-проєкту> ./mod.ts --prod --token <токен-доступу>
-```
+   ```sh
+   deployctl deploy --project <назва-проєкту> ./mod.ts --prod --token <токен-доступу>
+   ```
 
 6. Щоб налаштувати Github Actions, дивіться [це](https://github.com/denoland/deployctl/blob/main/action/README.md).
 

@@ -55,7 +55,7 @@ import { lists } from "./todo/list";
 const bot = new Bot("");
 
 bot.use(lists);
-// .. quizás más módulos como `todo` aquí
+// ... quizás más módulos como `todo` aquí
 
 bot.start();
 ```
@@ -64,3 +64,57 @@ Opcionalmente, puedes utilizar el [plugin enrutador](../plugins/router) o [`bot.
 
 Sin embargo, recuerda que la forma exacta de cómo estructurar tu bot es muy difícil de decir genéricamente.
 Como siempre en el software, hazlo de la manera que tenga más sentido :wink:
+
+## Definiciones de tipos para middleware extraído
+
+La estructura anterior utilizando compositores funciona bien.
+Sin embargo, a veces puedes encontrarte en la situación de querer extraer un manejador dentro de una función, en lugar de crear un nuevo compositor y añadirle la lógica.
+Esto requiere que añadas las definiciones de tipo middleware correctas a tus handlers porque ya no pueden ser inferidas a través del compositor.
+
+grammY exporta definiciones de tipo para todos los **tipos limitados de middleware**, como el middleware que puedes pasar a los manejadores de comandos.
+Además, exporta las definiciones de tipo para los **objetos de contexto restringido** que se están utilizando en ese middleware.
+Ambos tipos se parametrizan con tu [objeto de contexto personalizado](../guide/context#personalizacion-del-objeto-de-contexto).
+Así, un manejador de comandos tendría el tipo `CommandMiddleware<MyContext>` y su objeto de contexto `CommandContext<MyContext>`.
+Se pueden utilizar de la siguiente manera.
+
+::: code-group
+
+```ts [Node.js]
+import {
+  type CallbackQueryMiddleware,
+  type CommandContext,
+  type NextFunction,
+} from "grammy";
+
+function commandMiddleware(ctx: CommandContext<MyContext>, next: NextFunction) {
+  // gestión de comandos
+}
+const callbackQueryMiddleware: CallbackQueryMiddleware<MyContext> = (ctx) => {
+  // gestión de consultas callback
+};
+
+bot.command(["start", "help"], commandMiddleware);
+bot.callbackQuery("query-data", callbackQueryMiddleware);
+```
+
+```ts [Deno]
+import {
+  type CallbackQueryMiddleware,
+  type CommandContext,
+  type NextFunction,
+} from "https://deno.land/x/grammy/mod.ts";
+
+function commandMiddleware(ctx: CommandContext<MyContext>, next: NextFunction) {
+  // gestión de comandos
+}
+const callbackQueryMiddleware: CallbackQueryMiddleware<MyContext> = (ctx) => {
+  // gestión de consultas callback
+};
+
+bot.command(["start", "help"], commandMiddleware);
+bot.callbackQuery("query-data", callbackQueryMiddleware);
+```
+
+:::
+
+Echa un vistazo a la [referencia API de alias de tipo](https://deno.land/x/grammy/mod.ts#Type_Aliases) para ver un resumen de todos los alias de tipo que exporta grammY.

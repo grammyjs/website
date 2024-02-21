@@ -91,7 +91,7 @@ For that, you need to install some software which is able to _execute_ your code
 This type of software is called a _runtime environment_.
 It takes in your source code files and actually does whatever is programmed in them.
 
-For us, there are two runtime environments to choose from, [Deno](https://deno.land) and [Node.js](https://nodejs.org).
+For us, there are two runtime environments to choose from, [Deno](https://deno.com) and [Node.js](https://nodejs.org).
 (If you see people call it _Node_, they are just too lazy to type ".js", but they mean the same thing.)
 
 > The rest of this section helps you decide between these two platforms.
@@ -131,7 +131,7 @@ This means installing a few tools.
 
 #### Preparing Your Machine for Development
 
-[Install Deno](https://deno.com/manual/getting_started/installation#download-and-install) if you have not done it already.
+[Install Deno](https://docs.deno.com/runtime/manual/getting_started/installation#download-and-install) if you have not done it already.
 
 You also need a text editor that fits well with coding.
 The best one for Deno is Visual Studio Code, often just called VS Code.
@@ -194,7 +194,6 @@ This will stop your bot.
 Then, you need to repeat steps 2 and 3.
 
 ::: tip Wait, what?
-
 Installing Node.js and setting up and configuring everything correctly takes a lot of time.
 If you have never done this before, you should expect to run into plenty of confusing problems that are hard to fix.
 
@@ -202,7 +201,6 @@ This is why we sort of expect that you know how to set up your system, or that y
 (Already installing Node.js _the right way_ is so complicated that it does not fit this page.)
 
 If you feel lost at this point, you should leave Node.js behind and use [Deno](#prerequisites-for-deno) instead.
-
 :::
 
 Still confident?

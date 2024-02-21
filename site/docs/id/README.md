@@ -18,29 +18,29 @@ hero:
     - bikin bot tak pernah sebahagia ini.
     - ditenagai oleh obsesi.
   image:
-    src: /images/Y.webp
+    src: /images/Y.svg
     alt: logo grammY
   actions:
     - theme: brand
       text: Mulai
       link: ./guide/getting-started
     - theme: alt
-      text: Pengenalan
-      link: ./guide/introduction
+      text: Dokumentasi
+      link: ./guide/
 
 features:
-  - icon: <img class="VPImage" src="/icons/beach-animation.webp" alt="beach animation" width="32" height="32">
+  - icon: <lazy-tgs-player class="VPImage" src="/icons/beach-animation.tgs"><img src="/icons/beach.svg" alt="beach animation"></lazy-tgs-player>
     title: Mudah Digunakan
     details: grammY menjadikan pembuatan bot Telegram begitu simpel sehingga kamu pun langsung tahu cara membuatnya.
-  - icon: <img class="VPImage" src="/icons/palette-animation.webp" alt="palette animation" width="32" height="32">
+  - icon: <lazy-tgs-player class="VPImage" src="/icons/palette-animation.tgs"><img src="/icons/palette.svg" alt="palette animation"></lazy-tgs-player>
     title: Fleksibel
     details: grammY bersifat terbuka dan bisa ditambahkan dengan plugin yang kamu inginkan.
-  - icon: <img class="VPImage" src="/icons/rocket-animation.webp" alt="rocket animation" width="32" height="32">
+  - icon: <lazy-tgs-player class="VPImage" src="/icons/rocket-animation.tgs"><img src="/icons/rocket.svg" alt="rocket animation"></lazy-tgs-player>
     title: Dapat Diskalakan
     details: grammY selalu siap membantu ketika bot menjadi semakin populer dan ramai digunakan.
 ---
 
-<HomeContent>
+<!-- markdownlint-disable no-inline-html -->
 
 ## Mulai Cepat
 
@@ -102,9 +102,8 @@ Berhasil! :tada:
 
 <div style="font-size: 0.75rem; display: flex; justify-content: center;">
 
-© 2021-2023 &middot; grammY mendukung API Bot Telegram versi 6.7 yang [dirilis](https://core.telegram.org/bots/api#april-21-2023) pada tanggal 21 April 2023.
-(Fitur yang disorot: nama bot lebih dari satu, emoji khusus, dan inline queries yang lebih baik)
+© 2021-2024 &middot; grammY mendukung API Bot Telegram versi 7.1 yang [dirilis](https://core.telegram.org/bots/api#february-16-2024) pada tanggal 16 Februari 2024.
+(Fitur yang disorot: Boost untuk Grup)
 
 </div>
 </footer>
-</HomeContent>

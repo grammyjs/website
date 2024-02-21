@@ -10,10 +10,10 @@ This guide tells you about the ways you can host your grammY bots on [Deno Deplo
 Please note that this guide is only for Deno users, and you need to have a [GitHub](https://github.com) account for creating a [Deno Deploy](https://deno.com/deploy) account.
 
 Deno Deploy is ideal for most simple bots, and you should note that not all Deno features are available for apps running on Deno Deploy.
-For example, the platform only supports a [limited set](https://deno.com/deploy/docs/runtime-fs) of the file system APIs available in Deno.
+For example, the platform only supports a [limited set](https://docs.deno.com/deploy/api/runtime-fs) of the file system APIs available in Deno.
 It's just like the other many serverless platforms, but dedicated for Deno apps.
 
-The result of this tutorial [can be seen in our example bots repository](https://github.com/grammyjs/examples/tree/main/deno-deploy).
+The result of this tutorial [can be seen in our example bots repository](https://github.com/grammyjs/examples/tree/main/setups/deno-deploy).
 
 ## Preparing Your Code
 
@@ -57,7 +57,7 @@ Here, we are using the bot token (`/<bot token>`).
 1. Create a repository on GitHub, it can be either private or public.
 2. Push your code.
 
-> It is recommended that you have a single stable branch and you do your testing stuff in other branches, so that you won't get some unexpected things happen.
+   > It is recommended that you have a single stable branch and you do your testing stuff in other branches, so that you won't get some unexpected things happen.
 
 3. Visit your [Deno Deploy dashboard](https://dash.deno.com/projects).
 4. Click on "New Project", and go to the "Deploy from GitHub repository" section.
@@ -71,12 +71,12 @@ Here, we are using the bot token (`/<bot token>`).
 1. Visit your [Deno Deploy dashboard](https://dash.deno.com/projects).
 2. Click "New Project", and then "Empty Project".
 3. Install [`deployctl`](https://github.com/denoland/deployctl).
-4. [Create an access token](https://dash.deno.com/user/access-tokens).
+4. [Create an access token](https://dash.deno.com/account#access-tokens).
 5. Run the following command:
 
-```sh
-deployctl deploy --project <project> ./mod.ts --prod --token <token>
-```
+   ```sh
+   deployctl deploy --project <project> ./mod.ts --prod --token <token>
+   ```
 
 6. To set up Github Actions, refer to [this](https://github.com/denoland/deployctl/blob/main/action/README.md).
 
@@ -97,4 +97,4 @@ To do that, send a request to
 https://api.telegram.org/bot<token>/setWebhook?url=<url>
 ```
 
-replacing `<token>` with your bot's token, and `<url>` with the full URL of your app along with the path to the webhook handler.
+replacing `<token>` with your bot token, and `<url>` with the full URL of your app along with the path to the webhook handler.

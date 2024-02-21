@@ -27,7 +27,7 @@ import { Menu } from "@grammyjs/menu";
 const bot = new Bot("");
 
 // Створюємо просте меню.
-const menu = new Menu("унікальний ідентифікатор меню")
+const menu = new Menu("ідентифікатор")
   .text("A", (ctx) => ctx.reply("Ви натиснули A!")).row()
   .text("Б", (ctx) => ctx.reply("Ви натиснули Б!"));
 
@@ -50,7 +50,7 @@ const { Menu } = require("@grammyjs/menu");
 const bot = new Bot("");
 
 // Створюємо просте меню.
-const menu = new Menu("унікальний ідентифікатор меню")
+const menu = new Menu("ідентифікатор")
   .text("A", (ctx) => ctx.reply("Ви натиснули A!")).row()
   .text("Б", (ctx) => ctx.reply("Ви натиснули Б!"));
 
@@ -73,7 +73,7 @@ import { Menu } from "https://deno.land/x/grammy_menu/mod.ts";
 const bot = new Bot("");
 
 // Створюємо просте меню.
-const menu = new Menu("унікальний ідентифікатор меню")
+const menu = new Menu("ідентифікатор")
   .text("A", (ctx) => ctx.reply("Ви натиснули A!")).row()
   .text("Б", (ctx) => ctx.reply("Ви натиснули Б!"));
 

@@ -16,29 +16,29 @@ hero:
     - обслуговано мільярди і мільярди.
     - живлений одержимістю.
   image:
-    src: /images/Y.webp
+    src: /images/Y.svg
     alt: логотип grammY
   actions:
     - theme: brand
       text: Розпочати
       link: ./guide/getting-started
     - theme: alt
-      text: Вступ
-      link: ./guide/introduction
+      text: Документація
+      link: ./guide/
 
 features:
-  - icon: <img class="VPImage" src="/icons/beach-animation.webp" alt="beach animation" width="32" height="32">
+  - icon: <lazy-tgs-player class="VPImage" src="/icons/beach-animation.tgs"><img src="/icons/beach.svg" alt="анімація пляжу"></lazy-tgs-player>
     title: Простий у використанні
     details: grammY робить створення ботів Telegram настільки простим, що ви вже знаєте, як це зробити.
-  - icon: <img class="VPImage" src="/icons/palette-animation.webp" alt="palette animation" width="32" height="32">
+  - icon: <lazy-tgs-player class="VPImage" src="/icons/palette-animation.tgs"><img src="/icons/palette.svg" alt="анімація палітри"></lazy-tgs-player>
     title: Гнучкий
     details: grammY відкритий і може бути розширений за допомогою плагінів, щоб точно відповідати вашим потребам.
-  - icon: <img class="VPImage" src="/icons/rocket-animation.webp" alt="rocket animation" width="32" height="32">
+  - icon: <lazy-tgs-player class="VPImage" src="/icons/rocket-animation.tgs"><img src="/icons/rocket.svg" alt="анімація ракети"></lazy-tgs-player>
     title: Масштабований
     details: grammY допоможе вам, коли ваш бот стане популярним і трафік зросте.
 ---
 
-<HomeContent>
+<!-- markdownlint-disable no-inline-html -->
 
 ## Швидкий старт
 
@@ -99,9 +99,8 @@ bot.start();
 
 <div style="font-size: 0.75rem; display: flex; justify-content: center;">
 
-© 2021-2023 &middot; grammY підтримує Telegram Bot API 6.7, який був [випущений](https://core.telegram.org/bots/api#april-21-2023) 21-го квітня 2023 року.
-Остання зміна: декілька псевдонімів ботів, користувацькі емодзі та кращі inline-запити.
+© 2021-2024 &middot; grammY підтримує Telegram Bot API 7.1, який був [випущений](https://core.telegram.org/bots/api#february-16-2024) 16-го лютого 2024 року.
+Остання зміна: заряди для груп.
 
 </div>
 </footer>
-</HomeContent>

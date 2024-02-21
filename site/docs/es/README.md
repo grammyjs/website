@@ -16,29 +16,29 @@ hero:
     - miles y miles de millones de peticiones.
     - impulsado por la obsesión.
   image:
-    src: /images/Y.webp
+    src: /images/Y.svg
     alt: Logotipo de grammY
   actions:
     - theme: brand
       text: Comenzar
       link: ./guide/getting-started
     - theme: alt
-      text: Introducción
-      link: ./guide/introduction
+      text: Documentación
+      link: ./guide/
 
 features:
-  - icon: <img class="VPImage" src="/icons/beach-animation.webp" alt="beach animation" width="32" height="32">
+  - icon: <lazy-tgs-player class="VPImage" src="/icons/beach-animation.tgs"><img src="/icons/beach.svg" alt="beach animation"></lazy-tgs-player>
     title: Fácil de usar
     details: grammY hace crear bots de Telegram tan simple que ya sabes como hacerlo.
-  - icon: <img class="VPImage" src="/icons/palette-animation.webp" alt="palette animation" width="32" height="32">
+  - icon: <lazy-tgs-player class="VPImage" src="/icons/palette-animation.tgs"><img src="/icons/palette.svg" alt="palette animation"></lazy-tgs-player>
     title: Flexible
     details: grammY es abierto y puede extenderse con plugins para adaptarse a tus necesidades.
-  - icon: <img class="VPImage" src="/icons/rocket-animation.webp" alt="rocket animation" width="32" height="32">
+  - icon: <lazy-tgs-player class="VPImage" src="/icons/rocket-animation.tgs"><img src="/icons/rocket.svg" alt="rocket animation"></lazy-tgs-player>
     title: Escalable
     details: grammY te tiene cubierto cuando tu bot se vuelve popular y el tráfico se incrementa.
 ---
 
-<HomeContent>
+<!-- markdownlint-disable no-inline-html -->
 
 ## Quickstart
 
@@ -100,9 +100,8 @@ bot.start();
 
 <div style="font-size: 0.75rem;  display: flex; justify-content: center;">
 
-© 2021-2023 &middot; grammY es compatible con la API 6.7 de Telegram Bot que fue [lanzada](https://core.telegram.org/bots/api#april-21-2023) el 21 de Abril del 2023.
-(Último punto destacado: varios nombres de bot, emoji personalizados y mejores consultas en línea)
+© 2021-2024 &middot; grammY soporta Telegram Bot API 7.1 que fue [liberada](https://core.telegram.org/bots/api#february-16-2024) el 16 de Febrero del 2024.
+(Última novedad: Mejoras en el chat grupal)
 
 </div>
 </footer>
-</HomeContent>

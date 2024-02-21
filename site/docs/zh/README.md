@@ -16,29 +16,29 @@ hero:
     - 已处理数十亿请求。
     - 由执念驱动。
   image:
-    src: /images/Y.webp
+    src: /images/Y.svg
     alt: grammY 徽标
   actions:
     - theme: brand
       text: 立刻开始
       link: ./guide/getting-started
     - theme: alt
-      text: 介绍
-      link: ./guide/introduction
+      text: 文档
+      link: ./guide/
 
 features:
-  - icon: <img class="VPImage" src="/icons/beach-animation.webp" alt="beach animation" width="32" height="32">
+  - icon: <lazy-tgs-player class="VPImage" src="/icons/beach-animation.tgs"><img src="/icons/beach.svg" alt="beach animation"></lazy-tgs-player>
     title: 易用
     details: grammY 使创建 Telegram Bot 变得如此简单！
-  - icon: <img class="VPImage" src="/icons/palette-animation.webp" alt="palette animation" width="32" height="32">
+  - icon: <lazy-tgs-player class="VPImage" src="/icons/palette-animation.tgs"><img src="/icons/palette.svg" alt="palette animation"></lazy-tgs-player>
     title: 灵活
     details: grammY 是开放的，通过插件让它完全适合你的需要。
-  - icon: <img class="VPImage" src="/icons/rocket-animation.webp" alt="rocket animation" width="32" height="32">
+  - icon: <lazy-tgs-player class="VPImage" src="/icons/rocket-animation.tgs"><img src="/icons/rocket.svg" alt="rocket animation"></lazy-tgs-player>
     title: 可扩展
     details: grammY 在你的 bot 拥有较多流量时提供可靠的帮助.
 ---
 
-<HomeContent>
+<!-- markdownlint-disable no-inline-html -->
 
 ## 快速开始
 
@@ -100,9 +100,8 @@ bot.start();
 
 <div style="font-size: 0.75rem; display: flex; justify-content: center;">
 
-© 2021-2023 &middot; grammY 支持 Telegram Bot API 6.7，该 API 于 2023 年 4 月 21 日 [发布](https://core.telegram.org/bots/api#april-21-2023)。
-(新增: 多个机器人名称、自定义 emoji 和更好的 inline query)
+© 2021-2024 &middot; grammY 支持 Telegram Bot API 7.1，该 API 于 2024 年 2 月 16 日 [发布](https://core.telegram.org/bots/api#february-16-2024)。
+(新增: 群组助推)
 
 </div>
 </footer>
-</HomeContent>

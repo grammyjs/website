@@ -105,7 +105,7 @@ Telegram bot 有 [三种方法](https://core.telegram.org/bots/api#sending-files
 await ctx.replyWithPhoto(existingFileId);
 
 // 通过 URL 发送
-await ctx.replyWithPhoto("https://grammy.dev/images/Y.webp");
+await ctx.replyWithPhoto("https://grammy.dev/images/grammY.png");
 
 // 或者，你可以使用 bot.api.sendPhoto() 或 ctx.api.sendPhoto()
 ```
@@ -199,22 +199,11 @@ new InputFile(function* () {
 > 请注意，Telegram 支持用许多种方法为你下载文件。
 > 如果可能，你应该选择 [通过 URL 发送文件](#通过-file-id-或者-url)，而不是使用 `InputFile` 来通过你的服务器流式传输文件内容。
 
-::: code-group
-
-```ts [Node.js]
-import { URL } from "url";
+```ts
 // 下载一个文件，并将响应的内容流转到 Telegram。
-new InputFile(new URL("https://grammy.dev/images/Y.webp"));
-new InputFile({ url: "https://grammy.dev/images/Y.webp" }); // 等价的写法
+new InputFile(new URL("https://grammy.dev/images/grammY.png"));
+new InputFile({ url: "https://grammy.dev/images/grammY.png" }); // 等价的写法
 ```
-
-```ts [Deno]
-// 下载一个文件，并将响应的内容流转到 Telegram。
-new InputFile(new URL("https://grammy.dev/images/Y.webp"));
-new InputFile({ url: "https://grammy.dev/images/Y.webp" }); // 等价的写法
-```
-
-:::
 
 ### 添加一个标题
 
@@ -222,7 +211,7 @@ new InputFile({ url: "https://grammy.dev/images/Y.webp" }); // 等价的写法
 例如，这让你可以指定文件的标题。
 
 ```ts
-// 发送一个本地文件给用户 1235，并且添加一个标题 "photo.jpg"。
+// 发送一个本地文件给用户 12345，并且添加一个标题 "photo.jpg"。
 await bot.api.sendPhoto(12345, new InputFile("/path/to/photo.jpg"), {
   caption: "photo.jpg",
 });

@@ -10,10 +10,10 @@ Esta guía te explica cómo puedes alojar tus bots de grammy en [Deno Deploy](ht
 Ten en cuenta que esta guía es solo para usuarios de Deno, y que necesitas tener una cuenta [GitHub](https://github.com) para crear una cuenta [Deno Deploy](https://deno.com/deploy).
 
 Deno Deploy es ideal para la mayoría de los bots sencillos, y debe tener en cuenta que no todas las funciones de Deno están disponibles para las aplicaciones que se ejecutan en Deno Deploy.
-Por ejemplo, la plataforma solo admite un [conjunto limitado](https://deno.com/deploy/docs/runtime-fs) de las API del sistema de archivos disponibles en Deno.
+Por ejemplo, la plataforma solo admite un [conjunto limitado](https://docs.deno.com/deploy/api/runtime-fs) de las API del sistema de archivos disponibles en Deno.
 Es como las otras muchas plataformas serverless-y-paas, pero dedicadas a las aplicaciones Deno.
 
-El resultado de este tutorial [puede verse en nuestro repositorio de bots de ejemplo](https://github.com/grammyjs/examples/tree/main/deno-deploy).
+El resultado de este tutorial [puede verse en nuestro repositorio de bots de ejemplo](https://github.com/grammyjs/examples/tree/main/setups/deno-deploy).
 
 ## Preparación de su código
 
@@ -57,7 +57,7 @@ Aquí, estamos usando el token del bot (`/<bot token>`).
 1. Crea un repositorio en GitHub, puede ser privado o público.
 2. Empuja tu código.
 
-> Es recomendable que tengas una única rama estable y que hagas tus pruebas en otras ramas, para que no te ocurran cosas inesperadas.
+   > Es recomendable que tengas una única rama estable y que hagas tus pruebas en otras ramas, para que no te ocurran cosas inesperadas.
 
 3. Visita tu [Deno Deploy dashboard](https://dash.deno.com/projects).
 4. Haz clic en "Nuevo proyecto", y ve a la sección "Despliegue desde el repositorio de GitHub".
@@ -71,12 +71,12 @@ Aquí, estamos usando el token del bot (`/<bot token>`).
 1. Visita tu [Deno Deploy dashboard](https://dash.deno.com/projects).
 2. Haz clic en "Nuevo proyecto", y luego en "Proyecto vacío".
 3. Instale [`deployctl`](https://github.com/denoland/deployctl).
-4. [Crear un token de acceso](https://dash.deno.com/user/access-tokens).
+4. [Crear un token de acceso](https://dash.deno.com/account#access-tokens).
 5. Ejecuta el siguiente comando:
 
-```sh
-deployctl deploy --project <project> ./mod.ts --prod --token <token>
-```
+   ```sh
+   deployctl deploy --project <project> ./mod.ts --prod --token <token>
+   ```
 
 6. Para configurar las acciones de Github, consulte [esto](https://github.com/denoland/deployctl/blob/main/action/README.md).
 

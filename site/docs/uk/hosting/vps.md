@@ -3,6 +3,8 @@ prev: false
 next: false
 ---
 
+<!-- markdownlint-disable no-duplicate-heading -->
+
 # Хостинг: VPS
 
 Віртуальний приватний сервер, відомий переважно як VPS, є віртуальною машиною, яка працює в хмарі, а користувачі мають повний контроль над її системою.
@@ -96,8 +98,8 @@ systemd --- це потужний менеджер служб, який пере
 # Якщо ви використовуєте Deno
 which deno
 
-# Якщо ви використовуєте Node.js
-which node
+   # Якщо ви використовуєте Node.js
+   which node
 ```
 
 2. Ви також повинні мати повний шлях до файлу, який є точкою входу вашого застосунку.
@@ -107,11 +109,11 @@ which node
 ```sh:no-line-numbers
 <повний-шлях-до-середовища-виконання> <параметри> <повний-шлях-до-файлу-входу>
 
-# Приклад для Deno:
-# /home/user/.deno/bin/deno --allow-all /home/user/bot1/mod.ts
+   # Приклад для Deno:
+   # /home/user/.deno/bin/deno --allow-all /home/user/bot1/mod.ts
 
-# Приклад для Node.js:
-# /home/user/.nvm/versions/node/v16.9.1/bin/node /home/user/bot1/index.js
+   # Приклад для Node.js:
+   # /home/user/.nvm/versions/node/v16.9.1/bin/node /home/user/bot1/index.js
 ```
 
 #### Створення служби
@@ -145,15 +147,15 @@ User=<імʼя-користувача>
 ExecStart=<команда-запуску>
 Restart=on-failure
 
-[Install]
-WantedBy=multi-user.target
+   [Install]
+   WantedBy=multi-user.target
 ```
 
 замінивши `<токен-бота>` на токен вашого бота, `<команда-запуску>` на команду, яку ви отримали [вище](#отримання-команди-запуску), а `<імʼя-користувача>` на імʼя користувача, від імені якого запускається застосунок.
 
 > Для отримання додаткової інформації про файли служб відвідайте [цей сайт](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/assembly_working-with-systemd-unit-files_configuring-basic-system-settings).
 
-4. Перезавантажуйте systemd щоразу, як ви редагуєте службу:
+3. Перезавантажуйте systemd кожного разу, коли ви редагуєте службу:
 
 ```sh:no-line-numbers
 systemctl daemon-reload

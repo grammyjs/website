@@ -55,14 +55,15 @@ Object context selalu berisi informasi tentang bot-mu, yang dapat diakses melalu
 
 Ada sejumlah shortcut yang tersedia untuk object context.
 
-| Shortcut              | Deskripsi                                                                             |
-| --------------------- | ------------------------------------------------------------------------------------- |
-| `ctx.msg`             | Mendapatkan object message, termasuk yang sudah diedit                                |
-| `ctx.chat`            | Mendapatkan object chat                                                               |
-| `ctx.senderChat`      | Mendapatkan object chat pengirim dari `ctx.msg` (untuk pesan grup/channel anonim)     |
-| `ctx.from`            | Mendapatkan informasi penulis pesan, callback query, dan lainnya                      |
-| `ctx.inlineMessageId` | Mendapatkan id pesan inline dari callback query atau hasil inline yang dipilih        |
-| `ctx.entities`        | Mendapatkan entity pesan beserta teksnya, dapat disaring berdasarkan jenis entity-nya |
+| Shortcut              | Deskripsi                                                                                  |
+| --------------------- | ------------------------------------------------------------------------------------------ |
+| `ctx.msg`             | Mendapatkan object message, termasuk yang sudah diedit                                     |
+| `ctx.chat`            | Mendapatkan object chat                                                                    |
+| `ctx.senderChat`      | Mendapatkan object chat pengirim dari `ctx.msg` (untuk pesan grup/channel anonim)          |
+| `ctx.from`            | Mendapatkan informasi penulis pesan, callback query, dan lainnya                           |
+| `ctx.inlineMessageId` | Mendapatkan id pesan inline dari callback query atau hasil inline yang dipilih             |
+| `ctx.entities`        | Mendapatkan entity pesan beserta teksnya, dapat disaring berdasarkan jenis entity-nya      |
+| `ctx.reactions`       | Mendapatkan reaksi dari suatu update [dengan mudah](./reactions#menyimak-perubahan-reaksi) |
 
 Dengan kata lain, kamu juga bisa melakukan ini:
 
@@ -90,7 +91,17 @@ bot.on("message:entities", async (ctx) => {
   // Ambil entity telepon dan email.
   const teleponDanEmail = ctx.entities(["email", "phone"]);
 });
+
+bot.on("message_reaction", (ctx) => {
+  const { emojiAdded } = ctx.reactions();
+  if (emojiAdded.includes("🎉")) {
+    await ctx.reply("Pesta!");
+  }
+});
 ```
+
+> Tertarik dengan reaksi?
+> Lompat ke [dokumentasi Reaksi](./reactions).
 
 Bahkan, jika mau, kamu bisa mengabaikan `ctx.message`, `ctx.channelPost`, `ctx.editedMessage` dan seterusnya, cukup gunakan `ctx.msg` saja.
 
@@ -101,11 +112,9 @@ Contohnya, kamu bisa memanggil `ctx.hasCommand("start")` untuk memeriksa apakah 
 Itulah kenapa method ini dinamakan _has checks_.
 
 ::: tip Kapan Waktu yang Tepat untuk Menggunakan Has Checks?
-
 Method ini menggunakan logika yang sama yang digunakan oleh `bot.command("start")`.
 Kami menyarankan kamu untuk selalu menggunakan [filter queries](./filter-queries) dan method-method lain yang serupa.
 has checks sebaiknya digunakan di [plugin conversations](../plugins/conversations).
-
 :::
 
 has checks secara tepat mengerucutkan type context terkait.
@@ -174,12 +183,12 @@ Opsi ini dapat digunakan untuk memasukkan konfigurasi lebih lanjut ke setiap pem
 ::: tip Fitur Reply Telegram
 Meskipun method ini disebut `ctx.reply` di grammY (dan juga di kebanyakan framework lainnya), ia tidak menggunakan [fitur reply dari Telegram](https://telegram.org/blog/replies-mentions-hashtags#replies) dimana pesan sebelumnya terhubung satu sama lain. Lihat [materi sebelumnya](./basics#mengirim-pesan-dengan-reply) mengenai fitur reply.
 
-Kalau kamu membaca [Referensi API Bot Telegram](https://core.telegram.org/bots/api#sendmessage), di situ terdapat sejumlah opsi, seperti `parse_mode`, `disable_web_page_preview`, dan `reply_to_message_id`.
+Kalau kamu membaca bagian `sendMessage` di [Referensi API Bot](https://core.telegram.org/bots/api#sendmessage), ia memiliki beberapa opsi yang bisa digunakan, seperti `parse_mode`, `link_preview_options`, dan `reply_parameters`.
 Nah, yang opsi terakhir ini bisa digunakan untuk membuat pesan menjadi sebuah reply:
 
 ```ts
 await ctx.reply("^ Aku me-reply pesan ini!", {
-  reply_to_message_id: ctx.msg.message_id,
+  reply_parameters: { message_id: ctx.msg.message_id },
 });
 ```
 

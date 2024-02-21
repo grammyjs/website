@@ -54,14 +54,15 @@ The context object always contains information about your bot, accessible via `c
 
 There are a number of shortcuts installed on the context object.
 
-| Shortcut              | Description                                                                         |
-| --------------------- | ----------------------------------------------------------------------------------- |
-| `ctx.msg`             | Gets the message object, also edited ones                                           |
-| `ctx.chat`            | Gets the chat object                                                                |
-| `ctx.senderChat`      | Gets the sender chat object out of `ctx.msg` (for anonymous channel/group messages) |
-| `ctx.from`            | Gets the author of the message, callback query, or other things                     |
-| `ctx.inlineMessageId` | Gets the inline message identifier for callback queries or chosen inline results    |
-| `ctx.entities`        | Gets the message entities and their text, optionally filtered by entity type        |
+| Shortcut              | Description                                                                                                          |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `ctx.msg`             | Gets the message object, also edited ones                                                                            |
+| `ctx.chat`            | Gets the chat object                                                                                                 |
+| `ctx.senderChat`      | Gets the sender chat object out of `ctx.msg` (for anonymous channel/group messages)                                  |
+| `ctx.from`            | Gets the author of the message, callback query, or other things                                                      |
+| `ctx.inlineMessageId` | Gets the inline message identifier for callback queries or chosen inline results                                     |
+| `ctx.entities`        | Gets the message entities and their text, optionally filtered by entity type                                         |
+| `ctx.reactions`       | Gets the reactions from an update in a [way that is easy to work with](./reactions#inspecting-how-reactions-changed) |
 
 In other words, you can also do this:
 
@@ -89,7 +90,16 @@ bot.on("message:entities", async (ctx) => {
   // Get phone and email entities.
   const phonesAndEmails = ctx.entities(["email", "phone"]);
 });
+
+bot.on("message_reaction", (ctx) => {
+  const { emojiAdded } = ctx.reactions();
+  if (emojiAdded.includes("🎉")) {
+    await ctx.reply("partY");
+  }
+});
 ```
+
+> Skip ahead to [Reactions](./reactions) if you are interested in them.
 
 Hence, if you want to, you can forget about `ctx.message` and `ctx.channelPost` and `ctx.editedMessage` and so on and so forth, and just always use `ctx.msg` instead.
 
@@ -100,11 +110,9 @@ For example, you can call `ctx.hasCommand("start")` to see if the context object
 This is why the methods are collectively named _has checks_.
 
 ::: tip Know When to Use Has Checks
-
 This is the exact same logic that is used by `bot.command("start")`.
 Note that you should usually use [filter queries](./filter-queries) and similar methods.
 Using has checks works best inside the [conversations plugin](../plugins/conversations).
-
 :::
 
 The has checks correctly narrow down the context type.
@@ -171,12 +179,12 @@ This can be used to pass further configuration to every API call.
 ::: tip Telegram Reply Feature
 Even though the method is called `ctx.reply` in grammY (and many other frameworks), it does not use the [reply feature of Telegram](https://telegram.org/blog/replies-mentions-hashtags#replies) where a previous message is linked.
 
-If you look up what `sendMessage` can do in the [Telegram Bot API Reference](https://core.telegram.org/bots/api#sendmessage), you will see a number of options, such as `parse_mode`, `disable_web_page_preview`, and `reply_to_message_id`.
+If you look up what `sendMessage` can do in the [Bot API Reference](https://core.telegram.org/bots/api#sendmessage), you will see a number of options, such as `parse_mode`, `link_preview_options`, and `reply_parameters`.
 The latter can be used to make a message a reply:
 
 ```ts
 await ctx.reply("^ This is a message!", {
-  reply_to_message_id: ctx.msg.message_id,
+  reply_parameters: { message_id: ctx.msg.message_id },
 });
 ```
 

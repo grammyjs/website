@@ -96,7 +96,7 @@ ______________                                   _____________
 ```
 
 > Note that in reality, no connection would be kept open for hours.
-> Long polling requests have a default timeout of 30 seconds (in order to avoid a number of [technical problems](https://datatracker.ietf.org/doc/html/draft-loreto-http-bidirectional-07#section-5.5)).
+> Long polling requests have a default timeout of 30 seconds (in order to avoid a number of [technical problems](https://datatracker.ietf.org/doc/html/rfc6202#section-5.5)).
 > If no new messages are returned after this period of time, then the request will be cancelled and resent---but the general concept stays the same.
 
 Using long polling, you don't need to spam Telegram's servers, and still you get new messages immediately!
@@ -237,23 +237,25 @@ The second parameter passed to `webhookCallback` ([API reference](https://deno.l
 Because of how this approach works, we usually need an adapter for each framework but, since some frameworks share a similiar interface, there are adapters that are known to work with multiple frameworks.
 Below is a table containing the currently available adapters, and the framework, APIs, or runtimes they are known to work with.
 
-| Adapter          | Framework/API/Runtime                                                          |
-| ---------------- | ------------------------------------------------------------------------------ |
-| `aws-lambda`     | AWS Lambda Functions                                                           |
-| `azure`          | Azure Functions                                                                |
-| `cloudflare`     | Cloudflare Workers                                                             |
-| `cloudflare-mod` | Cloudflare Module Workers                                                      |
-| `express`        | Express, Google Cloud Functions                                                |
-| `fastify`        | Fastify                                                                        |
-| `hono`           | Hono                                                                           |
-| `http`, `https`  | Node.js `http`/`https` modules, Vercel                                         |
-| `koa`            | Koa                                                                            |
-| `next-js`        | Next.js                                                                        |
-| `oak`            | Oak                                                                            |
-| `serveHttp`      | `Deno.serveHttp`                                                               |
-| `std/http`       | `Deno.serve`, `std/http`, `Deno.upgradeHttp`, `Fresh`, `Ultra`, `Rutt`, `Sift` |
-| `sveltekit`      | SvelteKit                                                                      |
-| `worktop`        | Worktop                                                                        |
+| Adapter            | Framework/API/Runtime                                                          |
+| ------------------ | ------------------------------------------------------------------------------ |
+| `aws-lambda`       | AWS Lambda Functions                                                           |
+| `aws-lambda-async` | AWS Lambda Functions with `async`/`await`                                      |
+| `azure`            | Azure Functions                                                                |
+| `cloudflare`       | Cloudflare Workers                                                             |
+| `cloudflare-mod`   | Cloudflare Module Workers                                                      |
+| `express`          | Express, Google Cloud Functions                                                |
+| `fastify`          | Fastify                                                                        |
+| `hono`             | Hono                                                                           |
+| `http`, `https`    | Node.js `http`/`https` modules, Vercel                                         |
+| `koa`              | Koa                                                                            |
+| `next-js`          | Next.js                                                                        |
+| `nhttp`            | NHttp                                                                          |
+| `oak`              | Oak                                                                            |
+| `serveHttp`        | `Deno.serveHttp`                                                               |
+| `std/http`         | `Deno.serve`, `std/http`, `Deno.upgradeHttp`, `Fresh`, `Ultra`, `Rutt`, `Sift` |
+| `sveltekit`        | SvelteKit                                                                      |
+| `worktop`          | Worktop                                                                        |
 
 ### Webhook Reply
 

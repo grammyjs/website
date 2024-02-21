@@ -1,13 +1,13 @@
 {
   "tasks": {
-    "check-links": "deno run --allow-read --allow-net https://raw.githubusercontent.com/grammyjs/link-checker/main/main.ts site/docs"
+    "check-links": "deno run -r --allow-env=GITHUB_TOKEN --allow-net --allow-read https://raw.githubusercontent.com/grammyjs/link-checker/main/website_cli.ts --clean-url site/docs"
   },
   "fmt": {
     "proseWrap": "preserve",
     "exclude": [
       "./site/node_modules/",
       "./site/docs/.vitepress/cache/",
-      "./site/docs/.vitepress/temp/",
+      "./site/docs/.vitepress/.temp/",
       "./site/docs/.vitepress/dist/",
       "./site/package-lock.json"
     ]

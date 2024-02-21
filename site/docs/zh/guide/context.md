@@ -54,14 +54,15 @@ bot.on("edited_message", async (ctx) => {
 
 在上下文对象上安装了一些快捷方式。
 
-| 快捷方式              | 描述                                                         |
-| --------------------- | ------------------------------------------------------------ |
-| `ctx.msg`             | 获取 `message` 对象，包括已编辑的信息对象                    |
-| `ctx.chat`            | 获取 `chat` 对象                                             |
-| `ctx.senderChat`      | 从 `ctx.msg` 中获取发送者聊天对象（用于匿名通道/群组消息）。 |
-| `ctx.from`            | 获取消息的作者，回调查询，或其他东西的作者                   |
-| `ctx.inlineMessageId` | 获取回调查询的内联信息标识符或选择的内联结果                 |
-| `ctx.entities`        | 获取消息实体和它们的文本，可选择通过实体类型过滤             |
+| 快捷方式              | 描述                                                                  |
+| --------------------- | --------------------------------------------------------------------- |
+| `ctx.msg`             | 获取 `message` 对象，包括已编辑的信息对象                             |
+| `ctx.chat`            | 获取 `chat` 对象                                                      |
+| `ctx.senderChat`      | 从 `ctx.msg` 中获取发送者聊天对象（用于匿名通道/群组消息）。          |
+| `ctx.from`            | 获取消息的作者，回调查询，或其他东西的作者                            |
+| `ctx.inlineMessageId` | 获取回调查询的内联信息标识符或选择的内联结果                          |
+| `ctx.entities`        | 获取消息实体和它们的文本，可选择通过实体类型过滤                      |
+| `ctx.reactions`       | [以易于使用的方式](./reactions#查看反应如何变化) 获取 update 中的反应 |
 
 换句话说，你也可以这样做：
 
@@ -70,21 +71,35 @@ bot.on("message", async (ctx) => {
   // 获取接收到的信息的文本。
   const text = ctx.msg.text;
 });
+
 bot.on("edited_message", async (ctx) => {
   // 获得新的、经过编辑的信息文本。
   const editedText = ctx.msg.text;
 });
+
 bot.on("message:entities", async (ctx) => {
   // 获取所有实体.
   const entities = ctx.entities();
+
   // 获取第一个实体的文本.
   entities[0].text;
+
   // 获取Email实体.
   const emails = ctx.entities("email");
+
   // 获取手机和Email实体.
   const phonesAndEmails = ctx.entities(["email", "phone"]);
 });
+
+bot.on("message_reaction", (ctx) => {
+  const { emojiAdded } = ctx.reactions();
+  if (emojiAdded.includes("🎉")) {
+    await ctx.reply("partY");
+  }
+});
 ```
+
+> 如果你对它们感兴趣，请直接跳至 ​​[反应](./reactions)。
 
 因此，如果你愿意，你可以忘记 `ctx.message` 和 `ctx.channelPost` 以及 `ctx.editedMessage` 等等，而只是一直使用 `ctx.msg` 来代替。
 
@@ -162,12 +177,12 @@ bot.on("message", (ctx) => ctx.reply("Gotcha!"));
 ::: tip Telegram 的回复功能
 尽管该方法在 grammY （和许多其他框架）中被称为 `ctx.reply`，但它并没有使用 [Telegram 的回复功能](https://telegram.org/blog/replies-mentions-hashtags#replies)，因为在 Telegram 中，前一条信息是被链接的。
 
-如果你在 [Telegram Bot API 参考](https://core.telegram.org/bots/api#sendmessage) 中查看 `sendMessage` 能做什么，你会看到一些选项，比如`parse_mode`，`disable_web_page_preview` 和 `reply_to_message_id`。
+如果你在 [Bot API 参考](https://core.telegram.org/bots/api#sendmessage) 中查看 `sendMessage` 能做什么，你会看到一些选项，比如`parse_mode`，`link_preview_options` 和 `reply_parameters`。
 最后的那个选项可以使一条消息成为回复：
 
 ```ts
 await ctx.reply("^ This is a message!", {
-  reply_to_message_id: ctx.msg.message_id,
+  reply_parameters: { message_id: ctx.msg.message_id },
 });
 ```
 

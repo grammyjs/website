@@ -13,7 +13,7 @@ Lista de cosas a tener en cuanta cuando vayas a alojar un bot grande.
 ## Envío de mensajes
 
 1. Envía ficheros por ruta o `Buffer` en vez de `Stream`,o al menos estate seguro de que [conoces las trampas](./transformers#casos-de-uso-de-las-funciones-de-transformacion).
-2. Usa `bot.on("callback_query:data")` como un manejador alternativo para [reaccionar a todas las consultas de devolución de llamada](../plugins/keyboard#respondiendo-a-los-clics).
+2. Usa `bot.on("callback_query:data")` como un manejador alternativo para [reaccionar a todas las consultas de devolución de llamada](../plugins/keyboard#respondiendo-a-las-pulsaciones-del-teclado-en-linea).
 3. Utilice el plugin [`auto-retry`](../plugins/auto-retry) para manejar automáticamente los errores de espera.
 
 ## Escalando servidores
@@ -49,7 +49,6 @@ Escribe tests para tu bot. Esto se puede hacer con grammY así
 2. Define y envía ejemplos de actualización a tu bot via `bot.handleUpdate` ([referencia API](https://deno.land/x/grammy/mod.ts?s=Bot#method_handleUpdate_0)). Considere inspirarse en [estos ejemplos](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates) proporcionados por el equipo de Telegram.
 
 ::: tip Contribuye al framework de testing.
-
 Aunque grammY proporciona lo necesario para empezar a escribir tests, sería muy útil tener un framework para los bots.
 Este es un territorio novedoso, tales frameworks no existen en gran medida.
 ¡Esperamos tus contribuciones!.

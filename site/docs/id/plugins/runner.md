@@ -90,11 +90,13 @@ Function constraint tidak hanya digunakan untuk menentukan identifikasi chat ata
 Contohnya, kamu bisa mengembalikan identifikasi chat serta penulis pesan tersebut dengan cara berikut:
 
 ```ts
-bot.use(sequentialize((ctx) => {
-  const chat = ctx.chat?.id.toString();
-  const user = ctx.from?.id.toString();
-  return [chat, user].filter((con) => con !== undefined);
-}));
+bot.use(
+  sequentialize((ctx) => {
+    const chat = ctx.chat?.id.toString();
+    const user = ctx.from?.id.toString();
+    return [chat, user].filter((con) => con !== undefined);
+  }),
+);
 ```
 
 Ini akan memastikan pesan yang berasal dari chat yang sama akan diproses dengan urutan yang tepat.
@@ -115,7 +117,7 @@ Kamu juga bisa menunggu runner berhenti dengan cara menunggu promise `task`---me
 ```ts
 const handle = run(bot);
 
-handle.task.then(() => {
+handle.task().then(() => {
   console.log("Bot selesai memproses!");
 });
 ```
@@ -166,7 +168,7 @@ Solusinya adalah bot workers!
 grammY runner bisa membuat beberapa workers untuk memproses update secara bersamaan (paralel) di core yang berbeda---menggunakan event loop yang berbeda serta memory yang terpisah.
 
 grammY runner menggunakan [Worker Threads](https://nodejs.org/api/worker_threads.html) di Node.js.
-Sedangkan di Deno, ia menggunakan [Web Workers](https://deno.com/manual/runtime/workers).
+Sedangkan di Deno, ia menggunakan [Web Workers](https://docs.deno.com/runtime/manual/runtime/workers).
 
 Secara konsep, grammY runner menyediakan sebuah class bernama `BotWorker` yang berfungsi untuk menangani update.
 Ia serupa dengan class `Bot` biasa, malahan ia meng-`extends` class `Bot` itu sendiri.

@@ -93,11 +93,13 @@ grammY runner 也提供了一个 `sequentialize` 中间件来实现这个目的�
 例如，你可以同时返回消息的聊天标识符和消息的用户标识符。
 
 ```ts
-bot.use(sequentialize((ctx) => {
-  const chat = ctx.chat?.id.toString();
-  const user = ctx.from?.id.toString();
-  return [chat, user].filter((con) => con !== undefined);
-}));
+bot.use(
+  sequentialize((ctx) => {
+    const chat = ctx.chat?.id.toString();
+    const user = ctx.from?.id.toString();
+    return [chat, user].filter((con) => con !== undefined);
+  }),
+);
 ```
 
 这将确保同一聊天记录中的消息被正确的排序。
@@ -117,7 +119,7 @@ grammY runner 将在运行时自动解决所有必要的约束，并在必要时
 
 ```ts
 const handle = run(bot);
-handle.task.then(() => {
+handle.task().then(() => {
   console.log("Bot done processing!");
 });
 ```
@@ -167,7 +169,7 @@ JavaScript 是单线程的。
 grammY runner 允许你创建多个 worker，它们可以在实际不同的核心（使用不同的事件循环和单独的内存）上并行处理你的 update。
 
 在 Node.js 中, grammY runner 使用 [Worker 线程](https://nodejs.org/api/worker_threads.html)。
-在 Deno 中, grammY runner 使用 [Web Workers](https://deno.com/manual/runtime/workers)。
+在 Deno 中, grammY runner 使用 [Web Workers](https://docs.deno.com/runtime/manual/runtime/workers)。
 
 从概念上讲，grammY runner 为你提供了一个名为 `BotWorker` 的类，它可以处理 update。
 它等同于常规类 `Bot`（实际上，它甚至是 `extends Bot`）。

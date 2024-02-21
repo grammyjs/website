@@ -1,7 +1,6 @@
-import type { DocSearchProps } from "node_modules/vitepress/types/docsearch";
+import type { DocSearchProps } from "node_modules/vitepress/types/docsearch.js";
 import type { LocaleConfig } from "vitepress";
-import { social } from "../../shared/vars";
-import type { NotFound } from "../../shared/types";
+import { social } from "../../shared/vars.js";
 
 const learnGuide = {
   text: "Guide",
@@ -38,6 +37,10 @@ const learnGuide = {
     {
       text: "Commands",
       link: "/guide/commands",
+    },
+    {
+      text: "Reactions",
+      link: "/guide/reactions",
     },
     {
       text: "Middleware",
@@ -341,6 +344,10 @@ const hostingTutorials = {
       link: "/hosting/vercel",
     },
     {
+      text: "Cyclic",
+      link: "/hosting/cyclic",
+    },
+    {
       text: "Virtual Private Server",
       link: "/hosting/vps",
     },
@@ -456,6 +463,19 @@ export const siteEn: LocaleConfig = {
           ariaLabel: "grammY repository link",
         },
       ],
+      notFound: {
+        code: "404",
+        title: "PAGE NOT FOUND",
+        linkText: "Take me hoooooooome",
+        linkLabel: "Go to home",
+        messages: [
+          "Not Found",
+          "Nope.",
+          "nothin' here for ya, sorry",
+          "Error 404 \nThis Page Could Not Be Found But \nA Haiku Instead",
+          "Country rooooaaaads,",
+        ],
+      },
     },
   },
 };
@@ -505,20 +525,5 @@ export const searchEn: Record<string, Partial<DocSearchProps>> = {
         },
       },
     },
-  },
-};
-
-export const notFoundEn: Record<string, NotFound> = {
-  root: {
-    title: "PAGE NOT FOUND",
-    backToHome: "Take me hoooooooome",
-    ariaLabel: "Go to home",
-    messages: [
-      "Not Found",
-      "Nope.",
-      "nothin' here for ya, sorry",
-      "Error 404 \nThis Page Could Not Be Found But \nA Haiku Instead",
-      "Country rooooaaaads,",
-    ],
   },
 };

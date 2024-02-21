@@ -74,7 +74,7 @@ _冰淇淋时间又到了！
 接着等待。_
 
 _直到在下一个日出之前的几个小时，当地一家外卖公司的卡车来了，把几个大箱子送到大厅旁的储藏室。
-他们在里面交谈着有关 _冰淇淋_ 的事情。
+他们在里面交谈着有关 **冰淇淋** 的事情。
 终于，服务员动了起来！
 "我们当然有咸焦糖种类的，
 两勺带糖的，老样子?"_
@@ -97,7 +97,7 @@ ______________                                     _____________
 ```
 
 > 请注意，在现实中，没有连接将保持数小时。
-> 长轮询请求的默认超时时间为 30 秒（为了避免一些 [技术问题](https://datatracker.ietf.org/doc/html/draft-loreto-http-bidirectional-07#section-5.5)）
+> 长轮询请求的默认超时时间为 30 秒（为了避免一些 [技术问题](https://datatracker.ietf.org/doc/html/rfc6202#section-5.5)）
 > 如果在这段时间之后没有返回任何新消息，那么请求将被取消并重新执行，但总体信息保持不变。
 
 使用长轮询，你不需要污染 Telegram 的服务器，你仍然可以立即得到新的信息！
@@ -238,23 +238,25 @@ app.use(webhookCallback(bot, "oak"));
 由于这种方法的工作方式，我们通常需要为每个框架配备一个适配器，但是，由于某些框架共享相似的接口，因此已知适配器可以与多个框架一起工作。
 下表包含当前可用的适配器，以及它们已知可使用的框架、API 或运行时。
 
-| 适配器           | 框架/API/运行时                                                                |
-| ---------------- | ------------------------------------------------------------------------------ |
-| `aws-lambda`     | AWS Lambda Functions                                                           |
-| `azure`          | Azure Functions                                                                |
-| `cloudflare`     | Cloudflare Workers (Service Worker)                                            |
-| `cloudflare-mod` | Cloudflare Workers (Module Worker)                                             |
-| `express`        | Express, Google Cloud Functions                                                |
-| `fastify`        | Fastify                                                                        |
-| `hono`           | Hono                                                                           |
-| `http`, `https`  | Node.js `http`/`https` modules, Vercel                                         |
-| `koa`            | Koa                                                                            |
-| `next-js`        | Next.js                                                                        |
-| `oak`            | Oak                                                                            |
-| `serveHttp`      | `Deno.serveHttp`                                                               |
-| `std/http`       | `Deno.serve`, `std/http`, `Deno.upgradeHttp`, `Fresh`, `Ultra`, `Rutt`, `Sift` |
-| `sveltekit`      | SvelteKit                                                                      |
-| `worktop`        | Worktop                                                                        |
+| 适配器             | 框架/API/运行时                                                                |
+| ------------------ | ------------------------------------------------------------------------------ |
+| `aws-lambda`       | AWS Lambda Functions                                                           |
+| `aws-lambda-async` | AWS Lambda Functions with `async`/`await`                                      |
+| `azure`            | Azure Functions                                                                |
+| `cloudflare`       | Cloudflare Workers (Service Worker)                                            |
+| `cloudflare-mod`   | Cloudflare Workers (Module Worker)                                             |
+| `express`          | Express, Google Cloud Functions                                                |
+| `fastify`          | Fastify                                                                        |
+| `hono`             | Hono                                                                           |
+| `http`, `https`    | Node.js `http`/`https` modules, Vercel                                         |
+| `koa`              | Koa                                                                            |
+| `next-js`          | Next.js                                                                        |
+| `nhttp`            | NHttp                                                                          |
+| `oak`              | Oak                                                                            |
+| `serveHttp`        | `Deno.serveHttp`                                                               |
+| `std/http`         | `Deno.serve`, `std/http`, `Deno.upgradeHttp`, `Fresh`, `Ultra`, `Rutt`, `Sift` |
+| `sveltekit`        | SvelteKit                                                                      |
+| `worktop`          | Worktop                                                                        |
 
 ### Webhook Reply
 

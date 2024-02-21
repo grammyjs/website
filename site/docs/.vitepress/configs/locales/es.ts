@@ -1,7 +1,6 @@
-import type { DocSearchProps } from "node_modules/vitepress/types/docsearch";
+import type { DocSearchProps } from "node_modules/vitepress/types/docsearch.js";
 import type { LocaleConfig } from "vitepress";
-import { social } from "../../shared/vars";
-import type { NotFound } from "../../shared/types";
+import { social } from "../../shared/vars.js";
 
 const learnGuide = {
   text: "Guía",
@@ -34,6 +33,10 @@ const learnGuide = {
     {
       text: "Filtrar consultas y bot.on()",
       link: "/es/guide/filter-queries",
+    },
+    {
+      text: "Reacciones",
+      link: "/es/guide/reactions",
     },
     {
       text: "Comandos",
@@ -337,6 +340,10 @@ const hostingTutorials = {
       link: "/es/hosting/vercel",
     },
     {
+      text: "Cyclic",
+      link: "/es/hosting/cyclic",
+    },
+    {
       text: "Servidor Privado Virtual",
       link: "/es/hosting/vps",
     },
@@ -448,6 +455,19 @@ export const siteEs: LocaleConfig = {
           ariaLabel: "grammY repository link",
         },
       ],
+      notFound: {
+        code: "404",
+        title: "PAGE NOT FOUND",
+        linkText: "Llévame a casa",
+        linkLabel: "Go to home",
+        messages: [
+          "¡Uy! Esta página no existe",
+          "Nop.",
+          "Nada aquí para ti, lo siento",
+          "Error 404 \n¡Houston, tenemos un problema!",
+          "Vuelveeeee, vuelve a casaaaaa, por navidad",
+        ],
+      },
     },
   },
 };
@@ -499,20 +519,5 @@ export const searchEs: Record<string, Partial<DocSearchProps>> = {
         },
       },
     },
-  },
-};
-
-export const notFoundEs: Record<string, NotFound> = {
-  es: {
-    title: "PAGE NOT FOUND",
-    backToHome: "Llévame a casa",
-    ariaLabel: "Go to home",
-    messages: [
-      "¡Uy! Esta página no existe",
-      "Nop.",
-      "Nada aquí para ti, lo siento",
-      "Error 404 \n¡Houston, tenemos un problema!",
-      "Vuelveeeee, vuelve a casaaaaa, por navidad",
-    ],
   },
 };

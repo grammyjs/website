@@ -1,7 +1,6 @@
-import type { DocSearchProps } from "node_modules/vitepress/types/docsearch";
+import type { DocSearchProps } from "node_modules/vitepress/types/docsearch.js";
 import type { LocaleConfig } from "vitepress";
-import { social } from "../../shared/vars";
-import type { NotFound } from "../../shared/types";
+import { social } from "../../shared/vars.js";
 
 const learnGuide = {
   text: "Посібник",
@@ -38,6 +37,10 @@ const learnGuide = {
     {
       text: "Команди",
       link: "/uk/guide/commands",
+    },
+    {
+      text: "Реакції",
+      link: "/uk/guide/reactions",
     },
     {
       text: "Проміжні обробники",
@@ -341,6 +344,10 @@ const hostingTutorials = {
       link: "/uk/hosting/vercel",
     },
     {
+      text: "Cyclic",
+      link: "/uk/hosting/cyclic",
+    },
+    {
       text: "Віртуальний приватний сервер",
       link: "/uk/hosting/vps",
     },
@@ -426,7 +433,7 @@ export const siteUk: LocaleConfig = {
       },
       outline: {
         level: [2, 6],
-        label: "On this page",
+        label: "На цій сторінці",
       },
       editLink: {
         text: "Редагувати цю сторінку на GitHub",
@@ -434,24 +441,37 @@ export const siteUk: LocaleConfig = {
           "https://github.com/grammyjs/website/edit/main/site/docs/:path",
       },
       lastUpdatedText: "Востаннє оновлено",
-      darkModeSwitchLabel: "Appearance", // only displayed in the mobile view.
-      sidebarMenuLabel: "Menu", // only displayed in the mobile view.
-      returnToTopLabel: "Return to top", // only displayed in the mobile view.
-      langMenuLabel: "Change language", // Aria-label
+      darkModeSwitchLabel: "Вигляд", // only displayed in the mobile view.
+      sidebarMenuLabel: "Меню", // only displayed in the mobile view.
+      returnToTopLabel: "До гори", // only displayed in the mobile view.
+      langMenuLabel: "Змінити мову", // Aria-label
       socialLinks: [
         {
           link: social.telegram.link,
           icon: {
             svg: social.telegram.icon,
           },
-          ariaLabel: "grammY Telegram group link",
+          ariaLabel: "Посилання на групу Telegram grammY",
         },
         {
           link: social.github.link,
           icon: social.github.icon,
-          ariaLabel: "grammY repository link",
+          ariaLabel: "Посилання на репозиторій grammY",
         },
       ],
+      notFound: {
+        code: "404",
+        title: "PAGE NOT FOUND",
+        linkText: "Ніколи не забувайте, звідки ви",
+        linkLabel: "Повернутися на головну",
+        messages: [
+          "Не знайдено",
+          "Тут для тебе нічого немає, вибач.",
+          "Error 404 \nЦю сторінку не вдалося знайти.",
+          "Загубилась, як кит у пустелі.",
+          "Знайшлося все, окрім розуму...",
+        ],
+      },
     },
   },
 };
@@ -502,20 +522,5 @@ export const searchUk: Record<string, Partial<DocSearchProps>> = {
         },
       },
     },
-  },
-};
-
-export const notFoundUk: Record<string, NotFound> = {
-  uk: {
-    title: "PAGE NOT FOUND",
-    backToHome: "Ніколи не забувайте, звідки ви",
-    ariaLabel: "Go to home",
-    messages: [
-      "Не знайдено",
-      "Тут для тебе нічого немає, вибач.",
-      "Error 404 \nЦю сторінку не вдалося знайти.",
-      "Загубилась, як кит у пустелі.",
-      "Знайшлося все, окрім розуму...",
-    ],
   },
 };

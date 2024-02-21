@@ -3,6 +3,8 @@ prev: false
 next: false
 ---
 
+<!-- markdownlint-disable no-duplicate-heading -->
+
 # Hosting: VPS
 
 A virtual private server, mostly known as VPS, is a virtual machine running in the cloud with its users having full control over the system.
@@ -129,23 +131,23 @@ which node
 
 3. Your start command should look like the following:
 
-```sh
-<full_runtime_path> <options> <full_entry_file_path>
+   ```sh
+   <full_runtime_path> <options> <full_entry_file_path>
 
-# Deno example:
-# /home/user/.deno/bin/deno --allow-all /home/user/bot1/mod.ts
+   # Deno example:
+   # /home/user/.deno/bin/deno --allow-all /home/user/bot1/mod.ts
 
-# Node.js example:
-# /home/user/.nvm/versions/node/v16.9.1/bin/node /home/user/bot1/index.js
-```
+   # Node.js example:
+   # /home/user/.nvm/versions/node/v16.9.1/bin/node /home/user/bot1/index.js
+   ```
 
 #### Creating the Service
 
 1. Go to the services directory:
 
-```sh
-cd /etc/systemd/system
-```
+   ```sh
+   cd /etc/systemd/system
+   ```
 
 2. Open your new service file with an editor:
 
@@ -168,8 +170,8 @@ Environment=BOT_TOKEN=<token>
 ExecStart=<start-command>
 Restart=on-failure
 
-[Install]
-WantedBy=multi-user.target
+   [Install]
+   WantedBy=multi-user.target
 ```
 
 > Replace `<token>` with your bot's token, `<start-command>` with the command you received [above](#getting-the-start-command), and `<username>` with the name of the user on whose behalf the app is being started.
@@ -188,9 +190,9 @@ A small explanation of the service configuration:
 
 4. Reload systemd whenever you edit the service:
 
-```sh
-systemctl daemon-reload
-```
+   ```sh
+   systemctl daemon-reload
+   ```
 
 #### Managing the Service
 

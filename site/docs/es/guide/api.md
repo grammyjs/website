@@ -20,7 +20,7 @@ De forma análoga, cada vez que un usuario responde, se realiza el camino invers
 
 ::: tip Rludir los límites de tamaño de los archivos
 El backend de Telegram permite a tu bot [enviar archivos](./files) de hasta 2000 MB.
-Sin embargo, el servidor de la API del bot que se encarga de traducir las peticiones a HTTP restringe el tamaño de los archivos a 50 MB para las descargas y 20 MB para las subidas.
+Sin embargo, el servidor de la API del bot que se encarga de traducir las peticiones a HTTP restringe el tamaño de los archivos a 20 MB para las descargas y 50 MB para las subidas.
 
 Por lo tanto, si evitas el servidor Bot API que Telegram ejecuta por ti, y simplemente [alojas tu propio servidor Bot API](https://core.telegram.org/bots/api#using-a-local-bot-api-server), puedes permitir que tu bot envíe archivos de hasta 2000 MB.
 
@@ -109,11 +109,9 @@ Ajusta tu `tsconfig.json` en consecuencia y añade la línea resaltada:
 En algunos casos, esto también puede funcionar sin ajustar la configuración de TypeScript.
 
 ::: warning Autocompletar incorrecto
-
 Si no cambias tu archivo `tsconfig.json` como se ha descrito anteriormente, puede ocurrir que tu editor de código sugiera en el autocompletado importar tipos de `grammy/out/client` o algo así.
 **Todas las rutas que comienzan con `grammy/out` son internas. No las utilices.
 Podrían cambiarse arbitrariamente en cualquier momento, por lo que te aconsejamos encarecidamente que importes desde `grammy/types` en su lugar.
-
 :::
 
 ### Haciendo llamadas a la API en bruto

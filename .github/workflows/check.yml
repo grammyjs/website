@@ -10,23 +10,38 @@ jobs:
   fmt:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - uses: denoland/setup-deno@main
         with:
-          deno-version: v1.x
+          deno-version: "1.40.5"
 
       - name: Check Formatting
         run: deno fmt --check
 
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: latest
+
+      - name: Check Linting
+        working-directory: ./site
+        run: |
+          npm ci
+          npm run docs:lint
+
   links:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - uses: denoland/setup-deno@main
         with:
-          deno-version: v1.x
+          deno-version: "1.40.5"
 
       - name: Check Links
         if: github.ref == 'refs/heads/main'
