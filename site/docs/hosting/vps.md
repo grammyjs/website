@@ -115,17 +115,17 @@ systemd is a powerful service manager which is pre-installed on many Linux distr
 
 1. Get the full path of your runtime:
 
-::: code-group
+   ::: code-group
 
-```sh [Deno]
-which deno
-```
+   ```sh [Deno]
+   which deno
+   ```
 
-```sh [Node.js]
-which node
-```
+   ```sh [Node.js]
+   which node
+   ```
 
-:::
+   :::
 
 2. You should have the full path of your entry file, too.
 
@@ -151,42 +151,41 @@ which node
 
 2. Open your new service file with an editor:
 
-```sh
-nano <app-name>.service
-```
+   ```sh
+   nano <app-name>.service
+   ```
 
-> Replace `<app-name>` with any identifier.
-
-> `<app-name>.service` will be the name of your service.
+   > Replace `<app-name>` with any identifier.
+   > `<app-name>.service` will be the name of your service.
 
 3. Add the following content:
 
-```text
-[Unit]
-After=network.target
+   ```text
+   [Unit]
+   After=network.target
 
-[Service]
-Environment=BOT_TOKEN=<token>
-ExecStart=<start-command>
-Restart=on-failure
+   [Service]
+   Environment=BOT_TOKEN=<token>
+   ExecStart=<start-command>
+   Restart=on-failure
 
-   [Install]
-   WantedBy=multi-user.target
-```
+      [Install]
+      WantedBy=multi-user.target
+   ```
 
-> Replace `<token>` with your bot's token, `<start-command>` with the command you received [above](#getting-the-start-command), and `<username>` with the name of the user on whose behalf the app is being started.
+   > Replace `<token>` with your bot's token, `<start-command>` with the command you received [above](#getting-the-start-command), and `<username>` with the name of the user on whose behalf the app is being started.
 
-A small explanation of the service configuration:
+   A small explanation of the service configuration:
 
-- `After=network.target` --- indicates that the application should be launched after the Internet module is loaded.
-- `Environment=BOT_TOKEN=<token>` --- sets the environment variable.
-  Add new `Environment` if you need multiple environment variables.
-- `ExecStart=<start-command>` --- sets the startup command.
-- `Restart=on-failure` --- indicates that the application should restart after a crash.
-- `WantedBy=multi-user.target` --- defines the system state in which the service should be launched.
-  `multi-user.target` --- is a typical value for servers that defines the state of the system when everything works except the graphical interface, which simply does not exist.
+   - `After=network.target` --- indicates that the application should be launched after the Internet module is loaded.
+   - `Environment=BOT_TOKEN=<token>` --- sets the environment variable.
+     Add new `Environment` if you need multiple environment variables.
+   - `ExecStart=<start-command>` --- sets the startup command.
+   - `Restart=on-failure` --- indicates that the application should restart after a crash.
+   - `WantedBy=multi-user.target` --- defines the system state in which the service should be launched.
+     `multi-user.target` --- is a typical value for servers that defines the state of the system when everything works except the graphical interface, which simply does not exist.
 
-> For more information on the unit files, read [this](https://access.redhat.com/documentation/te-in/red_hat_enterprise_linux/9/html/using_systemd_unit_files_to_customize_and_optimize_your_system/assembly_working-with-systemd-unit-files_working-with-systemd).
+   > For more information on the unit files, read [this](https://access.redhat.com/documentation/te-in/red_hat_enterprise_linux/9/html/using_systemd_unit_files_to_customize_and_optimize_your_system/assembly_working-with-systemd-unit-files_working-with-systemd).
 
 4. Reload systemd whenever you edit the service:
 
