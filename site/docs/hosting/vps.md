@@ -7,13 +7,13 @@ next: false
 
 # Hosting: VPS
 
-A virtual private server, mostly known as VPS, is a virtual machine running in the cloud with its users having full control over the system.
+A virtual private server, mostly known as VPS, is a virtual machine running in the cloud with its users having full control over its system.
 
 ## Server Rental
 
-> You need to rent a VPS in order to follow this guide.
+> To be able to follow this guide, you first need to rent a VPS.
 > This first section will explain how to do that.
-> If you already have a VPS to work on, skip [down](#starting-the-bot).
+> If you already have a VPS to work on, skip to the [next section](#starting-the-bot).
 
 We choose [Hostinger](https://hostinger.com) as our host.
 
@@ -25,10 +25,10 @@ We choose [Hostinger](https://hostinger.com) as our host.
 ::: tip Analog of a Server
 If you cannot or do not want to rent a server but you still want to play around with running a bot on a VPS, you can follow this tutorial on a virtual machine instead.
 To do this, use an application such as [VirtualBox](https://virtualbox.org).
-Create a virtual machine with the desired Linux distribution and use it as a real server.
+Create a virtual machine with the desired Linux distribution to simulate a Linux server.
 :::
 
-Go to the [VPS tariff catalog](https://hostinger.com/vps-hosting).
+Go to the [VPS Hosting page](https://hostinger.com/vps-hosting).
 We will use the "KVM 1" plan.
 The resources of "KVM 1" are enough for bots with a large audience, and even more so for our test bot.
 
@@ -42,12 +42,12 @@ You probably don't need it, so you can start by renting a server for a month, wh
 In any case, Hostinger provides a 30-day money-back guarantee.
 :::
 
-After payment, you will be able to set up your server:
+After making your payment, you will be able to setup your server:
 
 1. **Location.**
    We recommend that you choose the location closest to Amsterdam.
-   It is in Amsterdam that the Telegram server is located, which is responsible for ensuring the operation of bots.
-   If you use your own Bot API server, choose the location closest to it instead.
+   This is because that the main Bot API server is located there.
+   If you use your own Bot API server, choose the closest location to it instead.
 2. **Server type.**
    Choose the option "Clean OS."
 3. **Operating system.**
@@ -169,17 +169,17 @@ systemd is a powerful service manager which is pre-installed on many Linux distr
    ExecStart=<start-command>
    Restart=on-failure
 
-      [Install]
-      WantedBy=multi-user.target
+   [Install]
+   WantedBy=multi-user.target
    ```
 
    > Replace `<token>` with your bot's token, `<start-command>` with the command you received [above](#getting-the-start-command), and `<username>` with the name of the user on whose behalf the app is being started.
 
-   A small explanation of the service configuration:
+   Here is a brief explanation of the service configuration:
 
    - `After=network.target` --- indicates that the application should be launched after the Internet module is loaded.
-   - `Environment=BOT_TOKEN=<token>` --- sets the environment variable.
-     Add new `Environment` if you need multiple environment variables.
+   - `Environment=BOT_TOKEN=<token>` --- sets the environment variable `BOT_TOKEN`.
+     Add other `Environment` entries if you need multiple environment variables.
    - `ExecStart=<start-command>` --- sets the startup command.
    - `Restart=on-failure` --- indicates that the application should restart after a crash.
    - `WantedBy=multi-user.target` --- defines the system state in which the service should be launched.
@@ -202,7 +202,7 @@ systemd is a powerful service manager which is pre-installed on many Linux distr
 systemctl start <service-name>
 
 # To view the service logs
-systemctl status <service-name>
+journalctl -u <service-name>
 
 # To restart the service
 systemctl restart <service-name>
@@ -561,7 +561,7 @@ Note that the **public** key can be located on many servers, and the **private**
 
 You can now connect to the server without having to enter a password.
 
-### Example Scripts
+### Example Workflows
 
 #### Node.js (GitHub)
 
