@@ -1,9 +1,8 @@
 import { withBase } from "vitepress";
-import { lookup } from "mrmime";
 import { useData } from "vitepress";
-import { isExternal } from "./shared.js";
-export function throttleAndDebounce(fn: () => void, delay: number | undefined) {
-  let timeoutId: string | number | NodeJS.Timeout | undefined;
+import { isExternal, treatAsHtml } from "./shared.js";
+export function throttleAndDebounce(fn, delay) {
+  let timeoutId;
   let called = false;
   return () => {
     if (timeoutId) {
@@ -17,16 +16,16 @@ export function throttleAndDebounce(fn: () => void, delay: number | undefined) {
     }
   };
 }
-export function ensureStartingSlash(path: string) {
+export function ensureStartingSlash(path) {
   return /^\//.test(path) ? path : `/${path}`;
 }
-export function normalizeLink(url: string) {
+export function normalizeLink(url) {
   const { pathname, search, hash, protocol } = new URL(url, "http://a.com");
   if (
     isExternal(url) ||
     url.startsWith("#") ||
     !protocol.startsWith("http") ||
-    (/\.(?!html|md)\w+($|\?)/i.test(url) && lookup(url))
+    !treatAsHtml(pathname)
   ) {
     return url;
   }

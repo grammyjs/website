@@ -13,9 +13,6 @@
     "composite": true,
     "module": "NodeNext",
     "resolveJsonModule": true,
-    "types": [
-      "node"
-    ],
     "paths": {
       "node_modules/*": [
         "node_modules/*"
