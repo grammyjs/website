@@ -32,7 +32,6 @@ No, it's not.
 You can't.
 
 Telegram does not store the messages for your bot.
-There is no way to obtain the data, because it is not there.
 
 Instead, you need to wait for new messages/channel posts to arrive, and store the messages in your database.
 You can then load the chat history from your database.
