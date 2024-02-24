@@ -485,7 +485,7 @@ For the bot to work, make the configuration look like this:
 
 > Replace `<domain>` with your domain and `<token>` with your bot token.
 
-Reload Caddy every time as a site configuration file using the following command:
+Reload Caddy every time you change the site's configuration file using the following command:
 
 ```sh
 systemctl reload caddy
