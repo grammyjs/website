@@ -67,6 +67,7 @@ next: false
 
 | Назва         | Мін. ціна   | Пінг до Bot API                           | Найдешевший план                   |
 | ------------- | ----------- | ----------------------------------------- | ---------------------------------- |
+| Hostinger     | $14         |                                           | 1 vCPU, 4 ГБ RAM, 50 ГБ SSD, 1 ТБ  |
 | Contabo       |             | 15 мс :de: NureМБerg                      |                                    |
 | DigitalOcean  | 5 $         | 1-15 мс :netherlands: AMS, 19 мс :de: FRA | 1 vCPU, 1 ГБ RAM, 25 ГБ SSD, 1 ТБ  |
 | Hetzner Cloud | 4.15 €      | ~42 мс :de:                               | 1 vCPU, 2 ГБ RAM, 20 ГБ SSD, 20 ТБ |
