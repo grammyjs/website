@@ -755,7 +755,7 @@ Deploy:
 
 where `<target-directory>` is replaced with the name of the directory where the bot build is stored on the server, and `<start-command>` with the command to start your bot, which can for example be a call to `pm2` or `systemctl`.
 
-This script sends files to the server using the `rsync` utility, which is implemented by `easingthemes/ssh-deploy`.
+This script sends files to the server using `rsync`, which has to be installed previously.
 After the files are copied, we connect to the server using SSH to restart the bot.
 
 Note that you need to add three [environment variables](https://docs.gitlab.com/ee/ci/variables):
