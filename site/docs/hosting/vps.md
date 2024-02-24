@@ -756,13 +756,12 @@ Deploy:
 where `<target-directory>` is replaced with the name of the directory where the bot build is stored on the server, and `<start-command>` with the command to start your bot, which can for example be a call to `pm2` or `systemctl`.
 
 This script sends files to the server using the `rsync` utility, which is implemented by `easingthemes/ssh-deploy`.
-After the files are delivered to the server, the command described in the `SCRIPT_AFTER` environment variable is executed.
-In our case, after the files are delivered, we go to the bot's directory and restart the bot.
+After the files are copied, we connect to the server using SSH to restart the bot.
 
 Note that you need to add three [environment variables](https://docs.gitlab.com/ee/ci/variables):
 
 1. `SSH_PRIVATE_KEY`---this is where the private SSH key you created in the [previous step](#ssh-keys) should be stored.
-2. `REMOTE_HOST`---the IP address of your server should be stored here
+2. `REMOTE_HOST`---the IP address of your server should be stored here.
 3. `REMOTE_USER`---the name of the user on whose behalf the bot is launched should be stored here.
 
 You should now see how every code push to the `main` branch will automatically be deployed to your VPS.
