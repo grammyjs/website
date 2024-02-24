@@ -32,7 +32,7 @@ Go to the [VPS Hosting page](https://hostinger.com/vps-hosting).
 We will use the "KVM 1" plan.
 The resources of "KVM 1" are enough for bots with a large audience, and even more so for our test bot.
 
-Go back to the "KVM 1" card and click the "Add to cart" button.
+Click the "Add to cart" button.
 You will be automatically redirected to the checkout page, where you will also immediately register with Hostinger.
 
 ::: warning Change the Rental Term!
@@ -102,7 +102,7 @@ scp <path-to-local-files> root@<ip-address>:<path-to-remote-directory>
 :::tip Don't forget to install the runtime!
 To run the bot, you need to install Node.js or Deno on the server, depending on the runtime in which the bot will run.
 This is beyond the scope of this article, so you will need to do it yourself.
-You probably already did this when [getting started](../guide/getting-started.md), so you should be familiar with the steps. :wink:
+You probably already did this when [getting started](../guide/getting-started), so you should be familiar with the steps. :wink:
 :::
 
 Below are two ways you can keep your bot running smoothly: using [systemd](#systemd) or [PM2](#pm2).
@@ -280,16 +280,16 @@ pm2 start
 # To apply the action to all applications, specify `all`.
 
 # To restart the app
-pm2 restart <<app-name>>
+pm2 restart <app-name>
 
 # To reload the app
-pm2 reload <<app-name>>
+pm2 reload <app-name>
 
 # To stop the app
-pm2 stop <<app-name>>
+pm2 stop <app-name>
 
 # To delete an app
-pm2 delete <<app-name>>
+pm2 delete <app-name>
 ```
 
 #### Saving the Application Operation
@@ -630,7 +630,7 @@ In our case, after the files are delivered, we go to the bot directory, where we
 Note that you need to add three [secret environment variables](https://docs.github.com/en/actions/security-guides/encrypted-secrets):
 
 1. `SSH_PRIVATE_KEY`---this is where the private SSH key you created in the [previous step](#ssh-keys) should be stored.
-2. `REMOTE_HOST`---the IP address of your server should be stored here
+2. `REMOTE_HOST`---the IP address of your server should be stored here.
 3. `REMOTE_USER`---the name of the user on whose behalf the bot is launched should be stored here.
 
 #### Node.js (GitLab)
@@ -679,7 +679,7 @@ After the files are delivered, we connect to the server using SSH to run a comma
 Note that you need to add three [environment variables](https://docs.gitlab.com/ee/ci/variables):
 
 1. `SSH_PRIVATE_KEY`---this is where the private SSH key you created in the [previous step](#ssh-keys) should be stored.
-2. `REMOTE_HOST`---the IP address of your server should be stored here
+2. `REMOTE_HOST`---the IP address of your server should be stored here.
 3. `REMOTE_USER`---the name of the user on whose behalf the bot is launched should be stored here.
 
 #### Deno (GitHub)
@@ -724,7 +724,7 @@ In our case, after the files are delivered, we go to the bot's directory and res
 Note that you need to add three [secret environment variables](https://docs.github.com/en/actions/security-guides/encrypted-secrets):
 
 1. `SSH_PRIVATE_KEY`---this is where the private SSH key you created in the [previous step](#ssh-keys) should be stored.
-2. `REMOTE_HOST`---the IP address of your server should be stored here
+2. `REMOTE_HOST`---the IP address of your server should be stored here.
 3. `REMOTE_USER`---the name of the user on whose behalf the bot is launched should be stored here.
 
 #### Deno (GitLab)
