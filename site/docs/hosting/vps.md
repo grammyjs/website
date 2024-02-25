@@ -12,10 +12,10 @@ A virtual private server, mostly known as VPS, is a virtual machine running in t
 ## Server Rental
 
 > To be able to follow this guide, you first need to rent a VPS.
-> This first section will explain how to do that.
+> This section will explain how to do that.
 > If you already have a VPS to work on, skip to the [next section](#starting-the-bot).
 
-We choose [Hostinger](https://hostinger.com) as our host.
+In this guide, we will use the services of [Hostinger](https://hostinger.com).
 
 > You are free to choose the provider of your choice.
 > All providers provide the same services, so you won't have any problems with the technical part of this article.
@@ -36,7 +36,7 @@ Click the "Add to cart" button.
 You will be automatically redirected to the checkout page, where you will also immediately register with Hostinger.
 
 ::: warning Change the Rental Term!
-The typical lease term is 1 year (a marketing ploy), and it costs a lot of money.
+The typical lease term is 1-2 year (a marketing ploy), and it costs a lot of money.
 You probably don't need it, so you can start by renting a server for a month, which is much cheaper.
 
 In any case, Hostinger provides a 30-day money-back guarantee.
@@ -46,7 +46,7 @@ After making your payment, you will be able to setup your server:
 
 1. **Location.**
    We recommend that you choose the location closest to Amsterdam.
-   This is because that the main Bot API server is located there.
+   The main Bot API server is located in Amsterdam.
    If you use your own Bot API server, choose the closest location to it instead.
 2. **Server type.**
    Choose the option "Clean OS."
@@ -183,7 +183,7 @@ systemd is a powerful service manager which is pre-installed on many Linux distr
    - `ExecStart=<start-command>` --- sets the startup command.
    - `Restart=on-failure` --- indicates that the application should restart after a crash.
    - `WantedBy=multi-user.target` --- defines the system state in which the service should be launched.
-     `multi-user.target` --- is a typical value for servers that defines the state of the system when everything works except the graphical interface, which simply does not exist.
+     `multi-user.target` --- is a typical value for servers.
 
    > For more information on the unit files, read [this](https://access.redhat.com/documentation/te-in/red_hat_enterprise_linux/9/html/using_systemd_unit_files_to_customize_and_optimize_your_system/assembly_working-with-systemd-unit-files_working-with-systemd).
 
@@ -221,8 +221,8 @@ systemctl disable <service-name>
 
 [PM2](https://pm2.keymetrics.io) is a daemon process manager for Node.js that will help you manage and keep your app online 24/7.
 
-> PM2 is designed specifically to run applications written in Node.js.
-> However, it can also be used to run applications written in other languages or for other frameworks.
+> PM2 is designed specifically to manage applications written in Node.js.
+> However, it can also be used to manage applications written in other languages or runtimes.
 
 #### Installing
 
@@ -252,7 +252,7 @@ PM2 offers two ways to create an application:
 The first method is convenient when getting to know PM2.
 However, during deployment, you should use the second method, which is what we did in our case.
 
-On our server, in the directory where the bot assembly is stored, there is a file `ecosystem.config.js` with the following contents:
+Create a `ecosystem.config.js` file on the server in the directory where the bot build is stored with the following content:
 
 ```js
 module.exports = {
@@ -263,7 +263,7 @@ module.exports = {
 };
 ```
 
-where `<app-name>` can be any identifier, and `<start command>` must be the actual command to start the bot, for example, `node bot.js` or `npm run start`, etc.
+> Replace `<app-name>` with any identifier and `<start command>` with the command to start the bot.
 
 #### Managing the Application
 
@@ -424,9 +424,11 @@ Multiple web servers cannot run on the same machine at the same time.
 For Caddy to work, you need to stop and shut down another web server:
 
 ```sh
-systemctl stop apache2
-systemctl disable apache2
+systemctl stop <service-name>
+systemctl disable <service-name>
 ```
+
+> Replace `service-name` with the name of the web server service that is interfering with Caddy.
 
 :::
 
@@ -477,13 +479,11 @@ For the bot to work, make the configuration look like this:
 
 ```text
 <domain> {
-  root * /usr/share/caddy
-  file_server
-  reverse_proxy /<token> localhost:8000
+  reverse_proxy /<token> localhost:<port>
 }
 ```
 
-> Replace `<domain>` with your domain and `<token>` with your bot token.
+> Replace `<domain>` with your domain, `<token>` with your bot token, and `<port>` with the port on which you want to run your bot.
 
 Reload Caddy every time you change the site's configuration file using the following command:
 
@@ -491,7 +491,7 @@ Reload Caddy every time you change the site's configuration file using the follo
 systemctl reload caddy
 ```
 
-Now all requests to the address `https://<domain>/<token>` will be redirected to the address `http://localhost:8000/<token>`, where the bot's webhook is running.
+Now all requests to the address `https://<domain>/<token>` will be redirected to the address `http://localhost:<port>/<token>`, where the bot's webhook is running.
 
 #### Connecting a Webhook to Telegram
 
@@ -515,8 +515,8 @@ You can easily adapt the examples below to your CI/CD service of choice, such as
 :::tip Self-hosted Runner
 GitHub and GitLab offer a certain amount of resources for free to complete your tasks.
 However, when setting up your pipeline, you may quickly use them all up, which will require you to pay money for additional resources or the tasks will not run.
-To prevent this from happening, we recommend installing a self-hosted runner on your computer so that tasks run on your computer.
-This way, you'll get rid of the limits and be able to run pipelines of any complexity and capacity (almost).
+To prevent this from happening, we recommend installing a self-hosted runner on your server so that tasks run on your server.
+This way, you'll get rid of the limits and be able to run pipelines of any complexity (everything will depend only on the capacity of your server).
 :::
 
 ### SSH Keys
@@ -547,7 +547,6 @@ ssh-keygen -t ed25519
 
 This command will generate a public and private key of the type and format you want for GitHub and GitLab.
 You can also specify a custom key name if you wish.
-Note that you should skip the fingerprint generation step (just press `Enter`).
 
 Next, send the **public** key to the server:
 
