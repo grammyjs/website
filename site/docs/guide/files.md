@@ -32,8 +32,8 @@ You cannot reliably use a `file_id` from your friend's bot, to access a file wit
 Each bot will use different identifiers for the same file.
 This implies that you cannot simply guess a `file_id` and access some random person's file, because Telegram keeps track of which `file_id`s are valid for your bot.
 
-::: warning Using Foreign file_ids
-Note that in some cases it _is_ technically possible that a `file_id` from another bot seems to work correctly.
+::: warning Using Foreign file*ids
+Note that in some cases it \_is* technically possible that a `file_id` from another bot seems to work correctly.
 **However**, using a foreign `file_id` like this is dangerous as it can stop working at any time, without warning.
 So, always ensure that any `file_id`s you use were originally for your bot.
 :::
@@ -72,6 +72,9 @@ If you want to get a different file while handling a message, use `ctx.api.getFi
 > Check out the [`:media` and `:file` shortcuts](./filter-queries#shortcuts) for filter queries if you want to receive any kind of file.
 
 Once you have called `getFile`, you can use the returned `file_path` to download the file using this URL `https://api.telegram.org/file/bot<token>/<file_path>`, where `<token>` must be replaced by your bot token.
+
+If you [run your own Bot API server](./api#running-a-local-bot-api-server), the `file_path` will instead be an absolutely file path that points to a file on your local disk.
+In that case, you do not need to download anything anymore, as the Bot API server downloads the file for you when calling `getFile`.
 
 ::: tip Files Plugin
 grammY does not come bundled with its own file downloader, but you can install the [official files plugin](../plugins/files).
@@ -225,10 +228,8 @@ grammY itself can send files without any size limits, however, Telegram restrict
 This means that your bot cannot download files larger than 20 MB, or upload files larger than 50 MB.
 Some combinations have even stricter limits, such as photos sent by URL (5 MB).
 
-If you want to support uploading and downloading files up to 2000 MB (maximum file size on Telegram), you must host your own Bot API server in addition to hosting your bot.
-Refer to the official documentation about this [here](https://core.telegram.org/bots/api#using-a-local-bot-api-server).
+As mentioned in an [earlier section](./api), your bot is able to work with large files with some extra effort.
+If you want to support uploading files up to 2000 MB (maximum file size on Telegram) and downloading files of any size ([4000 MB with Telegram Premium](https://t.me/premium/5)), you must [host your own Bot API server](./api#running-a-local-bot-api-server) in addition to hosting your bot.
 
 Hosting your own Bot API server has, in and of itself, nothing to do with grammY.
 However, grammY supports all of the methods that are needed to configure your bot to use your own Bot API Server.
-
-Also, you may want to revisit an earlier chapter of this guide about the setup of the Bot API [here](./api).
