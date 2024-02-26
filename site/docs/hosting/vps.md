@@ -189,7 +189,7 @@ systemd is a powerful service manager which is pre-installed on many Linux distr
    WantedBy=multi-user.target
    ```
 
-   > Replace `<token>` with your bot's token and `<start-command>` with the command you received [above](#getting-the-start-command).
+   Replace `<token>` with your bot's token and `<start-command>` with the command you received [above](#getting-the-start-command).
 
    Here is a brief explanation of the service configuration:
 
