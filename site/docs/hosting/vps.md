@@ -7,7 +7,7 @@ next: false
 
 # Hosting: VPS
 
-A virtual private server, mostly known as VPS, is a virtual machine running in the cloud with its users having full control over its system.
+A virtual private server, mostly known as VPS, is a virtual machine running in the cloud with you, the developer, having full control over the system.
 
 ## Server Rental
 
