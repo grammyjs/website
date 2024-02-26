@@ -231,7 +231,9 @@ systemctl enable <service-name>
 
 # To disable service startup when the server boots
 systemctl disable <service-name>
-```
+\```
+
+Starting the service should now launch your bot!
 
 ### PM2
 
