@@ -42,7 +42,7 @@ You probably don't need it, so you can start by renting a server for a month, wh
 In any case, Hostinger provides a 30-day money-back guarantee.
 :::
 
-After making your payment, you will be able to setup your server:
+After making your payment, you will be able to set up your server:
 
 1. **Location.**
    We recommend that you choose the location closest to Amsterdam.
