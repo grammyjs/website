@@ -101,7 +101,7 @@ scp -r <path-to-local-project-root> root@<ip-address>:<path-to-remote-directory>
 
 Replace `<path-to-local-project-root>` with the path to the project directory on your local disk, `<ip-address>` with the IP address of your server, and `<path-to-remote-directory>` with the path to the directory where the bot's source code should be stored on the server.
 
-You should now be able to open a remote terminal on your VPS by starting an SSH session.
+As mentioned above, you should now be able to open a remote terminal on your VPS by starting an SSH session.
 
 ```sh
 ssh root@<ip-address>
