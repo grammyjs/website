@@ -97,7 +97,21 @@ For now, you can copy local files to a remote server using the following command
 scp <path-to-local-files> root@<ip-address>:<path-to-remote-directory>
 ```
 
-> Replace `<path-to-local-files>` with the path to local files, `<ip-address>` with the IP address of your server, and `<path-to-remote-directory>` with the path to the directory where the bot's source code should be stored on the server.
+Replace `<path-to-local-files>` with the path to local files, `<ip-address>` with the IP address of your server, and `<path-to-remote-directory>` with the path to the directory where the bot's source code should be stored on the server.
+
+You should now be able to open a remote terminal on your VPS by starting an SSH session.
+
+```sh
+ssh root@<ip-address>
+\```
+
+Note how your command prompt changes.
+This indicates that you are now connected to the remote machine.
+Every command you type will be run on your VPS.
+Try running `ls` to confirm that you have successfully copied over your source files.
+
+The remainder of this page will assume that you are able to connect to your VPS.
+All following commands need to be run in an SSH session.
 
 :::tip Don't forget to install the runtime!
 To run the bot, you need to install Node.js or Deno on the server, depending on the runtime in which the bot will run.
