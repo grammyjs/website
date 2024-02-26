@@ -125,7 +125,7 @@ Below are two ways you can keep your bot running smoothly: using [systemd](#syst
 
 ### systemd
 
-systemd is a powerful service manager which is pre-installed on many Linux distributions, mainly Debian-based ones.
+systemd is a powerful service manager which is pre-installed on many Linux distributions, mainly Debian-based ones such as Ubuntu.
 
 #### Getting the Start Command
 
