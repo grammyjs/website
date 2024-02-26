@@ -128,7 +128,7 @@ systemd is a powerful service manager which is pre-installed on many Linux distr
 
 #### Getting the Start Command
 
-1. Get the absolute path of your runtime:
+1. Get the absolute path to your runtime:
 
    ::: code-group
 
@@ -142,7 +142,7 @@ systemd is a powerful service manager which is pre-installed on many Linux distr
 
    :::
 
-2. You should have the absolute path of your entry file, too.
+2. You should have the absolute path to your entry file, too.
 
 3. Your start command should look like the following:
 
