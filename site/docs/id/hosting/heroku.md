@@ -119,7 +119,7 @@ Sekarang, buat `app.ts` di dalam folder `src`, lalu masukkan kode berikut ke dal
 ```ts
 import express from "express";
 import { webhookCallback } from "grammy";
-import { bot } from "./bot";
+import { bot } from "./bot.js";
 
 const domain = String(process.env.DOMAIN);
 const secretPath = String(process.env.BOT_TOKEN);
