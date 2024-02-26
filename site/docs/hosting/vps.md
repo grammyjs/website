@@ -239,7 +239,7 @@ Starting the service should now launch your bot!
 
 [PM2](https://pm2.keymetrics.io) is a daemon process manager for Node.js that will help you manage and keep your app online 24/7.
 
-> PM2 is designed specifically to manage applications written in Node.js.
+PM2 is designed specifically to manage applications written in Node.js.
 > However, it can also be used to manage applications written in other languages or runtimes.
 
 #### Installing
