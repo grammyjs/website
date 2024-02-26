@@ -91,13 +91,14 @@ We now have a server at our disposal where we can run the bot to keep it running
 
 To simplify the beginning of the article, we skipped the step of delivering the code to the server automatically each time after pushing your code, but it is described [below](#ci-cd).
 
-For now, you can copy local files to a remote server using the following command:
+For now, you can copy local files to a remote server using the following command.
+Note that `-r` copies recursively, so you only need to specify the root directory of your project:
 
 ```sh
-scp <path-to-local-files> root@<ip-address>:<path-to-remote-directory>
+scp -r <path-to-local-project-root> root@<ip-address>:<path-to-remote-directory>
 ```
 
-Replace `<path-to-local-files>` with the path to local files, `<ip-address>` with the IP address of your server, and `<path-to-remote-directory>` with the path to the directory where the bot's source code should be stored on the server.
+Replace `<path-to-local-project-root>` with the path to the project directory on your local disk, `<ip-address>` with the IP address of your server, and `<path-to-remote-directory>` with the path to the directory where the bot's source code should be stored on the server.
 
 You should now be able to open a remote terminal on your VPS by starting an SSH session.
 
