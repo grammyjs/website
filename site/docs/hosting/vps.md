@@ -569,7 +569,7 @@ Next, send the **public** key to the server:
 ssh-copy-id -i <key-name>.pub root@<ip-address>
 ```
 
-> Replace `<key-name>` with the name of the generated key and `<ip-address>` with the IP address of your server.
+Replace `<key-name>` with the name of the generated key and `<ip-address>` with the IP address of your server.
 
 Note that the **public** key can be located on many servers, and the **private** key should be only with you and GitHub or GitLab.
 
