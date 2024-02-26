@@ -128,7 +128,7 @@ systemd is a powerful service manager which is pre-installed on many Linux distr
 
 #### Getting the Start Command
 
-1. Get the full path of your runtime:
+1. Get the absolute path of your runtime:
 
    ::: code-group
 
@@ -142,12 +142,12 @@ systemd is a powerful service manager which is pre-installed on many Linux distr
 
    :::
 
-2. You should have the full path of your entry file, too.
+2. You should have the absolute path of your entry file, too.
 
 3. Your start command should look like the following:
 
    ```sh
-   <full_runtime_path> <options> <full_entry_file_path>
+   <runtime_path> <options> <entry_file_path>
 
    # Deno example:
    # /home/user/.deno/bin/deno --allow-all /home/user/bot1/mod.ts
