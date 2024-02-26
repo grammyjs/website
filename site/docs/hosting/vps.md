@@ -517,7 +517,7 @@ To do this, open your browser and visit the page at the following link:
 https://api.telegram.org/bot<token>/setWebhook?url=https://<domain>/<token>
 ```
 
-> Replace `<token>` with your bot token and `<domain>` with your domain.
+Replace `<token>` with your bot token and `<domain>` with your domain.
 
 ## CI/CD
 
