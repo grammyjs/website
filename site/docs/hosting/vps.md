@@ -104,7 +104,7 @@ You should now be able to open a remote terminal on your VPS by starting an SSH 
 
 ```sh
 ssh root@<ip-address>
-\```
+```
 
 Note how your command prompt changes.
 This indicates that you are now connected to the remote machine.
