@@ -79,7 +79,7 @@ This is beyond the scope of this article, so you'll have to configure it yoursel
 
 ::: tip Separate User for Each Application
 In this guide, all actions with the server will be performed as the root user.
-This is done on purpose to simplify the material.
+This is done on purpose to simplify this guide.
 However, in reality, the root user should only be responsible for general services (web server, database, etc.), and applications should be run by individual non-root users.
 This approach ensures the security of confidential data and prevents hacking of the entire system.
 At the same time, it imposes some inconveniences.
