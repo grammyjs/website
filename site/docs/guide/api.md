@@ -201,7 +201,11 @@ However, there might be an even better place to run your bot, although this take
 
 [Remember](#general-information) that the Bot API server does not actually contain your bot.
 It only relays requests, translates between HTTP and MTProto, and so on.
-The Bot API server may be in Amsterdam, but the Telegram servers are distributed across three locations: Amsterdam, Miami, and Singapore.
+The Bot API server may be in Amsterdam, but the Telegram servers are distributed across three different locations:
+
+- Amsterdam, Netherlands
+- Miami, Florida, United States
+- Singapore
 
 Thus, when the Bot API server sends a request to the Telegram servers, it may have to send data halfway around the globe.
 Whether or not this happens depends on the data center of the bot itself.
