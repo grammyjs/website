@@ -54,6 +54,7 @@ After making your payment, you will be able to set up your server:
    We will use Ubuntu 22.04.
    If you choose a different system, some steps may be different, so be careful.
 4. **Server name.**
+   Pick any name you like.
 5. **Root password.**
    Make a strong password and keep it in a safe place!
 6. **SSH key**.
