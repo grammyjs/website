@@ -499,7 +499,7 @@ For the bot to work, make the configuration look like this:
 }
 ```
 
-> Replace `<domain>` with your domain, `<token>` with your bot token, and `<port>` with the port on which you want to run your bot.
+Replace `<domain>` with your domain, `<token>` with your bot token, and `<port>` with the port on which you want to run your bot.
 
 Reload Caddy every time you change the site's configuration file using the following command:
 
