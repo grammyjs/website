@@ -68,7 +68,7 @@ After the server is created, you can connect to it using SSH:
 ssh root@<ip-address>
 ```
 
-> Replace `<ip-address>` with the IP address of your server which you can find on the server management page.
+Replace `<ip-address>` with the IP address of your server which you can find on the server management page.
 
 ::: tip Configuring SSH
 It can be difficult and tedious to remember which IP address and whose name you need to connect to a server.
