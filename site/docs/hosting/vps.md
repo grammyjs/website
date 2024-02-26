@@ -240,7 +240,7 @@ Starting the service should now launch your bot!
 [PM2](https://pm2.keymetrics.io) is a daemon process manager for Node.js that will help you manage and keep your app online 24/7.
 
 PM2 is designed specifically to manage applications written in Node.js.
-> However, it can also be used to manage applications written in other languages or runtimes.
+However, it can also be used to manage applications written in other languages or runtimes.
 
 #### Installing
 
@@ -281,7 +281,7 @@ module.exports = {
 };
 ```
 
-> Replace `<app-name>` with any identifier and `<start command>` with the command to start the bot.
+Replace `<app-name>` with any identifier and `<start command>` with the command to start the bot.
 
 #### Managing the Application
 
@@ -401,7 +401,7 @@ Edit this record by changing the IP address in the "Points to" field to the IP a
 Next, find and delete the record of type `CNAME` with the name `www`.
 Instead, create a new record of type `A` with the name `www`, pointing to the IP address of your VPS, and set the TTL to 3600.
 
-> If you run into problems, use the other method described in [knowledge base](https://support.hostinger.com/en/articles/1583227-how-to-point-domain-to-your-vps).
+> If you run into problems, use the other method described in the [knowledge base](https://support.hostinger.com/en/articles/1583227-how-to-point-domain-to-your-vps).
 
 ### Setting up a Web Server
 
@@ -418,7 +418,7 @@ However, you are free to choose any web server you want.
 
 #### Installation
 
-The following 5 commands will download and automatically start Caddy as a systemd service called `caddy`.
+The following five commands will download and automatically start Caddy as a systemd service called `caddy`.
 
 ```sh
 apt install -y debian-keyring debian-archive-keyring apt-transport-https curl
@@ -446,7 +446,7 @@ systemctl stop <service-name>
 systemctl disable <service-name>
 ```
 
-> Replace `service-name` with the name of the web server service that is interfering with Caddy.
+Replace `service-name` with the name of the web server service that is interfering with Caddy.
 
 :::
 
