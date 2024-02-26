@@ -527,13 +527,6 @@ This guide covers almost all of the [CI/CD pipeline](https://about.gitlab.com/to
 We will focus on writing scripts for GitHub and GitLab.
 You can easily adapt the examples below to your CI/CD service of choice, such as Jenkins, Buddy, etc., if needed.
 
-:::tip Self-hosted Runner
-GitHub and GitLab offer a certain amount of resources for free to complete your tasks.
-However, when setting up your pipeline, you may quickly use them all up, which will require you to pay money for additional resources or the tasks will not run.
-To prevent this from happening, we recommend installing a self-hosted runner on your server so that tasks run on your server.
-This way, you'll get rid of the limits and be able to run pipelines of any complexity (everything will depend only on the capacity of your server).
-:::
-
 ### SSH Keys
 
 To deliver files to the server, you need to set up passwordless authentication, which is implemented using SSH keys.
