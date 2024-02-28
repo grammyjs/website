@@ -67,7 +67,7 @@ next: false
 
 | Назва         | Мін. ціна   | Пінг до Bot API                           | Найдешевший план                   |
 | ------------- | ----------- | ----------------------------------------- | ---------------------------------- |
-| Contabo       |             | 15 мс :de: NureМБerg                      |                                    |
+| Contabo       |             | 15 мс :de: Nuremberg                      |                                    |
 | DigitalOcean  | 5 $         | 1-15 мс :netherlands: AMS, 19 мс :de: FRA | 1 vCPU, 1 ГБ RAM, 25 ГБ SSD, 1 ТБ  |
 | Hetzner Cloud | 4.15 €      | ~42 мс :de:                               | 1 vCPU, 2 ГБ RAM, 20 ГБ SSD, 20 ТБ |
 | IONOS VPS     | 1 € або 2 $ | 15 мс :de: Baden-Baden                    | 1 vCPU, 0.5 ГБ RAM, 8 ГБ SSD       |
