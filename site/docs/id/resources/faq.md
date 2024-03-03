@@ -44,7 +44,8 @@ Tidak bisa ... setidaknya tidak seperti yang kamu bayangkan.
 
 Album --- _yang mana merupakan bagian dari kelompok media (media group)_ --- sebenarnya berasal dari tampilan UI aplikasi Telegram.
 Di sisi lain, bot menangani kelompok media sebagai runtutan pesan, alih-alih sebagai satu-kesatuan.
-Cara yang paling praktis untuk mengatasinya adalah dengan menganggap kelompok media tersebut tidak pernah ada, sehingga kamu perlu menulis bot dengan pola pikir tiap pesan sebagai individu, bukan kelompok.
+Cara yang paling praktis untuk mengatasinya adalah mengabaikan keberadaan kelompok media tersebut.
+Artinya, kita menulis bot dengan menganggap setiap pesan sebagai individu, bukan kelompok.
 Dengan begitu, album akan bekerja dengan sendirinya.
 Contohnya, kamu bisa meminta user untuk [menekan sebuah tombol](../plugins/keyboard.md#keyboard-inline) atau mengirim `/done` ketika semua berkas sudah diunggah ke bot kamu.
 
