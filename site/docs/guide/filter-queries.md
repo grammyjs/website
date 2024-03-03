@@ -351,4 +351,4 @@ Every part will be mapped to a function that performs a single `in` check, or tw
 These functions are then combined to form a predicate that only has to check for as many values as are relevant for the query, without iterating over the object keys of `Update`.
 
 This system uses less operations than some competing libraries, which need to perform containment checks in arrays when routing updates.
-grammY's filter query system is much more powerful.
+grammY's filter query system is faster despite being much more powerful.
