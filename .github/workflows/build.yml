@@ -9,11 +9,11 @@ on:
   push:
     branches: [main]
     paths:
-      - "site/docs/**"
+      - "site/**"
   pull_request:
     types: ["opened", "edited", "synchronize"]
     paths:
-      - "site/docs/**"
+      - "site/**"
 
 jobs:
   build:

@@ -24,6 +24,10 @@ to = "/:splat/plugins/inline-query.html"
 status = 301
 
 [[redirects]]
+from = "/ref"
+to = "https://deno.land/x/grammy/mod.ts"
+
+[[redirects]]
 from = "/es/*"
 to = "/es/404.html"
 
