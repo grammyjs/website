@@ -350,4 +350,5 @@ Al iniciarse, grammY deriva una función de predicado de la consulta de filtro d
 Cada parte se asigna a una función que realiza una única comprobación `in`, o dos comprobaciones si la parte se omite y hay que comprobar dos valores.
 Estas funciones se combinan entonces para formar un predicado que sólo tiene que comprobar tantos valores como sean relevantes para la consulta, sin iterar sobre las claves del objeto `Update`.
 
-Este sistema utiliza menos operaciones que algunas bibliotecas de la competencia, que necesitan realizar comprobaciones de contención en arrays cuando se enrutan las actualizaciones. El sistema de consulta de filtros de grammY es mucho más potente.
+Este sistema utiliza menos operaciones que algunas bibliotecas de la competencia, que necesitan realizar comprobaciones de contención en arrays cuando se enrutan las actualizaciones.
+El sistema de consulta de filtros de grammY es más rápido a pesar de ser mucho más potente.

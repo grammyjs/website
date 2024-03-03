@@ -354,4 +354,4 @@ Setiap komponen akan di-map ke sebuah function yang mengerjakan satu pemeriksaan
 Function-function ini kemudian disatukan untuk membentuk sebuah predicate yang akan memeriksa sebanyak mungkin value yang relevan untuk query, tanpa melakukan proses perulangan terhadap key object `Update`.
 
 Sistem ini menggunakan lebih sedikit operasi dibandingkan dengan beberapa library lainnya, dimana dibutuhkan beberapa pengecekan array ketika melakukan routing update.
-Dengan demikian, sistem filter query grammY jauh lebih unggul.
+Ini membuat sistem filter query grammY selain lebih unggul juga jauh lebih cepat.
