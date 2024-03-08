@@ -33,7 +33,7 @@ Kita akan memilih paket "KVM 1".
 Sumber daya yang disediakan oleh "KVM 1" cukup sesuai untuk bot dengan jumlah pengguna yang masif, apalagi hanya untuk mengetes bot.
 
 Klik tombol "Add to cart".
-Kamu kemudian akan diarahkan ke halaman checkout dan dibuatkan sebuah akun Hostinger secara otomatis.
+Kamu nanti akan diarahkan ke halaman checkout dan akun Hostinger-mu akan dibuat secara otomatis.
 
 ::: warning Ubah Jangka Waktu Sewa!
 Jangka waktu penyewaan umumnya berkisar antara 1-2 tahun (taktik pemasaran) yang biayanya sangat mahal.
