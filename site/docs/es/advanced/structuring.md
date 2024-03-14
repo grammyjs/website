@@ -117,4 +117,4 @@ bot.callbackQuery("query-data", callbackQueryMiddleware);
 
 :::
 
-Echa un vistazo a la [referencia API de alias de tipo](https://deno.land/x/grammy/mod.ts#Type_Aliases) para ver un resumen de todos los alias de tipo que exporta grammY.
+Echa un vistazo a la [referencia API de alias de tipo](/ref/core/#type-aliases) para ver un resumen de todos los alias de tipo que exporta grammY.

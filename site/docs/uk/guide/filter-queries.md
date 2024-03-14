@@ -308,7 +308,7 @@ function handler(ctx: Filter<Context, ":text">) {
 bot.on(":text", handler);
 ```
 
-> Перегляньте довідку API для [`matchFilter`](https://deno.land/x/grammy/mod.ts?s=matchFilter), [`Filter`](https://deno.land/x/grammy/mod.ts?s=Filter) і [`FilterQuery`](https://deno.land/x/grammy/mod.ts?s=FilterQuery) для продовження читання.
+> Перегляньте довідку API для [`matchFilter`](/ref/core/matchFilter), [`Filter`](/ref/core/Filter) і [`FilterQuery`](/ref/core/FilterQuery) для продовження читання.
 
 ## Мова запитів
 

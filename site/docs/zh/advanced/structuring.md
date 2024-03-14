@@ -116,4 +116,4 @@ bot.callbackQuery("query-data", callbackQueryMiddleware);
 
 :::
 
-阅读 [类型别名 API 参考](https://deno.land/x/grammy/mod.ts#Type_Aliases) 以查看 grammY 导出的所有类型别名。
+阅读 [类型别名 API 参考](/ref/core/#type-aliases) 以查看 grammY 导出的所有类型别名。

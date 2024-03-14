@@ -63,7 +63,7 @@ allowed_updates: API_CONSTANTS.ALL_UPDATE_TYPES;
 ```
 
 para recibir todas las actualizaciones.
-Asegúrese de consultar la [referencia API](https://deno.land/x/grammy/mod.ts?s=ApiConstants#prop_ALL_UPDATE_TYPES).
+Asegúrese de consultar la [referencia API](/ref/core/ApiConstantsALL_UPDATE_TYPES).
 :::
 
 [grammY runner](../plugins/runner#opciones-avanzadas) y `setWebhook` tienen formas similares de especificar `allowed_updates`.

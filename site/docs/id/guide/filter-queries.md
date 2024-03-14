@@ -311,7 +311,7 @@ function handler(ctx: Filter<Context, ":text">) {
 bot.on(":text", handler);
 ```
 
-> Lihat referensi API untuk [`matchFilter`](https://deno.land/x/grammy/mod.ts?s=matchFilter), [`Filter`](https://deno.land/x/grammy/mod.ts?s=Filter), dan [`FilterQuery`](https://deno.land/x/grammy/mod.ts?s=FilterQuery).
+> Lihat referensi API untuk [`matchFilter`](/ref/core/matchFilter), [`Filter`](/ref/core/Filter), dan [`FilterQuery`](/ref/core/FilterQuery).
 
 ## Bahasa Query
 
