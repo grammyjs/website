@@ -133,6 +133,7 @@ export const modules: ModuleConfig[] = [
     user: "roziscoding",
     repo: "grammy-autoquote",
     slug: "autoquote",
+    entrypoint: "mod.ts",
     name: "Autoquote Plugin",
     description: desc(
       "the [autoquote plugin](/plugins/autoquote)",
