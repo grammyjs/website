@@ -120,16 +120,6 @@ export const modules: ModuleConfig[] = [
     ),
   },
   {
-    repo: "auto-retry",
-    slug: "auto-retry",
-    entrypoint: "src/index.ts",
-    name: "Auto Retry",
-    description: desc(
-      "the [auto retry plugin](/plugins/auto-retry)",
-      "the auto retry plugin",
-    ),
-  },
-  {
     repo: "i18n",
     slug: "i18n",
     name: "Internationalization Plugin",
