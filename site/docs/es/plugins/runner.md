@@ -94,11 +94,13 @@ En su lugar, puede devolver _una lista de cadenas de identificadores de restricc
 Por ejemplo, podría devolver tanto el identificador de chat como el identificador de usuario del autor del mensaje.
 
 ```ts
-bot.use(sequentialize((ctx) => {
-  const chat = ctx.chat?.id.toString();
-  const user = ctx.from?.id.toString();
-  return [chat, user].filter((con) => con !== undefined);
-}));
+bot.use(
+  sequentialize((ctx) => {
+    const chat = ctx.chat?.id.toString();
+    const user = ctx.from?.id.toString();
+    return [chat, user].filter((con) => con !== undefined);
+  }),
+);
 ```
 
 Esto aseguraría que los mensajes en el mismo chat se ordenen correctamente.
@@ -118,7 +120,7 @@ Ten en cuenta que puedes esperar a que el runner `await` la `task` en el [`Runne
 
 ```ts
 const handle = run(bot);
-handle.task.then(() => {
+handle.task().then(() => {
   console.log("¡Procesamiento de Bot hecho!");
 });
 ```

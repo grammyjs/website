@@ -43,7 +43,7 @@ const bot = new Bot(""); // subclass of `Composer`
 const composer = new Composer();
 bot.use(composer);
 
-// These will be ran:
+// These will be run:
 composer.use(/* A */);
 composer.use(/* B */);
 composer.use(/* C */);

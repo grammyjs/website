@@ -13,7 +13,7 @@ Lista de cosas a tener en cuanta cuando vayas a alojar un bot grande.
 ## Envío de mensajes
 
 1. Envía ficheros por ruta o `Buffer` en vez de `Stream`,o al menos estate seguro de que [conoces las trampas](./transformers#casos-de-uso-de-las-funciones-de-transformacion).
-2. Usa `bot.on("callback_query:data")` como un manejador alternativo para [reaccionar a todas las consultas de devolución de llamada](../plugins/keyboard#respondiendo-a-los-clics).
+2. Usa `bot.on("callback_query:data")` como un manejador alternativo para [reaccionar a todas las consultas de devolución de llamada](../plugins/keyboard#respondiendo-a-las-pulsaciones-del-teclado-en-linea).
 3. Utilice el plugin [`auto-retry`](../plugins/auto-retry) para manejar automáticamente los errores de espera.
 
 ## Escalando servidores

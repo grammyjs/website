@@ -90,11 +90,13 @@ Function constraint tidak hanya digunakan untuk menentukan identifikasi chat ata
 Contohnya, kamu bisa mengembalikan identifikasi chat serta penulis pesan tersebut dengan cara berikut:
 
 ```ts
-bot.use(sequentialize((ctx) => {
-  const chat = ctx.chat?.id.toString();
-  const user = ctx.from?.id.toString();
-  return [chat, user].filter((con) => con !== undefined);
-}));
+bot.use(
+  sequentialize((ctx) => {
+    const chat = ctx.chat?.id.toString();
+    const user = ctx.from?.id.toString();
+    return [chat, user].filter((con) => con !== undefined);
+  }),
+);
 ```
 
 Ini akan memastikan pesan yang berasal dari chat yang sama akan diproses dengan urutan yang tepat.
@@ -115,7 +117,7 @@ Kamu juga bisa menunggu runner berhenti dengan cara menunggu promise `task`---me
 ```ts
 const handle = run(bot);
 
-handle.task.then(() => {
+handle.task().then(() => {
   console.log("Bot selesai memproses!");
 });
 ```

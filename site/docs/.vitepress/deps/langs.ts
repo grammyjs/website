@@ -1,6 +1,7 @@
 import { computed } from "vue";
-import { useData } from "vitepress";
 import { ensureStartingSlash } from "./utils.js";
+import { useData } from "vitepress";
+import { hashRef } from "./hash.js";
 export function useLangs(
   { removeCurrent = true, correspondingLink = false } = {},
 ) {
@@ -19,13 +20,12 @@ export function useLangs(
           theme.value.i18nRouting !== false && correspondingLink,
           page.value.relativePath.slice(currentLang.value.link.length - 1),
           !site.value.cleanUrls,
-        ),
+        ) + hashRef.value,
       }
     )
   );
   return { localeLinks, currentLang };
 }
-// @ts-ignore
 function normalizeLink(link, addPath, path, addExt) {
   return addPath
     ? link.replace(/\/$/, "") +

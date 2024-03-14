@@ -92,13 +92,13 @@ async function load() {
       const { login, name, avatar_url, html_url } = await res.json();
       contributor.login = login;
       contributor.href = html_url;
-      contributor.name = name;
+      contributor.name = name ?? login;
       contributor.photo = avatar_url + "&size=64";
     } catch (error) {
       // Fallback. Use the old details.
       contributor.login = contributor_.login;
       contributor.href = `https://github.com/${contributor_.login}`;
-      contributor.name = contributor_.name;
+      contributor.name = contributor_.name ?? contributor_.login;
       contributor.photo = contributor_.avatar_url + "&size=64";
     }
     

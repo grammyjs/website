@@ -93,11 +93,13 @@ grammY runner 也提供了一个 `sequentialize` 中间件来实现这个目的�
 例如，你可以同时返回消息的聊天标识符和消息的用户标识符。
 
 ```ts
-bot.use(sequentialize((ctx) => {
-  const chat = ctx.chat?.id.toString();
-  const user = ctx.from?.id.toString();
-  return [chat, user].filter((con) => con !== undefined);
-}));
+bot.use(
+  sequentialize((ctx) => {
+    const chat = ctx.chat?.id.toString();
+    const user = ctx.from?.id.toString();
+    return [chat, user].filter((con) => con !== undefined);
+  }),
+);
 ```
 
 这将确保同一聊天记录中的消息被正确的排序。
@@ -117,7 +119,7 @@ grammY runner 将在运行时自动解决所有必要的约束，并在必要时
 
 ```ts
 const handle = run(bot);
-handle.task.then(() => {
+handle.task().then(() => {
   console.log("Bot done processing!");
 });
 ```

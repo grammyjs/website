@@ -10,7 +10,7 @@ next: false
 ## Структура проєкту
 
 Єдиною передумовою для початку роботи з **Vercel Serverless Functions** є переміщення вашого коду до каталогу `api/`, як показано нижче.
-Ви також можете переглянути [документацію Vercel](https://vercel.com/docs/functions/serverless-functions#deploying-serverless-functions) для отримання додаткової інформації.
+Ви також можете переглянути [документацію Vercel](https://vercel.com/docs/functions/serverless-functions/quickstart) для отримання додаткової інформації.
 
 ```asciiart:no-line-numbers
 .

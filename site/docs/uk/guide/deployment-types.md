@@ -237,23 +237,25 @@ app.use(webhookCallback(bot, "oak"));
 Через те, як працює цей підхід, нам зазвичай потрібен адаптер для кожного фреймворку, але, оскільки деякі фреймворки мають схожий інтерфейс, є адаптери, які працюють з кількома фреймворками.
 Нижче наведено таблицю з доступними на даний момент адаптерами, а також фреймворками, API або середовищами виконання, з якими вони працюють.
 
-| Адаптер          | Фреймворк, API або середовище виконання                                        |
-| ---------------- | ------------------------------------------------------------------------------ |
-| `aws-lambda`     | AWS Lambda Functions                                                           |
-| `azure`          | Azure Functions                                                                |
-| `cloudflare`     | Cloudflare Workers                                                             |
-| `cloudflare-mod` | Cloudflare Module Workers                                                      |
-| `express`        | Express, Google Cloud Functions                                                |
-| `fastify`        | Fastify                                                                        |
-| `hono`           | Hono                                                                           |
-| `http`, `https`  | Модулі Node.js `http` або `https`, Vercel                                      |
-| `koa`            | Koa                                                                            |
-| `next-js`        | Next.js                                                                        |
-| `oak`            | Oak                                                                            |
-| `serveHttp`      | `Deno.serveHttp`                                                               |
-| `std/http`       | `Deno.serve`, `std/http`, `Deno.upgradeHttp`, `Fresh`, `Ultra`, `Rutt`, `Sift` |
-| `sveltekit`      | SvelteKit                                                                      |
-| `worktop`        | Worktop                                                                        |
+| Адаптер            | Фреймворк, API або середовище виконання                                        |
+| ------------------ | ------------------------------------------------------------------------------ |
+| `aws-lambda`       | AWS Lambda Functions                                                           |
+| `aws-lambda-async` | AWS Lambda Functions з `async/await`                                           |
+| `azure`            | Azure Functions                                                                |
+| `cloudflare`       | Cloudflare Workers                                                             |
+| `cloudflare-mod`   | Cloudflare Module Workers                                                      |
+| `express`          | Express, Google Cloud Functions                                                |
+| `fastify`          | Fastify                                                                        |
+| `hono`             | Hono                                                                           |
+| `http`, `https`    | Модулі Node.js `http` або `https`, Vercel                                      |
+| `koa`              | Koa                                                                            |
+| `next-js`          | Next.js                                                                        |
+| `nhttp`            | NHttp                                                                          |
+| `oak`              | Oak                                                                            |
+| `serveHttp`        | `Deno.serveHttp`                                                               |
+| `std/http`         | `Deno.serve`, `std/http`, `Deno.upgradeHttp`, `Fresh`, `Ultra`, `Rutt`, `Sift` |
+| `sveltekit`        | SvelteKit                                                                      |
+| `worktop`          | Worktop                                                                        |
 
 ### Відповідь вебхуку
 

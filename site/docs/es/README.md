@@ -40,8 +40,6 @@ features:
 
 <!-- markdownlint-disable no-inline-html -->
 
-<HomeContent>
-
 ## Quickstart
 
 Bots están escritos en [TypeScript](https://www.typescriptlang.org) (o JavaScript) y corren en varias plataformas, incluyendo [Node.js](https://nodejs.org).
@@ -102,9 +100,8 @@ bot.start();
 
 <div style="font-size: 0.75rem;  display: flex; justify-content: center;">
 
-© 2021-2023 &middot; grammY soporta Telegram Bot API 6.9 que fue [liberada](https://core.telegram.org/bots/api#september-22-2023) el 22 de Septiembre del 2023.
-(Última novedad: Historias)
+© 2021-2024 &middot; grammY soporta Telegram Bot API 7.1 que fue [liberada](https://core.telegram.org/bots/api#february-16-2024) el 16 de Febrero del 2024.
+(Última novedad: Mejoras en el chat grupal)
 
 </div>
 </footer>
-</HomeContent>

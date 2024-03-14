@@ -54,7 +54,7 @@ Talk to [@BotFather](https://t.me/BotFather) to see what your token is.
 
 You probably tried to send a message to a user and then you ran into this issue.
 
-When a user blocks your bot, you are no able to send messages to them or interact with them in any other way (except if your bot was invited to a group chat where the user is a member).
+When a user blocks your bot, you are not able to send messages to them or interact with them in any other way (except if your bot was invited to a group chat where the user is a member).
 Telegram does this to protect their users.
 You cannot do anything about it.
 
@@ -100,11 +100,10 @@ You have already made sure to use the minimum number of API calls for the most c
 There are a few things you can do:
 
 1. Read this [article](../advanced/flood) in the docs to gain a basic understanding of the situation.
-2. Use the [`transformer-throttler` plugin](../plugins/transformer-throttler).
-3. Use the [`auto-retry` plugin](../plugins/auto-retry).
-4. Come ask us in the [group chat](https://t.me/grammyjs) for help.
+2. Use the [`auto-retry` plugin](../plugins/auto-retry).
+3. Come ask us in the [group chat](https://t.me/grammyjs) for help.
    We have experienced people there.
-5. It is possible to ask Telegram to increase the limits, but this is very unlikely to happen if you did not do steps 1-3 first.
+4. It is possible to ask Telegram to increase the limits, but this is very unlikely to happen if you did not do steps 1-3 first.
 
 ### Cannot find type definition file for 'node-fetch'
 

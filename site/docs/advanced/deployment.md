@@ -13,7 +13,7 @@ Here is a list of things that you may want to keep in mind when hosting a large 
 ## Message Sending
 
 1. Send files by path or `Buffer` instead of by stream, or at least make sure you [know the pitfalls](./transformers#use-cases-of-transformer-functions).
-2. Use `bot.on("callback_query:data")` as the fallback handler to [react to all callback queries](../plugins/keyboard#responding-to-clicks).
+2. Use `bot.on("callback_query:data")` as the fallback handler to [react to all callback queries](../plugins/keyboard#responding-to-inline-keyboard-clicks).
 3. Use the [`auto-retry` plugin](../plugins/auto-retry) to automatically handle flood wait errors.
 
 ## Scaling

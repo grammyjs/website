@@ -93,11 +93,13 @@ Runner експортує проміжний обробник `sequentialize`, �
 Наприклад, ви можете повернути ідентифікатор чату й ідентифікатор користувача автора повідомлення.
 
 ```ts
-bot.use(sequentialize((ctx) => {
-  const chat = ctx.chat?.id.toString();
-  const user = ctx.from?.id.toString();
-  return [chat, user].filter((con) => con !== undefined);
-}));
+bot.use(
+  sequentialize((ctx) => {
+    const chat = ctx.chat?.id.toString();
+    const user = ctx.from?.id.toString();
+    return [chat, user].filter((con) => con !== undefined);
+  }),
+);
 ```
 
 Це гарантує, що повідомлення в одному чаті будуть впорядковані правильно.
@@ -118,7 +120,7 @@ Runner вирішить всі необхідні обмеження на льо
 ```ts
 const handle = run(bot);
 
-handle.task.then(() => {
+handle.task().then(() => {
   console.log("Бот завершив обробку!");
 });
 ```
