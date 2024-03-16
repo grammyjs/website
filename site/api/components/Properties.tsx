@@ -17,13 +17,17 @@ export function Properties({
 }) {
   return (
     <>
-      {i.filter((v) => v.accessibility !== "private")
+      {i.filter((v) =>
+        "accessiblity" in v ? v.accessiblity !== "private" : true
+      )
         .map((v) => (
           <>
             <H3>{v.name}</H3>
             <CodeBlock>
-              {v.isStatic && <StyleKw>{"static "}</StyleKw>}
-              {v.isAbstract && <StyleKw>{"abstract "}</StyleKw>}
+              {"isStatic" in v && v.isStatic && <StyleKw>{"static "}</StyleKw>}
+              {"isAbstract" in v && v.isAbstract && (
+                <StyleKw>{"abstract "}</StyleKw>
+              )}
               {v.readonly && <StyleKw>{"readonly "}</StyleKw>}
               <PropertyName hasType={!!v.tsType} class>{v}</PropertyName>
               {v.tsType && (

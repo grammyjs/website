@@ -16,17 +16,21 @@ export function Constructors({
   if (!ctors.length) {
     return null;
   }
-  return ctors.map((v) => (
+  return (
     <>
-      <CodeBlock>
-        {v.accessibility
-          ? <StyleKw>{v.accessibility}{" "}</StyleKw>
-          : undefined}
-        <span style="color: rgb(98, 232, 132);">{v.name}</span>(
-        <Params getLink={getLink}>{v.params}</Params>);
-      </CodeBlock>
-      {"jsDoc" in v && <P doc>{v.jsDoc?.doc}</P>}
-      <Loc>{v}</Loc>
+      {ctors.map((v) => (
+        <>
+          <CodeBlock>
+            {v.accessibility
+              ? <StyleKw>{v.accessibility}{" "}</StyleKw>
+              : undefined}
+            <span style="color: rgb(98, 232, 132);">{v.name}</span>(
+            <Params getLink={getLink}>{v.params}</Params>);
+          </CodeBlock>
+          {"jsDoc" in v && <P doc>{v.jsDoc?.doc}</P>}
+          <Loc>{v}</Loc>
+        </>
+      ))}
     </>
-  ));
+  );
 }
