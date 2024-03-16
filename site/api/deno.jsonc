@@ -5,8 +5,8 @@
   },
   "imports": {
     "std/": "https://deno.land/std@0.220.0/",
-    "preact": "https://esm.sh/preact@11.0.0-experimental.1/",
-    "preact/": "https://esm.sh/preact@11.0.0-experimental.1//",
+    "preact": "https://esm.sh/preact@10.19.6/",
+    "preact/": "https://esm.sh/preact@10.19.6/",
     "preact-render-to-string": "https://esm.sh/preact-render-to-string@6.4.0/",
     "deno_doc/": "https://deno.land/x/deno_doc@0.117.0/",
     "marked-smartypants": "https://esm.sh/marked-smartypants@1.1.6/"
