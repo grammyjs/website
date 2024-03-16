@@ -32,6 +32,15 @@ export const modules: ModuleConfig[] = [
     ),
   },
   {
+    repo: "conversations",
+    slug: "conversations",
+    name: "Conversations",
+    description: desc(
+      "the [conversations plugin](/plugins/conversations)",
+      "the conversations plugin",
+    ),
+  },
+  {
     repo: "menu",
     slug: "menu",
     name: "Menu Plugin",
@@ -52,6 +61,15 @@ export const modules: ModuleConfig[] = [
       "the hydrate plugin",
     ),
   },
+  {
+    repo: 'auto-retry',
+    slug: 'auto-retry',
+    name: 'Auto-retry Plugin',
+    description: desc(
+      "the [auto-retry plugin](/plugins/auto-retry)",
+      "the auto-retry plugin",
+    ),
+  }
   {
     repo: "transformer-throttler",
     branch: "master",
@@ -78,6 +96,15 @@ export const modules: ModuleConfig[] = [
     description: desc("the [files plugin](/plugins/files)", "the files plugin"),
   },
   {
+    repo: "i18n",
+    slug: "i18n",
+    name: "Internationalization Plugin",
+    description: desc(
+      "the [internationalization plugin](/plugins/i18n)",
+      "the internationalization plugin",
+    ),
+  },
+  {
     repo: "router",
     slug: "router",
     name: "Router Plugin",
@@ -102,30 +129,12 @@ export const modules: ModuleConfig[] = [
     ),
   },
   {
-    repo: "conversations",
-    slug: "conversations",
-    name: "Conversations",
-    description: desc(
-      "the [conversations plugin](/plugins/conversations)",
-      "the conversations plugin",
-    ),
-  },
-  {
     repo: "chat-members",
     slug: "chat-members",
     name: "Chat Members",
     description: desc(
       "the [chat members plugin](/plugins/chat-members)",
       "the chat members plugin",
-    ),
-  },
-  {
-    repo: "i18n",
-    slug: "i18n",
-    name: "Internationalization Plugin",
-    description: desc(
-      "the [internationalization plugin](/plugins/i18n)",
-      "the internationalization plugin",
     ),
   },
   {
