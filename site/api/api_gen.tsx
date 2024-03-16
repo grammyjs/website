@@ -40,9 +40,11 @@ const paths: [string, string, string, string, string][] = modules.map(
 
 console.log("Generating docs for", paths.length, "modules");
 
+let i = 1;
 const refs: Array<[DocNode[], string, string, string, string]> = await Promise
   .all(paths.map(async ([id, path, slug, name, description]) => {
     const nodes = await doc(id);
+    console.log(i++, 'done');
     return [
       nodes.sort((a, b) => a.name.localeCompare(b.name)),
       path,
@@ -52,11 +54,11 @@ const refs: Array<[DocNode[], string, string, string, string]> = await Promise
     ];
   }));
 
-const namespaceGetLink = (
+function namespaceGetLink(
   slug: string,
   namespace: DocNodeNamespace,
   getLink: (typeRef: string) => string | null,
-): typeof getLink => {
+): typeof getLink {
   return (typeRef) => {
     const node_ = namespace.namespaceDef.elements.find((v) =>
       v.name == typeRef
@@ -68,7 +70,7 @@ const namespaceGetLink = (
       return getLink(typeRef);
     }
   };
-};
+}
 
 function createDoc(
   node: DocNode,

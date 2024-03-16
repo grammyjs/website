@@ -1,5 +1,8 @@
 {
   "lock": false,
+  "tasks": {
+    "genapi": "deno run -A --allow-net --allow-read --allow-write=../docs/ref api_gen.tsx ../docs/ref"
+  },
   "imports": {
     "std/": "https://deno.land/std@0.220.0/",
     "preact": "https://esm.sh/preact@11.0.0-experimental.1/",
