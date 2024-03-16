@@ -15,7 +15,7 @@ import { JSX } from "preact/jsx-runtime";
 import { Interface } from "./components/Interface.tsx";
 import { Variable } from "./components/Variable.tsx";
 import { TypeAlias } from "./components/TypeAlias.tsx";
-import links from "./links.ts";
+import links from "./external_links.ts";
 
 const out = Deno.args[0];
 if (!out) throw new Error("no out!");
@@ -44,7 +44,7 @@ let i = 1;
 const refs: Array<[DocNode[], string, string, string, string]> = await Promise
   .all(paths.map(async ([id, path, slug, name, description]) => {
     const nodes = await doc(id);
-    console.log(i++, 'done');
+    console.log(i++, "done");
     return [
       nodes.sort((a, b) => a.name.localeCompare(b.name)),
       path,
@@ -136,8 +136,11 @@ try {
     // Why is this missing from Deno?
     /* allowNotExists: true */
   });
-} catch {
+} catch (err) {
   // ignore if missing
+  if (!(err instanceof Deno.errors.NotFound)) {
+    throw err;
+  }
 }
 
 console.log("Creating files");
