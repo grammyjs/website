@@ -69,7 +69,7 @@ export const modules: ModuleConfig[] = [
       "the [auto-retry plugin](/plugins/auto-retry)",
       "the auto-retry plugin",
     ),
-  }
+  },
   {
     repo: "transformer-throttler",
     branch: "master",
