@@ -43,8 +43,13 @@ export function Function(
             .reduce((a, b) => <>{a}{"\n"}{b}</>)}
         </CodeBlock>
       )}
-      {overloadCount && <H2>Overload {overloadCount}</H2>}
-      <P doc>{func.jsDoc?.doc}</P>
+      {overloadCount && (
+        <>
+          <P doc>{func.jsDoc?.doc}</P>
+          <H2>Overload {overloadCount}</H2>
+        </>
+      )}
+      {!overloadCount && <P doc>{func.jsDoc?.doc}</P>}
       <Loc>{func}</Loc>
       <Sector
         title="Type Parameters"
