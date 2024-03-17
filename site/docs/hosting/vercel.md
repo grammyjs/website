@@ -84,7 +84,7 @@ export default webhookCallback(bot, "std/http");
 ```
 
 ::: tip grammY has a limited support for [Vercel Edge Functions](https://vercel.com/docs/functions/edge-functions)
-This means that you can use core grammY package and some plugins, but other may be incompatible due node-specific dependencies that are currently not supported by [Edge Runtime](https://edge-runtime.vercel.app).
+This means that you can use core grammY package and some plugins, but others may be incompatible due Node.js-specific dependencies that are currently not supported by [Edge Runtime](https://edge-runtime.vercel.app).
 
 Currently, we don't have a comprehensive list of compatible plugins, so you need to test it by yourself.
 
