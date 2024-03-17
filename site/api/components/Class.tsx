@@ -3,7 +3,8 @@ import {
   type ClassMethodDef,
   type ClassPropertyDef,
   type DocNodeClass,
-  ParamIdentifierDef,
+  type JsDocTag,
+  type ParamIdentifierDef,
 } from "deno_doc/types.d.ts";
 import { Method } from "./Class/Method.tsx";
 import { Properties } from "./Properties.tsx";
@@ -47,6 +48,11 @@ export function Class(
           isStatic: false,
           readonly: false,
           location: v.location,
+          jsDoc: {
+            doc: v.jsDoc?.tags?.find((t): t is JsDocTag & { kind: "param" } =>
+              t.kind === "param" && t.name === p.name
+            )?.doc,
+          },
           ...p,
         }))
     ),
