@@ -15,7 +15,9 @@ import { JSX } from "preact/jsx-runtime";
 import { Interface } from "./components/Interface.tsx";
 import { Variable } from "./components/Variable.tsx";
 import { TypeAlias } from "./components/TypeAlias.tsx";
+import { Overview } from "./components/Overview.tsx";
 import links from "./external_links.ts";
+import { Ref } from "./types.ts";
 
 const out = Deno.args[0];
 if (!out) throw new Error("no out!");
@@ -46,16 +48,7 @@ Deno.stdout.writeSync(
   enc.encode(`Generating docs for ${paths.length} modules`),
 );
 const dot = enc.encode(".");
-const refs: Array<
-  [
-    nodes: DocNode[],
-    path: string,
-    slug: string,
-    name: string,
-    description: string,
-    shortdescription: string,
-  ]
-> = await Promise
+const refs: Array<Ref> = await Promise
   .all(
     paths.map(
       async ([id, path, slug, name, description, shortdescription]) => {
@@ -315,19 +308,8 @@ Deno.writeTextFileSync(
 editLink: false
 ---
 
-# API Reference
-
-Welcome to the API reference of grammY.
-This is the auto-generated part of the documentation.
-It is derived from the source code comments of the core library and its ecosystem.
-
-${
-    refs
-      .map(([, , slug, name, , shortdescription]) =>
-        `- [${name}](./${slug}/): ${shortdescription}`
-      )
-      .join("\n")
-  }`,
+${renderToString(<Overview refs={refs}/>)}
+`,
 );
 count++;
 console.log("Wrote overview to", overviewPath);
