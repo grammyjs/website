@@ -33,7 +33,7 @@ export function Function(
         <CodeBlock>
           //{" "}
           <a
-            href={"/overload-1"}
+            href="#overload-1"
             class="typeRef"
             style={{ textDecoration: "underline" }}
           >
@@ -50,7 +50,7 @@ export function Function(
                 <>
                   //{" "}
                   <a
-                    href={"/overload-1"}
+                    href={`#overload-${n}`}
                     class="typeRef"
                     style={{ textDecoration: "underline" }}
                   >
