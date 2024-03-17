@@ -97,7 +97,7 @@ function createDoc(
   overloads?: DocNodeFunction[],
 ) {
   const nav =
-    `<sup><a href="/ref/">ref</a> / <a href="/ref/${slug}/">${slug}</a> / ${node.name}</sup>`;
+    `<div><sup><a href="/ref/">ref</a> / <a href="/ref/${slug}/">${slug}</a> / ${node.name}</sup></div>`;
   let component: JSX.Element | null = null;
   switch (node.kind) {
     case "class":
@@ -292,23 +292,31 @@ for (const [nodes, path_, slug, name, description] of refs) {
   }
   {
     const filename = path.join(path_, "README.md");
-    const content = `---
+    let content = renderToString(
+      <ToC
+        name={name + " Reference"}
+        description={description}
+        getLink={getLink}
+      >
+        {nodes}
+      </ToC>,
+    );
+
+    // inject nav
+    {
+      const nav = `<div><sup><a href="/ref/">ref</a> / ${slug}</sup></div>`;
+      let lines = content.split("\n");
+      const titleIdx = lines.findIndex((v) => v.startsWith("# "));
+      lines = lines.slice(0, titleIdx + 1).concat([nav]).concat(
+        lines.slice(titleIdx + 1),
+      );
+      content = lines.join("\n");
+    }
+    content = `---
 editLink: false
 ---
 
-<div><sup><a href="/ref/">ref</a> / ${slug}</sup></div>
-
-${
-      renderToString(
-        <ToC
-          name={name + " Reference"}
-          description={description}
-          getLink={getLink}
-        >
-          {nodes}
-        </ToC>,
-      )
-    }`;
+${content}`;
 
     Deno.writeTextFileSync(filename, content);
     ++count;
