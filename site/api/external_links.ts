@@ -17,6 +17,10 @@ export default {
   "Uint8Array":
     "https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
   "URL": "https://developer.mozilla.org/docs/Web/API/URL",
+  "Map":
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+  "Set":
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
   // typscriptlang.org
   "Partial":
     "https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype",
