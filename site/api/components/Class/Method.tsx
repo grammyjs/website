@@ -1,4 +1,4 @@
-import { ClassMethodDef, JsDoc } from "deno_doc/types.d.ts";
+import { ClassMethodDef, DocNodeFunction, JsDoc } from "deno_doc/types.d.ts";
 import { Params, TsType, TypeParams_ } from "../TsType.tsx";
 import { LinkGetter } from "../types.ts";
 import { CodeBlock } from "../CodeBlock.tsx";
@@ -32,8 +32,14 @@ export function Method({
           : ""}
       </H3>
       <CodeBlock>
+        {overloads && !!overloads.length && "// Overload 1\n"}
         <Def method={method} getLink={getLink} />
-        {overloads?.map((v) => <Def method={v} getLink={getLink} />)}
+        {overloads?.map((v, i) => (
+          <>
+            {`// Overload ${i + 2}\n`}
+            <Def method={v} getLink={getLink} />
+          </>
+        ))}
       </CodeBlock>
       <P doc>{jsDoc?.doc}</P>
       <Loc>{method}</Loc>
@@ -41,8 +47,12 @@ export function Method({
   );
 }
 
-function Def(
-  { method, getLink }: { method: ClassMethodDef; getLink: LinkGetter },
+// used in Function.tsx
+export function Def(
+  { method, getLink }: {
+    method: ClassMethodDef | DocNodeFunction;
+    getLink: LinkGetter;
+  },
 ) {
   return (
     <>

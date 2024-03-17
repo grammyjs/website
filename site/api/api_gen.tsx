@@ -8,6 +8,7 @@ import { Function } from "./components/Function.tsx";
 import {
   type DocNode,
   DocNodeClass,
+  DocNodeFunction,
   DocNodeNamespace,
 } from "deno_doc/types.d.ts";
 import { ToC } from "./components/ToC.tsx";
@@ -93,6 +94,7 @@ function createDoc(
   namespace?: DocNodeNamespace,
   classParent?: DocNodeClass,
   overloadCount?: number,
+  overloads?: DocNodeFunction[],
 ) {
   let component: JSX.Element | null = null;
   switch (node.kind) {
@@ -103,10 +105,14 @@ function createDoc(
       component = <Variable getLink={getLink}>{node}</Variable>;
       break;
     case "function":
+      if (overloads?.length) {
+        console.log(overloads);
+      }
       component = (
         <Function
           getLink={getLink}
           overloadCount={overloadCount}
+          overloads={overloads}
         >
           {node}
         </Function>
@@ -221,6 +227,15 @@ for (const [nodes, path_, slug, name, description] of refs) {
     }
     return overloadCount;
   };
+  const getOverloads = (node: DocNode, nodes: DocNode[]) => {
+    if (node.kind != "function") {
+      return;
+    }
+    return nodes.filter((v) => v.kind == "function" && v.name == node.name)
+      .slice(
+        1,
+      ) as DocNodeFunction[];
+  };
 
   for (const node of nodes) {
     if (node.kind == "namespace") {
@@ -241,23 +256,10 @@ for (const [nodes, path_, slug, name, description] of refs) {
             )
             : undefined) as DocNodeClass | undefined,
           getOverloadCount(node, nodes),
+          getOverloads(node, nodes),
         ) && ++count;
       }
     } else {
-      let overloadCount = node.kind == "function"
-        ? nodes.filter((v) => v.kind == "function" && v.name == node.name)
-          .length
-        : undefined;
-      if (overloadCount == 1) {
-        overloadCount = undefined;
-      } else if (overloadCount && overloadCount > 1) {
-        overloadCount = nodes.filter((v) =>
-          v.kind == "function" && v.name == node.name
-        ).findIndex((v) => v == node) + 1;
-      }
-      if (node.name == "webhookCallback") {
-        console.log(overloadCount);
-      }
       createDoc(
         node,
         path_,
@@ -274,6 +276,7 @@ for (const [nodes, path_, slug, name, description] of refs) {
           )
           : undefined) as DocNodeClass | undefined,
         getOverloadCount(node, nodes),
+        getOverloads(node, nodes),
       ) && ++count;
     }
   }

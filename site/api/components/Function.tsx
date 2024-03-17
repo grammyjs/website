@@ -9,11 +9,14 @@ import { Parameters } from "./Function/Parameters.tsx";
 import { newGetLink } from "./util.ts";
 import { ReturnType } from "./Function/ReturnType.tsx";
 import { Loc } from "./Loc.tsx";
+import { CodeBlock } from "./CodeBlock.tsx";
+import { Def } from "./Class/Method.tsx";
 
 export function Function(
-  { children: func, getLink: oldGetLink, overloadCount }: {
+  { children: func, getLink: oldGetLink, overloadCount, overloads }: {
     children: DocNodeFunction;
     getLink: LinkGetter;
+    overloads?: DocNodeFunction[];
     overloadCount?: number;
   },
 ) {
@@ -23,7 +26,21 @@ export function Function(
 
   return (
     <>
-      {(!overloadCount || overloadCount === 1) && <H1>{func.name}</H1>}
+      {(!overloadCount || overloadCount == 1) && <H1>{func.name}</H1>}
+      {!!overloads?.length && (
+        <CodeBlock>
+          {"// Overload 1\n"}
+          <Def method={func} getLink={getLink} />
+          {"\n"}
+          {overloads.map((v, i) => (
+            <>
+              {`// Overload ${i + 2}\n`}
+              <Def method={v} getLink={getLink} />
+            </>
+          ))
+            .reduce((a, b) => <>{a}{"\n"}{b}</>)}
+        </CodeBlock>
+      )}
       {overloadCount && <H2>Overload {overloadCount}</H2>}
       <P doc>{func.jsDoc?.doc}</P>
       <Loc>{func}</Loc>
