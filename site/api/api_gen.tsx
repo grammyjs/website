@@ -296,6 +296,8 @@ for (const [nodes, path_, slug, name, description] of refs) {
 editLink: false
 ---
 
+<div><sup><a href="/ref/">ref</a> / ${slug}</sup></div>
+
 ${
       renderToString(
         <ToC
