@@ -22,7 +22,7 @@ if (!out) throw new Error("no out!");
 
 const enc = new TextEncoder();
 
-const paths: [string, string, string, string, string][] = modules.map(
+const paths: [string, string, string, string, string, string][] = modules.map(
   ({
     user = "grammyjs",
     repo,
@@ -31,12 +31,14 @@ const paths: [string, string, string, string, string][] = modules.map(
     entrypoint = "src/mod.ts",
     name,
     description,
+    shortdescription,
   }) => [
     `https://raw.githubusercontent.com/${user}/${repo}/${branch}/${entrypoint}`,
     path.join(out, slug),
     slug,
     name,
     description,
+    shortdescription,
   ],
 );
 
@@ -44,18 +46,32 @@ Deno.stdout.writeSync(
   enc.encode(`Generating docs for ${paths.length} modules`),
 );
 const dot = enc.encode(".");
-const refs: Array<[DocNode[], string, string, string, string]> = await Promise
-  .all(paths.map(async ([id, path, slug, name, description]) => {
-    const nodes = await doc(id);
-    Deno.stdout.writeSync(dot);
-    return [
-      nodes.sort((a, b) => a.name.localeCompare(b.name)),
-      path,
-      slug,
-      name,
-      description,
-    ];
-  }));
+const refs: Array<
+  [
+    nodes: DocNode[],
+    path: string,
+    slug: string,
+    name: string,
+    description: string,
+    shortdescription: string,
+  ]
+> = await Promise
+  .all(
+    paths.map(
+      async ([id, path, slug, name, description, shortdescription]) => {
+        const nodes = await doc(id);
+        Deno.stdout.writeSync(dot);
+        return [
+          nodes.sort((a, b) => a.name.localeCompare(b.name)),
+          path,
+          slug,
+          name,
+          description,
+          shortdescription,
+        ];
+      },
+    ),
+  );
 Deno.stdout.writeSync(enc.encode("done\n"));
 
 function namespaceGetLink(
@@ -157,7 +173,7 @@ if (typesNodes === undefined) throw new Error("No types ref found!"); // never h
 let count = 0;
 for (const [nodes, path_, slug, name, description] of refs) {
   /** Defines how to obtain a link to a symbol */
-  const getLink = (repr: string) => {
+  const getLink = (repr: string): string | null => {
     // Try getting the link from the current plugin page.
     const node = nodes.find((v) => v.name == repr);
     if (node !== undefined) {
@@ -174,8 +190,8 @@ for (const [nodes, path_, slug, name, description] of refs) {
       return "/ref/types/" + encodeURIComponent(repr);
     }
     // Try getting the link externally.
-    if (repr in links && links[repr] !== undefined) {
-      return links[repr];
+    if (repr in links) {
+      return links[repr]!;
     }
     // Do not include a link.
     return null;
@@ -253,7 +269,7 @@ It is derived from the source code comments of the core library and its ecosyste
 
 ${
     refs
-      .map(([, , slug, name, shortdescription]) =>
+      .map(([, , slug, name, , shortdescription]) =>
         `- [${name}](./${slug}/): ${shortdescription}`
       )
       .join("\n")
