@@ -81,4 +81,4 @@ bot.on("message" /* ... */);
 
 ## Загальні відомості про плагін
 
-- Джерело: <https://github.com/EdJoPaTo/telegraf-middleware-console-time>
+- [Джерело](https://github.com/EdJoPaTo/telegraf-middleware-console-time)

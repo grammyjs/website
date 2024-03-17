@@ -57,7 +57,7 @@ const inlineKeyboard = new InlineKeyboard()
 
 Sebuah baris tombol baru bisa ditambahkan dengan cara memanggil `.row()`.
 Kamu juga bisa menggunakan berbagai method yang lain, misalnya `.url()` yang berfungsi agar perangkat pengguna mampu membuka sebuah link tertentu atau hal-hal keren lainnya.
-Silahkan lihat [daftar semua method](https://deno.land/x/grammy/mod.ts?s=InlineKeyboard#Methods) yang tersedia di class `InlineKeyboard`.
+Silahkan lihat [daftar semua method](/ref/core/InlineKeyboard#methods) yang tersedia di class `InlineKeyboard`.
 
 Jika kamu sudah memiliki sebuah array string yang hendak diubah menjadi sebuah keyboard inline, kamu bisa menggunakan gaya penulisan yang kedua.
 Class `InlineKeyboard` memiliki beberapa method static, salah satunya `InlineKeyboard.text` yang berfungsi untuk membuat beberapa object tombol.
@@ -178,7 +178,7 @@ const keyboard = new Keyboard()
 ```
 
 Kamu juga bisa menggunakan tombol canggih lainnya untuk meminta nomor telepon pengguna, lokasi, atau hal-hal keren lainnya.
-Silahkan lihat [daftar semua method](https://deno.land/x/grammy/mod.ts?s=Keyboard#Methods) yang tersedia di class `Keyboard`.
+Silahkan lihat [daftar semua method](/ref/core/Keyboard#methods) yang tersedia di class `Keyboard`.
 
 Jika kamu sudah memiliki sebuah array string yang hendak dijadikan sebuah keyboard, kamu bisa menggunakan gaya penulisan kedua.
 Class `Keyboard` memiliki beberapa method static, salah satunya `Keyboard.text` untuk membuat object tombol.

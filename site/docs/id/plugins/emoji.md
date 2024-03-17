@@ -117,5 +117,5 @@ Semudah itu. :relieved:
 ## Ringkasan Plugin
 
 - Nama: `emoji`
-- Sumber: <https://github.com/grammyjs/emoji>
-- Referensi: <https://deno.land/x/grammy_emoji/mod.ts>
+- [Sumber](https://github.com/grammyjs/emoji)
+- [Referensi](/ref/emoji/)

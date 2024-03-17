@@ -27,6 +27,7 @@ export default defineConfig({
 
   rewrites: {
     // Regex bug - https://github.com/vuejs/vitepress/discussions/1942
+    ":foo/:bar/:baz/README.md": ":foo/:bar/:baz/index.md",
     ":foo/:bar/README.md": ":foo/:bar/index.md",
     ":foo/README.md": ":foo/index.md",
     "README.md": "index.md",

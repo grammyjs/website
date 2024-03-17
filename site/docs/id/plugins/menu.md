@@ -118,7 +118,7 @@ Lalu, tambahkan sebuah label dan sebuah function handler di dalamnya.
 Gunakan `row` untuk menutup baris dan menambahkan tombol di baris berikutnya.
 
 Ada banyak tipe-tipe tombol lainnya yang tersedia, misalnya tombol untuk membuka URL.
-Lihat bagian `MenuRange` di [referensi API plugin ini](https://deno.land/x/grammy_menu/mod.ts?s=MenuRange), serta [referensi API Bot Telegram](https://core.telegram.org/bots/api#inlinekeyboardbutton) untuk `InlineKeyboardButton`.
+Lihat bagian `MenuRange` di [referensi API plugin ini](/ref/menu/MenuRange), serta [referensi API Bot Telegram](https://core.telegram.org/bots/api#inlinekeyboardbutton) untuk `InlineKeyboardButton`.
 
 ## Mengirim Menu
 
@@ -538,5 +538,5 @@ Hasilnya, kamu bisa menavigasi di antara menu tanpa batas, semua bisa dilakukan 
 ## Ringkasan Plugin
 
 - Nama: `menu`
-- Sumber: <https://github.com/grammyjs/menu>
-- Referensi: <https://deno.land/x/grammy_menu/mod.ts>
+- [Sumber](https://github.com/grammyjs/menu)
+- [Referensi](/ref/menu/)

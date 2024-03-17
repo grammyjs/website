@@ -66,4 +66,4 @@ Consulte el [plugin README](https://github.com/grammyjs/stateless-question) para
 ## Resumen del plugin
 
 - Nombre: `stateless-question`
-- Fuente: <https://github.com/grammyjs/stateless-question>
+- [Fuente](https://github.com/grammyjs/stateless-question)

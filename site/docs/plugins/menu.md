@@ -119,7 +119,7 @@ You can pass a label and a handler function.
 Use `row` to end the current row, and add all subsequent buttons to a new one.
 
 There are many more button types available, e.g. for opening URLs.
-Check out this plugin's [API Reference](https://deno.land/x/grammy_menu/mod.ts?s=MenuRange) for `MenuRange`, as well as the [Telegram Bot API Reference](https://core.telegram.org/bots/api#inlinekeyboardbutton) for `InlineKeyboardButton`.
+Check out this plugin's [API Reference](/ref/menu/MenuRange) for `MenuRange`, as well as the [Telegram Bot API Reference](https://core.telegram.org/bots/api#inlinekeyboardbutton) for `InlineKeyboardButton`.
 
 ## Sending a Menu
 
@@ -533,5 +533,5 @@ As a result, you are able to navigate between arbitrary menus without limit, all
 ## Plugin Summary
 
 - Name: `menu`
-- Source: <https://github.com/grammyjs/menu>
-- Reference: <https://deno.land/x/grammy_menu/mod.ts>
+- [Source](https://github.com/grammyjs/menu)
+- [Reference](/ref/menu/)

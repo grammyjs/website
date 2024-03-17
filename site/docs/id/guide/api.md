@@ -31,7 +31,7 @@ Untuk menyiasati batasan tersebut, kamu bisa [meng-hosting server API Bot sendir
 ## Memanggil API Bot
 
 Setiap method API Bot juga identik dengan method milik grammY.
-Contohnya, `sendMessage` baik di [Referensi API Bot Telegram](https://core.telegram.org/bots/api#sendmessage) maupun di [Referensi Api grammY](https://deno.land/x/grammy/mod.ts?s=Api#method_sendMessage_0) keduanya sama-sama identik.
+Contohnya, `sendMessage` baik di [Referensi API Bot Telegram](https://core.telegram.org/bots/api#sendmessage) maupun di [Referensi Api grammY](/ref/core/Api#sendmessage) keduanya sama-sama identik.
 
 ### Memanggil Method
 

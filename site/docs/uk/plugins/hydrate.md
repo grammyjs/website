@@ -179,5 +179,5 @@ bot.api.config.use(hydrateApi());
 ## Загальні відомості про плагін
 
 - Назва: `hydrate`
-- Джерело: <https://github.com/grammyjs/hydrate>
-- Довідка: <https://deno.land/x/grammy_hydrate/mod.ts>
+- [Джерело](https://github.com/grammyjs/hydrate)
+- [Довідка](/ref/hydrate/)

@@ -15,17 +15,13 @@
 
 [[redirects]]
 from = "/guide/inline-queries.html"
-to = "/plugins/inline-query.html"
+to = "/plugins/inline-query"
 status = 301
 
 [[redirects]]
 from = "/*/guide/inline-queries.html"
-to = "/:splat/plugins/inline-query.html"
+to = "/:splat/plugins/inline-query"
 status = 301
-
-[[redirects]]
-from = "/ref"
-to = "https://deno.land/x/grammy/mod.ts"
 
 [[redirects]]
 from = "/es/*"

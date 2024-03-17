@@ -158,4 +158,4 @@ bot.command("i18n_test", async (ctx) => {
 ## Загальні відомості про плагін
 
 - Назва: `fluent`
-- Джерело: <https://github.com/grammyjs/fluent>
+- [Джерело](https://github.com/grammyjs/fluent)

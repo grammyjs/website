@@ -26,7 +26,7 @@ Veamos ahora cómo tu bot puede manejar estas consultas.
 ## Manejo de consultas en línea
 
 Una vez que un usuario activa una consulta en línea, es decir, inicia un mensaje escribiendo "@nombre_de_tu_bot ..." en el campo de entrada de texto, tu bot recibirá actualizaciones sobre esto.
-grammY tiene un soporte especial para manejar consultas en línea a través del método `bot.inlineQuery()`, como se documenta en la clase `Composer` en la [Referencia API grammY](https://deno.land/x/grammy/mod.ts?s=Composer#method_inlineQuery_0).
+grammY tiene un soporte especial para manejar consultas en línea a través del método `bot.inlineQuery()`, como se documenta en la clase `Composer` en la [Referencia API grammY](/ref/core/Composer#inlinequery).
 Te permite escuchar consultas en línea específicas que coincidan con cadenas o expresiones regulares.
 Si quieres manejar todas las consultas en línea genéricamente, usa `bot.on("inline_query")`.
 
@@ -160,7 +160,7 @@ InlineQueryResultBuilder.audioCached("id-0", audioFileId);
 
 > Lee más sobre los identificadores de archivo [aquí](../guide/files#como-funcionan-los-archivos-para-los-bots-de-telegram).
 
-Deberías consultar la [referencia API](https://deno.land/x/grammy/mod.ts?s=InlineQueryResultBuilder) de `InlineQueryResultBuilder` y quizás también la [especificación](https://core.telegram.org/bots/api#inlinequeryresult) de `InlineQueryResult` para ver todas las opciones disponibles.
+Deberías consultar la [referencia API](/ref/core/InlineQueryResultBuilder) de `InlineQueryResultBuilder` y quizás también la [especificación](https://core.telegram.org/bots/api#inlinequeryresult) de `InlineQueryResult` para ver todas las opciones disponibles.
 
 ## Responder consultas en línea
 

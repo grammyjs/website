@@ -10,5 +10,5 @@ next: false
 ## Загальні відомості про плагін
 
 - Назва: `commands`
-- Джерело: <https://github.com/grammyjs/commands>
-- Довідка: <https://deno.land/x/grammy_commands/mod.ts>
+- [Джерело](https://github.com/grammyjs/commands)
+- Довідка

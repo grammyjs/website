@@ -143,5 +143,5 @@ const bot = new Bot<MyContext, MyApi>("");
 ## Resumen del plugin
 
 - Nombre: `files`
-- Fuente: <https://github.com/grammyjs/files>
-- Referencia: <https://deno.land/x/grammy_files/mod.ts>
+- [Fuente](https://github.com/grammyjs/files)
+- [Referencia](/ref/files/)
