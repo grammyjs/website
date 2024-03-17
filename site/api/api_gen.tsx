@@ -146,14 +146,16 @@ function createDoc(
     const filename = path.join(path_, `${node.name}.md`);
     let contents = renderToString(component);
 
-    // inject nav
-    {
-      let lines = contents.split("\n");
-      const titleIdx = lines.findIndex((v) => v.startsWith("# "));
-      lines = lines.slice(0, titleIdx + 1).concat([nav]).concat(
-        lines.slice(titleIdx + 1),
-      );
-      contents = lines.join("\n");
+    if (!overloadCount || overloadCount == 1) {
+      // inject nav
+      {
+        let lines = contents.split("\n");
+        const titleIdx = lines.findIndex((v) => v.startsWith("# "));
+        lines = lines.slice(0, titleIdx + 1).concat([nav]).concat(
+          lines.slice(titleIdx + 1),
+        );
+        contents = lines.join("\n");
+      }
     }
 
     fs.ensureDirSync(path.dirname(filename));
