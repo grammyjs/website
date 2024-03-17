@@ -14,11 +14,6 @@
   cache-control = "max-age=604800" # 1 week
 
 [[redirects]]
-from = "/ref"
-to = "/ref/core"
-status = 301
-
-[[redirects]]
 from = "/guide/inline-queries.html"
 to = "/plugins/inline-query"
 status = 301
@@ -27,10 +22,6 @@ status = 301
 from = "/*/guide/inline-queries.html"
 to = "/:splat/plugins/inline-query"
 status = 301
-
-[[redirects]]
-from = "/ref"
-to = "https://deno.land/x/grammy/mod.ts"
 
 [[redirects]]
 from = "/es/*"
