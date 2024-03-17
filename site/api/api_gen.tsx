@@ -106,9 +106,6 @@ function createDoc(
       component = <Variable getLink={getLink}>{node}</Variable>;
       break;
     case "function":
-      if (overloads?.length) {
-        console.log(overloads);
-      }
       component = (
         <Function
           getLink={getLink}

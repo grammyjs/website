@@ -1,4 +1,4 @@
-import { ComponentChildren, Fragment } from "preact";
+import { ComponentChildren } from "preact";
 
 export function P(
   props: { children?: ComponentChildren; doc?: false; html?: true  } | {
