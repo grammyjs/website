@@ -11,6 +11,7 @@ import { ReturnType } from "./Function/ReturnType.tsx";
 import { Loc } from "./Loc.tsx";
 import { CodeBlock } from "./CodeBlock.tsx";
 import { Def } from "./Class/Method.tsx";
+import { StyleTypeRef } from "./styles.tsx";
 
 export function Function(
   { children: func, getLink: oldGetLink, overloadCount, overloads }: {
@@ -30,17 +31,36 @@ export function Function(
       {overloadCount && <P doc>{func.jsDoc?.doc}</P>}
       {!!overloads?.length && (
         <CodeBlock>
-          {"// Overload 1\n"}
+          //{" "}
+          <a
+            href={"/overload-1"}
+            class="typeRef"
+            style={{ textDecoration: "underline" }}
+          >
+            <StyleTypeRef>Overload 1</StyleTypeRef>
+          </a>
+          {"\n"}
           <Def method={func} getLink={getLink} />
           {"\n"}
           {overloads
             .slice(0, -1) // the last one is never exported
-            .map((v, i) => (
-              <>
-                {`// Overload ${i + 2}\n`}
-                <Def method={v} getLink={getLink} />
-              </>
-            ))
+            .map((v, i) => {
+              const n = i + 2;
+              return (
+                <>
+                  //{" "}
+                  <a
+                    href={"/overload-1"}
+                    class="typeRef"
+                    style={{ textDecoration: "underline" }}
+                  >
+                    <StyleTypeRef>Overload {n}</StyleTypeRef>
+                  </a>
+                  {"\n"}
+                  <Def method={v} getLink={getLink} />
+                </>
+              );
+            })
             .reduce((a, b) => <>{a}{"\n"}{b}</>)}
         </CodeBlock>
       )}
