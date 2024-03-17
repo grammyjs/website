@@ -34,7 +34,12 @@ export function ToC(
     return null;
   }
 
-  const k = (k: DocNodeKind) => nodes.filter((v) => v.kind == k);
+  const set = new Set<`${string}_${string}`>();
+  const k = (k: DocNodeKind) =>
+    nodes.filter((v) => v.kind == k)
+      .filter((v) =>
+        !(set.has(`${v.kind}_${v.name}`) || void set.add(`${v.kind}_${v.name}`)) // remove overloads
+      );
 
   return (
     <>
