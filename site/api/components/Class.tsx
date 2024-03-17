@@ -16,8 +16,9 @@ import { Sector } from "./Sector.tsx";
 import { TypeParams } from "./TypeParams.tsx";
 import { newGetLink } from "./util.ts";
 import { CodeBlock } from "./CodeBlock.tsx";
-import { TypeRef } from "./TsType.tsx";
+import { TsType, TypeRef } from "./TsType.tsx";
 import { Loc } from "./Loc.tsx";
+import { StyleKw } from "./styles.tsx";
 
 function isVisible(
   v: ClassPropertyDef | ClassMethodDef | ClassConstructorParamDef,
@@ -85,6 +86,18 @@ export function Class(
               typeParams: klass.classDef.superTypeParams,
             }}
           </TypeRef>
+        </CodeBlock>
+      </Sector>
+      <Sector title="Implements" show={!!klass.classDef.implements.length}>
+        <CodeBlock>
+          {klass.classDef.implements.map((v) => (
+            <TsType getLink={getLink}>{v}</TsType>
+          )).reduce((a, b) => (
+            <>
+              {a}
+              <StyleKw>,</StyleKw> {b}
+            </>
+          ))}
         </CodeBlock>
       </Sector>
       <Sector title="Type Parameters" show={!!typeParams.length}>
