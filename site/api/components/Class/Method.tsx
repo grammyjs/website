@@ -1,4 +1,9 @@
-import { ClassMethodDef, DocNodeFunction, JsDoc } from "deno_doc/types.d.ts";
+import {
+  ClassMethodDef,
+  DocNodeFunction,
+  InterfaceMethodDef,
+  JsDoc,
+} from "deno_doc/types.d.ts";
 import { Params, TsType, TypeParams_ } from "../TsType.tsx";
 import { LinkGetter } from "../types.ts";
 import { CodeBlock } from "../CodeBlock.tsx";
@@ -12,10 +17,10 @@ export function Method({
   inheritDoc,
   overloads,
 }: {
-  children: ClassMethodDef;
+  children: ClassMethodDef | InterfaceMethodDef;
   getLink: LinkGetter;
   inheritDoc: () => JsDoc | undefined;
-  overloads?: ClassMethodDef[];
+  overloads?: (ClassMethodDef | InterfaceMethodDef)[];
 }) {
   const inherit = method.jsDoc?.tags?.some((v) =>
     v.kind == "unsupported" && v.value == "@inheritdoc"
@@ -52,10 +57,19 @@ export function Method({
 // used in Function.tsx
 export function Def(
   { method, getLink }: {
-    method: ClassMethodDef | DocNodeFunction;
+    method: ClassMethodDef | DocNodeFunction | InterfaceMethodDef;
     getLink: LinkGetter;
   },
 ) {
+  const typeParams = "functionDef" in method
+    ? method.functionDef.typeParams
+    : method.typeParams;
+  const params = "functionDef" in method
+    ? method.functionDef.params
+    : method.params;
+  const returnType = "functionDef" in method
+    ? method.functionDef.returnType
+    : method.returnType;
   return (
     <>
       {method.kind == "setter"
@@ -67,15 +81,15 @@ export function Def(
         )}
       <span style="color: #62E884">{method.name}</span>
       <TypeParams_ getLink={getLink}>
-        {method.functionDef.typeParams}
+        {typeParams}
       </TypeParams_>(
-      <Params getLink={getLink}>{method.functionDef.params}</Params>)
-      {method.functionDef.returnType
+      <Params getLink={getLink}>{params}</Params>)
+      {returnType
         ? (
           <span>
             :{" "}
             <TsType getLink={getLink}>
-              {method.functionDef.returnType}
+              {returnType}
             </TsType>
           </span>
         )
