@@ -58,7 +58,7 @@ const inlineKeyboard = new InlineKeyboard()
 
 Call `.row()` if you want to begin a new row of buttons.
 You can also use other methods like `.url()` to let the user's client open a specific URL or do other cool things.
-Be sure to check out [all methods](https://deno.land/x/grammy/mod.ts?s=InlineKeyboard#Methods) on the `InlineKeyboard` class.
+Be sure to check out [all methods](/ref/core/InlineKeyboard#methods) on the `InlineKeyboard` class.
 
 If you already have an array of strings that you would like to turn into an inline keyboard, you can use a second, alternative style for building inline keyboard instances.
 The `InlineKeyboard` class has static methods such as `InlineKeyboard.text` that let you create button objects.
@@ -175,7 +175,7 @@ const keyboard = new Keyboard()
 ```
 
 You can also send more powerful buttons that request the user's phone number or location or do other cool things.
-Be sure to check out [all methods](https://deno.land/x/grammy/mod.ts?s=Keyboard#Methods) on the `Keyboard` class.
+Be sure to check out [all methods](/ref/core/Keyboard#methods) on the `Keyboard` class.
 
 If you already have an array of strings that you would like to turn into a keyboard, you can use a second, alternative style for building keyboard instances.
 The `Keyboard` class has static methods such as `Keyboard.text` that let you create button objects.

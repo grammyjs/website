@@ -119,7 +119,7 @@ const menu = new Menu("movements")
 Використовуйте `row` для завершення поточного рядка й додавання всіх наступних кнопок до нового рядка.
 
 Існує багато інших типів кнопок, наприклад, для відкриття URL-адрес.
-Ознайомтеся з [довідкою API](https://deno.land/x/grammy_menu/mod.ts?s=MenuRange) для `MenuRange`, а також з [довідкою Telegram Bot API](https://core.telegram.org/bots/api#inlinekeyboardbutton) для `InlineKeyboardButton`.
+Ознайомтеся з [довідкою API](/ref/menu/MenuRange) для `MenuRange`, а також з [довідкою Telegram Bot API](https://core.telegram.org/bots/api#inlinekeyboardbutton) для `InlineKeyboardButton`.
 
 ## Надсилання меню
 
@@ -533,5 +533,5 @@ const menu = new Menu("id", { fingerprint: (ctx) => ident(ctx) });
 ## Загальні відомості про плагін
 
 - Назва: `menu`
-- Джерело: <https://github.com/grammyjs/menu>
-- Довідка: <https://deno.land/x/grammy_menu/mod.ts>
+- [Джерело](https://github.com/grammyjs/menu)
+- [Довідка](/ref/menu/)

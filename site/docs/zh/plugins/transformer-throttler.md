@@ -116,5 +116,5 @@ const outConfig = {
 ## 插件概述
 
 - 名字：`transformer-throttler`
-- 源码：<https://github.com/grammyjs/transformer-throttler>
-- 参考：<https://deno.land/x/grammy_transformer_throttler/mod.ts>
+- [源码](https://github.com/grammyjs/transformer-throttler)
+- [参考](/ref/transformer-throttler/)

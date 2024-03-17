@@ -137,5 +137,4 @@ bot.start();
 ## Ringkasan Plugin
 
 - Nama: Autoquote
-- Sumber: <https://github.com/roziscoding/grammy-autoquote>
-- Referensi API: <https://deno.land/x/grammy_autoquote/mod.ts>
+- [Sumber](https://github.com/roziscoding/grammy-autoquote)

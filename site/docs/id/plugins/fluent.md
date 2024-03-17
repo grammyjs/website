@@ -164,4 +164,4 @@ Kamu cuma perlu membuat beberapa file terjemahan lain serta memastikan semua ter
 ## Ringkasan Plugin
 
 - Nama: `fluent`
-- Sumber: <https://github.com/grammyjs/fluent>
+- [Sumber](https://github.com/grammyjs/fluent)

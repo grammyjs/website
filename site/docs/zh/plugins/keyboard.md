@@ -58,7 +58,7 @@ const inlineKeyboard = new InlineKeyboard()
 
 如果你想开始新的一行按钮，请调用 `.row()` 方法。
 你还可以使用其他方法，比如 `.url()` 让用户的客户端打开特定的 URL 或执行其他酷炫的操作。
-请务必查看 `InlineKeyboard` 类上的 [所有方法](https://deno.land/x/grammy/mod.ts?s=InlineKeyboard#Methods)。
+请务必查看 `InlineKeyboard` 类上的 [所有方法](/ref/core/InlineKeyboard#methods)。
 
 如果你已经有一个字符串数组，并希望将其转换为 inline keyboard，你可以使用第二种方式来构建 inline keyboard 实例。
 `InlineKeyboard` 类具有像 `InlineKeyboard.text` 这样的静态方法，可以用来创建按钮对象。
@@ -175,7 +175,7 @@ const keyboard = new Keyboard()
 ```
 
 你还可以发送更强大的按钮，请求用户的电话号码或位置，或执行其他酷炫的操作。
-请务必查看 `Keyboard` 类上的 [所有方法](https://deno.land/x/grammy/mod.ts?s=Keyboard#Methods)。
+请务必查看 `Keyboard` 类上的 [所有方法](/ref/core/Keyboard#methods)。
 
 如果你已经有一个字符串数组，并希望将其转换为 keyboard，你可以使用第二种方式来构建 keyboard 实例。
 `Keyboard` 类具有像 `Keyboard.text` 这样的静态方法，可以用来创建按钮对象。

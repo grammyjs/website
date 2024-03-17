@@ -28,6 +28,10 @@ jobs:
         run: npm ci
         working-directory: site/
 
+      - name: Generate API references
+        run: npm run docs:genapi
+        working-directory: site/
+
       - name: Build site
         run: npm run docs:build
         working-directory: site/

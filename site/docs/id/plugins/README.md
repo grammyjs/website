@@ -13,7 +13,7 @@ Dengan begitu, user baru akan lebih mudah menggunakannya karena tidak perlu meng
 Sebagian besar plugin dipublikasikan bersama dengan package inti grammY, yang kami sebut sebagai plugin **resmi**.
 Plugin-plugin ini bisa diinstal dari `@grammyjs/*` melalui npm, dan mereka semua dipublikasikan oleh organisasi [@grammyjs](https://github.com/grammyjs) di GitHub.
 Selain itu, kami juga selalu memastikan semua plugin berjalan dengan baik di setiap rilisan grammY.
-Khusus untuk plugin resmi, nama package-nya selalu disertakan di judul dokumentasi masing-masing plugin. Contohnya, plugin [grammy runner](./runner) (`runner`) bisa diinstal melalui `npm install @grammyjs/runner` (Kalau kamu menggunakan Deno, kamu bisa meng-import plugin dari <https://deno.land/x/>, yaitu file `mod.ts` di module `grammy_runner`).
+Khusus untuk plugin resmi, nama package-nya selalu disertakan di judul dokumentasi masing-masing plugin. Contohnya, plugin [grammy runner](./runner) (`runner`) bisa diinstal melalui `npm install @grammyjs/runner` (Kalau kamu menggunakan Deno, kamu bisa meng-import plugin dari <https://deno.land/x>, yaitu file `mod.ts` di module `grammy_runner`).
 
 Kami juga menyediakan beberapa plugin **pihak ketiga**.
 Siapapun bisa mempublikasikan plugin jenis ini.

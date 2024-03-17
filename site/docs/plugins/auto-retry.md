@@ -65,5 +65,5 @@ Those errors will be retried immediately, but they also respect the `maxRetryAtt
 ## Plugin Summary
 
 - Name: `auto-retry`
-- Source: <https://github.com/grammyjs/auto-retry>
-- Reference: <https://doc.deno.land/https://raw.githubusercontent.com/grammyjs/auto-retry/main/src/index.ts>
+- [Source](https://github.com/grammyjs/auto-retry)
+- [Reference](/ref/auto-retry/)
