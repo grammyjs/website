@@ -95,6 +95,7 @@ export const config = {
   runtime: "edge",
 };
 ```
+
 :::
 
 ## In Vercel's Dashboard
