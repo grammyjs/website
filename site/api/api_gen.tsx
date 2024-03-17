@@ -165,6 +165,16 @@ try {
 
 console.log("Creating files");
 const allNodes = refs.map(([nodes]) => nodes).flat();
+// replace all external links to grammy.dev by internal links
+for (const v of allNodes) {
+  const doc = v.jsDoc;
+  if (doc !== undefined) {
+    if (doc.doc !== undefined) {
+      doc.doc = doc.doc
+        .replaceAll("https://grammy.dev/", "/");
+    }
+  }
+}
 const coreNodes = refs.find(([, , slug]) => slug === "core")?.[0];
 if (coreNodes === undefined) throw new Error("No core ref found!"); // never happens
 const typesNodes = refs.find(([, , slug]) => slug === "types")?.[0];
