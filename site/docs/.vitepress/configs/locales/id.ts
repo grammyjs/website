@@ -1,7 +1,6 @@
-import type { DocSearchProps } from "node_modules/vitepress/types/docsearch";
+import type { DocSearchProps } from "node_modules/vitepress/types/docsearch.js";
 import type { LocaleConfig } from "vitepress";
-import { social } from "../../shared/vars";
-import type { NotFound } from "../../shared/types";
+import { social } from "../../shared/vars.js";
 
 const learnGuide = {
   text: "Panduan",
@@ -38,6 +37,10 @@ const learnGuide = {
     {
       text: "Command",
       link: "/id/guide/commands",
+    },
+    {
+      text: "Reaksi",
+      link: "/id/guide/reactions",
     },
     {
       text: "Middleware",
@@ -451,6 +454,21 @@ export const siteId: LocaleConfig = {
           ariaLabel: "Link repositori grammY",
         },
       ],
+      notFound: {
+        code: "404",
+        title: "HALAMAN TIDAK DITEMUKAN",
+        linkText: "Putar balik, guys!",
+        linkLabel: "Pergi ke beranda",
+        messages: [
+          "Halaman tak bertuan.",
+          "Zonk!",
+          "Maaf, tidak ada apa-apa di sini.",
+          "Perjalanan ini \nTerasa sangat menyedihkan",
+          "Hey, Google! \nTunjukkan jalan ke halaman yang saya cari",
+          "Belum beruntung. Coba lagi.",
+          "Pat nol pat peg not fon.",
+        ],
+      },
     },
   },
 };
@@ -500,22 +518,5 @@ export const searchId: Record<string, Partial<DocSearchProps>> = {
         },
       },
     },
-  },
-};
-
-export const notFoundId: Record<string, NotFound> = {
-  id: {
-    title: "HALAMAN TIDAK DITEMUKAN",
-    backToHome: "Putar balik, guys!",
-    ariaLabel: "Pergi ke beranda",
-    messages: [
-      "Halaman tak bertuan.",
-      "Zonk!",
-      "Maaf, tidak ada apa-apa di sini.",
-      "Perjalanan ini \nTerasa sangat menyedihkan",
-      "Hey, Google! \nTunjukkan jalan ke halaman yang saya cari",
-      "Belum beruntung. Coba lagi.",
-      "Empat nol empat page not found.",
-    ],
   },
 };

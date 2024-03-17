@@ -19,7 +19,7 @@ Supabase Edge Functions 是大多数简单 bot 的理想选择，并且你应该
 ## 设置
 
 为了部署 Supabase Edge Functions，你需要创建一个 Supabase 账户，安装他们的 CLI，并创建一个 Supabase 项目。
-你应该首先 [按照他们的文档](https://supabase.com/docs/guides/functions/quickstart#prerequisites) 来进行设置。
+你应该首先 [按照他们的文档](https://supabase.com/docs/guides/functions/quickstart#initialize-a-project) 来进行设置。
 
 通过运行这个命令来创建一个新的 Supabase Function：
 
@@ -85,12 +85,12 @@ supabase secrets set BOT_TOKEN=123:aBcDeF-gh
 例如，在浏览器中打开一个新的标签页，并访问这个 URL：
 
 ```text
-https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<PROJECT_NAME>.functions.supabase.co/telegram-bot?secret=<BOT_TOKEN>
+https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<PROJECT_REFERENCE_ID>.supabase.co/functions/v1/telegram-bot?secret=<BOT_TOKEN>
 ```
 
 将 `<BOT_TOKEN>` 替换为你的 bot 的 token。
 同时，将第二次出现的 `<BOT_TOKEN>` 替换为你的 bot 的 token。
-将 `PROJECT_NAME` 替换为你的 Supabase 项目名。
+将 `<PROJECT_REFERENCE_ID>` 替换为你的 Supabase 项目的 reference ID。
 
 你应该会在你的浏览器窗口中看到这个。
 

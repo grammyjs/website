@@ -19,7 +19,7 @@ Hasil dari tutorial ini bisa dilihat di [repositori bot kami](https://github.com
 ## Pemasangan
 
 Untuk men-deploy bot ke Supabase Edge Functions, kamu harus membuat sebuah akun Supabase, menginstal CLI mereka, dan membuat sebuah proyek Supabase.
-Cara pemasangannya bisa dilihat di [dokumentasi yang mereka sediakan](https://supabase.com/docs/guides/functions/quickstart#prerequisites).
+Cara pemasangannya bisa dilihat di [dokumentasi yang mereka sediakan](https://supabase.com/docs/guides/functions/quickstart#initialize-a-project).
 
 Buat sebuah Supabase Function dengan cara menjalankan perintah berikut:
 
@@ -89,12 +89,12 @@ Kamu bisa melakukannya dengan memanggil `setWebhook`.
 Contohnya, buka sebuah tab baru di browser lalu kunjungi URL berikut:
 
 ```text
-https://api.telegram.org/bot<TOKEN_BOT>/setWebhook?url=https://<NAMA_PROYEK>.functions.supabase.co/telegram-bot?secret=<TOKEN_BOT>
+https://api.telegram.org/bot<TOKEN_BOT>/setWebhook?url=https://<ID_REFERENSI_PROYEK>.supabase.co/functions/v1/telegram-bot?secret=<TOKEN_BOT>
 ```
 
 Ganti `<TOKEN_BOT>` dengan token bot kamu yang asli.
 Jangan lupa untuk mengganti `<TOKEN_BOT>` yang kedua dengan token bot-mu juga.
-Ganti `<NAMA_PROYEK>` dengan nama proyek Supabase kamu.
+Ganti `<ID_REFERENSI_PROYEK>` dengan ID referensi proyek Supabase kamu.
 
 Jika berhasil, kamu akan melihat string JSON berikut di jendela browser:
 

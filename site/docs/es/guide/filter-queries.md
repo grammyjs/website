@@ -163,7 +163,7 @@ Si quieres instalar alguna pieza de middleware detrás de la concatenación AND 
 
 ```ts
 // Coincide con las URLs reenviadas
-bot.on("::url").on(":forward_date" /* , ... */);
+bot.on("::url").on(":forward_origin" /* , ... */);
 // Coincide con las fotos que contienen un hashtag en el pie de foto
 bot.on(":photo").on("::hashtag" /* , ... */);
 ```
@@ -178,7 +178,7 @@ Es técnicamente posible combinar consultas de filtro a fórmulas más complicad
 ```ts
 bot
   // Coincide con todas las publicaciones del canal o los mensajes reenviados ...
-  .on(["channel_post", ":forward_date"])
+  .on(["channel_post", ":forward_origin"])
   // ... que contengan texto ...
   .on(":text")
   // ... con al menos una URL, un hashtag o un cashtag.
@@ -221,7 +221,7 @@ Puedes combinar consultas de filtro con otros métodos de la clase `Composer` ([
 Esto permite crear potentes patrones de manejo de mensajes.
 
 ```ts
-bot.on(":forward_date").command("help"); // comandos /help reenviados
+bot.on(":forward_origin").command("help"); // comandos /help reenviados
 
 // Solo maneja comandos en chats privados.
 const pm = bot.chatType("private");
@@ -308,7 +308,7 @@ function handler(ctx: Filter<Context, ":text">) {
 bot.on(":text", handler);
 ```
 
-> Consulta las referencias de la API para [`matchFilter`](https://deno.land/x/grammy/filter.ts?s=matchFilter), [`Filter`](https://deno.land/x/grammy/filter.ts?s=Filter), y [`FilterQuery`](https://deno.land/x/grammy/filter.ts?s=FilterQuery) para seguir leyendo.
+> Consulta las referencias de la API para [`matchFilter`](https://deno.land/x/grammy/mod.ts?s=matchFilter), [`Filter`](https://deno.land/x/grammy/mod.ts?s=Filter), y [`FilterQuery`](https://deno.land/x/grammy/mod.ts?s=FilterQuery) para seguir leyendo.
 
 ## El lenguaje de consulta
 
@@ -350,4 +350,5 @@ Al iniciarse, grammY deriva una función de predicado de la consulta de filtro d
 Cada parte se asigna a una función que realiza una única comprobación `in`, o dos comprobaciones si la parte se omite y hay que comprobar dos valores.
 Estas funciones se combinan entonces para formar un predicado que sólo tiene que comprobar tantos valores como sean relevantes para la consulta, sin iterar sobre las claves del objeto `Update`.
 
-Este sistema utiliza menos operaciones que algunas bibliotecas de la competencia, que necesitan realizar comprobaciones de contención en arrays cuando se enrutan las actualizaciones. El sistema de consulta de filtros de grammY es mucho más potente.
+Este sistema utiliza menos operaciones que algunas bibliotecas de la competencia, que necesitan realizar comprobaciones de contención en arrays cuando se enrutan las actualizaciones.
+El sistema de consulta de filtros de grammY es más rápido a pesar de ser mucho más potente.

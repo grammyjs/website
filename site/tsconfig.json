@@ -1,11 +1,22 @@
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
-    },
-    {
-      "path": "./tsconfig.app.json"
+  "include": [
+    "env.d.ts",
+    "docs/.vitepress/**/*"
+  ],
+  "exclude": [
+    "docs/.vitepress/dist/**/*",
+    "docs/.vitepress/cache/**/*",
+    "docs/.vitepress/.temp/**/*"
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "composite": true,
+    "module": "NodeNext",
+    "resolveJsonModule": true,
+    "paths": {
+      "node_modules/*": [
+        "node_modules/*"
+      ]
     }
-  ]
+  }
 }

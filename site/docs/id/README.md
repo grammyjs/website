@@ -42,8 +42,6 @@ features:
 
 <!-- markdownlint-disable no-inline-html -->
 
-<HomeContent>
-
 ## Mulai Cepat
 
 Bot ditulis menggunakan [TypeScript](https://www.typescriptlang.org) (atau JavaScript) dan dapat berjalan di berbagai platform, termasuk [Node.js](https://nodejs.org).
@@ -104,9 +102,8 @@ Berhasil! :tada:
 
 <div style="font-size: 0.75rem; display: flex; justify-content: center;">
 
-© 2021-2023 &middot; grammY mendukung API Bot Telegram versi 6.9 yang [dirilis](https://core.telegram.org/bots/api#september-22-2023) pada tanggal 22 September 2023.
-(Fitur yang disorot: Cerita)
+© 2021-2024 &middot; grammY mendukung API Bot Telegram versi 7.1 yang [dirilis](https://core.telegram.org/bots/api#february-16-2024) pada tanggal 16 Februari 2024.
+(Fitur yang disorot: Boost untuk Grup)
 
 </div>
 </footer>
-</HomeContent>

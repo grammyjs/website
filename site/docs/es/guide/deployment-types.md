@@ -238,23 +238,25 @@ El segundo parámetro pasado a `webhookCallback` ([API reference](https://deno.l
 Debido a cómo funciona este enfoque, normalmente necesitamos un adaptador para cada framework pero, dado que algunos frameworks comparten una interfaz similar, hay adaptadores que se sabe que funcionan con múltiples frameworks.
 A continuación se muestra una tabla con los adaptadores disponibles actualmente, los frameworks o APIs con los que se sabe que funcionan y los tiempos de ejecución en los que están disponibles.
 
-| Adapter          | Framework/API/Runtime                                                          |
-| ---------------- | ------------------------------------------------------------------------------ |
-| `aws-lambda`     | AWS Lambda Functions                                                           |
-| `azure`          | Azure Functions                                                                |
-| `cloudflare`     | Cloudflare Workers                                                             |
-| `cloudflare-mod` | Cloudflare Module Workers                                                      |
-| `express`        | Express, Google Cloud Functions                                                |
-| `fastify`        | Fastify                                                                        |
-| `hono`           | Hono                                                                           |
-| `http`, `https`  | Node.js `http`/`https` modules, Vercel                                         |
-| `koa`            | Koa                                                                            |
-| `next-js`        | Next.js                                                                        |
-| `oak`            | Oak                                                                            |
-| `serveHttp`      | `Deno.serveHttp`                                                               |
-| `std/http`       | `Deno.serve`, `std/http`, `Deno.upgradeHttp`, `Fresh`, `Ultra`, `Rutt`, `Sift` |
-| `sveltekit`      | SvelteKit                                                                      |
-| `worktop`        | Worktop                                                                        |
+| Adapter            | Framework/API/Runtime                                                          |
+| ------------------ | ------------------------------------------------------------------------------ |
+| `aws-lambda`       | AWS Lambda Functions                                                           |
+| `aws-lambda-async` | AWS Lambda Functions with `async`/`await`                                      |
+| `azure`            | Azure Functions                                                                |
+| `cloudflare`       | Cloudflare Workers                                                             |
+| `cloudflare-mod`   | Cloudflare Module Workers                                                      |
+| `express`          | Express, Google Cloud Functions                                                |
+| `fastify`          | Fastify                                                                        |
+| `hono`             | Hono                                                                           |
+| `http`, `https`    | Node.js `http`/`https` modules, Vercel                                         |
+| `koa`              | Koa                                                                            |
+| `next-js`          | Next.js                                                                        |
+| `nhttp`            | NHttp                                                                          |
+| `oak`              | Oak                                                                            |
+| `serveHttp`        | `Deno.serveHttp`                                                               |
+| `std/http`         | `Deno.serve`, `std/http`, `Deno.upgradeHttp`, `Fresh`, `Ultra`, `Rutt`, `Sift` |
+| `sveltekit`        | SvelteKit                                                                      |
+| `worktop`          | Worktop                                                                        |
 
 ### Webhook Reply
 

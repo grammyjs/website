@@ -1,5 +1,5 @@
-export { notFoundEn, searchEn, siteEn } from "./en";
-export { notFoundEs, searchEs, siteEs } from "./es";
-export { notFoundId, searchId, siteId } from "./id";
-export { notFoundUk, searchUk, siteUk } from "./uk";
-export { notFoundZh, searchZh, siteZh } from "./zh";
+export { searchEn, siteEn } from "./en.js";
+export { searchEs, siteEs } from "./es.js";
+export { searchId, siteId } from "./id.js";
+export { searchUk, siteUk } from "./uk.js";
+export { searchZh, siteZh } from "./zh.js";
