@@ -63,7 +63,7 @@ allowed_updates: API_CONSTANTS.ALL_UPDATE_TYPES;
 ```
 
 для того, щоб отримувати всі оновлення.
-Обов'язково перегляньте [довідку API](/ref/core/ApiConstantsALL_UPDATE_TYPES).
+Обов'язково перегляньте [довідку API](/ref/core/ApiConstants#ALL_UPDATE_TYPES).
 :::
 
 [Плагін для конкурентності (runner)](../plugins/runner#просунуті-параметри) і `setWebhook` мають схожі способи вказати `allowed_updates`.

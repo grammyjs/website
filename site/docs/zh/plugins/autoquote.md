@@ -134,4 +134,3 @@ bot.start();
 
 - 名字：Autoquote
 - [源码](https://github.com/roziscoding/grammy-autoquote)
-- [API 参考](/ref/autoquote/)

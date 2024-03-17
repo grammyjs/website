@@ -134,4 +134,3 @@ bot.start();
 
 - Name: Autoquote
 - [Source](https://github.com/roziscoding/grammy-autoquote)
-- [API Reference](/ref/autoquote/)

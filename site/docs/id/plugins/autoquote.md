@@ -138,4 +138,3 @@ bot.start();
 
 - Nama: Autoquote
 - [Sumber](https://github.com/roziscoding/grammy-autoquote)
-- [Referensi API](/ref/autoquote/)

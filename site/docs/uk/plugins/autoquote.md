@@ -134,4 +134,3 @@ bot.start();
 
 - Назва: Autoquote
 - [Джерело](https://github.com/roziscoding/grammy-autoquote)
-- [Довідка API](/ref/autoquote/)
