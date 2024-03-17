@@ -167,7 +167,7 @@ export const modules: ModuleConfig[] = [
     entrypoint: "packages/denodb/src/mod.ts",
     name: "DenoDB Storage Adapter",
     description: desc("the DenoDB storage adapter"),
-    shortdescription: sdesc("the DenoDB storage adapter"),
+    shortdescription: sdesc("the DenoDB [storage adapter](/plugins/session#external-storage-solutions)"),
   },
   {
     repo: "storages",
@@ -175,7 +175,7 @@ export const modules: ModuleConfig[] = [
     entrypoint: "packages/deta/src/mod.ts",
     name: "Deta Storage Adapter",
     description: desc("the Deta storage adapter"),
-    shortdescription: sdesc("the Deta storage adapter"),
+    shortdescription: sdesc("the Deta [storage adapter](/plugins/session#external-storage-solutions)"),
   },
   {
     repo: "storages",
@@ -183,7 +183,7 @@ export const modules: ModuleConfig[] = [
     entrypoint: "packages/file/src/mod.ts",
     name: "File Storage Adapter",
     description: desc("the file storage adapter"),
-    shortdescription: sdesc("the file storage adapter"),
+    shortdescription: sdesc("the Deta [storage adapter](/plugins/session#external-storage-solutions)"),
   },
   {
     repo: "storages",
@@ -191,7 +191,7 @@ export const modules: ModuleConfig[] = [
     entrypoint: "packages/free/src/mod.ts",
     name: "Free Storage Adapter",
     description: desc("the free storage adapter"),
-    shortdescription: sdesc("the free storage adapter"),
+    shortdescription: sdesc("the free [storage adapter](/plugins/session#external-storage-solutions)"),
   },
   {
     repo: "storages",
@@ -199,7 +199,7 @@ export const modules: ModuleConfig[] = [
     entrypoint: "packages/mongodb/src/mod.ts",
     name: "MongoDB Storage Adapter",
     description: desc("the MongoDB storage adapter"),
-    shortdescription: sdesc("the MongoDB storage adapter"),
+    shortdescription: sdesc("the MongoDB [storage adapter](/plugins/session#external-storage-solutions)"),
   },
   {
     repo: "storages",
@@ -207,7 +207,7 @@ export const modules: ModuleConfig[] = [
     entrypoint: "packages/psql/src/mod.ts",
     name: "PostgreSQL Storage Adapter",
     description: desc("the PostgreSQL storage adapter"),
-    shortdescription: sdesc("the PostgreSQL storage adapter"),
+    shortdescription: sdesc("the PostgreSQL [storage adapter](/plugins/session#external-storage-solutions)"),
   },
   {
     repo: "storages",
@@ -215,7 +215,7 @@ export const modules: ModuleConfig[] = [
     entrypoint: "packages/redis/src/mod.ts",
     name: "Redis Storage Adapter",
     description: desc("the Redis storage adapter"),
-    shortdescription: sdesc("the Redis storage adapter"),
+    shortdescription: sdesc("the Redis [storage adapter](/plugins/session#external-storage-solutions)"),
   },
   {
     repo: "storages",
@@ -223,6 +223,6 @@ export const modules: ModuleConfig[] = [
     entrypoint: "packages/supabase/src/mod.ts",
     name: "Supabase Storage Adapter",
     description: desc("the Supabase storage adapter"),
-    shortdescription: sdesc("the Supabase storage adapter"),
+    shortdescription: sdesc("the Supabase [storage adapter](/plugins/session#external-storage-solutions)"),
   },
 ];
