@@ -27,6 +27,7 @@ export function Function(
   return (
     <>
       {(!overloadCount || overloadCount == 1) && <H1>{func.name}</H1>}
+      {overloadCount && <P doc>{func.jsDoc?.doc}</P>}
       {!!overloads?.length && (
         <CodeBlock>
           {"// Overload 1\n"}
@@ -43,12 +44,7 @@ export function Function(
             .reduce((a, b) => <>{a}{"\n"}{b}</>)}
         </CodeBlock>
       )}
-      {overloadCount && (
-        <>
-          <P doc>{func.jsDoc?.doc}</P>
-          <H2>Overload {overloadCount}</H2>
-        </>
-      )}
+      {overloadCount && <H2>Overload {overloadCount}</H2>}
       {!overloadCount && <P doc>{func.jsDoc?.doc}</P>}
       <Loc>{func}</Loc>
       <Sector
