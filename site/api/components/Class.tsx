@@ -88,16 +88,19 @@ export function Class(
           </TypeRef>
         </CodeBlock>
       </Sector>
-      <Sector title="Implements" show={!!klass.classDef.implements.length}>
+      <Sector title="Implements" show={klass.classDef.implements.length > 0}>
         <CodeBlock>
-          {klass.classDef.implements.map((v) => (
-            <TsType getLink={getLink}>{v}</TsType>
-          )).reduce((a, b) => (
-            <>
-              {a}
-              <StyleKw>,</StyleKw> {b}
-            </>
-          ))}
+          {klass.classDef.implements.length > 0 &&
+            klass.classDef.implements.map((v) => (
+              <TsType getLink={getLink}>{v}</TsType>
+            )).reduce((a, b) => (
+              (
+                <>
+                  {a}
+                  <StyleKw>,</StyleKw> {b}
+                </>
+              )
+            ))}
         </CodeBlock>
       </Sector>
       <Sector title="Type Parameters" show={!!typeParams.length}>
