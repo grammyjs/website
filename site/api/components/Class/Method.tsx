@@ -34,12 +34,14 @@ export function Method({
       <CodeBlock>
         {overloads && !!overloads.length && "// Overload 1\n"}
         <Def method={method} getLink={getLink} />
-        {overloads?.map((v, i) => (
-          <>
-            {`// Overload ${i + 2}\n`}
-            <Def method={v} getLink={getLink} />
-          </>
-        ))}
+        {overloads
+          ?.slice(0, -1) // the last one is never exported
+          .map((v, i) => (
+            <>
+              {`// Overload ${i + 2}\n`}
+              <Def method={v} getLink={getLink} />
+            </>
+          ))}
       </CodeBlock>
       <P doc>{jsDoc?.doc}</P>
       <Loc>{method}</Loc>

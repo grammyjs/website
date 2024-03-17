@@ -32,12 +32,14 @@ export function Function(
           {"// Overload 1\n"}
           <Def method={func} getLink={getLink} />
           {"\n"}
-          {overloads.map((v, i) => (
-            <>
-              {`// Overload ${i + 2}\n`}
-              <Def method={v} getLink={getLink} />
-            </>
-          ))
+          {overloads
+            .slice(0, -1) // the last one is never exported
+            .map((v, i) => (
+              <>
+                {`// Overload ${i + 2}\n`}
+                <Def method={v} getLink={getLink} />
+              </>
+            ))
             .reduce((a, b) => <>{a}{"\n"}{b}</>)}
         </CodeBlock>
       )}
