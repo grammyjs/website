@@ -1,7 +1,9 @@
 import {
+  type ClassConstructorParamDef,
   type ClassMethodDef,
   type ClassPropertyDef,
   type DocNodeClass,
+  ParamIdentifierDef,
 } from "deno_doc/types.d.ts";
 import { Method } from "./Class/Method.tsx";
 import { Properties } from "./Properties.tsx";
@@ -16,8 +18,11 @@ import { CodeBlock } from "./CodeBlock.tsx";
 import { TypeRef } from "./TsType.tsx";
 import { Loc } from "./Loc.tsx";
 
-function isVisible(v: ClassPropertyDef | ClassMethodDef): boolean {
-  return v.accessibility === undefined || v.accessibility !== "private";
+function isVisible(
+  v: ClassPropertyDef | ClassMethodDef | ClassConstructorParamDef,
+) {
+  return v.accessibility === undefined ||
+    v.accessibility === "protected" || v.accessibility === "public";
 }
 
 export function Class(
@@ -29,7 +34,23 @@ export function Class(
 ) {
   const typeParams = klass.classDef.typeParams;
   const ctors = klass.classDef.constructors;
-  const props = klass.classDef.properties.filter(isVisible);
+  const props = klass.classDef.properties.filter(isVisible).concat(
+    // display properties defined in the constructor
+    ctors.flatMap((v) =>
+      v.params
+        .filter((p): p is ParamIdentifierDef =>
+          p.kind === "identifier" &&
+          (p.accessibility === "public" || p.accessibility === "protected")
+        )
+        .map((p): ClassPropertyDef => ({
+          isAbstract: false,
+          isStatic: false,
+          readonly: false,
+          location: v.location,
+          ...p,
+        }))
+    ),
+  );
   const nonPrivateMethods = klass.classDef.methods.filter(isVisible);
   const methods = nonPrivateMethods.filter((v) => !v.isStatic);
   const staticMethods = nonPrivateMethods.filter((v) => v.isStatic);
