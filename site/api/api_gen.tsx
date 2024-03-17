@@ -20,6 +20,8 @@ import links from "./external_links.ts";
 const out = Deno.args[0];
 if (!out) throw new Error("no out!");
 
+const enc = new TextEncoder();
+
 const paths: [string, string, string, string, string][] = modules.map(
   ({
     user = "grammyjs",
@@ -38,13 +40,14 @@ const paths: [string, string, string, string, string][] = modules.map(
   ],
 );
 
-console.log("Generating docs for", paths.length, "modules");
-
-let i = 1;
+Deno.stdout.writeSync(
+  enc.encode(`Generating docs for ${paths.length} modules`),
+);
+const dot = enc.encode(".");
 const refs: Array<[DocNode[], string, string, string, string]> = await Promise
   .all(paths.map(async ([id, path, slug, name, description]) => {
     const nodes = await doc(id);
-    console.log(i++, "done");
+    Deno.stdout.writeSync(dot);
     return [
       nodes.sort((a, b) => a.name.localeCompare(b.name)),
       path,
@@ -53,6 +56,7 @@ const refs: Array<[DocNode[], string, string, string, string]> = await Promise
       description,
     ];
   }));
+Deno.stdout.writeSync(enc.encode("done\n"));
 
 function namespaceGetLink(
   slug: string,
@@ -144,21 +148,37 @@ try {
 }
 
 console.log("Creating files");
-let count = 0;
 const allNodes = refs.map(([nodes]) => nodes).flat();
+const coreNodes = refs.find(([, , slug]) => slug === "core")?.[0];
+if (coreNodes === undefined) throw new Error("No core ref found!"); // never happens
+const typesNodes = refs.find(([, , slug]) => slug === "types")?.[0];
+if (typesNodes === undefined) throw new Error("No types ref found!"); // never happens
+
+let count = 0;
 for (const [nodes, path_, slug, name, description] of refs) {
+  /** Defines how to obtain a link to a symbol */
   const getLink = (repr: string) => {
-    console.log(
-      "getting link for repr",
-      repr,
-      new Error().stack?.split(/\n.*esm\.sh/)[0],
-    );
+    // Try getting the link from the current plugin page.
     const node = nodes.find((v) => v.name == repr);
     if (node !== undefined) {
       return "/ref/" + slug + "/" + encodeURIComponent(repr);
-    } else {
-      return links[repr] ?? null;
     }
+    // Try getting the link from the core ref.
+    const coreNode = coreNodes.find((v) => v.name === repr);
+    if (coreNode !== undefined) {
+      return "/ref/core/" + encodeURIComponent(repr);
+    }
+    // Try getting the link from the types ref.
+    const typesNode = typesNodes.find((v) => v.name === repr);
+    if (typesNode !== undefined) {
+      return "/ref/types/" + encodeURIComponent(repr);
+    }
+    // Try getting the link externally.
+    if (repr in links && links[repr] !== undefined) {
+      return links[repr];
+    }
+    // Do not include a link.
+    return null;
   };
   for (const node of nodes) {
     if (node.kind == "namespace") {
@@ -234,7 +254,7 @@ It is derived from the source code comments of the core library and its ecosyste
 ${
     refs
       .map(([, , slug, name, shortdescription]) =>
-        `- [${name}](./${slug}): ${shortdescription}`
+        `- [${name}](./${slug}/): ${shortdescription}`
       )
       .join("\n")
   }`,
