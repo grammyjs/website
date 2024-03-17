@@ -188,7 +188,7 @@ export const modules: ModuleConfig[] = [
     name: "File Storage Adapter",
     description: desc("the file storage adapter"),
     shortdescription: sdesc(
-      "the Deta [storage adapter](/plugins/session#external-storage-solutions)",
+      "the file [storage adapter](/plugins/session#external-storage-solutions)",
     ),
   },
   {
