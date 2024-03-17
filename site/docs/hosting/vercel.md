@@ -80,7 +80,7 @@ if (!token) throw new Error("BOT_TOKEN is unset");
 
 const bot = new Bot(token);
 
-export default webhookCallback(bot, "http");
+export default webhookCallback(bot, "std/http");
 ```
 
 ::: tip grammY has a limited support for [Vercel Edge Functions](https://vercel.com/docs/functions/edge-functions)
