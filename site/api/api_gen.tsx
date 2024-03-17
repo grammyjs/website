@@ -99,6 +99,7 @@ function createDoc(
   slug: string,
   namespace?: DocNodeNamespace,
   classParent?: DocNodeClass,
+  overloadCount?: number,
 ) {
   let component: JSX.Element | null = null;
   switch (node.kind) {
@@ -109,7 +110,14 @@ function createDoc(
       component = <Variable getLink={getLink}>{node}</Variable>;
       break;
     case "function":
-      component = <Function getLink={getLink}>{node}</Function>;
+      component = (
+        <Function
+          getLink={getLink}
+          overloadCount={overloadCount}
+        >
+          {node}
+        </Function>
+      );
       break;
     case "interface":
       component = (
@@ -206,8 +214,10 @@ for (const [nodes, path_, slug, name, description] of refs) {
     // Do not include a link.
     return null;
   };
+  const nameSet = new Set<string>();
   for (const node of nodes) {
     if (node.kind == "namespace") {
+      const nameSet = new Set<string>();
       for (const el of node.namespaceDef.elements) {
         createDoc(
           el,
@@ -224,9 +234,21 @@ for (const [nodes, path_, slug, name, description] of refs) {
               v.name == (el as DocNodeClass).classDef.extends
             )
             : undefined) as DocNodeClass | undefined,
-        ) && count++;
+        //   nameSet,
+        ) && ++count && nameSet.add(`${el.name}_${el.kind}`);
       }
     } else {
+      let overloadCount = node.kind == "function"
+        ? nodes.filter((v) => v.kind == "function" && v.name == node.name).length
+        : undefined;
+      if (overloadCount == 1) {
+        overloadCount = undefined;
+      } else if (overloadCount && overloadCount > 1) {
+        overloadCount = nodes.filter((v) => v.kind == "function" && v.name == node.name).findIndex(v=>v==node) + 1
+      }
+      if (node.name == "webhookCallback") {
+        console.log(overloadCount)
+      }
       createDoc(
         node,
         path_,
@@ -242,7 +264,8 @@ for (const [nodes, path_, slug, name, description] of refs) {
             v.name == (node as DocNodeClass).classDef.extends
           )
           : undefined) as DocNodeClass | undefined,
-      ) && count++;
+          overloadCount,
+      ) && ++count && nameSet.add(`${node.kind}_${node.name}`);
     }
   }
   {
