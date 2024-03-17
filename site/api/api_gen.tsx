@@ -259,8 +259,9 @@ ${
   console.log("Wrote", path_);
 }
 
+const overviewPath = path.join(out, "README.md");
 Deno.writeTextFileSync(
-  path.join(out, "README.md"),
+  overviewPath,
   `# API Reference
 
 Welcome to the API reference of grammY.
@@ -275,5 +276,7 @@ ${
       .join("\n")
   }`,
 );
+count++;
+console.log("Wrote overview to", overviewPath);
 
 console.log("Done writing", count, "files.");
