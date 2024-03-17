@@ -62,6 +62,16 @@ export function Class(
   const staticMethods = nonPrivateMethods.filter((v) => v.isStatic);
   const getLink = newGetLink(oldGetLink, typeParams);
 
+  const getMethodOverloads = (name: string) => {
+    return methods.filter((v) => v.name == name).slice(1);
+  };
+  const getStaticMethodOverloads = (name: string) => {
+    return staticMethods.filter((v) => v.name == name).slice(1);
+  };
+
+  const methodNameSet = new Set<string>(); // to prevent duplicates
+  const staticMethodNameSet = new Set<string>();
+
   return (
     <>
       <H1>{klass.name}</H1>
@@ -92,30 +102,48 @@ export function Class(
         <Properties getLink={getLink}>{props}</Properties>
       </Sector>
       <Sector title="Methods" show={!!methods.length}>
-        {methods.map((v) => (
-          <Method
-            getLink={getLink}
-            inheritDoc={() =>
-              parent?.classDef.methods.find((v_) =>
-                (v_.name == v.name) && !v_.isStatic
-              )?.jsDoc}
-          >
-            {v}
-          </Method>
-        ))}
+        {methods
+          .filter((v) => {
+            try {
+              return !methodNameSet.has(v.name);
+            } finally {
+              methodNameSet.add(v.name);
+            }
+          })
+          .map((v) => (
+            <Method
+              getLink={getLink}
+              inheritDoc={() =>
+                parent?.classDef.methods.find((v_) =>
+                  (v_.name == v.name) && !v_.isStatic
+                )?.jsDoc}
+              overloads={getMethodOverloads(v.name)}
+            >
+              {v}
+            </Method>
+          ))}
       </Sector>
       <Sector title="Static Methods" show={!!staticMethods.length}>
-        {staticMethods.map((v) => (
-          <Method
-            getLink={getLink}
-            inheritDoc={() =>
-              parent?.classDef.methods.find((v_) =>
-                (v_.name == v.name) && v_.isStatic
-              )?.jsDoc}
-          >
-            {v}
-          </Method>
-        ))}
+        {staticMethods
+          .filter((v) => {
+            try {
+              return !staticMethodNameSet.has(v.name);
+            } finally {
+              staticMethodNameSet.add(v.name);
+            }
+          })
+          .map((v) => (
+            <Method
+              getLink={getLink}
+              inheritDoc={() =>
+                parent?.classDef.methods.find((v_) =>
+                  (v_.name == v.name) && v_.isStatic
+                )?.jsDoc}
+              overloads={getStaticMethodOverloads(v.name)}
+            >
+              {v}
+            </Method>
+          ))}
       </Sector>
     </>
   );

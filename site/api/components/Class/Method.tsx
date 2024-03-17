@@ -10,10 +10,12 @@ export function Method({
   children: method,
   getLink,
   inheritDoc,
+  overloads,
 }: {
   children: ClassMethodDef;
   getLink: LinkGetter;
   inheritDoc: () => JsDoc | undefined;
+  overloads?: ClassMethodDef[];
 }) {
   const inherit = method.jsDoc?.tags?.some((v) =>
     v.kind == "unsupported" && v.value == "@inheritdoc"
@@ -30,34 +32,45 @@ export function Method({
           : ""}
       </H3>
       <CodeBlock>
-        {method.kind == "setter"
-          ? <span style="color: #F286C4;">set{" "}</span>
-          : method.kind == "getter"
-          ? <span style="color: #F286C4;">get{" "}</span>
-          : (
-            ""
-          )}
-        <span style="color: #62E884">{method.name}</span>
-        <TypeParams_ getLink={getLink}>
-          {method.functionDef.typeParams}
-        </TypeParams_>(
-        <Params getLink={getLink}>{method.functionDef.params}</Params>)
-        {method.functionDef.returnType
-          ? (
-            <span>
-              :{" "}
-              <TsType getLink={getLink}>
-                {method.functionDef.returnType}
-              </TsType>
-            </span>
-          )
-          : (
-            ""
-          )}
-        ;
+        <Def method={method} getLink={getLink} />
+        {overloads?.map((v) => <Def method={v} getLink={getLink} />)}
       </CodeBlock>
       <P doc>{jsDoc?.doc}</P>
       <Loc>{method}</Loc>
+    </>
+  );
+}
+
+function Def(
+  { method, getLink }: { method: ClassMethodDef; getLink: LinkGetter },
+) {
+  return (
+    <>
+      {method.kind == "setter"
+        ? <span style="color: #F286C4;">set{" "}</span>
+        : method.kind == "getter"
+        ? <span style="color: #F286C4;">get{" "}</span>
+        : (
+          ""
+        )}
+      <span style="color: #62E884">{method.name}</span>
+      <TypeParams_ getLink={getLink}>
+        {method.functionDef.typeParams}
+      </TypeParams_>(
+      <Params getLink={getLink}>{method.functionDef.params}</Params>)
+      {method.functionDef.returnType
+        ? (
+          <span>
+            :{" "}
+            <TsType getLink={getLink}>
+              {method.functionDef.returnType}
+            </TsType>
+          </span>
+        )
+        : (
+          ""
+        )}
+      ;{"\n"}
     </>
   );
 }

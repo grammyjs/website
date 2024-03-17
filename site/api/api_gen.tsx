@@ -308,7 +308,7 @@ Deno.writeTextFileSync(
 editLink: false
 ---
 
-${renderToString(<Overview refs={refs}/>)}
+${renderToString(<Overview refs={refs} />)}
 `,
 );
 count++;
