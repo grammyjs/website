@@ -96,8 +96,9 @@ function createDoc(
   overloadCount?: number,
   overloads?: DocNodeFunction[],
 ) {
-  const nav =
-    `<div><sup><a href="/ref/">ref</a> / <a href="/ref/${slug}/">${slug}</a> / ${node.name}</sup></div>`;
+  const nav = `<div><sup><a href="/ref/">ref</a> / <a href="/ref/${slug}/">${
+    slug.replaceAll("/", " / ")
+  }</a> / ${node.name}</sup></div>`;
   let component: JSX.Element | null = null;
   switch (node.kind) {
     case "class":
@@ -306,7 +307,9 @@ for (const [nodes, path_, slug, name, description] of refs) {
 
     // inject nav
     {
-      const nav = `<div><sup><a href="/ref/">ref</a> / ${slug}</sup></div>`;
+      const nav = `<div><sup><a href="/ref/">ref</a> / ${
+        slug.replaceAll("/", " / ")
+      }</sup></div>`;
       let lines = content.split("\n");
       const titleIdx = lines.findIndex((v) => v.startsWith("# "));
       lines = lines.slice(0, titleIdx + 1).concat([nav]).concat(
