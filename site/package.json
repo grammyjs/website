@@ -3,7 +3,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "prepare": "npm run docs:index-versions",
+    "prepare": "npm run docs:index-versions && npm run docs:genapi",
     "docs:genapi": "cd api && deno task genapi",
     "docs:index-versions": "deno run --no-npm --allow-net docs/.vitepress/plugins/current-versions/build-index.ts > docs/.vitepress/plugins/current-versions/index.json",
     "docs:dev": "vitepress dev docs",
