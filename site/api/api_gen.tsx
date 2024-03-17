@@ -299,7 +299,7 @@ ${
     }`;
 
     Deno.writeTextFileSync(filename, content);
-    count++;
+    ++count;
   }
   console.log("Wrote", path_);
 }
@@ -314,7 +314,7 @@ editLink: false
 ${renderToString(<Overview refs={refs} />)}
 `,
 );
-count++;
+++count;
 console.log("Wrote overview to", overviewPath);
 
 console.log("Done writing", count, "files.");
