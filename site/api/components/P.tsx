@@ -1,7 +1,7 @@
 import { ComponentChildren } from "preact";
 
 export function P(
-  props: { children?: ComponentChildren; doc?: false; html?: true  } | {
+  props: { children?: ComponentChildren; doc?: false; html?: true } | {
     children?: string;
     doc: true;
   },
@@ -40,8 +40,10 @@ export function P(
       </>
     );
   }
-  if ('html' in props) {
-    return <div dangerouslySetInnerHTML={{__html: props.children as string}}></div>
+  if ("html" in props) {
+    return (
+      <div dangerouslySetInnerHTML={{ __html: props.children as string }}></div>
+    );
   }
   return <>{"\n\n"}{props.children}{"\n\n"}</>;
 }
