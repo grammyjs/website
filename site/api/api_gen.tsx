@@ -189,6 +189,7 @@ const typesNodes = refs.find(([, , slug]) => slug === "types")?.[0];
 if (typesNodes === undefined) throw new Error("No types ref found!"); // never happens
 
 let count = 0;
+
 for (const [nodes, path_, slug, name, description] of refs) {
   /** Defines how to obtain a link to a symbol */
   const getLink = (repr: string): string | null => {
@@ -214,10 +215,22 @@ for (const [nodes, path_, slug, name, description] of refs) {
     // Do not include a link.
     return null;
   };
-  const nameSet = new Set<string>();
+  const getOverloadCount = (node: DocNode, nodes: DocNode[]) => {
+    let overloadCount = node.kind == "function"
+      ? nodes.filter((v) => v.kind == "function" && v.name == node.name).length
+      : undefined;
+    if (overloadCount == 1) {
+      overloadCount = undefined;
+    } else if (overloadCount && overloadCount > 1) {
+      overloadCount = nodes.filter((v) =>
+        v.kind == "function" && v.name == node.name
+      ).findIndex((v) => v == node) + 1;
+    }
+    return overloadCount;
+  };
+
   for (const node of nodes) {
     if (node.kind == "namespace") {
-      const nameSet = new Set<string>();
       for (const el of node.namespaceDef.elements) {
         createDoc(
           el,
@@ -234,20 +247,23 @@ for (const [nodes, path_, slug, name, description] of refs) {
               v.name == (el as DocNodeClass).classDef.extends
             )
             : undefined) as DocNodeClass | undefined,
-        //   nameSet,
-        ) && ++count && nameSet.add(`${el.name}_${el.kind}`);
+          getOverloadCount(node, nodes),
+        ) && ++count;
       }
     } else {
       let overloadCount = node.kind == "function"
-        ? nodes.filter((v) => v.kind == "function" && v.name == node.name).length
+        ? nodes.filter((v) => v.kind == "function" && v.name == node.name)
+          .length
         : undefined;
       if (overloadCount == 1) {
         overloadCount = undefined;
       } else if (overloadCount && overloadCount > 1) {
-        overloadCount = nodes.filter((v) => v.kind == "function" && v.name == node.name).findIndex(v=>v==node) + 1
+        overloadCount = nodes.filter((v) =>
+          v.kind == "function" && v.name == node.name
+        ).findIndex((v) => v == node) + 1;
       }
       if (node.name == "webhookCallback") {
-        console.log(overloadCount)
+        console.log(overloadCount);
       }
       createDoc(
         node,
@@ -264,8 +280,8 @@ for (const [nodes, path_, slug, name, description] of refs) {
             v.name == (node as DocNodeClass).classDef.extends
           )
           : undefined) as DocNodeClass | undefined,
-          overloadCount,
-      ) && ++count && nameSet.add(`${node.kind}_${node.name}`);
+        getOverloadCount(node, nodes),
+      ) && ++count;
     }
   }
   {
