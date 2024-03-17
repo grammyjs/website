@@ -96,6 +96,7 @@ function createDoc(
   overloadCount?: number,
   overloads?: DocNodeFunction[],
 ) {
+  const nav = `<sup><a href="/ref/">ref</a> / <a href="/ref/${slug}/">${slug}</a> / ${node.name}</sup>`;
   let component: JSX.Element | null = null;
   switch (node.kind) {
     case "class":
@@ -146,6 +147,16 @@ function createDoc(
   if (component != null) {
     const filename = path.join(path_, `${node.name}.md`);
     let contents = renderToString(component);
+    
+    // inject nav
+    {
+        let lines = contents.split('\n');
+        const titleIdx = lines.findIndex(v=>v.startsWith('# '))
+        lines = lines.slice(0, titleIdx + 1).concat([nav]).concat(lines.slice(titleIdx + 1))
+        contents = lines.join('\n');
+    }
+
+
     fs.ensureDirSync(path.dirname(filename));
     if (!fs.exists(filename, { isFile: true })) {
       contents = "---\neditLink: false\n---\n\n" + contents;

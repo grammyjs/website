@@ -1,7 +1,7 @@
-import { ComponentChildren } from "preact";
+import { ComponentChildren, Fragment } from "preact";
 
 export function P(
-  props: { children?: ComponentChildren; doc?: false } | {
+  props: { children?: ComponentChildren; doc?: false; html?: true  } | {
     children?: string;
     doc: true;
   },
@@ -39,6 +39,9 @@ export function P(
         {"\n\n"}
       </>
     );
+  }
+  if ('html' in props) {
+    return <div dangerouslySetInnerHTML={{__html: props.children as string}}></div>
   }
   return <>{"\n\n"}{props.children}{"\n\n"}</>;
 }
