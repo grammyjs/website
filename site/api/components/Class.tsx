@@ -1,4 +1,8 @@
-import { DocNodeClass } from "deno_doc/types.d.ts";
+import {
+  type ClassMethodDef,
+  type ClassPropertyDef,
+  type DocNodeClass,
+} from "deno_doc/types.d.ts";
 import { Method } from "./Class/Method.tsx";
 import { Properties } from "./Properties.tsx";
 import { Constructors } from "./Class/Constructors.tsx";
@@ -12,6 +16,10 @@ import { CodeBlock } from "./CodeBlock.tsx";
 import { TypeRef } from "./TsType.tsx";
 import { Loc } from "./Loc.tsx";
 
+function isVisible(v: ClassPropertyDef | ClassMethodDef): boolean {
+  return v.accessibility === undefined || v.accessibility !== "private";
+}
+
 export function Class(
   { children: klass, getLink: oldGetLink, parent }: {
     children: DocNodeClass;
@@ -21,9 +29,10 @@ export function Class(
 ) {
   const typeParams = klass.classDef.typeParams;
   const ctors = klass.classDef.constructors;
-  const props = klass.classDef.properties;
-  const methods = klass.classDef.methods.filter((v) => !v.isStatic);
-  const staticMethods = klass.classDef.methods.filter((v) => v.isStatic);
+  const props = klass.classDef.properties.filter(isVisible);
+  const nonPrivateMethods = klass.classDef.methods.filter(isVisible);
+  const methods = nonPrivateMethods.filter((v) => !v.isStatic);
+  const staticMethods = nonPrivateMethods.filter((v) => v.isStatic);
   const getLink = newGetLink(oldGetLink, typeParams);
 
   return (
@@ -56,18 +65,17 @@ export function Class(
         <Properties getLink={getLink}>{props}</Properties>
       </Sector>
       <Sector title="Methods" show={!!methods.length}>
-        {methods.filter((v) => v.accessibility !== "private")
-          .map((v) => (
-            <Method
-              getLink={getLink}
-              inheritDoc={() =>
-                parent?.classDef.methods.find((v_) =>
-                  (v_.name == v.name) && !v_.isStatic
-                )?.jsDoc}
-            >
-              {v}
-            </Method>
-          ))}
+        {methods.map((v) => (
+          <Method
+            getLink={getLink}
+            inheritDoc={() =>
+              parent?.classDef.methods.find((v_) =>
+                (v_.name == v.name) && !v_.isStatic
+              )?.jsDoc}
+          >
+            {v}
+          </Method>
+        ))}
       </Sector>
       <Sector title="Static Methods" show={!!staticMethods.length}>
         {staticMethods.map((v) => (
