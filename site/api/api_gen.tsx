@@ -272,7 +272,11 @@ ${
 const overviewPath = path.join(out, "README.md");
 Deno.writeTextFileSync(
   overviewPath,
-  `# API Reference
+  `---
+editLink: false
+---
+
+# API Reference
 
 Welcome to the API reference of grammY.
 This is the auto-generated part of the documentation.
