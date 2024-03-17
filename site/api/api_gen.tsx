@@ -148,6 +148,11 @@ let count = 0;
 const allNodes = refs.map(([nodes]) => nodes).flat();
 for (const [nodes, path_, slug, name, description] of refs) {
   const getLink = (repr: string) => {
+    console.log(
+      "getting link for repr",
+      repr,
+      new Error().stack?.split(/\n.*esm\.sh/)[0],
+    );
     const node = nodes.find((v) => v.name == repr);
     if (node !== undefined) {
       return "/ref/" + slug + "/" + encodeURIComponent(repr);
@@ -217,5 +222,22 @@ ${
   }
   console.log("Wrote", path_);
 }
+
+Deno.writeTextFileSync(
+  path.join(out, "README.md"),
+  `# API Reference
+
+Welcome to the API reference of grammY.
+This is the auto-generated part of the documentation.
+It is derived from the source code comments of the core library and its ecosystem.
+
+${
+    refs
+      .map(([, , slug, name, shortdescription]) =>
+        `- [${name}](./${slug}): ${shortdescription}`
+      )
+      .join("\n")
+  }`,
+);
 
 console.log("Done writing", count, "files.");

@@ -435,9 +435,9 @@ export const siteEn: LocaleConfig = {
         },
         {
           text: "API Reference",
-          link: "/ref/core/",
+          link: "/ref/",
           // do not add the following line to translations:
-          activeMatch: "^/ref/core/",
+          activeMatch: "^/ref/",
         },
       ],
       sidebar: {
