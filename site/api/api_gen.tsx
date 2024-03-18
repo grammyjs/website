@@ -160,7 +160,7 @@ function createDoc(
     }
 
     fs.ensureDirSync(path.dirname(filename));
-    if (!fs.exists(filename, { isFile: true })) {
+    if (!fs.existsSync(filename, { isFile: true })) {
       contents = "---\neditLink: false\n---\n\n" + contents;
     }
     Deno.writeTextFileSync(filename, contents, { append: true });
