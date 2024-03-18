@@ -1,7 +1,8 @@
+import { resolve } from "path";
 import { defineConfig } from "vitepress";
+import { algolia } from "./configs/algolia/index.js";
 import * as locale from "./configs/locales/index.js";
 import { markdown } from "./plugins/index.js";
-import { algolia } from "./configs/algolia/index.js";
 import plaintext from "./shared/syntaxes/plaintext.tmLanguage.json";
 
 export default defineConfig({
@@ -54,11 +55,11 @@ export default defineConfig({
       alias: [
         {
           find: /^.*\/VPNavBar\.vue$/,
-          replacement: `${import.meta.dirname}/components/CustomNavBar.vue`,
+          replacement: `${resolve()}/components/CustomNavBar.vue`,
         },
         {
           find: /^.*\/VPNavScreen\.vue$/,
-          replacement: `${import.meta.dirname}/components/CustomNavScreen.vue`,
+          replacement: `${resolve()}/components/CustomNavScreen.vue`,
         },
       ],
     },
