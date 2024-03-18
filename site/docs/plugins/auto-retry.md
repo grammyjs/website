@@ -93,4 +93,4 @@ autoRetry({
 
 - Name: `auto-retry`
 - Source: <https://github.com/grammyjs/auto-retry>
-- Reference: <https://deno.land/x/grammy_auto_retry/mod.ts>
+- [Reference](/ref/auto-retry)
