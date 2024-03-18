@@ -243,5 +243,5 @@ Dari contoh di atas, kita menggunakan `chat.id` sebagai key unik untuk melakukan
 ## Ringkasan Plugin
 
 - Nama: `ratelimiter`
-- Sumber: <https://github.com/grammyjs/ratelimiter>
-- Referensi: <https://deno.land/x/grammy_ratelimiter/mod.ts>
+- [Sumber](https://github.com/grammyjs/ratelimiter)
+- [Referensi](/ref/ratelimiter/)

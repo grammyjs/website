@@ -165,7 +165,7 @@ Kalau ingin memasang beberapa bagian middleware dibalik penggabungan AND dari du
 
 ```ts
 // Mencocokkan URL yang di-forward
-bot.on("::url").on(":forward_date" /* , ... */);
+bot.on("::url").on(":forward_origin" /* , ... */);
 // Mencocokkan foto yang mengandung hashtag di caption-nya
 bot.on(":photo").on("::hashtag" /* , ... */);
 ```
@@ -180,7 +180,7 @@ Secara teknis kamu bisa mengombinasikan filter query ke rangkaian yang lebih kom
 ```ts
 bot
   // Mencocokkan semua potingan channel atau pesan terusan ...
-  .on(["channel_post", ":forward_date"])
+  .on(["channel_post", ":forward_origin"])
   // ... yang berupa teks ...
   .on(":text")
   // ... dan berisi sekurang-kurangnya satu url, hashtag, atau cashtag.
@@ -220,11 +220,11 @@ yang digunakan untuk mendeteksi perubahan status member chat lainnya, misalnya k
 
 ### Mengombinasikan Query dengan Method Lain
 
-Kamu bisa mengombinasikan beberapa filter query dengan method-method lain di class `Composer` ([API Reference](https://deno.land/x/grammy/mod.ts?s=Composer)), misalnya `command` atau `filter`.
+Kamu bisa mengombinasikan beberapa filter query dengan method-method lain di class `Composer` ([API Reference](/ref/core/Composer)), misalnya `command` atau `filter`.
 Dengan begitu, kamu bisa membuat pola penanganan pesan menjadi lebih fleksibel.
 
 ```ts
-bot.on(":forward_date").command("help"); // Command /help yang di-forward
+bot.on(":forward_origin").command("help"); // Command /help yang di-forward
 
 // Tangani command yang berasal dari private chat saja.
 const pm = bot.chatType("private");
@@ -311,7 +311,7 @@ function handler(ctx: Filter<Context, ":text">) {
 bot.on(":text", handler);
 ```
 
-> Lihat referensi API untuk [`matchFilter`](https://deno.land/x/grammy/filter.ts?s=matchFilter), [`Filter`](https://deno.land/x/grammy/filter.ts?s=Filter), dan [`FilterQuery`](https://deno.land/x/grammy/filter.ts?s=FilterQuery).
+> Lihat referensi API untuk [`matchFilter`](/ref/core/matchFilter), [`Filter`](/ref/core/Filter), dan [`FilterQuery`](/ref/core/FilterQuery).
 
 ## Bahasa Query
 
@@ -354,4 +354,4 @@ Setiap komponen akan di-map ke sebuah function yang mengerjakan satu pemeriksaan
 Function-function ini kemudian disatukan untuk membentuk sebuah predicate yang akan memeriksa sebanyak mungkin value yang relevan untuk query, tanpa melakukan proses perulangan terhadap key object `Update`.
 
 Sistem ini menggunakan lebih sedikit operasi dibandingkan dengan beberapa library lainnya, dimana dibutuhkan beberapa pengecekan array ketika melakukan routing update.
-Dengan demikian, sistem filter query grammY jauh lebih unggul.
+Ini membuat sistem filter query grammY selain lebih unggul juga jauh lebih cepat.

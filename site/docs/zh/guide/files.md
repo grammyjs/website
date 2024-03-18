@@ -113,7 +113,7 @@ await ctx.replyWithPhoto("https://grammy.dev/images/grammY.png");
 ### 上传你自己的文件
 
 grammY 对上传文件有着很好的支持。
-您可以通过导入并使用 `InputFile` 类来实现这一点（[grammY API 指南](https://deno.land/x/grammy/mod.ts?s=InputFile)）。
+您可以通过导入并使用 `InputFile` 类来实现这一点（[grammY API 指南](/ref/core/InputFile)）。
 
 ```ts
 // 通过本地路径发送文件
@@ -211,7 +211,7 @@ new InputFile({ url: "https://grammy.dev/images/grammY.png" }); // 等价的写�
 例如，这让你可以指定文件的标题。
 
 ```ts
-// 发送一个本地文件给用户 1235，并且添加一个标题 "photo.jpg"。
+// 发送一个本地文件给用户 12345，并且添加一个标题 "photo.jpg"。
 await bot.api.sendPhoto(12345, new InputFile("/path/to/photo.jpg"), {
   caption: "photo.jpg",
 });

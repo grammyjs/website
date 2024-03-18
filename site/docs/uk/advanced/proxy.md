@@ -2,7 +2,7 @@
 
 grammY дозволяє вам налаштувати деякі параметри виконання мережевих запитів.
 Це включає в себе додання власних параметрів в кожен запит, наприклад, для встановлення проксі-агента.
-Ознайомтеся з `ApiClientOptions` у [довідці API grammY](https://deno.land/x/grammy/mod.ts?s=ApiClientOptions).
+Ознайомтеся з `ApiClientOptions` у [довідці API grammY](/ref/core/ApiClientOptions).
 
 Ось як у Deno можна використовувати проксі-сервер `http`:
 

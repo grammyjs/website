@@ -118,7 +118,7 @@ await ctx.replyWithPhoto("https://grammy.dev/images/grammY.png");
 ### Cómo subir tus propios archivos
 
 grammY tiene un buen soporte para subir tus propios archivos.
-Puedes hacerlo importando y utilizando la clase `InputFile` ([Referencia grammY API](https://deno.land/x/grammy/mod.ts?s=InputFile)).
+Puedes hacerlo importando y utilizando la clase `InputFile` ([Referencia grammY API](/ref/core/InputFile)).
 
 ```ts
 // Enviar un archivo a través de la ruta local
@@ -215,7 +215,7 @@ Cuando se envían archivos, se pueden especificar más opciones en un objeto de 
 Por ejemplo, esto le permite enviar subtítulos.
 
 ```ts
-// Enviar una foto desde un archivo local al usuario 1235 con el título "foto.jpg".
+// Enviar una foto desde un archivo local al usuario 12345 con el título "foto.jpg".
 await bot.api.sendPhoto(12345, new InputFile("/ruta/a/foto.jpg"), {
   título: "foto.jpg",
 });

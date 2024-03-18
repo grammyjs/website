@@ -1,6 +1,6 @@
 # Context
 
-The `Context` object ([grammY API Reference](https://deno.land/x/grammy/mod.ts?s=Context)) is an important part of grammY.
+The `Context` object ([grammY API Reference](/ref/core/Context)) is an important part of grammY.
 
 Whenever you register a listener on your bot object, this listener will receive a context object.
 
@@ -54,14 +54,15 @@ The context object always contains information about your bot, accessible via `c
 
 There are a number of shortcuts installed on the context object.
 
-| Shortcut              | Description                                                                         |
-| --------------------- | ----------------------------------------------------------------------------------- |
-| `ctx.msg`             | Gets the message object, also edited ones                                           |
-| `ctx.chat`            | Gets the chat object                                                                |
-| `ctx.senderChat`      | Gets the sender chat object out of `ctx.msg` (for anonymous channel/group messages) |
-| `ctx.from`            | Gets the author of the message, callback query, or other things                     |
-| `ctx.inlineMessageId` | Gets the inline message identifier for callback queries or chosen inline results    |
-| `ctx.entities`        | Gets the message entities and their text, optionally filtered by entity type        |
+| Shortcut              | Description                                                                                                          |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `ctx.msg`             | Gets the message object, also edited ones                                                                            |
+| `ctx.chat`            | Gets the chat object                                                                                                 |
+| `ctx.senderChat`      | Gets the sender chat object out of `ctx.msg` (for anonymous channel/group messages)                                  |
+| `ctx.from`            | Gets the author of the message, callback query, or other things                                                      |
+| `ctx.inlineMessageId` | Gets the inline message identifier for callback queries or chosen inline results                                     |
+| `ctx.entities`        | Gets the message entities and their text, optionally filtered by entity type                                         |
+| `ctx.reactions`       | Gets the reactions from an update in a [way that is easy to work with](./reactions#inspecting-how-reactions-changed) |
 
 In other words, you can also do this:
 
@@ -89,7 +90,16 @@ bot.on("message:entities", async (ctx) => {
   // Get phone and email entities.
   const phonesAndEmails = ctx.entities(["email", "phone"]);
 });
+
+bot.on("message_reaction", (ctx) => {
+  const { emojiAdded } = ctx.reactions();
+  if (emojiAdded.includes("🎉")) {
+    await ctx.reply("partY");
+  }
+});
 ```
+
+> Skip ahead to [Reactions](./reactions) if you are interested in them.
 
 Hence, if you want to, you can forget about `ctx.message` and `ctx.channelPost` and `ctx.editedMessage` and so on and so forth, and just always use `ctx.msg` instead.
 
@@ -116,8 +126,8 @@ if (ctx.hasCallbackQuery(/query-data-\d+/)) {
 ```
 
 The same applies to all other has checks.
-Check out the [API reference of the context object](https://deno.land/x/grammy/mod.ts?s=Context#method_has_0) to see a list of all has checks.
-Also check out the static property `Context.has` in the [API reference](https://deno.land/x/grammy/mod.ts?s=Context#Static_Properties) that lets you create efficient predicate functions for probing a lot of context objects.
+Check out the [API reference of the context object](/ref/core/Context#has) to see a list of all has checks.
+Also check out the static property `Context.has` in the [API reference](/ref/core/Context#has) that lets you create efficient predicate functions for probing a lot of context objects.
 
 ## Available Actions
 
@@ -169,12 +179,12 @@ This can be used to pass further configuration to every API call.
 ::: tip Telegram Reply Feature
 Even though the method is called `ctx.reply` in grammY (and many other frameworks), it does not use the [reply feature of Telegram](https://telegram.org/blog/replies-mentions-hashtags#replies) where a previous message is linked.
 
-If you look up what `sendMessage` can do in the [Telegram Bot API Reference](https://core.telegram.org/bots/api#sendmessage), you will see a number of options, such as `parse_mode`, `disable_web_page_preview`, and `reply_to_message_id`.
+If you look up what `sendMessage` can do in the [Bot API Reference](https://core.telegram.org/bots/api#sendmessage), you will see a number of options, such as `parse_mode`, `link_preview_options`, and `reply_parameters`.
 The latter can be used to make a message a reply:
 
 ```ts
 await ctx.reply("^ This is a message!", {
-  reply_to_message_id: ctx.msg.message_id,
+  reply_parameters: { message_id: ctx.msg.message_id },
 });
 ```
 
@@ -183,7 +193,7 @@ Use auto-complete to see the available options right in your code editor.
 :::
 
 Naturally, every other method on `ctx.api` has a shortcut with the correct pre-filled values, such as `ctx.replyWithPhoto` to reply with a photo, or `ctx.exportChatInviteLink` to get an invite link for the respective chat.
-If you want to get an overview over what shortcuts exist, then auto-complete is your friend, along with the [grammY API Reference](https://deno.land/x/grammy/mod.ts?s=Context).
+If you want to get an overview over what shortcuts exist, then auto-complete is your friend, along with the [grammY API Reference](/ref/core/Context).
 
 Note that you may not want to react in the same chat always.
 In this case, you can just fall back to using `ctx.api` methods, and specify all options when calling them.
@@ -333,7 +343,7 @@ bot.command("start", async (ctx) => {
 
 :::
 
-Naturally, the custom context type can also be passed to other things which handle middleware, such as [composers](https://deno.land/x/grammy/mod.ts?s=Composer).
+Naturally, the custom context type can also be passed to other things which handle middleware, such as [composers](/ref/core/Composer).
 
 ```ts
 const composer = new Composer<MyContext>();
@@ -486,7 +496,7 @@ interface SessionFlavor<S> {
 }
 ```
 
-The `SessionFlavor` type ([API Reference](https://deno.land/x/grammy/mod.ts?s=SessionFlavor)) is straightforward: it defines only the property `session`.
+The `SessionFlavor` type ([API Reference](/ref/core/SessionFlavor)) is straightforward: it defines only the property `session`.
 It takes a type parameter that will define the actual structure of the session data.
 
 How is that useful?

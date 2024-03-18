@@ -23,7 +23,7 @@ bot.command("start", async (ctx) => {/* ... */});
 bot.hears(/echo *(.+)?/, async (ctx) => {/* ... */});
 ```
 
-Puedes utilizar la función de autocompletar en tu editor de código para ver todas las opciones disponibles, o consultar [todos los métodos](https://deno.land/x/grammy/mod.ts?s=Composer) de la clase `Composer`.
+Puedes utilizar la función de autocompletar en tu editor de código para ver todas las opciones disponibles, o consultar [todos los métodos](/ref/core/Composer) de la clase `Composer`.
 
 > [Leer más](./filter-queries) sobre el filtrado de tipos de mensajes específicos con `bot.on()`.
 
@@ -48,28 +48,31 @@ const me = await bot.api.getMe();
 
 Cada método toma un objeto opcional de opciones de tipo `Other`, que le permite establecer otras opciones para sus llamadas a la API.
 Estos objetos de opciones se corresponden exactamente con las opciones que puedes encontrar en la lista de métodos enlazada anteriormente.
-También puedes utilizar el autocompletado en tu editor de código para ver todas las opciones disponibles, o consultar [todos los métodos](https://deno.land/x/grammy/mod.ts?s=Api) de la clase `Api`.
+También puedes utilizar el autocompletado en tu editor de código para ver todas las opciones disponibles, o consultar [todos los métodos](/ref/core/Api) de la clase `Api`.
 El resto de esta página muestra algunos ejemplos para esto.
 
 También, revisa la [siguiente sección](./context) para aprender cómo el objeto context de un listener hace que el envío de mensajes sea un juego de niños.
 
 ## Enviando Mensajes con Respuesta
 
-Puedes usar la función de respuesta de Telegram especificando el identificador del mensaje al que se va a responder usando `reply_to_message_id`.
+Puedes usar la función de respuesta de Telegram especificando el identificador del mensaje al que se va a responder usando `reply_parameters`.
 
 ```ts
 bot.hears("ping", async (ctx) => {
   // `reply` es un alias de `sendMessage` en el mismo chat (ver siguiente sección).
   await ctx.reply("pong", {
-    // `reply_to_message_id` especifica la función de respuesta real.
-    reply_to_message_id: ctx.msg.message_id,
+    // `reply_parameters` especifica la función de respuesta real.
+    reply_parameters: { message_id: ctx.msg.message_id },
   });
 });
 ```
 
 > Tenga en cuenta que sólo el envío de un mensaje a través de `ctx.reply` no **significa que usted está respondiendo automáticamente a cualquier cosa.
-> En su lugar, debes especificar `reply_to_message_id` para ello.
+> En su lugar, debes especificar `reply_parameters` para ello.
 > La función `ctx.reply` es sólo un alias de `ctx.api.sendMessage`, ver la [siguiente sección](./context#acciones-disponibles).
+
+Los parámetros de respuesta también te permiten responder a mensajes en otros chats, así como citar partes de un mensaje... ¡o incluso ambas cosas a la vez!
+Echa un vistazo a la [documentación de los parámetros de respuesta de Bot API](https://core.telegram.org/bots/api#replyparameters).
 
 ## Envío de mensajes con formato
 

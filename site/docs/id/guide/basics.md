@@ -23,7 +23,7 @@ bot.command("start", async (ctx) => { ... });
 bot.hears(/echo *(.+)?/, async (ctx) => { ... });
 ```
 
-Kamu bisa menggunakan fitur auto-complete di code editor untuk melihat semua pilihan yang tersedia, ataupun melihat secara manual [daftar method](https://deno.land/x/grammy/mod.ts?s=Composer) dari sebuah class `Composer`.
+Kamu bisa menggunakan fitur auto-complete di code editor untuk melihat semua pilihan yang tersedia, ataupun melihat secara manual [daftar method](/ref/core/Composer) dari sebuah class `Composer`.
 
 > [Baca lebih lanjut](./filter-queries) tentang pemfilteran untuk jenis pesan tertentu menggunakan `bot.on()`.
 
@@ -48,29 +48,34 @@ const me = await bot.api.getMe();
 
 Setiap method memiliki opsi tambahan untuk object type `Other`, yang memungkinkan kamu untuk menetapkan opsi tambahan ketika memanggil API.
 Opsi-opsi dari object ini sama persis dengan opsi yang ada di daftar method di link atas tadi.
-Kamu juga dapat menggunakan fitur auto-complete di code editor untuk melihat semua opsi yang tersedia, ataupun melihat secara manual [daftar method](https://deno.land/x/grammy/mod.ts?s=Api) dari sebuah class `Api`.
+Kamu juga dapat menggunakan fitur auto-complete di code editor untuk melihat semua opsi yang tersedia, ataupun melihat secara manual [daftar method](/ref/core/Api) dari sebuah class `Api`.
 
 Selain itu, coba lihat [materi selanjutnya](./context) untuk mempelajari bagaimana object context dari suatu listener bisa membuat pengiriman pesan menjadi sangat mudah dilakukan!
 
 ## Mengirim Pesan dengan Reply
 
-> Catatan penerjemah: Kami membedakan kata "balas" dan "reply" agar tidak rancu. _Balas_ berarti membalas chat seperti pada umumnya. Sedangkan _reply_ merujuk ke [membalas pesan secara spesifik](https://telegram.org/blog/replies-mentions-hashtags#replies).
+> Catatan penerjemah: Kami membedakan kata "balas" dan "reply" agar tidak rancu.
+> _Balas_ berarti membalas chat seperti pada umumnya.
+> Sedangkan _reply_ merujuk ke [membalas pesan secara spesifik](https://telegram.org/blog/replies-mentions-hashtags#replies).
 
-Kamu dapat menggunakan fitur `reply-to` milik Telegram dengan menentukan id pesan yang akan di-reply menggunakan `reply_to_message_id`.
+Kamu dapat menggunakan fitur `reply-to` milik Telegram dengan menentukan id pesan yang akan di-reply menggunakan `reply_parameters`.
 
 ```ts
 bot.hears("ping", async (ctx) => {
   // `reply` adalah alias dari `sendMessage` (lihat materi selanjutnya).
   await ctx.reply("pong", {
-    // `reply_to_message_id` akan menentukan untuk me-reply pesan yang mana.
-    reply_to_message_id: ctx.msg.message_id,
+    // `reply_parameters` akan menentukan untuk me-reply pesan yang mana.
+    reply_parameters: { message_id: ctx.msg.message_id },
   });
 });
 ```
 
 > Perhatikan bahwa dengan mengirim pesan melalui `ctx.reply` **BUKAN** berarti kamu secara otomatis me-reply pesan begitu saja.
-> Sebaliknya, kamu harus mengisi `reply_to_message_id` untuk menentukan pesan mana yang mau di-reply.
+> Sebaliknya, kamu harus mengisi `reply_parameters` untuk menentukan pesan mana yang mau di-reply.
 > Function `ctx.reply` cuma alias dari `ctx.api.sendMessage`, lihat [materi berikutnya](./context#aksi-yang-tersedia).
+
+Parameter reply juga bisa digunakan untuk membalas pesan di chat lain, mengutip suatu pesan, atau bahkan kedua-duanya secara bersamaan!
+Silahkan lihat [dokumentasi API Bot untuk parameter reply](https://core.telegram.org/bots/api#replyparameters).
 
 ## Mengirim Pesan dengan Format Tertentu
 

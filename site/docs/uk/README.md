@@ -40,8 +40,6 @@ features:
 
 <!-- markdownlint-disable no-inline-html -->
 
-<HomeContent>
-
 ## Швидкий старт
 
 Боти, написані на [TypeScript](https://www.typescriptlang.org) або JavaScript, працюють на різних платформах, зокрема [Node.js](https://nodejs.org).
@@ -101,9 +99,8 @@ bot.start();
 
 <div style="font-size: 0.75rem; display: flex; justify-content: center;">
 
-© 2021-2023 &middot; grammY підтримує Telegram Bot API 6.9, який був [випущений](https://core.telegram.org/bots/api#september-22-2023) 22-го вересня 2023 року.
-Остання зміна: історії.
+© 2021-2024 &middot; grammY підтримує Telegram Bot API 7.1, який був [випущений](https://core.telegram.org/bots/api#february-16-2024) 16-го лютого 2024 року.
+Остання зміна: заряди для груп.
 
 </div>
 </footer>
-</HomeContent>

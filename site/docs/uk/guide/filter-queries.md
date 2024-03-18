@@ -163,7 +163,7 @@ bot.on(["::hashtag", "::email", "::mention"] /* , ... */);
 
 ```ts
 // Відповідає пересланим URL-адресам
-bot.on("::url").on(":forward_date" /* , ... */);
+bot.on("::url").on(":forward_origin" /* , ... */);
 // Відповідає фотографіям, які містять хештег у підписі
 bot.on(":photo").on("::hashtag" /* , ... */);
 ```
@@ -178,7 +178,7 @@ bot.on(":photo").on("::hashtag" /* , ... */);
 ```ts
 bot
   // Відповідає будь-яким дописам каналів або пересланим повідомленям, ...
-  .on(["channel_post", ":forward_date"])
+  .on(["channel_post", ":forward_origin"])
   // ... які містять текст ...
   .on(":text")
   // ... принаймні з однією URL-адресою, хештегом або кештегом.
@@ -217,11 +217,11 @@ bot.on("chat_member");
 
 ### Комбінування запитів з іншими методами
 
-Ви можете комбінувати запити фільтрування з іншими методами класу `Composer` ([довідка API](https://deno.land/x/grammy/mod.ts?s=Composer)), такими як `command` або `filter`.
+Ви можете комбінувати запити фільтрування з іншими методами класу `Composer` ([довідка API](/ref/core/Composer)), такими як `command` або `filter`.
 Це дозволяє створювати потужні сценарії обробки повідомлень.
 
 ```ts
-bot.on(":forward_date").command("help"); // переслані команди /help
+bot.on(":forward_origin").command("help"); // переслані команди /help
 
 // Обробляємо команди лише в приватних чатах.
 const pm = bot.chatType("private");
@@ -308,7 +308,7 @@ function handler(ctx: Filter<Context, ":text">) {
 bot.on(":text", handler);
 ```
 
-> Перегляньте довідку API для [`matchFilter`](https://deno.land/x/grammy/filter.ts?s=matchFilter), [`Filter`](https://deno.land/x/grammy/filter.ts?s=Filter) і [`FilterQuery`](https://deno.land/x/grammy/filter.ts?s=FilterQuery) для продовження читання.
+> Перегляньте довідку API для [`matchFilter`](/ref/core/matchFilter), [`Filter`](/ref/core/Filter) і [`FilterQuery`](/ref/core/FilterQuery) для продовження читання.
 
 ## Мова запитів
 
@@ -351,4 +351,4 @@ bot.on(":text", handler);
 Потім ці функції обʼєднуються у предикат, який перевіряє лише ті значення, що мають відношення до запиту, без перебору ключів обʼєкта `Update`.
 
 Ця система використовує менше операцій, ніж деякі конкуруючі бібліотеки, яким потрібно виконувати перевірку вмісту у масивах для маршрутизації оновлень.
-Система запитів фільтрування grammY набагато потужніша.
+Система запитів фільтрування grammY працює швидше, попри те, що набагато потужніша.

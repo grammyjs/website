@@ -2,7 +2,7 @@
 
 grammY le permite configurar una serie de cosas sobre cómo se realizan las peticiones de red.
 Esto incluye inyectar un payload personalizado en cada petición, que puede ser usado para instalar un agente proxy.
-Mira las `ApiClientOptions` en la [referencia de la API de grammY](https://deno.land/x/grammy/mod.ts?s=ApiClientOptions).
+Mira las `ApiClientOptions` en la [referencia de la API de grammY](/ref/core/ApiClientOptions).
 
 En Deno, así es como se usaría un proxy `http`:
 

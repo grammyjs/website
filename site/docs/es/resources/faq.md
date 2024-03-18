@@ -25,7 +25,7 @@ No, no es así.
    Si lo es, entonces grammY lo recogerá en el objeto de opciones llamado `other`.
    Pasa `{ parameter_name: value }` en ese lugar y funcionará.
    Como siempre, TypeScript autocompletará los nombres de los parámetros por ti.
-3. Comprueba la firma del método para las [acciones disponibles](../guide/context#acciones-disponibles) en `ctx` [aquí](https://deno.land/x/grammy/mod.ts?s=Context#Methods), o para los métodos API (`ctx.api`, `bot.api`) [aquí](https://deno.land/x/grammy/mod.ts?s=Api#Methods).
+3. Comprueba la firma del método para las [acciones disponibles](../guide/context#acciones-disponibles) en `ctx` [aquí](/ref/core/Context#methods), o para los métodos API (`ctx.api`, `bot.api`) [aquí](/ref/core/Api#methods).
 
 ## ¿Por qué recibo este error?
 
@@ -101,11 +101,10 @@ Ya te has asegurado de utilizar el mínimo número de llamadas a la API para las
 Hay algunas cosas que puedes hacer:
 
 1. Leer [este artículo en los docs](../advanced/flood) para obtener una comprensión básica de la situación.
-2. Utilice el [plugin `transformer-throttler`](../plugins/transformer-throttler).
-3. Utiliza el [plugin `auto-retry`](../plugins/auto-retry).
-4. Ven a pedirnos ayuda en el [chat de grupo](https://t.me/grammyjs).
+2. Utiliza el [plugin `auto-retry`](../plugins/auto-retry).
+3. Ven a pedirnos ayuda en el [chat de grupo](https://t.me/grammyjs).
    Allí tenemos gente con experiencia.
-5. Es posible pedirle a Telegram que aumente los límites, pero es muy poco probable que esto ocurra si no hiciste los pasos 1-3 primero.
+4. Es posible pedirle a Telegram que aumente los límites, pero es muy poco probable que esto ocurra si no hiciste los pasos 1-3 primero.
 
 ### Cannot find type definition file for 'node-fetch'
 

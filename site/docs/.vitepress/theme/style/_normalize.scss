@@ -29,7 +29,7 @@
 }
 
 :root .VPHome {
-  padding-bottom: 0px;
+  margin-bottom: 0px;
 }
 
 // Home feature icons (cards)
@@ -71,5 +71,23 @@
   h5,
   h6 {
     margin-top: 24px;
+  }
+}
+
+.typeRef {
+  text-decoration-color: #97e1f1 !important;
+
+  &::after {
+    content: none !important;
+    display: none !important;
+  }
+}
+
+p.src {
+  margin: 0 !important;
+
+  & > sup.src > a::after {
+    content: none !important;
+    display: none !important;
   }
 }

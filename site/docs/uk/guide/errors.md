@@ -62,7 +62,7 @@ grammY жодним чином не змінює викинуту помилку
 Враховуючи, що отриманий обʼєкт має назву `err`, ви можете отримати доступ до оригінальної помилки через `err.error`.
 Ви можете отримати доступ до відповідного обʼєкта контексту через `err.ctx`.
 
-Ознайомтеся з класом `BotError` у [довідці API grammY](https://deno.land/x/grammy/mod.ts?s=BotError).
+Ознайомтеся з класом `BotError` у [довідці API grammY](/ref/core/BotError).
 
 ## Обʼєкт `GrammyError`
 
@@ -72,7 +72,7 @@ grammY жодним чином не змінює викинуту помилку
 Викинутий `GrammyError` означає, що відповідний запит API не виконано.
 Помилка надає доступ до коду та опису помилки, яку повертає сервер Telegram.
 
-Ознайомтеся з класом `GrammyError` у [довідці API grammY](https://deno.land/x/grammy/mod.ts?s=GrammyError).
+Ознайомтеся з класом `GrammyError` у [довідці API grammY](/ref/core/GrammyError).
 
 ## Обʼєкт `HttpError`
 
@@ -84,7 +84,7 @@ grammY жодним чином не змінює викинуту помилку
 
 > Зауважте, що якщо звʼязатися з сервером Bot API можна, але він повертає `ok: false` для певного виклику методу, то буде викинута помилка [`GrammyError`](#обʼєкт-grammyerror).
 
-Ознайомтеся з класом `HttpError` у [довідці API grammY](https://deno.land/x/grammy/mod.ts?s=HttpError).
+Ознайомтеся з класом `HttpError` у [довідці API grammY](/ref/core/HttpError).
 
 ## Межі помилок
 

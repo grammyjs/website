@@ -26,7 +26,7 @@ next: false
 ## Обробка inline-запитів
 
 Як тільки користувач запускає inline-запит, тобто починає вводити повідомлення з `@псевдонім_вашого_бота ...` у полі для введення тексту, ваш бот отримає оновлення про це.
-grammY має спеціальну підтримку для обробки inline-запитів за допомогою методу `bot.inlineQuery()`, як задокументовано в класі `Composer` у [довідці API grammY](https://deno.land/x/grammy/mod.ts?s=Composer#method_inlineQuery_0).
+grammY має спеціальну підтримку для обробки inline-запитів за допомогою методу `bot.inlineQuery()`, як задокументовано в класі `Composer` у [довідці API grammY](/ref/core/Composer#inlinequery).
 Він дозволяє прослуховувати певні inline-запити, які відповідають рядкам або регулярним виразам.
 Якщо ви хочете обробляти всі inline-запити загалом, використовуйте `bot.on("inline_query")`.
 
@@ -181,7 +181,7 @@ InlineQueryResultBuilder.audioCached("id-0", audioFileId);
 
 > Дізнайтеся більше про ідентифікатори файлів [тут](../guide/files#як-працюють-фаили-для-ботів-telegram).
 
-Вам слід переглянути [довідку API](https://deno.land/x/grammy/mod.ts?s=InlineQueryResultBuilder) `InlineQueryResultBuilder` і, можливо, також [специфікацію](https://core.telegram.org/bots/api#inlinequeryresult) `InlineQueryResult`, щоб побачити всі доступні параметри.
+Вам слід переглянути [довідку API](/ref/core/InlineQueryResultBuilder) `InlineQueryResultBuilder` і, можливо, також [специфікацію](https://core.telegram.org/bots/api#inlinequeryresult) `InlineQueryResult`, щоб побачити всі доступні параметри.
 
 ## Відповідь на inline-запити
 

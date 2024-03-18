@@ -68,7 +68,7 @@ systemd es un potente gestor de servicios que viene preinstalado en muchas distr
 
    > Sustituye `<comando_de_inicio>` por el comando que tienes arriba.
    > Tenga en cuenta también que si Deno está instalado para un usuario distinto de root, puede que tenga que especificarlo en la sección de servicio como `User=<el_usuario>`.
-   > Para más información sobre los archivos de unidad, visite [aquí](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/assembly_working-with-systemd-unit-files_configuring-basic-system-settings).
+   > Para más información sobre los archivos de unidad, visite [aquí](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/using_systemd_unit_files_to_customize_and_optimize_your_system/assembly_working-with-systemd-unit-files_working-with-systemd).
 
 4. Recarga systemd cada vez que edites el servicio:
 

@@ -100,8 +100,22 @@ bot.command("ping", async (ctx) => {
 Jika kamu belum familiar dengan syntax tersebut, pahami terlebih dahulu [materi ini](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals).
 :::
 
+## Data Praktis untuk Reaksi
+
+Ketika menggunakan [reaksi](../guide/reactions), kamu tentu akan banyak berinteraksi dengan emoji.
+Memprogram dengan melibatkan emoji sangatlah menyebalkan.
+Plugin ini adalah surga untuk para pecinta emoji, kabar baiknya ia bisa digunakan untuk reaksi juga.
+
+Kamu bisa meng-import `Reactions` dari plugin ini lalu menggunakannya seperti ini:
+
+```ts
+bot.on("message", (ctx) => ctx.react(Reactions.thumbs_up));
+```
+
+Semudah itu. :relieved:
+
 ## Ringkasan Plugin
 
 - Nama: `emoji`
-- Sumber: <https://github.com/grammyjs/emoji>
-- Referensi: <https://deno.land/x/grammy_emoji/mod.ts>
+- [Sumber](https://github.com/grammyjs/emoji)
+- [Referensi](/ref/emoji/)

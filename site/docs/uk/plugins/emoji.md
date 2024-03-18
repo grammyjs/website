@@ -98,8 +98,21 @@ bot.command("ping", async (ctx) => {
 Якщо ви не знайомі з цим синтаксисом, ви можете прочитати про нього докладніше [тут](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals).
 :::
 
+## Корисні дані для реакцій
+
+Коли ви використовуєте [реакції](../guide/reactions) з вашим ботом, вам також доведеться багато програмувати з емодзі!
+Це так само дратує, і оскільки цей плагін є найзаповітнішою мрією для всіх, хто використовує емодзі, він може допомогти вам і з реакціями.
+
+Ви можете імпортувати `Reactions` з цього плагіна, а потім використовувати його ось так:
+
+```ts
+bot.on("message", (ctx) => ctx.react(Reactions.thumbs_up));
+```
+
+Як гарно.
+
 ## Загальні відомості про плагін
 
 - Назва: `emoji`
-- Джерело: <https://github.com/grammyjs/emoji>
-- Довідка: <https://deno.land/x/grammy_emoji/mod.ts>
+- [Джерело](https://github.com/grammyjs/emoji)
+- [Довідка](/ref/emoji/)

@@ -1,6 +1,6 @@
 # Context
 
-Object `Context` ([Referensi API grammY](https://deno.land/x/grammy/mod.ts?s=Context)) merupakan komponen penting di grammY.
+Object `Context` ([Referensi API grammY](/ref/core/Context)) merupakan komponen penting di grammY.
 
 Setiap kali kamu menambahkan listener ke object bot, listener ini akan menerima sebuah object context.
 
@@ -55,14 +55,15 @@ Object context selalu berisi informasi tentang bot-mu, yang dapat diakses melalu
 
 Ada sejumlah shortcut yang tersedia untuk object context.
 
-| Shortcut              | Deskripsi                                                                             |
-| --------------------- | ------------------------------------------------------------------------------------- |
-| `ctx.msg`             | Mendapatkan object message, termasuk yang sudah diedit                                |
-| `ctx.chat`            | Mendapatkan object chat                                                               |
-| `ctx.senderChat`      | Mendapatkan object chat pengirim dari `ctx.msg` (untuk pesan grup/channel anonim)     |
-| `ctx.from`            | Mendapatkan informasi penulis pesan, callback query, dan lainnya                      |
-| `ctx.inlineMessageId` | Mendapatkan id pesan inline dari callback query atau hasil inline yang dipilih        |
-| `ctx.entities`        | Mendapatkan entity pesan beserta teksnya, dapat disaring berdasarkan jenis entity-nya |
+| Shortcut              | Deskripsi                                                                                  |
+| --------------------- | ------------------------------------------------------------------------------------------ |
+| `ctx.msg`             | Mendapatkan object message, termasuk yang sudah diedit                                     |
+| `ctx.chat`            | Mendapatkan object chat                                                                    |
+| `ctx.senderChat`      | Mendapatkan object chat pengirim dari `ctx.msg` (untuk pesan grup/channel anonim)          |
+| `ctx.from`            | Mendapatkan informasi penulis pesan, callback query, dan lainnya                           |
+| `ctx.inlineMessageId` | Mendapatkan id pesan inline dari callback query atau hasil inline yang dipilih             |
+| `ctx.entities`        | Mendapatkan entity pesan beserta teksnya, dapat disaring berdasarkan jenis entity-nya      |
+| `ctx.reactions`       | Mendapatkan reaksi dari suatu update [dengan mudah](./reactions#menyimak-perubahan-reaksi) |
 
 Dengan kata lain, kamu juga bisa melakukan ini:
 
@@ -90,7 +91,17 @@ bot.on("message:entities", async (ctx) => {
   // Ambil entity telepon dan email.
   const teleponDanEmail = ctx.entities(["email", "phone"]);
 });
+
+bot.on("message_reaction", (ctx) => {
+  const { emojiAdded } = ctx.reactions();
+  if (emojiAdded.includes("🎉")) {
+    await ctx.reply("Pesta!");
+  }
+});
 ```
+
+> Tertarik dengan reaksi?
+> Lompat ke [dokumentasi Reaksi](./reactions).
 
 Bahkan, jika mau, kamu bisa mengabaikan `ctx.message`, `ctx.channelPost`, `ctx.editedMessage` dan seterusnya, cukup gunakan `ctx.msg` saja.
 
@@ -118,8 +129,8 @@ if (ctx.hasCallbackQuery(/query-data-\d+/)) {
 ```
 
 Hal yang sama juga berlaku untuk has checks lainnya.
-Lihat [referensi API context object](https://deno.land/x/grammy/mod.ts?s=Context#method_has_0) untuk mengetahui semua has checks yang tersedia.
-Selain itu, lihat juga [referensi API](https://deno.land/x/grammy/mod.ts?s=Context#Static_Properties) untuk static property `Context.has` yang bisa kamu gunakan untuk membuat predicate function memeriksa beberapa context object secara efisien.
+Lihat [referensi API context object](/ref/core/Context#has) untuk mengetahui semua has checks yang tersedia.
+Selain itu, lihat juga [referensi API](/ref/core/Context#has) untuk static property `Context.has` yang bisa kamu gunakan untuk membuat predicate function memeriksa beberapa context object secara efisien.
 
 ## Aksi yang Tersedia
 
@@ -172,12 +183,12 @@ Opsi ini dapat digunakan untuk memasukkan konfigurasi lebih lanjut ke setiap pem
 ::: tip Fitur Reply Telegram
 Meskipun method ini disebut `ctx.reply` di grammY (dan juga di kebanyakan framework lainnya), ia tidak menggunakan [fitur reply dari Telegram](https://telegram.org/blog/replies-mentions-hashtags#replies) dimana pesan sebelumnya terhubung satu sama lain. Lihat [materi sebelumnya](./basics#mengirim-pesan-dengan-reply) mengenai fitur reply.
 
-Kalau kamu membaca [Referensi API Bot Telegram](https://core.telegram.org/bots/api#sendmessage), di situ terdapat sejumlah opsi, seperti `parse_mode`, `disable_web_page_preview`, dan `reply_to_message_id`.
+Kalau kamu membaca bagian `sendMessage` di [Referensi API Bot](https://core.telegram.org/bots/api#sendmessage), ia memiliki beberapa opsi yang bisa digunakan, seperti `parse_mode`, `link_preview_options`, dan `reply_parameters`.
 Nah, yang opsi terakhir ini bisa digunakan untuk membuat pesan menjadi sebuah reply:
 
 ```ts
 await ctx.reply("^ Aku me-reply pesan ini!", {
-  reply_to_message_id: ctx.msg.message_id,
+  reply_parameters: { message_id: ctx.msg.message_id },
 });
 ```
 
@@ -186,7 +197,7 @@ Gunakan auto-complete untuk melihat opsi yang tersedia langsung di code editor.
 :::
 
 Umumnya, setiap method di `ctx.api` memiliki shortcut dengan nilai yang sudah terisi sebelumnya, seperti `ctx.replyWithPhoto` untuk membalas menggunakan foto, atau `ctx.exportChatInviteLink` untuk mendapatkan link undangan chat yang bersangkutan.
-Jika ingin tahu pintasan apa saja yang tersedia, auto-complete beserta [Referensi API grammY](https://deno.land/x/grammy/mod.ts?s=Context) adalah kawan baikmu.
+Jika ingin tahu pintasan apa saja yang tersedia, auto-complete beserta [Referensi API grammY](/ref/core/Context) adalah kawan baikmu.
 
 Harap dicatat bahwa mungkin adakalanya kamu tidak ingin merespon ke chat yang sama.
 Untuk itu, kamu bisa kembali menggunakan method `ctx.api`, lalu menentukan sendiri opsi-opsinya.
@@ -335,7 +346,7 @@ bot.command("start", async (ctx) => {
 
 :::
 
-Type context modifikasi juga bisa diteruskan ke komponen lain yang menangani middleware, contohnya [composer](https://deno.land/x/grammy/mod.ts?s=Composer).
+Type context modifikasi juga bisa diteruskan ke komponen lain yang menangani middleware, contohnya [composer](/ref/core/Composer).
 
 ```ts
 const composer = new Composer<MyContext>();
@@ -488,7 +499,7 @@ interface SessionFlavor<S> {
 }
 ```
 
-Type `SessionFlavor` ([referensi API](https://deno.land/x/grammy/mod.ts?s=SessionFlavor)) di atas cukup sederhana: ia hanya mendefinisikan property `session`.
+Type `SessionFlavor` ([referensi API](/ref/core/SessionFlavor)) di atas cukup sederhana: ia hanya mendefinisikan property `session`.
 Ia mengambil type parameter yang akan mendefinisikan struktur asli dari sebuah data session.
 
 Lantas, manfaatnya apa?

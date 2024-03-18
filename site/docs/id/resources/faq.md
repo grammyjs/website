@@ -24,7 +24,7 @@ Tentu saja tidak.
    Jika iya, berarti grammY menaruh parameter tersebut di suatu options object bernama `other`.
    Kamu cuma perlu menulis `{ nama_parameter: value }` di options tersebut.
    Seperti biasa, TypeScript akan membantu kamu melengkapi nama parameter-nya secara otomatis.
-3. Cek ulang method signature untuk [aksi-aksi](../guide/context#aksi-yang-tersedia) yang ada di `ctx` [di sini](https://deno.land/x/grammy/mod.ts?s=Context#Methods), serta method API-nya (`ctx.api`, `bot.api`) [di sini](https://deno.land/x/grammy/mod.ts?s=Api#Methods).
+3. Cek ulang method signature untuk [aksi-aksi](../guide/context#aksi-yang-tersedia) yang ada di `ctx` [di sini](/ref/core/Context#methods), serta method API-nya (`ctx.api`, `bot.api`) [di sini](/ref/core/Api#methods).
 
 ## Kenapa Saya Mengalami Error Ini?
 
@@ -99,11 +99,10 @@ Kamu sudah berupaya untuk melakukan pemanggilan API seminimal mungkin, tetapi _t
 Ada beberapa cara yang bisa kamu lakukan:
 
 1. Baca [materi ini](../advanced/flood) supaya paham dengan situasi yang dialami.
-2. Gunakan [plugin `transformer-throttler`](../plugins/transformer-throttler).
-3. Gunakan [plugin `auto-retry`](../plugins/auto-retry).
-4. Minta bantuan kami [di grup](https://t.me/grammyjs).
+2. Gunakan [plugin `auto-retry`](../plugins/auto-retry).
+3. Minta bantuan kami [di grup](https://t.me/grammyjs).
    Kami memiliki beberapa orang yang berpengalaman di sana.
-5. Meminta Telegram untuk meningkatkan batasan tersebut.
+4. Meminta Telegram untuk meningkatkan batasan tersebut.
    Cara ini kemungkinan besar tidak akan berhasil jika kamu tidak melakukan langkah 1–3 terlebih dahulu.
 
 ### Cannot find type definition file for 'node-fetch'

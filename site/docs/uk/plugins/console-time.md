@@ -5,7 +5,7 @@ next: false
 
 # Вимірювання часу обробки у консоль під час налагодження
 
-Якщо ви знайомі з JavaScript/TypeScript, ви, напевно, використовували [`console.log`](https://developer.mozilla.org/en-US/docs/Web/API/Console/log) або [`console.time`](https://developer.mozilla.org/en-US/docs/Web/API/Console/time), щоб під час налагодження перевірити, що відбувається.
+Якщо ви знайомі з JavaScript/TypeScript, ви, напевно, використовували [`console.log`](https://developer.mozilla.org/en-US/docs/Web/API/console/log_static) або [`console.time`](https://developer.mozilla.org/en-US/docs/Web/API/console/time_static), щоб під час налагодження перевірити, що відбувається.
 Під час роботи з вашим ботом або проміжним обробником ви, можливо, захочете перевірити щось подібне: що відбулося і скільки часу це зайняло?
 
 Цей плагін призначений для налагодження окремих запитів з метою вирішення окремих проблем.
@@ -81,4 +81,4 @@ bot.on("message" /* ... */);
 
 ## Загальні відомості про плагін
 
-- Джерело: <https://github.com/EdJoPaTo/telegraf-middleware-console-time>
+- [Джерело](https://github.com/EdJoPaTo/telegraf-middleware-console-time)

@@ -1,7 +1,6 @@
-import type { DocSearchProps } from "node_modules/vitepress/types/docsearch";
+import type { DocSearchProps } from "node_modules/vitepress/types/docsearch.js";
 import type { LocaleConfig } from "vitepress";
-import { social } from "../../shared/vars";
-import type { NotFound } from "../../shared/types";
+import { social } from "../../shared/vars.js";
 
 const learnGuide = {
   text: "Guide",
@@ -38,6 +37,10 @@ const learnGuide = {
     {
       text: "Commands",
       link: "/guide/commands",
+    },
+    {
+      text: "Reactions",
+      link: "/guide/reactions",
     },
     {
       text: "Middleware",
@@ -148,62 +151,93 @@ const pluginOfficial = {
     {
       text: "Conversations (conversations)",
       link: "/plugins/conversations",
+      // do not add the following line to translations:
+      activeMatch: "^(/plugins/conversations|/ref/conversations/)$",
     },
     {
       text: "Interactive Menus (menu)",
       link: "/plugins/menu",
+      // do not add the following line to translations:
+      activeMatch: "^(/plugins/menu|/ref/menu/)$",
     },
     {
       text: "Stateless Question (stateless-question)",
       link: "/plugins/stateless-question",
+      // do not add the following line to translations:
+      activeMatch: "^(/plugins/stateless-question|/ref/stateless-question/)$",
     },
     {
       text: "Concurrency (runner)",
       link: "/plugins/runner",
+      // do not add the following line to translations:
+      activeMatch: "^(/plugins/runner|/ref/runner/)$",
     },
     {
       text: "Hydration (hydrate)",
       link: "/plugins/hydrate",
+      // do not add the following line to translations:
+      activeMatch: "^(/plugins/hydrate|/ref/hydrate/)$",
     },
     {
       text: "Retry API Requests (auto-retry)",
       link: "/plugins/auto-retry",
+      // do not add the following line to translations:
+      activeMatch: "^(/plugins/auto-retry|/ref/auto-retry/)$",
     },
     {
       text: "Flood Control (transformer-throttler)",
       link: "/plugins/transformer-throttler",
+      // do not add the following line to translations:
+      activeMatch:
+        "^(/plugins/transformer-throttler|/ref/transformer-throttler/)$",
     },
     {
       text: "Rate Limit Users (ratelimiter)",
       link: "/plugins/ratelimiter",
+      // do not add the following line to translations:
+      activeMatch: "^(/plugins/ratelimiter|/ref/ratelimiter/)$",
     },
     {
       text: "Files (files)",
       link: "/plugins/files",
+      // do not add the following line to translations:
+      activeMatch: "^(/plugins/files|/ref/files/)$",
     },
     {
       text: "Internationalization (i18n)",
       link: "/plugins/i18n",
+      // do not add the following line to translations:
+      activeMatch: "^(/plugins/i18n|/ref/i18n/)$",
     },
     {
       text: "Internationalization (fluent)",
       link: "/plugins/fluent",
+      // do not add the following line to translations:
+      activeMatch: "^(/plugins/fluent|/ref/fluent/)$",
     },
     {
       text: "Router (router)",
       link: "/plugins/router",
+      // do not add the following line to translations:
+      activeMatch: "^(/plugins/router|/ref/router/)$",
     },
     {
       text: "Emoji (emoji)",
       link: "/plugins/emoji",
+      // do not add the following line to translations:
+      activeMatch: "^(/plugins/emoji|/ref/emoji/)$",
     },
     {
       text: "Parse Mode (parse-mode)",
       link: "/plugins/parse-mode",
+      // do not add the following line to translations:
+      activeMatch: "^(/plugins/parse-mode|/ref/parse-mode/)$",
     },
     {
       text: "Chat Members (chat-members)",
       link: "/plugins/chat-members",
+      // do not add the following line to translations:
+      activeMatch: "^(/plugins/chat-members|/ref/chat-members/)$",
     },
   ],
 };
@@ -401,7 +435,9 @@ export const siteEn: LocaleConfig = {
         },
         {
           text: "API Reference",
-          link: "https://deno.land/x/grammy/mod.ts",
+          link: "/ref/",
+          // do not add the following line to translations:
+          activeMatch: "^/ref/",
         },
       ],
       sidebar: {
@@ -460,6 +496,19 @@ export const siteEn: LocaleConfig = {
           ariaLabel: "grammY repository link",
         },
       ],
+      notFound: {
+        code: "404",
+        title: "PAGE NOT FOUND",
+        linkText: "Take me hoooooooome",
+        linkLabel: "Go to home",
+        messages: [
+          "Not Found",
+          "Nope.",
+          "nothin' here for ya, sorry",
+          "Error 404 \nThis Page Could Not Be Found But \nA Haiku Instead",
+          "Country rooooaaaads,",
+        ],
+      },
     },
   },
 };
@@ -509,20 +558,5 @@ export const searchEn: Record<string, Partial<DocSearchProps>> = {
         },
       },
     },
-  },
-};
-
-export const notFoundEn: Record<string, NotFound> = {
-  root: {
-    title: "PAGE NOT FOUND",
-    backToHome: "Take me hoooooooome",
-    ariaLabel: "Go to home",
-    messages: [
-      "Not Found",
-      "Nope.",
-      "nothin' here for ya, sorry",
-      "Error 404 \nThis Page Could Not Be Found But \nA Haiku Instead",
-      "Country rooooaaaads,",
-    ],
   },
 };

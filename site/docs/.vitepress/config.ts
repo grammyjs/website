@@ -1,8 +1,8 @@
 import { defineConfig } from "vitepress";
-import * as locale from "./configs/locales";
-import { markdown } from "./plugins";
-import path from "path";
-import { algolia } from "./configs/algolia";
+import * as locale from "./configs/locales/index.js";
+import { markdown } from "./plugins/index.js";
+import { algolia } from "./configs/algolia/index.js";
+import plaintext from "./shared/syntaxes/plaintext.tmLanguage.json";
 
 export default defineConfig({
   lastUpdated: true,
@@ -27,6 +27,7 @@ export default defineConfig({
 
   rewrites: {
     // Regex bug - https://github.com/vuejs/vitepress/discussions/1942
+    ":foo/:bar/:baz/README.md": ":foo/:bar/:baz/index.md",
     ":foo/:bar/README.md": ":foo/:bar/index.md",
     ":foo/README.md": ":foo/index.md",
     "README.md": "index.md",
@@ -34,45 +35,13 @@ export default defineConfig({
 
   markdown: {
     lineNumbers: true,
-    theme: "dracula-soft",
     typographer: true,
     config: markdown,
     languages: [
       {
-        id: "plaintext",
-        scopeName: "text.plain",
-        path: path.resolve(
-          __dirname,
-          "./shared/shiki-languages/plaintext.tmLanguage.json",
-        ),
-        aliases: ["asciiart", "ascii", "text"],
-      },
-      {
-        id: "procfile",
-        scopeName: "source.procfile",
-        path: path.resolve(
-          __dirname,
-          "./shared/shiki-languages/procfile.tmLanguage.json",
-        ),
-        aliases: ["Procfile", "procfile", ".procfile"],
-      },
-      {
-        id: "log",
-        scopeName: "text.log",
-        path: path.resolve(
-          __dirname,
-          "./shared/shiki-languages/log.tmLanguage.json",
-        ),
-        aliases: ["log"],
-      },
-      {
-        id: "fluent",
-        scopeName: "source.ftl",
-        path: path.resolve(
-          __dirname,
-          "./shared/shiki-languages/ftl.tmLanguage.json",
-        ),
-        aliases: ["ftl"],
+        // fallback unsupported syntaxes to txt
+        aliases: ["asciiart", "ascii", "ftl", "log", "procfile", "text"],
+        ...plaintext,
       },
     ],
   },

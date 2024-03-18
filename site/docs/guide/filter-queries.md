@@ -163,7 +163,7 @@ If you want to install some piece of middleware behind the AND concatenation of 
 
 ```ts
 // Matches forwarded URLs
-bot.on("::url").on(":forward_date" /* , ... */);
+bot.on("::url").on(":forward_origin" /* , ... */);
 // Matches photos that contain a hashtag in a photo's caption
 bot.on(":photo").on("::hashtag" /* , ... */);
 ```
@@ -178,7 +178,7 @@ It is technically possible to combine filter queries to more complicated formula
 ```ts
 bot
   // Matches all channel posts or forwarded messages ...
-  .on(["channel_post", ":forward_date"])
+  .on(["channel_post", ":forward_origin"])
   // ... that contain text ...
   .on(":text")
   // ... with at least one URL, hashtag, or cashtag.
@@ -217,11 +217,11 @@ which can be used to detect status changes of other chat members, such as when p
 
 ### Combining Queries With Other Methods
 
-You can combine filter queries with other methods on the `Composer` class ([API Reference](https://deno.land/x/grammy/mod.ts?s=Composer)), such as `command` or `filter`.
+You can combine filter queries with other methods on the `Composer` class ([API Reference](/ref/core/Composer)), such as `command` or `filter`.
 This allows for powerful message handling patterns.
 
 ```ts
-bot.on(":forward_date").command("help"); // forwarded /help commands
+bot.on(":forward_origin").command("help"); // forwarded /help commands
 
 // Only handle commands in private chats.
 const pm = bot.chatType("private");
@@ -308,7 +308,7 @@ function handler(ctx: Filter<Context, ":text">) {
 bot.on(":text", handler);
 ```
 
-> Check out the API references for [`matchFilter`](https://deno.land/x/grammy/filter.ts?s=matchFilter), [`Filter`](https://deno.land/x/grammy/filter.ts?s=Filter), and [`FilterQuery`](https://deno.land/x/grammy/filter.ts?s=FilterQuery) to read on.
+> Check out the API references for [`matchFilter`](/ref/core/matchFilter), [`Filter`](/ref/core/Filter), and [`FilterQuery`](/ref/core/FilterQuery) to read on.
 
 ## The Query Language
 
@@ -351,4 +351,4 @@ Every part will be mapped to a function that performs a single `in` check, or tw
 These functions are then combined to form a predicate that only has to check for as many values as are relevant for the query, without iterating over the object keys of `Update`.
 
 This system uses less operations than some competing libraries, which need to perform containment checks in arrays when routing updates.
-grammY's filter query system is much more powerful.
+grammY's filter query system is faster despite being much more powerful.

@@ -19,7 +19,7 @@ This plugin comes to the rescue: automatically listening to `chat_member` events
 
 ### Storing Chat Members
 
-You can use a valid grammY [storage adapter](./session#known-storage-adapters) or an instance of any class that implements the [`StorageAdapter`](https://deno.land/x/grammy/mod.ts?s=StorageAdapter) interface.
+You can use a valid grammY [storage adapter](./session#known-storage-adapters) or an instance of any class that implements the [`StorageAdapter`](/ref/core/StorageAdapter) interface.
 
 Please note that as per the [official Telegram docs](https://core.telegram.org/bots/api#getupdates), your bot needs to specify the `chat_member` update in the `allowed_updates` array, as shown in the example below.
 This means you also need to specify any other events you'd like to receive.
@@ -146,5 +146,5 @@ Only use this if you _really_ know what you're doing and are okay with the risks
 ## Plugin Summary
 
 - Name: `chat-members`
-- Source: <https://github.com/grammyjs/chat-members>
-- Reference: <https://deno.land/x/grammy_chat_members/mod.ts>
+- [Source](https://github.com/grammyjs/chat-members)
+- [Reference](/ref/chat-members/)

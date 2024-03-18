@@ -163,7 +163,7 @@ bot.on(["::hashtag", "::email", "::mention"] /* , ... */);
 
 ```ts
 // 匹配转发的 URL
-bot.on("::url").on(":forward_date" /* , ... */);
+bot.on("::url").on(":forward_origin" /* , ... */);
 // 匹配在标题中含有标签的照片
 bot.on(":photo").on("::hashtag" /* , ... */);
 ```
@@ -178,7 +178,7 @@ bot.on(":photo").on("::hashtag" /* , ... */);
 ```ts
 bot
   // 匹配所有频道的帖子或转发的消息 ...
-  .on(["channel_post", ":forward_date"])
+  .on(["channel_post", ":forward_origin"])
   // ... 包含文本. ...
   .on(":text")
   // ... 至少有一个 URL，hashtag 或 cashtag。
@@ -217,11 +217,11 @@ bot.on("chat_member");
 
 ### 将查询与其他方法相结合
 
-你可以将过滤器查询与 `Composer` 类（[API 参考](https://deno.land/x/grammy/mod.ts?s=Composer)）的其他方法相结合，例如 `command` 或 `filter`。
+你可以将过滤器查询与 `Composer` 类（[API 参考](/ref/core/Composer)）的其他方法相结合，例如 `command` 或 `filter`。
 这可以让你构建更复杂的消息处理模式。
 
 ```ts
-bot.on(":forward_date").command("help"); // 转发的 /help 命令
+bot.on(":forward_origin").command("help"); // 转发的 /help 命令
 // 只在私人聊天中处理命令。
 const pm = bot.chatType("private");
 pm.command("start");
@@ -305,7 +305,7 @@ function handler(ctx: Filter<Context, ":text">) {
 bot.on(":text", handler);
 ```
 
-> 查看并阅读更多 [`matchFilter`](https://deno.land/x/grammy/filter.ts?s=matchFilter)，[`Filter`](https://deno.land/x/grammy/filter.ts?s=Filter) 和 [`FilterQuery`](https://deno.land/x/grammy/filter.ts?s=FilterQuery) 的 API 参考。
+> 查看并阅读更多 [`matchFilter`](/ref/core/matchFilter)，[`Filter`](/ref/core/Filter) 和 [`FilterQuery`](/ref/core/FilterQuery) 的 API 参考。
 
 ## 查询语言
 
@@ -347,4 +347,4 @@ filter 查询的验证只发生一次，当 bot 被初始化和 `bot.on()` 被�
 每个部分都将被映射到一个函数，该函数执行一个单一的 `in` 检查，或者如果该部分被省略，需要检查两个值，则执行两个检查。
 然后这些函数被组合成一个语句，这个语句只需要检查与查询相关的值，而不需要对 `Update` 的对象键进行迭代。
 
-这个系统使用的操作比一些同类库要少，这些库在路由更新时需要对数组进行包含性检查。如你所见， grammY 的 filter 查询系统要强大得多。
+这个系统使用的操作比一些同类库要少，这些库在路由更新时需要对数组进行包含性检查。如你所见，grammY 的 filter 查询系统虽说强大得多，但丝毫不影响效率，反而更快。

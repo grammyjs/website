@@ -119,7 +119,7 @@ Ahora crea `app.ts` dentro de la carpeta `src` y escribe este código dentro:
 ```ts
 import express from "express";
 import { webhookCallback } from "grammy";
-import { bot } from "./bot";
+import { bot } from "./bot.js";
 
 const domain = String(process.env.DOMAIN);
 const secretPath = String(process.env.BOT_TOKEN);
@@ -188,7 +188,7 @@ Como siempre, esto es opcional.
 
 ::: tip ⚡ Optimización (opcional)
 Cada vez que tu servidor se inicie, grammY solicitará [información sobre el bot](https://core.telegram.org/bots/api#getme) a Telegram para proporcionarla en el [objeto de contexto](../guide/context) bajo `ctx.me`.
-Podemos establecer la [información sobre el bot](https://deno.land/x/grammy/mod.ts?s=BotConfig#prop_botInfo) para evitar un exceso de llamadas a `getMe`.
+Podemos establecer la [información sobre el bot](/ref/core/BotConfig#botinfo) para evitar un exceso de llamadas a `getMe`.
 
 1. Abre este enlace `https://api.telegram.org/bot<bot_token>/getMe` en tu navegador web favorito. Se recomienda usar [Firefox](https://www.mozilla.org/en-US/firefox/) ya que muestra muy bien el formato `json`.
 2. Cambia nuestro código en la línea 4 de arriba y rellena el valor de acuerdo con los resultados de `getMe`:

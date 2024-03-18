@@ -119,7 +119,7 @@ You can pass a label and a handler function.
 Use `row` to end the current row, and add all subsequent buttons to a new one.
 
 There are many more button types available, e.g. for opening URLs.
-Check out this plugin's [API Reference](https://deno.land/x/grammy_menu/mod.ts?s=MenuRange) for `MenuRange`, as well as the [Telegram Bot API Reference](https://core.telegram.org/bots/api#inlinekeyboardbutton) for `InlineKeyboardButton`.
+Check out this plugin's [API Reference](/ref/menu/MenuRange) for `MenuRange`, as well as the [Telegram Bot API Reference](https://core.telegram.org/bots/api#inlinekeyboardbutton) for `InlineKeyboardButton`.
 
 ## Sending a Menu
 
@@ -440,7 +440,7 @@ You would have to use so many API calls for this that Telegram would rate-limit 
 You would also require a lot of storage to remember all of the message identifiers of every menu, across all chats.
 This is not practical.
 
-The solution, is to check if a menu is outdated _before_ performing any actions.
+The solution is to check if a menu is outdated _before_ performing any action.
 This way, we will only update old menus if a user actually starts clicking the buttons on them.
 The menu plugin handles this automatically for you, so you don't need to worry about it.
 
@@ -533,5 +533,5 @@ As a result, you are able to navigate between arbitrary menus without limit, all
 ## Plugin Summary
 
 - Name: `menu`
-- Source: <https://github.com/grammyjs/menu>
-- Reference: <https://deno.land/x/grammy_menu/mod.ts>
+- [Source](https://github.com/grammyjs/menu)
+- [Reference](/ref/menu/)
