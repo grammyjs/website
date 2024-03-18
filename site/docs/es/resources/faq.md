@@ -47,7 +47,7 @@ Un álbum sólo existe realmente en la interfaz de usuario de un cliente de Tele
 Para un bot, manejar un grupo de medios es lo mismo que manejar una serie de mensajes individuales.
 El consejo más práctico es ignorar que existen los grupos de medios, y simplemente escribir tu bot con mensajes individuales en mente.
 Entonces, los álbumes funcionarán automáticamente.
-Por ejemplo, puedes pedir al usuario que [pulse un botón](../plugins/keyboard.md#teclados-en-linea) o envíe `/done` cuando todos los archivos estén subidos al chat de tu bot.
+Por ejemplo, puedes pedir al usuario que [pulse un botón](../plugins/keyboard#teclados-en-linea) o envíe `/done` cuando todos los archivos estén subidos al chat de tu bot.
 
 Pero si un cliente de Telegram puede hacerlo, entonces mi bot debería poder hacer lo mismo.
 
