@@ -404,7 +404,7 @@ export const siteZh: LocaleConfig = {
         },
         {
           text: "API 参考",
-          link: "https://deno.land/x/grammy/mod.ts",
+          link: "/ref/",
         },
       ],
       sidebar: {
