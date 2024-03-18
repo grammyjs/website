@@ -46,7 +46,7 @@ Telegram 不会为你的 bot 储存消息。
 对于一个 bot 来说，处理媒体组与处理一系列单条消息是一回事。
 最实用的建议是忽略媒体组的存在，只需在编写你的 bot 时按照单条消息处理即可。
 这样，相册就会自动生效。
-例如，你可以让用户在所有文件都上传到你的 bot 之后 [点击一个按钮](../plugins/keyboard.md#inline-keyboards) 或者发送 `/done`。
+例如，你可以让用户在所有文件都上传到你的 bot 之后 [点击一个按钮](../plugins/keyboard#inline-keyboards) 或者发送 `/done`。
 
 _但如果 Telegram 客户端能做到这一点，那么我的 bot 应该也同样能做到！_
 
