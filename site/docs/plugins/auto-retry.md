@@ -92,5 +92,5 @@ autoRetry({
 ## Plugin Summary
 
 - Name: `auto-retry`
-- Source: <https://github.com/grammyjs/auto-retry>
+- [Source](https://github.com/grammyjs/auto-retry)
 - [Reference](/ref/auto-retry)
