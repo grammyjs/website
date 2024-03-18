@@ -54,11 +54,11 @@ export default defineConfig({
       alias: [
         {
           find: /^.*\/VPNavBar\.vue$/,
-          replacement: `./components/CustomNavBar.vue`,
+          replacement: `${import.meta.dirname}/components/CustomNavBar.vue`,
         },
         {
           find: /^.*\/VPNavScreen\.vue$/,
-          replacement: `./components/CustomNavScreen.vue`,
+          replacement: `${import.meta.dirname}/components/CustomNavScreen.vue`,
         },
       ],
     },
