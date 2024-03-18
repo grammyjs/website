@@ -161,7 +161,7 @@ function createDoc(
 
     fs.ensureDirSync(path.dirname(filename));
     if (!fs.existsSync(filename, { isFile: true })) {
-      contents = "---\neditLink: false\n---\n\n" + contents;
+      contents = "---\neditLink: false\ntranslation: false\n---\n\n" + contents;
     }
     Deno.writeTextFileSync(filename, contents, { append: true });
     return true;
@@ -319,6 +319,7 @@ for (const [nodes, path_, slug, name, description] of refs) {
     }
     content = `---
 editLink: false
+translation: false
 ---
 
 ${content}`;
@@ -334,6 +335,7 @@ Deno.writeTextFileSync(
   overviewPath,
   `---
 editLink: false
+translation: false
 ---
 
 ${renderToString(<Overview refs={refs} />)}
