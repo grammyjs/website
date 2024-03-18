@@ -67,5 +67,5 @@ El middleware básico [sequentialize](../advanced/scaling#la-concurrencia-es-dif
 ## Resumen del plugin
 
 - Nombre: `grammy-middlewares`
-- Fuente: <https://github.com/backmeupplz/grammy-middlewares>
+- [Fuente](https://github.com/backmeupplz/grammy-middlewares)
 - Referencia: <https://github.com/backmeupplz/grammy-middlewares>

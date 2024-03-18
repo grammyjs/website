@@ -234,5 +234,5 @@ In this example, I have used `chat.id` as the unique key for rate-limiting.
 ## Plugin Summary
 
 - Name: `ratelimiter`
-- Source: <https://github.com/grammyjs/ratelimiter>
-- Reference: <https://deno.land/x/grammy_ratelimiter/mod.ts>
+- [Source](https://github.com/grammyjs/ratelimiter)
+- [Reference](/ref/ratelimiter/)

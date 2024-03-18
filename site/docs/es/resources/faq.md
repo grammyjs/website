@@ -6,7 +6,8 @@ prev:
 
 # FAQ
 
-Aquí hay una colección de preguntas frecuentes sobre [errores comunes](#¿por-que-recibo-este-error) y [cosas de Deno](#preguntas-sobre-deno).
+He aquí una recopilación de preguntas frecuentes que no tenían cabida en ningún otro sitio.
+Las preguntas relativas a [errores comunes](#¿por-que-recibo-este-error) y [cosas-deno](#preguntas-sobre-deno) se agruparon en las dos secciones dedicadas.
 
 Si este FAQ no responde a tu pregunta, también deberías echar un vistazo al [Bot FAQ](https://core.telegram.org/bots/faq) escrito por el equipo de Telegram.
 
@@ -25,7 +26,42 @@ No, no es así.
    Si lo es, entonces grammY lo recogerá en el objeto de opciones llamado `other`.
    Pasa `{ parameter_name: value }` en ese lugar y funcionará.
    Como siempre, TypeScript autocompletará los nombres de los parámetros por ti.
-3. Comprueba la firma del método para las [acciones disponibles](../guide/context#acciones-disponibles) en `ctx` [aquí](https://deno.land/x/grammy/mod.ts?s=Context#Methods), o para los métodos API (`ctx.api`, `bot.api`) [aquí](https://deno.land/x/grammy/mod.ts?s=Api#Methods).
+3. Comprueba la firma del método para las [acciones disponibles](../guide/context#acciones-disponibles) en `ctx` [aquí](/ref/core/Context#methods), o para los métodos API (`ctx.api`, `bot.api`) [aquí](/ref/core/Api#methods).
+
+## ¿Cómo puedo acceder al historial de chat?
+
+No puedes.
+
+Telegram no almacena los mensajes de tu bot.
+
+En su lugar, tienes que esperar a que lleguen nuevos mensajes/publicaciones del canal, y almacenar los mensajes en tu base de datos.
+Luego puedes cargar el historial de chat desde tu base de datos.
+
+Esto es lo que el plugin [conversaciones](../plugins/conversations) hace internamente para la parte relevante del historial de mensajes.
+
+## ¿Cómo puedo manejar los álbumes?
+
+No puedes... al menos no de la forma que piensas.
+
+Un álbum sólo existe realmente en la interfaz de usuario de un cliente de Telegram.
+Para un bot, manejar un grupo de medios es lo mismo que manejar una serie de mensajes individuales.
+El consejo más práctico es ignorar que existen los grupos de medios, y simplemente escribir tu bot con mensajes individuales en mente.
+Entonces, los álbumes funcionarán automáticamente.
+Por ejemplo, puedes pedir al usuario que [pulse un botón](../plugins/keyboard#teclados-en-linea) o envíe `/done` cuando todos los archivos estén subidos al chat de tu bot.
+
+Pero si un cliente de Telegram puede hacerlo, entonces mi bot debería poder hacer lo mismo.
+
+Sí y no.
+Técnicamente, existe el `media_group_id` que te permite determinar los mensajes que pertenecen al mismo álbum.
+Sin embargo,
+
+- no hay manera de saber el número de mensajes de un álbum,
+- no hay forma de saber cuándo se recibió el último mensaje de un álbum, y
+- pueden enviarse otros mensajes, como mensajes de texto, mensajes de servicio, etc., entre los mensajes del álbum.
+
+Así que sí, en teoría, puedes saber qué mensajes pertenecen a un mismo álbum, pero sólo con respecto a los mensajes que has recibido hasta ahora.
+No puedes saber si más adelante se añadirán más mensajes al álbum.
+Si alguna vez recibes un álbum en un cliente de Telegram mientras tienes una conexión a Internet _extremadamente_ mala, puedes ver cómo el cliente reagrupa repetidamente el álbum a medida que llegan nuevos mensajes.
 
 ## ¿Por qué recibo este error?
 

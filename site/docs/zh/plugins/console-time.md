@@ -81,4 +81,4 @@ bot.on("message" /* ... */);
 
 ## 插件概述
 
-- 源码：<https://github.com/EdJoPaTo/telegraf-middleware-console-time>
+- [源码](https://github.com/EdJoPaTo/telegraf-middleware-console-time)

@@ -179,5 +179,5 @@ All objects are hydrated on
 ## Plugin Summary
 
 - Name: `hydrate`
-- Source: <https://github.com/grammyjs/hydrate>
-- Reference: <https://deno.land/x/grammy_hydrate/mod.ts>
+- [Source](https://github.com/grammyjs/hydrate)
+- [Reference](/ref/hydrate/)
