@@ -21,7 +21,7 @@ bot.start();
 ```
 
 Looks pretty much like a stack, except, behind the scenes, it really is a tree.
-The heart of this functionality is the `Composer` class ([reference](https://deno.land/x/grammy/mod.ts?s=Composer)) that builds up this tree.
+The heart of this functionality is the `Composer` class ([reference](/ref/core/Composer)) that builds up this tree.
 
 First of all, every instance of `Bot` is an instance of `Composer`.
 It's just a subclass, so `class Bot extends Composer`.
@@ -43,7 +43,7 @@ const bot = new Bot(""); // subclass of `Composer`
 const composer = new Composer();
 bot.use(composer);
 
-// These will be ran:
+// These will be run:
 composer.use(/* A */);
 composer.use(/* B */);
 composer.use(/* C */);

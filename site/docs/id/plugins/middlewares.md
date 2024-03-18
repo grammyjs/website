@@ -71,5 +71,5 @@ Middleware [sequentialize](../advanced/scaling#concurrency-itu-sulit) sederhana 
 ## Ringkasan Plugin
 
 - Nama: `grammy-middlewares`
-- Sumber: <https://github.com/backmeupplz/grammy-middlewares>
+- [Sumber](https://github.com/backmeupplz/grammy-middlewares)
 - Referensi: <https://github.com/backmeupplz/grammy-middlewares>

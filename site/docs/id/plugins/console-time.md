@@ -82,4 +82,4 @@ Hal ini mengindikasikan bahwa middleware yang dites tersebut berjalan selama 800
 
 ## Ringkasan Plugin
 
-- Sumber: <https://github.com/EdJoPaTo/telegraf-middleware-console-time>
+- [Sumber](https://github.com/EdJoPaTo/telegraf-middleware-console-time)

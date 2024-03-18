@@ -29,7 +29,7 @@ This is mainly useful to send large files, or to decrease latency.
 
 The Bot API is what defines what bots can and cannot do.
 Every single method of the Bot API has an equivalent in grammY, and we make sure to always keep the library in sync with the latest and greatest features for bots.
-Example: `sendMessage` in the [Telegram Bot API Reference](https://core.telegram.org/bots/api#sendmessage) and in the [grammY API Reference](https://deno.land/x/grammy/mod.ts?s=Api#method_sendMessage_0).
+Example: `sendMessage` in the [Telegram Bot API Reference](https://core.telegram.org/bots/api#sendmessage) and in the [grammY API Reference](/ref/core/Api#sendMessage).
 
 ### Calling a Method
 

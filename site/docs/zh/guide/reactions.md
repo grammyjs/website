@@ -63,7 +63,7 @@ allowed_updates: API_CONSTANTS.ALL_UPDATE_TYPES;
 ```
 
 来接收所有 update。
-请务必查看 [API 参考](https://deno.land/x/grammy/mod.ts?s=ApiConstants#prop_ALL_UPDATE_TYPES)。
+请务必查看 [API 参考](/ref/core/ApiConstants#ALL_UPDATE_TYPES)。
 :::
 
 [grammY runner](../plugins/runner#高级选项) 和 `setWebhook` 有着相同的方式来设置 `allowed_updates`。

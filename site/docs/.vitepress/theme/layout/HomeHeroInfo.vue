@@ -19,7 +19,7 @@ onMounted(() => {
   pickTagline(props.taglines);
   showContent.value = true;
   if (hasHover()) // @ts-ignore
-    void import("lazy-lottie-player/lazy-tgs-player.mjs");
+    void import(/* @vite-ignore */ "lazy-lottie-player/lazy-tgs-player.mjs");
 });
 
 onUpdated(() => nextTick(hydrateIcons));

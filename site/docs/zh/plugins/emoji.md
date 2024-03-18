@@ -115,5 +115,5 @@ bot.on("message", (ctx) => ctx.react(Reactions.thumbs_up));
 ## 插件概述
 
 - 名字：`emoji`
-- 源码：<https://github.com/grammyjs/emoji>
-- 参考：<https://deno.land/x/grammy_emoji/mod.ts>
+- [源码](https://github.com/grammyjs/emoji)
+- [参考](/ref/emoji/)
