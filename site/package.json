@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@types/markdown-it": "13.0.7",
+    "@types/node": "20.11.28",
     "deno-bin": "1.40.5",
     "lazy-lottie-player": "0.0.1",
     "markdownlint-cli2": "0.12.1",

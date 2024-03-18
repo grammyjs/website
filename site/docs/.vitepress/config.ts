@@ -1,3 +1,4 @@
+import { fileURLToPath, URL } from "node:url";
 import { defineConfig } from "vitepress";
 import * as locale from "./configs/locales/index.js";
 import { markdown } from "./plugins/index.js";
@@ -49,6 +50,16 @@ export default defineConfig({
   vite: {
     build: {
       chunkSizeWarningLimit: 1600,
+    },
+    resolve: {
+      alias: [
+        {
+          find: /^.*\/VPNavBar\.vue$/,
+          replacement: fileURLToPath(
+            new URL("./components/CustomNavBar.vue", import.meta.url),
+          ),
+        },
+      ],
     },
   },
 });
