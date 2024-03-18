@@ -25,5 +25,8 @@
     "markdownlint-cli2": "0.12.1",
     "sass": "1.71.0",
     "vitepress": "1.0.0-rc.43"
+  },
+  "engines": {
+    "node": ">=20.11.0 <21 || >=21.2.0"
   }
 }

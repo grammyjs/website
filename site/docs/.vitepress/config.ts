@@ -1,4 +1,3 @@
-import { fileURLToPath, URL } from "node:url";
 import { defineConfig } from "vitepress";
 import * as locale from "./configs/locales/index.js";
 import { markdown } from "./plugins/index.js";
@@ -55,15 +54,11 @@ export default defineConfig({
       alias: [
         {
           find: /^.*\/VPNavBar\.vue$/,
-          replacement: fileURLToPath(
-            new URL("./components/CustomNavBar.vue", import.meta.url),
-          ),
+          replacement: `${import.meta.dirname}/components/CustomNavBar.vue`,
         },
         {
           find: /^.*\/VPNavScreen\.vue$/,
-          replacement: fileURLToPath(
-            new URL("./components/CustomNavScreen.vue", import.meta.url),
-          ),
+          replacement: `${import.meta.dirname}/components/CustomNavScreen.vue`,
         },
       ],
     },
