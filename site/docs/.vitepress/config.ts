@@ -1,4 +1,3 @@
-import { resolve } from "path";
 import { defineConfig } from "vitepress";
 import { algolia } from "./configs/algolia/index.js";
 import * as locale from "./configs/locales/index.js";
@@ -55,11 +54,11 @@ export default defineConfig({
       alias: [
         {
           find: /^.*\/VPNavBar\.vue$/,
-          replacement: `${resolve()}/components/CustomNavBar.vue`,
+          replacement: `./components/CustomNavBar.vue`,
         },
         {
           find: /^.*\/VPNavScreen\.vue$/,
-          replacement: `${resolve()}/components/CustomNavScreen.vue`,
+          replacement: `./components/CustomNavScreen.vue`,
         },
       ],
     },
