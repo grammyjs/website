@@ -19,10 +19,14 @@
   },
   "devDependencies": {
     "@types/markdown-it": "13.0.7",
+    "@types/node": "20.11.28",
     "deno-bin": "1.40.5",
     "lazy-lottie-player": "0.0.1",
     "markdownlint-cli2": "0.12.1",
     "sass": "1.71.0",
     "vitepress": "1.0.0-rc.43"
+  },
+  "engines": {
+    "node": ">=20.11.0 <21 || >=21.2.0"
   }
 }
