@@ -404,7 +404,7 @@ export const siteUk: LocaleConfig = {
         },
         {
           text: "Довідка API",
-          link: "https://deno.land/x/grammy/mod.ts",
+          link: "/ref/",
         },
       ],
       sidebar: {

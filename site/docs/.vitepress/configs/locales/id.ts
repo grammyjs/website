@@ -395,7 +395,7 @@ export const siteId: LocaleConfig = {
         },
         {
           text: "Referensi API",
-          link: "https://deno.land/x/grammy/mod.ts",
+          link: "/ref/",
         },
       ],
       sidebar: {
