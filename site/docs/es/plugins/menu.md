@@ -119,7 +119,7 @@ Puede pasar una etiqueta y una función manejadora.
 Utilice `row` para terminar la fila actual, y añadir todos los botones posteriores a una nueva fila.
 
 Hay muchos más tipos de botones disponibles, por ejemplo, para abrir URLs.
-Echa un vistazo a la [Referencia API de este plugin](https://deno.land/x/grammy_menu/mod.ts?s=MenuRange) para `MenuRange`, así como a la [Referencia API de Telegram Bot](https://core.telegram.org/bots/api#inlinekeyboardbutton) para `InlineKeyboardButton`.
+Echa un vistazo a la [Referencia API de este plugin](/ref/menu/MenuRange) para `MenuRange`, así como a la [Referencia API de Telegram Bot](https://core.telegram.org/bots/api#inlinekeyboardbutton) para `InlineKeyboardButton`.
 
 ## Enviando un Menú
 
@@ -528,5 +528,5 @@ Como resultado, puedes navegar entre menús arbitrarios sin límite, todo mientr
 ## Resumen del plugin
 
 - Nombre: `menu`
-- Fuente: <https://github.com/grammyjs/menu>
-- Referencia: <https://deno.land/x/grammy_menu/mod.ts>
+- [Fuente](https://github.com/grammyjs/menu)
+- [Referencia](/ref/menu/)

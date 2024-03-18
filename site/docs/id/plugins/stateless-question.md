@@ -64,4 +64,4 @@ Lihat [README repo plugin](https://github.com/grammyjs/stateless-question) untuk
 ## Ringkasan Plugin
 
 - Nama: `stateless-question`
-- Sumber: <https://github.com/grammyjs/stateless-question>
+- [Sumber](https://github.com/grammyjs/stateless-question)

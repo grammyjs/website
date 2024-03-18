@@ -3,7 +3,8 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "prepare": "npm run docs:index-versions",
+    "prepare": "npm run docs:index-versions && npm run docs:genapi",
+    "docs:genapi": "cd api && deno task genapi",
     "docs:index-versions": "deno run --no-npm --allow-net docs/.vitepress/plugins/current-versions/build-index.ts > docs/.vitepress/plugins/current-versions/index.json",
     "docs:dev": "vitepress dev docs",
     "docs:host": "vitepress dev docs --host",
@@ -13,7 +14,7 @@
     "docs:vitepress": "vitepress build docs",
     "docs:fmt": "deno fmt",
     "docs:lint": "markdownlint-cli2 \"./docs/**/*.md\" \"#node_modules\"",
-    "docs:sitemap": "deno run --no-npm --allow-read=docs/.vitepress/dist --allow-write=docs/.vitepress/dist/sitemap.xml https://deno.land/x/sitemap@v1.1.0/cli.ts -b https://grammy.dev -r docs/.vitepress/dist --clean",
+    "docs:sitemap": "deno run --no-npm --allow-read=docs/.vitepress/dist --allow-write=docs/.vitepress/dist/sitemap.xml https://deno.land/x/sitemap@v1.2.0/cli.ts -b https://grammy.dev -r docs/.vitepress/dist --clean",
     "deno:version": "deno --version"
   },
   "devDependencies": {
