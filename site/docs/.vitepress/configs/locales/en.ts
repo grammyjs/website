@@ -222,6 +222,12 @@ const pluginOfficial = {
       activeMatch: "^(/plugins/router|/ref/router/)$",
     },
     {
+      text: "NestJS (nestjs)",
+      link: "/plugins/nestjs",
+      // do not add the following line to translations:
+      activeMatch: "^(/plugins/nestjs|/ref/nestjs/)$",
+    },
+    {
       text: "Emoji (emoji)",
       link: "/plugins/emoji",
       // do not add the following line to translations:
