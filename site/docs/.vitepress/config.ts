@@ -1,7 +1,7 @@
 import { defineConfig } from "vitepress";
+import { algolia } from "./configs/algolia/index.js";
 import * as locale from "./configs/locales/index.js";
 import { markdown } from "./plugins/index.js";
-import { algolia } from "./configs/algolia/index.js";
 import plaintext from "./shared/syntaxes/plaintext.tmLanguage.json";
 
 export default defineConfig({
@@ -49,6 +49,18 @@ export default defineConfig({
   vite: {
     build: {
       chunkSizeWarningLimit: 1600,
+    },
+    resolve: {
+      alias: [
+        {
+          find: /^.*\/VPNavBar\.vue$/,
+          replacement: `${import.meta.dirname}/components/CustomNavBar.vue`,
+        },
+        {
+          find: /^.*\/VPNavScreen\.vue$/,
+          replacement: `${import.meta.dirname}/components/CustomNavScreen.vue`,
+        },
+      ],
     },
   },
 });
