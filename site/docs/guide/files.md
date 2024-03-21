@@ -32,8 +32,8 @@ You cannot reliably use a `file_id` from your friend's bot, to access a file wit
 Each bot will use different identifiers for the same file.
 This implies that you cannot simply guess a `file_id` and access some random person's file, because Telegram keeps track of which `file_id`s are valid for your bot.
 
-::: warning Using Foreign file*ids
-Note that in some cases it \_is* technically possible that a `file_id` from another bot seems to work correctly.
+::: warning Using Foreign `file_id`s
+Note that in some cases it _is_ technically possible that a `file_id` from another bot seems to work correctly.
 **However**, using a foreign `file_id` like this is dangerous as it can stop working at any time, without warning.
 So, always ensure that any `file_id`s you use were originally for your bot.
 :::
