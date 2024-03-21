@@ -460,10 +460,12 @@ type MyContext = Context & SessionFlavor<SessionData>;
 // Create the bot and register the session middleware.
 const bot = new Bot<MyContext>("");
 
-bot.use(session({
-  initial: () => ({ count: 0 }),
-  storage: freeStorage<SessionData>(bot.token),
-}));
+bot.use(
+  session({
+    initial: () => ({ count: 0 }),
+    storage: freeStorage<SessionData>(bot.token),
+  })
+);
 
 // Use persistent session data in update handlers.
 bot.on("message", async (ctx) => {
@@ -482,10 +484,12 @@ const { freeStorage } = require("@grammyjs/storage-free");
 // Create the bot and register the session middleware.
 const bot = new Bot("");
 
-bot.use(session({
-  initial: () => ({ count: 0 }),
-  storage: freeStorage(bot.token),
-}));
+bot.use(
+  session({
+    initial: () => ({ count: 0 }),
+    storage: freeStorage(bot.token),
+  })
+);
 
 // Use persistent session data in update handlers.
 bot.on("message", async (ctx) => {
@@ -515,10 +519,12 @@ type MyContext = Context & SessionFlavor<SessionData>;
 // Create the bot and register the session middleware.
 const bot = new Bot<MyContext>("");
 
-bot.use(session({
-  initial: () => ({ count: 0 }),
-  storage: freeStorage<SessionData>(bot.token),
-}));
+bot.use(
+  session({
+    initial: () => ({ count: 0 }),
+    storage: freeStorage<SessionData>(bot.token),
+  })
+);
 
 // Use persistent session data in update handlers.
 bot.on("message", async (ctx) => {
@@ -581,20 +587,22 @@ You can use this feature by passing `type: "multi"` to the session configuration
 In turn, you will need to configure each fragment with its own config.
 
 ```ts
-bot.use(session({
-  type: "multi",
-  foo: {
-    // these are also the default values
-    storage: new MemorySessionStorage(),
-    initial: () => undefined,
-    getSessionKey: (ctx) => ctx.chat?.id.toString(),
-  },
-  bar: {
-    initial: () => ({ prop: 0 }),
-    storage: freeStorage(bot.token),
-  },
-  baz: {},
-}));
+bot.use(
+  session({
+    type: "multi",
+    foo: {
+      // these are also the default values
+      storage: new MemorySessionStorage(),
+      initial: () => undefined,
+      getSessionKey: (ctx) => ctx.chat?.id.toString(),
+    },
+    bar: {
+      initial: () => ({ prop: 0 }),
+      storage: freeStorage(bot.token),
+    },
+    baz: {},
+  })
+);
 ```
 
 Note that you must add a configuration entry for every fragment you want to use.
@@ -703,12 +711,14 @@ They can be installed using the `enhanceStorage` function.
 
 ```ts
 // Use the enhanced storage adapter.
-bot.use(session({
-  storage: enhanceStorage({
-    storage: freeStorage(bot.token), // adjust this
-    // more config here
-  }),
-}));
+bot.use(
+  session({
+    storage: enhanceStorage({
+      storage: freeStorage(bot.token), // adjust this
+      // more config here
+    }),
+  })
+);
 ```
 
 You can also use both at the same time.
@@ -832,6 +842,33 @@ const enhanced = enhanceStorage({
 
 You can pick any JavaScript numbers as versions.
 No matter how far the session data for a chat has evolved, as soon as it is read, it will be migrated through the versions until it uses the most recent structure.
+
+### Types for Storage Enhancements
+
+```ts
+interface SessionData {
+  count: number;
+}
+type MyContext = Context & SessionFlavor<SessionData>;
+
+const bot = new Bot<MyContext>("");
+
+bot.use(
+  session({
+    initial(): SessionData {
+      return { count: 0 };
+    },
+    storage: enhanceStorage({
+      storage: new MemorySessionStorage<Enhance<SessionData>>(),
+      millisecondsToLive: 60_000,
+    }),
+  })
+);
+
+bot.on("message", (ctx) => ctx.reply(`Chat count is ${ctx.session.count++}`));
+
+bot.start();
+```
 
 ## Plugin Summary
 
