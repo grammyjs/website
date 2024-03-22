@@ -228,6 +228,7 @@ const pluginThirdparty = {
     },
   ],
 };
+
 const resourcesGrammy = {
   text: "grammY",
   items: [
@@ -288,7 +289,6 @@ const resourcesTelegram = {
     },
   ],
 };
-
 
 const resourcesTools = {
   text: "Peralatan",
