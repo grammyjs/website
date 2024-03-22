@@ -298,7 +298,7 @@ const resourcesTools = {
       link: "https://telegram.tools",
     },
     {
-      text: "Extensión VS Code",
+      text: "Extensión para VS Code",
       link: "https://github.com/grammyjs/vscode",
     },
   ],
