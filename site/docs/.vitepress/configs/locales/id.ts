@@ -302,7 +302,7 @@ const resourcesTools = {
       link: "https://github.com/grammyjs/vscode",
     },
   ],
-}
+};
 
 const hostingOverview = {
   text: "Gambaran Umum",

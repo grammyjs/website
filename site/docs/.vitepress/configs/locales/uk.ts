@@ -294,7 +294,6 @@ const resourcesTelegram = {
   ],
 };
 
-
 const resourcesTools = {
   text: "Інструменти",
   items: [
