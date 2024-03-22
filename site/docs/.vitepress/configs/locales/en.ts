@@ -330,13 +330,13 @@ const resourcesTools = {
   items: [
     {
       text: "telegram.tools",
-      link: "https://telegram.tools"
+      link: "https://telegram.tools",
     },
     {
       text: "VS Code Extension",
-      link: "https://github.com/grammyjs/vscode"
-    }
-  ]
+      link: "https://github.com/grammyjs/vscode",
+    },
+  ],
 };
 
 const hostingOverview = {
