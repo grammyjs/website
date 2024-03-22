@@ -294,6 +294,20 @@ const resourcesTelegram = {
   ],
 };
 
+const resourcesTools = {
+  text: "Інструменти",
+  items: [
+    {
+      text: "telegram.tools",
+      link: "https://telegram.tools",
+    },
+    {
+      text: "VS Code розширення",
+      link: "https://github.com/grammyjs/vscode",
+    },
+  ],
+};
+
 const hostingOverview = {
   text: "Огляд",
   items: [
@@ -396,7 +410,7 @@ export const siteUk: LocaleConfig = {
         },
         {
           text: "Ресурси",
-          items: [resourcesGrammy, resourcesTelegram],
+          items: [resourcesGrammy, resourcesTelegram, resourcesTools],
         },
         {
           text: "Хостинг",
