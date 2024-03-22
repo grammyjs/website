@@ -6,7 +6,8 @@ prev:
 
 # FAQ
 
-Here is a collection of frequently asked questions regarding [common errors](#why-am-i-getting-this-error) and [Deno things](#questions-about-deno).
+Here is a collection of frequently asked questions that did not fit anywhere else.
+Questions regarding [common errors](#why-am-i-getting-this-error) and [Deno things](#questions-about-deno) were grouped in the two dedicated sections.
 
 If this FAQ does not answer your question, you should also have a look at the [Bot FAQ](https://core.telegram.org/bots/faq) written by the Telegram team.
 
@@ -25,6 +26,41 @@ No, it's not.
    Pass `{ parameter_name: value }` in that place and it'll work.
    As always, TypeScript will auto-complete the parameter names for you.
 3. Perhaps double-check the method signature for [actions](../guide/context#available-actions) on `ctx` [here](/ref/core/Context#methods), or for API methods (`ctx.api`, `bot.api`) [here](/ref/core/Api#methods).
+
+## How Can I Access the Chat History?
+
+You can't.
+
+Telegram does not store the messages for your bot.
+
+Instead, you need to wait for new messages/channel posts to arrive, and store the messages in your database.
+You can then load the chat history from your database.
+
+This is what [conversations](../plugins/conversations) do internally for the relevant part of the message history.
+
+## How Can I Handle Albums?
+
+You can't ... at least not in the way you think.
+
+An album only really exists in the UI of a Telegram client.
+For a bot, handling a media group is the same thing as handling a series of individual messages.
+The most practical advice is to ignore that media groups exist, and to simple write your bot with individual messages in mind.
+Albums will then work automatically.
+For example, you can ask the user to [click a button](../plugins/keyboard.md#inline-keyboards) or send `/done` when all files are uploaded to your bot's chat.
+
+_But if a Telegram client can do it, then my bot should be able to do the same thing!_
+
+Yes and no.
+Technically, there is the `media_group_id` which lets you determine the messages that belong to the same album.
+However,
+
+- there is no way to know the number of messages in an album,
+- there is no way to know when the last message in an album was received, and
+- other messages such text messages, service messages, etc may be sent in between album messages.
+
+So yes, in theory, you can know which messages belong to together, but only regarding the messages you have received so far.
+You cannot know if there will be more messages added to the album at a later point.
+If you ever receive an album on a Telegram client while having _extremely_ bad internet connection, you can actually see how the client repeatedly regroups the album as new messages arrive.
 
 ## Why Am I Getting This Error?
 
