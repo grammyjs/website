@@ -757,7 +757,7 @@ interface SessionData {
 }
 ```
 
-Now you get the idea that you also want to store the age of the pets.
+Now, you get the idea that you also want to store the age of the pets.
 
 You could do this:
 
@@ -788,7 +788,11 @@ Migration functions let you transform the old string array into the new array of
 ::: code-group
 
 ```ts [TypeScript]
-function addBirthdayToPets(old: { petNames: string[] }): SessionData {
+interface OldSessionData {
+  petNames: string[];
+}
+
+function addBirthdayToPets(old: OldSessionData): SessionData {
   return {
     pets: old.petNames.map((name) => ({ name })),
   };
@@ -845,10 +849,18 @@ No matter how far the session data for a chat has evolved, as soon as it is read
 
 ### Types for Storage Enhancements
 
+When you use storage enhancements, your storage adapter will have to store more data than just your session data.
+For example, it has to store the time when the session was last stored so that it can correctly [expire](#timeouts) the data upon timeout.
+In some cases, TypeScript will be able to infer the correct types for your storage adapter.
+However, more often than not, you need to annotate the types of the session data explicitly in several places.
+
+The following example code snippet illustrates how to use the timeout enhancement with correct TypeScript types.
+
 ```ts
 interface SessionData {
   count: number;
 }
+
 type MyContext = Context & SessionFlavor<SessionData>;
 
 const bot = new Bot<MyContext>("");
@@ -869,6 +881,10 @@ bot.on("message", (ctx) => ctx.reply(`Chat count is ${ctx.session.count++}`));
 
 bot.start();
 ```
+
+Note that every [storage adapter](#known-storage-adapters) is able to take a type parameter.
+For example, for [free sessions](#free-storage), you can use `freeStorage<Enhance<SessionData>>` instead of `MemorySessionStorage<Enhance<SessionData>>`.
+The same is true for all other storage adapters.
 
 ## Plugin Summary
 
