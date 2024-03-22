@@ -290,6 +290,20 @@ const resourcesTelegram = {
   ],
 };
 
+const resourcesTools = {
+  text: "Herramientas",
+  items: [
+    {
+      text: "telegram.tools",
+      link: "https://telegram.tools",
+    },
+    {
+      text: "Extensión para VS Code",
+      link: "https://github.com/grammyjs/vscode",
+    },
+  ],
+};
+
 const hostingOverview = {
   text: "Resumen",
   items: [
@@ -392,7 +406,7 @@ export const siteEs: LocaleConfig = {
         },
         {
           text: "Recursos",
-          items: [resourcesGrammy, resourcesTelegram],
+          items: [resourcesGrammy, resourcesTelegram, resourcesTools],
         },
         {
           text: "Alojamiento",
@@ -400,7 +414,7 @@ export const siteEs: LocaleConfig = {
         },
         {
           text: "Referencia de API",
-          link: "https://deno.land/x/grammy/mod.ts",
+          link: "/ref/",
         },
       ],
       sidebar: {
