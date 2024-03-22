@@ -16,7 +16,7 @@ Here is a quick overview of what you get with this plugin:
 - Command scope handling
 - "Did you mean ...?" feature that automatically finds the nearest existing command
 
-All of these features are made possible because you will define one or more central command structures that you define for your commands.
+All of these features are made possible because you will define one or more central command structures that define your bot's commands.
 
 ## Basic Usage
 
