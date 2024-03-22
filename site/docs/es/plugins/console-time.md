@@ -82,4 +82,4 @@ Esto indica que el middleware comprobado por sí solo tardó 800ms y no tiene el
 
 ## Resumen del plugin
 
-- Fuente: <https://github.com/EdJoPaTo/telegraf-middleware-console-time>
+- [Fuente](https://github.com/EdJoPaTo/telegraf-middleware-console-time)

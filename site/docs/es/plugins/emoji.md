@@ -115,5 +115,5 @@ Qué bien.
 ## Resumen del plugin
 
 - Nombre: `emoji`
-- Fuente: <https://github.com/grammyjs/emoji>
-- Referencia: <https://deno.land/x/grammy_emoji/mod.ts>
+- [Fuente](https://github.com/grammyjs/emoji)
+- [Referencia](/ref/emoji/)

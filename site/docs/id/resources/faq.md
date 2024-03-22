@@ -6,7 +6,8 @@ prev:
 
 # FAQ
 
-Berikut ini adalah kumpulan pertanyaan yang sering ditanyakan mengenai [beberapa kendala yang sering terjadi](#kenapa-saya-mengalami-error-ini) dan [hal-hal lain seputar Deno](#pertanyaan-seputar-deno).
+Berikut adalah kumpulan pertanyaan yang sering ditanyakan kepada kami.
+Khusus untuk pertanyaan mengenai [permasalahan umum](#kenapa-saya-mengalami-error-ini) dan [seputar Deno](#pertanyaan-seputar-deno), kami mengelompokkannya menjadi dua bagian tersendiri.
 
 Jika FAQ ini tidak menjawab pertanyaanmu, sebaiknya kamu juga membaca [FAQ Bot](https://core.telegram.org/bots/faq) yang ditulis oleh tim Telegram.
 
@@ -24,7 +25,43 @@ Tentu saja tidak.
    Jika iya, berarti grammY menaruh parameter tersebut di suatu options object bernama `other`.
    Kamu cuma perlu menulis `{ nama_parameter: value }` di options tersebut.
    Seperti biasa, TypeScript akan membantu kamu melengkapi nama parameter-nya secara otomatis.
-3. Cek ulang method signature untuk [aksi-aksi](../guide/context#aksi-yang-tersedia) yang ada di `ctx` [di sini](https://deno.land/x/grammy/mod.ts?s=Context#Methods), serta method API-nya (`ctx.api`, `bot.api`) [di sini](https://deno.land/x/grammy/mod.ts?s=Api#Methods).
+3. Cek ulang method signature untuk [aksi-aksi](../guide/context#aksi-yang-tersedia) yang ada di `ctx` [di sini](/ref/core/Context#methods), serta method API-nya (`ctx.api`, `bot.api`) [di sini](/ref/core/Api#methods).
+
+## Bagaimana Cara Mengakses Riwayat Chat?
+
+Tidak bisa.
+
+Telegram tidak menyimpan pesan untuk bot.
+
+Namun, kamu bisa mengatasinya dengan cara menunggu pesan atau postingan baru tiba lalu menyimpannya ke database.
+Dengan begitu, kamu bisa memuat riwayat chat dari database-mu sendiri.
+
+Cara yang sama juga digunakan oleh [plugin percakapan (conversations)](../plugins/conversations) untuk menyimpan riwayat pesan terkait.
+
+## Bagaimana Cara Menangani Album?
+
+Tidak bisa ... setidaknya tidak seperti yang kamu bayangkan.
+
+Album --- _yang mana merupakan bagian dari kelompok media (media group)_ --- sebenarnya berasal dari tampilan UI aplikasi Telegram.
+Di sisi lain, bot menangani kelompok media sebagai runtutan pesan, alih-alih sebagai satu-kesatuan.
+Cara yang paling praktis untuk mengatasinya adalah mengabaikan keberadaan kelompok media tersebut.
+Artinya, kita menulis bot dengan menganggap setiap pesan sebagai individu, bukan kelompok.
+Dengan begitu, album akan bekerja dengan sendirinya.
+Contohnya, kamu bisa meminta user untuk [menekan sebuah tombol](../plugins/keyboard.md#keyboard-inline) atau mengirim `/done` ketika semua berkas sudah diunggah ke bot kamu.
+
+_Tetapi, jika aplikasi Telegram bisa melakukannya, bukankah seharusnya bot aku bisa melakukannya juga?_
+
+Bisa iya, bisa tidak.
+Secara teknis, kamu bisa memanfaatkan `media_group_id` untuk menentukan apakah pesan tersebut berasal dari album yang sama.
+Namun,
+
+- tidak ada cara untuk mengetahui jumlah pesan dalam sebuah album,
+- tidak ada cara untuk mengetahui apakah pesan yang diterima merupakan pesan terakhir dari sebuah album, dan yang terakhir
+- pesan lainnya seperti pesan teks, pesan layanan, dll bisa saja terselip di antara pesan-pesan album.
+
+Jadi, ya, secara teori, memang kamu bisa mengetahui pesan yang mana yang saling berkaitan, namun hanya sebatas pesan-pesan yang kamu terima pada saat itu saja.
+Kamu tidak akan pernah bisa tahu apakah akan ada pesan tambahan yang ditambahkan ke album tersebut di kemudian waktu.
+Jika kamu pernah menerima sebuah album di aplikasi Telegram di kondisi internet yang _sangat_ buruk, kamu bisa menyaksikan bagaimana aplikasi secara berkala mengelompokkan ulang album tersebut seiring pesan baru diterima.
 
 ## Kenapa Saya Mengalami Error Ini?
 

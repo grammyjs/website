@@ -38,7 +38,7 @@ La actualización **no** se comprueba para el contenido de una foto, porque el m
 Ahora, ¿cómo funciona esto?
 Averigüémoslo.
 
-Podemos inspeccionar el tipo `Middleware` en la referencia de grammY [aquí](https://deno.land/x/grammy/mod.ts?s=Middleware):
+Podemos inspeccionar el tipo `Middleware` en la referencia de grammY [aquí](/ref/core/Middleware):
 
 ```ts
 // Se han omitido algunos parámetros de tipo por razones de brevedad.
@@ -47,7 +47,7 @@ type Middleware = MiddlewareFn | MiddlewareObj;
 
 ¡Ajá!
 El middleware puede ser una función o un objeto.
-Sólo hemos utilizado funciones (`(ctx) => { ... }`) hasta ahora, así que ignoremos los objetos middleware por ahora, y profundicemos en el tipo `MiddlewareFn` ([reference](https://deno.land/x/grammy/mod.ts?s=MiddlewareFn)):
+Sólo hemos utilizado funciones (`(ctx) => { ... }`) hasta ahora, así que ignoremos los objetos middleware por ahora, y profundicemos en el tipo `MiddlewareFn` ([reference](/ref/core/MiddlewareFn)):
 
 ```ts
 // Vuelve a omitir los parámetros del tipo.
@@ -234,7 +234,7 @@ Otra diferencia es que no importa cuántos argumentos tome tu middleware: `() =>
 
 Hay dos tipos de middleware: funciones y objetos.
 Los objetos middleware son simplemente una envoltura para las funciones middleware.
-Se utilizan sobre todo internamente, pero a veces también pueden ayudar a las bibliotecas de terceros, o ser utilizados en casos de uso avanzado, como con [Composer](https://deno.land/x/grammy/mod.ts?s=Composer):
+Se utilizan sobre todo internamente, pero a veces también pueden ayudar a las bibliotecas de terceros, o ser utilizados en casos de uso avanzado, como con [Composer](/ref/core/Composer):
 
 ```ts
 const bot = new Bot("");

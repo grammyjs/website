@@ -15,7 +15,7 @@ Se instalan desde `@grammyjs/*` en npm, y se publican bajo la organización [@gr
 Coordinamos sus lanzamientos con los lanzamientos de grammY, y nos aseguramos de que todo funcione bien en conjunto.
 Cada sección de la documentación de un plugin oficial tiene el nombre del paquete en su título.
 Como ejemplo, el plugin [grammY runner](./runner) (`runner`) necesita ser instalado vía `npm install @grammyjs/runner`.
-(Si estás usando Deno y no Node.js, debes importar el plugin desde <https://deno.land/x/> en su lugar, es decir, desde el archivo `mod.ts` del módulo `grammy_runner`).
+(Si estás usando Deno y no Node.js, debes importar el plugin desde <https://deno.land/x> en su lugar, es decir, desde el archivo `mod.ts` del módulo `grammy_runner`).
 
 También hay algunos plugins de **terceros**.
 Cualquiera puede publicarlos.

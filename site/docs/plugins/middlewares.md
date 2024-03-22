@@ -67,5 +67,5 @@ The basic [sequentialize](../advanced/scaling#concurrency-is-hard) middleware th
 ## Plugin Summary
 
 - Name: `grammy-middlewares`
-- Source: <https://github.com/backmeupplz/grammy-middlewares>
+- [Source](https://github.com/backmeupplz/grammy-middlewares)
 - Reference: <https://github.com/backmeupplz/grammy-middlewares>

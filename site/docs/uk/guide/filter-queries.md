@@ -217,7 +217,7 @@ bot.on("chat_member");
 
 ### Комбінування запитів з іншими методами
 
-Ви можете комбінувати запити фільтрування з іншими методами класу `Composer` ([довідка API](https://deno.land/x/grammy/mod.ts?s=Composer)), такими як `command` або `filter`.
+Ви можете комбінувати запити фільтрування з іншими методами класу `Composer` ([довідка API](/ref/core/Composer)), такими як `command` або `filter`.
 Це дозволяє створювати потужні сценарії обробки повідомлень.
 
 ```ts
@@ -308,7 +308,7 @@ function handler(ctx: Filter<Context, ":text">) {
 bot.on(":text", handler);
 ```
 
-> Перегляньте довідку API для [`matchFilter`](https://deno.land/x/grammy/mod.ts?s=matchFilter), [`Filter`](https://deno.land/x/grammy/mod.ts?s=Filter) і [`FilterQuery`](https://deno.land/x/grammy/mod.ts?s=FilterQuery) для продовження читання.
+> Перегляньте довідку API для [`matchFilter`](/ref/core/matchFilter), [`Filter`](/ref/core/Filter) і [`FilterQuery`](/ref/core/FilterQuery) для продовження читання.
 
 ## Мова запитів
 

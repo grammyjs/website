@@ -60,7 +60,7 @@ grammY sama sekali tidak mengotak-atik error yang dilempar, tetapi ia membungkus
 Mengingat tadi kamu memberi nama object-nya `err`, maka kamu bisa mengakses error aslinya melalui `err.error`.
 Kamu bisa mengakses object context terkait melalui `err.ctx`.
 
-Lihat class `BotError` di [Referensi API grammY](https://deno.land/x/grammy/mod.ts?s=BotError).
+Lihat class `BotError` di [Referensi API grammY](/ref/core/BotError).
 
 ## Object `GrammyError`
 
@@ -70,7 +70,7 @@ Perlu dicatat bahwa instance `GrammyError` juga akan dibungkus di object `BotErr
 Sebuah `GrammyError` yang dilempar mengindikasikan bahwa permintaan API terkait terjadi kegagalan.
 Error ini menyediakan akses ke kode error yang dikembalikan oleh backend Telegram, termasuk juga deskripsi dari error tersebut.
 
-Lihat class `GrammyError` di [Referensi API grammY](https://deno.land/x/grammy/mod.ts?s=GrammyError).
+Lihat class `GrammyError` di [Referensi API grammY](/ref/core/GrammyError).
 
 ## Object `HttpError`
 
@@ -82,7 +82,7 @@ Kamu akan jarang melihat error semacam ini, kecuali koneksi internet kamu memang
 
 > Perlu dicatat bahwa jika server API Bot bisa dihubungi, tetapi mengembalikan `ok: false` untuk pemanggilan method tertentu, justru [`GrammyError`](./errors#object-grammyerror) yang akan dilempar.
 
-Lihat class `HttpError` di [Referensi API grammY](https://deno.land/x/grammy/mod.ts?s=HttpError).
+Lihat class `HttpError` di [Referensi API grammY](/ref/core/HttpError).
 
 ## Error Boundary
 

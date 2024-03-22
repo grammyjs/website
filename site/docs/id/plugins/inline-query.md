@@ -27,7 +27,7 @@ Selanjutnya, mari kita tangani query tersebut.
 
 Ketika pengguna memicu inline query, misalnya dengan mengetik "@nama_bot_kamu ..." di kolom input pesan, bot kamu akan menerima update tersebut.
 grammY memiliki method khusus untuk menangani inline query, yaitu `bot.inlineQuery()`.
-Method ini didokumentasikan di [referensi API grammY](https://deno.land/x/grammy/mod.ts?s=Composer#method_inlineQuery_0) di bagian class `Composer`.
+Method ini didokumentasikan di [referensi API grammY](/ref/core/Composer#inlinequery) di bagian class `Composer`.
 Method ini juga bisa menyimak inline query spesifik yang sesuai dengan suatu string atau regular expression.
 Jika kamu ingin menangani inline query secara keseluruhan, gunakan `bot.on("inline_query")`.
 
@@ -173,7 +173,7 @@ InlineQueryResultBuilder.audioCached("id-0", audioFileId);
 
 > Baca lebih lanjut mengenai pengidentifikasi berkas [di sini](../guide/files#bagaimana-file-bekerja-di-bot-telegram).
 
-Kamu sebaiknya membaca [referensi API](https://deno.land/x/grammy/mod.ts?s=InlineQueryResultBuilder) `InlineQueryResultBuilder` dan mungkin juga [spesifikasi](https://core.telegram.org/bots/api#inlinequeryresult) `InlineQueryResult` untuk melihat opsi-opsi yang tersedia.
+Kamu sebaiknya membaca [referensi API](/ref/core/InlineQueryResultBuilder) `InlineQueryResultBuilder` dan mungkin juga [spesifikasi](https://core.telegram.org/bots/api#inlinequeryresult) `InlineQueryResult` untuk melihat opsi-opsi yang tersedia.
 
 ## Merespon Inline Query
 
