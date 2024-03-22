@@ -464,7 +464,7 @@ bot.use(
   session({
     initial: () => ({ count: 0 }),
     storage: freeStorage<SessionData>(bot.token),
-  })
+  }),
 );
 
 // Use persistent session data in update handlers.
@@ -488,7 +488,7 @@ bot.use(
   session({
     initial: () => ({ count: 0 }),
     storage: freeStorage(bot.token),
-  })
+  }),
 );
 
 // Use persistent session data in update handlers.
@@ -523,7 +523,7 @@ bot.use(
   session({
     initial: () => ({ count: 0 }),
     storage: freeStorage<SessionData>(bot.token),
-  })
+  }),
 );
 
 // Use persistent session data in update handlers.
@@ -601,7 +601,7 @@ bot.use(
       storage: freeStorage(bot.token),
     },
     baz: {},
-  })
+  }),
 );
 ```
 
@@ -717,7 +717,7 @@ bot.use(
       storage: freeStorage(bot.token), // adjust this
       // more config here
     }),
-  })
+  }),
 );
 ```
 
@@ -874,7 +874,7 @@ bot.use(
       storage: new MemorySessionStorage<Enhance<SessionData>>(),
       millisecondsToLive: 60_000,
     }),
-  })
+  }),
 );
 
 bot.on("message", (ctx) => ctx.reply(`Chat count is ${ctx.session.count++}`));
