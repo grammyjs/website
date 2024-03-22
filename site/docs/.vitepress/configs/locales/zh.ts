@@ -294,6 +294,21 @@ const resourcesTelegram = {
   ],
 };
 
+
+const resourcesTools = {
+  text: "工具",
+  items: [
+    {
+      text: "telegram.tools",
+      link: "https://telegram.tools",
+    },
+    {
+      text: "VS Code 扩展",
+      link: "https://github.com/grammyjs/vscode",
+    },
+  ],
+};
+
 const hostingOverview = {
   text: "概览",
   items: [
@@ -396,7 +411,7 @@ export const siteZh: LocaleConfig = {
         },
         {
           text: "资源",
-          items: [resourcesGrammy, resourcesTelegram],
+          items: [resourcesGrammy, resourcesTelegram, resourcesTools],
         },
         {
           text: "托管服务",

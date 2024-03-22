@@ -261,6 +261,7 @@ const resourcesGrammy = {
     },
   ],
 };
+
 const resourcesTelegram = {
   text: "Telegram",
   items: [
@@ -287,6 +288,22 @@ const resourcesTelegram = {
     },
   ],
 };
+
+
+const resourcesTools = {
+  text: "Peralatan",
+  items: [
+    {
+      text: "telegram.tools",
+      link: "https://telegram.tools",
+    },
+    {
+      text: "Ekstensi VS Code",
+      link: "https://github.com/grammyjs/vscode",
+    },
+  ],
+}
+
 const hostingOverview = {
   text: "Gambaran Umum",
   items: [
@@ -387,7 +404,7 @@ export const siteId: LocaleConfig = {
         },
         {
           text: "Sumber Daya",
-          items: [resourcesGrammy, resourcesTelegram],
+          items: [resourcesGrammy, resourcesTelegram, resourcesTools],
         },
         {
           text: "Hosting",
