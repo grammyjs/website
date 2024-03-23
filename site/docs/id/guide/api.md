@@ -3,7 +3,7 @@
 ## Informasi Umum
 
 Bot Telegram berkomunikasi dengan server Telegram melalui request HTTP.
-API Bot Telegram adalah salah satu bentuk spesifikasi dari interface tersebut. Isinya berupa [daftar panjang](https://core.telegram.org/bots/api) dari berbagai method dan tipe data (data type), yang biasa disebut dengan referensi atau _reference_.
+API Bot Telegram adalah salah satu bentuk spesifikasi dari interface tersebut, contohnya sebuah [daftar panjang](https://core.telegram.org/bots/api) berbagai method dan tipe data (data type), yang biasa disebut dengan referensi atau _reference_.
 API ini mendefinisikan aksi apa saja yang bisa dilakukan oleh bot Telegram.
 Kamu dapat menemukannya di tab Sumber Daya (navigasi atas halaman ini) bagian Telegram.
 
