@@ -2,59 +2,109 @@
 
 ## Informasi Umum
 
-Bot Telegram berkomunikasi dengan server Telegram melalui HTTP request.
-API Bot Telegram adalah salah satu bentuk spesifikasi dari interface tersebut. Isinya berupa [daftar panjang](https://core.telegram.org/bots/api) dari berbagai method dan data type, yang biasa disebut dengan referensi atau _reference_.
+Bot Telegram berkomunikasi dengan server Telegram melalui request HTTP.
+API Bot Telegram adalah salah satu bentuk spesifikasi dari interface tersebut. Isinya berupa [daftar panjang](https://core.telegram.org/bots/api) dari berbagai method dan tipe data (data type), yang biasa disebut dengan referensi atau _reference_.
 API ini mendefinisikan aksi apa saja yang bisa dilakukan oleh bot Telegram.
-Kamu dapat menemukannya tertaut di tab Sumber Daya di atas halaman.
+Kamu dapat menemukannya di tab Sumber Daya (navigasi atas halaman ini) bagian Telegram.
 
-Pemasangannya bisa dianalogikan seperti ini:
+Alurnya bisa dianalogikan seperti ini:
 
 ```asciiart:no-line-numbers
-( ( ( Telegram ) API MTProto ) API HTTP Bot ) <-- bot melakukan koneksi ke sini
+bot telegram grammY-mu <———HTTP———> API Bot <———MTProto———> Telegram
 ```
 
-Jadi, ketika bot mengirim pesan, pesan tersebut akan dikirim sebagai HTTP request ke _server API Bot_ (entah itu server milik tim Telegram, atau [server milikmu sendiri](https://core.telegram.org/bots/api#using-a-local-bot-api-server)).
-Server ini akan menerjemahkan request tadi menjadi protokol utama Telegram yang disebut MTProto, lalu meneruskannya ke backend Telegram yang bertugas mengirim pesan ke pengguna yang dituju.
+Singkatnya, ketika bot mengirim pesan, pesan tersebut akan dikirim sebagai request HTTP ke _server API Bot_.
+Server tersebut di-hosting di `api.telegram.org`.
+Server akan menerjemahkan request tadi menjadi protokol utama Telegram yang disebut MTProto, lalu meneruskannya ke backend Telegram yang bertugas mengirim pesan ke pengguna yang dituju.
 
 Analogi yang sama juga berlaku ketika pengguna mengirim pesan ke bot, hanya saja alurnya dibalik.
 
-::: tip Mengatasi Limitasi Ukuran File
-Backend Telegram memungkinkan bot untuk [mengirim file](./files) berukuran hingga 2000 MB.
-Namun, server API Bot---yang bertanggung jawab untuk menerjemahkan request ke HTTP---membatasi ukuran file hanya sebesar 20 MB untuk unduhan dan 50 MB untuk unggahan.
+Ketika hendak menjalankan bot, kamu perlu menentukan metode update yang akan digunakan ketika dikirim melalui koneksi HTTP.
+Metode update tersebut bisa berupa [long polling ataupun webhooks](./deployment-types.md).
 
-Untuk menyiasati batasan tersebut, kamu bisa [meng-hosting server API Bot sendiri](https://core.telegram.org/bots/api#using-a-local-bot-api-server) supaya bot kamu bisa mengirim file dengan ukuran hingga 2000 MB.
-
-> Catatan: Jika menangani file-file berukuran besar menggunakan [long polling](./deployment-types), kamu sebaiknya menggunakan [grammY runner](../plugins/runner).
-
-:::
+Kamu juga bisa meng-hosting server API Bot-mu sendiri.
+Selain bisa mengurangi latensi, pengiriman file berukuran besar juga dimungkinkan dengan server tersebut.
 
 ## Memanggil API Bot
 
-Setiap method API Bot juga identik dengan method milik grammY.
-Contohnya, `sendMessage` baik di [Referensi API Bot Telegram](https://core.telegram.org/bots/api#sendmessage) maupun di [Referensi Api grammY](/ref/core/Api#sendmessage) keduanya sama-sama identik.
+API Bot mendikte apa yang bisa dan tidak bisa dilakukan oleh suatu bot.
+Setiap method API Bot juga identik dengan method milik grammY, dan kami selalu memastikan library ini selalui tersinkron dengan fitur-fitur utama serta terbaru untuk bot.
+Contohnya, `sendMessage` baik di [Referensi API Bot Telegram](https://core.telegram.org/bots/api#sendmessage) maupun di [Referensi Api grammY](/ref/core/Api#sendmessage) keduanya identik.
 
 ### Memanggil Method
 
 Kamu dapat memanggil method API melalui `bot.api`, atau [dengan cara yang sama](./context#aksi-yang-tersedia) melalui `ctx.api`:
 
-```ts
+::: code-group
+
+```ts [TypeScript]
+import { Api, Bot } from "grammy";
+
+const bot = new Bot("");
+
 async function kirimHaloKe12345() {
   // Kirim pesan ke 12345.
   await bot.api.sendMessage(12345, "Halo!");
 
-  // Kirim pesan kemudian simpan hasil responnya.
-  // Respon tersebut berisi informasi mengenai pesan yang terkirim.
+  // Kirim pesan kemudian simpan hasil responnya, yang berisi informasi mengenai pesan yang terkirim.
   const sentMessage = await bot.api.sendMessage(12345, "Halo lagi!");
   console.log(sentMessage.message_id);
+
+  // Kirim pesan tanpa object `bot`.
+  const api = new Api(""); // <-- taruh token bot diantara ""
+  await api.sendMessage(12345, "Yo!");
 }
 ```
 
-Meskipun `bot.api` mencakup seluruh API Bot, ia terkadang mengubah sedikit _signatures function_-nya agar lebih mudah digunakan.
+```js [JavaScript]
+const { Api, Bot } = require("grammy");
+
+const bot = new Bot("");
+
+async function kirimHaloKe12345() {
+  // Kirim pesan ke 12345.
+  await bot.api.sendMessage(12345, "Halo!");
+
+  // Kirim pesan kemudian simpan hasil responnya, yang berisi informasi mengenai pesan yang terkirim.
+  const sentMessage = await bot.api.sendMessage(12345, "Halo lagi!");
+  console.log(sentMessage.message_id);
+
+  // Kirim pesan tanpa object `bot`.
+  const api = new Api(""); // <-- taruh token bot diantara ""
+  await api.sendMessage(12345, "Yo!");
+}
+```
+
+```ts [Deno]
+import { Api, Bot } from "https://deno.land/x/grammy/mod.ts";
+
+const bot = new Bot("");
+
+async function kirimHaloKe12345() {
+  // Kirim pesan ke 12345.
+  await bot.api.sendMessage(12345, "Halo!");
+
+  // Kirim pesan kemudian simpan hasil responnya, yang berisi informasi mengenai pesan yang terkirim.
+  const sentMessage = await bot.api.sendMessage(12345, "Halo lagi!");
+  console.log(sentMessage.message_id);
+
+  // Kirim pesan tanpa object `bot`.
+  const api = new Api(""); // <-- taruh token bot diantara ""
+  await api.sendMessage(12345, "Yo!");
+}
+```
+
+:::
+
+> Perlu diperhatikan, `bot.api` sebenarnya hanyalah sebuah instance `Api` yang telah disusun sedemikian rupa untuk kenyamanan kamu.
+> Selain itu, jika kamu memiliki akses ke suatu object `context` (misalnya kamu sedang di dalam penangan pesan atau message handler), dianjurkan untuk memanggil `ctx.api` atau salah satu [aksi yang tersedia](./context.md#aksi-yang-tersedia).
+
+Meski instance `Api` telah mencakup keseluruhan API Bot, ia terkadang mengubah sedikit _signatures function_-nya agar lebih mudah digunakan.
 Sejatinya, semua method API Bot mengharapkan sebuah object JSON dengan sejumlah property tertentu.
-Namun, coba perhatikan bagaimana `sendMessage` dalam contoh di atas hanya menerima dua argument: id chat dan sebuah string.
+Namun, coba perhatikan bagaimana `sendMessage` pada contoh kode di atas hanya menerima dua argument: id chat dan sebuah string.
 grammY paham bahwa kedua nilai ini adalah property `chat_id` dan `text`, dari situ ia akan menyusun object JSON yang sesuai untukmu.
 
-Seperti yang telah disebutkan [sebelumnya](./basics#mengirim-pesan), kamu bisa menentukan opsi lain di argument ketiga type `Other`:
+Seperti yang telah dijelaskan [sebelumnya](./basics#mengirim-pesan), kamu bisa menentukan opsi lain di argument ketiga type `Other`:
 
 ```ts
 async function kirimHaloKe12345() {
@@ -69,7 +119,7 @@ Sebagai contoh, beberapa property di method tertentu diharuskan melalui proses `
 Proses ini seringkali terlupakan, sulit untuk di-debug, dan dapat merusak _type interface_.
 Tetapi, grammY memudahkan kamu untuk menentukan berbagai object secara konsisten di seluruh API, serta memastikan property-property tersebut sudah di-serialized di balik layar sebelum dikirim.
 
-### Type Definition untuk API
+### Type Definition untuk API Bot
 
 grammY memiliki cakupan type API Bot yang cukup lengkap.
 Ia secara internal menggunakan type definition yang terdapat di repositori [`@grammyjs/types`](https://github.com/grammyjs/types).
@@ -93,11 +143,11 @@ Contohnya, untuk mengakses type `Chat`, lakukan hal berikut:
 import { type Chat } from "grammy/types";
 ```
 
-Namun, Node.js---secara resmi---baru mendukung fitur import dari sub-path mulai dari versi Node.js 16.
+Namun, Node.js --- _secara resmi_ --- baru mendukung fitur import dari sub-path mulai dari versi Node.js 16.
 Sehingga, kamu perlu mengubah `moduleResolution` menjadi `node16` atau `nodenext`.
 Atur `tsconfig.json` dengan benar lalu tambahkan baris yang disorot berikut:
 
-```json
+```json{4}
 {
   "compilerOptions": {
     // ...
@@ -107,21 +157,20 @@ Atur `tsconfig.json` dengan benar lalu tambahkan baris yang disorot berikut:
 }
 ```
 
-Terkadang ia juga bisa bekerja meski kita tidak mengatur konfigurasi Typescript-nya terlebih dahulu.
+Terkadang ia juga bisa bekerja tanpa ada masalah meski kita tidak mengatur konfigurasi Typescript-nya terlebih dahulu.
 
-::: warning Keliru Menyetel Auto-complete
+::: warning Auto-complete Tidak Akurat di Node.js
 Jika kamu tidak mengubah file `tsconfig.json` seperti yang telah dijelaskan di atas, kemungkinan besar auto-complete code editor kamu akan menyarankan untuk meng-import types dari `grammy/out/client` atau semacamnya.
 **Semua path yang dimulai dengan `grammy/out` adalah file internal. Jangan digunakan!**
-File tersebut bisa berubah sewaktu-waktu.
-Oleh karena itu, kami sangat menyarankan kamu untuk meng-import dari `grammy/types`.
+Karena file tersebut bisa berubah sewaktu-waktu, kami sangat menyarankan untuk meng-import dari `grammy/types`.
 :::
 
 ### Membuat Panggilan Raw API
 
-Ada kalanya kamu ingin menggunakan _function signature_ yang asli, tetapi masih ingin mengandalkan kenyamanan yang API grammY tawarkan, misal melakukan serialize JSON saat diperlukan.
+Ada kalanya kamu ingin menggunakan _function signature_ yang asli, tetapi masih ingin mengandalkan kenyamanan yang API grammY tawarkan, misalnya melakukan serialize JSON saat diperlukan.
 grammY bisa melakukannya melalui property `bot.api.raw` (atau `ctx.api.raw`).
 
-Kamu dapat memanggil _raw method_ seperti ini:
+Kamu dapat memanggil method raw seperti ini:
 
 ```ts
 async function sendHelloTo12345() {
@@ -133,4 +182,104 @@ async function sendHelloTo12345() {
 }
 ```
 
-Pada dasarnya, semua parameter _function signature_ disatukan satu dengan berbagai opsi object lainnya ketika kamu menggunakan _raw API_.
+Pada dasarnya, semua parameter _function signature_ dijadikan satu dengan berbagai opsi object lainnya ketika kamu menggunakan API murni (raw API).
+
+## Memilih Lokasi Data Center
+
+> [Lewati](./filter-queries) sisa halaman ini jika kamu baru saja memulai.
+
+Jika kamu berniat mengurangi latensi jaringan bot, maka penting untuk menentukan lokasi hosting bot kamu.
+
+Lokasi server API Bot `api.telegram.org` berada di Amsterdam, Belanda.
+Oleh karena itu, lokasi terbaik untuk menjalankan bot kamu adalah kota Amsterdam.
+
+::: tip Perbandingan Hosting
+kamu mungkin tertarik dengan [perbandingan penyedia hosting](../hosting/comparison#tabel-perbandingan) yang telah kami buat.
+:::
+
+Meski demikian, dengan usaha yang lebih, kamu bisa menjalankan bot di lokasi lain yang lebih strategis.
+
+[Perlu diingat](#informasi-umum) bahwa server API Bot tidak benar-benar berisi bot kamu.
+Server ini hanya meneruskan request, menerjemahkan HTTP serta MTProto, dan sebagainya.
+Server API Bot memang berada di Amsterdam, tetapi server Telegram didistribusikan di tiga lokasi berbeda:
+
+- Amsterdam, Belanda
+- Miami, Florida, Amerika Serikat
+- Singapura
+
+Itulah kenapa, ketika server API Bot mengirim permintaan ke server Telegram, server tersebut mungkin harus mengirimkan data di belahan dunia lain.
+Apakah hal tersebut terjadi atau tidak, tergantung dari lokasi data center bot itu sendiri.
+Lokasi data center bot berada di lokasi yang sama dengan data center user yang membuat bot tersebut.
+Lokasi data center user sendiri ditentukan oleh banyak faktor, salah satunya adalah lokasi user --- _misalnya jika kamu membuat akun telegram di negara Indonesia, maka Telegram akan memilih data center terdekat, yakni Singapura_.
+
+Berdasarkan informasi di atas, berikut yang dapat kamu lakukan untuk mengurangi latensi lebih jauh lagi.
+
+1. Chat [@where_is_my_dc_bot](https://t.me/where_is_my_dc_bot) lalu kirim sebuah file yang telah diunggah dari akunmu sendiri.
+   Ia akan memberi tahu lokasi data center akun kamu.
+   Data center bot kamu juga akan diketahui dari proses ini karena berada di lokasi yang sama.
+2. Jika data center kamu berada di Amsterdam --- _untuk user Indonesia, kemungkinan besar data center-nya berada di Singapura_ --- tidak ada yang perlu kamu lakukan.
+   Jika tidak, teruslah membaca.
+3. Beli [VPS](../hosting/comparison#vps) di lokasi data center kamu.
+4. [Jalankan server API Bot lokal](#menjalankan-server-api-bot-lokal) di VPS tersebut.
+5. Hosting bot kamu di lokasi yang sama dengan data center kamu.
+
+Dengan begitu, setiap request akan menempuh jarak sependek mungkin antara Telegram dan bot kamu.
+
+## Menjalankan Server API Bot Lokal
+
+Ada dua keuntungan utama menjalankan server API Bot kamu sendiri.
+
+1. Bot kamu dapat mengirim dan menerima file berukuran besar.
+2. Waktu tunda jaringan (networking delay) dapat dikurangi (lihat [di atas](#memilih-lokasi-data-center)).
+
+> Keuntungan kecil lainnya tercantum [di sini](https://core.telegram.org/bots/api#using-a-local-bot-api-server).
+
+Kamu diharuskan menjalankan server API Bot di sebuah VPS.
+Kalau dijalankan di tempat lain, besar kemungkinan pesan-pesan akan hilang atau bahkan crash.
+
+Kamu juga perlu mengkompilasi server API Bot dari dasar.
+Akan sangat membantu jika kamu berpengalaman dalam mengkompilasi proyek-proyek besar C++, tetapi jika tidak, kamu cukup mengikuti instruksi build yang tersedia dan berharap instruksi tersebut dapat berjalan dengan baik.
+
+**Cara termudah untuk menjalankan server API Bot adalah dengan mengikuti [pembuat instruksi build (build instructions generator)](https://tdlib.github.io/telegram-bot-api/build.html?os=Linux) yang disediakan oleh Telegram.**
+
+> Opsi lainnya dapat ditemukan di [repositori server API Bot](https://github.com/tdlib/telegram-bot-api#installation).
+
+Jika server berhasil dibuat, ia akan menghasilkan sebuah program eksekusi yang dapat kamu jalankan.
+
+Sudah mendapatkan file eksekusinya?
+Sekarang kamu bisa memindahkan bot ke server API Bot lokal!
+
+### Keluar dari Server API Bot Telegram
+
+Pertama-tama, kamu perlu keluar dari server API Bot Telegram.
+Salin URL ini lalu tempelkan ke dalam browser (jangan lupa untuk mengganti `<token>` dengan token bot kamu):
+
+```text
+https://api.telegram.org/bot<token>/logOut
+```
+
+Jika berhasil, ia akan menghasilkan `{"ok":true, "result":true}`.
+
+### Mengonfigurasi grammY untuk Menggunakan Server API Bot Lokal
+
+Selanjutnya, kamu bisa memberi tahu grammY untuk menggunakan server API Bot lokal kamu, alih-alih `api.telegram.org`.
+Katakanlah bot kamu berjalan di `localhost`, port 8081.
+Maka, konfigurasi yang digunakan adalah sebagai berikut.
+
+```ts
+const bot = new Bot("", { // <-- gunakan token yang sama seperti sebelumnya
+  client: { apiRoot: "localhost:8081" },
+});
+```
+
+Kamu bisa memulai bot-mu kembali.
+Mulai sekarang, ia akan menggunakan server API Bot lokal.
+
+> Jika terjadi error dan kamu tidak tahu cara memperbaikinya, meski sudah mencari di Google sepanjang hari, jangan sungkan untuk bergabung ke [chat komunitas grammY](https://t.me/grammyjs) dan meminta bantuan!
+> Kami mungkin tidak lebih tahu kesalahan apa yang telah kamu lakukan sehingga error tersebut muncul, tetapi kami akan menjawab pertanyaan-pertanyaan kamu sebisa mungkin.
+
+Jangan lupa untuk menyesuaikan kode kamu untuk bekerja dengan path file lokal, alih-alih sebuah URL yang mengarah ke berkas kamu.
+Sebagai contoh, memanggil `getFile` akan memberikan kamu sebuah `file_path` yang mengarah ke disk lokal kamu, alih-alih sebuah file yang harus diunduh terlebih dahulu dari Telegram.
+Demikian pula, [plugin files](../plugins/files) memiliki metode yang disebut `getUrl` yang tidak lagi mengembalikan URL, tetapi path file absolut sebagai gantinya.
+
+Jika kamu ingin mengubah konfigurasinya lagi karena hendak memindahkan bot ke server yang berbeda, pastikan untuk membaca [bagian ini](https://github.com/tdlib/telegram-bot-api#moving-a-bot-to-a-local-server) di README repositori server API Bot.
