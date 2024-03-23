@@ -601,7 +601,7 @@ bot.use(
       storage: freeStorage(bot.token),
     },
     baz: {},
-  })
+  }),
 );
 ```
 
@@ -717,7 +717,7 @@ bot.use(
       storage: freeStorage(bot.token), // налаштуємо це
       // інші параметри
     }),
-  })
+  }),
 );
 ```
 
