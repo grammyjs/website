@@ -877,7 +877,7 @@ bot.use(
   }),
 );
 
-bot.on("message", (ctx) => ctx.reply(`Кількість повідомлень в чаті ${ctx.session.count++}`));
+bot.on("message", (ctx) => ctx.reply(`Кількість чатів ${ctx.session.count++}`));
 
 bot.start();
 ```
