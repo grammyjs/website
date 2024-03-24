@@ -591,7 +591,7 @@ bot.use(
   session({
     type: "multi",
     foo: {
-      // це також типове значення значення
+      // це також типове значення
       storage: new MemorySessionStorage(),
       initial: () => undefined,
       getSessionKey: (ctx) => ctx.chat?.id.toString(),
@@ -877,7 +877,7 @@ bot.use(
   }),
 );
 
-bot.on("message", (ctx) => ctx.reply(`Кількість чатів ${ctx.session.count++}`));
+bot.on("message", (ctx) => ctx.reply(`Кількість повідомлень в чаті ${ctx.session.count++}`));
 
 bot.start();
 ```
