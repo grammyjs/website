@@ -103,7 +103,7 @@ Como siempre, se llama `ctx` y utiliza tu [tipo de contexto personalizado](../gu
 El plugin de conversaciones exporta un [context flavor](../guide/context#additive-context-flavors) llamado `ConversationFlavor`.
 
 **El primer parámetro** es el elemento central de este plugin.
-Se llama comúnmente `conversation`, y tiene el tipo `Conversación` ([referencia de la API](/ref/conversations/Conversation)).
+Se llama comúnmente `conversation`, y tiene el tipo `Conversación` ([referencia de la API](/ref/conversations/conversation)).
 Puede ser usado como un manejador para controlar la conversación, como esperar la entrada del usuario, y más.
 El tipo `Conversation` espera su [tipo de contexto personalizado](../guide/context#personalizacion-del-objeto-de-contexto) como parámetro de tipo, por lo que a menudo utilizaría `Conversation<MyContext>`.
 
@@ -642,7 +642,7 @@ async function waitForText(conversation, ctx) {
 
 :::
 
-Consulta la [referencia de la API](/ref/conversations/ConversationHandle#wait) para ver todos los métodos disponibles que son similares a `wait`.
+Consulta la [referencia de la API](/ref/conversations/conversationhandle#wait) para ver todos los métodos disponibles que son similares a `wait`.
 
 Veamos ahora cómo funcionan realmente las llamadas wait.
 Como se mencionó anteriormente, **no hacen _literalmente_ que tu bot espere**, aunque podemos programar las conversaciones como si ese fuera el caso.
@@ -698,7 +698,7 @@ await conversation.now(); // ¡más preciso!
 conversation.log("Hola, mundo"); // ¡más transparente!
 ```
 
-Tenga en cuenta que puede hacer la mayor parte de lo anterior a través de `conversation.external()`, pero esto puede ser tedioso de escribir, por lo que es más fácil utilizar las funciones de conveniencia ([referencia de la API](/ref/conversations/ConversationHandle#methods)).
+Tenga en cuenta que puede hacer la mayor parte de lo anterior a través de `conversation.external()`, pero esto puede ser tedioso de escribir, por lo que es más fácil utilizar las funciones de conveniencia ([referencia de la API](/ref/conversations/conversationhandle#methods)).
 
 ## Variables, bifurcaciones y bucles
 
@@ -907,7 +907,7 @@ async function waitForMe(conversation, ctx) {
 
 :::
 
-Como siempre, consulte la [referencia de la API](/ref/conversations/ConversationForm) para ver qué métodos están disponibles.
+Como siempre, consulte la [referencia de la API](/ref/conversations/conversationform) para ver qué métodos están disponibles.
 
 ## Trabajando con Plugins
 

@@ -157,7 +157,7 @@ export function TypeRef({
     const differentOrigin = link.startsWith("http");
     name = (
       <a
-        href={link}
+        href={differentOrigin ? link : link.toLowerCase()}
         class="typeRef"
         style={{ textDecoration: "underline" }}
         target={differentOrigin ? "blank" : undefined}
