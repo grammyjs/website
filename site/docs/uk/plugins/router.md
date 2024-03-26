@@ -485,4 +485,4 @@ function getDays(month: number, day: number) {
 
 - Назва: `router`
 - [Джерело](https://github.com/grammyjs/router)
-- [Довідка](/ref/router/)>
+- [Довідка](/ref/router/)

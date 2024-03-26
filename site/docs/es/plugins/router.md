@@ -476,4 +476,4 @@ Si ambos valores son conocidos, el bot calcula los días restantes y los envía 
 
 - Nombre: `router`
 - [Fuente](https://github.com/grammyjs/router)
-- [Referencia](/ref/router/)>
+- [Referencia](/ref/router/)
