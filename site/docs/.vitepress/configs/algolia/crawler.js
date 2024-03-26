@@ -2,7 +2,7 @@
 // with some modifications
 new Crawler({
   appId: "RBF5Q0D7QV",
-  apiKey: "33782ffb584887e3b8cdf9e760ea8e60",
+  apiKey: "...",
   rateLimit: 8,
   startUrls: ["https://grammy.dev"],
   renderJavaScript: false,
