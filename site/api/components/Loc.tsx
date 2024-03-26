@@ -18,7 +18,11 @@ export function Loc(
       {"\n\n"}
       <p class="src">
         <sup class="src">
-          <a href={url.toString()} target="blank" rel="noreferrer noopener">
+          <a
+            href={url.toString()}
+            target="blank"
+            rel="noreferrer noopener"
+          >
             Source
           </a>
         </sup>

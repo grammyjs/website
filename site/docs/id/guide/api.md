@@ -29,7 +29,7 @@ Selain bisa mengurangi latensi, pengiriman file berukuran besar juga dimungkinka
 
 API Bot menentukan apa saja yang bisa dan tidak bisa dilakukan oleh suatu bot.
 Setiap method API Bot juga identik dengan method milik grammY, dan kami selalu memastikan library ini selalui tersinkron dengan fitur-fitur utama serta terbaru untuk bot.
-Contohnya, `sendMessage` baik di [Referensi API Bot Telegram](https://core.telegram.org/bots/api#sendmessage) maupun di [Referensi Api grammY](/ref/core/Api#sendmessage) keduanya identik.
+Contohnya, `sendMessage` baik di [Referensi API Bot Telegram](https://core.telegram.org/bots/api#sendmessage) maupun di [Referensi Api grammY](/ref/core/api#sendmessage) keduanya identik.
 
 ### Memanggil Method
 

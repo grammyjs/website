@@ -29,7 +29,7 @@ Telegram Bot API --- це специфікація цього інтерфейс
 
 Bot API --- це те, що визначає, що можуть і чого не можуть робити боти.
 Кожен метод Bot API має еквівалент у grammY, і ми стежимо за тим, щоб бібліотека завжди була синхронізована з останніми та найкращими можливостями ботів.
-Наприклад, `sendMessage` у [довіднику Telegram Bot API](https://core.telegram.org/bots/api#sendmessage) і [довіднику API grammY](/ref/core/Api#sendmessage).
+Наприклад, `sendMessage` у [довіднику Telegram Bot API](https://core.telegram.org/bots/api#sendmessage) і [довіднику API grammY](/ref/core/api#sendmessage).
 
 ### Виклик метода
 

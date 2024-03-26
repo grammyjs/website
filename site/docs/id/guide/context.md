@@ -1,6 +1,6 @@
 # Context
 
-Object `Context` ([Referensi API grammY](/ref/core/Context)) merupakan komponen penting di grammY.
+Object `Context` ([Referensi API grammY](/ref/core/context)) merupakan komponen penting di grammY.
 
 Setiap kali kamu menambahkan listener ke object bot, listener ini akan menerima sebuah object context.
 
@@ -129,8 +129,8 @@ if (ctx.hasCallbackQuery(/query-data-\d+/)) {
 ```
 
 Hal yang sama juga berlaku untuk has checks lainnya.
-Lihat [referensi API context object](/ref/core/Context#has) untuk mengetahui semua has checks yang tersedia.
-Selain itu, lihat juga [referensi API](/ref/core/Context#has) untuk static property `Context.has` yang bisa kamu gunakan untuk membuat predicate function memeriksa beberapa context object secara efisien.
+Lihat [referensi API context object](/ref/core/context#has) untuk mengetahui semua has checks yang tersedia.
+Selain itu, lihat juga [referensi API](/ref/core/context#has) untuk static property `Context.has` yang bisa kamu gunakan untuk membuat predicate function memeriksa beberapa context object secara efisien.
 
 ## Aksi yang Tersedia
 
@@ -197,7 +197,7 @@ Gunakan auto-complete untuk melihat opsi yang tersedia langsung di code editor.
 :::
 
 Umumnya, setiap method di `ctx.api` memiliki shortcut dengan nilai yang sudah terisi sebelumnya, seperti `ctx.replyWithPhoto` untuk membalas menggunakan foto, atau `ctx.exportChatInviteLink` untuk mendapatkan link undangan chat yang bersangkutan.
-Jika ingin tahu pintasan apa saja yang tersedia, auto-complete beserta [Referensi API grammY](/ref/core/Context) adalah kawan baikmu.
+Jika ingin tahu pintasan apa saja yang tersedia, auto-complete beserta [Referensi API grammY](/ref/core/context) adalah kawan baikmu.
 
 Harap dicatat bahwa mungkin adakalanya kamu tidak ingin merespon ke chat yang sama.
 Untuk itu, kamu bisa kembali menggunakan method `ctx.api`, lalu menentukan sendiri opsi-opsinya.
@@ -346,7 +346,7 @@ bot.command("start", async (ctx) => {
 
 :::
 
-Type context modifikasi juga bisa diteruskan ke komponen lain yang menangani middleware, contohnya [composer](/ref/core/Composer).
+Type context modifikasi juga bisa diteruskan ke komponen lain yang menangani middleware, contohnya [composer](/ref/core/composer).
 
 ```ts
 const composer = new Composer<MyContext>();
@@ -499,7 +499,7 @@ interface SessionFlavor<S> {
 }
 ```
 
-Type `SessionFlavor` ([referensi API](/ref/core/SessionFlavor)) di atas cukup sederhana: ia hanya mendefinisikan property `session`.
+Type `SessionFlavor` ([referensi API](/ref/core/sessionflavor)) di atas cukup sederhana: ia hanya mendefinisikan property `session`.
 Ia mengambil type parameter yang akan mendefinisikan struktur asli dari sebuah data session.
 
 Lantas, manfaatnya apa?

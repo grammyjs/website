@@ -2,7 +2,7 @@
 
 Di grammY, kamu bisa mengatur bagaimana network request dilakukan.
 Termasuk menambahkan payload khusus ke setiap request yang akan digunakan untuk pemasangan proxy agent.
-Lihat `ApiClientOptions` di [Referensi API grammY](/ref/core/ApiClientOptions).
+Lihat `ApiClientOptions` di [Referensi API grammY](/ref/core/apiclientoptions).
 
 Berikut cara menggunakan proxy `http` di Deno:
 
