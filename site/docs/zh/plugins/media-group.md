@@ -42,7 +42,7 @@ const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
 
 :::
 
-请查看 [API 参考文档](/ref/core/InputMediaBuilder) 中 `InputMediaBuilder` 的所有方法。
+请查看 [API 参考文档](/ref/core/inputmediabuilder) 中 `InputMediaBuilder` 的所有方法。
 
 你也可以直接传递公开的 URL 给 Telegram 抓取。
 

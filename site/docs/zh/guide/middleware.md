@@ -38,7 +38,7 @@ bot.start();
 这是如何工作的呢？
 让我们来了解一下。
 
-我们可以在 grammY 的参考资料中查看 `Middleware` [类型](/ref/core/Middleware)。
+我们可以在 grammY 的参考资料中查看 `Middleware` [类型](/ref/core/middleware)。
 
 ```ts
 // 为了简洁起见，省略了一些类型参数。
@@ -47,7 +47,7 @@ type Middleware = MiddlewareFn | MiddlewareObj;
 
 啊哈。
 中间件可以是一个函数或一个对象。
-我们只用了函数（`(ctx) => { ... }`），所以我们暂时忽略中间件对象，深入挖掘 `MiddlewareFn` 类型（[参考](/ref/core/MiddlewareFn)）。
+我们只用了函数（`(ctx) => { ... }`），所以我们暂时忽略中间件对象，深入挖掘 `MiddlewareFn` 类型（[参考](/ref/core/middlewarefn)）。
 
 ```ts
 // 再次省略了类型参数。
@@ -235,7 +235,7 @@ bot.use(responseTime);
 
 有两种类型的中间件：函数和对象。
 中间件对象只是中间件函数的一个封装器。
-它们大多在内部使用，但有时也可以帮助第三方库，或用于高级用例，如与 [Composer](/ref/core/Composer)：
+它们大多在内部使用，但有时也可以帮助第三方库，或用于高级用例，如与 [Composer](/ref/core/composer)：
 
 ```ts
 const bot = new Bot("");
