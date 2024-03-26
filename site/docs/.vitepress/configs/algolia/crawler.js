@@ -1,21 +1,5 @@
 // https://github.com/vuejs/vitepress/issues/2592#issuecomment-1627642497
 // with some modifications
-
-const PAGE_RANKS = {
-  "guide": 6,
-  "advanced": 5,
-  "plugins": 4,
-  "resources": 3,
-  "hosting": 2,
-  "ref": 1,
-};
-
-const getPageRank = (url: Location) => {
-  const segments = url.pathname.split("/").filter(Boolean);
-  const [secondToLastSegment, lastSegment] = segments.slice(-2);
-  return PAGE_RANKS[secondToLastSegment] ?? PAGE_RANKS[lastSegment] ?? 1;
-};
-
 new Crawler({
   appId: "RBF5Q0D7QV",
   apiKey: "33782ffb584887e3b8cdf9e760ea8e60",
