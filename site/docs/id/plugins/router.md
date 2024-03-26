@@ -483,4 +483,4 @@ Ketika kedua nilai tersebut diketahui, bot akan menghitung sisa harinya lalu men
 
 - Nama: `router`
 - [Sumber](https://github.com/grammyjs/router)
-- [Referensi](/ref/router/)>
+- [Referensi](/ref/router/)
