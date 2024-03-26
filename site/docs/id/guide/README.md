@@ -26,7 +26,7 @@ Dokumentasi bot grammY dibagi menjadi tiga area:
 
 **Area pertama**---yang sedang kamu baca saat ini---berisi tutorial penggunaan grammY dan penjelasan mengenai cara kerja dari suatu bot.
 Dokumen ini yang akan paling sering kamu gunakan.
-Kamu bisa memulai dari bab _Belajar_ di tab navigasi yang ada di bagian atas halaman ini, disana dijelaskan semua konsep intinya.
+Untuk memahami konsep dasar secara keseluruhan, kamu bisa memulai dari bab _Belajar_ yang berada di tab navigasi bagian atas halaman ini.
 Jangan lupa untuk melihat koleksi _Plugin_ kami yang menakjubkan serta berbagai _Contoh_ yang sudah disediakan.
 
 **Area kedua** adalah [referensi API grammY](/ref/), yang juga bisa diakses melalui tab navigasi di bagian atas halaman.
