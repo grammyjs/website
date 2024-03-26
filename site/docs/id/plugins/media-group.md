@@ -42,7 +42,7 @@ const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
 
 :::
 
-Lihat semua method `InputMediaBuilder` yang tersedia di [referensi API](/ref/core/InputMediaBuilder).
+Lihat semua method `InputMediaBuilder` yang tersedia di [referensi API](/ref/core/inputmediabuilder).
 
 Kamu juga bisa meneruskan URL publik secara langsung yang nantinya akan diunduh oleh Telegram.
 

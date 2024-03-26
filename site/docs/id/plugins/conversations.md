@@ -103,7 +103,7 @@ Seperti biasanya, ia dinamai dengan `ctx` dan menggunakan [custom context type](
 Plugin conversations meng-export sebuah [context flavor](../guide/context#additive-context-flavor) bernama `ConversationFlavor`.
 
 **Parameter pertama** adalah elemen utama dari plugin ini.
-Ia biasanya dinamai dengan `conversation` dan memiliki type `Conversation` ([referensi API](/ref/conversations/Conversation)).
+Ia biasanya dinamai dengan `conversation` dan memiliki type `Conversation` ([referensi API](/ref/conversations/conversation)).
 Ia berfungsi untuk mengontrol suatu percakapan, misalnya menunggu input dari user, dsb.
 Type `Conversation` mengharapkan [custom context type](../guide/context#memodifikasi-object-context) kamu sebagai sebuah type parameter, sehingga kamu akan sering menggunakan `Conversation<MyContext>`.
 
@@ -644,7 +644,7 @@ async function waitForText(conversation, ctx) {
 
 :::
 
-Lihat [referensi API](/ref/conversations/ConversationHandle#wait) untuk melihat semua method yang serupa dengan `wait`.
+Lihat [referensi API](/ref/conversations/conversationhandle#wait) untuk melihat semua method yang serupa dengan `wait`.
 
 ## Tiga Aturan Utama Conversations
 
@@ -697,7 +697,7 @@ await conversation.now(); // lebih akurat!
 conversation.log("Hello, world"); // lebih transparan!
 ```
 
-Perlu diketahui, sebagian besar dari hal-hal di atas juga bisa dilakukan melalui `conversation.external()`, namun menggunakan function pembantu ([referensi API](/ref/conversations/ConversationHandle#methods)) jauh lebih mudah.
+Perlu diketahui, sebagian besar dari hal-hal di atas juga bisa dilakukan melalui `conversation.external()`, namun menggunakan function pembantu ([referensi API](/ref/conversations/conversationhandle#methods)) jauh lebih mudah.
 
 ## Variable, Percabangan, dan Perulangan
 
@@ -917,7 +917,7 @@ async function waitForMe(conversation, ctx) {
 
 :::
 
-Seperti biasa, lihat [referensi API](/ref/conversations/ConversationForm) untuk mengetahui method apa saja yang tersedia.
+Seperti biasa, lihat [referensi API](/ref/conversations/conversationform) untuk mengetahui method apa saja yang tersedia.
 
 ## Bekerja dengan Plugin
 

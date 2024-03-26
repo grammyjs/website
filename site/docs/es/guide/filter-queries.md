@@ -217,7 +217,7 @@ que se puede utilizar para detectar los cambios de estado de otros miembros del 
 
 ### Combinación de consultas con otros métodos
 
-Puedes combinar consultas de filtro con otros métodos de la clase `Composer` ([Referencia de la API](/ref/core/Composer)), como `command` o `filter`.
+Puedes combinar consultas de filtro con otros métodos de la clase `Composer` ([Referencia de la API](/ref/core/composer)), como `command` o `filter`.
 Esto permite crear potentes patrones de manejo de mensajes.
 
 ```ts
@@ -308,7 +308,7 @@ function handler(ctx: Filter<Context, ":text">) {
 bot.on(":text", handler);
 ```
 
-> Consulta las referencias de la API para [`matchFilter`](/ref/core/matchFilter), [`Filter`](/ref/core/Filter), y [`FilterQuery`](/ref/core/FilterQuery) para seguir leyendo.
+> Consulta las referencias de la API para [`matchFilter`](/ref/core/matchfilter), [`Filter`](/ref/core/filter), y [`FilterQuery`](/ref/core/filterquery) para seguir leyendo.
 
 ## El lenguaje de consulta
 
