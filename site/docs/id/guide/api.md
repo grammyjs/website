@@ -27,7 +27,7 @@ Selain bisa mengurangi latensi, pengiriman file berukuran besar juga dimungkinka
 
 ## Memanggil API Bot
 
-API Bot mendikte apa yang bisa dan tidak bisa dilakukan oleh suatu bot.
+API Bot menentukan apa saja yang bisa dan tidak bisa dilakukan oleh suatu bot.
 Setiap method API Bot juga identik dengan method milik grammY, dan kami selalu memastikan library ini selalui tersinkron dengan fitur-fitur utama serta terbaru untuk bot.
 Contohnya, `sendMessage` baik di [Referensi API Bot Telegram](https://core.telegram.org/bots/api#sendmessage) maupun di [Referensi Api grammY](/ref/core/Api#sendmessage) keduanya identik.
 
@@ -276,7 +276,7 @@ Kamu bisa memulai bot-mu kembali.
 Mulai sekarang, ia akan menggunakan server API Bot lokal.
 
 > Jika terjadi error dan kamu tidak tahu cara memperbaikinya, meski sudah mencari di Google sepanjang hari, jangan sungkan untuk bergabung ke [chat komunitas grammY](https://t.me/grammyjs) dan meminta bantuan!
-> Kami mungkin tidak lebih tahu kesalahan apa yang telah kamu lakukan sehingga error tersebut muncul, tetapi kami akan menjawab pertanyaan-pertanyaan kamu sebisa mungkin.
+> Kami mungkin tidak lebih tahu penyebab error yang kamu alami, tetapi kami akan menjawab pertanyaan-pertanyaan kamu sebisa mungkin.
 
 Jangan lupa untuk menyesuaikan kode kamu untuk bekerja dengan path file lokal, alih-alih sebuah URL yang mengarah ke berkas kamu.
 Sebagai contoh, memanggil `getFile` akan memberikan kamu sebuah `file_path` yang mengarah ke disk lokal kamu, alih-alih sebuah file yang harus diunduh terlebih dahulu dari Telegram.
