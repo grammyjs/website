@@ -34,7 +34,7 @@ Referensi ini berisi gambaran terperinci dari setiap bit kode yang disediakan gr
 Ia juga menghasilkan penjelasan-penjelasan bermanfaat dalam bentuk tooltip yang dibuat secara otomatis dari kode program grammY.
 Tooltip tersebut dapat ditemukan dengan mengarahkan kursor ke berbagai elemen grammY di kode editor.
 Hal yang sama juga berlaku untuk setiap plugin di ekosistem grammY.
-Selain menampilkan [gambaran referensi API](/ref/), setiap plugin juga memiliki referensi API-nya sendiri yang tertaut di ringkasan plugin pada bagian bawah halaman.
+Selain tercantum di [referensi utama API](/ref/), setiap plugin juga mencantumkan referensi API-nya masing-masing di ringkasan plugin pada bagian bawah halaman.
 
 **Area ketiga** berisi daftar _raw definition_ dari [API HTTP](https://core.telegram.org/bots/api) yang disediakan oleh Telegram.
 API ini akan digunakan oleh grammY untuk memberi perintah ke bot kamu.
