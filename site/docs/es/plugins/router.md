@@ -6,7 +6,7 @@ next: false
 # Enrutador (`router`)
 
 La clase `Router` ([Referencia API](/ref/router/) proporciona una forma de estructurar tu bot enrutando objetos de contexto a diferentes partes de tu código.
-Es una versión más sofisticada de `bot.route` en `Composer` ([grammY API Reference](/ref/core/Composer#route)).
+Es una versión más sofisticada de `bot.route` en `Composer` ([grammY API Reference](/ref/core/composer#route)).
 
 ## Ejemplo
 
@@ -476,4 +476,4 @@ Si ambos valores son conocidos, el bot calcula los días restantes y los envía 
 
 - Nombre: `router`
 - [Fuente](https://github.com/grammyjs/router)
-- [Referencia](/ref/router/)>
+- [Referencia](/ref/router/)

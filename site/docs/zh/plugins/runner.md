@@ -115,7 +115,7 @@ grammY runner 将在运行时自动解决所有必要的约束，并在必要时
 
 为了让 bot 正确地完成工作，你应该在进程即将被销毁时，[发出信号](../advanced/reliability#使用-grammy-runner) 让 bot 停止。
 
-请注意， 你可以通过 `await` 那个从 `run` 返回的 [`RunnerHandle`](/ref/runner/RunnerHandle) 中的 `task` 来等待 runner 停止。
+请注意， 你可以通过 `await` 那个从 `run` 返回的 [`RunnerHandle`](/ref/runner/runnerhandle) 中的 `task` 来等待 runner 停止。
 
 ```ts
 const handle = run(bot);
@@ -144,7 +144,7 @@ run(bot, {
 });
 ```
 
-你应该查看 [API 参考](/ref/runner/RunOptions) 中的 `RunOptions` 以查看哪些选项可用。
+你应该查看 [API 参考](/ref/runner/runoptions) 中的 `RunOptions` 以查看哪些选项可用。
 
 例如，你会发现可以使用以下代码片段启用 `allowed_updates`。
 
@@ -363,19 +363,19 @@ api.telegram.org <—> source <—> runner <—> sink <—> bot
 
 ### Source
 
-grammY runner 有一个默认的 source，它可以操作任何 `UpdateSupplier`（[API 参考](/ref/runner/UpdateSupplier)）。
+grammY runner 有一个默认的 source，它可以操作任何 `UpdateSupplier`（[API 参考](/ref/runner/updatesupplier)）。
 这样一个 update supplier 可以直接从 bot 实例中创建。
-如果你想自己创建一个，请检查 `createUpdateFetcher`（[API 参考](/ref/runner/createUpdateFetcher)）。
+如果你想自己创建一个，请检查 `createUpdateFetcher`（[API 参考](/ref/runner/createupdatefetcher)）。
 
 source 是一个异步迭代器，但它可以是活动的或非活动的，并且你可以通过 `close` 方法来断开与 Telegram 服务器的连接。
 
 ### Sink
 
 grammY runner 有三种 sink，一种是顺序的（与 bot.start() 相同），一种是批量的（主要用于兼容其他框架），和一种是全并发的（由 `run` 调用）。
-所有的 sink 都是在 `UpdateConsumer` 上操作的（[API 参考](/ref/runner/UpdateConsumer)）。
-如果你想自己创建一个，请检查 `Bot` 的 `handleUpdate`（[API 参考](/ref/core/Bot#handleupdate)）。
+所有的 sink 都是在 `UpdateConsumer` 上操作的（[API 参考](/ref/runner/updateconsumer)）。
+如果你想自己创建一个，请检查 `Bot` 的 `handleUpdate`（[API 参考](/ref/core/bot#handleupdate)）。
 
-sink 包含了一个当前正在处理的 updates 的队列（[API 参考](/ref/runner/DecayingDeque)）。
+sink 包含了一个当前正在处理的 updates 的队列（[API 参考](/ref/runner/decayingdeque)）。
 添加新的 updates 到队列中会立即让 update 消费者处理它们，并且返回一个 Promise，它在队列中有空闲空间时就会解决。
 已解决的整数数字表示队列中的空闲空间。
 为 grammY runner 设置一个并发限制是通过队列实例来实现的。
@@ -390,10 +390,10 @@ sink 包含了一个当前正在处理的 updates 的队列（[API 参考](/ref/
 runner 是一个简单的循环，它从 source 中拉取 updates，并将它们提供给 sink。
 一旦 sink 可以再次提供 updates，runner 将从 source 中拉取下一批 updates。
 
-当你使用 `createRunner`（[API 参考](/ref/runner/createRunner)） 创建一个 runner 时，你会获得一个可以控制它的处理器。
+当你使用 `createRunner`（[API 参考](/ref/runner/createrunner)） 创建一个 runner 时，你会获得一个可以控制它的处理器。
 例如，它允许你启动和停止它，或者获得一个 Promise，它在 runner 停止时解决。
 (这个处理器也会在 `run` 中返回。)
-查看 [API 参考](/ref/runner/RunnerHandle) 中的 `RunnerHandle`。
+查看 [API 参考](/ref/runner/runnerhandle) 中的 `RunnerHandle`。
 
 ### `run` 函数
 

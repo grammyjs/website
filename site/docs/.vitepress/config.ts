@@ -60,6 +60,11 @@ export default defineConfig({
           find: /^.*\/VPNavScreen\.vue$/,
           replacement: `${import.meta.dirname}/components/CustomNavScreen.vue`,
         },
+        {
+          find: /^.*\/VPNavBarExtra\.vue$/,
+          replacement:
+            `${import.meta.dirname}/components/CustomNavBarExtra.vue`,
+        },
       ],
     },
   },
