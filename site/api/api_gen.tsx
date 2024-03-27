@@ -96,9 +96,10 @@ function createDoc(
   overloadCount?: number,
   overloads?: DocNodeFunction[],
 ) {
-  const nav = `<div><sup><a href="/ref/">ref</a> / <a href="/ref/${slug}/">${
-    slug.replaceAll("/", " / ")
-  }</a> / ${node.name}</sup></div>`;
+  const nav =
+    `<div><sup><a href="/ref/">ref</a> / <a href="/ref/${slug.toLowerCase()}/">${
+      slug.replaceAll("/", " / ")
+    }</a> / ${node.name}</sup></div>`;
   let component: JSX.Element | null = null;
   switch (node.kind) {
     case "class":
@@ -144,7 +145,10 @@ function createDoc(
       break;
   }
   if (component != null) {
-    const filename = path.join(path_, `${node.name}.md`);
+    const filename = path.join(
+      path_.toLowerCase(),
+      `${node.name.toLowerCase()}.md`,
+    );
     let contents = renderToString(component);
 
     if (!overloadCount || overloadCount == 1) {

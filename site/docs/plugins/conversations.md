@@ -103,7 +103,7 @@ As always, it is called `ctx` and uses your [custom context type](../guide/conte
 The conversations plugin exports a [context flavor](../guide/context#additive-context-flavors) called `ConversationFlavor`.
 
 **The first parameter** is the central element of this plugin.
-It is commonly named `conversation`, and it has the type `Conversation` ([API reference](/ref/conversations/Conversation)).
+It is commonly named `conversation`, and it has the type `Conversation` ([API reference](/ref/conversations/conversation)).
 It can be used as a handle to control the conversation, such as waiting for user input, and more.
 The type `Conversation` expects your [custom context type](../guide/context#customizing-the-context-object) as a type parameter, so you would often use `Conversation<MyContext>`.
 
@@ -647,7 +647,7 @@ async function waitForText(conversation, ctx) {
 
 :::
 
-Check out the [API reference](/ref/conversations/ConversationHandle#wait) to see all available methods that are similar to `wait`.
+Check out the [API reference](/ref/conversations/conversationhandle#wait) to see all available methods that are similar to `wait`.
 
 ## Three Golden Rules of Conversations
 
@@ -700,7 +700,7 @@ await conversation.now(); // more accurate!
 conversation.log("Hello, world"); // more transparent!
 ```
 
-Note that you can do most of the above via `conversation.external()`, but this can be tedious to type, so it's just easier to use the convenience functions ([API reference](/ref/conversations/ConversationHandle#methods)).
+Note that you can do most of the above via `conversation.external()`, but this can be tedious to type, so it's just easier to use the convenience functions ([API reference](/ref/conversations/conversationhandle#methods)).
 
 ## Variables, Branching, and Loops
 
@@ -909,7 +909,7 @@ async function waitForMe(conversation, ctx) {
 
 :::
 
-As always, check out the [API reference](/ref/conversations/ConversationForm) to see which methods are available.
+As always, check out the [API reference](/ref/conversations/conversationform) to see which methods are available.
 
 ## Working With Plugins
 

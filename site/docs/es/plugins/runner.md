@@ -116,7 +116,7 @@ Necesita memoria constante (a menos que especifiques concurrencia infinita), y n
 
 Para que el bot complete su trabajo correctamente, [debes indicarle](../advanced/reliability#usando-grammy-runner) que se detenga cuando el proceso esté a punto de ser destruido.
 
-Ten en cuenta que puedes esperar a que el runner `await` la `task` en el [`RunnerHandle`](/ref/runner/RunnerHandle) devuelto por `run`.
+Ten en cuenta que puedes esperar a que el runner `await` la `task` en el [`RunnerHandle`](/ref/runner/runnerhandle) devuelto por `run`.
 
 ```ts
 const handle = run(bot);
@@ -145,7 +145,7 @@ run(bot, {
 });
 ```
 
-Debería consultar las `RunOptions` en la [referencia API](/ref/runner/RunOptions) para ver qué opciones están disponibles.
+Debería consultar las `RunOptions` en la [referencia API](/ref/runner/runoptions) para ver qué opciones están disponibles.
 
 Por ejemplo, allí encontrarás que `allowed_updates` puede ser activado usando el siguiente fragmento de código.
 
@@ -364,19 +364,19 @@ api.telegram.org <—> source <—> runner <—> sink <—> bot
 
 ### Source
 
-El runner de grammY viene con una fuente por defecto que puede operar con cualquier `UpdateSupplier` ([referencia API](/ref/runner/UpdateSupplier)).
+El runner de grammY viene con una fuente por defecto que puede operar con cualquier `UpdateSupplier` ([referencia API](/ref/runner/updatesupplier)).
 Dicho proveedor de actualizaciones es sencillo de crear a partir de una instancia del bot.
-Si quieres crear uno tú mismo, asegúrate de consultar `createUpdateFetcher` ([referencia de la API](/ref/runner/createUpdateFetcher)).
+Si quieres crear uno tú mismo, asegúrate de consultar `createUpdateFetcher` ([referencia de la API](/ref/runner/createupdatefetcher)).
 
 El origen es un iterador asíncrono de lotes de actualización, pero puede estar activo o inactivo, y puedes `cerrarlo` para desconectarte de los servidores de Telegram.
 
 ### Sink
 
 grammY runner viene con tres posibles implementaciones de sumideros, uno secuencial (el mismo comportamiento que `bot.start()`), uno por lotes (principalmente útil para la compatibilidad con otros frameworks), y uno totalmente concurrente (utilizado por `run`).
-Todos ellos operan con objetos `UpdateConsumer` ([referencia de la API](/ref/runner/UpdateConsumer)) que son fáciles de crear a partir de una instancia del bot.
-Si quieres hacer uno tú mismo, asegúrate de revisar `handleUpdate` en la instancia `Bot` de grammY ([referencia API](/ref/core/Bot#handleupdate)).
+Todos ellos operan con objetos `UpdateConsumer` ([referencia de la API](/ref/runner/updateconsumer)) que son fáciles de crear a partir de una instancia del bot.
+Si quieres hacer uno tú mismo, asegúrate de revisar `handleUpdate` en la instancia `Bot` de grammY ([referencia API](/ref/core/bot#handleupdate)).
 
-El sumidero contiene una cola ([referencia de la API](/ref/runner/DecayingDeque)) de actualizaciones individuales que se están procesando actualmente.
+El sumidero contiene una cola ([referencia de la API](/ref/runner/decayingdeque)) de actualizaciones individuales que se están procesando actualmente.
 Añadir nuevas actualizaciones a la cola hará que el consumidor de actualizaciones las maneje inmediatamente, y devolverá una promesa que se resuelve tan pronto como haya capacidad en la cola de nuevo.
 El número integral resuelto determina el espacio libre.
 Por lo tanto, el establecimiento de un límite de concurrencia para el corredor grammY se respeta a través de la instancia de cola subyacente.
@@ -391,10 +391,10 @@ Si utilizas `run(bot)`, se utilizará el gestor de errores de `bot.catch`.
 El runner es un bucle simple que extrae las actualizaciones del source y las suministra al sink.
 Una vez que el sumidero tiene espacio de nuevo, el runner obtendrá el siguiente lote de actualizaciones del source.
 
-Cuando creas un runner con `createRunner` ([referencia de la API](/ref/runner/createRunner)), obtienes un manejador que puedes usar para controlar el runner.
+Cuando creas un runner con `createRunner` ([referencia de la API](/ref/runner/createrunner)), obtienes un manejador que puedes usar para controlar el runner.
 Por ejemplo, te permite iniciarlo y detenerlo, u obtener una promesa que resuelve si el runner se detiene.
 (Este handle también es devuelto por `run`).
-Consulta la [referencia API](/ref/runner/RunnerHandle) del `RunnerHandle`.
+Consulta la [referencia API](/ref/runner/runnerhandle) del `RunnerHandle`.
 
 ### La función `run`
 

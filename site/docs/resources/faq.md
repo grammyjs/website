@@ -25,7 +25,7 @@ No, it's not.
    If it is, then grammY will collect it in the options object called `other`.
    Pass `{ parameter_name: value }` in that place and it'll work.
    As always, TypeScript will auto-complete the parameter names for you.
-3. Perhaps double-check the method signature for [actions](../guide/context#available-actions) on `ctx` [here](/ref/core/Context#methods), or for API methods (`ctx.api`, `bot.api`) [here](/ref/core/Api#methods).
+3. Perhaps double-check the method signature for [actions](../guide/context#available-actions) on `ctx` [here](/ref/core/context#methods), or for API methods (`ctx.api`, `bot.api`) [here](/ref/core/api#methods).
 
 ## How Can I Access the Chat History?
 
