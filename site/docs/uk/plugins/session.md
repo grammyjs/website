@@ -460,10 +460,12 @@ type MyContext = Context & SessionFlavor<SessionData>;
 // Створюємо бота та реєструємо проміжний обробник сесії.
 const bot = new Bot<MyContext>("");
 
-bot.use(session({
-  initial: () => ({ count: 0 }),
-  storage: freeStorage<SessionData>(bot.token),
-}));
+bot.use(
+  session({
+    initial: () => ({ count: 0 }),
+    storage: freeStorage(bot.token),
+  }),
+);
 
 // Використовуємо постійні дані сесії в обробниках оновлень.
 bot.on("message", async (ctx) => {
@@ -482,10 +484,12 @@ const { freeStorage } = require("@grammyjs/storage-free");
 // Створюємо бота та реєструємо проміжний обробник сесії.
 const bot = new Bot("");
 
-bot.use(session({
-  initial: () => ({ count: 0 }),
-  storage: freeStorage(bot.token),
-}));
+bot.use(
+  session({
+    initial: () => ({ count: 0 }),
+    storage: freeStorage(bot.token),
+  }),
+);
 
 // Використовуємо постійні дані сесії в обробниках оновлень.
 bot.on("message", async (ctx) => {
@@ -515,10 +519,12 @@ type MyContext = Context & SessionFlavor<SessionData>;
 // Створюємо бота та реєструємо проміжний обробник сесії.
 const bot = new Bot<MyContext>("");
 
-bot.use(session({
-  initial: () => ({ count: 0 }),
-  storage: freeStorage<SessionData>(bot.token),
-}));
+bot.use(
+  session({
+    initial: () => ({ count: 0 }),
+    storage: freeStorage(bot.token),
+  }),
+);
 
 // Використовуємо постійні дані сесії в обробниках оновлень.
 bot.on("message", async (ctx) => {
@@ -581,20 +587,22 @@ bot.start();
 У свою чергу, вам потрібно буде налаштувати кожен фрагмент за допомогою їх власної конфігурації.
 
 ```ts
-bot.use(session({
-  type: "multi",
-  foo: {
-    // це також значення за замовчуванням
-    storage: new MemorySessionStorage(),
-    initial: () => undefined,
-    getSessionKey: (ctx) => ctx.chat?.id.toString(),
-  },
-  bar: {
-    initial: () => ({ prop: 0 }),
-    storage: freeStorage(bot.token),
-  },
-  baz: {},
-}));
+bot.use(
+  session({
+    type: "multi",
+    foo: {
+      // це також типове значення
+      storage: new MemorySessionStorage(),
+      initial: () => undefined,
+      getSessionKey: (ctx) => ctx.chat?.id.toString(),
+    },
+    bar: {
+      initial: () => ({ prop: 0 }),
+      storage: freeStorage(bot.token),
+    },
+    baz: {},
+  }),
+);
 ```
 
 Зверніть увагу, що ви повинні додати запис конфігурації для кожного фрагмента, який ви хочете використовувати.
@@ -703,12 +711,14 @@ bot.command("reset", async (ctx) => {
 
 ```ts
 // Використовуємо вдосконалений адаптер для зберігання даних.
-bot.use(session({
-  storage: enhanceStorage({
-    storage: freeStorage(bot.token), // налаштуємо це
-    // інші параметри
+bot.use(
+  session({
+    storage: enhanceStorage({
+      storage: freeStorage(bot.token), // налаштуємо це
+      // інші параметри
+    }),
   }),
-}));
+);
 ```
 
 Ви також можете використовувати обидва варіанти одночасно.
@@ -778,7 +788,11 @@ interface SessionData {
 ::: code-group
 
 ```ts [TypeScript]
-function addBirthdayToPets(old: { petNames: string[] }): SessionData {
+interface OldSessionData {
+  petNames: string[];
+}
+
+function addBirthdayToPets(old: OldSessionData): SessionData {
   return {
     pets: old.petNames.map((name) => ({ name })),
   };
@@ -832,6 +846,45 @@ const enhanced = enhanceStorage({
 
 Ви можете вибрати будь-які числа, які є в JavaScript, як версії.
 Незалежно від того, наскільки далеко розвинулися дані сесії чату, щойно вони будуть прочитані, їх буде мігрувано між версіями, доки вони не використовуватимуть актуальну структуру.
+
+### Типи для покращень сховища
+
+Коли ви використовуєте покращення сховища, ваш адаптер повинен зберігати більше даних, ніж просто дані вашої сесії.
+Наприклад, він повинен зберігати час, коли сесію було збережено востаннє, щоб коректно [видалити](#тайм-аути) дані по закінченню тайм-ауту.
+У деяких випадках TypeScript зможе визначити правильні типи для вашого адаптера сховища.
+Однак, частіше за все, вам потрібно явно вказати типи даних сесії в декількох місцях.
+
+Наступний приклад коду ілюструє, як використовувати розширення тайм-ауту з коректними типами TypeScript.
+
+```ts
+interface SessionData {
+  count: number;
+}
+
+type MyContext = Context & SessionFlavor<SessionData>;
+
+const bot = new Bot<MyContext>("");
+
+bot.use(
+  session({
+    initial(): SessionData {
+      return { count: 0 };
+    },
+    storage: enhanceStorage({
+      storage: new MemorySessionStorage<Enhance<SessionData>>(),
+      millisecondsToLive: 60_000,
+    }),
+  }),
+);
+
+bot.on("message", (ctx) => ctx.reply(`Кількість чатів ${ctx.session.count++}`));
+
+bot.start();
+```
+
+Зауважте, що кожен [адаптер сховища](#відомі-адаптери-сховищ) може приймати параметр типу.
+Наприклад, для [безкоштовних сесій](#безкоштовне-сховище) ви можете використати `freeStorage<Enhance<SessionData>>` замість `MemorySessionStorage<Enhance<SessionData>>`.
+Те саме стосується і всіх інших адаптерів сховищ.
 
 ## Загальні відомості про плагін
 
