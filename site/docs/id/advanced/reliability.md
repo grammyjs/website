@@ -10,7 +10,7 @@ Pakai _linting rule_ supaya kamu tidak lupa menggunakannya.
 ## Graceful shutdown
 
 Ada satu hal yang harus diperhatikan khusus untuk bot-bot yang menggunakan long polling.
-Sebelum mematikan bot atau instance yang sedang berjalan, kamu sebaiknya menangkap event `SIGTERM` dan `SIGINT` terlebih dahulu, kemudian panggil `bot.stop` (built-in di long polling) atau hentikan bot menggunakan [handle](/ref/runner/RunnerHandle#stop) (grammY runner)
+Sebelum mematikan bot atau instance yang sedang berjalan, kamu sebaiknya menangkap event `SIGTERM` dan `SIGINT` terlebih dahulu, kemudian panggil `bot.stop` (built-in di long polling) atau hentikan bot menggunakan [handle](/ref/runner/runnerhandle#stop) (grammY runner)
 
 ### Long Polling Sederhana
 
@@ -142,9 +142,9 @@ Sehingga, data-data update tadi akan hilang selamanya.
 
 Untuk menghindari hal tersebut terjadi, kamu harus menggunakan _source_ dan _sink_ dari package grammy runner untuk membuat jalur update-mu sendiri yang meneruskan semua update ke antrian pesan atau queue terlebih dahulu.
 
-1. Buat sebuah [sink](/ref/runner/UpdateSink)
+1. Buat sebuah [sink](/ref/runner/updatesink)
    sebagai jalur untuk meneruskan update ke queue, lalu mulai satu runner yang bertugas menyuplai pesan-pesan tersebut ke queue.
-2. Kemudian, buat sebuah [source](/ref/runner/UpdateSource) untuk mengambil pesan dari queue.
+2. Kemudian, buat sebuah [source](/ref/runner/updatesource) untuk mengambil pesan dari queue.
 
 Dengan begitu, kamu menjalankan dua instance grammY runner yang berbeda.
 Konsep tadi adalah sebuah ide berdasarkan pengetahuan yang kami punya, tetapi ide tersebut belum pernah diterapkan.

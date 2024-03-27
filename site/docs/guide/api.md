@@ -31,7 +31,7 @@ Hence, if you circumvent the Bot API server that Telegram runs for you, and simp
 ## Calling the Bot API
 
 Every single method of the Bot API has an equivalent in grammY.
-Example: `sendMessage` in the [Telegram Bot API Reference](https://core.telegram.org/bots/api#sendmessage) and in the [grammY API Reference](/ref/core/Api#sendmessage).
+Example: `sendMessage` in the [Telegram Bot API Reference](https://core.telegram.org/bots/api#sendmessage) and in the [grammY API Reference](/ref/core/api#sendmessage).
 
 ### Calling a Method
 

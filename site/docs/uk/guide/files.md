@@ -139,7 +139,7 @@ await ctx.replyWithPhoto("https://grammy.dev/images/grammY.png");
 ### Надсилання власних файлів
 
 grammY має гарну підтримку надсилання власних файлів.
-Ви можете зробити це, імпортувавши та використавши клас `InputFile` ([довідка API grammY](/ref/core/InputFile)).
+Ви можете зробити це, імпортувавши та використавши клас `InputFile` ([довідка API grammY](/ref/core/inputfile)).
 
 ```ts
 // Надсилаємо файл через локальний шлях
