@@ -244,7 +244,7 @@ Kalau kamu tidak menentukan opsi tersebut, pembacaan `ctx.session` akan mengakib
 > Bagian ini membahas fitur lanjutan yang untuk sebagian besar orang bisa diabaikan.
 > Kamu bisa melanjutkan ke bagian [Menyimpan Data](#menyimpan-data).
 
-Kamu bisa menentukan session key mana yang akan digunakan dengan cara memasukkan sebuah function bernama `getSessionKey` ke [opsi session](/ref/core/SessionOptions#getsessionkey).
+Kamu bisa menentukan session key mana yang akan digunakan dengan cara memasukkan sebuah function bernama `getSessionKey` ke [opsi session](/ref/core/sessionoptions#getsessionkey).
 Dengan begitu, kamu bisa mengubah perilaku plugin session sepenuhnya.
 Secara bawaan, data disimpan per chat.
 Tetapi, dengan menggunakan `getSessionKey` kamu bisa menyimpan data entah itu per user, kombinasi per user dan chat, ataupun cara lainnya.
@@ -389,7 +389,7 @@ bot.use(session({
 Secara bawaan semua data disimpan di dalam RAM.
 Artinya, semua session akan terhapus di saat bot dihentikan.
 
-Kamu bisa menggunakan class `MemorySessionStorage` ([Referensi API](/ref/core/MemorySessionStorage)) dari package inti grammY jika kamu ingin mengatur penyimpanan data di RAM.
+Kamu bisa menggunakan class `MemorySessionStorage` ([Referensi API](/ref/core/memorysessionstorage)) dari package inti grammY jika kamu ingin mengatur penyimpanan data di RAM.
 
 ```ts
 bot.use(session({
@@ -542,7 +542,7 @@ Kunjungi repository [berikut](https://github.com/grammyjs/storages/tree/main/pac
 
 ::: tip Storage pilihanmu belum didukung? Tidak masalah!
 Membuat storage adapter sendiri sangat mudah dilakukan.
-Opsi `storage` bekerja dengan berbagai object yang menganut [interface berikut](/ref/core/StorageAdapter), sehingga kamu bisa melakukan koneksi ke storage-mu hanya dengan beberapa baris kode.
+Opsi `storage` bekerja dengan berbagai object yang menganut [interface berikut](/ref/core/storageadapter), sehingga kamu bisa melakukan koneksi ke storage-mu hanya dengan beberapa baris kode.
 
 > Kalau kamu ingin mempublikasikan storage adapter buatanmu, silahkan ubah halaman ini dan sertakan juga link-nya agar orang-orang bisa menggunakannya.
 

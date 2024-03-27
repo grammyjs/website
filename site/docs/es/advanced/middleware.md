@@ -21,7 +21,7 @@ bot.start();
 ```
 
 Se parece bastante a un stack, excepto que, detrás de las escenas, es realmente un árbol.
-El corazón de esta funcionalidad es la clase `Composer` ([referencia](/ref/core/Composer)) que construye este árbol.
+El corazón de esta funcionalidad es la clase `Composer` ([referencia](/ref/core/composer)) que construye este árbol.
 
 En primer lugar, cada instancia de `Bot` es una instancia de `Composer`.
 Es sólo una subclase, así que `class Bot extends Composer`.
