@@ -119,7 +119,7 @@ const menu = new Menu("movements")
 Використовуйте `row` для завершення поточного рядка й додавання всіх наступних кнопок до нового рядка.
 
 Існує багато інших типів кнопок, наприклад, для відкриття URL-адрес.
-Ознайомтеся з [довідкою API](/ref/menu/MenuRange) для `MenuRange`, а також з [довідкою Telegram Bot API](https://core.telegram.org/bots/api#inlinekeyboardbutton) для `InlineKeyboardButton`.
+Ознайомтеся з [довідкою API](/ref/menu/menurange) для `MenuRange`, а також з [довідкою Telegram Bot API](https://core.telegram.org/bots/api#inlinekeyboardbutton) для `InlineKeyboardButton`.
 
 ## Надсилання меню
 

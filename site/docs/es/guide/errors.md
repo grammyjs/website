@@ -62,7 +62,7 @@ grammY no toca el error lanzado de ninguna manera, sino que lo envuelve en una i
 Dado que ese objeto se llama `err`, puedes acceder al error original a través de `err.error`.
 Puedes acceder al objeto de contexto respectivo a través de `err.ctx`.
 
-Consulta la clase `BotError` en la [Referencia de la API de grammY](/ref/core/BotError).
+Consulta la clase `BotError` en la [Referencia de la API de grammY](/ref/core/boterror).
 
 ## El Objeto `GrammyError`
 
@@ -72,7 +72,7 @@ Ten en cuenta que también las instancias de `GrammyError` se envolverán en obj
 Un `GrammyError` lanzado indica que la correspondiente solicitud de la API ha fallado.
 El error proporciona acceso al código de error devuelto por el backend de Telegram, así como a la descripción.
 
-Consulta la clase `GrammyError` en la [Referencia de la API de grammY](/ref/core/GrammyError).
+Consulta la clase `GrammyError` en la [Referencia de la API de grammY](/ref/core/grammyerror).
 
 ## El Objeto `HttpError`
 
@@ -84,7 +84,7 @@ Raramente verás este tipo de error, a menos que tu infraestructura de red sea i
 
 > Ten en cuenta que si se puede contactar con el servidor de la API del bot, pero devuelve `ok: false` para una llamada a un método determinado, se lanza un [`GrammyError`](../guide/errors#el-objeto-grammyerror) en su lugar.
 
-Consulta la clase `HttpError` en la [Referencia de la API de grammY](/ref/core/HttpError).
+Consulta la clase `HttpError` en la [Referencia de la API de grammY](/ref/core/httperror).
 
 ## Error Boundaries
 

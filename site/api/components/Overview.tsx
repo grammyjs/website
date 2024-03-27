@@ -13,7 +13,7 @@ export function Overview({ refs }: { refs: Ref[] }) {
       </P>
       {refs
         .map(([, , slug, name, , shortdescription]) =>
-          `- [${name}](./${slug}/): ${shortdescription}`
+          `- [${name}](./${slug.toLowerCase()}/): ${shortdescription}`
         )
         .join("\n")}
     </>

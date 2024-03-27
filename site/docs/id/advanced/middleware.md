@@ -21,7 +21,7 @@ bot.start();
 ```
 
 Memang mirip seperti tumpukan, tetapi di balik layar mereka sebenarnya lebih mirip seperti cabang pohon.
-Komponen utama pembentuk pohon ini adalah class `Composer` ([referensi](/ref/core/Composer)).
+Komponen utama pembentuk pohon ini adalah class `Composer` ([referensi](/ref/core/composer)).
 
 Pertama-tama, setiap instance `Bot` adalah instance dari `Composer`.
 Ia hanyalah sebuah subclass. Oleh karena itu `class Bot extends Composer`.
