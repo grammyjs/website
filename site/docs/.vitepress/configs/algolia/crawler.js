@@ -57,7 +57,6 @@ new Crawler({
           indexHeadings: true,
           aggregateContent: true,
           recordVersion: "v3",
-          pageRank: getPageRank(url),
         });
       },
     },
