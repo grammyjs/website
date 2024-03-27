@@ -118,7 +118,7 @@ await ctx.replyWithPhoto("https://grammy.dev/images/grammY.png");
 ### Cómo subir tus propios archivos
 
 grammY tiene un buen soporte para subir tus propios archivos.
-Puedes hacerlo importando y utilizando la clase `InputFile` ([Referencia grammY API](/ref/core/InputFile)).
+Puedes hacerlo importando y utilizando la clase `InputFile` ([Referencia grammY API](/ref/core/inputfile)).
 
 ```ts
 // Enviar un archivo a través de la ruta local
