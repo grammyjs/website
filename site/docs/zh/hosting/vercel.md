@@ -80,8 +80,23 @@ if (!token) throw new Error("BOT_TOKEN is unset");
 
 const bot = new Bot(token);
 
-export default webhookCallback(bot, "http");
+export default webhookCallback(bot, "std/http");
 ```
+
+::: tip [Vercel Edge Functions](https://vercel.com/docs/functions/edge-functions) 为 grammY 提供了有限支持
+你仍然可以使用 grammY 核心包和许多插件，但其他的可能会不兼容，因为 Vercel 的 [Edge Runtime](https://edge-runtime.vercel.app) 可能不支持仅支持 Node.js 的依赖项 ）。
+
+目前，我们没有完整的兼容插件列表，因此你需要自行测试。
+
+如果你想切换到 Edge Functions，请将此行添加到上面的代码片段中：
+
+```ts
+export const config = {
+  runtime: "edge",
+};
+```
+
+:::
 
 ## 在 Vercel 的仪表盘中
 
