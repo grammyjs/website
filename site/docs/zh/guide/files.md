@@ -113,7 +113,7 @@ await ctx.replyWithPhoto("https://grammy.dev/images/grammY.png");
 ### 上传你自己的文件
 
 grammY 对上传文件有着很好的支持。
-您可以通过导入并使用 `InputFile` 类来实现这一点（[grammY API 指南](/ref/core/InputFile)）。
+您可以通过导入并使用 `InputFile` 类来实现这一点（[grammY API 指南](/ref/core/inputfile)）。
 
 ```ts
 // 通过本地路径发送文件

@@ -25,7 +25,7 @@ Tentu saja tidak.
    Jika iya, berarti grammY menaruh parameter tersebut di suatu options object bernama `other`.
    Kamu cuma perlu menulis `{ nama_parameter: value }` di options tersebut.
    Seperti biasa, TypeScript akan membantu kamu melengkapi nama parameter-nya secara otomatis.
-3. Cek ulang method signature untuk [aksi-aksi](../guide/context#aksi-yang-tersedia) yang ada di `ctx` [di sini](/ref/core/Context#methods), serta method API-nya (`ctx.api`, `bot.api`) [di sini](/ref/core/Api#methods).
+3. Cek ulang method signature untuk [aksi-aksi](../guide/context#aksi-yang-tersedia) yang ada di `ctx` [di sini](/ref/core/context#methods), serta method API-nya (`ctx.api`, `bot.api`) [di sini](/ref/core/api#methods).
 
 ## Bagaimana Cara Mengakses Riwayat Chat?
 

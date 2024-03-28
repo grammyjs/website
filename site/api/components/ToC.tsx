@@ -15,7 +15,7 @@ function S(
     <Sector title={title} show={!!children.length}>
       {children.map((v) => (
         <>
-          {"- "}[{v.name}]({getLink(v.name)}){"\n"}
+          {"- "}[{v.name}]({getLink(v.name)?.toLowerCase()}){"\n"}
         </>
       ))}
     </Sector>

@@ -31,7 +31,7 @@ Telegram Bot API --- це специфікація цього інтерфейс
 ## Виклик Bot API
 
 Кожен окремий метод Bot API має еквівалент у grammY.
-Наприклад: `sendMessage` у [довіднику Telegram Bot API](https://core.telegram.org/bots/api#sendmessage) і [довіднику API grammY](/ref/core/Api#sendmessage).
+Наприклад: `sendMessage` у [довіднику Telegram Bot API](https://core.telegram.org/bots/api#sendmessage) і [довіднику API grammY](/ref/core/api#sendmessage).
 
 ### Виклик метода
 
