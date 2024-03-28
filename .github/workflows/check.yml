@@ -31,7 +31,7 @@ jobs:
       - name: Check Linting
         working-directory: ./site
         run: |
-          npm ci
+          npm install
           npm run docs:lint
 
   links:
