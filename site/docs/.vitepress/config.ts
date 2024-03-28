@@ -62,8 +62,7 @@ export default defineConfig({
         },
         {
           find: /^.*\/VPNavBarExtra\.vue$/,
-          replacement:
-            `${import.meta.dirname}/components/NavBarExtra.vue`,
+          replacement: `${import.meta.dirname}/components/NavBarExtra.vue`,
         },
       ],
     },
