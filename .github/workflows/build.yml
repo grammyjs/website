@@ -30,7 +30,7 @@ jobs:
           node-version: lts/*
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
         working-directory: site/
 
       - name: Generate API references
