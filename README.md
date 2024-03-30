@@ -11,6 +11,9 @@ The `logos/` directory only contains the logos of grammY—all website-related t
 
 Setup (once): `cd` into `site/` and run `npm install`.
 
+> [!NOTE]
+> For Windows users: Currently, you should do `npm install --no-package-lock` instead of just `npm install`.
+
 You can now run
 
 ```sh
