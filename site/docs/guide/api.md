@@ -20,7 +20,7 @@ It will translate the request to Telegram's native protocol called MTProto, and 
 Analogously, whenever a user responds, the inverse path is taken.
 
 When you run your bot, you need to decide how the updates should be sent across the HTTP connection.
-This can be done with [long polling or webhooks](./deployment-types.md).
+This can be done with [long polling or webhooks](./deployment-types).
 
 You can also host the Bot API server yourself.
 This is mainly useful to send large files, or to decrease latency.
