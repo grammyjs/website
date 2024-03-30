@@ -20,7 +20,7 @@ Server akan menerjemahkan request tadi menjadi protokol utama Telegram yang dise
 Analogi yang sama juga berlaku ketika pengguna mengirim pesan ke bot, hanya saja alurnya dibalik.
 
 Ketika hendak menjalankan bot, kamu perlu menentukan metode update yang akan digunakan ketika dikirim melalui koneksi HTTP.
-Metode update tersebut bisa berupa [long polling ataupun webhooks](./deployment-types.md).
+Metode update tersebut bisa berupa [long polling ataupun webhooks](./deployment-types).
 
 Kamu juga bisa meng-hosting server API Bot-mu sendiri.
 Selain bisa mengurangi latensi, pengiriman file berukuran besar juga dimungkinkan dengan server tersebut.
@@ -97,7 +97,7 @@ async function kirimHaloKe12345() {
 :::
 
 > Perlu diperhatikan, `bot.api` sebenarnya hanyalah sebuah instance `Api` yang telah disusun sedemikian rupa untuk kenyamanan kamu.
-> Selain itu, jika kamu memiliki akses ke suatu object `context` (misalnya kamu sedang di dalam penangan pesan atau message handler), dianjurkan untuk memanggil `ctx.api` atau salah satu [aksi yang tersedia](./context.md#aksi-yang-tersedia).
+> Selain itu, jika kamu memiliki akses ke suatu object `context` (misalnya kamu sedang di dalam penangan pesan atau message handler), dianjurkan untuk memanggil `ctx.api` atau salah satu [aksi yang tersedia](./context#aksi-yang-tersedia).
 
 Meski instance `Api` telah mencakup keseluruhan API Bot, ia terkadang mengubah sedikit _signatures function_-nya agar lebih mudah digunakan.
 Sejatinya, semua method API Bot mengharapkan sebuah object JSON dengan sejumlah property tertentu.
