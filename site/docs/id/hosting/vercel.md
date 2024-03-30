@@ -80,8 +80,23 @@ if (!token) throw new Error("BOT_TOKEN belum diisi");
 
 const bot = new Bot(token);
 
-export default webhookCallback(bot, "http");
+export default webhookCallback(bot, "std/http");
 ```
+
+::: tip [Vercel Edge Functions](https://vercel.com/docs/functions/edge-functions) memberikan dukungan terbatas untuk grammY
+Kamu masih dapat menggunakan paket inti grammY dan beberapa jumlah plugin, tetapi untuk plugin yang lain mungkin tidak kompatibel karena ada dependensi dari Node.js yang belum di dukung oleh [Edge Runtime](https://edge-runtime.vercel.app)-nya Vercel. 
+
+Saat ini, kami tidak memiliki daftar lengkap plugin yang kompatibel, sehingga kamu perlu mencobanya sendiri.
+
+Tambahkan baris ini pada kode diatas jika kamu ingin beralih ke Edge Functions:
+
+```ts
+export const config = {
+  runtime: "edge",
+};
+```
+
+:::
 
 ## Kunjungi Website Vercel
 
