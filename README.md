@@ -44,3 +44,10 @@ npm run docs:fmt
 ```
 
 in the `site/` directory to perform the formatting if you don't have Deno installed.
+
+## Troubleshooting
+
+### Error: `Cannot find module @rollup/rollup-win32-x64-msvc`
+
+To resolve this error, delete the `node_modules` folder in the `site/` directory's root.
+Then, execute `npm install --no-package-lock` in the terminal.
