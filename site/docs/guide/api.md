@@ -97,7 +97,7 @@ async function sendHelloTo12345() {
 :::
 
 > Note that `bot.api` is simply an instance of `Api` that is pre-constructed for you for convenience.
-> Note also that if you have access to a context object (i.e. you are inside a message handler), it is always preferable to call `ctx.api` or one the [available actions](./context.md#available-actions).
+> Note also that if you have access to a context object (i.e. you are inside a message handler), it is always preferable to call `ctx.api` or one the [available actions](./context#available-actions).
 
 While `Api` instances cover the entire Bot API, they sometimes change the function signatures a bit to make them more usable.
 Strictly speaking, all methods of the Bot API expect a JSON object with a number of properties.
