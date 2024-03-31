@@ -5,17 +5,20 @@ next: false
 
 # Pengulang Request API (`auto-retry`)
 
-Plugin ini adalah sebuah [API transformer function](../advanced/transformers).
-Artinya, ia dapat mencegat dan memodifikasi HTTP request yang keluar secara langsung.
+Plugin auto-retry menyediakan sumber daya yang diperlukan untuk menangani [pembatasan flood (flood limits)](../advanced/flood), yaitu sebuah kesalahan dengan kode 429.
+Ia bisa diterapkan ke semua bot selama pengoperasian normal, dan akan sangat membantu terutama selama[proses penyiaran (broadcasting)](../advanced/flood#cara-menyebarkan-pesan) berlangsung.
+
+Plugin ini merupakan sebuah [API transformer function](../advanced/transformers).
+Artinya, ia dapat mencegat dan memodifikasi HTTP request yang keluar secara dinamis.
 Lebih tepatnya, plugin ini akan secara otomatis mendeteksi jika suatu API request gagal dilakukan dengan membawa value `retry_after`, misal dikarenakan rate limit.
 Ia akan menangkap error tersebut, lalu menunggu beberapa saat, kemudian mengirim request tersebut kembali.
 
-::: tip Kontrol Flood
-Untuk memastikan bot kamu tidak "membanjiri" server, Telegram menerapkan _pengendalian "banjir"_ atau _flood control_.
-Mereka akan memberitahu kamu disaat bot mengirim pesan terlalu cepat.
-Jika kamu mengabaikan [error 429](../resources/faq#_429-too-many-requests-retry-after-x) yang diberikan, Telegram selanjutnya akan memblokir bot kamu.
-Itulah kenapa menggunakan plugin ini cukup penting.
-:::
+Selain menangani pembatasan flood, plugin ini juga akan mencoba mengirim kembali request yang gagal terkirim karena kesalahan server internal, misalnya kesalahan dengan kode 500 atau lebih.
+Kesalahan jaringan --- _yang melempar [sebuah error `HttpError`](../guide/errors#object-httperror)_ --- juga akan memicu plugin untuk melakukan pengulangan.
+Mencoba mengulang kembali request merupakan satu-satunya strategi yang masuk akal untuk menangani kedua jenis kesalahan tersebut.
+Karena keduanya tidak menyediakan nilai `retry_after`, plugin akan menambah durasi tunggu secara eksponensial yang dimulai dari tiga detik hingga maksimal satu jam.
+
+## Penginstalan
 
 Kamu bisa menginstal plugin ini di object `bot.api`:
 
@@ -36,7 +39,7 @@ bot.api.config.use(autoRetry());
 ```
 
 ```ts [Deno]
-import { autoRetry } from "https://esm.sh/@grammyjs/auto-retry";
+import { autoRetry } from "https://deno.land/x/grammy_auto_retry/mod.ts";
 
 // Pasang plugin-nya
 bot.api.config.use(autoRetry());
@@ -48,7 +51,11 @@ Sekarang, anggaplah kamu sedang memanggil `sendMessage`, lalu terkena rate limit
 Di balik layar, beberapa HTTP request sedang dilakukan dengan jeda waktu yang sesuai---berdasarkan durasi flood limit---di antara kedua request.
 Oleh sebab itu, durasi pemrosesan terasa lama karena adanya jeda waktu tersebut.
 
-Kamu bisa menentukan sebuah opsi `maxRetryAttempts` untuk menentukan jumlah maksimal pengulangan yang boleh dilakukan (bawaanya: 3) atau opsi `maxDelaySeconds` untuk menentukan batas maksimal durasi tunggu (bawaanya: 1 jam).
+## Konfigurasi
+
+Kamu bisa meneruskan sebuah object opsi yang menentukan jumlah maksimal pengulangan (`maxRetryAttempts`) ataupun ambang batas atas waktu tunggu (`maxDelaySeconds`).
+
+### Membatasi Pengulangan
 
 Segera setelah jumlah maksimal pengulangan terlampaui, request-request berikutnya yang mengalami error tidak akan diulang kembali.
 Object error tersebut akan tetap diteruskan yang kemudian menghasilkan sebuah [`GrammyError`](../guide/errors#object-grammyerror).
@@ -63,8 +70,27 @@ autoRetry({
 });
 ```
 
-Kamu bisa menggunakan `retryOnInternalServerErrors` untuk menyertakan error-error server internal Telegram lainnya (kode status >= 500).
-Error tersebut akan langsung diulang kembali dengan tetap mematuhi opsi `maxRetryAttempts` yang telah ditentukan.
+### Melempar Kembali Kesalahan Server Internal
+
+Kamu bisa memanfaatkan `rethrowInternalServerErrors` untuk tidak menangani kesalahan server internal seperti yang telah dijelaskan [sebelumnya](#pengulang-request-api-auto-retry).
+Object error dari Telegram akan langsung diteruskan, yang kemudian akan menggagalkan request terkait dengan sebuah error [`GrammyError`](../guide/errors#object-grammyerror).
+
+```ts
+autoRetry({
+  rethrowInternalServerErrors: true, // jangan tangani kesalahan server internal
+});
+```
+
+### Melempar Kembali Kesalahan Jaringan
+
+Kamu bisa memanfaatkan `rethrowHttpErrors` untuk tidak menangani kesalahan jaringan seperti yang telah dijelaskan [sebelumnya](#pengulang-request-api-auto-retry).
+Jika diaktifkan, instance error [`HttpError`](../guide/errors#object-httperror) yang dilempar akan langsung diteruskan, yang kemudian akan menggagalkan request terkait.
+
+```ts
+autoRetry({
+  rethrowHttpErrors: true, // jangan tangani kesalahan jaringan
+});
+```
 
 ## Ringkasan Plugin
 
