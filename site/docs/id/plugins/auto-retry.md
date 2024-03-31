@@ -65,8 +65,8 @@ Request tersebut akan digagalkan saat itu juga.
 
 ```ts
 autoRetry({
-  maxRetryAttempts: 1, // Hanya mengulangi sekali
-  maxDelaySeconds: 5, // Langsung gagalkan jika kita harus menunggu lebih dari 5 detik
+  maxRetryAttempts: 1, // hanya mengulangi sekali
+  maxDelaySeconds: 5, // langsung gagalkan jika kita harus menunggu lebih dari 5 detik
 });
 ```
 
