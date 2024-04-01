@@ -9,7 +9,7 @@ Other filtering of messages is left to the developer, which often leads to endle
 
 On the contrary, **grammY ships with its own query language** that you can use in order to **filter for exactly the messages** you want.
 
-This allows for over 820 different filters to be used, and we may add more over time.
+This allows for over 1150 different filters to be used, and we may add more over time.
 Every valid filter can be auto-completed in your code editor.
 Hence, you can simply type `bot.on("")`, open auto-complete, and search through all queries by typing something.
 
@@ -252,9 +252,11 @@ bot.on("message").filter((ctx) => ctx.senderChat === undefined);
 // Anonymous admin in `ctx.chat`
 bot.on("message").filter((ctx) => ctx.senderChat?.id === ctx.chat.id);
 // Users sending messages on behalf of their channel `ctx.senderChat`
-bot.on("message").filter((ctx) =>
-  ctx.senderChat !== undefined && ctx.senderChat.id !== ctx.chat.id
-);
+bot
+  .on("message")
+  .filter(
+    (ctx) => ctx.senderChat !== undefined && ctx.senderChat.id !== ctx.chat.id
+  );
 ```
 
 ### Filtering by User Properties
@@ -271,7 +273,7 @@ bot.on("message").filter(
   },
   (ctx) => {
     // Handles messages from creators and admins.
-  },
+  }
 );
 ```
 
