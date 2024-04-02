@@ -255,7 +255,7 @@ bot.on("message").filter((ctx) => ctx.senderChat?.id === ctx.chat.id);
 bot
   .on("message")
   .filter(
-    (ctx) => ctx.senderChat !== undefined && ctx.senderChat.id !== ctx.chat.id
+    (ctx) => ctx.senderChat !== undefined && ctx.senderChat.id !== ctx.chat.id,
   );
 ```
 
@@ -273,7 +273,7 @@ bot.on("message").filter(
   },
   (ctx) => {
     // Handles messages from creators and admins.
-  }
+  },
 );
 ```
 
