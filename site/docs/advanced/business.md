@@ -1,6 +1,7 @@
 # Telegram Business
 
-Telegram Business allows your private chat with another (human) user to be managed by a bot.
+Telegram Business allows your private chat with another (human) user to be managed by a bot
+This includes sending and receiving messages on your behalf.
 Typically, this is useful if you run your business on Telegram, and that other user is a customer.
 
 > If you are not familiar with Telegram Business yet, check out the [official docs](https://core.telegram.org/bots#manage-your-business) by Telegram before you continue.
