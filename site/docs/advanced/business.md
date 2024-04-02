@@ -70,7 +70,8 @@ bot.on("business_message").filter(
 ```
 
 This will look as if you had sent the message yourself.
-There is no way to tell for you or your customer whether the message was sent manually or via your bot.
+There is no way to tell for your customer whether the message was sent manually or via your bot.
+(You will see a small indicator for this, though.)
 (But your bot is probably much faster at replying than you.
 Sorry.)
 
