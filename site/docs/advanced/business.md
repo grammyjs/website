@@ -65,7 +65,7 @@ bot.on("business_message").filter(
     if (ctx.msg.text.endsWith("?")) {
       await ctx.reply("Soon.");
     }
-  }
+  },
 );
 ```
 
