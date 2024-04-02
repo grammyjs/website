@@ -21,7 +21,7 @@ bot.on("business_message", async (ctx) => {
   // Access the message object.
   const message = ctx.businessMessage;
   // Shortcuts work as expected.
-  const m = ctx.msg;
+  const msg = ctx.msg;
 });
 ```
 
