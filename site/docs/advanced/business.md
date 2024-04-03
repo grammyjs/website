@@ -88,7 +88,8 @@ More specifically, you will receive `edited_business_message` or `deleted_busine
 Your bot can handle them the normal way using `bot.on` and its countless [filter queries](../guide/filter-queries).
 
 However, your bot is **NOT** able edit or delete messages in the chat.
-This is left to humans.
+Similarly, your bot is **NOT** able to forward messages from the chat, or copy them elsewhere.
+All of these things are left to humans.
 
 ### Working With Business Connections
 
