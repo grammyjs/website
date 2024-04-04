@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useWindowScroll } from '@vueuse/core'
 import { useData } from 'vitepress';
-import { useLocalNav, useSidebar } from 'vitepress/theme';
+import { useSidebar } from 'vitepress/theme';
 import { ref, watchPostEffect } from 'vue'
 import VPNavBarAppearance from 'vitepress/dist/client/theme-default/components/VPNavBarAppearance.vue'
 import VPNavBarExtra from 'vitepress/dist/client/theme-default/components/VPNavBarExtra.vue'
@@ -22,20 +22,20 @@ defineEmits<{
 
 const { y } = useWindowScroll()
 const { hasSidebar } = useSidebar()
-const { hasLocalNav } = useLocalNav()
 const { frontmatter } = useData()
 
 const classes = ref<Record<string, boolean>>({})
-let showTranslation: boolean;
 
 watchPostEffect(() => {
   classes.value = {
     'has-sidebar': hasSidebar.value,
-    'has-local-nav': hasLocalNav.value,
-    top: frontmatter.value.layout === 'home' && y.value === 0,
+    'home': frontmatter.value.layout === 'home',
+    'top': y.value === 0,
   }
   showTranslation = frontmatter.value.translation ?? true;
 })
+
+let showTranslation: boolean;
 </script>
 
 <template>
@@ -80,16 +80,16 @@ watchPostEffect(() => {
   transition: background-color 0.5s;
 }
 
-.VPNavBar.has-local-nav {
+.VPNavBar:not(.home) {
   background-color: var(--vp-nav-bg-color);
 }
 
 @media (min-width: 960px) {
-  .VPNavBar.has-local-nav {
+  .VPNavBar:not(.home) {
     background-color: transparent;
   }
 
-  .VPNavBar:not(.has-sidebar):not(.top) {
+  .VPNavBar:not(.has-sidebar):not(.home.top) {
     background-color: var(--vp-nav-bg-color);
   }
 }
@@ -189,12 +189,12 @@ watchPostEffect(() => {
 }
 
 @media (min-width: 960px) {
-  .VPNavBar:not(.top) .content-body {
+  .VPNavBar:not(.home.top) .content-body {
     position: relative;
     background-color: var(--vp-nav-bg-color);
   }
 
-  .VPNavBar:not(.has-sidebar):not(.top) .content-body {
+  .VPNavBar:not(.has-sidebar):not(.home.top) .content-body {
     background-color: transparent;
   }
 }
@@ -254,16 +254,16 @@ watchPostEffect(() => {
   transition: background-color 0.5s;
 }
 
-.VPNavBar.has-local-nav .divider-line {
+.VPNavBar:not(.home) .divider-line {
   background-color: var(--vp-c-gutter);
 }
 
 @media (min-width: 960px) { 
-  .VPNavBar:not(.top) .divider-line {
+  .VPNavBar:not(.home.top) .divider-line {
     background-color: var(--vp-c-gutter);
   }
 
-  .VPNavBar:not(.has-sidebar):not(.top) .divider {
+  .VPNavBar:not(.has-sidebar):not(.home.top) .divider {
     background-color: var(--vp-c-gutter);
   }
 }
