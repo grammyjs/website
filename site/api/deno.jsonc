@@ -1,7 +1,8 @@
 {
   "lock": false,
   "tasks": {
-    "genapi": "deno run -A --allow-net --allow-read --allow-write=../docs/ref api_gen.tsx ../docs/ref"
+    "genapi": "deno run --allow-env --allow-net --allow-read --allow-write=.cache,../docs/ref api_gen.tsx ../docs/ref",
+    "reset": "rm -rf .cache"
   },
   "imports": {
     "std/": "https://deno.land/std@0.220.0/",
@@ -9,8 +10,12 @@
     "preact/": "https://esm.sh/preact@10.19.6/",
     "preact-render-to-string": "https://esm.sh/preact-render-to-string@6.4.0/",
     "deno_doc/": "https://deno.land/x/deno_doc@0.117.0/",
+    "deno_cache/": "https://deno.land/x/deno_cache@0.7.1/",
     "marked-smartypants": "https://esm.sh/marked-smartypants@1.1.6/"
   },
+  "exclude": [
+    ".cache"
+  ],
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxImportSource": "preact"
