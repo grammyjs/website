@@ -11,6 +11,9 @@ The `logos/` directory only contains the logos of grammY—all website-related t
 
 Setup (once): `cd` into `site/` and run `npm install`.
 
+> [!NOTE]
+> For Windows users: Currently, you should do `npm install --no-package-lock` instead of just `npm install`.
+
 You can now run
 
 ```sh
@@ -41,3 +44,10 @@ npm run docs:fmt
 ```
 
 in the `site/` directory to perform the formatting if you don't have Deno installed.
+
+## Troubleshooting
+
+### Error: `Cannot find module @rollup/rollup-win32-x64-msvc`
+
+To resolve this error, delete the `node_modules` folder in the `site/` directory's root.
+Then, execute `npm install --no-package-lock` in the terminal.
