@@ -6,7 +6,7 @@ next: false
 # Pengulang Request API (`auto-retry`)
 
 Plugin auto-retry menyediakan sumber daya yang diperlukan untuk menangani [pembatasan flood (flood limits)](../advanced/flood), yaitu sebuah kesalahan dengan kode 429.
-Ia bisa diterapkan ke semua bot selama pengoperasian normal, dan akan sangat membantu terutama selama[proses penyiaran (broadcasting)](../advanced/flood#cara-menyebarkan-pesan) berlangsung.
+Ia bisa diterapkan ke semua bot selama pengoperasian normal, terutama saat [proses penyiaran](../advanced/flood#cara-menyebarkan-pesan) berlangsung.
 
 Plugin ini merupakan sebuah [API transformer function](../advanced/transformers).
 Artinya, ia dapat mencegat dan memodifikasi HTTP request yang keluar secara dinamis.
