@@ -81,7 +81,7 @@ autoRetry({
 ### Rethrowing Networking Errros
 
 You can use `rethrowHttpErrors` to opt out of handling networking errors as described [above](#retry-api-requests-auto-retry).
-If enabled, the thrown [`HttpError`](../guide/errors.md#the-httperror-object) instances are passed on, failing the request.
+If enabled, the thrown [`HttpError`](../guide/errors#the-httperror-object) instances are passed on, failing the request.
 
 ```ts
 autoRetry({
