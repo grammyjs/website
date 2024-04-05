@@ -19,20 +19,21 @@ Contohnya, kurang lebih seperti ini `AgADBAADZRAxGyhM3FKSE4qKa-RODckQHxsoABDHe0B
 
 Setiap kali bot **menerima** sebuah file yang disertakan di sebuah pesan, ia sebenarnya hanya menerima `file_id`, bukan data file aslinya.
 Kalau bot kamu ingin mengunduh file tersebut, maka ia perlu memanggil method `getFile` ([Referensi API Bot Telegram](https://core.telegram.org/bots/api#getfile)).
-Method inilah yang bertugas membuat URL khusus sementara supaya kamu bisa mengunduh file tadi. Setelah 60 menit terlewati, URL tersebut tidak bisa digunakan. Jika itu terjadi, kamu cukup memanggil ulang `getFile`.
+Method inilah yang bertugas membuat URL khusus sementara supaya kamu bisa mengunduh file tadi.
+Setelah 60 menit terlewati, URL tersebut akan kedaluwarsa. Jika itu terjadi, kamu cukup memanggil ulang `getFile`.
 
-File dapat diterima seperti [ini](#menerima-file).
+Untuk menerima file, lihat bagian [menerima file](#menerima-file).
 
 ### Identifier untuk Mengirim File
 
-> Mengirim file akan memberikanmu identifier file juga.
+> Identifier file juga bisa diperoleh dengan cara mengirim file.
 
-Ketika sebuah bot **mengirim** pesan yang mengandung sebuah file, maka bot tersebut akan menerima informasi mengenai pesan yang terkirim tersebut, termasuk informasi `file_id` dari file yang terkirim.
+Ketika suatu bot **mengirim** pesan yang mengandung sebuah file, bot tersebut akan menerima informasi mengenai pesan yang terkirim tersebut, termasuk informasi `file_id` dari file yang terkirim.
 Artinya, semua file yang bot lihat, baik file yang dikirim maupun yang diterima, `file_id`-nya akan tersedia untuk bot tersebut.
-Apabila kamu ada ingin berurusan dengan file setelah file tersebut diterima oleh bot, kamu harus selalu menyimpan `file_id`-nya.
+Apabila kamu ingin memproses file tersebut, kamu perlu menyimpan `file_id`-nya.
 
-> Kamu dapat mengunakan identifier file dimanapun.
-> Mereka sangat efisien.
+> Identifier file sangatlah efisien.
+> Oleh karena itu, gunakan sebisa mungkin.
 
 Ketika sebuah bot mengirim sebuah pesan, ia bisa **menentukan `file_id` yang sebelumnya pernah dilihat oleh bot**.
 Dengan begitu, ia dapat mengirim file yang teridentifikasi tanpa harus mengunggah data file tersebut.
@@ -40,12 +41,12 @@ Dengan begitu, ia dapat mengirim file yang teridentifikasi tanpa harus mengungga
 Kamu bisa menggunakan kembali `file_id` yang sama berulang kali. Artinya, kamu bisa menggunakan `file_id` untuk mengirim file yang sama ke lima chat berbeda.
 Meski begitu, kamu tetap harus menggunakan method yang sesuai, contohnya `file_id` yang mengidentifikasikan sebuah foto tidak dapat digunakan ketika memanggil [`sendVideo`](https://core.telegram.org/bots/api#sendvideo).
 
-File dapat dikirim seperti [ini](#mengirim-file).
+Untuk mengirim file, lihat bagian [mengirim file](#mengirim-file).
 
 ### Identifier akan Mengejutkanmu
 
-> Identifier file **hanya dapat bekerja pada bot kamu sendiri**.
-> Apabila ada bot lain yang menggunakan identifier file-mu, terkadang hal tersebut bisa saja berhasil, atau mungkin akan mengalami crash atau bisa saja secara acak membunuh anak kucing yang tak bersalah.
+> Identifier file **hanya dapat bekerja untuk bot kamu sendiri**.
+> Apabila ada bot lain yang menggunakan identifier file-mu, mungkin akan berhasil, atau mungkin malah akan mengalami crash, atau bisa saja secara acak membunuh anak kucing yang tak berdosa.
 > :cat: → :skull:
 
 Setiap bot memiliki `file_id`-nya sendiri untuk mengakses file. Kamu tidak bisa menggunakan `file_id` dari bot lain untuk mengakses file yang sama di bot kamu.
@@ -58,7 +59,7 @@ Perlu dicatat bahwa dalam beberapa kasus, `file_id` dari bot lain sesekali bisa 
 Oleh karena itu, selalu gunakan `file_id` yang memang diperuntukkan khusus untuk bot kamu.
 :::
 
-> Suatu file bisa saja memiliki beberapa identifier.
+> Satu file bisa jadi memiliki beberapa identifier.
 
 Di sisi lain, bot bisa saja secara kebetulan mendapat `file_id` yang berbeda untuk satu file yang sama.
 Karenanya, kamu tidak bisa mengandalkan `file_id` untuk membandingkan apakah dua file identik atau tidak.
