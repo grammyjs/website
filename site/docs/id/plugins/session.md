@@ -860,7 +860,7 @@ Misalnya, suatu data disimpan bersama dengan waktu kapan session terakhirnya, se
 Dalam beberapa kasus, TypeScript akan menebak type yang sesuai untuk storage adapter-mu.
 Namun, sering kali kita yang membuat type annotation untuk data session-nya secara eksplisit pada beberapa tempat.
 
-Contoh kode dibawah ini mengilustrasikan bagaimana cara menggunakan peningkatan timeout dengan type yang benar pada TypeScript. 
+Contoh kode dibawah ini mengilustrasikan bagaimana cara menggunakan peningkatan timeout dengan type yang benar pada TypeScript.
 
 ```ts
 interface SessionData {
