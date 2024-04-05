@@ -13,7 +13,7 @@ More specifically, this plugin will automatically detect if an API requests fail
 It will then catch the error, wait the specified period of time, and then retry the request.
 
 In addition to handling flood limits, this plugin will retry a request if it fails with an internal server error, i.e. errors with code 500 or larger.
-Networking errors (those that [throw an `HttpError`](../guide/errors.md#the-httperror-object) in grammY) will cause a retry, too.
+Networking errors (those that [throw an `HttpError`](../guide/errors#the-httperror-object) in grammY) will cause a retry, too.
 Retrying such requests is more or less the only sane strategy to handle these two types of errors.
 Since neither of them provide a `retry_after` value, the plugin employs exponential backoff starting at 3 seconds and capped at one hour.
 
