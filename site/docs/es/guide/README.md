@@ -21,7 +21,7 @@ Si sabes cómo escribir una aplicación para Node.js o Deno, o ya has creado un 
 La documentación de los bots de grammY está dividida en tres capas.
 
 1. Documentación de alto nivel de grammY _(este sitio web)_
-2. [Referencia de bajo nivel de la API de grammY](/ref/core/)
+2. [Referencia de bajo nivel de la API de grammY](/ref/) _(parte autogenerada de este sitio web)_
 3. [Referencia de la API HTTP en bruto de Telegram](https://core.telegram.org/bots/api)
 
 **La primera parte** (¡la estás viendo!) explica cómo funcionan los bots y cómo usar grammY.
