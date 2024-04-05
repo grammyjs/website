@@ -720,7 +720,7 @@ Kedua fitur tersebut bisa diinstal dengan menggunakan function `enhanceStorage`.
 bot.use(
   session({
     storage: enhanceStorage({
-      storage: freeStorage(bot.token), // jangan lupa diatur,
+      storage: freeStorage(bot.token), // jangan lupa diatur
       // tulis konfigurasinya di sini
     }),
   }),
@@ -855,12 +855,12 @@ Tidak peduli seberapa besar data session sebuah chat telah berubah, segera setel
 
 ### Type untuk Peningkatan Storage
 
-Ketika kamu menggunakan peningkatan storage, storage adapter akan menyimpan lebih banyak data daripada data session.
-Misalnya, suatu data disimpan bersama dengan waktu kapan session terakhirnya, sehingga nanti ia akan [kadaluarwasa](#timeout) dengan benar setelah waktunya habis.
+Ketika kamu menggunakan peningkatan storage, storage adapter akan menyimpan lebih banyak data dibandingkan data session.
+Contohnya, ia perlu menyimpan data waktu terakhir kali session tersebut disimpan agar nantinya ia bisa [kedaluwarsa](#timeout) tepat waktu.
 Dalam beberapa kasus, TypeScript akan menebak type yang sesuai untuk storage adapter-mu.
-Namun, sering kali kita yang membuat type annotation untuk data session-nya secara eksplisit pada beberapa tempat.
+Namun, di banyak kesempatan, kita diharuskan secara eksplisit membuat type annotation untuk data session di berbagai tempat.
 
-Contoh kode dibawah ini mengilustrasikan bagaimana cara menggunakan peningkatan timeout dengan type yang benar pada TypeScript.
+Contoh kode dibawah ini mengilustrasikan bagaimana cara menggunakan peningkatan timeout dengan type TypeScript yang sesuai.
 
 ```ts
 interface SessionData {
@@ -883,12 +883,15 @@ bot.use(
   }),
 );
 
-bot.on("message", (ctx) => ctx.reply(`Hitung obrolan ${ctx.session.hitung++}`));
+bot.on(
+  "message",
+  (ctx) => ctx.reply(`Jumlah obrolan: ${ctx.session.hitung++}`),
+);
 
 bot.start();
 ```
 
-Perlu diperhatikan bahwa setiap [storage adapter](#storage-adapter-yang-tersedia) bisa menerima type parameter.
+Perlu diketahui, setiap [storage adapter](#storage-adapter-yang-tersedia) bisa menerima parameter berupa type.
 Misalnya, pada [session gratis](#storage-gratis), kamu dapat menggunakan `freeStorage<Enhance<SessionData>>` alih-alih `MemorySessionStorage<Enhance<SessionData>>`.
 Hal yang sama juga berlaku untuk storage adapter lainnya.
 
