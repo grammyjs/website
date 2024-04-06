@@ -21,17 +21,19 @@ If you know how to write an application for Node.js or Deno or have already crea
 The documentation for grammY bots is divided into three layers.
 
 1. High-level grammY docs _(this website)_
-2. [Low-level grammY API reference](/ref/core/)
+2. [Low-level grammY API reference](/ref/) _(auto-generated part of this website)_
 3. [Raw HTTP API reference by Telegram](https://core.telegram.org/bots/api)
 
 **The first part** (you're looking at it!) explains how bots work and how to use grammY.
 This is what you will use most often.
-The _Learn_ section is always a good start.
+The _Learn_ section is always a good start, as it explains all core concepts.
 Also check out our great collection of _Plugins_, and have a look at the _Examples_.
 
-**The second part** is the [grammY API reference](/ref/core/), linked at the top of the page.
+**The second part** is the [grammY API reference](/ref/), linked at the top of the page.
 This is a detailed overview of every single bit of code that grammY provides.
 It is automatically generated from grammY's code and contains all of the useful tooltip explanations, normally found by hovering your cursor over any element of grammY in a code editor.
+The same is true for every plugin in the grammY ecosystem.
+In addition to appearing in the [overview of API references](/ref/), plugins have their API reference linked in the plugin summary at the bottom of each plugin page.
 
 **The third part** is provided by Telegram and lists the raw definitions of the [HTTP API](https://core.telegram.org/bots/api) that grammY will connect to under the hood.
 The grammY API reference links to it wherever that makes sense.
