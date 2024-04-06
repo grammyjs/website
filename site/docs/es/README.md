@@ -100,8 +100,8 @@ bot.start();
 
 <div style="font-size: 0.75rem;  display: flex; justify-content: center;">
 
-© 2021-2024 &middot; grammY soporta Telegram Bot API 7.1 que fue [liberada](https://core.telegram.org/bots/api#february-16-2024) el 16 de Febrero del 2024.
-(Última novedad: Mejoras en el chat grupal)
+© 2021-2024 &middot; grammY soporta Telegram Bot API 7.2 que fue [liberada](https://core.telegram.org/bots/api#march-31-2024) el 31 de Marzo del 2024.
+(Última novedad: Integración con cuentas de empresa)
 
 </div>
 </footer>
