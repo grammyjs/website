@@ -452,7 +452,7 @@ export const siteEs: LocaleConfig = {
       },
       docFooter: {
         prev: "Página anterior",
-        next: "Página siguiente"
+        next: "Página siguiente",
       },
       lastUpdatedText: "Última actualización",
       darkModeSwitchLabel: "Apariencia", // only displayed in the mobile view.

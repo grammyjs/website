@@ -456,7 +456,7 @@ export const siteZh: LocaleConfig = {
       },
       docFooter: {
         prev: "上一页",
-        next: "下一页"
+        next: "下一页",
       },
       lastUpdatedText: "上次更新",
       darkModeSwitchLabel: "外观", // only displayed in the mobile view.

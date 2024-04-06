@@ -456,7 +456,7 @@ export const siteUk: LocaleConfig = {
       },
       docFooter: {
         prev: "Попередня сторінка",
-        next: "Наступна сторінка"
+        next: "Наступна сторінка",
       },
       lastUpdatedText: "Востаннє оновлено",
       darkModeSwitchLabel: "Вигляд", // only displayed in the mobile view.
