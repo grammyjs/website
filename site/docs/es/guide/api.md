@@ -62,7 +62,7 @@ const { Api, Bot } = require("grammy");
 const bot = new Bot("");
 
 async function sendHelloTo12345() {
-  // Send a message to 12345.
+  // Envía un mensaje a 12345.
   await bot.api.sendMessage(12345, "Hello!");
 
   // Envía un mensaje y almacena la respuesta, que contiene información sobre el mensaje enviado.
@@ -81,7 +81,7 @@ import { Api, Bot } from "https://deno.land/x/grammy/mod.ts";
 const bot = new Bot("");
 
 async function sendHelloTo12345() {
-  // Send a message to 12345.
+  // Envía un mensaje a 12345.
   await bot.api.sendMessage(12345, "Hello!");
 
   // Envía un mensaje y almacena la respuesta, que contiene información sobre el mensaje enviado.
