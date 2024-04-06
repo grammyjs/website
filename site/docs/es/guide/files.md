@@ -10,37 +10,62 @@ Esto implica el manejo de los archivos que se adjuntan a los mensajes.
 
 Los archivos se almacenan por separado de los mensajes.
 Un archivo en los servidores de Telegram es identificado por un `file_id`, que es sólo una larga cadena de caracteres.
+Por ejemplo, podría parecerse a `AgADBAADZRAxGyhM3FKSE4qKa-RODckQHxsoABDHe0BDC1GzpGACAAEC`.
 
-`AgADBAADZRAxGyhM3FKSE4qKa-RODckQHxsoABDHe0BDC1GzpGACAAEC` es un ejemplo de `file_id`.
+### Identificadores para recibir archivos
+
+> Los robots sólo reciben identificadores de ficheros.
+> Si quieren obtener contenidos de archivos, tienen que solicitarlos explícitamente.
 
 Siempre que tu bot **reciba** un mensaje con un archivo, no recibirá directamente los datos completos del archivo, sino sólo el `file_id`.
 Si tu bot realmente quiere descargar el archivo, entonces puede hacerlo llamando al método `getFile` ([Referencia Telegram Bot API](https://core.telegram.org/bots/api#getfile)).
 Este método te permite descargar el archivo construyendo una URL especial y temporal.
 Ten en cuenta que la validez de esta URL sólo está garantizada durante 60 minutos, después de los cuales puede expirar. En este caso, puedes simplemente llamar a `getFile` de nuevo.
 
+Los archivos se pueden recibir como [esto](#reciviendo-archivos).
+
+### Identificadores para el envío de ficheros
+
+> Al enviar archivos también se obtiene un identificador de archivo.
+
 Siempre que tu bot **envíe** un mensaje con un archivo, recibirá información sobre el mensaje enviado, incluyendo el `file_id` del archivo enviado.
 Esto significa que todos los archivos que el bot vea, tanto a través del envío como de la recepción, pondrán un `file_id` a disposición del bot.
+Si quieres trabajar con un archivo después de que tu bot lo vea, siempre debes almacenar su `file_id`.
+
+> Utiliza identificadores de archivo siempre que puedas.
+> Son muy eficientes.
 
 Cuando un bot envía un mensaje, puede **especificar un `file_id` que haya visto antes**.
 Esto le permitirá enviar el archivo identificado, sin necesidad de subir los datos para ello.
-(Para ver cómo subir sus propios archivos, [desplácese hacia abajo](#envio-de-archivos).)
+
 Puede reutilizar el mismo `file_id` tantas veces como quiera, por lo que podría enviar el mismo archivo a cinco chats diferentes, utilizando el mismo `file_id`.
 Sin embargo, debes asegurarte de utilizar el método correcto---por ejemplo, no puedes utilizar un `file_id` que identifique una foto al llamar a [`sendVideo`](https://core.telegram.org/bots/api#sendvideo).
+
+Los archivos pueden enviarse como [esto](#envio-de-archivos).
+
+### Los identificadores pueden sorprenderte
+
+> Los identificadores de archivo **sólo funcionan para tu bot**.
+> Si otro bot usa tus identificadores de archivo, puede funcionar aleatoriamente y estrellarse aleatoriamente y matar gatitos inocentes aleatoriamente.
+> :cat: → :skull:
 
 Cada bot tiene su propio conjunto de `file_id` para los archivos a los que puede acceder.
 No puedes usar de forma fiable un `file_id` del bot de tu amigo, para acceder a un archivo con _tu_ bot.
 Cada bot utilizará diferentes identificadores para el mismo archivo.
 Esto implica que no puedes simplemente adivinar un `file_id` y acceder a un archivo de una persona al azar, porque Telegram mantiene un registro de qué `file_id` son válidos para tu bot.
 
-::: warning Uso de file_ids extranjeros
+::: warning Uso de `file_id`s extranjeros
 Ten en cuenta que en algunos casos _es_ técnicamente posible que un `file_id` de otro bot parezca funcionar correctamente.
 **Sin embargo, el uso de un `file_id` extranjero es peligroso, ya que puede dejar de funcionar en cualquier momento, sin previo aviso.
 Por lo tanto, asegúrate siempre de que cualquier `file_id` que utilices sea originalmente para tu bot.
 :::
 
+> Un fichero puede tener varios identificadores.
+
 Por otro lado, es posible que un bot vea eventualmente el mismo archivo identificado por diferentes `file_id`s.
 Esto significa que no puedes confiar en la comparación de `file_id`s para comprobar si dos archivos son el mismo.
 Si necesitas identificar el mismo fichero a lo largo del tiempo (o a través de múltiples bots), debes utilizar el valor `file_unique_id` que tu bot recibe junto con cada `file_id`.
+
 El `file_unique_id` no se puede utilizar para descargar archivos, pero será el mismo para cualquier archivo dado, a través de cada bot.
 
 ## Reciviendo archivos
