@@ -460,10 +460,12 @@ type MyContext = Context & SessionFlavor<SessionData>;
 // Crear el bot y registrar el middleware de sesión.
 const bot = new Bot<MyContext>("");
 
-bot.use(session({
-  initial: () => ({ count: 0 }),
-  storage: freeStorage<SessionData>(bot.token),
-}));
+bot.use(
+  session({
+    initial: () => ({ count: 0 }),
+    storage: freeStorage<SessionData>(bot.token),
+  }),
+);
 
 // Utilizar datos de sesión persistentes en los manejadores de actualización.
 bot.on("message", async (ctx) => {
@@ -482,10 +484,12 @@ const { freeStorage } = require("@grammyjs/storage-free");
 // Crear el bot y registrar el middleware de sesión.
 const bot = new Bot("");
 
-bot.use(session({
-  initial: () => ({ count: 0 }),
-  storage: freeStorage(bot.token),
-}));
+bot.use(
+  session({
+    initial: () => ({ count: 0 }),
+    storage: freeStorage(bot.token),
+  }),
+);
 
 // Utilizar datos de sesión persistentes en los manejadores de actualización.
 bot.on("message", async (ctx) => {
@@ -515,10 +519,12 @@ type MyContext = Context & SessionFlavor<SessionData>;
 // Crear el bot y registrar el middleware de sesión.
 const bot = new Bot<MyContext>("");
 
-bot.use(session({
-  initial: () => ({ count: 0 }),
-  storage: freeStorage<SessionData>(bot.token),
-}));
+bot.use(
+  session({
+    initial: () => ({ count: 0 }),
+    storage: freeStorage<SessionData>(bot.token),
+  }),
+);
 
 // Utilizar datos de sesión persistentes en los manejadores de actualización.
 bot.on("message", async (ctx) => {
@@ -579,20 +585,22 @@ Puede utilizar esta función pasando `type: "multi"` a la configuración de la s
 A su vez, tendrás que configurar cada fragmento con su propia configuración.
 
 ```ts
-bot.use(session({
-  type: "multi",
-  foo: {
-    // estos son también los valores por defecto
-    storage: new MemorySessionStorage(),
-    initial: () => undefined,
-    getSessionKey: (ctx) => ctx.chat?.id.toString(),
-  },
-  bar: {
-    initial: () => ({ prop: 0 }),
-    storage: freeStorage(bot.token),
-  },
-  baz: {},
-}));
+bot.use(
+  session({
+    type: "multi",
+    foo: {
+      // estos son también los valores por defecto
+      storage: new MemorySessionStorage(),
+      initial: () => undefined,
+      getSessionKey: (ctx) => ctx.chat?.id.toString(),
+    },
+    bar: {
+      initial: () => ({ prop: 0 }),
+      storage: freeStorage(bot.token),
+    },
+    baz: {},
+  }),
+);
 ```
 
 Tenga en cuenta que debe añadir una entrada de configuración para cada fragmento que desee utilizar.
@@ -700,13 +708,14 @@ El plugin de sesión es capaz de mejorar cualquier adaptador de almacenamiento a
 Pueden ser instalados usando la función `enhanceStorage`.
 
 ```ts
-// Usar el adaptador de almacenamiento mejorado.
-bot.use(session({
-  storage: enhanceStorage({
-    storage: freeStorage(bot.token), // ajusta esto
-    // más configuración aquí
+bot.use(
+  session({
+    storage: enhanceStorage({
+      storage: freeStorage(bot.token), // ajusta esto
+      // más configuración aquí
+    }),
   }),
-}));
+);
 ```
 
 También puedes usar ambos al mismo tiempo.
@@ -745,7 +754,7 @@ interfaz SessionData {
 }
 ```
 
-Ahora te haces a la idea de que también quieres almacenar la edad de las mascotas.
+Ahora, ya te haces a la idea de que también quieres almacenar la edad de las mascotas.
 
 Podrías hacer esto:
 
@@ -776,7 +785,11 @@ Las funciones de migración permiten transformar el antiguo array de cadenas en 
 ::: code-group
 
 ```ts [TypeScript]
-function addBirthdayToPets(old: { petNames: string[] }): SessionData {
+interface OldSessionData {
+  petNames: string[];
+}
+
+function addBirthdayToPets(old: OldSessionData): SessionData {
   return {
     pets: old.petNames.map((name) => ({ name })),
   };
@@ -830,6 +843,46 @@ const enhanced = enhanceStorage({
 
 Puedes elegir cualquier número de JavaScript como versiones.
 No importa la evolución de los datos de sesión de un chat, en cuanto se lea, se migrará a través de las versiones hasta utilizar la estructura más reciente.
+
+### Tipos para mejoras de almacenamiento
+
+Cuando utilizas mejoras de almacenamiento, tu adaptador de almacenamiento tendrá que almacenar más datos que sólo los datos de sesión.
+Por ejemplo, tiene que almacenar la hora en la que la sesión se almacenó por última vez para que pueda [expirar](#tiempos-de-espera) correctamente los datos al expirar.
+En algunos casos, TypeScript será capaz de inferir los tipos correctos para tu adaptador de almacenamiento.
+Sin embargo, la mayoría de las veces, necesitarás anotar los tipos de los datos de sesión explícitamente en varios lugares.
+
+El siguiente fragmento de código de ejemplo ilustra cómo utilizar la mejora de tiempo de espera con los tipos correctos de TypeScript.
+
+```ts
+interface SessionData {
+  count: number;
+}
+
+type MyContext = Context & SessionFlavor<SessionData>;
+
+const bot = new Bot<MyContext>("");
+
+bot.use(
+  session({
+    initial(): SessionData {
+      return { count: 0 };
+    },
+    storage: enhanceStorage({
+      storage: new MemorySessionStorage<Enhance<SessionData>>(),
+      millisecondsToLive: 60_000,
+    }),
+  }),
+);
+
+bot.on("message", (ctx) => ctx.reply(`Chat count is ${ctx.session.count++}`));
+
+bot.start();
+```
+
+Ten en cuenta que cada [adaptador de almacenamiento](#adaptadores-de-almacenamiento-conocidos) puede tomar un parámetro de tipo.
+Por ejemplo, para [free sessions](#almacenamiento-gratuito), puedes usar `freeStorage<Enhance<SessionData>>` en lugar de `MemorySessionStorage<Enhance<SessionData>>`.
+
+Lo mismo ocurre con el resto de adaptadores de almacenamiento.
 
 ## Resumen del plugin
 

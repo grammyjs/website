@@ -459,10 +459,12 @@ type MyContext = Context & SessionFlavor<SessionData>;
 // 创建 bot 并且注册会话中间件。
 const bot = new Bot<MyContext>(""); // <-- 把你的 bot token 放在 "" 中间
 
-bot.use(session({
-  initial: () => ({ count: 0 }),
-  storage: freeStorage<SessionData>(bot.token),
-}));
+bot.use(
+  session({
+    initial: () => ({ count: 0 }),
+    storage: freeStorage<SessionData>(bot.token),
+  }),
+);
 
 // 在 update 处理中使用持久会话数据。
 bot.on("message", async (ctx) => {
@@ -481,10 +483,12 @@ const { freeStorage } = require("@grammyjs/storage-free");
 // 创建 bot 并且注册会话中间件。
 const bot = new Bot("");
 
-bot.use(session({
-  initial: () => ({ count: 0 }),
-  storage: freeStorage(bot.token),
-}));
+bot.use(
+  session({
+    initial: () => ({ count: 0 }),
+    storage: freeStorage(bot.token),
+  }),
+);
 
 // 在 update 处理中使用持久会话数据。
 bot.on("message", async (ctx) => {
@@ -514,10 +518,12 @@ type MyContext = Context & SessionFlavor<SessionData>;
 // 创建 bot 并且注册会话中间件。
 const bot = new Bot<MyContext>(""); // <-- 把你的 bot token 放在 "" 中间
 
-bot.use(session({
-  initial: () => ({ count: 0 }),
-  storage: freeStorage<SessionData>(bot.token),
-}));
+bot.use(
+  session({
+    initial: () => ({ count: 0 }),
+    storage: freeStorage<SessionData>(bot.token),
+  }),
+);
 
 // 在 update 处理中使用持久会话数据。
 bot.on("message", async (ctx) => {
@@ -580,20 +586,22 @@ bot.start();
 反过来，你将需要使用它自己的配置来配置每个片段。
 
 ```ts
-bot.use(session({
-  type: "multi",
-  foo: {
-    // 这些也是默认值
-    storage: new MemorySessionStorage(),
-    initial: () => undefined,
-    getSessionKey: (ctx) => ctx.chat?.id.toString(),
-  },
-  bar: {
-    initial: () => ({ prop: 0 }),
-    storage: freeStorage(bot.token),
-  },
-  baz: {},
-}));
+bot.use(
+  session({
+    type: "multi",
+    foo: {
+      // 这些也是默认值
+      storage: new MemorySessionStorage(),
+      initial: () => undefined,
+      getSessionKey: (ctx) => ctx.chat?.id.toString(),
+    },
+    bar: {
+      initial: () => ({ prop: 0 }),
+      storage: freeStorage(bot.token),
+    },
+    baz: {},
+  }),
+);
 ```
 
 请注意，你必须为要使用的每个片段添加一个配置条目。
@@ -703,12 +711,14 @@ bot.command("reset", async (ctx) => {
 
 ```ts
 // 使用增强型存储适配器
-bot.use(session({
-  storage: enhanceStorage({
-    storage: freeStorage(bot.token), // 修改这里
-    // 更多配置在这里
+bot.use(
+  session({
+    storage: enhanceStorage({
+      storage: freeStorage(bot.token), // 修改这里
+      // 更多配置在这里
+    }),
   }),
-}));
+);
 ```
 
 你也可以同时使用两者。
@@ -747,7 +757,7 @@ interface SessionData {
 }
 ```
 
-现在你知道您还想存储宠物的年龄。
+现在，你又有了存储宠物年龄的想法。
 
 你可以这样做：
 
@@ -778,7 +788,11 @@ interface SessionData {
 ::: code-group
 
 ```ts [TypeScript]
-function addBirthdayToPets(old: { petNames: string[] }): SessionData {
+interface OldSessionData {
+  petNames: string[];
+}
+
+function addBirthdayToPets(old: OldSessionData): SessionData {
   return {
     pets: old.petNames.map((name) => ({ name })),
   };
@@ -832,6 +846,45 @@ const enhanced = enhanceStorage({
 
 您可以选择任何 JavaScript 编号作为版本。
 无论聊天的会话数据发展了多远，一旦被读取，它就会通过版本进行迁移，直到它使用最新的结构。
+
+### 增强存储的类型
+
+使用存储增强功能时，你的存储适配器会存储更多数据，而不仅仅是会话数据。
+例如，它必须存储上次会话保存的时间，以便在超时时正确地让数据 [过期](#超时)。
+在某些情况下，TypeScript 可以为你的存储适配器推断出正确的类型。
+不过，你往往需要在多个地方明确注释会话数据的类型。
+
+下面的示例代码片段展示了如何使用正确的 TypeScript 类型来使用超时增强功能。
+
+```ts
+interface SessionData {
+  count: number;
+}
+
+type MyContext = Context & SessionFlavor<SessionData>;
+
+const bot = new Bot<MyContext>("");
+
+bot.use(
+  session({
+    initial(): SessionData {
+      return { count: 0 };
+    },
+    storage: enhanceStorage({
+      storage: new MemorySessionStorage<Enhance<SessionData>>(),
+      millisecondsToLive: 60_000,
+    }),
+  }),
+);
+
+bot.on("message", (ctx) => ctx.reply(`Chat count is ${ctx.session.count++}`));
+
+bot.start();
+```
+
+请注意，每个 [存储适配器](#已知的存储适配器) 都能接受一个类型参数。
+例如，对于 [免费存储](#免费存储)，你可以使用 `freeStorage<Enhance<SessionData>>` 代替 `MemorySessionStorage<Enhance<SessionData>>`。
+其他所有存储适配器也是如此。
 
 ## 插件概述
 
