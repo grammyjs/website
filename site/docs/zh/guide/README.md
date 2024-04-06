@@ -20,7 +20,7 @@ grammY 是一个用于创建 Telegram Bot 的框架。它可以从 TypeScript �
 使用 grammY 编写 bot 的文档由三层构成。
 
 1. 高级 grammY 文档 _（这个网站）_
-2. [低级 grammY API 参考](/ref/core/)
+2. [低级 grammY API 参考](/ref/) _（本网站自动生成的部分）_
 3. [Telegram 的原始 HTTP API 参考](https://core.telegram.org/bots/api)
 
 **第一部分**（你正在看它！）解释了 Bot 是如何工作的以及如何使用 grammY。

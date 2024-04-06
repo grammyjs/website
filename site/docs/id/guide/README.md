@@ -21,7 +21,7 @@ Kalau kamu sudah tahu cara membuat aplikasi dengan Node.js atau Deno, ataupun su
 Dokumentasi bot grammY dibagi menjadi tiga area:
 
 1. Dokumentasi grammY tingkat tinggi _(website ini)_.
-2. [Referensi API grammY tingkat rendah](/ref/core/).
+2. [Referensi API grammY tingkat rendah](/ref/) _(bagian ini dibuat secara otomatis oleh website)_.
 3. [Referensi API HTTP murni yang dibuat oleh Telegram](https://core.telegram.org/bots/api).
 
 **Area pertama**---yang sedang kamu baca saat ini---berisi tutorial penggunaan grammY dan penjelasan mengenai cara kerja dari suatu bot.
