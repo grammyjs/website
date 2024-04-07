@@ -37,7 +37,6 @@ Apabila kamu ingin memproses file tersebut, kamu perlu menyimpan `file_id`-nya.
 
 Ketika sebuah bot mengirim sebuah pesan, ia bisa **menentukan `file_id` yang sebelumnya pernah dilihat oleh bot**.
 Dengan begitu, ia dapat mengirim file yang teridentifikasi tanpa harus mengunggah data file tersebut.
-
 Kamu bisa menggunakan kembali `file_id` yang sama berulang kali. Artinya, kamu bisa menggunakan `file_id` untuk mengirim file yang sama ke lima chat berbeda.
 Meski begitu, kamu tetap harus menggunakan method yang sesuai, contohnya `file_id` yang mengidentifikasikan sebuah foto tidak dapat digunakan ketika memanggil [`sendVideo`](https://core.telegram.org/bots/api#sendvideo).
 
@@ -97,6 +96,9 @@ Kalau ingin mendapatkan file lain selagi menangani pesan, gunakan `ctx.api.getFi
 
 Setelah kamu memanggil `getFile`, kamu bisa menggunakan `file_path` untuk mengunduh file menggunakan URL ini `https://api.telegram.org/file/bot<token>/<file_path>`, di mana `<token>` adalah token bot kamu.
 
+Jika kamu [menjalankan server API Bot-mu sendiri](./api#menjalankan-server-api-bot-lokal), `file_path` akan berubah menjadi path file absolut yang mengarah ke sebuah file yang berada di disk lokal kamu.
+Sehingga, kamu tidak perlu mengunduh file apapun, karena server API Bot lah yang akan mengunduh file terkait ketika kamu memanggil `getFile`.
+
 ::: tip Plugin Files
 grammY tidak menyertakan pengunduh file secara bawaan, sebagai gantinya kamu bisa menggunakan [plugin files resmi](../plugins/files) yang telah kami sediakan.
 Dengan plugin tersebut, kamu bisa mengunduh file melalui `await file.download()` dan memperoleh URL unduhannya menggunakan `file.getUrl()`.
@@ -149,7 +151,6 @@ await ctx.replyWithPhoto(new InputFile("/tmp/kocheng-oren-uwu.jpg"));
 ```
 
 Constructor `InputFile` tidak hanya menerima path file, tetapi juga stream, object `Buffer`, perulangan async, ataupun sebuah function yang mengembalikan salah satu dari item-item tersebut, dan bahkan tergantung dari platform yang kamu gunakan, bisa lebih banyak lagi.
-
 Yang perlu diingat adalah: **buat sebuah instance `InputFile` lalu teruskan ke method yang bertugas mengirim file**.
 Instance `InputFile` bisa diteruskan ke semua method yang menerima pengiriman file melalui unggahan.
 
@@ -237,15 +238,10 @@ Ketika mengirim file, kamu bisa menentukan opsi lebih lanjut di pilihan object t
 Kode berikut akan mengirimkan caption.
 
 ```ts
-// Kirim sebuah foto dari file lokal ke user 12345
-// dengan caption "Ngopi dulu, bro!".
-await bot.api.sendPhoto(
-  12345,
-  new InputFile("/path/ke/foto-permen-kopi-susu.jpg"),
-  {
-    caption: "Ngopi dulu, bro!",
-  },
-);
+// Kirim sebuah foto dari file lokal ke user 12345 dengan caption "Ngopi dulu, bro!".
+await bot.api.sendPhoto(12345, new InputFile("/path/ke/foto.jpg"), {
+  caption: "Ngopi dulu, bro!",
+});
 ```
 
 Seperti pada method API lainnya, kamu bisa mengirim file menggunakan `ctx` (cara termudah), `ctx.api`, atau `bot.api`.
@@ -256,10 +252,8 @@ Sebenarnya, grammY sanggup mengirim file berapapun ukurannya. Namun, Telegram me
 Sehingga, bot kamu tidak bisa mengunduh file lebih besar dari 20 MB ataupun menunggah file di atas 50 MB.
 Kombinasi tertentu bahkan memiliki batas yang lebih kecil lagi, contohnya foto yang dikirim melalui URL (5 MB).
 
-Selain kamu meng-hosting bot, kamu juga harus meng-hosting server API Bot kamu sendiri, kalau memang ingin supaya bot kamu bisa mengunduh dan mengunggah file hingga 2000 MB (batasan ukuran file di Telegram).
-Lihat dokumentasi resminya [di sini](https://core.telegram.org/bots/api#using-a-local-bot-api-server).
+Seperti yang telah [dijelaskan sebelumnya](./api), dengan usaha yang lebih, bot kamu sebenarnya mampu memproses file berukuran besar.
+Selain meng-hosting bot kamu, kamu juga diharuskan untuk [meng-hosting server API Bot-mu sendiri](./api#menjalankan-server-api-bot-lokal) jika kamu berencana untuk mendukung pengunggahan file hingga 2000 MB (ukuran file maksimal di Telegram) dan pengunduhan file dengan berbagai macam ukuran ([4000 MB dengan Telegram Premium](https://t.me/premium/5)).
 
 Meng-hosting server API Bot tidak ada hubungannya dengan grammY.
 Meski begitu, grammY mendukung method-method yang dibutuhkan untuk mengatur bot kamu agar dapat menggunakan server API Bot milikmu sendiri.
-
-Kamu mungkin ingin mengunjungi materi sebelumnya mengenai skema API Bot [di sini](./api).
