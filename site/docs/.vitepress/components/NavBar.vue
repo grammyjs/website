@@ -23,8 +23,8 @@ defineEmits<{
 const { y } = useWindowScroll()
 const { hasSidebar } = useSidebar()
 const { frontmatter } = useData()
-
 const classes = ref<Record<string, boolean>>({})
+let showTranslation: boolean;
 
 watchPostEffect(() => {
   classes.value = {
@@ -34,8 +34,6 @@ watchPostEffect(() => {
   }
   showTranslation = frontmatter.value.translation ?? true;
 })
-
-let showTranslation: boolean;
 </script>
 
 <template>
