@@ -49,7 +49,7 @@ async function sendHelloTo12345() {
   // 发送一个消息并存储响应，响应中包含关于所发送消息的信息。
   const sentMessage = await bot.api.sendMessage(12345, "Hello again!");
   console.log(sentMessage.message_id);
-  
+
   // 不使用 `bot` 对象发送消息。
   const api = new Api(""); // <-- 将你的 bot token 放在 "" 中
   await api.sendMessage(12345, "Yo!");
