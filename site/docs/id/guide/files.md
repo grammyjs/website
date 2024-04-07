@@ -20,11 +20,7 @@ Contohnya, kurang lebih seperti ini `AgADBAADZRAxGyhM3FKSE4qKa-RODckQHxsoABDHe0B
 Setiap kali bot **menerima** sebuah file yang disertakan di sebuah pesan, ia sebenarnya hanya menerima `file_id`, bukan data file aslinya.
 Kalau bot kamu ingin mengunduh file tersebut, maka ia perlu memanggil method `getFile` ([Referensi API Bot Telegram](https://core.telegram.org/bots/api#getfile)).
 Method inilah yang bertugas membuat URL khusus sementara supaya kamu bisa mengunduh file tadi.
-<<<<<<< HEAD
-Setelah 60 menit terlewati, URL tersebut tidak bisa digunakan. Jika itu terjadi, kamu cukup memanggil ulang `getFile`.
-=======
 Setelah 60 menit terlewati, URL tersebut akan kedaluwarsa. Jika itu terjadi, kamu cukup memanggil ulang `getFile`.
->>>>>>> main
 
 Untuk menerima file, lihat bagian [menerima file](#menerima-file).
 
@@ -41,11 +37,6 @@ Apabila kamu ingin memproses file tersebut, kamu perlu menyimpan `file_id`-nya.
 
 Ketika sebuah bot mengirim sebuah pesan, ia bisa **menentukan `file_id` yang sebelumnya pernah dilihat oleh bot**.
 Dengan begitu, ia dapat mengirim file yang teridentifikasi tanpa harus mengunggah data file tersebut.
-<<<<<<< HEAD
-[Gulir ke bawah](#mengirim-file) untuk belajar cara mengunggah file-mu sendiri.
-=======
-
->>>>>>> main
 Kamu bisa menggunakan kembali `file_id` yang sama berulang kali. Artinya, kamu bisa menggunakan `file_id` untuk mengirim file yang sama ke lima chat berbeda.
 Meski begitu, kamu tetap harus menggunakan method yang sesuai, contohnya `file_id` yang mengidentifikasikan sebuah foto tidak dapat digunakan ketika memanggil [`sendVideo`](https://core.telegram.org/bots/api#sendvideo).
 
