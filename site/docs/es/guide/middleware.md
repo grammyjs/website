@@ -106,7 +106,7 @@ El orden en el que registras tu middleware importa, porque determina el orden de
 Puedes solucionar el problema invirtiendo el orden de las líneas 3 y 4.
 Si llamas a `next` en la línea 3, se enviarán dos respuestas.
 
-**La función `bot.use()` simplemente registra el middleware que recibe todas las actualizaciones.
+\*\*La función `bot.use()` simplemente registra el middleware que recibe todas las actualizaciones.
 Esta es la razón por la que `session()` se instala a través de `bot.use()`---queremos que el plugin opere sobre todas las actualizaciones, sin importar los datos que contenga.
 
 Tener un middleware stack es una propiedad extremadamente poderosa de cualquier framework web, y este patrón es ampliamente popular (no sólo para los bots de Telegram).
@@ -125,17 +125,17 @@ Puedes compararla con el tipo de middleware de arriba, y convencerte de que real
 ```ts [TypeScript]
 /** Mide el tiempo de respuesta del bot, y lo registra en el `console` */
 async function responseTime(
-  ctx: Context,
-  next: NextFunction, // es un alias de: () => Promise<void>
+	ctx: Context,
+	next: NextFunction, // es un alias de: () => Promise<void>
 ): Promise<void> {
-  // TODO: implementar
+	// TODO: implementar
 }
 ```
 
 ```js [JavaScript]
 /** Mide el tiempo de respuesta del bot, y lo registra en el `console` */
 async function responseTime(ctx, next) {
-  // TODO: implementar
+	// TODO: implementar
 }
 ```
 
@@ -162,17 +162,17 @@ Es importante instalar nuestro middleware `responseTime` _primero_ en el bot (en
 ```ts [TypeScript]
 /** Mide el tiempo de respuesta del bot, y lo registra en el `console` */
 async function responseTime(
-  ctx: Context,
-  next: NextFunction, // es un alias de: () => Promise<void>
+	ctx: Context,
+	next: NextFunction, // es un alias de: () => Promise<void>
 ): Promise<void> {
-  // tomar el tiempo antes
-  const before = Date.now(); // milisegundos
-  // invocar downstream middleware
-  await next(); // ¡asegúrate de `await`!
-  // tomar el tiempo despues
-  const after = Date.now(); // milisegundos
-  // registrar la diferencia
-  console.log(`Response time: ${after - before} ms`);
+	// tomar el tiempo antes
+	const before = performance.now(); // milisegundos
+	// invocar downstream middleware
+	await next(); // ¡asegúrate de `await`!
+	// tomar el tiempo despues
+	const after = performance.now(); // milisegundos
+	// registrar la diferencia
+	console.log(`Response time: ${after - before} ms`);
 }
 
 bot.use(responseTime);
@@ -181,14 +181,14 @@ bot.use(responseTime);
 ```js [JavaScript]
 /** Mide el tiempo de respuesta del bot, y lo registra en el `console` */
 async function responseTime(ctx, next) {
-  // tomar el tiempo antes
-  const before = Date.now(); // milliseconds
-  // invocar downstream middleware
-  await next(); // ¡asegúrate de `await`!
-  // tomar el tiempo despues
-  const after = Date.now(); // milliseconds
-  // registrar la diferencia
-  console.log(`Response time: ${after - before} ms`);
+	// tomar el tiempo antes
+	const before = performance.now(); // milliseconds
+	// invocar downstream middleware
+	await next(); // ¡asegúrate de `await`!
+	// tomar el tiempo despues
+	const after = performance.now(); // milliseconds
+	// registrar la diferencia
+	console.log(`Response time: ${after - before} ms`);
 }
 bot.use(responseTime);
 ```
