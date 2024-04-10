@@ -32,7 +32,6 @@ npm create cloudflare@latest
 Then, you are asked to type the name of the worker:
 
 ```sh
-
 using create-cloudflare version 2.17.1
 
 ╭ Create an application with Cloudflare Step 1 of 3
@@ -50,7 +49,6 @@ You can change the name of your worker in `wrangler.toml` later.
 Next, you are asked to select the type of your worker, here we choose `"Hello World" Worker`:
 
 ```sh
-
 using create-cloudflare version 2.17.1
 
 ╭ Create an application with Cloudflare Step 1 of 3
@@ -73,7 +71,6 @@ using create-cloudflare version 2.17.1
 Next, you are asked to choose whether you want to use TypeScript, if you want to use JavaScript, choose `No`. Here we choose `Yes`:
 
 ```sh
-
 using create-cloudflare version 2.17.1
 
 ╭ Create an application with Cloudflare Step 1 of 3
@@ -88,13 +85,12 @@ using create-cloudflare version 2.17.1
   Yes / No
 ```
 
-Your project will be set up in a few minutes. 
-After that, you are asked about whether to use git for version control, choose `Yes` if you want the repo to be initialized automatically or `No` if you want to initialize by yourself later. 
+Your project will be set up in a few minutes.
+After that, you are asked about whether to use git for version control, choose `Yes` if you want the repo to be initialized automatically or `No` if you want to initialize by yourself later.
 
 Here we choose `Yes`:
 
 ```sh
-
 using create-cloudflare version 2.17.1
 
 ╭ Create an application with Cloudflare Step 1 of 3
@@ -137,7 +133,6 @@ using create-cloudflare version 2.17.1
 Finally, you are asked whether to deploy your worker, choose `No`, we will deploy it when we have a working Telegram bot:
 
 ```sh
-
 using create-cloudflare version 2.17.1
 
 ╭ Create an application with Cloudflare Step 1 of 3
@@ -216,33 +211,37 @@ Edit `src/index.js` or `src/index.ts`, and write this code inside:
 import { Bot, Context, webhookCallback } from "grammy";
 
 export interface Env {
-    // Example binding to KV. Learn more at https://developers.cloudflare.com/workers/runtime-apis/kv/
-    // MY_KV_NAMESPACE: KVNamespace;
-    //
-    // Example binding to Durable Object. Learn more at https://developers.cloudflare.com/workers/runtime-apis/durable-objects/
-    // MY_DURABLE_OBJECT: DurableObjectNamespace;
-    //
-    // Example binding to R2. Learn more at https://developers.cloudflare.com/workers/runtime-apis/r2/
-    // MY_BUCKET: R2Bucket;
-    //
-    // Example binding to a Service. Learn more at https://developers.cloudflare.com/workers/runtime-apis/service-bindings/
-    // MY_SERVICE: Fetcher;
-    //
-    // Example binding to a Queue. Learn more at https://developers.cloudflare.com/queues/javascript-apis/
-    // MY_QUEUE: Queue;
-    BOT_TOKEN: string,
+  // Example binding to KV. Learn more at https://developers.cloudflare.com/workers/runtime-apis/kv/
+  // MY_KV_NAMESPACE: KVNamespace;
+  //
+  // Example binding to Durable Object. Learn more at https://developers.cloudflare.com/workers/runtime-apis/durable-objects/
+  // MY_DURABLE_OBJECT: DurableObjectNamespace;
+  //
+  // Example binding to R2. Learn more at https://developers.cloudflare.com/workers/runtime-apis/r2/
+  // MY_BUCKET: R2Bucket;
+  //
+  // Example binding to a Service. Learn more at https://developers.cloudflare.com/workers/runtime-apis/service-bindings/
+  // MY_SERVICE: Fetcher;
+  //
+  // Example binding to a Queue. Learn more at https://developers.cloudflare.com/queues/javascript-apis/
+  // MY_QUEUE: Queue;
+  BOT_TOKEN: string;
 }
 
 export default {
-    async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
-        const bot = new Bot(env.BOT_TOKEN);
+  async fetch(
+    request: Request,
+    env: Env,
+    ctx: ExecutionContext,
+  ): Promise<Response> {
+    const bot = new Bot(env.BOT_TOKEN);
 
-        bot.command('start', async (ctx: Context) => {
-            await ctx.reply('Hello World!');
-        })
+    bot.command("start", async (ctx: Context) => {
+      await ctx.reply("Hello World!");
+    });
 
-        return webhookCallback(bot, "cloudflare-mod")(request);
-    },
+    return webhookCallback(bot, "cloudflare-mod")(request);
+  },
 };
 ```
 
@@ -271,7 +270,7 @@ npx wrangler secret put BOT_TOKEN
 Follow the instruction and input your bot token, your bot token will be uploaded and encrypted.
 
 ::: tip
-Replace `BOT_TOKEN` with your value if you change the environment variable name in the previous step. 
+Replace `BOT_TOKEN` with your value if you change the environment variable name in the previous step.
 :::
 
 ## Deploying Your Bot
@@ -320,7 +319,7 @@ BOT_TOKEN=<your_bot_token>  # <- replace this with your bot token.
 ```
 
 ::: tip
-Replace `BOT_TOKEN` with your value if you change the environment variable name in the previous step. 
+Replace `BOT_TOKEN` with your value if you change the environment variable name in the previous step.
 :::
 
 ::: tip
