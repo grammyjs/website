@@ -125,17 +125,17 @@ bot.start();
 ```ts [TypeScript]
 /** 统计 bot 的响应时间，并将其记录到 `console`。 */
 async function responseTime(
-	ctx: Context,
-	next: NextFunction, // 这是 `() => Promise<void>` 的一个别名
+  ctx: Context,
+  next: NextFunction, // 这是 `() => Promise<void>` 的一个别名
 ): Promise<void> {
-	// TODO：实现
+  // TODO：实现
 }
 ```
 
 ```js [JavaScript]
 /** 统计 bot 的响应时间，并将其记录到 `console`。 */
 async function responseTime(ctx, next) {
-	// TODO：实现
+  // TODO：实现
 }
 ```
 
@@ -162,17 +162,17 @@ bot.use(responseTime);
 ```ts [TypeScript]
 /** 统计 bot 的响应时间，并将其记录到 `console`。 */
 async function responseTime(
-	ctx: Context,
-	next: NextFunction, // 这是 `() => Promise<void>` 的一个别名
+  ctx: Context,
+  next: NextFunction, // 这是 `() => Promise<void>` 的一个别名
 ): Promise<void> {
-	// 开始计时
-	const before = performance.now(); // 毫秒
-	// 调用下游的中间件
-	await next(); // 请务必使用 `await`！
-	// 停止计时
-	const after = performance.now(); // 毫秒
-	// 打印时间差
-	console.log(`Response time: ${after - before} ms`);
+  // 开始计时
+  const before = performance.now(); // 毫秒
+  // 调用下游的中间件
+  await next(); // 请务必使用 `await`！
+  // 停止计时
+  const after = performance.now(); // 毫秒
+  // 打印时间差
+  console.log(`Response time: ${after - before} ms`);
 }
 
 bot.use(responseTime);
@@ -181,14 +181,14 @@ bot.use(responseTime);
 ```js [JavaScript]
 /** 统计 bot 的响应时间，并将其记录到 `console`。 */
 async function responseTime(ctx, next) {
-	// 开始计时
-	const before = performance.now(); // 毫秒
-	// 调用下游的中间件
-	await next(); // 请务必使用 `await`！
-	// 停止计时
-	const after = performance.now(); // 毫秒
-	// 打印时间差
-	console.log(`Response time: ${after - before} ms`);
+  // 开始计时
+  const before = performance.now(); // 毫秒
+  // 调用下游的中间件
+  await next(); // 请务必使用 `await`！
+  // 停止计时
+  const after = performance.now(); // 毫秒
+  // 打印时间差
+  console.log(`Response time: ${after - before} ms`);
 }
 
 bot.use(responseTime);

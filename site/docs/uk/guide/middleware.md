@@ -125,17 +125,17 @@ bot.start();
 ```ts [TypeScript]
 /** Вимірюємо час відповіді бота та виводимо його у `console` */
 async function responseTime(
-	ctx: Context,
-	next: NextFunction, // це псевдонім для: () => Promise<void>
+  ctx: Context,
+  next: NextFunction, // це псевдонім для: () => Promise<void>
 ): Promise<void> {
-	// TODO: реалізувати
+  // TODO: реалізувати
 }
 ```
 
 ```js [JavaScript]
 /** Вимірюємо час відповіді бота та виводимо його у `console` */
 async function responseTime(ctx, next) {
-	// TODO: реалізувати
+  // TODO: реалізувати
 }
 ```
 
@@ -162,17 +162,17 @@ bot.use(responseTime);
 ```ts [TypeScript]
 /** Вимірюємо час відповіді бота та виводимо його у `console` */
 async function responseTime(
-	ctx: Context,
-	next: NextFunction, // це псевдонім для: () => Promise<void>
+  ctx: Context,
+  next: NextFunction, // це псевдонім для: () => Promise<void>
 ): Promise<void> {
-	// зберігаємо поточний час до виконання
-	const before = performance.now(); // мілісекунд
-	// викликаємо нижні проміжні обробники
-	await next(); // переконуємося, що дочекалися (`await`)!
-	// зберігаємо поточний час після виконання
-	const after = performance.now(); // мілісекунд
-	// виводимо різницю у консоль
-	console.log(`Час обробки: ${after - before} мс`);
+  // зберігаємо поточний час до виконання
+  const before = performance.now(); // мілісекунд
+  // викликаємо нижні проміжні обробники
+  await next(); // переконуємося, що дочекалися (`await`)!
+  // зберігаємо поточний час після виконання
+  const after = performance.now(); // мілісекунд
+  // виводимо різницю у консоль
+  console.log(`Час обробки: ${after - before} мс`);
 }
 
 bot.use(responseTime);
@@ -181,14 +181,14 @@ bot.use(responseTime);
 ```js [JavaScript]
 /** Вимірюємо час відповіді бота та виводимо його у `console` */
 async function responseTime(ctx, next) {
-	// зберігаємо поточний час до виконання
-	const before = performance.now(); // мілісекунд
-	// викликаємо нижні проміжні обробники
-	await next(); // переконуємося, що дочекалися (`await`)!
-	// зберігаємо поточний час після виконання
-	const after = performance.now(); // мілісекунд
-	// виводимо різницю у консоль
-	console.log(`Час обробки: ${after - before} мс`);
+  // зберігаємо поточний час до виконання
+  const before = performance.now(); // мілісекунд
+  // викликаємо нижні проміжні обробники
+  await next(); // переконуємося, що дочекалися (`await`)!
+  // зберігаємо поточний час після виконання
+  const after = performance.now(); // мілісекунд
+  // виводимо різницю у консоль
+  console.log(`Час обробки: ${after - before} мс`);
 }
 
 bot.use(responseTime);

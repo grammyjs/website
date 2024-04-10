@@ -125,17 +125,17 @@ You can compare it to the middleware type from above, and convince yourself that
 ```ts [TypeScript]
 /** Measures the response time of the bot, and logs it to `console` */
 async function responseTime(
-	ctx: Context,
-	next: NextFunction, // is an alias for: () => Promise<void>
+  ctx: Context,
+  next: NextFunction, // is an alias for: () => Promise<void>
 ): Promise<void> {
-	// TODO: implement
+  // TODO: implement
 }
 ```
 
 ```js [JavaScript]
 /** Measures the response time of the bot, and logs it to `console` */
 async function responseTime(ctx, next) {
-	// TODO: implement
+  // TODO: implement
 }
 ```
 
@@ -162,17 +162,17 @@ It is important to install our `responseTime` middleware _first_ on the bot (at 
 ```ts [TypeScript]
 /** Measures the response time of the bot, and logs it to `console` */
 async function responseTime(
-	ctx: Context,
-	next: NextFunction, // is an alias for: () => Promise<void>
+  ctx: Context,
+  next: NextFunction, // is an alias for: () => Promise<void>
 ): Promise<void> {
-	// take time before
-	const before = performance.now(); // milliseconds
-	// invoke downstream middleware
-	await next(); // make sure to `await`!
-	// take time after
-	const after = performance.now(); // milliseconds
-	// log difference
-	console.log(`Response time: ${after - before} ms`);
+  // take time before
+  const before = performance.now(); // milliseconds
+  // invoke downstream middleware
+  await next(); // make sure to `await`!
+  // take time after
+  const after = performance.now(); // milliseconds
+  // log difference
+  console.log(`Response time: ${after - before} ms`);
 }
 
 bot.use(responseTime);
@@ -181,14 +181,14 @@ bot.use(responseTime);
 ```js [JavaScript]
 /** Measures the response time of the bot, and logs it to `console` */
 async function responseTime(ctx, next) {
-	// take time before
-	const before = performance.now(); // milliseconds
-	// invoke downstream middleware
-	await next(); // make sure to `await`!
-	// take time after
-	const after = performance.now(); // milliseconds
-	// log difference
-	console.log(`Response time: ${after - before} ms`);
+  // take time before
+  const before = performance.now(); // milliseconds
+  // invoke downstream middleware
+  await next(); // make sure to `await`!
+  // take time after
+  const after = performance.now(); // milliseconds
+  // log difference
+  console.log(`Response time: ${after - before} ms`);
 }
 
 bot.use(responseTime);
