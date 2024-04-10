@@ -18,37 +18,181 @@ If you're looking for the Deno version, please check out [this tutorial](./cloud
 
 ## Prerequisites
 
-To follow along, please make sure that you have a [Cloudflare account](https://dash.cloudflare.com/login) with your workers subdomain [configured](https://dash.cloudflare.com/?account=workers).
+1. a [Cloudflare account](https://dash.cloudflare.com/login) with your workers subdomain [configured](https://dash.cloudflare.com/?account=workers).
+2. a working [NodeJS](https://nodejs.org/) environment with `npm` installed.
 
 ## Setting Things Up
 
 First, create a new project:
 
 ```sh
-npx wrangler generate my-bot
+npm create cloudflare@latest
 ```
 
-You can change `my-bot` to whatever you want.
-This will be the name of your bot and the project directory.
+Then, you are asked to type the name of the worker:
 
-After running the above command, follow the instructions you see to initialize the project.
-There, you can choose between JavaScript or TypeScript.
+```sh
 
-When the project is initialized, `cd` into `my-bot` or whatever directory you initialized your project in.
-Depending on how you initialized the project, you should see a file structure similar to the following:
+using create-cloudflare version 2.17.1
 
-```asciiart:no-line-numbers
-.
-├── node_modules
-├── package.json
-├── package-lock.json
-├── src
-│   ├── index.js
-│   └── index.test.js
-└── wrangler.toml
+╭ Create an application with Cloudflare Step 1 of 3
+│
+╰ In which directory do you want to create your application? also used as application name
+  ./grammybot
 ```
 
-Next, install `grammy`, and other packages you might need:
+Here we create a project named `grammybot`, you can choose your own, this will be the name of your worker as well as a part of the request URL.
+
+::: tip
+You can change the name of your worker in `wrangler.toml` later.
+:::
+
+Next, you are asked to select the type of your worker, here we choose `"Hello World" Worker`:
+
+```sh
+
+using create-cloudflare version 2.17.1
+
+╭ Create an application with Cloudflare Step 1 of 3
+│
+├ In which directory do you want to create your application?
+│ dir ./grammybot
+│
+╰ What type of application do you want to create?
+  ● "Hello World" Worker
+  ○ "Hello World" Worker (Python)
+  ○ "Hello World" Durable Object
+  ○ Website or web app
+  ○ Example router & proxy Worker
+  ○ Scheduled Worker (Cron Trigger)
+  ○ Queue consumer & producer Worker
+  ○ API starter (OpenAPI compliant)
+  ○ Worker built from a template hosted in a git repository
+```
+
+Next, you are asked to choose whether you want to use TypeScript, if you want to use JavaScript, choose `No`. Here we choose `Yes`:
+
+```sh
+
+using create-cloudflare version 2.17.1
+
+╭ Create an application with Cloudflare Step 1 of 3
+│
+├ In which directory do you want to create your application?
+│ dir ./grammybot
+│
+├ What type of application do you want to create?
+│ type "Hello World" Worker
+│
+╰ Do you want to use TypeScript?
+  Yes / No
+```
+
+Your project will be set up in a few minutes. 
+After that, you are asked about whether to use git for version control, choose `Yes` if you want the repo to be initialized automatically or `No` if you want to initialize by yourself later. 
+
+Here we choose `Yes`:
+
+```sh
+
+using create-cloudflare version 2.17.1
+
+╭ Create an application with Cloudflare Step 1 of 3
+│
+├ In which directory do you want to create your application?
+│ dir ./grammybot
+│
+├ What type of application do you want to create?
+│ type "Hello World" Worker
+│
+├ Do you want to use TypeScript?
+│ yes typescript
+│
+├ Copying template files
+│ files copied to project directory
+│
+├ Updating name in `package.json`
+│ updated `package.json`
+│
+├ Installing dependencies
+│ installed via `npm install`
+│
+╰ Application created
+
+╭ Configuring your application for Cloudflare Step 2 of 3
+│
+├ Installing @cloudflare/workers-types
+│ installed via npm
+│
+├ Adding latest types to `tsconfig.json`
+│ added @cloudflare/workers-types/2023-07-01
+│
+├ Retrieving current workerd compatibility date
+│ compatibility date 2024-04-05
+│
+╰ Do you want to use git for version control?
+  Yes / No
+```
+
+Finally, you are asked whether to deploy your worker, choose `No`, we will deploy it when we have a working Telegram bot:
+
+```sh
+
+using create-cloudflare version 2.17.1
+
+╭ Create an application with Cloudflare Step 1 of 3
+│
+├ In which directory do you want to create your application?
+│ dir ./grammybot
+│
+├ What type of application do you want to create?
+│ type "Hello World" Worker
+│
+├ Do you want to use TypeScript?
+│ yes typescript
+│
+├ Copying template files
+│ files copied to project directory
+│
+├ Updating name in `package.json`
+│ updated `package.json`
+│
+├ Installing dependencies
+│ installed via `npm install`
+│
+╰ Application created
+
+╭ Configuring your application for Cloudflare Step 2 of 3
+│
+├ Installing @cloudflare/workers-types
+│ installed via npm
+│
+├ Adding latest types to `tsconfig.json`
+│ added @cloudflare/workers-types/2023-07-01
+│
+├ Retrieving current workerd compatibility date
+│ compatibility date 2024-04-05
+│
+├ Do you want to use git for version control?
+│ yes git
+│
+├ Initializing git repo
+│ initialized git
+│
+├ Committing new files
+│ git commit
+│
+╰ Application configured
+
+╭ Deploy with Cloudflare Step 3 of 3
+│
+╰ Do you want to deploy your application?
+  Yes / No
+```
+
+## Install dependencies
+
+`cd` into `grammybot` (replace this by your worker's name you set above), install `grammy`, and other packages you might need:
 
 ```sh
 npm install grammy
@@ -59,34 +203,80 @@ npm install grammy
 Edit `src/index.js` or `src/index.ts`, and write this code inside:
 
 ```ts
-import { Bot, webhookCallback } from "grammy";
+/**
+ * Welcome to Cloudflare Workers! This is your first worker.
+ *
+ * - Run `npm run dev` in your terminal to start a development server
+ * - Open a browser tab at http://localhost:8787/ to see your worker in action
+ * - Run `npm run deploy` to publish your worker
+ *
+ * Learn more at https://developers.cloudflare.com/workers/
+ */
 
-// The following line of code assumes that you have configured the secrets BOT_TOKEN and BOT_INFO.
-// See https://developers.cloudflare.com/workers/platform/environment-variables/#secrets-on-deployed-workers.
-// The BOT_INFO is obtained from `bot.api.getMe()`.
-const bot = new Bot(BOT_TOKEN, { botInfo: BOT_INFO });
+import { Bot, Context, webhookCallback } from "grammy";
 
-bot.command("start", async (ctx) => {
-  await ctx.reply("Hello, world!");
-});
+export interface Env {
+    // Example binding to KV. Learn more at https://developers.cloudflare.com/workers/runtime-apis/kv/
+    // MY_KV_NAMESPACE: KVNamespace;
+    //
+    // Example binding to Durable Object. Learn more at https://developers.cloudflare.com/workers/runtime-apis/durable-objects/
+    // MY_DURABLE_OBJECT: DurableObjectNamespace;
+    //
+    // Example binding to R2. Learn more at https://developers.cloudflare.com/workers/runtime-apis/r2/
+    // MY_BUCKET: R2Bucket;
+    //
+    // Example binding to a Service. Learn more at https://developers.cloudflare.com/workers/runtime-apis/service-bindings/
+    // MY_SERVICE: Fetcher;
+    //
+    // Example binding to a Queue. Learn more at https://developers.cloudflare.com/queues/javascript-apis/
+    // MY_QUEUE: Queue;
+    BOT_TOKEN: string,
+}
 
-addEventListener("fetch", webhookCallback(bot, "cloudflare"));
+export default {
+    async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+        const bot = new Bot(env.BOT_TOKEN);
+
+        bot.command('start', async (ctx: Context) => {
+            await ctx.reply('Hello World!');
+        })
+
+        return webhookCallback(bot, "cloudflare-mod")(request);
+    },
+};
 ```
 
-The above example bot replies "Hello, world!" when it receives `/start`.
+Inside the interface `Env`, we add a variable `BOT_TOKEN`, this is a environment variable that stores your bot token that is used to create your bot.
+
+::: tip
+You can change to whatever name you want, but keep in mind that you do the same in following steps.
+:::
+
+Inside the function `fetch()`, we create a bot with `BOT_TOKEN` which replies "Hello, world!" when it receives `/start`.
+
+You may notice that we just define the variable `BOT_TOKEN`, but didn't assign yet.
+Usually you need to store your environment variable in `wrangler.toml`, however, this is not safe in our case, since the bot token should be kept secrete.
+Cloudflare Workers provide us a safe way to store sensitive information like API keys and auth tokens in environment variable: [secrete](https://developers.cloudflare.com/workers/configuration/secrets/#secrets)!
+
+::: tip
+secret values are not visible within Wrangler or Cloudflare dashboard after you define them.
+:::
+
+You can add secrete to your project by the following command:
+
+```sh
+npx wrangler secret put BOT_TOKEN
+```
+
+Follow the instruction and input your bot token, your bot token will be uploaded and encrypted.
+
+::: tip
+Replace `BOT_TOKEN` with your value if you change the environment variable name in the previous step. 
+:::
 
 ## Deploying Your Bot
 
-Before deploying, we need to edit `wrangler.toml`:
-
-```toml
-account_id = 'your account_id' # Get this from Cloudflare's dashboard.
-name = 'my-bot' # Your bot's name, which will appear in the webhook URL, for example: https://my-bot.my-subdomain.workers.dev
-main = "src/index.js"  # The entry file of the worker.
-compatibility_date = "2023-01-16"
-```
-
-You can then deploy using the following command:
+Now, you can deploy your bot using the following command:
 
 ```sh
 npm run deploy
@@ -101,7 +291,8 @@ Open your browser and visit this URL:
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<MY_BOT>.<MY_SUBDOMAIN>.workers.dev/
 ```
 
-Replace `<BOT_TOKEN>`, `<MY_BOT>`, and `<MY_SUBDOMAIN>` with your values.
+Replace `<BOT_TOKEN>` with your bot token, replace `<MY_BOT>` with the name of your worker, replace `<MY_SUBDOMAIN>` with your worker subdomain configured on Cloudflare dashboard.
+
 If the setup is successful, you'll see a JSON response like this:
 
 ```json
@@ -120,10 +311,26 @@ If it responds, it means you're good to go!
 ## Debugging Your Bot
 
 For testing and debugging purposes, you can run a local or remote development server before deploying your bot to production.
-Simply run the following command:
+
+In development environment, your worker doesn't have access to your secrete environment variables.
+So, [according to Cloudflare](https://developers.cloudflare.com/workers/configuration/secrets/#secrets-in-development), you can create a `.dev.vars` file in the root of your project to define secrets:
 
 ```sh
-npm run start
+BOT_TOKEN=<your_bot_token>  # <- replace this with your bot token.
+```
+
+::: tip
+Replace `BOT_TOKEN` with your value if you change the environment variable name in the previous step. 
+:::
+
+::: tip
+You can use the bot token of a different bot for development, so that the development doesn't influent the production bot.
+:::
+
+Now, you can run the following command to start a development server:
+
+```sh
+npm run dev
 ```
 
 Once the development server has started, you can test your bot by sending sample updates to it using tools like `curl`, [Insomnia](https://insomnia.rest), or [Postman](https://postman.com).
