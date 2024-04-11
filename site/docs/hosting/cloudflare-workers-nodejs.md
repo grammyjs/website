@@ -36,8 +36,8 @@ using create-cloudflare version 2.17.1
 
 ╭ Create an application with Cloudflare Step 1 of 3
 │
-╰ In which directory do you want to create your application? also used as application name
-  ./grammybot
+╰ In which directory do you want to create your application? also used as application name  // [!code focus]
+  ./grammybot  // [!code focus]
 ```
 
 Here we create a project named `grammybot`, you can choose your own, this will be the name of your worker as well as a part of the request URL.
@@ -56,16 +56,16 @@ using create-cloudflare version 2.17.1
 ├ In which directory do you want to create your application?
 │ dir ./grammybot
 │
-╰ What type of application do you want to create?
-  ● "Hello World" Worker
-  ○ "Hello World" Worker (Python)
-  ○ "Hello World" Durable Object
-  ○ Website or web app
-  ○ Example router & proxy Worker
-  ○ Scheduled Worker (Cron Trigger)
-  ○ Queue consumer & producer Worker
-  ○ API starter (OpenAPI compliant)
-  ○ Worker built from a template hosted in a git repository
+╰ What type of application do you want to create?  // [!code focus]
+  ● "Hello World" Worker  // [!code focus]
+  ○ "Hello World" Worker (Python)  // [!code focus]
+  ○ "Hello World" Durable Object  // [!code focus]
+  ○ Website or web app  // [!code focus]
+  ○ Example router & proxy Worker  // [!code focus]
+  ○ Scheduled Worker (Cron Trigger)  // [!code focus]
+  ○ Queue consumer & producer Worker  // [!code focus]
+  ○ API starter (OpenAPI compliant)  // [!code focus]
+  ○ Worker built from a template hosted in a git repository  // [!code focus]
 ```
 
 Next, you are asked to choose whether you want to use TypeScript, if you want to use JavaScript, choose `No`. Here we choose `Yes`:
@@ -81,8 +81,8 @@ using create-cloudflare version 2.17.1
 ├ What type of application do you want to create?
 │ type "Hello World" Worker
 │
-╰ Do you want to use TypeScript?
-  Yes / No
+╰ Do you want to use TypeScript?  // [!code focus]
+  Yes / No  // [!code focus]
 ```
 
 Your project will be set up in a few minutes.
@@ -126,8 +126,8 @@ using create-cloudflare version 2.17.1
 ├ Retrieving current workerd compatibility date
 │ compatibility date 2024-04-05
 │
-╰ Do you want to use git for version control?
-  Yes / No
+╰ Do you want to use git for version control?  // [!code focus]
+  Yes / No  // [!code focus]
 ```
 
 Finally, you are asked whether to deploy your worker, choose `No`, we will deploy it when we have a working Telegram bot:
@@ -181,8 +181,8 @@ using create-cloudflare version 2.17.1
 
 ╭ Deploy with Cloudflare Step 3 of 3
 │
-╰ Do you want to deploy your application?
-  Yes / No
+╰ Do you want to deploy your application?  // [!code focus]
+  Yes / No  // [!code focus]
 ```
 
 ## Install dependencies
