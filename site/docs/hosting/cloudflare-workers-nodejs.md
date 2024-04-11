@@ -251,14 +251,14 @@ Here, we first import `Bot`, `Context` and `webhookCallback` from `grammy`.
 Inside the interface `Env`, we add a variable `BOT_INFO`, this is an environment variable that stores your bot info, you can get your bot info by calling Telegram Bot API with `getMe` method.
 Open this link in your web browser:
 
-```sh
+```ansi
 https://api.telegram.org/bot<BOT_TOKEN>/getMe
 ```
 
 Replace `<BOT_TOKEN>` with your bot token.
 If successful, you will see a JSON response similar to this:
 
-```sh
+```json
 {
     "ok": true,
     "result": {
@@ -333,7 +333,7 @@ npm run deploy
 We need to tell Telegram where to send updates to.
 Open your browser and visit this URL:
 
-```txt
+```ansi
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<MY_BOT>.<MY_SUBDOMAIN>.workers.dev/
 ```
 
@@ -389,13 +389,13 @@ Refer to [here](https://core.telegram.org/bots/webhooks#testing-your-bot-with-up
 If you don't want to construct the update, or if you want to test with a real update, you can get the update from Telegram Bot API with `getUpdates` method.
 To do that, you will need to delete the webhook first. Open your web browser and visit this link:
 
-```sh
+```ansi
 https://api.telegram.org/bot<BOT_TOKEN>/deleteWebhook
 ```
 
 You will see a JSON response like this:
 
-```sh
+```json
 {
     "ok": true,
     "result": true,
@@ -407,13 +407,13 @@ Then, open your Telegram client and send something to the bot, e.g. send `/start
 
 Now visit this link in your web browser to get the updates:
 
-```sh
+```ansi
 https://api.telegram.org/bot<BOT_TOKEN>/getUpdates
 ```
 
 If successful, you will see a JSON response similar to this:
 
-```sh
+```json{4-29}
 {
     "ok": true,
     "result": [
@@ -451,7 +451,7 @@ If successful, you will see a JSON response similar to this:
 
 If you want to ignore outdated updates (e.g. ignore all updates during development before deploying to production environment), you can add a parameter `offset` to the `getUpdates` method like this:
 
-```sh
+```ansi
 https://api.telegram.org/bot<BOT_TOKEN>/getUpdates?offset=<update_id>
 ```
 
