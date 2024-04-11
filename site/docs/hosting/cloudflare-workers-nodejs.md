@@ -225,6 +225,7 @@ export interface Env {
   //
   // Example binding to a Queue. Learn more at https://developers.cloudflare.com/queues/javascript-apis/
   // MY_QUEUE: Queue;
+  BOT_INFO: string;
   BOT_TOKEN: string;
 }
 
@@ -234,7 +235,7 @@ export default {
     env: Env,
     ctx: ExecutionContext,
   ): Promise<Response> {
-    const bot = new Bot(env.BOT_TOKEN);
+    const bot = new Bot(env.BOT_TOKEN, { botInfo: JSON.parse(env.BOT_INFO) });
 
     bot.command("start", async (ctx: Context) => {
       await ctx.reply("Hello World!");
@@ -245,13 +246,57 @@ export default {
 };
 ```
 
-Inside the interface `Env`, we add a variable `BOT_TOKEN`, this is a environment variable that stores your bot token that is used to create your bot.
+Here, we first import `Bot`, `Context` and `webhookCallback` from `grammy`.
 
-::: tip
-You can change to whatever name you want, but keep in mind that you do the same in following steps.
-:::
+Inside the interface `Env`, we add a variable `BOT_INFO`, this is an environment variable that stores your bot info, you can get your bot info by calling Telegram Bot API with `getMe` method.
+Open this link in your web browser:
 
-Inside the function `fetch()`, we create a bot with `BOT_TOKEN` which replies "Hello, world!" when it receives `/start`.
+```sh
+https://api.telegram.org/bot<BOT_TOKEN>/getMe
+```
+
+Replace `<BOT_TOKEN>` with your bot token.
+If successful, you will see a JSON response similar to this:
+
+```sh
+{
+    "ok": true,
+    "result": {
+        "id": 1234567890,
+        "is_bot": true,
+        "first_name": "mybot",
+        "username": "MyBot",
+        "can_join_groups": true,
+        "can_read_all_group_messages": false,
+        "supports_inline_queries": true,
+        "can_connect_to_business": false
+    }
+}
+```
+
+Now, open `wrangler.toml` in the root of your project and add an environment variable under `[vars]` section like this:
+
+```toml
+[vars]
+BOT_INFO = """{
+    "ok": true,
+    "result": {
+        "id": 1234567890,
+        "is_bot": true,
+        "first_name": "mybot",
+        "username": "MyBot",
+        "can_join_groups": true,
+        "can_read_all_group_messages": false,
+        "supports_inline_queries": true,
+        "can_connect_to_business": false
+    }
+}"""
+```
+
+Don't forget to replace the bot info with what you get from the web browser.
+Pay attention to the three double quotation marks `"""` at the beginning and end.
+
+Beside `BOT_INFO`, we also add a variable `BOT_TOKEN`, this is an environment variable that stores your bot token that is used to create your bot.
 
 You may notice that we just define the variable `BOT_TOKEN`, but didn't assign yet.
 Usually you need to store your environment variable in `wrangler.toml`, however, this is not safe in our case, since the bot token should be kept secrete.
@@ -270,8 +315,10 @@ npx wrangler secret put BOT_TOKEN
 Follow the instruction and input your bot token, your bot token will be uploaded and encrypted.
 
 ::: tip
-Replace `BOT_TOKEN` with your value if you change the environment variable name in the previous step.
+You can change to whatever name you want for the environment variables, but keep in mind that you do the same in following steps.
 :::
+
+Inside the function `fetch()`, we create a bot with `BOT_TOKEN` which replies "Hello, world!" when it receives `/start`.
 
 ## Deploying Your Bot
 
@@ -319,7 +366,11 @@ BOT_TOKEN=<your_bot_token>  # <- replace this with your bot token.
 ```
 
 ::: tip
-Replace `BOT_TOKEN` with your value if you change the environment variable name in the previous step.
+Don't forget to add `BOT_INFO` as well.
+:::
+
+::: tip
+Replace `BOT_INFO` and `BOT_TOKEN` with your value if you change the environment variable name in the previous step.
 :::
 
 ::: tip
@@ -334,3 +385,87 @@ npm run dev
 
 Once the development server has started, you can test your bot by sending sample updates to it using tools like `curl`, [Insomnia](https://insomnia.rest), or [Postman](https://postman.com).
 Refer to [here](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates) for update examples and [here](https://core.telegram.org/bots/api#update) for more information on the update structure.
+
+If you don't want to construct the update, or if you want to test with a real update, you can get the update from Telegram Bot API with `getUpdates` method.
+To do that, you will need to delete the webhook first. Open your web browser and visit this link:
+
+```sh
+https://api.telegram.org/bot<BOT_TOKEN>/deleteWebhook
+```
+
+You will see a JSON response like this:
+
+```sh
+{
+    "ok": true,
+    "result": true,
+    "description": "Webhook was deleted"
+}
+```
+
+Then, open your Telegram client and send something to the bot, e.g. send `/start`.
+
+Now visit this link in your web browser to get the updates:
+
+```sh
+https://api.telegram.org/bot<BOT_TOKEN>/getUpdates
+```
+
+If successful, you will see a JSON response similar to this:
+
+```sh
+{
+    "ok": true,
+    "result": [
+        {
+            "update_id": 123456789,
+            "message": {
+                "message_id": 123,
+                "from": {
+                    "id": 987654321,
+                    "is_bot": false,
+                    "first_name": "",
+                    "language_code": "en"
+                },
+                "chat": {
+                    "id": 987654321,
+                    "first_name": "",
+                    "type": "private"
+                },
+                "date": 1712803046,
+                "text": "/start",
+                "entities": [
+                    {
+                        "offset": 0,
+                        "length": 6,
+                        "type": "bot_command"
+                    }
+                ]
+            }
+        }
+    ]
+}
+```
+
+`result` is an array of update objects (above only contains one update object), you should only copy one object and test your bot by post this object to the development server with the tools mentioned above.
+
+If you want to ignore outdated updates (e.g. ignore all updates during development before deploying to production environment), you can add a parameter `offset` to the `getUpdates` method like this:
+
+```sh
+https://api.telegram.org/bot<BOT_TOKEN>/getUpdates?offset=<update_id>
+```
+
+Replace `<BOT_TOKEN>` with your bot token, and replace `<update_id>` with the `update_id` of the latest update you get (the one with largest number), you will then only receive updates later than that update and can never get the updates of earlier anymore.
+
+Now, you can test your bot with real update objects in your local development environment!
+
+You can also expose your local development server to public internet with some reverse proxy services like [Ngrok](https://ngrok.com/) and set the webhook to the URL you get from them, or you can set up your own reverse proxy if you have a public IP address, a domain name and a SSL certificate, but this is out of scope of this guide.
+For more about how to set up a reverse proxy, please refer to the document of softwares you use.
+
+::: warning
+Using a third-party reverse proxy carries the risk of information leakage!
+:::
+
+::: tip
+Don't forget to [set the webhook back](#setting-your-webhook) when you deploy to production environment.
+:::
