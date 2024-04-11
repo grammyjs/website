@@ -366,7 +366,8 @@ BOT_TOKEN=<your_bot_token>  # <- replace this with your bot token.
 ```
 
 ::: tip
-Don't forget to add `BOT_INFO` as well.
+Don't forget to add `BOT_INFO` for development in `wrangler.toml` as well.
+Click [here](https://developers.cloudflare.com/workers/configuration/environment-variables/) for more details.
 :::
 
 ::: tip
