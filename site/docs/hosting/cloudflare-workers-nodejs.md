@@ -258,7 +258,7 @@ https://api.telegram.org/bot<BOT_TOKEN>/getMe
 Replace `<BOT_TOKEN>` with your bot token.
 If successful, you will see a JSON response similar to this:
 
-```json
+```json{3-12}
 {
     "ok": true,
     "result": {
@@ -274,26 +274,23 @@ If successful, you will see a JSON response similar to this:
 }
 ```
 
-Now, open `wrangler.toml` in the root of your project and add an environment variable under `[vars]` section like this:
+Now, open `wrangler.toml` in the root of your project and add an environment variable `BOT_INFO` under `[vars]` section with the value from `result` object you get above like this:
 
 ```toml
 [vars]
 BOT_INFO = """{
-    "ok": true,
-    "result": {
-        "id": 1234567890,
-        "is_bot": true,
-        "first_name": "mybot",
-        "username": "MyBot",
-        "can_join_groups": true,
-        "can_read_all_group_messages": false,
-        "supports_inline_queries": true,
-        "can_connect_to_business": false
-    }
+    "id": 1234567890,
+    "is_bot": true,
+    "first_name": "mybot",
+    "username": "MyBot",
+    "can_join_groups": true,
+    "can_read_all_group_messages": false,
+    "supports_inline_queries": true,
+    "can_connect_to_business": false
 }"""
 ```
 
-Don't forget to replace the bot info with what you get from the web browser.
+Replace the bot info with what you get from the web browser.
 Pay attention to the three double quotation marks `"""` at the beginning and end.
 
 Beside `BOT_INFO`, we also add a variable `BOT_TOKEN`, this is an environment variable that stores your bot token that is used to create your bot.
