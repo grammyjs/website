@@ -31,7 +31,7 @@ npm create cloudflare@latest
 
 Then, you are asked to type the name of the worker:
 
-```sh
+```ansi{6}
 using create-cloudflare version 2.17.1
 
 ╭ Create an application with Cloudflare Step 1 of 3
@@ -48,7 +48,7 @@ You can change the name of your worker in `wrangler.toml` later.
 
 Next, you are asked to select the type of your worker, here we choose `"Hello World" Worker`:
 
-```sh
+```ansi{8}
 using create-cloudflare version 2.17.1
 
 ╭ Create an application with Cloudflare Step 1 of 3
@@ -70,7 +70,7 @@ using create-cloudflare version 2.17.1
 
 Next, you are asked to choose whether you want to use TypeScript, if you want to use JavaScript, choose `No`. Here we choose `Yes`:
 
-```sh
+```ansi{11}
 using create-cloudflare version 2.17.1
 
 ╭ Create an application with Cloudflare Step 1 of 3
@@ -90,7 +90,7 @@ After that, you are asked about whether to use git for version control, choose `
 
 Here we choose `Yes`:
 
-```sh
+```ansi{36}
 using create-cloudflare version 2.17.1
 
 ╭ Create an application with Cloudflare Step 1 of 3
@@ -132,7 +132,7 @@ using create-cloudflare version 2.17.1
 
 Finally, you are asked whether to deploy your worker, choose `No`, we will deploy it when we have a working Telegram bot:
 
-```sh
+```ansi{49}
 using create-cloudflare version 2.17.1
 
 ╭ Create an application with Cloudflare Step 1 of 3
@@ -361,7 +361,7 @@ For testing and debugging purposes, you can run a local or remote development se
 In development environment, your worker doesn't have access to your secret environment variables.
 So, [according to Cloudflare](https://developers.cloudflare.com/workers/configuration/secrets/#secrets-in-development), you can create a `.dev.vars` file in the root of your project to define secrets:
 
-```sh
+```env
 BOT_TOKEN=<your_bot_token>  # <- replace this with your bot token.
 ```
 
@@ -374,7 +374,7 @@ Replace `BOT_INFO` and `BOT_TOKEN` with your value if you change the environment
 :::
 
 ::: tip
-You can use the bot token of a different bot for development, so that the development doesn't influent the production bot.
+You can use the bot token of a different bot for development, so that the development doesn't influence the production bot.
 :::
 
 Now, you can run the following command to start a development server:
