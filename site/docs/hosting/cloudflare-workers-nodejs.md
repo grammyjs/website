@@ -197,7 +197,7 @@ npm install grammy
 
 Edit `src/index.js` or `src/index.ts`, and write this code inside:
 
-```ts
+```ts{11,28-29,38,40-42,44}
 /**
  * Welcome to Cloudflare Workers! This is your first worker.
  *
