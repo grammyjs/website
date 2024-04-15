@@ -9,7 +9,7 @@ Other filtering of messages is left to the developer, which often leads to endle
 
 On the contrary, **grammY ships with its own query language** that you can use in order to **filter for exactly the messages** you want.
 
-This allows for over 820 different filters to be used, and we may add more over time.
+This allows for over 1150 different filters to be used, and we may add more over time.
 Every valid filter can be auto-completed in your code editor.
 Hence, you can simply type `bot.on("")`, open auto-complete, and search through all queries by typing something.
 
@@ -217,7 +217,7 @@ which can be used to detect status changes of other chat members, such as when p
 
 ### Combining Queries With Other Methods
 
-You can combine filter queries with other methods on the `Composer` class ([API Reference](/ref/core/Composer)), such as `command` or `filter`.
+You can combine filter queries with other methods on the `Composer` class ([API Reference](/ref/core/composer)), such as `command` or `filter`.
 This allows for powerful message handling patterns.
 
 ```ts
@@ -308,7 +308,7 @@ function handler(ctx: Filter<Context, ":text">) {
 bot.on(":text", handler);
 ```
 
-> Check out the API references for [`matchFilter`](/ref/core/matchFilter), [`Filter`](/ref/core/Filter), and [`FilterQuery`](/ref/core/FilterQuery) to read on.
+> Check out the API references for [`matchFilter`](/ref/core/matchfilter), [`Filter`](/ref/core/filter), and [`FilterQuery`](/ref/core/filterquery) to read on.
 
 ## The Query Language
 

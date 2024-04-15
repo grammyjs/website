@@ -243,7 +243,7 @@ If you don't specify it, reading `ctx.session` will throw an error for new users
 > This section describes an advanced feature that most people do not have to worry about.
 > You may want to continue with the section about [storing your data](#storing-your-data).
 
-You can specify which session key to use by passing a function called `getSessionKey` to the [options](/ref/core/SessionOptions#getsessionkey).
+You can specify which session key to use by passing a function called `getSessionKey` to the [options](/ref/core/sessionoptions#getsessionkey).
 That way, you can fundamentally change the way how the session plugin works.
 By default, data is stored per chat.
 Using `getSessionKey` allows you to store data per user, or per user-chat combination, or however you want.
@@ -388,7 +388,7 @@ bot.use(session({
 By default, all data will be stored in RAM.
 This means that all sessions are lost as soon as your bot stops.
 
-You can use the `MemorySessionStorage` class ([API Reference](/ref/core/MemorySessionStorage)) from the grammY core package if you want to configure further things about storing data in RAM.
+You can use the `MemorySessionStorage` class ([API Reference](/ref/core/memorysessionstorage)) from the grammY core package if you want to configure further things about storing data in RAM.
 
 ```ts
 bot.use(session({
@@ -460,10 +460,12 @@ type MyContext = Context & SessionFlavor<SessionData>;
 // Create the bot and register the session middleware.
 const bot = new Bot<MyContext>("");
 
-bot.use(session({
-  initial: () => ({ count: 0 }),
-  storage: freeStorage<SessionData>(bot.token),
-}));
+bot.use(
+  session({
+    initial: () => ({ count: 0 }),
+    storage: freeStorage<SessionData>(bot.token),
+  }),
+);
 
 // Use persistent session data in update handlers.
 bot.on("message", async (ctx) => {
@@ -482,10 +484,12 @@ const { freeStorage } = require("@grammyjs/storage-free");
 // Create the bot and register the session middleware.
 const bot = new Bot("");
 
-bot.use(session({
-  initial: () => ({ count: 0 }),
-  storage: freeStorage(bot.token),
-}));
+bot.use(
+  session({
+    initial: () => ({ count: 0 }),
+    storage: freeStorage(bot.token),
+  }),
+);
 
 // Use persistent session data in update handlers.
 bot.on("message", async (ctx) => {
@@ -515,10 +519,12 @@ type MyContext = Context & SessionFlavor<SessionData>;
 // Create the bot and register the session middleware.
 const bot = new Bot<MyContext>("");
 
-bot.use(session({
-  initial: () => ({ count: 0 }),
-  storage: freeStorage<SessionData>(bot.token),
-}));
+bot.use(
+  session({
+    initial: () => ({ count: 0 }),
+    storage: freeStorage<SessionData>(bot.token),
+  }),
+);
 
 // Use persistent session data in update handlers.
 bot.on("message", async (ctx) => {
@@ -541,7 +547,7 @@ Visit [here](https://github.com/grammyjs/storages/tree/main/packages#grammy-stor
 
 ::: tip Your storage is not supported? No problem!
 Creating a custom storage adapter is extremely simple.
-The `storage` option works with any object that adheres to this [interface](/ref/core/StorageAdapter), so you can connect to your storage just in a few lines of code.
+The `storage` option works with any object that adheres to this [interface](/ref/core/storageadapter), so you can connect to your storage just in a few lines of code.
 
 > If you published your own storage adapter, feel free to edit this page and link it here, so that other people can use it.
 
@@ -581,20 +587,22 @@ You can use this feature by passing `type: "multi"` to the session configuration
 In turn, you will need to configure each fragment with its own config.
 
 ```ts
-bot.use(session({
-  type: "multi",
-  foo: {
-    // these are also the default values
-    storage: new MemorySessionStorage(),
-    initial: () => undefined,
-    getSessionKey: (ctx) => ctx.chat?.id.toString(),
-  },
-  bar: {
-    initial: () => ({ prop: 0 }),
-    storage: freeStorage(bot.token),
-  },
-  baz: {},
-}));
+bot.use(
+  session({
+    type: "multi",
+    foo: {
+      // these are also the default values
+      storage: new MemorySessionStorage(),
+      initial: () => undefined,
+      getSessionKey: (ctx) => ctx.chat?.id.toString(),
+    },
+    bar: {
+      initial: () => ({ prop: 0 }),
+      storage: freeStorage(bot.token),
+    },
+    baz: {},
+  }),
+);
 ```
 
 Note that you must add a configuration entry for every fragment you want to use.
@@ -703,12 +711,14 @@ They can be installed using the `enhanceStorage` function.
 
 ```ts
 // Use the enhanced storage adapter.
-bot.use(session({
-  storage: enhanceStorage({
-    storage: freeStorage(bot.token), // adjust this
-    // more config here
+bot.use(
+  session({
+    storage: enhanceStorage({
+      storage: freeStorage(bot.token), // adjust this
+      // more config here
+    }),
   }),
-}));
+);
 ```
 
 You can also use both at the same time.
@@ -747,7 +757,7 @@ interface SessionData {
 }
 ```
 
-Now you get the idea that you also want to store the age of the pets.
+Now, you get the idea that you also want to store the age of the pets.
 
 You could do this:
 
@@ -778,7 +788,11 @@ Migration functions let you transform the old string array into the new array of
 ::: code-group
 
 ```ts [TypeScript]
-function addBirthdayToPets(old: { petNames: string[] }): SessionData {
+interface OldSessionData {
+  petNames: string[];
+}
+
+function addBirthdayToPets(old: OldSessionData): SessionData {
   return {
     pets: old.petNames.map((name) => ({ name })),
   };
@@ -832,6 +846,45 @@ const enhanced = enhanceStorage({
 
 You can pick any JavaScript numbers as versions.
 No matter how far the session data for a chat has evolved, as soon as it is read, it will be migrated through the versions until it uses the most recent structure.
+
+### Types for Storage Enhancements
+
+When you use storage enhancements, your storage adapter will have to store more data than just your session data.
+For example, it has to store the time when the session was last stored so that it can correctly [expire](#timeouts) the data upon timeout.
+In some cases, TypeScript will be able to infer the correct types for your storage adapter.
+However, more often than not, you need to annotate the types of the session data explicitly in several places.
+
+The following example code snippet illustrates how to use the timeout enhancement with correct TypeScript types.
+
+```ts
+interface SessionData {
+  count: number;
+}
+
+type MyContext = Context & SessionFlavor<SessionData>;
+
+const bot = new Bot<MyContext>("");
+
+bot.use(
+  session({
+    initial(): SessionData {
+      return { count: 0 };
+    },
+    storage: enhanceStorage({
+      storage: new MemorySessionStorage<Enhance<SessionData>>(),
+      millisecondsToLive: 60_000,
+    }),
+  }),
+);
+
+bot.on("message", (ctx) => ctx.reply(`Chat count is ${ctx.session.count++}`));
+
+bot.start();
+```
+
+Note that every [storage adapter](#known-storage-adapters) is able to take a type parameter.
+For example, for [free sessions](#free-storage), you can use `freeStorage<Enhance<SessionData>>` instead of `MemorySessionStorage<Enhance<SessionData>>`.
+The same is true for all other storage adapters.
 
 ## Plugin Summary
 

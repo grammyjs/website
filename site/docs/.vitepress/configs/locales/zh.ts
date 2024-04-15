@@ -294,6 +294,20 @@ const resourcesTelegram = {
   ],
 };
 
+const resourcesTools = {
+  text: "工具",
+  items: [
+    {
+      text: "telegram.tools",
+      link: "https://telegram.tools",
+    },
+    {
+      text: "VS Code 扩展",
+      link: "https://github.com/grammyjs/vscode",
+    },
+  ],
+};
+
 const hostingOverview = {
   text: "概览",
   items: [
@@ -396,7 +410,7 @@ export const siteZh: LocaleConfig = {
         },
         {
           text: "资源",
-          items: [resourcesGrammy, resourcesTelegram],
+          items: [resourcesGrammy, resourcesTelegram, resourcesTools],
         },
         {
           text: "托管服务",
@@ -440,23 +454,27 @@ export const siteZh: LocaleConfig = {
         pattern:
           "https://github.com/grammyjs/website/edit/main/site/docs/:path",
       },
+      docFooter: {
+        prev: "上一页",
+        next: "下一页",
+      },
       lastUpdatedText: "上次更新",
-      darkModeSwitchLabel: "Appearance", // only displayed in the mobile view.
-      sidebarMenuLabel: "Menu", // only displayed in the mobile view.
-      returnToTopLabel: "Return to top", // only displayed in the mobile view.
-      langMenuLabel: "Change language", // Aria-label
+      darkModeSwitchLabel: "外观", // only displayed in the mobile view.
+      sidebarMenuLabel: "菜单", // only displayed in the mobile view.
+      returnToTopLabel: "回到顶部", // only displayed in the mobile view.
+      langMenuLabel: "切换语言", // Aria-label
       socialLinks: [
         {
           link: social.telegram.link,
           icon: {
             svg: social.telegram.icon,
           },
-          ariaLabel: "grammY Telegram group link",
+          ariaLabel: "grammY Telegram 群链接",
         },
         {
           link: social.github.link,
           icon: social.github.icon,
-          ariaLabel: "grammY repository link",
+          ariaLabel: "grammY 仓库链接",
         },
       ],
       notFound: {

@@ -290,6 +290,20 @@ const resourcesTelegram = {
   ],
 };
 
+const resourcesTools = {
+  text: "Herramientas",
+  items: [
+    {
+      text: "telegram.tools",
+      link: "https://telegram.tools",
+    },
+    {
+      text: "Extensión para VS Code",
+      link: "https://github.com/grammyjs/vscode",
+    },
+  ],
+};
+
 const hostingOverview = {
   text: "Resumen",
   items: [
@@ -392,14 +406,14 @@ export const siteEs: LocaleConfig = {
         },
         {
           text: "Recursos",
-          items: [resourcesGrammy, resourcesTelegram],
+          items: [resourcesGrammy, resourcesTelegram, resourcesTools],
         },
         {
           text: "Alojamiento",
           items: [hostingOverview, hostingTutorials],
         },
         {
-          text: "Referencia de API",
+          text: "Referencia de la API",
           link: "/ref/",
         },
       ],
@@ -436,30 +450,34 @@ export const siteEs: LocaleConfig = {
         pattern:
           "https://github.com/grammyjs/website/edit/main/site/docs/:path",
       },
+      docFooter: {
+        prev: "Página anterior",
+        next: "Página siguiente",
+      },
       lastUpdatedText: "Última actualización",
-      darkModeSwitchLabel: "Appearance", // only displayed in the mobile view.
-      sidebarMenuLabel: "Menu", // only displayed in the mobile view.
-      returnToTopLabel: "Return to top", // only displayed in the mobile view.
-      langMenuLabel: "Change language", // Aria-label
+      darkModeSwitchLabel: "Apariencia", // only displayed in the mobile view.
+      sidebarMenuLabel: "MenúMenú", // only displayed in the mobile view.
+      returnToTopLabel: "Volver al inicio", // only displayed in the mobile view.
+      langMenuLabel: "Cambiar el idioma", // Aria-label
       socialLinks: [
         {
           link: social.telegram.link,
           icon: {
             svg: social.telegram.icon,
           },
-          ariaLabel: "grammY Telegram group link",
+          ariaLabel: "Enlace del grupo de Telegram de grammY",
         },
         {
           link: social.github.link,
           icon: social.github.icon,
-          ariaLabel: "grammY repository link",
+          ariaLabel: "Enlace al repositorio de grammY",
         },
       ],
       notFound: {
         code: "404",
-        title: "PAGE NOT FOUND",
+        title: "PÁGINA NO ENCONTRADA",
         linkText: "Llévame a casa",
-        linkLabel: "Go to home",
+        linkLabel: "Ir a la página de inicio",
         messages: [
           "¡Uy! Esta página no existe",
           "Nop.",

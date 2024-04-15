@@ -69,7 +69,8 @@ next: false
 
 ## Головний файл
 
-Незалежно від того, чи використовуєте ви TypeScript або JavaScript, має бути вихідний файл, через який працює ваш бот. Він має виглядати приблизно так:
+Незалежно від того, чи використовуєте ви TypeScript або JavaScript, має бути вихідний файл, через який працює ваш бот.
+Він має виглядати приблизно так:
 
 ```ts
 import { Bot, webhookCallback } from "grammy";
@@ -79,8 +80,23 @@ if (!token) throw new Error("BOT_TOKEN не вказаний");
 
 const bot = new Bot(token);
 
-export default webhookCallback(bot, "http");
+export default webhookCallback(bot, "std/http");
 ```
+
+::: tip [Vercel Edge Functions](https://vercel.com/docs/functions/edge-functions) надає обмежену підтримку grammY
+Ви все ще можете використовувати пакет grammY та низку плагінів, але інші плагіни можуть бути несумісними через залежності лише від Node.js, які можуть не підтримуватися в [Edge Runtime](https://edge-runtime.vercel.app) Vercel.
+
+Наразі ми не маємо повного списку сумісних плагінів, тому вам доведеться перевірити це самостійно.
+
+Додайте цей рядок до фрагмента вище, якщо ви хочете переключитися на Edge Functions:
+
+```ts
+export const config = {
+  runtime: "edge",
+};
+```
+
+:::
 
 ## У панелі керування Vercel
 

@@ -9,7 +9,7 @@
 
 相反，**grammY 带有自己的查询语言**，你可以用它来**筛选你想要的消息**。
 
-这允许使用超过 820 种不同的 filter 进行筛选，而且我们可能会随着时间的推移增加更多的过滤器。
+这允许使用超过 1150 种不同的 filter 进行筛选，而且我们可能会随着时间的推移增加更多的过滤器。
 每个有效的 filter 都可以在你的代码编辑器中自动完成。
 因此，你可以简单地输入 `bot.on("")`，打开自动完成，并通过输入一些东西来搜索所有的查询。
 
@@ -217,7 +217,7 @@ bot.on("chat_member");
 
 ### 将查询与其他方法相结合
 
-你可以将过滤器查询与 `Composer` 类（[API 参考](/ref/core/Composer)）的其他方法相结合，例如 `command` 或 `filter`。
+你可以将过滤器查询与 `Composer` 类（[API 参考](/ref/core/composer)）的其他方法相结合，例如 `command` 或 `filter`。
 这可以让你构建更复杂的消息处理模式。
 
 ```ts
@@ -305,7 +305,7 @@ function handler(ctx: Filter<Context, ":text">) {
 bot.on(":text", handler);
 ```
 
-> 查看并阅读更多 [`matchFilter`](/ref/core/matchFilter)，[`Filter`](/ref/core/Filter) 和 [`FilterQuery`](/ref/core/FilterQuery) 的 API 参考。
+> 查看并阅读更多 [`matchFilter`](/ref/core/matchfilter)，[`Filter`](/ref/core/filter) 和 [`FilterQuery`](/ref/core/filterquery) 的 API 参考。
 
 ## 查询语言
 

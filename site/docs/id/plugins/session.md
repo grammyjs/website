@@ -244,7 +244,7 @@ Kalau kamu tidak menentukan opsi tersebut, pembacaan `ctx.session` akan mengakib
 > Bagian ini membahas fitur lanjutan yang untuk sebagian besar orang bisa diabaikan.
 > Kamu bisa melanjutkan ke bagian [Menyimpan Data](#menyimpan-data).
 
-Kamu bisa menentukan session key mana yang akan digunakan dengan cara memasukkan sebuah function bernama `getSessionKey` ke [opsi session](/ref/core/SessionOptions#getsessionkey).
+Kamu bisa menentukan session key mana yang akan digunakan dengan cara memasukkan sebuah function bernama `getSessionKey` ke [opsi session](/ref/core/sessionoptions#getsessionkey).
 Dengan begitu, kamu bisa mengubah perilaku plugin session sepenuhnya.
 Secara bawaan, data disimpan per chat.
 Tetapi, dengan menggunakan `getSessionKey` kamu bisa menyimpan data entah itu per user, kombinasi per user dan chat, ataupun cara lainnya.
@@ -389,7 +389,7 @@ bot.use(session({
 Secara bawaan semua data disimpan di dalam RAM.
 Artinya, semua session akan terhapus di saat bot dihentikan.
 
-Kamu bisa menggunakan class `MemorySessionStorage` ([Referensi API](/ref/core/MemorySessionStorage)) dari package inti grammY jika kamu ingin mengatur penyimpanan data di RAM.
+Kamu bisa menggunakan class `MemorySessionStorage` ([Referensi API](/ref/core/memorysessionstorage)) dari package inti grammY jika kamu ingin mengatur penyimpanan data di RAM.
 
 ```ts
 bot.use(session({
@@ -461,10 +461,12 @@ type MyContext = Context & SessionFlavor<SessionData>;
 // Buat bot lalu masukkan middleware session.
 const bot = new Bot<MyContext>("");
 
-bot.use(session({
-  initial: () => ({ hitung: 0 }),
-  storage: freeStorage<SessionData>(bot.token),
-}));
+bot.use(
+  session({
+    initial: () => ({ hitung: 0 }),
+    storage: freeStorage<SessionData>(bot.token),
+  }),
+);
 
 // Gunakan data session permanen di handler update.
 bot.on("message", async (ctx) => {
@@ -483,10 +485,12 @@ const { freeStorage } = require("@grammyjs/storage-free");
 // Buat bot lalu masukkan middleware session.
 const bot = new Bot("");
 
-bot.use(session({
-  initial: () => ({ hitung: 0 }),
-  storage: freeStorage(bot.token),
-}));
+bot.use(
+  session({
+    initial: () => ({ hitung: 0 }),
+    storage: freeStorage(bot.token),
+  }),
+);
 
 // Gunakan data session permanen di handler update.
 bot.on("message", async (ctx) => {
@@ -516,10 +520,12 @@ type MyContext = Context & SessionFlavor<SessionData>;
 // Buat bot lalu masukkan middleware session.
 const bot = new Bot<MyContext>("");
 
-bot.use(session({
-  initial: () => ({ hitung: 0 }),
-  storage: freeStorage<SessionData>(bot.token),
-}));
+bot.use(
+  session({
+    initial: () => ({ hitung: 0 }),
+    storage: freeStorage<SessionData>(bot.token),
+  }),
+);
 
 // Gunakan data session permanen di handler update.
 bot.on("message", async (ctx) => {
@@ -542,7 +548,7 @@ Kunjungi repository [berikut](https://github.com/grammyjs/storages/tree/main/pac
 
 ::: tip Storage pilihanmu belum didukung? Tidak masalah!
 Membuat storage adapter sendiri sangat mudah dilakukan.
-Opsi `storage` bekerja dengan berbagai object yang menganut [interface berikut](/ref/core/StorageAdapter), sehingga kamu bisa melakukan koneksi ke storage-mu hanya dengan beberapa baris kode.
+Opsi `storage` bekerja dengan berbagai object yang menganut [interface berikut](/ref/core/storageadapter), sehingga kamu bisa melakukan koneksi ke storage-mu hanya dengan beberapa baris kode.
 
 > Kalau kamu ingin mempublikasikan storage adapter buatanmu, silahkan ubah halaman ini dan sertakan juga link-nya agar orang-orang bisa menggunakannya.
 
@@ -582,20 +588,22 @@ Kamu bisa menggunakan fitur ini dengan cara menambahkan `type: "multi"` ke konfi
 Setelah itu, kamu perlu mengatur konfigurasi untuk setiap fragmen.
 
 ```ts
-bot.use(session({
-  type: "multi",
-  foo: {
-    // value bawaan juga tersedia
-    storage: new MemorySessionStorage(),
-    initial: () => undefined,
-    getSessionKey: (ctx) => ctx.chat?.id.toString(),
-  },
-  bar: {
-    initial: () => ({ prop: 0 }),
-    storage: freeStorage(bot.token),
-  },
-  baz: {},
-}));
+bot.use(
+  session({
+    type: "multi",
+    foo: {
+      // value bawaan juga tersedia
+      storage: new MemorySessionStorage(),
+      initial: () => undefined,
+      getSessionKey: (ctx) => ctx.chat?.id.toString(),
+    },
+    bar: {
+      initial: () => ({ prop: 0 }),
+      storage: freeStorage(bot.token),
+    },
+    baz: {},
+  }),
+);
 ```
 
 Perlu diingat bahwa kamu harus menambahkan sebuah konfigurasi untuk setiap entry yang ingin kamu gunakan.
@@ -709,12 +717,14 @@ Kedua fitur tersebut bisa diinstal dengan menggunakan function `enhanceStorage`.
 
 ```ts
 // Gunakan storage adapter yang sudah ditingkatkan.
-bot.use(session({
-  storage: enhanceStorage({
-    storage: freeStorage(bot.token), // jangan lupa diatur,
-    // tulis konfigurasinya di sini
+bot.use(
+  session({
+    storage: enhanceStorage({
+      storage: freeStorage(bot.token), // jangan lupa diatur
+      // tulis konfigurasinya di sini
+    }),
   }),
-}));
+);
 ```
 
 Kamu juga bisa menggunakan kedua fitur secara bersamaan.
@@ -784,7 +794,11 @@ Function migrasi bisa kamu gunakan untuk mengubah string array yang lama menjadi
 ::: code-group
 
 ```ts [TypeScript]
-function addBirthdayToPets(old: { petNames: string[] }): SessionData {
+interface OldSessionData {
+  petNames: string[];
+}
+
+function addBirthdayToPets(old: OldSessionData): SessionData {
   return {
     pets: old.petNames.map((name) => ({ name })),
   };
@@ -838,6 +852,48 @@ const enhanced = enhanceStorage({
 
 Kamu bisa memilih berbagai macam penomoran sebagai versinya, selama ia berupa JavaScript number.
 Tidak peduli seberapa besar data session sebuah chat telah berubah, segera setelah ia dibaca, ia akan dimigrasikan ke versi yang telah ditentukan hingga ia menggunakan struktur yang terbaru.
+
+### Type untuk Peningkatan Storage
+
+Ketika kamu menggunakan peningkatan storage, storage adapter akan menyimpan lebih banyak data dibandingkan data session.
+Contohnya, ia perlu menyimpan data waktu terakhir kali session tersebut disimpan agar nantinya ia bisa [kedaluwarsa](#timeout) tepat waktu.
+Dalam beberapa kasus, TypeScript akan menebak type yang sesuai untuk storage adapter-mu.
+Namun, di banyak kesempatan, kita diharuskan secara eksplisit membuat type annotation untuk data session di berbagai tempat.
+
+Contoh kode dibawah ini mengilustrasikan bagaimana cara menggunakan peningkatan timeout dengan type TypeScript yang sesuai.
+
+```ts
+interface SessionData {
+  hitung: number;
+}
+
+type MyContext = Context & SessionFlavor<SessionData>;
+
+const bot = new Bot<MyContext>("");
+
+bot.use(
+  session({
+    initial(): SessionData {
+      return { hitung: 0 };
+    },
+    storage: enhanceStorage({
+      storage: new MemorySessionStorage<Enhance<SessionData>>(),
+      millisecondsToLive: 60_000,
+    }),
+  }),
+);
+
+bot.on(
+  "message",
+  (ctx) => ctx.reply(`Jumlah obrolan: ${ctx.session.hitung++}`),
+);
+
+bot.start();
+```
+
+Perlu diketahui, setiap [storage adapter](#storage-adapter-yang-tersedia) bisa menerima parameter berupa type.
+Misalnya, pada [session gratis](#storage-gratis), kamu dapat menggunakan `freeStorage<Enhance<SessionData>>` alih-alih `MemorySessionStorage<Enhance<SessionData>>`.
+Hal yang sama juga berlaku untuk storage adapter lainnya.
 
 ## Ringkasan Plugin
 

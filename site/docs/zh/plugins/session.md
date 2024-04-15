@@ -242,7 +242,7 @@ bot.use(session({ initial: { initialData } })); // 邪恶的
 > 本章节介绍一个大多数人不需要关心的高级特性。
 > 你可能想继续阅读有关 [存储数据](#储存你的数据) 的章节。
 
-你可以通过向 [options](/ref/core/SessionOptions#getsessionkey) 传入一个名为 `getSessionKey` 的函数来指定会话使用哪个会话密钥。
+你可以通过向 [options](/ref/core/sessionoptions#getsessionkey) 传入一个名为 `getSessionKey` 的函数来指定会话使用哪个会话密钥。
 这样，你可以从根本上改变会话插件的工作方式。
 默认情况下，会话数据存储在每个聊天中。
 使用 `getSessionKey`，你可以按每个用户，或每个用户-聊天组合，或任何你想要的方式存储数据。
@@ -387,7 +387,7 @@ bot.use(session({
 默认情况下，所有数据都会被存储在内存中。
 这意味着，当你的 bot 停止时，所有的会话都会丢失。
 
-如果你想配置更多的内存存储选项，你可以使用 grammY 核心包中的 `MemorySessionStorage` 类（[API Reference](/ref/core/MemorySessionStorage)）。
+如果你想配置更多的内存存储选项，你可以使用 grammY 核心包中的 `MemorySessionStorage` 类（[API Reference](/ref/core/memorysessionstorage)）。
 
 ```ts
 bot.use(session({
@@ -459,10 +459,12 @@ type MyContext = Context & SessionFlavor<SessionData>;
 // 创建 bot 并且注册会话中间件。
 const bot = new Bot<MyContext>(""); // <-- 把你的 bot token 放在 "" 中间
 
-bot.use(session({
-  initial: () => ({ count: 0 }),
-  storage: freeStorage<SessionData>(bot.token),
-}));
+bot.use(
+  session({
+    initial: () => ({ count: 0 }),
+    storage: freeStorage<SessionData>(bot.token),
+  }),
+);
 
 // 在 update 处理中使用持久会话数据。
 bot.on("message", async (ctx) => {
@@ -481,10 +483,12 @@ const { freeStorage } = require("@grammyjs/storage-free");
 // 创建 bot 并且注册会话中间件。
 const bot = new Bot("");
 
-bot.use(session({
-  initial: () => ({ count: 0 }),
-  storage: freeStorage(bot.token),
-}));
+bot.use(
+  session({
+    initial: () => ({ count: 0 }),
+    storage: freeStorage(bot.token),
+  }),
+);
 
 // 在 update 处理中使用持久会话数据。
 bot.on("message", async (ctx) => {
@@ -514,10 +518,12 @@ type MyContext = Context & SessionFlavor<SessionData>;
 // 创建 bot 并且注册会话中间件。
 const bot = new Bot<MyContext>(""); // <-- 把你的 bot token 放在 "" 中间
 
-bot.use(session({
-  initial: () => ({ count: 0 }),
-  storage: freeStorage<SessionData>(bot.token),
-}));
+bot.use(
+  session({
+    initial: () => ({ count: 0 }),
+    storage: freeStorage<SessionData>(bot.token),
+  }),
+);
 
 // 在 update 处理中使用持久会话数据。
 bot.on("message", async (ctx) => {
@@ -540,7 +546,7 @@ bot.start();
 
 ::: tip 你的存储解决方案还没被支持？没问题！
 创建一个自定义存储适配器非常简单。
-`storage` 选项可以与任何实现了这个 [接口](/ref/core/StorageAdapter) 的对象连接，所以你只需要在几行代码就可以连接到你的存储。
+`storage` 选项可以与任何实现了这个 [接口](/ref/core/storageadapter) 的对象连接，所以你只需要在几行代码就可以连接到你的存储。
 
 > 如果你发布了自己的存储适配器，请随时编辑这个页面并且添加链接到这里，以便其他人也可以使用它。
 
@@ -580,20 +586,22 @@ bot.start();
 反过来，你将需要使用它自己的配置来配置每个片段。
 
 ```ts
-bot.use(session({
-  type: "multi",
-  foo: {
-    // 这些也是默认值
-    storage: new MemorySessionStorage(),
-    initial: () => undefined,
-    getSessionKey: (ctx) => ctx.chat?.id.toString(),
-  },
-  bar: {
-    initial: () => ({ prop: 0 }),
-    storage: freeStorage(bot.token),
-  },
-  baz: {},
-}));
+bot.use(
+  session({
+    type: "multi",
+    foo: {
+      // 这些也是默认值
+      storage: new MemorySessionStorage(),
+      initial: () => undefined,
+      getSessionKey: (ctx) => ctx.chat?.id.toString(),
+    },
+    bar: {
+      initial: () => ({ prop: 0 }),
+      storage: freeStorage(bot.token),
+    },
+    baz: {},
+  }),
+);
 ```
 
 请注意，你必须为要使用的每个片段添加一个配置条目。
@@ -703,12 +711,14 @@ bot.command("reset", async (ctx) => {
 
 ```ts
 // 使用增强型存储适配器
-bot.use(session({
-  storage: enhanceStorage({
-    storage: freeStorage(bot.token), // 修改这里
-    // 更多配置在这里
+bot.use(
+  session({
+    storage: enhanceStorage({
+      storage: freeStorage(bot.token), // 修改这里
+      // 更多配置在这里
+    }),
   }),
-}));
+);
 ```
 
 你也可以同时使用两者。
@@ -747,7 +757,7 @@ interface SessionData {
 }
 ```
 
-现在你知道您还想存储宠物的年龄。
+现在，你又有了存储宠物年龄的想法。
 
 你可以这样做：
 
@@ -778,7 +788,11 @@ interface SessionData {
 ::: code-group
 
 ```ts [TypeScript]
-function addBirthdayToPets(old: { petNames: string[] }): SessionData {
+interface OldSessionData {
+  petNames: string[];
+}
+
+function addBirthdayToPets(old: OldSessionData): SessionData {
   return {
     pets: old.petNames.map((name) => ({ name })),
   };
@@ -832,6 +846,45 @@ const enhanced = enhanceStorage({
 
 您可以选择任何 JavaScript 编号作为版本。
 无论聊天的会话数据发展了多远，一旦被读取，它就会通过版本进行迁移，直到它使用最新的结构。
+
+### 增强存储的类型
+
+使用存储增强功能时，你的存储适配器会存储更多数据，而不仅仅是会话数据。
+例如，它必须存储上次会话保存的时间，以便在超时时正确地让数据 [过期](#超时)。
+在某些情况下，TypeScript 可以为你的存储适配器推断出正确的类型。
+不过，你往往需要在多个地方明确注释会话数据的类型。
+
+下面的示例代码片段展示了如何使用正确的 TypeScript 类型来使用超时增强功能。
+
+```ts
+interface SessionData {
+  count: number;
+}
+
+type MyContext = Context & SessionFlavor<SessionData>;
+
+const bot = new Bot<MyContext>("");
+
+bot.use(
+  session({
+    initial(): SessionData {
+      return { count: 0 };
+    },
+    storage: enhanceStorage({
+      storage: new MemorySessionStorage<Enhance<SessionData>>(),
+      millisecondsToLive: 60_000,
+    }),
+  }),
+);
+
+bot.on("message", (ctx) => ctx.reply(`Chat count is ${ctx.session.count++}`));
+
+bot.start();
+```
+
+请注意，每个 [存储适配器](#已知的存储适配器) 都能接受一个类型参数。
+例如，对于 [免费存储](#免费存储)，你可以使用 `freeStorage<Enhance<SessionData>>` 代替 `MemorySessionStorage<Enhance<SessionData>>`。
+其他所有存储适配器也是如此。
 
 ## 插件概述
 

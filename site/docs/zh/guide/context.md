@@ -1,6 +1,6 @@
 # 上下文
 
-`Context` 对象（[grammY API 参考](/ref/core/Context)）是 grammY 的一个重要部分。
+`Context` 对象（[grammY API 参考](/ref/core/context)）是 grammY 的一个重要部分。
 
 每当你在你的 bot 对象上注册一个监听器时，这个监听器将收到一个上下文对象。
 
@@ -54,15 +54,17 @@ bot.on("edited_message", async (ctx) => {
 
 在上下文对象上安装了一些快捷方式。
 
-| 快捷方式              | 描述                                                                  |
-| --------------------- | --------------------------------------------------------------------- |
-| `ctx.msg`             | 获取 `message` 对象，包括已编辑的信息对象                             |
-| `ctx.chat`            | 获取 `chat` 对象                                                      |
-| `ctx.senderChat`      | 从 `ctx.msg` 中获取发送者聊天对象（用于匿名通道/群组消息）。          |
-| `ctx.from`            | 获取消息的作者，回调查询，或其他东西的作者                            |
-| `ctx.inlineMessageId` | 获取回调查询的内联信息标识符或选择的内联结果                          |
-| `ctx.entities`        | 获取消息实体和它们的文本，可选择通过实体类型过滤                      |
-| `ctx.reactions`       | [以易于使用的方式](./reactions#查看反应如何变化) 获取 update 中的反应 |
+| 快捷方式                   | 描述                                                                  |
+| -------------------------- | --------------------------------------------------------------------- |
+| `ctx.msg`                  | 获取 `message` 对象，包括已编辑的信息对象                             |
+| `ctx.chat`                 | 获取 `chat` 对象                                                      |
+| `ctx.senderChat`           | 从 `ctx.msg` 中获取发送者聊天对象（用于匿名通道/群组消息）。          |
+| `ctx.from`                 | 获取消息的作者，回调查询，或其他东西的作者                            |
+| `ctx.msgId`                | 获取消息或反应的信息标识符                                            |
+| `ctx.inlineMessageId`      | 获取回调查询的内联信息标识符或所选择的内联结果                        |
+| `ctx.businessConnectionId` | 获取消息或商业连接 update 中的商业连接标识符                          |
+| `ctx.entities`             | 获取消息实体和它们的文本，可选择通过实体类型过滤                      |
+| `ctx.reactions`            | [以易于使用的方式](./reactions#查看反应如何变化) 获取 update 中的反应 |
 
 换句话说，你也可以这样做：
 
@@ -124,8 +126,8 @@ if (ctx.hasCallbackQuery(/query-data-\d+/)) {
 ```
 
 这同样适用于所有其他 has checks。
-阅读 [上下文对象的 API 参考](/ref/core/Context#has) 来获取查看 has checks 的列表。
-阅读 [API 参考](/ref/core/Context#has) 中的静态属性 `Context.has` ， 这能让你创建高效的判定函数来检测大量上下文对象。
+阅读 [上下文对象的 API 参考](/ref/core/context#has) 来获取查看 has checks 的列表。
+阅读 [API 参考](/ref/core/context#has) 中的静态属性 `Context.has` ， 这能让你创建高效的判定函数来检测大量上下文对象。
 
 ## 可用操作
 
@@ -190,7 +192,7 @@ await ctx.reply("^ This is a message!", {
 在你的代码编辑器中使用自动完成来查看可用的选项。
 :::
 
-当然，`ctx.api` 上的每一个其他方法都有一个快捷方式，并且有正确的预填值，比如 `ctx.replyWithPhoto` 用来回复照片，或者 `ctx.exportChatInviteLink` 用来获取相应聊天的邀请链接。如果你想了解存在哪些快捷方式，那么自动完成是你的伙伴，还有 [grammY API 参考](/ref/core/Context)。
+当然，`ctx.api` 上的每一个其他方法都有一个快捷方式，并且有正确的预填值，比如 `ctx.replyWithPhoto` 用来回复照片，或者 `ctx.exportChatInviteLink` 用来获取相应聊天的邀请链接。如果你想了解存在哪些快捷方式，那么自动完成是你的伙伴，还有 [grammY API 参考](/ref/core/context)。
 
 请注意，你可能不希望总是在同一个聊天中做出回复。
 在这种情况下，你可以退回到使用 `ctx.api` 方法，并在调用它们时指定所有选项。
@@ -340,7 +342,7 @@ bot.command("start", async (ctx) => {
 
 :::
 
-当然，自定义上下文类型也可以传递给其他处理中间件的东西，比如 [组合器](/ref/core/Composer)。
+当然，自定义上下文类型也可以传递给其他处理中间件的东西，比如 [组合器](/ref/core/composer)。
 
 ```ts
 const composer = new Composer<MyContext>();
@@ -490,7 +492,7 @@ interface SessionFlavor<S> {
 }
 ```
 
-`SessionFlavor` 类型（[API 参考](/ref/core/SessionFlavor)）是清晰的：它只定义了属性 `session`。
+`SessionFlavor` 类型（[API 参考](/ref/core/sessionflavor)）是清晰的：它只定义了属性 `session`。
 它需要一个类型参数，用来定义会话数据的实际结构。
 
 这有什么用呢？

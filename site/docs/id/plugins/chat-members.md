@@ -21,7 +21,7 @@ Ia mampu memantau event `chat_member` serta menyimpan semua object `ChatMember` 
 ### Menyimpan Anggota Chat
 
 Kamu bisa menggunakan [storage adapter](./session#storage-adapter-yang-tersedia) grammY yang valid atau
-instance dari kelas apapun yang mengimplementasikan interface [`StorageAdapter`](/ref/core/StorageAdapter).
+instance dari kelas apapun yang mengimplementasikan interface [`StorageAdapter`](/ref/core/storageadapter).
 
 Perlu diketahui, berdasarkan [dokumentasi resmi Telegram](https://core.telegram.org/bots/api#getupdates), bot kamu perlu mencantumkan update `chat_member` di array `allowed_updates`, seperti yang ditampilkan pada contoh di bawah.
 Artinya, kamu juga perlu mencantumkan event lain yang diperlukan.
