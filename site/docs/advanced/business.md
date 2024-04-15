@@ -1,6 +1,6 @@
 # Telegram Business
 
-Telegram Business allows your private chat with another (human) user to be managed by a bot
+Telegram Business allows your private chat with another (human) user to be managed by a bot.
 This includes sending and receiving messages on your behalf.
 Typically, this is useful if you run your business on Telegram, and that other user is a customer.
 
@@ -10,8 +10,8 @@ Naturally, grammY has full support for this.
 
 ## Handling Business Messages
 
-A bot can manage a private chat between two users via Telegram Business.
-This is done via a _business connection_ object that looks like [this](/ref/types/businessconnection).
+A bot can manage a private chat between two users via Telegram Business---an account that is subscribed to Telegram's business subscription.
+Managing private chats is done via a _business connection_ object that looks like [this](/ref/types/businessconnection).
 
 ### Receiving Business Messages
 
