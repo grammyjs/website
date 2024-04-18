@@ -457,7 +457,7 @@ You can also expose your local development server to the public internet using s
 For more information about setting up a reverse proxy, see the documentation for the software you are using.
 
 ::: warning
-Using a third-party reverse proxy carries the risk of information leakage!
+Using a third-party reverse proxy may result in information leakage!
 :::
 
 ::: tip
