@@ -68,7 +68,8 @@ using create-cloudflare version 2.17.1
   ○ Worker built from a template hosted in a git repository  // [!code focus]
 ```
 
-Next, you will be asked to choose whether you want to use TypeScript, if you want to use JavaScript, choose `No`. Here we choose `Yes`:
+Next, you will be asked to choose whether you want to use TypeScript, if you want to use JavaScript, choose `No`.
+Here we choose `Yes`:
 
 ```ansi{11}
 using create-cloudflare version 2.17.1
@@ -391,9 +392,9 @@ Replace `<BOT_TOKEN>` with your bot token, you will see a JSON response like thi
 
 ```json
 {
-    "ok": true,
-    "result": true,
-    "description": "Webhook was deleted"
+  "ok": true,
+  "result": true,
+  "description": "Webhook was deleted"
 }
 ```
 
