@@ -458,6 +458,10 @@ export const siteUk: LocaleConfig = {
         pattern:
           "https://github.com/grammyjs/website/edit/main/site/docs/:path",
       },
+      docFooter: {
+        prev: "Попередня сторінка",
+        next: "Наступна сторінка",
+      },
       lastUpdatedText: "Востаннє оновлено",
       darkModeSwitchLabel: "Вигляд", // only displayed in the mobile view.
       sidebarMenuLabel: "Меню", // only displayed in the mobile view.
