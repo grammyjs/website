@@ -131,7 +131,7 @@ using create-cloudflare version 2.17.1
   Yes / No  // [!code focus]
 ```
 
-Finally, you will be asked whether you want to deploy your worker, choose `No`, we will deploy it when we have a working Telegram bot:
+Finally, you will be asked whether you want to deploy your worker, choose `No`, since we are going to deploy it when we have a working Telegram bot:
 
 ```ansi{49}
 using create-cloudflare version 2.17.1
@@ -382,7 +382,8 @@ Once the development server has started, you can test your bot by sending sample
 Refer to [here](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates) for update examples and [here](https://core.telegram.org/bots/api#update) for more information on the update structure.
 
 If you don't want to construct the update, or if you want to test with a real update, you can get the update from Telegram Bot API with `getUpdates` method.
-To do that, you will need to delete the webhook first. Open your web browser and visit this link:
+To do that, you will need to delete the webhook first.
+Open your web browser and visit this link:
 
 ```ansi:no-line-numbers
 https://api.telegram.org/bot<BOT_TOKEN>/deleteWebhook
