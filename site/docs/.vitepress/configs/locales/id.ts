@@ -97,6 +97,10 @@ const learnAdvanced = {
       link: "/id/advanced/transformers",
     },
     {
+      text: "Telegram Business",
+      link: "/id/advanced/business",
+    },
+    {
       text: "Dukungan Proxy",
       link: "/id/advanced/proxy",
     },
