@@ -131,7 +131,7 @@ using create-cloudflare version 2.17.1
   Yes / No  // [!code focus]
 ```
 
-Finally, you are asked whether to deploy your worker, choose `No`, we will deploy it when we have a working Telegram bot:
+Finally, you will be asked whether you want to deploy your worker, choose `No`, we will deploy it when we have a working Telegram bot:
 
 ```ansi{49}
 using create-cloudflare version 2.17.1
@@ -294,17 +294,17 @@ BOT_INFO = """{
 Replace the bot info with what you get from the web browser.
 Pay attention to the three double quotation marks `"""` at the beginning and end.
 
-Beside `BOT_INFO`, we also add a variable `BOT_TOKEN`, this is an environment variable that stores your bot token that is used to create your bot.
+In addition to `BOT_INFO`, we also add a variable `BOT_TOKEN`, this is an environment variable that stores your bot token that is used to create your bot.
 
-You may notice that we just define the variable `BOT_TOKEN`, but didn't assign yet.
+You may notice that we just define the variable `BOT_TOKEN`, but didn't assign it yet.
 Usually you need to store your environment variable in `wrangler.toml`, however, this is not safe in our case, since the bot token should be kept secret.
 Cloudflare Workers provide us a safe way to store sensitive information like API keys and auth tokens in environment variable: [secrets](https://developers.cloudflare.com/workers/configuration/secrets/#secrets)!
 
 ::: tip
-secret values are not visible within Wrangler or Cloudflare dashboard after you define them.
+Secret values are not visible within Wrangler or the Cloudflare dashboard after you define them.
 :::
 
-You can add a secret to your project by the following command:
+You can add a secret to your project using the following command:
 
 ```sh
 npx wrangler secret put BOT_TOKEN
@@ -335,7 +335,7 @@ Open your browser and visit this URL:
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<MY_BOT>.<MY_SUBDOMAIN>.workers.dev/
 ```
 
-Replace `<BOT_TOKEN>` with your bot token, replace `<MY_BOT>` with the name of your worker, replace `<MY_SUBDOMAIN>` with your worker subdomain configured on Cloudflare dashboard.
+Replace `<BOT_TOKEN>` with your bot token, replace `<MY_BOT>` with the name of your worker, replace `<MY_SUBDOMAIN>` with your worker subdomain configured on the Cloudflare dashboard.
 
 If the setup is successful, you'll see a JSON response like this:
 
@@ -356,7 +356,7 @@ If it responds, it means you're good to go!
 
 For testing and debugging purposes, you can run a local or remote development server before deploying your bot to production.
 
-In development environment, your worker doesn't have access to your secret environment variables.
+In a development environment, your bot doesn't have access to your secret environment variables.
 So, [according to Cloudflare](https://developers.cloudflare.com/workers/configuration/secrets/#secrets-in-development), you can create a `.dev.vars` file in the root of your project to define secrets:
 
 ```env
@@ -369,7 +369,7 @@ Click [here](https://developers.cloudflare.com/workers/configuration/environment
 Replace `BOT_INFO` and `BOT_TOKEN` with your value if you change the environment variable name in the previous step.
 
 ::: tip
-You can use the bot token of a different bot for development, so that the development doesn't influence the production bot.
+You can use a different bot token for development to ensure it doesn't affect production.
 :::
 
 Now, you can run the following command to start a development server:
