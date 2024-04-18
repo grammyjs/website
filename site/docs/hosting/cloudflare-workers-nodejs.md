@@ -29,7 +29,7 @@ First, create a new project:
 npm create cloudflare@latest
 ```
 
-Then, you are asked to type the name of the worker:
+Then, you will be asked to enter the name of the worker:
 
 ```ansi{6}
 using create-cloudflare version 2.17.1
@@ -46,7 +46,7 @@ Here we create a project named `grammybot`, you can choose your own, this will b
 You can change the name of your worker in `wrangler.toml` later.
 :::
 
-Next, you are asked to select the type of your worker, here we choose `"Hello World" Worker`:
+Next, you will be asked to select the type of your worker, here we choose `"Hello World" Worker`:
 
 ```ansi{8}
 using create-cloudflare version 2.17.1
@@ -68,7 +68,7 @@ using create-cloudflare version 2.17.1
   ○ Worker built from a template hosted in a git repository  // [!code focus]
 ```
 
-Next, you are asked to choose whether you want to use TypeScript, if you want to use JavaScript, choose `No`. Here we choose `Yes`:
+Next, you will be asked to choose whether you want to use TypeScript, if you want to use JavaScript, choose `No`. Here we choose `Yes`:
 
 ```ansi{11}
 using create-cloudflare version 2.17.1
@@ -86,7 +86,7 @@ using create-cloudflare version 2.17.1
 ```
 
 Your project will be set up in a few minutes.
-After that, you are asked about whether to use git for version control, choose `Yes` if you want the repo to be initialized automatically or `No` if you want to initialize by yourself later.
+After that, you will be asked whether you want to use git for version control, choose `Yes` if you want the repo to be initialized automatically or `No` if you want to initialize it by yourself later.
 
 Here we choose `Yes`:
 
@@ -251,7 +251,7 @@ Here, we first import `Bot`, `Context` and `webhookCallback` from `grammy`.
 Inside the interface `Env`, we add a variable `BOT_INFO`, this is an environment variable that stores your bot info, you can get your bot info by calling Telegram Bot API with `getMe` method.
 Open this link in your web browser:
 
-```ansi
+```ansi:no-line-numbers
 https://api.telegram.org/bot<BOT_TOKEN>/getMe
 ```
 
@@ -330,7 +330,7 @@ npm run deploy
 We need to tell Telegram where to send updates to.
 Open your browser and visit this URL:
 
-```ansi
+```ansi:no-line-numbers
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<MY_BOT>.<MY_SUBDOMAIN>.workers.dev/
 ```
 
@@ -362,14 +362,10 @@ So, [according to Cloudflare](https://developers.cloudflare.com/workers/configur
 BOT_TOKEN=<your_bot_token>  # <- replace this with your bot token.
 ```
 
-::: tip
-Don't forget to add `BOT_INFO` for development in `wrangler.toml` as well.
-Click [here](https://developers.cloudflare.com/workers/configuration/environment-variables/) for more details.
-:::
+Don't forget to add `BOT_INFO` for development as well.
+Click [here](https://developers.cloudflare.com/workers/configuration/environment-variables/) and [here](https://developers.cloudflare.com/workers/configuration/secrets/) for more details about environment variables and secrets.
 
-::: tip
 Replace `BOT_INFO` and `BOT_TOKEN` with your value if you change the environment variable name in the previous step.
-:::
 
 ::: tip
 You can use the bot token of a different bot for development, so that the development doesn't influence the production bot.
@@ -387,11 +383,11 @@ Refer to [here](https://core.telegram.org/bots/webhooks#testing-your-bot-with-up
 If you don't want to construct the update, or if you want to test with a real update, you can get the update from Telegram Bot API with `getUpdates` method.
 To do that, you will need to delete the webhook first. Open your web browser and visit this link:
 
-```ansi
+```ansi:no-line-numbers
 https://api.telegram.org/bot<BOT_TOKEN>/deleteWebhook
 ```
 
-You will see a JSON response like this:
+Replace `<BOT_TOKEN>` with your bot token, you will see a JSON response like this:
 
 ```json
 {
@@ -405,11 +401,11 @@ Then, open your Telegram client and send something to the bot, e.g. send `/start
 
 Now visit this link in your web browser to get the updates:
 
-```ansi
+```ansi:no-line-numbers
 https://api.telegram.org/bot<BOT_TOKEN>/getUpdates
 ```
 
-If successful, you will see a JSON response similar to this:
+Again, replace `<BOT_TOKEN>` with your bot token, if successful, you will see a JSON response similar to this:
 
 ```json{4-29}
 {
@@ -447,18 +443,18 @@ If successful, you will see a JSON response similar to this:
 
 `result` is an array of update objects (above only contains one update object), you should only copy one object and test your bot by post this object to the development server with the tools mentioned above.
 
-If you want to ignore outdated updates (e.g. ignore all updates during development before deploying to production environment), you can add a parameter `offset` to the `getUpdates` method like this:
+If you want to ignore outdated updates (e.g., ignore all updates during development before deploying to production environment), you can add a parameter `offset` to the `getUpdates` method like this:
 
-```ansi
+```ansi:no-line-numbers
 https://api.telegram.org/bot<BOT_TOKEN>/getUpdates?offset=<update_id>
 ```
 
-Replace `<BOT_TOKEN>` with your bot token, and replace `<update_id>` with the `update_id` of the latest update you get (the one with largest number), you will then only receive updates later than that update and can never get the updates of earlier anymore.
+Replace `<BOT_TOKEN>` with your bot token, and replace `<update_id>` with the `update_id` of the latest update you received (the one with largest number), you will then only receive updates later than that update and will never be able to get the updates from earlier.
 
 Now, you can test your bot with real update objects in your local development environment!
 
-You can also expose your local development server to public internet with some reverse proxy services like [Ngrok](https://ngrok.com/) and set the webhook to the URL you get from them, or you can set up your own reverse proxy if you have a public IP address, a domain name and a SSL certificate, but this is out of scope of this guide.
-For more about how to set up a reverse proxy, please refer to the document of softwares you use.
+You can also expose your local development server to the public internet using some reverse proxy services like [Ngrok](https://ngrok.com/) and set the webhook to the URL you get from them, or you can set up your own reverse proxy if you have a public IP address, a domain name and a SSL certificate, but that is beyond the of scope of this guide.
+For more information about setting up a reverse proxy, see the documentation for the software you are using.
 
 ::: warning
 Using a third-party reverse proxy carries the risk of information leakage!
