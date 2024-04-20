@@ -56,17 +56,17 @@ Telegram 服务器上的文件由 `file_id` 标识，它是一个长字符串。
 
 ::: warning 使用外部的 `file_id`s
 请注意，在某些情况下，在技术上完全可能会从另一个 bot 中得到可以正确工作的 `file_id`。
-**但是**， 使用这种外部的 `file_id` 是危险的，因为它可能在任何时候停止工作，并且不会有警告。
+**然而**， 使用这种外部的 `file_id` 是危险的，因为它可能在任何时候停止工作，并且不会有警告。
 所以，请确保你使用的 `file_id` 只是你的 bot 的。
 :::
 
 > 一个文件可以有多个文件标识符。
 
-另一方面，同一个文件被定义为不同的 `file_id` 即使是同一个 bot。
+另一方面，bot 最终可能会看到由不同 `file_id` 标识的同一个文件。
 这意味你不能通过可靠地比较他们的 `file_id` 来辨别他们两个文件是否一致。
 因此如果你需要在一定时间内跨 bot 比较你的两个文件是否相同，你需要使用随每一个 `file_id` 一起接收的 `file_unique_id`。
 
-但是 `file_unique_id` 不能用于下载文件。
+`file_unique_id` 不能用于下载文件，但对于每个 bot 来说，任何给定文件都是相同的。
 
 ## 接收文件
 
@@ -97,6 +97,9 @@ bot.on("message:voice", async (ctx) => {
 > 如果你想要去接收所有类型的文件，了解使用 [`:media` 和 `:file` 快捷方式](./filter-queries#快捷方式) 用于筛选查询。
 
 一旦你调用了 `getFile`，你可以使用返回的 `file_path` 下载文件，使用这个 URL `https://api.telegram.org/file/bot<token>/<file_path>`，其中 `<token>` 必须用你的 bot token 替换。
+
+如果你 [运行自己的 Bot API 服务器](./api#运行一个本地-bot-api-服务器)，则 `file_path` 将是指向本地磁盘上文件的绝对文件路径。
+在这种情况下，你无需再下载任何内容，因为 Bot API 服务器会在调用 `getFile` 时为你下载文件。
 
 ::: tip 文件插件
 grammY 没有捆绑自己的文件下载器，但是你可以安装 [官方文件插件](../plugins/files)。
@@ -251,10 +254,9 @@ grammY 本身可以不受限制地发送文件，但是 Telegram 在他们的 [�
 这意味着你的 bot 不可以下载大小超过 20 MB 的文件也不能上传超过 50 MB 的文件。
 一些文件类型有着更加严格的限制，比如图片。
 
-如果你想要同时支持上传和下载超过 2000 MB 的文件（Telegram 上的最大文件大小），除了 bot 程序之外，您还必须托管自己的 Bot API 服务器。
+正如 [之前的章节](./api) 中提到的，你的 bot 可以通过一些额外的努力来处理大文件。
+如果你想支持上传最大 2000 MB 的文件（Telegram 上的最大文件大小）和下载任何大小的文件（[Telegram Premium 为 4000 MB](https://t.me/premium/5)），除了托管你的 bot 之外，你还必须 [托管你自己的 Bot API 服务器](./api#运行一个本地-bot-api-服务器)。
 请参阅有关此问题的官方文档 [链接](https://core.telegram.org/bots/api#using-a-local-bot-api-server)。
 
 托管一个 Bot API 服务器与 grammY 无关。
-然而，grammY 支持在配置 bot 需要调用的所有必要方法。
-
-另外，你可能想要在 [这里](./api) 重温一下我们关于 Bot API 的指引文档。
+然而，grammY 支持在配置你的 bot 使用你自己的 Bot API 服务器所需要调用的所有必要方法。

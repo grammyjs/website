@@ -52,7 +52,7 @@ Los archivos pueden enviarse como [esto](#envio-de-archivos).
 Cada bot tiene su propio conjunto de `file_id` para los archivos a los que puede acceder.
 No puedes usar de forma fiable un `file_id` del bot de tu amigo, para acceder a un archivo con _tu_ bot.
 Cada bot utilizará diferentes identificadores para el mismo archivo.
-Esto implica que no puedes simplemente adivinar un `file_id` y acceder a un archivo de una persona al azar, porque Telegram mantiene un registro de qué `file_id` son válidos para tu bot.
+Esto implica que no puedes simplemente adivinar un `file_id` y acceder a un archivo de una persona al azar, porque Telegram mantiene un registro de qué `file_id`s son válidos para tu bot.
 
 ::: warning Uso de `file_id`s extranjeros
 Ten en cuenta que en algunos casos _es_ técnicamente posible que un `file_id` de otro bot parezca funcionar correctamente.
@@ -88,7 +88,7 @@ bot.on("message:voice", async (ctx) => {
   );
 
   const file = await ctx.getFile(); // válido durante al menos 1 hora
-  const path = file.file_path; // fruta del archivo en el servidor de la API de Bot
+  const path = file.file_path; // ruta del archivo en el servidor de la API de Bot
   await ctx.reply("Descargue su propio archivo de nuevo: " + path);
 });
 ```
@@ -100,7 +100,10 @@ Si quieres obtener un archivo diferente mientras manejas un mensaje, utiliza `ct
 
 > Consulta the [`:media` and `:file` shortcuts](../guide/filter-queries#accesos-directos) para las consultas de filtro si quieres recibir cualquier tipo de archivo.
 
-Una vez que hayas llamado a `getFile`, puedes usar la ruta de archivo devuelta para descargar el archivo usando esta URL `https://api.telegram.org/file/bot<token>/<ruta del archivo>`, donde `<token>` debe ser reemplazado por tu token de bot.
+Una vez que hayas llamado a `getFile`, puedes usar el `file_path` devuelta para descargar el archivo usando esta URL `https://api.telegram.org/file/bot<token>/<file_path>`, donde `<token>` debe ser reemplazado por tu token de bot.
+
+Si [ejecutas tu propio servidor Bot API](./api#ejecutar-un-servidor-local-de-bot-api), la `file_path` será en su lugar una ruta de archivo absoluta que apunta a un archivo en tu disco local.
+En ese caso, ya no tendrás que descargar nada, ya que el servidor de la API de bots descargará el archivo por ti cuando llames a `getFile`.
 
 ::: tip Plugin de archivos
 grammY no viene con su propio descargador de archivos, pero puedes instalar el [plugin oficial de archivos](../plugins/files).
@@ -234,15 +237,15 @@ new InputFile(new URL("https://grammy.dev/images/grammY.png"));
 new InputFile({ url: "https://grammy.dev/images/grammY.png" }); // equivalente
 ```
 
-### Añadir un título
+### Añadir un pie de foto
 
 Cuando se envían archivos, se pueden especificar más opciones en un objeto de opciones de tipo `Other`, exactamente como se explicó [anteriormente](./basics#envio-de-mensajes).
 Por ejemplo, esto le permite enviar subtítulos.
 
 ```ts
 // Enviar una foto desde un archivo local al usuario 12345 con el título "foto.jpg".
-await bot.api.sendPhoto(12345, new InputFile("/ruta/a/foto.jpg"), {
-  título: "foto.jpg",
+await bot.api.sendPhoto(12345, new InputFile("/ruta/a/la/foto.jpg"), {
+  caption: "foto.jpg",
 });
 ```
 
@@ -254,10 +257,8 @@ grammY puede enviar archivos sin ningún límite de tamaño, sin embargo, Telegr
 Esto significa que tu bot no puede descargar archivos de más de 20 MB, o subir archivos de más de 50 MB.
 Algunas combinaciones tienen límites aún más estrictos, como las fotos enviadas por URL (5 MB).
 
-Si quieres soportar la subida y descarga de archivos de hasta 2000 MB (tamaño máximo de archivo en Telegram), debes alojar tu propio servidor Bot API además de alojar tu bot.
-Consulta la documentación oficial al respecto [aquí](https://core.telegram.org/bots/api#using-a-local-bot-api-server).
+Como se mencionó en una [sección anterior](./api), tu bot es capaz de trabajar con archivos grandes con algo de esfuerzo extra.
+Si quieres soportar la subida de archivos de hasta 2000 MB (tamaño máximo de archivo en Telegram) y la descarga de archivos de cualquier tamaño ([4000 MB con Telegram Premium](https://t.me/premium/5)), debes [alojar tu propio servidor Bot API](./api#ejecutar-un-servidor-local-de-bot-api) además de alojar tu bot.
 
 Alojar tu propio servidor Bot API no tiene, en sí mismo, nada que ver con grammY.
 Sin embargo, grammY soporta todos los métodos que se necesitan para configurar tu bot para usar tu propio servidor Bot API.
-
-Además, es posible que quieras volver a visitar un capítulo anterior de esta guía sobre la configuración del Bot API [aquí](./api).
