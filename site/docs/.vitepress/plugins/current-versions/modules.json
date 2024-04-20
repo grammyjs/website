@@ -13,6 +13,7 @@
     "grammy_storages",
     "grammy_conversations",
     "grammy_autoquote",
-    "grammy_i18n"
+    "grammy_i18n",
+    "grammy_auto_retry"
   ]
 }
