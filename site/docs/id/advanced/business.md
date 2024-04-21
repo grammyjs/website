@@ -96,7 +96,7 @@ Semua operasi tersebut diserahkan ke manusia.
 Ketika bot terhubung ke sebuah akun business, ia akan menerima sebuah update `business_connection`.
 Update tersebut juga akan diterima oleh bot ketika koneksinya tidak lagi tersambung atau telah terjadi perubahan sedemikian rupa terhadap koneksi tersebut.
 
-Contohnya, sebuah bot bisa jadi tidak bisa mengirim pesan ke chat yang dimaksud.
+Contohnya, sebuah bot bisa jadi tidak dapat mengirim pesan ke chat yang dimaksud.
 Kamu bisa menanganinya dengan menggunakan potongan query `:can_reply`.
 
 ```ts
