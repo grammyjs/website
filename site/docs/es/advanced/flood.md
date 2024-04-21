@@ -29,13 +29,13 @@ Se trata más bien de restricciones flexibles que cambian en función de las car
 
 He aquí algunos conceptos erróneos y falsas suposiciones sobre los límites de velocidad.
 
-- Mi bot es demasiado nuevo para recibir errores de flood wait.
-- Mi bot no recibe suficiente tráfico para recibir errores de flood wait.
-- Esta característica de mi bot no se utiliza lo suficiente como para recibir errores de espera de inundación.
-- Mi bot deja suficiente tiempo entre las llamadas a la API para no recibir errores de espera de inundación.
-- Este método en particular no puede recibir errores de flood wait.
-- El método `getMe` no puede recibir errores de flood wait.
-- El método `getUpdates` no puede recibir errores de flood wait.
+- Mi bot es demasiado nuevo para recibir errores de control de flujo.
+- Mi bot no recibe suficiente tráfico para recibir errores de control de flujo.
+- Esta característica de mi bot no se utiliza lo suficiente como para recibir errores de control de flujo.
+- Mi bot deja suficiente tiempo entre las llamadas a la API para no recibir errores de control de flujo.
+- Este método en particular no puede recibir errores de control de flujo.
+- El método `getMe` no puede recibir errores de control de flujo.
+- El método `getUpdates` no puede recibir errores de control de flujo.
 
 Todo esto es incorrecto.
 
@@ -76,11 +76,11 @@ Ignorarlos, sí.
 
 Es más, [según Telegram](https://t.me/tdlibchat/47285), es "inútil y perjudicial" conocer los límites exactos.
 
-Es _inútil_ porque incluso si conocieras los límites, tendrías que manejar los errores de flood wait.
+Es _inútil_ porque incluso si conocieras los límites, tendrías que manejar los errores de control de flujo.
 Por ejemplo, el servidor Bot API devuelve 429 mientras se apaga para reiniciarse durante el mantenimiento.
 
 Es _perjudicial_ porque si retrasaras artificialmente algunas peticiones para evitar llegar a los límites, el rendimiento de tu bot estaría lejos de ser óptimo.
-Esta es la razón por la que siempre debes hacer tus peticiones lo más rápido posible pero respetando todos los errores de espera de inundación (usando el plugin de auto-reintento).
+Esta es la razón por la que siempre debes hacer tus peticiones lo más rápido posible pero respetando todos los errores de control de flujo (usando el plugin de auto-reintento).
 
 Pero si es malo acelerar las peticiones, ¿cómo se puede hacer la difusión?
 
