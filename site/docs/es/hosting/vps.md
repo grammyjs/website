@@ -45,9 +45,9 @@ En cualquier caso, Hostinger ofrece una garantía de devolución del dinero de 3
 Después de realizar el pago, podrá configurar su servidor:
 
 1. **Ubicación.**
-   Le recomendamos que elija la ubicación más cercana a Amsterdam.
+   Le recomendamos que [elija la ubicación](../guide/api#elegir-la-ubicacion-de-un-centro-de-datos) más cercana a Amsterdam.
    El servidor principal del Bot API se encuentra en Ámsterdam.
-   Si utiliza su propio servidor Bot API, elija en su lugar la ubicación más cercana.
+   Si utiliza su [propio servidor Bot API](../guide/api#ejecutar-un-servidor-local-de-bot-api), elija en su lugar la ubicación más cercana.
 2. **Tipo de servidor.**
    Elige la opción "SO limpio".
 3. **Sistema operativo.**
