@@ -6,6 +6,7 @@
     "grammy_hydrate",
     "grammy_transformer_throttler",
     "grammy_ratelimiter",
+    "grammy_auto_retry",
     "grammy_files",
     "grammy_router",
     "grammy_emoji",
