@@ -220,7 +220,7 @@ bot.use(responseTime);
 Якщо ваш проєкт важливий для вас, ви напевно використовуєте інструменти лінтингу, які попереджають вас, якщо ви забули використати `await` на `Promise`.
 
 ::: tip Увімкніть no-floating-promises
-Розгляньте можливість використання [ESLint](https://eslint.org/) і налаштуйте його на використання [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-floating-promises.md).
+Розгляньте можливість використання [ESLint](https://eslint.org/) і налаштуйте його на використання [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-floating-promises.mdx).
 Це гарантує, що ви ніколи не забудете використати `await`, адже ESLint крикне на вас.
 :::
 
