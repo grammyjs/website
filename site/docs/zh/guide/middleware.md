@@ -220,7 +220,7 @@ bot.use(responseTime);
 如果你的项目对你很重要，那么你就会使用提示工具，如果你忘记在 `Promise` 上使用 `await`，工具会警告你。
 
 ::: tip 启用 no-floating-promises
-考虑使用 [ESLint](https://eslint.org/) 并配置它使用 [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-floating-promises.md) 规则。
+考虑使用 [ESLint](https://eslint.org/) 并配置它使用 [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-floating-promises.mdx) 规则。
 这将确保你永远不会忘记使用 `await`（通过不停的唠叨你）。
 :::
 
