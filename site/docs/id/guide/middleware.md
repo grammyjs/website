@@ -221,7 +221,7 @@ Termasuk `bot.api.sendMessage`, `ctx.reply`, dan pemanggilan koneksi lainnya.
 Kalau proyek yang sedang kamu kerjakan memang serius, sebaiknya gunakan _linting tool_ yang akan mengingatkan disaat kamu lupa menggunakan `await` di dalam sebuah `Promise`.
 
 ::: tip Aktifkan no-floating-promises
-Pertimbangkan untuk menggunakan [ESLint](https://eslint.org/) dan menerapkan aturan [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-floating-promises.md).
+Pertimbangkan untuk menggunakan [ESLint](https://eslint.org/) dan menerapkan aturan [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-floating-promises.mdx).
 Ini akan memastikan kamu supaya tidak lupa menggunakan `await` (dengan cara mengomel ke kamu).
 :::
 
