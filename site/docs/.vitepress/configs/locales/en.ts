@@ -98,6 +98,10 @@ const learnAdvanced = {
       link: "/advanced/transformers",
     },
     {
+      text: "Telegram Business",
+      link: "/advanced/business",
+    },
+    {
       text: "Proxy Support",
       link: "/advanced/proxy",
     },

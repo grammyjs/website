@@ -46,8 +46,8 @@ Setelah melakukan pembayaran, kamu bisa mulai mengatur server-nya:
 
 1. **Lokasi**.
    Server utama API Bot berlokasi di kota Amsterdam, Belanda.
-   Oleh karena itu, kami menyarankan untuk memilih lokasi yang paling dekat dengan kota tersebut.
-   Tetapi, kalau kamu menggunakan server API Bot sendiri, pilih lokasi terdekat dengan server tersebut.
+   Oleh karena itu, kami menyarankan untuk [memilih lokasi](../guide/api#memilih-lokasi-data-center) yang paling dekat dengan kota tersebut.
+   Tetapi, kalau kamu menggunakan [server API Bot sendiri](../guide/api#menjalankan-server-api-bot-lokal), pilih lokasi terdekat dengan server tersebut.
 2. **Jenis server**.
    Pilih "Clean OS".
 3. **Sistem operasi**.

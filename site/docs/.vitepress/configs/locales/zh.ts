@@ -98,7 +98,11 @@ const learnAdvanced = {
       link: "/zh/advanced/transformers",
     },
     {
-      text: "支持",
+      text: "Telegram Business",
+      link: "/zh/advanced/business",
+    },
+    {
+      text: "代理支持",
       link: "/zh/advanced/proxy",
     },
     {

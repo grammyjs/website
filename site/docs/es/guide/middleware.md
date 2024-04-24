@@ -219,7 +219,7 @@ Esto incluye `bot.api.sendMessage`, `ctx.reply`, y todas las demás llamadas de 
 Si tu proyecto es importante para ti, entonces utiliza herramientas de linting que te avisen si alguna vez te olvidas de usar `await` en una `Promise`.
 
 ::: tip Habilitar las promesas no flotantes
-Considere utilizar [ESLint](https://eslint.org/) y configúrelo para que utilice la regla [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-floating-promises.md).
+Considere utilizar [ESLint](https://eslint.org/) y configúrelo para que utilice la regla [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-floating-promises.mdx).
 Esto se asegurará de que nunca se olvide de usar `await` (gritando).
 :::
 
