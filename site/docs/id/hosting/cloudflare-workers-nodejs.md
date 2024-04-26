@@ -249,7 +249,7 @@ export default {
 
 Pada kode di atas, kita meng-import `Bot`, `Context` dan `webhookCallback` dari `grammy`.
 
-Di dalam interface `Env`, kita telah menambahkan sebuah variable `BOT_INFO`, ia merupakan sebuah variable environment yang menyimpan informasi bot kamu, kamu bisa mendapatkan informasi tersebut dengan memanggil API Bot Telegram menggunakan method `getMe`.
+Di dalam interface `Env`, kita telah menambahkan sebuah variable `BOT_INFO`, ia merupakan sebuah environment variable yang menyimpan informasi bot kamu, kamu bisa mendapatkan informasi tersebut dengan memanggil API Bot Telegram menggunakan method `getMe`.
 Buka link berikut di web browser kamu:
 
 ```ansi:no-line-numbers
@@ -275,7 +275,7 @@ Jika berhasil, kamu akan melihat sebuah respon JSON yang serupa dengan ini:
 }
 ```
 
-Sekarang, buka `wrangler.toml` yang berada di root proyek kamu, lalu tambahkan sebuah variable environment `BOT_INFO` ke bagian `[vars]` dengan nilai yang kamu dapatkan dari object `result` di atas seperti ini:
+Sekarang, buka `wrangler.toml` yang berada di root proyek kamu, lalu tambahkan sebuah environment variable `BOT_INFO` ke bagian `[vars]` dengan nilai yang kamu dapatkan dari object `result` di atas seperti ini:
 
 ```toml
 [vars]
@@ -379,7 +379,7 @@ npm run dev
 ```
 
 Ketika server pengembangan sudah dijalankan, kamu bisa mengetes bot dengan mengirimkan sampel update menggunakan alat seperti `curl`, [Insomnia](https://insomnia.rest), atau [Postman](https://postman.com).
-Informasi mengenai sampel update bisa kamu dapatkan [dari sini](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates), sedangkan untuk informasi mengenai struktur update-nya bisa dilihat [di sini](https://core.telegram.org/bots/api#update).
+Informasi mengenai sampel update bisa kamu dapatkan [dari sini](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates), sedangkan untuk struktur update-nya bisa dilihat [di sini](https://core.telegram.org/bots/api#update).
 
 Jika kamu tidak ingin menyusun update secara mandiri, atau hendak melakukan pengetesan menggunakan update yang asli, kamu bisa memperolehnya menggunakan method `getUpdates` dari API Bot Telegram.
 Sebelum itu, kita perlu menghapus webhook-nya terlebih dahulu.
@@ -458,7 +458,7 @@ Kamu juga bisa mengekspos server pengembangan lokal ke publik menggunakan layana
 Untuk informasi lebih lanjut mengenai penyiapan reverse proxy, lihat dokumentasi software yang kamu gunakan.
 
 ::: warning
-Menggunakan reverse proxy pihak ketika dapat menyebabkan beberapa informasi tersebar ke publik!
+Menggunakan reverse proxy pihak ketiga dapat menyebabkan beberapa informasi tersebar ke publik!
 :::
 
 ::: tip
