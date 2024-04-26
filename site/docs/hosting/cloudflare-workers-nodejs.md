@@ -186,7 +186,7 @@ using create-cloudflare version 2.17.1
   Yes / No  // [!code focus]
 ```
 
-## Install dependencies
+## Install Dependencies
 
 `cd` into `grammybot` (replace this by your worker's name you set above), install `grammy`, and other packages you might need:
 
