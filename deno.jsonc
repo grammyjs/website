@@ -6,6 +6,7 @@
   "fmt": {
     "proseWrap": "preserve",
     "exclude": [
+      "./site/api/.cache/",
       "./site/node_modules/",
       "./site/docs/.vitepress/cache/",
       "./site/docs/.vitepress/.temp/",

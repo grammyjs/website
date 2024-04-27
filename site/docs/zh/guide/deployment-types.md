@@ -152,7 +152,7 @@ ______________                                   _____________
 你不需要一直让 bot 与 Telegram 保持连接。
 当没有请求时，你可以使用自动将基础结构收敛为零消耗的服务。
 如果你愿意， 你甚至可以 [在响应 Telegram 请求时调用 API](#webhook-reply), 即使这样会有很多缺点。
-你可以在 [这里](/ref/core/ApiClientOptions#canusewebhookreply) 查看配置选项。
+你可以在 [这里](/ref/core/apiclientoptions#canusewebhookreply) 查看配置选项。
 
 Webhooks 可以在这些地方良好运行：
 
@@ -190,7 +190,7 @@ bot.start();
 因此，我们希望你能够选择一个合适的框架，去启动一个简单的 web 服务器。
 
 每个 grammY bot 都可以转换为许多 web 框架的中间件，包括 `express`，`koa`/`oak` 等等。
-你可以从 grammY 中导入 `webhookCallback` 函数 ([API 参考](/ref/core/webhookCallback)) 为对应的框架创建一个中间件。
+你可以从 grammY 中导入 `webhookCallback` 函数 ([API 参考](/ref/core/webhookcallback)) 为对应的框架创建一个中间件。
 
 ::: code-group
 
@@ -233,7 +233,7 @@ app.use(webhookCallback(bot, "oak"));
 
 为了支持多种不同的 web 框架，grammY 采用了 **适配器** 的概念.
 每个适配器负责将 Web 框架的输入和输出中继到 grammY，反之亦然。
-传递给 `webhookCallback` 的第二个参数 ([API 参考](/ref/core/webhookCallback)) 定义了用于与 Web 框架通信的框架适配器。
+传递给 `webhookCallback` 的第二个参数 ([API 参考](/ref/core/webhookcallback)) 定义了用于与 Web 框架通信的框架适配器。
 
 由于这种方法的工作方式，我们通常需要为每个框架配备一个适配器，但是，由于某些框架共享相似的接口，因此已知适配器可以与多个框架一起工作。
 下表包含当前可用的适配器，以及它们已知可使用的框架、API 或运行时。
@@ -272,7 +272,7 @@ app.use(webhookCallback(bot, "oak"));
 4. 还要注意的是，grammY 中的类型并不反映所执行的 webhook 回调的结果！
    例如，它们表明你总是接收到一个响应对象，但确保在使用这个次要的性能优化时，你将自己责任，努力让他不会出错。
 
-如果你想使用 webhook reply，你可以在你的 `BotConfig` 的 `client` 选项中指定 `canUseWebhookReply` 选项（[API 参考](/ref/core/BotConfig)）。
+如果你想使用 webhook reply，你可以在你的 `BotConfig` 的 `client` 选项中指定 `canUseWebhookReply` 选项（[API 参考](/ref/core/botconfig)）。
 传递一个函数，该函数决定是否对给定的请求使用 webhook 应答(由方法标识)。
 
 ```ts

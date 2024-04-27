@@ -5,8 +5,8 @@ next: false
 
 # Маршрутизатор (`router`)
 
-Клас `Router` ([довідка API](/ref/router/) надає спосіб структурувати вашого бота шляхом маршрутизації обʼєктів контексту до різних частин вашого коду.
-Це більш досконала версія `bot.route` у `Composer` ([довідка grammY API](/ref/core/Composer#route)).
+Клас `Router` ([довідка API](/ref/router/)) надає спосіб структурувати вашого бота шляхом маршрутизації обʼєктів контексту до різних частин вашого коду.
+Це більш досконала версія `bot.route` у `Composer` ([довідка grammY API](/ref/core/composer#route)).
 
 ## Приклад
 
@@ -484,5 +484,4 @@ function getDays(month: number, day: number) {
 ## Загальні відомості про плагін
 
 - Назва: `router`
-- [Джерело](https://github.com/grammyjs/router)
-- [Довідка](/ref/router/)>
+- [Довідка API](/ref/router/)

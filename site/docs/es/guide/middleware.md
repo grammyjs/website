@@ -38,7 +38,7 @@ La actualización **no** se comprueba para el contenido de una foto, porque el m
 Ahora, ¿cómo funciona esto?
 Averigüémoslo.
 
-Podemos inspeccionar el tipo `Middleware` en la referencia de grammY [aquí](/ref/core/Middleware):
+Podemos inspeccionar el tipo `Middleware` en la referencia de grammY [aquí](/ref/core/middleware):
 
 ```ts
 // Se han omitido algunos parámetros de tipo por razones de brevedad.
@@ -47,7 +47,7 @@ type Middleware = MiddlewareFn | MiddlewareObj;
 
 ¡Ajá!
 El middleware puede ser una función o un objeto.
-Sólo hemos utilizado funciones (`(ctx) => { ... }`) hasta ahora, así que ignoremos los objetos middleware por ahora, y profundicemos en el tipo `MiddlewareFn` ([reference](/ref/core/MiddlewareFn)):
+Sólo hemos utilizado funciones (`(ctx) => { ... }`) hasta ahora, así que ignoremos los objetos middleware por ahora, y profundicemos en el tipo `MiddlewareFn` ([reference](/ref/core/middlewarefn)):
 
 ```ts
 // Vuelve a omitir los parámetros del tipo.
@@ -219,7 +219,7 @@ Esto incluye `bot.api.sendMessage`, `ctx.reply`, y todas las demás llamadas de 
 Si tu proyecto es importante para ti, entonces utiliza herramientas de linting que te avisen si alguna vez te olvidas de usar `await` en una `Promise`.
 
 ::: tip Habilitar las promesas no flotantes
-Considere utilizar [ESLint](https://eslint.org/) y configúrelo para que utilice la regla [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-floating-promises.md).
+Considere utilizar [ESLint](https://eslint.org/) y configúrelo para que utilice la regla [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-floating-promises.mdx).
 Esto se asegurará de que nunca se olvide de usar `await` (gritando).
 :::
 
@@ -234,7 +234,7 @@ Otra diferencia es que no importa cuántos argumentos tome tu middleware: `() =>
 
 Hay dos tipos de middleware: funciones y objetos.
 Los objetos middleware son simplemente una envoltura para las funciones middleware.
-Se utilizan sobre todo internamente, pero a veces también pueden ayudar a las bibliotecas de terceros, o ser utilizados en casos de uso avanzado, como con [Composer](/ref/core/Composer):
+Se utilizan sobre todo internamente, pero a veces también pueden ayudar a las bibliotecas de terceros, o ser utilizados en casos de uso avanzado, como con [Composer](/ref/core/composer):
 
 ```ts
 const bot = new Bot("");

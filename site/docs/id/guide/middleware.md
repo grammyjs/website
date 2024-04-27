@@ -38,7 +38,7 @@ Update **tidak** dicocokkan dengan konten foto karena middleware di `(*)` sudah 
 Kok bisa itu terjadi?
 Mari cari tahu!
 
-Klik [di sini](/ref/core/Middleware) untuk melihat type `Middleware` di referensi grammY:
+Klik [di sini](/ref/core/middleware) untuk melihat type `Middleware` di referensi grammY:
 
 ```ts
 // Menghilangkan beberapa type parameter supaya ringkas.
@@ -47,7 +47,7 @@ type Middleware = MiddlewareFn | MiddlewareObj;
 
 Aha!
 Middleware bisa berupa sebuah function ataupun object.
-Sejauh ini, kita cuma menggunakan function (`(ctx) => { ... }`). Mari kita abaikan object middleware untuk saat ini, dan menyelam lebih dalam menuju type `MiddlewareFn` ([referensi](/ref/core/MiddlewareFn)):
+Sejauh ini, kita cuma menggunakan function (`(ctx) => { ... }`). Mari kita abaikan object middleware untuk saat ini, dan menyelam lebih dalam menuju type `MiddlewareFn` ([referensi](/ref/core/middlewarefn)):
 
 ```ts
 // Menghilangkan type parameter lagi.
@@ -221,7 +221,7 @@ Termasuk `bot.api.sendMessage`, `ctx.reply`, dan pemanggilan koneksi lainnya.
 Kalau proyek yang sedang kamu kerjakan memang serius, sebaiknya gunakan _linting tool_ yang akan mengingatkan disaat kamu lupa menggunakan `await` di dalam sebuah `Promise`.
 
 ::: tip Aktifkan no-floating-promises
-Pertimbangkan untuk menggunakan [ESLint](https://eslint.org/) dan menerapkan aturan [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-floating-promises.md).
+Pertimbangkan untuk menggunakan [ESLint](https://eslint.org/) dan menerapkan aturan [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-floating-promises.mdx).
 Ini akan memastikan kamu supaya tidak lupa menggunakan `await` (dengan cara mengomel ke kamu).
 :::
 
@@ -236,7 +236,7 @@ Perbedaan lainnya, tidak peduli berapapun argument yang diambil oleh middleware 
 
 Terdapat dua macam type middleware: function dan object.
 Object middleware simpelnya adalah sebuah pembungkus dari suatu function middleware.
-Kebanyakan cuma digunakan di internal, tetapi terkadang juga bisa membantu library pihak ketiga, atau digunakan untuk kasus tingkat lanjut, contohnya [Composer](/ref/core/Composer):
+Kebanyakan cuma digunakan di internal, tetapi terkadang juga bisa membantu library pihak ketiga, atau digunakan untuk kasus tingkat lanjut, contohnya [Composer](/ref/core/composer):
 
 ```ts
 const bot = new Bot("");

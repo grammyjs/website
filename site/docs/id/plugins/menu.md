@@ -118,7 +118,7 @@ Lalu, tambahkan sebuah label dan sebuah function handler di dalamnya.
 Gunakan `row` untuk menutup baris dan menambahkan tombol di baris berikutnya.
 
 Ada banyak tipe-tipe tombol lainnya yang tersedia, misalnya tombol untuk membuka URL.
-Lihat bagian `MenuRange` di [referensi API plugin ini](/ref/menu/MenuRange), serta [referensi API Bot Telegram](https://core.telegram.org/bots/api#inlinekeyboardbutton) untuk `InlineKeyboardButton`.
+Lihat bagian `MenuRange` di [referensi API plugin ini](/ref/menu/menurange), serta [referensi API Bot Telegram](https://core.telegram.org/bots/api#inlinekeyboardbutton) untuk `InlineKeyboardButton`.
 
 ## Mengirim Menu
 

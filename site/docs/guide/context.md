@@ -1,6 +1,6 @@
 # Context
 
-The `Context` object ([grammY API Reference](/ref/core/Context)) is an important part of grammY.
+The `Context` object ([grammY API Reference](/ref/core/context)) is an important part of grammY.
 
 Whenever you register a listener on your bot object, this listener will receive a context object.
 
@@ -54,15 +54,17 @@ The context object always contains information about your bot, accessible via `c
 
 There are a number of shortcuts installed on the context object.
 
-| Shortcut              | Description                                                                                                          |
-| --------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| `ctx.msg`             | Gets the message object, also edited ones                                                                            |
-| `ctx.chat`            | Gets the chat object                                                                                                 |
-| `ctx.senderChat`      | Gets the sender chat object out of `ctx.msg` (for anonymous channel/group messages)                                  |
-| `ctx.from`            | Gets the author of the message, callback query, or other things                                                      |
-| `ctx.inlineMessageId` | Gets the inline message identifier for callback queries or chosen inline results                                     |
-| `ctx.entities`        | Gets the message entities and their text, optionally filtered by entity type                                         |
-| `ctx.reactions`       | Gets the reactions from an update in a [way that is easy to work with](./reactions#inspecting-how-reactions-changed) |
+| Shortcut                   | Description                                                                                                          |
+| -------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `ctx.msg`                  | Gets the message object, also edited ones                                                                            |
+| `ctx.chat`                 | Gets the chat object                                                                                                 |
+| `ctx.senderChat`           | Gets the sender chat object out of `ctx.msg` (for anonymous channel/group messages)                                  |
+| `ctx.from`                 | Gets the author of the message, callback query, or other things                                                      |
+| `ctx.msgId`                | Gets the message identifier for messages or reactions                                                                |
+| `ctx.inlineMessageId`      | Gets the inline message identifier for callback queries or chosen inline results                                     |
+| `ctx.businessConnectionId` | Gets the business connection identifier for messages or business connection updates                                  |
+| `ctx.entities`             | Gets the message entities and their text, optionally filtered by entity type                                         |
+| `ctx.reactions`            | Gets the reactions from an update in a [way that is easy to work with](./reactions#inspecting-how-reactions-changed) |
 
 In other words, you can also do this:
 
@@ -126,8 +128,8 @@ if (ctx.hasCallbackQuery(/query-data-\d+/)) {
 ```
 
 The same applies to all other has checks.
-Check out the [API reference of the context object](/ref/core/Context#has) to see a list of all has checks.
-Also check out the static property `Context.has` in the [API reference](/ref/core/Context#has) that lets you create efficient predicate functions for probing a lot of context objects.
+Check out the [API reference of the context object](/ref/core/context#has) to see a list of all has checks.
+Also check out the static property `Context.has` in the [API reference](/ref/core/context#has) that lets you create efficient predicate functions for probing a lot of context objects.
 
 ## Available Actions
 
@@ -193,7 +195,7 @@ Use auto-complete to see the available options right in your code editor.
 :::
 
 Naturally, every other method on `ctx.api` has a shortcut with the correct pre-filled values, such as `ctx.replyWithPhoto` to reply with a photo, or `ctx.exportChatInviteLink` to get an invite link for the respective chat.
-If you want to get an overview over what shortcuts exist, then auto-complete is your friend, along with the [grammY API Reference](/ref/core/Context).
+If you want to get an overview over what shortcuts exist, then auto-complete is your friend, along with the [grammY API Reference](/ref/core/context).
 
 Note that you may not want to react in the same chat always.
 In this case, you can just fall back to using `ctx.api` methods, and specify all options when calling them.
@@ -343,7 +345,7 @@ bot.command("start", async (ctx) => {
 
 :::
 
-Naturally, the custom context type can also be passed to other things which handle middleware, such as [composers](/ref/core/Composer).
+Naturally, the custom context type can also be passed to other things which handle middleware, such as [composers](/ref/core/composer).
 
 ```ts
 const composer = new Composer<MyContext>();
@@ -496,7 +498,7 @@ interface SessionFlavor<S> {
 }
 ```
 
-The `SessionFlavor` type ([API Reference](/ref/core/SessionFlavor)) is straightforward: it defines only the property `session`.
+The `SessionFlavor` type ([API Reference](/ref/core/sessionflavor)) is straightforward: it defines only the property `session`.
 It takes a type parameter that will define the actual structure of the session data.
 
 How is that useful?

@@ -1,6 +1,5 @@
 // https://github.com/vuejs/vitepress/issues/2592#issuecomment-1627642497
 // with some modifications
-
 new Crawler({
   appId: "RBF5Q0D7QV",
   apiKey: "...",
@@ -16,12 +15,34 @@ new Crawler({
     {
       indexName: "grammy",
       pathsToMatch: ["https://grammy.dev/**"],
-      recordExtractor: ({ helpers }) => {
+      recordExtractor: ({ helpers, url }) => {
+        /** @type Record<string, number> */
+        const PAGE_RANKS = {
+          guide: 6,
+          advanced: 5,
+          plugins: 4,
+          resources: 3,
+          hosting: 2,
+          ref: 1,
+        };
+        const segments = url.pathname.split("/").filter(Boolean);
+        const [secondToLastSegment, lastSegment] = segments.slice(-2);
+
+        let pageRank = 1;
+        if (PAGE_RANKS[secondToLastSegment]) {
+          pageRank = PAGE_RANKS[secondToLastSegment];
+        } else if (PAGE_RANKS[lastSegment]) {
+          pageRank = PAGE_RANKS[lastSegment];
+        }
+
         return helpers.docsearch({
           recordProps: {
-            content: ".content p, .content li, .content code",
             lvl0: {
-              selectors: ".VPSidebarItem.is-active .text",
+              selectors: [
+                ".VPNavBarMenuLink.active",
+                ".VPNavBarMenuGroup.active > button",
+                ".VPSidebarItem.level-0.has-active > .item .text",
+              ],
               defaultValue: "Documentation",
             },
             lvl1: ".content h1",
@@ -30,9 +51,11 @@ new Crawler({
             lvl4: ".content h4",
             lvl5: ".content h5",
             lvl6: ".content h6",
+            content: ".content p, .content li",
+            pageRank,
           },
           indexHeadings: true,
-          aggregateContent: false,
+          aggregateContent: true,
           recordVersion: "v3",
         });
       },
@@ -87,16 +110,16 @@ new Crawler({
       distinct: true,
       attributeForDistinct: "url",
       customRanking: [
-        "desc(weight.pageRank)",
         "desc(weight.level)",
         "asc(weight.position)",
       ],
       ranking: [
+        "desc(weight.pageRank)",
+        "typo",
         "words",
         "filters",
-        "typo",
-        "attribute",
         "proximity",
+        "attribute",
         "exact",
         "custom",
       ],

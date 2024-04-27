@@ -1,3 +1,4 @@
+import { createCache } from "deno_cache/mod.ts";
 import { modules } from "../modules.ts";
 import * as fs from "std/fs/mod.ts";
 import * as path from "std/path/mod.ts";
@@ -48,12 +49,13 @@ const paths: [string, string, string, string, string, string][] = modules.map(
 Deno.stdout.writeSync(
   enc.encode(`Generating docs for ${paths.length} modules`),
 );
+const cache = createCache({ root: ".cache" });
 const dot = enc.encode(".");
 const refs: Array<Ref> = await Promise
   .all(
     paths.map(
       async ([id, path, slug, name, description, shortdescription]) => {
-        const nodes = await doc(id);
+        const nodes = await doc(id, { load: cache.load });
         Deno.stdout.writeSync(dot);
         return [
           nodes.sort((a, b) => a.name.localeCompare(b.name)),
@@ -96,9 +98,10 @@ function createDoc(
   overloadCount?: number,
   overloads?: DocNodeFunction[],
 ) {
-  const nav = `<div><sup><a href="/ref/">ref</a> / <a href="/ref/${slug}/">${
-    slug.replaceAll("/", " / ")
-  }</a> / ${node.name}</sup></div>`;
+  const nav =
+    `<div><sup><a href="/ref/">ref</a> / <a href="/ref/${slug.toLowerCase()}/">${
+      slug.replaceAll("/", " / ")
+    }</a> / ${node.name}</sup></div>`;
   let component: JSX.Element | null = null;
   switch (node.kind) {
     case "class":
@@ -144,7 +147,10 @@ function createDoc(
       break;
   }
   if (component != null) {
-    const filename = path.join(path_, `${node.name}.md`);
+    const filename = path.join(
+      path_.toLowerCase(),
+      `${node.name.toLowerCase()}.md`,
+    );
     let contents = renderToString(component);
 
     if (!overloadCount || overloadCount == 1) {

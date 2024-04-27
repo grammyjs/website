@@ -5,8 +5,8 @@ next: false
 
 # Router (`router`)
 
-Class `Router` ([Referensi API](/ref/router/) berfungsi untuk mengatur rute suatu object context ke berbagai tempat di kode kamu.
-Plugin ini serupa dengan `bot.route` di `Composer` ([grammY API Reference](/ref/core/Composer#route)), namun ia jauh lebih canggih.
+Class `Router` ([Referensi API](/ref/router/)) berfungsi untuk mengatur rute suatu object context ke berbagai tempat di kode kamu.
+Plugin ini serupa dengan `bot.route` di `Composer` ([grammY API Reference](/ref/core/composer#route)), namun ia jauh lebih canggih.
 
 ## Contoh
 
@@ -483,4 +483,4 @@ Ketika kedua nilai tersebut diketahui, bot akan menghitung sisa harinya lalu men
 
 - Nama: `router`
 - [Sumber](https://github.com/grammyjs/router)
-- [Referensi](/ref/router/)>
+- [Referensi](/ref/router/)

@@ -10,36 +10,60 @@ Materi kali ini akan membahas bagaimana cara menangani file yang dilampirkan ke 
 
 File disimpan terpisah dari pesan.
 Setiap file di server Telegram diidentifikasi dengan sebuah `file_id`, isinya adalah sebuah string karakter yang sangat panjang.
+Contohnya, kurang lebih seperti ini `AgADBAADZRAxGyhM3FKSE4qKa-RODckQHxsoABDHe0BDC1GzpGACAAEC`.
 
-`AgADBAADZRAxGyhM3FKSE4qKa-RODckQHxsoABDHe0BDC1GzpGACAAEC` adalah contoh isi dari `file_id`.
+### Identifier untuk Menerima File
+
+> Bot hanya menerima identifier file.
+> Apabila bot ingin memperoleh konten file-nya, maka ia harus melakukan request secara eksplisit.
 
 Setiap kali bot **menerima** sebuah file yang disertakan di sebuah pesan, ia sebenarnya hanya menerima `file_id`, bukan data file aslinya.
 Kalau bot kamu ingin mengunduh file tersebut, maka ia perlu memanggil method `getFile` ([Referensi API Bot Telegram](https://core.telegram.org/bots/api#getfile)).
-Method inilah yang bertugas membuat URL khusus sementara supaya kamu bisa mengunduh file tadi. Setelah 60 menit terlewati, URL tersebut tidak bisa digunakan. Jika itu terjadi, kamu cukup memanggil ulang `getFile`.
+Method inilah yang bertugas membuat URL khusus sementara supaya kamu bisa mengunduh file tadi.
+Setelah 60 menit terlewati, URL tersebut akan kedaluwarsa. Jika itu terjadi, kamu cukup memanggil ulang `getFile`.
 
-Ketika sebuah bot **mengirim** pesan yang mengandung sebuah file, maka bot tersebut akan menerima informasi mengenai pesan yang terkirim tersebut, termasuk informasi `file_id` dari file yang terkirim.
+Untuk menerima file, lihat bagian [menerima file](#menerima-file).
+
+### Identifier untuk Mengirim File
+
+> Identifier file juga bisa diperoleh dengan cara mengirim file.
+
+Ketika suatu bot **mengirim** pesan yang mengandung sebuah file, bot tersebut akan menerima informasi mengenai pesan yang terkirim tersebut, termasuk informasi `file_id` dari file yang terkirim.
 Artinya, semua file yang bot lihat, baik file yang dikirim maupun yang diterima, `file_id`-nya akan tersedia untuk bot tersebut.
+Apabila kamu ingin memproses file tersebut, kamu perlu menyimpan `file_id`-nya.
+
+> Identifier file sangatlah efisien.
+> Oleh karena itu, gunakan sebisa mungkin.
 
 Ketika sebuah bot mengirim sebuah pesan, ia bisa **menentukan `file_id` yang sebelumnya pernah dilihat oleh bot**.
 Dengan begitu, ia dapat mengirim file yang teridentifikasi tanpa harus mengunggah data file tersebut.
-
-[Gulir ke bawah](#mengirim-file) untuk belajar cara mengunggah file-mu sendiri.
 Kamu bisa menggunakan kembali `file_id` yang sama berulang kali. Artinya, kamu bisa menggunakan `file_id` untuk mengirim file yang sama ke lima chat berbeda.
 Meski begitu, kamu tetap harus menggunakan method yang sesuai, contohnya `file_id` yang mengidentifikasikan sebuah foto tidak dapat digunakan ketika memanggil [`sendVideo`](https://core.telegram.org/bots/api#sendvideo).
+
+Untuk mengirim file, lihat bagian [mengirim file](#mengirim-file).
+
+### Identifier akan Mengejutkanmu
+
+> Identifier file **hanya dapat bekerja untuk bot kamu sendiri**.
+> Apabila ada bot lain yang menggunakan identifier file-mu, mungkin akan berhasil, atau mungkin malah akan mengalami crash, atau bisa saja secara acak membunuh anak kucing yang tak berdosa.
+> :cat: → :skull:
 
 Setiap bot memiliki `file_id`-nya sendiri untuk mengakses file. Kamu tidak bisa menggunakan `file_id` dari bot lain untuk mengakses file yang sama di bot kamu.
 Masing-masing bot menggunakan pengidentifikasi yang berbeda untuk satu file yang sama.
 Sehingga, kamu tidak bisa asal menebak `file_id` lalu mengakses file seseorang begitu saja karena Telegram telah menentukan `file_id` mana yang valid untuk bot kamu.
 
-::: warning Menggunakan file_id dari Sumber Luar
+::: warning Menggunakan `file_id` dari Sumber Luar
 Perlu dicatat bahwa dalam beberapa kasus, `file_id` dari bot lain sesekali bisa bekerja dengan baik di bot kamu karena secara teknis itu memang memungkinkan.
 **Tetapi**, menggunakan `file_id` dari sumber luar seperti itu bisa berbahaya karena ia dapat tidak bekerja sewaktu-waktu tanpa peringatan.
 Oleh karena itu, selalu gunakan `file_id` yang memang diperuntukkan khusus untuk bot kamu.
 :::
 
+> Satu file bisa jadi memiliki beberapa identifier.
+
 Di sisi lain, bot bisa saja secara kebetulan mendapat `file_id` yang berbeda untuk satu file yang sama.
 Karenanya, kamu tidak bisa mengandalkan `file_id` untuk membandingkan apakah dua file identik atau tidak.
 Kalau bot kamu---atau beberapa bot---perlu mengidentifikasi file yang sama dari waktu ke waktu, kamu harus menggunakan value dari `file_unique_id` yang bot terima bersamaan dengan `file_id`.
+
 `file_unique_id` tidak bisa digunakan untuk mengunduh file, namun value-nya akan selalu sama untuk setiap file yang diberikan, bahkan untuk setiap bot.
 
 ## Menerima File
@@ -71,6 +95,9 @@ Kalau ingin mendapatkan file lain selagi menangani pesan, gunakan `ctx.api.getFi
 > Lihat [shortcut `:media` dan `:file`](./filter-queries#shortcut) di filter query untuk menerima berbagai macam file.
 
 Setelah kamu memanggil `getFile`, kamu bisa menggunakan `file_path` untuk mengunduh file menggunakan URL ini `https://api.telegram.org/file/bot<token>/<file_path>`, di mana `<token>` adalah token bot kamu.
+
+Jika kamu [menjalankan server API Bot-mu sendiri](./api#menjalankan-server-api-bot-lokal), `file_path` akan berubah menjadi path file absolut yang mengarah ke sebuah file yang berada di disk lokal kamu.
+Sehingga, kamu tidak perlu mengunduh file apapun, karena server API Bot lah yang akan mengunduh file terkait ketika kamu memanggil `getFile`.
 
 ::: tip Plugin Files
 grammY tidak menyertakan pengunduh file secara bawaan, sebagai gantinya kamu bisa menggunakan [plugin files resmi](../plugins/files) yang telah kami sediakan.
@@ -114,7 +141,7 @@ await ctx.replyWithPhoto("https://grammy.dev/images/grammY.png");
 ### Mengunggah File-mu Sendiri
 
 grammY memiliki dukungan yang baik terhadap pengunggahan file secara mandiri.
-Kamu bisa melakukannya dengan meng-import dan menggunakan class `InputFile` ([Referensi API grammY](/ref/core/InputFile)).
+Kamu bisa melakukannya dengan meng-import dan menggunakan class `InputFile` ([Referensi API grammY](/ref/core/inputfile)).
 
 ```ts
 // Kirim sebuah file melalui path lokal
@@ -124,7 +151,6 @@ await ctx.replyWithPhoto(new InputFile("/tmp/kocheng-oren-uwu.jpg"));
 ```
 
 Constructor `InputFile` tidak hanya menerima path file, tetapi juga stream, object `Buffer`, perulangan async, ataupun sebuah function yang mengembalikan salah satu dari item-item tersebut, dan bahkan tergantung dari platform yang kamu gunakan, bisa lebih banyak lagi.
-
 Yang perlu diingat adalah: **buat sebuah instance `InputFile` lalu teruskan ke method yang bertugas mengirim file**.
 Instance `InputFile` bisa diteruskan ke semua method yang menerima pengiriman file melalui unggahan.
 
@@ -212,15 +238,10 @@ Ketika mengirim file, kamu bisa menentukan opsi lebih lanjut di pilihan object t
 Kode berikut akan mengirimkan caption.
 
 ```ts
-// Kirim sebuah foto dari file lokal ke user 12345
-// dengan caption "Ngopi dulu, bro!".
-await bot.api.sendPhoto(
-  12345,
-  new InputFile("/path/ke/foto-permen-kopi-susu.jpg"),
-  {
-    caption: "Ngopi dulu, bro!",
-  },
-);
+// Kirim sebuah foto dari file lokal ke user 12345 dengan caption "Ngopi dulu, bro!".
+await bot.api.sendPhoto(12345, new InputFile("/path/ke/foto.jpg"), {
+  caption: "Ngopi dulu, bro!",
+});
 ```
 
 Seperti pada method API lainnya, kamu bisa mengirim file menggunakan `ctx` (cara termudah), `ctx.api`, atau `bot.api`.
@@ -231,10 +252,8 @@ Sebenarnya, grammY sanggup mengirim file berapapun ukurannya. Namun, Telegram me
 Sehingga, bot kamu tidak bisa mengunduh file lebih besar dari 20 MB ataupun menunggah file di atas 50 MB.
 Kombinasi tertentu bahkan memiliki batas yang lebih kecil lagi, contohnya foto yang dikirim melalui URL (5 MB).
 
-Selain kamu meng-hosting bot, kamu juga harus meng-hosting server API Bot kamu sendiri, kalau memang ingin supaya bot kamu bisa mengunduh dan mengunggah file hingga 2000 MB (batasan ukuran file di Telegram).
-Lihat dokumentasi resminya [di sini](https://core.telegram.org/bots/api#using-a-local-bot-api-server).
+Seperti yang telah [dijelaskan sebelumnya](./api), dengan usaha yang lebih, bot kamu sebenarnya mampu memproses file berukuran besar.
+Selain meng-hosting bot kamu, kamu juga diharuskan untuk [meng-hosting server API Bot-mu sendiri](./api#menjalankan-server-api-bot-lokal) jika kamu berencana untuk mendukung pengunggahan file hingga 2000 MB (ukuran file maksimal di Telegram) dan pengunduhan file dengan berbagai macam ukuran ([4000 MB dengan Telegram Premium](https://t.me/premium/5)).
 
 Meng-hosting server API Bot tidak ada hubungannya dengan grammY.
 Meski begitu, grammY mendukung method-method yang dibutuhkan untuk mengatur bot kamu agar dapat menggunakan server API Bot milikmu sendiri.
-
-Kamu mungkin ingin mengunjungi materi sebelumnya mengenai skema API Bot [di sini](./api).

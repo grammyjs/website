@@ -98,6 +98,10 @@ const learnAdvanced = {
       link: "/uk/advanced/transformers",
     },
     {
+      text: "Telegram Business",
+      link: "/uk/advanced/business",
+    },
+    {
       text: "Підтримка проксі",
       link: "/uk/advanced/proxy",
     },
@@ -453,6 +457,10 @@ export const siteUk: LocaleConfig = {
         text: "Редагувати цю сторінку на GitHub",
         pattern:
           "https://github.com/grammyjs/website/edit/main/site/docs/:path",
+      },
+      docFooter: {
+        prev: "Попередня сторінка",
+        next: "Наступна сторінка",
       },
       lastUpdatedText: "Востаннє оновлено",
       darkModeSwitchLabel: "Вигляд", // only displayed in the mobile view.

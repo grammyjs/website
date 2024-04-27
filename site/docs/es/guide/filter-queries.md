@@ -9,7 +9,7 @@ El resto del filtrado de los mensajes se deja al desarrollador, lo que a menudo 
 
 Por el contrario, **grammY incluye su propio lenguaje de consulta** que puedes utilizar para **filtrar exactamente los mensajes** que quieras.
 
-Esto permite utilizar más de 820 filtros diferentes, y es posible que añadamos más con el tiempo.
+Esto permite utilizar más de 1150 filtros diferentes, y es posible que añadamos más con el tiempo.
 Todos los filtros válidos se pueden autocompletar en el editor de código.
 Por lo tanto, puedes simplemente escribir `bot.on("")`, abrir el autocompletado, y buscar entre todas las consultas escribiendo algo
 
@@ -217,7 +217,7 @@ que se puede utilizar para detectar los cambios de estado de otros miembros del 
 
 ### Combinación de consultas con otros métodos
 
-Puedes combinar consultas de filtro con otros métodos de la clase `Composer` ([Referencia de la API](/ref/core/Composer)), como `command` o `filter`.
+Puedes combinar consultas de filtro con otros métodos de la clase `Composer` ([Referencia de la API](/ref/core/composer)), como `command` o `filter`.
 Esto permite crear potentes patrones de manejo de mensajes.
 
 ```ts
@@ -308,7 +308,7 @@ function handler(ctx: Filter<Context, ":text">) {
 bot.on(":text", handler);
 ```
 
-> Consulta las referencias de la API para [`matchFilter`](/ref/core/matchFilter), [`Filter`](/ref/core/Filter), y [`FilterQuery`](/ref/core/FilterQuery) para seguir leyendo.
+> Consulta las referencias de la API para [`matchFilter`](/ref/core/matchfilter), [`Filter`](/ref/core/filter), y [`FilterQuery`](/ref/core/filterquery) para seguir leyendo.
 
 ## El lenguaje de consulta
 

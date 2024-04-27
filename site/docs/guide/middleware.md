@@ -38,7 +38,7 @@ The update is **not** checked for a photo content, because the middleware at `(*
 Now, how does this work?
 Let's find out.
 
-We can inspect the `Middleware` type in grammY's reference [here](/ref/core/Middleware):
+We can inspect the `Middleware` type in grammY's reference [here](/ref/core/middleware):
 
 ```ts
 // Omitted some type parameters for brevity.
@@ -47,7 +47,7 @@ type Middleware = MiddlewareFn | MiddlewareObj;
 
 Aha!
 Middleware can be a function or an object.
-We only used functions (`(ctx) => { ... }`) so far, so let's ignore middleware objects for now, and dig deeper into the `MiddlewareFn` type ([reference](/ref/core/MiddlewareFn)):
+We only used functions (`(ctx) => { ... }`) so far, so let's ignore middleware objects for now, and dig deeper into the `MiddlewareFn` type ([reference](/ref/core/middlewarefn)):
 
 ```ts
 // Omitted type parameters again.
@@ -220,7 +220,7 @@ This includes `bot.api.sendMessage`, `ctx.reply`, and all other network calls.
 If your project is important to you, then you use linting tools that warn you if you ever forget to use `await` on a `Promise`.
 
 ::: tip Enable no-floating-promises
-Consider using [ESLint](https://eslint.org/) and configure it to use the [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-floating-promises.md) rule.
+Consider using [ESLint](https://eslint.org/) and configure it to use the [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-floating-promises.mdx) rule.
 This will make sure that you never forget to use `await` (by yelling at you).
 :::
 
@@ -235,7 +235,7 @@ Another difference is that it does not matter how many arguments your middleware
 
 There are two types of middleware: functions and objects.
 Middleware objects are simply a wrapper for middleware functions.
-They are mostly used internally, but can sometimes also help third-party libraries, or be used in advanced use cases, such as with [Composer](/ref/core/Composer):
+They are mostly used internally, but can sometimes also help third-party libraries, or be used in advanced use cases, such as with [Composer](/ref/core/composer):
 
 ```ts
 const bot = new Bot("");

@@ -112,7 +112,7 @@ Ia menggunakan memory secara konstan---selama kamu menentukan batas concurrency-
 
 Agar bot menyelesaikan tugasnya dengan benar, kamu [harus memberi sinyal berhenti](../advanced/reliability#menggunakan-grammy-runner) ke bot ketika proses hendak dimatikan.
 
-Kamu juga bisa menunggu runner berhenti dengan cara menunggu promise `task`---menggunakan `await`---di [`RunnerHandle`](/ref/runner/RunnerHandle) yang dikembalikan dari `run`.
+Kamu juga bisa menunggu runner berhenti dengan cara menunggu promise `task`---menggunakan `await`---di [`RunnerHandle`](/ref/runner/runnerhandle) yang dikembalikan dari `run`.
 
 ```ts
 const handle = run(bot);
@@ -142,7 +142,7 @@ run(bot, {
 });
 ```
 
-Silahkan lihat `RunOptions` di [referensi API](/ref/runner/RunOptions) untuk melihat opsi apa saja yang tersedia.
+Silahkan lihat `RunOptions` di [referensi API](/ref/runner/runoptions) untuk melihat opsi apa saja yang tersedia.
 
 Contohnya, berdasarkan dokumentasi tersebut, `allowed_updates` bisa diaktifkan menggunakan potongan kode berikut:
 
@@ -361,8 +361,8 @@ api.telegram.org <—> source <—> runner <—> sink <—> bot
 
 ### Source
 
-grammY runner dilengkapi dengan satu source bawaan yang bisa beroperasi di berbagai `UpdateSupplier` ([API reference](/ref/runner/UpdateSupplier)). Update supplier semacam itu sangat mudah dibuat dari bot instance.
-Jika kamu ingin membuatnya, pastikan untuk mempelajari `createUpdateFetcher` ([referensi API](/ref/runner/createUpdateFetcher)).
+grammY runner dilengkapi dengan satu source bawaan yang bisa beroperasi di berbagai `UpdateSupplier` ([API reference](/ref/runner/updatesupplier)). Update supplier semacam itu sangat mudah dibuat dari bot instance.
+Jika kamu ingin membuatnya, pastikan untuk mempelajari `createUpdateFetcher` ([referensi API](/ref/runner/createupdatefetcher)).
 
 Source adalah sebuah async iterator untuk kumpulan update yang bisa diaktifkan ataupun dinonaktifkan.
 Selain itu, kamu bisa melakukan `close` untuk memutuskan sambungan dari server Telegram.
@@ -370,10 +370,10 @@ Selain itu, kamu bisa melakukan `close` untuk memutuskan sambungan dari server T
 ### Sink
 
 grammY runner dilengkapi dengan tiga kemungkinan implementasi sink, yaitu berurutan (sama seperti `bot.start()`), perkelompok atau batch (berguna untuk kompatibilitas dengan framework lain), dan bersamaan (yang digunakan oleh `run`).
-Semuanya beroperasi di object `UpdateConsumer` ([Referensi API](/ref/runner/UpdateConsumer)) yang bisa dibuat dengan mudah dari sebuah bot instance.
-Jika kamu ingin membuatnya, pastikan untuk mempelajari `handleUpdate` di `Bot` instance grammY ([API reference](/ref/core/Bot#handleupdate)).
+Semuanya beroperasi di object `UpdateConsumer` ([Referensi API](/ref/runner/updateconsumer)) yang bisa dibuat dengan mudah dari sebuah bot instance.
+Jika kamu ingin membuatnya, pastikan untuk mempelajari `handleUpdate` di `Bot` instance grammY ([API reference](/ref/core/bot#handleupdate)).
 
-Sink berisi sebuah queue ([referensi API](/ref/runner/DecayingDeque)) untuk tiap-tiap update yang sedang diproses.
+Sink berisi sebuah queue ([referensi API](/ref/runner/decayingdeque)) untuk tiap-tiap update yang sedang diproses.
 Update baru yang ditambahkan ke queue akan langsung ditangani oleh update consumer, lalu ia akan mengembalikan sebuah promise yang akan terselesaikan segera setelah kapasitas queque tersedia lagi.
 Angka integral yang terselesaikan menentukan ruang kosong tersebut.
 Pengaturan batas concurrency untuk grammY runner akan dipatuhi melalui queue instance yang bersangkutan.
@@ -388,9 +388,9 @@ Kalau kamu menggunakan `run(bot)`, maka error handler dari `bot.catch` akan digu
 Runner adalah sebuah loop biasa yang mengambil update dari source lalu menyuplainya ke sink.
 Ketika ruang kosong sink tersedia lagi, runner akan mengambil batch update selanjutnya dari source.
 
-Ketika kamu membuat sebuah runner menggunakan `createRunner` ([referensi API](/ref/runner/createRunner)), kamu akan memperoleh sebuah handle yang bisa digunakan untuk mengontrol runner tersebut.
+Ketika kamu membuat sebuah runner menggunakan `createRunner` ([referensi API](/ref/runner/createrunner)), kamu akan memperoleh sebuah handle yang bisa digunakan untuk mengontrol runner tersebut.
 Misalnya, kamu bisa memulai dan menghentikan runner, atau memperoleh sebuah promise yang akan terselesaikan jika runner dihentikan.
-Selain itu, handle ini juga dikembalikan oleh `run`, lihat [Referensi API](/ref/runner/RunnerHandle) `RunnerHandle`.
+Selain itu, handle ini juga dikembalikan oleh `run`, lihat [Referensi API](/ref/runner/runnerhandle) `RunnerHandle`.
 
 ### Function `run`
 

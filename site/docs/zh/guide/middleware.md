@@ -38,7 +38,7 @@ bot.start();
 这是如何工作的呢？
 让我们来了解一下。
 
-我们可以在 grammY 的参考资料中查看 `Middleware` [类型](/ref/core/Middleware)。
+我们可以在 grammY 的参考资料中查看 `Middleware` [类型](/ref/core/middleware)。
 
 ```ts
 // 为了简洁起见，省略了一些类型参数。
@@ -47,7 +47,7 @@ type Middleware = MiddlewareFn | MiddlewareObj;
 
 啊哈。
 中间件可以是一个函数或一个对象。
-我们只用了函数（`(ctx) => { ... }`），所以我们暂时忽略中间件对象，深入挖掘 `MiddlewareFn` 类型（[参考](/ref/core/MiddlewareFn)）。
+我们只用了函数（`(ctx) => { ... }`），所以我们暂时忽略中间件对象，深入挖掘 `MiddlewareFn` 类型（[参考](/ref/core/middlewarefn)）。
 
 ```ts
 // 再次省略了类型参数。
@@ -220,7 +220,7 @@ bot.use(responseTime);
 如果你的项目对你很重要，那么你就会使用提示工具，如果你忘记在 `Promise` 上使用 `await`，工具会警告你。
 
 ::: tip 启用 no-floating-promises
-考虑使用 [ESLint](https://eslint.org/) 并配置它使用 [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-floating-promises.md) 规则。
+考虑使用 [ESLint](https://eslint.org/) 并配置它使用 [no-floating-promises](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-floating-promises.mdx) 规则。
 这将确保你永远不会忘记使用 `await`（通过不停的唠叨你）。
 :::
 
@@ -235,7 +235,7 @@ bot.use(responseTime);
 
 有两种类型的中间件：函数和对象。
 中间件对象只是中间件函数的一个封装器。
-它们大多在内部使用，但有时也可以帮助第三方库，或用于高级用例，如与 [Composer](/ref/core/Composer)：
+它们大多在内部使用，但有时也可以帮助第三方库，或用于高级用例，如与 [Composer](/ref/core/composer)：
 
 ```ts
 const bot = new Bot("");

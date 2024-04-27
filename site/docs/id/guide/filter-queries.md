@@ -9,7 +9,7 @@ Pemfilteran untuk jenis pesan lainnya diserahkan kepada developer bot masing-mas
 
 Sebaliknya, **grammY dilengkapi dengan bahasa query-nya sendiri** yang dapat digunakan untuk **memfilter pesan yang kamu inginkan**.
 
-grammY memiliki lebih dari 820 filter berbeda yang siap dipakai, dan tidak menutup kemungkinan lebih banyak lagi filter yang akan ditambahkan seiring berjalannya waktu.
+grammY memiliki lebih dari 1150 filter berbeda yang siap dipakai, dan tidak menutup kemungkinan lebih banyak lagi filter yang akan ditambahkan seiring berjalannya waktu.
 Setiap filter yang valid dapat dilengkapi menggunakan auto-complete di code editor.
 Dengan demikian, kamu cukup mengetik `bot.on("")`, lalu buka auto-complete, kemudian telusuri semua query yang tersedia dengan cara mengetik sesuatu.
 
@@ -220,7 +220,7 @@ yang digunakan untuk mendeteksi perubahan status member chat lainnya, misalnya k
 
 ### Mengombinasikan Query dengan Method Lain
 
-Kamu bisa mengombinasikan beberapa filter query dengan method-method lain di class `Composer` ([API Reference](/ref/core/Composer)), misalnya `command` atau `filter`.
+Kamu bisa mengombinasikan beberapa filter query dengan method-method lain di class `Composer` ([API Reference](/ref/core/composer)), misalnya `command` atau `filter`.
 Dengan begitu, kamu bisa membuat pola penanganan pesan menjadi lebih fleksibel.
 
 ```ts
@@ -311,7 +311,7 @@ function handler(ctx: Filter<Context, ":text">) {
 bot.on(":text", handler);
 ```
 
-> Lihat referensi API untuk [`matchFilter`](/ref/core/matchFilter), [`Filter`](/ref/core/Filter), dan [`FilterQuery`](/ref/core/FilterQuery).
+> Lihat referensi API untuk [`matchFilter`](/ref/core/matchfilter), [`Filter`](/ref/core/filter), dan [`FilterQuery`](/ref/core/filterquery).
 
 ## Bahasa Query
 
