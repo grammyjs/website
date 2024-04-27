@@ -98,11 +98,13 @@ const myCommands = new Commands();
 
 myCommands
   .command("start", "Initializes bot configuration")
-  .addToScope({ type: "all_private_chats" }, (ctx) =>
-    ctx.reply(`Hello, ${ctx.chat.first_name}!`)
+  .addToScope(
+    { type: "all_private_chats" },
+    (ctx) => ctx.reply(`Hello, ${ctx.chat.first_name}!`),
   )
-  .addToScope({ type: "all_group_chats" }, (ctx) =>
-    ctx.reply(`Hello, members of ${ctx.chat.title}!`)
+  .addToScope(
+    { type: "all_group_chats" },
+    (ctx) => ctx.reply(`Hello, members of ${ctx.chat.title}!`),
   );
 ```
 
@@ -137,7 +139,7 @@ loggedOutCommands.command(
   async (ctx) => {
     await ctx.setMyCommands(loggedInCommands);
     await ctx.reply("Welcome! Session started!");
-  }
+  },
 );
 
 loggedInCommands.command(
@@ -146,7 +148,7 @@ loggedInCommands.command(
   async (ctx) => {
     await ctx.setMyCommands(loggedOutCommands);
     await ctx.reply("Goodbye :)");
-  }
+  },
 );
 
 bot.use(loggedInCommands);
@@ -170,7 +172,7 @@ loggedOutCommands.command(
   async (ctx) => {
     await ctx.setMyCommands(loggedInCommands);
     await ctx.reply("Welcome! Session started!");
-  }
+  },
 );
 
 loggedInCommands.command(
@@ -179,7 +181,7 @@ loggedInCommands.command(
   async (ctx) => {
     await ctx.setMyCommands(loggedOutCommands);
     await ctx.reply("Goodbye :)");
-  }
+  },
 );
 
 bot.use(loggedInCommands);
@@ -243,10 +245,11 @@ bot
     const suggestedCommand = ctx.getNearestCommand(myCommands);
 
     // We found a potential match
-    if (suggestedCommand)
+    if (suggestedCommand) {
       return ctx.reply(
-        `Hm... I don't know that command. Did you mean ${suggestedCommand}?`
+        `Hm... I don't know that command. Did you mean ${suggestedCommand}?`,
       );
+    }
 
     // Nothing seems to come close to what the user typed
     await ctx.reply("Ops... I don't know that command :/");
@@ -270,10 +273,11 @@ bot
     const suggestedCommand = ctx.getNearestCommand(myCommands);
 
     // We found a potential match
-    if (suggestedCommand)
+    if (suggestedCommand) {
       return ctx.reply(
-        `Hm... I don't know that command. Did you mean ${suggestedCommand}?`
+        `Hm... I don't know that command. Did you mean ${suggestedCommand}?`,
       );
+    }
 
     // Nothing seems to come close to what the user typed
     await ctx.reply("Ops... I don't know that command :/");
