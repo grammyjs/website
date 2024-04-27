@@ -317,4 +317,4 @@ All you have to do is set the `matchOnlyAtStart` option to `false`, and the rest
 
 - Name: `commands`
 - [Source](https://github.com/grammyjs/commands)
-- [Reference](/ref/commands)
+- [Reference](/ref/commands/)
