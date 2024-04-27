@@ -19,7 +19,7 @@ If you're looking for the Deno version, please check out [this tutorial](./cloud
 ## Prerequisites
 
 1. a [Cloudflare account](https://dash.cloudflare.com/login) with your workers subdomain [configured](https://dash.cloudflare.com/?account=workers).
-2. a working [NodeJS](https://nodejs.org/) environment with `npm` installed.
+2. a working [Node.js](https://nodejs.org/) environment with `npm` installed.
 
 ## Setting Things Up
 

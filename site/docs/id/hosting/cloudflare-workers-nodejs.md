@@ -19,7 +19,7 @@ Jika kamu sedang mencari versi yang Deno, silahkan beralih ke [tutorial berikut]
 ## Persiapan
 
 1. sebuah [Akun Cloudflare](https://dash.cloudflare.com/login) beserta subdomain worker yang telah [dikonfigurasi](https://dash.cloudflare.com/?account=workers).
-2. sebuah environment [NodeJS](https://nodejs.org/) beserta `npm` yang telah terinstal.
+2. sebuah environment [Node.js](https://nodejs.org/) beserta `npm` yang telah terinstal.
 
 ## Menyiapkan Proyek
 
