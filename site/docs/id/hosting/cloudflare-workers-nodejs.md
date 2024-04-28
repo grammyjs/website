@@ -239,7 +239,7 @@ export default {
     const bot = new Bot(env.BOT_TOKEN, { botInfo: JSON.parse(env.BOT_INFO) });
 
     bot.command("start", async (ctx: Context) => {
-      await ctx.reply("Hello World!");
+      await ctx.reply("Hello, world!");
     });
 
     return webhookCallback(bot, "cloudflare-mod")(request);
