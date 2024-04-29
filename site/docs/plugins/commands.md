@@ -71,8 +71,8 @@ Once you defined your commands with an instance of the `Commands` class, you can
 ```js
 const myCommands = new Commands()
 
-myCommands.command("hello", "say hello", (ctx) => ctx.reply("Hi there!"))
-myCommands.command("start", "Start the bot", (ctx) => ctx.reply("Starting..."))\
+myCommands.command("hello", "Say hello", (ctx) => ctx.reply("Hi there!"))
+myCommands.command("start", "Start the bot", (ctx) => ctx.reply("Starting..."));
 
 bot.use(myCommands)
 
