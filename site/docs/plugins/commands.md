@@ -34,7 +34,7 @@ myCommands.command("hello", "Say hello", (ctx) => ctx.reply(`Hello, world!`));
 bot.use(myCommands);
 ```
 
-This registers a new "/start" command to your bot that will be handled by the given middleware.
+This registers a new `/start` command to your bot that will be handled by the given middleware.
 
 Now, let's get into some of the extra tools this plugin has to offer.
 
@@ -108,14 +108,14 @@ myCommands
   );
 ```
 
-The "start" command can now be called from both private and group chats, and it will give a different response depending on where it gets called from.
-Now if you call `myCommands.setCommands`, the "start" command will be registered to both private and group chats.
+The `start` command can now be called from both private and group chats, and it will give a different response depending on where it gets called from.
+Now if you call `myCommands.setCommands`, the `start` command will be registered to both private and group chats.
 
-### Context shortcut
+### Context Shortcut
 
 What if you want some commands to be displayed only for certain users.
-For example, imagine you have a "login" and a "logout" command.
-The "login" command should only appear for logged out users, and vice versa.
+For example, imagine you have a `login` and a `logout` command.
+The `login` command should only appear for logged out users, and vice versa.
 This is how you can do that with the Commands plugin:
 
 ::: code-group
@@ -154,7 +154,7 @@ loggedInCommands.command(
 bot.use(loggedInCommands);
 bot.use(loggedOutCommands);
 
-// by default, users are not logged in,
+// By default, users are not logged in,
 // so you can set the logged out commands for everyone
 await loggedOutCommands.setCommands(bot);
 ```
@@ -187,14 +187,14 @@ loggedInCommands.command(
 bot.use(loggedInCommands);
 bot.use(loggedOutCommands);
 
-// by default, users are not logged in,
+// By default, users are not logged in,
 // so you can set the logged out commands for everyone
 await loggedOutCommands.setCommands(bot);
 ```
 
 :::
 
-This way when a user calls `/login`, they'll have their commands list changed to contain only the "logout" command.
+This way when a user calls `/login`, they'll have their commands list changed to contain only the `logout` command.
 Neat, right?
 
 ## Command Translations
@@ -247,12 +247,12 @@ bot
     // We found a potential match
     if (suggestedCommand) {
       return ctx.reply(
-        `Hm... I don't know that command. Did you mean ${suggestedCommand}?`,
+        `Hmm... I don't know that command. Did you mean ${suggestedCommand}?`,
       );
     }
 
     // Nothing seems to come close to what the user typed
-    await ctx.reply("Ops... I don't know that command :/");
+    await ctx.reply("Oops... I don't know that command :/");
   });
 ```
 
@@ -275,12 +275,12 @@ bot
     // We found a potential match
     if (suggestedCommand) {
       return ctx.reply(
-        `Hm... I don't know that command. Did you mean ${suggestedCommand}?`,
+        `Hmm... I don't know that command. Did you mean ${suggestedCommand}?`,
       );
     }
 
     // Nothing seems to come close to what the user typed
-    await ctx.reply("Ops... I don't know that command :/");
+    await ctx.reply("Oops... I don't know that command :/");
   });
 ```
 
@@ -305,11 +305,11 @@ With it you can coose between three different behaviors:
 
 Currently, only commands starting with `/` are recognized by Telegram and, thus, by the [command handling done by the grammY core library](../guide/commands).
 In some occasions, you might want to change that and use a custom prefix for your bot.
-That is made possible by the `prefix` option, which will tell the Commands plugin to look for that prefix when trying to identify a command
+That is made possible by the `prefix` option, which will tell the Commands plugin to look for that prefix when trying to identify a command.
 
 ### `matchOnlyAtStart`
 
-When [handling commands](../guide/commands.md), the grammY core library will only recognize commands that start on the first carachter of a message.
+When [handling commands](../guide/commands), the grammY core library will only recognize commands that start on the first character of a message.
 The Commands plugin, however, allows you to listen for commands in the middle of the message text, or in the end, it doesn't matter!
 All you have to do is set the `matchOnlyAtStart` option to `false`, and the rest will be done by the plugin.
 
