@@ -249,7 +249,7 @@ export default {
 
 这里, 我们首先从 `grammy` 导入 `Bot`，`Context` 和 `webhookCallback`。
 
-在接口 `Env` 中，我们添加一个变量 `BOT_INFO`，这是一个存储你的 bot 信息的环境变量，你可以通过使用 `getMe` 方法调用 Telegram Bot API 来获取你的 bot 信息。
+在接口 `Env` 中，我们添加一个变量 `BOT_INFO`，这是一个存储你的 bot 信息的环境变量，你可以通过调用 Telegram Bot API 的 `getMe` 方法来获取你的 bot 信息。
 在网页浏览器中打开以下链接：
 
 ```ansi:no-line-numbers
@@ -378,10 +378,10 @@ BOT_TOKEN=<your_bot_token>  # <- 将此处替换成你的 bot token。
 npm run dev
 ```
 
-开发服务器启动后，你可以使用 `curl`、[Insomnia](https://insomnia.rest) 或 [Postman](https://postman.com) 等工具向其发送示例 update 来测试你的 bot.
+开发服务器启动后，你可以使用 `curl`、[Insomnia](https://insomnia.rest) 或 [Postman](https://postman.com) 等工具向其发送示例 update 来测试你的 bot。
 请参阅 [此处](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates) 获取 update 示例和 [此处](https://core.telegram.org/bots/api#update) 获取有关 update 结构的更多信息。
 
-如果你不想构建 update，或者想要测试真实的 update，则可以使用 `getUpdates` 方法从 Telegram Bot API 获取 update。
+如果你不想构造 update，或者想要测试真实的 update，则可以使用 `getUpdates` 方法从 Telegram Bot API 获取 update。
 为此，你需要先删除 webhook。
 打开你的网页浏览器并访问此链接：
 
@@ -451,11 +451,11 @@ https://api.telegram.org/bot<BOT_TOKEN>/getUpdates
 https://api.telegram.org/bot<BOT_TOKEN>/getUpdates?offset=<update_id>
 ```
 
-将 `<BOT_TOKEN>` 替换为你的 bot token，并将 `<update_id>` 替换为你收到的最新 update（编号最大的 update）的 `update_id`，这样你将只会收到晚于该 update 的 update，并且再也无法获取之前的 update。
+将 `<BOT_TOKEN>` 替换为你的 bot token，并将 `<update_id>` 替换为你收到的最新 update 的 `update_id`（数字最大的那个），这样你将只会收到晚于该 update 的 update，并且再也无法获取之前的 update。
 
 现在，你就可以在本地开发环境中使用真实的 update 对象来测试你的 bot 了！
 
-你还可以使用一些反向代理服务（例如 [Ngrok](https://ngrok.com/)）将本地开发服务器公开到公共互联网，并将 webhook 设置为你从它们那里获得的 URL，或者你也可以设置自己的反向代理（如果你有公网 IP 地址、域名和 SSL 证书的话），但这超出了本指南的范围。
+你还可以使用一些反向代理服务（例如 [Ngrok](https://ngrok.com/)）将本地开发服务器暴露到公网，并将 webhook 设置为你从它们那里获得的 URL，或者你也可以设置自己的反向代理（如果你有公网 IP 地址、域名和 SSL 证书的话），但这超出了本指南的范围。
 有关设置反向代理的更多信息，请参阅你使用的软件的文档。
 
 ::: warning
