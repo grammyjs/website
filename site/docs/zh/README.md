@@ -100,8 +100,8 @@ bot.start();
 
 <div style="font-size: 0.75rem; display: flex; justify-content: center;">
 
-© 2021-2024 &middot; grammY 支持 Telegram Bot API 7.2，该 API 于 2024 年 3 月 31 日 [发布](https://core.telegram.org/bots/api#march-31-2024)。
-(新增: 集成企业账号)
+© 2021-2024 &middot; grammY 支持 Telegram Bot API 7.3，该 API 于 2024 年 5 月 6 日 [发布](https://core.telegram.org/bots/api#may-6-2024)。
+(新增: 商务聊天中的 inline keyboard)
 
 </div>
 </footer>
