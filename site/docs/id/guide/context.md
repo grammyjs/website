@@ -57,10 +57,11 @@ Ada sejumlah shortcut yang tersedia untuk object context.
 | Shortcut                   | Deskripsi                                                                                  |
 | -------------------------- | ------------------------------------------------------------------------------------------ |
 | `ctx.msg`                  | Mendapatkan object message, termasuk yang sudah diedit                                     |
+| `ctx.msgId`                | Mendapatkan id pesan untuk suatu pesan atau reaksi                                         |
 | `ctx.chat`                 | Mendapatkan object chat                                                                    |
+| `ctx.chatId`               | Mendapatkan id chat dari `ctx.chat` atau update `business_connection`                      |
 | `ctx.senderChat`           | Mendapatkan object chat pengirim dari `ctx.msg` (untuk pesan grup/channel anonim)          |
 | `ctx.from`                 | Mendapatkan informasi penulis pesan, callback query, dan lainnya                           |
-| `ctx.msgId`                | Mendapatkan id pesan dari suatu pesan atau reaksi                                          |
 | `ctx.inlineMessageId`      | Mendapatkan id pesan inline dari callback query atau hasil inline yang dipilih             |
 | `ctx.businessConnectionId` | Mendapatkan id koneksi bisnis dari suatu pesan atau update koneksi bisnis                  |
 | `ctx.entities`             | Mendapatkan entity pesan beserta teksnya, dapat disaring berdasarkan jenis entity-nya      |
