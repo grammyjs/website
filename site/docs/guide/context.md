@@ -559,7 +559,11 @@ You can even mix additive and transformative flavors:
 
 ```ts
 type MyContext = FlavorX<
-  FlavorY<FlavorZ<Context & FlavorA & FlavorB & FlavorC>>
+  FlavorY<
+    FlavorZ<
+      Context & FlavorA & FlavorB & FlavorC
+    >
+  >
 >;
 ```
 
