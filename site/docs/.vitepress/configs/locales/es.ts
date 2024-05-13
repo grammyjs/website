@@ -460,7 +460,7 @@ export const siteEs: LocaleConfig = {
       },
       lastUpdatedText: "Última actualización",
       darkModeSwitchLabel: "Apariencia", // only displayed in the mobile view.
-      sidebarMenuLabel: "MenúMenú", // only displayed in the mobile view.
+      sidebarMenuLabel: "Menú", // only displayed in the mobile view.
       returnToTopLabel: "Volver al inicio", // only displayed in the mobile view.
       langMenuLabel: "Cambiar el idioma", // Aria-label
       socialLinks: [
