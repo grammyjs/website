@@ -401,7 +401,7 @@ Edit this record by changing the IP address in the "Points to" field to the IP a
 Next, find and delete the record of type `CNAME` with the name `www`.
 Instead, create a new record of type `A` with the name `www`, pointing to the IP address of your VPS, and set the TTL to 3600.
 
-> If you run into problems, use the other method described in the [knowledge base](https://support.hostinger.com/en/articles/1583227-how-to-point-domain-to-your-vps).
+> If you run into problems, use the other method described in the [knowledge base](https://support.hostinger.com/en/articles/1583227-how-to-point-a-domain-to-your-vps).
 
 ### Setting up a Web Server
 
@@ -637,7 +637,7 @@ Files are delivered to the server using the `rsync` utility, which is implemente
 After the files are delivered to the server, the command described in the `SCRIPT_AFTER` environment variable is executed.
 In our case, after the files are delivered, we go to the bot directory, where we install all the dependencies except `devDependencies`, and restart the bot.
 
-Note that you need to add three [secret environment variables](https://docs.github.com/en/actions/security-guides/encrypted-secrets):
+Note that you need to add three [secret environment variables](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions):
 
 1. `SSH_PRIVATE_KEY`---this is where the private SSH key you created in the [previous step](#ssh-keys) should be stored.
 2. `REMOTE_HOST`---the IP address of your server should be stored here.
@@ -731,7 +731,7 @@ This script sends files to the server using the `rsync` utility, which is implem
 After the files are delivered to the server, the command described in the `SCRIPT_AFTER` environment variable is executed.
 In our case, after the files are delivered, we go to the bot's directory and restart the bot.
 
-Note that you need to add three [secret environment variables](https://docs.github.com/en/actions/security-guides/encrypted-secrets):
+Note that you need to add three [secret environment variables](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions):
 
 1. `SSH_PRIVATE_KEY`---this is where the private SSH key you created in the [previous step](#ssh-keys) should be stored.
 2. `REMOTE_HOST`---the IP address of your server should be stored here.

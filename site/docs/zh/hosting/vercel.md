@@ -5,12 +5,12 @@ next: false
 
 # 托管: Vercel Serverless Functions
 
-本教程将指导你如何使用 [Vercel Serverless Functions](https://vercel.com/docs/functions/serverless-functions) 将 bot 部署到 [Vercel](https://vercel.com/)，假设你已经拥有 [Vercel](https://vercel.com) 帐户。
+本教程将指导你如何使用 [Vercel Serverless Functions](https://vercel.com/docs/functions) 将 bot 部署到 [Vercel](https://vercel.com/)，假设你已经拥有 [Vercel](https://vercel.com) 帐户。
 
 ## 项目结构
 
 开始使用 **Vercel Serverless Functions** 的唯一先决条件是将代码移动到 `api/` 目录，如下所示。
-你还可以查看 [Vercel 的文档](https://vercel.com/docs/functions/serverless-functions/quickstart) 了解更多信息。
+你还可以查看 [Vercel 的文档](https://vercel.com/docs/functions/quickstart) 了解更多信息。
 
 ```asciiart:no-line-numbers
 .
@@ -83,7 +83,7 @@ const bot = new Bot(token);
 export default webhookCallback(bot, "std/http");
 ```
 
-::: tip [Vercel Edge Functions](https://vercel.com/docs/functions/edge-functions) 为 grammY 提供了有限支持
+::: tip [Vercel Edge Functions](https://vercel.com/docs/functions) 为 grammY 提供了有限支持
 你仍然可以使用 grammY 核心包和许多插件，但其他的可能会不兼容，因为 Vercel 的 [Edge Runtime](https://edge-runtime.vercel.app) 可能不支持仅支持 Node.js 的依赖项 ）。
 
 目前，我们没有完整的兼容插件列表，因此你需要自行测试。
