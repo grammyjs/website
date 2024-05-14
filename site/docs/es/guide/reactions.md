@@ -35,7 +35,7 @@ Puede ser feo programar con emoji.
 No todos los sistemas pueden mostrar su código fuente correctamente.
 Además, es molesto copiarlos de diferentes lugares todo el tiempo.
 
-¡Deja que el [plugin emoji](../plugins/emoji.md#datos-utiles-para-reacciones) te ayude!
+¡Deja que el [plugin emoji](../plugins/emoji#datos-utiles-para-reacciones) te ayude!
 :::
 
 Ahora que ya sabes cómo puede reaccionar tu bot a los mensajes, veamos cómo podemos manejar las reacciones de tus usuarios.
