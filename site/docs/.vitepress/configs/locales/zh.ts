@@ -451,7 +451,7 @@ export const siteZh: LocaleConfig = {
       },
       outline: {
         level: [2, 6],
-        label: "On this page",
+        label: "On this page", //!
       },
       editLink: {
         text: "在 GitHub 上编辑此页面",
@@ -483,9 +483,9 @@ export const siteZh: LocaleConfig = {
       ],
       notFound: {
         code: "404",
-        title: "PAGE NOT FOUND",
+        title: "PAGE NOT FOUND", //!
         linkText: "回到首页",
-        linkLabel: "Go to home",
+        linkLabel: "Go to home", //!
         messages: [
           "糟糕！这个页面不存在。",
           "无",
