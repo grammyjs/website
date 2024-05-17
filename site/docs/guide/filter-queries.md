@@ -198,7 +198,7 @@ Some of them are a little advanced, so feel free to move on to the [next section
 You can use the following filter query to receive status updates about your bot.
 
 ```ts
-bot.on("my_chat_member"); // start, stop, join, or leave
+bot.on("my_chat_member"); // block, unblock, join, or leave
 ```
 
 In private chats, this triggers when the bot is started or stopped.
