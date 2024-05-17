@@ -483,7 +483,7 @@ export const siteUk: LocaleConfig = {
       ],
       notFound: {
         code: "404",
-        title: "PAGE NOT FOUND",
+        title: "СТОРІНКУ НЕ ЗНАЙДЕНО",
         linkText: "Ніколи не забувайте, звідки ви",
         linkLabel: "Повернутися на головну",
         messages: [

@@ -447,7 +447,7 @@ export const siteEs: LocaleConfig = {
       },
       outline: {
         level: [2, 6],
-        label: "On this page",
+        label: "En esta página",
       },
       editLink: {
         text: "Editar esta página en GitHub",
