@@ -63,7 +63,7 @@ allowed_updates: API_CONSTANTS.ALL_UPDATE_TYPES;
 ```
 
 来接收所有 update。
-请务必查看 [API 参考](/ref/core/apiconstants#ALL_UPDATE_TYPES)。
+请务必查看 [API 参考](/ref/core/apiconstants#all-update-types)。
 :::
 
 [grammY runner](../plugins/runner#高级选项) 和 `setWebhook` 有着相同的方式来设置 `allowed_updates`。

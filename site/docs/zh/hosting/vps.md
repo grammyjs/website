@@ -13,7 +13,7 @@ next: false
 
 > 要遵循本指南，你首先需要租用一台 VPS。
 > 本节将介绍如何做到这一点。
-> 如果你已经有了一台可用的 VPS，请跳至 [下一节](#启动-Bot)。
+> 如果你已经有了一台可用的 VPS，请跳至 [下一节](#启动-bot)。
 
 在本指南中，我们将使用 [Hostinger](https://hostinger.com) 的服务。
 
@@ -401,7 +401,7 @@ Deno.serve(async (req) => {
 然后，找到并删除名称为 `www` 的 `CNAME` 类型的记录。
 取而代之的是，创建一个名称为 `www` 的 `A` 类型的新记录，指向你的 VPS 的 IP 地址，并将 TTL 设置为 3600。
 
-> 如果你遇到了问题，请使用 [知识库](https://support.hostinger.com/en/articles/1583227-how-to-point-domain-to-your-vps) 中介绍的其他方法。
+> 如果你遇到了问题，请使用 [知识库](https://support.hostinger.com/en/articles/1583227-how-to-point-a-domain-to-your-vps) 中介绍的其他方法。
 
 ### 搭建 Web 服务器
 
@@ -637,7 +637,7 @@ jobs:
 文件传输到服务器后，将执行 `SCRIPT_AFTER` 环境变量中描述的命令。
 在我们的例子中，文件传输完成后，我们进入 bot 的目录，在那里安装除 `devDependencies` 以外的所有依赖项，然后重启 bot。
 
-请注意，你需要添加三个 [秘密环境变量](https://docs.github.com/en/actions/security-guides/encrypted-secrets)：
+请注意，你需要添加三个 [秘密环境变量](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions)：
 
 1. `SSH_PRIVATE_KEY`---这是你在 [上一步](#ssh-密钥) 中创建的 SSH 私钥的存放位置。
 2. `REMOTE_HOST`---服务器的 IP 地址应存储在这里。
@@ -731,7 +731,7 @@ jobs:
 文件传输到服务器后，将执行 `SCRIPT_AFTER` 环境变量中描述的命令。
 在我们的例子中，文件传输完成后，我们进入 bot 的目录并重启 bot。
 
-请注意，你需要添加三个 [秘密环境变量](https://docs.github.com/en/actions/security-guides/encrypted-secrets)：
+请注意，你需要添加三个 [秘密环境变量](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions)：
 
 1. `SSH_PRIVATE_KEY`---这是你在 [上一步](#ssh-密钥) 中创建的 SSH 私钥的存放位置。
 2. `REMOTE_HOST`---服务器的 IP 地址应存储在这里。

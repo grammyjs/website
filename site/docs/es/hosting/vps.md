@@ -400,7 +400,7 @@ Edite este registro cambiando la dirección IP en el campo "Points to" a la dire
 A continuación, busque y elimine el registro de tipo `CNAME` con el nombre `www`.
 En su lugar, cree un nuevo registro de tipo `A` con el nombre `www`, apuntando a la dirección IP de su VPS, y establezca el TTL a 3600.
 
-> Si tiene problemas, utilice el otro método descrito en la [base de conocimientos](https://support.hostinger.com/en/articles/1583227-how-to-point-domain-to-your-vps).
+> Si tiene problemas, utilice el otro método descrito en la [base de conocimientos](https://support.hostinger.com/en/articles/1583227-how-to-point-a-domain-to-your-vps).
 
 ### Configurar un Servidor Web
 
@@ -636,7 +636,7 @@ Los archivos se envían al servidor utilizando la utilidad `rsync`, implementada
 Después de que los archivos se entregan al servidor, se ejecuta el comando descrito en la variable de entorno `SCRIPT_AFTER`.
 En nuestro caso, después de que los archivos son entregados, vamos al directorio del bot, donde instalamos todas las dependencias excepto `devDependencies`, y reiniciamos el bot.
 
-Ten en cuenta que necesitas añadir tres [variables de entorno secretas](https://docs.github.com/en/actions/security-guides/encrypted-secrets):
+Ten en cuenta que necesitas añadir tres [variables de entorno secretas](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions):
 
 1. `SSH_PRIVATE_KEY` --- aquí es donde la clave privada SSH que creaste en el [paso anterior](#claves-ssh) debe ser almacenada.
 2. `REMOTE_HOST` --- la dirección IP de su servidor debe ser almacenada aquí.
@@ -730,7 +730,7 @@ Este script envía los archivos al servidor usando la utilidad `rsync`, implemen
 Después de que los archivos son enviados al servidor, se ejecuta el comando descrito en la variable de entorno `SCRIPT_AFTER`.
 En nuestro caso, después de que los archivos son entregados, vamos al directorio del bot y reiniciamos el bot.
 
-Ten en cuenta que necesitas añadir tres [variables de entorno secretas](https://docs.github.com/en/actions/security-guides/encrypted-secrets):
+Ten en cuenta que necesitas añadir tres [variables de entorno secretas](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions):
 
 1. `SSH_PRIVATE_KEY` --- aquí es donde la clave privada SSH que creaste en el [paso anterior](#claves-ssh) debe ser almacenada.
 2. `REMOTE_HOST` --- la dirección IP de su servidor debe ser almacenada aquí.

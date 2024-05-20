@@ -124,7 +124,7 @@ flyctl secrets set BOT_TOKEN="AAAA:12345"
 
 Цей метод є найпростішим для використання.
 
-1. Встановіть [flyctl](https://fly.io/docs/hands-on/install-flyctl) та [авторизуйтесь](https://fly.io/docs/hands-on/sign-in/).
+1. Встановіть [flyctl](https://fly.io/docs/hands-on/install-flyctl) та [авторизуйтесь](https://fly.io/docs/hands-on/sign-up-sign-in/).
 2. Виконайте команду `flyctl launch`, щоб згенерувати файли `Dockerfile` та `fly.toml` для розгортання.
    Але **НЕ** розгортайте ваш проєкт.
 
@@ -364,7 +364,7 @@ flyctl secrets set BOT_TOKEN="AAAA:12345"
 Основною перевагою такого підходу є те, що Fly буде стежити за змінами у вашому репозиторії, включаючи код вашого бота, й автоматично розгортатиме нові версії.
 Відвідайте <https://fly.io/docs/app-guides/continuous-deployment-with-github-actions> для отримання більш детальних інструкцій.
 
-1. Встановіть [flyctl](https://fly.io/docs/hands-on/install-flyctl) та [авторизуйтесь](https://fly.io/docs/hands-on/sign-in/).
+1. Встановіть [flyctl](https://fly.io/docs/hands-on/install-flyctl) та [авторизуйтесь](https://fly.io/docs/hands-on/sign-up-sign-in/).
 2. Отримайте токен Fly API, виконавши `flyctl auth token`.
 3. Створіть репозиторій на GitHub, який може бути приватним або загальнодоступним.
 4. Перейдіть до налаштувань, виберіть вкладку секретів та створіть секрет з назвою `FLY_API_TOKEN` та значенням токена з 2-го кроку.

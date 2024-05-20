@@ -46,7 +46,7 @@ An album only really exists in the UI of a Telegram client.
 For a bot, handling a media group is the same thing as handling a series of individual messages.
 The most practical advice is to ignore that media groups exist, and to simple write your bot with individual messages in mind.
 Albums will then work automatically.
-For example, you can ask the user to [click a button](../plugins/keyboard.md#inline-keyboards) or send `/done` when all files are uploaded to your bot's chat.
+For example, you can ask the user to [click a button](../plugins/keyboard#inline-keyboards) or send `/done` when all files are uploaded to your bot's chat.
 
 _But if a Telegram client can do it, then my bot should be able to do the same thing!_
 

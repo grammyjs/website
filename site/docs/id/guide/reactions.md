@@ -62,7 +62,7 @@ Untuk menerima semua jenis update, import `API_CONSTANTS` dari grammY lalu cantu
 allowed_updates: API_CONSTANTS.ALL_UPDATE_TYPES;
 ```
 
-Jangan lupa untuk membaca [Referensi API](/ref/core/apiconstants#ALL_UPDATE_TYPES)-nya.
+Jangan lupa untuk membaca [Referensi API](/ref/core/apiconstants#all-update-types)-nya.
 :::
 
 Di [grammY runner](../plugins/runner#opsi-tingkat-lanjut) dan `setWebhook`, `allowed_updates` juga bisa diatur dengan cara yang sama.
