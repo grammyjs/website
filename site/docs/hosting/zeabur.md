@@ -111,7 +111,7 @@ You can just use the template and start writing your bot's code.
 
 ### Method 2: Deploy With Zeabur CLI
 
-cd into your project directory and run the following command:
+`cd` into your project directory and run the following command:
 
 ```sh
 npx @zeabur/cli deploy
