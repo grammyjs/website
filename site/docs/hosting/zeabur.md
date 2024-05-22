@@ -101,11 +101,23 @@ You can just use the template and start writing your bot's code.
 
 ## Deploying
 
+### Method 1: Deploy from GitHub in Zeabur's Dashboard
+
 1. Create a repository on GitHub, it can be public or private and push your code to it.
 2. Go to [Zeabur dashboard](https://dash.zeabur.com).
 3. Click on the `New Project` button, and click on the `Deploy New Service` button, choose `GitHub` as the source and select your repository.
 4. Go to Variables tab to add your environment variables like `BOT_TOKEN`.
 5. Your service will be deployed automatically.
+
+### Method 2: Deploy with Zeabur CLI
+
+cd into your project directory and run the following command:
+
+```sh
+npx @zeabur/cli deploy
+```
+
+Follow the instructions to select a region to deploy, and your bot will be deployed automatically.
 
 ### Setting the Webhook URL
 
