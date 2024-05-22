@@ -109,7 +109,7 @@ You can just use the template and start writing your bot's code.
 4. Go to Variables tab to add your environment variables like `BOT_TOKEN`.
 5. Your service will be deployed automatically.
 
-### Method 2: Deploy with Zeabur CLI
+### Method 2: Deploy With Zeabur CLI
 
 cd into your project directory and run the following command:
 
