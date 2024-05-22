@@ -101,7 +101,7 @@ You can just use the template and start writing your bot's code.
 
 ## Deploying
 
-### Method 1: Deploy from GitHub in Zeabur's Dashboard
+### Method 1: Deploy From GitHub in Zeabur's Dashboard
 
 1. Create a repository on GitHub, it can be public or private and push your code to it.
 2. Go to [Zeabur dashboard](https://dash.zeabur.com).
