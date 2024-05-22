@@ -11,7 +11,7 @@ This tutorial will guide you how to deploy your grammY bots to [Zeabur](https://
 
 To follow along, you need to have a [Github](https://github.com) and [Zeabur](https://zeabur.com/) account.
 
-### Method1: Create a New Project from Scratch
+### Method 1: Create a New Project from Scratch
 
 Initialize your project and install some necessary dependencies:
 
