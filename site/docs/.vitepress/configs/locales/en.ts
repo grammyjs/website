@@ -397,8 +397,12 @@ const hostingTutorials = {
       link: "/hosting/cyclic",
     },
     {
-      text: "Zeabur",
-      link: "/hosting/zeabur",
+      text: "Zeabur (Deno)",
+      link: "/hosting/zeabur-deno",
+    },
+    {
+      text: "Zeabur (Node.js)",
+      link: "/hosting/zeabur-nodejs",
     },
     {
       text: "Virtual Private Server",
