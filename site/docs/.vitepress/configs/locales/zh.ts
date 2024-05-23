@@ -326,6 +326,10 @@ const hostingTutorials = {
   text: "教程",
   items: [
     {
+      text: "Virtual Private Server (VPS)",
+      link: "/zh/hosting/vps",
+    },
+    {
       text: "Deno Deploy",
       link: "/zh/hosting/deno-deploy",
     },
@@ -342,20 +346,12 @@ const hostingTutorials = {
       link: "/zh/hosting/cloudflare-workers-nodejs",
     },
     {
-      text: "Heroku",
-      link: "/zh/hosting/heroku",
-    },
-    {
       text: "Fly",
       link: "/zh/hosting/fly",
     },
     {
       text: "Firebase Functions",
       link: "/zh/hosting/firebase",
-    },
-    {
-      text: "Google Cloud Functions",
-      link: "/zh/hosting/gcf",
     },
     {
       text: "Vercel",
@@ -366,8 +362,8 @@ const hostingTutorials = {
       link: "/zh/hosting/cyclic",
     },
     {
-      text: "Virtual Private Server",
-      link: "/zh/hosting/vps",
+      text: "Heroku",
+      link: "/zh/hosting/heroku",
     },
   ],
 };
