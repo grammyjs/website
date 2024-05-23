@@ -63,7 +63,7 @@ Deno will automatically download the dependencies, generate the lock file and st
 ### Method 2: Use Zeabur's Template
 
 Zeabur has already provided a template for you to use.
-You can find it [here](https://github.com/zeabur/telegram-bot-starter).
+You can find it [here](https://github.com/zeabur/deno-telegram-bot-starter).
 
 You can just use the template and start writing your bot's code.
 
