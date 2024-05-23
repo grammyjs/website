@@ -19,19 +19,16 @@ Initialize your project and install some necessary dependencies:
 # Initialize the project.
 mkdir grammy-bot
 cd grammy-bot
-npm init -y
+pnpm init -y
 
 # Install main dependencies.
-npm install grammy express dotenv
+pnpm install grammy
 
 # Install development dependencies.
-npm install -D typescript ts-node nodemon @types/express @types/node
-
-# Initialize TypeScript config.
-npx tsc --init
+pnpm install -D nodemon
 ```
 
-Then, cd into `src/`, and create a file named `bot.ts`. 
+Then, cd into `src/`, and create a file named `bot.js`. 
 It is where you will write your bot's code.
 
 Your project's root directory should now look like this:
@@ -41,24 +38,10 @@ Your project's root directory should now look like this:
 ├── node_modules/
 ├── dist/
 ├── src/
-│   └── bot.ts
+│   └── bot.js
 ├── package.json
-├── package-lock.json
+├── pnpm-lock.yaml
 └── tsconfig.json
-```
-
-Then, open `tsconfig.json`, and rewrite its contents to use this configuration:
-
-```json
-{
-  "compilerOptions": {
-    "outDir": "dist",
-    "rootDir": "src",
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "strict": true
-  }
-}
 ```
 
 And then we have to add `start`, `build` and `dev` scripts to our `package.json`.
@@ -66,29 +49,23 @@ Our `package.json` should now be similar to this:
 
 ```json{6-10}
 {
-  "name": "grammy-bot",
+  "name": "grammy-telegram-bot-starter",
+  "type": "module",
   "version": "1.0.0",
-  "description": "",
-  "main": "dist/bot.js",
+  "description": "Telegram Bot Starter with JavaScript and Grammy",
+  "main": "index.js",
   "scripts": {
-    "build": "tsc",
-    "start": "node dist/bot.js",
-    "dev": "nodemon src/bot.ts"
+    "dev": "nodemon src/bot.js",
+    "start": "node src/bot.js"
   },
-  "license": "ISC",
+  "author": "Your Name",
+  "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2",
-    "grammy": "^1.17.2",
-    "dotenv": "^16.3.1"
+    "grammy": "^1.21.1"
   },
   "devDependencies": {
-    "@types/express": "^4.17.17",
-    "@types/node": "^20.4.9",
-    "typescript": "^5.1.6",
-    "nodemon": "^3.0.1",
-    "ts-node": "^10.9.1"
-  },
-  "keywords": []
+    "nodemon": "^3.1.0"
+  }
 }
 ```
 
