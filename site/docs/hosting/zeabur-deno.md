@@ -41,7 +41,7 @@ Then modify `main.ts` file with the following code:
 ```typescript
 import { Bot } from "https://deno.land/x/grammy@v1.23.0/mod.ts";
 
-const bot = new Bot("your telegram bot token"); 
+const bot = new Bot("your_telegram_bot_token"); 
 
 bot.command("start", (ctx) => ctx.reply("Hello from Deno & grammY!"));
 
