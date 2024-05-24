@@ -17,7 +17,7 @@ If you're looking for the Deno version, please check out [this tutorial](./zeabu
 
 ## Prerequisites
 
-To follow along, you need to have a [Github](https://github.com) and [Zeabur](https://zeabur.com/) account.
+To follow along, you need to have [Github](https://github.com) and [Zeabur](https://zeabur.com/) accounts.
 
 ### Method 1: Create a New Project From Scratch
 
@@ -59,7 +59,9 @@ bot.on("message:text", async (ctx) => {
 bot.start();
 ```
 
-> Note: Replace `your_telegram_bot_token` with your bot's token from the BotFather.
+> Note: Get your bot token with [BotFather on telegram](https://t.me/BotFather), and set is as an environment variable `TELEGRAM_BOT_TOKEN` in Zeabur. 
+> 
+> You can check out [this tutorial](https://zeabur.com/docs/deploy/variables) for setting environment variables in Zeabur.
 
 Now your project's root directory should now look like this:
 

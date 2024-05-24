@@ -16,7 +16,7 @@ If you're looking for the Node.js version, please check out [this tutorial](./ze
 
 ## Prerequisites
 
-To follow along, you need to have a [Github](https://github.com) and [Zeabur](https://zeabur.com/) account.
+To follow along, you need to have [Github](https://github.com) and [Zeabur](https://zeabur.com/) accounts.
 
 ### Method 1: Create a New Project From Scratch
 
@@ -41,7 +41,10 @@ Then modify `main.ts` file with the following code:
 ```typescript
 import { Bot } from "https://deno.land/x/grammy@v1.23.0/mod.ts";
 
-const bot = new Bot("your_telegram_bot_token"); 
+const token = Deno.env.get("TELEGRAM_BOT_TOKEN");
+if (!token) throw new Error("TELEGRAM_BOT_TOKEN is unset");
+
+const bot = new Bot(token); 
 
 bot.command("start", (ctx) => ctx.reply("Hello from Deno & grammY!"));
 
@@ -50,7 +53,9 @@ bot.on("message", (ctx) => ctx.reply("How can I help you?"));
 bot.start();
 ```
 
-> Note: Replace `your_telegram_bot_token` with your bot's token from the BotFather.
+> Note: Get your bot token with [BotFather on telegram](https://t.me/BotFather), and set is as an environment variable `TELEGRAM_BOT_TELEGRAM` in Zeabur. 
+> 
+> You can check out [this tutorial](https://zeabur.com/docs/deploy/variables) for setting environment variables in Zeabur.
 
 Then run the following command to start your bot:
 
