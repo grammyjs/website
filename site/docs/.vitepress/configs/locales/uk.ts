@@ -326,6 +326,10 @@ const hostingTutorials = {
   text: "Посібники",
   items: [
     {
+      text: "Віртуальний приватний сервер (VPS)",
+      link: "/uk/hosting/vps",
+    },
+    {
       text: "Deno Deploy",
       link: "/uk/hosting/deno-deploy",
     },
@@ -342,20 +346,12 @@ const hostingTutorials = {
       link: "/uk/hosting/cloudflare-workers-nodejs",
     },
     {
-      text: "Heroku",
-      link: "/uk/hosting/heroku",
-    },
-    {
       text: "Fly",
       link: "/uk/hosting/fly",
     },
     {
       text: "Firebase Functions",
       link: "/uk/hosting/firebase",
-    },
-    {
-      text: "Google Cloud Functions",
-      link: "/uk/hosting/gcf",
     },
     {
       text: "Vercel",
@@ -366,8 +362,8 @@ const hostingTutorials = {
       link: "/uk/hosting/cyclic",
     },
     {
-      text: "Віртуальний приватний сервер",
-      link: "/uk/hosting/vps",
+      text: "Heroku",
+      link: "/uk/hosting/heroku",
     },
   ],
 };
