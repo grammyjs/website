@@ -201,6 +201,49 @@ systemd is a powerful service manager which is pre-installed on many Linux distr
    - `WantedBy=multi-user.target` --- defines the system state in which the service should be launched.
      `multi-user.target` --- is a typical value for servers.
 
+   :::: tip Using the `.env` file
+   In the example above, we set the environment variables directly in the unit file.
+   This means that these variables are immediately available to the application.
+
+   If you prefer to use the `.env` file, you need to change a few things in the unit file configuration:
+
+   ```diff
+   [Service]
+   -Environment=BOT_TOKEN=<token>
+   +WorkingDirectory=<bot-folder-path>
+   ExecStart=<start-command>
+   Restart=on-failure
+   ```
+
+   We deleted all the `Environment` entries and added `WorkingDirectory` instead.
+   systemd starts all services from the home directory by default.
+
+   Replace `<bot-folder-path>` with the absolute path to your bot's directory so that systemd uses it as a starting point for all relative paths used by your application.
+
+   Now you can add loading the `.env` file to your code:
+
+   ::: code-group
+
+   ```ts [TypeScript]
+   // Don't forget to run `npm install dotenv`.
+   import "dotenv/config";
+   ```
+
+   ```ts [JavaScript]
+   // Don't forget to run `npm install dotenv`.
+   require("dotenv").config();
+   ```
+
+   ```ts [Deno]
+   import "https://deno.land/std/dotenv/load.ts";
+   ```
+
+   :::
+
+   You can combine both ways of setting environment variables.
+   However, be careful, because the environment variables from the `.env` file can overwrite the environment variables from the unit file configuration.
+   ::::
+
    > For more information on the unit files, read [this](https://access.redhat.com/documentation/te-in/red_hat_enterprise_linux/9/html/using_systemd_unit_files_to_customize_and_optimize_your_system/assembly_working-with-systemd-unit-files_working-with-systemd).
 
 4. Reload systemd whenever you edit the service:
