@@ -59,7 +59,7 @@ bot.on("message:text", async (ctx) => {
 bot.start();
 ```
 
-> Note: Get your bot token with [BotFather on telegram](https://t.me/BotFather), and set is as an environment variable `TELEGRAM_BOT_TOKEN` in Zeabur. 
+> Note: Get your bot token with [@BotFather](https://t.me/BotFather) on Telegram, and set is as an environment variable `TELEGRAM_BOT_TOKEN` in Zeabur. 
 > 
 > You can check out [this tutorial](https://zeabur.com/docs/deploy/variables) for setting environment variables in Zeabur.
 
