@@ -98,6 +98,8 @@ Naturally, if you are using a [custom context type](../guide/context#customizing
 const menu = new Menu<MyContext>("id");
 ```
 
+If you are manually defining `allowed_updates` in `bot.start()` then Interactive Menus requires `callback_query`.
+
 ## Adding Buttons
 
 The menu plugin lays out your keyboards exactly like the [plugin for inline keyboards](./keyboard#building-an-inline-keyboard) does.
