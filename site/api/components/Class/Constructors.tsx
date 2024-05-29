@@ -24,7 +24,9 @@ export function Constructors({
             {v.accessibility
               ? <StyleKw>{v.accessibility}{" "}</StyleKw>
               : undefined}
-            <span style="color: rgb(98, 232, 132);">{v.name}</span>(
+            <span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">
+              {v.name}
+            </span>(
             <Params getLink={getLink}>{v.params}</Params>);
           </CodeBlock>
           {"jsDoc" in v && <P doc>{v.jsDoc?.doc}</P>}
