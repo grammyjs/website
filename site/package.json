@@ -20,6 +20,7 @@
   "devDependencies": {
     "@types/markdown-it": "13.0.7",
     "@types/node": "^20.11.30",
+    "country-flag-emoji-polyfill": "0.1.8",
     "deno-bin": "1.42.0",
     "lazy-lottie-player": "0.0.1",
     "markdownlint-cli2": "0.12.1",
