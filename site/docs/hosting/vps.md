@@ -143,18 +143,20 @@ systemd is a powerful service manager which is pre-installed on many Linux distr
 
    :::
 
-2. You should have the absolute path to your entry file, too.
+2. You should have the absolute path to your bot's directory.
 
 3. Your start command should look like the following:
 
    ```sh
-   <runtime_path> <options> <entry_file_path>
+   <runtime_path> <options> <entry_file_relative_path>
+
+   # Path to the bot directory: /home/user/bot1/
 
    # Deno example:
-   # /home/user/.deno/bin/deno --allow-all /home/user/bot1/mod.ts
+   # /home/user/.deno/bin/deno --allow-all run ./mod.ts
 
    # Node.js example:
-   # /home/user/.nvm/versions/node/v16.9.1/bin/node /home/user/bot1/index.js
+   # /home/user/.nvm/versions/node/v16.9.1/bin/node ./index.js
    ```
 
 #### Creating the Service
