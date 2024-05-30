@@ -153,10 +153,10 @@ systemd is a powerful service manager which is pre-installed on many Linux distr
    # Path to the bot directory: /home/user/bot1/
 
    # Deno example:
-   # /home/user/.deno/bin/deno --allow-all run ./mod.ts
+   # /home/user/.deno/bin/deno --allow-all run mod.ts
 
    # Node.js example:
-   # /home/user/.nvm/versions/node/v16.9.1/bin/node ./index.js
+   # /home/user/.nvm/versions/node/v16.9.1/bin/node index.js
    ```
 
 #### Creating the Service
