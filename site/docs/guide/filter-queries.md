@@ -201,7 +201,7 @@ You can use the following filter query to receive status updates about your bot.
 bot.on("my_chat_member"); // block, unblock, join, or leave
 ```
 
-In private chats, this triggers when the bot is started or stopped.
+In private chats, this triggers when the bot is blocked or unblocked.
 In groups, this triggers when the bot is added or removed.
 You can now inspect `ctx.myChatMember` to figure out what exactly happened.
 
