@@ -73,13 +73,23 @@ export function Def(
   return (
     <>
       {method.kind == "setter"
-        ? <span style="color: #F286C4;">set{" "}</span>
+        ? (
+          <span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">
+            set{" "}
+          </span>
+        )
         : method.kind == "getter"
-        ? <span style="color: #F286C4;">get{" "}</span>
+        ? (
+          <span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">
+            get{" "}
+          </span>
+        )
         : (
           ""
         )}
-      <span style="color: #62E884">{method.name}</span>
+      <span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">
+        {method.name}
+      </span>
       <TypeParams_ getLink={getLink}>
         {typeParams}
       </TypeParams_>(
