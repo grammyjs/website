@@ -203,7 +203,7 @@ Kamu bisa menggunakan filter query berikut untuk menerima status update mengenai
 bot.on("my_chat_member"); // diblokir, blokir dibuka, bergabung, atau keluar
 ```
 
-Filter di atas akan terpicu di chat pribadi, baik saat bot diblokir ataupun saat blokirnya dibuka.
+Filter di atas akan terpicu di chat pribadi, baik saat bot diblokir maupun saat blokirnya dibuka.
 Jika di grup, ia akan terpicu saat bot ditambahkan atau dikeluarkan.
 Kamu bisa memeriksa `ctx.myChatMember` untuk mencari tahu apa yang sebenarnya terjadi.
 
