@@ -99,8 +99,8 @@ bot.start();
 
 <div style="font-size: 0.75rem; display: flex; justify-content: center;">
 
-© 2021-2024 &middot; grammY підтримує Telegram Bot API 7.3, який був [випущений](https://core.telegram.org/bots/api#may-6-2024) 6-го травня 2024 року.
-Остання зміна: вбудовані клавіатури в бізнес-чатах.
+© 2021-2024 &middot; grammY підтримує Telegram Bot API 7.4, який був [випущений](https://core.telegram.org/bots/api#may-28-2024) 28-го травня 2024 року.
+Остання зміна: Telegram Stars.
 
 </div>
 </footer>
