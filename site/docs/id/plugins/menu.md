@@ -90,6 +90,7 @@ bot.start();
 :::
 
 > Pastikan semua menu dipasang sebelum middleware, khususnya sebelum middleware yang menggunakan data callback query.
+> Selain itu, jika kamu menggunakan pengaturan khusus untuk `allowed_updates`, jangan lupa untuk menyertakan update `callback_query`-nya.
 
 Jika kamu menggunakan [custom context type](../guide/context#memodifikasi-object-context), kamu juga bisa memasangnya ke `Menu`.
 

@@ -200,11 +200,11 @@ Beberapa diantaranya merupakan fitur tingkat lanjut, silahkan baca [materi berik
 Kamu bisa menggunakan filter query berikut untuk menerima status update mengenai bot-mu.
 
 ```ts
-bot.on("my_chat_member"); // start, stop, join, atau leave
+bot.on("my_chat_member"); // diblokir, blokir dibuka, bergabung, atau keluar
 ```
 
-Filter tadi akan terpicu saat bot dimulai atau distop di chat pribadi.
-Kalau di grup, ia akan terpicu saat bot ditambahkan atau dikeluarkan.
+Filter di atas akan terpicu di chat pribadi, baik saat bot diblokir maupun saat blokirnya dibuka.
+Jika di grup, ia akan terpicu saat bot ditambahkan atau dikeluarkan.
 Kamu bisa memeriksa `ctx.myChatMember` untuk mencari tahu apa yang sebenarnya terjadi.
 
 Hati-hati!

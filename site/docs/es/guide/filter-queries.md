@@ -198,10 +198,10 @@ Algunas de ellas son un poco avanzadas, así que no dudes en pasar a la [siguien
 Puedes utilizar la siguiente consulta de filtro para recibir actualizaciones de estado sobre tu bot.
 
 ```ts
-bot.on("my_chat_member"); // iniciar, detener, unirse o abandonar
+bot.on("my_chat_member"); // bloquear, desbloquear, unirse o abandonar
 ```
 
-En los chats privados, esto se activa cuando el bot se inicia o se detiene.
+En los chats privados, se activa cuando el bot es bloqueado o desbloqueado.
 En los grupos, esto se dispara cuando el bot es añadido o eliminado.
 Ahora puedes inspeccionar `ctx.myChatMember` para saber qué ha pasado exactamente.
 
