@@ -190,7 +190,7 @@ systemd is a powerful service manager which is pre-installed on many Linux distr
    [Install]
    WantedBy=multi-user.target
    ```
-   
+
    Sustituye `<ruta-directorio-bot>` por la ruta absoluta al directorio de tu bot y `<comando-de-inicio>` por el comando que recibiste [arriba](#obtener-el-comando-de-inicio).
 
    He aquí una breve explicación de la configuración del servicio:
