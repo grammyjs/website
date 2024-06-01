@@ -91,6 +91,7 @@ bot.start();
 :::
 
 > Make sure that you install all menus before other middleware, especially before middleware that uses callback query data.
+> Also, if you use a custom configuration for `allowed_updates`, remember to include `callback_query` updates.
 
 Naturally, if you are using a [custom context type](../guide/context#customizing-the-context-object), you can pass it to `Menu` too.
 
