@@ -83,7 +83,7 @@ Our `package.json` should now be similar to this:
 {
   "name": "telegram-bot-starter",
   "version": "1.0.0",
-  "description": "Telegram Bot Starter with JavaScript and Grammy",
+  "description": "Telegram Bot Starter with TypeScript and grammY",
   "scripts": {
     "start": "ts-node src/bot.ts"
   },
