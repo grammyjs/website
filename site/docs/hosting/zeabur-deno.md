@@ -64,7 +64,7 @@ Then run the following command to start your bot:
 deno run --allow-net main.ts
 ```
 
-Deno will automatically download the dependencies, generate the lock file and start your bot.
+Deno will automatically download the dependencies, generate the lock file, and start your bot.
 
 ### Method 2: Use Zeabur's Template
 
