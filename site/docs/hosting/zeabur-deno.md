@@ -5,7 +5,8 @@ next: false
 
 # Hosting: Zeabur (Deno)
 
-[Zeabur](https://zeabur.com) is a platform that allows you to deploy your full-stack applications with ease. It supports various programming languages and frameworks, including Deno and grammY.
+[Zeabur](https://zeabur.com) is a platform that allows you to deploy your full-stack applications with ease.
+It supports various programming languages and frameworks, including Deno and grammY.
 
 This tutorial will guide you how to deploy your grammY bots with Deno to [Zeabur](https://zeabur.com/).
 
