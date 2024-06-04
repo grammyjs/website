@@ -55,7 +55,7 @@ bot.on("message:text", async (ctx) => {
 
   const response = "Hello, I'm a bot!";
 
-  ctx.reply(response);
+  await ctx.reply(response);
 });
 
 bot.start();
