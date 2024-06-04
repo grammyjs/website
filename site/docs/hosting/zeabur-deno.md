@@ -40,7 +40,7 @@ touch deno.json
 Then modify `main.ts` file with the following code:
 
 ```typescript
-import { Bot } from "https://deno.land/x/grammy@v1.23.0/mod.ts";
+import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
 const token = Deno.env.get("TELEGRAM_BOT_TOKEN");
 if (!token) throw new Error("TELEGRAM_BOT_TOKEN is unset");
