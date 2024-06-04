@@ -14,7 +14,6 @@ This tutorial explains how to deploy a Telegram bot to Zeabur using Node.js.
 If you're looking for the Deno version, please check out [this tutorial](./zeabur-deno) instead.
 :::
 
-
 ## Prerequisites
 
 To follow along, you need to have [Github](https://github.com) and [Zeabur](https://zeabur.com/) accounts.
@@ -33,13 +32,16 @@ pnpm init -y
 pnpm install grammy
 
 # Install development dependencies.
-pnpm install -D nodemon
+pnpm install -D typescript
+
+# Initialize TypeScript.
+npx tsc --init
 ```
 
-Then, cd into `src/`, and create a file named `bot.js`. 
+Then, cd into `src/`, and create a file named `bot.ts`.
 It is where you will write your bot's code.
 
-Now, you can start writing your bot's code in `src/bot.js`.
+Now, you can start writing your bot's code in `src/bot.ts`.
 
 ```js
 import { Bot } from "grammy";
@@ -50,7 +52,7 @@ const bot = new Bot(
 
 bot.on("message:text", async (ctx) => {
   console.log("Message: ", ctx.message.text);
-  
+
   const response = "Hello, I'm a bot!";
 
   ctx.reply(response);
@@ -59,8 +61,8 @@ bot.on("message:text", async (ctx) => {
 bot.start();
 ```
 
-> Note: Get your bot token with [@BotFather](https://t.me/BotFather) on Telegram, and set is as an environment variable `TELEGRAM_BOT_TOKEN` in Zeabur. 
-> 
+> Note: Get your bot token with [@BotFather](https://t.me/BotFather) on Telegram, and set is as an environment variable `TELEGRAM_BOT_TOKEN` in Zeabur.
+>
 > You can check out [this tutorial](https://zeabur.com/docs/deploy/variables) for setting environment variables in Zeabur.
 
 Now your project's root directory should now look like this:
@@ -69,32 +71,29 @@ Now your project's root directory should now look like this:
 .
 ├── node_modules/
 ├── src/
-│   └── bot.js
+│   └── bot.ts
 ├── package.json
 ├── pnpm-lock.yaml
 ```
 
-And then we have to add `start` and `dev` scripts to our `package.json`.
+And then we have to add `start` scripts to our `package.json`.
 Our `package.json` should now be similar to this:
 
-```json{7-10}
+```json
 {
-  "name": "grammy-telegram-bot-starter",
-  "type": "module",
+  "name": "telegram-bot-starter",
   "version": "1.0.0",
   "description": "Telegram Bot Starter with JavaScript and Grammy",
-  "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/bot.js",
-    "start": "node src/bot.js"
+    "start": "ts-node src/bot.ts"
   },
-  "author": "Your Name",
+  "author": "MichaelYuhe",
   "license": "MIT",
   "dependencies": {
     "grammy": "^1.21.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.0"
+    "typescript": "^5.4.5"
   }
 }
 ```
@@ -102,7 +101,7 @@ Our `package.json` should now be similar to this:
 Now, you can run your bot locally by running:
 
 ```sh
-pnpm run dev
+pnpm start
 ```
 
 ### Method 2: Use Zeabur's Template
@@ -131,5 +130,3 @@ npx @zeabur/cli deploy
 ```
 
 Follow the instructions to select a region to deploy, and your bot will be deployed automatically.
-
-

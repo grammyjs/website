@@ -20,7 +20,7 @@ To follow along, you need to have [Github](https://github.com) and [Zeabur](http
 
 ### Method 1: Create a New Project From Scratch
 
-> Make sure you have Deno installed on your local machine. 
+> Make sure you have Deno installed on your local machine.
 
 Initialize your project and install some necessary dependencies:
 
@@ -44,7 +44,7 @@ import { Bot } from "https://deno.land/x/grammy@v1.23.0/mod.ts";
 const token = Deno.env.get("TELEGRAM_BOT_TOKEN");
 if (!token) throw new Error("TELEGRAM_BOT_TOKEN is unset");
 
-const bot = new Bot(token); 
+const bot = new Bot(token);
 
 bot.command("start", (ctx) => ctx.reply("Hello from Deno & grammY!"));
 
@@ -53,8 +53,8 @@ bot.on("message", (ctx) => ctx.reply("How can I help you?"));
 bot.start();
 ```
 
-> Note: Get your bot token with [@BotFather](https://t.me/BotFather) on Telegram, and set is as an environment variable `TELEGRAM_BOT_TELEGRAM` in Zeabur. 
-> 
+> Note: Get your bot token with [@BotFather](https://t.me/BotFather) on Telegram, and set is as an environment variable `TELEGRAM_BOT_TELEGRAM` in Zeabur.
+>
 > You can check out [this tutorial](https://zeabur.com/docs/deploy/variables) for setting environment variables in Zeabur.
 
 Then run the following command to start your bot:

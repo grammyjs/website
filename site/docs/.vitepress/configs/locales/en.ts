@@ -401,10 +401,6 @@ const hostingTutorials = {
       link: "/hosting/zeabur-nodejs",
     },
     {
-      text: "Virtual Private Server",
-      link: "/hosting/vps",
-    }
-    {
       text: "Heroku",
       link: "/hosting/heroku",
     },
