@@ -44,7 +44,7 @@ It is where you will write your bot's code.
 
 Now, you can start writing your bot's code in `src/bot.ts`.
 
-```js
+```ts
 import { Bot } from "grammy";
 
 const bot = new Bot(
