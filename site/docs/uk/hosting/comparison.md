@@ -73,6 +73,7 @@ next: false
 | Hetzner Cloud | 4.15 €      | ~42 мс :de:                                                       | 1 vCPU, 2 ГБ RAM, 20 ГБ SSD, 20 ТБ |
 | IONOS VPS     | 1 € або 2 $ | 15 мс :de: Баден-Баден                                            | 1 vCPU, 0.5 ГБ RAM, 8 ГБ SSD       |
 | Scaleway      | ~7 €        |                                                                   | 2 ядра, 2 ГБ RAM, 20 ГБ SSD        |
+| MVPS          | 4 €         | 6-9 ms :de: Німеччина                                             | 1 ядро, 2 ГБ RAM, 25 ГБ SSD, 2 ТБ  |
 
 ## Одиниці вимірювання
 
