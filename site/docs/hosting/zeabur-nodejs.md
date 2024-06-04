@@ -105,6 +105,11 @@ Now, you can run your bot locally by running:
 pnpm start
 ```
 
+> Note: You need to install `ts-node` globally to run the bot locally.
+>
+> You can install it by running `pnpm install -g ts-node`.
+
+
 ### Method 2: Use Zeabur's Template
 
 Zeabur has already provided a template for you to use.
