@@ -109,7 +109,6 @@ pnpm start
 >
 > You can install it by running `pnpm install -g ts-node`.
 
-
 ### Method 2: Use Zeabur's Template
 
 Zeabur has already provided a template for you to use.
