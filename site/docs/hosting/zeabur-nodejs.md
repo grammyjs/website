@@ -5,7 +5,8 @@ next: false
 
 # Hosting: Zeabur (Node.js)
 
-[Zeabur](https://zeabur.com) is a platform that allows you to deploy your full-stack applications with ease. It supports various programming languages and frameworks, including Node.js and grammY.
+[Zeabur](https://zeabur.com) is a platform that allows you to deploy your full-stack applications with ease.
+It supports various programming languages and frameworks, including Node.js and grammY.
 
 This tutorial will guide you how to deploy your grammY bots with Node.js to [Zeabur](https://zeabur.com/).
 
