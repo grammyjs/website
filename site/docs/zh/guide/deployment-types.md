@@ -243,6 +243,7 @@ app.use(webhookCallback(bot, "oak"));
 | `aws-lambda`       | AWS Lambda Functions                                                           |
 | `aws-lambda-async` | AWS Lambda Functions with `async`/`await`                                      |
 | `azure`            | Azure Functions                                                                |
+| `bun`              | `Bun.serve`                                                                    |
 | `cloudflare`       | Cloudflare Workers (Service Worker)                                            |
 | `cloudflare-mod`   | Cloudflare Workers (Module Worker)                                             |
 | `express`          | Express, Google Cloud Functions                                                |
