@@ -39,7 +39,7 @@ pnpm install -D typescript
 npx tsc --init
 ```
 
-Then, cd into `src/`, and create a file named `bot.ts`.
+Then, `cd` into `src/`, and create a file named `bot.ts`.
 It is where you will write your bot's code.
 
 Now, you can start writing your bot's code in `src/bot.ts`.
@@ -123,7 +123,7 @@ You can just use the template and start writing your bot's code.
 1. Create a repository on GitHub, it can be public or private and push your code to it.
 2. Go to [Zeabur dashboard](https://dash.zeabur.com).
 3. Click on the `New Project` button, and click on the `Deploy New Service` button, choose `GitHub` as the source and select your repository.
-4. Go to Variables tab to add your environment variables like `BOT_TOKEN`.
+4. Go to `Variables` tab to add your environment variables like `TELEGRAM_BOT_TOKEN`.
 5. Your service will be deployed automatically.
 
 ### Method 2: Deploy With Zeabur CLI

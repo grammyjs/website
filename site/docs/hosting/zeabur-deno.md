@@ -54,7 +54,7 @@ bot.on("message", (ctx) => ctx.reply("How can I help you?"));
 bot.start();
 ```
 
-> Note: Get your bot token with [@BotFather](https://t.me/BotFather) on Telegram, and set is as an environment variable `TELEGRAM_BOT_TELEGRAM` in Zeabur.
+> Note: Get your bot token with [@BotFather](https://t.me/BotFather) on Telegram, and set is as an environment variable `TELEGRAM_BOT_TOKEN` in Zeabur.
 >
 > You can check out [this tutorial](https://zeabur.com/docs/deploy/variables) for setting environment variables in Zeabur.
 
@@ -80,7 +80,8 @@ You can just use the template and start writing your bot's code.
 1. Create a repository on GitHub, it can be public or private and push your code to it.
 2. Go to [Zeabur dashboard](https://dash.zeabur.com).
 3. Click on the `New Project` button, and click on the `Deploy New Service` button, choose `GitHub` as the source and select your repository.
-4. Your service will be deployed automatically.
+4. Go to `Variables` tab to add your environment variables like `TELEGRAM_BOT_TOKEN`.
+5. Your service will be deployed automatically.
 
 ### Method 2: Deploy With Zeabur CLI
 
