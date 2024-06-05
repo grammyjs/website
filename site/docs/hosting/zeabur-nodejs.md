@@ -8,7 +8,7 @@ next: false
 [Zeabur](https://zeabur.com) is a platform that allows you to deploy your full-stack applications with ease.
 It supports various programming languages and frameworks, including Node.js and grammY.
 
-This tutorial will guide you how to deploy your grammY bots with Node.js to [Zeabur](https://zeabur.com/).
+This tutorial will guide you how to deploy your grammY bots with Node.js to [Zeabur](https://zeabur.com).
 
 ::: tip Looking for the Deno Version?
 This tutorial explains how to deploy a Telegram bot to Zeabur using Node.js.
@@ -17,7 +17,7 @@ If you're looking for the Deno version, please check out [this tutorial](./zeabu
 
 ## Prerequisites
 
-To follow along, you need to have [Github](https://github.com) and [Zeabur](https://zeabur.com/) accounts.
+To follow along, you need to have [Github](https://github.com) and [Zeabur](https://zeabur.com) accounts.
 
 ### Method 1: Create a New Project From Scratch
 
