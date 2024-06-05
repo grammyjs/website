@@ -242,6 +242,7 @@ Below is a table containing the currently available adapters, and the framework,
 | `aws-lambda`       | AWS Lambda Functions                                                           |
 | `aws-lambda-async` | AWS Lambda Functions with `async`/`await`                                      |
 | `azure`            | Azure Functions                                                                |
+| `bun`              | `Bun.serve`                                                                    |
 | `cloudflare`       | Cloudflare Workers                                                             |
 | `cloudflare-mod`   | Cloudflare Module Workers                                                      |
 | `express`          | Express, Google Cloud Functions                                                |
