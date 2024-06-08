@@ -49,7 +49,7 @@ const bot = new Bot(token);
 
 bot.command("start", (ctx) => ctx.reply("¡Hola de Deno & grammY!"));
 
-bot.on("message", (ctx) => ctx.reply("¿En qué puedo ayudarle?"));
+bot.on("message:text", (ctx) => ctx.reply("¿En qué puedo ayudarle?"));
 
 bot.start();
 ```
