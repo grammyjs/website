@@ -268,7 +268,7 @@ You should then use the following configuration.
 
 ```ts
 const bot = new Bot("", { // <-- use the same token as before
-  client: { apiRoot: "localhost:8081" },
+  client: { apiRoot: "http://localhost:8081" },
 });
 ```
 

@@ -268,7 +268,7 @@ https://api.telegram.org/bot<token>/logOut
 
 ```ts
 const bot = new Bot("", { // <-- 使用跟前面一样的 token
-  client: { apiRoot: "localhost:8081" },
+  client: { apiRoot: "http://localhost:8081" },
 });
 ```
 
