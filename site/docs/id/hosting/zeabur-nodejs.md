@@ -12,14 +12,14 @@ Tutorial ini akan memandu kamu untuk men-deploy bot grammY Node.js ke [Zeabur](h
 
 ::: tip Mencari yang versi Deno-nya?
 Tutorial ini ditujukan khusus untuk mendeploy bot Telegram yang dibuat menggunakan Node.js ke Zeabur.
-Jika kamu mencari yang versi Deno-nya, silahkan beralih ke [tutorial berikut](./zeabur-nodejs).
+Jika kamu mencari yang versi Deno-nya, silahkan beralih ke [tutorial berikut](./zeabur-deno).
 :::
 
 ## Prasyarat
 
 Sebelum memulai, kamu perlu terlebih dahulu membuat akun [GitHub](https://github.com) dan [Zeabur](https://zeabur.com).
 
-### Cara 1: Membuat Proyek Baru Dari Awal
+### Cara 1: Membuat Proyek Baru dari Awal
 
 Buat permulaan proyeknya, lalu instal dependensi yang dibutuhkan:
 
@@ -48,7 +48,7 @@ Isi file dengan kode berikut:
 import { Bot } from "grammy";
 
 const bot = new Bot(
-  process.env.TELEGRAM_BOT_TOKEN || "token_bot_telegram_kamu",
+  process.env.TOKEN_BOT_TELEGRAM || "token_bot_telegram_kamu",
 );
 
 bot.on("message:text", async (ctx) => {
@@ -84,7 +84,7 @@ Sekarang, struktur `package.json` kamu semestinya serupa dengan ini:
 {
   "name": "telegram-bot-starter",
   "version": "1.0.0",
-  "description": "Telegram Bot Starter with TypeScript and grammY",
+  "description": "Percobaan Telegram Bot menggunakan TypeScript dan grammY",
   "scripts": {
     "start": "ts-node src/bot.ts"
   },
@@ -114,17 +114,17 @@ pnpm start
 Zeabut memiliki sebuah templat untuk bot Telegram grammY yang bisa kamu gunakan sebagai acuan.
 Kamu bisa menemukannya di [repositori berikut](https://github.com/zeabur/telegram-bot-starter).
 
-Gunakan templat tersebut, lalu mulai menulis kode untuk bot kamu.
+Sekarang, kamu bisa mulai menulis kode bot menggunakan templat tersebut.
 
 ## Men-deploy
 
-### Cara 1: Men-deploy dari GitHub Melalui Dashboard Zeabur
+### Cara 1: Men-deploy dari GitHub melalui Dashboard Zeabur
 
 1. Buat sebuah repositori privat ataupun publik di GitHub, kemudian push kode kamu ke repository tersebut.
 2. Beralih ke [dashboard Zeabur](https://dash.zeabur.com).
 3. Klik tombol `New Project`, lalu klik tombol `Deploy New Service`, pilih `GitHub` sebagai sumbernya, kemudian pilih repositori yang telah kamu buat tadi.
 4. Beralih ke tab `Variables` untuk menambahkan environment variable yang diperlukan, misalnya `TOKEN_BOT_TELEGRAM`.
-5. Jika sudah, bot akan di-deploy secara otomatis.
+5. Jika sudah, bot akan ter-deploy secara otomatis.
 
 ### Cara 2: Men-deploy Menggunakan CLI Zeabur
 
@@ -135,4 +135,4 @@ npx @zeabur/cli deploy
 ```
 
 Ikuti instruksi yang ditampilkan untuk memilih lokasi deploy.
-Jika sudah, bot akan di-deploy secara otomatis
+Jika sudah, bot akan ter-deploy secara otomatis.
