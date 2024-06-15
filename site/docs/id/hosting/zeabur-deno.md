@@ -11,8 +11,8 @@ Ia mendukung berbagai macam bahasa pemrograman dan framework, termasuk diantaran
 Tutorial ini akan memandu kamu untuk men-deploy bot grammY Deno ke [Zeabur](https://zeabur.com).
 
 ::: tip Mencari yang Versi Node.js-nya?
-Tutorial ini ditujukan khusus untuk mendeploy bot Telegram yang dibuat menggunakan Deno ke Zeabur.
-Jika kamu mencari yang versi Node.js-nya, silahkan beralih ke [tutorial ini](./zeabur-nodejs).
+Tutorial ini ditujukan khusus untuk men-deploy bot Telegram yang dibuat menggunakan Deno ke Zeabur.
+Jika kamu mencari yang versi Node.js-nya, silahkan beralih ke [tutorial berikut](./zeabur-nodejs).
 :::
 
 ## Prasyarat
@@ -68,7 +68,7 @@ Perintah di atas akan membuat Deno secara otomatis mengunduh dependensi yang tel
 
 ### Cara 2: Menggunakan Templat yang Disediakan oleh Zeabur
 
-Zeabut memiliki sebuah templat yang bisa kamu gunakan sebagai acuan untuk membuat bot Telegram Deno.
+Zeabur memiliki sebuah templat yang bisa kamu gunakan sebagai acuan untuk membuat bot Telegram Deno.
 Kamu bisa menemukannya di [repositori berikut](https://github.com/zeabur/deno-telegram-bot-starter).
 
 Sekarang, kamu bisa mulai menulis kode bot menggunakan templat tersebut.

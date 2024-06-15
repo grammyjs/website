@@ -11,7 +11,7 @@ Ia mendukung berbagai macam bahasa pemrograman dan framework, termasuk diantaran
 Tutorial ini akan memandu kamu untuk men-deploy bot grammY Node.js ke [Zeabur](https://zeabur.com).
 
 ::: tip Mencari yang versi Deno-nya?
-Tutorial ini ditujukan khusus untuk mendeploy bot Telegram yang dibuat menggunakan Node.js ke Zeabur.
+Tutorial ini ditujukan khusus untuk men-deploy bot Telegram yang dibuat menggunakan Node.js ke Zeabur.
 Jika kamu mencari yang versi Deno-nya, silahkan beralih ke [tutorial berikut](./zeabur-deno).
 :::
 
@@ -29,10 +29,10 @@ mkdir grammy-bot
 cd grammy-bot
 pnpm init -y
 
-# Install dependensi utama.
+# Instal dependensi utama.
 pnpm install grammy
 
-# Install dependensi pengembangan.
+# Instal dependensi pengembangan.
 pnpm install -D typescript
 
 # Buat permulaan TypeScript.
@@ -82,9 +82,9 @@ Sekarang, struktur `package.json` kamu semestinya serupa dengan ini:
 
 ```json
 {
-  "name": "telegram-bot-starter",
+  "name": "bot-telegram-grammy",
   "version": "1.0.0",
-  "description": "Percobaan Telegram Bot menggunakan TypeScript dan grammY",
+  "description": "Bot Telegram menggunakan TypeScript dan grammY",
   "scripts": {
     "start": "ts-node src/bot.ts"
   },
