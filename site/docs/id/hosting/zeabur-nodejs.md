@@ -111,7 +111,7 @@ pnpm start
 
 ### Cara 2: Menggunakan Templat yang Disediakan oleh Zeabur
 
-Zeabut memiliki sebuah templat untuk bot Telegram grammY yang bisa kamu gunakan sebagai acuan.
+Zeabur memiliki sebuah templat untuk bot Telegram grammY yang bisa kamu gunakan sebagai acuan.
 Kamu bisa menemukannya di [repositori berikut](https://github.com/zeabur/telegram-bot-starter).
 
 Sekarang, kamu bisa mulai menulis kode bot menggunakan templat tersebut.
