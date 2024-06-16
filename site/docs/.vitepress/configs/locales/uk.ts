@@ -362,6 +362,14 @@ const hostingTutorials = {
       link: "/uk/hosting/cyclic",
     },
     {
+      text: "Zeabur (Deno)",
+      link: "/uk/hosting/zeabur-deno",
+    },
+    {
+      text: "Zeabur (Node.js)",
+      link: "/uk/hosting/zeabur-nodejs",
+    },
+    {
       text: "Heroku",
       link: "/uk/hosting/heroku",
     },
