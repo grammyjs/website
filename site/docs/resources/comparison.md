@@ -145,7 +145,7 @@ TypeScript lets you iterate on your code base at incredible speeds.
 It is great for rapid prototyping, trying out new things, getting to know bots, and getting things done quickly.
 As a rule of thumb, processing ~100,000,000 updates per day can be done easily with TypeScript, but going beyond that will require extra work, such as using one more grammY plugin.
 
-Pick a library written in Go if you already know fairly well what you will be building (you don't expect to need much assistance), and you already know that your bot will process very high numbers of updates.
+Pick a library written in Go if you already know fairly well what you will be building (you don't expect to need much assistance), and you already know that your bot will process a very large number of updates.
 As a natively compiled language, Go outperforms TypeScript at raw CPU speed by several orders of magnitude.
 This is much less relevant when you write a bot because most of the time is spent waiting for the network, but eventually, it will start to matter how fast your bot can parse JSON.
 Go can be a better choice in these cases.
