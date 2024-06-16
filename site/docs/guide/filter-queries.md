@@ -367,4 +367,4 @@ It is not a good idea to perform type casts with the `!` operator.
 
 Computing these types is complicated.
 A lot of knowledge about the Bot API went into this part of grammY.
-If you want to understand more about the basic approaches to how these types are computed, there is a [talk on YouTube] that you can watch.
+If you want to understand more about the basic approaches to how these types are computed, there is a [talk on YouTube](https://youtu.be/ZvT_xexjnMk) that you can watch.
