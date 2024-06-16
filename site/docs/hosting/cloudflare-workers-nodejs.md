@@ -359,7 +359,7 @@ For testing and debugging purposes, you can run a local or remote development se
 In a development environment, your bot doesn't have access to your secret environment variables.
 So, [according to Cloudflare](https://developers.cloudflare.com/workers/configuration/secrets/#secrets-in-development), you can create a `.dev.vars` file in the root of your project to define secrets:
 
-```env
+```sh
 BOT_TOKEN=<your_bot_token>  # <- replace this with your bot token.
 ```
 
