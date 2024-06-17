@@ -364,6 +364,7 @@ filter 查询的验证只发生一次，当 bot 被初始化和 `bot.on()` 被�
 
 > 这些情况对你来说可能不是显而易见的。
 > 如果你无法弄清楚，请随时在 [群聊](https://t.me/grammyjs) 中提问。
-> 计算这些类型是很复杂的。
-> grammY 的这一部分涉及到很多关于 Bot API 的知识。
-> 如果你想了解更多有关如何计算这些类型的基本方法，你可以观看 [YouTube 上的演讲](https://youtu.be/ZvT_xexjnMk)。
+
+计算这些类型是很复杂的。
+grammY 的这一部分涉及到很多关于 Bot API 的知识。
+如果你想了解更多有关如何计算这些类型的基本方法，你可以观看 [YouTube 上的演讲](https://youtu.be/ZvT_xexjnMk)。
