@@ -155,7 +155,7 @@ Go can be a better choice in these cases.
 A similar point can be made [as with Go](#frameworks-written-in-go), but it is even stronger with Rust.
 In a way, it will take you even more time to write Rust, but your bot will be even faster, too.
 
-Also, please not that using Rust is fun but rarely necessary for bots.
+Also, please note that using Rust is fun but rarely necessary for bots.
 If you want to use Rust, then do it, but consider saying that you love Rust and not that it is the right tool for the job.
 
 ## How to Disagree With This Comparison
