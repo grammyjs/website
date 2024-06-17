@@ -359,7 +359,7 @@ Untuk melakukan pengujian dan debugging, kamu bisa menjalankan sebuah server pen
 Di mode pengembangan, bot tidak memiliki akses ke environment variable secret.
 Oleh karena itu, [berdasarkan panduan Cloudflare](https://developers.cloudflare.com/workers/configuration/secrets/#secrets-in-development), kamu bisa membuat sebuah file `.dev.vars` di root proyek untuk mendefinisikan sercet-nya:
 
-```env
+```sh
 BOT_TOKEN=<token_bot>  # <- ganti dengan token bot kamu.
 ```
 
