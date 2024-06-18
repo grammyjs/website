@@ -84,7 +84,7 @@ This will make it so every command you registered is displayed on the menu of a 
 
 ### Context Shortcut
 
-What if you want some commands to be displayed only for certain users.
+What if you want some commands to be displayed only to certain users.
 For example, imagine you have a `login` and a `logout` command.
 The `login` command should only appear for logged out users, and vice versa.
 This is how you can do that with the Commands plugin:
@@ -169,7 +169,15 @@ This way when a user calls `/login`, they'll have their commands list changed to
 
 If you want to prevent, for example, the commands contained in `loggedInCommands` from being callable after the user called `/logout`, you must implement it in your handlers with your own business logic.
 
-Be aware that `SetMyCommands` only affects the commands displayed in the user's commands menu.
+::: danger
+As stated in the [Telegram API documentation](https://core.telegram.org/bots/api#botcommand), command names can only be form out of:
+
+> 1-32 characters. Can contain only lowercase English letters, digits and underscores.
+
+Therefore calling `setCommands` or `setMyCommands` on upperCased commands will throw an exception. They can still be registered and used, but will never be displayed on the user menu as such.
+
+**Setting UpperCased command names is heavily discourage**
+:::
 
 It's is also possible to stack commands instances into `SetMyCommands`
 
@@ -185,7 +193,7 @@ adminCommands.command("admin", "Give me the power!", async (ctx) => {
 });
 ```
 
-You will learn how to implement restricted command access, like the above but not just for displayed commands, in the next section.
+**Be aware** that `SetMyCommands` only affects the commands displayed in the user's commands menu, and not the actual access to them. You will learn how to implement restricted command access in the next section.
 
 ## Scoped Commands
 
@@ -224,8 +232,8 @@ adminCommands
   .command("secret", "Admin only")
   .addToScope({
     type: "all_chat_administrators",
-  }, async (c) => {
-    await c.reply("Free cake!");
+  }, async (ctx) => {
+    await ctx.reply("Free cake!");
   });
 ```
 
@@ -279,7 +287,6 @@ myCommands.command(
     LanguageCodes.Spanish,
     "cocinero",
     "Bife a domicilio",
-    async (ctx) => await ctx.reply("Bife al plato!"),
   );
 ```
 
@@ -295,7 +302,6 @@ myCommands.command(
     LanguageCodes.Spanish,
     "cocinero",
     "Bife a domicilio",
-    async (ctx) => await ctx.reply("Bife al plato!"),
   );
 ```
 
@@ -311,7 +317,6 @@ myCommands.command(
     LanguageCodes.Spanish,
     "cocinero",
     "Bife a domicilio",
-    async (ctx) => await ctx.reply("Bife al plato!"),
   );
 ```
 
