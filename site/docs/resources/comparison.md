@@ -105,7 +105,7 @@ This section will outline how TypeScript has a few advantages over other languag
 This comparison will be limited to Python, Go, and Rust.
 Feel free to add more sections if you want to contrast TypeScript with another language.
 
-Some of the following points are based partially based on personal opinions.
+Some of the following points are partially based on personal opinions.
 People have different taste, so take this section with a grain of salt.
 
 ### Frameworks Written in Python
