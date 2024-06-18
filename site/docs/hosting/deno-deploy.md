@@ -74,18 +74,19 @@ Here, we are using the bot token (`/<bot token>`).
 2. Create an access token from the "Access Tokens" section in [account settings](https://dash.deno.com/account).
 3. Go to your project directory and run the following command:
 
-  ```sh:no-line-numbers
-   deployctl deploy --project=<project> --entrypoint=./main.ts --prod --token=<token>
-   ```
+```sh:no-line-numbers
+deployctl deploy --project=<project> --entrypoint=./main.ts --prod --token=<token>
+```
 
-   ::: tip Setting environment variables
-   Environment variables can be set by heading to your project's settings after deploying.
+::: tip Setting environment variables
+Environment variables can be set by heading to your project's settings after deploying.
 
-   But this is also possible from the command line as well:
-   1. You can assign environment variables from a dotenv file by adding the `--env-file=<file>` argument.
-   2. You can also specify them individually by using the `--env=<key=value>` argument.
+But this is also possible from the command line as well:
+
+1. You can assign environment variables from a dotenv file by adding the `--env-file=<file>` argument.
+2. You can also specify them individually by using the `--env=<key=value>` argument.
    :::
-4. To set up Github Actions, refer to [this](https://github.com/denoland/deployctl/blob/main/action/README.md).
+3. To set up Github Actions, refer to [this](https://github.com/denoland/deployctl/blob/main/action/README.md).
 
 Checkout the [deployctl documentation](https://docs.deno.com/deploy/manual/deployctl) for more information.
 
