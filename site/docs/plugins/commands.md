@@ -11,13 +11,14 @@ This plugin provides various features related to command handling that are not c
 Here is a quick overview of what you get with this plugin:
 
 - Better code structure by attaching middleware to command definitions
-- Automatic synchronization via `setMyCommands`
-- Command scope handling
+- User command menu synchronization via `setMyCommands`
+- Improved command organization with the ability to group them into different Commands instances
+- Ability to scope command reach, e.g: only accessible to group admins or channels, etc
 - Defining command translations
 - "Did you mean ...?" feature that finds the nearest existing command
-- Custom command prefixes
-- Specify what to do with commands that mention your bot's user
-- Support for commands that are not in the beggining of the message
+- Custom command prefixes, e.g: `+`, `?` or any symbol instead of `/`
+- Set custom behavior for commands that explicitly mention your bot's user, like: `/start@your_bot`
+- Support for commands that are not in the beginning of the message
 - RegEx support for command names
 
 All of these features are made possible because you will define one or more central command structures that define your bot's commands.
@@ -69,47 +70,17 @@ Now that that's settled, let's see how we can make our commands visible to our u
 Once you defined your commands with an instance of the `Commands` class, you can call the `setCommands` method, which will register all the defined commands to your bot.
 
 ```js
-const myCommands = new Commands()
+const myCommands = new Commands();
 
-myCommands.command("hello", "Say hello", (ctx) => ctx.reply("Hi there!"))
+myCommands.command("hello", "Say hello", (ctx) => ctx.reply("Hi there!"));
 myCommands.command("start", "Start the bot", (ctx) => ctx.reply("Starting..."));
 
-bot.use(myCommands)
+bot.use(myCommands);
 
-await myCommands.setCommands(bot)
+await myCommands.setCommands(bot);
 ```
 
 This will make it so every command you registered is displayed on the menu of a private chat with your bot, or whenever users type `/` on a chat your bot is a member of.
-
-## Scoped Commands
-
-Did you know you can allow different commands to be shown on different chats depending on the chat type, the language, and even the user status in a chat group?
-That's what Telegram call **Command Scopes**.
-
-The `Command` class returned by the `command` method exposes a method called `addToScope`.
-This method takes in a [BotCommandScope](/ref/types/botcommandscope) together with one or more handlers, and registers those handlers to be ran at that specific scope.
-
-You don't even need to worry about calling `filter`, the `addToScope` method will guarantee that your handler only gets called if the context is right.
-
-Here's an example of a scoped command:
-
-```js
-const myCommands = new Commands();
-
-myCommands
-  .command("start", "Initializes bot configuration")
-  .addToScope(
-    { type: "all_private_chats" },
-    (ctx) => ctx.reply(`Hello, ${ctx.chat.first_name}!`),
-  )
-  .addToScope(
-    { type: "all_group_chats" },
-    (ctx) => ctx.reply(`Hello, members of ${ctx.chat.title}!`),
-  );
-```
-
-The `start` command can now be called from both private and group chats, and it will give a different response depending on where it gets called from.
-Now if you call `myCommands.setCommands`, the `start` command will be registered to both private and group chats.
 
 ### Context Shortcut
 
@@ -194,12 +165,90 @@ await loggedOutCommands.setCommands(bot);
 
 :::
 
-This way when a user calls `/login`, they'll have their commands list changed to contain only the `logout` command.
-Neat, right?
+This way when a user calls `/login`, they'll have their commands list changed to contain only the `logout` command. Neat, right?
+
+If you want to prevent, for example, the commands contained in `loggedInCommands` from being callable after the user called `/logout`, you must implement it in your handlers with your own business logic.
+
+Be aware that `SetMyCommands` only affects the commands displayed in the user's commands menu.
+
+It's is also possible to stack commands instances into `SetMyCommands`
+
+```js
+userCommands.command("start", "Init bot", async (ctx) => {
+  await ctx.setMyCommands(userCommands);
+});
+adminCommands.command("admin", "Give me the power!", async (ctx) => {
+  // valid
+  await ctx.setMyCommands(userCommands, adminCommands);
+  // also valid
+  await ctx.setMyCommands([userCommands, adminCommands, hiddenCommands]);
+});
+```
+
+You will learn how to implement restricted command access, like the above but not just for displayed commands, in the next section.
+
+## Scoped Commands
+
+Did you know you can allow different commands to be shown on different chats depending on the chat type, the language, and even the user status in a chat group?
+That's what Telegram call **Command Scopes**.
+
+The `Command` class returned by the `command` method exposes a method called `addToScope`.
+This method takes in a [BotCommandScope](/ref/types/botcommandscope) together with one or more handlers, and registers those handlers to be ran at that specific scope.
+
+You don't even need to worry about calling `filter`, the `addToScope` method will guarantee that your handler only gets called if the context is right.
+
+Here's an example of a scoped command:
+
+```js
+const myCommands = new Commands();
+
+myCommands
+  .command("start", "Initializes bot configuration")
+  .addToScope(
+    { type: "all_private_chats" },
+    (ctx) => ctx.reply(`Hello, ${ctx.chat.first_name}!`),
+  )
+  .addToScope(
+    { type: "all_group_chats" },
+    (ctx) => ctx.reply(`Hello, members of ${ctx.chat.title}!`),
+  );
+```
+
+The `start` command can now be called from both private and group chats, and it will give a different response depending on where it gets called from.
+Now if you call `myCommands.setCommands`, the `start` command will be registered to both private and group chats.
+
+Heres an example of a command that it's only accesible to group admins
+
+```js
+adminCommands
+  .command("secret", "Admin only")
+  .addToScope({
+    type: "all_chat_administrators",
+  }, async (c) => {
+    await c.reply("Free cake!");
+  });
+```
+
+Note: if you only want a command to be accesible on certain scopes, make sure you do not add a handler in the first `MyCommands.command` call. Doing that will automatically add it to all private chats, including groups.
+
+Here is an example of a command that it's only accesible in groups
+
+```js
+myCommands
+  .command(
+    "fun",
+    "Laugh",
+    /** skip this handler */
+  ).addToScope({
+    type: "all_group_chats",
+  }, async (ctx) => {
+    await ctx.reply("Haha");
+  });
+```
 
 ## Command Translations
 
-Another extremely useful possibility is setting commands to have different names and descriptions based on the user language.
+Another powerful feature is the ability to set different names for the same command, and their respective descriptions based on the user language.
 The Commands plugin makes that easy by providing the `localize` method.
 Check it out:
 
@@ -214,11 +263,76 @@ myCommands
 Add as many as you want!
 The plugin will take care of registering them for you when you call `myCommands.setCommands`.
 
+For convenience the types package exports a `LanguageCodes` enum-like object, that you can use for a more idiomatic approach:
+
+::: code-group
+
+```ts [TypeScript]
+import { LanguageCodes } from "@grammyjs/types";
+
+myCommands.command(
+  "chef",
+  "Steak delivery",
+  async (ctx) => await ctx.reply("Steak on the plate!"),
+).localize(
+  LanguageCodes.Spanish,
+  "cocinero",
+  "Bife a domicilio",
+  async (ctx) => await ctx.reply("Bife al plato!"),
+).localize(
+  LanguageCodes.Croatian,
+  "kuhar",
+  "Dostava bifteka",
+  async (ctx) => await ctx.reply("Odrezak na tanjuru!"),
+);
+```
+
+```js [JavaScript]
+const { LanguageCodes } = require("@grammyjs/types");
+
+myCommands.command(
+  "chef",
+  "Steak delivery",
+  async (ctx) => await ctx.reply("Steak on the plate!"),
+).localize(
+  LanguageCodes.Spanish,
+  "cocinero",
+  "Bife a domicilio",
+  async (ctx) => await ctx.reply("Bife al plato!"),
+).localize(
+  LanguageCodes.Croatian,
+  "kuhar",
+  "Dostava bifteka",
+  async (ctx) => await ctx.reply("Odrezak na tanjuru!"),
+);
+```
+
+```ts [Deno]
+import { LanguageCodes } from "https://deno.land/x/grammy_types/mod.ts";
+
+myCommands.command(
+  "chef",
+  "Steak delivery",
+  async (ctx) => await ctx.reply("Steak on the plate!"),
+).localize(
+  LanguageCodes.Spanish,
+  "cocinero",
+  "Bife a domicilio",
+  async (ctx) => await ctx.reply("Bife al plato!"),
+).localize(
+  LanguageCodes.Croatian,
+  "kuhar",
+  "Dostava bifteka",
+  async (ctx) => await ctx.reply("Odrezak na tanjuru!"),
+);
+```
+
+:::
+
 ## Finding the Nearest Command
 
-Even though Telegram it capable of auto completing the registered commands, sometimes users do type them manually and, in some cases, happen to make mistakes.
-The Commands plugin helps you deal with that by allowing you to suggest a command that might be what the user wanted in the first place.
-Usage is quite straight-forward:
+Even though Telegram it's capable of auto completing the registered commands, sometimes users do type them manually and, in some cases, happen to make mistakes.
+The Commands plugin helps you deal with that by allowing you to suggest a command that might be what the user wanted in the first place. It is compatible with custom prefixes, so you don't have to worry about that, and it's usage is quite straight-forward:
 
 ::: code-group
 
@@ -286,6 +400,49 @@ bot
 
 :::
 
+By default the `getNearestCommand` method will prioritize commands that correspond to the user language, if you want to opt-out of this behavior, you can pass the `ignoreLocalization` flag set to true.
+
+It is possible to search across multiple Commands instances, and the `getNearestCommand` method will return the most similar command across them.
+
+Heres is an example demonstrating both things:
+
+```js
+bot.use(commands());
+
+const myCommands = new Commands();
+myCommands.command("dad", "_", () => {})
+  .localize("es", "papa", "_")
+  .localize("fr", "pere", "_");
+
+const otherCommands = new Commands();
+otherCommands.command("bread", "_", () => {})
+  .localize("es", "pan", "_")
+  .localize("fr", "pain", "_");
+
+bot.use(myCommands);
+bot.use(otherCommands);
+
+// let says the user is french and typed '/papi'
+bot
+  .filter(Context.has.filterQuery("::bot_command"))
+  .use(async (ctx) => {
+    const suggestedCommandLocal = ctx.getNearestCommand([
+      myCommands,
+      otherCommands,
+    ]);
+    suggestedCommandLocal === "/pain"; // true
+
+    const suggestedCommandGlobal = ctx.getNearestCommand([
+      myCommands,
+      otherCommands,
+    ], { ignoreLocalization: true });
+
+    suggestedCommandGlobal === "/papa"; // true
+  });
+```
+
+It also allows to set the `ignoreCase` flag, which is self-explanatory, and the `similarityThreshold` flag, which controls how similar a command name has to be in comparison to the user input for it to be recommended.
+
 ## Command Options
 
 There are a few options that can be specified per command, per scope, or globally for a `Commands` instance.
@@ -295,7 +452,7 @@ These options allow you to further customize how your bot handles commands, givi
 
 When users invoke a command, they can optionally tag your bot, like so: `/command@bot_username`.
 You can decide what to do with these commands by using the `targetedCommands` config option.
-With it you can coose between three different behaviors:
+With it you can choose between three different behaviors:
 
 - `ignored`: Ignores commands that mention your bot's user
 - `optional`: Handles both commands that do and that don't mention the bot's user
@@ -313,8 +470,25 @@ When [handling commands](../guide/commands), the grammY core library will only r
 The Commands plugin, however, allows you to listen for commands in the middle of the message text, or in the end, it doesn't matter!
 All you have to do is set the `matchOnlyAtStart` option to `false`, and the rest will be done by the plugin.
 
+## RegExp Commands
+
+This feature is really for those ones who are really looking to go wild, it allows you to create command handlers based on Regular Expressions instead of static strings, a basic example would look like:
+
+```js
+myCommands
+  .command(
+    /delete_([a-zA-Z]{1,})/,
+    (ctx) => ctx.reply(`Deleting ${ctx.message?.text?.split("_")[1]}`),
+  );
+```
+
+This command handler will trigger on `/delete_me` the same as in `/delete_you`, and it will reply `Deleting me` in the first case and `Deleting you` in the later, but will not trigger on `/delete_` nor `/delete_123xyz`, passing trough as if it was no there.
+
+You can use custom prefixes and localize them as usual.
+
 ## Plugin Summary
 
 - Name: `commands`
 - [Source](https://github.com/grammyjs/commands)
 - [Reference](/ref/commands/)
+- [Telegram Docs commands reference](https://core.telegram.org/bots/features#commands)
