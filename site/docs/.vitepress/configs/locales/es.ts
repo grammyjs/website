@@ -322,6 +322,10 @@ const hostingTutorials = {
   text: "Tutoriales",
   items: [
     {
+      text: "Servidor Privado Virtual (VPS)",
+      link: "/es/hosting/vps",
+    },
+    {
       text: "Deno Deploy",
       link: "/es/hosting/deno-deploy",
     },
@@ -338,20 +342,12 @@ const hostingTutorials = {
       link: "/es/hosting/cloudflare-workers-nodejs",
     },
     {
-      text: "Heroku",
-      link: "/es/hosting/heroku",
-    },
-    {
       text: "Fly",
       link: "/es/hosting/fly",
     },
     {
       text: "Firebase Functions",
       link: "/es/hosting/firebase",
-    },
-    {
-      text: "Google Cloud Functions",
-      link: "/es/hosting/gcf",
     },
     {
       text: "Vercel",
@@ -362,8 +358,16 @@ const hostingTutorials = {
       link: "/es/hosting/cyclic",
     },
     {
-      text: "Servidor Privado Virtual",
-      link: "/es/hosting/vps",
+      text: "Zeabur (Deno)",
+      link: "/es/hosting/zeabur-deno",
+    },
+    {
+      text: "Zeabur (Node.js)",
+      link: "/es/hosting/zeabur-nodejs",
+    },
+    {
+      text: "Heroku",
+      link: "/es/hosting/heroku",
     },
   ],
 };
@@ -447,7 +451,7 @@ export const siteEs: LocaleConfig = {
       },
       outline: {
         level: [2, 6],
-        label: "On this page",
+        label: "En esta página",
       },
       editLink: {
         text: "Editar esta página en GitHub",

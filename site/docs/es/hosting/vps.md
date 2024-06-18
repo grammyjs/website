@@ -143,18 +143,20 @@ systemd is a powerful service manager which is pre-installed on many Linux distr
 
    :::
 
-2. Usted debe tener la ruta absoluta a su archivo de entrada, también.
+2. Deberías tener la ruta absoluta al directorio de tu bot.
 
 3. Tu comando de inicio debería ser como el siguiente:
 
    ```sh
    <ruta_de_ejecución> <opciones> <ruta_archivo_entrada>
 
+   # Ruta al directorio del bot: /home/user/bot1/
+
    # Ejemplo Deno:
-   # /home/user/.deno/bin/deno --allow-all /home/user/bot1/mod.ts
+   # /home/user/.deno/bin/deno --allow-all run mod.ts
 
    # Ejemplo Node.js:
-   # /home/user/.nvm/versions/node/v16.9.1/bin/node /home/user/bot1/index.js
+   # /home/user/.nvm/versions/node/v16.9.1/bin/node index.js
    ```
 
 #### Creación del servicio
@@ -181,7 +183,7 @@ systemd is a powerful service manager which is pre-installed on many Linux distr
    After=network.target
 
    [Service]
-   Environment=BOT_TOKEN=<token>
+   WorkingDirectory=<ruta-directorio-bot>
    ExecStart=<comando-de-inicio>
    Restart=on-failure
 
@@ -189,12 +191,13 @@ systemd is a powerful service manager which is pre-installed on many Linux distr
    WantedBy=multi-user.target
    ```
 
-   Sustituye `<token>` por el token de tu bot y `<comando-de-inicio>` por el comando que recibiste [arriba](#obtener-el-comando-de-inicio).
+   Sustituye `<ruta-directorio-bot>` por la ruta absoluta al directorio de tu bot y `<comando-de-inicio>` por el comando que recibiste [arriba](#obtener-el-comando-de-inicio).
 
    He aquí una breve explicación de la configuración del servicio:
 
    - `After=network.target` --- indica que la aplicación debe lanzarse después de cargar el módulo de Internet.
-   - `Environment=BOT_TOKEN=<token>` --- establece la variable de entorno `BOT_TOKEN`. Añade otras entradas `Environment` si necesitas múltiples variables de entorno.
+   - `WorkingDirectory=<ruta-directorio-bot>` --- establece el directorio de trabajo actual del proceso.
+     Esto le permite utilizar activos relativos, como el archivo `.env`, que contiene todas las variables de entorno necesarias.
    - `ExecStart=<comando-de-inicio>` --- establece el comando de inicio.
    - `Restart=on-failure` --- indica que la aplicación debe reiniciarse después de un fallo.
    - `WantedBy=multi-user.target` --- define el estado del sistema en el que debe iniciarse el servicio.

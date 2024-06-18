@@ -143,18 +143,20 @@ systemd merupakan pengelola service yang terinstal secara bawaan di mayoritas di
 
    :::
 
-2. Peroleh juga path absolut ke file entrinya.
+2. Peroleh path absolut direktori bot.
 
 3. Perintah permulaan kamu semestinya serupa dengan ini:
 
    ```sh
-   <path_runtime> <opsi> <path_file_entri>
+   <path_runtime> <opsi> <path_relatif_file_utama>
+
+   # Path direktori bot: /home/user/bot1/
 
    # Contoh untuk Deno:
-   # /home/user/.deno/bin/deno --allow-all /home/user/bot1/mod.ts
+   # /home/user/.deno/bin/deno --allow-all run mod.ts
 
    # Contoh untuk Node.js:
-   # /home/user/.nvm/versions/node/v16.9.1/bin/node /home/user/bot1/index.js
+   # /home/user/.nvm/versions/node/v16.9.1/bin/node index.js
    ```
 
 #### Membuat Service
@@ -181,7 +183,7 @@ systemd merupakan pengelola service yang terinstal secara bawaan di mayoritas di
    After=network.target
 
    [Service]
-   Environment=BOT_TOKEN=<token>
+   WorkingDirectory=<path-direktori-bot>
    ExecStart=<perintah-mulai>
    Restart=on-failure
 
@@ -189,13 +191,13 @@ systemd merupakan pengelola service yang terinstal secara bawaan di mayoritas di
    WantedBy=multi-user.target
    ```
 
-   Ganti `<token>` dengan token bot kamu dan `<perintah-mulai>` dengan perintah yang kamu terima [di atas tadi](#menyiapkan-perintah-mulai).
+   Ganti `<path-direktori-bot>` dengan path absolut direktori bot kamu dan `<perintah-mulai>` dengan perintah yang kamu terima [di atas tadi](#menyiapkan-perintah-mulai).
 
    Berikut uraian singkat konfigurasi service di atas:
 
    - `After=network.target` --- mengindikasikan bahwa aplikasi harus dijalankan hanya setelah modul internet telah dimuat.
-   - `Environment=BOT_TOKEN=<token>` --- menambahkan environment variable `BOT_TOKEN`.
-     Tambahkan entri `Environment` lainnya jika kamu membutuhkan environment variable tambahan.
+   - `WorkingDirectory=<path-direktori-bot>` --- menyetel path pemrosesan ke direktori yang saat ini dikerjakan.
+     Dengan begitu, kamu jadi bisa menggunakan file aset relatif dari path tersebut, contohnya file `.env`, yang mana berisi semua _environment variable_ yang dibutuhkan.
    - `ExecStart=<perintah-mulai>` --- menyetel perintah permulaan (startup command).
    - `Restart=on-failure` --- mengindikasikan bahwa aplikasi harus dimulai ulang ketika terjadi kesalahan atau crash.
    - `WantedBy=multi-user.target` --- menentukan pada tahap sistem (system state) apa service mesti dijalankan.

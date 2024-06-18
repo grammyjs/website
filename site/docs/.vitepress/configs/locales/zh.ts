@@ -326,6 +326,10 @@ const hostingTutorials = {
   text: "教程",
   items: [
     {
+      text: "Virtual Private Server (VPS)",
+      link: "/zh/hosting/vps",
+    },
+    {
       text: "Deno Deploy",
       link: "/zh/hosting/deno-deploy",
     },
@@ -342,20 +346,12 @@ const hostingTutorials = {
       link: "/zh/hosting/cloudflare-workers-nodejs",
     },
     {
-      text: "Heroku",
-      link: "/zh/hosting/heroku",
-    },
-    {
       text: "Fly",
       link: "/zh/hosting/fly",
     },
     {
       text: "Firebase Functions",
       link: "/zh/hosting/firebase",
-    },
-    {
-      text: "Google Cloud Functions",
-      link: "/zh/hosting/gcf",
     },
     {
       text: "Vercel",
@@ -366,8 +362,16 @@ const hostingTutorials = {
       link: "/zh/hosting/cyclic",
     },
     {
-      text: "Virtual Private Server",
-      link: "/zh/hosting/vps",
+      text: "Zeabur (Deno)",
+      link: "/zh/hosting/zeabur-deno",
+    },
+    {
+      text: "Zeabur (Node.js)",
+      link: "/zh/hosting/zeabur-nodejs",
+    },
+    {
+      text: "Heroku",
+      link: "/zh/hosting/heroku",
     },
   ],
 };
@@ -451,7 +455,7 @@ export const siteZh: LocaleConfig = {
       },
       outline: {
         level: [2, 6],
-        label: "On this page",
+        label: "在此页面",
       },
       editLink: {
         text: "在 GitHub 上编辑此页面",
@@ -483,9 +487,9 @@ export const siteZh: LocaleConfig = {
       ],
       notFound: {
         code: "404",
-        title: "PAGE NOT FOUND",
+        title: "此页面不存在",
         linkText: "回到首页",
-        linkLabel: "Go to home",
+        linkLabel: "回到首页",
         messages: [
           "糟糕！这个页面不存在。",
           "无",

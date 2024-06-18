@@ -143,18 +143,20 @@ systemd 是一个功能强大的服务管理器，已预装在许多 Linux 发�
 
    :::
 
-2. 你还应该有入口文件（即通过哪一个文件启动你的 bot）的绝对路径。
+2. 你还应该有你的 bot 的目录的绝对路径。
 
 3. 你的启动命令应该看起来像下面这样：
 
    ```sh
-   <runtime_path> <options> <entry_file_path>
+   <runtime_path> <options> <entry_file_relative_path>
+
+   # bot 目录的路径：/home/user/bot1/
 
    # Deno 示例:
-   # /home/user/.deno/bin/deno --allow-all /home/user/bot1/mod.ts
+   # /home/user/.deno/bin/deno --allow-all run mod.ts
 
    # Node.js 示例:
-   # /home/user/.nvm/versions/node/v16.9.1/bin/node /home/user/bot1/index.js
+   # /home/user/.nvm/versions/node/v16.9.1/bin/node index.js
    ```
 
 #### 创建服务
@@ -181,7 +183,7 @@ systemd 是一个功能强大的服务管理器，已预装在许多 Linux 发�
    After=network.target
 
    [Service]
-   Environment=BOT_TOKEN=<token>
+   WorkingDirectory=<bot-directory-path>
    ExecStart=<start-command>
    Restart=on-failure
 
@@ -189,13 +191,13 @@ systemd 是一个功能强大的服务管理器，已预装在许多 Linux 发�
    WantedBy=multi-user.target
    ```
 
-   将 `<token>` 替换为你的 bot token，将 `<start-command>` 替换为 [上文](#获取启动命令) 获取到的命令。
+   将 `<bot-directory-path>` 替换为你的 bot 目录的绝对路径，将 `<start-command>` 替换为 [上文](#获取启动命令) 获取到的命令。
 
    以下是服务配置的简要说明：
 
    - `After=network.target` --- 表示应用程序应在网络模块加载后启动。
-   - `Environment=BOT_TOKEN=<token>` --- 设置环境变量 `BOT_TOKEN`。
-     如果需要多个环境变量，请添加其他 `Environment` 条目。
+   - `WorkingDirectory=<bot-directory-path>` --- 设置进程的工作目录。
+     这允许你使用相关资产，例如包含了所有必要的环境变量的 `.env` 文件。
    - `ExecStart=<start-command>` --- 设置启动命令。
    - `Restart=on-failure` --- 表示应用程序应在崩溃后重新启动。
    - `WantedBy=multi-user.target` --- 定义了服务启动时的系统状态。
