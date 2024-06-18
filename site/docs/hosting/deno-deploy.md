@@ -73,6 +73,7 @@ Here, we are using the bot token (`/<bot token>`).
 1. Install [`deployctl`](https://github.com/denoland/deployctl).
 2. Create an access token from the "Access Tokens" section in [account settings](https://dash.deno.com/account).
 3. Go to your project directory and run the following command:
+
    ```sh:no-line-numbers
    deployctl deploy --project=<project> --entrypoint=./main.ts --prod --token=<token>
    ```
