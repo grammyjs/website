@@ -274,17 +274,13 @@ myCommands.command(
   "chef",
   "Steak delivery",
   async (ctx) => await ctx.reply("Steak on the plate!"),
-).localize(
-  LanguageCodes.Spanish,
-  "cocinero",
-  "Bife a domicilio",
-  async (ctx) => await ctx.reply("Bife al plato!"),
-).localize(
-  LanguageCodes.Croatian,
-  "kuhar",
-  "Dostava bifteka",
-  async (ctx) => await ctx.reply("Odrezak na tanjuru!"),
-);
+)
+  .localize(
+    LanguageCodes.Spanish,
+    "cocinero",
+    "Bife a domicilio",
+    async (ctx) => await ctx.reply("Bife al plato!"),
+  );
 ```
 
 ```js [JavaScript]
@@ -294,17 +290,13 @@ myCommands.command(
   "chef",
   "Steak delivery",
   async (ctx) => await ctx.reply("Steak on the plate!"),
-).localize(
-  LanguageCodes.Spanish,
-  "cocinero",
-  "Bife a domicilio",
-  async (ctx) => await ctx.reply("Bife al plato!"),
-).localize(
-  LanguageCodes.Croatian,
-  "kuhar",
-  "Dostava bifteka",
-  async (ctx) => await ctx.reply("Odrezak na tanjuru!"),
-);
+)
+  .localize(
+    LanguageCodes.Spanish,
+    "cocinero",
+    "Bife a domicilio",
+    async (ctx) => await ctx.reply("Bife al plato!"),
+  );
 ```
 
 ```ts [Deno]
@@ -314,17 +306,13 @@ myCommands.command(
   "chef",
   "Steak delivery",
   async (ctx) => await ctx.reply("Steak on the plate!"),
-).localize(
-  LanguageCodes.Spanish,
-  "cocinero",
-  "Bife a domicilio",
-  async (ctx) => await ctx.reply("Bife al plato!"),
-).localize(
-  LanguageCodes.Croatian,
-  "kuhar",
-  "Dostava bifteka",
-  async (ctx) => await ctx.reply("Odrezak na tanjuru!"),
-);
+)
+  .localize(
+    LanguageCodes.Spanish,
+    "cocinero",
+    "Bife a domicilio",
+    async (ctx) => await ctx.reply("Bife al plato!"),
+  );
 ```
 
 :::
