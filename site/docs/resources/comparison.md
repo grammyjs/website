@@ -67,7 +67,7 @@ Here is a list of reasons why you should use Telegraf instead of grammY.
   In that case, migrating to grammY may take more time than you will save in the long run, no matter how smooth the migration is.
 - You know Telegraf like the back of your hand and you do not care about changing your skill set.
   grammY introduces a number of novel concepts that can be unfamiliar if you have used Telegraf only, and using grammY means that you will be exposed to new things.
-- There are a few details where Telegraf and grammY use different syntax to achieve the same thing, and you just happen to prefer one style of the other.
+- There are a few details where Telegraf and grammY use different syntax to achieve the same thing, and you just happen to prefer one style over the other.
   For instance, Telegraf uses `bot.on(message("text"))` and grammY uses `bot.on("message:text")` to listen for text messages.
 
 ### NTBA
