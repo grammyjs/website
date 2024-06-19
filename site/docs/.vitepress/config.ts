@@ -40,7 +40,7 @@ export default defineConfig({
     languages: [
       {
         // fallback unsupported syntaxes to txt
-        aliases: ["asciiart", "ascii", "ftl", "log", "procfile", "text"],
+        aliases: ["asciiart", "ascii", "ftl", "log", "procfile", "text", "env"],
         ...plaintext,
       },
     ],
