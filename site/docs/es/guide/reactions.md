@@ -35,7 +35,7 @@ Puede ser feo programar con emoji.
 No todos los sistemas pueden mostrar su código fuente correctamente.
 Además, es molesto copiarlos de diferentes lugares todo el tiempo.
 
-¡Deja que el [plugin emoji](../plugins/emoji.md#datos-utiles-para-reacciones) te ayude!
+¡Deja que el [plugin emoji](../plugins/emoji#datos-utiles-para-reacciones) te ayude!
 :::
 
 Ahora que ya sabes cómo puede reaccionar tu bot a los mensajes, veamos cómo podemos manejar las reacciones de tus usuarios.
@@ -63,7 +63,7 @@ allowed_updates: API_CONSTANTS.ALL_UPDATE_TYPES;
 ```
 
 para recibir todas las actualizaciones.
-Asegúrese de consultar la [referencia API](/ref/core/apiconstants#ALL_UPDATE_TYPES).
+Asegúrese de consultar la [referencia API](/ref/core/apiconstants#all-update-types).
 :::
 
 [grammY runner](../plugins/runner#opciones-avanzadas) y `setWebhook` tienen formas similares de especificar `allowed_updates`.

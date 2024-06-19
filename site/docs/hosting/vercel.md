@@ -5,12 +5,12 @@ next: false
 
 # Hosting: Vercel Serverless Functions
 
-This tutorial will guide you on how to deploy your bot to [Vercel](https://vercel.com/) by using [Vercel Serverless Functions](https://vercel.com/docs/functions/serverless-functions), assuming that you already have a [Vercel](https://vercel.com) account.
+This tutorial will guide you on how to deploy your bot to [Vercel](https://vercel.com/) by using [Vercel Serverless Functions](https://vercel.com/docs/functions), assuming that you already have a [Vercel](https://vercel.com) account.
 
 ## Project Structure
 
 The only prerequisite to get started with **Vercel Serverless Functions** is to move your code to the `api/` directory as shown below.
-You can also see [Vercel's documentation](https://vercel.com/docs/functions/serverless-functions/quickstart) for more on this.
+You can also see [Vercel's documentation](https://vercel.com/docs/functions/quickstart) for more on this.
 
 ```asciiart:no-line-numbers
 .
@@ -83,7 +83,7 @@ const bot = new Bot(token);
 export default webhookCallback(bot, "std/http");
 ```
 
-::: tip [Vercel Edge Functions](https://vercel.com/docs/functions/edge-functions) provides limited support for grammY
+::: tip [Vercel Edge Functions](https://vercel.com/docs/functions) provides limited support for grammY
 You can still use the core grammY package and a number of plugins, but others may be incompatible due to Node.js-only dependencies that might not be supported by Vercel's [Edge Runtime](https://edge-runtime.vercel.app).
 
 Currently, we don't have a comprehensive list of compatible plugins, so you need to test it by yourself.

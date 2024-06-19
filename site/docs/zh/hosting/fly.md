@@ -124,7 +124,7 @@ flyctl secrets set BOT_TOKEN="AAAA:12345"
 
 这是最简单的方法。
 
-1. 安装 [flyctl](https://fly.io/docs/hands-on/install-flyctl) 并 [登录](https://fly.io/docs/hands-on/sign-in/).
+1. 安装 [flyctl](https://fly.io/docs/hands-on/install-flyctl) 并 [登录](https://fly.io/docs/hands-on/sign-up-sign-in/).
 2. 运行 `flyctl launch` 来为部署生成一个 `Dockerfile` 和 `fly.toml` 文件。
    但是**不要**部署。
 
@@ -365,7 +365,7 @@ flyctl secrets set BOT_TOKEN="AAAA:12345"
 以下方法的主要优点是 Fly 将监视包含你的 bot 代码的仓库中的更改，并且它将自动部署新版本。
 访问 <https://fly.io/docs/app-guides/continuous-deployment-with-github-actions> 获取更多详细说明。
 
-1. 安装 [flyctl](https://fly.io/docs/hands-on/install-flyctl) 并 [登录](https://fly.io/docs/hands-on/sign-in/).
+1. 安装 [flyctl](https://fly.io/docs/hands-on/install-flyctl) 并 [登录](https://fly.io/docs/hands-on/sign-up-sign-in/).
 2. 通过运行 `flyctl auth token` 获取 Fly API token .
 3. 在 GitHub 上创建一个仓库，它可以是私有的也可以是公共的。
 4. 跳转到设置，选择 Secrets 并使用第 2 步中的 token 创建一个名为 `FLY_API_TOKEN` 的密钥。
