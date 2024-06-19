@@ -40,7 +40,7 @@ pnpm install grammy
 pnpm install -D typescript ts-node @types/node
 
 # Initialize TypeScript.
-pnpm dlx tsc --init
+npx tsc --init
 ```
 
 Then, `cd` into `src/`, and create a file named `bot.ts`.
