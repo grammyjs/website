@@ -46,4 +46,4 @@ jobs:
       - name: Check Links
         if: github.ref == 'refs/heads/main'
         run: |
-          deno task check-links
+          deno task links:check
