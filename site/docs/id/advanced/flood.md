@@ -11,7 +11,7 @@ Hanya ada satu cara yang tepat untuk mengatasi permasalahan tersebut:
 
 Untungnya, terdapat sebuah [plugin](../plugins/auto-retry) untuk melakukan hal tersebut.
 
-Cara kerja plugin ini [sangat sederhana](https://github.com/grammyjs/auto-retry/blob/main/src/index.ts).
+Cara kerja plugin ini [sangat sederhana](https://github.com/grammyjs/auto-retry/blob/main/src/mod.ts).
 Ia hanya tidur (menunggu) dan mengulang kembali (kirim ulang permintaan).
 Sayangnya, cara kerja yang seperti itu memiliki dampak yang cukup signifikan: **semua permintaan menjadi lambat**.
 Artinya, ketika kamu menjalankan bot di sebuah webhooks, [secara teknis kamu memerlukan sebuah antrian atau queque](../guide/deployment-types#mengakhiri-request-webhook-tepat-waktu), atau cara lainnya dengan mengonfigurasi [plugin auto-retry](../plugins/auto-retry) sedemikian rupa sehingga ia tidak memakan banyak waktu---tetapi dampaknya bot kamu bisa melewatkan beberapa permintaan.
