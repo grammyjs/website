@@ -3,6 +3,7 @@ import { algolia } from "./configs/algolia/index.js";
 import * as locale from "./configs/locales/index.js";
 import { markdown } from "./plugins/index.js";
 import plaintext from "./shared/syntaxes/plaintext.tmLanguage.json";
+import env from "./shared/syntaxes/env.tmLanguage.json";
 
 export default defineConfig({
   lastUpdated: true,
@@ -40,9 +41,11 @@ export default defineConfig({
     languages: [
       {
         // fallback unsupported syntaxes to txt
-        aliases: ["asciiart", "ascii", "ftl", "log", "procfile", "text", "env"],
+        aliases: ["asciiart", "ascii", "ftl", "log", "procfile", "text"],
         ...plaintext,
       },
+      // @ts-ignore
+      env,
     ],
   },
 
