@@ -5,12 +5,12 @@ next: false
 
 # Хостинг: Vercel Serverless Functions
 
-У цьому посібнику ви дізнаєтесь, як розгорнути свого бота на [Vercel](https://vercel.com/) за допомогою [Vercel Serverless Functions](https://vercel.com/docs/functions/serverless-functions); передбачається, що у вас вже є обліковий запис [Vercel](https://vercel.com).
+У цьому посібнику ви дізнаєтесь, як розгорнути свого бота на [Vercel](https://vercel.com/) за допомогою [Vercel Serverless Functions](https://vercel.com/docs/functions); передбачається, що у вас вже є обліковий запис [Vercel](https://vercel.com).
 
 ## Структура проєкту
 
 Єдиною передумовою для початку роботи з **Vercel Serverless Functions** є переміщення вашого коду до каталогу `api/`, як показано нижче.
-Ви також можете переглянути [документацію Vercel](https://vercel.com/docs/functions/serverless-functions/quickstart) для отримання додаткової інформації.
+Ви також можете переглянути [документацію Vercel](https://vercel.com/docs/functions/quickstart) для отримання додаткової інформації.
 
 ```asciiart:no-line-numbers
 .
@@ -83,7 +83,7 @@ const bot = new Bot(token);
 export default webhookCallback(bot, "std/http");
 ```
 
-::: tip [Vercel Edge Functions](https://vercel.com/docs/functions/edge-functions) надає обмежену підтримку grammY
+::: tip [Vercel Edge Functions](https://vercel.com/docs/functions) надає обмежену підтримку grammY
 Ви все ще можете використовувати пакет grammY та низку плагінів, але інші плагіни можуть бути несумісними через залежності лише від Node.js, які можуть не підтримуватися в [Edge Runtime](https://edge-runtime.vercel.app) Vercel.
 
 Наразі ми не маємо повного списку сумісних плагінів, тому вам доведеться перевірити це самостійно.
