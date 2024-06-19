@@ -19,10 +19,6 @@ If you're looking for the Deno version, please check out [this tutorial](./zeabu
 
 To follow along, you need to have [GitHub](https://github.com) and [Zeabur](https://zeabur.com) accounts.
 
-In this tutorial, we'll use [pnpm](https://pnpm.io) instead of npm as our package manager.
-Therefore, ensure [pnpm is installed](https://pnpm.io/installation) on your computer.
-However, if you prefer npm, you can still follow along by replacing the pnpm commands with the npm equivalents as you go.
-
 ### Method 1: Create a New Project from Scratch
 
 Initialize your project and install some necessary dependencies:
@@ -31,13 +27,13 @@ Initialize your project and install some necessary dependencies:
 # Initialize the project.
 mkdir grammy-bot
 cd grammy-bot
-pnpm init
+npm init -y
 
 # Install main dependencies.
-pnpm install grammy
+npm install grammy
 
 # Install development dependencies.
-pnpm install -D typescript ts-node @types/node
+npm install -D typescript ts-node @types/node
 
 # Initialize TypeScript.
 npx tsc --init
@@ -79,7 +75,7 @@ Now your project's root directory should now look like this:
 ├── src/
 │   └── bot.ts
 ├── package.json
-├── pnpm-lock.yaml
+├── package-lock.json
 └── tsconfig.json
 ```
 
@@ -110,7 +106,7 @@ Our `package.json` should now be similar to this:
 Now, you can run your bot locally by running:
 
 ```sh
-pnpm run start
+npm run start
 ```
 
 ### Method 2: Use Zeabur's Template
