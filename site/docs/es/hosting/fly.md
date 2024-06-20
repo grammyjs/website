@@ -124,7 +124,7 @@ Para más información sobre estos _secretos_, véase <https://fly.io/docs/refer
 
 Este es el método más sencillo.
 
-1. Instalar [flyctl](https://fly.io/docs/hands-on/install-flyctl) e [inicia la sesión](https://fly.io/docs/hands-on/sign-in/).
+1. Instalar [flyctl](https://fly.io/docs/hands-on/install-flyctl) e [inicia la sesión](https://fly.io/docs/hands-on/sign-up-sign-in/).
 2. Ejecuta `flyctl launch` para generar un `Dockerfile` y un archivo `fly.toml` para el despliegue.
    Pero **NO** despliega.
 
@@ -363,7 +363,7 @@ Este es el método más sencillo.
 La principal ventaja del siguiente método es que Fly vigilará los cambios en tu repositorio que incluye el código de tu bot, y desplegará las nuevas versiones automáticamente.
 Visite <https://fly.io/docs/app-guides/continuous-deployment-with-github-actions> para obtener instrucciones más detalladas.
 
-1. Instala [flyctl](https://fly.io/docs/hands-on/install-flyctl) e [inicia la sesión](https://fly.io/docs/hands-on/sign-in/).
+1. Instala [flyctl](https://fly.io/docs/hands-on/install-flyctl) e [inicia la sesión](https://fly.io/docs/hands-on/sign-up-sign-in/).
 2. Obtén un token de la API de Fly ejecutando `flyctl auth token`.
 3. Crea un repositorio en GitHub, puede ser privado o público.
 4. Ve a Configuración, elige Secretos y crea un secreto llamado `FLY_API_TOKEN` con el valor del token del paso 2.

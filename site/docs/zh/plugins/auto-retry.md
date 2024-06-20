@@ -69,7 +69,7 @@ autoRetry({
 
 ### 重新抛出服务器内部错误
 
-你可以使用 `rethrowInternalServerErrors` 来选择不处理服务器内部错误，如 [上文](#重试-api-请求auto-retry) 所述。
+你可以使用 `rethrowInternalServerErrors` 来选择不处理服务器内部错误，如 [上文](#重试-api-请求-auto-retry) 所述。
 同样，Telegram 的错误对象也会传递过来，实际上就是用 [`GrammyError`](../guide/errors#grammyerror-对象) 使请求失败。
 
 ```ts
@@ -80,7 +80,7 @@ autoRetry({
 
 ### 重新抛出网络错误的重抛
 
-你可以使用 `rethrowHttpErrors` 来选择不处理网络错误，如 [上文](#重试-api-请求auto-retry) 所述。
+你可以使用 `rethrowHttpErrors` 来选择不处理网络错误，如 [上文](#重试-api-请求-auto-retry) 所述。
 如果启用，抛出的 [`HttpError`](../guide/errors#httperror-对象) 实例将被传递，导致请求失败。
 
 ```ts

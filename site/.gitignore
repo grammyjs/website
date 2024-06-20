@@ -20,6 +20,7 @@ pnpm-lock.yaml
 .temp
 .cache
 cache/
+.link-checker
 
 # dist directory
 dist/
