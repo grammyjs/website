@@ -47,31 +47,31 @@ Dengan begitu, kita bisa terhindar dari diskusi panas mengenai permasalahan typi
 Ia juga harus bisa menghasilkan sebuah proyek yang rapi, konsisten, serta compile code yang menyediakan user sebuah type yang sempurna (=support code editor yang lebih baik).
 Type safety menyediakan fitur-fitur lanjutan yang secara fundamental mengubah cara pandang kita dalam mengembangkan sebuah bot, contohnya [transformer API](../advanced/transformers).
 
-Meskipun Telegraf 3 masih digunakan pada sekian banyak bot yang aktif, library tersebut sudahlah usang.
+Meski Telegraf 3 digunakan oleh sekian banyak bot aktif, library tersebut belum saja diperbarui.
 Selain itu, ekosistem pluginnya juga telah berpindah ke Telegraf 4 (selain yang tidak dimigrasikan ke grammY).
 
 Perbandingan ini hanya membandingkan grammY dengan Telegraf 4.
 
-Berikut ada beberapa alasan mengapa kamu lebih baik menggunakan grammY daripada Telegraf.
+Berikut beberapa alasan mengapa kamu lebih baik menggunakan grammY alih-alih Telegraf:
 
-- grammY selalu mendukung versi API Bot yang baru.
-  Telegraf seringkali tertinggal dalam beberapa versi.
+- grammY selalu mendukung versi terbaru API Bot.
+  Sebaliknya, Telegraf seringkali tertinggal beberapa versi.
 - grammY memiliki [sebuah dokumentasi](../).
   Telegraf tidak memilikinya---dokumentasinya diganti dengan sebuah referensi API yang kurang penjelasannya, beberapa panduan yang ada tidaklah lengkap dan sulit ditemukan;
-- grammY menggunakan TypeScript, type mereka _berfungsi dengan baik_ dan akan menyesuaikan diri dengan coding-an kamu.
-  Di Telegraf kamu akan sering menulis kode dengan cara tertentu, yang jika tidak dilakukan, ia tidak akan bisa di-compile (meskipun tidak ada yang salah di kodenya); dan
+- grammY menggunakan TypeScript, type yang tersedia _berfungsi dengan baik_ dan akan menyesuaikan diri dengan coding-an kamu.
+  Di Telegraf kamu akan sering menulis kode dengan cara tertentu, yang jika tidak dilakukan, ia tidak akan bisa di-compile (meskipun tidak ada yang salah di kode kamu).
 - grammY menambahkan beberapa petunjuk atau keterangan dari [referensi API Bot resmi](https://core.telegram.org/bots/api) yang akan membantu kamu ketika menulis kode.
   Telegraf sama sekali tidak menyediakan penjelasan di kode kamu.
 - Banyak hal lain seperti performa yang lebih baik, ekosistem plugin yang luas, dokumentasi yang telah diterjemahkan ke miliaran orang, integrasi dengan database dan framework web yang lebih baik, kompatibilitas runtime yang lebih baik, tersedianya [ekstensi VS Code](https://marketplace.visualstudio.com/items?itemName=grammyjs.grammyjs) dan beberapa hal lainnya yang nanti akan kamu temukan seiring berjalannya waktu.
 
-Berikut ada beberapa alasan mengapa kamu lebih baik menggunakan Telegraf daripada grammY.
+Berikut beberapa alasan mengapa kamu lebih baik menggunakan Telegraf alih-alih grammY.
 
-- Kamu telah mempunyai bot besar yang telah ditulis dalam Telegraf dan tidak ingin mengerjakannya lagi.
-  Dalam kasus tersebut, migrasi ke grammY akan memakan waktu yang lama daripada hasil untuk jangka panjangnya, tidak peduli walau migrasinya lancar.
+- Kamu telah mempunyai bot besar yang telah ditulis menggunakan Telegraf dan tidak ingin mengerjakannya lagi.
+  Dalam kasus tersebut, migrasi ke grammY akan memakan waktu yang lebih lama daripada hasil yang diperoleh, selancar apapun migrasinya.
 - Kamu mengenal Telegraf seperti punggung telapak tanganmu dan kamu tidak peduli untuk mengubah keahlianmu.
   grammY memperkenalkan beberapa konsep baru yang mungkin asing bagi kamu yang hanya menggunakan Telegraf, dan menggunakan grammY berarti kamu akan dihadapkan pada hal-hal baru.
 - Ada sedikit perbedaan ketika menggunakan sintaks pada Telegraf dan grammY untuk mencapai hasil yang sama, dan kamu mungkin lebih menyukai gaya tersebut dibanding gaya lainnya.
-  Misalnya, Telegraf menggunakan `bot.on(message("text"))` dan grammY menggunakan `bot.on("message:text")` untuk menyimak pesan teks.
+  Misalnya, untuk menyimak pesan teks, Telegraf menggunakan `bot.on(message("text"))`, sedangkan grammY menggunakan `bot.on("message:text")`.
 
 ### NTBA
 
@@ -105,14 +105,14 @@ Hmm... karena kamu masih melanjutkan membaca bagian ini, kamu mungkin tertarik u
 
 Kali ini kita akan membahas kelebihan apa yang TypeScript tawarkan dibandingkan dengan bahasa pemrograman lainnya ketika ia digunakan untuk mengembangkan sebuah bot Telegram.
 Perbandingan ini hanya terbatas pada Python, Go dan Rust saja.
-Silahkan untuk menambahkan penjelasan lainnya jika kamu ingin membedakan TypeScript dengan bahasa lain.
+Silahkan tambahkan penjelasan lainnya jika kamu ingin membandingkan TypeScript dengan bahasa lain.
 
 Poin-poin berikut mungkin adalah pendapat pribadi alih-alih pendapat objektif.
 Karena beberapa orang memiliki selera yang berbeda, maka informasi-informasi ini jangan diterima secara mentah-mentah.
 
-### Framework yang ditulis dari Python
+### Framework yang ditulis menggunakan Python
 
-Kasus yang jelas dapat dibuat ketika membandingkan TypeScript dengan Python.
+Kontras yang jelas terlihat ketika membandingkan TypeScript dengan Python.
 Gunakan TypeScript dan kamu akan menikmatinya:
 
 1. **Tool editor yang lebih baik.**
@@ -129,35 +129,35 @@ Gunakan TypeScript dan kamu akan menikmatinya:
    Ketika suatu saat bot kamu menjadi semakin populer, ia akan lebih mudah untuk di-upgrade jika bot tersebut ditulis menggunakan JS dibandingkan dengan menggunakan Python.
 
 4. **Bot merespon dengan lebih responsif.**
-   Sekarang, engine V8 dan kompetitornya menjadikan JavaScript adalah sebuah bahasa script tercepat di seluruh dunia.
+   Sekarang, V8 dan kompetitornya menjadikan JavaScript sebuah bahasa script tercepat di dunia.
    Jika kamu menginginkan bot bekerja secepat mungkin sambil menikmati bahasa pemrograman yang dinamis, grammY adalah pilihan yang tepat.
 
-Seperti biasa, bahasa pemrograman unggul dalam tugas tertentu dan sebaiknya dihindari pada tugas diluarnya.
+Seperti biasa, suatu bahasa pemrograman memiliki kelebihan di bidang tertentu dan kelemahan di bidang lainnya.
 Tidak ada pengecualian disini.
 
 Sebagai contoh untuk kondisi ekosistem saat ini, hal-hal yang berkaitan dengan machine learning sebaiknya tidak dilakukan dengan JavaScript.
 Namun, ketika berurusan dengan web server, TypeScript cenderung menjadi pilihan yang lebih baik.
 
-### Framework yang Ditulis dalam Go
+### Framework yang Ditulis Menggunakan Go
 
-Jika kamu mahir menggunakan TypeScript dan Go, maka akan ada alasan yang kuat dalam menentukan bahasa yang akan digunakan dalam keseimbangan kecepatan pengembangan dan eksekusi.
+Jika kamu mahir menggunakan TypeScript dan Go, maka akan ada alasan yang kuat untuk menentukan bahasa yang akan digunakan dengan mempertimbangkan kecepatan pengembangan dan eksekusi.
 
-Pilih grammY jika kamu merasa belum tahu ingin membangun sesuatu.
+Pilih grammY jika kamu tidak terlalu yakin bot seperti apa yang akan kamu buat.
 TypeScript memungkinkanmu mengulangi basis kode dengan kecepatan luar biasa.
 Ia bagus untuk membuat prototipe dengan cepat, mencoba hal-hal baru, mengenal lebih tentang bot dan menyelesaikan kode dengan cepat. Sebagai aturan praktis, memproses ~100.000.000 pembaruan setiap hari dapat dilakukan dengan mudah menggunakan TypeScript, lebih dari itu akan memerlukan kerja tambahan, seperti menggunakan satu plugin grammY lagi.
 
-Pilih library yang ditulis dalam Go jika kamu sudah tahu dan sudah jelas apa yang ingin kamu buat (kamu juga tidak berharap membutuhkan banyak bantuan) dan kamu tahu kalau bot kamu akan memproses banyak hal.
-Sebagai bahasa yang di-compile secara native, Go lebih unggul dari TypeScript beberapa kali lipat dalam kecepatan asli CPU.
-Ini menjadi kurang relevan ketika kamu menulis bot yang kebanyakan waktunya habis untuk menunggu jaringan, padahal yang pentingnya itu seberapa cepat bot kamu mengurai JSON.
+Pilih library yang ditulis dalam Go jika kamu sudah tahu dan sudah jelas apa yang ingin kamu buat (tidak berharap membutuhkan banyak bantuan) dan tahu kalau bot kamu akan memproses banyak hal.
+Sebagai bahasa yang di-compile secara native, Go lebih unggul dari TypeScript beberapa kali lipat dalam kecepatan pemrosesan CPU.
+Keunggulan tersebut menjadi lebih relevan ketika kecepatan penguraian JSON menjadi hal yang krusial dan prioritas
 Go bisa menjadi pilihan yang lebih baik dalam kasus ini.
 
-### Framework yang Ditulis dalam Rust
+### Framework yang Ditulis Menggunakan Rust
 
-Hal serupa serupa [seperti pada Go](#framework-yang-ditulis-dalam-go), tetapi Rust lebih bagus.
-Kamu akan memerlukan lebih banyak waktu menulis dalam Rust, namun bot kamu juga akan lebih cepat tentunya.
+[Sama dengan Go](#framework-yang-ditulis-menggunakan-go), tetapi Rust lebih unggul.
+Kamu akan memerlukan lebih banyak waktu menulis menggunakan Rust, namun bot kamu juga akan lebih cepat tentunya.
 
-Mungkin menggunakan Rust itu menyenangkan, namun jarang keperluannya dalam membangun bot.
-Jika kamu ingin menggunakannya, maka gunakanlah, tapi pertimbangkanlah untuk mengatakan kalau kamu menyukai Rust hanya karena bahasanya dan Rust mungkin bukanlah alat yang tepat untuk pekerjaan tersebut.
+Meski menggunakan Rust itu menyenangkan, namun membangun bot menggunakan Rust terlalu berlebihan.
+Jika kamu ingin menggunakannya, maka gunakanlah, tetapi jika kamu menyukai Rust hanya karena bahasanya, mungkin Rust bukanlah alat yang tepat untuk pekerjaan tersebut.
 
 ## Saya Tidak Setuju dengan Perbandingan Ini
 
