@@ -183,9 +183,9 @@ Therefore calling `setCommands` or `setMyCommands` on upperCased commands will t
 
 ### Grouping Commands
 
-Since we can split and group our commands into different instances, it allows for a much more idiomatic command organization.
+Since we can split and group our commands into different instances, it allows for a much more idiomatic command file organization.
 
-Let say we want to have developer only commands and we have the following code structure in Typescript:
+Let say we want to have developer-only commands. We can achieve that with the the following code structure:
 
 ```ascii
 src/
@@ -532,7 +532,7 @@ All you have to do is set the `matchOnlyAtStart` option to `false`, and the rest
 
 ## RegExp Commands
 
-This feature is really for those ones who are really looking to go wild, it allows you to create command handlers based on Regular Expressions instead of static strings, a basic example would look like:
+This feature is for those who are really looking to go wild, it allows you to create command handlers based on Regular Expressions instead of static strings, a basic example would look like:
 
 ```js
 myCommands
