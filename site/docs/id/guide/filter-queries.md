@@ -29,7 +29,7 @@ bot.on("message:text", async (ctx) => {
 });
 ```
 
-Filter query grammY diimplementasikan baik di [_runtime_](#performa) maupun di [_type level_](#type-safety).
+Filter query grammY tersedia di level [_runtime_](#performa) dan [_type_](#type-safety).
 
 ## Contoh Query
 
@@ -350,7 +350,7 @@ Selain itu, kamu juga akan diberikan pesan error yang lebih bermanfaat.
 Validasi filter query hanya dilakukan sekali, ketika bot diinisialisasi dan `bot.on()` dipanggil.
 
 Ketika dimulai, grammY menurunkan _function predicate_ dari filter query dengan cara memecahnya menjadi beberapa komponen query.
-Setiap komponen akan di-map ke sebuah function yang mengerjakan satu pemeriksaan truthiness untuk properti objek, atau dua pemeriksaan jika komponen tersebut diabaikan dan dua value perlu dilakukan pemeriksaan.
+Setiap komponen akan dipetakan ke sebuah function untuk diperiksa apakah properti objek tersebut cocok dengan filter terkait, atau bahkan dua kali pemeriksaan jika terdapat komponen yang dihilangkan sehingga dua nilai perlu diperiksa (misalnya, shortcut `:text` akan dijabarkan menjadi `["message:text", "channel_post:text"]` sehingga perlu dilakukan dua kali pemeriksaan).
 Function-function ini kemudian disatukan untuk membentuk sebuah predicate yang akan memeriksa sebanyak mungkin value yang relevan untuk query, tanpa melakukan proses perulangan terhadap key object `Update`.
 
 Sistem ini menggunakan lebih sedikit operasi dibandingkan dengan beberapa library lainnya, dimana dibutuhkan beberapa pengecekan array ketika melakukan routing update.
@@ -358,7 +358,8 @@ Ini membuat sistem filter query grammY selain lebih unggul juga jauh lebih cepat
 
 ### Type Safety
 
-Sebagaimana yang disebutkan diatas, filter queries secara otomatis akan mempersempit properti tertentu pada objek context dan menghasilkan satu atau lebih predicate dalam fungsi predicate type di TypeScript.
+Sebagaimana yang disebutkan di atas, filter query secara otomatis menyeleksi properti tertentu di objek context.
+Penyeleksian satu atau lebih filter query tersebut berasal dari [type predicate TypeScript](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates).
 Secara umum, kamu dapat mempercayai type inference itu ia selalu bekerja dengan benar.
 Jika suatu properti type infer-nya tersedia, kamu dapat dapat menggunakan type tersebut dengan aman.
 Jika suatu properti type infer-nya hilang, berarti ada kasus tertentu yang membuat type-nya hilang.
@@ -369,4 +370,4 @@ Bukan ide yang baik untuk melakukan casting type dengan operator `!`.
 
 Membuat type ini merumitkan.
 Banyak sekali pengetahuan tentang API Bot yang masuk pada bagian grammY ini.
-Apabila kamu ingin lebih memahami tentang pendekatan dasar bagaimana type ini dibuat, berikut ada [pembahasannya di Youtube](https://youtu.be/ZvT_xexjnMk) yang mungkin bisa kamu tonton.
+Apabila kamu ingin memahami lebih dalam bagaimana type ini dibuat, berikut pembahasan lengkapnya yang bisa kamu [tonton di YouTube](https://youtu.be/ZvT_xexjnMk)(tersedia subtitle bahasa Indonesia).
