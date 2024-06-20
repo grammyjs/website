@@ -107,7 +107,7 @@ Kali ini kita akan membahas kelebihan apa yang TypeScript tawarkan dibandingkan 
 Perbandingan ini hanya terbatas pada Python, Go dan Rust saja.
 Silahkan tambahkan penjelasan lainnya jika kamu ingin membandingkan TypeScript dengan bahasa lain.
 
-Poin-poin berikut mungkin adalah pendapat pribadi alih-alih pendapat objektif.
+Poin-poin berikut sebagian merupakan pendapat pribadi alih-alih pendapat objektif.
 Karena beberapa orang memiliki selera yang berbeda, maka informasi-informasi ini jangan diterima secara mentah-mentah.
 
 ### Framework yang ditulis menggunakan Python
