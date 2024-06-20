@@ -125,7 +125,7 @@ Kunjungi <https://fly.io/docs/reference/secrets/> untuk informasi lebih lanjut m
 
 Metode ini adalah cara yang termudah.
 
-1. Instal [flyctl](https://fly.io/docs/hands-on/install-flyctl) lalu [login](https://fly.io/docs/hands-on/sign-in/).
+1. Instal [flyctl](https://fly.io/docs/hands-on/install-flyctl) lalu [login](https://fly.io/docs/hands-on/sign-up-sign-in/).
 2. Jalankan `flyctl launch` untuk membuat sebuah file `Dockerfile` dan `fly.toml` yang nantinya untuk digunakan saat deployment.
    Tetapi, **JANGAN** di-deploy terlebih dahulu.
 
@@ -365,7 +365,7 @@ Kelebihan dari metode ini adalah Fly akan selalu memantau perubahan di repositor
 Ketika terjadi perubahan, kode tersebut akan di-deploy secara otomatis ke versi yang lebih baru.
 Untuk instruksi detailnya, silahkan kunjungi <https://fly.io/docs/app-guides/continuous-deployment-with-github-actions>.
 
-1. Instal [flyctl](https://fly.io/docs/hands-on/install-flyctl) lalu [login](https://fly.io/docs/hands-on/sign-in/).
+1. Instal [flyctl](https://fly.io/docs/hands-on/install-flyctl) lalu [login](https://fly.io/docs/hands-on/sign-up-sign-in/).
 2. Dapatkan token API Fly dengan cara menjalankan perintah `flyctl auth token`.
 3. Buat sebuah repositori di GitHub, bisa berupa privat ataupun publik.
 4. Pergi ke Settings, pilih Secrets dan buat sebuah secret bernama `FLY_API_TOKEN` yang berisi nilai atau value token dari langkah ke-2.

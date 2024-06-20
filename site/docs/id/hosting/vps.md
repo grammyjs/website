@@ -403,7 +403,7 @@ Ubah record tersebut dengan mengubah alamat IP di kolom "Points to" ke IP addres
 Selanjutnya, cari dan hapus record dengan tipe `CNAME` yang memiliki nama `www`.
 Sebagai gantinya, buat sebuah record tipe `A` baru dengan nama `www`, lalu arahkan ke IP address VPS-mu, kemudian atur TTL-nya menjadi 3600.
 
-> Jika kamu mengalami kendala, coba gunakan metode lain yang telah dijabarkan di [pengetahuan dasar berikut](https://support.hostinger.com/en/articles/1583227-how-to-point-domain-to-your-vps).
+> Jika kamu mengalami kendala, coba gunakan metode lain yang telah dijabarkan di [pengetahuan dasar berikut](https://support.hostinger.com/en/articles/1583227-how-to-point-a-domain-to-your-vps).
 
 ### Menyiapkan Web Server
 
@@ -639,7 +639,7 @@ File akan dikirim ke server menggunakan `rsync`, yang diimplementasikan oleh `ea
 Setelah file selesai dikirim, perintah yang telah dijabarkan di environment variable `SCRIPT_AFTER` akan dieksekusi.
 Dalam kasus kita, setelah file selesai dikirim, ia akan menuju ke direktori bot, tempat di mana kita menginstal semua dependency selain yang berada di `devDependencies`, yang selanjutnya disambung dengan memulai ulang bot-nya.
 
-Perlu dicatat bahwa kamu perlu menambahkan tiga [secret environment variable](https://docs.github.com/en/actions/security-guides/encrypted-secrets):
+Perlu dicatat bahwa kamu perlu menambahkan tiga [secret environment variable](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions):
 
 1. `SSH_PRIVATE_KEY` --- tempat di mana kunci SSH yang telah kamu buat di [langkah sebelumnya](#kunci-ssh) seharusnya disimpan.
 2. `REMOTE_HOST` --- simpan alamat IP server kamu di sini.
@@ -733,7 +733,7 @@ Script di atas akan mengirim file ke server menggunakan `rsync`, yang diimplemen
 Setelah file selesai dikirim, perintah yang telah dijabarkan di environment variable `SCRIPT_AFTER` akan dieksekusi.
 Dalam kasus kita, setelah file selesai dikirim, ia akan menuju ke direktori bot, lalu memulai ulang bot-nya.
 
-Perlu dicatat bahwa kamu perlu menambahkan tiga [secret environment variable](https://docs.github.com/en/actions/security-guides/encrypted-secrets):
+Perlu dicatat bahwa kamu perlu menambahkan tiga [secret environment variable](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions):
 
 1. `SSH_PRIVATE_KEY` --- tempat di mana kunci SSH yang telah kamu buat di [langkah sebelumnya](#kunci-ssh) seharusnya disimpan.
 2. `REMOTE_HOST` --- simpan alamat IP server kamu di sini.
