@@ -63,12 +63,12 @@ Berdasarkan [FAQ Bot](https://core.telegram.org/bots/faq#my-bot-is-hitting-limit
    Yang ini sama sekali tidak ada hubungannya dengan notifikasi masal ataupun banyaknya pesan yang dikirim di dalam grup.
    Sekali lagi, plugin auto-retry akan menanganinya dengan baik.
 
-Ada beberapa batasan lain yang diketahui dan terungkap di luar dokumentasi API Bot resmi.
-Contohnya, [yang diketahui](https://t.me/tdlibchat/146123) bahwa bot hanya dapat mengedit 20 pesan dalam satu menit per obrolan grup.
-Namun, ini hanyalah pengecualian, kita dapat asumsikan bahwa batasan ini bisa saja berubah di masa mendatang.
-Lagi pula, informasi ini tidak memberikan dampak apapun pada cara Anda memprogram bot.
+Ada beberapa batasan lain yang tidak tertulis di dokumentasi resmi API Bot.
+Contohnya, [sudah diketahui](https://t.me/tdlibchat/146123) bahwa bot hanya dapat mengedit maksimal 20 pesan dalam satu menit per obrolan grup.
+Namun, batasan ini tidaklah selamanya benar, karena ia bisa saja berubah di masa mendatang.
+Lagi pula, informasi ini tidak memberikan dampak apapun ke cara kamu memprogram bot.
 
-Misalnya, memperlambat bot kamu berdasarkan angka ini tetaplah ide yang buruk:
+Misalnya, memperlambat bot kamu berdasarkan angka di atas tetaplah ide yang buruk:
 
 ## Pelambatan (Throttling)
 
