@@ -10,16 +10,16 @@ Command handling on steroids.
 This plugin provides various features related to command handling that are not contained in the [command handling done by the grammY core library](../guide/commands).
 Here is a quick overview of what you get with this plugin:
 
-- Better code structure by attaching middleware to command definitions
+- Better code readability by encapsulating middleware with command definitions
 - User command menu synchronization via `setMyCommands`
-- Improved command organization with the ability to group them into different Commands instances
+- Improved command grouping and organization
 - Ability to scope command reach, e.g: only accessible to group admins or channels, etc
 - Defining command translations
-- "Did you mean ...?" feature that finds the nearest existing command
-- Custom command prefixes, e.g: `+`, `?` or any symbol instead of `/`
+- "Did you mean ...?" feature that finds the nearest existing command to a given user miss-input
 - Set custom behavior for commands that explicitly mention your bot's user, like: `/start@your_bot`
+- Custom command prefixes, e.g: `+`, `?` or any symbol instead of `/`
 - Support for commands that are not in the beginning of the message
-- RegEx support for command names
+- RegExp Commands!
 
 All of these features are made possible because you will define one or more central command structures that define your bot's commands.
 
@@ -65,7 +65,7 @@ import {
 
 Now that that's settled, let's see how we can make our commands visible to our users.
 
-## Automatic Command Setting
+## User Command Menu Setting
 
 Once you defined your commands with an instance of the `Commands` class, you can call the `setCommands` method, which will register all the defined commands to your bot.
 
@@ -179,21 +179,88 @@ Therefore calling `setCommands` or `setMyCommands` on upperCased commands will t
 **Setting UpperCased command names is heavily discourage**
 :::
 
-It's is also possible to stack commands instances into `SetMyCommands`
+**Be aware** that `SetCommands` and `SetMyCommands` only affects the commands displayed in the user's commands menu, and not the actual access to them. You will learn how to implement restricted command access in the [Scoped Commands](#scoped-commands) section.
 
-```js
-userCommands.command("start", "Init bot", async (ctx) => {
+### Grouping Commands
+
+Since we can split and group our commands into different instances, it allows for a much more idiomatic command organization.
+
+Let say we want to have developer only commands and we have the following code structure in Typescript:
+
+```ascii
+src/
+├─ commands/
+│  ├─ users.ts
+│  ├─ admin.ts
+├─ bot.ts
+├─ types.d.ts
+tsconfig.json
+```
+
+::: tip
+We are assuming your `tsconfig` file is well-set to resolve the types from `types.d.ts` and have resolved every necessary import.
+:::
+
+With the following code, we should have functional developer only command group that is also shown in the Telegram client Command menu. Make sure you inspect the `admin.ts` and `user.ts` file-tabs.
+
+::: code-group
+
+```ts [bot.ts]
+import { devCommands } from "./commands/admin.ts";
+import { userCommands } from "./commands/users.ts";
+
+export const bot = new Bot<MyContext>("MyBotToken");
+
+bot.use(commands());
+
+bot.use(userCommands);
+bot.use(devCommands);
+```
+
+```ts [admin.ts]
+import { userCommands } from './users.ts'
+
+export const devCommands = new Commands<MyContext>()
+
+devCommands.command('devlogin', 'Greetings', async (ctx, next) => {
+   if (ctx.from?.id === ctx.env.DEVELOPER_ID) {
+      await ctx.reply('Hi to me')
+      await ctx.setMyCommands(userCommands, devCommands)
+   } else next()
+})
+
+devCommands.command('usercount', 'Greetings', async (ctx, next) => {
+   if (ctx.from?.id === ctx.env.DEVELOPER_ID) {
+      await ctx.reply(
+        `Active users: ${/** Your business logic */}`
+    )
+   } else next()
+})
+
+devCommands.command('devlogout', 'Greetings', async (ctx, next) => {
+    if (ctx.from?.id === ctx.env.DEVELOPER_ID) {
+       await ctx.reply('Bye to me')
+       await ctx.setMyCommands(userCommands)
+    } else next()
+ })
+```
+
+```ts [users.ts]
+export const userCommands = new Commands<MyContext>();
+
+userCommands.command("start", "Greetings", async (ctx) => {
+  await ctx.reply("Hello user");
   await ctx.setMyCommands(userCommands);
-});
-adminCommands.command("admin", "Give me the power!", async (ctx) => {
-  // valid
-  await ctx.setMyCommands(userCommands, adminCommands);
-  // also valid
-  await ctx.setMyCommands([userCommands, adminCommands, hiddenCommands]);
 });
 ```
 
-**Be aware** that `SetMyCommands` only affects the commands displayed in the user's commands menu, and not the actual access to them. You will learn how to implement restricted command access in the next section.
+```ts [types.d.ts]
+type MyContext = Context & CommandsFlavor<MyContext>;
+```
+
+:::
+
+Combining this knowledge with the following section will get your Command-game to the next level.
 
 ## Scoped Commands
 
