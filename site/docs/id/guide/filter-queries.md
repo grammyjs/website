@@ -360,14 +360,14 @@ Ini membuat sistem filter query grammY selain lebih unggul juga jauh lebih cepat
 
 Sebagaimana yang disebutkan di atas, filter query secara otomatis menyeleksi properti tertentu di objek context.
 Penyeleksian satu atau lebih filter query tersebut berasal dari [type predicate TypeScript](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates).
-Secara umum, kamu dapat mempercayai type inference itu ia selalu bekerja dengan benar.
-Jika suatu properti type infer-nya tersedia, kamu dapat dapat menggunakan type tersebut dengan aman.
-Jika suatu properti type infer-nya hilang, berarti ada kasus tertentu yang membuat type-nya hilang.
-Bukan ide yang baik untuk melakukan casting type dengan operator `!`.
+Umumnya, kamu bisa mempercayai hasil penyeleksian tersebut benar-benar terseleksi dengan baik.
+Contohnya, jika suatu property tersedia, kamu dapat menggunakan type tersebut dengan aman.
+Namun, jika suatu property tidak tersedia, berarti ada proses tertentu yang mengakibatkan type property tersebut tidak terseleksi.
+Kami tidak menyarankan untuk mengakalinya dengan melakukan type casting menggunakan operator `!`.
 
-> Mungkin ini kurang jelas tentang apa maksud kasus tersebut.
-> Jangan ragu untuk bertanya di [obrolan grup](https://t.me/grammyjs) jika kamu tidak memahaminya.
+> Meski terlihat jelas, dalam kasus tertentu, mungkin kamu tidak menemukan penyebab suatu property tidak terseleksi dengan benar.
+> Jangan ragu untuk bertanya di [obrolan grup](https://t.me/grammyjs) jika kamu masih belum menemukan penyebabnya.
 
-Membuat type ini merumitkan.
+Mengelola berbagai macam type berikut bukanlah perkara mudah.
 Banyak sekali pengetahuan tentang API Bot yang masuk pada bagian grammY ini.
 Apabila kamu ingin memahami lebih dalam bagaimana type ini dibuat, berikut pembahasan lengkapnya yang bisa kamu [tonton di YouTube](https://youtu.be/ZvT_xexjnMk)(tersedia subtitle bahasa Indonesia).
