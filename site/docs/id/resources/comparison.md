@@ -68,7 +68,7 @@ Berikut beberapa alasan mengapa kamu lebih baik menggunakan Telegraf alih-alih g
 
 - Kamu telah mempunyai bot besar yang telah ditulis menggunakan Telegraf dan tidak ingin mengerjakannya lagi.
   Dalam kasus tersebut, migrasi ke grammY akan memakan waktu yang lebih lama daripada hasil yang diperoleh, selancar apapun migrasinya.
-- Kamu mengenal Telegraf seperti punggung telapak tanganmu dan kamu tidak peduli untuk mengubah keahlianmu.
+- Kamu paham betul seluk beluk Telegraf dan tidak ingin untuk mengubah keahlianmu.
   grammY memperkenalkan beberapa konsep baru yang mungkin asing bagi kamu yang hanya menggunakan Telegraf, dan menggunakan grammY berarti kamu akan dihadapkan pada hal-hal baru.
 - Ada sedikit perbedaan ketika menggunakan sintaks pada Telegraf dan grammY untuk mencapai hasil yang sama, dan kamu mungkin lebih menyukai gaya tersebut dibanding gaya lainnya.
   Misalnya, untuk menyimak pesan teks, Telegraf menggunakan `bot.on(message("text"))`, sedangkan grammY menggunakan `bot.on("message:text")`.
@@ -93,6 +93,8 @@ Kamu pasti tidak menginginkan itu terjadi---selain mi goreng itu sendiri tentuny
 
 Saat ini tidak ada library TypeScript yang layak untuk membuat bot.
 Semuanya kecuali grammY, Telegraf dan NTBA sebagian besar tidak terawat dan usang.
+
+Apakah kamu telah membuat library menakjubkan yang kami tidak tahu library tersebut ada?
 Silahkan ubah halaman ini dan tambahkan perbandingannya---atau kamu juga bisa menyampaikan pendapatmu di [chat grup grammY](https://t.me/grammyjs)!
 
 ## Perbandingan dengan Framework Bahasa Pemrograman Lainnya
