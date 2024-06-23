@@ -44,7 +44,6 @@ export default defineConfig({
         aliases: ["asciiart", "ascii", "ftl", "log", "procfile", "text"],
         ...plaintext,
       },
-      // @ts-ignore
       env,
     ],
   },
