@@ -359,7 +359,7 @@ Para propósitos de prueba y depuración, puedes ejecutar un servidor de desarro
 En un entorno de desarrollo, tu bot no tiene acceso a tus variables de entorno secretas.
 Así que, [según Cloudflare](https://developers.cloudflare.com/workers/configuration/secrets/#secrets-in-development), puedes crear un archivo `.dev.vars` en la raíz de tu proyecto para definir secretos:
 
-```sh
+```env
 BOT_TOKEN=<your_bot_token>  # <- reemplazar esto con su token bot.
 ```
 
