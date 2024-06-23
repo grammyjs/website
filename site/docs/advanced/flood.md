@@ -69,7 +69,7 @@ For example, [it is known](https://t.me/tdlibchat/146123) that bots can only do 
 However, this is the exception, and we also have to assume that these limits may be changed in the future.
 Thus, this information does not affect how to program your bot.
 
-For instance, throttling your bot based on these number is still a bad idea:
+For instance, throttling your bot based on these numbers is still a bad idea:
 
 ## Throttling
 
