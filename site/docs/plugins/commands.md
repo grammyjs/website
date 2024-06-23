@@ -201,7 +201,7 @@ tsconfig.json
 We are assuming your `tsconfig` file is well-set to resolve the types from `types.d.ts` and have resolved every necessary import.
 :::
 
-With the following code, we should have functional developer only command group that is also shown in the Telegram client Command menu. Make sure you inspect the `admin.ts` and `user.ts` file-tabs.
+The following code group exemplify how we could implement a developer only command group, and update our Telegram client Command menu. Make sure you inspect the `admin.ts` and `user.ts` file-tabs.
 
 ::: code-group
 
@@ -304,7 +304,9 @@ adminCommands
   });
 ```
 
-Note: if you only want a command to be accesible on certain scopes, make sure you do not add a handler in the first `MyCommands.command` call. Doing that will automatically add it to all private chats, including groups.
+::: tip
+If you only want a command to be accesible on certain scopes, make sure you do not add a handler in the first `MyCommands.command` call. Doing that will automatically add it to all private chats, including groups.
+:::
 
 Here is an example of a command that it's only accesible in groups
 
