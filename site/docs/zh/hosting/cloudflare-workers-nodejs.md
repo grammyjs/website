@@ -359,7 +359,7 @@ https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<MY_BOT>.<MY_SUBD
 在开发环境中，你的 bot 无法访问你的 secret 环境变量。
 因此，[根据 Cloudflare](https://developers.cloudflare.com/workers/configuration/secrets/#secrets-in-development)，你可以在项目的根目录中创建一个 `.dev.vars` 文件来定义 secret：
 
-```sh
+```env
 BOT_TOKEN=<your_bot_token>  # <- 将此处替换成你的 bot token。
 ```
 
