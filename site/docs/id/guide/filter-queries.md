@@ -370,4 +370,4 @@ Kami tidak menyarankan untuk mengakalinya dengan melakukan type casting mengguna
 
 Mengelola berbagai macam type berikut bukanlah perkara mudah.
 Banyak sekali pengetahuan tentang API Bot yang masuk pada bagian grammY ini.
-Apabila kamu ingin memahami lebih dalam bagaimana type ini dibuat, berikut pembahasan lengkapnya yang bisa kamu [tonton di YouTube](https://youtu.be/ZvT_xexjnMk)(tersedia subtitle bahasa Indonesia).
+Apabila kamu ingin memahami lebih dalam bagaimana type ini dibuat, berikut pembahasan lengkapnya yang bisa kamu [tonton di YouTube](https://youtu.be/ZvT_xexjnMk).
