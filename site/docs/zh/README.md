@@ -100,8 +100,8 @@ bot.start();
 
 <div style="font-size: 0.75rem; display: flex; justify-content: center;">
 
-© 2021-2024 &middot; grammY 支持 Telegram Bot API 7.4，该 API 于 2024 年 5 月 28 日 [发布](https://core.telegram.org/bots/api#may-28-2024)。
-(最新亮点: Telegram Stars)
+© 2021-2024 &middot; grammY 支持 Telegram Bot API 7.4，该 API 于 2024 年 6 月 18 日 [发布](https://core.telegram.org/bots/api#june-18-2024)。
+(最新亮点: 编辑业务消息和查看 star 交易)
 
 </div>
 </footer>
