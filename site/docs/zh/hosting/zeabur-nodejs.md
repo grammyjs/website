@@ -17,7 +17,7 @@ next: false
 
 ## 先决条件
 
-要想继续操作，你需要拥有 [Github](https://github.com) 和 [Zeabur](https://zeabur.com) 帐户。
+要想继续操作，你需要拥有 [GitHub](https://github.com) 和 [Zeabur](https://zeabur.com) 帐户。
 
 ### 方法 1：从头开始创建一个新项目
 
@@ -27,13 +27,13 @@ next: false
 # 初始化项目
 mkdir grammy-bot
 cd grammy-bot
-pnpm init -y
+npm init -y
 
 # 安装主要依赖项
-pnpm install grammy
+npm install grammy
 
 # 安装开发依赖项
-pnpm install -D typescript
+npm install -D typescript ts-node @types/node
 
 # 初始化 TypeScript
 npx tsc --init
@@ -47,9 +47,10 @@ npx tsc --init
 ```ts
 import { Bot } from "grammy";
 
-const bot = new Bot(
-  process.env.TELEGRAM_BOT_TOKEN || "your_telegram_bot_token",
-);
+const token = process.env.TELEGRAM_BOT_TOKEN;
+if (!token) throw new Error("未设置TELEGRAM_BOT_TOKEN");
+
+const bot = new Bot(token);
 
 bot.on("message:text", async (ctx) => {
   console.log("Message: ", ctx.message.text);
@@ -74,7 +75,8 @@ bot.start();
 ├── src/
 │   └── bot.ts
 ├── package.json
-├── pnpm-lock.yaml
+├── package-lock.json
+└── tsconfig.json
 ```
 
 然后我们必须将 `start` 脚本添加到 `package.json` 中。
@@ -86,7 +88,7 @@ bot.start();
   "version": "1.0.0",
   "description": "Telegram Bot Starter with TypeScript and grammY",
   "scripts": {
-    "start": "ts-node src/bot.ts"
+    "start": "ts-node src/bot.ts" // [!code focus]
   },
   "author": "MichaelYuhe",
   "license": "MIT",
@@ -94,6 +96,8 @@ bot.start();
     "grammy": "^1.21.1"
   },
   "devDependencies": {
+    "@types/node": "^20.14.5",
+    "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
   }
 }
@@ -102,12 +106,8 @@ bot.start();
 现在，你可以通过运行以下命令在本地运行你的 bot：
 
 ```sh
-pnpm start
+npm run start
 ```
-
-> 注意：你需要全局安装 `ts-node` 才能在本地运行 bot。
->
-> 你可以通过运行 `pnpm install -g ts-node` 来安装它。
 
 ### 方法 2：使用 Zeabur 的模板
 
