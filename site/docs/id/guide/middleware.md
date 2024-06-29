@@ -38,7 +38,7 @@ Update **tidak** dicocokkan dengan konten foto karena middleware di `(*)` sudah 
 Kok bisa itu terjadi?
 Mari cari tahu!
 
-Klik [di sini](/ref/core/middleware) untuk melihat type `Middleware` di referensi grammY:
+Klik [di sini](/ref/core/middleware#type) untuk melihat type `Middleware` di referensi grammY:
 
 ```ts
 // Menghilangkan beberapa type parameter supaya ringkas.
