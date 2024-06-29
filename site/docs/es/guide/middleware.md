@@ -38,7 +38,7 @@ La actualización **no** se comprueba para el contenido de una foto, porque el m
 Ahora, ¿cómo funciona esto?
 Averigüémoslo.
 
-Podemos inspeccionar el tipo `Middleware` en la referencia de grammY [aquí](/ref/core/middleware):
+Podemos inspeccionar el tipo `Middleware` en la referencia de grammY [aquí](/ref/core/middleware#type):
 
 ```ts
 // Se han omitido algunos parámetros de tipo por razones de brevedad.
