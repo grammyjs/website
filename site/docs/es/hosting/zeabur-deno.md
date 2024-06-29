@@ -17,7 +17,7 @@ Si estás buscando la versión Node.js, por favor revisa [este tutorial](./zeabu
 
 ## Requisitos previos
 
-Para seguir el curso, necesitas tener cuentas [Github](https://github.com) y [Zeabur](https://zeabur.com).
+Para seguirnos, necesitas tener cuentas [GitHub](https://github.com) y [Zeabur](https://zeabur.com).
 
 ### Método 1: Crear un nuevo proyecto desde cero
 
@@ -39,7 +39,7 @@ touch deno.json
 
 Luego modifica el archivo `main.ts` con el siguiente código:
 
-```typescript
+```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
 const token = Deno.env.get("TELEGRAM_BOT_TOKEN");
