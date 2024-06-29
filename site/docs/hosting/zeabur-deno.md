@@ -17,9 +17,9 @@ If you're looking for the Node.js version, please check out [this tutorial](./ze
 
 ## Prerequisites
 
-To follow along, you need to have [Github](https://github.com) and [Zeabur](https://zeabur.com) accounts.
+To follow along, you need to have [GitHub](https://github.com) and [Zeabur](https://zeabur.com) accounts.
 
-### Method 1: Create a New Project From Scratch
+### Method 1: Create a New Project from Scratch
 
 > Make sure you have Deno installed on your local machine.
 
@@ -39,7 +39,7 @@ touch deno.json
 
 Then modify `main.ts` file with the following code:
 
-```typescript
+```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
 const token = Deno.env.get("TELEGRAM_BOT_TOKEN");
@@ -75,7 +75,7 @@ You can just use the template and start writing your bot's code.
 
 ## Deploying
 
-### Method 1: Deploy From GitHub in Zeabur's Dashboard
+### Method 1: Deploy from GitHub in Zeabur's Dashboard
 
 1. Create a repository on GitHub, it can be public or private and push your code to it.
 2. Go to [Zeabur dashboard](https://dash.zeabur.com).
@@ -83,7 +83,7 @@ You can just use the template and start writing your bot's code.
 4. Go to `Variables` tab to add your environment variables like `TELEGRAM_BOT_TOKEN`.
 5. Your service will be deployed automatically.
 
-### Method 2: Deploy With Zeabur CLI
+### Method 2: Deploy with Zeabur CLI
 
 `cd` into your project directory and run the following command:
 
