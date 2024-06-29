@@ -17,7 +17,7 @@ Si estás buscando la versión Deno, por favor revisa [este tutorial](./zeabur-d
 
 ## Requisitos previos
 
-Para seguir el curso, necesitas tener cuentas [Github](https://github.com) y [Zeabur](https://zeabur.com).
+Para seguirnos, necesitas tener cuentas [GitHub](https://github.com) y [Zeabur](https://zeabur.com).
 
 ### Método 1: Crear un nuevo proyecto desde cero
 
@@ -27,13 +27,13 @@ Inicialice su proyecto e instale algunas dependencias necesarias:
 # Inicializar el proyecto.
 mkdir grammy-bot
 cd grammy-bot
-pnpm init -y
+npm init -y
 
 # Instale las dependencias principales.
-pnpm install grammy
+npm install grammy
 
 # Instale las dependencias de desarrollo.
-pnpm install -D typescript
+npm install -D typescript ts-node @types/node
 
 # Inicializar TypeScript.
 npx tsc --init
@@ -47,9 +47,10 @@ Ahora, puedes empezar a escribir el código de tu bot en `src/bot.ts`.
 ```ts
 import { Bot } from "grammy";
 
-const bot = new Bot(
-  process.env.TELEGRAM_BOT_TOKEN || "TELEGRAM_BOT_TOKEN",
-);
+const token = process.env.TELEGRAM_BOT_TOKEN;
+if (!token) throw new Error("TELEGRAM_BOT_TOKEN no está definido");
+
+const bot = new Bot(token);
 
 bot.command("start", (ctx) => ctx.reply("¡Hola de Deno & grammY!"));
 
@@ -70,7 +71,8 @@ Ahora el directorio raíz de tu proyecto debería verse así:
 ├── src/
 │   └── bot.ts
 ├── package.json
-├── pnpm-lock.yaml
+├── package-lock.json
+└── tsconfig.json
 ```
 
 Y luego tenemos que añadir scripts `start` a nuestro `package.json`.
@@ -82,7 +84,7 @@ Nuestro `package.json` ahora debe ser similar a esto:
   "version": "1.0.0",
   "description": "Telegram Bot Starter con TypeScript y grammY",
   "scripts": {
-    "start": "ts-node src/bot.ts"
+    "start": "ts-node src/bot.ts" // [!code focus]
   },
   "author": "MichaelYuhe",
   "license": "MIT",
@@ -90,6 +92,8 @@ Nuestro `package.json` ahora debe ser similar a esto:
     "grammy": "^1.21.1"
   },
   "devDependencies": {
+    "@types/node": "^20.14.5",
+    "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
   }
 }
@@ -98,12 +102,8 @@ Nuestro `package.json` ahora debe ser similar a esto:
 Ahora, puedes ejecutar tu bot localmente ejecutando:
 
 ```sh
-pnpm start
+npm run start
 ```
-
-> Nota: Necesitas instalar `ts-node` globalmente para ejecutar el bot localmente.
->
-> Puedes instalarlo ejecutando `pnpm install -g ts-node`.
 
 ### Método 2: Utilizar la plantilla de Zeabur
 

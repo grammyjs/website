@@ -27,13 +27,13 @@ Buat permulaan proyeknya, lalu instal dependensi yang dibutuhkan:
 # Buat permulaan proyek.
 mkdir grammy-bot
 cd grammy-bot
-pnpm init -y
+npm init -y
 
 # Instal dependensi utama.
-pnpm install grammy
+npm install grammy
 
 # Instal dependensi pengembangan.
-pnpm install -D typescript
+npm install -D typescript ts-node @types/node
 
 # Buat permulaan TypeScript.
 npx tsc --init
@@ -47,9 +47,10 @@ Isi file dengan kode berikut:
 ```ts
 import { Bot } from "grammy";
 
-const bot = new Bot(
-  process.env.TOKEN_BOT_TELEGRAM || "token_bot_telegram_kamu",
-);
+const token = process.env.TOKEN_BOT_TELEGRAM;
+if (!token) throw new Error("TOKEN_BOT_TELEGRAM belum disetel");
+
+const bot = new Bot(token);
 
 bot.on("message:text", async (ctx) => {
   console.log("Pesan: ", ctx.message.text);
@@ -74,7 +75,8 @@ Sekarang, direktori root proyek kamu seharusnya memiliki struktur seperti ini:
 ├── src/
 │   └── bot.ts
 ├── package.json
-├── pnpm-lock.yaml
+├── package-lock.json
+└── tsconfig.json
 ```
 
 Jika sudah sesuai, tambahkan script `start` ke `package.json`.
@@ -86,7 +88,7 @@ Sekarang, struktur `package.json` kamu semestinya serupa dengan ini:
   "version": "1.0.0",
   "description": "Bot Telegram menggunakan TypeScript dan grammY",
   "scripts": {
-    "start": "ts-node src/bot.ts"
+    "start": "ts-node src/bot.ts" // [!code focus]
   },
   "author": "MichaelYuhe",
   "license": "MIT",
@@ -94,20 +96,18 @@ Sekarang, struktur `package.json` kamu semestinya serupa dengan ini:
     "grammy": "^1.21.1"
   },
   "devDependencies": {
+    "@types/node": "^20.14.5",
+    "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
   }
 }
 ```
 
-Untuk saat ini, kamu sudah bisa menjalankan bot secara lokal menggunakan perintah berikut:
+Sekarang kamu sudah bisa menjalankan bot secara lokal menggunakan perintah berikut:
 
 ```sh
-pnpm start
+npm run start
 ```
-
-> Catatan: Kamu perlu menginstal `ts-node` secara global agar bisa menjalankan bot secara lokal.
->
-> Kamu bisa menginstalnya dengan menjalankan perintah `pnpm install -g ts-node`.
 
 ### Cara 2: Menggunakan Templat yang Disediakan oleh Zeabur
 

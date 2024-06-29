@@ -39,7 +39,7 @@ touch deno.json
 
 Kemudian, isi file `main.ts` dengan kode berikut:
 
-```typescript
+```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
 const token = Deno.env.get("TOKEN_BOT_TELEGRAM");
