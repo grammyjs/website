@@ -17,7 +17,7 @@ Zeabur підтримує різні мови програмування та ф
 
 ## Передумови
 
-Щоб слідувати посібнику, вам потрібно мати облікові записи [Github](https://github.com) та [Zeabur](https://zeabur.com).
+Щоб слідувати посібнику, вам потрібно мати облікові записи [GitHub](https://github.com) та [Zeabur](https://zeabur.com).
 
 ### Спосіб 1: створення нового проєкту з нуля
 
@@ -39,7 +39,7 @@ touch deno.json
 
 Потім внесіть у `main.ts` наступний код:
 
-```typescript
+```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
 const token = Deno.env.get("TELEGRAM_BOT_TOKEN");
