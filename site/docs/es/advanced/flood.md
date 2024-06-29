@@ -11,7 +11,7 @@ Sólo hay una forma correcta de manejar estas situaciones:
 
 Afortunadamente, existe un [plugin](../plugins/auto-retry) para ello.
 
-Ese plugin es [muy simple](https://github.com/grammyjs/auto-retry/blob/main/src/index.ts).
+Ese plugin es [muy simple](https://github.com/grammyjs/auto-retry/blob/main/src/mod.ts).
 Literalmente sólo duerme y reintenta.
 Sin embargo, usarlo tiene una implicación mayor: **cualquier petición puede ser lenta**.
 Esto significa que cuando ejecutas tu bot con webhooks, [técnicamente tienes que usar una cola](../guide/deployment-types#terminar-las-solicitudes-de-webhooks-a-tiempo) hagas lo que hagas, o bien tienes que configurar el plugin auto-retry de forma que nunca tarde mucho tiempo---pero entonces tu bot puede saltarse algunas peticiones.
@@ -63,6 +63,13 @@ Del [Bot FAQ](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do
    De nuevo, bastante claro.
    Completamente ajeno a las notificaciones masivas o a cuántos mensajes se envían en el grupo.
    Y una vez más, el plugin de auto-reintento se encargará de esto por ti.
+
+Hay algunos otros límites conocidos que se revelaron fuera de la documentación oficial de la API de bots.
+Por ejemplo, [se sabe](https://t.me/tdlibchat/146123) que los bots sólo pueden hacer hasta 20 ediciones de mensajes en un minuto por chat de grupo.
+Sin embargo, se trata de una excepción, y también hay que suponer que estos límites pueden modificarse en el futuro.
+Por lo tanto, esta información no afecta a cómo programar tu bot.
+
+Por ejemplo, estrangular tu bot basándote en estas cifras sigue siendo una mala idea:
 
 ## Regulación
 

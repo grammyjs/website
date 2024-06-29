@@ -38,7 +38,7 @@ bot.start();
 Тож, як це працює?
 Давайте дізнаємося.
 
-Ви можете переглянути тип `Middleware` у довідці grammY [тут](/ref/core/middleware):
+Ви можете переглянути тип `Middleware` у довідці grammY [тут](/ref/core/middleware#type):
 
 ```ts
 // Деякі параметри типу пропущено для спрощення.

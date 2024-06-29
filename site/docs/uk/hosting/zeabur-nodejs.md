@@ -17,7 +17,7 @@ Zeabur підтримує різні мови програмування та ф
 
 ## Передумови
 
-Щоб слідувати посібнику, вам потрібно мати облікові записи [Github](https://github.com) та [Zeabur](https://zeabur.com).
+Щоб слідувати посібнику, вам потрібно мати облікові записи [GitHub](https://github.com) та [Zeabur](https://zeabur.com).
 
 ### Спосіб 1: створення нового проєкту з нуля
 
@@ -27,13 +27,13 @@ Zeabur підтримує різні мови програмування та ф
 # Ініціалізуємо проєкт.
 mkdir grammy-bot
 cd grammy-bot
-pnpm init -y
+npm init -y
 
 # Встановлюємо головні залежності.
-pnpm install grammy
+npm install grammy
 
 # Встановлюємо залежності для розробки.
-pnpm install -D typescript
+npm install -D typescript ts-node @types/node
 
 # Ініціалізуємо TypeScript.
 npx tsc --init
@@ -47,9 +47,10 @@ npx tsc --init
 ```ts
 import { Bot } from "grammy";
 
-const bot = new Bot(
-  process.env.TELEGRAM_BOT_TOKEN || "токен_вашого_бота",
-);
+const token = process.env.TELEGRAM_BOT_TOKEN;
+if (!token) throw new Error("TELEGRAM_BOT_TOKEN не встановлено");
+
+const bot = new Bot(token);
 
 bot.on("message:text", async (ctx) => {
   console.log("Повідомлення: ", ctx.message.text);
@@ -74,7 +75,8 @@ bot.start();
 ├── src/
 │   └── bot.ts
 ├── package.json
-├── pnpm-lock.yaml
+├── package-lock.json
+└── tsconfig.json
 ```
 
 Далі нам потрібно додати до нашого `package.json` скрипт `start`.
@@ -86,7 +88,7 @@ bot.start();
   "version": "1.0.0",
   "description": "Telegram Bot Starter with TypeScript and grammY",
   "scripts": {
-    "start": "ts-node src/bot.ts"
+    "start": "ts-node src/bot.ts" // [!code focus]
   },
   "author": "MichaelYuhe",
   "license": "MIT",
@@ -94,6 +96,8 @@ bot.start();
     "grammy": "^1.21.1"
   },
   "devDependencies": {
+    "@types/node": "^20.14.5",
+    "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
   }
 }
@@ -102,12 +106,8 @@ bot.start();
 Тепер ви можете запустити бота локально за допомогою наступної команди:
 
 ```sh
-pnpm start
+npm run start
 ```
-
-> Примітка: щоб запустити бота локально, вам потрібно встановити `ts-node` глобально.
->
-> Ви можете встановити його за допомогою `pnpm install -g ts-node`.
 
 ### Спосіб 2: використання шаблону Zeabur
 

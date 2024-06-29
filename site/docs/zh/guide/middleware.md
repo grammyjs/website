@@ -38,7 +38,7 @@ bot.start();
 这是如何工作的呢？
 让我们来了解一下。
 
-我们可以在 grammY 的参考资料中查看 `Middleware` [类型](/ref/core/middleware)。
+我们可以在 grammY 的参考资料中查看 `Middleware` [类型](/ref/core/middleware#type)。
 
 ```ts
 // 为了简洁起见，省略了一些类型参数。

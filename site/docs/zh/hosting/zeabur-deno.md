@@ -17,7 +17,7 @@ next: false
 
 ## 先决条件
 
-要想继续操作，你需要拥有 [Github](https://github.com) 和 [Zeabur](https://zeabur.com) 帐户。
+要想继续操作，你需要拥有 [GitHub](https://github.com) 和 [Zeabur](https://zeabur.com) 帐户。
 
 ### 方法 1：从头开始创建一个新项目
 
@@ -39,7 +39,7 @@ touch deno.json
 
 然后使用以下代码修改 `main.ts` 文件：
 
-```typescript
+```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
 const token = Deno.env.get("TELEGRAM_BOT_TOKEN");

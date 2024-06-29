@@ -38,7 +38,7 @@ The update is **not** checked for a photo content, because the middleware at `(*
 Now, how does this work?
 Let's find out.
 
-We can inspect the `Middleware` type in grammY's reference [here](/ref/core/middleware):
+We can inspect the `Middleware` type in grammY's reference [here](/ref/core/middleware#type):
 
 ```ts
 // Omitted some type parameters for brevity.

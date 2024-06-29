@@ -11,7 +11,7 @@ Hanya ada satu cara yang tepat untuk mengatasi permasalahan tersebut:
 
 Untungnya, terdapat sebuah [plugin](../plugins/auto-retry) untuk melakukan hal tersebut.
 
-Cara kerja plugin ini [sangat sederhana](https://github.com/grammyjs/auto-retry/blob/main/src/index.ts).
+Cara kerja plugin ini [sangat sederhana](https://github.com/grammyjs/auto-retry/blob/main/src/mod.ts).
 Ia hanya tidur (menunggu) dan mengulang kembali (kirim ulang permintaan).
 Sayangnya, cara kerja yang seperti itu memiliki dampak yang cukup signifikan: **semua permintaan menjadi lambat**.
 Artinya, ketika kamu menjalankan bot di sebuah webhooks, [secara teknis kamu memerlukan sebuah antrian atau queque](../guide/deployment-types#mengakhiri-request-webhook-tepat-waktu), atau cara lainnya dengan mengonfigurasi [plugin auto-retry](../plugins/auto-retry) sedemikian rupa sehingga ia tidak memakan banyak waktu---tetapi dampaknya bot kamu bisa melewatkan beberapa permintaan.
@@ -62,6 +62,13 @@ Berdasarkan [FAQ Bot](https://core.telegram.org/bots/faq#my-bot-is-hitting-limit
    Aturannya cukup jelas.
    Yang ini sama sekali tidak ada hubungannya dengan notifikasi masal ataupun banyaknya pesan yang dikirim di dalam grup.
    Sekali lagi, plugin auto-retry akan menanganinya dengan baik.
+
+Ada beberapa batasan lain yang tidak tertulis di dokumentasi resmi API Bot.
+Contohnya, [sudah diketahui](https://t.me/tdlibchat/146123) bahwa bot hanya dapat mengedit maksimal 20 pesan dalam satu menit per obrolan grup.
+Namun, batasan ini tidaklah selamanya benar, karena ia bisa saja berubah di masa mendatang.
+Lagi pula, informasi ini tidak memberikan dampak apapun ke cara kamu memprogram bot.
+
+Misalnya, memperlambat bot kamu berdasarkan angka di atas tetaplah ide yang buruk:
 
 ## Pelambatan (Throttling)
 

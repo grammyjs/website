@@ -11,7 +11,7 @@ There is only one correct way to handle these situations:
 
 Fortunately, there is a [plugin](../plugins/auto-retry) for that.
 
-That plugin is [very simple](https://github.com/grammyjs/auto-retry/blob/main/src/index.ts).
+That plugin is [very simple](https://github.com/grammyjs/auto-retry/blob/main/src/mod.ts).
 It literally just sleeps and retries.
 However, using it has a major implication: **any request can be slow**.
 This means that when you run your bot on webhooks, [you technically have to use a queue](../guide/deployment-types#ending-webhook-requests-in-time) no matter what you do, or else you need to configure the auto-retry plugin in a way that it never takes a lot of time---but then your bot may skip some requests.
@@ -63,6 +63,13 @@ From the [Bot FAQ](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-h
    Again, pretty clear.
    Completely unrelated to bulk notifications or how many messages are sent in the group.
    And yet again, the auto-retry plugin will take care of this for you.
+
+There are a few other known limits there were revealed outside of the official Bot API documentation.
+For example, [it is known](https://t.me/tdlibchat/146123) that bots can only do up to 20 message edits in a minute per group chat.
+However, this is the exception, and we also have to assume that these limits may be changed in the future.
+Thus, this information does not affect how to program your bot.
+
+For instance, throttling your bot based on these numbers is still a bad idea:
 
 ## Throttling
 
