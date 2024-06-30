@@ -5,7 +5,6 @@ next: false
 # How grammY Compares to Other Bot Frameworks
 
 While grammY uses some concepts known from other bot frameworks (and web frameworks), it was written from scratch for optimal readability and performance.
-In other words, it does not use any code of competing projects, but it will still feel familiar to users of some frameworks.
 
 > Please assume that this comparison is biased, even though we're trying to provide you with an objective description of the advantages and disadvantages of using grammY over using other libraries.
 > We are trying to keep things in this article up-to-date.
@@ -14,7 +13,7 @@ In other words, it does not use any code of competing projects, but it will stil
 ## Comparison With Other JavaScript Frameworks
 
 ::: tip Choose Your Programming Language First
-Given that you're reading the docs of a framework within the JavaScript ecosystem, you are likely looking for something to run on Node.js (or Deno).
+Given that you're reading the docs of a framework within the JavaScript ecosystem, you are likely looking for something to run on Node.js or Deno.
 However, if that's not you, [scroll down](#comparison-with-frameworks-in-other-programming-languages) for a comparison of what programming languages are suited for bot development.
 Naturally, you will also find a brief comparison against frameworks of other languages (mainly Python).
 :::
@@ -26,9 +25,7 @@ We will focus on them for now, but we (or you?) may add other comparisons in the
 
 grammY has its roots in Telegraf, so here is a brief summary of how these frameworks relate historically.
 
-#### Some History
-
-Telegraf is an amazing library, and grammY would not be where it is without it.
+When grammY was created, Telegraf was an amazing library, and grammY would not be where it is without it.
 However, Telegraf used to be written in JavaScript (in v3).
 The rare type annotations were manually added and poorly maintained, so they were incomplete, incorrect, and outdated.
 Strong type annotations are a crucial aspect of any serious library for the tooling support they enable, and because it allows you to iterate significantly faster on your code base.
@@ -47,82 +44,31 @@ This allowed to skip a lot of the frustrating discussions around how to cope wit
 It enabled the project to have clean, consistent, compiling code that provides users with excellent types (=editor support).
 Type safety in turn permits more advanced features that fundamentally change how we think about bot development, such as [API transformers](../advanced/transformers).
 
-Today, Telegraf 3 is outdated.
-There are some unofficial forks out there that try to keep the legacy code base up to date with the evolvement of the Bot API, but their compatibility is unknown.
-Furthermore, the plugin ecosystem of Telegraf has moved on to Telegraf 4.
-Most plugins developers do not maintain versions for third-party forks of old Telegraf versions.
+Even though Telegraf 3 is still used by many active bots, the library is widely outdated.
+Furthermore, the plugin ecosystem of Telegraf has moved on to Telegraf 4 (at least those that were not migrated to grammY).
 
-Based on the fact that Telegraf hangs somewhere between version 3 and 4, it makes sense to compare grammY to both versions individually.
+This comparison only compares grammY to Telegraf 4.
 
-#### Comparison to v3
+Here is a list of reasons why you should use grammY instead of Telegraf.
 
-Given their shared history, grammY and Telegraf have a lot in common.
-They both have a [middleware system](../guide/middleware) in their core.
-They also share a lot of their basic syntax:
-
-```ts
-// Works with both grammY and Telegraf.
-bot.on("message", (ctx) => ctx.reply("Hi!"));
-```
-
-Any code written in Telegraf will work in grammY with minimal changes.
-(Note that the opposite is not true as many grammY features are not available to Telegraf users.)
-
-The main advantage of grammY over Telegraf 3.x is **substantially better tooling support**.
-Telegraf 3 is written in JavaScript.
-The shipped types are incorrect and incomplete, and the consumed Bot API types are outdated by several years.
-As a result, there is no reliable support for auto-complete or spell-checking bot code.
-Experience shows that you often have to run your bot to find out whether your code works.
-
-In contrast, grammY is written in pure TypeScript.
-This allows your code editor (e.g. VS Code) to analyze your code while you are typing, and assist you.
-In addition, it can show the complete Telegram Bot API inline---the website's documentation will be available right at your fingertips when hovering your mouse over any name or element of your code.
-
-Another remarkable advantage is that you are finally able to **write your own bots in TypeScript**.
-This was hard to do because the wrong type annotations of Telegraf were preventing perfectly correct code from compiling, thus effectively encouraging users not to check their code in the first place.
-However, type-safe code is a major advantage for any non-trivial code base.
-
-grammY and Telegraf have distinct code bases.
-Being freed from the legacy, grammY could also make substantial contributions to the underlying middleware system, enabling exciting use cases such as [filter queries](../guide/filter-queries), [error boundaries](../guide/errors#error-boundaries), [API transformers](../advanced/transformers), and many more.
-This also enables the development of valuable plugins that are impossible to work under Telegraf.
-
-The main advantage of Telegraf over grammY is that it is still **known by a lot more people**.
-The Telegraf community may be divided between the versions, but most of these groups have created more bots with their version of Telegraf than there are grammY bots.
-This also means that you can find more stories on the internet about Telegraf users, and you will find more unofficial tutorials by other coders.
-
-#### Comparison to v4
-
-The main advantage of grammY over Telegraf 4.x is that **it is simply a lot easier**.
-For example:
-
+- grammY always supports the latest version of the Bot API.
+  Telegraf often lags behind by a few versions.
 - grammY has a [documentation](../).
-  Telegraf does not (it was replaced by a generated API reference that lacks explanations).
-- Types in grammY _just work_ and they will follow your code.
-  In Telegraf, you will often need to write your code a certain way, otherwise it does not compile (even though it would actually work fine).
+  Telegraf does not---it was replaced by a generated API reference that lacks explanations, and the few guides that exist are incomplete and hard to find.
+- grammY embraces TypeScript, the types _just work_ and they will follow your code.
+  In Telegraf, you will often need to write your code a certain way, otherwise it does not compile (even though it would actually run fine).
 - grammY integrates hints from the [official Bot API reference](https://core.telegram.org/bots/api) inline that help you while you're coding.
   Telegraf does not give you any explanations on your code.
+- Many more things like better performance, a large plugin ecosystem, documentation that is translated for billions of people, better integration with databases and web frameworks, better runtime compatibility, a [VS Code extension](https://marketplace.visualstudio.com/items?itemName=grammyjs.grammyjs), and a number of other things that you will discover as you go.
 
-#### Summary
+Here is a list of reasons why you should use Telegraf instead of grammY.
 
-##### Advantages of grammY
-
-- Easier to use than Telegraf 3 and 4
-- Proper TypeScript support
-- Has both a documentation and a generated API reference
-- Significantly faster on long polling (with grammY runner)
-- United community and ecosystem
-- More plugins
-- Better integrations with databases and web frameworks
-- More actively developed
-- Helpful error messages
-- Much harder to run into dangerous race conditions
-- Designed to protect you from making programming mistakes
-- Runs on Node.js, but also on Deno and in the browser
-
-##### Advantages of Telegraf
-
-- Older, thus more mature
-- Many more example bots, both in the repository and in the wild
+- You already have a large bot written in Telegraf and you no longer really work on it.
+  In that case, migrating to grammY may take more time than you will save in the long run, no matter how smooth the migration is.
+- You know Telegraf like the back of your hand and you do not care about changing your skill set.
+  grammY introduces a number of novel concepts that can be unfamiliar if you have used Telegraf only, and using grammY means that you will be exposed to new things.
+- There are a few details where Telegraf and grammY use different syntax to achieve the same thing, and you just happen to prefer one style over the other.
+  For instance, Telegraf uses `bot.on(message("text"))` and grammY uses `bot.on("message:text")` to listen for text messages.
 
 ### NTBA
 
@@ -141,21 +87,31 @@ You don't want that.
 
 ### Other Frameworks
 
-Do you think that your favorite framework is better than grammY in some respect?
+There currently are no other TypeScript libraries that are worth using for building bots.
+Everything except grammY, Telegraf, and NTBA is largely unmaintained and thus horribly out of date.
+
+Did you just create a new awesome library and we are not aware of it yet?
 Feel free to edit this page and add a comparison---or tell us what you think in the [group chat](https://t.me/grammyjs)!
 
 ## Comparison With Frameworks in Other Programming Languages
 
 There are reasons to favor a different programming language over TypeScript.
 The most important thing is that you like working with your tools and languages.
-If you are determined to stick with something else, then you can stop reading here.
+If you are determined to stick with a different language, then you can stop reading here.
 
 Given that you're still reading, you may want to know why grammY is written in TypeScript, and why you should maybe consider picking this language for your bot, too.
 
 This section will outline how TypeScript has a few advantages over other languages when it comes to developing Telegram bots.
-The main other language that is used to develop chat bots for Telegram is Python, so we will limit ourselves to this for now.
-Some of the following points are rather personal opinions than objective facts.
+This comparison will be limited to Python, Go, and Rust.
+Feel free to add more sections if you want to contrast TypeScript with another language.
+
+Some of the following points are partially based on personal opinions.
 People have different taste, so take this section with a grain of salt.
+
+### Frameworks Written in Python
+
+A clear case can be made when comparing TypeScript to Python.
+Pick TypeScript and you will enjoy:
 
 1. **Better editor tooling.**
    The type annotations of grammY are outstanding.
@@ -171,16 +127,36 @@ People have different taste, so take this section with a grain of salt.
    If your bot actually starts to get popular, it is significantly easier to scale bots written in JS rather than in Python.
 
 4. **Higher responsiveness of your bot.**
-   The V8 engine makes JavaScript the fastest scripting language in the observable universe.
+   Right now, V8 and its competitors make JavaScript the world's fastest scripting language.
    If you like your bot to be as fast as possible while still enjoying a dynamic language, then grammY is your best bet.
 
-5. **`async`/`await` support.**
-   This is a very popular programming pattern to tame concurrency.
-   The recent years show a strong trend towards asynchronous programming.
-   The largest bot framework for Python, PTB, [announced its migration](https://t.me/pythontelegrambotchannel/94) to asynchronous programming in January 2021, which is expected to maybe take "2 years".
-   grammY is already there.
-   (Other less-known Python frameworks may be faster at transitioning.
-   Disregard this point if you are using a Python framework that has support for `async`/`await`.)
+As always, programming languages excel at certain tasks and should be avoided for others.
+This is no exception.
+
+For example, with the current state of the ecosystems, anything related to machine learning should not be done in JavaScript.
+However, when it comes to web servers, TypeScript tends to be a much better choice.
+
+### Frameworks Written in Go
+
+If you are proficient in both TypeScript and Go, then a reasonable metric for deciding on a language for your bot is the balance between development speed and execution speed.
+
+Pick grammY if you are not completely sure what you are building.
+TypeScript lets you iterate on your code base at incredible speeds.
+It is great for rapid prototyping, trying out new things, getting to know bots, and getting things done quickly.
+As a rule of thumb, processing ~100,000,000 updates per day can be done easily with TypeScript, but going beyond that will require extra work, such as using one more grammY plugin.
+
+Pick a library written in Go if you already know fairly well what you will be building (you don't expect to need much assistance), and you already know that your bot will process a very large number of updates.
+As a natively compiled language, Go outperforms TypeScript at raw CPU speed by several orders of magnitude.
+This is much less relevant when you write a bot because most of the time is spent waiting for the network, but eventually, it will start to matter how fast your bot can parse JSON.
+Go can be a better choice in these cases.
+
+### Frameworks Written in Rust
+
+A similar point can be made [as with Go](#frameworks-written-in-go), but it is even stronger with Rust.
+In a way, it will take you even more time to write Rust, but your bot will be even faster, too.
+
+Also, please note that using Rust is fun but rarely necessary for bots.
+If you want to use Rust, then do it, but consider saying that you love Rust and not that it is the right tool for the job.
 
 ## How to Disagree With This Comparison
 

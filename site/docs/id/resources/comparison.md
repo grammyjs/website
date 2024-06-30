@@ -6,7 +6,6 @@ next: false
 
 grammY dibuat dari nol untuk memperoleh performa yang optimal serta mudah untuk dikelola.
 Selain itu, kami juga menggunakan beberapa konsep yang umum digunakan di beberapa framework bot---dan framework web---lain.
-Artinya, beberapa pengguna yang sudah pernah menggunakan framework lain mungkin akan merasa familiar ketika menggunakan grammY.
 
 > Harap diperhatikan bahwa perbandingan berikut mungkin bersifat bias, meskipun kami sudah berupaya sebaik mungkin untuk memberikan deskripsi secara objektif.
 > Kami selalu berupaya untuk menjaga artikel ini agar selalu up-to-date.
@@ -15,7 +14,7 @@ Artinya, beberapa pengguna yang sudah pernah menggunakan framework lain mungkin 
 ## Perbandingan dengan Framework JavaScript Lainnya
 
 ::: tip Pilih Bahasa Pemrograman Terlebih Dahulu
-Karena kamu sedang membaca dokumentasi framework yang menggunakan ekosistem JavaScript, kemungkinan besar kamu mencari sesuatu yang dapat berjalan di Node.js (atau Deno).
+Karena kamu sedang membaca dokumentasi framework yang menggunakan ekosistem JavaScript, kemungkinan besar kamu mencari sesuatu yang dapat berjalan di Node.js atau Deno.
 Tetapi, jika tebakan kami salah, silahkan [gulir ke bawah](#perbandingan-dengan-framework-bahasa-pemrograman-lainnya) untuk melihat perbandingan bahasa pemrograman yang cocok untuk mengembangkan sebuah bot.
 Di dalamnya, kami juga membahas framework dengan bahasa pemrograman lain (khususnya Python).
 :::
@@ -29,9 +28,7 @@ Meski begitu, kami (atau bahkan kamu?) mungkin suatu saat akan menambah daftar p
 Telegraf merupakan asal mula terbentuknya grammY.
 Berikut kisah bagaimana framework ini bisa memiliki hubungan secara historis dengan grammY.
 
-#### Sejarah Singkat
-
-Telegraf adalah library yang menakjubkan, dan grammY tidak akan lahir tanpanya.
+Ketika grammY dibuat, Telegraf adalah library yang luar biasa, dan grammY mungkin tidak akan ada tanpanya.
 Dulunya, Telegraf ditulis menggunakan JavaScript (di v3).
 Sayangnya, rare type annotation ditambahkan secara manual serta tidak dikelola dengan baik, sehingga ia menjadi tidak lengkap, terjadi banyak kesalahan, dan tidak up-to-date.
 Strong type annotation adalah komponen yang krusial bagi sebuah library untuk men-support tool yang mereka gunakan, selain itu ia mampu berjalan dengan lebih cepat di code base kamu.
@@ -50,83 +47,31 @@ Dengan begitu, kita bisa terhindar dari diskusi panas mengenai permasalahan typi
 Ia juga harus bisa menghasilkan sebuah proyek yang rapi, konsisten, serta compile code yang menyediakan user sebuah type yang sempurna (=support code editor yang lebih baik).
 Type safety menyediakan fitur-fitur lanjutan yang secara fundamental mengubah cara pandang kita dalam mengembangkan sebuah bot, contohnya [transformer API](../advanced/transformers).
 
-Sekarang, Telegraf 3 sudah usang.
-Di luar sana terdapat beberapa fork yang mencoba untuk mengelola code base lama tersebut agar selalu up-to-date dengan API Bot Telegram yang terus berkembang, tetapi kompatibilitasnya masih perlu dipertanyakan.
-Terlebih lagi, ekosistem plugin Telegraf telah dipindahkan ke Telegraf 4.
-Banyak developer plugin tidak mau mengelola plugin untuk fork Telegraf dari pihak ketiga yang menggunakan versi usang.
+Meski Telegraf 3 digunakan oleh sekian banyak bot aktif, library tersebut belum saja diperbarui.
+Selain itu, ekosistem pluginnya juga telah berpindah ke Telegraf 4 (selain yang tidak dimigrasikan ke grammY).
 
-Dikarenakan pengembangan Telegraf terhenti di antara versi 3 dan 4, maka kita akan membandingkan grammY dengan kedua versi tersebut secara terpisah.
+Perbandingan ini hanya membandingkan grammY dengan Telegraf 4.
 
-#### Dibandingkan dengan v3
+Berikut beberapa alasan mengapa kamu lebih baik menggunakan grammY alih-alih Telegraf:
 
-Karena memiliki sejarah yang serupa, grammY dan Telegraf memiliki banyak kesamaan.
-Mereka berdua menggunakan sebuah [sistem middleware](../guide/middleware) sebagai dasarnya.
-Syntax-syntax dasar yang digunakan juga tidak terlalu berbeda:
-
-```ts
-// Dapat bekerja dengan baik di grammY maupun di Telegraf.
-bot.on("message", (ctx) => ctx.reply("Halo!"));
-```
-
-Semua kode yang ditulis di Telegraf akan bekerja sama baiknya di grammY dengan beberapa perubahan kecil.
-(Perlu dicatat bahwa ini tidak berlaku untuk sebaliknya karena banyak fitur di grammY tidak tersedia untuk user Telegraf.)
-
-Kelebihan utama grammY dibandingkan dengan Telegraf 3.x adalah **secara substansial, grammY memiliki dukungan tool yang lebih baik**.
-Telegraf 3 ditulis menggunakan JavaScript.
-Oleh karena itu, type yang disertakan tidak lengkap dan memiliki banyak kesalahan.
-Selain itu, type API Bot yang digunakan telah usang sejak beberapa tahun yang lalu.
-Akibatnya, dukungan auto-complete atau spell-checking untuk kode bot tidak dapat diandalkan, sehingga kamu perlu menjalankan bot terlebih dahulu untuk mengetahui apakah kode bekerja dengan baik atau tidak.
-
-Sebaliknya, grammY sepenuhnya ditulis menggunakan TypeScript.
-Kelebihannya, code editor (misalnya VS Code) dapat menganalisa kode kamu untuk memberikan saran ketika kamu mengetik sesuatu.
-Terlebih lagi, ia mampu menampilkan secara lengkap inline API Bot Telegram---dokumentasi dari website akan ditampilkan secara langsung ketika meng-hover nama atau elemen kode menggunakan kursor mouse.
-
-Kelebihan utama lainnya adalah sekarang kamu bisa **menulis bot menggunakan TypeScript**.
-Sebelumnya, ini adalah pekerjaan yang tidak mudah dilakukan karena type annotation milik Telegraf tidak dapat meng-compile kode, meski tidak ada error di dalamnya.
-Akibatnya, beberapa user diharuskan menonaktifkan pengecekan kode ketika menggunakan Telegraf.
-Padahal, type-safe adalah salah satu fitur unggulan untuk semua jenis code base.
-
-grammY dan Telegraf memiliki perbedaan code base.
-Karena sudah menggunakan kode terbaru, grammY sekarang mampu memodifikasi sistem middleware untuk beberapa penggunaan menarik lainnya, seperti [filter query](../guide/filter-queries), [error boundary](../guide/errors#error-boundary), [transformer API](../advanced/transformers), dan lain sebagainya.
-Ini juga membuka kemungkinan untuk mengembangkan plugin-plugin bermanfaat yang sebelumnya tidak mungkin dilakukan di Telegraf.
-
-Kelebihan utama Telegraf dibandingkan grammY adalah **ia lebih populer**.
-Meskipun komunitas Telegraf terbagi menjadi dua versi (v3 dan v4), tetapi jumlah bot Telegram yang menggunakan Telegraf jauh lebih banyak dibandingkan dengan grammY.
-Artinya, kamu akan lebih sering menemukan artikel Telegraf di internet dan tutorial khusus yang dibuat oleh coder lain, yang bisa kamu jadikan sebagai referensi tambahan jika dokumentasi resmi tidak mencukupi.
-
-#### Dibandingkan dengan v4
-
-Kelebihan utama grammY dibandingkan Telegraf 4.x adalah **ia lebih mudah digunakan**,
-contohnya
-
+- grammY selalu mendukung versi terbaru API Bot.
+  Sebaliknya, Telegraf seringkali tertinggal beberapa versi.
 - grammY memiliki [sebuah dokumentasi](../).
-  Telegraf tidak memilikinya (dokumentasinya diganti dengan sebuah penjelasan referensi API yang tidak lengkap);
-- Type di grammY _berfungsi dengan baik_ dan mereka akan menyesuaikan diri dengan coding-an kamu.
-  Di Telegraf kamu akan sering menulis kode dengan cara tertentu, yang jika tidak dilakukan, ia tidak akan bisa di-compile (meskipun tidak ada yang salah di kodenya); dan
+  Telegraf tidak memilikinya---dokumentasinya diganti dengan sebuah referensi API yang kurang penjelasannya, beberapa panduan yang ada tidaklah lengkap dan sulit ditemukan;
+- grammY menggunakan TypeScript, type yang tersedia _berfungsi dengan baik_ dan akan menyesuaikan diri dengan coding-an kamu.
+  Di Telegraf kamu akan sering menulis kode dengan cara tertentu, yang jika tidak dilakukan, ia tidak akan bisa di-compile (meskipun tidak ada yang salah di kode kamu).
 - grammY menambahkan beberapa petunjuk atau keterangan dari [referensi API Bot resmi](https://core.telegram.org/bots/api) yang akan membantu kamu ketika menulis kode.
   Telegraf sama sekali tidak menyediakan penjelasan di kode kamu.
+- Banyak hal lain seperti performa yang lebih baik, ekosistem plugin yang luas, dokumentasi yang telah diterjemahkan ke miliaran orang, integrasi dengan database dan framework web yang lebih baik, kompatibilitas runtime yang lebih baik, tersedianya [ekstensi VS Code](https://marketplace.visualstudio.com/items?itemName=grammyjs.grammyjs) dan beberapa hal lainnya yang nanti akan kamu temukan seiring berjalannya waktu.
 
-#### Ringkasan
+Berikut beberapa alasan mengapa kamu lebih baik menggunakan Telegraf alih-alih grammY.
 
-##### Kelebihan grammY
-
-- Mudah digunakan dibandingkan dengan Telegraf 3 dan 4.
-- Dukungan TypeScript yang memadai.
-- Memiliki sebuah dokumentasi dan referensi API.
-- Long polling jauh lebih cepat (dengan menggunakan grammY runner).
-- Komunitas dan ekosistem yang solid.
-- Lebih banyak plugin yang tersedia.
-- Integrasi database dan web framework yang lebih baik.
-- Pengembangan lebih aktif.
-- Pesan error yang lebih berguna.
-- Kemungkinan kecil mengalami race condition.
-- Dirancang untuk melindungimu dari membuat kesalahan ketika menulis kode.
-- Berjalan di Node.js, tetapi juga bisa berjalan di Deno dan browser.
-
-##### Kelebihan Telegraf
-
-- Lebih tua, berarti lebih berpengalaman.
-- Lebih banyak contoh bot yang tersedia, baik di repository mereka maupun di tempat lain.
+- Kamu telah mempunyai bot besar yang telah ditulis menggunakan Telegraf dan tidak ingin mengerjakannya lagi.
+  Dalam kasus tersebut, migrasi ke grammY akan memakan waktu yang lebih lama daripada hasil yang diperoleh, selancar apapun migrasinya.
+- Kamu paham betul seluk beluk Telegraf dan tidak ingin untuk mengubah keahlianmu.
+  grammY memperkenalkan beberapa konsep baru yang mungkin asing bagi kamu yang hanya menggunakan Telegraf, dan menggunakan grammY berarti kamu akan dihadapkan pada hal-hal baru.
+- Ada sedikit perbedaan ketika menggunakan sintaks pada Telegraf dan grammY untuk mencapai hasil yang sama, dan kamu mungkin lebih menyukai gaya tersebut dibanding gaya lainnya.
+  Misalnya, untuk menyimak pesan teks, Telegraf menggunakan `bot.on(message("text"))`, sedangkan grammY menggunakan `bot.on("message:text")`.
 
 ### NTBA
 
@@ -146,7 +91,10 @@ Kamu pasti tidak menginginkan itu terjadi---selain mi goreng itu sendiri tentuny
 
 ### Framework Lainnya
 
-Apakah kamu merasa framework favoritmu di beberapa aspek tertentu lebih baik dibandingkan dengan grammY?
+Saat ini tidak ada library TypeScript yang layak untuk membuat bot.
+Semuanya kecuali grammY, Telegraf dan NTBA sebagian besar tidak terawat dan usang.
+
+Apakah kamu telah membuat library menakjubkan yang kami tidak tahu library tersebut ada?
 Silahkan ubah halaman ini dan tambahkan perbandingannya---atau kamu juga bisa menyampaikan pendapatmu di [chat grup grammY](https://t.me/grammyjs)!
 
 ## Perbandingan dengan Framework Bahasa Pemrograman Lainnya
@@ -158,9 +106,16 @@ Jika kamu sudah yakin untuk tetap menggunakan bahasa pemrograman lain, maka kamu
 Hmm... karena kamu masih melanjutkan membaca bagian ini, kamu mungkin tertarik untuk mengetahui alasan kenapa grammY ditulis menggunakan TypeScript, dan kenapa kamu sebaiknya memilih bahasa pemrograman ini untuk digunakan di bot kamu juga.
 
 Kali ini kita akan membahas kelebihan apa yang TypeScript tawarkan dibandingkan dengan bahasa pemrograman lainnya ketika ia digunakan untuk mengembangkan sebuah bot Telegram.
-Bahasa pemrograman lain yang sering digunakan untuk mengembangkan chat bot Telegram adalah Python, jadi untuk saat ini kita hanya akan membandingkan dengan Python.
-Poin-poin berikut mungkin adalah pendapat pribadi alih-alih pendapat objektif.
+Perbandingan ini hanya terbatas pada Python, Go dan Rust saja.
+Silahkan tambahkan penjelasan lainnya jika kamu ingin membandingkan TypeScript dengan bahasa lain.
+
+Poin-poin berikut sebagian merupakan pendapat pribadi alih-alih pendapat objektif.
 Karena beberapa orang memiliki selera yang berbeda, maka informasi-informasi ini jangan diterima secara mentah-mentah.
+
+### Framework yang ditulis menggunakan Python
+
+Kontras yang jelas terlihat ketika membandingkan TypeScript dengan Python.
+Gunakan TypeScript dan kamu akan menikmatinya:
 
 1. **Tool editor yang lebih baik.**
    Type annotation milik grammY sangat istimewa.
@@ -176,16 +131,35 @@ Karena beberapa orang memiliki selera yang berbeda, maka informasi-informasi ini
    Ketika suatu saat bot kamu menjadi semakin populer, ia akan lebih mudah untuk di-upgrade jika bot tersebut ditulis menggunakan JS dibandingkan dengan menggunakan Python.
 
 4. **Bot merespon dengan lebih responsif.**
-   V8 engine menjadikan JavaScript sebuah bahasa script tercepat di seluruh alam semesta.
+   Sekarang, V8 dan kompetitornya menjadikan JavaScript sebuah bahasa script tercepat di dunia.
    Jika kamu menginginkan bot bekerja secepat mungkin sambil menikmati bahasa pemrograman yang dinamis, grammY adalah pilihan yang tepat.
 
-5. **Dukungan `async`/`await`.**
-   Mengendalikan sebuah concurrency adalah hal yang populer di dalam dunia pemrograman.
-   Tidak heran, selama bertahun-tahun pemrograman asynchronous mengalami kenaikan tren.
-   PTB---framework bot terbesar untuk Python---[mengumumkan sedang melakukan migrasi](https://t.me/pythontelegrambotchannel/94) ke pemrograman asynchronous pada bulan Januari 2021, yang diharapkan akan rampung dalam waktu "2 tahun" ke depan.
-   grammY sudah melakukannya dari awal.
-   (Framework Python lain yang tidak terlalu populer mungkin sudah melakukan migrasi terlebih dahulu.
-   Abaikan poin ini jika kamu menggunakan framework Python yang sudah mendukung `async`/`await`.)
+Seperti biasa, suatu bahasa pemrograman memiliki kelebihan di bidang tertentu dan kelemahan di bidang lainnya.
+Tidak ada pengecualian disini.
+
+Sebagai contoh untuk kondisi ekosistem saat ini, hal-hal yang berkaitan dengan machine learning sebaiknya tidak dilakukan dengan JavaScript.
+Namun, ketika berurusan dengan web server, TypeScript cenderung menjadi pilihan yang lebih baik.
+
+### Framework yang Ditulis Menggunakan Go
+
+Jika kamu mahir menggunakan TypeScript dan Go, maka akan ada alasan yang kuat untuk menentukan bahasa yang akan digunakan dengan mempertimbangkan kecepatan pengembangan dan eksekusi.
+
+Pilih grammY jika kamu tidak terlalu yakin bot seperti apa yang akan kamu buat.
+TypeScript memungkinkanmu mengulangi basis kode dengan kecepatan luar biasa.
+Ia bagus untuk membuat prototipe dengan cepat, mencoba hal-hal baru, mengenal lebih tentang bot dan menyelesaikan kode dengan cepat. Sebagai aturan praktis, memproses ~100.000.000 pembaruan setiap hari dapat dilakukan dengan mudah menggunakan TypeScript, lebih dari itu akan memerlukan kerja tambahan, seperti menggunakan satu plugin grammY lagi.
+
+Pilih library yang ditulis dalam Go jika kamu sudah tahu dan sudah jelas apa yang ingin kamu buat (tidak berharap membutuhkan banyak bantuan) dan tahu kalau bot kamu akan memproses banyak hal.
+Sebagai bahasa yang di-compile secara native, Go lebih unggul dari TypeScript beberapa kali lipat dalam kecepatan pemrosesan CPU.
+Keunggulan tersebut menjadi lebih relevan ketika kecepatan penguraian JSON menjadi hal yang krusial dan prioritas
+Go bisa menjadi pilihan yang lebih baik dalam kasus ini.
+
+### Framework yang Ditulis Menggunakan Rust
+
+[Sama dengan Go](#framework-yang-ditulis-menggunakan-go), tetapi Rust lebih unggul.
+Kamu akan memerlukan lebih banyak waktu menulis menggunakan Rust, namun bot kamu juga akan lebih cepat tentunya.
+
+Meski menggunakan Rust itu menyenangkan, namun membangun bot menggunakan Rust terlalu berlebihan.
+Jika kamu ingin menggunakannya, maka gunakanlah, tetapi jika kamu menyukai Rust hanya karena bahasanya, mungkin Rust bukanlah alat yang tepat untuk pekerjaan tersebut.
 
 ## Saya Tidak Setuju dengan Perbandingan Ini
 
