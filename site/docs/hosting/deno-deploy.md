@@ -96,8 +96,8 @@ Check out the [deployctl documentation](https://docs.deno.com/deploy/manual/depl
 After getting your app running, you should configure your bot's webhook settings to point to your app.
 To do that, send a request to
 
-```http:no-line-numbers
-GET https://api.telegram.org/bot<token>/setWebhook?url=<url>
+```sh:no-line-numbers
+curl https://api.telegram.org/bot<token>/setWebhook?url=<url>
 ```
 
 replacing `<token>` with your bot token, and `<url>` with the full URL of your app along with the path to the webhook handler.
