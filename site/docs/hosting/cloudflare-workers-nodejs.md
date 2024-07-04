@@ -297,7 +297,6 @@ Follow the instruction and input your bot token, your bot token will be uploaded
 You can change to whatever name you want for the environment variables, but keep in mind that you do the same in following steps.
 :::
 
-
 After we set `BOT_INFO` in `wrangler.toml` and added `BOT_TOKEN` as a secret, `index.ts` will throw an error because it lacks the definition of the `Env` type. To solve this problem, we need to do the following:
 
 Create a `.dev.var` file in the root directory, defining the value of `BOT_TOKEN`,
@@ -306,26 +305,25 @@ The `.dev.vars` file should be formatted like a `dotenv` file, such as KEY="VALU
 ```env
 BOT_TOKEN=<your_bot_token>  # <- replace this with your bot token.
 ```
+
 And then run the following command:
 
 ```sh
-npm run cf-typegen  
+npm run cf-typegen
 ```
 
-Using this command, wrangler will generate a `worker-configuration.d.ts` file, which defines the `Env ` type. This includes the `BOT_TOKEN` defined in the .dev.var file, as well as the `BOT_INFO` defined in `wrangler.toml`.
+Using this command, wrangler will generate a `worker-configuration.d.ts` file, which defines the `Env` type. This includes the `BOT_TOKEN` defined in the `.dev.var` file, as well as the `BOT_INFO` defined in `wrangler.toml`.
 
 ```ts
 interface Env {
-	BOT_TOKEN: string;
-	NOTION_TOKEN: string;
+  BOT_TOKEN: string;
+  NOTION_TOKEN: string;
 }
-
 ```
+
 ::: tip
 Please note that for security reasons, `.dev.vars` is only intended for local development environments and should not be uploaded to a git repository or used in a production environment.
 :::
-
-
 
 Inside the function `fetch()`, we create a bot with `BOT_TOKEN` which replies "Hello, world!" when it receives `/start`.
 
