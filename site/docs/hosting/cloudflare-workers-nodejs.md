@@ -317,7 +317,7 @@ Using this command, wrangler will generate a `worker-configuration.d.ts` file, w
 ```ts
 interface Env {
   BOT_TOKEN: string;
-  NOTION_TOKEN: string;
+  BOT_INFO: string;
 }
 ```
 
