@@ -51,33 +51,33 @@ lists.on("message", async (ctx) => {
 
 Теперь в `bot.ts` вы можете установить этот модуль следующим образом:
 
-<!-- ```ts
+```ts
 import { lists } from "./todo/list";
 
 const bot = new Bot("");
 
 bot.use(lists);
-// ... maybe more modules like `todo` here
+// ... здесь может быть множество других модулей как todo
 
 bot.start();
 ```
 
-Optionally, you can use the [router plugin](../plugins/router) or [`bot.route`](/ref/core/composer#route) to bundle up the different modules, if you're able to determine which middleware is responsible upfront.
+Как вариант, вы можете использовать [плагин router](../plugins/router) или [`bot.route`](/ref/core/composer#route) для объединения различных модулей, если вы можете заранее определить, какой middleware за это отвечает.
 
-However, remember that the exact way of how to structure your bot is very hard to say generically.
-As always in software, do it in a way that makes the most sense :wink:
+Однако помните, что точный способ структурирования вашего бота очень сложно назвать в общем виде.
+Как и всегда в программном обеспечении, делайте так, чтобы это имело наибольший смысл :wink:
 
-## Type Definitions for Extracted Middleware
+## Определения типов для извлеченного middleware
 
-The above structure using composers works well.
-However, sometimes you may find yourself in the situation that you want to extract a handler into a function, rather than creating a new composer and adding the logic to it.
-This requires you to add the correct middleware type definitions to your handlers because they can no longer be inferred through the composer.
+Приведенная выше структура с использованием композиторов работает хорошо.
+Однако иногда вы можете оказаться в ситуации, когда вам нужно извлечь обработчик в функцию, а не создавать новый композитор и добавлять в него логику.
+Это потребует от вас добавления правильных определений типов в обработчики, поскольку они больше не могут быть выведены через композитор.
 
-grammY exports type definitions for all **narrowed types of middleware**, such as the middleware that you can pass to command handlers.
-In addition, it exports the type definitions for the **narrowed context objects** that are being used in that middleware.
-Both types are parameterized with your [custom context object](../guide/context#customizing-the-context-object).
-Hence, a command handler would have the type `CommandMiddleware<MyContext>` and its context object `CommandContext<MyContext>`.
-They can be used as follows.
+grammY экспортирует определения типов для всех **узких типов middleware**, таких как middleware, которое вы можете передавать обработчикам команд.
+Кроме того, он экспортирует определения типов для **узких контекстных объектов**, которые используются в этом middleware.
+Оба типа параметризуются вашим [пользовательским контекстным объектом](../guide/context#кастомизация-объекта-контекста).
+Таким образом, обработчик команд будет иметь тип `CommandMiddleware<MyContext>` и его контекстный объект `CommandContext<MyContext>`.
+Их можно использовать следующим образом.
 
 ::: code-group
 
@@ -89,10 +89,10 @@ import {
 } from "grammy";
 
 function commandMiddleware(ctx: CommandContext<MyContext>, next: NextFunction) {
-  // command handling
+  // обработка команд
 }
 const callbackQueryMiddleware: CallbackQueryMiddleware<MyContext> = (ctx) => {
-  // callback query handling
+  // обработка запросов обратного вызова
 };
 
 bot.command(["start", "help"], commandMiddleware);
@@ -107,10 +107,10 @@ import {
 } from "https://deno.land/x/grammy/mod.ts";
 
 function commandMiddleware(ctx: CommandContext<MyContext>, next: NextFunction) {
-  // command handling
+  // обработка команд
 }
 const callbackQueryMiddleware: CallbackQueryMiddleware<MyContext> = (ctx) => {
-  // callback query handling
+  // обработка запросов обратного вызова
 };
 
 bot.command(["start", "help"], commandMiddleware);
@@ -119,4 +119,4 @@ bot.callbackQuery("query-data", callbackQueryMiddleware);
 
 :::
 
-Check out the [type aliases API reference](/ref/core/#type-aliases) to see an overview over all type aliases that grammY exports. -->
+Ознакомьтесь со справочником [API-справочник псевдонимов типов](/ref/core/#type-aliases), чтобы увидеть обзор всех псевдонимов типов, которые экспортирует grammY.
