@@ -2,8 +2,8 @@ import { defineConfig } from "vitepress";
 import { algolia } from "./configs/algolia/index.js";
 import * as locale from "./configs/locales/index.js";
 import { markdown } from "./plugins/index.js";
-import plaintext from "./shared/syntaxes/plaintext.tmLanguage.json";
 import env from "./shared/syntaxes/env.tmLanguage.json";
+import plaintext from "./shared/syntaxes/plaintext.tmLanguage.json";
 
 export default defineConfig({
   lastUpdated: true,
@@ -17,6 +17,7 @@ export default defineConfig({
     ...locale.siteId,
     ...locale.siteUk,
     ...locale.siteZh,
+    ...locale.siteRu
   },
 
   themeConfig: {
