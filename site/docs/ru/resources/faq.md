@@ -1,6 +1,6 @@
 <!-- ---
 prev:
-  text: About grammY
+  text: О grammY
   link: ./about
 ---
 
