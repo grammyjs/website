@@ -1,9 +1,9 @@
-# Middleware Redux
+# Возможности Middleware
 
-В руководстве [мы представили middleware](../guide/middleware) как стек функций.
+В руководстве мы представили [middleware](../guide/middleware) как стек функций.
 Хотя нет ничего плохого в том, что вы можете использовать middleware таким линейным образом (также в grammY), называть его просто стеком - это упрощение.
 
-## Middleware in grammY
+## Middleware в grammY
 
 Обычно вы видите следующую схему.
 
