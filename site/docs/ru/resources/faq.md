@@ -1,167 +1,167 @@
-<!-- ---
+---
 prev:
   text: О grammY
   link: ./about
 ---
 
-# FAQ
+# ЧаВо?
 
-Here is a collection of frequently asked questions that did not fit anywhere else.
-Questions regarding [common errors](#why-am-i-getting-this-error) and [Deno things](#questions-about-deno) were grouped in the two dedicated sections.
+Здесь собраны часто задаваемые вопросы, которые не поместились больше нигде.
+Вопросы, касающиеся [общих ошибок](#почему-я-получаю-эту-ошибку) и [вещей Deno](#вопросы-о-deno), были сгруппированы в двух специальных разделах.
 
-If this FAQ does not answer your question, you should also have a look at the [Bot FAQ](https://core.telegram.org/bots/faq) written by the Telegram team.
+Если этот FAQ не отвечает на ваш вопрос, вам также стоит заглянуть в [Bot FAQ](https://core.telegram.org/bots/faq), написанный командой Telegram.
 
-## Where Can I Find Docs About a Method?
+## Где найти документацию метода?
 
-In the API reference.
-You probably want to understand [this](../guide/) better.
+В справочнике по API.
+Возможно, вы захотите лучше понять [это](.../guide/).
 
-## A Method Is Missing a Parameter!
+## Методу не хватает параметра!
 
-No, it's not.
+Нет, это не так.
 
-1. Make sure you have the latest grammY version installed.
-2. Check [here](https://core.telegram.org/bots/api) if the parameter is optional.
-   If it is, then grammY will collect it in the options object called `other`.
-   Pass `{ parameter_name: value }` in that place and it'll work.
-   As always, TypeScript will auto-complete the parameter names for you.
-3. Perhaps double-check the method signature for [actions](../guide/context#available-actions) on `ctx` [here](/ref/core/context#methods), or for API methods (`ctx.api`, `bot.api`) [here](/ref/core/api#methods).
+1. Убедитесь, что у вас установлена последняя версия grammY.
+2. Проверьте [здесь](https://core.telegram.org/bots/api), является ли параметр необязательным.
+   Если да, то grammY будет собирать его в объекте опций под названием `other`.
+   Передайте `{имя_параметра: значение}` в это место, и все заработает.
+   Как обычно, TypeScript автоматически заполнит имена параметров.
+3. Возможно, перепроверьте сигнатуру метода [actions](../guide/context#доступные-действия) на `ctx` [здесь](/ref/core/context#methods), или методов API (`ctx.api`, `bot.api`) [здесь](/ref/core/api#methods).
 
-## How Can I Access the Chat History?
+## Как получить доступ к истории чата?
 
-You can't.
+Вы не можете.
 
-Telegram does not store the messages for your bot.
+Telegram не хранит сообщения для вашего бота.
 
-Instead, you need to wait for new messages/channel posts to arrive, and store the messages in your database.
-You can then load the chat history from your database.
+Вместо этого вам нужно ждать появления новых сообщений / постов в канале и сохранять их в своей базе данных.
+Затем вы можете загрузить историю чатов из своей базы данных.
 
-This is what [conversations](../plugins/conversations) do internally for the relevant part of the message history.
+Именно это и делает плагин [conversations](../plugins/conversations) для соответствующей части истории сообщений.
 
-## How Can I Handle Albums?
+## Как я могу работать с альбомами?
 
-You can't ... at least not in the way you think.
+Нельзя... по крайней мере, не так, как вы думаете.
 
-An album only really exists in the UI of a Telegram client.
-For a bot, handling a media group is the same thing as handling a series of individual messages.
-The most practical advice is to ignore that media groups exist, and to simple write your bot with individual messages in mind.
-Albums will then work automatically.
-For example, you can ask the user to [click a button](../plugins/keyboard#inline-keyboards) or send `/done` when all files are uploaded to your bot's chat.
+Альбом реально существует только в пользовательском интерфейсе клиента Telegram.
+Для бота работа с медиагруппой - это то же самое, что и работа с серией отдельных сообщений.
+Самый практичный совет - игнорировать существование медиагрупп и просто писать бота, ориентируясь на отдельные сообщения.
+Тогда альбомы будут работать автоматически.
+Например, вы можете попросить пользователя [нажать кнопку](../plugins/keyboard#встроенные-клавиатуры) или отправить `/done`, когда все файлы будут загружены в чат вашего бота.
 
-_But if a Telegram client can do it, then my bot should be able to do the same thing!_
+Но если клиент Telegram может это делать, то и мой бот должен уметь делать то же самое!
 
-Yes and no.
-Technically, there is the `media_group_id` which lets you determine the messages that belong to the same album.
-However,
+И да, и нет.
+Технически, существует `media_group_id`, который позволяет определить сообщения, принадлежащие одному альбому.
+Однако,
 
-- there is no way to know the number of messages in an album,
-- there is no way to know when the last message in an album was received, and
-- other messages such text messages, service messages, etc may be sent in between album messages.
+- нет способа узнать количество сообщений в альбоме,
+- нет возможности узнать, когда было получено последнее сообщение в альбоме, и
+- между сообщениями альбома могут быть отправлены другие сообщения, например текстовые, служебные и т. д.
 
-So yes, in theory, you can know which messages belong to together, but only regarding the messages you have received so far.
-You cannot know if there will be more messages added to the album at a later point.
-If you ever receive an album on a Telegram client while having _extremely_ bad internet connection, you can actually see how the client repeatedly regroups the album as new messages arrive.
+Так что да, теоретически вы можете знать, какие сообщения принадлежат друг другу, но только в отношении тех сообщений, которые вы получили на данный момент.
+Вы не можете знать, будут ли добавлены новые сообщения в альбом позже.
+Если вы когда-нибудь получали альбом на клиенте Telegram при _очень_ плохом интернет-соединении, вы можете увидеть, как клиент неоднократно перегруппировывает альбом по мере поступления новых сообщений.
 
-## Why Am I Getting This Error?
+## Почему я получаю эту ошибку?
 
 ### 400 Bad Request: Cannot parse entities
 
-You are sending a message with formatting, i.e. you're setting `parse_mode` when sending a message.
-However, your formatting is broken, so Telegram does not know how to parse it.
-You should re-read the [section about formatting](https://core.telegram.org/bots/api#formatting-options) in the Telegram docs.
-The byte offset that is mentioned in the error message will tell you where exactly the error is in your string.
+Вы отправляете сообщение с форматированием, то есть устанавливаете `parse_mode` при отправке сообщения.
+Однако ваше форматирование нарушено, поэтому Telegram не знает, как его разобрать.
+Вам следует перечитать [раздел о форматировании](https://core.telegram.org/bots/api#formatting-options) в документации Telegram.
+Смещение байта, указанное в сообщении об ошибке, подскажет вам, где именно в вашей строке находится ошибка.
 
-::: tip Passing entities instead of formatting
-You can pre-parse the entities for Telegram if you want, and specify `entities` when sending your message.
-Your message text could then be a regular string.
-That way, you don't have to worry about escaping weird characters.
-This may look like it needs more code, but in fact it is the far more reliable and fool-proof solution to this problem.
-Most importantly, this is greatly simplified by our [parse-mode plugin](../plugins/parse-mode).
+::: tip Передача сущностей вместо форматирования
+При желании вы можете предварительно разобрать сущности для Telegram и указать `entities` при отправке сообщения.
+Тогда текст вашего сообщения может быть обычной строкой.
+Таким образом, вам не придется беспокоиться об экранировании странных символов.
+Может показаться, что для этого нужно больше кода, но на самом деле это гораздо более надежное и безошибочное решение данной проблемы.
+Самое главное, что это значительно упрощается благодаря нашему плагину [parse-mode](../plugins/parse-mode).
 :::
 
 ### 401 Unauthorized
 
-Your bot token is wrong.
-Maybe you think it's right.
-It is not.
-Talk to [@BotFather](https://t.me/BotFather) to see what your token is.
+Ваш токен бота неправильный.
+Возможно, вы думаете, что он правильный.
+Это не так.
+Поговорите с [@BotFather](https://t.me/BotFather), чтобы узнать, какой у вас токен.
 
 ### 403 Forbidden: bot was blocked by the user
 
-You probably tried to send a message to a user and then you ran into this issue.
+Вероятно, вы пытались отправить сообщение пользователю и столкнулись с этой проблемой.
 
-When a user blocks your bot, you are not able to send messages to them or interact with them in any other way (except if your bot was invited to a group chat where the user is a member).
-Telegram does this to protect their users.
-You cannot do anything about it.
+Когда пользователь блокирует вашего бота, вы не можете отправлять ему сообщения или взаимодействовать с ним каким-либо другим способом (за исключением случаев, когда ваш бот был приглашен в групповой чат, участником которого является пользователь).
+Telegram делает это для защиты своих пользователей.
+Вы не можете ничего с этим поделать.
 
-You can either:
+Вы можете либо:
 
-- Handle the error and for example delete the user's data from your database.
-- Ignore the error.
-- Listen for `my_chat_member` updates via `bot.on("my_chat_member")` in order to be notified when the user blocks your bot.
-  Hint: Compare the `status` fields of the old and the new chat member.
+- Обработать ошибку и, например, удалить данные пользователя из своей базы.
+- Проигнорировать ошибку.
+- Слушать обновления `my_chat_member` через `bot.on("my_chat_member")`, чтобы получить уведомление, когда пользователь заблокирует вашего бота.
+  Подсказка: сравните поля `status` старого и нового участника чата.
 
 ### 404 Not found
 
-If this happens while starting your bot, then your bot token is wrong.
-Talk to [@BotFather](https://t.me/BotFather) to see what your token is.
+Если это происходит при запуске бота, значит, у вас неправильный токен.
+Поговорите с [@BotFather](https://t.me/BotFather), чтобы узнать, какой у вас токен.
 
-If your bot works fine most of the time, but then suddenly you're getting a 404, then you're doing something very funky.
-You can come ask us in the [group chat](https://t.me/grammyjs) (or the [Russian-speaking group chat](https://t.me/grammyjs_ru)).
+Если ваш бот работает нормально большую часть времени, но потом внезапно вы получаете сообщение 404, значит, вы делаете что-то очень странное.
+Вы можете спросить нас в [групповом чате](https://t.me/grammyjs) (или в [русскоязычном групповом чате](https://t.me/grammyjs_ru)).
 
 ### 409 Conflict: terminated by other getUpdates request
 
-You are accidentally running your bot twice on long polling.
-You can only run one instance of your bot.
+Вы случайно запускаете бота дважды при длительном опросе.
+Вы можете запустить только один экземпляр своего бота.
 
-If you think that you only run your bot once, you can just revoke the bot token.
-That will stop all other instances.
-Talk to [@BotFather](https://t.me/BotFather) to do this.
+Если вы думаете, что запустили бота только один раз, вы можете просто отозвать токен бота.
+Это остановит все остальные экземпляры.
+Для этого обратитесь к [@BotFather](https://t.me/BotFather).
 
 ### 429: Too Many Requests: retry after X
 
-Congratulations!
-You ran into an error that is among the most difficult ones to fix.
+Поздравляем!
+Вы столкнулись с ошибкой, которая относится к числу наиболее трудно устранимых.
 
-There are two possible scenarios:
+Есть два возможных сценария:
 
-**One:** Your bot does not have many users.
-In that case, you are just spamming the Telegram servers by sending too many requests.
-Solution: don't do that!
-You should seriously think about how to reduce the number of API calls substantially.
+**Первый:** У вашего бота не так много пользователей.
+В этом случае вы просто спамите сервера Telegram, отправляя слишком много запросов.
+Решение: не делайте этого!
+Вам следует серьезно подумать о том, как существенно сократить количество вызовов API.
 
-**Two:** Your bot is getting very popular and it has a lot of users (hundreds of thousands).
-You have already made sure to use the minimum number of API calls for the most common operations of your bot, and _still_ you're running into these errors (called flood wait).
+**Второй:** Ваш бот становится очень популярным и у него много пользователей (сотни тысяч).
+Вы уже позаботились о том, чтобы использовать минимальное количество вызовов API для самых распространенных операций вашего бота, но все равно сталкиваетесь с этими ошибками (так называемые ожидания флуда).
 
-There are a few things you can do:
+Вы можете сделать несколько вещей:
 
-1. Read this [article](../advanced/flood) in the docs to gain a basic understanding of the situation.
-2. Use the [`auto-retry` plugin](../plugins/auto-retry).
-3. Come ask us in the [group chat](https://t.me/grammyjs) for help.
-   We have experienced people there.
-4. It is possible to ask Telegram to increase the limits, but this is very unlikely to happen if you did not do steps 1-3 first.
+1. Прочитайте эту [статью](../advanced/flood) в документации, чтобы получить базовое понимание ситуации.
+2. Используйте плагин [`auto-retry`](../plugins/auto-retry).
+3. Обратитесь за помощью к нам в [групповой чат](https://t.me/grammyjs).
+   Там есть опытные люди.
+4. Можно попросить Telegram увеличить лимиты, но это маловероятно, если вы не выполнили сначала шаги 1-3.
 
 ### Cannot find type definition file for 'node-fetch'
 
-This is the result of some missing type declarations.
+Это происходит из-за отсутствия деклараций типов.
 
-The recommended way to fix this is to set `skipLibCheck` to `true` in your TypeScript compile options.
+Рекомендуемый способ исправить это - установить `skipLibCheck` на `true` в настройках компилятора TypeScript.
 
-If you are sure that you need this option to be kept to `false`, you can instead install the missing type definitions by running `npm i -D @types/node-fetch@2`.
+Если вы уверены, что вам нужно сохранить значение `false`, вы можете установить недостающие определения типов, выполнив команду `npm i -D @types/node-fetch@2`.
 
-## Questions About Deno
+## Вопросы о Deno
 
-### Why do you support Deno?
+### Почему вы поддерживаете Deno?
 
-Some important reasons why we like Deno more than Node.js:
+Некоторые важные причины, по которым мы любим Deno больше, чем Node.js:
 
-- It's simpler and faster to get started.
-- The tooling is substantially better.
-- It natively executes TypeScript.
-- No need to maintain `package.json` or `node_modules`.
-- It has a reviewed standard library.
+- Проще и быстрее начать работу.
+- Инструментарий значительно лучше.
+- Он нативно выполняет TypeScript.
+- Нет необходимости поддерживать `package.json` или `node_modules`.
+- Пересмотренная стандартная библиотека.
 
-> Deno was founded by Ryan Dahl---the same person that invented Node.js.
-> He summarized his 10 regrets about Node.js in this [video](https://youtu.be/M3BM9TB-8yA).
+> Компания Deno была основана Райаном Далом - тем самым человеком, который изобрел Node.js.
+> Он рассказал о своих 10 сожалениях о Node.js в этом [видео](https://youtu.be/M3BM9TB-8yA).
 
-grammY itself is Deno-first, and it is backported to support Node.js equally well. -->
+Сам grammY - это Deno-first, и он бэкпортирован для поддержки Node.js так же хорошо.
