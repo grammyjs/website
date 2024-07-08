@@ -1,4 +1,4 @@
-# Контекст
+<!-- # Контекст
 
 The `Context` object ([grammY API Reference](/ref/core/context)) is an important part of grammY.
 
@@ -568,4 +568,4 @@ type MyContext = FlavorX<
 ```
 
 Make sure to follow this pattern when installing several plugins.
-There are a number of type errors that stem from incorrect combination of context flavors.
+There are a number of type errors that stem from incorrect combination of context flavors. -->
