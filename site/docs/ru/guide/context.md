@@ -182,7 +182,7 @@ bot.on("message", (ctx) => ctx.reply("Попался!"));
 ::: tip Функция ответа в Telegram
 Несмотря на то, что в grammY (и многих других фреймворках) метод называется `ctx.reply`, он не использует функцию [ответа в Telegram](https://telegram.org/blog/replies-mentions-hashtags#replies), при которой происходит привязка к предыдущему сообщению.
 
-Если вы посмотрите, что может делать `sendMessage в [документации API бота](https://core.telegram.org/bots/api#sendmessage), вы увидите ряд опций, таких как `parse_mode`, `link_preview_options` и `reply_parameters`.
+Если вы посмотрите, что может делать `sendMessage` в [документации API бота](https://core.telegram.org/bots/api#sendmessage), вы увидите ряд опций, таких как `parse_mode`, `link_preview_options` и `reply_parameters`.
 Последняя может быть использована для превращения сообщения в ответ:
 
 ```ts
