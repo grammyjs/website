@@ -346,7 +346,7 @@ bot.command("start", async (ctx) => {
 
 :::
 
-Естественно, пользовательский тип контекста можно передавать и другим вещам, которые работают с middleware, например [композиторы](/ref/core/composer).
+Естественно, пользовательский тип контекста можно передавать и другим вещам, которые работают с middleware, например [Composer](/ref/core/composer).
 
 ```ts
 const composer = new Composer<MyContext>();

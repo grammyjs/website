@@ -139,7 +139,7 @@ function errorHandler(err: BotError) {
 
 > Что касается пункта 2, вы можете перейти к [расширенному объяснению](.../advanced/middleware) middleware, чтобы узнать, как работает цепочка в grammY.
 
-Вы также можете применить границу ошибки к композитору без вызова `bot.errorBoundary`:
+Вы также можете применить границу ошибки к Composer без вызова `bot.errorBoundary`:
 
 ```ts
 const composer = new Composer();
