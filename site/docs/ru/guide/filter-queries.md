@@ -20,116 +20,116 @@
 
 ```ts
 bot.on("message", async (ctx) => {
-  // Could be undefined if the received message has no text.
+  // Может быть undefined, если полученное сообщение не содержит текста.
   const text: string | undefined = ctx.msg.text;
 });
 bot.on("message:text", async (ctx) => {
-  // Text is always present because this handler is called when a text message is received.
+  // Текст всегда присутствует, потому что этот обработчик вызывается при получении текстового сообщения.
   const text: string = ctx.msg.text;
 });
 ```
 
-In a sense, grammY implements the filter queries both [at runtime](#performance), and [on the type level](#type-safety).
+В некотором смысле, grammY реализует запросы фильтра как [во время выполнения](#производительность), так и [на уровне типов](#безопасность-типов).
 
-## Example Queries
+## Примеры запросов
 
-Here are some example queries:
+Вот несколько примеров запросов:
 
-### Regular Queries
+### Регулярные запросы
 
-Simple filters for updates, and sub-filters:
-
-```ts
-bot.on("message"); // called when any message is received
-bot.on("message:text"); // only text messages
-bot.on("message:photo"); // only photo messages
-```
-
-### Filter for Entities
-
-Sub-filters that go one level deeper:
+Простые фильтры для обновлений и подфильтры:
 
 ```ts
-bot.on("message:entities:url"); // messages containing a URL
-bot.on("message:entities:code"); // messages containing a code snippet
-bot.on("edited_message:entities"); // edited messages with any kind of entities
+bot.on("message"); // вызывается при получении любого сообщения
+bot.on("message:text"); // только текстовых сообщений
+bot.on("message:photo"); // только сообщений содержащих фотографии
 ```
 
-### Omit Values
+### Фильтры для сущностей
 
-You can omit some values in the filter queries.
-grammY will then search through different values to match your query.
+Подфильтры, которые позволяют углубиться на один уровень:
 
 ```ts
-bot.on(":text"); // any text messages and any text post of channels
-bot.on("message::url"); // messages with URL in text or caption (photos, etc)
-bot.on("::email"); // messages or channel posts with email in text or caption
+bot.on("message:entities:url"); // сообщения содержащие URL
+bot.on("message:entities:code"); // сообщения, содержащие блоки кода
+bot.on("edited_message:entities"); // редактированные сообщения с любыми сущностями
 ```
 
-Leaving out the _first_ value matches both messages and channel posts.
-[Remember](./context#available-actions) that `ctx.msg` gives you access to both messages or channel posts, whichever is matched by the query.
+### Пропущенные фильтры
 
-Leaving out the _second_ value matches both entities and caption entities.
-You can leave out both the first and the second part at the same time.
+Вы можете опустить некоторые значения в фильтрующих запросах.
+Тогда grammY будет перебирать различные значения, чтобы соответствовать вашему запросу.
 
-### Shortcuts
+```ts
+bot.on(":text"); // любые текстовые сообщения и любые текстовые сообщения каналов
+bot.on("message::url"); // сообщения с URL адресом в тексте или подписи (фотографии и т.д.)
+bot.on("::email"); // сообщения или посты в канале с электронной почтой в тексте или подписи
+```
 
-The query engine of grammY allows to define neat shortcuts that group related queries together.
+Если опустить _первое_ значение, то совпадут и сообщения, и посты в канале.
+[Помните](./context#доступные-действия), что `ctx.msg` дает доступ как к сообщениям, так и к постам в канале, в зависимости от того, что соответствует запросу.
+
+Опуская _второе_ значение, можно подобрать как сущности, так и подпись.
+Вы можете опустить и первую, и вторую часть одновременно.
+
+### Сокращения
+
+Механизм запросов grammY позволяет задавать аккуратные сокращения, которые группируют связанные запросы вместе.
 
 #### `msg`
 
-The `msg` shortcut groups new messages and new channel posts.
-In other words, using `msg` is equivalent to listening for both `"message"` and `"channel_post"` events.
+Сокращенная запись `msg` группирует новые сообщения и новые посты в канале.
+Другими словами, использование `msg` всё равно, что прослушивание событий `"message"` и `"channel_post"`.
 
 ```ts
-bot.on("msg"); // any message or channel post
-bot.on("msg:text"); // exactly the same as `:text`
+bot.on("msg"); // любое сообщение или сообщение канала
+bot.on("msg:text"); // точно так же, как `:text`.
 ```
 
 #### `edit`
 
-This `edit` shortcut groups edited messages and edited channel posts.
-In other words, using `edit` is equivalent to listening for both `"edited_message"` and `"edited_channel_post"` events.
+Сокращённая запись `edit` группирует отредактированные сообщения и отредактированные посты канала.
+Другими словами, использование `edit` эквивалентно прослушиванию событий `"edited_message"` и `"edited_channel_post"`.
 
 ```ts
-bot.on("edit"); // any message or channel post edit
-bot.on("edit:text"); // edits of text messages
-bot.on("edit::url"); // edits of messages with URL in text or caption
-bot.on("edit:location"); // live location updated
+bot.on("edit"); // редактирование любого сообщения или сообщения канала
+bot.on("edit:text"); // редактирование текстовых сообщений
+bot.on("edit::url"); // редактирование сообщений с URL в тексте или подписи
+bot.on("edit:location"); // обновленное местоположение
 ```
 
 #### `:media`
 
-The `:media` shortcut groups photo and video messages.
-In other words, using `:media` is equivalent to listening for both `":photo"` and `":video"` events.
+Сокращённая запись `:media` группирует фото и видео сообщения.
+Другими словами, использование `:media` эквивалентно прослушиванию событий `":photo"` и `":video"`.
 
 ```ts
-bot.on("message:media"); // photo and video messages
-bot.on("edited_channel_post:media"); // edited channel posts with media
-bot.on(":media"); // media messages or channel posts
+bot.on("message:media"); // фото и видео сообщения
+bot.on("edited_channel_post:media"); // редактирование сообщений канала с помощью медиа
+bot.on(":media"); // медиа сообщения или посты в канале
 ```
 
 #### `:file`
 
-The `:file` shortcut groups all messages that contain a file.
-In other words, using `:file` is equivalent to listening for `":photo"`, `":animation"`, `":audio"`, `":document"`, `":video"`, `":video_note"`, `":voice"`, and `":sticker"` events.
-Hence, you can be sure that `await ctx.getFile()` will give you a file object.
+Сокращённая запись `:file` группирует все сообщения в которых есть файлы.
+Другими словами, использование `:file` эквивалентно прослушиванию событий `":photo"`, `":animation"`, `":audio"`, `":document"`, `":video"`, `":video_note"`, `":voice"`, и `":sticker"`.
+Следовательно, вы можете быть уверены, что `await ctx.getFile()` передаст вам объект файла.
 
 ```ts
-bot.on(":file"); // files in messages or channel posts
-bot.on("edit:file"); // edits to file messages or file channel posts
+bot.on(":file"); // файлы в сообщениях или сообщениях канала
+bot.on("edit:file"); // редактирование сообщений с файлом или постах с файлом в канале
 ```
 
-### Syntactic Sugar
+### Синтаксический сахар
 
-There are two special cases for the query parts that make filtering for users more convenient.
-You can detect bots in queries with the `:is_bot` query part.
-The syntactic sugar `:me` can be used to refer to your bot from within a query, which will compare the user identifiers for you.
+Есть два особых случая для частей запроса, которые делают фильтрацию для пользователей более удобной.
+Вы можете обнаружить ботов в запросах с помощью части запроса `:is_bot`.
+Синтаксический сахар `:me` можно использовать для ссылки на вашего бота внутри запроса, который будет сравнивать идентификаторы пользователей за вас.
 
 ```ts
-// A service message about a bot that joined the chat
+// Системное сообщение о боте, который присоединился к чату
 bot.on("message:new_chat_members:is_bot");
-// A service message about your bot being removed
+// Системное сообщение о том, что ваш бот удален
 bot.on("message:left_chat_member:me");
 ```
 
@@ -139,129 +139,129 @@ For example, in large groups, there will not be any service messages about users
 Hence, your bot may not notice this.
 Instead, you should listen for [chat member updates](#chat-member-updates).
 
-## Combining Multiple Queries
+## Комбинирование нескольких запросов
 
 You can combine any number of filter queries with AND as well as OR operations.
 
-### Combine With OR
+### Сочетание с логическим ИЛИ
 
-If you want to install some piece of middleware behind the OR concatenation of two queries, you can pass both of them to `bot.on()` in an array.
+Если вы хотите установить какую-то промежуточную программу за конкатенацией двух запросов ИЛИ, вы можете передать их оба в `bot.on()` в виде массива.
 
 ```ts
-// Runs if the update is about a message OR an edit to a message
+// Выполняется, если обновление касается сообщения ИЛИ редактирования сообщения
 bot.on(["message", "edited_message"] /* , ... */);
-// Runs if a hashtag OR email OR mention entity is found in text or caption
+// Выполняется, если в тексте или подписи найден хэштег ИЛИ электронная почта ИЛИ упоминание
 bot.on(["::hashtag", "::email", "::mention"] /* , ... */);
 ```
 
-The middleware will be executed if _any of the provided queries_ matches.
-The order of the queries does not matter.
+Middleware будет выполнен, если _любой из предоставленных запросов_ совпадет.
+Порядок запросов не имеет значения.
 
-### Combine With AND
+### Сочетание с логическим И
 
-If you want to install some piece of middleware behind the AND concatenation of two queries, you can chain the calls to `bot.on()`.
+Если вы хотите установить какую-то промежуточную программу за конкатенацией И двух запросов, вы можете составить цепочку вызовов `bot.on()`.
 
 ```ts
-// Matches forwarded URLs
+// Поиск пересланных URL-адресов
 bot.on("::url").on(":forward_origin" /* , ... */);
-// Matches photos that contain a hashtag in a photo's caption
+// Сопоставляет фотографии, содержащие хэштег в подписи
 bot.on(":photo").on("::hashtag" /* , ... */);
 ```
 
-The middleware will be executed if _all of the provided queries_ match.
-The order of the queries does not matter.
+Middleware будет выполнен, если _все предоставленные запросы_ совпадают.
+Порядок запросов не имеет значения.
 
-### Building Complex Queries
+### Построение сложных запросов
 
-It is technically possible to combine filter queries to more complicated formulas if they are in [CNF](https://en.wikipedia.org/wiki/Conjunctive_normal_form), even though this is unlikely to be useful.
+Технически возможно объединять запросы фильтров в более сложные формулы, если они находятся в [CNF](https://en.wikipedia.org/wiki/Conjunctive_normal_form), хотя это вряд ли будет полезно.
 
 ```ts
 bot
-  // Matches all channel posts or forwarded messages ...
+  // Сопоставляет все сообщения канала или пересланные сообщения ...
   .on(["channel_post", ":forward_origin"])
-  // ... that contain text ...
+  // ... которые содержат текст ...
   .on(":text")
-  // ... with at least one URL, hashtag, or cashtag.
+  // ... с хотя бы с одним URL, хэштегом или кештегом.
   .on(["::url", "::hashtag", "::cashtag"] /* , ... */);
 ```
 
-The type inference of `ctx` will scan through the entire call chain and inspect every element of all three `.on` calls.
-As an example, it can detect that `ctx.msg.text` is a required property for the above code snippet.
+Вывод типа `ctx` просканирует всю цепочку вызовов и проверит каждый элемент всех трех вызовов `.on`.
+Например, он может определить, что `ctx.msg.text` является необходимым свойством для приведенного выше фрагмента кода.
 
-## Useful Tips
+## Полезные советы
 
-Here are some less-known features of filter queries that can come in handy.
-Some of them are a little advanced, so feel free to move on to the [next section](./commands).
+Вот несколько менее известных возможностей фильтрующих запросов, которые могут пригодиться.
+Некоторые из них немного продвинутые, поэтому не стесняйтесь переходить к [следующему разделу](./commands).
 
-### Chat Member Updates
+### Обновления участников чата
 
-You can use the following filter query to receive status updates about your bot.
+Вы можете использовать следующий запрос фильтра для получения обновлений состояния вашего бота.
 
 ```ts
-bot.on("my_chat_member"); // block, unblock, join, or leave
+bot.on("my_chat_member"); // заблокировал, разблокировал, зашёл или вышел
 ```
 
-In private chats, this triggers when the bot is blocked or unblocked.
-In groups, this triggers when the bot is added or removed.
-You can now inspect `ctx.myChatMember` to figure out what exactly happened.
+В личных чатах это срабатывает, когда бот блокируется или разблокируется.
+В группах это срабатывает, когда бот добавляется или удаляется.
+Теперь вы можете проверить `ctx.myChatMember`, чтобы понять, что именно произошло.
 
-This is not to be confused with
+Не следует путать с
 
 ```ts
 bot.on("chat_member");
 ```
 
-which can be used to detect status changes of other chat members, such as when people join, get promoted, and so on.
+который можно использовать для обнаружения изменений статуса других участников чата, например, когда люди присоединяются, получают повышение и так далее.
 
-> Note that `chat_member` updates need to be enabled explicitly by specifying `allowed_updates` when starting your bot.
+> Обратите внимание, что обновления `chat_member` должны быть включены явно, указав `allowed_updates` при запуске вашего бота.
 
-### Combining Queries With Other Methods
+### Комбинирование запросов с другими методами
 
-You can combine filter queries with other methods on the `Composer` class ([API Reference](/ref/core/composer)), such as `command` or `filter`.
-This allows for powerful message handling patterns.
+Вы можете комбинировать фильтрующие запросы с другими методами класса `Composer` ([документация API](/ref/core/composer)), такими как `command` или `filter`.
+Это позволяет создавать мощные шаблоны обработки сообщений.
 
 ```ts
-bot.on(":forward_origin").command("help"); // forwarded /help commands
+bot.on(":forward_origin").command("help"); // пересланная команда /help
 
-// Only handle commands in private chats.
+// Отвечайте на команды только в личных чатах
 const pm = bot.chatType("private");
 pm.command("start");
 pm.command("help");
 ```
 
-### Filtering by Message Sender Type
+### Фильтрация по типу отправителя сообщения
 
 There are five different possible types of message authors on Telegram:
 
-1. Channel post authors
-2. Automatic forwards from linked channels in discussion groups
-3. Normal user accounts, this includes bots (i.e. "normal" messages)
-4. Admins sending on behalf of the group ([anonymous admins](https://telegram.org/blog/filters-anonymous-admins-comments#anonymous-group-admins))
-5. Users sending messages as one of their channels
+1. Авторы постов в канале
+2. Автоматические переадресации из связанных каналов в комментариях группы
+3. Обычные аккаунты пользователей, включая ботов (т. е. "обычные" сообщения)
+4. Администраторы, отправляющие сообщения от имени группы ([анонимные администраторы](https://telegram.org/blog/filters-anonymous-admins-comments#anonymous-group-admins))
+5. Пользователи, отправляющие сообщения в качестве одного из своих каналов.
 
-You can combine filter queries with other update handling mechanisms to find out the type of the message author.
+Вы можете комбинировать запросы фильтров с другими механизмами обработки обновлений, чтобы узнать тип автора сообщения.
 
 ```ts
-// Channel posts sent by `ctx.senderChat`
+// Сообщения канала, отправленные `ctx.senderChat`.
 bot.on("channel_post");
 
-// Automatic forward from the channel `ctx.senderChat`:
+// Автоматическая пересылка из канала `ctx.senderChat`:
 bot.on("message:is_automatic_forward");
-// Regular messages sent by `ctx.from`
+// Регулярные сообщения, отправляемые `ctx.from`.
 bot.on("message").filter((ctx) => ctx.senderChat === undefined);
-// Anonymous admin in `ctx.chat`
+// Анонимный админ в `ctx.chat`
 bot.on("message").filter((ctx) => ctx.senderChat?.id === ctx.chat.id);
-// Users sending messages on behalf of their channel `ctx.senderChat`
+// Пользователи, отправляющие сообщения от имени своего канала `ctx.senderChat`.
 bot.on("message").filter((ctx) =>
   ctx.senderChat !== undefined && ctx.senderChat.id !== ctx.chat.id
 );
 ```
 
-### Filtering by User Properties
+### Фильтрация по статусу пользователя
 
-If you want to filter by other properties of a user, you need to perform an additional request, e.g. `await ctx.getAuthor()` for the author of the message.
-Filter queries will not secretly perform further API requests for you.
-It is still simple to perform this kind of filtering:
+Если вы хотите отфильтровать по другим свойствам пользователя, вам нужно выполнить дополнительный запрос, например, `await ctx.getAuthor()` для автора сообщения.
+Фильтрующие запросы не будут тайно выполнять за вас дополнительные запросы к API.
+Тем не менее, выполнить такую фильтрацию довольно просто:
 
 ```ts
 bot.on("message").filter(
@@ -270,101 +270,101 @@ bot.on("message").filter(
     return user.status === "creator" || user.status === "administrator";
   },
   (ctx) => {
-    // Handles messages from creators and admins.
+    // Обрабатывает сообщения от создателей и админов.
   },
 );
 ```
 
-### Reusing Filter Query Logic
+### Повторное использование логики фильтрующих запросов
 
-Internally, `bot.on` relies on a function called `matchFilter`.
-It takes a filter query and compiles it down to a predicate function.
-The predicate is simply passed to `bot.filter` in order to filter for updates.
+Внутри `bot.on` полагается на функцию под названием `matchFilter`.
+Она принимает запрос фильтра и компилирует его в функцию-предикат.
+Предикат просто передается в `bot.filter` для фильтрации обновлений.
 
-You can import `matchFilter` directly if you want to use it in your own logic.
-For example, you can decide to drop all updates that match a certain query:
+Вы можете импортировать `matchFilter` напрямую, если хотите использовать его в своей собственной логике.
+Например, вы можете решить пропускать все обновления, которые соответствуют определенному запросу:
 
 ```ts
-// Drop all text messages or text channel posts.
+// Пропускайте все текстовые сообщений или посты в текстовых каналах.
 bot.drop(matchFilter(":text"));
 ```
 
-Analogously, you can make use of the filter query types that grammY uses internally:
+Аналогичным образом можно использовать типы фильтрующих запросов, которые grammY использует внутренне:
 
-### Reusing Filter Query Types
+### Повторное использование типов фильтрующих запросов
 
-Internally, `matchFilter` uses TypeScript's [type predicates](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates) to narrow down the type of `ctx`.
-It takes a type `C extends Context` and a `Q extends FilterQuery` and produces `ctx is Filter<C, Q>`.
-In other words, the `Filter` type is what you actually receive for your `ctx` in the middleware.
+Внутри `matchFilter` использует [сужение типов](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates) TypeScript, чтобы сузить тип `ctx`.
+Он берет тип `C extends Context` и `Q extends FilterQuery` и выдает `ctx is Filter<C, Q>`.
+Другими словами, тип `Filter` - это то, что вы фактически получаете для вашего `ctx` в middleware.
 
-You can import `Filter` directly if you want to use it in your own logic.
-For example, you can decide to define a handler function that handles specific context objects which were filtered by a filter query:
+Вы можете импортировать `Filter` напрямую, если хотите использовать его в своей собственной логике.
+Например, вы можете определить функцию-обработчик, которая будет обрабатывать определенные объекты контекста, отфильтрованные с помощью запроса фильтра:
 
 ```ts
 function handler(ctx: Filter<Context, ":text">) {
-  // handle narrowed context object
+  // обработка суженного объекта контекста
 }
 
 bot.on(":text", handler);
 ```
 
-> Check out the API references for [`matchFilter`](/ref/core/matchfilter), [`Filter`](/ref/core/filter), and [`FilterQuery`](/ref/core/filterquery) to read on.
+> Посмотрите ссылки на API для [`matchFilter`](/ref/core/matchfilter), [`Filter`](/ref/core/filter) и [`FilterQuery`](/ref/core/filterquery), чтобы прочитать дальше.
 
-## The Query Language
+## Язык запросов
 
-> This section is meant for users who want to have a deeper understanding of filter queries in grammY, but it does not contain any knowledge required to create a bot.
+> Этот раздел предназначен для пользователей, которые хотят получить более глубокое представление о фильтрующих запросах в grammY, но он не содержит никаких знаний, необходимых для создания бота.
 
-### Query Structure
+### Структура запросов
 
-Every query consists of up to three query parts.
-Depending on how many query parts a query has, we differentiate between L1, L2, and L3 queries, such as `"message"`, `"message:entities"`, and `"message:entities:url"`, respectively.
+Каждый запрос состоит не более чем из трех частей запроса.
+В зависимости от количества частей запроса мы различаем запросы L1, L2 и L3, такие как `"message"`, `"message:entities"` и `"message:entities:url"` соответственно.
 
-The query parts are separated by colons (`:`).
-We refer to the part up to the first colon or the end of the query string as the _L1 part_ of a query.
-We refer to the part from the first colon to the second colon or to the end of the query string as the _L2 part_ of the query.
-We refer to the part from the second colon to the end of the query string as the _L3 part_ of the query.
+Части запроса разделяются двоеточиями (`:`).
+Часть до первого двоеточия или конца строки запроса мы называем _L1-частью_ запроса.
+Часть от первого двоеточия до второго двоеточия или до конца строки запроса мы называем _L2 частью_ запроса.
+Часть от второго двоеточия до конца строки запроса мы называем _L3 частью_ запроса.
 
-Example:
+Например:
 
-| Filter Query                 | L1 part     | L2 part      | L3 part     |
+| Фильтрующий запрос           | Часть L1    | Часть L2     | Часть L3    |
 | ---------------------------- | ----------- | ------------ | ----------- |
 | `"message"`                  | `"message"` | `undefined`  | `undefined` |
 | `"message:entities"`         | `"message"` | `"entities"` | `undefined` |
 | `"message:entities:mention"` | `"message"` | `"entities"` | `"mention"` |
 
-### Query Validation
+### Валидация запросов
 
-Even though the type system should catch all invalid filter queries at compile time, grammY also checks all passed filter queries at runtime during setup.
-Every passed filter query is matched against a validation structure that checks if it is valid.
-Not only is it good to fail immediately during setup instead of at runtime, it has also happened before that bugs in TypeScript cause serious problems with the sophisticated type inference system that powers filter queries.
-If this happens again in the future, this will prevent issues that could otherwise occur.
-In this case, you will be provided with helpful error messages.
+Несмотря на то, что система типов должна отлавливать все некорректные запросы фильтров во время компиляции, grammY также проверяет все переданные запросы фильтров во время выполнения во время установки.
+Каждый переданный запрос фильтра сопоставляется со структурой проверки, которая проверяет, является ли он корректным.
+Хорошо не только то, что ошибки в TypeScript приводят к серьезным проблемам со сложной системой вывода типов, которая обеспечивает работу запросов фильтра.
+Если такое повторится в будущем, это позволит предотвратить проблемы, которые могли бы возникнуть в противном случае.
+В этом случае вам будут выдаваться полезные сообщения об ошибках.
 
-### Performance
+### Производительность
 
-**grammY can check every filter query in (amortized) constant time per update**, independent of the structure of the query or the incoming update.
+**grammY может проверять каждый запрос фильтра за (амортизированное) постоянное время на одно обновление**, независимо от структуры запроса или входящего обновления.
 
-The validation of the filter queries happens only once, when the bot is initialized and `bot.on()` is called.
+Проверка фильтрующих запросов происходит только один раз, когда бот инициализируется и вызывается `bot.on()`.
 
-On start-up, grammY derives a predicate function from the filter query by splitting it into its query parts.
-Every part will be mapped to a function that performs a single truthiness check for an object property, or two checks if the part is omitted and two values need to be checked.
-These functions are then combined to form a predicate that only has to check for as many values as are relevant for the query, without iterating over the object keys of `Update`.
+При запуске grammY извлекает предикатную функцию из фильтрующего запроса, разбивая его на части запроса.
+Каждая часть будет сопоставлена с функцией, выполняющей одну проверку истинности свойства объекта, или две проверки, если часть опущена и необходимо проверить два значения.
+Затем эти функции объединяются в предикат, который проверяет только столько значений, сколько необходимо для запроса, без итерации по ключам объекта `Update`.
 
-This system uses less operations than some competing libraries, which need to perform containment checks in arrays when routing updates.
-grammY's filter query system is faster despite being much more powerful.
+Эта система использует меньше операций, чем некоторые конкурирующие библиотеки, которым при маршрутизации обновлений необходимо выполнять проверку содержимого в массивах.
+Система фильтрующих запросов grammY работает быстрее, несмотря на то, что она гораздо мощнее.
 
-### Type Safety
+### Безопасность типов
 
-As mentioned above, filter queries will automatically narrow down certain properties on the context object.
-The predicate derived from one or more filter queries is a TypeScript type predicate that performs this narrowing.
-In general, you can trust that type inference works correctly.
-If a property is inferred to be present, you can safely rely on it.
-If a property is inferred to be potentially absent, then this means that there are certain cases of it missing.
-It is not a good idea to perform type casts with the `!` operator.
+Как упоминалось выше, запросы фильтрации автоматически сужают определенные свойства контекстного объекта.
+Предикат, полученный из одного или нескольких запросов фильтра, представляет собой предикат типа TypeScript, который выполняет это сужение.
+В целом, можно доверять тому, что вывод типов работает корректно.
+Если предполагается, что свойство присутствует, вы можете смело полагаться на него.
+Если предполагается, что свойство потенциально отсутствует, это означает, что есть определенные случаи его отсутствия.
+Не стоит выполнять приведение типов с помощью оператора `!`.
 
-> It may not be obvious to you what those cases are.
-> Don't hesitate to ask in the [group chat](https://t.me/grammyjs) if you cannot figure it out.
+> Для вас может быть неочевидно, что это за случаи.
+> Не стесняйтесь спрашивать в [групповом чате](https://t.me/grammyjs), если не можете разобраться.
 
-Computing these types is complicated.
-A lot of knowledge about the Bot API went into this part of grammY.
-If you want to understand more about the basic approaches to how these types are computed, there is a [talk on YouTube](https://youtu.be/ZvT_xexjnMk) that you can watch.
+Вычисление этих типов - сложная задача.
+В эту часть grammY вошло много знаний о API бота.
+Если вы хотите больше узнать об основных подходах к вычислению этих типов, вы можете посмотреть [видео на YouTube](https://youtu.be/ZvT_xexjnMk).
