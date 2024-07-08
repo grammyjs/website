@@ -53,7 +53,7 @@
 // на кнопках, но убедитесь, что первой кнопкой всегда должна
 // быть кнопкая запуска!
 
-const keyboard = new InlineKeyboard().game("Start my_game");
+const keyboard = new InlineKeyboard().game("Играть в my_game");
 
 // Обратите внимание, что мы использовали game(), в отличие от обычной встроенной клавиатуры.
 // где мы используем url() или text()
