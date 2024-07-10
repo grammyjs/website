@@ -3,17 +3,17 @@ prev: false
 next: false
 ---
 
-# File Handling Simplified in grammY (`files`)
+# Упрощенная работа с файлами в grammY (`files`)
 
-This plugin allows you to easily download files from Telegram servers, and to obtain a URL so you can download the file yourself.
+Этот плагин позволяет легко загружать файлы с серверов Telegram, а также получать URL-адрес, чтобы вы могли скачать файл самостоятельно.
 
-> [Remember](../guide/files) how files work, and how to upload them.
+> [Помните](../guide/files) как работают файлы и как их загружать.
 
-## Downloading Files
+## Скачивание файлов
 
-You need to pass your bot token to this plugin because it must authenticate as your bot when it downloads files.
-This plugin then installs the `download` method on `getFile` call results.
-Example:
+Вам нужно передать токен вашего бота этому плагину, потому что он должен аутентифицироваться как ваш бот, когда загружает файлы.
+Затем этот плагин устанавливает метод `download` на результаты вызова `getFile`.
+Пример:
 
 ::: code-group
 
@@ -21,23 +21,23 @@ Example:
 import { Bot, Context } from "grammy";
 import { FileFlavor, hydrateFiles } from "@grammyjs/files";
 
-// Transformative Context flavor
+// Трансформирующий расширитель контекста
 type MyContext = FileFlavor<Context>;
 
-// Create a bot.
+// Создайте бота.
 const bot = new Bot<MyContext>("");
 
-// Use the plugin.
+// Используйте плагин.
 bot.api.config.use(hydrateFiles(bot.token));
 
-// Download videos and GIFs to temporary locations.
+// Загружайте видео и GIF-файлы во временные локации
 bot.on([":video", ":animation"], async (ctx) => {
-  // Prepare the file for download.
+  // Подготовьте файл к загрузке.
   const file = await ctx.getFile();
-  // Download the file to a temporary location.
+  // Загрузите файл во временную локацию
   const path = await file.download();
-  // Print the file path.
-  console.log("File saved at ", path);
+  // Выведите путь к файлу.
+  console.log("Файл сохранён в ", path);
 });
 ```
 
@@ -45,20 +45,20 @@ bot.on([":video", ":animation"], async (ctx) => {
 import { Bot } from "grammy";
 import { hydrateFiles } from "@grammyjs/files";
 
-// Create a bot.
+// Создайте бота.
 const bot = new Bot("");
 
-// Use the plugin.
+// Используйте плагин.
 bot.api.config.use(hydrateFiles(bot.token));
 
-// Download videos and GIFs to temporary locations.
+// Загружайте видео и GIF-файлы во временные локации
 bot.on([":video", ":animation"], async (ctx) => {
-  // Prepare the file for download.
+  // Подготовьте файл к загрузке.
   const file = await ctx.getFile();
-  // Download the file to a temporary location.
+  // Загрузите файл во временную локацию
   const path = await file.download();
-  // Print the file path.
-  console.log("File saved at ", path);
+  // Выведите путь к файлу.
+  console.log("Файл сохранён в ", path);
 });
 ```
 
@@ -69,46 +69,46 @@ import {
   hydrateFiles,
 } from "https://deno.land/x/grammy_files/mod.ts";
 
-// Transformative Context flavor
+// Трансформирующий расширитель контекста
 type MyContext = FileFlavor<Context>;
 
-// Create a bot.
+// Создайте бота.
 const bot = new Bot<MyContext>("");
 
-// Use the plugin.
+// Используйте плагин.
 bot.api.config.use(hydrateFiles(bot.token));
 
-// Download videos and GIFs to temporary locations.
+// Загружайте видео и GIF-файлы во временные локации
 bot.on([":video", ":animation"], async (ctx) => {
-  // Prepare the file for download.
+  // Подготовьте файл к загрузке.
   const file = await ctx.getFile();
-  // Download the file to a temporary location.
+  // Загрузите файл во временную локацию
   const path = await file.download();
-  // Print the file path.
-  console.log("File saved at ", path);
+  // Выведите путь к файлу.
+  console.log("Файл сохранён в ", path);
 });
 ```
 
 :::
 
-You can pass a string with a file path to `download` if you don't want to create a temporary file.
-Just do `await file.download("/path/to/file")`.
+Вы можете передать строку с путем к файлу в `download`, если не хотите создавать временный файл.
+Просто сделайте `await file.download("/path/to/file")`.
 
-If you only want to get the URL of the file so you can download it yourself, use `file.getUrl`.
-This will return an HTTPS link to your file that is valid for at least one hour.
+Если вам нужно получить только URL-адрес файла, чтобы вы могли скачать его самостоятельно, используйте `file.getUrl`.
+Это вернет HTTPS ссылку на ваш файл, которая будет действительна в течение как минимум одного часа.
 
-## Local Bot API Server
+## Локальный API сервер бота
 
-If you are using a [local Bot API server](https://core.telegram.org/bots/api#using-a-local-bot-api-server), then the `getFile` call effectively downloads the file to your disk already.
+Если вы используете [локальный сервер Bot API](https://core.telegram.org/bots/api#using-a-local-bot-api-server), то вызов `getFile` фактически уже загружает файл на ваш диск.
 
-In turn, you can call `file.getUrl()` to access that file path.
-Note that `await file.download()` will now simply copy that locally present file to a temporary location (or to the given path if specified).
+В свою очередь, вы можете вызвать `file.getUrl()` для доступа к этому пути к файлу.
+Обратите внимание, что `await file.download()` теперь просто скопирует этот локально присутствующий файл во временное место (или по заданному пути, если он указан).
 
-## Supporting `bot.api` Calls
+## Поддержка вызовов `bot.api`
 
-By default, the results of `await bot.api.getFile()` will also be equipped with `download` and `getUrl` methods.
-However, this is not reflected in the types.
-If you need these calls, you should also install an [API flavor](../advanced/transformers#api-flavoring) on the bot object called `FileApiFlavor`:
+По умолчанию результаты `await bot.api.getFile()` будут также оснащены методами `download` и `getUrl`.
+Однако это не отражено в типах.
+Если вам нужны эти вызовы, вы должны также установить [расширители API](../advanced/transformers#расширитель-api) на объект бота под названием `FileApiFlavor`:
 
 ::: code-group
 
@@ -140,8 +140,8 @@ const bot = new Bot<MyContext, MyApi>("");
 
 :::
 
-## Plugin Summary
+## Краткая информация о плагине
 
-- Name: `files`
-- [Source](https://github.com/grammyjs/files)
-- [Reference](/ref/files/)
+- Название: `files`
+- [Исходник](https://github.com/grammyjs/files)
+- [Документация](/ref/files/)
