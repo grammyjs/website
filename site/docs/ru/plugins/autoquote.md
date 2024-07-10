@@ -3,21 +3,21 @@ prev: false
 next: false
 ---
 
-# Always Replying to Messages
+# Всегда отвечать на сообщения
 
-It is sometimes necessary to always send messages as replies, especially for bots that are meant to be used in groups.
-We usually do this by adding `reply_parameters` to the methods that send the message: `sendText`, `reply`, `sendPhoto`, `replyWithPhoto` and etc.
-However, if you're doing this for every single message, it can get messy and boring.
+Иногда необходимо всегда отправлять сообщения в виде ответов, особенно для ботов, которые предназначены для использования в группах.
+Обычно мы делаем это, добавляя `reply_parameters` к методам, которые отправляют сообщение: `sendText`, `reply`, `sendPhoto`, `replyWithPhoto` и т.д.
+Однако если вы будете делать это для каждого сообщения, это может стать беспорядочным и скучным.
 
-This plugin sets the properties of `reply_parameters` for all `reply*` and `send*` methods that support it to make every message a reply to the message and chat that triggered it.
+Этот плагин устанавливает свойства `reply_parameters` для всех методов `reply*` и `send*`, которые его поддерживают, чтобы каждое сообщение было ответом на сообщение и чат, которые его вызвали.
 
-You can pass an options object with a `allowSendingWithoutReply` property to both `addReplyParam` and `autoQuote` functions, which will allow your bot to send messages even if the message being replied to does not exist anymore.
+Вы можете передать объект options со свойством `allowSendingWithoutReply` функциям `addReplyParam` и `autoQuote`, что позволит вашему боту отправлять сообщения, даже если сообщение, на которое отвечают, больше не существует.
 
-## Usage
+## Использование
 
-### In a Specific Context
+### В определенном контексте
 
-If you want all messages sent within a specific context (like a specific command), you can specifically apply the plugin to them:
+Если вы хотите, чтобы все сообщения отправлялись в определенном контексте (например, по определенной команде), вы можете специально применить плагин к ним:
 
 ::: code-group
 
@@ -29,7 +29,7 @@ const bot = new Bot("");
 
 bot.command("demo", async (ctx) => {
   ctx.api.config.use(addReplyParam(ctx));
-  await ctx.reply("Demo command!"); // this is going to quote the user's message
+  await ctx.reply("Тестовая команда!"); // это будет цитировать сообщение пользователя
 });
 
 bot.start();
@@ -43,7 +43,7 @@ const bot = new Bot("");
 
 bot.command("demo", async (ctx) => {
   ctx.api.config.use(addReplyParam(ctx));
-  await ctx.reply("Demo command!"); // this is going to quote the user's message
+  await ctx.reply("Тестовая команда!"); // это будет цитировать сообщение пользователя
 });
 
 bot.start();
@@ -57,7 +57,7 @@ const bot = new Bot("");
 
 bot.command("demo", async (ctx) => {
   ctx.api.config.use(addReplyParam(ctx));
-  await ctx.reply("Demo command!"); // this is going to quote the user's message
+  await ctx.reply("Тестовая команда!"); // это будет цитировать сообщение пользователя
 });
 
 bot.start();
@@ -65,9 +65,9 @@ bot.start();
 
 :::
 
-### In Every Context
+### В каждом контексте
 
-If you want every sent message to reply the messages that triggered them, you can apply the plugin this way:
+Если вы хотите, чтобы каждое отправленное сообщение цитировало сообщения пользователя, которые использовали команду, вы можете применить плагин таким образом:
 
 ::: code-group
 
@@ -80,11 +80,11 @@ const bot = new Bot("");
 bot.use(autoQuote());
 
 bot.command("demo", async (ctx) => {
-  await ctx.reply("Demo command!"); // this is going to quote the user's message
+  await ctx.reply("Тестовая команда!"); // это будет цитировать сообщение пользователя
 });
 
 bot.command("hello", async (ctx) => {
-  await ctx.reply("Hi there :)"); // this quotes the user's message, too
+  await ctx.reply("Привет :)"); // здесь также цитируется сообщение пользователя
 });
 
 bot.start();
@@ -99,11 +99,11 @@ const bot = new Bot("");
 bot.use(autoQuote());
 
 bot.command("demo", async (ctx) => {
-  await ctx.reply("Demo command!"); // this is going to quote the user's message
+  await ctx.reply("Тестовая команда!"); // это будет цитировать сообщение пользователя
 });
 
 bot.command("hello", async (ctx) => {
-  await ctx.reply("Hi there :)"); // this quotes the user's message, too
+  await ctx.reply("Привет :)"); // здесь также цитируется сообщение пользователя
 });
 
 bot.start();
@@ -118,11 +118,11 @@ const bot = new Bot("");
 bot.use(autoQuote());
 
 bot.command("demo", async (ctx) => {
-  await ctx.reply("Demo command!"); // this is going to quote the user's message
+  await ctx.reply("Тестовая команда!"); // это будет цитировать сообщение пользователя
 });
 
 bot.command("hello", async (ctx) => {
-  await ctx.reply("Hi there :)"); // this quotes the user's message, too
+  await ctx.reply("Привет :)"); // здесь также цитируется сообщение пользователя
 });
 
 bot.start();
@@ -130,7 +130,7 @@ bot.start();
 
 :::
 
-## Plugin Summary
+## Краткая информация о плагине
 
-- Name: Autoquote
-- [Source](https://github.com/roziscoding/grammy-autoquote)
+- Имя: Autoquote
+- [Исходник](https://github.com/roziscoding/grammy-autoquote)
