@@ -367,7 +367,7 @@ In production, you would want to persist your data, for example in a file, a dat
 You should use the `storage` option of the session middleware to connect it to your datastore.
 There may already be a storage adapter written for grammY that you can use (see [below](#known-storage-adapters)), but if not, it usually only takes 5 lines of code to implement one yourself.
 
-## Known Storage Adapters
+## Известные адаптеры хранения
 
 By default, sessions will be stored [in your memory](#ram-default) by the built-in storage adapter.
 You can also use persistent sessions that grammY [offers for free](#free-storage), or connect to [external storages](#external-storage-solutions).

@@ -3,26 +3,26 @@ prev: false
 next: false
 ---
 
-# Chat Members Plugin (`chat-members`)
+# Плагин участников чата (`chat-members`)
 
-Automatically store information about users in a chat and retrieve it easily.
-Track group and channel members, and list them.
+Автоматически сохраняйте информацию о пользователях в чате и легко извлекайте ее.
+Отслеживайте участников групп и каналов и составляйте их списки.
 
-## Introduction
+## Введение
 
-In many situations, it is necessary for a bot to have information about all the users of a given chat.
-Currently, though, the Telegram Bot API exposes no method that allows us to retrieve this information.
+Во многих ситуациях боту необходимо иметь информацию обо всех пользователях данного чата.
+Однако в настоящее время Telegram Bot API не предоставляет методов, позволяющих получить эту информацию.
 
-This plugin comes to the rescue: automatically listening to `chat_member` events and storing all `ChatMember` objects.
+Этот плагин приходит на помощь: автоматически прослушивает события `chat_member` и сохраняет все объекты `ChatMember`.
 
-## Usage
+## Использование
 
-### Storing Chat Members
+### Сохранение пользователей чата
 
-You can use a valid grammY [storage adapter](./session#known-storage-adapters) or an instance of any class that implements the [`StorageAdapter`](/ref/core/storageadapter) interface.
+Вы можете использовать действительный адаптер grammY [storage adapter](./session#известные-адаптеры-хранения) или экземпляр любого класса, реализующего интерфейс [`StorageAdapter`](/ref/core/storageadapter).
 
-Please note that as per the [official Telegram docs](https://core.telegram.org/bots/api#getupdates), your bot needs to specify the `chat_member` update in the `allowed_updates` array, as shown in the example below.
-This means you also need to specify any other events you'd like to receive.
+Обратите внимание, что, согласно [официальной документации Telegram](https://core.telegram.org/bots/api#getupdates), ваш бот должен указать обновление `chat_member` в массиве `allowed_updates`, как показано в примере ниже.
+Это означает, что вам также нужно указать любые другие события, которые вы хотели бы получать.
 
 ::: code-group
 
@@ -40,7 +40,7 @@ const bot = new Bot<MyContext>("");
 bot.use(chatMembers(adapter));
 
 bot.start({
-  // Make sure to specify the desired update types
+  // Обязательно укажите нужные типы обновлений
   allowed_updates: ["chat_member", "message"],
 });
 ```
@@ -56,7 +56,7 @@ const bot = new Bot("");
 bot.use(chatMembers(adapter));
 
 bot.start({
-  // Make sure to specify the desired update types
+  // Обязательно укажите нужные типы обновлений
   allowed_updates: ["chat_member", "message"],
 });
 ```
@@ -82,41 +82,41 @@ const bot = new Bot<MyContext>("");
 bot.use(chatMembers(adapter));
 
 bot.start({
-  // Make sure to specify the desired update types
+  // Обязательно укажите нужные типы обновлений
   allowed_updates: ["chat_member", "message"],
 });
 ```
 
 :::
 
-### Reading Chat Members
+### Чтение пользователей чата
 
-This plugin also adds a new `ctx.chatMembers.getChatMember` function that will check the storage for information about a chat member before querying Telegram for it.
-If the chat member exists in the storage, it will be returned.
-Otherwise, `ctx.api.getChatMember` will be called and the result will be saved to the storage, making subsequent calls faster and removing the need to call Telegram again for that user and chat in the future.
+Этот плагин также добавляет новую функцию `ctx.chatMembers.getChatMember`, которая будет проверять хранилище на наличие информации об участнике чата, прежде чем запрашивать ее у Telegram.
+Если участник чата существует в хранилище, он будет возвращен.
+В противном случае будет вызвана функция `ctx.api.getChatMember`, и результат будет сохранен в хранилище, что ускорит последующие вызовы и избавит вас от необходимости снова обращаться к Telegram для этого пользователя и чата в будущем.
 
-Here's an example:
+Вот пример:
 
 ```ts
 bot.on("message", async (ctx) => {
   const chatMember = await ctx.chatMembers.getChatMember();
 
   return ctx.reply(
-    `Hello, ${chatMember.user.first_name}! I see you are a ${chatMember.status} of this chat!`,
+    `Привет, ${chatMember.user.first_name}! Я вижу, что вы ${chatMember.status} этого чата!`,
   );
 });
 ```
 
-This function accepts the following optional parameters:
+Эта функция принимает следующие необязательные параметры:
 
 - `chatId`:
-  - Default: `ctx.chat.id`
-  - The chat identifier
+  - По умолчанию: `ctx.chat.id`
+  - Идентификатор чата
 - `userId`:
-  - Default: `ctx.from.id`
-  - The user identifier
+  - По умолчанию: `ctx.from.id`
+  - Идентификатор пользователя
 
-You can pass them like so:
+Вы можете передавать их следующим образом:
 
 ```ts
 bot.on("message", async (ctx) => {
@@ -125,26 +125,26 @@ bot.on("message", async (ctx) => {
     ctx.from.id,
   );
   return ctx.reply(
-    `Hello, ${chatMember.user.first_name}! I see you are a ${chatMember.status} of this chat!`,
+    `Привет, ${chatMember.user.first_name}! Я вижу, что вы ${chatMember.status} этого чата!`,
   );
 });
 ```
 
-Please notice that, if you don't provide a chat identifier and there's no `chat` property inside the context (for example, on inline query updates), this will throw an error.
-The same will happen if there's no `ctx.from` in the context.
+Обратите внимание, что если вы не указали идентификатор чата и в контексте нет свойства `chat` (например, при обновлении запроса), это приведет к ошибке.
+То же самое произойдет, если в контексте нет свойства `ctx.from`.
 
-## Aggressive Storage
+## Агрессивное хранение
 
-The `enableAggressiveStorage` config option will install middleware to cache chat members without depending on the `chat_member` event.
-For every update, the middleware checks if `ctx.chat` and `ctx.from` exist.
-If they both do, it then proceeds to call `ctx.chatMembers.getChatMember` to add the chat member information to the storage in case it doesn't exist.
+Параметр конфигурации `enableAggressiveStorage` установит middleware для кэширования членов чата без зависимости от события `chat_member`.
+При каждом обновлении middleware проверяет, существуют ли `ctx.chat` и `ctx.from`.
+Если они существуют, то выполняется вызов `ctx.chatMembers.getChatMember`, чтобы добавить информацию о пользователи чата в хранилище, если она не существует.
 
-Please note that this means the storage will be called for **every update**, which may be a lot, depending on how many updates your bot receives.
-This has the potential to impact the performance of your bot drastically.
-Only use this if you _really_ know what you're doing and are okay with the risks and consequences.
+Обратите внимание, что это означает, что хранилище будет вызываться **каждое обновление**, что может быть очень много, в зависимости от того, сколько обновлений получает ваш бот.
+Это может сильно повлиять на производительность вашего бота.
+Используйте это только в том случае, если вы действительно знаете, что делаете, и не боитесь рисков и последствий.
 
-## Plugin Summary
+## Краткая информация о плагине
 
-- Name: `chat-members`
-- [Source](https://github.com/grammyjs/chat-members)
-- [Reference](/ref/chat-members/)
+- Название: `chat-members`
+- [Исходник](https://github.com/grammyjs/chat-members)
+- [Документация](/ref/chat-members/)

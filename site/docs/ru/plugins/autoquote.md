@@ -132,5 +132,5 @@ bot.start();
 
 ## Краткая информация о плагине
 
-- Имя: Autoquote
+- Название: Autoquote
 - [Исходник](https://github.com/roziscoding/grammy-autoquote)
