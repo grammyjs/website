@@ -3,13 +3,13 @@ prev: false
 next: false
 ---
 
-# Sessions and Storing Data (built-in)
+# Сессии и хранение данных (встроеннное)
 
 While you can always just write you own code to connect to a data storage of your choice, grammY supports a very convenient storage pattern called _sessions_.
 
 > [Jump down](#how-to-use-sessions) if you know how sessions work.
 
-## Why Must We Think About Storage?
+## Почему мы должны думать о хранении?
 
 In opposite to regular user accounts on Telegram, bots have [limited cloud storage](https://core.telegram.org/bots#how-are-bots-different-from-users) in the Telegram cloud.
 As a result, there are a few things you cannot do with bots:
@@ -31,7 +31,7 @@ You can just use the grammY session storage which needs zero setup and is free f
 > If you want to run your own database, rest assured that grammY supports this equally well.
 > [Scroll down](#known-storage-adapters) to see which integrations are currently available.
 
-## What Are Sessions?
+## Что такое сессии?
 
 It is a very common thing for bots to store some piece of data per chat.
 For example, let's say we want to build a bot that counts the number of times that a message contains the pizza emoji :pizza: in its text.
@@ -75,7 +75,7 @@ The installed plugin will do something before and after our handlers are called:
 As a result, we never have to worry about actually communicating with the data storage anymore.
 We just modify the data in `ctx.session`, and the plugin will take care of the rest.
 
-## When to Use Sessions
+## Когда использовать сессии?
 
 > [Skip ahead](#how-to-use-sessions) if you already know that you want to use sessions.
 
@@ -99,11 +99,11 @@ This does not mean that things _cannot work_ if you pick sessions/databases over
 For example, you can of course store large binary data in your session.
 However, your bot would not perform as well as it could otherwise, so we recommend using sessions only where they make sense.
 
-## How to Use Sessions
+## Как использовать сессии?
 
 You can add session support to grammY by using the built-in session middleware.
 
-### Example Usage
+### Пример использования
 
 Here is an example bot that counts messages containing a pizza emoji :pizza::
 
@@ -198,7 +198,7 @@ bot.start();
 Note how we also have to [adjust the context type](../guide/context#customizing-the-context-object) to make the session available on it.
 The context flavor is called `SessionFlavor`.
 
-### Initial Session Data
+### Первоначальные данные сессии
 
 When a user first contacts your bot, no session data is available for them.
 It is therefore important that you specify the `initial` option for the session middleware.
@@ -238,7 +238,7 @@ Hence, changing the session data in one chat may accidentally impact the session
 You may also omit the `initial` option entirely, even though you are well advised not to do that.
 If you don't specify it, reading `ctx.session` will throw an error for new users.
 
-### Session Keys
+### Ключи сессии
 
 > This section describes an advanced feature that most people do not have to worry about.
 > You may want to continue with the section about [storing your data](#storing-your-data).
@@ -318,7 +318,7 @@ If you must use the option (which is of course still possible), you should know 
 Make sure you understand the consequences of this configuration by reading [this](../guide/deployment-types) article and especially [this](./runner#sequential-processing-where-necessary) one.
 :::
 
-### Chat Migrations
+### Миграции чата
 
 If you are using sessions for groups, you should be aware that Telegram migrates regular groups to supergroups under certain circumstances (e.g. [here](https://github.com/telegramdesktop/tdesktop/issues/5593)).
 
@@ -358,7 +358,7 @@ A user would experience the migration as a hiccup (if the timing is bad) and wou
 Ignoring the problem is surely the easiest way, nevertheless it is important to know about this behavior.
 Otherwise it can cause confusion and might cost hours of debugging time.
 
-### Storing Your Data
+### Хранение ваших данных
 
 In all examples above, the session data is stored in your RAM, so as soon as your bot is stopped, all data is lost.
 This is convenient when you develop your bot or if you run automatic tests (no database setup needed), however, **that is most likely not desired in production**.
@@ -383,7 +383,7 @@ bot.use(session({
 }));
 ```
 
-### RAM (default)
+### Оперативная память (по умолчанию)
 
 By default, all data will be stored in RAM.
 This means that all sessions are lost as soon as your bot stops.
@@ -397,7 +397,7 @@ bot.use(session({
 }));
 ```
 
-### Free Storage
+### Бесплатное хранилище
 
 > The free storage is meant to be used in hobby projects.
 > Production-scale applications should host their own database.
@@ -569,7 +569,7 @@ They contain information about how to connect them to your storage solution.
 
 You may also want to [scroll down](#storage-enhancements) to see how the session plugin is able to enhance any storage adapter.
 
-## Multi Sessions
+## Мульти сессии
 
 The session plugin is able to store different fragments of your session data in different places.
 Basically, this works as if you would install multiple independent instances of the the session plugin, each with a different configuration.

@@ -3,35 +3,35 @@ prev: false
 next: false
 ---
 
-# Emoji Plugin (`emoji`)
+# Плагин эмодзи (`emoji`)
 
-With this plugin, you can easily insert emojis on your replies searching for them instead of manually copying and pasting an emoji from web at your code.
+С помощью этого плагина вы можете легко вставлять эмодзи в свои ответы, находя их, вместо того чтобы вручную копировать и вставлять эмодзи из Интернета в свой код.
 
-## Why Should I Use This?
+## Почему я должен использовать это?
 
-Why not? People use emojis in their code all the time to better illustrate the message they're willing to pass or to organize things.
-But you lose your focus every time you need a new emoji, see:
+Почему бы и нет? Люди постоянно используют эмодзи в своем коде, чтобы лучше проиллюстрировать сообщение, которое они хотят передать, или чтобы упорядочить вещи.
+Но вы теряете фокус каждый раз, когда вам нужен новый эмодзи:
 
-1. You stop coding to search for a specific emoji.
-2. You go to a Telegram chat and spent ~6 seconds (to not say more) searching for the emoji you want.
-3. You copy-paste them into your code and get back coding, but with lost focus.
+1. Вы прекращаете программировать для поиска конкретного эмодзи.
+2. Вы заходите в чат Telegram и тратите ~6 секунд (если не больше) на поиск нужного вам эмодзи.
+3. Вы копируете и вставляете их в свой код и возвращаетесь к программированию, но уже с потерянным фокусом.
 
-With this plugin, you just don't stop coding as also you don't lose your focus.
-There is also bad-frickin'-laggy systems and/or editors that doesn't like and don't show emojis, so you end up pasting a white square, like this sad-little-squary message: `I'm so happy □`.
+С этим плагином вы не только не перестанете писать код, но и не потеряете фокус.
+Есть также плохо работающие системы и/или редакторы, которые не любят и не показывают эмодзи, поэтому в итоге вы вставляете белый квадрат, как в этом грустном сообщении: `Я так счастлив □`.
 
-This plugin aims to solve these issues, handling for you the hard task of parsing emojis in all systems and letting you only search for them in a easy way (autocomplete is available).
-Now, the above steps can be reduced to this one:
+Этот плагин призван решить эти проблемы, выполняя за вас сложную задачу по разбору эмодзи во всех системах и позволяя вам только искать их простым способом (доступно автоподсказка).
+Теперь все описанные выше действия можно свести к одному:
 
-1. Describe the emoji you want and use it. Right in your code. Simple as that.
+1. Опишите нужный вам эмодзи и используйте его. Прямо в вашем коде. Все просто.
 
-### Is This Sorcery?
+### Это что, колдовство?
 
-No, it is called template strings.
-You can read more about them [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals).
+Нет, это называется шаблонными строками.
+Подробнее о них вы можете прочитать [здесь](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals).
 
-## Installing and Examples
+## Установка и примеры
 
-You can install this plugin on your bot like this:
+Вы можете установить этот плагин на своего бота следующим образом:
 
 ::: code-group
 
@@ -39,8 +39,8 @@ You can install this plugin on your bot like this:
 import { Bot, Context } from "grammy";
 import { EmojiFlavor, emojiParser } from "@grammyjs/emoji";
 
-// This is called Context Flavoring
-// You can read more about at:
+// Это называется расширители контекста
+// Подробнее об этом вы можете прочитать на:
 // https://grammy.dev/guide/context#transformative-context-flavors
 type MyContext = EmojiFlavor<Context>;
 
@@ -65,8 +65,8 @@ import {
   emojiParser,
 } from "https://deno.land/x/grammy_emoji/mod.ts";
 
-// This is called Context Flavoring
-// You can read more about at:
+// Это называется расширители контекста
+// Подробнее об этом вы можете прочитать на:
 // https://grammy.dev/guide/context#transformative-context-flavors
 type MyContext = EmojiFlavor<Context>;
 
@@ -77,43 +77,43 @@ bot.use(emojiParser());
 
 :::
 
-Now you can get emojis by their names:
+Теперь вы можете получать эмодзи по их именам:
 
 ```js
 bot.command("start", async (ctx) => {
-  const parsedString = ctx.emoji`Welcome! ${"smiling_face_with_sunglasses"}`; // => Welcome! 😎
+  const parsedString = ctx.emoji`Добро пожаловать! ${"smiling_face_with_sunglasses"}`; // => Добро пожаловать! 😎
   await ctx.reply(parsedString);
 });
 ```
 
-Alternatively, you can reply directly using the `replyWithEmoji` method:
+Кроме того, вы можете ответить напрямую, используя метод `replyWithEmoji`:
 
 ```js
 bot.command("ping", async (ctx) => {
-  await ctx.replyWithEmoji`Pong ${"ping_pong"}`; // => Pong 🏓
+  await ctx.replyWithEmoji`Понг ${"ping_pong"}`; // => Понг 🏓
 });
 ```
 
-::: warning Keep in Mind That
-`ctx.emoji` and `ctx.replyWithEmoji` **ALWAYS** use template strings.
-If you're unfamiliar with this syntax, you can read more about it [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals).
+::: warning Имейте в виду, что
+`ctx.emoji` и `ctx.replyWithEmoji` **ВСЕГДА** используют шаблонные строки.
+Если вы не знакомы с этим синтаксисом, вы можете прочитать о нем подробнее [здесь](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals).
 :::
 
-## Useful Data for Reactions
+## Полезные данные для реакций
 
-When you use [reactions](../guide/reactions) with your bot, you will have to program a lot with emoji, too!
-This is equally annoying, and since this plugin is the wet dream of all your emoji usage, it can help you with reactions, too.
+Когда вы используете [реакции](../guide/reactions) в своем боте, вам придется много программировать и с эмодзи!
+Это не менее раздражает, и так как этот плагин - это влажные сны всех ваших эмодзи, он может помочь вам и с реакциями.
 
-You can import `Reactions` from this plugin and then use it as follows.
+Вы можете импортировать `Reactions` из этого плагина и затем использовать его следующим образом.
 
 ```ts
 bot.on("message", (ctx) => ctx.react(Reactions.thumbs_up));
 ```
 
-How nice.
+Как мило.
 
-## Plugin Summary
+## Краткая информация о плагине
 
-- Name: `emoji`
-- [Source](https://github.com/grammyjs/emoji)
-- [Reference](/ref/emoji/)
+- Название: `emoji`
+- [Исходник](https://github.com/grammyjs/emoji)
+- [Документация](/ref/emoji/)

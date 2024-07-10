@@ -3,58 +3,58 @@ prev: false
 next: false
 ---
 
-# Conversations (`conversations`)
+# Диалоги (`conversations`)
 
-Create powerful conversational interfaces with ease.
+Создавайте мощные диалоговые интерфейсы с легкостью.
 
-## Introduction
+## Введение
 
-Most chats consist of more than just one single message. (duh)
+Большинство чатов состоит не только из одного сообщения. (ага)
 
-For example, you may want to ask the user a question, and then wait for the response.
-This may even go back and forth several times, so that a conversation unfolds.
+Например, вы можете задать пользователю вопрос, а затем дождаться ответа.
+Это может происходить даже несколько раз, так что получается целая беседа.
 
-When you think about [middleware](../guide/middleware), you will notice that everything is based around a single [context object](../guide/context) per handler.
-This means that you always only handle a single message in isolation.
-It is not easy to write something like "check the text three messages ago" or something.
+Когда вы думаете о [middleware](../guide/middleware), вы замечаете, что все основано на одном [объекте контекста](../guide/context) для каждого обработчика.
+Это означает, что вы всегда обрабатываете только одно сообщение в отдельности.
+Не так-то просто написать что-то вроде "проверьте текст три сообщения назад" или что-то в этом роде.
 
-**This plugin comes to the rescue:**
-It provides an extremely flexible way to define conversations between your bot and your users.
+**Этот плагин приходит на помощь:**.
+Он предоставляет чрезвычайно гибкий способ определения разговоров между вашим ботом и пользователями.
 
-Many bot frameworks make you define large configuration objects with steps and stages and jumps and wizard flows and what have you.
-This leads to a lot of boilerplate code, and makes it hard to follow along.
-**This plugin does not work that way.**
+Многие фреймворки заставляют вас определять большие объекты конфигурации с шагами, этапами, переходами, wizard и так далее.
+Это приводит к появлению большого количества шаблонного кода и затрудняет дальнейшую работу.
+**Этот плагин не работает таким образом**.
 
-Instead, with this plugin, you will use something much more powerful: **code**.
-Basically, you simply define a normal JavaScript function which lets you define how the conversation evolves.
-As the bot and the user talk to each other, the function will be executed statement by statement.
+Вместо этого с помощью этого плагина вы будете использовать нечто гораздо более мощное: **код**.
+По сути, вы просто определяете обычную функцию JavaScript, которая позволяет вам определить, как будет развиваться разговор.
+По мере того как бот и пользователь будут разговаривать друг с другом, функция будет выполняться по порядку.
 
-(To be fair, that's not actually how it works under the hood.
-But it is very helpful to think of it that way!
-In reality, your function will be executed a bit differently, but we'll get to that [later](#waiting-for-updates).)
+(Честно говоря, на самом деле все работает не так.
+Но очень полезно думать об этом именно так!
+В реальности ваша функция будет выполняться немного иначе, но мы вернемся к этому [позже](#ожидание-обновлений)).
 
-## Simple Example
+## Простой пример
 
-Before we dive into how you can create conversations, have a look at a short JavaScript example of how a conversation will look.
+Прежде чем мы перейдем к рассмотрению того, как можно создавать диалоги, посмотрите на короткий пример JavaScript того, как будет выглядеть беседа.
 
 ```js
 async function greeting(conversation, ctx) {
-  await ctx.reply("Hi there! What is your name?");
+  await ctx.reply("Привет, как тебя зовут?");
   const { message } = await conversation.wait();
-  await ctx.reply(`Welcome to the chat, ${message.text}!`);
+  await ctx.reply(`Добро пожаловать в чат, ${message.text}!`);
 }
 ```
 
-In this conversation, the bot will first greet the user, and ask for their name.
-Then it will wait until the user sends their name.
-Lastly, the bot welcomes the user to the chat, repeating the name.
+В этом разговоре бот сначала поприветствует пользователя и спросит его имя.
+Затем он будет ждать, пока пользователь не назовет свое имя.
+И наконец, бот приветствует пользователя в чате, повторяя его имя.
 
-Easy, right?
-Let's see how it's done!
+Легко, правда?
+Давайте посмотрим, как это делается!
 
-## Conversation Builder Functions
+## Функции конструктора диалогов
 
-First of all, lets import a few things.
+Прежде всего, давайте разберемся в некоторых моментах.
 
 ::: code-group
 
@@ -85,55 +85,55 @@ import {
 
 :::
 
-With that out of the way, we can now have a look at how to define conversational interfaces.
+С этим покончено, теперь мы можем посмотреть, как определять разговорные интерфейсы.
 
-The main element of a conversation is a function with two arguments.
-We call this the _conversation builder function_.
+Основным элементом разговора является функция с двумя аргументами.
+Мы называем ее _функцией построения беседы_.
 
 ```js
 async function greeting(conversation, ctx) {
-  // TODO: code the conversation
+  // TODO: Код для диалога
 }
 ```
 
-Let's see what the two parameters are.
+Давайте посмотрим, что представляют собой эти два параметра.
 
-**The second parameter** is not that interesting, it is just a regular context object.
-As always, it is called `ctx` and uses your [custom context type](../guide/context#customizing-the-context-object) (maybe called `MyContext`).
-The conversations plugin exports a [context flavor](../guide/context#additive-context-flavors) called `ConversationFlavor`.
+**Второй параметр** не так интересен, это обычный объект контекста.
+Как обычно, он называется `ctx` и использует ваш [пользовательский тип контекста](../guide/context#кастомизация-объекта-контекста) (может называться `MyContext`).
+Плагин conversations экспортирует [расширитель контекста](../guide/context#дополнительные-расширители-контекста) под названием `ConversationFlavor`.
 
-**The first parameter** is the central element of this plugin.
-It is commonly named `conversation`, and it has the type `Conversation` ([API reference](/ref/conversations/conversation)).
-It can be used as a handle to control the conversation, such as waiting for user input, and more.
-The type `Conversation` expects your [custom context type](../guide/context#customizing-the-context-object) as a type parameter, so you would often use `Conversation<MyContext>`.
+**Первый параметр** является центральным элементом этого плагина.
+Он обычно называется `conversation` и имеет тип `Conversation` ([документация API](/ref/conversations/conversation)).
+Он может использоваться в качестве ручага для управления беседой, например, для ожидания ввода данных пользователем и т. д.
+Тип `Conversation` ожидает ваш [пользовательский тип контекста](../guide/context#кастомизация-объекта-контекста) в качестве параметра типа, поэтому вы часто будете использовать `Conversation<MyContext>`.
 
-In summary, in TypeScript, your conversation builder function will look like this.
+В общем, в TypeScript ваша функция построения диалога будет выглядеть следующим образом.
 
 ```ts
 type MyContext = Context & ConversationFlavor;
 type MyConversation = Conversation<MyContext>;
 
 async function greeting(conversation: MyConversation, ctx: MyContext) {
-  // TODO: code the conversation
+  // TODO: Код для диалога
 }
 ```
 
-Inside of your conversation builder function, you can now define how the conversation should look.
-Before we go in depth about every feature of this plugin, let's have a look at a more complex example than the [simple one](#simple-example) above.
+Внутри функции построения диалога вы можете определить, как она должна выглядеть.
+Прежде чем мы подробно остановимся на каждой функции этого плагина, давайте рассмотрим более сложный пример, чем [простой](#простой-пример) выше.
 
 ::: code-group
 
 ```ts [TypeScript]
 async function movie(conversation: MyConversation, ctx: MyContext) {
-  await ctx.reply("How many favorite movies do you have?");
+  await ctx.reply("Сколько у вас любимых фильмов?");
   const count = await conversation.form.number();
   const movies: string[] = [];
   for (let i = 0; i < count; i++) {
-    await ctx.reply(`Tell me number ${i + 1}!`);
+    await ctx.reply(`Какой фильм будет под номером ${i + 1}!`);
     const titleCtx = await conversation.waitFor(":text");
     movies.push(titleCtx.msg.text);
   }
-  await ctx.reply("Here is a better ranking!");
+  await ctx.reply("Вот рейтинг!");
   movies.sort();
   await ctx.reply(movies.map((m, i) => `${i + 1}. ${m}`).join("\n"));
 }
@@ -141,15 +141,15 @@ async function movie(conversation: MyConversation, ctx: MyContext) {
 
 ```js [JavaScript]
 async function movie(conversation, ctx) {
-  await ctx.reply("How many favorite movies do you have?");
+  await ctx.reply("Сколько у вас любимых фильмов?");
   const count = await conversation.form.number();
   const movies = [];
   for (let i = 0; i < count; i++) {
-    await ctx.reply(`Tell me number ${i + 1}!`);
+    await ctx.reply(`Какой фильм будет под номером ${i + 1}!`);
     const titleCtx = await conversation.waitFor(":text");
     movies.push(titleCtx.msg.text);
   }
-  await ctx.reply("Here is a better ranking!");
+  await ctx.reply("Вот рейтинг!");
   movies.sort();
   await ctx.reply(movies.map((m, i) => `${i + 1}. ${m}`).join("\n"));
 }
@@ -157,34 +157,34 @@ async function movie(conversation, ctx) {
 
 :::
 
-Can you figure out how this bot will work?
+Можете ли вы понять, как будет работать этот бот?
 
-## Installing and Entering a Conversation
+## Создание диалога и вступление в него
 
-First of all, you **must** use the [session plugin](./session) if you want to use the conversations plugin.
-You also have to install the conversations plugin itself, before you can register individual conversations on your bot.
+Прежде всего, вы **должны** использовать плагин [session plugin](./session), если хотите использовать плагин conversations.
+Вам также необходимо установить сам плагин conversations, прежде чем вы сможете регистрировать отдельные разговоры в вашем боте.
 
 ```ts
-// Install the session plugin.
+// Установите плагин сессии.
 bot.use(session({
   initial() {
-    // return empty object for now
+    // пока возвращайте пустой объект
     return {};
   },
 }));
 
-// Install the conversations plugin.
+// Установите плагин conversations
 bot.use(conversations());
 ```
 
-Next, you can install the conversation builder function as middleware on your bot object by wrapping it inside `createConversation`.
+Далее вы можете установить функцию конструктора диалогов в качестве middleware на объект бота, обернув ее внутри `createConversation`.
 
 ```ts
 bot.use(createConversation(greeting));
 ```
 
-Now that your conversation is registered on the bot, you can enter the conversation from any handler.
-Make sure to use `await` for all methods on `ctx.conversation`---otherwise your code will break.
+Теперь, когда ваша беседа зарегистрирована в боте, вы можете войти в нее из любого обработчика.
+Обязательно используйте `await` для всех методов на `ctx.conversation` - иначе ваш код сломается.
 
 ```ts
 bot.command("start", async (ctx) => {
@@ -192,19 +192,19 @@ bot.command("start", async (ctx) => {
 });
 ```
 
-As soon as the user sends `/start` to the bot, the conversation will be entered.
-The current context object is passed as the second argument to the conversation builder function.
-For example, if you start your conversation with `await ctx.reply(ctx.message.text)`, it will contain the update that contains `/start`.
+Как только пользователь отправит боту команду `/start`, беседа будет начата.
+Текущий объект контекста передается в качестве второго аргумента функции построения беседы.
+Например, если вы начнете разговор с `await ctx.reply(ctx.message.text)`, он будет содержать обновление, содержащее `/start`.
 
-::: tip Change the Conversation Identifier
-By default, you have to pass the name of the function to `ctx.conversation.enter()`.
-However, if you prefer to use a different identifier, you can specify it like so:
+::: tip Изменение идентификатора разговора
+По умолчанию вы должны передать имя функции в `ctx.conversation.enter()`.
+Однако если вы предпочитаете использовать другой идентификатор, вы можете указать его следующим образом:
 
 ```ts
 bot.use(createConversation(greeting, "new-name"));
 ```
 
-In turn, you can enter the conversation with it:
+В свою очередь, вы можете вступить с ним в разговор:
 
 ```ts
 bot.command("start", (ctx) => ctx.conversation.enter("new-name"));
@@ -212,7 +212,7 @@ bot.command("start", (ctx) => ctx.conversation.enter("new-name"));
 
 :::
 
-In total, your code should now roughly look like this:
+В целом ваш код теперь должен выглядеть примерно так:
 
 ::: code-group
 
@@ -233,15 +233,15 @@ const bot = new Bot<MyContext>("");
 bot.use(session({ initial: () => ({}) }));
 bot.use(conversations());
 
-/** Defines the conversation */
+/** Определяет разговор */
 async function greeting(conversation: MyConversation, ctx: MyContext) {
-  // TODO: code the conversation
+  // TODO: Код для диалога
 }
 
 bot.use(createConversation(greeting));
 
 bot.command("start", async (ctx) => {
-  // enter the function "greeting" you declared
+  // войдите в функцию greeting, которую вы создали
   await ctx.conversation.enter("greeting");
 });
 
@@ -260,15 +260,15 @@ const bot = new Bot("");
 bot.use(session({ initial: () => ({}) }));
 bot.use(conversations());
 
-/** Defines the conversation */
+/** Определяет разговор */
 async function greeting(conversation, ctx) {
-  // TODO: code the conversation
+  // TODO: Код для диалога
 }
 
 bot.use(createConversation(greeting));
 
 bot.command("start", async (ctx) => {
-  // enter the function "greeting" you declared
+  // войдите в функцию greeting, которую вы создали
   await ctx.conversation.enter("greeting");
 });
 
@@ -292,15 +292,15 @@ const bot = new Bot<MyContext>("");
 bot.use(session({ initial: () => ({}) }));
 bot.use(conversations());
 
-/** Defines the conversation */
+/** Определяет разговор */
 async function greeting(conversation: MyConversation, ctx: MyContext) {
-  // TODO: code the conversation
+  // TODO: Код для диалога
 }
 
 bot.use(createConversation(greeting));
 
 bot.command("start", async (ctx) => {
-  // enter the function "greeting" you declared
+  // войдите в функцию greeting, которую вы создали
   await ctx.conversation.enter("greeting");
 });
 
@@ -309,93 +309,93 @@ bot.start();
 
 :::
 
-### Installation With Custom Session Data
+### Установка с пользовательскими данными сессии
 
-Note that if you use TypeScript and you want to store your own session data as well as use conversations, you will need to provide more type information to the compiler.
-Let's say you have this interface which describes your custom session data:
+Обратите внимание, что если вы используете TypeScript и хотите хранить свои собственные данные сессии, а также использовать разговоры, вам нужно будет предоставить компилятору больше информации о типе.
+Допустим, у вас есть этот интерфейс, который описывает ваши пользовательские данные сессии:
 
 ```ts
 interface SessionData {
-  /** custom session property */
+  /** пользовательское свойство сессии */
   foo: string;
 }
 ```
 
-Your custom context type might then look like this:
+Ваш пользовательский тип контекста может выглядеть следующим образом:
 
 ```ts
 type MyContext = Context & SessionFlavor<SessionData> & ConversationFlavor;
 ```
 
-Most importantly, when installing the session plugin with an external storage, you will have to provide the session data explicitly.
-All storage adapters allow you to pass the `SessionData` as a type parameter.
-For example, this is how you'd have to do it with the [`freeStorage`](./session#free-storage) that grammY provides.
+Самое главное, что при установке плагина сессий с внешним хранилищем вам придется явно предоставлять данные сессии.
+Все адаптеры хранилищ позволяют передавать `SessionData` в качестве параметра типа.
+Например, вот как это нужно сделать с [`freeStorage`](./session#бесплатное-хранилище), который предоставляет grammY.
 
 ```ts
-// Install the session plugin.
+// Установите плагин сессии.
 bot.use(session({
-  // Add session types to adapter.
+  // Добавьте типы сессии в адаптер.
   storage: freeStorage<SessionData>(bot.token),
   initial: () => ({ foo: "" }),
 }));
 ```
 
-You can do the same thing for all other storage adapters, such as `new FileAdapter<SessionData>()` and so on.
+То же самое можно сделать и для всех остальных адаптеров хранения, например `new FileAdapter<SessionData>()` и так далее.
 
-### Installation With Multi Sessions
+### Установка с несколькими сессиями
 
-Naturally, you can combine conversations with [multi sessions](./session#multi-sessions).
+Естественно, вы можете объединять беседы с помощью [мультисессий](./session#мульти-сессии).
 
-This plugin stores the conversation data inside `session.conversation`.
-This means that if you want to use multi sessions, you have to specify this fragment.
+Этот плагин хранит данные разговора внутри `session.conversation`.
+Это означает, что если вы хотите использовать несколько сессий, вам необходимо указать этот фрагмент.
 
 ```ts
-// Install the session plugin.
+// Установите плагин сессии.
 bot.use(session({
   type: "multi",
   custom: {
     initial: () => ({ foo: "" }),
   },
-  conversation: {}, // may be left empty
+  conversation: {}, // может быть пустым
 }));
 ```
 
-This way, you can store the conversation data in a different place than other session data.
-For example, if you leave the conversation config empty as illustrated above, the conversation plugin will store all data in memory.
+Таким образом, вы можете хранить данные разговора в другом месте, чем другие данные сессии.
+Например, если оставить конфигурацию беседы пустой, как показано выше, плагин беседы будет хранить все данные в памяти.
 
-## Leaving a Conversation
+## Выход из диалога
 
-The conversation will run until your conversation builder function completes.
-This means that you can simply leave a conversation by using `return` or `throw`.
+Разговор будет продолжаться до тех пор, пока ваша функция конструктора диалогов не завершится.
+Это означает, что вы можете просто выйти из беседы, используя `return` или `throw`.
 
 ::: code-group
 
 ```ts [TypeScript]
 async function hiAndBye(conversation: MyConversation, ctx: MyContext) {
-  await ctx.reply("Hi! And Bye!");
-  // Leave the conversation:
+  await ctx.reply("Привет! И пока!");
+  // Выйти из беседы:
   return;
 }
 ```
 
 ```js [JavaScript]
 async function hiAndBye(conversation, ctx) {
-  await ctx.reply("Hi! And Bye!");
-  // Leave the conversation:
+  await ctx.reply("Привет! И пока!");
+  // Выйти из беседы:
   return;
 }
 ```
 
 :::
 
-(Yes, putting a `return` at the end of the function is a bit pointless, but you get the idea.)
+(Да, ставить `return` в конце функции немного бессмысленно, но вы поняли идею).
 
-Throwing an error will likewise exit the conversation.
-However, the [session plugin](#installing-and-entering-a-conversation) only persists data if the middleware runs successfully.
-Hence, if you throw an error inside your conversation and do not catch it before it reaches the session plugin, it will not be saved that the conversation was left.
-As a result, the next message will cause the same error.
+Выброс ошибки также приведет к завершению беседы.
+Однако плагин [session](#создание-диалога-и-вступление-в-него) сохраняет данные только при успешном выполнении middleware.
+Таким образом, если вы выбросите ошибку внутри беседы и не поймаете ее до того, как она достигнет плагина сессии, то не будет сохранено, что беседа была завершена.
+В результате следующее сообщение вызовет ту же ошибку.
 
-You can mitigate this by installing an [error boundary](../guide/errors#error-boundaries) between the session and the conversation.
+<!-- You can mitigate this by installing an [error boundary](../guide/errors#error-boundaries) between the session and the conversation.
 That way, you can prevent the error from propagating up the [middleware tree](../advanced/middleware) and hence permit the session plugin to write back the data.
 
 > Note that if you are using the default in-memory sessions, all changes to the session data are reflected immediately, because there is no storage backend.
@@ -413,8 +413,8 @@ bot.use(session({
 bot.use(conversations());
 
 async function hiAndBye(conversation: MyConversation, ctx: MyContext) {
-  await ctx.reply("Hi! And Bye!");
-  // Leave the conversation:
+  await ctx.reply("Привет! И пока!");
+  // Выйти из беседы:
   throw new Error("Catch me if you can!");
 }
 
@@ -432,8 +432,8 @@ bot.use(session({
 bot.use(conversations());
 
 async function hiAndBye(conversation, ctx) {
-  await ctx.reply("Hi! And Bye!");
-  // Leave the conversation:
+  await ctx.reply("Привет! И пока!");
+  // Выйти из беседы:
   throw new Error("Catch me if you can!");
 }
 
@@ -456,10 +456,10 @@ Remember that you must `await` the call.
 
 ```ts{6,22} [TypeScript]
 async function movie(conversation: MyConversation, ctx: MyContext) {
-  // TODO: code the conversation
+  // TODO: Код для диалога
 }
 
-// Install the conversations plugin.
+// Установите плагин conversations
 bot.use(conversations());
 
 // Always exit any conversation upon /cancel
@@ -481,10 +481,10 @@ bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 
 ```js{6,22} [JavaScript]
 async function movie(conversation, ctx) {
-  // TODO: code the conversation
+  // TODO: Код для диалога
 }
 
-// Install the conversations plugin.
+// Установите плагин conversations
 bot.use(conversations());
 
 // Always exit any conversation upon /cancel
@@ -510,7 +510,7 @@ Note that the order matters here.
 You must first install the conversations plugin (line 6) before you can call `await ctx.conversation.exit()`.
 Also, the generic cancel handlers must be installed before the actual conversations (line 22) are registered.
 
-## Waiting for Updates
+## Ожидание обновлений
 
 You can use the conversation handle `conversation` to wait for the next update in this particular chat.
 
@@ -649,14 +649,14 @@ async function waitForText(conversation, ctx) {
 
 Check out the [API reference](/ref/conversations/conversationhandle#wait) to see all available methods that are similar to `wait`.
 
-## Three Golden Rules of Conversations
+## Три золотых правила ведения диалога
 
 There are three rules that apply to the code you write inside a conversation builder function.
 You must follow them if you want your code to behave correctly.
 
 Scroll [down](#how-it-works) if you want to know more about _why_ these rules apply, and what `wait` calls really do internally.
 
-### Rule I: All Side-effects Must Be Wrapped
+### Правило I: Все побочные эффекты должны быть завернуты
 
 Code that depends on external system such as databases, APIs, files, or other resources which could change from one execution to the next must be wrapped in `conversation.external()` calls.
 
@@ -673,7 +673,7 @@ This includes both reading data, as well as performing side-effects (such as wri
 If you are familiar with React, you may know a comparable concept from `useEffect`.
 :::
 
-### Rule II: All Random Behavior Must Be Wrapped
+### Правило II: все случайные значения должны быть завернуты
 
 Code that depends on randomness or on global state which could change, must wrap all access to it in `conversation.external()` calls, or use the `conversation.random()` convenience function.
 
@@ -684,7 +684,7 @@ if (Math.random() < 0.5) { /* do stuff */ }
 if (conversation.random() < 0.5) { /* do stuff */ }
 ```
 
-### Rule III: Use Convenience Functions
+### Правило III: Используйте удобные функции
 
 There are a bunch of things installed on `conversation` which may greatly help you.
 Your code sometimes does not even break if you don't use them, but even then it can be slow or behave in a confusing way.
@@ -702,7 +702,7 @@ conversation.log("Hello, world"); // more transparent!
 
 Note that you can do most of the above via `conversation.external()`, but this can be tedious to type, so it's just easier to use the convenience functions ([API reference](/ref/conversations/conversationhandle#methods)).
 
-## Variables, Branching, and Loops
+## Переменные, ветвление и циклы
 
 If you follow the three rules above, you are completely free to use any code you like.
 We will now go through a few concepts that you already know from programming, and show how they translate to clean and readable conversations.
@@ -746,7 +746,7 @@ do {
 } while (!ctx.message?.photo);
 ```
 
-## Functions and Recursion
+## Функции и рекурсии
 
 You can also split up your code in several functions, and reuse them.
 For example, this is how you can define a reusable captcha.
@@ -811,7 +811,7 @@ After all, conversations are just JavaScript.
 
 If the main conversation function throws an error, the error will propagate further into the [error handling mechanisms](../guide/errors) of your bot.
 
-## Modules and Classes
+## Модули и классы
 
 Naturally, you can just move your functions across modules.
 That way, you can define some functions in one file, `export` them, and then `import` and use them in another file.
@@ -885,7 +885,7 @@ async function askForToken(conversation, ctx) {
 The point here is not so much that we strictly recommend you to do this.
 It is rather meant as an example for how you can use the endless flexibilities of JavaScript to structure your code.
 
-## Forms
+## Формы
 
 As mentioned [earlier](#waiting-for-updates), there are several different utility functions on the conversation handle, such as `await conversation.waitFor('message:text')` which only returns text message updates.
 
@@ -911,7 +911,7 @@ async function waitForMe(conversation, ctx) {
 
 As always, check out the [API reference](/ref/conversations/conversationform) to see which methods are available.
 
-## Working With Plugins
+## Работа с плагинами
 
 As mentioned [earlier](#introduction), grammY handlers always only handle a single update.
 However, with conversations, you are able to process many updates in sequence as if they were all available at the same time.
@@ -975,7 +975,7 @@ async function convo(conversation, ctx) {
 
 This will make the plugin available inside the conversation.
 
-### Custom Context Objects
+### Пользовательские объекты контекста
 
 If you are using a [custom context object](../guide/context#customizing-the-context-object) and you want to install custom properties on your context objects before a conversation is entered, then some of these properties can get lost, too.
 In a way, the middleware you use to customize your context object can be regarded as a plugin, as well.
@@ -1004,7 +1004,7 @@ For instance, if three context objects arrive, this is what happens:
 
 Note that the middleware is run with first update thrice.
 
-## Parallel Conversations
+## Параллельные диалоги
 
 Naturally, the conversations plugin can run any number of conversations in parallel in different chats.
 
@@ -1015,7 +1015,7 @@ If two members join at the same time, the bot should be able to have two indepen
 This is why the conversations plugin allows you to enter several conversations at the same time for every chat.
 For instance, it is possible to have five different conversations with five new users, and at the same time chat with an admin about new chat config.
 
-### How It Works Behind the Scenes
+### Как это работает за кулисами
 
 Every incoming update will only be handled by one of the active conversations in a chat.
 Comparable to middleware handlers, the conversations will be called in the order they are registered.
@@ -1028,7 +1028,7 @@ If all conversations skip an update, the control flow will be passed back to the
 
 This allows you to start a new conversation from the regular middleware.
 
-### How You Can Use It
+### Как вы можете это использовать
 
 In practice, you never really need to call `await conversation.skip()` at all.
 Instead, you can just use things like `await conversation.waitFrom(userId)`, which will take care of the details for you.
@@ -1083,7 +1083,7 @@ bot.on("chat_member")
   .use((ctx) => ctx.conversation.enter("enterGroup"));
 ```
 
-### Inspecting Active Conversations
+### Проверка активных диалогов
 
 You can see how many conversations with which identifier are running.
 
@@ -1094,14 +1094,14 @@ console.log(stats); // { "enterGroup": 1 }
 
 This will be provided as an object that has the conversation identifiers as keys, and a number indicating the number of running conversations for each identifier.
 
-## How It Works
+## Как это работает
 
 > [Remember](#three-golden-rules-of-conversations) that the code inside your conversation builder functions must follow three rules.
 > We are now going to see _why_ you need to build them that way.
 
 We are first going to see how this plugin works conceptually, before we elaborate on some details.
 
-### How `wait` Calls Work
+### Как вызов `wait` работает
 
 Let us switch perspectives for a while, and ask a question from a plugin developer's point of view.
 How to implement a `wait` call in the plugin?
@@ -1174,7 +1174,7 @@ In that case, when calling the function, it may suddenly behave differently ever
 It could randomly work differently than the original execution.
 This is why point 3 exists, and the [Three Golden Rules](#three-golden-rules-of-conversations) must be followed.
 
-### How to Intercept Function Execution
+### Как перехватить выполнение функции
 
 Conceptually speaking, the keywords `async` and `await` give us control over where the thread is [preempted](https://en.wikipedia.org/wiki/Preemption_(computing)).
 Hence, if someone calls `await conversation.wait()`, which is a function of our library, we are given the power to preempt the execution.
@@ -1190,10 +1190,10 @@ If you `await` such a promise in any JavaScript file, your runtime will terminat
 
 Since we obviously don't want to kill the JS runtime, we have to catch this again.
 How would you go about this?
-(Feel free to check out the plugin's source code if this isn't immediately obvious to you.)
+(Feel free to check out the plugin's source code if this isn't immediately obvious to you.) -->
 
-## Plugin Summary
+## Краткая информация о плагине
 
-- Name: `conversations`
-- [Source](https://github.com/grammyjs/conversations)
-- [Reference](/ref/conversations/)
+- Название: `conversations`
+- [Исходник](https://github.com/grammyjs/conversations)
+- [Документация](/ref/conversations/)
