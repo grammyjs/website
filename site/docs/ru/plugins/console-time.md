@@ -3,18 +3,18 @@ prev: false
 next: false
 ---
 
-# Console Logging While Debugging
+# Ведение журнала консоли при отладке
 
-If you are familiar with JavaScript/TypeScript you probably used [`console.log`](https://developer.mozilla.org/en-US/docs/Web/API/console/log_static) or [`console.time`](https://developer.mozilla.org/en-US/docs/Web/API/console/time_static) to check what is happening while debugging something.
-While working on your bot or middleware you might want to check something similar: What happened, and how long took it?
+Если вы знакомы с JavaScript/TypeScript, то наверняка использовали [`console.log`](https://developer.mozilla.org/en-US/docs/Web/API/console/log_static) или [`console.time`](https://developer.mozilla.org/en-US/docs/Web/API/console/time_static), чтобы проверить, что происходит во время отладки.
+Во время работы над ботом или middleware вы можете захотеть проверить например: что произошло и сколько времени это заняло?
 
-This plugin is interested in individual requests to debug individual problems.
-While being in a production environment, you probably want something opposite in order to get a rough overview.
-For example: while debugging why `/start` fails you will check the individual Telegram update.
-In a production context you are more interested in all `/start` messages that are happening.
-This library is intended to help with individual updates.
+Этот плагин заинтересован в индивидуальных запросах для отладки отдельных проблем.
+Находясь в производственной среде, вы, вероятно, захотите получить что-то противоположное, чтобы получить приблизительный обзор.
+Например: при отладке причин сбоя `/start` вы будете проверять отдельные обновления Telegram.
+В производственном контексте вас больше интересуют все сообщения `/start`, которые происходят.
+Эта библиотека призвана помочь в работе с отдельными обновлениями.
 
-## Debug Your Implementation
+## Отладка вашей реализации
 
 ```ts
 import { generateUpdateMiddleware } from "telegraf-middleware-console-time";
@@ -23,11 +23,11 @@ if (process.env.NODE_ENV !== "production") {
   bot.use(generateUpdateMiddleware());
 }
 
-// Your implementation
+// Ваша реализация
 bot.command("start" /* , ... */);
 ```
 
-which will output stuff like this:
+который выведет примерно следующее:
 
 ```text
 2020-03-31T14:32:36.974Z 490af message text Edgar 6 /start: 926.247ms
@@ -36,16 +36,16 @@ which will output stuff like this:
 2020-03-31T14:46:11.385Z 490ai message text Edgar 6 /start: 892.452ms
 ```
 
-The `490af` is the `update_id`.
+`490af` - это `update_id`.
 
-The number before the commands is the total length of the content.
-This is helpful when considering max length for stuff like callback data.
+Число перед командами - это общая длина содержимого.
+Это полезно при определении максимальной длины для таких вещей, как данные calllback.
 
-The content itself is shortened in order to prevent log spamming.
+Само содержимое сокращено, чтобы предотвратить спам в журнале.
 
-## Debug Your Middleware
+## Отладка вашего middleware
 
-When you create your own middleware or assume slow timings of another middleware you can use these middlewares to create a timing profile.
+Если вы создаете собственный middleware или используете медленные тайминги другого middleware, вы можете использовать эти middleware для создания профиля тайминга.
 
 ```ts
 import {
@@ -55,21 +55,21 @@ import {
 
 const bot = new Bot("");
 
-// Use BeforeMiddleware before loading the tested middleware.
+// Используйте BeforeMiddleware перед загрузкой протестированного middleware.
 bot.use(generateBeforeMiddleware("foo"));
 
-// Middleware to be tested
+// Middleware, который нужно протестировать
 bot.use(); /* ... */
 
-// Use AfterMiddleware after loading the middleware you are testing (with the same label).
+// Используйте AfterMiddleware после загрузки тестируемого middleware (с тем же названием).
 bot.use(generateAfterMiddleware("foo"));
 
-// Other middleware/implementations (they will take the "inner" amount of time when used).
+// Другие middleware/имплементации (при использовании они будут занимать "внутреннее" количество времени).
 bot.use(); /* ... */
 bot.on("message" /* ... */);
 ```
 
-This will output something like this:
+В результате получится что-то вроде этого:
 
 ```text
 490ai foo before: 304.185ms
@@ -78,8 +78,8 @@ This will output something like this:
 490ai foo total: 891.849ms
 ```
 
-This indicates the checked middleware alone took 800ms and isn't as performant as maybe needed.
+Это указывает на то, что проверка одного только middleware заняла 800 мс и не является настолько производительной, как это может быть необходимо.
 
-## Plugin Summary
+## Краткая информация о плагине
 
-- [Source](https://github.com/EdJoPaTo/telegraf-middleware-console-time)
+- [Исходник](https://github.com/EdJoPaTo/telegraf-middleware-console-time)
