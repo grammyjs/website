@@ -19,73 +19,73 @@ next: false
 
 ## Установка
 
-You can install this plugin on the `bot.api` object:
+Вы можете установить этот плагин на объект `bot.api`:
 
 ::: code-group
 
 ```ts [TypeScript]
 import { autoRetry } from "@grammyjs/auto-retry";
 
-// Use the plugin.
+// Используйте плагин.
 bot.api.config.use(autoRetry());
 ```
 
 ```js [JavaScript]
 const { autoRetry } = require("@grammyjs/auto-retry");
 
-// Use the plugin.
+// Используйте плагин.
 bot.api.config.use(autoRetry());
 ```
 
 ```ts [Deno]
 import { autoRetry } from "https://deno.land/x/grammy_auto_retry/mod.ts";
 
-// Use the plugin.
+// Используйте плагин.
 bot.api.config.use(autoRetry());
 ```
 
 :::
 
-If you now call e.g. `sendMessage` and run into a rate limit, it will look like the request just takes unusually long.
-Under the hood, multiple HTTP requests are being performed, with the appropriate delays in between.
+Если вы вызовете, например, `sendMessage` и столкнетесь с ограничением скорости, это будет выглядеть так, как будто запрос выполняется необычно долго.
+Под капотом выполняется несколько HTTP-запросов с соответствующими задержками между ними.
 
 ## Настройка
 
-You may pass an options object that specifies a maximum number of retries (`maxRetryAttempts`), or a threshold for a maximum time to wait (`maxDelaySeconds`).
+Вы можете передать объект options, указывающий максимальное количество повторных попыток (`maxRetryAttempts`) или порог максимального времени ожидания (`maxDelaySeconds`).
 
 ### Ограничение повторов
 
-As soon as the maximum number of retries is exhausted, subsequent errors for the same request will not be retried again.
-Instead, the error object from Telegram is passed on, effectively failing the request with a [`GrammyError`](../guide/errors#the-grammyerror-object).
+Как только максимальное количество повторных попыток будет исчерпано, последующие ошибки для того же запроса не будут повторяться.
+Вместо этого передается объект ошибки из Telegram, что фактически приводит к неудаче запроса с [`GrammyError`](../guide/errors#объект-grammyerror).
 
-Similarly, if the request ever fails with `retry_after` larger than what is specified by the option `maxDelaySeconds`, the request will fail immediately.
+Аналогично, если запрос когда-либо завершится с `retry_after` больше, чем указано в опции `maxDelaySeconds`, запрос завершится немедленно.
 
 ```ts
 autoRetry({
-  maxRetryAttempts: 1, // only repeat requests once
-  maxDelaySeconds: 5, // fail immediately if we have to wait >5 seconds
+  maxRetryAttempts: 1, // повторяйте запросы только один раз
+  maxDelaySeconds: 5, // немедленно остановится, если приходится ждать больше 5 секунд
 });
 ```
 
 ### Повторный запрос ошибок внутреннего сервера
 
-You can use `rethrowInternalServerErrors` to opt out of handling internal server errors as described [above](#retry-api-requests-auto-retry).
-Again, the error object from Telegram is passed on, effectively failing the request with a [`GrammyError`](../guide/errors#the-grammyerror-object).
+Вы можете использовать `rethrowInternalServerErrors`, чтобы отказаться от обработки внутренних ошибок сервера, как описано [выше](#повторные-запросы-к-api-auto-retry).
+Опять же, передается объект ошибки от Telegram, что фактически приводит к отказу запроса с [`GrammyError`](../guide/errors#объект-grammyerror).
 
 ```ts
 autoRetry({
-  rethrowInternalServerErrors: true, // do not handle internal server errors
+  rethrowInternalServerErrors: true, // не обрабатывать внутренние ошибки сервера
 });
 ```
 
 ### Повторный запрос сетевых ошибок
 
-You can use `rethrowHttpErrors` to opt out of handling networking errors as described [above](#retry-api-requests-auto-retry).
-If enabled, the thrown [`HttpError`](../guide/errors#the-httperror-object) instances are passed on, failing the request.
+Вы можете использовать `rethrowHttpErrors`, чтобы отказаться от обработки сетевых ошибок, как описано [выше](#повторные-запросы-к-api-auto-retry).
+Если это включено, то брошенные экземпляры [`HttpError`](../guide/errors#объект-httperror) будут переданы, не выполнив запрос.
 
 ```ts
 autoRetry({
-  rethrowHttpErrors: true, // do not handle networking errors
+  rethrowHttpErrors: true, // не обрабатывать сетевые ошибки
 });
 ```
 
