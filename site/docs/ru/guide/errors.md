@@ -137,7 +137,7 @@ function errorHandler(err: BotError) {
 1. всех middleware, которые передаются в `bot.errorBoundary` после `boundaryHandler` (т.е. `Q`), и
 2. всех middleware, установленных на последующих экземплярах composer (т.е. `X`, `Y` и `Z`).
 
-> Что касается пункта 2, вы можете перейти к [расширенному объяснению](.../advanced/middleware) middleware, чтобы узнать, как работает цепочка в grammY.
+> Что касается пункта 2, вы можете перейти к [расширенному объяснению](../advanced/middleware) middleware, чтобы узнать, как работает цепочка в grammY.
 
 Вы также можете применить границу ошибки к Composer без вызова `bot.errorBoundary`:
 
