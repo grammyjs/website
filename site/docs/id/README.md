@@ -103,7 +103,7 @@ Berhasil! :tada:
 <div style="font-size: 0.75rem; display: flex; justify-content: center;">
 
 © 2021-2024 &middot; grammY mendukung API Bot Telegram versi 7.7 yang [dirilis](https://core.telegram.org/bots/api#july-7-2024) pada tanggal 7 Juli 2024.
-(Fitur yang disorot: Pesan layanan untuk pengembalian bayaran)
+(Fitur yang disorot: Pesan layanan pengembalian dana)
 
 </div>
 </footer>
