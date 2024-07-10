@@ -3,12 +3,12 @@ prev: false
 next: false
 ---
 
-# Commands (`commands`)
+# Команды (`commands`)
 
-Coming soon, please come back later.
+Скоро будет, возвращайтесь позднее.
 
-## Plugin Summary
+## Краткая информация о плагине
 
-- Name: `commands`
-- [Source](https://github.com/grammyjs/commands)
-- Reference
+- Название: `commands`
+- [Исходник](https://github.com/grammyjs/commands)
+- Документация
