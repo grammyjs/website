@@ -24,7 +24,7 @@ Seperti yang kamu lihat, kita perlu sebuah solusi untuk menyelesaikan permasalah
 Masalah ini sangat berbeda dibandingkan dengan menyusun sebuah middleware ataupun mengirim pesan ke Telegram.
 Karena alasan tersebut, package inti grammY tidak dapat menyelesaikannya.
 Sebagai gantinya, kamu bisa menggunakan [grammY runner](https://github.com/grammyjs/runner).
-Ia juga memiliki [Referensi API](/ref/runner/-nya sendiri.
+Ia juga memiliki [Referensi API](/ref/runner/-nya sendiri).
 
 ## Cara Penggunaan
 

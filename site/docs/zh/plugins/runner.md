@@ -25,7 +25,7 @@ next: false
 这是一个与组合中间件或发送消息到 Telegram 非常不同的问题。
 因此，它不是 grammY 内核包的一部分。
 而是使用 [grammY runner](https://github.com/grammyjs/runner)。
-它有自己的 [API 参考](/ref/runner/。
+它有自己的 [API 参考](/ref/runner/)。
 
 ## 使用方法
 
