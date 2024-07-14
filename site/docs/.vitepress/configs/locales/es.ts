@@ -354,10 +354,6 @@ const hostingTutorials = {
       link: "/es/hosting/vercel",
     },
     {
-      text: "Cyclic",
-      link: "/es/hosting/cyclic",
-    },
-    {
       text: "Zeabur (Deno)",
       link: "/es/hosting/zeabur-deno",
     },
