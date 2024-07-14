@@ -25,7 +25,7 @@ As you can see, we need a solution that can solve all of the above problems to a
 This is a problem that is very distinct from composing middleware or sending messages to Telegram.
 Consequently, it is not solved by the grammY core package.
 Instead, you can use [grammY runner](https://github.com/grammyjs/runner).
-It has its own [API Reference](/ref/runner/, too.
+It has its own [API Reference](/ref/runner/), too.
 
 ## Usage
 
