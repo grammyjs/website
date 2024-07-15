@@ -3,59 +3,53 @@ prev: false
 next: false
 ---
 
-# Hydration Plugin for grammY (`hydrate`)
+# Плагин Hydration для grammY (`hydrate`)
 
-This plugin installs useful methods on two types of objects, namely
+Этот плагин устанавливает полезные методы на два типа объектов, а именно
 
-1. the results of API calls, and
-2. the objects on the context object `ctx`.
+1. результаты вызовов API, и
+2. объекты на контекстном объекте `ctx`.
 
-Instead of having to call `ctx.api` or `bot.api` and having to supply all sorts of identifiers, you can now just call methods on objects and they will just work.
-This is best illustrated by an example.
+Вместо того чтобы вызывать `ctx.api` или `bot.api` и вводить всевозможные идентификаторы, теперь вы можете просто вызывать методы на объектах, и они будут работать.
+Лучше всего это видно на примере.
 
-**WITHOUT** this plugin:
+**БЕЗ** этого плагина:
 
 ```ts
 bot.on(":photo", async (ctx) => {
-  const statusMessage = await ctx.reply("Processing");
-  await doWork(ctx.msg.photo); // some long image processing
-  await ctx.api.editMessageText(
-    ctx.chat.id,
-    statusMessage.message_id,
-    "Done!",
-  );
+  const statusMessage = await ctx.reply("Обрабатываю");
+  await doWork(ctx.msg.photo); // длительная обработка изображения
+  await ctx.api.editMessageText(ctx.chat.id, statusMessage.message_id, "Готово!");
   setTimeout(
     () =>
-      ctx.api.deleteMessage(ctx.chat.id, statusMessage.message_id).catch(
-        () => {
-          // Do nothing on error.
-        },
-      ),
-    3000,
+      ctx.api.deleteMessage(ctx.chat.id, statusMessage.message_id).catch(() => {
+        // Ничего не делайте при ошибках.
+      }),
+    3000
   );
 });
 ```
 
-**WITH** this plugin:
+**C** этим плагином:
 
 ```ts
 bot.on(":photo", async (ctx) => {
-  const statusMessage = await ctx.reply("Processing");
-  await doWork(ctx.msg.photo); // some long image processing
-  await statusMessage.editText("Done!"); // so easy!
+  const statusMessage = await ctx.reply("Обрабатываю");
+  await doWork(ctx.msg.photo); // длительная обработка изображения
+  await statusMessage.editText("Done!"); // очень просто!
   setTimeout(() => statusMessage.delete().catch(() => {}), 3000);
 });
 ```
 
-Neat, right?
+Неплохо, правда?
 
-## Installation
+## Установка
 
-There are two ways to install this plugin.
+Существует два способа установки этого плагина.
 
-### Simple Installation
+### Простая установка
 
-This plugin can be installed in a straightforward way that should be enough for most users.
+Этот плагин можно установить простым способом, которого должно быть достаточно для большинства пользователей.
 
 ::: code-group
 
@@ -95,16 +89,16 @@ bot.use(hydrate());
 
 :::
 
-### Advanced Installation
+### Расширенная установка
 
-When using the simple installation, only the API call results that go through `ctx.api` will be hydrated, e.g. `ctx.reply`.
-These are most calls for most bots.
+При использовании простой установки гидратируются только те результаты вызовов API, которые проходят через `ctx.api`, например, `ctx.reply`.
+Это большинство вызовов для большинства ботов.
 
-However, some bots may need to make calls to `bot.api`.
-In this case, you should use this advanced installation.
+Однако некоторым ботам может потребоваться обращение к `bot.api`.
+В этом случае вам следует использовать эту расширенную установку.
 
-It will integrate context hydration and API call result hydration separately into your bot.
-Note that you now also have to install an [API flavor](../advanced/transformers#api-flavoring).
+Она интегрирует гидратацию контекста и гидратацию результатов вызовов API отдельно в вашего бота.
+Обратите внимание, что теперь вам также необходимо установить [расширители API](../advanced/transformers#расширитель-api).
 
 ::: code-group
 
@@ -156,28 +150,28 @@ bot.api.config.use(hydrateApi());
 
 :::
 
-## What Objects Are Hydrated
+## Какие предметы гидратируются
 
-This plugin currently hydrates
+В настоящее время этот плагин гидратирует
 
-- messages and channel posts
-- edited messages and edited channel posts
+- сообщения и посты канала
+- редактируемые сообщения и редактируемые посты канала
 - callback queries
 - inline queries
-- chosen inline results
-- web app queries
-- pre-checkout and shipping queries
-- chat join requests
+- выбранные результаты inline
+- запросы веб приложения
+- запросы перед оформлением заказа и доставкой
+- запросы на присоединение к чату
 
-All objects are hydrated on
+Все объекты гидратируются на
 
-- the context object `ctx`,
-- the update object `ctx.update` inside the context,
-- shortcuts on the context object such as `ctx.msg`, and
-- API call results where applicable.
+- объект контекста `ctx`,
+- объект обновления `ctx.update` внутри контекста,
+- краткие записи на объекте контекста, такие как `ctx.msg`, и
+- результаты вызовов API, где это применимо.
 
-## Plugin Summary
+## Краткая информация о плагине
 
-- Name: `hydrate`
-- [Source](https://github.com/grammyjs/hydrate)
-- [Reference](/ref/hydrate/)
+- Название: `hydrate`
+- [Исходник](https://github.com/grammyjs/hydrate)
+- [Документация](/ref/hydrate/)
