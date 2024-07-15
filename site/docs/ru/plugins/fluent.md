@@ -3,21 +3,21 @@ prev: false
 next: false
 ---
 
-# Internationalization with Fluent (`fluent`)
+# Интернационализация с помощью Fluent (`fluent`)
 
-[Fluent](https://projectfluent.org/) is a localization system made by the Mozilla Foundation for natural-sounding translations.
-It has a very powerful and elegant syntax that lets anyone write efficient and fully-understandable translations.
-This plugin takes advantage of this amazing localization system to make grammY-powered bots fluent with high-quality translations.
+[Fluent](https://projectfluent.org/) это система локализации, созданная Mozilla Foundation для создания естественных переводов.
+Она обладает очень мощным и элегантным синтаксисом, позволяющим любому человеку писать эффективные и полностью понятные переводы.
+Этот плагин использует преимущества этой удивительной системы локализации, чтобы сделать ботов, работающих на grammY, способными делать высококачественные переводы.
 
-::: tip Not to Be Confused
-Don't confuse this with [i18n](./i18n).
+::: tip Не путать
+Не путайте это с [i18n](./i18n).
 
-[i18n](./i18n) is an improved version of this plugin that works on both Deno and Node.js.
+[i18n](./i18n) это улучшенная версия этого плагина, которая работает как на Deno, так и на Node.js.
 :::
 
-## Initialize Fluent
+## Инициализация Fluent
 
-The first thing you do is to initialize a Fluent instance:
+Первое, что вы делаете, - инициализируете Fluent:
 
 ```ts
 import { Fluent } from "@moebius/fluent";
@@ -25,136 +25,136 @@ import { Fluent } from "@moebius/fluent";
 const fluent = new Fluent();
 ```
 
-Then, you will need to add at least one translation to the Fluent instance:
+Затем нужно добавить хотя бы один перевод в экземпляр Fluent:
 
 ```ts
 await fluent.addTranslation({
-  // Specify one or more locales supported by your translation:
-  locales: "en",
+  // Укажите одну или несколько локалей, поддерживаемых вашим переводом:
+  locales: "ru",
 
-  // You can specify the translation content directly:
-  source: "{YOUR TRANSLATION FILE CONTENT}",
+  // Вы можете напрямую указать контент перевода:
+  source: "{СОДЕРЖАНИЕ ФАЙЛА ПЕРЕВОДА}",
 
-  // Or the translation files:
+  // Или файлы перевода:
   filePath: [
-    `${__dirname}/feature-1/translation.en.ftl`,
-    `${__dirname}/feature-2/translation.en.ftl`,
+    `${__dirname}/feature-1/translation.ru.ftl`,
+    `${__dirname}/feature-2/translation.ru.ftl`,
   ],
 
-  // All the aspects of Fluent are highly configurable:
+  // Все аспекты Fluent очень хорошо настраиваются:
   bundleOptions: {
-    // Use this option to avoid invisible characters around placeables.
+    // Используйте этот параметр, чтобы избежать появления невидимых символов вокруг размещаемых объектов.
     useIsolating: false,
   },
 });
 ```
 
-## Write Translation Messages
+## Написание переведённх сообщений
 
-The Fluent syntax should be easy to master.
-You can start by looking at the [official examples](https://projectfluent.org/#examples) or by studying the [comprehensive syntax guide](https://projectfluent.org/fluent/guide/).
+Синтаксис Fluent должен быть прост в освоении.
+Вы можете начать с просмотра [официальных примеров](https://projectfluent.org/#examples) или с изучения [полного руководства по синтаксису](https://projectfluent.org/fluent/guide/).
 
-Let's start with this example for now:
+Давайте пока начнем с этого примера:
 
 ```ftl
 -bot-name = Apples Bot
 
 welcome =
-  Welcome, {$name}, to the {-bot-name}!
-  You have { NUMBER($applesCount) ->
-    [0] no apples
-    [one] {$applesCount} apple
-    *[other] {$applesCount} apples
+  Добро пожаловать, {$name}, это {-bot-name}!
+  У вас { NUMBER($applesCount) ->
+    [0] нет яблок
+    [one] {$applesCount} яблоко
+    *[other] {$applesCount} яблок(а)
   }.
 ```
 
-It demonstrates three important features of Fluent, namely: **terms**, **variable substitution** (aka _placeables_) and **pluralization**.
+Он демонстрирует три важные особенности Fluent, а именно: **термины**, **замена переменных** (она же _замещаемые_) и **плюрализация**.
 
-The `welcome` is the **message ID**, which will be used to reference its message whenever render it.
+Переменная `welcome` - это **идентификатор сообщения**, который будет использоваться для ссылки на это сообщение при его отправке.
 
-The statement `-bot-name = Apples Bot` defines a **term** with name `bot-name` and value `Apples Bot`.
-The construct `{-bot-name}` references the previously defined term and will be get replaced by the term's value when rendered.
+Переменная `-bot-name = Apples Bot` определяет **переменную** с именем `bot-name` и значением `Apples Bot`.
+Конструкция `{-bot-name}` ссылается на ранее определенную переменную и при отправке сообщения будет заменена его значением.
 
-The statement `{$name}` will be replaced with the value of the `name` variable that you will need to pass to the translation function yourself.
+Переменная `{$name}` будет заменена значением переменной `name`, которой вам нужно будет передать функции перевода самостоятельно.
 
-And the final statement (_lines 5 to 9_) defines a **selector** (very similar to a switch statement) that takes result of the special `NUMBER` function applied to the `applesCount` variable and selects one of the three possible messages to be rendered based on the matched value.
-The `NUMBER` function will return a [CLDR plural category](https://www.unicode.org/cldr/cldr-aux/charts/30/supplemental/language_plural_rules.html) based on the provided value and the used locale.
-This effectively implements the pluralization.
+И последнее Переменная (_строки с 5 по 9_) определяет **селектор** (очень похоже на оператор switch), который принимает результат специальной функции `NUMBER`, примененной к переменной `applesCount`, и выбирает одно из трех возможных сообщений для отображения на основе совпавшего значения.
+Функция `NUMBER` возвращает категорию [CLDR plural category](https://www.unicode.org/cldr/cldr-aux/charts/30/supplemental/language_plural_rules.html), основанную на предоставленном значении и используемоем переводе.
+Это эффективно реализует плюрализацию.
 
-## grammY Configuration
+## Конфигурация grammY
 
-Now let's see how this message above could be rendered by a bot.
-But first, we will need to configure grammY to use the plugin.
+Теперь давайте посмотрим, как это сообщение может быть отображено ботом.
+Но сначала нам нужно настроить grammY на использование плагина.
 
-Before all else, you will need to configure your bot to use the Fluent context flavor.
-If you are not familiar with this concept, you should read the official docs on [Context Flavors](../guide/context#context-flavors).
+Прежде всего, вам нужно настроить бота на использование контекстного расширителя Fluent.
+Если вы не знакомы с этой концепцией, вам следует прочитать официальную документацию по [Расширители контекста](../guide/context#расширители-контекста).
 
 ```ts
 import { Context } from "grammy";
 import { FluentContextFlavor } from "@grammyjs/fluent";
 
-// Extend your application context type with the provided flavor interface.
+// Расширьте тип контекста вашего приложения с помощью предоставляемого расширителя контекста
 export type MyAppContext = Context & FluentContextFlavor;
 ```
 
-You will need to create your bot instance the following way in order to use the augmented context type:
+Чтобы использовать дополненный тип контекста, вам нужно создать экземпляр бота следующим образом:
 
 ```ts
 const bot = new Bot<MyAppContext>("");
 ```
 
-And the final step would be to register the Fluent plugin itself with grammY:
+И последним шагом будет регистрация самого плагина Fluent в grammY:
 
 ```ts
 bot.use(
   useFluent({
     fluent,
-  }),
+  })
 );
 ```
 
-Make sure to pass the [previously created Fluent instance](#initialize-fluent).
+Обязательно передайте [ранее созданный экземпляр Fluent](#инициализация-fluent).
 
-## Render the Localized Messages
+## Передача локализованных сообщений
 
-Great, now we have everything in place to render our messages!
-Let's do that by defining a test command in our bot:
+Отлично, теперь у нас есть все необходимое для вывода наших сообщений!
+Давайте сделаем это, определив тестовую команду в нашем боте:
 
 ```ts
 bot.command("i18n_test", async (ctx) => {
-  // Call the "translate" or "t" helper to render the
-  // message by specifying its ID and additional parameters:
+  // Вызовите помощник "translate" или "t" для отображения
+  // сообщения, указав идентификатор перевода и дополнительные параметры:
   await ctx.reply(
     ctx.t("welcome", {
       name: ctx.from.first_name,
       applesCount: 1,
-    }),
+    })
   );
 });
 ```
 
-Now you can start your bot and use the `/i18n_test` command.
-It should render the following message:
+Теперь вы можете запустить бота и использовать команду `/i18n_test`.
+Должно появиться следующее сообщение:
 
 ```text
-Welcome, Slava, to the Apples Bot!
-You have 1 apple.
+Добро пожаловать, Slava, это Apples Bot!
+У вас 1 яблоко.
 ```
 
-Of course, you will see you own name instead of "Slava".
-Try to change the value of the `applesCount` variable to see how the rendered message would change!
+Конечно, вместо "Slava" вы увидите свое собственное имя.
+Попробуйте изменить значение переменной `applesCount` и посмотрите, как изменится отображаемое сообщение!
 
-Be advised that you can now use the translation function everywhere where the `Context` is available.
-The library would automatically determine the best possible locale to use for each user that will interact with your bot based on their personal preferences (the language set in the Telegram client settings).
-You will just need to create several translation files and make sure that all the translation are properly synchronized.
+Имейте в виду, что теперь вы можете использовать функцию перевода везде, где доступен `Context`.
+Библиотека автоматически определит язык для каждого пользователя, который будет взаимодействовать с вашим ботом, основываясь на его установленном языке в настройках Telegram.
+Вам нужно будет только создать несколько файлов перевода и убедиться, что все переводы правильно синхронизированы.
 
-## Further Steps
+## Следующие шаги
 
-- Complete reading the [Fluent documentation](https://projectfluent.org/), especially the [syntax guide](https://projectfluent.org/fluent/guide/).
-- [Migrate from the `i18n` plugin.](https://github.com/grammyjs/fluent#i18n-plugin-replacement)
-- Familiarize yourself with [`@moebius/fluent`](https://github.com/the-moebius/fluent#readme).
+- Завершите чтение [документации по Fluent](https://projectfluent.org/), особенно [руководства по синтаксису](https://projectfluent.org/fluent/guide/).
+- [Мигрируйте с плагина `i18n`](https://github.com/grammyjs/fluent#i18n-plugin-replacement).
+- Ознакомьтесь с [`@moebius/fluent`](https://github.com/the-moebius/fluent#readme).
 
-## Plugin Summary
+## Краткая информация о плагине
 
-- Name: `fluent`
-- [Source](https://github.com/grammyjs/fluent)
+- Название: `fluent`
+- [Исходник](https://github.com/grammyjs/fluent)
