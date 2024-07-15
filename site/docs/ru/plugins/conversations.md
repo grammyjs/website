@@ -395,19 +395,19 @@ async function hiAndBye(conversation, ctx) {
 Таким образом, если вы выбросите ошибку внутри беседы и не поймаете ее до того, как она достигнет плагина сессии, то не будет сохранено, что беседа была завершена.
 В результате следующее сообщение вызовет ту же ошибку.
 
-<!-- You can mitigate this by installing an [error boundary](../guide/errors#error-boundaries) between the session and the conversation.
-That way, you can prevent the error from propagating up the [middleware tree](../advanced/middleware) and hence permit the session plugin to write back the data.
+Вы можете смягчить это, установив [границу ошибки](../guide/errors#границы-ошибок) между сессией и разговором.
+Таким образом, вы предотвратите распространение ошибки по дереву [middleware](../advanced/middleware) и, следовательно, позволите плагину сессии записать данные обратно.
 
-> Note that if you are using the default in-memory sessions, all changes to the session data are reflected immediately, because there is no storage backend.
-> In that case, you do not need to use error boundaries to leave a conversation by throwing an error.
+> Обратите внимание, что если вы используете стандартные сессии in-memory, все изменения в данных сессии отражаются немедленно, поскольку нет бэкенда хранения.
+> В этом случае вам не нужно использовать границы ошибок, чтобы выйти из разговора, выбросив ошибку.
 
-This is how error boundaries and conversations could be used together.
+Вот как границы ошибок и разговоры можно использовать вместе.
 
 ::: code-group
 
 ```ts [TypeScript]
 bot.use(session({
-  storage: freeStorage(bot.token), // adjust
+  storage: freeStorage(bot.token), // настройка
   initial: () => ({}),
 }));
 bot.use(conversations());
@@ -415,18 +415,18 @@ bot.use(conversations());
 async function hiAndBye(conversation: MyConversation, ctx: MyContext) {
   await ctx.reply("Привет! И пока!");
   // Выйти из беседы:
-  throw new Error("Catch me if you can!");
+  throw new Error("Поймай меня, если сможешь!");
 }
 
 bot.errorBoundary(
-  (err) => console.error("Conversation threw an error!", err),
+  (err) => console.error("Диалог выбросил ошибку!", err),
   createConversation(greeting),
 );
 ```
 
 ```js [JavaScript]
 bot.use(session({
-  storage: freeStorage(bot.token), // adjust
+  storage: freeStorage(bot.token), // настройка
   initial: () => ({}),
 }));
 bot.use(conversations());
@@ -434,23 +434,23 @@ bot.use(conversations());
 async function hiAndBye(conversation, ctx) {
   await ctx.reply("Привет! И пока!");
   // Выйти из беседы:
-  throw new Error("Catch me if you can!");
+  throw new Error("Поймай меня, если сможешь!");
 }
 
 bot.errorBoundary(
-  (err) => console.error("Conversation threw an error!", err),
+  (err) => console.error("Диалог выбросил ошибку!", err),
   createConversation(greeting),
 );
 ```
 
 :::
 
-Whatever you do, you should remember to [install an error handler](../guide/errors) on your bot.
+Что бы вы ни делали, не забудьте [установить обработчик ошибок](../guide/errors) для вашего бота.
 
-If you want to hard-kill the conversation from your regular middleware while it is waiting for user input, you can also use `await ctx.conversation.exit()`.
-This will simply erase the conversation plugin's data from the session.
-It's often better to stick with simply returning from the function, but there are a few examples where using `await ctx.conversation.exit()` is convenient.
-Remember that you must `await` the call.
+Если вы хотите жестко отключить беседу от вашего обычного middleware, пока она ожидает ввода пользователя, вы также можете использовать `await ctx.conversation.exit()`.
+Это просто удалит данные плагина беседы из сессии.
+Часто лучше придерживаться простого возврата из функции, но есть несколько примеров, когда использование `await ctx.conversation.exit()` будет удобным.
+Помните, что вы должны `дождаться` вызова.
 
 ::: code-group
 
@@ -462,17 +462,17 @@ async function movie(conversation: MyConversation, ctx: MyContext) {
 // Установите плагин conversations
 bot.use(conversations());
 
-// Always exit any conversation upon /cancel
+// Всегда выходите из любого разговора по команде /cancel
 bot.command("cancel", async (ctx) => {
   await ctx.conversation.exit();
   await ctx.reply("Leaving.");
 });
 
-// Always exit the `movie` conversation 
-// when the inline keyboard's `cancel` button is pressed.
+// Всегда выходите из диалога `movie`. 
+// при нажатии кнопки `отмена` на встроенной клавиатуре.
 bot.callbackQuery("cancel", async (ctx) => {
   await ctx.conversation.exit("movie");
-  await ctx.answerCallbackQuery("Left conversation");
+  await ctx.answerCallbackQuery("Выход из диалога");
 });
 
 bot.use(createConversation(movie));
@@ -487,17 +487,17 @@ async function movie(conversation, ctx) {
 // Установите плагин conversations
 bot.use(conversations());
 
-// Always exit any conversation upon /cancel
+// Всегда выходите из любого разговора по команде /cancel
 bot.command("cancel", async (ctx) => {
   await ctx.conversation.exit();
   await ctx.reply("Leaving.");
 });
 
-// Always exit the `movie` conversation 
-// when the inline keyboard's `cancel` button is pressed.
+// Всегда выходите из диалога `movie`. 
+// при нажатии кнопки `отмена` на встроенной клавиатуре.
 bot.callbackQuery("cancel", async (ctx) => {
   await ctx.conversation.exit("movie");
-  await ctx.answerCallbackQuery("Left conversation");
+  await ctx.answerCallbackQuery("Выход из диалога");
 });
 
 bot.use(createConversation(movie));
@@ -506,60 +506,59 @@ bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
 
 :::
 
-Note that the order matters here.
-You must first install the conversations plugin (line 6) before you can call `await ctx.conversation.exit()`.
-Also, the generic cancel handlers must be installed before the actual conversations (line 22) are registered.
-
+Обратите внимание, что порядок здесь имеет значение.
+Вы должны сначала установить плагин conversations (строка 6), прежде чем сможете вызвать `await ctx.conversation.exit()`.
+Кроме того, общие обработчики отмены должны быть установлены до того, как будут зарегистрированы реальные разговоры (строка 22).
 ## Ожидание обновлений
 
-You can use the conversation handle `conversation` to wait for the next update in this particular chat.
+Чтобы дождаться следующего обновления в этом конкретном чате, можно использовать обработчик беседы `conversation`.
 
 ::: code-group
 
 ```ts [TypeScript]
 async function waitForMe(conversation: MyConversation, ctx: MyContext) {
-  // Wait for the next update:
+  // Дождитесь следующего обновления:
   const newContext = await conversation.wait();
 }
 ```
 
 ```js [JavaScript]
 async function waitForMe(conversation, ctx) {
-  // Wait for the next update:
+  // Дождитесь следующего обновления:
   const newContext = await conversation.wait();
 }
 ```
 
 :::
 
-An update can mean that a text message was sent, or a button was pressed, or something was edited, or virtually any other action was performed by the user.
-Check out the full list in the Telegram docs [here](https://core.telegram.org/bots/api#update).
+Обновление может означать, что было отправлено текстовое сообщение, или нажата кнопка, или что-то было отредактировано, или практически любое другое действие было выполнено пользователем.
+Ознакомьтесь с полным списком в документации Telegram [здесь](https://core.telegram.org/bots/api#update).
 
-The `wait` method always yields a new [context object](../guide/context) representing the received update.
-That means you're always dealing with as many context objects as there are updates received during the conversation.
+Метод `wait` всегда выдает новый объект [контекста](../guide/context), представляющий полученное обновление.
+Это означает, что вы всегда имеете дело с таким количеством объектов контекста, сколько обновлений получено во время разговора.
 
 ::: code-group
 
 ```ts [TypeScript]
 const TEAM_REVIEW_CHAT = -1001493653006;
 async function askUser(conversation: MyConversation, ctx: MyContext) {
-  // Ask the user for their home address.
-  await ctx.reply("Could you state your home address?");
+  // Попросите пользователя указать его домашний адрес.
+  await ctx.reply("Не могли бы вы указать свой домашний адрес?");
 
-  // Wait for the user to send their address:
+  // Дождитесь, пока пользователь отправит свой адрес:
   const userHomeAddressContext = await conversation.wait();
 
-  // Ask the user for their nationality.
-  await ctx.reply("Could you also please state your nationality?");
+  // Спросите пользователя о его национальности.
+  await ctx.reply("Не могли бы вы также указать вашу национальность?");
 
-  // Wait for the user to state their nationality:
+  // Дождитесь, пока пользователь укажет свою национальность:
   const userNationalityContext = await conversation.wait();
 
   await ctx.reply(
-    "That was the final step. Now that I have received all relevant information, I will forward them to our team for review. Thank you!",
+    "Это был последний шаг. Теперь, когда я получил всю необходимую информацию, я передам ее нашей команде для рассмотрения. Спасибо!",
   );
 
-  // We now copy the responses to another chat for review.
+  // Теперь мы копируем ответы в другой чат для просмотра.
   await userHomeAddressContext.copyMessage(TEAM_REVIEW_CHAT);
   await userNationalityContext.copyMessage(TEAM_REVIEW_CHAT);
 }
@@ -568,23 +567,23 @@ async function askUser(conversation: MyConversation, ctx: MyContext) {
 ```js [JavaScript]
 const TEAM_REVIEW_CHAT = -1001493653006;
 async function askUser(conversation, ctx) {
-  // Ask the user for their home address.
-  await ctx.reply("Could you state your home address?");
+  // Попросите пользователя указать его домашний адрес.
+  await ctx.reply("Не могли бы вы указать свой домашний адрес?");
 
-  // Wait for the user to send their address:
+  // Дождитесь, пока пользователь отправит свой адрес:
   const userHomeAddressContext = await conversation.wait();
 
-  // Ask the user for their nationality.
-  await ctx.reply("Could you also please state your nationality?");
+  // Спросите пользователя о его национальности.
+  await ctx.reply("Не могли бы вы также указать вашу национальность?");
 
-  // Wait for the user to state their nationality:
+  // Дождитесь, пока пользователь укажет свою национальность:
   const userNationalityContext = await conversation.wait();
 
   await ctx.reply(
-    "That was the final step. Now that I have received all relevant information, I will forward them to our team for review. Thank you!",
+    "Это был последний шаг. Теперь, когда я получил всю необходимую информацию, я передам ее нашей команде для рассмотрения. Спасибо!",
   );
 
-  // We now copy the responses to another chat for review.
+  // Теперь мы копируем ответы в другой чат для просмотра.
   await userHomeAddressContext.copyMessage(TEAM_REVIEW_CHAT);
   await userNationalityContext.copyMessage(TEAM_REVIEW_CHAT);
 }
@@ -592,20 +591,20 @@ async function askUser(conversation, ctx) {
 
 :::
 
-Usually, outside of the conversations plugin, each of these updates would be handled by the [middleware system](../guide/middleware) of your bot.
-Hence, your bot would handle the update via a context object which gets passed to your handlers.
+Обычно, вне плагина разговоров, каждое из этих обновлений обрабатывается [middleware](../guide/middleware) вашего бота.
+Таким образом, ваш бот будет обрабатывать обновления через объект контекста, который передается вашим обработчикам.
 
-In conversations, you will obtain this new context object from the `wait` call.
-In turn, you can handle different updates differently based on this object.
-For example, you can check for text messages:
+В обработчиках вы получите этот новый объект контекста из вызова `wait`.
+В свою очередь, вы можете обрабатывать различные обновления по-разному, основываясь на этом объекте.
+Например, вы можете проверять наличие текстовых сообщений:
 
 ::: code-group
 
 ```ts [TypeScript]
 async function waitForText(conversation: MyConversation, ctx: MyContext) {
-  // Wait for the next update:
+  // Дождитесь следующего обновления:
   ctx = await conversation.wait();
-  // Check for text:
+  // Проверьте наличие текста:
   if (ctx.message?.text) {
     // ...
   }
@@ -614,9 +613,9 @@ async function waitForText(conversation: MyConversation, ctx: MyContext) {
 
 ```js [JavaScript]
 async function waitForText(conversation, ctx) {
-  // Wait for the next update:
+  // Дождитесь следующего обновления:
   ctx = await conversation.wait();
-  // Check for text:
+  // Проверьте наличие текста:
   if (ctx.message?.text) {
     // ...
   }
@@ -625,122 +624,122 @@ async function waitForText(conversation, ctx) {
 
 :::
 
-In addition, there are a number of other methods alongside `wait` that let you wait for specific updates only.
-One example is `waitFor` which takes a [filter query](../guide/filter-queries) and then only waits for updates that match the provided query.
-This is especially powerful in combination with [object destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment):
+Кроме того, наряду с `wait` существует ряд других методов, которые позволяют ждать только определенных обновлений.
+Одним из примеров является `waitFor`, который принимает [фильтрующий запрос](../guide/filter-queries) и затем ожидает только те обновления, которые соответствуют заданному запросу.
+Это особенно эффективно в сочетании с [деструктуризацией объектов](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment):
 
 ::: code-group
 
 ```ts [TypeScript]
 async function waitForText(conversation: MyConversation, ctx: MyContext) {
-  // Wait for the next text message update:
+  // Дождитесь следующего обновления текстового сообщения:
   const { msg: { text } } = await conversation.waitFor("message:text");
 }
 ```
 
 ```js [JavaScript]
 async function waitForText(conversation, ctx) {
-  // Wait for the next text message update:
+  // Дождитесь следующего обновления текстового сообщения:
   const { msg: { text } } = await conversation.waitFor("message:text");
 }
 ```
 
 :::
 
-Check out the [API reference](/ref/conversations/conversationhandle#wait) to see all available methods that are similar to `wait`.
+Посмотрите [документацию API](/ref/conversations/conversationhandle#wait), чтобы увидеть все доступные методы, похожие на `wait`.
 
 ## Три золотых правила ведения диалога
 
-There are three rules that apply to the code you write inside a conversation builder function.
-You must follow them if you want your code to behave correctly.
+Есть три правила, которые применяются к коду, написанному внутри функции построения беседы.
+Вы должны следовать им, если хотите, чтобы ваш код работал правильно.
 
-Scroll [down](#how-it-works) if you want to know more about _why_ these rules apply, and what `wait` calls really do internally.
+Прокрутите [вниз](#как-это-работает), если хотите узнать больше о том, _почему_ применяются эти правила, и что на самом деле делают вызовы `wait` внутри функции.
 
 ### Правило I: Все побочные эффекты должны быть завернуты
 
-Code that depends on external system such as databases, APIs, files, or other resources which could change from one execution to the next must be wrapped in `conversation.external()` calls.
+Код, зависящий от внешних систем, таких как базы данных, API, файлы или другие ресурсы, которые могут меняться от одного выполнения к другому, должен быть обернут в вызовы `conversation.external()`.
 
 ```ts
-// BAD
+// ПЛОХО
 const response = await externalApi();
-// GOOD
+// ХОРОШО
 const response = await conversation.external(() => externalApi());
 ```
 
-This includes both reading data, as well as performing side-effects (such as writing to a database).
+Сюда входит как чтение данных, так и выполнение побочных эффектов (например, запись в базу данных).
 
-::: tip Comparable to React
-If you are familiar with React, you may know a comparable concept from `useEffect`.
+::: tip Сравнимо с React
+Если вы знакомы с React, то вам может быть знакома сопоставимая концепция `useEffect`.
 :::
 
 ### Правило II: все случайные значения должны быть завернуты
 
-Code that depends on randomness or on global state which could change, must wrap all access to it in `conversation.external()` calls, or use the `conversation.random()` convenience function.
+Код, который зависит от случайности или от глобального состояния, которое может измениться, должен обернуть все обращения к нему в вызовы `conversation.external()` или использовать удобную функцию `conversation.random()`.
 
 ```ts
-// BAD
-if (Math.random() < 0.5) { /* do stuff */ }
-// GOOD
-if (conversation.random() < 0.5) { /* do stuff */ }
+// ПЛОХО
+if (Math.random() < 0.5) { /* сделать что-то */ }
+// ХОРОШО
+if (conversation.random() < 0.5) { /* сделать что-то */ }
 ```
 
 ### Правило III: Используйте удобные функции
 
-There are a bunch of things installed on `conversation` which may greatly help you.
-Your code sometimes does not even break if you don't use them, but even then it can be slow or behave in a confusing way.
+На `conversation` установлена куча вещей, которые могут сильно помочь вам.
+Ваш код иногда даже не ломается, если вы не используете их, но даже тогда он может быть медленным или вести себя непонятным образом.
 
 ```ts
-// `ctx.session` only persists changes for the most recent context object
-conversation.session.myProp = 42; // more reliable!
+// `ctx.session` сохраняет изменения только для самого последнего объекта контекста
+conversation.session.myProp = 42; // надежнее!
 
-// Date.now() can be inaccurate inside conversations
-await conversation.now(); // more accurate!
+// Date.now() может быть неточным внутри обращений
+await conversation.now(); // более точно!
 
-// Debug logging via conversation, does not print confusing logs
-conversation.log("Hello, world"); // more transparent!
+// Ведение журнала отладки через разговор, не печатает запутанные логи
+conversation.log("Привет, мир"); // более прозрачно!
 ```
 
-Note that you can do most of the above via `conversation.external()`, but this can be tedious to type, so it's just easier to use the convenience functions ([API reference](/ref/conversations/conversationhandle#methods)).
+Обратите внимание, что большинство из вышеперечисленных действий можно выполнить через `conversation.external()`, но это может быть утомительно, поэтому проще использовать удобные функции ([документация API](/ref/conversations/conversationhandle#methods)).
 
 ## Переменные, ветвление и циклы
 
-If you follow the three rules above, you are completely free to use any code you like.
-We will now go through a few concepts that you already know from programming, and show how they translate to clean and readable conversations.
+Если вы следуете трем вышеперечисленным правилам, вы можете использовать любой код, который вам нравится.
+Сейчас мы рассмотрим несколько концепций, которые вы уже знаете из программирования, и покажем, как они применяются в чистых и читабельных беседах.
 
-Imagine that all code below is written inside a conversation builder function.
+Представьте, что весь приведенный ниже код написан внутри функции построения беседы.
 
-You can declare variables and do whatever you want with them:
+Вы можете объявлять переменные и делать с ними все, что захотите:
 
 ```ts
-await ctx.reply("Send me your favorite numbers, separated by commas!");
+await ctx.reply("Присылайте мне свои любимые номера, разделяя их запятыми!");
 const { message } = await conversation.waitFor("message:text");
 const sum = message.text
   .split(",")
   .map((n) => parseInt(n.trim(), 10))
   .reduce((x, y) => x + y);
-await ctx.reply("The sum of these numbers is: " + sum);
+await ctx.reply("Сумма этих чисел равна: " + sum);
 ```
 
-Branching works, too:
+Разветвление тоже работает:
 
 ```ts
-await ctx.reply("Send me a photo!");
+await ctx.reply("Пришлите мне фотографию!");
 const { message } = await conversation.wait();
 if (!message?.photo) {
-  await ctx.reply("That is not a photo! I'm out!");
+  await ctx.reply("Это не фотография! Я ухожу!");
   return;
 }
 ```
 
-So do loops:
+Как и циклы:
 
 ```ts
 do {
-  await ctx.reply("Send me a photo!");
+  await ctx.reply("Пришлите мне фотографию!");
   ctx = await conversation.wait();
 
   if (ctx.message?.text === "/cancel") {
-    await ctx.reply("Cancelled, leaving!");
+    await ctx.reply("Отмена, ухожу!");
     return;
   }
 } while (!ctx.message?.photo);
@@ -748,14 +747,14 @@ do {
 
 ## Функции и рекурсии
 
-You can also split up your code in several functions, and reuse them.
-For example, this is how you can define a reusable captcha.
+Вы также можете разделить свой код на несколько функций и использовать их повторно.
+Например, так можно определить многоразовую капчу.
 
 ::: code-group
 
 ```ts [TypeScript]
 async function captcha(conversation: MyConversation, ctx: MyContext) {
-  await ctx.reply("Prove you are human! What is the answer to everything?");
+  await ctx.reply("Докажите, что вы человек! Что является ответом на все вопросы?");
   const { message } = await conversation.wait();
   return message?.text === "42";
 }
@@ -763,7 +762,7 @@ async function captcha(conversation: MyConversation, ctx: MyContext) {
 
 ```js [JavaScript]
 async function captcha(conversation, ctx) {
-  await ctx.reply("Prove you are human! What is the answer to everything?");
+  await ctx.reply("Докажите, что вы человек! Что является ответом на все вопросы?");
   const { message } = await conversation.wait();
   return message?.text === "42";
 }
@@ -771,8 +770,8 @@ async function captcha(conversation, ctx) {
 
 :::
 
-It returns `true` if the user may pass, and `false` otherwise.
-You can now use it in your main conversation builder function like this:
+Она возвращает `true`, если пользователь может пройти, и `false` в противном случае.
+Теперь вы можете использовать его в своей основной функции построения разговора следующим образом:
 
 ::: code-group
 
@@ -780,7 +779,7 @@ You can now use it in your main conversation builder function like this:
 async function enterGroup(conversation: MyConversation, ctx: MyContext) {
   const ok = await captcha(conversation, ctx);
 
-  if (ok) await ctx.reply("Welcome!");
+  if (ok) await ctx.reply("Добро пожаловать!");
   else await ctx.banChatMember();
 }
 ```
@@ -789,34 +788,34 @@ async function enterGroup(conversation: MyConversation, ctx: MyContext) {
 async function enterGroup(conversation, ctx) {
   const ok = await captcha(conversation, ctx);
 
-  if (ok) await ctx.reply("Welcome!");
+  if (ok) await ctx.reply("Добро пожаловать!");
   else await ctx.banChatMember();
 }
 ```
 
 :::
 
-See how the captcha function can be reused in different places in your code.
+Посмотрите, как функция captcha может быть повторно использована в разных местах вашего кода.
 
-> This simple example is only meant to illustrate how functions work.
-> In reality, it may work poorly because it only waits for a new update from the respective chat, but without verifying that it actually comes from the same user who joined.
-> If you want to create a real captcha, you may want to use [parallel conversations](#parallel-conversations).
+> Этот простой пример предназначен только для того, чтобы проиллюстрировать работу функций.
+> В реальности он может работать плохо, потому что он только ожидает нового обновления из соответствующего чата, но не проверяет, что оно действительно исходит от того же пользователя, который присоединился.
+> Если вы хотите создать настоящую капчу, вы можете использовать [параллельные диалоги](#параллельные-диалоги).
 
-If you want, you can also split your code across even more functions, or use recursion, mutual recursion, generators, and so on.
-(Just make sure that all functions follow the [three rules](#three-golden-rules-of-conversations).)
+При желании вы можете разделить код на еще большее количество функций или использовать рекурсию, взаимную рекурсию, генераторы и так далее.
+(Только убедитесь, что все функции следуют [трем правилам](#три-золотых-правила-ведения-диалога)).
 
-Naturally, you can use error handling in your functions, too.
-Regular `try`/`catch` statements work just fine, also across functions.
-After all, conversations are just JavaScript.
+Естественно, вы можете использовать обработку ошибок и в своих функциях.
+Обычные операторы `try`/`catch` прекрасно работают, в том числе и в функциях.
+В конце концов, беседы - это всего лишь JavaScript.
 
-If the main conversation function throws an error, the error will propagate further into the [error handling mechanisms](../guide/errors) of your bot.
+Если главная функция беседы выкинет ошибку, она распространится дальше в [механизмы обработки ошибок](../guide/errors) вашего бота.
 
 ## Модули и классы
 
-Naturally, you can just move your functions across modules.
-That way, you can define some functions in one file, `export` them, and then `import` and use them in another file.
+Естественно, вы можете просто перемещать свои функции между модулями.
+Таким образом, вы можете определить некоторые функции в одном файле, `экспортировать` их, а затем `импортировать` и использовать их в другом файле.
 
-If you want, you can also define classes.
+При желании вы также можете определять классы.
 
 ::: code-group
 
@@ -827,9 +826,9 @@ class Auth {
   constructor(private conversation: MyConversation) {}
 
   authenticate(ctx: MyContext) {
-    const link = getAuthLink(); // get auth link from your system
+    const link = getAuthLink(); // получите ссылку авторизации из вашей системы
     await ctx.reply(
-      "Open this link to obtain a token, and send it back to me: " + link,
+      "Откройте эту ссылку, чтобы получить токен, и отправьте его мне обратно: " + link,
     );
     ctx = await this.conversation.wait();
     this.token = ctx.message?.text;
@@ -845,7 +844,7 @@ async function askForToken(conversation: MyConversation, ctx: MyContext) {
   await auth.authenticate(ctx);
   if (auth.isAuthenticated()) {
     const token = auth.token;
-    // do stuff with token
+    // делать что-то с токеном
   }
 }
 ```
@@ -857,9 +856,9 @@ class Auth {
   }
 
   authenticate(ctx) {
-    const link = getAuthLink(); // get auth link from your system
+    const link = getAuthLink(); // получите ссылку авторизации из вашей системы
     await ctx.reply(
-      "Open this link to obtain a token, and send it back to me: " + link,
+      "Откройте эту ссылку, чтобы получить токен, и отправьте его мне обратно: " + link,
     );
     ctx = await this.#conversation.wait();
     this.token = ctx.message?.text;
@@ -875,173 +874,173 @@ async function askForToken(conversation, ctx) {
   await auth.authenticate(ctx);
   if (auth.isAuthenticated()) {
     const token = auth.token;
-    // do stuff with token
+    // делать что-то с токеном
   }
 }
 ```
 
 :::
 
-The point here is not so much that we strictly recommend you to do this.
-It is rather meant as an example for how you can use the endless flexibilities of JavaScript to structure your code.
+Дело не столько в том, что мы строго рекомендуем вам так поступать.
+Это скорее пример того, как можно использовать бесконечную гибкость JavaScript для структурирования кода.
 
 ## Формы
 
-As mentioned [earlier](#waiting-for-updates), there are several different utility functions on the conversation handle, such as `await conversation.waitFor('message:text')` which only returns text message updates.
+Как уже упоминалось [ранее](#ожидание-обновлений), существует несколько различных вспомогательных функций на обработчике беседы, таких как `await conversation.waitFor('message:text')`, которая возвращает только обновления текстовых сообщений.
 
-If these methods are not enough, the conversations plugin provides even more helper functions for building forms via `conversation.form`.
+Если этих методов недостаточно, плагин conversations предоставляет еще больше вспомогательных функций для создания форм через `conversation.form`.
 
 ::: code-group
 
 ```ts [TypeScript]
 async function waitForMe(conversation: MyConversation, ctx: MyContext) {
-  await ctx.reply("How old are you?");
+  await ctx.reply("Сколько вам лет?");
   const age: number = await conversation.form.number();
 }
 ```
 
 ```js [JavaScript]
 async function waitForMe(conversation, ctx) {
-  await ctx.reply("How old are you?");
+  await ctx.reply("Сколько вам лет?");
   const age = await conversation.form.number();
 }
 ```
 
 :::
 
-As always, check out the [API reference](/ref/conversations/conversationform) to see which methods are available.
+Как всегда, ознакомьтесь с [документацией API](/ref/conversations/conversationform), чтобы узнать, какие методы доступны.
 
 ## Работа с плагинами
 
-As mentioned [earlier](#introduction), grammY handlers always only handle a single update.
-However, with conversations, you are able to process many updates in sequence as if they were all available at the same time.
-The plugin makes this possible by storing old context objects, and resupplying them later.
-This is why the context objects inside conversations are not always affected by some grammY plugins in the way one would expect.
+Как уже упоминалось [ранее](#введение), обработчики grammY всегда обрабатывают только одно обновление.
+Однако с помощью бесед вы можете обрабатывать множество обновлений последовательно, как если бы все они были доступны в одно и то же время.
+Плагин делает это возможным, сохраняя старые контекстные объекты и предоставляя их позже.
+Именно поэтому контекстные объекты внутри бесед не всегда подвержены влиянию некоторых плагинов grammY так, как можно было бы ожидать.
 
-::: warning Interactive Menus Inside Conversations
-With the [menu plugin](./menu), these concepts clash very badly.
-While menus _can_ work inside conversations, we do not recommend to use these two plugins together.
-Instead, use the regular [inline keyboard plugin](./keyboard#inline-keyboards) (until we add native menus support for conversations).
-You can wait for specific callback queries using `await conversation.waitForCallbackQuery("my-query")` or any query using `await conversation.waitFor("callback_query")`.
+:: warning Интерактивные меню внутри разговоров
+С плагином [menu plugin](./menu) эти концепции очень сильно конфликтуют.
+Хотя меню _могут_ работать внутри бесед, мы не рекомендуем использовать эти два плагина вместе.
+Вместо этого используйте обычный плагин [встроенной клавиатуры](./keyboard#встроенные-клавиатуры) (пока мы не добавим встроенную поддержку меню в беседах).
+Вы можете ожидать определенных запросов обратного вызова с помощью `await conversation.waitForCallbackQuery("my-query")` или любого запроса с помощью `await conversation.waitFor("callback_query")`.
 
 ```ts
 const keyboard = new InlineKeyboard()
   .text("A", "a").text("B", "b");
-await ctx.reply("A or B?", { reply_markup: keyboard });
+await ctx.reply("A или B?", { reply_markup: keyboard });
 const response = await conversation.waitForCallbackQuery(["a", "b"], {
-  otherwise: (ctx) => ctx.reply("Use the buttons!", { reply_markup: keyboard }),
+  otherwise: (ctx) => ctx.reply("Используйте кнопки!", { reply_markup: keyboard }),
 });
 if (response.match === "a") {
-  // User picked "A".
+  // Пользователь выбрал "A".
 } else {
-  // User picked "B".
+  // Пользователь выбрал "B".
 }
 ```
 
 :::
 
-Other plugins work fine.
-Some of them just need to be installed differently from how you would usually do it.
-This is relevant for the following plugins:
+Другие плагины работают нормально.
+Некоторые из них просто нужно установить не так, как вы обычно это делаете.
+Это относится к следующим плагинам:
 
 - [hydrate](./hydrate)
-- [i18n](./i18n) and [fluent](./fluent)
+- [i18n](./i18n) и [fluent](./fluent)
 - [emoji](./emoji)
 
-They have in common that they all store functions on the context object, which the conversations plugin cannot handle correctly.
-Hence, if you want to combine conversations with one of these grammY plugins, you will have to use special syntax to install the other plugin inside each conversation.
+Их объединяет то, что все они хранят функции на объекте контекста, которые плагин conversations не может обрабатывать корректно.
+Поэтому, если вы хотите объединить беседы с одним из этих плагинов grammY, вам придется использовать специальный синтаксис для установки другого плагина внутри каждой беседы.
 
-You can install other plugins inside conversations using `conversation.run`:
+Вы можете установить другие плагины внутри бесед с помощью `conversation.run`:
 
 ::: code-group
 
 ```ts [TypeScript]
 async function convo(conversation: MyConversation, ctx: MyContext) {
-  // Install grammY plugins here
+  // Установите плагины grammY здесь
   await conversation.run(plugin());
-  // Continue defining the conversation ...
+  // Продолжайте диалог ...
 }
 ```
 
 ```js [JavaScript]
 async function convo(conversation, ctx) {
-  // Install grammY plugins here
+  // Установите плагины grammY здесь
   await conversation.run(plugin());
-  // Continue defining the conversation ...
+  // Продолжайте диалог ...
 }
 ```
 
 :::
 
-This will make the plugin available inside the conversation.
+Это сделает плагин доступным внутри беседы.
 
 ### Пользовательские объекты контекста
 
-If you are using a [custom context object](../guide/context#customizing-the-context-object) and you want to install custom properties on your context objects before a conversation is entered, then some of these properties can get lost, too.
-In a way, the middleware you use to customize your context object can be regarded as a plugin, as well.
+Если вы используете [пользовательский контекстный объект](../guide/context#кастомизация-объекта-контекста) и хотите установить пользовательские свойства на свои контекстные объекты перед вводом беседы, то некоторые из этих свойств тоже могут быть потеряны.
+В некотором смысле middleware, который вы используете для настройки контекстного объекта, тоже можно рассматривать как плагин.
 
-The cleanest solution is to **avoid custom context properties** entirely, or at least to only install serializable properties on the context object.
-In other words, if all custom context properties can be persisted in a database and be restored afterwards, you don't have to worry about anything.
+Самое чистое решение - полностью **отказаться от использования пользовательских свойств контекста** или, по крайней мере, устанавливать только сериализуемые свойства на объект контекста.
+Другими словами, если все пользовательские свойства контекста могут быть сохранены в базе данных и впоследствии восстановлены, вам не нужно ни о чем беспокоиться.
 
-Typically, there are other solutions to the problems that you usually solve with via custom context properties.
-For example, it is often possible to just obtain them inside the conversation itself, rather than obtaining them inside a handler.
+Как правило, существуют другие решения проблем, которые обычно решаются с помощью пользовательских свойств контекста.
+Например, часто можно просто получить их в самом разговоре, а не в обработчике.
 
-If none of these things are an option for you, you can try messing around with `conversation.run` yourself.
-You should know that you must call `next` inside the passed middleware---otherwise, update handling will be intercepted.
+Если ничего из перечисленного вам не подходит, вы можете попробовать самостоятельно разобраться с `conversation.run`.
+Следует знать, что вы должны вызывать `next` внутри переданного middleware --- в противном случае обработка обновлений будет перехвачена.
 
-The middleware will be run for all past updates every time a new update arrives.
-For instance, if three context objects arrive, this is what happens:
+Middleware будет выполняться для всех прошлых обновлений каждый раз, когда приходит новое обновление.
+Например, если приходят три контекстных объекта, то происходит следующее:
 
-1. the first update is received
-2. the middleware runs for the first update
-3. the second update is received
-4. the middleware runs for the first update
-5. the middleware runs for the second update
-6. the third update is received
-7. the middleware runs for the first update
-8. the middleware runs for the second update
-9. the middleware runs for the third update
+1. получено первое обновление
+2. middleware работает для первого обновления
+3. получено второе обновление
+4. middleware запускается для первого обновления
+5. middleware запускается для второго обновления
+6. получено третье обновление
+7. middleware запускается для первого обновления
+8. middleware запускается для второго обновления
+9. middleware запускается для третьего обновления
 
-Note that the middleware is run with first update thrice.
+Обратите внимание, что middleware запускается с первым обновлением трижды.
 
 ## Параллельные диалоги
 
-Naturally, the conversations plugin can run any number of conversations in parallel in different chats.
+Естественно, плагин conversations может запускать любое количество бесед параллельно в разных чатах.
 
-However, if your bot gets added to a group chat, it may want to have conversations with several different users in parallel _in the same chat_.
-For example, if your bot features a captcha that it wants to send to all new members.
-If two members join at the same time, the bot should be able to have two independent conversations with them.
+Однако если ваш бот добавлен в групповой чат, он может захотеть вести параллельные беседы с несколькими разными пользователями _в одном и том же чате_.
+Например, если ваш бот содержит капчу, которую он хочет отправлять всем новым пользователям.
+Если два пользователя присоединяются одновременно, бот должен иметь возможность вести с ними две независимые беседы.
 
-This is why the conversations plugin allows you to enter several conversations at the same time for every chat.
-For instance, it is possible to have five different conversations with five new users, and at the same time chat with an admin about new chat config.
+Именно поэтому плагин conversations позволяет вводить несколько бесед одновременно для каждого чата.
+Например, можно вести пять разных бесед с пятью новыми пользователями и в то же время общаться с администратором по поводу новой конфигурации чата.
 
-### Как это работает за кулисами
+### Как это работает под капотом
 
-Every incoming update will only be handled by one of the active conversations in a chat.
-Comparable to middleware handlers, the conversations will be called in the order they are registered.
-If a conversation is started multiple times, these instances of the conversation will be called in chronological order.
+Каждое входящее обновление будет обработано только одной из активных бесед в чате.
+По аналогии с обработчиками middleware, беседы будут вызываться в том порядке, в котором они зарегистрированы.
+Если беседа запускается несколько раз, то эти экземпляры беседы будут вызываться в хронологическом порядке.
 
-Each conversation can then either handle the update, or it can call `await conversation.skip()`.
-In the former case, the update will simply be consumed while the conversation is handling it.
-In the latter case, the conversation will effectively undo receiving the update, and pass it on to the next conversation.
-If all conversations skip an update, the control flow will be passed back to the middleware system, and run any subsequent handlers.
+Каждая беседа может либо обработать обновление, либо вызвать `await conversation.skip()`.
+В первом случае обновление будет просто пропущено, пока разговор обрабатывает его.
+Во втором случае разговор фактически отменит получение обновления и передаст его следующему разговору.
+Если все разговоры пропустят обновление, поток управления будет передан обратно в систему middleware и запустит все последующие обработчики.
 
-This allows you to start a new conversation from the regular middleware.
+Это позволяет начать новый разговор из обычного middleware.
 
 ### Как вы можете это использовать
 
-In practice, you never really need to call `await conversation.skip()` at all.
-Instead, you can just use things like `await conversation.waitFrom(userId)`, which will take care of the details for you.
-This allows you to chat with a single user only in a group chat.
+На практике вам вообще не нужно вызывать `await conversation.skip()`.
+Вместо этого вы можете просто использовать такие вещи, как `await conversation.waitFrom(userId)`, которые позаботятся о деталях за вас.
+Это позволяет общаться в групповом чате только с одним пользователем.
 
-For instance, let's implement the captcha example from up here again, but this time with parallel conversations.
+Например, давайте снова реализуем пример с капчей, но на этот раз с параллельными беседами.
 
 ::: code-group
 
 ```ts{4} [TypeScript]
 async function captcha(conversation: MyConversation, ctx: MyContext) {
   if (ctx.from === undefined) return false;
-  await ctx.reply("Prove you are human! What is the answer to everything?");
+  await ctx.reply("Докажите, что вы человек! Что является ответом на все вопросы?");
   const { message } = await conversation.waitFrom(ctx.from);
   return message?.text === "42";
 }
@@ -1049,7 +1048,7 @@ async function captcha(conversation: MyConversation, ctx: MyContext) {
 async function enterGroup(conversation: MyConversation, ctx: MyContext) {
   const ok = await captcha(conversation, ctx);
 
-  if (ok) await ctx.reply("Welcome!");
+  if (ok) await ctx.reply("Добро пожаловать!");
   else await ctx.banChatMember();
 }
 ```
@@ -1057,7 +1056,7 @@ async function enterGroup(conversation: MyConversation, ctx: MyContext) {
 ```js{4} [JavaScript]
 async function captcha(conversation, ctx) {
   if (ctx.from === undefined) return false;
-  await ctx.reply("Prove you are human! What is the answer to everything?");
+  await ctx.reply("Докажите, что вы человек! Что является ответом на все вопросы?");
   const { message } = await conversation.waitFrom(ctx.from);
   return message?.text === "42";
 }
@@ -1065,16 +1064,16 @@ async function captcha(conversation, ctx) {
 async function enterGroup(conversation, ctx) {
   const ok = await captcha(conversation, ctx);
 
-  if (ok) await ctx.reply("Welcome!");
+  if (ok) await ctx.reply("Добро пожаловать!");
   else await ctx.banChatMember();
 }
 ```
 
 :::
 
-Note how we only wait for messages from a particular user.
+Обратите внимание, что мы ждем сообщений только от конкретного пользователя.
 
-We can now have a simple handler that enters the conversation when a new member joins.
+Теперь мы можем создать простой обработчик, который вступает в разговор, когда к нему присоединяется новый участник
 
 ```ts
 bot.on("chat_member")
@@ -1085,112 +1084,112 @@ bot.on("chat_member")
 
 ### Проверка активных диалогов
 
-You can see how many conversations with which identifier are running.
+Вы можете увидеть, сколько разговоров с каким идентификатором запущено.
 
 ```ts
 const stats = await ctx.conversation.active();
 console.log(stats); // { "enterGroup": 1 }
 ```
 
-This will be provided as an object that has the conversation identifiers as keys, and a number indicating the number of running conversations for each identifier.
+Он будет предоставлен в виде объекта, ключами которого являются идентификаторы разговоров, а число указывает на количество запущенных разговоров для каждого идентификатора.
 
 ## Как это работает
 
-> [Remember](#three-golden-rules-of-conversations) that the code inside your conversation builder functions must follow three rules.
-> We are now going to see _why_ you need to build them that way.
+> [Помните](#три-золотых-правила-ведения-диалога), что код внутри ваших функций построения разговоров должен следовать трем правилам.
+> Сейчас мы рассмотрим, _почему_ их нужно строить именно так.
 
-We are first going to see how this plugin works conceptually, before we elaborate on some details.
+Сначала мы посмотрим, как этот плагин работает концептуально, а затем остановимся на некоторых деталях.
 
 ### Как вызов `wait` работает
 
-Let us switch perspectives for a while, and ask a question from a plugin developer's point of view.
-How to implement a `wait` call in the plugin?
+Давайте немного поменяем точку зрения и зададим вопрос с точки зрения разработчика плагина.
+Как реализовать вызов `wait` в плагине?
 
-The naïve approach to implementing a `wait` call in the conversations plugin would be to create a new promise, and to wait until the next context object arrives.
-As soon as it does, we resolve the promise, and the conversation can continue.
+Наивным подходом к реализации вызова `wait` в плагине conversations было бы создание нового promise и ожидание прибытия следующего контекстного объекта.
+Как только он появится, мы решим promise, и разговор может быть продолжен.
 
-However, this is a bad idea for several reasons.
+Однако это плохая идея по нескольким причинам.
 
-**Data Loss.**
-What if your server crashes while waiting for a context object?
-In that case, we lose all information about the state of the conversation.
-Basically, the bot loses its train of thought, and the user has to start over.
-This is a bad and annoying design.
+**Потеря данных.**
+Что, если ваш сервер упадет во время ожидания контекстного объекта?
+В этом случае мы потеряем всю информацию о состоянии беседы.
+По сути, бот теряет ход своих мыслей, и пользователю приходится начинать все сначала.
+Это плохой и раздражающий дизайн.
 
-**Blocking.**
-If wait calls would block until the next update arrives, it means that the middleware execution for the first update can't complete until the entire conversation completes.
+**Блокировка.**
+Если вызовы wait блокируются до прихода следующего обновления, это означает, что выполнение middleware для первого обновления не может завершиться до тех пор, пока не завершится весь разговор.
 
-- For built-in polling, this means that no further updates can be processed until the current one is done.
-  Hence, the bot would simply be blocked forever.
-- For [grammY runner](./runner), the bot would not be blocked.
-  However, when processing thousands of conversations in parallel with different users, it would consume potentially very large amounts of memory.
-  If many users stop responding, this leaves the bot stuck in the middle of countless conversations.
-- Webhooks have their own whole [category of problems](../guide/deployment-types#ending-webhook-requests-in-time) with long-running middleware.
+- Для встроенного polling это означает, что никакие последующие обновления не могут быть обработаны, пока не завершится текущее.
+  Таким образом, бот будет просто заблокирован навсегда.
+- Для [grammY runner](./runner) бот не будет заблокирован.
+  Однако при параллельной обработке тысяч разговоров с разными пользователями он будет занимать потенциально очень большой объем памяти.
+  Если многие пользователи перестанут отвечать, бот застрянет посреди бесчисленных разговоров.
+- Вебхуки имеют целую [категорию проблем](../guide/deployment-types#своевременное-завершение-запросов-вебхуков) с долго работающим middleware.
 
-**State.**
-On serverless infrastructure such as cloud functions, we cannot actually assume that the same instance handles two subsequent updates from the same user.
-Hence, if we were to create stateful conversations, they may randomly break all the time, as some `wait` calls don't resolve, but some other middleware is suddenly executed.
-The result is an abundance of random bugs and chaos.
+**Состояние.**
+В бессерверной инфраструктуре, такой как облачные функции, мы не можем предположить, что один и тот же экземпляр обрабатывает два последующих обновления от одного и того же пользователя.
+Следовательно, если мы создадим разговоры с состоянием, они могут постоянно случайно ломаться, поскольку некоторые вызовы `wait` не разрешаются, но внезапно выполняется другой middleware.
+В результате мы получим обилие случайных ошибок и хаос.
 
-There are more problems, but you get the idea.
+Есть и другие проблемы, но вы поняли, о чем идет речь.
 
-Consequently, the conversations plugin does things differently.
-Very differently.
-As mentioned earlier, **`wait` calls don't _literally_ make your bot wait**, even though we can program conversations as if that were the case.
+Следовательно, плагин conversations делает все по-другому.
+Очень по-другому.
+Как уже говорилось ранее, вызовы **`wait` не заставляют бота ждать**, хотя мы можем запрограммировать разговоры так, как будто это так и есть.
 
-The conversations plugin tracks the execution of your function.
-When a wait call is reached, it serializes the state of execution into the session, and safely stores it in a database.
-When the next update arrives, it first inspects the session data.
-If it finds that it left off in the middle of a conversation, it deserializes the state of execution, takes your conversation builder function, and replays it up to the point of the last `wait` call.
-It then resumes ordinary execution of your function---until the next `wait` call is reached, and the execution must be halted again.
+Плагин conversations отслеживает выполнение вашей функции.
+Когда достигается вызов ожидания, он преобразовывает состояние выполнения в сессию и надежно сохраняет его в базе данных.
+Когда приходит следующее обновление, он сначала проверяет данные сессии.
+Если он обнаружит, что прервался на середине разговора, он преобразовывает состояние выполнения, берет вашу функцию построения разговора и воспроизводит его до момента последнего вызова `wait`.
+Затем он возобновляет обычное выполнение вашей функции - до тех пор, пока не будет достигнут следующий вызов `wait`, и выполнение снова должно быть остановлено.
 
-What do we mean by the state of execution?
-In a nutshell, it consists of three things:
+Что мы понимаем под состоянием выполнения?
+В двух словах, оно состоит из трех вещей:
 
-1. Incoming updates
-2. Outgoing API calls
-3. External events and effects, such as randomness or calls to external APIs or databases
+1. Входящие обновления
+2. Исходящие вызовы API
+3. Внешние события и эффекты, такие как случайность или обращения к внешним API или базам данных
 
-What do we mean by replaying?
-Replaying simply means calling the function regularly from the start, but when it does things like calling `wait` or performing API calls, we don't actually do any of those.
-Instead, we check out or logs where we recorded from a previous run which values were returned.
-We then inject these values so that the conversation builder function simply runs through very fast---until our logs are exhausted.
-At that point, we switch back to normal execution mode, which is just a fancy way of saying that we stop injecting stuff, and start to actually perform API calls again.
+Что мы имеем в виду под воспроизведением?
+Воспроизведение означает регулярный вызов функции с самого начала, но когда она делает такие вещи, как вызов `wait` или выполнение вызовов API, мы на самом деле не делаем ничего из этого.
+Вместо этого мы проверяем логи, где записано, какие значения были возвращены при предыдущем запуске.
+Затем мы вставляем эти значения, чтобы функция построения разговора просто выполнялась очень быстро - до тех пор, пока наши логи не иссякнут.
+В этот момент мы переключаемся обратно в обычный режим выполнения и начинаем снова выполнять вызовы API.
 
-This is why the plugin has to track all incoming updates as well as all Bot API calls.
-(See points 1 and 2 above.)
-However, the plugin has no control over external events, side-effects, or randomness.
-For example, you could this:
+Вот почему плагин должен отслеживать все входящие обновления, а также все вызовы Bot API.
+(См. пункты 1 и 2 выше.)
+Однако плагин не может контролировать внешние события, побочные эффекты или случайности.
+Например, вы можете сделать следующее:
 
 ```ts
 if (Math.random() < 0.5) {
-  // do one thing
+  // делать одно
 } else {
-  // do another thing
+  // делать другое
 }
 ```
 
-In that case, when calling the function, it may suddenly behave differently every time, so replaying the function will break!
-It could randomly work differently than the original execution.
-This is why point 3 exists, and the [Three Golden Rules](#three-golden-rules-of-conversations) must be followed.
+В этом случае при вызове функции она может внезапно вести себя каждый раз по-разному, так что повторное выполнение функции будет нарушено!
+Она может случайно сработать не так, как при первоначальном выполнении.
+Вот почему существует пункт 3 и необходимо следовать [Трем золотым правилам](#три-золотых-правила-ведения-диалога).
 
 ### Как перехватить выполнение функции
 
-Conceptually speaking, the keywords `async` and `await` give us control over where the thread is [preempted](https://en.wikipedia.org/wiki/Preemption_(computing)).
-Hence, if someone calls `await conversation.wait()`, which is a function of our library, we are given the power to preempt the execution.
+Концептуально говоря, ключевые слова `async` и `await` дают нам контроль над тем, где поток будет [вытеснен](https://en.wikipedia.org/wiki/Preemption_(computing)).
+Следовательно, если кто-то вызывает `await conversation.wait()`, которая является функцией нашей библиотеки, мы получаем возможность упредить ее выполнение.
 
-Concretely speaking, the secret core primitive that enables us to interrupt function execution is a `Promise` that never resolves.
+Говоря конкретнее, секретный основной примитив, позволяющий нам прерывать выполнение функции, - это `Promise`, который никогда не решается.
 
 ```ts
-await new Promise<never>(() => {}); // BOOM
+await new Promise<never>(() => {}); // БУМ
 ```
 
-If you `await` such a promise in any JavaScript file, your runtime will terminate instantly.
-(Feel free to paste the above code into a file and try it out.)
+Если в любом JavaScript-файле выполнить `await` такого promise, то выполнение мгновенно завершится.
+(Не стесняйтесь вставить приведенный выше код в файл и опробовать его).
 
-Since we obviously don't want to kill the JS runtime, we have to catch this again.
-How would you go about this?
-(Feel free to check out the plugin's source code if this isn't immediately obvious to you.) -->
+Поскольку мы, очевидно, не хотим завершать выполнения JS, мы должны поймать это снова.
+Как бы вы поступили в этом случае?
+(Не стесняйтесь заглянуть в исходный код плагина, если это не сразу понятно).
 
 ## Краткая информация о плагине
 
