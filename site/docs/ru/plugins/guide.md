@@ -2,84 +2,84 @@
 next: false
 ---
 
-# The Hitchhiker's Guide to grammY Plugins
+# Руководство по плагинам grammY для чайников.
 
-If you would like to develop your own plugin and publish it, or if you want to know how grammY plugins work behind the scenes, this is the place for you!
+Если вы хотите разработать свой собственный плагин и опубликовать его, или если вы хотите узнать, как плагины grammY работают под капотом, это место для вас!
 
-> Please note that there is already a summary about [grammY plugins](./) are and what they do.
-> This article is a deep dive into their inner workings.
+> Обратите внимание, что уже есть краткое описание [grammY-плагинов](./) и того, что они делают.
+> Эта статья - глубокое погружение в их внутреннюю работу.
 
-## Types of Plugins in grammY
+## Типы плагинов в grammY
 
-There are two main types of plugins in grammY:
+В grammY есть два основных типа плагинов:
 
-- Middleware Plugins: The plugin's sole job is to return a [middleware function](../guide/middleware) that can be fed to a grammY bot.
-- Transformer Plugins: The plugin's sole job is to return a [transformer function](../advanced/transformers) that can be fed to a grammY bot.
+- Middleware-плагины: Единственная задача плагина - вернуть функцию [middleware function](../guide/middleware), которую можно передать боту grammY.
+- Плагины-трансформеры: Единственная задача плагина - вернуть функцию [transformer function](../advanced/transformers), которая может быть передана боту grammY.
 
-However, you will sometimes find plugins that do both things.
-There are also other packages that are neither middleware nor transformer functions, but we will call them plugins anyway because they extend grammY in various ways.
+Однако иногда встречаются плагины, которые выполняют обе задачи.
+Существуют и другие плагины, которые не являются ни middleware, ни трансформирующими функциями, но мы все равно будем называть их плагинами, поскольку они расширяют grammY различными способами.
 
-## Rules of Contribution
+## Правила внесения изменений
 
-You may publish your plugins in one of the following forms:
+Вы можете публиковать свои плагины в одной из следующих форм:
 
-- Publishing as an **official** plugin.
-- Publishing as a **third-party** plugin.
+- Публикация в качестве **официального** плагина.
+- Публикация в качестве **третьего** плагина.
 
-If you choose to publish your plugins as a third party, we can still offer you a prominent place on this website.
-However, we prefer it if you publish your plugin under the [grammyjs organization](https://github.com/grammyjs) on GitHub, hence making it an official plugin.
-In such a case, you will be granted publish access to GitHub and npm.
-Also, You will be responsible for maintaining your code.
+Если вы решите опубликовать свои плагины от третьего лица, мы все равно сможем предложить вам заметное место на этом сайте.
+Однако мы предпочитаем, чтобы вы опубликовали свой плагин под [именем grammyjs](https://github.com/grammyjs) на GitHub, тем самым сделав его официальным плагином.
+В этом случае вам будет предоставлен доступ к GitHub и npm для публикации.
+Кроме того, вы будете нести ответственность за поддержку своего кода.
 
-Before diving into some hands-on examples, there are some rules to pay attention to if you'd like your plugins to be listed on this website.
+Прежде чем приступить к рассмотрению практических примеров, следует обратить внимание на некоторые правила, если вы хотите, чтобы ваши плагины были размещены на этом сайте.
 
-1. Have a README file on GitHub (and npm) with **short and clear** instructions on how to use it.
-2. Explain the purpose of your plugin and how to use it by adding a page to the [docs](https://github.com/grammyjs/website).
-   (We can create the page for you if you are unsure how to do that.)
-3. Choose a permissive license such as MIT or ISC.
+1. Иметь файл README на GitHub (и npm) с **короткими и понятными** инструкциями по использованию.
+2. Объясните назначение вашего плагина и как его использовать, добавив страницу в [документацию](https://github.com/grammyjs/website).
+   (Мы можем создать страницу для вас, если вы не знаете, как это сделать).
+3. Выберите лицензию, например MIT или ISC.
 
-Finally, you should know that even though grammY supports both Node.js and [Deno](https://deno.com), it is a Deno-first project, and we also encourage you to write your plugins for Deno (and subsequently in style!).
-There is a handy-dandy tool called [deno2node](https://github.com/fromdeno/deno2node) that transpiles your code from Deno to Node.js so we can support both platforms equally well.
-Deno support is only a strict requirement for official plugins, but not for third-party ones.
-Nonetheless, it is very much encouraged to give Deno a try.
-You will not want to go back.
+Наконец, вы должны знать, что хотя grammY поддерживает как Node.js, так и [Deno](https://deno.com), это проект, ориентированный на Deno, и мы также поощряем вас писать свои плагины для Deno (и впоследствии в стиле!).
+Существует удобный инструмент [deno2node](https://github.com/fromdeno/deno2node), который переносит ваш код из Deno в Node.js, так что мы можем поддерживать обе платформы одинаково хорошо.
+Поддержка Deno является строгим требованием только для официальных плагинов, но не для сторонних.
+Тем не менее, очень рекомендуем попробовать Deno.
+Вы не захотите возвращаться назад.
 
-## Designing a Dummy Middleware Plugin
+## Разработка фиктивного плагина Middleware
 
-Let's assume we would like to design a plugin that only responds to certain users!
-For example, we could decide to only respond to people whose first name contain a certain word.
-The bot will simply refuse to work for everyone else.
+Предположим, мы хотим разработать плагин, который отвечает только определенным пользователям!
+Например, мы можем решить отвечать только тем, чье имя содержит определенное слово.
+Для всех остальных бот просто откажется работать.
 
-Here is a dummy example:
+Вот фиктивный пример:
 
 ```ts
 // plugin.ts
 
-// Importing the types from grammY (we re-export them in `deps.deno.ts`).
+// Импорт типов из grammY (мы реэкспортируем их в `deps.deno.ts`).
 import type { Context, Middleware, NextFunction } from "./deps.deno.ts";
 
-// Your plugin can have one main function that creates middleware
+// Ваш плагин может иметь одну основную функцию, которая создает middleware
 export function onlyAccept<C extends Context>(str: string): Middleware<C> {
-  // Create and return middleware.
+  // Создавайте и возвращайте middleware
   return async (ctx, next) => {
-    // Get first name of user.
+    // Получение имени пользователя.
     const name = ctx.from?.first_name;
-    // Let through all matching updates.
+    // Пропустите все подходящие обновления.
     if (name === undefined || name.includes(str)) {
-      // Pass on control flow to downstream middleware.
+      // Передача потока управления последующему middleware
       await next();
     } else {
-      // Tell them we don't like them.
-      await ctx.reply(`I'm not talking to you! You don't care about ${str}!`);
+      // Скажите им, что они нам не нравятся.
+      await ctx.reply(`Я с тобой не разговариваю! Тебе наплевать на ${str}!`);
     }
   };
 }
 ```
 
-Now, it can be used in a real bot:
+Теперь его можно использовать в настоящем боте:
 
 ```ts
-// Here, the plugin code is in a file called `plugin.ts`.
+// Здесь код плагина находится в файле под названием `plugin.ts`.
 import { onlyAccept } from "./plugin.ts";
 import { Bot } from "./deps.deno.ts";
 
@@ -87,90 +87,90 @@ const bot = new Bot("");
 
 bot.use(onlyAccept("grammY"));
 
-bot.on("message", (ctx) => ctx.reply("You passed the middleware plugin"));
+bot.on("message", (ctx) => ctx.reply("Вы передали плагин middleware"));
 
 bot.start();
 ```
 
-Voilà!
-You got yourself a plugin, right?
-Well, not so fast.
-We still need to package it up, but before that, let's take a look at transformer plugins, as well.
+Вуаля!
+У вас есть плагин, верно?
+Ну, не так быстро.
+Нам еще нужно упаковать его, но перед этим давайте рассмотрим плагины-трансформеры.
 
-## Designing a Dummy Transformer Plugin
+## Проектирование плагина фиктивного трансформатора
 
-Imagine writing a plugin that sends the appropriate [chat action](https://core.telegram.org/bots/api#sendchataction) automatically whenever the bot sends a document.
-This means that while your bot is sending a file, users will automatically see "_sending file…_" as status.
-Pretty cool, right?
+Представьте, что вы пишете плагин, который автоматически отправляет соответствующее [действие чата](https://core.telegram.org/bots/api#sendchataction) всякий раз, когда бот отправляет документ.
+Это значит, что пока ваш бот отправляет файл, пользователи будут автоматически видеть статус "_отправляю файл…_".
+Довольно круто, правда?
 
 ```ts
 // plugin.ts
 import type { Transformer } from "./deps.deno.ts";
 
-// Main plugin function
+// Основная функция плагина
 export function autoChatAction(): Transformer {
-  // Create and return a transformer function.
+  // Создайте и верните трансформирующую функцию
   return async (prev, method, payload, signal) => {
-    // Save the handle of the set interval so we can clear it later.
+    // Сохраните обработчик установленного интервала, чтобы мы могли очистить его позже.
     let handle: ReturnType<typeof setTimeout> | undefined;
     if (method === "sendDocument" && "chat_id" in payload) {
-      // We now know that a document is being sent.
+      // Теперь мы знаем, что документ отправлен.
       const actionPayload = {
         chat_id: payload.chat_id,
         action: "upload_document",
       };
-      // Repeatedly set the chat action while the file is being uploaded.
+      // Повторная установка действия чата во время загрузки файла.
       handle ??= setInterval(() => {
         prev("sendChatAction", actionPayload).catch(console.error);
       }, 5000);
     }
 
     try {
-      // Run the actual method from the bot.
+      // Запустите реальный метод из бота.
       return await prev(method, payload, signal);
     } finally {
-      // Clear the interval so we stop sending the chat action to the client.
+      // Очистите интервал, чтобы мы перестали отправлять действие чата клиенту.
       clearInterval(handle);
     }
   };
 }
 ```
 
-Now, we can use it in a real bot:
+Теперь мы можем использовать его в реальном боте:
 
 ```ts
 import { Bot, InputFile } from "./deps.deno.ts";
-// The plugin code is in a file called `plugin.ts`
+// Код плагина находится в файле `plugin.ts`.
 import { autoChatAction } from "./plugin.ts";
 
-// Create a bot instance.
+// Создайте экземпляр бота.
 const bot = new Bot("");
 
-// Use the plugin.
+// Используйте плагин.
 bot.api.config.use(autoChatAction());
 
-bot.hears("send me a document", async (ctx) => {
-  // If user send this command, we will send him a pdf file (for demonstration purposes)
+bot.hears("отправь мне документ", async (ctx) => {
+  // Если пользователь отправит эту команду, мы вышлем ему pdf-файл (в демонстрационных целях)
   await ctx.replyWithDocument(new InputFile("/tmp/document.pdf"));
 });
 
-// start the bot
+// Запустите бота
 bot.start();
 ```
 
-Now, every time we send a document, the chat action of `upload_document` will be sent to our client.
-Note that this was for demonstration purposes.
-Telegram recommends using chat actions only when "a response from the bot will take a **noticeable** amount of time to arrive".
-You probably don't actually need to set the status if the file is very small, so there are some optimizations that could be done here.
+Теперь каждый раз, когда мы отправляем документ, действие чата `upload_document` будет отправляться нашему клиенту.
+Обратите внимание, что это было сделано в демонстрационных целях.
+Telegram рекомендует использовать действия чата только в тех случаях, когда "ответ от бота займет **заметное** количество времени".
+Вероятно, вам не нужно устанавливать статус, если файл очень маленький, поэтому здесь можно провести некоторую оптимизацию.
 
-## Extraction Into a Plugin
+## Извлечение в плагин
 
-Whichever type of plugin you made, you have to bundle it in a standalone package.
-This is a fairly simple task.
-There are no specific rules on how to do this and npm is your oyster, but just to keep things organized, we have a template suggestion for you.
-You can download the code from [our plugin template repository on GitHub](https://github.com/grammyjs/plugin-template) and start developing your plugin without any time spent on configuration.
+Какой бы тип плагина вы ни создали, его нужно упаковать в отдельный пакет.
+Это довольно простая задача.
+Нет никаких особых правил, как это сделать, и npm - это ваша устрица, но для того, чтобы все было организовано, мы предлагаем вам шаблон.
+Вы можете скачать код из [нашего репозитория шаблонов плагинов на GitHub](https://github.com/grammyjs/plugin-template) и начать разработку своего плагина, не тратя времени на настройку.
 
-The initially suggested folder structure:
+Первоначально предложенная структура папок:
 
 ```asciiart:no-line-numbers
 plugin-template/
@@ -183,42 +183,42 @@ plugin-template/
 └─ README.md
 ```
 
-**`deps.deno.ts` and `deps.node.ts`**: This is for the developers who are willing to write the plugin for Deno, and then transpile it to Node.js.
-As mentioned before, we use the tool `deno2node` to transpile our Deno code for Node.js.
-`deno2node` has a feature that allows you to provide runtime-specific files to it.
-These files should be adjacent to each other and follow the `*.deno.ts` and `*.node.ts` name structure as [explained in the docs](https://github.com/fromdeno/deno2node#runtime-specific-code).
-This is why there are two files: `deps.deno.ts` and `deps.node.ts`.
-If there are any Node.js-specific dependencies, put them in `deps.node.ts`, otherwise, leave it empty.
+**`deps.deno.ts` и `deps.node.ts`**: Это для разработчиков, которые хотят написать плагин для Deno, а затем переписать его на Node.js.
+Как уже упоминалось, мы используем инструмент `deno2node` для перевода нашего кода Deno в Node.js.
+В `deno2node` есть функция, которая позволяет вам предоставлять ему файлы, специфичные для времени выполнения.
+Эти файлы должны находиться рядом друг с другом и следовать структуре имен `*.deno.ts` и `*.node.ts`, как [объясняется в документации](https://github.com/fromdeno/deno2node#runtime-specific-code).
+Вот почему существует два файла: `deps.deno.ts` и `deps.node.ts`.
+Если есть какие-либо специфические для Node.js зависимости, поместите их в `deps.node.ts`, в противном случае оставьте его пустым.
 
-> _**Note**_: You may also use other tools such as [deno dnt](https://github.com/denoland/dnt) to transpile your deno codebase or use other folder structures.
-> The tooling you use is irrelevant, the main point here is that writing code for Deno is better and easier.
+> _**Примечание**_: Вы также можете использовать другие инструменты, такие как [deno dnt](https://github.com/denoland/dnt), для передачи кода Deno или использования других структур папок.
+> Инструментарий, который вы используете, не имеет значения, главное, что писать код для Deno стало лучше и проще.
 
-**`tsconfig.json`**: This is the TypeScript compiler configuration file used by `deno2node` to transpile your code.
-A default one is provided in the repository as a suggestion.
-It corresponds with the TypeScript configuration that Deno uses internally, and we recommend that you stick with this.
+**`tsconfig.json`**: Это файл конфигурации компилятора TypeScript, используемый `deno2node` для компиляции вашего кода.
+В качестве рекомендации в репозитории предоставлен файл по умолчанию.
+Он соответствует конфигурации TypeScript, которую Deno использует внутри, и мы рекомендуем вам придерживаться этого.
 
-**`package.json`**: The package.json file for the npm version of your plugin.
-**Make sure to change it according to your project**.
+**`package.json`**: Файл package.json для npm-версии вашего плагина.
+**Не забудьте изменить его в соответствии с вашим проектом**.
 
-**`README.md`**: Instructions on how to use the plugin.
-**Make sure to change it according to your project**.
+**`README.md`**: Инструкции по использованию плагина.
+**Обязательно измените его в соответствии с вашим проектом**.
 
-**`index.ts`**: The file containing your business logic, i.e. your main plugin code.
+**`index.ts`**: Файл, содержащий вашу логику работу, то есть основной код плагина.
 
-## There Is a Boilerplate
+## Существует шаблон
 
-If you would like to develop a plugin for grammY and do not know where to start, we highly suggest the template code in [our repository](https://github.com/grammyjs/plugin-template).
-You can clone the code for yourself and start coding based on what was covered in this article.
-This repository also includes some extra goodies such as `.editorconfig`, `LICENSE`, `.gitignore`, etc, but you may choose to delete them.
+Если вы хотите разработать плагин для grammY и не знаете, с чего начать, мы настоятельно рекомендуем воспользоваться кодом шаблона в [нашем репозитории](https://github.com/grammyjs/plugin-template).
+Вы можете клонировать код для себя и начать кодить, основываясь на том, что было описано в этой статье.
+Этот репозиторий также содержит некоторые дополнительные файлы, такие как `.editorconfig`, `LICENSE`, `.gitignore` и т.д., но вы можете удалить их.
 
-## I Don't Like Deno
+## Мне не нравится Дено
 
-Well, you're missing out!
-But you can also write your plugins only for Node.js.
-You can still publish the plugin and have it listed as a third-party plugin on this website.
-In such a case, you may use any folder structure you like (as long as it is organized like any other npm project).
-Simply install grammY through npm with `npm install grammy`, and start coding.
+Что ж, вы упускаете возможность!
+Но вы также можете писать свои плагины только для Node.js.
+Вы всё равно можете опубликовать плагин и включить его в список сторонних плагинов на этом сайте.
+В этом случае вы можете использовать любую структуру папок, которая вам нравится (если она организована как любой другой проект npm).
+Просто установите grammY через npm с помощью `npm install grammy` и начинайте кодить.
 
-## How to Submit?
+## Как подать заявку?
 
-If you have a plugin ready, you may simply submit a pull request on GitHub (according to the [Rules of Contribution](#rules-of-contribution)), or notify us in the [community chat](https://t.me/grammyjs) for further help.
+Если у вас есть готовый плагин, вы можете просто отправить запрос на выгрузку на GitHub (в соответствии с [Правилами внесения изменений](#правила-внесения-изменений)) или сообщить нам в [чат коммьюнити](https://t.me/grammyjs) для получения дальнейшей помощи.

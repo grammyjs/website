@@ -25,7 +25,7 @@ As you can see, we need a solution that can solve all of the above problems to a
 This is a problem that is very distinct from composing middleware or sending messages to Telegram.
 Consequently, it is not solved by the grammY core package.
 Instead, you can use [grammY runner](https://github.com/grammyjs/runner).
-It has its own [API Reference](/ref/runner/, too.
+It has its own [API Reference](/ref/runner/), too.
 
 ## Usage
 
@@ -93,11 +93,13 @@ Instead, you can return _a list of constraint identifier strings_ that determine
 As an example, you could return both the chat identifier, and the user identifier of the message author.
 
 ```ts
-bot.use(sequentialize((ctx) => {
-  const chat = ctx.chat?.id.toString();
-  const user = ctx.from?.id.toString();
-  return [chat, user].filter((con) => con !== undefined);
-}));
+bot.use(
+  sequentialize((ctx) => {
+    const chat = ctx.chat?.id.toString();
+    const user = ctx.from?.id.toString();
+    return [chat, user].filter((con) => con !== undefined);
+  })
+);
 ```
 
 This would make sure that messages in the same chat are ordered correctly.
@@ -320,7 +322,7 @@ That way, your bot does not have to send the update to a worker, only for it to 
 // so we can ignore all other updates and not distribute them.
 bot.on(
   ["message", "edited_message", "callback_query"],
-  distribute(__dirname + "/worker"),
+  distribute(__dirname + "/worker")
 );
 ```
 
@@ -329,7 +331,7 @@ bot.on(
 // so we can ignore all other updates and not distribute them.
 bot.on(
   ["message", "edited_message", "callback_query"],
-  distribute(new URL("./worker.ts", import.meta.url)),
+  distribute(new URL("./worker.ts", import.meta.url))
 );
 ```
 
