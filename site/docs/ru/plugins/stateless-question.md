@@ -3,22 +3,22 @@ prev: false
 next: false
 ---
 
-# Stateless Question (`stateless-question`)
+# Вопрос без статуса (`stateless-question`)
 
-> Create stateless questions to Telegram users working in privacy mode
+> Создание вопросов без статичности для пользователей Telegram, работающих в режиме конфиденциальности
 
-You want to keep the privacy of the user with [Telegrams privacy mode enabled (by default)](https://core.telegram.org/bots/features#privacy-mode), send users translated questions in their language and don't save the state what users are currently doing?
+Вы хотите сохранить конфиденциальность пользователя с помощью [включённого режима приватности Telegram (по умолчанию)](https://core.telegram.org/bots/features#privacy-mode), отправлять пользователям переведенные вопросы на их язык и не сохранять информацию о том, что пользователи делают в данный момент?
 
-This plugin wants to solve this problem.
+Этот плагин призван решить эту проблему.
 
-The basic idea is to send your question with a [special text](https://en.wikipedia.org/wiki/Zero-width_non-joiner) at the end.
-This text is invisible to the user but still visible for your bot.
-When the user replies to a message, the message is checked.
-If it is containing this special text at the end, then it is an answer to the question.
-This way you can have many strings for the same questions as when having translations.
-You only have to make sure the `uniqueIdentifier` is unique within your bot.
+Основная идея заключается в том, чтобы отправить свой вопрос с [специальным текстом](https://en.wikipedia.org/wiki/Zero-width_non-joiner) в конце.
+Этот текст невидим для пользователя, но виден для бота.
+Когда пользователь отвечает на сообщение, оно проверяется.
+Если оно содержит этот специальный текст в конце, значит, это ответ на вопрос.
+Таким образом, вы можете иметь много строк для одних и тех же вопросов, как и в случае с переводами.
+Вам нужно только убедиться, что `uniqueIdentifier` уникален в пределах вашего бота.
 
-## Usage
+## Использование
 
 ```ts
 import { StatelessQuestion } from "@grammyjs/stateless-question";
@@ -26,10 +26,10 @@ import { StatelessQuestion } from "@grammyjs/stateless-question";
 const bot = new Bot("");
 
 const unicornQuestion = new StatelessQuestion("unicorns", async (ctx) => {
-  console.log("User thinks unicorns are doing:", ctx.message);
+  console.log("Пользователь считает, что единороги делают:", ctx.message);
 });
 
-// Don't forget to use the middleware.
+// Не забудьте использовать middleware.
 bot.use(unicornQuestion.middleware());
 
 bot.command("rainbows", async (ctx) => {
@@ -37,30 +37,30 @@ bot.command("rainbows", async (ctx) => {
   if (ctx.session.language === "de") {
     text = "Was machen Einhörner?";
   } else {
-    text = "What are unicorns doing?";
+    text = "Что делают единороги?";
   }
 
   return unicornQuestion.replyWithMarkdown(ctx, text);
 });
 
-// Or send your question manually (make sure to use a parse_mode and force_reply!).
+// Или отправьте свой вопрос вручную (обязательно используйте parse_mode и force_reply!).
 bot.command("unicorn", async (ctx) => {
   await ctx.replyWithMarkdown(
-    "What are unicorns doing?" + unicornQuestion.messageSuffixMarkdown(),
+    "Что делают единороги?" + unicornQuestion.messageSuffixMarkdown(),
     { parse_mode: "Markdown", reply_markup: { force_reply: true } },
   );
 });
 bot.command("unicorn", async (ctx) => {
   await ctx.replyWithHTML(
-    "What are unicorns doing?" + unicornQuestion.messageSuffixHTML(),
+    "Что делают единороги?" + unicornQuestion.messageSuffixHTML(),
     { parse_mode: "HTML", reply_markup: { force_reply: true } },
   );
 });
 ```
 
-See the [plugin repo README](https://github.com/grammyjs/stateless-question) for more information.
+Дополнительную информацию см. в [README репозитория плагина](https://github.com/grammyjs/stateless-question).
 
-## Plugin Summary
+## Краткая информация о плагине
 
-- Name: `stateless-question`
-- [Source](https://github.com/grammyjs/stateless-question)
+- Название: `stateless-question`
+- [Исходник](https://github.com/grammyjs/stateless-question)
