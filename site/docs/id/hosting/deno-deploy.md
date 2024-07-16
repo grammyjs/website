@@ -74,7 +74,7 @@ Di contoh kali ini, kita menggunakan token bot (`/<token bot>`) sebagai direktor
 1. Kunjungi [dashboard Deno Deploy](https://dash.deno.com/projects).
 2. Pilih "New Project", kemudian pilih "Empty Project".
 3. Pasang [`deployctl`](https://github.com/denoland/deployctl).
-4. Buat [token akses](https://dash.deno.com/account#access-tokens) baru.
+4. Buat [token akses](https://dash.deno.com/account) baru.
 5. Jalankan dengan perintah:
 
    ```sh
