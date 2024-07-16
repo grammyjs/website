@@ -94,14 +94,6 @@ Di contoh kali ini, kita menggunakan token bot (`/<token bot>`) sebagai direktor
 
 Lihat [dokumentasi deployctl](https://docs.deno.com/deploy/manual/deployctl) untuk informasi lebih lanjut.
 
-### Metode 3: Menggunakan URL
-
-> Kamu memerlukan URL publik yang mengarah ke file `mod.ts`-mu untuk menggunakan metode ini.
-
-1. Buat proyek baru di Deno Deploy.
-2. Pilih "Deploy URL"
-3. Masukkan URL publik file `mod.ts`-mu, lalu pilih "Deploy".
-
 ### Catatan
 
 Setelah mendapati bot-mu dapat berjalan, kamu harus melakukan konfigurasi pada pengaturan webhook untuk menggunakan URL bot-mu yang baru.
