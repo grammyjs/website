@@ -3,20 +3,20 @@ prev: false
 next: false
 ---
 
-# Set of useful middlewares
+# Набор полезных middleware
 
-I kept rewriting the same middlewares again and again for all of my bots so I decided to extract them all to a separate package.
+Я продолжал переписывать одни и те же middleware снова и снова для всех моих ботов, поэтому я решил извлечь их все в отдельный пакет.
 
-## Installation
+## Установка
 
 `yarn add grammy-middlewares`
 
-## Usage
+## Использование
 
-All the middleware accessors are factories, even though not all of them have to be.
-I decided to make API homogeneous.
+Все middleware являются фабриками, хотя не все из них должны быть таковыми.
+Я решил сделать API однородным.
 
-Some of the factories consume optional or required parameters.
+Некоторые из фабрик потребляют необязательные или обязательные параметры.
 
 ```ts
 import {
@@ -31,8 +31,8 @@ import {
 
 bot.use(
   ignoreOld(),
-  onlyAdmin((ctx) => ctx.reply("Only admins can do this")),
-  onlyPublic((ctx) => ctx.reply("You can only use public chats")),
+  onlyAdmin((ctx) => ctx.reply("Только админы могут это делать")),
+  onlyPublic((ctx) => ctx.reply("Вы можете использовать только публичные чаты")),
   onlySuperAdmin(env.SUPER_ADMIN_ID),
   sequentialize(),
 );
@@ -42,30 +42,30 @@ bot.use(
 
 ### `ignoreOld`
 
-Ignores old updates, useful when bot has been down for a while.
-You can optionally specify the timeout in seconds which defaults to `5 * 60`.
+Игнорирует старые обновления, что полезно, когда бот долгое время не работает.
+Вы можете дополнительно указать таймаут в секундах, который по умолчанию равен `5 * 60`.
 
 ### `onlyAdmin`
 
-Checks if the user is an admin.
-You can optionally specify `errorHandler` that is called with the context if the user is not an admin.
+Проверяет, является ли пользователь администратором.
+При желании можно указать `errorHandler`, который будет вызван с контекстом, если пользователь не является администратором.
 
 ### `onlyPublic`
 
-Checks if it is a group chat or a channel.
-You can optionally specify `errorHandler` that is called with the context if it is not a group chat or a channel.
+Проверяет, является ли чат групповым или каналом.
+При желании можно указать `errorHandler`, который будет вызван с контекстом, если это не групповой чат или канал.
 
 ### `onlySuperAdmin`
 
-Checks if the user is a super admin.
-You have to provide the super admin id.
+Проверяет, является ли пользователь суперадминистратором.
+Необходимо указать идентификатор суперадминистратора.
 
 ### `sequentialize`
 
-The basic [sequentialize](../advanced/scaling#concurrency-is-hard) middleware that takes the chat id as a sequential identifier.
+Основной [sequentialize](../advanced/scaling#параллельность---это-сложно) middleware который принимает идентификатор чата в качестве последовательного идентификатора.
 
-## Plugin Summary
+## Краткая информация о плагине
 
-- Name: `grammy-middlewares`
-- [Source](https://github.com/backmeupplz/grammy-middlewares)
-- Reference: <https://github.com/backmeupplz/grammy-middlewares>
+- Название: `grammy-middlewares`
+- [Исходник](https://github.com/backmeupplz/grammy-middlewares)
+- Документация: <https://github.com/backmeupplz/grammy-middlewares>
