@@ -3,16 +3,16 @@ prev: false
 next: false
 ---
 
-# Media Groups (built-in)
+# Медиагруппы (встроенный)
 
-The media group plugin helps you send media groups by letting you build `InputMedia` objects.
-Incidentally, `InputMedia` object are also used when editing media messages, so this plugin also helps you to edit media.
+Плагин медиагрупп помогает вам отправлять медиагруппы, позволяя создавать объекты `InputMedia`.
+Кстати, объекты `InputMedia` также используются при редактировании медиа-сообщений, так что этот плагин также поможет вам редактировать медиа.
 
-Remember that `InputMedia` objects are specified [here](https://core.telegram.org/bots/api#inputmedia).
+Помните, что объекты `InputMedia` описываются [здесь](https://core.telegram.org/bots/api#inputmedia).
 
-## Building an `InputMedia` Object
+## Создание объекта `InputMedia`
 
-You can use this plugin like so:
+Вы можете использовать этот плагин следующим образом:
 
 ::: code-group
 
@@ -21,7 +21,7 @@ import { InputMediaBuilder } from "grammy";
 
 const photo = InputMediaBuilder.photo(new InputFile("/tmp/photo.mp4"));
 const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
-// etc
+// т. д.
 ```
 
 ```js [JavaScript]
@@ -29,7 +29,7 @@ const { InputMediaBuilder } = require("grammy");
 
 const photo = InputMediaBuilder.photo(new InputFile("/tmp/photo.mp4"));
 const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
-// etc
+// т. д.
 ```
 
 ```ts [Deno]
@@ -37,41 +37,41 @@ import { InputMediaBuilder } from "https://deno.land/x/grammy/mod.ts";
 
 const photo = InputMediaBuilder.photo(new InputFile("/tmp/photo.mp4"));
 const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
-// etc
+// т. д.
 ```
 
 :::
 
-Check out all methods of `InputMediaBuilder` in the [API reference](/ref/core/inputmediabuilder).
+Ознакомьтесь со всеми методами `InputMediaBuilder` в [документации API](/ref/core/inputmediabuilder).
 
-You can also directly pass public URLs which Telegram fetches.
+Вы также можете напрямую передавать публичные ссылки, которые считывает Telegram.
 
 ```ts
 const photo = InputMediaBuilder.photo("https://grammy.dev/images/grammY.png");
 ```
 
-Further options can be provided in an options object at the end.
+Дополнительные параметры могут быть предоставлены в объекте options в конце.
 
 ```ts
 const photo = InputMediaBuilder.photo("https://grammy.dev/images/grammY.png", {
-  caption: "grammY is awesome",
-  // etc
+  caption: "grammY заметелен",
+  // т. д.
 });
 ```
 
-## Sending a Media Group
+## Отправка медиагруппы
 
-You can send a media group as follows:
+Вы можете отправить медиагруппу следующим образом:
 
 ```ts
 await ctx.replyWithMediaGroup([photo0, photo1, photo2, video]);
 ```
 
-Likewise, you can pass an array of `InputMedia` objects to `ctx.api.sendMediaGroup` or `bot.api.sendMediaGroup`.
+Аналогичным образом вы можете передать массив объектов `InputMedia` в `ctx.api.sendMediaGroup` или `bot.api.sendMediaGroup`.
 
-## Editing a Media Message
+## Редактирование медиасообщения
 
-Since `InputMedia` objects are also used to edit media messages, this plugin will assist you here, too:
+Поскольку объекты `InputMedia` также используются для редактирования медиа сообщений, этот плагин поможет вам и здесь:
 
 ```ts
 const newMedia = InputMediaBuilder.photo(
@@ -80,12 +80,12 @@ const newMedia = InputMediaBuilder.photo(
 await ctx.editMessageMedia(newMedia);
 ```
 
-As always, this works for `ctx.api.editMessageMedia` and `bot.api.editMessageMedia`, too.
+Как обычно, это работает и для `ctx.api.editMessageMedia` и `bot.api.editMessageMedia`.
 
-## Plugin Summary
+## Краткая информация о плагине
 
-This plugin is built-in into the core of grammY.
-You don't need to install anything to use it.
-Simply import everything from grammY itself.
+Этот плагин встроен в библиотеку grammY.
+Вам не нужно ничего устанавливать, чтобы использовать его.
+Просто импортируйте всё из самого grammY.
 
-Also, both the documentation and the API reference of this plugin are unified with the core package.
+Кроме того, документация и ссылки на API этого плагина объединены с основным пакетом.
