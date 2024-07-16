@@ -1,84 +1,84 @@
-# What Is a Plugin?
+# Что такое плагин?
 
-We want grammY to be concise and minimal, but extensible.
-Why?
-Because not everyone uses everything!
-Plugins are designed as extra functionalities added to said pieces of software.
+Мы хотим, чтобы grammY был легковесным и маленьким, но при этом расширяемым.
+Почему?
+Потому что не все используют всё!
+Плагины создаются как дополнительные функции, добавляемые к программе.
 
-## Plugins in grammY
+## Плагины grammY
 
-Some plugins are right **built-in** into the grammY core library because we assume that many bots need them.
-This makes it easier for new users to use them, without having to install a new package first.
+Некоторые плагины напрямую **встроены** в основную библиотеку grammY, потому что мы предполагаем, что они нужны многим ботам.
+Это облегчает новым пользователям их использование, без необходимости устанавливать новый пакет.
 
-Most plugins are published alongside the core package of grammY, we call them **official** plugins.
-They are installed from `@grammyjs/*` on npm, and they are published under the [@grammyjs](https://github.com/grammyjs) organization on GitHub.
-We coordinate their releases with the releases of grammY, and we make sure that everything works well together.
-Every section of the plugin docs for an official plugin has the package name in its title.
-As an example, the [grammY runner](./runner) plugin (`runner`) needs to be installed via `npm install @grammyjs/runner`.
-(If you are using Deno and not Node.js, you should import the plugin from <https://deno.land/x> instead, so from the `grammy_runner` module's `mod.ts` file.)
+Большинство плагинов публикуются вместе с основным пакетом grammY, мы называем их **официальными** плагинами.
+Они устанавливаются с `@grammyjs/*` на npm, и публикуются под организацией [@grammyjs](https://github.com/grammyjs) на GitHub.
+Мы координируем их релизы с релизами grammY и следим за тем, чтобы все хорошо работало вместе.
+Каждый раздел документации по официальному плагину имеет название пакета в заголовке.
+Например, плагин [grammY runner](./runner) (`runner`) должен быть установлен через `npm install @grammyjs/runner`.
+(Если вы используете Deno, а не Node.js, вам следует импортировать плагин из <https://deno.land/x>, то есть из файла `mod.ts` модуля `grammy_runner`).
 
-There are also a few **third-party** plugins.
-Anyone can publish them.
-We don't provide any guarantees that they are up to date, well-documented, or work together with other plugins.
-If you want, your own third-party plugin can also be listed on the website so that more people can find out about it.
+Есть также несколько **сторонних** плагинов.
+Их может опубликовать любой желающий.
+Мы не даем никаких гарантий, что они актуальны, хорошо документированы или работают вместе с другими плагинами.
+Если вы хотите, ваш собственный сторонний плагин также может быть размещен на сайте, чтобы о нем узнало больше людей.
 
-## Overview
+## Обзор
 
-We compiled a neat overview for you with short descriptions for each plugin.
-Installing plugins is fun and easy, and we want you to know what we have in store for you.
+Мы подготовили для вас обзор с кратким описанием каждого плагина.
+Установка плагинов - это весело и просто, и мы хотим, чтобы вы знали, что мы приготовили для вас.
 
-> Click on any package name to learn more about the respective plugin.
+> Нажмите на название любого пакета, чтобы узнать больше о соответствующем плагине.
 
-| Plugin                                     | Package                                            | Description                                          |
-| ------------------------------------------ | -------------------------------------------------- | ---------------------------------------------------- |
-| [Sessions](./session)                      | _built-in_                                         | Store user data in your database                     |
-| [Inline and Custom Keyboards](./keyboard)  | _built-in_                                         | Simplify building inline and custom keyboards        |
-| [Media Groups](./media-group)              | _built-in_                                         | Simplify sending media groups and editing media      |
-| [Inline Queries](./inline-query)           | _built-in_                                         | Easily build results for inline queries              |
-| [Auto-retry](./auto-retry)                 | [`auto-retry`](./auto-retry)                       | Automatically handle rate limiting                   |
-| [Conversations](./conversations)           | [`conversations`](./conversations)                 | Build powerful conversational interfaces and dialogs |
-| [Chat Members](./chat-members)             | [`chat-members`](./chat-members)                   | Track which user joined which chat                   |
-| [Emoji](./emoji)                           | [`emoji`](./emoji)                                 | Simplify using emoji in code                         |
-| [Files](./files)                           | [`files`](./files)                                 | Easily handle files                                  |
-| [Hydration](./hydrate)                     | [`hydrate`](./hydrate)                             | Call methods on objects returned from API calls      |
-| [Internationalization](./i18n)             | [`i18n`](./i18n) or [`fluent`](./fluent)           | Let your bot speak multiple languages                |
-| [Interactive Menus](./menu)                | [`menu`](./menu)                                   | Design dynamic button menus with flexible navigation |
-| [Parse Mode](./parse-mode)                 | [`parse-mode`](./parse-mode)                       | Simplify message formatting                          |
-| [Rate Limiter](./ratelimiter)              | [`ratelimiter`](./ratelimiter)                     | Automatically restrict users who spam your bot       |
-| [Router](./router)                         | [`router`](./router)                               | Route messages to different parts of your code       |
-| [Runner](./runner)                         | [`runner`](./runner)                               | Perform long polling concurrently and at scale       |
-| [Stateless Question](./stateless-question) | [`stateless-question`](./stateless-question)       | Create dialogs without a data storage                |
-| [Throttler](./transformer-throttler)       | [`transformer-throttler`](./transformer-throttler) | Slow down API calls                                  |
+| Плагин                                     | Пакет                                              | Описание                                                    |
+| ------------------------------------------ | -------------------------------------------------- | ----------------------------------------------------------- |
+| [Sessions](./session)                      | _из коробки_                                       | Храните данные о пользователях в своей базе данных          |
+| [Inline and Custom Keyboards](./keyboard)  | _из коробки_                                       | Упрощеняет создание встроенных и пользовательских клавиатур |
+| [Media Groups](./media-group)              | _из коробки_                                       | Упрощенает отправку медиагрупп и их редактирование          |
+| [Inline Queries](./inline-query)           | _из коробки_                                       | Легкое создание результатов для встроенных запросов         |
+| [Auto-retry](./auto-retry)                 | [`auto-retry`](./auto-retry)                       | Автоматическое ограничение скорости                         |
+| [Conversations](./conversations)           | [`conversations`](./conversations)                 | Создание мощных разговорных интерфейсов и диалогов          |
+| [Chat Members](./chat-members)             | [`chat-members`](./chat-members)                   | Отслеживайте, какой пользователь присоединился к чату       |
+| [Emoji](./emoji)                           | [`emoji`](./emoji)                                 | Упростите использование эмодзи в коде                       |
+| [Files](./files)                           | [`files`](./files)                                 | Удобная работа с файлами                                    |
+| [Hydration](./hydrate)                     | [`hydrate`](./hydrate)                             | Вызывайте методы в объектах, возвращаемых из вызова API     |
+| [Internationalization](./i18n)             | [`i18n`](./i18n) или [`fluent`](./fluent)           | Пусть ваш бот говорит на нескольких языках                  |
+| [Interactive Menus](./menu)                | [`menu`](./menu)                                   | Создавайте динамические кнопочные меню с гибкой навигацией  |
+| [Parse Mode](./parse-mode)                 | [`parse-mode`](./parse-mode)                       | Упростите форматирование сообщений                          |
+| [Rate Limiter](./ratelimiter)              | [`ratelimiter`](./ratelimiter)                     | Автоматически ограничивайте пользователей, которые спамят   |
+| [Router](./router)                         | [`router`](./router)                               | Направляйте сообщения в разные части вашего кода            |
+| [Runner](./runner)                         | [`runner`](./runner)                               | Одновременное и масштабное выполнение long polling          |
+| [Stateless Question](./stateless-question) | [`stateless-question`](./stateless-question)       | Созданайте диалоги без хранения данных                      |
+| [Throttler](./transformer-throttler)       | [`transformer-throttler`](./transformer-throttler) | Замедляйте вызовы API                                       |
 
-We also have some third-party plugins!
-You can find them in the navigation menu under _Plugins_ > _Third-Party_.
-Be sure to check them out, too!
+У нас также есть несколько сторонних плагинов!
+Вы можете найти их в навигационном меню в разделе _Плагины_ > _Сторонние_.
+Обязательно посмотрите и их!
 
-## Types of Plugins in grammY
+## Типы плагинов в grammY
 
-All that glitters is gold, right?
-Well, a different kind of gold!
-grammY can take advantage of two types of plugins: _middleware plugins_ and _transformer plugins_.
-In simple terms, plugins in grammY return either a middleware function or a transformer one.
-Let's talk about the differences.
+Все, что блестит, - золото, верно?
+Но это совсем другое золото!
+grammY может использовать преимущества двух типов плагинов: _middleware плагины_ и _плагины-трансформеры_.
+Проще говоря, плагины в grammY возвращают либо middleware функцию, либо трансформирующую функцию.
+Давайте поговорим о различиях.
 
-### Type I: Middleware Plugins
+### Тип I: Middleware плагины
 
-[Middleware](../guide/middleware) is a function that handles incoming data in various forms.
-Middleware plugins are plugins that are fed to a bot as---well, you guessed it---middleware.
-This means that you install them via `bot.use`.
+[Middleware](../guide/middleware) - это функция, которая обрабатывает входящие данные в различных формах.
+Плагины Middleware --- это плагины, которые подаются боту как... ну, вы догадались --- как Middleware.
+Это означает, что вы устанавливаете их через `bot.use`.
 
-### Type II: Transformer Plugins
+### Тип II: Плагины-трансформеры
 
-A [transformer function](../advanced/transformers) is the opposite of middleware!
-It is a function that handles outgoing data.
-Transformer plugins are plugins that are fed to a bot as a---crazy! guessed it again---transformer function.
-This means that you install them via `bot.api.config.use`.
+[Трансформирующая функция](../advanced/transformers) --- это противоположность middleware!
+Это функция, которая обрабатывает исходящие данные.
+Плагины-трансформеры --- это плагины, которые подаются боту как... безумие! Вы снова угадали --- трансформирующая функция.
+Это означает, что вы устанавливаете их через `bot.api.config.use`.
 
-## Create Your Own Plugins
+## Создавайте свои собстенные плагины
 
-If you want to develop a plugin and share it with other users (even published on the official website of grammY), there is a [useful guide](./guide) that you can check out.
+Если вы хотите разработать плагин и поделиться им с другими пользователями (даже опубликовать на официальном сайте grammY), есть [полезное руководство](./guide), с которым вы можете ознакомиться.
 
-## Ideas for More Plugins
+## Идеи для новых плагинов
 
-We are collecting ideas for new plugins [on GitHub in this issue](https://github.com/grammyjs/grammY/issues/110).
+Мы собираем идеи для новых плагинов [на GitHub в этом issue](https://github.com/grammyjs/grammY/issues/110).
