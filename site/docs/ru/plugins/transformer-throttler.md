@@ -3,22 +3,22 @@ prev: false
 next: false
 ---
 
-# Flood Control (`transformer-throttler`)
+# Контроль флуда (`transformer-throttler`)
 
-> Consider using the [auto-retry plugin](./auto-retry) instead.
+> Вместо этого используйте плагин [auto-retry](./auto-retry).
 
-This plugin enqueues outgoing API requests instance via [Bottleneck](https://github.com/SGrondin/bottleneck) in order to prevent your bot from hitting [rate limits](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this) as described in this [advanced section](../advanced/flood) of the documentation.
+Этот плагин регистрирует исходящие API-запросы через [Bottleneck](https://github.com/SGrondin/bottleneck), чтобы ваш бот не сбивал [ограничения скорости](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this), как описано в этом [расширенном разделе](../advanced/flood) документации.
 
-::: warning Undocumented API Limits Exist
-Telegram implements unspecified and undocumented rate limits for some API calls.
-These undocumented limits are **not accounted for** by the throttler.
-If you still want to use this plugin, consider using the [auto-retry plugin](./auto-retry) together with it.
+::: warning Существуют недокументированные ограничения API
+Telegram реализует неопределенные и недокументированные ограничения скорости для некоторых вызовов API.
+Эти недокументированные ограничения **не учитываются** троттлером.
+Если вы все еще хотите использовать этот плагин, подумайте об использовании плагина [auto-retry](./auto-retry) вместе с ним.
 :::
 
-## Usage
+## Использование
 
-Here is an example of how to use this plugin with the default options.
-Note that the default options are aligned with the actual rate limits enforced by Telegram, so they should be good to go.
+Вот пример того, как использовать этот плагин с параметрами по умолчанию.
+Обратите внимание, что параметры по умолчанию соответствуют фактическим ограничениям скорости, установленным Telegram, так что они должны быть в порядке.
 
 ::: code-group
 
@@ -32,9 +32,9 @@ const bot = new Bot("");
 const throttler = apiThrottler();
 bot.api.config.use(throttler);
 
-bot.command("example", (ctx) => ctx.reply("I am throttled"));
+bot.command("example", (ctx) => ctx.reply("Я затроттлил"));
 
-// If you are using throttler, you most likely want to use a runner to handle updates concurrently.
+// Если вы используете троттлер, то, скорее всего, захотите использовать runner для одновременной обработки обновлений.
 run(bot);
 ```
 
@@ -48,9 +48,9 @@ const bot = new Bot("");
 const throttler = apiThrottler();
 bot.api.config.use(throttler);
 
-bot.command("example", (ctx) => ctx.reply("I am throttled"));
+bot.command("example", (ctx) => ctx.reply("Я затроттлил"));
 
-// If you are using throttler, you most likely want to use a runner to handle updates concurrently.
+// Если вы используете троттлер, то, скорее всего, захотите использовать runner для одновременной обработки обновлений.
 run(bot);
 ```
 
@@ -64,57 +64,57 @@ const bot = new Bot("");
 const throttler = apiThrottler();
 bot.api.config.use(throttler);
 
-bot.command("example", (ctx) => ctx.reply("I am throttled"));
+bot.command("example", (ctx) => ctx.reply("Я затроттлил"));
 
-// If you are using throttler, you most likely want to use a runner to handle updates concurrently.
+// Если вы используете троттлер, то, скорее всего, захотите использовать runner для одновременной обработки обновлений.
 run(bot);
 ```
 
 :::
 
-## Configuration
+## Настройка
 
-The throttler accepts a single optional argument of the following form:
+Троттлер принимает один необязательный аргумент следующего вида:
 
 ```ts
 type ThrottlerOptions = {
-  global?: Bottleneck.ConstructorOptions; // for throttling all api calls
-  group?: Bottleneck.ConstructorOptions; // for throttling outgoing group messages
-  out?: Bottleneck.ConstructorOptions; // for throttling outgoing private messages
+  global?: Bottleneck.ConstructorOptions; // для троттлинга всех вызовов API
+  group?: Bottleneck.ConstructorOptions; // для троттлинга исходящих групповых сообщений
+  out?: Bottleneck.ConstructorOptions; // для троттлинга исходящих личных сообщений
 };
 ```
 
-The full list of object properties available for `Bottleneck.ConstructorOptions` can be found at [Bottleneck](https://github.com/SGrondin/bottleneck#constructor).
+Полный список свойств объектов, доступных для `Bottleneck.ConstructorOptions`, можно найти в [Bottleneck](https://github.com/SGrondin/bottleneck#constructor).
 
-If no argument is passed, the throttler created will use the default configuration settings which should be appropriate for most use cases.
-The default configuration are as follows:
+Если аргумент не передан, созданный троттлер будет использовать настройки конфигурации по умолчанию, которые должны подходить для большинства случаев использования.
+Конфигурация по умолчанию выглядит следующим образом:
 
 ```ts
-// Outgoing Global Throttler
+// Исходящий глобальный троттлер
 const globalConfig = {
-  reservoir: 30, // number of new jobs that throttler will accept at start
-  reservoirRefreshAmount: 30, // number of jobs that throttler will accept after refresh
-  reservoirRefreshInterval: 1000, // interval in milliseconds where reservoir will refresh
+  reservoir: 30, // количество новых заданий, которые троттлер будет принимать при запуске
+  reservoirRefreshAmount: 30, // количество заданий, которые троттлер будет принимать после обновления
+  reservoirRefreshInterval: 1000, // интервал в миллисекундах, через который резервуар будет обновляться
 };
 
 // Outgoing Group Throttler
 const groupConfig = {
-  maxConcurrent: 1, // only 1 job at a time
-  minTime: 1000, // wait this many milliseconds to be ready, after a job
-  reservoir: 20, // number of new jobs that throttler will accept at start
-  reservoirRefreshAmount: 20, // number of jobs that throttler will accept after refresh
-  reservoirRefreshInterval: 60000, // interval in milliseconds where reservoir will refresh
+  maxConcurrent: 1, // только 1 задание за раз
+  minTime: 1000, // сколько миллисекунд ждать, чтобы быть готовым, после выполнения задания
+  reservoir: 20, // количество новых заданий, которые троттлер будет принимать при запуске
+  reservoirRefreshAmount: 20, // количество заданий, которые троттлер будет принимать после обновления
+  reservoirRefreshInterval: 60000, // интервал в миллисекундах, через который резервуар будет обновляться
 };
 
 // Outgoing Private Throttler
 const outConfig = {
-  maxConcurrent: 1, // only 1 job at a time
-  minTime: 1000, // wait this many milliseconds to be ready, after a job
+  maxConcurrent: 1, // только 1 задание за раз
+  minTime: 1000, // сколько миллисекунд ждать, чтобы быть готовым, после выполнения задания
 };
 ```
 
-## Plugin Summary
+## Краткая информация о плагине
 
-- Name: `transformer-throttler`
-- [Source](https://github.com/grammyjs/transformer-throttler)
-- [Reference](/ref/transformer-throttler/)
+- Название: `transformer-throttler`
+- [Исходник](https://github.com/grammyjs/transformer-throttler)
+- [Документация](/ref/transformer-throttler/)
