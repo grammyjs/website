@@ -203,7 +203,7 @@ systemd --- це потужний менеджер служб, який пере
    - `WantedBy=multi-user.target` --- визначає стан системи, в якому повинен запускатися сервіс.
      `multi-user.target` --- типове значення для серверів.
 
-   > Для отримання додаткової інформації про файли служб, прочитайте [це](https://access.redhat.com/documentation/te-in/red_hat_enterprise_linux/9/html/using_systemd_unit_files_to_customize_and_optimize_your_system/assembly_working-with-systemd-unit-files_working-with-systemd).
+   > Для отримання додаткової інформації про файли служб, прочитайте [це](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/using_systemd_unit_files_to_customize_and_optimize_your_system/assembly_working-with-systemd-unit-files_working-with-systemd).
 
 4. Перезавантажуйте systemd кожного разу, коли ви редагуєте службу:
 

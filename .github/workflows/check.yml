@@ -14,7 +14,7 @@ jobs:
 
       - uses: denoland/setup-deno@main
         with:
-          deno-version: "1.40.5"
+          deno-version: "1.45.2"
 
       - name: Check Formatting
         run: deno fmt --check
@@ -41,9 +41,7 @@ jobs:
 
       - uses: denoland/setup-deno@main
         with:
-          deno-version: "1.40.5"
+          deno-version: "1.45.2"
 
       - name: Check Links
-        if: github.ref == 'refs/heads/main'
-        run: |
-          deno task links:check
+        run: deno task links:check
