@@ -226,7 +226,27 @@ app.use(webhookCallback(bot, "oak"));
 
 > Note that you must not call `bot.start()` when using webhooks.
 
-Be sure to read [Marvin's Marvellous Guide to All Things Webhook](https://core.telegram.org/bots/webhooks) written by the Telegram team if you consider running your bot on webhooks on a VPS.
+Your application is now listening for webhook requests from Telegram.
+The last thing you need to do is to tell Telegram where to send the updates.
+There are several ways to do this, but in the end, they all just call `setWebhook` as documented [here](https://core.telegram.org/bots/api#setwebhook).
+
+The easiest way to set your webhook is to paste the following URL in the address bar of your browser, replacing `<token>` by your bot token and `<url>` by the public endpoint of your server.
+
+```txt
+https://api.telegram.org/bot<token>/setWebhook?url=<url>
+```
+
+We also built a proper interface for this if you prefer to manage your webhook via a website.
+You can find it here: <https://telegram.tools/webhook-manager>
+
+Note that you can set your webhook from code, too:
+
+```ts
+const endpoint = ""; // <-- put your URL here
+await bot.api.setWebhook(endpoint);
+```
+
+Finally, sure to read [Marvin's Marvellous Guide to All Things Webhook](https://core.telegram.org/bots/webhooks) written by the Telegram team if you consider [running your bot on webhooks on a VPS](../hosting/vps.md#running-the-bot-on-webhooks).
 
 ### Web Framework Adapters
 
@@ -359,7 +379,7 @@ However, while this behavior has some valid use cases, such a solution usually c
 Remember that once you respond to a webhook request, Telegram will send the next update for that chat.
 However, as the old update is still being processed, two updates which were previously processed sequentially, are suddenly processed in parallel.
 This can lead to race conditions.
-For example, the session plugin will inevitably break due to [WAR](https://en.wikipedia.org/wiki/Hazard_(computer_architecture)#Write_after_read_(WAR)) hazards.
+For example, the session plugin will inevitably break due to [WAR](<https://en.wikipedia.org/wiki/Hazard_(computer_architecture)#Write_after_read_(WAR)>) hazards.
 **This causes data loss!**
 Other plugins and even your own middleware may break too.
 The extent of this is unknown and depends on your bot.
