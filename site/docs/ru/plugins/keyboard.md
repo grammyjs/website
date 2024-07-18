@@ -29,7 +29,7 @@ The two are mutually exclusive.
 Moreover, the sent kind of reply markup cannot be changed at a later point by editing the message.
 For example, it is not possible to first send a custom keyboard along with a message, and then edit the message to use an inline keyboard.
 
-## Inline Keyboards
+## Встроенные клавиатуры
 
 > Revisit the inline keyboard section in the [Telegram Bot Features](https://core.telegram.org/bots/features#inline-keyboards) written by the Telegram team.
 
@@ -143,7 +143,7 @@ It makes sense to define `bot.on("callback_query:data")` at last to always answe
 Otherwise, some clients may display a loading animation for up to a minute when a user presses a button that your bot does not want to react to.
 :::
 
-## Custom Keyboards
+## Пользовательские клавиатуры
 
 First things first: custom keyboards are sometimes just called keyboards, sometimes they're called reply keyboards, and even Telegram's own documentation is not consistent in this respect.
 As a simple rule of thumb, when it isn't absolutely obvious from the context and not called inline keyboard, it probably is a custom keyboard.
