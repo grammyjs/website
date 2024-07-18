@@ -3,47 +3,47 @@ prev: false
 next: false
 ---
 
-# Inline and Custom Keyboards (built-in)
+# Встроенные и пользовательские клавиатуры (встроенно)
 
-Your bot may send a number of buttons, either to be [displayed underneath a message](#inline-keyboards), or to [replace the user's keyboard](#custom-keyboards).
-They are called _inline keyboards_ and _custom keyboards_, respectively.
-If you think that this is confusing, then that's because it is.
-Thank you, Telegram, for this overlapping terminology.
+Ваш бот может отправлять несколько кнопок, которые будут либо [отображаться под сообщением](#встроенные-клавиатуры), либо [заменять клавиатуру пользователя](#пользовательские-клавиатуры).
+Они называются _inline-клавиатурами_ и _custom-клавиатурами_, соответственно.
+Если вы думаете, что это запутанно, то так оно и есть.
+Спасибо, Telegram, за эту пересекающуюся терминологию.
 
-Let us try to clear it up a bit:
+Давайте попробуем немного прояснить ситуацию:
 
-| Term                                     | Definition                                                                                                                          |
-| ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| [**Inline Keyboard**](#inline-keyboards) | a set of buttons that is displayed underneath a message inside the chat.                                                            |
-| [**Custom Keyboard**](#custom-keyboards) | a set of buttons that is displayed instead of the user's system keyboard.                                                           |
-| **Inline Keyboard button**               | a button in an inline keyboard, sends a callback query not visible to the user when pressed, sometimes just called _inline button_. |
-| **Custom Keyboard button**               | a button in a keyboard, sends a text message with its label when pressed, sometimes just called _keyboard button_.                  |
-| **`InlineKeyboard`**                     | class in grammY to create inline keyboards.                                                                                         |
-| **`Keyboard`**                           | class in grammY to create custom keyboards.                                                                                         |
+| Термин                                               | Определение                                                                                                                              |
+| ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| [**Встроенные клавиатуры**](#inline-keyboards)       | набор кнопок, который отображается под сообщением в чате.                                                                                |
+| [**Пользовательские клавиатуры**](#custom-keyboards) | набор кнопок, который отображается вместо системной клавиатуры пользователя.                                                             |
+| **Кнопка встроенной клавиатуры**                     | кнопка в встроенной клавиатуре, при нажатии посылает callback запрос, не видимый пользователю, иногда называется просто _inline button_. |
+| **Кнопка пользовательской клавиатуры**               | кнопка клавиатуры, при нажатии отправляет текстовое сообщение со своим ярлыком, иногда называется просто _keyboard button_.              |
+| **`InlineKeyboard`**                                 | класс в grammY для создания встроенных клавиатур.                                                                                        |
+| **`Keyboard`**                                       | класс в grammY для создания пользовательских клавиатур.                                                                                  |
 
-> Note that both custom keyboard buttons and inline keyboard buttons can also have other functions, such as requesting the user's location, opening a website, and so on.
-> This was omitted for brevity.
+> Обратите внимание, что и кнопки пользовательской клавиатуры, и кнопки встроенной клавиатуры могут выполнять и другие функции, например, запрашивать местоположение пользователя, открывать веб-сайт и так далее.
+> Это было опущено для краткости.
 
-It is not possible to specify both a custom keyboard and an inline keyboard in the same message.
-The two are mutually exclusive.
-Moreover, the sent kind of reply markup cannot be changed at a later point by editing the message.
-For example, it is not possible to first send a custom keyboard along with a message, and then edit the message to use an inline keyboard.
+Невозможно указать в одном сообщении и пользовательскую, и встроенную клавиатуру.
+Эти два варианта являются взаимоисключающими.
+Более того, отправленный вид разметки ответа нельзя изменить впоследствии, отредактировав сообщение.
+Например, невозможно сначала отправить пользовательскую клавиатуру вместе с сообщением, а затем отредактировать сообщение, чтобы использовать встроенную клавиатуру.
 
 ## Встроенные клавиатуры
 
-> Revisit the inline keyboard section in the [Telegram Bot Features](https://core.telegram.org/bots/features#inline-keyboards) written by the Telegram team.
+> Пересмотрите раздел о встроенной клавиатуре в статье [Telegram Bot Features](https://core.telegram.org/bots/features#inline-keyboards), написанной командой Telegram.
 
-grammY has a simple and intuitive way to build up the inline keyboards that your bot can send along with a message.
-It provides a class called `InlineKeyboard` for this.
+В grammY есть простой и интуитивно понятный способ создания встроенных клавиатур, которые ваш бот может отправлять вместе с сообщением.
+Для этого он предоставляет класс `InlineKeyboard`.
 
-> The buttons added by calling `switchInline`, `switchInlineCurrent`, and `switchInlineChosen` start inline queries.
-> Check out the section about [Inline Queries](./inline-query) for more information on how they work.
+> Кнопки, добавляемые вызовом `switchInline`, `switchInlineCurrent` и `switchInlineChosen`, запускают встроенные запросы.
+> Подробнее о том, как они работают, читайте в разделе о [встроенные запросы](./inline-query).
 
-### Building an Inline Keyboard
+### Построение встроенных клавиатур
 
-You can build an inline keyboard by creating a new instance of the `InlineKeyboard` class, and then adding buttons you like to it using `.text()` and its other methods.
+Вы можете создать встроенную клавиатуру, создав новый экземпляр класса `InlineKeyboard`, а затем добавив в него нужные вам кнопки с помощью `.text()` и других его методов.
 
-Here is an example:
+Вот пример:
 
 ![Example](/images/inline-keyboard-example.png)
 
@@ -56,15 +56,15 @@ const inlineKeyboard = new InlineKeyboard()
   .text("31 »", "last");
 ```
 
-Call `.row()` if you want to begin a new row of buttons.
-You can also use other methods like `.url()` to let the user's client open a specific URL or do other cool things.
-Be sure to check out [all methods](/ref/core/inlinekeyboard#methods) on the `InlineKeyboard` class.
+Вызовите `.row()`, если хотите начать новый ряд кнопок.
+Вы также можете использовать другие методы, например `.url()`, чтобы позволить клиенту пользователя открыть определенный URL или сделать другие интересные вещи.
+Обязательно ознакомьтесь со [всеми методами](/ref/core/inlinekeyboard#methods) класса `InlineKeyboard`.
 
-If you already have an array of strings that you would like to turn into an inline keyboard, you can use a second, alternative style for building inline keyboard instances.
-The `InlineKeyboard` class has static methods such as `InlineKeyboard.text` that let you create button objects.
-In turn, you can create an inline keyboard instance from array of button objects using `InlineKeyboard.from`.
+Если у вас уже есть массив строк, который вы хотели бы превратить в встроенную клавиатуру, вы можете использовать второй, альтернативный стиль построения экземпляров встроенной клавиатуры.
+Класс `InlineKeyboard` имеет статические методы, такие как `InlineKeyboard.text`, которые позволяют создавать объекты кнопок.
+В свою очередь, вы можете создать экземпляр встроенной клавиатуры из массива объектов кнопок с помощью `InlineKeyboard.from`.
 
-That way, you can build the above inline keyboard in a functional way.
+Таким образом, вы можете построить описанную выше линейную клавиатуру функциональным способом.
 
 ```ts
 const labelDataPairs = [
@@ -79,228 +79,228 @@ const buttonRow = labelDataPairs
 const keyboard = InlineKeyboard.from([buttonRow]);
 ```
 
-### Sending an Inline Keyboard
+### Отправка встроенных клавиатур
 
-You can send an inline keyboard directly along a message, no matter whether you use `bot.api.sendMessage`, `ctx.api.sendMessage`, or `ctx.reply`:
+Вы можете отправить встроенную клавиатуру прямо вместе с сообщением, независимо от того, используете ли вы `bot.api.sendMessage`, `ctx.api.sendMessage` или `ctx.reply`:
 
 ```ts
-// Send inline keyboard with message.
+// Отправьте встроенную клавиатуру с сообщением.
 await ctx.reply(text, {
   reply_markup: inlineKeyboard,
 });
 ```
 
-Naturally, all other methods that send messages other than text messages support the same options, as specified by the [Telegram Bot API Reference](https://core.telegram.org/bots/api).
-For example, you can edit a keyboard by calling `editMessageReplyMarkup`, and passing the new `InlineKeyboard` instance as `reply_markup`.
-Specify an empty inline keyboard to remove all buttons underneath a message.
+Естественно, все остальные методы, отправляющие сообщения, отличные от текстовых, поддерживают те же опции, которые указаны в [Telegram Bot API](https://core.telegram.org/bots/api).
+Например, вы можете отредактировать клавиатуру, вызвав `editMessageReplyMarkup` и передав новый экземпляр `InlineKeyboard` в качестве `reply_markup`.
+Укажите пустую клавиатуру, чтобы удалить все кнопки под сообщением.
 
-### Responding to Inline Keyboard Clicks
+### Ответ на нажатие по встроенное клавиатуре
 
-::: tip Menu Plugin
-The keyboard plugin gives you raw access to the update objects that Telegram sends.
-However, responding to clicks this way can be tedious.
-If you are looking for a more high-level implementation of inline keyboards, check out the [menu plugin](./menu).
-It makes it simple to create interactive menus.
+::: tip Плагин для меню
+Плагин клавиатуры дает вам прямой доступ к объектам обновлений, которые отправляет Telegram.
+Однако реагировать на нажатия таким образом может быть утомительно.
+Если вы ищете более высокоуровневую реализацию встроенных клавиатур, обратите внимание на плагин [menu](./menu).
+Он упрощает создание интерактивных меню.
 :::
 
-Every `text` button has a string as callback data attached.
-If you don't attach callback data, grammY will use the button's text as data.
+К каждой кнопке `text` прикреплена строка в качестве данных callback вызова.
+Если вы не прикрепите данные callback вызова, grammY будет использовать текст кнопки в качестве данных.
 
-Once a user clicks a `text` button, your bot will receive an update containing the corresponding button's callback data.
-You can listen for callback data via `bot.callbackQuery()`.
+Как только пользователь нажмет на кнопку `text`, ваш бот получит обновление, содержащее данные callback вызова соответствующей кнопки.
+Вы можете прослушать данные callback вызова через `bot.callbackQuery()`.
 
 ```ts
-// Construct a keyboard.
-const inlineKeyboard = new InlineKeyboard().text("click", "click-payload");
+// Сконструируйте клавиатуру.
+const inlineKeyboard = new InlineKeyboard().text("клик", "click-payload");
 
-// Send a keyboard along with a message.
+// Отправьте клавиатуру вместе с сообщением.
 bot.command("start", async (ctx) => {
-  await ctx.reply("Curious? Click me!", { reply_markup: inlineKeyboard });
+  await ctx.reply("Любопытно? Нажмите на меня!", { reply_markup: inlineKeyboard });
 });
 
-// Wait for click events with specific callback data.
+// Подождите события клика с определённым названием
 bot.callbackQuery("click-payload", async (ctx) => {
   await ctx.answerCallbackQuery({
-    text: "You were curious, indeed!",
+    text: "Вы были очень любопытны!",
   });
 });
 ```
 
-::: tip Answering All Callback Queries
-`bot.callbackQuery()` is useful to listen for click events of specific buttons.
-You can use `bot.on("callback_query:data")` to listen for events of any button.
+::: tip Ответы на все callback запросы
+`bot.callbackQuery()` полезен для прослушивания событий нажатия определенных кнопок.
+Вы можете использовать `bot.on(«callback_query:data»)` для прослушивания событий любой кнопки.
 
 ```ts
 bot.callbackQuery("click-payload" /* , ... */);
 
 bot.on("callback_query:data", async (ctx) => {
-  console.log("Unknown button event with payload", ctx.callbackQuery.data);
-  await ctx.answerCallbackQuery(); // remove loading animation
+  console.log("Неизвестное событие кнопки с payload", ctx.callbackQuery.data);
+  await ctx.answerCallbackQuery(); // убрать анимацию загрузки
 });
 ```
 
-It makes sense to define `bot.on("callback_query:data")` at last to always answer all other callback queries that your previous listeners did not handle.
-Otherwise, some clients may display a loading animation for up to a minute when a user presses a button that your bot does not want to react to.
+Имеет смысл определить `bot.on(«callback_query:data»)` в последнюю очередь, чтобы всегда отвечать на все остальные запросы, которые ваши предыдущие слушатели не обработали.
+В противном случае некоторые клиенты могут показывать анимацию загрузки до минуты, когда пользователь нажимает кнопку, на которую ваш бот не хочет реагировать.
 :::
 
 ## Пользовательские клавиатуры
 
-First things first: custom keyboards are sometimes just called keyboards, sometimes they're called reply keyboards, and even Telegram's own documentation is not consistent in this respect.
-As a simple rule of thumb, when it isn't absolutely obvious from the context and not called inline keyboard, it probably is a custom keyboard.
-This refers to a way to replace the system keyboard by a set of buttons that you can define.
+Прежде всего: пользовательские клавиатуры иногда называются просто клавиатурами, иногда --- ответными клавиатурами, и даже собственная документация Telegram непоследовательна в этом отношении.
+Простое эмпирическое правило: если это не очевидно из контекста и не называется встроенной клавиатурой, то это, скорее всего, пользовательская клавиатура.
+Это относится к способу замены системной клавиатуры набором кнопок, которые вы можете определить.
 
-> Revisit the custom keyboard section in the [Telegram Bot Features](https://core.telegram.org/bots/features#keyboards) written by the Telegram team.
+> Пересмотрите раздел о пользовательской клавиатуре в статье [Telegram Bot Features](https://core.telegram.org/bots/features#keyboards), написанной командой Telegram.
 
-grammY has a simple and intuitive way to build up the custom keyboards that your bot can use to replace the system keyboard.
-It provides a class called `Keyboard` for this.
+В grammY есть простой и интуитивно понятный способ создания пользовательских клавиатур, которые ваш бот может использовать для замены системной клавиатуры.
+Для этого он предоставляет класс `Keyboard`.
 
-Once a user clicks a `text` button, your bot will receive the sent text as a plain text message.
-Remember that you can listen for text message via `bot.on("message:text")` or `bot.hears()`.
+Как только пользователь нажмет кнопку `text`, ваш бот получит отправленный текст в виде обычного текстового сообщения.
+Помните, что вы можете прослушать текстовое сообщение через `bot.on(«message:text»)` или `bot.hears()`.
 
-### Building a Custom Keyboard
+### Построение пользовательских клавиатур
 
-You can build a custom keyboard by creating a new instance of the `Keyboard` class, and by then adding buttons like to it via `.text()` and others.
-Call `.row()` to begin a new row of buttons.
+Вы можете создать собственную клавиатуру, создав новый экземпляр класса `Keyboard`, а затем добавив к нему кнопки типа `.text()` и другие.
+Вызовите `.row()`, чтобы начать новый ряд кнопок.
 
-Here is an example:
+Вот пример:
 
 ![Example](/images/keyboard-example.png)
 
 ```ts
 const keyboard = new Keyboard()
-  .text("Yes, they certainly are").row()
-  .text("I'm not quite sure").row()
-  .text("No. 😈")
+  .text("Да, это точно").row()
+  .text("Я не совсем уверен").row()
+  .text("Не-а. 😈")
   .resized();
 ```
 
-You can also send more powerful buttons that request the user's phone number or location or do other cool things.
-Be sure to check out [all methods](/ref/core/keyboard#methods) on the `Keyboard` class.
+Вы также можете отправлять более мощные кнопки, которые запрашивают номер телефона пользователя, его местоположение или делают другие интересные вещи.
+Обязательно ознакомьтесь со [всеми методами](/ref/core/keyboard#methods) класса `Keyboard`.
 
-If you already have an array of strings that you would like to turn into a keyboard, you can use a second, alternative style for building keyboard instances.
-The `Keyboard` class has static methods such as `Keyboard.text` that let you create button objects.
-In turn, you can create a keyboard instance from array of button objects using `Keyboard.from`.
+Если у вас уже есть массив строк, который вы хотите превратить в клавиатуру, вы можете использовать второй, альтернативный стиль создания экземпляров клавиатуры.
+Класс `Keyboard` имеет статические методы, такие как `Keyboard.text`, которые позволяют создавать объекты кнопок.
+В свою очередь, вы можете создать экземпляр клавиатуры из массива объектов кнопок с помощью `Keyboard.from`.
 
-That way, you can build the above keyboard in a functional way.
+Таким образом, вы можете построить описанную выше клавиатуру функциональным способом.
 
 ```ts
 const labels = [
-  "Yes, they certainly are",
-  "I'm not quite sure",
-  "No. 😈",
+  "Да, это точно",
+  "Я не совсем уверен",
+  "Не-а. 😈",
 ];
 const buttonRows = labels
   .map((label) => [Keyboard.text(label)]);
 const keyboard = Keyboard.from(buttonRows).resized();
 ```
 
-### Sending a Custom Keyboard
+### Отправка пользовательских клавиатур
 
-You can send a custom keyboard directly along a message, no matter whether you use `bot.api.sendMessage`, `ctx.api.sendMessage`, or `ctx.reply`:
+Вы можете отправить пользовательскую клавиатуру прямо вместе с сообщением, независимо от того, используете ли вы `bot.api.sendMessage`, `ctx.api.sendMessage` или `ctx.reply`:
 
 ```ts
-// Send keyboard with message.
+// Отправить клавиатуру с сообщением
 await ctx.reply(text, {
   reply_markup: keyboard,
 });
 ```
 
-Naturally, all other methods that send messages other than text messages support the same options, as specified by the [Telegram Bot API Reference](https://core.telegram.org/bots/api).
+Естественно, все остальные методы, отправляющие сообщения, отличные от текстовых, поддерживают те же опции, как указано в [Telegram Bot API](https://core.telegram.org/bots/api).
 
-You can also give your keyboard one or more further properties by calling special methods on it.
-They will not add any buttons, but rather define the behavior of the keyboard.
-We have already seen `resized` in the example above---here are a few more things you can do.
+Вы также можете придать клавиатуре одно или несколько дополнительных свойств, вызвав для нее специальные методы.
+Они не добавляют никаких кнопок, а скорее определяют поведение клавиатуры.
+Мы уже видели `resized` в примере выше --- вот еще несколько вещей, которые вы можете сделать.
 
-#### Persistent Keyboards
+#### Постоянные клавиатуры
 
-By default, users see an icon that allows them to show or hide the custom keyboard which your bot set.
+По умолчанию пользователи видят значок, который позволяет им показывать или скрывать пользовательскую клавиатуру, установленную вашим ботом.
 
-You can call `persistent` if you want the custom keyboard to always be shown when the regular system keyboard is hidden.
-That way, users will always see either the custom keyboard or the system keyboard.
+Вы можете вызвать `persistent`, если хотите, чтобы пользовательская клавиатура всегда отображалась, когда обычная системная клавиатура скрыта.
+Таким образом, пользователи всегда будут видеть либо пользовательскую, либо системную клавиатуру.
 
 ```ts
 new Keyboard()
-  .text("Skip")
+  .text("Пропустить")
   .persistent();
 ```
 
-#### Resize Custom Keyboard
+#### Изменение размера пользовательской клавиатуры
 
-You can call `resized` if you want the custom keyboard to be resized according to the buttons it contains.
-This will effectively make the keyboard smaller.
-(Usually, the keyboard will always have the size of the app's standard keyboard.)
+Вы можете вызвать `resized`, если хотите, чтобы размер пользовательской клавиатуры был изменен в соответствии с содержащимися в ней кнопками.
+Это позволит сделать клавиатуру меньше.
+(Обычно клавиатура всегда имеет размер стандартной клавиатуры приложения).
 
 ```ts
 new Keyboard()
-  .text("Yes").row()
-  .text("No")
+  .text("Да").row()
+  .text("Нет")
   .resized();
 ```
 
-It does not matter whether you call `resized` first, last or somewhere in between.
-The result will always be the same.
+Неважно, вызываете ли вы `resized` первым, последним или где-то между ними.
+Результат всегда будет одинаковым.
 
-#### One-Time Custom Keyboards
+#### Одноразовые пользовательские клавиатуры
 
-You can call `oneTime` if you want the custom keyboard to be hidden immediately after the first button was pressed.
+Вы можете вызвать `oneTime`, если хотите, чтобы пользовательская клавиатура была скрыта сразу после нажатия первой кнопки.
 
 ```ts
 new Keyboard()
-  .text("Yes").row()
-  .text("No")
+  .text("Да").row()
+  .text("Нет")
   .oneTime();
 ```
 
-It does not matter whether you call `oneTime` first, last or somewhere in between.
-The result will always be the same.
+Неважно, вызываете ли вы `oneTime` первым, последним или где-то между ними.
+Результат всегда будет одинаковым.
 
-#### Input Field Placeholder
+#### Заполнитель в поле ввода
 
-You can call `placeholder` if you want a placeholder to be shown in the input field as long as the custom keyboard is visible.
+Вы можете вызвать `placeholder`, если хотите, чтобы в поле ввода отображался заполнитель, пока видна пользовательская клавиатура.
 
 ```ts
 new Keyboard()
-  .text("Yes").row()
-  .text("No")
-  .placeholder("Decide now!");
+  .text("Да").row()
+  .text("Нет")
+  .placeholder("Выбирай сейчас же!");
 ```
 
-It does not matter whether you call `placeholder` first, last or somewhere in between.
-The result will always be the same.
+Неважно, называете ли вы `placeholder` первым, последним или где-то между ними.
+Результат всегда будет одинаковым.
 
-#### Selectively Send Custom Keyboards
+#### Выборочная отправка пользовательских клавиатур
 
-You can call `selected` if you want to show the custom keyboard only to those users that are @-mentioned in the text of the message object, and to the sender of the original message in case your message is a [reply](../guide/basics#sending-messages-with-reply).
+Вы можете вызвать `selected`, если хотите показать пользовательскую клавиатуру только тем пользователям, которые упомянуты (@) в тексте объекта сообщения, и отправителю исходного сообщения в случае, если ваше сообщение является [ответом на сообщение](../guide/basics#отправка-сообщений-с-ответом-на-сообщение).
 
 ```ts
 new Keyboard()
-  .text("Yes").row()
-  .text("No")
+  .text("Да").row()
+  .text("Нет")
   .selected();
 ```
 
-It does not matter whether you call `selected` first, last or somewhere in between.
-The result will always be the same.
+Неважно, вызовете ли вы `selected` первым, последним или где-то между ними.
+Результат всегда будет одинаковым.
 
-### Responding to Custom Keyboard Clicks
+### Ответ на клик по пользовательское клавиатуре
 
-As mentioned earlier, all that custom keyboards do is sending regular text messages.
-Your bot cannot differentiate between ordinary text messages, and text messages that were sent by clicking a button.
+Как уже говорилось, все, что делают пользовательские клавиатуры, - это отправка обычных текстовых сообщений.
+Ваш бот не сможет отличить обычные текстовые сообщения от сообщений, которые были отправлены нажатием кнопки.
 
-Moreover, buttons will always send exactly the message that's written on them.
-Telegram does not allow you to create buttons that display one text, but send another.
-If you need to do this, you should use an [inline keyboard](#inline-keyboards) instead.
+Более того, кнопки всегда будут отправлять именно то сообщение, которое на них написано.
+Telegram не позволяет создавать кнопки, которые отображают один текст, а отправляют другой.
+Если вам нужно сделать это, используйте [встроенную клавиатуру](#встроенные-клавиатуры).
 
-In order to handle the click of a specific button, you can use `bot.hears` with the same text as you put on the button.
-If you want to handle all button clicks at once, you use `bot.on("message:text")` and inspect `ctx.msg.text` to figure out which button was clicked, or if an ordinary text message was sent.
+Чтобы обработать нажатие определенной кнопки, вы можете использовать `bot.hears` с тем же текстом, который вы поместили на кнопку.
+Если вы хотите обработать все нажатия на кнопки сразу, используйте `bot.on(«message:text»)` и проверьте `ctx.msg.text`, чтобы выяснить, какая кнопка была нажата, или было ли отправлено обычное текстовое сообщение.
 
-### Removing a Custom Keyboard
+### Удаление пользовательской клавиатуры
 
-Unless you specify `one_time_keyboard` as described [above](#one-time-custom-keyboards), the custom keyboard will remain open for the user (but
-the user can minimize it).
+Если не указать `one_time_keyboard`, как описано [выше](#одноразовые-пользовательские-клавиатуры), пользовательская клавиатура будет оставаться открытой для пользователя (но
+пользователь может свернуть ее).
 
-You can only remove a custom keyboard when you send a new message in the chat, just like you can only specify a new keyboard by sending a message.
-Pass `{ remove_keyboard: true }` as `reply_markup` like so:
+Удалить пользовательскую клавиатуру можно только при отправке нового сообщения в чате, так же как и указать новую клавиатуру можно только при отправке сообщения.
+Передайте `{ remove_keyboard: true }` в качестве `reply_markup` следующим образом:
 
 ```ts
 await ctx.reply(text, {
@@ -308,13 +308,13 @@ await ctx.reply(text, {
 });
 ```
 
-Next to `remove_keyboard`, you can set `selective: true` in order to remove the custom keyboard for selected users only.
-This works analogously to [selectively sending a custom keyboard](#selectively-send-custom-keyboards).
+Рядом с `remove_keyboard` можно установить значение `selective: true`, чтобы удалить пользовательскую клавиатуру только для выбранных пользователей.
+Это работает аналогично [выборочной отправке пользовательской клавиатуры](#выборочная-отправка-пользовательских-клавиатур).
 
-## Plugin Summary
+## Краткая информация о плагине
 
-This plugin is built-in into the core of grammY.
-You don't need to install anything to use it.
-Simply import everything from grammY itself.
+Этот плагин встроен в ядро grammY.
+Вам не нужно ничего устанавливать, чтобы использовать его.
+Просто импортируйте все из самого grammY.
 
-Also, both the documentation and the API reference of this plugin are unified with the core package.
+Кроме того, документация и ссылка на API этого плагина объединены с основным пакетом.
