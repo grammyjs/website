@@ -357,7 +357,7 @@ If it responds, it means you're good to go!
 For testing and debugging purposes, you can run a local or remote development server before deploying your bot to production.
 
 In a development environment, your bot doesn't have access to your secret environment variables.
-So, [according to Cloudflare](https://developers.cloudflare.com/workers/configuration/secrets/#secrets-in-development), you can create a `.dev.vars` file in the root of your project to define secrets:
+So, [according to Cloudflare](https://developers.cloudflare.com/workers/configuration/secrets/#local-development-with-secrets), you can create a `.dev.vars` file in the root of your project to define secrets:
 
 ```env
 BOT_TOKEN=<your_bot_token>  # <- replace this with your bot token.
