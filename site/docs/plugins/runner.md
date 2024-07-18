@@ -118,9 +118,13 @@ Note that you can wait for the runner to terminate by `await`ing the `task` in t
 ```ts
 const handle = run(bot);
 
+// This will get called when the bot stops.
 handle.task().then(() => {
   console.log("Bot done processing!");
 });
+
+// Later, stop the bot via the handle of the runner.
+await handle.stop();
 ```
 
 ## Advanced Options
