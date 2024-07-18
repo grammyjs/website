@@ -5,46 +5,46 @@ next: false
 
 # Сессии и хранение данных (встроеннное)
 
-While you can always just write you own code to connect to a data storage of your choice, grammY supports a very convenient storage pattern called _sessions_.
+Хотя вы всегда можете просто написать свой собственный код для подключения к хранилищу данных по вашему выбору, grammY поддерживает очень удобный паттерн хранения данных, называемый _сессиями_.
 
-> [Jump down](#how-to-use-sessions) if you know how sessions work.
+> [Перейдите вниз](#как-использовать-сессии), если вы знаете, как работают сессии.
 
 ## Почему мы должны думать о хранении?
 
-In opposite to regular user accounts on Telegram, bots have [limited cloud storage](https://core.telegram.org/bots#how-are-bots-different-from-users) in the Telegram cloud.
-As a result, there are a few things you cannot do with bots:
+В отличие от обычных пользовательских аккаунтов в Telegram, боты имеют [ограниченное облачное хранилище](https://core.telegram.org/bots#how-are-bots-different-from-users).
+В результате есть несколько вещей, которые вы не можете делать с помощью ботов:
 
-1. You cannot access old messages that your bot received.
-2. You cannot access old messages that your bot sent.
-3. You cannot get a list of all chats with your bot.
-4. More things, e.g. no media overview, etc
+1. Вы не можете получить доступ к старым сообщениям, которые получил ваш бот.
+2. Вы не можете получить доступ к старым сообщениям, которые ваш бот отправил.
+3. Вы не можете получить список всех чатов с вашим ботом.
+4. Другие проблемы, например, нет обзора медиа и т. д.
 
-Basically, it boils down to the fact that **a bot only has access to the information of the currently incoming update** (e.g. message), i.e. the information that is available on the context object `ctx`.
+По сути, все сводится к тому, что **бот имеет доступ только к информации текущего входящего обновления** (например, сообщения), т.е. к той информации, которая доступна в объекте контекста `ctx`.
 
-Consequently, if you _do want to access_ old data, you have to store it as soon as it arrives.
-This means that you must have a data storage, such as a file, a database, or an in-memory storage.
+Следовательно, если вы хотите получить доступ к старым данным, вы должны хранить их сразу же после поступления.
+Это означает, что у вас должно быть хранилище данных, например, файл, база данных или хранилище в памяти.
 
-Of course, grammY has you covered here: you don't have to host this yourself.
-You can just use the grammY session storage which needs zero setup and is free forever.
+Конечно, grammY позаботился об этом: вам не нужно размещать это самостоятельно.
+Вы можете просто использовать сессионное хранилище grammY, которое не нуждается в настройке и остается бесплатным навсегда.
 
-> Naturally, there are plenty of other services that offer data storage as a service, and grammY integrates seamlessly with them, too.
-> If you want to run your own database, rest assured that grammY supports this equally well.
-> [Scroll down](#known-storage-adapters) to see which integrations are currently available.
+> Естественно, существует множество других сервисов, предлагающих хранение данных как услугу, и grammY также легко интегрируется с ними.
+> Если вы хотите запустить собственную базу данных, будьте уверены, что grammY поддерживает и это.
+> [Прокрутите вниз](#известные-адаптеры-хранения), чтобы узнать, какие интеграции доступны в настоящее время.
 
 ## Что такое сессии?
 
-It is a very common thing for bots to store some piece of data per chat.
-For example, let's say we want to build a bot that counts the number of times that a message contains the pizza emoji :pizza: in its text.
-This bot could be added to a group, and it can tell you how much you and your friends like pizza.
+Очень часто боты хранят некоторые данные в чате.
+Например, допустим, мы хотим создать бота, который будет подсчитывать количество раз, когда в тексте сообщения появляется эмодзи пиццы :pizza:.
+Этого бота можно добавить в группу, и он сможет рассказать вам, насколько вы и ваши друзья любите пиццу.
 
-When our pizza bot receives a message, it has to remember how many times it saw a :pizza: in that chat before.
-Your pizza count should of course not change when your sister adds the pizza bot to her group chat, so what we really want is to store _one counter per chat_.
+Когда наш пицца-бот получает сообщение, он должен вспомнить, сколько раз он видел :pizza: в этом чате раньше.
+Количество пицц, конечно, не должно измениться, когда ваша сестра добавит пицца-бота в свой групповой чат, так что на самом деле мы хотим хранить _один счетчик на каждый чат_.
 
-Sessions are an elegant way to store data _per chat_.
-You would use the chat identifier as the key in your database, and a counter as the value.
-In this case, we would call the chat identifier the _session key_.
-(You can read more about session keys [down here](#session-keys).)
-Effectively, your bot will store a map from a chat identifier to some custom session data, i.e. something like this:
+Сессии - это элегантный способ хранения данных _в каждом чате_.
+В качестве ключа в базе данных используется идентификатор чата, а в качестве значения - счетчик.
+В данном случае мы будем называть идентификатор чата _ключом сессии_.
+(Подробнее о ключах сессий вы можете прочитать [здесь](#ключи-сессии)).
+По сути, ваш бот будет хранить карту от идентификатора чата к некоторым пользовательским данным сессии, т. е. что-то вроде этого:
 
 ```json
 {
@@ -53,76 +53,76 @@ Effectively, your bot will store a map from a chat identifier to some custom ses
 }
 ```
 
-> When we say database, we really mean any data storage solution.
-> This includes files, cloud storage, or anything else.
+> Когда мы говорим "база данных", мы на самом деле имеем в виду любое решение для хранения данных.
+> Это и файлы, и облачные хранилища, и все остальное.
 
-Okay, but what are sessions now?
+Хорошо, но что такое сессии сейчас?
 
-We can install middleware on the bot that will provide a chat's session data on `ctx.session` for every update.
-The installed plugin will do something before and after our handlers are called:
+Мы можем установить на бота middleware, который будет предоставлять данные о сессии чата в `ctx.session` при каждом обновлении.
+Установленный плагин будет делать что-то до и после вызова наших обработчиков:
 
-1. **Before our middleware.**
-   The session plugin loads the session data for the current chat from the database.
-   It stores the data on the context object under `ctx.session`.
-2. **Our middleware runs.**
-   We can _read_ `ctx.session` to inspect which value was in the database.
-   For example, if a message is sent to the chat with the identifier `424242`, it would be `ctx.session = { pizzaCount: 24 }` while our middleware runs (at least with the example database state above).
-   We can also _modify_ `ctx.session` arbitrarily, so we can add, remove, and change fields as we like.
-3. **After our middleware.**
-   The session middleware makes sure that the data is written back to the database.
-   Whatever the value of `ctx.session` is after the middleware is done executing, it will be saved in the database.
+1. **Перед нашим middleware.**
+   Плагин сессии загружает данные сессии для текущего чата из базы данных.
+   Он сохраняет данные в объекте контекста под именем `ctx.session`.
+2. **Во время работы нашего middleware.**
+   Мы можем _читать_ `ctx.session`, чтобы узнать, какое значение было в базе данных.
+   Например, если в чат отправлено сообщение с идентификатором `424242`, то оно будет `ctx.session = { pizzaCount: 24 }` во время работы нашего middleware (по крайней мере, с приведенным выше примером состояния базы данных).
+   Мы также можем _модифицировать_ `ctx.session` произвольным образом, так что мы можем добавлять, удалять и изменять поля по своему усмотрению.
+3. **После нашего middleware.**
+   Middleware сессии следит за тем, чтобы данные были записаны обратно в базу данных.
+   Каким бы ни было значение `ctx.session` после завершения работы middleware, оно будет сохранено в базе данных.
 
-As a result, we never have to worry about actually communicating with the data storage anymore.
-We just modify the data in `ctx.session`, and the plugin will take care of the rest.
+В результате нам больше не нужно беспокоиться о взаимодействии с хранилищем данных.
+Мы просто изменяем данные в `ctx.session`, а плагин позаботится обо всем остальном.
 
 ## Когда использовать сессии?
 
-> [Skip ahead](#how-to-use-sessions) if you already know that you want to use sessions.
+> [Пропустите](#как-использовать-сессии), если вы уже знаете, что хотите использовать сессии.
 
-You may think, this is great, I never have to worry about databases again!
-And you are right, sessions are an ideal solution---but only for some types of data.
+Вы думаете: «Это здорово, мне больше не придется беспокоиться о базах данных!
+И вы будете правы, сессии - это идеальное решение, но только для некоторых типов данных.
 
-In our experience, there are use cases where sessions truly shine.
-On the other hand, there are cases where a traditional database may be better suited.
+По нашему опыту, есть случаи, когда сессии действительно великолепны.
+С другой стороны, есть случаи, когда традиционная база данных может быть более подходящей.
 
-This comparison may help you decide whether to use sessions or not.
+Это сравнение может помочь вам решить, стоит ли использовать сессии или нет.
 
-|                     | Sessions                                                    | Database                                                           |
-| ------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------ |
-| _Access_            | one isolated storage **per chat**                           | access same data from **multiple chats**                           |
-| _Sharing_           | data is **only used by bot**                                | data is **used by other systems** (e.g. by a connected web server) |
-| _Format_            | any JavaScript objects: strings, numbers, arrays, and so on | any data (binary, files, structured, etc)                          |
-| _Size per chat_     | preferably less than ~3 MB per chat                         | any size                                                           |
-| _Exclusive feature_ | Required by some grammY plugins.                            | Supports database transactions.                                    |
+|                        | Сессии                                                       | База данных                                                                     |
+| ---------------------- | ------------------------------------------------------------ | ------------------------------------------------------------------------------- |
+| _Доступ_               | одно изолированное хранилище **на чат**.                     | Доступ к одним и тем же данным из **разных чатов**.                             |
+| _Совместный доступ_    | данные **используются только ботом**.                        | данные **используются другими системами** (например, подключенным веб-сервером) |
+| _Формат_               | любые объекты JavaScript: строки, числа, массивы и так далее | любые данные (бинарные, файлы, структурированные и т. д.)                       |
+| _Размер одного чата_   | оптимально менее ~3 МБ на чат                                | любой размер                                                                    |
+| _Эксклюзивная функция_ | Требуется некоторым плагинам grammY.                         | Поддерживает транзакции базы данных.                                            |
 
-This does not mean that things _cannot work_ if you pick sessions/databases over the other.
-For example, you can of course store large binary data in your session.
-However, your bot would not perform as well as it could otherwise, so we recommend using sessions only where they make sense.
+Это не означает, что вещи _не могут работать_, если вы выбираете сессии/базы данных вместо других.
+Например, вы, конечно, можете хранить большие бинарные данные в сессии.
+Однако ваш бот будет работать не так хорошо, как мог бы, поэтому мы рекомендуем использовать сессии только там, где это имеет смысл.
 
 ## Как использовать сессии?
 
-You can add session support to grammY by using the built-in session middleware.
+Вы можете добавить поддержку сессий в grammY, используя middleware для сессий.
 
 ### Пример использования
 
-Here is an example bot that counts messages containing a pizza emoji :pizza::
+Вот пример бота, который подсчитывает сообщения, содержащие эмодзи пиццы :pizza::
 
 ::: code-group
 
 ```ts [TypeScript]
 import { Bot, Context, session, SessionFlavor } from "grammy";
 
-// Define the shape of our session.
+// Определите форму нашей сессии.
 interface SessionData {
   pizzaCount: number;
 }
 
-// Flavor the context type to include sessions.
+// Расширьте тип контекста, чтобы включить в него сессии.
 type MyContext = Context & SessionFlavor<SessionData>;
 
 const bot = new Bot<MyContext>("");
 
-// Install session middleware, and define the initial session value.
+// Установите middleware для сессии и определите начальное значение.
 function initial(): SessionData {
   return { pizzaCount: 0 };
 }
@@ -130,7 +130,7 @@ bot.use(session({ initial }));
 
 bot.command("hunger", async (ctx) => {
   const count = ctx.session.pizzaCount;
-  await ctx.reply(`Your hunger level is ${count}!`);
+  await ctx.reply(`Ваш уровень голода ${count}!`);
 });
 
 bot.hears(/.*🍕.*/, (ctx) => ctx.session.pizzaCount++);
@@ -143,7 +143,7 @@ const { Bot, session } = require("grammy");
 
 const bot = new Bot("");
 
-// Install session middleware, and define the initial session value.
+// Установите middleware для сессии и определите начальное значение.
 function initial() {
   return { pizzaCount: 0 };
 }
@@ -151,7 +151,7 @@ bot.use(session({ initial }));
 
 bot.command("hunger", async (ctx) => {
   const count = ctx.session.pizzaCount;
-  await ctx.reply(`Your hunger level is ${count}!`);
+  await ctx.reply(`Ваш уровень голода ${count}!`);
 });
 
 bot.hears(/.*🍕.*/, (ctx) => ctx.session.pizzaCount++);
@@ -167,17 +167,17 @@ import {
   SessionFlavor,
 } from "https://deno.land/x/grammy/mod.ts";
 
-// Define shape of our session.
+// Определите форму нашей сессии.
 interface SessionData {
   pizzaCount: number;
 }
 
-// Flavor the context type to include sessions.
+// Расширьте тип контекста, чтобы включить в него сессии.
 type MyContext = Context & SessionFlavor<SessionData>;
 
 const bot = new Bot<MyContext>("");
 
-// Install session middleware, and define the initial session value.
+// Установите middleware для сессии и определите начальное значение.
 function initial(): SessionData {
   return { pizzaCount: 0 };
 }
@@ -185,7 +185,7 @@ bot.use(session({ initial }));
 
 bot.command("hunger", async (ctx) => {
   const count = ctx.session.pizzaCount;
-  await ctx.reply(`Your hunger level is ${count}!`);
+  await ctx.reply(`Ваш уровень голода ${count}!`);
 });
 
 bot.hears(/.*🍕.*/, (ctx) => ctx.session.pizzaCount++);
@@ -195,81 +195,81 @@ bot.start();
 
 :::
 
-Note how we also have to [adjust the context type](../guide/context#customizing-the-context-object) to make the session available on it.
-The context flavor is called `SessionFlavor`.
+Обратите внимание, что нам также нужно [настроить тип контекста](../guide/context#кастомизация-объекта-контекста), чтобы сделать сессию доступной на нем.
+Расширитель контекста называется `SessionFlavor`.
 
 ### Первоначальные данные сессии
 
-When a user first contacts your bot, no session data is available for them.
-It is therefore important that you specify the `initial` option for the session middleware.
-Pass a function that generates a new object with initial session data for new chats.
+Когда пользователь впервые обращается к вашему боту, у него нет данных о сессии.
+Поэтому важно указать параметр `initial` для middleware сессии.
+Передайте функцию, которая генерирует новый объект с начальными данными сессии для новых чатов.
 
 ```ts
-// Creates a new object that will be used as initial session data.
+// Создает новый объект, который будет использоваться в качестве начальных данных сессии.
 function createInitialSessionData() {
   return {
     pizzaCount: 0,
-    // more data here
+    // другие данные здесь
   };
 }
 bot.use(session({ initial: createInitialSessionData }));
 ```
 
-Same but much shorter:
+Тоже самое, но короче:
 
 ```ts
 bot.use(session({ initial: () => ({ pizzaCount: 0 }) }));
 ```
 
-::: warning Sharing Objects
-Make sure to always create a _new object_.
-Do **NOT** do this:
+::: warning Совместное использование объектов
+Убедитесь, что всегда создаете _новый объект_.
+Не делайте этого **НЕ**:
 
 ```ts
-// DANGER, BAD, WRONG, STOP
-const initialData = { pizzaCount: 0 }; // NOPE
-bot.use(session({ initial: () => initialData })); // EVIL
+// ОПАСНОСТЬ, ПЛОХО, НЕПРАВИЛЬНО, СТОП
+const initialData = { pizzaCount: 0 }; // НЕТ
+bot.use(session({ initial: () => initialData })); // ЗЛО
 ```
 
-If you would do this, several chats might share the same session object in memory.
-Hence, changing the session data in one chat may accidentally impact the session data in the other chat.
+Если это сделать, то несколько чатов могут совместно использовать один и тот же объект сессии в памяти.
+Таким образом, изменение данных сессии в одном чате может случайно повлиять на данные сессии в другом чате.
 :::
 
-You may also omit the `initial` option entirely, even though you are well advised not to do that.
-If you don't specify it, reading `ctx.session` will throw an error for new users.
+Вы также можете полностью опустить опцию `initial`, хотя вам советуют этого не делать.
+Если вы не укажете его, чтение `ctx.session` будет вызывать ошибку у новых пользователей.
 
 ### Ключи сессии
 
-> This section describes an advanced feature that most people do not have to worry about.
-> You may want to continue with the section about [storing your data](#storing-your-data).
+> В этом разделе описывается расширенная функция, о которой большинству людей не нужно беспокоиться.
+> Возможно, вы захотите продолжить в разделе о [хранении ваших данных](#хранение-ваших-данных).
 
-You can specify which session key to use by passing a function called `getSessionKey` to the [options](/ref/core/sessionoptions#getsessionkey).
-That way, you can fundamentally change the way how the session plugin works.
-By default, data is stored per chat.
-Using `getSessionKey` allows you to store data per user, or per user-chat combination, or however you want.
-Here are three examples:
+Вы можете указать, какой ключ сессии использовать, передав функцию `getSessionKey` в [настройки](/ref/core/sessionoptions#getsessionkey).
+Таким образом, вы можете кардинально изменить принцип работы плагина сессий.
+По умолчанию данные хранятся в каждом чате.
+Использование `getSessionKey` позволяет хранить данные для каждого пользователя, или для комбинации пользователь-чат, или как вам угодно.
+Вот три примера:
 
 ::: code-group
 
 ```ts [TypeScript]
-// Stores data per chat (default).
+// Сохраняет данные в каждом чате (по умолчанию).
 function getSessionKey(ctx: Context): string | undefined {
-  // Let all users in a group chat share the same session,
-  // but give an independent private one to each user in private chats
+  // Пусть все пользователи в групповом чате используют одну и ту же сессию,
+  // но в личных чатах каждому пользователю предоставляется отдельная приватная сессия.
   return ctx.chat?.id.toString();
 }
 
-// Stores data per user.
+// Хранит данные для каждого пользователя.
 function getSessionKey(ctx: Context): string | undefined {
-  // Give every user their personal session storage
-  // (will be shared across groups and in their private chat)
+  // Дайте каждому пользователю его личное хранилище сессий
+  // (будет распространяться по группам и в личном чате)
   return ctx.from?.id.toString();
 }
 
-// Stores data per user-chat combination.
+// Хранит данные по каждой комбинации пользователь-чат.
 function getSessionKey(ctx: Context): string | undefined {
-  // Give every user their one personal session storage per chat with the bot
-  // (an independent session for each group and their private chat)
+  // Предоставьте каждому пользователю одно личное хранилище сессий для общения с ботом
+  // (независимая сессия для каждой группы и их приватного чата)
   return ctx.from === undefined || ctx.chat === undefined
     ? undefined
     : `${ctx.from.id}/${ctx.chat.id}`;
@@ -279,24 +279,24 @@ bot.use(session({ getSessionKey }));
 ```
 
 ```js [JavaScript]
-// Stores data per chat (default).
+// Сохраняет данные в каждом чате (по умолчанию).
 function getSessionKey(ctx) {
-  // Let all users in a group chat share the same session,
-  // but give an independent private one to each user in private chats
+  // Пусть все пользователи в групповом чате используют одну и ту же сессию,
+  // но в личных чатах каждому пользователю предоставляется отдельная приватная сессия.
   return ctx.chat?.id.toString();
 }
 
-// Stores data per user.
+// Хранит данные для каждого пользователя.
 function getSessionKey(ctx) {
-  // Give every user their personal session storage
-  // (will be shared across groups and in their private chat)
+  // Дайте каждому пользователю его личное хранилище сессий
+  // (будет распространяться по группам и в личном чате)
   return ctx.from?.id.toString();
 }
 
-// Stores data per user-chat combination.
+// Хранит данные по каждой комбинации пользователь-чат.
 function getSessionKey(ctx) {
-  // Give every user their one personal session storage per chat with the bot
-  // (an independent session for each group and their private chat)
+  // Предоставьте каждому пользователю одно личное хранилище сессий для общения с ботом
+  // (независимая сессия для каждой группы и их приватного чата)
   return ctx.from === undefined || ctx.chat === undefined
     ? undefined
     : `${ctx.from.id}/${ctx.chat.id}`;
@@ -307,75 +307,75 @@ bot.use(session({ getSessionKey }));
 
 :::
 
-Whenever `getSessionKey` returns `undefined`, `ctx.session` will be `undefined`.
-For example, the default session key resolver will not work for `poll`/`poll_answer` updates or `inline_query` updates because they do not belong to a chat (`ctx.chat` is `undefined`).
+Если `getSessionKey` возвращает `undefined`, то `ctx.session` будет `undefined`.
+Например, стандартный преобразователь сеансовых ключей не будет работать для обновлений `poll`/`poll_answer` или обновлений `inline_query`, потому что они не принадлежат чату (`ctx.chat` является `undefined`).
 
-::: warning Session Keys and Webhooks
-When you are running your bot on webhooks, you should avoid using the option `getSessionKey`.
-Telegram sends webhooks sequentially per chat, so the default session key resolver is the only implementation that guarantees not to cause data loss.
+::: warning Ключи сеансов и вебхуки
+Если вы запускаете бота на вебхуках, вам следует избегать использования опции `getSessionKey`.
+Telegram отправляет вебхуки последовательно в каждый чат, поэтому стандартный преобразователь сеансовых ключей --- единственная реализация, которая гарантированно не приведет к потере данных.
 
-If you must use the option (which is of course still possible), you should know what you are doing.
-Make sure you understand the consequences of this configuration by reading [this](../guide/deployment-types) article and especially [this](./runner#sequential-processing-where-necessary) one.
+Если вы должны использовать эту опцию (что, конечно, все еще возможно), вы должны знать, что вы делаете.
+Убедитесь, что вы понимаете последствия такой конфигурации, прочитав статью [здесь](../guide/deployment-types) и особенно [здесь](./runner#sequential-processing-where-necessary).
 :::
 
 ### Миграции чата
 
-If you are using sessions for groups, you should be aware that Telegram migrates regular groups to supergroups under certain circumstances (e.g. [here](https://github.com/telegramdesktop/tdesktop/issues/5593)).
+Если вы используете сессии для групп, вам следует знать, что при определенных обстоятельствах Telegram переносит обычные группы в супергруппы (например, [здесь](https://github.com/telegramdesktop/tdesktop/issues/5593)).
 
-This migration only occurs once for each group, but it can cause inconsistencies.
-This is because the migrated chat is technically a completely different chat that has a different identifier, and hence its session will be identified differently.
+Эта миграция происходит только один раз для каждой группы, но она может привести к несоответствиям.
+Это происходит потому, что перенесенный чат технически является совершенно другим чатом, имеющим другой идентификатор, и, следовательно, его сессия будет идентифицироваться по-другому.
 
-Currently, there is no safe solution for this problem because messages from the two chats are also differently identified.
-This can lead to data races.
-However, there are several ways of dealing with this issue:
+В настоящее время не существует безопасного решения этой проблемы, поскольку сообщения из двух чатов также идентифицируются по-разному.
+Это может привести к скачкам данных.
+Однако существует несколько способов решения этой проблемы:
 
-- Ignoring the problem.
-  The bot's session data will effectively reset when a group is migrated.
-  Simple, reliable, default behavior, but potentially unexpected once per chat.
-  For example, if a migration happens while a user is in a conversation powered by the [conversations plugin](./conversations), the conversation will be reset.
+- Игнорирование проблемы.
+  При переносе группы, данные сеанса бота фактически обнуляются.
+  Простое, надежное, стандартное поведение, но потенциально неожиданное один раз в чате.
+  Например, если миграция произойдет, когда пользователь находится в беседе, управляемой плагином [conversations](./conversations), беседа будет сброшена.
 
-- Only storing temporary data (or data with timeouts) in the session, and using a database for the important things that need to be migrated when a chat migrates.
-  This can then use transactions and custom logic to handle concurrent data access from the old and the new chat.
-  A lot of effort and has a performance cost, but the only truly reliable way to solve this problem.
+- Храните в сессии только временные данные (или данные с таймаутом), а для важных вещей, которые необходимо перенести при миграции чата, используйте базу данных.
+  Затем можно использовать транзакции и пользовательскую логику для обработки одновременного доступа к данным из старого и нового чата.
+  Это требует больших усилий и требует затрат на производительность, но это единственный по-настоящему надежный способ решить эту проблему.
 
-- It is theoretically possible to implement a workaround that matches both chats **without guarantee of reliability**.
-  The Telegram Bot API sends a migration update for each of the two chats once the migration was triggered (see the properties `migrate_to_chat_id` or `migrate_from_chat_id` in the [Telegram API Docs](https://core.telegram.org/bots/api#message)).
-  The issue is that there is no guarantee that these messages are sent before a new message in the supergroup appears.
-  Hence, the bot could receive a message from the new supergroup before it is aware of any migration and thus, it can not match the two chats, resulting in the aforementioned problems.
+- Теоретически возможно реализовать обходной путь, который будет соответствовать обоим чатам **без гарантии надежности**.
+  Telegram Bot API отправляет обновление миграции для каждого из двух чатов, как только миграция была запущена (см. свойства `migrate_to_chat_id` или `migrate_from_chat_id` в [документации Telegram API](https://core.telegram.org/bots/api#message)).
+  Проблема в том, что нет никакой гарантии, что эти сообщения будут отправлены до появления нового сообщения в супергруппе.
+  Следовательно, бот может получить сообщение из новой супергруппы до того, как узнает о переходе, и, таким образом, не сможет сопоставить два чата, что приведет к вышеупомянутым проблемам.
 
-- Another workaround would be to limit the bot only for supergroups with [filtering](../guide/filter-queries) (or limit only session related features to supergroups).
-  However, this shifts the problematic / inconvenience to the users.
+- Другим обходным решением было бы ограничить бота только для супергрупп с помощью [фильтров](../guide/filter-queries) (или ограничить только функции, связанные с сессиями, для супергрупп).
+  Однако это перекладывает проблему/неудобство на пользователей.
 
-- Letting the users decide explicitly.
-  ("This chat was migrated, do you want to transfer the bot data?")
-  Much more reliable and transparent than automatic migrations due to the artificially added delay, but worse UX.
+- Предоставление пользователям возможности принимать решение в явном виде.
+  («Этот чат был перенесен, хотите ли вы перенести данные бота?»).
+  Гораздо надежнее и прозрачнее автоматических миграций за счет искусственно добавленной задержки, но хуже пользовательский опыт.
 
-Finally, it is up to the developer to decide how to deal with this edge case.
-Depending on the bot functionalities one might choose one way or another.
-If the data in question is short-lived (e.g. temporary, timeouts involved) the migration is less of a problem.
-A user would experience the migration as a hiccup (if the timing is bad) and would simply have to rerun the feature.
+И наконец, разработчик сам решает, как поступить в этом случае.
+В зависимости от функциональности бота можно выбрать тот или иной способ.
+Если данные недолговечны (например, временные, с таймаутами), миграция не представляет особой проблемы.
+Пользователь воспримет миграцию как заминку (если время неудачно выбрано) и просто запустит функцию заново.
 
-Ignoring the problem is surely the easiest way, nevertheless it is important to know about this behavior.
-Otherwise it can cause confusion and might cost hours of debugging time.
+Игнорировать проблему, конечно, проще всего, но все же важно знать о таком поведении.
+В противном случае это может привести к путанице и стоить часов времени на отладку.
 
 ### Хранение ваших данных
 
-In all examples above, the session data is stored in your RAM, so as soon as your bot is stopped, all data is lost.
-This is convenient when you develop your bot or if you run automatic tests (no database setup needed), however, **that is most likely not desired in production**.
-In production, you would want to persist your data, for example in a file, a database, or some other storage.
+Во всех приведенных выше примерах данные сессии хранятся в оперативной памяти, поэтому при остановке бота все данные будут потеряны.
+Это удобно, когда вы разрабатываете бота или запускаете автоматические тесты (не нужно настраивать базу данных), однако **это, скорее всего, нежелательно в production**.
+В production билде вы захотите сохранить данные, например, в файле, базе данных или другом хранилище.
 
-You should use the `storage` option of the session middleware to connect it to your datastore.
-There may already be a storage adapter written for grammY that you can use (see [below](#known-storage-adapters)), but if not, it usually only takes 5 lines of code to implement one yourself.
+Вам следует использовать опцию `storage` в middleware сессии, чтобы подключить его к вашему хранилищу данных.
+Возможно, для grammY уже написан адаптер хранения, который вы можете использовать (см. [ниже](#известные-адаптеры-хранения)), но если это не так, то обычно требуется всего 5 строк кода, чтобы реализовать его самостоятельно.
 
 ## Известные адаптеры хранения
 
-By default, sessions will be stored [in your memory](#ram-default) by the built-in storage adapter.
-You can also use persistent sessions that grammY [offers for free](#free-storage), or connect to [external storages](#external-storage-solutions).
+По умолчанию сессии будут храниться [в вашей памяти](#оперативная-память-по-умолчанию) с помощью встроенного адаптера хранения.
+Вы также можете использовать постоянные сессии, которые grammY [предлагает бесплатно](#бесплатное-хранилище), или подключаться к [внешним хранилищам](#внешние-решения-для-хранения-данных).
 
-This is how you can install one of the storage adapters from below.
+Вот как можно установить один из адаптеров хранения данных снизу.
 
 ```ts
-const storageAdapter = ... // depends on setup
+const storageAdapter = ... // зависит от настроек
 
 bot.use(session({
   initial: ...
@@ -385,29 +385,29 @@ bot.use(session({
 
 ### Оперативная память (по умолчанию)
 
-By default, all data will be stored in RAM.
-This means that all sessions are lost as soon as your bot stops.
+По умолчанию все данные будут храниться в оперативной памяти.
+Это означает, что все сессии будут потеряны, как только ваш бот остановится.
 
-You can use the `MemorySessionStorage` class ([API Reference](/ref/core/memorysessionstorage)) from the grammY core package if you want to configure further things about storing data in RAM.
+Вы можете использовать класс `MemorySessionStorage` ([документация API](/ref/core/memorysessionstorage)) из пакета ядра grammY, если хотите настроить дополнительные параметры хранения данных в оперативной памяти.
 
 ```ts
 bot.use(session({
   initial: ...
-  storage: new MemorySessionStorage() // also the default value
+  storage: new MemorySessionStorage() // также значение по умолчанию
 }));
 ```
 
 ### Бесплатное хранилище
 
-> The free storage is meant to be used in hobby projects.
-> Production-scale applications should host their own database.
-> The list of supported integrations of external storage solutions is [down here](#external-storage-solutions).
+> Бесплатное хранилище предназначено для использования в хобби проектах.
+> Приложениям производственного масштаба следует размещать собственную базу данных.
+> Список поддерживаемых интеграций внешних решений для хранения данных находится [внизу](#внешние-решения-для-хранения-данных).
 
-A benefit of using grammY is that you get access to free cloud storage.
-It requires zero setup---all authentication is done using your bot token.
-Check out the [repository](https://github.com/grammyjs/storages/tree/main/packages/free)!
+Преимущество использования grammY заключается в том, что вы получаете доступ к бесплатному облачному хранилищу.
+Оно не требует настройки - вся аутентификация осуществляется с помощью токена вашего бота.
+Загляните в [репозиторий](https://github.com/grammyjs/storages/tree/main/packages/free)!
 
-It is very easy to use:
+Он очень прост в использовании:
 
 ::: code-group
 
@@ -440,10 +440,10 @@ bot.use(session({
 
 :::
 
-Done!
-Your bot will now use a persistent data storage.
+Готово!
+Теперь ваш бот будет использовать постоянное хранилище данных.
 
-Here is a full example bot that you can copy to try it out.
+Здесь приведен полный пример бота, который вы можете скопировать, чтобы опробовать его.
 
 ::: code-group
 
@@ -451,13 +451,13 @@ Here is a full example bot that you can copy to try it out.
 import { Bot, Context, session, SessionFlavor } from "grammy";
 import { freeStorage } from "@grammyjs/storage-free";
 
-// Define the session structure.
+// Определите структуру сессии.
 interface SessionData {
   count: number;
 }
 type MyContext = Context & SessionFlavor<SessionData>;
 
-// Create the bot and register the session middleware.
+// Создайте бота и зарегистрируйте middleware сессии.
 const bot = new Bot<MyContext>("");
 
 bot.use(
@@ -467,7 +467,7 @@ bot.use(
   }),
 );
 
-// Use persistent session data in update handlers.
+// Используйте постоянные данные сессии в обработчиках обновлений.
 bot.on("message", async (ctx) => {
   ctx.session.count++;
   await ctx.reply(`Message count: ${ctx.session.count}`);
@@ -481,7 +481,7 @@ bot.start();
 const { Bot, session } = require("grammy");
 const { freeStorage } = require("@grammyjs/storage-free");
 
-// Create the bot and register the session middleware.
+// Создайте бота и зарегистрируйте middleware сессии.
 const bot = new Bot("");
 
 bot.use(
@@ -491,7 +491,7 @@ bot.use(
   }),
 );
 
-// Use persistent session data in update handlers.
+// Используйте постоянные данные сессии в обработчиках обновлений.
 bot.on("message", async (ctx) => {
   ctx.session.count++;
   await ctx.reply(`Message count: ${ctx.session.count}`);
@@ -510,13 +510,13 @@ import {
 } from "https://deno.land/x/grammy/mod.ts";
 import { freeStorage } from "https://deno.land/x/grammy_storages/free/src/mod.ts";
 
-// Define the session structure.
+// Определите структуру сессии.
 interface SessionData {
   count: number;
 }
 type MyContext = Context & SessionFlavor<SessionData>;
 
-// Create the bot and register the session middleware.
+// Создайте бота и зарегистрируйте middleware сессии.
 const bot = new Bot<MyContext>("");
 
 bot.use(
@@ -526,7 +526,7 @@ bot.use(
   }),
 );
 
-// Use persistent session data in update handlers.
+// Используйте постоянные данные сессии в обработчиках обновлений.
 bot.on("message", async (ctx) => {
   ctx.session.count++;
   await ctx.reply(`Message count: ${ctx.session.count}`);
@@ -538,60 +538,60 @@ bot.start();
 
 :::
 
-### External Storage Solutions
+### Внешние решения для хранения данных
 
-We maintain a collection of official storage adapters that allow you to store your session data in different places.
-Each of them will require you to register at a hosting provider, or to host your own storage solution.
+Мы поддерживаем коллекцию официальных адаптеров для хранения данных, которые позволяют хранить данные о сеансах в различных местах.
+Каждый из них потребует от вас регистрации у хостинг-провайдера или размещения собственного решения для хранения данных.
 
-Visit [here](https://github.com/grammyjs/storages/tree/main/packages#grammy-storages) to see a list of currently supported adapters and get guidance on using them.
+Посетите [это место](https://github.com/grammyjs/storages/tree/main/packages#grammy-storages), чтобы посмотреть список поддерживаемых в настоящее время адаптеров и получить рекомендации по их использованию.
 
-::: tip Your storage is not supported? No problem!
-Creating a custom storage adapter is extremely simple.
-The `storage` option works with any object that adheres to this [interface](/ref/core/storageadapter), so you can connect to your storage just in a few lines of code.
+::: tip Ваше хранилище не поддерживается? Не беда!
+Создать собственный адаптер хранилища очень просто.
+Опция `storage` работает с любым объектом, который соответствует этому [интерфейсу](/ref/core/storageadapter), так что вы можете подключиться к своему хранилищу всего в нескольких строчках кода.
 
-> If you published your own storage adapter, feel free to edit this page and link it here, so that other people can use it.
+> Если вы опубликовали свой собственный адаптер хранения, не стесняйтесь редактировать эту страницу и ссылаться на нее, чтобы другие люди могли использовать его.
 
 :::
 
-All storage adapters can be installed in the same way.
-First, you should look out for the package name of the adapter of your choice.
-For example, the storage adapter for Supabase is called `supabase`.
+Все адаптеры для хранения данных устанавливаются одинаково.
+Во-первых, необходимо обратить внимание на имя пакета выбранного вами адаптера.
+Например, адаптер хранения для Supabase называется `supabase`.
 
-**On Node.js**, you can install the adapters via `npm i @grammyjs/storage-<name>`.
-For example, the storage adapter for Supabase can be installed via `npm i @grammyjs/storage-supabase`.
+**На Node.js** вы можете установить адаптеры с помощью команды `npm i @grammyjs/storage-<name>`.
+Например, адаптер хранения для Supabase можно установить через `npm i @grammyjs/storage-supabase`.
 
-**On Deno**, all storage adapters are published in the same Deno module.
-You can then import the adapter you need from its subpath at `https://deno.land/x/grammy_storages/<adapter>/src/mod.ts`.
-For example, the storage adapter for Supabase can be imported from `https://deno.land/x/grammy_storages/supabase/src/mod.ts`.
+**На Deno** все адаптеры хранения публикуются в одном модуле Deno.
+Вы можете импортировать нужный вам адаптер из его подпапки по адресу `https://deno.land/x/grammy_storages/<adapter>/src/mod.ts`.
+Например, адаптер хранения для Supabase можно импортировать из `https://deno.land/x/grammy_storages/supabase/src/mod.ts`.
 
-Check out the respective repositories about each individual setup.
-They contain information about how to connect them to your storage solution.
+Ознакомьтесь с соответствующими репозиториями, посвященными каждой отдельной настройке.
+В них содержится информация о том, как подключить их к вашему решению для хранения данных.
 
-You may also want to [scroll down](#storage-enhancements) to see how the session plugin is able to enhance any storage adapter.
+Вы также можете [прокрутить страницу вниз](#усовершенствования-для-хранилищ), чтобы узнать, как плагин сессий может улучшить любой адаптер хранения.
 
 ## Мульти сессии
 
-The session plugin is able to store different fragments of your session data in different places.
-Basically, this works as if you would install multiple independent instances of the the session plugin, each with a different configuration.
+Плагин сессий способен хранить различные фрагменты данных сессии в разных местах.
+В принципе, это работает так, как если бы вы установили несколько независимых экземпляров плагина сессий, каждый из которых имеет свою конфигурацию.
 
-Each of these data fragments will have a name under which they can store their data.
-You will then be able to access `ctx.session.foo` and `ctx.session.bar` and these values were loaded from different data storages, and they will also be written back to different data storages.
-Naturally, you can also use the same storage with different configuration.
+Каждый из этих фрагментов данных будет иметь имя, под которым он может хранить свои данные.
+Вы сможете получить доступ к `ctx.session.foo` и `ctx.session.bar`, причем эти значения были загружены из разных хранилищ данных, и они же будут записаны обратно в разные хранилища данных.
+Естественно, вы можете использовать одно и то же хранилище с разной конфигурацией.
 
-It is also possible to use different [session keys](#session-keys) for each fragment.
-As a result, you can store some data per chat and some data per user.
+Также можно использовать разные [ключи сессий](#ключи-сессии) для каждого фрагмента.
+В результате вы можете хранить часть данных для каждого чата, а часть - для каждого пользователя.
 
-> If you are using [grammY runner](./runner), make sure to configure `sequentialize` correctly by returning **all** session keys as constraints from the function.
+> Если вы используете [grammY runner](./runner), убедитесь, что вы правильно настроили `sequentialize`, возвращая **все** сессионные ключи в качестве ограничений из функции.
 
-You can use this feature by passing `type: "multi"` to the session configuration.
-In turn, you will need to configure each fragment with its own config.
+Вы можете использовать эту возможность, передав `type: "multi"` в конфигурацию сессии.
+В свою очередь, вам нужно будет настроить каждый фрагмент со своим собственным конфигом.
 
 ```ts
 bot.use(
   session({
     type: "multi",
     foo: {
-      // these are also the default values
+      // Это также значения по умолчанию
       storage: new MemorySessionStorage(),
       initial: () => undefined,
       getSessionKey: (ctx) => ctx.chat?.id.toString(),
@@ -605,12 +605,12 @@ bot.use(
 );
 ```
 
-Note that you must add a configuration entry for every fragment you want to use.
-If you wish to use the default configuration, you can specify an empty object (such as we do for `baz` in the above example).
+Обратите внимание, что вы должны добавить запись конфигурации для каждого фрагмента, который вы хотите использовать.
+Если вы хотите использовать конфигурацию по умолчанию, вы можете указать пустой объект (как мы сделали для `baz` в примере выше).
 
-Your session data will still consist of an object with multiple properties.
-This is why your context flavor does not change.
-The above example could use this interface when customizing the context object:
+Данные вашей сессии все равно будут состоять из объекта с несколькими свойствами.
+Поэтому ваш расширитель контекста не изменится.
+В приведенном выше примере можно использовать этот интерфейс при настройке объекта контекста:
 
 ```ts
 interface SessionData {
@@ -620,136 +620,136 @@ interface SessionData {
 }
 ```
 
-You can then keep using `SessionFlavor<SessionData>` for your context object.
+После этого вы можете продолжать использовать `SessionFlavor<SessionData>` для своего контекстного объекта.
 
-## Lazy Sessions
+## Ленивые сессии
 
-> This section describes a performance optimization that most people do not have to worry about.
+> В этом разделе описывается оптимизация производительности, о которой большинству людей не нужно беспокоиться.
 
-Lazy sessions is an alternative implementation of sessions that can significantly reduce the database traffic of your bot by skipping superfluous read and write operations.
+Ленивые сессии - это альтернативная реализация сессий, которая может значительно снизить трафик базы данных вашего бота, пропуская лишние операции чтения и записи.
 
-Let's assume that your bot is in a group chat where it does not respond to regular text messages, but only to commands.
-Without sessions, this would happen:
+Предположим, что ваш бот находится в групповом чате, где он не отвечает на обычные текстовые сообщения, а только на команды.
+Без сессий это будет выглядеть следующим образом:
 
-1. Update with new text message is sent to your bot.
-2. No handler is invoked, so no action is taken.
-3. The middleware completes immediately.
+1. Вашему боту отправляется обновление с новым текстовым сообщением.
+2. Никакой обработчик не вызывается, поэтому никаких действий не происходит.
+3. middleware завершает работу немедленно.
 
-As soon as you install default (strict) sessions, which directly provide the session data on the context object, this happens:
+Как только вы устанавливаете стандартные (строгие) сессии, которые напрямую предоставляют данные сессии в объект контекста, это происходит:
 
-1. Update with new text message is sent to your bot.
-2. Session data is loaded from session storage (e.g. database).
-3. No handler is invoked, so no action is taken.
-4. Identical session data is written back to session storage.
-5. The middleware completes, and has performed a read and a write to the data storage.
+1. Обновление с новым текстовым сообщением будет отправлено вашему боту.
+2. Данные сессии загружаются из хранилища сессий (например, базы данных).
+3. Обработчик не вызывается, поэтому никаких действий не происходит.
+4. Идентичные данные сеанса записываются обратно в хранилище сеанса.
+5. middleware завершает работу, выполнив чтение и запись в хранилище данных.
 
-Depending on the nature of your bot, this may lead to a lot of superfluous reads and writes.
-Lazy sessions allow you to skip steps 2. and 4. if it turns out that no invoked handler needs session data.
-In that case, no data will be read from the data storage, nor written back to it.
+В зависимости от характера вашего бота, это может привести к большому количеству лишних чтений и записей.
+Ленивые сессии позволяют пропустить шаги 2. и 4., если окажется, что ни одному вызванному обработчику не нужны данные сессии.
+В этом случае данные не будут ни считываться из хранилища данных, ни записываться в него.
 
-This is achieved by intercepting access to `ctx.session`.
-If no handler is invoked, then `ctx.session` will never be accessed.
-Lazy sessions use this as an indicator to prevent database communication.
+Это достигается путем перехвата доступа к `ctx.session`.
+Если обработчик не вызван, то к `ctx.session` никогда не будет получен доступ.
+Ленивые сессии используют это как индикатор для предотвращения связи с базой данных.
 
-In practice, instead of having the session data available under `ctx.session`, you will now have _a promise of the session data_ available under `ctx.session`.
+На практике вместо того, чтобы иметь данные сессии, доступные в `ctx.session`, вы теперь будете иметь _данные сессии в виде `Promise`_, доступные в `ctx.session`.
 
 ```ts
-// Default sessions (strict sessions)
+// Сессии по умолчанию (строгие сессии)
 bot.command("settings", async (ctx) => {
-  // `session` is the session data
+  // `session` - это данные сессии
   const session = ctx.session;
 });
 
-// Lazy sessions
+// Ленивые сессии
 bot.command("settings", async (ctx) => {
-  // `promise` is a Promise of the session data, and
+  // `promise` - это Promise данных сессии, и
   const promise = ctx.session;
-  // `session` is the session data
+  // `session` - это данные сессии
   const session = await ctx.session;
 });
 ```
 
-If you never access `ctx.session`, no operations will be performed, but as soon as you access the `session` property on the context object, the read operation will be triggered.
-If you never trigger the read (or directly assign a new value to `ctx.session`), we know that we also won't need to write any data back, because there is no way it could have been altered.
-Consequently, we skip the write operation, too.
-As a result, we achieve minimal read and write operations, but you can use session almost identical to before, just with a few `async` and `await` keywords mixed into your code.
+Если вы никогда не обращаетесь к `ctx.session`, то никаких операций не будет, но как только вы обратитесь к свойству `session` контекстного объекта, будет запущена операция чтения.
+Если вы никогда не вызываете операцию чтения (или напрямую присваиваете новое значение `ctx.session`), мы знаем, что нам также не придется записывать данные обратно, поскольку они никак не могли быть изменены.
+Следовательно, мы пропускаем и операцию записи.
+В результате мы получаем минимум операций чтения и записи, но вы можете использовать сессию почти так же, как и раньше, просто добавив в код несколько ключевых слов `async` и `await`.
 
-So what is necessary to use lazy sessions instead of the default (strict) ones?
-You mainly have to do three things:
+Так что же нужно для использования ленивых сессий вместо стандартных (строгих)?
+В основном вам нужно сделать три вещи:
 
-1. Flavor your context with `LazySessionFlavor` instead of `SessionFlavor`.
-   They work the same way, just that `ctx.session` is wrapped inside a promise for the lazy variant.
-2. Use `lazySession` instead of `session` to register your session middleware.
-3. Always put an inline `await ctx.session` instead of `ctx.session` everywhere in your middleware, for both reads and writes.
-   Don't worry: You can `await` the promise with your session data as many times as you want, but you will always refer to the same value, so there are never going to be duplicate reads for an update.
+1. Используйте для расширения контекста `LazySessionFlavor` вместо `SessionFlavor`.
+   Они работают одинаково, просто для ленивого варианта `ctx.session` обернута в `Promise`.
+2. Используйте `lazySession` вместо `session` для регистрации middleware сессии.
+3. Всегда ставьте строку `await ctx.session` вместо `ctx.session` везде в вашем middleware, как для чтения, так и для записи.
+   Не волнуйтесь: вы можете `await` promise с данными сессии столько раз, сколько захотите, но вы всегда будете ссылаться на одно и то же значение, поэтому никогда не будет дублирования чтения для обновления.
 
-Note that with lazy sessions you can assign both objects and promises of objects to `ctx.session`.
-If you set `ctx.session` to be a promise, it will be `await`ed before writing the data back to the data storage.
-This would allow for the following code:
+Обратите внимание, что при использовании ленивых сессий вы можете присваивать `ctx.session` как объекты, так и promise объектов.
+Если вы зададите `ctx.session` как promise, то оно будет `await` перед записью данных обратно в хранилище данных.
+Это позволит использовать следующий код:
 
 ```ts
 bot.command("reset", async (ctx) => {
-  // Much shorter than having to `await ctx.session` first:
+  // Гораздо короче, чем если бы сначала нужно было `await ctx.session`:
   ctx.session = ctx.session.then((stats) => {
     stats.counter = 0;
   });
 });
 ```
 
-One may argue well that explicitly using `await` is preferable over assigning a promise to `ctx.session`, the point is that you _could_ do this if you like that style better for some reason.
+Можно долго доказывать, что явное использование `await` предпочтительнее, чем назначение promise на `ctx.session`, но суть в том, что вы _можете_ сделать это, если вам по какой-то причине больше нравится такой стиль.
 
-::: tip Plugins That Need Sessions
-Plugin developers that make use of `ctx.session` should always allow users to pass `SessionFlavor | LazySessionFlavor` and hence support both modes.
-In the plugin code, simply await `ctx.session` all the time: if a non-promise object is passed, this will simply be evaluated to itself, so you effectively only write code for lazy sessions and thus support strict sessions automatically.
+::: tip Плагины, которым нужны сессии
+Разработчики плагинов, использующих `ctx.session`, должны всегда разрешать пользователям передавать `SessionFlavor | LazySessionFlavor` и, следовательно, поддерживать оба режима.
+В коде плагина просто постоянно await `ctx.session`: если передается объект, не являющийся promise, он просто будет оценен сам по себе, так что вы эффективно пишете код только для ленивых сессий и, таким образом, автоматически поддерживаете строгие сессии.
 :::
 
-## Storage Enhancements
+## Усовершенствования для хранилищ
 
-The session plugin is able to enhance any storage adapter by adding more features to the storage: [timeouts](#timeouts) and [migrations](#migrations).
+Плагин сессий способен расширить возможности любого адаптера хранилища, добавив к нему дополнительные функции: [таймауты](#таймауты) и [миграции](#миграции).
 
-They can be installed using the `enhanceStorage` function.
+Их можно установить с помощью функции `enhanceStorage`.
 
 ```ts
-// Use the enhanced storage adapter.
+// Используйте улучшенный адаптер для хранения данных.
 bot.use(
   session({
     storage: enhanceStorage({
-      storage: freeStorage(bot.token), // adjust this
-      // more config here
+      storage: freeStorage(bot.token), // настройте это
+      // другие настройки здесь
     }),
   }),
 );
 ```
 
-You can also use both at the same time.
+Вы также можете использовать оба варианта одновременно.
 
-### Timeouts
+### Таймауты
 
-The timeouts enhancement can add an expiry date to the session data.
-This means that you can specify a time period, and if the session is never changed during this time, the data for the particular chat will be deleted.
+Улучшение таймаутов позволяет добавить дату истечения срока действия к данным сессии.
+Это означает, что вы можете указать период времени, и если в течение этого времени сессия не будет изменена, данные для конкретного чата будут удалены.
 
-You can use session timeouts via the `millisecondsToLive` option.
+Вы можете использовать тайм-ауты сессий с помощью опции `millisecondsToLive`.
 
 ```ts
 const enhanced = enhanceStorage({
   storage,
-  millisecondsToLive: 30 * 60 * 1000, // 30 min
+  millisecondsToLive: 30 * 60 * 1000, // 30 минут
 });
 ```
 
-Note that the actual deletion of the data will only happen the next time the respective session data is read.
+Обратите внимание, что фактическое удаление данных произойдет только при следующем чтении данных соответствующей сессии.
 
-### Migrations
+### Миграции
 
-Migrations are useful if you develop your bot further while there is already existing session data.
-You can use them if you want to change your session data without breaking all previous data.
+Миграции полезны, если вы развиваете бота дальше, а данные о сессиях уже существуют.
+Вы можете использовать их, если хотите изменить данные сессии, не ломая все предыдущие данные.
 
-This works by giving version numbers to the data, and then writing small migration functions.
-The migration functions define how to upgrade session data from one version to the next.
+Для этого данным присваиваются номера версий, а затем пишутся небольшие функции миграции.
+Функции миграции определяют, как обновлять данные сессии от одной версии к другой.
 
-We will try to illustrate this by example.
-Let's say that you stored information about the pet of a user.
-So far, you only stored the names of the pets in a string array in `ctx.session.petNames`.
+Мы попытаемся проиллюстрировать это на примере.
+Допустим, вы храните информацию о домашнем животном пользователя.
+До сих пор вы хранили только имена питомцев в строковом массиве в `ctx.session.petNames`.
 
 ```ts
 interface SessionData {
@@ -757,9 +757,9 @@ interface SessionData {
 }
 ```
 
-Now, you get the idea that you also want to store the age of the pets.
+Теперь вы понимаете, что хотите также хранить возраст питомцев.
 
-You could do this:
+Вы можете сделать следующее:
 
 ```ts
 interface SessionData {
@@ -768,9 +768,9 @@ interface SessionData {
 }
 ```
 
-This would not break your existing session data.
-However, this is not so great, because the names and the birthdays are now stored in different places.
-Ideally, your session data should look like this:
+Это не нарушит существующие данные сессии.
+Однако это не очень хорошо, потому что имена и дни рождения теперь хранятся в разных местах.
+В идеале данные сессии должны выглядеть следующим образом:
 
 ```ts
 interface Pet {
@@ -783,7 +783,7 @@ interface SessionData {
 }
 ```
 
-Migration functions let you transform the old string array into the new array of pet objects.
+Функции миграции позволяют преобразовать старый массив строк в новый массив объектов домашних животных.
 
 ::: code-group
 
@@ -823,12 +823,12 @@ const enhanced = enhanceStorage({
 
 :::
 
-Whenever session data is read, the storage enhancement will check if the session data is already at version `1`.
-If the version is lower (or missing because you were not using this feature before) then the migration function will be run.
-This upgrades the data to version `1`.
-Hence, in your bot, you can always just assume that your session data has the most up to date structure, and the storage enhancement will take care of the rest and migrate your data as necessary.
+При считывании данных сессии улучшение хранилища проверит, не находятся ли данные сессии в версии `1`.
+Если версия ниже (или отсутствует, потому что вы не использовали эту функцию раньше), то будет запущена функция миграции.
+Это обновит данные до версии `1`.
+Таким образом, в вашем боте вы всегда можете считать, что данные сессии имеют самую актуальную структуру, а улучшение хранилища позаботится об остальном и при необходимости перенесет ваши данные.
 
-As time evolves and your bot changes further, you can add more and more migration functions:
+С течением времени и дальнейшими изменениями вашего бота вы сможете добавлять все больше и больше функций миграции:
 
 ```ts
 const enhanced = enhanceStorage({
@@ -844,17 +844,17 @@ const enhanced = enhanceStorage({
 });
 ```
 
-You can pick any JavaScript numbers as versions.
-No matter how far the session data for a chat has evolved, as soon as it is read, it will be migrated through the versions until it uses the most recent structure.
+В качестве версий можно выбрать любые числа JavaScript.
+Независимо от того, насколько изменились данные сессии для чата, при считывании они будут перемещаться по версиям до тех пор, пока не будет использована самая последняя структура.
 
-### Types for Storage Enhancements
+### Типы для усовершенствования хранилищ
 
-When you use storage enhancements, your storage adapter will have to store more data than just your session data.
-For example, it has to store the time when the session was last stored so that it can correctly [expire](#timeouts) the data upon timeout.
-In some cases, TypeScript will be able to infer the correct types for your storage adapter.
-However, more often than not, you need to annotate the types of the session data explicitly in several places.
+При использовании расширений хранилища адаптер хранилища должен хранить больше данных, чем просто данные сеанса.
+Например, он должен хранить время, когда сессия была сохранена в последний раз, чтобы правильно [просрочить](#timeouts) данные по истечении времени.
+В некоторых случаях TypeScript сможет определить правильные типы для вашего адаптера хранения.
+Однако чаще всего необходимо явно указать типы данных сессии в нескольких местах.
 
-The following example code snippet illustrates how to use the timeout enhancement with correct TypeScript types.
+Следующий пример фрагмента кода иллюстрирует использование улучшения таймаута с правильными типами TypeScript.
 
 ```ts
 interface SessionData {
@@ -877,19 +877,19 @@ bot.use(
   }),
 );
 
-bot.on("message", (ctx) => ctx.reply(`Chat count is ${ctx.session.count++}`));
+bot.on("message", (ctx) => ctx.reply(`Счетчик чата теперь: ${ctx.session.count++}`));
 
 bot.start();
 ```
 
-Note that every [storage adapter](#known-storage-adapters) is able to take a type parameter.
-For example, for [free sessions](#free-storage), you can use `freeStorage<Enhance<SessionData>>` instead of `MemorySessionStorage<Enhance<SessionData>>`.
-The same is true for all other storage adapters.
+Обратите внимание, что каждый [адаптер хранения](#известные-адаптеры-хранения) может принимать параметр типа.
+Например, для [бесплатных сессий](#бесплатное-хранилище) можно использовать `freeStorage<Enhance<SessionData>>` вместо `MemorySessionStorage<Enhance<SessionData>>`.
+То же самое справедливо и для всех остальных адаптеров хранения.
 
-## Plugin Summary
+## Краткая информация о плагине
 
-This plugin is built-in into the core of grammY.
-You don't need to install anything to use it.
-Simply import everything from grammY itself.
+Этот плагин встроен в ядро grammY.
+Вам не нужно ничего устанавливать, чтобы использовать его.
+Просто импортируйте все из самого grammY.
 
-Also, both the documentation and the API reference of this plugin are unified with the core package.
+Кроме того, документация и ссылка на API этого плагина объединены с основным пакетом.
