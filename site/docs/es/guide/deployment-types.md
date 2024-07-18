@@ -25,14 +25,14 @@ Tu bot puede atraerlos (long polling), o los servidores de Telegram pueden empuj
 
 ## ¿Cómo funciona el Long Polling?
 
-Imagínese que está comprando una bola de helado en su heladería de confianza.
+_Imagínese que está comprando una bola de helado en su heladería de confianza.
 Te acercas al empleado y le pides tu tipo de helado favorito.
-Desgraciadamente, te avisa de que se han agotado las existencias.
+Desgraciadamente, te avisa de que se han agotado las existencias._
 
-Al día siguiente, vuelves a tener antojo de ese delicioso helado, así que vuelves al mismo sitio y pides el mismo helado.
+_Al día siguiente, vuelves a tener antojo de ese delicioso helado, así que vuelves al mismo sitio y pides el mismo helado.
 Buenas noticias.
 Han repuesto durante la noche para que puedas disfrutar hoy de tu helado de caramelo salado.
-Qué rico.
+Qué rico._
 
 **Polling** significa que grammY envía proactivamente una solicitud a Telegram, pidiendo nuevas actualizaciones (piensa: mensajes).
 Si no hay mensajes, Telegram devolverá una lista vacía, indicando que no se han enviado nuevos mensajes a su bot desde la última vez que preguntó.
@@ -105,14 +105,14 @@ Esto es lo que hace grammY por defecto cuando ejecutas `bot.start()`.
 
 ## ¿Cómo funcionan los Webhooks?
 
-Después de esta aterradora experiencia (¡una noche entera sin helado!), prefieres no volver a preguntar a nadie por el helado.
+_Después de esta aterradora experiencia (¡una noche entera sin helado!), prefieres no volver a preguntar a nadie por el helado.
 ¿No sería genial si el helado pudiera venir a ti?_
 
 Configurar un **webhook** significa que proporcionarás a Telegram una URL que sea accesible desde el internet público.
 Cada vez que se envíe un nuevo mensaje a tu bot, Telegram (y no tú) tomará la iniciativa y enviará una petición con el objeto de actualización a tu servidor.
 Bonito, ¿no?
 
-Decides ir a la heladería por última vez.
+_Decides ir a la heladería por última vez.
 Le dices a tu amigo del mostrador dónde vives.
 Él promete ir personalmente a tu apartamento cada vez que haya un nuevo helado (porque se derretiría en el correo).
 Un tipo genial._
