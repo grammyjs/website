@@ -3,86 +3,86 @@ prev: false
 next: false
 ---
 
-# Rate Limit Users (`ratelimiter`)
+# Лимит запросов пользователей (`ratelimiter`)
 
-ratelimiter is a rate-limiting middleware for Telegram bots made with grammY or [Telegraf](https://github.com/telegraf/telegraf) bot frameworks.
-In simple terms, it is a plugin that helps you deflect heavy spamming in your bots.
-To understand ratelimiter better, you can take a look at the following illustration:
+ratelimiter - это middleware для ограничения скорости ботов Telegram, созданных с помощью grammY или [Telegraf](https://github.com/telegraf/telegraf).
+Проще говоря, это плагин, который поможет вам предотвратить сильную спам рассылку в ваших ботах.
+Чтобы лучше понять суть ratelimiter, вы можете взглянуть на следующую иллюстрацию:
 
 ![ratelimiter's role in deflecting spam](/images/ratelimiter-role.png)
 
-## How Does It Work Exactly?
+## Как именно это работает?
 
-Under normal circumstances every request will be processed and answered by your bot which means spamming it will not be that difficult.
-Each user might send multiple requests per second and your script has to process each request, but how can you stop it?
-With ratelimiter!
+При нормальных обстоятельствах каждый запрос будет обработан и получит ответ от вашего бота, а значит, заспамить его будет не так уж сложно.
+Каждый пользователь может отправлять несколько запросов в секунду, и вашему коду придется обрабатывать каждый запрос, но как это остановить?
+С помощью ratelimiter!
 
-::: warning Rate-Limiting Users, Not Telegram Servers!
-You should note that this package **DOES NOT** rate limit the incoming requests from Telegram servers, instead, it tracks the incoming requests by `from.id` and dismisses them on arrival, so no further processing load is added to your servers.
+::: warning Ограничение скорости пользователей, а не серверов Telegram!
+Обратите внимание, что этот пакет **НЕ** ограничивает входящие запросы от серверов Telegram, вместо этого он отслеживает входящие запросы по `from.id` и отклоняет их по прибытии, поэтому на ваши сервера не ложится дополнительная нагрузка по обработке.
 :::
 
-## Customizability
+## Настройка
 
-This plugin exposes 5 customizable options:
+Этот плагин предоставляет 5 настраиваемых опций:
 
-- `timeFrame`: The time frame during which the requests will be monitored (defaults to `1000` ms).
-- `limit`: The number of requests allowed within each `timeFrame` (defaults to `1`).
-- `storageClient`: The type of storage to use for keeping track of users and their requests.
-  The default value is `MEMORY_STORE` which uses an in-memory [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map), but you can also pass in a Redis client as well (more info at [About storageClient](#about-storageclient)).
-- `onLimitExceeded`: A function that describes what to do if the user exceeds the limit (ignores the extra requests by default).
-- `keyGenerator`: A function that returns a unique key generated for each user (it uses `from.id` by default).
-  This key is used to identify the user, therefore it should be unique, user specific and in string format.
+- `timeFrame`: Временной интервал, в течение которого будут отслеживаться запросы (по умолчанию `1000` мс).
+- `limit`: Количество запросов, разрешенных в каждом `таймфрейме` (по умолчанию `1`).
+- `storageClient`: Тип хранилища, которое будет использоваться для отслеживания пользователей и их запросов.
+  По умолчанию используется `MEMORY_STORE`, который использует in-memory [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map), но вы также можете передать клиент Redis (подробнее в [О storageClient](#о-storageclient)).
+- `onLimitExceeded`: Функция, описывающая, что делать, если пользователь превысил лимит (по умолчанию игнорирует дополнительные запросы).
+- `keyGenerator`: Функция, возвращающая уникальный ключ, сгенерированный для каждого пользователя (по умолчанию используется `from.id`).
+  Этот ключ используется для идентификации пользователя, поэтому он должен быть уникальным, специфичным для пользователя и иметь строковый формат.
 
-### About `storageClient`
+### О `storageClient`
 
-The `MEMORY_STORE` or the in-memory tracking is suitable for most bots, however if you implement clustering for your bot you will not be able to use the in-memory storage effectively.
-That's why the Redis option is provided as well.
-You can pass a Redis client from [ioredis](https://github.com/redis/ioredis) or [redis](https://deno.land/x/redis) in case you use Deno.
-In reality, any Redis driver that implements the `incr` and `pexpire` methods should work just fine.
-ratelimiter is driver agnostic.
+Вариант `MEMORY_STORE` или отслеживание в памяти подходит для большинства ботов, однако если вы реализуете кластеризацию для своего бота, вы не сможете эффективно использовать хранилище в памяти.
+Именно поэтому предусмотрена возможность использования Redis.
+Вы можете передать клиент Redis из [ioredis](https://github.com/redis/ioredis) или [redis](https://deno.land/x/redis), если вы используете Deno.
+В действительности, любой драйвер Redis, реализующий методы `incr` и `pexpire`, должен работать просто отлично.
+ratelimiter не зависит от драйвера.
 
-> Note: You must have redis-server **2.6.0** and above on your server to use Redis storage client with ratelimiter.
-> Older versions of Redis are not supported.
+> Примечание: Для использования клиента хранилища Redis с ratelimiter на вашем сервере должен быть установлен redis-server **2.6.0** и выше.
+> Более старые версии Redis не поддерживаются.
 
-## How to Use
+## Как использовать
 
-There are two ways of using ratelimiter:
+Существует два способа использования ratelimiter:
 
-- Accepting the defaults ([Default Configuration](#default-configuration)).
-- Passing a custom object containing your settings ([Manual Configuration](#manual-configuration)).
+- Принятие настроек по умолчанию ([Настройки по умолчанию](#настройки-по-умолчанию)).
+- Передача пользовательского объекта, содержащего ваши настройки ([Ручная настройка](#ручная-настройка)).
 
-### Default Configuration
+### Настройки по умолчанию
 
-This snippet demonstrates the easiest way of using ratelimiter, which is accepting the default behavior:
+Этот фрагмент демонстрирует самый простой способ использования ratelimiter, который принимает поведение по умолчанию:
 
 ::: code-group
 
 ```ts [TypeScript]
 import { limit } from "@grammyjs/ratelimiter";
 
-// Limits message handling to a message per second for each user.
+// Ограничивает обработку сообщений до одного сообщения в секунду для каждого пользователя.
 bot.use(limit());
 ```
 
 ```js [JavaScript]
 const { limit } = require("@grammyjs/ratelimiter");
 
-// Limits message handling to a message per second for each user.
+// Ограничивает обработку сообщений до одного сообщения в секунду для каждого пользователя.
 bot.use(limit());
 ```
 
 ```ts [Deno]
 import { limit } from "https://deno.land/x/grammy_ratelimiter/mod.ts";
 
-// Limits message handling to a message per second for each user.
+// Ограничивает обработку сообщений до одного сообщения в секунду для каждого пользователя.
 bot.use(limit());
 ```
 
 :::
 
-### Manual Configuration
+### Ручная настройка
 
-As mentioned earlier, you can pass an `Options` object to the `limit()` method to alter the limiter's behavior.
+Как упоминалось ранее, вы можете передать объект `Options` в метод `limit()`, чтобы изменить поведение ratelimiter.
 
 ::: code-group
 
@@ -94,19 +94,19 @@ const redis = new Redis(...);
 
 bot.use(
   limit({
-    // Allow only 3 messages to be handled every 2 seconds.
+    // Разрешите обрабатывать только 3 сообщения каждые 2 секунды.
     timeFrame: 2000,
     limit: 3,
 
-    // "MEMORY_STORE" is the default value. If you do not want to use Redis, do not pass storageClient at all.
+    // По умолчанию используется значение «MEMORY_STORE». Если вы не хотите использовать Redis, не передавайте storageClient вообще.
     storageClient: redis,
 
-    // This is called when the limit is exceeded.
+    // Эта функция вызывается при превышении лимита.
     onLimitExceeded: async (ctx) => {
-      await ctx.reply("Please refrain from sending too many requests!");
+      await ctx.reply("Пожалуйста, воздержитесь от отправки слишком большого количества запросов!");
     },
 
-    // Note that the key should be a number in string format such as "123456789".
+    // Обратите внимание, что ключ должен быть числом в строковом формате, например «123456789».
     keyGenerator: (ctx) => {
       return ctx.from?.id.toString();
     },
@@ -122,19 +122,19 @@ const redis = new Redis(...);
 
 bot.use(
   limit({
-    // Allow only 3 messages to be handled every 2 seconds.
+    // Разрешите обрабатывать только 3 сообщения каждые 2 секунды.
     timeFrame: 2000,
     limit: 3,
 
-    // "MEMORY_STORE" is the default value. If you do not want to use Redis, do not pass storageClient at all.
+    // По умолчанию используется значение «MEMORY_STORE». Если вы не хотите использовать Redis, не передавайте storageClient вообще.
     storageClient: redis,
 
-    // This is called when the limit is exceeded.
+    // Эта функция вызывается при превышении лимита.
     onLimitExceeded: async (ctx) => {
-      await ctx.reply("Please refrain from sending too many requests!");
+      await ctx.reply("Пожалуйста, воздержитесь от отправки слишком большого количества запросов!");
     },
 
-    // Note that the key should be a number in string format such as "123456789".
+    // Обратите внимание, что ключ должен быть числом в строковом формате, например «123456789».
     keyGenerator: (ctx) => {
       return ctx.from?.id.toString();
     },
@@ -150,19 +150,19 @@ const redis = await connect(...);
 
 bot.use(
   limit({
-    // Allow only 3 messages to be handled every 2 seconds.
+    // Разрешите обрабатывать только 3 сообщения каждые 2 секунды.
     timeFrame: 2000,
     limit: 3,
 
-    // "MEMORY_STORE" is the default value. If you do not want to use Redis, do not pass storageClient at all.
+    // По умолчанию используется значение «MEMORY_STORE». Если вы не хотите использовать Redis, не передавайте storageClient вообще.
     storageClient: redis,
 
-    // This is called when the limit is exceeded.
+    // Эта функция вызывается при превышении лимита.
     onLimitExceeded: async (ctx) => {
-      await ctx.reply("Please refrain from sending too many requests!");
+      await ctx.reply("Пожалуйста, воздержитесь от отправки слишком большого количества запросов!");
     },
 
-    // Note that the key should be a number in string format such as "123456789".
+    // Обратите внимание, что ключ должен быть числом в строковом формате, например «123456789».
     keyGenerator: (ctx) => {
       return ctx.from?.id.toString();
     },
@@ -172,13 +172,13 @@ bot.use(
 
 :::
 
-As you can see in the example above, each user is allowed to send 3 requests every 2 seconds.
-If said user sends more requests, the bot replies with _Please refrain from sending too many requests_.
-That request will not travel further and dies immediately as we do not call [next()](../guide/middleware#the-middleware-stack) in the middleware.
+Как видно из примера выше, каждому пользователю разрешено отправлять 3 запроса каждые 2 секунды.
+Если пользователь отправляет больше запросов, бот отвечает _Пожалуйста, воздержитесь от отправки слишком большого количества запросов_.
+Этот запрос не будет отправлен дальше и сразу же будет пропущен, так как мы не вызываем [next()](../guide/middleware#стек-middleware) в middleware.
 
-> Note: To avoid flooding Telegram servers, `onLimitExceeded` is only executed once in every `timeFrame`.
+> Примечание: Чтобы избежать переполнения серверов Telegram, `onLimitExceeded` выполняется только один раз в каждом `таймфрейме`.
 
-Another use case would be limiting the incoming requests from a chat instead of a specific user:
+Другим вариантом использования может быть ограничение входящих запросов от чата, а не от конкретного пользователя:
 
 ::: code-group
 
@@ -189,7 +189,7 @@ bot.use(
   limit({
     keyGenerator: (ctx) => {
       if (ctx.hasChatType(["group", "supergroup"])) {
-        // Note that the key should be a number in string format, such as "123456789".
+        // Обратите внимание, что ключ должен быть числом в формате строки, например «123456789».
         return ctx.chat.id.toString();
       }
     },
@@ -204,7 +204,7 @@ bot.use(
   limit({
     keyGenerator: (ctx) => {
       if (ctx.hasChatType(["group", "supergroup"])) {
-        // Note that the key should be a number in string format, such as "123456789".
+        // Обратите внимание, что ключ должен быть числом в формате строки, например «123456789».
         return ctx.chat.id.toString();
       }
     },
@@ -219,7 +219,7 @@ bot.use(
   limit({
     keyGenerator: (ctx) => {
       if (ctx.hasChatType(["group", "supergroup"])) {
-        // Note that the key should be a number in string format, such as "123456789".
+        // Обратите внимание, что ключ должен быть числом в формате строки, например «123456789».
         return ctx.chat.id.toString();
       }
     },
@@ -229,10 +229,10 @@ bot.use(
 
 :::
 
-In this example, I have used `chat.id` as the unique key for rate-limiting.
+В этом примере мы использовали `chat.id` в качестве уникального ключа для ограничения скорости.
 
-## Plugin Summary
+## Краткая информация о плагине
 
-- Name: `ratelimiter`
-- [Source](https://github.com/grammyjs/ratelimiter)
-- [Reference](/ref/ratelimiter/)
+- Название: `ratelimiter`
+- [Исходник](https://github.com/grammyjs/ratelimiter)
+- [Документация](/ref/ratelimiter/)
