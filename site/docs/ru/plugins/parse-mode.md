@@ -3,11 +3,11 @@ prev: false
 next: false
 ---
 
-# Parse Mode Plugin (`parse-mode`)
+# Плагин Parse Mode (`parse-mode`)
 
-This plugin provides a transformer for setting default `parse_mode`, and a middleware for hydrating `Context` with familiar `reply` variant methods - i.e. `replyWithHTML`, `replyWithMarkdown`, etc.
+Этот плагин предоставляет трансформатор для установки `parse_mode` по умолчанию, а также middleware для взаимодействия `Context` с привычными методами `reply`, `replyWithHTML`, `replyWithMarkdown` и т. д.
 
-## Usage (Improving Formatting Experience)
+## Использование (Улучшение опыта форматирования)
 
 ::: code-group
 
@@ -19,21 +19,21 @@ import type { ParseModeFlavor } from "@grammyjs/parse-mode";
 
 const bot = new Bot<ParseModeFlavor<Context>>("");
 
-// Install the plugin.
+// Установка плагина
 bot.use(hydrateReply);
 
 bot.command("demo", async (ctx) => {
-  await ctx.replyFmt(fmt`${bold("bold!")}
-${bold(italic("bitalic!"))}
-${bold(fmt`bold ${link("blink", "example.com")} bold`)}`);
+  await ctx.replyFmt(fmt`${bold("полужирный!")}
+${bold(italic("полужирно-курсивный!"))}
+${bold(fmt`полужирный ${link("полужирная ссылка", "example.com")} полужирный`)}`);
 
-  // fmt can also be called like any other function.
+  // fmt также может быть вызвана как любая другая функция.
   await ctx.replyFmt(
     fmt(
-      ["", " and ", " and ", ""],
-      fmt`${bold("bold")}`,
-      fmt`${bold(italic("bitalic"))}`,
-      fmt`${italic("italic")}`,
+      ["", " и ", " и ", ""],
+      fmt`${bold("полужирный")}`,
+      fmt`${bold(italic("полужирно-курсивный"))}`,
+      fmt`${italic("курсивный")}`,
     ),
   );
 });
@@ -49,21 +49,21 @@ const { bold, fmt, hydrateReply, italic, link } = require(
 
 const bot = new Bot("");
 
-// Install the plugin.
+// Установка плагина
 bot.use(hydrateReply);
 
 bot.command("demo", async (ctx) => {
-  await ctx.replyFmt(fmt`${bold("bold!")}
-${bold(italic("bitalic!"))}
-${bold(fmt`bold ${link("blink", "example.com")} bold`)}`);
+  await ctx.replyFmt(fmt`${bold("полужирный!")}
+${bold(italic("жирно-курсивный!"))}
+${bold(fmt`полужирный ${link("полу-жирная ссылка", "example.com")} полужирный`)}`);
 
-  // fmt can also be called like any other function.
+  // fmt также может быть вызвана как любая другая функция.
   await ctx.replyFmt(
     fmt(
-      ["", " and ", " and ", ""],
-      fmt`${bold("bold")}`,
-      fmt`${bold(italic("bitalic"))}`,
-      fmt`${italic("italic")}`,
+      ["", " и ", " и ", ""],
+      fmt`${bold("полужирный")}`,
+      fmt`${bold(italic("полужирно-курсивный"))}`,
+      fmt`${italic("курсивный")}`,
     ),
   );
 });
@@ -85,21 +85,21 @@ import type { ParseModeFlavor } from "https://deno.land/x/grammy_parse_mode/mod.
 
 const bot = new Bot<ParseModeFlavor<Context>>("");
 
-// Install the plugin.
+// Установка плагина
 bot.use(hydrateReply);
 
 bot.command("demo", async (ctx) => {
-  await ctx.replyFmt(fmt`${bold("bold!")}
-${bold(italic("bitalic!"))}
-${bold(fmt`bold ${link("blink", "example.com")} bold`)}`);
+  await ctx.replyFmt(fmt`${bold("полужирный!")}
+${bold(italic("жирно-курсивный!"))}
+${bold(fmt`полужирный ${link("полу-жирная ссылка", "example.com")} полужирный`)}`);
 
-  // fmt can also be called like any other function.
+  // fmt также может быть вызвана как любая другая функция.
   await ctx.replyFmt(
     fmt(
-      ["", " and ", " and ", ""],
-      fmt`${bold("bold")}`,
-      fmt`${bold(italic("bitalic"))}`,
-      fmt`${italic("italic")}`,
+      ["", " и ", " и ", ""],
+      fmt`${bold("полужирный")}`,
+      fmt`${bold(italic("полужирно-курсивный"))}`,
+      fmt`${italic("курсивный")}`,
     ),
   );
 });
@@ -109,7 +109,7 @@ bot.start();
 
 :::
 
-## Usage (Default Parse Mode and Reply Methods)
+## Использование (parse mode и методы ответа по умолчанию)
 
 ::: code-group
 
@@ -121,20 +121,20 @@ import type { ParseModeFlavor } from "@grammyjs/parse-mode";
 
 const bot = new Bot<ParseModeFlavor<Context>>("");
 
-// Install the plugin.
+// Установка плагина
 bot.use(hydrateReply);
 
-// Sets default parse_mode for ctx.reply
+// Установите parse_mod по умолчанию для ctx.reply.
 bot.api.config.use(parseMode("MarkdownV2"));
 
 bot.command("demo", async (ctx) => {
-  await ctx.reply("*This* is _the_ default `formatting`");
+  await ctx.reply("*Это* `форматирование` _по_ умолчанию");
   await ctx.replyWithHTML(
-    "<b>This</b> is <i>withHTML</i> <code>formatting</code>",
+    "<b>Это</b> <code>форматирование</code> с помощью <i>HTML</i>",
   );
-  await ctx.replyWithMarkdown("*This* is _withMarkdown_ `formatting`");
-  await ctx.replyWithMarkdownV1("*This* is _withMarkdownV1_ `formatting`");
-  await ctx.replyWithMarkdownV2("*This* is _withMarkdownV2_ `formatting`");
+  await ctx.replyWithMarkdown("*Это* `форматирование` с помощью _Markdown_");
+  await ctx.replyWithMarkdownV1("*Это* `форматирование` с помощью _MarkdownV1_");
+  await ctx.replyWithMarkdownV2("*Это* `форматирование` с помощью _MarkdownV2_");
 });
 
 bot.start();
@@ -146,20 +146,20 @@ const { hydrateReply, parseMode } = require("@grammyjs/parse-mode");
 
 const bot = new Bot("");
 
-// Install the plugin.
+// Установка плагина
 bot.use(hydrateReply);
 
-// Set the default parse mode for ctx.reply.
+// Установите parse_mod по умолчанию для ctx.reply.
 bot.api.config.use(parseMode("MarkdownV2"));
 
 bot.command("demo", async (ctx) => {
-  await ctx.reply("*This* is _the_ default `formatting`");
+  await ctx.reply("*Это* `форматирование` _по_ умолчанию");
   await ctx.replyWithHTML(
-    "<b>This</b> is <i>withHTML</i> <code>formatting</code>",
+    "<b>Это</b> <code>форматирование</code> с помощью <i>HTML</i>",
   );
-  await ctx.replyWithMarkdown("*This* is _withMarkdown_ `formatting`");
-  await ctx.replyWithMarkdownV1("*This* is _withMarkdownV1_ `formatting`");
-  await ctx.replyWithMarkdownV2("*This* is _withMarkdownV2_ `formatting`");
+  await ctx.replyWithMarkdown("*Это* `форматирование` с помощью _Markdown_");
+  await ctx.replyWithMarkdownV1("*Это* `форматирование` с помощью _MarkdownV1_");
+  await ctx.replyWithMarkdownV2("*Это* `форматирование` с помощью _MarkdownV2_");
 });
 
 bot.start();
@@ -176,20 +176,20 @@ import type { ParseModeFlavor } from "https://deno.land/x/grammy_parse_mode/mod.
 
 const bot = new Bot<ParseModeFlavor<Context>>("");
 
-// Install the plugin.
+// Установка плагина
 bot.use(hydrateReply);
 
-// Set the default parse mode for ctx.reply.
+// Установите parse_mod по умолчанию для ctx.reply.
 bot.api.config.use(parseMode("MarkdownV2"));
 
 bot.command("demo", async (ctx) => {
-  await ctx.reply("*This* is _the_ default `formatting`");
+  await ctx.reply("*Это* `форматирование` _по_ умолчанию");
   await ctx.replyWithHTML(
-    "<b>This</b> is <i>withHTML</i> <code>formatting</code>",
+    "<b>Это</b> <code>форматирование</code> с помощью <i>HTML</i>",
   );
-  await ctx.replyWithMarkdown("*This* is _withMarkdown_ `formatting`");
-  await ctx.replyWithMarkdownV1("*This* is _withMarkdownV1_ `formatting`");
-  await ctx.replyWithMarkdownV2("*This* is _withMarkdownV2_ `formatting`");
+  await ctx.replyWithMarkdown("*Это* `форматирование` с помощью _Markdown_");
+  await ctx.replyWithMarkdownV1("*Это* `форматирование` с помощью _MarkdownV1_");
+  await ctx.replyWithMarkdownV2("*Это* `форматирование` с помощью _MarkdownV2_");
 });
 
 bot.start();
@@ -197,8 +197,8 @@ bot.start();
 
 :::
 
-## Plugin Summary
+## Краткая информация о плагине
 
-- Name: `parse-mode`
-- [Source](https://github.com/grammyjs/parse-mode)
-- [Reference](/ref/parse-mode/)
+- Название: `parse-mode`
+- [Исходник](https://github.com/grammyjs/parse-mode)
+- [Документация](/ref/parse-mode/)
