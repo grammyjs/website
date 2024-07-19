@@ -212,7 +212,7 @@ When the user presses the button, a `/start` command message will be sent to you
 The start parameter will be available via [deep linking](../guide/commands#deep-linking-support).
 In other words, using the above code snippet, `ctx.match` will have the value `"login"` in your command handler.
 
-If you then send an [inline keyboard](./keyboard#building-a-keyboard) with a `switchInline` button, the user will be returned to the chat where they pressed the inline query results button initially.
+If you then send an [inline keyboard](./keyboard#building-an-inline-keyboard) with a `switchInline` button, the user will be returned to the chat where they pressed the inline query results button initially.
 
 ```ts
 bot
