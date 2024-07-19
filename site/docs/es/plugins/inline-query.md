@@ -218,7 +218,7 @@ Cuando el usuario pulse el botón, se enviará un mensaje de comando `/start` a 
 El parámetro start estará disponible a través de [deep linking](../guide/commands#soporte-de-deep-linking).
 En otras palabras, utilizando el fragmento de código anterior, `ctx.match` tendrá el valor `"login"` en tu manejador de comandos.
 
-Si a continuación envía un [teclado en línea](./keyboard#construyendo-un-teclado-personalizado) con un botón `switchInline`, el usuario será devuelto al chat donde pulsó inicialmente el botón de resultados de consulta en línea.
+Si a continuación envía un [teclado en línea](./keyboard#construyendo-un-teclado-en-línea) con un botón `switchInline`, el usuario será devuelto al chat donde pulsó inicialmente el botón de resultados de consulta en línea.
 
 ```ts
 bot
