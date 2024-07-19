@@ -53,7 +53,7 @@ bot.on("inline_query", async (ctx) => {
 Для каждого результата необходимы три вещи.
 
 1. Уникальный строковый идентификатор.
-2. Объект _result_, который описывает, как отобразить результат запроса в строке.
+2. Объект _result_, который описывает, как отобразить результат inline запроса.
    Он может содержать такие элементы, как заголовок, ссылка или изображение.
 3. Объект _message content_, описывающий содержание сообщения, которое будет отправлено пользователю, если он выберет этот результат.
    В некоторых случаях содержимое сообщения может быть неявно выведено из объекта результата.
@@ -236,7 +236,7 @@ bot
 Другими словами, после того как ваш бот отправил список результатов инлайн-запросов в Telegram, он не будет знать, какой результат выбрал пользователь (и выбрал ли он его вообще).
 
 Если вы заинтересованы в этом, вы можете включить обратную связь с помощью [@BotFather](https://t.me/BotFather).
-Вы можете определить, сколько обратной связи вы хотите получать, выбрав один из нескольких вариантов от 0 % (обратная связь отключена) до 100 % (получать обратную связь за каждый выбранный в строке результат).
+Вы можете определить, сколько обратной связи вы хотите получать, выбрав один из нескольких вариантов от 0 % (обратная связь отключена) до 100 % (получать обратную связь за каждый выбранный inline результат).
 
 Обратная связь доставляется через обновления `chosen_inline_result`.
 Вы можете прослушивать определенные идентификаторы результатов через строку или регулярное выражение.
@@ -245,28 +245,28 @@ bot
 ```ts
 // Прослушивание определенных идентификаторов результатов.
 bot.chosenInlineResult(/id-[0-9]+/, async (ctx) => {
-  const match = ctx.match; // regex match object
-  const query = ctx.chosenInlineResult.query; // used inline query
+  const match = ctx.match; // объект, который подходит регулярному выражению
+  const query = ctx.chosenInlineResult.query; // используемый инлайн запрос
 });
 
-// Listen for any chosen inline results.
+// Прослушайте все выбранные inline результаты
 bot.on("chosen_inline_result", async (ctx) => {
-  const query = ctx.chosenInlineResult.query; // used inline query
+  const query = ctx.chosenInlineResult.query; // используемый инлайн запрос
 });
 ```
 
-Some bots set the feedback to 100 % and use it as a hack.
-They deliver dummy messages with no real content in `answerInlineQuery`.
-Immediately after receiving a `chosen_inline_result` update, they edit the respective message and inject the real message content.
+Некоторые боты устанавливают обратную связь на 100 % и используют ее в качестве преимущества.
+Они передают фиктивные сообщения без реального содержимого в `answerInlineQuery`.
+Сразу после получения обновления `chosen_inline_result` они редактируют соответствующее сообщение и вставляют в него реальное содержимое.
 
-These bots will not work for anonymous admins or when sending scheduled messages, as no inline feedback can be received there.
-However, if this is not a problem for you, then this hack will allow you to not have to generate a lot of message content for messages that never end up being sent.
-This can save your bot resources.
+Эти боты не будут работать для анонимных администраторов или при отправке сообщений по расписанию, так как в этом случае нельзя получить обратную связь.
+Однако если для вас это не проблема, то данный хак позволит вам не генерировать большое количество содержимого сообщений, которые в итоге так и не будут отправлены.
+Это позволит сэкономить ресурсы бота.
 
-## Plugin Summary
+## Краткая информация о плагине
 
-This plugin is built-in into the core of grammY.
-You don't need to install anything to use it.
-Simply import everything from grammY itself.
+Этот плагин встроен в ядро grammY.
+Вам не нужно ничего устанавливать, чтобы использовать его.
+Просто импортируйте все из самого grammY.
 
-Also, both the documentation and the API reference of this plugin are unified with the core package.
+Кроме того, документация и ссылка на API этого плагина объединены с основным пакетом.
