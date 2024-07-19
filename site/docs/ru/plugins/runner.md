@@ -93,13 +93,11 @@ Instead, you can return _a list of constraint identifier strings_ that determine
 As an example, you could return both the chat identifier, and the user identifier of the message author.
 
 ```ts
-bot.use(
-  sequentialize((ctx) => {
-    const chat = ctx.chat?.id.toString();
-    const user = ctx.from?.id.toString();
-    return [chat, user].filter((con) => con !== undefined);
-  })
-);
+bot.use(sequentialize((ctx) => {
+  const chat = ctx.chat?.id.toString();
+  const user = ctx.from?.id.toString();
+  return [chat, user].filter((con) => con !== undefined);
+}));
 ```
 
 This would make sure that messages in the same chat are ordered correctly.
@@ -120,9 +118,13 @@ Note that you can wait for the runner to terminate by `await`ing the `task` in t
 ```ts
 const handle = run(bot);
 
+// This will get called when the bot stops.
 handle.task().then(() => {
   console.log("Bot done processing!");
 });
+
+// Later, stop the bot via the handle of the runner.
+await handle.stop();
 ```
 
 ## Advanced Options
@@ -322,7 +324,7 @@ That way, your bot does not have to send the update to a worker, only for it to 
 // so we can ignore all other updates and not distribute them.
 bot.on(
   ["message", "edited_message", "callback_query"],
-  distribute(__dirname + "/worker")
+  distribute(__dirname + "/worker"),
 );
 ```
 
@@ -331,7 +333,7 @@ bot.on(
 // so we can ignore all other updates and not distribute them.
 bot.on(
   ["message", "edited_message", "callback_query"],
-  distribute(new URL("./worker.ts", import.meta.url))
+  distribute(new URL("./worker.ts", import.meta.url)),
 );
 ```
 
