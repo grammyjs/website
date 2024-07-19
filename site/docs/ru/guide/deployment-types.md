@@ -226,7 +226,27 @@ app.use(webhookCallback(bot, "oak"));
 
 > Обратите внимание, что вы не должны вызывать `bot.start()` при использовании webhooks.
 
-Обязательно прочитайте [Marvin's Marvellous Guide to All Things Webhook](https://core.telegram.org/bots/webhooks), написанный командой Telegram, если вы собираетесь запустить своего бота на webhooks на VPS.
+Теперь ваше приложение прослушивает запросы вебхуков от Telegram.
+Последнее, что вам нужно сделать, это указать Telegram, куда отправлять обновления.
+Есть несколько способов сделать это, но в конечном итоге все они просто вызывают `setWebhook`, как описано [здесь](https://core.telegram.org/bots/api#setwebhook).
+
+Самый простой способ установить вебхук --- вставить следующий URL в адресную строку браузера, заменив `<token>` на токен вашего бота, а `<url>` на публичную конечную точку вашего сервера.
+
+``txt
+https://api.telegram.org/bot<token>/setWebhook?url=<url>
+```
+
+Мы также создали соответствующий интерфейс для этого, если вы предпочитаете управлять вебхуком через веб-сайт.
+Вы можете найти его здесь: <https://telegram.tools/webhook-manager>
+
+Обратите внимание, что вы также можете установить свой веб-хук из кода:
+
+```ts
+const endpoint = «»; // <-- поместите сюда свой URL
+await bot.api.setWebhook(endpoint);
+```
+
+Наконец, обязательно прочитайте [Marvin's Marvellous Guide to All Things Webhook](https://core.telegram.org/bots/webhooks), написанный командой Telegram, если вы рассматриваете [запуск бота на вебхуках на VPS](../hosting/vps#запуск-бота-на-вебхуках).
 
 ### Адаптеры для веб-фреймворков
 
