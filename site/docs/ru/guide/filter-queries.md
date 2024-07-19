@@ -67,7 +67,7 @@ bot.on("::email"); // сообщения или посты в канале с э
 ```
 
 Если опустить _первое_ значение, то совпадут и сообщения, и посты в канале.
-[Помните](./context#доступные-действия), что `ctx.msg` дает доступ как к сообщениям, так и к постам в канале, в зависимости от того, что соответствует запросу.
+[Помните](./contextдоступные-деиствия), что `ctx.msg` дает доступ как к сообщениям, так и к постам в канале, в зависимости от того, что соответствует запросу.
 
 Опуская _второе_ значение, можно подобрать как сущности, так и подпись.
 Вы можете опустить и первую, и вторую часть одновременно.
@@ -137,7 +137,7 @@ Note that while this syntactic sugar is useful to work with service messages, it
 Services messages are messages that inform the users in the chat, and some of them will not be visible in all cases.
 For example, in large groups, there will not be any service messages about users that join or leave the chat.
 Hence, your bot may not notice this.
-Instead, you should listen for [chat member updates](#chat-member-updates).
+Instead, you should listen for [chat member updates](#обновления-участников-чата).
 
 ## Комбинирование нескольких запросов
 

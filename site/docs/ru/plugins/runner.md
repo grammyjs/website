@@ -83,7 +83,7 @@ Most likely, you want to be guaranteed that messages from the same chat are proc
 This is useful when installing [session middleware](./session), but it also makes sure that your bot does not confuse the order of messages in the same chat.
 
 grammY runner exports the `sequentialize` middleware that takes care of this.
-You can check out this [section](../advanced/scaling#concurrency-is-hard) to learn how to use it.
+You can check out this [section](../advanced/scaling#параллельность-это-сложно) to learn how to use it.
 
 We are now going to look at more advanced usage of the plugin.
 
@@ -111,7 +111,7 @@ It needs constant memory (unless you specify infinite concurrency), and it needs
 
 ## Graceful Shutdown
 
-In order for the bot to complete its work correctly, you [should signal it](../advanced/reliability#using-grammy-runner) to stop when the process is about to be destroyed.
+In order for the bot to complete its work correctly, you [should signal it](../advanced/reliability#использование-grammy-runner) to stop when the process is about to be destroyed.
 
 Note that you can wait for the runner to terminate by `await`ing the `task` in the [`RunnerHandle`](/ref/runner/runnerhandle) returned from `run`.
 
@@ -161,7 +161,7 @@ run(bot, { runner: { fetch: { allowed_updates: [] } } });
 > [Skip this section](#how-it-works-behind-the-scenes) if your bot handles less traffic than that.
 
 JavaScript is single-threaded.
-This is amazing because [concurrency is hard](../advanced/scaling#concurrency-is-hard), meaning that if there is only a single thread, a lot of headache is naturally removed.
+This is amazing because [concurrency is hard](../advanced/scaling#параллельность-это-сложно), meaning that if there is only a single thread, a lot of headache is naturally removed.
 
 However, if your bot has an extremely high load (we are talking about 1000 updates per second and up), then doing everything on a single core might not be enough anymore.
 Basically, a single core will start struggling with the JSON processing of all the messages your bot has to handle.

@@ -38,7 +38,7 @@ other.on(":text", async (ctx) => {/* ... */});
 other.use((ctx) => {/* ... */});
 ```
 
-You may also want to revisit this [section](../guide/filter-queries#combining-queries-with-other-methods) about combining middleware handlers.
+You may also want to revisit this [section](../guide/filter-queries#комбинирование-запросов-с-другими-методами) about combining middleware handlers.
 
 ## Combining Routers With Sessions
 

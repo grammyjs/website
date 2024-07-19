@@ -10,7 +10,7 @@ Easily create interactive menus.
 ## Introduction
 
 An inline keyboard is an array of buttons underneath a message.
-grammY has a [built-in plugin](./keyboard#inline-keyboards) to create basic inline keyboards.
+grammY has a [built-in plugin](./keyboard#встроенные-клавиатуры) to create basic inline keyboards.
 
 The menu plugin takes this idea further and lets you create rich menus right inside the chat.
 They can have interactive buttons, multiple pages with navigation between them, and more.
@@ -93,7 +93,7 @@ bot.start();
 > Make sure that you install all menus before other middleware, especially before middleware that uses callback query data.
 > Also, if you use a custom configuration for `allowed_updates`, remember to include `callback_query` updates.
 
-Naturally, if you are using a [custom context type](../guide/context#customizing-the-context-object), you can pass it to `Menu` too.
+Naturally, if you are using a [custom context type](../guide/context#кастомизация-объекта-контекста), you can pass it to `Menu` too.
 
 ```ts
 const menu = new Menu<MyContext>("id");
@@ -101,7 +101,7 @@ const menu = new Menu<MyContext>("id");
 
 ## Adding Buttons
 
-The menu plugin lays out your keyboards exactly like the [plugin for inline keyboards](./keyboard#building-an-inline-keyboard) does.
+The menu plugin lays out your keyboards exactly like the [plugin for inline keyboards](./keyboard#построение-встроенных-клавиатур) does.
 The class `Menu` replaces the class `InlineKeyboard`.
 
 Here is an example for a menu that has four buttons in a 1-2-1 row shape.
