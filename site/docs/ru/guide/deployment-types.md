@@ -232,7 +232,7 @@ app.use(webhookCallback(bot, "oak"));
 
 Самый простой способ установить вебхук --- вставить следующий URL в адресную строку браузера, заменив `<token>` на токен вашего бота, а `<url>` на публичную конечную точку вашего сервера.
 
-``txt
+```txt
 https://api.telegram.org/bot<token>/setWebhook?url=<url>
 ```
 
