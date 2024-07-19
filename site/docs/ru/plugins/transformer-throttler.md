@@ -117,4 +117,4 @@ const outConfig = {
 
 - Название: `transformer-throttler`
 - [Исходник](https://github.com/grammyjs/transformer-throttler)
-- [Документация](/ref/transformer-throttler/)
+- [Ссылка](/ref/transformer-throttler/)

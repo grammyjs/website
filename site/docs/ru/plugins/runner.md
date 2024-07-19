@@ -3,33 +3,33 @@ prev: false
 next: false
 ---
 
-# Concurrency With grammY runner (`runner`)
+# Параллельность c grammY runner (`runner`)
 
-This package can be used if you run your bot [using long polling](../guide/deployment-types), and you want messages to be processed concurrently.
+Этот пакет можно использовать, если вы запускаете бота [с использованием long polling](../guide/deployment-types), и хотите, чтобы сообщения обрабатывались параллельно.
 
-> Make sure to understand [Scaling Up II](../advanced/scaling#long-polling) before you use grammY runner.
+> Обязательно изучите [Масштабирование II](../advanced/scaling#long-polling), прежде чем использовать grammY runner.
 
-## Why We Need a Bot Runner
+## Почему нам нужен runner
 
-If you are hosting your bot using long polling and you want to make it scale up, there is no way around processing updates concurrently as sequential update processing is way too slow.
-As a result, bots face a number of challenges.
+Если вы размещаете своего бота на хостинге с long polling и хотите увеличить его масштабы, вам не обойтись без одновременной обработки обновлений, поскольку последовательная обработка обновлений слишком медленная.
+В результате боты сталкиваются с рядом проблем.
 
-- Are there race conditions?
-- Can we still `await` the middleware stack? We must have this for error handling!
-- What if middleware never resolves for some reason, does this block the bot?
-- Can we process some selected updates in sequence?
-- Can we constrain the server load?
-- Can we process updates on multiple cores?
+- Существуют ли условия гонки?
+- Можем ли мы по-прежнему "ожидать" стек middleware? Это необходимо для обработки ошибок!
+- Что, если middleware по какой-то причине не проходит дальше, блокирует ли это работу бота?
+- Можем ли мы обрабатывать некоторые выбранные обновления последовательно?
+- Можем ли мы ограничить нагрузку на сервер?
+- Можем ли мы обрабатывать обновления на нескольких ядрах?
 
-As you can see, we need a solution that can solve all of the above problems to achieve proper long polling for a bot.
-This is a problem that is very distinct from composing middleware or sending messages to Telegram.
-Consequently, it is not solved by the grammY core package.
-Instead, you can use [grammY runner](https://github.com/grammyjs/runner).
-It has its own [API Reference](/ref/runner/), too.
+Как видите, нам нужно решение, способное решить все вышеперечисленные проблемы, чтобы добиться правильного long polling бота.
+Эта проблема совершенно отлична от создания middleware или отправки сообщений в Telegram.
+Следовательно, она не решается в основном пакете grammY.
+Вместо этого вы можете использовать [grammY runner](https://github.com/grammyjs/runner).
+У него также есть своя [API документация](/ref/runner/).
 
-## Usage
+## Использование
 
-Here is a simple example.
+Вот простой пример.
 
 ::: code-group
 
@@ -37,13 +37,13 @@ Here is a simple example.
 import { Bot } from "grammy";
 import { run } from "@grammyjs/runner";
 
-// Create a bot.
+// Создайте бота
 const bot = new Bot("");
 
-// Add the usual middleware, yada yada
-bot.on("message", (ctx) => ctx.reply("Got your message."));
+// Добавьте обычный middleware и бла-бла-бла
+bot.on("message", (ctx) => ctx.reply("Получил твое сообщение."));
 
-// Run it concurrently!
+// Правильно запустите это!
 run(bot);
 ```
 
@@ -51,13 +51,13 @@ run(bot);
 const { Bot } = require("grammy");
 const { run } = require("@grammyjs/runner");
 
-// Create a bot.
+// Создайте бота
 const bot = new Bot("");
 
-// Add the usual middleware, yada yada
-bot.on("message", (ctx) => ctx.reply("Got your message."));
+// Добавьте обычный middleware и бла-бла-бла
+bot.on("message", (ctx) => ctx.reply("Получил твое сообщение."));
 
-// Run it concurrently!
+// Правильно запустите это!
 run(bot);
 ```
 
@@ -65,32 +65,32 @@ run(bot);
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { run } from "https://deno.land/x/grammy_runner/mod.ts";
 
-// Create a bot.
+// Создайте бота
 const bot = new Bot("");
 
-// Add the usual middleware, yada yada
-bot.on("message", (ctx) => ctx.reply("Got your message."));
+// Добавьте обычный middleware и бла-бла-бла
+bot.on("message", (ctx) => ctx.reply("Получил твое сообщение."));
 
-// Run it concurrently!
+// Правильно запустите это!
 run(bot);
 ```
 
 :::
 
-## Sequential Processing Where Necessary
+## Последовательная обработка при необходимости
 
-Most likely, you want to be guaranteed that messages from the same chat are processed in order.
-This is useful when installing [session middleware](./session), but it also makes sure that your bot does not confuse the order of messages in the same chat.
+Скорее всего, вам нужна гарантия того, что сообщения из одного и того же чата будут обрабатываться по порядку.
+Это полезно при установке [middleware сессии](./session), а также для того, чтобы ваш бот не перепутал порядок сообщений в одном и том же чате.
 
-grammY runner exports the `sequentialize` middleware that takes care of this.
-You can check out this [section](../advanced/scaling#параллельность-это-сложно) to learn how to use it.
+grammY runner экспортирует middleware `sequentialize`, который заботится об этом.
+Вы можете посмотреть этот [раздел](../advanced/scaling#параллельность-это-сложно), чтобы узнать, как его использовать.
 
-We are now going to look at more advanced usage of the plugin.
+Теперь мы рассмотрим более продвинутые возможности использования плагина.
 
-The supplied constraint function can be used not only to specify chat identifier, or user identifier.
-Instead, you can return _a list of constraint identifier strings_ that determine for every update individually what other computations it must wait for before processing can begin.
+Функцию ограничитель можно использовать не только для указания идентификатора чата или пользователя.
+Вместо этого вы можете возвращать _список строк идентификаторов ограничений_, которые определяют для каждого обновления в отдельности, каких еще вычислений оно должно дождаться, прежде чем начнется обработка.
 
-As an example, you could return both the chat identifier, and the user identifier of the message author.
+Например, можно вернуть идентификатор чата и идентификатор пользователя автора сообщения.
 
 ```ts
 bot.use(sequentialize((ctx) => {
@@ -100,44 +100,44 @@ bot.use(sequentialize((ctx) => {
 }));
 ```
 
-This would make sure that messages in the same chat are ordered correctly.
-In addition, if Alice sends message in a group, and then sends a message to your bot in the private chat, then these two messages are ordered correctly.
+Это гарантирует, что сообщения в одном и том же чате будут упорядочены правильно.
+Кроме того, если Алиса отправляет сообщение в группе, а затем посылает сообщение вашему боту в личном чате, то эти два сообщения будут упорядочены правильно.
 
-In a sense, you can therefore specify a graph of dependencies between updates.
-grammY runner will resolve all necessary constraints on the fly and block those updates as long as necessary to ensure correct message ordering.
+В некотором смысле, вы можете задать граф зависимостей между обновлениями.
+grammY runner будет решать все необходимые ограничения на лету и блокировать обновления столько, сколько необходимо для обеспечения правильного упорядочивания сообщений.
 
-The implementation of this is very efficient.
-It needs constant memory (unless you specify infinite concurrency), and it needs (amortized) constant processing time per update.
+Реализация этого очень эффективна.
+Ей требуется постоянная память (если вы не зададите бесконечную параллельность), и (амортизированное) постоянное время обработки одного обновления.
 
-## Graceful Shutdown
+## Правильно выключение
 
-In order for the bot to complete its work correctly, you [should signal it](../advanced/reliability#использование-grammy-runner) to stop when the process is about to be destroyed.
+Для того чтобы бот корректно завершил свою работу, вы [должны подать ему сигнал](../advanced/reliability#использование-grammy-runner) на остановку, когда процесс будет уничтожен.
 
-Note that you can wait for the runner to terminate by `await`ing the `task` in the [`RunnerHandle`](/ref/runner/runnerhandle) returned from `run`.
+Заметьте, что вы можете дождаться завершения работы runner, `ожидая` задачи в [`RunnerHandle`](/ref/runner/runnerhandle), возвращаемой из `run`.
 
 ```ts
 const handle = run(bot);
 
-// This will get called when the bot stops.
+// Эта функция будет вызвана, когда бот остановится.
 handle.task().then(() => {
-  console.log("Bot done processing!");
+  console.log("Бот закончил обработку!");
 });
 
-// Later, stop the bot via the handle of the runner.
+// Позже остановите бота с помощью обработчика runner.
 await handle.stop();
 ```
 
-## Advanced Options
+## Расширенные настройки
 
-grammY runner consists of three things: a source, a sink, and a runner.
-The source pulls in updates, the sink consumes updates, and the runner configures and connects the two.
+grammY runner состоит из трех частей: источника, поглотителя и runner'а.
+Источник получает обновления, поглотитель потребляет обновления, а runner настраивает и соединяет их.
 
-> An in-depth description on how the runner works internally can be found [down here](#how-it-works-behind-the-scenes).
+> Подробное описание внутренней работы runner'а можно найти [здесь](#как-это-работает-под-капотом).
 
-Each of these three parts can be configured through various options.
-This can reduce the network traffic, let you specify allowed updates, and more.
+Каждая из этих трех частей может быть настроена с помощью различных параметров.
+Это может уменьшить сетевой трафик, позволить вам указать разрешенные обновления и многое другое.
 
-Each part of the runner accepts its configuration through a dedicated options object.
+Каждая часть runner'а получает свои настройки через специальный объект options.
 
 ```ts
 run(bot, {
@@ -147,61 +147,61 @@ run(bot, {
 });
 ```
 
-You should check out the `RunOptions` in the [API reference](/ref/runner/runoptions) to see which options are available.
+Вы должны посмотреть `RunOptions` в [документации API](/ref/runner/runoptions), чтобы узнать, какие параметры доступны.
 
-For example, you will there find out that `allowed_updates` can be enabled using the following code snippet.
+Например, вы узнаете, что `allowed_updates` могут быть включены с помощью следующего фрагмента кода.
 
 ```ts
 run(bot, { runner: { fetch: { allowed_updates: [] } } });
 ```
 
-## Multithreading
+## Многопоточность
 
-> There is no point to multithreading if your bot does not process at least 50 million updates per day (>500 per second).
-> [Skip this section](#how-it-works-behind-the-scenes) if your bot handles less traffic than that.
+> Нет смысла в многопоточности, если ваш бот не обрабатывает хотя бы 50 миллионов обновлений в день (>500 в секунду).
+> [Пропустите этот раздел](#как-это-работает-под-капотом), если ваш бот обрабатывает меньше трафика, чем это.
 
-JavaScript is single-threaded.
-This is amazing because [concurrency is hard](../advanced/scaling#параллельность-это-сложно), meaning that if there is only a single thread, a lot of headache is naturally removed.
+JavaScript является однопоточным.
+Это удивительно, потому что [параллелизм --- это сложно](../advanced/scaling#параллельность-это-сложно), а значит, если есть только один поток, то много головной боли, естественно, снимается.
 
-However, if your bot has an extremely high load (we are talking about 1000 updates per second and up), then doing everything on a single core might not be enough anymore.
-Basically, a single core will start struggling with the JSON processing of all the messages your bot has to handle.
+Однако если нагрузка на бота очень высока (речь идет о 1000 обновлений в секунду и выше), то одного ядра может оказаться недостаточно.
+В принципе, одно ядро начнет справляться с обработкой JSON всех сообщений, которые должен обработать ваш бот.
 
-### Bot Workers for Update Handling
+### Workers бота для обработки обновлений
 
-There is a simple way out: bot workers!
-grammY runner lets you create several workers which can process your updates in parallel on actually different cores (using different event loops and with separate memory).
+Есть простой выход: workers бота!
+grammY runner позволяет вам создать несколько worker'ов, которые могут обрабатывать ваши обновления параллельно на фактически разных ядрах (используя разные циклы событий и отдельную память).
 
-On Node.js, grammY runner uses [Worker Threads](https://nodejs.org/api/worker_threads.html).
-On Deno, grammY runner uses [Web Workers](https://docs.deno.com/runtime/manual/runtime/workers).
+На Node.js grammY runner использует [Worker Threads](https://nodejs.org/api/worker_threads.html).
+На Deno grammY runner использует [Web Workers](https://docs.deno.com/runtime/manual/runtime/workers).
 
-Conceptually, grammY runner provides you with a class called `BotWorker` which can handle updates.
-It is equivalent to the regular class `Bot` (in fact, it even `extends Bot`).
-The main difference between `BotWorker` and `Bot` is that `BotWorker` cannot fetch updates.
-Instead, it has to receive them from a regular `Bot` that controls its workers.
+Концептуально, grammY runner предоставляет вам класс `BotWorker`, который может обрабатывать обновления.
+Он равносилен обычному классу `Bot` (фактически, он даже расширяет `Bot`).
+Основное различие между `BotWorker` и `Bot` заключается в том, что `BotWorker` не может получать обновления.
+Вместо этого он должен получать их от обычного `Bot`, который управляет своими worker'ами.
 
 ```asciiart:no-line-numbers
-1. fetch updates                                 Bot
+1. получение обновлений                          Bot
                                               __// \\__
                                            __/  /   \  \__
-2. send updates to workers              __/    /     \    \__
+2. отправка worker'ам                   __/    /     \    \__
                                      __/      /       \      \__
                                     /        /         \        \
-3. process updates          BotWorker   BotWorker   BotWorker   BotWorker
+3. обработка обновлений     BotWorker   BotWorker   BotWorker   BotWorker
 ```
 
-grammY runner provides you with middleware that can send updates to bot workers.
-The bot workers can then receive this update and handle it.
-This way, the central bot only has to concern itself with pulling in and distributing updates among the bot workers it orchestrates.
-The actual update handling (filtering messages, sending replies, etc.) is performed by the bot workers.
+grammY runner предоставляет вам middleware, который может отправлять обновления worker'ам бота.
+Бот workers могут получать эти обновления и обрабатывать их.
+Таким образом, центральный бот должен заниматься только получением и распределением обновлений между worker'ами, которыми он управляет.
+Фактическая обработка обновлений (фильтрация сообщений, отправка ответов и т. д.) выполняется worker'ами бота.
 
-Let's now see how this can be used.
+Давайте посмотрим, как это можно использовать.
 
-### Using Bot Workers
+### Использование бот workers
 
-> Examples of this can be found in the [grammY runner repository](https://github.com/grammyjs/runner/tree/main/examples).
+> Примеры этого можно найти в репозитории [grammY runner](https://github.com/grammyjs/runner/tree/main/examples).
 
-We will start out by creating the central bot instance that fetches updates and distributes them among workers.
-Let's start by creating a file called `bot.ts` with the following content.
+Мы начнем с создания центрального экземпляра бота, который будет получать обновления и распределять их между worker'ами.
+Начнем с создания файла `bot.ts` со следующим содержанием.
 
 ::: code-group
 
@@ -210,16 +210,16 @@ Let's start by creating a file called `bot.ts` with the following content.
 import { Bot } from "grammy";
 import { distribute, run } from "@grammyjs/runner";
 
-// Create the bot.
-const bot = new Bot(""); // <-- put your bot token between the ""
+// Создайте бота.
+const bot = new Bot(""); // <-- поместите токен бота между ""
 
-// Optionally, sequentialize updates here.
+// По желанию, здесь можно выполнить последовательную обработку обновлений.
 // bot.use(sequentialize(...))
 
-// Distribute the updates among bot workers.
+// Распределите обновления между worker'ами бота
 bot.use(distribute(__dirname + "/worker"));
 
-// Run the bot concurrently with multi-threading.
+// Запускайте бота с многопоточностью.
 run(bot);
 ```
 
@@ -228,16 +228,16 @@ run(bot);
 const { Bot } = require("grammy");
 const { distribute, run } = require("@grammyjs/runner");
 
-// Create the bot.
-const bot = new Bot(""); // <-- put your bot token between the ""
+// Создайте бота.
+const bot = new Bot(""); // <-- поместите токен бота между ""
 
-// Optionally, sequentialize updates here.
+// По желанию, здесь можно выполнить последовательную обработку обновлений.
 // bot.use(sequentialize(...))
 
-// Distribute the updates among bot workers.
+// Распределите обновления между worker'ами бота
 bot.use(distribute(__dirname + "/worker"));
 
-// Run the bot concurrently with multi-threading.
+// Запускайте бота с многопоточностью.
 run(bot);
 ```
 
@@ -246,23 +246,23 @@ run(bot);
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { distribute, run } from "https://deno.land/x/grammy_runner/mod.ts";
 
-// Create the bot.
-const bot = new Bot(""); // <-- put your bot token between the ""
+// Создайте бота.
+const bot = new Bot(""); // <-- поместите токен бота между ""
 
-// Optionally, sequentialize updates here.
+// По желанию, здесь можно выполнить последовательную обработку обновлений.
 // bot.use(sequentialize(...))
 
-// Distribute the updates among bot workers.
+// Распределите обновления между worker'ами бота
 bot.use(distribute(new URL("./worker.ts", import.meta.url)));
 
-// Run the bot concurrently with multi-threading.
+// Запускайте бота с многопоточностью.
 run(bot);
 ```
 
 :::
 
-Next to `bot.ts`, we create a second file called `worker.ts` (as specified on line 12 in the code above).
-This will contain the actual bot logic.
+Рядом с `bot.ts` мы создаем второй файл под названием `worker.ts` (как указано в строке 12 в коде выше).
+Он будет содержать фактическую логику бота.
 
 ::: code-group
 
@@ -270,58 +270,58 @@ This will contain the actual bot logic.
 // worker.ts
 import { BotWorker } from "@grammyjs/runner";
 
-// Create a new bot worker.
-const bot = new BotWorker(""); // <-- pass your bot token here again
+// Создайте нового BotWorker
+const bot = new BotWorker(""); // <-- Снова поместите токен вашего бота между ""
 
-// Add message handling logic.
-bot.on("message", (ctx) => ctx.reply("yay!"));
+// Добавьте логику обработки
+bot.on("message", (ctx) => ctx.reply("Ура!"));
 ```
 
 ```js [JavaScript]
 // worker.js
 const { BotWorker } = require("@grammyjs/runner");
 
-// Create a new bot worker.
-const bot = new BotWorker(""); // <-- pass your bot token here again
+// Создайте нового BotWorker
+const bot = new BotWorker(""); // <-- Снова поместите токен вашего бота между ""
 
-// Add message handling logic.
-bot.on("message", (ctx) => ctx.reply("yay!"));
+// Добавьте логику обработки
+bot.on("message", (ctx) => ctx.reply("Ура!"));
 ```
 
 ```ts [Deno]
 // worker.ts
 import { BotWorker } from "https://deno.land/x/grammy_runner/mod.ts";
 
-// Create a new bot worker.
-const bot = new BotWorker(""); // <-- pass your bot token here again
+// Создайте нового BotWorker
+const bot = new BotWorker(""); // <-- Снова поместите токен вашего бота между ""
 
-// Add message handling logic.
-bot.on("message", (ctx) => ctx.reply("yay!"));
+// Добавьте логику обработки
+bot.on("message", (ctx) => ctx.reply("Ура!"));
 ```
 
 :::
 
-> Note that each worker is able to send messages back to Telegram.
-> This is why you must give your bot token to each worker, too.
+> Обратите внимание, что каждый worker может отправлять сообщения обратно в Telegram.
+> Поэтому вы должны передать токен бота каждому worker'у.
 
-You do not have to start the bot workers, or export anything from the file.
-It is enough to create an instance of `BotWorker`.
-It will listen for updates automatically.
+Вам не нужно запускать рабочих ботов или экспортировать что-либо из файла.
+Достаточно создать экземпляр `BotWorker`.
+Он будет автоматически слушать обновления.
 
-It is important to understand that **only the raw updates** are sent to bot workers.
-In other words, the [context objects](../guide/context) are created twice for each update: once in `bot.ts` so it can be distributed to a bot worker, and once in `worker.ts` so it can actually be handled.
-What's more: the properties that are installed on the context object in `bot.ts` are not sent to the bot workers.
-This means that all plugins must be installed in the bot workers.
+Важно понимать, что **только необработанные обновления** отправляются worker'ами бота.
+Другими словами, объекты [контекста](../guide/context) создаются дважды для каждого обновления: один раз в `bot.ts`, чтобы оно могло быть передано worker'у, и один раз в `worker.ts`, чтобы оно могло быть обработано.
+Более того: свойства, которые устанавливаются для объекта контекста в `bot.ts`, не отправляются worker'ам.
+Это означает, что все плагины должны быть установлены в worker'ах бота.
 
-::: tip Distribute Only Some Updates
-As a performance optimization, you can drop updates that you do not want to handle.
-That way, your bot does not have to send the update to a worker, only for it to be ignored there.
+::: tip Распространяйте только некоторые обновления
+В качестве оптимизации производительности вы можете отбрасывать обновления, которые не хотите обрабатывать.
+Таким образом, вашему боту не придется отправлять обновление на worker'у, чтобы оно было проигнорировано.
 
 ::: code-group
 
 ```ts [Node.js]
-// Our bot only handles messages, edits, and callback queries,
-// so we can ignore all other updates and not distribute them.
+// Наш бот обрабатывает только сообщения, изменения и callback запросы,
+// поэтому мы можем игнорировать все остальные обновления и не распространять их.
 bot.on(
   ["message", "edited_message", "callback_query"],
   distribute(__dirname + "/worker"),
@@ -329,8 +329,8 @@ bot.on(
 ```
 
 ```ts [Deno]
-// Our bot only handles messages, edits, and callback queries,
-// so we can ignore all other updates and not distribute them.
+// Наш бот обрабатывает только сообщения, изменения и callback запросы,
+// поэтому мы можем игнорировать все остальные обновления и не распространять их.
 bot.on(
   ["message", "edited_message", "callback_query"],
   distribute(new URL("./worker.ts", import.meta.url)),
@@ -339,80 +339,80 @@ bot.on(
 
 :::
 
-By default, `distribute` creates 4 bot workers.
-You can easily adjust this number.
+По умолчанию `distribute` создает 4 worker'а бота.
+Вы можете легко изменить это число.
 
 ```ts
-// Distribute updates among 8 bot workers.
+// Распространите между 8 worker'ами бота
 bot.use(distribute(workerFile, { count: 8 }));
 ```
 
-Note that your application should never spawn more threads than there are physical cores on your CPU.
-This will not improve performance, but rather degrade it.
+Обратите внимание, что ваше приложение никогда не должно порождать больше потоков, чем имеется физических ядер на вашем процессоре.
+Это не улучшит производительность, а скорее ухудшит ее.
 
-## How It Works Behind the Scenes
+## Как это работает под капотом
 
-Of course, while using grammY runner looks very simple, a lot is going on under the hood.
+Конечно, хотя использование grammY runner выглядит очень просто, под капотом происходит очень многое.
 
-Every runner consists of three different parts.
+Каждый runner состоит из трех различных частей.
 
-1. The **source** pulls in updates from Telegram.
-2. The **sink** supplies the bot instance with updates.
-3. The **runner** component connects source and sink, and allows you to start and stop your bot.
+1. **Источник** получает обновления из Telegram.
+2. **Поглотитель** поставляет обновления экземпляру бота.
+3. Компонент **runner** соединяет источник и поглотитель и позволяет запускать и останавливать бота.
 
 ```asciiart:no-line-numbers
-api.telegram.org <—> source <—> runner <—> sink <—> bot
+api.telegram.org <—> источник <—> runner <—> поглотитель <—> бот
 ```
 
-### Source
+### Исходник
 
-grammY runner ships with one default source that can operate on any `UpdateSupplier` ([API reference](/ref/runner/updatesupplier)).
-Such an update supplier is straightforward to create from a bot instance.
-If you want make one yourself, be sure to check out `createUpdateFetcher` ([API reference](/ref/runner/createupdatefetcher)).
+grammY runner поставляется с одним источником по умолчанию, который может работать с любым `UpdateSupplier` ([ссылка на API](/ref/runner/updatesupplier)).
+Такой поставщик обновлений легко создать из экземпляра бота.
+Если вы хотите создать его самостоятельно, обязательно ознакомьтесь с `createUpdateFetcher` ([ссылка на API](/ref/runner/createupdatefetcher)).
 
-The source is an async iterator of update batches, but it can be active or inactive, and you can `close` it in order to disconnect from the Telegram servers.
+Источник представляет собой асинхронный итератор обновлений пакетов, но он может быть активным или неактивным, и вы можете `закрыть` его, чтобы отключиться от серверов Telegram.
 
-### Sink
+### Поглотитель
 
-grammY runner ships with three possible sink implementations, a sequential one (same behavior as `bot.start()`), a batched one (mainly useful for backwards compatibility with other frameworks), and a fully concurrent one (used by `run`).
-All of them operate on `UpdateConsumer` objects ([API reference](/ref/runner/updateconsumer)) which are straightforward to create from a bot instance.
-If you want make one yourself, be sure to check out `handleUpdate` on the `Bot` instance of grammY ([API reference](/ref/core/bot#handleupdate)).
+grammY runner поставляется с тремя возможными реализациями поглотителя: последовательной (то же поведение, что и у `bot.start()`), пакетной (в основном полезной для обратной совместимости с другими фреймворками) и полностью параллельной (используемой `run`).
+Все они работают с объектами `UpdateConsumer` ([ссылка на API](/ref/runner/updateconsumer)), которые легко создать из экземпляра бота.
+Если вы хотите создать такой объект самостоятельно, обязательно проверьте функцию `handleUpdate` на экземпляре `Bot` в grammY ([ссылка на API](/ref/core/bot#handleupdate)).
 
-The sink contains a queue ([API reference](/ref/runner/decayingdeque)) of individual updates that are currently being processed.
-Adding new updates to the queue will immediately make the update consumer handle them, and return a promise that resolves as soon as there is capacity in the queue again.
-The resolved integral number determines the free space.
-Setting a concurrency limit for the grammY runner is therefore respected through the underlying queue instance.
+В поглотителе содержится очередь ([ссылка на API](/ref/runner/decayingdeque)) отдельных обновлений, которые в данный момент обрабатываются.
+Добавление новых обновлений в очередь немедленно заставит `UpdateConsumer` обработать их и вернет `Promise`, который будет решён, как только в очереди снова появится свободное место.
+Разрешенное число определяет свободное место.
+Таким образом, установка ограничения параллельности для grammY runner выполняется через базовый экземпляр очереди.
 
-The queue also throws out updates that take too long processing, and you can specify a `timeoutHandler` when creating the respective sink.
-Of course, you should also provide an error handler when creating a sink.
+Очередь также отбрасывает обновления, обработка которых занимает слишком много времени, и вы можете указать `timeoutHandler` при создании соответствующего поглотителя.
+Разумеется, при создании поглотителя вы также должны указать обработчик ошибок.
 
-If you're using `run(bot)`, the error handler from `bot.catch` will be used.
+Если вы используете `run(bot)`, будет использован обработчик ошибок из `bot.catch`.
 
 ### Runner
 
-The runner is a plain loop that pulls in updates from the source and supplies them to the sink.
-Once the sink has space again, the runner will fetch the next batch of updates from the source.
+Runner --- это обычный цикл, который получает обновления из источника и передает их в поглотитель.
+Как только в поглотителе снова появится свободное место, runner получит следующую порцию обновлений из источника.
 
-When you create a runner with `createRunner` ([API reference](/ref/runner/createrunner)), you obtain a handle that you can use to control the runner.
-For instance, it allows you start and stop it, or obtain a promise that resolves if the runner stops.
-(This handle is also returned by `run`.)
-Check out the [API reference](/ref/runner/runnerhandle) of the `RunnerHandle`.
+Когда вы создаете runner с помощью `createRunner` ([ссылка на API](/ref/runner/createrunner)), вы получаете обработчик, который можно использовать для управления runner'ом.
+Например, с его помощью можно запускать и останавливать его или получать `Promise`, который разрешится, если runner остановится.
+(Этот обработчик также возвращается функцией `run`).
+Посмотрите [документацию API](/ref/runner/runnerhandle) на `RunnerHandle`.
 
-### The `run` Function
+### Функция `run`
 
-The `run` function does a few things to help you use the above structure with ease.
+Функция `run` делает несколько вещей, которые помогут вам легко использовать описанную выше структуру.
 
-1. It creates an update supplier from your bot.
-2. It creates a [source](#source) from the update supplier.
-3. It creates an update consumer from your bot.
-4. It creates a [sink](#sink) from the update consumer.
-5. It creates a [runner](#runner) from the source and the sink.
-6. It starts the runner.
+1. Она создает поставщика обновлений для вашего бота.
+2. Создает [исходник](#исходник) из поставщика обновлений.
+3. Создается `UpdateConsumer` от вашего бота.
+4. Она создает [поглотитель](#поглотитель) от `UpdateConsumer`.
+5. Создает [runner](#runner) из источника и поглотителя.
+6. Запускает runner.
 
-The handle of the created runner is returned, which lets you control the runner.
+Возвращается обработчик созданного runner'а, который позволяет управлять runner'ом.
 
-## Plugin Summary
+## Краткая информация о плагине
 
-- Name: `runner`
-- [Source](https://github.com/grammyjs/runner)
-- [Reference](/ref/runner/)
+- Название: `runner`
+- [Исходник](https://github.com/grammyjs/runner)
+- [Ссылка](/ref/runner/)

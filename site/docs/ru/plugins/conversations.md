@@ -1196,4 +1196,4 @@ await new Promise<never>(() => {}); // БУМ
 
 - Название: `conversations`
 - [Исходник](https://github.com/grammyjs/conversations)
-- [Документация](/ref/conversations/)
+- [Ссылка](/ref/conversations/)

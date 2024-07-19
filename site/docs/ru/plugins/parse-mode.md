@@ -201,4 +201,4 @@ bot.start();
 
 - Название: `parse-mode`
 - [Исходник](https://github.com/grammyjs/parse-mode)
-- [Документация](/ref/parse-mode/)
+- [Ссылка](/ref/parse-mode/)

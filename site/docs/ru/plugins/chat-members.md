@@ -147,4 +147,4 @@ bot.on("message", async (ctx) => {
 
 - Название: `chat-members`
 - [Исходник](https://github.com/grammyjs/chat-members)
-- [Документация](/ref/chat-members/)
+- [Ссылка](/ref/chat-members/)

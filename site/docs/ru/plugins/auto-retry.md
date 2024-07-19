@@ -93,4 +93,4 @@ autoRetry({
 
 - Название: `auto-retry`
 - [Исходник](https://github.com/grammyjs/auto-retry)
-- [Документация](/ref/auto-retry/)
+- [Ссылка](/ref/auto-retry/)

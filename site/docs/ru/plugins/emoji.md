@@ -116,4 +116,4 @@ bot.on("message", (ctx) => ctx.react(Reactions.thumbs_up));
 
 - Название: `emoji`
 - [Исходник](https://github.com/grammyjs/emoji)
-- [Документация](/ref/emoji/)
+- [Ссылка](/ref/emoji/)

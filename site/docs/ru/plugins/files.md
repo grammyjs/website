@@ -144,4 +144,4 @@ const bot = new Bot<MyContext, MyApi>("");
 
 - Название: `files`
 - [Исходник](https://github.com/grammyjs/files)
-- [Документация](/ref/files/)
+- [Ссылка](/ref/files/)

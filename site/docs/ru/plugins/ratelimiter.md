@@ -235,4 +235,4 @@ bot.use(
 
 - Название: `ratelimiter`
 - [Исходник](https://github.com/grammyjs/ratelimiter)
-- [Документация](/ref/ratelimiter/)
+- [Ссылка](/ref/ratelimiter/)

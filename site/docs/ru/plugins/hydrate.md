@@ -174,4 +174,4 @@ bot.api.config.use(hydrateApi());
 
 - Название: `hydrate`
 - [Исходник](https://github.com/grammyjs/hydrate)
-- [Документация](/ref/hydrate/)
+- [Ссылка](/ref/hydrate/)
