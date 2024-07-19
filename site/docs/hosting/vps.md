@@ -203,7 +203,7 @@ systemd is a powerful service manager which is pre-installed on many Linux distr
    - `WantedBy=multi-user.target` --- defines the system state in which the service should be launched.
      `multi-user.target` --- is a typical value for servers.
 
-   > For more information on the unit files, read [this](https://access.redhat.com/documentation/te-in/red_hat_enterprise_linux/9/html/using_systemd_unit_files_to_customize_and_optimize_your_system/assembly_working-with-systemd-unit-files_working-with-systemd).
+   > For more information on the unit files, read [this](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/using_systemd_unit_files_to_customize_and_optimize_your_system/assembly_working-with-systemd-unit-files_working-with-systemd).
 
 4. Reload systemd whenever you edit the service:
 

@@ -354,7 +354,7 @@ https://api.telegram.org/bot<токен-бота>/setWebhook?url=https://<наз
 Для тестування та налагодження бота ви можете запустити локальний або віддалений сервер розробки перед розгортанням бота у продакшені.
 
 У середовищі розробки ваш бот не має доступу до ваших секретних змінних середовища.
-Отже, [згідно з Cloudflare](https://developers.cloudflare.com/workers/configuration/secrets/#secrets-in-development), ви можете створити файл `.dev.vars` у корені вашого проєкту для визначення секретних змінних:
+Отже, [згідно з Cloudflare](https://developers.cloudflare.com/workers/configuration/secrets/#local-development-with-secrets), ви можете створити файл `.dev.vars` у корені вашого проєкту для визначення секретних змінних:
 
 ```env
 BOT_TOKEN=<токен_вашого_бота>  # <- замініть це на токен вашого бота

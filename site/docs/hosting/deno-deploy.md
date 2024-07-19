@@ -71,7 +71,7 @@ Here, we are using the bot token (`/<bot token>`).
 1. Visit your [Deno Deploy dashboard](https://dash.deno.com/projects).
 2. Click "New Project", and then "Empty Project".
 3. Install [`deployctl`](https://github.com/denoland/deployctl).
-4. [Create an access token](https://dash.deno.com/account#access-tokens).
+4. [Create an access token](https://dash.deno.com/account).
 5. Run the following command:
 
    ```sh
