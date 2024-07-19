@@ -242,7 +242,7 @@ https://api.telegram.org/bot<token>/setWebhook?url=<url>
 Обратите внимание, что вы также можете установить свой вебхук из кода:
 
 ```ts
-const endpoint = «»; // <-- поместите сюда свой URL
+const endpoint = ""; // <-- поместите сюда свой URL
 await bot.api.setWebhook(endpoint);
 ```
 
