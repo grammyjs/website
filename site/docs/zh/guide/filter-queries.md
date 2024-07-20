@@ -24,12 +24,12 @@ bot.on("message", async (ctx) => {
   const text: string | undefined = ctx.msg.text;
 });
 bot.on("message:text", async (ctx) => {
-  // 文本总是被定义的，因为当收到一个文本消息时，这个处理程序被调用。
+  // 文本始终存在，因为收到文本消息时会调用此处理程序。
   const text: string = ctx.msg.text;
 });
 ```
 
-从某种意义上说，grammY 在运行时和类型层面上都实现了筛选。
+从某种意义上说，grammY [在运行时](#性能) 和 [类型层面上](#类型安全) 都实现了筛选。
 
 ## 查询示例
 
@@ -198,10 +198,10 @@ bot
 你可以使用下面的过滤查询来接收你的 bot 的状态更新。
 
 ```ts
-bot.on("my_chat_member"); // 开始, 停止, 加入, 或者离开
+bot.on("my_chat_member"); // 封禁，取消封禁，加入，或者离开
 ```
 
-在私人聊天中，这将在 bot 开始或停止时触发。
+在私人聊天中，这将在 bot 封禁或取消封禁时触发。
 在群组中，这将在 bot 加入或移除时触发。
 你可以检查 `ctx.myChatMember` 来确定到底发生了什么。
 
@@ -222,6 +222,7 @@ bot.on("chat_member");
 
 ```ts
 bot.on(":forward_origin").command("help"); // 转发的 /help 命令
+
 // 只在私人聊天中处理命令。
 const pm = bot.chatType("private");
 pm.command("start");
@@ -243,6 +244,7 @@ pm.command("help");
 ```ts
 // 从 `ctx.senderChat` 发送的频道帖子
 bot.on("channel_post");
+
 // 从 `ctx.senderChat`频道自动转发
 bot.on("message:is_automatic_forward");
 // 从 `ctx.from` 发送的常规信息
@@ -302,6 +304,7 @@ bot.drop(matchFilter(":text"));
 function handler(ctx: Filter<Context, ":text">) {
   // 处理缩小的上下文对象
 }
+
 bot.on(":text", handler);
 ```
 
@@ -344,7 +347,24 @@ bot.on(":text", handler);
 filter 查询的验证只发生一次，当 bot 被初始化和 `bot.on()` 被调用时。
 
 在启动时，grammY 从 filter 查询中导出一个函数语句，将其拆分为查询部分。
-每个部分都将被映射到一个函数，该函数执行一个单一的 `in` 检查，或者如果该部分被省略，需要检查两个值，则执行两个检查。
+每个部分都将被映射到一个函数，该函数对对象属性执行一次真值检查，或者如果该部分被省略并且需要检查两个值，则执行两次检查。
 然后这些函数被组合成一个语句，这个语句只需要检查与查询相关的值，而不需要对 `Update` 的对象键进行迭代。
 
-这个系统使用的操作比一些同类库要少，这些库在路由更新时需要对数组进行包含性检查。如你所见，grammY 的 filter 查询系统虽说强大得多，但丝毫不影响效率，反而更快。
+这个系统使用的操作比一些同类库要少，这些库在路由更新时需要对数组进行包含性检查。
+如你所见，grammY 的 filter 查询系统虽说强大得多，但丝毫不影响效率，反而更快。
+
+### 类型安全
+
+如上所述，filter 查询将自动缩小上下文对象上的某些属性的范围。
+从一个或多个 filter 查询派生的谓词是执行此范围缩小的 TypeScript 类型谓词。
+一般来说，你可以相信类型推断是正确的。
+如果推断存在某个属性，你可以放心地信赖它。
+如果推断某个属性可能不存在，则意味着在某些情况下它就是缺失的。
+使用 `!` 运算符执行类型转换不是一个好主意。
+
+> 这些情况对你来说可能不是显而易见的。
+> 如果你无法弄清楚，请随时在 [群聊](https://t.me/grammyjs) 中提问。
+
+计算这些类型是很复杂的。
+grammY 的这一部分涉及到很多关于 Bot API 的知识。
+如果你想了解更多有关如何计算这些类型的基本方法，你可以观看 [YouTube 上的演讲](https://youtu.be/ZvT_xexjnMk)（英文，可开启自动翻译的中文字幕）。

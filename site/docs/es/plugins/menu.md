@@ -91,6 +91,7 @@ bot.start();
 :::
 
 > Asegúrese de instalar todos los menús antes de otros middleware, especialmente antes de los middleware que utilizan datos de consulta de devolución de llamada.
+> Además, si utiliza una configuración personalizada para `allowed_updates`, recuerde incluir actualizaciones `callback_query`.
 
 Naturalmente, si está utilizando un [tipo de contexto personalizado](../guide/context#personalizacion-del-objeto-de-contexto), puede pasarlo a `Menu` también.
 

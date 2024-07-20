@@ -143,18 +143,20 @@ systemd merupakan pengelola service yang terinstal secara bawaan di mayoritas di
 
    :::
 
-2. Peroleh juga path absolut ke file entrinya.
+2. Peroleh path absolut direktori bot.
 
 3. Perintah permulaan kamu semestinya serupa dengan ini:
 
    ```sh
-   <path_runtime> <opsi> <path_file_entri>
+   <path_runtime> <opsi> <path_relatif_file_utama>
+
+   # Path direktori bot: /home/user/bot1/
 
    # Contoh untuk Deno:
-   # /home/user/.deno/bin/deno --allow-all /home/user/bot1/mod.ts
+   # /home/user/.deno/bin/deno --allow-all run mod.ts
 
    # Contoh untuk Node.js:
-   # /home/user/.nvm/versions/node/v16.9.1/bin/node /home/user/bot1/index.js
+   # /home/user/.nvm/versions/node/v16.9.1/bin/node index.js
    ```
 
 #### Membuat Service
@@ -181,7 +183,7 @@ systemd merupakan pengelola service yang terinstal secara bawaan di mayoritas di
    After=network.target
 
    [Service]
-   Environment=BOT_TOKEN=<token>
+   WorkingDirectory=<path-direktori-bot>
    ExecStart=<perintah-mulai>
    Restart=on-failure
 
@@ -189,19 +191,19 @@ systemd merupakan pengelola service yang terinstal secara bawaan di mayoritas di
    WantedBy=multi-user.target
    ```
 
-   Ganti `<token>` dengan token bot kamu dan `<perintah-mulai>` dengan perintah yang kamu terima [di atas tadi](#menyiapkan-perintah-mulai).
+   Ganti `<path-direktori-bot>` dengan path absolut direktori bot kamu dan `<perintah-mulai>` dengan perintah yang kamu terima [di atas tadi](#menyiapkan-perintah-mulai).
 
    Berikut uraian singkat konfigurasi service di atas:
 
    - `After=network.target` --- mengindikasikan bahwa aplikasi harus dijalankan hanya setelah modul internet telah dimuat.
-   - `Environment=BOT_TOKEN=<token>` --- menambahkan environment variable `BOT_TOKEN`.
-     Tambahkan entri `Environment` lainnya jika kamu membutuhkan environment variable tambahan.
+   - `WorkingDirectory=<path-direktori-bot>` --- menyetel path pemrosesan ke direktori yang saat ini dikerjakan.
+     Dengan begitu, kamu jadi bisa menggunakan file aset relatif dari path tersebut, contohnya file `.env`, yang mana berisi semua _environment variable_ yang dibutuhkan.
    - `ExecStart=<perintah-mulai>` --- menyetel perintah permulaan (startup command).
    - `Restart=on-failure` --- mengindikasikan bahwa aplikasi harus dimulai ulang ketika terjadi kesalahan atau crash.
    - `WantedBy=multi-user.target` --- menentukan pada tahap sistem (system state) apa service mesti dijalankan.
      `multi-user.target` --- salah satu tahap sistem yang umum digunakan di sebuah server.
 
-   > Untuk informasi lebih lanjut mengenai file unit, silahkan baca [dokumentasi ini](https://access.redhat.com/documentation/te-in/red_hat_enterprise_linux/9/html/using_systemd_unit_files_to_customize_and_optimize_your_system/assembly_working-with-systemd-unit-files_working-with-systemd).
+   > Untuk informasi lebih lanjut mengenai file unit, silahkan baca [dokumentasi ini](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/using_systemd_unit_files_to_customize_and_optimize_your_system/assembly_working-with-systemd-unit-files_working-with-systemd).
 
 4. Muat ulang systemd setiap kali kamu mengedit service terkait.
 
@@ -401,7 +403,7 @@ Ubah record tersebut dengan mengubah alamat IP di kolom "Points to" ke IP addres
 Selanjutnya, cari dan hapus record dengan tipe `CNAME` yang memiliki nama `www`.
 Sebagai gantinya, buat sebuah record tipe `A` baru dengan nama `www`, lalu arahkan ke IP address VPS-mu, kemudian atur TTL-nya menjadi 3600.
 
-> Jika kamu mengalami kendala, coba gunakan metode lain yang telah dijabarkan di [pengetahuan dasar berikut](https://support.hostinger.com/en/articles/1583227-how-to-point-domain-to-your-vps).
+> Jika kamu mengalami kendala, coba gunakan metode lain yang telah dijabarkan di [pengetahuan dasar berikut](https://support.hostinger.com/en/articles/1583227-how-to-point-a-domain-to-your-vps).
 
 ### Menyiapkan Web Server
 
@@ -637,7 +639,7 @@ File akan dikirim ke server menggunakan `rsync`, yang diimplementasikan oleh `ea
 Setelah file selesai dikirim, perintah yang telah dijabarkan di environment variable `SCRIPT_AFTER` akan dieksekusi.
 Dalam kasus kita, setelah file selesai dikirim, ia akan menuju ke direktori bot, tempat di mana kita menginstal semua dependency selain yang berada di `devDependencies`, yang selanjutnya disambung dengan memulai ulang bot-nya.
 
-Perlu dicatat bahwa kamu perlu menambahkan tiga [secret environment variable](https://docs.github.com/en/actions/security-guides/encrypted-secrets):
+Perlu dicatat bahwa kamu perlu menambahkan tiga [secret environment variable](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions):
 
 1. `SSH_PRIVATE_KEY` --- tempat di mana kunci SSH yang telah kamu buat di [langkah sebelumnya](#kunci-ssh) seharusnya disimpan.
 2. `REMOTE_HOST` --- simpan alamat IP server kamu di sini.
@@ -731,7 +733,7 @@ Script di atas akan mengirim file ke server menggunakan `rsync`, yang diimplemen
 Setelah file selesai dikirim, perintah yang telah dijabarkan di environment variable `SCRIPT_AFTER` akan dieksekusi.
 Dalam kasus kita, setelah file selesai dikirim, ia akan menuju ke direktori bot, lalu memulai ulang bot-nya.
 
-Perlu dicatat bahwa kamu perlu menambahkan tiga [secret environment variable](https://docs.github.com/en/actions/security-guides/encrypted-secrets):
+Perlu dicatat bahwa kamu perlu menambahkan tiga [secret environment variable](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions):
 
 1. `SSH_PRIVATE_KEY` --- tempat di mana kunci SSH yang telah kamu buat di [langkah sebelumnya](#kunci-ssh) seharusnya disimpan.
 2. `REMOTE_HOST` --- simpan alamat IP server kamu di sini.

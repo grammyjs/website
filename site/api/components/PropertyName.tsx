@@ -9,11 +9,11 @@ export function PropertyName({
 }) {
   return (
     <>
-      <span style={klass ? "" : "color:#FFB86C;font-style:italic;"}>
+      <span style={klass ? "" : "--shiki-light:#24292E;--shiki-dark:#E1E4E8;"}>
         {name}
       </span>
       {(optional || hasType) && (
-        <span style="color:#F286C4;">
+        <span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">
           {optional && <>?</>}
           {hasType && <>:</>}
         </span>

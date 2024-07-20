@@ -143,18 +143,20 @@ systemd is a powerful service manager which is pre-installed on many Linux distr
 
    :::
 
-2. Usted debe tener la ruta absoluta a su archivo de entrada, también.
+2. Deberías tener la ruta absoluta al directorio de tu bot.
 
 3. Tu comando de inicio debería ser como el siguiente:
 
    ```sh
    <ruta_de_ejecución> <opciones> <ruta_archivo_entrada>
 
+   # Ruta al directorio del bot: /home/user/bot1/
+
    # Ejemplo Deno:
-   # /home/user/.deno/bin/deno --allow-all /home/user/bot1/mod.ts
+   # /home/user/.deno/bin/deno --allow-all run mod.ts
 
    # Ejemplo Node.js:
-   # /home/user/.nvm/versions/node/v16.9.1/bin/node /home/user/bot1/index.js
+   # /home/user/.nvm/versions/node/v16.9.1/bin/node index.js
    ```
 
 #### Creación del servicio
@@ -181,7 +183,7 @@ systemd is a powerful service manager which is pre-installed on many Linux distr
    After=network.target
 
    [Service]
-   Environment=BOT_TOKEN=<token>
+   WorkingDirectory=<ruta-directorio-bot>
    ExecStart=<comando-de-inicio>
    Restart=on-failure
 
@@ -189,18 +191,19 @@ systemd is a powerful service manager which is pre-installed on many Linux distr
    WantedBy=multi-user.target
    ```
 
-   Sustituye `<token>` por el token de tu bot y `<comando-de-inicio>` por el comando que recibiste [arriba](#obtener-el-comando-de-inicio).
+   Sustituye `<ruta-directorio-bot>` por la ruta absoluta al directorio de tu bot y `<comando-de-inicio>` por el comando que recibiste [arriba](#obtener-el-comando-de-inicio).
 
    He aquí una breve explicación de la configuración del servicio:
 
    - `After=network.target` --- indica que la aplicación debe lanzarse después de cargar el módulo de Internet.
-   - `Environment=BOT_TOKEN=<token>` --- establece la variable de entorno `BOT_TOKEN`. Añade otras entradas `Environment` si necesitas múltiples variables de entorno.
+   - `WorkingDirectory=<ruta-directorio-bot>` --- establece el directorio de trabajo actual del proceso.
+     Esto le permite utilizar activos relativos, como el archivo `.env`, que contiene todas las variables de entorno necesarias.
    - `ExecStart=<comando-de-inicio>` --- establece el comando de inicio.
    - `Restart=on-failure` --- indica que la aplicación debe reiniciarse después de un fallo.
    - `WantedBy=multi-user.target` --- define el estado del sistema en el que debe iniciarse el servicio.
    - `multi-user.target` --- es un valor típico para servidores.
 
-   > Para más información sobre los archivos de unidad, lea [esto](https://access.redhat.com/documentation/te-in/red_hat_enterprise_linux/9/html/using_systemd_unit_files_to_customize_and_optimize_your_system/assembly_working-with-systemd-unit-files_working-with-systemd).
+   > Para más información sobre los archivos de unidad, lea [esto](https://docs.redhat.com/es/documentation/red_hat_enterprise_linux/9/html/using_systemd_unit_files_to_customize_and_optimize_your_system/assembly_working-with-systemd-unit-files_working-with-systemd).
 
 4. Recarga systemd cada vez que edites el servicio:
 
@@ -400,7 +403,7 @@ Edite este registro cambiando la dirección IP en el campo "Points to" a la dire
 A continuación, busque y elimine el registro de tipo `CNAME` con el nombre `www`.
 En su lugar, cree un nuevo registro de tipo `A` con el nombre `www`, apuntando a la dirección IP de su VPS, y establezca el TTL a 3600.
 
-> Si tiene problemas, utilice el otro método descrito en la [base de conocimientos](https://support.hostinger.com/en/articles/1583227-how-to-point-domain-to-your-vps).
+> Si tiene problemas, utilice el otro método descrito en la [base de conocimientos](https://support.hostinger.com/en/articles/1583227-how-to-point-a-domain-to-your-vps).
 
 ### Configurar un Servidor Web
 
@@ -636,7 +639,7 @@ Los archivos se envían al servidor utilizando la utilidad `rsync`, implementada
 Después de que los archivos se entregan al servidor, se ejecuta el comando descrito en la variable de entorno `SCRIPT_AFTER`.
 En nuestro caso, después de que los archivos son entregados, vamos al directorio del bot, donde instalamos todas las dependencias excepto `devDependencies`, y reiniciamos el bot.
 
-Ten en cuenta que necesitas añadir tres [variables de entorno secretas](https://docs.github.com/en/actions/security-guides/encrypted-secrets):
+Ten en cuenta que necesitas añadir tres [variables de entorno secretas](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions):
 
 1. `SSH_PRIVATE_KEY` --- aquí es donde la clave privada SSH que creaste en el [paso anterior](#claves-ssh) debe ser almacenada.
 2. `REMOTE_HOST` --- la dirección IP de su servidor debe ser almacenada aquí.
@@ -730,7 +733,7 @@ Este script envía los archivos al servidor usando la utilidad `rsync`, implemen
 Después de que los archivos son enviados al servidor, se ejecuta el comando descrito en la variable de entorno `SCRIPT_AFTER`.
 En nuestro caso, después de que los archivos son entregados, vamos al directorio del bot y reiniciamos el bot.
 
-Ten en cuenta que necesitas añadir tres [variables de entorno secretas](https://docs.github.com/en/actions/security-guides/encrypted-secrets):
+Ten en cuenta que necesitas añadir tres [variables de entorno secretas](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions):
 
 1. `SSH_PRIVATE_KEY` --- aquí es donde la clave privada SSH que creaste en el [paso anterior](#claves-ssh) debe ser almacenada.
 2. `REMOTE_HOST` --- la dirección IP de su servidor debe ser almacenada aquí.

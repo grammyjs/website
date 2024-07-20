@@ -143,18 +143,20 @@ systemd is a powerful service manager which is pre-installed on many Linux distr
 
    :::
 
-2. You should have the absolute path to your entry file, too.
+2. You should have the absolute path to your bot's directory.
 
 3. Your start command should look like the following:
 
    ```sh
-   <runtime_path> <options> <entry_file_path>
+   <runtime_path> <options> <entry_file_relative_path>
+
+   # Path to the bot directory: /home/user/bot1/
 
    # Deno example:
-   # /home/user/.deno/bin/deno --allow-all /home/user/bot1/mod.ts
+   # /home/user/.deno/bin/deno --allow-all run mod.ts
 
    # Node.js example:
-   # /home/user/.nvm/versions/node/v16.9.1/bin/node /home/user/bot1/index.js
+   # /home/user/.nvm/versions/node/v16.9.1/bin/node index.js
    ```
 
 #### Creating the Service
@@ -181,7 +183,7 @@ systemd is a powerful service manager which is pre-installed on many Linux distr
    After=network.target
 
    [Service]
-   Environment=BOT_TOKEN=<token>
+   WorkingDirectory=<bot-directory-path>
    ExecStart=<start-command>
    Restart=on-failure
 
@@ -189,19 +191,19 @@ systemd is a powerful service manager which is pre-installed on many Linux distr
    WantedBy=multi-user.target
    ```
 
-   Replace `<token>` with your bot's token and `<start-command>` with the command you received [above](#getting-the-start-command).
+   Replace `<bot-directory-path>` with the absolute path to your bot's directory and `<start-command>` with the command you received [above](#getting-the-start-command).
 
    Here is a brief explanation of the service configuration:
 
    - `After=network.target` --- indicates that the application should be launched after the Internet module is loaded.
-   - `Environment=BOT_TOKEN=<token>` --- sets the environment variable `BOT_TOKEN`.
-     Add other `Environment` entries if you need multiple environment variables.
+   - `WorkingDirectory=<bot-directory-path>` --- sets the current working directory of the process.
+     This allows you to use relative assets, such as the `.env` file, which contains all the necessary environment variables.
    - `ExecStart=<start-command>` --- sets the startup command.
    - `Restart=on-failure` --- indicates that the application should restart after a crash.
    - `WantedBy=multi-user.target` --- defines the system state in which the service should be launched.
      `multi-user.target` --- is a typical value for servers.
 
-   > For more information on the unit files, read [this](https://access.redhat.com/documentation/te-in/red_hat_enterprise_linux/9/html/using_systemd_unit_files_to_customize_and_optimize_your_system/assembly_working-with-systemd-unit-files_working-with-systemd).
+   > For more information on the unit files, read [this](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/using_systemd_unit_files_to_customize_and_optimize_your_system/assembly_working-with-systemd-unit-files_working-with-systemd).
 
 4. Reload systemd whenever you edit the service:
 
@@ -401,7 +403,7 @@ Edit this record by changing the IP address in the "Points to" field to the IP a
 Next, find and delete the record of type `CNAME` with the name `www`.
 Instead, create a new record of type `A` with the name `www`, pointing to the IP address of your VPS, and set the TTL to 3600.
 
-> If you run into problems, use the other method described in the [knowledge base](https://support.hostinger.com/en/articles/1583227-how-to-point-domain-to-your-vps).
+> If you run into problems, use the other method described in the [knowledge base](https://support.hostinger.com/en/articles/1583227-how-to-point-a-domain-to-your-vps).
 
 ### Setting up a Web Server
 
@@ -637,7 +639,7 @@ Files are delivered to the server using the `rsync` utility, which is implemente
 After the files are delivered to the server, the command described in the `SCRIPT_AFTER` environment variable is executed.
 In our case, after the files are delivered, we go to the bot directory, where we install all the dependencies except `devDependencies`, and restart the bot.
 
-Note that you need to add three [secret environment variables](https://docs.github.com/en/actions/security-guides/encrypted-secrets):
+Note that you need to add three [secret environment variables](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions):
 
 1. `SSH_PRIVATE_KEY`---this is where the private SSH key you created in the [previous step](#ssh-keys) should be stored.
 2. `REMOTE_HOST`---the IP address of your server should be stored here.
@@ -731,7 +733,7 @@ This script sends files to the server using the `rsync` utility, which is implem
 After the files are delivered to the server, the command described in the `SCRIPT_AFTER` environment variable is executed.
 In our case, after the files are delivered, we go to the bot's directory and restart the bot.
 
-Note that you need to add three [secret environment variables](https://docs.github.com/en/actions/security-guides/encrypted-secrets):
+Note that you need to add three [secret environment variables](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions):
 
 1. `SSH_PRIVATE_KEY`---this is where the private SSH key you created in the [previous step](#ssh-keys) should be stored.
 2. `REMOTE_HOST`---the IP address of your server should be stored here.

@@ -47,7 +47,7 @@ Di sisi lain, bot menangani kelompok media sebagai runtutan pesan, alih-alih seb
 Cara yang paling praktis untuk mengatasinya adalah mengabaikan keberadaan kelompok media tersebut.
 Artinya, kita menulis bot dengan menganggap setiap pesan sebagai individu, bukan kelompok.
 Dengan begitu, album akan bekerja dengan sendirinya.
-Contohnya, kamu bisa meminta user untuk [menekan sebuah tombol](../plugins/keyboard.md#keyboard-inline) atau mengirim `/done` ketika semua berkas sudah diunggah ke bot kamu.
+Contohnya, kamu bisa meminta user untuk [menekan sebuah tombol](../plugins/keyboard#keyboard-inline) atau mengirim `/done` ketika semua berkas sudah diunggah ke bot kamu.
 
 _Tetapi, jika aplikasi Telegram bisa melakukannya, bukankah seharusnya bot aku bisa melakukannya juga?_
 

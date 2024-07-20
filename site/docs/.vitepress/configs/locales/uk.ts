@@ -326,6 +326,10 @@ const hostingTutorials = {
   text: "Посібники",
   items: [
     {
+      text: "Віртуальний приватний сервер (VPS)",
+      link: "/uk/hosting/vps",
+    },
+    {
       text: "Deno Deploy",
       link: "/uk/hosting/deno-deploy",
     },
@@ -342,10 +346,6 @@ const hostingTutorials = {
       link: "/uk/hosting/cloudflare-workers-nodejs",
     },
     {
-      text: "Heroku",
-      link: "/uk/hosting/heroku",
-    },
-    {
       text: "Fly",
       link: "/uk/hosting/fly",
     },
@@ -354,20 +354,20 @@ const hostingTutorials = {
       link: "/uk/hosting/firebase",
     },
     {
-      text: "Google Cloud Functions",
-      link: "/uk/hosting/gcf",
-    },
-    {
       text: "Vercel",
       link: "/uk/hosting/vercel",
     },
     {
-      text: "Cyclic",
-      link: "/uk/hosting/cyclic",
+      text: "Zeabur (Deno)",
+      link: "/uk/hosting/zeabur-deno",
     },
     {
-      text: "Віртуальний приватний сервер",
-      link: "/uk/hosting/vps",
+      text: "Zeabur (Node.js)",
+      link: "/uk/hosting/zeabur-nodejs",
+    },
+    {
+      text: "Heroku",
+      link: "/uk/hosting/heroku",
     },
   ],
 };
@@ -483,7 +483,7 @@ export const siteUk: LocaleConfig = {
       ],
       notFound: {
         code: "404",
-        title: "PAGE NOT FOUND",
+        title: "СТОРІНКУ НЕ ЗНАЙДЕНО",
         linkText: "Ніколи не забувайте, звідки ви",
         linkLabel: "Повернутися на головну",
         messages: [

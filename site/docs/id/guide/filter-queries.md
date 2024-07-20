@@ -29,7 +29,7 @@ bot.on("message:text", async (ctx) => {
 });
 ```
 
-Filter query grammY diimplementasikan baik di _runtime_ maupun di _type level_.
+Filter query grammY tersedia di level [_runtime_](#performa) dan [_type_](#type-safety).
 
 ## Contoh Query
 
@@ -200,11 +200,11 @@ Beberapa diantaranya merupakan fitur tingkat lanjut, silahkan baca [materi berik
 Kamu bisa menggunakan filter query berikut untuk menerima status update mengenai bot-mu.
 
 ```ts
-bot.on("my_chat_member"); // start, stop, join, atau leave
+bot.on("my_chat_member"); // diblokir, blokir dibuka, bergabung, atau keluar
 ```
 
-Filter tadi akan terpicu saat bot dimulai atau distop di chat pribadi.
-Kalau di grup, ia akan terpicu saat bot ditambahkan atau dikeluarkan.
+Filter di atas akan terpicu di chat pribadi, baik saat bot diblokir maupun saat blokirnya dibuka.
+Jika di grup, ia akan terpicu saat bot ditambahkan atau dikeluarkan.
 Kamu bisa memeriksa `ctx.myChatMember` untuk mencari tahu apa yang sebenarnya terjadi.
 
 Hati-hati!
@@ -350,8 +350,24 @@ Selain itu, kamu juga akan diberikan pesan error yang lebih bermanfaat.
 Validasi filter query hanya dilakukan sekali, ketika bot diinisialisasi dan `bot.on()` dipanggil.
 
 Ketika dimulai, grammY menurunkan _function predicate_ dari filter query dengan cara memecahnya menjadi beberapa komponen query.
-Setiap komponen akan di-map ke sebuah function yang mengerjakan satu pemeriksaan `in`, atau dua pemeriksaan jika komponen tersebut diabaikan dan dua value perlu dilakukan pemeriksaan.
+Setiap komponen akan dipetakan ke sebuah function untuk diperiksa apakah properti objek tersebut cocok dengan filter terkait, atau bahkan dua kali pemeriksaan jika terdapat komponen yang dihilangkan sehingga dua nilai perlu diperiksa (misalnya, shortcut `:text` akan dijabarkan menjadi `["message:text", "channel_post:text"]` sehingga perlu dilakukan dua kali pemeriksaan).
 Function-function ini kemudian disatukan untuk membentuk sebuah predicate yang akan memeriksa sebanyak mungkin value yang relevan untuk query, tanpa melakukan proses perulangan terhadap key object `Update`.
 
 Sistem ini menggunakan lebih sedikit operasi dibandingkan dengan beberapa library lainnya, dimana dibutuhkan beberapa pengecekan array ketika melakukan routing update.
 Ini membuat sistem filter query grammY selain lebih unggul juga jauh lebih cepat.
+
+### Type Safety
+
+Sebagaimana yang disebutkan di atas, filter query secara otomatis menyeleksi properti tertentu di objek context.
+Penyeleksian satu atau lebih filter query tersebut berasal dari [type predicate TypeScript](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates).
+Umumnya, kamu bisa mempercayai hasil penyeleksian tersebut benar-benar terseleksi dengan baik.
+Contohnya, jika suatu property tersedia, kamu dapat menggunakan type tersebut dengan aman.
+Namun, jika suatu property tidak tersedia, berarti ada proses tertentu yang mengakibatkan type property tersebut tidak terseleksi.
+Kami tidak menyarankan untuk mengakalinya dengan melakukan type casting menggunakan operator `!`.
+
+> Meski terlihat jelas, dalam kasus tertentu, mungkin kamu tidak menemukan penyebab suatu property tidak terseleksi dengan benar.
+> Jangan ragu untuk bertanya di [obrolan grup](https://t.me/grammyjs) jika kamu masih belum menemukan penyebabnya.
+
+Mengelola berbagai macam type berikut bukanlah perkara mudah.
+Banyak sekali pengetahuan tentang API Bot yang masuk pada bagian grammY ini.
+Apabila kamu ingin memahami lebih dalam bagaimana type ini dibuat, berikut pembahasan lengkapnya yang bisa kamu [tonton di YouTube](https://youtu.be/ZvT_xexjnMk).

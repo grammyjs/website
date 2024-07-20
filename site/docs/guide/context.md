@@ -57,10 +57,11 @@ There are a number of shortcuts installed on the context object.
 | Shortcut                   | Description                                                                                                          |
 | -------------------------- | -------------------------------------------------------------------------------------------------------------------- |
 | `ctx.msg`                  | Gets the message object, also edited ones                                                                            |
+| `ctx.msgId`                | Gets the message identifier for messages or reactions                                                                |
 | `ctx.chat`                 | Gets the chat object                                                                                                 |
+| `ctx.chatId`               | Gets the chat identifier from `ctx.chat` or from `business_connection` updates                                       |
 | `ctx.senderChat`           | Gets the sender chat object out of `ctx.msg` (for anonymous channel/group messages)                                  |
 | `ctx.from`                 | Gets the author of the message, callback query, or other things                                                      |
-| `ctx.msgId`                | Gets the message identifier for messages or reactions                                                                |
 | `ctx.inlineMessageId`      | Gets the inline message identifier for callback queries or chosen inline results                                     |
 | `ctx.businessConnectionId` | Gets the business connection identifier for messages or business connection updates                                  |
 | `ctx.entities`             | Gets the message entities and their text, optionally filtered by entity type                                         |

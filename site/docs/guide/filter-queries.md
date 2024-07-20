@@ -24,12 +24,12 @@ bot.on("message", async (ctx) => {
   const text: string | undefined = ctx.msg.text;
 });
 bot.on("message:text", async (ctx) => {
-  // Text is always defined because this handler is called when a text message is received.
+  // Text is always present because this handler is called when a text message is received.
   const text: string = ctx.msg.text;
 });
 ```
 
-In a sense, grammY implements the filter queries both at runtime, and on the type level.
+In a sense, grammY implements the filter queries both [at runtime](#performance), and [on the type level](#type-safety).
 
 ## Example Queries
 
@@ -133,7 +133,7 @@ bot.on("message:new_chat_members:is_bot");
 bot.on("message:left_chat_member:me");
 ```
 
-Note that while this syntactic sugar is useful to work with service messages, is should not be used to detect if someone actually joins or leaves a chat.
+Note that while this syntactic sugar is useful to work with service messages, it should not be used to detect if someone actually joins or leaves a chat.
 Services messages are messages that inform the users in the chat, and some of them will not be visible in all cases.
 For example, in large groups, there will not be any service messages about users that join or leave the chat.
 Hence, your bot may not notice this.
@@ -198,10 +198,10 @@ Some of them are a little advanced, so feel free to move on to the [next section
 You can use the following filter query to receive status updates about your bot.
 
 ```ts
-bot.on("my_chat_member"); // start, stop, join, or leave
+bot.on("my_chat_member"); // block, unblock, join, or leave
 ```
 
-In private chats, this triggers when the bot is started or stopped.
+In private chats, this triggers when the bot is blocked or unblocked.
 In groups, this triggers when the bot is added or removed.
 You can now inspect `ctx.myChatMember` to figure out what exactly happened.
 
@@ -347,8 +347,24 @@ In this case, you will be provided with helpful error messages.
 The validation of the filter queries happens only once, when the bot is initialized and `bot.on()` is called.
 
 On start-up, grammY derives a predicate function from the filter query by splitting it into its query parts.
-Every part will be mapped to a function that performs a single `in` check, or two checks if the part is omitted and two values need to be checked.
+Every part will be mapped to a function that performs a single truthiness check for an object property, or two checks if the part is omitted and two values need to be checked.
 These functions are then combined to form a predicate that only has to check for as many values as are relevant for the query, without iterating over the object keys of `Update`.
 
 This system uses less operations than some competing libraries, which need to perform containment checks in arrays when routing updates.
 grammY's filter query system is faster despite being much more powerful.
+
+### Type Safety
+
+As mentioned above, filter queries will automatically narrow down certain properties on the context object.
+The predicate derived from one or more filter queries is a TypeScript type predicate that performs this narrowing.
+In general, you can trust that type inference works correctly.
+If a property is inferred to be present, you can safely rely on it.
+If a property is inferred to be potentially absent, then this means that there are certain cases of it missing.
+It is not a good idea to perform type casts with the `!` operator.
+
+> It may not be obvious to you what those cases are.
+> Don't hesitate to ask in the [group chat](https://t.me/grammyjs) if you cannot figure it out.
+
+Computing these types is complicated.
+A lot of knowledge about the Bot API went into this part of grammY.
+If you want to understand more about the basic approaches to how these types are computed, there is a [talk on YouTube](https://youtu.be/ZvT_xexjnMk) that you can watch.

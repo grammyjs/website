@@ -13,7 +13,7 @@ next: false
 
 > 要遵循本指南，你首先需要租用一台 VPS。
 > 本节将介绍如何做到这一点。
-> 如果你已经有了一台可用的 VPS，请跳至 [下一节](#启动-Bot)。
+> 如果你已经有了一台可用的 VPS，请跳至 [下一节](#启动-bot)。
 
 在本指南中，我们将使用 [Hostinger](https://hostinger.com) 的服务。
 
@@ -143,18 +143,20 @@ systemd 是一个功能强大的服务管理器，已预装在许多 Linux 发�
 
    :::
 
-2. 你还应该有入口文件（即通过哪一个文件启动你的 bot）的绝对路径。
+2. 你还应该有你的 bot 的目录的绝对路径。
 
 3. 你的启动命令应该看起来像下面这样：
 
    ```sh
-   <runtime_path> <options> <entry_file_path>
+   <runtime_path> <options> <entry_file_relative_path>
+
+   # bot 目录的路径：/home/user/bot1/
 
    # Deno 示例:
-   # /home/user/.deno/bin/deno --allow-all /home/user/bot1/mod.ts
+   # /home/user/.deno/bin/deno --allow-all run mod.ts
 
    # Node.js 示例:
-   # /home/user/.nvm/versions/node/v16.9.1/bin/node /home/user/bot1/index.js
+   # /home/user/.nvm/versions/node/v16.9.1/bin/node index.js
    ```
 
 #### 创建服务
@@ -181,7 +183,7 @@ systemd 是一个功能强大的服务管理器，已预装在许多 Linux 发�
    After=network.target
 
    [Service]
-   Environment=BOT_TOKEN=<token>
+   WorkingDirectory=<bot-directory-path>
    ExecStart=<start-command>
    Restart=on-failure
 
@@ -189,19 +191,19 @@ systemd 是一个功能强大的服务管理器，已预装在许多 Linux 发�
    WantedBy=multi-user.target
    ```
 
-   将 `<token>` 替换为你的 bot token，将 `<start-command>` 替换为 [上文](#获取启动命令) 获取到的命令。
+   将 `<bot-directory-path>` 替换为你的 bot 目录的绝对路径，将 `<start-command>` 替换为 [上文](#获取启动命令) 获取到的命令。
 
    以下是服务配置的简要说明：
 
    - `After=network.target` --- 表示应用程序应在网络模块加载后启动。
-   - `Environment=BOT_TOKEN=<token>` --- 设置环境变量 `BOT_TOKEN`。
-     如果需要多个环境变量，请添加其他 `Environment` 条目。
+   - `WorkingDirectory=<bot-directory-path>` --- 设置进程的工作目录。
+     这允许你使用相关资产，例如包含了所有必要的环境变量的 `.env` 文件。
    - `ExecStart=<start-command>` --- 设置启动命令。
    - `Restart=on-failure` --- 表示应用程序应在崩溃后重新启动。
    - `WantedBy=multi-user.target` --- 定义了服务启动时的系统状态。
      `multi-user.target` --- 是服务器的典型值。
 
-   > 有关单元文件的更多信息，请阅读 [这里](https://access.redhat.com/documentation/te-in/red_hat_enterprise_linux/9/html/using_systemd_unit_files_to_customize_and_optimize_your_system/assembly_working-with-systemd-unit-files_working-with-systemd)。
+   > 有关单元文件的更多信息，请阅读 [这里](https://docs.redhat.com/zh_hans/documentation/red_hat_enterprise_linux/9/html/using_systemd_unit_files_to_customize_and_optimize_your_system/assembly_working-with-systemd-unit-files_working-with-systemd)。
 
 4. 每次编辑服务时，都要重新加载 systemd：
 
@@ -401,7 +403,7 @@ Deno.serve(async (req) => {
 然后，找到并删除名称为 `www` 的 `CNAME` 类型的记录。
 取而代之的是，创建一个名称为 `www` 的 `A` 类型的新记录，指向你的 VPS 的 IP 地址，并将 TTL 设置为 3600。
 
-> 如果你遇到了问题，请使用 [知识库](https://support.hostinger.com/en/articles/1583227-how-to-point-domain-to-your-vps) 中介绍的其他方法。
+> 如果你遇到了问题，请使用 [知识库](https://support.hostinger.com/en/articles/1583227-how-to-point-a-domain-to-your-vps) 中介绍的其他方法。
 
 ### 搭建 Web 服务器
 
@@ -637,7 +639,7 @@ jobs:
 文件传输到服务器后，将执行 `SCRIPT_AFTER` 环境变量中描述的命令。
 在我们的例子中，文件传输完成后，我们进入 bot 的目录，在那里安装除 `devDependencies` 以外的所有依赖项，然后重启 bot。
 
-请注意，你需要添加三个 [秘密环境变量](https://docs.github.com/en/actions/security-guides/encrypted-secrets)：
+请注意，你需要添加三个 [秘密环境变量](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions)：
 
 1. `SSH_PRIVATE_KEY`---这是你在 [上一步](#ssh-密钥) 中创建的 SSH 私钥的存放位置。
 2. `REMOTE_HOST`---服务器的 IP 地址应存储在这里。
@@ -731,7 +733,7 @@ jobs:
 文件传输到服务器后，将执行 `SCRIPT_AFTER` 环境变量中描述的命令。
 在我们的例子中，文件传输完成后，我们进入 bot 的目录并重启 bot。
 
-请注意，你需要添加三个 [秘密环境变量](https://docs.github.com/en/actions/security-guides/encrypted-secrets)：
+请注意，你需要添加三个 [秘密环境变量](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions)：
 
 1. `SSH_PRIVATE_KEY`---这是你在 [上一步](#ssh-密钥) 中创建的 SSH 私钥的存放位置。
 2. `REMOTE_HOST`---服务器的 IP 地址应存储在这里。

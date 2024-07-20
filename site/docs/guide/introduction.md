@@ -3,7 +3,7 @@
 A Telegram bot is a special user account that is automated by a program.
 Anyone can create a Telegram bot, the only prerequisite is that you know a little bit of coding.
 
-> If you already know how create bots, head over to [Getting Started](./getting-started)!
+> If you already know how to create bots, head over to [Getting Started](./getting-started)!
 
 grammY is a library that makes it super simple to write such a bot.
 

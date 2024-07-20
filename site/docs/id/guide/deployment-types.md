@@ -247,6 +247,7 @@ Di bawah ini adalah tabel berisi berbagai macam adapter yang tersedia beserta je
 | `aws-lambda`       | AWS Lambda Functions                                                           |
 | `aws-lambda-async` | AWS Lambda Functions dengan `async`/`await`                                    |
 | `azure`            | Azure Functions                                                                |
+| `bun`              | `Bun.serve`                                                                    |
 | `cloudflare`       | Cloudflare Workers                                                             |
 | `cloudflare-mod`   | Cloudflare Module Workers                                                      |
 | `express`          | Express, Google Cloud Functions                                                |

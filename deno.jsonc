@@ -1,7 +1,8 @@
 {
   "lock": false,
   "tasks": {
-    "check-links": "deno run -r --allow-env=GITHUB_TOKEN --allow-net --allow-read https://raw.githubusercontent.com/grammyjs/link-checker/main/website_cli.ts --clean-url site/docs"
+    "links:check": "deno run -r --allow-env=DEBUG,GITHUB_API_ROOT,GITHUB_TOKEN --allow-net --allow-read=site/docs,. --allow-run=deno https://raw.githubusercontent.com/grammyjs/link-checker/main/website_cli.ts --clean-url site/docs",
+    "links:fix": "deno run -r --allow-env=DEBUG,GITHUB_API_ROOT,GITHUB_TOKEN --allow-net --allow-read=site/docs,. --allow-run=deno https://raw.githubusercontent.com/grammyjs/link-checker/main/website_cli.ts --clean-url --fix site/docs"
   },
   "fmt": {
     "proseWrap": "preserve",

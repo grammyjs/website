@@ -24,12 +24,12 @@ bot.on("message", async (ctx) => {
   const text: string | undefined = ctx.msg.text;
 });
 bot.on("message:text", async (ctx) => {
-  // El texto siempre está definido porque este manejador es llamado cuando se recibe un mensaje de texto.
+  // El texto siempre está presente porque este manejador es llamado cuando se recibe un mensaje de texto.
   const text: string = ctx.msg.text;
 });
 ```
 
-En cierto sentido, grammY implementa las consultas de filtro tanto en tiempo de ejecución, como en el nivel de tipo.
+En cierto sentido, grammY implementa las consultas de filtro tanto [en tiempo de ejecución](#rendimiento), como [a nivel de tipo](#seguridad-de-tipos).
 
 ## Ejemplos de consulta
 
@@ -133,7 +133,7 @@ bot.on("message:new_chat_members:is_bot");
 bot.on("message:left_chat_member:me");
 ```
 
-Ten en cuenta que, aunque este azúcar sintáctico es útil para trabajar con mensajes de servicio, no debe utilizarse para detectar si alguien se une o abandona un chat.
+Tenga en cuenta que aunque este azúcar sintáctico es útil para trabajar con mensajes de servicio, no debe utilizarse para detectar si alguien realmente se une o abandona un chat.
 Los mensajes de servicio son mensajes que informan a los usuarios en el chat, y algunos de ellos no serán visibles en todos los casos.
 Por ejemplo, en los grupos grandes, no habrá mensajes de servicio sobre los usuarios que se unen o abandonan el chat.
 Por lo tanto, es posible que tu bot no se dé cuenta de ello.
@@ -198,10 +198,10 @@ Algunas de ellas son un poco avanzadas, así que no dudes en pasar a la [siguien
 Puedes utilizar la siguiente consulta de filtro para recibir actualizaciones de estado sobre tu bot.
 
 ```ts
-bot.on("my_chat_member"); // iniciar, detener, unirse o abandonar
+bot.on("my_chat_member"); // bloquear, desbloquear, unirse o abandonar
 ```
 
-En los chats privados, esto se activa cuando el bot se inicia o se detiene.
+En los chats privados, se activa cuando el bot es bloqueado o desbloqueado.
 En los grupos, esto se dispara cuando el bot es añadido o eliminado.
 Ahora puedes inspeccionar `ctx.myChatMember` para saber qué ha pasado exactamente.
 
@@ -347,8 +347,24 @@ En este caso, se le proporcionarán mensajes de error útiles.
 La validación de las consultas de filtrado ocurre sólo una vez, cuando se inicializa el bot y se llama a `bot.on()`.
 
 Al iniciarse, grammY deriva una función de predicado de la consulta de filtro dividiéndola en sus partes de consulta.
-Cada parte se asigna a una función que realiza una única comprobación `in`, o dos comprobaciones si la parte se omite y hay que comprobar dos valores.
+Cada parte se asignará a una función que realiza una única comprobación de veracidad para una propiedad del objeto, o dos comprobaciones si se omite la parte y es necesario comprobar dos valores.
 Estas funciones se combinan entonces para formar un predicado que sólo tiene que comprobar tantos valores como sean relevantes para la consulta, sin iterar sobre las claves del objeto `Update`.
 
 Este sistema utiliza menos operaciones que algunas bibliotecas de la competencia, que necesitan realizar comprobaciones de contención en arrays cuando se enrutan las actualizaciones.
 El sistema de consulta de filtros de grammY es más rápido a pesar de ser mucho más potente.
+
+### Seguridad de tipos
+
+Como se ha mencionado anteriormente, las consultas de filtro restringirán automáticamente ciertas propiedades del objeto de contexto.
+El predicado derivado de una o más consultas de filtro es un predicado de tipo TypeScript que realiza este estrechamiento.
+En general, puede confiar en que la inferencia de tipo funciona correctamente.
+Si se infiere que una propiedad está presente, puede confiar en ella.
+Si se infiere que una propiedad está potencialmente ausente, significa que hay ciertos casos en los que falta.
+No es una buena idea realizar cambios de tipo con el operador `!`.
+
+> Puede que no te resulte obvio cuáles son esos casos.
+> No dudes en preguntar en el [chat de grupo](https://t.me/grammyjs) si no puedes averiguarlo.
+
+Calcular estos tipos es complicado.
+Mucho conocimiento sobre la API del Bot fue invertido en esta parte de grammY.
+Si quieres entender más sobre los enfoques básicos de cómo se calculan estos tipos, hay una [charla en YouTube](https://youtu.be/ZvT_xexjnMk) que puedes ver.
