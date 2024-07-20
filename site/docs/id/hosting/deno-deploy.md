@@ -22,7 +22,7 @@ Hasil dari tutorial disini dapat dilihat di [repositori bot kami](https://github
 > Ingat! Kamu perlu [menjalankan bot dengan webhooks](../guide/deployment-types#bagaimana-cara-menggunakan-webhook), jadi kamu harus menggunakan `webhookCallback` alih-alih memanggil `bot.start()` di kodemu.
 
 1. Pastikan kamu meng-export object bot di dalam sebuah file agar nantinya bisa di-import ketika ingin menjalankannya.
-2. Buat sebuah file dengan nama `mod.ts` atau `mod.js`, ataupun nama lainnya sesuai dengan keinginanmu (tetapi kamu harus mengingatnya karena nanti file tersebut akan digunakan sebagai file deploy utama). File tersebut berisikan:
+2. Buat sebuah file dengan nama `main.ts` atau `main.js`, ataupun nama lainnya sesuai dengan keinginanmu (tetapi kamu harus mengingatnya karena nanti file tersebut akan digunakan sebagai file deploy utama). File tersebut berisikan:
 
 ```ts
 import { webhookCallback } from "https://deno.land/x/grammy/mod.ts";
@@ -62,41 +62,44 @@ Di contoh kali ini, kita menggunakan token bot (`/<token bot>`) sebagai direktor
 
    > Direkomendasikan untuk mempunyai satu branch stabil dan branch lain untuk pengetesan supaya branch utama kamu terhindar dari hal-hal yang tidak diinginkan.
 
-3. Kunjungi [dashboard Deno Deploy](https://dash.deno.com/projects).
-4. Pilih "New Project", lalu pergi ke bagian "Deploy from GitHub repository".
+3. Kunjungi [dashboard Deno Deploy](https://dash.deno.com/account/overview).
+4. Pilih "New Project".
 5. Pasang aplikasi GitHub di akun atau organisasimu, kemudian pilih repositori kode bot kamu berada.
-6. Pilih branch dan file `mod.ts` yang akan di-deploy.
+6. Pilih branch yang akan di-deploy.
+7. Pilih file `main.ts` sebagai entrypoint, lalu deploy proyek dengan mengklik "Deploy Project".
 
 ### Metode 2: Menggunakan `deployctl`
 
-> Metode ini diperuntukkan kepada pengguna tingkat lanjut yang nantinya proyek akan di-deploy melalui command line atau GitHub Actions.
+> Metode ini diperuntukkan untuk penggunaan tingkat lanjut atau jika kamu tidak ingin mengunggah kode proyek ke GitHub.
+> Melalui cara ini, kamu bisa men-deploy proyek menggunakan command line atau GitHub Actions.
 
-1. Kunjungi [dashboard Deno Deploy](https://dash.deno.com/projects).
-2. Pilih "New Project", kemudian pilih "Empty Project".
-3. Pasang [`deployctl`](https://github.com/denoland/deployctl).
-4. Buat [token akses](https://dash.deno.com/account) baru.
-5. Jalankan dengan perintah:
+1. Instal [`deployctl`](https://github.com/denoland/deployctl).
+2. Buat sebuah token akses di bagian "Access Tokens", [pengaturan akun](https://dash.deno.com/account).
+3. Pergi ke direktori proyek, lalu jalankan perintah berikut:
 
-   ```sh
-   deployctl deploy --project <project> ./mod.ts --prod --token <token>
+   ```sh:no-line-numbers
+   deployctl deploy --project=<project> --entrypoint=./main.ts --prod --token=<token>
    ```
 
-6. Untuk menyiapkan GitHub Actions, dapat merujuk ke [sini](https://github.com/denoland/deployctl/blob/main/action/README.md).
+   ::: tip Mengatur environment variable
+   Setelah di-deploy, kamu bisa mengatur environment variable di bagian pengaturan proyek.
 
-### Metode 3: Menggunakan URL
+   Selain melalui pengaturan proyek, kamu juga bisa mengaturnya melalui command line:
 
-> Kamu memerlukan URL publik yang mengarah ke file `mod.ts`-mu untuk menggunakan metode ini.
+   1. Taruh semua environment variable di file dotenv, lalu akses dengan menambahkan argumen `--env-file=<file>`.
+   2. Kamu juga bisa menambahkan environment variable satu per satu menggunakan argumen `--env=<key=value>`.
 
-1. Buat proyek baru di Deno Deploy.
-2. Pilih "Deploy URL"
-3. Masukkan URL publik file `mod.ts`-mu, lalu pilih "Deploy".
+   :::
+4. Untuk mengatur GitHub Actions, lihat panduan [berikut](https://github.com/denoland/deployctl/blob/main/action/README.md).
+
+Lihat [dokumentasi deployctl](https://docs.deno.com/deploy/manual/deployctl) untuk informasi lebih lanjut.
 
 ### Catatan
 
 Setelah mendapati bot-mu dapat berjalan, kamu harus melakukan konfigurasi pada pengaturan webhook untuk menggunakan URL bot-mu yang baru.
 
-```text
-https://api.telegram.org/bot<token>/setWebhook?url=<url>
+```sh:no-line-numbers
+curl https://api.telegram.org/bot<token>/setWebhook?url=<url>
 ```
 
 Ganti `<token>` dengan token bot-mu, dan `<url>` dengan URL lengkap bot kamu.
