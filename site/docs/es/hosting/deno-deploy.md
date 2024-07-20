@@ -86,7 +86,7 @@ Aquí, estamos usando el token del bot (`/<bot token>`).
    1. Puedes asignar variables de entorno desde un archivo dotenv añadiendo el argumento `--env-file=<file>`.
    2. También puede especificarlas individualmente utilizando el argumento `--env=<clave=valor>`.
 
-:::
+   :::
 4. Para configurar las Acciones de GitHub, consulta [this](https://github.com/denoland/deployctl/blob/main/action/README.md).
 
 Consulta la [documentación de deployctl](https://docs.deno.com/deploy/manual/deployctl) para más información.
