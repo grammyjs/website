@@ -44,4 +44,6 @@ jobs:
           deno-version: "1.45.2"
 
       - name: Check Links
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: deno task links:check
