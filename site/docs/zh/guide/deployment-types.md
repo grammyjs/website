@@ -2,27 +2,27 @@
 next: false
 ---
 
-# 长轮询 vs. Webhooks
+# 长轮询 vs. Webhook
 
 这里存在两种让你的 bot 接受来自 Telegram 服务器的信息的方式。
-他们被称作 _长轮询_ 与 _webhooks_。
+他们被称作 _长轮询_ 与 _webhook_。
 grammY 同时支持这两种方式，使用长轮询作为默认方式。
 
-这一部分将首先介绍长轮询问与 webhooks 分别是什么，
+这一部分将首先介绍长轮询问与 webhook 分别是什么，
 并同时概述了使用其中某一种方法的优缺点。
 还将涵盖如何配合 grammY 进行使用。
 
 ## 介绍
 
-你可以将整个关于 webhooks 与长轮询的问题看作是选择哪种 _部署方式_ 的问题。
+你可以将整个关于 webhook 与长轮询的问题看作是选择哪种 _部署方式_ 的问题。
 换句话说，这里存在着两种部署 bot 的截然不同的方式，不同的地方同时存在于信息到达 bot 的方式和 grammY 将如何处理信息。
 
 这是一个非常重要的决定，意味着你要选择如何部署 bot。
 例如一些基本接口只支持其中一种的方式。
 
-你的 bot 可以主动拉取信息（长轮询），或者是由 Telegram 服务器主动推送过来（webhooks）。
+你的 bot 可以主动拉取信息（长轮询），或者是由 Telegram 服务器主动推送过来（webhook）。
 
-> 如果你已经了解这些是如何工作的，滚动到下方了解如果通过 grammY 使用 [长轮询](#如何使用长轮询) 或者 [webhooks](#如何使用-webhooks)。
+> 如果你已经了解这些是如何工作的，滚动到下方了解如果通过 grammY 使用 [长轮询](#如何使用长轮询) 或者 [webhook](#如何使用-webhook)。
 
 ## 长轮询是如何工作的？
 
@@ -104,7 +104,7 @@ ______________                                     _____________
 漂亮。
 这就是当你运行 `bot.start ()` 时，默认情况下 grammY 会做的事情。
 
-## Webhooks 是如何工作的？
+## Webhook 是如何工作的？
 
 _在这次可怕的经历之后（一整晚都没有冰淇淋！），你不再问任何人关于冰淇淋的事。
 但如果冰淇淋可以送到你面前，那不是很酷吗_
@@ -135,7 +135,7 @@ ______________                                   _____________
 
 ## 比较
 
-**长轮询相比于 webhooks 的主要优势在于它更简单**
+**长轮询相比于 Webhook 的主要优势在于它更简单**
 你不再需要一个域名或是可以访问的 URL。
 当你在 VPS 上运行你的 bot 时不需要在设置 SSL 证书上浪费时间。
 使用 `bot.start ()`，一切都会正常工作，不需要进一步配置。
@@ -147,14 +147,14 @@ ______________                                   _____________
 - 在大多数服务器上。
 - 在后端运行的 bot 示例上（即一个全天候运行的机器）都可以良好运行。
 
-**Webhooks 比长轮询的主要优势在于它们更"便宜"。**
+**Webhook 比长轮询的主要优势在于它们更"便宜"。**
 你省下了一大堆多余的请求。
 你不需要一直让 bot 与 Telegram 保持连接。
 当没有请求时，你可以使用自动将基础结构收敛为零消耗的服务。
 如果你愿意， 你甚至可以 [在响应 Telegram 请求时调用 API](#webhook-reply), 即使这样会有很多缺点。
 你可以在 [这里](/ref/core/apiclientoptions#canusewebhookreply) 查看配置选项。
 
-Webhooks 可以在这些地方良好运行：
+Webhook 可以在这些地方良好运行：
 
 - 在有着 SSL 证书的服务器上。
 - 在一台可以前端运行的，拥有可以负载伸缩的主机上。
@@ -163,8 +163,8 @@ Webhooks 可以在这些地方良好运行：
 ## 我还是不知道该用什么
 
 那就选择长轮询吧。
-如果你没有充分的理由使用 Webhooks，那么请注意，长轮询没有重大的缺点，而且 **根据我们的经验** 你花在修理东西上的时间会少得多。
-Webhooks 有时候可能会有点令人讨厌（见 [下文](#及时结束-webhook-请求)）。
+如果你没有充分的理由使用 webhook，那么请注意，长轮询没有重大的缺点，而且 **根据我们的经验** 你花在修理东西上的时间会少得多。
+Webhook 有时候可能会有点令人讨厌（见 [下文](#及时结束-webhook-请求)）。
 
 无论你选择什么，如果遇到严重问题，在事后切换到其他部署类型应该不会太难。
 使用 grammY，这都只需要修改几行代码。
@@ -184,9 +184,9 @@ bot.start();
 
 如果你希望你的消息能够被 grammY 并发处理，或者你担心吞吐量，请查看关于 [并发](../plugins/runner) 的信息.
 
-## 如何使用 Webhooks
+## 如何使用 Webhook
 
-如果你想运行 grammY Webhooks，你可以把你的 bot 集成到一个网络服务器上。
+如果你想运行 grammY webhook，你可以把你的 bot 集成到一个网络服务器上。
 因此，我们希望你能够选择一个合适的框架，去启动一个简单的 web 服务器。
 
 每个 grammY bot 都可以转换为许多 web 框架的中间件，包括 `express`，`koa`/`oak` 等等。
@@ -225,9 +225,29 @@ app.use(webhookCallback(bot, "oak"));
 
 :::
 
-> 请注意，使用 webhooks 的时候不要调用 `bot.start()`。
+> 请注意，使用 webhook 的时候不要调用 `bot.start()`。
 
-如果你考虑在 VPS 上使用 webhooks 运行你的 bot，请确保你阅读了 Telegram 团队写的 [Marvin's Marvellous Guide to All Things Webhook](https://core.telegram.org/bots/webhooks)。
+你的应用程序现在正在监听来自 Telegram 的 webhook 请求。
+你需要做的最后一件事是告诉 Telegram 将 update 发送到哪里。
+有多种方法可以做到这一点，但最终，它们都只是调用 `setWebhook`，如 [文档](https://core.telegram.org/bots/api#setwebhook) 所述。
+
+设置 webhook 的最简单方法是将以下 URL 粘贴到浏览器的地址栏中，用你的 bot token 替换 `<token>`，用你的服务器的公共端点替换 `<url>`。
+
+```txt
+https://api.telegram.org/bot<token>/setWebhook?url=<url>
+```
+
+如果你喜欢通过网页管理你的 webhook，我们还为此构建了一个合适的界面。
+你可以在这里找到它：<https://telegram.tools/webhook-manager>
+
+请注意，你也可以通过代码设置 webhook：
+
+```ts
+const endpoint = ""; // <-- 你的 URL 放在这
+await bot.api.setWebhook(endpoint);
+```
+
+最后，如果你考虑 [在 VPS 上使用 webhook 运行你的 bot](../hosting/vps#基于-webhook-运行-bot)，请确保你阅读了 Telegram 团队写的 [Marvin's Marvellous Guide to All Things Webhook](https://core.telegram.org/bots/webhooks)。
 
 ### Web 框架适配器
 
