@@ -20,7 +20,7 @@ Deno Deploy 是大多数简单 bot 的理想选择，并且你应该注意，Den
 > 请注意，你需要 [在 webhooks 上运行你的 bot](../guide/deployment-types#如何使用-webhooks)，所以你应该调用 `webhookCallback`，而不是 `bot.start()`。
 
 1. 确保你有一个文件可以导出你的`Bot`对象，这样你就可以在以后导入它来运行它。
-2. 创建一个名为 `mod.ts` 或 `mod.js` 的文件，或任何你喜欢的名字（但你应该记住并使用这个文件作为部署的主要文件），其内容如下：
+2. 创建一个名为 `main.ts` 或 `main.js` 的文件，或任何你喜欢的名字（但你应该记住并使用这个文件作为部署的主要文件），其内容如下：
 
 ```ts
 import { webhookCallback } from "https://deno.land/x/grammy/mod.ts";
@@ -59,42 +59,45 @@ Deno.serve(async (req) => {
 
    > 建议你有一个单一且稳定的分支，然后在其他分支中进行测试，这样你就不会发送一些意外的事情。
 
-3. 访问你的 [Deno Deploy 仪表台](https://dash.deno.com/projects)。
-4. 点击 "New Project"，然后进入 "Deploy from GitHub repository" 部分
+3. 访问你的 [Deno Deploy 仪表台](https://dash.deno.com/account/overview)。
+4. 点击 "New Project"。
 5. 安装 GitHub 应用程序到你的账户或组织，并选择你的仓库。
-6. 选择你想部署的分支，然后选择你要部署的`mod.ts`文件
+6. 选择你想部署的分支，然后选择你要部署的`mod.ts`文件。
+7. 选择入口文件 `main.ts`，然后点击 "Deploy Project" 进行部署。
 
 ### 方法 2: 使用 `deployctl`
 
-> 这是一个更高级的方法，它允许你通过命令行或 Github Actions 来部署项目。
+> 这是一种适用于更高级用户或者不想将代码上传到 GitHub 的方法。
+> 它允许你通过命令行或 Github Actions 来部署项目。
 
-1. 访问你的 [Deno Deploy 仪表台](https://dash.deno.com/projects).
-2. 点击 "New Project"，然后再选择 "Empty Project".
-3. 安装 [`deployctl`](https://github.com/denoland/deployctl).
-4. [创建一个访问 token](https://dash.deno.com/account).
-5. 执行以下命令：
+1. 安装 [`deployctl`](https://github.com/denoland/deployctl)。
+2. 从 [account settings](https://dash.deno.com/account) 中的 "Access Tokens" 部分创建访问令牌。
+3. 转到你的项目目录并运行以下命令：
 
-   ```sh
-   deployctl deploy --project <project> ./mod.ts --prod --token <token>
+   ```sh:no-line-numbers
+   deployctl deploy --project=<project> --entrypoint=./main.ts --prod --token=<token>
    ```
 
-6. 配置 GitHub Action，请参考 [这里](https://github.com/denoland/deployctl/blob/main/action/README.md).
+   ::: tip 设置环境变量
+   部署后可以前往项目的设置来设置环境变量。
 
-### 方法 3：使用 URL
+   但这也可以通过命令行实现：
 
-> 按照这个方法部署你的 grammY bot，你只需要一个到你的 `mod.ts` 的公开 URL。
+   1. 你可以通过添加 `--env-file=<file>` 参数从 dotenv 文件添加环境变量。
+   2. 你还可以使用 `--env=<key=value>` 参数单独指定它们。
 
-1. 在 Deno Deploy 上创建一个新的项目。
-2. 点击 "Deploy URL"。
-3. 输入你的 `mod.ts` 文件的公开 URL，然后点击 "Deploy"。
+   :::
+4. 要设置 GitHub Actions，请参考 [这里](https://github.com/denoland/deployctl/blob/main/action/README.md)。
+
+查看 [deployctl 文档](https://docs.deno.com/deploy/manual/deployctl) 了解更多信息。
 
 ### 注意
 
 在部署完成后，你需要配置你的 bot 的 webhook 设置来指向你的 app。
 为了配置 webhook，发送一个请求到
 
-```text
-https://api.telegram.org/bot<token>/setWebhook?url=<url>
+```sh:no-line-numbers
+curl https://api.telegram.org/bot<token>/setWebhook?url=<url>
 ```
 
 将 `<token>` 替换为你的 bot 的 token，并将 `<url>` 替换为你的 app 的完整的 URL 以及 webhook 处理程序的路径。
