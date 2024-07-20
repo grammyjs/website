@@ -357,7 +357,7 @@ Jika ia merespon, berarti kamu telah berhasil!
 Untuk melakukan pengujian dan debugging, kamu bisa menjalankan sebuah server pengembangan baik lokal ataupun remote sebelum men-deploy bot ke tahap produksi.
 
 Di mode pengembangan, bot tidak memiliki akses ke environment variable secret.
-Oleh karena itu, [berdasarkan panduan Cloudflare](https://developers.cloudflare.com/workers/configuration/secrets/#secrets-in-development), kamu bisa membuat sebuah file `.dev.vars` di root proyek untuk mendefinisikan sercet-nya:
+Oleh karena itu, [berdasarkan panduan Cloudflare](https://developers.cloudflare.com/workers/configuration/secrets/#local-development-with-secrets), kamu bisa membuat sebuah file `.dev.vars` di root proyek untuk mendefinisikan sercet-nya:
 
 ```env
 BOT_TOKEN=<token_bot>  # <- ganti dengan token bot kamu.

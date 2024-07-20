@@ -203,7 +203,7 @@ systemd merupakan pengelola service yang terinstal secara bawaan di mayoritas di
    - `WantedBy=multi-user.target` --- menentukan pada tahap sistem (system state) apa service mesti dijalankan.
      `multi-user.target` --- salah satu tahap sistem yang umum digunakan di sebuah server.
 
-   > Untuk informasi lebih lanjut mengenai file unit, silahkan baca [dokumentasi ini](https://access.redhat.com/documentation/te-in/red_hat_enterprise_linux/9/html/using_systemd_unit_files_to_customize_and_optimize_your_system/assembly_working-with-systemd-unit-files_working-with-systemd).
+   > Untuk informasi lebih lanjut mengenai file unit, silahkan baca [dokumentasi ini](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/using_systemd_unit_files_to_customize_and_optimize_your_system/assembly_working-with-systemd-unit-files_working-with-systemd).
 
 4. Muat ulang systemd setiap kali kamu mengedit service terkait.
 
