@@ -88,19 +88,16 @@ Puedes consultar esta [sección](../advanced/scaling#la-concurrencia-es-dificil)
 Ahora vamos a ver un uso más avanzado del plugin.
 
 La función de restricción suministrada puede usarse no sólo para especificar el identificador de chat, o el identificador de usuario.
-
 En su lugar, puede devolver _una lista de cadenas de identificadores de restricciones_ que determinan para cada actualización individualmente qué otros cálculos debe esperar antes de que pueda comenzar el procesamiento.
 
 Por ejemplo, podría devolver tanto el identificador de chat como el identificador de usuario del autor del mensaje.
 
 ```ts
-bot.use(
-  sequentialize((ctx) => {
-    const chat = ctx.chat?.id.toString();
-    const user = ctx.from?.id.toString();
-    return [chat, user].filter((con) => con !== undefined);
-  }),
-);
+bot.use(sequentialize((ctx) => {
+  const chat = ctx.chat?.id.toString();
+  const user = ctx.from?.id.toString();
+  return [chat, user].filter((con) => con !== undefined);
+}));
 ```
 
 Esto aseguraría que los mensajes en el mismo chat se ordenen correctamente.
@@ -120,9 +117,14 @@ Ten en cuenta que puedes esperar a que el runner `await` la `task` en el [`Runne
 
 ```ts
 const handle = run(bot);
+
+// Esto será llamado cuando el bot se detenga.
 handle.task().then(() => {
   console.log("¡Procesamiento de Bot hecho!");
 });
+
+// Más tarde, detener el bot a través del manejador del ejecutor.
+await handle.stop();
 ```
 
 ## Opciones avanzadas
