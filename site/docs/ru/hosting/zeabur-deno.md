@@ -3,92 +3,91 @@ prev: false
 next: false
 ---
 
-# Hosting: Zeabur (Deno)
+# Хостинг: Zeabur (Deno)
 
-[Zeabur](https://zeabur.com) is a platform that allows you to deploy your full-stack applications with ease.
-It supports various programming languages and frameworks, including Deno and grammY.
+[Zeabur](https://zeabur.com) --- это платформа, позволяющая с легкостью развертывать полнофункциональные приложения.
+Она поддерживает различные языки программирования и фреймворки, включая Deno и grammY.
 
-This tutorial will guide you how to deploy your grammY bots with Deno to [Zeabur](https://zeabur.com).
+В этом руководстве вы узнаете, как развернуть ботов grammY с помощью Deno на [Zeabur](https://zeabur.com).
 
-::: tip Looking for the Node.js Version?
-This tutorial explains how to deploy a Telegram bot to Zeabur using Deno.
-If you're looking for the Node.js version, please check out [this tutorial](./zeabur-nodejs) instead.
+::: tip Ищете версию для Node.js?
+В этом руководстве объясняется, как развернуть Telegram бота на Zeabur с помощью Deno.
+Если вам нужна версия для Node.js, пожалуйста, посмотрите [эту страницу](./zeabur-nodejs).
 :::
 
-## Prerequisites
+## Необходимые условия
 
-To follow along, you need to have [GitHub](https://github.com) and [Zeabur](https://zeabur.com) accounts.
+Чтобы следить за этим, вам необходимо иметь аккаунты [GitHub](https://github.com) и [Zeabur](https://zeabur.com).
 
-### Method 1: Create a New Project from Scratch
+### Метод 1: Создайте новый проект с нуля
 
-> Make sure you have Deno installed on your local machine.
+> Убедитесь, что на вашей локальной машине установлен Deno.
 
-Initialize your project and install some necessary dependencies:
+Инициализируйте проект и установите некоторые необходимые зависимости:
 
 ```sh
-# Initialize the project.
+# Инициализируйте проект.
 mkdir grammy-bot
 cd grammy-bot
 
-# Create main.ts file
+# Создайте файл main.ts
 touch main.ts
 
-# Create deno.json file to generate lock file
+# Создайте файл deno.json для генерации lock файла
 touch deno.json
 ```
 
-Then modify `main.ts` file with the following code:
+Затем измените файл `main.ts`, добавив в него следующий код:
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
 const token = Deno.env.get("TELEGRAM_BOT_TOKEN");
-if (!token) throw new Error("TELEGRAM_BOT_TOKEN is unset");
+if (!token) throw new Error("TELEGRAM_BOT_TOKEN не установлен");
 
 const bot = new Bot(token);
 
-bot.command("start", (ctx) => ctx.reply("Hello from Deno & grammY!"));
+bot.command("start", (ctx) => ctx.reply("Привет от Deno & grammY!"));
 
-bot.on("message", (ctx) => ctx.reply("How can I help you?"));
+bot.on("message", (ctx) => ctx.reply("Как я могу вам помочь?"));
 
 bot.start();
 ```
 
-> Note: Get your bot token with [@BotFather](https://t.me/BotFather) on Telegram, and set is as an environment variable `TELEGRAM_BOT_TOKEN` in Zeabur.
->
-> You can check out [this tutorial](https://zeabur.com/docs/deploy/variables) for setting environment variables in Zeabur.
+> Примечание: Получите токен бота с помощью [@BotFather](https://t.me/BotFather) в Telegram и установите его в качестве переменной окружения `TELEGRAM_BOT_TOKEN` в Zeabur.
+> Вы можете ознакомиться с [этим руководством](https://zeabur.com/docs/deploy/variables) по настройке переменных окружения в Zeabur.
 
-Then run the following command to start your bot:
+Затем выполните следующую команду для запуска бота:
 
 ```sh
 deno run --allow-net main.ts
 ```
 
-Deno will automatically download the dependencies, generate the lock file, and start your bot.
+Deno автоматически загрузит зависимости, сгенерирует lock файл и запустит вашего бота.
 
-### Method 2: Use Zeabur's Template
+### Метод 2: Используйте шаблон от Zeabur
 
-Zeabur has already provided a template for you to use.
-You can find it [here](https://github.com/zeabur/deno-telegram-bot-starter).
+Zeabur уже предоставил вам шаблон для использования.
+Вы можете найти его [здесь](https://github.com/zeabur/deno-telegram-bot-starter).
 
-You can just use the template and start writing your bot's code.
+Вы можете просто использовать шаблон и начать писать код своего бота.
 
-## Deploying
+## Развертывание
 
-### Method 1: Deploy from GitHub in Zeabur's Dashboard
+### Метод 1: Развертывание с GitHub в панели Zeabur
 
-1. Create a repository on GitHub, it can be public or private and push your code to it.
-2. Go to [Zeabur dashboard](https://dash.zeabur.com).
-3. Click on the `New Project` button, and click on the `Deploy New Service` button, choose `GitHub` as the source and select your repository.
-4. Go to `Variables` tab to add your environment variables like `TELEGRAM_BOT_TOKEN`.
-5. Your service will be deployed automatically.
+1. Создайте репозиторий на GitHub, он может быть публичным или приватным, и разместите в нем свой код.
+2. Перейдите на [Zeabur dashboard](https://dash.zeabur.com).
+3. Нажмите на кнопку `New Project`, затем нажмите на кнопку `Deploy New Service`, выберите `GitHub` в качестве источника и выберите ваш репозиторий.
+4. Перейдите на вкладку `Variables`, чтобы добавить переменные окружения, например `TELEGRAM_BOT_TOKEN`.
+5. Ваш сервис будет развернут автоматически.
 
-### Method 2: Deploy with Zeabur CLI
+### Метод 2: Развертывание с помощью Zeabur CLI
 
-`cd` into your project directory and run the following command:
+`cd` в каталог проекта и выполните следующую команду:
 
 ```sh
 npx @zeabur/cli deploy
 ```
 
-Follow the instructions to select a region to deploy, and your bot will be deployed automatically.
+Следуйте инструкциям, чтобы выбрать регион для развертывания, и ваш бот будет развернут автоматически.
