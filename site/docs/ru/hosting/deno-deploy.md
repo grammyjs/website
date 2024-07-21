@@ -3,28 +3,28 @@ prev: false
 next: false
 ---
 
-# Hosting: Deno Deploy
+# Хостинг: Deno Deploy
 
-This guide tells you about the ways you can host your grammY bots on [Deno Deploy](https://deno.com/deploy).
+В этом руководстве рассказывается о том, как вы можете разместить своих ботов grammY на [Deno Deploy](https://deno.com/deploy).
 
-Please note that this guide is only for Deno users, and you need to have a [GitHub](https://github.com) account for creating a [Deno Deploy](https://deno.com/deploy) account.
+Обратите внимание, что это руководство предназначено только для пользователей Deno, и для создания учетной записи [Deno Deploy](https://deno.com/deploy) вам необходимо иметь аккаунт [GitHub](https://github.com).
 
-Deno Deploy is ideal for most simple bots, and you should note that not all Deno features are available for apps running on Deno Deploy.
-For example, the platform only supports a [limited set](https://docs.deno.com/deploy/api/runtime-fs) of the file system APIs available in Deno.
-It's just like the other many serverless platforms, but dedicated for Deno apps.
+Deno Deploy идеально подходит для большинства простых ботов, но следует учитывать, что не все функции Deno доступны для приложений, работающих на Deno Deploy.
+Например, платформа поддерживает только [ограниченный набор](https://docs.deno.com/deploy/api/runtime-fs) API файловой системы, доступных в Deno.
+Она похожа на другие многочисленные бессерверные платформы, но предназначена для приложений Deno.
 
-The result of this tutorial [can be seen in our example bots repository](https://github.com/grammyjs/examples/tree/main/setups/deno-deploy).
+Результат этого руководства [можно увидеть в нашем примере репозитория ботов](https://github.com/grammyjs/examples/tree/main/setups/deno-deploy).
 
-## Preparing Your Code
+## Подготовка кода
 
-> Remember that you need to [run your bot on webhooks](../guide/deployment-types#how-to-use-webhooks), so you should use `webhookCallback` and not call `bot.start()` in your code.
+> Помните, что вам нужно [запускать бота на вебхукам](../guide/deployment-types#как-использовать-вебхуки), поэтому в коде следует использовать `webhookCallback`, а не вызывать `bot.start()`.
 
-1. Make sure that you have a file which exports your `Bot` object, so that you can import it later to run it.
-2. Create a file named `mod.ts` or `mod.js`, or actually any name you like (but you should be remembering and using this as the main file to deploy), with the following content:
+1. Убедитесь, что у вас есть файл, который экспортирует ваш объект `Bot`, чтобы вы могли импортировать его позже для запуска.
+2. Создайте файл с именем `mod.ts` или `mod.js`, или вообще любым другим именем, которое вам нравится (но вы должны запомнить и использовать его как основной файл для развертывания), со следующим содержимым:
 
 ```ts
 import { webhookCallback } from "https://deno.land/x/grammy/mod.ts";
-// You might modify this to the correct way to import your `Bot` object.
+// Вы можете изменить это, чтобы правильно импортировать свой объект `Bot`.
 import bot from "./bot.ts";
 
 const handleUpdate = webhookCallback(bot, "std/http");
@@ -44,57 +44,57 @@ Deno.serve(async (req) => {
 });
 ```
 
-We advise you to have your handler on some secret path rather than the root (`/`).
-Here, we are using the bot token (`/<bot token>`).
+Мы советуем располагать обработчик не в корне (`/`), а по какому-то секретному пути.
+Здесь мы используем токен бота (`/<токен>`).
 
-## Deploying
+## Развертывание
 
-### Method 1: With GitHub
+### Метод 1: через GitHub
 
-> This is the recommended method, and the easiest one to go with.
-> The main advantage of following this method is that Deno Deploy will watch for changes in your repository which includes your bot code, and it will deploy new versions automatically.
+> Это рекомендуемый и самый простой метод.
+> Основное преимущество этого метода заключается в том, что Deno Deploy будет следить за изменениями в вашем репозитории, включающем код вашего бота, и автоматически развертывать новые версии.
 
-1. Create a repository on GitHub, it can be either private or public.
-2. Push your code.
+1. Создайте репозиторий на GitHub, он может быть как приватным, так и публичным.
+2. Разместите свой код.
 
-   > It is recommended that you have a single stable branch and you do your testing stuff in other branches, so that you won't get some unexpected things happen.
+   > Рекомендуется иметь одну стабильную ветку, а тестирование проводить в других ветках, чтобы не случилось непредвиденных ситуаций.
 
-3. Visit your [Deno Deploy dashboard](https://dash.deno.com/projects).
-4. Click on "New Project", and go to the "Deploy from GitHub repository" section.
-5. Install the GitHub app on your account or organization, and choose your repository.
-6. Select the branch you want to deploy, and then choose your `mod.ts` file to be deployed.
+3. Зайдите на свою панель [Deno Deploy dashboard](https://dash.deno.com/projects).
+4. Нажмите на "New Project" и перейдите в раздел "Deploy from GitHub repository".
+5. Установите подключение на свой аккаунт или организацию и выберите репозиторий.
+6. Выберите ветку, которую вы хотите развернуть, а затем выберите файл `mod.ts` для развертывания.
 
-### Method 2: With `deployctl`
+### Метод 2: с помощью `deployctl`
 
-> This is a method for more advanced users. It allows you to deploy the project via the command line or Github Actions.
+> Это метод для более продвинутых пользователей. Он позволяет развернуть проект через командную строку или Github Actions.
 
-1. Visit your [Deno Deploy dashboard](https://dash.deno.com/projects).
-2. Click "New Project", and then "Empty Project".
-3. Install [`deployctl`](https://github.com/denoland/deployctl).
-4. [Create an access token](https://dash.deno.com/account).
-5. Run the following command:
+1. Зайдите на свою панель [Deno Deploy dashboard](https://dash.deno.com/projects).
+2. Нажмите "New Project", а затем "Empty Project".
+3. Установите [`deployctl`](https://github.com/denoland/deployctl).
+4. [Создайте токен для доступа](https://dash.deno.com/account).
+5. Выполните следующую команду:
 
-   ```sh
-   deployctl deploy --project <project> ./mod.ts --prod --token <token>
+   ``sh
+   deployctl deploy --project <проект> ./mod.ts --prod --token <токен>
    ```
 
-6. To set up Github Actions, refer to [this](https://github.com/denoland/deployctl/blob/main/action/README.md).
+6. Чтобы настроить Github Actions, обратитесь к [этому README](https://github.com/denoland/deployctl/blob/main/action/README.md).
 
-### Method 3: With URL
+### Метод 3: через URL
 
-> All you need for following this method to deploy your grammY bot, is a public URL to your `mod.ts` file.
+> Все, что вам нужно для развертывания вашего бота grammY по этому методу --- это публичный URL-адрес вашего файла `mod.ts`.
 
-1. Create a new project on Deno Deploy.
-2. Click "Deploy URL".
-3. Input the public URL to your `mod.ts` file, and click "Deploy".
+1. Создайте новый проект в Deno Deploy.
+2. Нажмите "Deploy URL".
+3. Введите публичный URL-адрес вашего файла `mod.ts` и нажмите "Deploy".
 
-### Note
+### Примечание
 
-After getting your app running, you should configure your bot's webhook settings to point to your app.
-To do that, send a request to
+После запуска приложения необходимо настроить параметры вебхука бота так, чтобы он указывал на вашего бота.
+Для этого отправьте запрос на
 
-```text
-https://api.telegram.org/bot<token>/setWebhook?url=<url>
+``text
+https://api.telegram.org/bot<токен>/setWebhook?url=<url>
 ```
 
-replacing `<token>` with your bot token, and `<url>` with the full URL of your app along with the path to the webhook handler.
+заменив `<токен>` на токен вашего бота, а `<url>` на полный URL вашего приложения вместе с путем к обработчику webhook.
