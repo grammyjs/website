@@ -3,26 +3,26 @@ prev: false
 next: false
 ---
 
-# Hosting: Fly
+# Хостинг: Fly
 
-This guide tells you about the ways you can host your grammY bots on [Fly](https://fly.io), either using Deno or Node.js.
+Это руководство расскажет вам о том, как вы можете разместить своих ботов grammY на [Fly](https://fly.io), используя Deno или Node.js.
 
-## Preparing Your Code
+## Подготовка кода
 
-You can run your bot using both [webhooks or long polling](../guide/deployment-types).
+Вы можете запустить своего бота, используя оба варианта [вебхуки или long polling](../guide/deployment-types).
 
-### Webhooks
+### Вебхуки
 
-> Remember that you should not call `bot.start()` in your code when using webhooks.
+> Помните, что при использовании вебхуков не следует вызывать `bot.start()` в коде.
 
-1. Make sure that you have a file which exports your `Bot` object, so that you can import it later to run it.
-2. Create a file named `app.ts` or `app.js`, or actually any name you like (but you should be remembering and using this as the main file to deploy), with the following content:
+1. Убедитесь, что у вас есть файл, который экспортирует ваш объект `Bot`, чтобы вы могли импортировать его позже для запуска.
+2. Создайте файл с именем `app.ts` или `app.js`, или вообще любым другим именем, которое вам нравится (но вы должны запомнить и использовать его как основной файл для развертывания), со следующим содержанием:
 
 ::: code-group
 
 ```ts{11} [Deno]
 import { webhookCallback } from "https://deno.land/x/grammy/mod.ts";
-// You might modify this to the correct way to import your `Bot` object.
+// Вы можете изменить это, чтобы правильно импортировать свой объект `Bot`.
 import { bot } from "./bot.ts";
 
 const port = 8000;
@@ -44,7 +44,7 @@ Deno.serve({ port }, async (req) => {
 ```ts{10} [Node.js]
 import express from "express";
 import { webhookCallback } from "grammy";
-// You might modify this to the correct way to import your `Bot` object.
+// Вы можете изменить это, чтобы правильно импортировать свой объект `Bot`.
 import { bot } from "./bot";
 
 const port = 8000;
@@ -54,17 +54,17 @@ app.use(express.json());
 app.use(`/${bot.token}`, webhookCallback(bot, "express"));
 app.use((_req, res) => res.status(200).send());
 
-app.listen(port, () => console.log(`listening on port ${port}`));
+app.listen(port, () => console.log(`прослушиваю порт ${port}`));
 ```
 
 :::
 
-We advise you to have your handler on some secret path rather than the root (`/`).
-As shown in the highlighted line above, we are using the bot token (`/<bot token>`) as the secret path.
+Мы советуем располагать обработчик не в корне (`/`), а на каком-то секретном пути.
+Как показано в выделенной строке выше, мы используем токен бота (`/<токен бота>`) в качестве секретного пути.
 
 ### Long Polling
 
-Create a file named `app.ts` or `app.js`, or actually any name you like (but you should be remembering and using this as the main file to deploy), with the following content:
+Создайте файл с именем `app.ts` или `app.js`, или вообще любым другим именем, которое вам нравится (но вы должны запомнить и использовать этот файл как основной для развертывания), со следующим содержимым:
 
 ::: code-group
 
@@ -72,13 +72,13 @@ Create a file named `app.ts` or `app.js`, or actually any name you like (but you
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
 const token = Deno.env.get("BOT_TOKEN");
-if (!token) throw new Error("BOT_TOKEN is unset");
+if (!token) throw new Error("BOT_TOKEN не установлен");
 
 const bot = new Bot(token); 
 
 bot.command(
   "start",
-  (ctx) => ctx.reply("I'm running on Fly using long polling!"),
+  (ctx) => ctx.reply("Я запущен на хостинге Fly с помощью long polling!"),
 );
 
 Deno.addSignalListener("SIGINT", () => bot.stop());
@@ -91,13 +91,13 @@ bot.start();
 import { Bot } from "grammy";
 
 const token = process.env.BOT_TOKEN;
-if (!token) throw new Error("BOT_TOKEN is unset");
+if (!token) throw new Error("BOT_TOKEN не установлен");
 
 const bot = new Bot(token);
 
 bot.command(
   "start",
-  (ctx) => ctx.reply("I'm running on Fly using long polling!"),
+  (ctx) => ctx.reply("Я запущен на хостинге Fly с помощью long polling!"),
 );
 
 process.once("SIGINT", () => bot.stop());
@@ -108,25 +108,25 @@ bot.start();
 
 :::
 
-As you can see in the highlighted line above, we take some sensitive values (your bot token) from environment variables.
-Fly allow us to store that secret by running this command:
+Как вы можете видеть в выделенной строке выше, мы берем некоторые чувствительные значения (ваш токен бота) из переменных окружения.
+Fly позволяет нам сохранить этот секрет, выполнив эту команду:
 
 ```sh
 flyctl secrets set BOT_TOKEN="AAAA:12345"
 ```
 
-You can specify other secrets in the same way.
-For more information about this _secrets_, see <https://fly.io/docs/apps/secrets/>.
+Аналогичным образом можно указать и другие секреты.
+Более подробную информацию об этих _секретах_ см. по адресу <https://fly.io/docs/apps/secrets/>.
 
-## Deploying
+## Развертывание
 
-### Method 1: With `flyctl`
+### Метод 1: С помощью `flyctl`.
 
-This is the easiest method to go with.
+Это самый простой метод.
 
-1. Install [flyctl](https://fly.io/docs/flyctl/install/) and [sign in](https://fly.io/docs/getting-started/sign-up-sign-in/).
-2. Run `flyctl launch` to generate a `Dockerfile` and `fly.toml` file for deployment.
-   But **DO NOT** deploy.
+1. Установите [flyctl](https://fly.io/docs/flyctl/install/) и [войдите в аккаунт](https://fly.io/docs/getting-started/sign-up-sign-in/).
+2. Запустите `flyctl launch` для создания `Dockerfile` и `fly.toml` файлов для развертывания.
+   Но **НЕ** развертывайте.
 
    ::: code-group
 
@@ -174,11 +174,11 @@ This is the easiest method to go with.
 
    :::
 
-3. **Deno**: Change the Deno version and remove `CMD` if exist within the `Dockerfile` file.
-   For example, in this case, we update `DENO_VERSION` to `1.25.2`.
+3. **Deno**: Измените версию Deno и удалите `CMD`, если он существует в файле `Dockerfile`.
+   Например, в данном случае мы обновляем `DENO_VERSION` до `1.25.2`.
 
-   **Node.js**: To change the Node.js version, you need to insert a `"node"` property inside an `"engines"` property inside `package.json`.
-   For instance, we update the Node.js version to `16.14.0` in the example below.
+   **Node.js**: Чтобы изменить версию Node.js, вам нужно вставить свойство `"node"` внутри свойства `"engines"` в файле `package.json`.
+   Например, в примере ниже мы обновляем версию Node.js до `16.14.0`.
 
    ::: code-group
 
@@ -237,10 +237,10 @@ This is the easiest method to go with.
 
    :::
 
-4. Edit `app` inside the `fly.toml` file.
-   The path `./app.ts` (or `./app.js` for Node.js) in the example below refers to the main file directory.
-   You might modify them to match with your project's directory.
-   If you are using webhooks, make sure the port is same as the one in your [configuration](#webhooks) (`8000`).
+4. Отредактируйте `app` внутри файла `fly.toml`.
+   Путь `./app.ts` (или `./app.js` для Node.js) в примере ниже относится к директории главного файла.
+   Вы можете изменить их, чтобы они соответствовали директории вашего проекта.
+   Если вы используете вебхуки, убедитесь, что порт совпадает с портом в вашей [конфигурации](#вебхуки) (`8000`).
 
    ::: code-group
 
@@ -289,8 +289,8 @@ This is the easiest method to go with.
    [processes]
    app = "run --allow-net ./app.ts"
 
-   # Simply omitting the whole [[services]] section 
-   # since we are not listening to HTTP
+   # Просто опустите весь раздел [[services]]
+   # поскольку мы не слушаем HTTP
    ```
 
    ```toml [Node.js (Webhooks)]{7,11,18,19}
@@ -302,7 +302,7 @@ This is the easiest method to go with.
    [processes]
    app = "node ./build/app.js"
 
-   # Adjust the NODE_ENV environment variable to suppress the warning
+   # Настройте переменную окружения NODE_ENV, чтобы убрать предупреждение
    [build.args]
    NODE_ENV = "production"
 
@@ -345,30 +345,30 @@ This is the easiest method to go with.
    [processes]
    app = "node ./build/app.js"
 
-   # Adjust the NODE_ENV environment variable to suppress the warning
+   # Настройте переменную окружения NODE_ENV, чтобы убрать предупреждение
    [build.args]
    NODE_ENV = "production"
 
    [build]
    builder = "heroku/buildpacks:20"
 
-   # Simply omitting the whole of the [[services]] section since we are not listening to HTTP.
+   # Просто опустите всю секцию [[services]], поскольку мы не слушаем HTTP.
    ```
 
    :::
 
-5. Run `flyctl deploy` to deploy your code.
+5. Запустите `flyctl deploy`, чтобы развернуть ваш код.
 
-### Method 2: With GitHub Actions
+### Метод 2: С помощью Github Actions
 
-The main advantage of following method is that Fly will watch for changes in your repository which includes your bot code, and it will deploy new versions automatically.
-Visit <https://fly.io/docs/app-guides/continuous-deployment-with-github-actions> for more detailed instructions.
+Основное преимущество этого метода в том, что Fly будет следить за изменениями в вашем репозитории, включающем код бота, и автоматически разворачивать новые версии.
+Посетите <https://fly.io/docs/app-guides/continuous-deployment-with-github-actions> для получения более подробных инструкций.
 
-1. Install [flyctl](https://fly.io/docs/flyctl/install/) and [sign in](https://fly.io/docs/getting-started/sign-up-sign-in/).
-2. Get a Fly API token by running `flyctl auth token`.
-3. Create a repository on GitHub, it can be either private or public.
-4. Go to Settings, choose Secrets and create a secret called `FLY_API_TOKEN` with the value of the token from step 2.
-5. Create `.github/workflows/main.yml` with these contents:
+1. Установите [flyctl](https://fly.io/docs/flyctl/install/) и [войдите в аккаунт](https://fly.io/docs/getting-started/sign-up-sign-in/).
+2. Получите токен Fly API, выполнив команду `flyctl auth token`.
+3. Создайте репозиторий на GitHub, он может быть как приватным, так и публичным.
+4. Перейдите в раздел Settings, выберите Secrets и создайте секрет под названием `FLY_API_TOKEN` со значением токена из шага 2.
+5. Создайте файл `.github/workflows/main.yml` с таким содержимым:
 
    ```yml
    name: Fly Deploy
@@ -385,30 +385,30 @@ Visit <https://fly.io/docs/app-guides/continuous-deployment-with-github-actions>
          - run: flyctl deploy --remote-only
    ```
 
-6. Follow steps 2 until 4 from [Method 1](#method-1-with-flyctl) above.
-   Remember to skip the last step (step 5) since we are not deploying the code directly.
-7. Commit your changes and push them up to GitHub.
-8. This is where the magic happens---the push will have triggered a deploy and from now on, whenever you push a change, the app will automatically be redeployed.
+6. Выполните шаги со 2 по 4 из [Метода 1](#метод-1-с-помощью-flyctl) выше.
+   Не забудьте пропустить последний шаг (шаг 5), поскольку мы не будем разворачивать код напрямую.
+7. Зафиксируйте изменения и выложите их на GitHub.
+8. Вот тут-то и происходит волшебство --- push вызвал развертывание, и с этого момента при каждом изменении приложение будет автоматически развертываться.
 
-### Setting the Webhook URL
+### Настройка URL вебхука
 
-If you are using webhooks, after getting your app running, you should configure your bot's webhook settings to point to your app.
-To do that, send a request to
+Если вы используете вебхуки, то после запуска приложения вам необходимо настроить параметры вебхуков бота так, чтобы они указывали на ваше приложение.
+Для этого отправьте запрос на
 
 ```text
-https://api.telegram.org/bot<token>/setWebhook?url=<url>
+https://api.telegram.org/bot<токен>/setWebhook?url=<url>
 ```
 
-replacing `<token>` with your bot token, and `<url>` with the full URL of your app along with the path to the webhook handler.
+заменив `<токен>` на токен вашего бота, а `<url>` на полный URL вашего приложения вместе с путем к обработчику вебхука.
 
-### Dockerfile Optimization
+### Оптимизация Dockerfile
 
-When our `Dockerfile` is run, it copies everything from the directory over to the Docker image.
-For Node.js applications, some directories like `node_modules` are going to be rebuilt anyway so there's no need to copy them.
-Create a `.dockerignore` file and add `node_modules` to it to do this.
-You can also use `.dockerignore` to not copy any other files which aren't needed at runtime.
+Когда запускается наш `Dockerfile`, он копирует все из каталога в образ Docker.
+Для приложений Node.js некоторые каталоги, например `node_modules`, будут перестроены в любом случае, поэтому копировать их не нужно.
+Для этого создайте файл `.dockerignore` и добавьте в него `node_modules`.
+Вы также можете использовать `.dockerignore`, чтобы не копировать любые другие файлы, которые не нужны во время выполнения.
 
-## Reference
+## Ссылки
 
 - <https://fly.io/docs/js/frameworks/deno/>
 - <https://fly.io/docs/js/>
