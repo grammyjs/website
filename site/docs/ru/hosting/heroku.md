@@ -3,38 +3,38 @@ prev: false
 next: false
 ---
 
-# Hosting: Heroku
+# Хостинг: Heroku
 
-> We assume that you have the basic knowledge about creating bots using grammY.
-> If you are not ready yet, don't hesitate to head over to our friendly [Guide](../guide/)! :rocket:
+> Мы предполагаем, что у вас есть базовые знания о создании ботов с помощью grammY.
+> Если вы еще не готовы, не стесняйтесь заглянуть в наш дружественный [Гайд](../guide/)! :rocket:
 
-This tutorial will guide you how to deploy a Telegram bot to [Heroku](https://heroku.com/) by using either [webhooks](../guide/deployment-types#как-использовать-вебхуки) or [long polling](../guide/deployment-types#как-использовать-long-polling).
-We also assume that you have a Heroku account already.
+В этом руководстве мы расскажем вам, как развернуть Telegram бота на [Heroku](https://heroku.com/) с помощью [вебхуков](../guide/deployment-types#как-использовать-вебхуки) или [long polling](../guide/deployment-types#как-использовать-long-polling).
+Мы также предполагаем, что у вас уже есть аккаунт на Heroku.
 
-## Prerequisites
+## Необходимые условия
 
-First, install some dependencies:
+Сначала установите некоторые зависимости:
 
 ```sh
-# Create a project directory.
+# Создайте директорию проекта.
 mkdir grammy-bot
 cd grammy-bot
 npm init --y
 
-# Install main dependencies.
+# Установите основные зависимости.
 npm install grammy express
 
-# Install development dependencies.
+# Установите зависимости для разработки.
 npm install -D typescript @types/express @types/node
 
-# Create TypeScript config.
+# Создайте конфиг TypeScript.
 npx tsc --init
 ```
 
-We will store our TypeScript files inside a folder `src`, and our compiled files in a folder `dist`.
-Create the folders in the project's root directory.
-Then, inside folder `src`, create a new file named `bot.ts`.
-Our folder structure should now look like this:
+Мы будем хранить наши файлы TypeScript в папке `src`, а скомпилированные файлы --- в папке `dist`.
+Создайте эти папки в корневом каталоге проекта.
+Затем в папке `src создайте новый файл с именем `bot.ts`.
+Теперь наша структура папок должна выглядеть следующим образом:
 
 ```asciiart:no-line-numbers
 .
@@ -47,13 +47,13 @@ Our folder structure should now look like this:
 └── tsconfig.json
 ```
 
-After that, open `tsconfig.json` and change it to use this configuration:
+После этого откройте файл `tsconfig.json` и измените его, чтобы использовать эту конфигурацию:
 
 ```json
 {
   "compilerOptions": {
     "target": "ESNEXT",
-    "module": "ESNext", // [!code hl] // changed from commonjs to esnext
+    "module": "ESNext", // [!code hl] // переход с commonjs на esnext
     "lib": ["ES2021"],
     "outDir": "./dist/",
     "strict": true,
@@ -66,8 +66,8 @@ After that, open `tsconfig.json` and change it to use this configuration:
 }
 ```
 
-Because the `module` option above has been set from `commonjs` to `esnext`, we have to add `"type": "module"` to our `package.json`.
-Our `package.json` should now be similar to this:
+Поскольку опция `module` выше была установлена с `commonjs` на `esnext`, мы должны добавить `"type": "module"` в наш `package.json`.
+Теперь наш `package.json` должен быть похож на этот:
 
 ```json{6}
 {
@@ -75,7 +75,7 @@ Our `package.json` should now be similar to this:
   "version": "0.0.1",
   "description": "",
   "main": "dist/app.js",
-  "type": "module", // [!code hl] // add property of "type": "module"
+  "type": "module", // [!code hl] // добавьте свойство "type": "module"
   "scripts": {
     "dev-build": "tsc"
   },
@@ -94,27 +94,27 @@ Our `package.json` should now be similar to this:
 }
 ```
 
-As mentioned earlier, we have two options for receiving data from Telegram: webhooks and long polling.
-You can learn more about the both advantages and then decide which ones is suitable in these [awesome tips](../guide/deployment-types)!
+Как уже говорилось, у нас есть два варианта получения данных из Telegram: вебхуки и long polling.
+Вы можете узнать больше о преимуществах обоих вариантов, а затем решить, какой из них подходит, в этих [потрясающих советах](../guide/deployment-types)!
 
-## Webhooks
+## Вебхуки
 
-> If you decide to use long polling instead, you can skip this section and jump down to the [section about long polling](#long-polling). :rocket:
+> Если вы решите использовать long polling вместо этого, вы можете пропустить этот раздел и перейти к [разделу о long polling](#long-polling). :rocket:
 
-In short, unlike long polling, webhook do not run continuously for checking incoming messages from Telegram.
-This will reduce server load and save us a lot of [dyno hours](https://devcenter.heroku.com/articles/eco-dyno-hours), especially when you are using the Eco plan. :grin:
+Вкратце, в отличие от long polling, вебхук не будет запускаться постоянно для проверки входящих сообщений от Telegram.
+Это снизит нагрузку на сервер и сэкономит нам много [дино-часов](https://devcenter.heroku.com/articles/eco-dyno-hours), особенно если вы используете тарифный план Eco. :grin:
 
-Okay, let us continue!
-Remember we have created `bot.ts` earlier?
-We will not dump all the code there, and leave coding the bot up to you.
-Instead, we are going to make `app.ts` our main entry point.
-That means every time Telegram (or anyone else) visits our site, `express` decides which part of your server will be responsible for handling the request.
-This is useful when you are deploying both website and bot in the same domain.
-Also, by splitting codes to different files, it make our code look tidy. :sparkles:
+Хорошо, давайте продолжим!
+Помните, мы ранее создали `bot.ts`?
+Мы не будем сбрасывать туда весь код и оставим программирование бота на ваше усмотрение.
+Вместо этого мы сделаем `app.ts` нашей основной точкой входа.
+Это означает, что каждый раз, когда Telegram (или кто-то другой) заходит на наш сайт, `express` решает, какая часть вашего сервера будет отвечать за обработку запроса.
+Это полезно, когда вы разворачиваете и сайт, и бота в одном домене.
+Кроме того, разделение кодов по разным файлам позволяет сделать наш код более аккуратным. :sparkles:
 
-### Express and Its Middleware
+### Express и его middleware
 
-Now create `app.ts` inside folder `src` and write this code inside:
+Теперь создайте `app.ts` в папке `src` и напишите в нем этот код:
 
 ```ts
 import express from "express";
@@ -129,31 +129,31 @@ app.use(express.json());
 app.use(`/${secretPath}`, webhookCallback(bot, "express"));
 
 app.listen(Number(process.env.PORT), async () => {
-  // Make sure it is `https` not `http`!
+  // Убедитесь, что это `https`, а не `http`!
   await bot.api.setWebhook(`https://${domain}/${secretPath}`);
 });
 ```
 
-Let's take a look at our code above:
+Давайте посмотрим на наш код выше:
 
-- `process.env`: Remember, NEVER store credentials in our code!
-  For creating [environment variables](https://www.freecodecamp.org/news/using-environment-variables-the-right-way/) in Heroku, head over to this [guide](https://devcenter.heroku.com/articles/config-vars).
-- `secretPath`: It could be our `BOT_TOKEN` or any random string.
-  It is best practice to hide our bot path as [explained by Telegram](https://core.telegram.org/bots/api#setwebhook).
+- `process.env`: Помните, НИКОГДА не храните учетные данные в коде!
+  Для создания [переменных окружения](https://www.freecodecamp.org/news/using-environment-variables-the-right-way/) в Heroku, перейдите по этому [руководству](https://devcenter.heroku.com/articles/config-vars).
+- `secretPath`: Это может быть наш `BOT_TOKEN` или любая произвольная строка.
+  Лучше всего скрывать путь нашего бота, как [объясняет Telegram](https://core.telegram.org/bots/api#setwebhook).
 
-::: tip ⚡ Optimization (optional)
-`bot.api.setWebhook` at line 14 will always run when Heroku starts your server again.
-For low traffic bots, this will be for every request.
-However, we do not need this code to run every time a request is coming.
-Therefore, we can delete this part completely, and execute the `GET` only once manually.
-Open this link on your web browser after deploying our bot:
+::: tip ⚡ Оптимизация (необязательно)
+`bot.api.setWebhook` в строке 14 будет запускаться всегда, когда Heroku снова запустит ваш сервер.
+Для ботов с низким трафиком это будет происходить при каждом запросе.
+Однако нам не нужно, чтобы этот код выполнялся каждый раз, когда приходит запрос.
+Поэтому мы можем полностью удалить эту часть и выполнять `GET` только один раз вручную.
+Откройте эту ссылку в веб-браузере после развертывания нашего бота:
 
 ```asciiart:no-line-numbers
 https://api.telegram.org/bot<bot_token>/setWebhook?url=<webhook_url>
 ```
 
-Note that some browsers require you to manually [encode](https://en.wikipedia.org/wiki/Percent-encoding#Reserved_characters) the `webhook_url` before passing it.
-For instance, if we have bot token `abcd:1234` and URL `https://grammybot.herokuapp.com/secret_path`, then our link should look like this:
+Обратите внимание, что некоторые браузеры требуют вручную [закодировать](https://en.wikipedia.org/wiki/Percent-encoding#Reserved_characters) `webhook_url` перед передачей.
+Например, если у нас есть бот-токен `abcd:1234` и URL `https://grammybot.herokuapp.com/secret_path`, то наша ссылка должна выглядеть следующим образом:
 
 ```asciiart:no-line-numbers
 https://api.telegram.org/botabcd:1234/setWebhook?url=https%3A%2F%2Fgrammybot.herokuapp.com%2Fsecret_path
@@ -161,41 +161,41 @@ https://api.telegram.org/botabcd:1234/setWebhook?url=https%3A%2F%2Fgrammybot.her
 
 :::
 
-::: tip ⚡ Optimization (optional)
-Use [Webhook Reply](../guide/deployment-types#ответ-вебхука) for more efficiency.
+::: tip ⚡ Оптимизация (необязательно)
+Используйте [Webhook Reply](../guide/deployment-types#ответ-вебхука) для большей эффективности.
 :::
 
-### Creating `bot.ts` (Webhooks)
+### Создание `bot.ts` (вебхуки)
 
-Next step, head over to `bot.ts`:
+Следующим шагом перейдите к файлу `bot.ts`:
 
 ```ts
 import { Bot } from "grammy";
 
 const token = process.env.BOT_TOKEN;
-if (!token) throw new Error("BOT_TOKEN is unset");
+if (!token) throw new Error("BOT_TOKEN не установлен");
 
 export const bot = new Bot(token);
 
-bot.command("start", (ctx) => ctx.reply("Hello there!"));
-bot.on("message", (ctx) => ctx.reply("Got another message!"));
+bot.command("start", (ctx) => ctx.reply("Привет!"));
+bot.on("message", (ctx) => ctx.reply("Получил сообщение!"));
 ```
 
-Good!
-We have now finished coding our main files.
-But before we go to the deployment steps, we can optimize our bot a little bit.
-As usual, this is optional.
+Отлично!
+Теперь мы закончили программирование наших основных файлов.
+Но прежде чем перейти к шагам развертывания, мы можем немного оптимизировать нашего бота.
+Как обычно, это необязательно.
 
-::: tip ⚡ Optimization (optional)
-Every time your server starts up, grammY will request [information about the bot](https://core.telegram.org/bots/api#getme) from Telegram in order to provide it on the [context object](../guide/context) under `ctx.me`.
-We can set the [bot information](/ref/core/botconfig#botinfo) to prevent excessive `getMe` calls.
+::: tip ⚡ Оптимизация (необязательно)
+При каждом запуске вашего сервера grammY будет запрашивать [информацию о боте](https://core.telegram.org/bots/api#getme) у Telegram, чтобы предоставить ее на [объект контекста](../guide/context) в `ctx.me`.
+Мы можем установить [информацию о боте](/ref/core/botconfig#botinfo), чтобы предотвратить чрезмерные вызовы `getMe`.
 
-1. Open this link `https://api.telegram.org/bot<bot_token>/getMe` in your favorite web browser. [Firefox](https://www.mozilla.org/en-US/firefox/) is recommended since it displays `json` format nicely.
-2. Change our code at line 4 above and fill the value according to the results from `getMe`:
+1. Откройте эту ссылку `https://api.telegram.org/bot<bot_token>/getMe` в вашем любимом браузере. Рекомендуется [Firefox](https://www.mozilla.org/en-US/firefox/), так как он хорошо отображает формат `json`.
+2. Измените наш код в строке 4 выше и заполните значение в соответствии с результатами, полученными от `getMe`:
 
    ```ts
    const token = process.env.BOT_TOKEN;
-   if (!token) throw new Error("BOT_TOKEN is unset");
+   if (!token) throw new Error("BOT_TOKEN не установлен");
 
    export const bot = new Bot(token, {
      botInfo: {
@@ -212,93 +212,93 @@ We can set the [bot information](/ref/core/botconfig#botinfo) to prevent excessi
 
 :::
 
-Cool!
-It's time to prepare our deployment environment!
-Straight to [Deployment Section](#deployment) everyone! :muscle:
+Круто!
+Пришло время подготовить среду развертывания!
+Всем прямая дорога в раздел [Развертывания](#развертывание)! :muscle:
 
 ## Long Polling
 
-::: warning Your Script Will Run Continuously When Using Long Polling
-Unless you know how to handle this behavior, make sure you have enough [dyno hours](https://devcenter.heroku.com/articles/eco-dyno-hours).
+::: warning Ваш код будет выполняться непрерывно при использовании long polling
+Если вы не знаете, как справиться с таким поведением, убедитесь, что у вас достаточно [dyno часов](https://devcenter.heroku.com/articles/eco-dyno-hours).
 :::
 
-> Consider using webhooks?
-> Jump up to the [webhooks section](#webhooks). :rocket:
+> Рассмотрите возможность использования вебхуков?
+> Перейдите к разделу [вебхукт](#вебхуки). :rocket:
 
-Using long polling on your server is not always a bad idea.
-Sometimes, it is suitable for data gathering bots that don't need to respond quickly and handle lots of data.
-If you want to do this once an hour, you can do that easily.
-That's something you cannot control with webhooks.
-If your bot gets flooded with messages, you will see a lot of webhooks requests, however, you can more easily limit the rate of updates to process with long polling.
+Использование long polling на вашем сервере --- не всегда плохая идея.
+Иногда он подходит для ботов, собирающих данные, которым не нужно быстро реагировать и обрабатывать большое количество данных.
+Если вы хотите делать это раз в час, вы можете легко это сделать.
+Это то, что вы не можете контролировать с помощью вебхуков.
+Если ваш бот будет переполнен сообщениями, вы увидите много запросов вебхука, однако вы можете более легко ограничить скорость обработки обновлений с помощью long polling.
 
-### Creating `bot.ts` (Long Polling)
+### Создание `bot.ts` (Long Polling)
 
-Let's open the `bot.ts` file that we have created earlier.
-Have it contain these lines of code:
+Откроем файл `bot.ts`, который мы создали ранее.
+Пусть он содержит следующие строки кода:
 
 ```ts
 import { Bot } from "grammy";
 
 const token = process.env.BOT_TOKEN;
-if (!token) throw new Error("BOT_TOKEN is unset");
+if (!token) throw new Error("BOT_TOKEN не установлен");
 
 const bot = new Bot(token);
 
 bot.command(
   "start",
-  (ctx) => ctx.reply("I'm running on Heroku using long polling!"),
+  (ctx) => ctx.reply("Я работаю на Heroku, используя long polling!"),
 );
 
 bot.start();
 ```
 
-That's it!
-We are ready to deploy it.
-Pretty simple, right? :smiley:
-If you think it is too easy, check out our [Deployment Checklist](../advanced/deployment#long-polling)! :rocket:
+Вот и все!
+Мы готовы к развертыванию.
+Довольно просто, правда? :smiley:
+Если вам кажется, что это слишком просто, посмотрите наши [советы по развертыванию](../advanced/deployment#long-polling)! :rocket:
 
-## Deployment
+## Развертывание
 
-Nope… our _Rocket Bot_ is not ready to launch yet.
-Complete these stages first!
+Нет... наш _Шикарный бот_ еще не готов к запуску.
+Сначала завершите эти этапы!
 
-### Compile Files
+### Компиляция файлов
 
-Run this code in your terminal to compile the TypeScript files to JavaScript:
+Запустите этот код в терминале, чтобы скомпилировать файлы TypeScript в JavaScript:
 
 ```sh
 npx tsc
 ```
 
-If it runs successfully and does not print any errors, our compiled files should be in the `dist` folder with `.js` extensions.
+Если он запустится успешно и не выдаст никаких ошибок, наши скомпилированные файлы должны оказаться в папке `dist` с расширением `.js`.
 
-### Set up `Procfile`
+### Установите `Procfile`
 
-For the time being, `Heroku` has several [types of dynos](https://devcenter.heroku.com/articles/dyno-types).
-Two of them are:
+На данный момент у `Heroku` есть несколько [типов dyno](https://devcenter.heroku.com/articles/dyno-types).
+Два из них:
 
 - **Web dynos**:
 
-  _Web dynos_ are dynos of the "web" process that receive HTTP traffic from routers.
-  This kind of dyno has a timeout of 30 seconds for executing code.
-  Also, it will sleep if there is no request to handle within a 30 minutes period.
-  This type of dyno is quite suitable for _webhooks_.
+  _Web dynos_ - это dynos процесса "web", которые получают HTTP-трафик от роутеров.
+  Этот вид дино имеет таймаут в 30 секунд на выполнение кода.
+  Кроме того, он отключится, если в течение 30 минут не будет обработано ни одного запроса.
+  Этот тип дино вполне подходит для _вебхуков_.
 
-- **Worker dynos**:
+- **Воркерные дино**:
 
-  _Worker dynos_ are typically used for background jobs.
-  It does NOT have a timeout, and will NOT sleep if it does not handle any web requests.
-  It fits _long polling_.
+  _Worker dynos_ обычно используются для фоновых заданий.
+  У него нет таймаута, и он НЕ отключится, если не обрабатывает никаких веб-запросов.
+  Он подходит для _long polling_.
 
-Create file named `Procfile` without a file extension in the root directory of our project.
-For example, `Procfile.txt` and `procfile` are not valid.
-Then write this single line code format:
+Создайте файл с именем `Procfile` без расширения в корневой директории нашего проекта.
+Например, `Procfile.txt` и `procfile` не подходят.
+Затем напишите код в формате одной строки:
 
 ```procfile
-<dynos type>: <command for executing our main entry file>
+<тип dynos>: <наш главный файл>
 ```
 
-For our case it should be:
+Для нашего случая должно быть так:
 
 ::: code-group
 
@@ -312,24 +312,24 @@ worker: node dist/bot.js
 
 :::
 
-### Set up Git
+### Установка Git
 
-We are going to deploy our bot using [Git and Heroku Cli](https://devcenter.heroku.com/articles/git).
-Here is the link for the installation:
+Мы собираемся развернуть нашего бота с помощью [Git и Heroku Cli](https://devcenter.heroku.com/articles/git).
+Вот ссылка для установки:
 
-- [Git installation instructions](https://git-scm.com/download)
-- [Heroku CLI installation instructions](https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli)
+- [Инструкции по установке Git](https://git-scm.com/download)
+- [Инструкции по установке Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli)
 
-Assuming that you already have them in your machine, and you have a terminal open in the root of our project's directory.
-Now initialize a local git repository by running this code in your terminal:
+Предположим, что они уже установлены на вашей машине, и у вас открыт терминал в корневой директории нашего проекта.
+Теперь инициализируйте локальный git-репозиторий, выполнив этот код в терминале:
 
 ```sh
 git init
 ```
 
-Next, we need to prevent unnecessary files from reaching our production server, in this case `Heroku`.
-Create a file named `.gitignore` in root of our project's directory.
-Then add this list:
+Далее нам нужно предотвратить попадание ненужных файлов на наш рабочий сервер, в данном случае `Heroku`.
+Создайте файл с именем `.gitignore` в корневой директории нашего проекта.
+Затем добавьте в него этот список:
 
 ```text
 node_modules/
@@ -337,11 +337,11 @@ src/
 tsconfig.json
 ```
 
-Our final folder structure should now look like this:
+Теперь наша окончательная структура папок должна выглядеть следующим образом:
 
 ::: code-group
 
-```asciiart:no-line-numbers [Webhook]
+```asciiart:no-line-numbers [Вебхук]
 .
 ├── .git/
 ├── node_modules/
@@ -375,17 +375,17 @@ Our final folder structure should now look like this:
 
 :::
 
-Commit files to our git repository:
+Зафиксируйте файлы в нашем git-репозитории:
 
 ```sh
 git add .
 git commit -m "My first commit"
 ```
 
-### Set Up a Heroku Remote
+### Настройте удаленный доступ к Heroku
 
-If you have already created [Heroku app](https://dashboard.heroku.com/apps/), pass your `Existing app`'s name in `<myApp>` below, then run the code.
-Otherwise, run `New app`.
+Если вы уже создали [Heroku app](https://dashboard.heroku.com/apps/), передайте имя вашего `Existing app` в `<myApp>` ниже, затем запустите код.
+В противном случае запустите `New app`.
 
 ::: code-group
 
@@ -400,16 +400,16 @@ heroku git:remote -a <myApp>
 
 :::
 
-### Deploying Code
+### Развертывание кода
 
-Finally, press the _red button_ and liftoff! :rocket:
+Наконец, нажмите _красную кнопку_ и взлетайте! :rocket:
 
 ```sh
 git push heroku main
 ```
 
-If it doesn't work, it's probably our git branch is not `main` but `master`.
-Press this _blue button_ instead:
+Если это не сработает, то, скорее всего, наша ветка git не `main`, а `master`.
+Вместо этого нажмите эту _синюю кнопку_:
 
 ```sh
 git push heroku master
