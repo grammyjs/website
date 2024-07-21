@@ -42,7 +42,7 @@ features:
 
 ## Quickstart
 
-Bots are written in [TypeScript](https://www.typescriptlang.org) (or JavaScript) and run on various platforms, including [Node.js](https://nodejs.org).
+Bots are preferably written in [TypeScript](https://www.typescriptlang.org) (or JavaScript) and run on various platforms, including [Node.js](https://nodejs.org).
 
 `npm install grammy` and paste the following code:
 
