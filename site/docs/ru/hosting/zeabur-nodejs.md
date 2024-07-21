@@ -3,59 +3,59 @@ prev: false
 next: false
 ---
 
-# Hosting: Zeabur (Node.js)
+# Хостинг: Zeabur (Node.js)
 
-[Zeabur](https://zeabur.com) is a platform that allows you to deploy your full-stack applications with ease.
-It supports various programming languages and frameworks, including Node.js and grammY.
+[Zeabur](https://zeabur.com) --- это платформа, позволяющая с легкостью развертывать полнофункциональные приложения.
+Она поддерживает различные языки программирования и фреймворки, включая Node.js и grammY.
 
-This tutorial will guide you how to deploy your grammY bots with Node.js to [Zeabur](https://zeabur.com).
+В этом руководстве вы узнаете, как развернуть бота grammY с Node.js на [Zeabur](https://zeabur.com).
 
-::: tip Looking for the Deno Version?
-This tutorial explains how to deploy a Telegram bot to Zeabur using Node.js.
-If you're looking for the Deno version, please check out [this tutorial](./zeabur-deno) instead.
+::: tip Ищете версию Deno?
+В этом руководстве объясняется, как развернуть Telegram-бота на Zeabur с помощью Node.js.
+Если вы ищете версию Deno, пожалуйста, посмотрите [эту страницу](./zeabur-deno) вместо этого.
 :::
 
-## Prerequisites
+## Необходимые условия
 
-To follow along, you need to have [GitHub](https://github.com) and [Zeabur](https://zeabur.com) accounts.
+Чтобы следить за этим, вам необходимо иметь аккаунты [GitHub](https://github.com) и [Zeabur](https://zeabur.com).
 
-### Method 1: Create a New Project from Scratch
+### Метод 1: Создайте новый проект с нуля
 
-Initialize your project and install some necessary dependencies:
+Инициализируйте ваш проект и установите некоторые необходимые зависимости:
 
 ```sh
-# Initialize the project.
+# Инициализируйте проект.
 mkdir grammy-bot
 cd grammy-bot
 npm init -y
 
-# Install main dependencies.
+# Установите основные зависимости.
 npm install grammy
 
-# Install development dependencies.
+# Установите зависимости для разработки.
 npm install -D typescript ts-node @types/node
 
-# Initialize TypeScript.
+# Инициализируйте TypeScript.
 npx tsc --init
 ```
 
-Then, `cd` into `src/`, and create a file named `bot.ts`.
-It is where you will write your bot's code.
+Затем `cd` в `src/` и создайте файл с именем `bot.ts`.
+В нем вы будете писать код вашего бота.
 
-Now, you can start writing your bot's code in `src/bot.ts`.
+Теперь вы можете начать писать код бота в `src/bot.ts`.
 
 ```ts
 import { Bot } from "grammy";
 
 const token = process.env.TELEGRAM_BOT_TOKEN;
-if (!token) throw new Error("TELEGRAM_BOT_TOKEN is unset");
+if (!token) throw new Error("TELEGRAM_BOT_TOKEN не установлен");
 
 const bot = new Bot(token);
 
 bot.on("message:text", async (ctx) => {
-  console.log("Message: ", ctx.message.text);
+  console.log("Сообщение: ", ctx.message.text);
 
-  const response = "Hello, I'm a bot!";
+  const response = "Привет, я бот!";
 
   await ctx.reply(response);
 });
@@ -63,11 +63,10 @@ bot.on("message:text", async (ctx) => {
 bot.start();
 ```
 
-> Note: Get your bot token with [@BotFather](https://t.me/BotFather) on Telegram, and set is as an environment variable `TELEGRAM_BOT_TOKEN` in Zeabur.
->
-> You can check out [this tutorial](https://zeabur.com/docs/deploy/variables) for setting environment variables in Zeabur.
+> Примечание: Получите токен бота с помощью [@BotFather](https://t.me/BotFather) в Telegram и установите его в качестве переменной окружения `TELEGRAM_BOT_TOKEN` в Zeabur.
+> Вы можете ознакомиться с [этим руководством](https://zeabur.com/docs/deploy/variables) по настройке переменных окружения в Zeabur.
 
-Now your project's root directory should now look like this:
+Теперь корневая директория вашего проекта должна выглядеть следующим образом:
 
 ```asciiart:no-line-numbers
 .
@@ -79,14 +78,14 @@ Now your project's root directory should now look like this:
 └── tsconfig.json
 ```
 
-And then we have to add `start` scripts to our `package.json`.
-Our `package.json` should now be similar to this:
+А затем нам нужно добавить скрипты `start` в наш `package.json`.
+Теперь наш `package.json` должен быть похож на этот:
 
 ```json
 {
   "name": "telegram-bot-starter",
   "version": "1.0.0",
-  "description": "Telegram Bot Starter with TypeScript and grammY",
+  "description": "Стартовый бот Telegram с TypeScript и grammY",
   "scripts": {
     "start": "ts-node src/bot.ts" // [!code focus]
   },
@@ -103,7 +102,7 @@ Our `package.json` should now be similar to this:
 }
 ```
 
-Now, you can run your bot locally by running:
+Теперь вы можете запустить своего бота локально, выполнив команду:
 
 ```sh
 npm run start
