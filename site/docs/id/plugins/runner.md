@@ -117,9 +117,13 @@ Kamu juga bisa menunggu runner berhenti dengan cara menunggu promise `task`---me
 ```ts
 const handle = run(bot);
 
+// Ini akan dipanggil ketika bot berhenti.
 handle.task().then(() => {
   console.log("Bot selesai memproses!");
 });
+
+// Kemudian, hentikan bot melalui fungsi handler-nya.
+await handle.stop();
 ```
 
 ## Opsi Tingkat Lanjut
