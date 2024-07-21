@@ -143,7 +143,7 @@ const pluginBuiltin = {
 			link: "/plugins/media-group",
 		},
 		{
-			text: "Встроенные запросы",
+			text: "Inline запросы",
 			link: "/plugins/inline-query",
 		},
 	],
@@ -165,13 +165,13 @@ const pluginOfficial = {
 			activeMatch: "^(/plugins/menu|/ref/menu/)$",
 		},
 		{
-			text: "Бесстатусный вопрос (stateless-question)",
+			text: "Вопросы без статуса (stateless-question)",
 			link: "/plugins/stateless-question",
 			// do not add the following line to translations:
 			activeMatch: "^(/plugins/stateless-question|/ref/stateless-question/)$",
 		},
 		{
-			text: "Параллелизм (runner)",
+			text: "Runner (runner)",
 			link: "/plugins/runner",
 			// do not add the following line to translations:
 			activeMatch: "^(/plugins/runner|/ref/runner/)$",
@@ -183,7 +183,7 @@ const pluginOfficial = {
 			activeMatch: "^(/plugins/hydrate|/ref/hydrate/)$",
 		},
 		{
-			text: "Повторные запросы API (auto-retry)",
+			text: "Повторные запросы к API (auto-retry)",
 			link: "/plugins/auto-retry",
 			// do not add the following line to translations:
 			activeMatch: "^(/plugins/auto-retry|/ref/auto-retry/)$",
@@ -454,8 +454,6 @@ export const siteRu: LocaleConfig = {
 				{
 					text: "Справочник API",
 					link: "/ref/",
-					// do not add the following line to translations:
-					activeMatch: "^/ref/",
 				},
 			],
 			sidebar: {
