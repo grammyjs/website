@@ -5,131 +5,131 @@ next: false
 
 <!-- markdownlint-disable no-duplicate-heading -->
 
-# Hosting: VPS
+# Хостинг: VPS
 
-A virtual private server, mostly known as VPS, is a virtual machine running in the cloud with you, the developer, having full control over the system.
+Виртуальный частный сервер, чаще всего называемый VPS, представляет собой виртуальную машину, работающую в облаке, где вы, разработчик, имеете полный контроль над системой.
 
-## Server Rental
+## Аренда сервера
 
-> To be able to follow this guide, you first need to rent a VPS.
-> This section will explain how to do that.
-> If you already have a VPS to work on, skip to the [next section](#starting-the-bot).
+> Чтобы иметь возможность следовать этому руководству, вам сначала нужно арендовать VPS.
+> В этом разделе мы расскажем, как это сделать.
+> Если у вас уже есть VPS для работы, переходите к [следующему разделу](#starting-the-bot).
 
-In this guide, we will use the services of [Hostinger](https://hostinger.com).
+В этом руководстве мы будем использовать услуги [Hostinger](https://hostinger.com).
 
-> You are free to choose the provider of your choice.
-> All providers provide the same services, so you won't have any problems with the technical part of this article.
-> You can take this part as an overview of how the server rental operation works.
-> If you are a beginner, you can use this guide to rent your first ever server!
+> Вы можете выбрать провайдера по своему усмотрению.
+> Все провайдеры предоставляют одинаковые услуги, поэтому у вас не возникнет проблем с технической частью этой статьи.
+> Вы можете воспринимать эту часть как обзор того, как работает аренда сервера.
+> Если вы новичок, вы можете использовать это руководство для аренды своего первого сервера!
 
-::: tip Analog of a Server
-If you cannot or do not want to rent a server but you still want to play around with running a bot on a VPS, you can follow this tutorial on a virtual machine instead.
-To do this, use an application such as [VirtualBox](https://virtualbox.org).
-Create a virtual machine with the desired Linux distribution to simulate a Linux server.
+::: tip Аналог сервера
+Если вы не можете или не хотите арендовать сервер, но при этом хотите поиграть с запуском бота на VPS, вы можете выполнить это руководство на виртуальной машине.
+Для этого воспользуйтесь таким приложением, как [VirtualBox](https://virtualbox.org).
+Создайте виртуальную машину с нужным дистрибутивом Linux, чтобы имитировать сервер Linux.
 :::
 
-Go to the [VPS Hosting page](https://hostinger.com/vps-hosting).
-We will use the "KVM 1" plan.
-The resources of "KVM 1" are enough for bots with a large audience, and even more so for our test bot.
+Перейдите на страницу [VPS-Хостинг](https://hostinger.com/vps-hosting).
+Мы будем использовать тарифный план "KVM 1".
+Ресурсов "KVM 1" достаточно для ботов с большой аудиторией, а тем более для нашего тестового бота.
 
-Click the "Add to cart" button.
-You will be automatically redirected to the checkout page, where you will also immediately register with Hostinger.
+Нажмите кнопку "Add to cart".
+Вы будете автоматически перенаправлены на страницу оформления заказа, где также сразу зарегистрируетесь на Hostinger.
 
-::: warning Change the Rental Term!
-The typical lease term is 1-2 year (a marketing ploy), and it costs a lot of money.
-You probably don't need it, so you can start by renting a server for a month, which is much cheaper.
+::: warning Измените срок аренды!
+Типичный срок аренды --- 1-2 года (маркетинговая уловка), и это стоит больших денег.
+Скорее всего, вам это не нужно, поэтому для начала можно арендовать сервер на месяц, что гораздо дешевле.
 
-In any case, Hostinger provides a 30-day money-back guarantee.
+В любом случае, Hostinger предоставляет 30-дневную гарантию возврата денег.
 :::
 
-After making your payment, you will be able to set up your server:
+После оплаты вы сможете настроить свой сервер:
 
-1. **Location.**
-   We recommend that you [choose the location](../guide/api#выбор-места-расположения-дата-центра) closest to Amsterdam.
-   The main Bot API server is located in Amsterdam.
-   If you use your [own Bot API server](../guide/api#запуск-локального-api-сервера-бота), choose the closest location to it instead.
-2. **Server type.**
-   Choose the option "Clean OS."
-3. **Operating system.**
-   We will use Ubuntu 22.04.
-   If you choose a different system, some steps may be different, so be careful.
-4. **Server name.**
-   Pick any name you like.
-5. **Root password.**
-   Make a strong password and keep it in a safe place!
-6. **SSH key**.
-   Skip this step.
-   We will set up SSH keys [later](#ssh-keys).
+1. **Местоположение.**
+   Мы рекомендуем вам [выбрать место](../guide/api#выбор-места-расположения-дата-центра), ближайшее к Амстердаму.
+   Главный сервер Bot API расположен в Амстердаме.
+   Если вы используете [собственный сервер Bot API](../guide/api#запуск-локального-api-сервера-бота), выберите вместо Амстердама, ближайшую к нему локацию.
+2. **Тип сервера.**
+   Выберите вариант "Clean OS."
+3. **Операционная система.**
+   Мы будем использовать Ubuntu 22.04.
+   Если вы выберете другую систему, некоторые шаги могут отличаться, поэтому будьте внимательны.
+4. **Имя сервера.**
+   Выберите любое имя, которое вам нравится.
+5. **Пароль рута.**
+   Придумайте надежный пароль и храните его в надежном месте!
+6. **SSH-ключ**.
+   Пропустите этот шаг.
+   Мы настроим SSH-ключи [позже](#ssh-ключи).
 
-After the server is created, you can connect to it using SSH:
+После создания сервера вы можете подключиться к нему с помощью SSH:
 
-> SSH (_Secure Shell_) is a network protocol that can be used to remotely control a computer.
+> SSH (_Secure Shell_) --- это сетевой протокол, который можно использовать для удаленного управления компьютером.
 
 ```sh
-ssh root@<ip-address>
+ssh root@<ip-адрес>
 ```
 
-Replace `<ip-address>` with the IP address of your server which you can find on the server management page.
+Замените `<ip-адрес>` на IP адрес вашего сервера, который вы можете найти на странице управления сервером.
 
-::: tip Configuring SSH
-It can be difficult and tedious to remember which IP address and whose name you need to connect to a server.
-To eliminate these routine steps and improve your server experience, you can configure SSH by creating a `~/.ssh/config` (<https://linuxhandbook.com/ssh-config-file>) file on your computer that stores all the data you need to connect to the server under certain arbitrary identifiers.
-This is beyond the scope of this article, so you'll have to configure it yourself.
+::: tip Настройка SSH
+Запоминать, какой IP адрес и чье имя необходимо для подключения к серверу, может быть сложно и утомительно.
+Чтобы избавиться от этих рутинных действий и улучшить работу с сервером, вы можете настроить SSH, создав на своем компьютере файл `~/.ssh/config` (<https://linuxhandbook.com/ssh-config-file>), в котором под определенными произвольными идентификаторами будут храниться все данные, необходимые для подключения к серверу.
+Это выходит за рамки данной статьи, поэтому вам придется настраивать его самостоятельно.
 :::
 
-::: tip Separate User for Each Application
-In this guide, all actions with the server will be performed as the root user.
-This is done on purpose to simplify this guide.
-However, in reality, the root user should only be responsible for general services (web server, database, etc.), and applications should be run by individual non-root users.
-This approach ensures the security of confidential data and prevents hacking of the entire system.
-At the same time, it imposes some inconveniences.
-Describing all these points unnecessarily increases the complexity of the article, which we try to avoid.
+::: tip Отдельный пользователь для каждого приложения
+В этом руководстве все действия с сервером будут выполняться от имени пользователя root.
+Это сделано специально, чтобы упростить данное руководство.
+Однако в реальности root пользователь должен отвечать только за общие службы (веб-сервер, база данных и т. д.), а приложения должны запускаться отдельными пользователями, не являющимися root пользователями.
+Такой подход обеспечивает безопасность конфиденциальных данных и предотвращает взлом всей системы.
+В то же время он накладывает некоторые неудобства.
+Описание всех этих моментов излишне увеличивает сложность статьи, чего мы стараемся избегать.
 :::
 
-## Starting the Bot
+## Запуск бота
 
-We now have a server at our disposal where we can run the bot to keep it running around the clock.
+Теперь в нашем распоряжении есть сервер, на котором мы можем запустить бота, чтобы он работал круглосуточно.
 
-To simplify the beginning of the article, we skipped the step of delivering the code to the server automatically each time after pushing your code, but it is described [below](#ci-cd).
+Чтобы упростить начало статьи, мы пропустили шаг автоматической доставки кода на сервер каждый раз после размещения вашего кода, но он описан [ниже](#ci-cd).
 
-For now, you can copy local files to a remote server using the following command.
-Note that `-r` copies recursively, so you only need to specify the root directory of your project:
+Пока же вы можете скопировать локальные файлы на удаленный сервер с помощью следующей команды.
+Обратите внимание, что `-r` копирует рекурсивно, поэтому вам нужно указать только корневой каталог вашего проекта:
 
 ```sh
-scp -r <path-to-local-project-root> root@<ip-address>:<path-to-remote-directory>
+scp -r <путь-до-локальной-директории-с-ботом> root@<ip-адрес>:<путь-до-удалённой-директории>
 ```
 
-Replace `<path-to-local-project-root>` with the path to the project directory on your local disk, `<ip-address>` with the IP address of your server, and `<path-to-remote-directory>` with the path to the directory where the bot's source code should be stored on the server.
+Замените `<путь-до-локальной-директории-с-ботом>` на путь к директории проекта на вашем локальном диске, `<ip-адрес>` на IP адрес вашего сервера, а `<путь-до-удалённой-директории>` на путь к директории, где на сервере должен храниться исходный код бота.
 
-As mentioned above, you should now be able to open a remote terminal on your VPS by starting an SSH session.
+Как уже говорилось выше, теперь вы можете открыть удаленный терминал на вашем VPS, запустив сессию SSH.
 
 ```sh
-ssh root@<ip-address>
+ssh root@<ip-адрес>
 ```
 
-Note how your command prompt changes.
-This indicates that you are now connected to the remote machine.
-Every command you type will be run on your VPS.
-Try running `ls` to confirm that you have successfully copied over your source files.
+Обратите внимание, как изменилась командная строка.
+Это означает, что вы теперь подключены к удаленной машине.
+Каждая введенная вами команда будет выполняться на вашем VPS.
+Попробуйте запустить `ls`, чтобы убедиться, что вы успешно скопировали исходные файлы.
 
-The remainder of this page will assume that you are able to connect to your VPS.
-All following commands need to be run in an SSH session.
+В оставшейся части этой страницы предполагается, что вы можете подключиться к своему VPS.
+Все следующие команды должны быть запущены в сессии SSH.
 
-:::tip Don't forget to install the runtime!
-To run the bot, you need to install Node.js or Deno on the server, depending on the runtime in which the bot will run.
-This is beyond the scope of this article, so you will need to do it yourself.
-You probably already did this when [getting started](../guide/getting-started), so you should be familiar with the steps. :wink:
+:::tip Не забудьте установить среду выполнения!
+Чтобы запустить бота, вам нужно установить на сервер Node.js или Deno, в зависимости от среды выполнения, в которой будет работать бот.
+Это выходит за рамки данной статьи, поэтому вам придется сделать это самостоятельно.
+Вероятно, вы уже делали это при [начале работы](../guide/getting-started), поэтому вам должны быть знакомы эти шаги :wink:
 :::
 
-Below are two ways you can keep your bot running smoothly: using [systemd](#systemd) or [PM2](#pm2).
+Ниже приведены два способа поддержания бесперебойной работы бота: использование [systemd](#systemd) или [PM2](#pm2).
 
 ### systemd
 
-systemd is a powerful service manager which is pre-installed on many Linux distributions, mainly Debian-based ones such as Ubuntu.
+systemd --- это мощный менеджер служб, который предустановлен во многих дистрибутивах Linux, в основном на базе Debian, таких как Ubuntu.
 
-#### Getting the Start Command
+#### Создание команды для запуска
 
-1. Get the absolute path to your runtime:
+1. Получите абсолютный путь к вашей среде выполнения:
 
    ::: code-group
 
@@ -143,108 +143,108 @@ systemd is a powerful service manager which is pre-installed on many Linux distr
 
    :::
 
-2. You should have the absolute path to your bot's directory.
+2. У вас должен быть абсолютный путь к директории вашего бота.
 
-3. Your start command should look like the following:
+3. Ваша команда запуска должна выглядеть следующим образом:
 
    ```sh
-   <runtime_path> <options> <entry_file_relative_path>
+   <путь_к_среде_выполнения> <параметры> <абсолютный_путь_к_фалу_запуска>
 
-   # Path to the bot directory: /home/user/bot1/
+   # Путь к директории бота: /home/user/bot1/
 
-   # Deno example:
+   # Deno пример:
    # /home/user/.deno/bin/deno --allow-all run mod.ts
 
-   # Node.js example:
+   # Node.js пример:
    # /home/user/.nvm/versions/node/v16.9.1/bin/node index.js
    ```
 
-#### Creating the Service
+#### Создание службы
 
-1. Go to the services directory:
+1. Перейдите в каталог служб:
 
    ```sh
    cd /etc/systemd/system
    ```
 
-2. Open your new service file with an editor:
+2. Откройте новый служебный файл в редакторе:
 
    ```sh
    nano <app-name>.service
    ```
 
-   > Replace `<app-name>` with any identifier.
-   > `<app-name>.service` will be the name of your service.
+   > Замените `<app-name>` на любой идентификатор.
+   > `<app-name>.service` будет именем вашего сервиса.
 
-3. Add the following content:
+3. Добавьте следующее содержание:
 
    ```text
    [Unit]
    After=network.target
 
    [Service]
-   WorkingDirectory=<bot-directory-path>
-   ExecStart=<start-command>
+   WorkingDirectory=<путь_до_директории_бота>
+   ExecStart=<команда_для_запуска>
    Restart=on-failure
 
    [Install]
    WantedBy=multi-user.target
    ```
 
-   Replace `<bot-directory-path>` with the absolute path to your bot's directory and `<start-command>` with the command you received [above](#getting-the-start-command).
+   Замените `<путь_до_директории_бота>` на абсолютный путь к директории вашего бота, а `<команда_для_запуска>` на команду, которую вы получили [выше](#создание-команды-для-запуска).
 
-   Here is a brief explanation of the service configuration:
+   Вот краткое объяснение конфигурации сервиса:
 
-   - `After=network.target` --- indicates that the application should be launched after the Internet module is loaded.
-   - `WorkingDirectory=<bot-directory-path>` --- sets the current working directory of the process.
-     This allows you to use relative assets, such as the `.env` file, which contains all the necessary environment variables.
-   - `ExecStart=<start-command>` --- sets the startup command.
-   - `Restart=on-failure` --- indicates that the application should restart after a crash.
-   - `WantedBy=multi-user.target` --- defines the system state in which the service should be launched.
-     `multi-user.target` --- is a typical value for servers.
+   - `After=network.target` --- указывает, что приложение должно быть запущено после загрузки модуля Internet.
+   - `WorkingDirectory=<путь_до_директории_бота>` --- задает текущий рабочий каталог процесса.
+     Это позволяет использовать относительные ресурсы, такие как файл `.env`, который содержит все необходимые переменные окружения.
+   - `ExecStart=<команда_для_запуска>` --- задает команду запуска.
+   - `Restart=on-failure` --- указывает, что приложение должно перезапускаться после сбоя.
+   - `WantedBy=multi-user.target` --- определяет состояние системы, в котором должна быть запущена служба.
+     `multi-user.target` --- типичное значение для серверов.
 
-   > For more information on the unit files, read [this](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/using_systemd_unit_files_to_customize_and_optimize_your_system/assembly_working-with-systemd-unit-files_working-with-systemd).
+   > Для получения дополнительной информации о файлах системы читайте [this](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/using_systemd_unit_files_to_customize_and_optimize_your_system/assembly_working-with-systemd-unit-files_working-with-systemd).
 
-4. Reload systemd whenever you edit the service:
+4. Перезагружайте systemd при каждом изменении службы:
 
    ```sh
    systemctl daemon-reload
    ```
 
-#### Managing the Service
+#### Управление службой
 
 ```sh
-# Replace `<service-name>` with the file name of the service you created.
+# Замените `<название-службы>` на имя файла созданной вами службы.
 
-# To start the service
-systemctl start <service-name>
+# Чтобы запустить службу
+systemctl start <название-службы>
 
-# To view the service logs
-journalctl -u <service-name>
+# Чтобы просмотреть служебные логи
+journalctl -u <название-службы>
 
-# To restart the service
-systemctl restart <service-name>
+# Чтобы перезапустить службу
+systemctl restart <название-службы>
 
-# To stop the service
-systemctl stop <service-name>
+# Чтобы остановить службу
+systemctl stop <название-службы>
 
-# To enable the service to start when the server boots
-systemctl enable <service-name>
+# Чтобы включить запуск службы при загрузке сервера
+systemctl enable <название-службы>
 
-# To disable service startup when the server boots
-systemctl disable <service-name>
+# Чтобы отключить запуск службы при загрузке сервера
+systemctl disable <название-службы>
 ```
 
-Starting the service should now launch your bot!
+Запуск службы должен запустить вашего бота!
 
 ### PM2
 
-[PM2](https://pm2.keymetrics.io) is a daemon process manager for Node.js that will help you manage and keep your app online 24/7.
+[PM2](https://pm2.keymetrics.io) --- это daemon-менеджер процессов для Node.js, который поможет вам управлять и поддерживать работу вашего приложения в режиме 24/7.
 
-PM2 is designed specifically to manage applications written in Node.js.
-However, it can also be used to manage applications written in other languages or runtimes.
+PM2 разработан специально для управления приложениями, написанными на Node.js.
+Однако его можно использовать и для управления приложениями, написанными на других языках или средах исполнения.
 
-#### Installing
+#### Установка
 
 ::: code-group
 
@@ -262,84 +262,84 @@ pnpm add -g pm2
 
 :::
 
-#### Creating an Application
+#### Создание приложения
 
-PM2 offers two ways to create an application:
+PM2 предлагает два способа создания приложения:
 
-1. Use the command line interface.
-2. Use the [configuration file](https://pm2.keymetrics.io/docs/usage/application-declaration).
+1. Использовать интерфейс командной строки.
+2. Использовать [конфигурационный файл](https://pm2.keymetrics.io/docs/usage/application-declaration).
 
-The first method is convenient when getting to know PM2.
-However, during deployment, you should use the second method, which is what we did in our case.
+Первый способ удобен при знакомстве с PM2.
+Однако при развертывании следует использовать второй метод, что мы и сделали в нашем случае.
 
-Create a `ecosystem.config.js` file on the server in the directory where the bot build is stored with the following content:
+Создайте на сервере в директории, где хранится сборка бота, файл `ecosystem.config.js` со следующим содержанием:
 
 ```js
 module.exports = {
   apps: [{
-    name: "<app-name>",
-    script: "<start-command>",
+    name: "<название-приложения>",
+    script: "<команда-для-запуска>",
   }],
 };
 ```
 
-Replace `<app-name>` with any identifier and `<start command>` with the command to start the bot.
+Замените `<название-приложения>` на любой идентификатор, а `<команда-для-запуска>` --- на команду для запуска бота.
 
-#### Managing the Application
+#### Управление приложением
 
-Below are the commands you can use to control the application.
+Ниже перечислены команды, которые можно использовать для управления приложением.
 
 ```sh
-# If the `ecosystem.config.js` file is in the current directory,
-# you can specify nothing to start the application.
-# If the application is already running, this command will restart it.
+# Если файл `ecosystem.config.js` находится в текущем каталоге,
+# вы можете ничего не указывать для запуска приложения.
+# Если приложение уже запущено, эта команда перезапустит его.
 pm2 start
 
-# All of the following commands require you to specify the name of the application
-# or the `ecosystem.config.js` file.
-# To apply the action to all applications, specify `all`.
+# Все следующие команды требуют указания имени приложения
+# или файл `ecosystem.config.js`.
+# Чтобы применить действие ко всем приложениям, укажите `all`.
 
-# To restart the app
+# Чтобы перезапустить приложение
 pm2 restart <app-name>
 
-# To reload the app
+# Чтобы перезагрузить приложение
 pm2 reload <app-name>
 
-# To stop the app
+# Чтобы остановить приложение
 pm2 stop <app-name>
 
-# To delete an app
+# Чтобы удалить приложение
 pm2 delete <app-name>
 ```
 
-#### Saving the Application Operation
+#### Сохранение операций приложения
 
-If the server reboots, your bot will not resume working.
-For the bot to resume work, you need to prepare PM2 for this.
+Если сервер перезагрузится, ваш бот не возобновит работу.
+Чтобы бот возобновил работу, необходимо подготовить PM2 к этому.
 
-On the server in the terminal, run the following command:
+На сервере в терминале выполните следующую команду:
 
 ```sh
 pm2 startup
 ```
 
-You will be provided with a command that you must execute to make PM2 automatically start after the server reboots.
+Вам будет предложена команда, которую нужно выполнить, чтобы PM2 автоматически запускался после перезагрузки сервера.
 
-Then run one more command:
+Затем выполните еще одну команду:
 
 ```sh
 pm2 save
 ```
 
-This command will save the list of current applications so that they can be launched after a server reboot.
+Эта команда сохранит список текущих приложений, чтобы их можно было запустить после перезагрузки сервера.
 
-If you have created a new application and want to save it as well, simply run `pm2 save` again.
+Если вы создали новое приложение и хотите сохранить и его, просто запустите `pm2 save` снова.
 
 ## Запуск бота на вебхуках
 
-To run a bot on webhooks, you will need to use a web framework and **NOT** call `bot.start()`.
+Чтобы запустить бота на вебхуках, вам нужно использовать веб-фреймворк и **НЕ** вызывать `bot.start()`.
 
-Here is a sample code to run the bot on webhooks that should be added to the main bot file:
+Вот пример кода для запуска бота по вебхукам, который нужно добавить в основной файл бота:
 
 ::: code-group
 
@@ -376,51 +376,51 @@ Deno.serve(async (req) => {
 
 :::
 
-### Domain Rental
+### Аренда домена
 
-To connect a bot running on webhooks to the outside world, you need to purchase a domain.
-We are going to explain this with Hostinger again, but there are many other services, too, and they all work similarly.
+Чтобы подключить бота, работающего на вебхуках, к внешнему миру, вам нужно приобрести домен.
+Мы будем объяснять это на примере Hostinger, но есть и множество других сервисов, и все они работают аналогично.
 
-Go to the [domain name search page](https://www.hostinger.com/domain-name-search).
-In the text input field, enter a domain name of the form `<name>.<zone>`.
-For example, `example.com`.
+Перейдите на [страницу поиска доменного имени](https://www.hostinger.com/domain-name-search).
+В поле ввода текста введите доменное имя вида `<имя>.<доменная зона>`.
+Например, `example.com`.
 
-If the desired domain is free, click the Add button next to it.
-You will be automatically redirected to the checkout page, where you will also immediately register with Hostinger if you are not already registered.
-Pay for the domain.
+Если нужный домен свободен, нажмите кнопку `Add` рядом с ним.
+Вы будете автоматически перенаправлены на страницу оформления заказа, где вы также сразу зарегистрируетесь в Hostinger, если вы еще не зарегистрированы.
+Оплатите домен.
 
-#### Domain Pointing to VPS
+#### Домен, указывающий на VPS
 
-Before your domain can work with your VPS, you need to point the domain to your server.
-To do this, in the [Hostinger Control Panel](https://hpanel.hostinger.com), click the "Manage" button next to your domain.
-Next, go to the DNS record management page by clicking on the "DNS / Name Servers" button in the menu on the left.
+Прежде чем ваш домен сможет работать с вашим VPS, вам необходимо указать домен на ваш сервер.
+Для этого в [Панели управления Hostinger](https://hpanel.hostinger.com) нажмите кнопку "Manage" рядом с вашим доменом.
+Затем перейдите на страницу управления DNS-записями, нажав на кнопку "DNS / Name Servers" в меню слева.
 
-> First, find out the IP address of your VPS.
+> Сначала узнайте IP адрес вашего VPS.
 
-In the list of DNS records, find the record of type `A` with the name `@`.
-Edit this record by changing the IP address in the "Points to" field to the IP address of your VPS, and set the TTL to 3600.
+В списке записей DNS найдите запись типа `A` с именем `@`.
+Отредактируйте эту запись, изменив IP адрес в поле "Points to" на IP адрес вашего VPS, и установите TTL на 3600.
 
-Next, find and delete the record of type `CNAME` with the name `www`.
-Instead, create a new record of type `A` with the name `www`, pointing to the IP address of your VPS, and set the TTL to 3600.
+Затем найдите и удалите запись типа `CNAME` с именем `www`.
+Вместо нее создайте новую запись типа `A` с именем `www`, указывающую на IP адрес вашего VPS, и установите TTL на 3600.
 
-> If you run into problems, use the other method described in the [knowledge base](https://support.hostinger.com/en/articles/1583227-how-to-point-a-domain-to-your-vps).
+> Если у вас возникнут проблемы, воспользуйтесь другим методом, описанным в [базе знаний](https://support.hostinger.com/en/articles/1583227-how-to-point-a-domain-to-your-vps).
 
-### Setting up a Web Server
+### Настройка веб сервера
 
-For the website to work and the bot to start receiving updates from Telegram, you need to set up a web server.
-We will use [Caddy](https://caddyserver.com).
+Чтобы сайт заработал и бот начал получать обновления от Telegram, необходимо настроить веб-сервер.
+Мы будем использовать [Caddy](https://caddyserver.com).
 
-Caddy is a powerful open source web server with automatic HTTPS.
+Caddy --- это мощный веб-сервер с открытым исходным кодом и автоматическим HTTPS.
 
-::: tip Web Server
-We use Caddy because, unlike mainstream web servers like Nginx or Apache, it automatically configures SSL certificates.
-This makes the article much easier.
-However, you are free to choose any web server you want.
+::: tip Веб сервер
+Мы используем Caddy, потому что, в отличие от обычных веб-серверов, таких как Nginx или Apache, он автоматически настраивает SSL-сертификаты.
+Это значительно упрощает работу над статьей.
+Однако вы можете выбрать любой веб-сервер.
 :::
 
-#### Installation
+#### Установка
 
-The following five commands will download and automatically start Caddy as a systemd service called `caddy`.
+Следующие пять команд загрузят и автоматически запустят Caddy как службу systemd под названием `caddy`.
 
 ```sh
 apt install -y debian-keyring debian-archive-keyring apt-transport-https curl
@@ -430,41 +430,41 @@ apt update
 apt install caddy
 ```
 
-> See the [Caddy installation guide](https://caddyserver.com/docs/install) for other installation options.
+> Другие варианты установки см. в [Руководстве по установке Caddy](https://caddyserver.com/docs/install).
 
-Check the status of Caddy:
+Проверьте состояние Caddy:
 
 ```sh
 systemctl status caddy
 ```
 
-::: details Troubleshooting
-Some hosting providers provide VPS with a pre-installed web server, for example, [Apache](https://httpd.apache.org).
-Multiple web servers cannot run on the same machine at the same time.
-For Caddy to work, you need to stop and shut down another web server:
+::: details Устранение неполадок
+Некоторые хостинг-провайдеры предоставляют VPS с предустановленным веб-сервером, например [Apache](https://httpd.apache.org).
+Несколько веб-серверов не могут работать на одной машине одновременно.
+Для работы Caddy необходимо остановить и выключить другой веб-сервер:
 
 ```sh
-systemctl stop <service-name>
-systemctl disable <service-name>
+systemctl stop <имя-службы>
+systemctl disable <имя-службы>
 ```
 
-Replace `service-name` with the name of the web server service that is interfering with Caddy.
+Замените `имя-службы` на имя службы веб-сервера, которая мешает работе Caddy.
 
 :::
 
-Now, if you open your server's IP address in a browser, you will see a typical page with instructions on how to set up Caddy.
+Теперь, если вы откроете IP адрес вашего сервера в браузере, вы увидите типичную страницу с инструкциями по настройке Caddy.
 
-#### Configuring
+#### Настройка
 
-In order for Caddy to process requests coming to our domain, we need to change the Caddy configuration.
+Чтобы Caddy мог обрабатывать запросы, поступающие в наш домен, нам нужно изменить конфигурацию Caddy.
 
-Run the following command to open the Caddy configuration file:
+Выполните следующую команду, чтобы открыть файл конфигурации Caddy:
 
 ```sh
 nano /etc/caddy/Caddyfile
 ```
 
-You will see the following default configuration:
+Вы увидите следующую конфигурацию по умолчанию:
 
 ```text
 # The Caddyfile is an easy way to configure your Caddy web server.
@@ -495,56 +495,56 @@ You will see the following default configuration:
 # https://caddyserver.com/docs/caddyfile
 ```
 
-For the bot to work, make the configuration look like this:
+Чтобы бот работал, сделайте конфигурацию примерно такой:
 
 ```text
-<domain> {
-  reverse_proxy /<token> localhost:<port>
+<домен> {
+  reverse_proxy /<токен> localhost:<порт>
 }
 ```
 
-Replace `<domain>` with your domain, `<token>` with your bot token, and `<port>` with the port on which you want to run your bot.
+Замените `<домен>` на ваш домен, `<токен>` на токен вашего бота, а `<порт>` на порт, на котором вы хотите запустить своего бота.
 
-Reload Caddy every time you change the site's configuration file using the following command:
+Перезагружайте Caddy каждый раз, когда вы изменяете конфигурационный файл сайта, используя следующую команду:
 
 ```sh
 systemctl reload caddy
 ```
 
-Now all requests to the address `https://<domain>/<token>` will be redirected to the address `http://localhost:<port>/<token>`, where the bot's webhook is running.
+Теперь все запросы по адресу `https://<домен>/<токен>` будут перенаправляться на адрес `http://localhost:<порт>/<токен>`, где запущен вебхук бота.
 
-#### Connecting a Webhook to Telegram
+#### Подключение вебхука к Telegram
 
-All you have to do is tell Telegram where to send the updates.
-To do this, open your browser and visit the page at the following link:
+Все, что вам нужно сделать --- это указать Telegram, куда отправлять обновления.
+Для этого откройте браузер и перейдите на страницу по следующей ссылке:
 
 ```text
-https://api.telegram.org/bot<token>/setWebhook?url=https://<domain>/<token>
+https://api.telegram.org/bot<токен>/setWebhook?url=https://<домен>/<токен>
 ```
 
-Replace `<token>` with your bot token and `<domain>` with your domain.
+Замените `<токен>` на токен вашего бота, а `<домен>` на ваш домен.
 
 ## CI/CD
 
-[CI/CD](https://about.gitlab.com/topics/ci-cd) is an important part of the modern software development process.
-This guide covers almost all of the [CI/CD pipeline](https://about.gitlab.com/topics/ci-cd/cicd-pipeline).
+[CI/CD](https://about.gitlab.com/topics/ci-cd) --- важная часть современного процесса разработки программного обеспечения.
+Это руководство охватывает практически весь конвейер [CI/CD](https://about.gitlab.com/topics/ci-cd/cicd-pipeline).
 
-We will focus on writing scripts for GitHub and GitLab.
-You can easily adapt the examples below to your CI/CD service of choice, such as Jenkins, Buddy, etc., if needed.
+Мы сосредоточимся на написании скриптов для GitHub и GitLab.
+При необходимости вы можете легко адаптировать приведенные ниже примеры к выбранному вами сервису CI/CD, например Jenkins, Buddy и т.д.
 
-### SSH Keys
+### SSH Ключи
 
-To deliver files to the server, you need to set up passwordless authentication, which is implemented using SSH keys.
+Для передачи файлов на сервер необходимо настроить беспарольную аутентификацию, которая осуществляется с помощью SSH-ключей.
 
-The following commands should be run on your personal computer.
+На вашем персональном компьютере необходимо выполнить следующие команды.
 
-Change to the directory with the SSH keys:
+Перейдите в каталог с ключами SSH:
 
 ```sh
 cd ~/.ssh
 ```
 
-Generate a new key pair:
+Сгенерируйте новую пару ключей:
 
 ::: code-group
 
@@ -558,26 +558,26 @@ ssh-keygen -t ed25519
 
 :::
 
-This command will generate a public and private key of the type and format you want for GitHub and GitLab.
-You can also specify a custom key name if you wish.
+Эта команда сгенерирует открытый и закрытый ключ нужного вам типа и формата для GitHub и GitLab.
+При желании вы можете указать собственное имя ключа.
 
-Next, send the **public** key to the server:
+Затем отправьте **публичный** ключ на сервер:
 
 ```sh
-ssh-copy-id -i <key-name>.pub root@<ip-address>
+ssh-copy-id -i <имя-ключа>.pub root@<ip-адрес>
 ```
 
-Replace `<key-name>` with the name of the generated key and `<ip-address>` with the IP address of your server.
+Замените `<имя-ключа>` на имя сгенерированного ключа, а `<ip-адрес>` на IP-адрес вашего сервера.
 
-Note that the **public** key can be located on many servers, and the **private** key should be only with you and GitHub or GitLab.
+Обратите внимание, что **публичный** ключ может находиться на многих серверах, а **приватный** ключ должен быть только у вас и GitHub или GitLab.
 
-You can now connect to the server without having to enter a password.
+Теперь вы можете подключиться к серверу без необходимости вводить пароль.
 
-### Example Workflows
+### Примеры Workflow
 
 #### Node.js (GitHub)
 
-Use
+Используйте
 
 ```yml
 name: Main
@@ -623,31 +623,31 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          TARGET: "<target-directory>"
+          TARGET: "<директория-проекта>"
           SCRIPT_AFTER: |
-            cd <target-directory>
+            cd <директория-проекта>
             npm i --omit=dev
-            <start-command>
+            <команда-для-запуска>
 ```
 
-where `<target-directory>` is replaced with the name of the directory where the bot build is stored on the server, and `<start-command>` with the command to start your bot, which can for example be a call to `pm2` or `systemctl`.
+где `<директория-проекта>` заменяется именем директории, в которой на сервере хранится сборка бота, а `<команда-для-запуска>` --- командой для запуска бота, которая может быть, например, вызовом `pm2` или `systemctl`.
 
-This script sequentially performs two tasks: `build` and `deploy`.
-After `build` is executed, the artifact of this task, namely the `dist` directory containing the bot build, is passed to the `deploy` task.
+Этот скрипт последовательно выполняет две задачи: `build` и `deploy`.
+После выполнения `build`, директория `dist`, содержащая сборку бота, передается задаче `deploy`.
 
-Files are delivered to the server using the `rsync` utility, which is implemented by `easingthemes/ssh-deploy`.
-After the files are delivered to the server, the command described in the `SCRIPT_AFTER` environment variable is executed.
-In our case, after the files are delivered, we go to the bot directory, where we install all the dependencies except `devDependencies`, and restart the bot.
+Доставка файлов на сервер осуществляется с помощью утилиты `rsync`, которая реализована в `easingthemes/ssh-deploy`.
+После того как файлы доставлены на сервер, выполняется команда, описанная в переменной окружения `SCRIPT_AFTER`.
+В нашем случае после доставки файлов мы переходим в директорию бота, где устанавливаем все зависимости, кроме `devDependencies`, и перезапускаем бота.
 
-Note that you need to add three [secret environment variables](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions):
+Обратите внимание, что вам необходимо добавить три [секретные переменные окружения](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions):
 
-1. `SSH_PRIVATE_KEY`---this is where the private SSH key you created in the [previous step](#ssh-keys) should be stored.
-2. `REMOTE_HOST`---the IP address of your server should be stored here.
-3. `REMOTE_USER`---the name of the user on whose behalf the bot is launched should be stored here.
+1. `SSH_PRIVATE_KEY` --- здесь должен храниться приватный SSH-ключ, который вы создали на [предыдущем шаге](#ssh-ключи).
+2. `REMOTE_HOST` --- здесь должен храниться IP адрес вашего сервера.
+3. `REMOTE_USER` --- здесь должно храниться имя пользователя, от имени которого запускается бот.
 
 #### Node.js (GitLab)
 
-Use
+Используйте
 
 ```yml
 image: node:latest
@@ -676,27 +676,27 @@ Deploy:
     - ssh-keyscan "$REMOTE_HOST" >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
   script:
-    - rsync --delete -az dist package.json package-lock.json $REMOTE_USER@$REMOTE_HOST:<target-directory>
-    - ssh $REMOTE_USER@$REMOTE_HOST "cd <target-directory> && npm i --omit=dev && <start-command>"
+    - rsync --delete -az dist package.json package-lock.json $REMOTE_USER@$REMOTE_HOST:<директория-проекта>
+    - ssh $REMOTE_USER@$REMOTE_HOST "cd <директория-проекта> && npm i --omit=dev && <команда-для-запуска>"
 ```
 
-where `<target-directory>` is replaced with the name of the directory where the bot build is stored on the server, and `<start-command>` with the command to start your bot, which can for example be a call to `pm2` or `systemctl`.
+где `<директория-проекта>` заменяется именем директории, в которой на сервере хранится сборка бота, а `<команда-для-запуска>` --- командой для запуска бота, которая может быть, например, вызовом `pm2` или `systemctl`.
 
-This script sequentially performs two tasks: `build` and `deploy`.
-After `build` is executed, the artifact of this task, namely the `dist` directory containing the bot build, is passed to the `deploy` task.
+Этот скрипт последовательно выполняет две задачи: `build` и `deploy`.
+После выполнения `build`, директория `dist`, содержащая сборку бота, передается задаче `deploy`.
 
-The files are delivered to the server using the `rsync` utility, which we must install before executing the main script.
-After the files are delivered, we connect to the server using SSH to run a command to install all dependencies except `devDependencies` and restart the application.
+Файлы доставляются на сервер с помощью утилиты `rsync`, которую мы должны установить перед выполнением основного скрипта.
+После доставки файлов мы подключаемся к серверу по SSH, чтобы выполнить команду установки всех зависимостей, кроме `devDependencies`, и перезапустить приложение.
 
-Note that you need to add three [environment variables](https://docs.gitlab.com/ee/ci/variables):
+Обратите внимание, что вам необходимо добавить три [переменные окружения](https://docs.gitlab.com/ee/ci/variables):
 
-1. `SSH_PRIVATE_KEY`---this is where the private SSH key you created in the [previous step](#ssh-keys) should be stored.
-2. `REMOTE_HOST`---the IP address of your server should be stored here.
-3. `REMOTE_USER`---the name of the user on whose behalf the bot is launched should be stored here.
+1. `SSH_PRIVATE_KEY` --- здесь должен храниться приватный SSH-ключ, который вы создали на [предыдущем шаге](#ssh-ключи).
+2. `REMOTE_HOST` --- здесь должен храниться IP адрес вашего сервера.
+3. `REMOTE_USER` --- здесь должно храниться имя пользователя, от имени которого запускается бот.
 
 #### Deno (GitHub)
 
-Use
+Используйте
 
 ```yml
 name: Main
@@ -721,27 +721,27 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          TARGET: "<target-directory>"
+          TARGET: "<директория-проекта>"
           SCRIPT_AFTER: |
-            cd <target-directory>
-            <start-command>
+            cd <директория-проекта>
+            <команда-для-запуска>
 ```
 
-where `<target-directory>` is replaced with the name of the directory where the bot build is stored on the server, and `<start-command>` with the command to start your bot, which can for example be a call to `pm2` or `systemctl`.
+где `<директория-проекта>` заменяется именем директории, в которой на сервере хранится сборка бота, а `<команда-для-запуска>` --- командой для запуска бота, которая может быть, например, вызовом `pm2` или `systemctl`.
 
-This script sends files to the server using the `rsync` utility, which is implemented by `easingthemes/ssh-deploy`.
-After the files are delivered to the server, the command described in the `SCRIPT_AFTER` environment variable is executed.
-In our case, after the files are delivered, we go to the bot's directory and restart the bot.
+Этот скрипт отправляет файлы на сервер с помощью утилиты `rsync`, которая реализована в `easingthemes/ssh-deploy`.
+После того как файлы доставлены на сервер, выполняется команда, описанная в переменной окружения `SCRIPT_AFTER`.
+В нашем случае после доставки файлов мы переходим в директорию бота и перезапускаем его.
 
-Note that you need to add three [secret environment variables](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions):
+Обратите внимание, что вам необходимо добавить три [секретные переменные окружения](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions):
 
-1. `SSH_PRIVATE_KEY`---this is where the private SSH key you created in the [previous step](#ssh-keys) should be stored.
-2. `REMOTE_HOST`---the IP address of your server should be stored here.
-3. `REMOTE_USER`---the name of the user on whose behalf the bot is launched should be stored here.
+1. `SSH_PRIVATE_KEY` --- здесь должен храниться приватный SSH-ключ, который вы создали на [предыдущем шаге](#ssh-ключи).
+2. `REMOTE_HOST` --- здесь должен храниться IP адрес вашего сервера.
+3. `REMOTE_USER` --- здесь должно храниться имя пользователя, от имени которого запускается бот.
 
 #### Deno (GitLab)
 
-Use
+Используйте
 
 ```yml
 image: denoland/deno:latest
@@ -761,20 +761,20 @@ Deploy:
     - ssh-keyscan "$REMOTE_HOST" >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
   script:
-    - rsync --delete -az src deno.jsonc deno.lock $REMOTE_USER@$REMOTE_HOST:<target-directory>
-    - ssh $REMOTE_USER@$REMOTE_HOST "cd <target-directory> && npm i --omit=dev && <start-command>"
+    - rsync --delete -az src deno.jsonc deno.lock $REMOTE_USER@$REMOTE_HOST:<директория-проекта>
+    - ssh $REMOTE_USER@$REMOTE_HOST "cd <директория-проекта> && npm i --omit=dev && <команда-для-запуска>"
 ```
 
-where `<target-directory>` is replaced with the name of the directory where the bot build is stored on the server, and `<start-command>` with the command to start your bot, which can for example be a call to `pm2` or `systemctl`.
+где `<директория-проекта>` заменяется именем директории, в которой на сервере хранится сборка бота, а `<команда-для-запуска>` --- командой для запуска бота, которая может быть, например, вызовом `pm2` или `systemctl`.
 
-This script sends files to the server using `rsync`, which has to be installed previously.
-After the files are copied, we connect to the server using SSH to restart the bot.
+Этот скрипт отправляет файлы на сервер с помощью `rsync`, который должен быть предварительно установлен.
+После того как файлы скопированы, мы подключаемся к серверу по SSH, чтобы перезапустить бота.
 
-Note that you need to add three [environment variables](https://docs.gitlab.com/ee/ci/variables):
+Обратите внимание, что вам необходимо добавить три [переменные окружения](https://docs.gitlab.com/ee/ci/variables):
 
-1. `SSH_PRIVATE_KEY`---this is where the private SSH key you created in the [previous step](#ssh-keys) should be stored.
-2. `REMOTE_HOST`---the IP address of your server should be stored here.
-3. `REMOTE_USER`---the name of the user on whose behalf the bot is launched should be stored here.
+1. `SSH_PRIVATE_KEY` --- здесь должен храниться приватный SSH-ключ, который вы создали на [предыдущем шаге](#ssh-ключи).
+2. `REMOTE_HOST` --- здесь должен храниться IP адрес вашего сервера.
+3. `REMOTE_USER` --- здесь должно храниться имя пользователя, от имени которого запускается бот.
 
-You should now see how every code push to the `main` branch will automatically be deployed to your VPS.
-Development go brrrrr :rocket:
+Теперь вы должны видеть, как каждый код, добавленный в ветку `main`, будет автоматически разворачиваться на вашем VPS.
+Разработка go brrrr :rocket:
