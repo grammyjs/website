@@ -45,9 +45,9 @@ In any case, Hostinger provides a 30-day money-back guarantee.
 After making your payment, you will be able to set up your server:
 
 1. **Location.**
-   We recommend that you [choose the location](../guide/api#choosing-a-data-center-location) closest to Amsterdam.
+   We recommend that you [choose the location](../guide/api#выбор-места-расположения-дата-центра) closest to Amsterdam.
    The main Bot API server is located in Amsterdam.
-   If you use your [own Bot API server](../guide/api#running-a-local-bot-api-server), choose the closest location to it instead.
+   If you use your [own Bot API server](../guide/api#запуск-локального-api-сервера-бота), choose the closest location to it instead.
 2. **Server type.**
    Choose the option "Clean OS."
 3. **Operating system.**

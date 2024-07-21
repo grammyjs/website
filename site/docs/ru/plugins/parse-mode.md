@@ -5,7 +5,9 @@ next: false
 
 # Плагин Parse Mode (`parse-mode`)
 
-Этот плагин предоставляет трансформатор для установки `parse_mode` по умолчанию, а также middleware для взаимодействия `Context` с привычными методами `reply`, `replyWithHTML`, `replyWithMarkdown` и т.д.
+Этот плагин предоставляет трансформатор для установки `parse_mode` по умолчанию,
+а также middleware для взаимодействия `Context` с привычными методами `reply`,
+`replyWithHTML`, `replyWithMarkdown` и т.д.
 
 ## Использование (Улучшение опыта форматирования)
 
@@ -25,7 +27,9 @@ bot.use(hydrateReply);
 bot.command("demo", async (ctx) => {
   await ctx.replyFmt(fmt`${bold("полужирный!")}
 ${bold(italic("полужирно-курсивный!"))}
-${bold(fmt`полужирный ${link("полужирная ссылка", "example.com")} полужирный`)}`);
+${
+    bold(fmt`полужирный ${link("полужирная ссылка", "example.com")} полужирный`)
+  }`);
 
   // fmt также может быть вызвана как любая другая функция.
   await ctx.replyFmt(
@@ -55,7 +59,11 @@ bot.use(hydrateReply);
 bot.command("demo", async (ctx) => {
   await ctx.replyFmt(fmt`${bold("полужирный!")}
 ${bold(italic("жирно-курсивный!"))}
-${bold(fmt`полужирный ${link("полу-жирная ссылка", "example.com")} полужирный`)}`);
+${
+    bold(
+      fmt`полужирный ${link("полу-жирная ссылка", "example.com")} полужирный`,
+    )
+  }`);
 
   // fmt также может быть вызвана как любая другая функция.
   await ctx.replyFmt(
@@ -91,7 +99,11 @@ bot.use(hydrateReply);
 bot.command("demo", async (ctx) => {
   await ctx.replyFmt(fmt`${bold("полужирный!")}
 ${bold(italic("жирно-курсивный!"))}
-${bold(fmt`полужирный ${link("полу-жирная ссылка", "example.com")} полужирный`)}`);
+${
+    bold(
+      fmt`полужирный ${link("полу-жирная ссылка", "example.com")} полужирный`,
+    )
+  }`);
 
   // fmt также может быть вызвана как любая другая функция.
   await ctx.replyFmt(
@@ -133,8 +145,12 @@ bot.command("demo", async (ctx) => {
     "<b>Это</b> <code>форматирование</code> с помощью <i>HTML</i>",
   );
   await ctx.replyWithMarkdown("*Это* `форматирование` с помощью _Markdown_");
-  await ctx.replyWithMarkdownV1("*Это* `форматирование` с помощью _MarkdownV1_");
-  await ctx.replyWithMarkdownV2("*Это* `форматирование` с помощью _MarkdownV2_");
+  await ctx.replyWithMarkdownV1(
+    "*Это* `форматирование` с помощью _MarkdownV1_",
+  );
+  await ctx.replyWithMarkdownV2(
+    "*Это* `форматирование` с помощью _MarkdownV2_",
+  );
 });
 
 bot.start();
@@ -158,8 +174,12 @@ bot.command("demo", async (ctx) => {
     "<b>Это</b> <code>форматирование</code> с помощью <i>HTML</i>",
   );
   await ctx.replyWithMarkdown("*Это* `форматирование` с помощью _Markdown_");
-  await ctx.replyWithMarkdownV1("*Это* `форматирование` с помощью _MarkdownV1_");
-  await ctx.replyWithMarkdownV2("*Это* `форматирование` с помощью _MarkdownV2_");
+  await ctx.replyWithMarkdownV1(
+    "*Это* `форматирование` с помощью _MarkdownV1_",
+  );
+  await ctx.replyWithMarkdownV2(
+    "*Это* `форматирование` с помощью _MarkdownV2_",
+  );
 });
 
 bot.start();
@@ -188,8 +208,12 @@ bot.command("demo", async (ctx) => {
     "<b>Это</b> <code>форматирование</code> с помощью <i>HTML</i>",
   );
   await ctx.replyWithMarkdown("*Это* `форматирование` с помощью _Markdown_");
-  await ctx.replyWithMarkdownV1("*Это* `форматирование` с помощью _MarkdownV1_");
-  await ctx.replyWithMarkdownV2("*Это* `форматирование` с помощью _MarkdownV2_");
+  await ctx.replyWithMarkdownV1(
+    "*Это* `форматирование` с помощью _MarkdownV1_",
+  );
+  await ctx.replyWithMarkdownV2(
+    "*Это* `форматирование` с помощью _MarkdownV2_",
+  );
 });
 
 bot.start();

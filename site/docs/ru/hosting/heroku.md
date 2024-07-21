@@ -8,7 +8,7 @@ next: false
 > We assume that you have the basic knowledge about creating bots using grammY.
 > If you are not ready yet, don't hesitate to head over to our friendly [Guide](../guide/)! :rocket:
 
-This tutorial will guide you how to deploy a Telegram bot to [Heroku](https://heroku.com/) by using either [webhooks](../guide/deployment-types#how-to-use-webhooks) or [long polling](../guide/deployment-types#how-to-use-long-polling).
+This tutorial will guide you how to deploy a Telegram bot to [Heroku](https://heroku.com/) by using either [webhooks](../guide/deployment-types#как-использовать-вебхуки) or [long polling](../guide/deployment-types#как-использовать-long-polling).
 We also assume that you have a Heroku account already.
 
 ## Prerequisites
@@ -162,7 +162,7 @@ https://api.telegram.org/botabcd:1234/setWebhook?url=https%3A%2F%2Fgrammybot.her
 :::
 
 ::: tip ⚡ Optimization (optional)
-Use [Webhook Reply](../guide/deployment-types#webhook-reply) for more efficiency.
+Use [Webhook Reply](../guide/deployment-types#ответ-вебхука) for more efficiency.
 :::
 
 ### Creating `bot.ts` (Webhooks)
