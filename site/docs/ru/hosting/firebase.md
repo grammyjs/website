@@ -3,61 +3,61 @@ prev: false
 next: false
 ---
 
-# Hosting: Firebase Functions
+# Хостинг: Firebase Functions
 
-This tutorial will guide you through the process of deploying your bot to [Firebase Functions](https://firebase.google.com/docs/functions).
+Это руководство проведет вас через процесс развертывания вашего бота на [Firebase Functions](https://firebase.google.com/docs/functions).
 
-## Prerequisites
+## Необходимые условия
 
-To follow along, you will need to have a Google account.
-If you don't already have one, you can create it [here](https://accounts.google.com/signup).
+Чтобы следить за происходящим, вам необходимо иметь аккаунт Google.
+Если у вас его еще нет (ну или вас в нём забанили), вы можете создать его [здесь](https://accounts.google.com/signup).
 
-## Setup
+## Установка
 
-This section guides you through the setup process.
-If you need more detailed explanations on each step that you'll take, refer to the [official Firebase documentation](https://firebase.google.com/docs/functions/get-started).
+Этот раздел поможет вам пройти процесс настройки.
+Если вам нужны более подробные объяснения каждого шага, обратитесь к [официальной документации Firebase](https://firebase.google.com/docs/functions/get-started).
 
-### Creating a Firebase Project
+### Создание проекта Firebase
 
-1. Go to the [Firebase console](https://console.firebase.google.com/) and click **Add Project**.
-2. If prompted, review and accept the Firebase terms.
-3. Click **Continue**.
-4. Decide on whether you want to share analytics or not.
-5. Click **Create Project**.
+1. Перейдите в консоль [Firebase](https://console.firebase.google.com/) и нажмите **Добавить проект**.
+2. Если появится запрос, просмотрите и примите условия Firebase.
+3. Нажмите **Продолжить**.
+4. Решите, хотите ли вы делиться аналитикой или нет.
+5. Нажмите **Создать проект**.
 
-### Setting Things Up
+### Настройка
 
-To write functions and deploy them to the Firebase Functions runtime, you'll need to set up a Node.js environment and install the Firebase CLI.
+Чтобы написать функции и развернуть их в среде выполнения Firebase Functions, вам нужно настроить среду Node.js и установить Firebase CLI.
 
-> It's important to note that only the Node.js versions 14, 16, and 18 are currently supported by Firebase Functions.
-> For more on the supported Node.js versions, refer to [here](https://firebase.google.com/docs/functions/manage-functions#set_nodejs_version).
+> Важно отметить, что в настоящее время Firebase Functions поддерживает только Node.js версий 14, 16 и 18.
+> Подробнее о поддерживаемых версиях Node.js читайте [здесь](https://firebase.google.com/docs/functions/manage-functions#set_nodejs_version).
 
-Once you have Node.js and npm installed, install Firebase CLI globally:
+После установки Node.js и npm установите Firebase CLI глобально:
 
 ```sh
 npm install -g firebase-tools
 ```
 
-### Initializing the Project
+### Инициализация проекта
 
-1. Run `firebase login` to open your browser and authenticate Firebase CLI with your account.
-2. `cd` into your project's directory.
-3. Run `firebase init functions`, and type `y` when asked whether you want to initialize a new codebase.
-4. Choose `use existing project` and select the project you created in Step 1.
-5. The CLI gives you two options for language support:
+1. Запустите `firebase login`, чтобы открыть браузер и аутентифицировать Firebase CLI с помощью вашей учетной записи.
+2. Зайдите в директорию проекта `cd`.
+3. Запустите `firebase init functions` и введите `y`, когда вас спросят, хотите ли вы инициализировать новый проект.
+4. Выберите `use existing project` и выберите проект, который вы создали в шаге 1.
+5. CLI предлагает вам два варианта поддержки языка:
    - JavaScript
    - TypeScript
-6. Optionally, you can select ESLint.
-7. The CLI asks you if you want to install the dependencies with npm.
-   If you use another package manager like `yarn` or `pnpm` you can decline.
-   In that case, you have to `cd` into the `functions` directory and install the dependencies manually.
-8. Open `./functions/package.json` and look for the key: `"engines": {"node": "16"}`.
-   The `node` version should match your installed version of Node.js.
-   Otherwise, the project might not run.
+6. В качестве опции можно выбрать ESLint.
+7. CLI спросит вас, хотите ли вы установить зависимости с помощью npm.
+   Если вы используете другой менеджер пакетов, например `yarn` или `pnpm`, вы можете отказаться.
+   В этом случае вам придется `cd` в директорию `functions` и установить зависимости вручную.
+8. Откройте `./functions/package.json` и найдите ключ: `"engines": {"node": "16"}`.
+   Версия `node` должна соответствовать установленной у вас версии Node.js.
+   В противном случае проект может не запуститься.
 
-## Preparing Your Code
+## Подготовка кода
 
-You can use this short example bot as a starting point:
+Вы можете использовать этот короткий пример бота в качестве отправной точки:
 
 ```ts
 import * as functions from "firebase-functions";
@@ -65,36 +65,36 @@ import { Bot, webhookCallback } from "grammy";
 
 const bot = new Bot("");
 
-bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
-bot.command("ping", (ctx) => ctx.reply(`Pong! ${new Date()}`));
+bot.command("start", (ctx) => ctx.reply("Добро пожаловать! Запущен и работаю."));
+bot.command("ping", (ctx) => ctx.reply(`Понг! ${new Date()}`));
 
-// During development, you can trigger your function from https://localhost/<firebase-projectname>/us-central1/helloWorld
+// Во время разработки вы можете запустить свою функцию по адресу https://localhost/<firebase-названиепроекта>/us-central1/helloWorld.
 export const helloWorld = functions.https.onRequest(webhookCallback(bot));
 ```
 
-## Local Development
+## Локальная разработка
 
-During development, you can use the firebase emulator suite to run your code locally.
-This is way faster than deploying every change to Firebase.
-To install the emulators, run:
+Во время разработки вы можете использовать набор эмуляторов Firebase для локального запуска вашего кода.
+Это гораздо быстрее, чем развертывать каждое изменение на Firebase.
+Чтобы установить эмуляторы, выполните команду:
 
 ```sh
 firebase init emulators
 ```
 
-The functions emulator should be selected already.
-(If it isn't, navigate to it using the arrow keys, and select it using `space`.)
-For the questions about which port to use for each emulator, simply press `enter`.
+Эмулятор функций должен быть уже выбран.
+(Если это не так, перейдите к нему с помощью клавиш со стрелками и выберите его с помощью `пробела`).
+На вопросы о том, какой порт использовать для каждого эмулятора, просто нажмите `enter`.
 
-To start the emulators and run your code, use:
+Чтобы запустить эмуляторы и запустить ваш код, используйте:
 
 ```sh
 npm run serve
 ```
 
 ::: tip
-For some reason the standard configuration of the npm script does not start the TypeScript compiler in watch mode.
-Therefore, if you use TypeScript, you also have to run:
+По какой-то причине стандартная конфигурация скрипта npm не запускает компилятор TypeScript в режиме watch.
+Поэтому, если вы используете TypeScript, вы также должны запустить:
 
 ```sh
 npm run build:watch
@@ -102,43 +102,43 @@ npm run build:watch
 
 :::
 
-After the emulators start, you should find a line in the console output that looks like this:
+После запуска эмуляторов вы должны найти в выводе консоли строку, которая выглядит следующим образом:
 
 ```sh
-+  functions[us-central1-helloWorld]: http function initialized (http://127.0.0.1:5001/<firebase-projectname>/us-central1/helloWorld).
++  functions[us-central1-helloWorld]: http function initialized (http://127.0.0.1:5001/<firebase-названиепроекта>/us-central1/helloWorld).
 ```
 
-That is the local URL of your cloud function.
-However, your function is only available to the localhost on your computer.
-To actually test your bot, you need to expose your function to the internet so that the Telegram API can send updates to your bot.
-There are several services, such as [localtunnel](https://localtunnel.me) or [ngrok](https://ngrok.com), that can help you with that.
-In this example, we will be using localtunnel.
+Это локальный URL-адрес вашей облачной функции.
+Однако ваша функция доступна только для localhost на вашем компьютере.
+Чтобы протестировать бота, вам нужно вывести функцию в интернет, чтобы Telegram API мог отправлять обновления вашему боту.
+Существует несколько сервисов, таких как [localtunnel](https://localtunnel.me) или [ngrok](https://ngrok.com), которые могут помочь вам в этом.
+В этом примере мы будем использовать localtunnel.
 
-First, let's install localtunnel:
+Сначала давайте установим localtunnel:
 
 ```sh
 npm i -g localtunnel
 ```
 
-After that, you can forward the port `5001`:
+После этого вы можете переадресовать порт `5001`:
 
 ```sh
 lt --port 5001
 ```
 
-localtunnel should give you a unique URL, such as `https://modern-heads-sink-80-132-166-120.loca.lt`.
+localtunnel должен дать вам уникальный URL, например `https://modern-heads-sink-80-132-166-120.loca.lt`.
 
-All that's left to do is to tell Telegram where to send the updates.
-You can do this by calling `setWebhook`.
-For example, open a new tab in your browser and visit this URL:
+Осталось только указать Telegram, куда отправлять обновления.
+Это можно сделать с помощью вызова `setWebhook`.
+Например, откройте новую вкладку в браузере и перейдите по этому URL:
 
 ```text
-https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<WEBHOOK_URL>/<firebase-projectname>/us-central1/helloWorld
+https://api.telegram.org/bot<ТОКЕН_БОТА>/setWebhook?url=<ВЕБХУК_URL>/<firebase-названиепроекта>/us-central1/helloWorld
 ```
 
-Replace `<BOT_TOKEN>` with your real bot token, and `<WEBHOOK_URL>` with your own URL you got from localtunnel.
+Замените `<ТОКЕН_БОТА>` на ваш настоящий токен бота, а `<ВЕБХУК_URL>` на ваш собственный URL, который вы получили из localtunnel.
 
-You should now see this in your browser window.
+Теперь вы должны увидеть это в окне браузера.
 
 ```json
 {
@@ -148,31 +148,31 @@ You should now see this in your browser window.
 }
 ```
 
-Your bot is now ready for deployment testing.
+Теперь ваш бот готов к тестированию на развертывание.
 
-## Deploying
+## Развертывание
 
-To deploy your function, just run:
+Чтобы развернуть свою функцию, просто выполните команду:
 
 ```sh
 firebase deploy
 ```
 
-The Firebase CLI will give you the URL of your function once the deployment is completed.
-It should look something like `https://<REGION>.<MY_PROJECT.cloudfunctions.net/helloWorld`.
-For a more detailed explanation you can take a look at step 8 of the [get started guide](https://firebase.google.com/docs/functions/get-started#deploy-functions-to-a-production-environment).
+Firebase CLI выдаст вам URL вашей функции после завершения развертывания.
+Он должен выглядеть примерно так: `https://<РЕГИОН>.<МОЙ_ПРОЕКТ.cloudfunctions.net/helloWorld`.
+Для более подробного объяснения вы можете взглянуть на шаг 8 руководства [Начало работы](https://firebase.google.com/docs/functions/get-started#deploy-functions-to-a-production-environment).
 
-After deploying, you need to tell Telegram where to send updates to your bot by calling the `setWebhook` method.
-To do this, open a new browser tab and visit this URL:
+После развертывания вам нужно указать Telegram, куда отправлять обновления для вашего бота, вызвав метод `setWebhook`.
+Для этого откройте новую вкладку браузера и перейдите по этому URL:
 
 ```text
-https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<REGION>.<MY_PROJECT>.cloudfunctions.net/helloWorld
+https://api.telegram.org/bot<ТОКЕН_БОТА>/setWebhook?url=https://<РЕГИОН>.<МОЙ_ПРОЕКТ>.cloudfunctions.net/helloWorld
 ```
 
-Replace `<BOT_TOKEN>` with your actual bot token, `<REGION>` with the name of the region where you deployed your function, and `<MY_PROJECT>` with the name of your Firebase project.
-The Firebase CLI should provide you with the full URL of your cloud function, so you can simply paste it after the `?url=` parameter in the `setWebhook` method.
+Замените `<ТОКЕН_БОТА>` на ваш токен бота, `<РЕГИОН>` на название региона, в котором вы развернули свою функцию, а `<МОЙ_ПРОЕКТ>` на название вашего проекта Firebase.
+Firebase CLI должен предоставить вам полный URL вашей облачной функции, поэтому вы можете просто вставить его после параметра `?url=` в метод `setWebhook`.
 
-If everything is set up correctly, you should see this response in your browser window:
+Если все настроено правильно, вы должны увидеть этот ответ в окне браузера:
 
 ```json
 {
@@ -182,5 +182,5 @@ If everything is set up correctly, you should see this response in your browser 
 }
 ```
 
-That's it, your bot is ready to go.
-Head over to Telegram and watch it respond to messages!
+Вот и все, ваш бот готов к работе.
+Заходите в Telegram и смотрите, как он отвечает на сообщения!
