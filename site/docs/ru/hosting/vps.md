@@ -335,7 +335,7 @@ This command will save the list of current applications so that they can be laun
 
 If you have created a new application and want to save it as well, simply run `pm2 save` again.
 
-## Запуск бота на вебхука
+## Запуск бота на вебхуках
 
 To run a bot on webhooks, you will need to use a web framework and **NOT** call `bot.start()`.
 
