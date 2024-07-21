@@ -21,7 +21,7 @@ import { InputMediaBuilder } from "grammy";
 
 const photo = InputMediaBuilder.photo(new InputFile("/tmp/photo.mp4"));
 const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
-// т. д.
+// т.д.
 ```
 
 ```js [JavaScript]
@@ -29,7 +29,7 @@ const { InputMediaBuilder } = require("grammy");
 
 const photo = InputMediaBuilder.photo(new InputFile("/tmp/photo.mp4"));
 const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
-// т. д.
+// т.д.
 ```
 
 ```ts [Deno]
@@ -37,7 +37,7 @@ import { InputMediaBuilder } from "https://deno.land/x/grammy/mod.ts";
 
 const photo = InputMediaBuilder.photo(new InputFile("/tmp/photo.mp4"));
 const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
-// т. д.
+// т.д.
 ```
 
 :::
@@ -55,7 +55,7 @@ const photo = InputMediaBuilder.photo("https://grammy.dev/images/grammY.png");
 ```ts
 const photo = InputMediaBuilder.photo("https://grammy.dev/images/grammY.png", {
   caption: "grammY заметелен",
-  // т. д.
+  // т.д.
 });
 ```
 

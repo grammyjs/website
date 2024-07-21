@@ -3,32 +3,32 @@ prev: false
 next: false
 ---
 
-# Router (`router`)
+# Роутер (`router`)
 
-The `Router` class ([API Reference](/ref/router/)) provides a way to structure your bot by routing context objects to different parts of your code.
-It is a more sophisticated version of `bot.route` on `Composer` ([grammY API Reference](/ref/core/composer#route)).
+Класс `Router` ([документация API](/ref/router/)) предоставляет возможность структурировать вашего бота, направляя объекты контекста в различные части вашего кода.
+Это более сложная версия `bot.route` в `Composer` ([grammY API](/ref/core/composer#route)).
 
-## Example
+## Пример
 
-Here is an example of a router usage that speaks for itself.
+Вот пример использования роутера, который говорит сам за себя.
 
 ```ts
 const router = new Router((ctx) => {
-  // Determine route to pick here.
+  // Определите, какой маршрут выбрать здесь.
   return "key";
 });
 
 router.route("key", async (ctx) => {/* ... */});
 router.route("other-key", async (ctx) => {/* ... */});
-router.otherwise((ctx) => {/* ... */}); // called if no route matches
+router.otherwise((ctx) => {/* ... */}); // вызывается, если ни один маршрут не соответствует
 
 bot.use(router);
 ```
 
-## Integration With Middleware
+## Связь с Middleware
 
-Naturally, the router plugin integrates seamlessly with grammY's [middleware trees](../advanced/middleware).
-For example, you filter down updates further after routing them.
+Естественно, плагин роутера легко интегрируется с [деревьями middleware](../advanced/middleware).
+Например, вы можете фильтровать обновления после их маршрутизации.
 
 ```ts
 router.route("key").on("message:text", async (ctx) => {/* ... */});
@@ -38,28 +38,28 @@ other.on(":text", async (ctx) => {/* ... */});
 other.use((ctx) => {/* ... */});
 ```
 
-You may also want to revisit this [section](../guide/filter-queries#комбинирование-запросов-с-другими-методами) about combining middleware handlers.
+Возможно, вы также захотите просмотреть этот [раздел](../guide/filter-queries#комбинирование-запросов-с-другими-методами) о комбинировании обработчиков middlware.
 
-## Combining Routers With Sessions
+## Объединение роутера с сессиями
 
-Routers work well together with [sessions](./session).
-As an example, combining the two concepts allows you to re-create forms in the chat interface.
+Роутеры хорошо работают вместе с [сессиями](./session).
+Например, объединение этих двух концепций позволяет воссоздать формы в интерфейсе чата.
 
-> Note that a much better solution is to use the [conversations plugin](./conversations).
-> The remainder of this page is obsolete since that plugin was created.
-> We will keep this page as a reference for those who used the router for forms.
+> Обратите внимание, что гораздо лучшим решением является использование плагина [conversations](./conversations).
+> Оставшаяся часть этой страницы устарела с тех пор, как был создан этот плагин.
+> Мы оставим эту страницу в качестве справочника для тех, кто использовал маршрутизатор для форм.
 
-Let's say that you want to build a bot that tells users how many days are left until it is their birthday.
-In order to compute the number of days, the bot has to know the month (e.g. June) and the day of month (e.g. 15) of the birthday.
+Допустим, вы хотите создать бота, который будет сообщать пользователям, сколько дней осталось до их дня рождения.
+Для того чтобы вычислить количество дней, бот должен знать месяц (например, июнь) и день месяца (например, 15), когда у пользователя день рождения.
 
-The bot therefore has to ask two questions:
+Поэтому бот должен задать два вопроса:
 
-1. In what month is the user born?
-2. What day of the month is the user born?
+1. В каком месяце родился пользователь?
+2. В какой день месяца родился пользователь?
 
-Only if both values are known, the bot can tell the user how many days are left.
+Только если оба значения известны, бот может сказать пользователю, сколько дней осталось.
 
-This is how a bot like that could be implemented:
+Вот как может быть реализован подобный бот:
 
 ::: code-group
 
@@ -68,74 +68,74 @@ import { Bot, Context, Keyboard, session, SessionFlavor } from "grammy";
 import { Router } from "@grammyjs/router";
 
 interface SessionData {
-  step: "idle" | "day" | "month"; // which step of the form we are on
-  dayOfMonth?: number; // day of birthday
-  month?: number; // month of birthday
+  step: "idle" | "day" | "month"; // на каком этапе формы мы находимся
+  dayOfMonth?: number; // день, в котором родился пользователь
+  month?: number; // месяц, в котором родился пользователь
 }
 type MyContext = Context & SessionFlavor<SessionData>;
 
 const bot = new Bot<MyContext>("");
 
-// Use session.
+// Используйте сессии.
 bot.use(session({ initial: (): SessionData => ({ step: "idle" }) }));
 
-// Define some commands.
+// Определите некоторые команды.
 bot.command("start", async (ctx) => {
-  await ctx.reply(`Welcome!
-I can tell you in how many days it is your birthday!
-Send /birthday to start`);
+  await ctx.reply(`Добро пожаловать!
+Я могу сказать, сколько дней осталось до твоего рождения!
+Отправь /birthday чтобы начать`);
 });
 
 bot.command("birthday", async (ctx) => {
   const day = ctx.session.dayOfMonth;
   const month = ctx.session.month;
   if (day !== undefined && month !== undefined) {
-    // Information already provided!
-    await ctx.reply(`Your birthday is in ${getDays(month, day)} days!`);
+    // Информация уже предоставлена!
+    await ctx.reply(`Ваш день рождения через ${getDays(month, day)} дней!`);
   } else {
-    // Missing information, enter router-based form
+    // Отсутствующая информация, войдите в форму на основе роутера
     ctx.session.step = "day";
     await ctx.reply(
-      "Please send me the day of month \
-of your birthday as a number!",
+      "Пожалуйста, отправьте мне день месяца \
+в который вы родились в виде числа!",
     );
   }
 });
 
-// Use router.
+// Используйте роутер
 const router = new Router<MyContext>((ctx) => ctx.session.step);
 
-// Define step that handles the day.
+// Определите этап, на который будет обрабатывать день.
 const day = router.route("day");
 day.on("message:text", async (ctx) => {
   const day = parseInt(ctx.msg.text, 10);
   if (isNaN(day) || day < 1 || 31 < day) {
-    await ctx.reply("That is not a valid day, try again!");
+    await ctx.reply("Это не верный день, попробуйте снова!");
     return;
   }
   ctx.session.dayOfMonth = day;
-  // Advance form to step for month
+  // Форма для перехода к месяцу
   ctx.session.step = "month";
-  await ctx.reply("Got it! Now, send me the month!", {
+  await ctx.reply("Получил, теперь назовите мне месяц!", {
     reply_markup: {
       one_time_keyboard: true,
       keyboard: new Keyboard()
-        .text("Jan").text("Feb").text("Mar").row()
-        .text("Apr").text("May").text("Jun").row()
-        .text("Jul").text("Aug").text("Sep").row()
-        .text("Oct").text("Nov").text("Dec").build(),
+        .text("Янв").text("Февр").text("Март").row()
+        .text("Апр").text("Май").text("Июнь").row()
+        .text("Июль").text("Авг").text("Сент").row()
+        .text("Окт").text("Нояб").text("Дек").build(),
     },
   });
 });
-day.use((ctx) => ctx.reply("Please send me the day as a text message!"));
+day.use((ctx) => ctx.reply("Пожалуйста, пришлите мне день в виде текстового сообщения!"));
 
-// Define step that handles the month.
+// Определите шаг, который обрабатывает месяц.
 const month = router.route("month");
 month.on("message:text", async (ctx) => {
-  // Should not happen, unless session data is corrupted.
+  // Не должно происходить, если только данные сессии не повреждены.
   const day = ctx.session.dayOfMonth;
   if (day === undefined) {
-    await ctx.reply("I need your day of month!");
+    await ctx.reply("Мне нужен день, когда вы родились!");
     ctx.session.step = "day";
     return;
   }
@@ -143,8 +143,8 @@ month.on("message:text", async (ctx) => {
   const month = months.indexOf(ctx.msg.text);
   if (month === -1) {
     await ctx.reply(
-      "That is not a valid month, \
-please use one of the buttons!",
+      "Это неправильный месяц, \
+используйте одну из кнопок!",
     );
     return;
   }
@@ -152,36 +152,36 @@ please use one of the buttons!",
   ctx.session.month = month;
   const diff = getDays(month, day);
   await ctx.reply(
-    `Your birthday is on ${months[month]} ${day}.
-That is in ${diff} days!`,
+    `Ваш день рождения ${months[month]} ${day}.
+Это через ${diff} дней!`,
     { reply_markup: { remove_keyboard: true } },
   );
   ctx.session.step = "idle";
 });
-month.use((ctx) => ctx.reply("Please tap one of the buttons!"));
+month.use((ctx) => ctx.reply("Пожалуйста, нажмите одну из кнопок!"));
 
-// Define step that handles all other cases.
+// Определите шаг, на котором обрабатываются все остальные случаи.
 router.otherwise(async (ctx) => { // idle
-  await ctx.reply("Send /birthday to find out how long you have to wait.");
+  await ctx.reply("Отправьте /birthday чтобы понять, сколько вам осталось ждать.");
 });
 
-bot.use(router); // register the router
+bot.use(router); // используйте роутер
 bot.start();
 
-// Date conversion utils
+// Утилиты для преобразования даты
 const months = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
+  "Янв",
+  "Февр",
+  "Март",
+  "Апр",
+  "Май",
+  "Июнь",
+  "Июль",
+  "Авг",
+  "Сент",
+  "Окт",
+  "Нояб",
+  "Дек",
 ];
 function getDays(month: number, day: number) {
   const bday = new Date();
@@ -200,66 +200,66 @@ const { Router } = require("@grammyjs/router");
 
 const bot = new Bot("");
 
-// Use session.
+// Используйте сессии.
 bot.use(session({ initial: () => ({ step: "idle" }) }));
 
-// Define some commands.
+// Определите некоторые команды.
 bot.command("start", async (ctx) => {
-  await ctx.reply(`Welcome!
-I can tell you in how many days it is your birthday!
-Send /birthday to start`);
+  await ctx.reply(`Добро пожаловать!
+Я могу сказать, сколько дней осталось до твоего рождения!
+Отправь /birthday чтобы начать`);
 });
 
 bot.command("birthday", async (ctx) => {
   const day = ctx.session.dayOfMonth;
   const month = ctx.session.month;
   if (day !== undefined && month !== undefined) {
-    // Information already provided!
-    await ctx.reply(`Your birthday is in ${getDays(month, day)} days!`);
+    // Информация уже предоставлена!
+    await ctx.reply(`Ваш день рождения через ${getDays(month, day)} дней!`);
   } else {
-    // Missing information, enter router-based form
+    // Отсутствующая информация, войдите в форму на основе роутера
     ctx.session.step = "day";
     await ctx.reply(
-      "Please send me the day of month \
-of your birthday as a number!",
+      "Пожалуйста, отправьте мне день месяца \
+в который вы родились в виде числа!",
     );
   }
 });
 
-// Use router.
+// Используйте роутер
 const router = new Router((ctx) => ctx.session.step);
 
-// Define step that handles the day.
+// Определите этап, на который будет обрабатывать день.
 const day = router.route("day");
 day.on("message:text", async (ctx) => {
   const day = parseInt(ctx.msg.text, 10);
   if (isNaN(day) || day < 1 || 31 < day) {
-    await ctx.reply("That is not a valid day, try again!");
+    await ctx.reply("Это не верный день, попробуйте снова!");
     return;
   }
   ctx.session.dayOfMonth = day;
-  // Advance form to step for month
+  // Форма для перехода к месяцу
   ctx.session.step = "month";
-  await ctx.reply("Got it! Now, send me the month!", {
+  await ctx.reply("Получил, теперь назовите мне месяц!", {
     reply_markup: {
       one_time_keyboard: true,
       keyboard: new Keyboard()
-        .text("Jan").text("Feb").text("Mar").row()
-        .text("Apr").text("May").text("Jun").row()
-        .text("Jul").text("Aug").text("Sep").row()
-        .text("Oct").text("Nov").text("Dec").build(),
+        .text("Янв").text("Февр").text("Март").row()
+        .text("Апр").text("Май").text("Июнь").row()
+        .text("Июль").text("Авг").text("Сент").row()
+        .text("Окт").text("Нояб").text("Дек").build(),
     },
   });
 });
-day.use((ctx) => ctx.reply("Please send me the day as a text message!"));
+day.use((ctx) => ctx.reply("Пожалуйста, пришлите мне день в виде текстового сообщения!"));
 
-// Define step that handles the month.
+// Определите шаг, который обрабатывает месяц.
 const month = router.route("month");
 month.on("message:text", async (ctx) => {
-  // Should not happen, unless session data is corrupted.
+  // Не должно происходить, если только данные сессии не повреждены.
   const day = ctx.session.dayOfMonth;
   if (day === undefined) {
-    await ctx.reply("I need your day of month!");
+    await ctx.reply("Мне нужен день, когда вы родились!");
     ctx.session.step = "day";
     return;
   }
@@ -267,8 +267,8 @@ month.on("message:text", async (ctx) => {
   const month = months.indexOf(ctx.msg.text);
   if (month === -1) {
     await ctx.reply(
-      "That is not a valid month, \
-please use one of the buttons!",
+      "Это неправильный месяц, \
+используйте одну из кнопок!",
     );
     return;
   }
@@ -276,36 +276,36 @@ please use one of the buttons!",
   ctx.session.month = month;
   const diff = getDays(month, day);
   await ctx.reply(
-    `Your birthday is on ${months[month]} ${day}.
-That is in ${diff} days!`,
+    `Ваш день рождения ${months[month]} ${day}.
+Это через ${diff} дней!`,
     { reply_markup: { remove_keyboard: true } },
   );
   ctx.session.step = "idle";
 });
-month.use((ctx) => ctx.reply("Please tap one of the buttons!"));
+month.use((ctx) => ctx.reply("Пожалуйста, нажмите одну из кнопок!"));
 
-// Define step that handles all other cases.
+// Определите шаг, на котором обрабатываются все остальные случаи.
 router.otherwise(async (ctx) => { // idle
-  await ctx.reply("Send /birthday to find out how long you have to wait.");
+  await ctx.reply("Отправьте /birthday чтобы понять, сколько вам осталось ждать.");
 });
 
-bot.use(router); // register the router
+bot.use(router); // используйте роутер
 bot.start();
 
-// Date conversion utils
+// Утилиты для преобразования даты
 const months = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
+  "Янв",
+  "Февр",
+  "Март",
+  "Апр",
+  "Май",
+  "Июнь",
+  "Июль",
+  "Авг",
+  "Сент",
+  "Окт",
+  "Нояб",
+  "Дек",
 ];
 function getDays(month, day) {
   const bday = new Date();
@@ -329,74 +329,74 @@ import {
 import { Router } from "https://deno.land/x/grammy_router/router.ts";
 
 interface SessionData {
-  step: "idle" | "day" | "month"; // which step of the form we are on
-  dayOfMonth?: number; // day of birthday
-  month?: number; // month of birthday
+  step: "idle" | "day" | "month"; // на каком этапе формы мы находимся
+  dayOfMonth?: number; // день, в котором родился пользователь
+  month?: number; // месяц, в котором родился пользователь
 }
 type MyContext = Context & SessionFlavor<SessionData>;
 
 const bot = new Bot<MyContext>("");
 
-// Use session.
+// Используйте сессии.
 bot.use(session({ initial: (): SessionData => ({ step: "idle" }) }));
 
-// Define some commands.
+// Определите некоторые команды.
 bot.command("start", async (ctx) => {
-  await ctx.reply(`Welcome!
-I can tell you in how many days it is your birthday!
-Send /birthday to start`);
+  await ctx.reply(`Добро пожаловать!
+Я могу сказать, сколько дней осталось до твоего рождения!
+Отправь /birthday чтобы начать`);
 });
 
 bot.command("birthday", async (ctx) => {
   const day = ctx.session.dayOfMonth;
   const month = ctx.session.month;
   if (day !== undefined && month !== undefined) {
-    // Information already provided!
-    await ctx.reply(`Your birthday is in ${getDays(month, day)} days!`);
+    // Информация уже предоставлена!
+    await ctx.reply(`Ваш день рождения через ${getDays(month, day)} дней!`);
   } else {
-    // Missing information, enter router-based form
+    // Отсутствующая информация, войдите в форму на основе роутера
     ctx.session.step = "day";
     await ctx.reply(
-      "Please send me the day of month \
-of your birthday as a number!",
+      "Пожалуйста, отправьте мне день месяца \
+в который вы родились в виде числа!",
     );
   }
 });
 
-// Use router.
+// Используйте роутер
 const router = new Router<MyContext>((ctx) => ctx.session.step);
 
-// Define step that handles the day.
+// Определите этап, на который будет обрабатывать день.
 const day = router.route("day");
 day.on("message:text", async (ctx) => {
   const day = parseInt(ctx.msg.text, 10);
   if (isNaN(day) || day < 1 || 31 < day) {
-    await ctx.reply("That is not a valid day, try again!");
+    await ctx.reply("Это не верный день, попробуйте снова!");
     return;
   }
   ctx.session.dayOfMonth = day;
-  // Advance form to step for month
+  // Форма для перехода к месяцу
   ctx.session.step = "month";
-  await ctx.reply("Got it! Now, send me the month!", {
+  await ctx.reply("Получил, теперь назовите мне месяц!", {
     reply_markup: {
       one_time_keyboard: true,
       keyboard: new Keyboard()
-        .text("Jan").text("Feb").text("Mar").row()
-        .text("Apr").text("May").text("Jun").row()
-        .text("Jul").text("Aug").text("Sep").row()
-        .text("Oct").text("Nov").text("Dec").build(),
+        .text("Янв").text("Февр").text("Март").row()
+        .text("Апр").text("Май").text("Июнь").row()
+        .text("Июль").text("Авг").text("Сент").row()
+        .text("Окт").text("Нояб").text("Дек").build(),
     },
   });
 });
-day.use((ctx) => ctx.reply("Please send me the day as a text message!"));
+day.use((ctx) => ctx.reply("Пожалуйста, пришлите мне день в виде текстового сообщения!"));
 
-// Define step that handles the month.
+// Определите шаг, который обрабатывает месяц.
 const month = router.route("month");
 month.on("message:text", async (ctx) => {
-  // Should not happen, unless session data is corrupted.
+  // Не должно происходить, если только данные сессии не повреждены.
   const day = ctx.session.dayOfMonth;
   if (day === undefined) {
-    await ctx.reply("I need your day of month!");
+    await ctx.reply("Мне нужен день, когда вы родились!");
     ctx.session.step = "day";
     return;
   }
@@ -404,8 +404,8 @@ month.on("message:text", async (ctx) => {
   const month = months.indexOf(ctx.msg.text);
   if (month === -1) {
     await ctx.reply(
-      "That is not a valid month, \
-please use one of the buttons!",
+      "Это неправильный месяц, \
+используйте одну из кнопок!",
     );
     return;
   }
@@ -413,36 +413,36 @@ please use one of the buttons!",
   ctx.session.month = month;
   const diff = getDays(month, day);
   await ctx.reply(
-    `Your birthday is on ${months[month]} ${day}.
-That is in ${diff} days!`,
+    `Ваш день рождения ${months[month]} ${day}.
+Это через ${diff} дней!`,
     { reply_markup: { remove_keyboard: true } },
   );
   ctx.session.step = "idle";
 });
-month.use((ctx) => ctx.reply("Please tap one of the buttons!"));
+month.use((ctx) => ctx.reply("Пожалуйста, нажмите одну из кнопок!"));
 
-// Define step that handles all other cases.
+// Определите шаг, на котором обрабатываются все остальные случаи.
 router.otherwise(async (ctx) => { // idle
-  await ctx.reply("Send /birthday to find out how long you have to wait.");
+  await ctx.reply("Отправьте /birthday чтобы понять, сколько вам осталось ждать.");
 });
 
-bot.use(router); // register the router
+bot.use(router); // используйте роутер
 bot.start();
 
-// Date conversion utils
+// Утилиты для преобразования даты
 const months = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
+  "Янв",
+  "Февр",
+  "Март",
+  "Апр",
+  "Май",
+  "Июнь",
+  "Июль",
+  "Авг",
+  "Сент",
+  "Окт",
+  "Нояб",
+  "Дек",
 ];
 function getDays(month: number, day: number) {
   const bday = new Date();
@@ -457,12 +457,12 @@ function getDays(month: number, day: number) {
 
 :::
 
-Note how the session has a property `step` that stores the step of the form, i.e. which value is currently being filled.
-The router is used to jump between different middleware that completes both the `month` and the `dayOfMonth` fields on the session.
-If both values are known, the bot computes the remaining days and sends it back to the user.
+Обратите внимание, что сессия имеет свойство `step`, которое хранит шаг формы, т.е. какое значение заполняется в данный момент.
+Роутер используется для перехода между различными middleware, которые заполняют поля `month` и `dayOfMonth` в сессии.
+Если оба значения известны, бот вычисляет оставшиеся дни и отправляет их обратно пользователю.
 
-## Plugin Summary
+## Краткая информация о плагине
 
-- Name: `router`
-- [Source](https://github.com/grammyjs/router)
-- [Reference](/ref/router/)
+- Название: `router`
+- [Исходник](https://github.com/grammyjs/router)
+- [Ссылка](/ref/router/)

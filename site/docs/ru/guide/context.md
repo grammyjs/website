@@ -362,7 +362,7 @@ const composer = new Composer<MyContext>();
 
 ```ts
 class MyContext extends Context {
-  // т. д.
+  // т.д.
 }
 ```
 

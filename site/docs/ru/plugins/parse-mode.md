@@ -5,7 +5,7 @@ next: false
 
 # Плагин Parse Mode (`parse-mode`)
 
-Этот плагин предоставляет трансформатор для установки `parse_mode` по умолчанию, а также middleware для взаимодействия `Context` с привычными методами `reply`, `replyWithHTML`, `replyWithMarkdown` и т. д.
+Этот плагин предоставляет трансформатор для установки `parse_mode` по умолчанию, а также middleware для взаимодействия `Context` с привычными методами `reply`, `replyWithHTML`, `replyWithMarkdown` и т.д.
 
 ## Использование (Улучшение опыта форматирования)
 
