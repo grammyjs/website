@@ -122,7 +122,7 @@ handle.task().then(() => {
   console.log("Bot selesai memproses!");
 });
 
-// Kemudian, hentikan bot melalui fungsi handler-nya
+// Kemudian, hentikan bot melalui fungsi handler-nya.
 await handle.stop();
 ```
 
