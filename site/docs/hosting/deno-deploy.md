@@ -20,7 +20,7 @@ The result of this tutorial [can be seen in our example bots repository](https:/
 > Remember that you need to [run your bot on webhooks](../guide/deployment-types#how-to-use-webhooks), so you should use `webhookCallback` and not call `bot.start()` in your code.
 
 1. Make sure that you have a file which exports your `Bot` object, so that you can import it later to run it.
-2. Create a file named `mod.ts` or `mod.js`, or actually any name you like (but you should be remembering and using this as the main file to deploy), with the following content:
+2. Create a file named `main.ts` or `main.js`, or actually any name you like (but you should be remembering and using this as the main file to deploy), with the following content:
 
 ```ts
 import { webhookCallback } from "https://deno.land/x/grammy/mod.ts";
@@ -59,42 +59,45 @@ Here, we are using the bot token (`/<bot token>`).
 
    > It is recommended that you have a single stable branch and you do your testing stuff in other branches, so that you won't get some unexpected things happen.
 
-3. Visit your [Deno Deploy dashboard](https://dash.deno.com/projects).
-4. Click on "New Project", and go to the "Deploy from GitHub repository" section.
+3. Visit your [Deno Deploy dashboard](https://dash.deno.com/account/overview).
+4. Click on "New Project".
 5. Install the GitHub app on your account or organization, and choose your repository.
-6. Select the branch you want to deploy, and then choose your `mod.ts` file to be deployed.
+6. Select the branch you want to deploy.
+7. Select the entrypoint file `main.ts`, and click "Deploy Project" to deploy.
 
 ### Method 2: With `deployctl`
 
-> This is a method for more advanced users. It allows you to deploy the project via the command line or Github Actions.
+> This is a method for more advanced users or if you don't want to upload your code to GitHub.
+> It allows you to deploy the project via the command line or GitHub Actions.
 
-1. Visit your [Deno Deploy dashboard](https://dash.deno.com/projects).
-2. Click "New Project", and then "Empty Project".
-3. Install [`deployctl`](https://github.com/denoland/deployctl).
-4. [Create an access token](https://dash.deno.com/account).
-5. Run the following command:
+1. Install [`deployctl`](https://github.com/denoland/deployctl).
+2. Create an access token from the "Access Tokens" section in [account settings](https://dash.deno.com/account).
+3. Go to your project directory and run the following command:
 
-   ```sh
-   deployctl deploy --project <project> ./mod.ts --prod --token <token>
+   ```sh:no-line-numbers
+   deployctl deploy --project=<project> --entrypoint=./main.ts --prod --token=<token>
    ```
 
-6. To set up Github Actions, refer to [this](https://github.com/denoland/deployctl/blob/main/action/README.md).
+   ::: tip Setting environment variables
+   Environment variables can be set by heading to your project's settings after deploying.
 
-### Method 3: With URL
+   But this is possible from the command line, as well:
 
-> All you need for following this method to deploy your grammY bot, is a public URL to your `mod.ts` file.
+   1. You can assign environment variables from a dotenv file by adding the `--env-file=<file>` argument.
+   2. You can also specify them individually by using the `--env=<key=value>` argument.
 
-1. Create a new project on Deno Deploy.
-2. Click "Deploy URL".
-3. Input the public URL to your `mod.ts` file, and click "Deploy".
+   :::
+4. To set up GitHub Actions, refer to [this](https://github.com/denoland/deployctl/blob/main/action/README.md).
+
+Check out the [deployctl documentation](https://docs.deno.com/deploy/manual/deployctl) for more information.
 
 ### Note
 
 After getting your app running, you should configure your bot's webhook settings to point to your app.
 To do that, send a request to
 
-```text
-https://api.telegram.org/bot<token>/setWebhook?url=<url>
+```sh:no-line-numbers
+curl https://api.telegram.org/bot<token>/setWebhook?url=<url>
 ```
 
 replacing `<token>` with your bot token, and `<url>` with the full URL of your app along with the path to the webhook handler.
