@@ -74,7 +74,7 @@ Deno.serve(async (req) => {
 4. [Создайте токен для доступа](https://dash.deno.com/account).
 5. Выполните следующую команду:
 
-   ``sh
+   ```sh
    deployctl deploy --project <проект> ./mod.ts --prod --token <токен>
    ```
 
@@ -93,7 +93,7 @@ Deno.serve(async (req) => {
 После запуска приложения необходимо настроить параметры вебхука бота так, чтобы он указывал на вашего бота.
 Для этого отправьте запрос на
 
-``text
+```text
 https://api.telegram.org/bot<токен>/setWebhook?url=<url>
 ```
 
