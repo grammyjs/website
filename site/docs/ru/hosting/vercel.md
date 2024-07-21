@@ -3,14 +3,14 @@ prev: false
 next: false
 ---
 
-# Hosting: Vercel Serverless Functions
+# Хостинг: Vercel Serverless Functions
 
-This tutorial will guide you on how to deploy your bot to [Vercel](https://vercel.com/) by using [Vercel Serverless Functions](https://vercel.com/docs/functions), assuming that you already have a [Vercel](https://vercel.com) account.
+В этом руководстве вы узнаете, как развернуть своего бота на [Vercel](https://vercel.com/) с помощью [Vercel Serverless Functions](https://vercel.com/docs/functions), предполагая, что у вас уже есть аккаунт [Vercel](https://vercel.com).
 
-## Project Structure
+## Структура проекта
 
-The only prerequisite to get started with **Vercel Serverless Functions** is to move your code to the `api/` directory as shown below.
-You can also see [Vercel's documentation](https://vercel.com/docs/functions/quickstart) for more on this.
+Единственным условием для начала работы с **Vercel Serverless Functions** является перемещение вашего кода в директорию `api/`, как показано ниже.
+Вы также можете посмотреть [документацию Vercel](https://vercel.com/docs/functions/quickstart), чтобы узнать больше об этом.
 
 ```asciiart:no-line-numbers
 .
@@ -23,12 +23,12 @@ You can also see [Vercel's documentation](https://vercel.com/docs/functions/quic
 └── tsconfig.json
 ```
 
-If you are using TypeScript, you might as well want to install `@vercel/node` as a dev dependency, but it is not mandatory for following this guide.
+Если вы используете TypeScript, вы можете установить `@vercel/node` в качестве dev-зависимости, но это не обязательно для выполнения данного руководства.
 
-## Configuring Vercel
+## Настройка Vercel
 
-The next step is to create a `vercel.json` file at the top level of your project.
-For our example structure, its content would be:
+Следующим шагом будет создание файла `vercel.json` на верхнем уровне вашего проекта.
+Для нашего примера структуры его содержимое будет таким:
 
 ```json
 {
@@ -41,14 +41,14 @@ For our example structure, its content would be:
 }
 ```
 
-> If you want to use Vercel's free subscription, your `memory` and `maxDuration` configurations might look like above to not bypass its limits.
+> Если вы хотите использовать бесплатную подписку Vercel, ваши конфигурации `memory` и `maxDuration` могут выглядеть так, как указано выше, чтобы не обходить ограничения.
 
-If you want to learn more about the `vercel.json` configuration file, see [its documentation](https://vercel.com/docs/projects/project-configuration).
+Если вы хотите узнать больше о конфигурационном файле `vercel.json`, смотрите [его документацию](https://vercel.com/docs/projects/project-configuration).
 
-## Configuring TypeScript
+## Настройка TypeScript
 
-In our `tsconfig.json`, we have to specify our output directory as `build/`, and our root directory as `api/`.
-This is important since we will specify them in Vercel's deploy options.
+В нашем `tsconfig.json` мы должны указать выходной каталог как `build/`, а корневой каталог как `api/`.
+Это важно, поскольку мы будем указывать их в опциях развертывания Vercel.
 
 ```json{5,8}
 {
@@ -67,28 +67,28 @@ This is important since we will specify them in Vercel's deploy options.
 }
 ```
 
-## The Main File
+## Главный файл
 
-Regardless of using TypeScript or JavaScript, we should have a source file through which our bot runs.
-It should look roughly like this:
+Независимо от использования TypeScript или JavaScript, у нас должен быть исходный файл, через который запускается наш бот.
+Он должен выглядеть примерно так:
 
 ```ts
 import { Bot, webhookCallback } from "grammy";
 
 const token = process.env.BOT_TOKEN;
-if (!token) throw new Error("BOT_TOKEN is unset");
+if (!token) throw new Error("BOT_TOKEN не установлен");
 
 const bot = new Bot(token);
 
 export default webhookCallback(bot, "std/http");
 ```
 
-::: tip [Vercel Edge Functions](https://vercel.com/docs/functions) provides limited support for grammY
-You can still use the core grammY package and a number of plugins, but others may be incompatible due to Node.js-only dependencies that might not be supported by Vercel's [Edge Runtime](https://edge-runtime.vercel.app).
+::: tip [Vercel Edge Functions](https://vercel.com/docs/functions) обеспечивает ограниченную поддержку grammY
+Вы все еще можете использовать основной пакет grammY и ряд плагинов, но другие могут быть несовместимы из-за зависимостей только от Node.js, которые могут не поддерживаться Vercel [Edge Runtime](https://edge-runtime.vercel.app).
 
-Currently, we don't have a comprehensive list of compatible plugins, so you need to test it by yourself.
+В настоящее время у нас нет полного списка совместимых плагинов, поэтому вам нужно проверить это самостоятельно.
 
-Add this line to snippet above if you want to switch to Edge Functions:
+Добавьте эту строку к приведенному выше сниппету, если вы хотите перейти на Edge Functions:
 
 ```ts
 export const config = {
@@ -98,30 +98,30 @@ export const config = {
 
 :::
 
-## In Vercel's Dashboard
+## В Vercel Dashboard
 
-Assuming that you already have a Vercel account your GitHub is connected to, add a new project and select your bot's repository.
-In _Build & Development Settings_:
+Предполагая, что у вас уже есть аккаунт Vercel, к которому подключен GitHub, добавьте новый проект и выберите репозиторий вашего бота.
+В разделе _Build & Development Settings_:
 
 - Output directory: `build`
 - Install command: `npm install`
 
-Don't forget to add the secrets such as your bot token as environment variables in the settings.
-Once you have done that, you can deploy it!
+Не забудьте добавить секреты, такие как токен вашего бота, в качестве переменных окружения в настройках.
+Как только вы это сделаете, вы сможете развернуть его!
 
-## Setting the Webhook
+## Настройка вебхука
 
-The last step is to connect your Vercel app with Telegram.
-Modify the below URL to your credentials and visit it from your browser:
+Последний шаг --- подключение приложения Vercel к Telegram.
+Измените приведенный ниже URL на свои учетные данные и зайдите на него через браузер:
 
 ```text
-https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<HOST_URL>
+https://api.telegram.org/bot<ТОКЕН_БОТА>/setWebhook?url=<URL_ХОСТА>
 ```
 
-The `HOST_URL` is a little tricky, because you need to use your **Vercel app domain following with the route to the bot code**, for example `https://appname.vercel.app/api/bot`.
-Where `bot` is referring to your `bot.ts` or `bot.js` file.
+С `URL_ХОСТА` все немного сложнее, потому что вам нужно использовать ваш **домен приложения Vercel с маршрутом к коду бота**, например `https://appname.vercel.app/api/bot`.
+Где `bot` ссылается на ваш файл `bot.ts` или `bot.js`.
 
-You should then see a response like this:
+После этого вы увидите следующий ответ:
 
 ```json
 {
@@ -131,5 +131,5 @@ You should then see a response like this:
 }
 ```
 
-Congratulations!
-Your bot should now be up and running.
+Поздравляем!
+Теперь ваш бот должен быть запущен.
