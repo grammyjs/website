@@ -41,7 +41,7 @@
 | [Emoji](./emoji)                           | [`emoji`](./emoji)                                 | Упростите использование эмодзи в коде                       |
 | [Files](./files)                           | [`files`](./files)                                 | Удобная работа с файлами                                    |
 | [Hydration](./hydrate)                     | [`hydrate`](./hydrate)                             | Вызывайте методы в объектах, возвращаемых из вызова API     |
-| [Internationalization](./i18n)             | [`i18n`](./i18n) или [`fluent`](./fluent)           | Пусть ваш бот говорит на нескольких языках                  |
+| [Internationalization](./i18n)             | [`i18n`](./i18n) или [`fluent`](./fluent)          | Пусть ваш бот говорит на нескольких языках                  |
 | [Interactive Menus](./menu)                | [`menu`](./menu)                                   | Создавайте динамические кнопочные меню с гибкой навигацией  |
 | [Parse Mode](./parse-mode)                 | [`parse-mode`](./parse-mode)                       | Упростите форматирование сообщений                          |
 | [Rate Limiter](./ratelimiter)              | [`ratelimiter`](./ratelimiter)                     | Автоматически ограничивайте пользователей, которые спамят   |

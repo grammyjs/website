@@ -3,19 +3,19 @@ prev: false
 next: false
 ---
 
-# Interactive Menus (`menu`)
+# Интерактивные меню (`menu`)
 
-Easily create interactive menus.
+Легко создавайте интерактивные меню.
 
-## Introduction
+## Ведение
 
-An inline keyboard is an array of buttons underneath a message.
-grammY has a [built-in plugin](./keyboard#встроенные-клавиатуры) to create basic inline keyboards.
+Встроенная клавиатура --- это массив кнопок под сообщением.
+В grammY есть [встроенный плагин](./keyboard#встроенные-клавиатуры) для создания базовых встроенных клавиатур.
 
-The menu plugin takes this idea further and lets you create rich menus right inside the chat.
-They can have interactive buttons, multiple pages with navigation between them, and more.
+Плагин меню развивает эту идею и позволяет создавать технологичные меню прямо в чате.
+В них могут быть интерактивные кнопки, несколько страниц с навигацией между ними и многое другое.
 
-Here is a simple example that speaks for itself.
+Вот простой пример, который говорит сам за себя.
 
 ::: code-group
 
@@ -23,20 +23,20 @@ Here is a simple example that speaks for itself.
 import { Bot } from "grammy";
 import { Menu } from "@grammyjs/menu";
 
-// Create a bot.
+// Создайте бота.
 const bot = new Bot("");
 
-// Create a simple menu.
+// Создайте простое меню.
 const menu = new Menu("my-menu-identifier")
-  .text("A", (ctx) => ctx.reply("You pressed A!")).row()
-  .text("B", (ctx) => ctx.reply("You pressed B!"));
+  .text("A", (ctx) => ctx.reply("Вы нажали A!")).row()
+  .text("B", (ctx) => ctx.reply("Вы нажали B!"));
 
-// Make it interactive.
+// Сделайте его интерактивным
 bot.use(menu);
 
 bot.command("start", async (ctx) => {
-  // Send the menu.
-  await ctx.reply("Check out this menu:", { reply_markup: menu });
+  // Отправьте меню.
+  await ctx.reply("Посмотрите на это меню:", { reply_markup: menu });
 });
 
 bot.start();
@@ -46,20 +46,20 @@ bot.start();
 const { Bot } = require("grammy");
 const { Menu } = require("@grammyjs/menu");
 
-// Create a bot.
+// Создайте бота.
 const bot = new Bot("");
 
-// Create a simple menu.
+// Создайте простое меню.
 const menu = new Menu("my-menu-identifier")
-  .text("A", (ctx) => ctx.reply("You pressed A!")).row()
-  .text("B", (ctx) => ctx.reply("You pressed B!"));
+  .text("A", (ctx) => ctx.reply("Вы нажали A!")).row()
+  .text("B", (ctx) => ctx.reply("Вы нажали B!"));
 
-// Make it interactive.
+// Сделайте его интерактивным
 bot.use(menu);
 
 bot.command("start", async (ctx) => {
-  // Send the menu.
-  await ctx.reply("Check out this menu:", { reply_markup: menu });
+  // Отправьте меню.
+  await ctx.reply("Посмотрите на это меню:", { reply_markup: menu });
 });
 
 bot.start();
@@ -69,20 +69,20 @@ bot.start();
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 import { Menu } from "https://deno.land/x/grammy_menu/mod.ts";
 
-// Create a bot.
+// Создайте бота.
 const bot = new Bot("");
 
-// Create a simple menu.
+// Создайте простое меню.
 const menu = new Menu("my-menu-identifier")
-  .text("A", (ctx) => ctx.reply("You pressed A!")).row()
-  .text("B", (ctx) => ctx.reply("You pressed B!"));
+  .text("A", (ctx) => ctx.reply("Вы нажали A!")).row()
+  .text("B", (ctx) => ctx.reply("Вы нажали B!"));
 
-// Make it interactive.
+// Сделайте его интерактивным
 bot.use(menu);
 
 bot.command("start", async (ctx) => {
-  // Send the menu.
-  await ctx.reply("Check out this menu:", { reply_markup: menu });
+  // Отправьте меню.
+  await ctx.reply("Посмотрите на это меню:", { reply_markup: menu });
 });
 
 bot.start();
@@ -90,74 +90,74 @@ bot.start();
 
 :::
 
-> Make sure that you install all menus before other middleware, especially before middleware that uses callback query data.
-> Also, if you use a custom configuration for `allowed_updates`, remember to include `callback_query` updates.
+> Убедитесь, что вы установили все меню перед другими middleware, особенно перед middleware, использующим данные `callback_query`.
+> Также, если вы используете пользовательскую конфигурацию для `allowed_updates`, не забудьте включить обновления `callback_query`.
 
-Naturally, if you are using a [custom context type](../guide/context#кастомизация-объекта-контекста), you can pass it to `Menu` too.
+Естественно, если вы используете [пользовательский тип контекста](../guide/context#кастомизация-объекта-контекста), вы можете передать его и в `Menu`.
 
 ```ts
 const menu = new Menu<MyContext>("id");
 ```
 
-## Adding Buttons
+## Добавление кнопок
 
-The menu plugin lays out your keyboards exactly like the [plugin for inline keyboards](./keyboard#построение-встроенных-клавиатур) does.
-The class `Menu` replaces the class `InlineKeyboard`.
+Плагин меню выстраивает клавиатуру точно так же, как это делает [плагин для встроенных клавиатур](./keyboard#построение-встроенных-клавиатур).
+Класс `Menu` заменяет класс `InlineKeyboard`.
 
-Here is an example for a menu that has four buttons in a 1-2-1 row shape.
+Вот пример меню, состоящего из четырех кнопок в форме ряда 1-2-1.
 
 ```ts
 const menu = new Menu("movements")
-  .text("^", (ctx) => ctx.reply("Forward!")).row()
-  .text("<", (ctx) => ctx.reply("Left!"))
-  .text(">", (ctx) => ctx.reply("Right!")).row()
-  .text("v", (ctx) => ctx.reply("Backwards!"));
+  .text("^", (ctx) => ctx.reply("Вперед!")).row()
+  .text("<", (ctx) => ctx.reply("Налево!"))
+  .text(">", (ctx) => ctx.reply("Направо!")).row()
+  .text("v", (ctx) => ctx.reply("Назад!"));
 ```
 
-Use `text` to add new text buttons.
-You can pass a label and a handler function.
+Используйте `text` для добавления новых текстовых кнопок.
+Вы можете передать название в функцию обработчик.
 
-Use `row` to end the current row, and add all subsequent buttons to a new one.
+Используйте `row`, чтобы завершить текущую строку и добавить все последующие кнопки в новую.
 
-There are many more button types available, e.g. for opening URLs.
-Check out this plugin's [API Reference](/ref/menu/menurange) for `MenuRange`, as well as the [Telegram Bot API Reference](https://core.telegram.org/bots/api#inlinekeyboardbutton) for `InlineKeyboardButton`.
+Существует множество других типов кнопок, например, для открытия URL.
+Посмотрите [API](/ref/menu/menurange) этого плагина для `MenuRange`, а также [Telegram Bot API](https://core.telegram.org/bots/api#inlinekeyboardbutton) для `InlineKeyboardButton`.
 
-## Sending a Menu
+## Отправка меню
 
-You must first install a menu.
-This makes it interactive.
+Сначала необходимо установить меню.
+Это сделает его интерактивным.
 
 ```ts
 bot.use(menu);
 ```
 
-You can now simply pass the menu as `reply_markup` when sending a message.
+Теперь вы можете просто передать меню в качестве `reply_markup` при отправке сообщения.
 
 ```ts
 bot.command("menu", async (ctx) => {
-  await ctx.reply("Here is your menu", { reply_markup: menu });
+  await ctx.reply("Вот ваше меню", { reply_markup: menu });
 });
 ```
 
-## Dynamic Labels
+## Динамически названия
 
-Whenever you put a label string on a button, you can also pass a function `(ctx: Context) => string` to get a dynamic label on the button.
-This function may or may not be `async`.
+Когда вы называете кнопку, вы также можете передать функцию `(ctx: Context) => string` для получения динамического текста на кнопке.
+Эта функция может быть `async`, а может и не быть.
 
 ```ts
-// Create a button with the user's name, which will greet them when pressed.
+// Создайте кнопку с именем пользователя, которая будет приветствовать его при нажатии.
 const menu = new Menu("greet-me")
   .text(
-    (ctx) => `Greet ${ctx.from?.first_name ?? "me"}!`, // dynamic label
-    (ctx) => ctx.reply(`Hello ${ctx.from.first_name}!`), // handler
+    (ctx) => `Приветствуйте ${ctx.from?.first_name ?? "меня"}!`, // динамическое название кнопки
+    (ctx) => ctx.reply(`Привет, ${ctx.from.first_name}!`), // обработчик
   );
 ```
 
-A string that is generated by such a function is called a _dynamic string_.
-Dynamic strings are ideal for things like toggle buttons.
+Строка, сгенерированная такой функцией, называется _динамической строкой_.
+Динамические строки идеально подходят для таких вещей, как кнопки переключения.
 
 ```ts
-// Set of user identifiers that have notifications enabled.
+// Набор идентификаторов пользователей, у которых включены уведомления.
 const notifications = new Set<number>();
 
 function toggleNotifications(id: number) {
@@ -169,143 +169,143 @@ const menu = new Menu("toggle")
     (ctx) => ctx.from && notifications.has(ctx.from.id) ? "🔔" : "🔕",
     (ctx) => {
       toggleNotifications(ctx.from.id);
-      ctx.menu.update(); // update the menu!
+      ctx.menu.update(); // обновите меню!
     },
   );
 ```
 
-Note that you must update a menu whenever you want your buttons to change.
-Call `ctx.menu.update()` to make sure that your menu will be re-rendered.
+Обратите внимание, что вы должны обновлять меню каждый раз, когда хотите, чтобы ваши кнопки менялись.
+Вызовите `ctx.menu.update()`, чтобы убедиться, что ваше меню будет перерисовано.
 
-::: tip Storing Data
-The example above demonstrates how to use the menu plugin.
-It is not a good idea to actually store user settings in a `Set` object, because then all data will be lost when you stop the server.
+::: tip Хранение данных
+В примере выше показано, как использовать плагин меню.
+Не стоит хранить пользовательские настройки в объекте `Set`, так как в этом случае все данные будут потеряны при остановке сервера.
 
-Instead, consider using a database or the [session plugin](./session) if you want to store data.
+Вместо этого лучше использовать базу данных или плагин [сессия](./session), если вы хотите хранить данные.
 :::
 
-## Updating or Closing the Menu
+## Обновление или закрытие меню
 
-When a button handler is called, a number of useful functions are available on `ctx.menu`.
+Когда вызывается обработчик кнопки, в `ctx.menu` появляется ряд полезных функций.
 
-If you want your menu to re-render, you can call `ctx.menu.update()`.
-This will only work inside the handlers that you install on your menu.
-It will not work when called from other bot middleware, as in such cases there is no way to know _which_ menu should be updated.
+Если вы хотите, чтобы ваше меню перерисовалось, вы можете вызвать `ctx.menu.update()`.
+Эта функция будет работать только внутри обработчиков, которые вы установили в своем меню.
+Она не будет работать при вызове из другого middleware бота, поскольку в таких случаях нет возможности узнать, _какое_ меню должно быть обновлено.
 
 ```ts
 const menu = new Menu("time", { onMenuOutdated: false })
   .text(
-    () => new Date().toLocaleString(), // button label is current time
-    (ctx) => ctx.menu.update(), // update time on button click
+    () => new Date().toLocaleString(), // название кнопки - это текущее время
+    (ctx) => ctx.menu.update(), // обновить время по нажатию
   );
 ```
 
-> The purpose of `onMenuOutdated` is explained [below](#outdated-menus-and-fingerprints).
-> You can ignore it for now.
+> Назначение `onMenuOutdated` объясняется [ниже](#устаревшие-меню-и-отпечатки).
+> Пока что вы можете игнорировать его.
 
-You can also update the menu implicitly by editing the corresponding message.
+Вы также можете обновить меню неявно, отредактировав соответствующее сообщение.
 
 ```ts
 const menu = new Menu("time")
   .text(
-    "What's the time?",
-    (ctx) => ctx.editMessageText("It is " + new Date().toLocaleString()),
+    "Какое сейчас время?",
+    (ctx) => ctx.editMessageText("Сейчас " + new Date().toLocaleString()),
   );
 ```
 
-The menu will detect that you intend to edit the text of the message, and use the opportunity to update the buttons underneath too.
-As a result, you can often avoid having to call `ctx.menu.update()` explicitly.
+Меню определит, что вы собираетесь редактировать текст сообщения, и воспользуется этой возможностью, чтобы обновить и кнопки под ним.
+В результате часто можно избежать явного вызова `ctx.menu.update()`.
 
-Calling `ctx.menu.update()` does not update the menu immediately.
-Instead, it sets a flag and remembers to update it at some point during the execution of your middleware.
-This is called _lazy updating_.
-If you edit the message itself later on, the plugin can simply use the same API call to also update the buttons.
-This is very efficient, and ensures that both the message and the keyboard are updated at the same time.
+Вызов `ctx.menu.update()` не приводит к немедленному обновлению меню.
+Вместо этого он устанавливает флаг и запоминает, что нужно обновить его в какой-то момент во время выполнения вашего middleware.
+Это называется _ленивым обновлением_.
+Если вы позже отредактируете само сообщение, плагин может просто использовать тот же вызов API для обновления кнопок.
+Это очень эффективно, и гарантирует, что и сообщение, и клавиатура будут обновлены одновременно.
 
-Naturally, if you call `ctx.menu.update()` but you never request any edits to the message, the menu plugin will update the keyboard by itself, before your middleware completes.
+Естественно, если вы вызовете `ctx.menu.update()`, но не запросите никаких изменений в сообщении, плагин меню сам обновит клавиатуру до завершения работы вашего middleware.
 
-You can force the menu to update immediately with `await ctx.menu.update({ immediate: true })`.
-Note that `ctx.menu.update()` will then return a promise, so you need to use `await`!
-Using the `immediate` flag also works for all other operations that you can call on `ctx.menu`.
-This should only be used when necessary.
+Вы можете заставить меню обновляться немедленно с помощью `await ctx.menu.update({ immediate: true })`.
+Обратите внимание, что `ctx.menu.update()` вернет `Promise`, поэтому вам нужно использовать `await`!
+Использование параметр `immediate` также работает для всех других операций, которые вы можете вызвать в `ctx.menu`.
+Его следует использовать только в случае необходимости.
 
-If you want to close a menu, i.e. remove all buttons, you can call `ctx.menu.close()`.
-Again, this will be performed lazily.
+Если вы хотите закрыть меню, то есть убрать все кнопки, вы можете вызвать `ctx.menu.close()`.
+Опять же, это будет выполнено лениво.
 
-## Navigation Between Menus
+## Навигация между меню
 
-You can easily create menus with several pages, and navigation between them.
-Every page has its own instance of `Menu`.
-The `submenu` button is a button that lets you navigate to other pages.
-Backwards navigation is done via the `back` button.
+Вы можете легко создавать меню с несколькими страницами и навигацией между ними.
+Каждая страница имеет свой собственный экземпляр `Menu`.
+Кнопка `submenu` --- это кнопка, позволяющая переходить на другие страницы.
+Навигация назад осуществляется с помощью кнопки `back`.
 
 ```ts
 const main = new Menu("root-menu")
-  .text("Welcome", (ctx) => ctx.reply("Hi!")).row()
-  .submenu("Credits", "credits-menu");
+  .text("Добро пожаловать", (ctx) => ctx.reply("Привет!")).row()
+  .submenu("Авторы", "credits-menu");
 
 const settings = new Menu("credits-menu")
-  .text("Show Credits", (ctx) => ctx.reply("Powered by grammY"))
-  .back("Go Back");
+  .text("Показать авторов", (ctx) => ctx.reply("Разработано grammY"))
+  .back("Назад");
 ```
 
-Both buttons optionally take middleware handlers so you can react to navigation events.
+Обе кнопки опционально берут обработчики middleware, чтобы вы могли реагировать на события навигации.
 
-Instead of using `submenu` and `back` buttons to navigate between pages, you can also do this manually using `ctx.menu.nav()`.
-This function takes the menu identifier string, and will perform navigation lazily.
-Analogously, backwards navigation works via `ctx.menu.back()`.
+Вместо того чтобы использовать кнопки `submenu` и `back` для навигации между страницами, вы можете делать это вручную с помощью `ctx.menu.nav()`.
+Эта функция принимает строку идентификатора меню и лениво выполняет навигацию.
+Аналогично, обратная навигация осуществляется с помощью `ctx.menu.back()`.
 
-Next, you need to link the menus by registering them to one another.
-Registering a menu to another implies their hierarchy. The menu that is being registered to is the parent, and the registered menu is the child.
-Below, `main` is the parent of `settings`, unless a different parent is explicitly defined.
-The parent menu is used when backwards navigation is performed.
+Далее необходимо связать меню, зарегистрировав их друг с другом.
+Регистрация одного меню другим подразумевает их иерархию. Меню, которое регистрируется, является родительским, а регистрируемое меню - дочерним.
+Ниже, `main` является родителем `settings`, если явно не определен другой родитель.
+Родительское меню используется при обратной навигации.
 
 ```ts
-// Register settings menu at main menu.
+// Зарегистрируйте меню настроек в главном меню.
 main.register(settings);
-// Optionally, set a different parent.
+// По желанию установите другого родителя.
 main.register(settings, "back-from-settings-menu");
 ```
 
-You can register as many menus as you like, and nest them as deeply as you like.
-The menu identifiers let you jump easily to any page.
+Вы можете зарегистрировать столько меню, сколько захотите, и вложить их так глубоко, как вам захочется.
+Идентификаторы меню позволяют легко перейти на любую страницу.
 
-**You only have to make a single menu of your nested menu structure interactive.**
-For example, only pass the root menu to `bot.use`.
+**Вы должны сделать интерактивным только одно меню вашей вложенной структуры меню.**
+Например, передайте только корневое меню в `bot.use`.
 
 ```ts
-// If you have this:
+// Если у вас есть:
 main.register(settings);
 
-// Do this:
+// Сделайте это:
 bot.use(main);
 
-// Don't do this:
+// НЕ делайте это:
 bot.use(main);
 bot.use(settings);
 ```
 
-**You can create multiple independent menus and make them all interactive.**
-For example, if you create two unrelated menus and you never need to navigate between them, then you should install both of them independently.
+**Вы можете создать несколько независимых меню и сделать их все интерактивными.**
+Например, если вы создадите два несвязанных меню и вам никогда не понадобится перемещаться между ними, то вам следует установить их независимо друг от друга.
 
 ```ts
-// If you have independent menus like this:
+// Если у вас есть независимое меню, как это:
 const menuA = new Menu("menu-a");
 const menuB = new Menu("menu-b");
 
-// You can do this:
+// Вы можете сделать так:
 bot.use(menuA);
 bot.use(menuB);
 ```
 
-## Payloads
+## Payload
 
-You can store short text payloads along with all navigation and text buttons.
-When the respective handlers are invoked, the text payload will be available under `ctx.match`.
-This is useful because it lets you store a little bit of data in a menu.
+Вы можете хранить короткие текстовые payloads вместе со всеми навигационными и текстовыми кнопками.
+Когда соответствующие обработчики будут вызваны, текстовый payload будет доступна в разделе `ctx.match`.
+Это полезно, поскольку позволяет хранить в меню немного данных.
 
-Here is an example menu that remembers current time in the payload.
-Other use cases could be, for example, to store the index in a paginated menu.
+Вот пример меню, в котором в payload хранится текущее время.
+Другим вариантом использования может быть, например, хранение индекса в пагинационном меню.
 
 ```ts
 function generatePayload() {
@@ -314,225 +314,225 @@ function generatePayload() {
 
 const menu = new Menu("store-current-time-in-payload")
   .text(
-    { text: "ABORT!", payload: generatePayload },
+    { text: "ОТМЕНА!", payload: generatePayload },
     async (ctx) => {
-      // Give the user 5 seconds to undo.
+      // Дайте пользователю 5 секунд, чтобы отменить действие.
       const text = Date.now() - Number(ctx.match) < 5000
-        ? "The operation was canceled successfully."
-        : "Too late. Your cat videos have already gone viral on the internet.";
+        ? "Операция была успешно отменена."
+        : "Слишком поздно. Ваши видео с кошками уже стали вирусными в интернете.";
       await ctx.reply(text);
     },
   );
 
 bot.use(menu);
 bot.command("publish", async (ctx) => {
-  await ctx.reply("The videos will be sent. You have 5 seconds to cancel it.", {
+  await ctx.reply("Видео будет отправлено. У вас есть 5 секунд, чтобы отменить это.", {
     reply_markup: menu,
   });
 });
 ```
 
-::: tip Limitations
-Payloads cannot be used to actually store any significant amounts of data.
-The only thing you can store are short strings of typically less than 50 bytes, such as an index or an identifier.
-If you really want to store user data such as a file identifier, a URL, or anything else, you should use [sessions](./session).
+::: tip Лимиты
+Payload нельзя использовать для хранения значительных объемов данных.
+Единственное, что вы можете хранить --- это короткие строки, обычно не превышающие 50 байт, такие как индекс или идентификатор.
+Если вы действительно хотите хранить пользовательские данные, такие как идентификатор файла, URL или что-то еще, вам следует использовать [сессии](./session).
 
-Also, note that the payload is always generated based on the current context object.
-This means that it matters _where from_ you navigate to the menu, which can lead to surprising results.
-As an example, when a menu is [outdated](#outdated-menus-and-fingerprints), it will be re-rendered _based on the button click of the outdated menu_.
+Также обратите внимание, что payload всегда генерируется на основе текущего контекстного объекта.
+Это означает, что имеет значение, _откуда_ вы переходите к меню, что может привести к неожиданным результатам.
+Например, когда меню [устарело](#устаревшие-меню-и-отпечатки), оно будет перерисовано _на основе нажатия кнопки устаревшего меню_.
 :::
 
-Payloads also work well together with dynamic ranges.
+Payload'ы также хорошо сочетаются с динамическими диапазонами.
 
-## Dynamic Ranges
+## Динамические диапазоны
 
-So far, we've only seen how to change the text on a button dynamically.
-You can also dynamically adjust the structure of a menu in order to add and remove buttons on the fly.
+До сих пор мы рассматривали только динамическое изменение текста на кнопке.
+Вы также можете динамически изменять структуру меню, чтобы добавлять и удалять кнопки на лету.
 
-::: danger Changing a Menu During Message Handling
-You cannot create or change your menus during message handling.
-All menus must be fully created and registered before your bot starts.
-This means that you cannot do `new Menu("id")` in a handler of your bot.
-You cannot call `menu.text` or the like in a handler of your bot.
+::: danger Изменение меню во время обработки сообщений
+Вы не можете создавать или изменять меню во время обработки сообщений.
+Все меню должны быть полностью созданы и зарегистрированы до запуска вашего бота.
+Это означает, что вы не можете сделать `new Menu(«id»)` в обработчике вашего бота.
+Вы не можете вызвать `menu.text` или т.п. в обработчике вашего бота.
 
-Adding new menus while your bot is running would cause a memory leak.
-Your bot would slow down more and more, and eventually crash.
+Добавление новых меню во время работы бота приведет к утечке памяти.
+Ваш бот будет все больше и больше замедляться и в конце концов упадет.
 
-However, you can make use of the dynamic ranges described in this section.
-They allow you to arbitrarily change the structure of an existing menu instance, so they are equally powerful.
-Use dynamic ranges!
+Однако вы можете воспользоваться динамическими диапазонами, описанными в этом разделе.
+Они позволяют произвольно изменять структуру существующего экземпляра меню, поэтому они не менее эффективны.
+Используйте динамические диапазоны!
 :::
 
-You can let a part of a menu's buttons be generated on the fly (or all of them if you want).
-We call this part of the menu a _dynamic range_.
-In other words, instead of defining the buttons directly on the menu, you can pass a factory function that creates the buttons when the menu is rendered.
-The easiest way to create a dynamic range in this function is by using the `MenuRange` class that this plugin provides.
-A `MenuRange` provides you with exactly the same functions as a menu, but it does not have an identifier, and it cannot be registered.
+Вы можете позволить генерировать часть кнопок меню на лету (или все кнопки, если хотите).
+Мы называем эту часть меню _динамическим диапазоном_.
+Другими словами, вместо того чтобы определять кнопки непосредственно в меню, вы можете передать функцию, которая создаст кнопки при рендеринге меню.
+Самый простой способ создать динамический диапазон в этой функции --- использовать класс `MenuRange`, который предоставляет этот плагин.
+Класс `MenuRange` предоставляет вам точно такие же функции, как и меню, но у него нет идентификатора, и его нельзя зарегистрировать.
 
 ```ts
 const menu = new Menu("dynamic");
 menu
-  .url("About", "https://grammy.dev/plugins/menu").row()
+  .url("О нас", "https://grammy.dev/plugins/menu").row()
   .dynamic(() => {
-    // Generate a part of the menu dynamically!
+    // Создайте часть меню динамически!
     const range = new MenuRange();
     for (let i = 0; i < 3; i++) {
       range
-        .text(i.toString(), (ctx) => ctx.reply(`You chose ${i}`))
+        .text(i.toString(), (ctx) => ctx.reply(`Вы выбрали ${i}`))
         .row();
     }
     return range;
   })
-  .text("Cancel", (ctx) => ctx.deleteMessage());
+  .text("Отмена", (ctx) => ctx.deleteMessage());
 ```
 
-The range builder function that you pass to `dynamic` may be `async`, so you can even read data from an API or a database before returning your new menu range.
-**In many cases, it makes sense to generate a dynamic range based on [session](./session) data.**
+Функция построения диапазона, которую вы передаете `dynamic`, может быть `async`, так что вы можете даже считывать данные из API или базы данных, прежде чем вернуть новый диапазон меню.
+**Во многих случаях имеет смысл генерировать динамический диапазон на основе данных [сессии](./session).**.
 
-The range builder function takes a context object as the first argument.
-(This is not specified in the example above.)
-Optionally, as a second argument after `ctx`, you can receive a fresh instance of `MenuRange`.
-You can modify it instead of returning your own instance if that's what you prefer.
-Here is how you can use the two parameters of the range builder function.
+Функция построения диапазона принимает в качестве первого аргумента объект контекста.
+(В приведенном примере он не указан).
+По желанию, в качестве второго аргумента после `ctx`, вы можете получить свежий экземпляр `MenuRange`.
+Вы можете изменить его вместо того, чтобы возвращать свой собственный экземпляр, если вам так больше нравится.
+Вот как можно использовать два параметра функции построения диапазона.
 
 ```ts
 menu.dynamic((ctx, range) => {
   for (const text of ctx.session.items) {
-    range // no need for `new MenuRange()` or a `return`
+    range // Нет необходимости в `new MenuRange()` или `return`.
       .text(text, (ctx) => ctx.reply(text))
       .row();
   }
 });
 ```
 
-It is important that your factory function works in a certain way, otherwise your menus may show strange behavior or even throw errors.
-As menus are always [rendered twice](#how-does-it-work) (once when the menu is sent, and once when a button is pressed), you need to make sure that:
+Важно, чтобы ваша функция работала определенным образом, иначе ваши меню могут показать странное поведение или даже выдать ошибку.
+Поскольку меню всегда [отображается дважды](#как-это-работает) (один раз при отправке меню и один раз при нажатии кнопки), вам нужно убедиться, что:
 
-1. **You do not have any side-effects in the function that builds the dynamic range.**
-   Do not send messages.
-   Do not write to the session data.
-   Do not change any variables outside of the function.
-   Check out [Wikipedia on side-effects](https://en.wikipedia.org/wiki/Side_effect_(computer_science)).
-2. **Your function is stable**, i.e. it does not depend on randomness, the current time, or other fast-changing data sources.
-   It has to generate the same buttons the first and the second time the menu is rendered.
-   Otherwise, the menu plugin cannot match the correct handler with the pressed button.
-   Instead, it will [detect](#outdated-menus-and-fingerprints) that your menu is outdated, and refuse to call the handlers.
+1. **У вас нет никаких побочных эффектов в функции, которая строит динамический диапазон**.
+   Не отправляйте сообщения.
+   Не записывайте данные сессии.
+   Не изменяйте переменные за пределами функции.
+   Посмотрите [Википедию о побочных эффектах](https://en.wikipedia.org/wiki/Side_effect_(computer_science)).
+2. **Ваша функция стабильна**, т.е. не зависит от случайности, текущего времени или других быстро меняющихся источников данных.
+   Она должна генерировать одни и те же кнопки при первом и втором рендеринге меню.
+   В противном случае плагин меню не сможет сопоставить правильный обработчик с нажатой кнопкой.
+   Вместо этого он [определит](#устаревшие-меню-и-отпечатки), что ваше меню устарело, и откажется вызывать обработчики.
 
-## Answering Callback Queries Manually
+## Ответы на callback запросы вручную
 
-The menu plugin will call `answerCallbackQuery` automatically for its own buttons.
-You can set `autoAnswer: false` if you want to disable this.
+Плагин меню будет автоматически вызывать `answerCallbackQuery` для своих собственных кнопок.
+Вы можете установить значение `autoAnswer: false`, если хотите отключить это.
 
 ```ts
 const menu = new Menu("id", { autoAnswer: false });
 ```
 
-You will now have to call `answerCallbackQuery` yourself.
-This allows you to pass custom messages that are displayed to the user.
+Теперь вам придется самостоятельно вызывать `answerCallbackQuery`.
+Это позволит вам передавать пользовательские сообщения, которые будут отображаться пользователю.
 
-## Outdated Menus and Fingerprints
+## Устаревшие меню и отпечатки
 
-Let's say you have a menu where a user can toggle notifications on and off, such as in the example [up here](#dynamic-labels).
-Now, if a user sends `/settings` twice, they will get the same menu twice.
-But, changing the notification setting on one of the two messages will not update the other!
+Допустим, у вас есть меню, в котором пользователь может включать и выключать уведомления, как в примере [вверху](#динамически-названия).
+Если пользователь дважды отправит `/settings`, он получит одно и то же меню дважды.
+Но изменение настроек уведомления в одном из двух сообщений не приведет к обновлению другого!
 
-It is clear that we cannot keep track of all settings messages in a chat, and update all old menus across the entire chat history.
-You would have to use so many API calls for this that Telegram would rate-limit your bot.
-You would also require a lot of storage to remember all of the message identifiers of every menu, across all chats.
-This is not practical.
+Очевидно, что мы не можем отслеживать все сообщения о настройках в чате и обновлять все старые меню по всей истории чата.
+Для этого пришлось бы использовать так много вызовов API, что Telegram ограничил бы скорость вашего бота.
+Кроме того, для запоминания всех идентификаторов сообщений каждого меню во всех чатах потребуется много места.
+Это непрактично.
 
-The solution is to check if a menu is outdated _before_ performing any action.
-This way, we will only update old menus if a user actually starts clicking the buttons on them.
-The menu plugin handles this automatically for you, so you don't need to worry about it.
+Решение заключается в том, чтобы проверять, не устарело ли меню, _до_ выполнения каких-либо действий.
+Таким образом, мы будем обновлять устаревшие меню только в том случае, если пользователь действительно начнет нажимать на кнопки в них.
+Плагин меню делает это автоматически, так что вам не нужно об этом беспокоиться.
 
-You can configure exactly what happens when an outdated menu is detected.
-By default, the message "Menu was outdated, try again!" will be displayed to the user, and the menu will be updated.
-You can define custom behavior in the config under `onMenuOutdated`.
+Вы можете настроить, что именно произойдет при обнаружении устаревшего меню.
+По умолчанию пользователю будет показано сообщение "Меню устарело, попробуйте еще раз!", и меню будет обновлено.
+Вы можете определить пользовательское поведение в конфигурации в разделе `onMenuOutdated`.
 
 ```ts
-// Custom message to be displayed
-const menu0 = new Menu("id", { onMenuOutdated: "Updated, try now." });
-// Custom handler function
+// Отображаемое пользовательское сообщение
+const menu0 = new Menu("id", { onMenuOutdated: "Обновлено, попробуйте теперь." });
+// Пользовательская функция обработчика
 const menu1 = new Menu("id", {
   onMenuOutdated: async (ctx) => {
     await ctx.answerCallbackQuery();
-    await ctx.reply("Here is a fresh menu", { reply_markup: menu1 });
+    await ctx.reply("Вот ваше новое меню", { reply_markup: menu1 });
   },
 });
-// Completely disable outdated check (may run wrong button handlers).
+// Полностью отключите проверку на устаревание (могут запускаться неправильные обработчики кнопок).
 const menu2 = new Menu("id", { onMenuOutdated: false });
 ```
 
-We have a heuristic to check if the menu is outdated.
-We consider it outdated if:
+У нас есть система для проверки того, устарело ли меню.
+Мы считаем его устаревшим, если:
 
-- The shape of the menu changed (number of rows, or number of buttons in any row).
-- The row/column position of the pressed button is out of range.
-- The label on the pressed button changed.
-- The pressed button does not contain a handler.
+- Изменилась форма меню (количество строк или количество кнопок в любой строке).
+- Позиция строки/столбца нажатой кнопки вышла за пределы диапазона.
+- Изменился ярлык нажатой кнопки.
+- Нажатая кнопка не содержит обработчика.
 
-It is possible that your menu changes, while all of the above things stay the same.
-It is also possible that your menu does not change fundamentally (i.e. the behavior of the handlers does not change), even though the above heuristic indicates that the menu is outdates.
-Both scenarios are unlikely to happen for most bots, but if you are creating a menu where this is the case, you should use a fingerprint function.
+Возможно, что ваше меню изменится, а все вышеперечисленное останется неизменным.
+Также возможно, что меню принципиально не меняется (т.е. поведение обработчиков не меняется), хотя вышеуказанная система указывает на то, что меню устарело.
+Оба сценария маловероятны для большинства ботов, но если вы создаете меню, в котором такое возможно, вам следует использовать функцию отпечатков.
 
 ```ts
 function ident(ctx: Context): string {
-  // Return a string that would change if and only if your menu changes
-  // so significantly that it should be considered outdated.
+  // Возвращаем строку, которая будет меняться тогда и только тогда, когда ваше меню изменится
+  // настолько существенно, что его следует считать устаревшим.
   return ctx.session.myStateIdentifier;
 }
 const menu = new Menu("id", { fingerprint: (ctx) => ident(ctx) });
 ```
 
-The fingerprint string will replace the above heuristic.
-This way, you can be sure that outdated menus are always detected.
+Строка отпечатков заменит вышеупомянутую систему.
+Таким образом, вы можете быть уверены, что устаревшие меню всегда будут обнаружены.
 
-## How Does It Work
+## Как это работает
 
-The menu plugin works completely without storing any data.
-This is important for large bots with millions of users.
-Saving the state of all menus would consume too much memory.
+Плагин меню работает полностью без хранения каких-либо данных.
+Это важно для больших ботов с миллионами пользователей.
+Сохранение состояния всех меню заняло бы слишком много памяти.
 
-When you create your menu objects and link them together via `register` calls, no menus are actually built.
-Instead, the menu plugin will remember how to assemble new menus based on your operations.
-Whenever a menu is sent, it will replay these operations to render your menu.
-This includes laying out all dynamic ranges and generating all dynamic labels.
-Once the menu is sent, the rendered button array will be forgotten again.
+Когда вы создаете объекты меню и связываете их вместе с помощью вызова `register`, никакие меню на самом деле не создаются.
+Вместо этого плагин меню запоминает, как собирать новые меню на основе ваших операций.
+При отправке меню он будет воспроизводить эти операции для визуализации вашего меню.
+Это включает в себя прокладку всех динамических диапазонов и генерацию всех динамических названий.
+После отправки меню отрисованный массив кнопок будет снова забыт.
 
-When a menu is sent, every button contains callback query that stores:
+При отправке меню каждая кнопка содержит callback запрос, который хранит:
 
-- The menu identifier.
-- The row/column position of the button.
-- An optional payload.
-- A fingerprint flag that stores whether or not a fingerprint was used in the menu.
-- A 4-byte hash that encodes either the fingerprint, or the menu layout and the button label.
+- Идентификатор меню.
+- Позиция кнопки в строке/столбце.
+- Необязательный payload.
+- Флаг отпечатка, который хранит информацию о том, был ли использован отпечаток в меню.
+- 4-байтовый хэш, который кодирует либо отпечаток, либо схему меню и метку кнопки.
 
-That way, we can identify exactly which button of which menu was pressed.
-A menu will only handle button presses if:
+Таким образом, мы можем определить, какая именно кнопка меню была нажата.
+Меню будет обрабатывать нажатия кнопок только в том случае, если:
 
-- The menu identifiers match.
-- The row/column is specified.
-- The fingerprint flag exists.
+- Идентификаторы меню совпадают.
+- Указана строка/колонка.
+- Существует флаг отпечатка.
 
-When a user presses a menu's button, we need to find the handler that was added to that button at the time the menu was rendered.
-Hence, we simply render the old menu again.
-However, this time, we don't actually need the full layout---all we need is the overall structure, and that one specific button.
-Consequently, the menu plugin will perform a shallow rendering in order to be more efficient.
-In other words, the menu will only be rendered partially.
+Когда пользователь нажимает кнопку меню, нам нужно найти обработчик, который был добавлен к этой кнопке во время рендеринга меню.
+Таким образом, мы просто снова отображаем старое меню.
+Однако на этот раз нам не нужен полный макет --- нам нужна только общая структура и одна конкретная кнопка.
+Следовательно, плагин меню будет выполнять неглубокий рендеринг, чтобы быть более эффективным.
+Другими словами, меню будет отрисовываться только частично.
 
-Once the pressed button is known again (and we have checked that the menu is not [outdated](#outdated-menus-and-fingerprints)), we invoke the handler.
+Как только нажатая кнопка снова становится известна (и мы проверили, что меню не является [устаревшим](#устаревшие-меню-и-отпечатки)), мы вызываем обработчик.
 
-Internally, the menu plugin makes heavy use of [API Transformer Functions](../advanced/transformers), for example, to quickly render outgoing menus on the fly.
+Внутри плагин меню активно использует [трансформирующие API функции](../advanced/transformers), например, для быстрого рендеринга исходящих меню на лету.
 
-When you register the menus in a large navigation hierarchy, they will in fact not store these references explicitly.
-Under the hood, all menus of that one structure are added to the same large pool, and that pool is shared across all contained instances.
-Every menu is responsible for every other one in the index, and they can handle and render each other.
-(Most often, it is only the root menu that is actually passed to `bot.use` and that receives any updates.
-In such cases, this one instance will handle the complete pool.)
-As a result, you are able to navigate between arbitrary menus without limit, all while the update handling can happen in [`O(1)` time complexity](https://en.wikipedia.org/wiki/Time_complexity#Constant_time) because there is no need to search through entire hierarchies to find the right menu to handle any given button click.
+Когда вы регистрируете меню в большой навигационной иерархии, они фактически не будут хранить эти ссылки явно.
+Под капотом все меню одной структуры добавляются в один большой пул, и этот пул разделяется между всеми содержащимися экземплярами.
+Каждое меню отвечает за каждое другое в индексе, и они могут обрабатывать и отображать друг друга.
+(Чаще всего только корневое меню передается в `bot.use` и получает любые обновления.
+В таких случаях один экземпляр будет обрабатывать весь пул.)
+В результате вы можете перемещаться между произвольными меню без ограничений, при этом обработка обновлений может происходить за [`O(1)` временной сложности](https://en.wikipedia.org/wiki/Time_complexity#Constant_time), поскольку нет необходимости искать по всей иерархии нужное меню для обработки любого нажатия кнопки.
 
-## Plugin Summary
+## Краткая информация о плагине
 
-- Name: `menu`
-- [Source](https://github.com/grammyjs/menu)
-- [Reference](/ref/menu/)
+- Название: `menu`
+- [Исходник](https://github.com/grammyjs/menu)
+- [Ссылка](/ref/menu/)
