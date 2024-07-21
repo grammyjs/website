@@ -3,107 +3,122 @@ prev: false
 next: false
 ---
 
-# Comparison of Hosting Providers
+# Сравнение хостинг-провайдеров
 
-There are many different hosting providers that allow you to run your bot.
-It can sometimes be hard to keep track of how much they cost and how good their performance is.
-This is why the grammY community is collecting their experiences on this page.
+Существует множество различных хостинг-провайдеров, которые позволяют запускать
+бота. Иногда бывает трудно уследить за тем, сколько они стоят и насколько хороша
+их работа. Поэтому сообщество grammY собирает свой опыт на этой странице.
 
-## What Is a Hosting Provider?
+## Что такое хостинг-провайдер?
 
-In order to keep a bot online 24 hours a day, you need to run a computer 24 hours a day.
-As [mentioned in the introduction](../guide/introduction#how-to-keep-a-bot-running), you most likely don't want to do that with your laptop or home computer.
-Instead, you can ask a company to run the bot in the cloud.
+Для того чтобы поддерживать бота в сети 24 часа в сутки, вам нужно, чтобы
+компьютер работал 24 часа в сутки. Как
+[упоминалось во введении](../guide/introduction#как-поддерживать-бота-в-рабочем-состоянии),
+вы, скорее всего, не захотите делать это с помощью своего ноутбука или домашнего
+компьютера. Вместо этого вы можете попросить компанию запустить бота в облаке.
 
-In other words, you just run it on someone else's computer.
+Другими словами, вы просто запускаете его на чужом компьютере.
 
-## Comparison Tables
+## Таблицы сравнения
 
-> Please click the edit button at the bottom of the page to add more providers or to edit existing ones!
+> Пожалуйста, нажмите на кнопку редактирования внизу страницы, чтобы добавить
+> новых провайдеров или отредактировать существующих!
 
-We have two comparison tables: one for [serverless hosting and PaaS](#serverless-and-paas) and one for [VPS](#vps).
+У нас есть две сравнительные таблицы: одна для
+[бессерверного хостинга и PaaS](#serverless-and-paas) и одна для [VPS](#vps).
 
-### Serverless and PaaS
+### Бессерверные и PaaS
 
-Serverless means that you do not control a single machine on which your bot is run.
-Instead, these hosting providers will rather allow you to upload your code, and then start and stop different machines as necessary to make sure that your bot always works.
+Бессерверность означает, что вы не контролируете одну машину, на которой запущен
+ваш бот. Вместо этого такие хостинг-провайдеры позволят вам загружать код, а
+затем запускать и останавливать разные машины по мере необходимости, чтобы ваш
+бот всегда работал.
 
-The main thing to know about them is that on serverless infrastructures you are required to use [webhooks](../guide/deployment-types).
-Most of providers below will have issues when you try running your bot with polling (`bot.start()` or [grammY runner](../plugins/runner)) on them.
+Главное, что нужно знать о них --- это то, что на бессерверных инфраструктурах
+вы должны использовать [вебхуки](../guide/deployment-types). Большинство из
+перечисленных ниже провайдеров будут иметь проблемы, если вы попытаетесь
+запустить на них бота с long polling (`bot.start()` или
+[grammY runner](../plugins/runner)).
 
-On the other hand, PaaS (Platform as a Service) provides a similar but more controllable solution.
-You can choose how many machine instances will be serving your bot, and when they are running.
-Using [polling](../guide/deployment-types) is also possible with PaaS if the provider you choose lets you keep exactly single instance running at all times.
+С другой стороны, PaaS (Platform as a Service) предоставляет аналогичное, но
+более контролируемое решение. Вы можете выбрать, сколько экземпляров машин будут
+обслуживать вашего бота и когда они будут запущены. Использование
+[long polling](../guide/deployment-types) также возможно в PaaS, если выбранный
+вами провайдер позволяет постоянно держать запущенным только один экземпляр.
 
-Serverless and PaaS have a downside that doesn't provide you with a persistent storage by default, such as a local file system.
-Instead, you will often have to have a database separately and connect to it if you need to store data permanently.
+Недостатком бессерверных и PaaS является то, что по умолчанию они не
+предоставляют постоянного хранилища, например локальной файловой системы. Вместо
+этого вам часто придется иметь отдельную базу данных и подключаться к ней, если
+вам нужно хранить данные постоянно.
 
-| Name                   | Min. price | Pricing                                                                                                    | Limits                                                                                             | Node.js                                                                                  | Deno                                           | Web                                               | Notes                                                                                                                                                               |
-| ---------------------- | ---------- | ---------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Deta                   | Free       | No paid plans yet                                                                                          | No specific limits                                                                                 | ✅                                                                                       | ✅                                             | ✅                                                | Deno is supported by a [custom application](https://deta.space/docs/en/build/quick-starts/custom) ([example](https://github.com/deta/starters/tree/main/deno-app)). |
-| Deno Deploy            | Free       | $20/mo subscription for 5M req and 100 GB; $2/1M req, $0.5/GB network                                      | [1M req/mo, 100 GB/mo, 10 ms CPU-time limit](https://deno.com/deploy/pricing)                      | ❌                                                                                       | ✅                                             | ❌                                                |                                                                                                                                                                     |
-| Fly                    | Free       | $1.94/mo subscription for shared-cpu-1x and 256 MB RAM, $0.02/GB network                                   | [3 shared-cpu-1x 256mb VMs, 160GB/mo, 3GB storage](https://fly.io/docs/about/pricing/)             | ✅                                                                                       | ✅                                             | ❓                                                |                                                                                                                                                                     |
-| DigitalOcean Functions | Free       | $1.85/100K GB-s                                                                                            | [90K GB-s/mo](https://docs.digitalocean.com/products/functions/details/pricing/)                   | ✅                                                                                       | ❌                                             | ❓                                                |                                                                                                                                                                     |
-| Cloudflare Workers     | Free       | $5/10M req                                                                                                 | [100K req/day, 10 ms CPU-time limit](https://workers.cloudflare.com/)                              | ❌                                                                                       | [✅](https://denoflare.dev/)                   | ✅                                                |                                                                                                                                                                     |
-| Vercel                 | Free       | $20/mo subscription                                                                                        | [Unlimited invocations, 100 GB-h, 10 s time limit](https://vercel.com/pricing)                     | [✅](https://vercel.com/docs/functions/runtimes/node-js)                                 | [✅](https://github.com/vercel-community/deno) | [✅](https://vercel.com/docs/frameworks)          |                                                                                                                                                                     |
-| Scaleway Functions     | Free       | €0.15/1M req, €1.2/100K GB-s                                                                               | [1M requests, 400K GB-s/mo](https://www.scaleway.com/en/pricing/serverless/#serverless-functions)  | ❓                                                                                       | ❓                                             | ❓                                                |                                                                                                                                                                     |
-| Scaleway Containers    | Free       | €0.10/100K GB-s, €1.0/100K vCPU-s                                                                          | [400K GB-s, 200K vCPU-s/mo](https://www.scaleway.com/en/pricing/serverless/#serverless-containers) | ❓                                                                                       | ❓                                             | ❓                                                |                                                                                                                                                                     |
-| Vercel Edge Functions  | Free       | $20/mo subscription for 500K                                                                               | [100K req/day](https://vercel.com/pricing)                                                         | [✅](https://vercel.com/docs/functions/runtimes/edge-runtime#compatible-node.js-modules) | ❓                                             | [✅](https://vercel.com/templates/edge-functions) |                                                                                                                                                                     |
-| serverless.com         | Free       |                                                                                                            |                                                                                                    | ❓                                                                                       | ❓                                             | ❓                                                |                                                                                                                                                                     |
-| Heroku                 | $5         | $5 for 1,000 [dyno hours](https://devcenter.heroku.com/articles/usage-and-billing#dyno-usage-and-costs)/mo | [512MB RAM, sleeps after 30 mins of inactivity](https://www.heroku.com/pricing)                    | ✅                                                                                       | ✅                                             | ❓                                                | Deno is supported by a [third-party buildpack](https://github.com/chibat/heroku-buildpack-deno).                                                                    |
-| DigitalOcean Apps      | $5         |                                                                                                            |                                                                                                    | ❓                                                                                       | ❓                                             | ❓                                                | Not tested                                                                                                                                                          |
-| Fastly Compute@Edge    |            |                                                                                                            |                                                                                                    | ❓                                                                                       | ❓                                             | ❓                                                |                                                                                                                                                                     |
-| Zeabur                 | $5         | $5/mo subscription                                                                                         | 2GB RAM, Unlimited invocations                                                                     | ✅                                                                                       | ✅                                             | ✅                                                |                                                                                                                                                                     |
+| Название               | Мин. цена | Цены                                                                                                       | Лимиты                                                                                              | Node.js                                                                                  | Deno                                           | Web                                               | Заметки                                                                                                                                                                   |
+| ---------------------- | --------- | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Deta                   | Бесплатно | Нет тарифных планов                                                                                        | Не указано лимиты                                                                                   | ✅                                                                                       | ✅                                             | ✅                                                | Deno поддерживается [пользовательским приложением](https://deta.space/docs/en/build/quick-starts/custom) ([пример](https://github.com/deta/starters/tree/main/deno-app)). |
+| Deno Deploy            | Бесплатно | $20/мес подписка за 5M зап и 100 ГБ; $2/1М зап, $0.5/ГБ трафика                                            | [1M зап/мес, 100 ГБ/мес, 10 мс CPU-time лимит](https://deno.com/deploy/pricing)                     | ❌                                                                                       | ✅                                             | ❌                                                |                                                                                                                                                                           |
+| Fly                    | Бесплатно | $1.94/мес подписка за shared-cpu-1x и 256 МБ ОЗУ, $0.02/ГБ трафика                                         | [3 shared-cpu-1x 256mb VMs, 160ГБ/мес, 3ГБ хранилище](https://fly.io/docs/about/pricing/)           | ✅                                                                                       | ✅                                             | ❓                                                |                                                                                                                                                                           |
+| DigitalOcean Functions | Бесплатно | $1.85/100K ГБ-С                                                                                            | [90K ГБ-С/мес](https://docs.digitalocean.com/products/functions/details/pricing/)                   | ✅                                                                                       | ❌                                             | ❓                                                |                                                                                                                                                                           |
+| Cloudflare Workers     | Бесплатно | $5/10M зап                                                                                                 | [100K зап/день, 10 мс CPU-time лимит](https://workers.cloudflare.com/)                              | ❌                                                                                       | [✅](https://denoflare.dev/)                   | ✅                                                |                                                                                                                                                                           |
+| Vercel                 | Бесплатно | $20/мес подписка                                                                                           | [Неограниченные зап, 100 ГБ-h, 10 сек. лимит](https://vercel.com/pricing)                           | [✅](https://vercel.com/docs/functions/runtimes/node-js)                                 | [✅](https://github.com/vercel-community/deno) | [✅](https://vercel.com/docs/frameworks)          |                                                                                                                                                                           |
+| Scaleway Functions     | Бесплатно | €0.15/1M зап, €1.2/100K ГБ-С                                                                               | [1M зап, 400K ГБ-С/мес](https://www.scaleway.com/en/pricing/serverless/#serverless-functions)       | ❓                                                                                       | ❓                                             | ❓                                                |                                                                                                                                                                           |
+| Scaleway Containers    | Бесплатно | €0.10/100K ГБ-С, €1.0/100K vCPU-s                                                                          | [400K ГБ-С, 200K vCPU-s/мес](https://www.scaleway.com/en/pricing/serverless/#serverless-containers) | ❓                                                                                       | ❓                                             | ❓                                                |                                                                                                                                                                           |
+| Vercel Edge Functions  | Бесплатно | $20/мес подписка за 500K                                                                                   | [100K зап/день](https://vercel.com/pricing)                                                         | [✅](https://vercel.com/docs/functions/runtimes/edge-runtime#compatible-node.js-modules) | ❓                                             | [✅](https://vercel.com/templates/edge-functions) |                                                                                                                                                                           |
+| serverless.com         | Бесплатно |                                                                                                            |                                                                                                     | ❓                                                                                       | ❓                                             | ❓                                                |                                                                                                                                                                           |
+| Heroku                 | $5        | $5 за 1,000 [dyno часов](https://devcenter.heroku.com/articles/usage-and-billing#dyno-usage-and-costs)/мес | [512МБ ОЗУ, отключается после 30 минут бездействия](https://www.heroku.com/pricing)                 | ✅                                                                                       | ✅                                             | ❓                                                | Deno поддерживается [сторонним билдпаком](https://github.com/chibat/heroku-buildpack-deno).                                                                               |
+| DigitalOcean Apps      | $5        |                                                                                                            |                                                                                                     | ❓                                                                                       | ❓                                             | ❓                                                | Не тестировано                                                                                                                                                            |
+| Fastly Compute@Edge    |           |                                                                                                            |                                                                                                     | ❓                                                                                       | ❓                                             | ❓                                                |                                                                                                                                                                           |
+| Zeabur                 | $5        | $5/мес подписка                                                                                            | 2ГБ ОЗУ, Неограниченные зап                                                                         | ✅                                                                                       | ✅                                             | ✅                                                |                                                                                                                                                                           |
 
 ### VPS
 
-A virtual private server is a virtual machine that you have full control over.
-You can usually access it via [SSH](https://en.wikipedia.org/wiki/Secure_Shell).
-You can install any software there, and you are responsible for system upgrades and so on.
+Виртуальный частный сервер (VPS) --- это виртуальная машина, над которой вы
+имеете полный контроль. Обычно доступ к ней осуществляется через
+[SSH](https://en.wikipedia.org/wiki/Secure_Shell). Вы можете установить на нее
+любое программное обеспечение, а также нести ответственность за обновление
+системы и так далее.
 
-On a VPS, you can run bots using both long polling or webhooks.
+На VPS вы можете запускать ботов, используя как long polling, так и веб-хуки.
 
-Check out the [tutorial](./vps) on how to host grammY bots on a VPS.
+Посмотрите [туториал](./vps) о том, как разместить ботов grammY на VPS.
 
-| Name          | Min. price | Ping to Bot API                           | Cheapest option                    |
-| ------------- | ---------- | ----------------------------------------- | ---------------------------------- |
-| Hostinger     | $14        |                                           | 1 vCPU, 4 GB RAM, 50 GB SSD, 1 TB  |
-| Contabo       |            | 15 ms :de: Nuremberg                      |                                    |
-| DigitalOcean  | $5         | 1-15 ms :netherlands: AMS, 19 ms :de: FRA | 1 vCPU, 1 GB RAM, 25 GB SSD, 1 TB  |
-| Hetzner Cloud | €4.15      | ~42 ms :de:                               | 1 vCPU, 2 GB RAM, 20 GB SSD, 20 TB |
-| IONOS VPS     | €1 or $2   | 15 ms :de: Baden-Baden                    | 1 vCPU, 0.5 GB RAM, 8 GB SSD       |
-| Scaleway      | €~7        |                                           | 2 cores, 2 GB RAM, 20 GB SSD       |
-| MVPS          | €4         | 6-9 ms :de: Germany                       | 1 core, 2 GB RAM, 25 GB SSD, 2 TB  |
+| Название      | Мин. цена | Пинг бота                                 | Самый дешевый вариант              |
+| ------------- | --------- | ----------------------------------------- | ---------------------------------- |
+| Hostinger     | $14       |                                           | 1 vCPU, 4 ГБ ОЗУ, 50 ГБ SSD, 1 ТБ  |
+| Contabo       |           | 15 мс :de: Нюрнберг                       |                                    |
+| DigitalOcean  | $5        | 1-15 мс :netherlands: AMS, 19 мс :de: FRA | 1 vCPU, 1 ГБ ОЗУ, 25 ГБ SSD, 1 ТБ  |
+| Hetzner Cloud | €4.15     | ~42 мс :de:                               | 1 vCPU, 2 ГБ ОЗУ, 20 ГБ SSD, 20 ТБ |
+| IONOS VPS     | €1 или $2 | 15 мс :de: Баден-Баден                    | 1 vCPU, 0.5 ГБ ОЗУ, 8 ГБ SSD       |
+| Scaleway      | €~7       |                                           | 2 cores, 2 ГБ ОЗУ, 20 ГБ SSD       |
+| MVPS          | €4        | 6-9 мс :de: Германия                      | 1 core, 2 ГБ ОЗУ, 25 ГБ SSD, 2 ТБ  |
 
-## Unit Explanations
+## Пояснения к сокращениям
 
-### Base Units
+### Базовые сокращения
 
-| Unit | In Words    | Explanation                                               |
-| ---- | ----------- | --------------------------------------------------------- |
-| K    | thousand    | 1,000 of something.                                       |
-| M    | million     | 1,000,000 of something.                                   |
-| €    | Euro        | The currency EUR.                                         |
-| $    | US-Dollar   | The currency USD.                                         |
-| req  | request     | Number of HTTP requests.                                  |
-| vCPU | virtual CPU | Computing power of one virtual CPU, a part of a real CPU. |
-| ms   | millisecond | 0.001 seconds.                                            |
-| s    | second      | One second (SI unit for time).                            |
-| min  | minute      | One minute, 60 seconds.                                   |
-| h    | hours       | One hour, 60 minutes.                                     |
-| day  | day         | One day, 24 hours.                                        |
-| mo   | month       | One month, approximately 30 days.                         |
-| GB   | gigabytes   | 1,000,000,000 bytes of storage.                           |
+| Сокращение | Расшифровка    | Объяснение                                                                                       |
+| ---------- | -------------- | ------------------------------------------------------------------------------------------------ |
+| K          | тысяча         | 1,000 чего-нибудь.                                                                               |
+| M          | миллион        | 1,000,000 чего-нибудь.                                                                           |
+| €          | Евро           | Валюта EUR.                                                                                      |
+| $          | Доллар         | Валюта USD.                                                                                      |
+| зап        | запрос         | Количество HTTP запросов.                                                                        |
+| vCPU       | виртуальный ЦП | Вычислительная мощность одного виртуального процессора, являющегося частью реального процессора. |
+| мс         | миллисекунда   | 0.001 секунды.                                                                                   |
+| с          | секунда        | Одна секунда (Единица СИ для обозначения времени).                                               |
+| мин        | минута         | Одна минута, 60 секунд.                                                                          |
+| час        | час            | Один час, 60 минут.                                                                              |
+| день       | день           | Один день, 24 часов.                                                                             |
+| мес        | мясяц          | Один месяц, примерно 30 дней.                                                                    |
+| ГБ         | гигабайт       | 1,000,000,000 байт хранилища.                                                                    |
 
-### Example Unit Combinations
+### Примеры комбинаций
 
-| Unit        | Quantity                 | In Words                               | Explanation                                              |
-| ----------- | ------------------------ | -------------------------------------- | -------------------------------------------------------- |
-| $/mo        | cost                     | US-Dollars per month                   | Monthly cost.                                            |
-| €/M req     | cost                     | Euros per million requests             | Cost for handling one million requests.                  |
-| req/min     | throughput               | requests per minute                    | Number of requests handled in one minute.                |
-| GB/s        | throughput               | gigabytes per second                   | Number of gigabytes transferred in one second.           |
-| GB-s        | memory usage             | gigabyte seconds                       | One gigabyte used for one second.                        |
-| GB-h        | memory usage             | gigabyte hours                         | One gigabyte used for one hour.                          |
-| h/mo        | time fraction            | hours per month                        | Number of hours in one month.                            |
-| K vCPU-s/mo | processing time fraction | thousand virtual CPU seconds per month | Monthly seconds of processing time with one virtual CPU. |
+| Единица измерения | Обозначение                  | Расшифровка                                   | Объяснение                                                |
+| ----------------- | ---------------------------- | --------------------------------------------- | --------------------------------------------------------- |
+| $/мес             | цена                         | Долларов в месяц                              | Цена в месяц.                                             |
+| €/M зап           | цена                         | Евро на миллион запросов                      | Стоимость обработки одного миллиона запросов.             |
+| зап/мин           | пропускная способность       | запросов в минуту                             | Количество запросов, обработанных за одну минуту.         |
+| ГБ/с              | пропускная способность       | гигабайт в секунду                            | Количество гигабайт, передаваемых за одну секунду.        |
+| ГБ-с              | использование памяти         | гигабайт в секунду                            | Один гигабайт, используемый за одну секунду.              |
+| ГБ-ч              | использование памяти         | гигабайт в час                                | Один гигабайт, используемый в течение часа.               |
+| ч/мес             | временной интервал           | часов в месяц                                 | Количество часов в месяц.                                 |
+| K vCPU-с/мес      | временной интервал обработки | тысяч виртуальных процессорных секунд в месяц | Секунд в месяц обработки с одним виртуальным процессором. |
