@@ -3,31 +3,31 @@ prev: false
 next: false
 ---
 
-# Hosting: Cloudflare Workers (Deno)
+# Хостинг: Cloudflare Workers (Deno)
 
-[Cloudflare Workers](https://workers.cloudflare.com) is a public serverless computing platform that offers a convenient and simple solution for running small workloads at the [edge](https://en.wikipedia.org/wiki/Edge_computing).
+[Cloudflare Workers](https://workers.cloudflare.com) --- это публичная платформа для бессерверных вычислений, которая предлагает удобное и простое решение для выполнения небольших рабочих нагрузок на [edge](https://en.wikipedia.org/wiki/Edge_computing).
 
-This guide will take you through the process of hosting your bot on Cloudflare Workers.
+Это руководство проведет вас через процесс размещения вашего бота на Cloudflare Workers.
 
-::: tip Looking for the Node.js Version?
-This tutorial explains how to deploy a Telegram bot to Cloudflare Workers using Deno.
-If you're looking for the Node.js version, please check out [this tutorial](./cloudflare-workers-nodejs) instead.
+::: tip Ищете версию для Node.js?
+В этом руководстве объясняется, как развернуть бота Telegram на Cloudflare Workers с помощью Deno.
+Если вы ищете версию для Node.js, пожалуйста, ознакомьтесь с [этим руководством](./cloudflare-workers-nodejs).
 :::
 
-## Prerequisites
+## Необходимые условия
 
-To follow along, please make sure that you have a [Cloudflare account](https://dash.cloudflare.com/login) with your workers subdomain [configured](https://dash.cloudflare.com/?account=workers).
+Чтобы следовать дальше, убедитесь, что у вас есть [учетная запись Cloudflare](https://dash.cloudflare.com/login) с рабочим, [настроенным](https://dash.cloudflare.com/?account=workers) поддоменом.
 
-## Setting Things Up
+## Настройка
 
-Make sure you have [Deno](https://deno.com) and [Denoflare](https://denoflare.dev) installed.
+Убедитесь, что у вас установлены [Deno](https://deno.com) и [Denoflare](https://denoflare.dev).
 
-Create a new directory, and create a new file `.denoflare` in that directory.
-Put the following contents in the file:
+Создайте новый каталог и создайте новый файл `.denoflare` в этом каталоге.
+Поместите в этот файл следующее содержимое:
 
-> Note: The "$schema" key in the following JSON code specifies a fixed version in its URL ("v0.5.12").
-> At the time of writing, this was the latest version available.
-> You should update them to the [newest version](https://github.com/skymethod/denoflare/releases).
+> Примечание: Ключ «$schema» в следующем JSON-коде указывает на фиксированную версию в своем URL («v0.5.12»).
+> На момент написания статьи это была последняя доступная версия.
+> Вам следует обновить их до [самой новой версии](https://github.com/skymethod/denoflare/releases).
 
 ```json{2,9,17-18}
 {
@@ -38,7 +38,7 @@ Put the following contents in the file:
       "localPort": 3030,
       "bindings": {
         "BOT_TOKEN": {
-          "value": "YOUR_BOT_TOKEN"
+          "value": "ВАШ_ТОКЕН_БОТА"
         }
       },
       "workersDev": true
@@ -46,19 +46,19 @@ Put the following contents in the file:
   },
   "profiles": {
     "account1": {
-      "accountId": "YOUR_ACCOUNT_ID",
-      "apiToken": "YOUR_API_TOKEN"
+      "accountId": "ВАШ_АККАУНТ_ID",
+      "apiToken": "ВАШ_API_ТОКЕН"
     }
   }
 }
 ```
 
-Make sure to replace `YOUR_ACCOUNT_ID`, `YOUR_API_TOKEN`, and `YOUR_BOT_TOKEN` appropriately.
-When creating your API token, you can choose the `Edit Cloudflare Workers` preset from the pre-configured permissions.
+Обязательно замените `ВАШ_АККАУНТ_ID`, `ВАШ_API_ТОКЕН` и `ВАШ_ТОКЕН_БОТА` соответствующим образом.
+При создании API-токена вы можете выбрать предустановку `Edit Cloudflare Workers` из предварительно настроенных разрешений.
 
-## Creating Your Bot
+## Создание бота
 
-Create a new file named `bot.ts` and put the following contents in it:
+Создайте новый файл с именем `bot.ts` и поместите в него следующее содержимое:
 
 ```ts
 import { Bot, webhookCallback } from "https://deno.land/x/grammy/mod.ts";
@@ -80,8 +80,8 @@ export default {
         botInfo = bot.botInfo;
       }
 
-      bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
-      bot.on("message", (ctx) => ctx.reply("Got another message!"));
+      bot.command("start", (ctx) => ctx.reply("Добро пожаловать! Запущен и работаю."));
+      bot.on("message", (ctx) => ctx.reply("Получил сообщение!"));
 
       const cb = webhookCallback(bot, "cloudflare-mod");
 
@@ -93,29 +93,29 @@ export default {
 };
 ```
 
-## Deploying Your Bot
+## Развертывание вашего бота
 
-It's as easy as running:
+Это так же просто, как бегать:
 
 ```sh
 denoflare push my-bot
 ```
 
-The output of the above command will provide you with the host the worker is running on.
-Watch out for a line containing something like `<MY_BOT>.<MY_SUBDOMAIN>.workers.dev`.
-That's the host where your bot is waiting to be called.
+В результате выполнения этой команды вы получите информацию о хосте, на котором запущен worker.
+Обратите внимание на строку, содержащую что-то вроде `<МОЙ_БОТ>.<МОЙ_ПОДДОМЕН>.workers.dev`.
+Это хост, на котором ваш бот ожидает вызова.
 
-## Setting Your Webhook
+## Настройка вебхука
 
-We need to tell Telegram where to send updates to.
-Open your browser and visit this URL:
+Нам нужно указать Telegram, куда отправлять обновления.
+Откройте браузер и перейдите по этому URL-адресу:
 
 ```text
-https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<MY_BOT>.<MY_SUBDOMAIN>.workers.dev/
+https://api.telegram.org/bot<ТОКЕН_БОТА>/setWebhook?url=https://<МОЙ_БОТ>.<МОЙ_ПОДДОМЕН>.workers.dev/
 ```
 
-Replace `<BOT_TOKEN>`, `<MY_BOT>`, and `<MY_SUBDOMAIN>` with your values.
-If the setup is successful, you'll see a JSON response like this:
+Замените `<ТОКЕН_БОТА>`, `<МОЙ_БОТ>` и `<МОЙ_ПОДДОМЕН>` своими значениями.
+Если настройка прошла успешно, вы увидите JSON-ответ следующего вида:
 
 ```json
 {
@@ -125,19 +125,19 @@ If the setup is successful, you'll see a JSON response like this:
 }
 ```
 
-## Testing Your Bot
+## Тестирование вашего бота
 
-Open your Telegram app, and start your bot.
-If it responds, it means you're good to go!
+Откройте приложение Telegram и запустите своего бота.
+Если он ответит, значит, все готово!
 
-## Debugging Your Bot
+## Отладка вашего бота
 
-For testing and debugging purposes, you can run a local or remote development server before deploying your bot to production.
-Simply run the following command:
+Для тестирования и отладки вы можете запустить локальный или удаленный сервер разработки перед развертыванием бота в производстве.
+Просто выполните следующую команду:
 
 ```sh
 denoflare serve my-bot
 ```
 
-Once the development server has started, you can test your bot by sending sample updates to it using tools like `curl`, [Insomnia](https://insomnia.rest), or [Postman](https://postman.com).
-Refer to [here](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates) for update examples and [here](https://core.telegram.org/bots/api#update) for more information on the update structure.
+После запуска сервера разработки вы можете протестировать своего бота, отправив ему примеры обновлений с помощью таких инструментов, как `curl`, [Insomnia](https://insomnia.rest) или [Postman](https://postman.com).
+Примеры обновлений см. на [здесь](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates), а более подробную информацию о структуре обновлений [здесь](https://core.telegram.org/bots/api#update).
