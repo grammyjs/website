@@ -40,6 +40,7 @@ jobs:
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v2
         with:
+          alias: ${{ github.head_ref }}
           publish-dir: "./site/docs/.vitepress/dist"
           production-branch: main
           github-token: ${{ secrets.GITHUB_TOKEN }}
