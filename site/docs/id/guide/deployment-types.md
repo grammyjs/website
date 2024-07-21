@@ -231,7 +231,7 @@ app.use(webhookCallback(bot, "oak"));
 > Kamu tidak perlu memanggil `bot.start()` ketika menggunakan webhook.
 
 Sekarang, aplikasi kamu akan menyimak request webhook dari Telegram.
-Hal terakhir yang perlu kamu lakukan adalah memberitahu Telegram dimana update request dikirim.
+Hal terakhir yang perlu kamu lakukan adalah memberitahu Telegram ke mana update request perlu dikirim.
 Meski terdapat beberapa cara untuk melakukan ini, namun pada akhirnya mereka semua sama-sama memanggil `setWebhook` seperti yang terdokumentasikan [di sini](https://core.telegram.org/bots/api#setwebhook).
 
 Cara yang paling mudah untuk mengatur webhook yaitu dengan menempelkan URL berikut pada bilah alamat browser.
