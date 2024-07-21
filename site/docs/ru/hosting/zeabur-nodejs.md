@@ -108,29 +108,29 @@ bot.start();
 npm run start
 ```
 
-### Method 2: Use Zeabur's Template
+### Метод 2: Используйте шаблон от Zeabur
 
-Zeabur has already provided a template for you to use.
-You can find it [here](https://github.com/zeabur/telegram-bot-starter).
+Zeabur уже предоставил вам шаблон для использования.
+Вы можете найти его [здесь](https://github.com/zeabur/deno-telegram-bot-starter).
 
-You can just use the template and start writing your bot's code.
+Вы можете просто использовать шаблон и начать писать код своего бота.
 
-## Deploying
+## Развертывание
 
-### Method 1: Deploy From GitHub in Zeabur's Dashboard
+### Метод 1: Развертывание с GitHub в панели Zeabur
 
-1. Create a repository on GitHub, it can be public or private and push your code to it.
-2. Go to [Zeabur dashboard](https://dash.zeabur.com).
-3. Click on the `New Project` button, and click on the `Deploy New Service` button, choose `GitHub` as the source and select your repository.
-4. Go to `Variables` tab to add your environment variables like `TELEGRAM_BOT_TOKEN`.
-5. Your service will be deployed automatically.
+1. Создайте репозиторий на GitHub, он может быть публичным или приватным, и разместите в нем свой код.
+2. Перейдите на [Zeabur dashboard](https://dash.zeabur.com).
+3. Нажмите на кнопку `New Project`, затем нажмите на кнопку `Deploy New Service`, выберите `GitHub` в качестве источника и выберите ваш репозиторий.
+4. Перейдите на вкладку `Variables`, чтобы добавить переменные окружения, например `TELEGRAM_BOT_TOKEN`.
+5. Ваш сервис будет развернут автоматически.
 
-### Method 2: Deploy With Zeabur CLI
+### Метод 2: Развертывание с помощью Zeabur CLI
 
-`cd` into your project directory and run the following command:
+`cd` в каталог проекта и выполните следующую команду:
 
 ```sh
 npx @zeabur/cli deploy
 ```
 
-Follow the instructions to select a region to deploy, and your bot will be deployed automatically.
+Следуйте инструкциям, чтобы выбрать регион для развертывания, и ваш бот будет развернут автоматически.
