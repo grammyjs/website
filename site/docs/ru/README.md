@@ -29,13 +29,13 @@ hero:
 features:
   - icon: <lazy-tgs-player class="VPImage" src="/icons/beach-animation.tgs"><img src="/icons/beach.svg" alt="анимация пляжа"></lazy-tgs-player>
     title: Простой в использовании
-    details: grammY делает создание ботов Telegram настолько простым, что вы уже знаете, как это сделать.
+    details: grammY делает создание Telegram ботов настолько простым, что вы уже знаете, как это сделать.
   - icon: <lazy-tgs-player class="VPImage" src="/icons/palette-animation.tgs"><img src="/icons/palette.svg" alt="анимация палитры"></lazy-tgs-player>
     title: Гибкий
     details: grammY открыт и может быть расширен с помощью плагинов, чтобы точно соответствовать вашим потребностям.
   - icon: <lazy-tgs-player class="VPImage" src="/icons/rocket-animation.tgs"><img src="/icons/rocket.svg" alt="анимация ракеты"></lazy-tgs-player>
     title: Масштабируемый
-    details: grammY поможет вам, когда ваш бот станет популярным и трафик возрастет.
+    details: grammY поможет вам, когда ваш бот станет популярным и трафик возрастёт.
 ---
 
 <!-- markdownlint-disable no-inline-html -->
@@ -44,7 +44,7 @@ features:
 
 Боты, написанные на [TypeScript](https://www.typescriptlang.org) или JavaScript, работающие на разных платформах, включая [Node.js](https://nodejs.org).
 
-`npm install grammy` и вставьте следующий код:
+Откройте терминал, напишите `npm install grammy` и вставьте следующий код в ваш файл запуска:
 
 ::: code-group
 
@@ -73,7 +73,7 @@ bot.start();
 ```ts [Deno]
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
 
-const bot = new Bot(""); // <-- Помістіть токен свого бота між "" (https://t.me/BotFather)
+const bot = new Bot(""); // <-- Поместите сюда токен своего бота "" (https://t.me/BotFather)
 
 // Ответит "Привет!" на любое сообщение.
 bot.on("message", (ctx) => ctx.reply("Привет!"));
