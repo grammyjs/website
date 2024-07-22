@@ -145,7 +145,7 @@ This would just get awkward.
 Similarly, if there's a perfect opportunity for a joke or a reference that everyone speaking your language will understand, feel free to add it.
 When done appropriately, this can greatly improve the reading flow and make it easier to remember the technical content of the documentation.
 
-That being said, it _is_ important that all the code examples stay the same
+That being said, it _is_ important that all the code examples stay the same.
 The headers and structure and warnings and tips and so on shouldn't be removed.
 A good metric is this:
 If you have two developers and they read different translations of the same page, they should have an equal understanding of that page afterwards.
