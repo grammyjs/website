@@ -530,7 +530,7 @@ export const siteRu: LocaleConfig = {
 };
 
 export const searchRu: Record<string, Partial<DocSearchProps>> = {
-  root: {
+  ru: {
     placeholder: "Поиск",
     translations: {
       button: {
