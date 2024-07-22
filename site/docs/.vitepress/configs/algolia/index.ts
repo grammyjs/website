@@ -13,6 +13,7 @@ export const algolia: DefaultTheme.Config["search"] = {
       ...locale.searchId,
       ...locale.searchUk,
       ...locale.searchZh,
+      ...locale.searchRu,
     },
   },
 };
