@@ -155,93 +155,62 @@ const pluginOfficial = {
     {
       text: "Диалоги (conversations)",
       link: "/plugins/conversations",
-      // do not add the following line to translations:
-      activeMatch: "^(/plugins/conversations|/ref/conversations/)$",
     },
     {
       text: "Интерактивные меню (menu)",
       link: "/plugins/menu",
-      // do not add the following line to translations:
-      activeMatch: "^(/plugins/menu|/ref/menu/)$",
     },
     {
       text: "Вопросы без статуса (stateless-question)",
       link: "/plugins/stateless-question",
-      // do not add the following line to translations:
-      activeMatch: "^(/plugins/stateless-question|/ref/stateless-question/)$",
     },
     {
       text: "Runner (runner)",
       link: "/plugins/runner",
-      // do not add the following line to translations:
-      activeMatch: "^(/plugins/runner|/ref/runner/)$",
     },
     {
       text: "Гидратация (hydrate)",
       link: "/plugins/hydrate",
-      // do not add the following line to translations:
-      activeMatch: "^(/plugins/hydrate|/ref/hydrate/)$",
     },
     {
       text: "Повторные запросы к API (auto-retry)",
       link: "/plugins/auto-retry",
-      // do not add the following line to translations:
-      activeMatch: "^(/plugins/auto-retry|/ref/auto-retry/)$",
     },
     {
       text: "Контроль флуда (transformer-throttler)",
       link: "/plugins/transformer-throttler",
-      // do not add the following line to translations:
-      activeMatch:
-        "^(/plugins/transformer-throttler|/ref/transformer-throttler/)$",
     },
     {
       text: "Лимит запросов пользователей (ratelimiter)",
       link: "/plugins/ratelimiter",
-      // do not add the following line to translations:
-      activeMatch: "^(/plugins/ratelimiter|/ref/ratelimiter/)$",
     },
     {
       text: "Файлы (files)",
       link: "/plugins/files",
-      // do not add the following line to translations:
-      activeMatch: "^(/plugins/files|/ref/files/)$",
     },
     {
       text: "Интернационализация (i18n)",
       link: "/plugins/i18n",
-      // do not add the following line to translations:
-      activeMatch: "^(/plugins/i18n|/ref/i18n/)$",
     },
     {
       text: "Интернационализация (fluent)",
       link: "/plugins/fluent",
-      // do not add the following line to translations:
-      activeMatch: "^(/plugins/fluent|/ref/fluent/)$",
     },
     {
       text: "Роутер (router)",
       link: "/plugins/router",
-      // do not add the following line to translations:
-      activeMatch: "^(/plugins/router|/ref/router/)$",
     },
     {
       text: "Эмодзи (emoji)",
       link: "/plugins/emoji",
-      // do not add the following line to translations:
-      activeMatch: "^(/plugins/emoji|/ref/emoji/)$",
     },
     {
       text: "Режим фарматирования (parse-mode)",
       link: "/plugins/parse-mode",
-      // do not add the following line to translations:
-      activeMatch: "^(/plugins/parse-mode|/ref/parse-mode/)$",
     },
     {
       text: "Пользователи чата (chat-members)",
       link: "/plugins/chat-members",
-      // do not add the following line to translations:
-      activeMatch: "^(/plugins/chat-members|/ref/chat-members/)$",
     },
   ],
 };

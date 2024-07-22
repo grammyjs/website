@@ -42,7 +42,7 @@ features:
 
 ## Быстрый старт
 
-Боты, написанные на [TypeScript](https://www.typescriptlang.org) или JavaScript, работающие на разныех платформах, включая [Node.js](https://nodejs.org).
+Боты, написанные на [TypeScript](https://www.typescriptlang.org) или JavaScript, работающие на разных платформах, включая [Node.js](https://nodejs.org).
 
 `npm install grammy` и вставьте следующий код:
 
