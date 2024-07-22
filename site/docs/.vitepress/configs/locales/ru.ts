@@ -7,60 +7,60 @@ const learnGuide = {
   items: [
     {
       text: "Обзор",
-      link: "/guide/",
-      activeMatch: "^/guide/$",
+      link: "/ru/guide/",
+      activeMatch: "^/ru/guide/$",
     },
     {
       text: "Введение",
-      link: "/guide/introduction",
+      link: "/ru/guide/introduction",
     },
     {
       text: "Начало работы",
-      link: "/guide/getting-started",
+      link: "/ru/guide/getting-started",
     },
     {
-      text: "Отправка и принятие сообщений",
-      link: "/guide/basics",
+      text: "Отправка и получение сообщений",
+      link: "/ru/guide/basics",
     },
     {
       text: "Контекст",
-      link: "/guide/context",
+      link: "/ru/guide/context",
     },
     {
       text: "Bot API",
-      link: "/guide/api",
+      link: "/ru/guide/api",
     },
     {
       text: "Фильтр запросов и bot.on()",
-      link: "/guide/filter-queries",
+      link: "/ru/guide/filter-queries",
     },
     {
       text: "Команды",
-      link: "/guide/commands",
+      link: "/ru/guide/commands",
     },
     {
       text: "Реакции",
-      link: "/guide/reactions",
+      link: "/ru/guide/reactions",
     },
     {
       text: "Middleware",
-      link: "/guide/middleware",
+      link: "/ru/guide/middleware",
     },
     {
       text: "Поимка ошибок",
-      link: "/guide/errors",
+      link: "/ru/guide/errors",
     },
     {
       text: "Обработчик файлов",
-      link: "/guide/files",
+      link: "/ru/guide/files",
     },
     {
       text: "Игры",
-      link: "/guide/games",
+      link: "/ru/guide/games",
     },
     {
-      text: "Long Polling против Вебхуков",
-      link: "/guide/deployment-types",
+      text: "Long Polling против Webhooks",
+      link: "/ru/guide/deployment-types",
     },
   ],
 };
@@ -70,44 +70,44 @@ const learnAdvanced = {
   items: [
     {
       text: "Обзор",
-      link: "/advanced/",
-      activeMatch: "^/advanced/$",
+      link: "/ru/advanced/",
+      activeMatch: "^/ru/advanced/$",
     },
     {
       text: "Возможности Middleware",
-      link: "/advanced/middleware",
+      link: "/ru/advanced/middleware",
     },
     {
       text: "Масштабирование I: Большая кодовая база",
-      link: "/advanced/structuring",
+      link: "/ru/advanced/structuring",
     },
     {
       text: "Масштабирование II: Высокая нагрузка",
-      link: "/advanced/scaling",
+      link: "/ru/advanced/scaling",
     },
     {
       text: "Масштабирование III: Надежность",
-      link: "/advanced/reliability",
+      link: "/ru/advanced/reliability",
     },
     {
       text: "Масштабирование IV: Ограничения на флуд",
-      link: "/advanced/flood",
+      link: "/ru/advanced/flood",
     },
     {
       text: "Трансформация Bot API",
-      link: "/advanced/transformers",
+      link: "/ru/advanced/transformers",
     },
     {
       text: "Telegram Бизнес",
-      link: "/advanced/business",
+      link: "/ru/advanced/business",
     },
     {
       text: "Поддержка прокси",
-      link: "/advanced/proxy",
+      link: "/ru/advanced/proxy",
     },
     {
       text: "Советы по развертыванию",
-      link: "/advanced/deployment",
+      link: "/ru/advanced/deployment",
     },
   ],
 };
@@ -117,12 +117,12 @@ const pluginIntroduction = {
   items: [
     {
       text: "О плагинах",
-      link: "/plugins/",
-      activeMatch: "^/plugins/$",
+      link: "/ru/plugins/",
+      activeMatch: "^/ru/plugins/$",
     },
     {
       text: "Как написать плагин",
-      link: "/plugins/guide",
+      link: "/ru/plugins/guide",
     },
   ],
 };
@@ -132,19 +132,19 @@ const pluginBuiltin = {
   items: [
     {
       text: "Сессии и хранение данных",
-      link: "/plugins/session",
+      link: "/ru/plugins/session",
     },
     {
       text: "Встроенные и собственные клавиатуры",
-      link: "/plugins/keyboard",
+      link: "/ru/plugins/keyboard",
     },
     {
       text: "Группы медиа",
-      link: "/plugins/media-group",
+      link: "/ru/plugins/media-group",
     },
     {
       text: "Inline запросы",
-      link: "/plugins/inline-query",
+      link: "/ru/plugins/inline-query",
     },
   ],
 };
@@ -154,63 +154,63 @@ const pluginOfficial = {
   items: [
     {
       text: "Диалоги (conversations)",
-      link: "/plugins/conversations",
+      link: "/ru/plugins/conversations",
     },
     {
       text: "Интерактивные меню (menu)",
-      link: "/plugins/menu",
+      link: "/ru/plugins/menu",
     },
     {
-      text: "Вопросы без статуса (stateless-question)",
-      link: "/plugins/stateless-question",
+      text: "Вопросы без состояния (stateless-question)",
+      link: "/ru/plugins/stateless-question",
     },
     {
       text: "Runner (runner)",
-      link: "/plugins/runner",
+      link: "/ru/plugins/runner",
     },
     {
       text: "Гидратация (hydrate)",
-      link: "/plugins/hydrate",
+      link: "/ru/plugins/hydrate",
     },
     {
       text: "Повторные запросы к API (auto-retry)",
-      link: "/plugins/auto-retry",
+      link: "/ru/plugins/auto-retry",
     },
     {
       text: "Контроль флуда (transformer-throttler)",
-      link: "/plugins/transformer-throttler",
+      link: "/ru/plugins/transformer-throttler",
     },
     {
       text: "Лимит запросов пользователей (ratelimiter)",
-      link: "/plugins/ratelimiter",
+      link: "/ru/plugins/ratelimiter",
     },
     {
       text: "Файлы (files)",
-      link: "/plugins/files",
+      link: "/ru/plugins/files",
     },
     {
       text: "Интернационализация (i18n)",
-      link: "/plugins/i18n",
+      link: "/ru/plugins/i18n",
     },
     {
       text: "Интернационализация (fluent)",
-      link: "/plugins/fluent",
+      link: "/ru/plugins/fluent",
     },
     {
       text: "Роутер (router)",
-      link: "/plugins/router",
+      link: "/ru/plugins/router",
     },
     {
       text: "Эмодзи (emoji)",
-      link: "/plugins/emoji",
+      link: "/ru/plugins/emoji",
     },
     {
-      text: "Режим фарматирования (parse-mode)",
-      link: "/plugins/parse-mode",
+      text: "Режим форматирования (parse-mode)",
+      link: "/ru/plugins/parse-mode",
     },
     {
       text: "Пользователи чата (chat-members)",
-      link: "/plugins/chat-members",
+      link: "/ru/plugins/chat-members",
     },
   ],
 };
@@ -220,19 +220,19 @@ const pluginThirdparty = {
   items: [
     {
       text: "Консоль со временем",
-      link: "/plugins/console-time",
+      link: "/ru/plugins/console-time",
     },
     {
       text: "Полезный Middleware",
-      link: "/plugins/middlewares",
+      link: "/ru/plugins/middlewares",
     },
     {
       text: "Автоцитата",
-      link: "/plugins/autoquote",
+      link: "/ru/plugins/autoquote",
     },
     {
       text: "[Создайте свой PR!]",
-      link: "/plugins/#create-your-own-plugins",
+      link: "/ru/plugins/#create-your-own-plugins",
     },
   ],
 };
@@ -242,7 +242,7 @@ const resourcesGrammy = {
   items: [
     {
       text: "О grammY",
-      link: "/resources/about",
+      link: "/ru/resources/about",
     },
     {
       text: "Чат сообщества (Англоязычный)",
@@ -262,11 +262,11 @@ const resourcesGrammy = {
     },
     {
       text: "ЧаВо",
-      link: "/resources/faq",
+      link: "/ru/resources/faq",
     },
     {
-      text: "Как grammY конкурирует с другими фреймворками",
-      link: "/resources/comparison",
+      text: "Как grammY конкурирует с другими библиотеками",
+      link: "/ru/resources/comparison",
     },
   ],
 };
@@ -287,7 +287,7 @@ const resourcesTelegram = {
       link: "https://core.telegram.org/bots/features",
     },
     {
-      text: "ссылка на Bot API",
+      text: "Ссылка на Bot API",
       link: "https://core.telegram.org/bots/api",
     },
     {
@@ -317,7 +317,7 @@ const hostingOverview = {
   items: [
     {
       text: "Сравнение",
-      link: "/hosting/comparison",
+      link: "/ru/hosting/comparison",
     },
   ],
 };
@@ -327,47 +327,47 @@ const hostingTutorials = {
   items: [
     {
       text: "Виртуальный выделенный сервер (VPS)",
-      link: "/hosting/vps",
+      link: "/ru/hosting/vps",
     },
     {
       text: "Развертывание Deno",
-      link: "/hosting/deno-deploy",
+      link: "/ru/hosting/deno-deploy",
     },
     {
-      text: "Функции Supabase Edge",
-      link: "/hosting/supabase",
+      text: "Supabase Edge Functions",
+      link: "/ru/hosting/supabase",
     },
     {
       text: "Cloudflare Workers (Deno)",
-      link: "/hosting/cloudflare-workers",
+      link: "/ru/hosting/cloudflare-workers",
     },
     {
       text: "Cloudflare Workers (Node.js)",
-      link: "/hosting/cloudflare-workers-nodejs",
+      link: "/ru/hosting/cloudflare-workers-nodejs",
     },
     {
       text: "Fly",
-      link: "/hosting/fly",
+      link: "/ru/hosting/fly",
     },
     {
-      text: "Функции Firebase",
-      link: "/hosting/firebase",
+      text: "Firebase Functions",
+      link: "/ru/hosting/firebase",
     },
     {
       text: "Vercel",
-      link: "/hosting/vercel",
+      link: "/ru/hosting/vercel",
     },
     {
       text: "Zeabur (Deno)",
-      link: "/hosting/zeabur-deno",
+      link: "/ru/hosting/zeabur-deno",
     },
     {
       text: "Zeabur (Node.js)",
-      link: "/hosting/zeabur-nodejs",
+      link: "/ru/hosting/zeabur-nodejs",
     },
     {
       text: "Heroku",
-      link: "/hosting/heroku",
+      link: "/ru/hosting/heroku",
     },
   ],
 };
@@ -377,10 +377,10 @@ export const siteRu: LocaleConfig = {
     label: "Русский",
     lang: "ru-RU",
     title: "grammY",
-    description: "Фреймворк для Telegram ботов.",
+    description: "Библиотека для создания Telegram ботов.",
     themeConfig: {
       nav: [
-        { text: "Гайд", link: "/guide/" },
+        { text: "Гайд", link: "/ru/guide/" },
         {
           text: "Изучение",
           items: [learnGuide, learnAdvanced],
@@ -401,7 +401,7 @@ export const siteRu: LocaleConfig = {
               text: "Примеры",
               items: [
                 {
-                  text: "Замечательный grammY",
+                  text: "Проекты сообщества (awesome grammY)",
                   link: "https://github.com/grammyjs/awesome-grammY",
                 },
                 {
@@ -422,29 +422,29 @@ export const siteRu: LocaleConfig = {
         },
         {
           text: "Справочник API",
-          link: "/ref/",
+          link: "/ru/ref/",
         },
       ],
       sidebar: {
-        "/guide/": [
+        "/ru/guide/": [
           { collapsed: false, ...learnGuide },
           { collapsed: true, ...learnAdvanced },
         ],
-        "/advanced/": [
+        "/ru/advanced/": [
           { collapsed: true, ...learnGuide },
           { collapsed: false, ...learnAdvanced },
         ],
-        "/plugins/": [
+        "/ru/plugins/": [
           { collapsed: false, ...pluginIntroduction },
           { collapsed: false, ...pluginBuiltin },
           { collapsed: false, ...pluginOfficial },
           { collapsed: false, ...pluginThirdparty },
         ],
-        "/resources/": [
+        "/ru/resources/": [
           { collapsed: false, ...resourcesGrammy },
           { collapsed: false, ...resourcesTelegram },
         ],
-        "/hosting/": [
+        "/ru/hosting/": [
           { collapsed: false, ...hostingOverview },
           { collapsed: false, ...hostingTutorials },
         ],
@@ -484,14 +484,14 @@ export const siteRu: LocaleConfig = {
       notFound: {
         code: "404",
         title: "Страница не найдена",
-        linkText: "Верните меня домоооой",
+        linkText: "Вернуться домой (смотрите чтобы вас не загнали, а то вы больше не сможете погулять)",
         linkLabel: "Вернуться домой",
         messages: [
-          "Не найдено",
-          "Не-а.",
-          "Ничего для тебя, извини.",
-          "Оишбка 404 \nЭта страница не может быть найдена \nвместо Haiku",
-          "Country rooooaaaads,",
+          "Они не смогли найти золото, Mased.",
+          "Запрашиваемая страница не найдена :face_with_rolling_eyes:",
+          "Ничего для тебя, сорянчик.",
+          "Ошибка 404",
+          "Я знаю, где живёт любовь. \nВ каких укромных уголках твоей души её искать...",
         ],
       },
     },
@@ -518,8 +518,8 @@ export const searchRu: Record<string, Partial<DocSearchProps>> = {
           noRecentSearchesText: "Нет последних запросов",
           saveRecentSearchButtonTitle: "Сохранить этот запрос",
           removeRecentSearchButtonTitle: "Убрать этот запрос из истории",
-          favoriteSearchesTitle: "Любимые",
-          removeFavoriteSearchButtonTitle: "Убрать этот запрос из любимых",
+          favoriteSearchesTitle: "Любимые запросы",
+          removeFavoriteSearchButtonTitle: "Убрать этот запрос из списка любимых",
         },
         errorScreen: {
           titleText: "Невозможно получить результаты",
@@ -533,10 +533,10 @@ export const searchRu: Record<string, Partial<DocSearchProps>> = {
           navigateDownKeyAriaLabel: "Стрелка вниз",
           closeText: "чтобы закрыть",
           closeKeyAriaLabel: "Клавиша Escape",
-          searchByText: "Поиск по",
+          searchByText: "Поиск сделан",
         },
         noResultsScreen: {
-          noResultsText: "Нет результатов по",
+          noResultsText: "Нет результатов по запросу:",
           suggestedQueryText: "Попробуйте поискать",
           reportMissingResultsText:
             "Как вы считаете, должен ли этот запрос возвращать результаты?",
