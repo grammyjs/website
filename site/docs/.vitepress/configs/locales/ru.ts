@@ -404,7 +404,7 @@ const hostingTutorials = {
 };
 
 export const siteRu: LocaleConfig = {
-  root: {
+  ru: {
     label: "Русский",
     lang: "ru-RU",
     title: "grammY",
