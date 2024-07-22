@@ -14,7 +14,7 @@ They should receive as much care as the English version.
 
 For example, Google Translate is already built into Google Chrome.
 Don’t bother to create a mere machine translation of the docs.
-You can use machine translations to help you get done faster, but everything needs to be proof-read by you, and typically, a lot of things need to be corrected or rephrased.
+(You can use machine translations in the process to help you get done faster.)
 If we create a translation of the docs for a new language, then because we want high quality translations written by native speakers or near-native speakers.
 Examples and real-world comparisons must be replaced by equivalents in the respective culture.
 A good translation is hard and it takes time.
