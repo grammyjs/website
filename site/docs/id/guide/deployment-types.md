@@ -228,7 +228,28 @@ app.use(webhookCallback(bot, "oak"));
 
 :::
 
-> Kamu tidak perlu memanggil `bot.start()` ketika menggunakan webhooks.
+> Kamu tidak perlu memanggil `bot.start()` ketika menggunakan webhook.
+
+Sekarang, aplikasi kamu akan menyimak request webhook dari Telegram.
+Hal terakhir yang perlu kamu lakukan adalah memberitahu Telegram ke mana update request perlu dikirim.
+Meski terdapat beberapa cara untuk melakukan ini, namun pada akhirnya mereka semua sama-sama memanggil `setWebhook` seperti yang terdokumentasikan [di sini](https://core.telegram.org/bots/api#setwebhook).
+
+Cara yang paling mudah untuk mengatur webhook yaitu dengan menempelkan URL berikut pada bilah alamat browser.
+Ganti `<token>` dengan token bot dan `<url>` dengan url publik server webhook kamu.
+
+```txt
+https://api.telegram.org/bot<token>/setWebhook?url=<url>
+```
+
+Kami juga menyediakan pengaturan interaktif jika kamu lebih suka mengelola webhook melalui website.
+Kamu dapat menemukannya di sini: <https://telegram.tools/webhook-manager>
+
+Selain itu, kamu juga bisa mengatur webhook melalui kode:
+
+```ts
+const endpoint = ""; // <-- tulis URL server kamu di sini
+await bot.api.setWebhook(endpoint);
+```
 
 Jika kamu berniat menjalankan bot di sebuah VPS menggunakan webhook, pastikan untuk membaca [panduan keren Marvin mengenai hal-hal tentang webhook](https://core.telegram.org/bots/webhooks) yang ditulis oleh tim Telegram.
 
