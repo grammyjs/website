@@ -131,7 +131,7 @@ Regarding the config, it may make sense not to copy the English version, as ther
 Instead, you can copy a different language for the structure (and read the English config for the content).
 For example, it helps to display three files next to each other: Spanish for structure, English for content, and your new language.
 
-### Freedom in Deviating From English
+### Freedom in Deviating from English
 
 > **TL;DR:** Keep the same structure and content, deliver it in your own language.
 
