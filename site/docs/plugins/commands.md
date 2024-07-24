@@ -175,7 +175,7 @@ As stated in the [Telegram API documentation](https://core.telegram.org/bots/api
 
 > 1-32 characters. Can contain only lowercase English letters, digits and underscores.
 
-Therefore calling `setCommands` or `setMyCommands` with anything but lower_case-commands will throw an exception. Commands not following this rules can still be registered, used and handled, but will never be displayed on the user menu as such.
+Therefore calling `setCommands` or `setMyCommands` with anything but lower_c4s3_commands will throw an exception. Commands not following this rules can still be registered, used and handled, but will never be displayed on the user menu as such.
 :::
 
 **Be aware** that `SetCommands` and `SetMyCommands` only affects the commands displayed in the user's commands menu, and not the actual access to them. You will learn how to implement restricted command access in the [Scoped Commands](#scoped-commands) section.
@@ -390,6 +390,26 @@ myCommands.command(
 
 :::
 
+### Combo with i18n
+
+If you are looking to have your localized command names and descriptions bundle inside your `.ftl` files, you could make use of the following idea:
+
+```ts
+function addLocalizations(command: Command) {
+  i18n.locales.forEach((locale) => {
+    command.localize(
+      locale,
+      i18n.t(locale, `${command.name}.command`),
+      i18n.t(locale, `${command.name}.description`)
+    );
+  });
+  return command;
+}
+
+myCommands.commands.forEach(addLocalizations)
+
+```
+
 ## Finding the Nearest Command
 
 Even though Telegram it's capable of auto completing the registered commands, sometimes users do type them manually and, in some cases, happen to make mistakes.
@@ -438,7 +458,6 @@ const myCommands = new CommandGroup();
 
 // ... Register the commands
 
-
 bot
   // Check if there is a command
   .filter(commandNotFound(myCommands))
@@ -454,7 +473,6 @@ bot
     // Nothing seems to come close to what the user typed
     await ctx.reply("Oops... I don't know that command :/");
   });
-
 ```
 
 :::
@@ -463,18 +481,17 @@ Behind the scenes `commandNotFound` will use the `getNearestCommand` context met
 
 It is possible to search across multiple CommandGroup instances, and `ctx.commandSuggestion` will be the most similar command, if any, across them all.
 
-It also allows to set the `ignoreCase` flag, which will ignore casing while looking for a similar command, and the `similarityThreshold` flag, which controls how similar a command name has to be to the user input for it to be recommended.
+It also allows to set the `ignoreCase` flag, which will ignore casing while looking for a similar command and the `similarityThreshold` flag, which controls how similar a command name has to be to the user input for it to be recommended.
 
-The `commandNotFound` function will only trigger for updates which contains command-like-text similar to your registered commands. For example, if you only have register [commands with custom prefixes](#prefix) `?` and `supercustom`, it trigger the handle for anything that looks like your commands, e.g: `?sayhi` or `supercustomhi`, but no `/definitely-a-command`. Same goes the other way, if you only have commands with the default prefix, it will only trigger on updates that looks like `/regular /commands`.
+The `commandNotFound` function will only trigger for updates which contains command-like-text similar to your registered commands. For example, if you only have register [commands with custom prefixes](#prefix) `?` and `supercustom`, it will trigger the handle for anything that looks like your commands, e.g: `?sayhi` or `supercustomhi`, but no `/definitely_a_command`. Same goes the other way, if you only have commands with the default prefix, it will only trigger on updates that looks like `/regular /commands`.
 
 The recommended commands will only come from the commandGroup instances you pass to the function. So you could defer the checks into multiple, separate filters.
 
 Let's use the previous knowledge to inspect the next example:
 
 ```js
-
-const myCommands = new CommandGroup;
-myCommands.command("dad", "calls dad", () => {}, { prefix: '?'})
+const myCommands = new CommandGroup();
+myCommands.command("dad", "calls dad", () => {}, { prefix: "?" })
   .localize("es", "papa", "llama a papa")
   .localize("fr", "pere", "appelle papa");
 
@@ -485,15 +502,15 @@ otherCommands.command("bread", "eat a toast", () => {})
 
 // Register Each
 
-// Let's assume the user is french and typed /Papi 
+// Let's assume the user is french and typed /Papi
 bot
   // this filter will trigger for any command-like as '/regular' or '?custom'
   .filter(commandNotFound([myCommands, otherCommands], {
-        ignoreLocalization: true,
-        ignoreCase: true,
-    }))
+    ignoreLocalization: true,
+    ignoreCase: true,
+  }))
   .use(async (ctx) => {
-    ctx.commandSuggestion === "?papa" // evaluates to true
+    ctx.commandSuggestion === "?papa"; // evaluates to true
 
     /* if the ignoreLocalization was falsy instead
      * we would have gotten:
@@ -501,9 +518,9 @@ bot
      */
   });
 
- /* We could add more filters like the above,
-  * with different parameters or CommandGroups to check against
-  */
+/* We could add more filters like the above,
+ * with different parameters or CommandGroups to check against
+ */
 ```
 
 There is a lot of possibilities!
