@@ -15,7 +15,8 @@ Here is a quick overview of what you get with this plugin:
 - Improved command grouping and organization
 - Ability to scope command reach, e.g: only accessible to group admins or channels, etc
 - Defining command translations
-- "Did you mean ...?" feature that finds the nearest existing command to a given user miss-input
+- `Did you mean ...?` feature that finds the nearest existing command to a given user miss-input
+- Allow for commands to match in a case-insensitive manner
 - Set custom behavior for commands that explicitly mention your bot's user, like: `/start@your_bot`
 - Custom command prefixes, e.g: `+`, `?` or any symbol instead of `/`
 - Support for commands that are not in the beginning of the message
@@ -28,7 +29,7 @@ All of these features are made possible because you will define one or more cent
 Before we dive in, take a look at how you can register and handle a command with the plugin:
 
 ```js
-const myCommands = new Commands();
+const myCommands = new CommandGroup();
 
 myCommands.command("hello", "Say hello", (ctx) => ctx.reply(`Hello, world!`));
 
@@ -41,21 +42,21 @@ Now, let's get into some of the extra tools this plugin has to offer.
 
 ## Importing
 
-First of all, we need to import the `Commands` class.
+First of all, we need to import the `CommandGroup` class.
 
 ::: code-group
 
 ```ts [TypeScript]
-import { Commands, commands, type CommandsFlavor } from "@grammyjs/commands";
+import { CommandGroup commands, type CommandsFlavor } from "@grammyjs/commands";
 ```
 
 ```js [JavaScript]
-const { Commands, commands } = require("@grammyjs/commands");
+const { CommandGroup commands } = require("@grammyjs/commands");
 ```
 
 ```ts [Deno]
 import {
-  Commands,
+  CommandGroup
   commands,
   type CommandsFlavor,
 } from "https://deno.land/x/grammy_commands/mod.ts";
@@ -67,10 +68,10 @@ Now that that's settled, let's see how we can make our commands visible to our u
 
 ## User Command Menu Setting
 
-Once you defined your commands with an instance of the `Commands` class, you can call the `setCommands` method, which will register all the defined commands to your bot.
+Once you defined your commands with an instance of the `CommandGroup` class, you can call the `setCommands` method, which will register all the defined commands to your bot.
 
 ```js
-const myCommands = new Commands();
+const myCommands = new CommandGroup();
 
 myCommands.command("hello", "Say hello", (ctx) => ctx.reply("Hi there!"));
 myCommands.command("start", "Start the bot", (ctx) => ctx.reply("Starting..."));
@@ -101,8 +102,8 @@ const bot = new Bot<MyContext>("token");
 // Register the context shortcut
 bot.use(commands());
 
-const loggedOutCommands = new Commands();
-const loggedInCommands = new Commands();
+const loggedOutCommands = new CommandGroup();
+const loggedInCommands = new CommandGroup();
 
 loggedOutCommands.command(
   "login",
@@ -134,8 +135,8 @@ await loggedOutCommands.setCommands(bot);
 // Register the context shortcut
 bot.use(commands());
 
-const loggedOutCommands = new Commands();
-const loggedInCommands = new Commands();
+const loggedOutCommands = new CommandGroup();
+const loggedInCommands = new CommandGroup();
 
 loggedOutCommands.command(
   "login",
@@ -174,9 +175,7 @@ As stated in the [Telegram API documentation](https://core.telegram.org/bots/api
 
 > 1-32 characters. Can contain only lowercase English letters, digits and underscores.
 
-Therefore calling `setCommands` or `setMyCommands` on upperCased commands will throw an exception. They can still be registered and used, but will never be displayed on the user menu as such.
-
-**Setting UpperCased command names is heavily discourage**
+Therefore calling `setCommands` or `setMyCommands` with anything but lower_case-commands will throw an exception. Commands not following this rules can still be registered, used and handled, but will never be displayed on the user menu as such.
 :::
 
 **Be aware** that `SetCommands` and `SetMyCommands` only affects the commands displayed in the user's commands menu, and not the actual access to them. You will learn how to implement restricted command access in the [Scoped Commands](#scoped-commands) section.
@@ -220,7 +219,7 @@ bot.use(devCommands);
 ```ts [admin.ts]
 import { userCommands } from './users.ts'
 
-export const devCommands = new Commands<MyContext>()
+export const devCommands = new CommandGroup<MyContext>()
 
 devCommands.command('devlogin', 'Greetings', async (ctx, next) => {
    if (ctx.from?.id === ctx.env.DEVELOPER_ID) {
@@ -246,7 +245,7 @@ devCommands.command('devlogout', 'Greetings', async (ctx, next) => {
 ```
 
 ```ts [users.ts]
-export const userCommands = new Commands<MyContext>();
+export const userCommands = new CommandGroup<MyContext>();
 
 userCommands.command("start", "Greetings", async (ctx) => {
   await ctx.reply("Hello user");
@@ -275,7 +274,7 @@ You don't even need to worry about calling `filter`, the `addToScope` method wil
 Here's an example of a scoped command:
 
 ```js
-const myCommands = new Commands();
+const myCommands = new CommandGroup();
 
 myCommands
   .command("start", "Initializes bot configuration")
@@ -399,31 +398,30 @@ The Commands plugin helps you deal with that by allowing you to suggest a comman
 ::: code-group
 
 ```ts [TypeScript]
+import { commandNotFound } from "@grammyjs/commands";
+
 // Use the flavor to create a custom context
 type MyContext = Context & CommandsFlavor;
 
 // Use the new context to instantiate your bot
 const bot = new Bot<MyContext>("token");
 
-// Register the context shortcut
+// Register the plugin
 bot.use(commands());
 
-const myCommands = new Commands();
+const myCommands = new CommandGroup();
 
 // ... Register the commands
 
 bot
   // Check if there is a command
-  .filter(Context.has.filterQuery("::bot_command"))
+  .filter(commandNotFound(myCommands))
   // If so, that means it wasn't handled by any of our commands.
-  // Let's try and guess what the user meant.
   .use(async (ctx) => {
-    const suggestedCommand = ctx.getNearestCommand(myCommands);
-
     // We found a potential match
-    if (suggestedCommand) {
-      return ctx.reply(
-        `Hmm... I don't know that command. Did you mean ${suggestedCommand}?`,
+    if (ctx.commandSuggestion) {
+      await ctx.reply(
+        `Hmm... I don't know that command. Did you mean ${ctx.commandSuggestion}?`,
       );
     }
 
@@ -436,81 +434,90 @@ bot
 // Register the context shortcut
 bot.use(commands());
 
-const myCommands = new Commands();
+const myCommands = new CommandGroup();
 
 // ... Register the commands
 
+
 bot
   // Check if there is a command
-  .filter(Context.has.filterQuery("::bot_command"))
+  .filter(commandNotFound(myCommands))
   // If so, that means it wasn't handled by any of our commands.
-  // Let's try and guess what the user meant.
   .use(async (ctx) => {
-    const suggestedCommand = ctx.getNearestCommand(myCommands);
-
     // We found a potential match
-    if (suggestedCommand) {
-      return ctx.reply(
-        `Hmm... I don't know that command. Did you mean ${suggestedCommand}?`,
+    if (ctx.commandSuggestion) {
+      await ctx.reply(
+        `Hmm... I don't know that command. Did you mean ${ctx.commandSuggestion}?`,
       );
     }
 
     // Nothing seems to come close to what the user typed
     await ctx.reply("Oops... I don't know that command :/");
   });
+
 ```
 
 :::
 
-By default the `getNearestCommand` method will prioritize commands that correspond to the user language, if you want to opt-out of this behavior, you can pass the `ignoreLocalization` flag set to true.
+Behind the scenes `commandNotFound` will use the `getNearestCommand` context method which by default will prioritize commands that correspond to the user language, if you want to opt-out of this behavior, you can pass the `ignoreLocalization` flag set to true.
 
-It is possible to search across multiple Commands instances, and the `getNearestCommand` method will return the most similar command across them.
+It is possible to search across multiple CommandGroup instances, and `ctx.commandSuggestion` will be the most similar command, if any, across them all.
 
-Heres is an example demonstrating both things:
+It also allows to set the `ignoreCase` flag, which will ignore casing while looking for a similar command, and the `similarityThreshold` flag, which controls how similar a command name has to be to the user input for it to be recommended.
+
+The `commandNotFound` function will only trigger for updates which contains command-like-text similar to your registered commands. For example, if you only have register [commands with custom prefixes](#prefix) `?` and `supercustom`, it trigger the handle for anything that looks like your commands, e.g: `?sayhi` or `supercustomhi`, but no `/definitely-a-command`. Same goes the other way, if you only have commands with the default prefix, it will only trigger on updates that looks like `/regular /commands`.
+
+The recommended commands will only come from the commandGroup instances you pass to the function. So you could defer the checks into multiple, separate filters.
+
+Let's use the previous knowledge to inspect the next example:
 
 ```js
-bot.use(commands());
 
-const myCommands = new Commands();
-myCommands.command("dad", "_", () => {})
-  .localize("es", "papa", "_")
-  .localize("fr", "pere", "_");
+const myCommands = new CommandGroup;
+myCommands.command("dad", "calls dad", () => {}, { prefix: '?'})
+  .localize("es", "papa", "llama a papa")
+  .localize("fr", "pere", "appelle papa");
 
-const otherCommands = new Commands();
-otherCommands.command("bread", "_", () => {})
-  .localize("es", "pan", "_")
-  .localize("fr", "pain", "_");
+const otherCommands = new CommandGroup();
+otherCommands.command("bread", "eat a toast", () => {})
+  .localize("es", "pan", "come un pan")
+  .localize("fr", "pain", "manger du pain");
 
-bot.use(myCommands);
-bot.use(otherCommands);
+// Register Each
 
-// let says the user is french and typed '/papi'
+// Let's assume the user is french and typed /Papi 
 bot
-  .filter(Context.has.filterQuery("::bot_command"))
+  // this filter will trigger for any command-like as '/regular' or '?custom'
+  .filter(commandNotFound([myCommands, otherCommands], {
+        ignoreLocalization: true,
+        ignoreCase: true,
+    }))
   .use(async (ctx) => {
-    const suggestedCommandLocal = ctx.getNearestCommand([
-      myCommands,
-      otherCommands,
-    ]);
-    suggestedCommandLocal === "/pain"; // true
+    ctx.commandSuggestion === "?papa" // evaluates to true
 
-    const suggestedCommandGlobal = ctx.getNearestCommand([
-      myCommands,
-      otherCommands,
-    ], { ignoreLocalization: true });
-
-    suggestedCommandGlobal === "/papa"; // true
+    /* if the ignoreLocalization was falsy instead
+     * we would have gotten:
+     * ctx.commandSuggestion equals "/pain"
+     */
   });
+
+ /* We could add more filters like the above,
+  * with different parameters or CommandGroups to check against
+  */
 ```
 
-It also allows to set the `ignoreCase` flag, which is self-explanatory, and the `similarityThreshold` flag, which controls how similar a command name has to be in comparison to the user input for it to be recommended.
+There is a lot of possibilities!
 
 ## Command Options
 
-There are a few options that can be specified per command, per scope, or globally for a `Commands` instance.
+There are a few options that can be specified per command, per scope, or globally for a `CommandGroup` instance.
 These options allow you to further customize how your bot handles commands, giving you more flexibility.
 
-### `targetedCommands`
+### ignoreCase
+
+By default commands will match the user input in a case-sensitive manner. Having this flag set, for example, in a command named `/dandy` will match `/DANDY` the same as `/dandY` or any other case-only variation.
+
+### targetedCommands
 
 When users invoke a command, they can optionally tag your bot, like so: `/command@bot_username`.
 You can decide what to do with these commands by using the `targetedCommands` config option.
@@ -520,13 +527,19 @@ With it you can choose between three different behaviors:
 - `optional`: Handles both commands that do and that don't mention the bot's user
 - `required`: Only handles commands that mention the bot's user
 
-### `prefix`
+### prefix
 
 Currently, only commands starting with `/` are recognized by Telegram and, thus, by the [command handling done by the grammY core library](../guide/commands).
 In some occasions, you might want to change that and use a custom prefix for your bot.
 That is made possible by the `prefix` option, which will tell the Commands plugin to look for that prefix when trying to identify a command.
 
-### `matchOnlyAtStart`
+If you are ever in the need for retrieving botCommand entities from an update and need it to be hydrated with the custom prefixed you have register, there is a method specifically tailored for that, called `ctx.getCommandEntities(yourCommands)`. It returns the same interface as `ctx.entities('bot_command')`
+
+:::tip
+Commands with custom prefixes cannot be shown in the Commands Menu.
+:::
+
+### matchOnlyAtStart
 
 When [handling commands](../guide/commands), the grammY core library will only recognize commands that start on the first character of a message.
 The Commands plugin, however, allows you to listen for commands in the middle of the message text, or in the end, it doesn't matter!
