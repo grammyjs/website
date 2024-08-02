@@ -100,7 +100,7 @@ bot.start();
 
 <div style="font-size: 0.75rem;  display: flex; justify-content: center;">
 
-© 2021-2024 &middot; grammY soporta Telegram Bot API 7.7 que fue [liberada](https://core.telegram.org/bots/api#july-31-2024) el 31 de Julio del 2024.
+© 2021-2024 &middot; grammY soporta Telegram Bot API 7.8 que fue [liberada](https://core.telegram.org/bots/api#july-31-2024) el 31 de Julio del 2024.
 (Última novedad: Miniaplicaciones principales)
 
 </div>
