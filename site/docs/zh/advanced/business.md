@@ -96,7 +96,7 @@ bot.on("business_message").filter(
 当 bot 被关联到一个企业账户时，它将收到一个 `business_connection` update。
 当 bot 被断开联系或以不同方式编辑关联时，也会收到此 update。
 
-例如，bot 可能有权限向其管理的聊天发送消息，也可能无法发送。
+例如，bot 可能有权，也可能无权向其管理的聊天发送消息。
 你可以使用 `:can_reply` query 来捕捉到这一点。
 
 ```ts
