@@ -111,7 +111,7 @@ Telegram делает это для защиты своих пользовате
 
 ### 409 Conflict: terminated by other getUpdates request
 
-Вы случайно запускаете бота дважды при [Long Polling](../advanced/reliability.md#long-polling).
+Вы случайно запускаете бота дважды при [Long Polling](../advanced/reliability#long-polling).
 Вы можете запустить только один экземпляр своего бота.
 
 Если вы думаете, что запустили бота только один раз, вы можете просто отозвать токен бота.
