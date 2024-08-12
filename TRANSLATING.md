@@ -140,7 +140,7 @@ You know your language best, and we are not going to tell you how to phrase thin
 
 It is much more important to get the same content across.
 If you can convey the same message with a different wording or analogy, please do that.
-If a joke only works in English, you can simply drop it---rather than trying too hard to be funny just because English did it.
+If a joke only works in English, you can simply drop it—rather than trying too hard to be funny just because English did it.
 This would just get awkward.
 Similarly, if there's a perfect opportunity for a joke or a reference that everyone speaking your language will understand, feel free to add it.
 When done appropriately, this can greatly improve the reading flow and make it easier to remember the technical content of the documentation.
