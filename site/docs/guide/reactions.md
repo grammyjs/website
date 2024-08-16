@@ -154,7 +154,7 @@ bot.on("message_reaction", async (ctx) => {
 
 There are four arrays returned by `ctx.reaction`: added emoji, removed emoji, kept emoji, and a list that tells you what the result of the change is.
 In addition, there are four more arrays for custom emoji with similar information.
-Finally, there are three boolean flags for paid reactions.
+Finally, there are two boolean flags for paid reactions.
 
 ```ts
 const {
@@ -174,12 +174,10 @@ const {
   customEmojiKept,
   /** Custom emoji removed from this user's reaction */
   customEmojiRemoved,
-  /** Does this user currently have a paid reaction added? */
+  /** Indicates if a paid reaction is currently present in this user's reaction */
   paid,
-  /** Did this user just add a new paid reaction? */
+  /** Indicates if a paid reaction was newly added to this user's reaction */
   paidAdded,
-  /** Did this user just remove a paid reaction? */
-  paidRemoved,
 } = ctx.reactions();
 ```
 
