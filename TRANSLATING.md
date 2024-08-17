@@ -13,7 +13,8 @@ Note that we take translations very seriously.
 They should receive as much care as the English version.
 
 For example, Google Translate is already built into Google Chrome.
-Don’t bother to use software to create translations of the docs.
+Don’t bother to create a mere machine translation of the docs.
+(You can use machine translations in the process to help you get done faster.)
 If we create a translation of the docs for a new language, then because we want high quality translations written by native speakers or near-native speakers.
 Examples and real-world comparisons must be replaced by equivalents in the respective culture.
 A good translation is hard and it takes time.
@@ -115,3 +116,49 @@ The change immediately goes live for all languages at the same time.
 Some pull requests do not require a translation.
 They are labeled with “not translatable”.
 You can safely ignore them.
+
+## Tips & Tricks
+
+### Creating the Content Files
+
+You can basically copy the English docs from `site/docs/` to a new directory next to the other languages, and then translating every page.
+
+### Creating the Configuration Files
+
+There are several places in the configuration that need to be translated, too.
+It is best to go over every file in `site/docs/.vitepress/` and check if there are things that need to be adjusted for your language.
+Regarding the config, it may make sense not to copy the English version, as there are some exceptions to English in how it is configured.
+Instead, you can copy a different language for the structure (and read the English config for the content).
+For example, it helps to display three files next to each other: Spanish for structure, English for content, and your new language.
+
+### Freedom in Deviating from English
+
+> **TL;DR:** Keep the same structure and content, deliver it in your own language.
+
+You have quite some freedom in how you want to express the content in your own language.
+You know your language best, and we are not going to tell you how to phrase things, or where to split up your sentences.
+
+It is much more important to get the same content across.
+If you can convey the same message with a different wording or analogy, please do that.
+If a joke only works in English, you can simply drop it—rather than trying too hard to be funny just because English did it.
+This would just get awkward.
+Similarly, if there's a perfect opportunity for a joke or a reference that everyone speaking your language will understand, feel free to add it.
+When done appropriately, this can greatly improve the reading flow and make it easier to remember the technical content of the documentation.
+
+That being said, it _is_ important that all the code examples stay the same.
+The headers and structure and warnings and tips and so on shouldn't be removed.
+A good metric is this:
+If you have two developers and they read different translations of the same page, they should have an equal understanding of that page afterwards.
+
+Note that links to external pages can be adjusted if that improves the link.
+For example, if the English docs link to an English Wikipedia article, your docs may or may not reference the version of that article that is written in your language.
+This entirely depends on whether the translated Wikipedia entry is good enough to explain the respective concept.
+If we link to YouTube and you know a different video by a different creator who explains the same thing in your language, you may as well link to that other video, or include both links in a natural way.
+
+There's one place where this goes even further.
+The 404 page contains a bunch of puns that have no relevance.
+Feel free to insert any decent joke you like.
+It isn't necessary that this has to do anything with the English version at all, or even that your language has the same number of strings.
+
+We have found that if you use this freedom wisely, you can obtain documentation that is actually fun to read and that sounds as if it was written first in your language, and then translated back to English.
+(Aiming for such high quality unfortunately means that machine translations are limited in their usefulness.)
