@@ -93,6 +93,12 @@ bot.reaction(
 
 Esto requiere que conozcas de antemano el identificador del emoji personalizado.
 
+Por último, cuando un usuario paga por una reacción de estrella y la añade a un mensaje, puede gestionar estas actualizaciones del siguiente modo.
+
+```ts
+bot.reaction({ type: "paid" }, (ctx) => ctx.reply("¡Gracias!"));
+```
+
 ### Manejo de cambios arbitrarios en las reacciones
 
 Aunque esto no es visible en la interfaz de usuario de ningún cliente oficial de Telegram, los usuarios pueden cambiar varias reacciones a la vez.
@@ -117,6 +123,8 @@ grammY le permite filtrar aún más las actualizaciones con [consultas de filtro
 bot.on("message_reaction:new_reaction:emoji", (ctx) => {/* ... */});
 // Actualizaciones en las que la reacción anterior contenía al menos un emoji personalizado.
 bot.on("message_reaction:old_reaction:custom_emoji", (ctx) => {/* ... */});
+// Actualiza cuando la reacción actual contiene una reacción pagada.
+bot.on("message_reaction:new_reaction:paid", (ctx) => {/* ... */});
 ```
 
 Mientras que estas dos matrices de [objetos `ReactionType`](https://core.telegram.org/bots/api#reactiontype) técnicamente te dan toda la información que necesitas para manejar las actualizaciones de las reacciones, todavía pueden ser un poco engorrosas para trabajar.
@@ -146,6 +154,7 @@ bot.on("message_reaction", async (ctx) => {
 
 Hay cuatro matrices devueltas por `ctx.reaction`: emoji añadido, emoji eliminado, emoji conservado, y una lista que te dice cuál es el resultado del cambio.
 Además, hay cuatro arrays más para emojis personalizados con información similar.
+Por último, hay dos indicadores booleanos para las reacciones de pago.
 
 ```ts
 const {
@@ -165,6 +174,10 @@ const {
   customEmojiKept,
   /** Emoji personalizado eliminado de la reacción de este usuario */
   customEmojiRemoved,
+  /** Indica si una reacción pagada está actualmente presente en la reacción de este usuario */
+  paid,
+  /** Indica si se ha añadido una reacción de pago a la reacción de este usuario */
+  paidAdded,
 } = ctx.reactions();
 ```
 
