@@ -620,7 +620,9 @@ to be hydrated with the custom prefix you have registered, there is a method
 specifically tailored for that, called `ctx.getCommandEntities(yourCommands)`.
 It returns the same interface as `ctx.entities('bot_command')`
 
-:::tip Commands with custom prefixes cannot be shown in the Commands Menu. :::
+:::tip
+Commands with custom prefixes cannot be shown in the Commands Menu.
+:::
 
 ### matchOnlyAtStart
 
