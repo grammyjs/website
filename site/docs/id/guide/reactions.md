@@ -93,6 +93,12 @@ bot.reaction(
 
 Untuk menggunakan kode di atas, kamu perlu mengetahui id emoji tersuainya terlebih dahulu.
 
+Ketika user menyematkan reaksi stars ke sebuah pesan, kamu bisa menangani update tersebut dengan cara seperti ini.
+
+```ts
+bot.reaction({ type: "paid" }, (ctx) => ctx.reply("Terima Kasih!"));
+```
+
 ### Menangani Perubahan Reaksi yang Tidak Terduga
 
 Meski tidak terlihat di UI aplikasi Telegram resmi, user sebenarnya mampu mengubah beberapa reaksi sekaligus.
@@ -115,8 +121,10 @@ grammY mampu mengerucutkan update untuk jenis reaksi tertentu dengan [filter que
 ```ts
 // Update reaksi saat ini yang mengandung minimal satu emoji.
 bot.on("message_reaction:new_reaction:emoji", (ctx) => {/* ... */});
-// Updates reaksi sebelumnya yang mengandung minimal satu emoji tersuai.
+// Update reaksi sebelumnya yang mengandung minimal satu emoji tersuai.
 bot.on("message_reaction:old_reaction:custom_emoji", (ctx) => {/* ... */});
+// Update reaksi saat ini yang mengandung reaksi berbayar.
+bot.on("message_reaction:new_reaction:paid", (ctx) => {/* ... */});
 ```
 
 Meski semua informasi yang dibutuhkan untuk menangani update reaksi tersedia di kedua array [object `ReactionType`](https://core.telegram.org/bots/api#reactiontype), mereka masih sedikit merepotkan untuk dikerjakan.
@@ -145,7 +153,8 @@ bot.on("message_reaction", async (ctx) => {
 ```
 
 Terdapat empat array yang dikembalikan oleh `ctx.reaction`: emoji yang ditambahkan, emoji yang dihapus, emoji yang sama (tidak berubah), dan sebuah daftar yang berisi hasil perubahannya.
-Khusus emoji tersuai, terdapat empat array tambahan yang membawa informasi serupa:
+Khusus emoji tersuai, ia memiliki empat array tambahan yang membawa informasi serupa.
+Dan tambahan terakhir lainnya adalah dua flag boolean untuk reaksi berbayar.
 
 ```ts
 const {
@@ -165,6 +174,10 @@ const {
   customEmojiKept,
   /** Emoji tersuai yang dihapus dari reaksi */
   customEmojiRemoved,
+  /** Indikasi apakah reaksi terkait mengandung sebuah sebuah reaksi berbayar atau tidak */
+  paid,
+  /** Indikasi apakah sebuah reaksi berbayar baru saja ditambahkan ke reaksi terkait atau tidak */
+  paidAdded,
 } = ctx.reactions();
 ```
 
