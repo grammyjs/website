@@ -119,9 +119,14 @@ grammY runner 将在运行时自动解决所有必要的约束，并在必要时
 
 ```ts
 const handle = run(bot);
+
+// 当 bot 停止时，这就会被调用
 handle.task().then(() => {
   console.log("Bot done processing!");
 });
+
+// 随后，通过 runner 的 handle 停止 bot
+await handle.stop();
 ```
 
 ## 高级选项
