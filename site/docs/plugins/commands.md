@@ -16,7 +16,7 @@ Here is a quick overview of what you get with this plugin:
 - Ability to scope command reach, e.g: only accessible to group admins or channels, etc
 - Defining command translations
 - `Did you mean ...?` feature that finds the nearest existing command to a given user miss-input
-- Allow for commands to match in a case-insensitive manner
+- Case-insensitive command matching
 - Set custom behavior for commands that explicitly mention your bot's user, like: `/start@your_bot`
 - Custom command prefixes, e.g: `+`, `?` or any symbol instead of `/`
 - Support for commands that are not in the beginning of the message
@@ -47,16 +47,16 @@ First of all, we need to import the `CommandGroup` class.
 ::: code-group
 
 ```ts [TypeScript]
-import { CommandGroup commands, type CommandsFlavor } from "@grammyjs/commands";
+import { CommandGroup, commands, type CommandsFlavor } from "@grammyjs/commands";
 ```
 
 ```js [JavaScript]
-const { CommandGroup commands } = require("@grammyjs/commands");
+const { CommandGroup, commands } = require("@grammyjs/commands");
 ```
 
 ```ts [Deno]
 import {
-  CommandGroup
+  CommandGroup,
   commands,
   type CommandsFlavor,
 } from "https://deno.land/x/grammy_commands/mod.ts";
@@ -200,7 +200,7 @@ tsconfig.json
 We are assuming your `tsconfig` file is well-set to resolve the types from `types.d.ts` and have resolved every necessary import.
 :::
 
-The following code group exemplify how we could implement a developer only command group, and update our Telegram client Command menu. Make sure you inspect the `admin.ts` and `user.ts` file-tabs.
+The following code group exemplifies how we could implement a developer only command group, and update our Telegram client Command menu. Make sure you inspect the `admin.ts` and `user.ts` file-tabs.
 
 ::: code-group
 
@@ -264,7 +264,7 @@ Combining this knowledge with the following section will get your Command-game t
 ## Scoped Commands
 
 Did you know you can allow different commands to be shown on different chats depending on the chat type, the language, and even the user status in a chat group?
-That's what Telegram call **Command Scopes**.
+That's what Telegram calls **Command Scopes**.
 
 The `Command` class returned by the `command` method exposes a method called `addToScope`.
 This method takes in a [BotCommandScope](/ref/types/botcommandscope) together with one or more handlers, and registers those handlers to be ran at that specific scope.
@@ -291,7 +291,7 @@ myCommands
 The `start` command can now be called from both private and group chats, and it will give a different response depending on where it gets called from.
 Now if you call `myCommands.setCommands`, the `start` command will be registered to both private and group chats.
 
-Heres an example of a command that it's only accesible to group admins
+Heres an example of a command that's only accesible to group admins
 
 ```js
 adminCommands
@@ -307,7 +307,7 @@ adminCommands
 If you only want a command to be accesible on certain scopes, make sure you do not add a handler in the first `MyCommands.command` call. Doing that will automatically add it to all private chats, including groups.
 :::
 
-Here is an example of a command that it's only accesible in groups
+Here is an example of a command that's only accesible in groups
 
 ```js
 myCommands
@@ -412,8 +412,8 @@ myCommands.commands.forEach(addLocalizations)
 
 ## Finding the Nearest Command
 
-Even though Telegram it's capable of auto completing the registered commands, sometimes users do type them manually and, in some cases, happen to make mistakes.
-The Commands plugin helps you deal with that by allowing you to suggest a command that might be what the user wanted in the first place. It is compatible with custom prefixes, so you don't have to worry about that, and it's usage is quite straight-forward:
+Even though Telegram is capable of auto completing the registered commands, sometimes users do type them manually and, in some cases, happen to make mistakes.
+The Commands plugin helps you deal with that by allowing you to suggest a command that might be what the user wanted in the first place. It is compatible with custom prefixes, so you don't have to worry about that, and its usage is quite straight-forward:
 
 ::: code-group
 
@@ -429,7 +429,7 @@ const bot = new Bot<MyContext>("token");
 // Register the plugin
 bot.use(commands());
 
-const myCommands = new CommandGroup();
+const myCommands = new CommandGroup<MyContext>();
 
 // ... Register the commands
 
@@ -477,7 +477,7 @@ bot
 
 :::
 
-Behind the scenes `commandNotFound` will use the `getNearestCommand` context method which by default will prioritize commands that correspond to the user language, if you want to opt-out of this behavior, you can pass the `ignoreLocalization` flag set to true.
+Behind the scenes, `commandNotFound` will use the `getNearestCommand` context method which by default will prioritize commands that correspond to the user language. If you want to opt-out of this behavior, you can pass the `ignoreLocalization` flag set to true.
 
 It is possible to search across multiple CommandGroup instances, and `ctx.commandSuggestion` will be the most similar command, if any, across them all.
 
@@ -485,7 +485,7 @@ It also allows to set the `ignoreCase` flag, which will ignore casing while look
 
 The `commandNotFound` function will only trigger for updates which contains command-like-text similar to your registered commands. For example, if you only have register [commands with custom prefixes](#prefix) `?` and `supercustom`, it will trigger the handle for anything that looks like your commands, e.g: `?sayhi` or `supercustomhi`, but no `/definitely_a_command`. Same goes the other way, if you only have commands with the default prefix, it will only trigger on updates that looks like `/regular /commands`.
 
-The recommended commands will only come from the commandGroup instances you pass to the function. So you could defer the checks into multiple, separate filters.
+The recommended commands will only come from the `CommandGroup` instances you pass to the function. So you could defer the checks into multiple, separate filters.
 
 Let's use the previous knowledge to inspect the next example:
 
@@ -550,7 +550,7 @@ Currently, only commands starting with `/` are recognized by Telegram and, thus,
 In some occasions, you might want to change that and use a custom prefix for your bot.
 That is made possible by the `prefix` option, which will tell the Commands plugin to look for that prefix when trying to identify a command.
 
-If you are ever in the need for retrieving botCommand entities from an update and need it to be hydrated with the custom prefixed you have register, there is a method specifically tailored for that, called `ctx.getCommandEntities(yourCommands)`. It returns the same interface as `ctx.entities('bot_command')`
+If you ever need to retrieve `botCommand` entities from an update and need them to be hydrated with the custom prefix you have registered, there is a method specifically tailored for that, called `ctx.getCommandEntities(yourCommands)`. It returns the same interface as `ctx.entities('bot_command')`
 
 :::tip
 Commands with custom prefixes cannot be shown in the Commands Menu.
@@ -574,7 +574,7 @@ myCommands
   );
 ```
 
-This command handler will trigger on `/delete_me` the same as in `/delete_you`, and it will reply `Deleting me` in the first case and `Deleting you` in the later, but will not trigger on `/delete_` nor `/delete_123xyz`, passing trough as if it was no there.
+This command handler will trigger on `/delete_me` the same as in `/delete_you`, and it will reply `Deleting me` in the first case and `Deleting you` in the later, but will not trigger on `/delete_` nor `/delete_123xyz`, passing trough as if it wasn't there.
 
 You can use custom prefixes and localize them as usual.
 
