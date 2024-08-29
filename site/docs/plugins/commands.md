@@ -190,7 +190,8 @@ If you want to prevent, for example, the commands contained in
 `loggedInCommands` from being callable after the user called `/logout`, you must
 implement it in your handlers with your own business logic.
 
-::: danger As stated in the
+::: danger
+As stated in the
 [Telegram API documentation](https://core.telegram.org/bots/api#botcommand),
 command names can only be form out of:
 
@@ -200,7 +201,8 @@ command names can only be form out of:
 Therefore calling `setCommands` or `setMyCommands` with anything but
 lower_c4s3_commands will throw an exception. Commands not following this rules
 can still be registered, used and handled, but will never be displayed on the
-user menu as such. :::
+user menu as such.
+:::
 
 **Be aware** that `SetCommands` and `SetMyCommands` only affects the commands
 displayed in the user's commands menu, and not the actual access to them. You
