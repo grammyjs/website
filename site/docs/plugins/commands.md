@@ -284,6 +284,7 @@ devCommands.command('devlogout', 'Greetings', async (ctx, next) => {
 ```ts [group.ts]
 import sayHi from "./say-hi.ts";
 import sayBye from "./say-bye.ts";
+
 export const userCommands = new CommandGroup<MyContext>()
   .add([sayHi, sayBye]);
 ```
