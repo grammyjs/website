@@ -220,27 +220,30 @@ the following code structure:
 ```ascii
 src/
 ├─ commands/
-│  ├─ users.ts
 │  ├─ admin.ts
+│  ├─ users/
+│  │  ├─ group.ts
+│  │  ├─ say-hi.ts
+│  │  ├─ say-bye.ts
+│  │  ├─ ...
 ├─ bot.ts
 ├─ types.d.ts
 tsconfig.json
 ```
 
 ::: tip
-We are assuming your `tsconfig` file is well-set to resolve the types
-from `types.d.ts` and have resolved every necessary import.
+For the sake of brevity, we are assuming your `tsconfig` file is well-set to resolve the types
+from `types.d.ts` and have resolved every other necessary import.
 :::
 
 The following code group exemplifies how we could implement a developer only
-command group, and update our Telegram client Command menu. Make sure you
-inspect the `admin.ts` and `user.ts` file-tabs.
+command group, and update the Telegram client Command menu accordingly. Make sure you take notice of the different patterns being use in the `admin.ts` and `group.ts` file-tabs.
 
 ::: code-group
 
 ```ts [bot.ts]
 import { devCommands } from "./commands/admin.ts";
-import { userCommands } from "./commands/users.ts";
+import { userCommands } from "./commands/users/group.ts";
 
 export const bot = new Bot<MyContext>("MyBotToken");
 
@@ -251,7 +254,7 @@ bot.use(devCommands);
 ```
 
 ```ts [admin.ts]
-import { userCommands } from './users.ts'
+import { userCommands } from './users/group.ts'
 
 export const devCommands = new CommandGroup<MyContext>()
 
@@ -278,12 +281,16 @@ devCommands.command('devlogout', 'Greetings', async (ctx, next) => {
  })
 ```
 
-```ts [users.ts]
-export const userCommands = new CommandGroup<MyContext>();
+```ts [group.ts]
+import sayHi from "./say-hi.ts";
+import sayBye from "./say-bye.ts";
+export const userCommands = new CommandGroup<MyContext>()
+  .add([sayHi, sayBye]);
+```
 
-userCommands.command("start", "Greetings", async (ctx) => {
-  await ctx.reply("Hello user");
-  await ctx.setMyCommands(userCommands);
+```ts [say-hi.ts]
+export default new Command<MyContext>("sayhi", "Greetings", async (ctx) => {
+  await ctx.reply("Hello little User!");
 });
 ```
 
@@ -292,6 +299,10 @@ type MyContext = Context & CommandsFlavor<MyContext>;
 ```
 
 :::
+
+Did you notice it is possible to register Commands via using the `.add` method in the `CommandGroup` instance or also directly through the `.command(...)` method? This allows for a one-file-only structure, like in the `admin.ts` file, or a more distributed file structure like in the `group.ts` file.
+
+The plugin also enforce you to have the same Context-type for a given `CommandGroup` so avoid at first glance the silly mistakes!
 
 Combining this knowledge with the following section will get your Command-game
 to the next level.
