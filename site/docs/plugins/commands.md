@@ -303,7 +303,7 @@ type MyContext = Context & CommandsFlavor<MyContext>;
 
 Did you notice it is possible to register Commands via using the `.add` method in the `CommandGroup` instance or also directly through the `.command(...)` method? This allows for a one-file-only structure, like in the `admin.ts` file, or a more distributed file structure like in the `group.ts` file.
 
-The plugin also enforce you to have the same Context-type for a given `CommandGroup` so avoid at first glance the silly mistakes!
+The plugin also enforce you to have the same Context-type for a given `CommandGroup` so you avoid at first glance that kind of silly mistake!
 
 Combining this knowledge with the following section will get your Command-game
 to the next level.
