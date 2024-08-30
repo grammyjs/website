@@ -284,6 +284,7 @@ devCommands.command('devlogout', 'Greetings', async (ctx, next) => {
 ```ts [group.ts]
 import sayHi from "./say-hi.ts";
 import sayBye from "./say-bye.ts";
+import etc from "./another-command.ts";
 
 export const userCommands = new CommandGroup<MyContext>()
   .add([sayHi, sayBye]);
@@ -301,7 +302,13 @@ type MyContext = Context & CommandsFlavor<MyContext>;
 
 :::
 
-Did you notice it is possible to register Commands via using the `.add` method in the `CommandGroup` instance or also directly through the `.command(...)` method? This allows for a one-file-only structure, like in the `admin.ts` file, or a more distributed file structure like in the `group.ts` file.
+Did you notice it is possible to register single initialized Commands via the `.add` method into the `CommandGroup` instance or also directly through the `.command(...)` method? This allows for a one-file-only structure, like in the `admin.ts` file, or a more distributed file structure like in the `group.ts` file.
+
+::: tip
+
+When creating and exporting commands using the `Command` constructor, it's mandatory to register them onto a `CommandGroup` instance via the `.add` method. By their own they are useless, so make sure you do that at some point.
+
+:::
 
 The plugin also enforce you to have the same Context-type for a given `CommandGroup` and their respective `Commands` so you avoid at first glance that kind of silly mistake!
 
