@@ -228,4 +228,5 @@ export DEBUG="grammy*"
 deno run --allow-net --allow-env bot.ts
 ```
 
-чтобы grammY мог определить, что `DEBUG` установлен. :::
+чтобы grammY мог определить, что `DEBUG` установлен.
+:::

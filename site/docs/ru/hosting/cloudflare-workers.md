@@ -16,7 +16,8 @@ Workers.
 ::: tip Ищете версию для Node.js? В этом руководстве объясняется, как развернуть
 бота Telegram на Cloudflare Workers с помощью Deno. Если вы ищете версию для
 Node.js, пожалуйста, ознакомьтесь с
-[этим руководством](./cloudflare-workers-nodejs). :::
+[этим руководством](./cloudflare-workers-nodejs).
+:::
 
 ## Необходимые условия
 
