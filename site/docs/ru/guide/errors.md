@@ -119,7 +119,7 @@ bot.use(/* D */);
 bot.catch(errorHandler);
 
 function boundaryHandler(err: BotError, next: NextFunction) {
-  console.error("Error in Q, X, Y, or Z!", err);
+  console.error("Ошибка в Q, X, Y, или Z!", err);
   /*
    * Вы можете вызвать `next`, если хотите запустить
    * middleware на C в случае ошибки:
@@ -128,7 +128,7 @@ function boundaryHandler(err: BotError, next: NextFunction) {
 }
 
 function errorHandler(err: BotError) {
-  console.error("Error in A, B, C, or D!", err);
+  console.error("Ошибка в A, B, C, или D!", err);
 }
 ```
 
