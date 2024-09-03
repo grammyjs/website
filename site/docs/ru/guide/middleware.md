@@ -172,7 +172,7 @@ async function responseTime(
   // сохраните конечное время
   const after = Date.now(); // миллисекунды
   // выведите разницу
-  console.log(`Response time: ${after - before} ms`);
+  console.log(`Время ответа: ${after - before} мс`);
 }
 
 bot.use(responseTime);
@@ -188,7 +188,7 @@ async function responseTime(ctx, next) {
   // сохраните конечное время
   const after = Date.now(); // миллисекунды
   // выведите разницу
-  console.log(`Response time: ${after - before} ms`);
+  console.log(`Время ответа: ${after - before} мс`);
 }
 
 bot.use(responseTime);
