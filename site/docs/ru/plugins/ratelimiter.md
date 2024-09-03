@@ -5,11 +5,11 @@ next: false
 
 # Лимит запросов пользователей (`ratelimiter`)
 
-ratelimiter - это middleware для ограничения скорости ботов Telegram, созданных с помощью grammY или [Telegraf](https://github.com/telegraf/telegraf).
+ratelimiter --- это middleware для ограничения скорости ботов Telegram, созданных с помощью grammY или [Telegraf](https://github.com/telegraf/telegraf).
 Проще говоря, это плагин, который поможет вам предотвратить сильную спам рассылку в ваших ботах.
 Чтобы лучше понять суть ratelimiter, вы можете взглянуть на следующую иллюстрацию:
 
-![ratelimiter's role in deflecting spam](/images/ratelimiter-role.png)
+![Роль ratelimiter в борьбе со спамом](/images/ratelimiter-role.png)
 
 ## Как именно это работает?
 

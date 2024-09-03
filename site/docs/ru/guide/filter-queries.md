@@ -133,15 +133,15 @@ bot.on("message:new_chat_members:is_bot");
 bot.on("message:left_chat_member:me");
 ```
 
-Note that while this syntactic sugar is useful to work with service messages, it should not be used to detect if someone actually joins or leaves a chat.
-Services messages are messages that inform the users in the chat, and some of them will not be visible in all cases.
-For example, in large groups, there will not be any service messages about users that join or leave the chat.
-Hence, your bot may not notice this.
-Instead, you should listen for [chat member updates](#обновления-участников-чата).
+Обратите внимание, что хотя этот синтаксический сахар полезен для работы со служебными сообщениями, его не следует использовать для определения того, присоединяется ли кто-то к чату или покидает его.
+Служебные сообщения --- это сообщения, которые информируют пользователей в чате, и некоторые из них будут видны не во всех случаях.
+Например, в больших группах не будет никаких служебных сообщений о пользователях, которые присоединяются или покидают чат.
+Следовательно, ваш бот может не заметить этого.
+Вместо этого вы должны прослушивать [обновления участников чата](#обновления-участников-чата).
 
 ## Комбинирование нескольких запросов
 
-You can combine any number of filter queries with AND as well as OR operations.
+Вы можете комбинировать любое количество фильтрующих запросов с помощью логических операций И и ИЛИ.
 
 ### Сочетание с логическим ИЛИ
 
@@ -231,7 +231,7 @@ pm.command("help");
 
 ### Фильтрация по типу отправителя сообщения
 
-There are five different possible types of message authors on Telegram:
+В Telegram существует пять различных типов авторов сообщений:
 
 1. Авторы постов в канале
 2. Автоматические переадресации из связанных каналов в комментариях группы
@@ -295,7 +295,7 @@ bot.drop(matchFilter(":text"));
 
 Внутри `matchFilter` использует [сужение типов](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates) TypeScript, чтобы сузить тип `ctx`.
 Он берет тип `C extends Context` и `Q extends FilterQuery` и выдает `ctx is Filter<C, Q>`.
-Другими словами, тип `Filter` - это то, что вы фактически получаете для вашего `ctx` в middleware.
+Другими словами, тип `Filter` --- это то, что вы фактически получаете для вашего `ctx` в middleware.
 
 Вы можете импортировать `Filter` напрямую, если хотите использовать его в своей собственной логике.
 Например, вы можете определить функцию-обработчик, которая будет обрабатывать определенные объекты контекста, отфильтрованные с помощью запроса фильтра:

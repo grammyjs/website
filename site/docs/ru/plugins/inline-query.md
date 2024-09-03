@@ -12,7 +12,7 @@ next: false
 
 > Пересмотрите раздел о режиме Inline в статье
 > [Telegram Bot Features](https://core.telegram.org/bots/features#inline-requests),
-> написанной командой Telegram. Дополнительные ресурсы - это
+> написанной командой Telegram. Дополнительные ресурсы --- это
 > [подробное описание](https://core.telegram.org/bots/inline) инлайн-ботов, а
 > также [пост в блоге](https://telegram.org/blog/inline-bots), анонсирующий эту
 > функцию, и раздел Inline mode в
