@@ -32,7 +32,7 @@
    });
    ```
 
-2. Sending a Game via `api.sendGame`
+2. Отправка игры через `api.sendGame`
 
    ```ts
    bot.command("start", async (ctx) => {
