@@ -173,8 +173,7 @@ bot.command("i18n_test", async (ctx) => {
 - Завершите чтение [документации по Fluent](https://projectfluent.org/),
   особенно [руководства по синтаксису](https://projectfluent.org/fluent/guide/).
 - [Мигрируйте с плагина `i18n`](https://github.com/grammyjs/fluent#i18n-plugin-replacement).
-- Ознакомьтесь с
-  [`@moebius/fluent`](https://github.com/the-moebius/fluent#readme).
+- Ознакомьтесь с [`@moebius/fluent`](https://github.com/the-moebius/fluent#readme).
 
 ## Краткая информация о плагине
 

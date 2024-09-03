@@ -38,7 +38,7 @@ _inline-клавиатурами_ и _custom-клавиатурами_, соот
 ## Встроенные клавиатуры
 
 > Пересмотрите раздел о встроенной клавиатуре в статье
-> [Telegram Bot Features](https://core.telegram.org/bots/features#inline-keyboards),
+> [Возможности Telegram Бота](https://core.telegram.org/bots/features#inline-keyboards),
 > написанной командой Telegram.
 
 В grammY есть простой и интуитивно понятный способ создания встроенных
@@ -57,7 +57,7 @@ _inline-клавиатурами_ и _custom-клавиатурами_, соот
 
 Вот пример:
 
-![Example](/images/inline-keyboard-example.png)
+![Пример](/images/inline-keyboard-example.png)
 
 ```ts
 const inlineKeyboard = new InlineKeyboard()
@@ -176,7 +176,7 @@ bot.on("callback_query:data", async (ctx) => {
 ## Пользовательские клавиатуры
 
 Прежде всего: пользовательские клавиатуры иногда называются просто клавиатурами,
-иногда --- ответными клавиатурами, и даже собственная документация Telegram
+иногда --- ответными клавиатурами. Даже собственная документация Telegram
 непоследовательна в этом отношении. Простое эмпирическое правило: если это не
 очевидно из контекста и не называется встроенной клавиатурой, то это, скорее
 всего, пользовательская клавиатура. Это относится к способу замены системной
@@ -202,7 +202,7 @@ bot.on("callback_query:data", async (ctx) => {
 
 Вот пример:
 
-![Example](/images/keyboard-example.png)
+![Пример](/images/keyboard-example.png)
 
 ```ts
 const keyboard = new Keyboard()
