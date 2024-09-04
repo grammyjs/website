@@ -47,7 +47,7 @@ const learnGuide = {
       link: "/ru/guide/middleware",
     },
     {
-      text: "Поимка ошибок",
+      text: "Обработка ошибок",
       link: "/ru/guide/errors",
     },
     {
