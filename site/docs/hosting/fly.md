@@ -362,7 +362,7 @@ This is the easiest method to go with.
 ### Method 2: With GitHub Actions
 
 The main advantage of following method is that Fly will watch for changes in your repository which includes your bot code, and it will deploy new versions automatically.
-Visit <https://fly.io/docs/app-guides/continuous-deployment-with-github-actions> for more detailed instructions.
+Visit <https://fly.io/docs/launch/continuous-deployment-with-github-actions/> for more detailed instructions.
 
 1. Install [flyctl](https://fly.io/docs/flyctl/install/) and [sign in](https://fly.io/docs/getting-started/sign-up-sign-in/).
 2. Get a Fly API token by running `flyctl auth token`.
