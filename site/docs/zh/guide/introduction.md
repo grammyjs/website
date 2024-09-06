@@ -126,14 +126,14 @@ Deno：
 
 ### Deno 的前提条件
 
-[安装 Deno](https://docs.deno.com/runtime/fundamentals/installation/)，这是一切的前提。
+[安装 Deno](https://docs.deno.com/runtime/manual/getting_started/installation)，这是一切的前提。
 
 在开始创建你的 bot 之前，让我们先花几分钟时间为软件开发进行适当的设置。
 也就是安装一些工具。
 
 #### 为开发准备环境
 
-如果你还没有安装 Deno，那么就先 [安装 Deno](https://docs.deno.com/runtime/fundamentals/installation/#download-and-install)。
+如果你还没有安装 Deno，那么就先 [安装 Deno](https://docs.deno.com/runtime/manual/getting_started/installation#download-and-install)。
 
 你还需要一个非常适合编码的文本编辑器。
 最适合 Deno 的是 Visual Studio Code，通常简称为 VS Code。

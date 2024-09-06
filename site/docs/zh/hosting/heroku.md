@@ -8,7 +8,7 @@ next: false
 > 我们假设你有关于如何使用 grammY 创建 bot 的基本知识。
 > 如果你还没有准备好，不要犹豫，请查看我们十分友好的 [指南](../guide/) ！ :rocket:
 
-本教程将指导你如何通过 [webhooks](../guide/deployment-types#webhook-是如何工作的) 或者 [长轮询](../guide/deployment-types#长轮询是如何工作的) 将 Telegram bot 部署到 [Heroku](https://heroku.com/)。
+本教程将指导你如何通过 [webhooks](../guide/deployment-types#webhooks-是如何工作的) 或者 [长轮询](../guide/deployment-types#长轮询是如何工作的) 将 Telegram bot 部署到 [Heroku](https://heroku.com/)。
 我们还假设你已经有了一个 Heroku 账户。
 
 ## 前提条件

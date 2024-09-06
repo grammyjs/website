@@ -294,7 +294,7 @@ BOT_INFO = """{
 
 Ви можете помітити, що ми просто визначили змінну `BOT_TOKEN`, але ще не присвоїли їй значення.
 Зазвичай ви повинні зберігати змінну оточення у файлі `wrangler.toml`, однак у нашому випадку це небезпечно, оскільки токен бота повинен бути секретним.
-Cloudflare Workers надають нам безпечний спосіб зберігати конфіденційну інформацію, як-от ключі API та токени авторизації, у змінній оточення [secrets](https://developers.cloudflare.com/workers/configuration/secrets/#secrets-on-deployed-workers)!
+Cloudflare Workers надають нам безпечний спосіб зберігати конфіденційну інформацію, як-от ключі API та токени авторизації, у змінній оточення [secrets](https://developers.cloudflare.com/workers/configuration/secrets/#secrets)!
 
 ::: tip
 Секретні значення не відображаються у Wrangler або інформаційній панелі Cloudflare після того, як ви їх визначили.

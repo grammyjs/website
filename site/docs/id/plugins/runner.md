@@ -172,7 +172,7 @@ Solusinya adalah bot workers!
 grammY runner bisa membuat beberapa workers untuk memproses update secara bersamaan (paralel) di core yang berbeda---menggunakan event loop yang berbeda serta memory yang terpisah.
 
 grammY runner menggunakan [Worker Threads](https://nodejs.org/api/worker_threads.html) di Node.js.
-Sedangkan di Deno, ia menggunakan [Web Workers](https://docs.deno.com/runtime/reference/web_platform_apis/).
+Sedangkan di Deno, ia menggunakan [Web Workers](https://docs.deno.com/runtime/manual/runtime/workers).
 
 Secara konsep, grammY runner menyediakan sebuah class bernama `BotWorker` yang berfungsi untuk menangani update.
 Ia serupa dengan class `Bot` biasa, malahan ia meng-`extends` class `Bot` itu sendiri.

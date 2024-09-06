@@ -142,7 +142,7 @@ Diantaranya adalah menginstal beberapa tool yang dibutuhkan.
 
 #### Menyiapkan Perangkat untuk Pengembangan
 
-Pertama-tama, [instal Deno](https://docs.deno.com/runtime/fundamentals/installation/#download-and-install) di perangkat kamu.
+Pertama-tama, [instal Deno](https://docs.deno.com/runtime/manual/getting_started/installation#download-and-install) di perangkat kamu.
 
 Siapkan juga text editor yang sesuai untuk coding.
 Salah satu yang sesuai untuk Deno adalah Visual Studio Code, atau biasa disebut dengan VS Code.

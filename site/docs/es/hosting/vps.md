@@ -639,7 +639,7 @@ Los archivos se envían al servidor utilizando la utilidad `rsync`, implementada
 Después de que los archivos se entregan al servidor, se ejecuta el comando descrito en la variable de entorno `SCRIPT_AFTER`.
 En nuestro caso, después de que los archivos son entregados, vamos al directorio del bot, donde instalamos todas las dependencias excepto `devDependencies`, y reiniciamos el bot.
 
-Ten en cuenta que necesitas añadir tres [variables de entorno secretas](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions):
+Ten en cuenta que necesitas añadir tres [variables de entorno secretas](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions):
 
 1. `SSH_PRIVATE_KEY` --- aquí es donde la clave privada SSH que creaste en el [paso anterior](#claves-ssh) debe ser almacenada.
 2. `REMOTE_HOST` --- la dirección IP de su servidor debe ser almacenada aquí.
@@ -733,7 +733,7 @@ Este script envía los archivos al servidor usando la utilidad `rsync`, implemen
 Después de que los archivos son enviados al servidor, se ejecuta el comando descrito en la variable de entorno `SCRIPT_AFTER`.
 En nuestro caso, después de que los archivos son entregados, vamos al directorio del bot y reiniciamos el bot.
 
-Ten en cuenta que necesitas añadir tres [variables de entorno secretas](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions):
+Ten en cuenta que necesitas añadir tres [variables de entorno secretas](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions):
 
 1. `SSH_PRIVATE_KEY` --- aquí es donde la clave privada SSH que creaste en el [paso anterior](#claves-ssh) debe ser almacenada.
 2. `REMOTE_HOST` --- la dirección IP de su servidor debe ser almacenada aquí.

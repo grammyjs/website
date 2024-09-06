@@ -639,7 +639,7 @@ Files are delivered to the server using the `rsync` utility, which is implemente
 After the files are delivered to the server, the command described in the `SCRIPT_AFTER` environment variable is executed.
 In our case, after the files are delivered, we go to the bot directory, where we install all the dependencies except `devDependencies`, and restart the bot.
 
-Note that you need to add three [secret environment variables](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions):
+Note that you need to add three [secret environment variables](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions):
 
 1. `SSH_PRIVATE_KEY`---this is where the private SSH key you created in the [previous step](#ssh-keys) should be stored.
 2. `REMOTE_HOST`---the IP address of your server should be stored here.
@@ -733,7 +733,7 @@ This script sends files to the server using the `rsync` utility, which is implem
 After the files are delivered to the server, the command described in the `SCRIPT_AFTER` environment variable is executed.
 In our case, after the files are delivered, we go to the bot's directory and restart the bot.
 
-Note that you need to add three [secret environment variables](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions):
+Note that you need to add three [secret environment variables](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions):
 
 1. `SSH_PRIVATE_KEY`---this is where the private SSH key you created in the [previous step](#ssh-keys) should be stored.
 2. `REMOTE_HOST`---the IP address of your server should be stored here.

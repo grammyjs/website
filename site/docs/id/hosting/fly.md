@@ -363,7 +363,7 @@ Metode ini adalah cara yang termudah.
 
 Kelebihan dari metode ini adalah Fly akan selalu memantau perubahan di repositori tempat kamu menaruh kode bot.
 Ketika terjadi perubahan, kode tersebut akan di-deploy secara otomatis ke versi yang lebih baru.
-Untuk instruksi detailnya, silahkan kunjungi <https://fly.io/docs/launch/continuous-deployment-with-github-actions/>.
+Untuk instruksi detailnya, silahkan kunjungi <https://fly.io/docs/app-guides/continuous-deployment-with-github-actions>.
 
 1. Instal [flyctl](https://fly.io/docs/flyctl/install/) lalu [login](https://fly.io/docs/getting-started/sign-up-sign-in/).
 2. Dapatkan token API Fly dengan cara menjalankan perintah `flyctl auth token`.

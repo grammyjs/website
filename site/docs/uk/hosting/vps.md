@@ -639,7 +639,7 @@ jobs:
 Після доставки файлів на сервері виконується команда, описана в змінній середовища `SCRIPT_AFTER`.
 У нашому випадку після доставки файлів ми переходимо в каталог бота, де встановлюємо всі залежності, окрім `devDependencies`, і перезапускаємо бота.
 
-Зауважте, що вам потрібно додати три [секретні змінні середовища](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions):
+Зауважте, що вам потрібно додати три [секретні змінні середовища](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions):
 
 1. `SSH_PRIVATE_KEY` --- тут має зберігатися приватний SSH-ключ, який ви створили на [попередньому кроці](#ssh-ключі).
 2. `REMOTE_HOST` --- тут має зберігатися IP-адреса вашого серверу.
@@ -733,7 +733,7 @@ jobs:
 Після доставки файлів на сервері виконується команда, описана в змінній середовища `SCRIPT_AFTER`.
 У нашому випадку після доставки файлів ми переходимо в каталог бота і перезапускаємо його.
 
-Зауважте, що вам потрібно додати три [секретні змінні середовища](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions):
+Зауважте, що вам потрібно додати три [секретні змінні середовища](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions):
 
 1. `SSH_PRIVATE_KEY` --- тут має зберігатися приватний SSH-ключ, який ви створили на [попередньому кроці](#ssh-ключі).
 2. `REMOTE_HOST` --- тут має зберігатися IP-адреса вашого серверу.

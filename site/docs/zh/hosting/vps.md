@@ -639,7 +639,7 @@ jobs:
 文件传输到服务器后，将执行 `SCRIPT_AFTER` 环境变量中描述的命令。
 在我们的例子中，文件传输完成后，我们进入 bot 的目录，在那里安装除 `devDependencies` 以外的所有依赖项，然后重启 bot。
 
-请注意，你需要添加三个 [秘密环境变量](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions)：
+请注意，你需要添加三个 [秘密环境变量](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions)：
 
 1. `SSH_PRIVATE_KEY`---这是你在 [上一步](#ssh-密钥) 中创建的 SSH 私钥的存放位置。
 2. `REMOTE_HOST`---服务器的 IP 地址应存储在这里。
@@ -733,7 +733,7 @@ jobs:
 文件传输到服务器后，将执行 `SCRIPT_AFTER` 环境变量中描述的命令。
 在我们的例子中，文件传输完成后，我们进入 bot 的目录并重启 bot。
 
-请注意，你需要添加三个 [秘密环境变量](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions)：
+请注意，你需要添加三个 [秘密环境变量](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions)：
 
 1. `SSH_PRIVATE_KEY`---这是你在 [上一步](#ssh-密钥) 中创建的 SSH 私钥的存放位置。
 2. `REMOTE_HOST`---服务器的 IP 地址应存储在这里。
