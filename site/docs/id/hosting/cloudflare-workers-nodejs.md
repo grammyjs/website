@@ -298,7 +298,7 @@ Selain `BOT_INFO`, kita juga akan menambahkan sebuah variable `BOT_TOKEN`, ia me
 
 Kita baru saja membuat variable `BOT_TOKEN`, tetapi variable tersebut belum kita terapkan.
 Environment variable pada umumnya disimpan di `wrangler.toml`, langkah tersebut tidaklah aman, karena dalam kasus kita token bot perlu untuk dirahasiakan.
-Cloudflare Workers menyediakan metode yang aman untuk menyimpan informasi sensitif seperti API key dan token autentikasi di dalam sebuah environment variable bernama [secrets](https://developers.cloudflare.com/workers/configuration/secrets/#secrets)!
+Cloudflare Workers menyediakan metode yang aman untuk menyimpan informasi sensitif seperti API key dan token autentikasi di dalam sebuah environment variable bernama [secrets](https://developers.cloudflare.com/workers/configuration/secrets/#secrets-on-deployed-workers)!
 
 ::: tip
 Isi secret yang telah kamu buat tidak akan terlihat baik di Wrangler ataupun dashboard Cloudflare.

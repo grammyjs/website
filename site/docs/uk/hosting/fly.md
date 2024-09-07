@@ -362,7 +362,7 @@ flyctl secrets set BOT_TOKEN="AAAA:12345"
 ### 2-й метод: за допомогою GitHub Actions
 
 Основною перевагою такого підходу є те, що Fly буде стежити за змінами у вашому репозиторії, включаючи код вашого бота, й автоматично розгортатиме нові версії.
-Відвідайте <https://fly.io/docs/app-guides/continuous-deployment-with-github-actions> для отримання більш детальних інструкцій.
+Відвідайте <https://fly.io/docs/launch/continuous-deployment-with-github-actions/> для отримання більш детальних інструкцій.
 
 1. Встановіть [flyctl](https://fly.io/docs/flyctl/install/) та [авторизуйтесь](https://fly.io/docs/getting-started/sign-up-sign-in/).
 2. Отримайте токен Fly API, виконавши `flyctl auth token`.
