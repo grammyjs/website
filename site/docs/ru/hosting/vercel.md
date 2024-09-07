@@ -115,7 +115,7 @@ export const config = {
 Измените приведенный ниже URL на свои учетные данные и зайдите на него через браузер:
 
 ```text
-https://api.telegram.org/bot<ТОКЕН_БОТА>/setWebhook?url=<URL_ХОСТА>
+https://api.telegram.org/bot<токен>/setWebhook?url=<URL_ХОСТА>
 ```
 
 С `URL_ХОСТА` все немного сложнее, потому что вам нужно использовать ваш **домен приложения Vercel с маршрутом к коду бота**, например `https://appname.vercel.app/api/bot`.

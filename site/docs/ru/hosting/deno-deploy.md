@@ -75,7 +75,7 @@ Deno.serve(async (req) => {
 3. Перейдите в каталог проекта и выполните следующую команду:
 
    ```sh:no-line-numbers
-   deployctl deploy --project=<project> --entrypoint=./main.ts --prod --token=<token>
+   deployctl deploy --project=<project> --entrypoint=./main.ts --prod --token=<токен>
    ```
 
    ::: tip Установка переменных окружения
