@@ -422,7 +422,7 @@ export const siteRu: LocaleConfig = {
         },
         {
           text: "Справочник API",
-          link: "/ru/ref/",
+          link: "/ref/",
         },
       ],
       sidebar: {
@@ -484,8 +484,7 @@ export const siteRu: LocaleConfig = {
       notFound: {
         code: "404",
         title: "Страница не найдена",
-        linkText:
-          "Вернуться домой (смотрите чтобы вас не загнали, а то вы больше не сможете погулять)",
+        linkText: "Вернуться домой (смотрите чтобы вас не загнали, а то вы больше не сможете погулять)",
         linkLabel: "Вернуться домой",
         messages: [
           "Они не смогли найти золото, Mased.",
