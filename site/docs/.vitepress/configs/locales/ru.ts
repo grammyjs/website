@@ -484,7 +484,7 @@ export const siteRu: LocaleConfig = {
       notFound: {
         code: "404",
         title: "Страница не найдена",
-        linkText: 
+        linkText:
           "Вернуться домой (смотрите чтобы вас не загнали, а то вы больше не сможете погулять)",
         linkLabel: "Вернуться домой",
         messages: [
