@@ -135,7 +135,7 @@ Deno:
 
 #### Підготовка вашої машини до розробки
 
-[Установіть Deno](https://docs.deno.com/runtime/manual/getting_started/installation#download-and-install), якщо ви ще цього не зробили.
+[Установіть Deno](https://docs.deno.com/runtime/fundamentals/installation/#download-and-install), якщо ви ще цього не зробили.
 
 Вам також потрібен текстовий редактор, який добре підходить для програмування.
 Найкращим для Deno є Visual Studio Code, який часто називають просто VS Code.
