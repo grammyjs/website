@@ -5,7 +5,7 @@ next: false
 
 # Convert Telegram Entities (grammy-entity)
 
-Converts [Telegram entities](https://core.telegram.org/bots/api#messageentity) to [HTML](https://core.telegram.org/bots/api#messageentity) or [Markdown](https://core.telegram.org/bots/api#markdownv2-style).
+Converts [Telegram entities](https://core.telegram.org/bots/api#messageentity) to [HTML](https://core.telegram.org/bots/api#html-style) or [Markdown](https://core.telegram.org/bots/api#markdownv2-style).
 
 ## When Should I Use This?
 
@@ -54,7 +54,7 @@ Here’s a quick example.
 ```ts
 import { toHTML, toMarkdownV2 } from "@qz/grammy-entity";
 
-bot.on(":text", async (ctx) => {
+bot.on(":text", (ctx) => {
   const html = toHTML(ctx.msg); // Convert text to HTML string
   const md = toMarkdownV2(ctx.msg); // Convert text to MarkdownV2 string
 });
@@ -63,7 +63,7 @@ bot.on(":text", async (ctx) => {
 Both functions will also work with captioned messages, such as photos or videos.
 
 ```ts
-bot.on(":photo", async (ctx) => {
+bot.on(":photo", (ctx) => {
   const html = toHTML(ctx.msg); // Convert caption to HTML string
   const md = toMarkdownV2(ctx.msg); // Convert caption to MarkdownV2 string
 });
