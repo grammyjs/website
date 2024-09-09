@@ -263,7 +263,7 @@ const pluginThirdparty = {
     },
     {
       text: "Convert Telegram Entities",
-      link: "/plugins/grammy-entity"
+      link: "/plugins/grammy-entity",
     },
     {
       text: "[Submit your PR!]",
