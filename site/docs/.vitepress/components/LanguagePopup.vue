@@ -5,7 +5,8 @@ const languages: Record<string, string> = {
   es: "Spanish",
   id: "Indonesian",
   zh: "Chinese",
-  uk: "Ukrainian"
+  uk: "Ukrainian",
+  ru: "Russian"
 };
 
 const popup = reactive({

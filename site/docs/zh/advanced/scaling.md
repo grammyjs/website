@@ -40,7 +40,7 @@ run(bot);
 ## Webhooks
 
 如果你让你的 bot 运行在 webhooks模式下，只要接收到更新它就会并发去处理。
-当然，为了让它能够在高负载下运行良好，你应该熟悉 [怎样去使用 webhooks](../guide/deployment-types#如何使用-webhooks)。
+当然，为了让它能够在高负载下运行良好，你应该熟悉 [怎样去使用 webhooks](../guide/deployment-types#如何使用-webhook)。
 这就意味着你不得不去意识到一些并发带来的后果，详见 [下一小节](#并发是困难的)。
 
 Telegram 将按顺序传送来自同一聊天的更新，但也同时并发传送来自不同聊天的更新 ([source](https://github.com/tdlib/telegram-bot-api/issues/75#issuecomment-755436496))。

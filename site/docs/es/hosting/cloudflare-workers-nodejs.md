@@ -298,7 +298,7 @@ Además de `BOT_INFO`, también añadimos una variable `BOT_TOKEN`, esta es una 
 
 Puedes notar que acabamos de definir la variable `BOT_TOKEN`, pero no la hemos asignado todavía.
 Normalmente necesitas almacenar tu variable de entorno en `wrangler.toml`, sin embargo, esto no es seguro en nuestro caso, ya que el bot token debe mantenerse en secreto.
-Cloudflare Workers nos proporciona una forma segura de almacenar información sensible como claves API y auth tokens en la variable de entorno: ¡[secrets](https://developers.cloudflare.com/workers/configuration/secrets/#secrets)!
+Cloudflare Workers nos proporciona una forma segura de almacenar información sensible como claves API y auth tokens en la variable de entorno: ¡[secrets](https://developers.cloudflare.com/workers/configuration/secrets/#secrets-on-deployed-workers)!
 
 ::: tip
 Los valores secretos no son visibles en Wrangler ni en el panel de Cloudflare una vez definidos.
