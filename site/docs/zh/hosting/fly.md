@@ -363,7 +363,7 @@ flyctl secrets set BOT_TOKEN="AAAA:12345"
 ### 方法 2: 通过 GitHub Actions
 
 以下方法的主要优点是 Fly 将监视包含你的 bot 代码的仓库中的更改，并且它将自动部署新版本。
-访问 <https://fly.io/docs/app-guides/continuous-deployment-with-github-actions> 获取更多详细说明。
+访问 <https://fly.io/docs/launch/continuous-deployment-with-github-actions/> 获取更多详细说明。
 
 1. 安装 [flyctl](https://fly.io/docs/flyctl/install/) 并 [登录](https://fly.io/docs/getting-started/sign-up-sign-in/).
 2. 通过运行 `flyctl auth token` 获取 Fly API token .
