@@ -40,5 +40,9 @@ from = "/zh/*"
 to = "/zh/404.html"
 
 [[redirects]]
+from = "/ru/*"
+to = "/ru/404.html"
+
+[[redirects]]
 from = "/*"
 to = "/404.html"
