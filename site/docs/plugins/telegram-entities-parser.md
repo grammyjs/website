@@ -7,7 +7,6 @@ next: false
 
 Converts [Telegram entities](https://core.telegram.org/bots/api#messageentity)
 to semantic HTML.
-Specially designed for [grammY](https://grammy.dev/plugins/telegram-entities-parser), but should also compatible with other framework.
 
 ## When Should I Use This?
 
@@ -17,7 +16,7 @@ While this plugin can generate HTML, it's generally best to send the text and en
 
 Converting them to HTML is only necessary in rare cases where you need to use Telegram-formatted text **outside** of Telegram itself, such as displaying Telegram messages on a website.
 
-See the [_Cases When It's Better to Not Use This Package_](#cases-when-its-better-to-not-use-this-package) section to determine if you have a similar problem to solve.
+See the [_Cases When It's Better to Not Use This Package_](#cases-when-it-s-better-to-not-use-this-package) section to determine if you have a similar problem to solve.
 
 If you're unsure whether this plugin is the right fit for your use case, please don't hesitate to ask in our [Telegram group](https://t.me/grammyjs).
 In most cases, people find they don't actually need this plugin to solve their problems!
@@ -231,6 +230,8 @@ bot.on(":text", async (ctx) => {
 });
 ```
 
+::: tip Use parse-mode for a Better Formatting Experience
+
 grammY also provides a useful plugin called [`parse-mode`](./parse-mode) for better message formatting.
 You can format messages like this:
 
@@ -239,6 +240,7 @@ ctx.replyFmt(fmt`${bold("bold")} ${italic("italic")}`);
 ```
 
 [Check it out](./parse-mode) if you're interested.
+:::
 
 ## Plugin Summary
 
