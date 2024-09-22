@@ -3,7 +3,7 @@ prev: false
 next: false
 ---
 
-# Convert Telegram Entities (telegram-entities-parser)
+# Entity Parser (`entity-parser`)
 
 Converts [Telegram entities](https://core.telegram.org/bots/api#messageentity)
 to semantic HTML.
@@ -244,6 +244,6 @@ ctx.replyFmt(fmt`${bold("bold")} ${italic("italic")}`);
 
 ## Plugin Summary
 
-- Name: telegram-entities-parser
+- Name: entity-parser
 - Package: <https://jsr.io/@qz/telegram-entities-parser>
 - Source: <https://github.com/quadratz/telegram-entities-parser>

@@ -262,8 +262,8 @@ const pluginThirdparty = {
       link: "/plugins/autoquote",
     },
     {
-      text: "Convert Telegram Entities",
-      link: "/plugins/telegram-entities-parser",
+      text: "Entity Parser",
+      link: "/plugins/entity-parser",
     },
     {
       text: "[Submit your PR!]",
