@@ -298,7 +298,7 @@ BOT_INFO = """{
 
 你可能会注意到，我们只是定义了变量 `BOT_TOKEN`，但尚未给它赋值。
 通常你需要将环境变量存储在 `wrangler.toml` 中，但是，在我们的情况下这并不安全，因为 bot token 应该保密。
-Cloudflare Workers 为我们提供了一种安全的方法来在环境变量中存储 API 密钥和身份验证令牌等敏感信息：[secrets](https://developers.cloudflare.com/workers/configuration/secrets/#secrets)！
+Cloudflare Workers 为我们提供了一种安全的方法来在环境变量中存储 API 密钥和身份验证令牌等敏感信息：[secrets](https://developers.cloudflare.com/workers/configuration/secrets/#secrets-on-deployed-workers)！
 
 ::: tip
 定义 secret 的值后，它们在 Wrangler 或 Cloudflare dashboard 中不可见。

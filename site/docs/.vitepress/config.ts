@@ -17,6 +17,7 @@ export default defineConfig({
     ...locale.siteId,
     ...locale.siteUk,
     ...locale.siteZh,
+    ...locale.siteRu,
   },
 
   themeConfig: {
