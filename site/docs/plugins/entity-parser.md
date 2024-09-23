@@ -162,7 +162,7 @@ You can override this behavior by specifying a `textSanitizer` when instantiatin
 ```ts
 const myTextSanitizer: TextSanitizer = (options: TextSanitizerOption): string =>
   // Replace dangerous character
-  options.text.replace(/[&<>"']/g, (match) => {
+  options.text.replaceAll(/[&<>"']/, (match) => {
     switch (match) {
       case "&":
         return "&amp;";
