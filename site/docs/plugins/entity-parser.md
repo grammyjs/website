@@ -15,7 +15,7 @@ While this plugin can generate HTML, it's generally best to send the text and en
 
 Converting them to HTML is only necessary in rare cases where you need to use Telegram-formatted text **outside** of Telegram itself, such as displaying Telegram messages on a website.
 
-See the [_Cases When It's Better to Not Use This Package_](#cases-when-it-s-better-to-not-use-this-package) section to determine if you have a similar problem to solve.
+See the [_Cases When It's Better Not to Use This Package_](#cases-when-it-s-better-not-to-use-this-package) section to determine if you have a similar problem to solve.
 
 If you're unsure whether this plugin is the right fit for your use case, please don't hesitate to ask in our [Telegram group](https://t.me/grammyjs).
 In most cases, people find they don't actually need this plugin to solve their problems!
@@ -72,7 +72,7 @@ bot.on(":photo", (ctx) => {
 
 ## Advanced Usage
 
-### Customize the Output HTML Tag
+### Customizing the Output HTML Tag
 
 This package converts entities into semantic HTML, adhering to best practices and standards as closely as possible.
 However, the provided output might not always be what you expect.
@@ -183,11 +183,11 @@ const myTextSanitizer: TextSanitizer = (options: TextSanitizerOption): string =>
 const entitiesParser = new EntitiesParser({ textSanitizer: myTextSanitizer });
 ```
 
-## Cases When It's Better to Not Use This Package
+## Cases When It's Better Not to Use This Package
 
 If you face problems similar to those listed below, you might be able to resolve them without using this package.
 
-### Copy and Forward the Same Message
+### Copying and Forwarding the Same Message
 
 Use [`forwardMessage`](https://core.telegram.org/bots/api#forwardmessage) to forward messages of any kind.
 
@@ -205,7 +205,7 @@ bot.on(":text", async (ctx) => {
 });
 ```
 
-### Reply to Messages with Modified Text Format
+### Replying to Messages with Modified Text Format
 
 You can easily reply to incoming messages using HTML, Markdown, or entities.
 
@@ -227,7 +227,7 @@ bot.on(":text", async (ctx) => {
 
 ::: tip Use parse-mode for a Better Formatting Experience
 
-Use the official plugin [`parse-mode`](./parse-mode) for a better experience constructing formatted messages.
+Use the official [`parse-mode`](./parse-mode) plugin for a better experience constructing formatted messages.
 :::
 
 ## Plugin Summary
