@@ -5,8 +5,7 @@ next: false
 
 # Entity Parser (`entity-parser`)
 
-Converts [Telegram entities](https://core.telegram.org/bots/api#messageentity)
-to semantic HTML.
+Converts [Telegram entities](https://core.telegram.org/bots/api#messageentity) to semantic HTML.
 
 ## When Should I Use This?
 
@@ -71,12 +70,12 @@ bot.on(":photo", (ctx) => {
 });
 ```
 
-## Advanced usage
+## Advanced Usage
 
 ### Customize the Output HTML Tag
 
 This package converts entities into semantic HTML, adhering to best practices and standards as closely as possible.
-However, you might find that the provided output is not exactly what you expected.
+However, the provided output might not always be what you expect.
 
 To address this, you can use your own `renderer` to customize the HTML elements surrounding the text according to your rules.
 You can modify specific rules by extending the default [`RendererHtml`](https://github.com/quadratz/telegram-entities-parser/blob/main/src/renderers/renderer_html.ts) or override all the rules by implementing the [`Renderer`](https://github.com/quadratz/telegram-entities-parser/blob/main/src/renderers/renderer.ts).
@@ -160,8 +159,6 @@ You can override this behavior by specifying a `textSanitizer` when instantiatin
   Ensure proper handling if you choose this option.
 - If you provide a function, it will be used instead of the default sanitizer.
 
-Example,
-
 ```ts
 const myTextSanitizer: TextSanitizer = (options: TextSanitizerOption): string =>
   // Replace dangerous character
@@ -197,12 +194,10 @@ Use [`forwardMessage`](https://core.telegram.org/bots/api#forwardmessage) to for
 You can also use the [`copyMessage`](https://core.telegram.org/bots/api#copymessage) API, which performs the same action but does not include a link to the original message.
 [`copyMessage`](https://core.telegram.org/bots/api#copymessage) behaves like copying the message and sending it back to Telegram, making it appear as a regular message rather than a forwarded one.
 
-Example:
-
 ```ts
 bot.on(":text", async (ctx) => {
   // The target chat id to send.
-  const chatId = "-946659600";
+  const chatId = -946659600;
   // Forward the current message without a link to the original message.
   await ctx.copyMessage(chatId);
   // Forward the current message with a link to the original message.
@@ -232,14 +227,7 @@ bot.on(":text", async (ctx) => {
 
 ::: tip Use parse-mode for a Better Formatting Experience
 
-grammY also provides a useful plugin called [`parse-mode`](./parse-mode) for better message formatting.
-You can format messages like this:
-
-```ts
-ctx.replyFmt(fmt`${bold("bold")} ${italic("italic")}`);
-```
-
-[Check it out](./parse-mode) if you're interested.
+Use the official plugin [`parse-mode`](./parse-mode) for a better experience constructing formatted messages.
 :::
 
 ## Plugin Summary
