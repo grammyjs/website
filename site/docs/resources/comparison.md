@@ -153,6 +153,9 @@ Go can be a better choice in these cases.
 Another metric is developer experience (DX).
 In general, Go and TypeScript are both known to have extremely good tooling and editor support.
 However, for the Bot API in particular, grammY is significantly better than any library written in Go.
+This is mainly due to TypeScript's advanced type system which grammY leverages in sophisticated ways.
+As a result, you can explore the Bot API interactively right from inside your editor.
+This is not possible to the same extent using any library written in Go.
 If you want the best DX, use grammY.
 
 ### Frameworks Written in Rust
