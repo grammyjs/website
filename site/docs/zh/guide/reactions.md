@@ -93,6 +93,12 @@ bot.reaction(
 
 这就需要你提前知道自定义 emoji 的标识符。
 
+最后，当用户为 star 反应付费并将其添加到消息中时，你可以按如下方式处理这些 update。
+
+```ts
+bot.reaction({ type: "paid" }, (ctx) => ctx.reply("谢谢惠顾!"));
+```
+
 ### 处理任意变化的反应
 
 尽管这在任何官方 Telegram 客户端的 UI 中都不可见，但用户实际上可以一次更改多个反应。
@@ -117,6 +123,8 @@ grammY 允许你使用针对反应类型的特殊的 [filter 查询](./filter-qu
 bot.on("message_reaction:new_reaction:emoji", (ctx) => {/* ... */});
 // 之前的反应至少包含一个自定义 emoji 的 update。
 bot.on("message_reaction:old_reaction:custom_emoji", (ctx) => {/* ... */});
+// 当前反应中包含付费反应的 update。
+bot.on("message_reaction:new_reaction:paid", (ctx) => {/* ... */});
 ```
 
 虽然这两个 [`ReactionType` 对象](https://core.telegram.org/bots/api#reactiontype) 数组在技术上为你提供了处理反应 update 所需的所有信息，但它们用起来仍然有点麻烦。
@@ -146,6 +154,7 @@ bot.on("message_reaction", async (ctx) => {
 
 `ctx.reaction` 返回四个数组：添加的 emoji、删除的 emoji、保留的emoji，以及一个告诉你更改结果的列表。
 此外，还有四个具有类似信息的自定义 emoji 数组。
+最后，还有两个布尔标志用于付费反应。
 
 ```ts
 const {
@@ -165,6 +174,10 @@ const {
   customEmojiKept,
   /** 从该用户的反应中移除的自定义 emoji */
   customEmojiRemoved,
+  /** 表示目前该用户的反应中是否存在付费反应 */
+  paid,
+  /** 表示付费反应是否新添加到了该用户的反应中 */
+  paidAdded,
 } = ctx.reactions();
 ```
 

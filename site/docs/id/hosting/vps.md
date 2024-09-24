@@ -639,7 +639,7 @@ File akan dikirim ke server menggunakan `rsync`, yang diimplementasikan oleh `ea
 Setelah file selesai dikirim, perintah yang telah dijabarkan di environment variable `SCRIPT_AFTER` akan dieksekusi.
 Dalam kasus kita, setelah file selesai dikirim, ia akan menuju ke direktori bot, tempat di mana kita menginstal semua dependency selain yang berada di `devDependencies`, yang selanjutnya disambung dengan memulai ulang bot-nya.
 
-Perlu dicatat bahwa kamu perlu menambahkan tiga [secret environment variable](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions):
+Perlu dicatat bahwa kamu perlu menambahkan tiga [secret environment variable](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions):
 
 1. `SSH_PRIVATE_KEY` --- tempat di mana kunci SSH yang telah kamu buat di [langkah sebelumnya](#kunci-ssh) seharusnya disimpan.
 2. `REMOTE_HOST` --- simpan alamat IP server kamu di sini.
@@ -733,7 +733,7 @@ Script di atas akan mengirim file ke server menggunakan `rsync`, yang diimplemen
 Setelah file selesai dikirim, perintah yang telah dijabarkan di environment variable `SCRIPT_AFTER` akan dieksekusi.
 Dalam kasus kita, setelah file selesai dikirim, ia akan menuju ke direktori bot, lalu memulai ulang bot-nya.
 
-Perlu dicatat bahwa kamu perlu menambahkan tiga [secret environment variable](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions):
+Perlu dicatat bahwa kamu perlu menambahkan tiga [secret environment variable](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions):
 
 1. `SSH_PRIVATE_KEY` --- tempat di mana kunci SSH yang telah kamu buat di [langkah sebelumnya](#kunci-ssh) seharusnya disimpan.
 2. `REMOTE_HOST` --- simpan alamat IP server kamu di sini.
