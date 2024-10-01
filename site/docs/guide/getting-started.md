@@ -150,6 +150,90 @@ in your terminal before you execute `node bot.js`.
 This makes it easier to debug your bot.
 :::
 
+## Getting Started on Bun
+
+> This guide assumes that you have [Bun](https://bun.sh) installed.
+> If you don't know what these things are, check out our [Introduction](./introduction)!
+
+Create a new project and install the `grammy` package.
+Do this by opening a terminal and typing:
+
+```sh
+# Create a new directory and change into it.
+mkdir my-bot
+cd my-bot
+
+# Run bun init to scaffold a new project.
+bun init --yes
+
+# Install grammY.
+bun add grammy
+```
+
+Your folder structure should looks like this:
+
+```asciiart:no-line-numbers
+.
+├── index.ts
+├── .gitignore
+├── node_modules/
+├── package.json
+├── bun.lockb
+├── README.md
+└── tsconfig.json
+```
+
+Now, it's time to open Telegram to create a bot account, and obtain a bot token for it.
+Talk to [@BotFather](https://t.me/BotFather) to do this.
+The bot token looks like `123456:aBcDeF_gHiJkLmNoP-q`.
+It is used to authenticate your bot.
+
+Got the token? You can now code your bot in the `index.ts` file.
+You can copy the following example bot into that file, and pass your token to the `Bot` constructor:
+
+```ts [TypeScript]
+import { Bot } from "grammy";
+
+// Create an instance of the `Bot` class and pass your bot token to it.
+const bot = new Bot(""); // <-- put your bot token between the ""
+
+// You can now register listeners on your bot object `bot`.
+// grammY will call the listeners when users send messages to your bot.
+
+// Handle the /start command.
+bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
+// Handle other messages.
+bot.on("message", (ctx) => ctx.reply("Got another message!"));
+
+// Now that you specified how to handle messages, you can start your bot.
+// This will connect to the Telegram servers and wait for messages.
+
+// Start the bot.
+bot.start();
+```
+
+You can now run the bot by executing
+
+```sh
+bun run bot.ts
+```
+
+in your terminal.
+Done! :tada:
+
+Head over to Telegram to watch your bot respond to messages!
+
+::: tip Enabling Logging
+You can enable basic logging by running
+
+```sh
+export DEBUG="grammy*"
+```
+
+in your terminal before you execute `bun run index.ts`.
+This makes it easier to debug your bot.
+:::
+
 ## Getting Started on Deno
 
 > This guide assumes that you have [Deno](https://deno.com) installed.

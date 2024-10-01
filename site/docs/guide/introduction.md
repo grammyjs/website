@@ -66,7 +66,7 @@ You will get to know them as you go.
 
 ## Prerequisites to Getting Started
 
-> Skip the rest of this page if you already know how to develop a Deno or a Node.js application, and [get started](./getting-started).
+> Skip the rest of this page if you already know how to develop Deno, Bun or Node.js application, and [get started](./getting-started).
 
 Here are a few interesting things about programming---things that are essential to coding, yet rarely explained because most developers think they are self-evident.
 
@@ -172,6 +172,34 @@ You can stop the bot again with `Ctrl+C`.
 
 Ready?
 [Get started](./getting-started#getting-started-on-deno)! :robot:
+
+### Prerequisites for Bun
+
+Bun is a new JavaScript runtime, which is another good choice to build bot, like Deno, you are going to write your bot in TypeScript.
+The exact commands for all of that will be introduced in the next section when you actually create a bot, but it is important to know that these steps are necessary.
+
+Firstly, you have to have [Bun](https://bun.sh/) installed.
+
+In summary, this is what you have to do for Bun:
+
+Create a new directory somewhere.
+It will contain your bot project.
+Open this new directory in VS Code.
+
+```sh
+mkdir ./my-bot
+cd ./my-bot
+code .
+```
+
+Then:
+
+1. Run `bun init --yes` in your terminal to initialize the project.
+2. Create a source file `bot.ts` with TypeScript code inside the project.
+3. Run `bun run bot.ts` from your terminal, or run `bun --watch run bot.ts` if you want to keep updated with file changes.
+
+Ready?
+[Get started](./getting-started#getting-started-on-bun)! :robot:
 
 ### Prerequisites for Node.js
 
