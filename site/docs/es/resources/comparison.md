@@ -150,6 +150,14 @@ Como lenguaje compilado de forma nativa, Go supera a TypeScript en velocidad bru
 Esto es mucho menos relevante cuando escribes un bot porque la mayor parte del tiempo se pasa esperando a la red, pero con el tiempo, empezará a importar lo rápido que tu bot pueda analizar JSON.
 Go puede ser una mejor opción en estos casos.
 
+Otra métrica es la experiencia del desarrollador (DX).
+En general, Go y TypeScript son conocidos por tener herramientas extremadamente buenas y soporte de editor.
+Sin embargo, para la API Bot en particular, grammY es significativamente mejor que cualquier biblioteca escrita en Go.
+Esto se debe principalmente al avanzado sistema de tipos de TypeScript, que grammY aprovecha de forma sofisticada.
+Como resultado, puedes explorar la API de Bot de forma interactiva desde dentro de tu editor.
+Esto no es posible en la misma medida utilizando cualquier biblioteca escrita en Go.
+Si quieres el mejor DX, usa grammY.
+
 ### Frameworks escritos en Rust
 
 Un punto similar se puede hacer [como con Go](#frameworks-escritos-en-go), pero es aún más fuerte con Rust.
