@@ -46,9 +46,8 @@ Terdapat beberapa cara untuk menangani update berupa reaksi.
 Di chat pribadi dan grup, bot akan menerima sebuah update `message_reaction` jika seorang user mengubah reaksi suatu pesan.
 Di channel (atau postingan channel yang diteruskan ke grup secara otomatis), bot akan menerima sebuah update `message_reaction_count` yang berisi jumlah total reaksinya saja, tanpa menampilkan siapa yang mereaksi.
 
-Untuk menerima kedua jenis update tersebut, **bot harus menjadi administrator** di chat yang bersangkutan.
-Selain itu, `allowed_updates` juga perlu diaktikan.
-Berikut contoh cara mengaktifkannya menggunakan [long polling](./deployment-types#long-polling-vs-webhook) bawaan.
+Untuk menerima update kedua jenis reaksi tersebut, kamu perlu mengaktifkannya terlebih dahulu.
+Berikut contoh cara mengaktifkannya dengan menggunakan [long polling](./deployment-types#long-polling-vs-webhook) bawaan.
 
 ```ts
 bot.start({
