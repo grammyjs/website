@@ -373,8 +373,6 @@ myCommands
     (ctx) => ctx.reply("Hello, admin!")
   )
 ```
-```
-```
 
 ## Command Translations
 
