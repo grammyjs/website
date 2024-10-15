@@ -381,9 +381,9 @@ flyctl secrets set BOT_TOKEN="AAAA:12345"
      name: Deploy app
      runs-on: ubuntu-latest
      steps:
-     - uses: actions/checkout@v2
-     - uses: superfly/flyctl-actions/setup-flyctl@master
-     - run: flyctl deploy --remote-only
+       - uses: actions/checkout@v2
+       - uses: superfly/flyctl-actions/setup-flyctl@master
+       - run: flyctl deploy --remote-only
    ```
 
 6. 按照上述 [方法 1](#方法-1-通过-flyctl) 中的步骤 2 至 4 进行操作。

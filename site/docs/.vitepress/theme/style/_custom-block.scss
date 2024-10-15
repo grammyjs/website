@@ -5,7 +5,7 @@
   .tip.custom-block {
     color: var(--vp-c-green-dark);
     // border-color: #2db7e5;
-    background-color: #E9F8FD;
+    background-color: #e9f8fd;
   }
 
   .warning.custom-block {
@@ -22,7 +22,7 @@
   &.dark {
     .tip.custom-block {
       color: #53c4ea;
-      background-color: #06242F;
+      background-color: #06242f;
     }
 
     .warning.custom-block {
@@ -51,8 +51,8 @@
 }
 
 /**
-* <code> inside custom block
-* -------------------------------------------------------------------------- */
+ * <code> inside custom block
+ * -------------------------------------------------------------------------- */
 
 :root {
   .tip.custom-block code {
@@ -79,8 +79,8 @@
 }
 
 /**
-* blockquote inside custom block
-* -------------------------------------------------------------------------- */
+ * blockquote inside custom block
+ * -------------------------------------------------------------------------- */
 
 .tip.custom-block blockquote {
   --vp-c-divider: #bad7e3;
