@@ -46,7 +46,8 @@ await bot.api.setMessageReaction(chat_id, message_id, "💯");
 在私聊和群聊中，如果用户更改了对消息的反应，你的 bot 将收到 `message_reaction` update。
 在频道（自动转发到群聊中的频道帖子）中，你的 bot 将收到 `message_reaction_count` update，该 update 仅显示反应总数，但不会透露谁做出了反应。
 
-这两种类型的反应都需要先启用才能接收。
+**仅当 bot 是聊天中的管理员时**才会收到这两种类型的反应。
+此外，它们**需要通过 `allowed_updates` 启用**。
 例如，通过内置轮询，你可以像这样启用它们：
 
 ```ts
