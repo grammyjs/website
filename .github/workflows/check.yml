@@ -14,7 +14,7 @@ jobs:
 
       - uses: denoland/setup-deno@main
         with:
-          deno-version: "1.45.2"
+          deno-version: "v2.x"
 
       - name: Check Formatting
         run: deno fmt --check
@@ -41,7 +41,7 @@ jobs:
 
       - uses: denoland/setup-deno@main
         with:
-          deno-version: "1.45.2"
+          deno-version: "v2.x"
 
       - name: Check Links
         env:

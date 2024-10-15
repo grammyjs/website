@@ -153,6 +153,14 @@ Sebagai bahasa yang di-compile secara native, Go lebih unggul dari TypeScript be
 Keunggulan tersebut menjadi lebih relevan ketika kecepatan penguraian JSON menjadi hal yang krusial dan prioritas
 Go bisa menjadi pilihan yang lebih baik dalam kasus ini.
 
+Faktor lain yang perlu dipertimbangkan adalah developer experience (DX).
+Secara umum, baik Go maupun TypeScript sama-sama dikenal memiliki dukungan peralatan dan editor yang sangat mumpuni.
+Meski begitu, dalam hal API Bot, grammY secara signifikan lebih unggul dibandingkan dengan library yang ditulis menggunakan Go.
+Salah satu alasannya adalah karena grammY memanfaatkan fitur type tingkat lanjut yang dimiliki oleh TypeScript.
+Hasilnya, kamu bisa mengeksplorasi API Bot secara interaktif, langsung dari editor kamu.
+Fitur semacam itu tidak akan kamu temukan di library yang ditulis menggunakan Go.
+Jadi, jika kamu menginginkan DX terbaik, pilih grammY.
+
 ### Framework yang Ditulis Menggunakan Rust
 
 [Sama dengan Go](#framework-yang-ditulis-menggunakan-go), tetapi Rust lebih unggul.
