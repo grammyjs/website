@@ -377,12 +377,12 @@ flyctl secrets set BOT_TOKEN="AAAA:12345"
    FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
    jobs:
    deploy:
-         name: Deploy app
-         runs-on: ubuntu-latest
-         steps:
-         - uses: actions/checkout@v2
-         - uses: superfly/flyctl-actions/setup-flyctl@master
-         - run: flyctl deploy --remote-only
+     name: Deploy app
+     runs-on: ubuntu-latest
+     steps:
+       - uses: actions/checkout@v2
+       - uses: superfly/flyctl-actions/setup-flyctl@master
+       - run: flyctl deploy --remote-only
    ```
 
 6. Выполните шаги со 2 по 4 из [Метода 1](#метод-1-с-помощью-flyctl) выше.
