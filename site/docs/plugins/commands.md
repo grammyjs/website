@@ -441,7 +441,7 @@ myCommands.command(
 
 :::
 
-### Combo with i18n
+### Localizing Commands With the Internationalization Plugin
 
 If you are looking to have your localized command names and descriptions bundle inside your `.ftl` files, you could make use of the following idea:
 
