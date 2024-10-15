@@ -376,12 +376,12 @@ Visite <https://fly.io/docs/launch/continuous-deployment-with-github-actions/> p
      FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
    jobs:
      deploy:
-         name: Deploy app
-         runs-on: ubuntu-latest
-         steps:
-           - uses: actions/checkout@v2
-           - uses: superfly/flyctl-actions/setup-flyctl@master
-           - run: flyctl deploy --remote-only
+       name: Deploy app
+       runs-on: ubuntu-latest
+       steps:
+         - uses: actions/checkout@v2
+         - uses: superfly/flyctl-actions/setup-flyctl@master
+         - run: flyctl deploy --remote-only
    ```
 
 6. Sigue los pasos 2 a 4 del [Método 1](#metodo-1-con-flyctl) anterior.
