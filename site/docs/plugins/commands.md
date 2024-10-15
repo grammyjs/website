@@ -175,7 +175,7 @@ await loggedOutCommands.setCommands(bot);
 This way when a user calls `/login`, they'll have their command list changed to contain only the `logout` command.
 Neat, right?
 
-::: danger
+::: danger Command Name Restrictions
 As stated in the [Telegram Bot API documentation](https://core.telegram.org/bots/api#botcommand), command names can only be form out of:
 
 > 1-32 characters.
@@ -209,7 +209,7 @@ src/
 tsconfig.json
 ```
 
-::: tip
+::: tip Type Resolution
 For the sake of brevity, we are assuming your `tsconfig` file is well-set to resolve the types from `types.d.ts` and have resolved every other necessary import.
 :::
 
@@ -282,7 +282,7 @@ type MyContext = Context & CommandsFlavor<MyContext>;
 Did you notice it is possible to register single initialized Commands via the `.add` method into the `CommandGroup` instance or also directly through the `.command(...)` method?
 This allows for a one-file-only structure, like in the `admin.ts` file, or a more distributed file structure like in the `group.ts` file.
 
-::: tip
+::: tip Always Use Command Groups
 
 When creating and exporting commands using the `Command` constructor, it's mandatory to register them onto a `CommandGroup` instance via the `.add` method.
 On their own they are useless, so make sure you do that at some point.
