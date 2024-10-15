@@ -334,7 +334,7 @@ adminCommands
   .command("secret", "Admin only")
   .addToScope(
    { type: "all_chat_administrators" },
-   (ctx) => ctx.reply("Free cake!")
+   (ctx) => ctx.reply("Free cake!"),
   );
 ```
 
@@ -345,7 +345,7 @@ myCommands
   .command("fun", "Laugh")
   .addToScope(
     { type: "all_group_chats" },
-    (ctx) => ctx.reply("Haha")
+    (ctx) => ctx.reply("Haha"),
   );
 ```
 
@@ -360,18 +360,18 @@ myCommands
     "default",
     "Default command",
     // This will be called when not on a group chat, or when the user is not an admin
-    (ctx) => ctx.reply("Hello from default scope")
+    (ctx) => ctx.reply("Hello from default scope"),
   )
   .addToScope(
     { type: "all_group_chats" },
     // This will only be called for non-admin users in a group
-    (ctx) => ctx.reply("Hello, group chat!")
+    (ctx) => ctx.reply("Hello, group chat!"),
   )
   .addToScope(
     { type: "all_chat_administrators" },
     // This will be called for group admins, when inside that group
-    (ctx) => ctx.reply("Hello, admin!")
-  )
+    (ctx) => ctx.reply("Hello, admin!"),
+  );
 ```
 
 ## Command Translations
