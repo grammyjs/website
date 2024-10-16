@@ -27,7 +27,7 @@ Run the following command in your terminal based on your runtime or package mana
 ::: code-group
 
 ```sh:no-line-numbers [Deno]
-deno add @qz/telegram-entities-parser
+deno add jsr:@qz/telegram-entities-parser
 ```
 
 ```sh:no-line-numbers [Bun]
