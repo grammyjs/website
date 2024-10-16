@@ -52,21 +52,23 @@ First of all, here's how you can import all the necessary types and classes the 
 ```ts [TypeScript]
 import {
   CommandGroup,
-  commands,
   commandNotFound,
+  commands,
   type CommandsFlavor,
 } from "@grammyjs/commands";
 ```
 
 ```js [JavaScript]
-const { CommandGroup, commands, commandNotFound } = require("@grammyjs/commands");
+const { CommandGroup, commands, commandNotFound } = require(
+  "@grammyjs/commands",
+);
 ```
 
 ```ts [Deno]
 import {
   CommandGroup,
-  commands,
   commandNotFound,
+  commands,
   type CommandsFlavor,
 } from "https://deno.land/x/grammy_commands/mod.ts";
 ```
@@ -270,14 +272,14 @@ devCommands.command('devlogout', 'Greetings', async (ctx, next) => {
 import sayHi from "./say-hi.ts";
 import sayBye from "./say-bye.ts";
 import etc from "./another-command.ts";
-import { MyContext } from '../../types.ts'
+import { MyContext } from "../../types.ts";
 
 export const userCommands = new CommandGroup<MyContext>()
   .add([sayHi, sayBye]);
 ```
 
 ```ts [say-hi.ts]
-import { MyContext } from '../../types.ts'
+import { MyContext } from "../../types.ts";
 
 export default new Command<MyContext>("sayhi", "Greetings", async (ctx) => {
   await ctx.reply("Hello little User!");
