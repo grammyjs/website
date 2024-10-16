@@ -164,15 +164,14 @@ mkdir my-bot
 cd my-bot
 ```
 
-Next step we should initialise our project.
+Next step you should initialise your project.
 
 ```sh
 # Run bun init to scaffold a new project.
 bun init
-
 ```
 
-After running the command, the script will prompt us to select our project name and entry point.
+After running the command, the script will prompt you to select project name and entry point.
 
 ```ansi{3-4,12}
 bun init helps you get started with a minimal project and tries to guess sensible defaults. Press ^C anytime to quit
@@ -190,7 +189,7 @@ To get started, run: // [!code focus]
   bun run bot.ts // [!code focus]
 ```
 
-And finally we can add `grammy` package.
+And finally you can add `grammy` package.
 
 ```sh
 # Install grammY.
@@ -215,7 +214,7 @@ Talk to [@BotFather](https://t.me/BotFather) to do this.
 The bot token looks like `123456:aBcDeF_gHiJkLmNoP-q`.
 It is used to authenticate your bot.
 
-Got the token? You can now code your bot in the `index.ts` file.
+Got the token? You can now code your bot in the `bot.ts` file.
 You can copy the following example bot into that file, and pass your token to the `Bot` constructor:
 
 ```ts [TypeScript]
@@ -257,7 +256,7 @@ You can enable basic logging by running
 export DEBUG="grammy*"
 ```
 
-in your terminal before you execute `bun run index.ts`.
+in your terminal before you execute `bun run bot.ts`.
 This makes it easier to debug your bot.
 :::
 
