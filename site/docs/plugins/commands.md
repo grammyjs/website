@@ -45,7 +45,7 @@ Now, let's get into some of the extra tools this plugin has to offer.
 
 ## Importing
 
-First of all, we need to import the `CommandGroup` class.
+First of all, here's how you can import all the necessary types and classes the plugin provides.
 
 ::: code-group
 
@@ -53,18 +53,20 @@ First of all, we need to import the `CommandGroup` class.
 import {
   CommandGroup,
   commands,
+  commandNotFound,
   type CommandsFlavor,
 } from "@grammyjs/commands";
 ```
 
 ```js [JavaScript]
-const { CommandGroup, commands } = require("@grammyjs/commands");
+const { CommandGroup, commands, commandNotFound } = require("@grammyjs/commands");
 ```
 
 ```ts [Deno]
 import {
   CommandGroup,
   commands,
+  commandNotFound,
   type CommandsFlavor,
 } from "https://deno.land/x/grammy_commands/mod.ts";
 ```
@@ -205,7 +207,7 @@ src/
 │  │  ├─ say-bye.ts
 │  │  ├─ ...
 ├─ bot.ts
-├─ types.d.ts
+├─ types.ts
 tsconfig.json
 ```
 
@@ -218,9 +220,14 @@ Make sure you take notice of the different patterns being use in the `admin.ts` 
 
 ::: code-group
 
+```ts [types.ts]
+export type MyContext = Context & CommandsFlavor<MyContext>;
+```
+
 ```ts [bot.ts]
 import { devCommands } from "./commands/admin.ts";
 import { userCommands } from "./commands/users/group.ts";
+import { MyContext } from "./types.ts";
 
 export const bot = new Bot<MyContext>("MyBotToken");
 
@@ -232,6 +239,7 @@ bot.use(devCommands);
 
 ```ts [admin.ts]
 import { userCommands } from './users/group.ts'
+import { MyContext } from '../types.ts'
 
 export const devCommands = new CommandGroup<MyContext>()
 
@@ -262,19 +270,18 @@ devCommands.command('devlogout', 'Greetings', async (ctx, next) => {
 import sayHi from "./say-hi.ts";
 import sayBye from "./say-bye.ts";
 import etc from "./another-command.ts";
+import { MyContext } from '../../types.ts'
 
 export const userCommands = new CommandGroup<MyContext>()
   .add([sayHi, sayBye]);
 ```
 
 ```ts [say-hi.ts]
+import { MyContext } from '../../types.ts'
+
 export default new Command<MyContext>("sayhi", "Greetings", async (ctx) => {
   await ctx.reply("Hello little User!");
 });
-```
-
-```ts [types.d.ts]
-type MyContext = Context & CommandsFlavor<MyContext>;
 ```
 
 :::
@@ -469,8 +476,6 @@ It is compatible with custom prefixes, so you don't have to worry about that, an
 ::: code-group
 
 ```ts [TypeScript]
-import { commandNotFound } from "@grammyjs/commands";
-
 // Use the flavor to create a custom context
 type MyContext = Context & CommandsFlavor;
 
@@ -498,8 +503,6 @@ bot
 ```
 
 ```js [JavaScript]
-import { commandNotFound } from "@grammyjs/commands";
-
 // Use the new context to instantiate your bot
 const bot = new Bot("token");
 const myCommands = new CommandGroup();
