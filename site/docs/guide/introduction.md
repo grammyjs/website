@@ -195,6 +195,7 @@ code .
 Then:
 
 1. Run `bun init` in your terminal to initialize the project and fill it out as written below.
+
 ```ansi{3-4,12}
 bun init helps you get started with a minimal project and tries to guess sensible defaults. Press ^C anytime to quit
 
@@ -207,6 +208,7 @@ Done! A package.json file was saved in the current directory.
  + tsconfig.json (for editor auto-complete)
  + README.md
 ```
+
 2. Run `bun run bot.ts` from your terminal, or run `bun --watch run bot.ts` if you want to keep updated with file changes.
 
 Ready?
