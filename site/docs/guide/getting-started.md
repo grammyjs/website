@@ -162,10 +162,37 @@ Do this by opening a terminal and typing:
 # Create a new directory and change into it.
 mkdir my-bot
 cd my-bot
+```
 
+Next step we should initialise our project.
+
+```sh
 # Run bun init to scaffold a new project.
-bun init --yes
+bun init
 
+```
+
+After running the command, the script will prompt us to select our project name and entry point.
+
+```ansi{3-4,12}
+bun init helps you get started with a minimal project and tries to guess sensible defaults. Press ^C anytime to quit
+
+package name (my-bot): my-bot // [!code focus]
+entry point (index.ts): bot.ts // [!code focus]
+
+Done! A package.json file was saved in the current directory.
+ + bot.ts
+ + .gitignore
+ + tsconfig.json (for editor auto-complete)
+ + README.md
+
+To get started, run: // [!code focus]
+  bun run bot.ts // [!code focus]
+```
+
+And finally we can add `grammy` package.
+
+```sh
 # Install grammY.
 bun add grammy
 ```
@@ -174,7 +201,7 @@ Your folder structure should looks like this:
 
 ```asciiart:no-line-numbers
 .
-├── index.ts
+├── bot.ts
 ├── .gitignore
 ├── node_modules/
 ├── package.json
