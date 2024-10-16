@@ -92,7 +92,7 @@ import type {
 // Change the rule for bold type entity,
 // but leave the rest of the types as defined by `RendererHtml`.
 class MyRenderer extends RendererHtml {
-  bold(
+  override bold(
     options: { text: string; entity: CommonEntity },
   ): RendererOutput {
     return {
