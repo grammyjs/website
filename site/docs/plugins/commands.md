@@ -333,8 +333,8 @@ Here's an example of a command that's only accessible to group admins.
 adminCommands
   .command("secret", "Admin only")
   .addToScope(
-   { type: "all_chat_administrators" },
-   (ctx) => ctx.reply("Free cake!"),
+    { type: "all_chat_administrators" },
+    (ctx) => ctx.reply("Free cake!"),
   );
 ```
 
