@@ -31,7 +31,7 @@ All of these features are made possible because you will define one or more cent
 
 Before we dive in, take a look at how you can register and handle a command with the plugin:
 
-```js
+```ts
 const myCommands = new CommandGroup();
 
 myCommands.command("hello", "Say hello", (ctx) => ctx.reply(`Hello, world!`));
@@ -81,7 +81,7 @@ Now that that's settled, let's see how we can make our commands visible to our u
 
 Once you defined your commands with an instance of the `CommandGroup` class, you can call the `setCommands` method, which will register all the defined commands to your bot.
 
-```js
+```ts
 const myCommands = new CommandGroup();
 
 myCommands.command("hello", "Say hello", (ctx) => ctx.reply("Hi there!"));
@@ -213,10 +213,6 @@ src/
 tsconfig.json
 ```
 
-::: tip Type Resolution
-For the sake of brevity, we are assuming your `tsconfig` file is well-set to resolve the types from `types.d.ts` and have resolved every other necessary import.
-:::
-
 The following code group exemplifies how we could implement a developer only command group, and update the Telegram client Command menu accordingly.
 Make sure you take notice of the different patterns being use in the `admin.ts` and `group.ts` file-tabs.
 
@@ -229,7 +225,7 @@ export type MyContext = Context & CommandsFlavor<MyContext>;
 ```ts [bot.ts]
 import { devCommands } from "./commands/admin.ts";
 import { userCommands } from "./commands/users/group.ts";
-import { MyContext } from "./types.ts";
+import type { MyContext } from "./types.ts";
 
 export const bot = new Bot<MyContext>("MyBotToken");
 
@@ -241,7 +237,7 @@ bot.use(devCommands);
 
 ```ts [admin.ts]
 import { userCommands } from './users/group.ts'
-import { MyContext } from '../types.ts'
+import type { MyContext } from '../types.ts'
 
 export const devCommands = new CommandGroup<MyContext>()
 
@@ -249,7 +245,9 @@ devCommands.command('devlogin', 'Greetings', async (ctx, next) => {
    if (ctx.from?.id === ctx.env.DEVELOPER_ID) {
       await ctx.reply('Hi to me')
       await ctx.setMyCommands(userCommands, devCommands)
-   } else next()
+   } else {
+     await next()
+   }
 })
 
 devCommands.command('usercount', 'Greetings', async (ctx, next) => {
@@ -257,14 +255,18 @@ devCommands.command('usercount', 'Greetings', async (ctx, next) => {
       await ctx.reply(
         `Active users: ${/** Your business logic */}`
     )
-   } else next()
+   } else {
+     await next()
+   }
 })
 
 devCommands.command('devlogout', 'Greetings', async (ctx, next) => {
     if (ctx.from?.id === ctx.env.DEVELOPER_ID) {
        await ctx.reply('Bye to me')
        await ctx.setMyCommands(userCommands)
-    } else next()
+   } else {
+     await next()
+   }
  })
 ```
 
@@ -272,14 +274,14 @@ devCommands.command('devlogout', 'Greetings', async (ctx, next) => {
 import sayHi from "./say-hi.ts";
 import sayBye from "./say-bye.ts";
 import etc from "./another-command.ts";
-import { MyContext } from "../../types.ts";
+import type { MyContext } from "../../types.ts";
 
 export const userCommands = new CommandGroup<MyContext>()
   .add([sayHi, sayBye]);
 ```
 
 ```ts [say-hi.ts]
-import { MyContext } from "../../types.ts";
+import type { MyContext } from "../../types.ts";
 
 export default new Command<MyContext>("sayhi", "Greetings", async (ctx) => {
   await ctx.reply("Hello little User!");
@@ -318,7 +320,7 @@ You don't even need to worry about calling `filter`, the `addToScope` method wil
 
 Here's an example of a scoped command:
 
-```js
+```ts
 const myCommands = new CommandGroup();
 
 myCommands
@@ -409,7 +411,7 @@ import { LanguageCodes } from "grammy/types";
 myCommands.command(
   "chef",
   "Steak delivery",
-  async (ctx) => await ctx.reply("Steak on the plate!"),
+  (ctx) => ctx.reply("Steak on the plate!"),
 )
   .localize(
     LanguageCodes.Spanish,
@@ -424,7 +426,7 @@ const { LanguageCodes } = require("grammy/types");
 myCommands.command(
   "chef",
   "Steak delivery",
-  async (ctx) => await ctx.reply("Steak on the plate!"),
+  (ctx) => ctx.reply("Steak on the plate!"),
 )
   .localize(
     LanguageCodes.Spanish,
@@ -439,7 +441,7 @@ import { LanguageCodes } from "https://deno.land/x/grammy/types.ts";
 myCommands.command(
   "chef",
   "Steak delivery",
-  async (ctx) => await ctx.reply("Steak on the plate!"),
+  (ctx) => ctx.reply("Steak on the plate!"),
 )
   .localize(
     LanguageCodes.Spanish,
@@ -543,7 +545,7 @@ The recommended commands will only come from the `CommandGroup` instances you pa
 
 Let's use the previous knowledge to inspect the next example:
 
-```js
+```ts
 const myCommands = new CommandGroup();
 myCommands.command("dad", "calls dad", () => {}, { prefix: "?" })
   .localize("es", "papa", "llama a papa")
@@ -613,7 +615,7 @@ All you have to do is set the `matchOnlyAtStart` option to `false`, and the rest
 
 This feature is for those who are really looking to go wild, it allows you to create command handlers based on regular expressions instead of static strings, a basic example would look like:
 
-```js
+```ts
 myCommands
   .command(
     /delete_([a-zA-Z]+)/,
