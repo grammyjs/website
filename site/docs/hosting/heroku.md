@@ -274,7 +274,7 @@ If it runs successfully and does not print any errors, our compiled files should
 
 ### Set up `Procfile`
 
-For the time being, `Heroku` has several [types of dynos](https://devcenter.heroku.com/articles/dyno-types).
+For the time being, `Heroku` has several [types of dynos](https://devcenter.heroku.com/articles/dynos#use-cases).
 Two of them are:
 
 - **Web dynos**:

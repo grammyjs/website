@@ -274,7 +274,7 @@ npx tsc
 
 ### Налаштування `Procfile`
 
-Наразі у `Heroku` є кілька [типів dyno](https://devcenter.heroku.com/articles/dyno-types).
+Наразі у `Heroku` є кілька [типів dyno](https://devcenter.heroku.com/articles/dynos#use-cases).
 Два з них:
 
 - **Веб dyno**:
