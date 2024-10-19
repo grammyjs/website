@@ -273,7 +273,7 @@ Si se ejecuta con éxito y no imprime ningún error, nuestros archivos compilado
 
 ### Configurar el `Procfile`
 
-Por el momento, `Heroku` tiene varios [tipos de dynos](https://devcenter.heroku.com/articles/dyno-types).
+Por el momento, `Heroku` tiene varios [tipos de dynos](https://devcenter.heroku.com/articles/dynos#use-cases).
 Dos de ellos son:
 
 - **Web dynos**:
