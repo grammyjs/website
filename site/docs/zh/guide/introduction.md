@@ -186,7 +186,7 @@ code .
 
 你将 Node.js 所要做的事情有下面这些：
 
-1. 用 TypeScript 代码创建一个源文件 `bot.ts` ，例如使用 [VS Code](https://code.visualstudio.com/) （或任何其他代码编辑器）。
+1. 用 TypeScript 代码创建一个源文件 `bot.ts` ，例如使用 [VS Code](https://code.visualstudio.com) （或任何其他代码编辑器）。
 2. 通过在你的终端运行一个命令来编译代码。这将生成一个名为 `bot.js` 的文件。
 3. 同样从你的终端，使用 Node.js 运行 `bot.js`。
 
