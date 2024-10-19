@@ -1,4 +1,4 @@
-import list from "./modules.json" assert { type: "json" };
+import list from "./modules.json" with { type: "json" };
 
 const urls = list.modules.map((id) => `https://deno.land/x/${id}`);
 
