@@ -194,7 +194,7 @@ bot.start();
 Тепер ми можемо запустити бота, виконавши
 
 ```sh
-deno run --allow-net bot.ts
+deno -IN bot.ts
 ```
 
 у терміналі.
@@ -215,7 +215,7 @@ export DEBUG="grammy*"
 Тепер потрібно запустити бота за допомогою наведеної нижче команди.
 
 ```sh
-deno run --allow-net --allow-env bot.ts
+deno -EIN bot.ts
 ```
 
 Тоді grammY зможе виявити, що встановлено `DEBUG`.

@@ -166,7 +166,7 @@ You can now start writing your bot.
 This is explained on the next page.
 
 One last thing:
-After you have created your bot, for example in a file called `bot.ts`, you can run it by typing `deno run --allow-net bot.ts` in your terminal.
+After you have created your bot, for example in a file called `bot.ts`, you can run it by typing `deno -IN bot.ts` in your terminal.
 (Yes, writing software means using the terminal a lot, get used to it.)
 You can stop the bot again with `Ctrl+C`.
 

@@ -61,7 +61,7 @@ bot.start();
 然后运行以下命令来启动你的 bot：
 
 ```sh
-deno run --allow-net main.ts
+deno -IN main.ts
 ```
 
 Deno 将自动下载依赖项、生成锁定文件并启动你的 bot。

@@ -191,7 +191,7 @@ bot.start();
 Sekarang, kamu dapat menjalankan bot dengan mengeksekusi
 
 ```sh
-deno run --allow-net bot.ts
+deno -IN bot.ts
 ```
 
 di terminal.
@@ -212,7 +212,7 @@ Ini mempermudah kamu untuk men-debug bot.
 Kemudian, jalankan bot dengan menambahkan flag `--allow-env` agar grammY bisa membaca environment variable `DEBUG`.
 
 ```sh
-deno run --allow-net --allow-env bot.ts
+deno -EIN bot.ts
 ```
 
 :::
