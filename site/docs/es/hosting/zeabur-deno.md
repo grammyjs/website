@@ -61,7 +61,7 @@ bot.start();
 Luego ejecuta el siguiente comando para iniciar tu bot:
 
 ```sh
-deno run --allow-net main.ts
+deno -IN main.ts
 ```
 
 Deno descargará automáticamente las dependencias, generará el archivo de bloqueo e iniciará tu bot.

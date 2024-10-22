@@ -61,7 +61,7 @@ bot.start();
 Jika sudah, jalankan perintah berikut untuk memulai bot kamu:
 
 ```sh
-deno run --allow-net main.ts
+deno -IN main.ts
 ```
 
 Perintah di atas akan membuat Deno secara otomatis mengunduh dependensi yang telah ditentukan sebelumnya, membuat lock-file, serta menjalankan bot kamu.
