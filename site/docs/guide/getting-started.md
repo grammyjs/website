@@ -198,6 +198,9 @@ deno run --allow-net bot.ts
 ```
 
 in your terminal.
+The `-IN` is short for `--allow-import --allow-net`.
+These permissions have to be specified because Deno is [secure by default](https://docs.deno.com/runtime/fundamentals/security/).
+
 Done! :tada:
 
 Head over to Telegram to watch your bot respond to messages!
@@ -212,7 +215,7 @@ export DEBUG="grammy*"
 in your terminal before you run your bot.
 This makes it easier to debug your bot.
 
-You now need to run the bot using
+You now need to grant the bot `--allow-env` permissions and run it using
 
 ```sh
 deno run --allow-net --allow-env bot.ts
