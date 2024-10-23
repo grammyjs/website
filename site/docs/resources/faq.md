@@ -44,7 +44,7 @@ You can't ... at least not in the way you think.
 
 An album only really exists in the UI of a Telegram client.
 For a bot, handling a media group is the same thing as handling a series of individual messages.
-The most practical advice is to ignore that media groups exist, and to simple write your bot with individual messages in mind.
+The most practical advice is to ignore that media groups exist, and to simply write your bot with individual messages in mind.
 Albums will then work automatically.
 For example, you can ask the user to [click a button](../plugins/keyboard#inline-keyboards) or send `/done` when all files are uploaded to your bot's chat.
 
@@ -54,8 +54,8 @@ Yes and no.
 Technically, there is the `media_group_id` which lets you determine the messages that belong to the same album.
 However,
 
-- there is no way to know the number of messages in an album,
-- there is no way to know when the last message in an album was received, and
+- there is no way of knowing the number of messages in an album,
+- there is no way of knowing when the last message in an album was received, and
 - other messages such text messages, service messages, etc may be sent in between album messages.
 
 So yes, in theory, you can know which messages belong to together, but only regarding the messages you have received so far.
