@@ -46,7 +46,8 @@ There are a few different ways to handle updates about reactions.
 In private chats and group chats, your bot will receive a `message_reaction` update if a user changes their reaction to a message.
 In channels (or automatically forwarded channel posts in groups), your bot will receive a `message_reaction_count` update that only shows the total count of reactions, but without revealing who reacted.
 
-Both types of reactions need to be enabled before you can receive them.
+Both types of reactions are only received **if the bot is an administrator** in the chat.
+In addition, they **need to be enabled** via `allowed_updates`.
 For example, with built-in polling, you can enable them like this:
 
 ```ts
