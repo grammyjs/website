@@ -537,7 +537,7 @@ If you want to opt-out of this behavior, you can pass the `ignoreLocalization` f
 It is possible to search across multiple CommandGroup instances, and `ctx.commandSuggestion` will be the most similar command, if any, across them all.
 It also allows to set the `ignoreCase` flag, which will ignore casing while looking for a similar command and the `similarityThreshold` flag, which controls how similar a command name has to be to the user input for it to be recommended.
 
-The `commandNotFound` function will only trigger for updates which contains command-like-text similar to your registered commands.
+The `commandNotFound` function will only trigger for updates which contain command-like text similar to your registered commands.
 For example, if you only have registered [commands with a custom prefix](#prefix) like `?`, it will trigger the handler for anything that looks like your commands, e.g: `?sayhi` but not `/definitely_a_command`.
 Same goes the other way, if you only have commands with the default prefix, it will only trigger on updates that look like `/regular` `/commands`.
 
