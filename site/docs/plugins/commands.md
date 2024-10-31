@@ -401,7 +401,7 @@ myCommands
 
 Add as many as you want! The plugin will take care of registering them for you when you call `myCommands.setCommands`.
 
-For convenience grammY exports a `LanguageCodes` enum-like object, that you can use for a more idiomatic approach:
+For convenience, grammY exports a `LanguageCodes` enum-like object that you can use for a more idiomatic approach:
 
 ::: code-group
 
