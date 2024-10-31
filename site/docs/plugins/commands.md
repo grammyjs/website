@@ -7,7 +7,7 @@ next: false
 
 Command handling on steroids.
 
-This plugin provides various features related to command handling that are not contained in the [command handling done by the grammY core library](../guide/commands).
+This plugin provides various features related to command handling that are not contained in the [command handling done by the core library](../guide/commands).
 Here is a quick overview of what you get with this plugin:
 
 - Better code readability by encapsulating middleware with command definitions
