@@ -40,6 +40,7 @@ export const modules: ModuleConfig[] = [
   },
   {
     repo: "conversations",
+    branch: "v1.2.0",
     slug: "conversations",
     name: "Conversations",
     description: desc(
