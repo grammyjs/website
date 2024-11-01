@@ -125,3 +125,31 @@ Actualmente, tendrás que implementar esta lógica tú mismo.
 En el futuro, queremos crear un plugin de difusión.
 Estaremos encantados de recibir tus contribuciones.
 Únete a nosotros [aquí](https://t.me/grammyjs).
+
+### ¿Puedo pagar por el aumento de los límites de la tarifa?
+
+Sí.
+
+> Esta sección sólo es relevante si tu bot tiene al menos 10.000 Telegram Stars en su saldo.
+
+Cuando emites muchos mensajes, pones mucha carga en la infraestructura de Telegram.
+En consecuencia, si quieres que Telegram aumente los límites, necesitas compensarles por el tráfico que generas.
+(Lo más probable es que también tengas que pagar un poco más).
+
+Las [Transmisiones pagadas](https://core.telegram.org/bots/api#paid-broadcasts) te permiten usar tu saldo en [Telegram Stars](https://t.me/BotNews/90) para aumentar los límites de tarifa de tu bot.
+Así podrás enviar **hasta 1000 mensajes por segundo**.
+
+1. Habilita las _Transmisiones Pagadas_ con [@BotFather](https://t.me/BotFather).
+2. Puedes utilizar el mismo código que para las emisiones normales.
+Después de todo, usted todavía tiene que respetar los límites de velocidad de la misma manera, incluso si los límites son mucho más altos ahora.
+Sin embargo, tienes que realizar varias llamadas a la API de forma concurrente para obtener un rendimiento mucho mayor.
+3. Especifique `allow_paid_broadcast` en cada llamada a la API.
+
+El paso 2 implica que debe utilizar una cola que le permita realizar las tareas con un cierto grado de concurrencia.
+Si utilizas muy poca concurrencia, tu rendimiento será inferior a 1000 mensajes por segundo.
+Si utilizas demasiada, te encontrarás con límites de velocidad más rápido de lo necesario.
+Además, si tienes muchas llamadas concurrentes a `sendMessage`, y una de ellas recibe 429, entonces todas las demás peticiones salientes ignorarán efectivamente este límite de velocidad.
+Como resultado, Telegram te impondrá un periodo de enfriamiento aún más largo.
+
+El número correcto de llamadas concurrentes puede elegirse mirando el tiempo medio que se tarda en enviar un mensaje.
+Por ejemplo, si este valor medio es de 57 milisegundos, deberías intentar realizar 57 llamadas concurrentes a `sendMessage` en todo momento.
