@@ -75,7 +75,7 @@ import {
 
 :::
 
-Now that that's settled, let's see how we can make our commands visible to our users.
+Now that the imports are settled, let's see how we can make our commands visible to our users.
 
 ## User Command Menu Setting
 
