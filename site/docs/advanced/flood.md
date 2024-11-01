@@ -140,7 +140,7 @@ Consequently, if you want Telegram to increase the limits, you need to compensat
 You will then be able to send **up to 1000 messages per second**.
 
 1. Enable _Paid Broadcasts_ with [@BotFather](https://t.me/BotFather).
-2. You can the same code as for normal broadcasts.
+2. You can use the same code as for normal broadcasts.
    After all, you still have to respect rate limits the same way, even if the limits are much higher now.
    However, you need to perform several API calls concurrently for a much higher throughput.
 3. Specify `allow_paid_broadcast` in every API call.
@@ -152,4 +152,4 @@ Also, if you have a lot of concurrent calls to `sendMessage`, and one of them re
 As a result, Telegram will impose an even longer cooldown period on you.
 
 The right number of concurrent calls can be picked by looking at the average time it takes to send a message.
-For example, if this average value is 57 milliseconds, you should aim at performing 57 concurent calls to `sendMessage` at all times.
+For example, if this average value is 57 milliseconds, you should aim at performing 57 concurrent calls to `sendMessage` at all times.
