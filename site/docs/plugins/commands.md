@@ -39,7 +39,7 @@ myCommands.command("hello", "Say hello", (ctx) => ctx.reply(`Hello, world!`));
 bot.use(myCommands);
 ```
 
-This registers a new `/start` command to your bot that will be handled by the given middleware.
+This registers a new `/hello` command to your bot that will be handled by the given middleware.
 
 Now, let's get into some of the extra tools this plugin has to offer.
 
