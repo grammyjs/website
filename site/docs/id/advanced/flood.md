@@ -146,7 +146,7 @@ Dengan begitu, kamu bisa mengirim **hingga 1000 pesan per detik**.
 Maksud dari langkah nomor 2 di atas adalah sebaiknya kamu memanfaatkan sebuah antrian (queue) agar bot dapat mengerjakan tugas-tugas yang diberikan berdasarkan takaran konkurensi yang diterapkan.
 Jika kamu menggunakan terlalu sedikit konkurensi, hasilnya akan jauh di bawah 1000 pesan per detik.
 Sebaliknya, jika kamu menggunakan konkurensi secara berlebihan, bot akan melewati ambang batas kelajuan.
-Selain itu, jika kamu melakukan banyak pemanggilan konkurensi `sendMessage`, lalu tiba-tiba salah satunya menerima [kode 429](../resources/faq#429-too-many-requests-retry-after-x), maka semua permintaan keluar (outgoing request) yang terlanjur dilakukan akan mengabaikan batas kelajuan tersebut.
+Selain itu, jika kamu melakukan banyak pemanggilan konkurensi `sendMessage`, lalu tiba-tiba salah satunya menerima [kode 429](../resources/faq#_429-too-many-requests-retry-after-x), maka semua permintaan keluar (outgoing request) yang terlanjur dilakukan akan mengabaikan batas kelajuan tersebut.
 Akibatnya, Telegram akan memberlakukan durasi tunggu (cooldown) yang lebih lama lagi.
 
 Jumlah pemanggilan konkurensi yang tepat bisa diukur dengan memperhatikan waktu rata-rata yang diperlukan untuk mengirim satu pesan.
