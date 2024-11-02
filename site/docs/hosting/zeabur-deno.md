@@ -56,7 +56,7 @@ bot.start();
 
 > Note: Get your bot token with [@BotFather](https://t.me/BotFather) on Telegram, and set is as an environment variable `TELEGRAM_BOT_TOKEN` in Zeabur.
 >
-> You can check out [this tutorial](https://zeabur.com/docs/deploy/variables) for setting environment variables in Zeabur.
+> You can check out [this tutorial](https://zeabur.com/docs/en-US/deploy/variables) for setting environment variables in Zeabur.
 
 Then run the following command to start your bot:
 
