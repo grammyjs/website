@@ -5,10 +5,649 @@ next: false
 
 # Команди (`commands`)
 
-Скоро буде додано, будь ласка, поверніться пізніше.
+Обробка команд на стероїдах.
+
+Цей плагін надає різні можливості, повʼязані з обробкою команд, які не містяться у [стандартних засобах головної бібліотеки](../guide/commands).
+Ось короткий огляд того, що ви отримаєте за допомогою цього плагіна:
+
+- Краща читабельність коду завдяки інкапсуляції проміжних обробників з визначеннями команд
+- Синхронізація меню команд користувача за допомогою `setMyCommands`
+- Покращене групування та організація команд
+- Можливість обмежити доступ до команд, які, наприклад, доступні лише адміністраторам груп або каналів тощо
+- Визначення перекладу команд
+- Функція `Може, ви мали на увазі ...?`, яка знаходить найближчу існуючу команду до заданого пропущеного користувачем вводу
+- Відповідність команд без урахування регістру
+- Налаштування кастомної поведінки для команд, в яких явно згадується ваш бот, наприклад, `/start@your_bot`.
+- Користувацькі префікси команд, наприклад: `+`, `?` або будь-який інший символ замість `/`
+- Підтримка команд, які не стоять на початку повідомлення
+- Команди з регулярними виразами!
+
+Всі ці функції стають можливими завдяки тому, що ви визначаєте одну або кілька центральних структур, які визначають команди вашого бота.
+
+## Базове використання
+
+Перш ніж ми зануримося в роботу, подивіться, як ви можете зареєструватися і працювати з командами за допомогою плагіна:
+
+```ts
+const myCommands = new CommandGroup();
+
+myCommands.command(
+  "hello",
+  "Привітатися",
+  (ctx) => ctx.reply(`Привіт, світе!`),
+);
+
+bot.use(myCommands);
+```
+
+Це зареєструє нову команду `/hello` для вашого бота, яка буде оброблятися даним проміжним обробником.
+
+Тепер давайте розглянемо деякі додаткові інструменти, які може запропонувати цей плагін.
+
+## Імпортування
+
+Перш за все, ось як ви можете імпортувати всі необхідні типи і класи, які надає плагін.
+
+::: code-group
+
+```ts [TypeScript]
+import {
+  CommandGroup,
+  commandNotFound,
+  commands,
+  type CommandsFlavor,
+} from "@grammyjs/commands";
+```
+
+```js [JavaScript]
+const { CommandGroup, commands, commandNotFound } = require(
+  "@grammyjs/commands",
+);
+```
+
+```ts [Deno]
+import {
+  CommandGroup,
+  commandNotFound,
+  commands,
+  type CommandsFlavor,
+} from "https://deno.land/x/grammy_commands/mod.ts";
+```
+
+:::
+
+Тепер, коли імпортування налагоджено, давайте подивимося, як ми можемо зробити наші команди видимими для наших користувачів.
+
+## Налаштування меню команд користувача
+
+Після того, як ви визначили свої команди за допомогою екземпляра класу `CommandGroup`, ви можете викликати метод `setCommands`, який зареєструє всі визначені команди для вашого бота.
+
+```ts
+const myCommands = new CommandGroup();
+
+myCommands.command("hello", "Привітатися", (ctx) => ctx.reply("Привіт!"));
+myCommands.command("start", "Запустити бота", (ctx) => ctx.reply("Запуск..."));
+
+bot.use(myCommands);
+
+await myCommands.setCommands(bot);
+```
+
+Тепер кожна зареєстрована вами команда відображатиметься в меню приватного чату з вашим ботом або коли користувачі набиратимуть `/` у чаті, учасником якого є ваш бот.
+
+### Context Shortcut
+
+Що робити, якщо ви хочете, щоб деякі команди відображалися тільки для певних користувачів?
+Наприклад, уявіть, що у вас є команди `login` і `logout`.
+Команда `login` повинна відображатися тільки для користувачів, які вийшли з системи, і навпаки.
+Ось як це можна зробити за допомогою плагіна:
+
+::: code-group
+
+```ts [TypeScript]
+// Використовуйте розширювач, щоб створити власний контекст.
+type MyContext = Context & CommandsFlavor;
+
+// Використовуйте новий контекст для створення бота.
+const bot = new Bot<MyContext>(""); // <-- Помістіть токен свого бота між "" (https://t.me/BotFather)
+
+// Зареєструйте плагін.
+bot.use(commands());
+
+const loggedOutCommands = new CommandGroup();
+const loggedInCommands = new CommandGroup();
+
+loggedOutCommands.command(
+  "login",
+  "Розпочати сесію з ботом",
+  async (ctx) => {
+    await ctx.setMyCommands(loggedInCommands);
+    await ctx.reply("Ласкаво просимо! Сесія розпочалася!");
+  },
+);
+
+loggedInCommands.command(
+  "logout",
+  "Завершити сесію з ботом",
+  async (ctx) => {
+    await ctx.setMyCommands(loggedOutCommands);
+    await ctx.reply("Бувайте :)");
+  },
+);
+
+bot.use(loggedInCommands);
+bot.use(loggedOutCommands);
+
+// Типово, користувачі не ввійшли до системи,
+// тому ви можете задати команди для всіх, хто вийшов з системи.
+await loggedOutCommands.setCommands(bot);
+```
+
+```js [JavaScript]
+const bot = new Bot(""); // <-- Помістіть токен свого бота між "" (https://t.me/BotFather)
+
+// Зареєструйте плагін.
+bot.use(commands());
+
+const loggedOutCommands = new CommandGroup();
+const loggedInCommands = new CommandGroup();
+
+loggedOutCommands.command(
+  "login",
+  "Розпочати сесію з ботом",
+  async (ctx) => {
+    await ctx.setMyCommands(loggedInCommands);
+    await ctx.reply("Ласкаво просимо! Сесія розпочалася!");
+  },
+);
+
+loggedInCommands.command(
+  "logout",
+  "Завершити сесію з ботом",
+  async (ctx) => {
+    await ctx.setMyCommands(loggedOutCommands);
+    await ctx.reply("Бувайте :)");
+  },
+);
+
+bot.use(loggedInCommands);
+bot.use(loggedOutCommands);
+
+// Типово, користувачі не ввійшли до системи,
+// тому ви можете задати команди для всіх, хто вийшов з системи.
+await loggedOutCommands.setCommands(bot);
+```
+
+:::
+
+Тепер, коли користувач викликає `/login`, його список команд буде змінено на команду `logout`.
+Зручно, чи не так?
+
+::: danger Обмеження щодо назв команд
+Як зазначено в [документації Telegram Bot API](https://core.telegram.org/bots/api#botcommand), назви команд можуть бути створені тільки з:
+
+1. 1-32 символів.
+2. Може містити лише малі англійські літери, цифри та підкреслення.
+
+Тому виклик `setCommands` або `setMyCommands` з будь-яким параметром, окрім чогось типу `lower_c4s3_commands`, спричинить помилку.
+Команди, які не відповідають цим правилам, все одно можна реєструвати, використовувати та обробляти, але вони ніколи не будуть показані у меню користувача.
+:::
+
+**Майте на увазі**, що `setCommands` і `setMyCommands` впливають лише на команди, що відображаються у меню команд користувача, а не на фактичний доступ до них.
+Про те, як реалізувати обмежений доступ до команд, ви дізнаєтеся у розділі [обмежені команди](#команди-обмежені-областю-видимості).
+
+### Групування команд
+
+Оскільки ми можемо розбивати і групувати наші команди на різні екземпляри, це дозволяє набагато ефективніше організувати файл команд.
+
+Припустимо, ми хочемо мати команди тільки для розробників.
+Ми можемо досягти цього за допомогою наступної структури коду:
+
+```ascii
+src/
+├─ commands/
+│  ├─ admin.ts
+│  ├─ users/
+│  │  ├─ group.ts
+│  │  ├─ say-hi.ts
+│  │  ├─ say-bye.ts
+│  │  ├─ ...
+├─ bot.ts
+├─ types.ts
+tsconfig.json
+```
+
+Наведений нижче код демонструє, як можна реалізувати групу команд тільки для розробників і відповідно оновити меню команд клієнта Telegram.
+Переконайтеся, що ви звернули увагу на різні шаблони, які використовуються у вкладках файлів `admin.ts` і `group.ts`.
+
+::: code-group
+
+```ts [types.ts]
+export type MyContext = Context & CommandsFlavor<MyContext>;
+```
+
+```ts [bot.ts]
+import { devCommands } from "./commands/admin.ts";
+import { userCommands } from "./commands/users/group.ts";
+import type { MyContext } from "./types.ts";
+
+export const bot = new Bot<MyContext>("MyBotToken");
+
+bot.use(commands());
+
+bot.use(userCommands);
+bot.use(devCommands);
+```
+
+```ts [admin.ts]
+import { userCommands } from './users/group.ts'
+import type { MyContext } from '../types.ts'
+
+export const devCommands = new CommandGroup<MyContext>()
+
+devCommands.command('devlogin', 'Привітання', async (ctx, next) => {
+   if (ctx.from?.id === ctx.env.DEVELOPER_ID) {
+      await ctx.reply('Привіт мені')
+      await ctx.setMyCommands(userCommands, devCommands)
+   } else {
+     await next()
+   }
+})
+
+devCommands.command('usercount', 'Активні користувачі', async (ctx, next) => {
+   if (ctx.from?.id === ctx.env.DEVELOPER_ID) {
+      await ctx.reply(
+        `Активні користувачі: ${/** Ваша бізнес-логіка */}`
+    )
+   } else {
+     await next()
+   }
+})
+
+devCommands.command('devlogout', 'Прощання', async (ctx, next) => {
+    if (ctx.from?.id === ctx.env.DEVELOPER_ID) {
+       await ctx.reply('До побачення мені')
+       await ctx.setMyCommands(userCommands)
+   } else {
+     await next()
+   }
+ })
+```
+
+```ts [group.ts]
+import sayHi from "./say-hi.ts";
+import sayBye from "./say-bye.ts";
+import etc from "./another-command.ts";
+import type { MyContext } from "../../types.ts";
+
+export const userCommands = new CommandGroup<MyContext>()
+  .add([sayHi, sayBye]);
+```
+
+```ts [say-hi.ts]
+import type { MyContext } from "../../types.ts";
+
+export default new Command<MyContext>("sayhi", "Привітання", async (ctx) => {
+  await ctx.reply("Привіт, юний користуваче!");
+});
+```
+
+:::
+
+Чи помітили ви, що можна реєструвати окремі ініціалізовані команди за допомогою методу `.add` в екземплярі `CommandGroup` або безпосередньо за допомогою методу `.command(...)`?
+Це дозволяє створити структуру з одного файлу, як у файлі `admin.ts`, або більш розподілену файлову структуру, як у файлі `group.ts`.
+
+::: tip Завжди використовуйте групи команд
+
+При створенні та експорті команд за допомогою конструктора `Command` обов'язково потрібно зареєструвати їх в екземплярі `CommandGroup` за допомогою методу `.add`.
+Самі по собі вони не приносять користі, тому обов'язково зробіть це колись.
+
+:::
+
+Плагін також змушує вас мати той самий тип контексту для заданої `CommandGroup` та їхніх відповідних `Commands`, щоб ви могли уникнути такої, на перший погляд, безглуздої помилки!
+
+Поєднання цих знань з наступним розділом підніме вашу роботу з командами на новий рівень.
+
+## Команди, обмежені областю видимості
+
+Чи знаєте ви, що можете дозволити показувати різні команди в різних чатах залежно від типу чату, мови і навіть статусу користувача в групі?
+Це те, що в Telegram називається [**областями видимості команд**](https://core.telegram.org/bots/features#command-scopes).
+
+Області видимості команд --- це класна функція, але використання її вручну може бути дуже заплутаним, оскільки важко відстежити всі області та команди, які вони представляють.
+Крім того, використовуючи області видимості команд самостійно, вам доведеться вручну фільтрувати кожну команду, щоб переконатися, що вона буде виконуватися тільки для правильних областей видимості.
+Синхронізація цих двох речей може перетворитися на справжній жах, і саме тому існує цей плагін.
+Погляньте, як це робиться.
+
+Клас `Command`, що повертається методом `command`, містить метод з назвою `addToScope`.
+Цей метод отримує [`BotCommandScope`](/ref/types/botcommandscope) разом з одним або декількома обробниками і реєструє ці обробники для виконання у вказаній області видимості.
+
+Вам навіть не потрібно турбуватися про виклик `filter`.
+Метод `addToScope` гарантує, що ваш обробник буде викликано лише за умови правильного контексту.
+
+Ось приклад команди з областю видимості:
+
+```ts
+const myCommands = new CommandGroup();
+
+myCommands
+  .command("start", "Ініціалізує налаштування бота")
+  .addToScope(
+    { type: "all_private_chats" },
+    (ctx) => ctx.reply(`Привіт, ${ctx.chat.first_name}!`),
+  )
+  .addToScope(
+    { type: "all_group_chats" },
+    (ctx) => ctx.reply(`Привіт, член ${ctx.chat.title}!`),
+  );
+```
+
+Команду `start` тепер можна викликати як з приватних, так і з групових чатів, і вона даватиме різну відповідь залежно від того, звідки її викликано.
+Тепер, якщо ви викличете `myCommands.setCommands`, команда `start` буде зареєстрована як в приватних, так і в групових чатах.
+
+Ось приклад команди, яка доступна лише адміністраторам груп:
+
+```js
+adminCommands
+  .command("secret", "Виклюючно для адміністраторів")
+  .addToScope(
+    { type: "all_chat_administrators" },
+    (ctx) => ctx.reply("Free cake!"),
+  );
+```
+
+А ось приклад команди, яка доступна лише в групах:
+
+```js
+myCommands
+  .command("fun", "Сміх")
+  .addToScope(
+    { type: "all_group_chats" },
+    (ctx) => ctx.reply("Хаха"),
+  );
+```
+
+Зверніть увагу, що коли ви викликаєте метод `command`, він відкриває нову команду.
+Якщо ви надасте їй обробник, цей обробник буде застосовано до області видимості `default` цієї команди.
+Виклик `addToScope` для цієї команди додасть новий обробник, який буде відфільтровано для цієї області видимості.
+Погляньте на цей приклад:
+
+```ts
+myCommands
+  .command(
+    "default",
+    "Типова команда",
+    // Ця команда буде викликана, якщо користувач не перебуває в груповому чаті або якщо він не є адміністратором.
+    (ctx) => ctx.reply("Привіт з типової області видимості"),
+  )
+  .addToScope(
+    { type: "all_group_chats" },
+    // Ця команда буде викликана лише для користувачів, які не є адміністраторами в групі.
+    (ctx) => ctx.reply("Привіт, груповий чате!"),
+  )
+  .addToScope(
+    { type: "all_chat_administrators" },
+    // Ця команда буде викликана для адміністраторів в цій групі.
+    (ctx) => ctx.reply("Привіт, адміне!"),
+  );
+```
+
+## Переклади команд
+
+Ще однією потужною можливістю є встановлення різних назв для однієї і тієї ж команди та їхніх описів, що базуються на мові користувача.
+Плагін команд полегшує це завдання за допомогою методу `localize`.
+Погляньте:
+
+```js
+myCommands
+  // Вам потрібно встановити типову назву та опис.
+  .command("hello", "Привітатися")
+  // А потім ви можете встановити локалізовані версії.
+  .localize("pt", "ola", "Dizer olá");
+```
+
+Додавайте скільки завгодно! Плагін подбає про їхню реєстрацію, коли ви викличете `myCommands.setCommands`.
+
+Для зручності grammY експортує обʼєкт, подібний до переліку `LanguageCodes`, який ви можете використовувати для кращої зрозумілості коду:
+
+::: code-group
+
+```ts [TypeScript]
+import { LanguageCodes } from "grammy/types";
+
+myCommands.command(
+  "chef",
+  "Доставка стейків",
+  (ctx) => ctx.reply("Стейк на тарілці!"),
+)
+  .localize(
+    LanguageCodes.Spanish,
+    "cocinero",
+    "Bife a domicilio",
+  );
+```
+
+```js [JavaScript]
+const { LanguageCodes } = require("grammy/types");
+
+myCommands.command(
+  "chef",
+  "Доставка стейків",
+  (ctx) => ctx.reply("Стейк на тарілці!"),
+)
+  .localize(
+    LanguageCodes.Spanish,
+    "cocinero",
+    "Bife a domicilio",
+  );
+```
+
+```ts [Deno]
+import { LanguageCodes } from "https://deno.land/x/grammy/types.ts";
+
+myCommands.command(
+  "chef",
+  "Доставка стейків",
+  (ctx) => ctx.reply("Стейк на тарілці!"),
+)
+  .localize(
+    LanguageCodes.Spanish,
+    "cocinero",
+    "Bife a domicilio",
+  );
+```
+
+:::
+
+### Локалізація команд за допомогою плагіна інтернаціоналізації
+
+Якщо ви хочете, щоб ваші локалізовані назви команд та описи до них містилися у ваших файлах `.ftl`, ви можете скористатися наступною ідеєю:
+
+```ts
+function addLocalizations(command: Command) {
+  i18n.locales.forEach((locale) => {
+    command.localize(
+      locale,
+      i18n.t(locale, `${command.name}.command`),
+      i18n.t(locale, `${command.name}.description`),
+    );
+  });
+  return command;
+}
+
+myCommands.commands.forEach(addLocalizations);
+```
+
+## Пошук найближчої команди
+
+Незважаючи на те, що Telegram вміє автоматично завершувати зареєстровані команди, іноді користувачі вводять їх вручну і, в деяких випадках, роблять помилки.
+Плагін команд допоможе вам впоратися з цим, дозволяючи запропонувати команду, яка може бути саме тією, яку користувач хотів отримати в першу чергу.
+Він сумісний з користувацькими префіксами, тож вам не доведеться про це турбуватися.
+Користуватися цим доволі просто:
+
+::: code-group
+
+```ts [TypeScript]
+// Використовуйте розширювач, щоб створити власний контекст.
+type MyContext = Context & CommandsFlavor;
+
+// Використовуйте новий контекст для створення бота.
+const bot = new Bot<MyContext>(""); // <-- Помістіть токен свого бота між "" (https://t.me/BotFather)
+const myCommands = new CommandGroup<MyContext>();
+
+// Зареєструйте команди.
+
+bot
+  // Перевірте, чи така команда не існує.
+  .filter(commandNotFound(myCommands))
+  // Якщо так, то це означає, що її не обробив жоден з наших обробників команд.
+  .use(async (ctx) => {
+    // Ми знайшли потенційний збіг.
+    if (ctx.commandSuggestion) {
+      await ctx.reply(
+        `Хм... Я не знаю цієї команди. Може, ви мали на увазі ${ctx.commandSuggestion}?`,
+      );
+    }
+
+    // Здається, ніщо не збігається з тим, що ввів користувач.
+    await ctx.reply("Упс... Я не знаю цієї команди. :/");
+  });
+```
+
+```js [JavaScript]
+const bot = new Bot(""); // <-- Помістіть токен свого бота між "" (https://t.me/BotFather)
+const myCommands = new CommandGroup();
+
+// Зареєструйте команди.
+
+bot
+  // Перевірте, чи така команда не існує.
+  .filter(commandNotFound(myCommands))
+  // Якщо так, то це означає, що її не обробив жоден з наших обробників команд.
+  .use(async (ctx) => {
+    // Ми знайшли потенційний збіг.
+    if (ctx.commandSuggestion) {
+      await ctx.reply(
+        `Хм... Я не знаю цієї команди. Може, ви мали на увазі ${ctx.commandSuggestion}?`,
+      );
+    }
+
+    // Здається, ніщо не збігається з тим, що ввів користувач.
+    await ctx.reply("Упс... Я не знаю цієї команди. :/");
+  });
+```
+
+:::
+
+За лаштунками `commandNotFound` використовуватиме метод контексту `getNearestCommand`, який за замовчуванням надаватиме пріоритет командам, що відповідають мові користувача.
+Якщо ви хочете відмовитися від такої поведінки, ви можете передати прапорець `ignoreLocalization`, встановлений у `true`.
+Можна шукати у декількох екземплярах `CommandGroup`, і `ctx.commandSuggestion` буде найбільш схожою командою, якщо така є, у всіх екземплярах.
+Також можна встановити прапорець `ignoreCase`, який ігноруватиме регістр під час пошуку схожої команди, і прапорець `similarityThreshold`, який контролює, наскільки назва команди має бути схожою на введену користувачем, щоб її було рекомендовано.
+
+Функція `commandNotFound` спрацьовуватиме лише для оновлень, які містять текст, схожий на ваші зареєстровані команди.
+Наприклад, якщо ви зареєстрували лише [команди з власним префіксом](#prefix) на кшталт `?`, вона спрацює для всього, що схоже на ваші команди, наприклад: `?sayhi`, але не `/definitely_a_command`.
+Те ж саме відбудеться і в зворотному випадку, якщо у вас є лише команди з префіксом за замовчуванням, він спрацює лише для оновлень, які виглядають як `/regular` і `/commands`.
+
+Рекомендовані команди надходитимуть лише з екземплярів `CommandGroup`, які ви передали до функції.
+Отже, ви можете винести перевірку у декілька окремих фільтрів.
+
+Давайте використаємо попередні знання для розгляду наступного прикладу:
+
+```ts
+const myCommands = new CommandGroup();
+myCommands.command("dad", "Подзвонити татові", () => {}, { prefix: "?" })
+  .localize("es", "papa", "llama a papa")
+  .localize("fr", "pere", "appelle papa");
+
+const otherCommands = new CommandGroup();
+otherCommands.command("bread", "Зʼїсти тост", () => {})
+  .localize("es", "pan", "come un pan")
+  .localize("fr", "pain", "manger du pain");
+
+// Зареєструйте кожну групу команд для кожної мови.
+
+// Припустимо, що користувач є французом і ввів `/Papi`.
+bot
+  // Цей фільтр спрацює для будь-якої команди, подібної до `/regular` або `?custom`.
+  .filter(commandNotFound([myCommands, otherCommands], {
+    ignoreLocalization: true,
+    ignoreCase: true,
+  }))
+  .use(async (ctx) => {
+    ctx.commandSuggestion === "?papa"; // Повертає true.
+  });
+```
+
+Якщо значення `ignoreLocalization` було б `false`, ми отримали б, що `ctx.commandSuggestion` дорівнює `/pain`.
+Ми можемо додати більше фільтрів, подібних до наведеного вище, з різними параметрами або `CommandGroup` для перевірки.
+
+Існує безліч можливостей!
+
+## Параметри команд
+
+Існує кілька параметрів, які можна вказати для кожної команди, області видимості або глобально для екземпляра `CommandGroup`.
+Ці параметри дозволяють вам додатково налаштувати те, як ваш бот обробляє команди, надаючи вам більшої гнучкості.
+
+### `ignoreCase`
+
+За замовчуванням команди будуть відповідати введеним користувачем даним з урахуванням регістру.
+Якщо цей прапорець встановлено, наприклад, у команді з назвою `/dandy`, то `/DANDY` відповідатиме так само, як `/dandY` або будь-якій іншій варіації, що враховує регістр.
+
+### `targetedCommands`
+
+When users invoke a command, they can optionally tag your bot, like so: `/command@bot_username`. You can decide what to do with these commands by using the `targetedCommands` config option.
+With it you can choose between three different behaviors:
+
+- `ignored`: Ignores commands that mention your bot's user
+- `optional`: Handles both commands that do and that don't mention the bot's user
+- `required`: Only handles commands that mention the bot's user
+
+Коли користувачі викликають команду, вони можуть за бажанням позначити вашого бота, наприклад, так: `/command@bot_username`.
+Ви можете вирішити, що робити з цими командами, за допомогою конфігураційного параметра `targetedCommands`.
+За допомогою цього параметра ви можете вибрати один з трьох варіантів поведінки:
+
+- `ignored`: ігнорує команди, в яких згадується ваш бот.
+- `optional`: обробляє як команди, що згадують, так і команди, що не згадують бота.
+- `required`: обробляє тільки команди, в яких згадується бот.
+
+### `prefix`
+
+Наразі Telegram розпізнає лише команди, що починаються з `/`, а отже, і [обробку команд виконує grammY](../guide/commands).
+У деяких випадках ви можете змінити це і використовувати власний префікс для вашого бота.
+Це можливо за допомогою параметра `prefix`, яка вкаже плагіну команд шукати цей префікс при спробі ідентифікувати команду.
+
+Якщо вам коли-небудь знадобиться отримати сутності `botCommand` з оновлення і потрібно, щоб вони були гідратовані з зареєстрованим вами власним префіксом, існує метод, спеціально розроблений для цього, який називається `ctx.getCommandEntities(yourCommands)`, який повертає той самий інтерфейс, що і `ctx.entities('bot_command')`.
+
+::: tip
+
+Команди з власними префіксами не відображаються у меню команд.
+
+:::
+
+### `matchOnlyAtStart`
+
+При [обробці команд](../guide/commands) grammY розпізнає лише команди, які починаються з першого символу повідомлення.
+Плагін команд, однак, дозволяє вам прослуховувати команди в середині тексту повідомлення, або в кінці, це не має значення!
+Усе, що вам потрібно зробити, це встановити опцію `matchOnlyAtStart` у значення `false`, а все інше плагін зробить сам.
+
+## Команди з регулярними виразами
+
+Ця функція для тих, хто дійсно хоче розгулятись.
+Вона дозволяє створювати обробники команд на основі регулярних виразів замість статичних рядків, базовий приклад виглядатиме ось так:
+
+```ts
+myCommands
+  .command(
+    /delete_([a-zA-Z]+)/,
+    (ctx) => ctx.reply(`Видалення ${ctx.msg?.text?.split("_")[1]}`),
+  );
+```
+
+This command handler will trigger on `/delete_me` the same as in `/delete_you`, and it will reply "Deleting me" in the first case and "Deleting you" in the later, but will not trigger on `/delete_` nor `/delete_123xyz`, passing through as if it wasn't there.
+
+Цей обробник команд спрацює на `/delete_me` так само, як і на `/delete_you`, і відповість "Видалення me" у першому випадку і "Видалення you" у другому, але не спрацює на `/delete_` або `/delete_123xyz`, пропускаючи їх так, ніби їх там не було.
 
 ## Загальні відомості про плагін
 
 - Назва: `commands`
 - [Джерело](https://github.com/grammyjs/commands)
-- Довідка
+- [Довідка](/ref/commands/)
