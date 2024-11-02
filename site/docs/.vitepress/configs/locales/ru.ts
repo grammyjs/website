@@ -214,7 +214,7 @@ const pluginOfficial = {
     },
     {
       text: "Команды (commands)",
-      link: "/plugins/commands",
+      link: "/ru/plugins/commands",
     },
   ],
 };
