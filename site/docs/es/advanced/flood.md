@@ -141,8 +141,8 @@ Así podrás enviar **hasta 1000 mensajes por segundo**.
 
 1. Habilita las _Transmisiones Pagadas_ con [@BotFather](https://t.me/BotFather).
 2. Puedes utilizar el mismo código que para las emisiones normales.
-Después de todo, usted todavía tiene que respetar los límites de velocidad de la misma manera, incluso si los límites son mucho más altos ahora.
-Sin embargo, tienes que realizar varias llamadas a la API de forma concurrente para obtener un rendimiento mucho mayor.
+   Después de todo, usted todavía tiene que respetar los límites de velocidad de la misma manera, incluso si los límites son mucho más altos ahora.
+   Sin embargo, tienes que realizar varias llamadas a la API de forma concurrente para obtener un rendimiento mucho mayor.
 3. Especifique `allow_paid_broadcast` en cada llamada a la API.
 
 El paso 2 implica que debe utilizar una cola que le permita realizar las tareas con un cierto grado de concurrencia.
