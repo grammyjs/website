@@ -202,7 +202,7 @@ Perintah yang tidak mengikuti ketentuan tersebut masih bisa ditambahkan, digunak
 :::
 
 **Perlu diketahui** bahwa `setCommands` dan `setMyCommands` hanya akan berdampak ke tampilan visual di menu perintah user, mereka tidak berdampak ke hak aksesnya.
-Kamu akan mempelajari cara menerapkan akses terbatas untuk perintah tertentu di bagian [Lingkup Command](#lingkup-command).
+Kamu akan mempelajari cara menerapkan akses terbatas untuk perintah tertentu di bagian [Lingkup Command](#lingkup-perintah).
 
 ### Pengelompokan Perintah
 
