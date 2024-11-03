@@ -64,7 +64,7 @@ From the [Bot FAQ](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-h
    Completely unrelated to bulk notifications or how many messages are sent in the group.
    And yet again, the auto-retry plugin will take care of this for you.
 
-There are a few other known limits there were revealed outside of the official Bot API documentation.
+There are a few other known limits that were revealed outside of the official Bot API documentation.
 For example, [it is known](https://t.me/tdlibchat/146123) that bots can only do up to 20 message edits in a minute per group chat.
 However, this is the exception, and we also have to assume that these limits may be changed in the future.
 Thus, this information does not affect how to program your bot.
@@ -125,3 +125,31 @@ Currently, you will have to implement this logic yourself.
 In the future, we want to create a broadcasting plugin.
 We would be happy to take your contributions!
 Join us [here](https://t.me/grammyjs).
+
+### Can I Pay for Increased Rate Limits?
+
+Yes.
+
+> This section is only relevant if your bot has at least 10,000 Telegram Stars in its balance.
+
+When you broadcast a lot of messages, you put a lot of load on the Telegram infrastructure.
+Consequently, if you want Telegram to increase the limits, you need to compensate them for the traffic you generate.
+(Most likely, you will also pay a bit extra.)
+
+[Paid broadcasts](https://core.telegram.org/bots/api#paid-broadcasts) let you use your balance in [Telegram Stars](https://t.me/BotNews/90) to increase your bot's rate limits.
+You will then be able to send **up to 1000 messages per second**.
+
+1. Enable _Paid Broadcasts_ with [@BotFather](https://t.me/BotFather).
+2. You can use the same code as for normal broadcasts.
+   After all, you still have to respect rate limits the same way, even if the limits are much higher now.
+   However, you need to perform several API calls concurrently for a much higher throughput.
+3. Specify `allow_paid_broadcast` in every API call.
+
+Step 2 implies that you should use a queue that lets you perform the tasks with a certain degree of concurrency.
+If you use too little concurrency, your throughput will be lower than 1000 messages per second.
+If you use too much of it, you will run into rate limits faster than necessary.
+Also, if you have a lot of concurrent calls to `sendMessage`, and one of them receives 429, then all the other outgoing requests will effectively ignore this rate limit.
+As a result, Telegram will impose an even longer cooldown period on you.
+
+The right number of concurrent calls can be picked by looking at the average time it takes to send a message.
+For example, if this average value is 57 milliseconds, you should aim at performing 57 concurrent calls to `sendMessage` at all times.
