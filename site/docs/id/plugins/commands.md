@@ -231,15 +231,15 @@ Perhatikan perbedaan pola yang digunakan di tab `admin.ts` dan `group.ts`.
 ::: code-group
 
 ```ts [types.ts]
-export type ContextKu = Context & CommandsFlavor<KonteksKu>;
+export type MyContext = Context & CommandsFlavor<MyContext>;
 ```
 
 ```ts [bot.ts]
 import { commandDev } from "./commands/admin.ts";
 import { commandUser } from "./commands/users/grup.ts";
-import type { ContextKu } from "./types.ts";
+import type { MyContext } from "./types.ts";
 
-export const bot = new Bot<ContextKu>("TokenBot");
+export const bot = new Bot<MyContext>("TokenBot");
 
 bot.use(commands());
 
@@ -249,9 +249,9 @@ bot.use(commandUser);
 
 ```ts [admin.ts]
 import { commandUser } from './users/grup.ts'
-import type { ContextKu } from '../types.ts'
+import type { MyContext } from '../types.ts'
 
-export const commandDev = new CommandGroup<ContextKu>()
+export const commandDev = new CommandGroup<MyContext>()
 
 commandDev.command('dev_login', 'Ucapkan salam', async (ctx, next) => {
    if (ctx.from?.id === ctx.env.DEVELOPER_ID) {
@@ -293,9 +293,9 @@ export const userCommands = new CommandGroup<MyContext>()
 ```
 
 ```ts [salamSambutan.ts]
-import type { ContextKu } from "../../types.ts";
+import type { MyContext } from "../../types.ts";
 
-export default new Command<ContextKu>("halo", "Ucapkan salam", async (ctx) => {
+export default new Command<MyContext>("halo", "Ucapkan salam", async (ctx) => {
   await ctx.reply("Halo, user keren!");
 });
 ```
