@@ -299,8 +299,8 @@ export default new Command<MyContext>("sayhi", "Привітання", async (ct
 
 ::: tip Завжди використовуйте групи команд
 
-При створенні та експорті команд за допомогою конструктора `Command` обов'язково потрібно зареєструвати їх в екземплярі `CommandGroup` за допомогою методу `.add`.
-Самі по собі вони не приносять користі, тому обов'язково зробіть це колись.
+При створенні та експорті команд за допомогою конструктора `Command` обовʼязково потрібно зареєструвати їх в екземплярі `CommandGroup` за допомогою методу `.add`.
+Самі по собі вони не приносять користі, тому обовʼязково зробіть це колись.
 
 :::
 
@@ -594,13 +594,6 @@ bot
 
 ### `targetedCommands`
 
-When users invoke a command, they can optionally tag your bot, like so: `/command@bot_username`. You can decide what to do with these commands by using the `targetedCommands` config option.
-With it you can choose between three different behaviors:
-
-- `ignored`: Ignores commands that mention your bot's user
-- `optional`: Handles both commands that do and that don't mention the bot's user
-- `required`: Only handles commands that mention the bot's user
-
 Коли користувачі викликають команду, вони можуть за бажанням позначити вашого бота, наприклад, так: `/command@bot_username`.
 Ви можете вирішити, що робити з цими командами, за допомогою конфігураційного параметра `targetedCommands`.
 За допомогою цього параметра ви можете вибрати один з трьох варіантів поведінки:
@@ -641,8 +634,6 @@ myCommands
     (ctx) => ctx.reply(`Видалення ${ctx.msg?.text?.split("_")[1]}`),
   );
 ```
-
-This command handler will trigger on `/delete_me` the same as in `/delete_you`, and it will reply "Deleting me" in the first case and "Deleting you" in the later, but will not trigger on `/delete_` nor `/delete_123xyz`, passing through as if it wasn't there.
 
 Цей обробник команд спрацює на `/delete_me` так само, як і на `/delete_you`, і відповість "Видалення me" у першому випадку і "Видалення you" у другому, але не спрацює на `/delete_` або `/delete_123xyz`, пропускаючи їх так, ніби їх там не було.
 
