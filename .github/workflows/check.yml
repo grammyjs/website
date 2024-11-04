@@ -18,21 +18,20 @@ jobs:
 
       - name: Check Formatting
         run: deno fmt --check
+        working-directory: site/
 
   lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - uses: denoland/setup-deno@main
         with:
-          node-version: latest
+          deno-version: "v2.x"
 
       - name: Check Linting
         working-directory: ./site
-        run: |
-          npm ci
-          npm run docs:lint
+        run: deno task docs:lint
 
   links:
     runs-on: ubuntu-latest
