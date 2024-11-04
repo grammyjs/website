@@ -61,7 +61,7 @@ bot.start();
 Then run the following command to start your bot:
 
 ```sh
-deno run --allow-net main.ts
+deno -IN main.ts
 ```
 
 Deno will automatically download the dependencies, generate the lock file, and start your bot.
