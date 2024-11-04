@@ -526,7 +526,7 @@ bot.on("message", async (ctx) => {
 
 Note that you should not only pass `MyContext` to your instance of `Bot`.
 You also need to use it in many other places.
-For example, if you create a new instance of `Composer`, use plugins like the [router plugin](../plugins/router.md), or [extract middleware into functions](../advanced/structuring.md#type-definitions-for-extracted-middleware), you should now specify your custom context type.
+For example, if you create a new instance of `Composer`, use plugins like the [router plugin](../plugins/router), or [extract middleware into functions](../advanced/structuring#type-definitions-for-extracted-middleware), you should now specify your custom context type.
 
 ### Transformative Context Flavors
 
