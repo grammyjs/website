@@ -1,4 +1,4 @@
-import imports from "./index.json" assert { type: "json" };
+import imports from "./index.json" with { type: "json" };
 import MarkdownIt from "markdown-it";
 
 export const currentVersions = (md: MarkdownIt) => {
