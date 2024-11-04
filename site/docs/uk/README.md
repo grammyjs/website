@@ -5,7 +5,7 @@ titleTemplate: false
 hero:
   name: grammY
   text: Фреймворк для створення Telegram ботів.
-  taglines: 
+  taglines:
     - подумайте, чомУ.
     - нова ера розробки ботів.
     - швидший за вас.
@@ -99,8 +99,8 @@ bot.start();
 
 <div style="font-size: 0.75rem; display: flex; justify-content: center;">
 
-© 2021-2024 &middot; grammY підтримує Telegram Bot API 7.10, який був [випущений](https://core.telegram.org/bots/api#september-6-2024) 6-го вересня 2024 року.
-Остання зміна: оновлення про придбані медіа та розіграші зірок.
+© 2021-2024 &middot; grammY підтримує Telegram Bot API 7.11, який був [випущений](https://core.telegram.org/bots/api#october-31-2024) 31-го жовтня 2024 року.
+Остання зміна: кнопки для копіювання тексту та платні трансляції повідомлень.
 
 </div>
 </footer>

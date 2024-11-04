@@ -5,7 +5,7 @@ titleTemplate: false
 hero:
   name: grammY
   text: Framework Bot Telegram.
-  taglines: 
+  taglines:
     - tak perlu lagi mengeluh "whY!?".
     - era baru pengembangan bot.
     - bekerja lebih cepat dibanding kamu.
@@ -102,8 +102,8 @@ Berhasil! :tada:
 
 <div style="font-size: 0.75rem; display: flex; justify-content: center;">
 
-© 2021-2024 &middot; grammY mendukung API Bot Telegram versi 7.10 yang [dirilis](https://core.telegram.org/bots/api#september-6-2024) pada tanggal 6 September 2024.
-(Fitur yang disorot: Update untuk Giveaway Stars dan Media yang Telah Dibeli)
+© 2021-2024 &middot; grammY mendukung API Bot Telegram versi 7.10 yang [dirilis](https://core.telegram.org/bots/api#october-31-2024) pada tanggal 31 Oktober 2024.
+(Fitur yang disorot: Tombol Salin Teks dan Penyiaran-pesan Berbayar)
 
 </div>
 </footer>

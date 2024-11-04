@@ -5,7 +5,7 @@ titleTemplate: false
 hero:
   name: grammY
   text: Telegram Bot 框架。
-  taglines: 
+  taglines:
     - 想到了什么？
     - bot 开发的新时代。
     - 运行更快。
@@ -100,8 +100,8 @@ bot.start();
 
 <div style="font-size: 0.75rem; display: flex; justify-content: center;">
 
-© 2021-2024 &middot; grammY 支持 Telegram Bot API 7.10，该 API 于 2024 年 9 月 6 日 [发布](https://core.telegram.org/bots/api#september-6-2024)。
-(最新亮点: 已付费媒体 update 和 Star 赠予)
+© 2021-2024 &middot; grammY 支持 Telegram Bot API 7.11，该 API 于 2024 年 10 月 31 日 [发布](https://core.telegram.org/bots/api#october-31-2024)。
+(最新亮点: 复制文本按钮和付费广播)
 
 </div>
 </footer>
