@@ -56,7 +56,7 @@ bot.start();
 
 > Примітка: отримайте токен бота за допомогою [@BotFather](https://t.me/BotFather) в Telegram і встановіть його як змінну оточення `TELEGRAM_BOT_TOKEN` в Zeabur.
 >
-> Ви можете ознайомитися з [цим посібником](https://zeabur.com/docs/deploy/variables) щодо налаштування змінних середовища в Zeabur.
+> Ви можете ознайомитися з [цим посібником](https://zeabur.com/docs/en-US/deploy/variables) щодо налаштування змінних середовища в Zeabur.
 
 Потім виконайте наступну команду, щоб запустити бота:
 

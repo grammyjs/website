@@ -123,3 +123,31 @@ Untuk sementara, kamu perlu menerapkan logika tersebut secara mandiri.
 Di masa yang akan datang, kami berencana untuk membuat plugin penyebar.
 Kami akan dengan senang hati menerima kontribusi kalian!
 Mari bergabung bersama kami [di sini](https://t.me/grammyjs).
+
+### Apakah Batas Kelajuan (rate limit) Bisa Ditingkatkan?
+
+Bisa, dengan menggunakan penyiaran-pesan berbayar.
+
+> Penjelasan berikut akan relevan jika bot kamu memiliki saldo sekurang-kurangnya 10.000 Telegram Stars.
+
+Ketika menyiarkan banyak pesan, secara langsung kamu telah membebani server Telegram.
+Konsekuensinya, jika kamu ingin Telegram meningkatkan batas kelajuan tersebut, kamu perlu menyediakan kompensasi atas beban tambahan yang telah ditimbulkan.
+(Kemungkinan besar, kamu juga akan membayar sedikit lebih mahal)
+
+Kamu bisa memanfaatkan [penyiaran-pesan berbayar](https://core.telegram.org/bots/api#paid-broadcasts) untuk meningkatkan batas kelajuan bot menggunakan saldo [Telegram Stars](https://t.me/BotNews/90).
+Dengan begitu, kamu bisa mengirim **hingga 1000 pesan per detik**.
+
+1. Aktifkan _Paid Broadcast_ di [@BotFather](https://t.me/BotFather).
+2. Kamu bisa menggunakan kode yang sama untuk penyiaran biasa.
+   Meski demikian, kamu masih diharuskan mematuhi batas kelajuan yang berlaku, walaupun batas kelajuan yang sekarang lebih tinggi.
+   Untuk hasil yang maksimal, lakukan pemanggilan beberapa API secara bersamaan (konkurensi).
+3. Terapkan `allow_paid_broadcast` di setiap pemanggilan API.
+
+Maksud dari langkah nomor 2 di atas adalah sebaiknya kamu memanfaatkan sebuah antrian (queue) agar bot dapat mengerjakan tugas-tugas yang diberikan berdasarkan takaran konkurensi yang diterapkan.
+Jika kamu menggunakan terlalu sedikit konkurensi, hasilnya akan jauh di bawah 1000 pesan per detik.
+Sebaliknya, jika kamu menggunakan konkurensi secara berlebihan, bot akan melewati ambang batas kelajuan.
+Selain itu, jika kamu melakukan banyak pemanggilan konkurensi `sendMessage`, lalu tiba-tiba salah satunya menerima [kode 429](../resources/faq#_429-too-many-requests-retry-after-x), maka semua permintaan keluar (outgoing request) yang terlanjur dilakukan akan mengabaikan batas kelajuan tersebut.
+Akibatnya, Telegram akan memberlakukan durasi tunggu (cooldown) yang lebih lama lagi.
+
+Jumlah pemanggilan konkurensi yang tepat bisa diukur dengan memperhatikan waktu rata-rata yang diperlukan untuk mengirim satu pesan.
+Contohnya, jika waktu rata-ratanya adalah 57 milidetik, atur agar pemanggilan konkurensi `sendMessage` selalu di angka 57.

@@ -61,7 +61,7 @@ bot.start();
 
 > Nota: Obtén tu bot token con [@BotFather](https://t.me/BotFather) en Telegram, y establécelo como variable de entorno `TELEGRAM_BOT_TOKEN` en Zeabur.
 >
-> Puedes consultar [este tutorial](https://zeabur.com/docs/deploy/variables) para establecer variables de entorno en Zeabur.
+> Puedes consultar [este tutorial](https://zeabur.com/docs/en-US/deploy/variables) para establecer variables de entorno en Zeabur.
 
 Ahora el directorio raíz de tu proyecto debería verse así:
 

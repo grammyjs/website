@@ -65,7 +65,7 @@ bot.start();
 
 > Catatan: Ambil token bot kamu di [@BotFather](https://t.me/BotFather), lalu buat sebuah environment variable di Zeabur bernama `TOKEN_BOT_TELEGRAM` yang memuat token bot tersebut.
 >
-> Panduan untuk menyetel environment variable di Zeabur bisa dilihat di [tutorial berikut](https://zeabur.com/docs/deploy/variables).
+> Panduan untuk menyetel environment variable di Zeabur bisa dilihat di [tutorial berikut](https://zeabur.com/docs/en-US/deploy/variables).
 
 Sekarang, direktori root proyek kamu seharusnya memiliki struktur seperti ini:
 
