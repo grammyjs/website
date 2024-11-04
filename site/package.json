@@ -18,14 +18,14 @@
     "deno:version": "deno --version"
   },
   "devDependencies": {
-    "@types/markdown-it": "13.0.7",
-    "@types/node": "^20.11.30",
+    "@types/markdown-it": "14.1.2",
+    "@types/node": "^22.7.7",
     "country-flag-emoji-polyfill": "0.1.8",
-    "deno-bin": "1.42.0",
+    "deno-bin": "2.0.2",
     "lazy-lottie-player": "0.0.1",
-    "markdownlint-cli2": "0.12.1",
-    "sass": "1.72.0",
-    "vitepress": "1.0.1"
+    "markdownlint-cli2": "0.14.0",
+    "sass": "1.80.3",
+    "vitepress": "1.4.1"
   },
   "engines": {
     "node": ">=20.11.0 <21 || >=21.2.0"
