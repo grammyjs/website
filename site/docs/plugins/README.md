@@ -36,6 +36,7 @@ Installing plugins is fun and easy, and we want you to know what we have in stor
 | [Media Groups](./media-group)              | _built-in_                                         | Simplify sending media groups and editing media      |
 | [Inline Queries](./inline-query)           | _built-in_                                         | Easily build results for inline queries              |
 | [Auto-retry](./auto-retry)                 | [`auto-retry`](./auto-retry)                       | Automatically handle rate limiting                   |
+| [Commands](./commands)                     | [`commands`](./commands)                           | Manage commands in a powerful way                    |
 | [Conversations](./conversations)           | [`conversations`](./conversations)                 | Build powerful conversational interfaces and dialogs |
 | [Chat Members](./chat-members)             | [`chat-members`](./chat-members)                   | Track which user joined which chat                   |
 | [Emoji](./emoji)                           | [`emoji`](./emoji)                                 | Simplify using emoji in code                         |
