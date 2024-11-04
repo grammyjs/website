@@ -65,7 +65,7 @@ bot.start();
 
 > 注意：在 Telegram 上使用 [@BotFather](https://t.me/BotFather) 获取你的 bot token，并在 Zeabur 中将其设置为环境变量 `TELEGRAM_BOT_TOKEN`。
 >
-> 你可以在 [这个教程](https://zeabur.com/docs/deploy/variables) 中查看如何在 Zeabur 中设置环境变量。
+> 你可以在 [这个教程](https://zeabur.com/docs/zh-CN/deploy/variables) 中查看如何在 Zeabur 中设置环境变量。
 
 现在你的项目的根目录应该如下所示：
 
