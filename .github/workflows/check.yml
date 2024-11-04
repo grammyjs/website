@@ -45,4 +45,5 @@ jobs:
       - name: Check Links
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: deno task links:check
+        run: deno task docs:links:check
+        working-directory: site/
