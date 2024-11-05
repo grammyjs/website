@@ -542,7 +542,7 @@ Es posible buscar entre múltiples instancias de CommandGroup, y `ctx.commandSug
 También permite establecer la bandera `ignoreCase`, que ignorará las mayúsculas y minúsculas mientras se busca un comando similar y la bandera `similarityThreshold`, que controla lo similar que tiene que ser el nombre de un comando a la entrada del usuario para que sea recomendado.
 
 La función `commandNotFound` sólo se activará para actualizaciones que contengan texto similar a comandos registrados.
-Por ejemplo, si sólo ha registrado [comandos con un prefijo personalizado](#prefijo) como `?`, se activará el controlador para cualquier cosa que se parezca a sus comandos, por ejemplo: `?sayhi` pero no `/definitely_a_command`.
+Por ejemplo, si sólo ha registrado [comandos con un prefijo personalizado](#prefix) como `?`, se activará el controlador para cualquier cosa que se parezca a sus comandos, por ejemplo: `?sayhi` pero no `/definitely_a_command`.
 Lo mismo ocurre a la inversa, si sólo tienes comandos con el prefijo por defecto, sólo se activará en las actualizaciones que se parezcan a `/regular` `/commands`.
 
 Los comandos recomendados sólo provendrán de las instancias de `CommandGroup` que pases a la función. Así que podrías diferir las comprobaciones en múltiples filtros separados.
