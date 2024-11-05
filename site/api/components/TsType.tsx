@@ -578,7 +578,6 @@ function LiteralMethods(
       {"  "}
       {methods.map((
         { name, kind, optional, computed, returnType, typeParams, params },
-        i,
       ) => {
         return (
           <>
@@ -711,7 +710,7 @@ function ParamAssign({
 
 function ParamIdentifier({
   children: param,
-  optional,
+  optional: _,
   getLink,
 }: {
   children: ParamIdentifierDef;

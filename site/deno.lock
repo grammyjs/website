@@ -1,11 +1,13 @@
 {
   "version": "4",
   "specifiers": {
+    "npm:@types/markdown-it@^14.1.2": "14.1.2",
     "npm:@vueuse/core@^11.2.0": "11.2.0_vue@3.5.12",
     "npm:country-flag-emoji-polyfill@~0.1.8": "0.1.8",
     "npm:lazy-lottie-player@^0.0.1": "0.0.1",
     "npm:markdownlint-cli2@0.14": "0.14.0",
     "npm:sass@^1.80.6": "1.80.6",
+    "npm:vitepress@*": "1.5.0_vite@5.4.10__sass@1.80.6_vue@3.5.12_focus-trap@7.6.0_sass@1.80.6",
     "npm:vitepress@^1.5.0": "1.5.0_vite@5.4.10__sass@1.80.6_vue@3.5.12_focus-trap@7.6.0_sass@1.80.6",
     "npm:vue@^3.5.12": "3.5.12"
   },
@@ -1190,6 +1192,7 @@
   },
   "workspace": {
     "dependencies": [
+      "npm:@types/markdown-it@^14.1.2",
       "npm:@vueuse/core@^11.2.0",
       "npm:country-flag-emoji-polyfill@~0.1.8",
       "npm:lazy-lottie-player@^0.0.1",

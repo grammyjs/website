@@ -1,5 +1,5 @@
-import { escapeHtml } from "./shared.js";
-import MarkdownIt from "markdown-it";
+import { escapeHtml } from "./shared.ts";
+import type MarkdownIt from "$types/markdown-it";
 
 export const betterLineBreaks = (md: MarkdownIt) => {
   md.renderer.rules.text = (tokens, idx) => {

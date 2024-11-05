@@ -38,7 +38,7 @@ jobs:
         working-directory: site/
 
       - name: Build site
-        run: deno task docs:build
+        run: deno task build
         working-directory: site/
 
       - name: Deploy to Netlify

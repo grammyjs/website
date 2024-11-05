@@ -1,20 +1,8 @@
 {
-  "deno.config": "./deno.jsonc",
+  "deno.config": "./site/deno.jsonc",
   "deno.enable": true,
-  "deno.enablePaths": [
-    // everything except .vitepress
-    "./site/docs/advanced/",
-    "./site/docs/demo/",
-    "./site/docs/guide/",
-    "./site/docs/hosting/",
-    "./site/docs/plugins/",
-    "./site/docs/resources/",
-    "./site/docs/es/",
-    "./site/docs/id/",
-    "./site/docs/uk/",
-    "./site/docs/zh/",
-    "./site/README.md",
-    "./site/api/",
-    "./site/docs/.vuepress/plugins/current-versions/build-index.ts"
+  "deno.disablePaths": [
+    "./site/docs/.vitepress/cache",
+    "./site/docs/.vitepress/dist"
   ]
 }
