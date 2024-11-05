@@ -5,7 +5,7 @@
     "proseWrap": "preserve"
   },
   "tasks": {
-    "setup": "deno task docs:index-versions && deno task docs:genapi",
+    "setup": "deno install --allow-scripts && deno task docs:index-versions && deno task docs:genapi",
     "docs:genapi": "cd api && deno task genapi",
     "docs:index-versions": "deno -N docs/.vitepress/plugins/current-versions/build-index.ts > docs/.vitepress/plugins/current-versions/index.json",
     "docs:dev": "deno -A npm:vitepress dev docs",
