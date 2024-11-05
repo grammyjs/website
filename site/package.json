@@ -19,15 +19,15 @@
   },
   "devDependencies": {
     "@types/markdown-it": "14.1.2",
-    "@types/node": "^22.7.7",
+    "@types/node": "^22.8.7",
     "country-flag-emoji-polyfill": "0.1.8",
-    "deno-bin": "2.0.2",
+    "deno-bin": "2.0.4",
     "lazy-lottie-player": "0.0.1",
     "markdownlint-cli2": "0.14.0",
-    "sass": "1.80.3",
-    "vitepress": "1.4.1"
+    "sass": "1.80.6",
+    "vitepress": "1.5.0"
   },
   "engines": {
-    "node": ">=20.11.0 <21 || >=21.2.0"
+    "node": ">=22.0.0"
   }
 }
