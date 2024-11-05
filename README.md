@@ -16,7 +16,7 @@ Setup (once): `cd` into `site/` and run `deno task setup`.
 You can now run
 
 ```sh
-deno task docs:dev
+deno task dev
 ```
 
 to view the documentation in your browser.
