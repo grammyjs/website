@@ -176,7 +176,7 @@ Lingkungan kerja untuk pengembangan Deno kamu sudah siap.
 Sekarang kamu bisa mulai menulis bot kamu.
 Penjelasannya ada di halaman berikutnya.
 
-Terakhir, setelah membuat bot, misalnya ditaruh di sebuah file bernama `bot.ts`, kamu bisa menjalankannya dengan mengetik `deno run --allow-net bot.ts` di terminal kamu---Yup, kamu akan sering berinteraksi dengan terminal ketika menulis sebuah program, jadi mulai sekarang biasakan dirimu.
+Terakhir, setelah membuat bot, misalnya ditaruh di sebuah file bernama `bot.ts`, kamu bisa menjalankannya dengan mengetik `deno -IN bot.ts` di terminal kamu---Yup, kamu akan sering berinteraksi dengan terminal ketika menulis sebuah program, jadi mulai sekarang biasakan dirimu.
 Kamu bisa menghentikan bot dengan menekan `Ctrl+C`.
 
 Sudah siap?
