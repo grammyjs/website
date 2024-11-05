@@ -11,7 +11,7 @@ The `logos/` directory only contains the logos of grammY—all website-related t
 
 Make sure you have [Deno](https://deno.com) installed.
 
-Setup (once): `cd` into `site/` and run `deno install --allow-scripts`.
+Setup (once): `cd` into `site/` and run `deno install --allow-scripts` followed by `deno task setup`.
 
 You can now run
 
