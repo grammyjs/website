@@ -24,17 +24,21 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Use the latest LTS version of Node.js
-        uses: actions/setup-node@v4
+      - name: Setup Deno
+        uses: denoland/setup-deno@main
         with:
-          node-version: lts/*
+          deno-version: "v2.x"
 
       - name: Install dependencies
-        run: npm ci
+        run: deno install --allow-scripts
+        working-directory: site/
+
+      - name: Generate files
+        run: deno task setup
         working-directory: site/
 
       - name: Build site
-        run: npm run docs:build
+        run: deno task build
         working-directory: site/
 
       - name: Deploy to Netlify

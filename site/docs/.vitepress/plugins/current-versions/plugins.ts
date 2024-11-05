@@ -1,5 +1,5 @@
 import imports from "./index.json" with { type: "json" };
-import MarkdownIt from "markdown-it";
+import type MarkdownIt from "$types/markdown-it";
 
 export const currentVersions = (md: MarkdownIt) => {
   const oldFence = md.renderer.rules.fence;
