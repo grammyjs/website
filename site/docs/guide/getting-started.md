@@ -167,8 +167,9 @@ cd my-bot
 Next, you should initialize your project.
 
 ```sh
-# Run bun init to scaffold a new project.
+# Use bun to init Typescript config
 bunx tsc --init
+# Run bun init to scaffold a new project.
 bun init
 ```
 
