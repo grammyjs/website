@@ -66,7 +66,7 @@ You will get to know them as you go.
 
 ## Prerequisites to Getting Started
 
-> Skip the rest of this page if you already know how to develop Deno, Bun or Node.js application, and [get started](./getting-started).
+> Skip the rest of this page if you already know how to develop Deno, Bun, or Node.js application, and [get started](./getting-started).
 
 Here are a few interesting things about programming---things that are essential to coding, yet rarely explained because most developers think they are self-evident.
 
@@ -175,7 +175,8 @@ Ready?
 
 ### Prerequisites for Bun
 
-Bun is a new JavaScript runtime, which is another good choice to build bot, like Deno, you are going to write your bot in TypeScript.
+Bun is a new JavaScript runtime, which is another good choice to build bot.
+Like Deno, you are going to write your bot in TypeScript.
 The exact commands for all of that will be introduced in the next section when you actually create a bot, but it is important to know that these steps are necessary.
 
 Firstly, you have to have [Bun](https://bun.sh/) installed.

@@ -164,14 +164,15 @@ mkdir my-bot
 cd my-bot
 ```
 
-Next step you should initialise your project.
+Next, you should initialize your project.
 
 ```sh
 # Run bun init to scaffold a new project.
+bunx tsc --init
 bun init
 ```
 
-After running the command, the script will prompt you to select project name and entry point.
+After running the command, the script will prompt you to select a project name and an entry point.
 
 ```ansi{3-4,12}
 bun init helps you get started with a minimal project and tries to guess sensible defaults. Press ^C anytime to quit
@@ -189,22 +190,22 @@ To get started, run: // [!code focus]
   bun run bot.ts // [!code focus]
 ```
 
-And finally you can add `grammy` package.
+Finally, you can add the `grammy` package.
 
 ```sh
 # Install grammY.
 bun add grammy
 ```
 
-Your folder structure should looks like this:
+Your folder structure should look like this:
 
 ```asciiart:no-line-numbers
 .
-├── bot.ts
-├── .gitignore
 ├── node_modules/
-├── package.json
+├── .gitignore
+├── bot.ts
 ├── bun.lockb
+├── package.json
 ├── README.md
 └── tsconfig.json
 ```
@@ -214,8 +215,9 @@ Talk to [@BotFather](https://t.me/BotFather) to do this.
 The bot token looks like `123456:aBcDeF_gHiJkLmNoP-q`.
 It is used to authenticate your bot.
 
-Got the token? You can now code your bot in the `bot.ts` file.
-You can copy the following example bot into that file, and pass your token to the `Bot` constructor:
+Got the token?
+You can now code your bot in the `bot.ts` file.
+Copy the following example bot into that file, and pass your token to the `Bot` constructor:
 
 ```ts [TypeScript]
 import { Bot } from "grammy";
@@ -257,7 +259,7 @@ export DEBUG="grammy*"
 ```
 
 in your terminal before you execute `bun run bot.ts`.
-This makes it easier to debug your bot.
+This will make it easier to debug your bot.
 :::
 
 ## Getting Started on Deno

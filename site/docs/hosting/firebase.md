@@ -49,7 +49,7 @@ npm install -g firebase-tools
    - TypeScript
 6. Optionally, you can select ESLint.
 7. The CLI asks you if you want to install the dependencies with npm.
-   If you use another package manager like `yarn`, `bun` or `pnpm` you can decline.
+   If you use another package manager like `yarn`, `bun`, or `pnpm` you can decline.
    In that case, you have to `cd` into the `functions` directory and install the dependencies manually.
 8. Open `./functions/package.json` and look for the key: `"engines": {"node": "16"}`.
    The `node` version should match your installed version of Node.js.
