@@ -1,3 +1,3 @@
-export * from "./better-line-breaks/plugins.js";
-export * from "./current-versions/plugins.js";
-export * from "./markdown.js";
+export * from "./better-line-breaks/plugins.ts";
+export * from "./current-versions/plugins.ts";
+export * from "./markdown.ts";

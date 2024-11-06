@@ -1,7 +1,7 @@
 {
   "lock": false,
   "tasks": {
-    "genapi": "deno run --allow-env --allow-net --allow-read --allow-write=.cache,../docs/ref api_gen.tsx ../docs/ref",
+    "genapi": "deno -ENRW=.cache,../docs/ref api_gen.tsx ../docs/ref",
     "reset": "rm -rf .cache"
   },
   "imports": {
