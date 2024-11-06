@@ -53,7 +53,7 @@ export function Parameters(
 ) {
   return (
     <>
-      {typeParams.map((v, i) => (
+      {typeParams.map((v) => (
         <>
           <H3>{getTitle(v)}</H3>
           <CodeBlock>
