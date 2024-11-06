@@ -582,6 +582,9 @@ import { Context, SessionFlavor } from "grammy";
 
 // Объявите `ctx.session` типом `string`.
 type MyContext = Context & SessionFlavor<string>;
+
+// Передайте тип экземпляру бота.
+const bot = new Bot<MyContext>("");
 ```
 
 Теперь вы можете использовать плагин сессий, и у вас есть доступ к
@@ -593,6 +596,10 @@ bot.on("message", async (ctx) => {
   const str = ctx.session;
 });
 ```
+
+Обратите внимание, что вам нужно не только передать `MyContext` в экземпляр `Bot`.
+Вам также нужно использовать его во многих других местах.
+Например, если вы создаёте новый экземпляр `Composer`, используете плагины, такие как [router plugin](../plugins/router), или [выносите middleware в отдельные функции](../advanced/structuring#определения-типов-для-извлеченного-middleware), вам также следует указывать свой пользовательский тип контекста.
 
 ### Преобразованные расширители контекста
 
