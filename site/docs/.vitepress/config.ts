@@ -1,9 +1,11 @@
 import { defineConfig } from "vitepress";
-import { algolia } from "./configs/algolia/index.js";
-import * as locale from "./configs/locales/index.js";
-import { markdown } from "./plugins/index.js";
-import plaintext from "./shared/syntaxes/plaintext.tmLanguage.json";
-import env from "./shared/syntaxes/env.tmLanguage.json";
+import { algolia } from "./configs/algolia/index.ts";
+import * as locale from "./configs/locales/index.ts";
+import { markdown } from "./plugins/index.ts";
+import plaintext from "./shared/syntaxes/plaintext.tmLanguage.json" with {
+  type: "json",
+};
+import env from "./shared/syntaxes/env.tmLanguage.json" with { type: "json" };
 
 export default defineConfig({
   lastUpdated: true,
@@ -50,6 +52,13 @@ export default defineConfig({
   },
 
   vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: "modern-compiler",
+        },
+      },
+    },
     build: {
       chunkSizeWarningLimit: 1600,
     },
