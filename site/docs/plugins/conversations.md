@@ -131,7 +131,7 @@ async function hello(conversation: Conversation<Context>, ctx0: Context) {
 
 In this conversation, you have three context objects available!
 
-Like regular handlers, the conversations plugin only receives a single context object from the [middleware system](../guide/middleware.md).
+Like regular handlers, the conversations plugin only receives a single context object from the [middleware system](../guide/middleware).
 Now suddenly it makes three context objects available to you.
 How is this possible?
 
