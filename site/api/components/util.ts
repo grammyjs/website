@@ -22,6 +22,7 @@ export function replaceModuleSymbolLinks(text: string, module_: string) {
     if (anchor) {
       href += `#${anchor}`;
     }
+    href = href.toLowerCase();
     return `[${match}](${href})`;
   });
 }
