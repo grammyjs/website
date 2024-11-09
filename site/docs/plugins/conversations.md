@@ -32,7 +32,7 @@ const bot = new Bot<ConversationFlavor<Context>>("");
 bot.use(conversations());
 
 /** Defines the conversation */
-async function hello(conversation: Conversation<Context>, ctx: Context) {
+async function hello(conversation: Conversation, ctx: Context) {
   await ctx.reply("Hi there! What is your name?");
   const { message } = await conversation.waitFor("message:text");
   await ctx.reply(`Welcome to the chat, ${message.text}!`);
@@ -85,7 +85,7 @@ const bot = new Bot<ConversationFlavor<Context>>("");
 bot.use(conversations());
 
 /** Defines the conversation */
-async function hello(conversation: Conversation<Context>, ctx: Context) {
+async function hello(conversation: Conversation, ctx: Context) {
   await ctx.reply("Hi there! What is your name?");
   const { message } = await conversation.waitFor("message:text");
   await ctx.reply(`Welcome to the chat, ${message.text}!`);
@@ -122,7 +122,7 @@ In regular message handlers, you only have a single context object at all times.
 Compare this with conversations.
 
 ```ts
-async function hello(conversation: Conversation<Context>, ctx0: Context) {
+async function hello(conversation: Conversation, ctx0: Context) {
   const ctx1 = await conversation.wait();
   const ctx2 = await conversation.wait();
   // handle three messages
@@ -155,7 +155,7 @@ As soon as the previously reached wait call is reached once again, function exec
 
 ```ts [Enter]
 async function hello( //                      |
-  conversation: Conversation<Context>, //     |
+  conversation: Conversation, //              |
   ctx0: Context, //                           |
 ) { //                                        |
   await ctx0.reply("Hi there!"); //           |
@@ -168,7 +168,7 @@ async function hello( //                      |
 
 ```ts [Replay]
 async function hello( //                      .
-  conversation: Conversation<Context>, //     .
+  conversation: Conversation, //              .
   ctx0: Context, //                           .
 ) { //                                        .
   await ctx0.reply("Hi there!"); //           .
@@ -181,7 +181,7 @@ async function hello( //                      .
 
 ```ts [Replay 2]
 async function hello( //                      .
-  conversation: Conversation<Context>, //     .
+  conversation: Conversation, //              .
   ctx0: Context, //                           .
 ) { //                                        .
   await ctx0.reply("Hi there!"); //           .
@@ -287,6 +287,7 @@ For TypeScript code, this also means that you now have two [flavors](../guide/co
   They can never have access to `ctx.conversation.enter` and by default, they also don't have access to any plugins.
   If you want to have custom properties on inside context objects, [scroll down](#using-plugins-inside-conversations).
 
+You have to pass both the outside and the inside context types to the conversation.
 The TypeScript setup therefore typically looks as follows.
 
 ::: code-group
@@ -298,23 +299,30 @@ import {
   type ConversationFlavor,
 } from "@grammyjs/conversations";
 
-// Outside context objects
+// Outside context objects (knows all middleware plugins)
 type MyContext = ConversationFlavor<Context>;
-// Inside context objects
+// Inside context objects (knows all conversation plugins)
 type MyConversationContext = Context;
 
 // Use the outside context type for your bot.
 const bot = new Bot<MyContext>("");
 
-// Use the inside context type for your conversation.
-type MyConversation = Conversation<MyConversationContext>;
+// Use both the outside and the inside type for your conversation.
+type MyConversation = Conversation<MyContext, MyConversationContext>;
+
+// Define your conversation and make sure
 async function example(
   conversation: MyConversation,
   ctx0: MyConversationContext,
 ) {
-  const ctx1: MyConversationContext = await conversation.wait();
-  // All context objects inside the conversation
-  // are of type `MyConversationContext`.
+  // All context objects inside the conversation are
+  // of type `MyConversationContext`.
+  const ctx1 = await conversation.wait();
+
+  // The outside context object can be accessed
+  // via `conversation.external` and it is inferred to be
+  // of type `MyContext`.
+  const session = await conversation.external((ctx) => ctx.session);
 }
 ```
 
@@ -325,23 +333,30 @@ import {
   type ConversationFlavor,
 } from "https://deno.land/x/grammy_conversations/mod.ts";
 
-// Outside context objects
+// Outside context objects (knows all middleware plugins)
 type MyContext = ConversationFlavor<Context>;
-// Inside context objects
+// Inside context objects (knows all conversation plugins)
 type MyConversationContext = Context;
 
 // Use the outside context type for your bot.
 const bot = new Bot<MyContext>("");
 
-// Use the inside context type for your conversation.
-type MyConversation = Conversation<MyConversationContext>;
+// Use both the outside and the inside type for your conversation.
+type MyConversation = Conversation<MyContext, MyConversationContext>;
+
+// Define your conversation and make sure
 async function example(
   conversation: MyConversation,
   ctx0: MyConversationContext,
 ) {
-  const ctx1: MyConversationContext = await conversation.wait();
-  // All context objects inside the conversation
-  // are of type `MyConversationContext`.
+  // All context objects inside the conversation are
+  // of type `MyConversationContext`.
+  const ctx1 = await conversation.wait();
+
+  // The outside context object can be accessed
+  // via `conversation.external` and it is inferred to be
+  // of type `MyContext`.
+  const session = await conversation.external((ctx) => ctx.session);
 }
 ```
 
@@ -353,45 +368,438 @@ Congrats!
 If you have understood all of the above, the hard parts are over.
 The rest of the page is about the wealth of features that this the conversations plugin provides.
 
+## Entering Conversations
+
+Conversations can be entered from a normal handler.
+
+By default, a conversation has the same name as the [name](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name) of the function.
+Optionally, you can rename it when installing it on your bot.
+
+Optionally, you can pass arguments to the conversation.
+
+Conversations can also be entered from within other conversations by doing a normal JavaScript function call.
+
+:::code-group
+
+```ts [TypeScript]
+async function convo(conversation: Conversation, ctx: Context) {
+  await ctx.reply("Computing answer");
+  return 42;
+}
+async function args(
+  conversation: Conversation,
+  ctx: Context,
+  answer: number,
+  config: { text: string },
+) {
+  const truth = await convo(conversation, ctx);
+  if (answer === truth) {
+    await ctx.reply(config.text);
+  }
+}
+bot.use(createConversation(convo, "new-name"));
+bot.use(createConversation(args));
+
+bot.command("enter", async (ctx) => {
+  await ctx.conversation.enter("new-name");
+});
+bot.command("enter_with_arguments", async (ctx) => {
+  await ctx.conversation.enter("args", 42, { prop: "foo" });
+});
+```
+
+```js [JavaScript]
+async function convo(conversation, ctx) {
+  await ctx.reply("Computing answer");
+  return 42;
+}
+async function args(conversation, ctx, answer, config) {
+  const truth = await convo(conversation, ctx);
+  if (answer === truth) {
+    await ctx.reply(config.text);
+  }
+}
+bot.use(createConversation(convo, "new-name"));
+bot.use(createConversation(args));
+
+bot.command("enter", async (ctx) => {
+  await ctx.conversation.enter("new-name");
+});
+bot.command("enter_with_arguments", async (ctx) => {
+  await ctx.conversation.enter("args", 42, { prop: "foo" });
+});
+```
+
+:::
+
+:::warning Missing Type Safety for Arguments
+
+Double-check that you used the right type annotations for the parameters of your conversation, and that you passed matching arguments to it in your `enter` call.
+The plugin is not able to check any types beyond `conversation` and `ctx`.
+
+:::
+
+Remember that [the order of your middleware matters](../guide/middleware).
+You can only enter conversations that have been installed prior to the handler that calls `enter`.
+
 ## Waiting for Updates
 
-- `conversation.wait`
-- `waitFor`, `waitUntil`, etc
-- chaining wait calls
-- inspecting context objects via `if`
-- inspecting context objects via `ctx.has`
+The most basic kind of wait call just waits for any update.
 
-## Entering and Exiting Conversations
+```ts
+const ctx = await conversation.wait();
+```
 
-Entering:
+It simply returns a context object.
+All other wait calls are based on this.
 
-- `ctx.conversation`
-- recursive calls
-- arguments
+### Filtered Wait Calls
 
-Exiting:
+If you want to wait for a specific type of update, you can use a filtered wait call.
 
-- returning
-- throwing
-- `ctx.conversation`
-- `conversation.halt`
+```ts
+// Match a filter query like with `bot.on`.
+const message = await conversation.waitFor("message");
+// Wait for text like with `bot.hears`.
+const hears = await conversation.waitForHears(/regex/);
+// Wait for commands like with `bot.command`.
+const start = await conversation.waitFor("start");
+// etc
+```
+
+Take a look at the API reference to see [all the available ways to filter wait calls](/ref/conversations/conversation#wait).
+
+Filtered wait calls are guaranteed to return only update that match the respective filter.
+If the bot receives an update that does not match, it will be dropped.
+You can pass a callback function that will be invoked in this case.
+
+```ts
+const message = await conversation.waitFor(":photo", {
+  otherwise: (ctx) => ctx.reply("Please send a photo!"),
+});
+```
+
+All filtered wait calls can be chained to filter for several things at once.
+
+```ts
+// Wait for a photo with a specific caption
+let photoWithCaption = await conversation.waitFor(":photo")
+  .andForHears("XY");
+// Handle each case with a different otherwise function:
+photoWithCaption = await conversation
+  .waitFor(":photo", { otherwise: (ctx) => ctx.reply("No photo") })
+  .andForHears("XY", { otherwise: (ctx) => ctx.reply("Bad caption") });
+```
+
+If you only specify `otherwise` in of the chained wait calls, then it will only be invoked if that specific filter drops the update.
+
+### Inspecting Context Objects
+
+It is very common to [destructure](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) the received context objects.
+You can then perform further checks on the received data.
+
+```ts
+const { message } = await conversation.waitFor("message");
+if (message.photo) {
+  // Handle photo message
+}
+```
+
+Conversations are also an ideal place to use [has checks](../guide/context#probing-via-has-checks).
+
+## Exiting Conversations
+
+The easiest way to exit a conversation is to return from it.
+Throw an error also terminates the conversation.
+
+If this is not enough, you can manually halt the conversation at any moment.
+
+```ts
+async function convo(conversation: Conversation, ctx: Context) {
+  // All branches exit the conversation:
+  if (ctx.message?.text === "return") {
+    return;
+  } else if (ctx.message?.text === "error") {
+    throw new Error("boom");
+  } else {
+    await conversation.halt();
+  }
+}
+```
+
+You can also exit a conversation from your middleware.
+
+```ts
+bot.use(conversations());
+bot.command("clean", async (ctx) => {
+  await ctx.conversation.exit("convo");
+});
+```
+
+You can even do this _before_ the targeted conversation is installed on your middleware system.
+It is enough to have the conversations plugin itself installed.
 
 ## It's Just JavaScript
 
-- as long as The Golden Rule is respected, you can do anything you want
-- variables, branching, loops
-- functions, recursion
-- classes, modules
+With [side-effects out of the way](#the-golden-rule-of-conversations), conversations are just regular JavaScript functions.
+They might be executed in weird ways, but when developing a bot, you can usually forget this.
+All the regular JavaScript syntax just works.
+
+Most the things in this section are obvious if you have used conversations for some time.
+However, if you are new, some of these things could surprise you.
+
+### Variables, Branching, and Loops
+
+You can use normal variables to store state between updates.
+You can use branching with `if` or `switch`.
+Loops via `for` and `while` work, too.
+
+```ts
+await ctx.reply("Send me your favorite numbers, separated by commas!");
+const { message } = await conversation.waitFor("message:text");
+const numbers = message.text.split(",");
+let sum = 0;
+for (const str of numbers) {
+  const n = parseInt(str.trim(), 10);
+  if (!isNaN(n)) {
+    sum += n;
+  }
+}
+await ctx.reply("The sum of these numbers is: " + sum);
+```
+
+It's just JavaScript.
+
+### Functions and Recursion
+
+You can split a conversation into multiple functions.
+They can call each other and even do recursion.
+(In fact, the plugin does not even know that you used functions.)
+
+Here is the same code as above, refactored to functions.
+
+:::code-group
+
+```ts [TypeScript]
+/** A conversation to add numbers */
+async function sumConvo(conversation: Conversation, ctx: Context) {
+  await ctx.reply("Send me your favorite numbers, separated by commas!");
+  const { message } = await conversation.waitFor("message:text");
+  const numbers = message.text.split(",");
+  await ctx.reply("The sum of these numbers is: " + sumStrings(numbers));
+}
+
+/** Converts all given strings to numbers and adds them up */
+function sumStrings(numbers: string[]): number {
+  let sum = 0;
+  for (const str of numbers) {
+    const n = parseInt(str.trim(), 10);
+    if (!isNaN(n)) {
+      sum += n;
+    }
+  }
+  return sum;
+}
+```
+
+```js [JavaScript]
+/** A conversation to add numbers */
+async function sumConvo(conversation, ctx) {
+  await ctx.reply("Send me your favorite numbers, separated by commas!");
+  const { message } = await conversation.waitFor("message:text");
+  const numbers = message.text.split(",");
+  await ctx.reply("The sum of these numbers is: " + sumStrings(numbers));
+}
+
+/** Converts all given strings to numbers and adds them up */
+function sumStrings(numbers) {
+  let sum = 0;
+  for (const str of numbers) {
+    const n = parseInt(str.trim(), 10);
+    if (!isNaN(n)) {
+      sum += n;
+    }
+  }
+  return sum;
+}
+```
+
+:::
+
+It's just JavaScript.
+
+### Modules and Classes
+
+JavaScript has higher-order functions, classes, and other ways of structuring your code into modules.
+Naturally, all of them can be turned into conversations.
+
+Here is the above code once again, refactored to a module with simple dependency injection.
+
+::: code-group
+
+```ts [TypeScript]
+/**
+ * A module that can ask the user for numbers, and that
+ * provides a way to add up numbers sent by the user.
+ *
+ * Requires a conversation handle to be injected.
+ */
+function sumModule(conversation: Conversation) {
+  /** Converts all given strings to numbers and adds them up */
+  function sumStrings(numbers) {
+    let sum = 0;
+    for (const str of numbers) {
+      const n = parseInt(str.trim(), 10);
+      if (!isNaN(n)) {
+        sum += n;
+      }
+    }
+    return sum;
+  }
+
+  /** Asks the user for numbers */
+  async function askForNumbers(ctx: Context) {
+    await ctx.reply("Send me your favorite numbers, separated by commas!");
+  }
+
+  /** Waits for the user to send numbers, and replies with their sum */
+  async function sumUserNumbers() {
+    const ctx = await conversation.waitFor(":text");
+    const sum = sumStrings(ctx.msg.text);
+    await ctx.reply("The sum of these numbers is: " + sum);
+  }
+
+  return { askForNumbers, sumUserNumbers };
+}
+
+/** A conversation to add numbers */
+async function sumConvo(conversation: Conversation, ctx: Context) {
+  const mod = sumModule(conversation);
+  await mod.askForNumbers(ctx);
+  await mod.sumUserNumbers();
+}
+```
+
+```js [JavaScript]
+/**
+ * A module that can ask the user for numbers, and that
+ * provides a way to add up numbers sent by the user.
+ *
+ * Requires a conversation handle to be injected.
+ */
+function sumModule(conversation: Conversation) {
+  /** Converts all given strings to numbers and adds them up */
+  function sumStrings(numbers) {
+    let sum = 0;
+    for (const str of numbers) {
+      const n = parseInt(str.trim(), 10);
+      if (!isNaN(n)) {
+        sum += n;
+      }
+    }
+    return sum;
+  }
+
+  /** Asks the user for numbers */
+  async function askForNumbers(ctx: Context) {
+    await ctx.reply("Send me your favorite numbers, separated by commas!");
+  }
+
+  /** Waits for the user to send numbers, and replies with their sum */
+  async function sumUserNumbers() {
+    const ctx = await conversation.waitFor(":text");
+    const sum = sumStrings(ctx.msg.text);
+    await ctx.reply("The sum of these numbers is: " + sum);
+  }
+
+  return { askForNumbers, sumUserNumbers };
+}
+
+/** A conversation to add numbers */
+async function sumConvo(conversation: Conversation, ctx: Context) {
+  const mod = sumModule(conversation);
+  await mod.askForNumbers(ctx);
+  await mod.sumUserNumbers();
+}
+```
+
+:::
+
+This is clearly overkill for such a simple task as adding up a few numbers.
+However, it illustrates a broader point.
+
+You guessed it:
+It's just JavaScript.
 
 ## Persisting Conversations
 
-- default: RAM
-- pass storage adapter to `conversations`
-- types of storage adapters
-- versioning data
-- making sure all data is serializable
+By default, all data stored by the conversations plugin is kept in memory.
+This means that when your process dies, all conversations are exited and will have to be restarted.
 
-Note that all data returned from `conversation.external` must be serializable because the plugin stores it.
+If you want to persist the data across server restarts, you need to connect the conversations plugin to a database.
+We have built [a lot of different storage adapters](https://github.com/grammyjs/storages/tree/main/packages#grammy-storages) to make this simple.
+(They are the same adapters that the [session plugin uses](./session#known-storage-adapters).)
+
+Let's say you want to store data on disk in a directory called `convo-data`.
+This means that you need the [`FileAdapter`](https://github.com/grammyjs/storages/tree/main/packages/file#installation).
+
+::: code-group
+
+```ts [Node.js]
+import { FileAdapter } from "@grammyjs/storage-file";
+
+bot.use(conversations({
+  storage: new FileAdapter({ dirName: "convo-data" }),
+}));
+```
+
+```ts [Deno]
+import { FileAdapter } from "https://deno.land/x/grammy_storages/file/src/mod.ts";
+
+bot.use(conversations({
+  storage: new FileAdapter({ dirName: "convo-data" }),
+}));
+```
+
+:::
+
+Done!
+
+### Versioning Data
+
+If you persist the state of the conversation in a database and then update the source code, there is a mismatch between the stored data and the conversation builder function.
+This is a form of data corruption and will break the replay.
+
+You can prevent this by specifying a version of your code.
+Every time you change your conversation, you can update the version.
+The conversations plugin will then detect a version mismatch and migrate all data automatically.
+
+```ts
+bot.use(conversations({
+  storage: {
+    version: 42, // can be number or string
+    adapter: storageAdapter,
+  },
+}));
+```
+
+If you do not specify a version, it defaults to `0`.
+
+:::tip Forgot to Change the Version? Don't Worry!
+
+The conversations plugin already has good protections in place that should catch most cases of data corruption.
+If this is detected, an error is thrown somewhere inside the conversation, which causes the conversation to crash.
+Assuming that you don't catch and suppress that error, the conversation will therefore wipe the bad data and restart correctly.
+
+That being said, this protection does not cover 100 % of the cases so you should definitely make sure to update the version number in the future.
+
+:::
+
+### Non-serializable Data
+
+[Remember](#conversations-store-state) that all data returned from `conversation.external` will be stored.
+This means that all data returned from `conversation.external` must be serializable.
+
 If you want to return data that cannot be serialized, such as classes or [`BigInt`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt), you can provide a custom serializer to fix this.
 
 ```ts
@@ -404,6 +812,18 @@ const largeNumber = await conversation.external({
   afterLoad: (str) => BigInt(str),
 });
 ```
+
+If you want to throw an error from the task, you can specify additional serialization functions for error objects.
+Check out [`ExternalOp`](/ref/conversations/externalop) in the API reference.
+
+### Storage Keys
+
+By default, conversation data is stored per chat.
+This is identical to [how the session plugin works](./session#session-keys).
+
+As a result, a conversation cannot handle updates from multiple chats.
+If this is desired, you can [define your own storage key function](/ref/conversations/conversationoptions#storage).
+As with sessions, it is [not recommended](./session#session-keys) to use this option in serverless environments.
 
 ## Using Plugins Inside Conversations
 
@@ -422,6 +842,12 @@ const largeNumber = await conversation.external({
 
 - `conversation.form`
 - building custom form fields
+
+## Concurrent Wait Calls
+
+- waiting for several update via floating promises
+- when does the conversation exit
+- halting a conversation
 
 ## Parallel Conversations
 
