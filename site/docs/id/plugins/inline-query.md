@@ -247,7 +247,7 @@ bot
 
 Dengan cara seperti itu, kamu bisa melakukan banyak hal, misalnya prosedur login di obrolan pribadi dengan user sebelum mengirimkan hasil inline query.
 Percakapannya bisa dilakukan beberapa kali sebelum kamu mengirim mereka kembali.
-Sebagai contoh, kamu bisa [memasuki sebuah percakapan singkat](./conversations#menginstal-dan-memasuki-sebuah-percakapan) menggunakan plugin percakapan.
+Sebagai contoh, kamu bisa [memasuki sebuah percakapan singkat](./conversations) menggunakan plugin percakapan.
 
 ## Mendapatkan Umpan Balik dari Hasil yang Dipilih
 

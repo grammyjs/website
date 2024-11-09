@@ -234,7 +234,7 @@ bot
 
 De esta forma, puede realizar, por ejemplo, procedimientos de inicio de sesión en un chat privado con el usuario antes de entregar los resultados de la consulta en línea.
 El diálogo puede ir y venir un poco antes de devolverlos.
-Por ejemplo, puedes [introducir una conversación corta](./conversations#instalar-y-entrar-en-una-conversacion) con el plugin de conversaciones.
+Por ejemplo, puedes [introducir una conversación corta](./conversations) con el plugin de conversaciones.
 
 ## Obtener información sobre los resultados elegidos
 
