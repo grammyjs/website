@@ -277,7 +277,7 @@ However, if your conversation never exists, this data will accumulate and slow d
 
 When a conversation is executed, it uses the persisted updates to generate new context objects from scratch.
 **These context objects are different from the context object in the surrounding middleware.**
-For TypeScript code, this also means that you now have two [flavors](../guide/context.md#context-flavors) of context objects.
+For TypeScript code, this also means that you now have two [flavors](../guide/context#context-flavors) of context objects.
 
 - **Outside context objects** are the context objects that your bot uses in middleware.
   They give you access to `ctx.conversation.enter`.
