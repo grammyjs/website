@@ -241,22 +241,6 @@ DO NOT USE `conversation.external` when you ...
 - call `ctx.reply` or `ctx.api.sendMessage` or similar methods
 - use any other JavaScript syntax like functions, classes, if-else, loops, etc
 
-Note that all data returned from `conversation.external` must be serializable because the plugin stores it.
-If you want to return data that cannot be serialized, such as classes or [`BigInt`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt), you can provide a custom serializer to fix this.
-
-```ts
-const largeNumber = await conversation.external({
-  // Call an API that returns a BigInt (cannot be converted to JSON).
-  task: () => 1000n ** 1000n,
-  // Convert bigint to string for storage.
-  beforeStore: (n) => String(n),
-  // Convert string back to bigint for usage.
-  afterLoad: (str) => BigInt(str),
-});
-```
-
-Whether or not you need to perform custom serialization depends on how you [persist your data](#persisting-conversations).
-
 The conversations plugin provides a few convenience methods around `conversation.external`.
 This not only simplifies using `Math.random()` and `Date.now()`.
 It also simplifies debugging by providing a way to suppress logs during a replay.
@@ -405,6 +389,21 @@ Exiting:
 - pass storage adapter to `conversations`
 - types of storage adapters
 - versioning data
+- making sure all data is serializable
+
+Note that all data returned from `conversation.external` must be serializable because the plugin stores it.
+If you want to return data that cannot be serialized, such as classes or [`BigInt`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt), you can provide a custom serializer to fix this.
+
+```ts
+const largeNumber = await conversation.external({
+  // Call an API that returns a BigInt (cannot be converted to JSON).
+  task: () => 1000n ** 1000n,
+  // Convert bigint to string for storage.
+  beforeStore: (n) => String(n),
+  // Convert string back to bigint for usage.
+  afterLoad: (str) => BigInt(str),
+});
+```
 
 ## Using Plugins Inside Conversations
 
