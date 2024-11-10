@@ -110,8 +110,8 @@ const bot = new Bot<MyContext>("token");
 // Register the context shortcut
 bot.use(commands());
 
-const loggedOutCommands = new CommandGroup();
-const loggedInCommands = new CommandGroup();
+const loggedOutCommands = new CommandGroup<MyContext>();
+const loggedInCommands = new CommandGroup<MyContext>();
 
 loggedOutCommands.command(
   "login",
@@ -248,7 +248,7 @@ devCommands.command('devlogin', 'Greetings', async (ctx, next) => {
    }
 })
 
-devCommands.command('usercount', 'Greetings', async (ctx, next) => {
+devCommands.command('usercount', '', async (ctx, next) => {
    if (ctx.from?.id === ctx.env.DEVELOPER_ID) {
       await ctx.reply(
         `Active users: ${/** Your business logic */}`
@@ -325,12 +325,12 @@ const myCommands = new CommandGroup();
 myCommands
   .command("start", "Initializes bot configuration")
   .addToScope(
-    { type: "all_private_chats" },
-    (ctx) => ctx.reply(`Hello, ${ctx.chat.first_name}!`),
-  )
-  .addToScope(
     { type: "all_group_chats" },
     (ctx) => ctx.reply(`Hello, members of ${ctx.chat.title}!`),
+  )
+  .addToScope(
+    { type: "all_private_chats" },
+    (ctx) => ctx.reply(`Hello, ${ctx.chat.first_name}!`),
   );
 ```
 
@@ -373,15 +373,16 @@ myCommands
     (ctx) => ctx.reply("Hello from default scope"),
   )
   .addToScope(
-    { type: "all_group_chats" },
-    // This will only be called for non-admin users in a group
-    (ctx) => ctx.reply("Hello, group chat!"),
-  )
-  .addToScope(
     { type: "all_chat_administrators" },
     // This will be called for group admins, when inside that group
     (ctx) => ctx.reply("Hello, admin!"),
+  )
+  .addToScope(
+    { type: "all_group_chats" },
+    // This will only be called for non-admin users in a group
+    (ctx) => ctx.reply("Hello, group chat!"),
   );
+  
 ```
 
 ## Command Translations
