@@ -587,14 +587,15 @@ Having this flag set, for example, in a command named `/dandy` will match `/DAND
 
 ### `targetedCommands`
 
-When users invoke a command, they can optionally tag your bot, like so: `/command@bot_username`. You can decide what to do with these commands by using the `targetedCommands` config option.
+When users invoke a command, they can optionally tag your bot, like so: `/command@bot_username`.
+You can decide what to do with these commands by using the `targetedCommands` config option.
 With it you can choose between three different behaviors:
 
 - `ignored`: Ignores commands that mention your bot's user
 - `optional`: Handles both commands that do and that don't mention the bot's user
 - `required`: Only handles commands that mention the bot's user
 
-### prefix
+### `prefix`
 
 Currently, only commands starting with `/` are recognized by Telegram and, thus, by the [command handling done by the grammY core library](../guide/commands).
 In some occasions, you might want to change that and use a custom prefix for your bot.
@@ -602,11 +603,13 @@ That is made possible by the `prefix` option, which will tell the commands plugi
 
 If you ever need to retrieve `botCommand` entities from an update and need them to be hydrated with the custom prefix you have registered, there is a method specifically tailored for that, called `ctx.getCommandEntities(yourCommands)`, which returns the same interface as `ctx.entities('bot_command')`
 
-:::tip
+::: tip
+
 Commands with custom prefixes cannot be shown in the Commands Menu.
+
 :::
 
-### matchOnlyAtStart
+### `matchOnlyAtStart`
 
 When [handling commands](../guide/commands), the grammY core library will only recognize commands that start on the first character of a message.
 The commands plugin, however, allows you to listen for commands in the middle of the message text, or in the end, it doesn't matter!
