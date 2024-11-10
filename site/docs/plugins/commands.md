@@ -239,8 +239,8 @@ import type { MyContext } from '../types.ts'
 
 export const devCommands = new CommandGroup<MyContext>()
 
-devCommands.command('devlogin', 'Greetings', async (ctx, next) => {
-   if (ctx.from?.id === ctx.env.DEVELOPER_ID) {
+devCommands.command('devlogin', 'Set command menu to dev mode', async (ctx, next) => {
+   if (ctx.from?.id === `${/** Your telegram id */}`) {
       await ctx.reply('Hi to me')
       await ctx.setMyCommands(userCommands, devCommands)
    } else {
@@ -248,8 +248,8 @@ devCommands.command('devlogin', 'Greetings', async (ctx, next) => {
    }
 })
 
-devCommands.command('usercount', '', async (ctx, next) => {
-   if (ctx.from?.id === ctx.env.DEVELOPER_ID) {
+devCommands.command('usercount', 'Display user count', async (ctx, next) => {
+   if (ctx.from?.id === `${/** Your telegram id */}`) {
       await ctx.reply(
         `Active users: ${/** Your business logic */}`
     )
@@ -258,8 +258,8 @@ devCommands.command('usercount', '', async (ctx, next) => {
    }
 })
 
-devCommands.command('devlogout', 'Greetings', async (ctx, next) => {
-    if (ctx.from?.id === ctx.env.DEVELOPER_ID) {
+devCommands.command('devlogout', 'Reset command menu to user-mode', async (ctx, next) => {
+    if (ctx.from?.id === `${/** Your telegram id */}`) {
        await ctx.reply('Bye to me')
        await ctx.setMyCommands(userCommands)
    } else {
