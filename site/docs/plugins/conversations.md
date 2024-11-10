@@ -376,16 +376,25 @@ By default, a conversation has the same name as the [name](https://developer.moz
 Optionally, you can rename it when installing it on your bot.
 
 Optionally, you can pass arguments to the conversation.
+Note that the arguments will be stored as a JSON string, so you need to make sure they can be safely passed to `JSON.stringify`.
 
 Conversations can also be entered from within other conversations by doing a normal JavaScript function call.
+In that case, they get access to a potential return value of the called conversation.
+This isn't available when you enter a conversation from inside middleware.
 
 :::code-group
 
 ```ts [TypeScript]
+/**
+ * Returns the answer to life, the universe, and everything.
+ * This value is only accessible when the conversation
+ * is called from another conversation.
+ */
 async function convo(conversation: Conversation, ctx: Context) {
   await ctx.reply("Computing answer");
   return 42;
 }
+/** Accepts two arguments (must be JSON-serializable) */
 async function args(
   conversation: Conversation,
   ctx: Context,
@@ -404,15 +413,21 @@ bot.command("enter", async (ctx) => {
   await ctx.conversation.enter("new-name");
 });
 bot.command("enter_with_arguments", async (ctx) => {
-  await ctx.conversation.enter("args", 42, { prop: "foo" });
+  await ctx.conversation.enter("args", 42, { text: "foo" });
 });
 ```
 
 ```js [JavaScript]
+/**
+ * Returns the answer to life, the universe, and everything.
+ * This value is only accessible when the conversation
+ * is called from another conversation.
+ */
 async function convo(conversation, ctx) {
   await ctx.reply("Computing answer");
   return 42;
 }
+/** Accepts two arguments (must be JSON-serializable) */
 async function args(conversation, ctx, answer, config) {
   const truth = await convo(conversation, ctx);
   if (answer === truth) {
@@ -426,7 +441,7 @@ bot.command("enter", async (ctx) => {
   await ctx.conversation.enter("new-name");
 });
 bot.command("enter_with_arguments", async (ctx) => {
-  await ctx.conversation.enter("args", 42, { prop: "foo" });
+  await ctx.conversation.enter("args", 42, { text: "foo" });
 });
 ```
 
@@ -771,12 +786,13 @@ If you persist the state of the conversation in a database and then update the s
 This is a form of data corruption and will break the replay.
 
 You can prevent this by specifying a version of your code.
-Every time you change your conversation, you can update the version.
+Every time you change your conversation, you can increment the version.
 The conversations plugin will then detect a version mismatch and migrate all data automatically.
 
 ```ts
 bot.use(conversations({
   storage: {
+    type: "key",
     version: 42, // can be number or string
     adapter: storageAdapter,
   },
@@ -825,18 +841,229 @@ As a result, a conversation cannot handle updates from multiple chats.
 If this is desired, you can [define your own storage key function](/ref/conversations/conversationoptions#storage).
 As with sessions, it is [not recommended](./session#session-keys) to use this option in serverless environments.
 
+You can specify the storage key function as follows.
+
+```ts
+bot.use(conversations({
+  storage: {
+    type: "key",
+    adapter: storageAdapter,
+    getStorageKey: (ctx) => ctx.from?.id.toString(),
+  },
+}));
+```
+
+Check out the API reference for [`ConversationStorage`](/ref/conversations/conversationstorage) to see more details about storing data with the conversations plugin.
+Among other things, it will explain how to store data without a storage key function at all using `type: "context"`.
+
 ## Using Plugins Inside Conversations
 
-- pass plugins (except session) to the `plugins` array on `createConversation`
-- default plugins (except session) using the `plugins` array on `conversations`
-- how to install transformers
-- sessions
-- menus
+[Remember](#conversational-context-objects) that the context objects inside conversations are independent from the context objects in the surrounding middleware.
+This means that they will have to plugins installed on them by default.
+
+Fortunately, all grammY plugins [except sessions](#accessing-sessions-inside-conversations) are compatible with conversations.
+For example, this is how you can install the [hydrate plugin](./hydrate) for a conversation.
+
+::: code-group
+
+```ts [TypeScript]
+// Only install the conversations plugin outside.
+type MyContext = ConversationFlavor<Context>;
+// Only install the hydrate plugin inside.
+type MyConversationContext = HydrateFlavor<Context>;
+
+bot.use(conversations());
+
+type MyConversation = Conversation<MyContext, MyConversationContext>;
+async function convo(conversation: MyConversation, ctx: MyConversationContext) {
+  // hydrate plugin is installed on `ctx` here
+  const other = await conversation.wait();
+  // hydrate plugin is installed on `other` here, too
+}
+bot.use(createConversation(convo, { plugins: [hydrate()] }));
+
+bot.command("enter", async (ctx) => {
+  // hydrate plugin is NOT installed on `ctx` here
+  await ctx.conversation.enter("convo");
+});
+```
+
+```js [JavaScript]
+bot.use(conversations());
+
+async function convo(conversation, ctx) {
+  // hydrate plugin is installed on `ctx` here
+  const other = await conversation.wait();
+  // hydrate plugin is installed on `other` here, too
+}
+bot.use(createConversation(convo, { plugins: [hydrate()] }));
+
+bot.command("enter", async (ctx) => {
+  // hydrate plugin is NOT installed on `ctx` here
+  await ctx.conversation.enter("convo");
+});
+```
+
+:::
+
+In regular [middleware](../guide/middleware), plugins get to run some code on the current context object, then call `next` to wait for downstream middleware, and then they get to run some code again.
+
+Conversations are not middleware, and plugins will work slightly differently in this context.
+When a [context object is created](#conversational-context-objects) by the conversation, it will be passed through the array of plugins.
+Each plugin gets access to the context object, then `next` resolves immediately, and the plugins can run some more code.
+Only after this, the context object is made available to the conversation.
+
+As a result, any cleanup work done by plugins is performed before the conversation builder function runs.
+All plugins except sessions work well with this.
+If you want to use sessions, [scroll down](#accessing-sessions-inside-conversations).
+
+### Default Plugins
+
+If you have a lot of conversations that all need the same set of plugins, you can define default plugins.
+Now, you no longer have to pass `hydrate` to `enterConversation`.
+
+```ts
+bot.use(conversations({
+  plugins: [hydrate()],
+}));
+// ...
+bot.use(createConversation(convo));
+```
+
+Make sure to install the context flavors of all default plugins on the inside context types of all conversations.
+
+### Using Transformer Plugins Inside Conversations
+
+If you install a plugin via `bot.api.config.use`, then you cannot pass it to the `plugins` array directly.
+Instead, you have to install it on the `Api` instance of each context object.
+This is done easily from inside a regular middleware plugin.
+
+```ts
+bot.use(createConversation(convo, {
+  plugins: [async (ctx, next) => {
+    ctx.api.config.use(transformer);
+    await next();
+  }],
+}));
+```
+
+Replace `transformer` by whichever plugin you want to install.
+You can install several transformers in the same call to `ctx.api.config.use`.
+
+### Accessing Sessions Inside Conversations
+
+Due to the way [how plugins work inside conversations](#using-plugins-inside-conversations), the session plugin cannot be installed inside a conversation in the same way as other plugins.
+You cannot pass it to the `plugins` array because it would:
+
+1. read data,
+2. call `next` (which resolves immediately),
+3. write back the exact same data, and
+4. hand over the context to the conversation.
+
+Note how the session gets saved before you change it.
+This means that all changes to the session data get lost.
+
+Instead, you can use `conversation.external` to get [access to the outside context object](#conversational-context-objects).
+It has the session plugin installed.
+
+```ts
+// Read session data inside a conversation.
+const session = await conversation.external((ctx) => ctx.session);
+
+// Change the session data inside a conversation.
+session.count += 1;
+
+// Save session data inside a conversation.
+await conversation.external((ctx) => {
+  ctx.session = session;
+});
+```
+
+In a sense, the session plugin can be seen as performing side-effects.
+After all, it stores data in a database.
+Given that we must follow [The Golden Rule](#the-golden-rule-of-conversations), it only makes sense that session access needs to be wrapped inside `conversation.external`.
 
 ## Conversational Menus
 
-- `conversation.menu`
-- menu plugin interop
+You can define a menu with the [menu plugin](./menu) outside a conversation, and then pass it to the `plugins` array [like any other plugin](#using-plugins-inside-conversations).
+
+However, this means that the menu does not have access to the conversation handle `conversation` in its button handlers.
+As a result, you cannot wait for updates from inside a menu.
+
+Ideally, when a button is clicked, it should be possible to wait for a message by the user, and then perform menu navigation when the user replies.
+This is made possible by `conversation.menu()`.
+It lets you define _conversational menus_.
+
+```ts
+let email = "";
+
+const emailMenu = conversation.menu()
+  .text("Get current email", (ctx) => ctx.reply(email || "empty"))
+  .text(() => email ? "Change email" : "Set email", async (ctx) => {
+    await ctx.reply("What is your email?");
+    const response = await conversation.waitFor(":text");
+    email = response.msg.text;
+    await ctx.reply(`Your email is ${email}!`);
+    ctx.menu.update();
+  })
+  .row()
+  .url("Privacy policy", "https://example.com");
+
+const otherMenu = conversation.menu()
+  .submenu("Go to email menu", emailMenu, async (ctx) => {
+    await ctx.reply("Navigating");
+  });
+
+await ctx.reply("Here is your menu", {
+  reply_markup: otherMenu,
+});
+```
+
+`conversation.menu()` returns a menu that can be built up by adding buttons the same way the menu plugin does.
+If fact, if you look at [`ConversationMenuRange`](/ref/conversations/conversationmenurange) in the API reference, you will find it to be very similar to [`MenuRange`](/ref/menu/menurange) from the menu plugin.
+
+Conversational menus stay active only as long as the conversation active.
+You should call `ctx.menu.close()` for all menus before exiting the conversation.
+
+If you want to prevent the conversation from exiting, you can simply use the following code snippet at the end of your conversation.
+
+```ts
+// Wait forever.
+await conversation.waitUntil(() => false, {
+  otherwise: (ctx) => ctx.reply("Please use the menu above!"),
+});
+```
+
+Finally, note that conversational menus are guaranteed to never interfere with outside menus.
+In other words, an outside menu will never handle the update of a menu inside a conversation, and vice-versa.
+
+### Menu Plugin Interoperation
+
+When you define a menu outside a conversation and use it to enter a conversation, you can define a conversational menu that takes over as long as the conversation is active.
+When the conversation completes, the outside menu will take control again.
+
+You first have to give the same menu identifer to both menus.
+
+```ts
+// Outside conversation (menu plugin):
+const menu = new Menu("my-menu");
+// Inside conversation (conversations plugin):
+const menu = conversation.menu("my-menu");
+```
+
+In order for this to work, you must ensure that both menus have the exact same structure when you transition the control in or out of the conversation.
+Otherwise, when a button is clicked, the menu will be [detected as outdated](./menu#outdated-menus-and-fingerprints), and the button handler will not be called.
+
+The structure is defined as follows.
+
+- The shape of the menu (number of rows, or number of buttons in any row).
+- The label on the button.
+
+It is usually advisable to first edit the menu to a shape that makes sense inside the conversation, and then enter the conversation.
+The conversation can then define a matching menu which will be active immediately.
+
+Similarly, if the conversation leaves behind any menus (by not closing them), outside menus can take over control again.
+Again, the structure of the menus has to match.
 
 ## Conversational Forms
 
@@ -872,3 +1099,6 @@ As with sessions, it is [not recommended](./session#session-keys) to use this op
 - Name: `conversations`
 - [Source](https://github.com/grammyjs/conversations)
 - [Reference](/ref/conversations/)
+
+```
+```
