@@ -382,7 +382,6 @@ myCommands
     // This will only be called for non-admin users in a group
     (ctx) => ctx.reply("Hello, group chat!"),
   );
-  
 ```
 
 ## Command Translations
