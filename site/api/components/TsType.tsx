@@ -680,12 +680,13 @@ function ParamArray({
   const elements = param.elements.map((e) =>
     e && <Param getLink={getLink}>{e}</Param>
   );
+  let elementsElement: JSX.Element | undefined;
   if (elements.length) {
-    elements.reduce((a, b) => <>{a}, {b}</>);
+    elementsElement = elements.reduce((a, b) => <>{a}, {b}</>);
   }
   return (
     <>
-      [{elements}]
+      [{elementsElement || elements}]
       {param.optional || optional ? "?" : ""}
       {param.tsType && (
         <>
