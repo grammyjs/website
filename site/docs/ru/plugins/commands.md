@@ -245,8 +245,8 @@ import type { MyContext } from '../types.ts'
 
 export const devCommands = new CommandGroup<MyContext>()
 
-devCommands.command('devlogin', 'Приветствие', async (ctx, next) => {
-   if (ctx.from?.id === ctx.env.DEVELOPER_ID) {
+devCommands.command('devlogin', 'Перевести меню команд в режим разработчика', async (ctx, next) => {
+   if (ctx.from?.id === `${/** Ваш ID в Telegram */}`) {
       await ctx.reply('Привет мне')
       await ctx.setMyCommands(userCommands, devCommands)
    } else {
@@ -254,8 +254,8 @@ devCommands.command('devlogin', 'Приветствие', async (ctx, next) => {
    }
 })
 
-devCommands.command('usercount', 'Приветствие', async (ctx, next) => {
-   if (ctx.from?.id === ctx.env.DEVELOPER_ID) {
+devCommands.command('usercount', 'Узнать количество пользователей', async (ctx, next) => {
+   if (ctx.from?.id === `${/** Ваш ID в Telegram */}`) {
       await ctx.reply(
         `Активные пользователи: ${/** Ваша логика здесь */}`
     )
@@ -264,8 +264,8 @@ devCommands.command('usercount', 'Приветствие', async (ctx, next) => 
    }
 })
 
-devCommands.command('devlogout', 'Приветствие', async (ctx, next) => {
-    if (ctx.from?.id === ctx.env.DEVELOPER_ID) {
+devCommands.command('devlogout', 'Перевести меню команд в режим пользователя', async (ctx, next) => {
+    if (ctx.from?.id === `${/** Ваш ID в Telegram */}`) {
        await ctx.reply('Пока мне')
        await ctx.setMyCommands(userCommands)
    } else {
@@ -398,9 +398,9 @@ myCommands
 ```js
 myCommands
   // Сначала нужно установить название и описание по умолчанию
-  .command("hello", "Поздороваться")
+  .command("hello", "Say hello")
   // А затем можно задать локализованные варианты
-  .localize("pt", "ola", "Dizer olá");
+  .localize("ru", "privet", "Поздороваться");
 ```
 
 Добавьте столько вариантов, сколько хотите! Плагин сам позаботится об их регистрации, когда вы вызовете `myCommands.setCommands`.
@@ -414,13 +414,13 @@ import { LanguageCodes } from "grammy/types";
 
 myCommands.command(
   "chef",
-  "Доставка стейка",
-  (ctx) => ctx.reply("Стейк на тарелке!"),
+  "Steak delivery",
+  (ctx) => ctx.reply("Steak on the plate!"),
 )
   .localize(
-    LanguageCodes.Spanish,
-    "cocinero",
-    "Bife a domicilio",
+    LanguageCodes.Russian,
+    "chefpovar",
+    "Стейк на тарелке!",
   );
 ```
 
@@ -429,13 +429,13 @@ const { LanguageCodes } = require("grammy/types");
 
 myCommands.command(
   "chef",
-  "Доставка стейка",
-  (ctx) => ctx.reply("Стейк на тарелке!"),
+  "Steak delivery",
+  (ctx) => ctx.reply("Steak on the plate!"),
 )
   .localize(
-    LanguageCodes.Spanish,
-    "cocinero",
-    "Bife a domicilio",
+    LanguageCodes.Russian,
+    "chefpovar",
+    "Стейк на тарелке!",
   );
 ```
 
@@ -444,13 +444,13 @@ import { LanguageCodes } from "https://deno.land/x/grammy/types.ts";
 
 myCommands.command(
   "chef",
-  "Доставка стейка",
-  (ctx) => ctx.reply("Стейк на тарелке!"),
+  "Steak delivery",
+  (ctx) => ctx.reply("Steak on the plate!"),
 )
   .localize(
-    LanguageCodes.Spanish,
-    "cocinero",
-    "Bife a domicilio",
+    LanguageCodes.Russian,
+    "chefpovar",
+    "Стейк на тарелке!",
   );
 ```
 
@@ -551,18 +551,20 @@ bot
 
 ```ts
 const myCommands = new CommandGroup();
-myCommands.command("dad", "звонит папе", () => {}, { prefix: "?" })
+myCommands.command("dad", "calls dad", () => {}, { prefix: "?" })
+  .localize("ru", "papa", "звонит папе")
   .localize("es", "papa", "llama a papa")
   .localize("fr", "pere", "appelle papa");
 
 const otherCommands = new CommandGroup();
-otherCommands.command("bread", "съесть тост", () => {})
+otherCommands.command("bread", "eat a toast", () => {})
+  .localize("ru", "hleb", "съесть хлеб")
   .localize("es", "pan", "come un pan")
   .localize("fr", "pain", "manger du pain");
 
 // Регистрируем каждую языковую группу команд
 
-// Допустим, пользователь — француз и ввёл /Papi
+// Допустим, пользователь - француз и ввёл /Papi
 bot
   // этот фильтр сработает для всех команд, похожих на '/regular' или '?custom'
   .filter(commandNotFound([myCommands, otherCommands], {
@@ -574,30 +576,30 @@ bot
   });
 ```
 
-Если бы `ignoreLocalization` был ложным, мы бы получили "`ctx.commandSuggestion` equals `/pain`".
+Если бы `ignoreLocalization` был ложным, мы бы получили, что `ctx.commandSuggestion` равен `/pain`.
 Мы могли бы добавить больше фильтров, подобных приведённому выше, с разными параметрами или `CommandGroups` для проверки.
 Возможностей множество!
 
-## Опции команд
+## Параметры команд
 
-Существует несколько опций, которые можно задать для каждой команды, для каждой области или глобально для экземпляра `CommandGroup`.
-Эти опции позволяют гибко настраивать, как ваш бот обрабатывает команды.
+Существует несколько параметров, которые можно задать для каждой команды, для каждой области или глобально для экземпляра `CommandGroup`.
+Эти параметры позволяют гибко настраивать, как ваш бот обрабатывает команды.
 
-### ignoreCase
+### `ignoreCase`
 
 По умолчанию команды будут сопоставляться с пользовательским вводом с учётом регистра.
 Установив этот флаг, команда с именем `/dandy` будет воспринимать `/DANDY` так же, как `/dandY` или любую другую вариацию, различающуюся только регистром.
 
-### targetedCommands
+### `targetedCommands`
 
-При вызове команды пользователи могут упомянуть вашего бота, например: `/command@bot_username`. С помощью параметра `targetedCommands` можно задать, как бот будет обрабатывать такие команды.
+При вызове команды пользователи могут упомянуть вашего бота, например: `/команда@имя_бота`. С помощью параметра `targetedCommands` можно задать, как бот будет обрабатывать такие команды.
 Доступны три варианта поведения:
 
 - `ignored`: Игнорирует команды, которые упоминают бота
 - `optional`: Обрабатывает команды как с упоминанием бота, так и без него
 - `required`: Обрабатывает только команды, в которых упоминается бот
 
-### prefix
+### `prefix`
 
 В настоящее время Telegram распознает только команды, начинающиеся с символа `/`, и, соответственно, [обработка команд в основной библиотеке grammY](../guide/commands) также выполняется с этим префиксом.
 Однако иногда может потребоваться использовать для бота другой префикс.
@@ -609,7 +611,7 @@ bot
 Команды с пользовательскими префиксами не могут быть показаны в меню команд.
 :::
 
-### matchOnlyAtStart
+### `matchOnlyAtStart`
 
 При [обработке команд](../guide/commands) основная библиотека grammY распознает команды только в том случае, если они начинаются с первого символа сообщения.
 Однако плагин команд позволяет реагировать на команды, расположенные в середине текста сообщения или в его конце --- это не имеет значения!
