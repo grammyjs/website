@@ -116,8 +116,8 @@ const bot = new Bot<MyContext>("токен");
 // Регистрируем контекстную команду
 bot.use(commands());
 
-const loggedOutCommands = new CommandGroup();
-const loggedInCommands = new CommandGroup();
+const loggedOutCommands = new CommandGroup<MyContext>();
+const loggedInCommands = new CommandGroup<MyContext>();
 
 loggedOutCommands.command(
   "login",
