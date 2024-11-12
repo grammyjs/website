@@ -270,7 +270,7 @@ By default, it uses a lightweight in-memory database that is based on a `Map`, b
 This is not an issue if you only have a few dozen updates in a conversation.
 (Remember that during long polling, every call to `getUpdates` retrieves up to 100 updates, too.)
 
-However, if your conversation never exists, this data will accumulate and slow down your bot.
+However, if your conversation never exits, this data will accumulate and slow down your bot.
 **Avoid infinite loops.**
 
 ### Conversational Context Objects
@@ -366,7 +366,7 @@ Naturally, if you have several conversations and you want the context types to d
 
 Congrats!
 If you have understood all of the above, the hard parts are over.
-The rest of the page is about the wealth of features that this the conversations plugin provides.
+The rest of the page is about the wealth of features that this plugin provides.
 
 ## Entering Conversations
 
@@ -525,7 +525,7 @@ Conversations are also an ideal place to use [has checks](../guide/context#probi
 ## Exiting Conversations
 
 The easiest way to exit a conversation is to return from it.
-Throw an error also terminates the conversation.
+Throwing an error also terminates the conversation.
 
 If this is not enough, you can manually halt the conversation at any moment.
 
@@ -807,7 +807,7 @@ The conversations plugin already has good protections in place that should catch
 If this is detected, an error is thrown somewhere inside the conversation, which causes the conversation to crash.
 Assuming that you don't catch and suppress that error, the conversation will therefore wipe the bad data and restart correctly.
 
-That being said, this protection does not cover 100 % of the cases so you should definitely make sure to update the version number in the future.
+That being said, this protection does not cover 100 % of the cases, so you should definitely make sure to update the version number in the future.
 
 :::
 
@@ -859,7 +859,7 @@ Among other things, it will explain how to store data without a storage key func
 ## Using Plugins Inside Conversations
 
 [Remember](#conversational-context-objects) that the context objects inside conversations are independent from the context objects in the surrounding middleware.
-This means that they will have to plugins installed on them by default.
+This means that they will have no plugins installed on them by default.
 
 Fortunately, all grammY plugins [except sessions](#accessing-sessions-inside-conversations) are compatible with conversations.
 For example, this is how you can install the [hydrate plugin](./hydrate) for a conversation.
