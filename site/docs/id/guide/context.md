@@ -91,10 +91,10 @@ bot.on("message:entities", async (ctx) => {
   const email = ctx.entities("email");
 
   // Ambil entity telepon dan email.
-  const teleponDanEmail = ctx.entities(["email", "phone"]);
+  const teleponDanEmail = ctx.entities(["email", "phone_number"]);
 });
 
-bot.on("message_reaction", (ctx) => {
+bot.on("message_reaction", async (ctx) => {
   const { emojiAdded } = ctx.reactions();
   if (emojiAdded.includes("🎉")) {
     await ctx.reply("Pesta!");
