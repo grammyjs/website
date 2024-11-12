@@ -1467,7 +1467,7 @@ Some compatibility could be achieved by using `conversation.run`.
 
 This option was removed for 2.x.
 Instead, you can now pass plugins to the `plugins` array as described [here](#using-plugins-inside-conversations).
-Sessions need [special treatment](#session-access-changes-between-1x-and-2x).
+Sessions need [special treatment](#session-access-changes-between-1-x-and-2-x).
 Menus have improved compatibility since the introduction of [conversational menus](#conversational-menus).
 
 ### Parallel Conversation Changes Between 1.x and 2.x
