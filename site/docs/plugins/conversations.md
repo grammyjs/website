@@ -1426,7 +1426,7 @@ Thus, all conversations will be restarted.
 There is no way to keep the current state of conversations when upgrading from 1.x to 2.x.
 
 You should just drop the respective data from your sessions.
-Consider using [session migrations](./session.md#migrations) for this.
+Consider using [session migrations](./session#migrations) for this.
 
 Persisting conversations data with version 2.x can be done as described [here](#persisting-conversations).
 
