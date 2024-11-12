@@ -780,6 +780,18 @@ bot.use(conversations({
 
 Done!
 
+You can use any storage adapter that is able to store data of type [`VersionedState`](/ref/conversations/versionedstate) of [`ConversationData`](/ref/conversations/conversationdata).
+Both types can be imported from the conversations plugin.
+In other words, if you want to extract the storage to a variable, you can use the following type annotation.
+
+```ts
+const storage = new FileAdapter<VersionedState<ConversationData>>({
+  dirName: "convo-data",
+});
+```
+
+Naturally, the same types can be used with any other storage adapter.
+
 ### Versioning Data
 
 If you persist the state of the conversation in a database and then update the source code, there is a mismatch between the stored data and the conversation builder function.
