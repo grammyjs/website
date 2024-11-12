@@ -88,10 +88,10 @@ bot.on("message:entities", async (ctx) => {
   // Obtener las entidades de correo electrónico.
   const emails = ctx.entities("email");
   // Obtener las entidades de teléfono y correo electrónico.
-  const phonesAndEmails = ctx.entities(["email", "phone"]);
+  const phonesAndEmails = ctx.entities(["email", "phone_number"]);
 });
 
-bot.on("message_reaction", (ctx) => {
+bot.on("message_reaction", async (ctx) => {
   const { emojiAdded } = ctx.reactions();
   if (emojiAdded.includes("🎉")) {
     await ctx.reply("fiesta");
