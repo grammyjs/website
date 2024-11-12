@@ -1054,7 +1054,7 @@ const menu = conversation.menu("my-menu");
 In order for this to work, you must ensure that both menus have the exact same structure when you transition the control in or out of the conversation.
 Otherwise, when a button is clicked, the menu will be [detected as outdated](./menu#outdated-menus-and-fingerprints), and the button handler will not be called.
 
-The structure is defined as follows.
+The structure is based on the following two things.
 
 - The shape of the menu (number of rows, or number of buttons in any row).
 - The label on the button.
@@ -1067,32 +1067,429 @@ Again, the structure of the menus has to match.
 
 ## Conversational Forms
 
-- `conversation.form`
-- building custom form fields
+Oftentimes, conversations are used to build forms in the chat interface.
+
+All wait calls return context objects.
+However, when you wait for a text message, you only want to get the message text and not interact with the rest of the context object.
+
+Conversation forms give you a way to combine update validation with extracting data from the context object.
+This resembles a field in a form.
+Consider the following exmaple.
+
+```ts
+await ctx.reply("Please send a photo for me to scale down!");
+const photo = await conversation.form.photo();
+await ctx.reply("What should be the new width of the photo?");
+const width = await conversation.form.int();
+await ctx.reply("What should be the new height of the photo?");
+const height = await conversation.form.int();
+await ctx.reply(`Scaling your photo to ${width}x${height} ...`);
+const scaled = await scaleImage(photo, width, height);
+await ctx.replyWithPhoto(scaled);
+```
+
+There are many more form fields available.
+Check out [`ConversationForm`](/ref/conversations/conversationform#methods) in the API reference.
+
+All form fields take an `otherwise` function that will run when a non-matching update is received.
+In addition, they all take an `action` function that will run when the form field has been filled correctly.
+
+```ts
+// Wait for a basic calculation operation.
+const op = await conversation.form.select(["+", "-", "*", "/"], {
+  action: (ctx) => ctx.deleteMessage(),
+  otherwise: (ctx) => ctx.reply("Expected +, -, *, or /!"),
+});
+```
+
+Conversational forms even allow you to build custom form fields via [`conversation.form.build`](/ref/conversations/conversationform#build).
+
+## Wait Timeouts
+
+Every time you wait for an update, you can pass a timeout value.
+
+```ts
+// Only wait for one hour before exiting the conversation.
+const oneHourInMilliseconds = 60 * 60 * 1000;
+await conversation.wait({ maxMilliseconds: oneHourInMilliseconds });
+```
+
+When the wait call is reached, [`conversation.now()`](#the-golden-rule-of-conversations) is called.
+
+As soon as the next update arrives, `conversation.now()` is called again.
+If the update took more than `maxMilliseconds` to arrive, the conversation is halted, and the update is returned to the middleware system.
+Any downstream middleware will be called.
+
+This will make it look like the conversation was not active anymore at the time the arrived.
+
+Note that this will not actually run any code after exactly the specified time.
+Instead, the code is only run as soon as the next update arrives.
+
+You can specify a default timeout value for all wait calls inside a conversation.
+
+```ts
+// Always wait for one hour only.
+const oneHourInMilliseconds = 60 * 60 * 1000;
+bot.use(createConversation(convo, {
+  maxMillisecondsToWait: oneHourInMilliseconds,
+}));
+```
+
+Passing a value to a wait call directly will override this default.
+
+## Enter and Exit Events
+
+You can specify a callback function that is invoked whenever a conversation is entered.
+Similarly, you can specify a callback function that is invoked whenever a conversation is exited.
+
+```ts
+bot.use(conversations({
+  onEnter(id, ctx) {
+    // Entered 'id'
+  },
+  onExit(id, ctx) {
+    // Exited 'id'
+  },
+}));
+```
+
+Each callback receives two values.
+The first value is the identifier of the conversation that was entered or exited.
+The second value is the current context object of the surrounding middleware.
+
+Note that the callbacks are only called when a conversation is entered or exited via `ctx.conversation`.
+The `onExit` callback is also invoked when the conversation terminates itself via `conversation.halt` or when it [times out](#wait-timeouts).
 
 ## Concurrent Wait Calls
 
-- waiting for several update via floating promises
-- when does the conversation exit
-- halting a conversation
+You can use floating promises to wait for several things in concurrently.
+When a new update arrives, only the first matching wait call will resolve.
+
+```ts
+await ctx.reply("Send a photo and a caption!");
+const [textContext, photoContext] = await Promise.all([
+  conversation.waitFor(":text"),
+  conversation.waitFor(":photo"),
+]);
+await ctx.replyWithPhoto(photoContext.msg.photo.at(-1).file_id, {
+  caption: textContext.msg.text,
+});
+```
+
+In the above example, it does not matter if the user sends a photo or text first.
+Both promises will resolve in the order the user picks to send the two messages the code is waiting for.
+[`Promise.all`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all) works normally, it only resolves when all passed promises resolve.
+
+This can be used to wait for unrelated things, too.
+For example, here is how you install a global exit listener inside the conversation.
+
+```ts
+conversation.waitForCommand("exit")
+  .then(() => conversation.halt());
+```
+
+As soon as the conversation [finishes in any way](#exiting-conversations), all pending wait calls will be discarded.
+For example, the following conversation will complete immediately after it was entered, without ever waiting for any updates.
+
+::: code-group
+
+```ts [TypeScript]
+async function convo(conversation: Conversation, ctx: Context) {
+  // Do not await this:
+  const _promise = conversation.wait()
+    .then(() => ctx.reply("I will never be sent!"));
+
+  // Conversation is done immediately after being entered.
+}
+```
+
+```js [JavaScript]
+async function convo(conversation, ctx) {
+  // Do not await this:
+  const _promise = conversation.wait()
+    .then(() => ctx.reply("I will never be sent!"));
+
+  // Conversation is done immediately after being entered.
+}
+```
+
+:::
+
+Internally, when several wait calls are reached at the same time, the conversations plugin will keep track of a list of wait calls.
+As soon as the next update arrives, it will then replay the conversation builder function once for each encountered wait call until one of them accepts the update.
+Only if none of the pending wait calls accepts the update, the update will be dropped.
+
+## Checkpoints and Going Back in Time
+
+The conversations plugin [tracks](#conversations-are-replay-engines) the execution of your conversations builder function.
+
+This allows you to create a checkpoint along the way.
+A checkpoint contains information about how far the function has run so far.
+It can be used to later jump back to this point.
+
+Naturally, any actions performed in the meantime will not be undone.
+In particular, rewinding to a checkpoint will not magically unsend any messages.
+
+```ts
+const checkpoint = conversation.checkpoint();
+
+// Later:
+if (ctx.hasCommand("reset")) {
+  await conversation.rewind(checkpoint);
+}
+```
+
+Checkpoints can be very useful to "go back."
+However, like JavaScript's `break` and `continue` with [labels](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/label), jumping around can make the code less readable.
+Make sure not to overuse this feature.
+
+Internally, rewinding a conversation aborts execution like a wait call does, and then replays the function only until the point where the checkpoint was created.
+Rewinding a conversation does not literally execute functions in reverse, even though it feels like that.
 
 ## Parallel Conversations
 
-- disabled by default
-- many concurrent conversations in the same chat
-- connected via middleware
+Conversations in unrelated chats are fully independent and can always run in parallel.
+
+However, by default, each chat can only have a single active conversation at all times.
+If you try to enter a conversation while a conversation is already active, the `enter` call will throw an error.
+
+You can change this behavior by marking a conversation as parallel.
+
+```ts
+bot.use(createConversation(convo, { parallel: true }));
+```
+
+This changes two things.
+
+Firstly, you can now enter this conversation even when the same or a different conversation is already active.
+For example, if you have the conversations `captcha` and `settings`, you can have `captcha` active five times and `settings` active twelve times---all in the same chat.
+
+Secondly, when a conversation does not accept an update, the update is no longer dropped by default.
+Instead, control is handed back to the middleware system.
+
+All installed conversations will get a chance to handle an incoming update until one of them accepts it.
+However, only a single conversation will be able to actually handle the update.
+
+When multiple different conversations are active at the same time, the middleware order will determine which conversation gets to handle the update first.
+When a single conversation is active multiple times, the oldest conversation (the one that was entered first) gets to handle the update first.
+
+This is best illustrated by an example.
+
+::: code-group
+
+```ts [TypeScript]
+async function captcha(conversation: Conversation, ctx: Context) {
+  const user = ctx.from!.id;
+  await ctx.reply("Welcome to the chat! What is the best bot framework?");
+  const answer = await conversation.waitFor(":text").andFrom(user);
+  if (answer.msg.text === "grammY") {
+    await ctx.reply("Correct! Your future is bright!");
+  } else {
+    await ctx.banAuthor();
+  }
+}
+
+async function settings(conversation: Conversation, ctx: Context) {
+  const user = ctx.from!.id;
+  const main = conversation.checkpoint();
+  const options = ["Chat Settings", "About", "Privacy"];
+  await ctx.reply("Welcome to the settings!", {
+    reply_markup: Keyboard.from(options
+      .map((btn) => [Keyboard.text(btn)])),
+  });
+  const option = await conversation.waitFor(":text")
+    .andFrom(user)
+    .and((ctx) => options.includes(ctx.msg.text), {
+      otherwise: (ctx) => ctx.reply("Please use the buttons!"),
+    });
+  await openSettingsMenu(option, main);
+}
+
+bot.use(createConversation(captcha));
+bot.use(createConversation(settings));
+```
+
+```js [JavaScript]
+async function captcha(conversation, ctx) {
+  const user = ctx.from.id;
+  await ctx.reply("Welcome to the chat! What is the best bot framework?");
+  const answer = await conversation.waitFor(":text").andFrom(user);
+  if (answer.msg.text === "grammY") {
+    await ctx.reply("Correct! Your future is bright!");
+  } else {
+    await ctx.banAuthor();
+  }
+}
+
+async function settings(conversation, ctx) {
+  const user = ctx.from.id;
+  const main = conversation.checkpoint();
+  const options = ["Chat Settings", "About", "Privacy"];
+  await ctx.reply("Welcome to the settings!", {
+    reply_markup: Keyboard.from(options
+      .map((btn) => [Keyboard.text(btn)])),
+  });
+  const option = await conversation.waitFor(":text")
+    .andFrom(user)
+    .and((ctx) => options.includes(ctx.msg.text), {
+      otherwise: (ctx) => ctx.reply("Please use the buttons!"),
+    });
+  await openSettingsMenu(option, main);
+}
+
+bot.use(createConversation(captcha));
+bot.use(createConversation(settings));
+```
+
+:::
+
+The above code works in group chats.
+It provides two conversations.
+The conversation `captcha` is used to make sure that only good developers join the chat (shameless grammY plug lol).
+The conversation `settings` is used to implement a settings menu in the group chat.
+
+Note that all wait calls filter for a user identifier, among other things.
+
+Let's assume that the following has already happened.
+
+1. You called `ctx.conversation.enter("captcha")` to enter the conversation `captcha` while handling an update from a user with identifier `ctx.from.id === 42`.
+2. You called `ctx.conversation.enter("settings")` to enter the conversation `captcha` while handling an update from a user with identifier `ctx.from.id === 3`.
+3. You called `ctx.conversation.enter("captcha")` to enter the conversation `captcha` while handling an update from a user with identifier `ctx.from.id === 43`.
+
+This means that three conversations are active in this group chat now---`captcha` is active twice and `settings` is active once.
+
+> Note that `ctx.conversation` provides [various ways](/ref/conversations/conversationcontrols#exit) to exit specific conversations even with parallel conversations enabled.
+
+Next, the following things happen in order.
+
+1. User `3` sends a message containing the text `"About"`.
+2. An update with a text message arrives.
+3. The first instance of the conversation `captcha` is replayed.
+4. The `waitFor(":text")` text call accepts the update, but the added filter `andFrom(42)` rejects the update.
+5. The second instance of the conversation `captcha` is replayed.
+6. The `waitFor(":text")` text call accepts the update, but the added filter `andFrom(43)` rejects the update.
+7. All instances of `captcha` rejected the update, so control is handed back to the middleware system.
+8. The instance of the conversation `settings` is replayed.
+9. The wait call resolves and `option` will contain a context object for the text message update.
+10. The function `openSettingsMenu` is called.
+    It can send an about text to the user and rewind the conversation back to `main`, restarting the menu.
+
+Note that even though two conversations were waiting for the the users `42` and `43` to complete their captcha, the bot correctly replied to user `3` who had started the settings menu.
+Filtered wait calls can determine which updates are relevant for the current conversation.
+Disregarded updates fall through and can be picked up by other conversations.
+
+The above example uses a group chat to illustrate how conversations can handle multiple users in parallel in the same chat.
+In reality, parallel conversations work in all chats.
+This lets you wait for different things in a chat with a single user.
+
+You can combine parallel conversations with [wait timeouts](#wait-timeouts) to keep the number of active conversations low.
 
 ## Inspecting Active Conversations
 
-- checking if a single conversation is active
-- checking all active conversations at once
+Inside your middleware, you can inspect which conversation is active.
 
-## Migrating From v1 to v2
+```ts
+bot.command("stats", (ctx) => {
+  const convo = ctx.conversation.active("convo");
+  console.log(convo); // 0 or 1
+  const isActive = convo > 0;
+  console.log(isActive); // false or true
+});
+```
 
-- storage, data migration
-- plugins, sessions
-- parallel conversations
-- anything else?
+When you pass a conversation identifier to `ctx.conversation.active`, it will return `1` if this conversation is active, and `0` otherwise.
+
+If you enable [parallel conversations](#parallel-conversations) for the conversation, it will return the number of times that this conversation is currently active.
+
+Call `ctx.conversation.active()` without arguments to receive an object that contains the identifiers of all active conversations as keys.
+The respectives values describe how many instances of each conversation are active.
+
+If a conversation `captcha` is active twice and a conversion `settings` is active once, `ctx.conversation.active()` will work as follows.
+
+```ts
+bot.command("stats", (ctx) => {
+  const stats = ctx.conversation.active();
+  console.log(stats); // { captcha: 2, settings: 1 }
+});
+```
+
+## Migrating From 1.x to 2.x
+
+Conversations 2.0 is a complete rewrite from scratch.
+
+Even though the basic concepts of the API surface remained the same, the two implementations are fundamentally different in how they operate under the hood.
+In a nutshell, migrating from 1.x to 2.x results in very little adjustments to your code, but it requires you to drop all stored data.
+Thus, all conversations will be restarted.
+
+### Data Migration From 1.x to 2.x
+
+There is no way to keep the current state of conversations when upgrading from 1.x to 2.x.
+
+You should just drop the respective data from your sessions.
+Consider using [session migrations](./session.md#migrations) for this.
+
+Persisting conversations data with version 2.x can be done as described [here](#persisting-conversations).
+
+### Type Changes Between 1.x and 2.x
+
+With 1.x, the context type inside a conversation was the same context type used in the surrounding middleware.
+
+With 2.x, you must now always declare two context types---[an outside context type and an inside context type](#conversational-context-objects).
+These types can never be the same, and if they are, you have a bug in your code.
+This is because the outside context type must always have [`ConversationFlavor`](/ref/conversations/conversationflavor) installed, while the inside context type must never have it installed.
+
+In addition, you can now install an [independent set of plugins](#using-plugins-inside-conversations) for each conversation.
+
+### Session Access Changes Between 1.x and 2.x
+
+You can no longer use `conversation.session`.
+Instead, you must use `conversation.external` for this.
+
+```ts
+// Reading session data
+const session = await conversation.session; // [!code --]
+const session = await conversation.external((ctx) => ctx.session); // [!code ++]
+
+// Writing session data
+conversation.session = newSession; // [!code --]
+await conversation.external((ctx) => { // [!code ++]
+  ctx.session = newSession; // [!code ++]
+}); // [!code ++]
+```
+
+> Accessing `ctx.session` was possible with 1.x, but it was always incorrect.
+> `ctx.session` is no longer available with 2.x.
+
+### Plugin Compatibility Changes Between 1.x and 2.x
+
+Conversations 1.x were barely compatible with any plugins.
+Some compatibility could be achieved by using `conversation.run`.
+
+This option was removed for 2.x.
+Instead, you can now pass plugins to the `plugins` array as described [here](#using-plugins-inside-conversations).
+Sessions need [special treatment](#session-access-changes-between-1x-and-2x).
+Menus have improved compatibility since the introduction of [conversational menus](#conversational-menus).
+
+### Parallel Conversation Changes Between 1.x and 2.x
+
+Parallel conversations work the same way with 1.x and 2.x.
+
+However, this feature was a common source of confusion when used accidentally.
+With 2.x, you need to opt-in to the feature by specifying `{ parallel: true }` as described [here](#parallel-conversations).
+
+This only breaking change to this feature is that updates no longer get passed back to the middleware system by default.
+Instead, this is only done when the conversation is marked as parallel.
+
+Note that all wait methods and form fields provide an option `next` to override the default behavior.
+This option was renamed from `drop` in 1.x, and the semantics of the flag were flipped.
+
+### Form Changes Between 1.x and 2.x
+
+Forms were really broken with 1.x.
+For example, `conversation.form.text()` returned text messages even for `edited_message` updates of old messages.
+Many of these oddities were corrected for 2.x.
+
+Fixing bugs technically does not count as a breaking change, but it is still a substatial change in behavior.
 
 ## Plugin Summary
 
