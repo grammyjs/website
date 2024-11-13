@@ -242,7 +242,7 @@ It is helpful if you are experienced in compiling large C++ projects, but if you
 
 **The easiest way to run the Bot API server is by following the [build instructions generator](https://tdlib.github.io/telegram-bot-api/build.html?os=Linux) provided by Telegram.**
 
-> More options can be found [Bot API server's repository](https://github.com/tdlib/telegram-bot-api#installation).
+> More options can be found in the [Bot API server's repository](https://github.com/tdlib/telegram-bot-api#installation).
 
 Building the server gives you an executable that you can run.
 
