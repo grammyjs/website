@@ -28,7 +28,7 @@ import {
   createConversation,
 } from "@grammyjs/conversations";
 
-const bot = new Bot<ConversationFlavor<Context>>("");  // <-- put your bot token between the "" (https://t.me/BotFather)
+const bot = new Bot<ConversationFlavor<Context>>(""); // <-- put your bot token between the "" (https://t.me/BotFather)
 bot.use(conversations());
 
 /** Defines the conversation */
@@ -53,7 +53,7 @@ const { conversations, createConversation } = require(
   "@grammyjs/conversations",
 );
 
-const bot = new Bot("");  // <-- put your bot token between the "" (https://t.me/BotFather)
+const bot = new Bot(""); // <-- put your bot token between the "" (https://t.me/BotFather)
 bot.use(conversations());
 
 /** Defines the conversation */
@@ -81,7 +81,7 @@ import {
   createConversation,
 } from "https://deno.land/x/grammy_conversations/mod.ts";
 
-const bot = new Bot<ConversationFlavor<Context>>("");  // <-- put your bot token between the "" (https://t.me/BotFather)
+const bot = new Bot<ConversationFlavor<Context>>(""); // <-- put your bot token between the "" (https://t.me/BotFather)
 bot.use(conversations());
 
 /** Defines the conversation */
