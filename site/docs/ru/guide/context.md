@@ -100,10 +100,10 @@ bot.on("message:entities", async (ctx) => {
   const emails = ctx.entities("email");
 
   // Получать сущности которые являются электронной почтой и номером телефона
-  const phonesAndEmails = ctx.entities(["email", "phone"]);
+  const phonesAndEmails = ctx.entities(["email", "phone_number"]);
 });
 
-bot.on("message_reaction", (ctx) => {
+bot.on("message_reaction", async (ctx) => {
   const { emojiAdded } = ctx.reactions();
   if (emojiAdded.includes("🎉")) {
     await ctx.reply("вечеринОчка :D");

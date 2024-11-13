@@ -91,10 +91,10 @@ bot.on("message:entities", async (ctx) => {
   const emails = ctx.entities("email");
 
   // Get phone and email entities.
-  const phonesAndEmails = ctx.entities(["email", "phone"]);
+  const phonesAndEmails = ctx.entities(["email", "phone_number"]);
 });
 
-bot.on("message_reaction", (ctx) => {
+bot.on("message_reaction", async (ctx) => {
   const { emojiAdded } = ctx.reactions();
   if (emojiAdded.includes("🎉")) {
     await ctx.reply("partY");

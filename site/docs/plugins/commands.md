@@ -110,8 +110,8 @@ const bot = new Bot<MyContext>("token");
 // Register the context shortcut
 bot.use(commands());
 
-const loggedOutCommands = new CommandGroup<MyContext>();
-const loggedInCommands = new CommandGroup<MyContext>();
+const loggedOutCommands = new CommandGroup();
+const loggedInCommands = new CommandGroup();
 
 loggedOutCommands.command(
   "login",
@@ -239,8 +239,8 @@ import type { MyContext } from '../types.ts'
 
 export const devCommands = new CommandGroup<MyContext>()
 
-devCommands.command('devlogin', 'Set command menu to dev mode', async (ctx, next) => {
-   if (ctx.from?.id === `${/** Your telegram id */}`) {
+devCommands.command('devlogin', 'Greetings', async (ctx, next) => {
+   if (ctx.from?.id === ctx.env.DEVELOPER_ID) {
       await ctx.reply('Hi to me')
       await ctx.setMyCommands(userCommands, devCommands)
    } else {
@@ -248,8 +248,8 @@ devCommands.command('devlogin', 'Set command menu to dev mode', async (ctx, next
    }
 })
 
-devCommands.command('usercount', 'Display user count', async (ctx, next) => {
-   if (ctx.from?.id === `${/** Your telegram id */}`) {
+devCommands.command('usercount', 'Greetings', async (ctx, next) => {
+   if (ctx.from?.id === ctx.env.DEVELOPER_ID) {
       await ctx.reply(
         `Active users: ${/** Your business logic */}`
     )
@@ -258,8 +258,8 @@ devCommands.command('usercount', 'Display user count', async (ctx, next) => {
    }
 })
 
-devCommands.command('devlogout', 'Reset command menu to user-mode', async (ctx, next) => {
-    if (ctx.from?.id === `${/** Your telegram id */}`) {
+devCommands.command('devlogout', 'Greetings', async (ctx, next) => {
+    if (ctx.from?.id === ctx.env.DEVELOPER_ID) {
        await ctx.reply('Bye to me')
        await ctx.setMyCommands(userCommands)
    } else {
@@ -292,10 +292,8 @@ Did you notice it is possible to register single initialized Commands via the `.
 This allows for a one-file-only structure, like in the `admin.ts` file, or a more distributed file structure like in the `group.ts` file.
 
 ::: tip Always Use Command Groups
-
 When creating and exporting commands using the `Command` constructor, it's mandatory to register them onto a `CommandGroup` instance via the `.add` method.
 On their own they are useless, so make sure you do that at some point.
-
 :::
 
 The plugin also enforce you to have the same Context-type for a given `CommandGroup` and their respective `Commands` so you avoid at first glance that kind of silly mistake!
@@ -325,12 +323,12 @@ const myCommands = new CommandGroup();
 myCommands
   .command("start", "Initializes bot configuration")
   .addToScope(
-    { type: "all_group_chats" },
-    (ctx) => ctx.reply(`Hello, members of ${ctx.chat.title}!`),
-  )
-  .addToScope(
     { type: "all_private_chats" },
     (ctx) => ctx.reply(`Hello, ${ctx.chat.first_name}!`),
+  )
+  .addToScope(
+    { type: "all_group_chats" },
+    (ctx) => ctx.reply(`Hello, members of ${ctx.chat.title}!`),
   );
 ```
 
@@ -373,14 +371,14 @@ myCommands
     (ctx) => ctx.reply("Hello from default scope"),
   )
   .addToScope(
-    { type: "all_chat_administrators" },
-    // This will be called for group admins, when inside that group
-    (ctx) => ctx.reply("Hello, admin!"),
-  )
-  .addToScope(
     { type: "all_group_chats" },
     // This will only be called for non-admin users in a group
     (ctx) => ctx.reply("Hello, group chat!"),
+  )
+  .addToScope(
+    { type: "all_chat_administrators" },
+    // This will be called for group admins, when inside that group
+    (ctx) => ctx.reply("Hello, admin!"),
   );
 ```
 
@@ -603,9 +601,7 @@ That is made possible by the `prefix` option, which will tell the commands plugi
 If you ever need to retrieve `botCommand` entities from an update and need them to be hydrated with the custom prefix you have registered, there is a method specifically tailored for that, called `ctx.getCommandEntities(yourCommands)`, which returns the same interface as `ctx.entities('bot_command')`
 
 ::: tip
-
 Commands with custom prefixes cannot be shown in the Commands Menu.
-
 :::
 
 ### `matchOnlyAtStart`

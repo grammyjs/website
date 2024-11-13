@@ -298,10 +298,8 @@ export default new Command<MyContext>("sayhi", "Saludos", async (ctx) => {
 Esto permite una estructura de un solo archivo, como en el archivo `admin.ts`, o una estructura de archivos más distribuida como en el archivo `group.ts`.
 
 ::: tip Utiliza siempre grupos de comandos
-
 Al crear y exportar comandos utilizando el constructor `Command`, es obligatorio registrarlos en una instancia `CommandGroup` mediante el método `.add`.
 Por sí solos son inútiles, así que asegúrate de hacerlo en algún momento.
-
 :::
 
 El plugin también te obliga a tener el mismo tipo de Contexto para un determinado `CommandGroup` y sus respectivos `Commands` ¡así evitarás a primera vista ese tipo de errores tontos!
@@ -583,12 +581,12 @@ Hay muchas posibilidades.
 Hay algunas opciones que se pueden especificar por comando, por ámbito, o globalmente para una instancia `CommandGroup`.
 Estas opciones te permiten personalizar aún más cómo tu bot maneja los comandos, dándote más flexibilidad.
 
-### ignoreCase
+### `ignoreCase`
 
 Por defecto, los comandos harán coincidir la entrada del usuario distinguiendo entre mayúsculas y minúsculas.
 Si se activa esta opción, por ejemplo, en un comando llamado `/dandy`, coincidirá con `/DANDY` del mismo modo que con `/dandY` o cualquier otra variación que distinga entre mayúsculas y minúsculas.
 
-### targetedCommands
+### `targetedCommands`
 
 Cuando los usuarios invocan un comando, pueden etiquetar opcionalmente su bot, de la siguiente manera: `/comando@nombre_usuario_bot`. Puedes decidir qué hacer con estos comandos utilizando la opción de configuración `targetedCommands`.
 Con ella puedes elegir entre tres comportamientos diferentes:
@@ -597,7 +595,7 @@ Con ella puedes elegir entre tres comportamientos diferentes:
 - `optional`: Maneja tanto los comandos que mencionan como los que no mencionan al usuario del bot
 - `required`: Sólo maneja comandos que mencionan el usuario del bot
 
-### prefix
+### `prefix`
 
 Actualmente, sólo los comandos que empiezan por `/` son reconocidos por Telegram y, por tanto, por el [manejo de comandos realizado por la librería central de grammY](../guide/commands).
 En algunas ocasiones, puede que quieras cambiar eso y usar un prefijo personalizado para tu bot.
@@ -609,7 +607,7 @@ Si alguna vez necesitas recuperar entidades `botCommand` de una actualización y
 Los comandos con prefijos personalizados no pueden mostrarse en el Menú Comandos.
 :::
 
-### matchOnlyAtStart
+### `matchOnlyAtStart`
 
 Cuando [maneja comandos](../guide/commands), la biblioteca central de grammY sólo reconocerá comandos que empiecen en el primer carácter de un mensaje.
 El plugin de comandos, sin embargo, te permite escuchar comandos en medio del texto del mensaje, o al final, ¡no importa!

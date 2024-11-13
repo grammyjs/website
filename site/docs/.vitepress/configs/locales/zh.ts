@@ -212,6 +212,10 @@ const pluginOfficial = {
       text: "聊天成员 (chat-members)",
       link: "/zh/plugins/chat-members",
     },
+    {
+      text: "指令 (commands)",
+      link: "/zh/plugins/commands",
+    },
   ],
 };
 
