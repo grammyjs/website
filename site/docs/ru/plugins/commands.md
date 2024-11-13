@@ -116,8 +116,8 @@ const bot = new Bot<MyContext>("токен");
 // Регистрируем контекстную команду
 bot.use(commands());
 
-const loggedOutCommands = new CommandGroup<MyContext>();
-const loggedInCommands = new CommandGroup<MyContext>();
+const loggedOutCommands = new CommandGroup();
+const loggedInCommands = new CommandGroup();
 
 loggedOutCommands.command(
   "login",
@@ -245,8 +245,8 @@ import type { MyContext } from '../types.ts'
 
 export const devCommands = new CommandGroup<MyContext>()
 
-devCommands.command('devlogin', 'Перевести меню команд в режим разработчика', async (ctx, next) => {
-   if (ctx.from?.id === `${/** Ваш ID в Telegram */}`) {
+devCommands.command('devlogin', 'Приветствие', async (ctx, next) => {
+   if (ctx.from?.id === ctx.env.DEVELOPER_ID) {
       await ctx.reply('Привет мне')
       await ctx.setMyCommands(userCommands, devCommands)
    } else {
@@ -254,8 +254,8 @@ devCommands.command('devlogin', 'Перевести меню команд в р�
    }
 })
 
-devCommands.command('usercount', 'Узнать количество пользователей', async (ctx, next) => {
-   if (ctx.from?.id === `${/** Ваш ID в Telegram */}`) {
+devCommands.command('usercount', 'Приветствие', async (ctx, next) => {
+   if (ctx.from?.id === ctx.env.DEVELOPER_ID) {
       await ctx.reply(
         `Активные пользователи: ${/** Ваша логика здесь */}`
     )
@@ -264,8 +264,8 @@ devCommands.command('usercount', 'Узнать количество пользо
    }
 })
 
-devCommands.command('devlogout', 'Перевести меню команд в режим пользователя', async (ctx, next) => {
-    if (ctx.from?.id === `${/** Ваш ID в Telegram */}`) {
+devCommands.command('devlogout', 'Приветствие', async (ctx, next) => {
+    if (ctx.from?.id === ctx.env.DEVELOPER_ID) {
        await ctx.reply('Пока мне')
        await ctx.setMyCommands(userCommands)
    } else {
