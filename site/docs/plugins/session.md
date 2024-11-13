@@ -607,7 +607,7 @@ bot.use(
       storage: new MemorySessionStorage(),
       initial: () => undefined,
       getSessionKey: (ctx) => ctx.chat?.id.toString(),
-      prefix: '',
+      prefix: "",
     },
     bar: {
       initial: () => ({ prop: 0 }),
