@@ -579,12 +579,12 @@ bot
 你可以为每个命令、每个范围或全局指定 `CommandGroup` 实例的一些选项。
 这些选项允许你进一步自定义 bot 处理命令的方式，从而为你提供更大的灵活性。
 
-### 忽略大小写
+### `ignoreCase`
 
 默认情况下，命令将以区分大小写的方式匹配用户输入。
 例如，在名为 `/dandy` 的命令中设置此标志将与 `/DANDY`、`/dandY` 或任何其他仅大小写不同的变体匹配。
 
-### targetedCommands
+### `targetedCommands`
 
 当用户调用命令时，他们可以选择艾特你的 bot，例如：`/command@bot_username`。
 你可以使用“ `targetedCommands` 配置选项来决定如何处理这些命令。
@@ -594,7 +594,7 @@ bot
 - `optional`: 处理艾特和未艾特 bot 的用户的命令
 - `required`: 仅处理艾特了 bot 的用户的命令
 
-### 前缀
+### `prefix`
 
 目前，Telegram 只能识别以 `/` 开头的命令，因此也可以被 [grammY 核心库的命令处理程序](../guide/commands) 识别。
 在某些情况下，你可能想要更改它并为你的 bot 使用自定义前缀。
@@ -608,7 +608,7 @@ bot
 
 :::
 
-### matchOnlyAtStart
+### `matchOnlyAtStart`
 
 在 [处理命令](../guide/commands) 时，grammY 核心库将仅识别以消息的第一个字符开始的命令。
 然而，命令插件允许你在消息文本中间监听命令，或者最后，这并不重要！

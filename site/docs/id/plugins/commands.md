@@ -306,10 +306,8 @@ Dari kode di atas, apakah kamu menyadari selain melalui method `.command(...)`, 
 Dengan begitu, baik struktur satu-file-tunggal, seperti yang telah kita terapkan di file `admin.ts`, maupun struktur file terdistribusi, seperti di file `group.ts`, keduanya bisa diterapkan dengan baik.
 
 ::: tip Selalu Gunakan Pengelompokan Perintah
-
 Ketika membuat dan meng-export perintah menggunakan constructor `Command`, ia tidak bisa melakukan apa-apa hingga ia didaftarkan ke penangan terkait.
 Oleh karena itu, pastikan untuk mendaftarkannya ke pengelompokan perintah `CommandGroup` melalui method `.add`.
-
 :::
 
 Plugin ini juga mengharuskan kamu untuk menggunakan type `Context` yang sama untuk `CommandGroup` dan `Commands` terkait agar kamu terhindar dari kesalahan-kesalahan remeh yang mungkin ditimbulkan.
@@ -607,13 +605,13 @@ Dan cara-cara lain yang bisa kita eksplorasi!
 Instansiasi `CommandGroup` memiliki beberapa opsi yang bisa kita terapkan, baik untuk setiap perintah, setiap lingkup, ataupun secara global.
 Opsi-opsi berikut bisa kamu manfaatkan untuk mengatur perilaku bot dalam menangani perintah secara fleksibel.
 
-### ignoreCase
+### `ignoreCase`
 
 Secara bawaan, perintah akan dicocokkan dengan memperhatikan huruf kapital (case-sensitive).
 Ketika flag ini diterapkan, semua huruf baik kapital maupun tidak, akan dianggap sama.
 Perintah bernama `/budi` akan cocok dengan `/BUDI`, `/budI`, atau variasi huruf kapital lainnya.
 
-### targetedCommands
+### `targetedCommands`
 
 Ketika user memanggil sebuah perintah, mereka bisa menyebut bot kamu seperti ini: `/perintah@username_bot`.
 Kamu bisa memutuskan apa yang bot harus lakukan terhadap jenis perintah tersebut menggunakan opsi pengaturan `targetedCommands`.
@@ -623,7 +621,7 @@ Melalui opsi tersebut, kamu bisa memilih tiga perilaku yang berbeda:
 - `optional`: Tangani kedua jenis perintah, baik yang menyertakan username bot kamu, maupun yang tidak.
 - `required`: Hanya tangani perintah yang menyertakan username bot kamu.
 
-### prefix
+### `prefix`
 
 Ketika tulisan ini dibuat, Telegram hanya mengenali perintah yang dimulai dengan awalan `/`, yang mana bisa ditangani dengan baik oleh [library inti grammY](../guide/commands).
 Di beberapa skenario, kamu mungkin ingin mengubah perilaku tersebut dan menggantinya dengan awalan tersuai.
@@ -636,7 +634,7 @@ Ia mengembalikan interface yang sama dengan `ctx.entities('bot_command')`.
 Perintah dengan awalan tersuai tidak dapat ditampilkan di menu perintah user.
 :::
 
-### matchOnlyAtStart
+### `matchOnlyAtStart`
 
 Ketika [menangani perintah](../guide/commands), library inti grammY hanya akan mengenali perintah yang terletak di awal kalimat.
 Berbeda dengan plugin commands, Ia mampu menyimak perintah baik yang terletak di pertengahan, maupun di akhir kalimat.

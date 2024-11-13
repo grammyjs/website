@@ -292,10 +292,8 @@ Did you notice it is possible to register single initialized Commands via the `.
 This allows for a one-file-only structure, like in the `admin.ts` file, or a more distributed file structure like in the `group.ts` file.
 
 ::: tip Always Use Command Groups
-
 When creating and exporting commands using the `Command` constructor, it's mandatory to register them onto a `CommandGroup` instance via the `.add` method.
 On their own they are useless, so make sure you do that at some point.
-
 :::
 
 The plugin also enforce you to have the same Context-type for a given `CommandGroup` and their respective `Commands` so you avoid at first glance that kind of silly mistake!
@@ -603,9 +601,7 @@ That is made possible by the `prefix` option, which will tell the commands plugi
 If you ever need to retrieve `botCommand` entities from an update and need them to be hydrated with the custom prefix you have registered, there is a method specifically tailored for that, called `ctx.getCommandEntities(yourCommands)`, which returns the same interface as `ctx.entities('bot_command')`
 
 ::: tip
-
 Commands with custom prefixes cannot be shown in the Commands Menu.
-
 :::
 
 ### `matchOnlyAtStart`
