@@ -238,7 +238,7 @@ USE `conversation.external` when you ...
 
 DO NOT USE `conversation.external` when you ...
 
-- call `ctx.reply` or other [context actions](../guide/context.md#available-actions),
+- call `ctx.reply` or other [context actions](../guide/context#available-actions),
 - call `ctx.api.sendMessage` or other methods of the Bot API via `ctx.api`.
 
 The conversations plugin provides a few convenience methods around `conversation.external`.
