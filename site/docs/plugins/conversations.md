@@ -162,7 +162,7 @@ async function hello( //                      |
   const ctx1 = await conversation.wait(); //  A
   await ctx1.reply("Hello again!"); //
   const ctx2 = await conversation.wait(); //
-  await ctx1.reply("Goodbye!"); //
+  await ctx2.reply("Goodbye!"); //
 } //
 ```
 
@@ -175,7 +175,7 @@ async function hello( //                      .
   const ctx1 = await conversation.wait(); //  A
   await ctx1.reply("Hello again!"); //        |
   const ctx2 = await conversation.wait(); //  B
-  await ctx1.reply("Goodbye!"); //
+  await ctx2.reply("Goodbye!"); //
 } //
 ```
 
@@ -188,7 +188,7 @@ async function hello( //                      .
   const ctx1 = await conversation.wait(); //  A
   await ctx1.reply("Hello again!"); //        .
   const ctx2 = await conversation.wait(); //  B
-  await ctx1.reply("Goodbye!"); //            |
+  await ctx2.reply("Goodbye!"); //            |
 } //                                          —
 ```
 
