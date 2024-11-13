@@ -318,6 +318,18 @@ If you must use the option (which is of course still possible), you should know 
 Make sure you understand the consequences of this configuration by reading [this](../guide/deployment-types) article and especially [this](./runner#sequential-processing-where-necessary) one.
 :::
 
+You can also specify a prefix if you want to add additional namespacing to your session keys.
+For example, this is how you can store session data per user but with a prefix called `user-`.
+
+```ts
+bot.use(session({
+  getSessionKey: (ctx) => ctx.from?.id,
+  prefix: "user-",
+}));
+```
+
+For a user who has the user identifier `424242`, the session key will now be `user-424242`.
+
 ### Chat Migrations
 
 If you are using sessions for groups, you should be aware that Telegram migrates regular groups to supergroups under certain circumstances (e.g. [here](https://github.com/telegramdesktop/tdesktop/issues/5593)).
