@@ -852,7 +852,11 @@ As a result, a conversation cannot handle updates from multiple chats.
 If this is desired, you can [define your own storage key function](/ref/conversations/conversationoptions#storage).
 As with sessions, it is [not recommended](./session#session-keys) to use this option in serverless environments.
 
-You can specify the storage key function as follows.
+Also, just like with sessions, you can store your conversations data under a namespace using the `prefix` option.
+This is especially useful if you want to use the same storage adapter for both your session data and your conversations data.
+Storing the data in namespaces will prevent it from clashing.
+
+You can specify both options as follows.
 
 ```ts
 bot.use(conversations({
@@ -860,9 +864,12 @@ bot.use(conversations({
     type: "key",
     adapter: storageAdapter,
     getStorageKey: (ctx) => ctx.from?.id.toString(),
+    prefix: "convo-",
   },
 }));
 ```
+
+If a conversation is entered for a user with user identifier `424242`, the storage key will now be `convo-424242`.
 
 Check out the API reference for [`ConversationStorage`](/ref/conversations/conversationstorage) to see more details about storing data with the conversations plugin.
 Among other things, it will explain how to store data without a storage key function at all using `type: "context"`.
