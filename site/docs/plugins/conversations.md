@@ -28,7 +28,7 @@ import {
   createConversation,
 } from "@grammyjs/conversations";
 
-const bot = new Bot<ConversationFlavor<Context>>("");
+const bot = new Bot<ConversationFlavor<Context>>("");  // <-- put your bot token between the "" (https://t.me/BotFather)
 bot.use(conversations());
 
 /** Defines the conversation */
@@ -40,7 +40,7 @@ async function hello(conversation: Conversation, ctx: Context) {
 bot.use(createConversation(hello));
 
 bot.command("enter", async (ctx) => {
-  // enter the function "hello" you declared
+  // Enter the function "hello" you declared.
   await ctx.conversation.enter("hello");
 });
 
@@ -53,7 +53,7 @@ const { conversations, createConversation } = require(
   "@grammyjs/conversations",
 );
 
-const bot = new Bot("");
+const bot = new Bot("");  // <-- put your bot token between the "" (https://t.me/BotFather)
 bot.use(conversations());
 
 /** Defines the conversation */
@@ -65,7 +65,7 @@ async function hello(conversation, ctx) {
 bot.use(createConversation(hello));
 
 bot.command("enter", async (ctx) => {
-  // enter the function "hello" you declared
+  // Enter the function "hello" you declared.
   await ctx.conversation.enter("hello");
 });
 
@@ -81,7 +81,7 @@ import {
   createConversation,
 } from "https://deno.land/x/grammy_conversations/mod.ts";
 
-const bot = new Bot<ConversationFlavor<Context>>("");
+const bot = new Bot<ConversationFlavor<Context>>("");  // <-- put your bot token between the "" (https://t.me/BotFather)
 bot.use(conversations());
 
 /** Defines the conversation */
@@ -93,7 +93,7 @@ async function hello(conversation: Conversation, ctx: Context) {
 bot.use(createConversation(hello));
 
 bot.command("enter", async (ctx) => {
-  // enter the function "hello" you declared
+  // Enter the function "hello" you declared.
   await ctx.conversation.enter("hello");
 });
 
@@ -202,7 +202,7 @@ This means that each line of code you write will be executed many times---once n
 As a result, you have to make sure that your code behaves the same way during replays as it did when it was first executed.
 
 If you perform any API calls via `ctx.api` (including `ctx.reply`), the plugin takes care of them automatically.
-In contrast, your own database communcation needs special treatment.
+In contrast, your own database communication needs special treatment.
 
 This is done as follows.
 
@@ -232,18 +232,17 @@ In the above example, this prevents repeated database access.
 
 USE `conversation.external` when you ...
 
-- read or write to files, databases/sessions, the network, or global state
-- call `Math.random()` or `Date.now()`
-- perform API calls on `bot.api` or other independent instances of `Api`
+- read or write to files, databases/sessions, the network, or global state,
+- call `Math.random()` or `Date.now()`,
+- perform API calls on `bot.api` or other independent instances of `Api`.
 
 DO NOT USE `conversation.external` when you ...
 
-- call `ctx.reply` or `ctx.api.sendMessage` or similar methods
-- use any other JavaScript syntax like functions, classes, if-else, loops, etc
+- call `ctx.reply` or `ctx.api.sendMessage` or similar methods,
+- use any other JavaScript syntax like functions, classes, if-else, loops, etc.
 
 The conversations plugin provides a few convenience methods around `conversation.external`.
-This not only simplifies using `Math.random()` and `Date.now()`.
-It also simplifies debugging by providing a way to suppress logs during a replay.
+This not only simplifies using `Math.random()` and `Date.now()`, but it also simplifies debugging by providing a way to suppress logs during a replay.
 
 ```ts
 // await conversation.external(() => Math.random());
