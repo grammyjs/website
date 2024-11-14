@@ -537,7 +537,7 @@ bot
 它还允许设置 `ignoreCase` 标志，该标志将在查找类似指令时忽略大小写，以及 `similarityThreshold` 标志，该标志控制指令名称必须与用户输入的相似程度才能推荐。
 
 `commandNotFound` 函数只会被包含与你注册的指令类似的类指令文本的 update 所触发。
-例如，如果你只注册了 [带有自定义前缀的指令](#前缀)，如 `?`，它将触发任何看起来像你的指令的处理程序，例如：`?sayhi`，而不是 `/definitely_a_command`。
+例如，如果你只注册了 [带有自定义前缀的指令](#prefix)，如 `?`，它将触发任何看起来像你的指令的处理程序，例如：`?sayhi`，而不是 `/definitely_a_command`。
 反之亦然，如果你只有带有默认前缀的指令，它只会在看起来像 `/regular` `/commands` 的 update 上触发。
 
 推荐的指令仅来自你传递给函数的 `CommandGroup` 实例。
