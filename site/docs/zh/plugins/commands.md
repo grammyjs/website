@@ -536,11 +536,11 @@ bot
 可以跨多个 CommandGroup 实例进行搜索，并且 `ctx.commandSuggestion` 将是所有实例中最相似的指令，如果有的话。
 它还允许设置 `ignoreCase` 标志，该标志将在查找类似指令时忽略大小写，以及 `similarityThreshold` 标志，该标志控制指令名称必须与用户输入的相似程度才能推荐。
 
-`commandNotFound` 函数只会被包含与你注册的命令类似的类命令文本的 update 所触发。
+`commandNotFound` 函数只会被包含与你注册的指令类似的类指令文本的 update 所触发。
 例如，如果你只注册了 [带有自定义前缀的指令](#前缀)，如 `?`，它将触发任何看起来像你的指令的处理程序，例如：`?sayhi`，而不是 `/definitely_a_command`。
 反之亦然，如果你只有带有默认前缀的指令，它只会在看起来像 `/regular` `/commands` 的 update 上触发。
 
-推荐的命令仅来自你传递给函数的 `CommandGroup` 实例。
+推荐的指令仅来自你传递给函数的 `CommandGroup` 实例。
 因此，你可以把检查推迟到多个单独的 filter 中。
 
 让我们利用前面的知识来看看下一个示例：
@@ -556,11 +556,11 @@ otherCommands.command("bread", "eat a toast", () => {})
   .localize("es", "pan", "come un pan")
   .localize("fr", "pain", "manger du pain");
 
-// 注册每个特定于语言的命令组
+// 注册每个特定于语言的指令组
 
 // 假设用户是法国人并输入 /Papi
 bot
-  // 此 filter 将触发任何命令，例如 `/regular` 或 `?custom`
+  // 此 filter 将触发任何指令，例如 `/regular` 或 `?custom`
   .filter(commandNotFound([myCommands, otherCommands], {
     ignoreLocalization: true,
     ignoreCase: true,
@@ -574,49 +574,49 @@ bot
 我们可以添加更多像上面这样的 filter，使用不同的参数或 `CommandGroups` 来检查。
 可能性非常多！
 
-## 命令选项
+## 指令选项
 
-你可以为每个命令、每个范围或全局指定 `CommandGroup` 实例的一些选项。
-这些选项允许你进一步自定义 bot 处理命令的方式，从而为你提供更大的灵活性。
+你可以为每个指令、每个范围或全局指定 `CommandGroup` 实例的一些选项。
+这些选项允许你进一步自定义 bot 处理指令的方式，从而为你提供更大的灵活性。
 
 ### `ignoreCase`
 
-默认情况下，命令将以区分大小写的方式匹配用户输入。
-例如，在名为 `/dandy` 的命令中设置此标志将与 `/DANDY`、`/dandY` 或任何其他仅大小写不同的变体匹配。
+默认情况下，指令将以区分大小写的方式匹配用户输入。
+例如，在名为 `/dandy` 的指令中设置此标志将与 `/DANDY`、`/dandY` 或任何其他仅大小写不同的变体匹配。
 
 ### `targetedCommands`
 
-当用户调用命令时，他们可以选择艾特你的 bot，例如：`/command@bot_username`。
-你可以使用“ `targetedCommands` 配置选项来决定如何处理这些命令。
+当用户调用指令时，他们可以选择艾特你的 bot，例如：`/command@bot_username`。
+你可以使用“ `targetedCommands` 配置选项来决定如何处理这些指令。
 有了它，你可以在三种不同的行为之间进行选择：
 
-- `ignored`: 忽略艾特你的 bot 的用户的命令
-- `optional`: 处理艾特和未艾特 bot 的用户的命令
-- `required`: 仅处理艾特了 bot 的用户的命令
+- `ignored`: 忽略艾特你的 bot 的用户的指令
+- `optional`: 处理艾特和未艾特 bot 的用户的指令
+- `required`: 仅处理艾特了 bot 的用户的指令
 
 ### `prefix`
 
-目前，Telegram 只能识别以 `/` 开头的命令，因此也可以被 [grammY 核心库的命令处理程序](../guide/commands) 识别。
+目前，Telegram 只能识别以 `/` 开头的指令，因此也可以被 [grammY 核心库的指令处理程序](../guide/commands) 识别。
 在某些情况下，你可能想要更改它并为你的 bot 使用自定义前缀。
-这是通过 `prefix` 选项实现的，该选项将告诉命令插件在尝试识别命令时查找该前缀。
+这是通过 `prefix` 选项实现的，该选项将告诉指令插件在尝试识别指令时查找该前缀。
 
 如果你需要从 update 中检索 `botCommand` 实体，并需要将它们与你已注册的自定义前缀进行结合，有一个专门为此定制的方法，称为 `ctx.getCommandEntities(yourCommands)`，它返回与 `ctx.entities('bot_command')` 相同的接口。
 
 :::tip
 
-带有自定义前缀的命令无法显示在命令菜单中。
+带有自定义前缀的指令无法显示在指令菜单中。
 
 :::
 
 ### `matchOnlyAtStart`
 
-在 [处理命令](../guide/commands) 时，grammY 核心库将仅识别以消息的第一个字符开始的命令。
-然而，命令插件允许你在消息文本中间监听命令，或者最后，这并不重要！
+在 [处理指令](../guide/commands) 时，grammY 核心库将仅识别以消息的第一个字符开始的指令。
+然而，指令插件允许你在消息文本中间监听指令，或者最后，这并不重要！
 你所要做的就是将 `matchOnlyAtStart` 选项设置为 `false`，剩下的将由插件完成。
 
-## 正则表达式命令
+## 正则表达式指令
 
-此功能适合那些真正想要疯狂的人，它允许你基于正则表达式而不是静态字符串创建命令处理程序，一个基本示例如下所示：
+此功能适合那些真正想要疯狂的人，它允许你基于正则表达式而不是静态字符串创建指令处理程序，一个基本示例如下所示：
 
 ```ts
 myCommands
@@ -626,7 +626,7 @@ myCommands
   );
 ```
 
-该命令处理程序将在 `/delete_me` 上触发，与在 `/delete_you` 中相同，并且它会在第一种情况下回复 “Deleting me”，在后面的情况下回复 “Deleting you”，但不会在 `/delete_` 上触发，也不会在 `/delete_123xyz` 上触发，就好像它不存在一样。
+该指令处理程序将在 `/delete_me` 上触发，与在 `/delete_you` 中相同，并且它会在第一种情况下回复 “Deleting me”，在后面的情况下回复 “Deleting you”，但不会在 `/delete_` 上触发，也不会在 `/delete_123xyz` 上触发，就好像它不存在一样。
 
 ## 插件概述
 
