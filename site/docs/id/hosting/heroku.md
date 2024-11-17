@@ -275,7 +275,7 @@ Jika berhasil dijalankan dan tidak ada pesan error yang muncul, file-file yang t
 
 ### Siapkan File `Procfile`
 
-`Heroku` memiliki beberapa [jenis dynos](https://devcenter.heroku.com/articles/dyno-types).
+`Heroku` memiliki beberapa [jenis dynos](https://devcenter.heroku.com/articles/dynos#use-cases).
 Dua diantaranya adalah:
 
 - **Web dynos**:
