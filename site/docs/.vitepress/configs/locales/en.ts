@@ -243,6 +243,12 @@ const pluginOfficial = {
       // do not add the following line to translations:
       activeMatch: "^(/plugins/chat-members|/ref/chat-members/)$",
     },
+    {
+      text: "Commands (commands)",
+      link: "/plugins/commands",
+      // do not add the following line to translations:
+      activeMatch: "^(/plugins/commands|/ref/commands/)$",
+    },
   ],
 };
 

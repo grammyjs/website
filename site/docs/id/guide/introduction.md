@@ -146,7 +146,7 @@ Pertama-tama, [instal Deno](https://docs.deno.com/runtime/getting_started/instal
 
 Siapkan juga text editor yang sesuai untuk coding.
 Salah satu yang sesuai untuk Deno adalah Visual Studio Code, atau biasa disebut dengan VS Code.
-Silahkan [diinstal](https://code.visualstudio.com/) juga.
+Silahkan [diinstal](https://code.visualstudio.com) juga.
 
 Selanjutnya, kamu perlu menghubungkan Deno dan VS Code.
 Caranya sangat mudah: VS Code punya extension yang bisa melakukan semua hal tersebut secara otomatis.
@@ -195,7 +195,7 @@ Untuk menjalankan file `bot.js`, kamu harus meng-install [Node.js](https://nodej
 
 Berikut tahap-tahap yang perlu dilakukan di Node.js:
 
-1. Buat source file `bot.ts` menggunakan TypeScript, misalnya dengan menggunakan [VS Code](https://code.visualstudio.com/) (atau kode editor lainnya).
+1. Buat source file `bot.ts` menggunakan TypeScript, misalnya dengan menggunakan [VS Code](https://code.visualstudio.com) (atau kode editor lainnya).
 2. Compile kode dengan menjalankan perintah di terminal. Langkah ini akan menghasilkan file bernama `bot.js`.
 3. Jalankan `bot.js` menggunakan Node.js, sekali lagi dari terminal.
 
