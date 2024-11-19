@@ -281,7 +281,7 @@ For TypeScript code, this also means that you now have two [flavors](../guide/co
 - **Outside context objects** are the context objects that your bot uses in middleware.
   They give you access to `ctx.conversation.enter`.
   For TypeScript, they will at least have `ConversationFlavor` installed.
-  Outside context objects will also have other properties defined by plugins which you installed via `bot.use`.
+  Outside context objects will also have other properties defined by plugins that you installed via `bot.use`.
 - **Inside context objects** (also called **conversational context objects**) are the context objects created by the conversations plugin.
   They can never have access to `ctx.conversation.enter`, and by default, they also don't have access to any plugins.
   If you want to have custom properties on inside context objects, [scroll down](#using-plugins-inside-conversations).
