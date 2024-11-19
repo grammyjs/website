@@ -518,7 +518,7 @@ bot.on("message", async (ctx) => {
 
 Ten en cuenta que no sólo debes pasar `MyContext` a tu instancia de `Bot`.
 También necesitas usarlo en muchos otros lugares.
-Por ejemplo, si creas una nueva instancia de `Composer`, usas plugins como [Enrutador](../plugins/router), o [extraer middleware en funciones](../advanced/structuring#definiciones-de-tipos-para-middleware-extraido), deberías especificar tu tipo de contexto personalizado.
+Por ejemplo, si creas una nueva instancia de `Composer`, usas plugins como [enrutador](../plugins/router), o [extraer middleware en funciones](../advanced/structuring#definiciones-de-tipos-para-middleware-extraido), deberías especificar tu tipo de contexto personalizado.
 
 ### Transformative Context Flavors
 
