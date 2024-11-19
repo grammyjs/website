@@ -502,6 +502,9 @@ import { Context, SessionFlavor } from "grammy";
 
 // Declarar que `ctx.session` es de tipo `string`.
 type MyContext = Context & SessionFlavor<string>;
+
+// Pasa el tipo a tu instancia bot.
+const bot = new Bot<MyContext>("");
 ```
 
 Ahora puedes usar el plugin de sesión, y tienes acceso a `ctx.session`:
@@ -512,6 +515,10 @@ bot.on("message", async (ctx) => {
   const str = ctx.session;
 });
 ```
+
+Ten en cuenta que no sólo debes pasar `MyContext` a tu instancia de `Bot`.
+También necesitas usarlo en muchos otros lugares.
+Por ejemplo, si creas una nueva instancia de `Composer`, usas plugins como [Enrutador](../plugins/router), o [extraer middleware en funciones](../advanced/structuring#definiciones-de-tipos-para-middleware-extraido), deberías especificar tu tipo de contexto personalizado.
 
 ### Transformative Context Flavors
 
