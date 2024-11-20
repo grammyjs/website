@@ -47,7 +47,7 @@
 | [Rate Limiter](./ratelimiter)              | [`ratelimiter`](./ratelimiter)                     | Автоматически ограничивайте пользователей, которые спамят   |
 | [Router](./router)                         | [`router`](./router)                               | Направляйте сообщения в разные части вашего кода            |
 | [Runner](./runner)                         | [`runner`](./runner)                               | Одновременное и масштабное выполнение long polling          |
-| [Stateless Question](./stateless-question) | [`stateless-question`](./stateless-question)       | Созданайте диалоги без хранения данных                      |
+| [Stateless Question](./stateless-question) | [`stateless-question`](./stateless-question)       | Создавайте диалоги без хранения данных                      |
 | [Throttler](./transformer-throttler)       | [`transformer-throttler`](./transformer-throttler) | Замедляйте вызовы API                                       |
 
 У нас также есть несколько сторонних плагинов!
