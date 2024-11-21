@@ -202,7 +202,7 @@ new InputFile(function* () {
 
 ```ts [Deno]
 // Kirim sebuah blob.
-const blob = new Blob("ABC", { type: "text/plain" });
+const blob = new Blob(["ABC"], { type: "text/plain" });
 new InputFile(blob);
 // Kirim sebuah buffer atau array byte.
 const buffer = Uint8Array.from([65, 66, 67]);
