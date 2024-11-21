@@ -111,11 +111,13 @@ bot.on("message_reaction", async (ctx) => {
 上下文对象有一些方法可以让你为某些事情检测包含的数据。
 例如，你可以调用 `ctx.hasCommand("start")` 来查看上下文对象是否包含了一个 `/start` 命令。
 这就是为什么这些方法被统称为 _has checks_ 。
+
 ::: 知道什么时候使用 Has Checks
 这与 `bot.command("start")` 使用的逻辑完全相同。
 请注意，你通常应该使用 [filter 查询](./filter-queries) 或者类似的方法。
 has checks 在 [conversations 插件](../plugins/conversations) 里面使用效果最好。
 :::
+
 has checks 正确地缩小了上下文类型的范围。
 这意味着，检查上下文是否具有回调查询数据，将告诉 TypeScript 该上下文具有 `ctx.callbackQuery.data` 字段。
 
@@ -169,7 +171,7 @@ bot.on("message", async (ctx) => {
 bot.on("message", (ctx) => ctx.reply("Gotcha!"));
 ```
 
-很整洁! :tada:
+简洁优雅! :tada:
 
 在后台，上下文 _已经知道_ 它的聊天标识符（即 `ctx.msg.chat.id`），所以它给你 `reply` 方法，让你向同一个聊天记录发送消息。
 在内部，`reply` 再次调用 `sendMessage`，并为您预先填写了聊天标识符。
@@ -193,7 +195,8 @@ await ctx.reply("^ This is a message!", {
 在你的代码编辑器中使用自动完成来查看可用的选项。
 :::
 
-当然，`ctx.api` 上的每一个其他方法都有一个快捷方式，并且有正确的预填值，比如 `ctx.replyWithPhoto` 用来回复照片，或者 `ctx.exportChatInviteLink` 用来获取相应聊天的邀请链接。如果你想了解存在哪些快捷方式，那么自动完成是你的伙伴，还有 [grammY API 参考](/ref/core/context)。
+当然，`ctx.api` 上的每一个其他方法都有一个快捷方式，并且有正确的预填值，比如 `ctx.replyWithPhoto` 用来回复照片，或者 `ctx.exportChatInviteLink` 用来获取相应聊天的邀请链接。
+如果你想了解存在哪些快捷方式，那么自动完成是你的伙伴，还有 [grammY API 参考](/ref/core/context)。
 
 请注意，你可能不希望总是在同一个聊天中做出回复。
 在这种情况下，你可以退回到使用 `ctx.api` 方法，并在调用它们时指定所有选项。
@@ -380,6 +383,7 @@ import type { Update, UserFromGetMe } from "grammy/types";
 class MyContext extends Context {
   // 自定义一些属性
   public readonly customProp: number;
+
   constructor(update: Update, api: Api, me: UserFromGetMe) {
     super(update, api, me);
     this.customProp = me.username.length * 42;
@@ -406,6 +410,7 @@ const { Bot, Context } = require("grammy");
 class MyContext extends Context {
   // 自定义一些属性
   public readonly customProp;
+
   constructor(update, api, me) {
     super(update, api, me);
     this.customProp = me.username.length * 42;
@@ -436,6 +441,7 @@ import type {
 class MyContext extends Context {
   // 自定义一些属性。
   public readonly customProp: number;
+
   constructor(update: Update, api: Api, me: UserFromGetMe) {
     super(update, api, me);
     this.customProp = me.username.length * 42;
@@ -504,6 +510,9 @@ import { Context, SessionFlavor } from "grammy";
 
 // 声明 `ctx.session` 为 `string` 类型。
 type MyContext = Context & SessionFlavor<string>;
+
+// 传递类型给你的 bot 实例
+const bot = new Bot<MyContext>("");
 ```
 
 现在你可以使用 session 插件了，你可以访问`ctx.session`。
@@ -514,6 +523,10 @@ bot.on("message", async (ctx) => {
   const str = ctx.session;
 });
 ```
+
+请注意，你不仅应该将 `MyContext` 传递给 `Bot` 实例。
+你还需要在许多其他地方使用它。
+例如，如果你创建一个新的 `Composer` 实例，请使用 [路由器插件](../plugins/router) 或 [将中间件提取到函数中](../advanced/structuring#提取的中间件的类型定义)，你现在应该指定自定义上下文类型。
 
 ### 转换式上下文调味剂
 
