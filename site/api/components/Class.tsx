@@ -72,11 +72,12 @@ export function Class(
 
   const methodNameSet = new Set<string>(); // to prevent duplicates
   const staticMethodNameSet = new Set<string>();
+  const anchors = methods.map((v) => v.name);
 
   return (
     <>
       <H1>{klass.name}</H1>
-      <P doc>{klass.jsDoc?.doc}</P>
+      <P doc anchors={anchors}>{klass.jsDoc?.doc}</P>
       <Loc>{klass}</Loc>
       <Sector title="Extends" show={!!klass.classDef.extends}>
         <CodeBlock>

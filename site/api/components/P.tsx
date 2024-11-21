@@ -6,6 +6,7 @@ export function P(
   props: { children?: ComponentChildren; doc?: false; html?: true } | {
     children?: string;
     doc: true;
+    anchors?: string[];
   },
 ) {
   if (props.doc && props.children) {
@@ -30,7 +31,11 @@ export function P(
     props.children = newParts
       .join("")
       .replaceAll("```ts", "```ts:no-line-numbers");
-    props.children = replaceModuleSymbolLinks(props.children, ACTIVE_MODULE);
+    props.children = replaceModuleSymbolLinks(
+      props.children,
+      ACTIVE_MODULE,
+      props.anchors,
+    );
     return (
       <>
         {"\n\n"}

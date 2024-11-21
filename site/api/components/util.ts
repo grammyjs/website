@@ -15,12 +15,21 @@ export function newGetLink(
   };
 }
 
-export function replaceModuleSymbolLinks(text: string, module_: string) {
+export function replaceModuleSymbolLinks(
+  text: string,
+  module_: string,
+  anchors: string[] | undefined,
+) {
   return replaceSymbolLinks(text, (match) => {
     const [symbol, anchor] = match.split(".");
-    let href = `/ref/${module_}/${symbol}`;
-    if (anchor) {
-      href += `#${anchor}`;
+    let href: string;
+    if (anchors?.includes(symbol)) {
+      href = `#${symbol}`;
+    } else {
+      href = `/ref/${module_}/${symbol}`;
+      if (anchor) {
+        href += `#${anchor}`;
+      }
     }
     href = href.toLowerCase();
     return `[${match}](${href})`;
