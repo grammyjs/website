@@ -1436,7 +1436,7 @@ If you enable [parallel conversations](#parallel-conversations) for the conversa
 Call `ctx.conversation.active()` without arguments to receive an object that contains the identifiers of all active conversations as keys.
 The respectives values describe how many instances of each conversation are active.
 
-If a conversation `captcha` is active twice and a conversation `settings` is active once, `ctx.conversation.active()` will work as follows.
+If the conversation `captcha` is active twice and the conversation `settings` is active once, `ctx.conversation.active()` will work as follows.
 
 ```ts
 bot.command("stats", (ctx) => {
