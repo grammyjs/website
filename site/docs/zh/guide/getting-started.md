@@ -192,7 +192,7 @@ bot.start();
 现在你可以通过执行以下命令，在你的终端中运行该 bot：
 
 ```sh
-deno run --allow-net bot.ts
+deno -IN bot.ts
 ```
 
 完成！:tada:
@@ -211,7 +211,7 @@ export DEBUG="grammy*"
 你现在需要用以下方法来运行 bot
 
 ```sh
-deno run --allow-net --allow-env bot.ts
+deno -EIN bot.ts
 ```
 
 现在 grammY 可以检测到 `DEBUG` 是否被设置。

@@ -126,6 +126,16 @@ export const modules: ModuleConfig[] = [
     shortdescription: sdesc("the [internationalization plugin](/plugins/i18n)"),
   },
   {
+    repo: "commands",
+    slug: "commands",
+    name: "Commands",
+    description: desc(
+      "the [commands plugin](/plugins/commands)",
+      "the commands plugin",
+    ),
+    shortdescription: sdesc("the [commands plugin](/plugins/commands)"),
+  },
+  {
     repo: "router",
     slug: "router",
     name: "Router Plugin",

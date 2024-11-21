@@ -67,7 +67,7 @@ autoRetry({
 });
 ```
 
-### Rethrowing Internal Server Errros
+### Rethrowing Internal Server Errors
 
 You can use `rethrowInternalServerErrors` to opt out of handling internal server errors as described [above](#retry-api-requests-auto-retry).
 Again, the error object from Telegram is passed on, effectively failing the request with a [`GrammyError`](../guide/errors#the-grammyerror-object).
@@ -78,7 +78,7 @@ autoRetry({
 });
 ```
 
-### Rethrowing Networking Errros
+### Rethrowing Networking Errors
 
 You can use `rethrowHttpErrors` to opt out of handling networking errors as described [above](#retry-api-requests-auto-retry).
 If enabled, the thrown [`HttpError`](../guide/errors#the-httperror-object) instances are passed on, failing the request.

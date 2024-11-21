@@ -91,10 +91,10 @@ bot.on("message:entities", async (ctx) => {
   const email = ctx.entities("email");
 
   // Ambil entity telepon dan email.
-  const teleponDanEmail = ctx.entities(["email", "phone"]);
+  const teleponDanEmail = ctx.entities(["email", "phone_number"]);
 });
 
-bot.on("message_reaction", (ctx) => {
+bot.on("message_reaction", async (ctx) => {
   const { emojiAdded } = ctx.reactions();
   if (emojiAdded.includes("🎉")) {
     await ctx.reply("Pesta!");
@@ -512,6 +512,9 @@ import { Context, SessionFlavor } from "grammy";
 
 // Deklarasikan `ctx.session` menjadi type `string`.
 type MyContext = Context & SessionFlavor<string>;
+
+// Sertakan type ke instance bot kamu.
+const bot = new Bot<MyContext>("");
 ```
 
 Sekarang kamu dapat menggunakan plugin session serta memiliki akses ke `ctx.session`:
@@ -522,6 +525,9 @@ bot.on("message", async (ctx) => {
   const str = ctx.session;
 });
 ```
+
+Perlu diperhatikan bahwa selain menyertakan `MyContext` ke instance bot, kamu juga perlu menyertakannya ke instance lain yang membutuhkannya.
+Misalnya, ketika kamu membuat instance `Composer` baru, menggunakan plugin [router](../plugins/router), dan [mengekstrak middleware ke dalam function](../advanced/structuring#type-definition-untuk-middleware-yang-telah-di-extract).
 
 ### Transformative Context Flavor
 

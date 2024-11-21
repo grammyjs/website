@@ -166,7 +166,7 @@ You can now start writing your bot.
 This is explained on the next page.
 
 One last thing:
-After you have created your bot, for example in a file called `bot.ts`, you can run it by typing `deno run --allow-net bot.ts` in your terminal.
+After you have created your bot, for example in a file called `bot.ts`, you can run it by typing `deno -IN bot.ts` in your terminal.
 (Yes, writing software means using the terminal a lot, get used to it.)
 You can stop the bot again with `Ctrl+C`.
 
@@ -184,7 +184,7 @@ In order to run the `bot.js` file, you have to have [Node.js](https://nodejs.org
 
 In summary, this is what you have to do for Node.js:
 
-1. Create a source file `bot.ts` with TypeScript code, e.g. using [VS Code](https://code.visualstudio.com/) (or any other code editor).
+1. Create a source file `bot.ts` with TypeScript code, e.g. using [VS Code](https://code.visualstudio.com) (or any other code editor).
 2. Compile the code by running a command in your terminal. This generates a file called `bot.js`.
 3. Run `bot.js` using Node.js, again from your terminal.
 

@@ -146,7 +146,7 @@ Pertama-tama, [instal Deno](https://docs.deno.com/runtime/getting_started/instal
 
 Siapkan juga text editor yang sesuai untuk coding.
 Salah satu yang sesuai untuk Deno adalah Visual Studio Code, atau biasa disebut dengan VS Code.
-Silahkan [diinstal](https://code.visualstudio.com/) juga.
+Silahkan [diinstal](https://code.visualstudio.com) juga.
 
 Selanjutnya, kamu perlu menghubungkan Deno dan VS Code.
 Caranya sangat mudah: VS Code punya extension yang bisa melakukan semua hal tersebut secara otomatis.
@@ -176,7 +176,7 @@ Lingkungan kerja untuk pengembangan Deno kamu sudah siap.
 Sekarang kamu bisa mulai menulis bot kamu.
 Penjelasannya ada di halaman berikutnya.
 
-Terakhir, setelah membuat bot, misalnya ditaruh di sebuah file bernama `bot.ts`, kamu bisa menjalankannya dengan mengetik `deno run --allow-net bot.ts` di terminal kamu---Yup, kamu akan sering berinteraksi dengan terminal ketika menulis sebuah program, jadi mulai sekarang biasakan dirimu.
+Terakhir, setelah membuat bot, misalnya ditaruh di sebuah file bernama `bot.ts`, kamu bisa menjalankannya dengan mengetik `deno -IN bot.ts` di terminal kamu---Yup, kamu akan sering berinteraksi dengan terminal ketika menulis sebuah program, jadi mulai sekarang biasakan dirimu.
 Kamu bisa menghentikan bot dengan menekan `Ctrl+C`.
 
 Sudah siap?
@@ -195,7 +195,7 @@ Untuk menjalankan file `bot.js`, kamu harus meng-install [Node.js](https://nodej
 
 Berikut tahap-tahap yang perlu dilakukan di Node.js:
 
-1. Buat source file `bot.ts` menggunakan TypeScript, misalnya dengan menggunakan [VS Code](https://code.visualstudio.com/) (atau kode editor lainnya).
+1. Buat source file `bot.ts` menggunakan TypeScript, misalnya dengan menggunakan [VS Code](https://code.visualstudio.com) (atau kode editor lainnya).
 2. Compile kode dengan menjalankan perintah di terminal. Langkah ini akan menghasilkan file bernama `bot.js`.
 3. Jalankan `bot.js` menggunakan Node.js, sekali lagi dari terminal.
 

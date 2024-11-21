@@ -208,6 +208,14 @@ const pluginOfficial = {
       text: "Modo de parsear (parse-mode)",
       link: "/es/plugins/parse-mode",
     },
+    {
+      text: "Miembros del chat (chat-members)",
+      link: "/es/plugins/chat-members",
+    },
+    {
+      text: "Comandos (commands)",
+      link: "/es/plugins/commands",
+    },
   ],
 };
 
