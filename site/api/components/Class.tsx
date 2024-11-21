@@ -72,7 +72,8 @@ export function Class(
 
   const methodNameSet = new Set<string>(); // to prevent duplicates
   const staticMethodNameSet = new Set<string>();
-  const anchors = methods.map((v) => v.name);
+  const anchors = methods.map((v) => v.name)
+    .concat(staticMethods.map((v) => v.name));
 
   return (
     <>
