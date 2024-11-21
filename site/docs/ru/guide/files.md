@@ -203,7 +203,7 @@ new InputFile(function* () {
 
 ```ts [Deno]
 // Send a blob.
-const blob = new Blob("ABC", { type: "text/plain" });
+const blob = new Blob(["ABC"], { type: "text/plain" });
 new InputFile(blob);
 // Отправьте буфер или массив байтов.
 const buffer = Uint8Array.from([65, 66, 67]);

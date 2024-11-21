@@ -271,7 +271,7 @@ npx tsc
 
 ### 设置 `Procfile`
 
-目前 `Heroku` 有好几种 [dynos 类型](https://devcenter.heroku.com/articles/dyno-types)。
+目前 `Heroku` 有好几种 [dynos 类型](https://devcenter.heroku.com/articles/dynos#use-cases)。
 其中两个是：
 
 - **Web dynos**:

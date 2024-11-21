@@ -209,6 +209,10 @@ const pluginOfficial = {
       text: "Chat Members (chat-members)",
       link: "/id/plugins/chat-members",
     },
+    {
+      text: "Perintah (commands)",
+      link: "/id/plugins/commands",
+    },
   ],
 };
 const pluginThirdparty = {

@@ -54,7 +54,7 @@ const photo = InputMediaBuilder.photo("https://grammy.dev/images/grammY.png");
 
 ```ts
 const photo = InputMediaBuilder.photo("https://grammy.dev/images/grammY.png", {
-  caption: "grammY заметелен",
+  caption: "grammY замечателен",
   // т.д.
 });
 ```

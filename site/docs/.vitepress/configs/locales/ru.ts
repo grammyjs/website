@@ -212,6 +212,10 @@ const pluginOfficial = {
       text: "Пользователи чата (chat-members)",
       link: "/ru/plugins/chat-members",
     },
+    {
+      text: "Команды (commands)",
+      link: "/ru/plugins/commands",
+    },
   ],
 };
 
