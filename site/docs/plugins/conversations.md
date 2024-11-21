@@ -1194,7 +1194,7 @@ The `onExit` callback is also invoked when the conversation terminates itself vi
 
 ## Concurrent Wait Calls
 
-You can use floating promises to wait for several things in concurrently.
+You can use floating promises to wait for several things concurrently.
 When a new update arrives, only the first matching wait call will resolve.
 
 ```ts
