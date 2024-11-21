@@ -204,7 +204,7 @@ new InputFile(function* () {
 
 ```ts [Deno]
 // 发送一个 blob。
-const blob = new Blob("ABC", { type: "text/plain" });
+const blob = new Blob(["ABC"], { type: "text/plain" });
 new InputFile(blob);
 // 发送一个 buffer 或一个 byte 数组。
 const buffer = Uint8Array.from([65, 66, 67]);
