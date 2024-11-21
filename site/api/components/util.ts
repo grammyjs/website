@@ -22,7 +22,7 @@ export function replaceModuleSymbolLinks(
   anchors: string[] | undefined,
 ) {
   return replaceSymbolLinks(text, (match) => {
-    let [link, text] = match.split("|");
+    let [link, text = ""] = match.split("|");
     text = text.trim();
     const [symbol, anchor] = link.trim().split(".");
     let href: string;
