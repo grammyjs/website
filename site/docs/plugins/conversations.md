@@ -1385,7 +1385,7 @@ Note that all wait calls filter for a user identifier, among other things.
 Let's assume that the following has already happened.
 
 1. You called `ctx.conversation.enter("captcha")` to enter the conversation `captcha` while handling an update from a user with identifier `ctx.from.id === 42`.
-2. You called `ctx.conversation.enter("settings")` to enter the conversation `captcha` while handling an update from a user with identifier `ctx.from.id === 3`.
+2. You called `ctx.conversation.enter("settings")` to enter the conversation `settings` while handling an update from a user with identifier `ctx.from.id === 3`.
 3. You called `ctx.conversation.enter("captcha")` to enter the conversation `captcha` while handling an update from a user with identifier `ctx.from.id === 43`.
 
 This means that three conversations are active in this group chat now---`captcha` is active twice and `settings` is active once.
