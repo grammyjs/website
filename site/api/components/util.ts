@@ -22,7 +22,9 @@ export function replaceModuleSymbolLinks(
   anchors: string[] | undefined,
 ) {
   return replaceSymbolLinks(text, (match) => {
-    const [symbol, anchor] = match.split(".");
+    let [link, text] = match.split('|')
+    text = text.trim()
+    const [symbol, anchor] = link.trim().split(".");
     let href: string;
     if (anchors?.includes(symbol)) {
       href = `#${symbol}`;
@@ -33,7 +35,7 @@ export function replaceModuleSymbolLinks(
       }
     }
     href = href.toLowerCase();
-    return `[${match}](${href})`;
+    return `[${text || match}](${href})`;
   });
 }
 function replaceSymbolLinks(
