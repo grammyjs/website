@@ -938,15 +938,29 @@ If you want to use sessions, [scroll down](#accessing-sessions-inside-conversati
 ### Default Plugins
 
 If you have a lot of conversations that all need the same set of plugins, you can define default plugins.
-Now, you no longer have to pass `hydrate` to `enterConversation`.
+Now, you no longer have to pass `hydrate` to `createConversation`.
 
-```ts
+::: code-group
+
+```ts [TypeScript]
+// TypeScript needs some help with the two context types
+// so you often have to specify them to use plugins.
+bot.use(conversations<MyContext, MyConversationContext>({
+  plugins: [hydrate()],
+}));
+// The following conversation will have hydrate installed.
+bot.use(createConversation(convo));
+```
+
+```js [JavaScript]
 bot.use(conversations({
   plugins: [hydrate()],
 }));
-// ...
+// The following conversation will have hydrate installed.
 bot.use(createConversation(convo));
 ```
+
+:::
 
 Make sure to install the context flavors of all default plugins on the inside context types of all conversations.
 
