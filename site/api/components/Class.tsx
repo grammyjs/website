@@ -78,7 +78,7 @@ export function Class(
   return (
     <>
       <H1>{klass.name}</H1>
-      <P doc anchors={anchors}>{klass.jsDoc?.doc}</P>
+      <P doc getLink={getLink} anchors={anchors}>{klass.jsDoc?.doc}</P>
       <Loc>{klass}</Loc>
       <Sector title="Extends" show={!!klass.classDef.extends}>
         <CodeBlock>

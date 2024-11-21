@@ -1,4 +1,5 @@
 import { TsTypeParamDef } from "deno_doc/types.d.ts";
+import { LinkGetter } from "./types.ts";
 
 export function newGetLink(
   oldGetLink: (r: string) => string | null,
@@ -17,7 +18,7 @@ export function newGetLink(
 
 export function replaceModuleSymbolLinks(
   text: string,
-  module_: string,
+  getLink: LinkGetter,
   anchors: string[] | undefined,
 ) {
   return replaceSymbolLinks(text, (match) => {
@@ -26,7 +27,7 @@ export function replaceModuleSymbolLinks(
     if (anchors?.includes(symbol)) {
       href = `#${symbol}`;
     } else {
-      href = `/ref/${module_}/${symbol}`;
+      href = getLink(symbol) ?? "";
       if (anchor) {
         href += `#${anchor}`;
       }

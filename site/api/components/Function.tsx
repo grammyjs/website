@@ -28,7 +28,7 @@ export function Function(
   return (
     <>
       {(!overloadCount || overloadCount == 1) && <H1>{func.name}</H1>}
-      {overloadCount && <P doc>{func.jsDoc?.doc}</P>}
+      {overloadCount && <P doc getLink={getLink}>{func.jsDoc?.doc}</P>}
       {!!overloads?.length && (
         <CodeBlock>
           //{" "}
@@ -65,7 +65,7 @@ export function Function(
         </CodeBlock>
       )}
       {overloadCount && <H2>Overload {overloadCount}</H2>}
-      {!overloadCount && <P doc>{func.jsDoc?.doc}</P>}
+      {!overloadCount && <P doc getLink={getLink}>{func.jsDoc?.doc}</P>}
       <Loc>{func}</Loc>
       <Sector
         title="Type Parameters"

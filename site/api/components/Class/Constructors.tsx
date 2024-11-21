@@ -29,7 +29,7 @@ export function Constructors({
             </span>(
             <Params getLink={getLink}>{v.params}</Params>);
           </CodeBlock>
-          {"jsDoc" in v && <P doc>{v.jsDoc?.doc}</P>}
+          {"jsDoc" in v && <P doc getLink={getLink}>{v.jsDoc?.doc}</P>}
           <Loc>{v}</Loc>
         </>
       ))}

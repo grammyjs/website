@@ -1,11 +1,12 @@
 import { ComponentChildren } from "preact";
 import { replaceModuleSymbolLinks } from "./util.ts";
-import { ACTIVE_MODULE } from "../active_module.ts";
+import { LinkGetter } from "./types.ts";
 
 export function P(
   props: { children?: ComponentChildren; doc?: false; html?: true } | {
     children?: string;
     doc: true;
+    getLink: LinkGetter;
     anchors?: string[];
   },
 ) {
@@ -33,7 +34,7 @@ export function P(
       .replaceAll("```ts", "```ts:no-line-numbers");
     props.children = replaceModuleSymbolLinks(
       props.children,
-      ACTIVE_MODULE,
+      props.getLink,
       props.anchors,
     );
     return (

@@ -30,7 +30,7 @@ export function Interface(
   return (
     <>
       <H1>{iface.name}</H1>
-      <P doc>{iface.jsDoc?.doc}</P>
+      <P doc getLink={getLink}>{iface.jsDoc?.doc}</P>
       <Loc>{iface}</Loc>
       <Sector title="Extends" show={!!iface.interfaceDef.extends.length}>
         <CodeBlock>

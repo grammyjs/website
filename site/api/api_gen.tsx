@@ -20,7 +20,6 @@ import { TypeAlias } from "./components/TypeAlias.tsx";
 import { Overview } from "./components/Overview.tsx";
 import links from "./external_links.ts";
 import { Ref } from "./types.ts";
-import { setActiveModule } from "./active_module.ts";
 
 const out = Deno.args[0];
 if (!out) throw new Error("no out!");
@@ -99,7 +98,6 @@ function createDoc(
   overloadCount?: number,
   overloads?: DocNodeFunction[],
 ) {
-  setActiveModule(slug);
   const nav =
     `<div><sup><a href="/ref/">ref</a> / <a href="/ref/${slug.toLowerCase()}/">${
       slug.replaceAll("/", " / ")

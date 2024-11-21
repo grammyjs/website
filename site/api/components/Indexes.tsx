@@ -60,7 +60,7 @@ export function Indexes({
               )};
             </CodeBlock>
             {/* @ts-ignore: it works */}
-            {"jsDoc" in v && <P doc>{v.jsDoc}</P>}
+            {"jsDoc" in v && <P doc getLink={getLink}>{v.jsDoc}</P>}
             {/* @ts-ignore: this works too */}
             <Loc>{v}</Loc>
           </>
