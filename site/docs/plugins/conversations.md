@@ -287,7 +287,7 @@ For TypeScript code, this also means that you now have two [flavors](../guide/co
   If you want to have custom properties on inside context objects, [scroll down](#using-plugins-inside-conversations).
 
 You have to pass both the outside and the inside context types to the conversation.
-The TypeScript setup therefore typically looks as follows.
+The TypeScript setup therefore typically looks as follows:
 
 ::: code-group
 
