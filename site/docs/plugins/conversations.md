@@ -213,7 +213,7 @@ You must follow it if you want your code to behave correctly.
 
 ::: warning THE GOLDEN RULE
 
-**Code behaving differently between replays must be wrapped in `conversation.external`.**
+**Code behaving differently between replays must be wrapped in [`conversation.external`](/ref/conversations/conversation#external).**
 
 :::
 
@@ -226,7 +226,7 @@ const response = await accessDatabase();
 const response = await conversation.external(() => accessDatabase());
 ```
 
-Escaping a part of your code via `conversation.external` signals to the plugin that this part of the code should be skipped during replays.
+Escaping a part of your code via [`conversation.external`](/ref/conversations/conversation#external) signals to the plugin that this part of the code should be skipped during replays.
 The return value of the wrapped code is stored by the plugin and reused during subsequent replays.
 In the above example, this prevents repeated database access.
 
@@ -361,6 +361,9 @@ async function example(
 
 :::
 
+> In the above example, there are no plugins installed in the conversation.
+> As soon as you start [installing](#using-plugins-inside-conversations) them, the definition of `MyConversationContext` will no longer be the bare type `Context`.
+
 Naturally, if you have several conversations and you want the context types to differ between them, you can define several conversational context types.
 
 Congrats!
@@ -477,7 +480,7 @@ const message = await conversation.waitFor("message");
 // Wait for text like with `bot.hears`.
 const hears = await conversation.waitForHears(/regex/);
 // Wait for commands like with `bot.command`.
-const start = await conversation.waitFor("start");
+const start = await conversation.waitForCommand("start");
 // etc
 ```
 
@@ -505,7 +508,7 @@ photoWithCaption = await conversation
   .andForHears("XY", { otherwise: (ctx) => ctx.reply("Bad caption") });
 ```
 
-If you only specify `otherwise` in of the chained wait calls, then it will only be invoked if that specific filter drops the update.
+If you only specify `otherwise` in one of the chained wait calls, then it will only be invoked if that specific filter drops the update.
 
 ### Inspecting Context Objects
 
@@ -536,7 +539,7 @@ async function convo(conversation: Conversation, ctx: Context) {
   } else if (ctx.message?.text === "error") {
     throw new Error("boom");
   } else {
-    await conversation.halt();
+    await conversation.halt(); // never returns
   }
 }
 ```
@@ -824,7 +827,7 @@ That being said, this protection does not cover 100 % of the cases, so you shoul
 
 ### Non-serializable Data
 
-[Remember](#conversations-store-state) that all data returned from `conversation.external` will be stored.
+[Remember](#conversations-store-state) that all data returned from [`conversation.external`](/ref/conversations/conversation#external) will be stored.
 This means that all data returned from `conversation.external` must be serializable.
 
 If you want to return data that cannot be serialized, such as classes or [`BigInt`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt), you can provide a custom serializer to fix this.
@@ -850,7 +853,7 @@ This is identical to [how the session plugin works](./session#session-keys).
 
 As a result, a conversation cannot handle updates from multiple chats.
 If this is desired, you can [define your own storage key function](/ref/conversations/conversationoptions#storage).
-As with sessions, it is [not recommended](./session#session-keys) to use this option in serverless environments.
+As with sessions, it is [not recommended](./session#session-keys) to use this option in serverless environments due to potential race conditions.
 
 Also, just like with sessions, you can store your conversations data under a namespace using the `prefix` option.
 This is especially useful if you want to use the same storage adapter for both your session data and your conversations data.
@@ -877,7 +880,7 @@ Among other things, it will explain how to store data without a storage key func
 ## Using Plugins Inside Conversations
 
 [Remember](#conversational-context-objects) that the context objects inside conversations are independent from the context objects in the surrounding middleware.
-This means that they will have no plugins installed on them by default.
+This means that they will have no plugins installed on them by default---even if the plugins are installed on your bot.
 
 Fortunately, all grammY plugins [except sessions](#accessing-sessions-inside-conversations) are compatible with conversations.
 For example, this is how you can install the [hydrate plugin](./hydrate) for a conversation.
@@ -892,16 +895,17 @@ type MyConversationContext = HydrateFlavor<Context>;
 
 bot.use(conversations());
 
+// Pass the outside and the inside context object.
 type MyConversation = Conversation<MyContext, MyConversationContext>;
 async function convo(conversation: MyConversation, ctx: MyConversationContext) {
-  // hydrate plugin is installed on `ctx` here
+  // The hydrate plugin is installed on `ctx` here.
   const other = await conversation.wait();
-  // hydrate plugin is installed on `other` here, too
+  // The hydrate plugin is installed on `other` here, too.
 }
 bot.use(createConversation(convo, { plugins: [hydrate()] }));
 
 bot.command("enter", async (ctx) => {
-  // hydrate plugin is NOT installed on `ctx` here
+  // The hydrate plugin is NOT installed on `ctx` here.
   await ctx.conversation.enter("convo");
 });
 ```
@@ -984,7 +988,7 @@ You can install several transformers in the same call to `ctx.api.config.use`.
 
 ### Accessing Sessions Inside Conversations
 
-Due to the way [how plugins work inside conversations](#using-plugins-inside-conversations), the session plugin cannot be installed inside a conversation in the same way as other plugins.
+Due to the way [how plugins work inside conversations](#using-plugins-inside-conversations), the [session plugin](./session.md) cannot be installed inside a conversation in the same way as other plugins.
 You cannot pass it to the `plugins` array because it would:
 
 1. read data,
@@ -1011,8 +1015,8 @@ await conversation.external((ctx) => {
 });
 ```
 
-In a sense, the session plugin can be seen as performing side-effects.
-After all, it stores data in a database.
+In a sense, using the session plugin can be seen as a way of performing side-effects.
+After all, sessions access a database.
 Given that we must follow [The Golden Rule](#the-golden-rule-of-conversations), it only makes sense that session access needs to be wrapped inside `conversation.external`.
 
 ## Conversational Menus
@@ -1039,7 +1043,7 @@ const emailMenu = conversation.menu()
     ctx.menu.update();
   })
   .row()
-  .url("Privacy policy", "https://example.com");
+  .url("About", "https://grammy.dev");
 
 const otherMenu = conversation.menu()
   .submenu("Go to email menu", emailMenu, async (ctx) => {
@@ -1058,6 +1062,7 @@ Conversational menus stay active only as long as the conversation active.
 You should call `ctx.menu.close()` for all menus before exiting the conversation.
 
 If you want to prevent the conversation from exiting, you can simply use the following code snippet at the end of your conversation.
+However, [remember](#conversations-store-state) that is it a bad idea to let your conversation live forever.
 
 ```ts
 // Wait forever.
@@ -1069,7 +1074,7 @@ await conversation.waitUntil(() => false, {
 Finally, note that conversational menus are guaranteed to never interfere with outside menus.
 In other words, an outside menu will never handle the update of a menu inside a conversation, and vice-versa.
 
-### Menu Plugin Interoperation
+### Menu Plugin Interoperability
 
 When you define a menu outside a conversation and use it to enter a conversation, you can define a conversational menu that takes over as long as the conversation is active.
 When the conversation completes, the outside menu will take control again.
@@ -1091,18 +1096,20 @@ The structure is based on the following two things.
 - The shape of the menu (number of rows, or number of buttons in any row).
 - The label on the button.
 
-It is usually advisable to first edit the menu to a shape that makes sense inside the conversation, and then enter the conversation.
+It is usually advisable to first edit the menu to a shape that makes sense inside the conversation as soon as you enter the conversation.
 The conversation can then define a matching menu which will be active immediately.
 
 Similarly, if the conversation leaves behind any menus (by not closing them), outside menus can take over control again.
 Again, the structure of the menus has to match.
+
+An example of this interoperability can be found in the [example bots repository](https://github.com/grammyjs/examples?tab=readme-ov-file#menus-with-conversation-menu-with-conversation).
 
 ## Conversational Forms
 
 Oftentimes, conversations are used to build forms in the chat interface.
 
 All wait calls return context objects.
-However, when you wait for a text message, you only want to get the message text and not interact with the rest of the context object.
+However, when you wait for a text message, you may only want to get the message text and not interact with the rest of the context object.
 
 Conversation forms give you a way to combine update validation with extracting data from the context object.
 This resembles a field in a form.
@@ -1177,10 +1184,10 @@ Similarly, you can specify a callback function that is invoked whenever a conver
 ```ts
 bot.use(conversations({
   onEnter(id, ctx) {
-    // Entered 'id'
+    // Entered conversation `id`.
   },
   onExit(id, ctx) {
-    // Exited 'id'
+    // Exited conversation `id`.
   },
 }));
 ```
@@ -1216,7 +1223,7 @@ This can be used to wait for unrelated things, too.
 For example, here is how you install a global exit listener inside the conversation.
 
 ```ts
-conversation.waitForCommand("exit")
+conversation.waitForCommand("exit") // no await!
   .then(() => conversation.halt());
 ```
 
@@ -1227,8 +1234,7 @@ For example, the following conversation will complete immediately after it was e
 
 ```ts [TypeScript]
 async function convo(conversation: Conversation, ctx: Context) {
-  // Do not await this:
-  const _promise = conversation.wait()
+  const _promise = conversation.wait() // no await!
     .then(() => ctx.reply("I will never be sent!"));
 
   // Conversation is done immediately after being entered.
@@ -1267,13 +1273,13 @@ const checkpoint = conversation.checkpoint();
 
 // Later:
 if (ctx.hasCommand("reset")) {
-  await conversation.rewind(checkpoint);
+  await conversation.rewind(checkpoint); // never returns
 }
 ```
 
 Checkpoints can be very useful to "go back."
 However, like JavaScript's `break` and `continue` with [labels](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/label), jumping around can make the code less readable.
-Make sure not to overuse this feature.
+**Make sure not to overuse this feature.**
 
 Internally, rewinding a conversation aborts execution like a wait call does, and then replays the function only until the point where the checkpoint was created.
 Rewinding a conversation does not literally execute functions in reverse, even though it feels like that.
@@ -1434,7 +1440,7 @@ When you pass a conversation identifier to `ctx.conversation.active`, it will re
 If you enable [parallel conversations](#parallel-conversations) for the conversation, it will return the number of times that this conversation is currently active.
 
 Call `ctx.conversation.active()` without arguments to receive an object that contains the identifiers of all active conversations as keys.
-The respectives values describe how many instances of each conversation are active.
+The respective values describe how many instances of each conversation are active.
 
 If the conversation `captcha` is active twice and the conversation `settings` is active once, `ctx.conversation.active()` will work as follows.
 
@@ -1478,11 +1484,11 @@ You can no longer use `conversation.session`.
 Instead, you must use `conversation.external` for this.
 
 ```ts
-// Reading session data
+// Read session data.
 const session = await conversation.session; // [!code --]
 const session = await conversation.external((ctx) => ctx.session); // [!code ++]
 
-// Writing session data
+// Write session data.
 conversation.session = newSession; // [!code --]
 await conversation.external((ctx) => { // [!code ++]
   ctx.session = newSession; // [!code ++]
@@ -1509,11 +1515,11 @@ Parallel conversations work the same way with 1.x and 2.x.
 However, this feature was a common source of confusion when used accidentally.
 With 2.x, you need to opt-in to the feature by specifying `{ parallel: true }` as described [here](#parallel-conversations).
 
-This only breaking change to this feature is that updates no longer get passed back to the middleware system by default.
+The only breaking change to this feature is that updates no longer get passed back to the middleware system by default.
 Instead, this is only done when the conversation is marked as parallel.
 
 Note that all wait methods and form fields provide an option `next` to override the default behavior.
-This option was renamed from `drop` in 1.x, and the semantics of the flag were flipped.
+This option was renamed from `drop` in 1.x, and the semantics of the flag were flipped accordingly.
 
 ### Form Changes Between 1.x and 2.x
 
