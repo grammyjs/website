@@ -234,5 +234,5 @@ bot.on(":text", async (ctx) => {
 ## Загальні відомості про плагін
 
 - Назва: `entity-parser`
-- Пакет: <https://jsr.io/@qz/telegram-entities-parser>
-- Джерело: <https://github.com/quadratz/telegram-entities-parser>
+- [Пакет](https://jsr.io/@qz/telegram-entities-parser)
+- [Джерело](https://github.com/quadratz/telegram-entities-parser)
