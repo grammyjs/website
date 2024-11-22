@@ -232,6 +232,6 @@ Use the official [`parse-mode`](./parse-mode) plugin for a better experience con
 
 ## Plugin Summary
 
-- Name: entity-parser
-- Package: <https://jsr.io/@qz/telegram-entities-parser>
-- Source: <https://github.com/quadratz/telegram-entities-parser>
+- Name: `entity-parser`
+- [Package](https://jsr.io/@qz/telegram-entities-parser)
+- [Source](https://github.com/quadratz/telegram-entities-parser)
