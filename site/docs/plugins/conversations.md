@@ -930,10 +930,10 @@ bot.command("enter", async (ctx) => {
 
 In regular [middleware](../guide/middleware), plugins get to run some code on the current context object, then call `next` to wait for downstream middleware, and then they get to run some code again.
 
-Conversations are not middleware, and plugins will work slightly differently in this context.
-When a [context object is created](#conversational-context-objects) by the conversation, it will be passed through the array of plugins.
-Each plugin gets access to the context object, then `next` resolves immediately, and the plugins can run some more code.
-Only after this, the context object is made available to the conversation.
+Conversations are not middleware, and plugins cannot interact with them in the same way.
+When a [context object is created](#conversational-context-objects) by the conversation, it will be passed to the plugins which can process it normally.
+To the plugins, it will look like only the plugins are installed and no downstream handlers exist.
+After all plugins are done, the context object is made available to the conversation.
 
 As a result, any cleanup work done by plugins is performed before the conversation builder function runs.
 All plugins except sessions work well with this.
