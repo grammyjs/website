@@ -988,7 +988,7 @@ You can install several transformers in the same call to `ctx.api.config.use`.
 
 ### Accessing Sessions Inside Conversations
 
-Due to the way [how plugins work inside conversations](#using-plugins-inside-conversations), the [session plugin](./session.md) cannot be installed inside a conversation in the same way as other plugins.
+Due to the way [how plugins work inside conversations](#using-plugins-inside-conversations), the [session plugin](./session) cannot be installed inside a conversation in the same way as other plugins.
 You cannot pass it to the `plugins` array because it would:
 
 1. read data,
