@@ -127,11 +127,11 @@ const entitiesParser = new EntitiesParser({ renderer: new MyRenderer() });
 | `italic`                | `CommonEntity`      | `<i class="tg-italic"> ... </i>`                                                                                                                                                   |
 | `mention`               | `CommonEntity`      | `<a class="tg-mention" href="https://t.me/${username}"> ... </a>`                                                                                                                  |
 | `phone_number`          | `CommonEntity`      | `<a class="tg-phone-number" href="tel:${options.text}"> ... </a>`                                                                                                                  |
-| `pre`                   | `PreEntity`         | `<pre class="tg-pre-code"><code class="language-${options.entity.language}"> ... </code></pre>` or `<pre class="tg-pre"> ... </pre>`                                               |
+| `pre`                   | `PreEntity`         | `<pre class="tg-pre-code"><code class="language-${options.entity.language}"> ... </code></pre>` или `<pre class="tg-pre"> ... </pre>`                                               |
 | `spoiler`               | `CommonEntity`      | `<span class="tg-spoiler"> ... </span>`                                                                                                                                            |
 | `strikethrough`         | `CommonEntity`      | `<del class="tg-strikethrough"> ... </del>`                                                                                                                                        |
 | `text_link`             | `TextLinkEntity`    | `<a class="tg-text-link" href="${options.entity.url}"> ... </a>`                                                                                                                   |
-| `text_mention`          | `TextMentionEntity` | `<a class="tg-text-mention" href="https://t.me/${options.entity.user.username}"> ... </a>` or `<a class="tg-text-mention" href="tg://user?id=${options.entity.user.id}"> ... </a>` |
+| `text_mention`          | `TextMentionEntity` | `<a class="tg-text-mention" href="https://t.me/${options.entity.user.username}"> ... </a>` или `<a class="tg-text-mention" href="tg://user?id=${options.entity.user.id}"> ... </a>` |
 | `underline`             | `CommonEntity`      | `<span class="tg-bot-command"> ... </span>`                                                                                                                                        |
 | `url`                   | `CommonEntity`      | `<a class="tg-url" href="${options.text}"> ... </a>`                                                                                                                               |
 
@@ -212,14 +212,14 @@ bot.on(":text", async (ctx) => {
 ```ts
 bot.on(":text", async (ctx) => {
   // Ответ с использованием HTML
-  await ctx.reply("<b>bold</b> <i>italic</i>", { parse_mode: "HTML" });
+  await ctx.reply("<b>жирный</b> <i>курсив</i>", { parse_mode: "HTML" });
   // Ответ с использованием Telegram Markdown V2
-  await ctx.reply("*bold* _italic_", { parse_mode: "MarkdownV2" });
+  await ctx.reply("*жирный* _курсив_", { parse_mode: "MarkdownV2" });
   // Ответ с использованием сущностей
-  await ctx.reply("bold italic", {
+  await ctx.reply("жирный курсив", {
     entities: [
-      { offset: 0, length: 5, type: "bold" },
-      { offset: 5, length: 6, type: "italic" },
+      { offset: 0, length: 6, type: "bold" },
+      { offset: 7, length: 6, type: "italic" },
     ],
   });
 });
