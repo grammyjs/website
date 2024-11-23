@@ -17,7 +17,7 @@ Pengonversian ke HTML hanya dibutuhkan untuk kondisi khusus ketika kamu perlu me
 
 Silahkan lihat bagian [_Contoh-Contoh Kasus yang Sebaiknya Tidak Menggunakan Plugin Ini_](#contoh-contoh-kasus-yang-sebaiknya-tidak-menggunakan-plugin-ini) untuk menemukan solusi yang lebih baik ketika kamu memiliki permasalahan yang serupa.
 
-Jika kamu masih ragu apakah plugin ini sesuai, jangan ragun untuk bertanya di [grup Telegram]((https://t.me/grammyjs)) kami.
+Jika kamu masih ragu apakah plugin ini sesuai, jangan ragun untuk bertanya di [grup Telegram](https://t.me/grammyjs) kami.
 Dalam kebanyakan kasus, sebagian besar orang sebenarnya tidak terlalu memerlukan plugin untuk menyelesaikan permasalahan mereka!
 
 ## Penginstalan
