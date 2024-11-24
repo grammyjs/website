@@ -449,7 +449,7 @@ bot.command("enter_with_arguments", async (ctx) => {
 
 :::
 
-:::warning Missing Type Safety for Arguments
+::: warning Missing Type Safety for Arguments
 
 Double-check that you used the right type annotations for the parameters of your conversation, and that you passed matching arguments to it in your `enter` call.
 The plugin is not able to check any types beyond `conversation` and `ctx`.
