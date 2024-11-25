@@ -815,7 +815,7 @@ bot.use(conversations({
 
 If you do not specify a version, it defaults to `0`.
 
-:::tip Forgot to Change the Version? Don't Worry!
+::: tip Forgot to Change the Version? Don't Worry!
 
 The conversations plugin already has good protections in place that should catch most cases of data corruption.
 If this is detected, an error is thrown somewhere inside the conversation, which causes the conversation to crash.
