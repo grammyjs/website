@@ -921,7 +921,7 @@ async function convo(conversation, ctx) {
 bot.use(createConversation(convo, { plugins: [hydrate()] }));
 
 bot.command("enter", async (ctx) => {
-  // hydrate plugin is NOT installed on `ctx` here
+  // The hydrate plugin is NOT installed on `ctx` here.
   await ctx.conversation.enter("convo");
 });
 ```
