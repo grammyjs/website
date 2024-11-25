@@ -914,7 +914,7 @@ bot.command("enter", async (ctx) => {
 bot.use(conversations());
 
 async function convo(conversation, ctx) {
-  // hydrate plugin is installed on `ctx` here
+  // The hydrate plugin is installed on `ctx` here.
   const other = await conversation.wait();
   // hydrate plugin is installed on `other` here, too
 }
