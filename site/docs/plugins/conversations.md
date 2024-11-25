@@ -916,7 +916,7 @@ bot.use(conversations());
 async function convo(conversation, ctx) {
   // The hydrate plugin is installed on `ctx` here.
   const other = await conversation.wait();
-  // hydrate plugin is installed on `other` here, too
+  // The hydrate plugin is installed on `other` here, too.
 }
 bot.use(createConversation(convo, { plugins: [hydrate()] }));
 
