@@ -1079,7 +1079,7 @@ In other words, an outside menu will never handle the update of a menu inside a 
 When you define a menu outside a conversation and use it to enter a conversation, you can define a conversational menu that takes over as long as the conversation is active.
 When the conversation completes, the outside menu will take control again.
 
-You first have to give the same menu identifer to both menus.
+You first have to give the same menu identifier to both menus.
 
 ```ts
 // Outside conversation (menu plugin):
