@@ -309,7 +309,7 @@ const bot = new Bot<MyContext>("");
 // Use both the outside and the inside type for your conversation.
 type MyConversation = Conversation<MyContext, MyConversationContext>;
 
-// Define your conversation and make sure
+// Define your conversation.
 async function example(
   conversation: MyConversation,
   ctx0: MyConversationContext,
