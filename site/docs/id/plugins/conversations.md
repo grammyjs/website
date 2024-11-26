@@ -28,7 +28,7 @@ import {
   createConversation,
 } from "@grammyjs/conversations";
 
-const bot = new Bot<ConversationFlavor<Context>>(""); // <-- taruh token bot kamu di antara "" (https://t.me/BotFather)
+const bot = new Bot<ConversationFlavor<Context>>(""); // <-- taruh token bot di antara "" (https://t.me/BotFather)
 bot.use(conversations());
 
 /** Buat percakapannya */
@@ -53,7 +53,7 @@ const { conversations, createConversation } = require(
   "@grammyjs/conversations",
 );
 
-const bot = new Bot(""); // <-- taruh token bot kamu di antara "" (https://t.me/BotFather)
+const bot = new Bot(""); // <-- taruh token bot di antara "" (https://t.me/BotFather)
 bot.use(conversations());
 
 /** Buat percakapannya */
@@ -81,7 +81,7 @@ import {
   createConversation,
 } from "https://deno.land/x/grammy_conversations/mod.ts";
 
-const bot = new Bot<ConversationFlavor<Context>>(""); // <-- taruh token bot kamu di antara "" (https://t.me/BotFather)
+const bot = new Bot<ConversationFlavor<Context>>(""); // <-- taruh token bot di antara "" (https://t.me/BotFather)
 bot.use(conversations());
 
 /** Buat percakapannya */
@@ -108,7 +108,7 @@ Sekarang, mari kita lanjut ke bagian menariknya.
 
 ## Cara Kerja Percakapan
 
-Pertama-tama, mari kita lihat contoh penanganan pesan tradisional berikut:
+Pertama-tama, mari kita lihat contoh penanganan pesan berikut:
 
 ```ts
 bot.on("message", async (ctx) => {
@@ -130,9 +130,8 @@ async function hello(conversation: Conversation, ctx0: Context) {
 
 Di percakapan, kamu bisa memiliki tiga object context!
 
-Seperti penangan biasa, plugin percakapan hanya menerima satu object context yang berasal dari [sistem middleware](../guide/middleware).
-Kemudian, secara tiba-tiba ia menyediakan tiga object context.
-Hmm... Kok bisa?
+Layaknya penangan biasa, plugin percakapan hanya menerima satu object context yang berasal dari [sistem middleware](../guide/middleware).
+Jika benar demikian, mengapa ia bisa menyediakan tiga object context?
 
 Rahasianya adalah **function pembentuk percakapan tidak dieksekusi selayaknya function pada umumnya** (meski sebenarnya kita bisa saja memprogramnya seperti itu).
 
@@ -142,12 +141,12 @@ Function pembentuk percakapan tidak dieksekusi selayaknya function pada umumnya.
 
 Ketika memasuki sebuah percakapan, ia hanya dieksekusi hingga pemanggilan `wait()` pertama.
 Function tersebut kemudian akan diinterupsi dan tidak akan dieksekusi lebih lanjut.
-Plugin akan mengingat pemanggilan `wait()` tersebut telah tercapai dan menyimpan informasi tersebut.
+Plugin akan mengingat `wait()` tersebut dan menyimpan informasi yang menyertainya.
 
 Ketika update selanjutnya tiba, percakapan akan dieksekusi lagi dari awal.
 Namun, kali ini, pemanggilan API sebelumnya tidak akan dilakukan, yang mana membuat kode kamu berjalan sangat cepat dan tidak memiliki dampak apapun.
 Aksi tersebut dinamakan _replay_ atau ulang.
-Setelah tiba di pemanggilan `wait()` sebelumnya, pengeksekusian function dilanjutkan secara normal.
+Setelah tiba di pemanggilan terakhir `wait()` sebelumnya, pengeksekusian function dilanjutkan secara normal.
 
 ::: code-group
 
@@ -202,37 +201,37 @@ Oleh karena itu, kamu perlu memastikan kode yang ditulis memiliki perilaku yang 
 Jika kamu melakukan pemanggilan API melalui `ctx.api` (termasuk `ctx.reply`), plugin ini akan menanganinya secara otomatis.
 Sebaliknya, yang perlu mendapat perhatikan khusus adalah komunikasi database kamu.
 
-Berikut langkah-langkahnya:
+Berikut yang perlu kamu perhatikan:
 
 ### Aturan Utama ketika Menggunakan Percapakan
 
-Karena kita telah paham bagaimana percakapan dieksekusi, maka kita bisa menerapkan satu aturan ke kode yang berada di dalam function pembentuk percakapan.
+Karena kita telah paham bagaimana percakapan dieksekusi, maka kita bisa menerapkan satu aturan untuk kode yang berada di dalam function pembentuk percakapan.
 Kamu wajib mematuhinya agar kode dapat berjalan dengan baik.
 
 ::: warning ATURAN UTAMA
 
-**Kode yang memiliki perilaku yang berbeda untuk setiap pengulangan wajib dibungkus dengan [`conversation.external`](/ref/conversations/conversation#external).**
+**Kode yang memiliki perilaku berbeda untuk setiap pengulangan, wajib dibungkus dengan [`conversation.external`](/ref/conversations/conversation#external).**
 
 :::
 
 Berikut cara penerapannya:
 
 ```ts
-// Contoh yang BURUK
+// SALAH
 const response = await aksesDatabase();
-// Contoh yang BAGUS
+// BENAR
 const response = await conversation.external(() => aksesDatabase());
 ```
 
 Dengan membungkus bagian kode menggunakan [`conversation.external`](/ref/conversations/conversation#external), kamu telah memberi tahu plugin bahwa bagian kode tersebut harus diabaikan selama proses pengulangan.
 Nilai kembalian kode yang dibungkus akan disimpan oleh plugin dan digunakan kembali untuk pengulangan selanjutnya.
-Dari contoh di atas, akses database tidak akan dilakukan berulang kali selama proses pengulangan berlangsung.
+Dari contoh di atas, akses ke database tidak akan dilakukan berkali-kali selama proses pengulangan berlangsung.
 
 GUNAKAN `conversation.external` ketika kamu ...
 
-- membaca atau menulis file, database/session, jaringan, atau variabel global (global state),
+- membaca atau menulis file, database/session, jaringan, atau nilai global (global state),
 - memanggil `Math.random()` atau `Date.now()`,
-- melakukan pemanggilan API di `bot.api` atau instansiasi terpisah `Api` lainnya.
+- melakukan pemanggilan API di `bot.api` atau instansiasi `Api` lain yang dilakukan secara terpisah.
 
 JANGAN GUNAKAN `conversation.external` ketika kamu ...
 
@@ -256,36 +255,38 @@ Pasti plugin juga mengingat nilai tersebut, bukan?
 
 Tepat sekali!
 
-### Conversations Store State
+### Percakapan Menyimpan Nilai Terkait
 
-Two types of data are being stored in a database.
-By default, it uses a lightweight in-memory database that is based on a `Map`, but you can [use a persistent database](#persisting-conversations) easily.
+Percakapan menyimpan dua macam tipe data di database.
+Secara bawaan, ia menggunakan database ringan berbasis `Map` yang disimpan di memory.
+Selain itu, kamu juga bisa menggunakan [database permanen](#todo) dengan mudah.
 
-1. The conversations plugin stores all updates.
-2. The conversations plugin stores all return values of `conversation.external` and the results of all API calls.
+Berikut beberapa hal yang perlu kamu ketahui:
 
-This is not an issue if you only have a few dozen updates in a conversation.
-(Remember that during long polling, every call to `getUpdates` retrieves up to 100 updates, too.)
+1. Plugin conversation menyimpan semua update.
+2. Plugin conversation menyimpan semua nilai kembalian (return value) `conversation.external` serta semua hasil pemanggilan API.
 
-However, if your conversation never exits, this data will accumulate and slow down your bot.
-**Avoid infinite loops.**
+Segelintir update di dalam percakapan memang tidak akan menyebabkan masalah yang serius (perlu diingat, setiap pemanggilan `getUpdates` menggunakan [long polling](../guide/deployment-types) bisa mencapai 100 update).
 
-### Conversational Context Objects
+Namun, jika percakapan tersebut tidak pernah selesai, lambat laun data-data tersebut akan terus menumpuk yang mengakibatkan penurunan performa bot secara signifikan.
+Oleh karena itu, **hindari pengulangan yang tidak berujung**.
 
-When a conversation is executed, it uses the persisted updates to generate new context objects from scratch.
-**These context objects are different from the context object in the surrounding middleware.**
-For TypeScript code, this also means that you now have two [flavors](../guide/context#context-flavors) of context objects.
+### Object Context Khusus untuk Percakapan
 
-- **Outside context objects** are the context objects that your bot uses in middleware.
-  They give you access to `ctx.conversation.enter`.
-  For TypeScript, they will at least have `ConversationFlavor` installed.
-  Outside context objects will also have other properties defined by plugins that you installed via `bot.use`.
-- **Inside context objects** (also called **conversational context objects**) are the context objects created by the conversations plugin.
-  They can never have access to `ctx.conversation.enter`, and by default, they also don't have access to any plugins.
-  If you want to have custom properties on inside context objects, [scroll down](#using-plugins-inside-conversations).
+Ketika sebuah percakapan dijalankan, ia menggunakan update permanen untuk menciptakan object context dari awal.
+**Object context yang dihasilkan berbeda dengan object context yang digunakan oleh middleware di sekitarnya**
+Jika kamu menggunakan TypeScript, artinya, kamu sekarang mempunyai dua [varian](../guide/context#context-flavor) object context:
 
-You have to pass both the outside and the inside context types to the conversation.
-The TypeScript setup therefore typically looks as follows:
+- **Object context luar** merupakan object context yang digunakan oleh middlewarre.
+  Melalui object context ini kamu bisa mengakses `ctx.conversation.enter`.
+  Untuk TypeScript, kamu setidaknya perlu menginstal `ConversationFlavor`.
+  Object context luar juga bisa memiliki property tambahan yang telah ditentukan oleh plugin yang diinstal melalui `bot.use`.
+- **Object context dalam** (biasa disebut sebagai **object context percakapan** atau _conversational context objects_) merupakan object context yang diciptakan oleh plugin percakapan.
+  Ia tidak memiliki akses ke `ctx.conversation.enter`, dan secara bawaan, ia juga tidak memiliki akses ke plugin manapun.
+  Jika kamu ingin memiliki property tersuai di dalam object context, [gulir ke bawah](#todo).
+
+Kedua type context luar dan dalam wajib dipasang ke percakapan.
+Pengaturan TypeScript kamu seharusnya kurang lebih seperti ini:
 
 ::: code-group
 
@@ -296,29 +297,27 @@ import {
   type ConversationFlavor,
 } from "@grammyjs/conversations";
 
-// Outside context objects (knows all middleware plugins)
+// Object context luar (mencakup semua plugin middleware)
 type MyContext = ConversationFlavor<Context>;
-// Inside context objects (knows all conversation plugins)
+// Object context dalam (mencakup semua plugin percakapan)
 type MyConversationContext = Context;
 
-// Use the outside context type for your bot.
+// Gunakan type context luar untuk bot.
 const bot = new Bot<MyContext>("");
 
-// Use both the outside and the inside type for your conversation.
+// Gunakan kedua type luar dan dalam untuk percakapan.
 type MyConversation = Conversation<MyContext, MyConversationContext>;
 
-// Define your conversation and make sure
+// Buat percakapannya
 async function example(
   conversation: MyConversation,
   ctx0: MyConversationContext,
 ) {
-  // All context objects inside the conversation are
-  // of type `MyConversationContext`.
+  // Semua object context di dalam percakapan memiliki type `MyConversationContext`.
   const ctx1 = await conversation.wait();
 
-  // The outside context object can be accessed
-  // via `conversation.external` and it is inferred to be
-  // of type `MyContext`.
+  // Object context luar dapat diakses melalui `conversation.external`
+  // dan telah dikerucutkan menjadi type `MyContext`.
   const session = await conversation.external((ctx) => ctx.session);
 }
 ```
@@ -330,53 +329,53 @@ import {
   type ConversationFlavor,
 } from "https://deno.land/x/grammy_conversations/mod.ts";
 
-// Outside context objects (knows all middleware plugins)
+// Object context luar (mencakup semua plugin middleware)
 type MyContext = ConversationFlavor<Context>;
-// Inside context objects (knows all conversation plugins)
+// Object context dalam (mencakup semua plugin percakapan)
 type MyConversationContext = Context;
 
-// Use the outside context type for your bot.
-const bot = new Bot<MyContext>(""); // <-- put your bot token between the "" (https://t.me/BotFather)
+// Gunakan type context luar untuk bot.
+const bot = new Bot<MyContext>("");
 
-// Use both the outside and the inside type for your conversation.
+// Gunakan kedua type luar dan dalam untuk percakapan.
 type MyConversation = Conversation<MyContext, MyConversationContext>;
 
-// Define your conversation and make sure
+// Buat percakapannya
 async function example(
   conversation: MyConversation,
   ctx0: MyConversationContext,
 ) {
-  // All context objects inside the conversation are
-  // of type `MyConversationContext`.
+  // Semua object context di dalam percakapan memiliki type `MyConversationContext`.
   const ctx1 = await conversation.wait();
 
-  // The outside context object can be accessed
-  // via `conversation.external` and it is inferred to be
-  // of type `MyContext`.
+  // Object context luar dapat diakses melalui `conversation.external`
+  // dan telah dikerucutkan menjadi type `MyContext`.
   const session = await conversation.external((ctx) => ctx.session);
 }
 ```
 
 :::
 
-> In the above example, there are no plugins installed in the conversation.
-> As soon as you start [installing](#using-plugins-inside-conversations) them, the definition of `MyConversationContext` will no longer be the bare type `Context`.
+> Meski dari contoh di atas tidak ada plugin yang terinstal di percakapan, namun ketika kamu [menginstalnya](#todo), definisi `MyConversationContext` tidak akan lagi berupa type `Context` dasar.
 
-Naturally, if you have several conversations and you want the context types to differ between them, you can define several conversational context types.
+Sekarang, kita mengetahui bahwa masing-masing percakapan bisa memiliki variasi type context yang berbeda-beda sesuai dengan keinginan kamu.
 
-Congrats!
-If you have understood all of the above, the hard parts are over.
-The rest of the page is about the wealth of features that this plugin provides.
+Selamat!
+Jika kamu bisa memahami semua materi di atas dengan baik, bagian tersulit dari panduan ini telah berhasil kamu lewati.
+Selanjunya, kita akan membahas fitur-fitur yang ditawarkan oleh plugin ini.
 
-## Entering Conversations
+## Memasuki Percakapan
 
-Conversations can be entered from a normal handler.
+Kamu bisa masuk ke dalam percakapan melalui penangan biasa.
 
-By default, a conversation has the same name as the [name](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name) of the function.
-Optionally, you can rename it when installing it on your bot.
+Secara bawaan, sebuah percakapan memiliki nama yang sama dengan [nama function-nya](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name).
+Kamu bisa mengubah nama function tersebut ketika menginstalnya ke bot.
 
-Optionally, you can pass arguments to the conversation.
-Note that the arguments will be stored as a JSON string, so you need to make sure they can be safely passed to `JSON.stringify`.
+Percakapan juga bisa menerima beberapa argument.
+Tetapi ingat, argument tersebut akan disimpan dalam bentuk string JSON.
+Artinya, kamu perlu memastikan ia dapat diproses oleh `JSON.stringify`.
+
+Selain itu, kamu juga bisa memasuki percakapan melalui percakapan lain dengan cara memanggil function JavaScript.
 
 Conversations can also be entered from within other conversations by doing a normal JavaScript function call.
 In that case, they get access to a potential return value of the called conversation.
@@ -447,7 +446,7 @@ bot.command("enter_with_arguments", async (ctx) => {
 
 :::
 
-:::warning Missing Type Safety for Arguments
+::: warning Missing Type Safety for Arguments
 
 Double-check that you used the right type annotations for the parameters of your conversation, and that you passed matching arguments to it in your `enter` call.
 The plugin is not able to check any types beyond `conversation` and `ctx`.
@@ -813,7 +812,7 @@ bot.use(conversations({
 
 If you do not specify a version, it defaults to `0`.
 
-:::tip Forgot to Change the Version? Don't Worry!
+::: tip Forgot to Change the Version? Don't Worry!
 
 The conversations plugin already has good protections in place that should catch most cases of data corruption.
 If this is detected, an error is thrown somewhere inside the conversation, which causes the conversation to crash.
@@ -912,14 +911,14 @@ bot.command("enter", async (ctx) => {
 bot.use(conversations());
 
 async function convo(conversation, ctx) {
-  // hydrate plugin is installed on `ctx` here
+  // The hydrate plugin is installed on `ctx` here.
   const other = await conversation.wait();
-  // hydrate plugin is installed on `other` here, too
+  // The hydrate plugin is installed on `other` here, too.
 }
 bot.use(createConversation(convo, { plugins: [hydrate()] }));
 
 bot.command("enter", async (ctx) => {
-  // hydrate plugin is NOT installed on `ctx` here
+  // The hydrate plugin is NOT installed on `ctx` here.
   await ctx.conversation.enter("convo");
 });
 ```
@@ -928,10 +927,10 @@ bot.command("enter", async (ctx) => {
 
 In regular [middleware](../guide/middleware), plugins get to run some code on the current context object, then call `next` to wait for downstream middleware, and then they get to run some code again.
 
-Conversations are not middleware, and plugins will work slightly differently in this context.
-When a [context object is created](#conversational-context-objects) by the conversation, it will be passed through the array of plugins.
-Each plugin gets access to the context object, then `next` resolves immediately, and the plugins can run some more code.
-Only after this, the context object is made available to the conversation.
+Conversations are not middleware, and plugins cannot interact with conversations in the same way as with middleware.
+When a [context object is created](#conversational-context-objects) by the conversation, it will be passed to the plugins which can process it normally.
+To the plugins, it will look like only the plugins are installed and no downstream handlers exist.
+After all plugins are done, the context object is made available to the conversation.
 
 As a result, any cleanup work done by plugins is performed before the conversation builder function runs.
 All plugins except sessions work well with this.
@@ -1077,7 +1076,7 @@ In other words, an outside menu will never handle the update of a menu inside a 
 When you define a menu outside a conversation and use it to enter a conversation, you can define a conversational menu that takes over as long as the conversation is active.
 When the conversation completes, the outside menu will take control again.
 
-You first have to give the same menu identifer to both menus.
+You first have to give the same menu identifier to both menus.
 
 ```ts
 // Outside conversation (menu plugin):
