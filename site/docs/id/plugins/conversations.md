@@ -366,182 +366,241 @@ Selanjunya, kita akan membahas fitur-fitur yang ditawarkan oleh plugin ini.
 
 ## Memasuki Percakapan
 
-Kamu bisa masuk ke dalam percakapan melalui penangan biasa.
+Kamu bisa masuk ke dalam suatu percakapan melalui penangan biasa.
 
 Secara bawaan, sebuah percakapan memiliki nama yang sama dengan [nama function-nya](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name).
-Kamu bisa mengubah nama function tersebut ketika menginstalnya ke bot.
+Kamu bisa mengubah nama tersebut ketika menginstalnya ke bot.
 
 Percakapan juga bisa menerima beberapa argument.
 Tetapi ingat, argument tersebut akan disimpan dalam bentuk string JSON.
 Artinya, kamu perlu memastikan ia dapat diproses oleh `JSON.stringify`.
 
-Selain itu, kamu juga bisa memasuki percakapan melalui percakapan lain dengan cara memanggil function JavaScript.
-
-Conversations can also be entered from within other conversations by doing a normal JavaScript function call.
-In that case, they get access to a potential return value of the called conversation.
-This isn't available when you enter a conversation from inside middleware.
+Selain itu, kamu juga bisa masuk ke suatu percakapan melalui percakapan lain dengan cara memanggil function JavaScript.
+Dengan memanggil function terkait, ia akan mendapatkan akses ke nilai kembalian function tersebut.
+Namun, akses yang sama tidak bisa didapatkan jika kamu memasuki sebuah percakapan dari dalam middleware.
 
 :::code-group
 
 ```ts [TypeScript]
 /**
- * Returns the answer to life, the universe, and everything.
- * This value is only accessible when the conversation
- * is called from another conversation.
+ * Nilai kembalian function JavaScript berikut
+ * hanya bisa diakses ketika sebuah percakapan
+ * dipanggil melalui percakapan lainnya.
  */
-async function convo(conversation: Conversation, ctx: Context) {
-  await ctx.reply("Computing answer");
-  return 42;
+async function jokeBapakBapak(conversation: Conversation, ctx: Context) {
+  await ctx.reply("Kota apa yang warganya bapak-bapak semua?");
+  return "Purwo-daddy"; // xixixi...
 }
-/** Accepts two arguments (must be JSON-serializable) */
-async function args(
+/**
+ * Function berikut menerima dua argument: `answer` dan `config`.
+ * Semua argument wajib berupa tipe yang bisa diubah ke JSON.
+ */
+async function percakapan(
   conversation: Conversation,
   ctx: Context,
-  answer: number,
+  answer: string,
   config: { text: string },
 ) {
-  const truth = await convo(conversation, ctx);
-  if (answer === truth) {
+  const jawaban = await jokeBapakBapak(conversation, ctx);
+  if (answer === jawaban) {
+    await ctx.reply(jawaban);
     await ctx.reply(config.text);
   }
 }
-bot.use(createConversation(convo, "new-name"));
-bot.use(createConversation(args));
+/**
+ * Ubah nama function `jokeBapakBapak` menjadi `tebak-receh`.
+ */
+bot.use(createConversation(jokeBapakBapak, "tebak-receh"));
+bot.use(createConversation(percakapan));
 
-bot.command("enter", async (ctx) => {
-  await ctx.conversation.enter("new-name");
+/**
+ * Command berikut hanya akan memberi tebakan
+ * tanpa memberi tahu jawabannya.
+ */
+bot.command("tebak", async (ctx) => {
+  await ctx.conversation.enter("tebak-receh");
 });
-bot.command("enter_with_arguments", async (ctx) => {
-  await ctx.conversation.enter("args", 42, { text: "foo" });
+/**
+ * Command berikut akan memberi tebakan
+ * sekaligus memberi tahu jawabannya.
+ */
+bot.command("tebak_jawab", async (ctx) => {
+  /**
+   * Untuk menyerderhanakan contoh kode, kita menginput kedua argument
+   * secara statis (`Purwo-daddy` dan `{ text: "Xixixi..." }`).
+   *
+   * Untuk kasus tebak-tebakan ini mungkin akan jauh lebih menarik jika
+   * argument tersebut dibuat dinamis, misalnya argument pertama
+   * ("Purwo-daddy") dapat diganti dengan jawaban user.
+   *
+   * Selamat bereksperimen! :)
+   */
+  await ctx.conversation.enter("percakapan", "Purwo-daddy", {
+    text: "Xixixi...",
+  });
 });
 ```
 
 ```js [JavaScript]
 /**
- * Returns the answer to life, the universe, and everything.
- * This value is only accessible when the conversation
- * is called from another conversation.
+ * Nilai kembalian function JavaScript berikut
+ * hanya bisa diakses ketika sebuah percakapan
+ * dipanggil melalui percakapan lainnya.
  */
-async function convo(conversation, ctx) {
-  await ctx.reply("Computing answer");
-  return 42;
+async function jokeBapakBapak(conversation, ctx) {
+  await ctx.reply("Kota apa yang warganya bapak-bapak semua?");
+  return "Purwo-daddy"; // xixixi...
 }
-/** Accepts two arguments (must be JSON-serializable) */
-async function args(conversation, ctx, answer, config) {
-  const truth = await convo(conversation, ctx);
-  if (answer === truth) {
+/**
+ * Function berikut menerima dua argument: `answer` dan `config`.
+ * Semua argument wajib berupa tipe yang bisa diubah ke JSON.
+ */
+async function percakapan(conversation, ctx, answer, config) {
+  const jawaban = await jokeBapakBapak(conversation, ctx);
+  if (answer === jawaban) {
+    await ctx.reply(jawaban);
     await ctx.reply(config.text);
   }
 }
-bot.use(createConversation(convo, "new-name"));
-bot.use(createConversation(args));
+/**
+ * Ubah nama function `jokeBapakBapak` menjadi `tebak-receh`.
+ */
+bot.use(createConversation(jokeBapakBapak, "tebak-receh"));
+bot.use(createConversation(percakapan));
 
-bot.command("enter", async (ctx) => {
-  await ctx.conversation.enter("new-name");
+/**
+ * Command berikut hanya akan memberi tebakan
+ * tanpa memberi tahu jawabannya.
+ */
+bot.command("tebak", async (ctx) => {
+  await ctx.conversation.enter("tebak-receh");
 });
-bot.command("enter_with_arguments", async (ctx) => {
-  await ctx.conversation.enter("args", 42, { text: "foo" });
+/**
+ * Command berikut akan memberi tebakan
+ * sekaligus memberi tahu jawabannya.
+ */
+bot.command("tebak_jawab", async (ctx) => {
+  /**
+   * Untuk menyerderhanakan contoh kode, kita menginput kedua argument
+   * secara statis (`Purwo-daddy` dan `{ text: "Xixixi..." }`).
+   *
+   * Untuk kasus tebak-tebakan ini mungkin akan jauh lebih menarik jika
+   * argument tersebut dibuat dinamis, misalnya argument pertama
+   * ("Purwo-daddy") dapat diganti dengan jawaban user.
+   *
+   * Selamat bereksperimen! :)
+   */
+  await ctx.conversation.enter("percakapan", "Purwo-daddy", {
+    text: "Xixixi...",
+  });
 });
 ```
 
 :::
 
-::: warning Missing Type Safety for Arguments
+::: warning Type Safety untuk Argument
 
-Double-check that you used the right type annotations for the parameters of your conversation, and that you passed matching arguments to it in your `enter` call.
-The plugin is not able to check any types beyond `conversation` and `ctx`.
+Pastikan parameter percakapan kamu menggunakan type yang sesuai, serta argument yang diteruskan ke pemanggilan `enter` cocok dengan type tersebut.
+Plugin tidak dapat melakukan pengecekan type di luar `conversation` dan `ctx`.
 
 :::
 
-Remember that [the order of your middleware matters](../guide/middleware).
-You can only enter conversations that have been installed prior to the handler that calls `enter`.
+Perlu diperhatikan bahwa [urutan middleware akan berpengaruh](../guide/middleware).
+Kamu hanya bisa memasuki suatu percakapan jika ia diinstal sebelum penangan yang melakukan pemanggilan `enter`.
 
-## Waiting for Updates
+## Menunggu Update
 
-The most basic kind of wait call just waits for any update.
+Tujuan pemanggilan `wait` yang paling dasar adalah menunggu update selanjutnya tiba.
 
 ```ts
 const ctx = await conversation.wait();
 ```
 
-It simply returns a context object.
-All other wait calls are based on this.
+Nilai yang dkembalikan adalah sebuah object context.
+Semua pemanggilan `wait` memiliki konsep dasar ini.
 
-### Filtered Wait Calls
+### Pemilahan untuk Pemanggilan `wait`
 
-If you want to wait for a specific type of update, you can use a filtered wait call.
+Jika kamu ingin menunggu jenis update tertentu, kamu bisa menerapkan pemilahan ke pemanggilan `wait`.
 
 ```ts
-// Match a filter query like with `bot.on`.
+// Pilah layaknya filter query di `bot.on`
 const message = await conversation.waitFor("message");
-// Wait for text like with `bot.hears`.
+// Pilah pesan teks layaknya `bot.hears`.
 const hears = await conversation.waitForHears(/regex/);
-// Wait for commands like with `bot.command`.
+// Pilah command layaknya `bot.command`.
 const start = await conversation.waitForCommand("start");
-// etc
+// Dan sebagainya...
 ```
 
-Take a look at the API reference to see [all the available ways to filter wait calls](/ref/conversations/conversation#wait).
+Silahkan lihat referensi API berikut untuk mengetahui [semua metode yang tersedia untuk memilah pemanggilan `wait`](/ref/conversations/conversation#wait).
 
-Filtered wait calls are guaranteed to return only update that match the respective filter.
-If the bot receives an update that does not match, it will be dropped.
-You can pass a callback function that will be invoked in this case.
+Pemanggilan `wait` terpilah memastikan update yang diterima sesuai dengan filter yang diterapkan.
+Jika bot menerima sebuah update yang tidak sesuai, update tersebut akan diabaikan begitu saja.
+Untuk mengatasinya, kamu bisa menginstal sebuah function callback agar function tersebut dipanggil ketika update yang diterima tidak sesuai.
 
 ```ts
 const message = await conversation.waitFor(":photo", {
-  otherwise: (ctx) => ctx.reply("Please send a photo!"),
+  otherwise: (ctx) =>
+    ctx.reply("Maaf, saya hanya bisa menerima pesan berupa foto."),
 });
 ```
 
-All filtered wait calls can be chained to filter for several things at once.
+Semua pemanggilan `wait` terpilah bisa saling dirangkai untuk memilah beberapa hal sekaligus.
 
 ```ts
-// Wait for a photo with a specific caption
+// Pilah foto yang mengandung keterangan "Indonesia"
 let photoWithCaption = await conversation.waitFor(":photo")
-  .andForHears("XY");
-// Handle each case with a different otherwise function:
+  .andForHears("Indonesia");
+// Tangani setiap pemilahan menggunakan function `otherwise`
+// yang berbeda:
 photoWithCaption = await conversation
-  .waitFor(":photo", { otherwise: (ctx) => ctx.reply("No photo") })
-  .andForHears("XY", { otherwise: (ctx) => ctx.reply("Bad caption") });
+  .waitFor(":photo", {
+    otherwise: (ctx) => ctx.reply("Mohon kirimkan saya sebuah foto"),
+  })
+  .andForHears("Indonesia", {
+    otherwise: (ctx) =>
+      ctx.reply('Keterangan foto  selain "Indonesia" tidak diperbolehkan'),
+  });
 ```
 
-If you only specify `otherwise` in one of the chained wait calls, then it will only be invoked if that specific filter drops the update.
+Jika kamu menerapkan `otherwise` ke salah satu pemanggilan `wait` saja, maka ia akan dipanggil hanya untuk filter tersebut.
 
-### Inspecting Context Objects
+### Memeriksa Object Context
 
-It is very common to [destructure](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) the received context objects.
-You can then perform further checks on the received data.
+[Mengurai](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) object context merupakan hal yang cukup umum untuk dilakukan.
+Dengan melakukan penguraian, kamu bisa melakukan pengecekan secara mendalam untuk setiap data yang diterima.
 
 ```ts
 const { message } = await conversation.waitFor("message");
 if (message.photo) {
-  // Handle photo message
+  // Tangani pesan foto
 }
 ```
 
-Conversations are also an ideal place to use [has checks](../guide/context#probing-via-has-checks).
+Sebagai tambahan, percakapan juga merupakan tempat yang ideal untuk melakukan pengecekan menggunakan [has-checks](../guide/context#pemeriksaan-melalui-has-checks).
 
-## Exiting Conversations
+## Keluar dari Percakapan
 
-The easiest way to exit a conversation is to return from it.
-Throwing an error also terminates the conversation.
+Cara paling mudah untuk keluar dari suatu percakapan adalah dengan melakukan `return`.
+Selain itu, percakapan juga bisa dihentikan dengan melempar sebuah error.
 
-If this is not enough, you can manually halt the conversation at any moment.
+Jika cara di atas masih belum cukup, kamu bisa secara manual mengakhiri percakapan menggunakan `halt`:
 
 ```ts
 async function convo(conversation: Conversation, ctx: Context) {
-  // All branches exit the conversation:
+  // Semua percabangan berikut mencoba keluar dari percakapan:
   if (ctx.message?.text === "return") {
     return;
   } else if (ctx.message?.text === "error") {
     throw new Error("boom");
   } else {
-    await conversation.halt(); // never returns
+    await conversation.halt(); // tidak akan pernah mengembalikan nilai (return)
   }
 }
 ```
 
-You can also exit a conversation from your middleware.
+Kamu juga bisa keluar dari suatu percakapan dari dalam middleware:
 
 ```ts
 bot.use(conversations());
@@ -550,99 +609,99 @@ bot.command("clean", async (ctx) => {
 });
 ```
 
-You can even do this _before_ the targeted conversation is installed on your middleware system.
-It is enough to have the conversations plugin itself installed.
+Cara di atas bisa dilakukan bahkan _sebelum_ percakapan yang ditarget diinstal ke sistem middleware.
+Dengan kata lain, hanya dengan menginstal plugin percakapan itu sendiri, kamu bisa melakukan hal di atas.
 
-## It's Just JavaScript
+## Percakapan Cuma Sebuah JavaScript
 
-With [side-effects out of the way](#the-golden-rule-of-conversations), conversations are just regular JavaScript functions.
-They might be executed in weird ways, but when developing a bot, you can usually forget this.
-All the regular JavaScript syntax just works.
+Setelah [efek samping teratasi](#aturan-utama-ketika-menggunakan-percapakan), percakapan hanyalah sebuah function JavaScript biasa.
+Meski cara pengeksekusiannya terlihat aneh, namun biasanya ketika mengembangkan sebuah bot, kita akan dengan mudah melupakannya.
+Semua syntax JavaScript biasa dapat diproses dengan baik.
 
-Most the things in this section are obvious if you have used conversations for some time.
-However, if you are new, some of these things could surprise you.
+Semua hal yang dibahas di bagian berikut cukup lazim jika kamu terbiasa menggunakan percakapan.
+Namun, jika masih awam, beberapa hal berikut akan terdengar baru.
 
-### Variables, Branching, and Loops
+### Variabel, Percabangan, dan Perulangan
 
-You can use normal variables to store state between updates.
-You can use branching with `if` or `switch`.
-Loops via `for` and `while` work, too.
+Kamu bisa menggunakan variabel normal untuk menyimpan status suatu update.
+Percabangan menggunakan `if` atau `switch` juga bisa dilakukan.
+Sama halnya dengan perulangan `for` dan `while`.
 
 ```ts
-await ctx.reply("Send me your favorite numbers, separated by commas!");
+await ctx.reply("Kirim nomor-nomor favorit kamu, pisahkan dengan koma!");
 const { message } = await conversation.waitFor("message:text");
 const numbers = message.text.split(",");
-let sum = 0;
+let jumlah = 0;
 for (const str of numbers) {
   const n = parseInt(str.trim(), 10);
   if (!isNaN(n)) {
-    sum += n;
+    jumlah += n;
   }
 }
-await ctx.reply("The sum of these numbers is: " + sum);
+await ctx.reply("Jumlah nomor-nomor tersebut adalah: " + jumlah);
 ```
 
-It's just JavaScript.
+Ia hanyalah sebuah JavaScript, bukan?
 
-### Functions and Recursion
+### Function dan Rekursi
 
-You can split a conversation into multiple functions.
-They can call each other and even do recursion.
-(In fact, the plugin does not even know that you used functions.)
+Kamu bisa membagi sebuah percakapan menjadi beberapa function.
+Mereka bisa memanggil satu sama lain atau bahkan melakukan rekursi (memanggil dirinya sendiri).
+Plugin percakapanpun sebenarnya tidak tahu kalau kamu menggunakan function.
 
-Here is the same code as above, refactored to functions.
+Berikut kode yang sama seperti di atas, tetapi di-refactor menjadi beberapa function:
 
 :::code-group
 
 ```ts [TypeScript]
-/** A conversation to add numbers */
+/** Percakapan untuk menghitung jumlah semua angka */
 async function sumConvo(conversation: Conversation, ctx: Context) {
-  await ctx.reply("Send me your favorite numbers, separated by commas!");
+  await ctx.reply("Kirim nomor-nomor favorit kamu, pisahkan dengan koma!");
   const { message } = await conversation.waitFor("message:text");
   const numbers = message.text.split(",");
-  await ctx.reply("The sum of these numbers is: " + sumStrings(numbers));
+  await ctx.reply("Jumlah nomor-nomor tersebut adalah: " + sumStrings(numbers));
 }
 
-/** Converts all given strings to numbers and adds them up */
+/** Konversi semua string menjadi angka, lalu hitung jumlahnya */
 function sumStrings(numbers: string[]): number {
-  let sum = 0;
+  let jumlah = 0;
   for (const str of numbers) {
     const n = parseInt(str.trim(), 10);
     if (!isNaN(n)) {
-      sum += n;
+      jumlah += n;
     }
   }
-  return sum;
+  return jumlah;
 }
 ```
 
 ```js [JavaScript]
-/** A conversation to add numbers */
+/** Percakapan untuk menghitung jumlah semua angka */
 async function sumConvo(conversation, ctx) {
-  await ctx.reply("Send me your favorite numbers, separated by commas!");
+  await ctx.reply("Kirim nomor-nomor favorit kamu, pisahkan dengan koma!");
   const { message } = await conversation.waitFor("message:text");
   const numbers = message.text.split(",");
-  await ctx.reply("The sum of these numbers is: " + sumStrings(numbers));
+  await ctx.reply("Jumlah nomor-nomor tersebut adalah: " + sumStrings(numbers));
 }
 
-/** Converts all given strings to numbers and adds them up */
+/** Konversi semua string menjadi angka, lalu hitung jumlahnya */
 function sumStrings(numbers) {
-  let sum = 0;
+  let jumlah = 0;
   for (const str of numbers) {
     const n = parseInt(str.trim(), 10);
     if (!isNaN(n)) {
-      sum += n;
+      jumlah += n;
     }
   }
-  return sum;
+  return jumlah;
 }
 ```
 
 :::
 
-It's just JavaScript.
+Sekali lagi, ia hanyalah sebuah JavaScript.
 
-### Modules and Classes
+### Module dan Class
 
 JavaScript has higher-order functions, classes, and other ways of structuring your code into modules.
 Naturally, all of them can be turned into conversations.
