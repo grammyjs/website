@@ -135,7 +135,7 @@ Jika benar demikian, mengapa ia bisa menyediakan tiga object context?
 
 Rahasianya adalah **function pembentuk percakapan tidak dieksekusi selayaknya function pada umumnya** (meski sebenarnya kita bisa saja memprogramnya seperti itu).
 
-### Percakapan Merupakan Mesin Pengulang
+### Percakapan Hanyalah Mesin Pengulang
 
 Function pembentuk percakapan tidak dieksekusi selayaknya function pada umumnya.
 
@@ -612,7 +612,7 @@ bot.command("clean", async (ctx) => {
 Cara di atas bisa dilakukan bahkan _sebelum_ percakapan yang ditarget diinstal ke sistem middleware.
 Dengan kata lain, hanya dengan menginstal plugin percakapan itu sendiri, kamu bisa melakukan hal di atas.
 
-## Percakapan Cuma Sebuah JavaScript
+## Percakapan Hanyalah Sebuah JavaScript
 
 Setelah [efek samping teratasi](#aturan-utama-ketika-menggunakan-percapakan), percakapan hanyalah sebuah function JavaScript biasa.
 Meski cara pengeksekusiannya terlihat aneh, namun biasanya ketika mengembangkan sebuah bot, kita akan dengan mudah melupakannya.
@@ -621,9 +621,9 @@ Semua syntax JavaScript biasa dapat diproses dengan baik.
 Semua hal yang dibahas di bagian berikut cukup lazim jika kamu terbiasa menggunakan percakapan.
 Namun, jika masih awam, beberapa hal berikut akan terdengar baru.
 
-### Variabel, Percabangan, dan Perulangan
+### Variable, Percabangan, dan Perulangan
 
-Kamu bisa menggunakan variabel normal untuk menyimpan status suatu update.
+Kamu bisa menggunakan variable biasa untuk menyimpan status suatu update.
 Percabangan menggunakan `if` atau `switch` juga bisa dilakukan.
 Sama halnya dengan perulangan `for` dan `while`.
 
@@ -643,10 +643,10 @@ await ctx.reply("Jumlah nomor-nomor tersebut adalah: " + jumlah);
 
 Ia hanyalah sebuah JavaScript, bukan?
 
-### Function dan Rekursi
+### Function dan Rekursif
 
 Kamu bisa membagi sebuah percakapan menjadi beberapa function.
-Mereka bisa memanggil satu sama lain atau bahkan melakukan rekursi (memanggil dirinya sendiri).
+Mereka bisa memanggil satu sama lain atau bahkan melakukan rekursif (memanggil dirinya sendiri).
 Plugin percakapanpun sebenarnya tidak tahu kalau kamu menggunakan function.
 
 Berikut kode yang sama seperti di atas, tetapi di-refactor menjadi beberapa function:
@@ -703,49 +703,50 @@ Sekali lagi, ia hanyalah sebuah JavaScript.
 
 ### Module dan Class
 
-JavaScript has higher-order functions, classes, and other ways of structuring your code into modules.
-Naturally, all of them can be turned into conversations.
+JavaScript memiliki function orde tinggi (higher-order function), class, serta cara-cara lain untuk mengubah kode kamu menjadi beberapa module.
+Umumnya, mereka semua bisa diubah menjadi percakapan.
 
-Here is the above code once again, refactored to a module with simple dependency injection.
+Sekali lagi, berikut kode yang sama persis seperti di atas, namun di-refactor menjadi sebuah module:
 
 ::: code-group
 
 ```ts [TypeScript]
 /**
- * A module that can ask the user for numbers, and that
- * provides a way to add up numbers sent by the user.
+ * Module untuk menjumlahkan semua angka yang diberikan
+ * oleh user.
  *
- * Requires a conversation handle to be injected.
+ * Penangan percakapan harus disematkan agar module
+ * dapat dijalankan.
  */
 function sumModule(conversation: Conversation) {
-  /** Converts all given strings to numbers and adds them up */
+  /** Konversi semua string menjadi angka, lalu hitung jumlahnya */
   function sumStrings(numbers) {
-    let sum = 0;
+    let jumlah = 0;
     for (const str of numbers) {
       const n = parseInt(str.trim(), 10);
       if (!isNaN(n)) {
-        sum += n;
+        jumlah += n;
       }
     }
-    return sum;
+    return jumlah;
   }
 
-  /** Asks the user for numbers */
+  /** Minta user untuk mengirim nomor-nomor favoritnya */
   async function askForNumbers(ctx: Context) {
-    await ctx.reply("Send me your favorite numbers, separated by commas!");
+    await ctx.reply("Kirim nomor-nomor favorit kamu, pisahkan dengan koma!");
   }
 
-  /** Waits for the user to send numbers, and replies with their sum */
+  /** Tunggu user mengirim nomor-nomornya, lalu balas dengan jumlah semua nomor tersebut */
   async function sumUserNumbers() {
     const ctx = await conversation.waitFor(":text");
-    const sum = sumStrings(ctx.msg.text);
-    await ctx.reply("The sum of these numbers is: " + sum);
+    const jumlah = sumStrings(ctx.msg.text);
+    await ctx.reply("Jumlah nomor-nomor tersebut adalah: " + jumlah);
   }
 
   return { askForNumbers, sumUserNumbers };
 }
 
-/** A conversation to add numbers */
+/** Percakapan untuk menjumlahkan semua nomor */
 async function sumConvo(conversation: Conversation, ctx: Context) {
   const mod = sumModule(conversation);
   await mod.askForNumbers(ctx);
@@ -755,40 +756,41 @@ async function sumConvo(conversation: Conversation, ctx: Context) {
 
 ```js [JavaScript]
 /**
- * A module that can ask the user for numbers, and that
- * provides a way to add up numbers sent by the user.
+ * Module untuk menjumlahkan semua angka yang diberikan
+ * oleh user.
  *
- * Requires a conversation handle to be injected.
+ * Penangan percakapan harus disematkan agar module
+ * dapat dijalankan.
  */
 function sumModule(conversation: Conversation) {
-  /** Converts all given strings to numbers and adds them up */
+  /** Konversi semua string menjadi angka, lalu hitung jumlahnya */
   function sumStrings(numbers) {
-    let sum = 0;
+    let jumlah = 0;
     for (const str of numbers) {
       const n = parseInt(str.trim(), 10);
       if (!isNaN(n)) {
-        sum += n;
+        jumlah += n;
       }
     }
-    return sum;
+    return jumlah;
   }
 
-  /** Asks the user for numbers */
+  /** Minta user untuk mengirim nomor-nomor favoritnya */
   async function askForNumbers(ctx: Context) {
-    await ctx.reply("Send me your favorite numbers, separated by commas!");
+    await ctx.reply("Kirim nomor-nomor favorit kamu, pisahkan dengan koma!");
   }
 
-  /** Waits for the user to send numbers, and replies with their sum */
+  /** Tunggu user mengirim nomor-nomornya, lalu balas dengan jumlah semua nomor tersebut */
   async function sumUserNumbers() {
     const ctx = await conversation.waitFor(":text");
     const sum = sumStrings(ctx.msg.text);
-    await ctx.reply("The sum of these numbers is: " + sum);
+    await ctx.reply("Jumlah nomor-nomor tersebut adalah: " + sum);
   }
 
   return { askForNumbers, sumUserNumbers };
 }
 
-/** A conversation to add numbers */
+/** Percakapan untuk menjumlahkan semua nomor */
 async function sumConvo(conversation: Conversation, ctx: Context) {
   const mod = sumModule(conversation);
   await mod.askForNumbers(ctx);
@@ -798,23 +800,21 @@ async function sumConvo(conversation: Conversation, ctx: Context) {
 
 :::
 
-This is clearly overkill for such a simple task as adding up a few numbers.
-However, it illustrates a broader point.
+Meski terlihat berlebihan untuk tugas sesederhana menjumlahkan nomor, namun kamu bisa menangkap konsep yang kami maksud.
 
-You guessed it:
-It's just JavaScript.
+Yup, kamu benar, ia hanyalah sebuah JavaScript.
 
-## Persisting Conversations
+## Mempertahankan Percakapan
 
-By default, all data stored by the conversations plugin is kept in memory.
-This means that when your process dies, all conversations are exited and will have to be restarted.
+Secara bawaan, semua data yang disimpan oleh plugin percakapan disimpan di memory.
+Artinya, ketika memori tersebut dimatikan, semua proses akan keluar dari percakapan, sehingga mau tidak mau harus dimulai ulang.
 
-If you want to persist the data across server restarts, you need to connect the conversations plugin to a database.
-We have built [a lot of different storage adapters](https://github.com/grammyjs/storages/tree/main/packages#grammy-storages) to make this simple.
-(They are the same adapters that the [session plugin uses](./session#known-storage-adapters).)
+Jika ingin mempertahankan data-data tersebut ketika server dimulai ulang, kamu harus mengintegrasikan plugin percakapan ke sebuah database.
+Kami telah membuat [berbagai jenis storage adapter](https://github.com/grammyjs/storages/tree/main/packages#grammy-storages) untuk mempermudah pengintegrasian tersebut.
+Mereka semua menggunakan adapter yang sama yang digunakan oleh [plugin session](./session#storage-adapter-yang-tersedia)
 
-Let's say you want to store data on disk in a directory called `convo-data`.
-This means that you need the [`FileAdapter`](https://github.com/grammyjs/storages/tree/main/packages/file#installation).
+Katakanlah kamu ingin menyimpan data ke sebuah file bernama `data-percakapan` ke dalam direktori di sebuah diska.
+Berarti, kamu memerlukan [`FileAdapter`](https://github.com/grammyjs/storages/tree/main/packages/file#installation).
 
 ::: code-group
 
@@ -822,7 +822,7 @@ This means that you need the [`FileAdapter`](https://github.com/grammyjs/storage
 import { FileAdapter } from "@grammyjs/storage-file";
 
 bot.use(conversations({
-  storage: new FileAdapter({ dirName: "convo-data" }),
+  storage: new FileAdapter({ dirName: "data-percakapan" }),
 }));
 ```
 
@@ -830,92 +830,97 @@ bot.use(conversations({
 import { FileAdapter } from "https://deno.land/x/grammy_storages/file/src/mod.ts";
 
 bot.use(conversations({
-  storage: new FileAdapter({ dirName: "convo-data" }),
+  storage: new FileAdapter({ dirName: "data-percakapan" }),
 }));
 ```
 
 :::
 
-Done!
+Selesai!
 
-You can use any storage adapter that is able to store data of type [`VersionedState`](/ref/conversations/versionedstate) of [`ConversationData`](/ref/conversations/conversationdata).
-Both types can be imported from the conversations plugin.
-In other words, if you want to extract the storage to a variable, you can use the following type annotation.
+Kamu bisa menggunakan semua jenis storage adapter asalkan ia dapat menyimpan data berupa [`VersionedState`](/ref/conversations/versionedstate) dari [`ConversationData`](/ref/conversations/conversationdata).
+Kedua jenis type tersebut bisa di-import dari plugin percakapan.
+Dengan kata lain, jika kamu ingin menempatkan storage tersebut ke sebuah variable, kamu bisa melakukannya menggunakan type berikut:
 
 ```ts
 const storage = new FileAdapter<VersionedState<ConversationData>>({
-  dirName: "convo-data",
+  dirName: "data-percakapan",
 });
 ```
 
-Naturally, the same types can be used with any other storage adapter.
+Secara umum, type yang sama juga bisa digunakan ke storage adapter lainnya.
 
-### Versioning Data
+### Membuat Versi Data
 
-If you persist the state of the conversation in a database and then update the source code, there is a mismatch between the stored data and the conversation builder function.
-This is a form of data corruption and will break the replay.
+Jika kamu menyimpan status percapakan di suatu database, lalu di kemudian hari kode sumber (source code) kamu berubah, maka akan terjadi ketidakcocokan antara data yang tersimpan dengan function pembentuk percakapan yang baru.
+Data tersebut akan korup sehingga [pengulangan](#percakapan-hanyalah-mesin-pengulang) tidak dapat dijalankan.
 
-You can prevent this by specifying a version of your code.
-Every time you change your conversation, you can increment the version.
-The conversations plugin will then detect a version mismatch and migrate all data automatically.
+Peristiwa tersebut bisa dicegah dengan cara menyematkan versi kode kamu.
+Kemudian, setiap kali percakapan diubah, kamu bisa meningkatkan atau menambah versi tersebut.
+Dengan begitu, ketika plugin percakapan mendeteksi versi ternyata tidak sama, ia akan memigrasi semua data tersebut secara otomatis.
 
 ```ts
 bot.use(conversations({
   storage: {
     type: "key",
-    version: 42, // can be number or string
+    version: 42, // bisa berupa angka atau string
     adapter: storageAdapter,
   },
 }));
 ```
 
-If you do not specify a version, it defaults to `0`.
+Jika versi tidak ditentukan, secara bawaan ia akan bernilai `0`.
 
-::: tip Forgot to Change the Version? Don't Worry!
+::: tip Lupa Mengganti Versinya? Jangan Khawatir!
 
-The conversations plugin already has good protections in place that should catch most cases of data corruption.
-If this is detected, an error is thrown somewhere inside the conversation, which causes the conversation to crash.
-Assuming that you don't catch and suppress that error, the conversation will therefore wipe the bad data and restart correctly.
+Plugin percakapan dilengkapi dengan proteksi untuk menangani sebagian besar skenario yang menyebabkan data terkorupsi.
+Jika terdeteksi, sebuah error akan dilempar melalui percakapan terkait, yang menyebabkan percakapan tersebut berhenti atau crash.
+Dengan asumsi kamu tidak menangkap dan mengindahkan error tersebut (try-catch), percakapan akan menghapus data yang tidak sesuai tersebut dan memulai ulang dengan benar.
 
-That being said, this protection does not cover 100 % of the cases, so you should definitely make sure to update the version number in the future.
+Ingat, proteksi ini tidak mencakup semua skenario.
+Oleh karena itu, di kesempatan selanjutnya, kamu harus memastikan nomor versi diperbarui dengan benar.
 
 :::
 
-### Non-serializable Data
+### Data yang Tidak Bisa Di-serialize
 
-[Remember](#conversations-store-state) that all data returned from [`conversation.external`](/ref/conversations/conversation#external) will be stored.
-This means that all data returned from `conversation.external` must be serializable.
+> Catatan terjemahan:
+> Penerjemah tidak menemukan terjemahan yang tepat untuk `serialize`.
+> Oleh karena itu, kami menggunakan istilah tersebut apa adanya.
+> Istilah`serialize` sendiri adalah proses mengubah struktur data menjadi format yang bisa disimpan.
+> Dalam hal ini, data akan diubah menjadi format JSON.
 
-If you want to return data that cannot be serialized, such as classes or [`BigInt`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt), you can provide a custom serializer to fix this.
+Perlu diingat kembali bahwa semua data yang dikembalikan dari [`conversation.external`](/ref/conversations/conversation#external) akan [disimpan](#percakapan-menyimpan-nilai-terkait).
+Artinya, semua data tersebut harus berupa tipe yang bisa di-serialize.
 
 ```ts
 const largeNumber = await conversation.external({
-  // Call an API that returns a BigInt (cannot be converted to JSON).
+  // Memanggil sebuah API yang mengembalikan sebuah BigInt (tidak bisa diubah menjadi JSON).
   task: () => 1000n ** 1000n,
-  // Convert bigint to string for storage.
+  // Konversi bigint menjadi string sebelum disimpan.
   beforeStore: (n) => String(n),
-  // Convert string back to bigint for usage.
+  // Kembalikan string menjadi bigint sebelum digunakan.
   afterLoad: (str) => BigInt(str),
 });
 ```
 
-If you want to throw an error from the task, you can specify additional serialization functions for error objects.
-Check out [`ExternalOp`](/ref/conversations/externalop) in the API reference.
+Jika ingin melempar error dari `task`, kamu bisa menambah function serialize tambahan untuk object error.
+Coba lihat [`ExternalOp`](/ref/conversations/externalop) di referensi API.
 
-### Storage Keys
+### Acuan penyimpan
 
-By default, conversation data is stored per chat.
-This is identical to [how the session plugin works](./session#session-keys).
+Secara bawaan, data percakapan disimpan menggunakan setiap chat sebagai acuan penyimpanannya (storage key).
+Perilaku tersebut sama persis dengan [perilaku plugin session](./session#session-key)
 
-As a result, a conversation cannot handle updates from multiple chats.
-If this is desired, you can [define your own storage key function](/ref/conversations/conversationoptions#storage).
-As with sessions, it is [not recommended](./session#session-keys) to use this option in serverless environments due to potential race conditions.
+Karenanya, sebuah percakapan tidak bisa menangani update dari berbagai chat.
+Jika tidak menginginkan perilaku tersebut, kamu bisa [menentukan function acuan penyimpananmu sendiri](/ref/conversations/conversationoptions#storage).
+Untuk session, tidak direkomendasikan untuk menggunakan opsi tersebut di serverless karena berpotensi menyebabkan tumpang tindih (race condition).
 
-Also, just like with sessions, you can store your conversations data under a namespace using the `prefix` option.
-This is especially useful if you want to use the same storage adapter for both your session data and your conversations data.
-Storing the data in namespaces will prevent it from clashing.
+Selain itu, sama seperti session, kamu bisa menyimpan data percakapan menggunakan awalan tertentu melalui opsi `prefix`.
+Ia akan berguna jika kamu hendak menggunakan storage adapter yang sama untuk data session dan data percakapan.
+Dengan menggunakan awalan, data tidak akan saling berbenturan karena nama yang identik.
 
-You can specify both options as follows.
+Berikut caranya:
 
 ```ts
 bot.use(conversations({
@@ -928,30 +933,32 @@ bot.use(conversations({
 }));
 ```
 
-If a conversation is entered for a user with user identifier `424242`, the storage key will now be `convo-424242`.
+Jika user dengan ID `424242` memasuki sebuah percakapan, acuan penyimpanannya (storage key) sekarang menjadi `convo-424242`.
+
+Silahkan lihat referensi API [`ConversationStorage`](/ref/conversations/conversationstorage) untuk memahami lebih detail dalam menyimpan data menggunakan plugin percakapan.
 
 Check out the API reference for [`ConversationStorage`](/ref/conversations/conversationstorage) to see more details about storing data with the conversations plugin.
-Among other things, it will explain how to store data without a storage key function at all using `type: "context"`.
+Detail yang dijelaskan di antaranya termasuk bagaimana cara menyimpan data menggunakan `type: "context"` sehingga function acuan data tidak lagi diperlukan.
 
-## Using Plugins Inside Conversations
+## Menggunakan Plugin di Dalam Percakapan
 
-[Remember](#conversational-context-objects) that the context objects inside conversations are independent from the context objects in the surrounding middleware.
-This means that they will have no plugins installed on them by default---even if the plugins are installed on your bot.
+[Masih ingat](#object-context-khusus-untuk-percakapan) object context yang yang digunakan oleh percakapan berbeda dengan object context yang digunakan oleh middleware?
+Artinya, meski suatu plugin telah diinstal ke bot, namun ia tidak akan terinstal untuk percakapan.
 
-Fortunately, all grammY plugins [except sessions](#accessing-sessions-inside-conversations) are compatible with conversations.
-For example, this is how you can install the [hydrate plugin](./hydrate) for a conversation.
+Untungnya, semua plugin grammY [kecuali session](#todo) kompatibel dengan percakapan.
+Berikut contoh cara menginstal [plugin hidrasi](./hydrate) ke percakapan
 
 ::: code-group
 
 ```ts [TypeScript]
-// Only install the conversations plugin outside.
+// Instal plugin percakapan untuk bagian luar saja.
 type MyContext = ConversationFlavor<Context>;
-// Only install the hydrate plugin inside.
+// Instal plugin hidrasi untuk bagian dalam saja.
 type MyConversationContext = HydrateFlavor<Context>;
 
 bot.use(conversations());
 
-// Pass the outside and the inside context object.
+// Sertakan object context luar dan dalam.
 type MyConversation = Conversation<MyContext, MyConversationContext>;
 async function convo(conversation: MyConversation, ctx: MyConversationContext) {
   // The hydrate plugin is installed on `ctx` here.
