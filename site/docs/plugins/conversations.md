@@ -1159,7 +1159,7 @@ As soon as the next update arrives, `conversation.now()` is called again.
 If the update took more than `maxMilliseconds` to arrive, the conversation is halted, and the update is returned to the middleware system.
 Any downstream middleware will be called.
 
-This will make it look like the conversation was not active anymore at the time the arrived.
+This will make it look like the conversation was not active anymore at the time the update arrived.
 
 Note that this will not actually run any code after exactly the specified time.
 Instead, the code is only run as soon as the next update arrives.
