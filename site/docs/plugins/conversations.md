@@ -1113,7 +1113,7 @@ However, when you wait for a text message, you may only want to get the message 
 
 Conversation forms give you a way to combine update validation with extracting data from the context object.
 This resembles a field in a form.
-Consider the following exmaple.
+Consider the following example.
 
 ```ts
 await ctx.reply("Please send a photo for me to scale down!");
