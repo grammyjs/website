@@ -1243,8 +1243,7 @@ async function convo(conversation: Conversation, ctx: Context) {
 
 ```js [JavaScript]
 async function convo(conversation, ctx) {
-  // Do not await this:
-  const _promise = conversation.wait()
+  const _promise = conversation.wait() // no await!
     .then(() => ctx.reply("I will never be sent!"));
 
   // Conversation is done immediately after being entered.
