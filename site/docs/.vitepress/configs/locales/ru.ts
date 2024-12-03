@@ -231,12 +231,12 @@ const pluginThirdparty = {
       link: "/ru/plugins/middlewares",
     },
     {
-      text: "Парсер сущностей",
-      link: "/ru/plugins/entity-parser",
-    },
-    {
       text: "Автоцитата",
       link: "/ru/plugins/autoquote",
+    },
+    {
+      text: "Парсер сущностей",
+      link: "/ru/plugins/entity-parser",
     },
     {
       text: "[Создайте свой PR!]",
