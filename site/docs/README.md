@@ -100,8 +100,8 @@ Works! :tada:
 
 <div style="font-size: 0.75rem; display: flex; justify-content: center;">
 
-© 2021-2024 &middot; grammY supports Telegram Bot API 8.0 which was [released](https://core.telegram.org/bots/api#november-17-2024) on November 17, 2024.
-(Last highlight: 10 New Features for Mini Apps)
+© 2021-2024 &middot; grammY supports Telegram Bot API 8.1 which was [released](https://core.telegram.org/bots/api#november-17-2024) on December 4, 2024.
+(Last highlight: Affiliate Programs)
 
 </div>
 </footer>
