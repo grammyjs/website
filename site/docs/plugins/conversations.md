@@ -304,7 +304,7 @@ type MyContext = ConversationFlavor<Context>;
 type MyConversationContext = Context;
 
 // Use the outside context type for your bot.
-const bot = new Bot<MyContext>("");
+const bot = new Bot<MyContext>(""); // <-- put your bot token between the "" (https://t.me/BotFather)
 
 // Use both the outside and the inside type for your conversation.
 type MyConversation = Conversation<MyContext, MyConversationContext>;
