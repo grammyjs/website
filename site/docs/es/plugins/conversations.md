@@ -1412,9 +1412,8 @@ A continuación, las siguientes cosas suceden en orden.
 7. Todas las instancias de `captcha` rechazan la actualización, por lo que el control se devuelve al sistema middleware.
 8. Se reproduce la instancia de la conversación `settings`.
 9. La llamada de espera se resuelve y `option` contendrá un objeto de contexto para la actualización del mensaje de texto.
-10.
-    10. Se llama a la función `openSettingsMenu`.
-        Puede enviar un mensaje de texto al usuario y rebobinar la conversación de vuelta a `main`, reiniciando el menú.
+10. Se llama a la función `openSettingsMenu`.
+    Puede enviar un mensaje de texto al usuario y rebobinar la conversación de vuelta a `main`, reiniciando el menú.
 
 Observa que, aunque había dos conversaciones esperando a que los usuarios `42` y `43` completaran su captcha, el bot respondió correctamente al usuario `3`, que había iniciado el menú de configuración.
 Las llamadas de espera filtradas pueden determinar qué actualizaciones son relevantes para la conversación actual.
