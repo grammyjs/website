@@ -849,7 +849,7 @@ Consulta [`ExternalOp`](/ref/conversations/externalop) en la referencia de la AP
 ### Claves de almacenamiento
 
 Por defecto, los datos de conversación se almacenan por chat.
-Esto es idéntico a [cómo funciona el plugin de sesión](./session#session-keys).
+Esto es idéntico a [cómo funciona el plugin de sesión](./session#claves-de-sesion).
 
 Como resultado, una conversación no puede manejar actualizaciones de múltiples chats.
 Si lo desea, puede [definir su propia función de clave de almacenamiento](/ref/conversations/conversationoptions#storage).
@@ -1035,13 +1035,17 @@ let email = "";
 
 const emailMenu = conversation.menu()
   .text("Obtener correo electrónico", (ctx) => ctx.reply(email || "empty"))
-  .text(() => email ? "Cambiar correo electrónico" : "Establecer correo electrónico", async (ctx) => {
-    await ctx.reply("¿Cuál es su correo electrónico?");
-    const response = await conversation.waitFor(":text");
-    email = response.msg.text;
-    await ctx.reply(`Su correo electrónico es ${email}!`);
-    ctx.menu.update();
-  })
+  .text(
+    () =>
+      email ? "Cambiar correo electrónico" : "Establecer correo electrónico",
+    async (ctx) => {
+      await ctx.reply("¿Cuál es su correo electrónico?");
+      const response = await conversation.waitFor(":text");
+      email = response.msg.text;
+      await ctx.reply(`Su correo electrónico es ${email}!`);
+      ctx.menu.update();
+    },
+  )
   .row()
   .url("Acerca de", "https://grammy.dev");
 
@@ -1408,8 +1412,9 @@ A continuación, las siguientes cosas suceden en orden.
 7. Todas las instancias de `captcha` rechazan la actualización, por lo que el control se devuelve al sistema middleware.
 8. Se reproduce la instancia de la conversación `settings`.
 9. La llamada de espera se resuelve y `option` contendrá un objeto de contexto para la actualización del mensaje de texto.
-10. 10. Se llama a la función `openSettingsMenu`.
-    Puede enviar un mensaje de texto al usuario y rebobinar la conversación de vuelta a `main`, reiniciando el menú.
+10.
+    10. Se llama a la función `openSettingsMenu`.
+        Puede enviar un mensaje de texto al usuario y rebobinar la conversación de vuelta a `main`, reiniciando el menú.
 
 Observa que, aunque había dos conversaciones esperando a que los usuarios `42` y `43` completaran su captcha, el bot respondió correctamente al usuario `3`, que había iniciado el menú de configuración.
 Las llamadas de espera filtradas pueden determinar qué actualizaciones son relevantes para la conversación actual.
