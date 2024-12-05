@@ -318,6 +318,18 @@ Telegram mengirim webhook secara berurutan untuk setiap chat, oleh karena itu se
 Jika kamu terpaksa harus menggunakan opsi tersebut (yang mana masih bisa dilakukan), kamu harus paham betul dengan tindakan yang kamu lakukan. Pastikan memahami konsekuensi menggunakan konfigurasi ini dengan membaca [materi berikut](../guide/deployment-types), khususnya [yang ini](./runner#pemrosesan-secara-berurutan-ketika-diperlukan).
 :::
 
+Kamu juga bisa menentukan sebuah prefix atau awalan untuk setiap session key.
+Berikut cara menyimpan data session untuk setiap user menggunakan sebuah awalan `user-`:
+
+```ts
+bot.use(session({
+  getSessionKey: (ctx) => ctx.from?.id,
+  prefix: "user-",
+}));
+```
+
+Dengan begitu, misalkan terdapat user dengan nomor identifikasi `424242`, session key akan menjadi `user-424242`.
+
 ### Migrasi Chat
 
 Jika kamu menggunakan session untuk grup, kamu perlu tahu bahwa dalam kondisi tertentu (misalnya [di sini](https://github.com/telegramdesktop/tdesktop/issues/5593)), Telegram akan melakukan migrasi dari grup biasa menjadi supergroup.
@@ -596,6 +608,7 @@ bot.use(
       storage: new MemorySessionStorage(),
       initial: () => undefined,
       getSessionKey: (ctx) => ctx.chat?.id.toString(),
+      prefix: "",
     },
     bar: {
       initial: () => ({ prop: 0 }),
