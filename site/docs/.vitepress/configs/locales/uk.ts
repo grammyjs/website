@@ -235,6 +235,10 @@ const pluginThirdparty = {
       link: "/uk/plugins/autoquote",
     },
     {
+      text: "Парсер сутностей",
+      link: "/uk/plugins/entity-parser",
+    },
+    {
       text: "[Відправте свій PR!]",
       link: "/uk/plugins/#створюите-власні-плагіни",
     },
