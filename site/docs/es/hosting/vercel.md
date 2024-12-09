@@ -80,7 +80,7 @@ if (!token) throw new Error("Falta BOT_TOKEN.");
 
 const bot = new Bot(token);
 
-export default webhookCallback(bot, "std/http");
+export default webhookCallback(bot, "https");
 ```
 
 ::: tip [Vercel Edge Functions](https://vercel.com/docs/functions) proporciona soporte limitado para grammY
