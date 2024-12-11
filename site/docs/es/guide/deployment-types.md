@@ -259,7 +259,7 @@ Debido a cómo funciona este enfoque, normalmente necesitamos un adaptador para 
 A continuación se muestra una tabla con los adaptadores disponibles actualmente, los frameworks o APIs con los que se sabe que funcionan y los tiempos de ejecución en los que están disponibles.
 
 | Adapter            | Framework/API/Runtime                                                                               |
-| ------------------ | ----------------------------------------------------------------------------------------------------|
+| ------------------ | --------------------------------------------------------------------------------------------------- |
 | `aws-lambda`       | AWS Lambda Functions                                                                                |
 | `aws-lambda-async` | AWS Lambda Functions with `async`/`await`                                                           |
 | `azure`            | Azure Functions                                                                                     |

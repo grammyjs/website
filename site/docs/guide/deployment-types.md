@@ -258,7 +258,7 @@ Because of how this approach works, we usually need an adapter for each framewor
 Below is a table containing the currently available adapters, and the framework, APIs, or runtimes they are known to work with.
 
 | Adapter            | Framework/API/Runtime                                                                               |
-| ------------------ | ----------------------------------------------------------------------------------------------------|
+| ------------------ | --------------------------------------------------------------------------------------------------- |
 | `aws-lambda`       | AWS Lambda Functions                                                                                |
 | `aws-lambda-async` | AWS Lambda Functions with `async`/`await`                                                           |
 | `azure`            | Azure Functions                                                                                     |

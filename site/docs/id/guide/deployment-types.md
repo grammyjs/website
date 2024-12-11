@@ -264,7 +264,7 @@ Tetapi, berhubung beberapa framework memiliki interface yang mirip, kita bisa me
 Di bawah ini adalah tabel berisi berbagai macam adapter yang tersedia beserta jenis framework, API, dan runtime yang diketahui berfungsi dengan baik di grammY.
 
 | Adapter            | Framework/API/Runtime                                                                               |
-| ------------------ | ----------------------------------------------------------------------------------------------------|
+| ------------------ | --------------------------------------------------------------------------------------------------- |
 | `aws-lambda`       | AWS Lambda Functions                                                                                |
 | `aws-lambda-async` | AWS Lambda Functions dengan `async`/`await`                                                         |
 | `azure`            | Azure Functions                                                                                     |

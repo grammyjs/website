@@ -258,9 +258,9 @@ await bot.api.setWebhook(endpoint);
 Ниже приведена таблица с доступными на данный момент адаптерами, а также фреймворками, API или режимами выполнения, с которыми они работают.
 
 | Адаптер            | Фреймворк/API/Среда выполнения                                                                      |
-| ------------------ | ----------------------------------------------------------------------------------------------------|
+| ------------------ | --------------------------------------------------------------------------------------------------- |
 | `aws-lambda`       | AWS Lambda Functions                                                                                |
-| `aws-lambda-async` | AWS Lambda Functions с `async`/`await`                                                           |
+| `aws-lambda-async` | AWS Lambda Functions с `async`/`await`                                                              |
 | `azure`            | Azure Functions                                                                                     |
 | `bun`              | `Bun.serve`                                                                                         |
 | `cloudflare`       | Cloudflare Workers                                                                                  |
