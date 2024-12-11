@@ -257,26 +257,26 @@ The second parameter passed to `webhookCallback` ([API reference](/ref/core/webh
 Because of how this approach works, we usually need an adapter for each framework but, since some frameworks share a similiar interface, there are adapters that are known to work with multiple frameworks.
 Below is a table containing the currently available adapters, and the framework, APIs, or runtimes they are known to work with.
 
-| Adapter            | Framework/API/Runtime                                                          |
-| ------------------ | ------------------------------------------------------------------------------ |
-| `aws-lambda`       | AWS Lambda Functions                                                           |
-| `aws-lambda-async` | AWS Lambda Functions with `async`/`await`                                      |
-| `azure`            | Azure Functions                                                                |
-| `bun`              | `Bun.serve`                                                                    |
-| `cloudflare`       | Cloudflare Workers                                                             |
-| `cloudflare-mod`   | Cloudflare Module Workers                                                      |
-| `express`          | Express, Google Cloud Functions                                                |
-| `fastify`          | Fastify                                                                        |
-| `hono`             | Hono                                                                           |
-| `http`, `https`    | Node.js `http`/`https` modules, Vercel                                         |
-| `koa`              | Koa                                                                            |
-| `next-js`          | Next.js                                                                        |
-| `nhttp`            | NHttp                                                                          |
-| `oak`              | Oak                                                                            |
-| `serveHttp`        | `Deno.serveHttp`                                                               |
-| `std/http`         | `Deno.serve`, `std/http`, `Deno.upgradeHttp`, `Fresh`, `Ultra`, `Rutt`, `Sift` |
-| `sveltekit`        | SvelteKit                                                                      |
-| `worktop`          | Worktop                                                                        |
+| Adapter            | Framework/API/Runtime                                                                               |
+| ------------------ | --------------------------------------------------------------------------------------------------- |
+| `aws-lambda`       | AWS Lambda Functions                                                                                |
+| `aws-lambda-async` | AWS Lambda Functions with `async`/`await`                                                           |
+| `azure`            | Azure Functions                                                                                     |
+| `bun`              | `Bun.serve`                                                                                         |
+| `cloudflare`       | Cloudflare Workers                                                                                  |
+| `cloudflare-mod`   | Cloudflare Module Workers                                                                           |
+| `express`          | Express, Google Cloud Functions                                                                     |
+| `fastify`          | Fastify                                                                                             |
+| `hono`             | Hono                                                                                                |
+| `http`, `https`    | Node.js `http`/`https` modules, Vercel Serverless                                                   |
+| `koa`              | Koa                                                                                                 |
+| `next-js`          | Next.js                                                                                             |
+| `nhttp`            | NHttp                                                                                               |
+| `oak`              | Oak                                                                                                 |
+| `serveHttp`        | `Deno.serveHttp`                                                                                    |
+| `std/http`         | `Deno.serve`, `std/http`, `Deno.upgradeHttp`, `Fresh`, `Ultra`, `Rutt`, `Sift`, Vercel Edge Runtime |
+| `sveltekit`        | SvelteKit                                                                                           |
+| `worktop`          | Worktop                                                                                             |
 
 ### Webhook Reply
 
