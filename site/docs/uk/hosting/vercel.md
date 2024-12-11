@@ -91,18 +91,9 @@ export default webhookCallback(bot, "https");
 Додайте цей рядок до фрагмента вище, якщо ви хочете переключитися на Edge Functions:
 
 ```ts
-import { Bot, webhookCallback } from "grammy";
-
-const token = process.env.BOT_TOKEN;
-if (!token) throw new Error("BOT_TOKEN не вказаний");
-
-const bot = new Bot(token);
-
 export const config = {
   runtime: "edge",
 };
-
-export default webhookCallback(bot, "std/http");
 ```
 
 :::

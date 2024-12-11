@@ -91,18 +91,9 @@ Saat ini, kami tidak memiliki daftar lengkap plugin yang kompatibel, sehingga ka
 Tambahkan baris ini pada kode di atas jika kamu ingin beralih ke Edge Functions:
 
 ```ts
-import { Bot, webhookCallback } from "grammy";
-
-const token = process.env.BOT_TOKEN;
-if (!token) throw new Error("BOT_TOKEN belum diisi");
-
-const bot = new Bot(token);
-
 export const config = {
   runtime: "edge",
 };
-
-export default webhookCallback(bot, "std/http");
 ```
 
 :::
