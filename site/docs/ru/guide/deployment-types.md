@@ -260,7 +260,7 @@ await bot.api.setWebhook(endpoint);
 | Адаптер            | Фреймворк/API/Среда выполнения                                                                      |
 | ------------------ | ----------------------------------------------------------------------------------------------------|
 | `aws-lambda`       | AWS Lambda Functions                                                                                |
-| `aws-lambda-async` | AWS Lambda Functions with `async`/`await`                                                           |
+| `aws-lambda-async` | AWS Lambda Functions с `async`/`await`                                                           |
 | `azure`            | Azure Functions                                                                                     |
 | `bun`              | `Bun.serve`                                                                                         |
 | `cloudflare`       | Cloudflare Workers                                                                                  |

@@ -88,7 +88,7 @@ Puedes seguir usando el paquete principal de grammY y un número de plugins, per
 
 Actualmente, no tenemos una lista completa de plugins compatibles, así que tienes que probarlo por ti mismo.
 
-Utilice este fragmento a continuación si desea cambiar a Edge Functions:
+Añada esta línea al fragmento anterior si desea cambiar a Edge Functions:
 
 ```ts
 import { Bot, webhookCallback } from "grammy";

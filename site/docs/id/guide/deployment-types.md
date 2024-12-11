@@ -266,7 +266,7 @@ Di bawah ini adalah tabel berisi berbagai macam adapter yang tersedia beserta je
 | Adapter            | Framework/API/Runtime                                                                               |
 | ------------------ | ----------------------------------------------------------------------------------------------------|
 | `aws-lambda`       | AWS Lambda Functions                                                                                |
-| `aws-lambda-async` | AWS Lambda Functions with `async`/`await`                                                           |
+| `aws-lambda-async` | AWS Lambda Functions dengan `async`/`await`                                                         |
 | `azure`            | Azure Functions                                                                                     |
 | `bun`              | `Bun.serve`                                                                                         |
 | `cloudflare`       | Cloudflare Workers                                                                                  |

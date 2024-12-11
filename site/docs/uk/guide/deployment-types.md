@@ -260,7 +260,7 @@ await bot.api.setWebhook(endpoint);
 | Адаптер            | Фреймворк, API або середовище виконання                                                             |
 | ------------------ | ----------------------------------------------------------------------------------------------------|
 | `aws-lambda`       | AWS Lambda Functions                                                                                |
-| `aws-lambda-async` | AWS Lambda Functions with `async`/`await`                                                           |
+| `aws-lambda-async` | AWS Lambda Functions з `async/await`                                                                |
 | `azure`            | Azure Functions                                                                                     |
 | `bun`              | `Bun.serve`                                                                                         |
 | `cloudflare`       | Cloudflare Workers                                                                                  |
@@ -268,7 +268,7 @@ await bot.api.setWebhook(endpoint);
 | `express`          | Express, Google Cloud Functions                                                                     |
 | `fastify`          | Fastify                                                                                             |
 | `hono`             | Hono                                                                                                |
-| `http`, `https`    | Node.js `http`/`https` modules, Vercel Serverless                                                   |
+| `http`, `https`    | Модулі Node.js `http` або `https`, Vercel Serverless                                                |
 | `koa`              | Koa                                                                                                 |
 | `next-js`          | Next.js                                                                                             |
 | `nhttp`            | NHttp                                                                                               |

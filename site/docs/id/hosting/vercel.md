@@ -88,7 +88,7 @@ Meski kamu masih bisa menggunakan paket inti grammY dan sejumlah plugin lainnya,
 
 Saat ini, kami tidak memiliki daftar lengkap plugin yang kompatibel, sehingga kamu perlu mencobanya sendiri.
 
-Gunakan cuplikan di bawah ini jika Anda ingin beralih ke Fungsi Edge:
+Tambahkan baris ini pada kode di atas jika kamu ingin beralih ke Edge Functions:
 
 ```ts
 import { Bot, webhookCallback } from "grammy";
