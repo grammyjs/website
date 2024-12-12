@@ -5,17 +5,33 @@ next: false
 
 # Percakapan (`conversations`)
 
-Buat struktur percakapan dengan mudah.
+Jika kamu mencari cara untuk membuat obrolan yang saling berkesinambungan, _plugin_ ini merupakan pilihan yang tepat.
+
+Sebagai contoh, kamu ingin bot menanyakan tiga pertanyaan ke user:
+
+1. menu apa yang ingin dipesan,
+2. berapa jumlahnya, dan
+3. di mana alamat pengirimannya.
+
+Berikut kira-kira percakapan yang dapat dibuat:
+
+```ascii:no-line-numbers
+Bot        : "Halo, User_42069! Mau pesan apa hari ini?"
+User_42069 : "Nasi goreng"
+Bot        : "Baik. Berapa item yang ingin dipesan?"
+User_42069 : "3"
+Bot        : "Oke. Mau dikirim ke mana pesanannya?"
+User_42069 : "Perumahan Komodo Blok A-1, Manggarai Barat"
+Bot        : "Pesanan akan segera dikirim ke alamat tujuan!"
+```
+
+Seperti yang kita lihat pada contoh di atas, bot akan menunggu jawaban dari user untuk setiap pertanyaan yang diajukan.
+Nah, kemampuan itulah yang ditawarkan oleh _plugin_ ini.
 
 ## Mulai Cepat
 
-Percakapan memiliki kemampuan untuk menunggu balasan pesan.
-Oleh karena itu, plugin ini cocok digunakan untuk bot yang memiliki aksi berantai.
-
-> Percakapan membawa fitur yang unik karena ia memperkenalkan konsep baru yang tidak akan kamu temukan di belahan dunia manapun.
-> Sebelum mempelajari apa yang plugin ini bisa lakukan, sebaiknya kamu memahami terlebih dahulu cara kerjanya agar seluruh kemampuan yang ditawarkan bisa dimanfaatkan secara maksimal.
-
-Berikut mulai cepat yang bisa kamu gunakan sebagai permulaan sebelum melangkah ke bagian menariknya:
+_Plugin_ percakapan membawa konsep baru yang tidak akan kamu temukan di belahan dunia manapun.
+Sebelum melangkah ke sana, silahkan bermain-main dengan contoh mulai cepat berikut:
 
 :::code-group
 
@@ -102,13 +118,18 @@ bot.start();
 
 :::
 
-Ketika kamu memasuki percakapan `hello` di atas, ia akan mengirim sebuah pesan `Halo! Siapa nama kamu?`, lalu menunggu balasan pesan teks dari user, kemudian mengirim pesan `Selamat datang di chat, (nama user)!`, dan percakapan pun berakhir.
+Ketika percakapan `hello` dijalankan, berikut yang akan terjadi secara berurutan:
+
+1. Bot mengirim pesan `Halo! Siapa nama kamu?`.
+2. Bot menunggu balasan pesan teks dari user.
+3. Bot mengirim pesan `Selamat datang di chat, (nama user)!`.
+4. Percakapan berakhir.
 
 Sekarang, mari kita lanjut ke bagian menariknya.
 
-## Cara Kerja Percakapan
+## Cara Kerja Plugin Percakapan
 
-Pertama-tama, mari kita lihat contoh penanganan pesan berikut:
+Berikut bagaimana suatu pesan ditangani menggunakan cara tradisional:
 
 ```ts
 bot.on("message", async (ctx) => {
@@ -116,9 +137,9 @@ bot.on("message", async (ctx) => {
 });
 ```
 
-Di penangan pesan biasa, kamu hanya bisa memiliki satu object context.
+Di penangan pesan biasa, kamu hanya bisa memiliki satu _context object_.
 
-Sekarang, bandingkan dengan percakapan:
+Coba bandingkan dengan percakapan:
 
 ```ts
 async function hello(conversation: Conversation, ctx0: Context) {
@@ -128,25 +149,26 @@ async function hello(conversation: Conversation, ctx0: Context) {
 }
 ```
 
-Di percakapan, kamu bisa memiliki tiga object context!
+Di percakapan, kamu bisa memiliki tiga _context object_!
 
-Layaknya penangan biasa, plugin percakapan hanya menerima satu object context yang berasal dari [sistem middleware](../guide/middleware).
-Jika benar demikian, mengapa ia bisa menyediakan tiga object context?
+Layaknya penangan biasa, plugin percakapan hanya menerima satu _context object_ yang berasal dari [sistem _middleware_](../guide/middleware).
+Tiba-tiba, sekarang jadi tersedia tiga _context object_.
+Kok bisa?
 
-Rahasianya adalah **function pembentuk percakapan tidak dieksekusi selayaknya function pada umumnya** (meski sebenarnya kita bisa saja memprogramnya seperti itu).
+Rahasianya adalah **_function_ percakapan tidak dieksekusi selayaknya _function_ pada umumnya** (meski sebenarnya kita bisa saja memprogramnya seperti itu).
 
-### Percakapan Hanyalah Mesin Pengulang
+### Plugin Percakapan Ibarat Mesin Pengulang
 
-Function pembentuk percakapan tidak dieksekusi selayaknya function pada umumnya.
+_Function_ percakapan tidak dieksekusi selayaknya _function_ pada umumnya.
 
 Ketika memasuki sebuah percakapan, ia hanya dieksekusi hingga pemanggilan `wait()` pertama.
-Function tersebut kemudian akan diinterupsi dan tidak akan dieksekusi lebih lanjut.
-Plugin akan mengingat `wait()` tersebut dan menyimpan informasi yang menyertainya.
+_Function_ tersebut kemudian akan diinterupsi dan tidak akan dieksekusi lebih lanjut.
+_Plugin_ akan mengingat bahwa `wait()` telah tercapai dan menyimpan semua informasi terkait.
 
-Ketika update selanjutnya tiba, percakapan akan dieksekusi lagi dari awal.
-Namun, kali ini, pemanggilan API sebelumnya tidak akan dilakukan, yang mana membuat kode kamu berjalan sangat cepat dan tidak memiliki dampak apapun.
+Kemudian, ketika _update_ selanjutnya tiba, percakapan akan dieksekusi lagi dari awal.
+Bedanya, kali ini, tidak ada pemanggilan API yang dilakukan, yang mana membuat kode kamu berjalan sangat cepat dan tidak memiliki dampak apapun.
 Aksi tersebut dinamakan _replay_ atau ulang.
-Setelah tiba di pemanggilan terakhir `wait()` sebelumnya, pengeksekusian function dilanjutkan secara normal.
+Setelah tiba di pemanggilan `wait()` yang telah tercapai di pemrosesan sebelumnya, pengeksekusian function dilanjutkan secara normal.
 
 ::: code-group
 
@@ -191,30 +213,30 @@ async function hello( //                      .
 
 :::
 
-1. Ketika memasuki sebuah percakapan, function akan dieksekusi hingga `A`.
-2. Ketika update selanjutnya tiba, function akan diulang hingga `A`, lalu dieksekusi secara normal dari `A` hingga `B`.
-3. Ketika update terakhir tiba, function akan diulang hingga `B`, lalu dieksekusi secara normal sampai akhir.
+1. Ketika memasuki sebuah percakapan, _function_ akan dieksekusi hingga `A`.
+2. Ketika _update_ selanjutnya tiba, _function_ akan diulang hingga `A`, lalu dieksekusi secara normal dari `A` hingga `B`.
+3. Ketika _update_ terakhir tiba, _function_ akan diulang hingga `B`, lalu dieksekusi secara normal sampai akhir.
 
-Dari ilustrasi di atas, kita tahu bahwa setiap baris kode yang kamu tulis akan dieksekusi beberapa kali---sekali secara normal, dan beberapa kali selama pengulangan.
-Oleh karena itu, kamu perlu memastikan kode yang ditulis memiliki perilaku yang sama, baik ketika dieksekusi pertama kali, maupun ketika dieksekusi berkali-kali saat diulang.
+Dari ilustrasi di atas, kita tahu bahwa setiap baris kode yang ditulis akan dieksekusi beberapa kali---_sekali secara normal, dan beberapa kali selama pengulangan_.
+Oleh karena itu, baik ketika dieksekusi pertama kali, maupun ketika dieksekusi berkali-kali, kode yang ditulis harus dipastikan memiliki perilaku yang sama.
 
-Jika kamu melakukan pemanggilan API melalui `ctx.api` (termasuk `ctx.reply`), plugin ini akan menanganinya secara otomatis.
-Sebaliknya, yang perlu mendapat perhatikan khusus adalah komunikasi database kamu.
+Jika kamu melakukan pemanggilan API melalui `ctx.api`---_termasuk `ctx.reply`_, plugin akan menanganinya secara otomatis.
+Sebaliknya, yang perlu mendapat perhatikan khusus adalah komunikasi _database_ kamu.
 
-Berikut yang perlu kamu perhatikan:
+Berikut yang perlu diperhatikan:
 
-### Aturan Utama ketika Menggunakan Percapakan
+### Pedoman Penggunaan
 
-Karena kita telah paham bagaimana percakapan dieksekusi, maka kita bisa menerapkan satu aturan untuk kode yang berada di dalam function pembentuk percakapan.
-Kamu wajib mematuhinya agar kode dapat berjalan dengan baik.
+Setelah memahami [cara kerja _plugin_ percakapan](#cara-kerja-plugin-percakapan), kita akan menentukan satu aturan utama untuk kode yang berada di dalam _function_ percakapan.
+Aturan ini wajib dipatuhi agar kode dapat berjalan dengan baik.
 
 ::: warning ATURAN UTAMA
 
-**Kode yang memiliki perilaku berbeda untuk setiap pengulangan, wajib dibungkus dengan [`conversation.external`](/ref/conversations/conversation#external).**
+**Setiap kode yang memiliki perilaku berbeda di setiap pengulangan wajib dibungkus dengan [`conversation.external`](/ref/conversations/conversation#external).**
 
 :::
 
-Berikut cara penerapannya:
+Cara penerapannya seperti ini:
 
 ```ts
 // SALAH
@@ -223,23 +245,23 @@ const response = await aksesDatabase();
 const response = await conversation.external(() => aksesDatabase());
 ```
 
-Dengan membungkus bagian kode menggunakan [`conversation.external`](/ref/conversations/conversation#external), kamu telah memberi tahu plugin bahwa bagian kode tersebut harus diabaikan selama proses pengulangan.
-Nilai kembalian kode yang dibungkus akan disimpan oleh plugin dan digunakan kembali untuk pengulangan selanjutnya.
-Dari contoh di atas, akses ke database tidak akan dilakukan berkali-kali selama proses pengulangan berlangsung.
+Dengan membungkus sebagian kode menggunakan [`conversation.external`](/ref/conversations/conversation#external), kamu telah memberi tahu plugin bahwa kode tersebut harus diabaikan selama proses pengulangan.
+Nilai kembalian kode tersebut akan disimpan oleh _plugin_, lalu digunakan kembali di pengulangan selanjutnya.
+Hasilnya, berdasarkan contoh di atas, akses ke _database_ hanya akan dilakukan sekali selama proses pengulangan berlangsung.
 
-GUNAKAN `conversation.external` ketika kamu ...
+GUNAKAN `conversation.external` untuk ...
 
-- membaca atau menulis file, database/session, jaringan, atau nilai global (global state),
+- membaca atau menulis _file_, _database_/_session_, jaringan, atau status global (_global state_),
 - memanggil `Math.random()` atau `Date.now()`,
-- melakukan pemanggilan API di `bot.api` atau instansiasi `Api` lain yang dilakukan secara terpisah.
+- melakukan pemanggilan API menggunakan `bot.api` atau _instance_ `Api` independen lainnya.
 
-JANGAN GUNAKAN `conversation.external` ketika kamu ...
+JANGAN GUNAKAN `conversation.external` untuk ...
 
-- memanggil `ctx.reply` atau [aksi context](../guide/context#aksi-yang-tersedia),
-- memanggil `ctx.api.sendMessage` atau method [Bot API](https://core.telegram.org/bots/api) lainnya melalui `ctx.api`.
+- memanggil `ctx.reply` atau [_context action_](../guide/context#aksi-yang-tersedia) lainnya,
+- memanggil `ctx.api.sendMessage` atau _method_ [API Bot](https://core.telegram.org/bots/api) lain menggunakan `ctx.api`.
 
-Selain itu, plugin percakapan menyediakan beberapa method pembantu untuk `conversation.external`.
-Ia tidak hanya mempermudah penggunaan `Math.random()` dan `Date.now()`, tetapi juga mempermudah debugging dengan cara menyembunyikan log selama proses pengulangan.
+Selain itu, _plugin_ percakapan juga menyediakan beberapa _method_ pembantu untuk `conversation.external`.
+Ia tidak hanya mempermudah penggunaan `Math.random()` dan `Date.now()`, tetapi juga mempermudah _debugging_ dengan cara menyembunyikan log selama proses pengulangan.
 
 ```ts
 // await conversation.external(() => Math.random());
@@ -250,43 +272,43 @@ const now = await conversation.now();
 await conversation.log("abc");
 ```
 
-Kok bisa `conversation.wait` dan `conversation.external` memulihkan nilai aslinya ketika pengulangan berlangsung?
-Pasti plugin juga mengingat nilai tersebut, bukan?
+Pertanyaannya, kok bisa `conversation.wait` dan `conversation.external` memulihkan nilai kembalian tersebut ketika proses pengulangan berlangsung?
+Pasti ia sebelumnya telah mengingat dan menyimpan nilai tersebut, bukan?
 
 Tepat sekali!
 
 ### Percakapan Menyimpan Nilai Terkait
 
-Percakapan menyimpan dua macam tipe data di database.
-Secara bawaan, ia menggunakan database ringan berbasis `Map` yang disimpan di memory.
-Selain itu, kamu juga bisa menggunakan [database permanen](#todo) dengan mudah.
+Percakapan menyimpan dua jenis data di _database_.
+Secara bawaan, ia menggunakan _database_ ringan berbasis `Map` yang disimpan di _memory_.
+Tetapi, kamu bisa dengan mudah menggunakan [_database_ permanen](#todo) jika mengehendakinya.
 
 Berikut beberapa hal yang perlu kamu ketahui:
 
-1. Plugin conversation menyimpan semua update.
-2. Plugin conversation menyimpan semua nilai kembalian (return value) `conversation.external` serta semua hasil pemanggilan API.
+1. _Plugin_ percakapan menyimpan semua _update_.
+2. _Plugin_ percakapan menyimpan semua nilai kembalian `conversation.external` dan hasil pemanggilan API yang dilakukan.
 
-Segelintir update di dalam percakapan memang tidak akan menyebabkan masalah yang serius (perlu diingat, setiap pemanggilan `getUpdates` menggunakan [long polling](../guide/deployment-types) bisa mencapai 100 update).
+Segelintir update di dalam percakapan memang tidak akan menyebabkan masalah yang serius---_perlu diingat, satu pemanggilan `getUpdates` menggunakan [long polling](../guide/deployment-types) bisa mencapai 100 update_.
 
-Namun, jika percakapan tersebut tidak pernah selesai, lambat laun data-data tersebut akan terus menumpuk yang mengakibatkan penurunan performa bot secara signifikan.
-Oleh karena itu, **hindari pengulangan yang tidak berujung**.
+Namun, jika kamu tidak pernah [keluar dari suatu percakapan](#keluar-dari-percakapan), lambat laun data-data tersebut akan terus menumpuk yang mengakibatkan penurunan performa bot secara signifikan.
+Oleh karena itu, **hindari pengulangan yang tidak berujung (_infinite loops_)**.
 
-### Object Context Khusus untuk Percakapan
+### Context Object Percakapan
 
-Ketika sebuah percakapan dijalankan, ia menggunakan update permanen untuk menciptakan object context dari awal.
-**Object context yang dihasilkan berbeda dengan object context yang digunakan oleh middleware di sekitarnya**
-Jika kamu menggunakan TypeScript, artinya, kamu sekarang mempunyai dua [varian](../guide/context#context-flavor) object context:
+Ketika suatu percakapan dieksekusi, ia menggunakan [_update_ tersimpan](#percakapan-menyimpan-nilai-terkait) untuk membuat _context object_ dari dasar.
+**_Context object_ tersebut berbeda dengan _context object_ yang digunakan di [_middleware_](../guide/middleware)**.
+Jika menggunakan TypeScript, kamu akan memiliki dua [varian](../guide/context#context-flavor) _context object_:
 
-- **Object context luar** merupakan object context yang digunakan oleh middlewarre.
-  Melalui object context ini kamu bisa mengakses `ctx.conversation.enter`.
-  Untuk TypeScript, kamu setidaknya perlu menginstal `ConversationFlavor`.
-  Object context luar juga bisa memiliki property tambahan yang telah ditentukan oleh plugin yang diinstal melalui `bot.use`.
-- **Object context dalam** (biasa disebut sebagai **object context percakapan** atau _conversational context objects_) merupakan object context yang diciptakan oleh plugin percakapan.
-  Ia tidak memiliki akses ke `ctx.conversation.enter`, dan secara bawaan, ia juga tidak memiliki akses ke plugin manapun.
-  Jika kamu ingin memiliki property tersuai di dalam object context, [gulir ke bawah](#todo).
+- **_Context object_ luar** merupakan _context object_ yang digunakan di _middleware_.
+  Ia menyediakan akses ke `ctx.conversation.enter`.
+  Untuk TypeScript, kamu perlu menyertakan `ConversationFlavor`.
+  _Context object_ luar juga bisa memiliki _property_ tambahan untuk setiap _plugin_ yang diinstal melalui `bot.use`.
+- **_Context object_ dalam**---_atau biasa disebut sebagai **context object percakapan**_---merupakan _context object_ yang dihasilkan oleh _plugin_ percakapan.
+  Ia tidak menyediakan akses ke `ctx.conversation.enter`, dan secara bawaan, ia juga tidak menyediakan akses ke _plugin_ manapun.
+  Jika kamu ingin _context object_ dalam memiliki _property_ tersuai, silahkan [gulir ke bawah](#menggunakan-plugin-di-dalam-percakapan).
 
-Kedua type context luar dan dalam wajib dipasang ke percakapan.
-Pengaturan TypeScript kamu seharusnya kurang lebih seperti ini:
+Selain itu, kedua _context type_ luar dan dalam juga perlu disertakan ke percakapan.
+Kode TypeScript kamu seharusnya kurang lebih seperti ini:
 
 ::: code-group
 
@@ -297,27 +319,29 @@ import {
   type ConversationFlavor,
 } from "@grammyjs/conversations";
 
-// Object context luar (mencakup semua plugin middleware)
+// Context object luar (mencakup semua plugin middleware)
 type MyContext = ConversationFlavor<Context>;
-// Object context dalam (mencakup semua plugin percakapan)
+// Context object dalam (mencakup semua plugin percakapan)
 type MyConversationContext = Context;
 
-// Gunakan type context luar untuk bot.
+// Gunakan context type luar untuk bot.
 const bot = new Bot<MyContext>("");
 
 // Gunakan kedua type luar dan dalam untuk percakapan.
 type MyConversation = Conversation<MyContext, MyConversationContext>;
 
-// Buat percakapannya
+// Buat percakapannya.
 async function example(
   conversation: MyConversation,
   ctx0: MyConversationContext,
 ) {
-  // Semua object context di dalam percakapan memiliki type `MyConversationContext`.
+  // Semua context object di dalam percakapan
+  // memiliki type `MyConversationContext`.
   const ctx1 = await conversation.wait();
 
-  // Object context luar dapat diakses melalui `conversation.external`
-  // dan telah dikerucutkan menjadi type `MyContext`.
+  // Context object luar dapat diakses
+  // melalui `conversation.external` dan
+  // telah dikerucutkan menjadi type `MyContext`.
   const session = await conversation.external((ctx) => ctx.session);
 }
 ```
@@ -329,67 +353,70 @@ import {
   type ConversationFlavor,
 } from "https://deno.land/x/grammy_conversations/mod.ts";
 
-// Object context luar (mencakup semua plugin middleware)
+// Context object luar (mencakup semua plugin middleware)
 type MyContext = ConversationFlavor<Context>;
-// Object context dalam (mencakup semua plugin percakapan)
+// Context object dalam (mencakup semua plugin percakapan)
 type MyConversationContext = Context;
 
-// Gunakan type context luar untuk bot.
+// Gunakan context type luar untuk bot.
 const bot = new Bot<MyContext>("");
 
 // Gunakan kedua type luar dan dalam untuk percakapan.
 type MyConversation = Conversation<MyContext, MyConversationContext>;
 
-// Buat percakapannya
+// Buat percakapannya.
 async function example(
   conversation: MyConversation,
   ctx0: MyConversationContext,
 ) {
-  // Semua object context di dalam percakapan memiliki type `MyConversationContext`.
+  // Semua context object di dalam percakapan
+  // memiliki type `MyConversationContext`.
   const ctx1 = await conversation.wait();
 
-  // Object context luar dapat diakses melalui `conversation.external`
-  // dan telah dikerucutkan menjadi type `MyContext`.
+  // Context object luar dapat diakses
+  // melalui `conversation.external` dan
+  // telah dikerucutkan menjadi type `MyContext`.
   const session = await conversation.external((ctx) => ctx.session);
 }
 ```
 
 :::
 
-> Meski dari contoh di atas tidak ada plugin yang terinstal di percakapan, namun ketika kamu [menginstalnya](#todo), definisi `MyConversationContext` tidak akan lagi berupa type `Context` dasar.
+> Kode di atas tidak mencontohkan adanya _plugin_ yang terinstal di percakapan.
+> Namun, ketika kamu [menginstalnya](#menggunakan-plugin-di-dalam-percakapan), `MyConversationContext` tidak akan lagi berupa _type_ `Context` dasar.
 
-Sekarang, kita mengetahui bahwa masing-masing percakapan bisa memiliki variasi type context yang berbeda-beda sesuai dengan keinginan kamu.
+Dengan demikian, setiap percakapan bisa memiliki variasi _context type_ yang berbeda-beda sesuai dengan keinginan.
 
 Selamat!
-Jika kamu bisa memahami semua materi di atas dengan baik, bagian tersulit dari panduan ini telah berhasil kamu lewati.
-Selanjunya, kita akan membahas fitur-fitur yang ditawarkan oleh plugin ini.
+Jika kamu dapat memahami semua materi di atas dengan lancar, bagian tersulit dari panduan ini telah berhasil kamu lewati.
+Selanjunya, kita akan membahas fitur-fitur yang ditawarkan oleh _plugin_ ini.
 
 ## Memasuki Percakapan
 
-Kamu bisa masuk ke dalam suatu percakapan melalui penangan biasa.
+Kamu bisa memasuki suatu percakapan melalui penangan biasa.
 
-Secara bawaan, sebuah percakapan memiliki nama yang sama dengan [nama function-nya](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name).
-Kamu bisa mengubah nama tersebut ketika menginstalnya ke bot.
+Secara bawaan, nama suatu percakapan akan identik dengan [nama _function_](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name)-nya.
+Kamu bisa mengganti nama tersebut ketika menginstalnya ke bot.
 
-Percakapan juga bisa menerima beberapa argument.
-Tetapi ingat, argument tersebut akan disimpan dalam bentuk string JSON.
-Artinya, kamu perlu memastikan ia dapat diproses oleh `JSON.stringify`.
+Percakapan juga bisa menerima beberapa _argument_.
+Tetapi ingat, _argument_ tersebut akan disimpan dalam bentuk _string_ JSON.
+Artinya, kamu perlu memastikan ia dapat diproses oleh [`JSON.stringify`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify).
 
-Selain itu, kamu juga bisa masuk ke suatu percakapan melalui percakapan lain dengan cara memanggil function JavaScript.
-Dengan memanggil function terkait, ia akan mendapatkan akses ke nilai kembalian function tersebut.
-Namun, akses yang sama tidak bisa didapatkan jika kamu memasuki sebuah percakapan dari dalam middleware.
+Selain itu, kamu juga bisa memasuki sebuah percakapan dari percakapan lain dengan cara memanggil _function_ JavaScript biasa.
+_Function_ tersebut nantinya dapat mengakses nilai kembalian percakapan yang dipanggil tersebut.
+Akan tetapi, akses yang sama tidak bisa didapatkan jika kamu memasuki percakapan dari dalam _middleware_.
 
 :::code-group
 
 ```ts [TypeScript]
 /**
  * Nilai kembalian function JavaScript berikut
- * hanya bisa diakses ketika sebuah percakapan
- * dipanggil melalui percakapan lainnya.
+ * hanya bisa diakses ketika percakapan ini
+ * dipanggil dari percakapan lainnya.
  */
-async function jokeBapakBapak(conversation: Conversation, ctx: Context) {
+async function jokesBapakBapak(conversation: Conversation, ctx: Context) {
   await ctx.reply("Kota apa yang warganya bapak-bapak semua?");
-  return "Purwo-daddy"; // xixixi...
+  return "Purwo-daddy";
 }
 /**
  * Function berikut menerima dua argument: `answer` dan `config`.
@@ -401,16 +428,16 @@ async function percakapan(
   answer: string,
   config: { text: string },
 ) {
-  const jawaban = await jokeBapakBapak(conversation, ctx);
+  const jawaban = await jokesBapakBapak(conversation, ctx);
   if (answer === jawaban) {
     await ctx.reply(jawaban);
     await ctx.reply(config.text);
   }
 }
 /**
- * Ubah nama function `jokeBapakBapak` menjadi `tebak-receh`.
+ * Ubah nama function `jokesBapakBapak` menjadi `tebak-receh`.
  */
-bot.use(createConversation(jokeBapakBapak, "tebak-receh"));
+bot.use(createConversation(jokesBapakBapak, "tebak-receh"));
 bot.use(createConversation(percakapan));
 
 /**
@@ -426,14 +453,17 @@ bot.command("tebak", async (ctx) => {
  */
 bot.command("tebak_jawab", async (ctx) => {
   /**
-   * Untuk menyerderhanakan contoh kode, kita menginput kedua argument
-   * secara statis (`Purwo-daddy` dan `{ text: "Xixixi..." }`).
+   * Untuk menyerderhanakan contoh kode,
+   * kita menginput kedua argument secara statis,
+   * yaitu `Purwo-daddy` dan `{ text: "Xixixi..." }`.
    *
-   * Untuk kasus tebak-tebakan ini mungkin akan jauh lebih menarik jika
-   * argument tersebut dibuat dinamis, misalnya argument pertama
-   * ("Purwo-daddy") dapat diganti dengan jawaban user.
+   * Untuk kasus tebak-tebakan ini
+   * mungkin akan jauh lebih menarik
+   * jika argument tersebut dibuat dinamis.
+   * Misalnya, argument pertama ("Purwo-daddy")
+   * dapat diganti dengan jawaban user.
    *
-   * Selamat bereksperimen! :)
+   * Selamat bereksperimen!
    */
   await ctx.conversation.enter("percakapan", "Purwo-daddy", {
     text: "Xixixi...",
@@ -444,28 +474,28 @@ bot.command("tebak_jawab", async (ctx) => {
 ```js [JavaScript]
 /**
  * Nilai kembalian function JavaScript berikut
- * hanya bisa diakses ketika sebuah percakapan
- * dipanggil melalui percakapan lainnya.
+ * hanya bisa diakses ketika percakapan ini
+ * dipanggil dari percakapan lainnya.
  */
-async function jokeBapakBapak(conversation, ctx) {
+async function jokesBapakBapak(conversation, ctx) {
   await ctx.reply("Kota apa yang warganya bapak-bapak semua?");
-  return "Purwo-daddy"; // xixixi...
+  return "Purwo-daddy";
 }
 /**
  * Function berikut menerima dua argument: `answer` dan `config`.
  * Semua argument wajib berupa tipe yang bisa diubah ke JSON.
  */
 async function percakapan(conversation, ctx, answer, config) {
-  const jawaban = await jokeBapakBapak(conversation, ctx);
+  const jawaban = await jokesBapakBapak(conversation, ctx);
   if (answer === jawaban) {
     await ctx.reply(jawaban);
     await ctx.reply(config.text);
   }
 }
 /**
- * Ubah nama function `jokeBapakBapak` menjadi `tebak-receh`.
+ * Ubah nama function `jokesBapakBapak` menjadi `tebak-receh`.
  */
-bot.use(createConversation(jokeBapakBapak, "tebak-receh"));
+bot.use(createConversation(jokesBapakBapak, "tebak-receh"));
 bot.use(createConversation(percakapan));
 
 /**
@@ -481,14 +511,17 @@ bot.command("tebak", async (ctx) => {
  */
 bot.command("tebak_jawab", async (ctx) => {
   /**
-   * Untuk menyerderhanakan contoh kode, kita menginput kedua argument
-   * secara statis (`Purwo-daddy` dan `{ text: "Xixixi..." }`).
+   * Untuk menyerderhanakan contoh kode,
+   * kita menginput kedua argument secara statis,
+   * yaitu `Purwo-daddy` dan `{ text: "Xixixi..." }`.
    *
-   * Untuk kasus tebak-tebakan ini mungkin akan jauh lebih menarik jika
-   * argument tersebut dibuat dinamis, misalnya argument pertama
-   * ("Purwo-daddy") dapat diganti dengan jawaban user.
+   * Untuk kasus tebak-tebakan ini
+   * mungkin akan jauh lebih menarik
+   * jika argument tersebut dibuat dinamis.
+   * Misalnya, argument pertama ("Purwo-daddy")
+   * dapat diganti dengan jawaban user.
    *
-   * Selamat bereksperimen! :)
+   * Selamat bereksperimen!
    */
   await ctx.conversation.enter("percakapan", "Purwo-daddy", {
     text: "Xixixi...",
@@ -500,28 +533,28 @@ bot.command("tebak_jawab", async (ctx) => {
 
 ::: warning Type Safety untuk Argument
 
-Pastikan parameter percakapan kamu menggunakan type yang sesuai, serta argument yang diteruskan ke pemanggilan `enter` cocok dengan type tersebut.
-Plugin tidak dapat melakukan pengecekan type di luar `conversation` dan `ctx`.
+Pastikan _parameter_ percakapan kamu menggunakan _type_ yang sesuai, dan _argument_ yang diteruskan ke pemanggilan `enter` cocok dengan _type_ tersebut.
+_Plugin_ percakapan tidak dapat melakukan pengecekan _type_ di luar `conversation` dan `ctx`.
 
 :::
 
-Perlu diperhatikan bahwa [urutan middleware akan berpengaruh](../guide/middleware).
-Kamu hanya bisa memasuki suatu percakapan jika ia diinstal sebelum penangan yang melakukan pemanggilan `enter`.
+Perlu diperhatikan bahwa [urutan _middleware_ akan berpengaruh](../guide/middleware).
+Suatu percakapan hanya bisa dimasuki jika ia diinstal sebelum penangan melakukan pemanggilan `enter`.
 
 ## Menunggu Update
 
-Tujuan pemanggilan `wait` yang paling dasar adalah menunggu update selanjutnya tiba.
+Tujuan pemanggilan `wait` yang paling dasar adalah menunggu _update_ selanjutnya tiba.
 
 ```ts
 const ctx = await conversation.wait();
 ```
 
-Nilai yang dkembalikan adalah sebuah object context.
+Ia mengembalikan sebuah _context object_.
 Semua pemanggilan `wait` memiliki konsep dasar ini.
 
-### Pemilahan untuk Pemanggilan `wait`
+### Memilah Pemanggilan `wait`
 
-Jika kamu ingin menunggu jenis update tertentu, kamu bisa menerapkan pemilahan ke pemanggilan `wait`.
+Jika kamu ingin menunggu jenis _update_ tertentu, kamu bisa menerapkan pemilahan ke pemanggilan `wait`.
 
 ```ts
 // Pilah layaknya filter query di `bot.on`
@@ -535,9 +568,9 @@ const start = await conversation.waitForCommand("start");
 
 Silahkan lihat referensi API berikut untuk mengetahui [semua metode yang tersedia untuk memilah pemanggilan `wait`](/ref/conversations/conversation#wait).
 
-Pemanggilan `wait` terpilah memastikan update yang diterima sesuai dengan filter yang diterapkan.
-Jika bot menerima sebuah update yang tidak sesuai, update tersebut akan diabaikan begitu saja.
-Untuk mengatasinya, kamu bisa menginstal sebuah function callback agar function tersebut dipanggil ketika update yang diterima tidak sesuai.
+Pemanggilan `wait` terpilah memastikan _update_ yang diterima sesuai dengan filter yang diterapkan.
+Jika bot menerima sebuah _update_ yang tidak sesuai, update tersebut akan diabaikan begitu saja.
+Untuk mengatasinya, kamu bisa menginstal sebuah _callback function_ agar _function_ tersebut dipanggil ketika _update_ yang diterima tidak sesuai.
 
 ```ts
 const message = await conversation.waitFor(":photo", {
@@ -556,19 +589,19 @@ let photoWithCaption = await conversation.waitFor(":photo")
 // yang berbeda:
 photoWithCaption = await conversation
   .waitFor(":photo", {
-    otherwise: (ctx) => ctx.reply("Mohon kirimkan saya sebuah foto"),
+    otherwise: (ctx) => ctx.reply("Mohon kirimkan saya sebuah foto!"),
   })
   .andForHears("Indonesia", {
     otherwise: (ctx) =>
-      ctx.reply('Keterangan foto  selain "Indonesia" tidak diperbolehkan'),
+      ctx.reply('Keterangan foto selain "Indonesia" tidak diperbolehkan.'),
   });
 ```
 
-Jika kamu menerapkan `otherwise` ke salah satu pemanggilan `wait` saja, maka ia akan dipanggil hanya untuk filter tersebut.
+Jika kamu menerapkan `otherwise` ke salah satu pemanggilan `wait` saja, ia hanya akan dipanggil untuk filter tersebut.
 
-### Memeriksa Object Context
+### Memeriksa Context Object 
 
-[Mengurai](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) object context merupakan hal yang cukup umum untuk dilakukan.
+[Mengurai](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) _context object_ merupakan hal yang cukup umum untuk dilakukan.
 Dengan melakukan penguraian, kamu bisa melakukan pengecekan secara mendalam untuk setiap data yang diterima.
 
 ```ts
@@ -583,9 +616,9 @@ Sebagai tambahan, percakapan juga merupakan tempat yang ideal untuk melakukan pe
 ## Keluar dari Percakapan
 
 Cara paling mudah untuk keluar dari suatu percakapan adalah dengan melakukan `return`.
-Selain itu, percakapan juga bisa dihentikan dengan melempar sebuah error.
+Selain itu, percakapan juga bisa dihentikan dengan melempar sebuah _error_.
 
-Jika cara di atas masih belum cukup, kamu bisa secara manual mengakhiri percakapan menggunakan `halt`:
+Jika cara di atas masih belum cukup, kamu bisa secara paksa menghentikan suatu percakapan menggunakan `halt`:
 
 ```ts
 async function convo(conversation: Conversation, ctx: Context) {
@@ -593,42 +626,42 @@ async function convo(conversation: Conversation, ctx: Context) {
   if (ctx.message?.text === "return") {
     return;
   } else if (ctx.message?.text === "error") {
-    throw new Error("boom");
+    throw new Error("ERROR!");
   } else {
     await conversation.halt(); // tidak akan pernah mengembalikan nilai (return)
   }
 }
 ```
 
-Kamu juga bisa keluar dari suatu percakapan dari dalam middleware:
+Kamu juga bisa keluar dari suatu percakapan dari dalam _middleware_:
 
 ```ts
 bot.use(conversations());
-bot.command("clean", async (ctx) => {
+bot.command("keluar", async (ctx) => {
   await ctx.conversation.exit("convo");
 });
 ```
 
-Cara di atas bisa dilakukan bahkan _sebelum_ percakapan yang ditarget diinstal ke sistem middleware.
-Dengan kata lain, hanya dengan menginstal plugin percakapan itu sendiri, kamu bisa melakukan hal di atas.
+Cara-cara di atas bisa dilakukan bahkan **sebelum** percakapan yang ditarget diinstal ke sistem _middleware_.
+Dengan kata lain, hanya dengan menginstal _plugin_ percakapan itu sendiri, kamu bisa melakukan hal-hal di atas.
 
 ## Percakapan Hanyalah Sebuah JavaScript
 
-Setelah [efek samping teratasi](#aturan-utama-ketika-menggunakan-percapakan), percakapan hanyalah sebuah function JavaScript biasa.
-Meski cara pengeksekusiannya terlihat aneh, namun biasanya ketika mengembangkan sebuah bot, kita akan dengan mudah melupakannya.
-Semua syntax JavaScript biasa dapat diproses dengan baik.
+Setelah [efek samping](#pedoman-penggunaan) teratasi, percakapan hanyalah sebuah _function_ JavaScript biasa.
+Meski alur kerjanya terlihat aneh, biasanya ketika mengembangkan sebuah bot, kita akan dengan mudah mengabaikannya.
+Semua _syntax_ JavaScript biasa dapat ia proses dengan baik.
 
-Semua hal yang dibahas di bagian berikut cukup lazim jika kamu terbiasa menggunakan percakapan.
-Namun, jika masih awam, beberapa hal berikut akan terdengar baru.
+Semua hal yang dibahas di bagian selanjutnya cukup lazim jika kamu terbiasa menggunakan percakapan.
+Namun, jika masih awam, beberapa hal berikut akan terdengar asing.
 
 ### Variable, Percabangan, dan Perulangan
 
-Kamu bisa menggunakan variable biasa untuk menyimpan status suatu update.
+Kamu bisa menggunakan _variable_ biasa untuk menyimpan suatu nilai/status di antara setiap _update_.
 Percabangan menggunakan `if` atau `switch` juga bisa dilakukan.
-Sama halnya dengan perulangan `for` dan `while`.
+Hal yang sama juga berlaku untuk perulangan `for` dan `while`.
 
 ```ts
-await ctx.reply("Kirim nomor-nomor favorit kamu, pisahkan dengan koma!");
+await ctx.reply("Kirim semua nomor favoritmu! Pisah setiap nomor dengan tanda koma!");
 const { message } = await conversation.waitFor("message:text");
 const numbers = message.text.split(",");
 let jumlah = 0;
@@ -638,28 +671,29 @@ for (const str of numbers) {
     jumlah += n;
   }
 }
-await ctx.reply("Jumlah nomor-nomor tersebut adalah: " + jumlah);
+await ctx.reply("Jumlah nomor-nomor tersebut adalah " + jumlah);
 ```
 
+Lihat?
 Ia hanyalah sebuah JavaScript, bukan?
 
 ### Function dan Rekursif
 
-Kamu bisa membagi sebuah percakapan menjadi beberapa function.
-Mereka bisa memanggil satu sama lain atau bahkan melakukan rekursif (memanggil dirinya sendiri).
-Plugin percakapanpun sebenarnya tidak tahu kalau kamu menggunakan function.
+Kamu bisa membagi suatu percakapan menjadi beberapa _function_.
+Mereka dapat memanggil satu sama lain atau bahkan melakukan rekursif (memanggil dirinya sendiri).
+Malahan, _plugin_ percakapan tidak tahu kalau kamu telah menggunakan sebuah _function_.
 
-Berikut kode yang sama seperti di atas, tetapi di-refactor menjadi beberapa function:
+Berikut kode yang sama seperti di atas, tetapi di-_refactor_ menjadi beberapa _function_:
 
 :::code-group
 
 ```ts [TypeScript]
 /** Percakapan untuk menghitung jumlah semua angka */
 async function sumConvo(conversation: Conversation, ctx: Context) {
-  await ctx.reply("Kirim nomor-nomor favorit kamu, pisahkan dengan koma!");
+  await ctx.reply("Kirim semua nomor favoritmu! Pisah setiap nomor dengan tanda koma!");
   const { message } = await conversation.waitFor("message:text");
   const numbers = message.text.split(",");
-  await ctx.reply("Jumlah nomor-nomor tersebut adalah: " + sumStrings(numbers));
+  await ctx.reply("Jumlah nomor-nomor tersebut adalah " + sumStrings(numbers));
 }
 
 /** Konversi semua string menjadi angka, lalu hitung jumlahnya */
@@ -678,10 +712,10 @@ function sumStrings(numbers: string[]): number {
 ```js [JavaScript]
 /** Percakapan untuk menghitung jumlah semua angka */
 async function sumConvo(conversation, ctx) {
-  await ctx.reply("Kirim nomor-nomor favorit kamu, pisahkan dengan koma!");
+  await ctx.reply("Kirim semua nomor favoritmu! Pisah setiap nomor dengan tanda koma!");
   const { message } = await conversation.waitFor("message:text");
   const numbers = message.text.split(",");
-  await ctx.reply("Jumlah nomor-nomor tersebut adalah: " + sumStrings(numbers));
+  await ctx.reply("Jumlah nomor-nomor tersebut adalah " + sumStrings(numbers));
 }
 
 /** Konversi semua string menjadi angka, lalu hitung jumlahnya */
@@ -703,10 +737,10 @@ Sekali lagi, ia hanyalah sebuah JavaScript.
 
 ### Module dan Class
 
-JavaScript memiliki function orde tinggi (higher-order function), class, serta cara-cara lain untuk mengubah kode kamu menjadi beberapa module.
+JavaScript memiliki _higher-order function_, _class_, serta metode-metode lain untuk mengubah struktur kode menjadi beberapa _module_.
 Umumnya, mereka semua bisa diubah menjadi percakapan.
 
-Sekali lagi, berikut kode yang sama persis seperti di atas, namun di-refactor menjadi sebuah module:
+Sekali lagi, berikut kode yang sama seperti di atas, tetapi di-_refactor_ menjadi sebuah _module_ sederhana:
 
 ::: code-group
 
@@ -731,16 +765,16 @@ function sumModule(conversation: Conversation) {
     return jumlah;
   }
 
-  /** Minta user untuk mengirim nomor-nomor favoritnya */
+  /** Minta user untuk mengirim semua nomor favoritnya */
   async function askForNumbers(ctx: Context) {
-    await ctx.reply("Kirim nomor-nomor favorit kamu, pisahkan dengan koma!");
+    await ctx.reply("Kirim semua nomor favoritmu! Pisah setiap nomor dengan tanda koma!");
   }
 
   /** Tunggu user mengirim nomor-nomornya, lalu balas dengan jumlah semua nomor tersebut */
   async function sumUserNumbers() {
     const ctx = await conversation.waitFor(":text");
     const jumlah = sumStrings(ctx.msg.text);
-    await ctx.reply("Jumlah nomor-nomor tersebut adalah: " + jumlah);
+    await ctx.reply("Jumlah nomor-nomor tersebut adalah " + jumlah);
   }
 
   return { askForNumbers, sumUserNumbers };
@@ -775,9 +809,9 @@ function sumModule(conversation: Conversation) {
     return jumlah;
   }
 
-  /** Minta user untuk mengirim nomor-nomor favoritnya */
+  /** Minta user untuk mengirim semua nomor favoritnya */
   async function askForNumbers(ctx: Context) {
-    await ctx.reply("Kirim nomor-nomor favorit kamu, pisahkan dengan koma!");
+    await ctx.reply("Kirim semua nomor favoritmu! Pisah setiap nomor dengan tanda koma!");
   }
 
   /** Tunggu user mengirim nomor-nomornya, lalu balas dengan jumlah semua nomor tersebut */
@@ -800,20 +834,20 @@ async function sumConvo(conversation: Conversation, ctx: Context) {
 
 :::
 
-Meski terlihat berlebihan untuk tugas sesederhana menjumlahkan nomor, namun kamu bisa menangkap konsep yang kami maksud.
+Meski terlihat berlebihan untuk tugas sesederhana menjumlahkan nomor, namun kamu bisa menangkap secara garis besar konsep yang kami maksud.
 
 Yup, kamu benar, ia hanyalah sebuah JavaScript.
 
-## Mempertahankan Percakapan
+## Menyimpan Percakapan
 
-Secara bawaan, semua data yang disimpan oleh plugin percakapan disimpan di memory.
-Artinya, ketika memori tersebut dimatikan, semua proses akan keluar dari percakapan, sehingga mau tidak mau harus dimulai ulang.
+Secara bawaan, semua data yang disimpan oleh _plugin_ percakapan disimpan di dalam _memory_.
+Artinya, ketika _memory_ tersebut dimatikan, semua proses akan keluar dari percakapan, sehingga mau tidak mau harus dimulai ulang.
 
-Jika ingin mempertahankan data-data tersebut ketika server dimulai ulang, kamu harus mengintegrasikan plugin percakapan ke sebuah database.
-Kami telah membuat [berbagai jenis storage adapter](https://github.com/grammyjs/storages/tree/main/packages#grammy-storages) untuk mempermudah pengintegrasian tersebut.
-Mereka semua menggunakan adapter yang sama yang digunakan oleh [plugin session](./session#storage-adapter-yang-tersedia)
+Jika ingin menyimpan data-data tersebut ketika _server_ dimulai ulang, kamu harus mengintegrasikan _plugin_ percakapan ke sebuah _database_.
+Kami telah membuat [berbagai jenis _storage adapter_](https://github.com/grammyjs/storages/tree/main/packages#grammy-storages) untuk mempermudah pengintegrasian tersebut.
+Mereka semua menggunakan _adapter_ yang sama yang digunakan oleh [_plugin session_](./session#storage-adapter-yang-tersedia).
 
-Katakanlah kamu ingin menyimpan data ke sebuah file bernama `data-percakapan` ke dalam direktori di sebuah diska.
+Katakanlah kamu hendak menyimpan data terkait ke sebuah _file_ bernama `data-percakapan` ke dalam direktori di sebuah diska.
 Berarti, kamu memerlukan [`FileAdapter`](https://github.com/grammyjs/storages/tree/main/packages/file#installation).
 
 ::: code-group
@@ -838,9 +872,9 @@ bot.use(conversations({
 
 Selesai!
 
-Kamu bisa menggunakan semua jenis storage adapter asalkan ia dapat menyimpan data berupa [`VersionedState`](/ref/conversations/versionedstate) dari [`ConversationData`](/ref/conversations/conversationdata).
-Kedua jenis type tersebut bisa di-import dari plugin percakapan.
-Dengan kata lain, jika kamu ingin menempatkan storage tersebut ke sebuah variable, kamu bisa melakukannya menggunakan type berikut:
+Semua jenis _storage adapter_ bisa digunakan asalkan ia mampu menyimpan data berupa [`VersionedState`](/ref/conversations/versionedstate) dari [`ConversationData`](/ref/conversations/conversationdata).
+Kedua _type_ tersebut dapat di-_import_ dari _plugin_ percakapan secara langsung.
+Dengan kata lain, jika kamu ingin menempatkan _storage_ tersebut ke sebuah _variable_, kamu bisa melakukannya menggunakan _type_ berikut:
 
 ```ts
 const storage = new FileAdapter<VersionedState<ConversationData>>({
@@ -848,7 +882,7 @@ const storage = new FileAdapter<VersionedState<ConversationData>>({
 });
 ```
 
-Secara umum, type yang sama juga bisa digunakan ke storage adapter lainnya.
+Secara umum, _type_ yang sama juga bisa diterapkan ke _storage adapter_ lainnya.
 
 ### Membuat Versi Data
 
@@ -1067,7 +1101,6 @@ Akibatnya, semua perubahan yang terjadi di data session akan hilang.
 
 Solusinya, kamu bisa menggunakan `conversation.external` untuk [mengakses object context luar](#object-context-khusus-untuk-percakapan).
 
-
 Instead, you can use `conversation.external` to get [access to the outside context object](#conversational-context-objects).
 
 ```ts
@@ -1143,7 +1176,7 @@ Dengan kata lain, menu yang berada di dalam percakapan tidak akan menangani upda
 
 ### Interoperabilitas Plugin Menu
 
-Ketika mendefinisikan sebuah menu di luar percakapan untuk digunakan di dalam percakapan, kamu 
+Ketika mendefinisikan sebuah menu di luar percakapan untuk digunakan di dalam percakapan, kamu
 bisa menggunakan menu percakapan untuk mengambil alih proses terkait selama percakapan tersebut aktif.
 Ketika percakapan selesai, menu luar tadi akan mengambil alih kembali prosesnya.
 
