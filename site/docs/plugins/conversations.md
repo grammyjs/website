@@ -898,9 +898,9 @@ bot.use(conversations());
 // Pass the outside and the inside context object.
 type MyConversation = Conversation<MyContext, MyConversationContext>;
 async function convo(conversation: MyConversation, ctx: MyConversationContext) {
-  // The hydrate plugin is installed on `ctx` here.
+  // The hydrate plugin is installed on the parameter `ctx` here.
   const other = await conversation.wait();
-  // The hydrate plugin is installed on `other` here, too.
+  // The hydrate plugin is installed on the variable `other` here, too.
 }
 bot.use(createConversation(convo, { plugins: [hydrate()] }));
 
