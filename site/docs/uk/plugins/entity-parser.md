@@ -137,7 +137,7 @@ const entitiesParser = new EntitiesParser({ renderer: new MyRenderer() });
 
 Якщо ви не впевнені, який інтерфейс правильний, зверніться до того, як реалізовано [Renderer](https://github.com/quadratz/telegram-entities-parser/blob/main/src/renderers/renderer.ts) або [RendererHtml](https://github.com/quadratz/telegram-entities-parser/blob/main/src/renderers/renderer_html.ts).
 
-### Налаштування санітайзера тексту
+### Редагування та очищення тексту
 
 Вихідний текст за замовчуванням очищується, щоб забезпечити правильне відображення HTML і запобігти XSS-вразливостям.
 
@@ -149,15 +149,15 @@ const entitiesParser = new EntitiesParser({ renderer: new MyRenderer() });
 | `"`            | `&quot;`              |
 | `'`            | `&#x27;`              |
 
-Наприклад, результат `<b>Жирний</b> & <i>Курсив</i>` буде очищено до `<b>Жирний</b> &amp; <i>Курсив</i>`.
+Наприклад, результат `<b>Жирний</b> & <i>Курсив</i>` буде перетворений в `<b>Жирний</b> &amp; <i>Курсив</i>`.
 
 Ви можете змінити цю поведінку, вказавши `textSanitizer` при створенні екземпляра [`EntitiesParser`](https://github.com/quadratz/telegram-entities-parser/blob/main/src/mod.ts):
 
-- Якщо ви не вкажете `textSanitizer`, буде використано [`sanitizerHtml`](https://github.com/quadratz/telegram-entities-parser/blob/main/src/utils/sanitizer_html.ts) як типовий санітайзер.
+- Якщо ви не вкажете `textSanitizer`, буде використано [`sanitizerHtml`](https://github.com/quadratz/telegram-entities-parser/blob/main/src/utils/sanitizer_html.ts) як типовий очищувач.
 - Якщо вказати значення `false`, очищення буде пропущено, а виведений текст буде збережено як оригінал.
   Це не рекомендується, оскільки може призвести до некоректного рендерингу і зробити вашу програму вразливою до XSS-атак.
   Якщо ви вибрали цю опцію, забезпечте належну обробку результату.
-- Якщо ви надасте функцію, вона буде використовуватися замість типового санітайзера.
+- Якщо ви надасте функцію, вона буде використовуватися замість типового очищувача.
 
 ```ts
 const myTextSanitizer: TextSanitizer = (options: TextSanitizerOption): string =>
@@ -179,7 +179,7 @@ const myTextSanitizer: TextSanitizer = (options: TextSanitizerOption): string =>
     }
   });
 
-// Застосовуємо санітайзер.
+// Застосовуємо очищувач.
 const entitiesParser = new EntitiesParser({ textSanitizer: myTextSanitizer });
 ```
 
@@ -218,8 +218,8 @@ bot.on(":text", async (ctx) => {
   // Відповідаємо за допомогою сутностей.
   await ctx.reply("жирний курсив", {
     entities: [
-      { offset: 0, length: 5, type: "bold" },
-      { offset: 5, length: 6, type: "italic" },
+      { offset: 0, length: 6, type: "bold" },
+      { offset: 7, length: 6, type: "italic" },
     ],
   });
 });
