@@ -257,26 +257,26 @@ await bot.api.setWebhook(endpoint);
 Из-за того, что этот подход работает, нам обычно нужен адаптер для каждого фреймворка, но, поскольку некоторые фреймворки имеют схожий интерфейс, существуют адаптеры, которые, как известно, работают с несколькими фреймворками.
 Ниже приведена таблица с доступными на данный момент адаптерами, а также фреймворками, API или режимами выполнения, с которыми они работают.
 
-| Адаптер            | Фреймворк/API/Среда выполнения                                                 |
-| ------------------ | ------------------------------------------------------------------------------ |
-| `aws-lambda`       | AWS Lambda Functions                                                           |
-| `aws-lambda-async` | AWS Lambda Functions с `async`/`await`                                         |
-| `azure`            | Azure Functions                                                                |
-| `bun`              | `Bun.serve`                                                                    |
-| `cloudflare`       | Cloudflare Workers                                                             |
-| `cloudflare-mod`   | Cloudflare Module Workers                                                      |
-| `express`          | Express, Google Cloud Functions                                                |
-| `fastify`          | Fastify                                                                        |
-| `hono`             | Hono                                                                           |
-| `http`, `https`    | Node.js `http`/`https` modules, Vercel                                         |
-| `koa`              | Koa                                                                            |
-| `next-js`          | Next.js                                                                        |
-| `nhttp`            | NHttp                                                                          |
-| `oak`              | Oak                                                                            |
-| `serveHttp`        | `Deno.serveHttp`                                                               |
-| `std/http`         | `Deno.serve`, `std/http`, `Deno.upgradeHttp`, `Fresh`, `Ultra`, `Rutt`, `Sift` |
-| `sveltekit`        | SvelteKit                                                                      |
-| `worktop`          | Worktop                                                                        |
+| Адаптер            | Фреймворк/API/Среда выполнения                                                                      |
+| ------------------ | --------------------------------------------------------------------------------------------------- |
+| `aws-lambda`       | AWS Lambda Functions                                                                                |
+| `aws-lambda-async` | AWS Lambda Functions с `async`/`await`                                                              |
+| `azure`            | Azure Functions                                                                                     |
+| `bun`              | `Bun.serve`                                                                                         |
+| `cloudflare`       | Cloudflare Workers                                                                                  |
+| `cloudflare-mod`   | Cloudflare Module Workers                                                                           |
+| `express`          | Express, Google Cloud Functions                                                                     |
+| `fastify`          | Fastify                                                                                             |
+| `hono`             | Hono                                                                                                |
+| `http`, `https`    | Node.js `http`/`https` modules, Vercel Serverless                                                   |
+| `koa`              | Koa                                                                                                 |
+| `next-js`          | Next.js                                                                                             |
+| `nhttp`            | NHttp                                                                                               |
+| `oak`              | Oak                                                                                                 |
+| `serveHttp`        | `Deno.serveHttp`                                                                                    |
+| `std/http`         | `Deno.serve`, `std/http`, `Deno.upgradeHttp`, `Fresh`, `Ultra`, `Rutt`, `Sift`, Vercel Edge Runtime |
+| `sveltekit`        | SvelteKit                                                                                           |
+| `worktop`          | Worktop                                                                                             |
 
 ### Ответ вебхука
 
