@@ -492,15 +492,15 @@ bot
   .filter(commandNotFound(myCommands))
   // If so, that means it wasn't handled by any of our commands.
   .use(async (ctx) => {
-    // We found a potential match
     if (ctx.commandSuggestion) {
+      // We found a potential match
       await ctx.reply(
         `Hmm... I don't know that command. Did you mean ${ctx.commandSuggestion}?`,
       );
+    } else {
+      // Nothing seems to come close to what the user typed
+      await ctx.reply("Oops... I don't know that command :/");
     }
-
-    // Nothing seems to come close to what the user typed
-    await ctx.reply("Oops... I don't know that command :/");
   });
 ```
 
@@ -516,15 +516,15 @@ bot
   .filter(commandNotFound(myCommands))
   // If so, that means it wasn't handled by any of our commands.
   .use(async (ctx) => {
-    // We found a potential match
     if (ctx.commandSuggestion) {
+      // We found a potential match
       await ctx.reply(
         `Hmm... I don't know that command. Did you mean ${ctx.commandSuggestion}?`,
       );
+    } else {
+      // Nothing seems to come close to what the user typed
+      await ctx.reply("Oops... I don't know that command :/");
     }
-
-    // Nothing seems to come close to what the user typed
-    await ctx.reply("Oops... I don't know that command :/");
   });
 ```
 
