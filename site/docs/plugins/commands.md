@@ -494,13 +494,12 @@ bot
   .use(async (ctx) => {
     if (ctx.commandSuggestion) {
       // We found a potential match
-      await ctx.reply(
+      return ctx.reply(
         `Hmm... I don't know that command. Did you mean ${ctx.commandSuggestion}?`,
       );
-    } else {
-      // Nothing seems to come close to what the user typed
-      await ctx.reply("Oops... I don't know that command :/");
     }
+    // Nothing seems to come close to what the user typed
+    return ctx.reply("Oops... I don't know that command :/");
   });
 ```
 
@@ -518,13 +517,12 @@ bot
   .use(async (ctx) => {
     if (ctx.commandSuggestion) {
       // We found a potential match
-      await ctx.reply(
+      return ctx.reply(
         `Hmm... I don't know that command. Did you mean ${ctx.commandSuggestion}?`,
       );
-    } else {
-      // Nothing seems to come close to what the user typed
-      await ctx.reply("Oops... I don't know that command :/");
     }
+    // Nothing seems to come close to what the user typed
+    return ctx.reply("Oops... I don't know that command :/");
   });
 ```
 
