@@ -511,13 +511,13 @@ bot
   .filter(commandNotFound(myCommands))
   // Jika mengandung perintah, berarti ia tidak ditangani oleh penangan perintah sebelumnya.
   .use(async (ctx) => {
-    // Sarankan perintah yang mirip.
     if (ctx.commandSuggestion) {
+      // Sarankan perintah yang mirip.
       await ctx.reply(
         `Maaf, saya tidak tahu perintah tersebut. Apakah maksud Anda ${ctx.commandSuggestion}?`,
       );
+      return;
     }
-
     // Perintah yang mirip tidak ditemukan.
     await ctx.reply("Maaf, saya tidak tahu perintah tersebut.");
   });
@@ -534,13 +534,13 @@ bot
   .filter(commandNotFound(myCommands))
   // Jika mengandung perintah, berarti ia tidak ditangani oleh penangan perintah sebelumnya.
   .use(async (ctx) => {
-    // Sarankan perintah yang mirip.
     if (ctx.commandSuggestion) {
+      // Sarankan perintah yang mirip.
       await ctx.reply(
         `Maaf, saya tidak tahu perintah tersebut. Apakah maksud Anda ${ctx.commandSuggestion}?`,
       );
+      return;
     }
-
     // Perintah yang mirip tidak ditemukan.
     await ctx.reply("Maaf, saya tidak tahu perintah tersebut.");
   });
