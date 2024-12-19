@@ -258,26 +258,26 @@ await bot.api.setWebhook(endpoint);
 由于这种方法的工作方式，我们通常需要为每个框架配备一个适配器，但是，由于某些框架共享相似的接口，因此已知适配器可以与多个框架一起工作。
 下表包含当前可用的适配器，以及它们已知可使用的框架、API 或运行时。
 
-| 适配器             | 框架/API/运行时                                                                |
-| ------------------ | ------------------------------------------------------------------------------ |
-| `aws-lambda`       | AWS Lambda Functions                                                           |
-| `aws-lambda-async` | AWS Lambda Functions with `async`/`await`                                      |
-| `azure`            | Azure Functions                                                                |
-| `bun`              | `Bun.serve`                                                                    |
-| `cloudflare`       | Cloudflare Workers (Service Worker)                                            |
-| `cloudflare-mod`   | Cloudflare Workers (Module Worker)                                             |
-| `express`          | Express, Google Cloud Functions                                                |
-| `fastify`          | Fastify                                                                        |
-| `hono`             | Hono                                                                           |
-| `http`, `https`    | Node.js `http`/`https` modules, Vercel                                         |
-| `koa`              | Koa                                                                            |
-| `next-js`          | Next.js                                                                        |
-| `nhttp`            | NHttp                                                                          |
-| `oak`              | Oak                                                                            |
-| `serveHttp`        | `Deno.serveHttp`                                                               |
-| `std/http`         | `Deno.serve`, `std/http`, `Deno.upgradeHttp`, `Fresh`, `Ultra`, `Rutt`, `Sift` |
-| `sveltekit`        | SvelteKit                                                                      |
-| `worktop`          | Worktop                                                                        |
+| 适配器             | 框架/API/运行时                                                                                     |
+| ------------------ | --------------------------------------------------------------------------------------------------- |
+| `aws-lambda`       | AWS Lambda Functions                                                                                |
+| `aws-lambda-async` | AWS Lambda Functions with `async`/`await`                                                           |
+| `azure`            | Azure Functions                                                                                     |
+| `bun`              | `Bun.serve`                                                                                         |
+| `cloudflare`       | Cloudflare Workers                                                                                  |
+| `cloudflare-mod`   | Cloudflare Module Workers                                                                           |
+| `express`          | Express, Google Cloud Functions                                                                     |
+| `fastify`          | Fastify                                                                                             |
+| `hono`             | Hono                                                                                                |
+| `http`, `https`    | Node.js `http`/`https` modules, Vercel Serverless                                                   |
+| `koa`              | Koa                                                                                                 |
+| `next-js`          | Next.js                                                                                             |
+| `nhttp`            | NHttp                                                                                               |
+| `oak`              | Oak                                                                                                 |
+| `serveHttp`        | `Deno.serveHttp`                                                                                    |
+| `std/http`         | `Deno.serve`, `std/http`, `Deno.upgradeHttp`, `Fresh`, `Ultra`, `Rutt`, `Sift`, Vercel Edge Runtime |
+| `sveltekit`        | SvelteKit                                                                                           |
+| `worktop`          | Worktop                                                                                             |
 
 ### Webhook Reply
 
