@@ -246,7 +246,7 @@ const endpoint = ""; // <-- put your URL here
 await bot.api.setWebhook(endpoint);
 ```
 
-Finally, sure to read [Marvin's Marvellous Guide to All Things Webhook](https://core.telegram.org/bots/webhooks) written by the Telegram team if you consider [running your bot on webhooks on a VPS](../hosting/vps#running-the-bot-on-webhooks).
+Finally, make sure to read [Marvin's Marvellous Guide to All Things Webhook](https://core.telegram.org/bots/webhooks) written by the Telegram team if you consider [running your bot on webhooks on a VPS](../hosting/vps#running-the-bot-on-webhooks).
 
 ### Web Framework Adapters
 
