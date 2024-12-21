@@ -3,16 +3,16 @@ prev: false
 next: false
 ---
 
-# Беседы (`conversations`)
+# Диалоги (`conversations`)
 
 Создавайте мощные интерфейсы для общения с легкостью.
 
 ## Быстрый старт
 
-Беседы позволяют вашему боту ожидать сообщения.
+Диалоги позволяют вашему боту ожидать сообщения.
 Используйте этот плагин, если общение с вашим ботом состоит из нескольких шагов.
 
-> Беседы уникальны, поскольку вводят новую концепцию, которую вы не найдете в других местах.  
+> Диалоги уникальны, поскольку вводят новую концепцию, которую вы не найдете в других местах.
 > Они предлагают изящное решение, но вам придется немного разобраться в их работе, чтобы понять, что именно делает ваш код.
 
 Вот быстрый старт, чтобы вы могли поэкспериментировать с плагином, прежде чем перейти к интересным деталям.
@@ -102,8 +102,8 @@ bot.start();
 
 :::
 
-Когда вы входите в указанную беседу `hello`, бот отправляет сообщение, затем ожидает текстовое сообщение от пользователя, а потом отправляет ещё одно сообщение.  
-После этого беседа завершается.
+Когда вы входите в указанный диалог `hello`, бот отправляет сообщение, затем ожидает текстовое сообщение от пользователя, а потом отправляет ещё одно сообщение.
+После этого диалог завершается.
 
 Теперь перейдём к интересным деталям.
 
@@ -119,7 +119,7 @@ bot.on("message", async (ctx) => {
 
 В обычных обработчиках сообщений у вас всегда есть только один объект контекста.
 
-Сравните это с беседами.
+Сравните это с диалогами.
 
 ```ts
 async function hello(conversation: Conversation, ctx0: Context) {
@@ -129,26 +129,26 @@ async function hello(conversation: Conversation, ctx0: Context) {
 }
 ```
 
-В беседе вы можете использовать три объекта контекста!
+В диалоге вы можете использовать три объекта контекста!
 
-Как и обычные обработчики, плагин для бесед получает только один объект контекста из [системы middleware](../guide/middleware).  
-Но внезапно он предоставляет вам сразу три объекта контекста.  
+Как и обычные обработчики, плагин для диалогов получает только один объект контекста из [системы middleware](../guide/middleware).
+Но внезапно он предоставляет вам сразу три объекта контекста.
 Как это возможно?
 
-**Функции постройки диалога не выполняются как обычные функции**.  
+**Функции постройки диалога не выполняются как обычные функции**.
 (Хотя мы можем писать код для них их именно так.)
 
-### Беседы --- это механизмы воспроизведения
+### Диалоги --- это механизмы воспроизведения
 
-Функции постройки диалогов не выполняются как обычные функции.  
+Функции постройки диалогов не выполняются как обычные функции.
 
-Когда начинается диалог, функция будет выполнена только до первого вызова `wait`.  
-Далее выполнение функции прерывается, и она больше не выполняется.  
+Когда начинается диалог, функция будет выполнена только до первого вызова `wait`.
+Далее выполнение функции прерывается, и она больше не выполняется.
 Плагин запоминает, что был достигнут вызов `wait`, и сохраняет эту информацию.
 
-Когда поступает следующее обновление, беседа снова выполняется с самого начала.  
-Однако на этот раз никакие вызовы API не выполняются, из-за чего код выполняется очень быстро и не оказывает никакого эффекта.  
-Это называется **воспроизведением**.  
+Когда поступает следующее обновление, диалог снова выполняется с самого начала.
+Однако на этот раз никакие вызовы API не выполняются, из-за чего код выполняется очень быстро и не оказывает никакого эффекта.
+Это называется **воспроизведением**.
 Как только выполнение достигает ранее вызванного `wait`, выполнение функции возобновляется в нормальном режиме.
 
 ::: code-group
@@ -194,14 +194,14 @@ async function hello( //                      .
 
 :::
 
-1. Когда начинается беседа, функция выполняется до точки `A`.
+1. Когда начинается диалог, функция выполняется до точки `A`.
 2. Когда поступает следующее обновление, функция воспроизводится до `A`, а затем выполняется в нормальном режиме от `A` до `B`.
 3. Когда поступает последнее обновление, функция воспроизводится до `B`, а затем выполняется в нормальном режиме до конца.
 
-Это означает, что каждая строка кода будет выполнена несколько раз --- один раз в обычном режиме и несколько раз во время воспроизведения.  
+Это означает, что каждая строка кода будет выполнена несколько раз --- один раз в обычном режиме и несколько раз во время воспроизведения.
 Поэтому вам нужно убедиться, что ваш код ведёт себя одинаково как при обычном выполнении, так и при воспроизведении.
 
-Если вы выполняете вызовы API через `ctx.api` (включая `ctx.reply`), плагин обрабатывает их автоматически.  
+Если вы выполняете вызовы API через `ctx.api` (включая `ctx.reply`), плагин обрабатывает их автоматически.
 В то же время ваша работа с базой данных требует специальной обработки.
 
 Вот как это делается.
@@ -266,7 +266,7 @@ await conversation.log("абв");
 1. Плагин диалогов сохраняет все обновления.
 2. Плагин диалогов сохраняет все возвращаемые значения `conversation.external` и результаты всех API вызовов.
 
-Это не проблема, если в диалоге только несколько десятков обновлений.  
+Это не проблема, если в диалоге только несколько десятков обновлений.
 (Помните, что при long polling каждый вызов `getUpdates` также возвращает до 100 обновлений.)
 
 Однако, если ваш диалог никогда не заканчивается, эти данные будут накапливаться и замедлять вашего бота.
@@ -275,7 +275,7 @@ await conversation.log("абв");
 ### Объекты контекста диалогов
 
 Когда выполняется диалог, он использует сохранённые обновления для создания новых объектов контекста с нуля.
-**Эти объекты контекста отличаются от объекта контекста в окружающем middleware.**  
+**Эти объекты контекста отличаются от объекта контекста в окружающем middleware.**
 Для TypeScript это также означает, что теперь у вас есть два [расширителя](../guide/context#расширители-контекста) объектов контекста.
 
 - **Внешние объекты контекста** --- это объекты контекста, которые ваш бот использует в middleware.
@@ -286,7 +286,7 @@ await conversation.log("абв");
   Они никогда не могут иметь доступ к `ctx.conversation.enter`, и по умолчанию также не имеют доступа к каким-либо плагинам.
   Если вы хотите иметь пользовательские свойства на внутренних объектах контекста, [пролистайте вниз](#использование-плагинов-внутри-диалогов).
 
-Вы должны передать как внешний, так и внутренний тип контекста в диалоге.  
+Вы должны передать как внешний, так и внутренний тип контекста в диалоге.
 Настройка TypeScript обычно выглядит следующим образом:
 
 ::: code-group
@@ -361,42 +361,42 @@ async function example(
 
 :::
 
-> В приведённом выше примере в диалоге не установлено никаких плагинов.  
+> В приведённом выше примере в диалоге не установлено никаких плагинов.
 > Как только вы начнёте [устанавливать их](#использование-плагинов-внутри-диалогов), определение `MyConversationContext` больше не будет просто типом `Context`.
 
 Естественно, если у вас несколько диалогов, и вы хотите, чтобы типы контекста отличались между ними, вы можете определить несколько типов контекста диалога.
 
-Поздравляю!  
-Если вы поняли всё вышесказанное, самые сложные части остались позади.  
+Поздравляем!
+Если вы поняли всё вышесказанное, самые сложные части остались позади.
 Остальная часть страницы посвящена множеству возможностей, которые предоставляет этот плагин.
 
-## Entering Conversations
+## Вход в диалоги
 
-Conversations can be entered from a normal handler.
+Вы можете начать диалог из обычного обработчика.
 
-By default, a conversation has the same name as the [name](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name) of the function.
-Optionally, you can rename it when installing it on your bot.
+По умолчанию диалог имеет то же имя, что и [name](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name) функции.
+При установке вы можете переименовать его, если это необходимо.
 
-Optionally, you can pass arguments to the conversation.
-Note that the arguments will be stored as a JSON string, so you need to make sure they can be safely passed to `JSON.stringify`.
+Также вы можете передавать аргументы в диалог.
+Обратите внимание, что аргументы будут сохранены в виде строки JSON, поэтому убедитесь, что их можно безопасно передать в `JSON.stringify`.
 
-Conversations can also be entered from within other conversations by doing a normal JavaScript function call.
-In that case, they get access to a potential return value of the called conversation.
-This isn't available when you enter a conversation from inside middleware.
+Диалоги также могут быть вызваны изнутри других диалогов с помощью обычного вызова функции.
+В таком случае вызывающий диалог получит доступ к возвращаемому значению вызванного диалога.
+Эта возможность недоступна, если вы начинаете разговор из middleware.
 
 :::code-group
 
 ```ts [TypeScript]
 /**
- * Returns the answer to life, the universe, and everything.
- * This value is only accessible when the conversation
- * is called from another conversation.
+ * Возвращает ответ на вопрос о смысле жизни, Вселенной и всего остального.
+ * Это значение доступно только в случае, если разговор
+ * вызывается из другого диалога.
  */
 async function convo(conversation: Conversation, ctx: Context) {
-  await ctx.reply("Computing answer");
+  await ctx.reply("Вычисляем ответ");
   return 42;
 }
-/** Accepts two arguments (must be JSON-serializable) */
+/** Принимает два аргумента (должны быть сериализуемы в JSON) */
 async function args(
   conversation: Conversation,
   ctx: Context,
@@ -421,15 +421,15 @@ bot.command("enter_with_arguments", async (ctx) => {
 
 ```js [JavaScript]
 /**
- * Returns the answer to life, the universe, and everything.
- * This value is only accessible when the conversation
- * is called from another conversation.
+ * Возвращает ответ на вопрос о смысле жизни, Вселенной и всего остального.
+ * Это значение доступно только в случае, если разговор
+ * вызывается из другого разговора.
  */
 async function convo(conversation, ctx) {
-  await ctx.reply("Computing answer");
+  await ctx.reply("Вычисляем ответ");
   return 42;
 }
-/** Accepts two arguments (must be JSON-serializable) */
+/** Принимает два аргумента (должны быть сериализуемы в JSON) */
 async function args(conversation, ctx, answer, config) {
   const truth = await convo(conversation, ctx);
   if (answer === truth) {
@@ -449,66 +449,66 @@ bot.command("enter_with_arguments", async (ctx) => {
 
 :::
 
-::: warning Missing Type Safety for Arguments
+::: warning Отсутствие проверки типов аргументов
 
-Double-check that you used the right type annotations for the parameters of your conversation, and that you passed matching arguments to it in your `enter` call.
-The plugin is not able to check any types beyond `conversation` and `ctx`.
+Убедитесь, что вы указали правильные аннотации типов для параметров вашего диалога, и что вы передали соответствующие аргументы в вызов `enter`.
+Плагин не может проверить типы, кроме `conversation` и `ctx`.
 
 :::
 
-Remember that [the order of your middleware matters](../guide/middleware).
-You can only enter conversations that have been installed prior to the handler that calls `enter`.
+Не забывайте, что [порядок middleware имеет значение](../guide/middleware).
+Вы можете войти только в те диалоги, которые были установлены до обработчика, вызывающего `enter`.
 
-## Waiting for Updates
+## Ожидание обновлений
 
-The most basic kind of wait call just waits for any update.
+Самый простой вызов ожидания просто ждет любого обновления.
 
 ```ts
 const ctx = await conversation.wait();
 ```
 
-It simply returns a context object.
-All other wait calls are based on this.
+Он просто возвращает объект контекста.
+Все остальные вызовы ожидания основаны на этом.
 
-### Filtered Wait Calls
+### Фильтрованные вызовы ожидания
 
-If you want to wait for a specific type of update, you can use a filtered wait call.
+Если нужно ожидать определенный тип обновления, используйте фильтрованный вызов ожидания.
 
 ```ts
-// Match a filter query like with `bot.on`.
+// Фильтр, как в `bot.on`.
 const message = await conversation.waitFor("message");
-// Wait for text like with `bot.hears`.
+// Ожидание текста, как в `bot.hears`.
 const hears = await conversation.waitForHears(/regex/);
-// Wait for commands like with `bot.command`.
+// Ожидание команды, как в `bot.command`.
 const start = await conversation.waitForCommand("start");
-// etc
+// и т.д.
 ```
 
-Take a look at the API reference to see [all the available ways to filter wait calls](/ref/conversations/conversation#wait).
+Посмотрите справочник API, чтобы увидеть [все доступные способы фильтрации вызовов ожидания](/ref/conversations/conversation#wait).
 
-Filtered wait calls are guaranteed to return only update that match the respective filter.
-If the bot receives an update that does not match, it will be dropped.
-You can pass a callback function that will be invoked in this case.
+Фильтрованные вызовы ожидания гарантированно возвращают только те обновления, которые соответствуют фильтру.
+Если бот получает обновление, не соответствующее фильтру, оно будет отклонено.
+Вы можете передать функцию обратного вызова, которая будет вызвана в этом случае.
 
 ```ts
 const message = await conversation.waitFor(":photo", {
-  otherwise: (ctx) => ctx.reply("Please send a photo!"),
+  otherwise: (ctx) => ctx.reply("Пожалуйста, отправьте фото!"),
 });
 ```
 
-All filtered wait calls can be chained to filter for several things at once.
+Все фильтрованные вызовы ожидания можно объединять в цепочки для фильтрации сразу нескольких условий.
 
 ```ts
-// Wait for a photo with a specific caption
+// Ожидание фото с определенной подписью
 let photoWithCaption = await conversation.waitFor(":photo")
   .andForHears("XY");
-// Handle each case with a different otherwise function:
+// Обработка каждого случая с разными функциями otherwise:
 photoWithCaption = await conversation
-  .waitFor(":photo", { otherwise: (ctx) => ctx.reply("No photo") })
-  .andForHears("XY", { otherwise: (ctx) => ctx.reply("Bad caption") });
+  .waitFor(":photo", { otherwise: (ctx) => ctx.reply("Нет фото") })
+  .andForHears("XY", { otherwise: (ctx) => ctx.reply("Неправильная подпись") });
 ```
 
-If you only specify `otherwise` in one of the chained wait calls, then it will only be invoked if that specific filter drops the update.
+Если указать `otherwise` только в одном из фильтров цепочки, то оно будет вызвано, только если этот конкретный фильтр отклонит обновление.
 
 ### Inspecting Context Objects
 
