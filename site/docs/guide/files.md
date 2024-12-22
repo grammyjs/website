@@ -181,12 +181,20 @@ new InputFile("/path/to/file");
 new InputFile(await Deno.open("/path/to/file"));
 ```
 
+```ts [Bun]
+// Send a local file.
+new InputFile("/path/to/file");
+
+// Send a `BunFile` instance.
+new InputFile(await Bun.file("/path/to/file").bytes());
+```
+
 :::
 
 #### Uploading Raw Binary Data
 
 You can also send a `Buffer` object, or an iterator that yields `Buffer` objects.
-On Deno, you can send `Blob` objects, too.
+On Deno and Bun you can send `Blob` objects, too.
 
 ::: code-group
 
@@ -204,6 +212,20 @@ new InputFile(function* () {
 ```ts [Deno]
 // Send a blob.
 const blob = new Blob(["ABC"], { type: "text/plain" });
+new InputFile(blob);
+// Send a buffer or a byte array.
+const buffer = Uint8Array.from([65, 66, 67]);
+new InputFile(buffer); // "ABC"
+// Send an iterable.
+new InputFile(function* () {
+  // "ABCABCABCABC"
+  for (let i = 0; i < 4; i++) yield buffer;
+});
+```
+
+```ts [Bun]
+// Send a blob.
+const blob = new Blob("ABC", { type: "text/plain" });
 new InputFile(blob);
 // Send a buffer or a byte array.
 const buffer = Uint8Array.from([65, 66, 67]);
