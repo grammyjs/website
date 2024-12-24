@@ -318,6 +318,18 @@ Si debes usar la opción (que por supuesto sigue siendo posible), debes saber lo
 Asegúrese de entender las consecuencias de esta configuración leyendo el artículo [este](../guide/deployment-types) y especialmente [este](../plugins/runner#procesamiento-secuencial-cuando-sea-necesario).
 :::
 
+También puedes especificar un prefijo si quieres añadir namespacing adicional a tus claves de sesión.
+Por ejemplo, así puedes almacenar datos de sesión por usuario pero con un prefijo llamado `user-`.
+
+```ts
+bot.use(session({
+  getSessionKey: (ctx) => ctx.from?.id,
+  prefix: "user-",
+}));
+```
+
+Para un usuario que tenga el identificador de usuario `424242`, la clave de sesión será ahora `user-424242`.
+
 ### Migraciones de chat
 
 Si está utilizando sesiones para grupos, debe tener en cuenta que Telegram migra grupos regulares a supergrupos en determinadas circunstancias (por ejemplo, [aquí](https://github.com/telegramdesktop/tdesktop/issues/5593)).
@@ -593,6 +605,7 @@ bot.use(
       storage: new MemorySessionStorage(),
       initial: () => undefined,
       getSessionKey: (ctx) => ctx.chat?.id.toString(),
+      prefix: "",
     },
     bar: {
       initial: () => ({ prop: 0 }),

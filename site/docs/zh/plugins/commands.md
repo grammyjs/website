@@ -493,13 +493,13 @@ bot
   .filter(commandNotFound(myCommands))
   // 如果有，则意味着我们的任何指令都没有处理它。
   .use(async (ctx) => {
-    // 我们找到了潜在的匹配对象
     if (ctx.commandSuggestion) {
+      // 我们找到了潜在的匹配对象
       await ctx.reply(
         `Hmm... I don't know that command. Did you mean ${ctx.commandSuggestion}?`,
       );
+      return;
     }
-
     // 似乎没有什么与用户输入的内容相近
     await ctx.reply("Oops... I don't know that command :/");
   });
@@ -517,13 +517,13 @@ bot
   .filter(commandNotFound(myCommands))
   // 如果有，则意味着我们的任何指令都没有处理它。
   .use(async (ctx) => {
-    // 我们找到了潜在的匹配对象
     if (ctx.commandSuggestion) {
+      // 我们找到了潜在的匹配对象
       await ctx.reply(
         `Hmm... I don't know that command. Did you mean ${ctx.commandSuggestion}?`,
       );
+      return;
     }
-
     // 似乎没有什么与用户输入的内容相近
     await ctx.reply("Oops... I don't know that command :/");
   });
