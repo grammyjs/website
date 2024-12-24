@@ -35,8 +35,8 @@ bot.use((ctx, next) => next());
 Вот пример трансформирующей функции, которая предотвращает все вызовы API:
 
 ```ts
-// Некорректно возвращают undefined вместо соответствующих типов объектов.
-bot.api.config.use((prev, method, payload) => undefined as any);
+// Некорректно возвращают `{ ok: true } as any` вместо соответствующих типов объектов.
+bot.api.config.use((prev, method, payload, signal) => ({ ok: true }) as any);
 ```
 
 Вы также можете установить трансформирующие функции в API-объект контекстного объекта.
