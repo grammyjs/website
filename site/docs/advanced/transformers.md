@@ -36,7 +36,7 @@ Here is an example of a transformer function that prevents all API calls from ha
 
 ```ts
 // Incorrectly return `{ ok: true } as any` instead of the respective object types.
-return { ok: true } as any
+bot.api.config.use((prev, method, payload, signal) => { ok: true } as any);
 ```
 
 You can also install transformer functions on the context object's API object.
