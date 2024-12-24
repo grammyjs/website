@@ -34,8 +34,8 @@ bot.use((ctx, next) => next());
 这是一个 transformer 函数从发生时阻止所有 API 调用的例子：
 
 ```ts
-// 错误的返回 undefined 而不是各自的对象类型。
-bot.api.config.use((prev, method, payload) => undefined as any);
+// 错误的返回 `{ ok: true } as any` 而不是各自的对象类型。
+bot.api.config.use((prev, method, payload, signal) => ({ ok: true } as any));
 ```
 
 你也可以在上下文对象的 API 对象中安装 transformer 函数。

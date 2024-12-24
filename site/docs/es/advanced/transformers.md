@@ -34,8 +34,8 @@ bot.use((ctx, next) => next());
 Aquí hay un ejemplo de una función transformadora que evita que se produzcan todas las llamadas a la API:
 
 ```ts
-// Devuelve incorrectamente undefined en lugar de los respectivos tipos de objetos.
-bot.api.config.use((prev, method, payload) => undefined as any);
+// Devuelve incorrectamente `{ ok: true } as any` en lugar de los respectivos tipos de objetos.
+bot.api.config.use((prev, method, payload, signal) => ({ ok: true } as any));
 ```
 
 También puedes instalar funciones transformadoras en el objeto API del objeto de contexto.
