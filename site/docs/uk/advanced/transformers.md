@@ -35,8 +35,8 @@ bot.use((ctx, next) => next());
 Ось приклад перетворювача, який запобігає всім викликам API:
 
 ```ts
-// Неправильно повертаємо `undefined` замість відповідних типів обʼєктів.
-bot.api.config.use((prev, method, payload) => undefined as any);
+// Неправильно повертаємо `{ ok: true } as any` замість відповідних типів обʼєктів.
+bot.api.config.use((prev, method, payload, signal) => ({ ok: true } as any));
 ```
 
 Ви також можете встановити перетворювачі на обʼєкті API обʼєкта контексту.
