@@ -88,12 +88,21 @@ export default webhookCallback(bot, "https");
 
 目前，我们没有完整的兼容插件列表，因此你需要自行测试。
 
-如果你想切换到 Edge Functions，请将此行添加到上面的代码片段中：
+如果你想切换到 Edge Functions，请使用下面的代码片段：
 
 ```ts
+import { Bot, webhookCallback } from "grammy";
+
+const token = process.env.BOT_TOKEN;
+if (!token) throw new Error("BOT_TOKEN is unset");
+
+const bot = new Bot(token);
+
 export const config = {
   runtime: "edge",
 };
+
+export default webhookCallback(bot, "std/http");
 ```
 
 :::
