@@ -231,6 +231,10 @@ const pluginThirdparty = {
       link: "/id/plugins/autoquote",
     },
     {
+      text: "Entity Parser",
+      link: "/id/plugins/entity-parser",
+    },
+    {
       text: "[Kirim PR-mu!]",
       link: "/id/plugins/#buat-plugin-mu-sendiri",
     },
