@@ -35,8 +35,8 @@ bot.use((ctx, next) => next());
 Here is an example of a transformer function that prevents all API calls from happening:
 
 ```ts
-// Incorrectly return undefined instead of the respective object types.
-bot.api.config.use((prev, method, payload) => undefined as any);
+// Incorrectly return `{ ok: true } as any` instead of the respective object types.
+return { ok: true } as any
 ```
 
 You can also install transformer functions on the context object's API object.
