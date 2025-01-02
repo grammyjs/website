@@ -235,6 +235,10 @@ const pluginThirdparty = {
       link: "/ru/plugins/autoquote",
     },
     {
+      text: "Парсер сущностей",
+      link: "/ru/plugins/entity-parser",
+    },
+    {
       text: "[Создайте свой PR!]",
       link: "/ru/plugins/#create-your-own-plugins",
     },
