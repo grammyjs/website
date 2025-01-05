@@ -208,7 +208,7 @@ async function hello( //                      .
 
 ### Золотое правило для диалогов
 
-Теперь, когда [мы знаем, как работают диалоги](#conversations-are-replay-engines), мы можем определить одно правило, которое относится к коду, написанному внутри функции построения диалога.
+Теперь, когда [мы знаем, как работают диалоги](#диалоги-----это-механизмы-воспроизведения), мы можем определить одно правило, которое относится к коду, написанному внутри функции построения диалога.
 Вы должны следовать ему, чтобы ваш код работал корректно.
 
 ::: warning ЗОЛОТОЕ ПРАВИЛО
@@ -238,7 +238,7 @@ const response = await conversation.external(() => accessDatabase());
 
 НЕ ИСПОЛЬЗУЙТЕ `conversation.external`, если вы...
 
-- вызываете `ctx.reply` или другие [действия контекста](../guide/context#доступные-действия),
+- вызываете `ctx.reply` или другие [действия контекста](../guide/context#доступные-деиствия),
 - вызываете `ctx.api.sendMessage` или другие методы [Bot API](https://core.telegram.org/bots/api) через `ctx.api`.
 
 Плагин диалогов предоставляет несколько удобных методов для `conversation.external`.
@@ -567,7 +567,7 @@ bot.command("clean", async (ctx) => {
 
 ### Переменные, ветвления и циклы
 
-Вы можете использовать обычные переменные для хранения состояния между обновлениями.  
+Вы можете использовать обычные переменные для хранения состояния между обновлениями.
 Ветвления с помощью `if` или `switch` также работают.
 Циклы через `for` и `while` применимы без ограничений.
 
@@ -882,7 +882,7 @@ bot.use(conversations({
 [Помните](#объекты-контекста-диалогов), что объекты контекста внутри диалогов независимы от объектов контекста в окружающем middleware.
 Это означает, что на них не будут установлены никакие плагины по умолчанию, даже если плагины установлены для вашего бота.
 
-К счастью, все плагины grammY, [кроме сессий](#accessing-sessions-inside-conversations), совместимы с диалогами.
+К счастью, все плагины grammY, [кроме сессий](#доступ-к-сессиям-внутри-диалогов), совместимы с диалогами.
 Например, вот как можно установить [плагин hydrate](./hydrate) для диалога.
 
 ::: code-group
@@ -937,7 +937,7 @@ bot.command("enter", async (ctx) => {
 
 В результате любая работа по очистке, выполняемая плагинами, завершается до запуска функции построения диалога.
 Все плагины, кроме сессий, работают с этим подходом корректно.
-Если вы хотите использовать сессии, [перейдите вниз](#accessing-sessions-inside-conversations).
+Если вы хотите использовать сессии, [перейдите вниз](#доступ-к-сессиям-внутри-диалогов).
 
 ### Плагины по умолчанию
 
@@ -1017,7 +1017,7 @@ await conversation.external((ctx) => {
 
 ## Conversational Menus
 
-You can define a menu with the [menu plugin](./menu) outside a conversation, and then pass it to the `plugins` array [like any other plugin](#using-plugins-inside-conversations).
+You can define a menu with the [menu plugin](./menu) outside a conversation, and then pass it to the `plugins` array [like any other plugin](#использование-плагинов-внутри-диалогов).
 
 However, this means that the menu does not have access to the conversation handle `conversation` in its button handlers.
 As a result, you cannot wait for updates from inside a menu.
@@ -1058,7 +1058,7 @@ Conversational menus stay active only as long as the conversation active.
 You should call `ctx.menu.close()` for all menus before exiting the conversation.
 
 If you want to prevent the conversation from exiting, you can simply use the following code snippet at the end of your conversation.
-However, [remember](#conversations-store-state) that is it a bad idea to let your conversation live forever.
+However, [remember](#диалоги-хранят-состояние) that is it a bad idea to let your conversation live forever.
 
 ```ts
 // Wait forever.
@@ -1085,7 +1085,7 @@ const menu = conversation.menu("my-menu");
 ```
 
 In order for this to work, you must ensure that both menus have the exact same structure when you transition the control in or out of the conversation.
-Otherwise, when a button is clicked, the menu will be [detected as outdated](./menu#outdated-menus-and-fingerprints), and the button handler will not be called.
+Otherwise, when a button is clicked, the menu will be [detected as outdated](./menu#устаревшие-меню-и-отпечатки), and the button handler will not be called.
 
 The structure is based on the following two things.
 
@@ -1149,7 +1149,7 @@ const oneHourInMilliseconds = 60 * 60 * 1000;
 await conversation.wait({ maxMilliseconds: oneHourInMilliseconds });
 ```
 
-When the wait call is reached, [`conversation.now()`](#the-golden-rule-of-conversations) is called.
+When the wait call is reached, [`conversation.now()`](#золотое-правило-для-диалогов) is called.
 
 As soon as the next update arrives, `conversation.now()` is called again.
 If the update took more than `maxMilliseconds` to arrive, the conversation is halted, and the update is returned to the middleware system.
@@ -1223,7 +1223,7 @@ conversation.waitForCommand("exit") // no await!
   .then(() => conversation.halt());
 ```
 
-As soon as the conversation [finishes in any way](#exiting-conversations), all pending wait calls will be discarded.
+As soon as the conversation [finishes in any way](#выход-из-диалогов), all pending wait calls will be discarded.
 For example, the following conversation will complete immediately after it was entered, without ever waiting for any updates.
 
 ::: code-group
@@ -1255,7 +1255,7 @@ Only if none of the pending wait calls accepts the update, the update will be dr
 
 ## Checkpoints and Going Back in Time
 
-The conversations plugin [tracks](#conversations-are-replay-engines) the execution of your conversations builder function.
+The conversations plugin [tracks](#диалоги-----это-механизмы-воспроизведения) the execution of your conversations builder function.
 
 This allows you to create a checkpoint along the way.
 A checkpoint contains information about how far the function has run so far.
@@ -1460,19 +1460,19 @@ Thus, all conversations will be restarted.
 There is no way to keep the current state of conversations when upgrading from 1.x to 2.x.
 
 You should just drop the respective data from your sessions.
-Consider using [session migrations](./session#migrations) for this.
+Consider using [session migrations](./session#миграции) for this.
 
-Persisting conversations data with version 2.x can be done as described [here](#persisting-conversations).
+Persisting conversations data with version 2.x can be done as described [here](#непрекращающиеся-диалоги).
 
 ### Type Changes Between 1.x and 2.x
 
 With 1.x, the context type inside a conversation was the same context type used in the surrounding middleware.
 
-With 2.x, you must now always declare two context types---[an outside context type and an inside context type](#conversational-context-objects).
+With 2.x, you must now always declare two context types---[an outside context type and an inside context type](#объекты-контекста-диалогов).
 These types can never be the same, and if they are, you have a bug in your code.
 This is because the outside context type must always have [`ConversationFlavor`](/ref/conversations/conversationflavor) installed, while the inside context type must never have it installed.
 
-In addition, you can now install an [independent set of plugins](#using-plugins-inside-conversations) for each conversation.
+In addition, you can now install an [independent set of plugins](#использование-плагинов-внутри-диалогов) for each conversation.
 
 ### Session Access Changes Between 1.x and 2.x
 
@@ -1500,7 +1500,7 @@ Conversations 1.x were barely compatible with any plugins.
 Some compatibility could be achieved by using `conversation.run`.
 
 This option was removed for 2.x.
-Instead, you can now pass plugins to the `plugins` array as described [here](#using-plugins-inside-conversations).
+Instead, you can now pass plugins to the `plugins` array as described [here](#использование-плагинов-внутри-диалогов).
 Sessions need [special treatment](#session-access-changes-between-1-x-and-2-x).
 Menus have improved compatibility since the introduction of [conversational menus](#conversational-menus).
 
