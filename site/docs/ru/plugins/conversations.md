@@ -258,7 +258,7 @@ await conversation.log("абв");
 
 Да.
 
-### Разговоры хранят состояние
+### Диалоги хранят состояние
 
 Два типа данных сохраняются в базе данных.
 По умолчанию используется лёгкая база данных в памяти на основе `Map`, но вы можете [использовать постоянную базу данных](#непрекращающиеся-диалоги) без труда.
@@ -282,7 +282,7 @@ await conversation.log("абв");
   Они предоставляют доступ к `ctx.conversation.enter`.
   Для TypeScript они, по крайней мере, будут содержать установленный `ConversationFlavor`.
   Внешние объекты контекста также будут иметь другие свойства, определённые плагинами, которые вы установили через `bot.use`.
-- **Внутренние объекты контекста** (также называемые **объектами контекста диалога**) — это объекты контекста, создаваемые плагином диалогов.
+- **Внутренние объекты контекста** (также называемые **объектами контекста диалога**) --- это объекты контекста, создаваемые плагином диалогов.
   Они никогда не могут иметь доступ к `ctx.conversation.enter`, и по умолчанию также не имеют доступа к каким-либо плагинам.
   Если вы хотите иметь пользовательские свойства на внутренних объектах контекста, [пролистайте вниз](#использование-плагинов-внутри-диалогов).
 
@@ -382,14 +382,14 @@ async function example(
 
 Диалоги также могут быть вызваны изнутри других диалогов с помощью обычного вызова функции.
 В таком случае вызывающий диалог получит доступ к возвращаемому значению вызванного диалога.
-Эта возможность недоступна, если вы начинаете разговор из middleware.
+Эта возможность недоступна, если вы начинаете диалог из middleware.
 
 :::code-group
 
 ```ts [TypeScript]
 /**
  * Возвращает ответ на вопрос о смысле жизни, Вселенной и всего остального.
- * Это значение доступно только в случае, если разговор
+ * Это значение доступно только в случае, если диалог
  * вызывается из другого диалога.
  */
 async function convo(conversation: Conversation, ctx: Context) {
@@ -422,8 +422,8 @@ bot.command("enter_with_arguments", async (ctx) => {
 ```js [JavaScript]
 /**
  * Возвращает ответ на вопрос о смысле жизни, Вселенной и всего остального.
- * Это значение доступно только в случае, если разговор
- * вызывается из другого разговора.
+ * Это значение доступно только в случае, если диалог
+ * вызывается из другого диалога.
  */
 async function convo(conversation, ctx) {
   await ctx.reply("Вычисляем ответ");
@@ -510,41 +510,41 @@ photoWithCaption = await conversation
 
 Если указать `otherwise` только в одном из фильтров цепочки, то оно будет вызвано, только если этот конкретный фильтр отклонит обновление.
 
-### Inspecting Context Objects
+### Осмотр объектов контекста
 
-It is very common to [destructure](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) the received context objects.
-You can then perform further checks on the received data.
+Часто возникает необходимость [деструктуризации](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) полученных объектов контекста.
+Это позволяет проводить дополнительные проверки данных.
 
 ```ts
 const { message } = await conversation.waitFor("message");
 if (message.photo) {
-  // Handle photo message
+  // Обработка сообщения с фото
 }
 ```
 
-Conversations are also an ideal place to use [has checks](../guide/context#probing-via-has-checks).
+Диалоги также идеально подходят для использования [проверок наличия данных](../guide/context#поиск-информации-с-помощью-проверок).
 
-## Exiting Conversations
+## Выход из диалогов
 
-The easiest way to exit a conversation is to return from it.
-Throwing an error also terminates the conversation.
+Самый простой способ выйти из диалога --- это выйти из функции с помощью `return`.
+Выброс ошибки также завершает диалог.
 
-If this is not enough, you can manually halt the conversation at any moment.
+Если этого недостаточно, можно вручную прервать диалог в любой момент.
 
 ```ts
 async function convo(conversation: Conversation, ctx: Context) {
-  // All branches exit the conversation:
+  // Все ветки кода завершают диалог:
   if (ctx.message?.text === "return") {
     return;
   } else if (ctx.message?.text === "error") {
-    throw new Error("boom");
+    throw new Error("бум");
   } else {
-    await conversation.halt(); // never returns
+    await conversation.halt(); // не возвращает управление
   }
 }
 ```
 
-You can also exit a conversation from your middleware.
+Вы также можете выйти из диалога из вашего middleware.
 
 ```ts
 bot.use(conversations());
@@ -553,26 +553,26 @@ bot.command("clean", async (ctx) => {
 });
 ```
 
-You can even do this _before_ the targeted conversation is installed on your middleware system.
-It is enough to have the conversations plugin itself installed.
+Можно сделать это даже _до_ того, как целевой диалог будет установлен в вашей системе middleware.
+Для этого достаточно установить плагин диалогов.
 
-## It's Just JavaScript
+## Это просто JavaScript
 
-With [side-effects out of the way](#the-golden-rule-of-conversations), conversations are just regular JavaScript functions.
-They might be executed in weird ways, but when developing a bot, you can usually forget this.
-All the regular JavaScript syntax just works.
+С учетом [устранения побочных эффектов](#золотое-правило-для-диалогов), диалоги представляют собой обычные функции JavaScript.
+Хотя их выполнение происходит особым образом, при разработке бота об этом можно забыть.
+Весь стандартный синтаксис JavaScript работает как обычно.
 
-Most the things in this section are obvious if you have used conversations for some time.
-However, if you are new, some of these things could surprise you.
+Большинство вещей в этом разделе очевидны для тех, кто уже использовал диалоги.
+Однако для новичков некоторые из них могут стать неожиданностью.
 
-### Variables, Branching, and Loops
+### Переменные, ветвления и циклы
 
-You can use normal variables to store state between updates.
-You can use branching with `if` or `switch`.
-Loops via `for` and `while` work, too.
+Вы можете использовать обычные переменные для хранения состояния между обновлениями.  
+Ветвления с помощью `if` или `switch` также работают.
+Циклы через `for` и `while` применимы без ограничений.
 
 ```ts
-await ctx.reply("Send me your favorite numbers, separated by commas!");
+await ctx.reply("Отправьте мне ваши любимые числа, разделенные запятыми!");
 const { message } = await conversation.waitFor("message:text");
 const numbers = message.text.split(",");
 let sum = 0;
@@ -582,31 +582,31 @@ for (const str of numbers) {
     sum += n;
   }
 }
-await ctx.reply("The sum of these numbers is: " + sum);
+await ctx.reply("Сумма этих чисел: " + sum);
 ```
 
-It's just JavaScript.
+Это всего лишь JavaScript.
 
-### Functions and Recursion
+### Функции и рекурсия
 
-You can split a conversation into multiple functions.
-They can call each other and even do recursion.
-(In fact, the plugin does not even know that you used functions.)
+Вы можете разделить диалог на несколько функций.
+Функции могут вызывать друг друга, а также использовать рекурсию.
+(На самом деле, плагин даже не замечает, что вы используете функции.)
 
-Here is the same code as above, refactored to functions.
+Вот тот же код, что и ранее, но переработанный с использованием функций.
 
 :::code-group
 
 ```ts [TypeScript]
-/** A conversation to add numbers */
+/** Диалог для сложения чисел */
 async function sumConvo(conversation: Conversation, ctx: Context) {
-  await ctx.reply("Send me your favorite numbers, separated by commas!");
+  await ctx.reply("Отправьте мне ваши любимые числа, разделенные запятыми!");
   const { message } = await conversation.waitFor("message:text");
   const numbers = message.text.split(",");
-  await ctx.reply("The sum of these numbers is: " + sumStrings(numbers));
+  await ctx.reply("Сумма этих чисел: " + sumStrings(numbers));
 }
 
-/** Converts all given strings to numbers and adds them up */
+/** Преобразует строки в числа и суммирует их */
 function sumStrings(numbers: string[]): number {
   let sum = 0;
   for (const str of numbers) {
@@ -620,15 +620,15 @@ function sumStrings(numbers: string[]): number {
 ```
 
 ```js [JavaScript]
-/** A conversation to add numbers */
+/** Диалог для сложения чисел */
 async function sumConvo(conversation, ctx) {
-  await ctx.reply("Send me your favorite numbers, separated by commas!");
+  await ctx.reply("Отправьте мне ваши любимые числа, разделенные запятыми!");
   const { message } = await conversation.waitFor("message:text");
   const numbers = message.text.split(",");
-  await ctx.reply("The sum of these numbers is: " + sumStrings(numbers));
+  await ctx.reply("Сумма этих чисел: " + sumStrings(numbers));
 }
 
-/** Converts all given strings to numbers and adds them up */
+/** Преобразует строки в числа и суммирует их */
 function sumStrings(numbers) {
   let sum = 0;
   for (const str of numbers) {
@@ -643,27 +643,27 @@ function sumStrings(numbers) {
 
 :::
 
-It's just JavaScript.
+Это всего лишь JavaScript.
 
-### Modules and Classes
+### Модули и классы
 
-JavaScript has higher-order functions, classes, and other ways of structuring your code into modules.
-Naturally, all of them can be turned into conversations.
+JavaScript поддерживает функции высшего порядка, классы и другие способы структурирования кода в модули.
+Естественно, все это может быть использовано в диалогах.
 
-Here is the above code once again, refactored to a module with simple dependency injection.
+Вот тот же код, преобразованный в модуль с простой реализацией через внедрение зависимостей.
 
 ::: code-group
 
 ```ts [TypeScript]
 /**
- * A module that can ask the user for numbers, and that
- * provides a way to add up numbers sent by the user.
+ * Модуль, который может запросить у пользователя числа
+ * и предоставляет способ их сложения.
  *
- * Requires a conversation handle to be injected.
+ * Требует объект диалога, переданный через внедрение зависимостей.
  */
 function sumModule(conversation: Conversation) {
-  /** Converts all given strings to numbers and adds them up */
-  function sumStrings(numbers) {
+  /** Преобразует строки в числа и суммирует их */
+  function sumStrings(numbers: string[]): number {
     let sum = 0;
     for (const str of numbers) {
       const n = parseInt(str.trim(), 10);
@@ -674,22 +674,22 @@ function sumModule(conversation: Conversation) {
     return sum;
   }
 
-  /** Asks the user for numbers */
+  /** Запрашивает числа у пользователя */
   async function askForNumbers(ctx: Context) {
-    await ctx.reply("Send me your favorite numbers, separated by commas!");
+    await ctx.reply("Отправьте мне ваши любимые числа, разделенные запятыми!");
   }
 
-  /** Waits for the user to send numbers, and replies with their sum */
+  /** Ждет, пока пользователь отправит числа, и отвечает их суммой */
   async function sumUserNumbers() {
     const ctx = await conversation.waitFor(":text");
     const sum = sumStrings(ctx.msg.text);
-    await ctx.reply("The sum of these numbers is: " + sum);
+    await ctx.reply("Сумма этих чисел: " + sum);
   }
 
   return { askForNumbers, sumUserNumbers };
 }
 
-/** A conversation to add numbers */
+/** Диалог для сложения чисел */
 async function sumConvo(conversation: Conversation, ctx: Context) {
   const mod = sumModule(conversation);
   await mod.askForNumbers(ctx);
@@ -699,13 +699,13 @@ async function sumConvo(conversation: Conversation, ctx: Context) {
 
 ```js [JavaScript]
 /**
- * A module that can ask the user for numbers, and that
- * provides a way to add up numbers sent by the user.
+ * Модуль, который может запросить у пользователя числа
+ * и предоставляет способ их сложения.
  *
- * Requires a conversation handle to be injected.
+ * Требует объект диалога, переданный через внедрение зависимостей.
  */
-function sumModule(conversation: Conversation) {
-  /** Converts all given strings to numbers and adds them up */
+function sumModule(conversation) {
+  /** Преобразует строки в числа и суммирует их */
   function sumStrings(numbers) {
     let sum = 0;
     for (const str of numbers) {
@@ -717,23 +717,23 @@ function sumModule(conversation: Conversation) {
     return sum;
   }
 
-  /** Asks the user for numbers */
-  async function askForNumbers(ctx: Context) {
-    await ctx.reply("Send me your favorite numbers, separated by commas!");
+  /** Запрашивает числа у пользователя */
+  async function askForNumbers(ctx) {
+    await ctx.reply("Отправьте мне ваши любимые числа, разделенные запятыми!");
   }
 
-  /** Waits for the user to send numbers, and replies with their sum */
+  /** Ждет, пока пользователь отправит числа, и отвечает их суммой */
   async function sumUserNumbers() {
     const ctx = await conversation.waitFor(":text");
     const sum = sumStrings(ctx.msg.text);
-    await ctx.reply("The sum of these numbers is: " + sum);
+    await ctx.reply("Сумма этих чисел: " + sum);
   }
 
   return { askForNumbers, sumUserNumbers };
 }
 
-/** A conversation to add numbers */
-async function sumConvo(conversation: Conversation, ctx: Context) {
+/** Диалог для сложения чисел */
+async function sumConvo(conversation, ctx) {
   const mod = sumModule(conversation);
   await mod.askForNumbers(ctx);
   await mod.sumUserNumbers();
@@ -742,23 +742,23 @@ async function sumConvo(conversation: Conversation, ctx: Context) {
 
 :::
 
-This is clearly overkill for such a simple task as adding up a few numbers.
-However, it illustrates a broader point.
+Это избыточно для простой задачи сложения чисел.
+Тем не менее, это демонстрирует важный момент.
 
-You guessed it:
-It's just JavaScript.
+Вы правы:
+Это всего лишь JavaScript.
 
 ## Непрекращающиеся диалоги
 
-By default, all data stored by the conversations plugin is kept in memory.
-This means that when your process dies, all conversations are exited and will have to be restarted.
+По умолчанию все данные, хранимые плагином диалогов, сохраняются в памяти.
+Это означает, что при завершении работы вашего процесса все активные диалоги завершатся и их потребуется перезапустить.
 
-If you want to persist the data across server restarts, you need to connect the conversations plugin to a database.
-We have built [a lot of different storage adapters](https://github.com/grammyjs/storages/tree/main/packages#grammy-storages) to make this simple.
-(They are the same adapters that the [session plugin uses](./session#known-storage-adapters).)
+Если вы хотите сохранять данные между перезапусками сервера, нужно подключить плагин диалогов к базе данных.
+Мы создали [множество различных адаптеров для хранения](https://github.com/grammyjs/storages/tree/main/packages#grammy-storages), чтобы упростить этот процесс.
+(Это те же адаптеры, которые использует [плагин сессий](./session#известные-адаптеры-хранения).)
 
-Let's say you want to store data on disk in a directory called `convo-data`.
-This means that you need the [`FileAdapter`](https://github.com/grammyjs/storages/tree/main/packages/file#installation).
+Предположим, вы хотите сохранять данные на диске в директории с именем `convo-data`.
+Для этого вам понадобится [`FileAdapter`](https://github.com/grammyjs/storages/tree/main/packages/file#installation).
 
 ::: code-group
 
@@ -780,11 +780,11 @@ bot.use(conversations({
 
 :::
 
-Done!
+Готово!
 
-You can use any storage adapter that is able to store data of type [`VersionedState`](/ref/conversations/versionedstate) of [`ConversationData`](/ref/conversations/conversationdata).
-Both types can be imported from the conversations plugin.
-In other words, if you want to extract the storage to a variable, you can use the following type annotation.
+Вы можете использовать любой адаптер для хранения данных, который способен сохранять данные типа [`VersionedState`](/ref/conversations/versionedstate) из [`ConversationData`](/ref/conversations/conversationdata).
+Оба типа можно импортировать из плагина conversations.
+Другими словами, если вы хотите вынести хранилище в переменную, можно использовать следующую аннотацию типа:
 
 ```ts
 const storage = new FileAdapter<VersionedState<ConversationData>>({
@@ -792,74 +792,74 @@ const storage = new FileAdapter<VersionedState<ConversationData>>({
 });
 ```
 
-Naturally, the same types can be used with any other storage adapter.
+Разумеется, те же типы можно использовать с любым другим адаптером для хранения.
 
-### Versioning Data
+### Версионирование данных
 
-If you persist the state of the conversation in a database and then update the source code, there is a mismatch between the stored data and the conversation builder function.
-This is a form of data corruption and will break the replay.
+Если вы сохраняете состояние диалога в базе данных, а затем обновляете исходный код, возникает несоответствие между сохранёнными данными и функцией построения диалога.
+Это приводит к повреждению данных и нарушает воспроизведение.
 
-You can prevent this by specifying a version of your code.
-Every time you change your conversation, you can increment the version.
-The conversations plugin will then detect a version mismatch and migrate all data automatically.
+Вы можете предотвратить это, указав версию вашего кода.
+Каждый раз, когда вы меняете диалог, увеличивайте версию.
+Плагин для работы с диалогами обнаружит несоответствие версий и автоматически выполнит миграцию всех данных.
 
 ```ts
 bot.use(conversations({
   storage: {
     type: "key",
-    version: 42, // can be number or string
+    version: 42, // может быть числом или строкой
     adapter: storageAdapter,
   },
 }));
 ```
 
-If you do not specify a version, it defaults to `0`.
+Если вы не укажете версию, она по умолчанию будет равна `0`.
 
-::: tip Forgot to Change the Version? Don't Worry!
+::: tip Забыли изменить версию? Не переживайте!
 
-The conversations plugin already has good protections in place that should catch most cases of data corruption.
-If this is detected, an error is thrown somewhere inside the conversation, which causes the conversation to crash.
-Assuming that you don't catch and suppress that error, the conversation will therefore wipe the bad data and restart correctly.
+Плагин для работы с диалогами уже имеет надёжные механизмы защиты, которые должны отловить большинство случаев повреждения данных.
+Если это будет обнаружено, внутри диалога будет выброшена ошибка, что приведёт к сбою работы диалога.
+При условии, что вы не перехватываете и не подавляете эту ошибку, диалог удалит повреждённые данные и перезапустится корректно.
 
-That being said, this protection does not cover 100 % of the cases, so you should definitely make sure to update the version number in the future.
+Тем не менее, эта защита не покрывает 100 % случаев, поэтому в будущем обязательно обновляйте номер версии.
 
 :::
 
-### Non-serializable Data
+### Несериализуемые данные
 
-[Remember](#conversations-store-state) that all data returned from [`conversation.external`](/ref/conversations/conversation#external) will be stored.
-This means that all data returned from `conversation.external` must be serializable.
+[Помните](#диалоги-хранят-состояние), что все данные, возвращённые из [`conversation.external`](/ref/conversations/conversation#external), будут сохранены.
+Это означает, что все данные, возвращаемые `conversation.external`, должны быть сериализуемыми.
 
-If you want to return data that cannot be serialized, such as classes or [`BigInt`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt), you can provide a custom serializer to fix this.
+Если вы хотите вернуть данные, которые не могут быть сериализованы, такие как классы или [`BigInt`](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/BigInt), вы можете предоставить пользовательский сериализатор для решения этой проблемы.
 
 ```ts
 const largeNumber = await conversation.external({
-  // Call an API that returns a BigInt (cannot be converted to JSON).
+  // Вызов API, который возвращает BigInt (не может быть преобразован в JSON).
   task: () => 1000n ** 1000n,
-  // Convert bigint to string for storage.
+  // Преобразование BigInt в строку для хранения.
   beforeStore: (n) => String(n),
-  // Convert string back to bigint for usage.
+  // Преобразование строки обратно в BigInt для использования.
   afterLoad: (str) => BigInt(str),
 });
 ```
 
-If you want to throw an error from the task, you can specify additional serialization functions for error objects.
-Check out [`ExternalOp`](/ref/conversations/externalop) in the API reference.
+Если вы хотите выбросить ошибку из задачи, вы можете указать дополнительные функции сериализации для объектов ошибок.
+Подробнее смотрите в разделе [`ExternalOp`](/ref/conversations/externalop) в документации API.
 
-### Storage Keys
+### Ключи для хранения данных
 
-By default, conversation data is stored per chat.
-This is identical to [how the session plugin works](./session#session-keys).
+По умолчанию данные диалогов хранятся для каждого чата отдельно.
+Это идентично тому, [как работает плагин сессий](./session#ключи-сессии).
 
-As a result, a conversation cannot handle updates from multiple chats.
-If this is desired, you can [define your own storage key function](/ref/conversations/conversationoptions#storage).
-As with sessions, it is [not recommended](./session#session-keys) to use this option in serverless environments due to potential race conditions.
+В результате диалог не может обрабатывать обновления из нескольких чатов одновременно.
+Если это необходимо, вы можете [определить собственную функцию для создания ключей хранения](/ref/conversations/conversationoptions#storage).
+Однако, как и в случае с сессиями, [не рекомендуется](./session#ключи-сессии) использовать эту опцию в serverless средах из-за возможных проблем с состояниями гонок.
 
-Also, just like with sessions, you can store your conversations data under a namespace using the `prefix` option.
-This is especially useful if you want to use the same storage adapter for both your session data and your conversations data.
-Storing the data in namespaces will prevent it from clashing.
+Также, как и в случае с сессиями, вы можете хранить данные диалогов под пространством имён, используя опцию `prefix`.
+Это особенно полезно, если вы хотите использовать один и тот же адаптер для хранения данных как для сессий, так и для диалогов.
+Хранение данных в разных пространствах имён предотвратит их конфликт.
 
-You can specify both options as follows.
+Обе опции можно указать следующим образом:
 
 ```ts
 bot.use(conversations({
@@ -872,40 +872,40 @@ bot.use(conversations({
 }));
 ```
 
-If a conversation is entered for a user with user identifier `424242`, the storage key will now be `convo-424242`.
+Если пользователь с идентификатором `424242` войдёт в диалог, ключ хранения теперь будет выглядеть как `convo-424242`.
 
-Check out the API reference for [`ConversationStorage`](/ref/conversations/conversationstorage) to see more details about storing data with the conversations plugin.
-Among other things, it will explain how to store data without a storage key function at all using `type: "context"`.
+Изучите документацию API для [`ConversationStorage`](/ref/conversations/conversationstorage), чтобы узнать больше о хранении данных с использованием плагина диалогов.
+В частности, там объясняется, как хранить данные без использования функции ключей хранения, с помощью параметра `type: "context"`.
 
 ## Использование плагинов внутри диалогов
 
-[Remember](#conversational-context-objects) that the context objects inside conversations are independent from the context objects in the surrounding middleware.
-This means that they will have no plugins installed on them by default---even if the plugins are installed on your bot.
+[Помните](#объекты-контекста-диалогов), что объекты контекста внутри диалогов независимы от объектов контекста в окружающем middleware.
+Это означает, что на них не будут установлены никакие плагины по умолчанию, даже если плагины установлены для вашего бота.
 
-Fortunately, all grammY plugins [except sessions](#accessing-sessions-inside-conversations) are compatible with conversations.
-For example, this is how you can install the [hydrate plugin](./hydrate) for a conversation.
+К счастью, все плагины grammY, [кроме сессий](#accessing-sessions-inside-conversations), совместимы с диалогами.
+Например, вот как можно установить [плагин hydrate](./hydrate) для диалога.
 
 ::: code-group
 
 ```ts [TypeScript]
-// Only install the conversations plugin outside.
+// Устанавливаем плагин для диалогов только снаружи.
 type MyContext = ConversationFlavor<Context>;
-// Only install the hydrate plugin inside.
+// Устанавливаем плагин hydrate только внутри.
 type MyConversationContext = HydrateFlavor<Context>;
 
 bot.use(conversations());
 
-// Pass the outside and the inside context object.
+// Передаём внешний и внутренний объект контекста.
 type MyConversation = Conversation<MyContext, MyConversationContext>;
 async function convo(conversation: MyConversation, ctx: MyConversationContext) {
-  // The hydrate plugin is installed on `ctx` here.
+  // Плагин hydrate установлен в`ctx` здесь.
   const other = await conversation.wait();
-  // The hydrate plugin is installed on `other` here, too.
+  // Плагин hydrate установлен и в `other` здесь.
 }
 bot.use(createConversation(convo, { plugins: [hydrate()] }));
 
 bot.command("enter", async (ctx) => {
-  // The hydrate plugin is NOT installed on `ctx` here.
+  // Плагин hydrate НЕ установлен в `ctx` здесь.
   await ctx.conversation.enter("convo");
 });
 ```
@@ -914,45 +914,44 @@ bot.command("enter", async (ctx) => {
 bot.use(conversations());
 
 async function convo(conversation, ctx) {
-  // The hydrate plugin is installed on `ctx` here.
+  // Плагин hydrate установлен в `ctx` здесь.
   const other = await conversation.wait();
-  // The hydrate plugin is installed on `other` here, too.
+  // Плагин hydrate установлен и в `other` здесь.
 }
 bot.use(createConversation(convo, { plugins: [hydrate()] }));
 
 bot.command("enter", async (ctx) => {
-  // The hydrate plugin is NOT installed on `ctx` here.
+  // Плагин hydrate НЕ установлен в `ctx` здесь.
   await ctx.conversation.enter("convo");
 });
 ```
 
 :::
 
-In regular [middleware](../guide/middleware), plugins get to run some code on the current context object, then call `next` to wait for downstream middleware, and then they get to run some code again.
+В обычных [middleware](../guide/middleware) плагины выполняют код для текущего объекта контекста, затем вызывают `next`, чтобы дождаться последующего middleware, а потом снова могут выполнить код.
 
-Conversations are not middleware, and plugins cannot interact with conversations in the same way as with middleware.
-When a [context object is created](#conversational-context-objects) by the conversation, it will be passed to the plugins which can process it normally.
-To the plugins, it will look like only the plugins are installed and no downstream handlers exist.
-After all plugins are done, the context object is made available to the conversation.
+Диалоги не являются middleware, и плагины не могут взаимодействовать с диалогами так же, как с middleware.
+Когда [объект контекста создаётся](#объекты-контекста-диалогов) внутри диалога, он передаётся плагинам, которые могут обрабатывать его как обычно.
+Для плагинов это выглядит так, будто установлены только плагины и отсутствуют последующие обработчики.
+После завершения работы всех плагинов объект контекста становится доступным для диалога.
 
-As a result, any cleanup work done by plugins is performed before the conversation builder function runs.
-All plugins except sessions work well with this.
-If you want to use sessions, [scroll down](#accessing-sessions-inside-conversations).
+В результате любая работа по очистке, выполняемая плагинами, завершается до запуска функции построения диалога.
+Все плагины, кроме сессий, работают с этим подходом корректно.
+Если вы хотите использовать сессии, [перейдите вниз](#accessing-sessions-inside-conversations).
 
-### Default Plugins
+### Плагины по умолчанию
 
-If you have a lot of conversations that all need the same set of plugins, you can define default plugins.
-Now, you no longer have to pass `hydrate` to `createConversation`.
+Если у вас есть множество диалогов, которые требуют одинакового набора плагинов, вы можете определить плагины по умолчанию.
+В этом случае больше не нужно передавать `hydrate` в `createConversation`.
 
 ::: code-group
 
 ```ts [TypeScript]
-// TypeScript needs some help with the two context types
-// so you often have to specify them to use plugins.
+// В TypeScript необходимо указать типы контекста для использования плагинов.
 bot.use(conversations<MyContext, MyConversationContext>({
   plugins: [hydrate()],
 }));
-// The following conversation will have hydrate installed.
+// Следующий диалог будет содержать установленный hydrate.
 bot.use(createConversation(convo));
 ```
 
@@ -960,19 +959,18 @@ bot.use(createConversation(convo));
 bot.use(conversations({
   plugins: [hydrate()],
 }));
-// The following conversation will have hydrate installed.
+// Следующий диалог будет содержать установленный hydrate.
 bot.use(createConversation(convo));
 ```
 
 :::
 
-Make sure to install the context flavors of all default plugins on the inside context types of all conversations.
+Убедитесь, что вы установили типы контекста для всех плагинов по умолчанию внутри всех диалогов.
 
-### Using Transformer Plugins Inside Conversations
+### Использование трансформирующих плагинов внутри диалогов
 
-If you install a plugin via `bot.api.config.use`, then you cannot pass it to the `plugins` array directly.
-Instead, you have to install it on the `Api` instance of each context object.
-This is done easily from inside a regular middleware plugin.
+Если вы устанавливаете плагин через `bot.api.config.use`, то вы не можете передать его напрямую в массив `plugins`.
+Вместо этого его нужно устанавливать для экземпляра `Api` каждого объекта контекста. Это легко сделать внутри обычного middleware-плагина.
 
 ```ts
 bot.use(createConversation(convo, {
@@ -983,41 +981,39 @@ bot.use(createConversation(convo, {
 }));
 ```
 
-Replace `transformer` by whichever plugin you want to install.
-You can install several transformers in the same call to `ctx.api.config.use`.
+Замените `transformer` на нужный плагин.
+Вы можете установить несколько трансформеров одним вызовом `ctx.api.config.use`.
 
-### Accessing Sessions Inside Conversations
+### Доступ к сессиям внутри диалогов
 
-Due to the way [how plugins work inside conversations](#using-plugins-inside-conversations), the [session plugin](./session) cannot be installed inside a conversation in the same way as other plugins.
-You cannot pass it to the `plugins` array because it would:
+Из-за [особенностей работы плагинов внутри диалогов](#использование-плагинов-внутри-диалогов) [плагин сессий](./session) не может быть установлен в диалоге так же, как другие плагины.
+Вы не можете передать его в массив `plugins`, так как это приведёт к следующему:
 
-1. read data,
-2. call `next` (which resolves immediately),
-3. write back the exact same data, and
-4. hand over the context to the conversation.
+1. Данные будут считаны.
+2. Вызовется `next` (который сразу завершится).
+3. Те же самые данные будут записаны обратно.
+4. Контекст будет передан в диалог.
 
-Note how the session gets saved before you change it.
-This means that all changes to the session data get lost.
+Обратите внимание, что сессия сохраняется до внесения изменений.
+Это означает, что все изменения данных сессии теряются.
 
-Instead, you can use `conversation.external` to get [access to the outside context object](#conversational-context-objects).
-It has the session plugin installed.
+Вместо этого вы можете использовать `conversation.external`, чтобы получить [доступ к внешнему объекту контекста](#объекты-контекста-диалогов), где установлен плагин сессий.
 
 ```ts
-// Read session data inside a conversation.
+// Чтение данных сессии внутри диалога.
 const session = await conversation.external((ctx) => ctx.session);
 
-// Change the session data inside a conversation.
+// Изменение данных сессии внутри диалога.
 session.count += 1;
 
-// Save session data inside a conversation.
+// Сохранение данных сессии внутри диалога.
 await conversation.external((ctx) => {
   ctx.session = session;
 });
 ```
 
-In a sense, using the session plugin can be seen as a way of performing side-effects.
-After all, sessions access a database.
-Given that we must follow [The Golden Rule](#the-golden-rule-of-conversations), it only makes sense that session access needs to be wrapped inside `conversation.external`.
+Использование плагина сессий можно рассматривать как способ выполнения побочных эффектов, так как сессии обращаются к базе данных.
+Следуя [Золотому правилу](#золотое-правило-для-диалогов), это нужно делать аккуратно и в строго определённой последовательности.y makes sense that session access needs to be wrapped inside `conversation.external`.
 
 ## Conversational Menus
 
