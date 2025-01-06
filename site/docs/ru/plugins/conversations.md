@@ -1015,119 +1015,121 @@ await conversation.external((ctx) => {
 Использование плагина сессий можно рассматривать как способ выполнения побочных эффектов, так как сессии обращаются к базе данных.
 Следуя [Золотому правилу](#золотое-правило-для-диалогов), это нужно делать аккуратно и в строго определённой последовательности.y makes sense that session access needs to be wrapped inside `conversation.external`.
 
-## Conversational Menus
+## Диалоговые Меню
 
-You can define a menu with the [menu plugin](./menu) outside a conversation, and then pass it to the `plugins` array [like any other plugin](#использование-плагинов-внутри-диалогов).
+Вы можете определить меню с помощью [плагина меню](./menu) за пределами диалога и затем передать его в массив `plugins` [как любой другой плагин](#использование-плагинов-внутри-диалогов).
 
-However, this means that the menu does not have access to the conversation handle `conversation` in its button handlers.
-As a result, you cannot wait for updates from inside a menu.
+Однако это означает, что меню не будет иметь доступ к обработчику `conversation` в своих обработчиках кнопок.
+Как результат, вы не сможете ожидать обновлений внутри меню.
 
-Ideally, when a button is clicked, it should be possible to wait for a message by the user, and then perform menu navigation when the user replies.
-This is made possible by `conversation.menu()`.
-It lets you define _conversational menus_.
+Идеально, если при нажатии на кнопку можно было бы дождаться сообщения от пользователя, а затем выполнить навигацию по меню в зависимости от ответа пользователя.
+Это возможно с помощью `conversation.menu()`, который позволяет создавать _диалоговые меню_.
 
 ```ts
 let email = "";
 
 const emailMenu = conversation.menu()
-  .text("Get current email", (ctx) => ctx.reply(email || "empty"))
-  .text(() => email ? "Change email" : "Set email", async (ctx) => {
-    await ctx.reply("What is your email?");
+  .text("Узнать текущий email", (ctx) => ctx.reply(email || "пусто"))
+  .text(() => email ? "Изменить email" : "Установить email", async (ctx) => {
+    await ctx.reply("Какой ваш email?");
     const response = await conversation.waitFor(":text");
     email = response.msg.text;
-    await ctx.reply(`Your email is ${email}!`);
+    await ctx.reply(`Ваш email: ${email}!`);
     ctx.menu.update();
   })
   .row()
-  .url("About", "https://grammy.dev");
+  .url("О проекте", "https://grammy.dev");
 
 const otherMenu = conversation.menu()
-  .submenu("Go to email menu", emailMenu, async (ctx) => {
-    await ctx.reply("Navigating");
+  .submenu("Перейти к меню email", emailMenu, async (ctx) => {
+    await ctx.reply("Переход...");
   });
 
-await ctx.reply("Here is your menu", {
+await ctx.reply("Вот ваше меню", {
   reply_markup: otherMenu,
 });
 ```
 
-`conversation.menu()` returns a menu that can be built up by adding buttons the same way the menu plugin does.
-If fact, if you look at [`ConversationMenuRange`](/ref/conversations/conversationmenurange) in the API reference, you will find it to be very similar to [`MenuRange`](/ref/menu/menurange) from the menu plugin.
+`conversation.menu()` возвращает меню, которое можно настраивать, добавляя кнопки так же, как в плагине меню.
+Фактически, если вы посмотрите на [`ConversationMenuRange`](/ref/conversations/conversationmenurange) в документации API, то увидите, что оно похоже на [`MenuRange`](/ref/menu/menurange) из плагина меню.
 
-Conversational menus stay active only as long as the conversation active.
-You should call `ctx.menu.close()` for all menus before exiting the conversation.
+Диалоговые меню остаются активными только пока активен диалог.  
+Вы должны вызывать `ctx.menu.close()` для всех меню перед выходом из диалога.
 
-If you want to prevent the conversation from exiting, you can simply use the following code snippet at the end of your conversation.
-However, [remember](#диалоги-хранят-состояние) that is it a bad idea to let your conversation live forever.
+Если вы хотите предотвратить завершение диалога, вы можете использовать следующий фрагмент кода в конце диалога.
+Однако [помните](#диалоги-хранят-состояние), что плохая идея заставлять диалог работать бесконечно.
 
 ```ts
-// Wait forever.
+// Ожидать бесконечно.
 await conversation.waitUntil(() => false, {
-  otherwise: (ctx) => ctx.reply("Please use the menu above!"),
+  otherwise: (ctx) => ctx.reply("Пожалуйста, используйте меню выше!"),
 });
 ```
 
-Finally, note that conversational menus are guaranteed to never interfere with outside menus.
-In other words, an outside menu will never handle the update of a menu inside a conversation, and vice-versa.
+Наконец, обратите внимание, что диалоговые меню гарантированно не будут мешать внешним меню.
+Другими словами, внешнее меню никогда не обработает обновление меню внутри диалога и наоборот.
 
-### Menu Plugin Interoperability
+### Совместимость с Плагином Меню
 
-When you define a menu outside a conversation and use it to enter a conversation, you can define a conversational menu that takes over as long as the conversation is active.
-When the conversation completes, the outside menu will take control again.
+Когда вы определяете меню за пределами диалога и используете его для входа в диалог, можно определить диалоговое меню, которое будет активно, пока идет диалог.
+Когда диалог завершится, управление снова перейдет внешнему меню.
 
-You first have to give the same menu identifier to both menus.
+Для этого необходимо задать одинаковый идентификатор меню для обоих случаев.
 
 ```ts
-// Outside conversation (menu plugin):
+// Вне диалога (плагин меню):
 const menu = new Menu("my-menu");
-// Inside conversation (conversations plugin):
+// Внутри диалога (плагин диалогов):
 const menu = conversation.menu("my-menu");
 ```
 
-In order for this to work, you must ensure that both menus have the exact same structure when you transition the control in or out of the conversation.
-Otherwise, when a button is clicked, the menu will be [detected as outdated](./menu#устаревшие-меню-и-отпечатки), and the button handler will not be called.
+Чтобы это работало, нужно убедиться, что оба меню имеют **одинаковую структуру** при передаче управления в диалог или обратно.
+Иначе при нажатии на кнопку меню будет [обнаружено как устаревшее](./menu#устаревшие-меню-и-отпечатки), и обработчик кнопки не будет вызван.
 
-The structure is based on the following two things.
+Структура меню определяется следующими характеристиками:
 
-- The shape of the menu (number of rows, or number of buttons in any row).
-- The label on the button.
+- Формой меню (число строк и кнопок в каждой строке).
+- Надписью на кнопке.
 
-It is usually advisable to first edit the menu to a shape that makes sense inside the conversation as soon as you enter the conversation.
-The conversation can then define a matching menu which will be active immediately.
+1. **Изменение формы меню при входе в диалог**:
+   Рекомендуется сразу редактировать меню так, чтобы оно имело смысл в контексте диалога.
+   Диалог тогда может использовать меню с подходящей структурой.
 
-Similarly, if the conversation leaves behind any menus (by not closing them), outside menus can take over control again.
-Again, the structure of the menus has to match.
+2. **Возврат управления внешнему меню**:
+   Если диалог оставляет меню (например, не закрывает его), управление снова может перейти внешнему меню.
+   Структура меню при этом должна совпадать.
 
-An example of this interoperability can be found in the [example bots repository](https://github.com/grammyjs/examples?tab=readme-ov-file#menus-with-conversation-menu-with-conversation).
+Пример этой совместимости можно найти в [репозитории ботов-примеров](https://github.com/grammyjs/examples?tab=readme-ov-file#menus-with-conversation-menu-with-conversation).
+Обратите внимание, что совместимость упрощает взаимодействие между меню, обеспечивая гладкую навигацию для пользователя.
 
 ## Conversational Forms
 
-Oftentimes, conversations are used to build forms in the chat interface.
+Часто диалоги используются для создания форм в интерфейсе чата.
 
-All wait calls return context objects.
-However, when you wait for a text message, you may only want to get the message text and not interact with the rest of the context object.
+Все вызовы wait возвращают объекты контекста.
+Однако, когда вы ждете текстовое сообщение, вам может понадобиться только текст сообщения, без взаимодействия с остальной частью объекта контекста.
 
-Conversation forms give you a way to combine update validation with extracting data from the context object.
-This resembles a field in a form.
-Consider the following exmaple.
+Диалоговые формы позволяют сочетать проверку обновлений с извлечением данных из объекта контекста.
+Это похоже на поле в форме.
+Рассмотрим следующий пример.
 
 ```ts
-await ctx.reply("Please send a photo for me to scale down!");
+await ctx.reply("Пожалуйста, отправьте фотографию, чтобы я уменьшил её!");
 const photo = await conversation.form.photo();
-await ctx.reply("What should be the new width of the photo?");
+await ctx.reply("Какой ширины должна быть фотография?");
 const width = await conversation.form.int();
-await ctx.reply("What should be the new height of the photo?");
+await ctx.reply("Какой высоты должна быть фотография?");
 const height = await conversation.form.int();
-await ctx.reply(`Scaling your photo to ${width}x${height} ...`);
+await ctx.reply(`Изменяю размер фотографии до ${width}x${height} ...`);
 const scaled = await scaleImage(photo, width, height);
 await ctx.replyWithPhoto(scaled);
 ```
 
-There are many more form fields available.
-Check out [`ConversationForm`](/ref/conversations/conversationform#methods) in the API reference.
+Существует гораздо больше полей для форм.
+Ознакомьтесь с [`ConversationForm`](/ref/conversations/conversationform#methods) в документации API.
 
-All form fields take an `otherwise` function that will run when a non-matching update is received.
-In addition, they all take an `action` function that will run when the form field has been filled correctly.
+Все поля форм принимают функцию otherwise, которая будет выполнена, если получено не подходящее обновление.
+Кроме того, они принимают функцию action, которая будет выполнена, если поле формы заполнено корректно.
 
 ```ts
 // Wait for a basic calculation operation.
@@ -1144,64 +1146,78 @@ Conversational forms even allow you to build custom form fields via [`conversati
 Every time you wait for an update, you can pass a timeout value.
 
 ```ts
-// Only wait for one hour before exiting the conversation.
+// Ожидание выбора базовой операции вычисления.
+const op = await conversation.form.select(["+", "-", "*", "/"], {
+  action: (ctx) => ctx.deleteMessage(),
+  otherwise: (ctx) => ctx.reply("Ожидается +, -, *, или /!"),
+});
+```
+
+Диалоговые формы также позволяют создавать пользовательские поля формы с помощью метода [`conversation.form.build`](/ref/conversations/conversationform#build).
+
+## Таймаут ожидания
+
+Каждый раз, когда вы ожидаете обновления, вы можете указать значение таймаута.
+
+```ts
+// Ожидание только в течение одного часа, затем выход из диалога.
 const oneHourInMilliseconds = 60 * 60 * 1000;
 await conversation.wait({ maxMilliseconds: oneHourInMilliseconds });
 ```
 
-When the wait call is reached, [`conversation.now()`](#золотое-правило-для-диалогов) is called.
+Когда вызывается метод ожидания, автоматически вызывается [`conversation.now()`](#золотое-правило-для-диалогов).
 
-As soon as the next update arrives, `conversation.now()` is called again.
-If the update took more than `maxMilliseconds` to arrive, the conversation is halted, and the update is returned to the middleware system.
-Any downstream middleware will be called.
+Как только поступает следующее обновление, `conversation.now()` вызывается снова.
+Если обновление заняло больше времени, чем указано в `maxMilliseconds`, диалог прекращается, а обновление передаётся обратно в систему middleware.
+Будут вызваны все downstream middleware.
 
-This will make it look like the conversation was not active anymore at the time the arrived.
+Это создаёт впечатление, что диалог больше не был активным в момент получения обновления.
 
-Note that this will not actually run any code after exactly the specified time.
-Instead, the code is only run as soon as the next update arrives.
+Обратите внимание, что код не будет выполнен точно через указанное время.
+Код выполняется только при поступлении следующего обновления.
 
-You can specify a default timeout value for all wait calls inside a conversation.
+Вы можете указать значение таймаута по умолчанию для всех вызовов ожидания внутри диалога.
 
 ```ts
-// Always wait for one hour only.
+// Всегда ожидать только один час.
 const oneHourInMilliseconds = 60 * 60 * 1000;
 bot.use(createConversation(convo, {
   maxMillisecondsToWait: oneHourInMilliseconds,
 }));
 ```
 
-Passing a value to a wait call directly will override this default.
+Передача значения непосредственно в вызов ожидания переопределяет значение по умолчанию.
 
-## Enter and Exit Events
+## События входа и выхода
 
-You can specify a callback function that is invoked whenever a conversation is entered.
-Similarly, you can specify a callback function that is invoked whenever a conversation is exited.
+Вы можете указать callback функцию, которая будет вызываться каждый раз, когда происходит вход в диалог.
+Аналогично, можно указать callback функцию, которая вызывается при выходе из диалога.
 
 ```ts
 bot.use(conversations({
   onEnter(id, ctx) {
-    // Entered conversation `id`.
+    // Вход в диалог с идентификатором `id`.
   },
   onExit(id, ctx) {
-    // Exited conversation `id`.
+    // Выход из диалога с идентификатором `id`.
   },
 }));
 ```
 
-Each callback receives two values.
-The first value is the identifier of the conversation that was entered or exited.
-The second value is the current context object of the surrounding middleware.
+Каждая callback функция получает два значения.
+Первое значение --- это идентификатор диалога, в который вошли или из которого вышли.
+Второе значение --- это текущий объект контекста окружающего middleware.
 
-Note that the callbacks are only called when a conversation is entered or exited via `ctx.conversation`.
-The `onExit` callback is also invoked when the conversation terminates itself via `conversation.halt` or when it [times out](#wait-timeouts).
+Обратите внимание, что функции обратного вызова вызываются только при входе или выходе из диалога с использованием `ctx.conversation`.
+Функция `onExit` также вызывается, когда диалог завершает себя с помощью `conversation.halt` или в случае [истечения времени ожидания](#таимаут-ожидания).
 
-## Concurrent Wait Calls
+## Одновременные вызовы ожидания
 
-You can use floating promises to wait for several things concurrently.
-When a new update arrives, only the first matching wait call will resolve.
+Вы можете использовать плавающие промисы для одновременного ожидания нескольких событий.
+Когда поступает новое обновление, разрешается только первый подходящий вызов ожидания.
 
 ```ts
-await ctx.reply("Send a photo and a caption!");
+await ctx.reply("Отправьте фото и подпись!");
 const [textContext, photoContext] = await Promise.all([
   conversation.waitFor(":text"),
   conversation.waitFor(":photo"),
@@ -1211,113 +1227,113 @@ await ctx.replyWithPhoto(photoContext.msg.photo.at(-1).file_id, {
 });
 ```
 
-In the above example, it does not matter if the user sends a photo or text first.
-Both promises will resolve in the order the user picks to send the two messages the code is waiting for.
-[`Promise.all`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all) works normally, it only resolves when all passed promises resolve.
+В приведённом примере не имеет значения, что пользователь отправит первым: фото или текст.
+Оба промиса будут выполнены в порядке, выбранном пользователем для отправки двух ожидаемых сообщений.
+[`Promise.all`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all) работает стандартным образом и разрешается только тогда, когда выполнены все переданные промисы.
 
-This can be used to wait for unrelated things, too.
-For example, here is how you install a global exit listener inside the conversation.
+Этот подход также можно использовать для ожидания несвязанных событий.
+Например, вот как установить глобальный обработчик выхода из диалога:
 
 ```ts
-conversation.waitForCommand("exit") // no await!
+conversation.waitForCommand("exit") // без await!
   .then(() => conversation.halt());
 ```
 
-As soon as the conversation [finishes in any way](#выход-из-диалогов), all pending wait calls will be discarded.
-For example, the following conversation will complete immediately after it was entered, without ever waiting for any updates.
+Как только диалог [завершается любым способом](#выход-из-диалогов), все ожидающие вызовы будут отброшены.
+Например, следующий диалог завершится сразу после входа, не ожидая никаких обновлений.
 
 ::: code-group
 
 ```ts [TypeScript]
 async function convo(conversation: Conversation, ctx: Context) {
-  const _promise = conversation.wait() // no await!
-    .then(() => ctx.reply("I will never be sent!"));
+  const _promise = conversation.wait() // без await!
+    .then(() => ctx.reply("Это сообщение никогда не будет отправлено!"));
 
-  // Conversation is done immediately after being entered.
+  // Диалог завершается сразу после входа.
 }
 ```
 
 ```js [JavaScript]
 async function convo(conversation, ctx) {
-  // Do not await this:
+  // Не используйте await:
   const _promise = conversation.wait()
-    .then(() => ctx.reply("I will never be sent!"));
+    .then(() => ctx.reply("Это сообщение никогда не будет отправлено!"));
 
-  // Conversation is done immediately after being entered.
+  // Диалог завершается сразу после входа.
 }
 ```
 
 :::
 
-Internally, when several wait calls are reached at the same time, the conversations plugin will keep track of a list of wait calls.
-As soon as the next update arrives, it will then replay the conversation builder function once for each encountered wait call until one of them accepts the update.
-Only if none of the pending wait calls accepts the update, the update will be dropped.
+Внутренне, когда одновременно достигается несколько вызовов ожидания, плагин для диалогов отслеживает список таких вызовов.
+Как только поступает следующее обновление, функция построения диалога выполняется заново для каждого вызова ожидания, пока один из них не примет обновление.
+Если ни один из ожидающих вызовов не принимает обновление, оно будет отброшено.
 
-## Checkpoints and Going Back in Time
+## Контрольные точки и возврат во времени
 
-The conversations plugin [tracks](#диалоги-----это-механизмы-воспроизведения) the execution of your conversations builder function.
+Плагин диалогов [отслеживает](#диалоги-это-механизмы-воспроизведения) выполнение функции построения диалога.
 
-This allows you to create a checkpoint along the way.
-A checkpoint contains information about how far the function has run so far.
-It can be used to later jump back to this point.
+Это позволяет создавать контрольные точки в процессе выполнения.
+Контрольная точка содержит информацию о том, насколько далеко выполнена функция на текущий момент.
+Она может быть использована для возврата к этой точке позже.
 
-Naturally, any actions performed in the meantime will not be undone.
-In particular, rewinding to a checkpoint will not magically unsend any messages.
+Естественно, любые действия, выполненные в промежутке, не будут отменены.
+В частности, возврат к контрольной точке не отменяет отправленные сообщения.
 
 ```ts
 const checkpoint = conversation.checkpoint();
 
-// Later:
+// Позже:
 if (ctx.hasCommand("reset")) {
-  await conversation.rewind(checkpoint); // never returns
+  await conversation.rewind(checkpoint); // никогда не возвращается
 }
 ```
 
-Checkpoints can be very useful to "go back."
-However, like JavaScript's `break` and `continue` with [labels](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/label), jumping around can make the code less readable.
-**Make sure not to overuse this feature.**
+Контрольные точки очень полезны для "возврата назад."
+Однако, как и использование `break` и `continue` с [метками](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/label) в JavaScript, перемещение по коду может снизить читаемость.
+**Не злоупотребляйте этой возможностью.**
 
-Internally, rewinding a conversation aborts execution like a wait call does, and then replays the function only until the point where the checkpoint was created.
-Rewinding a conversation does not literally execute functions in reverse, even though it feels like that.
+Внутренне, перемотка диалога завершает выполнение функции так же, как вызов ожидания, и затем воспроизводит её только до точки, где была создана контрольная точка.
+Перемотка не выполняет функции в обратном порядке, даже если это кажется таковым.
 
-## Parallel Conversations
+## Параллельные диалоги
 
-Conversations in unrelated chats are fully independent and can always run in parallel.
+Диалоги в разных чатах полностью независимы и всегда могут выполняться параллельно.
 
-However, by default, each chat can only have a single active conversation at all times.
-If you try to enter a conversation while a conversation is already active, the `enter` call will throw an error.
+Однако по умолчанию в каждом чате может быть только один активный диалог.
+Если вы попытаетесь начать новый диалог, пока уже активен другой, вызов `enter` вызовет ошибку.
 
-You can change this behavior by marking a conversation as parallel.
+Вы можете изменить это поведение, отметив диалог как параллельный.
 
 ```ts
 bot.use(createConversation(convo, { parallel: true }));
 ```
 
-This changes two things.
+Это влечёт за собой два изменения.
 
-Firstly, you can now enter this conversation even when the same or a different conversation is already active.
-For example, if you have the conversations `captcha` and `settings`, you can have `captcha` active five times and `settings` active twelve times---all in the same chat.
+Во-первых, теперь вы можете начинать этот диалог даже тогда, когда уже активен другой (тот же или другой).
+Например, если у вас есть диалоги `captcha` и `settings`, можно запустить `captcha` пять раз и `settings` двенадцать раз --- все в одном чате.
 
-Secondly, when a conversation does not accept an update, the update is no longer dropped by default.
-Instead, control is handed back to the middleware system.
+Во-вторых, если диалог не принимает обновление, оно больше не отбрасывается по умолчанию.
+Вместо этого управление передаётся обратно системе middleware.
 
-All installed conversations will get a chance to handle an incoming update until one of them accepts it.
-However, only a single conversation will be able to actually handle the update.
+Все установленные диалоги получают возможность обработать входящее обновление, пока один из них не примет его.
+Однако только один диалог сможет обработать обновление.
 
-When multiple different conversations are active at the same time, the middleware order will determine which conversation gets to handle the update first.
-When a single conversation is active multiple times, the oldest conversation (the one that was entered first) gets to handle the update first.
+Когда несколько разных диалогов активны одновременно, порядок middleware определяет, какой из них обработает обновление первым.
+Если один диалог активен несколько раз, первым его обработает самый старый экземпляр (тот, который был запущен раньше).
 
-This is best illustrated by an example.
+Это отлично проиллюстрировано на примере:
 
 ::: code-group
 
 ```ts [TypeScript]
 async function captcha(conversation: Conversation, ctx: Context) {
   const user = ctx.from!.id;
-  await ctx.reply("Welcome to the chat! What is the best bot framework?");
+  await ctx.reply("Добро пожаловать в чат! Какая лучшая библиотека для ботов?");
   const answer = await conversation.waitFor(":text").andFrom(user);
   if (answer.msg.text === "grammY") {
-    await ctx.reply("Correct! Your future is bright!");
+    await ctx.reply("Правильно! Ваше будущее светло!");
   } else {
     await ctx.banAuthor();
   }
@@ -1326,15 +1342,15 @@ async function captcha(conversation: Conversation, ctx: Context) {
 async function settings(conversation: Conversation, ctx: Context) {
   const user = ctx.from!.id;
   const main = conversation.checkpoint();
-  const options = ["Chat Settings", "About", "Privacy"];
-  await ctx.reply("Welcome to the settings!", {
+  const options = ["Настройки чата", "О нас", "Конфиденциальность"];
+  await ctx.reply("Добро пожаловать в настройки!", {
     reply_markup: Keyboard.from(options
       .map((btn) => [Keyboard.text(btn)])),
   });
   const option = await conversation.waitFor(":text")
     .andFrom(user)
     .and((ctx) => options.includes(ctx.msg.text), {
-      otherwise: (ctx) => ctx.reply("Please use the buttons!"),
+      otherwise: (ctx) => ctx.reply("Пожалуйста, используйте кнопки!"),
     });
   await openSettingsMenu(option, main);
 }
@@ -1346,10 +1362,10 @@ bot.use(createConversation(settings));
 ```js [JavaScript]
 async function captcha(conversation, ctx) {
   const user = ctx.from.id;
-  await ctx.reply("Welcome to the chat! What is the best bot framework?");
+  await ctx.reply("Добро пожаловать в чат! Какая лучшая библиотека для ботов?");
   const answer = await conversation.waitFor(":text").andFrom(user);
   if (answer.msg.text === "grammY") {
-    await ctx.reply("Correct! Your future is bright!");
+    await ctx.reply("Правильно! Ваше будущее светло!");
   } else {
     await ctx.banAuthor();
   }
@@ -1358,15 +1374,15 @@ async function captcha(conversation, ctx) {
 async function settings(conversation, ctx) {
   const user = ctx.from.id;
   const main = conversation.checkpoint();
-  const options = ["Chat Settings", "About", "Privacy"];
-  await ctx.reply("Welcome to the settings!", {
+  const options = ["Настройки чата", "О нас", "Конфиденциальность"];
+  await ctx.reply("Добро пожаловать в настройки!", {
     reply_markup: Keyboard.from(options
       .map((btn) => [Keyboard.text(btn)])),
   });
   const option = await conversation.waitFor(":text")
     .andFrom(user)
     .and((ctx) => options.includes(ctx.msg.text), {
-      otherwise: (ctx) => ctx.reply("Please use the buttons!"),
+      otherwise: (ctx) => ctx.reply("Пожалуйста, используйте кнопки!"),
     });
   await openSettingsMenu(option, main);
 }
@@ -1377,68 +1393,68 @@ bot.use(createConversation(settings));
 
 :::
 
-The above code works in group chats.
-It provides two conversations.
-The conversation `captcha` is used to make sure that only good developers join the chat (shameless grammY plug lol).
-The conversation `settings` is used to implement a settings menu in the group chat.
+Приведённый выше код работает в групповых чатах.
+Он предоставляет два вида диалогов.
+Диалог `captcha` используется, чтобы убедиться, что в чат присоединяются только хорошие разработчики (немного саморекламы grammY, лол).
+Диалог `settings` используется для реализации меню настроек в групповом чате.
 
-Note that all wait calls filter for a user identifier, among other things.
+Обратите внимание, что все вызовы `wait` фильтруют по идентификатору пользователя и другим параметрам.
 
-Let's assume that the following has already happened.
+Предположим, что произошли следующие действия:
 
-1. You called `ctx.conversation.enter("captcha")` to enter the conversation `captcha` while handling an update from a user with identifier `ctx.from.id === 42`.
-2. You called `ctx.conversation.enter("settings")` to enter the conversation `settings` while handling an update from a user with identifier `ctx.from.id === 3`.
-3. You called `ctx.conversation.enter("captcha")` to enter the conversation `captcha` while handling an update from a user with identifier `ctx.from.id === 43`.
+1. Вы вызвали `ctx.conversation.enter("captcha")`, чтобы войти в диалог `captcha`, обрабатывая обновление от пользователя с идентификатором `ctx.from.id === 42`.
+2. Вы вызвали `ctx.conversation.enter("settings")`, чтобы войти в диалог `settings`, обрабатывая обновление от пользователя с идентификатором `ctx.from.id === 3`.
+3. Вы вызвали `ctx.conversation.enter("captcha")`, чтобы войти в диалог `captcha`, обрабатывая обновление от пользователя с идентификатором `ctx.from.id === 43`.
 
-This means that three conversations are active in this group chat now---`captcha` is active twice and `settings` is active once.
+Таким образом, в этом групповом чате сейчас активно три диалога: `captcha` используется дважды, а `settings` один раз.
 
-> Note that `ctx.conversation` provides [various ways](/ref/conversations/conversationcontrols#exit) to exit specific conversations even with parallel conversations enabled.
+> Учтите, что `ctx.conversation` предоставляет [различные способы](/ref/conversations/conversationcontrols#exit) выхода из конкретных диалогов даже при включённых параллельных диалогах.
 
-Next, the following things happen in order.
+Далее происходят следующие события в порядке их очереди:
 
-1. User `3` sends a message containing the text `"About"`.
-2. An update with a text message arrives.
-3. The first instance of the conversation `captcha` is replayed.
-4. The `waitFor(":text")` text call accepts the update, but the added filter `andFrom(42)` rejects the update.
-5. The second instance of the conversation `captcha` is replayed.
-6. The `waitFor(":text")` text call accepts the update, but the added filter `andFrom(43)` rejects the update.
-7. All instances of `captcha` rejected the update, so control is handed back to the middleware system.
-8. The instance of the conversation `settings` is replayed.
-9. The wait call resolves and `option` will contain a context object for the text message update.
-10. The function `openSettingsMenu` is called.
-    It can send an about text to the user and rewind the conversation back to `main`, restarting the menu.
+1. Пользователь `3` отправляет сообщение с текстом `"О нас"`.
+2. Приходит обновление с текстовым сообщением.
+3. Первая активная сессия диалога `captcha` воспроизводится.
+4. Вызов `waitFor(":text")` принимает обновление, но дополнительный фильтр `andFrom(42)` отклоняет его.
+5. Вторая активная сессия диалога `captcha` воспроизводится.
+6. Вызов `waitFor(":text")` принимает обновление, но дополнительный фильтр `andFrom(43)` отклоняет его.
+7. Все активные сессии `captcha` отклонили обновление, поэтому управление возвращается в систему middleware.
+8. Воспроизводится активная сессия диалога `settings`.
+9. Вызов `wait` разрешается, и `option` получает объект контекста для обновления текстового сообщения.
+10. Вызывается функция `openSettingsMenu`.
+    Она может отправить пользователю текст о нас и перезапустить меню, возвращая его в состояние `main`.
 
-Note that even though two conversations were waiting for the the users `42` and `43` to complete their captcha, the bot correctly replied to user `3` who had started the settings menu.
-Filtered wait calls can determine which updates are relevant for the current conversation.
-Disregarded updates fall through and can be picked up by other conversations.
+Обратите внимание, что, несмотря на то, что два диалога ожидали завершения проверки CAPTCHA для пользователей `42` и `43`, бот корректно ответил пользователю `3`, который запустил меню настроек.
+Фильтруемые вызовы `wait` позволяют определить, какие обновления относятся к текущему диалогу.
+Игнорируемые обновления передаются дальше и могут быть обработаны другими диалогами.
 
-The above example uses a group chat to illustrate how conversations can handle multiple users in parallel in the same chat.
-In reality, parallel conversations work in all chats.
-This lets you wait for different things in a chat with a single user.
+Пример выше использует групповой чат для иллюстрации того, как диалоги могут обрабатывать нескольких пользователей параллельно в одном чате.
+В действительности параллельные диалоги работают во всех чатах.
+Это позволяет ожидать разные события в одном чате с единственным пользователем.
 
-You can combine parallel conversations with [wait timeouts](#wait-timeouts) to keep the number of active conversations low.
+Вы можете комбинировать параллельные диалоги с [таймаутами ожидания](#таймаут-ожидания), чтобы уменьшить количество активных диалогов.
 
-## Inspecting Active Conversations
+## Обзор активных диалогов
 
-Inside your middleware, you can inspect which conversation is active.
+Внутри вашего middleware вы можете проверить, какой диалог активен.
 
 ```ts
 bot.command("stats", (ctx) => {
   const convo = ctx.conversation.active("convo");
-  console.log(convo); // 0 or 1
+  console.log(convo); // 0 или 1
   const isActive = convo > 0;
-  console.log(isActive); // false or true
+  console.log(isActive); // false или true
 });
 ```
 
-When you pass a conversation identifier to `ctx.conversation.active`, it will return `1` if this conversation is active, and `0` otherwise.
+Если вы передадите идентификатор диалога в `ctx.conversation.active` --- он вернёт `1`, если этот диалог активен, и `0` в противном случае.
 
-If you enable [parallel conversations](#parallel-conversations) for the conversation, it will return the number of times that this conversation is currently active.
+Если вы включите [параллельные диалоги](#параллельные-диалоги) для диалога, он вернёт то количество диалогов, сколько их сейчас активно.
 
-Call `ctx.conversation.active()` without arguments to receive an object that contains the identifiers of all active conversations as keys.
-The respective values describe how many instances of each conversation are active.
+Вызовите `ctx.conversation.active()` без аргументов, чтобы получить объект, содержащий идентификаторы всех активных диалогов в виде ключей.
+Соответствующие значения показывают, сколько экземпляров каждого диалога активно.
 
-If the conversation `captcha` is active twice and the conversation `settings` is active once, `ctx.conversation.active()` will work as follows.
+Если диалог `captcha` активен дважды, а диалог `settings` активен один раз, `ctx.conversation.active()` будет работать следующим образом:
 
 ```ts
 bot.command("stats", (ctx) => {
@@ -1447,83 +1463,84 @@ bot.command("stats", (ctx) => {
 });
 ```
 
-## Migrating From 1.x to 2.x
+## Миграция с версии 1.x на 2.x
 
-Conversations 2.0 is a complete rewrite from scratch.
+Conversations 2.0 --- это полное переписывание библиотеки с нуля.
 
-Even though the basic concepts of the API surface remained the same, the two implementations are fundamentally different in how they operate under the hood.
-In a nutshell, migrating from 1.x to 2.x results in very little adjustments to your code, but it requires you to drop all stored data.
-Thus, all conversations will be restarted.
+Несмотря на то, что базовые концепции API остались прежними, две реализации кардинально отличаются в том, как они работают «под капотом».
+Вкратце, миграция с версии 1.x на 2.x требует минимальных изменений в вашем коде, но предполагает необходимость сброса всех сохранённых данных.
+Таким образом, все активные диалоги будут перезапущены.
 
-### Data Migration From 1.x to 2.x
+### Миграция данных с версии 1.x на 2.x
 
-There is no way to keep the current state of conversations when upgrading from 1.x to 2.x.
+При обновлении с версии 1.x на 2.x невозможно сохранить текущее состояние диалогов.
 
-You should just drop the respective data from your sessions.
-Consider using [session migrations](./session#миграции) for this.
+Вам нужно просто удалить соответствующие данные из ваших сессий.
+Рассмотрите возможность использования [миграций сессий](./session#миграции) для этого.
 
-Persisting conversations data with version 2.x can be done as described [here](#непрекращающиеся-диалоги).
+Сохранение данных диалогов в версии 2.x выполняется так, как описано [здесь](#непрекращающиеся-диалоги).
 
-### Type Changes Between 1.x and 2.x
+### Изменения типов между версиями 1.x и 2.x
 
-With 1.x, the context type inside a conversation was the same context type used in the surrounding middleware.
+В версии 1.x тип контекста внутри диалога совпадал с типом контекста, используемым в окружающем middleware.
 
-With 2.x, you must now always declare two context types---[an outside context type and an inside context type](#объекты-контекста-диалогов).
-These types can never be the same, and if they are, you have a bug in your code.
-This is because the outside context type must always have [`ConversationFlavor`](/ref/conversations/conversationflavor) installed, while the inside context type must never have it installed.
+В версии 2.x вы должны всегда объявлять два типа контекста --- [тип контекста снаружи и тип контекста внутри](#объекты-контекста-диалогов).
+Эти типы никогда не могут быть одинаковыми, и если они совпадают, это ошибка в вашем коде.
 
-In addition, you can now install an [independent set of plugins](#использование-плагинов-внутри-диалогов) for each conversation.
+Это связано с тем, что внешний тип контекста должен всегда включать [`ConversationFlavor`](/ref/conversations/conversationflavor), а внутренний тип контекста не должен его содержать.
 
-### Session Access Changes Between 1.x and 2.x
+Кроме того, теперь вы можете устанавливать [независимый набор плагинов](#использование-плагинов-внутри-диалогов) для каждого диалога.
 
-You can no longer use `conversation.session`.
-Instead, you must use `conversation.external` for this.
+### Изменения доступа к сессиям между версиями 1.x и 2.x
+
+Вы больше не можете использовать `conversation.session`.
+Теперь вы должны использовать `conversation.external` для работы с сессиями.
 
 ```ts
-// Read session data.
+// Чтение данных сессии.
 const session = await conversation.session; // [!code --]
 const session = await conversation.external((ctx) => ctx.session); // [!code ++]
 
-// Write session data.
+// Запись данных сессии.
 conversation.session = newSession; // [!code --]
 await conversation.external((ctx) => { // [!code ++]
   ctx.session = newSession; // [!code ++]
 }); // [!code ++]
 ```
 
-> Accessing `ctx.session` was possible with 1.x, but it was always incorrect.
-> `ctx.session` is no longer available with 2.x.
+> Доступ к `ctx.session` был возможен в версии 1.x, но всегда являлся некорректным.
+> В версии 2.x `ctx.session` больше недоступен.
 
-### Plugin Compatibility Changes Between 1.x and 2.x
+### Изменения совместимости с плагинами между версиями 1.x и 2.x
 
-Conversations 1.x were barely compatible with any plugins.
-Some compatibility could be achieved by using `conversation.run`.
+В версии 1.x диалоги имели низкую совместимость с плагинами.
+Некоторую совместимость можно было достичь с помощью `conversation.run`.
 
-This option was removed for 2.x.
-Instead, you can now pass plugins to the `plugins` array as described [here](#использование-плагинов-внутри-диалогов).
-Sessions need [special treatment](#session-access-changes-between-1-x-and-2-x).
-Menus have improved compatibility since the introduction of [conversational menus](#conversational-menus).
+Этот способ был удалён в версии 2.x.
+Теперь вы можете передавать плагины в массив `plugins`, как описано [здесь](#использование-плагинов-внутри-диалогов).
+Сессии требуют [особого подхода](#изменения-доступа-к-сессиям-между-версиями-1x-и-2x).
+Совместимость с меню улучшена благодаря внедрению [диалоговых меню](#диалоговые-меню).
 
-### Parallel Conversation Changes Between 1.x and 2.x
+### Изменения в параллельных диалогах между версиями 1.x и 2.x
 
-Parallel conversations work the same way with 1.x and 2.x.
+Параллельные диалоги работают одинаково в версиях 1.x и 2.x.
 
-However, this feature was a common source of confusion when used accidentally.
-With 2.x, you need to opt-in to the feature by specifying `{ parallel: true }` as described [here](#parallel-conversations).
+Однако эта функция часто вызывала путаницу, когда использовалась случайно.
+В версии 2.x необходимо явно включить эту функцию, указав `{ parallel: true }`, как описано [здесь](#параллельные-диалоги).
 
-The only breaking change to this feature is that updates no longer get passed back to the middleware system by default.
-Instead, this is only done when the conversation is marked as parallel.
+Единственное кардинальное изменение в этой функции --- обновления больше не передаются обратно в middleware систему по умолчанию.
+Это происходит только в случае, если диалог помечен как параллельный.
 
-Note that all wait methods and form fields provide an option `next` to override the default behavior.
-This option was renamed from `drop` in 1.x, and the semantics of the flag were flipped accordingly.
+Обратите внимание, что все методы ожидания и поля формы предоставляют опцию `next` для переопределения поведения по умолчанию.
+Эта опция была переименована из `drop` в версии 1.x, и семантика флага была изменена соответствующим образом.
 
-### Изменения форм между 1.x и 2.x
+### Изменения форм между версиями 1.x и 2.x
 
-Forms were really broken with 1.x.
-For example, `conversation.form.text()` returned text messages even for `edited_message` updates of old messages.
-Many of these oddities were corrected for 2.x.
+Формы в версии 1.x были неисправны.
+Например, `conversation.form.text()` возвращал текстовые сообщения даже для обновлений `edited_message` старых сообщений.
+Многие из этих проблем были исправлены в версии 2.x.
 
-Fixing bugs technically does not count as a breaking change, but it is still a substatial change in behavior.
+Технически исправление ошибок не считается кардинальным изменением, но это всё же значительное изменение в поведении.
 
 ## Краткая информация о плагине
 
