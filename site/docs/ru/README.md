@@ -99,8 +99,8 @@ bot.start();
 
 <div style="font-size: 0.75rem; display: flex; justify-content: center;">
 
-© 2021-2025 &middot; grammY поддерживает Telegram Bot API 8.1, который был [выпущен](https://core.telegram.org/bots/api#december-4-2024) 4-го Декабря 2024 года
-(Последнее изменение: Партнёрские программы)
+© 2021-2025 &middot; grammY поддерживает Telegram Bot API 8.2, который был [выпущен](https://core.telegram.org/bots/api#january-1-2025) 1-го Января 2025 года
+(Последнее изменение: Верифицикация пользователей и чатов)
 
 </div>
 </footer>
