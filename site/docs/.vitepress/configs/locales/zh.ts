@@ -235,6 +235,10 @@ const pluginThirdparty = {
       link: "/zh/plugins/autoquote",
     },
     {
+      text: "实体解析器 (Entity Parser)",
+      link: "/zh/plugins/entity-parser",
+    },
+    {
       text: "[提交你的 PR!]",
       link: "/zh/plugins/#创建你自己的插件",
     },
