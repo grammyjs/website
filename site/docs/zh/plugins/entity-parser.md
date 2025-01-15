@@ -48,7 +48,7 @@ npx jsr add @qz/telegram-entities-parser
 
 :::
 
-## 简单用法
+## 基本用法
 
 使用此插件非常简单。
 这是一个简单的示例：
@@ -108,7 +108,7 @@ const entitiesParser = new EntitiesParser({ renderer: new MyRenderer() });
 `options` 参数接受带有 `text` 和 `entity` 参数的对象。
 
 - `text`：当前实体引用的特定文本。
-- `entity`：这可能由各种接口表示，具体取决于实体类型，例如 `CommonEntity`、`CustomEmojiEntity`、`PreEntity`、`TextLinkEntity` 或 `TextMentionEntity`。
+- `entity`：根据实体类型以不同接口表示，例如 `CommonEntity`、`CustomEmojiEntity`、`PreEntity`、`TextLinkEntity` 或 `TextMentionEntity`。
   例如，`bold` 实体符合 `CommonEntity` 接口，而 `text_link` 实体则符合 `TextLinkEntity` 接口，因为它包含其他属性，例如 `url`。
 
 以下是接口的完整列表以及每种实体类型的输出：
@@ -179,11 +179,11 @@ const myTextSanitizer: TextSanitizer = (options: TextSanitizerOption): string =>
     }
   });
 
-// 实施转义。
+// 实施清理。
 const entitiesParser = new EntitiesParser({ textSanitizer: myTextSanitizer });
 ```
 
-### 最好不要使用这个包的情况
+## 最好不要使用这个包的情况
 
 如果您遇到的问题和下面列出的问题类似，您可能不需要使用这个包就能解决问题。
 
@@ -230,7 +230,7 @@ bot.on(":text", async (ctx) => {
 使用官方 [`parse-mode` (解析模式)](./parse-mode) 插件获得更好的格式化消息构建体验。
 :::
 
-### 插件概述
+## 插件概述
 
 - 名称: `entity-parser`
 - [包](https://jsr.io/@qz/telegram-entities-parser)
