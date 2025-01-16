@@ -53,7 +53,7 @@ const cache = createCache({ root: ".cache" });
 const dot = enc.encode(".");
 const docs = await doc(paths.map(([id]) => id), { load: cache.load });
 const refs: Array<Ref> = paths.map(
-  ([id, path, slug, name, description, shortdescription]) => {
+  ([id, path, slug, name, description, shortdescription]): Ref => {
     const nodes = docs[id];
     Deno.stdout.writeSync(dot);
     return [
@@ -63,7 +63,7 @@ const refs: Array<Ref> = paths.map(
       name,
       description,
       shortdescription,
-    ] as Ref;
+    ];
   },
 );
 Deno.stdout.writeSync(enc.encode("done\n"));
