@@ -103,7 +103,6 @@ function createDoc(
       slug.replaceAll("/", " / ")
     }</a> / ${node.name}</sup></div>`;
   let component: JSX.Element | null = null;
-  node.declarationKind;
   switch (node.kind) {
     case "class":
       component = <Class getLink={getLink} parent={classParent}>{node}</Class>;
