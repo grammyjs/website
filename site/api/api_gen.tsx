@@ -52,7 +52,7 @@ Deno.stdout.writeSync(
 const cache = createCache({ root: ".cache" });
 const dot = enc.encode(".");
 
-const refs: Array<Ref> = await Promise.all(paths.map(
+const refs = await Promise.all(paths.map(
   async (
     [id, path, slug, name, description, shortdescription],
   ): Promise<Ref> => {
