@@ -36,8 +36,8 @@ bot.use((ctx, next) => next());
 Berikut contoh function transformer yang mencegah semua pemanggilan API:
 
 ```ts
-// Mengembalikan undefined alih-alih type object yang bersangkutan.
-bot.api.config.use((prev, method, payload) => undefined as any);
+// Mengembalikan `{ ok: true } as any` alih-alih type object yang bersangkutan.
+bot.api.config.use((prev, method, payload, signal) => ({ ok: true } as any));
 ```
 
 Kamu juga bisa memasang function transformer di object API milik object context.

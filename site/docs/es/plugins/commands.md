@@ -496,13 +496,13 @@ bot
   .filter(commandNotFound(myCommands))
   // Si es así, significa que no fue manejado por ninguno de nuestros comandos.
   .use(async (ctx) => {
-    // Encontramos una coincidencia potencial
     if (ctx.commandSuggestion) {
+      // Encontramos una coincidencia potencial
       await ctx.reply(
         `Hmm... No conozco ese comando. ¿Te refieres a ${ctx.commandSuggestion}?`,
       );
+      return;
     }
-
     // Nada parece acercarse a lo que el usuario escribió
     await ctx.reply("Uy... No conozco ese comando :/");
   });
@@ -520,13 +520,13 @@ bot
   .filter(commandNotFound(myCommands))
   // Si es así, significa que no fue manejado por ninguno de nuestros comandos.
   .use(async (ctx) => {
-    // Encontramos una coincidencia potencial
     if (ctx.commandSuggestion) {
+      // Encontramos una coincidencia potencial
       await ctx.reply(
         `Hmm... No conozco ese comando. ¿Te refieres a ${ctx.commandSuggestion}?`,
       );
+      return;
     }
-
     // Nada parece acercarse a lo que el usuario escribió
     await ctx.reply("Uy... No conozco ese comando :/");
   });

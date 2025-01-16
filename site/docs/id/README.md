@@ -102,8 +102,8 @@ Berhasil! :tada:
 
 <div style="font-size: 0.75rem; display: flex; justify-content: center;">
 
-© 2021-2024 &middot; grammY mendukung API Bot Telegram versi 7.10 yang [dirilis](https://core.telegram.org/bots/api#october-31-2024) pada tanggal 31 Oktober 2024.
-(Fitur yang disorot: Tombol Salin Teks dan Penyiaran-pesan Berbayar)
+© 2021-2025 &middot; grammY mendukung API Bot Telegram versi 8.2 yang [dirilis](https://core.telegram.org/bots/api#january-1-2025) pada tanggal 1 Januari 2025.
+(Fitur yang disorot: Verifikasi Chat dan User)
 
 </div>
 </footer>
