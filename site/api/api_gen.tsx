@@ -51,10 +51,12 @@ Deno.stdout.writeSync(
 );
 const cache = createCache();
 const dot = enc.encode(".");
-const docs = await doc(paths.map(([id]) => id), { load: cache.load });
-const refs: Array<Ref> = paths.map(
-  ([id, path, slug, name, description, shortdescription]): Ref => {
-    const nodes = docs[id];
+
+const refs: Array<Ref> = await Promise.all(paths.map(
+  async (
+    [id, path, slug, name, description, shortdescription],
+  ): Promise<Ref> => {
+    const nodes = Object.values(await doc([id], { load: cache.load })).flat();
     Deno.stdout.writeSync(dot);
     return [
       nodes.sort((a, b) => a.name.localeCompare(b.name)),
@@ -65,7 +67,7 @@ const refs: Array<Ref> = paths.map(
       shortdescription,
     ];
   },
-);
+));
 Deno.stdout.writeSync(enc.encode("done\n"));
 
 function namespaceGetLink(
@@ -101,6 +103,7 @@ function createDoc(
       slug.replaceAll("/", " / ")
     }</a> / ${node.name}</sup></div>`;
   let component: JSX.Element | null = null;
+  node.declarationKind;
   switch (node.kind) {
     case "class":
       component = <Class getLink={getLink} parent={classParent}>{node}</Class>;
