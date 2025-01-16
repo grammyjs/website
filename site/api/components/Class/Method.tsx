@@ -3,7 +3,7 @@ import {
   DocNodeFunction,
   InterfaceMethodDef,
   JsDoc,
-} from "deno_doc/types.d.ts";
+} from "@deno/doc/types";
 import { Params, TsType, TypeParams_ } from "../TsType.tsx";
 import { LinkGetter } from "../types.ts";
 import { CodeBlock } from "../CodeBlock.tsx";
