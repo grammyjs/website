@@ -55,7 +55,8 @@ const refs: Array<Ref> = await Promise
   .all(
     paths.map(
       async ([id, path, slug, name, description, shortdescription]) => {
-        const nodes = Object.values(await doc([id], { load: cache.load })).flat();
+        const nodes = Object.values(await doc([id], { load: cache.load }))
+          .flat();
         Deno.stdout.writeSync(dot);
         return [
           nodes.sort((a, b) => a.name.localeCompare(b.name)),
