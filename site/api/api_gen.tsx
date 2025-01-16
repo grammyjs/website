@@ -52,7 +52,7 @@ Deno.stdout.writeSync(
 const cache = createCache();
 const dot = enc.encode(".");
 const docs = await doc(paths.map(([id]) => id), { load: cache.load });
-const refs: Array<Ref> = paths.map(
+const refs = paths.map(
   ([id, path, slug, name, description, shortdescription]): Ref => {
     const nodes = docs[id];
     Deno.stdout.writeSync(dot);
