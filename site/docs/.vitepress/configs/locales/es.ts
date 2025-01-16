@@ -235,6 +235,10 @@ const pluginThirdparty = {
       link: "/es/plugins/autoquote",
     },
     {
+      text: "Analizador de entidades",
+      link: "/es/plugins/entity-parser",
+    },
+    {
       text: "[¡Envíe su PR!]",
       link: "/es/plugins/#crear-tus-propios-plugins",
     },

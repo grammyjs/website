@@ -268,6 +268,10 @@ const pluginThirdparty = {
       link: "/plugins/autoquote",
     },
     {
+      text: "Entity Parser",
+      link: "/plugins/entity-parser",
+    },
+    {
       text: "[Submit your PR!]",
       link: "/plugins/#create-your-own-plugins",
     },
