@@ -49,7 +49,7 @@ const paths: [string, string, string, string, string, string][] = modules.map(
 Deno.stdout.writeSync(
   enc.encode(`Generating docs for ${paths.length} modules`),
 );
-const cache = createCache();
+const cache = createCache({ root: ".cache" });
 const dot = enc.encode(".");
 
 const refs: Array<Ref> = await Promise.all(paths.map(
