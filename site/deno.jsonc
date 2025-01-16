@@ -29,7 +29,6 @@
   },
   "exclude": [
     "node_modules",
-    "api/.cache",
     "docs/.vitepress/cache",
     "docs/.vitepress/.temp",
     "docs/.vitepress/dist",

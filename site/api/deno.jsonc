@@ -1,8 +1,7 @@
 {
   "lock": false,
   "tasks": {
-    "genapi": "deno -ENRW=.cache,../docs/ref api_gen.tsx ../docs/ref",
-    "reset": "rm -rf .cache"
+    "genapi": "deno -ENRW api_gen.tsx ../docs/ref"
   },
   "imports": {
     "@deno/cache-dir": "jsr:@deno/cache-dir@^0.16.0",
@@ -13,9 +12,6 @@
     "preact-render-to-string": "npm:preact-render-to-string@^6.5.13",
     "marked-smartypants": "npm:marked-smartypants@^1.1.9"
   },
-  "exclude": [
-    ".cache"
-  ],
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxImportSource": "preact"
