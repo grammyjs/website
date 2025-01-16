@@ -51,24 +51,21 @@ Deno.stdout.writeSync(
 );
 const cache = createCache({ root: ".cache" });
 const dot = enc.encode(".");
-const refs: Array<Ref> = await Promise
-  .all(
-    paths.map(
-      async ([id, path, slug, name, description, shortdescription]) => {
-        const nodes = Object.values(await doc([id], { load: cache.load }))
-          .flat();
-        Deno.stdout.writeSync(dot);
-        return [
-          nodes.sort((a, b) => a.name.localeCompare(b.name)),
-          path,
-          slug,
-          name,
-          description,
-          shortdescription,
-        ] as Ref;
-      },
-    ),
-  );
+const docs = await doc(paths.map(([id]) => id), { load: cache.load });
+const refs: Array<Ref> = paths.map(
+  ([id, path, slug, name, description, shortdescription]) => {
+    const nodes = docs[id];
+    Deno.stdout.writeSync(dot);
+    return [
+      nodes.sort((a, b) => a.name.localeCompare(b.name)),
+      path,
+      slug,
+      name,
+      description,
+      shortdescription,
+    ] as Ref;
+  },
+);
 Deno.stdout.writeSync(enc.encode("done\n"));
 
 function namespaceGetLink(
