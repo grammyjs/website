@@ -1,4 +1,4 @@
-import { TsTypeParamDef } from "deno_doc/types.d.ts";
+import { TsTypeParamDef } from "@deno/doc/types";
 import { LinkGetter } from "./types.ts";
 import { H4 } from "./H4.tsx";
 import { CodeBlock } from "./CodeBlock.tsx";

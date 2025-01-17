@@ -1,4 +1,4 @@
-import { TsTypeParamDef } from "deno_doc/types.d.ts";
+import { TsTypeParamDef } from "@deno/doc/types";
 import { LinkGetter } from "./types.ts";
 
 export function newGetLink(

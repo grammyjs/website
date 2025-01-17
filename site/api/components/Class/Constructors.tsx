@@ -1,4 +1,4 @@
-import { ClassConstructorDef } from "deno_doc/types.d.ts";
+import { ClassConstructorDef } from "@deno/doc/types";
 import { CodeBlock } from "../CodeBlock.tsx";
 import { Loc } from "../Loc.tsx";
 import { P } from "../P.tsx";

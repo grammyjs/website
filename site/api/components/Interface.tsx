@@ -1,4 +1,4 @@
-import { DocNodeInterface, DocNodeNamespace } from "deno_doc/types.d.ts";
+import { DocNodeInterface, DocNodeNamespace } from "@deno/doc/types";
 import { Properties } from "./Properties.tsx";
 import { H1 } from "./H1.tsx";
 import { P } from "./P.tsx";

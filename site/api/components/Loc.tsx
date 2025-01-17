@@ -1,4 +1,4 @@
-import { Location } from "deno_doc/types.d.ts";
+import { Location } from "@deno/doc/types";
 
 export function Loc(
   { children: { location } }: { children: { location: Location } },
