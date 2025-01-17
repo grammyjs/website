@@ -1,7 +1,7 @@
 import {
   InterfaceIndexSignatureDef,
   ParamIdentifierDef,
-} from "deno_doc/types.d.ts";
+} from "@deno/doc/types";
 import { PropertyName } from "./PropertyName.tsx";
 import { TsType } from "./TsType.tsx";
 import { LinkGetter } from "./types.ts";
