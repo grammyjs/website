@@ -5,17 +5,229 @@ next: false
 
 # Chat Members Plugin (`chat-members`)
 
-Automatically store information about users in a chat and retrieve it easily.
-Track group and channel members, and list them.
+This plugin makes it easy to work with `ChatMember` objects, by offering a convenient way to listen for changes in the form of custom filters, and by storing and updating the objects.
 
 ## Introduction
 
-In many situations, it is necessary for a bot to have information about all the users of a given chat.
-Currently, though, the Telegram Bot API exposes no method that allows us to retrieve this information.
+Working with `ChatMember` objects from the Telegram Bot API can sometimes be cumbersome, there are several different statuses that are often interchangeable in most applications, as well as a restricted status that can represent both members of the group and restricted users that are not in the group.
 
-This plugin comes to the rescue: automatically listening to `chat_member` events and storing all `ChatMember` objects.
+This plugin aims to simplify dealing with chat members, by offering fully typed filters for chat member updates.
 
 ## Usage
+
+### Chat member filters
+
+You can listen for two kinds of updates regarding chat members using a Telegram bot: `chat_member` and `my_chat_member`,
+both of them specify the old and new status of the user.
+
+- `my_chat_member` updates are received by your bot by default and they inform you about the status of the bot being updated in any chat, as well as users blocking the bot;
+- `chat_member` updates are only received if you specifically include them in the list of allowed updates, they notify about any status changes for users in chats **where your bot is admin**.
+
+Instead of manually filtering the old and new status, chat member filters do this automatically for you, allowing you to react to every type of transition you're interested in.
+Within the handler, types of `old_chat_member` and `new_chat_member` are updated accordingly.
+
+::: code-group
+
+```ts [TypeScript]
+import { API_CONSTANTS, Bot } from "grammy";
+import { chatMemberFilter, myChatMemberFilter } from "@grammyjs/chat-members";
+
+const bot = new Bot(process.env.BOT_TOKEN!);
+const groups = bot.chatType(["group", "supergroup"]);
+
+groups.filter(myChatMemberFilter("out", "regular"), async (ctx) => {
+  await ctx.reply("Hello, thank you for adding me to the group!");
+});
+
+groups.filter(myChatMemberFilter("out", "admin"), async (ctx) => {
+  await ctx.reply("Hello, thank you for adding me to the group as admin!");
+});
+
+groups.filter(myChatMemberFilter("regular", "admin"), async (ctx) => {
+  await ctx.reply("I was promoted to admin!");
+});
+
+groups.filter(myChatMemberFilter("admin", "regular"), async (ctx) => {
+  await ctx.reply("I am no longer admin");
+});
+
+groups.filter(chatMemberFilter("out", "in"), async (ctx) => {
+  const user = ctx.chatMember.new_chat_member.user;
+  await ctx.reply(`Welcome ${user.first_name} to the group!`);
+});
+
+bot.start({
+  // Make sure to specify the desired update types
+  allowed_updates: [...API_CONSTANTS.DEFAULT_UPDATE_TYPES, "chat_member"],
+});
+```
+
+```js [JavaScript]
+import { API_CONSTANTS, Bot } from "grammy";
+import { chatMemberFilter, myChatMemberFilter } from "@grammyjs/chat-members";
+
+const bot = new Bot(process.env.BOT_TOKEN);
+const groups = bot.chatType(["group", "supergroup"]);
+
+groups.filter(myChatMemberFilter("out", "regular"), async (ctx) => {
+  await ctx.reply("Hello, thank you for adding me to the group!");
+});
+
+groups.filter(myChatMemberFilter("out", "admin"), async (ctx) => {
+  await ctx.reply("Hello, thank you for adding me to the group as admin!");
+});
+
+groups.filter(myChatMemberFilter("regular", "admin"), async (ctx) => {
+  await ctx.reply("I was promoted to admin!");
+});
+
+groups.filter(myChatMemberFilter("admin", "regular"), async (ctx) => {
+  await ctx.reply("I am no longer admin");
+});
+
+groups.filter(chatMemberFilter("out", "in"), async (ctx) => {
+  const user = ctx.chatMember.new_chat_member.user;
+  await ctx.reply(`Welcome ${user.first_name} to the group!`);
+});
+
+bot.start({
+  // Make sure to specify the desired update types
+  allowed_updates: [...API_CONSTANTS.DEFAULT_UPDATE_TYPES, "chat_member"],
+});
+```
+
+```ts [Deno]
+import { API_CONSTANTS, Bot } from "https://deno.land/x/grammy/mod.ts";
+import {
+  chatMemberFilter,
+  myChatMemberFilter,
+} from "https://deno.land/x/grammy_chat_members/mod.ts";
+
+const bot = new Bot(Deno.env.get("BOT_TOKEN")!);
+const groups = bot.chatType(["group", "supergroup"]);
+
+groups.filter(myChatMemberFilter("out", "regular"), async (ctx) => {
+  await ctx.reply("Hello, thank you for adding me to the group!");
+});
+
+groups.filter(myChatMemberFilter("out", "admin"), async (ctx) => {
+  await ctx.reply("Hello, thank you for adding me to the group as admin!");
+});
+
+groups.filter(myChatMemberFilter("regular", "admin"), async (ctx) => {
+  await ctx.reply("I was promoted to admin!");
+});
+
+groups.filter(myChatMemberFilter("admin", "regular"), async (ctx) => {
+  await ctx.reply("I am no longer admin");
+});
+
+groups.filter(chatMemberFilter("out", "in"), async (ctx) => {
+  const user = ctx.chatMember.new_chat_member.user;
+  await ctx.reply(`Welcome ${user.first_name} to the group!`);
+});
+
+bot.start({
+  // Make sure to specify the desired update types
+  allowed_updates: [...API_CONSTANTS.DEFAULT_UPDATE_TYPES, "chat_member"],
+});
+```
+
+:::
+
+Filters include the regular Telegram statuses (owner, administrator, member, restricted, left, kicked) and some additional ones for convenience:
+
+- `restricted_in`: a member of the chat with restrictions;
+- `restricted_out`: not a member of the chat, has restrictions;
+- `in`: a member of the chat (administrator, creator, member, restricted_in);
+- `out`: not a member of the chat (left, kicked, restricted_out);
+- `free`: a member of the chat that isn't restricted (administrator, creator, member);
+- `admin`: an admin of the chat (administrator, creator);
+- `regular`: a non-admin member of the chat (member, restricted_in).
+
+You can create your custom groupings of chat member types by passing an array instead of a string:
+
+```typescript
+groups.filter(
+  chatMemberFilter(["restricted", "kicked"], ["free", "left"]),
+  async (ctx) => {
+    const from = ctx.from;
+    const { status: oldStatus, user } = ctx.chatMember.old_chat_member;
+    await ctx.reply(
+      `${from.first_name} lifted ` +
+        `${oldStatus === "kicked" ? "ban" : "restrictions"} ` +
+        `from ${user.first_name}`,
+    );
+  },
+);
+```
+
+#### Example usage
+
+The best way to use the filters is to pick a set of relevant statuses, for example 'out', 'regular' and 'admin', then
+make a table of the transitions between them:
+
+| ↱           | Out         | Regular              | Admin               |
+| ----------- | ----------- | -------------------- | ------------------- |
+| **Out**     | ban-changed | join                 | join-and-promoted   |
+| **Regular** | exit        | restrictions-changed | promoted            |
+| **Admin**   | exit        | demoted              | permissions-changed |
+
+Assign a listener to all the transitions that are relevant to your use-case.
+
+Combine these filters with `bot.chatType` to only listen for transitions for a specific type of chat. Add a middleware to listen to all updates as a way to perform common operations (like updating your database) before handing off control to a specific handler.
+
+```typescript
+const groups = bot.chatType(["group", "supergroup"]);
+
+groups.on("chat_member", (ctx, next) => {
+  // ran on all updates of type chat_member
+  const {
+    old_chat_member: { status: oldStatus },
+    new_chat_member: { user, status },
+    from,
+    chat,
+  } = ctx.chatMember;
+  console.log(
+    `In group ${chat.id} user ${from.id} changed status of ${user.id}:`,
+    `${oldStatus} -> ${status}`,
+  );
+
+  // update database data here
+
+  return next();
+});
+
+// specific handlers
+
+groups.filter(chatMemberFilter("out", "in"), async (ctx, next) => {
+  const { new_chat_member: { user } } = ctx.chatMember;
+  await ctx.reply(`Welcome ${user.first_name}!`);
+});
+```
+
+### Status checking utility
+
+The `chatMemberIs` utility function can be useful whenever you want to use filtering logic within a handler.
+It takes as input any of the regular and custom statuses (or an array of them) and updates the type of the passed variable.
+
+```ts
+bot.callbackQuery("foo", async (ctx) => {
+  const chatMember = await ctx.getChatMember(ctx.from.id);
+
+  if (!chatMemberIs(chatMember, "free")) {
+    chatMember.status; // "restricted" | "left" | "kicked"
+    await ctx.answerCallbackQuery({
+      show_alert: true,
+      text: "You don't have permission to do this!",
+    });
+    return;
+  }
+
+  chatMember.status; // "creator" | "administrator" | "member"
+  await ctx.answerCallbackQuery("bar");
+});
+```
 
 ### Storing Chat Members
 
