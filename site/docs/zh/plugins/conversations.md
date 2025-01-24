@@ -261,7 +261,7 @@ await conversation.log("abc");
 ### 对话存储状态
 
 两类数据将在一个数据库中存储。
-默认情况下，插件使用基于 `Map` 的轻量级内存数据库，但你也可以轻松地 [选用持久数据库](#持久数据库)。
+默认情况下，插件使用基于 `Map` 的轻量级内存数据库，但你也可以轻松地 [选用持久数据库](#保持对话)。
 
 1. 对话插件存储所有的更新。
 2. 对话插件存储所有 `conversation.external` 的返回值和所有 API 调用的结果。
@@ -362,7 +362,7 @@ async function example(
 :::
 
 > 在上面的例子中，在对话中没有安装任何插件。
-> 一旦你开始 [安装](#在对话内使用插件) 插件，`MyConversationContext` 的定义将不再是原始的 `Context`。
+> 一旦你开始 [安装](#在对话中使用插件) 插件，`MyConversationContext` 的定义将不再是原始的 `Context`。
 
 当然，如果你有多个对话，并且希望每个对话的上下文类型不同，你可以定义多个上下文类型使用。
 
@@ -522,7 +522,7 @@ if (message.photo) {
 }
 ```
 
-对话也是 [has checks](../guide/context#通过-Has-Checks-进行检测) 的理想使用场景。
+对话也是 [has checks](../guide/context#通过-has-checks-进行检测) 的理想使用场景。
 
 ## 退出对话
 
@@ -937,7 +937,7 @@ bot.command("enter", async (ctx) => {
 
 因此，插件所做的任何清理工作都在对话构建器函数运行之前执行。
 除了会话之外的所有插件都可以很好地与此配合使用。
-如果你想使用会话，请 [向下滚动](#accessing-sessions-inside-conversations)。
+如果你想使用会话，请 [向下滚动](#在对话中访问会话)。
 
 ### 默认插件
 
@@ -1227,7 +1227,7 @@ conversation.waitForCommand("exit") // 没有 await！
   .then(() => conversation.halt());
 ```
 
-一旦对话 [以任何方式结束](#exiting-conversations)，所有待处理的 `wait` 调用都将被丢弃。
+一旦对话 [以任何方式结束](#退出对话)，所有待处理的 `wait` 调用都将被丢弃。
 例如，以下对话将在进入后立即完成，而无需等待任何更新。
 
 ::: code-group
@@ -1504,7 +1504,7 @@ await conversation.external((ctx) => { // [!code ++]
 
 此选项已在 2.x 中删除。
 相反，你现在可以将插件传递给 `plugins` 数组，如 [此处](#在对话中使用插件) 所述。
-会话需要 [特殊处理](#1x-和-2x-之间的会话访问变化)。
+会话需要 [特殊处理](#_1-x-和-2-x-之间的会话访问变化)。
 自从引入 [对话菜单](#对话式菜单) 以来，菜单的兼容性得到了改善。
 
 ### 1.x 和 2.x 之间的并行对话变化
