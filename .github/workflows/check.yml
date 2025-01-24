@@ -21,7 +21,7 @@ jobs:
         working-directory: site/
 
       - name: Check Linting
-        working-directory: ./site
+        working-directory: site/
         run: deno task lint
 
   links:
