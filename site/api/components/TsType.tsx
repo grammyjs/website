@@ -25,7 +25,7 @@ import {
   TsTypeParamDef,
   TsTypePredicateDef,
   TsTypeRefDef,
-} from "deno_doc/types.d.ts";
+} from "@deno/doc/types";
 import { JSX } from "preact/jsx-runtime";
 import { PropertyName } from "./PropertyName.tsx";
 import { LinkGetter } from "./types.ts";

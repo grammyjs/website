@@ -1,4 +1,4 @@
-import { DocNodeFunction } from "deno_doc/types.d.ts";
+import { DocNodeFunction } from "@deno/doc/types";
 import { LinkGetter } from "./types.ts";
 import { H1 } from "./H1.tsx";
 import { H2 } from "./H2.tsx";
