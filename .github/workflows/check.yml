@@ -7,7 +7,7 @@ on:
     types: ["opened", "edited", "synchronize"]
 
 jobs:
-  fmt:
+  format-and-lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -19,15 +19,6 @@ jobs:
       - name: Check Formatting
         run: deno fmt --check
         working-directory: site/
-
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: denoland/setup-deno@main
-        with:
-          deno-version: "v2.x"
 
       - name: Check Linting
         working-directory: ./site
