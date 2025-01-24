@@ -163,6 +163,10 @@ Filters include the regular Telegram statuses (owner, administrator, member, res
 - `admin`: an admin of the chat (administrator, creator);
 - `regular`: a non-admin member of the chat (member, restricted_in).
 
+To summarize, here is a diagram showing what each query corresponds to:
+
+![Diagram showing the statuses corresponding to each query.](/images/chat-members-statuses.svg)
+
 You can create your custom groupings of chat member types by passing an array instead of a string:
 
 ```typescript
