@@ -228,7 +228,7 @@ bot
 
 That way, you can perform e.g. login procedures in a private chat with the user before delivering inline query results.
 The dialogue can go back and forth a bit before you send them back.
-For example, you can [enter a short conversation](./conversations#installing-and-entering-a-conversation) with the conversations plugin.
+For example, you can enter a short conversation with the [conversations plugin](./conversations).
 
 ## Getting Feedback About Chosen Results
 

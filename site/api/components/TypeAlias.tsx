@@ -21,7 +21,7 @@ export function TypeAlias(
   return (
     <>
       <H1>{typeAlias.name}</H1>
-      <P doc>{typeAlias.jsDoc?.doc}</P>
+      <P doc getLink={getLink}>{typeAlias.jsDoc?.doc}</P>
       <Loc>{typeAlias}</Loc>
       <Sector title="Type Parameters" show={!!typeParams.length}>
         <TypeParams getLink={getLink}>{typeParams}</TypeParams>

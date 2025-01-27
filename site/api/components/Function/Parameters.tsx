@@ -59,7 +59,7 @@ export function Parameters(
           <CodeBlock>
             <Param getLink={getLink}>{v}</Param>
           </CodeBlock>
-          <P doc>
+          <P doc getLink={getLink}>
             {doc?.tags?.find((v_): v_ is JsDocTagParam =>
               v_.kind == "param" && v_.name == getTitle(v)
             )?.doc}

@@ -48,7 +48,7 @@ export function Method({
             </>
           ))}
       </CodeBlock>
-      <P doc>{jsDoc?.doc}</P>
+      <P doc getLink={getLink}>{jsDoc?.doc}</P>
       <Loc>{method}</Loc>
     </>
   );
