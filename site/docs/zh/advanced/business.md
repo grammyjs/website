@@ -122,7 +122,6 @@ bot.on("business_connection:is_enabled", async (ctx) => {
 
 ### 管理单个聊天
 
-If you connect a bot to manage your account, Telegram apps will offer you a button to manage this bot in each managed chat.
 如果你关联了一个 bot 来管理你的账号，Telegram 应用程序会在每个托管的聊天中为你提供一个管理这个 bot 的按钮。
 该按钮将向 bot 发送 `/start`。
 
