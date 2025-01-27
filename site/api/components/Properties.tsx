@@ -1,4 +1,4 @@
-import { ClassPropertyDef, InterfacePropertyDef } from "deno_doc/types.d.ts";
+import { ClassPropertyDef, InterfacePropertyDef } from "@deno/doc/types";
 import { PropertyName } from "./PropertyName.tsx";
 import { TsType } from "./TsType.tsx";
 import { LinkGetter } from "./types.ts";

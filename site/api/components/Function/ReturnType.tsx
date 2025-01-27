@@ -1,4 +1,4 @@
-import { JsDoc, JsDocTagReturn, TsTypeDef } from "deno_doc/types.d.ts";
+import { JsDoc, JsDocTagReturn, TsTypeDef } from "@deno/doc/types";
 import { LinkGetter } from "../types.ts";
 import { CodeBlock } from "../CodeBlock.tsx";
 import { TsType } from "../TsType.tsx";

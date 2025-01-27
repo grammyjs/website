@@ -1,8 +1,8 @@
-import { createCache } from "deno_cache/mod.ts";
+import { createCache } from "@deno/cache-dir";
 import { modules } from "../modules.ts";
-import * as fs from "std/fs/mod.ts";
-import * as path from "std/path/mod.ts";
-import { doc } from "deno_doc/mod.ts";
+import * as fs from "@std/fs";
+import * as path from "@std/path";
+import { doc } from "@deno/doc";
 import { renderToString } from "preact-render-to-string";
 import { Class } from "./components/Class.tsx";
 import { Function } from "./components/Function.tsx";
@@ -11,7 +11,7 @@ import {
   DocNodeClass,
   DocNodeFunction,
   DocNodeNamespace,
-} from "deno_doc/types.d.ts";
+} from "@deno/doc/types";
 import { ToC } from "./components/ToC.tsx";
 import { JSX } from "preact/jsx-runtime";
 import { Interface } from "./components/Interface.tsx";
@@ -51,23 +51,23 @@ Deno.stdout.writeSync(
 );
 const cache = createCache({ root: ".cache" });
 const dot = enc.encode(".");
-const refs: Array<Ref> = await Promise
-  .all(
-    paths.map(
-      async ([id, path, slug, name, description, shortdescription]) => {
-        const nodes = await doc(id, { load: cache.load });
-        Deno.stdout.writeSync(dot);
-        return [
-          nodes.sort((a, b) => a.name.localeCompare(b.name)),
-          path,
-          slug,
-          name,
-          description,
-          shortdescription,
-        ];
-      },
-    ),
-  );
+
+const refs = await Promise.all(paths.map(
+  async (
+    [id, path, slug, name, description, shortdescription],
+  ): Promise<Ref> => {
+    const nodes = Object.values(await doc([id], { load: cache.load })).flat();
+    Deno.stdout.writeSync(dot);
+    return [
+      nodes.sort((a, b) => a.name.localeCompare(b.name)),
+      path,
+      slug,
+      name,
+      description,
+      shortdescription,
+    ];
+  },
+));
 Deno.stdout.writeSync(enc.encode("done\n"));
 
 function namespaceGetLink(

@@ -3,7 +3,7 @@ import {
   JsDocTagParam,
   ObjectPatPropDef,
   ParamDef,
-} from "deno_doc/types.d.ts";
+} from "@deno/doc/types";
 import { LinkGetter } from "../types.ts";
 import { H3 } from "../H3.tsx";
 import { CodeBlock } from "../CodeBlock.tsx";

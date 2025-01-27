@@ -1,4 +1,4 @@
-import { DocNodeNamespace, DocNodeTypeAlias } from "deno_doc/types.d.ts";
+import { DocNodeNamespace, DocNodeTypeAlias } from "@deno/doc/types";
 import { TsType } from "./TsType.tsx";
 import { LinkGetter } from "./types.ts";
 import { H1 } from "./H1.tsx";

@@ -5,7 +5,7 @@ import {
   type DocNodeClass,
   type JsDocTag,
   type ParamIdentifierDef,
-} from "deno_doc/types.d.ts";
+} from "@deno/doc/types";
 import { Method } from "./Class/Method.tsx";
 import { Properties } from "./Properties.tsx";
 import { Constructors } from "./Class/Constructors.tsx";

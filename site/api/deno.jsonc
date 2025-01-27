@@ -5,13 +5,13 @@
     "reset": "rm -rf .cache"
   },
   "imports": {
-    "std/": "https://deno.land/std@0.220.0/",
-    "preact": "https://esm.sh/preact@10.19.6/",
-    "preact/": "https://esm.sh/preact@10.19.6/",
-    "preact-render-to-string": "https://esm.sh/preact-render-to-string@6.4.0/",
-    "deno_doc/": "https://deno.land/x/deno_doc@0.117.0/",
-    "deno_cache/": "https://deno.land/x/deno_cache@0.7.1/",
-    "marked-smartypants": "https://esm.sh/marked-smartypants@1.1.6/"
+    "@deno/cache-dir": "jsr:@deno/cache-dir@^0.16.0",
+    "@deno/doc": "jsr:@deno/doc@^0.165.0",
+    "@std/fs": "jsr:@std/fs@^1.0.9",
+    "@std/path": "jsr:@std/path@^1.0.8",
+    "preact": "npm:preact@^10.25.4",
+    "preact-render-to-string": "npm:preact-render-to-string@^6.5.13",
+    "marked-smartypants": "npm:marked-smartypants@^1.1.9"
   },
   "exclude": [
     ".cache"
