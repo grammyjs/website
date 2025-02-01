@@ -16,7 +16,7 @@ export function Variable(
   return (
     <>
       <H1>{varr.name}</H1>
-      <P doc>{varr.jsDoc?.doc}</P>
+      <P doc getLink={getLink}>{varr.jsDoc?.doc}</P>
       <Loc>{varr}</Loc>
       <Sector title="Type" show={!!varr.variableDef.tsType}>
         <CodeBlock>
