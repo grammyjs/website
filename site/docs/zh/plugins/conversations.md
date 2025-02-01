@@ -459,7 +459,7 @@ bot.command("enter_with_arguments", async (ctx) => {
 不要忘了 [中间件的顺序很重要](../guide/middleware)。
 你只能进入在调用 `enter` 的处理程序前就已经安装的对话。
 
-## 等待 update 
+## 等待 update
 
 最基本的 wait 调用简单地等待任何 update。
 
