@@ -103,7 +103,7 @@ Here's how to do that with the commands plugin:
 
 ```ts [TypeScript]
 // Use the flavor to create a custom context
-type MyContext = Context & CommandsFlavor;
+type MyContext = Context & CommandsFlavor<MyContext>;
 
 // Use the new context to instantiate your bot
 const bot = new Bot<MyContext>(""); // <-- put your bot token between the "" (https://t.me/BotFather)
