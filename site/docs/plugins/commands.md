@@ -111,8 +111,8 @@ const bot = new Bot<MyContext>(""); // <-- put your bot token between the "" (ht
 // Register the context shortcut
 bot.use(commands());
 
-const loggedOutCommands = new CommandGroup();
-const loggedInCommands = new CommandGroup();
+const loggedOutCommands = new CommandGroup<MyContext>();
+const loggedInCommands = new CommandGroup<MyContext>();
 
 loggedOutCommands.command(
   "login",
