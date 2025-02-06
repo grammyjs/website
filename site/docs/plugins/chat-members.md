@@ -232,7 +232,7 @@ groups.filter(chatMemberFilter("out", "in"), async (ctx, next) => {
 ### Status Checking Utility
 
 The `chatMemberIs` utility function can be useful whenever you want to use filtering logic within a handler.
-It takes as input any of the regular and custom statuses (or an array of them), and updates the type of the passed variable.
+It takes as input any of the regular and custom statuses (or an array of them), and narrows the type of the passed variable.
 
 ```ts
 bot.callbackQuery("foo", async (ctx) => {
@@ -249,6 +249,33 @@ bot.callbackQuery("foo", async (ctx) => {
 
   chatMember.status; // "creator" | "administrator" | "member"
   await ctx.answerCallbackQuery("bar");
+});
+```
+
+### Hydrate Chat Member
+
+You can further improve your development experience by using the hydration API transformer.
+This transformer will apply to calls to `getChatMember` and `getChatAdministrators`, adding a convenient `is` method to the returned `ChatMember` objects.
+
+```ts
+type MyContext = HydrateChatMemberFlavor<Context>;
+type MyApi = HydrateChatMemberApiFlavor<Api>;
+
+const bot = new Bot<MyContext, MyApi>("");
+
+bot.api.config.use(hydrateChatMember());
+
+bot.command("ban", async (ctx) => {
+  const author = await ctx.getAuthor();
+
+  if (!author.is("admin")) {
+    author.status; // "member" | "restricted" | "left" | "kicked"
+    await ctx.reply("You don't have permission to do this");
+    return;
+  }
+
+  author.status; // "creator" | "administrator"
+  // ...
 });
 ```
 
