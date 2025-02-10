@@ -484,8 +484,8 @@ However, sometimes users still type these commands manually and may make mistake
 
 To help with this, the commands plugin suggests a command that the user might have intended to use.
 
-This functionality works with custom prefixes, so you don’t need to worry about compatibility.
-Plus, it’s easy to use.
+This functionality works with custom prefixes, so you don't need to worry about compatibility.
+Plus, it's easy to use.
 
 ::: code-group
 
