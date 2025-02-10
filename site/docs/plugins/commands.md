@@ -218,7 +218,6 @@ Make sure you take notice of the different patterns being used in the `admin.ts`
 
 ```ts [types.ts]
 import type { Context } from "grammy";
-import type { CommandsFlavor } from "grammy_commands";
 
 export type MyContext = Context & CommandsFlavor<MyContext>;
 ```
@@ -485,7 +484,7 @@ However, sometimes users still type these commands manually and may make mistake
 
 To help with this, the commands plugin suggests a command that the user might have intended to use.
 
-This plugin works with custom prefixes, so you don’t need to worry about compatibility.
+This functionality works with custom prefixes, so you don’t need to worry about compatibility.
 Plus, it’s easy to use.
 
 ::: code-group
@@ -542,10 +541,9 @@ bot
 
 :::
 
-The `commandNotFound` gives you some options to configure:
+The `commandNotFound` predicate takes in some options to customize its behavior:
 
-- `ignoreLocalization`: By default, `commandNotFound` prioritizes commands that match the user language.
-  To opt-out, set this option to `true`.
+- `ignoreLocalization`: Do not prioritize commands that match the user language.
 - `ignoreCase`: Allows the plugin to ignore letter casing when searching for similar commands.
 - `similarityThreshold`: Determines how similar a command name must be to the user input in order to be suggested.
 
@@ -576,7 +574,7 @@ otherCommands.command("bread", "eat a toast", () => {})
 
 // Let's assume the user is French and typed '/Papi'
 bot
-  // This filter will trigger for any command-like as '/regular' or '?custom'
+  // This filter will trigger for any command-like text, such as '/regular' or '?custom'
   .filter(commandNotFound([myCommands, otherCommands], {
     ignoreLocalization: true,
     ignoreCase: true,
