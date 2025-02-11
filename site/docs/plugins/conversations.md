@@ -1256,6 +1256,44 @@ Internally, when several wait calls are reached at the same time, the conversati
 As soon as the next update arrives, it will then replay the conversation builder function once for each encountered wait call until one of them accepts the update.
 Only if none of the pending wait calls accepts the update, the update will be dropped.
 
+## Waiting for One of Many Wait Calls
+
+You can wait for multiple of wait calls simultaneously using the [Promise.race](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/race) method.
+This allows you to handle different responses in a single conversation flow.
+
+```ts
+async function postRaceProcess(ctx: Context) {
+  const data = ctx.message?.text ?? ctx.callbackQuery?.data;
+
+  if (!ctx.callbackQuery?.data) return data;
+
+  await ctx.answerCallbackQuery();
+
+  return data;
+}
+
+async function start(conversation: Conversation, ctx: Context) {
+  await ctx.reply("What is your favorite Telegram bot framework?", {
+    reply_markup: {
+      inline_keyboard: [[{ text: "grammY", callback_data: "grammY" }]],
+    },
+  });
+
+  const queryList = [
+    conversation.waitFor(":text"),
+    conversation.waitFor("callback_query:data"),
+  ];
+  const result = await Promise.race(queryList).then(postRaceProcess);
+
+  await ctx.reply(
+    `That's great! Does ${result} always update incredibly quickly?`,
+  );
+}
+```
+
+In this example, the bot waits for either a text message or a callback query. The `postRaceProcess` function processes the result based on the type of update received.
+This approach is useful when you want to respond to the first wait call that arrives, regardless of its type.
+
 ## Checkpoints and Going Back in Time
 
 The conversations plugin [tracks](#conversations-are-replay-engines) the execution of your conversations builder function.
