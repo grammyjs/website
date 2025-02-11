@@ -201,8 +201,8 @@ We can achieve that with the following code structure:
 
 ```ascii
 .
-├── types.ts
 ├── bot.ts
+├── types.ts
 └── commands/
     ├── admin.ts
     └── users/
@@ -219,7 +219,7 @@ Make sure you take notice of the different patterns being used in the `admin.ts`
 ```ts [types.ts]
 import type { Context } from "grammy";
 
-export type MyContext = Context & CommandsFlavor<MyContext>;
+export type MyContext = CommandsFlavor<MyContext>;
 ```
 
 ```ts [bot.ts]
@@ -252,7 +252,7 @@ devCommands.command('devlogin', 'Set command menu to dev mode', async (ctx, next
 
 devCommands.command('usercount', 'Display user count', async (ctx, next) => {
   if (ctx.from?.id === ctx.env.DEVELOPER_ID) {
-    await ctx.reply( `Active users: ${/** Your business logic */}`);
+    await ctx.reply( `Total users: ${/** Your business logic */}`);
   } else {
     await next();
   }
@@ -479,8 +479,8 @@ myCommands.commands.forEach(addLocalizations);
 
 ## Finding the Nearest Command
 
-Telegram can automatically complete registered commands.
-However, sometimes users still type these commands manually and may make mistakes.
+Telegram autocompletes registered commands while typing.
+However, sometimes users still type these commands completely by hand and may make mistakes.
 
 To help with this, the commands plugin suggests a command that the user might have intended to use.
 
@@ -570,7 +570,8 @@ otherCommands.command("bread", "eat a toast", () => {})
   .localize("es", "pan", "come un pan")
   .localize("fr", "pain", "manger du pain");
 
-// Register each language-specific command group
+bot.use(myCommands)
+bot.use(otherCommands)
 
 // Let's assume the user is French and typed '/Papi'
 bot
@@ -618,7 +619,7 @@ That is made possible by the `prefix` option, which will tell the commands plugi
 
 If you ever need to retrieve `botCommand` entities from an update and need them to be hydrated with the custom prefix you have registered, there is a method specifically tailored for that, called `ctx.getCommandEntities(yourCommands)`, which returns the same interface as `ctx.entities('bot_command')`
 
-::: tip
+::: danger
 
 Commands with custom prefixes cannot be shown in the Commands Menu.
 
