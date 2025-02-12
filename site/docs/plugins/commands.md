@@ -232,7 +232,7 @@ export const bot = new Bot<MyContext>(""); // <-- put your bot token between the
 bot.use(commands());
 
 bot.use(userCommands);
-bot.use(devCommands);
+bot.filter((ctx) => ctx.from?.id == `${/** Put your ID here **/}`).use(devCommands);
 ```
 
 ```ts [admin.ts]
@@ -241,31 +241,19 @@ import type { MyContext } from '../types.ts';
 
 export const devCommands = new CommandGroup<MyContext>();
 
-devCommands.command('devlogin', 'Set command menu to dev mode', async (ctx, next) => {
-  if (ctx.from?.id === ctx.env.DEVELOPER_ID) {
-    await ctx.reply('Hello, fellow developer! Are we having coffee today too?');
-    await ctx.setMyCommands(userCommands, devCommands);
-  } else {
-    await next();
-  }
+devCommands.command("devlogin", "Set command menu to dev mode", async (ctx, next) => {
+  await ctx.reply("Hello, fellow developer! Are we having coffee today too?");
+  await ctx.setMyCommands(userCommands, devCommands);
 });
 
-devCommands.command('usercount', 'Display user count', async (ctx, next) => {
-  if (ctx.from?.id === ctx.env.DEVELOPER_ID) {
-    await ctx.reply( `Total users: ${/** Your business logic */}`);
-  } else {
-    await next();
-  }
+devCommands.command("usercount", "Display user count", async (ctx, next) => {
+  await ctx.reply( `Total users: ${/** Your business logic */}`);
 });
 
-devCommands.command('devlogout', 'Reset command menu to user-mode', async (ctx, next) => {
-  if (ctx.from?.id === ctx.env.DEVELOPER_ID) {
-    await ctx.reply('Until next commit!');
-    await ctx.setMyCommands(userCommands);
-  } else {
-    await next();
-  }
- });
+devCommands.command("devlogout", "Reset command menu to user-mode", async (ctx, next) => {
+  await ctx.reply("Until next commit!");
+  await ctx.setMyCommands(userCommands);
+});
 ```
 
 ```ts [group.ts]
@@ -412,7 +400,7 @@ For convenience, grammY exports a `LanguageCodes` enum-like object, which you ca
 ::: code-group
 
 ```ts [TypeScript]
-import { LanguageCodes } from "grammy/types";
+import { LanguageCodes } from "@grammyjs/commands";
 
 myCommands.command(
   "chef",
@@ -427,7 +415,7 @@ myCommands.command(
 ```
 
 ```js [JavaScript]
-const { LanguageCodes } = require("grammy/types");
+const { LanguageCodes } = require("@grammyjs/commands");
 
 myCommands.command(
   "chef",
@@ -442,7 +430,7 @@ myCommands.command(
 ```
 
 ```ts [Deno]
-import { LanguageCodes } from "https://deno.land/x/grammy/types.ts";
+import { LanguageCodes } from "https://deno.land/x/grammy_commands/mod.ts";
 
 myCommands.command(
   "chef",
@@ -570,8 +558,8 @@ otherCommands.command("bread", "eat a toast", () => {})
   .localize("es", "pan", "come un pan")
   .localize("fr", "pain", "manger du pain");
 
-bot.use(myCommands)
-bot.use(otherCommands)
+bot.use(myCommands);
+bot.use(otherCommands);
 
 // Let's assume the user is French and typed '/Papi'
 bot
