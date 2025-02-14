@@ -28,7 +28,7 @@ async function pseudoRandom255(len: number): Promise<number> {
   const signature = await window.crypto.subtle.sign(
     "HMAC",
     key,
-    enc.encode(today.toDateString()),
+    enc.encode(today.toUTCString()),
   );
   const arr = new Uint8Array(signature);
   const res = arr.reduce((x, y) => x ^ y);
@@ -74,7 +74,7 @@ async function load() {
   try {
     const res = await fetch("https://raw.githubusercontent.com/grammyjs/grammY/main/.all-contributorsrc");
     if (!res.ok) { throw res }
-    
+
     const { contributors } = await res.json();
     const selectToday = await pseudoRandom255(contributors.length);
     const contributor_ = contributors[selectToday];
@@ -101,7 +101,7 @@ async function load() {
       contributor.name = contributor_.name ?? contributor_.login;
       contributor.photo = contributor_.avatar_url + "&size=64";
     }
-    
+
     try {
       const res = await fetch(`https://identicons.github.com/${contributor.login}.png`);
       if (!res.ok) { throw res }
@@ -128,29 +128,12 @@ load();
 <template>
   <div v-if="contributor.show" id="thankyou">
     <div id="avatar-container">
-      <img
-        id="identicon"
-        v-bind:src="contributor.identicon"
-        alt="contributor's identicon"
-        width="32"
-        height="32"
-      />
-      <img
-        id="github-avatar"
-        v-bind:alt="contributor.login"
-        v-bind:src="contributor.photo"
-        width="32"
-        height="32"
-      />
+      <img id="identicon" v-bind:src="contributor.identicon" alt="contributor's identicon" width="32" height="32" />
+      <img id="github-avatar" v-bind:alt="contributor.login" v-bind:src="contributor.photo" width="32" height="32" />
     </div>
     <p>
       {{ props.s[0] }}
-      <a
-        v-bind:href="contributor.href"
-        target="_blank"
-        rel="noreferrer noopener"
-        >{{ contributor.name }}</a
-      >{{
+      <a v-bind:href="contributor.href" target="_blank" rel="noreferrer noopener">{{ contributor.name }}</a>{{
         contributor.name.toLowerCase() == "knorpelsenf"
           ? props.s[3] ?? props.s[2]
           : props.s[2]
@@ -169,16 +152,19 @@ load();
   align-items: center;
   justify-content: center;
   gap: 0.44rem;
+
   img {
     height: 2rem;
     width: 2rem;
     max-width: none;
     border-radius: 9999px;
   }
+
   p {
     margin: 0;
     font-size: 0.85rem;
     font-weight: bold;
+
     a {
       font-weight: bold;
     }
