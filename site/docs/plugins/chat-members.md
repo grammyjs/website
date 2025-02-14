@@ -252,9 +252,9 @@ bot.callbackQuery("foo", async (ctx) => {
 });
 ```
 
-### Hydrate Chat Member
+### Hydrating Chat Member Objects
 
-You can further improve your development experience by using the hydration API transformer.
+You can further improve your development experience by using the hydration [API transformer](../advanced/transformers).
 This transformer will apply to calls to `getChatMember` and `getChatAdministrators`, adding a convenient `is` method to the returned `ChatMember` objects.
 
 ```ts
