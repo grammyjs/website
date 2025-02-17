@@ -1,9 +1,13 @@
 import { ComponentChildren } from "preact";
+import { replaceModuleSymbolLinks } from "./util.ts";
+import { LinkGetter } from "./types.ts";
 
 export function P(
   props: { children?: ComponentChildren; doc?: false; html?: true } | {
     children?: string;
     doc: true;
+    getLink: LinkGetter;
+    anchors?: string[];
   },
 ) {
   if (props.doc && props.children) {
@@ -28,6 +32,11 @@ export function P(
     props.children = newParts
       .join("")
       .replaceAll("```ts", "```ts:no-line-numbers");
+    props.children = replaceModuleSymbolLinks(
+      props.children,
+      props.getLink,
+      props.anchors,
+    );
     return (
       <>
         {"\n\n"}
