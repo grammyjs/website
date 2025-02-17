@@ -1463,6 +1463,7 @@ Thus, all conversations will be restarted.
 There is no way to keep the current state of conversations when upgrading from 1.x to 2.x.
 
 You should just drop the respective data from your sessions.
+You can do that by deleting the `conversation` property from your session data.
 Consider using [session migrations](./session#migrations) for this.
 
 Persisting conversations data with version 2.x can be done as described [here](#persisting-conversations).
@@ -1497,6 +1498,12 @@ await conversation.external((ctx) => { // [!code ++]
 > Accessing `ctx.session` was possible with 1.x, but it was always incorrect.
 > `ctx.session` is no longer available with 2.x.
 
+::: warning Sending data back to the outside context
+
+Because the session plugin is only registered to the outside context, you will need to assign session data to `ctx.session` yourself.
+Simply writing to the `session` variable from the example above will not work.
+
+:::
 ### Plugin Compatibility Changes Between 1.x and 2.x
 
 Conversations 1.x were barely compatible with any plugins.
