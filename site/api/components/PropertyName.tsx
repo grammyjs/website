@@ -1,16 +1,18 @@
 export function PropertyName({
-  children: { name, optional },
+  children,
   hasType,
   "class": klass,
 }: {
-  children: { name: string; optional: boolean };
+  // deno-lint-ignore no-explicit-any
+  children: { name: string; optional: boolean } | { raw: any };
   hasType: boolean;
   class?: true;
 }) {
+  const optional = "raw" in children ? false : children.optional;
   return (
     <>
       <span style={klass ? "" : "--shiki-light:#24292E;--shiki-dark:#E1E4E8;"}>
-        {name}
+        {"raw" in children ? children.raw : children.name}
       </span>
       {(optional || hasType) && (
         <span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">

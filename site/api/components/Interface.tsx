@@ -9,6 +9,7 @@ import { CodeBlock } from "./CodeBlock.tsx";
 import { TsType } from "./TsType.tsx";
 import { ToC } from "./ToC.tsx";
 import { Method } from "./Class/Method.tsx";
+import { Indexes } from "./Indexes.tsx";
 
 export function Interface(
   { children: iface, getLink, namespace }: {
@@ -19,6 +20,7 @@ export function Interface(
 ) {
   const props = iface.interfaceDef.properties;
   const methods = iface.interfaceDef.methods;
+  const indexes = iface.interfaceDef.indexSignatures;
   const methodNameSet = new Set<string>(); // to prevent duplicates
 
   const getMethodOverloads = (name: string) => {
@@ -28,7 +30,7 @@ export function Interface(
   return (
     <>
       <H1>{iface.name}</H1>
-      <P doc>{iface.jsDoc?.doc}</P>
+      <P doc getLink={getLink}>{iface.jsDoc?.doc}</P>
       <Loc>{iface}</Loc>
       <Sector title="Extends" show={!!iface.interfaceDef.extends.length}>
         <CodeBlock>
@@ -42,6 +44,9 @@ export function Interface(
       </Sector>
       <Sector title="Properties" show={!!props.length}>
         <Properties getLink={getLink}>{props}</Properties>
+      </Sector>
+      <Sector title="Indexes" show={!!indexes.length}>
+        <Indexes getLink={getLink}>{indexes}</Indexes>
       </Sector>
       <Sector title="Methods" show={!!methods.length}>
         {methods

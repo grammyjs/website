@@ -7,216 +7,20 @@ next: false
 
 轻松创建强大的对话界面。
 
-## 介绍
+## 快速开始
 
-大部分聊天都是多条消息组成的。
+对话插件让你能够等待消息。
+如果你的 bot 有多个步骤，请使用此插件。
 
-比如说，你可能想问用户一个问题，然后等待用户的回应。
-这可能还会重复几次，从而展开一场对话。
+> 对话是独一无二的，因为它引入了一个你在世界其他地方找不到的新概念。
+> 它提供了一个优雅的解决方案，但你需要先了解一下它是如何工作的，你才能理解你的代码实际上在做什么。
 
-当你考虑到 [中间件](../guide/middleware) 时，你会发现中间件的所有处理逻辑都是围绕着一个 [上下文对象](../guide/context)。
-这意味着你每次只能孤立地处理一条消息。
-所以要写出“检查三条消息之前的内容”之类的东西会很麻烦。
+在进入有意思的部分之前，这里有一个快速入门，让你可以试用该插件。
 
-**这个插件能帮助你:**
-它提供了一种极其灵活的方式来定义你的 bot 和用户之间的对话。
-
-许多 bot 框架会让你定义大量的配置对象，包括步骤，阶段，跳转，向导流程等等。
-这会导致大量的模版代码，让你很难跟上它的开发路径。
-**这个插件不会以这样的方式工作。**
-
-相反，通过这个插件，你将使用更强大的东西：**代码**。
-基本上，你只需要定义一个普通的用于描述对话演变过程的 JavaScript 函数。
-当 bot 和用户进行交谈时，这个函数将被逐条语句执行。
-
-（公平地说，这并不是它真正的工作原理。
-但这样思考有助于你理解和使用这个插件！
-在实际情况中，函数的执行方式会有一点不同,但我们会在 [后面](#等待-updates) 讨论这个问题。）
-
-## 简单样例
-
-在我们深入探讨如何创建对话之前，先通过一个简短的 JavaScript 的例子，看看一个对话会是什么样子。
-
-```js
-async function greeting(conversation, ctx) {
-  await ctx.reply("你好！你叫什么名字？");
-  const { message } = await conversation.wait();
-  await ctx.reply(`欢迎加入聊天, ${message.text}!`);
-}
-```
-
-在这个对话中，bot 会先问候用户，并询问他们的名字。
-然后它会一直等待，知道用户发出他们的名字。
-最后，bot 会欢迎用户加入聊天，并且重复用户的名字。
-
-非常简单，对吗？
-让我们看看它是怎么做到的！
-
-## 对话生成器函数
-
-首先，让我们导入几样东西。
-
-::: code-group
+:::code-group
 
 ```ts [TypeScript]
-import {
-  type Conversation,
-  type ConversationFlavor,
-  conversations,
-  createConversation,
-} from "@grammyjs/conversations";
-```
-
-```js [JavaScript]
-const {
-  conversations,
-  createConversation,
-} = require("@grammyjs/conversations");
-```
-
-```ts [Deno]
-import {
-  type Conversation,
-  type ConversationFlavor,
-  conversations,
-  createConversation,
-} from "https://deno.land/x/grammy_conversations/mod.ts";
-```
-
-:::
-
-有了这些方法，我们现在可以看一下怎么定义对话式界面。
-
-对话的主要元素是一个带有两个参数的函数。
-我们称其为_对话生成器函数_
-
-```js
-async function greeting(conversation, ctx) {
-  // TODO: 编写对话
-}
-```
-
-让我们来看看这两个参数分别是什么。
-
-**第二个参数**不是什么新奇的东西，它只是一个普通的上下文对象。
-一如既往，它被称为 `ctx`，并使用你的 [自定义上下文类型](../guide/context#定制你的上下文对象)（可能称为 `MyContext`）。
-
-**第一个参数**是这个插件的核心元素。
-它通常被命名为 `conversation`，它的类型是 `Conversation`（[API 参考](/ref/conversations/conversation)）。
-它可以用于控制对话，比如等待用户输入等等。
-`Conversation` 类型会希望你使用你的 [自定义上下文类型](../guide/context#定制你的上下文对象) 作为它的类型参数，所以你通常会用的的是 `Conversation<MyContext>`。
-
-综上所述，在 TypeScript 中，你的对话生成器函数将看起来像这样。
-
-```ts
-type MyContext = Context & ConversationFlavor;
-type MyConversation = Conversation<MyContext>;
-
-async function greeting(conversation: MyConversation, ctx: MyContext) {
-  // TODO: 编写对话
-}
-```
-
-你现在可以在你的对话生成器函数中定义对话了。
-在我们深入了解这个插件的每个功能之前，让我们看一下比上面的 [简单样例](#简单样例) 更复杂的例子。
-
-::: code-group
-
-```ts [TypeScript]
-async function movie(conversation: MyConversation, ctx: MyContext) {
-  await ctx.reply("你有多少部最喜欢的电影？");
-  const count = await conversation.form.number();
-  const movies: string[] = [];
-  for (let i = 0; i < count; i++) {
-    await ctx.reply(`告诉我第 ${i + 1} 名！`);
-    const titleCtx = await conversation.waitFor(":text");
-    movies.push(titleCtx.msg.text);
-  }
-  await ctx.reply("这里有一个更好的排名！");
-  movies.sort();
-  await ctx.reply(movies.map((m, i) => `${i + 1}. ${m}`).join("\n"));
-}
-```
-
-```js [JavaScript]
-async function movie(conversation, ctx) {
-  await ctx.reply("你有多少部最喜欢的电影？");
-  const count = await conversation.form.number();
-  const movies = [];
-  for (let i = 0; i < count; i++) {
-    await ctx.reply(`告诉我第 ${i + 1} 名！`);
-    const titleCtx = await conversation.waitFor(":text");
-    movies.push(titleCtx.msg.text);
-  }
-  await ctx.reply("这里有一个更好的排名！");
-  movies.sort();
-  await ctx.reply(movies.map((m, i) => `${i + 1}. ${m}`).join("\n"));
-}
-```
-
-:::
-
-你能想象的出来这个 bot 将会怎样工作吗？
-
-## 安装并进入对话
-
-首先，如果你想使用对话插件，你**必须**使用 [会话插件](./session)。
-你还必须安装对话插件本身，然后你才能在 bot 上注册单的的对话。
-
-```ts
-// 安装会话插件。
-bot.use(session({
-  initial() {
-    // 暂时返回一个空对象
-    return {};
-  },
-}));
-
-// 安装对话插件。
-bot.use(conversations());
-```
-
-接下来，你可以把对话生成器函数包装在 `createConversation` 中作为中间件安装在你的 bot 对象上。
-
-```ts
-bot.use(createConversation(greeting));
-```
-
-现在，你的对话已经注册到了 bot 上，你可以从任意处理程序中进入对话。
-请确保在 `ctx.conversation` 上的所有方法都使用 `await` ---否则你的代码会崩溃。
-
-```ts
-bot.command("start", async (ctx) => {
-  await ctx.conversation.enter("greeting");
-});
-```
-
-只要用户向 bot 发送 `/start`，用户就会进入对话。
-当前的上下文对象作为第二个参数传入对话生成器函数。
-举个例子，如果你用 `await ctx.reply(ctx.message.text)` 开始对话，它将包含 `/start` 在内的 update。
-
-::: tip 改变对话标识符
-默认情况下，你必须向 `ctx.conversation.enter()` 传入函数的名称。
-然而，如果你喜欢使用一个不同的标识符，你可以这样指定它：
-
-```ts
-bot.use(createConversation(greeting, "new-name"));
-```
-
-然后，你可以用下面的方式进入对话：
-
-```ts
-bot.command("start", (ctx) => ctx.conversation.enter("new-name"));
-```
-
-:::
-
-总的来说，你的代码现在应该看起来像这样：
-
-::: code-group
-
-```ts [TypeScript]
-import { Bot, Context, session } from "grammy";
+import { Bot, type Context } from "grammy";
 import {
   type Conversation,
   type ConversationFlavor,
@@ -224,58 +28,52 @@ import {
   createConversation,
 } from "@grammyjs/conversations";
 
-type MyContext = Context & ConversationFlavor;
-type MyConversation = Conversation<MyContext>;
-
-const bot = new Bot<MyContext>("");
-
-bot.use(session({ initial: () => ({}) }));
+const bot = new Bot<ConversationFlavor<Context>>(""); // <-- 把你的 bot token 放在 "" 之间 (https://t.me/BotFather)
 bot.use(conversations());
 
 /** 定义对话 */
-async function greeting(conversation: MyConversation, ctx: MyContext) {
-  // TODO: 编写对话
+async function hello(conversation: Conversation, ctx: Context) {
+  await ctx.reply("嗨，你好呀！你叫什么名字呀？");
+  const { message } = await conversation.waitFor("message:text");
+  await ctx.reply(`欢迎来聊天，${message.text}！`);
 }
+bot.use(createConversation(hello));
 
-bot.use(createConversation(greeting));
-
-bot.command("start", async (ctx) => {
-  // 进入你声明的 “greeting” 函数
-  await ctx.conversation.enter("greeting");
+bot.command("enter", async (ctx) => {
+  // 进入你定义的 "hello" 函数。
+  await ctx.conversation.enter("hello");
 });
 
 bot.start();
 ```
 
 ```js [JavaScript]
-const { Bot, Context, session } = require("grammy");
-const {
-  conversations,
-  createConversation,
-} = require("@grammyjs/conversations");
+const { Bot } = require("grammy");
+const { conversations, createConversation } = require(
+  "@grammyjs/conversations",
+);
 
-const bot = new Bot("");
-
-bot.use(session({ initial: () => ({}) }));
+const bot = new Bot(""); // <-- 把你的 bot token 放在 "" 之间 (https://t.me/BotFather)
 bot.use(conversations());
 
 /** 定义对话 */
-async function greeting(conversation, ctx) {
-  // TODO: 编写对话
+async function hello(conversation, ctx) {
+  await ctx.reply("嗨，你好呀！你叫什么名字呀？");
+  const { message } = await conversation.waitFor("message:text");
+  await ctx.reply(`欢迎来聊天，${message.text}！`);
 }
+bot.use(createConversation(hello));
 
-bot.use(createConversation(greeting));
-
-bot.command("start", async (ctx) => {
-  // 进入你声明的 “greeting” 函数
-  await ctx.conversation.enter("greeting");
+bot.command("enter", async (ctx) => {
+  // 进入你定义的 "hello" 函数。
+  await ctx.conversation.enter("hello");
 });
 
 bot.start();
 ```
 
 ```ts [Deno]
-import { Bot, Context, session } from "https://deno.land/x/grammy/mod.ts";
+import { Bot, type Context } from "https://deno.land/x/grammy/mod.ts";
 import {
   type Conversation,
   type ConversationFlavor,
@@ -283,24 +81,20 @@ import {
   createConversation,
 } from "https://deno.land/x/grammy_conversations/mod.ts";
 
-type MyContext = Context & ConversationFlavor;
-type MyConversation = Conversation<MyContext>;
-
-const bot = new Bot<MyContext>("");
-
-bot.use(session({ initial: () => ({}) }));
+const bot = new Bot<ConversationFlavor<Context>>(""); // <-- 把你的 bot token 放在 "" 之间 (https://t.me/BotFather)
 bot.use(conversations());
 
 /** 定义对话 */
-async function greeting(conversation: MyConversation, ctx: MyContext) {
-  // TODO: 编写对话
+async function hello(conversation: Conversation, ctx: Context) {
+  await ctx.reply("嗨，你好呀！你叫什么名字呀？");
+  const { message } = await conversation.waitFor("message:text");
+  await ctx.reply(`欢迎来聊天，${message.text}！`);
 }
+bot.use(createConversation(hello));
 
-bot.use(createConversation(greeting));
-
-bot.command("start", async (ctx) => {
-  // 进入你声明的 “greeting” 函数
-  await ctx.conversation.enter("greeting");
+bot.command("enter", async (ctx) => {
+  // 进入你定义的 "hello" 函数。
+  await ctx.conversation.enter("hello");
 });
 
 bot.start();
@@ -308,891 +102,1434 @@ bot.start();
 
 :::
 
-### 使用自定义会话数据进行安装
+当你输入上述对话 `hello` 时，它会发送一条消息，然后等待用户发送文本消息，然后再发送另一条消息。
+最后，对话完成。
 
-请注意，如果你在使用 TypeScript，并且想要使用对话的时候存储自己的会话数据，你需要向编译器提供更多的类型信息。
-假设你有一个描述了你的自定义会话数据的接口：
+现在，让我们进入有意思的部分。
 
-```ts
-interface SessionData {
-  /** 自定义会话属性 */
-  foo: string;
-}
-```
+## 对话插件是怎么工作的
 
-你的自定义上下文类型会像这样：
+请先看看以下传统消息处理的例子。
 
 ```ts
-type MyContext = Context & SessionFlavor<SessionData> & ConversationFlavor;
+bot.on("message", async (ctx) => {
+  // 处理一条消息
+});
 ```
 
-最重要的是，当你使用外部存储安装会话插件时，你必须明确地提供会话数据。
-所有的存储适配器都允许你把 `SessionData` 作为一个类型参数传入。
-举个例子，你需要按照下面的代码来使用 grammY 提供的 [`freeStorage`](./session#免费存储)
+在一般的消息处理流程中，你始终只有一个上下文对象。
+
+再和对话进行比较。
 
 ```ts
-// 安装会话插件。
-bot.use(session({
-  // 向适配器添加会话类型。
-  storage: freeStorage<SessionData>(bot.token),
-  initial: () => ({ foo: "" }),
-}));
+async function hello(conversation: Conversation, ctx0: Context) {
+  const ctx1 = await conversation.wait();
+  const ctx2 = await conversation.wait();
+  // 处理三条消息
+}
 ```
 
-其他存储适配器也是一样的，比如 `new FileAdapter<SessionData>()` 等等。
+在这个对话中，你有三个可用的上下文对象！
 
-### 多会话安装
+与常规处理程序一样，对话插件仅从 [中间件系统](../guide/middleware) 接收单个上下文对象。
+现在，它突然为你提供了三个上下文对象。
+这怎么可能呢？
 
-当然，你可以将对话与 [多会话](./session#多会话) 结合起来。
+**对话构建器函数的执行方式与普通函数不同**。
+（尽管我们可以用这种方式进行编程。）
 
-这个插件将对话数据存储在 `session.conversation` 中。
-这意味着如果你想使用多会话，你必须指定这个片段。
+### 对话是重放引擎
 
-```ts
-// 安装会话插件。
-bot.use(session({
-  type: "multi",
-  custom: {
-    initial: () => ({ foo: "" }),
-  },
-  conversation: {}, // 可以留空
-}));
-```
+对话构建器函数不像普通函数那样执行。
 
-这样，你可以将对话数据存储在与其他会话数据不同的位置。
-例如，如果你将对话配置留空，如上图所示，对话插件会将所有数据存储在内存中。
+当进入对话时，函数将只执行到第一个 wait 调用。
+随后该函数被中断，不会再往下执行。
+插件会记住当前运行到的 wait 调用，并存储此信息。
 
-## 离开对话
-
-对话将一直运行到你的对话生成器函数完成。
-也就是说你可以简单地通过使用 `return` 或 `throw` 离开一个对话。
+当下一个 update 到达时，会话将从函数的开头重新执行。
+但这一次，所有的 API 调用都不会执行，这使得代码运行非常快，并且不会产生任何影响。
+这称为 _重放_。
+一旦再次到达先前运行到的 wait 调用，函数执行就会正常恢复。
 
 ::: code-group
 
-```ts [TypeScript]
-async function hiAndBye(conversation: MyConversation, ctx: MyContext) {
-  await ctx.reply("Hi! And Bye!");
-  // 离开对话：
-  return;
-}
+```ts [进入]
+async function hello( //                      |
+  conversation: Conversation, //              |
+  ctx0: Context, //                           |
+) { //                                        |
+  await ctx0.reply("嗨，你好呀！"); //         |
+  const ctx1 = await conversation.wait(); //  A
+  await ctx1.reply("再次欢迎你！"); //
+  const ctx2 = await conversation.wait(); //
+  await ctx2.reply("再见！"); //
+} //
 ```
 
-```js [JavaScript]
-async function hiAndBye(conversation, ctx) {
-  await ctx.reply("Hi! And Bye!");
-  // 离开对话：
-  return;
-}
+```ts [重放]
+async function hello( //                      .
+  conversation: Conversation, //              .
+  ctx0: Context, //                           .
+) { //                                        .
+  await ctx0.reply("嗨，你好呀！"); //         .
+  const ctx1 = await conversation.wait(); //  A
+  await ctx1.reply("再次欢迎你！"); //         |
+  const ctx2 = await conversation.wait(); //  B
+  await ctx2.reply("再见！"); //
+} //
+```
+
+```ts [重放 2]
+async function hello( //                      .
+  conversation: Conversation, //              .
+  ctx0: Context, //                           .
+) { //                                        .
+  await ctx0.reply("嗨，你好呀！"); //         .
+  const ctx1 = await conversation.wait(); //  A
+  await ctx1.reply("再次欢迎你！"); //         .
+  const ctx2 = await conversation.wait(); //  B
+  await ctx2.reply("再见！"); //               |
+} //                                          —
 ```
 
 :::
 
-（当然了，在函数的末尾放一个 `return` 有点没有意义，但这是一个让你用于理解离开对话的例子）
+1. 当进入对话时，函数将运行，直到 `A`，然后中断。
+2. 当下一次 update 到达时，函数将重放，直到 `A`，并从 `A` 正常运行到 `B`，在 `B` 处中断。
+3. 当最后一次 update 到达时，函数将重放，直到 `B`，并正常运行直到结束。
 
-抛出错误同样会退出对话。
-但是，[会话插件](#安装并进入对话) 只有在中间件成功运行时才会保留数据。
-因此，如果你在对话中抛出错误并且在它到达会话插件之前没有捕获它，则在对话离开时不会被保存。
-结果就是，下一条消息将导致相同的错误。
+这意味着你编写的每一行代码都将被执行多次一一正常执行一次，重放期间执行更多次。
+因此，你必须确保你的代码在重放时的行为与首次执行时相同。
 
-你可以通过在会话和对话之间安装 [error 边界](../guide/errors#error-边界) 来缓解这种情况。
-这样，你可以防止错误沿着 [中间件树](../advanced/middleware) 向上传播，从而允许会话插件写回数据。
+如果你通过 `ctx.api`（包括 `ctx.reply`）执行任何 API 调用，插件会自动处理它们。
+相反，你自己的数据库通信需要特殊处理。
 
-> 请注意，如果你使用默认的内存会话，会话数据的所有更改都会立即反映出来，因为没有存储后端。
-> 在那种情况下，你不需要使用 error 边界通过抛出错误来离开对话。
+操作如下。
 
-这就是 error 边界和对话一起使用的方式。
+### 对话的黄金法则
 
-::: code-group
+既然 [我们知道对话是如何执行的](#对话是重放引擎)，我们可以定义一条适用于你在对话构建器函数中编写的代码的规则。
+如果你希望代码正常运行，则必须遵循该规则。
 
-```ts [TypeScript]
-bot.use(session({
-  storage: freeStorage(bot.token), // 修改这里
-  initial: () => ({}),
-}));
-bot.use(conversations());
+::: warning 黄金法则
 
-async function hiAndBye(conversation: MyConversation, ctx: MyContext) {
-  await ctx.reply("Hi! And Bye!");
-  // 离开对话
-  throw new Error("Catch me if you can!");
-}
-
-bot.errorBoundary(
-  (err) => console.error("Conversation threw an error!", err),
-  createConversation(greeting),
-);
-```
-
-```js [JavaScript]
-bot.use(session({
-  storage: freeStorage(bot.token), // 修改这里
-  initial: () => ({}),
-}));
-bot.use(conversations());
-
-async function hiAndBye(conversation, ctx) {
-  await ctx.reply("Hi! And Bye!");
-  // 离开对话
-  throw new Error("Catch me if you can!");
-}
-
-bot.errorBoundary(
-  (err) => console.error("Conversation threw an error!", err),
-  createConversation(greeting),
-);
-```
+**在重放之间表现不同的代码必须包装在 [`conversation.external`](/ref/conversations/conversation#external) 中。**
 
 :::
 
-无论你做什么，你都应该记得在你的机器人上 [安装错误处理程序](../guide/errors)。
-
-如果你想在等待用户输入时从常规中间件中强制终止对话，你还可以使用 `await ctx.conversation.exit()`。
-这只会从会话中删除对话插件的数据。
-通常情况下，简单地从函数返回来进行退出时更好的做法，但在一些情况中，使用 `await ctx.conversation.exit()` 更方便。
-请记住，你必须 `await` 这个调用。
-
-::: code-group
-
-```ts [TypeScript]{6,22}
-async function movie(conversation: MyConversation, ctx: MyContext) {
-  // TODO: 编写对话
-}
-
-// 安装对话插件。
-bot.use(conversations());
-
-// 始终在 /cancel 时退出任意对话
-bot.command("cancel", async (ctx) => {
-  await ctx.conversation.exit();
-  await ctx.reply("Leaving.");
-});
-
-// 始终在按下按钮后退出 `movie` 对话
-// 当按下inline keyboard 的 `cancel` 按钮时。
-bot.callbackQuery("cancel", async (ctx) => {
-  await ctx.conversation.exit("movie");
-  await ctx.answerCallbackQuery("Left conversation");
-});
-
-bot.use(createConversation(movie));
-bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
-```
-
-```js [JavaScript]{6,22}
-async function movie(conversation, ctx) {
-  // TODO: 编写对话
-}
-
-// 安装对话插件。
-bot.use(conversations());
-
-// 始终在 /cancel 时退出任意对话
-bot.command("cancel", async (ctx) => {
-  await ctx.conversation.exit();
-  await ctx.reply("Leaving.");
-});
-
-// 始终在按下按钮后退出 `movie` 对话
-// 当按下inline keyboard 的 `cancel` 按钮时。
-bot.callbackQuery("cancel", async (ctx) => {
-  await ctx.conversation.exit("movie");
-  await ctx.answerCallbackQuery("Left conversation");
-});
-
-bot.use(createConversation(movie));
-bot.command("movie", (ctx) => ctx.conversation.enter("movie"));
-```
-
-:::
-
-请注意，这里的顺序很重要。
-你必须先安装对话插件（第 6 行），然后才能调用 `await ctx.conversation.exit()`。
-此外，在实际的对话被注册之前，必须安装通用的取消处理程序（第 22 行）。
-
-## 等待 Updates
-
-你可以使用对话的处理程序 `conversation` 来等待特定聊天的下一个 update。
-
-::: code-group
-
-```ts [TypeScript]
-async function waitForMe(conversation: MyConversation, ctx: MyContext) {
-  // 等待下一个 update：
-  const newContext = await conversation.wait();
-}
-```
-
-```js [JavaScript]
-async function waitForMe(conversation, ctx) {
-  // 等待下一个 update：
-  const newContext = await conversation.wait();
-}
-```
-
-:::
-
-一个 update 可以意味着用户发送了一条文本消息，或者按下了一个按钮，或者编辑了一些东西，或者是任何其他用户执行的动作。
-请在 [这里](https://core.telegram.org/bots/api#update) 参考 Telegram 官方文档。
-
-`wait` 方法总是产生一个新的 [上下文对象](../guide/context) 表示接收到的 update。
-这意味着你总是要处理与对话期间收到的 update 一样多的上下文对象。
-
-::: code-group
-
-```ts [TypeScript]
-const TEAM_REVIEW_CHAT = -1001493653006;
-async function askUser(conversation: MyConversation, ctx: MyContext) {
-  // 向用户询问他们的家庭住址
-  await ctx.reply("Could you state your home address?");
-
-  // 等待用户发送他们的地址
-  const userHomeAddressContext = await conversation.wait();
-
-  // 询问用户的国籍
-  await ctx.reply("Could you also please state your nationality?");
-
-  // 等待用户声明他们的国籍
-  const userNationalityContext = await conversation.wait();
-
-  await ctx.reply(
-    "That was the final step. Now that I have received all relevant information, I will forward them to our team for review. Thank you!",
-  );
-
-  // 我们现在将回复复制到另一个聊天以供审核
-  await userHomeAddressContext.copyMessage(TEAM_REVIEW_CHAT);
-  await userNationalityContext.copyMessage(TEAM_REVIEW_CHAT);
-}
-```
-
-```js [JavaScript]
-const TEAM_REVIEW_CHAT = -1001493653006;
-async function askUser(conversation, ctx) {
-  // 向用户询问他们的家庭住址
-  await ctx.reply("Could you state your home address?");
-
-  // 等待用户发送他们的地址
-  const userHomeAddressContext = await conversation.wait();
-
-  // 询问用户的国籍
-  await ctx.reply("Could you also please state your nationality?");
-
-  // 等待用户声明他们的国籍
-  const userNationalityContext = await conversation.wait();
-
-  await ctx.reply(
-    "That was the final step. Now that I have received all relevant information, I will forward them to our team for review. Thank you!",
-  );
-
-  // 我们现在将回复复制到另一个聊天以供审核
-  await userHomeAddressContext.copyMessage(TEAM_REVIEW_CHAT);
-  await userNationalityContext.copyMessage(TEAM_REVIEW_CHAT);
-}
-```
-
-:::
-
-通常，在对话插件之外，这些 update 都是由你的 bot 的 [中间件系统](../guide/middleware) 处理的。
-因此，你的 bot 将通过一个上下文对象来处理这些 update，这个上下文对象会被传递给你的处理程序。
-
-在对话中，你可以从 `wait` 调用中获取到这个新的上下文对象。
-然后，你可以根据这个对象以不同的方式处理不同的 update。
-例如，你可以检查文本消息：
-
-::: code-group
-
-```ts [TypeScript]
-async function waitForText(conversation: MyConversation, ctx: MyContext) {
-  // 等待下一个 update：
-  ctx = await conversation.wait();
-  // 检查文本消息：
-  if (ctx.message?.text) {
-    // ...
-  }
-}
-```
-
-```js [JavaScript]
-async function waitForText(conversation, ctx) {
-  // 等待下一个 update：
-  ctx = await conversation.wait();
-  // 检查文本消息：
-  if (ctx.message?.text) {
-    // ...
-  }
-}
-```
-
-:::
-
-此外，在 `wait` 之外，还有一些其他方法，可以等待特定的 update。
-其中一个例子是 `waitFor`，它接受一个 [过滤器查询](../guide/filter-queries)，然后只等待匹配这个查询的 update。
-这与 [对象解构赋值](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) 结合使用非常强大：
-
-::: code-group
-
-```ts [TypeScript]
-async function waitForText(conversation: MyConversation, ctx: MyContext) {
-  // 等待下一个文本消息的 update：
-  const { msg: { text } } = await conversation.waitFor("message:text");
-}
-```
-
-```js [JavaScript]
-async function waitForText(conversation, ctx) {
-  // 等待下一个文本消息的 update：
-  const { msg: { text } } = await conversation.waitFor("message:text");
-}
-```
-
-:::
-
-通过 [API 参考](/ref/conversations/conversationhandle#wait) 来查看所有与 `wait` 类似的方法。
-
-## 对话的三条黄金法则
-
-这里有三条适用于你的对话生成器函数中的代码的规则，
-如果你想你的代码正常工作，你必须遵循它们。
-
-如果你想知道更多这些规则的 _秘密_，以及 `wait` 调用真正的作用，请 [向下](#它是如何工作的) 滚动。
-
-### 规则一：所有副作用必须被封装
-
-依赖于外部系统的代码，例如数据库、API、文件、或其他资源，在一次执行中可能会发生变化，必须使用 `conversation.external()` 调用来封装它们。
+这是使用它的方法：
 
 ```ts
 // 错误的
-const response = await externalApi();
+const response = await accessDatabase();
 // 正确的
-const response = await conversation.external(() => externalApi());
+const response = await conversation.external(() => accessDatabase());
 ```
 
-这包括读取数据，以及执行副作用（例如写入数据库）。
+通过 [`conversation.external`](/ref/conversations/conversation#external) 转义代码的一部分，会告知插件在重放期间应跳过这部分代码。
+被包裹代码的返回值由插件存储，并在后续重放期间重复使用。
+在上面的示例中，这可以防止重复访问数据库。
 
-::: tip 可与 React 媲美
-如果你熟悉 React，你会发现它和 `useEffect` 的概念相似。
-:::
+使用 `conversation.external` 的情况包括：
 
-### 规则二：所有随机行为必须被封装
+- 读取或写入文件、数据库/会话、网络或全局状态；
+- 调用 `Math.random()` 或 `Date.now()`；
+- 执行 `bot.api` 或其他 `Api` 的独立实例上的 API 调用。
 
-依赖于随机性或者可能发生变化的全局状态的代码，必须使用 `conversation.external()` 调用来封装它们，或使用 `conversation.random()` 函数。
+不应该使用 `conversation.external` 的情况包括：
+
+- 调用 `ctx.reply` 或其他 [上下文操作](../guide/context#可用操作)；
+- 通过 `ctx.api` 调用 `ctx.api.sendMessage` 或其他 [Bot API](https://core.telegram.org/bots/api) 方法。
+
+对话插件围绕 `conversation.external` 打造了一些简便方法。
+这不仅简化了 `Math.random()` 和 `Date.now()` 的使用，而且还提供一种在重放期间抑制日志的方法，从而简化了调试。
 
 ```ts
-// 错误的
-if (Math.random() < 0.5) { /* 干些好事 */ }
-// 正确的
-if (conversation.random() < 0.5) { /* 干些好事 */ }
+// await conversation.external(() => Math.random());
+const rnd = await conversation.random();
+// await conversation.external(() => Date.now());
+const now = await conversation.now();
+// await conversation.external(() => console.log("abc"));
+await conversation.log("abc");
 ```
 
-### 规则三：使用便捷函数
+`conversation.wait` 和 `conversation.external` 是怎样在重放时恢复原始的值的呢？
+插件有什么办法记住这些数据，对吧？
 
-我们在 `conversation` 上安装了一些可能会帮助你的代码。
-如果你不使用它们，你的代码有时甚至不会出问题，但即使那样它也可能比原来慢，或者可能会表现出一种很奇怪的行为。
+当然。
 
-```ts
-// `ctx.session` 只保留最近上下文对象的更改
-conversation.session.myProp = 42; // 更可靠！
+### 对话存储状态
 
-// Date.now() 在对话中可能不准确
-await conversation.now(); // 更精确！
+两类数据将在一个数据库中存储。
+默认情况下，插件使用基于 `Map` 的轻量级内存数据库，但你也可以轻松地 [选用持久数据库](#持久化对话)。
 
-// 通过对话调试日志，不会打印令人困惑的日志
-conversation.log("Hello, world"); // 更透明！
-```
+1. 对话插件存储所有的 update。
+2. 对话插件存储所有 `conversation.external` 的返回值和所有 API 调用的结果。
 
-请注意，你可以使用 `conversation.external()` 来执行大多数上述操作，但这可能会很麻烦，所以我们提供了一些便捷函数（[API 参考](/ref/conversations/conversationhandle#methods)）。
+如果对话中只有几十条 update，这不是问题。
+（别忘了在长轮询期间，每次调用 `getUpdates` 也最多只会检索 100 条 update。）
 
-## 变量，分支和循环
+但是，如果你的对话从未退出，这些数据就会累积，让你的 bot 速度变慢。
+**请避免无限循环。**
 
-如果你遵循了上述三条规则，你可以完全自由地使用任何你想使用的代码。
-现在我们将介绍一些你已经知道的编程语言的概念，并展示它们如何转换为清晰和易读的对话。
+### 对话上下文对象
 
-想象一下，下面的所有代码都是在一个对话生成器函数中写的。
+当会话被执行时，它会使用持久化的 update 数据从头生成新的上下文对象。
+**这些上下文对象与外围中间件中的上下文对象不同。**
+对于 TypeScript 代码，这也意味着你现在会有两种上下文 [调味剂](../guide/context#上下文调味剂)。
 
-你可以声明变量，并对它们做任何你想做的事情：
+- **外部上下文对象** 是你的 bot 在中间件中使用的上下文对象。
+  它们允许你访问 `ctx.conversation.enter`。
+  对于 TypeScript，它们至少会包含 `ConversationFlavor`。
+  外部上下文对象还会包含你通过 `bot.use` 安装的插件定义的其他属性。
+- **内部上下文对象**（也称为 **对话上下文对象**）是由对话插件创建的上下文对象。
+  它们无法访问 `ctx.conversation.enter`，并且默认情况下也无法访问任何插件。
+  如果你希望在内部上下文对象中拥有自定义属性，请 [滚动到下面](#在对话中使用插件)。
 
-```ts
-await ctx.reply("把你最喜欢的数字用逗号隔开后发给我！");
-const { message } = await conversation.waitFor("message:text");
-const sum = message.text
-  .split(",")
-  .map((n) => parseInt(n.trim(), 10))
-  .reduce((x, y) => x + y);
-await ctx.reply("这些数字的总和为：" + sum);
-```
+你需要同时将外部和内部上下文类型传递给对话。
+因此，TypeScript 的设置通常如下：
 
-分支也能正常运行：
+::: code-group
 
-```ts
-await ctx.reply("发给我一张照片！");
-const { message } = await conversation.wait();
-if (!message?.photo) {
-  await ctx.reply("啊，这不是一张照片！我死了！");
-  return;
+```ts [Node.js]
+import { Bot, type Context } from "grammy";
+import {
+  type Conversation,
+  type ConversationFlavor,
+} from "@grammyjs/conversations";
+
+// 外部上下文对象 (知道所有中间件插件)
+type MyContext = ConversationFlavor<Context>;
+// 内部上下文对象 (知道所有对话插件)
+type MyConversationContext = Context;
+
+// 对你的 bot 使用外部上下文类型。
+const bot = new Bot<MyContext>(""); // <-- 把你的 bot token 放在 "" 之间 (https://t.me/BotFather)
+
+// 对于你的对话，同时使用外部和内部类型。
+type MyConversation = Conversation<MyContext, MyConversationContext>;
+
+// 定义你的对话。
+async function example(
+  conversation: MyConversation,
+  ctx0: MyConversationContext,
+) {
+  // 对话中的所有上下文对象
+  // 都是 `MyConversationContext` 类型。
+  const ctx1 = await conversation.wait();
+
+  // 外部上下文对象可以通过
+  // `conversation.external` 访问，
+  // 并且被推断为 `MyContext` 类型。
+  const session = await conversation.external((ctx) => ctx.session);
 }
 ```
 
-循环也是一样的：
+```ts [Deno]
+import { Bot, type Context } from "https://deno.land/x/grammy/mod.ts";
+import {
+  type Conversation,
+  type ConversationFlavor,
+} from "https://deno.land/x/grammy_conversations/mod.ts";
+
+// 外部上下文对象 (知道所有中间件插件)
+type MyContext = ConversationFlavor<Context>;
+// 内部上下文对象 (知道所有对话插件)
+type MyConversationContext = Context;
+
+// 对你的 bot 使用外部上下文类型。
+const bot = new Bot<MyContext>(""); // <-- 把你的 bot token 放在 "" 之间 (https://t.me/BotFather)
+
+// 对于你的对话，同时使用外部和内部类型。
+type MyConversation = Conversation<MyContext, MyConversationContext>;
+
+// 定义你的对话。
+async function example(
+  conversation: MyConversation,
+  ctx0: MyConversationContext,
+) {
+  // 对话中的所有上下文对象
+  // 都是 `MyConversationContext` 类型。
+  const ctx1 = await conversation.wait();
+
+  // 外部上下文对象可以通过
+  // `conversation.external` 访问，
+  // 并且被推断为 `MyContext` 类型。
+  const session = await conversation.external((ctx) => ctx.session);
+}
+```
+
+:::
+
+> 在上面的例子中，在对话中没有安装任何插件。
+> 一旦你开始 [安装](#在对话中使用插件) 插件，`MyConversationContext` 的定义将不再是原始的 `Context`。
+
+当然，如果你有多个对话，并且希望每个对话的上下文类型不同，你可以定义多种对话上下文类型。
+
+恭喜！
+如果你读懂了上述全部内容，最难的部分就结束了。
+这个页面的剩余部分是关于这个插件的功能带来的价值。
+
+## 进入对话
+
+对话可以通过普通的处理程序进入。
+
+默认情况下，对话的名称和函数的 [名称](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/name) 相同。
+当然，你也可以在将对话安装到 bot 时重新命名。
+
+同时，你也可以向对话传递参数。
+请注意，这些参数将被存储为 JSON 字符串，因此请确保参数可以安全地传递给 `JSON.stringify`。
+
+对话也可以通过普通的 JavaScript 函数调用从其他对话中进入。
+在这种情况下，调用的函数可以访问被调用的对话可能提供的返回值。
+当你在中间件内部进入对话时不可用。
+
+:::code-group
+
+```ts [TypeScript]
+/**
+ * 回答关于生命、宇宙和一切的问题。
+ * 只有当对话从另一个对话中调用时，
+ * 才能访问这个值。
+ */
+async function convo(conversation: Conversation, ctx: Context) {
+  await ctx.reply("正在计算答案");
+  return 42;
+}
+/** 接受两个参数 (必须是 JSON 可序列化的) */
+async function args(
+  conversation: Conversation,
+  ctx: Context,
+  answer: number,
+  config: { text: string },
+) {
+  const truth = await convo(conversation, ctx);
+  if (answer === truth) {
+    await ctx.reply(config.text);
+  }
+}
+bot.use(createConversation(convo, "new-name"));
+bot.use(createConversation(args));
+
+bot.command("enter", async (ctx) => {
+  await ctx.conversation.enter("new-name");
+});
+bot.command("enter_with_arguments", async (ctx) => {
+  await ctx.conversation.enter("args", 42, { text: "foo" });
+});
+```
+
+```js [JavaScript]
+/**
+ * 回答关于生命、宇宙和一切的问题。
+ * 只有当对话从另一个对话中调用时，
+ * 才能访问这个值。
+ */
+async function convo(conversation, ctx) {
+  await ctx.reply("Computing answer");
+  return 42;
+}
+/** 接受两个参数 (必须是 JSON 可序列化的) */
+async function args(conversation, ctx, answer, config) {
+  const truth = await convo(conversation, ctx);
+  if (answer === truth) {
+    await ctx.reply(config.text);
+  }
+}
+bot.use(createConversation(convo, "new-name"));
+bot.use(createConversation(args));
+
+bot.command("enter", async (ctx) => {
+  await ctx.conversation.enter("new-name");
+});
+bot.command("enter_with_arguments", async (ctx) => {
+  await ctx.conversation.enter("args", 42, { text: "foo" });
+});
+```
+
+:::
+
+::: warning 参数缺少类型安全
+
+请再三确认对话的参数是否使用了正确的类型注释，以及是否向 `enter` 调用传递了相匹配的参数。
+此插件无法检查 `conversation` 和 `ctx` 外的任何类型。
+
+:::
+
+不要忘了 [中间件的顺序很重要](../guide/middleware)。
+你只能进入在调用 `enter` 的处理程序前就已经安装的对话。
+
+## 等待 update
+
+最基本的 wait 调用简单地等待任何 update。
 
 ```ts
-do {
-  await ctx.reply("发给我一张照片！");
-  ctx = await conversation.wait();
+const ctx = await conversation.wait();
+```
 
-  if (ctx.message?.text === "/cancel") {
-    await ctx.reply("呜呜，被取消了，我走了！");
+它单纯返回一个上下文对象。
+其他的 wait 调用都基于此实现。
+
+### 过滤的 wait 调用
+
+若要等待某种特定类型的 update，你可以使用过滤的 wait 调用。
+
+```ts
+// 像 `bot.on` 那样匹配过滤查询。
+const message = await conversation.waitFor("message");
+// 像 `bot.hears` 那样等待文本。
+const hears = await conversation.waitForHears(/regex/);
+// 像 `bot.command` 那样等待指令。
+const start = await conversation.waitForCommand("start");
+// 更多
+```
+
+请查看 API 参考中列出的 [过滤的 wait 调用的所有可用方法](/ref/conversations/conversation#wait)。
+
+过滤的 wait 调用可保证仅返回匹配相应过滤条件的 update。
+当 bot 接收到不符合条件的 update 时，update 将被丢弃。
+你可以传递一个在这种情况下执行的回调函数。
+
+```ts
+const message = await conversation.waitFor(":photo", {
+  otherwise: (ctx) => ctx.reply("请发送图片给我！"),
+});
+```
+
+所有过滤等待调用都可以链式调用，以便一次添加多个过滤条件。
+
+```ts
+// 等待一张带特定标题的图片
+let photoWithCaption = await conversation.waitFor(":photo")
+  .andForHears("XY");
+// 处理过滤的另一种情况：
+photoWithCaption = await conversation
+  .waitFor(":photo", { otherwise: (ctx) => ctx.reply("没有照片") })
+  .andForHears("XY", { otherwise: (ctx) => ctx.reply("标题不正确") });
+```
+
+如果仅在其中一个链式等待调用中指定了 `otherwise`，那么仅当指定了的过滤器丢弃 update 时才会调用它。
+
+### 检查上下文对象
+
+对接收到的上下文对象进行 [解构](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) 是很常见的。
+因此你可以对接收的数据进行进一步的检查。
+
+```ts
+const { message } = await conversation.waitFor("message");
+if (message.photo) {
+  // 处理图片消息
+}
+```
+
+对话也是 [has checks](../guide/context#通过-has-checks-进行检测) 的理想使用场景。
+
+## 退出对话
+
+退出对话最简单的方式就是让函数返回 (`return`)。
+抛出一个错误也会结束对话。
+
+如果这还不够，你可以随时手动停止对话。
+
+```ts
+async function convo(conversation: Conversation, ctx: Context) {
+  // 所有分支都会退出对话
+  if (ctx.message?.text === "return") {
     return;
-  }
-} while (!ctx.message?.photo);
-```
-
-## 函数和递归
-
-你也可以将你的代码分割几个函数，并重用它们。
-例如，你可以这样定义一个可重复使用的验证码函数。
-
-::: code-group
-
-```ts [TypeScript]
-async function captcha(conversation: MyConversation, ctx: MyContext) {
-  await ctx.reply("请证明你是个人！一切的答案是什么？");
-  const { message } = await conversation.wait();
-  return message?.text === "42";
-}
-```
-
-```js [JavaScript]
-async function captcha(conversation, ctx) {
-  await ctx.reply("请证明你是个人！一切的答案是什么？");
-  const { message } = await conversation.wait();
-  return message?.text === "42";
-}
-```
-
-:::
-
-如果用户可以通过验证，返回 `true`，否则返回 `false`。
-现在，你可以在你的主对话生成器函数中使用它，如下所示：
-
-::: code-group
-
-```ts [TypeScript]
-async function enterGroup(conversation: MyConversation, ctx: MyContext) {
-  const ok = await captcha(conversation, ctx);
-
-  if (ok) await ctx.reply("欢迎！");
-  else await ctx.banChatMember();
-}
-```
-
-```js [JavaScript]
-async function enterGroup(conversation, ctx) {
-  const ok = await captcha(conversation, ctx);
-
-  if (ok) await ctx.reply("欢迎！");
-  else await ctx.banChatMember();
-}
-```
-
-:::
-
-看，这样一来 captcha 函数就可以在不同的地方重复使用。
-
-> 这个简单的例子只是为了说明函数的工作方式。
-> 实际上，它可能会工作得差，因为它只是等待来自相应的聊天的新 update，但没有验证它实际上来自于同一个新加入的用户。
-> 如果你想创建一个真正的验证码，你可能需要使用 [并行对话](#并行对话)。
-
-如果你愿意，你也可以将你的代码分割成几个函数，或者使用递归，互相递归，生成器，等等。
-(只要确保所有函数遵循 [对话的三条黄金法则](#对话的三条黄金法则) 即可。)
-
-当然，你也可以在函数中使用错误处理。
-`try`/`catch` 可以正常使用，也可以在函数之间使用。
-毕竟，对话的代码是使用 JavaScript 编写的。
-
-如果主对话函数抛出错误，错误将会向上传递到你的 bot 的 [错误处理机制](../guide/errors)。
-
-## 模块与类
-
-当然，你可以在不同的模块中移动一的函数。
-这样，你可以在一个文件中定义一些可导出的函数，然后在另一个文件中通过导入进行使用。
-
-如果你想，你还可以定义类。
-
-::: code-group
-
-```ts [TypeScript]
-class Auth {
-  public token?: string;
-
-  constructor(private conversation: MyConversation) {}
-
-  authenticate(ctx: MyContext) {
-    const link = getAuthLink(); // 从你的系统中获取认证链接
-    await ctx.reply(
-      "打开这个链接获得一个 token，并将它发送回给我：" + link,
-    );
-    ctx = await this.conversation.wait();
-    this.token = ctx.message?.text;
-  }
-
-  isAuthenticated(): this is Auth & { token: string } {
-    return this.token !== undefined;
-  }
-}
-
-async function askForToken(conversation: MyConversation, ctx: MyContext) {
-  const auth = new Auth(conversation);
-  await auth.authenticate(ctx);
-  if (auth.isAuthenticated()) {
-    const token = auth.token;
-    // 用 token 来干些事情
+  } else if (ctx.message?.text === "error") {
+    throw new Error("boom");
+  } else {
+    await conversation.halt(); // 不会返回
   }
 }
 ```
 
-```js [JavaScript]
-class Auth {
-  constructor(conversation) {
-    this.#conversation = conversation;
-  }
-
-  authenticate(ctx) {
-    const link = getAuthLink(); // 从你的系统中获取认证链接
-    await ctx.reply(
-      "打开这个链接获得一个 token，并将它发送回给我：" + link,
-    );
-    ctx = await this.#conversation.wait();
-    this.token = ctx.message?.text;
-  }
-
-  isAuthenticated() {
-    return this.token !== undefined;
-  }
-}
-
-async function askForToken(conversation, ctx) {
-  const auth = new Auth(conversation);
-  await auth.authenticate(ctx);
-  if (auth.isAuthenticated()) {
-    const token = auth.token;
-    // 用 token 来干些事情
-  }
-}
-```
-
-:::
-
-这里的重点并不是说我们强烈建议你这么做。
-它是为了说明你可以使用 JavaScript 的无穷无尽的灵活性来组织你的代码。
-
-## 表单
-
-正如 [前面](#等待-updates) 提到的，对话中有很多工具函数，比如 `await conversation.waitFor('message:text')`，它只会返回文本消息 update。
-
-如果这些方法不够，对话插件通过 `conversation.form` 提供了更多帮助函数来构建表单。
-
-::: code-group
-
-```ts [TypeScript]
-async function waitForMe(conversation: MyConversation, ctx: MyContext) {
-  await ctx.reply("你多大了？");
-  const age: number = await conversation.form.number();
-}
-```
-
-```js [JavaScript]
-async function waitForMe(conversation, ctx) {
-  await ctx.reply("你多大了？");
-  const age = await conversation.form.number();
-}
-```
-
-:::
-
-像往常一样，查看 [API 参考](/ref/conversations/conversationform) 以了解哪些方法可用。
-
-## 使用插件
-
-正如 [前面](#介绍) 所述，grammY 处理程序始终只处理单个 update。
-但是，通过对话，你可以按顺序处理许多 update，就好像它们同时可用一样。
-插件通过存储旧的上下文对象并在以后重新提供它们来实现这一点。
-这就是为什么对话中的上下文对象并不总是像人们预期的那样受到某些 grammY 插件的影响。
-
-::: warning 对话中的互动菜单
-使用 [menu 插件](./menu)，这些概念会产生很严重的冲突。
-虽然菜单_可以_在对话中使用，但我们不建议同时使用这两个插件。
-取而代之地，使用常规的 [inline keyboard 插件](./keyboard#inline-keyboards)（直到我们为对话添加原生菜单支持）。
-你可以使用 `await conversation.waitForCallbackQuery("my-query")` 等待特定的回调查询，或者使用 `await conversation.waitFor("callback_query")` 等待任何查询。
+你也可以在中间件中退出对话。
 
 ```ts
-const keyboard = new InlineKeyboard()
-  .text("A", "a").text("B", "b");
-await ctx.reply("A还是B？", { reply_markup: keyboard });
-const response = await conversation.waitForCallbackQuery(["a", "b"], {
-  otherwise: (ctx) => ctx.reply("点击按钮！", { reply_markup: keyboard }),
+bot.use(conversations());
+bot.command("clean", async (ctx) => {
+  await ctx.conversation.exit("convo");
 });
-if (response.match === "a") {
-  // 用户选择 "A".
-} else {
-  // 用户选择 "B".
+```
+
+你甚至可以在目标对话在中间件系统上安装 _之前_ 就执行此操作。
+安装对话插件本身就足够了。
+
+## 这只是 JavaScript
+
+虽然有一些 [副作用](#对话的黄金法则)，但对话插件只是普通的 JavaScript 函数。
+它们可能以一种奇怪的方式执行，但开发 bot 时，通常不需要考虑这些。
+所有常见的 JavaScript 语法都可以正常工作。
+
+如果你已经使用了对话一段时间，本节中的大部分内容都是显而易见的。
+但是，如果你是新手，其中一些内容可能会让你感到惊讶。
+
+### 变量、分支和循环
+
+你可以使用正常的变量在 update 之间存储数据。
+你也可以使用 `if` 或 `switch` 进行分支。
+通过 `for` 和 `while` 进行循环同样照常运作。
+
+```ts
+await ctx.reply("把你最爱的数字发送给我，以逗号分隔！");
+const { message } = await conversation.waitFor("message:text");
+const numbers = message.text.split(",");
+let sum = 0;
+for (const str of numbers) {
+  const n = parseInt(str.trim(), 10);
+  if (!isNaN(n)) {
+    sum += n;
+  }
+}
+await ctx.reply("这些数字的和是：" + sum);
+```
+
+这只是 JavaScript。
+
+### 函数和递归
+
+你可以将一个对话分割成多个函数。
+函数可以互相调用，进行递归也不在话下。
+（实际上，插件根本不知道你使用了函数。）
+
+以下代码和上面一样，现在用函数重构了。
+
+:::code-group
+
+```ts [TypeScript]
+/** 用以添加数字的对话 */
+async function sumConvo(conversation: Conversation, ctx: Context) {
+  await ctx.reply("把你最爱的数字发送给我，以逗号分隔！");
+  const { message } = await conversation.waitFor("message:text");
+  const numbers = message.text.split(",");
+  await ctx.reply("这些数字的和是：" + sumStrings(numbers));
+}
+
+/** 转换得到的字符串为数字，然后将它们相加 */
+function sumStrings(numbers: string[]): number {
+  let sum = 0;
+  for (const str of numbers) {
+    const n = parseInt(str.trim(), 10);
+    if (!isNaN(n)) {
+      sum += n;
+    }
+  }
+  return sum;
+}
+```
+
+```js [JavaScript]
+/** 用以添加数字的对话 */
+async function sumConvo(conversation, ctx) {
+  await ctx.reply("把你最爱的数字发送给我，以逗号分隔！");
+  const { message } = await conversation.waitFor("message:text");
+  const numbers = message.text.split(",");
+  await ctx.reply("这些数字的和是：" + sumStrings(numbers));
+}
+
+/** 转换得到的字符串为数字，然后将它们相加 */
+function sumStrings(numbers) {
+  let sum = 0;
+  for (const str of numbers) {
+    const n = parseInt(str.trim(), 10);
+    if (!isNaN(n)) {
+      sum += n;
+    }
+  }
+  return sum;
 }
 ```
 
 :::
 
-其他插件运行正常。
-其中一些只是需要以不同于通常的方式安装。
-这与以下插件相关：
+这只是 JavaScript。
 
-- [hydrate](./hydrate)
-- [i18n](./i18n) 和 [fluent](./fluent)
-- [emoji](./emoji)
+### 模块和类
 
-它们的共同点是它们都将功能存储在上下文对象上，而对话插件无法正确处理。
-因此，如果你想将对话与其中一个 grammY 插件结合使用，则必须使用特殊语法在每个对话中安装另一个插件。
+JavaScript 具有高阶函数、类和其他将代码构造为模块的方法。
+当然，所有这些都可以转化为对话。
 
-你可以使用 `conversation.run` 在对话中安装其他插件：
+以下仍然是一样的代码，通过简单的依赖注入重构为模块。
 
 ::: code-group
 
 ```ts [TypeScript]
-async function convo(conversation: MyConversation, ctx: MyContext) {
-  // 在此处安装 grammY 插件
-  await conversation.run(plugin());
-  // 继续定义对话 ...
+/**
+ * 这个模块可向用户请求数字，
+ * 并提供一种计算用户发送的数字的方法。
+ *
+ * 需要注入一个对话句柄。
+ */
+function sumModule(conversation: Conversation) {
+  /** 将所有给定的字符串转换为数字并相加 */
+  function sumStrings(numbers) {
+    let sum = 0;
+    for (const str of numbers) {
+      const n = parseInt(str.trim(), 10);
+      if (!isNaN(n)) {
+        sum += n;
+      }
+    }
+    return sum;
+  }
+
+  /** 询问用户数字 */
+  async function askForNumbers(ctx: Context) {
+    await ctx.reply("把你最爱的数字发送给我，以逗号分隔！");
+  }
+
+  /** 等待用户发送数字，然后回复它们的和 */
+  async function sumUserNumbers() {
+    const ctx = await conversation.waitFor(":text");
+    const sum = sumStrings(ctx.msg.text);
+    await ctx.reply("这些数字的和是：" + sum);
+  }
+
+  return { askForNumbers, sumUserNumbers };
+}
+
+/** 用以添加数字的对话 */
+async function sumConvo(conversation: Conversation, ctx: Context) {
+  const mod = sumModule(conversation);
+  await mod.askForNumbers(ctx);
+  await mod.sumUserNumbers();
+}
+```
+
+```js [JavaScript]
+/**
+ * 这个模块可向用户请求数字，
+ * 并提供一种计算用户发送的数字的方法。
+ *
+ * 需要注入一个对话句柄。
+ */
+function sumModule(conversation: Conversation) {
+  /** Converts all given strings to numbers and adds them up */
+  function sumStrings(numbers) {
+    let sum = 0;
+    for (const str of numbers) {
+      const n = parseInt(str.trim(), 10);
+      if (!isNaN(n)) {
+        sum += n;
+      }
+    }
+    return sum;
+  }
+
+  /** 询问用户数字 */
+  async function askForNumbers(ctx: Context) {
+    await ctx.reply("把你最爱的数字发送给我，以逗号分隔！");
+  }
+
+  /** 等待用户发送数字，然后回复它们的和 */
+  async function sumUserNumbers() {
+    const ctx = await conversation.waitFor(":text");
+    const sum = sumStrings(ctx.msg.text);
+    await ctx.reply("这些数字的和是：" + sum);
+  }
+
+  return { askForNumbers, sumUserNumbers };
+}
+
+/** 用以添加数字的对话 */
+async function sumConvo(conversation: Conversation, ctx: Context) {
+  const mod = sumModule(conversation);
+  await mod.askForNumbers(ctx);
+  await mod.sumUserNumbers();
+}
+```
+
+:::
+
+对于像加几个数字这样简单的任务来说，这显然是杀鸡用牛刀。
+然而，它说明了一个更广泛的点。
+
+你猜对了：
+这只是 JavaScript。
+
+## 持久化对话
+
+默认情况下，对话插件会将所有数据存储在内存中。
+这也就是说，一旦进程结束，所有对话都将退出，必须重新开始。
+
+如果你希望在服务器重启后保留数据，就需要将对话插件连接到数据库。
+我们构建了 [大量存储适配器](https://github.com/grammyjs/storages/tree/main/packages#grammy-storages)，让连接数据库变得简单。
+（它们和 [会话插件](./session#已知的存储适配器) 使用相同的适配器。）
+
+我们假设你想要将数据存储在磁盘上名为 `convo-data` 的目录中。
+这意味着你需要 [`FileAdapter`](https://github.com/grammyjs/storages/tree/main/packages/file#installation)。
+
+::: code-group
+
+```ts [Node.js]
+import { FileAdapter } from "@grammyjs/storage-file";
+
+bot.use(conversations({
+  storage: new FileAdapter({ dirName: "convo-data" }),
+}));
+```
+
+```ts [Deno]
+import { FileAdapter } from "https://deno.land/x/grammy_storages/file/src/mod.ts";
+
+bot.use(conversations({
+  storage: new FileAdapter({ dirName: "convo-data" }),
+}));
+```
+
+:::
+
+就是这样！
+
+你可以使用任何能够存储 [`VersionedState`](/ref/conversations/versionedstate) 类型或 [`ConversationData`](/ref/conversations/conversationdata) 数据的存储适配器。
+这两种类型都可以从对话插件中导入。
+换句话说，如果你想将存储提取到变量，可以使用以下类型注释。
+
+```ts
+const storage = new FileAdapter<VersionedState<ConversationData>>({
+  dirName: "convo-data",
+});
+```
+
+当然，相同的类型可以与任何其他存储适配器一起使用。
+
+### 版本控制数据
+
+如果你将对话状态保留在数据库中，然后更新源代码，则存储的数据和对话构建器函数之间会存在不匹配。
+这是一种数据损坏形式，会破坏重放。
+
+你可以通过指定代码版本来防止这种情况。
+每次更改对话时，你都可以增加版本。
+对话插件将检测到版本不匹配，并自动迁移所有数据。
+
+```ts
+bot.use(conversations({
+  storage: {
+    type: "key",
+    version: 42, // 可以是数字或字符串
+    adapter: storageAdapter,
+  },
+}));
+```
+
+如果没有指定版本，默认值是 `0`。
+
+::: tip 忘记更改版本号了？别担心！
+
+对话插件已经具备良好的保护措施，可以捕获大多数数据损坏情况。
+如果检测到这种情况，对话内部某处会抛出错误，从而导致对话崩溃。
+假设你没有捕获并抑制该错误，对话将清除损坏数据并正确重新启动。
+
+话虽如此，这种保护措施并不能覆盖 100% 的情况，因此下次请一定要记得更新版本号。
+
+:::
+
+### 不可序列化的数据
+
+[还记得](#对话存储状态) 从 [`conversation.external`](/ref/conversations/conversation#external) 返回的所有数据都将被存储。
+这意味着从 `conversation.external` 返回的所有数据都必须是可序列化的。
+
+如果你想要返回无法序列化的数据，例如类或 [`BigInt`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/BigInt)，则可以提供自定义序列化程序来修复此问题。
+
+```ts
+const largeNumber = await conversation.external({
+  // 调用一个返回 BigInt（无法转换为 JSON）的 API。
+  task: () => 1000n ** 1000n,
+  // 将 BigInt 转换为字符串以便存储。
+  beforeStore: (n) => String(n),
+  // 将字符串转换回 BigInt 以便使用。
+  afterLoad: (str) => BigInt(str),
+});
+```
+
+如果你想从任务中抛出错误，你可以为错误对象指定额外的序列化函数。
+请查看 API 参考中的 [`ExternalOp`](/ref/conversations/externalop)。
+
+### 存储键
+
+默认情况下，对话数据按聊天存储。
+这与 [会话插件的工作方式](./session#会话键) 相同。
+
+因此，对话无法处理来自多个聊天的 update。
+如果需要，你可以 [定义自己的存储键函数](/ref/conversations/conversationoptions#storage)。
+与会话一样，由于潜在的竞争条件，[不建议](./session#会话键) 在无服务器环境中使用此选项。
+
+此外，与会话一样，你可以使用 `prefix` 选项将对话数据存储在命名空间下。
+如果你想对会话数据和对话数据使用相同的存储适配器，这将特别有用。
+将数据存储在命名空间中将防止发生冲突。
+
+你可以按如下方式指定这两个选项。
+
+```ts
+bot.use(conversations({
+  storage: {
+    type: "key",
+    adapter: storageAdapter,
+    getStorageKey: (ctx) => ctx.from?.id.toString(),
+    prefix: "convo-",
+  },
+}));
+```
+
+如果一个 ID 为 `424242` 的用户进入了一个对话，则存储键将为 `convo-424242`。
+
+请查看 [`ConversationStorage`](/ref/conversations/conversationstorage) 的 API 参考，了解有关使用对话插件存储数据的更多详细信息。
+除此之外，它还将解释如何使用 `type: "context"` 来存储数据，而无需任何存储键函数。
+
+## 在对话中使用插件
+
+[还记得](#对话上下文对象) 对话中的上下文对象独立于外围中间件中的上下文对象。
+这意味着默认情况下对话不会安装任何插件，即使你的 bot 上安装了插件。
+
+幸运的是，[除会话外](#在对话中访问会话)，所有 grammY 插件都与对话兼容。
+例如，你可以这样为对话安装 [hydrate 插件](./hydrate)。
+
+::: code-group
+
+```ts [TypeScript]
+// 只在外部安装对话插件。
+type MyContext = ConversationFlavor<Context>;
+// 只在内部安装 hydrate 插件。
+type MyConversationContext = HydrateFlavor<Context>;
+
+bot.use(conversations());
+
+// 传递外部和内部上下文对象。
+type MyConversation = Conversation<MyContext, MyConversationContext>;
+async function convo(conversation: MyConversation, ctx: MyConversationContext) {
+  // hydrate 插件安装在此处的 `ctx` 参数上。
+  const other = await conversation.wait();
+  // hydrate 插件也安装在此处的 `other` 变量上。
+}
+bot.use(createConversation(convo, { plugins: [hydrate()] }));
+
+bot.command("enter", async (ctx) => {
+  // hydrate 插件**没有**安装在此处的 `ctx` 上。
+  await ctx.conversation.enter("convo");
+});
+```
+
+```js [JavaScript]
+bot.use(conversations());
+
+async function convo(conversation, ctx) {
+  // hydrate 插件安装在此处的 `ctx` 参数上。
+  const other = await conversation.wait();
+  // hydrate 插件也安装在此处的 `other` 变量上。
+}
+bot.use(createConversation(convo, { plugins: [hydrate()] }));
+
+bot.command("enter", async (ctx) => {
+  // hydrate 插件**没有**安装在此处的 `ctx` 上。
+  await ctx.conversation.enter("convo");
+});
+```
+
+:::
+
+在常规 [中间件](../guide/middleware) 中，插件可以在当前上下文对象上运行一些代码，然后调用 `next` 等待下游中间件，然后它们可以再次运行一些代码。
+
+对话不是中间件，插件不能以与中间件相同的方式与对话交互。
+当对话创建 [上下文对象](#对话上下文对象) 时，它将被传递给可以正常处理它的插件。
+对于插件来说，它看起来只安装了插件，不存在下游处理程序。
+所有插件完成后，上下文对象可供对话使用。
+
+因此，插件所做的任何清理工作都在对话构建器函数运行之前执行。
+除了会话之外的所有插件都可以很好地与此配合使用。
+如果你想使用会话，请 [向下滚动](#在对话中访问会话)。
+
+### 默认插件
+
+如果你有很多对话都需要同一组插件，你可以定义默认插件。
+现在，你不再需要将 `hydrate` 传递给 `createConversation`。
+
+::: code-group
+
+```ts [TypeScript]
+// TypeScript 需要两种上下文类型的帮助
+// 因此你经常必须指定它们才能使用插件。
+bot.use(conversations<MyContext, MyConversationContext>({
+  plugins: [hydrate()],
+}));
+// 下面的对话将有 hydrate 安装。
+bot.use(createConversation(convo));
+```
+
+```js [JavaScript]
+bot.use(conversations({
+  plugins: [hydrate()],
+}));
+// 下面的对话将有 hydrate 安装。
+bot.use(createConversation(convo));
+```
+
+:::
+
+确保在所有对话的内部上下文类型上安装所有默认插件的上下文风格。
+
+### 在对话中使用转换器插件
+
+如果你通过 `bot.api.config.use` 安装插件，则无法直接将其传递给 `plugins` 数组。
+相反，你必须将其安装在每个上下文对象的 `Api` 实例上。
+这可以从常规中间件插件中轻松完成。
+
+```ts
+bot.use(createConversation(convo, {
+  plugins: [async (ctx, next) => {
+    ctx.api.config.use(transformer);
+    await next();
+  }],
+}));
+```
+
+将 `transformer` 替换为你想要安装的任何插件。
+你可以在对 `ctx.api.config.use` 的同一调用中安装多个转换器。
+
+### 在对话中访问会话
+
+由于 [插件在对话中的工作方式](#在对话中使用插件)，[会话插件](./session) 无法像其他插件一样安装在对话中。
+你无法将其传递给 `plugins` 数组，因为它会：
+
+1. 读取数据，
+2. 调用 `next`（将立即解析），
+3. 写回完全相同的数据，
+4. 将上下文移交给对话。
+
+请注意在更改会话之前如何保存会话。
+这意味着对会话数据的所有更改都会丢失。
+
+相反，你可以使用 `conversation.external` 来 [访问外部上下文对象](#对话上下文对象)。
+它已安装会话插件。
+
+```ts
+// 在对话内读取会话数据。
+const session = await conversation.external((ctx) => ctx.session);
+
+// 在对话内更改会话数据。
+session.count += 1;
+
+// 在对话内保存会话数据。
+await conversation.external((ctx) => {
+  ctx.session = session;
+});
+```
+
+某种意义上，使用会话插件可以看作是执行副作用的一种方式。
+毕竟，会话访问的是数据库。
+鉴于我们必须遵循 [黄金法则](#对话的黄金法则)，会话访问必须要包装在 `conversation.external` 中。
+
+## 对话式菜单
+
+你可以在对话外使用 [菜单插件](./menu) 定义菜单，然后将其传递给 `plugins` 数组，[就像任何其他插件一样](#在对话中使用插件)。
+
+但是，这意味着菜单无法在其按钮处理程序中访问对话句柄 `conversation`。
+因此，你无法在菜单内部等待 update。
+
+理想情况下，单击按钮时，应该可以等待用户发送消息，然后在用户回复时执行菜单导航。
+这可以通过 `conversation.menu()` 实现。
+它允许你定义 _对话式菜单_。
+
+```ts
+let email = "";
+
+const emailMenu = conversation.menu()
+  .text("获取当前邮箱", (ctx) => ctx.reply(email || "空"))
+  .text(() => email ? "更改邮箱" : "设置邮箱", async (ctx) => {
+    await ctx.reply("你的邮箱是什么？");
+    const response = await conversation.waitFor(":text");
+    email = response.msg.text;
+    await ctx.reply(`你的邮箱是 ${email}!`);
+    ctx.menu.update();
+  })
+  .row()
+  .url("关于", "https://grammy.dev");
+
+const otherMenu = conversation.menu()
+  .submenu("打开邮箱菜单", emailMenu, async (ctx) => {
+    await ctx.reply("正在导航");
+  });
+
+await ctx.reply("你的菜单在此", {
+  reply_markup: otherMenu,
+});
+```
+
+`conversation.menu()` 返回一个菜单，可以通过添加按钮来构建，方式与菜单插件相同。
+事实上，如果你查看 API 参考中的 [`ConversationMenuRange`](/ref/conversations/conversationmenurange)，你会发现它与菜单插件中的 [`MenuRange`](/ref/menu/menurange) 非常相似。
+
+对话菜单仅在对话处于活跃状态时保持活跃状态。
+你应该在退出对话之前为所有菜单调用 `ctx.menu.close()`。
+
+如果你想阻止对话退出，你只需在对话结束时使用以下代码片段即可。
+但是，[别忘了](#对话存储状态) 让你的对话永远存在不是一个好主意。
+
+```ts
+// 永远等待。
+await conversation.waitUntil(() => false, {
+  otherwise: (ctx) => ctx.reply("请使用上方的菜单！"),
+});
+```
+
+最后，请注意，对话菜单保证永远不会干扰外部菜单。
+换句话说，外部菜单永远不会处理对话内部菜单的 update，反之亦然。
+
+### 菜单插件互操作性
+
+当你在对话之外定义菜单并使用它进入对话时，你可以定义一个对话菜单，只要对话处于活跃状态，该菜单就会接管。
+而在对话完成后，外部菜单将再次接管控制权。
+
+你首先必须为两个菜单提供相同的菜单标识符。
+
+```ts
+// 在对话外 (菜单插件)：
+const menu = new Menu("my-menu");
+// 在对话内 (对话插件)：
+const menu = conversation.menu("my-menu");
+```
+
+为了使其正常工作，你必须确保在将控制权转入或转出对话时，两个菜单具有完全相同的结构。
+否则，单击按钮时，菜单将被 [检测为过时](./menu#过时的菜单和指纹)，并且不会调用按钮处理程序。
+
+结构基于以下两点。
+
+- 菜单的形状（行数或每个行中的按钮数）。
+- 按钮上的标签。
+
+通常建议你在进入对话时，首先将菜单编辑为在对话中有意义的样子。
+随后，对话可以定义一个匹配的菜单，该菜单将立即处于活跃状态。
+
+类似地，如果对话留下任何菜单（通过不关闭它们），外部菜单可以再次接管控制。
+同样，菜单的结构必须匹配。
+
+这种互操作性的示例可以在 [示例 bot 仓库](https://github.com/grammyjs/examples?tab=readme-ov-file#menus-with-conversation-menu-with-conversation) 中找到。
+
+## 对话表单
+
+对话通常用于在聊天界面中构建表单。
+
+所有 wait 调用都会返回上下文对象。
+但是，当你等待文本消息时，你可能只想获取消息文本，而不与其余上下文对象交互。
+
+对话表单为你提供了一种将 update 验证与从上下文对象中提取数据相结合的方法。
+这类似于表单中的字段。
+请看以下示例。
+
+```ts
+await ctx.reply("请发送一张要缩放的图片！");
+const photo = await conversation.form.photo();
+await ctx.reply("图片要缩放到多大宽度？");
+const width = await conversation.form.int();
+await ctx.reply("图片要缩放到多大高度？");
+const height = await conversation.form.int();
+await ctx.reply(`正在缩放图片到 ${width}x${height} ...`);
+const scaled = await scaleImage(photo, width, height);
+await ctx.replyWithPhoto(scaled);
+```
+
+还有更多可用的表单字段。
+请查看 API 参考中的 [`ConversationForm`](/ref/conversations/conversationform#methods)。
+
+所有表单字段都接收 `otherwise` 函数，该函数将在收到不匹配的 update 时运行。
+此外，它们都接收 `action` 函数，该函数将在表单字段填写正确时运行。
+
+```ts
+// 等待一个基础运算操作。
+const op = await conversation.form.select(["+", "-", "*", "/"], {
+  action: (ctx) => ctx.deleteMessage(),
+  otherwise: (ctx) => ctx.reply("请使用 +, -, * 或 /！"),
+});
+```
+
+对话表单甚至允许你通过 [`conversation.form.build`](/ref/conversations/conversationform#build) 构建自定义表单字段。
+
+## 等待超时
+
+每次等待 update 时，你都可以传递一个超时值。
+
+```ts
+// 在退出对话前，等待一小时时间。
+const oneHourInMilliseconds = 60 * 60 * 1000;
+await conversation.wait({ maxMilliseconds: oneHourInMilliseconds });
+```
+
+当到达 wait 调用时，[`conversation.now()`](#对话的黄金法则) 将被调用。
+
+下一次 update 到达后，将再次调用 `conversation.now()`。
+如果 update 花费的时间超过 `maxMilliseconds`，对话将停止，update 将返回到中间件系统。
+任何下游中间件将被调用。
+
+这样看起来，对话似乎在 update 到达时已经不再处于活跃状态。
+
+请注意，这实际上不会在指定的时间之后运行任何代码。
+相反，代码只会在下一次 update 到达时运行。
+
+你可以为对话内的所有 wait 调用指定默认超时值。
+
+```ts
+// 始终只等待一小时。
+const oneHourInMilliseconds = 60 * 60 * 1000;
+bot.use(createConversation(convo, {
+  maxMillisecondsToWait: oneHourInMilliseconds,
+}));
+```
+
+给 wait 调用直接传值将覆盖此默认值。
+
+## 进入和退出事件
+
+你可以指定一个回调函数，该函数在进入对话时调用。
+同样也可以指定一个回调函数在退出对话时调用。
+
+```ts
+bot.use(conversations({
+  onEnter(id, ctx) {
+    // 进入了对话 `id`。
+  },
+  onExit(id, ctx) {
+    // 退出了对话 `id`。
+  },
+}));
+```
+
+每个回调都会收到两个值。
+第一个值是进入或退出对话的标识符。
+第二个值是外围中间件的当前上下文对象。
+
+请注意，只有通过 `ctx.conversation` 进入或退出对话时才会调用回调。
+当对话通过 `conversation.halt` 自行终止或 [超时](#等待超时) 时，也会调用 `onExit` 回调。
+
+## 并发等待调用
+
+你可以使用浮动 `promise` 同时等待几件事。
+当有新 update 到达时，只有第一个匹配的 wait 调用会解析。
+
+```ts
+await ctx.reply("发送一张图片以及描述!");
+const [textContext, photoContext] = await Promise.all([
+  conversation.waitFor(":text"),
+  conversation.waitFor(":photo"),
+]);
+await ctx.replyWithPhoto(photoContext.msg.photo.at(-1).file_id, {
+  caption: textContext.msg.text,
+});
+```
+
+在上面的例子中，用户先发送照片还是先发送文本并不重要。
+两个 `Promise` 都将按照用户发送代码正在等待的两条消息的顺序解析。
+[`Promise.all`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/all) 正常工作，只有当所有传递的承诺都解析后，它才会解析。
+
+这也可用于等待不相关的事情。
+例如，以下是在对话中安装全局退出侦听器的方法。
+
+```ts
+conversation.waitForCommand("exit") // 没有 await！
+  .then(() => conversation.halt());
+```
+
+一旦对话 [以任何方式结束](#退出对话)，所有待处理的 `wait` 调用都将被丢弃。
+例如，以下对话将在进入后立即完成，而无需等待任何 update。
+
+::: code-group
+
+```ts [TypeScript]
+async function convo(conversation: Conversation, ctx: Context) {
+  const _promise = conversation.wait() // 没有 await！
+    .then(() => ctx.reply("这条消息永远不会发送！"));
+
+  // 对话在进入后立即就完成了。
 }
 ```
 
 ```js [JavaScript]
 async function convo(conversation, ctx) {
-  // 在此处安装 grammY 插件
-  await conversation.run(plugin());
-  // 继续定义对话 ...
+  const _promise = conversation.wait() // 没有 await！
+    .then(() => ctx.reply("这条消息永远不会发送！"));
+
+  // 对话在进入后立即就完成了。
 }
 ```
 
 :::
 
-这将使该插件在对话中可用。
+在内部，当多个 wait 调用同时到达时，对话插件将跟踪 wait 调用列表。
+下一次 update 到达后，它将为每个遇到的 wait 调用重放一次对话构建器函数，直到其中一个接受了 update。
+仅当所有待处理的 wait 调用均未接受 update 时，才会丢弃 update。
 
-### 自定义上下文对象
+## 检查点和回溯时间
 
-如果你使用的是 [自定义上下文对象](../guide/context#定制你的上下文对象) 并且你想在输入对话之前在上下文对象上安装自定义属性，那么其中一些属性也可能会丢失。
-在某种程度上，你用来自定义上下文对象的中间件也可以视为插件。
+对话插件 [跟踪](#对话是重放引擎) 对话构建器函数的执行情况。
 
-最干净的解决方案是完全**避免自定义上下文属性**，或者至少只在上下文对象上安装可序列化的属性。
-换句话说，如果所有自定义上下文属性都可以保存在数据库中并在之后恢复，你就不必担心任何事情。
+这允许你沿途创建一个检查点。
+检查点包含有关该函数迄今为止运行程度的信息。
+它可用于稍后跳回到此点。
 
-一般来说，对于你通常通过自定义上下文属性解决的问题，都还有其他解决方案。
-例如，通常可以在对话本身中获取它们，而不是在处理程序中获取。
+当然，在此期间执行的任何操作都不会撤消。
+特别是，倒回到检查点不会神奇地取消发送任何消息。
 
-如果这些都不是你的选择，你可以自己尝试用 `conversation.run` 来折腾。
-你应该知道必须在传递的中间件中调用 `next` ————否则，update 的处理将被拦截。
+```ts
+const checkpoint = conversation.checkpoint();
 
-每次新的 update 到达时，中间件都会为所有过去的 update 运行。
-例如，如果三个上下文对象到达，则会发生以下情况：
+// 稍后：
+if (ctx.hasCommand("reset")) {
+  await conversation.rewind(checkpoint); // 从不会 return
+}
+```
 
-1. 收到第一个 update
-2. 中间件为第一个 update 运行
-3. 收到第二个 update
-4. 中间件为第一个 update 运行
-5. 中间件为第二个 update 运行
-6. 收到第三个 update
-7. 中间件为第一个 update 运行
-8. 中间件为第二个 update 运行
-9. 中间件为第三个 update 运行
+检查点对于“返回”非常有用。
+但是，就像 JavaScript 的带有 [标签](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/label) 的 `break` 和 `continue` 一样，跳转会使代码的可读性降低。
+**请不要过度使用此功能。**
 
-请注意，中间件为第一个 update 运行三次。
+在内部，倒回对话会像 wait 调用一样中止执行，然后仅重放函数直到创建检查点的位置。
+倒回对话实际上并不是反向执行函数，尽管感觉是这样。
 
 ## 并行对话
 
-当然，对话插件可以在不同的聊天中并行运行多个对话。
+不相关聊天中的对话完全独立，并且始终可以并行运行。
 
-但是，如果你的 bot 加入了一个群聊，它可能想在 _同一个聊天中_ 和多个不同的用户并行运行对话。
-例如，如果你的 bot 有一个验证码，它想发送给所有新成员。
-如果两个成员同时加入，它应该能够与他们进行两个独立的对话。
+但是，默认情况下，每个聊天始终只能有一个活跃对话。
+如果你尝试在一个对话已处于活跃状态时进入对话，则 `enter` 调用将抛出一个错误。
 
-这就是为什么对话插件允许你在同一个聊天中进入多个对话。
-例如，可以与五个新用户进行五个不同的对话，同时与管理员对聊天配置进行更新。
+你可以通过将对话标记为并行来更改此行为。
 
-### 它在幕后是如何运作的
+```ts
+bot.use(createConversation(convo, { parallel: true }));
+```
 
-每个传入的 update 将只由聊天中的一个活跃对话处理。
-与中间件处理程序蕾丝，对话将按照它们注册的顺序被调用。
-如果一个对话被多次启动，这些对话实例将按时间顺序被调用。
+这改变了两件事。
 
-然后，每个对话可以处理 update，或者调用 `await conversation.skip()`。
-在前一种情况下，update 将在对话处理它的时候被消费。
-在后一种情况下，对话将实际上放弃消费 update，并将它传递给下一个对话。
-如果所有对话都跳过同一个 update，控制流将被传递给中间件处理程序，并运行任何后续处理程序。
+首先，即使相同或不同的对话已经处于活跃状态，你现在也可以进入此对话。
+例如，如果你有对话 `captcha` 和 `settings`，你可以让 `captcha` 处于活跃状态五次，让 `settings` 处于活跃状态十二次，所有这些都在同一个聊天中。
 
-这允许你从常规中间件中开始一个新的对话。
+其次，当对话不接受 update 时，默认情况下不再丢弃 update。
+相反，控制权交还给中间件系统。
 
-### 你可以如何使用它
+所有已安装的对话都将有机会处理传入的 update，直到其中一个接受它。
+但是，只有一个对话能够真正处理 update。
 
-在实践中，你根本不需要调用 `await conversation.skip()`。
-相反，你可以直接使用 `await conversation.waitFrom(userId)`，它将自动处理细节问题。
-这允许你在群聊中与指定用户进行聊天。
+当多个不同的对话同时处于活跃状态时，中间件顺序将确定哪个对话首先处理 update。
+当单个对话多次处于活跃状态时，最早的对话（最先进入的对话）将首先处理 update。
 
-举个例子，让我们重新使用平行对话的方式实现上面的验证码流程。
+最好通过一个例子来说明这一点。
 
 ::: code-group
 
-```ts [TypeScript]{4}
-async function captcha(conversation: MyConversation, ctx: MyContext) {
-  if (ctx.from === undefined) return false;
-  await ctx.reply("请证明你是个人！一切的答案是什么？");
-  const { message } = await conversation.waitFrom(ctx.from);
-  return message?.text === "42";
+```ts [TypeScript]
+async function captcha(conversation: Conversation, ctx: Context) {
+  const user = ctx.from!.id;
+  await ctx.reply("欢迎加入聊天！世界上最棒的 bot 框架是哪个？");
+  const answer = await conversation.waitFor(":text").andFrom(user);
+  if (answer.msg.text === "grammY") {
+    await ctx.reply("回答正确！你的路走宽了！");
+  } else {
+    await ctx.banAuthor();
+  }
 }
 
-async function enterGroup(conversation: MyConversation, ctx: MyContext) {
-  const ok = await captcha(conversation, ctx);
-
-  if (ok) await ctx.reply("欢迎！");
-  else await ctx.banChatMember();
+async function settings(conversation: Conversation, ctx: Context) {
+  const user = ctx.from!.id;
+  const main = conversation.checkpoint();
+  const options = ["聊天设置", "关于", "隐私"];
+  await ctx.reply("欢迎来到设置！", {
+    reply_markup: Keyboard.from(options
+      .map((btn) => [Keyboard.text(btn)])),
+  });
+  const option = await conversation.waitFor(":text")
+    .andFrom(user)
+    .and((ctx) => options.includes(ctx.msg.text), {
+      otherwise: (ctx) => ctx.reply("请使用按钮！"),
+    });
+  await openSettingsMenu(option, main);
 }
+
+bot.use(createConversation(captcha));
+bot.use(createConversation(settings));
 ```
 
-```js [JavaScript]{4}
+```js [JavaScript]
 async function captcha(conversation, ctx) {
-  if (ctx.from === undefined) return false;
-  await ctx.reply("请证明你是个人！一切的答案是什么？");
-  const { message } = await conversation.waitFrom(ctx.from);
-  return message?.text === "42";
+  const user = ctx.from.id;
+  await ctx.reply("欢迎加入聊天！世界上最棒的 bot 框架是哪个？");
+  const answer = await conversation.waitFor(":text").andFrom(user);
+  if (answer.msg.text === "grammY") {
+    await ctx.reply("回答正确！你的路走宽了！");
+  } else {
+    await ctx.banAuthor();
+  }
 }
 
-async function enterGroup(conversation, ctx) {
-  const ok = await captcha(conversation, ctx);
-
-  if (ok) await ctx.reply("欢迎！");
-  else await ctx.banChatMember();
+async function settings(conversation, ctx) {
+  const user = ctx.from.id;
+  const main = conversation.checkpoint();
+  const options = ["聊天设置", "关于", "隐私"];
+  await ctx.reply("欢迎来到设置！", {
+    reply_markup: Keyboard.from(options
+      .map((btn) => [Keyboard.text(btn)])),
+  });
+  const option = await conversation.waitFor(":text")
+    .andFrom(user)
+    .and((ctx) => options.includes(ctx.msg.text), {
+      otherwise: (ctx) => ctx.reply("请使用按钮！"),
+    });
+  await openSettingsMenu(option, main);
 }
+
+bot.use(createConversation(captcha));
+bot.use(createConversation(settings));
 ```
 
 :::
 
-请注意，我们是怎么样等待来自特定用户的消息的。
+上述代码适用于群组。
+它提供了两个对话：
+对话 `captcha` 用于确保只有优秀的开发人员才能加入聊天（这 grammY 插件脸都不要了~）。
+对话 `settings` 用于在群组中实现设置菜单。
 
-我们现在可以有一个简单的处理程序，当新成员加入时进入对话。
+请注意，所有的 wait 调用都会基于用户标识符以及其他条件进行筛选。
 
-```ts
-bot.on("chat_member")
-  .filter((ctx) => ctx.chatMember.old_chat_member.status === "left")
-  .filter((ctx) => ctx.chatMember.new_chat_member.status === "member")
-  .use((ctx) => ctx.conversation.enter("enterGroup"));
-```
+让我们假设发生了以下情况。
 
-### 检查活跃的对话
+1. 你在处理来自标识符为 `ctx.from.id === 42` 的用户的 update 时，调用 `ctx.conversation.enter("captcha")` 进入了对话 `captcha`。
+2. 你在处理来自标识符为 `ctx.from.id === 3` 的用户的 update 时，调用 `ctx.conversation.enter("settings")` 进入了对话 `settings`。
+3. 你在处理来自标识符为 `ctx.from.id === 43` 的用户的 update 时，调用 `ctx.conversation.enter("captcha")` 进入了对话 `captcha`。
 
-你可以看到有多少会话正在使用哪个标识符运行。
+这意味着现在此群组中有三个对话处于活跃状态——`captcha` 处于活跃状态两次，`settings` 处于活跃状态一次。
 
-```ts
-const stats = await ctx.conversation.active();
-console.log(stats); // { "enterGroup": 1 }
-```
+> 请注意，即使启用了并行对话，`ctx.conversation` 也提供了[各种方式](/ref/conversations/conversationcontrols#exit) 退出特定对话。
 
-这将以一个对象的形式提供，该对象以对话标识符为键，以每个标识符的运行会话数量为值。
+接下来，以下事件按顺序发生。
 
-## 它是如何工作的
+1. 用户 `3` 发送包含文本 `"关于"` 的消息。
+2. 一个带有文本消息的 update 到达。
+3. 对话 `captcha` 的第一个实例被重放。
+4. `waitFor(":text")` 文本调用接受 update，但添加的 filter `andFrom(42)` 拒绝 update。
+5. 对话 `captcha` 的第二个实例被重放。
+6. `waitFor(":text")` 文本调用接受 update，但添加的 filter `andFrom(43)` 拒绝 update。
+7. 所有 `captcha` 实例都拒绝 update，因此控制权交还给中间件系统。
+8. 重放对话 `settings` 的实例。
+9. wait 调用解析，`option` 将包含文本消息 update 的上下文对象。
+10. `openSettingsMenu` 被调用。
+    它可以向用户发送关于文本，并将对话倒回 `main`，重新启动菜单。
 
-> [牢记](#对话的三条黄金法则)，在你的对话构建函数中的代码必须遵循三个规则。
-> 我们现在来看一看你为什么需要按这种方式构建它们。
+请注意，即使两个对话都在等待用户 `42` 和 `43` 完成验证，bot 也会正确回复已启动设置菜单的用户 `3`。
+经过过滤的 wait 调用可以确定哪些 update 与当前对话相关。
+被 wait 调用忽略的 update 会继续被其他对话处理，并可能被其他对话接收。
 
-我们首先要看一下这个插件在概念上是如何工作的，然后再阐述一些细节。
+上述示例使用群组来说明对话如何在同一聊天中同时处理多个用户。
+实际上，并行对话适用于所有聊天。
+因此你也可以在与单个用户的聊天中等待不同的事情。
 
-### `wait` 调用是如何工作的
+你可以将并行对话与 [等待超时](#等待超时) 结合使用，以保持较低数量的活跃对话。
 
-让我们暂时切换视角，然后从插件开发者的角度来问一个问题。
-如何在插件中实现一个 `wait` 调用？
+## 检查活跃对话
 
-在对话插件中实现 `wait` 调用的原生方式是创建一个新的 promise，并等待下一个上下文对象到来。
-一旦它到达，我们就 resolve 这个 promise，然后对话可以继续。
-
-然而，这是一个坏的想法，因为：
-
-**数据丢失。**
-如果你的服务器在等待一个上下文对象时崩溃了怎么办？
-在这种情况下，我们会丢失所有的信息，包括对话的状态。
-也就是说，机器人会丢失了它的记忆，用户必须重新开始。
-这是一个很糟糕的设计，并且很可能会使用户感到不舒服。
-
-**阻塞。**
-如果等待调用会一直阻塞到下一个 update 到来，这就意味着在整个对话完成之前，第一个 update 的中间件不能完成执行。
-
-- 对于内置的轮询，这意味着在当前的轮询完成之前，不能再处理其他 update。
-  因此，机器人将永远被阻塞。
-- 对于 [grammY runner](./runner)，bot 不会被阻塞。
-  但是，当与不同的用户并行处理成千上万的对话时，它会消耗巨量的内存。
-  如果多个用户停止响应，这将使 bot 卡在无数个对话中间。
-- Webhooks 则会有它自己的一整套与长时间运行的中间件的 [问题](../guide/deployment-types#及时结束-webhook-请求)。
-
-**状态。**
-在例如云函数的 serverless 基础设施上，我们实际上不能假设同一个实例会处理来自同一个用户的两个后续的 update。
-因此，如果我们要创建有状态的对话，它们可能会在随机的时候崩溃，因为某些 `wait` 调用不会被 resolve，但是其他的中间件却被意外的执行了。
-这样会导致大量的随机 bug 和运行时混乱。
-
-这里还不止上面提到的问题，但你已经能明白我们的意思了。
-
-因此，对话插件以不同的方式工作。
-非常不同。
-如前面所述，**调用 `wait` 不会真的让你的 bot 等待**，尽管我们可以将对话编程成这样。
-
-对话插件会跟踪你的函数的执行。
-当一个 `wait` 调用被触发时，它会将执行状态序列化到会话中，并安全地存储到数据库中。
-当下一个 update 到达时，它会首先检查会话数据。
-如果它发现它在对话的过程中离开了，它就会反序列化执行状态，使用你的对话生成器函数，并重放到上次 `wait` 调用之前。
-然后它会继续正常执行你的函数——直到下一个 `wait` 调用被触发，并且必须再次停止执行时。
-
-我们所说的执行状态是什么意思？
-简而言之，它包括三方面：
-
-1. 传入 updates
-2. 发出 API 调用
-3. 外部事件和影响，例如随机性或对外部 API 或数据库的调用
-
-我们所说的重放是什么意思？
-重放只是意味着从头开始调用函数，但当它做诸如 `wait` 或者执行 API 调用时，我们实际上不执行它们。
-而是通过检查日志，从上一次的运行记录中拿到对应的返回值。
-然后我们注入这些返回值，这样以来，对话生成器函数就能以非常快的速度运行，直到日志被全部消费。
-日志被消费完后，我们切换回正常的执行模式（这是一种华丽的说辞），即停止注入，并开始真正执行 API 调用。
-
-这就是为什么这个插件必须跟踪所有传入的 update 以及所有 Bot API 调用。
-（参见上面的第 1 点和第 2 点）
-然而，这个插件没办法控制外部事件、副作用或者随机性。
-例如，你可以这样：
+在中间件中，你可以检查哪些对话处于活跃状态。
 
 ```ts
-if (Math.random() < 0.5) {
-  // 干一些事情
-} else {
-  // 干另一些事情
-}
+bot.command("stats", (ctx) => {
+  const convo = ctx.conversation.active("convo");
+  console.log(convo); // 0 或 1
+  const isActive = convo > 0;
+  console.log(isActive); // false 或 true
+});
 ```
 
-在这种情况下，当调用函数时，它可能会突然每次都表现得不同，导致重放函数将发生崩溃！
-它可以随机地以不同于原始执行的方式工作。
-这就是为什么存在第 3 点，和必须遵守 [对话的三条黄金法则](#对话的三条黄金法则)
+当你将对话标识符传递给 `ctx.conversation.active` 时，如果此对话处于活跃状态，它将返回 `1`，否则返回 `0`。
 
-### 如何拦截函数的执行
+如果你为对话启用 [并行对话](#并行对话)，它将返回此对话当前处于活跃的次数。
 
-从概念上讲，关键字 `async` 和 `await` 可以控制线程的 [预先抢占](https://en.wikipedia.org/wiki/Preemption_(computing))。
-因此，如果调有人调用 `await conversation.wait()`，我们就获得了抢占执行的权力。
+调用不带参数的 `ctx.conversation.active()` 以接收包含所有活跃对话的标识符作为键的对象。
+相应的值描述每个对话中有多少个实例处于活跃状态。
 
-具体来说，使我们能够中断函数执行的秘密核心是一个永远不会 resolve 的 `Promise`。
+如果对话 `captcha` 处于活跃状态两次，对话 `settings` 处于活跃状态一次，则 `ctx.conversation.active()` 将按如下方式工作。
 
 ```ts
-await new Promise<never>(() => {}); // BOOM
+bot.command("stats", (ctx) => {
+  const stats = ctx.conversation.active();
+  console.log(stats); // { captcha: 2, settings: 1 }
+});
 ```
 
-如果你在任何 JavaScript 文件中 `await` 这样一个个 `Promise`，你的运行时将立即终止。
-(请将上面的代码粘贴到一个文件中，然后试一试。)
+## 从 1.x 迁移到 2.x
 
-由于我们显然不想杀掉 JS 的运行时，因此我们必须再次捕获这个。
-你会怎么做呢？
-(如果你不了解这个，请查看插件的源代码。)
+对话插件 2.0 是完全从头开始重写的。
+
+尽管 API 层面的基本概念保持不变，但这两种实现在底层操作方式上存在根本区别。
+简而言之，从 1.x 迁移到 2.x 几乎不需要对代码进行任何调整，但需要删除所有存储的数据。
+因此，所有对话都将重新启动。
+
+### 从 1.x 到 2.x 的数据迁移
+
+从 1.x 升级到 2.x 时，无法保持对话的当前状态。
+
+你应该从会话中删除相应的数据。
+可以考虑使用 [会话迁移](./session#迁移) 来实现这一点。
+
+可以按照 [此处](#持久化对话) 所述保存 2.x 版本的对话数据。
+
+### 1.x 和 2.x 之间的类型变化
+
+在 1.x 中，对话中的上下文类型与外围中间件中使用的上下文类型相同。
+
+在 2.x 中，你现在必须始终声明两种上下文类型——[外部上下文类型和内部上下文类型](#对话上下文对象)。
+这些类型永远不能相同，如果相同，则你的代码中存在 bug。
+这是因为外部上下文类型必须始终安装 [`ConversationFlavor`](/ref/conversations/conversationflavor)，而内部上下文类型永远不能安装它。
+
+此外，你现在可以为每个对话安装一组 [独立的插件](#在对话中使用插件)。
+
+### 1.x 和 2.x 之间的会话访问变化
+
+你不能再使用 `conversation.session`。
+相反，你必须使用 `conversation.external` 完成操作。
+
+```ts
+// 读取会话数据。
+const session = await conversation.session; // [!code --]
+const session = await conversation.external((ctx) => ctx.session); // [!code ++]
+
+// 写入会话数据。
+conversation.session = newSession; // [!code --]
+await conversation.external((ctx) => { // [!code ++]
+  ctx.session = newSession; // [!code ++]
+}); // [!code ++]
+```
+
+> 在 1.x 中可以访问 `ctx.session`，但总是不正确。
+> 在 2.x 中 `ctx.session` 不再可用。
+
+### 1.x 和 2.x 之间的插件兼容性变化
+
+对话 1.x 几乎不与任何插件兼容。
+使用 `conversation.run` 可以实现一定的兼容性。
+
+此选项已在 2.x 中删除。
+相反，你现在可以将插件传递给 `plugins` 数组，如 [此处](#在对话中使用插件) 所述。
+会话需要 [特殊处理](#_1-x-和-2-x-之间的会话访问变化)。
+自从引入 [对话菜单](#对话式菜单) 以来，菜单的兼容性得到了改善。
+
+### 1.x 和 2.x 之间的并行对话变化
+
+并行对话在 1.x 和 2.x 中的工作方式相同。
+
+但是，如果意外使用此功能，则经常会引起混淆。
+在 2.x 中，你需要通过指定 `{ parallel: true }` 来选择加入此功能，如 [此处](#并行对话) 所述。
+
+此功能的唯一重大变化是默认情况下 update 不再传递回中间件系统。
+相反，这仅在对话标记为并行时才执行。
+
+请注意，所有等待方法和表单字段都提供了一个选项 `next` 来覆盖默认行为。
+此选项重命名自 1.x 中的 `drop`，并且标志的语义也相应地反转。
+
+### 1.x 和 2.x 之间的表单变化
+
+1.x 中的表单实质上是损坏的。
+例如，即使对于旧消息的 `edited_message` update，`conversation.form.text()` 也会返回文本消息。
+许多这些奇怪的事情已在 2.x 中得到更正。
+
+从技术上讲，修复错误不算重大更改，但它仍然是行为上的重大变化。
 
 ## 插件概述
 
-- 名字：`conversations`
+- 名称：`conversations`
 - [源码](https://github.com/grammyjs/conversations)
 - [参考](/ref/conversations/)
