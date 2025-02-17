@@ -216,12 +216,6 @@ Make sure you take notice of the different patterns being used in the `admin.ts`
 
 ::: code-group
 
-```ts [types.ts]
-import type { Context } from "grammy";
-
-export type MyContext = CommandsFlavor<MyContext>;
-```
-
 ```ts [bot.ts]
 import { devCommands } from "./commands/admin.ts";
 import { userCommands } from "./commands/users/group.ts";
@@ -233,6 +227,12 @@ bot.use(commands());
 
 bot.use(userCommands);
 bot.filter((ctx) => ctx.from?.id == `${/** Put your ID here **/}`).use(devCommands);
+```
+
+```ts [types.ts]
+import type { Context } from "grammy";
+
+export type MyContext = CommandsFlavor<MyContext>;
 ```
 
 ```ts [admin.ts]
