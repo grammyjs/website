@@ -7,7 +7,7 @@ on:
     types: ["opened", "edited", "synchronize"]
 
 jobs:
-  format-and-lint:
+  fmt-lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
