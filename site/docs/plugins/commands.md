@@ -226,7 +226,7 @@ export const bot = new Bot<MyContext>(""); // <-- put your bot token between the
 bot.use(commands());
 
 bot.use(userCommands);
-bot.filter((ctx) => ctx.from?.id == `${/** Put your ID here **/}`)
+bot.filter((ctx) => ctx.from?.id == YOUR_ID)
       .use(devCommands);
 ```
 
@@ -248,7 +248,7 @@ devCommands.command("devlogin", "Set command menu to dev mode", async (ctx, next
 });
 
 devCommands.command("usercount", "Display user count", async (ctx, next) => {
-  await ctx.reply( `Total users: ${/** Your business logic */}`);
+  await ctx.reply(`Total users: ${/** Your business logic */}`);
 });
 
 devCommands.command("devlogout", "Reset command menu to user-mode", async (ctx, next) => {
