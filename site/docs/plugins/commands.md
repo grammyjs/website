@@ -227,7 +227,7 @@ bot.use(commands());
 
 bot.use(userCommands);
 bot.filter((ctx) => ctx.from?.id == `${/** Put your ID here **/}`)
-  .use(devCommands);
+      .use(devCommands);
 ```
 
 ```ts [types.ts]
