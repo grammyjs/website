@@ -289,7 +289,7 @@ This means you also need to specify any other events you'd like to receive.
 ::: code-group
 
 ```ts [TypeScript]
-import { Bot, type Context, MemorySessionStorage } from "grammy";
+import { API_CONSTANTS, Bot, type Context, MemorySessionStorage } from "grammy";
 import { type ChatMember } from "grammy/types";
 import { chatMembers, type ChatMembersFlavor } from "@grammyjs/chat-members";
 
@@ -303,12 +303,12 @@ bot.use(chatMembers(adapter));
 
 bot.start({
   // Make sure to specify the desired update types.
-  allowed_updates: ["chat_member", "message"],
+  allowed_updates: [...API_CONSTANTS.DEFAULT_UPDATE_TYPES, "chat_member"],
 });
 ```
 
 ```js [JavaScript]
-import { Bot, MemorySessionStorage } from "grammy";
+import { API_CONSTANTS, Bot, MemorySessionStorage } from "grammy";
 import { chatMembers } from "@grammyjs/chat-members";
 
 const adapter = new MemorySessionStorage();
@@ -319,12 +319,13 @@ bot.use(chatMembers(adapter));
 
 bot.start({
   // Make sure to specify the desired update types.
-  allowed_updates: ["chat_member", "message"],
+  allowed_updates: [...API_CONSTANTS.DEFAULT_UPDATE_TYPES, "chat_member"],
 });
 ```
 
 ```ts [Deno]
 import {
+  API_CONSTANTS,
   Bot,
   type Context,
   MemorySessionStorage,
@@ -345,7 +346,7 @@ bot.use(chatMembers(adapter));
 
 bot.start({
   // Make sure to specify the desired update types.
-  allowed_updates: ["chat_member", "message"],
+  allowed_updates: [...API_CONSTANTS.DEFAULT_UPDATE_TYPES, "chat_member"],
 });
 ```
 
