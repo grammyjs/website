@@ -38,6 +38,32 @@ import { chatMemberFilter, myChatMemberFilter } from "@grammyjs/chat-members";
 const bot = new Bot("");
 const groups = bot.chatType(["group", "supergroup"]);
 
+// WITHOUT this plugin, to react whenever a user joins a group you have to
+// manually filter by status, resulting in error-prone, difficult to read code.
+groups.on("chat_member").filter(
+  (ctx) => {
+    const { old_chat_member: oldMember, new_chat_member: newMember } =
+      ctx.chatMember;
+    return (
+      (["kicked", "left"].includes(oldMember.status) ||
+        (oldMember.status === "restricted" && !oldMember.is_member)) &&
+      (["administrator", "creator", "member"].includes(newMember.status) ||
+        (newMember.status === "restricted" && newMember.is_member))
+    );
+  },
+  (ctx) => {
+    const user = ctx.chatMember.new_chat_member.user;
+    await ctx.reply(`Welcome ${user.first_name} to the group!`);
+  },
+);
+
+// This plugin simplifies this greatly and reduces the risk of errors.
+// The code below listens to the same events but is much simpler.
+groups.filter(chatMemberFilter("out", "in"), async (ctx) => {
+  const user = ctx.chatMember.new_chat_member.user;
+  await ctx.reply(`Welcome ${user.first_name} to the group!`);
+});
+
 // Listen for updates where the bot is added to a group as a regular user.
 groups.filter(myChatMemberFilter("out", "regular"), async (ctx) => {
   await ctx.reply("Hello, thank you for adding me to the group!");
@@ -56,12 +82,6 @@ groups.filter(myChatMemberFilter("regular", "admin"), async (ctx) => {
 // Listen for updates where the bot is demoted to a regular user.
 groups.filter(myChatMemberFilter("admin", "regular"), async (ctx) => {
   await ctx.reply("I am no longer admin");
-});
-
-// Listen for updates where a user joins a group where your bot is admin.
-groups.filter(chatMemberFilter("out", "in"), async (ctx) => {
-  const user = ctx.chatMember.new_chat_member.user;
-  await ctx.reply(`Welcome ${user.first_name} to the group!`);
 });
 
 bot.start({
@@ -77,6 +97,32 @@ import { chatMemberFilter, myChatMemberFilter } from "@grammyjs/chat-members";
 const bot = new Bot("");
 const groups = bot.chatType(["group", "supergroup"]);
 
+// WITHOUT this plugin, to react whenever a user joins a group you have to
+// manually filter by status, resulting in error-prone, difficult to read code.
+groups.on("chat_member").filter(
+  (ctx) => {
+    const { old_chat_member: oldMember, new_chat_member: newMember } =
+      ctx.chatMember;
+    return (
+      (["kicked", "left"].includes(oldMember.status) ||
+        (oldMember.status === "restricted" && !oldMember.is_member)) &&
+      (["administrator", "creator", "member"].includes(newMember.status) ||
+        (newMember.status === "restricted" && newMember.is_member))
+    );
+  },
+  (ctx) => {
+    const user = ctx.chatMember.new_chat_member.user;
+    await ctx.reply(`Welcome ${user.first_name} to the group!`);
+  },
+);
+
+// This plugin simplifies this greatly and reduces the risk of errors.
+// The code below listens to the same events but is much simpler.
+groups.filter(chatMemberFilter("out", "in"), async (ctx) => {
+  const user = ctx.chatMember.new_chat_member.user;
+  await ctx.reply(`Welcome ${user.first_name} to the group!`);
+});
+
 // Listen for updates where the bot is added to a group as a regular user.
 groups.filter(myChatMemberFilter("out", "regular"), async (ctx) => {
   await ctx.reply("Hello, thank you for adding me to the group!");
@@ -95,12 +141,6 @@ groups.filter(myChatMemberFilter("regular", "admin"), async (ctx) => {
 // Listen for updates where the bot is demoted to a regular user.
 groups.filter(myChatMemberFilter("admin", "regular"), async (ctx) => {
   await ctx.reply("I am no longer admin");
-});
-
-// Listen for updates where a user joins a group where your bot is admin.
-groups.filter(chatMemberFilter("out", "in"), async (ctx) => {
-  const user = ctx.chatMember.new_chat_member.user;
-  await ctx.reply(`Welcome ${user.first_name} to the group!`);
 });
 
 bot.start({
@@ -119,6 +159,32 @@ import {
 const bot = new Bot("");
 const groups = bot.chatType(["group", "supergroup"]);
 
+// WITHOUT this plugin, to react whenever a user joins a group you have to
+// manually filter by status, resulting in error-prone, difficult to read code.
+groups.on("chat_member").filter(
+  (ctx) => {
+    const { old_chat_member: oldMember, new_chat_member: newMember } =
+      ctx.chatMember;
+    return (
+      (["kicked", "left"].includes(oldMember.status) ||
+        (oldMember.status === "restricted" && !oldMember.is_member)) &&
+      (["administrator", "creator", "member"].includes(newMember.status) ||
+        (newMember.status === "restricted" && newMember.is_member))
+    );
+  },
+  (ctx) => {
+    const user = ctx.chatMember.new_chat_member.user;
+    await ctx.reply(`Welcome ${user.first_name} to the group!`);
+  },
+);
+
+// This plugin simplifies this greatly and reduces the risk of errors.
+// The code below listens to the same events but is much simpler.
+groups.filter(chatMemberFilter("out", "in"), async (ctx) => {
+  const user = ctx.chatMember.new_chat_member.user;
+  await ctx.reply(`Welcome ${user.first_name} to the group!`);
+});
+
 // Listen for updates where the bot is added to a group as a regular user.
 groups.filter(myChatMemberFilter("out", "regular"), async (ctx) => {
   await ctx.reply("Hello, thank you for adding me to the group!");
@@ -137,12 +203,6 @@ groups.filter(myChatMemberFilter("regular", "admin"), async (ctx) => {
 // Listen for updates where the bot is demoted to a regular user.
 groups.filter(myChatMemberFilter("admin", "regular"), async (ctx) => {
   await ctx.reply("I am no longer admin");
-});
-
-// Listen for updates where a user joins a group where your bot is admin.
-groups.filter(chatMemberFilter("out", "in"), async (ctx) => {
-  const user = ctx.chatMember.new_chat_member.user;
-  await ctx.reply(`Welcome ${user.first_name} to the group!`);
 });
 
 bot.start({
