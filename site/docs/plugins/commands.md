@@ -226,7 +226,7 @@ export const bot = new Bot<MyContext>(""); // <-- put your bot token between the
 bot.use(commands());
 
 bot.use(userCommands);
-bot.filter((ctx) => ctx.from?.id == YOUR_ID)
+bot.filter((ctx) => ctx.from?.id == /** Put your ID here **/)
       .use(devCommands);
 ```
 
