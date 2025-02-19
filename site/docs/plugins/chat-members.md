@@ -38,7 +38,7 @@ import { chatMemberFilter, myChatMemberFilter } from "@grammyjs/chat-members";
 const bot = new Bot("");
 const groups = bot.chatType(["group", "supergroup"]);
 
-// WITHOUT this plugin, to react whenever a user joins a group you have to
+// WITHOUT this plugin, to react whenever a user joins a group, you have to
 // manually filter by status, resulting in error-prone, difficult to read code.
 groups.on("chat_member").filter(
   (ctx) => {
@@ -57,7 +57,7 @@ groups.on("chat_member").filter(
   },
 );
 
-// This plugin simplifies this greatly and reduces the risk of errors.
+// WITH this plugin, the code is greatly simplified and has a lower risk of errors.
 // The code below listens to the same events but is much simpler.
 groups.filter(chatMemberFilter("out", "in"), async (ctx) => {
   const user = ctx.chatMember.new_chat_member.user;
@@ -97,7 +97,7 @@ import { chatMemberFilter, myChatMemberFilter } from "@grammyjs/chat-members";
 const bot = new Bot("");
 const groups = bot.chatType(["group", "supergroup"]);
 
-// WITHOUT this plugin, to react whenever a user joins a group you have to
+// WITHOUT this plugin, to react whenever a user joins a group, you have to
 // manually filter by status, resulting in error-prone, difficult to read code.
 groups.on("chat_member").filter(
   (ctx) => {
@@ -116,7 +116,7 @@ groups.on("chat_member").filter(
   },
 );
 
-// This plugin simplifies this greatly and reduces the risk of errors.
+// WITH this plugin, the code is greatly simplified and has a lower risk of errors.
 // The code below listens to the same events but is much simpler.
 groups.filter(chatMemberFilter("out", "in"), async (ctx) => {
   const user = ctx.chatMember.new_chat_member.user;
@@ -159,7 +159,7 @@ import {
 const bot = new Bot("");
 const groups = bot.chatType(["group", "supergroup"]);
 
-// WITHOUT this plugin, to react whenever a user joins a group you have to
+// WITHOUT this plugin, to react whenever a user joins a group, you have to
 // manually filter by status, resulting in error-prone, difficult to read code.
 groups.on("chat_member").filter(
   (ctx) => {
@@ -178,7 +178,7 @@ groups.on("chat_member").filter(
   },
 );
 
-// This plugin simplifies this greatly and reduces the risk of errors.
+// WITH this plugin, the code is greatly simplified and has a lower risk of errors.
 // The code below listens to the same events but is much simpler.
 groups.filter(chatMemberFilter("out", "in"), async (ctx) => {
   const user = ctx.chatMember.new_chat_member.user;
