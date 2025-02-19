@@ -14,7 +14,7 @@ Working with `ChatMember` objects from the Telegram Bot API can sometimes be cum
 There are several different statuses that are often interchangeable in most applications.
 In addition, the restricted status is ambiguous because it can represent both members of the group and restricted users that are not in the group.
 
-This plugin simplifies dealing with chat members by offering fully typed filters for chat member updates.
+This plugin simplifies dealing with chat members by offering strongly-typed filters for chat member updates.
 
 ## Usage
 
@@ -23,10 +23,10 @@ This plugin simplifies dealing with chat members by offering fully typed filters
 You can listen for two kinds of updates regarding chat members using a Telegram bot: `chat_member` and `my_chat_member`.
 Both of them specify the old and new status of the user.
 
-- `my_chat_member` updates are received by your bot by default and they inform you about the status of the bot being updated in any chat, as well as users blocking the bot;
-- `chat_member` updates are only received if you explicitly include them in the list of allowed updates, they notify about any status changes for users in chats **where your bot is admin**.
+- `my_chat_member` updates are always received by your bot to inform you about the status of the bot being updated in any chat, as well as when users block the bot.
+- `chat_member` updates are only received if you explicitly include them in the list of allowed updates, they notify about any status changes for users in chats in which the bot is **admin**.
 
-Instead of manually filtering the old and new status, chat member filters do this automatically for you, allowing you to react to every type of transition you're interested in.
+Instead of manually filtering the old and the new statuses, chat member filters do this automatically for you, allowing you to act on any type of transition you're interested in.
 Within the handler, the types of `old_chat_member` and `new_chat_member` are narrowed down accordingly.
 
 ::: code-group
@@ -65,7 +65,7 @@ groups.filter(chatMemberFilter("out", "in"), async (ctx) => {
 });
 
 bot.start({
-  // Make sure to specify the desired update types.
+  // Make sure to include the "chat_member" update type for the above handlers to work.
   allowed_updates: [...API_CONSTANTS.DEFAULT_UPDATE_TYPES, "chat_member"],
 });
 ```
@@ -104,7 +104,7 @@ groups.filter(chatMemberFilter("out", "in"), async (ctx) => {
 });
 
 bot.start({
-  // Make sure to specify the desired update types.
+  // Make sure to include the "chat_member" update type for the above handlers to work.
   allowed_updates: [...API_CONSTANTS.DEFAULT_UPDATE_TYPES, "chat_member"],
 });
 ```
@@ -146,22 +146,22 @@ groups.filter(chatMemberFilter("out", "in"), async (ctx) => {
 });
 
 bot.start({
-  // Make sure to specify the desired update types.
+  // Make sure to include the "chat_member" update type for the above handlers to work.
   allowed_updates: [...API_CONSTANTS.DEFAULT_UPDATE_TYPES, "chat_member"],
 });
 ```
 
 :::
 
-Filters include the regular Telegram statuses (owner, administrator, member, restricted, left, kicked) and some additional ones for convenience:
+Filters include the regular statuses (owner, administrator, member, restricted, left, kicked) and some additional ones for convenience:
 
-- `restricted_in`: a member of the chat with restrictions;
-- `restricted_out`: not a member of the chat, has restrictions;
-- `in`: a member of the chat (administrator, creator, member, restricted_in);
-- `out`: not a member of the chat (left, kicked, restricted_out);
-- `free`: a member of the chat that isn't restricted (administrator, creator, member);
-- `admin`: an admin of the chat (administrator, creator);
-- `regular`: a non-admin member of the chat (member, restricted_in).
+- `restricted_in`: a restricted member of the chat
+- `restricted_out`: not a member of the chat, has restrictions
+- `in`: a member of the chat (administrator, creator, member, restricted_in)
+- `out`: not a member of the chat (left, kicked, restricted_out)
+- `free`: a non-restricted member of the chat (administrator, creator, member)
+- `admin`: an admin of the chat (administrator, creator)
+- `regular`: a non-admin member of the chat (member, restricted_in)
 
 To summarize, here is a diagram showing what each query corresponds to:
 
