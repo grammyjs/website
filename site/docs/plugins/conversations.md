@@ -1498,7 +1498,7 @@ await conversation.external((ctx) => { // [!code ++]
 > Accessing `ctx.session` was possible with 1.x, but it was always incorrect.
 > `ctx.session` is no longer available with 2.x.
 
-::: warning Sending data back to the outside context
+::: warning Sending Data Back to the Outside Context
 
 Because the session plugin is only registered to the outside context, you will need to assign session data to `ctx.session` yourself.
 Simply writing to the `session` variable from the example above will not work.
