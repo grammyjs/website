@@ -502,7 +502,7 @@ bot
   .use(async (ctx) => {
     // Ми знайшли потенційний збіг.
     if (ctx.commandSuggestion) {
-      await ctx.reply(
+      return ctx.reply(
         `Хм... Я не знаю цієї команди. Може, ви мали на увазі ${ctx.commandSuggestion}?`,
       );
       return;
@@ -526,7 +526,7 @@ bot
   .use(async (ctx) => {
     // Ми знайшли потенційний збіг.
     if (ctx.commandSuggestion) {
-      await ctx.reply(
+      return ctx.reply(
         `Хм... Я не знаю цієї команди. Може, ви мали на увазі ${ctx.commandSuggestion}?`,
       );
       return;

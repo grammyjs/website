@@ -495,7 +495,7 @@ bot
   .use(async (ctx) => {
     if (ctx.commandSuggestion) {
       // 我们找到了潜在的匹配对象
-      await ctx.reply(
+      return ctx.reply(
         `Hmm... I don't know that command. Did you mean ${ctx.commandSuggestion}?`,
       );
     }
@@ -518,7 +518,7 @@ bot
   .use(async (ctx) => {
     if (ctx.commandSuggestion) {
       // 我们找到了潜在的匹配对象
-      await ctx.reply(
+      return ctx.reply(
         `Hmm... I don't know that command. Did you mean ${ctx.commandSuggestion}?`,
       );
     }
