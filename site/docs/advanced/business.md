@@ -6,7 +6,7 @@ Typically, this is useful if you run your business on Telegram, and that other u
 
 > If you are not familiar with Telegram Business yet, check out the [official docs](https://core.telegram.org/bots#manage-your-business) by Telegram before you continue.
 
-Naturally, grammY has full support for this.
+At the moment grammY does not support editing business messages
 
 ## Handling Business Messages
 
@@ -86,8 +86,9 @@ We will cover a few aspects here briefly.
 When you or your customer edit or delete messages in your chat, your bot will be notified of this.
 More specifically, you will receive `edited_business_message` or `deleted_business_messages` updates.
 Your bot can handle them the normal way using `bot.on` and its countless [filter queries](../guide/filter-queries).
+However, your bot is **NOT** able delete messages in the chat.
+Also, although the Telegram API has methods for editing messages, they are not implemented in grammY.
 
-However, your bot is **NOT** able edit or delete messages in the chat.
 Similarly, your bot is **NOT** able to forward messages from the chat, or copy them elsewhere.
 All of these things are left to humans.
 
