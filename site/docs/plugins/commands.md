@@ -495,7 +495,7 @@ bot
   .use(async (ctx) => {
     // We found a potential match
     if (ctx.commandSuggestion) {
-      await ctx.reply(
+      return ctx.reply(
         `Hmm... I don't know that command. Did you mean ${ctx.commandSuggestion}?`,
       );
     }
@@ -518,7 +518,7 @@ bot
   .use(async (ctx) => {
     // We found a potential match
     if (ctx.commandSuggestion) {
-      await ctx.reply(
+      return ctx.reply(
         `Hmm... I don't know that command. Did you mean ${ctx.commandSuggestion}?`,
       );
     }
