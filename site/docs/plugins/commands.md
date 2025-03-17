@@ -102,7 +102,7 @@ Here's how to do that with the commands plugin:
 
 ```ts [TypeScript]
 // Use the flavor to create a custom context
-type MyContext = CommandsFlavor<MyContext>;
+type MyContext = CommandsFlavor<Context>;
 
 // Use the new context to instantiate your bot
 const bot = new Bot<MyContext>(""); // <-- put your bot token between the "" (https://t.me/BotFather)
@@ -233,7 +233,7 @@ bot.filter((ctx) => ctx.from?.id == /** Put your ID here **/)
 ```ts [types.ts]
 import type { Context } from "grammy";
 
-export type MyContext = CommandsFlavor<MyContext>;
+export type MyContext = CommandsFlavor<Context>;
 ```
 
 ```ts [admin.ts]

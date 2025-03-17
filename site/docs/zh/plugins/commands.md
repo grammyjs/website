@@ -102,7 +102,7 @@ await myCommands.setCommands(bot); // [!code highlight]
 
 ```ts [TypeScript]
 // 使用 Flavor 创建自定义上下文
-type MyContext = CommandsFlavor<MyContext>;
+type MyContext = CommandsFlavor<Context>;
 
 // 使用新的上下文来实例化你的 bot
 const bot = new Bot<MyContext>(""); // <-- 把你的 bot token 放在 "" 中 (https://t.me/BotFather)
@@ -233,7 +233,7 @@ bot.filter((ctx) => ctx.from?.id == /** Put your ID here **/)
 ```ts [types.ts]
 import type { Context } from "grammy";
 
-export type MyContext = CommandsFlavor<MyContext>;
+export type MyContext = CommandsFlavor<Context>;
 ```
 
 ```ts [admin.ts]

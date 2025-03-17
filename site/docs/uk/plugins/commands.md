@@ -110,7 +110,7 @@ await myCommands.setCommands(bot); // [!code highlight]
 
 ```ts [TypeScript]
 // Використовуйте розширювач, щоб створити власний контекст.
-type MyContext = CommandsFlavor<MyContext>;
+type MyContext = CommandsFlavor<Context>;
 
 // Використовуйте новий контекст для створення бота.
 const bot = new Bot<MyContext>(""); // <-- Помістіть токен свого бота між "" (https://t.me/BotFather)
@@ -241,7 +241,7 @@ bot.filter((ctx) => ctx.from?.id == /** Помістіть свій іденти
 ```ts [types.ts]
 import type { Context } from "grammy";
 
-export type MyContext = CommandsFlavor<MyContext>;
+export type MyContext = CommandsFlavor<Context>;
 ```
 
 ```ts [admin.ts]
