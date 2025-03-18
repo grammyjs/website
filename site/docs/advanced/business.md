@@ -86,8 +86,17 @@ We will cover a few aspects here briefly.
 When you or your customer edit or delete messages in your chat, your bot will be notified of this.
 More specifically, you will receive `edited_business_message` or `deleted_business_messages` updates.
 Your bot can handle them the normal way using `bot.on` and its countless [filter queries](../guide/filter-queries).
+
+You can edit the message in the usual way, using `ctx.editMessageText` or other variants of it
+```ts
+bot.on("business_message").filter(async (ctx) => {
+    const conn = await ctx.getBusinessConnection();
+    return ctx.msg.text == "Edit that" && ctx.from.id == conn.user.id
+}, async (ctx) => {
+    await ctx.editMessageText("Edited!")
+})
+```
 However, your bot is **NOT** able delete messages in the chat.
-Also, although the Telegram API has methods for editing messages, they are not implemented in grammY.
 
 Similarly, your bot is **NOT** able to forward messages from the chat, or copy them elsewhere.
 All of these things are left to humans.
