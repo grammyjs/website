@@ -81,8 +81,8 @@ grammY 具有 [上下文调味剂](../guide/context#上下文调味剂) 可以�
 这包括 API 方法——包括那些直接包含在上下文对象中的像 `ctx.reply` ，并且在 `ctx.api` 和 `ctx.api.raw` 中的方法。
 不过你不能通过上下文调味剂来调整 `bot.api` 和 `bot.api.raw` 的类型。
 
-这是为什么 grammY 支持 API 风格
-它们解决了这个问题：
+这就是为什么 grammY 支持 _API 风格_。
+它解决了这个问题：
 
 ```ts
 import { Api, Bot, Context } from "grammy";
