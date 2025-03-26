@@ -21,9 +21,7 @@ export function Constructors({
       {ctors.map((v) => (
         <>
           <CodeBlock>
-            {v.accessibility
-              ? <StyleKw>{v.accessibility}{" "}</StyleKw>
-              : undefined}
+            {v.accessibility ? <StyleKw>{v.accessibility}</StyleKw> : undefined}
             <span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">
               {v.name}
             </span>(

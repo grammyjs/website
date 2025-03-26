@@ -26,6 +26,7 @@ import {
   TsTypePredicateDef,
   TsTypeRefDef,
 } from "@deno/doc/types";
+import { Fragment } from "preact";
 import { JSX } from "preact/jsx-runtime";
 import { PropertyName } from "./PropertyName.tsx";
 import { LinkGetter } from "./types.ts";
@@ -137,7 +138,7 @@ function TypeParams({
     <>
       &lt;
       {typeParams
-        .map((v) => <TsType getLink={getLink}>{v}</TsType>)
+        .map((v, i) => <TsType key={i} getLink={getLink}>{v}</TsType>)
         .reduce((a, b) => <>{a}, {b}</>)}
       &gt;
     </>
@@ -187,7 +188,7 @@ function Union({
   children: TsTypeDef[];
 }) {
   return union
-    .map((v) => <TsType getLink={getLink}>{v}</TsType>)
+    .map((v, i) => <TsType key={i} getLink={getLink}>{v}</TsType>)
     .reduce((a, b) => (
       <>
         {a} <StyleKw>|</StyleKw> {b}
@@ -203,7 +204,7 @@ function Intersection({
   children: TsTypeDef[];
 }) {
   return intersection
-    .map((v) => <TsType getLink={getLink}>{v}</TsType>)
+    .map((v, i) => <TsType key={i} getLink={getLink}>{v}</TsType>)
     .reduce((a, b) => (
       <>
         {a} <StyleKw>&</StyleKw> {b}
@@ -235,7 +236,7 @@ function Tuple({
   return (
     <>
       [{tuple
-        .map((v) => <TsType getLink={getLink}>{v}</TsType>)
+        .map((v, i) => <TsType key={i} getLink={getLink}>{v}</TsType>)
         .reduce((a, b) => <>{a}, {b}</>)}]
     </>
   );
@@ -307,7 +308,7 @@ function TypeQuery({
 }) {
   return (
     <>
-      <StyleKw>{"typeof "}</StyleKw>
+      <StyleKw>typeof</StyleKw>
       {typeQuery}
     </>
   );
@@ -337,7 +338,7 @@ export function TypeParam_({
       )}
       {param.default && (
         <>
-          <StyleKw>{" = "}</StyleKw>
+          <StyleKw>=</StyleKw>
           <TsType getLink={getLink}>{param.default}</TsType>
         </>
       )}
@@ -375,7 +376,7 @@ function FnOrConstructor({
   const { constructor, typeParams, params, tsType } = children;
   return (
     <>
-      {constructor ? <StyleKw>{"new "}</StyleKw> : ""}
+      {constructor ? <StyleKw>new</StyleKw> : ""}
       <TypeParams_ getLink={getLink}>{typeParams}</TypeParams_>(
       <Params getLink={getLink}>{params}</Params>) <StyleKw>=&gt;</StyleKw>{" "}
       <TsType getLink={getLink}>{tsType}</TsType>
@@ -430,7 +431,7 @@ function Mapped(
       [<TypeParam_ constraint="in" getLink={getLink}>{typeParam}</TypeParam_>
       {nameType && (
         <>
-          <StyleKw>in keyof{" "}</StyleKw>
+          <StyleKw>in keyof</StyleKw>
           <TsType getLink={getLink}>{nameType}</TsType>
         </>
       )}]<MappedOptional>{optional}</MappedOptional>
@@ -448,11 +449,11 @@ function MappedReadOnly(
 ) {
   switch (readonly) {
     case true:
-      return <StyleKw>readonly{" "}</StyleKw>;
+      return <StyleKw>readonly</StyleKw>;
     case "+":
-      return <StyleKw>+readonly{" "}</StyleKw>;
+      return <StyleKw>+readonly</StyleKw>;
     case "-":
-      return <StyleKw>-readonly{" "}</StyleKw>;
+      return <StyleKw>-readonly</StyleKw>;
     default:
       return null;
   }
@@ -482,22 +483,22 @@ function LiteralIndexSignatures(
   if (!signatures.length) {
     return null;
   }
-  const items = signatures.map(({ params, readonly, tsType }) => {
+  const items = signatures.map(({ params, readonly, tsType }, i) => {
     const item = (
       <>
-        {readonly ? <StyleKw>{"readonly "}</StyleKw> : undefined}[<Params
+        {readonly ? <StyleKw>readonly</StyleKw> : undefined}[<Params
           getLink={getLink}
         >
           {params}
         </Params>]{tsType && (
           <>
-            <StyleKw>{": "}</StyleKw>
+            <StyleKw>:</StyleKw>
             <TsType getLink={getLink}>{tsType}</TsType>
           </>
         )};{" "}
       </>
     );
-    return <>{"  "}{item}</>;
+    return <Fragment key={i}>{` ${item}`}</Fragment>;
   });
   return <>{"  "}{items}</>;
 }
@@ -510,7 +511,7 @@ function LiteralCallSignatures(
 ) {
   return (
     <>
-      {items.map(({ typeParams, params, tsType }) => {
+      {items.map(({ typeParams, params, tsType }, i) => {
         const item = (
           <>
             <TypeParams_ getLink={getLink}>{typeParams}</TypeParams_>(<Params
@@ -520,13 +521,13 @@ function LiteralCallSignatures(
             </Params>){tsType &&
               (
                 <>
-                  <StyleKw>{": "}</StyleKw>
+                  <StyleKw>:</StyleKw>
                   <TsType getLink={getLink}>{tsType}</TsType>
                 </>
               )};{" "}
           </>
         );
-        return <>{"  "}{item}</>;
+        return <Fragment key={i}>{` ${item}`}</Fragment>;
       })}
     </>
   );
@@ -546,13 +547,13 @@ function LiteralProperties(
       {props
         .map(({ name, readonly, computed, optional, tsType }) => (
           <>
-            {readonly ? <StyleKw>{"readonly "}</StyleKw> : undefined}
+            {readonly ? <StyleKw>readonly</StyleKw> : undefined}
             {computed ? `[${name}]` : name}
             {optional ? "?" : undefined}
             {tsType
               ? (
                 <>
-                  <StyleKw>{": "}</StyleKw>
+                  <StyleKw>:</StyleKw>
                   <TsType getLink={getLink}>{tsType}</TsType>
                 </>
               )
@@ -582,12 +583,12 @@ function LiteralMethods(
         return (
           <>
             {kind === "getter"
-              ? <StyleKw>{"get "}</StyleKw>
+              ? <StyleKw>get</StyleKw>
               : kind === "setter"
-              ? <StyleKw>{"set "}</StyleKw>
+              ? <StyleKw>set</StyleKw>
               : undefined}
             {name === "new"
-              ? <StyleKw>{name}{" "}</StyleKw>
+              ? <StyleKw>{name}</StyleKw>
               : computed
               ? `[${name}]`
               : <StyleCallee>{name}</StyleCallee>}
@@ -602,7 +603,7 @@ function LiteralMethods(
             ){returnType
               ? (
                 <>
-                  <StyleKw>{": "}</StyleKw>
+                  <StyleKw>:</StyleKw>
                   <TsType getLink={getLink}>{returnType}</TsType>
                 </>
               )
@@ -654,11 +655,11 @@ function TypePredicate(
 ) {
   return (
     <>
-      {asserts ? <StyleKw>{"asserts "}</StyleKw> : undefined}
+      {asserts ? <StyleKw>asserts</StyleKw> : undefined}
       {param.type === "this" ? <StyleKw>this</StyleKw> : param.name}
       {type && (
         <>
-          <StyleKw>{" is "}</StyleKw>
+          <StyleKw>is</StyleKw>
           <TsType getLink={getLink}>{type}</TsType>
         </>
       )}
@@ -677,8 +678,8 @@ function ParamArray({
   optional: boolean;
   getLink: LinkGetter;
 }) {
-  const elements = param.elements.map((e) =>
-    e && <Param getLink={getLink}>{e}</Param>
+  const elements = param.elements.map((e, i) =>
+    e && <Param key={i} getLink={getLink}>{e}</Param>
   );
   let elementsElement: JSX.Element | undefined;
   if (elements.length) {
@@ -690,7 +691,7 @@ function ParamArray({
       {param.optional || optional ? "?" : ""}
       {param.tsType && (
         <>
-          <StyleKw>{": "}</StyleKw>
+          <StyleKw>:</StyleKw>
           <TsType getLink={getLink}>{param.tsType}</TsType>
         </>
       )}
@@ -820,7 +821,7 @@ function ParamObject({
       &#123; {props} &#125;{param.optional || optional ? "?" : ""}
       {param.tsType && (
         <>
-          <StyleKw>{": "}</StyleKw>
+          <StyleKw>:</StyleKw>
           <TsType getLink={getLink}>{param.tsType}</TsType>
         </>
       )}
@@ -841,7 +842,7 @@ function ParamRest({
       <Param getLink={getLink}>{param.arg}</Param>
       {param.tsType && (
         <>
-          <StyleKw>{": "}</StyleKw>
+          <StyleKw>:</StyleKw>
           <TsType getLink={getLink}>{param.tsType}</TsType>
         </>
       )}
@@ -917,7 +918,7 @@ export function Params({
     <>
       {"\n  " + indent}
       {params
-        .map((param) => <Param getLink={getLink}>{param}</Param>)
+        .map((param, i) => <Param key={i} getLink={getLink}>{param}</Param>)
         .reduce((a, b) => (
           <>
             {a}

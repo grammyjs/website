@@ -24,11 +24,9 @@ export function Properties({
           <>
             <H3>{v.name}</H3>
             <CodeBlock>
-              {"isStatic" in v && v.isStatic && <StyleKw>{"static "}</StyleKw>}
-              {"isAbstract" in v && v.isAbstract && (
-                <StyleKw>{"abstract "}</StyleKw>
-              )}
-              {v.readonly && <StyleKw>{"readonly "}</StyleKw>}
+              {"isStatic" in v && v.isStatic && <StyleKw>static</StyleKw>}
+              {"isAbstract" in v && v.isAbstract && <StyleKw>abstract</StyleKw>}
+              {v.readonly && <StyleKw>readonly</StyleKw>}
               <PropertyName hasType={!!v.tsType} class>{v}</PropertyName>
               {v.tsType && (
                 <>
