@@ -34,5 +34,12 @@
     "docs/.vitepress/.temp",
     "docs/.vitepress/dist",
     "docs/ref"
-  ]
+  ],
+  "lint": {
+    "rules": {
+      "exclude": [
+        "jsx-curly-braces"
+      ]
+    }
+  }
 }
