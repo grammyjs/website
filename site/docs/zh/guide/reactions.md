@@ -20,11 +20,15 @@ bot.on("message", (ctx) => ctx.react("👍"));
 
 // 使用 `ctx.api.setMessageReaction` 对其他地方的消息做出反应。
 bot.on("message", async (ctx) => {
-  await ctx.api.setMessageReaction(chat_id, message_id, "🎉");
+  await ctx.api.setMessageReaction(chat_id, message_id, [
+    { type: "emoji", emoji: "🎉" },
+  ]);
 });
 
 // 在处理程序外的使用 `bot.api.setMessageReaction`。
-await bot.api.setMessageReaction(chat_id, message_id, "💯");
+await bot.api.setMessageReaction(chat_id, message_id, [
+  { type: "emoji", emoji: "💯" },
+]);
 ```
 
 与往常一样，TypeScript 将为你可以使用的 emoji 提供自动补全功能。
