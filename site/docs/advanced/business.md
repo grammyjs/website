@@ -88,6 +88,7 @@ More specifically, you will receive `edited_business_message` or `deleted_busine
 Your bot can handle them the normal way using `bot.on` and its countless [filter queries](../guide/filter-queries).
 
 You can edit the message in the usual way, using `ctx.editMessageText` or other variants of it.
+
 ```ts
 bot.on("business_message").filter(async (ctx) => {
   const conn = await ctx.getBusinessConnection();
@@ -95,7 +96,7 @@ bot.on("business_message").filter(async (ctx) => {
     ctx.from.id == conn.user.id;
 }, async (ctx) => {
   await ctx.editMessageText("Edited!");
-})
+});
 ```
 
 However, your bot is **NOT** able delete messages in the chat.
