@@ -104,7 +104,8 @@ Telegram Бизнес. Здесь мы кратко рассмотрим нес�
 ```ts
 bot.on("business_message").filter(async (ctx) => {
   const conn = await ctx.getBusinessConnection();
-  return ctx.msg.text == "Это сообщение будет отредактировано" && ctx.from.id == conn.user.id
+  return ctx.msg.text == "Это сообщение будет отредактировано" &&
+    ctx.from.id == conn.user.id
 }, async (ctx) => {
   await ctx.editMessageText("Отредактировал!");
 })
