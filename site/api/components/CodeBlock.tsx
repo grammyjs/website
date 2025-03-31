@@ -5,7 +5,7 @@ export function CodeBlock({ children }: { children?: ComponentChildren }) {
     <>
       {"\n\n"}
       <div class="language-ts vp-adaptive-theme">
-        <button title="Copy Code" class="copy"></button>
+        <button type="button" title="Copy Code" class="copy"></button>
         <span class="lang">ts</span>
         {"\n\n"}
         <pre class="shiki shiki-themes github-light github-dark vp-code">
