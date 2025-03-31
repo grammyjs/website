@@ -4,8 +4,9 @@
 
 ## 通过 Node.js 开始
 
-> 本指南假定你已经安装了 [Node.js](https://nodejs.org)，并且 `npm` 应该是自带的。
-> 如果你不知道这些东西是什么，请查看我们的 [简介](./introduction)！
+> 本指南假定你已经安装了 [Node.js](https://nodejs.org)，并且 `npm`
+> 应该是自带的。 如果你不知道这些东西是什么，请查看我们的
+> [简介](./introduction)！
 
 创建一个新的 TypeScript 项目并安装 `grammy` 包。
 通过打开终端并键入以下内容来完成。
@@ -53,8 +54,7 @@ pnpm add grammy
 
 :::
 
-创建一个新的空文本文件，例如称为 `bot.ts`。
-你的文件夹结构现在应该看起来像这样。
+创建一个新的空文本文件，例如称为 `bot.ts`。 你的文件夹结构现在应该看起来像这样。
 
 ```asciiart:no-line-numbers
 .
@@ -65,10 +65,9 @@ pnpm add grammy
 └── tsconfig.json
 ```
 
-现在，是时候打开 Telegram 创建一个 bot 账户，并为其获得一个 bot token。
-与 [@BotFather](https://t.me/BotFather) 对话来完成这件事。
-Bot token 看起来将类似于 `123456:aBcDeF_gHiJkLmNoP-q`。
-这是用来认证你的 bot 的。
+现在，是时候打开 Telegram 创建一个 bot 账户，并为其获得一个 bot token。 与
+[@BotFather](https://t.me/BotFather) 对话来完成这件事。 Bot token 看起来将类似于
+`123456:aBcDeF_gHiJkLmNoP-q`。 这是用来认证你的 bot 的。
 
 拿到 token 了吧？你现在可以在 `bot.ts` 文件中编写你的 bot 代码。
 你可以把下面这个 bot 的例子复制到该文件中，并把你的 token 传给 `Bot` 构造函数。
@@ -124,8 +123,7 @@ bot.start();
 npx tsc
 ```
 
-在你的终端中。
-这将生成 JavaScript 文件 `bot.js`。
+在你的终端中。 这将生成 JavaScript 文件 `bot.js`。
 
 现在你可以通过执行以下命令在终端来运行这个 bot：
 
@@ -137,22 +135,21 @@ node bot.js
 
 到 Telegram 去看你的 bot 对信息的回应吧!
 
-::: tip 启用日志记录功能
-你可以通过运行以下程序来启用基本日志记录
+::: tip 启用日志记录功能 你可以通过运行以下程序来启用基本日志记录
 
 ```sh
 export DEBUG="grammy*"
 ```
 
 在你执行 `node bot.js` 之前，先在你的终端机上使用 `node bot.js`。
-这使你更容易调试你的 bot。
-:::
+这使你更容易调试你的 bot。 :::
 
 ## 通过 Deno 开始
 
 > 本指南假定你已经安装了 [Deno](https://deno.com) 。
 
-在某个地方创建一个新的目录，并在其中创建一个新的空文本文件，例如，称为 `bot.ts`。
+在某个地方创建一个新的目录，并在其中创建一个新的空文本文件，例如，称为
+`bot.ts`。
 
 ```sh
 mkdir ./my-bot
@@ -160,10 +157,9 @@ cd ./my-bot
 touch bot.ts
 ```
 
-现在，是时候打开 Telegram 创建一个 bot 账户，并为其获得一个 bot token。
-与 [@BotFather](https://t.me/BotFather) 对话来完成这件事。
-Bot token 看起来将类似于 `123456:aBcDeF_gHiJkLmNoP-q`。
-这是用来认证你的 bot 的。
+现在，是时候打开 Telegram 创建一个 bot 账户，并为其获得一个 bot token。 与
+[@BotFather](https://t.me/BotFather) 对话来完成这件事。 Bot token 看起来将类似于
+`123456:aBcDeF_gHiJkLmNoP-q`。 这是用来认证你的 bot 的。
 
 拿到 token 了吧？你现在可以在 `bot.ts` 文件中编写你的 bot 代码。
 你可以把下面这个 bot 的例子复制到该文件中，并把你的 token 传给 `Bot` 构造函数。
@@ -199,8 +195,8 @@ deno -IN bot.ts
 
 到 Telegram 去看你的 bot 对信息的回应吧!
 
-::: tip 启用日志记录功能
-在运行你的 bot 之前，你可以在终端中运行以下命令来开启基本日志记录：
+::: tip 启用日志记录功能 在运行你的 bot
+之前，你可以在终端中运行以下命令来开启基本日志记录：
 
 ```sh
 export DEBUG="grammy*"
@@ -214,5 +210,4 @@ export DEBUG="grammy*"
 deno -EIN bot.ts
 ```
 
-现在 grammY 可以检测到 `DEBUG` 是否被设置。
-:::
+现在 grammY 可以检测到 `DEBUG` 是否被设置。 :::

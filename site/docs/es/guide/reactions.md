@@ -1,15 +1,19 @@
 # Reacciones
 
-Los bots pueden trabajar con reacciones de mensajes.
-Hay dos tipos de reacciones: reacciones emoji y reacciones emoji personalizadas.
+Los bots pueden trabajar con reacciones de mensajes. Hay dos tipos de
+reacciones: reacciones emoji y reacciones emoji personalizadas.
 
 ## Reaccionando a los mensajes
 
 Los bots pueden añadir una única reacción emoji a un mensaje.
 
-En los mismos casos, los bots también pueden reaccionar con emoji personalizados (aunque los bots no pueden tener [Telegram Premium](https://telegram.org/faq_premium?setln=es)).
-Cuando un usuario Premium añade una reacción emoji personalizada a un mensaje, los bots pueden añadir posteriormente la misma reacción a este mensaje.
-Además, si un administrador de chat permite explícitamente el uso de emoji personalizados, también pueden ser utilizados por los bots en ese chat.
+En los mismos casos, los bots también pueden reaccionar con emoji personalizados
+(aunque los bots no pueden tener
+[Telegram Premium](https://telegram.org/faq_premium?setln=es)). Cuando un
+usuario Premium añade una reacción emoji personalizada a un mensaje, los bots
+pueden añadir posteriormente la misma reacción a este mensaje. Además, si un
+administrador de chat permite explícitamente el uso de emoji personalizados,
+también pueden ser utilizados por los bots en ese chat.
 
 Así es como puedes reaccionar a los mensajes.
 
@@ -27,28 +31,32 @@ bot.on("message", async (ctx) => {
 await bot.api.setMessageReaction(chat_id, message_id, "💯");
 ```
 
-Como de costumbre, TypeScript proporcionará autocompletado para los emojis que puedes usar.
-La lista de reacciones emoji disponibles se puede encontrar [aquí](https://core.telegram.org/bots/api#reactiontypeemoji).
+Como de costumbre, TypeScript proporcionará autocompletado para los emojis que
+puedes usar. La lista de reacciones emoji disponibles se puede encontrar
+[aquí](https://core.telegram.org/bots/api#reactiontypeemoji).
 
-::: tip Plugin Emoji
-Puede ser feo programar con emoji.
-No todos los sistemas pueden mostrar su código fuente correctamente.
-Además, es molesto copiarlos de diferentes lugares todo el tiempo.
+::: tip Plugin Emoji Puede ser feo programar con emoji. No todos los sistemas
+pueden mostrar su código fuente correctamente. Además, es molesto copiarlos de
+diferentes lugares todo el tiempo.
 
-¡Deja que el [plugin emoji](../plugins/emoji#datos-utiles-para-reacciones) te ayude!
-:::
+¡Deja que el [plugin emoji](../plugins/emoji#datos-utiles-para-reacciones) te
+ayude! :::
 
-Ahora que ya sabes cómo puede reaccionar tu bot a los mensajes, veamos cómo podemos manejar las reacciones de tus usuarios.
+Ahora que ya sabes cómo puede reaccionar tu bot a los mensajes, veamos cómo
+podemos manejar las reacciones de tus usuarios.
 
 ## Recepción de actualizaciones sobre reacciones
 
-Existen varias formas de gestionar las actualizaciones sobre las reacciones.
-En los chats privados y de grupo, tu bot recibirá una actualización `message_reaction` si un usuario cambia su reacción a un mensaje.
-En los canales (o en las publicaciones de canal reenviadas automáticamente en los grupos), tu bot recibirá una actualización `message_reaction_count` que sólo muestra el recuento total de reacciones, pero sin revelar quién ha reaccionado.
+Existen varias formas de gestionar las actualizaciones sobre las reacciones. En
+los chats privados y de grupo, tu bot recibirá una actualización
+`message_reaction` si un usuario cambia su reacción a un mensaje. En los canales
+(o en las publicaciones de canal reenviadas automáticamente en los grupos), tu
+bot recibirá una actualización `message_reaction_count` que sólo muestra el
+recuento total de reacciones, pero sin revelar quién ha reaccionado.
 
-Ambos tipos de reacciones sólo se reciben **si el bot es administrador** en el chat.
-Además, **necesitan estar habilitadas** mediante `allowed_updates`.
-Por ejemplo, con el polling incorporado, puedes habilitarlas así:
+Ambos tipos de reacciones sólo se reciben **si el bot es administrador** en el
+chat. Además, **necesitan estar habilitadas** mediante `allowed_updates`. Por
+ejemplo, con el polling incorporado, puedes habilitarlas así:
 
 ```ts
 bot.start({
@@ -56,34 +64,37 @@ bot.start({
 });
 ```
 
-::: tip Habilitar todos los tipos de actualización
-Puede que quieras importar `API_CONSTANTS` de grammY y luego especificar
+::: tip Habilitar todos los tipos de actualización Puede que quieras importar
+`API_CONSTANTS` de grammY y luego especificar
 
 ```ts
 allowed_updates: API_CONSTANTS.ALL_UPDATE_TYPES;
 ```
 
-para recibir todas las actualizaciones.
-Asegúrese de consultar la [referencia API](/ref/core/apiconstants#all-update-types).
-:::
+para recibir todas las actualizaciones. Asegúrese de consultar la
+[referencia API](/ref/core/apiconstants#all-update-types). :::
 
-[grammY runner](../plugins/runner#opciones-avanzadas) y `setWebhook` tienen formas similares de especificar `allowed_updates`.
+[grammY runner](../plugins/runner#opciones-avanzadas) y `setWebhook` tienen
+formas similares de especificar `allowed_updates`.
 
-Ahora que tu bot puede recibir actualizaciones de reacción, ¡vamos a ver cómo puede manejarlas!
+Ahora que tu bot puede recibir actualizaciones de reacción, ¡vamos a ver cómo
+puede manejarlas!
 
 ### Manejo de nuevas reacciones
 
-Es muy sencillo manejar reacciones recién añadidas.
-grammY tiene un soporte especial para esto a través de `bot.reaction`.
+Es muy sencillo manejar reacciones recién añadidas. grammY tiene un soporte
+especial para esto a través de `bot.reaction`.
 
 ```ts
 bot.reaction("🎉", (ctx) => ctx.reply("whoop whoop"));
 bot.reaction(["👍", "👎"], (ctx) => ctx.reply("Nice thumb"));
 ```
 
-Estos controladores se activarán cada vez que un usuario añada una nueva reacción emoji a un mensaje.
+Estos controladores se activarán cada vez que un usuario añada una nueva
+reacción emoji a un mensaje.
 
-Naturalmente, si tu bot gestiona reacciones emoji personalizadas de usuarios premium, también puedes escucharlas.
+Naturalmente, si tu bot gestiona reacciones emoji personalizadas de usuarios
+premium, también puedes escucharlas.
 
 ```ts
 bot.reaction(
@@ -94,7 +105,8 @@ bot.reaction(
 
 Esto requiere que conozcas de antemano el identificador del emoji personalizado.
 
-Por último, cuando un usuario paga por una reacción de estrella y la añade a un mensaje, puede gestionar estas actualizaciones del siguiente modo.
+Por último, cuando un usuario paga por una reacción de estrella y la añade a un
+mensaje, puede gestionar estas actualizaciones del siguiente modo.
 
 ```ts
 bot.reaction({ type: "paid" }, (ctx) => ctx.reply("¡Gracias!"));
@@ -102,9 +114,11 @@ bot.reaction({ type: "paid" }, (ctx) => ctx.reply("¡Gracias!"));
 
 ### Manejo de cambios arbitrarios en las reacciones
 
-Aunque esto no es visible en la interfaz de usuario de ningún cliente oficial de Telegram, los usuarios pueden cambiar varias reacciones a la vez.
-Esta es la razón por la que las actualizaciones de reacciones te dan dos listas, las reacciones antiguas y las nuevas.
-Esto permite a tu bot manejar cambios arbitrarios en la lista de reacciones.
+Aunque esto no es visible en la interfaz de usuario de ningún cliente oficial de
+Telegram, los usuarios pueden cambiar varias reacciones a la vez. Esta es la
+razón por la que las actualizaciones de reacciones te dan dos listas, las
+reacciones antiguas y las nuevas. Esto permite a tu bot manejar cambios
+arbitrarios en la lista de reacciones.
 
 ```ts
 bot.on("message_reaction", async (ctx) => {
@@ -117,7 +131,8 @@ bot.on("message_reaction", async (ctx) => {
 });
 ```
 
-grammY le permite filtrar aún más las actualizaciones con [consultas de filtro especiales](./filter-queries) para el tipo de reacción.
+grammY le permite filtrar aún más las actualizaciones con
+[consultas de filtro especiales](./filter-queries) para el tipo de reacción.
 
 ```ts
 // Actualizaciones en las que la reacción actual contiene al menos un emoji.
@@ -128,14 +143,20 @@ bot.on("message_reaction:old_reaction:custom_emoji", (ctx) => {/* ... */});
 bot.on("message_reaction:new_reaction:paid", (ctx) => {/* ... */});
 ```
 
-Mientras que estas dos matrices de [objetos `ReactionType`](https://core.telegram.org/bots/api#reactiontype) técnicamente te dan toda la información que necesitas para manejar las actualizaciones de las reacciones, todavía pueden ser un poco engorrosas para trabajar.
-Por eso grammY puede calcular cosas más útiles a partir de la actualización.
+Mientras que estas dos matrices de
+[objetos `ReactionType`](https://core.telegram.org/bots/api#reactiontype)
+técnicamente te dan toda la información que necesitas para manejar las
+actualizaciones de las reacciones, todavía pueden ser un poco engorrosas para
+trabajar. Por eso grammY puede calcular cosas más útiles a partir de la
+actualización.
 
 ### Inspeccionar Cómo Cambiaron las Reacciones
 
-Hay un [atajo de contexto](./context#atajos) llamado `ctx.reactions` que te permite ver cómo cambió exactamente una reacción.
+Hay un [atajo de contexto](./context#atajos) llamado `ctx.reactions` que te
+permite ver cómo cambió exactamente una reacción.
 
-Así es como puedes usar `ctx.reactions` para detectar si un usuario elimina su voto positivo (pero lo perdona si aún mantiene su reacción de ok).
+Así es como puedes usar `ctx.reactions` para detectar si un usuario elimina su
+voto positivo (pero lo perdona si aún mantiene su reacción de ok).
 
 ```ts
 bot.on("message_reaction", async (ctx) => {
@@ -153,9 +174,10 @@ bot.on("message_reaction", async (ctx) => {
 });
 ```
 
-Hay cuatro matrices devueltas por `ctx.reaction`: emoji añadido, emoji eliminado, emoji conservado, y una lista que te dice cuál es el resultado del cambio.
-Además, hay cuatro arrays más para emojis personalizados con información similar.
-Por último, hay dos indicadores booleanos para las reacciones de pago.
+Hay cuatro matrices devueltas por `ctx.reaction`: emoji añadido, emoji
+eliminado, emoji conservado, y una lista que te dice cuál es el resultado del
+cambio. Además, hay cuatro arrays más para emojis personalizados con información
+similar. Por último, hay dos indicadores booleanos para las reacciones de pago.
 
 ```ts
 const {
@@ -182,15 +204,16 @@ const {
 } = ctx.reactions();
 ```
 
-Se ha hablado mucho sobre la gestión de las actualizaciones en los chats privados y en los chats de grupo.
-Veamos los canales.
+Se ha hablado mucho sobre la gestión de las actualizaciones en los chats
+privados y en los chats de grupo. Veamos los canales.
 
 ### Manejo de las Actualizaciones del Recuento de Reacciones
 
-En los chats privados, grupos y supergrupos, se sabe quién reacciona a cada mensaje.
-Sin embargo, para los mensajes del canal, sólo disponemos de una lista de reacciones anónimas.
-No es posible obtener una lista de los usuarios que han reaccionado a un determinado mensaje.
-Lo mismo ocurre con los mensajes del canal que se reenvían automáticamente a los chats de los grupos de debate vinculados.
+En los chats privados, grupos y supergrupos, se sabe quién reacciona a cada
+mensaje. Sin embargo, para los mensajes del canal, sólo disponemos de una lista
+de reacciones anónimas. No es posible obtener una lista de los usuarios que han
+reaccionado a un determinado mensaje. Lo mismo ocurre con los mensajes del canal
+que se reenvían automáticamente a los chats de los grupos de debate vinculados.
 
 En ambos casos, tu bot recibirá una actualización de `message_reaction_count`.
 
@@ -206,4 +229,6 @@ bot.on("message_reaction_count", async (ctx) => {
 });
 ```
 
-No deje de consultar la [especificación](https://core.telegram.org/bots/api#messagereactioncountupdated) para conocer las actualizaciones del recuento de reacciones a los mensajes.
+No deje de consultar la
+[especificación](https://core.telegram.org/bots/api#messagereactioncountupdated)
+para conocer las actualizaciones del recuento de reacciones a los mensajes.

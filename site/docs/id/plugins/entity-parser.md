@@ -5,25 +5,34 @@ next: false
 
 # Entity Parser (`entity-parser`)
 
-Mengubah [Telegram entities](https://core.telegram.org/bots/api#messageentity) menjadi semantic HTML.
+Mengubah [Telegram entities](https://core.telegram.org/bots/api#messageentity)
+menjadi semantic HTML.
 
 ## Kapan Plugin Ini Diperlukan?
 
 Kemungkinan besar kamu TIDAK AKAN PERNAH membutuhkannya sama sekali!
 
-Meski plugin ini mampu menghasilkan HTML, namun, pada umumnya, mengirim teks beserta entity-nya kembali ke Telegram jauh lebih baik.
+Meski plugin ini mampu menghasilkan HTML, namun, pada umumnya, mengirim teks
+beserta entity-nya kembali ke Telegram jauh lebih baik.
 
-Pengonversian ke HTML hanya dibutuhkan untuk kondisi khusus ketika kamu perlu menggunakan teks pemformatan Telegram **di luar** ekosistem Telegram itu sendiri, misalnya menampilkan pesan Telegram di suatu website.
+Pengonversian ke HTML hanya dibutuhkan untuk kondisi khusus ketika kamu perlu
+menggunakan teks pemformatan Telegram **di luar** ekosistem Telegram itu
+sendiri, misalnya menampilkan pesan Telegram di suatu website.
 
-Silahkan lihat bagian [_Contoh-Contoh Kasus yang Sebaiknya Tidak Menggunakan Plugin Ini_](#contoh-contoh-kasus-yang-sebaiknya-tidak-menggunakan-plugin-ini) untuk menemukan solusi yang lebih baik ketika kamu memiliki permasalahan yang serupa.
+Silahkan lihat bagian
+[_Contoh-Contoh Kasus yang Sebaiknya Tidak Menggunakan Plugin Ini_](#contoh-contoh-kasus-yang-sebaiknya-tidak-menggunakan-plugin-ini)
+untuk menemukan solusi yang lebih baik ketika kamu memiliki permasalahan yang
+serupa.
 
-Jika kamu masih ragu apakah plugin ini sesuai, jangan ragun untuk bertanya di [grup Telegram](https://t.me/grammyjs) kami.
-Dalam kebanyakan kasus, sebagian besar orang sebenarnya tidak terlalu memerlukan plugin untuk menyelesaikan permasalahan mereka!
+Jika kamu masih ragu apakah plugin ini sesuai, jangan ragun untuk bertanya di
+[grup Telegram](https://t.me/grammyjs) kami. Dalam kebanyakan kasus, sebagian
+besar orang sebenarnya tidak terlalu memerlukan plugin untuk menyelesaikan
+permasalahan mereka!
 
 ## Penginstalan
 
-Jalankan perintah berikut di terminal.
-Sesuaikan dengan runtime atau package manager yang kamu gunakan:
+Jalankan perintah berikut di terminal. Sesuaikan dengan runtime atau package
+manager yang kamu gunakan:
 
 ::: code-group
 
@@ -51,8 +60,7 @@ npx jsr add @qz/telegram-entities-parser
 
 ## Penggunaan Sederhana
 
-Menggunakan plugin ini cukup simpel.
-Berikut contohnya:
+Menggunakan plugin ini cukup simpel. Berikut contohnya:
 
 ```ts
 import { EntitiesParser } from "@qz/telegram-entities-parser";
@@ -75,11 +83,16 @@ bot.on(":photo", (ctx) => {
 
 ### Menyesuaikan Keluaran Tag HTML
 
-Plugin ini mengonversi entity menjadi semantic HTML sesuai dengan standar dan praktik terbaik sebisa mungkin.
-Namun, keluaran yang dihasilkan mungkin tidak sesuai dengan harapan kamu.
+Plugin ini mengonversi entity menjadi semantic HTML sesuai dengan standar dan
+praktik terbaik sebisa mungkin. Namun, keluaran yang dihasilkan mungkin tidak
+sesuai dengan harapan kamu.
 
-Untuk mengatasinya, kamu bisa menggunakan `renderer`-mu sendiri untuk menyesuaikan element HTML yang membungkus teks terkait sesuai dengan aturan yang telah diterapkan.
-Kamu bisa memodifikasi aturan tertentu dengan cara meng-extend [`RendererHtml`](https://github.com/quadratz/telegram-entities-parser/blob/main/src/renderers/renderer_html.ts) bawaan ataupun menimpa semua aturan dengan cara mengimplementasikan [`Renderer`](https://github.com/quadratz/telegram-entities-parser/blob/main/src/renderers/renderer.ts).
+Untuk mengatasinya, kamu bisa menggunakan `renderer`-mu sendiri untuk
+menyesuaikan element HTML yang membungkus teks terkait sesuai dengan aturan yang
+telah diterapkan. Kamu bisa memodifikasi aturan tertentu dengan cara meng-extend
+[`RendererHtml`](https://github.com/quadratz/telegram-entities-parser/blob/main/src/renderers/renderer_html.ts)
+bawaan ataupun menimpa semua aturan dengan cara mengimplementasikan
+[`Renderer`](https://github.com/quadratz/telegram-entities-parser/blob/main/src/renderers/renderer.ts).
 
 Untuk meng-extend `renderer` yang sudah ada, lakukan hal berikut:
 
@@ -109,10 +122,15 @@ const entitiesParser = new EntitiesParser({ renderer: new MyRenderer() });
 Parameter `options` menerima sebuah object berupa `text` dan `entity`.
 
 - `text`: Porsi teks yang direferensikan oleh entity terkait.
-- `entity`: Paramater ini memiliki beragam interface sesuai dengan tipe entity-nya, entah itu `CommonEntity`, `CustomEmojiEntity`, `PreEntity`, `TextLinkEntity`, ataupun `TextMentionEntity`.
-  Contohnya, tipe `bold` memiliki entity dengan interface `CommonEntity`, sementara tipe `text_link` interface-nya berupa `TextLinkEntity` karena mengandung property tambahan seperti `url`.
+- `entity`: Paramater ini memiliki beragam interface sesuai dengan tipe
+  entity-nya, entah itu `CommonEntity`, `CustomEmojiEntity`, `PreEntity`,
+  `TextLinkEntity`, ataupun `TextMentionEntity`. Contohnya, tipe `bold` memiliki
+  entity dengan interface `CommonEntity`, sementara tipe `text_link`
+  interface-nya berupa `TextLinkEntity` karena mengandung property tambahan
+  seperti `url`.
 
-Berikut daftar lengkap interface beserta keluaran untuk masing-masing tipe entity:
+Berikut daftar lengkap interface beserta keluaran untuk masing-masing tipe
+entity:
 
 | Tipe Entity             | Interface           | Keluaran                                                                                                                                                                             |
 | ----------------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -136,11 +154,15 @@ Berikut daftar lengkap interface beserta keluaran untuk masing-masing tipe entit
 | `underline`             | `CommonEntity`      | `<span class="tg-bot-command"> ... </span>`                                                                                                                                          |
 | `url`                   | `CommonEntity`      | `<a class="tg-url" href="${options.text}"> ... </a>`                                                                                                                                 |
 
-Jika kamu ragu interface mana yang benar, silahkan lihat pengimplentasian [Renderer](https://github.com/quadratz/telegram-entities-parser/blob/main/src/renderers/renderer.ts) dan [RendererHtml](https://github.com/quadratz/telegram-entities-parser/blob/main/src/renderers/renderer_html.ts).
+Jika kamu ragu interface mana yang benar, silahkan lihat pengimplentasian
+[Renderer](https://github.com/quadratz/telegram-entities-parser/blob/main/src/renderers/renderer.ts)
+dan
+[RendererHtml](https://github.com/quadratz/telegram-entities-parser/blob/main/src/renderers/renderer_html.ts).
 
 ### Menyesuaikan Pembersih Teks (Text Sanitizer)
 
-Secara bawaan, keluaran teks dibersihkan agar HTML bisa di-render dengan baik dan menghindari kerentanan XSS.
+Secara bawaan, keluaran teks dibersihkan agar HTML bisa di-render dengan baik
+dan menghindari kerentanan XSS.
 
 | Masukan | Keluaran |
 | ------- | -------- |
@@ -150,15 +172,23 @@ Secara bawaan, keluaran teks dibersihkan agar HTML bisa di-render dengan baik da
 | `"`     | `&quot;` |
 | `'`     | `&#x27;` |
 
-Sebagai contoh, hasil keluaran `<b>Tebal</b> & <i>Miring</i>` akan dibersihkan menjadi `<b>Tebal</b> &amp; <i>Miring</i>`.
+Sebagai contoh, hasil keluaran `<b>Tebal</b> & <i>Miring</i>` akan dibersihkan
+menjadi `<b>Tebal</b> &amp; <i>Miring</i>`.
 
-Kamu bisa mengubah perilaku tersebut dengan cara menentukan `textSanitizer` ketika menginisiasi [`EntitiesParser`](https://github.com/quadratz/telegram-entities-parser/blob/main/src/mod.ts):
+Kamu bisa mengubah perilaku tersebut dengan cara menentukan `textSanitizer`
+ketika menginisiasi
+[`EntitiesParser`](https://github.com/quadratz/telegram-entities-parser/blob/main/src/mod.ts):
 
-- Jika `textSanitizer` tidak ditentukan, ia secara bawaan akan menggunakan [`sanitizerHtml`](https://github.com/quadratz/telegram-entities-parser/blob/main/src/utils/sanitizer_html.ts) sebagai pembersihnya.
-- Jika nilai `false` diberikan, pembersihan tidak akan dilakukan, sehingga keluaran teks yang dihasilkan apa adanya.
-  Langkah ini tidak disarankan karena dapat menyebabkan kesalahan pe-render-an dan membuat aplikasimu rentan terhadap serangan XSS.
-  Pastikan penanganan dilakukan dengan baik jika kamu memilih opsi ini.
-- Jika sebuah function diberikan, function tersebut akan digunakan sebagai pembersih bawaannya.
+- Jika `textSanitizer` tidak ditentukan, ia secara bawaan akan menggunakan
+  [`sanitizerHtml`](https://github.com/quadratz/telegram-entities-parser/blob/main/src/utils/sanitizer_html.ts)
+  sebagai pembersihnya.
+- Jika nilai `false` diberikan, pembersihan tidak akan dilakukan, sehingga
+  keluaran teks yang dihasilkan apa adanya. Langkah ini tidak disarankan karena
+  dapat menyebabkan kesalahan pe-render-an dan membuat aplikasimu rentan
+  terhadap serangan XSS. Pastikan penanganan dilakukan dengan baik jika kamu
+  memilih opsi ini.
+- Jika sebuah function diberikan, function tersebut akan digunakan sebagai
+  pembersih bawaannya.
 
 ```ts
 const myTextSanitizer: TextSanitizer = (options: TextSanitizerOption): string =>
@@ -186,14 +216,20 @@ const entitiesParser = new EntitiesParser({ textSanitizer: myTextSanitizer });
 
 ## Contoh-Contoh Kasus yang Sebaiknya Tidak Menggunakan Plugin Ini
 
-Jika menghadapi permasalahan serupa dengan berikut, kamu kemungkinan besar bisa menyelesaikannya tanpa menggunakan plugin ini.
+Jika menghadapi permasalahan serupa dengan berikut, kamu kemungkinan besar bisa
+menyelesaikannya tanpa menggunakan plugin ini.
 
 ### Menyalin dan Meneruskan Pesan yang Sama
 
-Gunakan [`forwardMessage`](https://core.telegram.org/bots/api#forwardmessage) untuk meneruskan pesan apapun.
+Gunakan [`forwardMessage`](https://core.telegram.org/bots/api#forwardmessage)
+untuk meneruskan pesan apapun.
 
-Kamu juga bisa menggunakan API [`copyMessage`](https://core.telegram.org/bots/api#copymessage) untuk melakukan aksi yang serupa tanpa menyertakan link ke pesan aslinya.
-[`copyMessage`](https://core.telegram.org/bots/api#copymessage) memiliki perilaku layaknya menyalin lalu mengirim ulang pesan tersebut ke Telegram, sehingga wujudnya berupa pesan biasa alih-alih pesan terusan.
+Kamu juga bisa menggunakan API
+[`copyMessage`](https://core.telegram.org/bots/api#copymessage) untuk melakukan
+aksi yang serupa tanpa menyertakan link ke pesan aslinya.
+[`copyMessage`](https://core.telegram.org/bots/api#copymessage) memiliki
+perilaku layaknya menyalin lalu mengirim ulang pesan tersebut ke Telegram,
+sehingga wujudnya berupa pesan biasa alih-alih pesan terusan.
 
 ```ts
 bot.on(":text", async (ctx) => {
@@ -208,7 +244,8 @@ bot.on(":text", async (ctx) => {
 
 ### Membalas Pesan Menggunakan Format Teks yang Telah Dimodifikasi
 
-Kamu juga bisa dengan mudah membalas pesan yang datang menggunakan HTML, Markdown, atau entity.
+Kamu juga bisa dengan mudah membalas pesan yang datang menggunakan HTML,
+Markdown, atau entity.
 
 ```ts
 bot.on(":text", async (ctx) => {
@@ -228,8 +265,8 @@ bot.on(":text", async (ctx) => {
 
 ::: tip Gunakan parse-mode untuk Pengalaman Pemformatan yang Lebih Baik
 
-Gunakan plugin resmi [`parse-mode`](./parse-mode) untuk memformat pesan dengan cara yang lebih elegan.
-:::
+Gunakan plugin resmi [`parse-mode`](./parse-mode) untuk memformat pesan dengan
+cara yang lebih elegan. :::
 
 ## Ringkasan Plugin
 

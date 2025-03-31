@@ -10,8 +10,9 @@ Plugin ini akan menginstal method-method yang berguna di dua macam object, yaitu
 - hasil dari pemanggilan API; serta
 - object-object di context object `ctx`.
 
-Daripada memanggil `ctx.api` atau `bot.api` lalu menyuplainya dengan berbagai identifier, dengan plugin ini kamu cukup memanggil method di object.
-Mari kita lihat perbandingannya di contoh berikut.
+Daripada memanggil `ctx.api` atau `bot.api` lalu menyuplainya dengan berbagai
+identifier, dengan plugin ini kamu cukup memanggil method di object. Mari kita
+lihat perbandingannya di contoh berikut.
 
 **TANPA** plugin:
 
@@ -55,7 +56,8 @@ Ada dua cara untuk menginstal plugin ini:
 
 ### Instalasi Sederhana
 
-Plugin ini bisa diinstal secara langsung. Cara pemasangan yang seperti ini sudah cukup untuk kebanyakan pengguna.
+Plugin ini bisa diinstal secara langsung. Cara pemasangan yang seperti ini sudah
+cukup untuk kebanyakan pengguna.
 
 ::: code-group
 
@@ -97,14 +99,17 @@ bot.use(hydrate());
 
 ### Pemasangan Tingkat Lanjut
 
-Ketika menggunakan instalasi sederhana, hanya hasil dari pemanggilan API yang melalui `ctx.api` yang akan dihidrasi, contohnya `ctx.reply`.
-Pemanggilan ini yang paling sering digunakan oleh kebanyakan bot.
+Ketika menggunakan instalasi sederhana, hanya hasil dari pemanggilan API yang
+melalui `ctx.api` yang akan dihidrasi, contohnya `ctx.reply`. Pemanggilan ini
+yang paling sering digunakan oleh kebanyakan bot.
 
-Namun, beberapa bot mungkin perlu untuk memanggil `bot.api`.
-Untuk kasus seperti itu, kamu sebaiknya menggunakan instalasi tingkat lanjut ini.
+Namun, beberapa bot mungkin perlu untuk memanggil `bot.api`. Untuk kasus seperti
+itu, kamu sebaiknya menggunakan instalasi tingkat lanjut ini.
 
-Instalasi ini akan mengintegrasikan context hydration dan hidrasi hasil pemanggilan API secara terpisah ke dalam bot kamu.
-Perlu diingat bahwa kamu sekarang perlu menginstal sebuah [API flavor](../advanced/transformers#menggunakan-api-flavor).
+Instalasi ini akan mengintegrasikan context hydration dan hidrasi hasil
+pemanggilan API secara terpisah ke dalam bot kamu. Perlu diingat bahwa kamu
+sekarang perlu menginstal sebuah
+[API flavor](../advanced/transformers#menggunakan-api-flavor).
 
 ::: code-group
 

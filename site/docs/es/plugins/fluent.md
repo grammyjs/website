@@ -5,15 +5,17 @@ next: false
 
 # Internacionalización con Fluent (`fluent`)
 
-[Fluent](https://projectfluent.org/) es un sistema de localización creado por la Fundación Mozilla para realizar traducciones naturales.
-Tiene una sintaxis muy potente y elegante que permite a cualquiera escribir traducciones eficientes y totalmente comprensibles.
-Este plugin aprovecha este increíble sistema de localización para hacer que los bots alimentados por grammY sean fluidos con traducciones de alta calidad.
+[Fluent](https://projectfluent.org/) es un sistema de localización creado por la
+Fundación Mozilla para realizar traducciones naturales. Tiene una sintaxis muy
+potente y elegante que permite a cualquiera escribir traducciones eficientes y
+totalmente comprensibles. Este plugin aprovecha este increíble sistema de
+localización para hacer que los bots alimentados por grammY sean fluidos con
+traducciones de alta calidad.
 
-::: tip No se debe confundir
-No confundas esto con [i18n](./i18n).
+::: tip No se debe confundir No confundas esto con [i18n](./i18n).
 
-[i18n](./i18n) es una versión mejorada de este plugin que funciona tanto en Deno como en Node.js.
-:::
+[i18n](./i18n) es una versión mejorada de este plugin que funciona tanto en Deno
+como en Node.js. :::
 
 ## Inicializar Fluent
 
@@ -25,7 +27,8 @@ import { Fluent } from "@moebius/fluent";
 const fluent = new Fluent();
 ```
 
-A continuación, tendrá que añadir al menos una traducción a la instancia de Fluent:
+A continuación, tendrá que añadir al menos una traducción a la instancia de
+Fluent:
 
 ```ts
 await fluent.addTranslation({
@@ -51,8 +54,9 @@ await fluent.addTranslation({
 
 ## Escribir mensajes de traducción
 
-La sintaxis de Fluent debería ser fácil de dominar.
-Puedes empezar mirando los [ejemplos oficiales](https://projectfluent.org/#examples) o estudiando la [guía completa de sintaxis](https://projectfluent.org/fluent/guide/).
+La sintaxis de Fluent debería ser fácil de dominar. Puedes empezar mirando los
+[ejemplos oficiales](https://projectfluent.org/#examples) o estudiando la
+[guía completa de sintaxis](https://projectfluent.org/fluent/guide/).
 
 Empecemos con este ejemplo por ahora:
 
@@ -68,26 +72,37 @@ welcome =
   }.
 ```
 
-Demuestra tres características importantes de Fluent, a saber: **términos**, **sustitución de variables** (también conocidos como _placeables_) y **pluralización**.
+Demuestra tres características importantes de Fluent, a saber: **términos**,
+**sustitución de variables** (también conocidos como _placeables_) y
+**pluralización**.
 
-El `welcome` es el **identificador del mensaje**, que se utilizará para referenciar su mensaje siempre que se renderice.
+El `welcome` es el **identificador del mensaje**, que se utilizará para
+referenciar su mensaje siempre que se renderice.
 
-La sentencia `-bot-name = Apples Bot` define un **término** con nombre `bot-name` y valor `Apples Bot`.
-La construcción `{-bot-name}` hace referencia al término previamente definido y será reemplazado por el valor del término cuando se renderice.
+La sentencia `-bot-name = Apples Bot` define un **término** con nombre
+`bot-name` y valor `Apples Bot`. La construcción `{-bot-name}` hace referencia
+al término previamente definido y será reemplazado por el valor del término
+cuando se renderice.
 
-La declaración `{$name}` será reemplazada por el valor de la variable `name` que tendrá que pasar a la función de traducción usted mismo.
+La declaración `{$name}` será reemplazada por el valor de la variable `name` que
+tendrá que pasar a la función de traducción usted mismo.
 
-Y la última sentencia (_líneas 5 a 9_) define un **selector** (muy similar a una sentencia switch) que toma el resultado de la función especial `NUMBER` aplicada a la variable `applesCount` y selecciona uno de los tres posibles mensajes a renderizar basándose en el valor coincidente.
-La función `NUMBER` devolverá una [categoría plural CLDR](https://www.unicode.org/cldr/cldr-aux/charts/30/supplemental/language_plural_rules.html) basada en el valor proporcionado y la configuración regional utilizada.
-Esto implementa efectivamente la pluralización.
+Y la última sentencia (_líneas 5 a 9_) define un **selector** (muy similar a una
+sentencia switch) que toma el resultado de la función especial `NUMBER` aplicada
+a la variable `applesCount` y selecciona uno de los tres posibles mensajes a
+renderizar basándose en el valor coincidente. La función `NUMBER` devolverá una
+[categoría plural CLDR](https://www.unicode.org/cldr/cldr-aux/charts/30/supplemental/language_plural_rules.html)
+basada en el valor proporcionado y la configuración regional utilizada. Esto
+implementa efectivamente la pluralización.
 
 ## grammY Configuración
 
 Ahora vamos a ver cómo este mensaje de arriba podría ser renderizado por un bot.
 Pero primero, necesitaremos configurar grammY para usar el plugin.
 
-Antes que nada, necesitarás configurar tu bot para que utilice el sabor de contexto Fluent.
-Si no estás familiarizado con este concepto, deberías leer los documentos oficiales sobre [Context Flavors](../guide/context#context-flavors).
+Antes que nada, necesitarás configurar tu bot para que utilice el sabor de
+contexto Fluent. Si no estás familiarizado con este concepto, deberías leer los
+documentos oficiales sobre [Context Flavors](../guide/context#context-flavors).
 
 ```ts
 import { Context } from "grammy";
@@ -97,7 +112,8 @@ import { FluentContextFlavor } from "@grammyjs/fluent";
 export type MyAppContext = Context & FluentContextFlavor;
 ```
 
-Tendrás que crear tu instancia de bot de la siguiente manera para poder utilizar el tipo de contexto aumentado:
+Tendrás que crear tu instancia de bot de la siguiente manera para poder utilizar
+el tipo de contexto aumentado:
 
 ```ts
 const bot = new Bot<MyAppContext>();
@@ -113,12 +129,13 @@ bot.use(
 );
 ```
 
-Asegúrate de pasar la [instancia de Fluent previamente creada](#inicializar-fluent).
+Asegúrate de pasar la
+[instancia de Fluent previamente creada](#inicializar-fluent).
 
 ## Renderizar los mensajes localizados
 
-Genial, ¡ya tenemos todo listo para renderizar nuestros mensajes!
-Vamos a hacerlo definiendo un comando de prueba en nuestro bot:
+Genial, ¡ya tenemos todo listo para renderizar nuestros mensajes! Vamos a
+hacerlo definiendo un comando de prueba en nuestro bot:
 
 ```ts
 bot.command("i18n_test", async (ctx) => {
@@ -133,26 +150,33 @@ bot.command("i18n_test", async (ctx) => {
 });
 ```
 
-Ahora puedes iniciar tu bot y utilizar el comando `/i18n_test`.
-Debería mostrar el siguiente mensaje:
+Ahora puedes iniciar tu bot y utilizar el comando `/i18n_test`. Debería mostrar
+el siguiente mensaje:
 
 ```text
 ¡Bienvenido, Slava, al Bot de las Manzanas!
 Tienes 1 manzana.
 ```
 
-Por supuesto, verás tu propio nombre en lugar de "Slava".
-Prueba a cambiar el valor de la variable `applesCount` para ver cómo cambia el mensaje renderizado.
+Por supuesto, verás tu propio nombre en lugar de "Slava". Prueba a cambiar el
+valor de la variable `applesCount` para ver cómo cambia el mensaje renderizado.
 
-Ten en cuenta que ahora puedes utilizar la función de traducción en todos los lugares donde el `Contexto` esté disponible.
-La librería determinará automáticamente la mejor localización posible para cada usuario que interactúe con tu bot, basándose en sus preferencias personales (el idioma establecido en la configuración del cliente de Telegram).
-Sólo tendrás que crear varios archivos de traducción y asegurarte de que todas las traducciones están correctamente sincronizadas.
+Ten en cuenta que ahora puedes utilizar la función de traducción en todos los
+lugares donde el `Contexto` esté disponible. La librería determinará
+automáticamente la mejor localización posible para cada usuario que interactúe
+con tu bot, basándose en sus preferencias personales (el idioma establecido en
+la configuración del cliente de Telegram). Sólo tendrás que crear varios
+archivos de traducción y asegurarte de que todas las traducciones están
+correctamente sincronizadas.
 
 ## Otros pasos
 
-- Completa la lectura de la [documentación de Fluent](https://projectfluent.org/), especialmente la [guía de sintaxis](https://projectfluent.org/fluent/guide/).
+- Completa la lectura de la
+  [documentación de Fluent](https://projectfluent.org/), especialmente la
+  [guía de sintaxis](https://projectfluent.org/fluent/guide/).
 - [Migrar desde el plugin `i18n`](https://github.com/grammyjs/fluent#i18n-plugin-replacement)
-- Familiarícese con [`@moebius/fluent`](https://github.com/the-moebius/fluent#readme).
+- Familiarícese con
+  [`@moebius/fluent`](https://github.com/the-moebius/fluent#readme).
 
 ## Resumen del plugin
 

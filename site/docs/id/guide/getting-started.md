@@ -1,15 +1,16 @@
 # Memulai
 
-Buat bot pertamamu dalam hitungan menit.
-(Gulir [ke bawah](#memulai-dengan-deno) untuk panduan Deno.)
+Buat bot pertamamu dalam hitungan menit. (Gulir [ke bawah](#memulai-dengan-deno)
+untuk panduan Deno.)
 
 ## Memulai dengan Node.js
 
-> Kami mengasumsikan bahwa kamu sudah menginstal [Node.js](https://nodejs.org), dan seharusnya `npm` juga sudah disertakan di paket pemasangannya.
-> Kalau tidak paham dengan apa yang kami maksud barusan, lihat [Pengenalan](./introduction)!
+> Kami mengasumsikan bahwa kamu sudah menginstal [Node.js](https://nodejs.org),
+> dan seharusnya `npm` juga sudah disertakan di paket pemasangannya. Kalau tidak
+> paham dengan apa yang kami maksud barusan, lihat [Pengenalan](./introduction)!
 
-Buat proyek TypeScript baru lalu instal package `grammy`.
-Lakukan dengan cara mengetikan kode berikut di terminal:
+Buat proyek TypeScript baru lalu instal package `grammy`. Lakukan dengan cara
+mengetikan kode berikut di terminal:
 
 ::: code-group
 
@@ -54,8 +55,8 @@ pnpm add grammy
 
 :::
 
-Kemudian, buat file teks kosong baru dengan nama `bot.ts`.
-Struktur folder kurang lebih terlihat seperti ini:
+Kemudian, buat file teks kosong baru dengan nama `bot.ts`. Struktur folder
+kurang lebih terlihat seperti ini:
 
 ```asciiart:no-line-numbers
 .
@@ -66,11 +67,14 @@ Struktur folder kurang lebih terlihat seperti ini:
 └── tsconfig.json
 ```
 
-Sekarang, buka aplikasi Telegram kamu lalu chat [@BotFather](https://t.me/BotFather) untuk membuat sebuah akun bot beserta token bot-nya.
-Token bot digunakan untuk mengautentikasi bot kamu yang bentuknya kurang lebih mirip seperti ini `123456:aBcDeF_gHiJiJkLmNoP-q`.
+Sekarang, buka aplikasi Telegram kamu lalu chat
+[@BotFather](https://t.me/BotFather) untuk membuat sebuah akun bot beserta token
+bot-nya. Token bot digunakan untuk mengautentikasi bot kamu yang bentuknya
+kurang lebih mirip seperti ini `123456:aBcDeF_gHiJiJkLmNoP-q`.
 
-Sudah dapat tokennya? Sekarang kamu bisa menulis kode bot di file `bot.ts`.
-Kamu bisa menyalin contoh bot berikut ke dalam file. Jangan lupa untuk memasukkan token ke constructor `Bot`.
+Sudah dapat tokennya? Sekarang kamu bisa menulis kode bot di file `bot.ts`. Kamu
+bisa menyalin contoh bot berikut ke dalam file. Jangan lupa untuk memasukkan
+token ke constructor `Bot`.
 
 ::: code-group
 
@@ -124,8 +128,7 @@ Compile kode dengan menjalankan
 npx tsc
 ```
 
-di terminal.
-File JavaScript `bot.js` akan dihasilkan dari proses compile tadi.
+di terminal. File JavaScript `bot.js` akan dihasilkan dari proses compile tadi.
 
 Sekarang kamu dapat menjalankan bot dengan mengeksekusi
 
@@ -133,27 +136,26 @@ Sekarang kamu dapat menjalankan bot dengan mengeksekusi
 node bot.js
 ```
 
-di terminal.
-Selesai! :tada:
+di terminal. Selesai! :tada:
 
 Buka Telegram untuk melihat bot kamu merespon pesan!
 
-::: tip Mengaktifkan Pencatatan Log (logging)
-Kamu bisa mengaktifkan pencatatan log sederhana dengan menjalankan
+::: tip Mengaktifkan Pencatatan Log (logging) Kamu bisa mengaktifkan pencatatan
+log sederhana dengan menjalankan
 
 ```sh
 export DEBUG="grammy*"
 ```
 
-di terminal sebelum mengeksekusi `node bot.js`.
-Ini mempermudah kamu untuk men-debug bot.
-:::
+di terminal sebelum mengeksekusi `node bot.js`. Ini mempermudah kamu untuk
+men-debug bot. :::
 
 ## Memulai dengan Deno
 
 > Kami mengasumsikan bahwa kamu sudah menginstal [Deno](https://deno.com).
 
-Buat direktori baru di suatu tempat lalu buat file teks kosong baru di dalamnya, misalnya kita namakan `bot.ts`.
+Buat direktori baru di suatu tempat lalu buat file teks kosong baru di dalamnya,
+misalnya kita namakan `bot.ts`.
 
 ```sh
 mkdir ./my-bot
@@ -161,11 +163,14 @@ cd ./my-bot
 touch bot.ts
 ```
 
-Sekarang, buka aplikasi Telegram kamu lalu chat [@BotFather](https://t.me/BotFather) untuk membuat sebuah akun bot beserta token bot-nya.
-Token bot digunakan untuk mengautentikasi bot kamu yang bentuknya kurang lebih mirip seperti ini `123456:aBcDeF_gHiJiJkLmNoP-q`.
+Sekarang, buka aplikasi Telegram kamu lalu chat
+[@BotFather](https://t.me/BotFather) untuk membuat sebuah akun bot beserta token
+bot-nya. Token bot digunakan untuk mengautentikasi bot kamu yang bentuknya
+kurang lebih mirip seperti ini `123456:aBcDeF_gHiJiJkLmNoP-q`.
 
-Sudah dapat tokennya? Sekarang kamu bisa menulis kode bot di file `bot.ts`.
-Kamu bisa menyalin contoh bot berikut ke dalam file. Jangan lupa untuk memasukkan token ke constructor `Bot`.
+Sudah dapat tokennya? Sekarang kamu bisa menulis kode bot di file `bot.ts`. Kamu
+bisa menyalin contoh bot berikut ke dalam file. Jangan lupa untuk memasukkan
+token ke constructor `Bot`.
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -194,22 +199,21 @@ Sekarang, kamu dapat menjalankan bot dengan mengeksekusi
 deno -IN bot.ts
 ```
 
-di terminal.
-Selesai! :tada:
+di terminal. Selesai! :tada:
 
 Buka Telegram untuk melihat bot kamu merespon pesan!
 
-::: tip Mengaktifkan Pencatatan Log (logging)
-Kamu bisa mengaktifkan pencatatan log sederhana dengan menjalankan
+::: tip Mengaktifkan Pencatatan Log (logging) Kamu bisa mengaktifkan pencatatan
+log sederhana dengan menjalankan
 
 ```sh
 export DEBUG="grammy*"
 ```
 
-di terminal sebelum menjalankan bot.
-Ini mempermudah kamu untuk men-debug bot.
+di terminal sebelum menjalankan bot. Ini mempermudah kamu untuk men-debug bot.
 
-Kemudian, jalankan bot dengan menambahkan flag `--allow-env` agar grammY bisa membaca environment variable `DEBUG`.
+Kemudian, jalankan bot dengan menambahkan flag `--allow-env` agar grammY bisa
+membaca environment variable `DEBUG`.
 
 ```sh
 deno -EIN bot.ts

@@ -1,7 +1,6 @@
 ---
 layout: home
 titleTemplate: false
-
 hero:
   name: grammY
   text: The Telegram Bot Framework.
@@ -25,7 +24,6 @@ hero:
     - theme: alt
       text: Documentation
       link: ./guide/
-
 features:
   - icon: <lazy-tgs-player class="VPImage" src="/icons/beach-animation.tgs"><img src="/icons/beach.svg" alt="beach animation"></lazy-tgs-player>
     title: Easy-to-use
@@ -42,7 +40,8 @@ features:
 
 ## Quickstart
 
-Bots are written in [TypeScript](https://www.typescriptlang.org) (or JavaScript) and run on various platforms, including [Node.js](https://nodejs.org).
+Bots are written in [TypeScript](https://www.typescriptlang.org) (or JavaScript)
+and run on various platforms, including [Node.js](https://nodejs.org).
 
 `npm install grammy` and paste the following code:
 
@@ -100,8 +99,9 @@ Works! :tada:
 
 <div style="font-size: 0.75rem; display: flex; justify-content: center;">
 
-© 2021-2025 &middot; grammY supports Telegram Bot API 8.3 which was [released](https://core.telegram.org/bots/api#february-12-2025) on February 12, 2025.
-(Last highlight: Gift and Video Message Improvements)
+© 2021-2025 &middot; grammY supports Telegram Bot API 8.3 which was
+[released](https://core.telegram.org/bots/api#february-12-2025) on February
+12, 2025. (Last highlight: Gift and Video Message Improvements)
 
 </div>
 </footer>

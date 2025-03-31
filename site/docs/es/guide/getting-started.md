@@ -1,14 +1,16 @@
 # Comenzando
 
-Crea tu primer bot en minutos. (Desplázate [abajo](#introduccion-a-deno) para una guía de Deno.)
+Crea tu primer bot en minutos. (Desplázate [abajo](#introduccion-a-deno) para
+una guía de Deno.)
 
 ## Comenzando en Node.js
 
-> Esta guía asume que tienes [Node.js](https://nodejs.org) instalado, y `npm` debería venir con él.
-> Si no sabes qué son estas cosas, ¡consulta nuestra [Introducción](./introduction)!
+> Esta guía asume que tienes [Node.js](https://nodejs.org) instalado, y `npm`
+> debería venir con él. Si no sabes qué son estas cosas, ¡consulta nuestra
+> [Introducción](./introduction)!
 
-Crea un nuevo proyecto TypeScript e instala el paquete `grammy`.
-Hazlo abriendo un terminal y escribiendo:
+Crea un nuevo proyecto TypeScript e instala el paquete `grammy`. Hazlo abriendo
+un terminal y escribiendo:
 
 ::: code-group
 
@@ -49,8 +51,8 @@ pnpm add grammy
 
 :::
 
-Crea un nuevo archivo de texto vacío, por ejemplo, llamado `bot.ts`.
-La estructura de tu carpeta debería ser así:
+Crea un nuevo archivo de texto vacío, por ejemplo, llamado `bot.ts`. La
+estructura de tu carpeta debería ser así:
 
 ```asciiart:no-line-numbers
 .
@@ -61,13 +63,14 @@ La estructura de tu carpeta debería ser así:
 └── tsconfig.json
 ```
 
-Ahora, es el momento de abrir Telegram para crear una cuenta bot, y obtener un token para ella.
-Habla con [@BotFather](https://t.me/BotFather) para hacerlo.
-El bot token se parece a `123456:aBcDeF_gHiJkLmNoP-q`.
-Se utiliza para autenticar tu bot.
+Ahora, es el momento de abrir Telegram para crear una cuenta bot, y obtener un
+token para ella. Habla con [@BotFather](https://t.me/BotFather) para hacerlo. El
+bot token se parece a `123456:aBcDeF_gHiJkLmNoP-q`. Se utiliza para autenticar
+tu bot.
 
-¿Tienes el token? Ahora puedes codificar tu bot en el archivo `bot.ts`.
-Puedes copiar el siguiente ejemplo de bot en ese archivo, y pasar tu token al constructor `Bot`:
+¿Tienes el token? Ahora puedes codificar tu bot en el archivo `bot.ts`. Puedes
+copiar el siguiente ejemplo de bot en ese archivo, y pasar tu token al
+constructor `Bot`:
 
 ::: code-group
 
@@ -121,8 +124,7 @@ Compila el código ejecutando
 npx tsc
 ```
 
-en tu terminal.
-Esto genera el archivo JavaScript `bot.js`.
+en tu terminal. Esto genera el archivo JavaScript `bot.js`.
 
 Ahora puedes ejecutar el bot ejecutando
 
@@ -130,27 +132,25 @@ Ahora puedes ejecutar el bot ejecutando
 node bot.js
 ```
 
-en tu terminal.
-¡Ya está! :tada:
+en tu terminal. ¡Ya está! :tada:
 
 ¡Dirígete a Telegram para ver cómo tu bot responde a los mensajes!
 
-::: tip Activar el registro
-Puedes habilitar el registro básico ejecutando
+::: tip Activar el registro Puedes habilitar el registro básico ejecutando
 
 ```sh
 export DEBUG="grammy*"
 ```
 
-en tu terminal antes de ejecutar `node bot.js`.
-Esto facilita la depuración de tu bot.
-:::
+en tu terminal antes de ejecutar `node bot.js`. Esto facilita la depuración de
+tu bot. :::
 
 ## Introducción a Deno
 
 > Esta guía asume que tiene instalado [Deno](https://deno.com).
 
-Crea un nuevo directorio en algún lugar y crea un nuevo archivo de texto vacío en él, por ejemplo, llamado `bot.ts`.
+Crea un nuevo directorio en algún lugar y crea un nuevo archivo de texto vacío
+en él, por ejemplo, llamado `bot.ts`.
 
 ```sh
 mkdir ./my-bot
@@ -158,13 +158,14 @@ cd ./my-bot
 touch bot.ts
 ```
 
-Ahora, es el momento de abrir Telegram para crear una cuenta bot, y obtener un token para ella.
-Habla con [@BotFather](https://t.me/BotFather) para hacerlo.
-El bot token se parece a `123456:aBcDeF_gHiJkLmNoP-q`.
-Se utiliza para autenticar tu bot.
+Ahora, es el momento de abrir Telegram para crear una cuenta bot, y obtener un
+token para ella. Habla con [@BotFather](https://t.me/BotFather) para hacerlo. El
+bot token se parece a `123456:aBcDeF_gHiJkLmNoP-q`. Se utiliza para autenticar
+tu bot.
 
-¿Tienes el token? Ahora puedes codificar tu bot en el archivo `bot.ts`.
-Puedes copiar el siguiente ejemplo de bot en ese archivo, y pasar tu token al constructor `Bot`:
+¿Tienes el token? Ahora puedes codificar tu bot en el archivo `bot.ts`. Puedes
+copiar el siguiente ejemplo de bot en ese archivo, y pasar tu token al
+constructor `Bot`:
 
 ```ts
 import { Bot } from "https://deno.land/x/grammy/mod.ts";
@@ -193,20 +194,17 @@ Ahora puedes ejecutar el bot ejecutando
 deno -IN bot.ts
 ```
 
-en tu terminal.
-¡Ya está! :tada:
+en tu terminal. ¡Ya está! :tada:
 
 ¡Dirígete a Telegram para ver cómo tu bot responde a los mensajes!
 
-::: tip Activar el registro
-Puedes activar el registro básico ejecutando
+::: tip Activar el registro Puedes activar el registro básico ejecutando
 
 ```sh
 export DEBUG="grammy*"
 ```
 
-en tu terminal antes de ejecutar tu bot.
-Esto facilita la depuración de tu bot.
+en tu terminal antes de ejecutar tu bot. Esto facilita la depuración de tu bot.
 
 Ahora necesitas ejecutar el bot usando
 
@@ -214,5 +212,4 @@ Ahora necesitas ejecutar el bot usando
 deno -EIN bot.ts
 ```
 
-para que grammY pueda detectar que `DEBUG` está activado.
-:::
+para que grammY pueda detectar que `DEBUG` está activado. :::

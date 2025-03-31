@@ -5,18 +5,23 @@ next: false
 
 # Hosting: Fly
 
-Halaman ini berisi panduan mengenai cara-cara meng-hosting bot di [Fly](https://fly.io), baik menggunakan Deno maupun Node.js.
+Halaman ini berisi panduan mengenai cara-cara meng-hosting bot di
+[Fly](https://fly.io), baik menggunakan Deno maupun Node.js.
 
 ## Menyiapkan Kode
 
-Kamu bisa menjalankan bot menggunakan [webhooks ataupun long polling](../guide/deployment-types).
+Kamu bisa menjalankan bot menggunakan
+[webhooks ataupun long polling](../guide/deployment-types).
 
 ### Webhooks
 
 > Ingat! Jangan panggil `bot.start()` di kode kamu ketika menggunakan webhooks.
 
-1. Pastikan kamu meng-export object `Bot` di dalam sebuah file agar nantinya bisa di-import ketika ingin menjalankannya.
-2. Buat sebuah file dengan nama `app.ts` atau `app.js`, ataupun nama lainnya sesuai dengan keinginanmu (tetapi kamu harus mengingatnya karena nanti file tersebut akan digunakan sebagai file deploy utama). File tersebut berisikan:
+1. Pastikan kamu meng-export object `Bot` di dalam sebuah file agar nantinya
+   bisa di-import ketika ingin menjalankannya.
+2. Buat sebuah file dengan nama `app.ts` atau `app.js`, ataupun nama lainnya
+   sesuai dengan keinginanmu (tetapi kamu harus mengingatnya karena nanti file
+   tersebut akan digunakan sebagai file deploy utama). File tersebut berisikan:
 
 ::: code-group
 
@@ -59,13 +64,16 @@ app.listen(port, () => console.log(`listening on port ${port}`));
 
 :::
 
-Kami menganjurkan kamu untuk menaruh handler di direktori rahasia alih-alih menempatkanya di root (`/`).
-Di contoh kali ini, kita menggunakan token bot (`/<token bot>`) sebagai direktori rahasianya (perhatikan baris kode yang disorot).
+Kami menganjurkan kamu untuk menaruh handler di direktori rahasia alih-alih
+menempatkanya di root (`/`). Di contoh kali ini, kita menggunakan token bot
+(`/<token bot>`) sebagai direktori rahasianya (perhatikan baris kode yang
+disorot).
 
 ### Long Polling
 
-Buat sebuah file dengan nama `app.ts` atau `app.js`, ataupun nama lainnya sesuai dengan keinginanmu (tetapi kamu harus mengingatnya karena nanti file tersebut akan digunakan sebagai file deploy utama).
-File tersebut berisikan:
+Buat sebuah file dengan nama `app.ts` atau `app.js`, ataupun nama lainnya sesuai
+dengan keinginanmu (tetapi kamu harus mengingatnya karena nanti file tersebut
+akan digunakan sebagai file deploy utama). File tersebut berisikan:
 
 ::: code-group
 
@@ -109,15 +117,17 @@ bot.start();
 
 :::
 
-Perhatikan baris kode yang disorot di atas, kita telah mengambil informasi sensitif (token bot kamu) dari environment variables.
-Kamu bisa menyimpan informasi tersebut dengan menjalankan perintah berikut:
+Perhatikan baris kode yang disorot di atas, kita telah mengambil informasi
+sensitif (token bot kamu) dari environment variables. Kamu bisa menyimpan
+informasi tersebut dengan menjalankan perintah berikut:
 
 ```sh
 flyctl secrets set BOT_TOKEN="AAAA:12345"
 ```
 
-Dengan cara yang sama, kamu bisa menyimpan informasi sensitif lainnya.
-Kunjungi <https://fly.io/docs/apps/secrets/> untuk informasi lebih lanjut mengenai _secrets_ di Fly.
+Dengan cara yang sama, kamu bisa menyimpan informasi sensitif lainnya. Kunjungi
+<https://fly.io/docs/apps/secrets/> untuk informasi lebih lanjut mengenai
+_secrets_ di Fly.
 
 ## Men-deploy Bot
 
@@ -125,9 +135,11 @@ Kunjungi <https://fly.io/docs/apps/secrets/> untuk informasi lebih lanjut mengen
 
 Metode ini adalah cara yang termudah.
 
-1. Instal [flyctl](https://fly.io/docs/flyctl/install/) lalu [login](https://fly.io/docs/getting-started/sign-up-sign-in/).
-2. Jalankan `flyctl launch` untuk membuat sebuah file `Dockerfile` dan `fly.toml` yang nantinya untuk digunakan saat deployment.
-   Tetapi, **JANGAN** di-deploy terlebih dahulu.
+1. Instal [flyctl](https://fly.io/docs/flyctl/install/) lalu
+   [login](https://fly.io/docs/getting-started/sign-up-sign-in/).
+2. Jalankan `flyctl launch` untuk membuat sebuah file `Dockerfile` dan
+   `fly.toml` yang nantinya untuk digunakan saat deployment. Tetapi, **JANGAN**
+   di-deploy terlebih dahulu.
 
    ::: code-group
 
@@ -175,10 +187,11 @@ Metode ini adalah cara yang termudah.
 
    :::
 
-3. **Deno**: Ubah versi Deno dan hapus `CMD` di dalam file `Dockerfile`.
-   Pada contoh di bawah, kami mengubah `DENO_VERSION` menjadi `1.25.2`.
+3. **Deno**: Ubah versi Deno dan hapus `CMD` di dalam file `Dockerfile`. Pada
+   contoh di bawah, kami mengubah `DENO_VERSION` menjadi `1.25.2`.
 
-   **Node.js**: Untuk mengubah versi Node.js, kamu perlu menambahkan property `node` ke dalam property `engine` yang berada di dalam file `package.json`.
+   **Node.js**: Untuk mengubah versi Node.js, kamu perlu menambahkan property
+   `node` ke dalam property `engine` yang berada di dalam file `package.json`.
    Pada contoh di bawah, kami mengubah versi Node.js menjadi `16.14.0`.
 
    ::: code-group
@@ -238,10 +251,12 @@ Metode ini adalah cara yang termudah.
 
    :::
 
-4. Ubah `app` di dalam file `fly.toml`.
-   Path `./app.ts` (atau `./app.js` untuk Node.js) pada contoh di bawah mengacu pada direktori file utamanya.
-   Kamu mungkin perlu mengaturnya agar sesuai dengan direktori proyek kamu.
-   Kalau kamu menggunakan webhooks, pastikan port-nya sama dengan [konfigurasi](#webhooks) yang kamu miliki, dalam hal ini port-nya adalah `8000`.
+4. Ubah `app` di dalam file `fly.toml`. Path `./app.ts` (atau `./app.js` untuk
+   Node.js) pada contoh di bawah mengacu pada direktori file utamanya. Kamu
+   mungkin perlu mengaturnya agar sesuai dengan direktori proyek kamu. Kalau
+   kamu menggunakan webhooks, pastikan port-nya sama dengan
+   [konfigurasi](#webhooks) yang kamu miliki, dalam hal ini port-nya adalah
+   `8000`.
 
    ::: code-group
 
@@ -361,14 +376,18 @@ Metode ini adalah cara yang termudah.
 
 ### Metode 2: Dengan GitHub Actions
 
-Kelebihan dari metode ini adalah Fly akan selalu memantau perubahan di repositori tempat kamu menaruh kode bot.
-Ketika terjadi perubahan, kode tersebut akan di-deploy secara otomatis ke versi yang lebih baru.
-Untuk instruksi detailnya, silahkan kunjungi <https://fly.io/docs/launch/continuous-deployment-with-github-actions/>.
+Kelebihan dari metode ini adalah Fly akan selalu memantau perubahan di
+repositori tempat kamu menaruh kode bot. Ketika terjadi perubahan, kode tersebut
+akan di-deploy secara otomatis ke versi yang lebih baru. Untuk instruksi
+detailnya, silahkan kunjungi
+<https://fly.io/docs/launch/continuous-deployment-with-github-actions/>.
 
-1. Instal [flyctl](https://fly.io/docs/flyctl/install/) lalu [login](https://fly.io/docs/getting-started/sign-up-sign-in/).
+1. Instal [flyctl](https://fly.io/docs/flyctl/install/) lalu
+   [login](https://fly.io/docs/getting-started/sign-up-sign-in/).
 2. Dapatkan token API Fly dengan cara menjalankan perintah `flyctl auth token`.
 3. Buat sebuah repositori di GitHub, bisa berupa privat ataupun publik.
-4. Pergi ke Settings, pilih Secrets dan buat sebuah secret bernama `FLY_API_TOKEN` yang berisi nilai atau value token dari langkah ke-2.
+4. Pergi ke Settings, pilih Secrets dan buat sebuah secret bernama
+   `FLY_API_TOKEN` yang berisi nilai atau value token dari langkah ke-2.
 5. Buat `.github/workflows/main.yml`, kemudian isi dengan kode berikut:
 
    ```yml
@@ -386,15 +405,19 @@ Untuk instruksi detailnya, silahkan kunjungi <https://fly.io/docs/launch/continu
        - run: flyctl deploy --remote-only
    ```
 
-6. Ikuti langkah 2 hingga 4 dari [Metode 1](#metode-1-menggunakan-flyctl) di atas.
-   Jangan lupa untuk melewati langkah terakhir (step 5) karena kita tidak ingin men-deploy kode secara langsung.
+6. Ikuti langkah 2 hingga 4 dari [Metode 1](#metode-1-menggunakan-flyctl) di
+   atas. Jangan lupa untuk melewati langkah terakhir (step 5) karena kita tidak
+   ingin men-deploy kode secara langsung.
 7. Commit perubahan kamu, lalu push ke GitHub.
-8. Di sinilah keajaibannya mulai terjadi---push tadi akan memicu sebuah deploy dan mulai sekarang kapanpun kamu melakukan push, kode tersebut akan secara otomatis di deploy ulang.
+8. Di sinilah keajaibannya mulai terjadi---push tadi akan memicu sebuah deploy
+   dan mulai sekarang kapanpun kamu melakukan push, kode tersebut akan secara
+   otomatis di deploy ulang.
 
 ### Mengatur URL Webhook
 
-Setelah mendapati bot-mu dapat berjalan, kamu harus melakukan konfigurasi pada pengaturan webhook untuk menggunakan URL bot-mu yang baru.
-Untuk melakukannya, kirim sebuah request ke
+Setelah mendapati bot-mu dapat berjalan, kamu harus melakukan konfigurasi pada
+pengaturan webhook untuk menggunakan URL bot-mu yang baru. Untuk melakukannya,
+kirim sebuah request ke
 
 ```text
 https://api.telegram.org/bot<token>/setWebhook?url=<url>
@@ -404,10 +427,12 @@ Ganti `<token>` dengan token bot-mu, dan `<url>` dengan URL lengkap bot kamu.
 
 ### Optimisasi Dockerfile
 
-Ketika `Dockerfile` kamu dijalankan, ia akan menyalin semua file ke Docker image.
-Untuk aplikasi Node.js, beberapa direktori seperti `node_modules` akan dibikin ulang sehingga direktori tersebut tidak perlu disalin.
-Untuk melakukannya, buat sebuah file `.dockerignore` lalu tambahkan `node_modules` ke dalamnya.
-Kamu juga bisa menggunakan `.dockerignore` untuk mencegah file-file yang tidak diperlukan ikut tersalin saat di runtime.
+Ketika `Dockerfile` kamu dijalankan, ia akan menyalin semua file ke Docker
+image. Untuk aplikasi Node.js, beberapa direktori seperti `node_modules` akan
+dibikin ulang sehingga direktori tersebut tidak perlu disalin. Untuk
+melakukannya, buat sebuah file `.dockerignore` lalu tambahkan `node_modules` ke
+dalamnya. Kamu juga bisa menggunakan `.dockerignore` untuk mencegah file-file
+yang tidak diperlukan ikut tersalin saat di runtime.
 
 ## Referensi
 

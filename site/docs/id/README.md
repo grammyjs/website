@@ -1,7 +1,6 @@
 ---
 layout: home
 titleTemplate: false
-
 hero:
   name: grammY
   text: Framework Bot Telegram.
@@ -27,7 +26,6 @@ hero:
     - theme: alt
       text: Dokumentasi
       link: ./guide/
-
 features:
   - icon: <lazy-tgs-player class="VPImage" src="/icons/beach-animation.tgs"><img src="/icons/beach.svg" alt="beach animation"></lazy-tgs-player>
     title: Mudah Digunakan
@@ -44,7 +42,9 @@ features:
 
 ## Mulai Cepat
 
-Bot ditulis menggunakan [TypeScript](https://www.typescriptlang.org) (atau JavaScript) dan dapat berjalan di berbagai platform, termasuk [Node.js](https://nodejs.org).
+Bot ditulis menggunakan [TypeScript](https://www.typescriptlang.org) (atau
+JavaScript) dan dapat berjalan di berbagai platform, termasuk
+[Node.js](https://nodejs.org).
 
 `npm install grammy` lalu tempel kode berikut:
 
@@ -102,8 +102,9 @@ Berhasil! :tada:
 
 <div style="font-size: 0.75rem; display: flex; justify-content: center;">
 
-© 2021-2025 &middot; grammY mendukung API Bot Telegram versi 8.2 yang [dirilis](https://core.telegram.org/bots/api#january-1-2025) pada tanggal 1 Januari 2025.
-(Fitur yang disorot: Verifikasi Chat dan User)
+© 2021-2025 &middot; grammY mendukung API Bot Telegram versi 8.2 yang
+[dirilis](https://core.telegram.org/bots/api#january-1-2025) pada tanggal 1
+Januari 2025. (Fitur yang disorot: Verifikasi Chat dan User)
 
 </div>
 </footer>

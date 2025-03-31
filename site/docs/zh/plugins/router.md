@@ -5,8 +5,9 @@ next: false
 
 # 路由器（`router`）
 
-`Router` 类（[API 参考](/ref/router/)）提供了一种更为灵活的方式来结构化你的 bot，通过路由上下文对象到不同的部分代码。
-它是 `Composer` 的 `bot.route` 的更高级版本（[grammY API 参考](/ref/core/composer#route))。
+`Router` 类（[API 参考](/ref/router/)）提供了一种更为灵活的方式来结构化你的
+bot，通过路由上下文对象到不同的部分代码。 它是 `Composer` 的 `bot.route`
+的更高级版本（[grammY API 参考](/ref/core/composer#route))。
 
 ## 示例
 
@@ -38,7 +39,8 @@ other.on(":text", async (ctx) => {/* ... */});
 other.use((ctx) => {/* ... */});
 ```
 
-你可能还想回顾一下这一 [章节](../guide/filter-queries#将查询与其他方法相结合)，了解更多关于中间件的组合。
+你可能还想回顾一下这一
+[章节](../guide/filter-queries#将查询与其他方法相结合)，了解更多关于中间件的组合。
 
 ## 绑定路由器和会话
 

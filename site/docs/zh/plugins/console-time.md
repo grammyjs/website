@@ -5,8 +5,12 @@ next: false
 
 # 调试时输出日志
 
-如果你熟悉 JavaScript / TypeScript，你可能使用 [`console.log`](https://developer.mozilla.org/en-US/docs/Web/API/console/log_static) 或 [`console.time`](https://developer.mozilla.org/en-US/docs/Web/API/console/time_static) 来检查你正在调试的事情。
-当你在你的 bot 或中间件中工作时，你可能想要检查一个类似的事情：发生了什么，花了多少时间？
+如果你熟悉 JavaScript / TypeScript，你可能使用
+[`console.log`](https://developer.mozilla.org/en-US/docs/Web/API/console/log_static)
+或
+[`console.time`](https://developer.mozilla.org/en-US/docs/Web/API/console/time_static)
+来检查你正在调试的事情。 当你在你的 bot
+或中间件中工作时，你可能想要检查一个类似的事情：发生了什么，花了多少时间？
 
 这个插件用于定位单个请求的问题。
 当你在生产环境中工作时，你可能想要一个相反的东西，以获得一个大致的概览。

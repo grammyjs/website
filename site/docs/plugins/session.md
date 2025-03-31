@@ -5,46 +5,60 @@ next: false
 
 # Sessions and Storing Data (built-in)
 
-While you can always just write you own code to connect to a data storage of your choice, grammY supports a very convenient storage pattern called _sessions_.
+While you can always just write you own code to connect to a data storage of
+your choice, grammY supports a very convenient storage pattern called
+_sessions_.
 
 > [Jump down](#how-to-use-sessions) if you know how sessions work.
 
 ## Why Must We Think About Storage?
 
-In opposite to regular user accounts on Telegram, bots have [limited cloud storage](https://core.telegram.org/bots#how-are-bots-different-from-users) in the Telegram cloud.
-As a result, there are a few things you cannot do with bots:
+In opposite to regular user accounts on Telegram, bots have
+[limited cloud storage](https://core.telegram.org/bots#how-are-bots-different-from-users)
+in the Telegram cloud. As a result, there are a few things you cannot do with
+bots:
 
 1. You cannot access old messages that your bot received.
 2. You cannot access old messages that your bot sent.
 3. You cannot get a list of all chats with your bot.
 4. More things, e.g. no media overview, etc
 
-Basically, it boils down to the fact that **a bot only has access to the information of the currently incoming update** (e.g. message), i.e. the information that is available on the context object `ctx`.
+Basically, it boils down to the fact that **a bot only has access to the
+information of the currently incoming update** (e.g. message), i.e. the
+information that is available on the context object `ctx`.
 
-Consequently, if you _do want to access_ old data, you have to store it as soon as it arrives.
-This means that you must have a data storage, such as a file, a database, or an in-memory storage.
+Consequently, if you _do want to access_ old data, you have to store it as soon
+as it arrives. This means that you must have a data storage, such as a file, a
+database, or an in-memory storage.
 
 Of course, grammY has you covered here: you don't have to host this yourself.
-You can just use the grammY session storage which needs zero setup and is free forever.
+You can just use the grammY session storage which needs zero setup and is free
+forever.
 
-> Naturally, there are plenty of other services that offer data storage as a service, and grammY integrates seamlessly with them, too.
-> If you want to run your own database, rest assured that grammY supports this equally well.
-> [Scroll down](#known-storage-adapters) to see which integrations are currently available.
+> Naturally, there are plenty of other services that offer data storage as a
+> service, and grammY integrates seamlessly with them, too. If you want to run
+> your own database, rest assured that grammY supports this equally well.
+> [Scroll down](#known-storage-adapters) to see which integrations are currently
+> available.
 
 ## What Are Sessions?
 
-It is a very common thing for bots to store some piece of data per chat.
-For example, let's say we want to build a bot that counts the number of times that a message contains the pizza emoji :pizza: in its text.
-This bot could be added to a group, and it can tell you how much you and your friends like pizza.
+It is a very common thing for bots to store some piece of data per chat. For
+example, let's say we want to build a bot that counts the number of times that a
+message contains the pizza emoji :pizza: in its text. This bot could be added to
+a group, and it can tell you how much you and your friends like pizza.
 
-When our pizza bot receives a message, it has to remember how many times it saw a :pizza: in that chat before.
-Your pizza count should of course not change when your sister adds the pizza bot to her group chat, so what we really want is to store _one counter per chat_.
+When our pizza bot receives a message, it has to remember how many times it saw
+a :pizza: in that chat before. Your pizza count should of course not change when
+your sister adds the pizza bot to her group chat, so what we really want is to
+store _one counter per chat_.
 
-Sessions are an elegant way to store data _per chat_.
-You would use the chat identifier as the key in your database, and a counter as the value.
-In this case, we would call the chat identifier the _session key_.
-(You can read more about session keys [down here](#session-keys).)
-Effectively, your bot will store a map from a chat identifier to some custom session data, i.e. something like this:
+Sessions are an elegant way to store data _per chat_. You would use the chat
+identifier as the key in your database, and a counter as the value. In this
+case, we would call the chat identifier the _session key_. (You can read more
+about session keys [down here](#session-keys).) Effectively, your bot will store
+a map from a chat identifier to some custom session data, i.e. something like
+this:
 
 ```json
 {
@@ -53,37 +67,42 @@ Effectively, your bot will store a map from a chat identifier to some custom ses
 }
 ```
 
-> When we say database, we really mean any data storage solution.
-> This includes files, cloud storage, or anything else.
+> When we say database, we really mean any data storage solution. This includes
+> files, cloud storage, or anything else.
 
 Okay, but what are sessions now?
 
-We can install middleware on the bot that will provide a chat's session data on `ctx.session` for every update.
-The installed plugin will do something before and after our handlers are called:
+We can install middleware on the bot that will provide a chat's session data on
+`ctx.session` for every update. The installed plugin will do something before
+and after our handlers are called:
 
-1. **Before our middleware.**
-   The session plugin loads the session data for the current chat from the database.
-   It stores the data on the context object under `ctx.session`.
-2. **Our middleware runs.**
-   We can _read_ `ctx.session` to inspect which value was in the database.
-   For example, if a message is sent to the chat with the identifier `424242`, it would be `ctx.session = { pizzaCount: 24 }` while our middleware runs (at least with the example database state above).
-   We can also _modify_ `ctx.session` arbitrarily, so we can add, remove, and change fields as we like.
-3. **After our middleware.**
-   The session middleware makes sure that the data is written back to the database.
-   Whatever the value of `ctx.session` is after the middleware is done executing, it will be saved in the database.
+1. **Before our middleware.** The session plugin loads the session data for the
+   current chat from the database. It stores the data on the context object
+   under `ctx.session`.
+2. **Our middleware runs.** We can _read_ `ctx.session` to inspect which value
+   was in the database. For example, if a message is sent to the chat with the
+   identifier `424242`, it would be `ctx.session = { pizzaCount: 24 }` while our
+   middleware runs (at least with the example database state above). We can also
+   _modify_ `ctx.session` arbitrarily, so we can add, remove, and change fields
+   as we like.
+3. **After our middleware.** The session middleware makes sure that the data is
+   written back to the database. Whatever the value of `ctx.session` is after
+   the middleware is done executing, it will be saved in the database.
 
-As a result, we never have to worry about actually communicating with the data storage anymore.
-We just modify the data in `ctx.session`, and the plugin will take care of the rest.
+As a result, we never have to worry about actually communicating with the data
+storage anymore. We just modify the data in `ctx.session`, and the plugin will
+take care of the rest.
 
 ## When to Use Sessions
 
-> [Skip ahead](#how-to-use-sessions) if you already know that you want to use sessions.
+> [Skip ahead](#how-to-use-sessions) if you already know that you want to use
+> sessions.
 
-You may think, this is great, I never have to worry about databases again!
-And you are right, sessions are an ideal solution---but only for some types of data.
+You may think, this is great, I never have to worry about databases again! And
+you are right, sessions are an ideal solution---but only for some types of data.
 
-In our experience, there are use cases where sessions truly shine.
-On the other hand, there are cases where a traditional database may be better suited.
+In our experience, there are use cases where sessions truly shine. On the other
+hand, there are cases where a traditional database may be better suited.
 
 This comparison may help you decide whether to use sessions or not.
 
@@ -95,9 +114,10 @@ This comparison may help you decide whether to use sessions or not.
 | _Size per chat_     | preferably less than ~3 MB per chat                         | any size                                                           |
 | _Exclusive feature_ | Required by some grammY plugins.                            | Supports database transactions.                                    |
 
-This does not mean that things _cannot work_ if you pick sessions/databases over the other.
-For example, you can of course store large binary data in your session.
-However, your bot would not perform as well as it could otherwise, so we recommend using sessions only where they make sense.
+This does not mean that things _cannot work_ if you pick sessions/databases over
+the other. For example, you can of course store large binary data in your
+session. However, your bot would not perform as well as it could otherwise, so
+we recommend using sessions only where they make sense.
 
 ## How to Use Sessions
 
@@ -195,14 +215,16 @@ bot.start();
 
 :::
 
-Note how we also have to [adjust the context type](../guide/context#customizing-the-context-object) to make the session available on it.
-The context flavor is called `SessionFlavor`.
+Note how we also have to
+[adjust the context type](../guide/context#customizing-the-context-object) to
+make the session available on it. The context flavor is called `SessionFlavor`.
 
 ### Initial Session Data
 
-When a user first contacts your bot, no session data is available for them.
-It is therefore important that you specify the `initial` option for the session middleware.
-Pass a function that generates a new object with initial session data for new chats.
+When a user first contacts your bot, no session data is available for them. It
+is therefore important that you specify the `initial` option for the session
+middleware. Pass a function that generates a new object with initial session
+data for new chats.
 
 ```ts
 // Creates a new object that will be used as initial session data.
@@ -221,9 +243,8 @@ Same but much shorter:
 bot.use(session({ initial: () => ({ pizzaCount: 0 }) }));
 ```
 
-::: warning Sharing Objects
-Make sure to always create a _new object_.
-Do **NOT** do this:
+::: warning Sharing Objects Make sure to always create a _new object_. Do
+**NOT** do this:
 
 ```ts
 // DANGER, BAD, WRONG, STOP
@@ -231,23 +252,26 @@ const initialData = { pizzaCount: 0 }; // NOPE
 bot.use(session({ initial: () => initialData })); // EVIL
 ```
 
-If you would do this, several chats might share the same session object in memory.
-Hence, changing the session data in one chat may accidentally impact the session data in the other chat.
-:::
+If you would do this, several chats might share the same session object in
+memory. Hence, changing the session data in one chat may accidentally impact the
+session data in the other chat. :::
 
-You may also omit the `initial` option entirely, even though you are well advised not to do that.
-If you don't specify it, reading `ctx.session` will throw an error for new users.
+You may also omit the `initial` option entirely, even though you are well
+advised not to do that. If you don't specify it, reading `ctx.session` will
+throw an error for new users.
 
 ### Session Keys
 
-> This section describes an advanced feature that most people do not have to worry about.
-> You may want to continue with the section about [storing your data](#storing-your-data).
+> This section describes an advanced feature that most people do not have to
+> worry about. You may want to continue with the section about
+> [storing your data](#storing-your-data).
 
-You can specify which session key to use by passing a function called `getSessionKey` to the [options](/ref/core/sessionoptions#getsessionkey).
-That way, you can fundamentally change the way how the session plugin works.
-By default, data is stored per chat.
-Using `getSessionKey` allows you to store data per user, or per user-chat combination, or however you want.
-Here are three examples:
+You can specify which session key to use by passing a function called
+`getSessionKey` to the [options](/ref/core/sessionoptions#getsessionkey). That
+way, you can fundamentally change the way how the session plugin works. By
+default, data is stored per chat. Using `getSessionKey` allows you to store data
+per user, or per user-chat combination, or however you want. Here are three
+examples:
 
 ::: code-group
 
@@ -308,18 +332,23 @@ bot.use(session({ getSessionKey }));
 :::
 
 Whenever `getSessionKey` returns `undefined`, `ctx.session` will be `undefined`.
-For example, the default session key resolver will not work for `poll`/`poll_answer` updates or `inline_query` updates because they do not belong to a chat (`ctx.chat` is `undefined`).
+For example, the default session key resolver will not work for
+`poll`/`poll_answer` updates or `inline_query` updates because they do not
+belong to a chat (`ctx.chat` is `undefined`).
 
-::: warning Session Keys and Webhooks
-When you are running your bot on webhooks, you should avoid using the option `getSessionKey`.
-Telegram sends webhooks sequentially per chat, so the default session key resolver is the only implementation that guarantees not to cause data loss.
+::: warning Session Keys and Webhooks When you are running your bot on webhooks,
+you should avoid using the option `getSessionKey`. Telegram sends webhooks
+sequentially per chat, so the default session key resolver is the only
+implementation that guarantees not to cause data loss.
 
-If you must use the option (which is of course still possible), you should know what you are doing.
-Make sure you understand the consequences of this configuration by reading [this](../guide/deployment-types) article and especially [this](./runner#sequential-processing-where-necessary) one.
-:::
+If you must use the option (which is of course still possible), you should know
+what you are doing. Make sure you understand the consequences of this
+configuration by reading [this](../guide/deployment-types) article and
+especially [this](./runner#sequential-processing-where-necessary) one. :::
 
-You can also specify a prefix if you want to add additional namespacing to your session keys.
-For example, this is how you can store session data per user but with a prefix called `user-`.
+You can also specify a prefix if you want to add additional namespacing to your
+session keys. For example, this is how you can store session data per user but
+with a prefix called `user-`.
 
 ```ts
 bot.use(session({
@@ -328,61 +357,84 @@ bot.use(session({
 }));
 ```
 
-For a user who has the user identifier `424242`, the session key will now be `user-424242`.
+For a user who has the user identifier `424242`, the session key will now be
+`user-424242`.
 
 ### Chat Migrations
 
-If you are using sessions for groups, you should be aware that Telegram migrates regular groups to supergroups under certain circumstances (e.g. [here](https://github.com/telegramdesktop/tdesktop/issues/5593)).
+If you are using sessions for groups, you should be aware that Telegram migrates
+regular groups to supergroups under certain circumstances (e.g.
+[here](https://github.com/telegramdesktop/tdesktop/issues/5593)).
 
-This migration only occurs once for each group, but it can cause inconsistencies.
-This is because the migrated chat is technically a completely different chat that has a different identifier, and hence its session will be identified differently.
+This migration only occurs once for each group, but it can cause
+inconsistencies. This is because the migrated chat is technically a completely
+different chat that has a different identifier, and hence its session will be
+identified differently.
 
-Currently, there is no safe solution for this problem because messages from the two chats are also differently identified.
-This can lead to data races.
-However, there are several ways of dealing with this issue:
+Currently, there is no safe solution for this problem because messages from the
+two chats are also differently identified. This can lead to data races. However,
+there are several ways of dealing with this issue:
 
-- Ignoring the problem.
-  The bot's session data will effectively reset when a group is migrated.
-  Simple, reliable, default behavior, but potentially unexpected once per chat.
-  For example, if a migration happens while a user is in a conversation powered by the [conversations plugin](./conversations), the conversation will be reset.
+- Ignoring the problem. The bot's session data will effectively reset when a
+  group is migrated. Simple, reliable, default behavior, but potentially
+  unexpected once per chat. For example, if a migration happens while a user is
+  in a conversation powered by the [conversations plugin](./conversations), the
+  conversation will be reset.
 
-- Only storing temporary data (or data with timeouts) in the session, and using a database for the important things that need to be migrated when a chat migrates.
-  This can then use transactions and custom logic to handle concurrent data access from the old and the new chat.
-  A lot of effort and has a performance cost, but the only truly reliable way to solve this problem.
+- Only storing temporary data (or data with timeouts) in the session, and using
+  a database for the important things that need to be migrated when a chat
+  migrates. This can then use transactions and custom logic to handle concurrent
+  data access from the old and the new chat. A lot of effort and has a
+  performance cost, but the only truly reliable way to solve this problem.
 
-- It is theoretically possible to implement a workaround that matches both chats **without guarantee of reliability**.
-  The Telegram Bot API sends a migration update for each of the two chats once the migration was triggered (see the properties `migrate_to_chat_id` or `migrate_from_chat_id` in the [Telegram API Docs](https://core.telegram.org/bots/api#message)).
-  The issue is that there is no guarantee that these messages are sent before a new message in the supergroup appears.
-  Hence, the bot could receive a message from the new supergroup before it is aware of any migration and thus, it can not match the two chats, resulting in the aforementioned problems.
+- It is theoretically possible to implement a workaround that matches both chats
+  **without guarantee of reliability**. The Telegram Bot API sends a migration
+  update for each of the two chats once the migration was triggered (see the
+  properties `migrate_to_chat_id` or `migrate_from_chat_id` in the
+  [Telegram API Docs](https://core.telegram.org/bots/api#message)). The issue is
+  that there is no guarantee that these messages are sent before a new message
+  in the supergroup appears. Hence, the bot could receive a message from the new
+  supergroup before it is aware of any migration and thus, it can not match the
+  two chats, resulting in the aforementioned problems.
 
-- Another workaround would be to limit the bot only for supergroups with [filtering](../guide/filter-queries) (or limit only session related features to supergroups).
-  However, this shifts the problematic / inconvenience to the users.
+- Another workaround would be to limit the bot only for supergroups with
+  [filtering](../guide/filter-queries) (or limit only session related features
+  to supergroups). However, this shifts the problematic / inconvenience to the
+  users.
 
-- Letting the users decide explicitly.
-  ("This chat was migrated, do you want to transfer the bot data?")
-  Much more reliable and transparent than automatic migrations due to the artificially added delay, but worse UX.
+- Letting the users decide explicitly. ("This chat was migrated, do you want to
+  transfer the bot data?") Much more reliable and transparent than automatic
+  migrations due to the artificially added delay, but worse UX.
 
 Finally, it is up to the developer to decide how to deal with this edge case.
-Depending on the bot functionalities one might choose one way or another.
-If the data in question is short-lived (e.g. temporary, timeouts involved) the migration is less of a problem.
-A user would experience the migration as a hiccup (if the timing is bad) and would simply have to rerun the feature.
+Depending on the bot functionalities one might choose one way or another. If the
+data in question is short-lived (e.g. temporary, timeouts involved) the
+migration is less of a problem. A user would experience the migration as a
+hiccup (if the timing is bad) and would simply have to rerun the feature.
 
-Ignoring the problem is surely the easiest way, nevertheless it is important to know about this behavior.
-Otherwise it can cause confusion and might cost hours of debugging time.
+Ignoring the problem is surely the easiest way, nevertheless it is important to
+know about this behavior. Otherwise it can cause confusion and might cost hours
+of debugging time.
 
 ### Storing Your Data
 
-In all examples above, the session data is stored in your RAM, so as soon as your bot is stopped, all data is lost.
-This is convenient when you develop your bot or if you run automatic tests (no database setup needed), however, **that is most likely not desired in production**.
-In production, you would want to persist your data, for example in a file, a database, or some other storage.
+In all examples above, the session data is stored in your RAM, so as soon as
+your bot is stopped, all data is lost. This is convenient when you develop your
+bot or if you run automatic tests (no database setup needed), however, **that is
+most likely not desired in production**. In production, you would want to
+persist your data, for example in a file, a database, or some other storage.
 
-You should use the `storage` option of the session middleware to connect it to your datastore.
-There may already be a storage adapter written for grammY that you can use (see [below](#known-storage-adapters)), but if not, it usually only takes 5 lines of code to implement one yourself.
+You should use the `storage` option of the session middleware to connect it to
+your datastore. There may already be a storage adapter written for grammY that
+you can use (see [below](#known-storage-adapters)), but if not, it usually only
+takes 5 lines of code to implement one yourself.
 
 ## Known Storage Adapters
 
-By default, sessions will be stored [in your memory](#ram-default) by the built-in storage adapter.
-You can also use persistent sessions that grammY [offers for free](#free-storage), or connect to [external storages](#external-storage-solutions).
+By default, sessions will be stored [in your memory](#ram-default) by the
+built-in storage adapter. You can also use persistent sessions that grammY
+[offers for free](#free-storage), or connect to
+[external storages](#external-storage-solutions).
 
 This is how you can install one of the storage adapters from below.
 
@@ -397,10 +449,12 @@ bot.use(session({
 
 ### RAM (default)
 
-By default, all data will be stored in RAM.
-This means that all sessions are lost as soon as your bot stops.
+By default, all data will be stored in RAM. This means that all sessions are
+lost as soon as your bot stops.
 
-You can use the `MemorySessionStorage` class ([API Reference](/ref/core/memorysessionstorage)) from the grammY core package if you want to configure further things about storing data in RAM.
+You can use the `MemorySessionStorage` class
+([API Reference](/ref/core/memorysessionstorage)) from the grammY core package
+if you want to configure further things about storing data in RAM.
 
 ```ts
 bot.use(session({
@@ -411,13 +465,14 @@ bot.use(session({
 
 ### Free Storage
 
-> The free storage is meant to be used in hobby projects.
-> Production-scale applications should host their own database.
-> The list of supported integrations of external storage solutions is [down here](#external-storage-solutions).
+> The free storage is meant to be used in hobby projects. Production-scale
+> applications should host their own database. The list of supported
+> integrations of external storage solutions is
+> [down here](#external-storage-solutions).
 
-A benefit of using grammY is that you get access to free cloud storage.
-It requires zero setup---all authentication is done using your bot token.
-Check out the [repository](https://github.com/grammyjs/storages/tree/main/packages/free)!
+A benefit of using grammY is that you get access to free cloud storage. It
+requires zero setup---all authentication is done using your bot token. Check out
+the [repository](https://github.com/grammyjs/storages/tree/main/packages/free)!
 
 It is very easy to use:
 
@@ -452,8 +507,7 @@ bot.use(session({
 
 :::
 
-Done!
-Your bot will now use a persistent data storage.
+Done! Your bot will now use a persistent data storage.
 
 Here is a full example bot that you can copy to try it out.
 
@@ -552,51 +606,67 @@ bot.start();
 
 ### External Storage Solutions
 
-We maintain a collection of official storage adapters that allow you to store your session data in different places.
-Each of them will require you to register at a hosting provider, or to host your own storage solution.
+We maintain a collection of official storage adapters that allow you to store
+your session data in different places. Each of them will require you to register
+at a hosting provider, or to host your own storage solution.
 
-Visit [here](https://github.com/grammyjs/storages/tree/main/packages#grammy-storages) to see a list of currently supported adapters and get guidance on using them.
+Visit
+[here](https://github.com/grammyjs/storages/tree/main/packages#grammy-storages)
+to see a list of currently supported adapters and get guidance on using them.
 
-::: tip Your storage is not supported? No problem!
-Creating a custom storage adapter is extremely simple.
-The `storage` option works with any object that adheres to this [interface](/ref/core/storageadapter), so you can connect to your storage just in a few lines of code.
+::: tip Your storage is not supported? No problem! Creating a custom storage
+adapter is extremely simple. The `storage` option works with any object that
+adheres to this [interface](/ref/core/storageadapter), so you can connect to
+your storage just in a few lines of code.
 
-> If you published your own storage adapter, feel free to edit this page and link it here, so that other people can use it.
+> If you published your own storage adapter, feel free to edit this page and
+> link it here, so that other people can use it.
 
 :::
 
-All storage adapters can be installed in the same way.
-First, you should look out for the package name of the adapter of your choice.
-For example, the storage adapter for Supabase is called `supabase`.
+All storage adapters can be installed in the same way. First, you should look
+out for the package name of the adapter of your choice. For example, the storage
+adapter for Supabase is called `supabase`.
 
-**On Node.js**, you can install the adapters via `npm i @grammyjs/storage-<name>`.
-For example, the storage adapter for Supabase can be installed via `npm i @grammyjs/storage-supabase`.
+**On Node.js**, you can install the adapters via
+`npm i @grammyjs/storage-<name>`. For example, the storage adapter for Supabase
+can be installed via `npm i @grammyjs/storage-supabase`.
 
-**On Deno**, all storage adapters are published in the same Deno module.
-You can then import the adapter you need from its subpath at `https://deno.land/x/grammy_storages/<adapter>/src/mod.ts`.
-For example, the storage adapter for Supabase can be imported from `https://deno.land/x/grammy_storages/supabase/src/mod.ts`.
+**On Deno**, all storage adapters are published in the same Deno module. You can
+then import the adapter you need from its subpath at
+`https://deno.land/x/grammy_storages/<adapter>/src/mod.ts`. For example, the
+storage adapter for Supabase can be imported from
+`https://deno.land/x/grammy_storages/supabase/src/mod.ts`.
 
-Check out the respective repositories about each individual setup.
-They contain information about how to connect them to your storage solution.
+Check out the respective repositories about each individual setup. They contain
+information about how to connect them to your storage solution.
 
-You may also want to [scroll down](#storage-enhancements) to see how the session plugin is able to enhance any storage adapter.
+You may also want to [scroll down](#storage-enhancements) to see how the session
+plugin is able to enhance any storage adapter.
 
 ## Multi Sessions
 
-The session plugin is able to store different fragments of your session data in different places.
-Basically, this works as if you would install multiple independent instances of the the session plugin, each with a different configuration.
+The session plugin is able to store different fragments of your session data in
+different places. Basically, this works as if you would install multiple
+independent instances of the the session plugin, each with a different
+configuration.
 
-Each of these data fragments will have a name under which they can store their data.
-You will then be able to access `ctx.session.foo` and `ctx.session.bar` and these values were loaded from different data storages, and they will also be written back to different data storages.
-Naturally, you can also use the same storage with different configuration.
+Each of these data fragments will have a name under which they can store their
+data. You will then be able to access `ctx.session.foo` and `ctx.session.bar`
+and these values were loaded from different data storages, and they will also be
+written back to different data storages. Naturally, you can also use the same
+storage with different configuration.
 
-It is also possible to use different [session keys](#session-keys) for each fragment.
-As a result, you can store some data per chat and some data per user.
+It is also possible to use different [session keys](#session-keys) for each
+fragment. As a result, you can store some data per chat and some data per user.
 
-> If you are using [grammY runner](./runner), make sure to configure `sequentialize` correctly by returning **all** session keys as constraints from the function.
+> If you are using [grammY runner](./runner), make sure to configure
+> `sequentialize` correctly by returning **all** session keys as constraints
+> from the function.
 
-You can use this feature by passing `type: "multi"` to the session configuration.
-In turn, you will need to configure each fragment with its own config.
+You can use this feature by passing `type: "multi"` to the session
+configuration. In turn, you will need to configure each fragment with its own
+config.
 
 ```ts
 bot.use(
@@ -619,11 +689,12 @@ bot.use(
 ```
 
 Note that you must add a configuration entry for every fragment you want to use.
-If you wish to use the default configuration, you can specify an empty object (such as we do for `baz` in the above example).
+If you wish to use the default configuration, you can specify an empty object
+(such as we do for `baz` in the above example).
 
-Your session data will still consist of an object with multiple properties.
-This is why your context flavor does not change.
-The above example could use this interface when customizing the context object:
+Your session data will still consist of an object with multiple properties. This
+is why your context flavor does not change. The above example could use this
+interface when customizing the context object:
 
 ```ts
 interface SessionData {
@@ -637,34 +708,42 @@ You can then keep using `SessionFlavor<SessionData>` for your context object.
 
 ## Lazy Sessions
 
-> This section describes a performance optimization that most people do not have to worry about.
+> This section describes a performance optimization that most people do not have
+> to worry about.
 
-Lazy sessions is an alternative implementation of sessions that can significantly reduce the database traffic of your bot by skipping superfluous read and write operations.
+Lazy sessions is an alternative implementation of sessions that can
+significantly reduce the database traffic of your bot by skipping superfluous
+read and write operations.
 
-Let's assume that your bot is in a group chat where it does not respond to regular text messages, but only to commands.
-Without sessions, this would happen:
+Let's assume that your bot is in a group chat where it does not respond to
+regular text messages, but only to commands. Without sessions, this would
+happen:
 
 1. Update with new text message is sent to your bot.
 2. No handler is invoked, so no action is taken.
 3. The middleware completes immediately.
 
-As soon as you install default (strict) sessions, which directly provide the session data on the context object, this happens:
+As soon as you install default (strict) sessions, which directly provide the
+session data on the context object, this happens:
 
 1. Update with new text message is sent to your bot.
 2. Session data is loaded from session storage (e.g. database).
 3. No handler is invoked, so no action is taken.
 4. Identical session data is written back to session storage.
-5. The middleware completes, and has performed a read and a write to the data storage.
+5. The middleware completes, and has performed a read and a write to the data
+   storage.
 
-Depending on the nature of your bot, this may lead to a lot of superfluous reads and writes.
-Lazy sessions allow you to skip steps 2. and 4. if it turns out that no invoked handler needs session data.
-In that case, no data will be read from the data storage, nor written back to it.
+Depending on the nature of your bot, this may lead to a lot of superfluous reads
+and writes. Lazy sessions allow you to skip steps 2. and 4. if it turns out that
+no invoked handler needs session data. In that case, no data will be read from
+the data storage, nor written back to it.
 
-This is achieved by intercepting access to `ctx.session`.
-If no handler is invoked, then `ctx.session` will never be accessed.
-Lazy sessions use this as an indicator to prevent database communication.
+This is achieved by intercepting access to `ctx.session`. If no handler is
+invoked, then `ctx.session` will never be accessed. Lazy sessions use this as an
+indicator to prevent database communication.
 
-In practice, instead of having the session data available under `ctx.session`, you will now have _a promise of the session data_ available under `ctx.session`.
+In practice, instead of having the session data available under `ctx.session`,
+you will now have _a promise of the session data_ available under `ctx.session`.
 
 ```ts
 // Default sessions (strict sessions)
@@ -682,23 +761,32 @@ bot.command("settings", async (ctx) => {
 });
 ```
 
-If you never access `ctx.session`, no operations will be performed, but as soon as you access the `session` property on the context object, the read operation will be triggered.
-If you never trigger the read (or directly assign a new value to `ctx.session`), we know that we also won't need to write any data back, because there is no way it could have been altered.
-Consequently, we skip the write operation, too.
-As a result, we achieve minimal read and write operations, but you can use session almost identical to before, just with a few `async` and `await` keywords mixed into your code.
+If you never access `ctx.session`, no operations will be performed, but as soon
+as you access the `session` property on the context object, the read operation
+will be triggered. If you never trigger the read (or directly assign a new value
+to `ctx.session`), we know that we also won't need to write any data back,
+because there is no way it could have been altered. Consequently, we skip the
+write operation, too. As a result, we achieve minimal read and write operations,
+but you can use session almost identical to before, just with a few `async` and
+`await` keywords mixed into your code.
 
 So what is necessary to use lazy sessions instead of the default (strict) ones?
 You mainly have to do three things:
 
-1. Flavor your context with `LazySessionFlavor` instead of `SessionFlavor`.
-   They work the same way, just that `ctx.session` is wrapped inside a promise for the lazy variant.
+1. Flavor your context with `LazySessionFlavor` instead of `SessionFlavor`. They
+   work the same way, just that `ctx.session` is wrapped inside a promise for
+   the lazy variant.
 2. Use `lazySession` instead of `session` to register your session middleware.
-3. Always put an inline `await ctx.session` instead of `ctx.session` everywhere in your middleware, for both reads and writes.
-   Don't worry: You can `await` the promise with your session data as many times as you want, but you will always refer to the same value, so there are never going to be duplicate reads for an update.
+3. Always put an inline `await ctx.session` instead of `ctx.session` everywhere
+   in your middleware, for both reads and writes. Don't worry: You can `await`
+   the promise with your session data as many times as you want, but you will
+   always refer to the same value, so there are never going to be duplicate
+   reads for an update.
 
-Note that with lazy sessions you can assign both objects and promises of objects to `ctx.session`.
-If you set `ctx.session` to be a promise, it will be `await`ed before writing the data back to the data storage.
-This would allow for the following code:
+Note that with lazy sessions you can assign both objects and promises of objects
+to `ctx.session`. If you set `ctx.session` to be a promise, it will be `await`ed
+before writing the data back to the data storage. This would allow for the
+following code:
 
 ```ts
 bot.command("reset", async (ctx) => {
@@ -709,16 +797,21 @@ bot.command("reset", async (ctx) => {
 });
 ```
 
-One may argue well that explicitly using `await` is preferable over assigning a promise to `ctx.session`, the point is that you _could_ do this if you like that style better for some reason.
+One may argue well that explicitly using `await` is preferable over assigning a
+promise to `ctx.session`, the point is that you _could_ do this if you like that
+style better for some reason.
 
-::: tip Plugins That Need Sessions
-Plugin developers that make use of `ctx.session` should always allow users to pass `SessionFlavor | LazySessionFlavor` and hence support both modes.
-In the plugin code, simply await `ctx.session` all the time: if a non-promise object is passed, this will simply be evaluated to itself, so you effectively only write code for lazy sessions and thus support strict sessions automatically.
-:::
+::: tip Plugins That Need Sessions Plugin developers that make use of
+`ctx.session` should always allow users to pass
+`SessionFlavor | LazySessionFlavor` and hence support both modes. In the plugin
+code, simply await `ctx.session` all the time: if a non-promise object is
+passed, this will simply be evaluated to itself, so you effectively only write
+code for lazy sessions and thus support strict sessions automatically. :::
 
 ## Storage Enhancements
 
-The session plugin is able to enhance any storage adapter by adding more features to the storage: [timeouts](#timeouts) and [migrations](#migrations).
+The session plugin is able to enhance any storage adapter by adding more
+features to the storage: [timeouts](#timeouts) and [migrations](#migrations).
 
 They can be installed using the `enhanceStorage` function.
 
@@ -738,8 +831,9 @@ You can also use both at the same time.
 
 ### Timeouts
 
-The timeouts enhancement can add an expiry date to the session data.
-This means that you can specify a time period, and if the session is never changed during this time, the data for the particular chat will be deleted.
+The timeouts enhancement can add an expiry date to the session data. This means
+that you can specify a time period, and if the session is never changed during
+this time, the data for the particular chat will be deleted.
 
 You can use session timeouts via the `millisecondsToLive` option.
 
@@ -750,19 +844,22 @@ const enhanced = enhanceStorage({
 });
 ```
 
-Note that the actual deletion of the data will only happen the next time the respective session data is read.
+Note that the actual deletion of the data will only happen the next time the
+respective session data is read.
 
 ### Migrations
 
-Migrations are useful if you develop your bot further while there is already existing session data.
-You can use them if you want to change your session data without breaking all previous data.
+Migrations are useful if you develop your bot further while there is already
+existing session data. You can use them if you want to change your session data
+without breaking all previous data.
 
-This works by giving version numbers to the data, and then writing small migration functions.
-The migration functions define how to upgrade session data from one version to the next.
+This works by giving version numbers to the data, and then writing small
+migration functions. The migration functions define how to upgrade session data
+from one version to the next.
 
-We will try to illustrate this by example.
-Let's say that you stored information about the pet of a user.
-So far, you only stored the names of the pets in a string array in `ctx.session.petNames`.
+We will try to illustrate this by example. Let's say that you stored information
+about the pet of a user. So far, you only stored the names of the pets in a
+string array in `ctx.session.petNames`.
 
 ```ts
 interface SessionData {
@@ -781,9 +878,9 @@ interface SessionData {
 }
 ```
 
-This would not break your existing session data.
-However, this is not so great, because the names and the birthdays are now stored in different places.
-Ideally, your session data should look like this:
+This would not break your existing session data. However, this is not so great,
+because the names and the birthdays are now stored in different places. Ideally,
+your session data should look like this:
 
 ```ts
 interface Pet {
@@ -796,7 +893,8 @@ interface SessionData {
 }
 ```
 
-Migration functions let you transform the old string array into the new array of pet objects.
+Migration functions let you transform the old string array into the new array of
+pet objects.
 
 ::: code-group
 
@@ -836,12 +934,15 @@ const enhanced = enhanceStorage({
 
 :::
 
-Whenever session data is read, the storage enhancement will check if the session data is already at version `1`.
-If the version is lower (or missing because you were not using this feature before) then the migration function will be run.
-This upgrades the data to version `1`.
-Hence, in your bot, you can always just assume that your session data has the most up to date structure, and the storage enhancement will take care of the rest and migrate your data as necessary.
+Whenever session data is read, the storage enhancement will check if the session
+data is already at version `1`. If the version is lower (or missing because you
+were not using this feature before) then the migration function will be run.
+This upgrades the data to version `1`. Hence, in your bot, you can always just
+assume that your session data has the most up to date structure, and the storage
+enhancement will take care of the rest and migrate your data as necessary.
 
-As time evolves and your bot changes further, you can add more and more migration functions:
+As time evolves and your bot changes further, you can add more and more
+migration functions:
 
 ```ts
 const enhanced = enhanceStorage({
@@ -857,17 +958,21 @@ const enhanced = enhanceStorage({
 });
 ```
 
-You can pick any JavaScript numbers as versions.
-No matter how far the session data for a chat has evolved, as soon as it is read, it will be migrated through the versions until it uses the most recent structure.
+You can pick any JavaScript numbers as versions. No matter how far the session
+data for a chat has evolved, as soon as it is read, it will be migrated through
+the versions until it uses the most recent structure.
 
 ### Types for Storage Enhancements
 
-When you use storage enhancements, your storage adapter will have to store more data than just your session data.
-For example, it has to store the time when the session was last stored so that it can correctly [expire](#timeouts) the data upon timeout.
-In some cases, TypeScript will be able to infer the correct types for your storage adapter.
-However, more often than not, you need to annotate the types of the session data explicitly in several places.
+When you use storage enhancements, your storage adapter will have to store more
+data than just your session data. For example, it has to store the time when the
+session was last stored so that it can correctly [expire](#timeouts) the data
+upon timeout. In some cases, TypeScript will be able to infer the correct types
+for your storage adapter. However, more often than not, you need to annotate the
+types of the session data explicitly in several places.
 
-The following example code snippet illustrates how to use the timeout enhancement with correct TypeScript types.
+The following example code snippet illustrates how to use the timeout
+enhancement with correct TypeScript types.
 
 ```ts
 interface SessionData {
@@ -895,14 +1000,16 @@ bot.on("message", (ctx) => ctx.reply(`Chat count is ${ctx.session.count++}`));
 bot.start();
 ```
 
-Note that every [storage adapter](#known-storage-adapters) is able to take a type parameter.
-For example, for [free sessions](#free-storage), you can use `freeStorage<Enhance<SessionData>>` instead of `MemorySessionStorage<Enhance<SessionData>>`.
-The same is true for all other storage adapters.
+Note that every [storage adapter](#known-storage-adapters) is able to take a
+type parameter. For example, for [free sessions](#free-storage), you can use
+`freeStorage<Enhance<SessionData>>` instead of
+`MemorySessionStorage<Enhance<SessionData>>`. The same is true for all other
+storage adapters.
 
 ## Plugin Summary
 
-This plugin is built-in into the core of grammY.
-You don't need to install anything to use it.
-Simply import everything from grammY itself.
+This plugin is built-in into the core of grammY. You don't need to install
+anything to use it. Simply import everything from grammY itself.
 
-Also, both the documentation and the API reference of this plugin are unified with the core package.
+Also, both the documentation and the API reference of this plugin are unified
+with the core package.

@@ -1,7 +1,6 @@
 ---
 layout: home
 titleTemplate: false
-
 hero:
   name: grammY
   text: Telegram Bot 框架。
@@ -25,7 +24,6 @@ hero:
     - theme: alt
       text: 文档
       link: ./guide/
-
 features:
   - icon: <lazy-tgs-player class="VPImage" src="/icons/beach-animation.tgs"><img src="/icons/beach.svg" alt="beach animation"></lazy-tgs-player>
     title: 易用
@@ -42,7 +40,9 @@ features:
 
 ## 快速开始
 
-bot 是用 [TypeScript](https://www.typescriptlang.org)（或JavaScript）编写的，并在各种平台上运行，包括 [Node.js](https://nodejs.org) 。
+bot 是用
+[TypeScript](https://www.typescriptlang.org)（或JavaScript）编写的，并在各种平台上运行，包括
+[Node.js](https://nodejs.org) 。
 
 `npm install grammy` 并粘贴以下代码：
 
@@ -100,8 +100,9 @@ bot.start();
 
 <div style="font-size: 0.75rem; display: flex; justify-content: center;">
 
-© 2021-2025 &middot; grammY 支持 Telegram Bot API 8.2，该 API 于 2025 年 1 月 1 日 [发布](https://core.telegram.org/bots/api#january-1-2025)。
-(最新亮点: 聊天和用户验证)
+© 2021-2025 &middot; grammY 支持 Telegram Bot API 8.2，该 API 于 2025 年 1 月 1
+日 [发布](https://core.telegram.org/bots/api#january-1-2025)。 (最新亮点:
+聊天和用户验证)
 
 </div>
 </footer>

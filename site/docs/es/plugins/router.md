@@ -5,8 +5,10 @@ next: false
 
 # Enrutador (`router`)
 
-La clase `Router` ([Referencia API](/ref/router/)) proporciona una forma de estructurar tu bot enrutando objetos de contexto a diferentes partes de tu código.
-Es una versión más sofisticada de `bot.route` en `Composer` ([grammY API Reference](/ref/core/composer#route)).
+La clase `Router` ([Referencia API](/ref/router/)) proporciona una forma de
+estructurar tu bot enrutando objetos de contexto a diferentes partes de tu
+código. Es una versión más sofisticada de `bot.route` en `Composer`
+([grammY API Reference](/ref/core/composer#route)).
 
 ## Ejemplo
 
@@ -27,8 +29,9 @@ bot.use(router);
 
 ## Integración con Middleware
 
-Naturalmente, el plugin del enrutador se integra perfectamente con las [jerarquías de middleware de grammY](../advanced/middleware).
-Por ejemplo, puedes filtrar más las actualizaciones después de enrutarlas.
+Naturalmente, el plugin del enrutador se integra perfectamente con las
+[jerarquías de middleware de grammY](../advanced/middleware). Por ejemplo,
+puedes filtrar más las actualizaciones después de enrutarlas.
 
 ```ts
 router.route("key").on("message:text", async (ctx) => {/* ... */});
@@ -37,26 +40,33 @@ other.on(":text", async (ctx) => {/* ... */});
 other.use((ctx) => {/* ... */});
 ```
 
-También puedes revisar [esta sección](../guide/filter-queries#combinacion-de-consultas-con-otros-metodos) sobre la combinación de manejadores de middleware.
+También puedes revisar
+[esta sección](../guide/filter-queries#combinacion-de-consultas-con-otros-metodos)
+sobre la combinación de manejadores de middleware.
 
 ## Combinación de enrutadores con sesiones
 
-Los enrutadores funcionan bien junto con las [sesiones](./session).
-A modo de ejemplo, la combinación de ambos conceptos permite recrear formularios en la interfaz del chat.
+Los enrutadores funcionan bien junto con las [sesiones](./session). A modo de
+ejemplo, la combinación de ambos conceptos permite recrear formularios en la
+interfaz del chat.
 
-> Tenga en cuenta que una solución mucho mejor es utilizar el [plugin de conversaciones](./conversations).
-> El resto de esta página está obsoleta desde que se creó ese plugin.
-> Mantendremos esta página como referencia para aquellos que usaban el enrutador para los formularios.
+> Tenga en cuenta que una solución mucho mejor es utilizar el
+> [plugin de conversaciones](./conversations). El resto de esta página está
+> obsoleta desde que se creó ese plugin. Mantendremos esta página como
+> referencia para aquellos que usaban el enrutador para los formularios.
 
-Digamos que quieres construir un bot que le diga a los usuarios cuántos días faltan para su cumpleaños.
-Para calcular el número de días, el bot tiene que saber el mes (por ejemplo, junio) y el día del mes (por ejemplo, el 15) del cumpleaños.
+Digamos que quieres construir un bot que le diga a los usuarios cuántos días
+faltan para su cumpleaños. Para calcular el número de días, el bot tiene que
+saber el mes (por ejemplo, junio) y el día del mes (por ejemplo, el 15) del
+cumpleaños.
 
 Por lo tanto, el bot tiene que hacer dos preguntas
 
 1. ¿En qué mes nació el usuario?
 2. ¿Qué día del mes ha nacido el usuario?
 
-Sólo si se conocen ambos valores, el bot puede decir al usuario cuántos días le quedan.
+Sólo si se conocen ambos valores, el bot puede decir al usuario cuántos días le
+quedan.
 
 Así es como se podría implementar un bot de este tipo:
 
@@ -468,9 +478,11 @@ function getDays(month: number, day: number) {
 
 :::
 
-Observe cómo la sesión tiene una propiedad `step` que almacena el paso del formulario, es decir, qué valor se está rellenando actualmente.
-El router se utiliza para saltar entre diferentes middleware que completan los campos `month` y `dayOfMonth` de la sesión.
-Si ambos valores son conocidos, el bot calcula los días restantes y los envía de vuelta al usuario.
+Observe cómo la sesión tiene una propiedad `step` que almacena el paso del
+formulario, es decir, qué valor se está rellenando actualmente. El router se
+utiliza para saltar entre diferentes middleware que completan los campos `month`
+y `dayOfMonth` de la sesión. Si ambos valores son conocidos, el bot calcula los
+días restantes y los envía de vuelta al usuario.
 
 ## Resumen del plugin
 

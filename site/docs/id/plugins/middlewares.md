@@ -5,9 +5,9 @@ next: false
 
 # Kumpulan Middleware yang Berguna
 
-Capek menulis middleware yang sama berulang kali?
-Yup, begitu juga dengan kami.
-Oleh karena itu, kali ini kami memutuskan untuk mengumpulkan berbagai middleware ke dalam sebuah package terpisah.
+Capek menulis middleware yang sama berulang kali? Yup, begitu juga dengan kami.
+Oleh karena itu, kali ini kami memutuskan untuk mengumpulkan berbagai middleware
+ke dalam sebuah package terpisah.
 
 ## Instalasi
 
@@ -15,9 +15,11 @@ Oleh karena itu, kali ini kami memutuskan untuk mengumpulkan berbagai middleware
 
 ## Penggunaan
 
-Semua middleware [accessor](https://www.codepolitan.com/sedikit-lebih-dalam-dengan-accessor-dan-mutator-58a192fa846f3/) dapat memproduksi sesuatu, meskipun tidak semua middleware diharuskan seperti itu.
-Kita bisa menganggapnya sebagai _factory_.
-Kami memutuskan untuk membuat API menjadi seragam.
+Semua middleware
+[accessor](https://www.codepolitan.com/sedikit-lebih-dalam-dengan-accessor-dan-mutator-58a192fa846f3/)
+dapat memproduksi sesuatu, meskipun tidak semua middleware diharuskan seperti
+itu. Kita bisa menganggapnya sebagai _factory_. Kami memutuskan untuk membuat
+API menjadi seragam.
 
 Beberapa factory bisa menggunakan parameter wajib ataupun opsional.
 
@@ -45,28 +47,31 @@ bot.use(
 
 ### `ignoreOld`
 
-Abaikan update yang telah usang.
-Ini berguna ketika bot mengalami down untuk beberapa saat.
-Kamu juga bisa menentukan waktu timeout-nya dalam satuan detik (bawaanya selama 5 menit).
+Abaikan update yang telah usang. Ini berguna ketika bot mengalami down untuk
+beberapa saat. Kamu juga bisa menentukan waktu timeout-nya dalam satuan detik
+(bawaanya selama 5 menit).
 
 ### `onlyAdmin`
 
-Periksa apakah user tersebut adalah seorang admin.
-Kamu bisa menentukan `errorHandler` yang nantinya akan dipanggil bersama dengan context-nya jika user tersebut bukan seorang admin.
+Periksa apakah user tersebut adalah seorang admin. Kamu bisa menentukan
+`errorHandler` yang nantinya akan dipanggil bersama dengan context-nya jika user
+tersebut bukan seorang admin.
 
 ### `onlyPublic`
 
-Periksa apakah ia sebuah grup atau channel.
-Kamu bisa menentukan `errorHandler` yang nantinya akan dipanggil bersama dengan context-nya jika ia bukan sebuah grup ataupun channel.
+Periksa apakah ia sebuah grup atau channel. Kamu bisa menentukan `errorHandler`
+yang nantinya akan dipanggil bersama dengan context-nya jika ia bukan sebuah
+grup ataupun channel.
 
 ### `onlySuperAdmin`
 
-Periksa apakah user tersebut adalah seorang super admin.
-Kamu perlu menyediakan id super admin-nya
+Periksa apakah user tersebut adalah seorang super admin. Kamu perlu menyediakan
+id super admin-nya
 
 ### `sequentialize`
 
-Middleware [sequentialize](../advanced/scaling#concurrency-itu-sulit) sederhana yang menggunakan chat id sebagai identifier-nya sequential.
+Middleware [sequentialize](../advanced/scaling#concurrency-itu-sulit) sederhana
+yang menggunakan chat id sebagai identifier-nya sequential.
 
 ## Ringkasan Plugin
 

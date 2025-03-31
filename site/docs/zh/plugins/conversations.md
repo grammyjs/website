@@ -9,8 +9,7 @@ next: false
 
 ## 快速开始
 
-对话插件让你能够等待消息。
-如果你的 bot 有多个步骤，请使用此插件。
+对话插件让你能够等待消息。 如果你的 bot 有多个步骤，请使用此插件。
 
 > 对话是独一无二的，因为它引入了一个你在世界其他地方找不到的新概念。
 > 它提供了一个优雅的解决方案，但你需要先了解一下它是如何工作的，你才能理解你的代码实际上在做什么。
@@ -102,7 +101,8 @@ bot.start();
 
 :::
 
-当你输入上述对话 `hello` 时，它会发送一条消息，然后等待用户发送文本消息，然后再发送另一条消息。
+当你输入上述对话 `hello`
+时，它会发送一条消息，然后等待用户发送文本消息，然后再发送另一条消息。
 最后，对话完成。
 
 现在，让我们进入有意思的部分。
@@ -131,9 +131,8 @@ async function hello(conversation: Conversation, ctx0: Context) {
 
 在这个对话中，你有三个可用的上下文对象！
 
-与常规处理程序一样，对话插件仅从 [中间件系统](../guide/middleware) 接收单个上下文对象。
-现在，它突然为你提供了三个上下文对象。
-这怎么可能呢？
+与常规处理程序一样，对话插件仅从 [中间件系统](../guide/middleware)
+接收单个上下文对象。 现在，它突然为你提供了三个上下文对象。 这怎么可能呢？
 
 **对话构建器函数的执行方式与普通函数不同**。
 （尽管我们可以用这种方式进行编程。）
@@ -143,12 +142,11 @@ async function hello(conversation: Conversation, ctx0: Context) {
 对话构建器函数不像普通函数那样执行。
 
 当进入对话时，函数将只执行到第一个 wait 调用。
-随后该函数被中断，不会再往下执行。
-插件会记住当前运行到的 wait 调用，并存储此信息。
+随后该函数被中断，不会再往下执行。 插件会记住当前运行到的 wait
+调用，并存储此信息。
 
-当下一个 update 到达时，会话将从函数的开头重新执行。
-但这一次，所有的 API 调用都不会执行，这使得代码运行非常快，并且不会产生任何影响。
-这称为 _重放_。
+当下一个 update 到达时，会话将从函数的开头重新执行。 但这一次，所有的 API
+调用都不会执行，这使得代码运行非常快，并且不会产生任何影响。 这称为 _重放_。
 一旦再次到达先前运行到的 wait 调用，函数执行就会正常恢复。
 
 ::: code-group
@@ -195,7 +193,8 @@ async function hello( //                      .
 :::
 
 1. 当进入对话时，函数将运行，直到 `A`，然后中断。
-2. 当下一次 update 到达时，函数将重放，直到 `A`，并从 `A` 正常运行到 `B`，在 `B` 处中断。
+2. 当下一次 update 到达时，函数将重放，直到 `A`，并从 `A` 正常运行到 `B`，在 `B`
+   处中断。
 3. 当最后一次 update 到达时，函数将重放，直到 `B`，并正常运行直到结束。
 
 这意味着你编写的每一行代码都将被执行多次一一正常执行一次，重放期间执行更多次。
@@ -208,12 +207,14 @@ async function hello( //                      .
 
 ### 对话的黄金法则
 
-既然 [我们知道对话是如何执行的](#对话是重放引擎)，我们可以定义一条适用于你在对话构建器函数中编写的代码的规则。
+既然
+[我们知道对话是如何执行的](#对话是重放引擎)，我们可以定义一条适用于你在对话构建器函数中编写的代码的规则。
 如果你希望代码正常运行，则必须遵循该规则。
 
 ::: warning 黄金法则
 
-**在重放之间表现不同的代码必须包装在 [`conversation.external`](/ref/conversations/conversation#external) 中。**
+**在重放之间表现不同的代码必须包装在
+[`conversation.external`](/ref/conversations/conversation#external) 中。**
 
 :::
 
@@ -226,7 +227,8 @@ const response = await accessDatabase();
 const response = await conversation.external(() => accessDatabase());
 ```
 
-通过 [`conversation.external`](/ref/conversations/conversation#external) 转义代码的一部分，会告知插件在重放期间应跳过这部分代码。
+通过 [`conversation.external`](/ref/conversations/conversation#external)
+转义代码的一部分，会告知插件在重放期间应跳过这部分代码。
 被包裹代码的返回值由插件存储，并在后续重放期间重复使用。
 在上面的示例中，这可以防止重复访问数据库。
 
@@ -239,10 +241,12 @@ const response = await conversation.external(() => accessDatabase());
 不应该使用 `conversation.external` 的情况包括：
 
 - 调用 `ctx.reply` 或其他 [上下文操作](../guide/context#可用操作)；
-- 通过 `ctx.api` 调用 `ctx.api.sendMessage` 或其他 [Bot API](https://core.telegram.org/bots/api) 方法。
+- 通过 `ctx.api` 调用 `ctx.api.sendMessage` 或其他
+  [Bot API](https://core.telegram.org/bots/api) 方法。
 
-对话插件围绕 `conversation.external` 打造了一些简便方法。
-这不仅简化了 `Math.random()` 和 `Date.now()` 的使用，而且还提供一种在重放期间抑制日志的方法，从而简化了调试。
+对话插件围绕 `conversation.external` 打造了一些简便方法。 这不仅简化了
+`Math.random()` 和 `Date.now()`
+的使用，而且还提供一种在重放期间抑制日志的方法，从而简化了调试。
 
 ```ts
 // await conversation.external(() => Math.random());
@@ -260,14 +264,14 @@ await conversation.log("abc");
 
 ### 对话存储状态
 
-两类数据将在一个数据库中存储。
-默认情况下，插件使用基于 `Map` 的轻量级内存数据库，但你也可以轻松地 [选用持久数据库](#持久化对话)。
+两类数据将在一个数据库中存储。 默认情况下，插件使用基于 `Map`
+的轻量级内存数据库，但你也可以轻松地 [选用持久数据库](#持久化对话)。
 
 1. 对话插件存储所有的 update。
 2. 对话插件存储所有 `conversation.external` 的返回值和所有 API 调用的结果。
 
-如果对话中只有几十条 update，这不是问题。
-（别忘了在长轮询期间，每次调用 `getUpdates` 也最多只会检索 100 条 update。）
+如果对话中只有几十条 update，这不是问题。 （别忘了在长轮询期间，每次调用
+`getUpdates` 也最多只会检索 100 条 update。）
 
 但是，如果你的对话从未退出，这些数据就会累积，让你的 bot 速度变慢。
 **请避免无限循环。**
@@ -275,19 +279,19 @@ await conversation.log("abc");
 ### 对话上下文对象
 
 当会话被执行时，它会使用持久化的 update 数据从头生成新的上下文对象。
-**这些上下文对象与外围中间件中的上下文对象不同。**
-对于 TypeScript 代码，这也意味着你现在会有两种上下文 [调味剂](../guide/context#上下文调味剂)。
+**这些上下文对象与外围中间件中的上下文对象不同。** 对于 TypeScript
+代码，这也意味着你现在会有两种上下文 [调味剂](../guide/context#上下文调味剂)。
 
-- **外部上下文对象** 是你的 bot 在中间件中使用的上下文对象。
-  它们允许你访问 `ctx.conversation.enter`。
-  对于 TypeScript，它们至少会包含 `ConversationFlavor`。
-  外部上下文对象还会包含你通过 `bot.use` 安装的插件定义的其他属性。
+- **外部上下文对象** 是你的 bot 在中间件中使用的上下文对象。 它们允许你访问
+  `ctx.conversation.enter`。 对于 TypeScript，它们至少会包含
+  `ConversationFlavor`。 外部上下文对象还会包含你通过 `bot.use`
+  安装的插件定义的其他属性。
 - **内部上下文对象**（也称为 **对话上下文对象**）是由对话插件创建的上下文对象。
   它们无法访问 `ctx.conversation.enter`，并且默认情况下也无法访问任何插件。
-  如果你希望在内部上下文对象中拥有自定义属性，请 [滚动到下面](#在对话中使用插件)。
+  如果你希望在内部上下文对象中拥有自定义属性，请
+  [滚动到下面](#在对话中使用插件)。
 
-你需要同时将外部和内部上下文类型传递给对话。
-因此，TypeScript 的设置通常如下：
+你需要同时将外部和内部上下文类型传递给对话。 因此，TypeScript 的设置通常如下：
 
 ::: code-group
 
@@ -361,24 +365,25 @@ async function example(
 
 :::
 
-> 在上面的例子中，在对话中没有安装任何插件。
-> 一旦你开始 [安装](#在对话中使用插件) 插件，`MyConversationContext` 的定义将不再是原始的 `Context`。
+> 在上面的例子中，在对话中没有安装任何插件。 一旦你开始
+> [安装](#在对话中使用插件) 插件，`MyConversationContext` 的定义将不再是原始的
+> `Context`。
 
 当然，如果你有多个对话，并且希望每个对话的上下文类型不同，你可以定义多种对话上下文类型。
 
-恭喜！
-如果你读懂了上述全部内容，最难的部分就结束了。
+恭喜！ 如果你读懂了上述全部内容，最难的部分就结束了。
 这个页面的剩余部分是关于这个插件的功能带来的价值。
 
 ## 进入对话
 
 对话可以通过普通的处理程序进入。
 
-默认情况下，对话的名称和函数的 [名称](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/name) 相同。
-当然，你也可以在将对话安装到 bot 时重新命名。
+默认情况下，对话的名称和函数的
+[名称](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/name)
+相同。 当然，你也可以在将对话安装到 bot 时重新命名。
 
-同时，你也可以向对话传递参数。
-请注意，这些参数将被存储为 JSON 字符串，因此请确保参数可以安全地传递给 `JSON.stringify`。
+同时，你也可以向对话传递参数。 请注意，这些参数将被存储为 JSON
+字符串，因此请确保参数可以安全地传递给 `JSON.stringify`。
 
 对话也可以通过普通的 JavaScript 函数调用从其他对话中进入。
 在这种情况下，调用的函数可以访问被调用的对话可能提供的返回值。
@@ -451,13 +456,13 @@ bot.command("enter_with_arguments", async (ctx) => {
 
 ::: warning 参数缺少类型安全
 
-请再三确认对话的参数是否使用了正确的类型注释，以及是否向 `enter` 调用传递了相匹配的参数。
-此插件无法检查 `conversation` 和 `ctx` 外的任何类型。
+请再三确认对话的参数是否使用了正确的类型注释，以及是否向 `enter`
+调用传递了相匹配的参数。 此插件无法检查 `conversation` 和 `ctx` 外的任何类型。
 
 :::
 
-不要忘了 [中间件的顺序很重要](../guide/middleware)。
-你只能进入在调用 `enter` 的处理程序前就已经安装的对话。
+不要忘了 [中间件的顺序很重要](../guide/middleware)。 你只能进入在调用 `enter`
+的处理程序前就已经安装的对话。
 
 ## 等待 update
 
@@ -467,8 +472,7 @@ bot.command("enter_with_arguments", async (ctx) => {
 const ctx = await conversation.wait();
 ```
 
-它单纯返回一个上下文对象。
-其他的 wait 调用都基于此实现。
+它单纯返回一个上下文对象。 其他的 wait 调用都基于此实现。
 
 ### 过滤的 wait 调用
 
@@ -484,10 +488,11 @@ const start = await conversation.waitForCommand("start");
 // 更多
 ```
 
-请查看 API 参考中列出的 [过滤的 wait 调用的所有可用方法](/ref/conversations/conversation#wait)。
+请查看 API 参考中列出的
+[过滤的 wait 调用的所有可用方法](/ref/conversations/conversation#wait)。
 
-过滤的 wait 调用可保证仅返回匹配相应过滤条件的 update。
-当 bot 接收到不符合条件的 update 时，update 将被丢弃。
+过滤的 wait 调用可保证仅返回匹配相应过滤条件的 update。 当 bot
+接收到不符合条件的 update 时，update 将被丢弃。
 你可以传递一个在这种情况下执行的回调函数。
 
 ```ts
@@ -508,12 +513,14 @@ photoWithCaption = await conversation
   .andForHears("XY", { otherwise: (ctx) => ctx.reply("标题不正确") });
 ```
 
-如果仅在其中一个链式等待调用中指定了 `otherwise`，那么仅当指定了的过滤器丢弃 update 时才会调用它。
+如果仅在其中一个链式等待调用中指定了 `otherwise`，那么仅当指定了的过滤器丢弃
+update 时才会调用它。
 
 ### 检查上下文对象
 
-对接收到的上下文对象进行 [解构](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) 是很常见的。
-因此你可以对接收的数据进行进一步的检查。
+对接收到的上下文对象进行
+[解构](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
+是很常见的。 因此你可以对接收的数据进行进一步的检查。
 
 ```ts
 const { message } = await conversation.waitFor("message");
@@ -522,12 +529,12 @@ if (message.photo) {
 }
 ```
 
-对话也是 [has checks](../guide/context#通过-has-checks-进行检测) 的理想使用场景。
+对话也是 [has checks](../guide/context#通过-has-checks-进行检测)
+的理想使用场景。
 
 ## 退出对话
 
-退出对话最简单的方式就是让函数返回 (`return`)。
-抛出一个错误也会结束对话。
+退出对话最简单的方式就是让函数返回 (`return`)。 抛出一个错误也会结束对话。
 
 如果这还不够，你可以随时手动停止对话。
 
@@ -559,17 +566,16 @@ bot.command("clean", async (ctx) => {
 ## 这只是 JavaScript
 
 虽然有一些 [副作用](#对话的黄金法则)，但对话插件只是普通的 JavaScript 函数。
-它们可能以一种奇怪的方式执行，但开发 bot 时，通常不需要考虑这些。
-所有常见的 JavaScript 语法都可以正常工作。
+它们可能以一种奇怪的方式执行，但开发 bot 时，通常不需要考虑这些。 所有常见的
+JavaScript 语法都可以正常工作。
 
 如果你已经使用了对话一段时间，本节中的大部分内容都是显而易见的。
 但是，如果你是新手，其中一些内容可能会让你感到惊讶。
 
 ### 变量、分支和循环
 
-你可以使用正常的变量在 update 之间存储数据。
-你也可以使用 `if` 或 `switch` 进行分支。
-通过 `for` 和 `while` 进行循环同样照常运作。
+你可以使用正常的变量在 update 之间存储数据。 你也可以使用 `if` 或 `switch`
+进行分支。 通过 `for` 和 `while` 进行循环同样照常运作。
 
 ```ts
 await ctx.reply("把你最爱的数字发送给我，以逗号分隔！");
@@ -589,8 +595,7 @@ await ctx.reply("这些数字的和是：" + sum);
 
 ### 函数和递归
 
-你可以将一个对话分割成多个函数。
-函数可以互相调用，进行递归也不在话下。
+你可以将一个对话分割成多个函数。 函数可以互相调用，进行递归也不在话下。
 （实际上，插件根本不知道你使用了函数。）
 
 以下代码和上面一样，现在用函数重构了。
@@ -745,20 +750,19 @@ async function sumConvo(conversation: Conversation, ctx: Context) {
 对于像加几个数字这样简单的任务来说，这显然是杀鸡用牛刀。
 然而，它说明了一个更广泛的点。
 
-你猜对了：
-这只是 JavaScript。
+你猜对了： 这只是 JavaScript。
 
 ## 持久化对话
 
 默认情况下，对话插件会将所有数据存储在内存中。
 这也就是说，一旦进程结束，所有对话都将退出，必须重新开始。
 
-如果你希望在服务器重启后保留数据，就需要将对话插件连接到数据库。
-我们构建了 [大量存储适配器](https://github.com/grammyjs/storages/tree/main/packages#grammy-storages)，让连接数据库变得简单。
+如果你希望在服务器重启后保留数据，就需要将对话插件连接到数据库。 我们构建了
+[大量存储适配器](https://github.com/grammyjs/storages/tree/main/packages#grammy-storages)，让连接数据库变得简单。
 （它们和 [会话插件](./session#已知的存储适配器) 使用相同的适配器。）
 
-我们假设你想要将数据存储在磁盘上名为 `convo-data` 的目录中。
-这意味着你需要 [`FileAdapter`](https://github.com/grammyjs/storages/tree/main/packages/file#installation)。
+我们假设你想要将数据存储在磁盘上名为 `convo-data` 的目录中。 这意味着你需要
+[`FileAdapter`](https://github.com/grammyjs/storages/tree/main/packages/file#installation)。
 
 ::: code-group
 
@@ -782,8 +786,9 @@ bot.use(conversations({
 
 就是这样！
 
-你可以使用任何能够存储 [`VersionedState`](/ref/conversations/versionedstate) 类型或 [`ConversationData`](/ref/conversations/conversationdata) 数据的存储适配器。
-这两种类型都可以从对话插件中导入。
+你可以使用任何能够存储 [`VersionedState`](/ref/conversations/versionedstate)
+类型或 [`ConversationData`](/ref/conversations/conversationdata)
+数据的存储适配器。 这两种类型都可以从对话插件中导入。
 换句话说，如果你想将存储提取到变量，可以使用以下类型注释。
 
 ```ts
@@ -799,8 +804,7 @@ const storage = new FileAdapter<VersionedState<ConversationData>>({
 如果你将对话状态保留在数据库中，然后更新源代码，则存储的数据和对话构建器函数之间会存在不匹配。
 这是一种数据损坏形式，会破坏重放。
 
-你可以通过指定代码版本来防止这种情况。
-每次更改对话时，你都可以增加版本。
+你可以通过指定代码版本来防止这种情况。 每次更改对话时，你都可以增加版本。
 对话插件将检测到版本不匹配，并自动迁移所有数据。
 
 ```ts
@@ -827,10 +831,13 @@ bot.use(conversations({
 
 ### 不可序列化的数据
 
-[还记得](#对话存储状态) 从 [`conversation.external`](/ref/conversations/conversation#external) 返回的所有数据都将被存储。
-这意味着从 `conversation.external` 返回的所有数据都必须是可序列化的。
+[还记得](#对话存储状态) 从
+[`conversation.external`](/ref/conversations/conversation#external)
+返回的所有数据都将被存储。 这意味着从 `conversation.external`
+返回的所有数据都必须是可序列化的。
 
-如果你想要返回无法序列化的数据，例如类或 [`BigInt`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/BigInt)，则可以提供自定义序列化程序来修复此问题。
+如果你想要返回无法序列化的数据，例如类或
+[`BigInt`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/BigInt)，则可以提供自定义序列化程序来修复此问题。
 
 ```ts
 const largeNumber = await conversation.external({
@@ -843,17 +850,18 @@ const largeNumber = await conversation.external({
 });
 ```
 
-如果你想从任务中抛出错误，你可以为错误对象指定额外的序列化函数。
-请查看 API 参考中的 [`ExternalOp`](/ref/conversations/externalop)。
+如果你想从任务中抛出错误，你可以为错误对象指定额外的序列化函数。 请查看 API
+参考中的 [`ExternalOp`](/ref/conversations/externalop)。
 
 ### 存储键
 
-默认情况下，对话数据按聊天存储。
-这与 [会话插件的工作方式](./session#会话键) 相同。
+默认情况下，对话数据按聊天存储。 这与 [会话插件的工作方式](./session#会话键)
+相同。
 
-因此，对话无法处理来自多个聊天的 update。
-如果需要，你可以 [定义自己的存储键函数](/ref/conversations/conversationoptions#storage)。
-与会话一样，由于潜在的竞争条件，[不建议](./session#会话键) 在无服务器环境中使用此选项。
+因此，对话无法处理来自多个聊天的 update。 如果需要，你可以
+[定义自己的存储键函数](/ref/conversations/conversationoptions#storage)。
+与会话一样，由于潜在的竞争条件，[不建议](./session#会话键)
+在无服务器环境中使用此选项。
 
 此外，与会话一样，你可以使用 `prefix` 选项将对话数据存储在命名空间下。
 如果你想对会话数据和对话数据使用相同的存储适配器，这将特别有用。
@@ -874,8 +882,9 @@ bot.use(conversations({
 
 如果一个 ID 为 `424242` 的用户进入了一个对话，则存储键将为 `convo-424242`。
 
-请查看 [`ConversationStorage`](/ref/conversations/conversationstorage) 的 API 参考，了解有关使用对话插件存储数据的更多详细信息。
-除此之外，它还将解释如何使用 `type: "context"` 来存储数据，而无需任何存储键函数。
+请查看 [`ConversationStorage`](/ref/conversations/conversationstorage) 的 API
+参考，了解有关使用对话插件存储数据的更多详细信息。 除此之外，它还将解释如何使用
+`type: "context"` 来存储数据，而无需任何存储键函数。
 
 ## 在对话中使用插件
 
@@ -928,21 +937,23 @@ bot.command("enter", async (ctx) => {
 
 :::
 
-在常规 [中间件](../guide/middleware) 中，插件可以在当前上下文对象上运行一些代码，然后调用 `next` 等待下游中间件，然后它们可以再次运行一些代码。
+在常规 [中间件](../guide/middleware)
+中，插件可以在当前上下文对象上运行一些代码，然后调用 `next`
+等待下游中间件，然后它们可以再次运行一些代码。
 
-对话不是中间件，插件不能以与中间件相同的方式与对话交互。
-当对话创建 [上下文对象](#对话上下文对象) 时，它将被传递给可以正常处理它的插件。
+对话不是中间件，插件不能以与中间件相同的方式与对话交互。 当对话创建
+[上下文对象](#对话上下文对象) 时，它将被传递给可以正常处理它的插件。
 对于插件来说，它看起来只安装了插件，不存在下游处理程序。
 所有插件完成后，上下文对象可供对话使用。
 
 因此，插件所做的任何清理工作都在对话构建器函数运行之前执行。
-除了会话之外的所有插件都可以很好地与此配合使用。
-如果你想使用会话，请 [向下滚动](#在对话中访问会话)。
+除了会话之外的所有插件都可以很好地与此配合使用。 如果你想使用会话，请
+[向下滚动](#在对话中访问会话)。
 
 ### 默认插件
 
-如果你有很多对话都需要同一组插件，你可以定义默认插件。
-现在，你不再需要将 `hydrate` 传递给 `createConversation`。
+如果你有很多对话都需要同一组插件，你可以定义默认插件。 现在，你不再需要将
+`hydrate` 传递给 `createConversation`。
 
 ::: code-group
 
@@ -983,24 +994,23 @@ bot.use(createConversation(convo, {
 }));
 ```
 
-将 `transformer` 替换为你想要安装的任何插件。
-你可以在对 `ctx.api.config.use` 的同一调用中安装多个转换器。
+将 `transformer` 替换为你想要安装的任何插件。 你可以在对 `ctx.api.config.use`
+的同一调用中安装多个转换器。
 
 ### 在对话中访问会话
 
-由于 [插件在对话中的工作方式](#在对话中使用插件)，[会话插件](./session) 无法像其他插件一样安装在对话中。
-你无法将其传递给 `plugins` 数组，因为它会：
+由于 [插件在对话中的工作方式](#在对话中使用插件)，[会话插件](./session)
+无法像其他插件一样安装在对话中。 你无法将其传递给 `plugins` 数组，因为它会：
 
 1. 读取数据，
 2. 调用 `next`（将立即解析），
 3. 写回完全相同的数据，
 4. 将上下文移交给对话。
 
-请注意在更改会话之前如何保存会话。
-这意味着对会话数据的所有更改都会丢失。
+请注意在更改会话之前如何保存会话。 这意味着对会话数据的所有更改都会丢失。
 
-相反，你可以使用 `conversation.external` 来 [访问外部上下文对象](#对话上下文对象)。
-它已安装会话插件。
+相反，你可以使用 `conversation.external` 来
+[访问外部上下文对象](#对话上下文对象)。 它已安装会话插件。
 
 ```ts
 // 在对话内读取会话数据。
@@ -1016,19 +1026,19 @@ await conversation.external((ctx) => {
 ```
 
 某种意义上，使用会话插件可以看作是执行副作用的一种方式。
-毕竟，会话访问的是数据库。
-鉴于我们必须遵循 [黄金法则](#对话的黄金法则)，会话访问必须要包装在 `conversation.external` 中。
+毕竟，会话访问的是数据库。 鉴于我们必须遵循
+[黄金法则](#对话的黄金法则)，会话访问必须要包装在 `conversation.external` 中。
 
 ## 对话式菜单
 
-你可以在对话外使用 [菜单插件](./menu) 定义菜单，然后将其传递给 `plugins` 数组，[就像任何其他插件一样](#在对话中使用插件)。
+你可以在对话外使用 [菜单插件](./menu) 定义菜单，然后将其传递给 `plugins`
+数组，[就像任何其他插件一样](#在对话中使用插件)。
 
 但是，这意味着菜单无法在其按钮处理程序中访问对话句柄 `conversation`。
 因此，你无法在菜单内部等待 update。
 
 理想情况下，单击按钮时，应该可以等待用户发送消息，然后在用户回复时执行菜单导航。
-这可以通过 `conversation.menu()` 实现。
-它允许你定义 _对话式菜单_。
+这可以通过 `conversation.menu()` 实现。 它允许你定义 _对话式菜单_。
 
 ```ts
 let email = "";
@@ -1056,10 +1066,12 @@ await ctx.reply("你的菜单在此", {
 ```
 
 `conversation.menu()` 返回一个菜单，可以通过添加按钮来构建，方式与菜单插件相同。
-事实上，如果你查看 API 参考中的 [`ConversationMenuRange`](/ref/conversations/conversationmenurange)，你会发现它与菜单插件中的 [`MenuRange`](/ref/menu/menurange) 非常相似。
+事实上，如果你查看 API 参考中的
+[`ConversationMenuRange`](/ref/conversations/conversationmenurange)，你会发现它与菜单插件中的
+[`MenuRange`](/ref/menu/menurange) 非常相似。
 
-对话菜单仅在对话处于活跃状态时保持活跃状态。
-你应该在退出对话之前为所有菜单调用 `ctx.menu.close()`。
+对话菜单仅在对话处于活跃状态时保持活跃状态。 你应该在退出对话之前为所有菜单调用
+`ctx.menu.close()`。
 
 如果你想阻止对话退出，你只需在对话结束时使用以下代码片段即可。
 但是，[别忘了](#对话存储状态) 让你的对话永远存在不是一个好主意。
@@ -1089,7 +1101,8 @@ const menu = conversation.menu("my-menu");
 ```
 
 为了使其正常工作，你必须确保在将控制权转入或转出对话时，两个菜单具有完全相同的结构。
-否则，单击按钮时，菜单将被 [检测为过时](./menu#过时的菜单和指纹)，并且不会调用按钮处理程序。
+否则，单击按钮时，菜单将被
+[检测为过时](./menu#过时的菜单和指纹)，并且不会调用按钮处理程序。
 
 结构基于以下两点。
 
@@ -1102,7 +1115,9 @@ const menu = conversation.menu("my-menu");
 类似地，如果对话留下任何菜单（通过不关闭它们），外部菜单可以再次接管控制。
 同样，菜单的结构必须匹配。
 
-这种互操作性的示例可以在 [示例 bot 仓库](https://github.com/grammyjs/examples?tab=readme-ov-file#menus-with-conversation-menu-with-conversation) 中找到。
+这种互操作性的示例可以在
+[示例 bot 仓库](https://github.com/grammyjs/examples?tab=readme-ov-file#menus-with-conversation-menu-with-conversation)
+中找到。
 
 ## 对话表单
 
@@ -1112,8 +1127,7 @@ const menu = conversation.menu("my-menu");
 但是，当你等待文本消息时，你可能只想获取消息文本，而不与其余上下文对象交互。
 
 对话表单为你提供了一种将 update 验证与从上下文对象中提取数据相结合的方法。
-这类似于表单中的字段。
-请看以下示例。
+这类似于表单中的字段。 请看以下示例。
 
 ```ts
 await ctx.reply("请发送一张要缩放的图片！");
@@ -1127,8 +1141,8 @@ const scaled = await scaleImage(photo, width, height);
 await ctx.replyWithPhoto(scaled);
 ```
 
-还有更多可用的表单字段。
-请查看 API 参考中的 [`ConversationForm`](/ref/conversations/conversationform#methods)。
+还有更多可用的表单字段。 请查看 API 参考中的
+[`ConversationForm`](/ref/conversations/conversationform#methods)。
 
 所有表单字段都接收 `otherwise` 函数，该函数将在收到不匹配的 update 时运行。
 此外，它们都接收 `action` 函数，该函数将在表单字段填写正确时运行。
@@ -1141,7 +1155,9 @@ const op = await conversation.form.select(["+", "-", "*", "/"], {
 });
 ```
 
-对话表单甚至允许你通过 [`conversation.form.build`](/ref/conversations/conversationform#build) 构建自定义表单字段。
+对话表单甚至允许你通过
+[`conversation.form.build`](/ref/conversations/conversationform#build)
+构建自定义表单字段。
 
 ## 等待超时
 
@@ -1155,14 +1171,14 @@ await conversation.wait({ maxMilliseconds: oneHourInMilliseconds });
 
 当到达 wait 调用时，[`conversation.now()`](#对话的黄金法则) 将被调用。
 
-下一次 update 到达后，将再次调用 `conversation.now()`。
-如果 update 花费的时间超过 `maxMilliseconds`，对话将停止，update 将返回到中间件系统。
+下一次 update 到达后，将再次调用 `conversation.now()`。 如果 update
+花费的时间超过 `maxMilliseconds`，对话将停止，update 将返回到中间件系统。
 任何下游中间件将被调用。
 
 这样看起来，对话似乎在 update 到达时已经不再处于活跃状态。
 
-请注意，这实际上不会在指定的时间之后运行任何代码。
-相反，代码只会在下一次 update 到达时运行。
+请注意，这实际上不会在指定的时间之后运行任何代码。 相反，代码只会在下一次 update
+到达时运行。
 
 你可以为对话内的所有 wait 调用指定默认超时值。
 
@@ -1192,17 +1208,16 @@ bot.use(conversations({
 }));
 ```
 
-每个回调都会收到两个值。
-第一个值是进入或退出对话的标识符。
+每个回调都会收到两个值。 第一个值是进入或退出对话的标识符。
 第二个值是外围中间件的当前上下文对象。
 
-请注意，只有通过 `ctx.conversation` 进入或退出对话时才会调用回调。
-当对话通过 `conversation.halt` 自行终止或 [超时](#等待超时) 时，也会调用 `onExit` 回调。
+请注意，只有通过 `ctx.conversation` 进入或退出对话时才会调用回调。 当对话通过
+`conversation.halt` 自行终止或 [超时](#等待超时) 时，也会调用 `onExit` 回调。
 
 ## 并发等待调用
 
-你可以使用浮动 `promise` 同时等待几件事。
-当有新 update 到达时，只有第一个匹配的 wait 调用会解析。
+你可以使用浮动 `promise` 同时等待几件事。 当有新 update 到达时，只有第一个匹配的
+wait 调用会解析。
 
 ```ts
 await ctx.reply("发送一张图片以及描述!");
@@ -1215,12 +1230,12 @@ await ctx.replyWithPhoto(photoContext.msg.photo.at(-1).file_id, {
 });
 ```
 
-在上面的例子中，用户先发送照片还是先发送文本并不重要。
-两个 `Promise` 都将按照用户发送代码正在等待的两条消息的顺序解析。
-[`Promise.all`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/all) 正常工作，只有当所有传递的承诺都解析后，它才会解析。
+在上面的例子中，用户先发送照片还是先发送文本并不重要。 两个 `Promise`
+都将按照用户发送代码正在等待的两条消息的顺序解析。
+[`Promise.all`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/all)
+正常工作，只有当所有传递的承诺都解析后，它才会解析。
 
-这也可用于等待不相关的事情。
-例如，以下是在对话中安装全局退出侦听器的方法。
+这也可用于等待不相关的事情。 例如，以下是在对话中安装全局退出侦听器的方法。
 
 ```ts
 conversation.waitForCommand("exit") // 没有 await！
@@ -1252,16 +1267,15 @@ async function convo(conversation, ctx) {
 
 :::
 
-在内部，当多个 wait 调用同时到达时，对话插件将跟踪 wait 调用列表。
-下一次 update 到达后，它将为每个遇到的 wait 调用重放一次对话构建器函数，直到其中一个接受了 update。
-仅当所有待处理的 wait 调用均未接受 update 时，才会丢弃 update。
+在内部，当多个 wait 调用同时到达时，对话插件将跟踪 wait 调用列表。 下一次 update
+到达后，它将为每个遇到的 wait 调用重放一次对话构建器函数，直到其中一个接受了
+update。 仅当所有待处理的 wait 调用均未接受 update 时，才会丢弃 update。
 
 ## 检查点和回溯时间
 
 对话插件 [跟踪](#对话是重放引擎) 对话构建器函数的执行情况。
 
-这允许你沿途创建一个检查点。
-检查点包含有关该函数迄今为止运行程度的信息。
+这允许你沿途创建一个检查点。 检查点包含有关该函数迄今为止运行程度的信息。
 它可用于稍后跳回到此点。
 
 当然，在此期间执行的任何操作都不会撤消。
@@ -1276,8 +1290,9 @@ if (ctx.hasCommand("reset")) {
 }
 ```
 
-检查点对于“返回”非常有用。
-但是，就像 JavaScript 的带有 [标签](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/label) 的 `break` 和 `continue` 一样，跳转会使代码的可读性降低。
+检查点对于“返回”非常有用。 但是，就像 JavaScript 的带有
+[标签](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/label)
+的 `break` 和 `continue` 一样，跳转会使代码的可读性降低。
 **请不要过度使用此功能。**
 
 在内部，倒回对话会像 wait 调用一样中止执行，然后仅重放函数直到创建检查点的位置。
@@ -1299,7 +1314,8 @@ bot.use(createConversation(convo, { parallel: true }));
 这改变了两件事。
 
 首先，即使相同或不同的对话已经处于活跃状态，你现在也可以进入此对话。
-例如，如果你有对话 `captcha` 和 `settings`，你可以让 `captcha` 处于活跃状态五次，让 `settings` 处于活跃状态十二次，所有这些都在同一个聊天中。
+例如，如果你有对话 `captcha` 和 `settings`，你可以让 `captcha`
+处于活跃状态五次，让 `settings` 处于活跃状态十二次，所有这些都在同一个聊天中。
 
 其次，当对话不接受 update 时，默认情况下不再丢弃 update。
 相反，控制权交还给中间件系统。
@@ -1380,40 +1396,48 @@ bot.use(createConversation(settings));
 
 :::
 
-上述代码适用于群组。
-它提供了两个对话：
-对话 `captcha` 用于确保只有优秀的开发人员才能加入聊天（这 grammY 插件脸都不要了~）。
-对话 `settings` 用于在群组中实现设置菜单。
+上述代码适用于群组。 它提供了两个对话： 对话 `captcha`
+用于确保只有优秀的开发人员才能加入聊天（这 grammY 插件脸都不要了~）。 对话
+`settings` 用于在群组中实现设置菜单。
 
 请注意，所有的 wait 调用都会基于用户标识符以及其他条件进行筛选。
 
 让我们假设发生了以下情况。
 
-1. 你在处理来自标识符为 `ctx.from.id === 42` 的用户的 update 时，调用 `ctx.conversation.enter("captcha")` 进入了对话 `captcha`。
-2. 你在处理来自标识符为 `ctx.from.id === 3` 的用户的 update 时，调用 `ctx.conversation.enter("settings")` 进入了对话 `settings`。
-3. 你在处理来自标识符为 `ctx.from.id === 43` 的用户的 update 时，调用 `ctx.conversation.enter("captcha")` 进入了对话 `captcha`。
+1. 你在处理来自标识符为 `ctx.from.id === 42` 的用户的 update 时，调用
+   `ctx.conversation.enter("captcha")` 进入了对话 `captcha`。
+2. 你在处理来自标识符为 `ctx.from.id === 3` 的用户的 update 时，调用
+   `ctx.conversation.enter("settings")` 进入了对话 `settings`。
+3. 你在处理来自标识符为 `ctx.from.id === 43` 的用户的 update 时，调用
+   `ctx.conversation.enter("captcha")` 进入了对话 `captcha`。
 
-这意味着现在此群组中有三个对话处于活跃状态——`captcha` 处于活跃状态两次，`settings` 处于活跃状态一次。
+这意味着现在此群组中有三个对话处于活跃状态——`captcha`
+处于活跃状态两次，`settings` 处于活跃状态一次。
 
-> 请注意，即使启用了并行对话，`ctx.conversation` 也提供了[各种方式](/ref/conversations/conversationcontrols#exit) 退出特定对话。
+> 请注意，即使启用了并行对话，`ctx.conversation`
+> 也提供了[各种方式](/ref/conversations/conversationcontrols#exit)
+> 退出特定对话。
 
 接下来，以下事件按顺序发生。
 
 1. 用户 `3` 发送包含文本 `"关于"` 的消息。
 2. 一个带有文本消息的 update 到达。
 3. 对话 `captcha` 的第一个实例被重放。
-4. `waitFor(":text")` 文本调用接受 update，但添加的 filter `andFrom(42)` 拒绝 update。
+4. `waitFor(":text")` 文本调用接受 update，但添加的 filter `andFrom(42)` 拒绝
+   update。
 5. 对话 `captcha` 的第二个实例被重放。
-6. `waitFor(":text")` 文本调用接受 update，但添加的 filter `andFrom(43)` 拒绝 update。
+6. `waitFor(":text")` 文本调用接受 update，但添加的 filter `andFrom(43)` 拒绝
+   update。
 7. 所有 `captcha` 实例都拒绝 update，因此控制权交还给中间件系统。
 8. 重放对话 `settings` 的实例。
 9. wait 调用解析，`option` 将包含文本消息 update 的上下文对象。
-10. `openSettingsMenu` 被调用。
-    它可以向用户发送关于文本，并将对话倒回 `main`，重新启动菜单。
+10. `openSettingsMenu` 被调用。 它可以向用户发送关于文本，并将对话倒回
+    `main`，重新启动菜单。
 
-请注意，即使两个对话都在等待用户 `42` 和 `43` 完成验证，bot 也会正确回复已启动设置菜单的用户 `3`。
-经过过滤的 wait 调用可以确定哪些 update 与当前对话相关。
-被 wait 调用忽略的 update 会继续被其他对话处理，并可能被其他对话接收。
+请注意，即使两个对话都在等待用户 `42` 和 `43` 完成验证，bot
+也会正确回复已启动设置菜单的用户 `3`。 经过过滤的 wait 调用可以确定哪些 update
+与当前对话相关。 被 wait 调用忽略的 update
+会继续被其他对话处理，并可能被其他对话接收。
 
 上述示例使用群组来说明对话如何在同一聊天中同时处理多个用户。
 实际上，并行对话适用于所有聊天。
@@ -1434,14 +1458,17 @@ bot.command("stats", (ctx) => {
 });
 ```
 
-当你将对话标识符传递给 `ctx.conversation.active` 时，如果此对话处于活跃状态，它将返回 `1`，否则返回 `0`。
+当你将对话标识符传递给 `ctx.conversation.active`
+时，如果此对话处于活跃状态，它将返回 `1`，否则返回 `0`。
 
 如果你为对话启用 [并行对话](#并行对话)，它将返回此对话当前处于活跃的次数。
 
-调用不带参数的 `ctx.conversation.active()` 以接收包含所有活跃对话的标识符作为键的对象。
+调用不带参数的 `ctx.conversation.active()`
+以接收包含所有活跃对话的标识符作为键的对象。
 相应的值描述每个对话中有多少个实例处于活跃状态。
 
-如果对话 `captcha` 处于活跃状态两次，对话 `settings` 处于活跃状态一次，则 `ctx.conversation.active()` 将按如下方式工作。
+如果对话 `captcha` 处于活跃状态两次，对话 `settings` 处于活跃状态一次，则
+`ctx.conversation.active()` 将按如下方式工作。
 
 ```ts
 bot.command("stats", (ctx) => {
@@ -1455,15 +1482,16 @@ bot.command("stats", (ctx) => {
 对话插件 2.0 是完全从头开始重写的。
 
 尽管 API 层面的基本概念保持不变，但这两种实现在底层操作方式上存在根本区别。
-简而言之，从 1.x 迁移到 2.x 几乎不需要对代码进行任何调整，但需要删除所有存储的数据。
+简而言之，从 1.x 迁移到 2.x
+几乎不需要对代码进行任何调整，但需要删除所有存储的数据。
 因此，所有对话都将重新启动。
 
 ### 从 1.x 到 2.x 的数据迁移
 
 从 1.x 升级到 2.x 时，无法保持对话的当前状态。
 
-你应该从会话中删除相应的数据。
-可以考虑使用 [会话迁移](./session#迁移) 来实现这一点。
+你应该从会话中删除相应的数据。 可以考虑使用 [会话迁移](./session#迁移)
+来实现这一点。
 
 可以按照 [此处](#持久化对话) 所述保存 2.x 版本的对话数据。
 
@@ -1471,16 +1499,18 @@ bot.command("stats", (ctx) => {
 
 在 1.x 中，对话中的上下文类型与外围中间件中使用的上下文类型相同。
 
-在 2.x 中，你现在必须始终声明两种上下文类型——[外部上下文类型和内部上下文类型](#对话上下文对象)。
+在 2.x
+中，你现在必须始终声明两种上下文类型——[外部上下文类型和内部上下文类型](#对话上下文对象)。
 这些类型永远不能相同，如果相同，则你的代码中存在 bug。
-这是因为外部上下文类型必须始终安装 [`ConversationFlavor`](/ref/conversations/conversationflavor)，而内部上下文类型永远不能安装它。
+这是因为外部上下文类型必须始终安装
+[`ConversationFlavor`](/ref/conversations/conversationflavor)，而内部上下文类型永远不能安装它。
 
 此外，你现在可以为每个对话安装一组 [独立的插件](#在对话中使用插件)。
 
 ### 1.x 和 2.x 之间的会话访问变化
 
-你不能再使用 `conversation.session`。
-相反，你必须使用 `conversation.external` 完成操作。
+你不能再使用 `conversation.session`。 相反，你必须使用 `conversation.external`
+完成操作。
 
 ```ts
 // 读取会话数据。
@@ -1494,25 +1524,24 @@ await conversation.external((ctx) => { // [!code ++]
 }); // [!code ++]
 ```
 
-> 在 1.x 中可以访问 `ctx.session`，但总是不正确。
-> 在 2.x 中 `ctx.session` 不再可用。
+> 在 1.x 中可以访问 `ctx.session`，但总是不正确。 在 2.x 中 `ctx.session`
+> 不再可用。
 
 ### 1.x 和 2.x 之间的插件兼容性变化
 
-对话 1.x 几乎不与任何插件兼容。
-使用 `conversation.run` 可以实现一定的兼容性。
+对话 1.x 几乎不与任何插件兼容。 使用 `conversation.run` 可以实现一定的兼容性。
 
-此选项已在 2.x 中删除。
-相反，你现在可以将插件传递给 `plugins` 数组，如 [此处](#在对话中使用插件) 所述。
-会话需要 [特殊处理](#_1-x-和-2-x-之间的会话访问变化)。
-自从引入 [对话菜单](#对话式菜单) 以来，菜单的兼容性得到了改善。
+此选项已在 2.x 中删除。 相反，你现在可以将插件传递给 `plugins` 数组，如
+[此处](#在对话中使用插件) 所述。 会话需要
+[特殊处理](#_1-x-和-2-x-之间的会话访问变化)。 自从引入 [对话菜单](#对话式菜单)
+以来，菜单的兼容性得到了改善。
 
 ### 1.x 和 2.x 之间的并行对话变化
 
 并行对话在 1.x 和 2.x 中的工作方式相同。
 
-但是，如果意外使用此功能，则经常会引起混淆。
-在 2.x 中，你需要通过指定 `{ parallel: true }` 来选择加入此功能，如 [此处](#并行对话) 所述。
+但是，如果意外使用此功能，则经常会引起混淆。 在 2.x 中，你需要通过指定
+`{ parallel: true }` 来选择加入此功能，如 [此处](#并行对话) 所述。
 
 此功能的唯一重大变化是默认情况下 update 不再传递回中间件系统。
 相反，这仅在对话标记为并行时才执行。
@@ -1522,9 +1551,9 @@ await conversation.external((ctx) => { // [!code ++]
 
 ### 1.x 和 2.x 之间的表单变化
 
-1.x 中的表单实质上是损坏的。
-例如，即使对于旧消息的 `edited_message` update，`conversation.form.text()` 也会返回文本消息。
-许多这些奇怪的事情已在 2.x 中得到更正。
+1.x 中的表单实质上是损坏的。 例如，即使对于旧消息的 `edited_message`
+update，`conversation.form.text()` 也会返回文本消息。 许多这些奇怪的事情已在 2.x
+中得到更正。
 
 从技术上讲，修复错误不算重大更改，但它仍然是行为上的重大变化。
 

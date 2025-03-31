@@ -5,8 +5,10 @@ next: false
 
 # Router (`router`)
 
-The `Router` class ([API Reference](/ref/router/)) provides a way to structure your bot by routing context objects to different parts of your code.
-It is a more sophisticated version of `bot.route` on `Composer` ([grammY API Reference](/ref/core/composer#route)).
+The `Router` class ([API Reference](/ref/router/)) provides a way to structure
+your bot by routing context objects to different parts of your code. It is a
+more sophisticated version of `bot.route` on `Composer`
+([grammY API Reference](/ref/core/composer#route)).
 
 ## Example
 
@@ -27,8 +29,9 @@ bot.use(router);
 
 ## Integration With Middleware
 
-Naturally, the router plugin integrates seamlessly with grammY's [middleware trees](../advanced/middleware).
-For example, you filter down updates further after routing them.
+Naturally, the router plugin integrates seamlessly with grammY's
+[middleware trees](../advanced/middleware). For example, you filter down updates
+further after routing them.
 
 ```ts
 router.route("key").on("message:text", async (ctx) => {/* ... */});
@@ -38,19 +41,23 @@ other.on(":text", async (ctx) => {/* ... */});
 other.use((ctx) => {/* ... */});
 ```
 
-You may also want to revisit this [section](../guide/filter-queries#combining-queries-with-other-methods) about combining middleware handlers.
+You may also want to revisit this
+[section](../guide/filter-queries#combining-queries-with-other-methods) about
+combining middleware handlers.
 
 ## Combining Routers With Sessions
 
-Routers work well together with [sessions](./session).
-As an example, combining the two concepts allows you to re-create forms in the chat interface.
+Routers work well together with [sessions](./session). As an example, combining
+the two concepts allows you to re-create forms in the chat interface.
 
-> Note that a much better solution is to use the [conversations plugin](./conversations).
-> The remainder of this page is obsolete since that plugin was created.
-> We will keep this page as a reference for those who used the router for forms.
+> Note that a much better solution is to use the
+> [conversations plugin](./conversations). The remainder of this page is
+> obsolete since that plugin was created. We will keep this page as a reference
+> for those who used the router for forms.
 
-Let's say that you want to build a bot that tells users how many days are left until it is their birthday.
-In order to compute the number of days, the bot has to know the month (e.g. June) and the day of month (e.g. 15) of the birthday.
+Let's say that you want to build a bot that tells users how many days are left
+until it is their birthday. In order to compute the number of days, the bot has
+to know the month (e.g. June) and the day of month (e.g. 15) of the birthday.
 
 The bot therefore has to ask two questions:
 
@@ -457,9 +464,11 @@ function getDays(month: number, day: number) {
 
 :::
 
-Note how the session has a property `step` that stores the step of the form, i.e. which value is currently being filled.
-The router is used to jump between different middleware that completes both the `month` and the `dayOfMonth` fields on the session.
-If both values are known, the bot computes the remaining days and sends it back to the user.
+Note how the session has a property `step` that stores the step of the form,
+i.e. which value is currently being filled. The router is used to jump between
+different middleware that completes both the `month` and the `dayOfMonth` fields
+on the session. If both values are known, the bot computes the remaining days
+and sends it back to the user.
 
 ## Plugin Summary
 

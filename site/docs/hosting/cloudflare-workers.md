@@ -5,29 +5,36 @@ next: false
 
 # Hosting: Cloudflare Workers (Deno)
 
-[Cloudflare Workers](https://workers.cloudflare.com) is a public serverless computing platform that offers a convenient and simple solution for running small workloads at the [edge](https://en.wikipedia.org/wiki/Edge_computing).
+[Cloudflare Workers](https://workers.cloudflare.com) is a public serverless
+computing platform that offers a convenient and simple solution for running
+small workloads at the [edge](https://en.wikipedia.org/wiki/Edge_computing).
 
-This guide will take you through the process of hosting your bot on Cloudflare Workers.
+This guide will take you through the process of hosting your bot on Cloudflare
+Workers.
 
-::: tip Looking for the Node.js Version?
-This tutorial explains how to deploy a Telegram bot to Cloudflare Workers using Deno.
-If you're looking for the Node.js version, please check out [this tutorial](./cloudflare-workers-nodejs) instead.
+::: tip Looking for the Node.js Version? This tutorial explains how to deploy a
+Telegram bot to Cloudflare Workers using Deno. If you're looking for the Node.js
+version, please check out [this tutorial](./cloudflare-workers-nodejs) instead.
 :::
 
 ## Prerequisites
 
-To follow along, please make sure that you have a [Cloudflare account](https://dash.cloudflare.com/login) with your workers subdomain [configured](https://dash.cloudflare.com/?account=workers).
+To follow along, please make sure that you have a
+[Cloudflare account](https://dash.cloudflare.com/login) with your workers
+subdomain [configured](https://dash.cloudflare.com/?account=workers).
 
 ## Setting Things Up
 
-Make sure you have [Deno](https://deno.com) and [Denoflare](https://denoflare.dev) installed.
+Make sure you have [Deno](https://deno.com) and
+[Denoflare](https://denoflare.dev) installed.
 
 Create a new directory, and create a new file `.denoflare` in that directory.
 Put the following contents in the file:
 
-> Note: The "$schema" key in the following JSON code specifies a fixed version in its URL ("v0.5.12").
-> At the time of writing, this was the latest version available.
-> You should update them to the [newest version](https://github.com/skymethod/denoflare/releases).
+> Note: The "$schema" key in the following JSON code specifies a fixed version
+> in its URL ("v0.5.12"). At the time of writing, this was the latest version
+> available. You should update them to the
+> [newest version](https://github.com/skymethod/denoflare/releases).
 
 ```json{2,9,17-18}
 {
@@ -53,8 +60,9 @@ Put the following contents in the file:
 }
 ```
 
-Make sure to replace `YOUR_ACCOUNT_ID`, `YOUR_API_TOKEN`, and `YOUR_BOT_TOKEN` appropriately.
-When creating your API token, you can choose the `Edit Cloudflare Workers` preset from the pre-configured permissions.
+Make sure to replace `YOUR_ACCOUNT_ID`, `YOUR_API_TOKEN`, and `YOUR_BOT_TOKEN`
+appropriately. When creating your API token, you can choose the
+`Edit Cloudflare Workers` preset from the pre-configured permissions.
 
 ## Creating Your Bot
 
@@ -101,21 +109,22 @@ It's as easy as running:
 denoflare push my-bot
 ```
 
-The output of the above command will provide you with the host the worker is running on.
-Watch out for a line containing something like `<MY_BOT>.<MY_SUBDOMAIN>.workers.dev`.
-That's the host where your bot is waiting to be called.
+The output of the above command will provide you with the host the worker is
+running on. Watch out for a line containing something like
+`<MY_BOT>.<MY_SUBDOMAIN>.workers.dev`. That's the host where your bot is waiting
+to be called.
 
 ## Setting Your Webhook
 
-We need to tell Telegram where to send updates to.
-Open your browser and visit this URL:
+We need to tell Telegram where to send updates to. Open your browser and visit
+this URL:
 
 ```text
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<MY_BOT>.<MY_SUBDOMAIN>.workers.dev/
 ```
 
-Replace `<BOT_TOKEN>`, `<MY_BOT>`, and `<MY_SUBDOMAIN>` with your values.
-If the setup is successful, you'll see a JSON response like this:
+Replace `<BOT_TOKEN>`, `<MY_BOT>`, and `<MY_SUBDOMAIN>` with your values. If the
+setup is successful, you'll see a JSON response like this:
 
 ```json
 {
@@ -127,17 +136,22 @@ If the setup is successful, you'll see a JSON response like this:
 
 ## Testing Your Bot
 
-Open your Telegram app, and start your bot.
-If it responds, it means you're good to go!
+Open your Telegram app, and start your bot. If it responds, it means you're good
+to go!
 
 ## Debugging Your Bot
 
-For testing and debugging purposes, you can run a local or remote development server before deploying your bot to production.
-Simply run the following command:
+For testing and debugging purposes, you can run a local or remote development
+server before deploying your bot to production. Simply run the following
+command:
 
 ```sh
 denoflare serve my-bot
 ```
 
-Once the development server has started, you can test your bot by sending sample updates to it using tools like `curl`, [Insomnia](https://insomnia.rest), or [Postman](https://postman.com).
-Refer to [here](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates) for update examples and [here](https://core.telegram.org/bots/api#update) for more information on the update structure.
+Once the development server has started, you can test your bot by sending sample
+updates to it using tools like `curl`, [Insomnia](https://insomnia.rest), or
+[Postman](https://postman.com). Refer to
+[here](https://core.telegram.org/bots/webhooks#testing-your-bot-with-updates)
+for update examples and [here](https://core.telegram.org/bots/api#update) for
+more information on the update structure.

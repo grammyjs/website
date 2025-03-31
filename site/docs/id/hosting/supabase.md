@@ -5,21 +5,31 @@ next: false
 
 # Hosting: Supabase Edge Functions
 
-Halaman ini berisi panduan mengenai langkah-langkah meng-hosting bot grammY di [Supabase](https://supabase.com/).
+Halaman ini berisi panduan mengenai langkah-langkah meng-hosting bot grammY di
+[Supabase](https://supabase.com/).
 
-Kamu diharuskan memiliki sebuah akun [GitHub](https://github.com) untuk menggunakan [Supabase Edge Functions](https://supabase.com/docs/guides/functions/quickstart).
-Supabase Edge Functions berbasiskan [Deno Deploy](https://deno.com/deploy), sehingga seperti [panduan Deno Deploy](./deno-deploy) yang telah kami buat sebelumnya, panduan ini ditujukan untuk pengguna Deno grammY saja.
+Kamu diharuskan memiliki sebuah akun [GitHub](https://github.com) untuk
+menggunakan
+[Supabase Edge Functions](https://supabase.com/docs/guides/functions/quickstart).
+Supabase Edge Functions berbasiskan [Deno Deploy](https://deno.com/deploy),
+sehingga seperti [panduan Deno Deploy](./deno-deploy) yang telah kami buat
+sebelumnya, panduan ini ditujukan untuk pengguna Deno grammY saja.
 
-Supabase Edge Functions cocok untuk sebagian besar bot yang memiliki fungsi sederhana, dan perlu kamu ketahui bahwa tidak semua fitur di Deno tersedia untuk aplikasi-aplikasi yang berjalan di Supabase Edge Functions.
-Contohnya, Supabase Edge Functions tidak menyediakan fitur file system.
-Ia serupa dengan platform serverless lainnya, namun hanya ditujukan untuk aplikasi Deno.
+Supabase Edge Functions cocok untuk sebagian besar bot yang memiliki fungsi
+sederhana, dan perlu kamu ketahui bahwa tidak semua fitur di Deno tersedia untuk
+aplikasi-aplikasi yang berjalan di Supabase Edge Functions. Contohnya, Supabase
+Edge Functions tidak menyediakan fitur file system. Ia serupa dengan platform
+serverless lainnya, namun hanya ditujukan untuk aplikasi Deno.
 
-Hasil dari tutorial ini bisa dilihat di [repositori bot kami](https://github.com/grammyjs/examples/tree/main/setups/supabase-edge-functions).
+Hasil dari tutorial ini bisa dilihat di
+[repositori bot kami](https://github.com/grammyjs/examples/tree/main/setups/supabase-edge-functions).
 
 ## Pemasangan
 
-Untuk men-deploy bot ke Supabase Edge Functions, kamu harus membuat sebuah akun Supabase, menginstal CLI mereka, dan membuat sebuah proyek Supabase.
-Cara pemasangannya bisa dilihat di [dokumentasi yang mereka sediakan](https://supabase.com/docs/guides/functions/quickstart#initialize-a-project).
+Untuk men-deploy bot ke Supabase Edge Functions, kamu harus membuat sebuah akun
+Supabase, menginstal CLI mereka, dan membuat sebuah proyek Supabase. Cara
+pemasangannya bisa dilihat di
+[dokumentasi yang mereka sediakan](https://supabase.com/docs/guides/functions/quickstart#initialize-a-project).
 
 Buat sebuah Supabase Function dengan cara menjalankan perintah berikut:
 
@@ -27,12 +37,15 @@ Buat sebuah Supabase Function dengan cara menjalankan perintah berikut:
 supabase functions new telegram-bot
 ```
 
-Setelah berhasil membuat sebuah proyek Supabase Function, sekarang kamu bisa menulis bot-nya.
+Setelah berhasil membuat sebuah proyek Supabase Function, sekarang kamu bisa
+menulis bot-nya.
 
 ## Siapkan Kodenya
 
-> Perlu diingat bahwa kamu harus [menjalankan bot menggunakan webhooks](../guide/deployment-types#bagaimana-cara-menggunakan-webhook).
-> Oleh karena itu, gunakan `webhookCallback` alih-alih `bot.start()` di kode kamu.
+> Perlu diingat bahwa kamu harus
+> [menjalankan bot menggunakan webhooks](../guide/deployment-types#bagaimana-cara-menggunakan-webhook).
+> Oleh karena itu, gunakan `webhookCallback` alih-alih `bot.start()` di kode
+> kamu.
 
 Kamu bisa menggunakan contoh bot singkat ini sebagai entry point-nya.
 
@@ -68,33 +81,35 @@ Deno.serve(async (req) => {
 
 ## Melakukan Deploy
 
-Kamu sekarang bisa men-deploy bot ke Supabase.
-Perlu dicatat bahwa kamu diharuskan menonaktifkan otorisasi JWT karena Telegram menggunakan metode lain untuk memastikan request tersebut benar-benar berasal dari Telegram.
-Kamu bisa men-deploy function-nya dengan perintah ini:
+Kamu sekarang bisa men-deploy bot ke Supabase. Perlu dicatat bahwa kamu
+diharuskan menonaktifkan otorisasi JWT karena Telegram menggunakan metode lain
+untuk memastikan request tersebut benar-benar berasal dari Telegram. Kamu bisa
+men-deploy function-nya dengan perintah ini:
 
 ```sh
 supabase functions deploy --no-verify-jwt telegram-bot
 ```
 
-Selanjutnya, berikan token bot ke Supabase agar kode kamu bisa mengaksesnya sebagai sebuah environment variable.
+Selanjutnya, berikan token bot ke Supabase agar kode kamu bisa mengaksesnya
+sebagai sebuah environment variable.
 
 ```sh
 # Ganti 123:aBcDeF-gh dengan token bot-mu yang asli.
 supabase secrets set BOT_TOKEN=123:aBcDeF-gh
 ```
 
-Supabase Function kamu sekarang sudah berjalan.
-Sisanya, kita perlu memberi tahu Telegram ke mana ia harus mengirim update-update-nya.
-Kamu bisa melakukannya dengan memanggil `setWebhook`.
-Contohnya, buka sebuah tab baru di browser lalu kunjungi URL berikut:
+Supabase Function kamu sekarang sudah berjalan. Sisanya, kita perlu memberi tahu
+Telegram ke mana ia harus mengirim update-update-nya. Kamu bisa melakukannya
+dengan memanggil `setWebhook`. Contohnya, buka sebuah tab baru di browser lalu
+kunjungi URL berikut:
 
 ```text
 https://api.telegram.org/bot<TOKEN_BOT>/setWebhook?url=https://<ID_REFERENSI_PROYEK>.supabase.co/functions/v1/telegram-bot?secret=<TOKEN_BOT>
 ```
 
-Ganti `<TOKEN_BOT>` dengan token bot kamu yang asli.
-Jangan lupa untuk mengganti `<TOKEN_BOT>` yang kedua dengan token bot-mu juga.
-Ganti `<ID_REFERENSI_PROYEK>` dengan ID referensi proyek Supabase kamu.
+Ganti `<TOKEN_BOT>` dengan token bot kamu yang asli. Jangan lupa untuk mengganti
+`<TOKEN_BOT>` yang kedua dengan token bot-mu juga. Ganti `<ID_REFERENSI_PROYEK>`
+dengan ID referensi proyek Supabase kamu.
 
 Jika berhasil, kamu akan melihat string JSON berikut di jendela browser:
 
@@ -102,6 +117,5 @@ Jika berhasil, kamu akan melihat string JSON berikut di jendela browser:
 { "ok": true, "result": true, "description": "Webhook was set" }
 ```
 
-Selesai!
-Bot kamu sekarang sudah berjalan.
-Kirim sebuah pesan lalu bot akan membalas pesan tersebut!
+Selesai! Bot kamu sekarang sudah berjalan. Kirim sebuah pesan lalu bot akan
+membalas pesan tersebut!

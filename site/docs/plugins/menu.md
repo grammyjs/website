@@ -9,11 +9,12 @@ Easily create interactive menus.
 
 ## Introduction
 
-An inline keyboard is an array of buttons underneath a message.
-grammY has a [built-in plugin](./keyboard#inline-keyboards) to create basic inline keyboards.
+An inline keyboard is an array of buttons underneath a message. grammY has a
+[built-in plugin](./keyboard#inline-keyboards) to create basic inline keyboards.
 
-The menu plugin takes this idea further and lets you create rich menus right inside the chat.
-They can have interactive buttons, multiple pages with navigation between them, and more.
+The menu plugin takes this idea further and lets you create rich menus right
+inside the chat. They can have interactive buttons, multiple pages with
+navigation between them, and more.
 
 Here is a simple example that speaks for itself.
 
@@ -90,10 +91,14 @@ bot.start();
 
 :::
 
-> Make sure that you install all menus before other middleware, especially before middleware that uses callback query data.
-> Also, if you use a custom configuration for `allowed_updates`, remember to include `callback_query` updates.
+> Make sure that you install all menus before other middleware, especially
+> before middleware that uses callback query data. Also, if you use a custom
+> configuration for `allowed_updates`, remember to include `callback_query`
+> updates.
 
-Naturally, if you are using a [custom context type](../guide/context#customizing-the-context-object), you can pass it to `Menu` too.
+Naturally, if you are using a
+[custom context type](../guide/context#customizing-the-context-object), you can
+pass it to `Menu` too.
 
 ```ts
 const menu = new Menu<MyContext>("id");
@@ -101,8 +106,9 @@ const menu = new Menu<MyContext>("id");
 
 ## Adding Buttons
 
-The menu plugin lays out your keyboards exactly like the [plugin for inline keyboards](./keyboard#building-an-inline-keyboard) does.
-The class `Menu` replaces the class `InlineKeyboard`.
+The menu plugin lays out your keyboards exactly like the
+[plugin for inline keyboards](./keyboard#building-an-inline-keyboard) does. The
+class `Menu` replaces the class `InlineKeyboard`.
 
 Here is an example for a menu that has four buttons in a 1-2-1 row shape.
 
@@ -114,18 +120,19 @@ const menu = new Menu("movements")
   .text("v", (ctx) => ctx.reply("Backwards!"));
 ```
 
-Use `text` to add new text buttons.
-You can pass a label and a handler function.
+Use `text` to add new text buttons. You can pass a label and a handler function.
 
 Use `row` to end the current row, and add all subsequent buttons to a new one.
 
-There are many more button types available, e.g. for opening URLs.
-Check out this plugin's [API Reference](/ref/menu/menurange) for `MenuRange`, as well as the [Telegram Bot API Reference](https://core.telegram.org/bots/api#inlinekeyboardbutton) for `InlineKeyboardButton`.
+There are many more button types available, e.g. for opening URLs. Check out
+this plugin's [API Reference](/ref/menu/menurange) for `MenuRange`, as well as
+the
+[Telegram Bot API Reference](https://core.telegram.org/bots/api#inlinekeyboardbutton)
+for `InlineKeyboardButton`.
 
 ## Sending a Menu
 
-You must first install a menu.
-This makes it interactive.
+You must first install a menu. This makes it interactive.
 
 ```ts
 bot.use(menu);
@@ -141,8 +148,9 @@ bot.command("menu", async (ctx) => {
 
 ## Dynamic Labels
 
-Whenever you put a label string on a button, you can also pass a function `(ctx: Context) => string` to get a dynamic label on the button.
-This function may or may not be `async`.
+Whenever you put a label string on a button, you can also pass a function
+`(ctx: Context) => string` to get a dynamic label on the button. This function
+may or may not be `async`.
 
 ```ts
 // Create a button with the user's name, which will greet them when pressed.
@@ -174,23 +182,25 @@ const menu = new Menu("toggle")
   );
 ```
 
-Note that you must update a menu whenever you want your buttons to change.
-Call `ctx.menu.update()` to make sure that your menu will be re-rendered.
+Note that you must update a menu whenever you want your buttons to change. Call
+`ctx.menu.update()` to make sure that your menu will be re-rendered.
 
-::: tip Storing Data
-The example above demonstrates how to use the menu plugin.
-It is not a good idea to actually store user settings in a `Set` object, because then all data will be lost when you stop the server.
+::: tip Storing Data The example above demonstrates how to use the menu plugin.
+It is not a good idea to actually store user settings in a `Set` object, because
+then all data will be lost when you stop the server.
 
-Instead, consider using a database or the [session plugin](./session) if you want to store data.
-:::
+Instead, consider using a database or the [session plugin](./session) if you
+want to store data. :::
 
 ## Updating or Closing the Menu
 
-When a button handler is called, a number of useful functions are available on `ctx.menu`.
+When a button handler is called, a number of useful functions are available on
+`ctx.menu`.
 
-If you want your menu to re-render, you can call `ctx.menu.update()`.
-This will only work inside the handlers that you install on your menu.
-It will not work when called from other bot middleware, as in such cases there is no way to know _which_ menu should be updated.
+If you want your menu to re-render, you can call `ctx.menu.update()`. This will
+only work inside the handlers that you install on your menu. It will not work
+when called from other bot middleware, as in such cases there is no way to know
+_which_ menu should be updated.
 
 ```ts
 const menu = new Menu("time", { onMenuOutdated: false })
@@ -200,8 +210,8 @@ const menu = new Menu("time", { onMenuOutdated: false })
   );
 ```
 
-> The purpose of `onMenuOutdated` is explained [below](#outdated-menus-and-fingerprints).
-> You can ignore it for now.
+> The purpose of `onMenuOutdated` is explained
+> [below](#outdated-menus-and-fingerprints). You can ignore it for now.
 
 You can also update the menu implicitly by editing the corresponding message.
 
@@ -213,31 +223,36 @@ const menu = new Menu("time")
   );
 ```
 
-The menu will detect that you intend to edit the text of the message, and use the opportunity to update the buttons underneath too.
-As a result, you can often avoid having to call `ctx.menu.update()` explicitly.
+The menu will detect that you intend to edit the text of the message, and use
+the opportunity to update the buttons underneath too. As a result, you can often
+avoid having to call `ctx.menu.update()` explicitly.
 
-Calling `ctx.menu.update()` does not update the menu immediately.
-Instead, it sets a flag and remembers to update it at some point during the execution of your middleware.
-This is called _lazy updating_.
-If you edit the message itself later on, the plugin can simply use the same API call to also update the buttons.
-This is very efficient, and ensures that both the message and the keyboard are updated at the same time.
+Calling `ctx.menu.update()` does not update the menu immediately. Instead, it
+sets a flag and remembers to update it at some point during the execution of
+your middleware. This is called _lazy updating_. If you edit the message itself
+later on, the plugin can simply use the same API call to also update the
+buttons. This is very efficient, and ensures that both the message and the
+keyboard are updated at the same time.
 
-Naturally, if you call `ctx.menu.update()` but you never request any edits to the message, the menu plugin will update the keyboard by itself, before your middleware completes.
+Naturally, if you call `ctx.menu.update()` but you never request any edits to
+the message, the menu plugin will update the keyboard by itself, before your
+middleware completes.
 
-You can force the menu to update immediately with `await ctx.menu.update({ immediate: true })`.
-Note that `ctx.menu.update()` will then return a promise, so you need to use `await`!
-Using the `immediate` flag also works for all other operations that you can call on `ctx.menu`.
-This should only be used when necessary.
+You can force the menu to update immediately with
+`await ctx.menu.update({ immediate: true })`. Note that `ctx.menu.update()` will
+then return a promise, so you need to use `await`! Using the `immediate` flag
+also works for all other operations that you can call on `ctx.menu`. This should
+only be used when necessary.
 
-If you want to close a menu, i.e. remove all buttons, you can call `ctx.menu.close()`.
-Again, this will be performed lazily.
+If you want to close a menu, i.e. remove all buttons, you can call
+`ctx.menu.close()`. Again, this will be performed lazily.
 
 ## Navigation Between Menus
 
 You can easily create menus with several pages, and navigation between them.
-Every page has its own instance of `Menu`.
-The `submenu` button is a button that lets you navigate to other pages.
-Backwards navigation is done via the `back` button.
+Every page has its own instance of `Menu`. The `submenu` button is a button that
+lets you navigate to other pages. Backwards navigation is done via the `back`
+button.
 
 ```ts
 const main = new Menu("root-menu")
@@ -249,16 +264,19 @@ const settings = new Menu("credits-menu")
   .back("Go Back");
 ```
 
-Both buttons optionally take middleware handlers so you can react to navigation events.
+Both buttons optionally take middleware handlers so you can react to navigation
+events.
 
-Instead of using `submenu` and `back` buttons to navigate between pages, you can also do this manually using `ctx.menu.nav()`.
-This function takes the menu identifier string, and will perform navigation lazily.
-Analogously, backwards navigation works via `ctx.menu.back()`.
+Instead of using `submenu` and `back` buttons to navigate between pages, you can
+also do this manually using `ctx.menu.nav()`. This function takes the menu
+identifier string, and will perform navigation lazily. Analogously, backwards
+navigation works via `ctx.menu.back()`.
 
-Next, you need to link the menus by registering them to one another.
-Registering a menu to another implies their hierarchy. The menu that is being registered to is the parent, and the registered menu is the child.
-Below, `main` is the parent of `settings`, unless a different parent is explicitly defined.
-The parent menu is used when backwards navigation is performed.
+Next, you need to link the menus by registering them to one another. Registering
+a menu to another implies their hierarchy. The menu that is being registered to
+is the parent, and the registered menu is the child. Below, `main` is the parent
+of `settings`, unless a different parent is explicitly defined. The parent menu
+is used when backwards navigation is performed.
 
 ```ts
 // Register settings menu at main menu.
@@ -270,8 +288,8 @@ main.register(settings, "back-from-settings-menu");
 You can register as many menus as you like, and nest them as deeply as you like.
 The menu identifiers let you jump easily to any page.
 
-**You only have to make a single menu of your nested menu structure interactive.**
-For example, only pass the root menu to `bot.use`.
+**You only have to make a single menu of your nested menu structure
+interactive.** For example, only pass the root menu to `bot.use`.
 
 ```ts
 // If you have this:
@@ -285,8 +303,9 @@ bot.use(main);
 bot.use(settings);
 ```
 
-**You can create multiple independent menus and make them all interactive.**
-For example, if you create two unrelated menus and you never need to navigate between them, then you should install both of them independently.
+**You can create multiple independent menus and make them all interactive.** For
+example, if you create two unrelated menus and you never need to navigate
+between them, then you should install both of them independently.
 
 ```ts
 // If you have independent menus like this:
@@ -301,11 +320,12 @@ bot.use(menuB);
 ## Payloads
 
 You can store short text payloads along with all navigation and text buttons.
-When the respective handlers are invoked, the text payload will be available under `ctx.match`.
-This is useful because it lets you store a little bit of data in a menu.
+When the respective handlers are invoked, the text payload will be available
+under `ctx.match`. This is useful because it lets you store a little bit of data
+in a menu.
 
-Here is an example menu that remembers current time in the payload.
-Other use cases could be, for example, to store the index in a paginated menu.
+Here is an example menu that remembers current time in the payload. Other use
+cases could be, for example, to store the index in a paginated menu.
 
 ```ts
 function generatePayload() {
@@ -332,42 +352,46 @@ bot.command("publish", async (ctx) => {
 });
 ```
 
-::: tip Limitations
-Payloads cannot be used to actually store any significant amounts of data.
-The only thing you can store are short strings of typically less than 50 bytes, such as an index or an identifier.
-If you really want to store user data such as a file identifier, a URL, or anything else, you should use [sessions](./session).
+::: tip Limitations Payloads cannot be used to actually store any significant
+amounts of data. The only thing you can store are short strings of typically
+less than 50 bytes, such as an index or an identifier. If you really want to
+store user data such as a file identifier, a URL, or anything else, you should
+use [sessions](./session).
 
-Also, note that the payload is always generated based on the current context object.
-This means that it matters _where from_ you navigate to the menu, which can lead to surprising results.
-As an example, when a menu is [outdated](#outdated-menus-and-fingerprints), it will be re-rendered _based on the button click of the outdated menu_.
-:::
+Also, note that the payload is always generated based on the current context
+object. This means that it matters _where from_ you navigate to the menu, which
+can lead to surprising results. As an example, when a menu is
+[outdated](#outdated-menus-and-fingerprints), it will be re-rendered _based on
+the button click of the outdated menu_. :::
 
 Payloads also work well together with dynamic ranges.
 
 ## Dynamic Ranges
 
-So far, we've only seen how to change the text on a button dynamically.
-You can also dynamically adjust the structure of a menu in order to add and remove buttons on the fly.
+So far, we've only seen how to change the text on a button dynamically. You can
+also dynamically adjust the structure of a menu in order to add and remove
+buttons on the fly.
 
-::: danger Changing a Menu During Message Handling
-You cannot create or change your menus during message handling.
-All menus must be fully created and registered before your bot starts.
-This means that you cannot do `new Menu("id")` in a handler of your bot.
-You cannot call `menu.text` or the like in a handler of your bot.
+::: danger Changing a Menu During Message Handling You cannot create or change
+your menus during message handling. All menus must be fully created and
+registered before your bot starts. This means that you cannot do
+`new Menu("id")` in a handler of your bot. You cannot call `menu.text` or the
+like in a handler of your bot.
 
-Adding new menus while your bot is running would cause a memory leak.
-Your bot would slow down more and more, and eventually crash.
+Adding new menus while your bot is running would cause a memory leak. Your bot
+would slow down more and more, and eventually crash.
 
-However, you can make use of the dynamic ranges described in this section.
-They allow you to arbitrarily change the structure of an existing menu instance, so they are equally powerful.
-Use dynamic ranges!
-:::
+However, you can make use of the dynamic ranges described in this section. They
+allow you to arbitrarily change the structure of an existing menu instance, so
+they are equally powerful. Use dynamic ranges! :::
 
-You can let a part of a menu's buttons be generated on the fly (or all of them if you want).
-We call this part of the menu a _dynamic range_.
-In other words, instead of defining the buttons directly on the menu, you can pass a factory function that creates the buttons when the menu is rendered.
-The easiest way to create a dynamic range in this function is by using the `MenuRange` class that this plugin provides.
-A `MenuRange` provides you with exactly the same functions as a menu, but it does not have an identifier, and it cannot be registered.
+You can let a part of a menu's buttons be generated on the fly (or all of them
+if you want). We call this part of the menu a _dynamic range_. In other words,
+instead of defining the buttons directly on the menu, you can pass a factory
+function that creates the buttons when the menu is rendered. The easiest way to
+create a dynamic range in this function is by using the `MenuRange` class that
+this plugin provides. A `MenuRange` provides you with exactly the same functions
+as a menu, but it does not have an identifier, and it cannot be registered.
 
 ```ts
 const menu = new Menu("dynamic");
@@ -386,14 +410,16 @@ menu
   .text("Cancel", (ctx) => ctx.deleteMessage());
 ```
 
-The range builder function that you pass to `dynamic` may be `async`, so you can even read data from an API or a database before returning your new menu range.
-**In many cases, it makes sense to generate a dynamic range based on [session](./session) data.**
+The range builder function that you pass to `dynamic` may be `async`, so you can
+even read data from an API or a database before returning your new menu range.
+**In many cases, it makes sense to generate a dynamic range based on
+[session](./session) data.**
 
-The range builder function takes a context object as the first argument.
-(This is not specified in the example above.)
-Optionally, as a second argument after `ctx`, you can receive a fresh instance of `MenuRange`.
-You can modify it instead of returning your own instance if that's what you prefer.
-Here is how you can use the two parameters of the range builder function.
+The range builder function takes a context object as the first argument. (This
+is not specified in the example above.) Optionally, as a second argument after
+`ctx`, you can receive a fresh instance of `MenuRange`. You can modify it
+instead of returning your own instance if that's what you prefer. Here is how
+you can use the two parameters of the range builder function.
 
 ```ts
 menu.dynamic((ctx, range) => {
@@ -405,49 +431,56 @@ menu.dynamic((ctx, range) => {
 });
 ```
 
-It is important that your factory function works in a certain way, otherwise your menus may show strange behavior or even throw errors.
-As menus are always [rendered twice](#how-does-it-work) (once when the menu is sent, and once when a button is pressed), you need to make sure that:
+It is important that your factory function works in a certain way, otherwise
+your menus may show strange behavior or even throw errors. As menus are always
+[rendered twice](#how-does-it-work) (once when the menu is sent, and once when a
+button is pressed), you need to make sure that:
 
-1. **You do not have any side-effects in the function that builds the dynamic range.**
-   Do not send messages.
-   Do not write to the session data.
-   Do not change any variables outside of the function.
-   Check out [Wikipedia on side-effects](https://en.wikipedia.org/wiki/Side_effect_(computer_science)).
-2. **Your function is stable**, i.e. it does not depend on randomness, the current time, or other fast-changing data sources.
-   It has to generate the same buttons the first and the second time the menu is rendered.
-   Otherwise, the menu plugin cannot match the correct handler with the pressed button.
-   Instead, it will [detect](#outdated-menus-and-fingerprints) that your menu is outdated, and refuse to call the handlers.
+1. **You do not have any side-effects in the function that builds the dynamic
+   range.** Do not send messages. Do not write to the session data. Do not
+   change any variables outside of the function. Check out
+   [Wikipedia on side-effects](https://en.wikipedia.org/wiki/Side_effect_(computer_science)).
+2. **Your function is stable**, i.e. it does not depend on randomness, the
+   current time, or other fast-changing data sources. It has to generate the
+   same buttons the first and the second time the menu is rendered. Otherwise,
+   the menu plugin cannot match the correct handler with the pressed button.
+   Instead, it will [detect](#outdated-menus-and-fingerprints) that your menu is
+   outdated, and refuse to call the handlers.
 
 ## Answering Callback Queries Manually
 
-The menu plugin will call `answerCallbackQuery` automatically for its own buttons.
-You can set `autoAnswer: false` if you want to disable this.
+The menu plugin will call `answerCallbackQuery` automatically for its own
+buttons. You can set `autoAnswer: false` if you want to disable this.
 
 ```ts
 const menu = new Menu("id", { autoAnswer: false });
 ```
 
-You will now have to call `answerCallbackQuery` yourself.
-This allows you to pass custom messages that are displayed to the user.
+You will now have to call `answerCallbackQuery` yourself. This allows you to
+pass custom messages that are displayed to the user.
 
 ## Outdated Menus and Fingerprints
 
-Let's say you have a menu where a user can toggle notifications on and off, such as in the example [up here](#dynamic-labels).
-Now, if a user sends `/settings` twice, they will get the same menu twice.
-But, changing the notification setting on one of the two messages will not update the other!
+Let's say you have a menu where a user can toggle notifications on and off, such
+as in the example [up here](#dynamic-labels). Now, if a user sends `/settings`
+twice, they will get the same menu twice. But, changing the notification setting
+on one of the two messages will not update the other!
 
-It is clear that we cannot keep track of all settings messages in a chat, and update all old menus across the entire chat history.
-You would have to use so many API calls for this that Telegram would rate-limit your bot.
-You would also require a lot of storage to remember all of the message identifiers of every menu, across all chats.
-This is not practical.
+It is clear that we cannot keep track of all settings messages in a chat, and
+update all old menus across the entire chat history. You would have to use so
+many API calls for this that Telegram would rate-limit your bot. You would also
+require a lot of storage to remember all of the message identifiers of every
+menu, across all chats. This is not practical.
 
 The solution is to check if a menu is outdated _before_ performing any action.
-This way, we will only update old menus if a user actually starts clicking the buttons on them.
-The menu plugin handles this automatically for you, so you don't need to worry about it.
+This way, we will only update old menus if a user actually starts clicking the
+buttons on them. The menu plugin handles this automatically for you, so you
+don't need to worry about it.
 
-You can configure exactly what happens when an outdated menu is detected.
-By default, the message "Menu was outdated, try again!" will be displayed to the user, and the menu will be updated.
-You can define custom behavior in the config under `onMenuOutdated`.
+You can configure exactly what happens when an outdated menu is detected. By
+default, the message "Menu was outdated, try again!" will be displayed to the
+user, and the menu will be updated. You can define custom behavior in the config
+under `onMenuOutdated`.
 
 ```ts
 // Custom message to be displayed
@@ -463,17 +496,21 @@ const menu1 = new Menu("id", {
 const menu2 = new Menu("id", { onMenuOutdated: false });
 ```
 
-We have a heuristic to check if the menu is outdated.
-We consider it outdated if:
+We have a heuristic to check if the menu is outdated. We consider it outdated
+if:
 
-- The shape of the menu changed (number of rows, or number of buttons in any row).
+- The shape of the menu changed (number of rows, or number of buttons in any
+  row).
 - The row/column position of the pressed button is out of range.
 - The label on the pressed button changed.
 - The pressed button does not contain a handler.
 
-It is possible that your menu changes, while all of the above things stay the same.
-It is also possible that your menu does not change fundamentally (i.e. the behavior of the handlers does not change), even though the above heuristic indicates that the menu is outdates.
-Both scenarios are unlikely to happen for most bots, but if you are creating a menu where this is the case, you should use a fingerprint function.
+It is possible that your menu changes, while all of the above things stay the
+same. It is also possible that your menu does not change fundamentally (i.e. the
+behavior of the handlers does not change), even though the above heuristic
+indicates that the menu is outdates. Both scenarios are unlikely to happen for
+most bots, but if you are creating a menu where this is the case, you should use
+a fingerprint function.
 
 ```ts
 function ident(ctx: Context): string {
@@ -484,52 +521,65 @@ function ident(ctx: Context): string {
 const menu = new Menu("id", { fingerprint: (ctx) => ident(ctx) });
 ```
 
-The fingerprint string will replace the above heuristic.
-This way, you can be sure that outdated menus are always detected.
+The fingerprint string will replace the above heuristic. This way, you can be
+sure that outdated menus are always detected.
 
 ## How Does It Work
 
-The menu plugin works completely without storing any data.
-This is important for large bots with millions of users.
-Saving the state of all menus would consume too much memory.
+The menu plugin works completely without storing any data. This is important for
+large bots with millions of users. Saving the state of all menus would consume
+too much memory.
 
-When you create your menu objects and link them together via `register` calls, no menus are actually built.
-Instead, the menu plugin will remember how to assemble new menus based on your operations.
-Whenever a menu is sent, it will replay these operations to render your menu.
-This includes laying out all dynamic ranges and generating all dynamic labels.
-Once the menu is sent, the rendered button array will be forgotten again.
+When you create your menu objects and link them together via `register` calls,
+no menus are actually built. Instead, the menu plugin will remember how to
+assemble new menus based on your operations. Whenever a menu is sent, it will
+replay these operations to render your menu. This includes laying out all
+dynamic ranges and generating all dynamic labels. Once the menu is sent, the
+rendered button array will be forgotten again.
 
 When a menu is sent, every button contains callback query that stores:
 
 - The menu identifier.
 - The row/column position of the button.
 - An optional payload.
-- A fingerprint flag that stores whether or not a fingerprint was used in the menu.
-- A 4-byte hash that encodes either the fingerprint, or the menu layout and the button label.
+- A fingerprint flag that stores whether or not a fingerprint was used in the
+  menu.
+- A 4-byte hash that encodes either the fingerprint, or the menu layout and the
+  button label.
 
-That way, we can identify exactly which button of which menu was pressed.
-A menu will only handle button presses if:
+That way, we can identify exactly which button of which menu was pressed. A menu
+will only handle button presses if:
 
 - The menu identifiers match.
 - The row/column is specified.
 - The fingerprint flag exists.
 
-When a user presses a menu's button, we need to find the handler that was added to that button at the time the menu was rendered.
-Hence, we simply render the old menu again.
-However, this time, we don't actually need the full layout---all we need is the overall structure, and that one specific button.
-Consequently, the menu plugin will perform a shallow rendering in order to be more efficient.
+When a user presses a menu's button, we need to find the handler that was added
+to that button at the time the menu was rendered. Hence, we simply render the
+old menu again. However, this time, we don't actually need the full layout---all
+we need is the overall structure, and that one specific button. Consequently,
+the menu plugin will perform a shallow rendering in order to be more efficient.
 In other words, the menu will only be rendered partially.
 
-Once the pressed button is known again (and we have checked that the menu is not [outdated](#outdated-menus-and-fingerprints)), we invoke the handler.
+Once the pressed button is known again (and we have checked that the menu is not
+[outdated](#outdated-menus-and-fingerprints)), we invoke the handler.
 
-Internally, the menu plugin makes heavy use of [API Transformer Functions](../advanced/transformers), for example, to quickly render outgoing menus on the fly.
+Internally, the menu plugin makes heavy use of
+[API Transformer Functions](../advanced/transformers), for example, to quickly
+render outgoing menus on the fly.
 
-When you register the menus in a large navigation hierarchy, they will in fact not store these references explicitly.
-Under the hood, all menus of that one structure are added to the same large pool, and that pool is shared across all contained instances.
-Every menu is responsible for every other one in the index, and they can handle and render each other.
-(Most often, it is only the root menu that is actually passed to `bot.use` and that receives any updates.
-In such cases, this one instance will handle the complete pool.)
-As a result, you are able to navigate between arbitrary menus without limit, all while the update handling can happen in [`O(1)` time complexity](https://en.wikipedia.org/wiki/Time_complexity#Constant_time) because there is no need to search through entire hierarchies to find the right menu to handle any given button click.
+When you register the menus in a large navigation hierarchy, they will in fact
+not store these references explicitly. Under the hood, all menus of that one
+structure are added to the same large pool, and that pool is shared across all
+contained instances. Every menu is responsible for every other one in the index,
+and they can handle and render each other. (Most often, it is only the root menu
+that is actually passed to `bot.use` and that receives any updates. In such
+cases, this one instance will handle the complete pool.) As a result, you are
+able to navigate between arbitrary menus without limit, all while the update
+handling can happen in
+[`O(1)` time complexity](https://en.wikipedia.org/wiki/Time_complexity#Constant_time)
+because there is no need to search through entire hierarchies to find the right
+menu to handle any given button click.
 
 ## Plugin Summary
 

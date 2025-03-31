@@ -1,7 +1,8 @@
 # Envío y recepción de mensajes
 
-Tan pronto como inicies tu bot con `bot.start()`, grammY suministrará a tus oyentes los mensajes que los usuarios envíen a tu bot.
-grammY también proporciona métodos para responder fácilmente a estos mensajes.
+Tan pronto como inicies tu bot con `bot.start()`, grammY suministrará a tus
+oyentes los mensajes que los usuarios envíen a tu bot. grammY también
+proporciona métodos para responder fácilmente a estos mensajes.
 
 ## Recepción de mensajes
 
@@ -23,13 +24,18 @@ bot.command("start", async (ctx) => {/* ... */});
 bot.hears(/echo *(.+)?/, async (ctx) => {/* ... */});
 ```
 
-Puedes utilizar la función de autocompletar en tu editor de código para ver todas las opciones disponibles, o consultar [todos los métodos](/ref/core/composer) de la clase `Composer`.
+Puedes utilizar la función de autocompletar en tu editor de código para ver
+todas las opciones disponibles, o consultar
+[todos los métodos](/ref/core/composer) de la clase `Composer`.
 
-> [Leer más](./filter-queries) sobre el filtrado de tipos de mensajes específicos con `bot.on()`.
+> [Leer más](./filter-queries) sobre el filtrado de tipos de mensajes
+> específicos con `bot.on()`.
 
 ## Envío de mensajes
 
-Todos los métodos que los bots pueden utilizar (**[lista importante](https://core.telegram.org/bots/api#available-methods)**) están disponibles en el objeto `bot.api`.
+Todos los métodos que los bots pueden utilizar
+(**[lista importante](https://core.telegram.org/bots/api#available-methods)**)
+están disponibles en el objeto `bot.api`.
 
 ```ts
 // Enviar un mensaje de texto al usuario 12345.
@@ -46,16 +52,21 @@ const me = await bot.api.getMe();
 // etc
 ```
 
-Cada método toma un objeto opcional de opciones de tipo `Other`, que le permite establecer otras opciones para sus llamadas a la API.
-Estos objetos de opciones se corresponden exactamente con las opciones que puedes encontrar en la lista de métodos enlazada anteriormente.
-También puedes utilizar el autocompletado en tu editor de código para ver todas las opciones disponibles, o consultar [todos los métodos](/ref/core/api) de la clase `Api`.
-El resto de esta página muestra algunos ejemplos para esto.
+Cada método toma un objeto opcional de opciones de tipo `Other`, que le permite
+establecer otras opciones para sus llamadas a la API. Estos objetos de opciones
+se corresponden exactamente con las opciones que puedes encontrar en la lista de
+métodos enlazada anteriormente. También puedes utilizar el autocompletado en tu
+editor de código para ver todas las opciones disponibles, o consultar
+[todos los métodos](/ref/core/api) de la clase `Api`. El resto de esta página
+muestra algunos ejemplos para esto.
 
-También, revisa la [siguiente sección](./context) para aprender cómo el objeto context de un listener hace que el envío de mensajes sea un juego de niños.
+También, revisa la [siguiente sección](./context) para aprender cómo el objeto
+context de un listener hace que el envío de mensajes sea un juego de niños.
 
 ## Enviando Mensajes con Respuesta
 
-Puedes usar la función de respuesta de Telegram especificando el identificador del mensaje al que se va a responder usando `reply_parameters`.
+Puedes usar la función de respuesta de Telegram especificando el identificador
+del mensaje al que se va a responder usando `reply_parameters`.
 
 ```ts
 bot.hears("ping", async (ctx) => {
@@ -67,25 +78,34 @@ bot.hears("ping", async (ctx) => {
 });
 ```
 
-> Tenga en cuenta que sólo el envío de un mensaje a través de `ctx.reply` no **significa que usted está respondiendo automáticamente a cualquier cosa.
-> En su lugar, debes especificar `reply_parameters` para ello.
-> La función `ctx.reply` es sólo un alias de `ctx.api.sendMessage`, ver la [siguiente sección](./context#acciones-disponibles).
+> Tenga en cuenta que sólo el envío de un mensaje a través de `ctx.reply` no
+> **significa que usted está respondiendo automáticamente a cualquier cosa. En
+> su lugar, debes especificar `reply_parameters` para ello. La función
+> `ctx.reply` es sólo un alias de `ctx.api.sendMessage`, ver la
+> [siguiente sección](./context#acciones-disponibles).
 
-Los parámetros de respuesta también te permiten responder a mensajes en otros chats, así como citar partes de un mensaje... ¡o incluso ambas cosas a la vez!
-Echa un vistazo a la [documentación de los parámetros de respuesta de Bot API](https://core.telegram.org/bots/api#replyparameters).
+Los parámetros de respuesta también te permiten responder a mensajes en otros
+chats, así como citar partes de un mensaje... ¡o incluso ambas cosas a la vez!
+Echa un vistazo a la
+[documentación de los parámetros de respuesta de Bot API](https://core.telegram.org/bots/api#replyparameters).
 
 ## Envío de mensajes con formato
 
-> Revisa la [sección sobre opciones de formato](https://core.telegram.org/bots/api#formatting-options) en la Referencia de la API de Telegram Bot escrita por el equipo de Telegram.
+> Revisa la
+> [sección sobre opciones de formato](https://core.telegram.org/bots/api#formatting-options)
+> en la Referencia de la API de Telegram Bot escrita por el equipo de Telegram.
 
 Puedes enviar mensajes con texto en **negrita** o _cursiva_, usar URLs, y más.
-Hay dos formas de hacerlo, como se describe en la [sección sobre opciones de formato](https://core.telegram.org/bots/api#formatting-options), a saber, Markdown y HTML.
+Hay dos formas de hacerlo, como se describe en la
+[sección sobre opciones de formato](https://core.telegram.org/bots/api#formatting-options),
+a saber, Markdown y HTML.
 
 ### Markdown
 
 > Ver también <https://core.telegram.org/bots/api#markdownv2-style>
 
-Envía tu mensaje con markdown en el texto, y especifica `parse_mode: "MarkdownV2"`.
+Envía tu mensaje con markdown en el texto, y especifica
+`parse_mode: "MarkdownV2"`.
 
 ```ts
 await bot.api.sendMessage(
@@ -99,7 +119,8 @@ await bot.api.sendMessage(
 
 > Véase también <https://core.telegram.org/bots/api#html-style>
 
-Envía tu mensaje con elementos HTML en el texto, y especifica `parse_mode: "HTML"`.
+Envía tu mensaje con elementos HTML en el texto, y especifica
+`parse_mode: "HTML"`.
 
 ```ts
 await bot.api.sendMessage(
@@ -111,15 +132,22 @@ await bot.api.sendMessage(
 
 ## Envío de archivos
 
-El manejo de archivos se explica con mayor profundidad en una [sección posterior] (./files#sending-files).
+El manejo de archivos se explica con mayor profundidad en una [sección
+posterior] (./files#sending-files).
 
 ## Forzar respuesta
 
-> Esto puede ser útil si tu bot está funcionando en [modo privacidad](https://core.telegram.org/bots/features#privacy-mode) en los chats de grupo.
+> Esto puede ser útil si tu bot está funcionando en
+> [modo privacidad](https://core.telegram.org/bots/features#privacy-mode) en los
+> chats de grupo.
 
-Cuando envíes un mensaje, puedes hacer que el cliente de Telegram del usuario especifique automáticamente el mensaje como respuesta.
-Esto significa que el usuario responderá al mensaje de tu bot automáticamente (a menos que elimine la respuesta manualmente).
-Como resultado, tu bot recibirá el mensaje del usuario incluso cuando se ejecute en [modo de privacidad](https://core.telegram.org/bots/features#privacy-mode) en los chats de grupo.
+Cuando envíes un mensaje, puedes hacer que el cliente de Telegram del usuario
+especifique automáticamente el mensaje como respuesta. Esto significa que el
+usuario responderá al mensaje de tu bot automáticamente (a menos que elimine la
+respuesta manualmente). Como resultado, tu bot recibirá el mensaje del usuario
+incluso cuando se ejecute en
+[modo de privacidad](https://core.telegram.org/bots/features#privacy-mode) en
+los chats de grupo.
 
 Puedes forzar una respuesta así:
 

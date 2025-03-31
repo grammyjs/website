@@ -5,16 +5,18 @@ next: false
 
 # Internasionalisasi dengan Fluent (`fluent`)
 
-[Fluent](https://projectfluent.org/) adalah sebuah sistem penerjemah bahasa yang dibuat oleh Mozilla Foundation dengan tujuan supaya hasil terjemahan terdengar lebih natural.
-Ia memiliki sebuah syntax yang canggih dan elegan, sehingga memungkinkan siapa pun dapat menerjemah secara efisien serta bisa dipahami dengan baik.
-Plugin ini memanfaatkan sistem penerjemah tersebut untuk membuat bot grammY menjadi fasih serta menghasilkan terjemahan berkualitas tinggi.
+[Fluent](https://projectfluent.org/) adalah sebuah sistem penerjemah bahasa yang
+dibuat oleh Mozilla Foundation dengan tujuan supaya hasil terjemahan terdengar
+lebih natural. Ia memiliki sebuah syntax yang canggih dan elegan, sehingga
+memungkinkan siapa pun dapat menerjemah secara efisien serta bisa dipahami
+dengan baik. Plugin ini memanfaatkan sistem penerjemah tersebut untuk membuat
+bot grammY menjadi fasih serta menghasilkan terjemahan berkualitas tinggi.
 
-::: tip Fluent vs i18n
-Jangan bingung membedakan plugin ini dengan plugin [i18n](./i18n).
+::: tip Fluent vs i18n Jangan bingung membedakan plugin ini dengan plugin
+[i18n](./i18n).
 
-Plugin [i18n](./i18n) merupakan versi upgrade dari plugin ini.
-Ia dapat digunakan baik di Deno maupun Node.js.
-:::
+Plugin [i18n](./i18n) merupakan versi upgrade dari plugin ini. Ia dapat
+digunakan baik di Deno maupun Node.js. :::
 
 ## Inisialisasi Fluent
 
@@ -53,8 +55,9 @@ await fluent.addTranslation({
 
 ## Menulis Pesan Terjemahan
 
-Syntax Fluent sangat mudah untuk dipelajari.
-Kamu bisa memulainya dengan meniru [contoh resmi berikut](https://projectfluent.org/#examples) atau dengan mempelajari [panduan lengkap syntax](https://projectfluent.org/fluent/guide/).
+Syntax Fluent sangat mudah untuk dipelajari. Kamu bisa memulainya dengan meniru
+[contoh resmi berikut](https://projectfluent.org/#examples) atau dengan
+mempelajari [panduan lengkap syntax](https://projectfluent.org/fluent/guide/).
 
 Untuk saat ini, mari kita mulai dengan contoh berikut:
 
@@ -70,33 +73,45 @@ welcome =
   }.
 ```
 
-Contoh di atas menggunakan tiga fitur utama Fluent, yaitu: **terms**, **variable substitution** (placeable), dan **pluralization**.
+Contoh di atas menggunakan tiga fitur utama Fluent, yaitu: **terms**, **variable
+substitution** (placeable), dan **pluralization**.
 
-`welcome` adalah **message ID**-nya.
-Ia digunakan untuk merujuk pesan terkait ketika di-render.
+`welcome` adalah **message ID**-nya. Ia digunakan untuk merujuk pesan terkait
+ketika di-render.
 
-Statement `-bot-name = Bot Krupuk` menghasilkan sebuah **term** dengan nama `bot-name` yang memiliki value `Bot Krupuk`.
-Construct `{-bot-name}` merujuk ke term yang telah ditentukan sebelumnya dan akan digantikan dengan value dari term tersebut ketika di-render.
+Statement `-bot-name = Bot Krupuk` menghasilkan sebuah **term** dengan nama
+`bot-name` yang memiliki value `Bot Krupuk`. Construct `{-bot-name}` merujuk ke
+term yang telah ditentukan sebelumnya dan akan digantikan dengan value dari term
+tersebut ketika di-render.
 
-Statement `{$name}` akan digantikan dengan value dari variable `name` yang perlu kamu tentukan sendiri di function terjemahannya.
+Statement `{$name}` akan digantikan dengan value dari variable `name` yang perlu
+kamu tentukan sendiri di function terjemahannya.
 
-Statement terakhir (_baris 5 sampai 9_) menghasilkan sebuah **selector** (sangat mirip dengan statement switch) yang akan menerima hasil dari function `NUMBER` khusus yang menggunakan variable `krupukCount` lalu memilih salah satu dari tiga pilihan pesan yang akan di-render berdasarkan value yang sesuai.
-Function `NUMBER` akan mengembalikan sebuah [kategori plural CLDR](https://www.unicode.org/cldr/cldr-aux/charts/30/supplemental/language_plural_rules.html) berdasarkan value yang disediakan dan locale yang digunakan.
-Dengan demikian, pluralisasi dapat diterapkan dengan baik.
+Statement terakhir (_baris 5 sampai 9_) menghasilkan sebuah **selector** (sangat
+mirip dengan statement switch) yang akan menerima hasil dari function `NUMBER`
+khusus yang menggunakan variable `krupukCount` lalu memilih salah satu dari tiga
+pilihan pesan yang akan di-render berdasarkan value yang sesuai. Function
+`NUMBER` akan mengembalikan sebuah
+[kategori plural CLDR](https://www.unicode.org/cldr/cldr-aux/charts/30/supplemental/language_plural_rules.html)
+berdasarkan value yang disediakan dan locale yang digunakan. Dengan demikian,
+pluralisasi dapat diterapkan dengan baik.
 
-> Catatan dari penerjemah: Di bahasa Indonesia, kata plural atau jamak tidak terlalu mempengaruhi struktur kalimat.
-> Contoh: satu apel, dua apel, orang pertama, orang kedua, orang ketiga.
-> Tetapi, di bahasa Inggris misalnya, kata jamak dan tunggal akan berpengaruh.
-> Perhatikan perbedaan imbuhan "s" di akhir kata benda jamak dan imbuhan "-st, -nd, -rd" di contoh berikut.
-> Contoh: one apple, two apple**s**, 1**st** person, 2**nd** person, 3**rd** person.
+> Catatan dari penerjemah: Di bahasa Indonesia, kata plural atau jamak tidak
+> terlalu mempengaruhi struktur kalimat. Contoh: satu apel, dua apel, orang
+> pertama, orang kedua, orang ketiga. Tetapi, di bahasa Inggris misalnya, kata
+> jamak dan tunggal akan berpengaruh. Perhatikan perbedaan imbuhan "s" di akhir
+> kata benda jamak dan imbuhan "-st, -nd, -rd" di contoh berikut. Contoh: one
+> apple, two apple**s**, 1**st** person, 2**nd** person, 3**rd** person.
 
 ## Konfigurasi grammY
 
-Sekarang, mari kita lihat bagaimana pesan di atas bisa di-render oleh sebuah bot.
-Pertama-tama, kita perlu mengonfigurasi grammY untuk menggunakan plugin ini.
+Sekarang, mari kita lihat bagaimana pesan di atas bisa di-render oleh sebuah
+bot. Pertama-tama, kita perlu mengonfigurasi grammY untuk menggunakan plugin
+ini.
 
 Kamu juga perlu mengonfigurasi bot kamu untuk menggunakan Fluent context flavor.
-Jika kamu masih merasa asing dengan konsep tersebut, sebaiknya kamu pahami terlebih dahulu materi [Context Flavors](../guide/context#context-flavor).
+Jika kamu masih merasa asing dengan konsep tersebut, sebaiknya kamu pahami
+terlebih dahulu materi [Context Flavors](../guide/context#context-flavor).
 
 ```ts
 import { Context } from "grammy";
@@ -106,7 +121,8 @@ import { FluentContextFlavor } from "@grammyjs/fluent";
 export type MyAppContext = Context & FluentContextFlavor;
 ```
 
-Buat instance bot dengan cara berikut agar bisa menggunakan context type yang sudah ditambahkan tadi:
+Buat instance bot dengan cara berikut agar bisa menggunakan context type yang
+sudah ditambahkan tadi:
 
 ```ts
 const bot = new Bot<MyAppContext>("");
@@ -122,12 +138,13 @@ bot.use(
 );
 ```
 
-Pastikan untuk menambahkan [instance Fluent yang sudah dibuat sebelumnya](#inisialisasi-fluent).
+Pastikan untuk menambahkan
+[instance Fluent yang sudah dibuat sebelumnya](#inisialisasi-fluent).
 
 ## Me-render Pesan yang Sudah Diterjemahkan
 
-Mantap, sekarang kita punya segalanya untuk me-render pesan kita!
-Mari kita buat percobaan dengan menentukan sebuah command di bot kita:
+Mantap, sekarang kita punya segalanya untuk me-render pesan kita! Mari kita buat
+percobaan dengan menentukan sebuah command di bot kita:
 
 ```ts
 bot.command("i18n_test", async (ctx) => {
@@ -148,18 +165,24 @@ Selamat datang, Budi, di Bot Krupuk!
 Kamu cuma punya 1 krupuk.
 ```
 
-Tentu saja, kamu akan melihat nama kamu sendiri alih-alih "Budi".
-Coba ubah value dari variable `krupukCount` untuk melihat bagaimana pesan yang telah di-render akan berubah!
+Tentu saja, kamu akan melihat nama kamu sendiri alih-alih "Budi". Coba ubah
+value dari variable `krupukCount` untuk melihat bagaimana pesan yang telah
+di-render akan berubah!
 
-Perlu diketahui, kamu bisa menggunakan function translation di berbagai tempat selama terdapat `Context` di tempat tersebut.
-Library-nya akan secara otomatis menentukan locale terbaik untuk setiap user berdasarkan preferensi personal mereka (bahasa yang dipakai di pengaturan aplikasi Telegram).
-Kamu cuma perlu membuat beberapa file terjemahan lain serta memastikan semua terjemahan tersinkronisasi dengan baik.
+Perlu diketahui, kamu bisa menggunakan function translation di berbagai tempat
+selama terdapat `Context` di tempat tersebut. Library-nya akan secara otomatis
+menentukan locale terbaik untuk setiap user berdasarkan preferensi personal
+mereka (bahasa yang dipakai di pengaturan aplikasi Telegram). Kamu cuma perlu
+membuat beberapa file terjemahan lain serta memastikan semua terjemahan
+tersinkronisasi dengan baik.
 
 ## Tahap Selanjutnya
 
-- Baca [dokumentasi Fluent](https://projectfluent.org/) hingga tuntas, khususnya [panduan syntax](https://projectfluent.org/fluent/guide/).
+- Baca [dokumentasi Fluent](https://projectfluent.org/) hingga tuntas, khususnya
+  [panduan syntax](https://projectfluent.org/fluent/guide/).
 - [Beralih dari plugin `i18n`.](https://github.com/grammyjs/fluent#i18n-plugin-replacement)
-- Pahami dengan baik [`@moebius/fluent`](https://github.com/the-moebius/fluent#readme).
+- Pahami dengan baik
+  [`@moebius/fluent`](https://github.com/the-moebius/fluent#readme).
 
 ## Ringkasan Plugin
 

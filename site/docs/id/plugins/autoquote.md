@@ -5,23 +5,32 @@ next: false
 
 # Selalu Reply Pesan
 
-> Catatan terjemahan: Kami membedakan istilah `balas` dengan `reply` agar tidak rancu.
-> Balas berarti membalas chat seperti pada umumnya.
-> Sedangkan reply merujuk ke [membalas pesan secara spesifik](https://telegram.org/blog/replies-mentions-hashtags#replies) sehingga menghasilkan utas pesan.
+> Catatan terjemahan: Kami membedakan istilah `balas` dengan `reply` agar tidak
+> rancu. Balas berarti membalas chat seperti pada umumnya. Sedangkan reply
+> merujuk ke
+> [membalas pesan secara spesifik](https://telegram.org/blog/replies-mentions-hashtags#replies)
+> sehingga menghasilkan utas pesan.
 
-Terkadang kita perlu untuk selalu me-reply pesan, khususnya untuk bot yang digunakan bersama di suatu grup.
-Kita bisa melakukannya dengan cara menambahkan parameter `reply_parameters` ke berbagai method pengirim pesan: `sendText`, `reply`, `sendPhoto`, `replyWithPhoto` dan lain-lain.
-Namun, jika kamu melakukannya untuk setiap pesan yang masuk, cepat atau lambat kode kamu akan menjadi berantakan dan membosankan karena mengulang hal yang sama.
+Terkadang kita perlu untuk selalu me-reply pesan, khususnya untuk bot yang
+digunakan bersama di suatu grup. Kita bisa melakukannya dengan cara menambahkan
+parameter `reply_parameters` ke berbagai method pengirim pesan: `sendText`,
+`reply`, `sendPhoto`, `replyWithPhoto` dan lain-lain. Namun, jika kamu
+melakukannya untuk setiap pesan yang masuk, cepat atau lambat kode kamu akan
+menjadi berantakan dan membosankan karena mengulang hal yang sama.
 
-Plugin ini menyetel property `reply_parameters` ke semua method `reply*` dan `send*` agar setiap pesan dan chat yang dikehendaki di-reply secara otomatis.
+Plugin ini menyetel property `reply_parameters` ke semua method `reply*` dan
+`send*` agar setiap pesan dan chat yang dikehendaki di-reply secara otomatis.
 
-Untuk memaksa bot tetap mengirim pesan meski pesan yang di-reply tidak tersedia, kamu bisa menyertakan sebuah object dengan property `allowSendingWithoutReply` ke paramater `options` di function `addReplyParam` ataupun `autoQuote`.
+Untuk memaksa bot tetap mengirim pesan meski pesan yang di-reply tidak tersedia,
+kamu bisa menyertakan sebuah object dengan property `allowSendingWithoutReply`
+ke paramater `options` di function `addReplyParam` ataupun `autoQuote`.
 
 ## Penggunaan
 
 ### Untuk Pesan Tertentu
 
-Jika ingin me-reply pesan tertentu saja (misalnya hanya me-reply pesan command `demo`), maka kamu bisa melakukannya dengan cara seperti ini:
+Jika ingin me-reply pesan tertentu saja (misalnya hanya me-reply pesan command
+`demo`), maka kamu bisa melakukannya dengan cara seperti ini:
 
 ::: code-group
 
@@ -71,7 +80,8 @@ bot.start();
 
 ### Untuk Setiap Pesan
 
-Jika ingin me-reply setiap pesan yang masuk, kamu bisa melakukannya dengan cara seperti ini:
+Jika ingin me-reply setiap pesan yang masuk, kamu bisa melakukannya dengan cara
+seperti ini:
 
 ::: code-group
 

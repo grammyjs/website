@@ -5,18 +5,24 @@ next: false
 
 # Hosting: Fly
 
-Esta guía te explica las formas de alojar tus bots de grammY en [Fly](https://fly.io), ya sea usando Deno o Node.js.
+Esta guía te explica las formas de alojar tus bots de grammY en
+[Fly](https://fly.io), ya sea usando Deno o Node.js.
 
 ## Preparando tu código
 
-Puedes ejecutar tu bot usando ambos [webhooks o long polling](../guide/deployment-types).
+Puedes ejecutar tu bot usando ambos
+[webhooks o long polling](../guide/deployment-types).
 
 ### Webhooks
 
-> Recuerda que no debes llamar a `bot.start()` en tu código cuando uses webhooks.
+> Recuerda que no debes llamar a `bot.start()` en tu código cuando uses
+> webhooks.
 
-1. Asegúrate de tener un archivo que exporte tu objeto `Bot`, para poder importarlo después y ejecutarlo.
-2. Crea un archivo llamado `app.ts` o `app.js`, o en realidad cualquier nombre que te guste (pero deberías recordarlo y usarlo como el archivo principal para desplegar), con el siguiente contenido:
+1. Asegúrate de tener un archivo que exporte tu objeto `Bot`, para poder
+   importarlo después y ejecutarlo.
+2. Crea un archivo llamado `app.ts` o `app.js`, o en realidad cualquier nombre
+   que te guste (pero deberías recordarlo y usarlo como el archivo principal
+   para desplegar), con el siguiente contenido:
 
 ::: code-group
 
@@ -59,12 +65,15 @@ app.listen(port, () => console.log(`listening on port ${port}`));
 
 :::
 
-Le aconsejamos que tenga su manejador en alguna ruta secreta en lugar de la raíz (`/`).
-Como se muestra en la línea resaltada arriba, estamos usando el token del bot (`/<bot token>`) como ruta secreta.
+Le aconsejamos que tenga su manejador en alguna ruta secreta en lugar de la raíz
+(`/`). Como se muestra en la línea resaltada arriba, estamos usando el token del
+bot (`/<bot token>`) como ruta secreta.
 
 ### Long Polling
 
-Crea un archivo llamado `app.ts` o `app.js`, o en realidad cualquier nombre que te guste (pero deberías recordar y usar este como el archivo principal para desplegar), con el siguiente contenido:
+Crea un archivo llamado `app.ts` o `app.js`, o en realidad cualquier nombre que
+te guste (pero deberías recordar y usar este como el archivo principal para
+desplegar), con el siguiente contenido:
 
 ::: code-group
 
@@ -108,15 +117,16 @@ bot.start();
 
 :::
 
-Como puedes ver en la línea resaltada arriba, tomamos algunos valores sensibles (tu token de bot) de las variables de entorno.
-Fly nos permite almacenar ese secreto ejecutando este comando:
+Como puedes ver en la línea resaltada arriba, tomamos algunos valores sensibles
+(tu token de bot) de las variables de entorno. Fly nos permite almacenar ese
+secreto ejecutando este comando:
 
 ```sh
 flyctl secrets set BOT_TOKEN="AAAA:12345"
 ```
 
-Puedes especificar otros secretos de la misma manera.
-Para más información sobre estos _secretos_, véase <https://fly.io/docs/apps/secrets/>.
+Puedes especificar otros secretos de la misma manera. Para más información sobre
+estos _secretos_, véase <https://fly.io/docs/apps/secrets/>.
 
 ## Despliegue
 
@@ -124,9 +134,10 @@ Para más información sobre estos _secretos_, véase <https://fly.io/docs/apps/
 
 Este es el método más sencillo.
 
-1. Instalar [flyctl](https://fly.io/docs/flyctl/install/) e [inicia la sesión](https://fly.io/docs/getting-started/sign-up-sign-in/).
-2. Ejecuta `flyctl launch` para generar un `Dockerfile` y un archivo `fly.toml` para el despliegue.
-   Pero **NO** despliega.
+1. Instalar [flyctl](https://fly.io/docs/flyctl/install/) e
+   [inicia la sesión](https://fly.io/docs/getting-started/sign-up-sign-in/).
+2. Ejecuta `flyctl launch` para generar un `Dockerfile` y un archivo `fly.toml`
+   para el despliegue. Pero **NO** despliega.
 
    ::: code-group
 
@@ -174,11 +185,14 @@ Este es el método más sencillo.
 
    :::
 
-3. **Deno**: Cambiar la versión de Deno y eliminar `CMD` si existe en el archivo `Dockerfile`.
-   Por ejemplo, en este caso, actualizamos `DENO_VERSION` a `1.25.2`.
+3. **Deno**: Cambiar la versión de Deno y eliminar `CMD` si existe en el archivo
+   `Dockerfile`. Por ejemplo, en este caso, actualizamos `DENO_VERSION` a
+   `1.25.2`.
 
-   **Node.js**: Para cambiar la versión de Node.js, necesitas insertar una propiedad `"node"` dentro de una propiedad `"engines"` dentro de `package.json`.
-   Por ejemplo, actualizamos la versión de Node.js a `16.14.0` en el siguiente ejemplo.
+   **Node.js**: Para cambiar la versión de Node.js, necesitas insertar una
+   propiedad `"node"` dentro de una propiedad `"engines"` dentro de
+   `package.json`. Por ejemplo, actualizamos la versión de Node.js a `16.14.0`
+   en el siguiente ejemplo.
 
    ::: code-group
 
@@ -237,10 +251,11 @@ Este es el método más sencillo.
 
    :::
 
-4. Edita `app` dentro del archivo `fly.toml`.
-   La ruta `./app.ts` (o `./app.js` para Node.js) en el ejemplo de abajo se refiere al directorio del archivo principal.
-   Puedes modificarlos para que coincidan con el directorio de tu proyecto.
-   Si estás usando webhooks, asegúrate de que el puerto es el mismo que el de tu [configuración](#webhooks) (`8000`).
+4. Edita `app` dentro del archivo `fly.toml`. La ruta `./app.ts` (o `./app.js`
+   para Node.js) en el ejemplo de abajo se refiere al directorio del archivo
+   principal. Puedes modificarlos para que coincidan con el directorio de tu
+   proyecto. Si estás usando webhooks, asegúrate de que el puerto es el mismo
+   que el de tu [configuración](#webhooks) (`8000`).
 
    ::: code-group
 
@@ -360,13 +375,18 @@ Este es el método más sencillo.
 
 ### Método 2: Con acciones de GitHub
 
-La principal ventaja del siguiente método es que Fly vigilará los cambios en tu repositorio que incluye el código de tu bot, y desplegará las nuevas versiones automáticamente.
-Visite <https://fly.io/docs/launch/continuous-deployment-with-github-actions/> para obtener instrucciones más detalladas.
+La principal ventaja del siguiente método es que Fly vigilará los cambios en tu
+repositorio que incluye el código de tu bot, y desplegará las nuevas versiones
+automáticamente. Visite
+<https://fly.io/docs/launch/continuous-deployment-with-github-actions/> para
+obtener instrucciones más detalladas.
 
-1. Instala [flyctl](https://fly.io/docs/flyctl/install/) e [inicia la sesión](https://fly.io/docs/getting-started/sign-up-sign-in/).
+1. Instala [flyctl](https://fly.io/docs/flyctl/install/) e
+   [inicia la sesión](https://fly.io/docs/getting-started/sign-up-sign-in/).
 2. Obtén un token de la API de Fly ejecutando `flyctl auth token`.
 3. Crea un repositorio en GitHub, puede ser privado o público.
-4. Ve a Configuración, elige Secretos y crea un secreto llamado `FLY_API_TOKEN` con el valor del token del paso 2.
+4. Ve a Configuración, elige Secretos y crea un secreto llamado `FLY_API_TOKEN`
+   con el valor del token del paso 2.
 5. Crea `.github/workflows/main.yml` con estos contenidos:
 
    ```yml
@@ -384,28 +404,34 @@ Visite <https://fly.io/docs/launch/continuous-deployment-with-github-actions/> p
          - run: flyctl deploy --remote-only
    ```
 
-6. Sigue los pasos 2 a 4 del [Método 1](#metodo-1-con-flyctl) anterior.
-   Recuerda saltarte el último paso (paso 5) ya que no vamos a desplegar el código directamente.
+6. Sigue los pasos 2 a 4 del [Método 1](#metodo-1-con-flyctl) anterior. Recuerda
+   saltarte el último paso (paso 5) ya que no vamos a desplegar el código
+   directamente.
 7. Confirma tus cambios y envíalos a GitHub.
-8. A partir de ahora, cada vez que envíes un cambio, la aplicación se desplegará automáticamente.
+8. A partir de ahora, cada vez que envíes un cambio, la aplicación se desplegará
+   automáticamente.
 
 ### Configuración de la URL del Webhook
 
-Si estás utilizando webhooks, después de poner en marcha tu aplicación, debes configurar los ajustes de webhook de tu bot para que apunte a tu aplicación.
+Si estás utilizando webhooks, después de poner en marcha tu aplicación, debes
+configurar los ajustes de webhook de tu bot para que apunte a tu aplicación.
 Para ello, envía una petición a
 
 ```text
 https://api.telegram.org/bot<token>/setWebhook?url=<url>
 ```
 
-sustituyendo `<token>` por el token de tu bot, y `<url>` por la URL completa de tu app junto con la ruta al manejador del webhook.
+sustituyendo `<token>` por el token de tu bot, y `<url>` por la URL completa de
+tu app junto con la ruta al manejador del webhook.
 
 ### Optimización de Dockerfile
 
-Cuando nuestro `Dockerfile` se ejecuta, copia todo desde el directorio a la imagen Docker.
-Para las aplicaciones Node.js, algunos directorios como `node_modules` van a ser reconstruidos de todos modos, así que no hay necesidad de copiarlos.
-Crea un archivo `.dockerignore` y añade `node_modules` a él para hacer esto.
-También puedes utilizar `.dockerignore` para no copiar ningún otro archivo que no sea necesario en tiempo de ejecución.
+Cuando nuestro `Dockerfile` se ejecuta, copia todo desde el directorio a la
+imagen Docker. Para las aplicaciones Node.js, algunos directorios como
+`node_modules` van a ser reconstruidos de todos modos, así que no hay necesidad
+de copiarlos. Crea un archivo `.dockerignore` y añade `node_modules` a él para
+hacer esto. También puedes utilizar `.dockerignore` para no copiar ningún otro
+archivo que no sea necesario en tiempo de ejecución.
 
 ## Reference
 

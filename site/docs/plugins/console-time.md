@@ -5,14 +5,20 @@ next: false
 
 # Console Logging While Debugging
 
-If you are familiar with JavaScript/TypeScript you probably used [`console.log`](https://developer.mozilla.org/en-US/docs/Web/API/console/log_static) or [`console.time`](https://developer.mozilla.org/en-US/docs/Web/API/console/time_static) to check what is happening while debugging something.
-While working on your bot or middleware you might want to check something similar: What happened, and how long took it?
+If you are familiar with JavaScript/TypeScript you probably used
+[`console.log`](https://developer.mozilla.org/en-US/docs/Web/API/console/log_static)
+or
+[`console.time`](https://developer.mozilla.org/en-US/docs/Web/API/console/time_static)
+to check what is happening while debugging something. While working on your bot
+or middleware you might want to check something similar: What happened, and how
+long took it?
 
 This plugin is interested in individual requests to debug individual problems.
-While being in a production environment, you probably want something opposite in order to get a rough overview.
-For example: while debugging why `/start` fails you will check the individual Telegram update.
-In a production context you are more interested in all `/start` messages that are happening.
-This library is intended to help with individual updates.
+While being in a production environment, you probably want something opposite in
+order to get a rough overview. For example: while debugging why `/start` fails
+you will check the individual Telegram update. In a production context you are
+more interested in all `/start` messages that are happening. This library is
+intended to help with individual updates.
 
 ## Debug Your Implementation
 
@@ -38,14 +44,15 @@ which will output stuff like this:
 
 The `490af` is the `update_id`.
 
-The number before the commands is the total length of the content.
-This is helpful when considering max length for stuff like callback data.
+The number before the commands is the total length of the content. This is
+helpful when considering max length for stuff like callback data.
 
 The content itself is shortened in order to prevent log spamming.
 
 ## Debug Your Middleware
 
-When you create your own middleware or assume slow timings of another middleware you can use these middlewares to create a timing profile.
+When you create your own middleware or assume slow timings of another middleware
+you can use these middlewares to create a timing profile.
 
 ```ts
 import {
@@ -78,7 +85,8 @@ This will output something like this:
 490ai foo total: 891.849ms
 ```
 
-This indicates the checked middleware alone took 800ms and isn't as performant as maybe needed.
+This indicates the checked middleware alone took 800ms and isn't as performant
+as maybe needed.
 
 ## Plugin Summary
 

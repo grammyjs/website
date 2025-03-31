@@ -5,10 +5,13 @@ next: false
 
 # Медіагрупи (вбудовано)
 
-Плагін медіагрупи допоможе вам надсилати групи мультимедійних даних, дозволяючи створювати обʼєкти `InputMedia`.
-До речі, обʼєкти `InputMedia` також використовуються під час редагування медіаповідомлень, тому цей плагін також допоможе вам редагувати медіа.
+Плагін медіагрупи допоможе вам надсилати групи мультимедійних даних, дозволяючи
+створювати обʼєкти `InputMedia`. До речі, обʼєкти `InputMedia` також
+використовуються під час редагування медіаповідомлень, тому цей плагін також
+допоможе вам редагувати медіа.
 
-Памʼятайте, що обʼєкти `InputMedia` описано [тут](https://core.telegram.org/bots/api#inputmedia).
+Памʼятайте, що обʼєкти `InputMedia` описано
+[тут](https://core.telegram.org/bots/api#inputmedia).
 
 ## Побудова обʼєкту `InputMedia`
 
@@ -42,9 +45,11 @@ const video = InputMediaBuilder.video(new InputFile("/tmp/video.mp4"));
 
 :::
 
-Ознайомтеся зі всіма методами `InputMediaBuilder` у [довідці API](/ref/core/inputmediabuilder).
+Ознайомтеся зі всіма методами `InputMediaBuilder` у
+[довідці API](/ref/core/inputmediabuilder).
 
-Ви також можете безпосередньо передавати публічні URL-адреси, які запросить (`fetch`) Telegram.
+Ви також можете безпосередньо передавати публічні URL-адреси, які запросить
+(`fetch`) Telegram.
 
 ```ts
 const photo = InputMediaBuilder.photo("https://grammy.dev/images/grammY.png");
@@ -67,11 +72,13 @@ const photo = InputMediaBuilder.photo("https://grammy.dev/images/grammY.png", {
 await ctx.replyWithMediaGroup([photo0, photo1, photo2, video]);
 ```
 
-Так само ви можете передати масив обʼєктів `InputMedia` до `ctx.api.sendMediaGroup` або `bot.api.sendMediaGroup`.
+Так само ви можете передати масив обʼєктів `InputMedia` до
+`ctx.api.sendMediaGroup` або `bot.api.sendMediaGroup`.
 
 ## Редагування медіаповідомлень
 
-Оскільки обʼєкти `InputMedia` також використовуються для редагування медіаповідомлень, цей плагін допоможе вам і тут:
+Оскільки обʼєкти `InputMedia` також використовуються для редагування
+медіаповідомлень, цей плагін допоможе вам і тут:
 
 ```ts
 const newMedia = InputMediaBuilder.photo(
@@ -80,12 +87,12 @@ const newMedia = InputMediaBuilder.photo(
 await ctx.editMessageMedia(newMedia);
 ```
 
-Як і завжди, це також працює для `ctx.api.editMessageMedia` та `bot.api.editMessageMedia`.
+Як і завжди, це також працює для `ctx.api.editMessageMedia` та
+`bot.api.editMessageMedia`.
 
 ## Загальні відомості про плагін
 
-Цей плагін вбудовано в ядро grammY.
-Вам не потрібно нічого встановлювати, щоб використовувати його.
-Просто імпортуйте все з самого grammY.
+Цей плагін вбудовано в ядро grammY. Вам не потрібно нічого встановлювати, щоб
+використовувати його. Просто імпортуйте все з самого grammY.
 
 До того ж документація і довідка API цього плагіна уніфіковані з ядром пакета.

@@ -7,18 +7,24 @@ next: false
 
 > Considere usar el [plugin auto-retry](./auto-retry) en su lugar.
 
-Este plugin pone en cola la instancia de solicitudes de API salientes a través de [Bottleneck](https://github.com/SGrondin/bottleneck) para evitar que su bot alcance los [límites de velocidad](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this) como se describe en [esta sección avanzada](../advanced/flood) de la documentación.
+Este plugin pone en cola la instancia de solicitudes de API salientes a través
+de [Bottleneck](https://github.com/SGrondin/bottleneck) para evitar que su bot
+alcance los
+[límites de velocidad](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this)
+como se describe en [esta sección avanzada](../advanced/flood) de la
+documentación.
 
-::: warning Existen límites no documentados en la API
-Telegram implementa límites de velocidad no especificados y no documentados para algunas llamadas de la API.
-Estos límites no documentados **no son tenidos en cuenta** por el estrangulador.
-Si aún desea utilizar este plugin, considere la posibilidad de utilizar el [auto-retry plugin](./auto-retry) junto con él.
-:::
+::: warning Existen límites no documentados en la API Telegram implementa
+límites de velocidad no especificados y no documentados para algunas llamadas de
+la API. Estos límites no documentados **no son tenidos en cuenta** por el
+estrangulador. Si aún desea utilizar este plugin, considere la posibilidad de
+utilizar el [auto-retry plugin](./auto-retry) junto con él. :::
 
 ## Uso
 
-Aquí hay un ejemplo de cómo usar este plugin con las opciones por defecto.
-Ten en cuenta que las opciones por defecto están alineadas con los límites de velocidad reales aplicados por Telegram, por lo que deberían estar bien.
+Aquí hay un ejemplo de cómo usar este plugin con las opciones por defecto. Ten
+en cuenta que las opciones por defecto están alineadas con los límites de
+velocidad reales aplicados por Telegram, por lo que deberían estar bien.
 
 ::: code-group
 
@@ -75,10 +81,13 @@ type ThrottlerOptions = {
 };
 ```
 
-La lista completa de propiedades de los objetos disponibles para `Bottleneck.ConstructorOptions` se puede encontrar en [Bottleneck](https://github.com/SGrondin/bottleneck#constructor).
+La lista completa de propiedades de los objetos disponibles para
+`Bottleneck.ConstructorOptions` se puede encontrar en
+[Bottleneck](https://github.com/SGrondin/bottleneck#constructor).
 
-Si no se pasa ningún argumento, el estrangulador creado utilizará los ajustes de configuración por defecto que deberían ser apropiados para la mayoría de los casos de uso.
-La configuración por defecto es la siguiente:
+Si no se pasa ningún argumento, el estrangulador creado utilizará los ajustes de
+configuración por defecto que deberían ser apropiados para la mayoría de los
+casos de uso. La configuración por defecto es la siguiente:
 
 ```ts
 // Acelerador global saliente

@@ -5,14 +5,22 @@ next: false
 
 # Menggunakan Console Log untuk Men-debug
 
-Jika kamu sudah terbiasa dengan JavaScript/TypeScript, kemungkinan besar kamu sering menggunakan [`console.log`](https://developer.mozilla.org/en-US/docs/Web/API/console/log_static) atau [`console.time`](https://developer.mozilla.org/en-US/docs/Web/API/console/time_static) untuk men-debug suatu program.
-Ketika bekerja dengan sebuah bot atau middleware, kamu mungkin juga perlu untuk melakukan hal yang serupa: Apa yang sebenarnya terjadi, dan berapa lama waktu yang dibutuhkan?
+Jika kamu sudah terbiasa dengan JavaScript/TypeScript, kemungkinan besar kamu
+sering menggunakan
+[`console.log`](https://developer.mozilla.org/en-US/docs/Web/API/console/log_static)
+atau
+[`console.time`](https://developer.mozilla.org/en-US/docs/Web/API/console/time_static)
+untuk men-debug suatu program. Ketika bekerja dengan sebuah bot atau middleware,
+kamu mungkin juga perlu untuk melakukan hal yang serupa: Apa yang sebenarnya
+terjadi, dan berapa lama waktu yang dibutuhkan?
 
-Plugin ini bertujuan untuk men-debug satu permasalahan khusus.
-Saat berada di mode produksi, kamu mungkin ingin melakukan hal yang sebaliknya, yaitu mendapatkan gambaran permasalahan secara umum, bukan satu permasalahan saja.
-Contohnya: Ketika men-debug `/start` yang tidak berjalan dengan baik, kamu akan melakukan pengecekan di update Telegram tersebut saja.
-Sedangkan saat di mode produksi, kamu ingin mengecek semua pesan `/start` yang terjadi.
-Library ini dimaksudkan untuk mengecek satu update tertentu saja.
+Plugin ini bertujuan untuk men-debug satu permasalahan khusus. Saat berada di
+mode produksi, kamu mungkin ingin melakukan hal yang sebaliknya, yaitu
+mendapatkan gambaran permasalahan secara umum, bukan satu permasalahan saja.
+Contohnya: Ketika men-debug `/start` yang tidak berjalan dengan baik, kamu akan
+melakukan pengecekan di update Telegram tersebut saja. Sedangkan saat di mode
+produksi, kamu ingin mengecek semua pesan `/start` yang terjadi. Library ini
+dimaksudkan untuk mengecek satu update tertentu saja.
 
 ## Men-debug Implementasianmu
 
@@ -38,14 +46,16 @@ Hasilnya akan mirip seperti ini:
 
 `490af` adalah `update_id`-nya.
 
-Angka sebelum command adalah jumlah panjang dari konten tersebut.
-Ini berguna untuk menghitung panjang maksimal untuk hal-hal seperti data callback.
+Angka sebelum command adalah jumlah panjang dari konten tersebut. Ini berguna
+untuk menghitung panjang maksimal untuk hal-hal seperti data callback.
 
 Kontennya sendiri dibuat singkat untuk menghindari spam di log.
 
 ## Men-debug Middleware-mu
 
-Ketika membuat middleware-mu sendiri atau menduga middleware lain berjalan lambat, kamu bisa menggunakan middleware-midleware tersebut untuk melakukan pencatatan waktu.
+Ketika membuat middleware-mu sendiri atau menduga middleware lain berjalan
+lambat, kamu bisa menggunakan middleware-midleware tersebut untuk melakukan
+pencatatan waktu.
 
 ```ts
 import {
@@ -78,7 +88,8 @@ Hasilnya kurang lebih seperti ini:
 490ai foo total: 891.849ms
 ```
 
-Hal ini mengindikasikan bahwa middleware yang dites tersebut berjalan selama 800 milidetik, yang mana tidak bekerja dengan baik seperti seharusnya.
+Hal ini mengindikasikan bahwa middleware yang dites tersebut berjalan selama 800
+milidetik, yang mana tidak bekerja dengan baik seperti seharusnya.
 
 ## Ringkasan Plugin
 

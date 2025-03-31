@@ -7,18 +7,20 @@ next: false
 
 > 考虑使用 [auto-retry 插件](./auto-retry) 代替。
 
-这个插件通过 [Bottleneck](https://github.com/SGrondin/bottleneck) 对传出的 API 请求实例进行排队，以防止你的 bot 被 [限流](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this)，正如在这个 [高级部分](../advanced/flood) 的文档中描述的那样。
+这个插件通过 [Bottleneck](https://github.com/SGrondin/bottleneck) 对传出的 API
+请求实例进行排队，以防止你的 bot 被
+[限流](https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this)，正如在这个
+[高级部分](../advanced/flood) 的文档中描述的那样。
 
-::: warning 不存在文档中的 API 限制
-Telegram 实现了一些未指定的和无文档的 API 调用的限制。
-这些无文档的限制**不被限流器计算**。
-如果你仍然想使用这个插件，请考虑将 [auto-retry 插件](./auto-retry) 和这个插件一起使用。
-:::
+::: warning 不存在文档中的 API 限制 Telegram 实现了一些未指定的和无文档的 API
+调用的限制。 这些无文档的限制**不被限流器计算**。
+如果你仍然想使用这个插件，请考虑将 [auto-retry 插件](./auto-retry)
+和这个插件一起使用。 :::
 
 ## 使用方法
 
-这里是使用默认选项的一个示例。
-请注意，默认选项与 Telegram 所实现的限制率一致，因此它们应该可以正常使用。
+这里是使用默认选项的一个示例。 请注意，默认选项与 Telegram
+所实现的限制率一致，因此它们应该可以正常使用。
 
 ::: code-group
 
@@ -84,7 +86,8 @@ type ThrottlerOptions = {
 };
 ```
 
-`Bottleneck.ConstructorOptions` 可用的所有属性可以在 [Bottleneck](https://github.com/SGrondin/bottleneck#constructor) 中找到。
+`Bottleneck.ConstructorOptions` 可用的所有属性可以在
+[Bottleneck](https://github.com/SGrondin/bottleneck#constructor) 中找到。
 
 如果没有传入参数，限流器创建时将使用默认配置，这些配置应该适用于大多数情况。
 默认配置如下：

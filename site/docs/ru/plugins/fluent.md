@@ -15,8 +15,7 @@ Foundation для создания естественных переводов. 
 ::: tip Не путать Не путайте это с [i18n](./i18n).
 
 [i18n](./i18n) это улучшенная версия этого плагина, которая работает как на
-Deno, так и на Node.js.
-:::
+Deno, так и на Node.js. :::
 
 ## Инициализация Fluent
 
@@ -173,7 +172,8 @@ bot.command("i18n_test", async (ctx) => {
 - Завершите чтение [документации по Fluent](https://projectfluent.org/),
   особенно [руководства по синтаксису](https://projectfluent.org/fluent/guide/).
 - [Мигрируйте с плагина `i18n`](https://github.com/grammyjs/fluent#i18n-plugin-replacement).
-- Ознакомьтесь с [`@moebius/fluent`](https://github.com/the-moebius/fluent#readme).
+- Ознакомьтесь с
+  [`@moebius/fluent`](https://github.com/the-moebius/fluent#readme).
 
 ## Краткая информация о плагине
 

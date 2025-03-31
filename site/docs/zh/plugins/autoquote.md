@@ -6,12 +6,15 @@ next: false
 # 总是回复消息
 
 有时候有必要总是将消息作为回复发送，特别是对于那些打算要在群组中使用的 bot。
-我们通常通过在发送消息的方法中添加 `reply_parameters` 来实现这一点：`sendText`, `reply`, `sendPhoto`, `replyWithPhoto` 等等。
+我们通常通过在发送消息的方法中添加 `reply_parameters` 来实现这一点：`sendText`,
+`reply`, `sendPhoto`, `replyWithPhoto` 等等。
 然而，如果你对每一条消息都这样做，这会使得代码变得很无聊和繁琐。
 
-此插件为所有 `reply*` 和 `send*` 方法都设置了 `reply_parameters` 的属性，以使每条消息都是对触发它的消息和聊天的回复。
+此插件为所有 `reply*` 和 `send*` 方法都设置了 `reply_parameters`
+的属性，以使每条消息都是对触发它的消息和聊天的回复。
 
-你可以将一个带有 `allowSendingWithoutReply` 属性的选项对象传递给 `addReplyParam` 和 `autoQuote` 函数，这样即使正在回复的消息不再存在，也能让你的 bot 发送消息。
+你可以将一个带有 `allowSendingWithoutReply` 属性的选项对象传递给 `addReplyParam`
+和 `autoQuote` 函数，这样即使正在回复的消息不再存在，也能让你的 bot 发送消息。
 
 ## 使用方式
 

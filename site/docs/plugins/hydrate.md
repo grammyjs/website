@@ -10,8 +10,9 @@ This plugin installs useful methods on two types of objects, namely
 1. the results of API calls, and
 2. the objects on the context object `ctx`.
 
-Instead of having to call `ctx.api` or `bot.api` and having to supply all sorts of identifiers, you can now just call methods on objects and they will just work.
-This is best illustrated by an example.
+Instead of having to call `ctx.api` or `bot.api` and having to supply all sorts
+of identifiers, you can now just call methods on objects and they will just
+work. This is best illustrated by an example.
 
 **WITHOUT** this plugin:
 
@@ -55,7 +56,8 @@ There are two ways to install this plugin.
 
 ### Simple Installation
 
-This plugin can be installed in a straightforward way that should be enough for most users.
+This plugin can be installed in a straightforward way that should be enough for
+most users.
 
 ::: code-group
 
@@ -97,14 +99,16 @@ bot.use(hydrate());
 
 ### Advanced Installation
 
-When using the simple installation, only the API call results that go through `ctx.api` will be hydrated, e.g. `ctx.reply`.
-These are most calls for most bots.
+When using the simple installation, only the API call results that go through
+`ctx.api` will be hydrated, e.g. `ctx.reply`. These are most calls for most
+bots.
 
-However, some bots may need to make calls to `bot.api`.
-In this case, you should use this advanced installation.
+However, some bots may need to make calls to `bot.api`. In this case, you should
+use this advanced installation.
 
-It will integrate context hydration and API call result hydration separately into your bot.
-Note that you now also have to install an [API flavor](../advanced/transformers#api-flavoring).
+It will integrate context hydration and API call result hydration separately
+into your bot. Note that you now also have to install an
+[API flavor](../advanced/transformers#api-flavoring).
 
 ::: code-group
 
