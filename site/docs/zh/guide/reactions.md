@@ -20,7 +20,7 @@ bot.on("message", (ctx) => ctx.react("👍"));
 
 // 使用 `ctx.api.setMessageReaction` 对其他地方的消息做出反应。
 bot.on("message", async (ctx) => {
-    await ctx.api.setMessageReaction(chat_id, message_id, [
+  await ctx.api.setMessageReaction(chat_id, message_id, [
     { type: "emoji", emoji: "🎉" },
   ]);
 });

@@ -20,7 +20,7 @@ bot.on("message", (ctx) => ctx.react("👍"));
 
 // Используйте `ctx.api.setMessageReaction` для реакций в другом месте.
 bot.on("message", async (ctx) => {
-    await ctx.api.setMessageReaction(chat_id, message_id, [
+  await ctx.api.setMessageReaction(chat_id, message_id, [
     { type: "emoji", emoji: "🎉" },
   ]);
 });
